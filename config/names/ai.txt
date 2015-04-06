@@ -19,7 +19,6 @@ B-4
 B-9
 B.O.B.
 B166ER
-Bender
 Bishop
 Blitz
 Box
@@ -34,18 +33,14 @@ Conky 2000
 Cutie
 Data
 Dee Model
-Deep Thought
 Dor-15
 Dorfl
 Dot Matrix
 Duey
-E.D.I.
-ED-209
 E-Man
 Emma-2
 Erasmus
 Ez-27
-FRIEND COMPUTER
 Fagor
 Faith
 Fi
@@ -59,7 +54,6 @@ Gort
 H.A.R.L.I.E.
 H.E.L.P.eR.
 H.E.R.B.I.E.
-HAL 9000
 Hadaly
 Huey
 Irona
@@ -67,7 +61,6 @@ Jay-Dub
 Jinx
 Johnny 5
 K-9
-KITT
 Klapaucius
 Kryten 2X4B-523P
 L-76
@@ -80,8 +73,6 @@ Marvin
 Master Control Program
 Max 404
 Maximillian
-Mechagodzilla
-Mechani-Kong
 Metalhead
 Mr. R.I.N.G.
 NCH
@@ -92,7 +83,6 @@ Orange v 3.5
 PTO
 Project 2501
 R.I.C. 2.0
-R2-D2
 R4-P17
 Revelation
 Ro-Man
@@ -102,7 +92,6 @@ S.H.O.C.K.
 S.H.R.O.U.D.
 S.O.P.H.I.E.
 SEN 5241
-SHODAN
 SID 6.7
 Setaur
 Shrike
@@ -126,10 +115,7 @@ Uniblab
 V.I.N.CENT.
 Voltes V
 W1k1
-Wikipedia
-Windows 3.1
 X-5
-XERXES
 XR
 Yod
 Z-1
@@ -140,8 +126,4 @@ Zord
 Mugsy3000
 Terminus
 Decimus
-Robot Devil
-Optimus
-Megatron
-Soundwave
 Ironhide
