@@ -183,7 +183,10 @@
 /turf/simulated/wall/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			src.ChangeTurf(/turf/space)
+			if(check_destroy_override())
+				src.ChangeTurf(destroy_floor_override_path)
+			else
+				src.ChangeTurf(/turf/space)
 			return
 		if(2.0)
 			if(prob(75))

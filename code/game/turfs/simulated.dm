@@ -14,6 +14,16 @@
 	..()
 	levelupdate()
 
+/turf/simulated/proc/check_destroy_override()
+	if(destroy_floor_override) //Don't bother doing the additional checks if we don't have to.
+		var/area/my_area = get_area(src)
+		my_area = my_area.master
+		if(is_type_in_list(my_area, destroy_floor_override_ignore_areas))
+			return 0
+		if(z in destroy_floor_override_z_levels)
+			return 1
+	return 0
+
 /turf/simulated/proc/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
 	var/obj/effect/decal/cleanable/blood/tracks/tracks = locate(typepath) in src
 	if(!tracks)

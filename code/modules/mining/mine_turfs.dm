@@ -463,6 +463,32 @@
 				F.attackby(W,user)
 				return
 
+	else if(istype(W, /obj/item/stack/rods))
+		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
+		if(L)
+			return
+		var/obj/item/stack/rods/R = W
+		if (R.use(1))
+			user << "<span class='notice'>Constructing support lattice ...</span>"
+			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+			new /obj/structure/lattice(get_turf(src))
+		return
+
+	else if(istype(W, /obj/item/stack/tile/plasteel))
+		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
+		if(L)
+			var/obj/item/stack/tile/plasteel/S = W
+			if (S.get_amount() < 1)
+				return
+			del(L)
+			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+			S.build(src)
+			S.use(1)
+			return
+		else
+			user << "<span class='warning'>The plating is going to need some support.</span>"
+			return
+
 	else
 		..(W,user)
 	return
