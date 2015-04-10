@@ -70,6 +70,8 @@ var/list/wood_icons = list("wood","wood-broken")
 	else
 		icon_regular_floor = icon_state
 
+
+
 //turf/simulated/floor/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 //	if ((istype(mover, /obj/machinery/vehicle) && !(src.burnt)))
 //		if (!( locate(/obj/machinery/mass_driver, src) ))
@@ -80,14 +82,23 @@ var/list/wood_icons = list("wood","wood-broken")
 	//set src in oview(1)
 	switch(severity)
 		if(1.0)
-			src.ChangeTurf(/turf/space)
+			if(check_destroy_override())
+				src.ChangeTurf(destroy_floor_override_path)
+			else
+				src.ChangeTurf(/turf/space)
 		if(2.0)
 			switch(pick(1,2;75,3))
 				if (1)
-					src.ReplaceWithLattice()
+					if(check_destroy_override())
+						src.ChangeTurf(destroy_floor_override_path)
+					else
+						src.ReplaceWithLattice()
 					if(prob(33)) new /obj/item/stack/sheet/metal(src)
 				if(2)
-					src.ChangeTurf(/turf/space)
+					if(check_destroy_override())
+						src.ChangeTurf(destroy_floor_override_path)
+					else
+						src.ChangeTurf(/turf/space)
 				if(3)
 					if(prob(80))
 						src.break_tile_to_plating()
