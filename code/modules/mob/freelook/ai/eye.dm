@@ -19,7 +19,8 @@
 
 		//Holopad
 		if(ai.holo)
-			ai.holo.move_hologram(ai)
+			if(ai.hologram_follow)
+				ai.holo.move_hologram(ai)
 		return 1
 
 // AI MOVEMENT
