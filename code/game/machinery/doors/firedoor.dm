@@ -429,3 +429,10 @@
 /obj/machinery/door/firedoor/multi_tile
 	icon = 'icons/obj/doors/DoorHazard2x1.dmi'
 	width = 2
+
+/obj/machinery/door/firedoor/glass
+	name = "\improper Emergency Glass Shutter"
+	desc = "Emergency air-tight shutter, capable of sealing off breached areas.  This one has a resilient glass window, allowing you to see the danger."
+	icon = 'icons/obj/doors/DoorHazardGlass.dmi'
+	icon_state = "door_open"
+	glass = 1
