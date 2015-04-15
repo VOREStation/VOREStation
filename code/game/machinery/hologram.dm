@@ -37,7 +37,7 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 	icon_state = "holopad0"
 
 	layer = TURF_LAYER+0.1 //Preventing mice and drones from sneaking under them.
-	
+
 	var/power_per_hologram = 500 //per usage per hologram
 	idle_power_usage = 5
 	use_power = 1
@@ -144,18 +144,6 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 		if((stat & NOPOWER) || !active_ai)
 			clear_holo(master)
 			continue
-		
-		if((HOLOPAD_MODE == RANGE_BASED && (get_dist(master.eyeobj, src) > holo_range)))
-			clear_holo(master)
-			continue
-		
-		if(HOLOPAD_MODE == AREA_BASED)
-			var/area/holo_area = get_area(src)
-			var/area/eye_area = get_area(master.eyeobj)
-			
-			if(!(eye_area in holo_area.master.related))
-				clear_holo(master)
-				continue
 
 		use_power(power_per_hologram)
 	return 1
@@ -166,6 +154,16 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 		var/obj/effect/overlay/H = masters[user]
 		H.loc = get_turf(user.eyeobj)
 		masters[user] = H
+		if((HOLOPAD_MODE == RANGE_BASED && (get_dist(H, src) > holo_range)))
+			clear_holo(user)
+
+		if(HOLOPAD_MODE == AREA_BASED)
+			var/area/holopad_area = get_area(src)
+			var/area/hologram_area = get_area(H)
+
+			if(!(hologram_area in holopad_area.master.related))
+				clear_holo(user)
+
 	return 1
 
 /*
