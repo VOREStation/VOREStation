@@ -12,6 +12,8 @@
 
 /turf/simulated/New()
 	..()
+	if(istype(loc, /area/chapel))
+		holy = 1
 	levelupdate()
 
 /turf/simulated/proc/check_destroy_override()
