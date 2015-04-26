@@ -5,6 +5,7 @@
  * /obj/item/rig_module/mounted/taser
  * /obj/item/rig_module/shield
  * /obj/item/rig_module/fabricator
+ * /obj/item/rig_module/mounted/energy_blade
  */
 
 /obj/item/rig_module/grenade_launcher
