@@ -30,6 +30,13 @@
 
 		return "[output][and_text][input[index]]"
 
+
+/proc/ConvertReqString2List(var/list/source_list)
+	var/list/temp_list = params2list(source_list)
+	for(var/O in temp_list)
+		temp_list[O] = text2num(temp_list[O])
+	return temp_list
+
 //Returns list element or null. Should prevent "index out of bounds" error.
 proc/listgetindex(var/list/list,index)
 	if(istype(list) && list.len)
@@ -61,6 +68,13 @@ proc/isemptylist(list/list)
 /proc/is_type_in_list(var/atom/A, var/list/L)
 	for(var/type in L)
 		if(istype(A, type))
+			return 1
+	return 0
+
+//Checks for specific paths in a list
+/proc/is_path_in_list(var/atom/A, var/list/L)
+	for(var/path in L)
+		if(ispath(A, path))
 			return 1
 	return 0
 

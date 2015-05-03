@@ -19,7 +19,8 @@
 
 		//Holopad
 		if(ai.holo)
-			ai.holo.move_hologram(ai)
+			if(ai.hologram_follow)
+				ai.holo.move_hologram(ai)
 		return 1
 
 // AI MOVEMENT
@@ -36,11 +37,14 @@
 	eyeobj.owner = src
 	eyeobj.name = "[src.name] (AI Eye)" // Give it a name
 	spawn(5)
-		eyeobj.loc = src.loc
+		if(eyeobj)
+			eyeobj.loc = src.loc
 
-/mob/living/silicon/ai/Del()
-	eyeobj.owner = null
-	del(eyeobj) // No AI, no Eye
+/mob/living/silicon/ai/Destroy()
+	if(eyeobj)
+		eyeobj.owner = null
+		qdel(eyeobj) // No AI, no Eye
+		eyeobj = null
 	..()
 
 /atom/proc/move_camera_by_click()

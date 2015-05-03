@@ -40,6 +40,11 @@
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 
+/obj/item/weapon/rcd/Destroy()
+	qdel(spark_system)
+	spark_system = null
+	return ..()
+
 /obj/item/weapon/rcd/attackby(obj/item/weapon/W, mob/user)
 
 	if(istype(W, /obj/item/weapon/rcd_ammo))
@@ -47,7 +52,7 @@
 			user << "<span class='notice'>The RCD can't hold any more matter-units.</span>"
 			return
 		user.drop_from_inventory(W)
-		del(W)
+		qdel(W)
 		stored_matter += 10
 		playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
 		user << "<span class='notice'>The RCD now holds [stored_matter]/30 matter-units.</span>"
@@ -99,16 +104,24 @@
 		build_cost =  1
 		build_type =  "floor"
 		build_turf =  /turf/simulated/floor/plating/airless
+	else if(!deconstruct && istype(T,/turf/simulated/floor/plating/asteroid))
+		build_cost =  1
+		build_type =  "floor"
+		build_turf =  /turf/simulated/floor/plating
 	else if(deconstruct && istype(T,/turf/simulated/wall))
 		build_delay = deconstruct ? 50 : 40
 		build_cost =  5
 		build_type =  (!canRwall && istype(T,/turf/simulated/wall/r_wall)) ? null : "wall"
 		build_turf =  /turf/simulated/floor
 	else if(istype(T,/turf/simulated/floor))
+		var/turf/simulated/floor/F = T
 		build_delay = deconstruct ? 50 : 20
 		build_cost =  deconstruct ? 10 : 3
 		build_type =  deconstruct ? "floor" : "wall"
-		build_turf =  deconstruct ? /turf/space : /turf/simulated/wall
+		if(F.check_destroy_override(F))
+			build_turf =  deconstruct ? destroy_floor_override_path : /turf/simulated/wall
+		else
+			build_turf =  deconstruct ? /turf/space : /turf/simulated/wall
 	else
 		return 0
 
@@ -138,7 +151,7 @@
 	else if(build_other)
 		new build_other(T)
 	else
-		del(T)
+		qdel(T)
 
 	playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 	return 1

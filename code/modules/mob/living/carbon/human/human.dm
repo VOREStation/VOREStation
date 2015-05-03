@@ -21,7 +21,10 @@
 			set_species()
 
 	if(species)
-		name = species.get_random_name(gender)
+		real_name = species.get_random_name(gender)
+		name = real_name
+		if(mind)
+			mind.name = real_name
 
 	var/datum/reagents/R = new/datum/reagents(1000)
 	reagents = R
@@ -44,6 +47,11 @@
 		dna.real_name = real_name
 	make_blood()
 
+/mob/living/carbon/human/Destroy()
+	for(var/organ in organs)
+		qdel(organ)
+	return ..()
+
 /mob/living/carbon/human/Stat()
 	..()
 	statpanel("Status")
@@ -62,7 +70,7 @@
 
 		if (internal)
 			if (!internal.air_contents)
-				del(internal)
+				qdel(internal)
 			else
 				stat("Internal Atmosphere Info", internal.name)
 				stat("Tank Pressure", internal.air_contents.return_pressure())
@@ -815,7 +823,7 @@
 	for(var/x in all_hairs)
 		var/datum/sprite_accessory/hair/H = new x // create new hair datum based on type x
 		hairs.Add(H.name) // add hair name to hairs
-		del(H) // delete the hair after it's all done
+		qdel(H) // delete the hair after it's all done
 
 	var/new_style = input("Please select hair style", "Character Generation",h_style)  as null|anything in hairs
 
@@ -830,7 +838,7 @@
 	for(var/x in all_fhairs)
 		var/datum/sprite_accessory/facial_hair/H = new x
 		fhairs.Add(H.name)
-		del(H)
+		qdel(H)
 
 	new_style = input("Please select facial style", "Character Generation",f_style)  as null|anything in fhairs
 
@@ -926,23 +934,12 @@
 		germ_level += n
 
 /mob/living/carbon/human/revive()
-	for (var/obj/item/organ/external/O in organs)
-		O.status &= ~ORGAN_BROKEN
-		O.status &= ~ORGAN_BLEEDING
-		O.status &= ~ORGAN_SPLINTED
-		O.status &= ~ORGAN_CUT_AWAY
-		O.status &= ~ORGAN_ATTACHABLE
-		O.wounds.Cut()
-		O.heal_damage(1000,1000,1,1)
-
-	var/obj/item/organ/external/head/h = organs_by_name["head"]
-	h.disfigured = 0
 
 	if(species && !(species.flags & NO_BLOOD))
 		vessel.add_reagent("blood",560-vessel.total_volume)
 		fixblood()
 
-	// Fix up any missing organs.
+	// Fix up all organs.
 	// This will ignore any prosthetics in the prefs currently.
 	species.create_organs(src)
 
@@ -952,13 +949,11 @@
 				if(H.brainmob.real_name == src.real_name)
 					if(H.brainmob.mind)
 						H.brainmob.mind.transfer_to(src)
-						del(H)
-
-	for(var/obj/item/organ/I in internal_organs)
-		I.damage = 0
+						qdel(H)
 
 	for (var/datum/disease/virus in viruses)
 		virus.cure()
+
 	for (var/ID in virus2)
 		var/datum/disease2/disease/V = virus2[ID]
 		V.cure(src)
@@ -1027,7 +1022,7 @@
 	.=..()
 	if(clean_feet && !shoes && istype(feet_blood_DNA, /list) && feet_blood_DNA.len)
 		feet_blood_color = null
-		del(feet_blood_DNA)
+		qdel(feet_blood_DNA)
 		update_inv_shoes(1)
 		return 1
 
@@ -1153,7 +1148,7 @@
 	if(client && client.screen)
 		client.screen.len = null
 		if(hud_used)
-			del(hud_used)
+			qdel(hud_used)
 		hud_used = new /datum/hud(src)
 
 	if(species)

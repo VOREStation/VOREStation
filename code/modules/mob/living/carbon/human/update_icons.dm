@@ -237,24 +237,30 @@ var/global/list/damage_icon_parts = list()
 
 	//CACHING: Generate an index key from visible bodyparts.
 	//0 = destroyed, 1 = normal, 2 = robotic, 3 = necrotic.
-
 	//Create a new, blank icon for our mob to use.
 	if(stand_icon)
-		del(stand_icon)
+		qdel(stand_icon)
 	stand_icon = new(species.icon_template ? species.icon_template : 'icons/mob/human.dmi',"blank")
+	var/icon_key = "[species.race_key][g][s_tone][r_skin][g_skin][b_skin]"
+	var/obj/item/organ/eyes/eyes = internal_organs_by_name["eyes"]
 
-	var/icon_key = "[species.race_key][g][s_tone]"
-	for(var/obj/item/organ/external/part in organs)
-		if(part.is_stump() || (part.status & ORGAN_DESTROYED))
-			icon_key = "[icon_key]0"
+	if(eyes)
+		icon_key += "[rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3])]"
+	else
+		icon_key += "#000000"
+
+	for(var/organ_tag in species.has_limbs)
+		var/obj/item/organ/external/part = organs_by_name[organ_tag]
+		if(isnull(part) || part.is_stump() || (part.status & ORGAN_DESTROYED))
+			icon_key += "0"
 		else if(part.status & ORGAN_ROBOT)
-			icon_key = "[icon_key]2[part.model ? "-[part.model]": ""]"
+			icon_key += "2[part.model ? "-[part.model]": ""]"
 		else if(part.status & ORGAN_DEAD)
-			icon_key = "[icon_key]3"
+			icon_key += "3"
 		else
-			icon_key = "[icon_key]1"
+			icon_key += "1"
 
-	icon_key = "[icon_key][husk ? 1 : 0][fat ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0][s_tone]"
+	icon_key = "[icon_key][husk ? 1 : 0][fat ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0]"
 
 	var/icon/base_icon
 	if(human_icon_cache[icon_key])
@@ -406,7 +412,7 @@ var/global/list/damage_icon_parts = list()
 	if (targeted_by && target_locked)
 		overlays_standing[TARGETED_LAYER]	= target_locked
 	else if (!targeted_by && target_locked)
-		del(target_locked)
+		qdel(target_locked)
 	if (!targeted_by)
 		overlays_standing[TARGETED_LAYER]	= null
 	if(update_icons)		update_icons()
@@ -476,11 +482,7 @@ var/global/list/damage_icon_parts = list()
 		overlays_standing[UNIFORM_LAYER]	= standing
 	else
 		overlays_standing[UNIFORM_LAYER]	= null
-		// This really, really seems like it should not be mixed in the middle of display code...
-		// Automatically drop anything in store / id / belt if you're not wearing a uniform.	//CHECK IF NECESARRY
-		for( var/obj/item/thing in list(r_store, l_store, wear_id, belt) )
-			if(thing)
-				remove_from_mob(thing)
+
 	if(update_icons)   update_icons()
 
 /mob/living/carbon/human/update_inv_wear_id(var/update_icons=1)
@@ -784,11 +786,11 @@ var/global/list/damage_icon_parts = list()
 /mob/living/carbon/human/update_inv_r_hand(var/update_icons=1)
 	if(r_hand)
 		r_hand.screen_loc = ui_rhand	//TODO
-		
+
 		var/t_icon = INV_R_HAND_DEF_ICON
 		if(r_hand.item_icons && (icon_r_hand in r_hand.item_icons))
 			t_icon = r_hand.item_icons[icon_r_hand]
-		
+
 		var/t_state = r_hand.item_state //useful for clothing that changes icon_state but retains the same sprite on the mob when held in hand
 		if(!t_state)	t_state = r_hand.icon_state
 		if(r_hand.icon_override)
@@ -800,18 +802,18 @@ var/global/list/damage_icon_parts = list()
 		if (handcuffed) drop_r_hand()
 	else
 		overlays_standing[R_HAND_LAYER] = null
-	
+
 	if(update_icons) update_icons()
 
 
 /mob/living/carbon/human/update_inv_l_hand(var/update_icons=1)
 	if(l_hand)
 		l_hand.screen_loc = ui_lhand	//TODO
-		
+
 		var/t_icon = INV_L_HAND_DEF_ICON
 		if(l_hand.item_icons && (icon_l_hand in l_hand.item_icons))
 			t_icon = l_hand.item_icons[icon_l_hand]
-		
+
 		var/t_state = l_hand.item_state //useful for clothing that changes icon_state but retains the same sprite on the mob when held in hand
 		if(!t_state)	t_state = l_hand.icon_state
 		if(l_hand.icon_override)
@@ -823,7 +825,7 @@ var/global/list/damage_icon_parts = list()
 		if (handcuffed) drop_l_hand()
 	else
 		overlays_standing[L_HAND_LAYER] = null
-	
+
 	if(update_icons) update_icons()
 
 /mob/living/carbon/human/proc/update_tail_showing(var/update_icons=1)

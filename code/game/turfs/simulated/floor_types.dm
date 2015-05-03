@@ -74,6 +74,8 @@
 	name = "engraved floor"
 	icon_state = "cult"
 
+/turf/simulated/floor/engine/cult/cultify()
+	return
 
 /turf/simulated/floor/engine/n20
 	New()
@@ -216,4 +218,48 @@
 	icon_state = "snow"
 
 /turf/simulated/floor/plating/snow/ex_act(severity)
+	return
+
+/turf/simulated/floor/plating/asteroid //underfloor for the station
+	name = "asteroid"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "asteroid"
+	icon_plating = "asteroid"
+
+/turf/simulated/floor/plating/asteroid/ex_act(severity)
+	return
+
+/turf/simulated/floor/plating/asteroid/attackby(obj/item/weapon/W as obj, mob/user as mob)
+
+	if(!W || !user)
+		return 0
+
+	if(istype(W, /obj/item/weapon/shovel) || istype(W, /obj/item/weapon/pickaxe))
+		user << "<span class='warning'>This area is unsuitable for digging.</span>"
+		return
+
+	if(istype(W, /obj/item/stack/rods))
+		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
+		if(L)
+			return
+		var/obj/item/stack/rods/R = W
+		if (R.use(1))
+			user << "<span class='notice'>Constructing support lattice ...</span>"
+			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+			new /obj/structure/lattice(get_turf(src))
+		return
+
+	if(istype(W, /obj/item/stack/tile/plasteel))
+		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
+		if(L)
+			var/obj/item/stack/tile/plasteel/S = W
+			if (S.get_amount() < 1)
+				return
+			del(L)
+			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+			S.build(src)
+			S.use(1)
+			return
+		else
+			user << "<span class='warning'>The plating is going to need some support.</span>"
 	return

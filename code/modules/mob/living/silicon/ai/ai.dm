@@ -22,7 +22,8 @@ var/list/ai_verbs_default = list(
 	/mob/living/silicon/ai/proc/sensor_mode,
 	/mob/living/silicon/ai/proc/show_laws_verb,
 	/mob/living/silicon/ai/proc/toggle_acceleration,
-	/mob/living/silicon/ai/proc/toggle_camera_light
+	/mob/living/silicon/ai/proc/toggle_camera_light,
+	/mob/living/silicon/ai/proc/toggle_hologram_movement
 )
 
 //Not sure why this is necessary...
@@ -45,7 +46,7 @@ var/list/ai_verbs_default = list(
 	density = 1
 	status_flags = CANSTUN|CANPARALYSE|CANPUSH
 	shouldnt_see = list(/obj/effect/rune)
-	var/list/network = list("SS13")
+	var/list/network = list("Exodus")
 	var/obj/machinery/camera/camera = null
 	var/list/connected_robots = list()
 	var/aiRestorePowerRoutine = 0
@@ -71,21 +72,19 @@ var/list/ai_verbs_default = list(
 
 	var/mob/living/silicon/ai/parent = null
 
-	var/apc_override = 0 //hack for letting the AI use its APC even when visionless
 	var/camera_light_on = 0	//Defines if the AI toggled the light on the camera it's looking through.
 	var/datum/trackable/track = null
 	var/last_announcement = ""
 	var/datum/announcement/priority/announcement
+	var/hologram_follow = 1 //This is used for the AI eye, to determine if a holopad's hologram should follow it or not.
 
 /mob/living/silicon/ai/proc/add_ai_verbs()
 	src.verbs |= ai_verbs_default
-	src.verbs |= ai_verbs_subsystems
-	src.verbs |= silicon_verbs_subsystems
+	src.verbs |= silicon_subsystems
 
 /mob/living/silicon/ai/proc/remove_ai_verbs()
 	src.verbs -= ai_verbs_default
-	src.verbs -= ai_verbs_subsystems
-	src.verbs -= silicon_verbs_subsystems
+	src.verbs -= silicon_subsystems
 
 /mob/living/silicon/ai/New(loc, var/datum/ai_laws/L, var/obj/item/device/mmi/B, var/safety = 0)
 	announcement = new()
@@ -145,7 +144,7 @@ var/list/ai_verbs_default = list(
 	if(!safety)//Only used by AIize() to successfully spawn an AI.
 		if (!B)//If there is no player/brain inside.
 			empty_playable_ai_cores += new/obj/structure/AIcore/deactivated(loc)//New empty terminal.
-			del(src)//Delete AI.
+			qdel(src)//Delete AI.
 			return
 		else
 			if (B.brainmob.mind)
@@ -195,9 +194,9 @@ var/list/ai_verbs_default = list(
 
 	job = "AI"
 
-/mob/living/silicon/ai/Del()
+/mob/living/silicon/ai/Destroy()
 	ai_list -= src
-	del(eyeobj)
+	qdel(eyeobj)
 	..()
 
 /mob/living/silicon/ai/pointed(atom/A as mob|obj|turf in view())
@@ -243,7 +242,7 @@ var/list/ai_verbs_default = list(
 /obj/machinery/ai_powersupply/New(var/mob/living/silicon/ai/ai=null)
 	powered_ai = ai
 	if(isnull(powered_ai))
-		Del()
+		qdel(src)
 
 	loc = powered_ai.loc
 	use_power(1) // Just incase we need to wake up the power system.
@@ -252,7 +251,7 @@ var/list/ai_verbs_default = list(
 
 /obj/machinery/ai_powersupply/process()
 	if(!powered_ai || powered_ai.stat & DEAD)
-		Del()
+		qdel(src)
 	if(!powered_ai.anchored)
 		loc = powered_ai.loc
 		use_power = 0
@@ -478,41 +477,41 @@ var/list/ai_verbs_default = list(
 //Replaces /mob/living/silicon/ai/verb/change_network() in ai.dm & camera.dm
 //Adds in /mob/living/silicon/ai/proc/ai_network_change() instead
 //Addition by Mord_Sith to define AI's network change ability
-/mob/living/silicon/ai/proc/ai_network_change()
-	set category = "AI Commands"
-	set name = "Jump To Network"
-	unset_machine()
-	var/cameralist[0]
-
+/mob/living/silicon/ai/proc/get_camera_network_list()
 	if(check_unable())
 		return
 
-	var/mob/living/silicon/ai/U = usr
-
+	var/list/cameralist = new()
 	for (var/obj/machinery/camera/C in cameranet.cameras)
 		if(!C.can_use())
 			continue
-
 		var/list/tempnetwork = difflist(C.network,restricted_camera_networks,1)
-		if(tempnetwork.len)
-			for(var/i in tempnetwork)
-				cameralist[i] = i
-	var/old_network = network
-	network = input(U, "Which network would you like to view?") as null|anything in cameralist
+		for(var/i in tempnetwork)
+			cameralist[i] = i
 
-	if(!U.eyeobj)
-		U.view_core()
+	cameralist = sortAssoc(cameralist)
+	return cameralist
+
+/mob/living/silicon/ai/proc/ai_network_change(var/network in get_camera_network_list())
+	set category = "AI Commands"
+	set name = "Jump To Network"
+	unset_machine()
+
+	if(!network)
 		return
 
-	if(isnull(network))
-		network = old_network // If nothing is selected
-	else
-		for(var/obj/machinery/camera/C in cameranet.cameras)
-			if(!C.can_use())
-				continue
-			if(network in C.network)
-				U.eyeobj.setLoc(get_turf(C))
-				break
+	if(!eyeobj)
+		view_core()
+		return
+
+	src.network = network
+
+	for(var/obj/machinery/camera/C in cameranet.cameras)
+		if(!C.can_use())
+			continue
+		if(network in C.network)
+			eyeobj.setLoc(get_turf(C))
+			break
 	src << "\blue Switched to [network] camera network."
 //End of code by Mord_Sith
 
@@ -554,7 +553,7 @@ var/list/ai_verbs_default = list(
 			input = input("Select a crew member:") as null|anything in personnel_list
 			var/icon/character_icon = personnel_list[input]
 			if(character_icon)
-				del(holo_icon)//Clear old icon so we're not storing it in memory.
+				qdel(holo_icon)//Clear old icon so we're not storing it in memory.
 				holo_icon = getHologramIcon(icon(character_icon))
 		else
 			alert("No suitable records found. Aborting.")
@@ -567,7 +566,7 @@ var/list/ai_verbs_default = list(
 		)
 		input = input("Please select a hologram:") as null|anything in icon_list
 		if(input)
-			del(holo_icon)
+			qdel(holo_icon)
 			switch(input)
 				if("default")
 					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo1"))
@@ -666,16 +665,25 @@ var/list/ai_verbs_default = list(
 	set desc = "Augment visual feed with internal sensor overlays"
 	toggle_sensor_mode()
 
+/mob/living/silicon/ai/proc/toggle_hologram_movement()
+	set name = "Toggle Hologram Movement"
+	set category = "AI Commands"
+	set desc = "Toggles hologram movement based on moving with your virtual eye."
+
+	hologram_follow = !hologram_follow
+	usr << "Your hologram will [hologram_follow ? "follow" : "no longer follow"] you now."
+
+
 /mob/living/silicon/ai/proc/check_unable(var/flags = 0)
 	if(stat == DEAD)
-		usr << "\red You are dead!"
+		src << "<span class='warning'>You are dead!</span>"
 		return 1
 
 	if((flags & AI_CHECK_WIRELESS) && src.control_disabled)
-		usr << "\red Wireless control is disabled!"
+		src << "<span class='warning'>Wireless control is disabled!</span>"
 		return 1
 	if((flags & AI_CHECK_RADIO) && src.aiRadio.disabledAi)
-		src << "\red System Error - Transceiver Disabled!"
+		src << "<span class='warning'>System Error - Transceiver Disabled!</span>"
 		return 1
 	return 0
 

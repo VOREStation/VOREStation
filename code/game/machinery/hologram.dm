@@ -37,7 +37,7 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 	icon_state = "holopad0"
 
 	layer = TURF_LAYER+0.1 //Preventing mice and drones from sneaking under them.
-	
+
 	var/power_per_hologram = 500 //per usage per hologram
 	idle_power_usage = 5
 	use_power = 1
@@ -131,7 +131,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 /obj/machinery/hologram/holopad/proc/clear_holo(mob/living/silicon/ai/user)
 	if(user.holo == src)
 		user.holo = null
-	del(masters[user])//Get rid of user's hologram //qdel
+	qdel(masters[user])//Get rid of user's hologram
 	masters -= user //Discard AI from the list of those who use holopad
 	if (!masters.len)//If no users left
 		SetLuminosity(0)			//pad lighting (hologram lighting will be handled automatically since its owner was deleted)
@@ -144,18 +144,6 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 		if((stat & NOPOWER) || !active_ai)
 			clear_holo(master)
 			continue
-		
-		if((HOLOPAD_MODE == RANGE_BASED && (get_dist(master.eyeobj, src) > holo_range)))
-			clear_holo(master)
-			continue
-		
-		if(HOLOPAD_MODE == AREA_BASED)
-			var/area/holo_area = get_area(src)
-			var/area/eye_area = get_area(master.eyeobj)
-			
-			if(!(eye_area in holo_area.master.related))
-				clear_holo(master)
-				continue
 
 		use_power(power_per_hologram)
 	return 1
@@ -166,6 +154,16 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 		var/obj/effect/overlay/H = masters[user]
 		H.loc = get_turf(user.eyeobj)
 		masters[user] = H
+		if((HOLOPAD_MODE == RANGE_BASED && (get_dist(H, src) > holo_range)))
+			clear_holo(user)
+
+		if(HOLOPAD_MODE == AREA_BASED)
+			var/area/holopad_area = get_area(src)
+			var/area/hologram_area = get_area(H)
+
+			if(!(hologram_area in holopad_area.master.related))
+				clear_holo(user)
+
 	return 1
 
 /*
@@ -182,24 +180,24 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 /obj/machinery/hologram/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			del(src)
+			qdel(src)
 		if(2.0)
 			if (prob(50))
-				del(src)
+				qdel(src)
 		if(3.0)
 			if (prob(5))
-				del(src)
+				qdel(src)
 	return
 
 /obj/machinery/hologram/blob_act()
-	del(src)
+	qdel(src)
 	return
 
 /obj/machinery/hologram/meteorhit()
-	del(src)
+	qdel(src)
 	return
 
-/obj/machinery/hologram/holopad/Del()
+/obj/machinery/hologram/holopad/Destroy()
 	for (var/mob/living/silicon/ai/master in masters)
 		clear_holo(master)
 	..()

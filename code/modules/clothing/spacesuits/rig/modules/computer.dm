@@ -46,6 +46,10 @@
 	var/obj/item/ai_card  // Reference to the MMI, posibrain, intellicard or pAI card previously holding the AI.
 	var/obj/item/ai_verbs/verb_holder
 
+/obj/item/rig_module/ai_container/process()
+	if(integrated_ai && loc)
+		integrated_ai.SetupStat(loc.get_rig())
+
 /obj/item/rig_module/ai_container/proc/update_verb_holder()
 	if(!verb_holder)
 		verb_holder = new(src)
@@ -105,7 +109,14 @@
 
 	// Okay, it wasn't a terminal being touched, check for all the simple insertions.
 	if(input_device.type in list(/obj/item/device/paicard, /obj/item/device/mmi, /obj/item/device/mmi/digital/posibrain))
-		integrate_ai(input_device,user)
+		if(integrated_ai)
+			integrated_ai.attackby(input_device,user)
+			// If the transfer was successful, we can clear out our vars.
+			if(integrated_ai.loc != src)
+				integrated_ai = null
+				eject_ai()
+		else
+			integrate_ai(input_device,user)
 		return 1
 
 	return 0
@@ -146,8 +157,8 @@
 			user << "<span class='danger'>You purge the remaining scraps of data from your previous AI, freeing it for use.</span>"
 			if(integrated_ai)
 				integrated_ai.ghostize()
-				del(integrated_ai)
-			if(ai_card) del(ai_card)
+				qdel(integrated_ai)
+			if(ai_card) qdel(ai_card)
 		else if(user)
 			user.put_in_hands(ai_card)
 		else

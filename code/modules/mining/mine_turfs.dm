@@ -319,7 +319,7 @@
 		if(!S || S.field_type != get_responsive_reagent(F.find_type))
 			if(X)
 				visible_message("\red<b>[pick("[display_name] crumbles away into dust","[display_name] breaks apart")].</b>")
-				del(X)
+				qdel(X)
 
 	finds.Remove(F)
 
@@ -463,6 +463,32 @@
 				F.attackby(W,user)
 				return
 
+	else if(istype(W, /obj/item/stack/rods))
+		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
+		if(L)
+			return
+		var/obj/item/stack/rods/R = W
+		if (R.use(1))
+			user << "<span class='notice'>Constructing support lattice ...</span>"
+			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+			new /obj/structure/lattice(get_turf(src))
+		return
+
+	else if(istype(W, /obj/item/stack/tile/plasteel))
+		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
+		if(L)
+			var/obj/item/stack/tile/plasteel/S = W
+			if (S.get_amount() < 1)
+				return
+			del(L)
+			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+			S.build(src)
+			S.use(1)
+			return
+		else
+			user << "<span class='warning'>The plating is going to need some support.</span>"
+			return
+
 	else
 		..(W,user)
 	return
@@ -507,7 +533,7 @@
 	..()
 	if(istype(M,/mob/living/silicon/robot))
 		var/mob/living/silicon/robot/R = M
-		if(istype(R.module, /obj/item/weapon/robot_module/miner))
+		if(R.module)
 			if(istype(R.module_state_1,/obj/item/weapon/storage/bag/ore))
 				attackby(R.module_state_1,R)
 			else if(istype(R.module_state_2,/obj/item/weapon/storage/bag/ore))

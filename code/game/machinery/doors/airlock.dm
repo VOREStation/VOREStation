@@ -36,10 +36,10 @@
 		if(damage >= 10)
 			if(src.density)
 				visible_message("<span class='danger'>\The [user] forces \the [src] open!</span>")
-				open()
+				open(1)
 			else
 				visible_message("<span class='danger'>\The [user] forces \the [src] closed!</span>")
-				close()
+				close(1)
 		else
 			visible_message("<span class='notice'>\The [user] strains fruitlessly to force \the [src] [density ? "open" : "closed"].</span>")
 		return
@@ -264,13 +264,13 @@
 	for(var/obj/structure/falsewall/phoron/F in range(3,src))//Hackish as fuck, but until temperature_expose works, there is nothing I can do -Sieve
 		var/turf/T = get_turf(F)
 		T.ChangeTurf(/turf/simulated/wall/mineral/phoron/)
-		del (F)
+		qdel (F)
 	for(var/turf/simulated/wall/mineral/phoron/W in range(3,src))
 		W.ignite((temperature/4))//Added so that you can't set off a massive chain reaction with a small flame
 	for(var/obj/machinery/door/airlock/phoron/D in range(3,src))
 		D.ignite(temperature/4)
 	new/obj/structure/door_assembly( src.loc )
-	del (src)
+	qdel(src)
 
 /obj/machinery/door/airlock/sandstone
 	name = "Sandstone Airlock"
@@ -610,7 +610,7 @@ About the new airlock wires panel:
 		..(user)
 	return
 
-/obj/machinery/door/airlock/CanUseTopic(var/mob/user, href_list)
+/obj/machinery/door/airlock/CanUseTopic(var/mob/user)
 	if(!user.isSilicon())
 		return STATUS_CLOSE
 
@@ -627,7 +627,7 @@ About the new airlock wires panel:
 				user << "<span class='warning'>Unable to interface: Connection refused.</span>"
 		return STATUS_CLOSE
 
-	return STATUS_INTERACTIVE
+	return ..()
 
 /obj/machinery/door/airlock/Topic(href, href_list, var/nowindow = 0)
 	if(..())
@@ -770,13 +770,13 @@ About the new airlock wires panel:
 					electronics.loc = src.loc
 					electronics = null
 
-				del(src)
+				qdel(src)
 				return
 		else if(arePowerSystemsOn())
 			user << "\blue The airlock's motors resist your efforts to force it."
 		else if(locked)
 			user << "\blue The airlock's bolts prevent it from being forced."
-		else if( !welded && !operating )
+		else
 			if(density)
 				spawn(0)	open(1)
 			else
@@ -825,11 +825,8 @@ About the new airlock wires panel:
 	return
 
 /obj/machinery/door/airlock/open(var/forced=0)
-	if(!can_open())
+	if(!can_open(forced))
 		return 0
-	if(!forced)
-		if( !arePowerSystemsOn() || isWireCut(AIRLOCK_WIRE_OPEN_DOOR) )
-			return 0
 	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
 	if(istype(src, /obj/machinery/door/airlock/glass))
 		playsound(src.loc, 'sound/machines/windowdoor.ogg', 100, 1)
@@ -839,7 +836,11 @@ About the new airlock wires panel:
 		src.closeOther.close()
 	return ..()
 
-/obj/machinery/door/airlock/can_open()
+/obj/machinery/door/airlock/can_open(var/forced=0)
+	if(!forced)
+		if(!arePowerSystemsOn() || isWireCut(AIRLOCK_WIRE_OPEN_DOOR))
+			return 0
+
 	if(locked || welded)
 		return 0
 	return ..()
@@ -881,7 +882,7 @@ About the new airlock wires panel:
 				S.victim = M
 				S.loc = M.loc
 				spawn(20)
-					del(S)
+					qdel(S)
 				if (iscarbon(M))
 					var/mob/living/carbon/C = M
 					if (!(C.species && (C.species.flags & NO_PAIN)))

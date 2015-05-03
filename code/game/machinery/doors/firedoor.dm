@@ -56,7 +56,7 @@
 	for(var/obj/machinery/door/firedoor/F in loc)
 		if(F != src)
 			spawn(1)
-				del src
+				qdel(src)
 			return .
 	var/area/A = get_area(src)
 	ASSERT(istype(A))
@@ -70,14 +70,15 @@
 			A.all_doors.Add(src)
 			areas_added += A
 
-/obj/machinery/door/firedoor/Del()
+/obj/machinery/door/firedoor/Destroy()
 	for(var/area/A in areas_added)
 		A.all_doors.Remove(src)
 	. = ..()
 
 
 /obj/machinery/door/firedoor/examine(mob/user)
-	if(!..(user, 1) && !isAI(user))
+	. = ..(user, 1)
+	if(!. || !density)
 		return
 
 	if(pdiff >= FIREDOOR_MAX_PRESSURE_DIFF)
@@ -230,7 +231,7 @@
 					FA.density = 1
 					FA.wired = 1
 					FA.update_icon()
-					del(src)
+					qdel(src)
 		return
 
 	if(blocked)
@@ -429,3 +430,10 @@
 /obj/machinery/door/firedoor/multi_tile
 	icon = 'icons/obj/doors/DoorHazard2x1.dmi'
 	width = 2
+
+/obj/machinery/door/firedoor/glass
+	name = "\improper Emergency Glass Shutter"
+	desc = "Emergency air-tight shutter, capable of sealing off breached areas.  This one has a resilient glass window, allowing you to see the danger."
+	icon = 'icons/obj/doors/DoorHazardGlass.dmi'
+	icon_state = "door_open"
+	glass = 1
