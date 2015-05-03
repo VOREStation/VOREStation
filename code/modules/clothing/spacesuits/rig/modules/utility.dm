@@ -403,7 +403,22 @@
 	active_power_cost = 0
 	passive_power_cost = 0
 
-	gun_type = /obj/item/weapon/reagent_containers/spray/cleaner
+	gun = /obj/item/weapon/reagent_containers/spray/cleaner
+
+//obj/item/weapon/reagent_containers/spray/cleaner
+//	spary =
+
+/obj/item/rig_module/mounted/engage(atom/target)
+
+	if(!..())
+		return 0
+
+	if(!target)
+		gun.attack_self(holder.wearer)
+		return 1
+
+	gun.Spray_at(target,holder.wearer)
+	return 1
 
 /obj/item/rig_module/mounted/mop/process()
 

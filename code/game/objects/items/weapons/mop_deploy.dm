@@ -10,11 +10,25 @@
 	w_class = 4.0//So you can't hide it in your pocket or some such.
 	attack_verb = list("mopped", "bashed", "bludgeoned", "whacked")
 	var/mob/living/creator
+	var/mopping = 0
+	var/mopcount = 0
 
 
 /obj/item/weapon/mop_deploy/New()
-	create_reagents(100)
+	create_reagents(5)
 	processing_objects |= src
+
+/turf/proc/clean_deploy(atom/source)
+	if(source.reagents.has_reagent("water", 1))
+		clean_blood()
+		if(istype(src, /turf/simulated))
+			var/turf/simulated/T = src
+			T.dirt = 0
+		for(var/obj/effect/O in src)
+			if(istype(O,/obj/effect/rune) || istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
+				del(O)
+	source.reagents.reaction(src, TOUCH, 10)	//10 is the multiplier for the reaction effect. probably needed to wet the floor properly.
+	source.reagents.remove_any(1)				//reaction() doesn't use up the reagents
 
 /obj/item/weapon/mop_deploy/afterattack(atom/A, mob/user, proximity)
 	if(!proximity) return
@@ -24,7 +38,7 @@
 		if(do_after(user, 40))
 			var/turf/T = get_turf(A)
 			if(T)
-				T.clean(src)
+				T.clean_deploy(src)
 			user << "<span class='notice'>You have finished mopping!</span>"
 
 /obj/effect/attackby(obj/item/I, mob/user)
