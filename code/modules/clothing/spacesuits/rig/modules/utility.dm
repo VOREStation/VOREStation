@@ -417,7 +417,7 @@
 		gun.attack_self(holder.wearer)
 		return 1
 
-	gun.Spray_at(target,holder.wearer)
+	gun.Fire(target,holder.wearer)
 	return 1
 
 /obj/item/rig_module/mounted/mop/process()
