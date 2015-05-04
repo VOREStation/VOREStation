@@ -43,6 +43,19 @@
 	name = "insulated gauntlets"
 	siemens_coefficient = 0
 
+/obj/item/weapon/rig/ert/janitor
+	name = "ERT-J suit control module"
+	desc = "A suit worn by the janitor division of a NanoTrasen Emergency Response Team. Has purple highlights. Armoured and space ready."
+	suit_type = "ERT Janitor"
+	icon_state = "ert_janitor_rig"
+
+	initial_modules = list(
+		/obj/item/rig_module/ai_container,
+		/obj/item/rig_module/maneuvering_jets,
+		/obj/item/rig_module/mounted/mop,
+		/obj/item/rig_module/cleaner_launcher,
+		)
+
 /obj/item/weapon/rig/ert/medical
 	name = "ERT-M suit control module"
 	desc = "A suit worn by the medical division of a NanoTrasen Emergency Response Team. Has white highlights. Armoured and space ready."
