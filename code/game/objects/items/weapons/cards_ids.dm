@@ -92,7 +92,7 @@
 		/obj/machinery/shield_gen,
 		/obj/machinery/clonepod,
 		/obj/machinery/deployable,
-		/obj/machinery/door_control,
+		/obj/machinery/button/remote,
 		/obj/machinery/porta_turret,
 		/obj/machinery/shieldgen,
 		/obj/machinery/turretid,
@@ -293,3 +293,11 @@
 	New()
 		access = get_all_centcom_access()
 		..()
+
+/obj/item/weapon/card/id/centcom/ERT
+	name = "\improper Emergency Response Team ID"
+	assignment = "Emergency Response Team"
+		
+/obj/item/weapon/card/id/centcom/ERT/New()
+	..()
+	access += get_all_accesses()

@@ -58,6 +58,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/investigate_show,		/*various admintools for investigation. Such as a singulo grief-log*/
 	/client/proc/secrets,
 	/datum/admins/proc/toggleooc,		/*toggles ooc on/off for everyone*/
+	/datum/admins/proc/togglelooc,		/*toggles looc on/off for everyone*/
 	/datum/admins/proc/toggleoocdead,	/*toggles ooc on/off for everyone who is dead*/
 	/datum/admins/proc/toggledsay,		/*toggles dsay on/off for everyone*/
 	/client/proc/game_panel,			/*game panel, allows to change game-mode etc*/
@@ -109,7 +110,8 @@ var/list/admin_verbs_fun = list(
 	/client/proc/cmd_admin_add_random_ai_law,
 	/client/proc/make_sound,
 	/client/proc/toggle_random_events,
-	/client/proc/editappear
+	/client/proc/editappear,
+	/client/proc/roll_dices
 	)
 var/list/admin_verbs_spawn = list(
 	/datum/admins/proc/spawn_fruit,
@@ -254,6 +256,7 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/cmd_debug_tog_aliens,
 	/client/proc/air_report,
 	/client/proc/enable_debug_verbs,
+	/client/proc/roll_dices,
 	/proc/possess,
 	/proc/release
 	)

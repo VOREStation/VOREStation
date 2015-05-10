@@ -155,7 +155,7 @@
 
 
 	//build smoke icon
-	var/color = mix_color_from_reagents(chemholder.reagents.reagent_list)
+	var/color = chemholder.reagents.get_color()
 	var/icon/I
 	if(color)
 		I = icon('icons/effects/chemsmoke.dmi')
@@ -229,6 +229,10 @@
 // Fades out the smoke smoothly using it's alpha variable.
 //------------------------------------------
 /datum/effect/effect/system/smoke_spread/chem/proc/fadeOut(var/atom/A, var/frames = 16)
+	if(A.alpha == 0) //Handle already transparent case
+		return
+	if(frames == 0)
+		frames = 1 //We will just assume that by 0 frames, the coder meant "during one frame".
 	var/step = A.alpha / frames
 	for(var/i = 0, i < frames, i++)
 		A.alpha -= step

@@ -487,8 +487,8 @@
 	qdel(src)
 
 /obj/item/weapon/reagent_containers/food/snacks/egg/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype( W, /obj/item/toy/crayon ))
-		var/obj/item/toy/crayon/C = W
+	if(istype( W, /obj/item/weapon/pen/crayon ))
+		var/obj/item/weapon/pen/crayon/C = W
 		var/clr = C.colourName
 
 		if(!(clr in list("blue","green","mime","orange","purple","rainbow","red","yellow")))
@@ -497,41 +497,32 @@
 
 		usr << "\blue You color \the [src] [clr]"
 		icon_state = "egg-[clr]"
-		item_color = clr
 	else
 		..()
 
 /obj/item/weapon/reagent_containers/food/snacks/egg/blue
 	icon_state = "egg-blue"
-	item_color = "blue"
 
 /obj/item/weapon/reagent_containers/food/snacks/egg/green
 	icon_state = "egg-green"
-	item_color = "green"
 
 /obj/item/weapon/reagent_containers/food/snacks/egg/mime
 	icon_state = "egg-mime"
-	item_color = "mime"
 
 /obj/item/weapon/reagent_containers/food/snacks/egg/orange
 	icon_state = "egg-orange"
-	item_color = "orange"
 
 /obj/item/weapon/reagent_containers/food/snacks/egg/purple
 	icon_state = "egg-purple"
-	item_color = "purple"
 
 /obj/item/weapon/reagent_containers/food/snacks/egg/rainbow
 	icon_state = "egg-rainbow"
-	item_color = "rainbow"
 
 /obj/item/weapon/reagent_containers/food/snacks/egg/red
 	icon_state = "egg-red"
-	item_color = "red"
 
 /obj/item/weapon/reagent_containers/food/snacks/egg/yellow
 	icon_state = "egg-yellow"
-	item_color = "yellow"
 
 /obj/item/weapon/reagent_containers/food/snacks/friedegg
 	name = "Fried egg"

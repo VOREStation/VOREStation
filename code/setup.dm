@@ -1,5 +1,10 @@
 #define DEBUG
 
+#define GAME_STATE_PREGAME		1
+#define GAME_STATE_SETTING_UP	2
+#define GAME_STATE_PLAYING		3
+#define GAME_STATE_FINISHED		4
+
 // Math constants.
 #define M_E     2.71828183
 #define M_PI    3.14159265
@@ -256,10 +261,12 @@
 #define slot_legs        21
 #define slot_tie         22
 
-// Mob sprite sheets. These need to be strings as numbers
-// cannot be used as associative list keys.
-#define icon_l_hand		"slot_l_hand"
-#define icon_r_hand		"slot_r_hand"
+// Inventory slot strings. 
+// since numbers cannot be used as associative list keys.
+#define slot_back_str		"back"
+#define slot_l_hand_str		"slot_l_hand"
+#define slot_r_hand_str		"slot_r_hand"
+#define slot_w_uniform_str	"w_uniform"
 
 // Bitflags for clothing parts.
 #define HEAD        1
