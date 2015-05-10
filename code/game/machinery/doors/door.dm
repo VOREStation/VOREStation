@@ -164,7 +164,7 @@
 			switch (Proj.damage_type)
 				if(BRUTE)
 					new /obj/item/stack/sheet/metal(src.loc, 2)
-					new /obj/item/stack/rods(src.loc, 3)
+					PoolOrNew(/obj/item/stack/rods, list(src.loc, 3))
 				if(BURN)
 					new /obj/effect/decal/cleanable/ash(src.loc) // Turn it to ashes!
 			qdel(src)
@@ -388,7 +388,9 @@
 
 
 /obj/machinery/door/proc/open(var/forced = 0)
-	if(!can_open(forced)) return
+	if(!can_open(forced))
+		return
+	operating = 1
 
 	do_animate("opening")
 	icon_state = "door0"
@@ -401,8 +403,7 @@
 	update_icon()
 	SetOpacity(0)
 	update_nearby_tiles()
-
-	if(operating)	operating = 0
+	operating = 0
 
 	if(autoclose)
 		close_door_at = next_close_time()

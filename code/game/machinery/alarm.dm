@@ -118,8 +118,6 @@
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
 		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
 		update_icon()
-		if(ticker && ticker.current_state == 3)//if the game is running
-			src.initialize()
 		return
 
 	first_run()
@@ -624,7 +622,7 @@
 	if(buildstage != 2)
 		return STATUS_CLOSE
 
-	if(aidisabled && user.isAI())
+	if(aidisabled && user.isMobAI())
 		user << "<span class='warning'>AI control for \the [src] interface has been disabled.</span>"
 		return STATUS_CLOSE
 
