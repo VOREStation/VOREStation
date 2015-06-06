@@ -11,7 +11,7 @@
 	density = 1
 	anchored = 1
 	animate_movement=1
-	luminosity = 3
+	light_range = 3
 
 	can_buckle = 1
 	buckle_movable = 1
@@ -149,7 +149,7 @@
 /obj/vehicle/emp_act(severity)
 	var/was_on = on
 	stat |= EMPED
-	var/obj/effect/overlay/pulse2 = PoolOrNew(new/obj/effect/overlay, src.loc)
+	var/obj/effect/overlay/pulse2 = PoolOrNew(/obj/effect/overlay, src.loc)
 	pulse2.icon = 'icons/effects/effects.dmi'
 	pulse2.icon_state = "empdisable"
 	pulse2.name = "emp sparks"
@@ -181,13 +181,13 @@
 	if(powered && cell.charge < charge_use)
 		return 0
 	on = 1
-	luminosity = initial(luminosity)
+	set_light(initial(light_range))
 	update_icon()
 	return 1
 
 /obj/vehicle/proc/turn_off()
 	on = 0
-	luminosity = 0
+	set_light(0)
 	update_icon()
 
 /obj/vehicle/proc/Emag(mob/user as mob)
@@ -363,6 +363,7 @@
 		return
 	visible_message("<span class='danger'>[user] [attack_message] the [src]!</span>")
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name]</font>")
+	user.do_attack_animation(src)
 	src.health -= damage
 	if(prob(10))
 		new /obj/effect/decal/cleanable/blood/oil(src.loc)

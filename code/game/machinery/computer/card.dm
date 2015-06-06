@@ -4,6 +4,7 @@
 	name = "\improper ID card modification console"
 	desc = "Terminal for programming NanoTrasen employee ID cards to access parts of the station."
 	icon_state = "id"
+	light_color = "#0099ff"
 	req_access = list(access_change_ids)
 	circuit = "/obj/item/weapon/circuitboard/card"
 	var/obj/item/weapon/card/id/scan = null
@@ -182,7 +183,7 @@
 				if(is_authenticated())
 					var/access_type = text2num(href_list["access_target"])
 					var/access_allowed = text2num(href_list["allowed"])
-					if(access_type in (is_centcom() ? get_all_centcom_access() : get_all_accesses()))
+					if(access_type in (is_centcom() ? get_all_centcom_access() : get_all_station_access()))
 						modify.access -= access_type
 						if(!access_allowed)
 							modify.access += access_type
@@ -207,7 +208,7 @@
 								jobdatum = J
 								break
 						if(!jobdatum)
-							usr << "\red No log exists for this job: [t1]"
+							usr << "<span class='warning'>No log exists for this job: [t1]</span>"
 							return
 
 						access = jobdatum.get_access()

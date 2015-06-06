@@ -77,7 +77,7 @@
 		set src in view(1)
 		
 		if(usr.stat || usr.restrained() || usr.lying || !istype(usr, /mob/living))
-			usr << "\red You can't do that."
+			usr << "<span class='warning'>You can't do that.</span>"
 			return
 		
 		if(!Adjacent(usr))
@@ -278,8 +278,8 @@
 			chan = power_channel
 
 		var/area/A = get_area(loc)
-		if(istype(A) && A.master && A.master.powered(chan))
-			A.master.use_power(amount, chan)
+		if(istype(A) && A.powered(chan))
+			A.use_power(amount, chan)
 		else if(battery && battery.charge > 0)
 			battery.use(amount)
 
@@ -309,7 +309,6 @@
 	proc/set_broken()
 		icon_state = "computer_b"
 		stat |= BROKEN
-		crit_fail = 1
 		if(program)
 			program.error = BUSTED_ASS_COMPUTER
 		if(os)

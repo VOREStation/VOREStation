@@ -49,7 +49,7 @@
 
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	origin_tech = "magnets=3;materials=2"
+	origin_tech = list(TECH_MAGNET = 3, TECH_MATERIAL = 2)
 
 	var/max_uses = 20
 	var/uses = 0
@@ -71,8 +71,8 @@
 		Emag()
 		return
 
-	if(istype(W, /obj/item/stack/sheet/glass))
-		var/obj/item/stack/sheet/glass/G = W
+	if(istype(W, /obj/item/stack/material/glass))
+		var/obj/item/stack/material/glass/G = W
 		if(uses >= max_uses)
 			user << "<span class='warning'>[src.name] is full."
 			return
@@ -140,7 +140,9 @@
 				var/obj/item/weapon/light/L1 = new target.light_type(target.loc)
 				L1.status = target.status
 				L1.rigged = target.rigged
-				L1.brightness = target.brightness
+				L1.brightness_range = target.brightness_range
+				L1.brightness_power = target.brightness_power
+				L1.brightness_color = target.brightness_color
 				L1.switchcount = target.switchcount
 				target.switchcount = 0
 				L1.update()
@@ -153,7 +155,9 @@
 			target.status = L2.status
 			target.switchcount = L2.switchcount
 			target.rigged = emagged
-			target.brightness = L2.brightness
+			target.brightness_range = L2.brightness_range
+			target.brightness_power = L2.brightness_power
+			target.brightness_color = L2.brightness_color
 			target.on = target.has_power()
 			target.update()
 			qdel(L2)

@@ -43,7 +43,7 @@ emp_act
 	if(P.can_embed())
 		var/armor = getarmor_organ(organ, "bullet")
 		if(prob(20 + max(P.damage - armor, -10)))
-			var/obj/item/weapon/shard/shrapnel/SP = new()
+			var/obj/item/weapon/material/shard/shrapnel/SP = new()
 			SP.name = (P.name != "shrapnel")? "[P.name] shrapnel" : "shrapnel"
 			SP.desc = "[SP.desc] It looks like it was fired from [P.shot_from]."
 			SP.loc = organ
@@ -138,6 +138,14 @@ emp_act
 				return 1
 	return 0
 
+//Used to check if they can be fed food/drinks/pills
+/mob/living/carbon/human/proc/check_mouth_coverage()
+	var/list/protective_gear = list(head, wear_mask, wear_suit, w_uniform)
+	for(var/obj/item/gear in protective_gear)
+		if(istype(gear) && (gear.body_parts_covered & FACE) && (gear.flags & (MASKCOVERSMOUTH|HEADCOVERSMOUTH)))
+			return gear
+	return null
+
 /mob/living/carbon/human/proc/check_shields(var/damage = 0, var/attack_text = "the attack")
 	if(l_hand && istype(l_hand, /obj/item/weapon))//Current base is the prob(50-d/3)
 		var/obj/item/weapon/I = l_hand
@@ -171,12 +179,6 @@ emp_act
 	for(var/obj/O in src)
 		if(!O)	continue
 		O.emp_act(severity)
-	for(var/obj/item/organ/external/O  in organs)
-		if(O.status & ORGAN_DESTROYED)	continue
-		O.emp_act(severity)
-		for(var/obj/item/organ/I  in O.internal_organs)
-			if(I.robotic == 0)	continue
-			I.emp_act(severity)
 	..()
 
 
@@ -281,7 +283,7 @@ emp_act
 		forcesay(hit_appends)	//forcesay checks stat already
 
 	//Melee weapon embedded object code.
-	if (I && I.damtype == BRUTE && !I.anchored && !I.is_robot_module())
+	if (I && I.damtype == BRUTE && !I.anchored && !is_robot_module(I))
 		var/damage = effective_force
 		if (armor)
 			damage /= armor+1
@@ -355,7 +357,7 @@ emp_act
 		//thrown weapon embedded object code.
 		if(dtype == BRUTE && istype(O,/obj/item))
 			var/obj/item/I = O
-			if (!I.is_robot_module())
+			if (!is_robot_module(I))
 				var/sharp = is_sharp(I)
 				var/damage = throw_damage
 				if (armor)

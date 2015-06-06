@@ -23,8 +23,8 @@
 	var/id = 1.0
 	dir = 1
 	explosion_resistance = 25
-	
-	//Most blast doors are infrequently toggled and sometimes used with regular doors anyways, 
+
+	//Most blast doors are infrequently toggled and sometimes used with regular doors anyways,
 	//turning this off prevents awkward zone geometry in places like medbay lobby, for example.
 	block_air_zones = 0
 
@@ -56,7 +56,7 @@
 	src.density = 0
 	update_nearby_tiles()
 	src.update_icon()
-	src.SetOpacity(0)
+	src.set_opacity(0)
 	sleep(15)
 	src.layer = open_layer
 	src.operating = 0
@@ -71,7 +71,7 @@
 	src.density = 1
 	update_nearby_tiles()
 	src.update_icon()
-	src.SetOpacity(initial(opacity))
+	src.set_opacity(initial(opacity))
 	sleep(15)
 	src.operating = 0
 
@@ -90,18 +90,18 @@
 // This only works on broken doors or doors without power. Also allows repair with Plasteel.
 /obj/machinery/door/blast/attackby(obj/item/weapon/C as obj, mob/user as mob)
 	src.add_fingerprint(user)
-	if(istype(C, /obj/item/weapon/crowbar) || (istype(C, /obj/item/weapon/twohanded/fireaxe) && C:wielded == 1))
+	if(istype(C, /obj/item/weapon/crowbar) || (istype(C, /obj/item/weapon/material/twohanded/fireaxe) && C:wielded == 1))
 		if(((stat & NOPOWER) || (stat & BROKEN)) && !( src.operating ))
 			force_toggle()
 		else
 			usr << "<span class='notice'>[src]'s motors resist your effort.</span>"
 		return
-	if(istype(C, /obj/item/stack/sheet/plasteel))
+	if(istype(C, /obj/item/stack/material/plasteel))
 		var/amt = repair_price()
 		if(!amt)
 			usr << "<span class='notice'>\The [src] is already fully repaired.</span>"
 			return
-		var/obj/item/stack/sheet/plasteel/P = C
+		var/obj/item/stack/material/plasteel/P = C
 		if(P.amount < amt)
 			usr << "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>"
 			return

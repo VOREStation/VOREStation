@@ -63,7 +63,7 @@ var/list/gamemode_cache = list()
 	var/guest_jobban = 1
 	var/usewhitelist = 0
 	var/mods_are_mentors = 0
-	var/kick_inactive = 0				//force disconnect for inactive players
+	var/kick_inactive = 0				//force disconnect for inactive players after this many minutes, if non-0
 	var/load_jobs_from_txt = 0
 	var/ToRban = 0
 	var/automute_on = 0					//enables automuting/spam prevention
@@ -95,8 +95,7 @@ var/list/gamemode_cache = list()
 	var/banappeals
 	var/wikiurl
 	var/forumurl
-	var/rulesurl
-
+	var/githuburl
 	//Alert level description
 	var/alert_desc_green = "All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
 	var/alert_desc_blue_upto = "The station has received reliable information about possible hostile activity on the station. Security staff may have weapons visible, random searches are permitted."
@@ -115,6 +114,10 @@ var/list/gamemode_cache = list()
 
 	var/organ_health_multiplier = 1
 	var/organ_regeneration_multiplier = 1
+
+	//Paincrit knocks someone down once they hit 60 shock_stage, so by default make it so that close to 100 additional damage needs to be dealt,
+	//so that it's similar to HALLOSS. Lowered it a bit since hitting paincrit takes much longer to wear off than a halloss stun.
+	var/organ_damage_spillover_multiplier = 0.5
 
 	var/bones_can_break = 0
 	var/limbs_can_break = 0
@@ -169,6 +172,7 @@ var/list/gamemode_cache = list()
 	var/list/admin_levels= list(2)					// Defines which Z-levels which are for admin functionality, for example including such areas as Central Command and the Syndicate Shuttle
 	var/list/contact_levels = list(1, 5)			// Defines which Z-levels which, for example, a Code Red announcement may affect
 	var/list/player_levels = list(1, 3, 4, 5, 6)	// Defines all Z-levels a character can typically reach
+	var/list/sealed_levels = list() 				// Defines levels that do not allow random transit at the edges.
 
 	// Event settings
 	var/expected_round_length = 3 * 60 * 60 * 10 // 3 hours
@@ -392,9 +396,8 @@ var/list/gamemode_cache = list()
 				if ("forumurl")
 					config.forumurl = value
 
-				if ("rulesurl")
-					config.rulesurl = value
-
+				if ("githuburl")
+					config.githuburl = value
 				if ("guest_jobban")
 					config.guest_jobban = 1
 
@@ -460,7 +463,7 @@ var/list/gamemode_cache = list()
 					config.allow_random_events = 1
 
 				if("kick_inactive")
-					config.kick_inactive = 1
+					config.kick_inactive = text2num(value)
 
 				if("load_jobs_from_txt")
 					load_jobs_from_txt = 1
@@ -674,6 +677,8 @@ var/list/gamemode_cache = list()
 					config.organ_health_multiplier = value / 100
 				if("organ_regeneration_multiplier")
 					config.organ_regeneration_multiplier = value / 100
+				if("organ_damage_spillover_multiplier")
+					config.organ_damage_spillover_multiplier = value / 100
 				if("bones_can_break")
 					config.bones_can_break = value
 				if("limbs_can_break")

@@ -148,9 +148,6 @@
 		src << "<span class='alert'>[custom_event_msg]</span>"
 		src << "<br>"
 
-	if( (world.address == address || !address) && !host )
-		host = key
-		world.update_status()
 
 	if(holder)
 		add_admin_verbs()
@@ -305,3 +302,14 @@
 		'icons/spideros_icons/sos_13.png',
 		'icons/spideros_icons/sos_14.png'
 		)
+
+
+mob/proc/MayRespawn()
+	return 0
+
+client/proc/MayRespawn()
+	if(mob)
+		return mob.MayRespawn()
+
+	// Something went wrong, client is usually kicked or transfered to a new mob at this point
+	return 0

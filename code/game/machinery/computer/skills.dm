@@ -4,6 +4,7 @@
 	name = "employment records console"
 	desc = "Used to view, edit and maintain employment records."
 	icon_state = "medlaptop"
+	light_color = "#00b000"
 	req_one_access = list(access_heads)
 	circuit = "/obj/item/weapon/circuitboard/skills"
 	var/obj/item/weapon/card/id/scan = null
@@ -38,7 +39,7 @@
 	if(..())
 		return
 	if (src.z > 6)
-		user << "\red <b>Unable to establish a connection</b>: \black You're too far away from the station!"
+		user << "<span class='danger'>Unable to establish a connection:</span> You're too far away from the station!"
 		return
 	var/dat
 

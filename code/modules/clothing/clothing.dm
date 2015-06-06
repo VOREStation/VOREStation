@@ -212,8 +212,6 @@ BLIND     // can't see anything
 		cell.charge -= 1000 / severity
 		if (cell.charge < 0)
 			cell.charge = 0
-		if(cell.reliability != 100 && prob(50/severity))
-			cell.reliability -= 10 / severity
 	..()
 
 // Called just before an attack_hand(), in mob/UnarmedAttack()
@@ -252,11 +250,6 @@ BLIND     // can't see anything
 	var/brightness_on
 	var/on = 0
 
-/obj/item/clothing/head/New()
-	..()
-	if(!icon_action_button && brightness_on)
-		icon_action_button = "[icon_state]"
-
 /obj/item/clothing/head/attack_self(mob/user)
 	if(brightness_on)
 		if(!isturf(user.loc))
@@ -264,36 +257,19 @@ BLIND     // can't see anything
 			return
 		on = !on
 		user << "You [on ? "enable" : "disable"] the helmet light."
-		update_light(user)
+		update_flashlight(user)
 	else
 		return ..(user)
 
-/obj/item/clothing/head/proc/update_light(var/mob/user = null)
+/obj/item/clothing/head/proc/update_flashlight(var/mob/user = null)
 	if(on && !light_applied)
-		if(loc == user)
-			user.SetLuminosity(user.luminosity + brightness_on)
-		SetLuminosity(brightness_on)
+		set_light(brightness_on)
 		light_applied = 1
 	else if(!on && light_applied)
-		if(loc == user)
-			user.SetLuminosity(user.luminosity - brightness_on)
-		SetLuminosity(0)
+		set_light(0)
 		light_applied = 0
 	update_icon(user)
-
-/obj/item/clothing/head/equipped(mob/user)
-	..()
-	spawn(1)
-		if(on && loc == user && !light_applied)
-			user.SetLuminosity(user.luminosity + brightness_on)
-			light_applied = 1
-
-/obj/item/clothing/head/dropped(mob/user)
-	..()
-	spawn(1)
-		if(on && loc != user && light_applied)
-			user.SetLuminosity(user.luminosity - brightness_on)
-			light_applied = 0
+	user.update_action_buttons()
 
 /obj/item/clothing/head/update_icon(var/mob/user)
 
@@ -307,18 +283,6 @@ BLIND     // can't see anything
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
 		H.update_inv_head()
-
-/obj/item/clothing/head/equipped(mob/user)
-	..()
-	update_light(user)
-
-/obj/item/clothing/head/pickup(mob/user)
-	..()
-	update_light(user)
-
-/obj/item/clothing/head/dropped(mob/user)
-	..()
-	update_light(user)
 
 /obj/item/clothing/head/update_clothing_icon()
 	if (ismob(src.loc))
@@ -357,6 +321,7 @@ BLIND     // can't see anything
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
 	force = 2
+	var/overshoes = 0
 	species_restricted = list("exclude","Unathi","Tajara")
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/shoes.dmi')
 
@@ -412,19 +377,19 @@ BLIND     // can't see anything
 	var/displays_id = 1
 	var/rolled_down = -1 //0 = unrolled, 1 = rolled, -1 = cannot be toggled
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/uniform.dmi')
-	
+
 	//convenience var for defining the icon state for the overlay used when the clothing is worn.
 	//Also used by rolling/unrolling.
 	var/worn_state = null
 
 /obj/item/clothing/under/New()
 	if(worn_state)
-		if(!item_state_slots) 
+		if(!item_state_slots)
 			item_state_slots = list()
 		item_state_slots[slot_w_uniform_str] = worn_state
 	else
 		worn_state = icon_state
-		
+
 	//autodetect rollability
 	if(rolled_down < 0)
 		if((worn_state + "_d_s") in icon_states('icons/mob/uniform.dmi'))
@@ -488,10 +453,10 @@ BLIND     // can't see anything
 
 		if (( usr.restrained() ) || ( usr.stat ))
 			return
-		
+
 		if (!usr.unEquip(src))
 			return
-		
+
 		switch(over_object.name)
 			if("r_hand")
 				usr.put_in_r_hand(src)
@@ -574,7 +539,7 @@ BLIND     // can't see anything
 	if(rolled_down < 0)
 		usr << "<span class='notice'>You cannot roll down [src]!</span>"
 		return
-	
+
 	rolled_down = !rolled_down
 	if(rolled_down)
 		body_parts_covered &= LOWER_TORSO|LEGS|FEET
