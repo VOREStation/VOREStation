@@ -60,7 +60,8 @@ var/list/ai_verbs_default = list(
 	var/datum/trackable/track = null
 	var/last_announcement = ""
 	var/control_disabled = 0
-	var/datum/announcement/priority/announcement	var/obj/machinery/ai_powersupply/psupply = null // Backwards reference to AI's powersupply object.
+	var/datum/announcement/priority/announcement
+	var/obj/machinery/ai_powersupply/psupply = null // Backwards reference to AI's powersupply object.
 	var/hologram_follow = 1 //This is used for the AI eye, to determine if a holopad's hologram should follow it or not.
 	//NEWMALF VARIABLES
 	var/malfunctioning = 0						// Master var that determines if AI is malfunctioning.

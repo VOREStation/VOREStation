@@ -182,7 +182,7 @@ var/list/global/wall_cache = list()
 			if(check_destroy_override())
 				src.ChangeTurf(destroy_floor_override_path)
 			else
-				src.ChangeTurf(/turf/space)			return
+				src.ChangeTurf(/turf/space)
 		if(2.0)
 			if(prob(75))
 				take_damage(rand(150, 250))
@@ -191,7 +191,7 @@ var/list/global/wall_cache = list()
 		if(3.0)
 			take_damage(rand(0, 250))
 		else
-	return
+			return
 
 /turf/simulated/wall/blob_act()
 	take_damage(rand(75, 125))

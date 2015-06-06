@@ -122,8 +122,7 @@
 		if(F.check_destroy_override(F))
 			build_turf =  deconstruct ? destroy_floor_override_path : /turf/simulated/wall
 		else
-			build_turf =  deconstruct ? /turf/space : /turf/simulated/wall	else
-		return 0
+			build_turf =  deconstruct ? /turf/space : /turf/simulated/wall
 
 	if(!build_type)
 		working = 0

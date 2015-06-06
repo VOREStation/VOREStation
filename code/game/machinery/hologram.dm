@@ -167,7 +167,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 			var/area/holopad_area = get_area(src)
 			var/area/hologram_area = get_area(H)
 
-			if(!(hologram_area in holopad_area.master.related))
+			if(!(hologram_area in holopad_area))
 				clear_holo(user)
 
 	return 1
