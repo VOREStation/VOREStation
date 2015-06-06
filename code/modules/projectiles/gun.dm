@@ -41,13 +41,13 @@
 	item_state = "gun"
 	flags =  CONDUCT
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
-	matter = list("metal" = 2000)
+	matter = list(DEFAULT_WALL_MATERIAL = 2000)
 	w_class = 3
 	throwforce = 5
 	throw_speed = 4
 	throw_range = 5
 	force = 5
-	origin_tech = "combat=1"
+	origin_tech = list(TECH_COMBAT = 1)
 	attack_verb = list("struck", "hit", "bashed")
 	zoomdevicename = "scope"
 

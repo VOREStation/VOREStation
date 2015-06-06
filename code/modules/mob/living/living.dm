@@ -1,3 +1,8 @@
+/mob/living/Life()
+	..()
+	if(stat != DEAD)
+		handle_actions()
+
 //mob verbs are faster than object verbs. See mob/verb/examine.
 /mob/living/verb/pulled(atom/movable/AM as mob|obj in oview(1))
 	set name = "Pull"
@@ -132,6 +137,10 @@ default behaviour is:
 							now_pushing = 0
 							return
 					step(AM, t)
+					if(ishuman(AM) && AM:grabbed_by)
+						for(var/obj/item/weapon/grab/G in AM:grabbed_by)
+							step(G:assailant, get_dir(G:assailant, AM))
+							G.adjust_position()
 				now_pushing = 0
 			return
 	return
@@ -486,10 +495,6 @@ default behaviour is:
 			if(!( isturf(pulling.loc) ))
 				stop_pulling()
 				return
-			else
-				if(Debug)
-					log_debug("pulling disappeared? at [__LINE__] in mob.dm - pulling = [pulling]")
-					log_debug("REPORT THIS")
 
 		/////
 		if(pulling && pulling.anchored)
@@ -605,7 +610,7 @@ default behaviour is:
 
 /mob/living/proc/escape_inventory(obj/item/weapon/holder/H)
 	if(H != src.loc) return
-	
+
 	var/mob/M = H.loc //Get our mob holder (if any).
 
 	if(istype(M))
@@ -773,20 +778,22 @@ default behaviour is:
 		return
 	..()
 
-/mob/living/carbon/proc/spin(spintime, speed)
-	spawn()
-		var/D = dir
-		while(spintime >= speed)
-			sleep(speed)
-			switch(D)
-				if(NORTH)
-					D = EAST
-				if(SOUTH)
-					D = WEST
-				if(EAST)
-					D = SOUTH
-				if(WEST)
-					D = NORTH
-			set_dir(D)
-			spintime -= speed
-	return
+/mob/living/touch_map_edge()
+
+	//check for nuke disks
+	if(client && stat != DEAD) //if they are clientless and dead don't bother, the parent will treat them as any other container
+		if(ticker && istype(ticker.mode, /datum/game_mode/nuclear)) //only really care if the game mode is nuclear
+			var/datum/game_mode/nuclear/G = ticker.mode
+			if(G.check_mob(src))
+				if(x <= TRANSITIONEDGE)
+					inertia_dir = 4
+				else if(x >= world.maxx -TRANSITIONEDGE)
+					inertia_dir = 8
+				else if(y <= TRANSITIONEDGE)
+					inertia_dir = 1
+				else if(y >= world.maxy -TRANSITIONEDGE)
+					inertia_dir = 2
+				src << "<span class='warning>Something you are carrying is preventing you from leaving.</span>"
+				return
+
+	..()

@@ -10,8 +10,8 @@
 		else
 			src << link(config.wikiurl)
 	else
-		src << "<span class='danger'>The wiki URL is not set in the server configuration.</span>"
-	return
+		src << "<span class='warning'>The wiki URL is not set in the server configuration.</span>"
+		return
 
 /client/verb/forum()
 	set name = "forum"
@@ -22,8 +22,8 @@
 			return
 		src << link(config.forumurl)
 	else
-		src << "<span class='danger'>The forum URL is not set in the server configuration.</span>"
-	return
+		src << "<span class='warning'>The forum URL is not set in the server configuration.</span>"
+		return
 
 /client/verb/rules()
 	set name = "Rules"

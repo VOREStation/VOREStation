@@ -4,6 +4,7 @@
 	name = "security records console"
 	desc = "Used to view, edit and maintain security records"
 	icon_state = "security"
+	light_color = "#a91515"
 	req_one_access = list(access_security, access_forensics_lockers)
 	circuit = "/obj/item/weapon/circuitboard/secure_data"
 	var/obj/item/weapon/card/id/scan = null
@@ -55,7 +56,7 @@
 	if(..())
 		return
 	if (src.z > 6)
-		user << "\red <b>Unable to establish a connection</b>: \black You're too far away from the station!"
+		user << "<span class='warning'>Unable to establish a connection:</span> You're too far away from the station!"
 		return
 	var/dat
 

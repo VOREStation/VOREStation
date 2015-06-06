@@ -3,6 +3,10 @@
 	var/wet = 0
 	var/image/wet_overlay = null
 
+	//Mining resources (for the large drills).
+	var/has_resources
+	var/list/resources
+
 	var/thermite = 0
 	oxygen = MOLES_O2STANDARD
 	nitrogen = MOLES_N2STANDARD
@@ -19,7 +23,7 @@
 /turf/simulated/proc/check_destroy_override()
 	if(destroy_floor_override) //Don't bother doing the additional checks if we don't have to.
 		var/area/my_area = get_area(src)
-		my_area = my_area.master
+//		my_area = my_area.master
 		if(is_type_in_list(my_area, destroy_floor_override_ignore_areas))
 			return 0
 		if(z in destroy_floor_override_z_levels)
@@ -34,7 +38,7 @@
 
 /turf/simulated/Entered(atom/A, atom/OL)
 	if(movement_disabled && usr.ckey != movement_disabled_exception)
-		usr << "\red Movement is admin-disabled." //This is to identify lag problems
+		usr << "<span class='danger'>Movement is admin-disabled.</span>" //This is to identify lag problems
 		return
 
 	if (istype(A,/mob/living))

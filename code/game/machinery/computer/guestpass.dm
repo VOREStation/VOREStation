@@ -5,6 +5,7 @@
 	name = "guest pass"
 	desc = "Allows temporary access to station areas."
 	icon_state = "guest"
+	light_color = "#0099ff"
 
 	var/temp_access = list() //to prevent agent cards stealing access as permanent
 	var/expiration_time = 0
@@ -184,6 +185,6 @@
 					pass.reason = reason
 					pass.name = "guest pass #[number]"
 				else
-					usr << "\red Cannot issue pass without issuing ID."
+					usr << "<span class='warning'>Cannot issue pass without issuing ID.</span>"
 	updateUsrDialog()
 	return

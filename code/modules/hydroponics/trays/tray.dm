@@ -47,9 +47,10 @@
 	var/global/list/toxic_reagents = list(
 		"anti_toxin" =     -2,
 		"toxin" =           2,
-		"fluorine" =        2.5,
-		"chlorine" =        1.5,
+		"hydrazine" =       2.5,
+		"acetone" =	        1,
 		"sacid" =           1.5,
+		"hclacid" =         1.5,
 		"pacid" =           3,
 		"plantbgone" =      3,
 		"cryoxadone" =     -3,
@@ -70,11 +71,11 @@
 		"left4zed" =        1
 		)
 	var/global/list/weedkiller_reagents = list(
-		"fluorine" =       -4,
-		"chlorine" =       -3,
+		"hydrazine" =      -4,
 		"phosphorus" =     -2,
 		"sugar" =           2,
 		"sacid" =          -2,
+		"hclacid" =        -2,
 		"pacid" =          -4,
 		"plantbgone" =     -8,
 		"adminordrazine" = -5
@@ -89,8 +90,7 @@
 		"adminordrazine" =  1,
 		"milk" =            0.9,
 		"beer" =            0.7,
-		"fluorine" =       -0.5,
-		"chlorine" =       -0.5,
+		"hydrazine" =      -2,
 		"phosphorus" =     -0.5,
 		"water" =           1,
 		"sodawater" =       1,
@@ -99,11 +99,11 @@
 	// Beneficial reagents also have values for modifying yield_mod and mut_mod (in that order).
 	var/global/list/beneficial_reagents = list(
 		"beer" =           list( -0.05, 0,   0  ),
-		"fluorine" =       list( -2,    0,   0  ),
-		"chlorine" =       list( -1,    0,   0  ),
+		"hydrazine" =      list( -2,    0,   0  ),
 		"phosphorus" =     list( -0.75, 0,   0  ),
 		"sodawater" =      list(  0.1,  0,   0  ),
 		"sacid" =          list( -1,    0,   0  ),
+		"hclacid" =        list( -1,    0,   0  ),
 		"pacid" =          list( -2,    0,   0  ),
 		"plantbgone" =     list( -2,    0,   0.2),
 		"cryoxadone" =     list(  3,    0,   0  ),
@@ -129,7 +129,22 @@
 		return
 	return ..()
 
+/obj/machinery/portable_atmospherics/hydroponics/attack_ghost(var/mob/dead/observer/user)
+
+	if(!(harvest && seed && seed.has_mob_product))
+		return
+
+	var/datum/ghosttrap/plant/G = get_ghost_trap("living plant")
+	if(!G.assess_candidate(user))
+		return
+	var/response = alert(user, "Are you sure you want to harvest this [seed.display_name]?", "Living plant request", "Yes", "No")
+	if(response == "Yes")
+		harvest()
+	return
+
 /obj/machinery/portable_atmospherics/hydroponics/attack_generic(var/mob/user)
+
+	// Why did I ever think this was a good idea. TODO: move this onto the nymph mob.
 	if(istype(user,/mob/living/carbon/alien/diona))
 		var/mob/living/carbon/alien/diona/nymph = user
 
@@ -350,7 +365,7 @@
 		usr << "There is no label to remove."
 	return
 
-/obj/machinery/portable_atmospherics/hydroponics/verb/set_light()
+/obj/machinery/portable_atmospherics/hydroponics/verb/setlight()
 	set name = "Set Light"
 	set category = "Object"
 	set src in view(1)
@@ -475,7 +490,7 @@
 		else
 			user << "<span class='danger'>\The [src] already has seeds in it!</span>"
 
-	else if (istype(O, /obj/item/weapon/minihoe))  // The minihoe
+	else if (istype(O, /obj/item/weapon/material/minihoe))  // The minihoe
 
 		if(weedlevel > 0)
 			user.visible_message("<span class='danger'>[user] starts uprooting the weeds.</span>", "<span class='danger'>You remove the weeds from the [src].</span>")
@@ -596,13 +611,12 @@
 		if(closed_system && mechanical)
 			light_string = "that the internal lights are set to [tray_light] lumens"
 		else
-			var/area/A = T.loc
+			var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in T
 			var/light_available
-			if(A)
-				if(A.lighting_use_dynamic)
-					light_available = max(0,min(10,T.lighting_lumcount)-5)
-				else
-					light_available =  5
+			if(L)
+				light_available = max(0,min(10,L.lum_r + L.lum_g + L.lum_b)-5)
+			else
+				light_available =  5
 			light_string = "a light level of [light_available] lumens"
 
 		usr << "The tray's sensor suite is reporting [light_string] and a temperature of [environment.temperature]K."
