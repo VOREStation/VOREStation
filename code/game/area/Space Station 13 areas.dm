@@ -921,6 +921,90 @@ area/space/atmosalert()
 	name = "\improper Dormitories"
 	icon_state = "Sleep"
 
+/area/crew_quarters/sleep/Apartment_A1
+	name = "\improper Apartment A1"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/Apartment_A2
+	name = "\improper Apartment A2"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/Apartment_A3
+	name = "\improper Apartment A3"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/Apartment_A4
+	name = "\improper Apartment A4"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/Apartment_A5
+	name = "\improper Apartment A5"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/Apartment_A6
+	name = "\improper Apartment A6"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/Apartment_A7
+	name = "\improper Apartment A7`"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/Apartment_A8
+	name = "\improper Apartment A8"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/Apartment_B1
+	name = "\improper Apartment B1"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/Apartment_B2
+	name = "\improper Apartment B2"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/Apartment_B3
+	name = "\improper Apartment B3"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/Dorm_1
+	name = "\improper Dormitory Room 1"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/Dorm_2
+	name = "\improper Dormitory Room 2"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/Dorm_3
+	name = "\improper Dormitory Room 3"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/Dorm_4
+	name = "\improper Dormitory Room 4"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/Dorm_5
+	name = "\improper Dormitory Room 5"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/Dorm_6
+	name = "\improper Dormitory Room 6"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/Dorm_7
+	name = "\improper Dormitory Room 7"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/Dorm_8
+	name = "\improper Dormitory Room 8"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/Dorm_9
+	name = "\improper Dormitory Room 9"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/Dorm_10
+	name = "\improper Dormitory Room 10"
+	icon_state = "Sleep"
+
 /area/crew_quarters/sleep/engi_wash
 	name = "\improper Engineering Washroom"
 	icon_state = "toilet"
