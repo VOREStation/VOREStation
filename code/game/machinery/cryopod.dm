@@ -246,12 +246,13 @@
 	find_control_computer()
 
 /obj/machinery/cryopod/proc/find_control_computer(urgent=0)
-	control_computer = locate(/obj/machinery/computer/cryopod) in src.loc.loc
+	//control_computer = locate(/obj/machinery/computer/cryopod) in src.loc
+	control_computer = locate(/obj/machinery/computer/cryopod) in range(6,src)
 
 	// Don't send messages unless we *need* the computer, and less than five minutes have passed since last time we messaged
 	if(!control_computer && urgent && last_no_computer_message + 5*60*10 < world.time)
-		log_admin("Cryopod in [src.loc.loc] could not find control computer!")
-		message_admins("Cryopod in [src.loc.loc] could not find control computer!")
+		log_admin("Cryopod in [src.loc] could not find control computer!")
+		message_admins("Cryopod in [src.loc] could not find control computer!")
 		last_no_computer_message = world.time
 
 	return control_computer != null
