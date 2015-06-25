@@ -12,9 +12,10 @@
  * /obj/item/rig_module/chem_dispenser
  * /obj/item/rig_module/chem_dispenser/injector
  * /obj/item/rig_module/voice
- * /obj/item/rig_module/mounted/mop
- * /obj/item/rig_module/cleaner_launcher
- */
+ * /obj/item/rig_module/device/paperdispenser
+ * /obj/item/rig_module/device/pen
+ * /obj/item/rig_module/device/stamp * /obj/item/rig_module/mounted/mop
+ * /obj/item/rig_module/cleaner_launcher */
 
 /obj/item/rig_module/device
 	name = "mounted device"
@@ -96,7 +97,6 @@
 	if(device_type) device = new device_type(src)
 
 /obj/item/rig_module/device/engage(atom/target)
-
 	if(!..() || !device)
 		return 0
 
