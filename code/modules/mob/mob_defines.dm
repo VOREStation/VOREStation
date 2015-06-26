@@ -48,9 +48,6 @@
 	var/use_me = 1 //Allows all mobs to use the me verb by default, will have to manually specify they cannot
 	var/damageoverlaytemp = 0
 	var/computer_id = null
-	var/lastattacker = null
-	var/lastattacked = null
-	var/attack_log = list( )
 	var/already_placed = 0.0
 	var/obj/machinery/machine = null
 	var/other_mobs = null
@@ -60,7 +57,7 @@
 	var/disabilities = 0	//Carbon
 	var/atom/movable/pulling = null
 	var/next_move = null
-	var/monkeyizing = null	//Carbon
+	var/transforming = null	//Carbon
 	var/other = 0.0
 	var/hand = null
 	var/eye_blind = null	//Carbon
