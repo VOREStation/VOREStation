@@ -382,6 +382,41 @@ area/space/atmosalert()
 /area/centcom/holding
 	name = "\improper Holding Facility"
 
+/area/centcom/terminal
+	name = "\improper Docking Terminal"
+	icon_state = "centcom_dock"
+
+/area/centcom/tram
+	name = "\improper Tram Station"
+
+/area/centcom/security
+	name = "\improper Centcom Security"
+	icon_state = "centcom_security"
+
+/area/centcom/medical
+	name = "\improper Centcom Medical"
+	icon_state = "centcom_medical"
+
+/area/centcom/command
+	name = "\improper Centcom Command" //Central Command Command totally isn't RAS Syndrome in action.
+	icon_state = "centcom_command"
+
+/area/centcom/main_hall
+	name = "\improper Main Hallway"
+	icon_state = "centcom_hallway1"
+
+/area/centcom/bar
+	name = "\improper Centcom Bar"
+	icon_state = "centcom_crew"
+
+/area/centcom/restaurant
+	name = "\improper Centcom Restaurant"
+	icon_state = "centcom_crew"
+
+/area/centcom/bathroom
+	name = "\improper Centcom Bathroom"
+	icon_state = "centcom_crew"
+
 //SYNDICATES
 
 /area/syndicate_mothership
@@ -703,9 +738,25 @@ area/space/atmosalert()
 	name = "Bar Maintenance"
 	icon_state = "maint_bar"
 
+/area/maintenance/central
+	name = "Central Maintenance"
+	icon_state = "maint_central"
+
+/area/maintenance/cafe_dock
+	name = "Cafeteria Dock Maintenance"
+	icon_state = "maint_cafe_dock"
+
 /area/maintenance/cargo
 	name = "Cargo Maintenance"
 	icon_state = "maint_cargo"
+
+/area/maintenance/cargo_research
+	name = "Cargo Research Maintenance"
+	icon_state = "maint_cargo_research"
+
+/area/maintenance/chapel
+	name = "Chapel Maintenance"
+	icon_state = "maint_chapel"
 
 /area/maintenance/disposal
 	name = "Waste Disposal"
@@ -739,6 +790,14 @@ area/space/atmosalert()
 	name = "Medbay Maintenance"
 	icon_state = "maint_medbay"
 
+/area/maintenance/medbay_aft
+	name = "Medbay Maintenance - Aft"
+	icon_state = "maint_medbay_aft"
+
+/area/maintenance/medbay_fore
+	name = "Medbay Maintenance - Fore"
+	icon_state = "maint_medbay_fore"
+
 /area/maintenance/research_port
 	name = "Research Maintenance - Port"
 	icon_state = "maint_research_port"
@@ -746,6 +805,10 @@ area/space/atmosalert()
 /area/maintenance/research_starboard
 	name = "Research Maintenance - Starboard"
 	icon_state = "maint_research_starboard"
+
+/area/maintenance/research_starboard
+	name = "Research Maintenance - Starboard"
+	icon_state = "maint_research_cargo"
 
 /area/maintenance/research_shuttle
 	name = "Research Shuttle Dock Maintenance"
@@ -762,6 +825,11 @@ area/space/atmosalert()
 /area/maintenance/storage
 	name = "Atmospherics"
 	icon_state = "green"
+
+/area/maintenance/tool_storage
+	name = "Tool Storage Maintenance"
+	icon_state = "maint_tool_storage"
+
 
 // SUBSTATIONS (Subtype of maint, that should let them serve as shielded area during radstorm)
 
@@ -782,11 +850,20 @@ area/space/atmosalert()
 /area/maintenance/substation/research // Research
 	name = "Research Substation"
 
+/area/maintenance/substation/cafeteria_dock // Hydro, kitchen, docks, hotel
+	name = "Cafeteria Dock Substation"
+
+/area/maintenance/substation/civilian // Dorms, Lockerroom, Pool
+	name = "Civilian Substation"
+
 /area/maintenance/substation/civilian_east // Bar, kitchen, dorms, ...
 	name = "Civilian East Substation"
 
 /area/maintenance/substation/civilian_west // Cargo, PTS, locker room, probably arrivals, ...)
 	name = "Civilian West Substation"
+
+/area/maintenance/substation/cargo // Cargo
+	name = "Cargo Substation"
 
 /area/maintenance/substation/command // AI and central cluster. This one will be between HoP office and meeting room (probably).
 	name = "Command Substation"
@@ -819,16 +896,20 @@ area/space/atmosalert()
 	icon_state = "hallP"
 
 /area/hallway/primary/central_one
-	name = "\improper Central Primary Hallway"
+	name = "\improper Central Primary Hallway - Fore"
 	icon_state = "hallC1"
 
 /area/hallway/primary/central_two
-	name = "\improper Central Primary Hallway"
+	name = "\improper Central Primary Hallway - Starboard"
 	icon_state = "hallC2"
 
 /area/hallway/primary/central_three
-	name = "\improper Central Primary Hallway"
+	name = "\improper Central Primary Hallway - Aft"
 	icon_state = "hallC3"
+
+/area/hallway/primary/central_four
+	name = "\improper Central Primary Hallway - Port"
+	icon_state = "hallC4"
 
 /area/hallway/secondary/exit
 	name = "\improper Escape Shuttle Hallway"
@@ -854,12 +935,72 @@ area/space/atmosalert()
 	name = "\improper Arrival Shuttle Hallway - Aft"
 	icon_state = "entry_4"
 
+/area/hallway/secondary/entry/D1
+	name = "\improper Arrival Shuttle Hallway - Dock One"
+	icon_state = "entry_D1"
+
+/area/hallway/secondary/entry/D2
+	name = "\improper Arrival Shuttle Hallway - Dock Two"
+	icon_state = "entry_D2"
+
+/area/hallway/secondary/entry/D3
+	name = "\improper Arrival Shuttle Hallway - Dock Three"
+	icon_state = "entry_D3"
+
+/area/hallway/secondary/entry/docking_lounge
+	name = "\improper Docking Lounge"
+	icon_state = "docking_lounge"
+
+/area/hallway/secondary/escape/fore_port_escape_pod_hallway
+	name = "\improper Fore Port Escape Pod Hallway"
+	icon_state = "fore_port_escape_pod_hallway"
+
+/area/hallway/secondary/escape/fore_escape_pod_hallway
+	name = "\improper Fore Escape Pod Hallway"
+	icon_state = "fore_escape_pod_hallway"
+
+/area/hallway/secondary/escape/medical_escape_pod_hallway
+	name = "\improper Medical Escape Pod Hallway"
+	icon_state = "medical_escape_pod_hallway"
+
+/area/hallway/secondary/aft_civilian_hallway
+	name = "\improper Aft Civilian Hallway"
+	icon_state = "aft_civilian_hallway"
+
+/area/hallway/secondary/fore_civilian_hallway
+	name = "\improper Fore Civilian Hallway"
+	icon_state = "fore_civilian_hallway"
+
+/area/hallway/secondary/cryostorage_hallway
+	name = "\improper Cryostorage Hallway"
+	icon_state = "cryostorage_hallway"
+
+/area/hallway/secondary/docking_hallway
+	name = "\improper Docking Hallway"
+	icon_state = "docking_hallway"
+
+/area/hallway/secondary/engineering_hallway
+	name = "\improper Engineering Primary Hallway"
+	icon_state = "engineering_primary_hallway"
+
+/area/hallway/secondary/eva_hallway
+	name = "\improper EVA Hallway"
+	icon_state = "eva_hallway"
+
+/area/hallway/secondary/medical_emergency_hallway
+	name = "\improper Medical Emergency Hallway"
+	icon_state = "medical_emergency_hallway"
+
 //Command
 
 /area/bridge
 	name = "\improper Bridge"
 	icon_state = "bridge"
 	music = "signal"
+
+/area/bridge_hallway
+	name = "\improper Bridge Hallway"
+	icon_state = "bridge"
 
 /area/bridge/meeting_room
 	name = "\improper Heads of Staff Meeting Room"
@@ -1005,6 +1146,54 @@ area/space/atmosalert()
 	name = "\improper Dormitory Room 10"
 	icon_state = "Sleep"
 
+/area/crew_quarters/sleep/vistor_room_1
+	name = "\improper Visitor Room 1"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/vistor_room_2
+	name = "\improper Visitor Room 2"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/vistor_room_3
+	name = "\improper Visitor Room 3"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/vistor_room_4
+	name = "\improper Visitor Room 4"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/vistor_room_5
+	name = "\improper Visitor Room 5"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/vistor_room_6
+	name = "\improper Visitor Room 6"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/vistor_room_7
+	name = "\improper Visitor Room 7"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/vistor_room_8
+	name = "\improper Visitor Room 8"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/vistor_room_9
+	name = "\improper Visitor Room 9"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/vistor_room_10
+	name = "\improper Visitor Room 10"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/vistor_room_11
+	name = "\improper Visitor Room 11"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/vistor_room_12
+	name = "\improper Visitor Room 12"
+	icon_state = "Sleep"
+
 /area/crew_quarters/sleep/engi_wash
 	name = "\improper Engineering Washroom"
 	icon_state = "toilet"
@@ -1045,9 +1234,29 @@ area/space/atmosalert()
 	name = "\improper Fitness Room"
 	icon_state = "fitness"
 
+/area/crew_quarters/recreation_area
+	name = "\improper Recreation Area"
+	icon_state = "recreation_area"
+
+/area/crew_quarters/recreation_area_hallway
+	name = "\improper Recreation Area Hallway"
+	icon_state = "recreation_area_hallway"
+
+/area/crew_quarters/recreation_area_restroom
+	name = "\improper Recreation Area Restroom"
+	icon_state = "recreation_area_restroom"
+
+/area/crew_quarters/pool
+	name = "\improper Pool"
+	icon_state = "pool"
+
 /area/crew_quarters/cafeteria
 	name = "\improper Cafeteria"
 	icon_state = "cafeteria"
+
+/area/crew_quarters/coffee_shop
+	name = "\improper Coffee Shop"
+	icon_state = "coffee_shop"
 
 /area/crew_quarters/kitchen
 	name = "\improper Kitchen"
@@ -1061,9 +1270,25 @@ area/space/atmosalert()
 	name = "\improper Theatre"
 	icon_state = "Theatre"
 
+/area/crew_quarters/visitor_lodging
+ 	name = "\improper Visitor Lodging"
+ 	icon_state = "visitor_lodging"
+
+/area/crew_quarters/visitor_dinning
+ 	name = "\improper Visitor Dinning"
+ 	icon_state = "visitor_dinning"
+
+/area/crew_quarters/visitor_laundry
+ 	name = "\improper Visitor Laundry"
+ 	icon_state = "visitor_laundry"
+
 /area/library
  	name = "\improper Library"
  	icon_state = "library"
+
+/area/library_conference_room
+ 	name = "\improper Library Conference Room"
+ 	icon_state = "library_conference_room"
 
 /area/chapel/main
 	name = "\improper Chapel"
@@ -1074,11 +1299,25 @@ area/space/atmosalert()
 	name = "\improper Chapel Office"
 	icon_state = "chapeloffice"
 
+/area/chapel/chapel_morgue
+	name = "\improper Chapel Morgue"
+	icon_state = "chapel_morgue"
+
 /area/lawoffice
 	name = "\improper Internal Affairs"
 	icon_state = "law"
 
+/area/holodeck_control
+	name = "\improper Holodeck Control"
+	icon_state = "holodeck_control"
 
+/area/vacant/vacant_shop
+	name = "\improper Vacant Shop"
+	icon_state = "vacant_shop"
+
+/area/vacant/vacant_site
+	name = "\improper Vacant Site"
+	icon_state = "vacant_site"
 
 
 /area/holodeck
@@ -1329,6 +1568,16 @@ area/space/atmosalert()
 	icon_state = "medbay"
 	music = 'sound/ambience/signal.ogg'
 
+/area/medical/medbay_emt_bay
+	name = "\improper Medical EMT Bay"
+	icon_state = "medbay_emt_bay"
+	music = 'sound/ambience/signal.ogg'
+
+/area/medical/medbay_primary_storage
+	name = "\improper Medbay Primary Storage"
+	icon_state = "medbay_primary_storage"
+	music = 'sound/ambience/signal.ogg'
+
 /area/medical/psych
 	name = "\improper Psych Room"
 	icon_state = "medbay3"
@@ -1339,6 +1588,10 @@ area/space/atmosalert()
 	icon_state = "medbay3"
 	music = 'sound/ambience/signal.ogg'
 
+/area/crew_quarters/medical_restroom
+	name = "\improper Medbay Restroom"
+	icon_state = "medbay_restroom"
+
 /area/medical/patients_rooms
 	name = "\improper Patient's Rooms"
 	icon_state = "patients"
@@ -1348,16 +1601,24 @@ area/space/atmosalert()
 	icon_state = "patients"
 
 /area/medical/patient_a
-	name = "\improper Isolation A"
-	icon_state = "patients"
+	name = "\improper Patient A"
+	icon_state = "medbay_patient_room_a"
 
 /area/medical/patient_b
-	name = "\improper Isolation B"
-	icon_state = "patients"
+	name = "\improper Patient B"
+	icon_state = "medbay_patient_room_b"
 
 /area/medical/patient_c
-	name = "\improper Isolation C"
-	icon_state = "patients"
+	name = "\improper Patient C"
+	icon_state = "medbay_patient_room_c"
+
+/area/medical/patient_d
+	name = "\improper Patient D"
+	icon_state = "medbay_patient_room_d"
+
+/area/medical/patient_e
+	name = "\improper Patient E"
+	icon_state = "medbay_patient_room_e"
 
 /area/medical/patient_wing
 	name = "\improper Patient Wing"
@@ -1403,6 +1664,14 @@ area/space/atmosalert()
 /area/medical/surgeryprep
 	name = "\improper Pre-Op Prep Room"
 	icon_state = "surgery"
+
+/area/medical/surgery_hallway
+	name = "\improper Surgery Hallway"
+	icon_state = "surgery_hallway"
+
+/area/medical/surgery_storage
+	name = "\improper Surgery Storage"
+	icon_state = "surgery_storage"
 
 /area/medical/cryo
 	name = "\improper Cryogenics"
@@ -1464,7 +1733,23 @@ area/space/atmosalert()
 
 /area/security/armoury
 	name = "\improper Security - Armory"
-	icon_state = "Warden"
+	icon_state = "armory"
+
+/area/security/evidence_storage
+	name = "\improper Security - Equipment Storage"
+	icon_state = "security_equipment_storage"
+
+/area/security/evidence_storage
+	name = "\improper Security - Evidence Storage"
+	icon_state = "evidence_storage"
+
+/area/security/interrogation
+	name = "\improper Security - Interrogation"
+	icon_state = "interrogation"
+
+/area/security/riot_control
+	name = "\improper Security - Riot Control"
+	icon_state = "riot_control"
 
 /area/security/detectives_office
 	name = "\improper Security - Forensic Office"
@@ -1473,6 +1758,30 @@ area/space/atmosalert()
 /area/security/range
 	name = "\improper Security - Firing Range"
 	icon_state = "firingrange"
+
+/area/security/security_aid_station
+	name = "\improper Security - Security Aid Station"
+	icon_state = "security_aid_station"
+
+/area/security/security_bathroom
+	name = "\improper Security - Restroom"
+	icon_state = "security_bathroom"
+
+/area/security/security_cell_hallway
+	name = "\improper Security - Cell Hallway"
+	icon_state = "security_cell_hallway"
+
+/area/security/security_equiptment_storage
+	name = "\improper Security - Equipment Storage"
+	icon_state = "security_equip_storage"
+
+/area/security/security_lockerroom
+	name = "\improper Security - Lockerroom"
+	icon_state = "security_lockerroom"
+
+/area/security/security_processing
+	name = "\improper Security - Security Processing"
+	icon_state = "security_processing"
 
 /area/security/tactical
 	name = "\improper Security - Tactical Equipment"
@@ -1548,6 +1857,10 @@ area/space/atmosalert()
 	name = "\improper Cargo - Quartermaster's Office"
 	icon_state = "quart"
 
+/area/quartermaster/delivery
+	name = "\improper Cargo - Delivery Office"
+	icon_state = "quart"
+
 /area/quartermaster/miningdock
 	name = "\improper Cargo Mining Dock"
 	icon_state = "mining"
@@ -1560,6 +1873,10 @@ area/space/atmosalert()
 	name = "\improper Hydroponics"
 	icon_state = "hydro"
 
+/area/hydroponics/cafegarden
+	name = "\improper Cafeteria Garden"
+	icon_state = "cafe_garden"
+
 /area/hydroponics/garden
 	name = "\improper Garden"
 	icon_state = "garden"
@@ -1568,6 +1885,14 @@ area/space/atmosalert()
 /area/rnd/research
 	name = "\improper Research and Development"
 	icon_state = "research"
+
+/area/rnd/research_foyer
+	name = "\improper Research Foyer"
+	icon_state = "research_foyer"
+
+/area/rnd/research_restroom
+	name = "\improper Research Restroom"
+	icon_state = "research_restroom"
 
 /area/rnd/docking
 	name = "\improper Research Dock"
@@ -1657,6 +1982,14 @@ area/space/atmosalert()
 
 /area/storage/emergency3
 	name = "Central Emergency Storage"
+	icon_state = "emergencystorage"
+
+/area/storage/emergency4
+	name = "Civilian Emergency Storage"
+	icon_state = "emergencystorage"
+
+/area/storage/emergency5
+	name = "Dock Emergency Storage"
 	icon_state = "emergencystorage"
 
 /area/storage/tech
