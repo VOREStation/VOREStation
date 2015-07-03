@@ -1760,4 +1760,5 @@
 #include "interface\skin.dmf"
 #include "maps\colony-1.dmm"
 #include "maps\colony-2.dmm"
+#include "maps\colony-4.dmm"
 // END_INCLUDE
