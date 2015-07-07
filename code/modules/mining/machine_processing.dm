@@ -8,16 +8,18 @@
 	anchored = 1
 
 	var/obj/machinery/mineral/processing_unit/machine = null
-	var/machinedir = EAST
+	//var/machinedir = EAST //Dumb
 	var/show_all_ores = 0
 
 /obj/machinery/mineral/processing_unit_console/New()
 	..()
 	spawn(7)
-		src.machine = locate(/obj/machinery/mineral/processing_unit, get_step(src, machinedir))
+		//src.machine = locate(/obj/machinery/mineral/processing_unit, get_step(src, machinedir))
+		src.machine = locate(/obj/machinery/mineral/processing_unit) in range(5,src)
 		if (machine)
 			machine.console = src
 		else
+			world << "<span class='danger'>Warning: Ore processing machine console at [src.x], [src.y], [src.z] could not find its machine!</span>"
 			qdel(src)
 
 /obj/machinery/mineral/processing_unit_console/attack_hand(mob/user)
