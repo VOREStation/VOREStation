@@ -35,14 +35,17 @@
 /area/outpost/mining_main
 	icon_state = "outpost_mine_main"
 
-/area/outpost/mining_main/dorms
-	name = "Mining Outpost Dormitory"
+/area/outpost/mining_main/dorms1
+	name = "Mining Outpost Dormitory 1"
+
+/area/outpost/mining_main/dorms2
+	name = "Mining Outpost Dormitory 2"
 
 /area/outpost/mining_main/medbay
 	name = "Mining Outpost Medical"
 
-/area/outpost/mining_main/maintenance
-	name = "Mining Outpost Maintenance"
+/area/outpost/mining_main/storage
+	name = "Mining Outpost Gear Storage"
 
 /area/outpost/mining_main/west_hall
 	name = "Mining Outpost West Hallway"
@@ -50,11 +53,14 @@
 /area/outpost/mining_main/east_hall
 	name = "Mining Outpost East Hallway"
 
-/area/outpost/mining_main/eva
-	name = "Mining Outpost EVA storage"
+/area/outpost/mining_main/break_room
+	name = "Mining Outpost Break Room"
 
 /area/outpost/mining_main/refinery
 	name = "Mining Outpost Refinery"
+
+/area/outpost/mining_main/bathroom
+	name = "Mining Outpost Bathroom"
 
 
 
@@ -116,14 +122,14 @@
 /area/outpost/research/isolation_c
 	name = "Research Outpost Isolation C"
 
-/area/outpost/research/isolation_monitoring
-	name = "Research Outpost Isolation Monitoring"
+/area/outpost/research/isolation_hall
+	name = "Research Outpost Isolation Hall"
 
-/area/outpost/research/lab
-	name = "Research Outpost Laboratory"
+/area/outpost/research/bathroom
+	name = "Research Outpost Bathroom"
 
-/area/outpost/research/emergency_storage
-	name = "Research Outpost Emergency Storage"
+/area/outpost/research/dorms
+	name = "Research Outpost Dorms"
 
 /area/outpost/research/anomaly_storage
 	name = "Research Outpost Anomalous Storage"
@@ -131,8 +137,11 @@
 /area/outpost/research/anomaly_analysis
 	name = "Research Outpost Anomaly Analysis"
 
-/area/outpost/research/kitchen
-	name = "Research Outpost Kitchen"
+/area/outpost/research/exp_prep
+	name = "Research Outpost Expedition Preperation"
 
 /area/outpost/research/disposal
 	name = "Research Outpost Waste Disposal"
+
+/area/outpost/research/tox_store
+	name = "Research Outpost Toxins Storage"
