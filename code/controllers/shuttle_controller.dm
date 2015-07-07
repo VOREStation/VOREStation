@@ -173,7 +173,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle.area_station = locate(/area/shuttle/mining/station)
 	shuttle.docking_controller_tag = "mining_shuttle"
 	shuttle.dock_target_station = "mining_dock_airlock"
-	shuttle.dock_target_offsite = "mining_outpost_airlock"
+	shuttle.dock_target_offsite = "mdock_control"
 	shuttles["Mining"] = shuttle
 	process_shuttles += shuttle
 
@@ -183,7 +183,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle.area_station = locate(/area/shuttle/research/station)
 	shuttle.docking_controller_tag = "research_shuttle"
 	shuttle.dock_target_station = "research_dock_airlock"
-	shuttle.dock_target_offsite = "research_outpost_dock"
+	shuttle.dock_target_offsite = "routpost_control"
 	shuttles["Research"] = shuttle
 	process_shuttles += shuttle
 
