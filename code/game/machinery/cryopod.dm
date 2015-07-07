@@ -38,6 +38,39 @@
 	storage_name = "Robotic Storage Control"
 	allow_items = 0
 
+/obj/machinery/computer/cryopod/dorms
+	name = "residental oversight console"
+	desc = "An interface between visitors and the residental oversight systems tasked with keeping track of all visitors in the deeper section of the colony."
+	icon = 'icons/obj/robot_storage.dmi' //placeholder
+	icon_state = "console" //placeholder
+	circuit = "/obj/item/weapon/circuitboard/robotstoragecontrol"
+
+	storage_type = "visitors"
+	storage_name = "Residental Oversight Control"
+	allow_items = 1
+
+/obj/machinery/computer/cryopod/travel
+	name = "docking oversight console"
+	desc = "An interface between visitors and the docking oversight systems tasked with keeping track of all visitors who enter or exit from the docks."
+	icon = 'icons/obj/robot_storage.dmi' //placeholder
+	icon_state = "console" //placeholder
+	circuit = "/obj/item/weapon/circuitboard/robotstoragecontrol"
+
+	storage_type = "visitors"
+	storage_name = "Travel Oversight Control"
+	allow_items = 1
+
+/obj/machinery/computer/cryopod/gateway
+	name = "gateway oversight console"
+	desc = "An interface between visitors and the gateway oversight systems tasked with keeping track of all visitors who enter or exit from the gateway."
+	icon = 'icons/obj/robot_storage.dmi' //placeholder
+	icon_state = "console" //placeholder
+	circuit = "/obj/item/weapon/circuitboard/robotstoragecontrol"
+
+	storage_type = "visitors"
+	storage_name = "Travel Oversight Control"
+	allow_items = 1
+
 /obj/machinery/computer/cryopod/attack_ai()
 	src.attack_hand()
 
@@ -138,6 +171,21 @@
 	build_path = "/obj/machinery/computer/cryopod/robot"
 	origin_tech = list(TECH_DATA = 3)
 
+/obj/item/weapon/circuitboard/dormscontrol
+	name = "Circuit board (Residental Oversight Console)"
+	build_path = "/obj/machinery/computer/cryopod/door/dorms"
+	origin_tech = list(TECH_DATA = 3)
+
+/obj/item/weapon/circuitboard/travelcontrol
+	name = "Circuit board (Travel Oversight Console - Docks)"
+	build_path = "/obj/machinery/computer/cryopod/door/travel"
+	origin_tech = list(TECH_DATA = 3)
+
+/obj/item/weapon/circuitboard/gatewaycontrol
+	name = "Circuit board (Travel Oversight Console - Gateway)"
+	build_path = "/obj/machinery/computer/cryopod/door/gateway"
+	origin_tech = list(TECH_DATA = 3)
+
 //Decorative structures to go alongside cryopods.
 /obj/structure/cryofeed
 
@@ -174,7 +222,10 @@
 	var/occupied_icon_state = "body_scanner_1"
 	var/on_store_message = "has entered long-term storage."
 	var/on_store_name = "Cryogenic Oversight"
+	var/on_enter_visible_message = "starts climbing into the"
 	var/on_enter_occupant_message = "You feel cool air surround you. You go numb as your senses turn inward."
+	var/on_store_visible_message_1 = "hums and hisses as it moves" //We need two variables because byond doesn't let us have variables inside strings at compile-time.
+	var/on_store_visible_message_2 = "into storage."
 	var/allow_occupant_types = list(/mob/living/carbon/human)
 	var/disallow_occupant_types = list()
 
@@ -223,6 +274,54 @@
 /obj/machinery/cryopod/robot/right
 	orient_right = 1
 	icon_state = "pod_0-r"
+
+/obj/machinery/cryopod/robot/door
+	//This inherits from the robot cryo, so synths can be properly cryo'd.  If a non-synth enters and is cryo'd, ..() is called and it'll still work.
+	name = "Airlock of Wonders"
+	desc = "An airlock that isn't an airlock, and shouldn't exist.  Yell at a coder/mapper."
+	icon = 'icons/obj/doors/Doorint.dmi'
+	icon_state = "door_open"
+	base_icon_state = "door_open"
+	occupied_icon_state = "door_closed"
+	on_enter_visible_message = "steps into the"
+
+	time_till_despawn = 600 //1 minute. We want to be much faster then normal cryo, since waiting in an elevator for half an hour is a special kind of hell.
+
+	allow_occupant_types = list(/mob/living/silicon/robot,/mob/living/carbon/human)
+	disallow_occupant_types = list(/mob/living/silicon/robot/drone)
+
+/obj/machinery/cryopod/robot/door/dorms
+	name = "Residental District Elevator"
+	desc = "A small elevator that goes down to the deeper section of the colony."
+	on_store_message = "has departed for the residental district."
+	on_store_name = "Residental Oversight"
+	on_enter_occupant_message = "The elevator door closes slowly, ready to bring you down to the residental district."
+	on_store_visible_message_1 = "makes a ding as it moves"
+	on_store_visible_message_2 = "to the residental district."
+
+/obj/machinery/cryopod/robot/door/travel
+	name = "Passenger Elevator"
+	desc = "A small elevator that goes down to the passenger section of the vessel."
+	on_store_message = "is slated to depart from the colony."
+	on_store_name = "Travel Oversight"
+	on_enter_occupant_message = "The elevator door closes slowly, ready to bring you down to the hell that is economy class travel."
+	on_store_visible_message_1 = "makes a ding as it moves"
+	on_store_visible_message_2 = "to the passenger deck."
+
+/obj/machinery/cryopod/robot/door/gateway
+	name = "Gateway"
+	desc = "The gateway you might've came in from.  You could leave the colony easily using this."
+	icon = 'icons/obj/machines/gateway.dmi'
+	icon_state = "offcenter"
+	base_icon_state = "offcenter"
+	occupied_icon_state = "oncenter"
+	on_store_message = "has departed from the colony."
+	on_store_name = "Travel Oversight"
+	on_enter_occupant_message = "The gateway activates, and you step into the swirling portal."
+	on_store_visible_message_1 = "'s portal disappears just after"
+	on_store_visible_message_2 = "finishes walking across it."
+
+	time_till_despawn = 60 //1 second, because gateway.
 
 /obj/machinery/cryopod/New()
 	announce = new /obj/item/device/radio/intercom(src)
@@ -300,6 +399,11 @@
 	qdel(R.module)
 
 	return ..()
+
+/obj/machinery/cryopod/robot/door/gateway/despawn_occupant()
+	for(var/obj/machinery/gateway/G in range(1,src))
+		G.icon_state = "off"
+	..()
 
 // This function can not be undone; do not call this unless you are sure
 // Also make sure there is a valid control computer
@@ -397,7 +501,8 @@
 	control_computer.frozen_crew += "[occupant.real_name], [occupant.mind.role_alt_title] - [worldtime2text()]"
 
 	announce.autosay("[occupant.real_name], [occupant.mind.role_alt_title], [on_store_message]", "[on_store_name]")
-	visible_message("<span class='notice'>\The [initial(name)] hums and hisses as it moves [occupant.real_name] into storage.</span>", 3)
+	//visible_message("<span class='notice'>\The [initial(name)] hums and hisses as it moves [occupant.real_name] into storage.</span>", 3)
+	visible_message("<span class='notice'>\The [initial(name)] [on_store_visible_message_1] [occupant.real_name] [on_store_visible_message_2].</span>", 3)
 
 	// Delete the mob.
 	qdel(occupant)
@@ -502,7 +607,7 @@
 			usr << "You're too busy getting your life sucked out of you."
 			return
 
-	visible_message("[usr] starts climbing into \the [src].", 3)
+	visible_message("[usr] [on_enter_visible_message] [src].", 3)
 
 	if(do_after(usr, 20))
 
@@ -532,6 +637,17 @@
 		src.add_fingerprint(usr)
 
 	return
+
+/obj/machinery/cryopod/robot/door/gateway/move_inside()
+	..()
+	//locate(/obj/machinery/computer/cryopod) in range(6,src)
+	for(var/obj/machinery/gateway/G in range(1,src))
+		G.icon_state = "on"
+
+/obj/machinery/cryopod/robot/door/gateway/go_out()
+	..()
+	for(var/obj/machinery/gateway/G in range(1,src))
+		G.icon_state = "off"
 
 /obj/machinery/cryopod/proc/go_out()
 
