@@ -89,7 +89,19 @@ var/global/datum/shuttle_controller/shuttle_controller
 	process_shuttles += shuttle
 	shuttles["Escape Pod 3"] = shuttle
 
-	//There is no pod 4, apparently.
+	shuttle = new/datum/shuttle/ferry/escape_pod()
+	shuttle.location = 0
+	shuttle.warmup_time = 0
+	shuttle.area_station = locate(/area/shuttle/escape_pod4/station)
+	shuttle.area_offsite = locate(/area/shuttle/escape_pod4/centcom)
+	shuttle.area_transition = locate(/area/shuttle/escape_pod4/transit)
+	shuttle.docking_controller_tag = "escape_pod_4"
+	shuttle.dock_target_station = "escape_pod_4_berth"
+	shuttle.dock_target_offsite = "escape_pod_4_recovery"
+	shuttle.transit_direction = EAST //should this be WEST? I have no idea.
+	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN + rand(-30, 60)	//randomize this so it seems like the pods are being picked up one by one
+	process_shuttles += shuttle
+	shuttles["Escape Pod 4"] = shuttle
 
 	shuttle = new/datum/shuttle/ferry/escape_pod()
 	shuttle.location = 0
@@ -105,13 +117,29 @@ var/global/datum/shuttle_controller/shuttle_controller
 	process_shuttles += shuttle
 	shuttles["Escape Pod 5"] = shuttle
 
+	shuttle = new/datum/shuttle/ferry/escape_pod()
+	shuttle.location = 0
+	shuttle.warmup_time = 0
+	shuttle.area_station = locate(/area/shuttle/escape_pod6/station)
+	shuttle.area_offsite = locate(/area/shuttle/escape_pod6/centcom)
+	shuttle.area_transition = locate(/area/shuttle/escape_pod6/transit)
+	shuttle.docking_controller_tag = "escape_pod_6"
+	shuttle.dock_target_station = "escape_pod_6_berth"
+	shuttle.dock_target_offsite = "escape_pod_6_recovery"
+	shuttle.transit_direction = EAST //should this be WEST? I have no idea.
+	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN + rand(-30, 60)	//randomize this so it seems like the pods are being picked up one by one
+	process_shuttles += shuttle
+	shuttles["Escape Pod 6"] = shuttle
+
 	//give the emergency shuttle controller it's shuttles
 	emergency_shuttle.shuttle = shuttles["Escape"]
 	emergency_shuttle.escape_pods = list(
 		shuttles["Escape Pod 1"],
 		shuttles["Escape Pod 2"],
 		shuttles["Escape Pod 3"],
+		shuttles["Escape Pod 4"],
 		shuttles["Escape Pod 5"],
+		shuttles["Escape Pod 6"],
 	)
 
 	// Supply shuttle
@@ -173,7 +201,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle.area_station = locate(/area/shuttle/mining/station)
 	shuttle.docking_controller_tag = "mining_shuttle"
 	shuttle.dock_target_station = "mining_dock_airlock"
-	shuttle.dock_target_offsite = "mdock_control"
+	shuttle.dock_target_offsite = "mining_outpost_airlock"
 	shuttles["Mining"] = shuttle
 	process_shuttles += shuttle
 

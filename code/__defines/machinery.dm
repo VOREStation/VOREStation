@@ -35,6 +35,9 @@ var/list/restricted_camera_networks = list("thunder","ERT","NUKE","Secret")
 
 // Camera networks
 #define NETWORK_CRESCENT "Crescent"
+#define NETWORK_CAFE_DOCK "Cafe Dock"
+#define NETWORK_CARGO "Cargo"
+#define NETWORK_CIVILIAN "Civilian"
 #define NETWORK_CIVILIAN_EAST "Civilian East"
 #define NETWORK_CIVILIAN_WEST "Civilian West"
 #define NETWORK_COMMAND "Command"

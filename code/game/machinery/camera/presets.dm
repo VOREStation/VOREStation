@@ -1,5 +1,8 @@
 // PRESETS
 var/global/list/station_networks = list(
+										NETWORK_CAFE_DOCK,
+										NETWORK_CARGO,
+										NETWORK_CIVILIAN,
 										NETWORK_CIVILIAN_EAST,
 										NETWORK_CIVILIAN_WEST,
 										NETWORK_COMMAND,
@@ -23,6 +26,15 @@ var/global/list/engineering_networks = list(
 										"Power Alarms")
 /obj/machinery/camera/network/crescent
 	network = list(NETWORK_CRESCENT)
+
+/obj/machinery/camera/network/cafe_dock
+	network = list(NETWORK_CAFE_DOCK)
+
+/obj/machinery/camera/network/cargo
+	network = list(NETWORK_CARGO)
+
+/obj/machinery/camera/network/civilian
+	network = list(NETWORK_CIVILIAN)
 
 /obj/machinery/camera/network/civilian_east
 	network = list(NETWORK_CIVILIAN_EAST)

@@ -208,7 +208,20 @@ area/space/atmosalert()
 /area/shuttle/escape_pod3/transit
 	icon_state = "shuttle"
 
-/area/shuttle/escape_pod5 //Pod 4 was lost to meteors
+/area/shuttle/escape_pod4
+	name = "\improper Escape Pod Four"
+	music = "music/escape.ogg"
+
+/area/shuttle/escape_pod4/station
+	icon_state = "shuttle2"
+
+/area/shuttle/escape_pod4/centcom
+	icon_state = "shuttle"
+
+/area/shuttle/escape_pod4/transit
+	icon_state = "shuttle"
+
+/area/shuttle/escape_pod5
 	name = "\improper Escape Pod Five"
 	music = "music/escape.ogg"
 
@@ -219,6 +232,45 @@ area/space/atmosalert()
 	icon_state = "shuttle"
 
 /area/shuttle/escape_pod5/transit
+	icon_state = "shuttle"
+
+/area/shuttle/escape_pod6
+	name = "\improper Escape Pod Six"
+	music = "music/escape.ogg"
+
+/area/shuttle/escape_pod6/station
+	icon_state = "shuttle2"
+
+/area/shuttle/escape_pod6/centcom
+	icon_state = "shuttle"
+
+/area/shuttle/escape_pod6/transit
+	icon_state = "shuttle"
+
+/area/shuttle/large_escape_pod1
+	name = "\improper Large Escape Pod One"
+	music = "music/escape.ogg"
+
+/area/shuttle/large_escape_pod1/station
+	icon_state = "shuttle2"
+
+/area/shuttle/large_escape_pod1/centcom
+	icon_state = "shuttle"
+
+/area/shuttle/large_escape_pod1/transit
+	icon_state = "shuttle"
+
+/area/shuttle/large_escape_pod2
+	name = "\improper Large Escape Pod Two"
+	music = "music/escape.ogg"
+
+/area/shuttle/large_escape_pod2/station
+	icon_state = "shuttle2"
+
+/area/shuttle/large_escape_pod2/centcom
+	icon_state = "shuttle"
+
+/area/shuttle/large_escape_pod2/transit
 	icon_state = "shuttle"
 
 /area/shuttle/mining
