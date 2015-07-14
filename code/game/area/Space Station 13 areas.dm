@@ -273,6 +273,18 @@ area/space/atmosalert()
 /area/shuttle/large_escape_pod2/transit
 	icon_state = "shuttle"
 
+/area/shuttle/cryo
+	name = "\improper Cryogenic Storage"
+
+/area/shuttle/cryo/station
+	icon_state = "shuttle2"
+
+/area/shuttle/cryo/centcom
+	icon_state = "shuttle"
+
+/area/shuttle/cryo/transit
+	icon_state = "shuttle"
+
 /area/shuttle/mining
 	name = "\improper Mining Shuttle"
 	music = "music/escape.ogg"
