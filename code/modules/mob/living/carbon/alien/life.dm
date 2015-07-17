@@ -10,25 +10,13 @@
 	..()
 
 	if (stat != DEAD) //still breathing
-
 		// GROW!
 		update_progression()
-
-		// Chemicals in the body
-		handle_chemicals_in_body()
 
 	blinded = null
 
 	//Status updates, death etc.
-	handle_regular_status_updates()
-	update_canmove()
 	update_icons()
-
-	if(client)
-		handle_regular_hud_updates()
-
-/mob/living/carbon/alien/proc/handle_chemicals_in_body()
-	return // Nothing yet. Maybe check it out at a later date.
 
 /mob/living/carbon/alien/handle_mutations_and_radiation()
 
@@ -46,7 +34,7 @@
 	adjustToxLoss(-(rads))
 	return
 
-/mob/living/carbon/alien/proc/handle_regular_status_updates()
+/mob/living/carbon/alien/handle_regular_status_updates()
 
 	if(status_flags & GODMODE)	return 0
 
@@ -97,30 +85,21 @@
 		else if(eye_blurry)
 			eye_blurry = max(eye_blurry-1, 0)
 
-		//Ears
-		if(sdisabilities & DEAF)	//disabled-deaf, doesn't get better on its own
-			ear_deaf = max(ear_deaf, 1)
-		else if(ear_deaf)			//deafness, heals slowly over time
-			ear_deaf = max(ear_deaf-1, 0)
-			ear_damage = max(ear_damage-0.05, 0)
-
 		update_icons()
 
 	return 1
 
-/mob/living/carbon/alien/proc/handle_regular_hud_updates()
+/mob/living/carbon/alien/handle_regular_hud_updates()
 
 	if (stat == 2 || (XRAY in src.mutations))
 		sight |= SEE_TURFS
 		sight |= SEE_MOBS
 		sight |= SEE_OBJS
-		see_in_dark = 8
 		see_invisible = SEE_INVISIBLE_LEVEL_TWO
 	else if (stat != 2)
 		sight &= ~SEE_TURFS
 		sight &= ~SEE_MOBS
 		sight &= ~SEE_OBJS
-		see_in_dark = 2
 		see_invisible = SEE_INVISIBLE_LIVING
 
 	if (healths)
@@ -160,7 +139,7 @@
 
 	if (stat != 2)
 		if (machine)
-			if (!( machine.check_eye(src) ))
+			if ( machine.check_eye(src) < 0)
 				reset_view(null)
 		else
 			if(client && !client.adminobs)
@@ -180,3 +159,9 @@
 			src << "\red You feel a searing heat!"
 	else
 		if (fire) fire.icon_state = "fire0"
+
+/mob/living/carbon/alien/handle_fire()
+	if(..())
+		return
+	bodytemperature += BODYTEMP_HEATING_MAX //If you're on fire, you heat up!
+	return

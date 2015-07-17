@@ -5,10 +5,9 @@
 		//Being dead doesn't mean your temperature never changes
 		var/turf/T = get_turf(src)
 
-		if (src.stat!=0)
+		if (src.stat!=CONSCIOUS)
 			src.cameraFollow = null
 			src.reset_view(null)
-			src.unset_machine()
 
 		src.updatehealth()
 
@@ -19,6 +18,7 @@
 		// If our powersupply object was destroyed somehow, create new one.
 		if(!psupply)
 			create_powersupply()
+
 
 		// Handle power damage (oxy)
 		if(aiRestorePowerRoutine != 0 && !APU_power)
@@ -38,19 +38,18 @@
 			src << "<span class='notice'><b>APU GENERATOR FAILURE! (System Damaged)</b></span>"
 			stop_apu(1)
 
-		var/blind = 0
+		has_power = 1
 		var/area/loc = null
 		if (istype(T, /turf))
 			loc = T.loc
 			if (istype(loc, /area))
 				if (!loc.power_equip && !istype(src.loc,/obj/item) && !APU_power)
-					blind = 1
+					has_power = 0
 
-		if (!blind)
+		if (has_power)
 			src.sight |= SEE_TURFS
 			src.sight |= SEE_MOBS
 			src.sight |= SEE_OBJS
-			src.see_in_dark = 8
 			src.see_invisible = SEE_INVISIBLE_LIVING
 
 			if (aiRestorePowerRoutine==2)
@@ -80,12 +79,10 @@
 					//Blind the AI
 					updateicon()
 					src.blind.screen_loc = "1,1 to 15,15"
-					if (src.blind.layer!=18)
-						src.blind.layer = 18
+
 					src.sight = src.sight&~SEE_TURFS
 					src.sight = src.sight&~SEE_MOBS
 					src.sight = src.sight&~SEE_OBJS
-					src.see_in_dark = 0
 					src.see_invisible = SEE_INVISIBLE_LIVING
 
 					//Now to tell the AI why they're blind and dying slowly.
@@ -151,7 +148,7 @@
 							theAPC = null
 
 	process_queued_alarms()
-	regular_hud_updates()
+	handle_regular_hud_updates()
 	switch(src.sensor_mode)
 		if (SEC_HUD)
 			process_sec_hud(src,0,src.eyeobj)
