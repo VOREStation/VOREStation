@@ -340,8 +340,8 @@
 				R.amount = rand(5,25)
 
 			if(2)
-				var/obj/item/stack/tile/R = new(src)
-				R.amount = rand(1,5)
+				var/obj/item/stack/material/plasteel/R = new(src)
+				R.amount = rand(5,25)
 
 			if(3)
 				var/obj/item/stack/material/steel/R = new(src)
@@ -475,10 +475,10 @@
 			new /obj/structure/lattice(get_turf(src))
 		return
 
-	else if(istype(W, /obj/item/stack/tile/plasteel))
+	else if(istype(W, /obj/item/stack/tile/steel))
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
 		if(L)
-			var/obj/item/stack/tile/plasteel/S = W
+			var/obj/item/stack/tile/steel/S = W
 			if (S.get_amount() < 1)
 				return
 			del(L)

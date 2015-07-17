@@ -23,6 +23,12 @@
 		qdel(food)
 	return ..()
 
+/mob/living/carbon/rejuvenate()
+	bloodstr.clear_reagents()
+	ingested.clear_reagents()
+	touching.clear_reagents()
+	..()
+
 /mob/living/carbon/Move(NewLoc, direct)
 	. = ..()
 	if(.)
@@ -261,8 +267,9 @@
 				M.visible_message("<span class='notice'>[M] shakes [src] trying to wake [t_him] up!</span>", \
 									"<span class='notice'>You shake [src] trying to wake [t_him] up!</span>")
 			else
-				if(istype(H))
-					H.species.hug(H,src)
+				var/mob/living/carbon/human/hugger = M
+				if(istype(hugger))
+					hugger.species.hug(hugger,src)
 				else
 					M.visible_message("<span class='notice'>[M] hugs [src] to make [t_him] feel better!</span>", \
 								"<span class='notice'>You hug [src] to make [t_him] feel better!</span>")
@@ -381,7 +388,8 @@
 
 /mob/living/carbon/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	..()
-	bodytemperature = max(bodytemperature, BODYTEMP_HEAT_DAMAGE_LIMIT+10)
+	var/temp_inc = max(BODYTEMP_HEATING_MAX*(1-get_heat_protection()), 0)
+	bodytemperature = min(bodytemperature + temp_inc, exposed_temperature)
 
 /mob/living/carbon/can_use_hands()
 	if(handcuffed)
@@ -451,7 +459,7 @@
 	if(istype(AM, /mob/living/carbon) && prob(10))
 		src.spread_disease_to(AM, "Contact")
 
-/mob/living/carbon/can_use_vents()
+/mob/living/carbon/cannot_use_vents()
 	return
 
 /mob/living/carbon/slip(var/slipped_on,stun_duration=8)

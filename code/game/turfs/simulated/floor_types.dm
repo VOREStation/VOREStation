@@ -267,10 +267,10 @@
 			new /obj/structure/lattice(get_turf(src))
 		return
 
-	if(istype(W, /obj/item/stack/tile/plasteel))
+	if(istype(W, /obj/item/stack/tile/steel))
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
 		if(L)
-			var/obj/item/stack/tile/plasteel/S = W
+			var/obj/item/stack/tile/steel/S = W
 			if (S.get_amount() < 1)
 				return
 			del(L)
