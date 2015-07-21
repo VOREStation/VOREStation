@@ -3,6 +3,7 @@ cd ../../maps
 
 FOR /L %%i IN (1,1,%z_levels%) DO (
   copy exodus-%%i.dmm exodus-%%i.dmm.backup
+  copy colony-%%i.dmm colony-%%i.dmm.backup
 )
 
 pause
