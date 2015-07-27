@@ -411,9 +411,7 @@
 			"slimejelly",
 			"cyanide",
 			"mindbreaker",
-			"stoxin",
-			"acetone",
-			"hydrazine"
+			"stoxin"
 			)
 
 		for(var/x=1;x<=additional_chems;x++)
