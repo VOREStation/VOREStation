@@ -1,4 +1,4 @@
-/obj/machinery/chemical_dispenser/full
+/obj/machinery/chemical_dispenser/cartridge/full
 	spawn_cartridges = list(
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/hydrogen,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/lithium,
@@ -24,7 +24,7 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/tungsten
 		)
 
-/obj/machinery/chemical_dispenser/ert
+/obj/machinery/chemical_dispenser/cartridge/ert
 	name = "medicine dispenser"
 	spawn_cartridges = list(
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/inaprov,
@@ -57,14 +57,14 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/clonexadone
 		)
 
-/obj/machinery/chemical_dispenser/bar_soft
+/obj/machinery/chemical_dispenser/cartridge/bar_soft
 	name = "soft drink dispenser"
 	desc = "A soda machine."
 	icon_state = "soda_dispenser"
 	ui_title = "Soda Dispenser"
 	accept_drinking = 1
 
-/obj/machinery/chemical_dispenser/bar_soft/full
+/obj/machinery/chemical_dispenser/cartridge/bar_soft/full
 	spawn_cartridges = list(
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/water,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/ice,
@@ -85,14 +85,14 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/watermelon
 		)
 
-/obj/machinery/chemical_dispenser/bar_alc
+/obj/machinery/chemical_dispenser/cartridge/bar_alc
 	name = "booze dispenser"
 	desc = "A beer machine. Like a soda machine, but more fun!"
 	icon_state = "booze_dispenser"
 	ui_title = "Booze Dispenser"
 	accept_drinking = 1
 
-/obj/machinery/chemical_dispenser/bar_alc/full
+/obj/machinery/chemical_dispenser/cartridge/bar_alc/full
 	spawn_cartridges = list(
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/lemon_lime,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/sugar,

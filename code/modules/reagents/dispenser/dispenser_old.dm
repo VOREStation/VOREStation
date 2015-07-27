@@ -3,7 +3,7 @@
 #define CHEM_DISPENSER_ENERGY_COST	0.1	//How many energy points do we use per unit of chemical?
 #define BOTTLE_SPRITES list("bottle-1", "bottle-2", "bottle-3", "bottle-4") //list of available bottle sprites
 
-/obj/machinery/chemical_dispenser_energy
+/obj/machinery/chemical_dispenser/energy
 	name = "chemical dispenser"
 	density = 1
 	anchored = 1
@@ -21,7 +21,7 @@
 	var/hackedcheck = 0
 	var/list/dispensable_reagents = list("hydrogen","lithium","carbon","nitrogen","oxygen","fluorine","sodium","aluminum","silicon","phosphorus","sulfur","chlorine","potassium","iron","copper","mercury","radium","water","ethanol","sugar","sacid","tungsten")
 
-/obj/machinery/chemical_dispenser_energy/proc/recharge()
+/obj/machinery/chemical_dispenser/energy/proc/recharge()
 	if(stat & (BROKEN|NOPOWER))
 		return
 	var/addenergy = 1
@@ -31,24 +31,24 @@
 		use_power(CHEM_SYNTH_ENERGY / CHEM_DISPENSER_ENERGY_COST) // This thing uses up "alot" of power (this is still low as shit for creating reagents from thin air)
 		nanomanager.update_uis(src) // update all UIs attached to src
 
-/obj/machinery/chemical_dispenser_energy/power_change()
+/obj/machinery/chemical_dispenser/energy/power_change()
 	..()
 	nanomanager.update_uis(src) // update all UIs attached to src
 
-/obj/machinery/chemical_dispenser_energy/process()
+/obj/machinery/chemical_dispenser/energy/process()
 	if(recharged <= 0)
 		recharge()
 		recharged = 15
 	else
 		recharged -= 1
 
-/obj/machinery/chemical_dispenser_energy/New()
+/obj/machinery/chemical_dispenser/energy/New()
 	..()
 	recharge()
 	dispensable_reagents = sortList(dispensable_reagents)
 
 
-/obj/machinery/chemical_dispenser_energy/ex_act(severity)
+/obj/machinery/chemical_dispenser/energy/ex_act(severity)
 	switch(severity)
 		if(1.0)
 			qdel(src)
@@ -58,7 +58,7 @@
 				qdel(src)
 				return
 
-/obj/machinery/chemical_dispenser_energy/blob_act()
+/obj/machinery/chemical_dispenser/energy/blob_act()
 	if (prob(50))
 		qdel(src)
 
@@ -72,7 +72,7 @@
   *
   * @return nothing
   */
-/obj/machinery/chemical_dispenser_energy/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/chemical_dispenser/energy/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null, var/force_open = 1)
 	if(stat & (BROKEN|NOPOWER)) return
 	if(user.stat || user.restrained()) return
 
@@ -116,7 +116,7 @@
 		// open the new ui window
 		ui.open()
 
-/obj/machinery/chemical_dispenser_energy/Topic(href, href_list)
+/obj/machinery/chemical_dispenser/energy/Topic(href, href_list)
 	if(stat & (NOPOWER|BROKEN))
 		return 0 // don't update UIs attached to this object
 
@@ -147,7 +147,7 @@
 	add_fingerprint(usr)
 	return 1 // update UIs attached to this object
 
-/obj/machinery/chemical_dispenser_energy/attackby(var/obj/item/weapon/reagent_containers/B as obj, var/mob/user as mob)
+/obj/machinery/chemical_dispenser/energy/attackby(var/obj/item/weapon/reagent_containers/B as obj, var/mob/user as mob)
 	if(isrobot(user))
 		return
 	if(src.beaker)
@@ -163,15 +163,15 @@
 		nanomanager.update_uis(src) // update all UIs attached to src
 		return
 
-/obj/machinery/chemical_dispenser_energy/attack_ai(mob/user as mob)
+/obj/machinery/chemical_dispenser/energy/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/chemical_dispenser_energy/attack_hand(mob/user as mob)
+/obj/machinery/chemical_dispenser/energy/attack_hand(mob/user as mob)
 	if(stat & BROKEN)
 		return
 	ui_interact(user)
 
-/obj/machinery/chemical_dispenser_energy/soda
+/obj/machinery/chemical_dispenser/energy/soda
 	icon_state = "soda_dispenser"
 	name = "soda fountain"
 	desc = "A drink fabricating machine, capable of producing many sugary drinks with just one touch."
@@ -181,7 +181,7 @@
 	max_energy = 100
 	dispensable_reagents = list("water","ice","coffee","cream","tea","icetea","cola","spacemountainwind","dr_gibb","space_up","tonic","sodawater","lemon_lime","sugar","orangejuice","limejuice","watermelonjuice")
 
-/obj/machinery/chemical_dispenser_energy/soda/attackby(var/obj/item/weapon/B as obj, var/mob/user as mob)
+/obj/machinery/chemical_dispenser/energy/soda/attackby(var/obj/item/weapon/B as obj, var/mob/user as mob)
 	..()
 	if(istype(B, /obj/item/device/multitool))
 		if(hackedcheck == 0)
@@ -196,7 +196,7 @@
 			hackedcheck = 0
 			return
 
-/obj/machinery/chemical_dispenser_energy/beer
+/obj/machinery/chemical_dispenser/energy/beer
 	icon_state = "booze_dispenser"
 	name = "booze dispenser"
 	ui_title = "Booze Portal 9001"
@@ -207,7 +207,7 @@
 	dispensable_reagents = list("lemon_lime","sugar","orangejuice","limejuice","sodawater","tonic","beer","kahlua",
 								"whiskey","wine","vodka","gin","rum","tequilla","vermouth","cognac","ale","mead")
 
-/obj/machinery/chemical_dispenser_energy/beer/attackby(var/obj/item/weapon/B as obj, var/mob/user as mob)
+/obj/machinery/chemical_dispenser/energy/beer/attackby(var/obj/item/weapon/B as obj, var/mob/user as mob)
 	..()
 
 	if(istype(B, /obj/item/device/multitool))
@@ -223,8 +223,8 @@
 			hackedcheck = 0
 			return
 
-/obj/machinery/chemical_dispenser_energy/meds
-	name = "chem dispenser magic"
+/obj/machinery/chemical_dispenser/energy/meds
+	name = "ultra chem dispenser"
 	density = 1
 	anchored = 1
 	icon = 'icons/obj/chemical.dmi'
