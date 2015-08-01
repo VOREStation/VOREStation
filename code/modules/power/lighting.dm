@@ -142,7 +142,7 @@
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	var/on = 0					// 1 if on, 0 if off
 	var/on_gs = 0
-	var/brightness_range = 8	// luminosity when on, also used in power calculation
+	var/brightness_range = 10	// luminosity when on, also used in power calculation
 	var/brightness_power = 3
 	var/brightness_color = null
 	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
@@ -160,9 +160,9 @@
 	icon_state = "bulb1"
 	base_state = "bulb"
 	fitting = "bulb"
-	brightness_range = 4
+	brightness_range = 6
 	brightness_power = 2
-	brightness_color = "#a0a080"
+	brightness_color = "#FFF4E5"
 	desc = "A small lighting fixture."
 	light_type = /obj/item/weapon/light/bulb
 

@@ -1838,7 +1838,7 @@ area/space/atmosalert()
 	icon_state = "security_equip_storage"
 
 /area/security/security_lockerroom
-	name = "\improper Security - Lockerroom"
+	name = "\improper Security - Locker Room"
 	icon_state = "security_lockerroom"
 
 /area/security/security_processing
@@ -1913,6 +1913,14 @@ area/space/atmosalert()
 
 /area/quartermaster/storage
 	name = "\improper Cargo Bay"
+	icon_state = "quartstorage"
+
+/area/quartermaster/foyer
+	name = "\improper Cargo Bay Foyer"
+	icon_state = "quartstorage"
+
+/area/quartermaster/warehouse
+	name = "\improper Cargo Warehouse"
 	icon_state = "quartstorage"
 
 /area/quartermaster/qm
