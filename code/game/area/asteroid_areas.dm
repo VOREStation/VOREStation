@@ -95,6 +95,15 @@
 /area/outpost/engineering/meeting
 	name = "Engineering Outpost Meeting Room"
 
+/area/outpost/engineering/kitchen
+	name = "Engineering Outpost Kitchen"
+
+/area/outpost/engineering/rest
+	name = "Engineering Outpost Break Room"
+
+/area/outpost/engineering/solars
+	name = "Engineering Outpost Solars"
+
 
 
 // Research Outpost
