@@ -35,6 +35,9 @@
 /area/outpost/mining_main
 	icon_state = "outpost_mine_main"
 
+/area/outpost/mining_main/dorms
+	name = "Mining Outpost Dormitory"
+
 /area/outpost/mining_main/dorms1
 	name = "Mining Outpost Dormitory 1"
 
@@ -46,6 +49,12 @@
 
 /area/outpost/mining_main/storage
 	name = "Mining Outpost Gear Storage"
+
+/area/outpost/mining_main/eva
+	name = "Mining Outpost EVA"
+
+/area/outpost/mining_main/maintenance
+	name = "Mining Outpost Maintenance"
 
 /area/outpost/mining_main/west_hall
 	name = "Mining Outpost West Hallway"
