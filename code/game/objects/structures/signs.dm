@@ -197,5 +197,10 @@
 
 /obj/structure/sign/directions/evac
 	name = "\improper Escape Arm"
-	desc = "A direction sign, pointing out which way the escape shuttle dock is."
+	desc = "A direction sign, pointing out which way the Escape Shuttle dock is."
 	icon_state = "direction_evac"
+
+/obj/structure/sign/directions/cargo
+	name = "\improper Cargo department"
+	desc = "A direction sign, pointing out which way the Cargo department is."
+	icon_state = "direction_crg"
