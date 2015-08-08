@@ -125,7 +125,7 @@ var/global/list/gear_datums = list()
 	path = /obj/item/clothing/head/soft/sec/corp
 	cost = 1
 	slot = slot_head
-	allowed_roles = list("Security Officer","Head of Security","Warden")
+	allowed_roles = list("Security Officer","Head of Security","Warden", "Detective")
 
 /datum/gear/gcap
 	display_name = "cap, green"
@@ -162,6 +162,13 @@ var/global/list/gear_datums = list()
 	path = /obj/item/clothing/head/soft/red
 	cost = 1
 	slot = slot_head
+
+/datum/gear/seccap
+	display_name = "cap, security"
+	path = /obj/item/clothing/head/soft/sec
+	cost = 1
+	slot = slot_head
+	allowed_roles = list("Security Officer","Head of Security","Warden", "Detective")
 
 /datum/gear/ycap
 	display_name = "cap, yellow"
