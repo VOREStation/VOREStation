@@ -405,6 +405,23 @@
 	new /obj/item/clothing/gloves/black(src)
 	return
 
+/obj/structure/closet/wardrobe/ert
+	name = "emergency response team equipment"
+	icon_state = "syndicate1"
+	icon_closed = "syndicate1"
+	icon_opened = "syndicate1open"
+
+/obj/structure/closet/wardrobe/ert/New()
+	..()
+	new /obj/item/clothing/under/rank/centcom(src)
+	new /obj/item/clothing/under/ert(src)
+	new /obj/item/clothing/under/syndicate/combat(src)
+	new /obj/item/device/radio/headset/ert(src)
+	new /obj/item/clothing/glasses/sunglasses(src)
+	new /obj/item/clothing/shoes/swat(src)
+	new /obj/item/clothing/gloves/swat(src)
+	return
+
 /obj/structure/closet/wardrobe/suit
 	name = "suit locker"
 	icon_state = "mixed"
