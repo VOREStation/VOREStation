@@ -400,7 +400,10 @@ var/list/name_to_material
 		return 1
 
 	var/build_path = /obj/structure/windoor_assembly
-	var/sheets_needed = 4
+	var/sheets_needed = 1
+	if(choice == "Full Window")
+		sheets_needed = 4
+
 	if(choice == "Windoor")
 		sheets_needed = 5
 		build_dir = user.dir
