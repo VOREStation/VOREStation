@@ -361,6 +361,12 @@ STARLIGHT 0
 ## Enable asteroid tunnel/cave generation. Will behave strangely if turned off with a map that expects it on.
 # GENERATE_ASTEROID
 
+
+
+## If you've enabled asteroid generation, you need to supply which z-levels to apply it to, in integer form, and seperated using ;
+## An example: 1;4;5
+# ASTEROID_Z_LEVELS 1;4;5
+
 ## Uncomment to enable organ decay outside of a body or storage item.
 #ORGANS_CAN_DECAY
 
