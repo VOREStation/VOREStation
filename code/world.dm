@@ -81,7 +81,7 @@ var/global/datum/global_init/init = new ()
 				z_level = text2num(z_level)
 				if(!isnum(z_level))
 					// If it's still not a number, we probably got fed some nonsense string.
-					admin_notice("<span class='danger'>Error: ASTEROID_Z_LEVELS config wasn't given a number.</span>"
+					admin_notice("<span class='danger'>Error: ASTEROID_Z_LEVELS config wasn't given a number.</span>")
 				// Now for the actual map generating.  This occurs for every z-level defined in the config.
 				new /datum/random_map/automata/cave_system(null,1,1,z_level,300,300)
 				// Let's add ore too.
