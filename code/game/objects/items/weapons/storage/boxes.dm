@@ -298,6 +298,21 @@
 		new /obj/item/weapon/grenade/empgrenade(src)
 		new /obj/item/weapon/grenade/empgrenade(src)
 
+/obj/item/weapon/storage/box/frags
+	name = "box of fragmentation grenades (WARNING)"
+	desc = "A box containing 7 military grade fragmentation grenades.<br> WARNING: These devices are extremely dangerous and can cause limb loss or death in repeated use."
+	icon_state = "frag"
+
+	New()
+		..()
+		new /obj/item/weapon/grenade/explosive(src)
+		new /obj/item/weapon/grenade/explosive(src)
+		new /obj/item/weapon/grenade/explosive(src)
+		new /obj/item/weapon/grenade/explosive(src)
+		new /obj/item/weapon/grenade/explosive(src)
+		new /obj/item/weapon/grenade/explosive(src)
+		new /obj/item/weapon/grenade/explosive(src)
+
 
 /obj/item/weapon/storage/box/trackimp
 	name = "boxed tracking implant kit"
