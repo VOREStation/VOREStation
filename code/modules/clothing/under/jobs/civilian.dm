@@ -23,7 +23,7 @@
 	item_state = "lb_suit"
 	worn_state = "qm"
 
-/obj/item/clothing/under/rank/cargo
+/obj/item/clothing/under/rank/cargo/skirt
 	name = "quartermaster's jumpskirt"
 	desc = "It's a jumpskirt worn by the quartermaster. It's specially designed to prevent back injuries caused by pushing paper."
 	icon_state = "qmf"
