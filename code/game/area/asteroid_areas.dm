@@ -106,6 +106,39 @@
 
 
 
+// Engineering Mining Outpost
+/area/outpost/engineering/mining
+	icon_state = "outpost_engine"
+
+/area/outpost/engineering/mining/hallway
+	name = "Mining Engineering Outpost Hallway"
+
+/area/outpost/engineering/mining/atmospherics
+	name = "Mining Engineering Outpost Atmospherics"
+
+/area/outpost/engineering/mining/power
+	name = "Mining Engineering Outpost Power Distribution"
+
+/area/outpost/engineering/mining/telecomms
+	name = "Mining Engineering Outpost Telecommunications"
+
+/area/outpost/engineering/mining/storage
+	name = "Mining Engineering Outpost Storage"
+
+/area/outpost/engineering/mining/meeting
+	name = "Mining Engineering Outpost Meeting Room"
+
+/area/outpost/engineering/mining/kitchen
+	name = "Mining Engineering Outpost Kitchen"
+
+/area/outpost/engineering/mining/rest
+	name = "Mining Engineering Outpost Break Room"
+
+/area/outpost/engineering/mining/solars
+	name = "Mining Engineering Outpost Solars"
+
+
+
 // Research Outpost
 /area/outpost/research
 	icon_state = "outpost_research"
