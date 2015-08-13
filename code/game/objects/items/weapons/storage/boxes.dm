@@ -289,7 +289,7 @@
 /obj/item/weapon/storage/box/emps
 	name = "box of emp grenades"
 	desc = "A box containing 5 military grade EMP grenades.<br> WARNING: Do not use near unshielded electronics or biomechanical augmentations, death or permanent paralysis may occur."
-	icon_state = "flashbang"
+	icon_state = "emp"
 
 	New()
 		..()
