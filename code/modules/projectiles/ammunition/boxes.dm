@@ -192,3 +192,15 @@
 	max_ammo = 20
 	multiple_sprites = 1
 
+/obj/item/ammo_magazine/g12
+	name = "magazine (12 gauge)"
+	icon_state = "g12"
+	mag_type = MAGAZINE
+	caliber = "shotgun"
+	matter = list(DEFAULT_WALL_MATERIAL = 2200)
+	ammo_type = /obj/item/ammo_casing/shotgun/pellet
+	max_ammo = 24
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/g12/empty
+	initial_ammo = 0
