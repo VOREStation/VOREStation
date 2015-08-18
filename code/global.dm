@@ -118,22 +118,22 @@ var/list/awaydestinations = list() // Away missions. A list of landmarks that th
 var/sqladdress = "localhost"
 var/sqlport    = "3306"
 var/sqldb      = "tgstation"
-var/sqllogin   = "root"
-var/sqlpass    = ""
+var/sqllogin   = "polaris"
+var/sqlpass    = "Polaris1505"
 
 // Feedback gathering sql connection
-var/sqlfdbkdb    = "test"
-var/sqlfdbklogin = "root"
-var/sqlfdbkpass  = ""
+var/sqlfdbkdb    = "polarisban"
+var/sqlfdbklogin = "polaris"
+var/sqlfdbkpass  = "Polaris1505"
 var/sqllogging   = 0 // Should we log deaths, population stats, etc.?
 
 // Forum MySQL configuration. (for use with forum account/key authentication)
 // These are all default values that will load should the forumdbconfig.txt file fail to read for whatever reason.
 var/forumsqladdress = "localhost"
 var/forumsqlport    = "3306"
-var/forumsqldb      = "tgstation"
-var/forumsqllogin   = "root"
-var/forumsqlpass    = ""
+var/forumsqldb      = "phpbb566"
+var/forumsqllogin   = "phpbbuser566"
+var/forumsqlpass    = "dwS]!r_64681"
 var/forum_activated_group     = "2"
 var/forum_authenticated_group = "10"
 
