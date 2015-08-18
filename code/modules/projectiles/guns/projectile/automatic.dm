@@ -235,7 +235,7 @@
 	name = "\improper AS-24 automatic shotgun"
 	desc = "A durable, rugged looking automatic weapon of a make popular on the frontier worlds. Uses 12 gauge shells. It is unmarked."
 	icon_state = "ashot"
-	item_state = null
+	item_state = "arifle"
 	w_class = 4
 	force = 10
 	caliber = "shotgun"

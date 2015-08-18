@@ -198,9 +198,21 @@
 	mag_type = MAGAZINE
 	caliber = "shotgun"
 	matter = list(DEFAULT_WALL_MATERIAL = 2200)
-	ammo_type = /obj/item/ammo_casing/shotgun/pellet
+	ammo_type = /obj/item/ammo_casing/shotgun
 	max_ammo = 24
 	multiple_sprites = 1
+
+/obj/item/ammo_magazine/g12/beanbag
+	name = "magazine (12 gauge beanbag)"
+	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
+
+/obj/item/ammo_magazine/g12/pellet
+	name = "magazine (12 gauge pellet)"
+	ammo_type = /obj/item/ammo_casing/shotgun/pellet
+
+/obj/item/ammo_magazine/g12/flash
+	name = "magazine (12 gauge flash)"
+	ammo_type = /obj/item/ammo_casing/shotgun/flash
 
 /obj/item/ammo_magazine/g12/empty
 	initial_ammo = 0
