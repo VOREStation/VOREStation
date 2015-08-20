@@ -361,7 +361,8 @@ var/global/list/gear_datums = list()
 	path = /obj/item/clothing/under/color/blackf
 	slot = slot_w_uniform
 	cost = 1
-/datum/gear/blackfjumpsuit
+
+/datum/gear/rainbowjumpsuit
 	display_name = "jumpsuit, rainbow"
 	path = /obj/item/clothing/under/rainbow
 	slot = slot_w_uniform
@@ -498,6 +499,34 @@ var/global/list/gear_datums = list()
 	path = /obj/item/clothing/under/lawyer/bluesuit
 	slot = slot_w_uniform
 	cost = 1
+
+/datum/gear/blackscrubs
+	display_name = "scrubs, black"
+	path = /obj/item/clothing/under/rank/medical/black
+	slot = slot_w_uniform
+	cost = 1
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist")
+
+/datum/gear/bluescrubs
+	display_name = "scrubs, blue"
+	path = /obj/item/clothing/under/rank/medical/blue
+	slot = slot_w_uniform
+	cost = 1
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist")
+
+/datum/gear/purplescrubs
+	display_name = "scrubs, purple"
+	path = /obj/item/clothing/under/rank/medical/purple
+	slot = slot_w_uniform
+	cost = 1
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist")
+
+/datum/gear/greenscrubs
+	display_name = "scrubs, green"
+	path = /obj/item/clothing/under/rank/medical/green
+	slot = slot_w_uniform
+	cost = 1
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist")
 
 /datum/gear/sundress
 	display_name = "sundress"
