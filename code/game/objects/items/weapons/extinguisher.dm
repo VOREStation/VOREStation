@@ -15,7 +15,7 @@
 	attack_verb = list("slammed", "whacked", "bashed", "thunked", "battered", "bludgeoned", "thrashed")
 
 	var/spray_particles = 6
-	var/spray_amount = 8	//units of liquid per particle
+	var/spray_amount = 2	//units of liquid per particle
 	var/max_water = 240
 	var/last_use = 1.0
 	var/safety = 1
@@ -62,7 +62,7 @@
 		if(C) C.propelled = (6-i)
 		O.Move(get_step(user,movementdirection), movementdirection)
 		sleep(move_speed[i])
-	
+
 	//additional movement
 	for(var/i in 1 to 3)
 		O.Move(get_step(user,movementdirection), movementdirection)
@@ -105,7 +105,7 @@
 		for(var/a = 1 to spray_particles)
 			spawn(0)
 				if(!src || !reagents.total_volume) return
-			
+
 				var/obj/effect/effect/water/W = PoolOrNew(/obj/effect/effect/water, get_turf(src))
 				var/turf/my_target
 				if(a <= the_targets.len)

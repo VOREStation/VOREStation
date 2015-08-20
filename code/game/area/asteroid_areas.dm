@@ -104,7 +104,14 @@
 /area/outpost/engineering/solars
 	name = "Engineering Outpost Solars"
 
+/area/outpost/engineering/solarsoutside
+	requires_power = 1
+	always_unpowered = 1
+	lighting_use_dynamic = 0
 
+	aft
+		name = "\improper Engineering Outpost Solar Array"
+		icon_state = "yellow"
 
 // Engineering Mining Outpost
 /area/outpost/engineering/mining
