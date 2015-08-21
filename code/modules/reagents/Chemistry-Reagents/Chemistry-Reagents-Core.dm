@@ -145,7 +145,7 @@
 		environment.add_thermal_energy(-removed_heat)
 		if (prob(5))
 			T.visible_message("<span class='warning'>The water sizzles as it lands on \the [T]!</span>")
-	
+
 	else if(volume >= 10)
 		if(T.wet >= 1)
 			return
@@ -186,7 +186,7 @@
 /datum/reagent/water/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	if(istype(M, /mob/living/carbon/slime))
 		var/mob/living/carbon/slime/S = M
-		S.adjustToxLoss(8 * removed) // Babies have 150 health, adults have 200; So, 10 units and 13.5
+		S.adjustToxLoss(15 * removed) // Babies have 150 health, adults have 200; So, 10 units and 13.5
 		if(!S.client)
 			if(S.Target) // Like cats
 				S.Target = null

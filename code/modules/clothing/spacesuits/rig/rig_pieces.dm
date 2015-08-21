@@ -46,6 +46,30 @@
 	can_breach = 1
 	sprite_sheets = list("Tajara" = 'icons/mob/species/tajaran/suit.dmi',"Unathi" = 'icons/mob/species/unathi/suit.dmi')
 	supporting_limbs = list()
+	var/obj/item/weapon/material/hatchet/tacknife
+
+/obj/item/clothing/suit/space/rig/attack_hand(var/mob/living/M)
+	if(tacknife)
+		tacknife.loc = get_turf(src)
+		if(M.put_in_active_hand(tacknife))
+			M << "<span class='notice'>You slide \the [tacknife] out of [src].</span>"
+			playsound(M, 'sound/weapons/flipblade.ogg', 40, 1)
+			tacknife = null
+			update_icon()
+		return
+	..()
+
+/obj/item/clothing/suit/space/rig/attackby(var/obj/item/I, var/mob/living/M)
+	if(istype(I, /obj/item/weapon/material/hatchet/tacknife))
+		if(tacknife)
+			return
+		M.drop_item()
+		tacknife = I
+		I.loc = src
+		M << "<span class='notice'>You slide the [I] into [src].</span>"
+		playsound(M, 'sound/weapons/flipblade.ogg', 40, 1)
+		update_icon()
+	..()
 
 //TODO: move this to modules
 /obj/item/clothing/head/helmet/space/rig/proc/prevent_track()
