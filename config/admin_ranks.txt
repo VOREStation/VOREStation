@@ -31,7 +31,7 @@ Moderator		+ADMIN
 Admin Candidate	+ADMIN
 Trial Admin		+@ +SPAWN +REJUV +VAREDIT +BAN  #left for readability
 Badmin			+@ +POSSESS +BUILDMODE +SERVER +FUN  #left for readability
-Game Admin		+@ +STEALTH +SOUNDS +DEBUG +PERMISSIONS
+Game Admin		+@ +STEALTH +SOUNDS +DEBUG
 Retired Admin	+ADMIN +STEALTH
 
 Host			+EVERYTHING
