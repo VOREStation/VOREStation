@@ -34,6 +34,12 @@
 	glass_type = "/glass_engineering"
 	airlock_type = "/engineering"
 
+/obj/structure/door_assembly/door_assembly_eat
+	base_icon_state = "eat"
+	base_name = "Engineering Atmos Airlock"
+	glass_type = "/glass_engineeringatmos"
+	airlock_type = "/engineering"
+
 /obj/structure/door_assembly/door_assembly_min
 	base_icon_state = "min"
 	base_name = "Mining Airlock"
