@@ -195,6 +195,11 @@
 	..()
 	base_state = icon_state
 
+/obj/item/stack/flag/blue
+	name = "blue flags"
+	singular_name = "blue flag"
+	icon_state = "blueflag"
+
 /obj/item/stack/flag/red
 	name = "red flags"
 	singular_name = "red flag"
