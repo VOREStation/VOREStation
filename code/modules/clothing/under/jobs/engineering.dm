@@ -44,8 +44,14 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
 /obj/item/clothing/under/rank/roboticist
-	desc = "It's a slimming black with reinforced seams; great for industrial work."
+	desc = "It's a slimming black jumpsuit with reinforced seams; great for industrial work."
 	name = "roboticist's jumpsuit"
 	icon_state = "robotics"
 	item_state = "bl_suit"
 	worn_state = "robotics"
+
+/obj/item/clothing/under/rank/roboticist/skirt
+	desc = "It's a slimming black jumpskirt with reinforced seams; great for industrial work."
+	name = "roboticist's jumpskirt"
+	icon_state = "roboticsf"
+	worn_state = "roboticsf"

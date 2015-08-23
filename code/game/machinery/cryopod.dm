@@ -14,7 +14,7 @@
 	desc = "An interface between crew and the cryogenic storage oversight systems."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "cellconsole"
-	circuit = "/obj/item/weapon/circuitboard/cryopodcontrol"
+	circuit = /obj/item/weapon/circuitboard/cryopodcontrol
 	density = 0
 	interact_offline = 1
 	var/mode = null
@@ -22,6 +22,7 @@
 	//Used for logging people entering cryosleep and important items they are carrying.
 	var/list/frozen_crew = list()
 	var/list/frozen_items = list()
+	var/list/_admin_logs = list() // _ so it shows first in VV
 
 	var/storage_type = "crewmembers"
 	var/storage_name = "Cryogenic Oversight Control"
@@ -32,7 +33,7 @@
 	desc = "An interface between crew and the robotic storage systems"
 	icon = 'icons/obj/robot_storage.dmi'
 	icon_state = "console"
-	circuit = "/obj/item/weapon/circuitboard/robotstoragecontrol"
+	circuit = /obj/item/weapon/circuitboard/robotstoragecontrol
 
 	storage_type = "cyborgs"
 	storage_name = "Robotic Storage Control"
@@ -194,20 +195,7 @@
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "cryo_rear"
 	anchored = 1
-
-	var/orient_right = null //Flips the sprite.
-
-/obj/structure/cryofeed/right
-	orient_right = 1
-	icon_state = "cryo_rear-r"
-
-/obj/structure/cryofeed/New()
-
-	if(orient_right)
-		icon_state = "cryo_rear-r"
-	else
-		icon_state = "cryo_rear"
-	..()
+	dir = WEST
 
 //Cryopods themselves.
 /obj/machinery/cryopod
@@ -217,6 +205,7 @@
 	icon_state = "body_scanner_0"
 	density = 1
 	anchored = 1
+	dir = WEST
 
 	var/base_icon_state = "body_scanner_0"
 	var/occupied_icon_state = "body_scanner_1"
@@ -230,7 +219,6 @@
 	var/disallow_occupant_types = list()
 
 	var/mob/occupant = null       // Person waiting to be despawned.
-	var/orient_right = null       // Flips the sprite.
 	var/time_till_despawn = 18000 // 30 minutes-ish safe period before being despawned.
 	var/time_entered = 0          // Used to keep track of the safe period.
 	var/obj/item/device/radio/intercom/announce //
@@ -254,10 +242,6 @@
 		/obj/item/weapon/storage/internal
 	)
 
-/obj/machinery/cryopod/right
-	orient_right = 1
-	icon_state = "body_scanner_0-r"
-
 /obj/machinery/cryopod/robot
 	name = "robotic storage unit"
 	desc = "A storage unit for robots."
@@ -270,10 +254,6 @@
 	on_enter_occupant_message = "The storage unit broadcasts a sleep signal to you. Your systems start to shut down, and you enter low-power mode."
 	allow_occupant_types = list(/mob/living/silicon/robot)
 	disallow_occupant_types = list(/mob/living/silicon/robot/drone)
-
-/obj/machinery/cryopod/robot/right
-	orient_right = 1
-	icon_state = "pod_0-r"
 
 /obj/machinery/cryopod/robot/door
 	//This inherits from the robot cryo, so synths can be properly cryo'd.  If a non-synth enters and is cryo'd, ..() is called and it'll still work.
@@ -325,12 +305,6 @@
 
 /obj/machinery/cryopod/New()
 	announce = new /obj/item/device/radio/intercom(src)
-
-	if(orient_right)
-		icon_state = "[base_icon_state]-r"
-	else
-		icon_state = base_icon_state
-
 	..()
 
 /obj/machinery/cryopod/Destroy()
@@ -487,22 +461,22 @@
 		if ((G.fields["name"] == occupant.real_name))
 			qdel(G)
 
-	if(orient_right)
-		icon_state = "[base_icon_state]-r"
-	else
-		icon_state = base_icon_state
+	icon_state = base_icon_state
 
 	//TODO: Check objectives/mode, update new targets if this mob is the target, spawn new antags?
 
-	//This should guarantee that ghosts don't spawn.
-	occupant.ckey = null
 
 	//Make an announcement and log the person entering storage.
 	control_computer.frozen_crew += "[occupant.real_name], [occupant.mind.role_alt_title] - [worldtime2text()]"
+	control_computer._admin_logs += "[key_name(occupant)] ([occupant.mind.role_alt_title]) at [worldtime2text()]"
+	log_and_message_admins("[key_name(occupant)] ([occupant.mind.role_alt_title]) entered cryostorage.")
 
 	announce.autosay("[occupant.real_name], [occupant.mind.role_alt_title], [on_store_message]", "[on_store_name]")
 	//visible_message("<span class='notice'>\The [initial(name)] hums and hisses as it moves [occupant.real_name] into storage.</span>", 3)
 	visible_message("<span class='notice'>\The [initial(name)] [on_store_visible_message_1] [occupant.real_name] [on_store_visible_message_2].</span>", 3)
+
+	//This should guarantee that ghosts don't spawn.
+	occupant.ckey = null
 
 	// Delete the mob.
 	qdel(occupant)
@@ -546,10 +520,7 @@
 					M.client.perspective = EYE_PERSPECTIVE
 					M.client.eye = src
 
-			if(orient_right)
-				icon_state = "[occupied_icon_state]-r"
-			else
-				icon_state = occupied_icon_state
+			icon_state = occupied_icon_state
 
 			M << "<span class='notice'>[on_enter_occupant_message]</span>"
 			M << "<span class='notice'><b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b></span>"
@@ -571,10 +542,7 @@
 	if(usr.stat != 0)
 		return
 
-	if(orient_right)
-		icon_state = "[base_icon_state]-r"
-	else
-		icon_state = base_icon_state
+	icon_state = base_icon_state
 
 	//Eject any items that aren't meant to be in the pod.
 	var/list/items = src.contents
@@ -624,10 +592,7 @@
 		usr.loc = src
 		set_occupant(usr)
 
-		if(orient_right)
-			icon_state = "[occupied_icon_state]-r"
-		else
-			icon_state = occupied_icon_state
+		icon_state = occupied_icon_state
 
 		usr << "<span class='notice'>[on_enter_occupant_message]</span>"
 		usr << "<span class='notice'><b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b></span>"
@@ -661,10 +626,7 @@
 	occupant.loc = get_turf(src)
 	set_occupant(null)
 
-	if(orient_right)
-		icon_state = "[base_icon_state]-r"
-	else
-		icon_state = base_icon_state
+	icon_state = base_icon_state
 
 	return
 

@@ -4,7 +4,7 @@
 #endif
 
 // Items that ask to be called every cycle.
-var/global/obj/effect/datacore/data_core = null
+var/global/datum/datacore/data_core = null
 var/global/list/all_areas                = list()
 var/global/list/machines                 = list()
 var/global/list/processing_objects       = list()
@@ -24,13 +24,17 @@ var/global/list/global_map = null
 var/list/hit_appends = list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF")
 
 
-var/diary          = null
-var/href_logfile   = null
-var/station_name   = "Northern Star"
-var/game_version   = "Polaris"
-var/changelog_hash = ""
-var/game_year      = (text2num(time2text(world.realtime, "YYYY")) + 544)
 
+var/href_logfile        = null
+var/station_name        = "Northern Star"
+var/station_short       = "Northern Star"
+var/const/boss_name     = "Central Command"
+var/const/boss_short    = "Centcomm"
+var/const/company_name  = "NanoTrasen"
+var/const/company_short = "NT"
+var/game_version        = "Polaris"
+var/changelog_hash      = ""
+var/game_year           = (text2num(time2text(world.realtime, "YYYY")) + 544)
 var/round_progressing = 1
 
 	//On some maps, it does not make sense for space turf to appear when something blows up (e.g. on an asteroid colony, or planetside)
@@ -81,6 +85,7 @@ var/list/blobstart          = list()
 var/list/ninjastart         = list()
 
 var/list/cardinal    = list(NORTH, SOUTH, EAST, WEST)
+var/list/cornerdirs  = list(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
 var/list/alldirs     = list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
 var/list/reverse_dir = list( // reverse_dir[dir] = reverse of dir
 	 2,  1,  3,  8, 10,  9, 11,  4,  6,  5,  7, 12, 14, 13, 15, 32, 34, 33, 35, 40, 42,
