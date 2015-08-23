@@ -93,7 +93,8 @@
 	supervisors = "the head of security"
 	selection_color = "#ffeeee"
 	alt_titles = list("Forensic Technician")
-	economic_modifier = 5	alt_titles = list("Forensic Technician")
+	economic_modifier = 5
+	alt_titles = list("Forensic Technician")
 	minimal_player_age = 3
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0

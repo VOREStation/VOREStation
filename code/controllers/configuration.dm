@@ -331,12 +331,16 @@ var/list/gamemode_cache = list()
 
 				if ("generate_asteroid")
 					config.generate_asteroid = 1
+
 				if ("asteroid_z_levels")
 					config.asteroid_z_levels = text2list(value, ";")
 					//Numbers get stored as strings, so we'll fix that right now.
 					for(var/z_level in config.asteroid_z_levels)
-						z_level = text2num(z_level)				if ("no_click_cooldown")
+						z_level = text2num(z_level)
+
+				if ("no_click_cooldown")
 					config.no_click_cooldown = 1
+
 				if("allow_admin_ooccolor")
 					config.allow_admin_ooccolor = 1
 

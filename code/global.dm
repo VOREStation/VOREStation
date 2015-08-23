@@ -22,9 +22,7 @@ var/global/list/global_map = null
 
 // Noises made when hit while typing.
 var/list/hit_appends = list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF")
-
-
-
+var/diary				= null
 var/href_logfile        = null
 var/station_name        = "Northern Star"
 var/station_short       = "Northern Star"
@@ -43,7 +41,7 @@ var/round_progressing = 1
 	//Set to 1 to enable it.
 var/destroy_floor_override = 1
 	//Below is the path of turf used in place of space tiles.
-var/destroy_floor_override_path = /turf/simulated/floor/plating/asteroid
+var/destroy_floor_override_path = /turf/simulated/floor/asteroid
 	//A list of z-levels to apply the override to.  This is so z-levels like tcomms work as they did before.
 var/list/destroy_floor_override_z_levels = list(1)
 	//Some areas you may want to not turn into the override path you made above, like space or the solars.

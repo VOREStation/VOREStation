@@ -484,15 +484,15 @@
 			new /obj/structure/lattice(get_turf(src))
 		return
 
-	else if(istype(W, /obj/item/stack/tile/steel))
+	else if(istype(W, /obj/item/stack/tile/floor))
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
 		if(L)
-			var/obj/item/stack/tile/steel/S = W
+			var/obj/item/stack/tile/floor/S = W
 			if (S.get_amount() < 1)
 				return
 			del(L)
 			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
-			S.build(src)
+			ChangeTurf(/turf/simulated/floor/airless)
 			S.use(1)
 			return
 		else

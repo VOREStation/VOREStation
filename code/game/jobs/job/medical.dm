@@ -45,7 +45,8 @@
 	spawn_positions = 3
 	supervisors = "the chief medical officer"
 	selection_color = "#ffeef0"
-	economic_modifier = 7	alt_titles = list("Surgeon","Emergency Physician","Nurse","Virologist")
+	economic_modifier = 7
+	alt_titles = list("Surgeon","Emergency Physician","Nurse","Virologist")
 
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
@@ -105,7 +106,8 @@
 	spawn_positions = 2
 	supervisors = "the chief medical officer"
 	selection_color = "#ffeef0"
-	economic_modifier = 5	alt_titles = list("Pharmacist")
+	economic_modifier = 5
+	alt_titles = list("Pharmacist")
 
 
 	equip(var/mob/living/carbon/human/H)
@@ -194,7 +196,8 @@
 	spawn_positions = 2
 	supervisors = "the chief medical officer"
 	selection_color = "#ffeef0"
-	economic_modifier = 4	minimal_access = list(access_medical, access_medical_equip, access_eva, access_maint_tunnels, access_external_airlocks)
+	economic_modifier = 4
+	minimal_access = list(access_medical, access_medical_equip, access_eva, access_maint_tunnels, access_external_airlocks)
 	alt_titles = list("Emergency Medical Technician")
 
 	equip(var/mob/living/carbon/human/H)
