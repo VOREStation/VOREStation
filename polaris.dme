@@ -1828,5 +1828,9 @@
 #include "code\ZAS\Zone.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\exodus-1.dmm"
+#include "maps\colony-1.dmm"
+#include "maps\colony-2.dmm"
+#include "maps\colony-3.dmm"
+#include "maps\colony-4.dmm"
+#include "maps\colony-5.dmm"
 // END_INCLUDE
