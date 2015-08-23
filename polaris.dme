@@ -298,6 +298,7 @@
 #include "code\game\gamemodes\changeling\powers\cryo_sting.dm"
 #include "code\game\gamemodes\changeling\powers\deaf_sting.dm"
 #include "code\game\gamemodes\changeling\powers\digital_camo.dm"
+#include "code\game\gamemodes\changeling\powers\electric_lockpick.dm"
 #include "code\game\gamemodes\changeling\powers\engorged_glands.dm"
 #include "code\game\gamemodes\changeling\powers\epinephrine_overdose.dm"
 #include "code\game\gamemodes\changeling\powers\extract_dna_sting.dm"
