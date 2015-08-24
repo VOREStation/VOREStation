@@ -11,6 +11,7 @@
 	selection_color = "#ffddf0"
 	idtype = /obj/item/weapon/card/id/silver
 	req_admin_notify = 1
+	economic_modifier = 10
 	access = list(access_medical, access_medical_equip, access_morgue, access_genetics, access_heads,
 			access_chemistry, access_virology, access_cmo, access_surgery, access_RC_announce,
 			access_keycard_auth, access_sec_doors, access_psychiatrist, access_eva, access_external_airlocks, access_maint_tunnels)
@@ -44,8 +45,7 @@
 	spawn_positions = 3
 	supervisors = "the chief medical officer"
 	selection_color = "#ffeef0"
-	access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_virology, access_genetics, access_maint_tunnels, access_eva)
-	minimal_access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_virology, access_maint_tunnels, access_eva)
+	economic_modifier = 7
 	alt_titles = list("Surgeon","Emergency Physician","Nurse","Virologist")
 
 	equip(var/mob/living/carbon/human/H)
@@ -106,8 +106,7 @@
 	spawn_positions = 2
 	supervisors = "the chief medical officer"
 	selection_color = "#ffeef0"
-	access = list(access_medical, access_medical_equip, access_morgue, access_chemistry, access_virology)
-	minimal_access = list(access_medical, access_chemistry, access_medical_equip)
+	economic_modifier = 5
 	alt_titles = list("Pharmacist")
 
 
@@ -136,9 +135,7 @@
 	spawn_positions = 0
 	supervisors = "the chief medical officer and research director"
 	selection_color = "#ffeef0"
-	access = list(access_medical, access_morgue, access_genetics, access_research, access_medical_equip)
-	minimal_access = list(access_medical, access_morgue, access_genetics, access_research, access_medical_equip)
-
+	economic_modifier = 7
 
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
@@ -162,6 +159,7 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
+	economic_modifier = 5
 	supervisors = "the chief medical officer"
 	selection_color = "#ffeef0"
 	access = list(access_medical, access_medical_equip, access_morgue, access_psychiatrist)
@@ -198,7 +196,7 @@
 	spawn_positions = 2
 	supervisors = "the chief medical officer"
 	selection_color = "#ffeef0"
-	access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_virology, access_eva, access_maint_tunnels, access_external_airlocks, access_psychiatrist)
+	economic_modifier = 4
 	minimal_access = list(access_medical, access_medical_equip, access_eva, access_maint_tunnels, access_external_airlocks)
 	alt_titles = list("Emergency Medical Technician")
 

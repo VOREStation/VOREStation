@@ -11,7 +11,7 @@
 /obj/structure/lattice/New()
 	..()
 ///// Z-Level Stuff
-	if(!(istype(src.loc, /turf/space) || istype(src.loc, /turf/simulated/floor/open) || istype(src.loc, /turf/simulated/floor/plating/airless/asteroid) || istype(src.loc, /turf/simulated/floor/plating/asteroid)))
+	if(!(istype(src.loc, /turf/space) || istype(src.loc, /turf/simulated/floor/open) || istype(src.loc, /turf/simulated/floor/asteroid)))
 ///// Z-Level Stuff
 		qdel(src)
 	for(var/obj/structure/lattice/LAT in src.loc)
@@ -53,7 +53,7 @@
 
 /obj/structure/lattice/attackby(obj/item/C as obj, mob/user as mob)
 
-	if (istype(C, /obj/item/stack/tile/steel))
+	if (istype(C, /obj/item/stack/tile/floor))
 		var/turf/T = get_turf(src)
 		T.attackby(C, user) //BubbleWrap - hand this off to the underlying turf instead
 		return

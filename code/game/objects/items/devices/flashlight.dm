@@ -51,7 +51,7 @@
 		var/mob/living/carbon/human/H = M	//mob has protective eyewear
 		if(istype(H))
 			for(var/obj/item/clothing/C in list(H.head,H.wear_mask,H.glasses))
-				if(istype(C) && C.flags & (HEADCOVERSEYES|MASKCOVERSEYES|GLASSESCOVERSEYES))
+				if(istype(C) && (C.body_parts_covered & EYES))
 					user << "<span class='warning'>You're going to need to remove [C.name] first.</span>"
 					return
 
@@ -141,7 +141,7 @@
 
 /obj/item/device/flashlight/flare
 	name = "flare"
-	desc = "A red Nanotrasen issued flare. There are instructions on the side, it reads 'pull cord, make light'."
+	desc = "A red standard-issue flare. There are instructions on the side reading 'pull cord, make light'."
 	w_class = 2.0
 	brightness_on = 7 // Pretty bright.
 	light_color = "#e58775"

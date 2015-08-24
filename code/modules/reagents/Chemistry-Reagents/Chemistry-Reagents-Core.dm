@@ -112,6 +112,19 @@
 		M.resistances += data
 	return
 
+// pure concentrated antibodies
+/datum/reagent/antibodies
+	data = list("antibodies"=list())
+	name = "Antibodies"
+	id = "antibodies"
+	reagent_state = LIQUID
+	color = "#0050F0"
+
+/datum/reagent/antibodies/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(src.data)
+		M.antibodies |= src.data["antibodies"]
+	..()
+
 #define WATER_LATENT_HEAT 19000 // How much heat is removed when applied to a hot turf, in J/unit (19000 makes 120 u of water roughly equivalent to 4L)
 /datum/reagent/water
 	name = "Water"
