@@ -1,25 +1,3 @@
-// Access check is of the type requires one. These have been carefully selected to avoid allowing the janitor to see channels he shouldn't
-var/global/list/default_internal_channels = list(
-	num2text(PUB_FREQ) = list(),
-	num2text(AI_FREQ)  = list(access_synth),
-	num2text(ERT_FREQ) = list(access_cent_specops),
-	num2text(COMM_FREQ)= list(access_heads),
-	num2text(ENG_FREQ) = list(access_engine_equip, access_atmospherics),
-	num2text(MED_FREQ) = list(access_medical_equip),
-	num2text(MED_I_FREQ)=list(access_medical_equip),
-	num2text(SEC_FREQ) = list(access_security),
-	num2text(SEC_I_FREQ)=list(access_security),
-	num2text(SCI_FREQ) = list(access_tox,access_robotics,access_xenobiology),
-	num2text(SUP_FREQ) = list(access_cargo),
-	num2text(SRV_FREQ) = list(access_janitor, access_hydroponics)
-)
-
-var/global/list/default_medbay_channels = list(
-	num2text(PUB_FREQ) = list(),
-	num2text(MED_FREQ) = list(access_medical_equip),
-	num2text(MED_I_FREQ) = list(access_medical_equip)
-)
-
 /obj/item/device/radio
 	icon = 'icons/obj/radio.dmi'
 	name = "station bounced radio"
@@ -32,13 +10,15 @@ var/global/list/default_medbay_channels = list(
 	var/frequency = PUB_FREQ //common chat
 	var/traitor_frequency = 0 //tune to frequency to unlock traitor supplies
 	var/canhear_range = 3 // the range which mobs can hear this radio from
+	var/obj/item/device/radio/patch_link = null
 	var/datum/wires/radio/wires = null
 	var/b_stat = 0
 	var/broadcasting = 0
 	var/listening = 1
-	var/list/channels = list() //see communications.dm for full list. First channel is a "default" for :h
+	var/list/channels = list() //see communications.dm for full list. First channes is a "default" for :h
 	var/subspace_transmission = 0
 	var/syndie = 0//Holder to see if it's a syndicate encrypted radio
+//			"Example" = FREQ_LISTENING|FREQ_BROADCASTING
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	throw_speed = 2
@@ -47,7 +27,7 @@ var/global/list/default_medbay_channels = list(
 
 	matter = list("glass" = 25,DEFAULT_WALL_MATERIAL = 75)
 	var/const/FREQ_LISTENING = 1
-	var/list/internal_channels
+
 
 /obj/item/device/radio
 	var/datum/radio_frequency/radio_connection
@@ -61,7 +41,6 @@ var/global/list/default_medbay_channels = list(
 /obj/item/device/radio/New()
 	..()
 	wires = new(src)
-	internal_channels = default_internal_channels.Copy()
 
 /obj/item/device/radio/Destroy()
 	qdel(wires)
@@ -70,7 +49,7 @@ var/global/list/default_medbay_channels = list(
 		radio_controller.remove_object(src, frequency)
 		for (var/ch_name in channels)
 			radio_controller.remove_object(src, radiochannels[ch_name])
-	return ..()
+	..()
 
 
 /obj/item/device/radio/initialize()
@@ -82,8 +61,6 @@ var/global/list/default_medbay_channels = list(
 	for (var/ch_name in channels)
 		secure_radio_connections[ch_name] = radio_controller.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
 
-/obj/item/device/radio/attack_ghost(mob/user)
-	interact(user)
 
 /obj/item/device/radio/attack_self(mob/user as mob)
 	user.set_machine(src)
@@ -119,39 +96,10 @@ var/global/list/default_medbay_channels = list(
 	return
 
 /obj/item/device/radio/proc/list_channels(var/mob/user)
-	return list_internal_channels(user)
-
-/obj/item/device/radio/proc/list_secure_channels(var/mob/user)
 	var/dat = ""
 	for (var/ch_name in channels)
 		dat+=text_sec_channel(ch_name, channels[ch_name])
 	return dat
-
-/obj/item/device/radio/proc/list_internal_channels(var/mob/user)
-	var/dat = ""
-	for (var/internal_chan in internal_channels)
-		if(has_channel_access(user, internal_chan))
-			dat+="<A href='byond://?src=\ref[src];spec_freq=[internal_chan]'>[get_frequency_name(text2num(internal_chan))]</A><br>"
-
-	if(dat)
-		dat = "<br><b>Internal Channels</b><br>" + dat
-	return dat
-
-/obj/item/device/radio/proc/has_channel_access(var/mob/user, var/freq)
-	if(!user)
-		return 0
-
-	if(!(freq in internal_channels))
-		return 0
-
-	return user.has_internal_radio_channel_access(internal_channels[freq])
-
-/mob/proc/has_internal_radio_channel_access(var/list/req_one_accesses)
-	var/obj/item/weapon/card/id/I = GetIdCard()
-	return has_access(list(), req_one_accesses, I ? I.GetAccess() : list())
-
-/mob/dead/observer/has_internal_radio_channel_access(var/list/req_one_accesses)
-	return can_admin_interact()
 
 /obj/item/device/radio/proc/text_wires()
 	if (b_stat)
@@ -206,11 +154,6 @@ var/global/list/default_medbay_channels = list(
 				channels[chan_name] &= ~FREQ_LISTENING
 			else
 				channels[chan_name] |= FREQ_LISTENING
-		. = 1
-	else if(href_list["spec_freq"])
-		var freq = href_list["spec_freq"]
-		if(has_channel_access(usr, freq))
-			set_frequency(text2num(freq))
 		. = 1
 	if(href_list["nowindow"]) // here for pAIs, maybe others will want it, idk
 		return 1
@@ -570,9 +513,6 @@ var/global/list/default_medbay_channels = list(
 	myborg = null
 	return ..()
 
-/obj/item/device/radio/borg/list_channels(var/mob/user)
-	return list_secure_channels(user)
-
 /obj/item/device/radio/borg/talk_into()
 	. = ..()
 	if (isrobot(src.loc))
@@ -657,33 +597,24 @@ var/global/list/default_medbay_channels = list(
 	if(..())
 		return 1
 	if (href_list["mode"])
-		var/enable_subspace_transmission = text2num(href_list["mode"])
-		if(enable_subspace_transmission != subspace_transmission)
-			subspace_transmission = !subspace_transmission
-			if(subspace_transmission)
-				usr << "<span class='notice'>Subspace Transmission is enabled</span>"
-			else
-				usr << "<span class='notice'>Subspace Transmission is disabled</span>"
-
-			if(subspace_transmission == 0)//Simple as fuck, clears the channel list to prevent talking/listening over them if subspace transmission is disabled
-				channels = list()
-			else
-				recalculateChannels()
-		. = 1
+		if(subspace_transmission != 1)
+			subspace_transmission = 1
+			usr << "Subspace Transmission is enabled"
+		else
+			subspace_transmission = 0
+			usr << "Subspace Transmission is disabled"
+		if(subspace_transmission == 0)//Simple as fuck, clears the channel list to prevent talking/listening over them if subspace transmission is disabled
+			channels = list()
+		else
+			recalculateChannels()
+		return 1
 	if (href_list["shutup"]) // Toggle loudspeaker mode, AKA everyone around you hearing your radio.
-		var/do_shut_up = text2num(href_list["shutup"])
-		if(do_shut_up != shut_up)
-			shut_up = !shut_up
-			if(shut_up)
-				canhear_range = 0
-				usr << "<span class='notice'>Loadspeaker disabled.</span>"
-			else
-				canhear_range = 3
-				usr << "<span class='notice'>Loadspeaker enabled.</span>"
-		. = 1
-
-	if(.)
-		interact(usr)
+		shut_up = !shut_up
+		if(shut_up)
+			canhear_range = 0
+		else
+			canhear_range = 3
+		return 1
 
 /obj/item/device/radio/borg/interact(mob/user as mob)
 	if(!on)
@@ -698,8 +629,8 @@ var/global/list/default_medbay_channels = list(
 				[format_frequency(frequency)]
 				<A href='byond://?src=\ref[src];freq=2'>+</A>
 				<A href='byond://?src=\ref[src];freq=10'>+</A><BR>
-				Broadcasting: [subspace_transmission ? "<A href='byond://?src=\ref[src];mode=0'>Disable</A>" : "<A href='byond://?src=\ref[src];mode=1'>Enable</A>"]<BR>
-				Loudspeaker: [shut_up ? "<A href='byond://?src=\ref[src];shutup=0'>Enable</A>" : "<A href='byond://?src=\ref[src];shutup=1'>Disable</A>"]<BR>
+				<A href='byond://?src=\ref[src];mode=1'>Toggle Broadcast Mode</A><BR>
+				Loudspeaker: [shut_up ? "<A href='byond://?src=\ref[src];shutup=0'>Disengaged</A>" : "<A href='byond://?src=\ref[src];shutup=1'>Engaged</A>"]<BR>
 				"}
 
 	if(subspace_transmission)//Don't even bother if subspace isn't turned on
@@ -722,17 +653,3 @@ var/global/list/default_medbay_channels = list(
 
 /obj/item/device/radio/off
 	listening = 0
-
-/obj/item/device/radio/phone
-	broadcasting = 0
-	icon = 'icons/obj/items.dmi'
-	icon_state = "red_phone"
-	listening = 1
-	name = "phone"
-
-/obj/item/device/radio/phone/medbay
-	frequency = MED_I_FREQ
-
-/obj/item/device/radio/phone/medbay/New()
-	..()
-	internal_channels = default_medbay_channels.Copy()
