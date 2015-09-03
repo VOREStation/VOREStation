@@ -357,7 +357,7 @@
 	body_parts_covered = UPPER_TORSO|ARMS
 
 /obj/item/clothing/suit/storage/leather_jacket/nanotrasen
-	desc = "A black leather coat. The letters NT are proudly displayed on the back."
+	desc = "A black leather coat. A corporate logo is proudly displayed on the back."
 	icon_state = "leather_jacket_nt"
 
 //This one has buttons for some reason
@@ -371,7 +371,7 @@
 	body_parts_covered = UPPER_TORSO|ARMS
 
 /obj/item/clothing/suit/storage/toggle/brown_jacket/nanotrasen
-	desc = "A brown leather coat. The letters NT are proudly displayed on the back."
+	desc = "A brown leather coat. A corporate logo is proudly displayed on the back."
 	icon_state = "brown_jacket_nt"
 	icon_open = "brown_jacket_nt_open"
 	icon_closed = "brown_jacket_nt"
@@ -393,3 +393,43 @@
 	item_state = "black_hoodie"
 	icon_open = "black_hoodie_open"
 	icon_closed = "black_hoodie"
+
+/obj/item/clothing/suit/storage/toggle/hoodie/red
+	name = "red hoodie"
+	desc = "A warm, red sweatshirt."
+	icon_state = "red_hoodie"
+	item_state = "red_hoodie"
+	icon_open = "red_hoodie_open"
+	icon_closed = "red_hoodie"
+
+/obj/item/clothing/suit/storage/toggle/hoodie/blue
+	name = "blue hoodie"
+	desc = "A warm, blue sweatshirt."
+	icon_state = "blue_hoodie"
+	item_state = "blue_hoodie"
+	icon_open = "blue_hoodie_open"
+	icon_closed = "blue_hoodie"
+
+/obj/item/clothing/suit/storage/toggle/hoodie/green
+	name = "green hoodie"
+	desc = "A warm, green sweatshirt."
+	icon_state = "green_hoodie"
+	item_state = "green_hoodie"
+	icon_open = "green_hoodie_open"
+	icon_closed = "green_hoodie"
+
+/obj/item/clothing/suit/storage/toggle/hoodie/orange
+	name = "orange hoodie"
+	desc = "A warm, orange sweatshirt."
+	icon_state = "orange_hoodie"
+	item_state = "orange_hoodie"
+	icon_open = "orange_hoodie_open"
+	icon_closed = "orange_hoodie"
+
+/obj/item/clothing/suit/storage/toggle/hoodie/yellow
+	name = "yellow hoodie"
+	desc = "A warm, yellow sweatshirt."
+	icon_state = "yellow_hoodie"
+	item_state = "yellow_hoodie"
+	icon_open = "yellow_hoodie_open"
+	icon_closed = "yellow_hoodie"
