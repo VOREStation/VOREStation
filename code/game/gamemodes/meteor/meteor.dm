@@ -7,7 +7,7 @@
 	config_tag = "meteor"
 	required_players = 0
 	votable = 0
-	deny_respawn = 1
+	deny_respawn = 0
 	var/next_wave = METEOR_DELAY
 
 /datum/game_mode/meteor/post_setup()
