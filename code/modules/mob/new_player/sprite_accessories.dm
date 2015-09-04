@@ -121,7 +121,7 @@
 		name = "Ponytail 4"
 		icon_state = "hair_ponytail4"
 
-	ponytail4
+	ponytail5
 		name = "Ponytail 5"
 		icon_state = "hair_ponytail5"
 
