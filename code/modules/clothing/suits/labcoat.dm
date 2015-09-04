@@ -51,6 +51,22 @@
 	icon_open = "green_labcoat_open"
 	icon_closed = "green_labcoat"
 
+/obj/item/clothing/suit/storage/toggle/labcoat/yellow
+	name = "yellow labcoat"
+	desc = "A suit that protects against minor chemical spills. This one is yellow."
+	icon_state = "yellow_labcoat_open"
+	item_state = "yellow_labcoat"
+	icon_open = "yellow_labcoat_open"
+	icon_closed = "yellow_labcoat"
+
+/obj/item/clothing/suit/storage/toggle/labcoat/pink
+	name = "pink labcoat"
+	desc = "A suit that protects against minor chemical spills. This one is pink."
+	icon_state = "pink_labcoat_open"
+	item_state = "pink_labcoat"
+	icon_open = "pink_labcoat_open"
+	icon_closed = "pink_labcoat"
+
 /obj/item/clothing/suit/storage/toggle/labcoat/cmo
 	name = "chief medical officer's labcoat"
 	desc = "Bluer than the standard model."

@@ -393,3 +393,43 @@
 	item_state = "black_hoodie"
 	icon_open = "black_hoodie_open"
 	icon_closed = "black_hoodie"
+
+/obj/item/clothing/suit/storage/toggle/hoodie/red
+	name = "red hoodie"
+	desc = "A warm, red sweatshirt."
+	icon_state = "red_hoodie"
+	item_state = "red_hoodie"
+	icon_open = "red_hoodie_open"
+	icon_closed = "red_hoodie"
+
+/obj/item/clothing/suit/storage/toggle/hoodie/blue
+	name = "blue hoodie"
+	desc = "A warm, blue sweatshirt."
+	icon_state = "blue_hoodie"
+	item_state = "blue_hoodie"
+	icon_open = "blue_hoodie_open"
+	icon_closed = "blue_hoodie"
+
+/obj/item/clothing/suit/storage/toggle/hoodie/green
+	name = "green hoodie"
+	desc = "A warm, green sweatshirt."
+	icon_state = "green_hoodie"
+	item_state = "green_hoodie"
+	icon_open = "green_hoodie_open"
+	icon_closed = "green_hoodie"
+
+/obj/item/clothing/suit/storage/toggle/hoodie/orange
+	name = "orange hoodie"
+	desc = "A warm, orange sweatshirt."
+	icon_state = "orange_hoodie"
+	item_state = "orange_hoodie"
+	icon_open = "orange_hoodie_open"
+	icon_closed = "orange_hoodie"
+
+/obj/item/clothing/suit/storage/toggle/hoodie/yellow
+	name = "yellow hoodie"
+	desc = "A warm, yellow sweatshirt."
+	icon_state = "yellow_hoodie"
+	item_state = "yellow_hoodie"
+	icon_open = "yellow_hoodie_open"
+	icon_closed = "yellow_hoodie"

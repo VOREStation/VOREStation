@@ -20,6 +20,26 @@
 	self_recharge = 1
 	use_external_power = 1
 
+
+/obj/item/weapon/gun/energy/gun
+	name = "fm-2t"
+	desc = "The FM-2t is a versatile energy based small arm, capable of switching between stun or kill with a three round burst option for both settings."
+	icon_state = "fm-2tstun100"
+	item_state = null	//so the human update icon uses the icon_state instead.
+	fire_sound = 'sound/weapons/Taser.ogg'
+	max_shots = 12
+
+	projectile_type = /obj/item/projectile/beam/stun
+	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 2, TECH_ILLEGAL = 3)
+	modifystate = "fm-2tstun"
+
+	firemodes = list(
+		list(name="stun", projectile_type=/obj/item/projectile/beam/stun, modifystate="fm-2tstun", fire_sound='sound/weapons/Taser.ogg'),
+		list(name="stun 3-round bursts", burst=3, fire_delay=null, move_delay=4, burst_accuracy=list(0,-1,-1), dispersion=list(0.0, 0.6, 1.0), projectile_type=/obj/item/projectile/beam/stun, modifystate="fm-2tstun", fire_sound='sound/weapons/Taser.ogg'),
+		list(name="lethal", projectile_type=/obj/item/projectile/beam, modifystate="fm-2tkill", fire_sound='sound/weapons/Laser.ogg'),
+		list(name="lethal 3-round bursts", burst=3, fire_delay=null, move_delay=4, burst_accuracy=list(0,-1,-1), dispersion=list(0.0, 0.6, 1.0), projectile_type=/obj/item/projectile/beam, modifystate="fm-2tkill", fire_sound='sound/weapons/Laser.ogg'),
+		)
+
 /obj/item/weapon/gun/energy/gun/nuclear
 	name = "advanced energy gun"
 	desc = "An energy gun with an experimental miniaturized reactor."
@@ -29,12 +49,12 @@
 	force = 8 //looks heavier than a pistol
 	self_recharge = 1
 	modifystate = null
-	
+
 	firemodes = list(
 		list(name="stun", projectile_type=/obj/item/projectile/beam/stun, fire_sound='sound/weapons/Taser.ogg'),
 		list(name="lethal", projectile_type=/obj/item/projectile/beam, fire_sound='sound/weapons/Laser.ogg'),
 		)
-	
+
 	var/lightfail = 0
 
 //override for failcheck behaviour

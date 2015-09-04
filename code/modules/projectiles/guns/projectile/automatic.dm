@@ -30,7 +30,7 @@
 
 /obj/item/weapon/gun/projectile/automatic/c20r
 	name = "submachine gun"
-	desc = "The C-20r is a lightweight and rapid firing SMG, for when you REALLY need someone dead. Uses 10mm rounds. Has a 'Scarborough Arms - Per falcis, per pravitas' buttstamp."
+	desc = "The C-20r is a lightweight and rapid firing SMG, for when you REALLY need someone dead. Uses 12mm rounds. Has a 'Scarborough Arms - Per falcis, per pravitas' buttstamp."
 	icon_state = "c20r"
 	item_state = "c20r"
 	w_class = 3
@@ -230,7 +230,7 @@
 	name = "\improper AS-24 automatic shotgun"
 	desc = "A durable, rugged looking automatic weapon of a make popular on the frontier worlds. Uses 12 gauge shells. It is unmarked."
 	icon_state = "ashot"
-	item_state = "arifle"
+	item_state = null
 	w_class = 4
 	force = 10
 	caliber = "shotgun"
@@ -252,3 +252,6 @@
 	else
 		icon_state = "ashot"
 	return
+
+
+
