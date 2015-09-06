@@ -21,7 +21,7 @@
 	use_external_power = 1
 
 
-/obj/item/weapon/gun/energy/gun
+/obj/item/weapon/gun/energy/gun/burst
 	name = "fm-2t"
 	desc = "The FM-2t is a versatile energy based small arm, capable of switching between stun or kill with a three round burst option for both settings."
 	icon_state = "fm-2tstun100"
