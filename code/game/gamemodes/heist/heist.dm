@@ -5,14 +5,18 @@ VOX HEIST ROUNDTYPE
 var/global/list/obj/cortical_stacks = list() //Stacks for 'leave nobody behind' objective. Clumsy, rewrite sometime.
 
 /datum/game_mode/heist
-	antag_tag = MODE_RAIDER
 	name = "heist"
 	config_tag = "heist"
 	required_players = 15
 	required_players_secret = 25
 	required_enemies = 4
 	round_description = "An unidentified bluespace signature has slipped past the Icarus and is approaching the station!"
+<<<<<<< HEAD
 	end_on_antag_death = 0
+=======
+	end_on_antag_death = 1
+	antag_tags = list(MODE_RAIDER)
+>>>>>>> 25638218325f612b029a8c37cc802b9abbab6d92
 
 /datum/game_mode/heist/check_finished()
 	if(!..())

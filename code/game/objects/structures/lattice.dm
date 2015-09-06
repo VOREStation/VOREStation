@@ -11,8 +11,7 @@
 /obj/structure/lattice/New()
 	..()
 ///// Z-Level Stuff
-	if(!(istype(src.loc, /turf/space) || istype(src.loc, /turf/simulated/floor/open) || istype(src.loc, /turf/simulated/floor/asteroid)))
-///// Z-Level Stuff
+	if(!(istype(src.loc, /turf/space) || istype(src.loc, /turf/simulated/floor/open) || istype(src.loc, /turf/simulated/floor/asteroid)))///// Z-Level Stuff
 		qdel(src)
 	for(var/obj/structure/lattice/LAT in src.loc)
 		if(LAT != src)

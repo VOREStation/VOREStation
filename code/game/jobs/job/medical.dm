@@ -46,6 +46,8 @@
 	supervisors = "the chief medical officer"
 	selection_color = "#ffeef0"
 	economic_modifier = 7
+	access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics)
+	minimal_access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_virology)
 	alt_titles = list("Surgeon","Emergency Physician","Nurse","Virologist")
 
 	equip(var/mob/living/carbon/human/H)
@@ -107,6 +109,8 @@
 	supervisors = "the chief medical officer"
 	selection_color = "#ffeef0"
 	economic_modifier = 5
+	access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics)
+	minimal_access = list(access_medical, access_medical_equip, access_chemistry)
 	alt_titles = list("Pharmacist")
 
 
@@ -136,6 +140,8 @@
 	supervisors = "the chief medical officer and research director"
 	selection_color = "#ffeef0"
 	economic_modifier = 7
+	access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics, access_research)
+	minimal_access = list(access_medical, access_morgue, access_genetics, access_research)
 
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
@@ -197,6 +203,7 @@
 	supervisors = "the chief medical officer"
 	selection_color = "#ffeef0"
 	economic_modifier = 4
+	access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology, access_eva, access_maint_tunnels, access_external_airlocks, access_psychiatrist)
 	minimal_access = list(access_medical, access_medical_equip, access_eva, access_maint_tunnels, access_external_airlocks)
 	alt_titles = list("Emergency Medical Technician")
 

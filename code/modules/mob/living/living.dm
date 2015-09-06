@@ -575,12 +575,14 @@ default behaviour is:
 
 	if(can_resist())
 		setClickCooldown(20)
-		process_resist()
+		resist_grab()
+		if(!weakened && !restrained())
+			process_resist()
 
 /mob/living/proc/can_resist()
 	//need to allow !canmove, or otherwise neck grabs can't be resisted
-	//so just check weakened instead.
-	if(stat || weakened)
+	//similar thing with weakened and pinning
+	if(stat)
 		return 0
 	if(!canClick())
 		return 0
@@ -591,10 +593,6 @@ default behaviour is:
 	if(istype(src.loc, /obj/item/weapon/holder))
 		escape_inventory(src.loc)
 		return
-
-	//resisting grabs (as if it helps anyone...)
-	if (!restrained())
-		resist_grab()
 
 	//unbuckling yourself
 	if(buckled)
@@ -657,7 +655,27 @@ default behaviour is:
 	set category = "IC"
 
 	resting = !resting
-	src << "\blue You are now [resting ? "resting" : "getting up"]"
+	src << "<span class='notice'>You are now [resting ? "resting" : "getting up"].</span>"
+
+/mob/living/proc/is_allowed_vent_crawl_item(var/obj/item/carried_item)
+	if(istype(carried_item, /obj/item/weapon/implant))
+		return 1
+	if(istype(carried_item, /obj/item/clothing/mask/facehugger))
+		return 1
+	return 0
+
+/mob/living/carbon/is_allowed_vent_crawl_item(var/obj/item/carried_item)
+	if(carried_item in internal_organs)
+		return 1
+	return ..()
+
+/mob/living/carbon/human/is_allowed_vent_crawl_item(var/obj/item/carried_item)
+	if(carried_item in organs)
+		return 1
+	return ..()
+
+/mob/living/simple_animal/spiderbot/is_allowed_vent_crawl_item(var/obj/item/carried_item)
+	return carried_item != held_item
 
 /mob/living/proc/handle_ventcrawl(var/obj/machinery/atmospherics/unary/vent_pump/vent_found = null, var/ignore_items = 0) // -- TLE -- Merged by Carn
 	if(stat)
@@ -721,9 +739,10 @@ default behaviour is:
 
 	if(!ignore_items)
 		for(var/obj/item/carried_item in contents)//If the monkey got on objects.
-			if( !istype(carried_item, /obj/item/weapon/implant) && !istype(carried_item, /obj/item/clothing/mask/facehugger) )//If it's not an implant or a facehugger
-				src << "\red You can't be carrying items or have items equipped when vent crawling!"
-				return
+			if(is_allowed_vent_crawl_item(carried_item))
+				continue
+			src << "<span class='warning'>You can't be carrying items or have items equipped when vent crawling!</span>"
+			return
 
 	if(isslime(src))
 		var/mob/living/carbon/slime/S = src

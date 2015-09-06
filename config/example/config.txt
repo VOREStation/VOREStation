@@ -362,11 +362,9 @@ STARLIGHT 0
 # GENERATE_ASTEROID
 
 
-
 ## If you've enabled asteroid generation, you need to supply which z-levels to apply it to, in integer form, and seperated using ;
 ## An example: 1;4;5
 # ASTEROID_Z_LEVELS 1;4;5
-
 ## Uncomment to enable organ decay outside of a body or storage item.
 #ORGANS_CAN_DECAY
 
@@ -375,3 +373,6 @@ STARLIGHT 0
 
 ## Uncomment to override default brain health.
 #DEFAULT_BRAIN_HEALTH 400
+
+## Default language prefix keys, separated with spaces. Only single character keys are supported. If unset, defaults to , # and - 
+# DEFAULT_LANGUAGE_PREFIXES , # -
