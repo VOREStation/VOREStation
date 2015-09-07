@@ -8,10 +8,11 @@
 	layer = 2.3 //under pipes
 	//	flags = CONDUCT
 
-/obj/structure/lattice/New()
+/obj/structure/lattice/New() //turf/simulated/floor/asteroid
 	..()
 ///// Z-Level Stuff
-	if(!(istype(src.loc, /turf/space) || istype(src.loc, /turf/simulated/floor/open) || istype(src.loc, /turf/simulated/floor/asteroid)))///// Z-Level Stuff
+	if(!(istype(src.loc, /turf/space) || istype(src.loc, /turf/simulated/open) || istype(src.loc, /turf/simulated/floor/asteroid)))
+///// Z-Level Stuff
 		qdel(src)
 	for(var/obj/structure/lattice/LAT in src.loc)
 		if(LAT != src)

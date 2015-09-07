@@ -65,7 +65,8 @@
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
 	access = list(access_hydroponics, access_bar, access_kitchen)
-	minimal_access = list(access_hydroponics)	alt_titles = list("Hydroponicist")
+	minimal_access = list(access_hydroponics)
+	alt_titles = list("Hydroponicist")
 
 
 	equip(var/mob/living/carbon/human/H)

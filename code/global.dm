@@ -43,7 +43,7 @@ var/destroy_floor_override = 1
 	//Below is the path of turf used in place of space tiles.
 var/destroy_floor_override_path = /turf/simulated/floor/asteroid
 	//A list of z-levels to apply the override to.  This is so z-levels like tcomms work as they did before.
-var/list/destroy_floor_override_z_levels = list(1)
+var/list/destroy_floor_override_z_levels = list(1,4,5)
 	//Some areas you may want to not turn into the override path you made above, like space or the solars.
 var/list/destroy_floor_override_ignore_areas = list(/area/space,/area/solar,/area/shuttle)
 var/master_mode       = "extended" // "extended"

@@ -31,9 +31,6 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	var/mob/living/creator //This is just like ninja swords, needed to make sure dumb shit that removes the sword doesn't make it stay around.
 
-/obj/item/weapon/melee/arm_blade/IsShield()
-	return 1
-
 /obj/item/weapon/melee/arm_blade/New(location)
 	..()
 	processing_objects |= src
