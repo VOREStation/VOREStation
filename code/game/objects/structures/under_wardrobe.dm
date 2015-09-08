@@ -21,12 +21,16 @@
 			selection = underwear_f
 		if("Undershirts")
 			selection = undershirt_t
+		if("Socks")
+			selection = socks_t
 	var/pick = input("Select the style") as null|anything in selection
 	if(pick)
 		if(get_dist(src,user) > 1)
 			return
 		if(utype == "Undershirts")
 			H.undershirt = undershirt_t[pick]
+		else if(utype == "Socks")
+			H.socks = socks_t[pick]
 		else
 			H.underwear = selection[pick]
 		H.update_body(1)
