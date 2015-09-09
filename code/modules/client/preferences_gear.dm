@@ -196,7 +196,7 @@ var/global/list/gear_datums = list()
 	cost = 1
 	slot = slot_head
 
-/datum/gear/rhairflower
+/datum/gear/hairflower
 	display_name = "hair flower pin, red"
 	path = /obj/item/clothing/head/hairflower
 	cost = 1
@@ -208,7 +208,7 @@ var/global/list/gear_datums = list()
 	cost = 1
 	slot = slot_head
 
-/datum/gear/ghairflower
+/datum/gear/phairflower
 	display_name = "hair flower pin, pink"
 	path = /obj/item/clothing/head/hairflower/pink
 	cost = 1
