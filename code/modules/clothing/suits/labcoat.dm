@@ -117,3 +117,11 @@
 	icon_state = "labcoat_tox_open"
 	icon_open = "labcoat_tox_open"
 	icon_closed = "labcoat_tox"
+
+/obj/item/clothing/suit/storage/toggle/labcoat/emt
+	name = "EMT's labcoat"
+	desc = "A dark blue labcoat with reflective strips for emergency medical technicians."
+	icon_state = "labcoat_emt_open"
+	item_state = "labcoat_emt"
+	icon_open = "labcoat_emt_open"
+	icon_closed = "labcoat_emt"

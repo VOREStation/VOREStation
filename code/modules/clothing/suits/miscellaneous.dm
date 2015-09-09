@@ -217,6 +217,18 @@
 	icon_state = "leathercoat"
 	item_state = "leathercoat"
 
+/obj/item/clothing/suit/leathercoat/alt
+	name = "leather coat"
+	desc = "A long, thick black leather coat."
+	icon_state = "leathercoat_alt"
+	item_state = "leathercoat_alt"
+
+/obj/item/clothing/suit/leathercoat/alt/sec
+	name = "leather coat"
+	desc = "A long, thick black leather coat."
+	icon_state = "leathercoat_sec"
+	item_state = "leathercoat_sec"
+
 /obj/item/clothing/suit/browncoat
 	name = "brown leather coat"
 	desc = "A long, brown leather coat."
@@ -337,6 +349,24 @@
 	icon_state = "blueponcho"
 	item_state = "blueponcho"
 
+/obj/item/clothing/suit/jacket/puffer
+	name = "puffer jacket"
+	desc = "A thick jacket with a rubbery, water-resistant shell."
+	icon_state = "pufferjacket"
+	item_state = "pufferjacket"
+
+/obj/item/clothing/suit/jacket/puffer/vest
+	name = "puffer vest"
+	desc = "A thick vest with a rubbery, water-resistant shell."
+	icon_state = "puffervest"
+	item_state = "puffervest"
+
+/obj/item/clothing/suit/jacket/miljacket
+	name = "military jacket"
+	desc = "A canvas jacket styled after classical American military garb. Feels sturdy, yet comfortable."
+	icon_state = "militaryjacket"
+	item_state = "militaryjacket"
+
 /obj/item/clothing/suit/storage/toggle/bomber
 	name = "bomber jacket"
 	desc = "A thick, well-worn WW2 leather bomber jacket."
@@ -349,11 +379,28 @@
 	min_cold_protection_temperature = T0C - 20
 	siemens_coefficient = 0.7
 
+/obj/item/clothing/suit/storage/bomber/alt
+	name = "bomber jacket"
+	desc = "A thick, well-worn WW2 leather bomber jacket."
+	icon_state = "bomberjacket_new"
+	item_state = "bomberjacket_new"
+	body_parts_covered = UPPER_TORSO|ARMS
+	cold_protection = UPPER_TORSO|ARMS
+	min_cold_protection_temperature = T0C - 20
+	siemens_coefficient = 0.7
+
 /obj/item/clothing/suit/storage/leather_jacket
 	name = "leather jacket"
 	desc = "A black leather coat."
 	icon_state = "leather_jacket"
 	item_state = "leather_jacket"
+	body_parts_covered = UPPER_TORSO|ARMS
+
+/obj/item/clothing/suit/storage/leather_jacket/alt
+	name = "leather jacket"
+	desc = "A black leather coat."
+	icon_state = "leather_jacket_alt"
+	item_state = "leather_jacket_alt"
 	body_parts_covered = UPPER_TORSO|ARMS
 
 /obj/item/clothing/suit/storage/leather_jacket/nanotrasen

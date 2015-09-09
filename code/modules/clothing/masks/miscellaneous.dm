@@ -144,3 +144,38 @@
 
 		eye.owner.eyeobj = null
 		eye.owner = null
+
+/obj/item/clothing/mask/bandana
+	name = "black bandana"
+	desc = "A fine black bandana with nanotech lining."
+	w_class = 1
+	flags = MASKCOVERSMOUTH
+	flags_inv = HIDEFACE
+	slot_flags = SLOT_MASK
+	icon_state = "bandblack"
+	item_state = null
+
+/obj/item/clothing/mask/bandana/red
+	name = "red bandana"
+	desc = "A fine red bandana with nanotech lining."
+	icon_state = "bandred"
+
+/obj/item/clothing/mask/bandana/blue
+	name = "blue bandana"
+	desc = "A fine blue bandana with nanotech lining."
+	icon_state = "bandblue"
+
+/obj/item/clothing/mask/bandana/green
+	name = "green bandana"
+	desc = "A fine green bandana with nanotech lining."
+	icon_state = "bandgreen"
+
+/obj/item/clothing/mask/bandana/gold
+	name = "gold bandana"
+	desc = "A fine gold bandana with nanotech lining."
+	icon_state = "bandgold"
+
+/obj/item/clothing/mask/bandana/skull
+	name = "skull bandana"
+	desc = "A fine black bandana with nanotech lining and a skull emblem."
+	icon_state = "bandskull"

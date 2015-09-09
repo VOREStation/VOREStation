@@ -278,6 +278,55 @@
 /obj/item/clothing/under/dress
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
+/obj/item/clothing/under/dress/blacktango
+	name = "black tango dress"
+	desc = "Filled with Latin fire."
+	icon_state = "black_tango"
+	item_state = "black_tango"
+	worn_state = "black_tango"
+
+/obj/item/clothing/under/dress/blacktango/alt
+	name = "black tango dress"
+	desc = "Filled with Latin fire."
+	icon_state = "black_tango_alt"
+	item_state = "black_tango_alt"
+	worn_state = "black_tango_alt"
+
+/obj/item/clothing/under/dress/stripeddress
+	name = "striped dress"
+	desc = "Fashion in space."
+	icon_state = "striped_dress"
+	item_state = "striped_dress"
+	worn_state = "striped_dress"
+
+/obj/item/clothing/under/dress/sailordress
+	name = "sailor dress"
+	desc = "Formal wear for a leading lady."
+	icon_state = "sailor_dress"
+	item_state = "sailor_dress"
+	worn_state = "sailor_dress"
+
+/obj/item/clothing/under/dress/redeveninggown
+	name = "red evening gown"
+	desc = "Fancy dress for space bar singers."
+	icon_state = "red_evening_gown"
+	item_state = "red_evening_gown"
+	worn_state = "red_evening_gown"
+
+/obj/item/clothing/under/dress/maid
+	name = "maid costume"
+	desc = "Maid in China."
+	icon_state = "maid"
+	item_state = "maid"
+	worn_state = "maid"
+
+/obj/item/clothing/under/dress/janimaid
+	name = "maid uniform"
+	desc = "A simple maid uniform for housekeeping."
+	icon_state = "janimaid"
+	item_state = "janimaid"
+	worn_state = "janimaid"
+
 /obj/item/clothing/under/dress/dress_fire
 	name = "flame dress"
 	desc = "A small black dress with blue flames print on it."

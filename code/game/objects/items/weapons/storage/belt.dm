@@ -177,3 +177,9 @@
 	storage_slots = 9
 	max_w_class = 3
 	max_storage_space = 28
+
+/obj/item/weapon/storage/belt/security/tactical/bandolier
+	name = "combat belt"
+	desc = "Can hold security gear like handcuffs and flashes, with more pouches for more storage."
+	icon_state = "bandolier"
+	item_state = "bandolier"

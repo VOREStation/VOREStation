@@ -57,6 +57,10 @@
 		name = "Short Hair"	  // try to capatilize the names please~
 		icon_state = "hair_a" // you do not need to define _s or _l sub-states, game automatically does this for you
 
+	short2
+		name = "Short Hair 2"
+		icon_state = "hair_shorthair3"
+
 	resomi
 		name = "Resomi Plumage"
 		icon_state = "resomi_default"
@@ -140,9 +144,21 @@
 		name = "Ponytail 5"
 		icon_state = "hair_ponytail5"
 
+	ponytail6
+		name = "Ponytail 6"
+		icon_state = "hair_ponytail6"
+
 	sideponytail
 		name = "Side Ponytail"
 		icon_state = "hair_stail"
+
+	sideponytail2
+		name = "One Shoulder"
+		icon_state = "hair_oneshoulder"
+
+	sideponytail3
+		name = "Tress Shoulder"
+		icon_state = "hair_tressshoulder"
 
 	parted
 		name = "Parted"
@@ -185,6 +201,10 @@
 		name = "Bob"
 		icon_state = "hair_bobcut"
 		species_allowed = list("Human","Unathi")
+
+	bun
+		name = "Bun"
+		icon_state = "hair_bun"
 
 	bowl
 		name = "Bowl"
