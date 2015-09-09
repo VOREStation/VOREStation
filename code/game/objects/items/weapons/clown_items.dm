@@ -53,6 +53,7 @@
 /obj/item/weapon/soap/attack(mob/living/target, mob/living/user, var/target_zone)
 	if(target && user && ishuman(target) && ishuman(user) && !user.incapacitated() && user.zone_sel &&user.zone_sel.selecting == "mouth" )
 		user.visible_message("<span class='danger'>\The [user] washes \the [target]'s mouth out with soap!</span>")
+		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN) //prevent spam
 		return
 	..()
 
