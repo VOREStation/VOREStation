@@ -66,6 +66,10 @@
 			new /obj/item/weapon/storage/backpack/medic(src)
 		else
 			new /obj/item/weapon/storage/backpack/satchel_med(src)
+		if(prob(50))
+			new /obj/item/weapon/storage/backpack/dufflebag/med(src)
+		else
+			return
 		new /obj/item/clothing/under/rank/nursesuit (src)
 		new /obj/item/clothing/head/nursehat (src)
 		switch(pick("blue", "green", "purple"))
@@ -96,6 +100,8 @@
 		new /obj/item/clothing/shoes/white(src)
 //		new /obj/item/weapon/cartridge/medical(src)
 		new /obj/item/device/radio/headset/headset_med(src)
+		new /obj/item/device/radio/headset/headset_med/alt(src)
+		new /obj/item/clothing/suit/hooded/wintercoat/medical(src)
 		return
 
 
@@ -116,6 +122,10 @@
 			new /obj/item/weapon/storage/backpack/medic(src)
 		else
 			new /obj/item/weapon/storage/backpack/satchel_med(src)
+		if(prob(50))
+			new /obj/item/weapon/storage/backpack/dufflebag/med(src)
+		else
+			return
 		new /obj/item/clothing/suit/bio_suit/cmo(src)
 		new /obj/item/clothing/head/bio_hood/cmo(src)
 		new /obj/item/clothing/shoes/white(src)
@@ -137,8 +147,10 @@
 		new /obj/item/clothing/gloves/latex(src)
 		new /obj/item/clothing/shoes/brown	(src)
 		new /obj/item/device/radio/headset/heads/cmo(src)
+		new /obj/item/device/radio/headset/heads/cmo/alt(src)
 		new /obj/item/device/flash(src)
 		new /obj/item/weapon/reagent_containers/hypospray(src)
+		new /obj/item/clothing/suit/hooded/wintercoat/medical(src)
 		return
 
 
