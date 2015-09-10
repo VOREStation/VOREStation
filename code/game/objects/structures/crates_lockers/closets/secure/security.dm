@@ -16,8 +16,6 @@
 			new /obj/item/weapon/storage/backpack/satchel_cap(src)
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/dufflebag/captain(src)
-		else
-			return
 		new /obj/item/clothing/suit/captunic(src)
 		new /obj/item/clothing/suit/captunic/capjacket(src)
 		new /obj/item/clothing/head/caphat/cap(src)
@@ -35,7 +33,7 @@
 		new /obj/item/clothing/under/dress/dress_cap(src)
 		new /obj/item/clothing/head/caphat/formal(src)
 		new /obj/item/clothing/under/captainformal(src)
-		new /obj/item/clothing/suit/hooded/wintercoat/captain(src)
+		new /obj/item/clothing/suit/storage/hooded/wintercoat/captain(src)
 		return
 
 
@@ -112,8 +110,6 @@
 			new /obj/item/weapon/storage/backpack/satchel_sec(src)
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/dufflebag/sec(src)
-		else
-			return
 		new /obj/item/clothing/head/HoS(src)
 		new /obj/item/clothing/suit/storage/vest/hos(src)
 		new /obj/item/clothing/under/rank/head_of_security/jensen(src)
@@ -136,7 +132,7 @@
 		new /obj/item/clothing/accessory/holster/waist(src)
 		new /obj/item/weapon/melee/telebaton(src)
 		new /obj/item/clothing/head/beret/sec/corporate/hos(src)
-		new /obj/item/clothing/suit/hooded/wintercoat/security(src)
+		new /obj/item/clothing/suit/storage/hooded/wintercoat/security(src)
 		return
 
 
@@ -160,8 +156,6 @@
 			new /obj/item/weapon/storage/backpack/satchel_sec(src)
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/dufflebag/sec(src)
-		else
-			return
 		new /obj/item/clothing/suit/storage/vest/warden(src)
 		new /obj/item/clothing/under/rank/warden(src)
 		new /obj/item/clothing/under/rank/warden/corp(src)
@@ -180,7 +174,7 @@
 		new /obj/item/weapon/gun/energy/gun(src)
 		new /obj/item/weapon/storage/box/holobadge(src)
 		new /obj/item/clothing/head/beret/sec/corporate/warden(src)
-		new /obj/item/clothing/suit/hooded/wintercoat/security(src)
+		new /obj/item/clothing/suit/storage/hooded/wintercoat/security(src)
 		return
 
 
@@ -203,8 +197,6 @@
 			new /obj/item/weapon/storage/backpack/satchel_sec(src)
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/dufflebag/sec(src)
-		else
-			return
 		new /obj/item/clothing/suit/storage/vest/officer(src)
 		new /obj/item/clothing/head/helmet(src)
 //		new /obj/item/weapon/cartridge/security(src)
@@ -224,6 +216,7 @@
 		new /obj/item/clothing/under/rank/security/corp(src)
 		new /obj/item/ammo_magazine/c45m/rubber(src)
 		new /obj/item/weapon/gun/energy/taser(src)
+		new /obj/item/clothing/suit/storage/hooded/wintercoat/security(src)
 		return
 
 

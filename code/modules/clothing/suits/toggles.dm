@@ -1,33 +1,33 @@
 //Hoods for winter coats and chaplain hoodie etc
 
-/obj/item/clothing/suit/hooded
+/obj/item/clothing/suit/storage/hooded
 	var/obj/item/clothing/head/winterhood/hood
-	var/hoodtype = /obj/item/clothing/head/winterhood //so the chaplain hoodie or other hoodies can override this
+	var/hoodtype = null //so the chaplain hoodie or other hoodies can override this
 	var/suittoggled = 0
 	var/hooded = 0
 
-/obj/item/clothing/suit/hooded/New()
+/obj/item/clothing/suit/storage/hooded/New()
 	MakeHood()
 	..()
 
-/obj/item/clothing/suit/hooded/Destroy()
+/obj/item/clothing/suit/storage/hooded/Destroy()
 	qdel(hood)
 	return ..()
 
-/obj/item/clothing/suit/hooded/proc/MakeHood()
+/obj/item/clothing/suit/storage/hooded/proc/MakeHood()
 	if(!hood)
 		var/obj/item/clothing/head/winterhood/W = new hoodtype(src)
 		hood = W
 
-/obj/item/clothing/suit/hooded/ui_action_click()
+/obj/item/clothing/suit/storage/hooded/ui_action_click()
 	ToggleHood()
 
-/obj/item/clothing/suit/hooded/equipped(mob/user, slot)
+/obj/item/clothing/suit/storage/hooded/equipped(mob/user, slot)
 	if(slot != slot_wear_suit)
 		RemoveHood()
 	..()
 
-/obj/item/clothing/suit/hooded/proc/RemoveHood()
+/obj/item/clothing/suit/storage/hooded/proc/RemoveHood()
 	src.icon_state = "[initial(icon_state)]"
 	suittoggled = 0
 	if(ishuman(hood.loc))
@@ -36,10 +36,10 @@
 		H.update_inv_wear_suit()
 	hood.loc = src
 
-/obj/item/clothing/suit/hooded/dropped()
+/obj/item/clothing/suit/storage/hooded/dropped()
 	RemoveHood()
 
-/obj/item/clothing/suit/hooded/proc/ToggleHood()
+/obj/item/clothing/suit/storage/hooded/proc/ToggleHood()
 	if(!suittoggled)
 		if(ishuman(src.loc))
 			var/mob/living/carbon/human/H = src.loc

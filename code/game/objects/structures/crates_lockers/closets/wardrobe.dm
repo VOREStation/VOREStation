@@ -32,9 +32,9 @@
 	new /obj/item/clothing/mask/bandana/red(src)
 	new /obj/item/clothing/mask/bandana/red(src)
 	new /obj/item/clothing/mask/bandana/red(src)
-	new /obj/item/clothing/suit/hooded/wintercoat/security(src)
-	new /obj/item/clothing/suit/hooded/wintercoat/security(src)
-	new /obj/item/clothing/suit/hooded/wintercoat/security(src)
+	new /obj/item/clothing/suit/storage/hooded/wintercoat/security(src)
+	new /obj/item/clothing/suit/storage/hooded/wintercoat/security(src)
+	new /obj/item/clothing/suit/storage/hooded/wintercoat/security(src)
 	return
 
 
@@ -132,8 +132,8 @@
 	new /obj/item/clothing/shoes/sandal(src)
 	new /obj/item/clothing/shoes/winterboots(src)
 	new /obj/item/clothing/shoes/winterboots(src)
-	new /obj/item/clothing/suit/hooded/wintercoat(src)
-	new /obj/item/clothing/suit/hooded/wintercoat(src)
+	new /obj/item/clothing/suit/storage/hooded/wintercoat(src)
+	new /obj/item/clothing/suit/storage/hooded/wintercoat(src)
 	return
 
 
@@ -198,9 +198,9 @@
 	new /obj/item/clothing/mask/bandana/gold(src)
 	new /obj/item/clothing/mask/bandana/gold(src)
 	new /obj/item/clothing/mask/bandana/gold(src)
-	new /obj/item/clothing/suit/hooded/wintercoat/engineering/atmos(src)
-	new /obj/item/clothing/suit/hooded/wintercoat/engineering/atmos(src)
-	new /obj/item/clothing/suit/hooded/wintercoat/engineering/atmos(src)
+	new /obj/item/clothing/suit/storage/hooded/wintercoat/engineering/atmos(src)
+	new /obj/item/clothing/suit/storage/hooded/wintercoat/engineering/atmos(src)
+	new /obj/item/clothing/suit/storage/hooded/wintercoat/engineering/atmos(src)
 	return
 
 /obj/structure/closet/wardrobe/engineering_yellow
@@ -228,9 +228,9 @@
 	new /obj/item/clothing/mask/bandana/gold(src)
 	new /obj/item/clothing/mask/bandana/gold(src)
 	new /obj/item/clothing/mask/bandana/gold(src)
-	new /obj/item/clothing/suit/hooded/wintercoat/engineering(src)
-	new /obj/item/clothing/suit/hooded/wintercoat/engineering(src)
-	new /obj/item/clothing/suit/hooded/wintercoat/engineering(src)
+	new /obj/item/clothing/suit/storage/hooded/wintercoat/engineering(src)
+	new /obj/item/clothing/suit/storage/hooded/wintercoat/engineering(src)
+	new /obj/item/clothing/suit/storage/hooded/wintercoat/engineering(src)
 	return
 
 
@@ -289,7 +289,7 @@
 	new /obj/item/clothing/shoes/slippers(src)
 	new /obj/item/clothing/shoes/slippers(src)
 	new /obj/item/clothing/shoes/slippers(src)
-	new /obj/item/clothing/suit/hooded/wintercoat/science(src)
+	new /obj/item/clothing/suit/storage/hooded/wintercoat/science(src)
 	return
 
 /obj/structure/closet/wardrobe/toxins_white/New()
@@ -405,8 +405,8 @@
 	new /obj/item/clothing/suit/storage/toggle/labcoat(src)
 	new /obj/item/clothing/mask/surgical(src)
 	new /obj/item/clothing/mask/surgical(src)
-	new /obj/item/clothing/suit/hooded/wintercoat/medical(src)
-	new /obj/item/clothing/suit/hooded/wintercoat/medical(src)
+	new /obj/item/clothing/suit/storage/hooded/wintercoat/medical(src)
+	new /obj/item/clothing/suit/storage/hooded/wintercoat/medical(src)
 	return
 
 
@@ -485,8 +485,6 @@
 		new /obj/item/weapon/storage/belt/security/tactical(src)
 	if(prob(10))
 		new /obj/item/clothing/mask/bandana/skull(src)
-	else
-		return
 	new /obj/item/clothing/shoes/jackboots(src)
 	new /obj/item/clothing/gloves/black(src)
 	new /obj/item/clothing/under/pants/camo(src)

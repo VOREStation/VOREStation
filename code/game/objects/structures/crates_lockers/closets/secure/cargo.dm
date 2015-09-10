@@ -14,7 +14,7 @@
 		new /obj/item/clothing/under/rank/cargotech/skirt(src)
 		new /obj/item/clothing/under/rank/cargotech/jeans(src)
 		new /obj/item/clothing/under/rank/cargotech/jeans/female(src)
-		new /obj/item/clothing/suit/hooded/wintercoat/cargo(src)
+		new /obj/item/clothing/suit/storage/hooded/wintercoat/cargo(src)
 		new /obj/item/clothing/shoes/black(src)
 		new /obj/item/device/radio/headset/headset_cargo(src)
 		new /obj/item/clothing/gloves/black(src)
@@ -47,5 +47,5 @@
 		new /obj/item/clothing/mask/gas(src)
 		new /obj/item/clothing/glasses/meson(src)
 		new /obj/item/clothing/head/soft(src)
-		new /obj/item/clothing/suit/hooded/wintercoat/cargo(src)
+		new /obj/item/clothing/suit/storage/hooded/wintercoat/cargo(src)
 		return
