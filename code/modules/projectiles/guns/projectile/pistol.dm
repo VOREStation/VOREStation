@@ -9,6 +9,7 @@
 	load_method = MAGAZINE
 
 /obj/item/weapon/gun/projectile/colt/detective
+	desc = "A Martian recreation of an old Terran pistol. Uses .45 rounds."
 	magazine_type = /obj/item/ammo_magazine/c45m/rubber
 
 /obj/item/weapon/gun/projectile/colt/detective/verb/rename_gun()
@@ -27,6 +28,22 @@
 	if(src && input && !M.stat && in_range(M,src))
 		name = input
 		M << "You name the gun [input]. Say hello to your new friend."
+		return 1
+
+/obj/item/weapon/gun/projectile/colt/detective/verb/reskin_gun()
+	set name = "Reskin gun"
+	set category = "Object"
+	set desc = "Click to reskin your gun."
+
+	var/mob/M = usr
+	var/list/options = list()
+	options["NT Mk. 58"] = "secguncomp"
+	options["NT Mk. 58 Custom"] = "secgundark"
+	options["Colt M1911"] = "colt"
+	var/choice = input(M,"What do you want to skin the gun to?","Reskin Gun") in options
+	if(src && choice && !M.stat && in_range(M,src))
+		icon_state = options[choice]
+		M << "Your gun is now skinned as [choice]. Say hello to your new friend."
 		return 1
 
 /obj/item/weapon/gun/projectile/sec

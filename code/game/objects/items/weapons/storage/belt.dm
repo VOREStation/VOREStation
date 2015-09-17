@@ -135,7 +135,8 @@
 		/obj/item/device/megaphone,
 		/obj/item/weapon/melee,
 		/obj/item/weapon/gun/projectile/sec,
-		/obj/item/taperoll/police
+		/obj/item/taperoll/police,
+		/obj/item/weapon/gun/projectile/colt/detective
 		)
 
 /obj/item/weapon/storage/belt/soulstone
