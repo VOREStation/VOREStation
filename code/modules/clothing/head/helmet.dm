@@ -15,23 +15,6 @@
 	max_heat_protection_temperature = HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.7
 	w_class = 3
-	action_button_name = "Toggle Visor"
-	var/flipped = 0 //Piggybacked from cap flipping.
-
-/obj/item/clothing/head/helmet/dropped()
-	src.icon_state = initial(icon_state)
-	src.flipped=0
-	..()
-
-/obj/item/clothing/head/helmet/attack_self(mob/user)
-	src.flipped = !src.flipped
-	if(src.flipped)
-		icon_state = "[icon_state]up"
-		user << "You activate the visor."
-	else
-		src.icon_state = initial(icon_state)
-		user << "You push the visor into the helmet."
-	update_clothing_icon()	//so our mob-overlays update
 
 /obj/item/clothing/head/helmet/riot
 	name = "riot helmet"
@@ -42,6 +25,7 @@
 	flags_inv = HIDEEARS
 	siemens_coefficient = 0.7
 	action_button_name = "Toggle Visor"
+	var/flipped = 0 //Piggybacked from cap flipping.
 
 /obj/item/clothing/head/helmet/riot/dropped()
 	src.icon_state = initial(icon_state)
