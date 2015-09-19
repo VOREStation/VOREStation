@@ -29,14 +29,14 @@
 	fire_sound = 'sound/weapons/Taser.ogg'
 	max_shots = 12
 
-	projectile_type = /obj/item/projectile/beam/stun
+	projectile_type = /obj/item/projectile/beam/stun/weak
 	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 2, TECH_ILLEGAL = 3)
 	modifystate = "fm-2tstun"
 
 	firemodes = list(
-		list(name="stun", projectile_type=/obj/item/projectile/beam/stun, modifystate="fm-2tstun", fire_sound='sound/weapons/Taser.ogg'),
+		list(name="stun", projectile_type=/obj/item/projectile/beam/stun/weak, modifystate="fm-2tstun", fire_sound='sound/weapons/Taser.ogg'),
 		list(name="stun 3-round bursts", burst=3, fire_delay=null, move_delay=4, burst_accuracy=list(0,-1,-1), dispersion=list(0.0, 0.6, 1.0), projectile_type=/obj/item/projectile/beam/stun, modifystate="fm-2tstun", fire_sound='sound/weapons/Taser.ogg'),
-		list(name="lethal", projectile_type=/obj/item/projectile/beam, modifystate="fm-2tkill", fire_sound='sound/weapons/Laser.ogg'),
+		list(name="lethal", projectile_type=/obj/item/projectile/beam/weaklaser, modifystate="fm-2tkill", fire_sound='sound/weapons/Laser.ogg'),
 		list(name="lethal 3-round bursts", burst=3, fire_delay=null, move_delay=4, burst_accuracy=list(0,-1,-1), dispersion=list(0.0, 0.6, 1.0), projectile_type=/obj/item/projectile/beam, modifystate="fm-2tkill", fire_sound='sound/weapons/Laser.ogg'),
 		)
 
