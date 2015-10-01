@@ -11,6 +11,18 @@
 
 /obj/structure/closet/wardrobe/red/New()
 	..()
+	if(prob(50))
+		new /obj/item/weapon/storage/backpack/security(src)
+	else
+		new /obj/item/weapon/storage/backpack/satchel_sec(src)
+	if(prob(50))
+		new /obj/item/weapon/storage/backpack/security(src)
+	else
+		new /obj/item/weapon/storage/backpack/satchel_sec(src)
+	if(prob(50))
+		new /obj/item/weapon/storage/backpack/security(src)
+	else
+		new /obj/item/weapon/storage/backpack/satchel_sec(src)
 	new /obj/item/clothing/under/rank/security(src)
 	new /obj/item/clothing/under/rank/security(src)
 	new /obj/item/clothing/under/rank/security(src)
@@ -35,6 +47,12 @@
 	new /obj/item/clothing/suit/storage/hooded/wintercoat/security(src)
 	new /obj/item/clothing/suit/storage/hooded/wintercoat/security(src)
 	new /obj/item/clothing/suit/storage/hooded/wintercoat/security(src)
+	new /obj/item/clothing/accessory/armband(src)
+	new /obj/item/clothing/accessory/armband(src)
+	new /obj/item/clothing/accessory/armband(src)
+	new /obj/item/clothing/accessory/holster/waist(src)
+	new /obj/item/clothing/accessory/holster/waist(src)
+	new /obj/item/clothing/accessory/holster/waist(src)
 	return
 
 
