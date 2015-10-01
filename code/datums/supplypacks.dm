@@ -1422,18 +1422,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/clothing/head/ushanka)
 	group = "Miscellaneous"
 
-/datum/supply_packs/randomised/webbing
-	name = "Webbing crate"
-	num_contained = 1
-	contains = list(/obj/item/clothing/accessory/holster,
-					/obj/item/clothing/accessory/storage/brown_vest,
-					/obj/item/clothing/accessory/storage/webbing,
-					/obj/item/clothing/accessory/storage)
-	cost = 15
-	containertype = /obj/structure/closet/crate
-	containername = "Webbing crate"
-	group = "Operations"
-
 /datum/supply_packs/spare_pda
 	name = "Spare PDAs"
 	cost = 10
@@ -1504,3 +1492,118 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 		/obj/item/device/kit/paint/gygax/recitence
 		)
 	name = "Random Gygax exosuit modkit"
+
+/datum/supply_packs/engineeringvoidsuits
+	name = "Engineering voidsuits"
+	contains = list(/obj/item/clothing/suit/space/void/engineering,
+					/obj/item/clothing/suit/space/void/engineering,
+					/obj/item/clothing/head/helmet/space/void/engineering,
+					/obj/item/clothing/head/helmet/space/void/engineering,
+					/obj/item/clothing/mask/breath,
+					/obj/item/clothing/mask/breath,
+					/obj/item/clothing/shoes/magboots,
+					/obj/item/clothing/shoes/magboots,
+					/obj/item/weapon/tank/oxygen,
+					/obj/item/weapon/tank/oxygen)
+	cost = 40
+	containertype = "/obj/structure/closet/crate/secure"
+	containername = "Engineering voidsuit crate"
+	access = access_engine_equip
+	group = "Engineering"
+
+/datum/supply_packs/atmosvoidsuits
+	name = "Atmospheric voidsuits"
+	contains = list(/obj/item/clothing/suit/space/void/atmos,
+					/obj/item/clothing/suit/space/void/atmos,
+					/obj/item/clothing/head/helmet/space/void/atmos,
+					/obj/item/clothing/head/helmet/space/void/atmos,
+					/obj/item/clothing/mask/breath,
+					/obj/item/clothing/mask/breath,
+					/obj/item/clothing/shoes/magboots,
+					/obj/item/clothing/shoes/magboots,
+					/obj/item/weapon/tank/oxygen,
+					/obj/item/weapon/tank/oxygen)
+	cost = 45
+	containertype = "/obj/structure/closet/crate/secure"
+	containername = "Atmospheric voidsuit crate"
+	access = access_atmospherics
+	group = "Atmospherics"
+
+/datum/supply_packs/miningvoidsuits
+	name = "Mining voidsuits"
+	contains = list(/obj/item/clothing/suit/space/void/mining,
+					/obj/item/clothing/suit/space/void/mining,
+					/obj/item/clothing/head/helmet/space/void/mining,
+					/obj/item/clothing/head/helmet/space/void/mining,
+					/obj/item/clothing/mask/breath,
+					/obj/item/clothing/mask/breath,
+					/obj/item/clothing/shoes/magboots,
+					/obj/item/clothing/shoes/magboots,
+					/obj/item/weapon/tank/oxygen,
+					/obj/item/weapon/tank/oxygen)
+	cost = 40
+	containertype = "/obj/structure/closet/crate/secure"
+	containername = "Mining voidsuit crate"
+	access = access_mining
+	group = "Supply"
+
+/datum/supply_packs/randomised/webbing
+	name = "Webbing crate"
+	num_contained = 4
+	contains = list(/obj/item/clothing/accessory/storage/black_vest,
+					/obj/item/clothing/accessory/storage/brown_vest,
+					/obj/item/clothing/accessory/storage/webbing,
+					/obj/item/clothing/accessory/storage)
+	cost = 15
+	containertype = "/obj/structure/closet/crate"
+	containername = "Webbing crate"
+	group = "Operations"
+
+/datum/supply_packs/securityvoidsuits
+	name = "Security voidsuits"
+	contains = list(/obj/item/clothing/suit/space/void/security,
+					/obj/item/clothing/suit/space/void/security,
+					/obj/item/clothing/head/helmet/space/void/security,
+					/obj/item/clothing/head/helmet/space/void/security,
+					/obj/item/clothing/mask/breath,
+					/obj/item/clothing/mask/breath,
+					/obj/item/clothing/shoes/magboots,
+					/obj/item/clothing/shoes/magboots,
+					/obj/item/weapon/tank/oxygen,
+					/obj/item/weapon/tank/oxygen)
+	cost = 55
+	containertype = "/obj/structure/closet/crate/secure"
+	containername = "Security voidsuit crate"
+	access = access_security
+	group = "Security"
+
+/datum/supply_packs/randomised/holster
+	name = "Holster crate"
+	num_contained = 4
+	contains = list(/obj/item/clothing/accessory/holster,
+					/obj/item/clothing/accessory/holster/armpit,
+					/obj/item/clothing/accessory/holster/waist,
+					/obj/item/clothing/accessory/holster/hip)
+	cost = 15
+	containertype = "/obj/structure/closet/crate/secure"
+	containername = "Holster crate"
+	access = access_security
+	group = "Security"
+
+/datum/supply_packs/medicalvoidsuits
+	name = "Medical voidsuits"
+	contains = list(/obj/item/clothing/suit/space/void/medical,
+					/obj/item/clothing/suit/space/void/medical,
+					/obj/item/clothing/head/helmet/space/void/medical,
+					/obj/item/clothing/head/helmet/space/void/medical,
+					/obj/item/clothing/mask/breath,
+					/obj/item/clothing/mask/breath,
+					/obj/item/clothing/shoes/magboots,
+					/obj/item/clothing/shoes/magboots,
+					/obj/item/weapon/tank/oxygen,
+					/obj/item/weapon/tank/oxygen)
+	cost = 40
+	containertype = "/obj/structure/closet/crate/secure"
+	containername = "Medical voidsuit crate"
+	access = access_medical_equip
+	group = "Medical"
