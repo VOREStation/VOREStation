@@ -149,7 +149,6 @@
 	name = "black bandana"
 	desc = "A fine black bandana with nanotech lining."
 	w_class = 1
-	flags = MASKCOVERSMOUTH
 	flags_inv = HIDEFACE
 	slot_flags = SLOT_MASK
 	icon_state = "bandblack"
