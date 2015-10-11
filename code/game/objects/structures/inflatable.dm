@@ -38,10 +38,10 @@
 	return 0
 
 /obj/structure/inflatable/bullet_act(var/obj/item/projectile/Proj)
-	if(!(Proj.damage_type == BRUTE || Proj.damage_type == BURN))
-		return
+	var/proj_damage = Proj.get_structure_damage()
+	if(!proj_damage) return
 	
-	health -= Proj.damage
+	health -= proj_damage
 	..()
 	if(health <= 0)
 		deflate(1)
@@ -59,9 +59,6 @@
 			if(prob(50))
 				deflate(1)
 				return
-
-/obj/structure/inflatable/blob_act()
-	deflate(1)
 
 /obj/structure/inflatable/attack_hand(mob/user as mob)
 		add_fingerprint(user)

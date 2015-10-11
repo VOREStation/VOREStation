@@ -219,9 +219,6 @@ its easier to just keep the beam vertical.
 /atom/proc/emag_act(var/remaining_charges, var/mob/user, var/emag_source)
 	return -1
 
-/atom/proc/blob_act()
-	return
-
 /atom/proc/fire_act()
 	return
 
@@ -415,7 +412,7 @@ its easier to just keep the beam vertical.
 		return
 	src.germ_level = 0
 	if(istype(blood_DNA, /list))
-		del(blood_DNA)
+		blood_DNA = null
 		return 1
 
 

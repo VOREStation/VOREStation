@@ -8,6 +8,7 @@
 
 	num_alternate_languages = 2
 	secondary_langs = list("Resomi")
+	name_language = "Resomi"
 
 	blood_color = "#D514F7"
 	flesh_color = "#5F7BB0"
@@ -26,7 +27,7 @@
 	total_health = 50
 	brute_mod = 1.35
 	burn_mod =  1.35
-	is_small = 1
+	mob_size = MOB_SMALL
 	holder_type = /obj/item/weapon/holder/human
 	short_sighted = 1
 	gluttonous = 1

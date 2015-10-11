@@ -70,6 +70,11 @@
 	else
 		icon_state = "secbot[on]"
 
+	if(on)
+		set_light(2, 1, "#FF6A00")
+	else
+		set_light(0)
+
 /mob/living/bot/secbot/attack_hand(var/mob/user)
 	user.set_machine(src)
 	var/dat
@@ -183,6 +188,7 @@
 			if(!Adjacent(target))
 				awaiting_surrender = 5 // I'm done playing nice
 				mode = SECBOT_HUNT
+				return
 			var/threat = check_threat(target)
 			if(threat < 4)
 				target = null

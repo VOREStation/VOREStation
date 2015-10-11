@@ -20,6 +20,9 @@
 		holy = 1
 	levelupdate()
 
+/turf/simulated/proc/initialize()
+	return
+
 /turf/simulated/proc/check_destroy_override()
 	if(destroy_floor_override) //Don't bother doing the additional checks if we don't have to.
 		var/area/my_area = get_area(src)
@@ -36,6 +39,14 @@
 		tracks = new typepath(src)
 	tracks.AddTracks(bloodDNA,comingdir,goingdir,bloodcolor)
 
+/turf/simulated/proc/update_dirt()
+	dirt = min(dirt++, 101)
+	var/obj/effect/decal/cleanable/dirt/dirtoverlay = locate(/obj/effect/decal/cleanable/dirt, src)
+	if (dirt > 50)
+		if (!dirtoverlay)
+			dirtoverlay = new/obj/effect/decal/cleanable/dirt(src)
+		dirtoverlay.alpha = min((dirt - 50) * 5, 255)
+
 /turf/simulated/Entered(atom/A, atom/OL)
 	if(movement_disabled && usr.ckey != movement_disabled_exception)
 		usr << "<span class='danger'>Movement is admin-disabled.</span>" //This is to identify lag problems
@@ -51,14 +62,7 @@
 		if(plant) plant.trodden_on(M)
 
 		// Dirt overlays.
-		dirt++
-		var/obj/effect/decal/cleanable/dirt/dirtoverlay = locate(/obj/effect/decal/cleanable/dirt, src)
-		if (dirt >= 50)
-			if (!dirtoverlay)
-				dirtoverlay = new/obj/effect/decal/cleanable/dirt(src)
-				dirtoverlay.alpha = 15
-			else if (dirt > 50)
-				dirtoverlay.alpha = min(dirtoverlay.alpha+5, 255)
+		update_dirt()
 
 		if(istype(M, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = M

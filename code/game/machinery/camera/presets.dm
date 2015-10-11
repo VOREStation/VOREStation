@@ -12,6 +12,7 @@ var/global/list/station_networks = list(
 										NETWORK_EXODUS,
 										NETWORK_MEDICAL,
 										NETWORK_MINE,
+										NETWORK_NORTHERN_STAR,
 										NETWORK_RESEARCH,
 										NETWORK_RESEARCH_OUTPOST,
 										NETWORK_ROBOTS,
@@ -63,6 +64,9 @@ var/global/list/engineering_networks = list(
 
 /obj/machinery/camera/network/mining
 	network = list(NETWORK_MINE)
+
+/obj/machinery/camera/network/northern_star
+	network = list(NETWORK_NORTHERN_STAR)
 
 /obj/machinery/camera/network/prison
 	network = list(NETWORK_PRISON)

@@ -95,15 +95,31 @@
 	icon_state = "dark"
 	initial_flooring = /decl/flooring/tiling/dark
 
+/turf/simulated/floor/tiled/hydro
+	name = "hydro floor"
+	icon_state = "hydrofloor"
+	initial_flooring = /decl/flooring/tiling/steel
+
+/turf/simulated/floor/tiled/neutral
+	name = "light floor"
+	icon_state = "neutral"
+	initial_flooring = /decl/flooring/tiling/steel
+
 /turf/simulated/floor/tiled/red
 	name = "red floor"
-	icon_state = "red"
+	color = COLOR_RED_GRAY
+	icon_state = "white"
 	initial_flooring = /decl/flooring/tiling/red
 
 /turf/simulated/floor/tiled/steel
 	name = "steel floor"
 	icon_state = "steel_dirty"
 	initial_flooring = /decl/flooring/tiling/steel
+
+
+/turf/simulated/floor/tiled/steel/airless
+	oxygen = 0
+	nitrogen = 0
 
 /turf/simulated/floor/tiled/white
 	name = "white floor"
@@ -112,7 +128,8 @@
 
 /turf/simulated/floor/tiled/yellow
 	name = "yellow floor"
-	icon_state = "yellow"
+	color = COLOR_BROWN
+	icon_state = "white"
 	initial_flooring = /decl/flooring/tiling/yellow
 
 /turf/simulated/floor/tiled/freezer
@@ -167,14 +184,17 @@
 	temperature = TCMB
 
 // Placeholders
+
 /turf/simulated/floor/airless/lava
 /turf/simulated/floor/light
 /turf/simulated/floor/snow
+/*
 /turf/simulated/floor/beach
 /turf/simulated/floor/beach/sand
 /turf/simulated/floor/beach/sand/desert
 /turf/simulated/floor/beach/coastline
 /turf/simulated/floor/beach/water
 /turf/simulated/floor/beach/water/ocean
+*/
 /turf/simulated/floor/plating/snow
 /turf/simulated/floor/airless/ceiling

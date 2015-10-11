@@ -625,8 +625,3 @@
 	name = initial(name)
 	if(occupant)
 		name = "[name] ([occupant])"
-
-
-//Attacks/effects.
-/obj/machinery/cryopod/blob_act()
-	return //Sorta gamey, but we don't really want these to be destroyed.

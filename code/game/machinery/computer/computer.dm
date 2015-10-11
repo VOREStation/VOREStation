@@ -56,20 +56,9 @@
 	return
 
 /obj/machinery/computer/bullet_act(var/obj/item/projectile/Proj)
-	if(!(Proj.damage_type == BRUTE || Proj.damage_type == BURN))
-		return
-
-	if(prob(Proj.damage))
+	if(prob(Proj.get_structure_damage()))
 		set_broken()
 	..()
-
-
-/obj/machinery/computer/blob_act()
-	if (prob(75))
-		for(var/x in verbs)
-			verbs -= x
-		set_broken()
-		density = 0
 
 /obj/machinery/computer/update_icon()
 	overlays.Cut()

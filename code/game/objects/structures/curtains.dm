@@ -60,6 +60,9 @@
 /obj/structure/curtain/open/shower/engineering
 	color = "#FFA500"
 
+/obj/structure/curtain/open/shower/medical
+	color = "#B8F5E3"
+
 /obj/structure/curtain/open/shower/security
 	color = "#AA0000"
 

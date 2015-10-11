@@ -9,6 +9,7 @@ var/datum/antagonist/xenos/xenomorphs
 	bantype = "Xenomorph"
 	flags = ANTAG_OVERRIDE_MOB | ANTAG_RANDSPAWN | ANTAG_OVERRIDE_JOB | ANTAG_VOTABLE
 	welcome_text = "Hiss! You are a larval alien. Hide and bide your time until you are ready to evolve."
+	antaghud_indicator = "hudalien"
 
 	hard_cap = 5
 	hard_cap_round = 8
@@ -43,4 +44,4 @@ var/datum/antagonist/xenos/xenomorphs
 	player.objectives += new /datum/objective/escape()
 
 /datum/antagonist/xenos/place_mob(var/mob/living/player)
-	player.loc = get_turf(pick(get_vents()))
+	player.forceMove(get_turf(pick(get_vents())))

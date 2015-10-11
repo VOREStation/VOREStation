@@ -12,6 +12,7 @@ var/global/list/processing_power_items   = list()
 var/global/list/active_diseases          = list()
 var/global/list/med_hud_users            = list() // List of all entities using a medical HUD.
 var/global/list/sec_hud_users            = list() // List of all entities using a security HUD.
+var/global/list/hud_icon_reference       = list()
 
 
 var/global/list/global_mutations  = list() // List of hidden mutation things.
@@ -91,7 +92,6 @@ var/list/reverse_dir = list( // reverse_dir[dir] = reverse of dir
 	23, 28, 30, 29, 31, 48, 50, 49, 51, 56, 58, 57, 59, 52, 54, 53, 55, 60, 62, 61, 63
 )
 
-var/datum/station_state/start_state = null
 var/datum/configuration/config      = null
 var/datum/sun/sun                   = null
 

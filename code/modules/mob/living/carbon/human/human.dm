@@ -168,15 +168,6 @@
 				update |= temp.take_damage(b_loss * 0.05, f_loss * 0.05, used_weapon = weapon_message)
 	if(update)	UpdateDamageIcon()
 
-
-/mob/living/carbon/human/blob_act()
-	if(stat == 2)	return
-	show_message("\red The blob attacks you!")
-	var/dam_zone = pick(organs_by_name)
-	var/obj/item/organ/external/affecting = get_organ(ran_zone(dam_zone))
-	apply_damage(rand(30,40), BRUTE, affecting, run_armor_check(affecting, "melee"))
-	return
-
 /mob/living/carbon/human/proc/implant_loyalty(mob/living/carbon/human/M, override = FALSE) // Won't override by default.
 	if(!config.use_loyalty_implants && !override) return // Nuh-uh.
 
@@ -238,7 +229,7 @@
 
 	// Other incidentals.
 	if(istype(suit) && suit.has_sensor == 1)
-		dat += "<BR><A href='?src=\ref[src];item=sensors'>Set sensors.</A>"
+		dat += "<BR><A href='?src=\ref[src];item=sensors'>Set sensors</A>"
 	if(handcuffed)
 		dat += "<BR><A href='?src=\ref[src];item=[slot_handcuffed]'>Handcuffed</A>"
 	if(legcuffed)
@@ -695,6 +686,28 @@
 		if(!W.up)
 			number += 2
 	return number
+
+//Used by various things that knock people out by applying blunt trauma to the head.
+//Checks that the species has a "head" (brain containing organ) and that hit_zone refers to it.
+/mob/living/carbon/human/proc/headcheck(var/target_zone, var/brain_tag = "brain")
+	if(!species.has_organ[brain_tag])
+		return 0
+
+	var/obj/item/organ/affecting = internal_organs_by_name[brain_tag]
+
+	target_zone = check_zone(target_zone)
+	if(!affecting || affecting.parent_organ != target_zone)
+		return 0
+
+	//if the parent organ is significantly larger than the brain organ, then hitting it is not guaranteed
+	var/obj/item/organ/parent = get_organ(target_zone)
+	if(!parent)
+		return 0
+
+	if(parent.w_class > affecting.w_class + 1)
+		return prob(100 / 2**(parent.w_class - affecting.w_class - 1))
+
+	return 1
 
 /mob/living/carbon/human/IsAdvancedToolUser(var/silent)
 	if(species.has_fine_manipulation)
@@ -1154,10 +1167,6 @@
 		return 1
 	else
 		return 0
-
-	mob_bump_flag = species.bump_flag
-	mob_swap_flags = species.swap_flags
-	mob_push_flags = species.push_flags
 
 /mob/living/carbon/human/proc/bloody_doodle()
 	set category = "IC"
