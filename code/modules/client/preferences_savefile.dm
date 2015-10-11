@@ -228,7 +228,6 @@
 	if(isnum(socks))
 		socks = socks_t[socks_t[socks]]
 
-	if(isnull(language)) language = "None"
 	if(isnull(alternate_languages)) alternate_languages = list()
 	if(isnull(spawnpoint)) spawnpoint = "Arrivals Shuttle"
 	if(isnull(nanotrasen_relation)) nanotrasen_relation = initial(nanotrasen_relation)
