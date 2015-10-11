@@ -1915,4 +1915,7 @@
 #include "interface\skin.dmf"
 #include "maps\polaris-1.dmm"
 #include "maps\polaris-2.dmm"
+#include "maps\polaris-3.dmm"
+#include "maps\polaris-4.dmm"
+#include "maps\polaris-5.dmm"
 // END_INCLUDE
