@@ -205,13 +205,13 @@
 	throw_range = 4
 	w_class = 3
 	var/active = 0
-
+/*
 /obj/item/weapon/shield/energy/IsShield()
 	if(active)
 		return 1
 	else
 		return 0
-
+*/
 /obj/item/weapon/shield/riot/tele/attack_self(mob/living/user)
 	active = !active
 	icon_state = "teleriot[active]"

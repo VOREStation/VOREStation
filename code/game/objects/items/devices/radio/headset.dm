@@ -13,7 +13,7 @@
 	var/translate_hive = 0
 	var/obj/item/device/encryptionkey/keyslot1 = null
 	var/obj/item/device/encryptionkey/keyslot2 = null
-	maxf = 1489
+//	maxf = 1489
 
 	var/ks1type = /obj/item/device/encryptionkey
 	var/ks2type = null
@@ -287,7 +287,7 @@
 	desc = "The headset of the boss's boss."
 	icon_state = "com_headset"
 	item_state = "headset"
-	freerange = 1
+//	freerange = 1
 	ks2type = /obj/item/device/encryptionkey/ert
 
 /obj/item/device/radio/headset/ert/alt
@@ -295,7 +295,7 @@
 	desc = "The headset of the boss's boss."
 	icon_state = "com_headset_alt"
 	item_state = "com_headset_alt"
-	freerange = 1
+//	freerange = 1
 	ks2type = /obj/item/device/encryptionkey/ert
 
 /obj/item/device/radio/headset/ia
