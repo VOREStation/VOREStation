@@ -99,7 +99,14 @@
 
 /obj/item/weapon/storage/box/evidence
 	name = "evidence bag box"
-	desc = "A box claiming to contain evidence bags."
+	desc = "A box claiming to contain evidence bags. Also holds fingerprint cards."
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "box"
+	storage_slots= 14
+	max_w_class = 3
+	max_storage_space = 38
+	can_hold = list(/obj/item/weapon/f_card, /obj/item/weapon/evidencebag)
+	use_to_pickup = 1
 	New()
 		new /obj/item/weapon/evidencebag(src)
 		new /obj/item/weapon/evidencebag(src)

@@ -30,6 +30,18 @@
 	worn_state = "qmf"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
+/obj/item/clothing/under/rank/cargo/jeans
+	name = "quartermaster's jumpjeans"
+	desc = "Jeeeaaans! They're comfy!"
+	icon_state = "qmj"
+	worn_state = "qmj"
+
+/obj/item/clothing/under/rank/cargo/jeans/female
+	name = "quartermaster's jumpjeans"
+	desc = "Jeeeaaans! They're comfy!"
+	icon_state = "qmjf"
+	worn_state = "qmjf"
+
 /obj/item/clothing/under/rank/cargotech
 	name = "cargo technician's jumpsuit"
 	desc = "Shooooorts! They're comfy and easy to wear!"
@@ -43,6 +55,18 @@
 	desc = "Skirrrrrts! They're comfy and easy to wear!"
 	icon_state = "cargof"
 	worn_state = "cargof"
+
+/obj/item/clothing/under/rank/cargotech/jeans
+	name = "cargo technician's jumpjeans"
+	desc = "Jeeeaaans! They're comfy!"
+	icon_state = "cargoj"
+	worn_state = "cargoj"
+
+/obj/item/clothing/under/rank/cargotech/jeans/female
+	name = "cargo technician's jumpjeans"
+	desc = "Jeeeaaans! They're comfy!"
+	icon_state = "cargojf"
+	worn_state = "cargojf"
 
 
 /obj/item/clothing/under/rank/chaplain

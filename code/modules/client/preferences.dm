@@ -57,6 +57,7 @@ datum/preferences
 	var/b_type = "A+"					//blood type (not-chooseable)
 	var/underwear						//underwear type
 	var/undershirt						//undershirt type
+	var/socks							//socks type
 	var/backbag = 2						//backpack type
 	var/h_style = "Bald"				//Hair type
 	var/r_hair = 0						//Hair color
@@ -412,6 +413,8 @@ datum/preferences
 	dat += "Underwear: <a href ='?_src_=prefs;preference=underwear;task=input'><b>[get_key_by_value(undies,underwear)]</b></a><br>"
 
 	dat += "Undershirt: <a href='?_src_=prefs;preference=undershirt;task=input'><b>[get_key_by_value(undershirt_t,undershirt)]</b></a><br>"
+
+	dat += "Socks: <a href='?_src_=prefs;preference=socks;task=input'><b>[get_key_by_value(socks_t,socks)]</b></a><br>"
 
 	dat += "Backpack Type:<br><a href ='?_src_=prefs;preference=bag;task=input'><b>[backbaglist[backbag]]</b></a><br>"
 
@@ -1239,6 +1242,10 @@ datum/preferences
 					var/r = pick(undershirt_t)
 					undershirt = undershirt_t[r]
 					ShowChoices(user)
+				if("socks")
+					var/r = pick(socks_t)
+					socks = socks_t[r]
+					ShowChoices(user)
 				if("eyes")
 					r_eyes = rand(0,255)
 					g_eyes = rand(0,255)
@@ -1395,6 +1402,15 @@ datum/preferences
 					var/new_undershirt = input(user, "Choose your character's undershirt:", "Character Preference") as null|anything in undershirt_options
 					if (new_undershirt)
 						undershirt = undershirt_options[new_undershirt]
+					ShowChoices(user)
+
+				if("socks")
+					var/list/socks_options
+					socks_options = socks_t
+
+					var/new_socks = input(user, "Choose your character's socks:", "Character Preference") as null|anything in socks_options
+					if (new_socks)
+						socks = socks_options[new_socks]
 					ShowChoices(user)
 
 				if("eyes")
@@ -1770,6 +1786,8 @@ datum/preferences
 	character.underwear = underwear
 
 	character.undershirt = undershirt
+
+	character.socks = socks
 
 	if(backbag > 4 || backbag < 1)
 		backbag = 1 //Same as above

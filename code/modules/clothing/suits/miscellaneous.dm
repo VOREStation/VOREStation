@@ -217,6 +217,18 @@
 	icon_state = "leathercoat"
 	item_state = "leathercoat"
 
+/obj/item/clothing/suit/leathercoat/alt
+	name = "leather coat"
+	desc = "A long, thick black leather coat."
+	icon_state = "leathercoat_alt"
+	item_state = "leathercoat_alt"
+
+/obj/item/clothing/suit/leathercoat/alt/sec
+	name = "leather coat"
+	desc = "A long, thick black leather coat."
+	icon_state = "leathercoat_sec"
+	item_state = "leathercoat_sec"
+
 /obj/item/clothing/suit/browncoat
 	name = "brown leather coat"
 	desc = "A long, brown leather coat."
@@ -337,6 +349,24 @@
 	icon_state = "blueponcho"
 	item_state = "blueponcho"
 
+/obj/item/clothing/suit/jacket/puffer
+	name = "puffer jacket"
+	desc = "A thick jacket with a rubbery, water-resistant shell."
+	icon_state = "pufferjacket"
+	item_state = "pufferjacket"
+
+/obj/item/clothing/suit/jacket/puffer/vest
+	name = "puffer vest"
+	desc = "A thick vest with a rubbery, water-resistant shell."
+	icon_state = "puffervest"
+	item_state = "puffervest"
+
+/obj/item/clothing/suit/jacket/miljacket
+	name = "military jacket"
+	desc = "A canvas jacket styled after classical American military garb. Feels sturdy, yet comfortable."
+	icon_state = "militaryjacket"
+	item_state = "militaryjacket"
+
 /obj/item/clothing/suit/storage/toggle/bomber
 	name = "bomber jacket"
 	desc = "A thick, well-worn WW2 leather bomber jacket."
@@ -349,11 +379,28 @@
 	min_cold_protection_temperature = T0C - 20
 	siemens_coefficient = 0.7
 
+/obj/item/clothing/suit/storage/bomber/alt
+	name = "bomber jacket"
+	desc = "A thick, well-worn WW2 leather bomber jacket."
+	icon_state = "bomberjacket_new"
+	item_state = "bomberjacket_new"
+	body_parts_covered = UPPER_TORSO|ARMS
+	cold_protection = UPPER_TORSO|ARMS
+	min_cold_protection_temperature = T0C - 20
+	siemens_coefficient = 0.7
+
 /obj/item/clothing/suit/storage/leather_jacket
 	name = "leather jacket"
 	desc = "A black leather coat."
 	icon_state = "leather_jacket"
 	item_state = "leather_jacket"
+	body_parts_covered = UPPER_TORSO|ARMS
+
+/obj/item/clothing/suit/storage/leather_jacket/alt
+	name = "leather jacket"
+	desc = "A black leather coat."
+	icon_state = "leather_jacket_alt"
+	item_state = "leather_jacket_alt"
 	body_parts_covered = UPPER_TORSO|ARMS
 
 /obj/item/clothing/suit/storage/leather_jacket/nanotrasen
@@ -433,3 +480,122 @@
 	item_state = "yellow_hoodie"
 	icon_open = "yellow_hoodie_open"
 	icon_closed = "yellow_hoodie"
+
+
+// FUN!
+
+/obj/item/clothing/suit/whitedress
+	name = "white dress"
+	desc = "A fancy white dress."
+	icon_state = "white_dress"
+	item_state = "white_dress"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
+	flags_inv = HIDEJUMPSUIT
+
+/obj/item/clothing/suit/storage/hooded/carp_costume
+	name = "carp costume"
+	desc = "A costume made from 'synthetic' carp scales, it smells."
+	icon_state = "carp_casual"
+	item_state = "carp_casual"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE	//Space carp like space, so you should too
+	hooded = 1
+	action_button_name = "Toggle Carp Hood"
+	hoodtype = /obj/item/clothing/head/carp_hood
+
+/obj/item/clothing/head/carp_hood
+	name = "carp hood"
+	desc = "A hood attached to a carp costume."
+	icon_state = "carp_casual"
+	body_parts_covered = HEAD
+	cold_protection = HEAD
+	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
+
+/obj/item/clothing/suit/storage/hooded/ian_costume	//It's Ian, rub his bell- oh god what happened to his inside parts?
+	name = "corgi costume"
+	desc = "A costume that looks like someone made a human-like corgi, it won't guarantee belly rubs."
+	icon_state = "ian"
+	item_state = "ian"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	//cold_protection = CHEST|GROIN|ARMS
+	//min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+	hooded = 1
+	action_button_name = "Toggle Ian Hood"
+	hoodtype = /obj/item/clothing/head/ian_hood
+
+/obj/item/clothing/head/ian_hood
+	name = "corgi hood"
+	desc = "A hood that looks just like a corgi's head, it won't guarantee dog biscuits."
+	icon_state = "ian"
+	item_state = "ian"
+	body_parts_covered = HEAD
+	//cold_protection = HEAD
+	//min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+
+// WINTER COATS
+
+/obj/item/clothing/suit/storage/hooded/wintercoat
+	name = "winter coat"
+	desc = "A heavy jacket made from 'synthetic' animal furs."
+	icon_state = "coatwinter"
+	item_state = "labcoat"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
+	hooded = 1
+	action_button_name = "Toggle Winter Hood"
+	hoodtype = /obj/item/clothing/head/winterhood
+
+/obj/item/clothing/head/winterhood
+	name = "winter hood"
+	desc = "A hood attached to a heavy winter jacket."
+	icon_state = "generic_hood"
+	body_parts_covered = HEAD
+	cold_protection = HEAD
+	flags = BLOCKHAIR
+	flags_inv = HIDEEARS
+	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/captain
+	name = "captain's winter coat"
+	icon_state = "coatcaptain"
+	armor = list(melee = 25, bullet = 30, laser = 30, energy = 10, bomb = 25, bio = 0, rad = 0)
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/security
+	name = "security winter coat"
+	icon_state = "coatsecurity"
+	armor = list(melee = 25, bullet = 15, laser = 30, energy = 10, bomb = 25, bio = 0, rad = 0)
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/medical
+	name = "medical winter coat"
+	icon_state = "coatmedical"
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 50, rad = 0)
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/science
+	name = "science winter coat"
+	icon_state = "coatscience"
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/engineering
+	name = "engineering winter coat"
+	icon_state = "coatengineer"
+	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 20)
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/engineering/atmos
+	name = "atmospherics winter coat"
+	icon_state = "coatatmos"
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/hydro
+	name = "hydroponics winter coat"
+	icon_state = "coathydro"
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/cargo
+	name = "cargo winter coat"
+	icon_state = "coatcargo"
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/miner
+	name = "mining winter coat"
+	icon_state = "coatminer"
+	armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)

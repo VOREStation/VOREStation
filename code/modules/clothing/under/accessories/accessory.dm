@@ -16,7 +16,7 @@
 	if(!inv_overlay)
 		if(!mob_overlay)
 			get_mob_overlay()
-		
+
 		var/tmp_icon_state = "[overlay_state? "[overlay_state]" : "[icon_state]"]"
 		if(icon_override)
 			if("[tmp_icon_state]_tie" in icon_states(icon_override))
@@ -71,6 +71,10 @@
 /obj/item/clothing/accessory/red
 	name = "red tie"
 	icon_state = "redtie"
+
+/obj/item/clothing/accessory/black
+	name = "black tie"
+	icon_state = "blacktie"
 
 /obj/item/clothing/accessory/horrible
 	name = "horrible tie"
@@ -177,4 +181,66 @@
 
 /obj/item/clothing/accessory/medal/gold/heroism
 	name = "medal of exceptional heroism"
-	desc = "An extremely rare golden medal awarded only by company officials. To recieve such a medal is the highest honor and as such, very few exist. This medal is almost never awarded to anybody but commanders."
+	desc = "An extremely rare golden medal awarded only by CentComm. To recieve such a medal is the highest honor and as such, very few exist. This medal is almost never awarded to anybody but commanders."
+
+//Scarves
+
+/obj/item/clothing/accessory/scarf
+	name = "scarf"
+	desc = "A stylish scarf. The perfect winter accessory for those with a keen fashion sense, and those who just can't handle a cold breeze on their necks."
+
+/obj/item/clothing/accessory/scarf/red
+	name = "red scarf"
+	icon_state = "redscarf"
+
+/obj/item/clothing/accessory/scarf/green
+	name = "green scarf"
+	icon_state = "greenscarf"
+
+/obj/item/clothing/accessory/scarf/darkblue
+	name = "dark blue scarf"
+	icon_state = "darkbluescarf"
+
+/obj/item/clothing/accessory/scarf/purple
+	name = "purple scarf"
+	icon_state = "purplescarf"
+
+/obj/item/clothing/accessory/scarf/yellow
+	name = "yellow scarf"
+	icon_state = "yellowscarf"
+
+/obj/item/clothing/accessory/scarf/orange
+	name = "orange scarf"
+	icon_state = "orangescarf"
+
+/obj/item/clothing/accessory/scarf/lightblue
+	name = "light blue scarf"
+	icon_state = "lightbluescarf"
+
+/obj/item/clothing/accessory/scarf/white
+	name = "white scarf"
+	icon_state = "whitescarf"
+
+/obj/item/clothing/accessory/scarf/black
+	name = "black scarf"
+	icon_state = "blackscarf"
+
+/obj/item/clothing/accessory/scarf/zebra
+	name = "zebra scarf"
+	icon_state = "zebrascarf"
+
+/obj/item/clothing/accessory/scarf/christmas
+	name = "christmas scarf"
+	icon_state = "christmasscarf"
+
+/obj/item/clothing/accessory/stripedredscarf
+	name = "striped red scarf"
+	icon_state = "stripedredscarf"
+
+/obj/item/clothing/accessory/stripedgreenscarf
+	name = "striped green scarf"
+	icon_state = "stripedgreenscarf"
+
+/obj/item/clothing/accessory/stripedbluescarf
+	name = "striped blue scarf"
+	icon_state = "stripedbluescarf"

@@ -143,6 +143,7 @@ area/space/atmosalert()
 
 /area/shuttle
 	requires_power = 0
+	flags = RAD_SHIELDED
 	sound_env = SMALL_ENCLOSED
 
 /area/shuttle/arrival

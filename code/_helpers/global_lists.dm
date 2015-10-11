@@ -49,7 +49,25 @@ var/global/list/skin_styles_female_list = list()		//unused
 var/global/list/underwear_m = list("White" = "m1", "Grey" = "m2", "Green" = "m3", "Blue" = "m4", "Black" = "m5", "Mankini" = "m6", "None") //Curse whoever made male/female underwear diffrent colours
 var/global/list/underwear_f = list("Red" = "f1", "White" = "f2", "Yellow" = "f3", "Blue" = "f4", "Black" = "f5", "Thong" = "f6", "Black Sports" = "f7","White Sports" = "f8","None")
 	//undershirt
-var/global/list/undershirt_t = list("White Tank top" = "u1", "Black Tank top" = "u2", "Black shirt" = "u3", "White shirt" = "u4", "None")
+var/global/list/undershirt_t = list(
+	"White tank top" = "u1", "Black tank top" = "u2", "Black shirt" = "u3",
+	"White shirt" = "u4", "White shirt 2" = "shirt_white_s", "White tank top 2" = "tank_white_s",
+	"Black shirt 2" = "shirt_black_s", "Grey shirt" = "shirt_grey_s", "Heart shirt" = "lover_s",
+	"I love NT shirt" = "ilovent_s", "White shortsleeve shirt" = "whiteshortsleeve_s", "Purple shirtsleeve shirt" = "purpleshortsleeve_s",
+	"Blue shortsleeve shirt" = "blueshortsleeve_s", "Green shortsleeve shirt" = "greenshortsleeve_s", "Black shortsleeve shirt" = "blackshortsleeve_s",
+	"Blue shirt" = "blueshirt_s", "Red shirt" = "redshirt_s", "Yellow shirt" = "yellowshirt_s", "Green shirt" = "greenshirt_s",
+	"Blue polo shirt" = "bluepolo_s", "Red polo shirt" = "redpolo_s", "White polo shirt" = "whitepolo_s",
+	"Grey-yellow polo shirt" = "grayyellowpolo_s", "Fire tank top" = "tank_fire_s", "NT shirt" = "shirt_nano_s",
+	"Blue shirt 2" = "shirt_blue_s", "Red shirt 2" = "shirt_red_s", "Red tank top" = "tank_red_s", "Green shirt 2" = "shirt_green_s",
+	"Tiedye shirt" = "shirt_tiedye_s", "Green sport shirt" = "greenshirtsport_s", "Red sport shirt" = "redshirtsport_s",
+	"Blue sport shirt" = "blueshirtsport_s", "None")
+	//Socks
+var/global/list/socks_t = list(
+	"White normal" = "white_norm", "White short" = "white_short", "White knee" = "white_knee",
+	"White thigh" = "white_thigh", "Black normal" = "black_norm", "Black short" = "black_short",
+	"Black knee" = "black_knee", "Black thigh" = "black_thigh", "Thin knee" = "thin_knee",
+	"Thin thigh" = "thin_thigh", "Pantyhose" = "pantyhose", "None")
+
 	//Backpacks
 var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Alt")
 var/global/list/exclude_jobs = list(/datum/job/ai,/datum/job/cyborg)

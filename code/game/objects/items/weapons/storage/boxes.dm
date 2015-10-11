@@ -15,7 +15,6 @@
  *		Handcuff, mousetrap, and pillbottle boxes,
  *		Snap-pops and matchboxes,
  *		Replacement light boxes.
- *		Fingerprint card box.
  *
  *		For syndicate call-ins see uplink_kits.dm
  */
