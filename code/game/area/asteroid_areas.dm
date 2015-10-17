@@ -70,19 +70,19 @@
 	name = "Mining Outpost Maintenance"
 
 /area/outpost/mining_main/north_hall
-	name = "Mining Outpost North Hallway"
+	name = "Mining Outpost Fore Hallway"
 
 /area/outpost/mining_main/south_hall
-	name = "Mining Outpost South Hallway"
+	name = "Mining Outpost Aft Hallway"
 
 /area/outpost/mining_main/west_hall
-	name = "Mining Outpost West Hallway"
+	name = "Mining Outpost Port Hallway"
 
 /area/outpost/mining_main/east_hall
-	name = "Mining Outpost East Hallway"
+	name = "Mining Outpost Starboard Hallway"
 
 /area/outpost/mining_main/break_room
-	name = "Mining Outpost Break Room"
+	name = "Mining Outpost Crew Area"
 
 /area/outpost/mining_main/refinery
 	name = "Mining Outpost Refinery"
@@ -172,6 +172,18 @@
 /area/outpost/research/hallway
 	name = "Research Outpost Hallway"
 
+/area/outpost/research/hallway/mid
+	name = "Research Outpost Hallway Mid"
+
+/area/outpost/research/hallway/starboard
+	name = "Research Outpost Hallway Starboard"
+
+/area/outpost/research/hallway/catwalk
+	name = "Research Outpost Catwalk"
+
+/area/outpost/research/hallway/toxins_hallway
+	name = "Research Outpost Toxins Hallway"
+
 /area/outpost/research/dock
 	name = "Research Outpost Shuttle Dock"
 
@@ -180,6 +192,9 @@
 
 /area/outpost/research/analysis
 	name = "Research Outpost Sample Analysis"
+
+/area/outpost/research/anomaly
+	name = "Anomalous Materials Lab"
 
 /area/outpost/research/chemistry
 	name = "Research Outpost Chemistry"
@@ -191,13 +206,13 @@
 	name = "Research Outpost Maintenance"
 
 /area/outpost/research/isolation_a
-	name = "Research Outpost Isolation A"
+	name = "Research Outpost Isolation 1"
 
 /area/outpost/research/isolation_b
-	name = "Research Outpost Isolation B"
+	name = "Research Outpost Isolation 2"
 
 /area/outpost/research/isolation_c
-	name = "Research Outpost Isolation C"
+	name = "Research Outpost Isolation 3"
 
 /area/outpost/research/isolation_hall
 	name = "Research Outpost Isolation Hall"
@@ -206,7 +221,10 @@
 	name = "Research Outpost Bathroom"
 
 /area/outpost/research/dorms
-	name = "Research Outpost Dorms"
+	name = "Research Outpost Research Lounge"
+
+/area/outpost/research/longtermstorage
+	name = "Research Outpost Long-Term Storage"
 
 /area/outpost/research/anomaly_storage
 	name = "Research Outpost Anomalous Storage"
@@ -220,5 +238,27 @@
 /area/outpost/research/disposal
 	name = "Research Outpost Waste Disposal"
 
+/area/outpost/research/toxins_launch
+	name = "Research Outpost Toxins Launch Room"
+
 /area/outpost/research/tox_store
 	name = "Research Outpost Toxins Storage"
+
+/area/outpost/research/test_area
+	name = "\improper Research Outpost Toxins Test Area"
+	icon_state = "toxtest"
+
+/area/outpost/research/toxins_misc_lab
+	name = "\improper Research Outpost Toxins Miscellaneous Research"
+	icon_state = "toxmisc"
+
+/area/outpost/research/mixing
+	name = "\improper Research Outpost Toxins Mixing Room"
+	icon_state = "toxmix"
+
+/area/outpost/research/tempstorage
+	name = "Research Outpost Temporary Storage"
+
+/area/outpost/research/xenobiology
+	name = "\improper Research Outpost Xenobiology Lab"
+	icon_state = "xeno_lab"

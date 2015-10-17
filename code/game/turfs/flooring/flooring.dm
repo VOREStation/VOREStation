@@ -98,7 +98,14 @@ var/list/flooring_types
 
 /decl/flooring/tiling/steel
 	name = "floor"
-	icon_base = "steel"
+	icon_base = "steel_dirty"
+	has_damage_range = null
+	flags = TURF_REMOVE_CROWBAR
+	build_type = /obj/item/stack/tile/floor_steel
+
+/decl/flooring/tiling/asteroidfloor
+	name = "floor"
+	icon_base = "asteroidfloor"
 	has_damage_range = null
 	flags = TURF_REMOVE_CROWBAR
 	build_type = /obj/item/stack/tile/floor_steel
@@ -125,6 +132,20 @@ var/list/flooring_types
 	has_damage_range = null
 	flags = TURF_REMOVE_CROWBAR
 	build_type = /obj/item/stack/tile/floor_dark
+
+/decl/flooring/tiling/hydro
+	name = "floor"
+	icon_base = "hydrofloor"
+	has_damage_range = null
+	flags = TURF_REMOVE_CROWBAR
+	build_type = /obj/item/stack/tile/floor_steel
+
+/decl/flooring/tiling/neutral
+	name = "floor"
+	icon_base = "neutral"
+	has_damage_range = null
+	flags = TURF_REMOVE_CROWBAR
+	build_type = /obj/item/stack/tile/floor_steel
 
 /decl/flooring/tiling/freezer
 	name = "floor"

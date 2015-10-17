@@ -98,12 +98,12 @@
 /turf/simulated/floor/tiled/hydro
 	name = "hydro floor"
 	icon_state = "hydrofloor"
-	initial_flooring = /decl/flooring/tiling/steel
+	initial_flooring = /decl/flooring/tiling/hydro
 
 /turf/simulated/floor/tiled/neutral
 	name = "light floor"
 	icon_state = "neutral"
-	initial_flooring = /decl/flooring/tiling/steel
+	initial_flooring = /decl/flooring/tiling/neutral
 
 /turf/simulated/floor/tiled/red
 	name = "red floor"
@@ -116,8 +116,16 @@
 	icon_state = "steel_dirty"
 	initial_flooring = /decl/flooring/tiling/steel
 
-
 /turf/simulated/floor/tiled/steel/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/asteroid_steel
+	icon_state = "asteroidfloor"
+	initial_flooring = /decl/flooring/tiling/asteroidfloor
+
+/turf/simulated/floor/tiled/asteroid_steel/airless
+	name = "airless plating"
 	oxygen = 0
 	nitrogen = 0
 

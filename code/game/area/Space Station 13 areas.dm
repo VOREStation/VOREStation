@@ -290,6 +290,7 @@ area/space/atmosalert()
 /area/shuttle/mining
 	name = "\improper Mining Shuttle"
 	music = "music/escape.ogg"
+	lighting_use_dynamic = 0
 
 /area/shuttle/mining/station
 	icon_state = "shuttle2"
@@ -379,6 +380,7 @@ area/space/atmosalert()
 /area/shuttle/research
 	name = "\improper Research Shuttle"
 	music = "music/escape.ogg"
+	lighting_use_dynamic = 0
 
 /area/shuttle/research/station
 	icon_state = "shuttle2"
