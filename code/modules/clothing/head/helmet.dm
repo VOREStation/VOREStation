@@ -1,7 +1,7 @@
 /obj/item/clothing/head/helmet
 	name = "helmet"
 	desc = "Standard Security gear. Protects the head from impacts. This one has a adjustable visor."
-	icon_state = "helmet_new"
+	icon_state = "helmet"
 	item_state_slots = list(
 		slot_l_hand_str = "helmet",
 		slot_r_hand_str = "helmet",
@@ -19,7 +19,7 @@
 /obj/item/clothing/head/helmet/riot
 	name = "riot helmet"
 	desc = "It's a helmet specifically designed to protect against close range attacks."
-	icon_state = "riot_new"
+	icon_state = "riot"
 	armor = list(melee = 82, bullet = 15, laser = 5,energy = 5, bomb = 5, bio = 2, rad = 0)
 	flags_inv = HIDEEARS
 	siemens_coefficient = 0.7
@@ -44,7 +44,7 @@
 /obj/item/clothing/head/helmet/swat
 	name = "\improper SWAT helmet"
 	desc = "They're often used by highly trained SWAT Members."
-	icon_state = "swat_new"
+	icon_state = "swat"
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = 0)
 	flags_inv = HIDEEARS|HIDEEYES
 	cold_protection = HEAD

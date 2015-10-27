@@ -103,6 +103,13 @@
 	item_state = "sl_suit"
 	desc = "An immaculate white dress shirt, paired with a pair of dark grey dress pants, a red tie, and a charcoal vest."
 
+/obj/item/clothing/under/det/corporate
+	name = "detective's jumpsuit"
+	icon_state = "det_corporate"
+	item_state = "bl_suit"
+	worn_state = "det_corporate"
+	desc = "A more modern uniform for corporate investigators."
+
 /obj/item/clothing/head/det
 	name = "fedora"
 	desc = "A brown fedora - either the cornerstone of a detective's style or a poor attempt at looking cool, depending on the person wearing it."
