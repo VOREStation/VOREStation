@@ -56,6 +56,30 @@
 	return
 
 
+/obj/structure/closet/wardrobe/detective
+	name = "detective wardrobe"
+	icon_state = "cabinet_closed"
+	icon_closed = "cabinet_closed"
+	icon_opened = "cabinet_open"
+
+/obj/structure/closet/wardrobe/detective/New()
+	..()
+	new /obj/item/clothing/head/det(src)
+	new /obj/item/clothing/head/det(src)
+	new /obj/item/clothing/shoes/brown(src)
+	new /obj/item/clothing/shoes/brown(src)
+	new /obj/item/clothing/under/det(src)
+	new /obj/item/clothing/under/det(src)
+	new /obj/item/clothing/head/det/grey(src)
+	new /obj/item/clothing/head/det/grey(src)
+	new /obj/item/clothing/under/det/grey(src)
+	new /obj/item/clothing/under/det/grey(src)
+	new /obj/item/clothing/under/det/black(src)
+	new /obj/item/clothing/under/det/black(src)
+	new /obj/item/clothing/under/det/corporate(src)
+	new /obj/item/clothing/under/det/corporate(src)
+	return
+
 /obj/structure/closet/wardrobe/pink
 	name = "pink wardrobe"
 	icon_state = "pink"
