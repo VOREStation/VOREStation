@@ -314,7 +314,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		update_action_buttons()
 
 	return 1
-
+/*
 //Checks if a given slot can be accessed at this time, either to equip or unequip I
 /mob/living/carbon/human/slot_is_accessible(var/slot, var/obj/item/I, mob/user=null)
 	var/obj/item/covering = null
@@ -334,7 +334,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		user << "<span class='warning'>\The [covering] is in the way.</span>"
 		return 0
 	return 1
-
+*/
 /mob/living/carbon/human/get_equipped_item(var/slot)
 	switch(slot)
 		if(slot_back)       return back
