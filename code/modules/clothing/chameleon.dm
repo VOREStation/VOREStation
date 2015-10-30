@@ -5,23 +5,24 @@
 /obj/item/proc/disguise(var/newtype)
 	//this is necessary, unfortunately, as initial() does not play well with list vars
 	var/obj/item/copy = new newtype(null) //so that it is GCed once we exit
-	
+
 	desc = copy.desc
 	name = copy.name
 	icon_state = copy.icon_state
 	item_state = copy.item_state
 	body_parts_covered = copy.body_parts_covered
-	
+
 	item_icons = copy.item_icons.Copy()
-	item_state_slots = copy.item_state_slots.Copy()
+	if(copy.item_state_slots) //Runtime prevention for backpacks
+		item_state_slots = copy.item_state_slots.Copy()
 	sprite_sheets = copy.sprite_sheets.Copy()
 	//copying sprite_sheets_obj should be unnecessary as chameleon items are not refittable.
-	
+
 	return copy //for inheritance
 
 /proc/generate_chameleon_choices(var/basetype, var/blacklist=list())
 	. = list()
-	
+
 	var/i = 1 //in case there is a collision with both name AND icon_state
 	for(var/typepath in typesof(basetype) - blacklist)
 		var/obj/O = typepath
@@ -100,7 +101,7 @@
 
 	if(!ispath(clothing_choices[picked]))
 		return
-	
+
 	disguise(clothing_choices[picked])
 	update_clothing_icon()	//so our overlays update.
 
@@ -323,6 +324,48 @@
 	disguise(clothing_choices[picked])
 	update_clothing_icon()	//so our overlays update.
 
+//******************
+//**Chameleon Belt**
+//******************
+
+/obj/item/weapon/storage/belt/chameleon
+	name = "belt"
+	desc = "Can hold various things.  It also has a small dial inside one of the pouches."
+	icon = 'icons/obj/clothing/belts.dmi'
+	icon_state = "utilitybelt"
+	item_state = "utility"
+	origin_tech = list(TECH_ILLEGAL = 3)
+	var/list/clothing_choices = list()
+
+/obj/item/weapon/storage/belt/chameleon/New()
+	..()
+	if(!clothing_choices)
+		clothing_choices = generate_chameleon_choices(/obj/item/weapon/storage/belt, list(src.type))
+
+/obj/item/weapon/storage/belt/chameleon/emp_act(severity) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
+	name = "belt"
+	desc = "Can hold various things."
+	icon_state = "utilitybelt"
+	item_state = "utility"
+	update_icon()
+	if(ismob(src.loc))
+		var/mob/M = src.loc
+		M.update_inv_belt()
+
+/obj/item/weapon/storage/belt/chameleon/verb/change(picked in clothing_choices)
+	set name = "Change Belt Appearance"
+	set category = "Chameleon Items"
+	set src in usr
+
+	if(!ispath(clothing_choices[picked]))
+		return
+
+	disguise(clothing_choices[picked])
+
+	if(ismob(src.loc))
+		var/mob/M = src.loc
+		M.update_inv_belt() //so our overlays update.
+
 //*****************
 //**Chameleon Gun**
 //*****************
@@ -333,19 +376,19 @@
 	w_class = 3
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
 	matter = list()
-	
+
 	fire_sound = 'sound/weapons/Gunshot.ogg'
 	projectile_type = /obj/item/projectile/chameleon
 	charge_meter = 0
 	charge_cost = 20 //uses next to no power, since it's just holograms
 	max_shots = 50
-	
+
 	var/obj/item/projectile/copy_projectile
 	var/global/list/gun_choices
 
 /obj/item/weapon/gun/energy/chameleon/New()
 	..()
-	
+
 	if(!gun_choices)
 		gun_choices = list()
 		for(var/gun_type in typesof(/obj/item/weapon/gun/) - src.type)
