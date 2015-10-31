@@ -29,9 +29,9 @@
 	//It should be used purely for appearance. For gameplay effects caused by items covering body parts, use body_parts_covered.
 	var/flags_inv = 0
 	var/body_parts_covered = 0 //see setup.dm for appropriate bit flags
-
+	
 	var/item_flags = 0 //Miscellaneous flags pertaining to equippable objects.
-
+	
 	//var/heat_transfer_coefficient = 1 //0 prevents all transfers, 1 is invisible
 	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
 	var/permeability_coefficient = 1 // for chemicals/diseases
@@ -293,12 +293,12 @@ var/list/global/slot_flags_enumeration = list(
 	//Next check that the slot is free
 	if(H.get_equipped_item(slot))
 		return 0
-/*
+
 	//Next check if the slot is accessible.
 	var/mob/_user = disable_warning? null : H
 	if(!H.slot_is_accessible(slot, src, _user))
 		return 0
-*/
+
 	//Lastly, check special rules for the desired slot.
 	switch(slot)
 		if(slot_l_ear, slot_r_ear)
@@ -364,10 +364,8 @@ var/list/global/slot_flags_enumeration = list(
 
 	if(!canremove)
 		return 0
-/*
 	if(!M.slot_is_accessible(slot, src, disable_warning? null : M))
 		return 0
-*/
 	return 1
 
 /obj/item/verb/verb_pickup()
