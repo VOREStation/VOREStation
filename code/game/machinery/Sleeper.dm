@@ -1,3 +1,38 @@
+/obj/machinery/sleep_console
+	name = "Sleeper Console"
+	icon = 'icons/obj/Cryogenic2.dmi'
+	icon_state = "sleeperconsole"
+	var/obj/machinery/sleeper/connected = null
+	anchored = 1 //About time someone fixed this.
+	density = 0
+	dir = 8
+	use_power = 1
+	idle_power_usage = 40
+	interact_offline = 1
+
+/obj/machinery/sleep_console/New()
+	..()
+	spawn( 5 )
+		src.connected = locate(/obj/machinery/sleeper, get_step(src, WEST)) //We assume dir = 8 so sleeper is WEST. Other sprites do exist.
+		return
+	return
+
+/obj/machinery/sleep_console/attack_ai(var/mob/user)
+	return attack_hand(user)
+
+/obj/machinery/sleep_console/attack_hand(var/mob/user)
+	if(..())
+		return 1
+
+	connected.ui_interact(user)
+
+/obj/machinery/sleep_console/power_change()
+	..()
+	if(stat & (NOPOWER|BROKEN))
+		icon_state = "sleeperconsole-p"
+	else
+		icon_state = initial(icon_state)
+
 /obj/machinery/sleeper
 	name = "sleeper"
 	desc = "A fancy bed with built-in injectors, a dialysis machine, and a limited health scanner."
@@ -39,12 +74,6 @@
 
 /obj/machinery/sleeper/update_icon()
 	icon_state = "sleeper_[occupant ? "1" : "0"]"
-
-/obj/machinery/sleeper/attack_hand(var/mob/user)
-	if(..())
-		return 1
-
-	ui_interact(user)
 
 /obj/machinery/sleeper/ui_interact(var/mob/user, var/ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = outside_state)
 	var/data[0]
@@ -116,9 +145,6 @@
 				inject_chemical(usr, href_list["chemical"], text2num(href_list["amount"]))
 
 	return 1
-
-/obj/machinery/sleeper/attack_ai(var/mob/user)
-	return attack_hand(user)
 
 /obj/machinery/sleeper/attackby(var/obj/item/I, var/mob/user)
 	add_fingerprint(user)
