@@ -57,11 +57,11 @@ var/list/slot_equipment_priority = list( \
 		slot_l_store,\
 		slot_r_store\
 	)
-
+/*
 //Checks if a given slot can be accessed at this time, either to equip or unequip I
 /mob/proc/slot_is_accessible(var/slot, var/obj/item/I, mob/user=null)
 	return 1
-
+*/
 //puts the item "W" into an appropriate slot in a human's inventory
 //returns 0 if it cannot, 1 if successful
 /mob/proc/equip_to_appropriate_slot(obj/item/W)
