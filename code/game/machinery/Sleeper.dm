@@ -10,12 +10,21 @@
 	idle_power_usage = 40
 	interact_offline = 1
 
+//obj/machinery/sleep_console/New()
+	//..()
+	//spawn( 5 )
+		//src.connected = locate(/obj/machinery/sleeper, get_step(src, WEST)) //We assume dir = 8 so sleeper is WEST. Other sprites do exist.
+		//return
+	//return
+
 /obj/machinery/sleep_console/New()
 	..()
-	spawn( 5 )
-		src.connected = locate(/obj/machinery/sleeper, get_step(src, WEST)) //We assume dir = 8 so sleeper is WEST. Other sprites do exist.
+	spawn(5)
+		//src.machine = locate(/obj/machinery/mineral/processing_unit, get_step(src, machinedir))
+		src.connected = locate(/obj/machinery/sleeper) in range(2,src)
 		return
 	return
+
 
 /obj/machinery/sleep_console/attack_ai(var/mob/user)
 	return attack_hand(user)
