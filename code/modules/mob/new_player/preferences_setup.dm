@@ -211,18 +211,18 @@ datum/preferences
 			preview_icon.Blend(temp, ICON_OVERLAY)
 
 		// Skin color
-		if(current_species && (current_species.flags & HAS_SKIN_COLOR))
+		if(current_species && (current_species.appearance_flags & HAS_SKIN_COLOR))
 			preview_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
 
 		// Skin tone
-		if(current_species && (current_species.flags & HAS_SKIN_TONE))
+		if(current_species && (current_species.appearance_flags & HAS_SKIN_TONE))
 			if (s_tone >= 0)
 				preview_icon.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
 			else
 				preview_icon.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
 
 		var/icon/eyes_s = new/icon("icon" = 'icons/mob/human_face.dmi', "icon_state" = current_species ? current_species.eyes : "eyes_s")
-		if ((current_species && (current_species.flags & HAS_EYE_COLOR)))
+		if ((current_species && (current_species.appearance_flags & HAS_EYE_COLOR)))
 			eyes_s.Blend(rgb(r_eyes, g_eyes, b_eyes), ICON_ADD)
 
 		var/datum/sprite_accessory/hair_style = hair_styles_list[h_style]
@@ -238,15 +238,16 @@ datum/preferences
 			eyes_s.Blend(facial_s, ICON_OVERLAY)
 
 		var/icon/underwear_s = null
-		if(underwear && current_species.flags & HAS_UNDERWEAR)
+		if(underwear && current_species.appearance_flags & HAS_UNDERWEAR)
+//		if(underwear)
 			underwear_s = new/icon("icon" = 'icons/mob/human.dmi', "icon_state" = underwear)
 
 		var/icon/undershirt_s = null
-		if(undershirt && current_species.flags & HAS_UNDERWEAR)
+		if(undershirt && current_species.appearance_flags & HAS_UNDERWEAR)
 			undershirt_s = new/icon("icon" = 'icons/mob/human.dmi', "icon_state" = undershirt)
 
 		var/icon/socks_s = null
-		if(socks && current_species.flags & HAS_UNDERWEAR)
+		if(socks && current_species.appearance_flags & HAS_UNDERWEAR)
 			socks_s = new/icon("icon" = 'icons/mob/human.dmi', "icon_state" = socks)
 
 		var/icon/clothes_s = null
