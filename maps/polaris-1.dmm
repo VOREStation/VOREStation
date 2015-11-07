@@ -4681,7 +4681,7 @@
 "bMa" = (/obj/structure/filingcabinet/chestdrawer,/obj/effect/floor_decal/corner/purple{dir = 9},/turf/simulated/floor/tiled/white,/area/rnd/rdoffice)
 "bMb" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/turf/simulated/floor/tiled/white,/area/rnd/rdoffice)
 "bMc" = (/turf/simulated/floor/tiled/white,/area/rnd/rdoffice)
-"bMd" = (/obj/structure/lamarr,/turf/simulated/floor/tiled/dark,/area/rnd/rdoffice)
+"bMd" = (/turf/simulated/floor/tiled/dark,/area/rnd/rdoffice)
 "bMe" = (/obj/structure/table/standard,/obj/item/device/mmi,/obj/item/device/mmi,/obj/item/device/mmi,/obj/structure/extinguisher_cabinet{pixel_x = -27},/turf/simulated/floor/tiled,/area/assembly/robotics)
 "bMf" = (/turf/simulated/floor/tiled,/area/assembly/robotics)
 "bMg" = (/obj/effect/floor_decal/industrial/outline/yellow,/turf/simulated/floor/tiled,/area/assembly/robotics)
