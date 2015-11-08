@@ -342,18 +342,17 @@ var/global/list/gear_datums = list()
 	allowed_roles = list("Security Officer","Head of Security","Warden")
 
 /datum/gear/thugshades
-	display_name = "Sunglasses, Fat"
+	display_name = "Sunglasses, Fat (Security)"
 	path = /obj/item/clothing/glasses/sunglasses/big
 	cost = 1
 	slot = slot_glasses
-	allowed_roles = list("Security Officer","Head of Security","Warden","Detective","Internal Affairs Agent","Quartermaster","Head of Personnel","Captain")
+	allowed_roles = list("Security Officer","Head of Security","Warden")
 
 /datum/gear/prescriptionsun
 	display_name = "sunglasses, presciption"
 	path = /obj/item/clothing/glasses/sunglasses/prescription
 	cost = 2
 	slot = slot_glasses
-	allowed_roles = list("Security Officer","Head of Security","Warden","Detective","Internal Affairs Agent","Quartermaster","Head of Personnel","Captain")
 
 // Mask
 

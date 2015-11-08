@@ -105,60 +105,26 @@
 	qdel(src)
 */
 
-/client/proc/spawn_tanktransferbomb()
-	set category = "Debug"
-	set desc = "Spawn a tank transfer valve bomb"
-	set name = "Instant TTV"
-
-	if(!check_rights(R_SPAWN)) return
-	
-	var/obj/effect/spawner/newbomb/proto = /obj/effect/spawner/newbomb/radio/custom
-	
-	var/p = input("Enter phoron amount (mol):","Phoron", initial(proto.phoron_amt)) as num|null
-	if(p == null) return
-	
-	var/o = input("Enter oxygen amount (mol):","Oxygen", initial(proto.oxygen_amt)) as num|null
-	if(o == null) return
-	
-	var/c = input("Enter carbon dioxide amount (mol):","Carbon Dioxide", initial(proto.carbon_amt)) as num|null
-	if(c == null) return
-
-	new /obj/effect/spawner/newbomb/radio/custom(get_turf(mob), p, o, c)
-
 /obj/effect/spawner/newbomb
-	name = "TTV bomb"
+	name = "bomb"
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x"
-	
-	var/assembly_type = /obj/item/device/assembly/signaler
-	
-	//Note that the maximum amount of gas you can put in a 70L air tank at 1013.25 kPa and 519K is 16.44 mol.
-	var/phoron_amt = 10.96
-	var/oxygen_amt = 16.44
-	var/carbon_amt = 0.0
+	var/btype = 0 // 0=radio, 1=prox, 2=time
 
-/obj/effect/spawner/newbomb/timer
-	name = "TTV bomb - timer"
-	assembly_type = /obj/item/device/assembly/timer
+	timer
+		btype = 2
 
-/obj/effect/spawner/newbomb/timer/syndicate
-	name = "TTV bomb - merc"
-	//High yield bombs. Yes, it is possible to make these with toxins
-	phoron_amt = 15.66
-	oxygen_amt = 24.66
+		syndicate
 
-/obj/effect/spawner/newbomb/proximity
-	name = "TTV bomb - proximity"
-	assembly_type = /obj/item/device/assembly/prox_sensor
+	proximity
+		btype = 1
 
-/obj/effect/spawner/newbomb/radio/custom/New(var/newloc, ph, ox, co)
-	if(ph != null) phoron_amt = ph
-	if(ox != null) oxygen_amt = ox
-	if(co != null) carbon_amt = co
+	radio
+		btype = 0
+
+
+/obj/effect/spawner/newbomb/New()
 	..()
-
-/obj/effect/spawner/newbomb/New(newloc)
-	..(newloc)
 
 	var/obj/item/device/transfer_valve/V = new(src.loc)
 	var/obj/item/weapon/tank/phoron/PT = new(V)
@@ -171,15 +137,28 @@
 	OT.master = V
 
 	PT.air_contents.temperature = PHORON_FLASHPOINT
-	PT.air_contents.gas["phoron"] = phoron_amt
-	PT.air_contents.gas["carbon_dioxide"] = carbon_amt
-	PT.air_contents.update_values()
+	PT.air_contents.adjust_multi("phoron", 12, "carbon_dioxide", 8)
 
 	OT.air_contents.temperature = PHORON_FLASHPOINT
-	OT.air_contents.gas["oxygen"] = oxygen_amt
-	OT.air_contents.update_values()
+	OT.air_contents.adjust_gas("oxygen", 20)
 
-	var/obj/item/device/assembly/S = new assembly_type(V)
+	var/obj/item/device/assembly/S
+
+	switch (src.btype)
+		// radio
+		if (0)
+
+			S = new/obj/item/device/assembly/signaler(V)
+
+		// proximity
+		if (1)
+
+			S = new/obj/item/device/assembly/prox_sensor(V)
+
+		// timer
+		if (2)
+
+			S = new/obj/item/device/assembly/timer(V)
 
 
 	V.attached_device = S

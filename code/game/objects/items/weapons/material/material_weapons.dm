@@ -64,8 +64,9 @@
 	processing_objects -= src
 	..()
 
-/obj/item/weapon/material/apply_hit_effect()
-	..()
+/obj/item/weapon/material/attack()
+	if(!..())
+		return
 	if(!unbreakable)
 		if(material.is_brittle())
 			health = 0

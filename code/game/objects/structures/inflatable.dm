@@ -40,7 +40,7 @@
 /obj/structure/inflatable/bullet_act(var/obj/item/projectile/Proj)
 	var/proj_damage = Proj.get_structure_damage()
 	if(!proj_damage) return
-
+	
 	health -= proj_damage
 	..()
 	if(health <= 0)
@@ -82,9 +82,6 @@
 	if(health <= 0)
 		deflate(1)
 
-/obj/structure/inflatable/CtrlClick()
-	hand_deflate()
-
 /obj/structure/inflatable/proc/deflate(var/violent=0)
 	playsound(loc, 'sound/machines/hiss.ogg', 75, 1)
 	if(violent)
@@ -105,7 +102,7 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(isobserver(usr) || usr.restrained() || !usr.Adjacent(src))
+	if(isobserver(usr)) //to stop ghosts from deflating
 		return
 
 	verbs -= /obj/structure/inflatable/verb/hand_deflate

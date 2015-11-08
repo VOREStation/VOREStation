@@ -242,7 +242,19 @@
 	return ..()
 
 /datum/species/diona/handle_death(var/mob/living/carbon/human/H)
-	H.diona_split_into_nymphs(0)
+
+	var/mob/living/carbon/alien/diona/S = new(get_turf(H))
+
+	if(H.mind)
+		H.mind.transfer_to(S)
+
+	for(var/mob/living/carbon/alien/diona/D in H.contents)
+		if(D.client)
+			D.loc = H.loc
+		else
+			qdel(D)
+
+	H.visible_message("<span class='danger'>[H] splits apart with a wet slithering noise!</span>")
 
 /datum/species/machine
 	name = "Machine"
@@ -269,8 +281,6 @@
 	show_ssd = "flashing a 'system offline' glyph on their monitor"
 	death_message = "gives one shrill beep before falling lifeless."
 	knockout_message = "encounters a hardware fault and suddenly reboots!"
-	halloss_message = "encounters a hardware fault and suddenly reboots."
-	halloss_message_self = "ERROR: Unrecoverable machine check exception.<BR>System halted, rebooting..."
 
 	warning_low_pressure = 50
 	hazard_low_pressure = 0
