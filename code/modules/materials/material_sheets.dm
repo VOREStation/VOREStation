@@ -65,10 +65,9 @@
 	var/obj/item/stack/material/M = S
 	if(!istype(M) || material.name != M.material.name)
 		return 0
-	var/transfer = ..(S,tamount,1)
+	..(S,tamount,1)
 	if(src) update_strings()
 	if(M) M.update_strings()
-	return transfer
 
 /obj/item/stack/material/attack_self(var/mob/user)
 	if(!material.build_windows(user, src))

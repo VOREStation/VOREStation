@@ -25,10 +25,7 @@
 		if(standard_feed_mob(user, M))
 			return
 
-	afterattack(var/obj/target, var/mob/user, var/proximity)
-		if(!proximity)
-			return
-	
+	afterattack(var/obj/target, var/mob/user, var/flag)
 		if(standard_dispenser_refill(user, target))
 			return
 		if(standard_pour_into(user, target))

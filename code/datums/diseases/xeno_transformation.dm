@@ -53,12 +53,9 @@
 			affected_mob.updatehealth()
 			if(prob(40))
 				if(gibbed != 0) return 0
+				var/turf/T = find_loc(affected_mob)
+				gibs(T)
 				src.cure(0)
 				gibbed = 1
-				var/mob/living/carbon/human/H = affected_mob
-				if(istype(H))
-					var/turf/origin = find_loc(affected_mob)
-					gibs(origin)
-					H.set_species("Xenomorph [pick(list("Hunter","Sentinel","Drone"))]")
-					return
-				affected_mob.gib()
+				affected_mob:Alienize()
+

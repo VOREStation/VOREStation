@@ -263,6 +263,9 @@
 		return 1
 	return 0
 
+/obj/item/weapon/holo/esword/attack(target as mob, mob/user as mob)
+	..()
+
 /obj/item/weapon/holo/esword/New()
 	item_color = pick("red","blue","green","purple")
 
