@@ -85,7 +85,7 @@
 
 /datum/game_mode/malfunction/verb/advanced_encryption_hack()
 	set category = "Software"
-	set name = "Advanced Encryption Hack"
+	set name = "Advanced Encrypthion Hack"
 	set desc = "75 CPU - Attempts to bypass encryption on the Command Quantum Relay, giving you ability to fake legitimate messages. Has chance of failing."
 	var/price = 75
 	var/mob/living/silicon/ai/user = usr
@@ -106,12 +106,15 @@
 			announce_hack_failure(user, "quantum message relay")
 		return
 
-	command_announcement.Announce(text, title)
+	var/datum/announcement/priority/command/AN = new/datum/announcement/priority/command()
+	AN.title = title
+	AN.Announce(text)
+
 
 /datum/game_mode/malfunction/verb/elite_encryption_hack()
 	set category = "Software"
 	set name = "Elite Encryption Hack"
-	set desc = "200 CPU - Allows you to hack station's ALERTCON system, changing alert level. Has high chance of failing."
+	set desc = "200 CPU - Allows you to hack station's ALERTCON system, changing alert level. Has high chance of failijng."
 	var/price = 200
 	var/mob/living/silicon/ai/user = usr
 	if(!ability_prechecks(user, price))

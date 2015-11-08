@@ -163,8 +163,6 @@ Please contact me on #coderbus IRC. ~Carn x
 		icon = stand_icon
 		for(var/image/I in overlays_standing)
 			overlays += I
-		if(species.has_floating_eyes)
-			overlays |= species.get_eyes(src)
 
 	if(lying && !species.prone_icon) //Only rotate them if we're not drawing a specific icon for being prone.
 		var/matrix/M = matrix()
@@ -339,7 +337,7 @@ var/global/list/damage_icon_parts = list()
 	if(undershirt && species.appearance_flags & HAS_UNDERWEAR)
 		stand_icon.Blend(new /icon('icons/mob/human.dmi', undershirt), ICON_OVERLAY)
 
-	if(socks && species.appearance_flags & HAS_UNDERWEAR)
+	if(socks && species.flags & HAS_UNDERWEAR)
 		stand_icon.Blend(new /icon('icons/mob/human.dmi', socks), ICON_OVERLAY)
 
 	if(update_icons)

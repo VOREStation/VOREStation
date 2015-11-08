@@ -82,7 +82,6 @@
 
 // Click cooldown
 #define DEFAULT_ATTACK_COOLDOWN 8 //Default timeout for aggressive actions
-#define DEFAULT_QUICK_COOLDOWN  4
 
 
 #define MIN_SUPPLIED_LAW_NUMBER 15
@@ -115,13 +114,3 @@
 #define MOB_SMALL 		10
 #define MOB_TINY 		5
 #define MOB_MINISCULE	1
-
-#define TINT_NONE 0
-#define TINT_MODERATE 1
-#define TINT_HEAVY 2
-#define TINT_BLIND 3
-
-#define FLASH_PROTECTION_REDUCED -1
-#define FLASH_PROTECTION_NONE 0
-#define FLASH_PROTECTION_MODERATE 1
-#define FLASH_PROTECTION_MAJOR 2

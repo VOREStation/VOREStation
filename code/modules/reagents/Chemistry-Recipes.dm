@@ -1094,7 +1094,7 @@
 	var/list/borks = typesof(/obj/item/weapon/reagent_containers/food/snacks) - /obj/item/weapon/reagent_containers/food/snacks
 	playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
 	for(var/mob/living/carbon/human/M in viewers(get_turf(holder.my_atom), null))
-		if(M.eyecheck() < FLASH_PROTECTION_MODERATE)
+		if(M.eyecheck() <= 0)
 			flick("e_flash", M.flash)
 
 	for(var/i = 1, i <= 4 + rand(1,2), i++)

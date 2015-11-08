@@ -9,17 +9,14 @@
 
 	..()
 
-	if (stat != DEAD && can_progress())
+	if (stat != DEAD) //still breathing
+		// GROW!
 		update_progression()
 
 	blinded = null
 
 	//Status updates, death etc.
 	update_icons()
-
-/mob/living/carbon/alien/proc/can_progress()
-	return 1
-
 
 /mob/living/carbon/alien/handle_mutations_and_radiation()
 
@@ -161,7 +158,7 @@
 		adjustFireLoss((environment.temperature - (T0C+66))/5) // Might be too high, check in testing.
 		if (fire) fire.icon_state = "fire2"
 		if(prob(20))
-			src << "<span class='danger'>You feel a searing heat!</span>"
+			src << "\red You feel a searing heat!"
 	else
 		if (fire) fire.icon_state = "fire0"
 

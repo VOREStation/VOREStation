@@ -22,6 +22,7 @@
 
 	var/obj/item/inventory_head
 	var/obj/item/inventory_back
+	var/facehugger
 
 //IAN! SQUEEEEEEEEE~
 /mob/living/simple_animal/corgi/Ian
@@ -122,6 +123,13 @@
 		var/icon/back_icon = image('icons/mob/corgi_back.dmi',back_icon_state)
 		if(back_icon)
 			overlays += back_icon
+
+	if(facehugger)
+		if(istype(src, /mob/living/simple_animal/corgi/puppy))
+			overlays += image('icons/mob/mask.dmi',"facehugger_corgipuppy")
+		else
+			overlays += image('icons/mob/mask.dmi',"facehugger_corgi")
+
 	return
 
 

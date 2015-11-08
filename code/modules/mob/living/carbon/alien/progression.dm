@@ -1,7 +1,7 @@
 /mob/living/carbon/alien/verb/evolve()
 
-	set name = "Moult"
-	set desc = "Moult your skin and become an adult."
+	set name = "Evolve"
+	set desc = "Evolve into your adult form."
 	set category = "Abilities"
 
 	if(stat != CONSCIOUS)
@@ -12,11 +12,11 @@
 		return
 
 	if(handcuffed || legcuffed)
-		src << "<span class='warning'>You cannot evolve when you are cuffed.</span>"
+		src << "\red You cannot evolve when you are cuffed."
 		return
 
 	if(amount_grown < max_grown)
-		src << "<span class='warning'>You are not fully grown.</span>"
+		src << "\red You are not fully grown."
 		return
 
 	// confirm_evolution() handles choices and other specific requirements.
@@ -27,7 +27,6 @@
 	var/mob/living/carbon/human/adult = new adult_form(get_turf(src))
 	adult.set_species(new_species)
 	show_evolution_blurb()
-	// TODO: drop a moulted skin. Ew.
 
 	if(mind)
 		mind.transfer_to(adult)
