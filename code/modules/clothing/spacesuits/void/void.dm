@@ -8,6 +8,8 @@
 	armor = list(melee = 40, bullet = 5, laser = 20,energy = 5, bomb = 35, bio = 100, rad = 20)
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 
+	flags_inv = HIDEEARS | BLOCKHAIR
+
 	//Species-specific stuff.
 	species_restricted = list("Human")
 	sprite_sheets_refit = list(
