@@ -33,7 +33,4 @@ delete-after: True
 # Also, all entries are changed into a single [] after a master changelog generation. Just remove the brackets when you add new entries.
 # Please surround your changes in  double quotes ("), as certain characters otherwise screws up compiling. The quotes will not show up in the changelog.
 changes: 
-  - rscadd: "Light replacers can be refilled by clicking on a storage item."
-  - tweak: "Light replacers now hold up to 32 light bulbs."
-  - tweak: "Light replacers can be obtained through janitorial supply crates."
-  - tweak: "A sheet of glass fills the light replacer by 16 bulbs."
+  - tweak: "Mobs on help intent will not push others that aren't."
