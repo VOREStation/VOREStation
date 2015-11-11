@@ -198,6 +198,9 @@
 			if(covered)
 				H << "<span class='danger'>[pick(heat_discomfort_strings)]</span>"
 
+/datum/species/proc/sanitize_name(var/name)
+	return sanitizeName(name)
+
 /datum/species/proc/get_random_name(var/gender)
 	if(!name_language)
 		if(gender == FEMALE)
