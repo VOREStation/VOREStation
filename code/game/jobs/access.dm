@@ -197,13 +197,13 @@
 	return botcard
 
 /mob/living/carbon/human/GetIdCard()
+	if(get_active_hand())
+		var/obj/item/I = get_active_hand()
+		return I.GetID()
 	if(wear_id)
 		var/id = wear_id.GetID()
 		if(id)
 			return id
-	if(get_active_hand())
-		var/obj/item/I = get_active_hand()
-		return I.GetID()
 
 /mob/living/silicon/GetIdCard()
 	return idcard
