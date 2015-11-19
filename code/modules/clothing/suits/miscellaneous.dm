@@ -554,8 +554,7 @@
 	icon_state = "generic_hood"
 	body_parts_covered = HEAD
 	cold_protection = HEAD
-	flags = BLOCKHAIR
-	flags_inv = HIDEEARS
+	flags_inv = HIDEEARS | BLOCKHAIR
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/captain
