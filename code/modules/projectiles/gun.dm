@@ -15,7 +15,7 @@
 
 	for(var/propname in properties)
 		var/propvalue = properties[propname]
-		
+
 		if(propname == "mode_name")
 			name = propvalue
 		if(isnull(propvalue))
@@ -63,6 +63,7 @@
 	var/scoped_accuracy = null
 	var/list/burst_accuracy = list(0) //allows for different accuracies for each shot in a burst. Applied on top of accuracy
 	var/list/dispersion = list(0)
+	var/mode_name = null
 
 	var/next_fire_time = 0
 
@@ -384,7 +385,7 @@
 	return new_mode
 
 /obj/item/weapon/gun/attack_self(mob/user)
-	var/datum/firemode/new_mode = switch_firemodes(user)
-	if(new_mode)
-		user << "<span class='notice'>\The [src] is now set to [new_mode.name].</span>"
+	switch_firemodes(user)
+	if(firemodes.len > 1)
+		user << "<span class='notice'>\The [src] is now set to [mode_name].</span>"
 
