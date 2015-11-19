@@ -199,7 +199,9 @@
 /mob/living/carbon/human/GetIdCard()
 	if(get_active_hand())
 		var/obj/item/I = get_active_hand()
-		return I.GetID()
+		var/id = I.GetID()
+		if(id)
+			return id
 	if(wear_id)
 		var/id = wear_id.GetID()
 		if(id)
