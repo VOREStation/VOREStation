@@ -5,12 +5,14 @@
 /datum/category_item/player_setup_item/general/equipment/load_character(var/savefile/S)
 	S["underwear"]	>> pref.underwear
 	S["undershirt"]	>> pref.undershirt
+	S["socks"]		>> pref.socks
 	S["backbag"]	>> pref.backbag
 	S["gear"]		>> pref.gear
 
 /datum/category_item/player_setup_item/general/equipment/save_character(var/savefile/S)
 	S["underwear"]	<< pref.underwear
 	S["undershirt"]	<< pref.undershirt
+	S["socks"]		<< pref.socks
 	S["backbag"]	<< pref.backbag
 	S["gear"]		<< pref.gear
 
@@ -24,6 +26,8 @@
 		pref.underwear = undies[1]
 	if(!get_key_by_value(undershirt_t, pref.undershirt))
 		pref.undershirt = undershirt_t[1]
+	if(!get_key_by_value(socks_t, pref.socks))
+		pref.socks = socks_t[1]
 
 	var/total_cost = 0
 	for(var/gear_name in pref.gear)
@@ -42,6 +46,7 @@
 	. += "<b>Equipment Loadout:</b><br>"
 	. += "Underwear: <a href='?src=\ref[src];change_underwear=1'><b>[get_key_by_value(get_undies(),pref.underwear)]</b></a><br>"
 	. += "Undershirt: <a href='?src=\ref[src];change_undershirt=1'><b>[get_key_by_value(undershirt_t,pref.undershirt)]</b></a><br>"
+	. += "Socks: <a href='?src=\ref[src];change_socks=1'><b>[get_key_by_value(socks_t,pref.socks)]</b></a><br>"
 	. += "Backpack Type: <a href='?src=\ref[src];change_backpack=1'><b>[backbaglist[pref.backbag]]</b></a><br>"
 
 	. += "<br><b>Custom Loadout:</b><br>"
@@ -90,6 +95,12 @@
 		var/new_undershirt = input(user, "Choose your character's undershirt:", "Character Preference", get_key_by_value(undershirt_t,pref.undershirt)) as null|anything in undershirt_t
 		if(!isnull(new_undershirt) && CanUseTopic(user))
 			pref.undershirt = undershirt_t[new_undershirt]
+			return TOPIC_REFRESH
+
+	else if(href_list["change_socks"])
+		var/new_socks = input(user, "Choose your character's socks:", "Character Preference", get_key_by_value(socks_t,pref.socks)) as null|anything in socks_t
+		if(!isnull(new_socks) && CanUseTopic(user))
+			pref.socks = socks_t[new_socks]
 			return TOPIC_REFRESH
 
 	else if(href_list["change_backpack"])
