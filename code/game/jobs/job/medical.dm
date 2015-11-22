@@ -128,7 +128,7 @@
 		return 1
 
 
-
+/* I'm commenting out Geneticist so you can't actually see it in the job menu, given that you can't play as one - Jon.
 /datum/job/geneticist
 	title = "Geneticist"
 	flag = GENETICIST
@@ -156,6 +156,7 @@
 		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/toggle/labcoat/genetics(H), slot_wear_suit)
 		H.equip_to_slot_or_del(new /obj/item/device/flashlight/pen(H), slot_s_store)
 		return 1
+*/
 
 /datum/job/psychiatrist
 	title = "Psychiatrist"
