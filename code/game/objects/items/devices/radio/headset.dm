@@ -20,6 +20,7 @@
 
 /obj/item/device/radio/headset/New()
 	..()
+	internal_channels.Cut()
 	if(ks1type)
 		keyslot1 = new ks1type(src)
 	if(ks2type)
@@ -31,13 +32,16 @@
 	qdel(keyslot2)
 	keyslot1 = null
 	keyslot2 = null
-	..()
+	return ..()
+
+/obj/item/device/radio/headset/list_channels(var/mob/user)
+	return list_secure_channels()
 
 /obj/item/device/radio/headset/examine(mob/user)
 	if(!(..(user, 1) && radio_desc))
 		return
 
-	user << "The following channels are built-in:"
+	user << "The following channels are available:"
 	user << radio_desc
 
 /obj/item/device/radio/headset/handle_message_mode(mob/living/M as mob, message, channel)
@@ -260,13 +264,6 @@
 	icon_state = "mine_headset"
 	item_state = "headset"
 	keyslot2 = new /obj/item/device/encryptionkey/headset_mine
-
-/obj/item/device/radio/headset/heads/qm
-	name = "quartermaster's headset"
-	desc = "The headset of the man who control your toiletpaper supply. To access the cargo channel, use :q. For mining, use :d."
-	icon_state = "cargo_headset"
-	item_state = "headset"
-	keyslot2 = new /obj/item/device/encryptionkey/heads/qm
 */
 /obj/item/device/radio/headset/headset_cargo
 	name = "supply radio headset"
