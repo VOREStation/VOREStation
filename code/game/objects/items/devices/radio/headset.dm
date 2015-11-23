@@ -264,7 +264,7 @@
 	icon_state = "mine_headset"
 	item_state = "headset"
 	keyslot2 = new /obj/item/device/encryptionkey/headset_mine
-
+*/
 /obj/item/device/radio/headset/headset_cargo
 	name = "supply radio headset"
 	desc = "A headset used by the QM and his slaves."
