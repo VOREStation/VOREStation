@@ -68,30 +68,30 @@ var/global/list/Holiday = list() //Holidays are lists now, so we can have more t
 					shamrocks, attending parades, and drinking alcohol."
 				if(27)
 					if(YY == 16)
-						Holiday["Easter"]
+						Holiday["Easter"] = ""
 				if(31)
 					if(YY == 13)
-						Holiday["Easter"]
+						Holiday["Easter"] = ""
 
 		if(4)	//Apr
 			switch(DD)
 				if(1)
 					Holiday["April Fool's Day"] = "An old holiday that endevours one to pull pranks and spread hoaxes on their friends."
 					if(YY == 18)
-						Holiday["Easter"]
+						Holiday["Easter"] = ""
 				if(7)
 					Holiday["Tajaran Independence Day"] = "A Tajaran holiday celebrating their independence by winning the \
 					war against the Slavemasters, the former ruling elite that went known as 'The Overseers'."
 				if(8)
 					if(YY == 15)
-						Holiday["Easter"]
+						Holiday["Easter"] = ""
 				if(16)
 					if(YY == 17) //Easter can go die for all of this copypasta.
-						Holiday["Easter"]
+						Holiday["Easter"] = ""
 
 				if(20)
 					if(YY == 14)
-						Holiday["Easter"]
+						Holiday["Easter"] = ""
 				if(22)
 					Holiday["Earth Day"] = "A holiday of enviromentalism, that originated on it's namesake, Earth."
 
@@ -156,8 +156,13 @@ var/global/list/Holiday = list() //Holidays are lists now, so we can have more t
 					Holiday["Kindness Day"] = "Kindness Day is an unofficial holiday to highlight good deeds in the \
 					community, focusing on the positive power and the common thread of kindness which binds humanity and \
 					friends together."
-				if(28) //Space thanksgiving.
-					Holiday["Appreciation Day"] = "Originally an old holiday from Earth, Appreciation Day follows many of the \
+//				if(28) //Space thanksgiving.
+//					Holiday["Appreciation Day"] = "Originally an old holiday from Earth, Appreciation Day follows many of the \
+					traditions that its predecessor did, such as having a large feast (turkey often included), gathering with family, and being thankful \
+					for what one has in life."
+			if(28 > DD > 20)
+				if(time2text(world.timeofday, "Day") == "Thursday")
+					Holiday["Thanksgiving"] = "Originally an old holiday from Earth, Thanksgiving follows many of the \
 					traditions that its predecessor did, such as having a large feast (turkey often included), gathering with family, and being thankful \
 					for what one has in life."
 
@@ -188,8 +193,6 @@ var/global/list/Holiday = list() //Holidays are lists now, so we can have more t
 		if(DD == 13)
 			if(time2text(world.timeofday, "DDD") == "Fri")
 				Holiday["Friday the 13th"] = "Friday the 13th is a superstitious day, associated with bad luck and misfortune."
-	spawn(100)
-		world << Holiday.len
 
 //Allows GA and GM to set the Holiday variable
 /client/proc/Set_Holiday()
