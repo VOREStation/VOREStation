@@ -26,7 +26,7 @@ var/global/datum/locations/milky_way/locations = new()
 		new /datum/locations/uueoa_esa(src),
 		new /datum/locations/vir(src)
 		)
-
+/*
 /datum/locations/proc/show_contents()
 //	world << "[src]\n[desc]"
 	for(var/datum/locations/a in contents)
@@ -55,3 +55,4 @@ var/global/datum/locations/milky_way/locations = new()
 	set category = "Debug"
 	var/location_number = locations.count_locations()
 	world << location_number
+*/
