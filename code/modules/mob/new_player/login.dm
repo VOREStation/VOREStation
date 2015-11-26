@@ -1,5 +1,5 @@
 
-/var/atom/movable/lobby_image = new /atom/movable{icon = 'icons/misc/title.dmi'; icon_state = "title"; screen_loc = "1,1"; name = "Baystation12"}
+/var/atom/movable/lobby_image = new /atom/movable{icon = 'icons/misc/title.dmi'; icon_state = "title"; screen_loc = "1,1"; name = "Polaris"}
 
 /mob/new_player
 	var/client/my_client // Need to keep track of this ourselves, since by the time Logout() is called the client has already been nulled
