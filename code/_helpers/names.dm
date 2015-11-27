@@ -44,7 +44,7 @@ var/religion_name = null
 	return capitalize(name)
 
 /proc/system_name()
-	return "Nyx"
+	return "Vir"
 
 /proc/station_name()
 	if (station_name)
