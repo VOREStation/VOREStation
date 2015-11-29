@@ -181,7 +181,7 @@
 
 /obj/structure/closet/secure_closet/security
 	name = "security officer's locker"
-	req_access = list(access_security)
+	req_access = list(access_brig)
 	icon_state = "sec1"
 	icon_closed = "sec"
 	icon_locked = "sec1"
@@ -278,6 +278,7 @@
 		new /obj/item/clothing/shoes/laceup(src)
 		new /obj/item/weapon/storage/box/evidence(src)
 		new /obj/item/device/radio/headset/headset_sec(src)
+		new /obj/item/device/radio/headset/headset_sec/alt(src)
 		new /obj/item/device/detective_scanner(src)
 		new /obj/item/clothing/suit/storage/vest/detective(src)
 		new /obj/item/ammo_magazine/c45m/rubber(src)
