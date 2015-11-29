@@ -187,6 +187,8 @@
 			target = targloc
 			pointblank = 0
 
+	admin_attack_log(usr, attacker_message="Fired [src]", admin_message="fired a gun ([src]) (MODE: [src.mode_name]) [reflex ? "by reflex" : "manually"].")
+
 	update_held_icon()
 
 	//update timing
