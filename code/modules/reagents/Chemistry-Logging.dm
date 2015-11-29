@@ -18,7 +18,7 @@
 	set name = "Show Chemical Reactions"
 	set category = "Admin"
 
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_ADMIN|R_MOD))
 		return
 
 	var/html = ""
