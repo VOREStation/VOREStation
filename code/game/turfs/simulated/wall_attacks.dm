@@ -12,6 +12,7 @@
 		update_icon()
 		set_light(0)
 		src.blocks_air = 0
+		src.opacity = 0
 		for(var/turf/simulated/turf in loc)
 			air_master.mark_for_update(turf)
 	else
@@ -22,6 +23,7 @@
 		sleep(15)
 		set_light(1)
 		src.blocks_air = 1
+		src.opacity = 1
 		for(var/turf/simulated/turf in loc)
 			air_master.mark_for_update(turf)
 
