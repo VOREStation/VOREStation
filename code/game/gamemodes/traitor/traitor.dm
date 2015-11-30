@@ -1,7 +1,7 @@
 /datum/game_mode/traitor
 	name = "traitor"
 	round_description = "There is a foreign agent or traitor on the station. Do not let the traitor succeed!"
-	extended_round_description = "The Company's monopolistic control over the phoron supplies of Nyx has marked the \
+	extended_round_description = "The Company's majority control of phoron in Vir has marked the \
 		station to be a highly valuable target for many competing organizations and individuals. The varied pasts \
 		and experiences of your coworkers have left them susceptible to the vices and temptations of humanity. \
 		Is the station the safe self-contained workplace you once thought it was, or has it become a playground \
@@ -12,6 +12,7 @@
 		but the painful reminder that space is cruel and unforgiving."
 	config_tag = "traitor"
 	required_players = 0
+	required_players_secret = 5
 	required_enemies = 1
 	end_on_antag_death = 0
 	antag_tags = list(MODE_TRAITOR)
@@ -21,4 +22,5 @@
 	name = "autotraitor"
 	config_tag = "autotraitor"
 	round_autoantag = 1
+	required_players_secret = 3
 	antag_scaling_coeff = 5

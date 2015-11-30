@@ -36,7 +36,7 @@
 		for(var/mob/living/M in aim_targets)
 			if(M)
 				M.NotTargeted(src) //Untargeting people.
-		qdel(aim_targets)
+		aim_targets = null
 
 //Compute how to fire.....
 //Return 1 if a target was found, 0 otherwise.
@@ -60,12 +60,13 @@
 //Aiming at the target mob.
 /obj/item/weapon/gun/proc/Aim(var/mob/living/M)
 	if(!aim_targets || !(M in aim_targets))
+		admin_attack_log(usr, M, "Pointed a [src] at [M]", "Had a [src] aimed at them, by [usr]", "aims a gun ([src]) (MODE: [src.mode_name]) at")
 		lock_time = world.time
 		if(aim_targets && !multi_aim) //If they're targeting someone and they have a non multi_aim weapon.
 			for(var/mob/living/L in aim_targets)
 				if(L)
 					L.NotTargeted(src)
-			qdel(aim_targets)
+			aim_targets = null
 			usr.visible_message("<span class='danger'><b>[usr] turns \the [src] on [M]!</b></span>")
 		else
 			usr.visible_message("<span class='danger'><b>[usr] aims \a [src] at [M]!</b></span>")
@@ -230,13 +231,13 @@
 	targeted_by -= I
 	I.aim_targets.Remove(src) //De-target them
 	if(!I.aim_targets.len)
-		qdel(I.aim_targets)
+		I.aim_targets = null
 	var/mob/living/T = I.loc //Remove the targeting icons
 	if(T && ismob(T) && !I.aim_targets && T.client)
 		T.client.remove_gun_icons()
 	if(!targeted_by.len)
 		qdel(target_locked) //Remove the overlay
-		qdel(targeted_by)
+		targeted_by.Cut()
 	spawn(1) update_targeted()
 
 /mob/living/Move()
