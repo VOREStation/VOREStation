@@ -52,7 +52,7 @@
 
 	attacker.visible_message("<span class='danger'>[attacker] [pick("bent", "twisted")] [target]'s [organ.name] into a jointlock!</span>")
 	var/armor = target.run_armor_check(target, "melee")
-	if(armor < 2)
+	if(armor < 60)
 		target << "<span class='danger'>You feel extreme pain!</span>"
 		affecting.adjustHalLoss(Clamp(0, 60-affecting.halloss, 30)) //up to 60 halloss
 

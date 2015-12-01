@@ -351,6 +351,8 @@ This function restores all organs.
 	return organs_by_name[zone]
 
 /mob/living/carbon/human/apply_damage(var/damage = 0, var/damagetype = BRUTE, var/def_zone = null, var/blocked = 0, var/sharp = 0, var/edge = 0, var/obj/used_weapon = null)
+	if(Debug2)
+		world.log << "## DEBUG: human/apply_damage() was called on [src], with [damage] damage, and an armor value of [blocked]."
 
 	//visible_message("Hit debug. [damage] | [damagetype] | [def_zone] | [blocked] | [sharp] | [used_weapon]")
 
@@ -366,7 +368,8 @@ This function restores all organs.
 	//Handle BRUTE and BURN damage
 	handle_suit_punctures(damagetype, damage, def_zone)
 
-	if(blocked >= 2)	return 0
+	if(blocked >= 100)
+		return 0
 
 	var/obj/item/organ/external/organ = null
 	if(isorgan(def_zone))
@@ -377,7 +380,10 @@ This function restores all organs.
 	if(!organ)	return 0
 
 	if(blocked)
-		damage = (damage/(blocked+1))
+		blocked = (100-blocked)/100
+		damage = (damage * blocked)
+	if(Debug2)
+		world.log << "## DEBUG: [src] was hit for [damage]."
 
 	switch(damagetype)
 		if(BRUTE)
