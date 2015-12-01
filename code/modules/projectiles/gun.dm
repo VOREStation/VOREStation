@@ -187,7 +187,8 @@
 			target = targloc
 			pointblank = 0
 
-	admin_attack_log(usr, attacker_message="Fired [src]", admin_message="fired a gun ([src]) (MODE: [src.mode_name]) [reflex ? "by reflex" : "manually"].")
+//	admin_attack_log(usr, attacker_message="Fired [src]", admin_message="fired a gun ([src]) (MODE: [src.mode_name]) [reflex ? "by reflex" : "manually"].")
+	//Commented out due to potential lag issues, possibly with excess I/O
 
 	update_held_icon()
 
