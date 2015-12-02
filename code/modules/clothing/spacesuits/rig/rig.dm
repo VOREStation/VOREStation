@@ -680,7 +680,8 @@
 	..()
 	for(var/piece in list("helmet","gauntlets","chest","boots"))
 		toggle_piece(piece, user, ONLY_RETRACT)
-	wearer.wearing_rig = null
+	if(wearer && wearer.wearing_rig == src)
+		wearer.wearing_rig = null
 	wearer = null
 
 //Todo
