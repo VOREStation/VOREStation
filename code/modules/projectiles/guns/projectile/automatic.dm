@@ -145,7 +145,7 @@
 	if(use_launcher)
 		launcher.Fire(target, user, params, pointblank, reflex)
 		if(!launcher.chambered)
-			switch_firemodes() //switch back automatically
+			switch_firemodes(user) //switch back automatically
 	else
 		..()
 
