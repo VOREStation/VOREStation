@@ -375,7 +375,7 @@
 		var/datum/firemode/current_mode = firemodes[sel_mode]
 		user << "The fire selector is set to [current_mode.name]."
 
-/obj/item/weapon/gun/proc/switch_firemodes()
+/obj/item/weapon/gun/proc/switch_firemodes(mob/user)
 	if(firemodes.len <= 1)
 		return null
 
@@ -384,11 +384,10 @@
 		sel_mode = 1
 	var/datum/firemode/new_mode = firemodes[sel_mode]
 	new_mode.apply_to(src)
+	user << "<span class='notice'>\The [src] is now set to [mode_name].</span>"
 
 	return new_mode
 
 /obj/item/weapon/gun/attack_self(mob/user)
 	switch_firemodes(user)
-	if(firemodes.len > 1)
-		user << "<span class='notice'>\The [src] is now set to [mode_name].</span>"
 
