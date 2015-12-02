@@ -345,7 +345,7 @@ var/global/datum/controller/gameticker/ticker
 					while(time_left > 0)
 						if(delay_end)
 							break
-						world << "<span class='notice'><b>Restarting in [round(time_left/600)] [round(time_left/600) == 1 ? "minute" : "minutes"].</b></span>"
+						world << "<span class='notice'><b>Restarting in [round(time_left/600)] minute\s.</b></span>"
 						time_left -= 1 MINUTES
 						sleep(600)
 					if(!delay_end)
