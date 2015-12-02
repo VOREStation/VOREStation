@@ -1,7 +1,7 @@
 var/global/datum/controller/gameticker/ticker
 
 /datum/controller/gameticker
-	var/const/restart_timeout = 600
+	var/const/restart_timeout = 5 MINUTES //One minute is 600.
 	var/current_state = GAME_STATE_PREGAME
 
 	var/hide_mode = 0
@@ -326,27 +326,34 @@ var/global/datum/controller/gameticker/ticker
 			spawn(50)
 				callHook("roundend")
 
+				var/time_left
+
 				if (mode.station_was_nuked)
 					feedback_set_details("end_proper","nuke")
+					time_left = 1 MINUTE //No point waiting five minutes if everyone's dead.
 					if(!delay_end)
-						world << "<span class='notice'><b>Rebooting due to destruction of station in [restart_timeout/10] seconds</b></span>"
+						world << "<span class='notice'><b>Rebooting due to destruction of station in [round(time_left/600)] minutes.</b></span>"
 				else
 					feedback_set_details("end_proper","proper completion")
-					if(!delay_end)
-						world << "<span class='notice'><b>Restarting in [restart_timeout/10] seconds</b></span>"
+					time_left = round(restart_timeout)
 
 
 				if(blackbox)
 					blackbox.save_all_data_to_sql()
 
 				if(!delay_end)
-					sleep(restart_timeout)
+					while(time_left > 0)
+						if(delay_end)
+							break
+						world << "<span class='notice'><b>Restarting in [round(time_left/600)] [round(time_left/600) == 1 ? "minute" : "minutes"].</b></span>"
+						time_left -= 1 MINUTES
+						sleep(600)
 					if(!delay_end)
 						world.Reboot()
 					else
-						world << "<span class='notice'><b>An admin has delayed the round end</b></span>"
+						world << "<span class='notice'><b>An admin has delayed the round end.</b></span>"
 				else
-					world << "<span class='notice'><b>An admin has delayed the round end</b></span>"
+					world << "<span class='notice'><b>An admin has delayed the round end.</b></span>"
 
 		else if (mode_finished)
 			post_game = 1
