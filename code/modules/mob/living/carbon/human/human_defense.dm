@@ -156,13 +156,13 @@ emp_act
 		target_zone = user.zone_sel.selecting
 	if(!target_zone)
 		visible_message("<span class='danger'>[user] misses [src] with \the [I]!</span>")
-		return 1
+		return 0
 
 	var/obj/item/organ/external/affecting = get_organ(target_zone)
 
 	if (!affecting || (affecting.status & ORGAN_DESTROYED) || affecting.is_stump())
 		user << "<span class='danger'>They are missing that limb!</span>"
-		return
+		return 0
 
 	var/effective_force = I.force
 	if(user.a_intent == "disarm") effective_force = round(I.force/2)
@@ -196,7 +196,7 @@ emp_act
 		weapon_sharp = 0
 		weapon_edge = 0
 
-	if(armor >= 2)			return 0
+	if(armor >= 100)		return 0
 	if(!effective_force)	return 0
 	var/Iforce = effective_force //to avoid runtimes on the forcesay checks at the bottom. Some items might delete themselves if you drop them. (stunning yourself, ninja swords)
 
@@ -229,7 +229,7 @@ emp_act
 				if(prob(effective_force + 10))
 					apply_effect(6, WEAKEN, armor)
 					visible_message("<span class='danger'>[src] has been knocked down!</span>")
-		
+
 		//Apply blood
 		if(bloody)
 			switch(hit_area)
@@ -313,7 +313,7 @@ emp_act
 		src.visible_message("\red [src] has been hit in the [hit_area] by [O].")
 		var/armor = run_armor_check(affecting, "melee", O.armor_penetration, "Your armor has protected your [hit_area].", "Your armor has softened hit to your [hit_area].") //I guess "melee" is the best fit here
 
-		if(armor < 2)
+		if(armor < 100)
 			apply_damage(throw_damage, dtype, zone, armor, is_sharp(O), has_edge(O), O)
 
 		if(ismob(O.thrower))
