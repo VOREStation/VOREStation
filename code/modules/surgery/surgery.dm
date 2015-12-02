@@ -90,7 +90,6 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		//check if tool is right or close enough and if this step is possible
 		if(S.tool_quality(tool))
 			var/step_is_valid = S.can_use(user, M, zone, tool)
-			world.log << "Is Valid = [step_is_valid]"
 			if(step_is_valid && S.is_valid_target(M))
 				if(step_is_valid == -1) // This is a failure that already has a message for failing.
 					return 1
