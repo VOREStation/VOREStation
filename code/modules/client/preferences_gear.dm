@@ -453,84 +453,98 @@ var/global/list/gear_datums = list()
 	path = /obj/item/clothing/under/rank/chief_engineer/skirt
 	slot = slot_w_uniform
 	cost = 1
+	allowed_roles = list("Chief Engineer")
 
 /datum/gear/skirt_atmos
 	display_name = "skirt, atmos"
 	path = /obj/item/clothing/under/rank/atmospheric_technician/skirt
 	slot = slot_w_uniform
 	cost = 1
+	allowed_roles = list("Chief Engineer","Atmospheric Technician")
 
 /datum/gear/skirt_eng
 	display_name = "skirt, engineer"
 	path = /obj/item/clothing/under/rank/engineer/skirt
 	slot = slot_w_uniform
 	cost = 1
+	allowed_roles = list("Chief Engineer","Station Engineer")
 
 /datum/gear/skirt_cmo
 	display_name = "skirt, cmo"
 	path = /obj/item/clothing/under/rank/chief_medical_officer
 	slot = slot_w_uniform
 	cost = 1
+	allowed_roles = list("Chief Medical Officer")
 
 /datum/gear/skirt_chem
 	display_name = "skirt, chemist"
 	path = /obj/item/clothing/under/rank/chemist/skirt
 	slot = slot_w_uniform
 	cost = 1
+	allowed_roles = list("Chief Medical Officer","Chemist")
 
 /datum/gear/skirt_viro
 	display_name = "skirt, virologist"
 	path = /obj/item/clothing/under/rank/virologist/skirt
 	slot = slot_w_uniform
 	cost = 1
+	allowed_roles = list("Chief Medical Officer","Medical Doctor")
 
 /datum/gear/skirt_med
 	display_name = "skirt, medical"
 	path = /obj/item/clothing/under/rank/medical/skirt
 	slot = slot_w_uniform
 	cost = 1
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Paramedic")
 
 /datum/gear/skirt_sci
 	display_name = "skirt, scientist"
 	path = /obj/item/clothing/under/rank/scientist/skirt
 	slot = slot_w_uniform
 	cost = 1
+	allowed_roles = list("Research Director","Scientist")
 
 /datum/gear/skirt_qm
 	display_name = "skirt, QM"
 	path = /obj/item/clothing/under/rank/cargo/skirt
 	slot = slot_w_uniform
 	cost = 1
+	allowed_roles = list("Quartermaster")
 
 /datum/gear/jeans_qm
 	display_name = "jeans, QM"
 	path = /obj/item/clothing/under/rank/cargo/jeans
 	slot = slot_w_uniform
 	cost = 1
+	allowed_roles = list("Quartermaster")
 
 /datum/gear/jeans_qmf
 	display_name = "female jeans, QM"
 	path = /obj/item/clothing/under/rank/cargo/jeans/female
 	slot = slot_w_uniform
 	cost = 1
+	allowed_roles = list("Quartermaster")
 
 /datum/gear/skirt_cargo
 	display_name = "skirt, cargo"
 	path = /obj/item/clothing/under/rank/cargotech/skirt
 	slot = slot_w_uniform
 	cost = 1
+	allowed_roles = list("Quartermaster","Cargo Technician")
 
 /datum/gear/jeans_cargo
 	display_name = "jeans, cargo"
 	path = /obj/item/clothing/under/rank/cargotech/jeans
 	slot = slot_w_uniform
 	cost = 1
+	allowed_roles = list("Quartermaster","Cargo Technician")
 
 /datum/gear/jeans_cargof
 	display_name = "female jeans, cargo"
 	path = /obj/item/clothing/under/rank/cargotech/jeans/female
 	slot = slot_w_uniform
 	cost = 1
+	allowed_roles = list("Quartermaster","Cargo Technician")
 
 /datum/gear/classicjeans
 	display_name = "pants, classic jeans"
@@ -1240,6 +1254,20 @@ var/global/list/gear_datums = list()
 	slot = slot_wear_suit
 	whitelisted = "Tajara" // You do have a monopoly on a fur suit tho
 
+/datum/gear/forensics/red
+	display_name = "forensics, red"
+	path = /obj/item/clothing/suit/storage/forensics/red/long
+	cost = 2
+	slot = slot_wear_suit
+	allowed_roles = list("Detective")
+
+/datum/gear/forensics/blue
+	display_name = "forensics, blue"
+	path = /obj/item/clothing/suit/storage/forensics/blue/long
+	cost = 2
+	slot = slot_wear_suit
+	allowed_roles = list("Detective")
+
 // Gloves
 
 /datum/gear/black_gloves
@@ -1418,6 +1446,49 @@ var/global/list/gear_datums = list()
 	path = /obj/item/clothing/shoes/yellow
 	cost = 1
 	slot = slot_shoes
+
+/datum/gear/flats_black
+	display_name = "flats, black"
+	path = /obj/item/clothing/shoes/flats
+	cost = 1
+	slot = slot_shoes
+
+/datum/gear/flats_blue
+	display_name = "flats, blue"
+	path = /obj/item/clothing/shoes/flats/blue
+	cost = 1
+	slot = slot_shoes
+
+/datum/gear/flats_brown
+	display_name = "flats, brown"
+	path = /obj/item/clothing/shoes/flats/brown
+	cost = 1
+	slot = slot_shoes
+
+/datum/gear/flats_orange
+	display_name = "flats, orange"
+	path = /obj/item/clothing/shoes/flats/orange
+	cost = 1
+	slot = slot_shoes
+
+/datum/gear/flats_purple
+	display_name = "flats, purple"
+	path = /obj/item/clothing/shoes/flats/purple
+	cost = 1
+	slot = slot_shoes
+
+/datum/gear/flats_red
+	display_name = "flats, red"
+	path = /obj/item/clothing/shoes/flats/red
+	cost = 1
+	slot = slot_shoes
+
+/datum/gear/flats_white
+	display_name = "flats, white"
+	path = /obj/item/clothing/shoes/flats/white
+	cost = 1
+	slot = slot_shoes
+
 
 // "Useful" items - I'm guessing things that might be used at work?
 

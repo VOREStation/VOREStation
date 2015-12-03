@@ -406,6 +406,22 @@
 		name = "Volaju"
 		icon_state = "hair_volaju"
 
+	eighties
+		name = "80's"
+		icon_state = "hair_80s"
+
+	nia
+		name = "Nia"
+		icon_state = "hair_nia"
+
+	unkept
+		name = "Unkept"
+		icon_state = "hair_unkept"
+
+	modern
+		name = "Modern"
+		icon_state = "hair_modern"
+
 	bald
 		name = "Bald"
 		icon_state = "bald"
