@@ -1,7 +1,7 @@
 /datum/power/changeling/space_suit
 	name = "Organic Space Suit"
 	desc = "We grow an organic suit to protect ourselves from space exposure."
-	helptext = "Cannot be used in lesser form.  To remove the suit, use the ability again."
+	helptext = "To remove the suit, use the ability again."
 	genomecost = 1
 	verbpath = /mob/proc/changeling_spacesuit
 
@@ -16,7 +16,7 @@
 /datum/power/changeling/armor
 	name = "Chitinous Spacearmor"
 	desc = "We turn our skin into tough chitin to protect us from damage and space exposure."
-	helptext = "Cannot be used in lesser form.  To remove the armor, use the ability again."
+	helptext = "To remove the armor, use the ability again."
 	genomecost = 3
 	verbpath = /mob/proc/changeling_spacearmor
 
