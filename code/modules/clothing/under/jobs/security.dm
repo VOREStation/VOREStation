@@ -110,6 +110,16 @@
 	worn_state = "det_corporate"
 	desc = "A more modern uniform for corporate investigators."
 
+/obj/item/clothing/under/det/waistcoat
+	icon_state = "detective_waistcoat"
+	worn_state = "detective_waistcoat"
+	desc = "A rumpled white dress shirt paired with well-worn grey slacks, complete with a blue striped tie, faux-gold tie clip, and waistcoat."
+
+/obj/item/clothing/under/det/grey/waistcoat
+	icon_state = "detective2_waistcoat"
+	worn_state = "detective2_waistcoat"
+	desc = "A serious-looking tan dress shirt paired with freshly-pressed black slacks, complete with a red striped tie and waistcoat."
+
 /obj/item/clothing/head/det
 	name = "fedora"
 	desc = "A brown fedora - either the cornerstone of a detective's style or a poor attempt at looking cool, depending on the person wearing it."

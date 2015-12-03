@@ -268,6 +268,8 @@
 		new /obj/item/clothing/under/det(src)
 		new /obj/item/clothing/under/det/grey(src)
 		new /obj/item/clothing/under/det/black(src)
+		new /obj/item/clothing/under/det/waistcoat(src)
+		new /obj/item/clothing/under/det/grey/waistcoat(src)
 		new /obj/item/clothing/suit/storage/det_trench(src)
 		new /obj/item/clothing/suit/storage/det_trench/grey(src)
 		new /obj/item/clothing/suit/storage/forensics/blue(src)
