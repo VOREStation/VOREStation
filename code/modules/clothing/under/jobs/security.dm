@@ -17,7 +17,7 @@
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
 
-/obj/item/clothing/head/warden
+/obj/item/clothing/head/helmet/warden
 	name = "warden's hat"
 	desc = "It's a special helmet issued to the Warden of a securiy force."
 	icon_state = "policehelm"
@@ -155,14 +155,14 @@
 	//item_state = "hos_corporate"
 	worn_state = "hos_corporate"
 
-/obj/item/clothing/head/HoS
+/obj/item/clothing/head/helmet/HoS
 	name = "Head of Security Hat"
 	desc = "The hat of the Head of Security. For showing the officers who's in charge."
 	icon_state = "hoscap"
 	body_parts_covered = 0
 	siemens_coefficient = 0.8
 
-/obj/item/clothing/head/HoS/dermal
+/obj/item/clothing/head/helmet/HoS/dermal
 	name = "Dermal Armour Patch"
 	desc = "You're not quite sure how you manage to take it on and off, but it implants nicely in your head."
 	icon_state = "dermal"
