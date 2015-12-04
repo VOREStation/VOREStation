@@ -16,7 +16,7 @@
 	var/mob/living/carbon/C = M
 	if (istype(C,/mob/living/carbon/human/))
 		var/mob/living/carbon/human/H = C
-		if(!H.should_have_organ("heart"))
+		if(!H.should_have_organ(O_HEART))
 			report("Scan aborted: The target does not have blood.", user)
 			return
 

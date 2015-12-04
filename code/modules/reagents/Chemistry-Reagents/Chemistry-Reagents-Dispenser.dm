@@ -246,7 +246,7 @@
 				if(prob(50))
 					M.apply_effect(50, IRRADIATE, check_protection = 0) // curing it that way may kill you instead
 					var/absorbed = 0
-					var/obj/item/organ/diona/nutrients/rad_organ = locate() in M.internal_organs
+					var/obj/item/organ/internal/diona/nutrients/rad_organ = locate() in M.internal_organs
 					if(rad_organ && !rad_organ.is_broken())
 						absorbed = 1
 					if(!absorbed)
@@ -323,7 +323,7 @@
 	if(!M.unacidable && removed > 0)
 		if(istype(M, /mob/living/carbon/human) && volume >= meltdose)
 			var/mob/living/carbon/human/H = M
-			var/obj/item/organ/external/affecting = H.get_organ("head")
+			var/obj/item/organ/external/affecting = H.get_organ(BP_HEAD)
 			if(affecting)
 				if(affecting.take_damage(0, removed * power * 0.1))
 					H.UpdateDamageIcon()

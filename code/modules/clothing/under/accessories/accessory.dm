@@ -99,7 +99,7 @@
 				var/sound = "heartbeat"
 				var/sound_strength = "cannot hear"
 				var/heartbeat = 0
-				var/obj/item/organ/heart/heart = M.internal_organs_by_name["heart"]
+				var/obj/item/organ/internal/heart/heart = M.internal_organs_by_name[O_HEART]
 				if(heart && !(heart.status & ORGAN_ROBOT))
 					heartbeat = 1
 				if(M.stat == DEAD || (M.status_flags&FAKEDEATH))
@@ -107,7 +107,7 @@
 					sound = "anything"
 				else
 					switch(body_part)
-						if("chest")
+						if(BP_TORSO)
 							sound_strength = "hear"
 							sound = "no heartbeat"
 							if(heartbeat)
@@ -116,14 +116,14 @@
 								else
 									sound = "healthy heartbeat"
 
-							var/obj/item/organ/heart/L = M.internal_organs_by_name["lungs"]
+							var/obj/item/organ/internal/heart/L = M.internal_organs_by_name[O_LUNGS]
 							if(!L || M.losebreath)
 								sound += " and no respiration"
 							else if(M.is_lung_ruptured() || M.getOxyLoss() > 50)
 								sound += " and [pick("wheezing","gurgling")] sounds"
 							else
 								sound += " and healthy respiration"
-						if("eyes","mouth")
+						if(O_EYES,O_MOUTH)
 							sound_strength = "cannot hear"
 							sound = "anything"
 						else

@@ -106,13 +106,14 @@
 	syllables = list("beep","beep","beep","beep","beep","boop","boop","boop","bop","bop","dee","dee","doo","doo","hiss","hss","buzz","buzz","bzz","ksssh","keey","wurr","wahh","tzzz")
 	space_chance = 10
 
+/datum/language/machine/can_speak_special(var/mob/speaker)
+	return speaker.isSynthetic()
+
 /datum/language/machine/get_random_name()
-	var/new_name
 	if(prob(70))
-		new_name = "[pick(list("PBU","HIU","SINA","ARMA","OSI"))]-[rand(100, 999)]"
+		return "[pick(list("PBU","HIU","SINA","ARMA","OSI"))]-[rand(100, 999)]"
 	else
-		new_name = pick(ai_names)
-	return new_name
+		return pick(ai_names)
 
 //Syllable Lists
 /*

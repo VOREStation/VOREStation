@@ -97,33 +97,33 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		var/organ_name = null
 		switch(name)
 
-			if("torso")
+			if(BP_TORSO)
 				organ_name = "torso"
-			if("groin")
+			if(BP_GROIN)
 				organ_name = "groin"
-			if("head")
+			if(BP_HEAD)
 				organ_name = "head"
-			if("l_arm")
+			if(BP_L_ARM)
 				organ_name = "left arm"
-			if("r_arm")
+			if(BP_R_ARM)
 				organ_name = "right arm"
-			if("l_leg")
+			if(BP_L_LEG)
 				organ_name = "left leg"
-			if("r_leg")
+			if(BP_R_LEG)
 				organ_name = "right leg"
-			if("l_foot")
+			if(BP_L_FOOT)
 				organ_name = "left foot"
-			if("r_foot")
+			if(BP_R_FOOT)
 				organ_name = "right foot"
-			if("l_hand")
+			if(BP_L_HAND)
 				organ_name = "left hand"
-			if("r_hand")
+			if(BP_R_HAND)
 				organ_name = "right hand"
-			if("heart")
+			if(O_HEART)
 				organ_name = "heart"
-			if("eyes")
+			if(O_EYES)
 				organ_name = "eyes"
-			if("brain")
+			if(O_BRAIN)
 				organ_name = "brain"
 
 		if(status == "cyborg")
@@ -351,56 +351,73 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		return TOPIC_REFRESH
 
 	else if(href_list["limbs"])
-		var/limb_name = input(user, "Which limb do you want to change?") as null|anything in list("Left Leg","Right Leg","Left Arm","Right Arm","Left Foot","Right Foot","Left Hand","Right Hand","Full Body")
-		if(!limb_name && !CanUseTopic(user)) return TOPIC_NOACTION
+
+		var/list/limb_selection_list = list("Left Leg","Right Leg","Left Arm","Right Arm","Left Foot","Right Foot","Left Hand","Right Hand","Full Body")
+
+		// Full prosthetic bodies without a brain are borderline unkillable so make sure they have a brain to remove/destroy.
+		var/datum/species/current_species = all_species[pref.species]
+		if(!current_species.has_organ["brain"])
+			limb_selection_list -= "Full Body"
+
+		var/organ_tag = input(user, "Which limb do you want to change?") as null|anything in limb_selection_list
+
+		if(!organ_tag && !CanUseTopic(user)) return TOPIC_NOACTION
 
 		var/limb = null
 		var/second_limb = null // if you try to change the arm, the hand should also change
 		var/third_limb = null  // if you try to unchange the hand, the arm should also change
-		switch(limb_name)
+
+		// Do not let them amputate their entire body, ty.
+		var/list/choice_options = list("Normal","Amputated","Prothesis")
+		switch(organ_tag)
 			if("Left Leg")
-				limb = "l_leg"
-				second_limb = "l_foot"
+				limb =        BP_L_LEG
+				second_limb = BP_L_FOOT
 			if("Right Leg")
-				limb = "r_leg"
-				second_limb = "r_foot"
+				limb =        BP_R_LEG
+				second_limb = BP_R_FOOT
 			if("Left Arm")
-				limb = "l_arm"
-				second_limb = "l_hand"
+				limb =        BP_L_ARM
+				second_limb = BP_L_HAND
 			if("Right Arm")
-				limb = "r_arm"
-				second_limb = "r_hand"
+				limb =        BP_R_ARM
+				second_limb = BP_R_HAND
 			if("Left Foot")
-				limb = "l_foot"
-				third_limb = "l_leg"
+				limb =        BP_L_FOOT
+				third_limb =  BP_L_LEG
 			if("Right Foot")
-				limb = "r_foot"
-				third_limb = "r_leg"
+				limb =        BP_R_FOOT
+				third_limb =  BP_R_LEG
 			if("Left Hand")
-				limb = "l_hand"
-				third_limb = "l_arm"
+				limb =        BP_L_HAND
+				third_limb =  BP_L_ARM
 			if("Right Hand")
-				limb = "r_hand"
-				third_limb = "r_arm"
+				limb =        BP_R_HAND
+				third_limb =  BP_R_ARM
 			if("Full Body")
-				limb = "torso"
+				limb =        BP_TORSO
+				third_limb =  BP_GROIN
+				choice_options = list("Normal","Prothesis")
 
-
-		var/new_state = input(user, "What state do you wish the limb to be in?") as null|anything in list("Normal","Amputated","Prothesis")
+		var/new_state = input(user, "What state do you wish the limb to be in?") as null|anything in choice_options
 		if(!new_state && !CanUseTopic(user)) return TOPIC_NOACTION
 
 		switch(new_state)
 			if("Normal")
+
+				if(limb == BP_TORSO)
+					for(var/other_limb in BP_ALL - BP_TORSO)
+						pref.organ_data[other_limb] = null
+						pref.rlimb_data[other_limb] = null
 				pref.organ_data[limb] = null
 				pref.rlimb_data[limb] = null
 				if(third_limb)
 					pref.organ_data[third_limb] = null
 					pref.rlimb_data[third_limb] = null
+
 			if("Amputated")
-
-				if(limb == "torso")
+				if(limb == BP_TORSO)
 					return
-
 				pref.organ_data[limb] = "amputated"
 				pref.rlimb_data[limb] = null
 				if(second_limb)
@@ -430,43 +447,45 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				if(third_limb && pref.organ_data[third_limb] == "amputated")
 					pref.organ_data[third_limb] = null
 
-				if(limb == "torso")
-					for(var/other_limb in list("l_foot","r_foot","l_hand","r_hand","l_leg","r_leg","l_arm","r_arm","groin","head"))
+				if(limb == BP_TORSO)
+					for(var/other_limb in BP_ALL - BP_TORSO)
 						if(pref.organ_data[other_limb])
 							continue
 						pref.organ_data[other_limb] = "cyborg"
 						pref.rlimb_data[other_limb] = choice
-					if(!pref.organ_data["brain"])
-						pref.organ_data["brain"] = "assisted"
-					for(var/internal_organ in list("heart","eyes"))
+					if(!pref.organ_data[O_BRAIN])
+						pref.organ_data[O_BRAIN] = "assisted"
+					for(var/internal_organ in list(O_HEART,O_EYES))
 						pref.organ_data[internal_organ] = "mechanical"
 
 		return TOPIC_REFRESH
 
 	else if(href_list["organs"])
+
 		var/organ_name = input(user, "Which internal function do you want to change?") as null|anything in list("Heart", "Eyes", "Brain")
 		if(!organ_name) return
 
 		var/organ = null
 		switch(organ_name)
 			if("Heart")
-				organ = "heart"
+				organ = O_HEART
 			if("Eyes")
-				organ = "eyes"
+				organ = O_EYES
 			if("Brain")
-				if(pref.organ_data["head"] != "cyborg")
+				if(pref.organ_data[BP_HEAD] != "cyborg")
 					user << "<span class='warning'>You may only select an assisted or synthetic brain if you have a full prosthetic body.</span>"
 					return
 				organ = "brain"
 
-		var/new_state = input(user, "What state do you wish the organ to be in?") as null|anything in list("Normal","Assisted","Mechanical")
+		var/list/organ_choices = list("Normal","Assisted","Mechanical")
+		if(pref.organ_data[BP_TORSO] == "cyborg")
+			organ_choices -= "Normal"
+
+		var/new_state = input(user, "What state do you wish the organ to be in?") as null|anything in organ_choices
 		if(!new_state) return
 
 		switch(new_state)
 			if("Normal")
-				if(pref.organ_data["torso"] == "cyborg")
-					user << "<span class='warning'>A character with a synthetic body may only use synthetic organs.</span>"
-					return
 				pref.organ_data[organ] = null
 			if("Assisted")
 				pref.organ_data[organ] = "assisted"
@@ -512,9 +531,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		dat += "</br><b>Often present on human stations.</b>"
 	if(current_species.spawn_flags & IS_WHITELISTED)
 		dat += "</br><b>Whitelist restricted.</b>"
-	if(!current_species.has_organ["heart"])
+	if(!current_species.has_organ[O_HEART])
 		dat += "</br><b>Does not have a circulatory system.</b>"
-	if(!current_species.has_organ["lungs"])
+	if(!current_species.has_organ[O_LUNGS])
 		dat += "</br><b>Does not have a respiratory system.</b>"
 	if(current_species.flags & NO_SCAN)
 		dat += "</br><b>Does not have DNA.</b>"

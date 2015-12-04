@@ -19,10 +19,42 @@
 	if(src.stat == 2.0 && (act != "deathgasp"))
 		return
 	switch(act)
+
 		if ("airguitar")
 			if (!src.restrained())
 				message = "is strumming the air and headbanging like a safari chimp."
 				m_type = 1
+
+		if("ping", "beep", "buzz")
+
+			if(!isSynthetic())
+				src << "<span class='warning'>You are not a synthetic.</span>"
+				return
+
+			var/M = null
+			if(param)
+				for (var/mob/A in view(null, null))
+					if (param == A.name)
+						M = A
+						break
+			if(!M)
+				param = null
+
+			var/display_msg = "beeps"
+			var/use_sound = 'sound/machines/twobeep.ogg'
+			if(act == "buzz")
+				display_msg = "buzzes"
+				use_sound = 'sound/machines/buzz-sigh.ogg'
+			else if(act == "ping")
+				display_msg = "pings"
+				use_sound = 'sound/machines/ping.ogg'
+
+			if (param)
+				message = "[display_msg] at [param]."
+			else
+				message = "[display_msg]."
+			playsound(src.loc, use_sound, 50, 0)
+			m_type = 1
 
 		if ("blink")
 			message = "blinks."

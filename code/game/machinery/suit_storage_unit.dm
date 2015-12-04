@@ -331,7 +331,7 @@
 		sleep(50)
 		if(src.OCCUPANT)
 			OCCUPANT.apply_effect(50, IRRADIATE)
-			var/obj/item/organ/diona/nutrients/rad_organ = locate() in OCCUPANT.internal_organs
+			var/obj/item/organ/internal/diona/nutrients/rad_organ = locate() in OCCUPANT.internal_organs
 			if (!rad_organ)
 				if (OCCUPANT.can_feel_pain())
 					OCCUPANT.emote("scream")

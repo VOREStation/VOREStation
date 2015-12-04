@@ -159,7 +159,7 @@
 /mob/living/carbon/human/proc/generate_valid_hairstyles(var/check_gender = 1)
 
 	var/use_species = species.get_bodytype()
-	var/obj/item/organ/external/head/H = get_organ("head")
+	var/obj/item/organ/external/head/H = get_organ(BP_HEAD)
 	if(H) use_species = H.species.get_bodytype()
 
 	var/list/valid_hairstyles = new()
@@ -181,7 +181,7 @@
 /mob/living/carbon/human/proc/generate_valid_facial_hairstyles()
 
 	var/use_species = species.get_bodytype()
-	var/obj/item/organ/external/head/H = get_organ("head")
+	var/obj/item/organ/external/head/H = get_organ(BP_HEAD)
 	if(H) use_species = H.species.get_bodytype()
 
 	var/list/valid_facial_hairstyles = new()

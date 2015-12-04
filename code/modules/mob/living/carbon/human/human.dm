@@ -71,7 +71,7 @@
 				stat("Tank Pressure", internal.air_contents.return_pressure())
 				stat("Distribution Pressure", internal.distribute_pressure)
 
-		var/obj/item/organ/xenos/plasmavessel/P = internal_organs_by_name["plasma vessel"]
+		var/obj/item/organ/internal/xenos/plasmavessel/P = internal_organs_by_name[O_PLASMA]
 		if(P)
 			stat(null, "Phoron Stored: [P.stored_plasma]/[P.max_plasma]")
 
@@ -145,26 +145,12 @@
 	var/weapon_message = "Explosive Blast"
 
 	for(var/obj/item/organ/external/temp in organs)
-		switch(temp.name)
-			if("head")
+		switch(temp.organ_tag)
+			if(BP_HEAD)
 				update |= temp.take_damage(b_loss * 0.2, f_loss * 0.2, used_weapon = weapon_message)
-			if("chest")
+			if(BP_TORSO)
 				update |= temp.take_damage(b_loss * 0.4, f_loss * 0.4, used_weapon = weapon_message)
-			if("l_arm")
-				update |= temp.take_damage(b_loss * 0.05, f_loss * 0.05, used_weapon = weapon_message)
-			if("r_arm")
-				update |= temp.take_damage(b_loss * 0.05, f_loss * 0.05, used_weapon = weapon_message)
-			if("l_leg")
-				update |= temp.take_damage(b_loss * 0.05, f_loss * 0.05, used_weapon = weapon_message)
-			if("r_leg")
-				update |= temp.take_damage(b_loss * 0.05, f_loss * 0.05, used_weapon = weapon_message)
-			if("r_foot")
-				update |= temp.take_damage(b_loss * 0.05, f_loss * 0.05, used_weapon = weapon_message)
-			if("l_foot")
-				update |= temp.take_damage(b_loss * 0.05, f_loss * 0.05, used_weapon = weapon_message)
-			if("r_arm")
-				update |= temp.take_damage(b_loss * 0.05, f_loss * 0.05, used_weapon = weapon_message)
-			if("l_arm")
+			else
 				update |= temp.take_damage(b_loss * 0.05, f_loss * 0.05, used_weapon = weapon_message)
 	if(update)	UpdateDamageIcon()
 
@@ -174,7 +160,7 @@
 	var/obj/item/weapon/implant/loyalty/L = new/obj/item/weapon/implant/loyalty(M)
 	L.imp_in = M
 	L.implanted = 1
-	var/obj/item/organ/external/affected = M.organs_by_name["head"]
+	var/obj/item/organ/external/affected = M.organs_by_name[BP_HEAD]
 	affected.implants += L
 	L.part = affected
 	L.implanted(src)
@@ -318,7 +304,7 @@
 
 //Returns "Unknown" if facially disfigured and real_name if not. Useful for setting name when polyacided or when updating a human's name variable
 /mob/living/carbon/human/proc/get_face_name()
-	var/obj/item/organ/external/head = get_organ("head")
+	var/obj/item/organ/external/head = get_organ(BP_HEAD)
 	if(!head || head.disfigured || (head.status & ORGAN_DESTROYED) || !real_name || (HUSK in mutations) )	//disfigured. use id-name if possible
 		return "Unknown"
 	return real_name
@@ -655,7 +641,7 @@
 ///Returns a number between -1 to 2
 /mob/living/carbon/human/eyecheck()
 
-	var/obj/item/organ/I = internal_organs_by_name["eyes"]
+	var/obj/item/organ/I = internal_organs_by_name[O_EYES]
 	if(!I || I.status & (ORGAN_CUT_AWAY|ORGAN_DESTROYED))
 		return 2
 
@@ -742,7 +728,7 @@
 
 /mob/living/carbon/human/check_has_mouth()
 	// Todo, check stomach organ when implemented.
-	var/obj/item/organ/external/head/H = get_organ("head")
+	var/obj/item/organ/external/head/H = get_organ(BP_HEAD)
 	if(!H || !H.can_intake_reagents)
 		return 0
 	return 1
@@ -908,7 +894,7 @@
 
 /mob/living/carbon/human/revive()
 
-	if(should_have_organ("heart"))
+	if(should_have_organ(O_HEART))
 		vessel.add_reagent("blood",560-vessel.total_volume)
 		fixblood()
 
@@ -916,7 +902,7 @@
 	restore_all_organs()       // Reapply robotics/amputated status from preferences.
 
 	if(!client || !key) //Don't boot out anyone already in the mob.
-		for (var/obj/item/organ/brain/H in world)
+		for (var/obj/item/organ/internal/brain/H in world)
 			if(H.brainmob)
 				if(H.brainmob.real_name == src.real_name)
 					if(H.brainmob.mind)
@@ -935,11 +921,11 @@
 	..()
 
 /mob/living/carbon/human/proc/is_lung_ruptured()
-	var/obj/item/organ/lungs/L = internal_organs_by_name["lungs"]
+	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
 	return L && L.is_bruised()
 
 /mob/living/carbon/human/proc/rupture_lung()
-	var/obj/item/organ/lungs/L = internal_organs_by_name["lungs"]
+	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
 
 	if(L && !L.is_bruised())
 		src.custom_pain("You feel a stabbing pain in your chest!", 1)
@@ -1028,7 +1014,7 @@
 		for(var/obj/item/O in organ.implants)
 			if(!istype(O,/obj/item/weapon/implant) && prob(5)) //Moving with things stuck in you could be bad.
 				// All kinds of embedded objects cause bleeding.
-				if(!can_feel_pain(organ.limb_name))
+				if(!can_feel_pain(organ.organ_tag))
 					src << "<span class='warning'>You feel [O] moving inside your [organ.name].</span>"
 				else
 					var/msg = pick( \
@@ -1038,7 +1024,7 @@
 					src << msg
 
 				organ.take_damage(rand(1,3), 0, 0)
-				if(!(organ.status & ORGAN_ROBOT) && !should_have_organ("heart")) //There is no blood in protheses.
+				if(!(organ.status & ORGAN_ROBOT) && !should_have_organ(O_HEART)) //There is no blood in protheses.
 					organ.status |= ORGAN_BLEEDING
 					src.adjustToxLoss(rand(1,3))
 
@@ -1140,6 +1126,8 @@
 			qdel(hud_used)
 		hud_used = new /datum/hud(src)
 
+	full_prosthetic = null
+
 	if(species)
 		return 1
 	else
@@ -1205,7 +1193,7 @@
 
 	if(!target_zone)
 		if(!user)
-			target_zone = pick("chest","chest","chest","left leg","right leg","left arm", "right arm", "head")
+			target_zone = pick(BP_TORSO,BP_TORSO,BP_TORSO,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_HEAD)
 		else
 			target_zone = user.zone_sel.selecting
 
@@ -1219,7 +1207,7 @@
 		fail_msg = "That limb is robotic."
 	else
 		switch(target_zone)
-			if("head")
+			if(BP_HEAD)
 				if(head && head.item_flags & THICKMATERIAL)
 					. = 0
 			else
@@ -1227,7 +1215,7 @@
 					. = 0
 	if(!. && error_msg && user)
 		if(!fail_msg)
-			fail_msg = "There is no exposed flesh or thin material [target_zone == "head" ? "on their head" : "on their body"] to inject into."
+			fail_msg = "There is no exposed flesh or thin material [target_zone == BP_HEAD ? "on their head" : "on their body"] to inject into."
 		user << "<span class='alert'>[fail_msg]</span>"
 
 /mob/living/carbon/human/print_flavor_text(var/shrink = 1)
@@ -1285,15 +1273,15 @@
 	..()
 
 /mob/living/carbon/human/has_brain()
-	if(internal_organs_by_name["brain"])
-		var/obj/item/organ/brain = internal_organs_by_name["brain"]
+	if(internal_organs_by_name[O_BRAIN])
+		var/obj/item/organ/brain = internal_organs_by_name[O_BRAIN]
 		if(brain && istype(brain))
 			return 1
 	return 0
 
 /mob/living/carbon/human/has_eyes()
-	if(internal_organs_by_name["eyes"])
-		var/obj/item/organ/eyes = internal_organs_by_name["eyes"]
+	if(internal_organs_by_name[O_EYES])
+		var/obj/item/organ/eyes = internal_organs_by_name[O_EYES]
 		if(eyes && istype(eyes) && !(eyes.status & ORGAN_CUT_AWAY))
 			return 1
 	return 0
@@ -1402,10 +1390,10 @@
 /mob/living/carbon/human/should_have_organ(var/organ_check)
 
 	var/obj/item/organ/external/affecting
-	if(organ_check in list("heart","lungs"))
-		affecting = organs_by_name["chest"]
-	else if(organ_check in list("liver","kidneys"))
-		affecting = organs_by_name["groin"]
+	if(organ_check in list(O_HEART, O_LUNGS))
+		affecting = organs_by_name[BP_TORSO]
+	else if(organ_check in list(O_LIVER, O_KIDNEYS))
+		affecting = organs_by_name[BP_GROIN]
 
 	if(affecting && (affecting.status & ORGAN_ROBOT))
 		return 0

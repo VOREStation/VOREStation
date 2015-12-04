@@ -58,8 +58,6 @@
 
 	// Death vars.
 	var/meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/human
-	var/gibber_type = /obj/effect/gibspawner/human
-	var/single_gib_type = /obj/effect/decal/cleanable/blood/gibs
 	var/remains_type = /obj/effect/decal/remains/xeno
 	var/gibbed_anim = "gibbed-h"
 	var/dusted_anim = "dust-h"
@@ -120,28 +118,28 @@
 	var/rarity_value = 1          // Relative rarity/collector value for this species.
 	                              // Determines the organs that the species spawns with and
 	var/list/has_organ = list(    // which required-organ checks are conducted.
-		"heart" =    /obj/item/organ/heart,
-		"lungs" =    /obj/item/organ/lungs,
-		"liver" =    /obj/item/organ/liver,
-		"kidneys" =  /obj/item/organ/kidneys,
-		"brain" =    /obj/item/organ/brain,
-		"appendix" = /obj/item/organ/appendix,
-		"eyes" =     /obj/item/organ/eyes
+		O_HEART =    /obj/item/organ/internal/heart,
+		O_LUNGS =    /obj/item/organ/internal/lungs,
+		O_LIVER =    /obj/item/organ/internal/liver,
+		O_KIDNEYS =  /obj/item/organ/internal/kidneys,
+		O_BRAIN =    /obj/item/organ/internal/brain,
+		O_APPENDIX = /obj/item/organ/internal/appendix,
+		O_EYES =     /obj/item/organ/internal/eyes
 		)
 	var/vision_organ              // If set, this organ is required for vision. Defaults to "eyes" if the species has them.
 
 	var/list/has_limbs = list(
-		"chest" =  list("path" = /obj/item/organ/external/chest),
-		"groin" =  list("path" = /obj/item/organ/external/groin),
-		"head" =   list("path" = /obj/item/organ/external/head),
-		"l_arm" =  list("path" = /obj/item/organ/external/arm),
-		"r_arm" =  list("path" = /obj/item/organ/external/arm/right),
-		"l_leg" =  list("path" = /obj/item/organ/external/leg),
-		"r_leg" =  list("path" = /obj/item/organ/external/leg/right),
-		"l_hand" = list("path" = /obj/item/organ/external/hand),
-		"r_hand" = list("path" = /obj/item/organ/external/hand/right),
-		"l_foot" = list("path" = /obj/item/organ/external/foot),
-		"r_foot" = list("path" = /obj/item/organ/external/foot/right)
+		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
+		BP_GROIN =  list("path" = /obj/item/organ/external/groin),
+		BP_HEAD =   list("path" = /obj/item/organ/external/head),
+		BP_L_ARM =  list("path" = /obj/item/organ/external/arm),
+		BP_R_ARM =  list("path" = /obj/item/organ/external/arm/right),
+		BP_L_LEG =  list("path" = /obj/item/organ/external/leg),
+		BP_R_LEG =  list("path" = /obj/item/organ/external/leg/right),
+		BP_L_HAND = list("path" = /obj/item/organ/external/hand),
+		BP_R_HAND = list("path" = /obj/item/organ/external/hand/right),
+		BP_L_FOOT = list("path" = /obj/item/organ/external/foot),
+		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
 		)
 
 	// Bump vars
@@ -158,8 +156,8 @@
 		hud = new()
 
 	//If the species has eyes, they are the default vision organ
-	if(!vision_organ && has_organ["eyes"])
-		vision_organ = "eyes"
+	if(!vision_organ && has_organ[O_EYES])
+		vision_organ = O_EYES
 
 	unarmed_attacks = list()
 	for(var/u_type in unarmed_types)
@@ -186,13 +184,13 @@
 	return ((H && H.isSynthetic()) ? "flashing a 'system offline' glyph on their monitor" : show_ssd)
 
 /datum/species/proc/get_blood_colour(var/mob/living/carbon/human/H)
-	return ((H && H.isSynthetic()) ? "#1F181F" : blood_color)
+	return ((H && H.isSynthetic()) ? SYNTH_BLOOD_COLOUR : blood_color)
 
 /datum/species/proc/get_virus_immune(var/mob/living/carbon/human/H)
 	return ((H && H.isSynthetic()) ? 1 : virus_immune)
 
 /datum/species/proc/get_flesh_colour(var/mob/living/carbon/human/H)
-	return ((H && H.isSynthetic()) ? "#575757" : flesh_color)
+	return ((H && H.isSynthetic()) ? SYNTH_FLESH_COLOUR : flesh_color)
 
 /datum/species/proc/get_environment_discomfort(var/mob/living/carbon/human/H, var/msg_type)
 
@@ -269,7 +267,10 @@
 	for(var/name in H.organs_by_name)
 		H.organs |= H.organs_by_name[name]
 
-	for(var/obj/item/organ/external/O in H.organs)
+	for(var/name in H.internal_organs_by_name)
+		H.internal_organs |= H.internal_organs_by_name[name]
+
+	for(var/obj/item/organ/O in (H.organs|H.internal_organs))
 		O.owner = H
 
 /datum/species/proc/hug(var/mob/living/carbon/human/H,var/mob/living/target)

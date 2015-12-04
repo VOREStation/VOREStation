@@ -124,7 +124,7 @@
 
 		if(iscarbon(affecting))
 			handle_eye_mouth_covering(affecting, assailant, assailant.zone_sel.selecting)
-		
+
 		if(force_down)
 			if(affecting.loc != assailant.loc)
 				force_down = 0
@@ -148,14 +148,14 @@
 /obj/item/weapon/grab/proc/handle_eye_mouth_covering(mob/living/carbon/target, mob/user, var/target_zone)
 	var/announce = (target_zone != last_hit_zone) //only display messages when switching between different target zones
 	last_hit_zone = target_zone
-	
+
 	switch(target_zone)
-		if("mouth")
+		if(O_MOUTH)
 			if(announce)
 				user.visible_message("<span class='warning'>\The [user] covers [target]'s mouth!</span>")
 			if(target.silent < 3)
 				target.silent = 3
-		if("eyes")
+		if(O_EYES)
 			if(announce)
 				assailant.visible_message("<span class='warning'>[assailant] covers [affecting]'s eyes!</span>")
 			if(affecting.eye_blind < 3)
@@ -232,7 +232,7 @@
 		else
 			assailant.visible_message("<span class='warning'>[assailant] pins [affecting] down to the ground (now hands)!</span>")
 			apply_pinning(affecting, assailant)
-		
+
 		state = GRAB_AGGRESSIVE
 		icon_state = "grabbed1"
 		hud.icon_state = "reinforce1"
@@ -284,10 +284,10 @@
 		return
 	if(world.time < (last_action + 20))
 		return
-	
+
 	last_action = world.time
 	reset_kill_state() //using special grab moves will interrupt choking them
-	
+
 	//clicking on the victim while grabbing them
 	if(M == affecting)
 		if(ishuman(affecting))
@@ -300,21 +300,21 @@
 						force_down = 0
 						return
 					inspect_organ(affecting, assailant, hit_zone)
-				
+
 				if(I_GRAB)
 					jointlock(affecting, assailant, hit_zone)
-				
+
 				if(I_HURT)
-					if(hit_zone == "eyes")
+					if(hit_zone == O_EYES)
 						attack_eye(affecting, assailant)
-					else if(hit_zone == "head")
+					else if(hit_zone == BP_HEAD)
 						headbut(affecting, assailant)
 					else
 						dislocate(affecting, assailant, hit_zone)
-				
+
 				if(I_DISARM)
 					pin_down(affecting, assailant)
-	
+
 	//clicking on yourself while grabbing them
 	if(M == assailant && state >= GRAB_AGGRESSIVE)
 		devour(affecting, assailant)
@@ -325,7 +325,7 @@
 		qdel(src)
 
 /obj/item/weapon/grab/proc/reset_kill_state()
-	if(state == GRAB_KILL) 
+	if(state == GRAB_KILL)
 		assailant.visible_message("<span class='warning'>[assailant] lost \his tight grip on [affecting]'s neck!</span>")
 		hud.icon_state = "kill"
 		state = GRAB_NECK

@@ -8,7 +8,7 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if (isslime(target))
 			return 0
-		if (target_zone == "eyes")	//there are specific steps for eye surgery
+		if (target_zone == O_EYES)	//there are specific steps for eye surgery
 			return 0
 		if (!hasorgans(target))
 			return 0
@@ -34,7 +34,7 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if(..())
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			return affected && affected.open == 0 && target_zone != "mouth"
+			return affected && affected.open == 0 && target_zone != O_MOUTH
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -78,7 +78,7 @@
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		user.visible_message("<span class='notice'>[user] opens the maintenance hatch on [target]'s [affected.name] with \the [tool].</span>", \
 		 "<span class='notice'>You open the maintenance hatch on [target]'s [affected.name] with \the [tool].</span>")
-		affected.open = 2
+		affected.open = 3
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -98,7 +98,7 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if(..())
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			return affected && affected.open && target_zone != "mouth"
+			return affected && affected.open && target_zone != O_MOUTH
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -134,7 +134,7 @@
 				var/obj/item/weapon/weldingtool/welder = tool
 				if(!welder.isOn() || !welder.remove_fuel(1,user))
 					return 0
-			return affected && affected.open == 2 && affected.brute_dam > 0 && target_zone != "mouth"
+			return affected && affected.open == 3 && (affected.disfigured || affected.brute_dam > 0) && target_zone != O_MOUTH
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -147,7 +147,7 @@
 		user.visible_message("<span class='notice'>[user] finishes patching damage to [target]'s [affected.name] with \the [tool].</span>", \
 		"<span class='notice'>You finish patching damage to [target]'s [affected.name] with \the [tool].</span>")
 		affected.heal_damage(rand(30,50),0,1,1)
-
+		affected.disfigured = 0
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		user.visible_message("<span class='warning'>[user]'s [tool.name] slips, damaging the internal structure of [target]'s [affected.name].</span>",
@@ -166,7 +166,7 @@
 		if(..())
 			var/obj/item/stack/cable_coil/C = tool
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			var/limb_can_operate = (affected && affected.open == 2 && affected.burn_dam > 0 && target_zone != "mouth")
+			var/limb_can_operate = (affected && affected.open == 2 && (affected.disfigured || affected.burn_dam > 0) && target_zone != O_MOUTH)
 			if(limb_can_operate)
 				if(istype(C))
 					if(!C.get_amount() >= 3)
@@ -193,6 +193,7 @@
 		user.visible_message("<span class='warning'>[user] causes a short circuit in [target]'s [affected.name]!</span>",
 		"<span class='warning'>You cause a short circuit in [target]'s [affected.name]!</span>")
 		target.apply_damage(rand(5,10), BURN, affected)
+		affected.disfigured = 0
 
 /datum/surgery_step/robotics/fix_organ_robotic //For artificial organs
 	allowed_tools = list(
@@ -215,7 +216,7 @@
 			if(I.damage > 0 && (I.status & ORGAN_ROBOT))
 				is_organ_damaged = 1
 				break
-		return affected.open == 2 && is_organ_damaged
+		return affected.open == 3 && is_organ_damaged
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
@@ -276,7 +277,7 @@
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		if(!(affected && (affected.status & ORGAN_ROBOT)))
 			return 0
-		if(affected.open != 2)
+		if(affected.open < 3)
 			return 0
 
 		target.op_stage.current_organ = null
@@ -304,7 +305,7 @@
 		user.visible_message("<span class='notice'>[user] has decoupled [target]'s [target.op_stage.current_organ] with \the [tool].</span>" , \
 		"<span class='notice'>You have decoupled [target]'s [target.op_stage.current_organ] with \the [tool].</span>")
 
-		var/obj/item/organ/I = target.internal_organs_by_name[target.op_stage.current_organ]
+		var/obj/item/organ/internal/I = target.internal_organs_by_name[target.op_stage.current_organ]
 		if(I && istype(I))
 			I.status |= ORGAN_CUT_AWAY
 
@@ -325,7 +326,7 @@
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		if(!(affected && (affected.status & ORGAN_ROBOT)))
 			return 0
-		if(affected.open != 2)
+		if(affected.open < 3)
 			return 0
 
 		target.op_stage.current_organ = null
@@ -370,12 +371,12 @@
 
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
-		if(target_zone != "head")
+		if(target_zone != BP_HEAD)
 			return
 
 		var/obj/item/device/mmi/M = tool
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		if(!(affected && affected.open == 2))
+		if(!(affected && affected.open == 3))
 			return 0
 
 		if(!istype(M))
@@ -387,10 +388,6 @@
 
 		if(!(affected.status & ORGAN_ROBOT))
 			user << "<span class='danger'>You cannot install a computer brain into a meat skull.</span>"
-			return SURGERY_FAILURE
-
-		if(!target.species)
-			user << "<span class='danger'>You have no idea what species this person is. Report this on the bug tracker.</span>"
 			return SURGERY_FAILURE
 
 		if(!target.should_have_organ("brain"))
@@ -415,7 +412,7 @@
 		"<span class='notice'>You have installed \the [tool] into [target]'s [affected.name].</span>")
 
 		var/obj/item/device/mmi/M = tool
-		var/obj/item/organ/mmi_holder/holder = new(target, 1)
+		var/obj/item/organ/internal/mmi_holder/holder = new(target, 1)
 		target.internal_organs_by_name["brain"] = holder
 		user.drop_from_inventory(tool)
 		tool.loc = holder

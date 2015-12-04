@@ -38,7 +38,7 @@
 
 /obj/item/device/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
 	add_fingerprint(user)
-	if(on && user.zone_sel.selecting == "eyes")
+	if(on && user.zone_sel.selecting == O_EYES)
 
 		if(((CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))	//too dumb to use flashlight properly
 			return ..()	//just hit them in the head

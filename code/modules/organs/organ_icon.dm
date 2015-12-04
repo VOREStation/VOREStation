@@ -40,7 +40,7 @@ var/global/list/limb_icon_cache = list()
 
 /obj/item/organ/external/head/sync_colour_to_human(var/mob/living/carbon/human/human)
 	..()
-	var/obj/item/organ/eyes/eyes = owner.internal_organs_by_name["eyes"]
+	var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name[O_EYES]
 	if(eyes) eyes.update_colour()
 
 /obj/item/organ/external/head/removed()
@@ -53,8 +53,8 @@ var/global/list/limb_icon_cache = list()
 	overlays.Cut()
 	if(!owner || !owner.species)
 		return
-	if(owner.should_have_organ("eyes"))
-		var/obj/item/organ/eyes/eyes = owner.internal_organs_by_name["eyes"]
+	if(owner.should_have_organ(O_EYES))
+		var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name[O_EYES]
 		if(eye_icon)
 			var/icon/eyes_icon = new/icon('icons/mob/human_face.dmi', eye_icon)
 			if(eyes)

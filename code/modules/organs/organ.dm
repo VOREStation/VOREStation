@@ -6,47 +6,37 @@ var/list/organ_cache = list()
 	germ_level = 0
 
 	// Strings.
-	var/organ_tag = "organ"
-	var/parent_organ = "chest"
-
-	// Appearance.
-	var/dead_icon
+	var/organ_tag = "organ"           // Unique identifier.
+	var/parent_organ = BP_TORSO       // Organ holding this object.
 
 	// Status tracking.
-	var/status = 0
-	var/vital //Lose a vital limb, die immediately.
-	var/damage = 0 // amount of damage to the organ
+	var/status = 0                    // Various status flags (such as robotic)
+	var/vital                         // Lose a vital limb, die immediately.
+	var/damage = 0                    // Current damage to the organ
 
 	// Reference data.
-	var/mob/living/carbon/human/owner = null
-	var/list/transplant_data
-	var/list/datum/autopsy_data/autopsy_data = list()
-	var/list/trace_chemicals = list() // traces of chemicals in the organ,
-	var/datum/dna/dna
-	var/datum/species/species
+	var/mob/living/carbon/human/owner // Current mob owning the organ.
+	var/list/transplant_data          // Transplant match data.
+	var/list/autopsy_data = list()    // Trauma data for forensics.
+	var/list/trace_chemicals = list() // Traces of chemicals in the organ.
+	var/datum/dna/dna                 // Original DNA.
+	var/datum/species/species         // Original species.
 
 	// Damage vars.
-	var/min_bruised_damage = 10
-	var/min_broken_damage = 30
-	var/max_damage
-	var/rejecting   // Is this organ already being rejected?
+	var/min_bruised_damage = 10       // Damage before considered bruised
+	var/min_broken_damage = 30        // Damage before becoming broken
+	var/max_damage                    // Damage cap
+	var/rejecting                     // Is this organ already being rejected?
 
 /obj/item/organ/Destroy()
-	if(!owner)
-		return ..()
-	if(istype(owner, /mob/living/carbon))
-		if((owner.internal_organs) && (src in owner.internal_organs))
-			owner.internal_organs -= src
-		if(istype(owner, /mob/living/carbon/human))
-			if((owner.internal_organs_by_name) && (src in owner.internal_organs_by_name))
-				owner.internal_organs_by_name -= src
-			if((owner.organs) && (src in owner.organs))
-				owner.organs -= src
-			if((owner.organs_by_name) && (src in owner.organs_by_name))
-				owner.organs_by_name -= src
-	if(src in owner.contents)
-		owner.contents -= src
-	owner = null
+
+	if(owner)           owner = null
+	if(transplant_data) transplant_data.Cut()
+	if(autopsy_data)    autopsy_data.Cut()
+	if(trace_chemicals) trace_chemicals.Cut()
+	dna = null
+	species = null
+
 	return ..()
 
 /obj/item/organ/proc/update_health()
@@ -92,8 +82,6 @@ var/list/organ_cache = list()
 	damage = max_damage
 	status |= ORGAN_DEAD
 	processing_objects -= src
-	if(dead_icon)
-		icon_state = dead_icon
 	if(owner && vital)
 		owner.death()
 
@@ -115,7 +103,7 @@ var/list/organ_cache = list()
 		germ_level = 0
 		return
 
-	if(!owner)
+	if(!owner && reagents)
 		var/datum/reagent/blood/B = locate(/datum/reagent/blood) in reagents.reagent_list
 		if(B && prob(40))
 			reagents.remove_reagent("blood",0.1)
@@ -193,6 +181,9 @@ var/list/organ_cache = list()
 /obj/item/organ/proc/receive_chem(chemical as obj)
 	return 0
 
+/obj/item/organ/proc/remove_rejuv()
+	qdel(src)
+
 /obj/item/organ/proc/rejuvenate(var/ignore_prosthetic_prefs)
 	damage = 0
 	status = 0
@@ -202,16 +193,6 @@ var/list/organ_cache = list()
 			mechassist()
 		else if(status == "mechanical")
 			robotize()
-
-/obj/item/organ/proc/remove_rejuv()
-	if(owner)
-		owner.internal_organs -= src
-		owner.internal_organs_by_name[organ_tag] = null
-		while(null in owner.internal_organs)
-			owner.internal_organs -= null
-		while(null in owner.internal_organs_by_name)
-			owner.internal_organs_by_name -= null
-	qdel(src)
 
 /obj/item/organ/proc/is_damaged()
 	return damage > 0
@@ -336,16 +317,6 @@ var/list/organ_cache = list()
 	affected.internal_organs |= src
 	target.internal_organs_by_name[organ_tag] = src
 
-/obj/item/organ/eyes/replaced(var/mob/living/carbon/human/target)
-
-	// Apply our eye colour to the target.
-	if(istype(target) && eye_colour)
-		target.r_eyes = eye_colour[1]
-		target.g_eyes = eye_colour[2]
-		target.b_eyes = eye_colour[3]
-		target.update_eyes()
-	..()
-
 /obj/item/organ/proc/bitten(mob/user)
 
 	if(status & ORGAN_ROBOT)
@@ -374,7 +345,7 @@ var/list/organ_cache = list()
 /obj/item/organ/attack_self(mob/user as mob)
 
 	// Convert it to an edible form, yum yum.
-	if((status & ORGAN_ROBOT) && user.a_intent == "help" && user.zone_sel.selecting == "mouth")
+	if((status & ORGAN_ROBOT) && user.a_intent == I_HELP && user.zone_sel.selecting == O_MOUTH)
 		bitten(user)
 		return
 

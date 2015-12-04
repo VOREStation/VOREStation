@@ -29,7 +29,7 @@
 	if(status_flags & GODMODE)	return 0	//godmode
 
 	if(should_have_organ("brain"))
-		var/obj/item/organ/brain/sponge = internal_organs_by_name["brain"]
+		var/obj/item/organ/internal/brain/sponge = internal_organs_by_name["brain"]
 		if(sponge)
 			sponge.take_damage(amount)
 			brainloss = sponge.damage
@@ -43,7 +43,7 @@
 	if(status_flags & GODMODE)	return 0	//godmode
 
 	if(should_have_organ("brain"))
-		var/obj/item/organ/brain/sponge = internal_organs_by_name["brain"]
+		var/obj/item/organ/internal/brain/sponge = internal_organs_by_name["brain"]
 		if(sponge)
 			sponge.damage = min(max(amount, 0),(maxHealth*2))
 			brainloss = sponge.damage
@@ -57,7 +57,7 @@
 	if(status_flags & GODMODE)	return 0	//godmode
 
 	if(should_have_organ("brain"))
-		var/obj/item/organ/brain/sponge = internal_organs_by_name["brain"]
+		var/obj/item/organ/internal/brain/sponge = internal_organs_by_name["brain"]
 		if(sponge)
 			brainloss = min(sponge.damage,maxHealth*2)
 		else
@@ -189,19 +189,19 @@
 
 // Defined here solely to take species flags into account without having to recast at mob/living level.
 /mob/living/carbon/human/getOxyLoss()
-	if(!should_have_organ("lungs"))
+	if(!should_have_organ(O_LUNGS))
 		oxyloss = 0
 	return ..()
 
 /mob/living/carbon/human/adjustOxyLoss(var/amount)
-	if(!should_have_organ("lungs"))
+	if(!should_have_organ(O_LUNGS))
 		oxyloss = 0
 	else
 		amount = amount*species.oxy_mod
 		..(amount)
 
 /mob/living/carbon/human/setOxyLoss(var/amount)
-	if(!should_have_organ("lungs"))
+	if(!should_have_organ(O_LUNGS))
 		oxyloss = 0
 	else
 		..()
@@ -321,7 +321,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 This function restores the subjects blood to max.
 */
 /mob/living/carbon/human/proc/restore_blood()
-	if(should_have_organ("heart"))
+	if(should_have_organ(O_HEART))
 		var/blood_volume = vessel.get_reagent_amount("blood")
 		vessel.add_reagent("blood",560.0-blood_volume)
 
@@ -345,9 +345,10 @@ This function restores all organs.
 
 
 /mob/living/carbon/human/proc/get_organ(var/zone)
-	if(!zone)	zone = "chest"
-	if (zone in list( "eyes", "mouth" ))
-		zone = "head"
+	if(!zone)
+		zone = BP_TORSO
+	else if (zone in list( O_EYES, O_MOUTH ))
+		zone = BP_HEAD
 	return organs_by_name[zone]
 
 /mob/living/carbon/human/apply_damage(var/damage = 0, var/damagetype = BRUTE, var/def_zone = null, var/blocked = 0, var/sharp = 0, var/edge = 0, var/obj/used_weapon = null)

@@ -19,7 +19,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 	vessel = new/datum/reagents(600)
 	vessel.my_atom = src
 
-	if(!should_have_organ("heart")) //We want the var for safety but we can do without the actual blood.
+	if(!should_have_organ(O_HEART)) //We want the var for safety but we can do without the actual blood.
 		return
 
 	vessel.add_reagent("blood",560)
@@ -39,7 +39,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 	if(in_stasis)
 		return
 
-	if(!should_have_organ("heart"))
+	if(!should_have_organ(O_HEART))
 		return
 
 	if(stat != DEAD && bodytemperature >= 170)	//Dead or cryosleep people do not pump the blood.
@@ -62,8 +62,8 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 
 		// Damaged heart virtually reduces the blood volume, as the blood isn't
 		// being pumped properly anymore.
-		if(species && should_have_organ("heart"))
-			var/obj/item/organ/heart/heart = internal_organs_by_name["heart"]
+		if(species && should_have_organ(O_HEART))
+			var/obj/item/organ/internal/heart/heart = internal_organs_by_name[O_HEART]
 
 			if(!heart)
 				blood_volume = 0
@@ -137,7 +137,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 //Makes a blood drop, leaking amt units of blood from the mob
 /mob/living/carbon/human/proc/drip(var/amt as num)
 
-	if(!should_have_organ("heart")) //TODO: Make drips come from the reagents instead.
+	if(!should_have_organ(O_HEART)) //TODO: Make drips come from the reagents instead.
 		return
 
 	if(!amt)
@@ -188,7 +188,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 //For humans, blood does not appear from blue, it comes from vessels.
 /mob/living/carbon/human/take_blood(obj/item/weapon/reagent_containers/container, var/amount)
 
-	if(!should_have_organ("heart"))
+	if(!should_have_organ(O_HEART))
 		return null
 
 	if(vessel.get_reagent_amount("blood") < amount)
@@ -216,7 +216,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 //Transfers blood from reagents to vessel, respecting blood types compatability.
 /mob/living/carbon/human/inject_blood(var/datum/reagent/blood/injected, var/amount)
 
-	if(should_have_organ("heart"))
+	if(should_have_organ(O_HEART))
 		reagents.add_reagent("blood", amount, injected.data)
 		reagents.update_total()
 		return

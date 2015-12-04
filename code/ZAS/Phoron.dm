@@ -116,7 +116,7 @@ obj/var/contaminated = 0
 
 
 /mob/living/carbon/human/proc/burn_eyes()
-	var/obj/item/organ/eyes/E = internal_organs_by_name["eyes"]
+	var/obj/item/organ/internal/eyes/E = internal_organs_by_name[O_EYES]
 	if(E)
 		if(prob(20)) src << "<span class='danger'>Your eyes burn!</span>"
 		E.damage += 2.5

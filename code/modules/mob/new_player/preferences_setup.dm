@@ -5,7 +5,7 @@ datum/preferences
 		s_tone = random_skin_tone()
 
 		var/use_head_species
-		var/obj/item/organ/external/head/temp_head = H.get_organ("head")
+		var/obj/item/organ/external/head/temp_head = H.get_organ(BP_HEAD)
 		if(temp_head)
 			use_head_species = temp_head.species.get_bodytype()
 		else
@@ -202,20 +202,20 @@ datum/preferences
 			icobase = 'icons/mob/human_races/r_human.dmi'
 
 		preview_icon = new /icon(icobase, "")
-		for(var/name in list("torso", "groin", "head", "r_arm","r_hand","r_leg","r_foot","l_leg","l_foot","l_arm","l_hand"))
+		for(var/name in BP_ALL)
 			if(organ_data[name] == "amputated")
 				continue
 			if(organ_data[name] == "cyborg")
 				var/datum/robolimb/R
 				if(rlimb_data[name]) R = all_robolimbs[rlimb_data[name]]
 				if(!R) R = basic_robolimb
-				if(name in list("torso", "groin", "head"))
+				if(name in list(BP_TORSO, BP_GROIN, BP_HEAD))
 					preview_icon.Blend(icon(R.icon, "[name]_[g]"), ICON_OVERLAY)
 				else
 					preview_icon.Blend(icon(R.icon, "[name]"), ICON_OVERLAY)
 				continue
 			var/icon/limb_icon
-			if(name in list("torso", "groin", "head"))
+			if(name in list(BP_TORSO, BP_GROIN, BP_HEAD))
 				limb_icon = new /icon(icobase, "[name]_[g]")
 			else
 				limb_icon = new /icon(icobase, "[name]")
@@ -244,7 +244,7 @@ datum/preferences
 
 		// This is absolute garbage but whatever. It will do until this entire file can be rewritten without crashes.
 		var/use_eye_icon = "eyes_s"
-		var/list/use_eye_data = current_species.has_limbs["head"]
+		var/list/use_eye_data = current_species.has_limbs[BP_HEAD]
 		if(islist(use_eye_data))
 			var/use_eye_path = use_eye_data["path"]
 			var/obj/item/organ/external/head/temp_head = new use_eye_path ()

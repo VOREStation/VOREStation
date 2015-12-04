@@ -4,7 +4,7 @@
 
 /obj/item/organ/external/chest
 	name = "upper body"
-	limb_name = "chest"
+	organ_tag = BP_TORSO
 	icon_name = "torso"
 	max_damage = 100
 	min_broken_damage = 35
@@ -21,34 +21,34 @@
 
 /obj/item/organ/external/groin
 	name = "lower body"
-	limb_name = "groin"
+	organ_tag = BP_GROIN
 	icon_name = "groin"
 	max_damage = 100
 	min_broken_damage = 35
 	w_class = 4
 	body_part = LOWER_TORSO
 	vital = 1
-	parent_organ = "chest"
+	parent_organ = BP_TORSO
 	amputation_point = "lumbar"
 	joint = "hip"
 	dislocated = -1
 	gendered_icon = 1
 
 /obj/item/organ/external/arm
-	limb_name = "l_arm"
+	organ_tag = "l_arm"
 	name = "left arm"
 	icon_name = "l_arm"
 	max_damage = 50
 	min_broken_damage = 30
 	w_class = 3
 	body_part = ARM_LEFT
-	parent_organ = "chest"
+	parent_organ = BP_TORSO
 	joint = "left elbow"
 	amputation_point = "left shoulder"
 	can_grasp = 1
 
 /obj/item/organ/external/arm/right
-	limb_name = "r_arm"
+	organ_tag = "r_arm"
 	name = "right arm"
 	icon_name = "r_arm"
 	body_part = ARM_RIGHT
@@ -56,7 +56,7 @@
 	amputation_point = "right shoulder"
 
 /obj/item/organ/external/leg
-	limb_name = "l_leg"
+	organ_tag = "l_leg"
 	name = "left leg"
 	icon_name = "l_leg"
 	max_damage = 50
@@ -64,13 +64,13 @@
 	w_class = 3
 	body_part = LEG_LEFT
 	icon_position = LEFT
-	parent_organ = "groin"
+	parent_organ = BP_GROIN
 	joint = "left knee"
 	amputation_point = "left hip"
 	can_stand = 1
 
 /obj/item/organ/external/leg/right
-	limb_name = "r_leg"
+	organ_tag = "r_leg"
 	name = "right leg"
 	icon_name = "r_leg"
 	body_part = LEG_RIGHT
@@ -79,7 +79,7 @@
 	amputation_point = "right hip"
 
 /obj/item/organ/external/foot
-	limb_name = "l_foot"
+	organ_tag = "l_foot"
 	name = "left foot"
 	icon_name = "l_foot"
 	max_damage = 30
@@ -97,7 +97,7 @@
 	..()
 
 /obj/item/organ/external/foot/right
-	limb_name = "r_foot"
+	organ_tag = "r_foot"
 	name = "right foot"
 	icon_name = "r_foot"
 	body_part = FOOT_RIGHT
@@ -107,7 +107,7 @@
 	amputation_point = "right ankle"
 
 /obj/item/organ/external/hand
-	limb_name = "l_hand"
+	organ_tag = "l_hand"
 	name = "left hand"
 	icon_name = "l_hand"
 	max_damage = 30
@@ -124,7 +124,7 @@
 	..()
 
 /obj/item/organ/external/hand/right
-	limb_name = "r_hand"
+	organ_tag = "r_hand"
 	name = "right hand"
 	icon_name = "r_hand"
 	body_part = HAND_RIGHT
@@ -133,7 +133,7 @@
 	amputation_point = "right wrist"
 
 /obj/item/organ/external/head
-	limb_name = "head"
+	organ_tag = BP_HEAD
 	icon_name = "head"
 	name = "head"
 	max_damage = 75
@@ -141,7 +141,7 @@
 	w_class = 3
 	body_part = HEAD
 	vital = 1
-	parent_organ = "chest"
+	parent_organ = BP_TORSO
 	joint = "jaw"
 	amputation_point = "neck"
 	gendered_icon = 1

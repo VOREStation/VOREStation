@@ -72,7 +72,7 @@
 /datum/reagent/blood/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.check_is_prosthetic())
+		if(H.isSynthetic())
 			return
 	if(data && data["viruses"])
 		for(var/datum/disease/D in data["viruses"])
