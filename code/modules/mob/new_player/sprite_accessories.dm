@@ -275,7 +275,7 @@
 		name = "Long Emo"
 		icon_state = "hair_emolong"
 
-	longemo
+	fringeemo
 		name = "Emo Fringe"
 		icon_state = "hair_emofringe"
 
