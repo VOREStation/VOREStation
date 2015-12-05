@@ -147,6 +147,7 @@ area/space/atmosalert()
 	requires_power = 0
 	flags = RAD_SHIELDED
 	sound_env = SMALL_ENCLOSED
+	base_turf = /turf/space
 
 /area/shuttle/arrival
 	name = "\improper Arrival Shuttle"
@@ -1025,14 +1026,17 @@ area/space/atmosalert()
 /area/hallway/secondary/entry/D1
 	name = "\improper Shuttle Dock Hallway - Dock One"
 	icon_state = "entry_D1"
+	base_turf = /turf/space
 
 /area/hallway/secondary/entry/D2
 	name = "\improper Shuttle Dock Hallway - Dock Two"
 	icon_state = "entry_D2"
+	base_turf = /turf/space
 
 /area/hallway/secondary/entry/D3
 	name = "\improper Shuttle Dock Hallway - Dock Three"
 	icon_state = "entry_D3"
+	base_turf = /turf/space
 
 /area/hallway/secondary/entry/D4
 	name = "\improper Shuttle Dock Hallway - Dock Four"
@@ -1603,6 +1607,7 @@ area/space/atmosalert()
 	requires_power = 1
 	always_unpowered = 1
 	lighting_use_dynamic = 0
+	base_turf = /turf/space
 
 	auxport
 		name = "\improper Fore Port Solar Array"
