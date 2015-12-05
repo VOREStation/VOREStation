@@ -73,6 +73,19 @@
 	qdel(src)
 	return B
 
+/obj/item/weapon/reagent_containers/food/drinks/bottle/verb/smash_bottle()
+	set name = "Smash Bottle"
+	set category = "Object"
+
+	var/list/things_to_smash_on = list()
+	for(var/atom/A in range (1, usr))
+		if(A.density && usr.Adjacent(A) && !istype(A, /mob))
+			things_to_smash_on += A
+
+	var/choice = input("Select what you want to smash the bottle on.") as null|anything in things_to_smash_on
+	usr.put_in_hands(src.smash(usr.loc, choice))
+	usr.visible_message("<span class='danger'>[usr] smashed the bottle on [choice]!</span>")
+
 /obj/item/weapon/reagent_containers/food/drinks/bottle/attackby(obj/item/W, mob/user)
 	if(!rag && istype(W, /obj/item/weapon/reagent_containers/glass/rag))
 		insert_rag(W, user)
@@ -453,5 +466,3 @@
 	New()
 		..()
 		reagents.add_reagent("ale", 30)
-
-
