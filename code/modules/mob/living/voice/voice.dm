@@ -81,7 +81,7 @@
 		src << speech_bubble
 
 	..(message, speaking, verb, alt_name) //mob/living/say() can do the actual talking.
-
+/*
 /mob/verb/test_voice_mob()
 	set name = "Make Voice Mob"
 	set category = "Debug"
@@ -91,3 +91,4 @@
 	var/turf/T = get_turf(src)
 	var/obj/item/device/communicator/comm = new(T)
 	comm.open_connection(src, src)
+*/
