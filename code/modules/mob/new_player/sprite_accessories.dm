@@ -275,6 +275,10 @@
 		name = "Long Emo"
 		icon_state = "hair_emolong"
 
+	longemo
+		name = "Emo Fringe"
+		icon_state = "hair_emofringe"
+
 	veryshortovereyealternate
 		name = "Overeye Very Short, Alternate"
 		icon_state = "hair_veryshortovereyealternate"
