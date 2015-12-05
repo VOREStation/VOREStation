@@ -1,6 +1,6 @@
 /obj/item/clothing/head/helmet
 	name = "helmet"
-	desc = "Standard Security gear. Protects the head from impacts. This one has a adjustable visor."
+	desc = "Standard Security gear. Protects the head from impacts."
 	icon_state = "helmet"
 	item_state_slots = list(
 		slot_l_hand_str = "helmet",

@@ -17,7 +17,7 @@
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
 
-/obj/item/clothing/head/warden
+/obj/item/clothing/head/helmet/warden
 	name = "warden's hat"
 	desc = "It's a special helmet issued to the Warden of a securiy force."
 	icon_state = "policehelm"
@@ -110,6 +110,16 @@
 	worn_state = "det_corporate"
 	desc = "A more modern uniform for corporate investigators."
 
+/obj/item/clothing/under/det/waistcoat
+	icon_state = "detective_waistcoat"
+	worn_state = "detective_waistcoat"
+	desc = "A rumpled white dress shirt paired with well-worn grey slacks, complete with a blue striped tie, faux-gold tie clip, and waistcoat."
+
+/obj/item/clothing/under/det/grey/waistcoat
+	icon_state = "detective2_waistcoat"
+	worn_state = "detective2_waistcoat"
+	desc = "A serious-looking tan dress shirt paired with freshly-pressed black slacks, complete with a red striped tie and waistcoat."
+
 /obj/item/clothing/head/det
 	name = "fedora"
 	desc = "A brown fedora - either the cornerstone of a detective's style or a poor attempt at looking cool, depending on the person wearing it."
@@ -145,14 +155,14 @@
 	//item_state = "hos_corporate"
 	worn_state = "hos_corporate"
 
-/obj/item/clothing/head/HoS
+/obj/item/clothing/head/helmet/HoS
 	name = "Head of Security Hat"
 	desc = "The hat of the Head of Security. For showing the officers who's in charge."
 	icon_state = "hoscap"
 	body_parts_covered = 0
 	siemens_coefficient = 0.8
 
-/obj/item/clothing/head/HoS/dermal
+/obj/item/clothing/head/helmet/HoS/dermal
 	name = "Dermal Armour Patch"
 	desc = "You're not quite sure how you manage to take it on and off, but it implants nicely in your head."
 	icon_state = "dermal"

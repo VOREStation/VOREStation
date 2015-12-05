@@ -90,7 +90,7 @@
 	else
 		togglelock(user)
 
-/obj/structure/closet/secure_closet/attack_hand(var/remaining_charges, var/mob/user, var/visual_feedback, var/audible_feedback)
+/obj/structure/closet/secure_closet/emag_act(var/remaining_charges, var/mob/user, var/visual_feedback, var/audible_feedback)
 	if(!broken)
 		broken = 1
 		locked = 0

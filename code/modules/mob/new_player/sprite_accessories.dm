@@ -206,6 +206,14 @@
 		name = "Bun"
 		icon_state = "hair_bun"
 
+	bun2
+		name = "Bun 2"
+		icon_state = "hair_bun2"
+
+	bun3
+		name = "Bun 3"
+		icon_state = "hair_bun3"
+
 	bowl
 		name = "Bowl"
 		icon_state = "hair_bowlcut"
@@ -266,6 +274,14 @@
 	longemo
 		name = "Long Emo"
 		icon_state = "hair_emolong"
+
+	fringeemo
+		name = "Emo Fringe"
+		icon_state = "hair_emofringe"
+
+	veryshortovereyealternate
+		name = "Overeye Very Short, Alternate"
+		icon_state = "hair_veryshortovereyealternate"
 
 	veryshortovereye
 		name = "Overeye Very Short"
@@ -405,6 +421,22 @@
 	volaju
 		name = "Volaju"
 		icon_state = "hair_volaju"
+
+	eighties
+		name = "80's"
+		icon_state = "hair_80s"
+
+	nia
+		name = "Nia"
+		icon_state = "hair_nia"
+
+	unkept
+		name = "Unkept"
+		icon_state = "hair_unkept"
+
+	modern
+		name = "Modern"
+		icon_state = "hair_modern"
 
 	bald
 		name = "Bald"

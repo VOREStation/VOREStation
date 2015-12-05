@@ -229,14 +229,14 @@ Turf and target are seperate in case you want to teleport some distance from a t
 #define LOCATE_COORDS(X, Y, Z) locate(between(1, X, world.maxx), between(1, Y, world.maxy), Z)
 /proc/getcircle(turf/center, var/radius) //Uses a fast Bresenham rasterization algorithm to return the turfs in a thin circle.
 	if(!radius) return list(center)
-	
+
 	var/x = 0
 	var/y = radius
 	var/p = 3 - 2 * radius
-	
+
 	. = list()
 	while(y >= x) // only formulate 1/8 of circle
-		
+
 		. += LOCATE_COORDS(center.x - x, center.y - y, center.z) //upper left left
 		. += LOCATE_COORDS(center.x - y, center.y - x, center.z) //upper upper left
 		. += LOCATE_COORDS(center.x + y, center.y - x, center.z) //upper upper right
@@ -247,7 +247,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		. += LOCATE_COORDS(center.x + x, center.y + y, center.z) //lower right right
 
 		if(p < 0)
-			p += 4*x++ + 6; 
+			p += 4*x++ + 6;
 		else
 			p += 4*(x++ - y--) + 10;
 
@@ -875,7 +875,7 @@ proc/GaussRandRound(var/sigma,var/roundto)
 					if(turftoleave)
 						fromupdate += T.ChangeTurf(turftoleave)
 					else
-						T.ChangeTurf(get_base_turf(T.z))
+						T.ChangeTurf(get_base_turf_by_area(T))
 
 					refined_src -= T
 					refined_trg -= B
@@ -962,7 +962,7 @@ proc/DuplicateObject(obj/original, var/perfectcopy = 0 , var/sameloc = 0)
 					var/old_underlays = T.underlays.Copy()
 
 					if(platingRequired)
-						if(istype(B, get_base_turf(B.z)))
+						if(istype(B, get_base_turf_by_area(B)))
 							continue moving
 
 					var/turf/X = B

@@ -264,7 +264,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	var/datum/shuttle/ferry/multidock/specops/ERT = new()
 	ERT.location = 0
 	ERT.warmup_time = 10
-	ERT.area_offsite = locate(/area/shuttle/specops/station)	//centcom is the home station, the Exodus is offsite
+	ERT.area_offsite = locate(/area/shuttle/specops/station)	//centcom is the home station, the Northern Star is offsite
 	ERT.area_station = locate(/area/shuttle/specops/centcom)
 	ERT.docking_controller_tag = "specops_shuttle_port"
 	ERT.docking_controller_tag_station = "specops_shuttle_port"

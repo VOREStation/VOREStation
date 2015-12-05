@@ -110,13 +110,13 @@
 			new /obj/item/weapon/storage/backpack/satchel_sec(src)
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/dufflebag/sec(src)
-		new /obj/item/clothing/head/HoS(src)
+		new /obj/item/clothing/head/helmet/HoS(src)
 		new /obj/item/clothing/suit/storage/vest/hos(src)
 		new /obj/item/clothing/under/rank/head_of_security/jensen(src)
 		new /obj/item/clothing/under/rank/head_of_security/corp(src)
 		new /obj/item/clothing/suit/armor/hos/jensen(src)
 		new /obj/item/clothing/suit/armor/hos(src)
-		new /obj/item/clothing/head/HoS/dermal(src)
+		new /obj/item/clothing/head/helmet/HoS/dermal(src)
 		new /obj/item/weapon/cartridge/hos(src)
 		new /obj/item/device/radio/headset/heads/hos(src)
 		new /obj/item/device/radio/headset/heads/hos/alt(src)
@@ -161,7 +161,7 @@
 		new /obj/item/clothing/under/rank/warden/corp(src)
 		new /obj/item/clothing/suit/armor/vest/warden(src)
 		new /obj/item/clothing/suit/armor/vest/warden/alt(src)
-		new /obj/item/clothing/head/warden(src)
+		new /obj/item/clothing/head/helmet/warden(src)
 		new /obj/item/weapon/cartridge/security(src)
 		new /obj/item/device/radio/headset/headset_sec(src)
 		new /obj/item/device/radio/headset/headset_sec/alt(src)
@@ -181,7 +181,7 @@
 
 /obj/structure/closet/secure_closet/security
 	name = "security officer's locker"
-	req_access = list(access_security)
+	req_access = list(access_brig)
 	icon_state = "sec1"
 	icon_closed = "sec"
 	icon_locked = "sec1"
@@ -199,7 +199,7 @@
 			new /obj/item/weapon/storage/backpack/dufflebag/sec(src)
 		new /obj/item/clothing/suit/storage/vest/officer(src)
 		new /obj/item/clothing/head/helmet(src)
-//		new /obj/item/weapon/cartridge/security(src)
+		new /obj/item/weapon/cartridge/security(src)
 		new /obj/item/device/radio/headset/headset_sec(src)
 		new /obj/item/device/radio/headset/headset_sec/alt(src)
 		new /obj/item/weapon/storage/belt/security(src)
@@ -268,6 +268,8 @@
 		new /obj/item/clothing/under/det(src)
 		new /obj/item/clothing/under/det/grey(src)
 		new /obj/item/clothing/under/det/black(src)
+		new /obj/item/clothing/under/det/waistcoat(src)
+		new /obj/item/clothing/under/det/grey/waistcoat(src)
 		new /obj/item/clothing/suit/storage/det_trench(src)
 		new /obj/item/clothing/suit/storage/det_trench/grey(src)
 		new /obj/item/clothing/suit/storage/forensics/blue(src)
@@ -278,6 +280,7 @@
 		new /obj/item/clothing/shoes/laceup(src)
 		new /obj/item/weapon/storage/box/evidence(src)
 		new /obj/item/device/radio/headset/headset_sec(src)
+		new /obj/item/device/radio/headset/headset_sec/alt(src)
 		new /obj/item/device/detective_scanner(src)
 		new /obj/item/clothing/suit/storage/vest/detective(src)
 		new /obj/item/ammo_magazine/c45m/rubber(src)

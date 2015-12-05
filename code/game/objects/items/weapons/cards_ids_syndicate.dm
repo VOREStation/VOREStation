@@ -1,4 +1,4 @@
-var/global/list/syndicate_ids = list()
+var/list/syndicate_ids = list()
 
 /obj/item/weapon/card/id/syndicate
 	name = "agent card"
@@ -9,8 +9,8 @@ var/global/list/syndicate_ids = list()
 	var/registered_user = null
 
 /obj/item/weapon/card/id/syndicate/New(mob/user as mob)
-	syndicate_ids += src
 	..()
+	syndicate_ids += src
 	access = syndicate_access.Copy()
 
 /obj/item/weapon/card/id/syndicate/Destroy()

@@ -681,13 +681,3 @@
 	max_storage_space = 21
 	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
 
-/obj/item/weapon/storage/box/fcard //Serves as a replacement to the fcard holder.
-	name = "finger-print card box"
-	desc = "Holds fingerprint cards."
-	icon = 'icons/obj/storage.dmi'
-	icon_state = "box"
-	item_state = "syringe_kit"
-	storage_slots=21
-	max_w_class = 1
-	can_hold = list(/obj/item/weapon/f_card)
-	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try

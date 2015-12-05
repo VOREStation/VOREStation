@@ -11,6 +11,10 @@
 		density = 0
 		update_icon()
 		set_light(0)
+		src.blocks_air = 0
+		src.opacity = 0
+		for(var/turf/simulated/turf in loc)
+			air_master.mark_for_update(turf)
 	else
 		can_open = WALL_OPENING
 		//flick("[material.icon_base]fwall_closing", src)
@@ -18,6 +22,10 @@
 		update_icon()
 		sleep(15)
 		set_light(1)
+		src.blocks_air = 1
+		src.opacity = 1
+		for(var/turf/simulated/turf in loc)
+			air_master.mark_for_update(turf)
 
 	can_open = WALL_CAN_OPEN
 	update_icon()
@@ -312,4 +320,5 @@
 
 	else if(!istype(W,/obj/item/weapon/rcd) && !istype(W, /obj/item/weapon/reagent_containers))
 		return attack_hand(user)
+
 

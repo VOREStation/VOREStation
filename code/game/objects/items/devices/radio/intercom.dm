@@ -33,10 +33,12 @@
 
 /obj/item/device/radio/intercom/department/medbay
 	name = "station intercom (Medbay)"
+	icon_state = "secintercom"
 	frequency = MED_I_FREQ
 
 /obj/item/device/radio/intercom/department/security
 	name = "station intercom (Security)"
+	icon_state = "medintercom"
 	frequency = SEC_I_FREQ
 
 /obj/item/device/radio/intercom/New()
@@ -110,7 +112,7 @@
 		if(!on)
 			icon_state = "intercom-p"
 		else
-			icon_state = "intercom"
+			icon_state = initial(icon_state)
 
 /obj/item/device/radio/intercom/locked
     var/locked_frequency

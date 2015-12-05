@@ -19,7 +19,7 @@
 	var/recharge_time = 4
 	var/charge_tick = 0
 
-/obj/item/weapon/gun/energy/switch_firemodes()
+/obj/item/weapon/gun/energy/switch_firemodes(mob/user)
 	if(..())
 		update_icon()
 
