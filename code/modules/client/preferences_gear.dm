@@ -1504,6 +1504,12 @@ var/global/list/gear_datums = list()
 	sort_category = "utility"
 	cost = 1
 
+/datum/gear/communicator
+	display_name = "personal communicator"
+	path = /obj/item/device/communicator
+	sort_category = "utility"
+	cost = 1
+
 /datum/gear/folder_blue
 	display_name = "folder, blue"
 	path = /obj/item/weapon/folder/blue

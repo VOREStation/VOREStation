@@ -15,6 +15,7 @@
 	var/userDNA		// The DNA string of our assigned user
 	var/obj/item/device/paicard/card	// The card we inhabit
 	var/obj/item/device/radio/radio		// Our primary radio
+	var/obj/item/device/communicator/integrated/communicator	// Our integrated communicator.
 
 	var/chassis = "repairbot"   // A record of your chosen chassis.
 	var/global/list/possible_chassis = list(
@@ -75,6 +76,7 @@
 	src.loc = paicard
 	card = paicard
 	sradio = new(src)
+	communicator = new(src)
 	if(card)
 		if(!card.radio)
 			card.radio = new /obj/item/device/radio(src.card)
