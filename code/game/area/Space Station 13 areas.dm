@@ -2285,6 +2285,7 @@ area/space/atmosalert()
 /area/shuttle/constructionsite
 	name = "\improper Construction Site Shuttle"
 	icon_state = "yellow"
+	lighting_use_dynamic = 0
 
 /area/shuttle/constructionsite/station
 	name = "\improper Construction Site Shuttle"
