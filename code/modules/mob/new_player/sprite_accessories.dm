@@ -206,6 +206,14 @@
 		name = "Bun"
 		icon_state = "hair_bun"
 
+	bun2
+		name = "Bun 2"
+		icon_state = "hair_bun2"
+
+	bun3
+		name = "Bun 3"
+		icon_state = "hair_bun3"
+
 	bowl
 		name = "Bowl"
 		icon_state = "hair_bowlcut"
@@ -266,6 +274,10 @@
 	longemo
 		name = "Long Emo"
 		icon_state = "hair_emolong"
+
+	veryshortovereyealternate
+		name = "Overeye Very Short, Alternate"
+		icon_state = "hair_veryshortovereyealternate"
 
 	veryshortovereye
 		name = "Overeye Very Short"
