@@ -66,7 +66,8 @@ var/global/list/socks_t = list(
 	"White normal" = "white_norm", "White short" = "white_short", "White knee" = "white_knee",
 	"White thigh" = "white_thigh", "Black normal" = "black_norm", "Black short" = "black_short",
 	"Black knee" = "black_knee", "Black thigh" = "black_thigh", "Thin knee" = "thin_knee",
-	"Thin thigh" = "thin_thigh", "Pantyhose" = "pantyhose", "None")
+	"Thin thigh" = "thin_thigh", "Pantyhose" = "pantyhose", "Striped thigh" = "striped_thigh",
+	"Striped knee" = "striped_knee", "Rainbow knee" = "rainbow_knee", "Rainbow thigh" = "rainbow_thigh", "None")
 
 	//Backpacks
 var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Alt")
