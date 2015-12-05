@@ -166,7 +166,7 @@
 	if(H.mind && !player_is_antag(H.mind, only_offstation_roles = 1))
 		var/assignment = GetAssignment(H)
 
-		var/id = add_zero(num2hex(rand(1, 1.6777215E7)), 6)	//this was the best they could come up with? A large random number? *sigh*
+		var/id = add_zero(num2hex(rand(1, 65535)), 4)	//no point generating higher numbers because of the limitations of num2hex
 		//General Record
 		var/datum/data/record/G = CreateGeneralRecord(H, id)
 		G.fields["name"]		= H.real_name
@@ -395,7 +395,7 @@ proc/get_id_photo(var/mob/living/carbon/human/H, var/assigned_role)
 		side = new(get_id_photo(dummy), dir = WEST)
 		qdel(dummy)
 
-	if(!id) id = text("[]", add_zero(num2hex(rand(1, 1.6777215E7)), 6))
+	if(!id) id = text("[]", add_zero(num2hex(rand(1, 65536)), 4))
 	var/datum/data/record/G = new /datum/data/record()
 	G.name = "Employee Record #[id]"
 	G.fields["name"] = "New Record"
