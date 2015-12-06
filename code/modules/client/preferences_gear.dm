@@ -773,6 +773,13 @@ var/global/list/gear_datums = list()
 	cost = 1
 	allowed_roles = list("Captain")
 
+/datum/gear/corpdetsuit
+	display_name = "uniform, corporate (Detective)"
+	path = /obj/item/clothing/under/det/corporate
+	cost = 1
+	slot = slot_w_uniform
+	allowed_roles = list("Detective","Head of Security")
+
 /datum/gear/corpsecsuit
 	display_name = "uniform, corporate (Security)"
 	path = /obj/item/clothing/under/rank/security/corp

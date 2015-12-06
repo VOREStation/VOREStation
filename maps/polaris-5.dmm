@@ -1470,7 +1470,7 @@
 "Cn" = (/turf/simulated/floor/tiled,/area/outpost/mining_main/eva)
 "Co" = (/obj/machinery/atmospherics/pipe/simple/hidden{dir = 5; icon_state = "intact"; tag = "icon-intact-f (NORTHEAST)"},/turf/simulated/floor/tiled,/area/outpost/mining_main/eva)
 "Cp" = (/obj/machinery/atmospherics/pipe/manifold/hidden,/obj/machinery/access_button/airlock_interior{frequency = 1377; master_tag = "mcontrol"; pixel_x = 26; pixel_y = -26; req_access = list(48)},/turf/simulated/floor/tiled,/area/outpost/mining_main/eva)
-"Cq" = (/obj/machinery/door/airlock/external{frequency = 1377; icon_state = "door_locked"; id_tag = "mint"; locked = 1},/obj/machinery/door/firedoor,/turf/simulated/floor/tiled,/area/outpost/mining_main/eva)
+"Cq" = (/obj/machinery/door/airlock/external{frequency = 1377; icon_state = "door_locked"; id_tag = "mint"; locked = 1},/obj/machinery/door/firedoor,/obj/machinery/atmospherics/pipe/simple/hidden{dir = 4},/turf/simulated/floor/tiled,/area/outpost/mining_main/eva)
 "Cr" = (/obj/machinery/atmospherics/pipe/manifold4w/hidden,/turf/simulated/floor/tiled,/area/outpost/mining_main/eva)
 "Cs" = (/obj/machinery/atmospherics/pipe/manifold/hidden{dir = 4; icon_state = "map"; tag = "icon-manifold-f (EAST)"},/turf/simulated/floor/tiled,/area/outpost/mining_main/eva)
 "Ct" = (/obj/machinery/door/airlock/external{frequency = 1377; icon_state = "door_locked"; id_tag = "mext"; locked = 1},/obj/machinery/door/firedoor,/turf/simulated/floor/tiled,/area/outpost/mining_main/eva)
