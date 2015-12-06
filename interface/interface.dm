@@ -38,6 +38,32 @@
 		src << "<span class='danger'>The rules URL is not set in the server configuration.</span>"
 	return
 
+/client/verb/map()
+	set name = "Map"
+	set desc = "See the map."
+	set hidden = 1
+
+	if(config.mapurl)
+		if(alert("This will open the map in your browser. Are you sure?",,"Yes","No")=="No")
+			return
+		src << link(config.mapurl)
+	else
+		src << "<span class='danger'>The map URL is not set in the server configuration.</span>"
+	return
+
+/client/verb/github()
+	set name = "GitHub"
+	set desc = "Visit the GitHub"
+	set hidden = 1
+
+	if(config.githuburl)
+		if(alert("This will open the GitHub in your browser. Are you sure?",,"Yes","No")=="No")
+			return
+		src << link(config.githuburl)
+	else
+		src << "<span class='danger'>The GitHub URL is not set in the server configuration.</span>"
+	return
+
 /client/verb/hotkeys_help()
 	set name = "hotkeys-help"
 	set category = "OOC"
