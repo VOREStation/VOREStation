@@ -31,11 +31,13 @@ var/list/mechtoys = list(
 	name = "Supply Shuttle"
 	icon_state = "shuttle3"
 	requires_power = 0
+	base_turf = /turf/space
 
 /area/supply/dock
 	name = "Supply Shuttle"
 	icon_state = "shuttle3"
 	requires_power = 0
+	base_turf = /turf/space
 
 /obj/structure/plasticflaps //HOW DO YOU CALL THOSE THINGS ANYWAY
 	name = "\improper plastic flaps"
