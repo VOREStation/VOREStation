@@ -418,6 +418,9 @@ var/list/gamemode_cache = list()
 				if ("forumurl")
 					config.forumurl = value
 
+				if ("rulesurl")
+					config.rulesurl = value
+
 				if ("githuburl")
 					config.githuburl = value
 				if ("guest_jobban")
