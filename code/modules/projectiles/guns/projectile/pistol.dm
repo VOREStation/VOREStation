@@ -18,70 +18,15 @@
 
 /obj/item/weapon/gun/projectile/colt/detective/update_icon()
 	if(ammo_magazine)
-		icon_state = "colt"
+		if(unique_reskin)
+			icon_state = unique_reskin
+		else
+			icon_state = initial(icon_state)
 	else
-		icon_state = "colt-e"
-
-		return
-	return..()
-/obj/item/weapon/gun/projectile/colt/detective/update_icon()
-	if(unique_reskin == "usp")
-		if(ammo_magazine)
-			icon_state = "usp"
+		if(unique_reskin)
+			icon_state = "[unique_reskin]-e"
 		else
-			icon_state = "usp-e"
-
-		return
-	return..()
-obj/item/weapon/gun/projectile/colt/detective/update_icon()
-	if(unique_reskin == "p08")
-		if(ammo_magazine)
-			icon_state = "p08"
-		else
-			icon_state = "p08empty"
-
-		return
-	return..()
-
-obj/item/weapon/gun/projectile/colt/detective/update_icon()
-	if(unique_reskin == "p08b")
-		if(ammo_magazine)
-			icon_state = "p08b"
-		else
-			icon_state = "p08emptyb"
-
-		return
-	return..()
-
-obj/item/weapon/gun/projectile/colt/detective/update_icon()
-	if(unique_reskin == "VP78")
-		if(ammo_magazine)
-			icon_state = "VP78"
-		else
-			icon_state = "VP78-e"
-
-		return
-	return..()
-
-obj/item/weapon/gun/projectile/colt/detective/update_icon()
-	if(unique_reskin == "secguncomp")
-		if(ammo_magazine)
-			icon_state = "secguncomp"
-		else
-			icon_state = "secguncomp-e"
-
-		return
-	return..()
-
-obj/item/weapon/gun/projectile/colt/detective/update_icon()
-	if(unique_reskin == "secgundark")
-		if(ammo_magazine)
-			icon_state = "secgundark"
-		else
-			icon_state = "secgundark-e"
-
-		return
-	return..()
+			icon_state = "[initial(icon_state)]-e"
 
 /obj/item/weapon/gun/projectile/colt/detective/verb/rename_gun()
 	set name = "Name Gun"
@@ -115,7 +60,6 @@ obj/item/weapon/gun/projectile/colt/detective/update_icon()
 	options["H&K VP"] = "VP78"
 	options["P08 Luger"] = "p08"
 	options["P08 Luger, Brown"] = "p08b"
-	options["Cancel"] = null //why wasn't this a thing to begin with
 	var/choice = input(M,"What do you want to skin the gun to?","Reskin Gun") in options
 	if(src && choice && !M.stat && in_range(M,src))
 		icon_state = options[choice]
