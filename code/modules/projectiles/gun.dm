@@ -309,7 +309,7 @@
 
 	return !P.launch_from_gun(target, user, src, target_zone, x_offset, y_offset)
 
-//aprt of reskins that have two sprites, no touch please
+//apart of reskins that have two sprites, touching may result in frustration and breaks
 /obj/item/weapon/gun/projectile/colt/detective/attack_hand(var/mob/living/user)
 	if(!unique_reskin && loc == user)
 		reskin_gun(user)

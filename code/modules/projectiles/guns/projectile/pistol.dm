@@ -9,9 +9,6 @@
 	fire_sound = 'sound/weapons/Gunshot_light.ogg'
 	load_method = MAGAZINE
 
-//For some reason you have to add one of these "if else" statements on the M1911 reskins or the code breaks.
-//If you're not working with two different sprites, just set them to the same icon_state.
-
 /obj/item/weapon/gun/projectile/colt/detective
 	desc = "A Martian recreation of an old Terran pistol. Uses .45 rounds."
 	magazine_type = /obj/item/ammo_magazine/c45m/rubber
