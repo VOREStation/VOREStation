@@ -123,3 +123,8 @@ obj/machinery/atmospherics/proc/check_connect_types(obj/machinery/atmospherics/a
 
 /obj/machinery/atmospherics/update_icon()
 	return null
+
+/obj/machinery/atmospherics/attack_ghost(user as mob)
+	if(stat & (BROKEN|MAINT))
+		return
+	return ui_interact(user)

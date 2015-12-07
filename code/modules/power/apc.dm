@@ -749,7 +749,7 @@
 		"totalLoad" = round(lastused_total),
 		"totalCharging" = round(lastused_charging),
 		"coverLocked" = coverlocked,
-		"siliconUser" = istype(user, /mob/living/silicon),
+		"siliconUser" = issilicon(user) || isobserver(user), //I add observer here so admins can have more control, even if it makes 'siliconUser' seem inaccurate.
 
 		"powerChannels" = list(
 			list(
@@ -822,10 +822,12 @@
 
 
 /obj/machinery/power/apc/proc/can_use(mob/user as mob, var/loud = 0) //used by attack_hand() and Topic()
+	if(!user.client)
+		return 0
+	if(isobserver(user) && is_admin(user) ) //This is to allow nanoUI interaction by ghost admins.
+		return 1
 	if (user.stat)
 		user << "<span class='warning'>You must be conscious to use [src]!</span>"
-		return 0
-	if(!user.client)
 		return 0
 	if(inoperable())
 		return 0
@@ -872,10 +874,15 @@
 	if(!can_use(usr, 1))
 		return 1
 
-	if(!istype(usr, /mob/living/silicon) && locked)
-		// Shouldn't happen, this is here to prevent href exploits
-		usr << "You must unlock the panel to use this!"
-		return 1
+	if(locked && !issilicon(usr) )
+		if(isobserver(usr) )
+			var/mob/dead/observer/O = usr	//Added to allow admin nanoUI interactions.
+			if(!O.can_admin_interact() )	//NanoUI /should/ make this not needed, but better safe than sorry.
+				usr << "Try as you might, your ghostly fingers can't press the buttons."
+				return 1
+		else
+			usr << "You must unlock the panel to use this!"
+			return 1
 
 	if (href_list["lock"])
 		coverlocked = !coverlocked
