@@ -1,4 +1,5 @@
 /obj/item/weapon/gun/projectile/colt
+	var/unique_reskin
 	name = "vintage .45 pistol"
 	desc = "A cheap Martian knock-off of a Colt M1911. Uses .45 rounds."
 	magazine_type = /obj/item/ammo_magazine/c45m
@@ -8,9 +9,79 @@
 	fire_sound = 'sound/weapons/Gunshot_light.ogg'
 	load_method = MAGAZINE
 
+//For some reason you have to add one of these "if else" statements on the M1911 reskins or the code breaks.
+//If you're not working with two different sprites, just set them to the same icon_state.
+
 /obj/item/weapon/gun/projectile/colt/detective
 	desc = "A Martian recreation of an old Terran pistol. Uses .45 rounds."
 	magazine_type = /obj/item/ammo_magazine/c45m/rubber
+
+/obj/item/weapon/gun/projectile/colt/detective/update_icon()
+	if(ammo_magazine)
+		icon_state = "colt"
+	else
+		icon_state = "colt-e"
+
+		return
+	return..()
+/obj/item/weapon/gun/projectile/colt/detective/update_icon()
+	if(unique_reskin == "usp")
+		if(ammo_magazine)
+			icon_state = "usp"
+		else
+			icon_state = "usp-e"
+
+		return
+	return..()
+obj/item/weapon/gun/projectile/colt/detective/update_icon()
+	if(unique_reskin == "p08")
+		if(ammo_magazine)
+			icon_state = "p08"
+		else
+			icon_state = "p08empty"
+
+		return
+	return..()
+
+obj/item/weapon/gun/projectile/colt/detective/update_icon()
+	if(unique_reskin == "p08b")
+		if(ammo_magazine)
+			icon_state = "p08b"
+		else
+			icon_state = "p08emptyb"
+
+		return
+	return..()
+
+obj/item/weapon/gun/projectile/colt/detective/update_icon()
+	if(unique_reskin == "VP78")
+		if(ammo_magazine)
+			icon_state = "VP78"
+		else
+			icon_state = "VP78-e"
+
+		return
+	return..()
+
+obj/item/weapon/gun/projectile/colt/detective/update_icon()
+	if(unique_reskin == "secguncomp")
+		if(ammo_magazine)
+			icon_state = "secguncomp"
+		else
+			icon_state = "secguncomp-e"
+
+		return
+	return..()
+
+obj/item/weapon/gun/projectile/colt/detective/update_icon()
+	if(unique_reskin == "secgundark")
+		if(ammo_magazine)
+			icon_state = "secgundark"
+		else
+			icon_state = "secgundark-e"
+
+		return
+	return..()
 
 /obj/item/weapon/gun/projectile/colt/detective/verb/rename_gun()
 	set name = "Name Gun"
@@ -40,9 +111,15 @@
 	options["NT Mk. 58"] = "secguncomp"
 	options["NT Mk. 58 Custom"] = "secgundark"
 	options["Colt M1911"] = "colt"
+	options["USP"] = "usp"
+	options["H&K VP"] = "VP78"
+	options["P08 Luger"] = "p08"
+	options["P08 Luger, Brown"] = "p08b"
+	options["Cancel"] = null //why wasn't this a thing to begin with
 	var/choice = input(M,"What do you want to skin the gun to?","Reskin Gun") in options
 	if(src && choice && !M.stat && in_range(M,src))
 		icon_state = options[choice]
+		unique_reskin = options[choice]
 		M << "Your gun is now skinned as [choice]. Say hello to your new friend."
 		return 1
 
@@ -56,6 +133,13 @@
 	fire_sound = 'sound/weapons/Gunshot_light.ogg'
 	load_method = MAGAZINE
 
+/obj/item/weapon/gun/projectile/sec/update_icon()
+	..()
+	if(ammo_magazine)
+		icon_state = "secguncomp"
+	else
+		icon_state = "secguncomp-e"
+
 /obj/item/weapon/gun/projectile/sec/flash
 	name = ".45 signal pistol"
 	magazine_type = /obj/item/ammo_magazine/c45m/flash
@@ -64,6 +148,13 @@
 	desc = "The NT Mk58 is a cheap, ubiquitous sidearm, produced by a NanoTrasen subsidiary. This one has a sweet wooden grip. Uses .45 rounds."
 	name = "custom .45 Pistol"
 	icon_state = "secgundark"
+
+/obj/item/weapon/gun/projectile/sec/wood/update_icon()
+	..()
+	if(ammo_magazine)
+		icon_state = "secgundark"
+	else
+		icon_state = "secgundark-e"
 
 /obj/item/weapon/gun/projectile/silenced
 	name = "silenced pistol"

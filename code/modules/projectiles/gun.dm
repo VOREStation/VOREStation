@@ -309,6 +309,14 @@
 
 	return !P.launch_from_gun(target, user, src, target_zone, x_offset, y_offset)
 
+//aprt of reskins that have two sprites, no touch please
+/obj/item/weapon/gun/projectile/colt/detective/attack_hand(var/mob/living/user)
+	if(!unique_reskin && loc == user)
+		reskin_gun(user)
+		return
+	..()
+
+
 //Suicide handling.
 /obj/item/weapon/gun/var/mouthshoot = 0 //To stop people from suiciding twice... >.>
 /obj/item/weapon/gun/proc/handle_suicide(mob/living/user)
@@ -390,4 +398,3 @@
 
 /obj/item/weapon/gun/attack_self(mob/user)
 	switch_firemodes(user)
-
