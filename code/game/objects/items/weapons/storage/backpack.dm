@@ -148,7 +148,7 @@
 	icon_state = "duffle"
 	item_state = "duffle"
 	slowdown = 1
-	max_storage_space = 56
+	max_storage_space = 38
 	storage_slots = 20
 
 /obj/item/weapon/storage/backpack/dufflebag/syndie

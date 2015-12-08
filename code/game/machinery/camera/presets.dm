@@ -100,6 +100,9 @@ var/global/list/engineering_networks = list(
 /obj/machinery/camera/xray
 	icon_state = "xraycam" // Thanks to Krutchen for the icons.
 
+/obj/machinery/camera/xray/command
+	network = list(NETWORK_COMMAND)
+
 /obj/machinery/camera/xray/security
 	network = list(NETWORK_SECURITY)
 

@@ -773,6 +773,13 @@ var/global/list/gear_datums = list()
 	cost = 1
 	allowed_roles = list("Captain")
 
+/datum/gear/corpdetsuit
+	display_name = "uniform, corporate (Detective)"
+	path = /obj/item/clothing/under/det/corporate
+	cost = 1
+	slot = slot_w_uniform
+	allowed_roles = list("Detective","Head of Security")
+
 /datum/gear/corpsecsuit
 	display_name = "uniform, corporate (Security)"
 	path = /obj/item/clothing/under/rank/security/corp
@@ -1008,7 +1015,7 @@ var/global/list/gear_datums = list()
 
 /datum/gear/leather_coat
 	display_name = "leather coat"
-	path = /obj/item/clothing/suit/leathercoat/alt
+	path = /obj/item/clothing/suit/leathercoat
 	cost = 2
 	slot = slot_wear_suit
 
@@ -1501,6 +1508,12 @@ var/global/list/gear_datums = list()
 /datum/gear/clipboard
 	display_name = "clipboard"
 	path = /obj/item/weapon/clipboard
+	sort_category = "utility"
+	cost = 1
+
+/datum/gear/communicator
+	display_name = "personal communicator"
+	path = /obj/item/device/communicator
 	sort_category = "utility"
 	cost = 1
 

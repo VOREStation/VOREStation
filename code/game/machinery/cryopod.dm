@@ -40,14 +40,14 @@
 	allow_items = 0
 
 /obj/machinery/computer/cryopod/dorms
-	name = "residental oversight console"
-	desc = "An interface between visitors and the residental oversight systems tasked with keeping track of all visitors in the deeper section of the colony."
+	name = "residential oversight console"
+	desc = "An interface between visitors and the residential oversight systems tasked with keeping track of all visitors in the deeper section of the colony."
 	icon = 'icons/obj/robot_storage.dmi' //placeholder
 	icon_state = "console" //placeholder
 	circuit = "/obj/item/weapon/circuitboard/robotstoragecontrol"
 
 	storage_type = "visitors"
-	storage_name = "Residental Oversight Control"
+	storage_name = "Residential Oversight Control"
 	allow_items = 1
 
 /obj/machinery/computer/cryopod/travel
@@ -173,7 +173,7 @@
 	origin_tech = list(TECH_DATA = 3)
 
 /obj/item/weapon/circuitboard/dormscontrol
-	name = "Circuit board (Residental Oversight Console)"
+	name = "Circuit board (Residential Oversight Console)"
 	build_path = "/obj/machinery/computer/cryopod/door/dorms"
 	origin_tech = list(TECH_DATA = 3)
 
@@ -271,13 +271,13 @@
 	disallow_occupant_types = list(/mob/living/silicon/robot/drone)
 
 /obj/machinery/cryopod/robot/door/dorms
-	name = "Residental District Elevator"
+	name = "Residential District Elevator"
 	desc = "A small elevator that goes down to the deeper section of the colony."
-	on_store_message = "has departed for the residental district."
-	on_store_name = "Residental Oversight"
-	on_enter_occupant_message = "The elevator door closes slowly, ready to bring you down to the residental district."
+	on_store_message = "has departed for the residential district."
+	on_store_name = "Residential Oversight"
+	on_enter_occupant_message = "The elevator door closes slowly, ready to bring you down to the residential district."
 	on_store_visible_message_1 = "makes a ding as it moves"
-	on_store_visible_message_2 = "to the residental district."
+	on_store_visible_message_2 = "to the residential district."
 
 /obj/machinery/cryopod/robot/door/travel
 	name = "Passenger Elevator"

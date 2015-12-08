@@ -39,7 +39,8 @@
 	return STATUS_CLOSE
 
 /mob/living/silicon/CanUseObjTopic(var/obj/O)
-	return O.allowed(src)
+	var/id = src.GetIdCard()
+	return O.check_access(id)
 
 /mob/proc/CanUseObjTopic()
 	return 1
@@ -112,6 +113,9 @@
 
 		if(!ai_in_use && !is_in_use)
 			in_use = 0
+
+/obj/attack_ghost(mob/user)
+	ui_interact(user)
 
 /obj/proc/interact(mob/user)
 	return

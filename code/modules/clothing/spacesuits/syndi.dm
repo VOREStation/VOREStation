@@ -122,7 +122,7 @@
 	name = "black medical space helmet"
 	desc = "A black helmet sporting a medical cross and durable plating. Hopefully the wearer abides by space geneva."
 	icon_state = "syndicate-helm-black-med"
-	item_state_slots = list(slot_head_str = "syndicate-black-med")
+	item_state_slots = list(slot_head_str = "syndicate-helm-black-med")
 
 /obj/item/clothing/suit/space/syndicate/black/med
 	name = "black medical space suit"

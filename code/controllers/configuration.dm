@@ -100,6 +100,7 @@ var/list/gamemode_cache = list()
 	var/forumurl
 	var/githuburl
 	var/rulesurl
+	var/mapurl
 
 	//Alert level description
 	var/alert_desc_green = "All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
@@ -417,6 +418,12 @@ var/list/gamemode_cache = list()
 
 				if ("forumurl")
 					config.forumurl = value
+
+				if ("rulesurl")
+					config.rulesurl = value
+
+				if ("mapurl")
+					config.mapurl = value
 
 				if ("githuburl")
 					config.githuburl = value
