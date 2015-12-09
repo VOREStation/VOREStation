@@ -16,6 +16,13 @@
 	icon_state = "healthhud"
 	body_parts_covered = 0
 
+/obj/item/clothing/glasses/hud/health/prescription
+	name = "Prescription Health Scanner HUD"
+	desc = "A medical HUD integrated with a set of prescription glasses"
+	icon_state = "healthhud"
+	prescription = 1
+	icon_state = "healthhudpresc"
+	item_state = "healthhudpresc"
 
 /obj/item/clothing/glasses/hud/health/process_hud(var/mob/M)
 	process_med_hud(M, 1)
@@ -26,6 +33,14 @@
 	icon_state = "securityhud"
 	body_parts_covered = 0
 	var/global/list/jobs[0]
+
+/obj/item/clothing/glasses/hud/security/prescription
+	name = "Prescription Security HUD"
+	desc = "A security HUD integrated with a set of prescription glasses"
+	icon_state = "securityhud"
+	prescription = 1
+	icon_state = "sechudpresc"
+	item_state = "sechudpresc"
 
 /obj/item/clothing/glasses/hud/security/jensenshades
 	name = "Augmented shades"
