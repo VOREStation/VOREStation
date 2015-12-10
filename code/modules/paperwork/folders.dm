@@ -22,6 +22,38 @@
 	desc = "A white folder."
 	icon_state = "folder_white"
 
+/obj/item/weapon/folder/blue_captain
+	desc = "A blue folder with Captain markings."
+	icon_state = "folder_captain"
+
+/obj/item/weapon/folder/blue_hop
+	desc = "A blue folder with HoP markings."
+	icon_state = "folder_hop"
+
+/obj/item/weapon/folder/white_cmo
+	desc = "A white folder with CMO markings."
+	icon_state = "folder_cmo"
+
+/obj/item/weapon/folder/white_rd
+	desc = "A white folder with RD markings."
+	icon_state = "folder_rd"
+
+/obj/item/weapon/folder/white_rd/New()
+	//add some memos
+	var/obj/item/weapon/paper/P = new()
+	P.name = "Memo RE: proper analysis procedure"
+	P.info = "<br>We keep test dummies in pens here for a reason"
+	src.contents += P
+	update_icon()
+
+/obj/item/weapon/folder/yellow_ce
+	desc = "A yellow folder with CE markings."
+	icon_state = "folder_ce"
+
+/obj/item/weapon/folder/red_hos
+	desc = "A red folder with HoS markings."
+	icon_state = "folder_hos"
+
 /obj/item/weapon/folder/update_icon()
 	overlays.Cut()
 	if(contents.len)
@@ -87,20 +119,20 @@
 				onclose(usr, "[P.name]")
 		else if(href_list["rename"])
 			var/obj/item/weapon/O = locate(href_list["rename"])
-			
+
 			if(O && (O.loc == src))
 				if(istype(O, /obj/item/weapon/paper))
 					var/obj/item/weapon/paper/to_rename = O
 					to_rename.rename()
-					
+
 				else if(istype(O, /obj/item/weapon/photo))
 					var/obj/item/weapon/photo/to_rename = O
 					to_rename.rename()
-					
+
 				else if(istype(O, /obj/item/weapon/paper_bundle))
 					var/obj/item/weapon/paper_bundle/to_rename = O
 					to_rename.rename()
-					
+
 		//Update everything
 		attack_self(usr)
 		update_icon()
