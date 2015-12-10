@@ -21,6 +21,19 @@ var/list/tape_roll_applications = list()
 	var/tape_dir = 0
 	var/icon_base
 
+/obj/item/tape/update_icon()
+	//Possible directional bitflags: 0 (AIRLOCK), 1 (NORTH), 2 (SOUTH), 4 (EAST), 8 (WEST), 3 (VERTICAL), 12 (HORIZONTAL)
+	switch (tape_dir)
+		if(0)  // AIRLOCK
+			icon_state = "[icon_base]_door_[crumpled]"
+		if(3)  // VERTICAL
+			icon_state = "[icon_base]_v_[crumpled]"
+		if(12) // HORIZONTAL
+			icon_state = "[icon_base]_h_[crumpled]"
+		else   // END POINT (1|2|4|8)
+			icon_state = "[icon_base]_dir_[crumpled]"
+			dir = tape_dir
+
 /obj/item/tape/New()
 	..()
 	if(!hazard_overlays)
@@ -120,13 +133,13 @@ var/list/tape_roll_applications = list()
 				for(var/dir in list(NORTH, SOUTH))
 					if (possible_dirs & dir)
 						TP.tape_dir += dir
-				TP.icon_state = "[TP.icon_base]_[TP.tape_dir]"
+				TP.update_icon()
 			if(possible_dirs & (EAST|WEST))
 				var/obj/item/tape/TP = new tape_type(start)
 				for(var/dir in list(EAST, WEST))
 					if (possible_dirs & dir)
 						TP.tape_dir += dir
-				TP.icon_state = "[TP.icon_base]_[TP.tape_dir]"
+				TP.update_icon()
 			start = null
 			update_icon()
 			usr << "<span class='notice'>You finish placing \the [src].</span>"
@@ -185,8 +198,8 @@ var/list/tape_roll_applications = list()
 					break
 			if(!tapetest)
 				var/obj/item/tape/T = new tape_type(cur)
-				T.icon_state = "[T.icon_base]_[tape_dir]"
 				T.tape_dir = tape_dir
+				T.update_icon()
 				if(tape_dir & SOUTH)
 					T.layer += 0.1 // Must always show above other tapes
 			if(cur == end)
@@ -229,7 +242,7 @@ var/list/tape_roll_applications = list()
 /obj/item/tape/proc/crumple()
 	if(!crumpled)
 		crumpled = 1
-		icon_state = "[icon_state]_c"
+		update_icon()
 		name = "crumpled [name]"
 
 /obj/item/tape/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
