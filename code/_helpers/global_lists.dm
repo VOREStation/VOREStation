@@ -46,8 +46,12 @@ var/global/list/facial_hair_styles_male_list = list()
 var/global/list/facial_hair_styles_female_list = list()
 var/global/list/skin_styles_female_list = list()		//unused
 	//Underwear
-var/global/list/underwear_m = list("White" = "m1", "Grey" = "m2", "Green" = "m3", "Blue" = "m4", "Black" = "m5", "Mankini" = "m6", "None") //Curse whoever made male/female underwear diffrent colours
-var/global/list/underwear_f = list("Red" = "f1", "White" = "f2", "Yellow" = "f3", "Blue" = "f4", "Black" = "f5", "Thong" = "f6", "Black Sports" = "f7","White Sports" = "f8","None")
+var/global/list/underwear_m = list(
+	"White" = "m1", "Grey" = "m2", "Green" = "m3", "Blue" = "m4", "Black" = "m5", "Mankini" = "m6",
+	"Boxers Heart" = "m7", "Boxers Black" = "m8", "Boxers Grey" = "m9", "Boxers Stripe" = "m10", "None") //Curse whoever made male/female underwear diffrent colours
+var/global/list/underwear_f = list(
+	"Red" = "f1", "White" = "f2", "Yellow" = "f3", "Blue" = "f4", "Black" = "f5", "Thong" = "f6",
+	"Black Sports" = "f7","White Sports" = "f8", "Black Sports Alt" = "f9", "White Sports Alt" = "f10", "Baby Blue" = "f11", "Green" = "f12", "Pink" = "f13", "None")
 	//undershirt
 var/global/list/undershirt_t = list(
 	"White tank top" = "u1", "Black tank top" = "u2", "Black shirt" = "u3",
@@ -60,14 +64,15 @@ var/global/list/undershirt_t = list(
 	"Grey-yellow polo shirt" = "grayyellowpolo_s", "Fire tank top" = "tank_fire_s", "NT shirt" = "shirt_nano_s",
 	"Blue shirt 2" = "shirt_blue_s", "Red shirt 2" = "shirt_red_s", "Red tank top" = "tank_red_s", "Green shirt 2" = "shirt_green_s",
 	"Tiedye shirt" = "shirt_tiedye_s", "Green sport shirt" = "greenshirtsport_s", "Red sport shirt" = "redshirtsport_s",
-	"Blue sport shirt" = "blueshirtsport_s", "None")
+	"Blue striped shirt" = "shirt_stripes_s", "Blue sport shirt" = "blueshirtsport_s", "None")
 	//Socks
 var/global/list/socks_t = list(
 	"White normal" = "white_norm", "White short" = "white_short", "White knee" = "white_knee",
 	"White thigh" = "white_thigh", "Black normal" = "black_norm", "Black short" = "black_short",
 	"Black knee" = "black_knee", "Black thigh" = "black_thigh", "Thin knee" = "thin_knee",
 	"Thin thigh" = "thin_thigh", "Pantyhose" = "pantyhose", "Striped thigh" = "striped_thigh",
-	"Striped knee" = "striped_knee", "Rainbow knee" = "rainbow_knee", "Rainbow thigh" = "rainbow_thigh", "None")
+	"Striped knee" = "striped_knee", "Rainbow knee" = "rainbow_knee", "Rainbow thigh" = "rainbow_thigh",
+	"Fishnets" = "fishnet", "None")
 
 	//Backpacks
 var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Alt")
