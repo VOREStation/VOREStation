@@ -1,3 +1,5 @@
+var/list/mining_overlay_cache = list()
+
 /**********************Mineral deposits**************************/
 /turf/unsimulated/mineral
 	name = "impassable rock"
@@ -68,13 +70,8 @@
 	if(istype(M,/mob/living/silicon/robot))
 		var/mob/living/silicon/robot/R = M
 		if(R.module)
-			if(istype(R.module_state_1,/obj/item/weapon/storage/bag/ore))
-				attackby(R.module_state_1,R)
-			else if(istype(R.module_state_2,/obj/item/weapon/storage/bag/ore))
-				attackby(R.module_state_2,R)
-			else if(istype(R.module_state_3,/obj/item/weapon/storage/bag/ore))
-				attackby(R.module_state_3,R)
-			else
+			for(var/obj/item/weapon/storage/bag/ore/O in list(R.module_state_1, R.module_state_2, R.module_state_3))
+				attackby(O, R)
 				return
 
 /turf/simulated/mineral/initialize()
@@ -88,7 +85,6 @@
 /turf/simulated/mineral/update_icon(var/update_neighbors)
 
 	overlays.Cut()
-	var/list/step_overlays = list("n" = NORTH, "s" = SOUTH, "e" = EAST, "w" = WEST)
 
 	if(density)
 		if(mineral)
@@ -99,10 +95,13 @@
 		icon = 'icons/turf/walls.dmi'
 		icon_state = "rock"
 
-		for(var/direction in step_overlays)
-			var/turf/T = get_step(src,step_overlays[direction])
+		for(var/direction in cardinal)
+			var/turf/T = get_step(src,direction)
 			if(istype(T) && !T.density)
-				T.overlays += image('icons/turf/walls.dmi', "rock_side", dir = turn(step_overlays[direction], 180))
+				var/place_dir = turn(direction, 180)
+				if(!mining_overlay_cache["rock_side_[place_dir]"])
+					mining_overlay_cache["rock_side_[place_dir]"] = image('icons/turf/walls.dmi', "rock_side", dir = place_dir)
+				T.overlays += mining_overlay_cache["rock_side_[place_dir]"]
 	else
 
 		name = "sand"
@@ -110,22 +109,30 @@
 		icon_state = "asteroid"
 
 		if(sand_dug)
-			overlays += image('icons/turf/flooring/asteroid.dmi', "dug_overlay")
+			if(!mining_overlay_cache["dug_overlay"])
+				mining_overlay_cache["dug_overlay"] = image('icons/turf/flooring/asteroid.dmi', "dug_overlay")
+			overlays += mining_overlay_cache["dug_overlay"]
 
-		for(var/direction in step_overlays)
-			if(istype(get_step(src, step_overlays[direction]), /turf/space))
-				overlays += image('icons/turf/flooring/asteroid.dmi', "asteroid_edges", dir = step_overlays[direction])
+		for(var/direction in cardinal)
+			if(istype(get_step(src, direction), /turf/space))
+				if(!mining_overlay_cache["asteroid_edge_[direction]"])
+					mining_overlay_cache["asteroid_edge_[direction]"] = image('icons/turf/flooring/asteroid.dmi', "asteroid_edges", dir = direction)
+				overlays += mining_overlay_cache["asteroid_edge_[direction]"]
 			else
-				var/turf/simulated/mineral/M = get_step(src, step_overlays[direction])
+				var/turf/simulated/mineral/M = get_step(src, direction)
 				if(istype(M) && M.density)
-					overlays += image('icons/turf/walls.dmi', "rock_side", dir = step_overlays[direction])
+					if(!mining_overlay_cache["rock_side_[direction]"])
+						mining_overlay_cache["rock_side_[direction]"] = image('icons/turf/walls.dmi', "rock_side", dir = direction)
+					overlays += mining_overlay_cache["rock_side_[direction]"]
 
 		if(overlay_detail)
-			overlays |= image(icon = 'icons/turf/flooring/decals.dmi', icon_state = overlay_detail)
+
+			if(!mining_overlay_cache["decal_[overlay_detail]"])
+				mining_overlay_cache["decal_[overlay_detail]"] = image(icon = 'icons/turf/flooring/decals.dmi', icon_state = overlay_detail)
+			overlays += mining_overlay_cache["decal_[overlay_detail]"]
 
 		if(update_neighbors)
-			var/list/all_step_directions = list(NORTH,NORTHEAST,EAST,SOUTHEAST,SOUTH,SOUTHWEST,WEST,NORTHWEST)
-			for(var/direction in all_step_directions)
+			for(var/direction in alldirs)
 				if(istype(get_step(src, direction), /turf/simulated/mineral))
 					var/turf/simulated/mineral/M = get_step(src, direction)
 					M.update_icon()
@@ -415,17 +422,8 @@
 					M.Stun(5)
 			M.apply_effect(25, IRRADIATE)
 
-	// Kill and update the space overlays around us.
-	var/list/step_overlays = list("n" = NORTH, "s" = SOUTH, "e" = EAST, "w" = WEST)
-	for(var/direction in step_overlays)
-		var/turf/space/T = get_step(src, step_overlays[direction])
-		if(istype(T))
-			T.overlays.Cut()
-			for(var/next_direction in step_overlays)
-				if(istype(get_step(T, step_overlays[next_direction]),/turf/simulated/mineral))
-					T.overlays += image('icons/turf/walls.dmi', "rock_side", dir = step_overlays[next_direction])
-
 	make_floor()
+	update_icon()
 
 /turf/simulated/mineral/proc/excavate_find(var/prob_clean = 0, var/datum/find/F)
 	//with skill and luck, players can cleanly extract finds
@@ -484,24 +482,13 @@
 	if(mineral)
 		return
 
-	else if(istype(W, /obj/item/stack/tile/floor))
-		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
-		if(L)
-			var/obj/item/stack/tile/floor/S = W
-			if (S.get_amount() < 1)
-				return
-			qdel(L)
-			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
-			ChangeTurf(/turf/simulated/floor)
-			S.use(1)
-			return
-		else
-			user << "<span class='warning'>The plating is going to need some support.</span>"
-			return
+	var/mineral_name
+	if(rare_ore)
+		mineral_name = pickweight(list("uranium" = 10, "platinum" = 10, "iron" = 20, "coal" = 20, "diamond" = 2, "gold" = 10, "silver" = 10, "phoron" = 20))
 
 	else
-		mineral_name = pickweight(list("Uranium" = 5, "Platinum" = 5, "Iron" = 35, "Coal" = 35, "Diamond" = 1, "Gold" = 5, "Silver" = 5, "Phoron" = 10))
-	mineral_name = lowertext(mineral_name)
+		mineral_name = pickweight(list("uranium" = 5, "platinum" = 5, "iron" = 35, "coal" = 35, "diamond" = 1, "gold" = 5, "silver" = 5, "phoron" = 10))
+
 	if(mineral_name && (mineral_name in ore_data))
 		mineral = ore_data[mineral_name]
 		UpdateMineral()

@@ -104,7 +104,7 @@
 		build_cost =  1
 		build_type =  "floor"
 		build_turf =  /turf/simulated/floor/airless
-	else if(!deconstruct && istype(T,/turf/simulated/floor/asteroid))
+	else if(!deconstruct && istype(T,/turf/simulated/mineral/floor))
 		build_cost =  1
 		build_type =  "floor"
 		build_turf =  /turf/simulated/floor/plating
