@@ -74,11 +74,7 @@
 		return
 
 	//Drill through the flooring, if any.
-	if(istype(get_turf(src), /turf/simulated/floor/asteroid))
-		var/turf/simulated/floor/asteroid/T = get_turf(src)
-		if(!T.dug)
-			T.gets_dug()
-	else if(istype(get_turf(src), /turf/simulated/floor))
+	if(istype(get_turf(src), /turf/simulated/floor))
 		var/turf/simulated/floor/T = get_turf(src)
 		T.ex_act(2.0)
 

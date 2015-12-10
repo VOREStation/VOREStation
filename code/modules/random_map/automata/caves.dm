@@ -1,23 +1,10 @@
 /datum/random_map/automata/cave_system
 	iterations = 5
 	descriptor = "moon caves"
-	wall_type =  /turf/simulated/mineral
-	floor_type = /turf/simulated/floor/asteroid
-	target_turf_type = /turf/unsimulated/mask
-	var/mineral_sparse =  /turf/simulated/mineral/random
-	var/mineral_rich = /turf/simulated/mineral/random/high_chance
 	var/list/ore_turfs = list()
 
 /datum/random_map/automata/cave_system/get_appropriate_path(var/value)
-	switch(value)
-		if(DOOR_CHAR)
-			return mineral_sparse
-		if(EMPTY_CHAR)
-			return mineral_rich
-		if(FLOOR_CHAR)
-			return floor_type
-		if(WALL_CHAR)
-			return wall_type
+	return
 
 /datum/random_map/automata/cave_system/get_map_char(var/value)
 	switch(value)
@@ -50,3 +37,20 @@
 			map[check_cell] = EMPTY_CHAR // Rare mineral block.
 		ore_count--
 	return 1
+
+/datum/random_map/automata/cave_system/apply_to_turf(var/x,var/y)
+	var/current_cell = get_map_cell(x,y)
+	if(!current_cell)
+		return 0
+	var/turf/simulated/mineral/T = locate((origin_x-1)+x,(origin_y-1)+y,origin_z)
+	if(istype(T) && !T.ignore_mapgen)
+		if(map[current_cell] == FLOOR_CHAR)
+			T.make_floor()
+		else
+			T.make_wall()
+			if(map[current_cell] == DOOR_CHAR)
+				T.make_ore()
+			else if(map[current_cell] == EMPTY_CHAR)
+				T.make_ore(1)
+		get_additional_spawns(map[current_cell],T,get_spawn_dir(x, y))
+	return T

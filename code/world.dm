@@ -91,9 +91,7 @@ var/global/datum/global_init/init = new ()
 		// Update all turfs to ensure everything looks good post-generation. Yes,
 		// it's brute-forcey, but frankly the alternative is a mine turf rewrite.
 		for(var/turf/simulated/mineral/M in world) // Ugh.
-			M.updateMineralOverlays()
-		for(var/turf/simulated/floor/asteroid/M in world) // Uuuuuugh.
-			M.updateMineralOverlays()
+			M.update_icon()
 
 	// Create autolathe recipes, as above.
 	populate_lathe_recipes()
