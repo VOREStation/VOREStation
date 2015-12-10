@@ -7,14 +7,13 @@
 	icon_state = "space"
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment."
 	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL | AIRTIGHT
-	flags_inv = BLOCKHAIR
 	item_state_slots = list(
 		slot_l_hand_str = "s_helmet",
 		slot_r_hand_str = "s_helmet",
 		)
 	permeability_coefficient = 0.01
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 100, rad = 50)
-	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE

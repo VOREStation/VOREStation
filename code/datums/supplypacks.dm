@@ -1550,8 +1550,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	num_contained = 4
 	contains = list(/obj/item/clothing/accessory/storage/black_vest,
 					/obj/item/clothing/accessory/storage/brown_vest,
-					/obj/item/clothing/accessory/storage/webbing,
-					/obj/item/clothing/accessory/storage)
+					/obj/item/clothing/accessory/storage/webbing)
 	cost = 15
 	containertype = "/obj/structure/closet/crate"
 	containername = "Webbing crate"

@@ -934,6 +934,7 @@ var/global/list/gear_datums = list()
 
 /datum/gear/scarf_orange
 	display_name = "scarf, orange"
+	path = /obj/item/clothing/accessory/scarf/orange
 	slot = slot_tie
 	cost = 1
 
@@ -1015,7 +1016,7 @@ var/global/list/gear_datums = list()
 
 /datum/gear/leather_coat
 	display_name = "leather coat"
-	path = /obj/item/clothing/suit/leathercoat/alt
+	path = /obj/item/clothing/suit/leathercoat
 	cost = 2
 	slot = slot_wear_suit
 
