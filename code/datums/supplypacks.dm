@@ -1641,8 +1641,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_packs/detectivegear
 	name = "Forensic investigation equipment"
-	contains = list(/obj/item/device/detective_scanner,
-					/obj/item/weapon/storage/box/evidence,
+	contains = list(/obj/item/weapon/storage/box/evidence,
 					/obj/item/weapon/storage/box/evidence,
 					/obj/item/clothing/suit/storage/vest/detective,
 					/obj/item/weapon/cartridge/detective,
