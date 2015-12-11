@@ -91,12 +91,16 @@ var/list/tape_roll_applications = list()
 			overlays += "stop"
 
 /obj/item/taperoll/dropped(mob/user)
-	..()
 	update_icon()
+	return ..()
 
 /obj/item/taperoll/pickup(mob/user)
-	..()
 	update_icon()
+	return ..()
+
+/obj/item/taperoll/attack_hand()
+	update_icon()
+	return ..()
 
 /obj/item/taperoll/attack_self(mob/user as mob)
 	if(!start)
@@ -218,7 +222,7 @@ var/list/tape_roll_applications = list()
 		var/turf/T = get_turf(A)
 		var/obj/item/tape/P = new tape_type(T.x,T.y,T.z)
 		P.loc = locate(T.x,T.y,T.z)
-		P.icon_state = "[src.icon_base]_door"
+		P.update_icon()
 		P.layer = 3.2
 		user << "<span class='notice'>You finish placing \the [src].</span>"
 
