@@ -361,6 +361,12 @@
 	icon_state = "militaryjacket"
 	item_state = "militaryjacket"
 
+/obj/item/clothing/suit/jacket/miljacket2
+	name = "military jacket"
+	desc = "A canvas jacket styled after classical American military garb. Feels sturdy, yet comfortable."
+	icon_state = "militaryjacket2"
+	item_state = "militaryjacket2"
+
 /obj/item/clothing/suit/storage/toggle/bomber
 	name = "bomber jacket"
 	desc = "A thick, well-worn WW2 leather bomber jacket."
