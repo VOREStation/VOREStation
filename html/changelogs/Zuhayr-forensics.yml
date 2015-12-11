@@ -1,0 +1,5 @@
+author: Zuhayr
+delete-after: True
+changes: 
+  - rscdel: "Removed the detective scanner and associated machinery."
+  - rscadd: "Added a microscope, machine forensic scanner, etc. from Aurora forensics."

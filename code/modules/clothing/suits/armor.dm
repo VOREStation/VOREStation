@@ -91,7 +91,7 @@
 /obj/item/clothing/suit/armor/laserproof/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(istype(damage_source, /obj/item/projectile/energy) || istype(damage_source, /obj/item/projectile/beam))
 		var/obj/item/projectile/P = damage_source
-	
+
 		var/reflectchance = 40 - round(damage/3)
 		if(!(def_zone in list("chest", "groin")))
 			reflectchance /= 2
@@ -171,12 +171,12 @@
 		if(!turfs.len) turfs += pick(/turf in orange(6))
 		var/turf/picked = pick(turfs)
 		if(!isturf(picked)) return
-		
+
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 		spark_system.set_up(5, 0, user.loc)
 		spark_system.start()
 		playsound(user.loc, "sparks", 50, 1)
-		
+
 		user.loc = picked
 		return PROJECTILE_FORCE_MISS
 	return 0
@@ -275,7 +275,7 @@
 	icon_state = "kvest"
 	item_state = "kvest"
 	armor = list(melee = 50, bullet = 15, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
-	allowed = list(/obj/item/weapon/gun,/obj/item/weapon/reagent_containers/spray/pepper,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/device/detective_scanner)
+	allowed = list(/obj/item/weapon/gun,/obj/item/weapon/reagent_containers/spray/pepper,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs)
 
 /obj/item/clothing/suit/storage/vest/officer
 	name = "officer armor vest"

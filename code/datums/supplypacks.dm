@@ -43,6 +43,20 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	group = "Security"
 	hidden = 1
 
+/datum/supply_packs/forensics
+	name = "Auxiliary forensic tools"
+	contains = list(/obj/item/weapon/forensics/sample_kit,
+					/obj/item/weapon/forensics/sample_kit/powder,
+					/obj/item/weapon/storage/box/swabs,
+					/obj/item/weapon/storage/box/swabs,
+					/obj/item/weapon/storage/box/swabs,
+					/obj/item/weapon/storage/box/slides,
+					/obj/item/weapon/reagent_containers/spray/luminol)
+	cost = 30
+	containertype = /obj/structure/closet/crate
+	containername = "Auxiliary forensic tools"
+	group = "Security"
+
 /datum/supply_packs/food
 	name = "Kitchen supply crate"
 	contains = list(/obj/item/weapon/reagent_containers/food/condiment/flour,
@@ -1627,8 +1641,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_packs/detectivegear
 	name = "Forensic investigation equipment"
-	contains = list(/obj/item/device/detective_scanner,
-					/obj/item/weapon/storage/box/evidence,
+	contains = list(/obj/item/weapon/storage/box/evidence,
 					/obj/item/weapon/storage/box/evidence,
 					/obj/item/clothing/suit/storage/vest/detective,
 					/obj/item/weapon/cartridge/detective,
