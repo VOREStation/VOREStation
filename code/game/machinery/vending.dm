@@ -780,7 +780,12 @@
 					/obj/item/weapon/storage/fancy/cigarettes/carcinomas = 5,
 					/obj/item/weapon/storage/fancy/cigarettes/professionals = 5,
 					/obj/item/weapon/storage/fancy/cigarettes/killthroat = 5)
-	prices = list(/obj/item/weapon/storage/fancy/cigarettes = 15,/obj/item/weapon/storage/box/matches = 1,/obj/item/weapon/flame/lighter/random = 2)
+	prices = list(/obj/item/weapon/storage/fancy/cigarettes = 15,
+					/obj/item/weapon/storage/fancy/cigarettes/luckystars = 17,
+					/obj/item/weapon/storage/fancy/cigarettes/jerichos = 22,
+					/obj/item/weapon/storage/fancy/cigarettes/menthols = 18,
+					/obj/item/weapon/storage/box/matches = 1,
+					/obj/item/weapon/flame/lighter/random = 2)
 
 
 /obj/machinery/vending/medical
