@@ -56,7 +56,7 @@ var/datum/uplink/uplink = new()
 		return
 
 	purchase_log(U)
-	U.uses -= cost
+	user.mind.tcrystals -= cost
 	U.used_TC += cost
 	return goods
 
@@ -408,8 +408,8 @@ datum/uplink_item/dd_SortValue()
 	path = /obj/item/weapon/storage/box/syndie_kit/imp_explosive
 
 /datum/uplink_item/item/implants/imp_uplink
-	name = "Uplink Implant (Contains 5 Telecrystals)"
-	item_cost = 10
+	name = "Uplink Implant" //Original name: "Uplink Implant (Contains 5 Telecrystals)"
+	item_cost = 5 //Original cost: 10
 	path = /obj/item/weapon/storage/box/syndie_kit/imp_uplink
 
 /**********

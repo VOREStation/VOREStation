@@ -81,6 +81,7 @@ var/datum/antagonist/traitor/traitors
 		return 0
 
 	spawn_uplink(traitor_mob)
+	traitor_mob.mind.tcrystals = DEFAULT_TELECRYSTAL_AMOUNT
 	// Tell them about people they might want to contact.
 	var/mob/living/carbon/human/M = get_nt_opposed()
 	if(M && M != traitor_mob)
