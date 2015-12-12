@@ -1334,7 +1334,7 @@ proc/admin_notice(var/message, var/rights)
 	
 	var/crystals
 	
-	if(R_ADMIN)
+	if(check_rights(R_ADMIN))
 		crystals = input("Amount of telecrystals for [H.ckey]", crystals) as null|num
 		if (!isnull(crystals))
 			H.mind.tcrystals = crystals
