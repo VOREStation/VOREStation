@@ -139,6 +139,37 @@
 		/obj/item/weapon/gun/projectile/colt/detective
 		)
 
+/obj/item/weapon/storage/belt/detective
+	name = "forensic utility belt"
+	desc = "A belt for holding forensics equipment."
+	icon_state = "securitybelt"
+	item_state = "security"
+	storage_slots = 7
+	max_w_class = 3
+	can_hold = list(
+		/obj/item/device/taperecorder,
+		/obj/item/clothing/glasses,
+		/obj/item/device/flashlight,
+		/obj/item/weapon/reagent_containers/spray/luminol,
+		/obj/item/weapon/sample,
+		/obj/item/weapon/forensics/sample_kit/powder,
+		/obj/item/weapon/forensics/swab,
+		/obj/item/device/uv_light,
+		/obj/item/weapon/forensics/slide,
+		/obj/item/weapon/forensics/sample_kit,
+		/obj/item/weapon/photo,
+		/obj/item/device/camera_film,
+		/obj/item/device/camera,
+		/obj/item/weapon/autopsy_scanner,
+		/obj/item/device/mass_spectrometer,
+		/obj/item/device/reagent_scanner,
+		/obj/item/weapon/reagent_containers/dropper,
+		/obj/item/weapon/reagent_containers/syringe,
+		/obj/item/device/pda,
+		/obj/item/device/radio/headset,
+		/obj/item/taperoll/police
+		)
+
 /obj/item/weapon/storage/belt/soulstone
 	name = "soul stone belt"
 	desc = "Designed for ease of access to the shards during a fight, as to not let a single enemy spirit slip away"

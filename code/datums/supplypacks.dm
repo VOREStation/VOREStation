@@ -1651,6 +1651,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/device/camera,
 					/obj/item/weapon/folder/red,
 					/obj/item/weapon/folder/blue,
+					/obj/item/weapon/storage/belt/detective,
 					/obj/item/clothing/gloves/black,
 					/obj/item/device/taperecorder,
 					/obj/item/device/mass_spectrometer,

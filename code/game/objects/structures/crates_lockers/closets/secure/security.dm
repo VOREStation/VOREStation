@@ -278,6 +278,7 @@
 		new /obj/item/clothing/head/det(src)
 		new /obj/item/clothing/head/det/grey(src)
 		new /obj/item/clothing/shoes/laceup(src)
+		new /obj/item/weapon/storage/belt/detective(src)
 		new /obj/item/weapon/storage/box/evidence(src)
 		new /obj/item/device/radio/headset/headset_sec(src)
 		new /obj/item/device/radio/headset/headset_sec/alt(src)
