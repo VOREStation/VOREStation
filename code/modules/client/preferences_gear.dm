@@ -1712,6 +1712,12 @@ var/global/list/gear_datums = list()
 	cost = 1
 	sort_category = "ears"
 
+/datum/gear/headphones
+	display_name = "headphones"
+	path = /obj/item/clothing/ears/earmuffs/headphones
+	cost = 1
+	sort_category = "ears"
+
 /datum/gear/skrell_chain
 	display_name = "skrell headtail-wear, female, chain"
 	path = /obj/item/clothing/ears/skrell/chain
