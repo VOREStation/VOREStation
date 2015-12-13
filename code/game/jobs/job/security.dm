@@ -148,6 +148,7 @@
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security(H), slot_w_uniform)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), slot_shoes)
 		H.equip_to_slot_or_del(new /obj/item/device/pda/security(H), slot_belt)
+		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), slot_gloves)
 		H.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(H), slot_s_store)
 		H.equip_to_slot_or_del(new /obj/item/device/flash(H), slot_l_store)
 		if(H.backbag == 1)
