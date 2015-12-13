@@ -200,3 +200,15 @@
 	name = "\improper Cargo department"
 	desc = "A direction sign, pointing out which way the Cargo department is."
 	icon_state = "direction_crg"
+
+/obj/structure/sign/christmas/lights
+	name = "Christmas lights"
+	desc = "Flashy and pretty."
+	icon = 'icons/obj/christmas.dmi'
+	icon_state = "xmaslights"
+
+/obj/structure/sign/christmas/wreath
+	name = "wreath"
+	desc = "Prickly and festive."
+	icon = 'icons/obj/christmas.dmi'
+	icon_state = "doorwreath"
