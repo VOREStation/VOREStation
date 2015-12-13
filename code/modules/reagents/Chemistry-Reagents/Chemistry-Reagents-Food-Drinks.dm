@@ -1970,8 +1970,8 @@
 	name = "Special Blend Whiskey"
 	id = "specialwhiskey"
 	description = "Just when you thought regular station whiskey was good... This silky, amber goodness has to come along and ruin everything."
-	color = "#664300"
-	strength = 25
+	color = "#523600"
+	strength = 5
 
 	glass_icon_state = "whiskeyglass"
 	glass_name = "glass of special blend whiskey"
