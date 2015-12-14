@@ -8,7 +8,7 @@
 	if(creator)
 		parent = creator
 
-var/global/datum/locations/milky_way/locations = new()
+var/global/datum/locations/milky_way/all_locations = new()
 
 //Galaxy
 
@@ -26,6 +26,24 @@ var/global/datum/locations/milky_way/locations = new()
 		new /datum/locations/uueoa_esa(src),
 		new /datum/locations/vir(src)
 		)
+
+/proc/choose_location_datum(client/user)
+	var/datum/locations/choice = all_locations
+	while(length(choice.contents) > 0) //For some reason it wouldn't let me do contents.len even when I defined it as a list.
+		var/specific = alert(user, "The location currently selected is [choice.name].  More specific options exist, would you like to pick a more specific location?",
+		"Choose location", "Yes", "No")
+		if(specific == "Yes" && length(choice.contents) > 0)
+			choice = input(user, "Please choose a location.","Locations") as null|anything in choice.contents
+		else
+			break
+	user << choice.name
+	user << choice.desc
+	return choice
+
+//	var/datum/locations/choice = input(user, "Please choose a location.","Locations") as null|anything in all_locations
+//	if(choice && choice.contents.len > 0)
+
+
 /*
 /datum/locations/proc/show_contents()
 //	world << "[src]\n[desc]"
