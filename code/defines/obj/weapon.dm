@@ -119,6 +119,15 @@
 	else
 		..()
 
+
+/obj/item/weapon/brassknuckles
+	name = "brass knuckles"
+	desc = "A pair of brass knuckles. Generally used to enhance the user's punches."
+	icon_state = "brassknuckles"
+	force = 13
+	w_class = 2.0
+	attack_verb = list("punched")
+
 /obj/item/weapon/cane/concealed/update_icon()
 	if(concealed_blade)
 		name = initial(name)
