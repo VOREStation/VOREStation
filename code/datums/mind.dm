@@ -54,6 +54,7 @@
 	var/datum/changeling/changeling		//changeling holder
 
 	var/rev_cooldown = 0
+	var/tcrystals = 0
 
 	// the world.time since the mob has been brigged, or -1 if not at all
 	var/brigged_since = -1
@@ -375,14 +376,12 @@
 				memory = null//Remove any memory they may have had.
 			if("crystals")
 				if (usr.client.holder.rights & R_FUN)
-					var/obj/item/device/uplink/hidden/suplink = find_syndicate_uplink()
+				//	var/obj/item/device/uplink/hidden/suplink = find_syndicate_uplink() No longer needed, uses stored in mind
 					var/crystals
-					if (suplink)
-						crystals = suplink.uses
-					crystals = input("Amount of telecrystals for [key]","Operative uplink", crystals) as null|num
+					crystals = tcrystals
+					crystals = input("Amount of telecrystals for [key]", crystals) as null|num
 					if (!isnull(crystals))
-						if (suplink)
-							suplink.uses = crystals
+						tcrystals = crystals
 
 	else if (href_list["obj_announce"])
 		var/obj_count = 1

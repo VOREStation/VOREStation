@@ -219,14 +219,12 @@ var/global/list/Holiday = list() //Holidays are lists now, so we can have more t
 
 //Run at the  start of a round
 /proc/Holiday_Game_Start()
-	world << Holiday
 	if(Holiday.len != 0)
 		var/list/holidays = list()
 		var/list/holiday_blurbs = list()
 		for(var/p in Holiday)
 			holidays.Add(p)
 			holiday_blurbs.Add("[Holiday[p]]")
-			world << "[p] = [Holiday[p]]"
 		var/holidays_string = english_list(holidays, nothing_text = "nothing", and_text = " and ", comma_text = ", ", final_comma_text = "" )
 		world << "<font color='blue'>and...</font>"
 		world << "<h4>Happy [holidays_string] Everybody!</h4>"

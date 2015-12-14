@@ -2,6 +2,7 @@
 	name = "clothing"
 	siemens_coefficient = 0.9
 	var/list/species_restricted = null //Only these species can wear this kit.
+	var/gunshot_residue //Used by forensics.
 
 	/*
 		Sprites used when the clothing item is refit. This is done by setting icon_override.
@@ -14,6 +15,11 @@
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
 	return
+
+// Aurora forensics port.
+/obj/item/clothing/clean_blood()
+	..()
+	gunshot_residue = null
 
 //BS12: Species-restricted clothing check.
 /obj/item/clothing/mob_can_equip(M as mob, slot)
@@ -156,6 +162,32 @@
 	icon_state = "earmuffs"
 	item_state = "earmuffs"
 	slot_flags = SLOT_EARS | SLOT_TWOEARS
+
+/obj/item/clothing/ears/earmuffs/headphones
+	name = "headphones"
+	desc = "Unce unce unce unce."
+	var/headphones_on = 0
+	icon_state = "headphones_off"
+	item_state = "headphones"
+	slot_flags = SLOT_EARS | SLOT_TWOEARS
+
+/obj/item/clothing/ears/earmuffs/headphones/verb/togglemusic()
+	set name = "Toggle Headphone Music"
+	set category = "Object"
+	set src in usr
+	if(!istype(usr, /mob/living)) return
+	if(usr.stat) return
+
+	if(headphones_on)
+		icon_state = "headphones_off"
+		headphones_on = 0
+		usr << "<span class='notice'>You turn the music off.</span>"
+	else
+		icon_state = "headphones_on"
+		headphones_on = 1
+		usr << "<span class='notice'>You turn the music on.</span>"
+
+	update_clothing_icon()
 
 ///////////////////////////////////////////////////////////////////////
 //Glasses
@@ -387,6 +419,9 @@ BLIND     // can't see anything
 	body_parts_covered = FEET
 	slot_flags = SLOT_FEET
 
+	var/can_hold_knife
+	var/obj/item/holding
+
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
 	force = 2
@@ -396,6 +431,54 @@ BLIND     // can't see anything
 		"Vox" = 'icons/mob/species/vox/shoes.dmi',
 		"Resomi" = 'icons/mob/species/resomi/shoes.dmi',
 		)
+
+/obj/item/clothing/shoes/proc/draw_knife()
+	set name = "Draw Boot Knife"
+	set desc = "Pull out your boot knife."
+	set category = "IC"
+	set src in usr
+
+	if(usr.stat || usr.restrained() || usr.incapacitated())
+		return
+
+	holding.forceMove(get_turf(usr))
+
+	if(usr.put_in_hands(holding))
+		usr.visible_message("<span class='danger'>\The [usr] pulls a knife out of their boot!</span>")
+		holding = null
+	else
+		usr << "<span class='warning'>Your need an empty, unbroken hand to do that.</span>"
+		holding.forceMove(src)
+
+	if(!holding)
+		verbs -= /obj/item/clothing/shoes/proc/draw_knife
+
+	update_icon()
+	return
+
+
+/obj/item/clothing/shoes/attackby(var/obj/item/I, var/mob/user)
+	if(can_hold_knife && istype(I, /obj/item/weapon/material/shard) || \
+	 istype(I, /obj/item/weapon/material/butterfly) || \
+	 istype(I, /obj/item/weapon/material/kitchen/utensil) || \
+	 istype(I, /obj/item/weapon/material/hatchet/tacknife))
+		if(holding)
+			user << "<span class='warning'>\The [src] is already holding \a [holding].</span>"
+			return
+		user.unEquip(I)
+		I.forceMove(src)
+		holding = I
+		user.visible_message("<span class='notice'>\The [user] shoves \the [I] into \the [src].</span>")
+		verbs |= /obj/item/clothing/shoes/proc/draw_knife
+		update_icon()
+	else
+		return ..()
+
+/obj/item/clothing/shoes/update_icon()
+	overlays.Cut()
+	if(holding)
+		overlays += image(icon, "[icon_state]_knife")
+	return ..()
 
 /obj/item/clothing/shoes/proc/handle_movement(var/turf/walking, var/running)
 	return

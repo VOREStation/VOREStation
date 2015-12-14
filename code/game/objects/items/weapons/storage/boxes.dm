@@ -298,6 +298,19 @@
 		new /obj/item/weapon/grenade/empgrenade(src)
 		new /obj/item/weapon/grenade/empgrenade(src)
 
+/obj/item/weapon/storage/box/empslite
+	name = "box of low yield emp grenades"
+	desc = "A box containing 5 low yield EMP grenades.<br> WARNING: Do not use near unshielded electronics or biomechanical augmentations, death or permanent paralysis may occur."
+	icon_state = "emp"
+
+	New()
+		..()
+		new /obj/item/weapon/grenade/empgrenade/low_yield(src)
+		new /obj/item/weapon/grenade/empgrenade/low_yield(src)
+		new /obj/item/weapon/grenade/empgrenade/low_yield(src)
+		new /obj/item/weapon/grenade/empgrenade/low_yield(src)
+		new /obj/item/weapon/grenade/empgrenade/low_yield(src)
+
 /obj/item/weapon/storage/box/smokes
 	name = "box of smoke bombs"
 	desc = "A box containing 5 smoke bombs."
@@ -327,7 +340,7 @@
 
 /obj/item/weapon/storage/box/frags
 	name = "box of fragmentation grenades (WARNING)"
-	desc = "A box containing 7 military grade fragmentation grenades.<br> WARNING: These devices are extremely dangerous and can cause limb loss or death in repeated use."
+	desc = "A box containing 5 military grade fragmentation grenades.<br> WARNING: These devices are extremely dangerous and can cause limb loss or death in repeated use."
 	icon_state = "frag"
 
 
@@ -338,8 +351,7 @@
 		new /obj/item/weapon/grenade/explosive(src)
 		new /obj/item/weapon/grenade/explosive(src)
 		new /obj/item/weapon/grenade/explosive(src)
-		new /obj/item/weapon/grenade/explosive(src)
-		new /obj/item/weapon/grenade/explosive(src)
+
 /obj/item/weapon/storage/box/trackimp
 	name = "boxed tracking implant kit"
 	desc = "Box full of scum-bag tracking utensils."

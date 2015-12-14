@@ -43,6 +43,20 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	group = "Security"
 	hidden = 1
 
+/datum/supply_packs/forensics
+	name = "Auxiliary forensic tools"
+	contains = list(/obj/item/weapon/forensics/sample_kit,
+					/obj/item/weapon/forensics/sample_kit/powder,
+					/obj/item/weapon/storage/box/swabs,
+					/obj/item/weapon/storage/box/swabs,
+					/obj/item/weapon/storage/box/swabs,
+					/obj/item/weapon/storage/box/slides,
+					/obj/item/weapon/reagent_containers/spray/luminol)
+	cost = 30
+	containertype = /obj/structure/closet/crate
+	containername = "Auxiliary forensic tools"
+	group = "Security"
+
 /datum/supply_packs/food
 	name = "Kitchen supply crate"
 	contains = list(/obj/item/weapon/reagent_containers/food/condiment/flour,
@@ -124,6 +138,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/reagent_containers/food/drinks/flask/barflask,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/patron,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/goldschlager,
+					/obj/item/weapon/reagent_containers/food/drinks/bottle/specialwhiskey,
 					/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,
 					/obj/item/weapon/lipstick/random,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale,
@@ -1550,8 +1565,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	num_contained = 4
 	contains = list(/obj/item/clothing/accessory/storage/black_vest,
 					/obj/item/clothing/accessory/storage/brown_vest,
-					/obj/item/clothing/accessory/storage/webbing,
-					/obj/item/clothing/accessory/storage)
+					/obj/item/clothing/accessory/storage/webbing)
 	cost = 15
 	containertype = "/obj/structure/closet/crate"
 	containername = "Webbing crate"
@@ -1628,8 +1642,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_packs/detectivegear
 	name = "Forensic investigation equipment"
-	contains = list(/obj/item/device/detective_scanner,
-					/obj/item/weapon/storage/box/evidence,
+	contains = list(/obj/item/weapon/storage/box/evidence,
 					/obj/item/weapon/storage/box/evidence,
 					/obj/item/clothing/suit/storage/vest/detective,
 					/obj/item/weapon/cartridge/detective,
@@ -1639,6 +1652,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/device/camera,
 					/obj/item/weapon/folder/red,
 					/obj/item/weapon/folder/blue,
+					/obj/item/weapon/storage/belt/detective,
 					/obj/item/clothing/gloves/black,
 					/obj/item/device/taperecorder,
 					/obj/item/device/mass_spectrometer,

@@ -5,7 +5,7 @@ var/list/holder_mob_icon_cache = list()
 	name = "holder"
 	desc = "You shouldn't ever see this."
 	icon = 'icons/obj/objects.dmi'
-	slot_flags = SLOT_HEAD
+	slot_flags = SLOT_HEAD | SLOT_HOLSTER
 
 	sprite_sheets = list(
 		"Vox" = 'icons/mob/species/vox/head.dmi',
@@ -45,6 +45,7 @@ var/list/holder_mob_icon_cache = list()
 	overlays.Cut()
 	icon = M.icon
 	icon_state = M.icon_state
+	item_state = M.item_state
 	color = M.color
 	name = M.name
 	desc = M.desc
@@ -61,7 +62,7 @@ var/list/holder_mob_icon_cache = list()
 //Mob specific holders.
 /obj/item/weapon/holder/diona
 	origin_tech = list(TECH_MAGNET = 3, TECH_BIO = 5)
-	slot_flags = SLOT_HEAD | SLOT_OCLOTHING
+	slot_flags = SLOT_HEAD | SLOT_OCLOTHING | SLOT_HOLSTER
 
 /obj/item/weapon/holder/drone
 	origin_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 5)

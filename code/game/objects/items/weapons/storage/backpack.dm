@@ -148,8 +148,8 @@
 	icon_state = "duffle"
 	item_state = "duffle"
 	slowdown = 1
-	max_storage_space = 56
-	storage_slots = 20
+	max_storage_space = 38
+	storage_slots = 12
 
 /obj/item/weapon/storage/backpack/dufflebag/syndie
 	name = "suspicious looking dufflebag"

@@ -1326,3 +1326,19 @@ proc/admin_notice(var/message, var/rights)
 	message_admins("[key_name(usr)] attempting to force mode latespawn.")
 	ticker.mode.next_spawn = 0
 	ticker.mode.try_latespawn()
+	
+/datum/admins/proc/set_tcrystals(mob/living/carbon/human/H as mob)
+	set category = "Debug"
+	set name = "Set Telecrystals"
+	set desc = "Allows admins to change telecrystals of a user."
+	
+	var/crystals
+	
+	if(check_rights(R_ADMIN))
+		crystals = input("Amount of telecrystals for [H.ckey]", crystals) as null|num
+		if (!isnull(crystals))
+			H.mind.tcrystals = crystals
+			var/msg = "[key_name(usr)] has modified [H.ckey]'s telecrystals to [crystals]."
+			message_admins(msg)
+	else
+		usr << "You do not have access to this command."

@@ -172,6 +172,8 @@ var/list/gamemode_cache = list()
 	var/enter_allowed = 1
 
 	var/use_irc_bot = 0
+	var/use_node_bot = 0
+	var/irc_bot_port = 0
 	var/irc_bot_host = ""
 	var/irc_bot_export = 0 // whether the IRC bot in use is a Bot32 (or similar) instance; Bot32 uses world.Export() instead of nudge.py/libnudge
 	var/main_irc = ""
@@ -544,6 +546,12 @@ var/list/gamemode_cache = list()
 
 				if("use_irc_bot")
 					use_irc_bot = 1
+
+				if("use_node_bot")
+					use_node_bot = 1
+
+				if("irc_bot_port")
+					config.irc_bot_port = value
 
 				if("irc_bot_export")
 					irc_bot_export = 1

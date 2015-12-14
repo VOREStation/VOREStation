@@ -424,6 +424,54 @@ var/global/list/gear_datums = list()
 	slot = slot_w_uniform
 	cost = 1
 
+/datum/gear/bluejumpsuit
+	display_name = "jumpsuit, blue"
+	path = /obj/item/clothing/under/color/blue
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/greenjumpsuit
+	display_name = "jumpsuit, green"
+	path = /obj/item/clothing/under/color/green
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/greyjumpsuit
+	display_name = "jumpsuit, grey"
+	path = /obj/item/clothing/under/color/grey
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/pinkjumpsuit
+	display_name = "jumpsuit, pink"
+	path = /obj/item/clothing/under/color/pink
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/whitejumpsuit
+	display_name = "jumpsuit, white"
+	path = /obj/item/clothing/under/color/white
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/yellowjumpsuit
+	display_name = "jumpsuit, yellow"
+	path = /obj/item/clothing/under/color/yellow
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/lightbluejumpsuit
+	display_name = "jumpsuit, lightblue"
+	path = /obj/item/clothing/under/lightblue
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/redjumpsuit
+	display_name = "jumpsuit, red"
+	path = /obj/item/clothing/under/color/red
+	slot = slot_w_uniform
+	cost = 1
+
 /datum/gear/skirt_blue
 	display_name = "plaid skirt, blue"
 	path = /obj/item/clothing/under/dress/plaid_blue
@@ -934,6 +982,7 @@ var/global/list/gear_datums = list()
 
 /datum/gear/scarf_orange
 	display_name = "scarf, orange"
+	path = /obj/item/clothing/accessory/scarf/orange
 	slot = slot_tie
 	cost = 1
 
@@ -1015,7 +1064,7 @@ var/global/list/gear_datums = list()
 
 /datum/gear/leather_coat
 	display_name = "leather coat"
-	path = /obj/item/clothing/suit/leathercoat/alt
+	path = /obj/item/clothing/suit/leathercoat
 	cost = 2
 	slot = slot_wear_suit
 
@@ -1076,6 +1125,12 @@ var/global/list/gear_datums = list()
 /datum/gear/mil
 	display_name = "military jacket"
 	path = /obj/item/clothing/suit/jacket/miljacket
+	cost = 2
+	slot = slot_wear_suit
+
+/datum/gear/mil_alt
+	display_name = "military jacket, alt"
+	path = /obj/item/clothing/suit/jacket/miljacket2
 	cost = 2
 	slot = slot_wear_suit
 
@@ -1561,6 +1616,12 @@ var/global/list/gear_datums = list()
 	sort_category = "misc"
 	cost = 1
 
+/datum/gear/boot_knife
+	display_name = "boot knife"
+	path = /obj/item/weapon/material/kitchen/utensil/knife/boot
+	sort_category = "misc"
+	cost = 3
+
 /datum/gear/cane
 	display_name = "cane"
 	path = /obj/item/weapon/cane
@@ -1654,6 +1715,12 @@ var/global/list/gear_datums = list()
 /datum/gear/earmuffs
 	display_name = "earmuffs"
 	path = /obj/item/clothing/ears/earmuffs
+	cost = 1
+	sort_category = "ears"
+
+/datum/gear/headphones
+	display_name = "headphones"
+	path = /obj/item/clothing/ears/earmuffs/headphones
 	cost = 1
 	sort_category = "ears"
 

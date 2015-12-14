@@ -214,16 +214,10 @@
 /obj/item/clothing/suit/leathercoat
 	name = "leather coat"
 	desc = "A long, thick black leather coat."
-	icon_state = "leathercoat"
-	item_state = "leathercoat"
-
-/obj/item/clothing/suit/leathercoat/alt
-	name = "leather coat"
-	desc = "A long, thick black leather coat."
 	icon_state = "leathercoat_alt"
 	item_state = "leathercoat_alt"
 
-/obj/item/clothing/suit/leathercoat/alt/sec
+/obj/item/clothing/suit/leathercoat/sec
 	name = "leather coat"
 	desc = "A long, thick black leather coat."
 	icon_state = "leathercoat_sec"
@@ -367,6 +361,12 @@
 	icon_state = "militaryjacket"
 	item_state = "militaryjacket"
 
+/obj/item/clothing/suit/jacket/miljacket2
+	name = "military jacket"
+	desc = "A canvas jacket styled after classical American military garb. Feels sturdy, yet comfortable."
+	icon_state = "militaryjacket2"
+	item_state = "militaryjacket2"
+
 /obj/item/clothing/suit/storage/toggle/bomber
 	name = "bomber jacket"
 	desc = "A thick, well-worn WW2 leather bomber jacket."
@@ -397,11 +397,8 @@
 	body_parts_covered = UPPER_TORSO|ARMS
 
 /obj/item/clothing/suit/storage/leather_jacket/alt
-	name = "leather jacket"
-	desc = "A black leather coat."
 	icon_state = "leather_jacket_alt"
 	item_state = "leather_jacket_alt"
-	body_parts_covered = UPPER_TORSO|ARMS
 
 /obj/item/clothing/suit/storage/leather_jacket/nanotrasen
 	desc = "A black leather coat. A corporate logo is proudly displayed on the back."
@@ -409,7 +406,7 @@
 
 //This one has buttons for some reason
 /obj/item/clothing/suit/storage/toggle/brown_jacket
-	name = "leather jacket"
+	name = "brown jacket"
 	desc = "A brown leather coat."
 	icon_state = "brown_jacket"
 	item_state = "brown_jacket"

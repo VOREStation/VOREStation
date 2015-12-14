@@ -26,6 +26,10 @@
 			latejoin_gateway += loc
 			qdel(src)
 			return
+		if("JoinLateElevator")
+			latejoin_elevator += loc
+			qdel(src)
+			return
 		if("JoinLateCryo")
 			latejoin_cryo += loc
 			qdel(src)
