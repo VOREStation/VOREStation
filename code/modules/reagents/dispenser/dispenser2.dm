@@ -1,4 +1,4 @@
-/obj/machinery/chemical_dispenser/cartridge
+/obj/machinery/chemical_dispenser
 	name = "chemical dispenser"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "dispenser"
@@ -18,18 +18,18 @@
 	density = 1
 	anchored = 1
 
-/obj/machinery/chemical_dispenser/cartridge/New()
+/obj/machinery/chemical_dispenser/New()
 	..()
 
 	if(spawn_cartridges)
 		for(var/type in spawn_cartridges)
 			add_cartridge(new type(src))
 
-/obj/machinery/chemical_dispenser/cartridge/examine(mob/user)
+/obj/machinery/chemical_dispenser/examine(mob/user)
 	..()
 	user << "It has [cartridges.len] cartridges installed, and has space for [DISPENSER_MAX_CARTRIDGES - cartridges.len] more."
 
-/obj/machinery/chemical_dispenser/cartridge/proc/add_cartridge(obj/item/weapon/reagent_containers/chem_disp_cartridge/C, mob/user)
+/obj/machinery/chemical_dispenser/proc/add_cartridge(obj/item/weapon/reagent_containers/chem_disp_cartridge/C, mob/user)
 	if(!istype(C))
 		if(user)
 			user << "<span class='warning'>\The [C] will not fit in \the [src]!</span>"
@@ -59,12 +59,12 @@
 	cartridges = sortAssoc(cartridges)
 	nanomanager.update_uis(src)
 
-/obj/machinery/chemical_dispenser/cartridge/proc/remove_cartridge(label)
+/obj/machinery/chemical_dispenser/proc/remove_cartridge(label)
 	. = cartridges[label]
 	cartridges -= label
 	nanomanager.update_uis(src)
 
-/obj/machinery/chemical_dispenser/cartridge/attackby(obj/item/weapon/W, mob/user)
+/obj/machinery/chemical_dispenser/attackby(obj/item/weapon/W, mob/user)
 	if(istype(W, /obj/item/weapon/wrench))
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 		user << "<span class='notice'>You begin to [anchored ? "un" : ""]fasten \the [src].</span>"
@@ -112,7 +112,7 @@
 	else
 		return ..()
 
-/obj/machinery/chemical_dispenser/cartridge/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/chemical_dispenser/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null, var/force_open = 1)
 	if(stat & (BROKEN|NOPOWER)) return
 	if(user.stat || user.restrained()) return
 
@@ -147,7 +147,7 @@
 		ui.set_initial_data(data)
 		ui.open()
 
-/obj/machinery/chemical_dispenser/cartridge/Topic(href, href_list)
+/obj/machinery/chemical_dispenser/Topic(href, href_list)
 	if(stat & (NOPOWER|BROKEN))
 		return 0 // don't update UIs attached to this object
 
@@ -170,10 +170,10 @@
 	add_fingerprint(usr)
 	return 1 // update UIs attached to this object
 
-/obj/machinery/chemical_dispenser/cartridge/attack_ai(mob/user as mob)
+/obj/machinery/chemical_dispenser/attack_ai(mob/user as mob)
 	src.attack_hand(user)
 
-/obj/machinery/chemical_dispenser/cartridge/attack_hand(mob/user as mob)
+/obj/machinery/chemical_dispenser/attack_hand(mob/user as mob)
 	if(stat & BROKEN)
 		return
 	ui_interact(user)
