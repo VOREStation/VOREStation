@@ -1616,6 +1616,12 @@ var/global/list/gear_datums = list()
 	sort_category = "misc"
 	cost = 1
 
+/datum/gear/boot_knife
+	display_name = "boot knife"
+	path = /obj/item/weapon/material/kitchen/utensil/knife/boot
+	sort_category = "misc"
+	cost = 3
+
 /datum/gear/cane
 	display_name = "cane"
 	path = /obj/item/weapon/cane
@@ -1709,6 +1715,12 @@ var/global/list/gear_datums = list()
 /datum/gear/earmuffs
 	display_name = "earmuffs"
 	path = /obj/item/clothing/ears/earmuffs
+	cost = 1
+	sort_category = "ears"
+
+/datum/gear/headphones
+	display_name = "headphones"
+	path = /obj/item/clothing/ears/earmuffs/headphones
 	cost = 1
 	sort_category = "ears"
 
