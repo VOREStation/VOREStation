@@ -281,6 +281,18 @@ var/global/list/gear_datums = list()
 	cost = 1
 	slot = slot_head
 
+/datum/gear/santahatred
+	display_name = "santa hat, red"
+	path = /obj/item/clothing/head/santa
+	cost = 1
+	slot = slot_head
+
+/datum/gear/santahatgreen
+	display_name = "santa hat, green"
+	path = /obj/item/clothing/head/santa/green
+	cost = 1
+	slot = slot_head
+
 // This was sprited and coded specifically for Zhan-Khazan characters. Before you
 // decide that it's 'not even Taj themed' maybe you should read the wiki, gamer. ~ Z
 /datum/gear/zhan_scarf
