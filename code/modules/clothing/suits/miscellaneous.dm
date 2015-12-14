@@ -397,8 +397,8 @@
 	body_parts_covered = UPPER_TORSO|ARMS
 
 /obj/item/clothing/suit/storage/leather_jacket/alt
-	icon_state = "leatherjacket_alt"
-	item_state = "leatherjacket_alt"
+	icon_state = "leather_jacket_alt"
+	item_state = "leather_jacket_alt"
 
 /obj/item/clothing/suit/storage/leather_jacket/nanotrasen
 	desc = "A black leather coat. A corporate logo is proudly displayed on the back."
