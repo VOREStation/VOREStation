@@ -21,7 +21,7 @@
 			var/obj/item/weapon/reagent_containers/chem_disp_cartridge/C = cartridges[R.name]
 			if(C && C.reagents.total_volume < C.reagents.maximum_volume)
 				var/to_restore = min(C.reagents.maximum_volume - C.reagents.total_volume, 5)
-				use_power(to_restore * 10)
+				use_power(to_restore * 500)
 				C.reagents.add_reagent(id, to_restore)
 				. = 1
 		if(.)
