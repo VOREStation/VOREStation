@@ -177,7 +177,6 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Description: Removes the ghost's address and nulls the exonet datum, to allow qdel()ing.
 /mob/dead/observer/Destroy()
 	. = ..()
-	processing_objects -= src
 	if(exonet)
 		exonet.remove_address()
 		exonet = null
@@ -525,6 +524,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	voice_requests.Cut()
 	voice_invites.Cut()
 	all_communicators -= src
+	processing_objects -= src
 	if(exonet)
 		exonet.remove_address()
 		exonet = null
