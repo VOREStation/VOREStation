@@ -272,6 +272,13 @@
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/headset_cargo
 
+/obj/item/device/radio/headset/headset_cargo/alt
+	name = "supply bowman headset"
+	desc = "A bowman headset used by the QM and his slaves."
+	icon_state = "cargo_headset_alt"
+	item_state = "cargo_headset_alt"
+	ks2type = /obj/item/device/encryptionkey/headset_cargo
+
 /obj/item/device/radio/headset/headset_service
 	name = "service radio headset"
 	desc = "Headset used by the service staff, tasked with keeping the station full, happy and clean."
