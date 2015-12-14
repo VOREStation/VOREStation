@@ -1,0 +1,167 @@
+<!--
+Title: Communicator UI
+Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
+ -->
+
+<h1>Status</h1>
+<div class="item">
+	<div class="itemLabel">
+		Owner:
+	</div>
+	<div class="itemContent">
+		<div style="float: left; width: 180px;">{{:data.owner}}</div> {{:helper.link('Rename', 'pencil', {'rename' : 1})}}
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		Connection:
+	</div>
+	<div class="itemContent">
+		{{if data.connectionStatus == 1}}
+			<span class="good">Connected</span>
+		{{else}}
+			<span class="bad">Disconnected</span>
+		{{/if}}
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		Device EPv2 Address:
+	</div>
+	<div class="itemContent">
+		<div style="float: left; width: 180px;">{{:data.address}}</div>
+	</div>
+	<div class="itemContent">
+		<div style="float: left; width: 180px;">{{:helper.link('Visible', 'signal-diag', {'toggle_visibility' : 1}, data.visible ? 'selected' : null)}}{{:helper.link('Invisible', 'close', {'toggle_visibility' : 1}, data.visible ? null : 'selected')}}</div>
+	</div>
+</div>
+
+<!-- First tab -->
+
+<div class="item">
+	<div class="itemContent">
+		<div style="float: left;">{{:helper.link('Dialing', 'gear', {'switch_tab' : 1}, data.currentTab == 1 ? 'selected' : null)}}{{:helper.link('Manage Connections', 'gear', {'switch_tab' : 2}, data.currentTab == 1 ? null : 'selected')}}</div>
+	</div>
+</div>
+
+{{if data.currentTab == 1}}
+
+	<h3>Manual Dial</h3>
+
+	<HR>
+
+	<div class="item">
+		<div class="itemLabel">
+			Target EPv2 Address:
+		</div>
+		<div class="itemContent">
+			<div style="float: left; width: 180px;">{{:data.targetAddress}}</div>
+		</div>
+		<div class="itemContent">
+			<div style="float: left; width: 180px;">{{:helper.link('Write', 'pencil', {'write_target_address' : 1})}} {{:helper.link('Clear', 'close', {'clear_target_address' : 1})}}</div>
+		</div>
+	</div>
+
+	<div class="item">
+		<div class="itemContent">
+			<div style="width: 100%;">
+				<div style="clear: both; padding-top: 1px;">
+					{{:helper.link('0', null, {'add_hex' : '0'})}}
+					{{:helper.link('1', null, {'add_hex' : '1'})}}
+					{{:helper.link('2', null, {'add_hex' : '2'})}}
+					{{:helper.link('3', null, {'add_hex' : '3'})}}
+				</div>
+				<div style="clear: both; padding-top: 1px;">
+					{{:helper.link('4', null, {'add_hex' : '4'})}}
+					{{:helper.link('5', null, {'add_hex' : '5'})}}
+					{{:helper.link('6', null, {'add_hex' : '6'})}}
+					{{:helper.link('7', null, {'add_hex' : '7'})}}
+				</div>
+				<div style="clear: both; padding-top: 1px;">
+					{{:helper.link('8', null, {'add_hex' : '8'})}}
+					{{:helper.link('9', null, {'add_hex' : '9'})}}
+					{{:helper.link('A', null, {'add_hex' : 'a'})}}
+					{{:helper.link('B', null, {'add_hex' : 'b'})}}
+				</div>
+				<div style="clear: both; padding-top: 1px;">
+					{{:helper.link('C', null, {'add_hex' : 'c'})}}
+					{{:helper.link('D', null, {'add_hex' : 'd'})}}
+					{{:helper.link('E', null, {'add_hex' : 'e'})}}
+					{{:helper.link('F', null, {'add_hex' : 'f'})}}
+				</div>
+				<div style="clear: both; padding-top: 1px;">
+					{{:helper.link('Dial', 'signal-diag', {'dial' : data.targetAddress})}}
+					{{:helper.link('Hang Up', 'close', {'hang_up' : '1'})}}
+				</div>
+			</div>
+		</div>
+	</div>
+	<HR>
+
+	<h3>Known Devices</h3>
+
+		{{for data.knownDevices}}
+			<div class='item'>
+				<div class="itemLabel">
+				{{:value.name}}
+				</div>
+				<div class="itemContent">
+					<div style="float: left; width: 300px;">{{:value.address}}</div> {{:helper.link('Copy', 'pencil', {'copy' : value.address})}}
+				</div>
+			</div>
+		{{/for}}
+
+
+<!-- Second tab, managing active invitations/requests/calls -->
+{{else}}
+	<h3>Connection Management</h3>
+	<HR>
+	<h3>External Connections</h3>
+		{{for data.voice_mobs}}
+			<div class='item'>
+				<div class="itemLabel">
+				{{:value.name}}
+				</div>
+				<div class="itemContent">
+					<div style="float: left; width: 200px;">{{:helper.link('Disconnect', 'close', {'disconnect' : value.true_name}, null, 'redButton')}}</div>
+				</div>
+			</div>
+		{{/for}}
+	<h3>Internal Connections</h3>
+		{{for data.communicating}}
+			<div class='item'>
+				<div class="itemLabel">
+				{{:value.name}}
+				</div>
+				<div class="itemContent">
+					<div style="float: left; width: 200px;">{{:helper.link('Disconnect', 'close', {'disconnect' : value.true_name}, null, 'redButton')}}</div>
+				</div>
+			</div>
+		{{/for}}
+	<h3>Requests Received</h3>
+		{{for data.requestsReceived}}
+			<div class='item'>
+				<div class="itemLabel">
+				{{:value.name}}
+				</div>
+				<div class="itemContent">
+					<div style="float: left; width: 300px;">{{:value.address}}</div> {{:helper.link('Copy', 'pencil', {'copy' : value.address})}}
+				</div>
+			</div>
+		{{/for}}
+
+	<h3>Invites Sent</h3>
+	{{for data.invitesSent}}
+		<div class='item'>
+			<div class="itemLabel">
+			{{:value.name}}
+			</div>
+			<div class="itemContent">
+				<div style="float: left; width: 300px;">{{:value.address}}</div> {{:helper.link('Copy', 'pencil', {'copy' : value.address})}}
+			</div>
+		</div>
+	{{/for}}
+	<HR>
+{{/if}}

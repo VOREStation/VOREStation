@@ -2,6 +2,7 @@
 	endWhen = 36000
 	var/last_spam_time = 0
 	var/obj/machinery/message_server/useMS
+	var/obj/machinery/exonet_node/node
 
 /datum/event/pda_spam/setup()
 	last_spam_time = world.time
@@ -18,6 +19,11 @@
 	if(world.time > last_spam_time + 3000)
 		//if there's no spam managed to get to receiver for five minutes, give up
 		kill()
+		return
+	if(!node)
+		node = get_exonet_node()
+
+	if(!node || !node.on || !node.allow_external_PDAs)
 		return
 
 	if(!useMS || !useMS.active)

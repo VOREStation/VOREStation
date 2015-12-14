@@ -1215,6 +1215,13 @@ CIRCUITS BELOW
 	build_path = /obj/item/weapon/circuitboard/telecomms/receiver
 	sort_string = "PAAAG"
 
+/datum/design/circuit/tcom/exonet_node
+	name = "exonet node"
+	id = "tcom-exonet_node"
+	req_tech = list(TECH_DATA = 5, TECH_ENGINEERING = 5, TECH_BLUESPACE = 4)
+	build_path = /obj/item/weapon/circuitboard/telecomms/broadcaster
+	sort_string = "PAAAH"
+
 /datum/design/circuit/shield
 	req_tech = list(TECH_BLUESPACE = 4, TECH_PHORON = 3)
 	materials = list("glass" = 2000, "gold" = 1000)
