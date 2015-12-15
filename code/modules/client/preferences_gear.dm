@@ -354,17 +354,18 @@ var/global/list/gear_datums = list()
 	allowed_roles = list("Security Officer","Head of Security","Warden")
 
 /datum/gear/thugshades
-	display_name = "Sunglasses, Fat (Security)"
+	display_name = "Sunglasses, Fat"
 	path = /obj/item/clothing/glasses/sunglasses/big
 	cost = 1
 	slot = slot_glasses
-	allowed_roles = list("Security Officer","Head of Security","Warden")
+	allowed_roles = list("Security Officer","Head of Security","Warden","Captain","Head of Personnel","Quartermaster","Internal Affairs Agent","Detective")
 
 /datum/gear/prescriptionsun
 	display_name = "sunglasses, presciption"
 	path = /obj/item/clothing/glasses/sunglasses/prescription
 	cost = 2
 	slot = slot_glasses
+	allowed_roles = list("Security Officer","Head of Security","Warden","Captain","Head of Personnel","Quartermaster","Internal Affairs Agent","Detective")
 
 // Mask
 
@@ -1253,6 +1254,7 @@ var/global/list/gear_datums = list()
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/emt
 	cost = 2
 	slot = slot_wear_suit
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist")
 
 /datum/gear/overalls
 	display_name = "overalls"
@@ -1628,11 +1630,13 @@ var/global/list/gear_datums = list()
 	sort_category = "misc"
 	cost = 1
 
+/*
 /datum/gear/boot_knife
 	display_name = "boot knife"
 	path = /obj/item/weapon/material/kitchen/utensil/knife/boot
 	sort_category = "misc"
 	cost = 3
+*/
 
 /datum/gear/cane
 	display_name = "cane"
