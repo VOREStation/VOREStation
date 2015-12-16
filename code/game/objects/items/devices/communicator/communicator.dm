@@ -551,6 +551,8 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	for(var/obj/item/device/communicator/comm in communicating)
 		for(var/mob/mob in viewers(get_turf(comm))) //We can't use visible_message(), or else we will get an infinite loop if two communicators hear each other.
 			mob.show_message(rendered)
+		for(var/mob/living/voice/V in comm.contents)
+			V.show_message(rendered)
 	..()
 
 // Proc: hear_talk()
@@ -559,7 +561,10 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Description: Relays the speech to all linked communicators.
 /obj/item/device/communicator/hear_talk(mob/living/M, text, verb, datum/language/speaking)
 	for(var/obj/item/device/communicator/comm in communicating)
-		for(var/mob/mob in viewers(get_turf(comm)))
+		var/list/mobs_to_relay = list()
+		mobs_to_relay |= viewers(get_turf(comm))
+		mobs_to_relay |= comm.contents //Needed so ghost-callers can see speech.
+		for(var/mob/mob in mobs_to_relay)
 			//Can whoever is hearing us understand?
 			if(!mob.say_understands(M, speaking))
 				if(speaking)
@@ -619,7 +624,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 
 	var/list/choices = list()
 	for(var/obj/item/device/communicator/comm in all_communicators)
-		if(!comm.network_visibility)
+		if(!comm.network_visibility || !comm.exonet || !comm.exonet.address)
 			continue
 		choices.Add(comm)
 
