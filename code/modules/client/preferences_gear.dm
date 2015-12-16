@@ -1137,13 +1137,7 @@ var/global/list/gear_datums = list()
 
 /datum/gear/mil
 	display_name = "military jacket"
-	path = /obj/item/clothing/suit/jacket/miljacket
-	cost = 2
-	slot = slot_wear_suit
-
-/datum/gear/mil_alt
-	display_name = "military jacket, alt"
-	path = /obj/item/clothing/suit/jacket/miljacket2
+	path = /obj/item/clothing/suit/storage/vest/miljacket
 	cost = 2
 	slot = slot_wear_suit
 
@@ -1193,6 +1187,25 @@ var/global/list/gear_datums = list()
 	display_name = "hoodie, black"
 	path = /obj/item/clothing/suit/storage/toggle/hoodie/black
 	cost = 2
+	slot = slot_wear_suit
+
+/datum/gear/hoodie/cti
+	display_name = "hoodie, CTI"
+	path = /obj/item/clothing/suit/storage/toggle/hoodie/cti
+	cost = 2
+	slot = slot_wear_suit
+
+/datum/gear/hoodie/mu
+	display_name = "hoodie, MU"
+	path = /obj/item/clothing/suit/storage/toggle/hoodie/mu
+	cost = 2
+	slot = slot_wear_suit
+
+/datum/gear/hoodie/nt
+	display_name = "hoodie, NT"
+	path = /obj/item/clothing/suit/storage/toggle/hoodie/nt
+	cost = 2
+	slot = slot_wear_suit
 
 /datum/gear/unathi_mantle
 	display_name = "hide mantle (Unathi)"
@@ -1755,15 +1768,71 @@ var/global/list/gear_datums = list()
 	whitelisted = "Skrell"
 
 /datum/gear/skrell_cloth_male
-	display_name = "skrell headtail-wear, male, cloth"
+	display_name = "skrell headtail-wear, male, red, cloth"
 	path = /obj/item/clothing/ears/skrell/cloth_male
 	cost = 1
 	sort_category = "ears"
 	whitelisted = "Skrell"
 
+/datum/gear/skrell_cloth_male/black
+	display_name = "skrell headtail-wear, male, black, cloth"
+	path = /obj/item/clothing/ears/skrell/cloth_male/black
+	cost = 1
+	sort_category = "ears"
+	whitelisted = "Skrell"
+
+/datum/gear/skrell_cloth_male/blue
+	display_name = "skrell headtail-wear, male, blue, cloth"
+	path = /obj/item/clothing/ears/skrell/cloth_male/blue
+	cost = 1
+	sort_category = "ears"
+	whitelisted = "Skrell"
+
+/datum/gear/skrell_cloth_male/green
+	display_name = "skrell headtail-wear, male, green, cloth"
+	path = /obj/item/clothing/ears/skrell/cloth_male/green
+	cost = 1
+	sort_category = "ears"
+	whitelisted = "Skrell"
+
+/datum/gear/skrell_cloth_male/pink
+	display_name = "skrell headtail-wear, male, pink, cloth"
+	path = /obj/item/clothing/ears/skrell/cloth_male/pink
+	cost = 1
+	sort_category = "ears"
+	whitelisted = "Skrell"
+
 /datum/gear/skrell_cloth_female
-	display_name = "skrell headtail-wear, female, cloth"
+	display_name = "skrell headtail-wear, female, red, cloth"
 	path = /obj/item/clothing/ears/skrell/cloth_female
+	cost = 1
+	sort_category = "ears"
+	whitelisted = "Skrell"
+
+/datum/gear/skrell_cloth_female/black
+	display_name = "skrell headtail-wear, female, black, cloth"
+	path = /obj/item/clothing/ears/skrell/cloth_female/black
+	cost = 1
+	sort_category = "ears"
+	whitelisted = "Skrell"
+
+/datum/gear/skrell_cloth_female/blue
+	display_name = "skrell headtail-wear, female, blue, cloth"
+	path = /obj/item/clothing/ears/skrell/cloth_female/blue
+	cost = 1
+	sort_category = "ears"
+	whitelisted = "Skrell"
+
+/datum/gear/skrell_cloth_female/green
+	display_name = "skrell headtail-wear, female, green, cloth"
+	path = /obj/item/clothing/ears/skrell/cloth_female/green
+	cost = 1
+	sort_category = "ears"
+	whitelisted = "Skrell"
+
+/datum/gear/skrell_cloth_female/pink
+	display_name = "skrell headtail-wear, female, pink, cloth"
+	path = /obj/item/clothing/ears/skrell/cloth_female/pink
 	cost = 1
 	sort_category = "ears"
 	whitelisted = "Skrell"

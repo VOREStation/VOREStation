@@ -98,7 +98,7 @@
 			icon_state = icon_badge
 			usr << "You reveal \the [src]'s badge."
 		else
-			usr << "\The [src] does not have a vest badge."
+			usr << "\The [src] does not have a badge."
 			return
 		update_clothing_icon()
 
