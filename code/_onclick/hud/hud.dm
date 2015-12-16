@@ -257,8 +257,6 @@ datum/hud/New(mob/owner)
 		human_hud(ui_style, ui_color, ui_alpha, mymob) // Pass the player the UI style chosen in preferences
 	else if(isrobot(mymob))
 		robot_hud()
-	else if(issmall(mymob))
-		monkey_hud(ui_style, ui_color, ui_alpha)
 	else if(isbrain(mymob))
 		brain_hud(ui_style)
 	else if(isalien(mymob))
