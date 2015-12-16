@@ -1,11 +1,8 @@
 /*
 
 In short:
- * Random area alarms
- * All areas jammed
- * Random gateways spawning hellmonsters (and turn people into cluwnes if ran into)
- * Broken APCs/Fire Alarms
- * Scary music
+ * Random gateways spawning hellmonsters
+ * Broken Fire Alarms
  * Random tiles changing to culty tiles.
 
 */
@@ -42,7 +39,7 @@ In short:
 // Apply changes when entering state
 /datum/universal_state/hell/OnEnter()
 	set background = 1
-	garbage_collector.garbage_collect = 0
+//	garbage_collector.garbage_collect = 0
 
 	escape_list = get_area_turfs(locate(/area/hallway/secondary/exit))
 
@@ -50,8 +47,8 @@ In short:
 	AreaSet()
 	MiscSet()
 	APCSet()
-	KillMobs()
 	OverlayAndAmbientSet()
+	lightsout(0,0)
 
 	runedec += 9000	//basically removing the rune cap
 
@@ -83,13 +80,5 @@ In short:
 /datum/universal_state/hell/proc/APCSet()
 	for (var/obj/machinery/power/apc/APC in machines)
 		if (!(APC.stat & BROKEN) && !APC.is_critical)
-			APC.chargemode = 0
-			if(APC.cell)
-				APC.cell.charge = 0
 			APC.emagged = 1
 			APC.queue_icon_update()
-
-/datum/universal_state/hell/proc/KillMobs()
-	for(var/mob/living/simple_animal/M in mob_list)
-		if(M && !M.client)
-			M.stat = DEAD

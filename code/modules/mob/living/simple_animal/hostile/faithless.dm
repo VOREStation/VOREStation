@@ -9,13 +9,13 @@
 	response_help = "passes through"
 	response_disarm = "shoves"
 	response_harm = "hits"
-	speed = -1
-	maxHealth = 80
-	health = 80
+	speed = 8
+	maxHealth = 50
+	health = 50
 
 	harm_intent_damage = 10
-	melee_damage_lower = 15
-	melee_damage_upper = 15
+	melee_damage_lower = 5
+	melee_damage_upper = 5
 	attacktext = "gripped"
 	attack_sound = 'sound/hallucinations/growl1.ogg'
 
@@ -50,6 +50,7 @@
 
 /mob/living/simple_animal/hostile/faithless/cult
 	faction = "cult"
+	supernatural = 1
 
 /mob/living/simple_animal/hostile/faithless/cult/cultify()
 	return

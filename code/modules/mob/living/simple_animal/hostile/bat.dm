@@ -16,9 +16,9 @@
 	maxHealth = 20
 	health = 20
 
-	harm_intent_damage = 8
-	melee_damage_lower = 10
-	melee_damage_upper = 10
+	harm_intent_damage = 10
+	melee_damage_lower = 3
+	melee_damage_upper = 3
 	attacktext = "bites"
 	attack_sound = 'sound/weapons/bite.ogg'
 
