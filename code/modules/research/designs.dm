@@ -1219,7 +1219,7 @@ CIRCUITS BELOW
 	name = "exonet node"
 	id = "tcom-exonet_node"
 	req_tech = list(TECH_DATA = 5, TECH_ENGINEERING = 5, TECH_BLUESPACE = 4)
-	build_path = /obj/item/weapon/circuitboard/telecomms/broadcaster
+	build_path = /obj/item/weapon/circuitboard/telecomms/exonet_node
 	sort_string = "PAAAH"
 
 /datum/design/circuit/shield
