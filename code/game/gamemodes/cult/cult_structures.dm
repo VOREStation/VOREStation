@@ -39,7 +39,7 @@
 	if(!isbroken)
 		if(prob(1+ damage * 5))
 			user.visible_message(
-				"<span class='danger'>[user] smashed the pylon!</span>", 
+				"<span class='danger'>[user] smashed the pylon!</span>",
 				"<span class='warning'>You hit the pylon, and its crystal breaks apart!</span>",
 				"You hear a tinkle of crystal shards"
 				)
@@ -137,6 +137,8 @@
 
 	var/mob/living/M = A
 
+	M << "<span class='danger'>Walking into \the [src] is probably a bad idea, you think.</span>"
+/*
 	if(M.stat != DEAD)
 		if(M.transforming)
 			return
@@ -173,3 +175,4 @@
 			new_mob.key = M.key
 
 		new_mob << "<B>Your form morphs into that of a corgi.</B>"	//Because we don't have cluwnes
+*/

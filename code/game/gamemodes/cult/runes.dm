@@ -196,10 +196,24 @@ var/list/sacrificed = list()
 			for(var/mob/M in range(1,src))
 				if(iscultist(M) && !M.stat)
 					M.say("Tok-lyr rqa'nap g[pick("'","`")]lt-ulotf!")
-					cultists += 1
+					if(istype(M, /mob/living/carbon/human/dummy)) //No manifest cheese.
+						continue
+					cultists.Add(M)
 			if(cultists.len >= 9)
-				log_and_message_admins_many(cultists, "summoned Nar-sie.")
-				new /obj/singularity/narsie/large(src.loc)
+				if(!narsie_cometh)//so we don't initiate Hell more than one time.
+					world << "<font size='15' color='red'><b>THE VEIL HAS BEEN SHATTERED!</b></font>"
+					world << sound('sound/effects/wind/wind_5_1.ogg')
+
+					SetUniversalState(/datum/universal_state/hell)
+					narsie_cometh = 1
+
+					spawn(10 SECONDS)
+						if(emergency_shuttle)
+							emergency_shuttle.call_evac()
+							emergency_shuttle.launch_time = 0	// Cannot recall
+
+				log_and_message_admins_many(cultists, "summoned the end of days.")
+//				new /obj/singularity/narsie/large(src.loc)
 				return
 			else
 				return fizzle()
