@@ -170,7 +170,6 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 			exonet.make_address("communicator-[src.client]-[src.client.prefs.real_name]")
 		else
 			exonet.make_address("communicator-[key]-[src.real_name]")
-	..()
 
 // Proc: Destroy()
 // Parameters: None
