@@ -1137,7 +1137,13 @@ var/global/list/gear_datums = list()
 
 /datum/gear/mil
 	display_name = "military jacket"
-	path = /obj/item/clothing/suit/storage/vest/miljacket
+	path = /obj/item/clothing/suit/storage/miljacket
+	cost = 2
+	slot = slot_wear_suit
+
+/datum/gear/mil/alt
+	display_name = "military jacket, alt"
+	path = /obj/item/clothing/suit/storage/miljacket/alt
 	cost = 2
 	slot = slot_wear_suit
 
