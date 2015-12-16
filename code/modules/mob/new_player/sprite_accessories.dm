@@ -152,6 +152,10 @@
 		name = "Side Ponytail"
 		icon_state = "hair_stail"
 
+	sideponytail4 //Not happy about this... but it's for the save files.
+		name = "Side Ponytail 2"
+		icon_state = "hair_ponytailf"
+
 	sideponytail2
 		name = "One Shoulder"
 		icon_state = "hair_oneshoulder"
@@ -159,6 +163,10 @@
 	sideponytail3
 		name = "Tress Shoulder"
 		icon_state = "hair_tressshoulder"
+
+	wisp
+		name = "Wisp"
+		icon_state = "hair_wisp"
 
 	parted
 		name = "Parted"
