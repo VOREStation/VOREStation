@@ -355,14 +355,17 @@
 	icon_state = "puffervest"
 	item_state = "puffervest"
 
-/obj/item/clothing/suit/storage/vest/miljacket  //a horrid bastardization... but this is to reduce snowflake code.
+/obj/item/clothing/suit/storage/miljacket
 	name = "military jacket"
 	desc = "A canvas jacket styled after classical American military garb. Feels sturdy, yet comfortable."
 	icon_state = "militaryjacket_nobadge"
 	item_state = "militaryjacket_nobadge"
-	icon_badge = "militaryjacket_badge"
-	icon_nobadge = "militaryjacket_nobadge"
-	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+
+/obj/item/clothing/suit/storage/miljacket/alt
+	name = "military jacket"
+	desc = "A canvas jacket styled after classical American military garb. Feels sturdy, yet comfortable."
+	icon_state = "militaryjacket_badge"
+	item_state = "militaryjacket_badge"
 
 /obj/item/clothing/suit/storage/toggle/bomber
 	name = "bomber jacket"
