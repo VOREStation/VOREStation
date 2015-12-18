@@ -28,3 +28,35 @@
 	name = "grey athletic shorts"
 	icon_state = "greyshorts"
 	worn_state = "greyshorts"
+
+/obj/item/clothing/under/shorts/jeans
+	name = "jeans shorts"
+	desc = "Some jeans! Just in short form!"
+	icon_state = "jeans_shorts"
+	worn_state = "jeans_shorts"
+
+/obj/item/clothing/under/shorts/jeans/classic
+	name = "classic jeans shorts"
+	icon_state = "jeansclassic_shorts"
+	worn_state = "jeansclassic_shorts"
+
+/obj/item/clothing/under/shorts/jeans/mustang
+	name = "mustang jeans shorts"
+	icon_state = "jeansmustang_shorts"
+	worn_state = "jeansmustang_shorts"
+
+/obj/item/clothing/under/shorts/jeans/youngfolks
+	name = "young folks jeans shorts"
+	icon_state = "jeansyoungfolks_shorts"
+	worn_state = "jeansyoungfolks_shorts"
+
+/obj/item/clothing/under/shorts/jeans/black
+	name = "black jeans shorts"
+	icon_state = "black_shorts"
+	worn_state = "black_shorts"
+
+/obj/item/clothing/under/shorts/khaki
+	name = "khaki shorts"
+	desc = "For that island getaway. It's five o'clock somewhere, right?"
+	icon_state = "khaki_shorts"
+	worn_state = "khaki_shorts"
