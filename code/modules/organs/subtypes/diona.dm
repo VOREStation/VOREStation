@@ -122,22 +122,6 @@
 	body_part = HAND_RIGHT
 	parent_organ = "r_arm"
 
-/obj/item/organ/external/diona/head
-	limb_name = "head"
-	icon_name = "head"
-	name = "head"
-	max_damage = 50
-	min_broken_damage = 25
-	w_class = 3
-	body_part = HEAD
-	parent_organ = "chest"
-
-/obj/item/organ/external/diona/head/removed()
-	if(owner)
-		owner.u_equip(owner.head)
-		owner.u_equip(owner.l_ear)
-	..()
-
 //DIONA ORGANS.
 /obj/item/organ/external/diona/removed()
 	var/mob/living/carbon/human/H = owner

@@ -70,6 +70,13 @@
 	parent_organ = "head"
 	var/list/eye_colour = list(0,0,0)
 
+/obj/item/organ/eyes/robotize()
+	..()
+	name = "optical sensor"
+	icon = 'icons/obj/robot_component.dmi'
+	icon_state = "camera"
+	dead_icon = "camera_broken"
+
 /obj/item/organ/eyes/proc/update_colour()
 	if(!owner)
 		return
@@ -109,7 +116,7 @@
 
 	if (germ_level > INFECTION_LEVEL_ONE)
 		if(prob(1))
-			owner << "\red Your skin itches."
+			owner << "<span class='danger'>Your skin itches.</span>"
 	if (germ_level > INFECTION_LEVEL_TWO)
 		if(prob(1))
 			spawn owner.vomit()

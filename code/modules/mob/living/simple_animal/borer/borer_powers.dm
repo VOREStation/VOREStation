@@ -77,7 +77,7 @@
 		if(!E || (E.status & ORGAN_DESTROYED))
 			src << "\The [H] does not have a head!"
 
-		if(!H.species.has_organ["brain"])
+		if(!H.should_have_organ("brain"))
 			src << "\The [H] does not seem to have an ear canal to breach."
 			return
 

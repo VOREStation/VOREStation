@@ -61,7 +61,7 @@ emp_act
 					emote("me", 1, "drops what they were holding, their [affected.name] malfunctioning!")
 				else
 					var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
-					emote("me", 1, "[(species && species.flags & NO_PAIN) ? "" : emote_scream ]drops what they were holding in their [affected.name]!")
+					emote("me", 1, "[affected.can_feel_pain() ? "" : emote_scream]drops what they were holding in their [affected.name]!")
 
 	..(stun_amount, agony_amount, def_zone)
 
@@ -223,7 +223,7 @@ emp_act
 				//Harder to score a stun but if you do it lasts a bit longer
 				if(prob(effective_force))
 					apply_effect(20, PARALYZE, armor)
-					visible_message("<span class='danger'>[src] [species.knockout_message]</span>")
+					visible_message("<span class='danger'>[src] [species.get_knockout_message(src)]</span>")
 			else
 				//Easier to score a stun but lasts less time
 				if(prob(effective_force + 10))

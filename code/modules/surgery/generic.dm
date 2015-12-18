@@ -51,9 +51,6 @@
 		//Could be cleaner ...
 		affected.open = 1
 
-		if(istype(target) && !(target.species.flags & NO_BLOOD))
-			affected.status |= ORGAN_BLEEDING
-
 		affected.createwound(CUT, 1)
 		affected.clamp()
 		spread_germs_to_organ(affected, user)
@@ -91,7 +88,7 @@
 		"\blue You have constructed a prepared incision on and within [target]'s [affected.name] with \the [tool].",)
 		affected.open = 1
 
-		if(istype(target) && !(target.species.flags & NO_BLOOD))
+		if(istype(target) && target.should_have_organ("heart"))
 			affected.status |= ORGAN_BLEEDING
 
 		affected.createwound(CUT, 1)
@@ -133,7 +130,7 @@
 		"\blue You have made an incision on [target]'s [affected.name] with \the [tool].",)
 		affected.open = 1
 
-		if(istype(target) && !(target.species.flags & NO_BLOOD))
+		if(istype(target) && target.should_have_organ("heart"))
 			affected.status |= ORGAN_BLEEDING
 
 		affected.createwound(CUT, 1)

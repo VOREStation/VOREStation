@@ -207,7 +207,7 @@
 					m_type = 2
 
 		if ("deathgasp")
-			message = "[species.death_message]"
+			message = "[species.get_death_message()]"
 			m_type = 1
 
 		if ("giggle")

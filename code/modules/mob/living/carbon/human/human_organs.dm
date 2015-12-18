@@ -68,6 +68,7 @@
 	if (istype(buckled, /obj/structure/bed))
 		return
 
+	var/limb_pain
 	for(var/limb_tag in list("l_leg","r_leg","l_foot","r_foot"))
 		var/obj/item/organ/external/E = organs_by_name[limb_tag]
 		if(!E || (E.status & (ORGAN_DESTROYED|ORGAN_DEAD)))
@@ -88,6 +89,8 @@
 		else if (E.is_dislocated())
 			stance_damage += 0.5
 
+		if(E) limb_pain = E.can_feel_pain()
+
 	// Canes and crutches help you stand (if the latter is ever added)
 	// One cane mitigates a broken leg+foot, or a missing foot.
 	// Two canes are needed for a lost leg. If you are missing both legs, canes aren't gonna help you.
@@ -99,7 +102,7 @@
 	// standing is poor
 	if(stance_damage >= 4 || (stance_damage >= 2 && prob(5)))
 		if(!(lying || resting))
-			if(species && !(species.flags & NO_PAIN))
+			if(limb_pain)
 				emote("scream")
 			custom_emote(1, "collapses!")
 		Weaken(5) //can't emote while weakened, apparently.
@@ -145,7 +148,7 @@
 					drop_from_inventory(r_hand)
 
 			var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
-			emote("me", 1, "[(species.flags & NO_PAIN) ? "" : emote_scream ]drops what they were holding in their [E.name]!")
+			emote("me", 1, "[(E.can_feel_pain()) ? "" : emote_scream ]drops what they were holding in their [E.name]!")
 
 		else if(E.is_malfunctioning())
 			switch(E.body_part)

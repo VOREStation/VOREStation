@@ -54,7 +54,7 @@ var/global/list/sparring_attack_cache = list()
 			if("l_arm", "l_hand")
 				if (target.l_hand)
 					// Disarm left hand
-					//Urist McAssistant dropped the macguffin with a scream just sounds odd. Plus it doesn't work with NO_PAIN
+					//Urist McAssistant dropped the macguffin with a scream just sounds odd.
 					target.visible_message("<span class='danger'>\The [target.l_hand] was knocked right out of [target]'s grasp!</span>")
 					target.drop_l_hand()
 			if("r_arm", "r_hand")
@@ -94,10 +94,13 @@ var/global/list/sparring_attack_cache = list()
 
 /datum/unarmed_attack/proc/handle_eye_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target)
 	var/obj/item/organ/eyes/eyes = target.internal_organs_by_name["eyes"]
-	eyes.take_damage(rand(3,4), 1)
-
-	user.visible_message("<span class='danger'>[user] presses \his [eye_attack_text] into [target]'s [eyes.name]!</span>")
-	target << "<span class='danger'>You experience[(target.species.flags & NO_PAIN)? "" : " immense pain as you feel" ] [eye_attack_text_victim] being pressed into your [eyes.name][(target.species.flags & NO_PAIN)? "." : "!"]</span>"
+	if(eyes)
+		eyes.take_damage(rand(3,4), 1)
+		user.visible_message("<span class='danger'>[user] presses \his [eye_attack_text] into [target]'s [eyes.name]!</span>")
+		var/eye_pain = eyes.can_feel_pain()
+		target << "<span class='danger'>You experience[(eye_pain) ? "" : " immense pain as you feel" ] [eye_attack_text_victim] being pressed into your [eyes.name][(eye_pain)? "." : "!"]</span>"
+		return
+	user.visible_message("<span class='danger'>[user] attempts to press \his [eye_attack_text] into [target]'s eyes, but they don't have any!</span>")
 
 /datum/unarmed_attack/bite
 	attack_verb = list("bit")

@@ -91,7 +91,7 @@
 
 		for(var/obj/item/organ/I in affected.internal_organs)
 			if(I && I.damage > 0)
-				if(I.robotic < 2)
+				if(!(I.status & ORGAN_ROBOT))
 					user.visible_message("[user] starts treating damage to [target]'s [I.name] with [tool_name].", \
 					"You start treating damage to [target]'s [I.name] with [tool_name]." )
 
@@ -111,7 +111,7 @@
 
 		for(var/obj/item/organ/I in affected.internal_organs)
 			if(I && I.damage > 0)
-				if(I.robotic < 2)
+				if(!(I.status & ORGAN_ROBOT))
 					user.visible_message("<span class='notice'>[user] treats damage to [target]'s [I.name] with [tool_name].</span>", \
 					"<span class='notice'>You treat damage to [target]'s [I.name] with [tool_name].</span>" )
 					I.damage = 0
@@ -285,7 +285,7 @@
 
 		if(O.organ_tag == "limb")
 			return 0
-		else if(target.species.has_organ[O.organ_tag])
+		else if(target.should_have_organ(O.organ_tag))
 
 			if(O.damage > (O.max_damage * 0.75))
 				user << "<span class='warning'>\The [O.organ_tag] [o_is] in no state to be transplanted.</span>"

@@ -15,8 +15,6 @@
 	has_fine_manipulation = 0
 	show_ssd = null
 
-	eyes = "blank_eyes"
-
 	gibbed_anim = "gibbed-m"
 	dusted_anim = "dust-m"
 	death_message = "lets out a faint chimper as it collapses and stops moving..."
@@ -39,6 +37,20 @@
 	push_flags = MONKEY|SLIME|SIMPLE_ANIMAL|ALIEN
 
 	pass_flags = PASSTABLE
+
+	has_limbs = list(
+		"chest" =  list("path" = /obj/item/organ/external/chest),
+		"groin" =  list("path" = /obj/item/organ/external/groin),
+		"head" =   list("path" = /obj/item/organ/external/head/no_eyes),
+		"l_arm" =  list("path" = /obj/item/organ/external/arm),
+		"r_arm" =  list("path" = /obj/item/organ/external/arm/right),
+		"l_leg" =  list("path" = /obj/item/organ/external/leg),
+		"r_leg" =  list("path" = /obj/item/organ/external/leg/right),
+		"l_hand" = list("path" = /obj/item/organ/external/hand),
+		"r_hand" = list("path" = /obj/item/organ/external/hand/right),
+		"l_foot" = list("path" = /obj/item/organ/external/foot),
+		"r_foot" = list("path" = /obj/item/organ/external/foot/right)
+		)
 
 /datum/species/monkey/handle_npc(var/mob/living/carbon/human/H)
 	if(H.stat != CONSCIOUS)

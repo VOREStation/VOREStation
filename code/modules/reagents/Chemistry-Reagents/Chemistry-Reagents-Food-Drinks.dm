@@ -233,12 +233,13 @@
 	M.adjustToxLoss(0.5 * removed)
 
 /datum/reagent/capsaicin/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA || alien == IS_MACHINE)
+	if(alien == IS_DIONA)
 		return
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.species && (H.species.flags & (NO_PAIN)))
+		if(!H.can_feel_pain())
 			return
+
 	if(dose < 5 && (dose == metabolism || prob(5)))
 		M << "<span class='danger'>Your insides feel uncomfortably hot!</span>"
 	if(dose >= 5)
@@ -268,7 +269,7 @@
 	var/obj/item/safe_thing = null
 	if(istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
-		if(H.species && (H.species.flags & NO_PAIN))
+		if(!H.can_feel_pain())
 			return
 		if(H.head)
 			if(H.head.body_parts_covered & EYES)
@@ -314,7 +315,7 @@
 /datum/reagent/condensedcapsaicin/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.species && (H.species.flags & (NO_PAIN)))
+		if(!H.can_feel_pain())
 			return
 	if(dose == metabolism)
 		M << "<span class='danger'>You feel like your insides are burning!</span>"

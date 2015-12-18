@@ -46,7 +46,8 @@
 /obj/item/organ/stack
 	name = "cortical stack"
 	parent_organ = "head"
-	robotic = 2
+	icon_state = "brain-prosthetic"
+	organ_tag = "stack"
 	vital = 1
 	var/backup_time = 0
 	var/datum/mind/backup
@@ -56,15 +57,5 @@
 		backup_time = world.time
 		if(owner.mind) backup = owner.mind
 
-/obj/item/organ/stack/vox
-
 /obj/item/organ/stack/vox/stack
-
-/obj/item/organ/stack
-	name = "cortical stack"
-	icon_state = "brain-prosthetic"
-	organ_tag = "stack"
-	robotic = 2
-
-/obj/item/organ/stack/vox
 	name = "vox cortical stack"

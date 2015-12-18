@@ -57,7 +57,7 @@ var/list/diseases = typesof(/datum/disease) - /datum/disease
 	// Some species are immune to viruses entirely.
 	if(affected_mob && istype(affected_mob, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = affected_mob
-		if(H.species.virus_immune)
+		if(H.species.get_virus_immune(H))
 			cure()
 			return
 	age++

@@ -25,7 +25,6 @@
 	cold_level_2 = 50
 	cold_level_3 = 0
 
-	eyes = "vox_eyes_s"
 	gluttonous = 2
 
 	breath_type = "nitrogen"
@@ -44,6 +43,21 @@
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/leap
 		)
+
+	has_limbs = list(
+		"chest" =  list("path" = /obj/item/organ/external/chest),
+		"groin" =  list("path" = /obj/item/organ/external/groin),
+		"head" =   list("path" = /obj/item/organ/external/head/vox),
+		"l_arm" =  list("path" = /obj/item/organ/external/arm),
+		"r_arm" =  list("path" = /obj/item/organ/external/arm/right),
+		"l_leg" =  list("path" = /obj/item/organ/external/leg),
+		"r_leg" =  list("path" = /obj/item/organ/external/leg/right),
+		"l_hand" = list("path" = /obj/item/organ/external/hand),
+		"r_hand" = list("path" = /obj/item/organ/external/hand/right),
+		"l_foot" = list("path" = /obj/item/organ/external/foot),
+		"r_foot" = list("path" = /obj/item/organ/external/foot/right)
+		)
+
 
 	has_organ = list(
 		"heart" =    /obj/item/organ/heart,

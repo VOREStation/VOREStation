@@ -60,7 +60,7 @@
 			brainobj = O
 			brainobj.loc = src
 
-			name = "Man-Machine Interface: [brainmob.real_name]"
+			name = "man-machine interface ([brainmob.real_name])"
 			icon_state = "mmi_full"
 
 			locked = 1

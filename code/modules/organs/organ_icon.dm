@@ -53,10 +53,10 @@ var/global/list/limb_icon_cache = list()
 	overlays.Cut()
 	if(!owner || !owner.species)
 		return
-	if(owner.species.has_organ["eyes"])
+	if(owner.should_have_organ("eyes"))
 		var/obj/item/organ/eyes/eyes = owner.internal_organs_by_name["eyes"]
-		if(species.eyes)
-			var/icon/eyes_icon = new/icon('icons/mob/human_face.dmi', species.eyes)
+		if(eye_icon)
+			var/icon/eyes_icon = new/icon('icons/mob/human_face.dmi', eye_icon)
 			if(eyes)
 				eyes_icon.Blend(rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3]), ICON_ADD)
 			else
@@ -91,7 +91,7 @@ var/global/list/limb_icon_cache = list()
 
 	var/gender
 	if(force_icon)
-		mob_icon = new /icon(force_icon, "[icon_name]")
+		mob_icon = new /icon(force_icon, "[icon_name][gendered_icon ? "_f" : ""]")
 	else
 		if(!dna)
 			mob_icon = new /icon('icons/mob/human_races/r_human.dmi', "[icon_name][gendered_icon ? "_f" : ""]")

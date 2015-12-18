@@ -19,7 +19,6 @@
 	var/blood_mask = 'icons/mob/human_races/masks/blood_human.dmi'
 
 	var/prone_icon                                       // If set, draws this from icobase when mob is prone.
-	var/eyes = "eyes_s"                                  // Icon for eyes.
 	var/blood_color = "#A10808"                          // Red.
 	var/flesh_color = "#FFC896"                          // Pink.
 	var/base_color                                       // Used by changelings. Should also be used for icon previes..
@@ -85,7 +84,7 @@
 	var/warning_low_pressure = WARNING_LOW_PRESSURE   // Low pressure warning.
 	var/hazard_low_pressure = HAZARD_LOW_PRESSURE     // Dangerously low pressure.
 	var/light_dam                                     // If set, mob will be damaged in light over this value and heal in light below its negative.
-	var/body_temperature = 310.15	                  // Non-IS_SYNTHETIC species will try to stabilize at this temperature.
+	var/body_temperature = 310.15	                  // Species will try to stabilize at this temperature.
 	                                                  // (also affects temperature processing)
 
 	var/heat_discomfort_level = 315                   // Aesthetic messages about feeling warm.
@@ -176,6 +175,24 @@
 
 /datum/species/proc/get_bodytype()
 	return name
+
+/datum/species/proc/get_knockout_message(var/mob/living/carbon/human/H)
+	return ((H && H.isSynthetic()) ? "encounters a hardware fault and suddenly reboots!" : knockout_message)
+
+/datum/species/proc/get_death_message(var/mob/living/carbon/human/H)
+	return ((H && H.isSynthetic()) ? "gives one shrill beep before falling lifeless." : death_message)
+
+/datum/species/proc/get_ssd(var/mob/living/carbon/human/H)
+	return ((H && H.isSynthetic()) ? "flashing a 'system offline' glyph on their monitor" : show_ssd)
+
+/datum/species/proc/get_blood_colour(var/mob/living/carbon/human/H)
+	return ((H && H.isSynthetic()) ? "#1F181F" : blood_color)
+
+/datum/species/proc/get_virus_immune(var/mob/living/carbon/human/H)
+	return ((H && H.isSynthetic()) ? 1 : virus_immune)
+
+/datum/species/proc/get_flesh_colour(var/mob/living/carbon/human/H)
+	return ((H && H.isSynthetic()) ? "#575757" : flesh_color)
 
 /datum/species/proc/get_environment_discomfort(var/mob/living/carbon/human/H, var/msg_type)
 

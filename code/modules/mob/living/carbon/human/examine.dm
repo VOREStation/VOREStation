@@ -38,9 +38,21 @@
 		CRASH("Gender datum was null; key was '[(skipjumpsuit && skipface) ? PLURAL : gender]'")
 
 	msg += "<EM>[src.name]</EM>"
-	if(species.name != "Human")
-		msg += ", a <b><font color='[species.flesh_color]'>[species.name]</font></b>"
-	msg += "!\n"
+
+
+	var/is_synth = isSynthetic()
+	if(is_synth)
+		var/use_gender = "a synthetic"
+		if(gender == MALE)
+			use_gender = "an android"
+		else if(gender == FEMALE)
+			use_gender = "a gynoid"
+
+		msg += ", <font color='#555555'>[use_gender]!</font></b>"
+
+	else if(species.name != "Human")
+		msg += ", <b><font color='[species.get_flesh_colour(src)]'>\a [species.name]!</font></b>"
+	msg += "<br>"
 
 	//uniform
 	if(w_uniform && !skipjumpsuit)
@@ -230,11 +242,12 @@
 	if(getBrainLoss() >= 60)
 		msg += "[T.He] [T.has] a stupid expression on [T.his] face.\n"
 
-	if(species.show_ssd && (!species.has_organ["brain"] || has_brain()) && stat != DEAD)
+	var/ssd_msg = species.get_ssd(src)
+	if(ssd_msg && (!should_have_organ("brain") || has_brain()) && stat != DEAD)
 		if(!key)
-			msg += "<span class='deadsay'>[T.He] [T.is] [species.show_ssd]. It doesn't look like [T.he] [T.is] waking up anytime soon.</span>\n"
+			msg += "<span class='deadsay'>[T.He] [T.is] [ssd_msg]. It doesn't look like [T.he] [T.is] waking up anytime soon.</span>\n"
 		else if(!client)
-			msg += "<span class='deadsay'>[T.He] [T.is] [species.show_ssd].</span>\n"
+			msg += "<span class='deadsay'>[T.He] [T.is] [ssd_msg].</span>\n"
 
 	var/list/wound_flavor_text = list()
 	var/list/is_destroyed = list()
@@ -261,12 +274,12 @@
 				is_destroyed["[temp.name]"] = 1
 				wound_flavor_text["[temp.name]"] = "<span class='warning'><b>[T.He] [T.is] missing [T.his] [temp.name].</b></span>\n"
 				continue
-			if(temp.status & ORGAN_ROBOT)
+			if(!is_synth && temp.status & ORGAN_ROBOT)
 				if(!(temp.brute_dam + temp.burn_dam))
-					wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] [T.has] a robot [temp.name]!</span>\n"
+					wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] [T.has] a [temp.name]!</span>\n"
 					continue
 				else
-					wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] [T.has] a robot [temp.name]. It has[temp.get_wounds_desc()]!</span>\n"
+					wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] [T.has] a [temp.name]. It has[temp.get_wounds_desc()]!</span>\n"
 			else if(temp.wounds.len > 0 || temp.open)
 				if(temp.is_stump() && temp.parent_organ && organs_by_name[temp.parent_organ])
 					var/obj/item/organ/external/parent = organs_by_name[temp.parent_organ]

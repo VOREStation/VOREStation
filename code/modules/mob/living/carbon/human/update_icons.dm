@@ -209,11 +209,11 @@ var/global/list/damage_icon_parts = list()
 			O.update_icon()
 			if(O.damage_state == "00") continue
 			var/icon/DI
-			var/cache_index = "[O.damage_state]/[O.icon_name]/[species.blood_color]/[species.get_bodytype()]"
+			var/cache_index = "[O.damage_state]/[O.icon_name]/[O.species.get_blood_colour()]/[species.get_bodytype()]"
 			if(damage_icon_parts[cache_index] == null)
 				DI = new /icon(species.damage_overlays, O.damage_state)			// the damage icon for whole human
 				DI.Blend(new /icon(species.damage_mask, O.icon_name), ICON_MULTIPLY)	// mask with this organ's pixels
-				DI.Blend(species.blood_color, ICON_MULTIPLY)
+				DI.Blend(O.species.get_blood_colour(), ICON_MULTIPLY)
 				damage_icon_parts[cache_index] = DI
 			else
 				DI = damage_icon_parts[cache_index]

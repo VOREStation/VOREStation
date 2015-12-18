@@ -83,6 +83,7 @@
 	var/list/flavor_texts = list()
 	var/gunshot_residue
 	var/pulling_punches // Are you trying not to hurt your opponent?
+	var/full_prosthetic // We are a robutt.
 
 	mob_bump_flag = HUMAN
 	mob_push_flags = ~HEAVY

@@ -465,7 +465,7 @@ var/list/global/slot_flags_enumeration = list(
 		eyes.damage += rand(3,4)
 		if(eyes.damage >= eyes.min_bruised_damage)
 			if(M.stat != 2)
-				if(eyes.robotic <= 1) //robot eyes bleeding might be a bit silly
+				if(!(eyes.status & ORGAN_ROBOT)) //robot eyes bleeding might be a bit silly
 					M << "<span class='danger'>Your eyes start to bleed profusely!</span>"
 			if(prob(50))
 				if(M.stat != 2)

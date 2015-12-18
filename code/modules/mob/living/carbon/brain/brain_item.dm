@@ -15,6 +15,25 @@
 	attack_verb = list("attacked", "slapped", "whacked")
 	var/mob/living/carbon/brain/brainmob = null
 
+
+/obj/item/organ/brain/robotize()
+	replace_self_with(/obj/item/organ/mmi_holder/posibrain)
+
+/obj/item/organ/brain/mechassist()
+	replace_self_with(/obj/item/organ/mmi_holder)
+
+/obj/item/organ/brain/proc/replace_self_with(replace_path)
+	if(!owner)
+		new replace_path(src.loc)
+		qdel(src)
+		return
+	owner.internal_organs_by_name[organ_tag] = new replace_path(owner, 1)
+	owner.internal_organs -= src
+	while(null in owner.internal_organs_by_name)
+		owner.internal_organs_by_name -= null
+	while(null in owner.internal_organs)
+		owner.internal_organs -= null
+
 /obj/item/organ/pariah_brain
 	name = "brain remnants"
 	desc = "Did someone tread on this? It looks useless for cloning or cyborgification."
@@ -93,13 +112,11 @@
 /obj/item/organ/brain/slime
 	name = "slime core"
 	desc = "A complex, organic knot of jelly and crystalline particles."
-	robotic = 2
 	icon = 'icons/mob/slimes.dmi'
 	icon_state = "green slime extract"
 
 /obj/item/organ/brain/golem
 	name = "chem"
 	desc = "A tightly furled roll of paper, covered with indecipherable runes."
-	robotic = 2
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "scroll"

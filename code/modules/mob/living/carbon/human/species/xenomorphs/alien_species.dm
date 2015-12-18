@@ -13,8 +13,6 @@
 	siemens_coefficient = 0
 	gluttonous = 3
 
-	eyes = "blank_eyes"
-
 	brute_mod = 0.5 // Hardened carapace.
 	burn_mod = 2    // Weak to fire.
 
@@ -25,7 +23,7 @@
 	cold_level_2 = -1
 	cold_level_3 = -1
 
-	flags =  NO_BREATHE | NO_SCAN | NO_PAIN | NO_SLIP | NO_POISON | NO_MINOR_CUT
+	flags =  NO_SCAN | NO_PAIN | NO_SLIP | NO_POISON | NO_MINOR_CUT
 	spawn_flags = IS_RESTRICTED
 
 	reagent_tag = IS_XENOS
@@ -61,6 +59,20 @@
 	var/caste_name = "creature" // Used to update alien name.
 	var/weeds_heal_rate = 1     // Health regen on weeds.
 	var/weeds_plasma_rate = 5   // Plasma regen on weeds.
+
+	has_limbs = list(
+		"chest" =  list("path" = /obj/item/organ/external/chest),
+		"groin" =  list("path" = /obj/item/organ/external/groin),
+		"head" =   list("path" = /obj/item/organ/external/head/no_eyes),
+		"l_arm" =  list("path" = /obj/item/organ/external/arm),
+		"r_arm" =  list("path" = /obj/item/organ/external/arm/right),
+		"l_leg" =  list("path" = /obj/item/organ/external/leg),
+		"r_leg" =  list("path" = /obj/item/organ/external/leg/right),
+		"l_hand" = list("path" = /obj/item/organ/external/hand),
+		"r_hand" = list("path" = /obj/item/organ/external/hand/right),
+		"l_foot" = list("path" = /obj/item/organ/external/foot),
+		"r_foot" = list("path" = /obj/item/organ/external/foot/right)
+		)
 
 /datum/species/xenos/get_bodytype()
 	return "Xenomorph"

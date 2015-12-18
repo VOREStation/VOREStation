@@ -222,6 +222,7 @@
 		locked += L
 	return
 
+// TODO.
 proc/get_id_photo(var/mob/living/carbon/human/H, var/assigned_role)
 	var/icon/preview_icon = null
 
@@ -258,7 +259,10 @@ proc/get_id_photo(var/mob/living/carbon/human/H, var/assigned_role)
 		if(!H.species || H.species.flags & HAS_SKIN_COLOR)
 			preview_icon.Blend(rgb(H.r_skin, H.g_skin, H.b_skin), ICON_ADD)
 
-	var/icon/eyes_s = new/icon("icon" = 'icons/mob/human_face.dmi', "icon_state" = H.species ? H.species.eyes : "eyes_s")
+	var/use_eye_icon = "eyes_s"
+	var/obj/item/organ/external/head/temp_head = H.get_organ("head")
+	if(temp_head) use_eye_icon = temp_head.eye_icon
+	var/icon/eyes_s = new/icon("icon" = 'icons/mob/human_face.dmi', "icon_state" = use_eye_icon)
 
 	if (H.species.flags & HAS_EYE_COLOR)
 		eyes_s.Blend(rgb(H.r_eyes, H.g_eyes, H.b_eyes), ICON_ADD)

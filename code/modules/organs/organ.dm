@@ -3,33 +3,37 @@ var/list/organ_cache = list()
 /obj/item/organ
 	name = "organ"
 	icon = 'icons/obj/surgery.dmi'
+	germ_level = 0
+
+	// Strings.
+	var/organ_tag = "organ"
+	var/parent_organ = "chest"
+
+	// Appearance.
 	var/dead_icon
-	var/mob/living/carbon/human/owner = null
+
+	// Status tracking.
 	var/status = 0
 	var/vital //Lose a vital limb, die immediately.
 	var/damage = 0 // amount of damage to the organ
 
-	var/min_bruised_damage = 10
-	var/min_broken_damage = 30
-	var/max_damage
-	var/organ_tag = "organ"
-
-	var/parent_organ = "chest"
-	var/robotic = 0 //For being a robot
-	var/rejecting   // Is this organ already being rejected?
-
+	// Reference data.
+	var/mob/living/carbon/human/owner = null
 	var/list/transplant_data
 	var/list/datum/autopsy_data/autopsy_data = list()
 	var/list/trace_chemicals = list() // traces of chemicals in the organ,
-									  // links chemical IDs to number of ticks for which they'll stay in the blood
-	germ_level = 0
 	var/datum/dna/dna
 	var/datum/species/species
+
+	// Damage vars.
+	var/min_bruised_damage = 10
+	var/min_broken_damage = 30
+	var/max_damage
+	var/rejecting   // Is this organ already being rejected?
 
 /obj/item/organ/Destroy()
 	if(!owner)
 		return ..()
-
 	if(istype(owner, /mob/living/carbon))
 		if((owner.internal_organs) && (src in owner.internal_organs))
 			owner.internal_organs -= src
@@ -42,7 +46,7 @@ var/list/organ_cache = list()
 				owner.organs_by_name -= src
 	if(src in owner.contents)
 		owner.contents -= src
-
+	owner = null
 	return ..()
 
 /obj/item/organ/proc/update_health()
@@ -189,8 +193,25 @@ var/list/organ_cache = list()
 /obj/item/organ/proc/receive_chem(chemical as obj)
 	return 0
 
-/obj/item/organ/proc/rejuvenate()
+/obj/item/organ/proc/rejuvenate(var/ignore_prosthetic_prefs)
 	damage = 0
+	status = 0
+	if(!ignore_prosthetic_prefs && owner && owner.client && owner.client.prefs && owner.client.prefs.real_name == owner.real_name)
+		var/status = owner.client.prefs.organ_data[organ_tag]
+		if(status == "assisted")
+			mechassist()
+		else if(status == "mechanical")
+			robotize()
+
+/obj/item/organ/proc/remove_rejuv()
+	if(owner)
+		owner.internal_organs -= src
+		owner.internal_organs_by_name[organ_tag] = null
+		while(null in owner.internal_organs)
+			owner.internal_organs -= null
+		while(null in owner.internal_organs_by_name)
+			owner.internal_organs_by_name -= null
+	qdel(src)
 
 /obj/item/organ/proc/is_damaged()
 	return damage > 0
@@ -241,19 +262,13 @@ var/list/organ_cache = list()
 				owner.custom_pain("Something inside your [parent.name] hurts a lot.", 1)
 
 /obj/item/organ/proc/robotize() //Being used to make robutt hearts, etc
-	robotic = 2
-	src.status &= ~ORGAN_BROKEN
-	src.status &= ~ORGAN_BLEEDING
-	src.status &= ~ORGAN_SPLINTED
-	src.status &= ~ORGAN_CUT_AWAY
-	src.status &= ~ORGAN_DESTROYED
-	src.status |= ORGAN_ROBOT
-	src.status |= ORGAN_ASSISTED
+	status = 0
+	status |= ORGAN_ASSISTED
+	status |= ORGAN_ROBOT
 
 /obj/item/organ/proc/mechassist() //Used to add things like pacemakers, etc
-	robotize()
-	src.status &= ~ORGAN_ROBOT
-	robotic = 1
+	status = 0
+	status |= ORGAN_ASSISTED
 	min_bruised_damage = 15
 	min_broken_damage = 35
 
@@ -320,8 +335,6 @@ var/list/organ_cache = list()
 	target.internal_organs |= src
 	affected.internal_organs |= src
 	target.internal_organs_by_name[organ_tag] = src
-	if(robotic)
-		status |= ORGAN_ROBOT
 
 /obj/item/organ/eyes/replaced(var/mob/living/carbon/human/target)
 
@@ -335,10 +348,10 @@ var/list/organ_cache = list()
 
 /obj/item/organ/proc/bitten(mob/user)
 
-	if(robotic)
+	if(status & ORGAN_ROBOT)
 		return
 
-	user << "\blue You take an experimental bite out of \the [src]."
+	user << "<span class='notice'>You take an experimental bite out of \the [src].</span>"
 	var/datum/reagent/blood/B = locate(/datum/reagent/blood) in reagents.reagent_list
 	blood_splatter(src,B,1)
 
@@ -361,6 +374,9 @@ var/list/organ_cache = list()
 /obj/item/organ/attack_self(mob/user as mob)
 
 	// Convert it to an edible form, yum yum.
-	if(!robotic && user.a_intent == "help" && user.zone_sel.selecting == "mouth")
+	if((status & ORGAN_ROBOT) && user.a_intent == "help" && user.zone_sel.selecting == "mouth")
 		bitten(user)
 		return
+
+/obj/item/organ/proc/can_feel_pain()
+	return !(status & (ORGAN_ROBOT|ORGAN_DESTROYED)) && !(species.flags & NO_PAIN)

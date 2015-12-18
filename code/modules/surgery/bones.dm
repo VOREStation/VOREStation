@@ -142,7 +142,6 @@
 		affected.status &= ~ORGAN_BROKEN
 		affected.status &= ~ORGAN_SPLINTED
 		affected.stage = 0
-		affected.perma_injury = 0
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)

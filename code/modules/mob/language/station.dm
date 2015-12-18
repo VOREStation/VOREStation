@@ -96,13 +96,13 @@
 
 /datum/language/machine
 	name = "Encoded Audio Language"
-	desc = "A language of encoded tones that allow for IPCs to communicate auditorily between each other in a manner that allows for easier transfer of information."
-	speech_verb = "beeps"
-	ask_verb = "beeps"
-	exclaim_verb = "loudly beeps"
+	desc = "A efficient language of encoded tones developed by synthetics and cyborgs."
+	speech_verb = "whistles"
+	ask_verb = "chirps"
+	exclaim_verb = "whistles loudly"
 	colour = "changeling"
 	key = "6"
-	flags = RESTRICTED | NO_STUTTER
+	flags = NO_STUTTER
 	syllables = list("beep","beep","beep","beep","beep","boop","boop","boop","bop","bop","dee","dee","doo","doo","hiss","hss","buzz","buzz","bzz","ksssh","keey","wurr","wahh","tzzz")
 	space_chance = 10
 

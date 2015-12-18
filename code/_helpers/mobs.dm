@@ -29,10 +29,13 @@ proc/random_hair_style(gender, species = "Human")
 	var/list/valid_hairstyles = list()
 	for(var/hairstyle in hair_styles_list)
 		var/datum/sprite_accessory/S = hair_styles_list[hairstyle]
-		if(gender == MALE && S.gender == FEMALE)
-			continue
-		if(gender == FEMALE && S.gender == MALE)
-			continue
+
+		if(gender != NEUTER)
+			if(gender == MALE && S.gender == FEMALE)
+				continue
+			if(gender == FEMALE && S.gender == MALE)
+				continue
+
 		if( !(species in S.species_allowed))
 			continue
 		valid_hairstyles[hairstyle] = hair_styles_list[hairstyle]
@@ -48,10 +51,13 @@ proc/random_facial_hair_style(gender, species = "Human")
 	var/list/valid_facialhairstyles = list()
 	for(var/facialhairstyle in facial_hair_styles_list)
 		var/datum/sprite_accessory/S = facial_hair_styles_list[facialhairstyle]
-		if(gender == MALE && S.gender == FEMALE)
-			continue
-		if(gender == FEMALE && S.gender == MALE)
-			continue
+
+		if(gender != NEUTER)
+			if(gender == MALE && S.gender == FEMALE)
+				continue
+			if(gender == FEMALE && S.gender == MALE)
+				continue
+
 		if( !(species in S.species_allowed))
 			continue
 
@@ -61,12 +67,12 @@ proc/random_facial_hair_style(gender, species = "Human")
 		f_style = pick(valid_facialhairstyles)
 
 		return f_style
-		
+
 proc/sanitize_name(name, species = "Human")
 	var/datum/species/current_species
 	if(species)
 		current_species = all_species[species]
-		
+
 	return current_species ? current_species.sanitize_name(name) : sanitizeName(name)
 
 proc/random_name(gender, species = "Human")
