@@ -8,6 +8,16 @@
 	force_divisor = 0.3 // 18 with hardness 60 (steel)
 	attack_verb = list("jabbed","stabbed","ripped")
 
+/obj/item/weapon/material/brassknuckles
+	name = "brass knuckles"
+	desc = "A pair of brass knuckles. Generally used to enhance the user's punches."
+	icon_state = "brassknuckles"
+	gender = "plural"
+	w_class = 2.0
+	force_divisor = 0.63
+	attack_verb = list("punched", "beaten", "struck")
+	applies_material_colour = 0
+
 /obj/item/weapon/material/hatchet
 	name = "hatchet"
 	desc = "A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood."

@@ -12,16 +12,6 @@
 	attack_verb = list("called", "rang")
 	hitsound = 'sound/weapons/ring.ogg'
 
-/obj/item/weapon/brassknuckles
-	name = "brass knuckles"
-	desc = "A pair of brass knuckles. Generally used to enhance the user's punches."
-	icon_state = "brassknuckles"
-	flags = CONDUCT
-	gender = "plural"
-	force = 13
-	w_class = 2.0
-	attack_verb = list("punched", "beaten", "struck")
-
 /obj/item/weapon/rsp
 	name = "\improper Rapid-Seed-Producer (RSP)"
 	desc = "A device used to rapidly deploy seeds."
