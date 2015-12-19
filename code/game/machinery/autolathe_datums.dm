@@ -414,8 +414,8 @@
 	hidden = 1
 	category = "General"
 
-/datum/autolathe/recipe/brassknuckles
-	name = "brass knuckles"
-	path = /obj/item/weapon/material/brassknuckles
+/datum/autolathe/recipe/knuckledusters
+	name = "knuckle dusters"
+	path = /obj/item/weapon/material/knuckledusters
 	hidden = 1
 	category = "Arms and Ammunition"

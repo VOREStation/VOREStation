@@ -8,11 +8,11 @@
 	force_divisor = 0.3 // 18 with hardness 60 (steel)
 	attack_verb = list("jabbed","stabbed","ripped")
 
-/obj/item/weapon/material/brassknuckles
-	name = "brass knuckles"
+/obj/item/weapon/material/knuckledusters
+	name = "knuckle dusters"
 	desc = "A pair of brass knuckles. Generally used to enhance the user's punches."
-	icon_state = "brassknuckles"
-	gender = "plural"
+	icon_state = "knuckledusters"
+	gender = PLURAL
 	w_class = 2.0
 	force_divisor = 0.63
 	attack_verb = list("punched", "beaten", "struck")
