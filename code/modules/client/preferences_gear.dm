@@ -679,6 +679,42 @@ var/global/list/gear_datums = list()
 	slot = slot_w_uniform
 	cost = 1
 
+/datum/gear/shorts/jeans
+	display_name = "shorts, jeans"
+	path = /obj/item/clothing/under/shorts/jeans
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/shorts/jeans/classic
+	display_name = "shorts, classic jeans"
+	path = /obj/item/clothing/under/shorts/jeans/classic
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/shorts/jeans/mustang
+	display_name = "shorts, mustang jeans"
+	path = /obj/item/clothing/under/shorts/jeans/mustang
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/shorts/jeans/youngfolks
+	display_name = "shorts, young folks jeans"
+	path = /obj/item/clothing/under/shorts/jeans/youngfolks
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/shorts/jeans/black
+	display_name = "shorts, black jeans"
+	path = /obj/item/clothing/under/shorts/jeans/black
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/shorts/khaki
+	display_name = "shorts, khaki"
+	path = /obj/item/clothing/under/shorts/khaki
+	slot = slot_w_uniform
+	cost = 1
+
 /datum/gear/amishsuit
 	display_name = "suit, amish"
 	path = /obj/item/clothing/under/sl_suit
