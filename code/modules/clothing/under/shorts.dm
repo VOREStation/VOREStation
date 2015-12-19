@@ -35,28 +35,52 @@
 	icon_state = "jeans_shorts"
 	worn_state = "jeans_shorts"
 
+/obj/item/clothing/under/shorts/jeans/female
+	icon_state = "jeans_shorts_f"
+	worn_state = "jeans_shorts_f"
+
 /obj/item/clothing/under/shorts/jeans/classic
 	name = "classic jeans shorts"
 	icon_state = "jeansclassic_shorts"
 	worn_state = "jeansclassic_shorts"
+
+/obj/item/clothing/under/shorts/jeans/classic/female
+	icon_state = "jeansclassic_shorts_f"
+	worn_state = "jeansclassic_shorts_f"
 
 /obj/item/clothing/under/shorts/jeans/mustang
 	name = "mustang jeans shorts"
 	icon_state = "jeansmustang_shorts"
 	worn_state = "jeansmustang_shorts"
 
+/obj/item/clothing/under/shorts/jeans/mustang/female
+	icon_state = "jeansmustang_shorts_f"
+	worn_state = "jeansmustang_shorts_f"
+
 /obj/item/clothing/under/shorts/jeans/youngfolks
 	name = "young folks jeans shorts"
 	icon_state = "jeansyoungfolks_shorts"
 	worn_state = "jeansyoungfolks_shorts"
+
+/obj/item/clothing/under/shorts/jeans/youngfolks/female
+	icon_state = "jeansyoungfolks_shorts_f"
+	worn_state = "jeansyoungfolks_shorts_f"
 
 /obj/item/clothing/under/shorts/jeans/black
 	name = "black jeans shorts"
 	icon_state = "black_shorts"
 	worn_state = "black_shorts"
 
+/obj/item/clothing/under/shorts/jeans/black/female
+	icon_state = "black_shorts_f"
+	worn_state = "black_shorts_f"
+
 /obj/item/clothing/under/shorts/khaki
 	name = "khaki shorts"
 	desc = "For that island getaway. It's five o'clock somewhere, right?"
 	icon_state = "khaki_shorts"
 	worn_state = "khaki_shorts"
+
+/obj/item/clothing/under/shorts/khaki/female
+	icon_state = "khaki_shorts_f"
+	worn_state = "khaki_shorts_f"

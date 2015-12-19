@@ -353,6 +353,20 @@ var/global/list/gear_datums = list()
 	slot = slot_glasses
 	allowed_roles = list("Security Officer","Head of Security","Warden")
 
+/datum/gear/prescriptionsec
+	display_name = "Security HUD, prescription"
+	path = /obj/item/clothing/glasses/hud/security/prescription
+	cost = 1
+	slot = slot_glasses
+	allowed_roles = list("Security Officer","Head of Security","Warden")
+
+/datum/gear/prescriptionmed
+	display_name = "Medical HUD, prescription"
+	path = /obj/item/clothing/glasses/hud/health/prescription
+	cost = 1
+	slot = slot_glasses
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist")
+
 /datum/gear/thugshades
 	display_name = "Sunglasses, Fat"
 	path = /obj/item/clothing/glasses/sunglasses/big
@@ -416,6 +430,36 @@ var/global/list/gear_datums = list()
 /datum/gear/kilt
 	display_name = "kilt"
 	path = /obj/item/clothing/under/kilt
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/croptop
+	display_name = "croptop, NT"
+	path = /obj/item/clothing/under/croptop
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/croptop/grey
+	display_name = "croptop, grey"
+	path = /obj/item/clothing/under/croptop/grey
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/croptop/red
+	display_name = "croptop, red"
+	path = /obj/item/clothing/under/croptop/red
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/cuttop
+	display_name = "cut top, grey"
+	path = /obj/item/clothing/under/cuttop
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/cuttop/red
+	display_name = "cut top, red"
+	path = /obj/item/clothing/under/cuttop/red
 	slot = slot_w_uniform
 	cost = 1
 
@@ -712,6 +756,42 @@ var/global/list/gear_datums = list()
 /datum/gear/shorts/khaki
 	display_name = "shorts, khaki"
 	path = /obj/item/clothing/under/shorts/khaki
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/shorts/jeans/female
+	display_name = "shorts, female, jeans"
+	path = /obj/item/clothing/under/shorts/jeans/female
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/shorts/jeans/classic/female
+	display_name = "shorts, female, classic jeans"
+	path = /obj/item/clothing/under/shorts/jeans/classic/female
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/shorts/jeans/mustang/female
+	display_name = "shorts, female, mustang jeans"
+	path = /obj/item/clothing/under/shorts/jeans/mustang/female
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/shorts/jeans/youngfolks/female
+	display_name = "shorts, female, young folks jeans"
+	path = /obj/item/clothing/under/shorts/jeans/youngfolks/female
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/shorts/jeans/black/female
+	display_name = "shorts, female, black jeans"
+	path = /obj/item/clothing/under/shorts/jeans/black/female
+	slot = slot_w_uniform
+	cost = 1
+
+/datum/gear/shorts/khaki/female
+	display_name = "shorts, female, khaki"
+	path = /obj/item/clothing/under/shorts/khaki/female
 	slot = slot_w_uniform
 	cost = 1
 
