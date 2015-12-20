@@ -1343,7 +1343,7 @@ proc/admin_notice(var/message, var/rights)
 	else
 		usr << "You do not have access to this command."
 		
-/datum/admins/proc/paralyze_mob(mob/living/carbon/human/H as mob)
+/datum/admins/proc/paralyze_mob(mob/living/H as mob)
 	set category = "Admin"
 	set name = "Toggle Paralyze"
 	set desc = "Paralyzes a player. Or unparalyses them."
@@ -1352,7 +1352,7 @@ proc/admin_notice(var/message, var/rights)
 	
 	if(check_rights(R_ADMIN|R_MOD))	
 		if (H.paralysis == 0)
-			H.paralysis = 1000
+			H.paralysis = 8000
 			msg = "[key_name(usr)] has paralyzed [key_name(H)]."
 		else
 			H.paralysis = 0
