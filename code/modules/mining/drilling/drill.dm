@@ -74,8 +74,8 @@
 		return
 
 	//Drill through the flooring, if any.
-	if(istype(get_turf(src), /turf/simulated/floor))
-		var/turf/simulated/floor/T = get_turf(src)
+	if(istype(get_turf(src), /turf/simulated))
+		var/turf/simulated/T = get_turf(src)
 		T.ex_act(2.0)
 
 	//Dig out the tasty ores.
