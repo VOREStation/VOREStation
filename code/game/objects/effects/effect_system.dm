@@ -155,6 +155,8 @@ steam.start() -- spawns the effect
 				for(i=0, i<pick(1,2,3), i++)
 					sleep(5)
 					step(sparks,direction)
+				spawn(20)
+					src.total_sparks--
 
 
 
