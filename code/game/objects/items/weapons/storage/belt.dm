@@ -6,7 +6,6 @@
 	item_state = "utility"
 	slot_flags = SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined")
-	sprite_sheets = list("Resomi" = 'icons/mob/species/resomi/belt.dmi')
 
 	var/show_above_suit = 0
 
