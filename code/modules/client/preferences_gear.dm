@@ -752,6 +752,12 @@ var/global/list/gear_datums = list()
 	slot = slot_w_uniform
 	cost = 1
 
+/datum/gear/dress_fire
+	display_name = "flame dress"
+	path = /obj/item/clothing/under/dress/dress_fire
+	slot = slot_w_uniform
+	cost = 1
+
 /datum/gear/uniform_captain
 	display_name = "uniform, captain's dress"
 	path = /obj/item/clothing/under/dress/dress_cap
