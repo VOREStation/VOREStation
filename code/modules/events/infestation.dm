@@ -1,13 +1,12 @@
 #define LOC_KITCHEN 0
 #define LOC_ATMOS 1
-#define LOC_INCIN 2
-#define LOC_CHAPEL 3
-#define LOC_LIBRARY 4
-#define LOC_HYDRO 5
-#define LOC_VAULT 6
-#define LOC_CONSTR 7
-#define LOC_TECH 8
-#define LOC_TACTICAL 9
+#define LOC_CHAPEL 2
+#define LOC_LIBRARY 3
+#define LOC_HYDRO 4
+#define LOC_VAULT 5
+#define LOC_CONSTR 6
+#define LOC_TECH 7
+#define LOC_TACTICAL 8
 
 #define VERM_MICE 0
 #define VERM_LIZARDS 1
@@ -23,7 +22,7 @@
 
 /datum/event/infestation/start()
 
-	location = rand(0,9)
+	location = rand(0,8)
 	var/list/turf/simulated/floor/turfs = list()
 	var/spawn_area_type
 	switch(location)
@@ -33,9 +32,6 @@
 		if(LOC_ATMOS)
 			spawn_area_type = /area/engineering/atmos
 			locstring = "atmospherics"
-		if(LOC_INCIN)
-			spawn_area_type = /area/maintenance/incinerator
-			locstring = "the incinerator"
 		if(LOC_CHAPEL)
 			spawn_area_type = /area/chapel/main
 			locstring = "the chapel"
@@ -101,7 +97,6 @@
 
 #undef LOC_KITCHEN
 #undef LOC_ATMOS
-#undef LOC_INCIN
 #undef LOC_CHAPEL
 #undef LOC_LIBRARY
 #undef LOC_HYDRO

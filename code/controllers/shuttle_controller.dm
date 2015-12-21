@@ -286,9 +286,9 @@ var/global/datum/shuttle_controller/shuttle_controller
 		"Mining Station" = locate(/area/skipjack_station/mining)
 		)
 
-	VS.announcer = "NDV Icarus"
-	VS.arrival_message = "Attention, [station_short], we just tracked a small target bypassing our defensive perimeter. Can't fire on it without hitting the station - you've got incoming visitors, like it or not."
-	VS.departure_message = "Your guests are pulling away, [station_short] - moving too fast for us to draw a bead on them. Looks like they're heading out of the system at a rapid clip."
+	VS.announcer = "Colony Automated Radar Array"
+	VS.arrival_message = "Attention.  Unidentified object with no signature detected approaching the colony."
+	VS.departure_message = "Attention.  Unidentified object exiting local space.  Unidentified object expected to escape Kara gravity well with current velocity."
 	VS.interim = locate(/area/skipjack_station/transit)
 
 	VS.warmup_time = 0
