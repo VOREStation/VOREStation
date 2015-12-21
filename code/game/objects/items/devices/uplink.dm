@@ -98,6 +98,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)	// No auto-refresh
 		ui = new(user, src, ui_key, "uplink.tmpl", title, 450, 600, state = inventory_state)
+		data["menu"] = 0
 		ui.set_initial_data(data)
 		ui.open()
 
