@@ -287,7 +287,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 		)
 
 	VS.announcer = "Colony Automated Radar Array"
-	VS.arrival_message = "Attention.  Unidentified object with no signature detected approaching the colony."
+	VS.arrival_message = "Attention.  Unidentified object approaching the colony."
 	VS.departure_message = "Attention.  Unidentified object exiting local space.  Unidentified object expected to escape Kara gravity well with current velocity."
 	VS.interim = locate(/area/skipjack_station/transit)
 
