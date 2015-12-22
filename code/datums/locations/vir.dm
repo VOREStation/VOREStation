@@ -52,6 +52,17 @@
 	desc = "The Northern Star is an asteroid colony owned and operated by Nanotrasen, among many other asteroid installations. \
 	Originally conceived as 'just another pitstop' for weary asteroid miners, it has grown to become a significant installation in the Kara subsystem."
 
+/datum/locations/northern_star/New(var/creator)
+	contents.Add(
+		new /datum/locations/northern_star_interior(src)
+		)
+	..(creator)
+
+/datum/locations/northern_star_interior
+	name = "Northern Star Inner Level"
+	desc = "The Northern Star contains multiple layers, this one being the inner level, also known as the residentual area.  It contains most of the \
+	homes for the Northern Star, as well as acting as the heart of commerece, with many shops and markets near the center."
+
 /datum/locations/rota
 	name = "Rota"
 	desc = "A Neptune-like ice giant, with a beautiful ring system circling it. It is 165 kelvin (-157°C)."

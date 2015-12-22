@@ -104,7 +104,7 @@
 		build_cost =  1
 		build_type =  "floor"
 		build_turf =  /turf/simulated/floor/airless
-	else if(!deconstruct && istype(T,/turf/simulated/floor/asteroid))
+	else if(!deconstruct && istype(T,/turf/simulated/mineral/floor))
 		build_cost =  1
 		build_type =  "floor"
 		build_turf =  /turf/simulated/floor/plating
@@ -114,8 +114,8 @@
 		build_cost =  5
 		build_type =  (!canRwall && W.reinf_material) ? null : "wall"
 		build_turf =  /turf/simulated/floor
-	else if(istype(T,/turf/simulated/floor))
-		var/turf/simulated/floor/F = T
+	else if(istype(T,/turf/simulated/floor) || (istype(T,/turf/simulated/mineral) && !T.density))
+		var/turf/simulated/F = T
 		build_delay = deconstruct ? 50 : 20
 		build_cost =  deconstruct ? 10 : 3
 		build_type =  deconstruct ? "floor" : "wall"

@@ -166,6 +166,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 	var/datum/feed_channel/viewing_channel = null
 	light_range = 0
 	anchored = 1
+	var/obj/machinery/exonet_node/node = null
 
 
 /obj/machinery/newscaster/security_unit                   //Security unit
@@ -178,6 +179,8 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 	for(var/obj/machinery/newscaster/NEWSCASTER in allCasters) // Let's give it an appropriate unit number
 		src.unit_no++
 	src.update_icon() //for any custom ones on the map...
+	spawn(10) //Should be enough time for the node to spawn at tcomms.
+		node = get_exonet_node()
 	..()                                //I just realised the newscasters weren't in the global machines list. The superconstructor call will tend to that
 
 /obj/machinery/newscaster/Destroy()
@@ -246,6 +249,14 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 
 	if(!src.ispowered || src.isbroken)
 		return
+
+	if(!node)
+		node = get_exonet_node()
+
+	if(!node || !node.on || !node.allow_external_newscasters)
+		user << "<span class='danger'>Error: Cannot connect to external content.  Please try again in a few minutes.  If this error persists, please \
+		contact the system administrator.</span>"
+		return 0
 
 	if(!user.IsAdvancedToolUser())
 		return 0
@@ -984,12 +995,10 @@ obj/item/weapon/newspaper/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	src.paper_remaining--
 	return
 
-//Removed for now so these aren't even checked every tick. Left this here in-case Agouri needs it later.
-///obj/machinery/newscaster/process()       //Was thinking of doing the icon update through process, but multiple iterations per second does not
-//	return                                  //bode well with a newscaster network of 10+ machines. Let's just return it, as it's added in the machines list.
-
-/obj/machinery/newscaster/proc/newsAlert(var/news_call)   //This isn't Agouri's work, for it is ugly and vile.
-	var/turf/T = get_turf(src)                      //Who the fuck uses spawn(600) anyway, jesus christ
+/obj/machinery/newscaster/proc/newsAlert(var/news_call)
+	if(!node || !node.on || !node.allow_external_newscasters) //The messages will still be there once the connection returns.
+		return
+	var/turf/T = get_turf(src)
 	if(news_call)
 		for(var/mob/O in hearers(world.view-1, T))
 			O.show_message("<span class='newscaster'><EM>[src.name]</EM> beeps, \"[news_call]\"</span>",2)

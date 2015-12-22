@@ -5,7 +5,7 @@
  *		Ushanka
  *		Pumpkin head
  *		Kitty ears
- *
+ *		Holiday hats
  */
 
 /*
@@ -153,3 +153,15 @@
 	icon_state = "richard"
 	body_parts_covered = HEAD|FACE
 	flags_inv = BLOCKHAIR
+
+/obj/item/clothing/head/santa
+	name = "santa hat"
+	desc = "It's a festive christmas hat, in red!"
+	icon_state = "santahatnorm"
+	body_parts_covered = 0
+
+/obj/item/clothing/head/santa/green
+	name = "green santa hat"
+	desc = "It's a festive christmas hat, in green!"
+	icon_state = "santahatgreen"
+	body_parts_covered = 0

@@ -107,7 +107,7 @@ steam.start() -- spawns the effect
 	var/turf/T = src.loc
 	if (istype(T, /turf))
 		T.hotspot_expose(1000,100)
-	spawn (100)
+	spawn (20)
 		qdel(src)
 	return
 
@@ -156,8 +156,6 @@ steam.start() -- spawns the effect
 					sleep(5)
 					step(sparks,direction)
 				spawn(20)
-					if(sparks)
-						qdel(sparks)
 					src.total_sparks--
 
 

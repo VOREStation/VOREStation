@@ -204,6 +204,13 @@
 
 //end bs12 hats
 
+/obj/item/clothing/head/cowboy_hat
+	name = "cowboy hat"
+	desc = "For those that have spurs that go jingle jangle jingle."
+	icon_state = "cowboyhat"
+	item_state = "cowboy_hat"
+	body_parts_covered = 0
+
 /obj/item/clothing/head/witchwig
 	name = "witch costume wig"
 	desc = "Eeeee~heheheheheheh!"

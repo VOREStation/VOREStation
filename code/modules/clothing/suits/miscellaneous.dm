@@ -355,17 +355,17 @@
 	icon_state = "puffervest"
 	item_state = "puffervest"
 
-/obj/item/clothing/suit/jacket/miljacket
+/obj/item/clothing/suit/storage/miljacket
 	name = "military jacket"
 	desc = "A canvas jacket styled after classical American military garb. Feels sturdy, yet comfortable."
-	icon_state = "militaryjacket"
-	item_state = "militaryjacket"
+	icon_state = "militaryjacket_nobadge"
+	item_state = "militaryjacket_nobadge"
 
-/obj/item/clothing/suit/jacket/miljacket2
+/obj/item/clothing/suit/storage/miljacket/alt
 	name = "military jacket"
 	desc = "A canvas jacket styled after classical American military garb. Feels sturdy, yet comfortable."
-	icon_state = "militaryjacket2"
-	item_state = "militaryjacket2"
+	icon_state = "militaryjacket_badge"
+	item_state = "militaryjacket_badge"
 
 /obj/item/clothing/suit/storage/toggle/bomber
 	name = "bomber jacket"
@@ -478,6 +478,29 @@
 	icon_open = "yellow_hoodie_open"
 	icon_closed = "yellow_hoodie"
 
+/obj/item/clothing/suit/storage/toggle/hoodie/cti
+	name = "CTI hoodie"
+	desc = "A warm, black sweatshirt.  It bears the letters ‘CTI’ on the back, a lettering to the prestigious university in Tau Ceti, Ceti Technical Institute.  There is a blue supernova embroidered on the front, the emblem of CTI."
+	icon_state = "cti_hoodie"
+	item_state = "cti_hoodie"
+	icon_open = "cti_hoodie_open"
+	icon_closed = "cti_hoodie"
+
+/obj/item/clothing/suit/storage/toggle/hoodie/mu
+	name = "mars university hoodie"
+	desc = "A warm, gray sweatshirt.  It bears the letters ‘MU’ on the front, a lettering to the well-known public college, Mars University."
+	icon_state = "mu_hoodie"
+	item_state = "mu_hoodie"
+	icon_open = "mu_hoodie_open"
+	icon_closed = "mu_hoodie"
+
+/obj/item/clothing/suit/storage/toggle/hoodie/nt
+	name = "NT hoodie"
+	desc = "A warm, blue sweatshirt.  It proudly bears the silver NanoTrasen insignia lettering on the back.  The edges are trimmed with silver."
+	icon_state = "nt_hoodie"
+	item_state = "nt_hoodie"
+	icon_open = "nt_hoodie_open"
+	icon_closed = "nt_hoodie"
 
 // FUN!
 
@@ -557,12 +580,12 @@
 /obj/item/clothing/suit/storage/hooded/wintercoat/captain
 	name = "captain's winter coat"
 	icon_state = "coatcaptain"
-	armor = list(melee = 25, bullet = 30, laser = 30, energy = 10, bomb = 25, bio = 0, rad = 0)
+	armor = list(melee = 20, bullet = 15, laser = 20, energy = 10, bomb = 15, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/security
 	name = "security winter coat"
 	icon_state = "coatsecurity"
-	armor = list(melee = 25, bullet = 15, laser = 30, energy = 10, bomb = 25, bio = 0, rad = 0)
+	armor = list(melee = 25, bullet = 20, laser = 20, energy = 15, bomb = 20, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/medical
 	name = "medical winter coat"
