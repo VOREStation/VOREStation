@@ -2070,6 +2070,9 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/clothing/head/surgery/green,
 					/obj/item/clothing/head/surgery/green,
 					/obj/item/clothing/head/surgery/green,
+					/obj/item/clothing/head/surgery/black,
+					/obj/item/clothing/head/surgery/black,
+					/obj/item/clothing/head/surgery/black,
 					/obj/item/weapon/storage/box/masks,
 					/obj/item/weapon/storage/box/gloves)
 	cost = 15
