@@ -413,3 +413,9 @@
 	path = /obj/item/weapon/handcuffs
 	hidden = 1
 	category = "General"
+
+/datum/autolathe/recipe/knuckledusters
+	name = "knuckle dusters"
+	path = /obj/item/weapon/material/knuckledusters
+	hidden = 1
+	category = "Arms and Ammunition"
