@@ -56,6 +56,7 @@
 				return
 
 			user.visible_message("<span class='danger'>\The [user] has taped up \the [H]'s mouth!</span>")
+
 			H.equip_to_slot_or_del(new /obj/item/clothing/mask/muzzle/tape(H), slot_wear_mask)
 
 		else if(user.zone_sel.selecting == "r_hand" || user.zone_sel.selecting == "l_hand")
