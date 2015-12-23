@@ -1480,6 +1480,7 @@ area/space/atmosalert()
 
 /area/holodeck/source_thunderdomecourt
 	name = "\improper Holodeck - Thunderdome Court"
+	requires_power = 0
 	sound_env = ARENA
 
 /area/holodeck/source_courtroom
