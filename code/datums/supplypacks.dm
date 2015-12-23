@@ -248,6 +248,23 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containername = "Wizard costume crate"
 	group = "Miscellaneous"
 
+/datum/supply_packs/foam_weapons
+	name = "Foam Weapon Crate"
+	contains = list(
+					/obj/item/weapon/material/sword/foam,
+					/obj/item/weapon/material/sword/foam,
+					/obj/item/weapon/material/twohanded/baseballbat/foam,
+					/obj/item/weapon/material/twohanded/baseballbat/foam,
+					/obj/item/weapon/material/twohanded/spear/foam,
+					/obj/item/weapon/material/twohanded/spear/foam,
+					/obj/item/weapon/material/twohanded/fireaxe/foam,
+					/obj/item/weapon/material/twohanded/fireaxe/foam
+					)
+	cost = 80
+	containertype = /obj/structure/closet/crate
+	containername = "foam weapon crate"
+	group = "Miscellaneous"
+
 /datum/supply_packs/mule
 	name = "MULEbot Crate"
 	contains = list(/obj/machinery/bot/mulebot)
