@@ -11,7 +11,7 @@
 
 /mob/living/carbon/human/proc/gain_plasma(var/amount)
 
-	var/obj/item/organ/xenos/plasmavessel/I = internal_organs_by_name["plasma vessel"]
+	var/obj/item/organ/internal/xenos/plasmavessel/I = internal_organs_by_name[O_PLASMA]
 	if(!istype(I)) return
 
 	if(amount)
@@ -20,13 +20,13 @@
 
 /mob/living/carbon/human/proc/check_alien_ability(var/cost,var/needs_foundation,var/needs_organ)
 
-	var/obj/item/organ/xenos/plasmavessel/P = internal_organs_by_name["plasma vessel"]
+	var/obj/item/organ/internal/xenos/plasmavessel/P = internal_organs_by_name[O_PLASMA]
 	if(!istype(P))
 		src << "<span class='danger'>Your plasma vessel has been removed!</span>"
 		return
 
 	if(needs_organ)
-		var/obj/item/organ/I = internal_organs_by_name[needs_organ]
+		var/obj/item/organ/internal/I = internal_organs_by_name[needs_organ]
 		if(!I)
 			src << "<span class='danger'>Your [needs_organ] has been removed!</span>"
 			return
@@ -62,7 +62,7 @@
 		src << "<span class='alium'>You need to be closer.</span>"
 		return
 
-	var/obj/item/organ/xenos/plasmavessel/I = M.internal_organs_by_name["plasma vessel"]
+	var/obj/item/organ/internal/xenos/plasmavessel/I = M.internal_organs_by_name[O_PLASMA]
 	if(!istype(I))
 		src << "<span class='alium'>Their plasma vessel is missing.</span>"
 		return
@@ -70,7 +70,7 @@
 	var/amount = input("Amount:", "Transfer Plasma to [M]") as num
 	if (amount)
 		amount = abs(round(amount))
-		if(check_alien_ability(amount,0,"plasma vessel"))
+		if(check_alien_ability(amount,0,O_PLASMA))
 			M.gain_plasma(amount)
 			M << "<span class='alium'>[src] has transfered [amount] plasma to you.</span>"
 			src << "<span class='alium'>You have transferred [amount] plasma to [M].</span>"
@@ -92,7 +92,7 @@
 		src << "There's already an egg here."
 		return
 
-	if(check_alien_ability(75,1,"egg sac"))
+	if(check_alien_ability(75,1,O_EGG))
 		visible_message("<span class='alium'><B>[src] has laid an egg!</B></span>")
 		new /obj/effect/alien/egg(loc)
 
@@ -119,7 +119,7 @@
 	set desc = "Plants some alien weeds"
 	set category = "Abilities"
 
-	if(check_alien_ability(50,1,"resin spinner"))
+	if(check_alien_ability(50,1,O_RESIN))
 		visible_message("<span class='alium'><B>[src] has planted some alien weeds!</B></span>")
 		new /obj/effect/alien/weeds/node(loc)
 	return
@@ -153,7 +153,7 @@
 		src << "<span class='alium'>You cannot dissolve this object.</span>"
 		return
 
-	if(check_alien_ability(200,0,"acid gland"))
+	if(check_alien_ability(200,0,O_ACID))
 		new /obj/effect/alien/acid(get_turf(O), O)
 		visible_message("<span class='alium'><B>[src] vomits globs of vile stuff all over [O]. It begins to sizzle and melt under the bubbling mess of acid!</B></span>")
 
@@ -164,7 +164,7 @@
 	set desc = "Spits neurotoxin at someone, paralyzing them for a short time if they are not wearing protective gear."
 	set category = "Abilities"
 
-	if(!check_alien_ability(50,0,"acid gland"))
+	if(!check_alien_ability(50,0,O_ACID))
 		return
 
 	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
@@ -206,7 +206,7 @@
 	if(!choice)
 		return
 
-	if(!check_alien_ability(75,1,"resin spinner"))
+	if(!check_alien_ability(75,1,O_RESIN))
 		return
 
 	visible_message("<span class='warning'><B>[src] vomits up a thick purple substance and begins to shape it!</B></span>", "<span class='alium'>You shape a [choice].</span>")

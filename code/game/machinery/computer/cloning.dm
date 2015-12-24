@@ -353,10 +353,14 @@
 	if (!subject.has_brain())
 		if(istype(subject, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = subject
-			if(H.species.has_organ["brain"])
+			if(H.should_have_organ("brain"))
 				scantemp = "Error: No signs of intelligence detected."
 		else
 			scantemp = "Error: No signs of intelligence detected."
+		return
+
+	if(subject.isSynthetic())
+		scantemp = "Error: Subject is not organic."
 		return
 	if (subject.suiciding == 1)
 		scantemp = "Error: Subject's brain is not responding to scanning stimuli."

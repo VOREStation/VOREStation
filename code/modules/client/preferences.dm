@@ -304,50 +304,39 @@ datum/preferences
 	character.skills = skills
 	character.used_skillpoints = used_skillpoints
 
-	// Destroy/cyborgize organs
-
-	for(var/name in organ_data)
-
+	// Destroy/cyborgize organs and limbs.
+	for(var/name in BP_ALL)
 		var/status = organ_data[name]
 		var/obj/item/organ/external/O = character.organs_by_name[name]
 		if(O)
-			O.status = 0
 			if(status == "amputated")
-				character.organs_by_name[O.limb_name] = null
-				character.organs -= O
-				if(O.children) // This might need to become recursive.
-					for(var/obj/item/organ/external/child in O.children)
-						character.organs_by_name[child.limb_name] = null
-						character.organs -= child
-
+				O.remove_rejuv()
 			else if(status == "cyborg")
 				if(rlimb_data[name])
 					O.robotize(rlimb_data[name])
 				else
 					O.robotize()
-		else
-			var/obj/item/organ/I = character.internal_organs_by_name[name]
-			if(I)
-				if(status == "assisted")
-					I.mechassist()
-				else if(status == "mechanical")
-					I.robotize()
+
+	for(var/name in list(O_HEART,O_EYES,O_BRAIN))
+		var/status = organ_data[name]
+		if(!status)
+			continue
+		var/obj/item/organ/I = character.internal_organs_by_name[name]
+		if(I)
+			if(status == "assisted")
+				I.mechassist()
+			else if(status == "mechanical")
+				I.robotize()
 
 	character.underwear = underwear
-
 	character.undershirt = undershirt
-
 	character.socks = socks
 
 	if(backbag > 4 || backbag < 1)
 		backbag = 1 //Same as above
 	character.backbag = backbag
 
-	//Debugging report to track down a bug, which randomly assigned the plural gender to people.
-	if(character.gender in list(PLURAL, NEUTER))
-		if(isliving(src)) //Ghosts get neuter by default
-			message_admins("[character] ([character.ckey]) has spawned with their gender as plural or neuter. Please notify coders.")
-			character.gender = MALE
+	character.update_body()
 
 /datum/preferences/proc/open_load_dialog(mob/user)
 	var/dat = "<body>"

@@ -85,7 +85,7 @@
 "bG" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; pixel_y = 0},/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/turf/simulated/floor/tiled,/area/outpost/engineering/hallway)
 "bH" = (/obj/structure/table/rack,/obj/item/weapon/pickaxe,/obj/item/weapon/pickaxe,/obj/item/weapon/pickaxe,/obj/item/weapon/pickaxe,/turf/simulated/floor/tiled,/area/outpost/engineering/storage)
 "bI" = (/obj/machinery/atmospherics/unary/vent_pump/on{dir = 1},/turf/simulated/floor/tiled,/area/outpost/engineering/storage)
-"bJ" = (/obj/structure/table/rack,/obj/random/tech_supply,/obj/random/tech_supply,/obj/random/tech_supply,/obj/random/tech_supply,/obj/item/stack/cable_coil/yellow,/obj/item/stack/cable_coil,/obj/item/weapon/module/power_control,/obj/item/weapon/module/power_control,/turf/simulated/floor/tiled,/area/outpost/engineering/storage)
+"bJ" = (/obj/structure/table/rack,/obj/random/tech_supply,/obj/random/tech_supply,/obj/random/tech_supply,/obj/random/tech_supply,/obj/item/stack/cable_coil/yellow,/obj/item/stack/cable_coil,/obj/item/weapon/module/power_control,/obj/item/weapon/module/power_control,/obj/item/clothing/gloves/yellow,/turf/simulated/floor/tiled,/area/outpost/engineering/storage)
 "bK" = (/obj/structure/table/rack,/obj/random/tech_supply,/obj/random/tech_supply,/obj/random/tech_supply,/obj/random/tech_supply,/obj/item/stack/cable_coil/yellow,/obj/item/weapon/storage/box/lights/mixed,/turf/simulated/floor/tiled,/area/outpost/engineering/storage)
 "bL" = (/obj/structure/dispenser/oxygen,/turf/simulated/floor/tiled,/area/outpost/engineering/storage)
 "bM" = (/obj/machinery/recharge_station,/turf/simulated/floor,/area/outpost/engineering/atmospherics)

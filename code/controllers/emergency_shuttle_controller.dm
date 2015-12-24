@@ -48,7 +48,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 			if (evac)
 				emergency_shuttle_docked.Announce("The Emergency Shuttle has docked with the station at docks one and two. You have approximately [round(estimate_launch_time()/60,1)] minutes to board the Emergency Shuttle.")
 			else
-				priority_announcement.Announce("The scheduled shuttle to the Vir Regional Spaceport has docked with the station at docks one and two. It will depart in approximately [round(emergency_shuttle.estimate_launch_time()/60,1)] minutes.")
+				priority_announcement.Announce("The scheduled shuttle to the Vir Interstellar Spaceport has docked with the station at docks one and two. It will depart in approximately [round(emergency_shuttle.estimate_launch_time()/60,1)] minutes.")
 
 		//arm the escape pods
 		if (evac)
@@ -94,7 +94,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 	//reset the shuttle transit time if we need to
 	shuttle.move_time = SHUTTLE_TRANSIT_DURATION
 
-	priority_announcement.Announce("The regularly scheduled shuttle to the Vir Regional Spaceport will arrive in in approximately [round(estimate_arrival_time()/60)] minutes. Those leaving should proceed to docks one and two.")
+	priority_announcement.Announce("The regularly scheduled shuttle to the Vir Interstellar Spaceport will arrive in in approximately [round(estimate_arrival_time()/60)] minutes. Those leaving should proceed to docks one and two.")
 
 //recalls the shuttle
 /datum/emergency_shuttle_controller/proc/recall()
@@ -111,7 +111,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 				A.readyreset()
 		evac = 0
 	else
-		priority_announcement.Announce("The scheduled crew transfer has been cancelled.")
+		priority_announcement.Announce("The scheduled transfer shuttle has been cancelled.")
 
 /datum/emergency_shuttle_controller/proc/can_call()
 	if (!universe.OnShuttleCall(null))

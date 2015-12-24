@@ -8,7 +8,8 @@
 
 
 /datum/event/brand_intelligence/announce()
-	command_announcement.Announce("Rampant brand intelligence has been detected aboard [station_name()], please stand-by.", "Machine Learning Alert")
+	command_announcement.Announce("An ongoing mass upload of malware for vendors has been detected onboard  [station_name()], which appears to transmit \
+	to other nearby vendors.  The original infected machine is believed to be \a [originMachine.name].", "Vendor Service Alert")
 
 
 /datum/event/brand_intelligence/start()

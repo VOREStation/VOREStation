@@ -38,12 +38,12 @@
 
 	toxins_mod =   1.1
 	has_organ = list(
-		"heart" =    /obj/item/organ/heart,
-		"lungs" =    /obj/item/organ/lungs,
-		"liver" =    /obj/item/organ/liver,
-		"kidneys" =  /obj/item/organ/kidneys,
-		"brain" =    /obj/item/organ/brain,
-		"eyes" =     /obj/item/organ/eyes
+		O_HEART =    /obj/item/organ/heart,
+		O_LUNGS =    /obj/item/organ/lungs,
+		O_LIVER =    /obj/item/organ/liver,
+		O_KIDNEYS =  /obj/item/organ/kidneys,
+		O_BRAIN =    /obj/item/organ/brain,
+		O_EYES =     /obj/item/organ/eyes
 		)
 
 /*

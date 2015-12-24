@@ -52,7 +52,7 @@
 		if (!hasorgans(target))
 			return 0
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		return affected && affected.name != "head" && !(affected.status & ORGAN_ROBOT) && affected.open >= 2 && affected.stage == 1
+		return affected && affected.organ_tag != BP_HEAD && !(affected.status & ORGAN_ROBOT) && affected.open >= 2 && affected.stage == 1
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -91,7 +91,7 @@
 		if (!hasorgans(target))
 			return 0
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		return affected && affected.name == "head" && !(affected.status & ORGAN_ROBOT) && affected.open >= 2 && affected.stage == 1
+		return affected && affected.organ_tag == BP_HEAD && !(affected.status & ORGAN_ROBOT) && affected.open >= 2 && affected.stage == 1
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		user.visible_message("[user] is beginning to piece together [target]'s skull with \the [tool]."  , \
@@ -142,7 +142,6 @@
 		affected.status &= ~ORGAN_BROKEN
 		affected.status &= ~ORGAN_SPLINTED
 		affected.stage = 0
-		affected.perma_injury = 0
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)

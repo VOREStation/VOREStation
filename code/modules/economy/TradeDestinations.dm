@@ -41,14 +41,6 @@ var/list/weighted_mundaneevent_locations = list()
 		[pick("mind-machine interfacing","neuroscience","nano-augmentation","genetics")]. [company_name] is expected to announce a co-exploitation deal within the fortnight."
 	return null
 
-/datum/trade_destination/icarus
-	name = "NDV Icarus"
-	description = "Corvette assigned to patrol local space."
-	distance = 0.1
-	willing_to_buy = list()
-	willing_to_sell = list()
-	viable_random_events = list(SECURITY_BREACH, AI_LIBERATION, PIRATES)
-
 /datum/trade_destination/redolant
 	name = "OAV Redolant"
 	description = "Osiris Atmospherics station in orbit around the only gas giant insystem. They retain tight control over shipping rights, and Osiris warships protecting their prize are not an uncommon sight in Tau Ceti."

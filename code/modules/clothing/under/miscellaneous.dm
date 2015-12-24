@@ -601,3 +601,10 @@
 	icon_state = "cuttop_red"
 	item_state = "r_suit"
 	worn_state = "cuttop_red"
+
+/obj/item/clothing/under/harness
+	name = "gear harness"
+	desc = "How... minimalist."
+	icon_state = "gear_harness"
+	worn_state = "gear_harness"
+	body_parts_covered = 0
