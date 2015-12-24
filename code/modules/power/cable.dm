@@ -515,29 +515,24 @@ obj/structure/cable/proc/cableColor(var/colorC)
 //you can use wires to heal robotics
 /obj/item/stack/cable_coil/attack(var/atom/A, var/mob/living/user, var/def_zone)
 	if(ishuman(A) && user.a_intent == I_HELP)
-		return
-	return ..()
-
-/obj/item/stack/cable_coil/afterattack(var/mob/M, var/mob/user)
-
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/human/H = A
 		var/obj/item/organ/external/S = H.organs_by_name[user.zone_sel.selecting]
 
-		if(!S || !(S.status & ORGAN_ROBOT) || user.a_intent != I_HELP)
+		if(!S || !(S.status & ORGAN_ROBOT))
 			return ..()
 
 		if(S.burn_dam)
 			if(S.burn_dam < ROBOLIMB_SELF_REPAIR_CAP)
 				S.heal_damage(0,15,0,1)
-				user.visible_message("<span class='danger'>\The [user] repairs some burn damage on \the [M]'s [S.name] with \the [src].</span>")
-			else if(S.open != 2)
+				user.visible_message("<span class='danger'>\The [user] repairs some burn damage on \the [H]'s [S.name] with \the [src].</span>")
+			else if(S.open < 3)
 				user << "<span class='danger'>The damage is far too severe to patch over externally.</span>"
-		else if(S.open != 2)
+			else
+				return ..()
+		else
 			user << "<span class='notice'>Nothing to fix!</span>"
 		return
-	else
-		return ..()
+	return ..()
 
 
 /obj/item/stack/cable_coil/update_icon()
