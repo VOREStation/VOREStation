@@ -96,42 +96,24 @@
 
 /datum/language/machine
 	name = "Encoded Audio Language"
-	desc = "A language of encoded tones that allow for IPCs to communicate auditorily between each other in a manner that allows for easier transfer of information."
-	speech_verb = "beeps"
-	ask_verb = "beeps"
-	exclaim_verb = "loudly beeps"
+	desc = "A efficient language of encoded tones developed by synthetics and cyborgs."
+	speech_verb = "whistles"
+	ask_verb = "chirps"
+	exclaim_verb = "whistles loudly"
 	colour = "changeling"
 	key = "6"
-	flags = RESTRICTED | NO_STUTTER
+	flags = NO_STUTTER
 	syllables = list("beep","beep","beep","beep","beep","boop","boop","boop","bop","bop","dee","dee","doo","doo","hiss","hss","buzz","buzz","bzz","ksssh","keey","wurr","wahh","tzzz")
 	space_chance = 10
 
+/datum/language/machine/can_speak_special(var/mob/speaker)
+	return speaker.isSynthetic()
+
 /datum/language/machine/get_random_name()
-	var/new_name
 	if(prob(70))
-		new_name = "[pick(list("PBU","HIU","SINA","ARMA","OSI"))]-[rand(100, 999)]"
+		return "[pick(list("PBU","HIU","SINA","ARMA","OSI"))]-[rand(100, 999)]"
 	else
-		new_name = pick(ai_names)
-	return new_name
-
-/datum/language/resomi
-	name = "Resomi"
-	desc = "A trilling language spoken by the diminutive Resomi."
-	speech_verb = "chirps"
-	ask_verb = "chirrups"
-	exclaim_verb = "trills"
-	colour = "alien"
-	key = "v"
-	flags = WHITELISTED
-	space_chance = 50
-	syllables = list(
-			"ca", "ra", "ma", "sa", "na", "ta", "la", "sha", "scha", "a", "a",
-			"ce", "re", "me", "se", "ne", "te", "le", "she", "sche", "e", "e",
-			"ci", "ri", "mi", "si", "ni", "ti", "li", "shi", "schi", "i", "i"
-		)
-
-/datum/language/resomi/get_random_name(gender)
-	return ..(gender, 1, 4, 1.5)
+		return pick(ai_names)
 
 //Syllable Lists
 /*

@@ -44,11 +44,11 @@ emp_act
 	agony_amount *= siemens_coeff
 
 	switch (def_zone)
-		if("head")
+		if(BP_HEAD)
 			agony_amount *= 1.50
-		if("l_hand", "r_hand")
+		if(BP_L_HAND, BP_R_HAND)
 			var/c_hand
-			if (def_zone == "l_hand")
+			if (def_zone == BP_L_HAND)
 				c_hand = l_hand
 			else
 				c_hand = r_hand
@@ -61,7 +61,7 @@ emp_act
 					emote("me", 1, "drops what they were holding, their [affected.name] malfunctioning!")
 				else
 					var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
-					emote("me", 1, "[(species && species.flags & NO_PAIN) ? "" : emote_scream ]drops what they were holding in their [affected.name]!")
+					emote("me", 1, "[affected.can_feel_pain() ? "" : emote_scream]drops what they were holding in their [affected.name]!")
 
 	..(stun_amount, agony_amount, def_zone)
 
@@ -223,7 +223,7 @@ emp_act
 				//Harder to score a stun but if you do it lasts a bit longer
 				if(prob(effective_force))
 					apply_effect(20, PARALYZE, armor)
-					visible_message("<span class='danger'>[src] [species.knockout_message]</span>")
+					visible_message("<span class='danger'>[src] [species.get_knockout_message(src)]</span>")
 			else
 				//Easier to score a stun but lasts less time
 				if(prob(effective_force + 10))
@@ -233,7 +233,7 @@ emp_act
 		//Apply blood
 		if(bloody)
 			switch(hit_area)
-				if("head")
+				if(BP_HEAD)
 					if(wear_mask)
 						wear_mask.add_blood(src)
 						update_inv_wear_mask(0)
@@ -243,7 +243,7 @@ emp_act
 					if(glasses && prob(33))
 						glasses.add_blood(src)
 						update_inv_glasses(0)
-				if("chest")
+				if(BP_TORSO)
 					bloody_body(src)
 
 	if(Iforce > 10 || Iforce >= 5 && prob(33))
@@ -285,7 +285,7 @@ emp_act
 			var/mob/living/L = O.thrower
 			zone = check_zone(L.zone_sel.selecting)
 		else
-			zone = ran_zone("chest",75)	//Hits a random part of the body, geared towards the chest
+			zone = ran_zone(BP_TORSO,75)	//Hits a random part of the body, geared towards the chest
 
 		//check if we hit
 		var/miss_chance = 15

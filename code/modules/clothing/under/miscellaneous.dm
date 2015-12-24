@@ -566,3 +566,45 @@
 	icon_state = "blue_blazer"
 	item_state = "blue_blazer"
 	worn_state = "blue_blazer"
+
+/obj/item/clothing/under/croptop
+	name = "crop top"
+	desc = "A shirt that has had the top cropped. This one is NT sponsored."
+	icon_state = "croptop"
+	item_state = "gy_suit"
+	worn_state = "croptop"
+
+/obj/item/clothing/under/croptop/red
+	name = "red crop top"
+	desc = "A red shirt that has had the top cropped."
+	icon_state = "croptop_red"
+	item_state = "r_suit"
+	worn_state = "croptop_red"
+
+/obj/item/clothing/under/croptop/grey
+	name = "grey crop top"
+	desc = "A grey shirt that has had the top cropped."
+	icon_state = "croptop_grey"
+	item_state = "gy_suit"
+	worn_state = "croptop_grey"
+
+/obj/item/clothing/under/cuttop
+	name = "grey cut top"
+	desc = "A grey shirt that has had the top cut low."
+	icon_state = "cuttop"
+	item_state = "gy_suit"
+	worn_state = "cuttop"
+
+/obj/item/clothing/under/cuttop/red
+	name = "red cut top"
+	desc = "A red shirt that has had the top cut low."
+	icon_state = "cuttop_red"
+	item_state = "r_suit"
+	worn_state = "cuttop_red"
+
+/obj/item/clothing/under/harness
+	name = "gear harness"
+	desc = "How... minimalist."
+	icon_state = "gear_harness"
+	worn_state = "gear_harness"
+	body_parts_covered = 0

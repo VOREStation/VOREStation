@@ -31,25 +31,24 @@
 
 	var/locked = 0
 	var/mob/living/carbon/brain/brainmob = null//The current occupant.
-	var/obj/item/organ/brain/brainobj = null	//The current brain organ.
+	var/obj/item/organ/internal/brain/brainobj = null	//The current brain organ.
 	var/obj/mecha = null//This does not appear to be used outside of reference in mecha.dm.
 
 	attackby(var/obj/item/O as obj, var/mob/user as mob)
-		if(istype(O,/obj/item/organ/brain) && !brainmob) //Time to stick a brain in it --NEO
+		if(istype(O,/obj/item/organ/internal/brain) && !brainmob) //Time to stick a brain in it --NEO
 
-			var/obj/item/organ/brain/B = O
+			var/obj/item/organ/internal/brain/B = O
 			if(B.health <= 0)
-				user << "\red That brain is well and truly dead."
+				user << "<span class='warning'>That brain is well and truly dead.</span>"
 				return
 			else if(!B.brainmob)
-				user << "\red You aren't sure where this brain came from, but you're pretty sure it's a useless brain."
+				user << "<span class='warning'>You aren't sure where this brain came from, but you're pretty sure it's useless.</span>"
 				return
 
-			for(var/mob/V in viewers(src, null))
-				V.show_message(text("\blue [user] sticks \a [O] into \the [src]."))
+			user.visible_message("<span class='notice'>\The [user] sticks \a [O] into \the [src].</span>")
 
-			brainmob = O:brainmob
-			O:brainmob = null
+			brainmob = B.brainmob
+			B.brainmob = null
 			brainmob.loc = src
 			brainmob.container = src
 			brainmob.stat = 0
@@ -60,7 +59,7 @@
 			brainobj = O
 			brainobj.loc = src
 
-			name = "Man-Machine Interface: [brainmob.real_name]"
+			name = "man-machine interface ([brainmob.real_name])"
 			icon_state = "mmi_full"
 
 			locked = 1
@@ -72,9 +71,9 @@
 		if((istype(O,/obj/item/weapon/card/id)||istype(O,/obj/item/device/pda)) && brainmob)
 			if(allowed(user))
 				locked = !locked
-				user << "\blue You [locked ? "lock" : "unlock"] the brain holder."
+				user << "<span class='notice'>You [locked ? "lock" : "unlock"] the brain holder.</span>"
 			else
-				user << "\red Access denied."
+				user << "<span class='warning'>Access denied.</span>"
 			return
 		if(brainmob)
 			O.attack(brainmob, user)//Oh noooeeeee
@@ -84,12 +83,12 @@
 	//TODO: ORGAN REMOVAL UPDATE. Make the brain remain in the MMI so it doesn't lose organ data.
 	attack_self(mob/user as mob)
 		if(!brainmob)
-			user << "\red You upend the MMI, but there's nothing in it."
+			user << "<span class='warning'>You upend the MMI, but there's nothing in it.</span>"
 		else if(locked)
-			user << "\red You upend the MMI, but the brain is clamped into place."
+			user << "<span class='warning'>You upend the MMI, but the brain is clamped into place.</span>"
 		else
-			user << "\blue You upend the MMI, spilling the brain onto the floor."
-			var/obj/item/organ/brain/brain
+			user << "<span class='notice'>You upend the MMI, spilling the brain onto the floor.</span>"
+			var/obj/item/organ/internal/brain/brain
 			if (brainobj)	//Pull brain organ out of MMI.
 				brainobj.loc = user.loc
 				brain = brainobj
@@ -158,7 +157,7 @@
 				brainmob << "Can't do that while incapacitated or dead."
 
 			radio.broadcasting = radio.broadcasting==1 ? 0 : 1
-			brainmob << "\blue Radio is [radio.broadcasting==1 ? "now" : "no longer"] broadcasting."
+			brainmob << "<span class='notice'>Radio is [radio.broadcasting==1 ? "now" : "no longer"] broadcasting.</span>"
 
 		Toggle_Listening()
 			set name = "Toggle Listening"
@@ -171,7 +170,7 @@
 				brainmob << "Can't do that while incapacitated or dead."
 
 			radio.listening = radio.listening==1 ? 0 : 1
-			brainmob << "\blue Radio is [radio.listening==1 ? "now" : "no longer"] receiving broadcast."
+			brainmob << "<span class='notice'>Radio is [radio.listening==1 ? "now" : "no longer"] receiving broadcast.</span>"
 
 /obj/item/device/mmi/emp_act(severity)
 	if(!brainmob)

@@ -61,21 +61,6 @@
 		name = "Short Hair 2"
 		icon_state = "hair_shorthair3"
 
-	resomi
-		name = "Resomi Plumage"
-		icon_state = "resomi_default"
-		species_allowed = list("Resomi")
-
-	resomi_ears
-		name = "Resomi Ears"
-		icon_state = "resomi_ears"
-		species_allowed = list("Resomi")
-
-	resomi_excited
-		name = "Resomi Spiky"
-		icon_state = "resomi_spiky"
-		species_allowed = list("Resomi")
-
 	cut
 		name = "Cut Hair"
 		icon_state = "hair_c"
@@ -152,6 +137,10 @@
 		name = "Side Ponytail"
 		icon_state = "hair_stail"
 
+	sideponytail4 //Not happy about this... but it's for the save files.
+		name = "Side Ponytail 2"
+		icon_state = "hair_ponytailf"
+
 	sideponytail2
 		name = "One Shoulder"
 		icon_state = "hair_oneshoulder"
@@ -159,6 +148,10 @@
 	sideponytail3
 		name = "Tress Shoulder"
 		icon_state = "hair_tressshoulder"
+
+	wisp
+		name = "Wisp"
+		icon_state = "hair_wisp"
 
 	parted
 		name = "Parted"

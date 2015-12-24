@@ -1,7 +1,7 @@
 /datum/category_item/player_setup_item/general/basic
 	name = "Basic"
 	sort_order = 1
-	var/list/valid_player_genders = list(MALE, FEMALE)
+	var/list/valid_player_genders = list(MALE, FEMALE, NEUTER, PLURAL)
 
 /datum/category_item/player_setup_item/general/basic/load_character(var/savefile/S)
 	S["real_name"]				>> pref.real_name

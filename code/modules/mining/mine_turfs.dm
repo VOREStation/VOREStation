@@ -45,6 +45,7 @@ var/list/mining_overlay_cache = list()
 	icon_state = "asteroid"
 	density = 0
 	opacity = 0
+	blocks_air = 0
 
 /turf/simulated/mineral/floor/ignore_mapgen
 	ignore_mapgen = 1
@@ -54,16 +55,23 @@ var/list/mining_overlay_cache = list()
 		return
 	density = 0
 	opacity = 0
-	update_icon()
-	reconsider_lights()
+	blocks_air = 0
+	update_general()
 
 /turf/simulated/mineral/proc/make_wall()
 	if(density && opacity)
 		return
 	density = 1
 	opacity = 1
-	update_icon()
-	reconsider_lights()
+	blocks_air = 1
+	update_general()
+
+/turf/simulated/mineral/proc/update_general()
+	update_icon(1)
+	if(ticker && ticker.current_state == GAME_STATE_PLAYING)
+		reconsider_lights()
+		if(air_master)
+			air_master.mark_for_update(src)
 
 /turf/simulated/mineral/Entered(atom/movable/M as mob|obj)
 	. = ..()
@@ -243,12 +251,40 @@ var/list/mining_overlay_cache = list()
 				for(var/obj/item/weapon/ore/O in contents)
 					O.attackby(W,user)
 					return
+
 		else if(istype(W,/obj/item/weapon/storage/bag/fossils))
 			var/obj/item/weapon/storage/bag/fossils/S = W
 			if(S.collection_mode)
 				for(var/obj/item/weapon/fossil/F in contents)
 					F.attackby(W,user)
 					return
+
+		else if(istype(W, /obj/item/stack/rods))
+			var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
+			if(L)
+				return
+			var/obj/item/stack/rods/R = W
+			if (R.use(1))
+				user << "<span class='notice'>Constructing support lattice ...</span>"
+				playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+				new /obj/structure/lattice(get_turf(src))
+
+		else if(istype(W, /obj/item/stack/tile/floor))
+			var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
+			if(L)
+				var/obj/item/stack/tile/floor/S = W
+				if (S.get_amount() < 1)
+					return
+				qdel(L)
+				playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+				ChangeTurf(/turf/simulated/floor)
+				S.use(1)
+				return
+			else
+				user << "<span class='warning'>The plating is going to need some support.</span>"
+				return
+
+
 	else
 		if (istype(W, /obj/item/device/core_sampler))
 			geologic_data.UpdateNearbyArtifactInfo(src)
@@ -423,7 +459,7 @@ var/list/mining_overlay_cache = list()
 			M.apply_effect(25, IRRADIATE)
 
 	make_floor()
-	update_icon()
+	update_icon(1)
 
 /turf/simulated/mineral/proc/excavate_find(var/prob_clean = 0, var/datum/find/F)
 	//with skill and luck, players can cleanly extract finds

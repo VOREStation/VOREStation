@@ -104,7 +104,7 @@
 		// Aliens can get straight through these.
 		if(istype(usr,/mob/living/carbon))
 			var/mob/living/carbon/M = usr
-			if(locate(/obj/item/organ/xenos/hivenode) in M.internal_organs)
+			if(locate(/obj/item/organ/internal/xenos/hivenode) in M.internal_organs)
 				for(var/mob/O in oviewers(src))
 					O.show_message("<span class='warning'>[usr] strokes the [name] and it melts away!</span>", 1)
 				health = 0
@@ -349,7 +349,7 @@ Alien plants should do something if theres a lot of poison
 /obj/effect/alien/egg/attack_hand(user as mob)
 
 	var/mob/living/carbon/M = user
-	if(!istype(M) || !(locate(/obj/item/organ/xenos/hivenode) in M.internal_organs))
+	if(!istype(M) || !(locate(/obj/item/organ/internal/xenos/hivenode) in M.internal_organs))
 		return attack_hand(user)
 
 	switch(status)

@@ -1,0 +1,9 @@
+author: Zuhayr
+delete-after: True
+changes: 
+  - rscadd: "Removed the species restrictions on transplanted internal organs. Have fun."
+  - rscadd: "Added 'full body' prosthetic options to character generation."
+  - rscadd: "Removed IPC. No tears were shed." 
+  - rscadd: "RE: borgs, Renamed 'robot' type to 'drone' and 'android' type to 'robot' for clarity with new 'android' human mobs."
+  - rscadd: "Rejuvenate will now reapply robolimb/autopsy data."
+  - rscadd: "Lots of backend work relating to the above. If you're a coder go look at the PR or ask Zuhayr for details."

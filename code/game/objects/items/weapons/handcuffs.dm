@@ -17,7 +17,6 @@
 	var/breakouttime = 1200 //Deciseconds = 120s = 2 minutes
 	var/cuff_sound = 'sound/weapons/handcuffs.ogg'
 	var/cuff_type = "handcuffs"
-	sprite_sheets = list("Resomi" = 'icons/mob/species/resomi/handcuffs.dmi')
 
 /obj/item/weapon/handcuffs/attack(var/mob/living/carbon/C, var/mob/living/user)
 
@@ -95,11 +94,11 @@ var/last_chew = 0
 	var/mob/living/carbon/human/H = A
 	if (!H.handcuffed) return
 	if (H.a_intent != I_HURT) return
-	if (H.zone_sel.selecting != "mouth") return
+	if (H.zone_sel.selecting != O_MOUTH) return
 	if (H.wear_mask) return
 	if (istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket)) return
 
-	var/obj/item/organ/external/O = H.organs_by_name[H.hand?"l_hand":"r_hand"]
+	var/obj/item/organ/external/O = H.organs_by_name[(H.hand ? BP_L_HAND : BP_R_HAND)]
 	if (!O) return
 
 	var/s = "<span class='warning'>[H.name] chews on \his [O.name]!</span>"

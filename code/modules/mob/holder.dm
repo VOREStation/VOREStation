@@ -8,8 +8,7 @@ var/list/holder_mob_icon_cache = list()
 	slot_flags = SLOT_HEAD | SLOT_HOLSTER
 
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/head.dmi',
-		"Resomi" = 'icons/mob/species/resomi/head.dmi'
+		"Vox" = 'icons/mob/species/vox/head.dmi'
 		)
 
 	origin_tech = null

@@ -8,7 +8,7 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if (isslime(target))
 			return 0
-		if (target_zone == "eyes")	//there are specific steps for eye surgery
+		if (target_zone == O_EYES)	//there are specific steps for eye surgery
 			return 0
 		if (!hasorgans(target))
 			return 0
@@ -35,7 +35,7 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if(..())
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			return affected && affected.open == 0 && target_zone != "mouth"
+			return affected && affected.open == 0 && target_zone != O_MOUTH
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -50,9 +50,6 @@
 		"\blue You have made a bloodless incision on [target]'s [affected.name] with \the [tool].",)
 		//Could be cleaner ...
 		affected.open = 1
-
-		if(istype(target) && !(target.species.flags & NO_BLOOD))
-			affected.status |= ORGAN_BLEEDING
 
 		affected.createwound(CUT, 1)
 		affected.clamp()
@@ -76,7 +73,7 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if(..())
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			return affected && affected.open == 0 && target_zone != "mouth"
+			return affected && affected.open == 0 && target_zone != O_MOUTH
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -91,7 +88,7 @@
 		"\blue You have constructed a prepared incision on and within [target]'s [affected.name] with \the [tool].",)
 		affected.open = 1
 
-		if(istype(target) && !(target.species.flags & NO_BLOOD))
+		if(istype(target) && target.should_have_organ(O_HEART))
 			affected.status |= ORGAN_BLEEDING
 
 		affected.createwound(CUT, 1)
@@ -118,7 +115,7 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if(..())
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			return affected && affected.open == 0 && target_zone != "mouth"
+			return affected && affected.open == 0 && target_zone != O_MOUTH
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -133,7 +130,7 @@
 		"\blue You have made an incision on [target]'s [affected.name] with \the [tool].",)
 		affected.open = 1
 
-		if(istype(target) && !(target.species.flags & NO_BLOOD))
+		if(istype(target) && target.should_have_organ(O_HEART))
 			affected.status |= ORGAN_BLEEDING
 
 		affected.createwound(CUT, 1)
@@ -198,10 +195,10 @@
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		var/msg = "[user] starts to pry open the incision on [target]'s [affected.name] with \the [tool]."
 		var/self_msg = "You start to pry open the incision on [target]'s [affected.name] with \the [tool]."
-		if (target_zone == "chest")
+		if (target_zone == BP_TORSO)
 			msg = "[user] starts to separate the ribcage and rearrange the organs in [target]'s torso with \the [tool]."
 			self_msg = "You start to separate the ribcage and rearrange the organs in [target]'s torso with \the [tool]."
-		if (target_zone == "groin")
+		if (target_zone == BP_GROIN)
 			msg = "[user] starts to pry open the incision and rearrange the organs in [target]'s lower abdomen with \the [tool]."
 			self_msg = "You start to pry open the incision and rearrange the organs in [target]'s lower abdomen with \the [tool]."
 		user.visible_message(msg, self_msg)
@@ -212,10 +209,10 @@
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		var/msg = "\blue [user] keeps the incision open on [target]'s [affected.name] with \the [tool]."
 		var/self_msg = "\blue You keep the incision open on [target]'s [affected.name] with \the [tool]."
-		if (target_zone == "chest")
+		if (target_zone == BP_TORSO)
 			msg = "\blue [user] keeps the ribcage open on [target]'s torso with \the [tool]."
 			self_msg = "\blue You keep the ribcage open on [target]'s torso with \the [tool]."
-		if (target_zone == "groin")
+		if (target_zone == BP_GROIN)
 			msg = "\blue [user] keeps the incision open on [target]'s lower abdomen with \the [tool]."
 			self_msg = "\blue You keep the incision open on [target]'s lower abdomen with \the [tool]."
 		user.visible_message(msg, self_msg)
@@ -225,10 +222,10 @@
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		var/msg = "\red [user]'s hand slips, tearing the edges of the incision on [target]'s [affected.name] with \the [tool]!"
 		var/self_msg = "\red Your hand slips, tearing the edges of the incision on [target]'s [affected.name] with \the [tool]!"
-		if (target_zone == "chest")
+		if (target_zone == BP_TORSO)
 			msg = "\red [user]'s hand slips, damaging several organs in [target]'s torso with \the [tool]!"
 			self_msg = "\red Your hand slips, damaging several organs in [target]'s torso with \the [tool]!"
-		if (target_zone == "groin")
+		if (target_zone == BP_GROIN)
 			msg = "\red [user]'s hand slips, damaging several organs in [target]'s lower abdomen with \the [tool]"
 			self_msg = "\red Your hand slips, damaging several organs in [target]'s lower abdomen with \the [tool]!"
 		user.visible_message(msg, self_msg)
@@ -248,7 +245,7 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if(..())
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			return affected && affected.open && target_zone != "mouth"
+			return affected && affected.open && target_zone != O_MOUTH
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -281,7 +278,7 @@
 	max_duration = 160
 
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		if (target_zone == "eyes")	//there are specific steps for eye surgery
+		if (target_zone == O_EYES)	//there are specific steps for eye surgery
 			return 0
 		if (!hasorgans(target))
 			return 0

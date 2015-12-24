@@ -28,11 +28,12 @@
 /obj/item/weapon/gun/projectile/colt/detective/verb/rename_gun()
 	set name = "Name Gun"
 	set category = "Object"
-	set desc = "Rename your gun. If you're the detective."
+	set desc = "Rename your gun. If you're Security."
 
 	var/mob/M = usr
 	if(!M.mind)	return 0
-	if(!M.mind.assigned_role == "Detective")
+	var/job = M.mind.assigned_role
+	if(job != "Detective" && job != "Security Officer" && job != "Warden" && job != "Head of Security")
 		M << "<span class='notice'>You don't feel cool enough to name this gun, chump.</span>"
 		return 0
 
@@ -44,9 +45,9 @@
 		return 1
 
 /obj/item/weapon/gun/projectile/colt/detective/verb/reskin_gun()
-	set name = "Reskin gun"
+	set name = "Resprite gun"
 	set category = "Object"
-	set desc = "Click to reskin your gun."
+	set desc = "Click to choose a sprite for your gun."
 
 	var/mob/M = usr
 	var/list/options = list()
@@ -57,11 +58,11 @@
 	options["H&K VP"] = "VP78"
 	options["P08 Luger"] = "p08"
 	options["P08 Luger, Brown"] = "p08b"
-	var/choice = input(M,"What do you want to skin the gun to?","Reskin Gun") in options
+	var/choice = input(M,"What do you want the gun's sprite to be?","Resprite Gun") in options
 	if(src && choice && !M.stat && in_range(M,src))
 		icon_state = options[choice]
 		unique_reskin = options[choice]
-		M << "Your gun is now skinned as [choice]. Say hello to your new friend."
+		M << "Your gun is now sprited as [choice]. Say hello to your new friend."
 		return 1
 
 /obj/item/weapon/gun/projectile/sec

@@ -16,11 +16,11 @@
 	var/stored_matter = 200
 	var/loaded_dna //Blood sample for DNA hashing.
 	var/list/products = list(
-		"heart" =   list(/obj/item/organ/heart,  50),
-		"lungs" =   list(/obj/item/organ/lungs,  40),
-		"kidneys" = list(/obj/item/organ/kidneys,20),
-		"eyes" =    list(/obj/item/organ/eyes,   30),
-		"liver" =   list(/obj/item/organ/liver,  50)
+		O_HEART =   list(/obj/item/organ/internal/heart,  50),
+		O_LUNGS =   list(/obj/item/organ/internal/lungs,  40),
+		O_KIDNEYS = list(/obj/item/organ/internal/kidneys,20),
+		O_EYES =    list(/obj/item/organ/internal/eyes,   30),
+		O_LIVER =   list(/obj/item/organ/internal/liver,  50)
 		)
 
 /obj/machinery/bioprinter/prosthetics
@@ -41,7 +41,7 @@
 		var/obj/item/organ/O = new new_organ(get_turf(src))
 
 		if(prints_prosthetics)
-			O.robotic = 2
+			O.robotize()
 		else if(loaded_dna)
 			visible_message("<span class='notice'>The printer injects the stored DNA into the biomass.</span>.")
 			O.transplant_data = list()
@@ -80,5 +80,5 @@
 		user << "<span class='info'>\The [src] processes \the [W]. Levels of stored matter now: [stored_matter]</span>"
 		qdel(W)
 		return
-	
+
 	return..()

@@ -69,7 +69,10 @@
 	if(stripping)
 		visible_message("<span class='danger'>\The [user] is trying to remove \the [src]'s [target_slot.name]!</span>")
 	else
-		visible_message("<span class='danger'>\The [user] is trying to put \a [held] on \the [src]!</span>")
+		if(slot_to_strip == slot_wear_mask && istype(held, /obj/item/weapon/grenade))
+			visible_message("<span class='danger'>\The [user] is trying to put \a [held] in \the [src]'s mouth!</span>")
+		else
+			visible_message("<span class='danger'>\The [user] is trying to put \a [held] on \the [src]!</span>")
 
 	if(!do_after(user,HUMAN_STRIP_DELAY))
 		return
@@ -121,7 +124,7 @@
 
 	if(can_reach_splints)
 		var/removed_splint
-		for(var/organ in list("l_leg","r_leg","l_arm","r_arm"))
+		for(var/organ in list(BP_L_LEG, BP_R_LEG, BP_L_ARM, BP_R_ARM))
 			var/obj/item/organ/external/o = get_organ(organ)
 			if (o && o.status & ORGAN_SPLINTED)
 				var/obj/item/W = new /obj/item/stack/medical/splint(get_turf(src), 1)

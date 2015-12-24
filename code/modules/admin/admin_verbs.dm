@@ -94,7 +94,8 @@ var/list/admin_verbs_admin = list(
 	/client/proc/change_human_appearance_self,	/* Allows the human-based mob itself change its basic appearance */
 	/client/proc/change_security_level,
 	/client/proc/view_chemical_reaction_logs,
-	/client/proc/makePAI
+	/client/proc/makePAI,
+	/datum/admins/proc/paralyze_mob
 )
 var/list/admin_verbs_ban = list(
 	/client/proc/unban_panel,
@@ -303,7 +304,8 @@ var/list/admin_verbs_mod = list(
 	/datum/admins/proc/show_player_panel,
 	/client/proc/check_antagonists,
 	/client/proc/jobbans,
-	/client/proc/cmd_admin_subtle_message 	/*send an message to somebody as a 'voice in their head'*/
+	/client/proc/cmd_admin_subtle_message, 	/*send an message to somebody as a 'voice in their head'*/
+	/datum/admins/proc/paralyze_mob
 )
 
 var/list/admin_verbs_mentor = list(
@@ -878,12 +880,15 @@ var/list/admin_verbs_mentor = list(
 	if(new_fstyle)
 		M.f_style = new_fstyle
 
-	var/new_gender = alert(usr, "Please select gender.", "Character Generation", "Male", "Female")
+	var/new_gender = alert(usr, "Please select gender.", "Character Generation", "Male", "Female", "Neuter")
 	if (new_gender)
 		if(new_gender == "Male")
 			M.gender = MALE
-		else
+		else if (new_gender == "Female")
 			M.gender = FEMALE
+		else
+			M.gender = NEUTER
+
 	M.update_hair()
 	M.update_body()
 	M.check_dna(M)

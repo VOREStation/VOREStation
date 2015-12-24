@@ -406,8 +406,8 @@
 		var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
 		usr << "You have been dead for[pluralcheck] [deathtimeseconds] seconds."
 
-		if (deathtime < 18000)
-			usr << "You must wait 30 minutes to respawn!"
+		if (deathtime < (15 * 600))
+			usr << "You must wait 15 minutes to respawn!"
 			return
 		else
 			usr << "You can respawn now, enjoy your new life!"
@@ -1128,3 +1128,10 @@ mob/proc/yank_out_object()
 	src.in_throw_mode = 1
 	if(src.throw_icon)
 		src.throw_icon.icon_state = "act_throw_on"
+
+/mob/proc/isSynthetic()
+	return 0
+
+/mob/proc/is_muzzled()
+	return 0
+

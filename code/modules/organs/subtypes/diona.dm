@@ -26,7 +26,7 @@
 
 /obj/item/organ/external/diona/chest
 	name = "core trunk"
-	limb_name = "chest"
+	organ_tag = BP_TORSO
 	icon_name = "torso"
 	max_damage = 200
 	min_broken_damage = 50
@@ -35,56 +35,58 @@
 	vital = 1
 	cannot_amputate = 1
 	parent_organ = null
+	gendered_icon = 1
 
 /obj/item/organ/external/diona/groin
 	name = "fork"
-	limb_name = "groin"
+	organ_tag = BP_GROIN
 	icon_name = "groin"
 	max_damage = 100
 	min_broken_damage = 50
 	w_class = 4
 	body_part = LOWER_TORSO
-	parent_organ = "chest"
+	parent_organ = BP_TORSO
+	gendered_icon = 1
 
 /obj/item/organ/external/diona/arm
 	name = "left upper tendril"
-	limb_name = "l_arm"
+	organ_tag = "l_arm"
 	icon_name = "l_arm"
 	max_damage = 35
 	min_broken_damage = 20
 	w_class = 3
 	body_part = ARM_LEFT
-	parent_organ = "chest"
+	parent_organ = BP_TORSO
 	can_grasp = 1
 
 /obj/item/organ/external/diona/arm/right
 	name = "right upper tendril"
-	limb_name = "r_arm"
+	organ_tag = "r_arm"
 	icon_name = "r_arm"
 	body_part = ARM_RIGHT
 
 /obj/item/organ/external/diona/leg
 	name = "left lower tendril"
-	limb_name = "l_leg"
+	organ_tag = "l_leg"
 	icon_name = "l_leg"
 	max_damage = 35
 	min_broken_damage = 20
 	w_class = 3
 	body_part = LEG_LEFT
 	icon_position = LEFT
-	parent_organ = "groin"
+	parent_organ = BP_GROIN
 	can_stand = 1
 
 /obj/item/organ/external/diona/leg/right
 	name = "right lower tendril"
-	limb_name = "r_leg"
+	organ_tag = "r_leg"
 	icon_name = "r_leg"
 	body_part = LEG_RIGHT
 	icon_position = RIGHT
 
 /obj/item/organ/external/diona/foot
 	name = "left foot"
-	limb_name = "l_foot"
+	organ_tag = "l_foot"
 	icon_name = "l_foot"
 	max_damage = 20
 	min_broken_damage = 10
@@ -96,7 +98,7 @@
 
 /obj/item/organ/external/diona/foot/right
 	name = "right foot"
-	limb_name = "r_foot"
+	organ_tag = "r_foot"
 	icon_name = "r_foot"
 	body_part = FOOT_RIGHT
 	icon_position = RIGHT
@@ -106,7 +108,7 @@
 
 /obj/item/organ/external/diona/hand
 	name = "left grasper"
-	limb_name = "l_hand"
+	organ_tag = "l_hand"
 	icon_name = "l_hand"
 	max_damage = 30
 	min_broken_damage = 15
@@ -117,29 +119,15 @@
 
 /obj/item/organ/external/diona/hand/right
 	name = "right grasper"
-	limb_name = "r_hand"
+	organ_tag = "r_hand"
 	icon_name = "r_hand"
 	body_part = HAND_RIGHT
 	parent_organ = "r_arm"
 
-/obj/item/organ/external/diona/head
-	limb_name = "head"
-	icon_name = "head"
-	name = "head"
-	max_damage = 50
-	min_broken_damage = 25
-	w_class = 3
-	body_part = HEAD
-	parent_organ = "chest"
-
-/obj/item/organ/external/diona/head/removed()
-	if(owner)
-		owner.u_equip(owner.head)
-		owner.u_equip(owner.l_ear)
-	..()
-
 //DIONA ORGANS.
 /obj/item/organ/external/diona/removed()
+	if(status & ORGAN_ROBOT)
+		return ..()
 	var/mob/living/carbon/human/H = owner
 	..()
 	if(!istype(H) || !H.organs || !H.organs.len)
@@ -147,63 +135,65 @@
 	if(prob(50) && spawn_diona_nymph(get_turf(src)))
 		qdel(src)
 
-/obj/item/organ/diona/process()
-	return
-
-/obj/item/organ/diona/strata
-	name = "neural strata"
-	parent_organ = "chest"
-
-/obj/item/organ/diona/bladder
-	name = "gas bladder"
-	parent_organ = "head"
-
-/obj/item/organ/diona/polyp
-	name = "polyp segment"
-	parent_organ = "groin"
-
-/obj/item/organ/diona/ligament
-	name = "anchoring ligament"
-	parent_organ = "groin"
-
-/obj/item/organ/diona/node
-	name = "receptor node"
-	parent_organ = "head"
-
-/obj/item/organ/diona/nutrients
-	name = "nutrient vessel"
-	parent_organ = "chest"
-
-/obj/item/organ/diona
+/obj/item/organ/internal/diona
 	name = "diona nymph"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "nymph"
 	organ_tag = "special" // Turns into a nymph instantly, no transplanting possible.
 
-/obj/item/organ/diona/removed(var/mob/living/user)
+/obj/item/organ/internal/diona/removed(var/mob/living/user, var/skip_nymph)
+	if(status & ORGAN_ROBOT)
+		return ..()
 	var/mob/living/carbon/human/H = owner
 	..()
 	if(!istype(H) || !H.organs || !H.organs.len)
 		H.death()
-	if(prob(50) && spawn_diona_nymph(get_turf(src)))
+	if(prob(50) && !skip_nymph && spawn_diona_nymph(get_turf(src)))
 		qdel(src)
+
+/obj/item/organ/internal/diona/process()
+	return
+
+/obj/item/organ/internal/diona/strata
+	name = "neural strata"
+	parent_organ = BP_TORSO
+
+/obj/item/organ/internal/diona/bladder
+	name = "gas bladder"
+	parent_organ = BP_HEAD
+
+/obj/item/organ/internal/diona/polyp
+	name = "polyp segment"
+	parent_organ = BP_GROIN
+
+/obj/item/organ/internal/diona/ligament
+	name = "anchoring ligament"
+	parent_organ = BP_GROIN
+
+/obj/item/organ/internal/diona/node
+	name = "receptor node"
+	parent_organ = BP_HEAD
+
+/obj/item/organ/internal/diona/nutrients
+	name = O_NUTRIENT
+	parent_organ = BP_TORSO
 
 // These are different to the standard diona organs as they have a purpose in other
 // species (absorbing radiation and light respectively)
-/obj/item/organ/diona/nutrients
-	name = "nutrient vessel"
-	organ_tag = "nutrient vessel"
+/obj/item/organ/internal/diona/nutrients
+	name = O_NUTRIENT
+	organ_tag = O_NUTRIENT
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "claw"
 
-/obj/item/organ/diona/nutrients/removed()
-	return
+/obj/item/organ/internal/diona/nutrients/removed(var/mob/user)
+	return ..(user, 1)
 
-/obj/item/organ/diona/node
+/obj/item/organ/internal/diona/node
 	name = "receptor node"
 	organ_tag = "receptor node"
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "claw"
 
-/obj/item/organ/diona/node/removed()
+/obj/item/organ/internal/diona/node/removed()
 	return

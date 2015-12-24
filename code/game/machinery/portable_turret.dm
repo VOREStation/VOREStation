@@ -627,9 +627,9 @@ var/list/turret_icons
 	var/def_zone
 	var/obj/item/weapon/grab/G = locate() in target
 	if(G && G.state >= GRAB_NECK) //works because mobs are currently not allowed to upgrade to NECK if they are grabbing two people.
-		def_zone = pick("head", "l_hand", "r_hand", "l_foot", "r_foot", "l_arm", "r_arm", "l_leg", "r_leg")
+		def_zone = pick(BP_HEAD, BP_L_HAND, BP_R_HAND, BP_L_FOOT, BP_R_FOOT, BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG)
 	else
-		def_zone = pick("chest", "groin")
+		def_zone = pick(BP_TORSO, BP_GROIN)
 
 	//Shooting Code:
 	A.launch(target, def_zone)
