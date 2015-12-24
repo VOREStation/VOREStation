@@ -23,7 +23,7 @@
 	C.radiation = 0
 	C.heal_overall_damage(C.getBruteLoss(), C.getFireLoss())
 	C.reagents.clear_reagents()
-	C.restore_all_organs() //Covers things like fractures and other things not covered by the above.
+	C.restore_all_organs(ignore_prosthetic_prefs=1) //Covers things like fractures and other things not covered by the above.
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = src
 		H.restore_blood()

@@ -83,7 +83,7 @@
 /obj/item/weapon/screwdriver/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M) || user.a_intent == "help")
 		return ..()
-	if(user.zone_sel.selecting != "eyes" && user.zone_sel.selecting != "head")
+	if(user.zone_sel.selecting != O_EYES && user.zone_sel.selecting != BP_HEAD)
 		return ..()
 	if((CLUMSY in user.mutations) && prob(50))
 		M = user
@@ -333,7 +333,7 @@
 	var/safety = user:eyecheck()
 	if(istype(user, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
-		var/obj/item/organ/eyes/E = H.internal_organs_by_name["eyes"]
+		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]
 		if(!E)
 			return
 		switch(safety)
@@ -422,14 +422,18 @@
 	icon_state = "red_crowbar"
 	item_state = "crowbar_red"
 
+/obj/item/weapon/weldingtool/attack(var/atom/A, var/mob/living/user, var/def_zone)
+	if(ishuman(A) && user.a_intent == I_HELP)
+		return
+	return ..()
+
 /obj/item/weapon/weldingtool/afterattack(var/mob/M, var/mob/user)
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/S = H.organs_by_name[user.zone_sel.selecting]
 
-		if (!S) return
-		if(!(S.status & ORGAN_ROBOT) || user.a_intent != I_HELP)
+		if(!S || !(S.status & ORGAN_ROBOT) || user.a_intent != I_HELP)
 			return ..()
 
 		if(S.brute_dam)
@@ -438,10 +442,9 @@
 				user.visible_message("<span class='notice'>\The [user] patches some dents on \the [M]'s [S.name] with \the [src].</span>")
 			else if(S.open != 2)
 				user << "<span class='danger'>The damage is far too severe to patch over externally.</span>"
-			return 1
 		else if(S.open != 2)
 			user << "<span class='notice'>Nothing to fix!</span>"
-
+		return
 	else
 		return ..()
 

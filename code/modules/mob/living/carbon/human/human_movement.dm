@@ -16,7 +16,7 @@
 	var/health_deficiency = (100 - health)
 	if(health_deficiency >= 40) tally += (health_deficiency / 25)
 
-	if (!(species && (species.flags & NO_PAIN)))
+	if(can_feel_pain())
 		if(halloss >= 10) tally += (halloss / 10) //halloss shouldn't slow you down if you can't even feel it
 
 	var/hungry = (500 - nutrition)/5 // So overeat would be 100 and default level would be 80
@@ -26,7 +26,7 @@
 		tally += wear_suit.slowdown
 
 	if(istype(buckled, /obj/structure/bed/chair/wheelchair))
-		for(var/organ_name in list("l_hand","r_hand","l_arm","r_arm"))
+		for(var/organ_name in list(BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM))
 			var/obj/item/organ/external/E = get_organ(organ_name)
 			if(!E || (E.status & ORGAN_DESTROYED))
 				tally += 4
@@ -38,11 +38,11 @@
 		if(shoes)
 			tally += shoes.slowdown
 
-		for(var/organ_name in list("l_foot","r_foot","l_leg","r_leg"))
+		for(var/organ_name in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT))
 			var/obj/item/organ/external/E = get_organ(organ_name)
 			if(!E || (E.status & ORGAN_DESTROYED))
 				tally += 4
-			if(E.status & ORGAN_SPLINTED)
+			else if(E.status & ORGAN_SPLINTED)
 				tally += 0.5
 			else if(E.status & ORGAN_BROKEN)
 				tally += 1.5

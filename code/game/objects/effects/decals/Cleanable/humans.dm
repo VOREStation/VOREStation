@@ -64,6 +64,12 @@ var/global/list/image/splatter_cache=list()
 /obj/effect/decal/cleanable/blood/update_icon()
 	if(basecolor == "rainbow") basecolor = "#[get_random_colour(1)]"
 	color = basecolor
+	if(basecolor == SYNTH_BLOOD_COLOUR)
+		name = "oil"
+		desc = "It's black and greasy."
+	else
+		name = initial(name)
+		desc = initial(desc)
 
 /obj/effect/decal/cleanable/blood/Crossed(mob/living/carbon/human/perp)
 	if (!istype(perp))

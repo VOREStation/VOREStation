@@ -3,8 +3,18 @@ datum/preferences
 	proc/randomize_appearance_for(var/mob/living/carbon/human/H)
 		gender = pick(MALE, FEMALE)
 		s_tone = random_skin_tone()
-		h_style = random_hair_style(gender, species)
-		f_style = random_facial_hair_style(gender, species)
+
+		var/use_head_species
+		var/obj/item/organ/external/head/temp_head = H.get_organ(BP_HEAD)
+		if(temp_head)
+			use_head_species = temp_head.species.get_bodytype()
+		else
+			use_head_species = H.species.get_bodytype()
+
+		if(use_head_species)
+			h_style = random_hair_style(gender, species)
+			f_style = random_facial_hair_style(gender, species)
+
 		randomize_hair_color("hair")
 		randomize_hair_color("facial")
 		randomize_eyes_color()
@@ -191,37 +201,58 @@ datum/preferences
 		else
 			icobase = 'icons/mob/human_races/r_human.dmi'
 
-		preview_icon = new /icon(icobase, "torso_[g]")
-		preview_icon.Blend(new /icon(icobase, "groin_[g]"), ICON_OVERLAY)
-		preview_icon.Blend(new /icon(icobase, "head_[g]"), ICON_OVERLAY)
-
-		for(var/name in list("r_arm","r_hand","r_leg","r_foot","l_leg","l_foot","l_arm","l_hand"))
-			if(organ_data[name] == "amputated") continue
+		preview_icon = new /icon(icobase, "")
+		for(var/name in BP_ALL)
+			if(organ_data[name] == "amputated")
+				continue
 			if(organ_data[name] == "cyborg")
 				var/datum/robolimb/R
 				if(rlimb_data[name]) R = all_robolimbs[rlimb_data[name]]
 				if(!R) R = basic_robolimb
-				preview_icon.Blend(icon(R.icon, "[name]"), ICON_OVERLAY) // This doesn't check gendered_icon. Not an issue while only limbs can be robotic.
+				if(name in list(BP_TORSO, BP_GROIN, BP_HEAD))
+					preview_icon.Blend(icon(R.icon, "[name]_[g]"), ICON_OVERLAY)
+				else
+					preview_icon.Blend(icon(R.icon, "[name]"), ICON_OVERLAY)
 				continue
-			preview_icon.Blend(new /icon(icobase, "[name]"), ICON_OVERLAY)
+			var/icon/limb_icon
+			if(name in list(BP_TORSO, BP_GROIN, BP_HEAD))
+				limb_icon = new /icon(icobase, "[name]_[g]")
+			else
+				limb_icon = new /icon(icobase, "[name]")
+			// Skin color
+			if(current_species && (current_species.appearance_flags & HAS_SKIN_COLOR))
+				limb_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
+			// Skin tone
+			if(current_species && (current_species.appearance_flags & HAS_SKIN_TONE))
+				if (s_tone >= 0)
+					limb_icon.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
+				else
+					limb_icon.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
+			preview_icon.Blend(limb_icon, ICON_OVERLAY)
 
 		//Tail
 		if(current_species && (current_species.tail))
 			var/icon/temp = new/icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[current_species.tail]_s")
+			if(current_species && (current_species.appearance_flags & HAS_SKIN_COLOR))
+				temp.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
+			if(current_species && (current_species.appearance_flags & HAS_SKIN_TONE))
+				if (s_tone >= 0)
+					temp.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
+				else
+					temp.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
 			preview_icon.Blend(temp, ICON_OVERLAY)
 
-		// Skin color
-		if(current_species && (current_species.appearance_flags & HAS_SKIN_COLOR))
-			preview_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
+		// This is absolute garbage but whatever. It will do until this entire file can be rewritten without crashes.
+		var/use_eye_icon = "eyes_s"
+		var/list/use_eye_data = current_species.has_limbs[BP_HEAD]
+		if(islist(use_eye_data))
+			var/use_eye_path = use_eye_data["path"]
+			var/obj/item/organ/external/head/temp_head = new use_eye_path ()
+			if(istype(temp_head))
+				use_eye_icon = temp_head.eye_icon
+			qdel(temp_head)
 
-		// Skin tone
-		if(current_species && (current_species.appearance_flags & HAS_SKIN_TONE))
-			if (s_tone >= 0)
-				preview_icon.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
-			else
-				preview_icon.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
-
-		var/icon/eyes_s = new/icon("icon" = 'icons/mob/human_face.dmi', "icon_state" = current_species ? current_species.eyes : "eyes_s")
+		var/icon/eyes_s = new/icon("icon" = 'icons/mob/human_face.dmi', "icon_state" = use_eye_icon)
 		if ((current_species && (current_species.appearance_flags & HAS_EYE_COLOR)))
 			eyes_s.Blend(rgb(r_eyes, g_eyes, b_eyes), ICON_ADD)
 
