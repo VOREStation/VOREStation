@@ -12,6 +12,7 @@
 	desc = "Teleports you or someone else a short distance away."
 	icon_state = "blink"
 	cast_methods = CAST_RANGED | CAST_MELEE | CAST_USE
+	aspect = ASPECT_TELE
 
 /proc/safe_blink(atom/movable/AM, var/range = 3)
 	if(AM.anchored || !AM.loc)
@@ -21,7 +22,7 @@
 
 	valid_turfs:
 		for(var/turf/simulated/T in view(AM, range))
-			if(T.density || istype(T, /turf/simulated/mineral))
+			if(T.density || istype(T, /turf/simulated/mineral)) //Don't blink to vacuum or a wall
 				continue
 			for(var/atom/movable/stuff in T.contents)
 				if(stuff.density)

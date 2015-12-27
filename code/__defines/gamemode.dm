@@ -73,6 +73,7 @@ var/list/be_special_flags = list(
 #define MODE_NINJA "ninja"
 #define MODE_RAIDER "raider"
 #define MODE_WIZARD "wizard"
+#define MODE_TECHNOMANCER "technomancer"
 #define MODE_CHANGELING "changeling"
 #define MODE_CULTIST "cultist"
 #define MODE_HIGHLANDER "highlander"

@@ -11,6 +11,7 @@
 	icon_state = "apportation"
 	desc = "Allows you to reach through Bluespace with your hand, and grab something, bringing it to you instantly."
 	cast_methods = CAST_RANGED
+	aspect = ASPECT_TELE
 
 /obj/item/weapon/spell/apportation/on_ranged_cast(atom/hit_atom, mob/user)
 	if(istype(hit_atom, /atom/movable))

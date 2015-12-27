@@ -11,6 +11,8 @@
 	desc = "Not even light can stand in your way now."
 	icon_state = "darkness"
 	cast_methods = CAST_RANGED
+	aspect = ASPECT_DARK
+	toggled = 1
 
 /obj/item/weapon/spell/darkness/New()
 	..()

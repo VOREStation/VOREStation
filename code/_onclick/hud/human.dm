@@ -303,6 +303,11 @@
 	mymob.ling_chem_display.icon_state = "ling_chems"
 	hud_elements |= mymob.ling_chem_display
 
+	mymob.wiz_instability_display = new /obj/screen/wizard/instability()
+	mymob.wiz_instability_display.screen_loc = ui_ling_chemical_display
+	mymob.wiz_instability_display.icon_state = "wiz_instability_none"
+	hud_elements |= mymob.wiz_instability_display
+
 	mymob.blind = new /obj/screen()
 	mymob.blind.icon = 'icons/mob/screen1_full.dmi'
 	mymob.blind.icon_state = "blackimageoverlay"
@@ -398,3 +403,7 @@
 /obj/screen/ling/chems
 	name = "chemical storage"
 	icon_state = "power_display"
+
+/obj/screen/wizard/instability
+	name = "instability"
+	icon_state = "instability_none"

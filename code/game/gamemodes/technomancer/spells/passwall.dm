@@ -1,0 +1,65 @@
+/datum/power/technomancer/passwall
+	name = "Passwall"
+	desc = "An uncommon function that allows the user to phase through matter (usually walls) in order to enter or exit a room.  Be careful you don't pass into \
+	somewhere dangerous."
+	verbpath = /mob/living/carbon/human/proc/technomancer_passwall
+
+/mob/living/carbon/human/proc/technomancer_passwall()
+	place_spell_in_hand(/obj/item/weapon/spell/passwall)
+
+/obj/item/weapon/spell/passwall
+	name = "passwall"
+	desc = "No walls can hold you back."
+	cast_methods = CAST_MELEE
+	aspect = ASPECT_TELE
+	var/maximum_distance = 20 //Measured in tiles.
+	var/busy = 0
+
+/obj/item/weapon/spell/passwall/on_melee_cast(atom/hit_atom, mob/user)
+	if(busy)	//Prevent someone from trying to get two uses of the spell from one instance.
+		return 0
+	if(isturf(hit_atom))
+		var/turf/T = hit_atom 				//Turf we touched.
+		var/turf/our_turf = get_turf(user)	//Where we are.
+		if(!T.density)
+			user << "<span class='warning'>Perhaps you should try using passWALL on a wall.</span>"
+			return 0
+		var/direction = get_dir(our_turf, T)
+		var/total_cost = 0
+		var/turf/checked_turf = T			//Turf we're currently checking for density in the loop below.
+		var/turf/found_turf = null			//Our destination, if one is found.
+		var/i = maximum_distance
+
+		visible_message("<span class='info'>[user] rests a hand on \the [T].</span>")
+		busy = 1
+
+		var/datum/effect/effect/system/spark_spread/spark_system = PoolOrNew(/datum/effect/effect/system/spark_spread)
+		spark_system.set_up(5, 0, our_turf)
+
+		while(i)
+			checked_turf = get_step(checked_turf, direction) //Advance in the given direction
+			total_cost += 1000 //Phasing through matter's expensive, you know.
+			i--
+			if(!checked_turf.density) //If we found a destination (a non-dense turf), then we can stop.
+				var/dense_objs_on_turf = 0
+				for(var/atom/movable/stuff in checked_turf.contents) //Make sure nothing dense is where we want to go, like an airlock or window.
+					if(stuff.density)
+						dense_objs_on_turf = 1
+
+				if(!dense_objs_on_turf) //If we found a non-dense turf with nothing dense on it, then that's our destination.
+					found_turf = checked_turf
+					break
+			sleep(10)
+
+		if(found_turf)
+			if(user.loc != our_turf)
+				user << "<span class='warning'>You need to stand still in order to phase through the wall.</span>"
+				return 0
+			visible_message("<span class='warning'>[user] appears to phase through \the [T]!</span>")
+			user << "<span class='info'>You find a destination on the other side of \the [T], and phase through it.</span>"
+			spark_system.start()
+			user.forceMove(found_turf)
+			qdel(src)
+			return 1
+		else
+			user << "<span class='info'>You weren't able to find an open space to go to.</span>"
