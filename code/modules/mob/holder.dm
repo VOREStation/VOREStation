@@ -84,6 +84,13 @@ var/list/holder_mob_icon_cache = list()
 //Mob procs and vars for scooping up
 /mob/living/var/holder_type
 
+/mob/living/MouseDrop(var/atom/over_object)
+	var/mob/living/carbon/human/H = over_object
+	if(holder_type && istype(H) && !H.lying && !issmall(H) && Adjacent(H))
+		get_scooped(H, (usr == src))
+		return
+	return ..()
+
 /mob/living/proc/get_scooped(var/mob/living/carbon/grabber, var/self_grab)
 
 	if(!holder_type || buckled || pinned.len)
