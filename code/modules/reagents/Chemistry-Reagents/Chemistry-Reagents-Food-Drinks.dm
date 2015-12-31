@@ -503,6 +503,10 @@
 	glass_name = "glass of milk"
 	glass_desc = "White and nutritious goodness!"
 
+	cup_icon_state = "cup_cream"
+	cup_name = "cup of milk"
+	cup_desc = "White and nutritious goodness!"
+
 /datum/reagent/drink/milk/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	if(alien == IS_DIONA)
@@ -520,6 +524,10 @@
 	glass_name = "glass of cream"
 	glass_desc = "Ewwww..."
 
+	cup_icon_state = "cup_cream"
+	cup_name = "cup of cream"
+	cup_desc = "Ewwww..."
+
 /datum/reagent/drink/milk/soymilk
 	name = "Soy Milk"
 	id = "soymilk"
@@ -529,6 +537,10 @@
 	glass_icon_state = "glass_white"
 	glass_name = "glass of soy milk"
 	glass_desc = "White and nutritious soy goodness!"
+
+	cup_icon_state = "cup_cream"
+	cup_name = "cup of milk"
+	cup_desc = "White and nutritious goodness!"
 
 /datum/reagent/drink/tea
 	name = "Tea"
@@ -574,8 +586,12 @@
 	overdose = 45
 
 	glass_icon_state = "hot_coffee"
-	glass_name = "cup of coffee"
-	glass_desc = "Don't drop it, or you'll send scalding liquid and glass shards everywhere."
+	glass_name = "mug of coffee"
+	glass_desc = "Don't drop it, or you'll send scalding liquid and porcelain shards everywhere."
+
+	cup_icon_state = "cup_coffee"
+	cup_name = "cup of coffee"
+	cup_desc = "Don't drop it, or you'll send scalding liquid and porcelain shards everywhere."
 
 /datum/reagent/drink/coffee/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -622,8 +638,12 @@
 
 	glass_icon_state = "soy_latte"
 	glass_name = "glass of soy latte"
-	glass_desc = "A nice and refrshing beverage while you are reading."
+	glass_desc = "A nice and refreshing beverage while you are reading."
 	glass_center_of_mass = list("x"=15, "y"=9)
+
+	cup_icon_state = "cup_latte"
+	cup_name = "cup of soy latte"
+	cup_desc = "A nice and refreshing beverage while you are reading."
 
 /datum/reagent/drink/coffee/soy_latte/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -641,6 +661,10 @@
 	glass_desc = "A nice, strong and refreshing beverage while you are reading."
 	glass_center_of_mass = list("x"=15, "y"=9)
 
+	cup_icon_state = "cup_latte"
+	cup_name = "cup of cafe latte"
+	cup_desc = "A nice and refreshing beverage while you are reading."
+
 /datum/reagent/drink/coffee/cafe_latte/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	M.heal_organ_damage(0.5 * removed, 0)
@@ -657,6 +681,10 @@
 	glass_icon_state = "chocolateglass"
 	glass_name = "glass of hot chocolate"
 	glass_desc = "Made with love! And cocoa beans."
+
+	cup_icon_state = "cup_coco"
+	cup_name = "cup of hot chocolate"
+	cup_desc = "Made with love! And cocoa beans."
 
 /datum/reagent/drink/sodawater
 	name = "Soda Water"
