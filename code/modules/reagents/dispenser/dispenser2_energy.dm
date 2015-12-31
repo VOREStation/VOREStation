@@ -54,3 +54,8 @@
 		"lemon_lime", "sugar", "orangejuice", "limejuice", "sodawater", "tonic", "beer", "kahlua",
 		"whiskey", "wine", "vodka", "gin", "rum", "tequilla", "vermouth", "cognac", "ale", "mead"
 		)
+
+/obj/machinery/chemical_dispenser/bar_coffee
+	dispense_reagents = list(
+		"coffee", "cafe_latte", "soy_latte", "hot_coco", "milk", "cream", "tea", "ice"
+		)
