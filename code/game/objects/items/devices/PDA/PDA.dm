@@ -310,15 +310,14 @@ var/global/list/obj/item/device/pda/PDAs = list()
  *	The Actual PDA
  */
 
-/obj/item/device/pda/New()
+/obj/item/device/pda/New(var/mob/living/carbon/human/H)
 	..()
 	PDAs += src
 	PDAs = sortAtom(PDAs)
 	if(default_cartridge)
 		cartridge = new default_cartridge(src)
 	new /obj/item/weapon/pen(src)
-	var/mob/living/carbon/human/H
-	pdachoice = isnull(H) ? 1 : H.pdachoice
+	pdachoice = isnull(H) ? 1 : (ishuman(H) ? H.pdachoice : 1)
 	switch(pdachoice)
 		if(2) icon = 'icons/obj/pda_slim.dmi'
 		if(3) icon = 'icons/obj/pda_old.dmi'
