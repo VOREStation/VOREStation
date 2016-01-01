@@ -88,10 +88,10 @@
 
 	for(var/I in see)
 		if(isobj(I))
-			spawn(0)
-				if(I) //It's possible that it could be deleted in the meantime.
-					var/obj/O = I
-					O.show_message( message, 1, blind_message, 2)
+			//spawn(0)
+			//if(I) //It's possible that it could be deleted in the meantime.
+			var/obj/O = I
+			O.show_message( message, 1, blind_message, 2)
 		else if(ismob(I))
 			var/mob/M = I
 			if(self_message && M==src)

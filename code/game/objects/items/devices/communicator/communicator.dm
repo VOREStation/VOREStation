@@ -12,6 +12,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	icon_state = "communicator"
 	w_class = 2.0
 	slot_flags = SLOT_ID | SLOT_BELT
+	show_messages = 1
 
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_MAGNET = 2, TECH_BLUESPACE = 2, TECH_DATA = 2)
 	matter = list(DEFAULT_WALL_MATERIAL = 30,"glass" = 10)

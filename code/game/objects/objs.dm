@@ -14,6 +14,7 @@
 	var/damtype = "brute"
 	var/force = 0
 	var/armor_penetration = 0
+	var/show_messages
 
 /obj/Destroy()
 	processing_objects -= src

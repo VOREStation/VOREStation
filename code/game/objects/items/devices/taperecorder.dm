@@ -15,10 +15,12 @@
 	var/list/storedinfo = new/list()
 	var/list/timestamp = new/list()
 	var/canprint = 1
+
 	flags = CONDUCT
 	throwforce = 2
 	throw_speed = 4
 	throw_range = 20
+	show_messages = 1
 
 /obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, var/verb="says", datum/language/speaking=null)
 	if(recording)
