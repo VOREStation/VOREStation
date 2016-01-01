@@ -133,7 +133,7 @@ REAGENT SCANNER
 	else if (M.getBrainLoss() >= 100 || !M.has_brain())
 		user.show_message("<span class='warning'>Subject is brain dead.</span>")
 	else if (M.getBrainLoss() >= 60)
-		user.show_message("<span class='warning'>Severe brain damage detected. Subject likely to have mental retardation.</span>")
+		user.show_message("<span class='warning'>Severe brain damage detected. Subject likely to have a traumatic brain injury!.</span>")
 	else if (M.getBrainLoss() >= 10)
 		user.show_message("<span class='warning'>Significant brain damage detected. Subject may have had a concussion.</span>")
 	if(ishuman(M))
