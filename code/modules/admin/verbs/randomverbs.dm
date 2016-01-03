@@ -122,8 +122,8 @@
 	set category = "Special Verbs"
 	set name = "Direct Narrate"
 
-	if(!holder)
-		src << "Only administrators may use this command."
+	if(!check_rights(R_ADMIN|R_MOD))
+		src << "Only administrators and moderators may use this command."
 		return
 
 	if(!M)
