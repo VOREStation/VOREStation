@@ -61,6 +61,8 @@
 
 	//put this here for easier tracking ingame
 	var/datum/money_account/initial_account
+	
+	var/accept_tcrystals = 0
 
 /datum/mind/New(var/key)
 	src.key = key
