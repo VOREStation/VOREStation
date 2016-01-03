@@ -122,7 +122,7 @@
 	set category = "Special Verbs"
 	set name = "Direct Narrate"
 
-	if(!check_rights(R_ADMIN|R_MOD))
+	if(!holder)
 		src << "Only administrators and moderators may use this command."
 		return
 
@@ -256,9 +256,9 @@ Ccomp's first proc.
 /client/proc/allow_character_respawn()
 	set category = "Special Verbs"
 	set name = "Allow player to respawn"
-	set desc = "Let's the player bypass the 30 minute wait to respawn or allow them to re-enter their corpse."
+	set desc = "Let's the player bypass the 15 minute wait to respawn or allow them to re-enter their corpse."
 	if(!holder)
-		src << "Only administrators may use this command."
+		src << "Only administrators and moderators may use this command."
 	var/list/ghosts= get_ghosts(1,1)
 
 	var/target = input("Please, select a ghost!", "COME BACK TO LIFE!", null, null) as null|anything in ghosts
