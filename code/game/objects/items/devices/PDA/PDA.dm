@@ -13,7 +13,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	slot_flags = SLOT_ID | SLOT_BELT
 
 	//Main variables
-	var/pdachoice = 1
+	var/pdachoice = 3
 	var/owner = null
 	var/default_cartridge = 0 // Access level defined by cartridge
 	var/obj/item/weapon/cartridge/cartridge = null //current cartridge
@@ -319,9 +319,13 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	new /obj/item/weapon/pen(src)
 	pdachoice = isnull(H) ? 1 : (ishuman(H) ? H.pdachoice : 1)
 	switch(pdachoice)
+		if(1) icon = 'icons/obj/pda.dmi'
 		if(2) icon = 'icons/obj/pda_slim.dmi'
 		if(3) icon = 'icons/obj/pda_old.dmi'
-		else icon = 'icons/obj/pda.dmi'
+		else 
+			icon = 'icons/obj/pda_old.dmi'
+			log_debug("Invalid switch for PDA, defaulting to old PDA icons. [pdachoice] chosen.")
+		
 
 /obj/item/device/pda/proc/can_use()
 

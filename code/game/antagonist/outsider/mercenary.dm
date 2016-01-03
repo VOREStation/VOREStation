@@ -44,9 +44,10 @@ var/datum/antagonist/mercenary/mercs
 	player.equip_to_slot_or_del(new /obj/item/weapon/storage/box/engineer(player.back), slot_in_backpack)
 	player.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/pill/cyanide(player), slot_in_backpack)
 	player.mind.tcrystals = DEFAULT_TELECRYSTAL_AMOUNT
+	player.mind.accept_tcrystals = 1
 
 	if (player.mind == leader)
-		var/obj/item/device/radio/uplink/U = new(player.loc, player.mind, 40)
+		var/obj/item/device/radio/uplink/U = new(player.loc, player.mind, DEFAULT_TELECRYSTAL_AMOUNT)
 		player.put_in_hands(U)
 
 	player.update_icons()
