@@ -14,6 +14,7 @@ For new antags, make sure to add "player.mind.accept_tcrystals = 1" if you want 
 /obj/item/device/telecrystal/attack_self(mob/user as mob)
 	if(user.mind.accept_tcrystals) //Checks to see if antag type allows for tcrystals
 		user.mind.tcrystals += 1
+		user.drop_from_inventory(src)
 		qdel(src)
 	return
 	
