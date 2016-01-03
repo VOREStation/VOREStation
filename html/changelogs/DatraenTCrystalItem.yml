@@ -1,0 +1,7 @@
+
+author: Datraen
+
+delete-after: True
+
+changes: 
+  - rscadd: "Telecrystal item added for trading telecrystals between traitors and mercenaries."
