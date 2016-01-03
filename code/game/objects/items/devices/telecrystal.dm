@@ -4,7 +4,7 @@ Does nothing if not suitable antag type, checks for accept_tcrystals = 1 in a mo
 For new antags, make sure to add "player.mind.accept_tcrystals = 1" if you want tradable tcrystals.
 */
 /obj/item/device/telecrystal
-	name = "Red crystal"
+	name = "red crystal"
 	desc = "A strange, red, glowing crystal."
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "telecrystal"
