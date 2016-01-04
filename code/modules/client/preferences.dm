@@ -34,6 +34,7 @@ datum/preferences
 	var/undershirt						//undershirt type
 	var/socks							//socks type
 	var/backbag = 2						//backpack type
+	var/pdachoice = 3					//PDA type
 	var/h_style = "Bald"				//Hair type
 	var/r_hair = 0						//Hair color
 	var/g_hair = 0						//Hair color
@@ -339,6 +340,10 @@ datum/preferences
 	if(backbag > 4 || backbag < 1)
 		backbag = 1 //Same as above
 	character.backbag = backbag
+
+	if(pdachoice > 3 || pdachoice < 1)
+		pdachoice = 1
+	character.pdachoice = pdachoice
 
 	character.update_body()
 

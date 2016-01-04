@@ -1372,8 +1372,8 @@
 
 /mob/living/carbon/human/MouseDrop(var/atom/over_object)
 	var/mob/living/carbon/human/H = over_object
-	if(holder_type && a_intent == "help" && istype(H) && H.a_intent == "help" && !issmall(H) && Adjacent(H))
-		get_scooped(H)
+	if(holder_type && istype(H) && !H.lying && !issmall(H) && Adjacent(H))
+		get_scooped(H, (usr == src))
 		return
 	return ..()
 

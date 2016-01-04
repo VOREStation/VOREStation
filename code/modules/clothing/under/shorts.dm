@@ -68,8 +68,8 @@
 
 /obj/item/clothing/under/shorts/jeans/black
 	name = "black jeans shorts"
-	icon_state = "black_shorts"
-	worn_state = "black_shorts"
+	icon_state = "blackpants_shorts"
+	worn_state = "blackpants_shorts"
 
 /obj/item/clothing/under/shorts/jeans/black/female
 	icon_state = "black_shorts_f"
@@ -78,8 +78,8 @@
 /obj/item/clothing/under/shorts/khaki
 	name = "khaki shorts"
 	desc = "For that island getaway. It's five o'clock somewhere, right?"
-	icon_state = "khaki_shorts"
-	worn_state = "khaki_shorts"
+	icon_state = "tanpants_shorts"
+	worn_state = "tanpants_shorts"
 
 /obj/item/clothing/under/shorts/khaki/female
 	icon_state = "khaki_shorts_f"

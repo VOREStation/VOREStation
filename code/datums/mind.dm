@@ -61,6 +61,9 @@
 
 	//put this here for easier tracking ingame
 	var/datum/money_account/initial_account
+	
+	//used for antag tcrystal trading, more info in code\game\objects\items\telecrystals.dm
+	var/accept_tcrystals = 0
 
 /datum/mind/New(var/key)
 	src.key = key

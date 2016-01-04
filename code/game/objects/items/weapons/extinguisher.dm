@@ -14,9 +14,9 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 90)
 	attack_verb = list("slammed", "whacked", "bashed", "thunked", "battered", "bludgeoned", "thrashed")
 
-	var/spray_particles = 6
-	var/spray_amount = 2	//units of liquid per particle
-	var/max_water = 240
+	var/spray_particles = 3
+	var/spray_amount = 10	//units of liquid per particle
+	var/max_water = 300
 	var/last_use = 1.0
 	var/safety = 1
 	var/sprite_name = "fire_extinguisher"
@@ -30,8 +30,8 @@
 	throwforce = 2
 	w_class = 2.0
 	force = 3.0
-	max_water = 120
-	spray_particles = 5
+	max_water = 150
+	spray_particles = 3
 	sprite_name = "miniFE"
 
 /obj/item/weapon/extinguisher/New()
