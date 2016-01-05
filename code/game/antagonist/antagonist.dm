@@ -120,10 +120,10 @@
 		if(players && players.len)
 			player = pick(players)
 	if(!istype(player))
-		message_admins("AUTO[uppertext(ticker.mode.name)]: Failed to find a candidate for [role_text].")
+		message_admins("[uppertext(ticker.mode.name)]: Failed to find a candidate for [role_text].")
 		return 0
 	player.current << "<span class='danger'><i>You have been selected this round as an antagonist!</i></span>"
-	message_admins("AUTO[uppertext(ticker.mode.name)]: Selected [player] as a [role_text].")
+	message_admins("[uppertext(ticker.mode.name)]: Selected [player] as a [role_text].")
 	if(istype(player.current, /mob/dead))
 		create_default(player.current)
 	else
