@@ -502,7 +502,7 @@ var/global/list/gear_datums = list()
 /datum/gear/skirt/med
 	display_name = "skirt, medical"
 	path = /obj/item/clothing/under/rank/medical/skirt
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Paramedic")
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic")
 
 /datum/gear/skirt/sci
 	display_name = "skirt, scientist"
