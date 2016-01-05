@@ -358,6 +358,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		var/datum/species/current_species = all_species[pref.species]
 		if(!current_species.has_organ["brain"])
 			limb_selection_list -= "Full Body"
+		else if(pref.organ_data[BP_TORSO] == "cyborg")
+			limb_selection_list |= "Head"
 
 		var/organ_tag = input(user, "Which limb do you want to change?") as null|anything in limb_selection_list
 
@@ -394,6 +396,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			if("Right Hand")
 				limb =        BP_R_HAND
 				third_limb =  BP_R_ARM
+			if("Head")
+				limb =        BP_HEAD
+				choice_options = list("Prothesis")
 			if("Full Body")
 				limb =        BP_TORSO
 				third_limb =  BP_GROIN
