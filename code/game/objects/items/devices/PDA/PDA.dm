@@ -13,7 +13,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	slot_flags = SLOT_ID | SLOT_BELT
 
 	//Main variables
-	var/pdachoice = 3
+	var/pdachoice = 1
 	var/owner = null
 	var/default_cartridge = 0 // Access level defined by cartridge
 	var/obj/item/weapon/cartridge/cartridge = null //current cartridge
