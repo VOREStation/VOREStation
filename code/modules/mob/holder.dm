@@ -6,6 +6,7 @@ var/list/holder_mob_icon_cache = list()
 	desc = "You shouldn't ever see this."
 	icon = 'icons/obj/objects.dmi'
 	slot_flags = SLOT_HEAD | SLOT_HOLSTER
+	show_messages = 1
 
 	sprite_sheets = list(
 		"Vox" = 'icons/mob/species/vox/head.dmi'
