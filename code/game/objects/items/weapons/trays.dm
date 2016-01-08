@@ -192,24 +192,23 @@
 
 /obj/item/weapon/tray/dropped(mob/user)
 
-	var/mob/living/M
-	for(M in src.loc) //to handle hand switching
-		return
+	spawn(1)
+		if(istype(loc,/mob/living)) //to handle hand switching
+			return
 
-	var/foundtable = 0
-	for(var/obj/structure/table/T in loc)
-		foundtable = 1
-		break
+		var/foundtable = 0
+		for(var/obj/structure/table/T in src.loc)
+			foundtable = 1
+			break
 
-	overlays.Cut()
-
-	for(var/obj/item/I in carrying)
-		I.loc = loc
-		carrying.Remove(I)
-		if(!foundtable && isturf(loc))
-			// if no table, presume that the person just shittily dropped the tray on the ground and made a mess everywhere!
-			spawn()
-				for(var/i = 1, i <= rand(1,2), i++)
-					if(I)
-						step(I, pick(NORTH,SOUTH,EAST,WEST))
-						sleep(rand(2,4))
+		overlays.Cut()
+		for(var/obj/item/I in carrying)
+			I.loc = loc
+			carrying.Remove(I)
+			if(!foundtable && isturf(loc))
+				// if no table, presume that the person just shittily dropped the tray on the ground and made a mess everywhere!
+				spawn()
+					for(var/i = 1, i <= rand(1,2), i++)
+						if(I)
+							step(I, pick(NORTH,SOUTH,EAST,WEST))
+							sleep(rand(2,4))
