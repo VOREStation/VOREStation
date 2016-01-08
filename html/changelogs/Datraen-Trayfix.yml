@@ -1,0 +1,4 @@
+author: Datraen
+delete-after: True
+changes: 
+  - bugfix: "Trays now drop items when placed on table, dropped."
