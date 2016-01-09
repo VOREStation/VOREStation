@@ -5,6 +5,7 @@
 	item_state = "flashbang"	//looks exactly like a flash (and nothing like a flashbang)
 	w_class = 1.0
 	flags = CONDUCT
+	slot_flags = SLOT_EARS
 
 	var/use_message = "Halt! Security!"
 	var/spamcheck = 0
