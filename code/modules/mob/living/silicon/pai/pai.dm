@@ -127,9 +127,6 @@
 		return 0
 	..()
 
-/mob/living/silicon/pai/MouseDrop(atom/over_object)
-	return
-
 /mob/living/silicon/pai/emp_act(severity)
 	// Silence for 2 minutes
 	// 20% chance to kill
@@ -396,18 +393,6 @@
 	resting = 0
 	icon_state = "[chassis]"
 
-/mob/living/silicon/pai/start_pulling(var/atom/movable/AM)
-
-	if(istype(AM,/obj/item))
-		var/obj/item/O = AM
-		if(O.w_class == 1)
-			..()
-		else
-			src << "<span class='warning'>You are too small to pull that.</span>"
-	else
-		src << "<span class='warning'>You are too small to pull that.</span>"
-		return
-
 // No binary for pAIs.
 /mob/living/silicon/pai/binarycheck()
 	return 0
@@ -421,12 +406,3 @@
 	grabber.update_inv_l_hand()
 	grabber.update_inv_r_hand()
 	return H
-
-/mob/living/silicon/pai/MouseDrop(atom/over_object)
-	var/mob/living/carbon/H = over_object
-	if(!istype(H) || !Adjacent(H)) return ..()
-	if(H.a_intent == "help")
-		get_scooped(H)
-		return
-	else
-		return ..()

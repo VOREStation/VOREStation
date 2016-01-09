@@ -125,6 +125,8 @@
 #define FLASH_PROTECTION_NONE 0
 #define FLASH_PROTECTION_MODERATE 1
 #define FLASH_PROTECTION_MAJOR 2
+#define ANIMAL_SPAWN_DELAY round(config.respawn_delay / 6)
+#define DRONE_SPAWN_DELAY  round(config.respawn_delay / 3)
 
 #define ANIMAL_SPAWN_DELAY round(config.respawn_delay / 6)
 #define DRONE_SPAWN_DELAY  round(config.respawn_delay / 3)
@@ -172,3 +174,8 @@
 
 #define SYNTH_BLOOD_COLOUR "#030303"
 #define SYNTH_FLESH_COLOUR "#575757"
+
+#define MOB_PULL_NONE 0
+#define MOB_PULL_SMALLER 1
+#define MOB_PULL_SAME 2
+#define MOB_PULL_LARGER 3

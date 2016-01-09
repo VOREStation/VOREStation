@@ -31,6 +31,9 @@
 	holder_type = /obj/item/weapon/holder/mouse
 	mob_size = MOB_MINISCULE
 
+	can_pull_size = 1
+	can_pull_mobs = MOB_PULL_NONE
+
 /mob/living/simple_animal/mouse/Life()
 	..()
 	if(!stat && prob(speak_chance))
@@ -78,20 +81,6 @@
 	if(client)
 		client.time_died_as_mouse = world.time
 
-/mob/living/simple_animal/mouse/MouseDrop(atom/over_object)
-
-	var/mob/living/carbon/H = over_object
-	if(!istype(H) || !Adjacent(H)) return ..()
-
-	if(H.a_intent == "help")
-		get_scooped(H)
-		return
-	else
-		return ..()
-
-/mob/living/simple_animal/mouse/start_pulling(var/atom/movable/AM)//Prevents mouse from pulling things
-	src << "<span class='warning'>You are too small to pull anything.</span>"
-	return
 
 /mob/living/simple_animal/mouse/Crossed(AM as mob|obj)
 	if( ishuman(AM) )

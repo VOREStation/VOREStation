@@ -6,6 +6,7 @@ var/list/holder_mob_icon_cache = list()
 	desc = "You shouldn't ever see this."
 	icon = 'icons/obj/objects.dmi'
 	slot_flags = SLOT_HEAD | SLOT_HOLSTER
+	show_messages = 1
 
 	sprite_sheets = list(
 		"Vox" = 'icons/mob/species/vox/head.dmi'
@@ -42,6 +43,17 @@ var/list/holder_mob_icon_cache = list()
 			mob_container.forceMove(get_turf(src))
 			M.reset_view()
 		qdel(src)
+
+/obj/item/weapon/holder/GetID()
+	for(var/mob/M in contents)
+		var/obj/item/I = M.GetIdCard()
+		if(I)
+			return I
+	return null
+
+/obj/item/weapon/holder/GetAccess()
+	var/obj/item/I = GetID()
+	return I ? I.GetAccess() : ..()
 
 /obj/item/weapon/holder/proc/sync(var/mob/living/M)
 	dir = 2
@@ -82,6 +94,13 @@ var/list/holder_mob_icon_cache = list()
 
 //Mob procs and vars for scooping up
 /mob/living/var/holder_type
+
+/mob/living/MouseDrop(var/atom/over_object)
+	var/mob/living/carbon/human/H = over_object
+	if(holder_type && istype(H) && !H.lying && !issmall(H) && Adjacent(H))
+		get_scooped(H, (usr == src))
+		return
+	return ..()
 
 /mob/living/proc/get_scooped(var/mob/living/carbon/grabber, var/self_grab)
 
