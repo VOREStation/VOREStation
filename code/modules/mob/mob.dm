@@ -56,19 +56,19 @@
 	if(!client)	return
 
 	if (type)
-		if(type & 1 && (sdisabilities & BLIND || blinded || paralysis) )//Vision related
+		if((type & 1) && ((sdisabilities & BLIND) || blinded || paralysis) )//Vision related
 			if (!( alt ))
 				return
 			else
 				msg = alt
 				type = alt_type
-		if (type & 2 && (sdisabilities & DEAF || ear_deaf))//Hearing related
+		if ((type & 2) && ((sdisabilities & DEAF) || ear_deaf))//Hearing related
 			if (!( alt ))
 				return
 			else
 				msg = alt
 				type = alt_type
-				if ((type & 1 && sdisabilities & BLIND))
+				if ((type & 1) && (sdisabilities & BLIND))
 					return
 	// Added voice muffling for Issue 41.
 	if(stat == UNCONSCIOUS || sleeping > 0)
@@ -1012,13 +1012,13 @@ mob/proc/yank_out_object()
 		if (ishuman(U))
 			var/mob/living/carbon/human/human_user = U
 			human_user.bloody_hands(H)
-			
+
 	else if(issilicon(src))
 		var/mob/living/silicon/robot/R = src
 		R.embedded -= selection
 		R.adjustBruteLoss(5)
 		R.adjustFireLoss(10)
-	
+
 	selection.forceMove(get_turf(src))
 	if(!(U.l_hand && U.r_hand))
 		U.put_in_hands(selection)

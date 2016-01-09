@@ -256,9 +256,13 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]
-		if(E && istype(E))
+		if(istype(E))
+			if(E.status & ORGAN_ROBOT)
+				return
 			if(E.damage > 0)
 				E.damage = max(E.damage - 5 * removed, 0)
+			if(E.damage <= 5 && E.organ_tag == O_EYES)
+				H.sdisabilities &= ~BLIND
 
 /datum/reagent/peridaxon
 	name = "Peridaxon"
@@ -272,10 +276,13 @@
 /datum/reagent/peridaxon/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-
 		for(var/obj/item/organ/I in H.internal_organs)
-			if((I.damage > 0) && !(I.status & ORGAN_ROBOT)) //Peridaxon heals only non-robotic organs
+			if(I.status & ORGAN_ROBOT)
+				continue
+			if(I.damage > 0) //Peridaxon heals only non-robotic organs
 				I.damage = max(I.damage - removed, 0)
+			if(I.damage <= 5 && I.organ_tag == O_EYES)
+				H.sdisabilities &= ~BLIND
 
 /datum/reagent/ryetalyn
 	name = "Ryetalyn"
