@@ -295,6 +295,9 @@
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/shoes/white(src)
+	new /obj/item/clothing/head/soft/mime(src)
+	new /obj/item/clothing/head/soft/mime(src)
+	new /obj/item/clothing/head/soft/mime(src)
 	return
 
 
@@ -447,6 +450,11 @@
 	new /obj/item/clothing/under/rank/medical/blue(src)
 	new /obj/item/clothing/under/rank/medical/green(src)
 	new /obj/item/clothing/under/rank/medical/purple(src)
+	new /obj/item/clothing/under/rank/medical/black(src)
+	new /obj/item/clothing/head/surgery/purple(src)
+	new /obj/item/clothing/head/surgery/blue(src)
+	new /obj/item/clothing/head/surgery/green(src)
+	new /obj/item/clothing/head/surgery/black(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/suit/storage/toggle/labcoat(src)
