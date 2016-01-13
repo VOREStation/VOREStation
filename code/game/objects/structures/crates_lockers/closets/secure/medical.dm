@@ -106,6 +106,9 @@
 		new /obj/item/device/radio/headset/headset_med(src)
 		new /obj/item/device/radio/headset/headset_med/alt(src)
 		new /obj/item/clothing/suit/storage/hooded/wintercoat/medical(src)
+		new /obj/item/weapon/storage/box/freezer(src)
+		new /obj/item/weapon/storage/box/freezer(src)
+		new /obj/item/weapon/storage/box/freezer(src)
 		return
 
 /obj/structure/closet/secure_closet/paramedic
@@ -140,6 +143,7 @@
 		new /obj/random/medical(src)
 		new /obj/item/weapon/crowbar(src)
 		new /obj/item/weapon/extinguisher/mini(src)
+		new /obj/item/weapon/storage/box/freezer(src)
 		return
 
 /obj/structure/closet/secure_closet/CMO
@@ -188,6 +192,7 @@
 		new /obj/item/device/flash(src)
 		new /obj/item/weapon/reagent_containers/hypospray(src)
 		new /obj/item/clothing/suit/storage/hooded/wintercoat/medical(src)
+		new /obj/item/weapon/storage/box/freezer(src)
 		return
 
 
