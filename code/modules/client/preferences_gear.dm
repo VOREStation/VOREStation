@@ -178,6 +178,14 @@ var/global/list/gear_datums = list()
 	display_name = "hair flower pin, blue"
 	path = /obj/item/clothing/head/hairflower/blue
 
+/datum/gear/hairflower/violet
+	display_name = "hair flower pin, violet"
+	path = /obj/item/clothing/head/hairflower/violet
+
+/datum/gear/hairflower/orange
+	display_name = "hair flower pin, orange"
+	path = /obj/item/clothing/head/hairflower/orange
+
 /datum/gear/hardhat
 	display_name = "hardhat, yellow"
 	path = /obj/item/clothing/head/hardhat
