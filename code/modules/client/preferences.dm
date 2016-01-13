@@ -34,6 +34,7 @@ datum/preferences
 	var/undershirt						//undershirt type
 	var/socks							//socks type
 	var/backbag = 2						//backpack type
+	var/pdachoice = 1					//PDA type
 	var/h_style = "Bald"				//Hair type
 	var/r_hair = 0						//Hair color
 	var/g_hair = 0						//Hair color
@@ -309,7 +310,7 @@ datum/preferences
 	character.used_skillpoints = used_skillpoints
 
 	// Destroy/cyborgize organs and limbs.
-	for(var/name in BP_ALL)
+	for(var/name in list(BP_HEAD, BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM, BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_TORSO))
 		var/status = organ_data[name]
 		var/obj/item/organ/external/O = character.organs_by_name[name]
 		if(O)
@@ -339,6 +340,10 @@ datum/preferences
 	if(backbag > 4 || backbag < 1)
 		backbag = 1 //Same as above
 	character.backbag = backbag
+
+	if(pdachoice > 3 || pdachoice < 1)
+		pdachoice = 1
+	character.pdachoice = pdachoice
 
 	character.update_body()
 

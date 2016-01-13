@@ -9,6 +9,8 @@
 	name = "storage"
 	icon = 'icons/obj/storage.dmi'
 	w_class = 3
+	show_messages = 1
+
 	var/list/can_hold = new/list() //List of objects which this item can store (if set, it can't store anything else)
 	var/list/cant_hold = new/list() //List of objects which this item can't store (in effect only if can_hold isn't set)
 	var/list/is_seeing = new/list() //List of mobs which are currently seeing the contents of this item's storage
@@ -225,7 +227,7 @@
 /obj/item/weapon/storage/proc/can_be_inserted(obj/item/W as obj, stop_messages = 0)
 	if(!istype(W)) return //Not an item
 
-	if(!usr.canUnEquip(W))
+	if(usr.isEquipped(W) && !usr.canUnEquip(W))
 		return 0
 
 	if(src.loc == W)

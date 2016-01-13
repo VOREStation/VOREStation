@@ -4,6 +4,7 @@
 	opacity = 0
 	density = 0
 	layer = 3.5
+	w_class = 3
 
 /obj/structure/sign/ex_act(severity)
 	switch(severity)
@@ -138,7 +139,7 @@
 
 /obj/structure/sign/kiddieplaque
 	name = "\improper AI developers plaque"
-	desc = "Next to the extremely long list of names and job titles, there is a drawing of a little child. The child appears to be retarded. Beneath the image, someone has scratched the word \"PACKETS\""
+	desc = "Next to the extremely long list of names and job titles, there is a drawing of a little child. The child appears to be developmentally disabled. Beneath the image, someone has scratched the word \"PACKETS\""
 	icon_state = "kiddieplaque"
 
 /obj/structure/sign/atmosplaque

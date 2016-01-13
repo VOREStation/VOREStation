@@ -234,13 +234,13 @@ var/global/list/gear_datums = list()
 	slot = slot_head
 
 /datum/gear/santahat
-	display_name = "santa hat, red"
+	display_name = "santa hat, red (holiday)"
 	path = /obj/item/clothing/head/santa
-	cost = 1
+	cost = 11
 	slot = slot_head
 
 /datum/gear/santahat/green
-	display_name = "santa hat, green"
+	display_name = "santa hat, green (holiday)"
 	path = /obj/item/clothing/head/santa/green
 
 // This was sprited and coded specifically for Zhan-Khazan characters. Before you
@@ -344,6 +344,10 @@ var/global/list/gear_datums = list()
 /datum/gear/bandanamask/red
 	display_name = "bandana, red"
 	path = /obj/item/clothing/mask/bandana/red
+
+/datum/gear/bandanamask/ipc_monitor
+	display_name = "display monitor (prosthetic head only)"
+	path = /obj/item/clothing/mask/monitor
 
 /datum/gear/sterilemask
 	display_name = "sterile mask"
@@ -502,7 +506,7 @@ var/global/list/gear_datums = list()
 /datum/gear/skirt/med
 	display_name = "skirt, medical"
 	path = /obj/item/clothing/under/rank/medical/skirt
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Paramedic")
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic")
 
 /datum/gear/skirt/sci
 	display_name = "skirt, scientist"
@@ -1205,14 +1209,14 @@ var/global/list/gear_datums = list()
 	whitelisted = "Tajara" // You do have a monopoly on a fur suit tho
 
 /datum/gear/forensics/red
-	display_name = "forensics, red"
+	display_name = "forensics long, red"
 	path = /obj/item/clothing/suit/storage/forensics/red/long
 	cost = 2
 	slot = slot_wear_suit
 	allowed_roles = list("Detective")
 
 /datum/gear/forensics/blue
-	display_name = "forensics, blue"
+	display_name = "forensics long, blue"
 	path = /obj/item/clothing/suit/storage/forensics/blue/long
 	cost = 2
 	slot = slot_wear_suit

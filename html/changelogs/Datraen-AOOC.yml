@@ -1,0 +1,7 @@
+
+author: Datraen
+
+delete-after: True
+
+changes: 
+  - rscadd: "Moderators can now see and use AOOC."

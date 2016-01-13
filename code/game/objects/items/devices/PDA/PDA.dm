@@ -13,6 +13,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	slot_flags = SLOT_ID | SLOT_BELT
 
 	//Main variables
+	var/pdachoice = 1
 	var/owner = null
 	var/default_cartridge = 0 // Access level defined by cartridge
 	var/obj/item/weapon/cartridge/cartridge = null //current cartridge
@@ -309,13 +310,22 @@ var/global/list/obj/item/device/pda/PDAs = list()
  *	The Actual PDA
  */
 
-/obj/item/device/pda/New()
+/obj/item/device/pda/New(var/mob/living/carbon/human/H)
 	..()
 	PDAs += src
 	PDAs = sortAtom(PDAs)
 	if(default_cartridge)
 		cartridge = new default_cartridge(src)
 	new /obj/item/weapon/pen(src)
+	pdachoice = isnull(H) ? 1 : (ishuman(H) ? H.pdachoice : 1)
+	switch(pdachoice)
+		if(1) icon = 'icons/obj/pda.dmi'
+		if(2) icon = 'icons/obj/pda_slim.dmi'
+		if(3) icon = 'icons/obj/pda_old.dmi'
+		else 
+			icon = 'icons/obj/pda_old.dmi'
+			log_debug("Invalid switch for PDA, defaulting to old PDA icons. [pdachoice] chosen.")
+		
 
 /obj/item/device/pda/proc/can_use()
 
@@ -869,7 +879,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 	overlays.Cut()
 	if(new_message || new_news)
-		overlays += image('icons/obj/pda.dmi', "pda-r")
+		overlays += image(icon, "pda-r")
 
 /obj/item/device/pda/proc/detonate_act(var/obj/item/device/pda/P)
 	//TODO: sometimes these attacks show up on the message server

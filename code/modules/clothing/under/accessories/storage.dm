@@ -3,6 +3,8 @@
 	desc = "Used to hold things when you don't have enough hands."
 	icon_state = "webbing"
 	slot = "utility"
+	show_messages = 1
+
 	var/slots = 3
 	var/obj/item/weapon/storage/internal/hold
 	w_class = 3.0
