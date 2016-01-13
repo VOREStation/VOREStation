@@ -34,7 +34,7 @@ datum/preferences
 	var/undershirt						//undershirt type
 	var/socks							//socks type
 	var/backbag = 2						//backpack type
-	var/pdachoice = 3					//PDA type
+	var/pdachoice = 1					//PDA type
 	var/h_style = "Bald"				//Hair type
 	var/r_hair = 0						//Hair color
 	var/g_hair = 0						//Hair color

@@ -10,6 +10,7 @@ For new antags, make sure to add "player.mind.accept_tcrystals = 1" if you want 
 	icon_state = "telecrystal"
 	item_state = "telecrystal"
 	force = 5
+	origin_tech = list(TECH_MATERIAL = 2, TECH_BLUESPACE = 1, TECH_ILLEGAL = 1)
 	
 /obj/item/device/telecrystal/attack_self(mob/user as mob)
 	if(user.mind.accept_tcrystals) //Checks to see if antag type allows for tcrystals

@@ -1,0 +1,7 @@
+
+author: Datraen
+
+delete-after: True
+
+changes: 
+  - rscadd: "Telecrystal item now has tech values."
