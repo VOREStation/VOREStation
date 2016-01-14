@@ -195,7 +195,8 @@ var/list/admin_verbs_debug = list(
 	/client/proc/Jump,
 	/client/proc/jumptomob,
 	/client/proc/jumptocoord,
-	/client/proc/dsay
+	/client/proc/dsay,
+	/client/proc/admin_ghost			/*allows us to ghost/reenter body at will*/
 	)
 
 var/list/admin_verbs_paranoid_debug = list(
@@ -303,9 +304,12 @@ var/list/admin_verbs_mod = list(
 	/datum/admins/proc/show_skills,
 	/datum/admins/proc/show_player_panel,
 	/client/proc/check_antagonists,
+	/client/proc/aooc,
 	/client/proc/jobbans,
 	/client/proc/cmd_admin_subtle_message, 	/*send an message to somebody as a 'voice in their head'*/
-	/datum/admins/proc/paralyze_mob
+	/datum/admins/proc/paralyze_mob,
+	/client/proc/cmd_admin_direct_narrate,
+	/client/proc/allow_character_respawn    /* Allows a ghost to respawn */
 )
 
 var/list/admin_verbs_mentor = list(

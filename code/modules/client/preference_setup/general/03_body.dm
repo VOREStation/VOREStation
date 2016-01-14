@@ -313,7 +313,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else if(href_list["skin_tone"])
 		if(!has_flag(mob_species, HAS_SKIN_TONE))
 			return TOPIC_NOACTION
-		var/new_s_tone = input(user, "Choose your character's skin-tone:\n(Light 1 - 220 Dark)", "Character Preference", pref.s_tone)  as num|null
+		var/new_s_tone = input(user, "Choose your character's skin-tone:\n(Light 1 - 220 Dark)", "Character Preference", (-pref.s_tone) + 35)  as num|null
 		if(new_s_tone && has_flag(mob_species, HAS_SKIN_TONE) && CanUseTopic(user))
 			pref.s_tone = 35 - max(min( round(new_s_tone), 220),1)
 			return TOPIC_REFRESH
@@ -358,6 +358,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		var/datum/species/current_species = all_species[pref.species]
 		if(!current_species.has_organ["brain"])
 			limb_selection_list -= "Full Body"
+		else if(pref.organ_data[BP_TORSO] == "cyborg")
+			limb_selection_list |= "Head"
 
 		var/organ_tag = input(user, "Which limb do you want to change?") as null|anything in limb_selection_list
 
@@ -394,6 +396,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			if("Right Hand")
 				limb =        BP_R_HAND
 				third_limb =  BP_R_ARM
+			if("Head")
+				limb =        BP_HEAD
+				choice_options = list("Prothesis")
 			if("Full Body")
 				limb =        BP_TORSO
 				third_limb =  BP_GROIN

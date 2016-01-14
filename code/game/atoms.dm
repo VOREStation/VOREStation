@@ -437,7 +437,7 @@ its easier to just keep the beam vertical.
 		return 0
 
 /atom/proc/checkpass(passflag)
-	return pass_flags&passflag
+	return (pass_flags&passflag)
 
 /atom/proc/isinspace()
 	if(istype(get_turf(src), /turf/space))
@@ -455,10 +455,10 @@ its easier to just keep the beam vertical.
 
 	for(var/I in see)
 		if(isobj(I))
-			spawn(0)
-				if(I) //It's possible that it could be deleted in the meantime.
-					var/obj/O = I
-					O.show_message( message, 1, blind_message, 2)
+			//spawn(0)
+			//if(I) //It's possible that it could be deleted in the meantime.
+			var/obj/O = I
+			O.show_message( message, 1, blind_message, 2)
 		else if(ismob(I))
 			var/mob/M = I
 			if(M.see_invisible >= invisibility) // Cannot view the invisible

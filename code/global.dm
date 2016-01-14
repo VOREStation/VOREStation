@@ -27,6 +27,7 @@ var/diary				= null
 var/href_logfile        = null
 var/station_name        = "Northern Star"
 var/station_short       = "Northern Star"
+var/const/dock_name     = "Vir Interstellar Spaceport"
 var/const/boss_name     = "Central Command"
 var/const/boss_short    = "Centcomm"
 var/const/company_name  = "NanoTrasen"

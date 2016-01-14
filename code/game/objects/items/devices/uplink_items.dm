@@ -385,6 +385,12 @@ datum/uplink_item/dd_SortValue()
 	item_cost = 3
 	path = /obj/item/weapon/storage/secure/briefcase/money
 	desc = "A briefcase with 10,000 untraceable thalers for funding your sneaky activities."
+	
+/datum/uplink_item/item/tools/crystal
+	name = "Tradable Crystal"
+	item_cost = 1
+	path = /obj/item/device/telecrystal
+	desc = "A telecrystal that can be transferred from one user to another. Be sure not to give it to just anyone."
 
 /***********
 * Implants *

@@ -87,6 +87,7 @@
 
 		if (!hasorgans(target))
 			return
+
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
 		for(var/obj/item/organ/I in affected.internal_organs)
@@ -109,12 +110,14 @@
 			return
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-		for(var/obj/item/organ/I in affected.internal_organs)
+		for(var/obj/item/organ/internal/I in affected.internal_organs)
 			if(I && I.damage > 0)
 				if(!(I.status & ORGAN_ROBOT))
 					user.visible_message("<span class='notice'>[user] treats damage to [target]'s [I.name] with [tool_name].</span>", \
 					"<span class='notice'>You treat damage to [target]'s [I.name] with [tool_name].</span>" )
 					I.damage = 0
+					if(I.organ_tag == O_EYES)
+						target.sdisabilities &= ~BLIND
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 

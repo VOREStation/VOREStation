@@ -12,6 +12,7 @@
 	var/implant_color = "b"
 	var/allow_reagents = 0
 	var/malfunction = 0
+	show_messages = 1
 
 	proc/trigger(emote, source as mob)
 		return

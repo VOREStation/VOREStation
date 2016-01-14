@@ -344,68 +344,51 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	. = list()	// this will be a list of all connected power objects
 	var/turf/T
 
-	// Handle z-level connections.
-	if(d1 == 11 || d1 == 12)
-		// Connections below.
-		if(d1 == 11)
-			var/turf/turf = GetBelow(src)
-			if(turf)
-				. += power_list(turf, src, 12, 1)
-
-		// Connections above.
-		if(d1 == 12)
-			var/turf/turf = GetAbove(src)
-			if(turf)
-				. += power_list(turf, src, 11, 1)
-
-	//get matching cables from the first direction
-	else if(d1) //if not a node cable
-		T = get_step(src, d1)
+	// Handle up/down cables
+	if(d1 == 11 || d2 == 11)
+		T = GetBelow(src)
 		if(T)
-			. += power_list(T, src, turn(d1, 180), powernetless_only) //get adjacents matching cables
-
-	if(d1&(d1-1)) //diagonal direction, must check the 4 possibles adjacents tiles
-		T = get_step(src,d1&3) // go north/south
+			. += power_list(T, src, 12, 1)
+	if(d1 == 12 || d1 == 12)
+		T = GetAbove(src)
 		if(T)
-			. += power_list(T, src, d1 ^ 3, powernetless_only) //get diagonally matching cables
-		T = get_step(src,d1&12) // go east/west
+			. += power_list(T, src, 11, 1)
+
+	// Handle standard cables in adjacent turfs
+	for(var/cable_dir in list(d1, d2))
+		if(cable_dir == 11 || cable_dir == 12 || cable_dir == 0)
+			continue
+		var/reverse = reverse_dir[cable_dir]
+		T = get_step(src, cable_dir)
 		if(T)
-			. += power_list(T, src, d1 ^ 12, powernetless_only) //get diagonally matching cables
+			for(var/obj/structure/cable/C in T)
+				if((C.d1 && C.d1 == reverse) || (C.d2 && C.d2 == reverse))
+					. += C
+		if(cable_dir & (cable_dir - 1)) // Diagonal, check for /\/\/\ style cables along cardinal directions
+			for(var/pair in list(NORTH|SOUTH, EAST|WEST))
+				T = get_step(src, cable_dir & pair)
+				if(T)
+					var/req_dir = cable_dir ^ pair
+					for(var/obj/structure/cable/C in T)
+						if((C.d1 && C.d1 == req_dir) || (C.d2 && C.d2 == req_dir))
+							. += C
 
-	. += power_list(loc, src, d1, powernetless_only) //get on turf matching cables
+	// Handle cables on the same turf as us
+	for(var/obj/structure/cable/C in loc)
+		if(C.d1 == d1 || C.d2 == d1 || C.d1 == d2 || C.d2 == d2) // if either of C's d1 and d2 match either of ours
+			. += C
 
+	if(d1 == 0)
+		for(var/obj/machinery/power/P in loc)
+			if(P.powernet == 0) continue // exclude APCs with powernet=0
+			if(!powernetless_only || !P.powernet)
+				. += P
 
-	// Second direction.
-	// Handle z-level connections.
-	if(d2 == 11 || d2 == 12)
-		// Connections below.
-		if(d2 == 11)
-			var/turf/turf = GetBelow(src)
-			if(turf)
-				. += power_list(turf, src, 12, 1)
-
-		// Connections above.
-		if(d2 == 12)
-			var/turf/turf = GetAbove(src)
-			if(turf)
-				. += power_list(turf, src, 11, 1)
-
-	else
-		//do the same on the second direction (which can't be 0)
-		T = get_step(src, d2)
-		if(T)
-			. += power_list(T, src, turn(d2, 180), powernetless_only) //get adjacents matching cables
-
-		if(d2&(d2-1)) //diagonal direction, must check the 4 possibles adjacents tiles
-			T = get_step(src,d2&3) // go north/south
-			if(T)
-				. += power_list(T, src, d2 ^ 3, powernetless_only) //get diagonally matching cables
-			T = get_step(src,d2&12) // go east/west
-			if(T)
-				. += power_list(T, src, d2 ^ 12, powernetless_only) //get diagonally matching cables
-		. += power_list(loc, src, d2, powernetless_only) //get on turf matching cables
-
-	return .
+	// if the caller asked for powernetless cables only, dump the ones with powernets
+	if(powernetless_only)
+		for(var/obj/structure/cable/C in .)
+			if(C.powernet)
+				. -= C
 
 //should be called after placing a cable which extends another cable, creating a "smooth" cable that no longer terminates in the centre of a turf.
 //needed as this can, unlike other placements, disconnect cables
@@ -515,29 +498,24 @@ obj/structure/cable/proc/cableColor(var/colorC)
 //you can use wires to heal robotics
 /obj/item/stack/cable_coil/attack(var/atom/A, var/mob/living/user, var/def_zone)
 	if(ishuman(A) && user.a_intent == I_HELP)
-		return
-	return ..()
-
-/obj/item/stack/cable_coil/afterattack(var/mob/M, var/mob/user)
-
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/human/H = A
 		var/obj/item/organ/external/S = H.organs_by_name[user.zone_sel.selecting]
 
-		if(!S || !(S.status & ORGAN_ROBOT) || user.a_intent != I_HELP)
+		if(!S || !(S.status & ORGAN_ROBOT))
 			return ..()
 
 		if(S.burn_dam)
 			if(S.burn_dam < ROBOLIMB_SELF_REPAIR_CAP)
 				S.heal_damage(0,15,0,1)
-				user.visible_message("<span class='danger'>\The [user] repairs some burn damage on \the [M]'s [S.name] with \the [src].</span>")
-			else if(S.open != 2)
+				user.visible_message("<span class='danger'>\The [user] repairs some burn damage on \the [H]'s [S.name] with \the [src].</span>")
+			else if(S.open < 3)
 				user << "<span class='danger'>The damage is far too severe to patch over externally.</span>"
-		else if(S.open != 2)
+			else
+				return ..()
+		else
 			user << "<span class='notice'>Nothing to fix!</span>"
 		return
-	else
-		return ..()
+	return ..()
 
 
 /obj/item/stack/cable_coil/update_icon()

@@ -85,7 +85,7 @@ default behaviour is:
 				now_pushing = 0
 				return
 
-			if((tmob.mob_always_swap || (tmob.a_intent == I_HELP || tmob.restrained()) && (a_intent == I_HELP || src.restrained())) && tmob.canmove && canmove && !dense && can_move_mob(tmob, 1, 0)) // mutual brohugs all around!
+			if((tmob.mob_always_swap || (tmob.a_intent == I_HELP || tmob.restrained()) && (a_intent == I_HELP || src.restrained())) && tmob.canmove && canmove && !tmob.buckled && !buckled && !dense && can_move_mob(tmob, 1, 0)) // mutual brohugs all around!
 				var/turf/oldloc = loc
 				forceMove(tmob.loc)
 				tmob.forceMove(oldloc)
@@ -123,22 +123,26 @@ default behaviour is:
 		now_pushing = 0
 		spawn(0)
 			..()
-			if (!istype(AM, /atom/movable))
+			if (!istype(AM, /atom/movable) || AM.anchored)
+				if(confused && prob(50) && m_intent=="run")
+					Paralyse(1)
+					playsound(loc, "punch", 25, 1, -1)
+					visible_message("<span class='warning'>[src] [pick("ran", "slammed")] into \the [AM]!</span>")
+					src.take_organ_damage(5)
 				return
 			if (!now_pushing)
 				now_pushing = 1
 
-				if (!AM.anchored)
-					var/t = get_dir(src, AM)
-					if (istype(AM, /obj/structure/window))
-						for(var/obj/structure/window/win in get_step(AM,t))
-							now_pushing = 0
-							return
-					step(AM, t)
-					if(ishuman(AM) && AM:grabbed_by)
-						for(var/obj/item/weapon/grab/G in AM:grabbed_by)
-							step(G:assailant, get_dir(G:assailant, AM))
-							G.adjust_position()
+				var/t = get_dir(src, AM)
+				if (istype(AM, /obj/structure/window))
+					for(var/obj/structure/window/win in get_step(AM,t))
+						now_pushing = 0
+						return
+				step(AM, t)
+				if(ishuman(AM) && AM:grabbed_by)
+					for(var/obj/item/weapon/grab/G in AM:grabbed_by)
+						step(G:assailant, get_dir(G:assailant, AM))
+						G.adjust_position()
 				now_pushing = 0
 			return
 	return

@@ -3,7 +3,7 @@
 //please preference put stuff where it's easy to find - C
 
 /obj/item/weapon/autopsy_scanner
-	name = "autopsy scanner"
+	name = "biopsy scanner"
 	desc = "Extracts information on wounds."
 	icon = 'icons/obj/autopsy_scanner.dmi'
 	icon_state = ""
