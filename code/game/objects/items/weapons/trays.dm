@@ -185,29 +185,31 @@
 				add = 5
 			if(calc_carry() + add >= max_carry)
 				break
-
+			var/image/Img = new(src.icon)
 			I.loc = src
 			carrying.Add(I)
-			overlays += image("icon" = I.icon, "icon_state" = I.icon_state, "layer" = 30 + I.layer)
+			Img.icon = I.icon
+			Img.icon_state = I.icon_state
+			Img.layer = 30 + I.layer
+			if(istype(I, /obj/item/weapon/material))
+				var/obj/item/weapon/material/O = I
+				if(O.applies_material_colour)
+					Img.color = O.color
+			overlays += Img
 
 /obj/item/weapon/tray/dropped(mob/user)
-
-	spawn(1)
-		if(istype(loc,/mob/living)) //to handle hand switching
-			return
-
-		var/foundtable = 0
-		for(var/obj/structure/table/T in src.loc)
-			foundtable = 1
-			break
-
-		overlays.Cut()
-		for(var/obj/item/I in carrying)
-			I.loc = loc
-			carrying.Remove(I)
-			if(!foundtable && isturf(loc))
-				// if no table, presume that the person just shittily dropped the tray on the ground and made a mess everywhere!
-				spawn()
+	var/noTable = null
+	
+	spawn() //Allows the tray to udpate location, rather than just checking against mob's location
+		if(isturf(src.loc) && !(locate(/obj/structure/table) in src.loc))
+			noTable = 1
+		
+		if(isturf(loc) && !(locate(/mob/living) in src.loc))
+			overlays.Cut()
+			for(var/obj/item/I in carrying)
+				I.forceMove(src.loc)
+				carrying.Remove(I)
+				if(noTable)
 					for(var/i = 1, i <= rand(1,2), i++)
 						if(I)
 							step(I, pick(NORTH,SOUTH,EAST,WEST))
