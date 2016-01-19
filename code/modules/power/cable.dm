@@ -345,14 +345,17 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	var/turf/T
 
 	// Handle up/down cables
-	if(d1 == 11 || d2 == 11)
-		T = GetBelow(src)
-		if(T)
-			. += power_list(T, src, 12, 1)
-	if(d1 == 12 || d1 == 12)
-		T = GetAbove(src)
-		if(T)
-			. += power_list(T, src, 11, 1)
+	if(d1 == 11 || d1 == 12 || d2 == 11 || d2 == 12)
+		var/turf/controllerlocation = locate(1, 1, z)
+		for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
+			if(controller.up && (d1 == 12 || d2 == 12))
+				T = locate(src.x, src.y, controller.up_target)
+				if(T)
+					. += power_list(T, src, 11, 1)
+			if(controller.down && (d1 == 11 || d2 == 11))
+				T = locate(src.x, src.y, controller.down_target)
+				if(T)
+					. += power_list(T, src, 12, 1)
 
 	// Handle standard cables in adjacent turfs
 	for(var/cable_dir in list(d1, d2))
@@ -464,6 +467,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	slot_flags = SLOT_BELT
 	item_state = "coil"
 	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
+	stacktype = /obj/item/stack/cable_coil
 
 /obj/item/stack/cable_coil/cyborg
 	name = "cable coil synthesizer"

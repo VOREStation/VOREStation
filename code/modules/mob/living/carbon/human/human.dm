@@ -305,7 +305,7 @@
 //Returns "Unknown" if facially disfigured and real_name if not. Useful for setting name when polyacided or when updating a human's name variable
 /mob/living/carbon/human/proc/get_face_name()
 	var/obj/item/organ/external/head = get_organ(BP_HEAD)
-	if(!head || head.disfigured || (head.status & ORGAN_DESTROYED) || !real_name || (HUSK in mutations) )	//disfigured. use id-name if possible
+	if(!head || head.disfigured || head.is_stump() || !real_name || (HUSK in mutations) )	//disfigured. use id-name if possible
 		return "Unknown"
 	return real_name
 
@@ -732,6 +732,32 @@
 	if(!H || !H.can_intake_reagents)
 		return 0
 	return 1
+
+/mob/living/carbon/human/proc/vomit()
+
+	if(!check_has_mouth())
+		return
+	if(stat == DEAD)
+		return
+	if(!lastpuke)
+		lastpuke = 1
+		src << "<span class='warning'>You feel nauseous...</span>"
+		spawn(150)	//15 seconds until second warning
+			src << "<span class='warning'>You feel like you are about to throw up!</span>"
+			spawn(100)	//and you have 10 more for mad dash to the bucket
+				Stun(5)
+
+				src.visible_message("<span class='warning'>[src] throws up!</span>","<span class='warning'>You throw up!</span>")
+				playsound(loc, 'sound/effects/splat.ogg', 50, 1)
+
+				var/turf/location = loc
+				if (istype(location, /turf/simulated))
+					location.add_vomit_floor(src, 1)
+
+				nutrition -= 40
+				adjustToxLoss(-3)
+				spawn(350)	//wait 35 seconds before next volley
+					lastpuke = 0
 
 /mob/living/carbon/human/proc/morph()
 	set name = "Morph"
@@ -1359,6 +1385,55 @@
 	if(shoes && (shoes.item_flags & NOSLIP) && istype(shoes, /obj/item/clothing/shoes/magboots))  //magboots + dense_object = no floating
 		return 1
 	return 0
+
+/mob/living/carbon/human/MouseDrop(var/atom/over_object)
+	var/mob/living/carbon/human/H = over_object
+	if(holder_type && a_intent == I_HELP && istype(H) && H == usr && H.a_intent == I_HELP && !issmall(H) && Adjacent(H))
+		get_scooped(H)
+		return
+	return ..()
+
+//Puts the item into our active hand if possible. returns 1 on success.
+/mob/living/carbon/human/put_in_active_hand(var/obj/item/W)
+	return (hand ? put_in_l_hand(W) : put_in_r_hand(W))
+
+//Puts the item into our inactive hand if possible. returns 1 on success.
+/mob/living/carbon/human/put_in_inactive_hand(var/obj/item/W)
+	return (hand ? put_in_r_hand(W) : put_in_l_hand(W))
+
+/mob/living/carbon/human/put_in_hands(var/obj/item/W)
+	if(!W)
+		return 0
+	if(put_in_active_hand(W))
+		update_inv_l_hand()
+		update_inv_r_hand()
+		return 1
+	else if(put_in_inactive_hand(W))
+		update_inv_l_hand()
+		update_inv_r_hand()
+		return 1
+	else
+		return ..()
+
+/mob/living/carbon/human/put_in_l_hand(var/obj/item/W)
+	if(!..() || l_hand)
+		return 0
+	W.forceMove(src)
+	l_hand = W
+	W.equipped(src,slot_l_hand)
+	W.add_fingerprint(src)
+	update_inv_l_hand()
+	return 1
+
+/mob/living/carbon/human/put_in_r_hand(var/obj/item/W)
+	if(!..() || r_hand)
+		return 0
+	W.forceMove(src)
+	r_hand = W
+	W.equipped(src,slot_r_hand)
+	W.add_fingerprint(src)
+	update_inv_r_hand()
+	return 1
 
 /mob/living/carbon/human/can_stand_overridden()
 	if(wearing_rig && wearing_rig.ai_can_move_suit(check_for_ai = 1))
