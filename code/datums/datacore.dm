@@ -167,8 +167,6 @@
 		var/assignment = GetAssignment(H)
 
 		var/id = generate_record_id()
-		var/icon/front = new(get_id_photo(H), dir = SOUTH)
-		var/icon/side = new(get_id_photo(H), dir = WEST)
 		//General Record
 		var/datum/data/record/G = CreateGeneralRecord(H, id)
 		G.fields["name"]		= H.real_name
@@ -227,7 +225,7 @@
 /proc/generate_record_id()
 	return add_zero(num2hex(rand(1, 65535)), 4)	//no point generating higher numbers because of the limitations of num2hex
 
-/proc/get_id_photo(var/mob/living/carbon/human/H)
+/proc/get_id_photo(var/mob/living/carbon/human/H, var/assigned_role)
 	var/icon/preview_icon = null
 
 	var/g = "m"

@@ -272,7 +272,6 @@
 	for(var/obj/item/organ/external/temp in organs)
 		if(temp)
 			if(temp.status & ORGAN_DESTROYED)
-				is_destroyed["[temp.name]"] = 1
 				wound_flavor_text["[temp.name]"] = "<span class='warning'><b>[T.He] [T.is] missing [T.his] [temp.name].</b></span>\n"
 				continue
 			if(!is_synth && temp.status & ORGAN_ROBOT)

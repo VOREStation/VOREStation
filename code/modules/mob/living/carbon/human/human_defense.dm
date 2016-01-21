@@ -146,7 +146,8 @@ emp_act
 	for(var/obj/item/organ/external/O  in organs)
 		O.emp_act(severity)
 		for(var/obj/item/organ/I  in O.internal_organs)
-			if(I.robotic == 0)	continue
+			if(!(I.status & ORGAN_ROBOT))
+				continue
 			I.emp_act(severity)
 	..()
 

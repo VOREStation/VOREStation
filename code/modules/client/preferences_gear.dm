@@ -569,7 +569,7 @@ var/global/list/gear_datums = list()
 	cost = 1
 	allowed_roles = list("Quartermaster","Cargo Technician")
 
-/datum/gear/white
+/datum/gear/pants
 	display_name = "pants, white"
 	path = /obj/item/clothing/under/pants/white
 	slot = slot_w_uniform
@@ -619,55 +619,55 @@ var/global/list/gear_datums = list()
 	display_name = "pants, young folks jeans"
 	path = /obj/item/clothing/under/pants/youngfolksjeans
 
-/datum/gear/shorts/jeans
+/datum/gear/jeans
 	display_name = "shorts, jeans"
 	path = /obj/item/clothing/under/shorts/jeans
 	slot = slot_w_uniform
 	cost = 1
 
-/datum/gear/shorts/jeans/classic
+/datum/gear/jeans/classic
 	display_name = "shorts, classic jeans"
 	path = /obj/item/clothing/under/shorts/jeans/classic
 
-/datum/gear/shorts/jeans/mustang
+/datum/gear/jeans/mustang
 	display_name = "shorts, mustang jeans"
 	path = /obj/item/clothing/under/shorts/jeans/mustang
 
-/datum/gear/shorts/jeans/youngfolks
+/datum/gear/jeans/youngfolks
 	display_name = "shorts, young folks jeans"
 	path = /obj/item/clothing/under/shorts/jeans/youngfolks
 
-/datum/gear/shorts/jeans/black
+/datum/gear/jeans/black
 	display_name = "shorts, black jeans"
 	path = /obj/item/clothing/under/shorts/jeans/black
 
-/datum/gear/shorts/jeans/female
+/datum/gear/jeans/female
 	display_name = "shorts, female, jeans"
 	path = /obj/item/clothing/under/shorts/jeans/female
 
-/datum/gear/shorts/jeans/classic/female
+/datum/gear/jeans/classic/female
 	display_name = "shorts, female, classic jeans"
 	path = /obj/item/clothing/under/shorts/jeans/classic/female
 
-/datum/gear/shorts/jeans/mustang/female
+/datum/gear/jeans/mustang/female
 	display_name = "shorts, female, mustang jeans"
 	path = /obj/item/clothing/under/shorts/jeans/mustang/female
 
-/datum/gear/shorts/jeans/youngfolks/female
+/datum/gear/jeans/youngfolks/female
 	display_name = "shorts, female, young folks jeans"
 	path = /obj/item/clothing/under/shorts/jeans/youngfolks/female
 
-/datum/gear/shorts/jeans/black/female
+/datum/gear/jeans/black/female
 	display_name = "shorts, female, black jeans"
 	path = /obj/item/clothing/under/shorts/jeans/black/female
 
-/datum/gear/shorts/khaki
+/datum/gear/khaki
 	display_name = "shorts, khaki"
 	path = /obj/item/clothing/under/shorts/khaki
 	slot = slot_w_uniform
 	cost = 1
 
-/datum/gear/shorts/khaki/female
+/datum/gear/khaki/female
 	display_name = "shorts, female, khaki"
 	path = /obj/item/clothing/under/shorts/khaki/female
 
@@ -1226,7 +1226,7 @@ var/global/list/gear_datums = list()
 	slot = slot_wear_suit
 	whitelisted = "Tajara" // You do have a monopoly on a fur suit tho
 
-/datum/gear/forensics/red
+/datum/gear/forensics
 	display_name = "forensics long, red"
 	path = /obj/item/clothing/suit/storage/forensics/red/long
 	cost = 2
@@ -1606,11 +1606,11 @@ var/global/list/gear_datums = list()
 	display_name = "skrell headtail-wear, male, blue, cloth"
 	path = /obj/item/clothing/ears/skrell/cloth_male/blue
 
-/datum/gear/skrell_cloth_male/green
+/datum/gear/skrell_cloth/male/green
 	display_name = "skrell headtail-wear, male, green, cloth"
 	path = /obj/item/clothing/ears/skrell/cloth_male/green
 
-/datum/gear/skrell_cloth_male/pink
+/datum/gear/skrell_cloth/male/pink
 	display_name = "skrell headtail-wear, male, pink, cloth"
 	path = /obj/item/clothing/ears/skrell/cloth_male/pink
 
@@ -1618,18 +1618,18 @@ var/global/list/gear_datums = list()
 	display_name = "skrell headtail-wear, female, red, cloth"
 	path = /obj/item/clothing/ears/skrell/cloth_female
 
-/datum/gear/skrell_cloth_female/black
+/datum/gear/skrell_cloth/female/black
 	display_name = "skrell headtail-wear, female, black, cloth"
 	path = /obj/item/clothing/ears/skrell/cloth_female/black
 
-/datum/gear/skrell_cloth_female/blue
+/datum/gear/skrell_cloth/female/blue
 	display_name = "skrell headtail-wear, female, blue, cloth"
 	path = /obj/item/clothing/ears/skrell/cloth_female/blue
 
-/datum/gear/skrell_cloth_female/green
+/datum/gear/skrell_cloth/female/green
 	display_name = "skrell headtail-wear, female, green, cloth"
 	path = /obj/item/clothing/ears/skrell/cloth_female/green
 
-/datum/gear/skrell_cloth_female/pink
+/datum/gear/skrell_cloth/female/pink
 	display_name = "skrell headtail-wear, female, pink, cloth"
 	path = /obj/item/clothing/ears/skrell/cloth_female/pink

@@ -1324,7 +1324,7 @@ proc/admin_notice(var/message, var/rights)
 		return
 
 	log_and_message_admins("attempting to force mode autospawn.")
-	ticker.mode.process_autoantag()
+	ticker.mode.try_latespawn()
 
 /datum/admins/proc/paralyze_mob(mob/living/H as mob)
 	set category = "Admin"
@@ -1345,9 +1345,9 @@ proc/admin_notice(var/message, var/rights)
 	set category = "Debug"
 	set name = "Set Telecrystals"
 	set desc = "Allows admins to change telecrystals of a user."
-	
+
 	var/crystals
-	
+
 	if(check_rights(R_ADMIN))
 		crystals = input("Amount of telecrystals for [H.ckey]", crystals) as null|num
 		if (!isnull(crystals))
