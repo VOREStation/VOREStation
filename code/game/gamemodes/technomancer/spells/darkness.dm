@@ -1,6 +1,7 @@
 /datum/power/technomancer/darkness
-	name = "Blink"
+	name = "Darkness"
 	desc = "Disrupts photons moving in a local area, causing darkness to shroud yourself or a position of your choosing."
+	cost = 30
 	verbpath = /mob/living/carbon/human/proc/technomancer_darkness
 
 /mob/living/carbon/human/proc/technomancer_darkness()

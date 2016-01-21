@@ -2,6 +2,7 @@
 	name = "Phase Shift"
 	desc = "Hides you in the safest possible place, where no harm can come to you.  Unfortunately you can only stay inside for a few moments before \
 	draining your powercell."
+	cost = 80
 	verbpath = /mob/living/carbon/human/proc/technomancer_phase_shift
 
 /mob/living/carbon/human/proc/technomancer_phase_shift()

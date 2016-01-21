@@ -1,6 +1,8 @@
 /datum/power/technomancer/shield
 	name = "Shield"
-	desc = "Emits a protective shield fron your hand in front of you, which will protect you from almost anything able to harm you, so long as you can power it."
+	desc = "Emits a protective shield fron your hand in front of you, which will protect you from almost anything able to harm \
+	you, so long as you can power it."
+	cost = 120
 	verbpath = /mob/living/carbon/human/proc/technomancer_shield
 
 /mob/living/carbon/human/proc/technomancer_shield()

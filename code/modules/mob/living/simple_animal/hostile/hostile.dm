@@ -136,7 +136,7 @@
 	if(client)
 		return 0
 
-	if(!stat)
+	if(!stat && !ai_inactive)
 		switch(stance)
 			if(HOSTILE_STANCE_IDLE)
 				target_mob = FindTarget()

@@ -1,6 +1,8 @@
 /datum/power/technomancer/aspect_bolt
 	name = "Aspect Bolt"
-	desc = "This bolt function takes on the properties of other functions based on which aspect is introduced to it."
+	desc = "This bolt function takes on the properties of other functions based on which aspect is introduced to it, with the \
+	delivery method being a projectile."
+	cost = 150
 	verbpath = /mob/living/carbon/human/proc/technomancer_aspect_bolt
 
 /mob/living/carbon/human/proc/technomancer_aspect_bolt()
@@ -19,6 +21,7 @@
 		if(!spell.aspect || spell.aspect == ASPECT_CHROMATIC)
 			user << "<span class='warning'>You cannot combine \the [spell] with \the [src], as the aspects are incompatable.</span>"
 			return
+		world << spell.aspect
 		switch(spell.aspect)
 			if(ASPECT_FIRE)
 				world << "Ideal."

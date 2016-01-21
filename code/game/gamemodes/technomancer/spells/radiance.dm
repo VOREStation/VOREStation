@@ -1,6 +1,7 @@
 /datum/power/technomancer/radiance
 	name = "Radiance"
 	desc = "Causes you to be very radiant, glowing brightly in visible light, thermal energy, and deadly ionizing radiation."
+	cost = 180
 	verbpath = /mob/living/carbon/human/proc/technomancer_radiance
 
 /mob/living/carbon/human/proc/technomancer_radiance()

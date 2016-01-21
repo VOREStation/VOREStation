@@ -15,8 +15,9 @@
 #define ASPECT_TELE			"tele"		//Teleportation of self, other objects, or other people.
 #define ASPECT_DARK			"dark"		//Makes all those photons vanish using magic-- WITH SCIENCE.  Used for sneaky stuff.
 #define ASPECT_LIGHT		"light"		//The opposite of dark, usually blinds, makes holo-illusions, or makes laser lightshows.
+#define ASPECT_BIOMED		"biomed"	//Mainly concerned with healing and restoration.
 #define ASPECT_EMP			"emp"		//Self explainitory.
-#define ASPECT_CHAOS		"chaos"		//Heavily RNG-based, causes instability to the victim.
+#define ASPECT_UNSTABLE		"unstable"	//Heavily RNG-based, causes instability to the victim.
 #define ASPECT_CHROMATIC	"chromatic"	//Used to combine with other spells.
 
 
@@ -99,6 +100,9 @@
 	if(core.loc != owner || owner.back != core) //Make sure the core's being worn.
 		owner << "<span class='danger'>You need to be wearing a core on your back!</span>"
 		return 0
+	if(!technomancers.is_antagonist(owner.mind)) //Now make sure the person using this is the actual antag.
+		owner << "<span class='danger'>You can't seem to figure out how to make the machine work properly.</span>"
+		return 0
 	return 1
 
 /obj/item/weapon/spell/attack_self(mob/user)
@@ -124,10 +128,16 @@
 			on_ranged_cast(target, user)
 			world << "range cast called"
 	else
-		if(cast_methods & CAST_COMBINE) //For some reason attackby() won't work for this.
-			if(istype(target, /obj/item/weapon/spell))
-				var/obj/item/weapon/spell/spell = target
+//		if(cast_methods & CAST_COMBINE) //For some reason attackby() won't work for this.
+//			if(istype(target, /obj/item/weapon/spell))
+//				var/obj/item/weapon/spell/spell = target
+//				spell.on_combine_cast(src, user)
+//				return
+		if(istype(target, /obj/item/weapon/spell))
+			var/obj/item/weapon/spell/spell = target
+			if(spell.cast_methods & CAST_COMBINE)
 				spell.on_combine_cast(src, user)
+				world << "combine cast called"
 				return
 		if(cast_methods & CAST_MELEE)
 //			if(..()) //Check that we didn't miss.
@@ -136,6 +146,10 @@
 		else if(cast_methods & CAST_RANGED) //Try to use a ranged method if a melee one doesn't exist.
 			on_ranged_cast(target, user)
 			world << "range cast called"
+
+/obj/spellbutton
+	name = "generic spellbutton"
+	var/spellpath = null
 
 //debug test verbs, kill Neerti if this makes it live.
 /mob/verb/apportation()
@@ -191,7 +205,7 @@
 
 	var/mob/living/carbon/human/H = src
 
-	H.place_spell_in_hand(/obj/item/weapon/spell/purify)
+	H.place_spell_in_hand(/obj/item/weapon/spell/insert/purify)
 
 /mob/verb/disable_technology()
 	set category = "Functions"
@@ -248,28 +262,52 @@
 
 	H.place_spell_in_hand(/obj/item/weapon/spell/discharge)
 
-/mob/verb/aspect_bolt()
+/mob/verb/aspect_aura()
 	set category = "Functions"
-	set name = "Aspect Bolt()"
+	set name = "Aspect Aura()"
 	set src = usr
 	if(!ishuman(src))
 		return 0
 
 	var/mob/living/carbon/human/H = src
 
-	H.place_spell_in_hand(/obj/item/weapon/spell/aspect_bolt)
+	H.place_spell_in_hand(/obj/item/weapon/spell/aspect_aura)
+
+/mob/verb/control()
+	set category = "Functions"
+	set name = "Control()"
+	set src = usr
+	if(!ishuman(src))
+		return 0
+
+	var/mob/living/carbon/human/H = src
+
+	H.place_spell_in_hand(/obj/item/weapon/spell/control)
 
 /mob/living/carbon/human/proc/place_spell_in_hand(var/path)
 	if(!path || !ispath(path))
 		return 0
-	if(src.l_hand && src.r_hand) //Make sure our hands aren't full.
-		src << "<span class='warning'>You require a free hand to use a function.</span>"
-		return 0
+	if(l_hand && r_hand) //Make sure our hands aren't full.
+		if(istype(r_hand, /obj/item/weapon/spell)) //If they are full, perhaps we can still be useful.
+			var/obj/item/weapon/spell/r_spell = r_hand
+			if(r_spell.aspect == ASPECT_CHROMATIC) //Check if we can combine the new spell with one in our hands.
+				var/obj/item/weapon/spell/S = PoolOrNew(path, src)
+				r_spell.on_combine_cast(S, src)
+		else if(istype(l_hand, /obj/item/weapon/spell))
+			var/obj/item/weapon/spell/l_spell = l_hand
+			if(l_spell.aspect == ASPECT_CHROMATIC) //Check the other hand too.
+				var/obj/item/weapon/spell/S = PoolOrNew(path, src)
+				l_spell.on_combine_cast(S, src)
+		else //Welp
+			src << "<span class='warning'>You require a free hand to use this function.</span>"
+			return 0
 	var/obj/item/weapon/spell/S = PoolOrNew(path, src)
 	if(S.run_checks())
-		src.put_in_hands(S)
+		put_in_hands(S)
+		return 1
 	else
 		qdel(S)
+		return 0
 
 /obj/item/weapon/spell/dropped()
 	spawn(1)

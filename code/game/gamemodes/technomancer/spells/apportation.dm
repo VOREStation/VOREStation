@@ -1,6 +1,8 @@
 /datum/power/technomancer/apportation
 	name = "Apportation"
-	desc = "You make a small tear in Bluespace at two points, link them together, then reach in with our hand and pull whatever you want towards you."
+	desc = "This allows you to teleport objects into your hand, or to pull people towards you.  If they're close enough, the function \
+	will grab them automatically."
+	cost = 50
 	verbpath = /mob/living/carbon/human/proc/technomancer_apportation
 
 /mob/living/carbon/human/proc/technomancer_apportation()

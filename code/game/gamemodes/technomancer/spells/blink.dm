@@ -2,6 +2,7 @@
 	name = "Blink"
 	desc = "Force the target to teleport a short distance away.  This target could be anything from something lying on the ground, to someone trying to \
 	fight you, or even yourself."
+	cost = 100
 	verbpath = /mob/living/carbon/human/proc/technomancer_blink
 
 /mob/living/carbon/human/proc/technomancer_blink()
@@ -39,7 +40,7 @@
 		if(ismob(AM))
 			var/mob/living/L = AM
 			if(L.buckled)
-				L.buckled = null
+				L.buckled.unbuckle_mob()
 		AM.forceMove(destination)
 		AM.visible_message("<span class='notice'>\The [AM] vanishes!</span>")
 		AM << "<span class='notice'>You suddenly appear somewhere else!</span>"

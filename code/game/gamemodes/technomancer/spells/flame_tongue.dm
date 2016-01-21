@@ -1,6 +1,7 @@
 /datum/power/technomancer/flame_tongue
 	name = "Flame Tongue"
 	desc = "Using a miniturized flamethrower in your gloves, you can emit a flame strong enough to melt both your enemies and walls."
+	cost = 100
 	verbpath = /mob/living/carbon/human/proc/technomancer_flame_tongue
 
 /mob/living/carbon/human/proc/technomancer_flame_tongue()

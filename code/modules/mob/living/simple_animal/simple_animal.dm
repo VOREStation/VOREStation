@@ -66,6 +66,9 @@
 	var/supernatural = 0
 	var/purge = 0
 
+	//AI stuff
+	var/ai_inactive = 0
+
 /mob/living/simple_animal/New()
 	..()
 	verbs -= /mob/verb/observe
@@ -105,7 +108,7 @@
 	handle_supernatural()
 
 	//Movement
-	if(!client && !stop_automated_movement && wander && !anchored)
+	if(!client && !ai_inactive && !stop_automated_movement && wander && !anchored)
 		if(isturf(src.loc) && !resting && !buckled && canmove)		//This is so it only moves if it's not inside a closet, gentics machine, etc.
 			turns_since_move++
 			if(turns_since_move >= turns_per_move)
@@ -117,7 +120,7 @@
 					turns_since_move = 0
 
 	//Speaking
-	if(!client && speak_chance)
+	if(!client && !ai_inactive && speak_chance)
 		if(rand(0,200) < speak_chance)
 			if(speak && speak.len)
 				if((emote_hear && emote_hear.len) || (emote_see && emote_see.len))

@@ -2,6 +2,7 @@
 	name = "Passwall"
 	desc = "An uncommon function that allows the user to phase through matter (usually walls) in order to enter or exit a room.  Be careful you don't pass into \
 	somewhere dangerous."
+	cost = 100
 	verbpath = /mob/living/carbon/human/proc/technomancer_passwall
 
 /mob/living/carbon/human/proc/technomancer_passwall()

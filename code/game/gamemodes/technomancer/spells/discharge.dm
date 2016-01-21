@@ -1,6 +1,7 @@
 /datum/power/technomancer/discharge
 	name = "Discharge"
 	desc = "Attempts to steal energy from your target, electrocuting it and anyone holding it."
+	cost = 70
 	verbpath = /mob/living/carbon/human/proc/technomancer_discharge
 
 /mob/living/carbon/human/proc/technomancer_discharge()

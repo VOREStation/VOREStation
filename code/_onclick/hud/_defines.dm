@@ -88,6 +88,9 @@
 #define ui_alien_health "EAST-1:28,CENTER-1:13" //aliens have the health display where humans have the pressure damage indicator.
 
 #define ui_ling_chemical_display "EAST-1:28,CENTER-3:15"
+#define ui_wiz_energy_display "EAST-1:28,CENTER-3:15"
+//#define ui_wiz_instability_display "EAST-2:28,CENTER-3:15"
+#define ui_wiz_instability_display "EAST-1:28,NORTH-2:27"
 
 //Pop-up inventory
 #define ui_shoes "WEST+1:8,SOUTH:5"

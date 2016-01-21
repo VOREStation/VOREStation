@@ -304,9 +304,14 @@
 	hud_elements |= mymob.ling_chem_display
 
 	mymob.wiz_instability_display = new /obj/screen/wizard/instability()
-	mymob.wiz_instability_display.screen_loc = ui_ling_chemical_display
+	mymob.wiz_instability_display.screen_loc = ui_wiz_instability_display
 	mymob.wiz_instability_display.icon_state = "wiz_instability_none"
 	hud_elements |= mymob.wiz_instability_display
+
+	mymob.wiz_energy_display = new/obj/screen/wizard/energy()
+	mymob.wiz_energy_display.screen_loc = ui_wiz_energy_display
+	mymob.wiz_energy_display.icon_state = "wiz_energy"
+	hud_elements |= mymob.wiz_energy_display
 
 	mymob.blind = new /obj/screen()
 	mymob.blind.icon = 'icons/mob/screen1_full.dmi'
@@ -404,6 +409,14 @@
 	name = "chemical storage"
 	icon_state = "power_display"
 
+/obj/screen/wizard
+	invisibility = 101
+
 /obj/screen/wizard/instability
 	name = "instability"
-	icon_state = "instability_none"
+	icon_state = "instability-1"
+	invisibility = 0
+
+/obj/screen/wizard/energy
+	name = "energy"
+	icon_state = "wiz_energy"
