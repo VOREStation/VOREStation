@@ -21,6 +21,7 @@
 	..()
 
 /obj/item/device/chameleon/equipped()
+	..()
 	disrupt()
 	..()
 
