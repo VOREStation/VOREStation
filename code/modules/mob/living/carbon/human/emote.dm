@@ -25,7 +25,7 @@
 				message = "is strumming the air and headbanging like a safari chimp."
 				m_type = 1
 
-		if("ping", "beep", "buzz")
+		if("ping", "beep", "buzz", "yes", "no")
 
 			if(!isSynthetic())
 				src << "<span class='warning'>You are not a synthetic.</span>"
@@ -48,6 +48,12 @@
 			else if(act == "ping")
 				display_msg = "pings"
 				use_sound = 'sound/machines/ping.ogg'
+			else if(act == "yes")
+				display_msg = "emits an affirmative blip"
+				use_sound = 'sound/machines/synth_yes.ogg'
+			else if(act == "no")
+				display_msg = "emits a negative blip"
+				use_sound = 'sound/machines/synth_no.ogg'
 
 			if (param)
 				message = "[display_msg] at [param]."
