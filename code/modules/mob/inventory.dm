@@ -216,7 +216,7 @@ var/list/slot_equipment_priority = list( \
 		wear_mask = null
 		update_inv_wear_mask(0)
 	return
-    
+
 /mob/proc/isEquipped(obj/item/I)
 	if(!I)
 		return 0
