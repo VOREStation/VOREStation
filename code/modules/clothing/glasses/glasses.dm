@@ -54,6 +54,7 @@
 	icon_state = "purple"
 	item_state = "glasses"
 	toggleable = 1
+	action_button_name = "Toggle Goggles"
 
 /obj/item/clothing/glasses/science/New()
 	..()
@@ -67,6 +68,7 @@
 	origin_tech = list(TECH_MAGNET = 2)
 	darkness_view = 7
 	toggleable = 1
+	action_button_name = "Toggle Goggles"
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 	off_state = "denight"
 
@@ -95,6 +97,7 @@
 	item_state = "glasses"
 	origin_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 3)
 	toggleable = 1
+	action_button_name = "Toggle Goggles"
 	vision_flags = SEE_OBJS
 
 /obj/item/clothing/glasses/regular
@@ -104,7 +107,7 @@
 	item_state = "glasses"
 	prescription = 1
 	body_parts_covered = 0
-	
+
 /obj/item/clothing/glasses/regular/scanners
 	name = "Scanning Goggles"
 	desc = "A very oddly shaped pair of goggles with bits of wire poking out the sides. A soft humming sound emanates from it."
@@ -223,6 +226,7 @@
 	item_state = "glasses"
 	origin_tech = list(TECH_MAGNET = 3)
 	toggleable = 1
+	action_button_name = "Toggle Goggles"
 	vision_flags = SEE_MOBS
 
 	emp_act(severity)
