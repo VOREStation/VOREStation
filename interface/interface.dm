@@ -5,7 +5,7 @@
 	set category = "OOC"
 	if(config.wikiurl)
 		if(query)
-			var/output = config.wikiurl + "/index.php?title=Special%3ASearch&profile=default&search=" + query
+			var/output = config.wikiurl + "/doku.php?do=search&id=" + query
 			src << link(output)
 		else
 			src << link(config.wikiurl)
