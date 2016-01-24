@@ -27,7 +27,7 @@
 	var/obj/item/device/mmi/stored_mmi
 
 /obj/item/organ/internal/mmi_holder/Destroy()
-	if(stored_mmi)
+	if(stored_mmi && (stored_mmi.loc == src))
 		qdel(stored_mmi)
 		stored_mmi = null
 	return ..()
