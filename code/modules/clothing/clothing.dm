@@ -748,7 +748,7 @@ BLIND     // can't see anything
 	rolled_down = !rolled_down
 	if(rolled_down)
 		body_parts_covered = initial(body_parts_covered)
-		body_parts_covered &= !(UPPER_TORSO|ARMS)
+		body_parts_covered &= ~(UPPER_TORSO|ARMS)
 		item_state_slots[slot_w_uniform_str] = "[worn_state]_d"
 		usr << "<span class='notice'>You roll down your [src].</span>"
 	else
@@ -774,7 +774,7 @@ BLIND     // can't see anything
 
 	rolled_sleeves = !rolled_sleeves
 	if(rolled_sleeves)
-		body_parts_covered &= !(ARMS)
+		body_parts_covered &= ~(ARMS)
 		item_state_slots[slot_w_uniform_str] = "[worn_state]_r"
 		usr << "<span class='notice'>You roll up your [src]'s sleeves.</span>"
 	else
