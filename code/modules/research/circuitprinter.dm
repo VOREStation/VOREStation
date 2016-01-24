@@ -8,14 +8,14 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 	name = "Circuit Imprinter"
 	icon_state = "circuit_imprinter"
 	flags = OPENCONTAINER
-
-	var/list/materials = list("metal" = 0, "glass" = 0, "gold" = 0, "silver" = 0, "phoron" = 0, "uranium" = 0, "diamond" = 0)
 	var/list/datum/design/queue = list()
 	var/progress = 0
 
 	var/max_material_storage = 75000
 	var/mat_efficiency = 1
 	var/speed = 1
+
+	materials = list("metal" = 0, "glass" = 0, "gold" = 0, "silver" = 0, "phoron" = 0, "uranium" = 0, "diamond" = 0)
 
 	use_power = 1
 	idle_power_usage = 30
