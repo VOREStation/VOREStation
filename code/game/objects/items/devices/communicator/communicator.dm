@@ -292,18 +292,25 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 			return
 		var/their_address = href_list["dial"]
 		exonet.send_message(their_address, "voice")
+		
 	if(href_list["disconnect"])
 		var/name_to_disconnect = href_list["disconnect"]
 		for(var/mob/living/voice/V in contents)
 			if(name_to_disconnect == V.name)
-				close_connection(usr, V, "[usr] hung up")
+				close_connection(usr, V, "[usr] hung up.")
 		for(var/obj/item/device/communicator/comm in communicating)
 			if(name_to_disconnect == comm.name)
-				close_connection(usr, comm, "[usr] hung up")
+				close_connection(usr, comm, "[usr] hung up.")
 
 	if(href_list["copy"])
 		target_address = href_list["copy"]
-
+		
+	if(href_list["hang_up"])
+		for(var/mob/living/voice/V in contents)
+			close_connection(usr, V, "[usr] hung up.")
+		for(var/obj/item/device/communicator/comm in communicating)
+			close_connection(usr, comm, "[usr] hung up.")
+			
 	if(href_list["switch_tab"])
 		selected_tab = href_list["switch_tab"]
 
