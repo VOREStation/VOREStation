@@ -93,3 +93,19 @@
 	New()
 		..()
 		new /obj/item/weapon/grenade/flashbang/clusterbang(src)
+
+/obj/item/weapon/storage/lockbox/medal
+	name = "lockbox of medals"
+	desc = "A lockbox filled with commemorative medals, it has the NanoTrasen logo stamped on it."
+	req_access = list(access_heads)
+	storage_slots = 7
+
+	New()
+		..()
+		new /obj/item/clothing/accessory/medal/conduct(src)
+		new /obj/item/clothing/accessory/medal/bronze_heart(src)
+		new /obj/item/clothing/accessory/medal/nobel_science(src)
+		new /obj/item/clothing/accessory/medal/silver/valor(src)
+		new /obj/item/clothing/accessory/medal/silver/security(src)
+		new /obj/item/clothing/accessory/medal/gold/captain(src)
+		new /obj/item/clothing/accessory/medal/gold/heroism(src)

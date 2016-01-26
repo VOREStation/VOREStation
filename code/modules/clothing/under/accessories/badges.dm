@@ -48,7 +48,7 @@
 
 /obj/item/clothing/accessory/badge/holo/cord
 	icon_state = "holobadge-cord"
-	slot_flags = SLOT_MASK | SLOT_TIE
+	slot_flags = SLOT_MASK | SLOT_TIE | SLOT_BELT
 
 /obj/item/clothing/accessory/badge/holo/attack_self(mob/user as mob)
 	if(!stored_name)
@@ -96,3 +96,21 @@
 		new /obj/item/clothing/accessory/badge/holo/cord(src)
 		..()
 		return
+
+/obj/item/clothing/accessory/badge/warden
+	name = "warden's badge"
+	desc = "A silver corporate security badge. Stamped with the words 'Warden.'"
+	icon_state = "silverbadge"
+	slot_flags = SLOT_TIE | SLOT_BELT
+
+/obj/item/clothing/accessory/badge/hos
+	name = "head of security's badge"
+	desc = "An immaculately polished gold security badge. Labeled 'Head of Security.'"
+	icon_state = "goldbadge"
+	slot_flags = SLOT_TIE | SLOT_BELT
+
+/obj/item/clothing/accessory/badge/detective
+	name = "detective's badge"
+	desc = "An immaculately polished gold security badge on leather. Labeled 'Detective.'"
+	icon_state = "marshalbadge"
+	slot_flags = SLOT_TIE | SLOT_BELT
