@@ -825,8 +825,6 @@
 	New()
 		..()
 		reagents.add_reagent("nutriment", 2)
-		if(prob(5))
-			reagents.add_reagent("nanites", 2)
 		bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/roburgerbig
@@ -838,7 +836,6 @@
 
 	New()
 		..()
-		reagents.add_reagent("nanites", 100)
 		bitesize = 0.1
 
 /obj/item/weapon/reagent_containers/food/snacks/xenoburger
