@@ -61,6 +61,21 @@
 		name = "Short Hair 2"
 		icon_state = "hair_shorthair3"
 
+	Seromi
+		name = "Seromi Plumage"
+		icon_state = "seromi_default"
+		species_allowed = list("Seromi")
+
+	Seromi_ears
+		name = "Seromi Ears"
+		icon_state = "seromi_ears"
+		species_allowed = list("Seromi")
+
+	Seromi_excited
+		name = "Seromi Spiky"
+		icon_state = "seromi_spiky"
+		species_allowed = list("Seromi")
+
 	cut
 		name = "Cut Hair"
 		icon_state = "hair_c"

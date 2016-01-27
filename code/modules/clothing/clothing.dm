@@ -101,6 +101,7 @@
 	w_class = 1.0
 	throwforce = 2
 	slot_flags = SLOT_EARS
+	sprite_sheets = list("Seromi" = 'icons/mob/species/seromi/ears.dmi')
 
 /obj/item/clothing/ears/attack_hand(mob/user as mob)
 	if (!user) return
@@ -208,6 +209,10 @@ BLIND     // can't see anything
 	var/vision_flags = 0
 	var/darkness_view = 0//Base human is 2
 	var/see_invisible = -1
+	sprite_sheets = list(
+		"Vox" = 'icons/mob/species/vox/eyes.dmi',
+		"Seromi" = 'icons/mob/species/seromi/eyes.dmi',
+		)
 
 /obj/item/clothing/glasses/update_clothing_icon()
 	if (ismob(src.loc))
@@ -230,7 +235,8 @@ BLIND     // can't see anything
 	attack_verb = list("challenged")
 	species_restricted = list("exclude","Unathi","Tajara", "Vox")
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/gloves.dmi'
+		"Vox" = 'icons/mob/species/vox/gloves.dmi',
+		"Seromi" = 'icons/mob/species/seromi/gloves.dmi',
 		)
 
 /obj/item/clothing/gloves/update_clothing_icon()
@@ -287,7 +293,8 @@ BLIND     // can't see anything
 	var/on = 0
 
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/head.dmi'
+		"Vox" = 'icons/mob/species/vox/head.dmi',
+		"Seromi" = 'icons/mob/species/seromi/head.dmi'
 		)
 
 /obj/item/clothing/head/attack_self(mob/user)
@@ -385,7 +392,8 @@ BLIND     // can't see anything
 	slot_flags = SLOT_MASK
 	body_parts_covered = FACE|EYES
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/masks.dmi'
+		"Vox" = 'icons/mob/species/vox/masks.dmi',
+		"Seromi" = 'icons/mob/species/seromi/masks.dmi',
 		)
 
 	var/voicechange = 0
@@ -418,9 +426,10 @@ BLIND     // can't see anything
 	slowdown = SHOES_SLOWDOWN
 	force = 2
 	var/overshoes = 0
-	species_restricted = list("exclude","Unathi","Tajara","Vox")
+	species_restricted = list("exclude","Seromi", "Unathi","Tajara","Vox")
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/shoes.dmi'
+		"Vox" = 'icons/mob/species/vox/shoes.dmi',
+		"Seromi" = 'icons/mob/species/seromi/shoes.dmi',
 		)
 
 /obj/item/clothing/shoes/proc/draw_knife()
@@ -494,7 +503,8 @@ BLIND     // can't see anything
 	w_class = 3
 
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/suit.dmi'
+		"Vox" = 'icons/mob/species/vox/suit.dmi',
+		"Seromi" = 'icons/mob/species/seromi/suit.dmi'
 		)
 
 /obj/item/clothing/suit/update_clothing_icon()
@@ -529,7 +539,8 @@ BLIND     // can't see anything
 	var/displays_id = 1
 	var/rolled_down = -1 //0 = unrolled, 1 = rolled, -1 = cannot be toggled
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/uniform.dmi'
+		"Vox" = 'icons/mob/species/vox/uniform.dmi',
+		"Seromi" = 'icons/mob/species/seromi/uniform.dmi'
 		)
 
 	//convenience var for defining the icon state for the overlay used when the clothing is worn.

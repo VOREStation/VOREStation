@@ -9,7 +9,8 @@ var/list/holder_mob_icon_cache = list()
 	show_messages = 1
 
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/head.dmi'
+		"Vox" = 'icons/mob/species/vox/head.dmi',
+		"Seromi" = 'icons/mob/species/seromi/head.dmi'
 		)
 
 	origin_tech = null
