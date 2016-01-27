@@ -95,7 +95,7 @@
 	item_state = "card-id"
 
 	sprite_sheets = list(
-		"Resomi" = 'icons/mob/species/resomi/id.dmi'
+		"Seromi" = 'icons/mob/species/seromi/id.dmi'
 		)
 
 	var/access = list()

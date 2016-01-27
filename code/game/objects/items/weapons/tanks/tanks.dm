@@ -24,7 +24,7 @@ var/list/global/tank_gauge_cache = list()
 	throw_range = 4
 
 	sprite_sheets = list(
-		"Resomi" = 'icons/mob/species/resomi/back.dmi'
+		"Seromi" = 'icons/mob/species/seromi/back.dmi'
 		)
 
 	var/datum/gas_mixture/air_contents = null

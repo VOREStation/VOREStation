@@ -1333,8 +1333,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 /obj/item/organ/external/head/skrell
 	eye_icon = "skrell_eyes_s"
 
-/obj/item/organ/external/head/resomi
-	eye_icon = "eyes_resomi"
+/obj/item/organ/external/head/seromi
+	eye_icon = "eyes_seromi"
 
 /obj/item/organ/external/head/vox
 	eye_icon = "vox_eyes_s"

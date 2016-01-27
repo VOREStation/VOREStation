@@ -61,20 +61,20 @@
 		name = "Short Hair 2"
 		icon_state = "hair_shorthair3"
 
-	resomi
-		name = "Resomi Plumage"
-		icon_state = "resomi_default"
-		species_allowed = list("Resomi")
+	Seromi
+		name = "Seromi Plumage"
+		icon_state = "seromi_default"
+		species_allowed = list("Seromi")
 
-	resomi_ears
-		name = "Resomi Ears"
-		icon_state = "resomi_ears"
-		species_allowed = list("Resomi")
+	Seromi_ears
+		name = "Seromi Ears"
+		icon_state = "seromi_ears"
+		species_allowed = list("Seromi")
 
-	resomi_excited
-		name = "Resomi Spiky"
-		icon_state = "resomi_spiky"
-		species_allowed = list("Resomi")
+	Seromi_excited
+		name = "Seromi Spiky"
+		icon_state = "seromi_spiky"
+		species_allowed = list("Seromi")
 
 	cut
 		name = "Cut Hair"

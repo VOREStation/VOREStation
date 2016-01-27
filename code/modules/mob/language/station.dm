@@ -115,9 +115,9 @@
 	else
 		return pick(ai_names)
 
-/datum/language/resomi
-	name = "Resomi"
-	desc = "A trilling language spoken by the diminutive Resomi."
+/datum/language/seromi
+	name = "Schechi"
+	desc = "A trilling language spoken by the diminutive Seromi."
 	speech_verb = "chirps"
 	ask_verb = "chirrups"
 	exclaim_verb = "trills"
@@ -131,7 +131,7 @@
 			"ci", "ri", "mi", "si", "ni", "ti", "li", "shi", "schi", "i", "i"
 		)
 
-/datum/language/resomi/get_random_name(gender)
+/datum/language/seromi/get_random_name(gender)
 	return ..(gender, 1, 4, 1.5)
 
 //Syllable Lists

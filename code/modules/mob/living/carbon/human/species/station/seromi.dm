@@ -1,26 +1,26 @@
-/datum/species/resomi
-	name = "Resomi"
-	name_plural = "Resomii"
-	blurb = "A race of feathered raptors who developed on a cold world, almost \
-	outside of the Goldilocks zone. Extremely fragile, they developed hunting skills \
-	that emphasized taking out their prey without themselves getting hit. They are an \
-	advanced post-scarcity culture on good terms with Skrellian and Human interests."
+/datum/species/seromi
+	name = "Seromi"
+	name_plural = "Seromii"
+	blurb = "A race of feathered raptors who developed alongside the Skrell, inhabiting \
+	the polar tundral regions outside of Skrell territory. Extremely fragile, they developed \
+	hunting skills that emphasized taking out their prey without themselves getting hit. They \
+	are only recently becoming known in human space after reaching space with Skrell assistance."
 
 	num_alternate_languages = 2
-	secondary_langs = list("Resomi")
-	name_language = "Resomi"
+	secondary_langs = list("Schechi")
+	name_language = "Schechi"
 
 	blood_color = "#D514F7"
 	flesh_color = "#5F7BB0"
 	base_color = "#001144"
-	tail = "resomitail"
+	tail = "seromitail"
 	tail_hair = "feathers"
 
-	icobase = 'icons/mob/human_races/r_resomi.dmi'
-	deform = 'icons/mob/human_races/r_resomi.dmi'
-	damage_overlays = 'icons/mob/human_races/masks/dam_resomi.dmi'
-	damage_mask = 'icons/mob/human_races/masks/dam_mask_resomi.dmi'
-	blood_mask = 'icons/mob/human_races/masks/blood_resomi.dmi'
+	icobase = 'icons/mob/human_races/r_seromi.dmi'
+	deform = 'icons/mob/human_races/r_seromi.dmi'
+	damage_overlays = 'icons/mob/human_races/masks/dam_seromi.dmi'
+	damage_mask = 'icons/mob/human_races/masks/dam_mask_seromi.dmi'
+	blood_mask = 'icons/mob/human_races/masks/blood_seromi.dmi'
 
 	slowdown = -1
 	total_health = 50
@@ -53,15 +53,15 @@
 	has_limbs = list(
 		BP_CHEST =  list("path" = /obj/item/organ/external/chest),
 		BP_GROIN =  list("path" = /obj/item/organ/external/groin),
-		BP_HEAD =   list("path" = /obj/item/organ/external/head/resomi),
+		BP_HEAD =   list("path" = /obj/item/organ/external/head/seromi),
 		BP_L_ARM =  list("path" = /obj/item/organ/external/arm),
 		BP_R_ARM =  list("path" = /obj/item/organ/external/arm/right),
 		BP_L_LEG =  list("path" = /obj/item/organ/external/leg),
 		BP_R_LEG =  list("path" = /obj/item/organ/external/leg/right),
-		BP_L_HAND = list("path" = /obj/item/organ/external/hand/resomi),
-		BP_R_HAND = list("path" = /obj/item/organ/external/hand/right/resomi),
-		BP_L_FOOT = list("path" = /obj/item/organ/external/foot/resomi),
-		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right/resomi)
+		BP_L_HAND = list("path" = /obj/item/organ/external/hand/seromi),
+		BP_R_HAND = list("path" = /obj/item/organ/external/hand/right/seromi),
+		BP_L_FOOT = list("path" = /obj/item/organ/external/foot/seromi),
+		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right/seromi)
 		)
 
 	has_organ = list(
@@ -83,7 +83,7 @@
 	var/hallucination_cap = 25
 
 // I'm... so... ronrery, so ronery...
-/datum/species/resomi/handle_environment_special(var/mob/living/carbon/human/H)
+/datum/species/seromi/handle_environment_special(var/mob/living/carbon/human/H)
 
 	// If they're dead or unconcious they're a bit beyond this kind of thing.
 	if(H.stat)
@@ -106,7 +106,7 @@
 	if(H.shock_stage >= shock_cap && H.hallucination < hallucination_cap)
 		H.hallucination += 2.5
 
-/datum/species/resomi/get_vision_flags(var/mob/living/carbon/human/H)
+/datum/species/seromi/get_vision_flags(var/mob/living/carbon/human/H)
 	if(!(H.sdisabilities & DEAF) && !H.ear_deaf)
 		return SEE_SELF|SEE_MOBS
 	else
