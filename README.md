@@ -1,6 +1,6 @@
 # polaris
 
-Links pending.
+[Forums](http://ss13polaris.com/forums/) - [Wiki](http://ss13polaris.com/wiki/doku.php)
 
 Polaris is a fork of the Baystation12 code branch for the game Spacestation13.
 
@@ -44,7 +44,7 @@ First-time installation should be fairly straightforward.  First, you'll need BY
 This is a sourcecode-only release, so the next step is to compile the server files.  Open polaris.dme by double-clicking it, open the Build menu, and click compile.  This'll take a little while, and if everything's done right you'll get a message like this:
 
     saving polaris.dmb (DEBUG mode)
-    
+
     polaris.dmb - 0 errors, 0 warnings
 
 If you see any errors or warnings, something has gone wrong - possibly a corrupt download or the files extracted wrong, or a code issue on the main repo.  Ask on IRC.
