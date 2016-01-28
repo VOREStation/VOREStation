@@ -385,14 +385,14 @@
 	icon = 'icons/obj/turrets.dmi'
 	icon_state = "gun_turret"
 
-	proc/take_damage(damage)
+/obj/structure/turret/gun_turret/proc/take_damage(damage)
 		src.health -= damage
 		if(src.health<=0)
 			qdel(src)
 		return
 
 
-	bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/turret/gun_turret/bullet_act(var/obj/item/projectile/Proj)
 		if(Proj.damage_type == HALLOSS)
 			return
 		take_damage(Proj.damage)
@@ -400,15 +400,15 @@
 		return
 
 
-	ex_act()
+/obj/structure/turret/gun_turret/ex_act()
 		qdel(src)
 		return
 
-	emp_act()
+/obj/structure/turret/gun_turret/emp_act()
 		qdel(src)
 		return
 
-	attack_hand(mob/user as mob)
+/obj/structure/turret/gun_turret/attack_hand(mob/user as mob)
 		user.set_machine(src)
 		var/dat = {"<html>
 						<head><title>[src] Control</title></head>
@@ -426,10 +426,10 @@
 		onclose(user, "turret")
 		return
 
-	attack_ai(mob/user as mob)
+/obj/structure/turret/gun_turret/attack_ai(mob/user as mob)
 		return attack_hand(user)
 
-	Topic(href, href_list)
+/obj/structure/turret/gun_turret/Topic(href, href_list)
 		if(href_list["power"])
 			src.on = !src.on
 			if(src.on)
@@ -445,7 +445,7 @@
 		return
 
 
-	proc/validate_target(atom/target)
+/obj/structure/turret/gun_turret/proc/validate_target(atom/target)
 		if(get_dist(target, src)>scan_range)
 			return 0
 		if(istype(target, /mob))
@@ -457,7 +457,7 @@
 		return 0
 
 
-	process()
+/obj/structure/turret/gun_turret/process()
 		spawn while(on)
 			if(projectiles<=0)
 				on = 0
@@ -470,7 +470,7 @@
 			sleep(cooldown)
 		return
 
-	proc/get_target()
+/obj/structure/turret/gun_turret/proc/get_target()
 		var/list/pos_targets = list()
 		var/target = null
 		if(scan_for["human"])
@@ -498,7 +498,7 @@
 		return target
 
 
-	proc/fire(atom/target)
+/obj/structure/turret/gun_turret/proc/fire(atom/target)
 		if(!target)
 			cur_target = null
 			return
@@ -519,9 +519,5 @@
 			playsound(src, 'sound/weapons/Gunshot.ogg', 50, 1)
 			var/obj/item/projectile/A = new /obj/item/projectile(curloc)
 			src.projectiles--
-			A.current = curloc
-			A.yo = targloc.y - curloc.y
-			A.xo = targloc.x - curloc.x
-			A.process()
-			sleep(2)
+			A.launch(target)
 		return
