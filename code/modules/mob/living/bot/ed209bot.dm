@@ -56,8 +56,6 @@
 		return
 
 	last_shot = world.time
-	var/turf/T = get_turf(src)
-	var/turf/U = get_turf(A)
 
 	var/projectile = /obj/item/projectile/beam/stun
 	if(emagged)
