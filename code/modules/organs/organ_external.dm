@@ -924,18 +924,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(status & ORGAN_ROBOT)
 		return
 
-
-	if(status & ORGAN_ROBOT)
-		return
-
 	..()
-
-	brute_mod = 0.8                       // More resistant to brute.
-	burn_mod = 0.8                        // More resistant to burn.
-	max_damage = initial(max_damage)*0.65 // Significantly easier to remove with trauma.
-
-	brute_mod = 0.8
-	burn_mod = 0.8
 
 	if(company)
 		model = company
@@ -954,7 +943,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	for(var/obj/item/organ/external/T in children)
 		T.robotize(company, 1)
-
 
 	if(owner)
 

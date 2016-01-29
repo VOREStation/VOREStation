@@ -218,6 +218,8 @@ var/list/gamemode_cache = list()
 
 	var/list/language_prefixes = list(",","#","-")//Default language prefixes
 
+	var/show_human_death_message = 1
+
 /datum/configuration/New()
 	var/list/L = typesof(/datum/game_mode) - /datum/game_mode
 	for (var/T in L)
@@ -724,6 +726,8 @@ var/list/gamemode_cache = list()
 					config.health_threshold_softcrit = value
 				if("health_threshold_dead")
 					config.health_threshold_dead = value
+				if("show_human_death_message")
+					config.show_human_death_message = 1
 				if("revival_pod_plants")
 					config.revival_pod_plants = value
 				if("revival_cloning")
