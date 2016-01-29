@@ -519,9 +519,5 @@
 			playsound(src, 'sound/weapons/Gunshot.ogg', 50, 1)
 			var/obj/item/projectile/A = new /obj/item/projectile(curloc)
 			src.projectiles--
-			A.current = curloc
-			A.yo = targloc.y - curloc.y
-			A.xo = targloc.x - curloc.x
-			A.process()
-			sleep(2)
+			A.launch(target)
 		return
