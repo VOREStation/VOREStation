@@ -191,13 +191,7 @@
 	if (!istype(target, /turf))
 		qdel(A)
 		return
-	A.current = target
-	A.starting = get_turf(src)
-	A.original = get_turf(target)
-	A.yo = target:y - start:y
-	A.xo = target:x - start:x
-	spawn( 0 )
-		A.process()
+	A.launch(target)
 	return
 
 /mob/living/simple_animal/hostile/proc/DestroySurroundings()
