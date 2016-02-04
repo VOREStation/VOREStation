@@ -138,13 +138,13 @@ emp_act
 		. = shield.handle_shield(src, damage, damage_source, attacker, def_zone, attack_text)
 		if(.) return
 	return 0
-
+/*
 /mob/living/carbon/human/emp_act(severity)
 	for(var/obj/O in src)
 		if(!O)	continue
 		O.emp_act(severity)
 	..()
-
+*/
 
 //Returns 1 if the attack hit, 0 if it missed.
 /mob/living/carbon/human/proc/attacked_by(var/obj/item/I, var/mob/living/user, var/def_zone)

@@ -97,6 +97,8 @@
 		else	//Not stunned.
 			src.stat = 0
 
+		confused = max(0, confused - 1)
+
 	else //Dead.
 		src.blinded = 1
 		src.stat = 2
