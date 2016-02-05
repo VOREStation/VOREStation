@@ -41,7 +41,7 @@
 	..()
 
 	var/turf/T = get_turf(loc)
-	var/obj/machinery/navbeacon/N = locate() in home
+	var/obj/machinery/navbeacon/N = locate() in T
 	if(N)
 		home = T
 		homeName = N.location
@@ -245,28 +245,13 @@
 				update_icons()
 				return
 			if(path.len) // Move
-				var/turf/next = path[1]
-				if(next == loc)
-					path -= next
-					return
-
-				var/moved = step_towards(src, next)
-				if(moved)
-					frustration = 0
-					path -= next
-				else if(frustration < 6)
-					if(frustration == 3)
-						custom_emote(2, "makes an annoyed buzzing sound")
-						playsound(loc, 'sound/machines/buzz-two.ogg', 50, 0)
-					++frustration
-				else
-					custom_emote(2, "makes a sighing buzz.")
-					playsound(loc, 'sound/machines/buzz-sigh.ogg', 50, 0)
-					obstacle = next
-
-					mode = MULE_LOST
+				makeStep()
+				sleep(10)
+				if(path.len)
+					makeStep()
 			else
 				mode = MULE_LOST
+
 			update_icons()
 			return
 		if(MULE_UNLOAD)
@@ -316,6 +301,28 @@
 		M.Stun(8)
 		M.Weaken(5)
 	..()
+
+/mob/living/bot/mulebot/proc/makeStep()
+	var/turf/next = path[1]
+	if(next == loc)
+		path -= next
+		return
+
+	var/moved = step_towards(src, next)
+	if(moved)
+		frustration = 0
+		path -= next
+	else if(frustration < 6)
+		if(frustration == 3)
+			custom_emote(2, "makes an annoyed buzzing sound")
+			playsound(loc, 'sound/machines/buzz-two.ogg', 50, 0)
+		++frustration
+	else
+		custom_emote(2, "makes a sighing buzz.")
+		playsound(loc, 'sound/machines/buzz-sigh.ogg', 50, 0)
+		obstacle = next
+
+		mode = MULE_LOST
 
 /mob/living/bot/mulebot/proc/runOver(var/mob/living/carbon/human/H)
 	if(istype(H)) // No safety checks - WILL run over lying humans. Stop ERPing in the maint!
