@@ -331,9 +331,6 @@
 	if(!req_breakout())
 		return
 
-	if(!escapee.canClick())
-		return
-
 	escapee.setClickCooldown(100)
 
 	//okay, so the closet is either welded or locked... resist!!!
