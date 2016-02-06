@@ -25,7 +25,7 @@ var/global/list/home_system_choices = list(
 	"Vir",
 	"Nyx",
 	"Tau Ceti",
-	"Epsilon Ursae Majoris",
+	"Epsilon Ursae Minoris",
 	"S'randarr"
 	)
 

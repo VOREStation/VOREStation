@@ -278,6 +278,10 @@
 			user << "<span class='danger'>You cannot install a naked organ into a robotic body.</span>"
 			return SURGERY_FAILURE
 
+		if(!target.species)
+			user << "<span class='danger'>You have no idea what species this person is. Report this on the bug tracker.</span>"
+			return SURGERY_FAILURE
+
 		var/o_is = (O.gender == PLURAL) ? "are" : "is"
 		var/o_a =  (O.gender == PLURAL) ? "" : "a "
 		var/o_do = (O.gender == PLURAL) ? "don't" : "doesn't"
@@ -294,6 +298,7 @@
 
 		if(O && affected.organ_tag == O.parent_organ)
 			organ_compatible = 1
+
 		else
 			user << "<span class='warning'>\The [O.organ_tag] [o_do] normally go in \the [affected.name].</span>"
 			return SURGERY_FAILURE
