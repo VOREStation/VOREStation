@@ -1,6 +1,6 @@
-/datum/species/seromi
-	name = "Seromi"
-	name_plural = "Seromii"
+/datum/species/teshari
+	name = "Teshari"
+	name_plural = "Tesharii"
 	blurb = "A race of feathered raptors who developed alongside the Skrell, inhabiting \
 	the polar tundral regions outside of Skrell territory. Extremely fragile, they developed \
 	hunting skills that emphasized taking out their prey without themselves getting hit. They \
@@ -83,7 +83,7 @@
 	var/hallucination_cap = 25
 
 // I'm... so... ronrery, so ronery...
-/datum/species/seromi/handle_environment_special(var/mob/living/carbon/human/H)
+/datum/species/teshari/handle_environment_special(var/mob/living/carbon/human/H)
 
 	// If they're dead or unconcious they're a bit beyond this kind of thing.
 	if(H.stat)
@@ -106,7 +106,7 @@
 	if(H.shock_stage >= shock_cap && H.hallucination < hallucination_cap)
 		H.hallucination += 2.5
 
-/datum/species/seromi/get_vision_flags(var/mob/living/carbon/human/H)
+/datum/species/teshari/get_vision_flags(var/mob/living/carbon/human/H)
 	if(!(H.sdisabilities & DEAF) && !H.ear_deaf)
 		return SEE_SELF|SEE_MOBS
 	else
