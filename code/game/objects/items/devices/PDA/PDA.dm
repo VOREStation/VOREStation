@@ -11,7 +11,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	item_state = "electronic"
 	w_class = 2.0
 	slot_flags = SLOT_ID | SLOT_BELT
-	sprite_sheets = list("Seromi" = 'icons/mob/species/seromi/id.dmi')
+	sprite_sheets = list("Teshari" = 'icons/mob/species/seromi/id.dmi')
 
 	//Main variables
 	var/pdachoice = 1
@@ -1246,10 +1246,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 									capitalize(org.name), (org.brute_dam > 0) ? "warning" : "notice", org.brute_dam, (org.burn_dam > 0) ? "warning" : "notice", org.burn_dam),1)
 					else
 						user.show_message("<span class='notice'>    Limbs are OK.</span>",1)
-
-				for(var/datum/disease/D in C.viruses)
-					if(!D.hidden[SCANNER])
-						user.show_message("<span class='warning'><b>Warning: [D.form] Detected</b>\nName: [D.name].\nType: [D.spread].\nStage: [D.stage]/[D.max_stages].\nPossible Cure: [D.cure]</span>")
 
 			if(2)
 				if (!istype(C:dna, /datum/dna))

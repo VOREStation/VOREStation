@@ -19,9 +19,6 @@
 
 	src << "<span class='notice'>We cleanse impurities from our form.</span>"
 
-	for(var/datum/disease/D in src.viruses)
-		D.cure()
-
 	var/mob/living/carbon/human/C = src
 
 	C.radiation = 0

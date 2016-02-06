@@ -32,6 +32,7 @@
 	icon_state = "sl_suit"
 	worn_state = "sl_suit"
 	item_state = "sl_suit"
+	rolled_sleeves = 0
 
 /obj/item/clothing/under/waiter
 	name = "waiter's outfit"
@@ -39,6 +40,7 @@
 	icon_state = "waiter"
 	item_state = "waiter"
 	worn_state = "waiter"
+	rolled_sleeves = 0
 
 /obj/item/clothing/under/rank/mailman
 	name = "mailman's jumpsuit"
@@ -46,6 +48,7 @@
 	icon_state = "mailman"
 	item_state = "b_suit"
 	worn_state = "mailman"
+	rolled_sleeves = 0
 
 /obj/item/clothing/under/sexyclown
 	name = "sexy-clown suit"
@@ -54,6 +57,7 @@
 	item_state = "clown"
 	worn_state = "sexyclown"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	rolled_sleeves = -1 //Please never
 
 /obj/item/clothing/under/rank/vice
 	name = "vice officer's jumpsuit"
@@ -106,6 +110,7 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | ARMS //Needs gloves and shoes with cold protection to be fully protected.
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
+	rolled_sleeves = 0
 
 /obj/item/clothing/under/acj
 	name = "administrative cybernetic jumpsuit"
@@ -162,6 +167,7 @@
 	icon_state = "gentlesuit"
 	item_state = "gy_suit"
 	worn_state = "gentlesuit"
+	rolled_sleeves = 0
 
 /obj/item/clothing/under/gimmick/rank/captain/suit
 	name = "captain's suit"
@@ -265,6 +271,7 @@
 	item_state = "w_suit"
 	worn_state = "sexymime"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	rolled_sleeves = -1 //Please never
 
 /obj/item/clothing/under/gladiator
 	name = "gladiator uniform"
@@ -551,6 +558,7 @@
 	icon_state = "mechanic"
 	item_state = "lb_suit"
 	worn_state = "mechanic"
+	rolled_sleeves = 0
 
 /obj/item/clothing/under/cheongsam
 	name = "white cheongsam"

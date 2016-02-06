@@ -93,18 +93,6 @@
 			H << "\red You can't use your [temp.name]"
 			return
 
-	for(var/datum/disease/D in viruses)
-
-		if(D.spread_by_touch())
-
-			M.contract_disease(D, 0, 1, CONTACT_HANDS)
-
-	for(var/datum/disease/D in M.viruses)
-
-		if(D.spread_by_touch())
-
-			contract_disease(D, 0, 1, CONTACT_HANDS)
-
 	return
 
 /mob/living/carbon/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null)
@@ -197,7 +185,7 @@
 					if(40 to INFINITY)
 						status += "peeling away"
 
-				if(org.status & ORGAN_DESTROYED)
+				if(org.is_stump())
 					status += "MISSING"
 				if(org.status & ORGAN_MUTATED)
 					status += "weirdly shapen"

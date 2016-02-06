@@ -251,14 +251,12 @@
 			msg += "<span class='deadsay'>[T.He] [T.is] [ssd_msg].</span>\n"
 
 	var/list/wound_flavor_text = list()
-	var/list/is_destroyed = list()
 	var/list/is_bleeding = list()
 
 	for(var/organ_tag in species.has_limbs)
 
 		var/list/organ_data = species.has_limbs[organ_tag]
 		var/organ_descriptor = organ_data["descriptor"]
-		is_destroyed["organ_descriptor"] = 1
 
 		var/obj/item/organ/external/E = organs_by_name[organ_tag]
 		if(!E)
@@ -266,13 +264,11 @@
 		else if(E.is_stump())
 			wound_flavor_text["[organ_descriptor]"] = "<span class='warning'><b>[T.He] [T.has] a stump where [T.his] [organ_descriptor] should be.</b></span>\n"
 		else
-			is_destroyed["organ_descriptor"] = 0
 			continue
 
 	for(var/obj/item/organ/external/temp in organs)
 		if(temp)
 			if(temp.status & ORGAN_DESTROYED)
-				is_destroyed["[temp.name]"] = 1
 				wound_flavor_text["[temp.name]"] = "<span class='warning'><b>[T.He] [T.is] missing [T.his] [temp.name].</b></span>\n"
 				continue
 			if(!is_synth && temp.status & ORGAN_ROBOT)

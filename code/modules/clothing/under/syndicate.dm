@@ -25,5 +25,4 @@
 	item_state = "bl_suit"
 	worn_state = "tactifool"
 	siemens_coefficient = 1
-
-
+	rolled_sleeves = 0

@@ -1,0 +1,4 @@
+author: Zuhayr
+delete-after: True
+changes: 
+  - rscadd: "pAIs and small mobs can now bump open doors."

@@ -161,7 +161,6 @@ var/const/MAX_ACTIVE_TIME = 400
 		return
 
 	if(!sterile)
-		//target.contract_disease(new /datum/disease/alien_embryo(0)) //so infection chance is same as virus infection chance
 		new /obj/item/alien_embryo(target)
 		target.status_flags |= XENO_HOST
 

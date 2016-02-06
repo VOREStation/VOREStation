@@ -4,6 +4,7 @@ Contains most of the procs that are called when a mob is attacked by something
 bullet_act
 ex_act
 meteor_act
+emp_act
 
 */
 
@@ -152,7 +153,7 @@ meteor_act
 
 	var/obj/item/organ/external/affecting = get_organ(target_zone)
 
-	if (!affecting || (affecting.status & ORGAN_DESTROYED) || affecting.is_stump())
+	if (!affecting || affecting.is_stump())
 		user << "<span class='danger'>They are missing that limb!</span>"
 		return 0
 

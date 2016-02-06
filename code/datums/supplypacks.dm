@@ -1724,8 +1724,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/clothing/suit/storage/forensics/blue,
 					/obj/item/clothing/under/det/corporate,
 					/obj/item/clothing/under/det/corporate,
-					/obj/item/clothing/accessory/badge/detective,
-					/obj/item/clothing/accessory/badge/detective,
+					/obj/item/clothing/accessory/badge/holo/detective,
+					/obj/item/clothing/accessory/badge/holo/detective,
 					/obj/item/clothing/gloves/black,
 					/obj/item/clothing/gloves/black)
 	cost = 20
@@ -1775,7 +1775,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/clothing/glasses/sunglasses/sechud,
 					/obj/item/taperoll/police,
 					/obj/item/device/hailer,
-					/obj/item/clothing/accessory/badge/warden,
+					/obj/item/clothing/accessory/badge/holo/warden,
 					/obj/item/weapon/storage/box/flashbangs,
 					/obj/item/weapon/storage/belt/security,
 					/obj/item/weapon/reagent_containers/spray/pepper,
@@ -1801,7 +1801,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/storage/belt/security,
 					/obj/item/device/flash,
 					/obj/item/device/hailer,
-					/obj/item/clothing/accessory/badge/hos,
+					/obj/item/clothing/accessory/badge/holo/hos,
 					/obj/item/clothing/accessory/holster/waist,
 					/obj/item/weapon/melee/telebaton,
 					/obj/item/weapon/shield/riot/tele,

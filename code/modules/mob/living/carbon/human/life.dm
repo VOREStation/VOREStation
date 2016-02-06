@@ -86,7 +86,6 @@
 		if(!client)
 			species.handle_npc(src)
 
-	handle_stasis_bag()
 
 	if(!handle_some_updates())
 		return											//We go ahead and process them 5 times for HUD images and other stuff though.
@@ -213,15 +212,7 @@
 					src << "<span class='danger'>Your legs won't respond properly, you fall down!</span>"
 					Weaken(10)
 
-/mob/living/carbon/human/proc/handle_stasis_bag()
-	// Handle side effects from stasis bag
-	if(in_stasis)
-		// First off, there's no oxygen supply, so the mob will slowly take brain damage
-		adjustBrainLoss(0.1)
 
-		// Next, the method to induce stasis has some adverse side-effects, manifesting
-		// as cloneloss
-		adjustCloneLoss(0.1)
 
 /mob/living/carbon/human/handle_mutations_and_radiation()
 	if(in_stasis)
@@ -572,7 +563,14 @@
 			pl_effects()
 			break
 
-	if(!istype(get_turf(src), /turf/space)) //space is not meant to change your body temperature.
+	if(istype(get_turf(src), /turf/space))
+		//Don't bother if the temperature drop is less than 0.1 anyways. Hopefully BYOND is smart enough to turn this constant expression into a constant
+		if(bodytemperature > (0.1 * HUMAN_HEAT_CAPACITY/(HUMAN_EXPOSED_SURFACE_AREA*STEFAN_BOLTZMANN_CONSTANT))**(1/4) + COSMIC_RADIATION_TEMPERATURE)
+			//Thermal radiation into space
+			var/heat_loss = HUMAN_EXPOSED_SURFACE_AREA * STEFAN_BOLTZMANN_CONSTANT * ((bodytemperature - COSMIC_RADIATION_TEMPERATURE)**4)
+			var/temperature_loss = heat_loss/HUMAN_HEAT_CAPACITY
+			bodytemperature -= temperature_loss
+	else
 		var/loc_temp = T0C
 		if(istype(loc, /obj/mecha))
 			var/obj/mecha/M = loc
@@ -586,7 +584,7 @@
 			pressure_alert = 0
 			return // Temperatures are within normal ranges, fuck all this processing. ~Ccomp
 
-		//Body temperature adjusts depending on surrounding atmosphere based on your thermal protection
+		//Body temperature adjusts depending on surrounding atmosphere based on your thermal protection (convection)
 		var/temp_adj = 0
 		if(loc_temp < bodytemperature)			//Place is colder than we are
 			var/thermal_protection = get_cold_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
@@ -680,6 +678,8 @@
 	// We produce heat naturally.
 	if (species.passive_temp_gain)
 		bodytemperature += species.passive_temp_gain
+	if (species.body_temperature == null)
+		return //this species doesn't have metabolic thermoregulation
 
 	// Robolimbs cause overheating too.
 	if(robolimb_count)
@@ -691,7 +691,7 @@
 		return //fuck this precision
 
 	if (on_fire)
-		return //too busy for pesky convection
+		return //too busy for pesky metabolic regulation
 
 	if(bodytemperature < species.cold_level_1) //260.15 is 310.15 - 50, the temperature where you start to feel effects.
 		if(nutrition >= 2) //If we are very, very cold we'll use up quite a bit of nutriment to heat us up.
@@ -1246,7 +1246,7 @@
 
 		if(healths)
 			if (analgesic > 100)
-				healths.icon_state = "health_health_numb"
+				healths.icon_state = "health_numb"
 			else
 				switch(hal_screwyhud)
 					if(1)	healths.icon_state = "health6"
@@ -1262,8 +1262,6 @@
 							if(0 to 20)				healths.icon_state = "health5"
 							else					healths.icon_state = "health6"
 
-			if(!seer)
-				see_invisible = SEE_INVISIBLE_LIVING
 		if(nutrition_icon)
 			switch(nutrition)
 				if(450 to INFINITY)				nutrition_icon.icon_state = "nutrition0"
@@ -1301,31 +1299,36 @@
 					if(260 to 280)			bodytemp.icon_state = "temp-3"
 					else					bodytemp.icon_state = "temp-4"
 			else
+				//TODO: precalculate all of this stuff when the species datum is created
+				var/base_temperature = species.body_temperature
+				if(base_temperature == null) //some species don't have a set metabolic temperature
+					base_temperature = (species.heat_level_1 + species.cold_level_1)/2
+				
 				var/temp_step
-				if (bodytemperature >= species.body_temperature)
-					temp_step = (species.heat_level_1 - species.body_temperature)/4
+				if (bodytemperature >= base_temperature)
+					temp_step = (species.heat_level_1 - base_temperature)/4
 
 					if (bodytemperature >= species.heat_level_1)
 						bodytemp.icon_state = "temp4"
-					else if (bodytemperature >= species.body_temperature + temp_step*3)
+					else if (bodytemperature >= base_temperature + temp_step*3)
 						bodytemp.icon_state = "temp3"
-					else if (bodytemperature >= species.body_temperature + temp_step*2)
+					else if (bodytemperature >= base_temperature + temp_step*2)
 						bodytemp.icon_state = "temp2"
-					else if (bodytemperature >= species.body_temperature + temp_step*1)
+					else if (bodytemperature >= base_temperature + temp_step*1)
 						bodytemp.icon_state = "temp1"
 					else
 						bodytemp.icon_state = "temp0"
 
-				else if (bodytemperature < species.body_temperature)
-					temp_step = (species.body_temperature - species.cold_level_1)/4
+				else if (bodytemperature < base_temperature)
+					temp_step = (base_temperature - species.cold_level_1)/4
 
 					if (bodytemperature <= species.cold_level_1)
 						bodytemp.icon_state = "temp-4"
-					else if (bodytemperature <= species.body_temperature - temp_step*3)
+					else if (bodytemperature <= base_temperature - temp_step*3)
 						bodytemp.icon_state = "temp-3"
-					else if (bodytemperature <= species.body_temperature - temp_step*2)
+					else if (bodytemperature <= base_temperature - temp_step*2)
 						bodytemp.icon_state = "temp-2"
-					else if (bodytemperature <= species.body_temperature - temp_step*1)
+					else if (bodytemperature <= base_temperature - temp_step*1)
 						bodytemp.icon_state = "temp-1"
 					else
 						bodytemp.icon_state = "temp0"
@@ -1618,9 +1621,6 @@
 
 	if (BITTEST(hud_updateflag, STATUS_HUD))
 		var/foundVirus = 0
-		for(var/datum/disease/D in viruses)
-			if(!D.hidden[SCANNER])
-				foundVirus++
 		for (var/ID in virus2)
 			if (ID in virusDB)
 				foundVirus = 1

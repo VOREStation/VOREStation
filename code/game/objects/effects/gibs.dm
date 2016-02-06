@@ -1,31 +1,27 @@
-/proc/gibs(atom/location, var/list/viruses, var/datum/dna/MobDNA, gibber_type = /obj/effect/gibspawner/generic, var/fleshcolor, var/bloodcolor)
-	new gibber_type(location,viruses,MobDNA,fleshcolor,bloodcolor)
+/proc/gibs(atom/location, var/datum/dna/MobDNA, gibber_type = /obj/effect/gibspawner/generic, var/fleshcolor, var/bloodcolor)
+	new gibber_type(location,MobDNA,fleshcolor,bloodcolor)
 
 /obj/effect/gibspawner
 	var/sparks = 0 //whether sparks spread on Gib()
-	var/virusProb = 20 //the chance for viruses to spread on the gibs
 	var/list/gibtypes = list()
 	var/list/gibamounts = list()
 	var/list/gibdirections = list() //of lists
 	var/fleshcolor //Used for gibbed humans.
 	var/bloodcolor //Used for gibbed humans.
 
-	New(location, var/list/viruses, var/datum/dna/MobDNA, var/fleshcolor, var/bloodcolor)
+	New(location, var/datum/dna/MobDNA, var/fleshcolor, var/bloodcolor)
 		..()
 
 		if(fleshcolor) src.fleshcolor = fleshcolor
 		if(bloodcolor) src.bloodcolor = bloodcolor
-		Gib(loc,viruses,MobDNA)
+		Gib(loc,MobDNA)
 
-	proc/Gib(atom/location, var/list/viruses = list(), var/datum/dna/MobDNA = null)
+	proc/Gib(atom/location, var/datum/dna/MobDNA = null)
 		if(gibtypes.len != gibamounts.len || gibamounts.len != gibdirections.len)
 			world << "<span class='warning'>Gib list length mismatch!</span>"
 			return
 
 		var/obj/effect/decal/cleanable/blood/gibs/gib = null
-		for(var/datum/disease/D in viruses)
-			if(D.spread_type == SPECIAL)
-				qdel(D)
 
 		if(sparks)
 			var/datum/effect/effect/system/spark_spread/s = PoolOrNew(/datum/effect/effect/system/spark_spread)
@@ -45,13 +41,6 @@
 						gib.basecolor = bloodcolor
 
 					gib.update_icon()
-
-					if(viruses.len > 0)
-						for(var/datum/disease/D in viruses)
-							if(prob(virusProb))
-								var/datum/disease/viruus = D.Copy(1)
-								gib.viruses += viruus
-								viruus.holder = gib
 
 					gib.blood_DNA = list()
 					if(MobDNA)
