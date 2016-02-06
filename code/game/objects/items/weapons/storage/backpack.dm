@@ -18,7 +18,7 @@
 		slot_r_hand_str = "backpack",
 		)
 	sprite_sheets = list(
-		"Seromi" = 'icons/mob/species/seromi/back.dmi'
+		"Teshari" = 'icons/mob/species/seromi/back.dmi'
 		)
 	w_class = 4
 	slot_flags = SLOT_BACK

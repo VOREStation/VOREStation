@@ -11,7 +11,7 @@
 	icon_state = "petehat"
 	sprite_sheets = list(
 		"Vox" = 'icons/mob/species/vox/head.dmi',
-		"Seromi" = 'icons/mob/species/seromi/head.dmi'
+		"Teshari" = 'icons/mob/species/seromi/head.dmi'
 		)
 
 /obj/item/clothing/head/collectable/slime
