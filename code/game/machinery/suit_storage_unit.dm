@@ -650,7 +650,7 @@
 	model_text = "Nonstandard"
 	req_access = list(access_syndicate)
 	departments = list("Mercenary")
-	species = list("Human","Tajara","Skrell","Unathi")
+	species = list("Human","Tajara","Skrell","Unathi", "Teshari")
 	can_repair = 1
 
 /obj/machinery/suit_cycler/attack_ai(mob/user as mob)
@@ -762,6 +762,8 @@
 	//Clear the access reqs, disable the safeties, and open up all paintjobs.
 	user << "<span class='danger'>You run the sequencer across the interface, corrupting the operating protocols.</span>"
 	departments = list("Engineering","Mining","Medical","Security","Atmos","^%###^%$")
+	species -= "Teshari" // Until someone feels like making sprites for them/they are common enough to justify inclusion in the station cyclers.
+
 	emagged = 1
 	safeties = 0
 	req_access = list()
