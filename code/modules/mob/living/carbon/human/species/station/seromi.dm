@@ -4,10 +4,10 @@
 	blurb = "A race of feathered raptors who developed alongside the Skrell, inhabiting \
 	the polar tundral regions outside of Skrell territory. Extremely fragile, they developed \
 	hunting skills that emphasized taking out their prey without themselves getting hit. They \
-	are only recently becoming known in human space after reaching space with Skrell assistance."
+	are only recently becoming known on human stations after reaching space with Skrell assistance."
 
 	num_alternate_languages = 2
-	secondary_langs = list("Schechi")
+	secondary_langs = list("Schechi", "Skrellian")
 	name_language = "Schechi"
 
 	blood_color = "#D514F7"
