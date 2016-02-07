@@ -247,7 +247,8 @@
 					if(user.client)
 						user.client.screen -= O
 				P.wrapped = O
-				O.loc = P
+				O.forceMove(P)
+				P.w_class = O.w_class
 				var/i = round(O.w_class)
 				if(i in list(1,2,3,4,5))
 					P.icon_state = "deliverycrate[i]"
