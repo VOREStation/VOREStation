@@ -189,37 +189,6 @@
 
 	update_clothing_icon()
 
-///////////////////////////////////////////////////////////////////////
-//Glasses
-/*
-SEE_SELF  // can see self, no matter what
-SEE_MOBS  // can see all mobs, no matter what
-SEE_OBJS  // can see all objs, no matter what
-SEE_TURFS // can see all turfs (and areas), no matter what
-SEE_PIXELS// if an object is located on an unlit area, but some of its pixels are
-          // in a lit area (via pixel_x,y or smooth movement), can see those pixels
-BLIND     // can't see anything
-
-/obj/item/clothing/glasses
-	name = "glasses"
-	icon = 'icons/obj/clothing/glasses.dmi'
-	w_class = 2.0
-	body_parts_covered = EYES
-	slot_flags = SLOT_EYES
-	var/vision_flags = 0
-	var/darkness_view = 0//Base human is 2
-	var/see_invisible = -1
-	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/eyes.dmi',
-		"Teshari" = 'icons/mob/species/seromi/eyes.dmi',
-		)
-
-/obj/item/clothing/glasses/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
-		M.update_inv_glasses()
-*/
-///////////////////////////////////////////////////////////////////////
 //Gloves
 /obj/item/clothing/gloves
 	name = "gloves"
@@ -584,7 +553,7 @@ BLIND     // can't see anything
 	else
 		rolled_down = -1
 	if(H) update_clothing_icon()
-	
+
 /obj/item/clothing/under/proc/update_rollsleeves_status()
 	var/mob/living/carbon/human/H
 	if(istype(src.loc, /mob/living/carbon/human))
@@ -767,7 +736,7 @@ BLIND     // can't see anything
 		item_state_slots[slot_w_uniform_str] = "[worn_state]"
 		usr << "<span class='notice'>You roll up your [src].</span>"
 	update_clothing_icon()
-	
+
 /obj/item/clothing/under/verb/rollsleeves()
 	set name = "Roll Up Sleeves"
 	set category = "Object"
