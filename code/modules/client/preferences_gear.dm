@@ -548,6 +548,31 @@ var/global/list/gear_datums = list()
 	path = /obj/item/clothing/under/rank/cargo/skirt
 	allowed_roles = list("Quartermaster")
 
+/datum/gear/jumpsuit/teshari
+	display_name = "Teshari smock, grey"
+	path = /obj/item/clothing/under/seromi
+	whitelisted = "Teshari"
+
+/datum/gear/jumpsuit/teshari/yellow
+	display_name = "Teshari smock, yellow"
+	path = /obj/item/clothing/under/seromi/yellow
+
+/datum/gear/jumpsuit/teshari/red
+	display_name = "Teshari smock, red"
+	path = /obj/item/clothing/under/seromi/red
+
+/datum/gear/jumpsuit/teshari/white
+	display_name = "Teshari smock, white"
+	path = /obj/item/clothing/under/seromi/white
+
+/datum/gear/jumpsuit/teshari/medical
+	display_name = "Teshari smock, Medical"
+	path = /obj/item/clothing/under/seromi/medical
+
+/datum/gear/jumpsuit/teshari/rainbow
+	display_name = "Teshari smock, rainbow"
+	path = /obj/item/clothing/under/seromi/rainbow
+
 /datum/gear/jeans_qm
 	display_name = "jeans, QM"
 	path = /obj/item/clothing/under/rank/cargo/jeans
