@@ -153,7 +153,7 @@
 		eye_blurry = max(eye_blurry-1, 0)
 
 	//Ears
-	if(disabilities & DEAF)		//disabled-deaf, doesn't get better on its own
+	if(sdisabilities & DEAF)		//disabled-deaf, doesn't get better on its own
 		setEarDamage(-1, max(ear_deaf, 1))
 	else
 		// deafness heals slowly over time, unless ear_damage is over 100
