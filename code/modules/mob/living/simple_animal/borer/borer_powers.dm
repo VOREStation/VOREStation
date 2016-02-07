@@ -74,7 +74,7 @@
 		var/mob/living/carbon/human/H = M
 
 		var/obj/item/organ/external/E = H.organs_by_name[BP_HEAD]
-		if(!E || E.is_stump())
+		if(!E || (E.status & ORGAN_DESTROYED))
 			src << "\The [H] does not have a head!"
 
 		if(!H.should_have_organ("brain"))

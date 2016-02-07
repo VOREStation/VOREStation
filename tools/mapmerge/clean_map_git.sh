@@ -1,9 +1,10 @@
-#!/bin/sh
+#!/bin/bash
 
-for MAPFILE in ../../maps/*.dmm
+for i in {1..5}
 do
-	MAPNAME=$(basename $MAPFILE)
-	git show HEAD:maps/$MAPNAME > tmp.dmm
-	java -jar MapPatcher.jar -clean tmp.dmm $MAPFILE $MAPFILE
+	MAPFILE="polaris-$i.dmm"
+
+	git show HEAD:maps/$MAPFILE > tmp.dmm
+	java -jar MapPatcher.jar -clean tmp.dmm '../../maps/'$MAPFILE '../../maps/'$MAPFILE
 	rm tmp.dmm
 done

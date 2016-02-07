@@ -37,8 +37,7 @@
 
 /mob/living/simple_animal/shade/attackby(var/obj/item/O as obj, var/mob/user as mob)  //Marker -Agouri
 	if(istype(O, /obj/item/device/soulstone))
-		var/obj/item/device/soulstone/S = O;
-		S.transfer_soul("SHADE", src, user)
+		O.transfer_soul("SHADE", src, user)
 		return
 
 /mob/living/simple_animal/shade/proc/OnDeathInLife()

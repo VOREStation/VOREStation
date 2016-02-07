@@ -1315,7 +1315,7 @@ proc/admin_notice(var/message, var/rights)
 
 	if (!istype(src,/datum/admins))
 		src = usr.client.holder
-	if (!istype(src,/datum/admins) || !check_rights(R_ADMIN))
+	if (!istype(src,/datum/admins))
 		usr << "Error: you are not an admin!"
 		return
 
@@ -1323,31 +1323,17 @@ proc/admin_notice(var/message, var/rights)
 		usr << "Mode has not started."
 		return
 
-	log_and_message_admins("attempting to force mode autospawn.")
+	message_admins("[key_name(usr)] attempting to force mode latespawn.")
+	ticker.mode.next_spawn = 0
 	ticker.mode.try_latespawn()
-
-/datum/admins/proc/paralyze_mob(mob/living/H as mob)
-	set category = "Admin"
-	set name = "Toggle Paralyze"
-	set desc = "Paralyzes a player. Or unparalyses them."
-
-	var/msg
-
-	if(check_rights(R_ADMIN))
-		if (H.paralysis == 0)
-			H.paralysis = 8000
-			msg = "has paralyzed [key_name(H)]."
-		else
-			H.paralysis = 0
-			msg = "has unparalyzed [key_name(H)]."
-		log_and_message_admins(msg)
+	
 /datum/admins/proc/set_tcrystals(mob/living/carbon/human/H as mob)
 	set category = "Debug"
 	set name = "Set Telecrystals"
 	set desc = "Allows admins to change telecrystals of a user."
-
+	
 	var/crystals
-
+	
 	if(check_rights(R_ADMIN))
 		crystals = input("Amount of telecrystals for [H.ckey]", crystals) as null|num
 		if (!isnull(crystals))
@@ -1356,4 +1342,19 @@ proc/admin_notice(var/message, var/rights)
 			message_admins(msg)
 	else
 		usr << "You do not have access to this command."
-
+		
+/datum/admins/proc/paralyze_mob(mob/living/H as mob)
+	set category = "Admin"
+	set name = "Toggle Paralyze"
+	set desc = "Paralyzes a player. Or unparalyses them."
+	
+	var/msg
+	
+	if(check_rights(R_ADMIN|R_MOD))	
+		if (H.paralysis == 0)
+			H.paralysis = 8000
+			msg = "[key_name(usr)] has paralyzed [key_name(H)]."
+		else
+			H.paralysis = 0
+			msg = "[key_name(usr)] has unparalyzed [key_name(H)]."
+		message_admins(msg)

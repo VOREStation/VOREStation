@@ -143,12 +143,6 @@ emp_act
 	for(var/obj/O in src)
 		if(!O)	continue
 		O.emp_act(severity)
-	for(var/obj/item/organ/external/O  in organs)
-		O.emp_act(severity)
-		for(var/obj/item/organ/I  in O.internal_organs)
-			if(!(I.status & ORGAN_ROBOT))
-				continue
-			I.emp_act(severity)
 	..()
 
 
@@ -166,7 +160,7 @@ emp_act
 
 	var/obj/item/organ/external/affecting = get_organ(target_zone)
 
-	if (!affecting || affecting.is_stump())
+	if (!affecting || (affecting.status & ORGAN_DESTROYED) || affecting.is_stump())
 		user << "<span class='danger'>They are missing that limb!</span>"
 		return 0
 
