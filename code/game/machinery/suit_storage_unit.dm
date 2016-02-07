@@ -762,7 +762,7 @@
 	//Clear the access reqs, disable the safeties, and open up all paintjobs.
 	user << "<span class='danger'>You run the sequencer across the interface, corrupting the operating protocols.</span>"
 	departments = list("Engineering","Mining","Medical","Security","Atmos","^%###^%$")
-	species -= "Teshari" // Until someone feels like making sprites for them/they are common enough to justify inclusion in the station cyclers.
+	species = list("Human","Tajara","Skrell","Unathi", "Teshari")
 
 	emagged = 1
 	safeties = 0
