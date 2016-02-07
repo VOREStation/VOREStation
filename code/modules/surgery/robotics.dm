@@ -393,7 +393,6 @@
 			return SURGERY_FAILURE
 
 		if(!target.should_have_organ("brain"))
-
 			user << "<span class='danger'>You're pretty sure [target.species.name_plural] don't normally have a brain.</span>"
 			return SURGERY_FAILURE
 

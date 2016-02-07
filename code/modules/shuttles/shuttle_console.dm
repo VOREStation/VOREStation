@@ -93,10 +93,4 @@
 		return 1
 
 /obj/machinery/computer/shuttle_control/bullet_act(var/obj/item/projectile/Proj)
-	visible_message("\The [Proj] ricochets off \the [src]!")
-
-/obj/machinery/computer/shuttle_control/ex_act()
-	return
-
-/obj/machinery/computer/shuttle_control/emp_act()
-	return
+	visible_message("[Proj] ricochets off [src]!")

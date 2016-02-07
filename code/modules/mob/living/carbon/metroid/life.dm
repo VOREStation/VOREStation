@@ -36,13 +36,11 @@
 	bodytemperature += adjust_body_temperature(bodytemperature, loc_temp, 1)
 
 	if(bodytemperature < (T0C + 5)) // start calculating temperature damage etc
-		if(bodytemperature <= hurt_temperature)
-			if(bodytemperature <= die_temperature)
+		if(bodytemperature <= (T0C - 50)) // hurt temperature
+			if(bodytemperature <= 50) // sqrting negative numbers is bad
 				adjustToxLoss(200)
 			else
-				// could be more fancy, but doesn't worth the complexity: when the slimes goes into a cold area
-				// the damage is mostly determined by how fast its body cools
-				adjustToxLoss(30)
+				adjustToxLoss(round(sqrt(bodytemperature)) * 2)
 
 	updatehealth()
 
