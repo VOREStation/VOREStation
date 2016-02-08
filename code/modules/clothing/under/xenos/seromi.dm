@@ -5,6 +5,7 @@
 	icon_state = "seromi_grey"
 	worn_state = "seromi_grey"
 	species_restricted = list("Teshari")
+	body_parts_covered = 0 // It's a thin piece of cloth with a neck hole.
 
 /obj/item/clothing/under/seromi/white
 	name = "small white smock"

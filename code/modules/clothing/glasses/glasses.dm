@@ -1,3 +1,15 @@
+///////////////////////////////////////////////////////////////////////
+//Glasses
+/*
+SEE_SELF  // can see self, no matter what
+SEE_MOBS  // can see all mobs, no matter what
+SEE_OBJS  // can see all objs, no matter what
+SEE_TURFS // can see all turfs (and areas), no matter what
+SEE_PIXELS// if an object is located on an unlit area, but some of its pixels are
+          // in a lit area (via pixel_x,y or smooth movement), can see those pixels
+BLIND     // can't see anything
+*/
+///////////////////////////////////////////////////////////////////////
 
 /obj/item/clothing/glasses
 	name = "glasses"
@@ -13,7 +25,12 @@
 	var/active = 1
 	var/activation_sound = 'sound/items/goggles_charge.ogg'
 	var/obj/screen/overlay = null
-	
+
+	sprite_sheets = list(
+		"Vox" = 'icons/mob/species/vox/eyes.dmi',
+		"Teshari" = 'icons/mob/species/seromi/eyes.dmi'
+		)
+
 /obj/item/clothing/glasses/update_clothing_icon()
 	if (ismob(src.loc))
 		var/mob/M = src.loc
@@ -89,7 +106,7 @@
 	item_state = "eyepatch"
 	body_parts_covered = 0
 	var/eye = null
-	
+
 /obj/item/clothing/glasses/eyepatch/verb/switcheye()
 	set name = "Switch Eyepatch"
 	set category = "Object"
