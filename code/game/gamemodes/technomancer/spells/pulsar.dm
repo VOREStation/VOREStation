@@ -1,11 +1,8 @@
-/datum/power/technomancer/pulsar
+/datum/technomancer/spell/pulsar
 	name = "Pulsar"
 	desc = "Emits electronic pulses to destroy, disable, or otherwise harm devices and machines.  Be sure to not hit yourself with this."
 	cost = 150
-	verbpath = /mob/living/carbon/human/proc/technomancer_pulsar
-
-/mob/living/carbon/human/proc/technomancer_pulsar()
-	place_spell_in_hand(/obj/item/weapon/spell/pulsar)
+	obj_path = /obj/item/weapon/spell/pulsar
 
 /obj/item/weapon/spell/pulsar
 	name = "pulsar"

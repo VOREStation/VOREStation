@@ -1,9 +1,9 @@
-/datum/power/technomancer/aspect_bolt
+/datum/technomancer/spell/aspect_bolt
 	name = "Aspect Bolt"
 	desc = "This bolt function takes on the properties of other functions based on which aspect is introduced to it, with the \
 	delivery method being a projectile."
 	cost = 150
-	verbpath = /mob/living/carbon/human/proc/technomancer_aspect_bolt
+	obj_path = /mob/living/carbon/human/proc/technomancer_aspect_bolt
 
 /mob/living/carbon/human/proc/technomancer_aspect_bolt()
 	place_spell_in_hand(/obj/item/weapon/spell/aspect_bolt)

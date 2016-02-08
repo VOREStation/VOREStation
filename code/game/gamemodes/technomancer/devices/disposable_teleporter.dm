@@ -1,4 +1,4 @@
-/datum/technomancer_equipment/consumable/disposable_teleporter
+/datum/technomancer/consumable/disposable_teleporter
 	name = "Disposable Teleporter"
 	desc = "An ultra-safe teleportation device that can directly teleport you to a number of locations at minimal risk, however \
 	it has a limited amount of charges."

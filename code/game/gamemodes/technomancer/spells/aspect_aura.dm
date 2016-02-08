@@ -1,9 +1,9 @@
-/datum/power/technomancer/aspect_aura
+/datum/technomancer/spell/aspect_aura
 	name = "Aspect Aura"
 	desc = "This aura function takes on the properties of other functions based on which aspect is introduced to it, applying \
 	it to everyone nearby."
 	cost = 200
-	verbpath = /mob/living/carbon/human/proc/technomancer_aspect_aura
+	obj_path = /mob/living/carbon/human/proc/technomancer_aspect_aura
 
 /mob/living/carbon/human/proc/technomancer_aspect_aura()
 	place_spell_in_hand(/obj/item/weapon/spell/aspect_aura)

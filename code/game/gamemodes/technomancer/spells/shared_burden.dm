@@ -1,11 +1,8 @@
-/datum/power/technomancer/shared_burden
+/datum/technomancer/spell/shared_burden
 	name = "Shared Burden"
 	desc = "One of the few functions able to adjust instability, this allows you to take someone else's instability."
 	cost = 50
-	verbpath = /mob/living/carbon/human/proc/technomancer_shared_burden
-
-/mob/living/carbon/human/proc/technomancer_shared_burden()
-	place_spell_in_hand(/obj/item/weapon/spell/shared_burden)
+	obj_path = /obj/item/weapon/spell/shared_burden
 
 /obj/item/weapon/spell/shared_burden
 	name = "shared burden"

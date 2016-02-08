@@ -1,8 +1,8 @@
-/datum/power/technomancer/discharge
+/datum/technomancer/spell/discharge
 	name = "Discharge"
 	desc = "Attempts to steal energy from your target, electrocuting it and anyone holding it."
 	cost = 70
-	verbpath = /mob/living/carbon/human/proc/technomancer_discharge
+	obj_path = /obj/item/weapon/spell/discharge
 
 /mob/living/carbon/human/proc/technomancer_discharge()
 	place_spell_in_hand(/obj/item/weapon/spell/discharge)

@@ -1,4 +1,4 @@
-/datum/power/technomancer/control
+/datum/technomancer/spell/control
 	name = "Control"
 	desc = "This function allows you to exert control over simple-minded entities to an extent, such as spiders and carp.  \
 	Controlled entities will not be hostile towards you, and you may direct them to move to specific areas or to attack specific \
@@ -6,7 +6,7 @@
 	not true mind control, but merely pheromone synthesis for living animals, and electronic hacking for simple robots.  The green web \
 	around the entity is merely a hologram used to allow the user to know if the creature is safe or not."
 	cost = 200
-	verbpath = /mob/living/carbon/human/proc/technomancer_resurrect
+	obj_path = /obj/item/weapon/spell/control
 
 /mob/living/carbon/human/proc/technomancer_control()
 	place_spell_in_hand(/obj/item/weapon/spell/control)

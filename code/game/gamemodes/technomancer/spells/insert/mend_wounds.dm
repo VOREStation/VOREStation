@@ -1,11 +1,8 @@
-/datum/power/technomancer/mend_wounds
+/datum/technomancer/spell/mend_wounds
 	name = "Mend Wounds"
 	desc = "Heals minor wounds, such as cuts, bruises, and other non-lifethreatening injuries."
 	cost = 120
-	verbpath = /mob/living/carbon/human/proc/technomancer_mend_wounds
-
-/mob/living/carbon/human/proc/technomancer_mend_wounds()
-	place_spell_in_hand(/obj/item/weapon/spell/insert/mend_wounds)
+	obj_path = /obj/item/weapon/spell/insert/mend_wounds
 
 /obj/item/weapon/spell/insert/mend_wounds
 	name = "mend wounds"

@@ -20,7 +20,6 @@
 #define ASPECT_UNSTABLE		"unstable"	//Heavily RNG-based, causes instability to the victim.
 #define ASPECT_CHROMATIC	"chromatic"	//Used to combine with other spells.
 
-
 /obj/item/weapon/spell
 	name = "glowing particles"
 	desc = "Your hands appear to be glowing brightly."
@@ -38,6 +37,7 @@
 	var/cast_methods = null
 	var/aspect = null
 	var/toggled = 0 //Mainly used for overlays
+	var/cooldown = 0 //If set, will add a cooldown overlay and adjust click delay.  Must be a multiple of 5 for overlays.
 
 /obj/item/weapon/spell/proc/on_use_cast(mob/user)
 	return
@@ -52,6 +52,9 @@
 	return
 
 /obj/item/weapon/spell/proc/on_combine_cast(obj/item/W, mob/user)
+	return
+
+/obj/item/weapon/spell/proc/on_innate_cast(mob/user)
 	return
 
 //TODO
@@ -146,162 +149,37 @@
 		else if(cast_methods & CAST_RANGED) //Try to use a ranged method if a melee one doesn't exist.
 			on_ranged_cast(target, user)
 			world << "range cast called"
+	if(cooldown)
+		user.setClickCooldown(cooldown)
+		flick("cooldown_[cooldown]",src)
 
-/obj/spellbutton
-	name = "generic spellbutton"
-	var/spellpath = null
+/mob/living/proc/place_spell_in_hand(var/path)
+	return
 
-//debug test verbs, kill Neerti if this makes it live.
-/mob/verb/apportation()
-	set category = "Functions"
-	set name = "Apportation()"
-	set src = usr
-	if(!ishuman(src))
-		return 0
-
-	var/mob/living/carbon/human/H = src
-
-	H.place_spell_in_hand(/obj/item/weapon/spell/apportation)
-
-/mob/verb/blink()
-	set category = "Functions"
-	set name = "Blink()"
-	set src = usr
-	if(!ishuman(src))
-		return 0
-
-	var/mob/living/carbon/human/H = src
-
-	H.place_spell_in_hand(/obj/item/weapon/spell/blink)
-
-/mob/verb/darkness()
-	set category = "Functions"
-	set name = "Darkness()"
-	set src = usr
-	if(!ishuman(src))
-		return 0
-
-	var/mob/living/carbon/human/H = src
-
-	H.place_spell_in_hand(/obj/item/weapon/spell/darkness)
-
-/mob/verb/radiance()
-	set category = "Functions"
-	set name = "Radiance()"
-	set src = usr
-	if(!ishuman(src))
-		return 0
-
-	var/mob/living/carbon/human/H = src
-
-	H.place_spell_in_hand(/obj/item/weapon/spell/radiance)
-
-/mob/verb/purify()
-	set category = "Functions"
-	set name = "Purify()"
-	set src = usr
-	if(!ishuman(src))
-		return 0
-
-	var/mob/living/carbon/human/H = src
-
-	H.place_spell_in_hand(/obj/item/weapon/spell/insert/purify)
-
-/mob/verb/disable_technology()
-	set category = "Functions"
-	set name = "Disable_Technology()"
-	set src = usr
-	if(!ishuman(src))
-		return 0
-
-	var/mob/living/carbon/human/H = src
-
-	H.place_spell_in_hand(/obj/item/weapon/spell/pulsar)
-
-/mob/verb/passwall()
-	set category = "Functions"
-	set name = "Passwall()"
-	set src = usr
-	if(!ishuman(src))
-		return 0
-
-	var/mob/living/carbon/human/H = src
-
-	H.place_spell_in_hand(/obj/item/weapon/spell/passwall)
-
-/mob/verb/phase_shift()
-	set category = "Functions"
-	set name = "Phase_Shift()"
-	set src = usr
-	if(!ishuman(src))
-		return 0
-
-	var/mob/living/carbon/human/H = src
-
-	H.place_spell_in_hand(/obj/item/weapon/spell/phase_shift)
-
-/mob/verb/warp_strike()
-	set category = "Functions"
-	set name = "Warp_Strike()"
-	set src = usr
-	if(!ishuman(src))
-		return 0
-
-	var/mob/living/carbon/human/H = src
-
-	H.place_spell_in_hand(/obj/item/weapon/spell/warp_strike)
-
-/mob/verb/discharge()
-	set category = "Functions"
-	set name = "Discharge()"
-	set src = usr
-	if(!ishuman(src))
-		return 0
-
-	var/mob/living/carbon/human/H = src
-
-	H.place_spell_in_hand(/obj/item/weapon/spell/discharge)
-
-/mob/verb/aspect_aura()
-	set category = "Functions"
-	set name = "Aspect Aura()"
-	set src = usr
-	if(!ishuman(src))
-		return 0
-
-	var/mob/living/carbon/human/H = src
-
-	H.place_spell_in_hand(/obj/item/weapon/spell/aspect_aura)
-
-/mob/verb/control()
-	set category = "Functions"
-	set name = "Control()"
-	set src = usr
-	if(!ishuman(src))
-		return 0
-
-	var/mob/living/carbon/human/H = src
-
-	H.place_spell_in_hand(/obj/item/weapon/spell/control)
-
-/mob/living/carbon/human/proc/place_spell_in_hand(var/path)
+/mob/living/carbon/human/place_spell_in_hand(var/path)
 	if(!path || !ispath(path))
 		return 0
+
+	var/obj/item/weapon/spell/S = PoolOrNew(path, src)
+
+	//No hands needed for innate casts.
+	if(S.cast_methods & CAST_INNATE)
+		if(S.run_checks())
+			S.on_innate_cast(src)
+
 	if(l_hand && r_hand) //Make sure our hands aren't full.
 		if(istype(r_hand, /obj/item/weapon/spell)) //If they are full, perhaps we can still be useful.
 			var/obj/item/weapon/spell/r_spell = r_hand
 			if(r_spell.aspect == ASPECT_CHROMATIC) //Check if we can combine the new spell with one in our hands.
-				var/obj/item/weapon/spell/S = PoolOrNew(path, src)
 				r_spell.on_combine_cast(S, src)
 		else if(istype(l_hand, /obj/item/weapon/spell))
 			var/obj/item/weapon/spell/l_spell = l_hand
 			if(l_spell.aspect == ASPECT_CHROMATIC) //Check the other hand too.
-				var/obj/item/weapon/spell/S = PoolOrNew(path, src)
 				l_spell.on_combine_cast(S, src)
 		else //Welp
 			src << "<span class='warning'>You require a free hand to use this function.</span>"
 			return 0
-	var/obj/item/weapon/spell/S = PoolOrNew(path, src)
+
 	if(S.run_checks())
 		put_in_hands(S)
 		return 1

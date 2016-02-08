@@ -1,7 +1,7 @@
-/datum/technomancer_equipment/assistance/
+/datum/technomancer/assistance
 	var/one_use_only = 0
 
-/datum/technomancer_equipment/assistance/apprentice
+/datum/technomancer/assistance/apprentice
 	name = "Friendly Apprentice"
 	desc = "A one-time use teleporter that sends a less powerful manipulator of space to you, who will do their best to protect \
 	and serve you.  They get their own catalog and can buy spells for themselves, however they have a smaller pool to buy with.  \
@@ -10,7 +10,7 @@
 	cost = 300
 	obj_path = null //TODO
 
-/datum/technomancer_equipment/assistance/golem
+/datum/technomancer/assistance/golem
 	name = "Friendly GOLEM unit"
 	desc = "Teleports a specially designed synthetic unit to you, which is very durable, has an advanced AI, and can also use \
 	functions.  It knows Shield, Targeted Blink, Beam, Flame Tongue, Mend Wounds, and Mend Burns.  It also has a large storage \
@@ -19,7 +19,7 @@
 	obj_path = null //TODO
 	one_use_only = 1
 
-/datum/technomancer_equipment/assistance/ninja
+/datum/technomancer/assistance/ninja
 	name = "Neutral Cyberassassin"
 	desc = "Someone almost as enigmatic as you will also arrive at your destination, with their own goals and motivations.  \
 	This could prove to be a problem if they decide to go against you, so this is only recommended as a challenge."

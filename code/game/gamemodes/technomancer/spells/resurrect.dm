@@ -1,13 +1,10 @@
-/datum/power/technomancer/resurrect
+/datum/technomancer/spell/resurrect
 	name = "Resurrect"
 	desc = "This function injects various regenetive medical compounds and nanomachines, in an effort to restart the body, \
 	however this must be done soon after they die, as this will have no effect on people who have died long ago.  It also doesn't \
 	resolve whatever caused them to die originally."
 	cost = 250
-	verbpath = /mob/living/carbon/human/proc/technomancer_resurrect
-
-/mob/living/carbon/human/proc/technomancer_resurrect()
-	place_spell_in_hand(/obj/item/weapon/spell/resurrect)
+	obj_path = /obj/item/weapon/spell/resurrect
 
 /obj/item/weapon/spell/resurrect
 	name = "resurrect"

@@ -1,12 +1,9 @@
-/datum/power/technomancer/blink
+/datum/technomancer/spell/blink
 	name = "Blink"
 	desc = "Force the target to teleport a short distance away.  This target could be anything from something lying on the ground, to someone trying to \
 	fight you, or even yourself."
 	cost = 100
-	verbpath = /mob/living/carbon/human/proc/technomancer_blink
-
-/mob/living/carbon/human/proc/technomancer_blink()
-	place_spell_in_hand(/obj/item/weapon/spell/blink)
+	obj_path = /obj/item/weapon/spell/blink
 
 /obj/item/weapon/spell/blink
 	name = "blink"

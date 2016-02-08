@@ -1,12 +1,9 @@
-/datum/power/technomancer/shield
+/datum/technomancer/spell/shield
 	name = "Shield"
 	desc = "Emits a protective shield fron your hand in front of you, which will protect you from almost anything able to harm \
 	you, so long as you can power it."
 	cost = 120
-	verbpath = /mob/living/carbon/human/proc/technomancer_shield
-
-/mob/living/carbon/human/proc/technomancer_shield()
-	place_spell_in_hand(/obj/item/weapon/spell/shield)
+	obj_path = /obj/item/weapon/spell/shield
 
 /obj/item/weapon/spell/shield
 	name = "\proper energy shield"

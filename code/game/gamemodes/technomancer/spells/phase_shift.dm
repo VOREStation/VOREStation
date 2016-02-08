@@ -1,12 +1,9 @@
-/datum/power/technomancer/phase_shift
+/datum/technomancer/spell/phase_shift
 	name = "Phase Shift"
 	desc = "Hides you in the safest possible place, where no harm can come to you.  Unfortunately you can only stay inside for a few moments before \
 	draining your powercell."
 	cost = 80
-	verbpath = /mob/living/carbon/human/proc/technomancer_phase_shift
-
-/mob/living/carbon/human/proc/technomancer_phase_shift()
-	place_spell_in_hand(/obj/item/weapon/spell/phase_shift)
+	obj_path = /obj/item/weapon/spell/phase_shift
 
 /obj/item/weapon/spell/phase_shift
 	name = "phase shift"

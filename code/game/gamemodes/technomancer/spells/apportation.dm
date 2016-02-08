@@ -1,12 +1,9 @@
-/datum/power/technomancer/apportation
+/datum/technomancer/spell/apportation
 	name = "Apportation"
 	desc = "This allows you to teleport objects into your hand, or to pull people towards you.  If they're close enough, the function \
 	will grab them automatically."
 	cost = 50
-	verbpath = /mob/living/carbon/human/proc/technomancer_apportation
-
-/mob/living/carbon/human/proc/technomancer_apportation()
-	place_spell_in_hand(/obj/item/weapon/spell/apportation)
+	obj_path = /obj/item/weapon/spell/apportation
 
 /obj/item/weapon/spell/apportation
 	name = "apportation"
@@ -34,8 +31,6 @@
 			s2.set_up(2, 1, I)
 			s1.start()
 			s2.start()
-//			new /obj/effect/effect/sparks(get_turf(I))
-//			new /obj/effect/effect/sparks(get_turf(user))
 			I.visible_message("<span class='danger'>\The [I] vanishes into thin air!</span>")
 			I.forceMove(get_turf(user))
 			user.drop_item(src)
@@ -53,8 +48,6 @@
 			s2.set_up(2, 1, L)
 			s1.start()
 			s2.start()
-//			new /obj/effect/effect/sparks(get_turf(L))
-//			new /obj/effect/effect/sparks(get_turf(user))
 			L.throw_at(get_step(get_turf(src),get_turf(L)), 4, 1, src)
 			user.drop_item(src)
 			src.loc = null

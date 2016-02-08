@@ -1,11 +1,8 @@
-/datum/power/technomancer/purify
+/datum/technomancer/spell/purify
 	name = "Purify"
 	desc = "Clenses the body of harmful impurities, such as toxins, radiation, viruses, and such."
 	cost = 100
-	verbpath = /mob/living/carbon/human/proc/technomancer_purify
-
-/mob/living/carbon/human/proc/technomancer_purify()
-	place_spell_in_hand(/obj/item/weapon/spell/insert/purify)
+	obj_path = /obj/item/weapon/spell/insert/purify
 
 /obj/item/weapon/spell/insert/purify
 	name = "purify"
@@ -22,8 +19,8 @@
 			var/mob/living/carbon/human/H = host
 			H.sdisabilities = 0
 			H.disabilities = 0
-			for(var/datum/disease/D in H.viruses)
-				D.cure()
+//			for(var/datum/disease/D in H.viruses)
+//				D.cure()
 			for(var/i = 0, i<25,i++)
 				if(H)
 					H.adjustToxLoss(-1)

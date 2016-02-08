@@ -16,6 +16,7 @@
 	var/max_energy = 10000
 	var/regen_rate = 50 //200 seconds to full
 	var/mob/living/wearer = null
+	var/list/spells = list()
 
 /obj/item/weapon/technomancer_core/New()
 	..()
@@ -39,6 +40,10 @@
 		return 1
 	return 0
 
+/obj/item/weapon/technomancer_core/proc/give_energy(amount)
+	energy = max(energy + amount, max_energy)
+	return 1
+
 /obj/item/weapon/technomancer_core/process()
 	regenerate()
 
@@ -47,6 +52,66 @@
 	if(wearer && ishuman(wearer))
 		var/mob/living/carbon/human/H = wearer
 		H.wiz_energy_update_hud()
+
+/obj/spellbutton
+	name = "generic spellbutton"
+	var/spellpath = null
+	var/was_bought_by_preset = 0
+
+/obj/spellbutton/New(loc, var/path, var/new_name)
+	if(!path || !ispath(path))
+		message_admins("ERROR: /obj/spellbutton/New() was not given a proper path!")
+		qdel(src)
+	src.name = new_name
+	src.spellpath = path
+	src.loc = loc
+
+/obj/spellbutton/Click()
+	if(ishuman(usr))
+		var/mob/living/carbon/human/H = usr
+		H.place_spell_in_hand(spellpath)
+
+/obj/spellbutton/DblClick()
+	return Click()
+
+/mob/living/carbon/human/Stat()
+	. = ..()
+
+	if(. && istype(back,/obj/item/weapon/technomancer_core))
+		var/obj/item/weapon/technomancer_core/core = back
+		setup_technomancer_stat(core)
+
+/mob/living/carbon/human/proc/setup_technomancer_stat(var/obj/item/weapon/technomancer_core/core)
+	if(core && statpanel("Spell Core"))
+		var/charge_status = "[core.energy]/[core.max_energy] ([round( (core.energy / core.max_energy) * 100)]%)"
+		var/instability_status = "[src.instability]"
+		stat("Core charge", charge_status)
+		stat("User instability", instability_status)
+		for(var/obj/spellbutton/button in core.spells)
+			stat(button)
+
+/obj/item/weapon/technomancer_core/proc/add_spell(var/path, var/new_name)
+	if(!path || !ispath(path))
+		message_admins("/obj/item/weapon/technomancer_core/add_spell() was not given a proper path!  The path supplied was [path].")
+		return
+	var/obj/spellbutton/spell = new(src, path, new_name)
+	spells.Add(spell)
+
+/obj/item/weapon/technomancer_core/proc/remove_spell(var/obj/spellbutton/spell_to_remove)
+	if(spell_to_remove in spells)
+		spells.Remove(spell_to_remove)
+		qdel(spell_to_remove)
+
+/obj/item/weapon/technomancer_core/proc/remove_all_spells()
+	for(var/obj/spellbutton/spell in spells)
+		spells.Remove(spell)
+		qdel(spell)
+
+/obj/item/weapon/technomancer_core/proc/has_spell(var/datum/technomancer/spell_to_check)
+	for(var/obj/spellbutton/spell in spells)
+		if(spell.spellpath == spell_to_check.obj_path)
+			return 1
+	return 0
 
 /mob
 	var/obj/screen/wizard/energy/wiz_energy_display = null //Unfortunately, this needs to be a mob var due to HUD code.
@@ -88,7 +153,7 @@
 	if(loc && ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		instability_bonus = H.instability * 1.5
-	energy += min(energy + regen_rate + instability_bonus, max_energy)
+	energy = min(energy + regen_rate + instability_bonus, max_energy)
 	if(loc && ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		H.wiz_energy_update_hud()

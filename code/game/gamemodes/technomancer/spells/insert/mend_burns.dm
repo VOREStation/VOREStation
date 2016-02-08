@@ -1,11 +1,8 @@
-/datum/power/technomancer/mend_burns
+/datum/technomancer/spell/mend_burns
 	name = "Mend Burns"
 	desc = "Heals minor burns, such as from exposure to flame, electric shock, or lasers."
 	cost = 120
-	verbpath = /mob/living/carbon/human/proc/technomancer_mend_wounds
-
-/mob/living/carbon/human/proc/technomancer_mend_burns()
-	place_spell_in_hand(/obj/item/weapon/spell/insert/mend_wounds)
+	obj_path = /obj/item/weapon/spell/insert/mend_burns
 
 /obj/item/weapon/spell/insert/mend_burns
 	name = "mend burns"

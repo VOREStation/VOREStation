@@ -1,11 +1,8 @@
-/datum/power/technomancer/warp_strike
+/datum/technomancer/spell/warp_strike
 	name = "Warp Strike"
 	desc = "Teleports you next to your target, and attacks them with whatever is in your off-hand, spell or object."
 	cost = 200
-	verbpath = /mob/living/carbon/human/proc/technomancer_warp_strike
-
-/mob/living/carbon/human/proc/technomancer_warp_strike()
-	place_spell_in_hand(/obj/item/weapon/spell/warp_strike)
+	obj_path = /obj/item/weapon/spell/warp_strike
 
 /obj/item/weapon/spell/warp_strike
 	name = "warp strike"

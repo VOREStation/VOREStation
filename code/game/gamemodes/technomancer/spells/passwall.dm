@@ -1,12 +1,9 @@
-/datum/power/technomancer/passwall
+/datum/technomancer/spell/passwall
 	name = "Passwall"
 	desc = "An uncommon function that allows the user to phase through matter (usually walls) in order to enter or exit a room.  Be careful you don't pass into \
 	somewhere dangerous."
 	cost = 100
-	verbpath = /mob/living/carbon/human/proc/technomancer_passwall
-
-/mob/living/carbon/human/proc/technomancer_passwall()
-	place_spell_in_hand(/obj/item/weapon/spell/passwall)
+	obj_path = /obj/item/weapon/spell/passwall
 
 /obj/item/weapon/spell/passwall
 	name = "passwall"
@@ -39,7 +36,7 @@
 
 		while(i)
 			checked_turf = get_step(checked_turf, direction) //Advance in the given direction
-			total_cost += 1000 //Phasing through matter's expensive, you know.
+			total_cost += 800 //Phasing through matter's expensive, you know.
 			i--
 			if(!checked_turf.density) //If we found a destination (a non-dense turf), then we can stop.
 				var/dense_objs_on_turf = 0
@@ -56,11 +53,16 @@
 			if(user.loc != our_turf)
 				user << "<span class='warning'>You need to stand still in order to phase through the wall.</span>"
 				return 0
-			visible_message("<span class='warning'>[user] appears to phase through \the [T]!</span>")
-			user << "<span class='info'>You find a destination on the other side of \the [T], and phase through it.</span>"
-			spark_system.start()
-			user.forceMove(found_turf)
-			qdel(src)
-			return 1
+			if(pay_energy(total_cost) && !user.incapacitated() )
+				visible_message("<span class='warning'>[user] appears to phase through \the [T]!</span>")
+				user << "<span class='info'>You find a destination on the other side of \the [T], and phase through it.</span>"
+				spark_system.start()
+				user.forceMove(found_turf)
+				qdel(src)
+				return 1
+			else
+				user << "<span class='warning'>You don't have enough energy to phase through these walls!</span>"
+				busy = 0
 		else
 			user << "<span class='info'>You weren't able to find an open space to go to.</span>"
+			busy = 0

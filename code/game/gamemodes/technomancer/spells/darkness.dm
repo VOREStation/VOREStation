@@ -1,11 +1,8 @@
-/datum/power/technomancer/darkness
+/datum/technomancer/spell/darkness
 	name = "Darkness"
 	desc = "Disrupts photons moving in a local area, causing darkness to shroud yourself or a position of your choosing."
 	cost = 30
-	verbpath = /mob/living/carbon/human/proc/technomancer_darkness
-
-/mob/living/carbon/human/proc/technomancer_darkness()
-	place_spell_in_hand(/obj/item/weapon/spell/darkness)
+	obj_path = /obj/item/weapon/spell/darkness
 
 /obj/item/weapon/spell/darkness
 	name = "darkness"

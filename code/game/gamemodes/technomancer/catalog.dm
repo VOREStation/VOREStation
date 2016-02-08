@@ -1,14 +1,15 @@
-var/list/all_technomancer_spells = typesof(/datum/power/technomancer) - /datum/power/technomancer
-var/list/all_technomancer_equipment = typesof(/datum/technomancer_equipment/equipment) - /datum/technomancer_equipment/equipment
-var/list/all_technomancer_consumables = typesof(/datum/technomancer_equipment/consumable) - /datum/technomancer_equipment/consumable
-var/list/all_technomancer_assistance = typesof(/datum/technomancer_equipment/assistance) - /datum/technomancer_equipment/assistance
-var/list/all_technomancer_presets = typesof(/datum/technomancer_equipment/presets) - /datum/technomancer_equipment/presets
+var/list/all_technomancer_spells = typesof(/datum/technomancer/spell) - /datum/technomancer/spell
+var/list/all_technomancer_equipment = typesof(/datum/technomancer/equipment) - /datum/technomancer/equipment
+var/list/all_technomancer_consumables = typesof(/datum/technomancer/consumable) - /datum/technomancer/consumable
+var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) - /datum/technomancer/assistance
+var/list/all_technomancer_presets = typesof(/datum/technomancer/presets) - /datum/technomancer/presets
 
-/datum/power/technomancer/
-	name = "technomancer function"
-	desc = "If you can see this, something broke."
+/datum/technomancer
+	var/name = "technomancer thing"
+	var/desc = "If you can see this, something broke."
 	var/cost = 100
 	var/hidden = 0
+	var/obj_path = null
 
 /obj/item/weapon/technomancer_catalog
 	name = "catalog"
@@ -81,7 +82,8 @@ var/list/all_technomancer_presets = typesof(/datum/technomancer_equipment/preset
 			dat += "<a href='byond://?src=\ref[src];tab_choice=3'>Assistance</a> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=4'>Presets</a></align><br>"
 			dat += "You currently have a budget of <b>[budget]/[max_budget]</b>.<br><br>"
-			for(var/datum/power/technomancer/spell in spell_instances)
+			dat += "<a href='byond://?src=\ref[src];refund_functions=1'>Refund Functions</a><br><br>"
+			for(var/datum/technomancer/spell in spell_instances)
 				if(spell.hidden)
 					continue
 				dat += "<b>[spell.name]</b><br>"
@@ -90,7 +92,6 @@ var/list/all_technomancer_presets = typesof(/datum/technomancer_equipment/preset
 					dat += "<a href='byond://?src=\ref[src];spell_choice=[spell.name]'>Purchase</a> ([spell.cost])<br><br>"
 				else
 					dat += "<font color='red'><b>Cannot afford!</b></font><br><br>"
-			dat += "<a href='byond://?src=\ref[src];refund_functions=1'>Refund Functions</a>"
 			user << browse(dat, "window=radio")
 			onclose(user, "radio")
 		if(1) //Equipment
@@ -102,7 +103,7 @@ var/list/all_technomancer_presets = typesof(/datum/technomancer_equipment/preset
 			dat += "<a href='byond://?src=\ref[src];tab_choice=3'>Assistance</a> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=4'>Presets</a></align><br>"
 			dat += "You currently have a budget of <b>[budget]/[max_budget]</b>.<br><br>"
-			for(var/datum/technomancer_equipment/equipment/E in equipment_instances)
+			for(var/datum/technomancer/equipment/E in equipment_instances)
 				dat += "<b>[E.name]</b><br>"
 				dat += "<i>[E.desc]</i><br>"
 				if(E.cost <= budget)
@@ -120,7 +121,7 @@ var/list/all_technomancer_presets = typesof(/datum/technomancer_equipment/preset
 			dat += "<a href='byond://?src=\ref[src];tab_choice=3'>Assistance</a> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=4'>Presets</a></align><br>"
 			dat += "You currently have a budget of <b>[budget]/[max_budget]</b>.<br><br>"
-			for(var/datum/technomancer_equipment/consumable/C in consumable_instances)
+			for(var/datum/technomancer/consumable/C in consumable_instances)
 				dat += "<b>[C.name]</b><br>"
 				dat += "<i>[C.desc]</i><br>"
 				if(C.cost <= budget)
@@ -138,7 +139,7 @@ var/list/all_technomancer_presets = typesof(/datum/technomancer_equipment/preset
 			dat += "<b>Assistance</b> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=4'>Presets</a></align><br>"
 			dat += "You currently have a budget of <b>[budget]/[max_budget]</b>.<br><br>"
-			for(var/datum/technomancer_equipment/assistance/A in assistance_instances)
+			for(var/datum/technomancer/assistance/A in assistance_instances)
 				dat += "<b>[A.name]</b><br>"
 				dat += "<i>[A.desc]</i><br>"
 				if(A.cost <= budget)
@@ -156,7 +157,7 @@ var/list/all_technomancer_presets = typesof(/datum/technomancer_equipment/preset
 			dat += "<a href='byond://?src=\ref[src];tab_choice=3'>Assistance</a> | "
 			dat += "<b>Presets</b></align><br>"
 			dat += "You currently have a budget of <b>[budget]/[max_budget]</b>.<br><br>"
-			for(var/datum/technomancer_equipment/presets/P in preset_instances)
+			for(var/datum/technomancer/presets/P in preset_instances)
 				dat += "<b>[P.name]</b><br>"
 				dat += "<i>[P.desc]</i><br>"
 				if(P.cost <= budget)
@@ -184,17 +185,41 @@ var/list/all_technomancer_presets = typesof(/datum/technomancer_equipment/preset
 		if(href_list["tab_choice"])
 			tab = text2num(href_list["tab_choice"])
 		if(href_list["spell_choice"])
-			var/datum/power/technomancer/new_spell = null
+			var/datum/technomancer/new_spell = null
 			//Locate the spell.
-			for(var/datum/power/technomancer/spell in spell_instances)
+			for(var/datum/technomancer/spell/spell in spell_instances)
 				if(spell.name == href_list["spell_choice"])
 					new_spell = spell
 					break
-			if(new_spell)
+
+			var/obj/item/weapon/technomancer_core/core = null
+			if(istype(H.back, /obj/item/weapon/technomancer_core))
+				core = H.back
+
+			if(new_spell && core)
 				if(new_spell.cost <= budget)
-					budget -= new_spell.cost
-					H << "<span class='notice'>You have just bought [new_spell.name].</span>"
-				else
+					if(!core.has_spell(new_spell))
+						budget -= new_spell.cost
+						H << "<span class='notice'>You have just bought [new_spell.name].</span>"
+						core.add_spell(new_spell.obj_path, new_spell.name)
+					else //We already own it.
+						H << "<span class='danger'>You already have [new_spell.name]!</span>"
+						return
+				else //Can't afford.
 					H << "<span class='danger'>You can't afford that!</span>"
 					return
+
+		if(href_list["refund_functions"])
+			if(H.z != 2)
+				H << "<span class='danger'>You can only refund at your base, it's too late now!</span>"
+				return
+			var/obj/item/weapon/technomancer_core/core = null
+			if(istype(H.back, /obj/item/weapon/technomancer_core))
+				core = H.back
+			for(var/obj/spellbutton/spell in core.spells)
+				for(var/datum/technomancer/spell/spell_datum in spell_instances)
+					if(spell_datum.obj_path == spell.spellpath && !spell.was_bought_by_preset)
+						budget += spell_datum.cost
+						core.remove_spell(spell)
+						break
 		attack_self(H)

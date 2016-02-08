@@ -157,7 +157,7 @@
 	return buckled ? FULLY_BUCKLED : UNBUCKLED
 
 /mob/proc/incapacitated(var/incapacitation_flags = INCAPACITATION_DEFAULT)
-	if (stat || paralysis || stunned || weakened || resting || sleeping || (status_flags & FAKEDEATH))
+	if (stat || paralysis || weakened || resting || sleeping || (status_flags & FAKEDEATH))
 		return 1
 
 	if((incapacitation_flags & INCAPACITATION_RESTRAINED) && restrained())

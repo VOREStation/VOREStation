@@ -2,6 +2,8 @@
 /mob/living/simple_animal/hostile/technomancer_golem
 	name = "G.O.L.E.M."
 	desc = "A rather unusual looking synthetic."
+	icon = 'icons/mob/robots.dmi'
+	icon_state = "Security"
 	health = 250
 	maxHealth = 250
 	stop_automated_movement = 1
@@ -34,27 +36,37 @@
 
 	var/obj/item/weapon/technomancer_core/core = null
 	var/obj/item/weapon/spell/active_spell = null
-	var/mob/living/owner = null
+	var/mob/living/master = null
 
-/mob/living/simple_animal/technomancer_golem/New()
+/mob/living/simple_animal/hostile/technomancer_golem/New()
 	..()
 	core = new core(src)
 
-/mob/living/simple_animal/technomancer_golem/Destroy()
+/mob/living/simple_animal/hostile/technomancer_golem/Destroy()
 	qdel(core)
 	..()
 
-/mob/living/simple_animal/technomancer_golem/proc/bind_to_mob(mob/user)
-	if(!user || owner)
+/mob/living/simple_animal/hostile/technomancer_golem/proc/bind_to_mob(mob/user)
+	if(!user || master)
 		return
-	owner = user
-	name = "[owner]'s [initial(name)]"
+	master = user
+	name = "[master]'s [initial(name)]"
 
-/mob/living/simple_animal/technomancer_golem/examine(mob/user)
+/mob/living/simple_animal/hostile/technomancer_golem/examine(mob/user)
 	..()
 	if(user.mind && technomancers.is_antagonist(user.mind))
 		user << "Your pride and joy.  It's a very special synthetic robot, capable of using functions similar to you, and you built it \
 		yourself!  It'll always stand by your side, ready to help you out.  You have no idea what GOLEM stands for, however..."
 
-/mob/living/simple_animal/technomancer_golem/Life()
+/mob/living/simple_animal/hostile/technomancer_golem/Life()
+	handle_ai()
+
+/mob/living/simple_animal/hostile/technomancer_golem/proc/handle_ai()
+	if(!master)
+		return
+	if(get_dist(src, master) > 6 || src.z != master.z)
+		recall_to_master()
+
+
+/mob/living/simple_animal/hostile/technomancer_golem/proc/recall_to_master()
 	return

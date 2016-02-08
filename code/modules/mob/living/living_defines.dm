@@ -44,3 +44,5 @@
 
 	var/failed_last_breath = 0 //This is used to determine if the mob failed a breath. If they did fail a brath, they will attempt to breathe each tick, otherwise just once per 4 ticks.
 	var/lastpuke = 0
+
+	var/evasion = 0 //Makes attacks harder to land.  Each number equals 15% more likely to miss.  Negative numbers increase hit chance.

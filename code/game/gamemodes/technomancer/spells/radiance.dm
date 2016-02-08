@@ -1,11 +1,8 @@
-/datum/power/technomancer/radiance
+/datum/technomancer/spell/radiance
 	name = "Radiance"
 	desc = "Causes you to be very radiant, glowing brightly in visible light, thermal energy, and deadly ionizing radiation."
 	cost = 180
-	verbpath = /mob/living/carbon/human/proc/technomancer_radiance
-
-/mob/living/carbon/human/proc/technomancer_radiance()
-	place_spell_in_hand(/obj/item/weapon/spell/darkness)
+	obj_path = /obj/item/weapon/spell/radiance
 
 /obj/item/weapon/spell/radiance
 	name = "radiance"
