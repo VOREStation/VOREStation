@@ -896,7 +896,7 @@
 
 	// nutrition decrease
 	if (nutrition > 0 && stat != 2)
-		nutrition = max (0, nutrition - HUNGER_FACTOR)
+		nutrition = max (0, nutrition - species.hunger_factor)
 
 	if (nutrition > 450)
 		if(overeatduration < 600) //capped so people don't take forever to unfat
@@ -1303,7 +1303,7 @@
 				var/base_temperature = species.body_temperature
 				if(base_temperature == null) //some species don't have a set metabolic temperature
 					base_temperature = (species.heat_level_1 + species.cold_level_1)/2
-				
+
 				var/temp_step
 				if (bodytemperature >= base_temperature)
 					temp_step = (species.heat_level_1 - base_temperature)/4
