@@ -15,6 +15,7 @@
 	base_color = "#001144"
 	tail = "seromitail"
 	tail_hair = "feathers"
+	reagent_tag = IS_TESHARI
 
 	icobase = 'icons/mob/human_races/r_seromi.dmi'
 	deform = 'icons/mob/human_races/r_seromi.dmi'
