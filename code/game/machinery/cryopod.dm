@@ -225,6 +225,7 @@
 
 	var/obj/machinery/computer/cryopod/control_computer
 	var/last_no_computer_message = 0
+	var/applies_stasis = 1
 
 	// These items are preserved when the process() despawn proc occurs.
 	var/list/preserve_items = list(
@@ -254,6 +255,7 @@
 	on_enter_occupant_message = "The storage unit broadcasts a sleep signal to you. Your systems start to shut down, and you enter low-power mode."
 	allow_occupant_types = list(/mob/living/silicon/robot)
 	disallow_occupant_types = list(/mob/living/silicon/robot/drone)
+	applies_stasis = 0
 
 /obj/machinery/cryopod/robot/door
 	//This inherits from the robot cryo, so synths can be properly cryo'd.  If a non-synth enters and is cryo'd, ..() is called and it'll still work.
@@ -524,6 +526,9 @@
 			M << "<span class='notice'><b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b></span>"
 			set_occupant(M)
 			time_entered = world.time
+			if(ishuman(M) && applies_stasis)
+				var/mob/living/carbon/human/H = M
+				H.in_stasis = 1
 
 			// Book keeping!
 			var/turf/location = get_turf(src)
@@ -589,6 +594,9 @@
 		usr.client.eye = src
 		usr.forceMove(src)
 		set_occupant(usr)
+		if(ishuman(usr) && applies_stasis)
+			var/mob/living/carbon/human/H = occupant
+			H.in_stasis = 1
 
 		icon_state = occupied_icon_state
 
@@ -622,6 +630,9 @@
 		occupant.client.perspective = MOB_PERSPECTIVE
 
 	occupant.forceMove(get_turf(src))
+	if(ishuman(occupant) && applies_stasis)
+		var/mob/living/carbon/human/H = occupant
+		H.in_stasis = 0
 	set_occupant(null)
 
 	icon_state = base_icon_state
