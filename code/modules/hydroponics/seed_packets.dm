@@ -182,9 +182,6 @@ var/global/list/plant_seed_sprites = list()
 /obj/item/seeds/plumpmycelium
 	seed_type = "plumphelmet"
 
-/obj/item/seeds/walkingmushroommycelium
-	seed_type = "walkingmushroom"
-
 /obj/item/seeds/nettleseed
 	seed_type = "nettle"
 

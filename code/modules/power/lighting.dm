@@ -255,7 +255,7 @@
 		use_power = 1
 		set_light(0)
 
-	active_power_usage = ((light_range + light_power) * 10)
+	active_power_usage = light_range * light_power
 	if(on != on_gs)
 		on_gs = on
 

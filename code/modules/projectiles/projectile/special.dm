@@ -135,22 +135,7 @@
 	on_hit(var/atom/target, var/blocked = 0)
 		if(ishuman(target))
 			var/mob/living/carbon/human/M = target
-			M.adjustBrainLoss(20)
-			M.hallucination += 20
-
-/obj/item/projectile/icarus/pointdefense/process()
-	Icarus_FireLaser(get_turf(original))
-	spawn
-		qdel(src)
-
-	return
-
-/obj/item/projectile/icarus/guns/process()
-	Icarus_FireCannon(get_turf(original))
-	spawn
-		qdel(src)
-	return
-
+			M.confused += rand(5,8)
 /obj/item/projectile/chameleon
 	name = "bullet"
 	icon_state = "bullet"
@@ -159,3 +144,4 @@
 	nodamage = 1
 	damage_type = HALLOSS
 	muzzle_type = /obj/effect/projectile/bullet/muzzle
+

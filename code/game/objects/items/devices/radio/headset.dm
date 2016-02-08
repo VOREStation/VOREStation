@@ -7,14 +7,13 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 75)
 	subspace_transmission = 1
 	canhear_range = 0 // can't hear headsets from very far away
-
 	slot_flags = SLOT_EARS
+	sprite_sheets = list("Teshari" = 'icons/mob/species/seromi/ears.dmi')
+
 	var/translate_binary = 0
 	var/translate_hive = 0
 	var/obj/item/device/encryptionkey/keyslot1 = null
 	var/obj/item/device/encryptionkey/keyslot2 = null
-//	maxf = 1489
-
 	var/ks1type = /obj/item/device/encryptionkey
 	var/ks2type = null
 

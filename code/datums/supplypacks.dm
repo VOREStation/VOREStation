@@ -51,6 +51,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/storage/box/swabs,
 					/obj/item/weapon/storage/box/swabs,
 					/obj/item/weapon/storage/box/slides,
+					/obj/item/device/uv_light,
 					/obj/item/weapon/reagent_containers/spray/luminol)
 	cost = 30
 	containertype = /obj/structure/closet/crate
@@ -151,6 +152,17 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containertype = /obj/structure/closet/crate
 	containername = "Party equipment"
 	group = "Hospitality"
+
+/datum/supply_packs/lasertag
+	name = "Lasertag equipment"
+	contains = list(/obj/item/weapon/gun/energy/lasertag/red,
+					/obj/item/clothing/suit/redtag,
+					/obj/item/weapon/gun/energy/lasertag/blue,
+					/obj/item/clothing/suit/bluetag)
+	containertype = /obj/structure/closet
+	containername = "Lasertag Closet"
+	group = "Hospitality"
+	cost = 20
 
 /datum/supply_packs/internals
 	name = "Internals crate"
@@ -1093,7 +1105,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	group = "Hospitality"
 
 /datum/supply_packs/randomised/costume
-	num_contained = 2
+	num_contained = 3
 	contains = list(/obj/item/clothing/suit/pirate,
 					/obj/item/clothing/suit/judgerobe,
 					/obj/item/clothing/suit/wcoat,
@@ -1146,6 +1158,17 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	cost = 30
 	containertype = /obj/structure/closet
 	containername = "Formalwear for the best occasions."
+	group = "Miscellaneous"
+
+/datum/supply_packs/randomised/card_packs
+	num_contained = 5
+	contains = list(/obj/item/weapon/pack/cardemon,
+					/obj/item/weapon/pack/spaceball,
+					/obj/item/weapon/deck/holder)
+	name = "Trading Card Crate"
+	cost = 10
+	containertype = /obj/structure/closet/crate
+	containername = "cards crate"
 	group = "Miscellaneous"
 
 /datum/supply_packs/shield_gen
@@ -1437,7 +1460,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containername = "Actor hats crate"
 	containertype = /obj/structure/closet
 	cost = 10
-	num_contained = 2
+	num_contained = 3
 	contains = list(/obj/item/clothing/head/redcoat,
 					/obj/item/clothing/head/mailman,
 					/obj/item/clothing/head/plaguedoctorhat,
@@ -1469,7 +1492,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containername = "Pretty dress locker"
 	containertype = /obj/structure/closet
 	cost = 15
-	num_contained = 1
+	num_contained = 3
 	contains = list(/obj/item/clothing/under/wedding/bride_orange,
 					/obj/item/clothing/under/wedding/bride_purple,
 					/obj/item/clothing/under/wedding/bride_blue,
@@ -1701,6 +1724,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/clothing/suit/storage/forensics/blue,
 					/obj/item/clothing/under/det/corporate,
 					/obj/item/clothing/under/det/corporate,
+					/obj/item/clothing/accessory/badge/holo/detective,
+					/obj/item/clothing/accessory/badge/holo/detective,
 					/obj/item/clothing/gloves/black,
 					/obj/item/clothing/gloves/black)
 	cost = 20
@@ -1715,6 +1740,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/clothing/head/helmet,
 					/obj/item/weapon/cartridge/security,
 					/obj/item/clothing/accessory/badge/holo,
+					/obj/item/clothing/accessory/badge/holo/cord,
 					/obj/item/device/radio/headset/headset_sec,
 					/obj/item/weapon/storage/belt/security,
 					/obj/item/device/flash,
@@ -1749,6 +1775,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/clothing/glasses/sunglasses/sechud,
 					/obj/item/taperoll/police,
 					/obj/item/device/hailer,
+					/obj/item/clothing/accessory/badge/holo/warden,
 					/obj/item/weapon/storage/box/flashbangs,
 					/obj/item/weapon/storage/belt/security,
 					/obj/item/weapon/reagent_containers/spray/pepper,
@@ -1774,6 +1801,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/storage/belt/security,
 					/obj/item/device/flash,
 					/obj/item/device/hailer,
+					/obj/item/clothing/accessory/badge/holo/hos,
 					/obj/item/clothing/accessory/holster/waist,
 					/obj/item/weapon/melee/telebaton,
 					/obj/item/weapon/shield/riot/tele,
@@ -2174,6 +2202,64 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/storage/box/masks,
 					/obj/item/weapon/storage/box/gloves)
 	cost = 50
+	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Medical biohazard equipment"
 	access = access_medical_equip
 	group = "Medical"
+
+/datum/supply_packs/portablefreezers
+	name = "Portable freezers crate"
+	contains = list(/obj/item/weapon/storage/box/freezer,
+					/obj/item/weapon/storage/box/freezer,
+					/obj/item/weapon/storage/box/freezer,
+					/obj/item/weapon/storage/box/freezer,
+					/obj/item/weapon/storage/box/freezer,
+					/obj/item/weapon/storage/box/freezer,
+					/obj/item/weapon/storage/box/freezer)
+	cost = 25
+	containertype = "/obj/structure/closet/crate/secure"
+	containername = "Portable freezers"
+	access = access_medical_equip
+	group = "Medical"
+
+/datum/supply_packs/minergear
+	name = "Shaft miner equipment"
+	contains = list(/obj/item/weapon/storage/backpack/industrial,
+					/obj/item/weapon/storage/backpack/satchel_eng,
+					/obj/item/clothing/suit/storage/hooded/wintercoat/miner,
+					/obj/item/device/radio/headset/headset_cargo,
+					/obj/item/clothing/under/rank/miner,
+					/obj/item/clothing/gloves/black,
+					/obj/item/clothing/shoes/black,
+					/obj/item/device/analyzer,
+					/obj/item/weapon/storage/bag/ore,
+					/obj/item/device/flashlight/lantern,
+					/obj/item/weapon/shovel,
+					/obj/item/weapon/pickaxe,
+					/obj/item/weapon/mining_scanner,
+					/obj/item/clothing/glasses/material,
+					/obj/item/clothing/glasses/meson)
+	cost = 15
+	containertype = "/obj/structure/closet/crate/secure"
+	containername = "Shaft miner equipment"
+	access = access_mining
+	group = "Supply"
+
+/datum/supply_packs/chaplaingear
+	name = "Chaplain equipment"
+	contains = list(/obj/item/clothing/under/rank/chaplain,
+					/obj/item/clothing/shoes/black,
+					/obj/item/clothing/suit/nun,
+					/obj/item/clothing/head/nun_hood,
+					/obj/item/clothing/suit/chaplain_hoodie,
+					/obj/item/clothing/head/chaplain_hood,
+					/obj/item/clothing/suit/holidaypriest,
+					/obj/item/clothing/under/wedding/bride_white,
+					/obj/item/weapon/storage/backpack/cultpack,
+					/obj/item/weapon/storage/fancy/candle_box,
+					/obj/item/weapon/storage/fancy/candle_box,
+					/obj/item/weapon/storage/fancy/candle_box)
+	cost = 10
+	containertype = "/obj/structure/closet/crate"
+	containername = "Chaplain equipment crate"
+	group = "Miscellaneous"

@@ -13,6 +13,7 @@
 	var/break_stuff_probability = 10
 	stop_automated_movement_when_pulled = 0
 	var/destroy_surroundings = 1
+	a_intent = I_HURT
 
 	var/shuttletarget = null
 	var/enroute = 0
@@ -190,13 +191,7 @@
 	if (!istype(target, /turf))
 		qdel(A)
 		return
-	A.current = target
-	A.starting = get_turf(src)
-	A.original = get_turf(target)
-	A.yo = target:y - start:y
-	A.xo = target:x - start:x
-	spawn( 0 )
-		A.process()
+	A.launch(target)
 	return
 
 /mob/living/simple_animal/hostile/proc/DestroySurroundings()

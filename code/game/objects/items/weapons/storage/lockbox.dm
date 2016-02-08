@@ -35,7 +35,7 @@
 			else
 				user << "<span class='warning'>Access Denied</span>"
 		else if(istype(W, /obj/item/weapon/melee/energy/blade))
-			if(emag_act(INFINITY, user, "The locker has been sliced open by [user] with an energy blade!", "You hear metal being sliced and sparks flying."))
+			if(emag_act(INFINITY, user, W, "The locker has been sliced open by [user] with an energy blade!", "You hear metal being sliced and sparks flying."))
 				var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 				spark_system.set_up(5, 0, src.loc)
 				spark_system.start()
@@ -55,7 +55,7 @@
 			..()
 		return
 
-/obj/item/weapon/storage/lockbox/emag_act(var/remaining_charges, var/mob/user, var/visual_feedback = "", var/audible_feedback = "")
+/obj/item/weapon/storage/lockbox/emag_act(var/remaining_charges, var/mob/user, var/emag_source, var/visual_feedback = "", var/audible_feedback = "")
 	if(!broken)
 		if(visual_feedback)
 			visual_feedback = "<span class='warning'>[visual_feedback]</span>"
@@ -93,3 +93,19 @@
 	New()
 		..()
 		new /obj/item/weapon/grenade/flashbang/clusterbang(src)
+
+/obj/item/weapon/storage/lockbox/medal
+	name = "lockbox of medals"
+	desc = "A lockbox filled with commemorative medals, it has the NanoTrasen logo stamped on it."
+	req_access = list(access_heads)
+	storage_slots = 7
+
+	New()
+		..()
+		new /obj/item/clothing/accessory/medal/conduct(src)
+		new /obj/item/clothing/accessory/medal/bronze_heart(src)
+		new /obj/item/clothing/accessory/medal/nobel_science(src)
+		new /obj/item/clothing/accessory/medal/silver/valor(src)
+		new /obj/item/clothing/accessory/medal/silver/security(src)
+		new /obj/item/clothing/accessory/medal/gold/captain(src)
+		new /obj/item/clothing/accessory/medal/gold/heroism(src)

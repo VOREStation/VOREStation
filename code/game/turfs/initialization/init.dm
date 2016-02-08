@@ -6,7 +6,11 @@
 
 /area/initialize()
 	..()
+	var/list/minerals = list()
 	for(var/turf/simulated/T in src)
-		T.initialize()
+		if(T.initialize())
+			minerals += T
 		if(turf_initializer)
 			turf_initializer.initialize(T)
+	for(var/turf/simulated/mineral/M in minerals)
+		M.MineralSpread()

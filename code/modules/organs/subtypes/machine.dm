@@ -18,6 +18,7 @@
 		owner.stat = 0
 		owner.visible_message("<span class='danger'>\The [owner] twitches visibly!</span>")
 
+
 // Used for an MMI or posibrain being installed into a human.
 /obj/item/organ/internal/mmi_holder
 	name = "brain interface"
@@ -27,7 +28,9 @@
 	var/obj/item/device/mmi/stored_mmi
 
 /obj/item/organ/internal/mmi_holder/Destroy()
-	stored_mmi = null
+	if(stored_mmi && (stored_mmi.loc == src))
+		qdel(stored_mmi)
+		stored_mmi = null
 	return ..()
 
 /obj/item/organ/internal/mmi_holder/New(var/mob/living/carbon/human/new_owner, var/internal)

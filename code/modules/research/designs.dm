@@ -743,10 +743,17 @@ CIRCUITS BELOW
 		desc = "Allows for the construction of \a [item_name] circuit board."
 
 /datum/design/circuit/arcademachine
-	name = "arcade machine"
+	name = "battle arcade machine"
 	id = "arcademachine"
 	req_tech = list(TECH_DATA = 1)
-	build_path = /obj/item/weapon/circuitboard/arcade
+	build_path = /obj/item/weapon/circuitboard/arcade/battle
+	sort_string = "MAAAA"
+
+/datum/design/circuit/oriontrail
+	name = "orion trail arcade machine"
+	id = "oriontrail"
+	req_tech = list(TECH_DATA = 1)
+	build_path = /obj/item/weapon/circuitboard/arcade/orion_trail
 	sort_string = "MAAAA"
 
 /datum/design/circuit/seccamera
@@ -778,12 +785,6 @@ CIRCUITS BELOW
 	id = "operating"
 	build_path = /obj/item/weapon/circuitboard/operating
 	sort_string = "FACAA"
-
-/datum/design/circuit/pandemic
-	name = "PanD.E.M.I.C. 2200"
-	id = "pandemic"
-	build_path = /obj/item/weapon/circuitboard/pandemic
-	sort_string = "FAEAA"
 
 /datum/design/circuit/scan_console
 	name = "DNA machine"

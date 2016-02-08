@@ -190,7 +190,8 @@
 	return ..(user, 1)
 
 /obj/item/organ/internal/diona/node
-	name = "receptor node"
+	name = "response node"
+	parent_organ = "head"
 	organ_tag = "receptor node"
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "claw"

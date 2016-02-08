@@ -64,3 +64,6 @@ ANIMAL_DELAY 0
 
 ## Remove the # in front of this config option to have loyalty implants spawn by default on your server.
 #USE_LOYALTY_IMPLANTS
+
+## Whether or not humans show an area message when they die.
+SHOW_HUMAN_DEATH_MESSAGE
