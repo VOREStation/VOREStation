@@ -139,19 +139,6 @@ emp_act
 		if(.) return
 	return 0
 
-/mob/living/carbon/human/emp_act(severity)
-	for(var/obj/O in src)
-		if(!O)	continue
-		O.emp_act(severity)
-	for(var/obj/item/organ/external/O  in organs)
-		O.emp_act(severity)
-		for(var/obj/item/organ/I  in O.internal_organs)
-			if(!(I.status & ORGAN_ROBOT))
-				continue
-			I.emp_act(severity)
-	..()
-
-
 //Returns 1 if the attack hit, 0 if it missed.
 /mob/living/carbon/human/proc/attacked_by(var/obj/item/I, var/mob/living/user, var/def_zone)
 	if(!I || !user)	return 0

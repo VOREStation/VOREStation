@@ -89,6 +89,15 @@
 
 	return ..()
 
+/obj/item/organ/external/emp_act(severity)
+	if(!(status & ORGAN_ROBOT))
+		return
+	switch (severity)
+		if (1)
+			take_damage(8)
+		if (2)
+			take_damage(4)
+
 /obj/item/organ/external/attack_self(var/mob/user)
 	if(!contents.len)
 		return ..()
