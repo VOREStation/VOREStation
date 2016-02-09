@@ -32,7 +32,8 @@ datum/preferences
 
 		socks = rand(1,socks_t.len)
 		backbag = 2
-		age = rand(AGE_MIN,AGE_MAX)
+		var/datum/species/S = all_species[species]
+		age = rand(S.min_age,S.max_age)
 		if(H)
 			copy_to(H,1)
 
