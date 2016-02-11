@@ -17,6 +17,7 @@
 	base_color = "#001144"
 	tail = "seromitail"
 	tail_hair = "feathers"
+	reagent_tag = IS_TESHARI
 
 	icobase = 'icons/mob/human_races/r_seromi.dmi'
 	deform = 'icons/mob/human_races/r_seromi.dmi'
@@ -32,6 +33,8 @@
 	holder_type = /obj/item/weapon/holder/human
 	short_sighted = 1
 	gluttonous = 1
+	blood_volume = 400
+	hunger_factor = 1.2
 
 	spawn_flags = CAN_JOIN | IS_WHITELISTED
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_EYE_COLOR
