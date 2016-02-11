@@ -53,22 +53,51 @@
 		
 		-->
 		<div class="commit sansserif">
+			<h2 class="date">11 February 2016</h2>
+			<h3 class="author">Datraen updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Moderators can now see and use AOOC.</li>
+				<li class="bugfix">Other synthetics given EAL.</li>
+				<li class="bugfix">Trays now drop items when placed on table, dropped.</li>
+				<li class="bugfix">Objects can now be yanked out of synthetics.</li>
+				<li class="tweak">Respawn time moved down from 30 minutes to 15 minutes.</li>
+				<li class="rscadd">Telecrystal item added for trading telecrystals between traitors and mercenaries.</li>
+				<li class="rscadd">Telecrystal item now has tech values.</li>
+			</ul>
+			<h3 class="author">EmperorJon updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Traitor synths can no longer be locked down from the robotics console. Attempting to lock them down (or release the lockdown) notifies the synth of the attempt and updates the console's UI as normal.</li>
+			</ul>
+			<h3 class="author">Neerti updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Suit cooling units can now be attached to voidsuits.  Note that coolers and air tanks are mutually exclusive.</li>
+				<li class="bugfix">EMP no longer hits twice on humans.</li>
+				<li class="tweak">EMP drains powercells using the cell's current charge, and not the cell's maximum potential charge, to ensure two blasts do not completely disable a synthetic.</li>
+				<li class="tweak">EMP hitting a prosthetic limb or organ will now do less damage.</li>
+				<li class="tweak">EMP hitting a cyborg will no longer outright stun them.  Instead, they gain the 'confused' status for a few moments, making movement difficult.  In addition, their HUD gets staticy, and their modules are forced to be retracted.</li>
+				<li class="rscadd">Stasis bags will protect the occupant from the outside enviroment's atmosphere.</li>
+				<li class="rscadd">Stasis bags can be hit with a health analyzer to analyze the occupant.</li>
+			</ul>
+			<h3 class="author">Zuhayr updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Drones can now pull a variety of things (such as scrubbers). This came with a pulling refactor so please report any strangeness with pulling in general.</li>
+				<li class="rscadd">Drones (and any mob that can be picked up) can be bashed against airlocks and such to use their internal access, so long as the person using them does not have an ID card equipped.</li>
+				<li class="rscadd">Added foam weapons to cargo for LARP shenanigans.</li>
+				<li class="rscadd">Added the ability to equip grenades to the mask slot, and to prime them by clicking someone with harm intent targeting the mouth.</li>
+				<li class="rscadd">Removed the species restrictions on transplanted internal organs. Have fun.</li>
+				<li class="rscadd">Added 'full body' prosthetic options to character generation.</li>
+				<li class="rscadd">Removed IPC. No tears were shed.</li>
+				<li class="rscadd">RE: borgs, Renamed 'robot' type to 'drone' and 'android' type to 'robot' for clarity with new 'android' human mobs.</li>
+				<li class="rscadd">Rejuvenate will now reapply robolimb/autopsy data.</li>
+				<li class="rscadd">Lots of backend work relating to the above. If you're a coder go look at the PR or ask Zuhayr for details.</li>
+				<li class="rscdel">Removed brute and burn resist from robolimbs, removed sever vulnerability from robolimbs.</li>
+				<li class="rscadd">Added a config option for visible human death messages.</li>
+				<li class="rscadd">pAIs and small mobs can now bump open doors.</li>
+				<li class="rscadd">Added functionality for two-handed guns; these guns will give an accuracy penalty if fired without an empty offhand.</li>
+				<li class="rscadd">Unified two-handed melee weapons with the above; while the offhand is empty, the weapon will count as wielded.</li>
+			</ul>
+
 			<h2 class="date">16 December 2015</h2>
-			<h2 class="date">06 December 2015</h2>
-			<h3 class="author">Hubblenaut updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">Welding a broken camera will use the correct icon.</li>
-				<li class="tweak">Camera assemblies remember their tag and network from previous usage.</li>
-			</ul>
-
-			<h2 class="date">22 November 2015</h2>
-			<h3 class="author">neersighted updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">Laptop Vendors now accept ID Containers (PDA, Wallet, etc).</li>
-				<li class="bugfix">Personal Lockers now accept ID Containers (PDA, Wallet, etc).</li>
-			</ul>
-
-			<h2 class="date">27 October 2015</h2>
 			<h3 class="author">HarpyEagle updated:</h3>
 			<ul class="changes bgimages16">
 				<li class="bugfix">Fixed a couple of bugs causing phoron gas fires to burn cooler and slower than they were supposed to.</li>
@@ -76,33 +105,14 @@
 			</ul>
 			<h3 class="author">Hubblenaut updated:</h3>
 			<ul class="changes bgimages16">
-				<li class="tweak">Mobs on help intent will not push others that aren't.</li>
-				<li class="rscadd">Adds tape for atmospherics.</li>
-				<li class="tweak">Tape graphics and algorithm changes. Looks a lot more appealing now.</li>
-				<li class="tweak">Starting and ending tape on the same turf will connect it to all surrounding walls/windows.</li>
-				<li class="tweak">Lifting a part of the tape will lift an entire tape section.</li>
-				<li class="tweak">Mobs on help intent do stop for tape.</li>
-				<li class="bugfix">Crumpled tape does not affect tape breaking behavior anymore.</li>
-				<li class="bugfix">Fixes vending machines not adding stored goods when maintenance panel is closed.</li>
-				<li class="tweak">Doors do only buzz once on failed closing attempt.</li>
+				<li class="bugfix">Airlock backup power test light properly offline when backup power down.</li>
+				<li class="bugfix">Empty flavor texts no longer draw an empty line on examination.</li>
+				<li class="bugfix">Material stacks now properly merge upon creation.</li>
+				<li class="bugfix">Messages for adding to existing stack appear again.</li>
 			</ul>
-			<h3 class="author">Neerti updated:</h3>
+			<h3 class="author">TheWelp updated:</h3>
 			<ul class="changes bgimages16">
-				<li class="rscadd">Adds NanoUI for communicators, the ability for communicators to call other communicators on the station, the ability for station-bound people to call ghosts, and for ghosts to toggle their visibility to communicators on or off in character preferences (defaults to off).  Communicators can now also support more than one call at the same time, for both ghosts and normal communicators.</li>
-				<li class="rscadd">Adds new machine to telecomms, the Exonet node.  It is very basic in terms of functionality, but certain services can be selectively disabled from it, such as newscaster updates, communicators, or external PDA messages.  Adds methods for building and deconstructing Exonet nodes.</li>
-				<li class="experiment">Adds framework for a fake-networking system called EPv2 that communicators will now use, and perhaps other machines will in the future, for good or for evil.</li>
-				<li class="rscdel">Changeling Spacearmor reduced in protective ability.</li>
-				<li class="rscdel">Cryogenic String and Delayed Toxic Sting now have a three minute cooldown upon stinging someone.</li>
-				<li class="rscdel">Cryotoxin, the chemical used in Cryogenic String, is 25% less potent now.</li>
-				<li class="rscdel">The rune to summon Narsie has been changed.  Narsie is no longer summoned, but Hell still comes.</li>
-				<li class="rscdel">Spooky mobs spawned from spooky portals as a result of Hell coming have had their speed, health, and damage reduced.</li>
-				<li class="rscdel">Manifested humans no longer count for summoning Hell.</li>
-			</ul>
-			<h3 class="author">Zuhayr updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="tweak">Aiming has been rewritten, keep an eye out for weird behavior.</li>
-				<li class="rscdel">Removed the detective scanner and associated machinery.</li>
-				<li class="rscadd">Added a microscope, machine forensic scanner, etc. from Aurora forensics.</li>
+				<li class="rscdel">Removed higher Secret player requirements.</li>
 			</ul>
 
 			<h2 class="date">06 December 2015</h2>
@@ -116,12 +126,23 @@
 			</ul>
 			<h3 class="author">Hubblenaut updated:</h3>
 			<ul class="changes bgimages16">
+				<li class="bugfix">Welding a broken camera will use the correct icon.</li>
+				<li class="tweak">Camera assemblies remember their tag and network from previous usage.</li>
 				<li class="rscadd">Light replacers can be refilled by clicking on a storage item.</li>
 				<li class="tweak">Light replacers now hold up to 32 light bulbs.</li>
 				<li class="tweak">Light replacers can be obtained through janitorial supply crates.</li>
 				<li class="tweak">A sheet of glass fills the light replacer by 16 bulbs.</li>
 				<li class="bugfix">Material stacks now properly merge upon creation.</li>
 				<li class="bugfix">Messages for adding to existing stack appear again.</li>
+				<li class="tweak">Mobs on help intent will not push others that aren't.</li>
+				<li class="rscadd">Adds tape for atmospherics.</li>
+				<li class="tweak">Tape graphics and algorithm changes. Looks a lot more appealing now.</li>
+				<li class="tweak">Starting and ending tape on the same turf will connect it to all surrounding walls/windows.</li>
+				<li class="tweak">Lifting a part of the tape will lift an entire tape section.</li>
+				<li class="tweak">Mobs on help intent do stop for tape.</li>
+				<li class="bugfix">Crumpled tape does not affect tape breaking behavior anymore.</li>
+				<li class="bugfix">Fixes vending machines not adding stored goods when maintenance panel is closed.</li>
+				<li class="tweak">Doors do only buzz once on failed closing attempt.</li>
 			</ul>
 			<h3 class="author">MagmaRam updated:</h3>
 			<ul class="changes bgimages16">
@@ -130,6 +151,15 @@
 			</ul>
 			<h3 class="author">Neerti updated:</h3>
 			<ul class="changes bgimages16">
+				<li class="rscadd">Adds NanoUI for communicators, the ability for communicators to call other communicators on the station, the ability for station-bound people to call ghosts, and for ghosts to toggle their visibility to communicators on or off in character preferences (defaults to off).  Communicators can now also support more than one call at the same time, for both ghosts and normal communicators.</li>
+				<li class="rscadd">Adds new machine to telecomms, the Exonet node.  It is very basic in terms of functionality, but certain services can be selectively disabled from it, such as newscaster updates, communicators, or external PDA messages.  Adds methods for building and deconstructing Exonet nodes.</li>
+				<li class="experiment">Adds framework for a fake-networking system called EPv2 that communicators will now use, and perhaps other machines will in the future, for good or for evil.</li>
+				<li class="rscdel">Changeling Spacearmor reduced in protective ability.</li>
+				<li class="rscdel">Cryogenic String and Delayed Toxic Sting now have a three minute cooldown upon stinging someone.</li>
+				<li class="rscdel">Cryotoxin, the chemical used in Cryogenic String, is 25% less potent now.</li>
+				<li class="rscdel">The rune to summon Narsie has been changed.  Narsie is no longer summoned, but Hell still comes.</li>
+				<li class="rscdel">Spooky mobs spawned from spooky portals as a result of Hell coming have had their speed, health, and damage reduced.</li>
+				<li class="rscdel">Manifested humans no longer count for summoning Hell.</li>
 				<li class="experiment">Changes how armor calculations work.  All the armor values remain the same, but the 'two dice rolls' system has been replaced with a mix of reliable damage reduction and a bit of RNG to keep things interesting.  The intention is to make weaker armor more relevent and stronger armor less overpowered.</li>
 				<li class="tweak">When you are hit, it uses the armor protection as a base amount to protect you from, then it does a roll between +25% and -25% of that base protection, and adds it to the base protection. The result of that is how much damage is reduced from the attack.  For example, if you are hit by an energy sword in the chest while wearing armor that has 50 melee protection, the base protection is 50, then RNG can make the final protection be between 37.5 and 62.5 percent. The damage you'd take could range from 11.25 to 18.75, instead of 0, 15, or 30.  Remember that some weapons can penetrate armor.</li>
 				<li class="rscadd">Added personal communicators, a device that enables someone to talk to someone else at vast distances.  You can talk to people who are far from the station, so long as telecommunications remains operational.</li>
@@ -140,6 +170,25 @@
 			<ul class="changes bgimages16">
 				<li class="rscdel">Manual radio frequency changes can no longer go outside the standard frequency span.</li>
 				<li class="rscadd">Users with sufficient access can instead select pre-defined channels outside this span, such as department channels, when using intercoms.</li>
+			</ul>
+			<h3 class="author">Zuhayr updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Aiming has been rewritten, keep an eye out for weird behavior.</li>
+				<li class="rscdel">Removed the detective scanner and associated machinery.</li>
+				<li class="rscadd">Added a microscope, machine forensic scanner, etc. from Aurora forensics.</li>
+			</ul>
+
+			<h2 class="date">22 November 2015</h2>
+			<h3 class="author">neersighted updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Laptop Vendors now accept ID Containers (PDA, Wallet, etc).</li>
+				<li class="bugfix">Personal Lockers now accept ID Containers (PDA, Wallet, etc).</li>
+			</ul>
+
+			<h2 class="date">27 October 2015</h2>
+			<h3 class="author">HarpyEagle updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">When affected by pepperspray, eye protection now prevents blindness and face protection now prevents stun, instead of face protection doing both.</li>
 			</ul>
 
 			<h2 class="date">26 September 2015</h2>

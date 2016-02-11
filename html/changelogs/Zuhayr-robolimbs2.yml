@@ -1,5 +1,0 @@
-author: Zuhayr
-delete-after: True
-changes: 
-  - rscdel: "Removed brute and burn resist from robolimbs, removed sever vulnerability from robolimbs."
-  - rscadd: "Added a config option for visible human death messages."
