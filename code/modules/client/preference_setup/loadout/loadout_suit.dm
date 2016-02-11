@@ -166,13 +166,17 @@
 	path = /obj/item/clothing/suit/unathi/robe
 	cost = 1
 
+/datum/gear/suit/black_lawyer_jacket
+	display_name = "suit jacket, black"
+	path = /obj/item/clothing/suit/storage/toggle/internalaffairs
+
 /datum/gear/suit/blue_lawyer_jacket
 	display_name = "suit jacket, blue"
 	path = /obj/item/clothing/suit/storage/toggle/lawyer/bluejacket
 
 /datum/gear/suit/purple_lawyer_jacket
 	display_name = "suit jacket, purple"
-	path = /obj/item/clothing/suit/storage/lawyer/purpjacket
+	path = /obj/item/clothing/suit/storage/toggle/lawyer/purpjacket
 
 /datum/gear/suit/suspenders
 	display_name = "suspenders"
@@ -191,4 +195,14 @@
 /datum/gear/suit/forensics/blue
 	display_name = "forensics long, blue"
 	path = /obj/item/clothing/suit/storage/forensics/blue/long
+	allowed_roles = list("Detective")
+
+/datum/gear/suit/forensics/blue/short
+	display_name = "forensics, blue"
+	path = /obj/item/clothing/suit/storage/forensics/blue
+	allowed_roles = list("Detective")
+
+/datum/gear/suit/forensics/red/short
+	display_name = "forensics, red"
+	path = /obj/item/clothing/suit/storage/forensics/red
 	allowed_roles = list("Detective")
