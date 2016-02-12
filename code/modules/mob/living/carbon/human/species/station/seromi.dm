@@ -34,7 +34,7 @@
 	short_sighted = 1
 	gluttonous = 1
 	blood_volume = 400
-	hunger_factor = 1.2
+	hunger_factor = 0.2
 
 	spawn_flags = CAN_JOIN | IS_WHITELISTED
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_EYE_COLOR
