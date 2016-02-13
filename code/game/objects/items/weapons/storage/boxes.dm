@@ -161,6 +161,8 @@
 /obj/item/weapon/storage/box/blanks
 	name = "box of blank shells"
 	desc = "It has a picture of a gun and several warning symbols on the front."
+	icon_state = "blankshot_box"
+	item_state = "syringe_kit"
 
 	New()
 		..()
@@ -175,6 +177,8 @@
 /obj/item/weapon/storage/box/beanbags
 	name = "box of beanbag shells"
 	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
+	icon_state = "beanshot_box"
+	item_state = "syringe_kit"
 
 	New()
 		..()
@@ -189,6 +193,8 @@
 /obj/item/weapon/storage/box/shotgunammo
 	name = "box of shotgun slugs"
 	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
+	icon_state = "lethalshellshot_box"
+	item_state = "syringe_kit"
 
 	New()
 		..()
@@ -203,6 +209,8 @@
 /obj/item/weapon/storage/box/shotgunshells
 	name = "box of shotgun shells"
 	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
+	icon_state = "lethalslug_box"
+	item_state = "syringe_kit"
 
 	New()
 		..()
@@ -217,6 +225,8 @@
 /obj/item/weapon/storage/box/flashshells
 	name = "box of illumination shells"
 	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
+	icon_state = "illumshot_box"
+	item_state = "syringe_kit"
 
 	New()
 		..()
@@ -231,6 +241,8 @@
 /obj/item/weapon/storage/box/stunshells
 	name = "box of stun shells"
 	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
+	icon_state = "stunshot_box"
+	item_state = "syringe_kit"
 
 	New()
 		..()
@@ -245,6 +257,8 @@
 /obj/item/weapon/storage/box/practiceshells
 	name = "box of practice shells"
 	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
+	icon_state = "blankshot_box"
+	item_state = "syringe_kit"
 
 	New()
 		..()
