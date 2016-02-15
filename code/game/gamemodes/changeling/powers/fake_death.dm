@@ -29,6 +29,9 @@
 	C.update_canmove()
 	C.remove_changeling_powers()
 
+	if(C.suiciding)
+		C.suiciding = 0
+
 	if(C.stat != DEAD)
 		C.emote("deathgasp")
 		C.tod = worldtime2text()
