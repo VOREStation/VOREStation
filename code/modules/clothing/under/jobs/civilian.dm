@@ -118,7 +118,7 @@
 	icon_state = "hopwhimsy"
 	item_state = "b_suit"
 	worn_state = "hopwhimsy"
-	rolled_sleeves = 0
+	rolled_sleeves = -1
 
 
 /obj/item/clothing/under/rank/hydroponics
