@@ -1,0 +1,6 @@
+author: Datraen
+
+delete-after: True
+
+changes: 
+  - rscadd: "Adds ckeys, player panel to the antagonists panel."
