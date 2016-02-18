@@ -1349,10 +1349,26 @@ proc/admin_notice(var/message, var/rights)
 	var/crystals
 
 	if(check_rights(R_ADMIN))
-		crystals = input("Amount of telecrystals for [H.ckey]", crystals) as null|num
+		crystals = input("Amount of telecrystals for [H.ckey], currently [H.mind.tcrystals].", crystals) as null|num
 		if (!isnull(crystals))
 			H.mind.tcrystals = crystals
 			var/msg = "[key_name(usr)] has modified [H.ckey]'s telecrystals to [crystals]."
+			message_admins(msg)
+	else
+		usr << "You do not have access to this command."
+		
+/datum/admins/proc/add_tcrystals(mob/living/carbon/human/H as mob)
+	set category = "Debug"
+	set name = "Add Telecrystals"
+	set desc = "Allows admins to change telecrystals of a user by addition."
+
+	var/crystals
+
+	if(check_rights(R_ADMIN))
+		crystals = input("Amount of telecrystals to give to [H.ckey], currently [H.mind.tcrystals].", crystals) as null|num
+		if (!isnull(crystals))
+			H.mind.tcrystals += crystals
+			var/msg = "[key_name(usr)] has added [crystals] to [H.ckey]'s telecrystals."
 			message_admins(msg)
 	else
 		usr << "You do not have access to this command."

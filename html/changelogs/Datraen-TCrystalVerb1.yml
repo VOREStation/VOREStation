@@ -1,0 +1,7 @@
+author: Datraen
+
+delete-after: True
+
+changes: 
+  - tweak: "Adds amount of telecrystals to the set telecrystal verb."
+  - rscadd: "Added a verb to just add to telecrystals."
