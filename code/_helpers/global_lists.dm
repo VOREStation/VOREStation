@@ -51,7 +51,8 @@ var/global/list/underwear_m = list(
 	"Boxers Heart" = "m7", "Boxers Black" = "m8", "Boxers Grey" = "m9", "Boxers Stripe" = "m10", "None") //Curse whoever made male/female underwear diffrent colours
 var/global/list/underwear_f = list(
 	"Red" = "f1", "White" = "f2", "Yellow" = "f3", "Blue" = "f4", "Black" = "f5", "Thong" = "f6",
-	"Black Sports" = "f7","White Sports" = "f8", "Black Sports Alt" = "f9", "White Sports Alt" = "f10", "Baby Blue" = "f11", "Green" = "f12", "Pink" = "f13", "None")
+	"Black Sports" = "f7","White Sports" = "f8", "Black Sports Alt" = "f9", "White Sports Alt" = "f10", "Baby Blue" = "f11", "Green" = "f12", "Pink" = "f13",
+	 "Violet" = "f14", "Thong Alt" = "f15", "Thong Alt Violet" = "f16", "None")
 	//undershirt
 var/global/list/undershirt_t = list(
 	"White tank top" = "u1", "Black tank top" = "u2", "Black shirt" = "u3",
