@@ -556,8 +556,8 @@ var/list/name_to_material
 	sheet_plural_name = "ingots"
 
 // Adminspawn only, do not let anyone get this.
-/material/voxalloy
-	name = "voxalloy"
+/material/alienalloy
+	name = "alienalloy"
 	display_name = "durable alloy"
 	stack_type = null
 	icon_colour = "#6C7364"
