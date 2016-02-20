@@ -416,7 +416,7 @@
 		if (idaccessible == 1)
 			switch(alert(user, "Do you wish to add access to [src] or remove access from [src]?",,"Add Access","Remove Access", "Cancel"))
 				if("Add Access")
-					idcard.access += ID.access
+					idcard.access |= ID.access
 					user << "<span class='notice'>You add the access from the [W] to [src].</span>"
 					return
 				if("Remove Access")
