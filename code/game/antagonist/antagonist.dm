@@ -92,7 +92,7 @@
 	// Prune restricted status. Broke it up for readability.
 	// Note that this is done before jobs are handed out.
 	for(var/datum/mind/player in ticker.mode.get_players_for_role(role_type, id))
-		if(ghosts_only && !istype(player.current, /mob/dead))
+		if(ghosts_only && !istype(player.current, /mob/observer/dead))
 			log_debug("[key_name(player)] is not eligible to become a [role_text]: Only ghosts may join as this role!")
 		else if(player.special_role)
 			log_debug("[key_name(player)] is not eligible to become a [role_text]: They already have a special role ([player.special_role])!")
@@ -124,7 +124,7 @@
 		return 0
 	player.current << "<span class='danger'><i>You have been selected this round as an antagonist!</i></span>"
 	message_admins("[uppertext(ticker.mode.name)]: Selected [player] as a [role_text].")
-	if(istype(player.current, /mob/dead))
+	if(istype(player.current, /mob/observer/dead))
 		create_default(player.current)
 	else
 		add_antagonist(player,0,0,0,1,1)

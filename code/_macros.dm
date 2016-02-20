@@ -13,7 +13,7 @@
 
 #define iscorgi(A) istype(A, /mob/living/simple_animal/corgi)
 
-#define isEye(A) istype(A, /mob/eye)
+#define isEye(A) istype(A, /mob/observer/eye)
 
 #define ishuman(A) istype(A, /mob/living/carbon/human)
 
@@ -23,7 +23,7 @@
 
 #define isnewplayer(A) istype(A, /mob/new_player)
 
-#define isobserver(A) istype(A, /mob/dead/observer)
+#define isobserver(A) istype(A, /mob/observer/dead)
 
 #define isorgan(A) istype(A, /obj/item/organ/external)
 

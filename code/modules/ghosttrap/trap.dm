@@ -22,7 +22,7 @@ proc/populate_ghost_traps()
 	var/ghost_trap_role = "Positronic Brain"
 
 // Check for bans, proper atom types, etc.
-/datum/ghosttrap/proc/assess_candidate(var/mob/dead/observer/candidate)
+/datum/ghosttrap/proc/assess_candidate(var/mob/observer/dead/candidate)
 	if(!istype(candidate) || !candidate.client || !candidate.ckey)
 		return 0
 	if(!candidate.MayRespawn())
@@ -39,7 +39,7 @@ proc/populate_ghost_traps()
 /datum/ghosttrap/proc/request_player(var/mob/target, var/request_string)
 	if(!target)
 		return
-	for(var/mob/dead/observer/O in player_list)
+	for(var/mob/observer/dead/O in player_list)
 		if(!O.MayRespawn())
 			continue
 		if(islist(ban_checks))
@@ -56,7 +56,7 @@ proc/populate_ghost_traps()
 	if(..())
 		return 1
 	if(href_list["candidate"] && href_list["target"])
-		var/mob/dead/observer/candidate = locate(href_list["candidate"]) // BYOND magic.
+		var/mob/observer/dead/candidate = locate(href_list["candidate"]) // BYOND magic.
 		var/mob/target = locate(href_list["target"])                     // So much BYOND magic.
 		if(!target || !candidate)
 			return

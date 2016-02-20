@@ -1,7 +1,7 @@
 /mob/proc/on_mob_jump()
 	return
 
-/mob/dead/observer/on_mob_jump()
+/mob/observer/dead/on_mob_jump()
 	following = null
 
 /client/proc/Jump(var/area/A in return_sorted_areas())
