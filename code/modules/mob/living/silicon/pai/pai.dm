@@ -411,22 +411,23 @@
 	return H
 
 /mob/living/silicon/pai/attackby(obj/item/weapon/W as obj, mob/user as mob)
-
-	if (istype(W, /obj/item/weapon/card/id) && idaccessible == 1)
-		var/obj/item/weapon/card/id/ID = W.GetID()
-		if(ID)
-			if(alert(user, "Do you wish to add access to [src] or remove access from [src]?",,"Add Access","Remove Access") == "Add Access")
-				idcard.access += ID.access
-				user << "<span class='notice'>You add the access from the [W] to [src].</span>"
-				return
-
-			else
-				idcard.access = null
-				user << "<span class='notice'>You remove the access from [src].</span>"
-				return
-	else
-		user << "<span class='notice'>[src] is not accepting access modifcations at this time.</span>"
-		return
+	var/obj/item/weapon/card/id/ID = W.GetID()
+	if(ID)
+		if (idaccessible == 1)
+			switch(alert(user, "Do you wish to add access to [src] or remove access from [src]?",,"Add Access","Remove Access", "Cancel"))
+				if("Add Access")
+					idcard.access += ID.access
+					user << "<span class='notice'>You add the access from the [W] to [src].</span>"
+					return
+				if("Remove Access")
+					idcard.access = null
+					user << "<span class='notice'>You remove the access from [src].</span>"
+					return
+				if("Cancel")
+					return
+		else if (istype(W, /obj/item/weapon/card/id) && idaccessible == 0)
+			user << "<span class='notice'>[src] is not accepting access modifcations at this time.</span>"
+			return
 
 /mob/living/silicon/pai/verb/allowmodification()
 	set name = "Change Acess Modifcation Permission"
@@ -435,10 +436,8 @@
 
 	if(idaccessible == 0)
 		idaccessible = 1
-		src << "<span class='notice'>You allow access modifications</span>"
-		return
+		src << "<span class='notice'>You allow access modifications.</span>"
 
 	else
 		idaccessible = 0
-		src << "<span class='notice'>You block access modfications</span>"
-		return
+		src << "<span class='notice'>You block access modfications.</span>"
