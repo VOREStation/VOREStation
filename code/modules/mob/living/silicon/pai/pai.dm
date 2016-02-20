@@ -8,6 +8,7 @@
 	mob_size = MOB_SMALL
 
 	idcard_type = /obj/item/weapon/card/id
+	var/idaccessible = 0
 
 	var/network = "SS13"
 	var/obj/machinery/camera/current = null
@@ -408,3 +409,36 @@
 	grabber.update_inv_l_hand()
 	grabber.update_inv_r_hand()
 	return H
+
+/mob/living/silicon/pai/attackby(obj/item/weapon/W as obj, mob/user as mob)
+
+	if (istype(W, /obj/item/weapon/card/id) && idaccessible == 1)
+		var/obj/item/weapon/card/id/ID = W.GetID()
+		if(ID)
+			if(alert(user, "Do you wish to add access to [src] or remove access from [src]?",,"Add Access","Remove Access") == "Add Access")
+				idcard.access += ID.access
+				user << "<span class='notice'>You add the access from the [W] to [src].</span>"
+				return
+
+			else
+				idcard.access = null
+				user << "<span class='notice'>You remove the access from [src].</span>"
+				return
+	else
+		user << "<span class='notice'>[src] is not accepting access modifcations at this time.</span>"
+		return
+
+/mob/living/silicon/pai/verb/allowmodification()
+	set name = "Change Acess Modifcation Permission"
+	set category = "pAI Commands"
+	desc = "Allows people to modify your access or block people from modifying your access."
+
+	if(idaccessible == 0)
+		idaccessible = 1
+		src << "<span class='notice'>You allow access modifications</span>"
+		return
+
+	else
+		idaccessible = 0
+		src << "<span class='notice'>You block access modfications</span>"
+		return
