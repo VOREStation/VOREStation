@@ -437,12 +437,6 @@
 
 //obj/item/mecha_parts/mecha_equipment/repair_droid,
 //obj/item/mecha_parts/mecha_equipment/jetpack, //TODO MECHA JETPACK SPRITE MISSING
-
-/datum/design/item/mecha/generator
-	name = "Phoron generator"
-	id = "mech_generator"
-	build_path = /obj/item/mecha_parts/mecha_equipment/generator
-
 /datum/design/item/mecha/taser
 	name = "PBT \"Pacifier\" mounted taser"
 	id = "mech_taser"
