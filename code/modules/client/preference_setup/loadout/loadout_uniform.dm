@@ -152,6 +152,11 @@
 	path = /obj/item/clothing/under/rank/engineer/skirt
 	allowed_roles = list("Chief Engineer","Station Engineer")
 
+/datum/gear/uniform/skirt/roboticist
+	display_name = "skirt, roboticist"
+	path = /obj/item/clothing/under/rank/roboticist/skirt
+	allowed_roles = list("Research Director","Roboticist")
+
 /datum/gear/uniform/skirt/cmo
 	display_name = "skirt, cmo"
 	path = /obj/item/clothing/under/rank/chief_medical_officer
