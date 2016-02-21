@@ -31,12 +31,6 @@
 		user << "<span class='notice'>You combine the Thalers to a bundle of [bundle.worth] Thalers.</span>"
 		qdel(src)
 
-/obj/item/weapon/spacecash/bundle
-	name = "pile of thalers"
-	icon_state = ""
-	desc = "They are worth 0 Thalers."
-	worth = 0
-
 /obj/item/weapon/spacecash/update_icon()
 	overlays.Cut()
 	name = "[worth] Thaler\s"
@@ -135,11 +129,11 @@
 	worth = 1000
 
 proc/spawn_money(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
-	var/obj/item/weapon/spacecash/bundle/bundle = new (spawnloc)
-	bundle.worth = sum
-	bundle.update_icon()
+	var/obj/item/weapon/spacecash/SC = new (spawnloc)
+	SC.worth = sum
+	SC.update_icon()
 	if (ishuman(human_user) && !human_user.get_active_hand())
-		human_user.put_in_hands(bundle)
+		human_user.put_in_hands(SC)
 	return
 
 /obj/item/weapon/spacecash/ewallet

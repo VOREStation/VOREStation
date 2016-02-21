@@ -255,8 +255,7 @@
 		usr << "\icon[cashmoney] <span class='warning'>That is not enough money.</span>"
 		return 0
 
-	if(istype(cashmoney, /obj/item/weapon/spacecash/bundle))
-		// Bundles can just have money subtracted, and will work
+	if(istype(cashmoney, /obj/item/weapon/spacecash))
 
 		visible_message("<span class='info'>\The [usr] inserts some cash into \the [src].</span>")
 		var/obj/item/weapon/spacecash/bundle/cashmoney_bundle = cashmoney
@@ -267,19 +266,6 @@
 			qdel(cashmoney_bundle)
 		else
 			cashmoney_bundle.update_icon()
-	else
-		// Bills (banknotes) cannot really have worth different than face value,
-		// so we have to eat the bill and spit out change in a bundle
-		// This is really dirty, but there's no superclass for all bills, so we
-		// just assume that all spacecash that's not something else is a bill
-
-		visible_message("<span class='info'>\The [usr] inserts a bill into \the [src].</span>")
-		var/left = cashmoney.worth - currently_vending.price
-		usr.drop_from_inventory(cashmoney)
-		qdel(cashmoney)
-
-		if(left)
-			spawn_money(left, src.loc, user)
 
 	// Vending machines have no idea who paid with cash
 	credit_purchase("(cash)")
