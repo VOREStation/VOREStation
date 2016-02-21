@@ -135,7 +135,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				R = all_robolimbs[pref.rlimb_data[name]]
 			else
 				R = basic_robolimb
-			. += "\t[R.company] [organ_name] prothesis"
+			. += "\t[R.company] [organ_name] prosthesis"
 		else if(status == "amputated")
 			++ind
 			if(ind > 1)
@@ -374,7 +374,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		var/third_limb = null  // if you try to unchange the hand, the arm should also change
 
 		// Do not let them amputate their entire body, ty.
-		var/list/choice_options = list("Normal","Amputated","Prothesis")
+		var/list/choice_options = list("Normal","Amputated","Prosthesis")
 		switch(organ_tag)
 			if("Left Leg")
 				limb =        BP_L_LEG
@@ -402,11 +402,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				third_limb =  BP_R_ARM
 			if("Head")
 				limb =        BP_HEAD
-				choice_options = list("Prothesis")
+				choice_options = list("Prosthesis")
 			if("Full Body")
 				limb =        BP_TORSO
 				third_limb =  BP_GROIN
-				choice_options = list("Normal","Prothesis")
+				choice_options = list("Normal","Prosthesis")
 
 		var/new_state = input(user, "What state do you wish the limb to be in?") as null|anything in choice_options
 		if(!new_state && !CanUseTopic(user)) return TOPIC_NOACTION
@@ -433,7 +433,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 					pref.organ_data[second_limb] = "amputated"
 					pref.rlimb_data[second_limb] = null
 
-			if("Prothesis")
+			if("Prosthesis")
 				var/tmp_species = pref.species ? pref.species : "Human"
 				var/list/usable_manufacturers = list()
 				for(var/company in chargen_robolimbs)
