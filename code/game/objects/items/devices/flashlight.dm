@@ -98,7 +98,7 @@
 	desc = "A very, very heavy duty flashlight."
 	icon_state = "maglight"
 	item_state = "maglight"
-	force = 13
+	force = 10
 	flags = CONDUCT
 	brightness_on = 4
 	slot_flags = SLOT_BELT
