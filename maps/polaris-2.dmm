@@ -2342,7 +2342,7 @@
 "Tb" = (/obj/structure/table/woodentable,/obj/item/device/megaphone,/turf/unsimulated/floor{dir = 8; icon_state = "wood"},/area/wizard_station)
 "Tc" = (/obj/structure/table/woodentable,/obj/item/weapon/storage/box/donut,/turf/unsimulated/floor{dir = 8; icon_state = "wood"},/area/wizard_station)
 "Td" = (/obj/structure/table/woodentable,/obj/item/weapon/reagent_containers/food/snacks/chawanmushi,/turf/unsimulated/floor{dir = 8; icon_state = "wood"},/area/wizard_station)
-"Te" = (/obj/structure/table/woodentable,/obj/item/weapon/spacecash/c1,/turf/unsimulated/floor{dir = 8; icon_state = "wood"},/area/wizard_station)
+"Te" = (/obj/structure/table/woodentable,/obj/item/weapon/spacecash/bundle/c1,/turf/unsimulated/floor{dir = 8; icon_state = "wood"},/area/wizard_station)
 "Tf" = (/obj/item/weapon/book/manual/robotics_cyborgs,/obj/structure/table/glass,/turf/unsimulated/floor{tag = "icon-cult"; name = "plating"; icon_state = "cult"},/area/wizard_station)
 "Tg" = (/obj/item/robot_parts/head,/obj/structure/table/glass,/turf/unsimulated/floor{tag = "icon-cult"; name = "plating"; icon_state = "cult"},/area/wizard_station)
 "Th" = (/obj/item/device/radio/intercom{desc = "Talk through this. Evilly"; frequency = 1213; name = "Syndicate Intercom"; pixel_x = 32; subspace_transmission = 1; syndie = 1},/turf/unsimulated/floor{tag = "icon-cult"; name = "plating"; icon_state = "cult"},/area/wizard_station)
