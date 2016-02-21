@@ -149,6 +149,26 @@
 		return ONE_ATMOSPHERE + pressure_difference
 
 /mob/living/carbon/human/handle_disabilities()
+	..()
+	//Vision
+	var/obj/item/organ/vision
+	if(species.vision_organ)
+		vision = internal_organs_by_name[species.vision_organ]
+
+	if(!species.vision_organ) // Presumably if a species has no vision organs, they see via some other means.
+		eye_blind =  0
+		blinded =    0
+		eye_blurry = 0
+	else if(!vision || (vision && vision.is_broken()))   // Vision organs cut out or broken? Permablind.
+		eye_blind =  1
+		blinded =    1
+		eye_blurry = 1
+	else
+		//blindness
+		if(!(sdisabilities & BLIND))
+			if(equipment_tint_total >= TINT_BLIND)	// Covered eyes, heal faster
+				eye_blurry = max(eye_blurry-2, 0)
+
 	if (disabilities & EPILEPSY)
 		if ((prob(1) && paralysis < 1))
 			src << "\red You have a seizure!"
@@ -174,13 +194,7 @@
 						emote("twitch")
 					if(2 to 3)
 						say("[prob(50) ? ";" : ""][pick("SHIT", "PISS", "FUCK", "CUNT", "COCKSUCKER", "MOTHERFUCKER", "TITS")]")
-				var/old_x = pixel_x
-				var/old_y = pixel_y
-				pixel_x += rand(-2,2)
-				pixel_y += rand(-1,1)
-				sleep(2)
-				pixel_x = old_x
-				pixel_y = old_y
+				make_jittery(100)
 				return
 	if (disabilities & NERVOUS)
 		speech_problem_flag = 1
