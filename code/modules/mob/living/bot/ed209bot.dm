@@ -41,7 +41,7 @@
 		if(prob(50))
 			new /obj/item/clothing/head/helmet(Tsec)
 		else
-			new /obj/item/clothing/suit/armor/vest(Tsec)
+			new /obj/item/clothing/suit/storage/vest(Tsec)
 
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(3, 1, src)
