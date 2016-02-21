@@ -55,12 +55,8 @@
 			audible_emote("snuffles.")
 
 /mob/living/simple_animal/mouse/lay_down() //Simply turns sprite into sleeping and back upon using "Rest".
-	set name = "Rest"
-	set category = "IC"
-
-	resting = !resting
+	..()
 	icon_state = resting ? "mouse_[body_color]_sleep" : "mouse_[body_color]"
-	src << "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>"
 
 /mob/living/simple_animal/mouse/New()
 	..()
