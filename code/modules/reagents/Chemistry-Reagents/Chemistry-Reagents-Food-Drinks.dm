@@ -345,7 +345,7 @@
 
 // Juices
 
-/datum/reagent/drink/banana
+/datum/reagent/drink/juice/banana
 	name = "Banana Juice"
 	id = "banana"
 	description = "The raw essence of a banana."
@@ -355,7 +355,7 @@
 	glass_name = "glass of banana juice"
 	glass_desc = "The raw essence of a banana. HONK!"
 
-/datum/reagent/drink/berryjuice
+/datum/reagent/drink/juice/berry
 	name = "Berry Juice"
 	id = "berryjuice"
 	description = "A delicious blend of several different kinds of berries."
@@ -365,7 +365,7 @@
 	glass_name = "glass of berry juice"
 	glass_desc = "Berry juice. Or maybe it's jam. Who cares?"
 
-/datum/reagent/drink/carrotjuice
+/datum/reagent/drink/juice/carrot
 	name = "Carrot juice"
 	id = "carrotjuice"
 	description = "It is just like a carrot but without crunching."
@@ -375,11 +375,11 @@
 	glass_name = "glass of carrot juice"
 	glass_desc = "It is just like a carrot but without crunching."
 
-/datum/reagent/drink/carrotjuice/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drink/juice/carrot/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	M.reagents.add_reagent("imidazoline", removed * 0.2)
 
-/datum/reagent/drink/grapejuice
+/datum/reagent/drink/juice/
 	name = "Grape Juice"
 	id = "grapejuice"
 	description = "It's grrrrrape!"
@@ -389,7 +389,7 @@
 	glass_name = "glass of grape juice"
 	glass_desc = "It's grrrrrape!"
 
-/datum/reagent/drink/lemonjuice
+/datum/reagent/drink/juice/lemon
 	name = "Lemon Juice"
 	id = "lemonjuice"
 	description = "This juice is VERY sour."
@@ -399,7 +399,7 @@
 	glass_name = "glass of lemon juice"
 	glass_desc = "Sour..."
 
-/datum/reagent/drink/limejuice
+/datum/reagent/drink/juice/lime
 	name = "Lime Juice"
 	id = "limejuice"
 	description = "The sweet-sour juice of limes."
@@ -409,13 +409,13 @@
 	glass_name = "glass of lime juice"
 	glass_desc = "A glass of sweet-sour lime juice"
 
-/datum/reagent/drink/limejuice/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drink/juice/lime/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	if(alien == IS_DIONA)
 		return
 	M.adjustToxLoss(-0.5 * removed)
 
-/datum/reagent/drink/orangejuice
+/datum/reagent/drink/juice/orange
 	name = "Orange juice"
 	id = "orangejuice"
 	description = "Both delicious AND rich in Vitamin C, what more do you need?"
@@ -442,7 +442,7 @@
 	glass_name = "glass of poison berry juice"
 	glass_desc = "A glass of deadly juice."
 
-/datum/reagent/drink/potato_juice
+/datum/reagent/drink/juice/potato
 	name = "Potato Juice"
 	id = "potato"
 	description = "Juice of the potato. Bleh."
@@ -453,7 +453,7 @@
 	glass_name = "glass of potato juice"
 	glass_desc = "Juice from a potato. Bleh."
 
-/datum/reagent/drink/tomatojuice
+/datum/reagent/drink/juice/tomato
 	name = "Tomato Juice"
 	id = "tomatojuice"
 	description = "Tomatoes made into juice. What a waste of big, juicy tomatoes, huh?"
@@ -463,13 +463,13 @@
 	glass_name = "glass of tomato juice"
 	glass_desc = "Are you sure this is tomato juice?"
 
-/datum/reagent/drink/tomatojuice/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drink/juice/tomato/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	if(alien == IS_DIONA)
 		return
 	M.heal_organ_damage(0, 0.5 * removed)
 
-/datum/reagent/drink/watermelonjuice
+/datum/reagent/drink/juice/watermelon
 	name = "Watermelon Juice"
 	id = "watermelonjuice"
 	description = "Delicious juice made from watermelon."
@@ -674,7 +674,7 @@
 	cup_name = "cup of hot chocolate"
 	cup_desc = "Made with love! And cocoa beans."
 
-/datum/reagent/drink/sodawater
+/datum/reagent/drink/soda/sodawater
 	name = "Soda Water"
 	id = "sodawater"
 	description = "A can of club soda. Why not make a scotch and soda?"
@@ -687,7 +687,7 @@
 	glass_name = "glass of soda water"
 	glass_desc = "Soda water. Why not make a scotch and soda?"
 
-/datum/reagent/drink/grapesoda
+/datum/reagent/drink/soda/grapesoda
 	name = "Grape Soda"
 	id = "grapesoda"
 	description = "Grapes made into a fine drank."
@@ -698,7 +698,7 @@
 	glass_name = "glass of grape soda"
 	glass_desc = "Looks like a delicious drink!"
 
-/datum/reagent/drink/tonic
+/datum/reagent/drink/soda/tonic
 	name = "Tonic Water"
 	id = "tonic"
 	description = "It tastes strange but at least the quinine keeps the Space Malaria at bay."
@@ -712,7 +712,7 @@
 	glass_name = "glass of tonic water"
 	glass_desc = "Quinine tastes funny, but at least it'll keep that Space Malaria away."
 
-/datum/reagent/drink/lemonade
+/datum/reagent/drink/soda/lemonade
 	name = "Lemonade"
 	description = "Oh the nostalgia..."
 	id = "lemonade"
@@ -723,7 +723,7 @@
 	glass_name = "glass of lemonade"
 	glass_desc = "Oh the nostalgia..."
 
-/datum/reagent/drink/kiraspecial
+/datum/reagent/drink/soda/kiraspecial
 	name = "Kira Special"
 	description = "Long live the guy who everyone had mistaken for a girl. Baka!"
 	id = "kiraspecial"
@@ -735,7 +735,7 @@
 	glass_desc = "Long live the guy who everyone had mistaken for a girl. Baka!"
 	glass_center_of_mass = list("x"=16, "y"=12)
 
-/datum/reagent/drink/brownstar
+/datum/reagent/drink/soda/brownstar
 	name = "Brown Star"
 	description = "It's not what it sounds like..."
 	id = "brownstar"
@@ -774,7 +774,7 @@
 	..()
 	M.make_jittery(5)
 
-/datum/reagent/drink/nuka_cola
+/datum/reagent/drink/soda/nuka_cola
 	name = "Nuka Cola"
 	id = "nuka_cola"
 	description = "Cola, cola never changes."
@@ -806,7 +806,7 @@
 	glass_desc = "Sweet and tangy, a bar syrup used to add color or flavor to drinks."
 	glass_center_of_mass = list("x"=17, "y"=6)
 
-/datum/reagent/drink/space_cola
+/datum/reagent/drink/soda/space_cola
 	name = "Space Cola"
 	id = "cola"
 	description = "A refreshing beverage."
@@ -819,7 +819,7 @@
 	glass_name = "glass of Space Cola"
 	glass_desc = "A glass of refreshing Space Cola"
 
-/datum/reagent/drink/spacemountainwind
+/datum/reagent/drink/soda/spacemountainwind
 	name = "Mountain Wind"
 	id = "spacemountainwind"
 	description = "Blows right through you like a space wind."
@@ -832,7 +832,7 @@
 	glass_name = "glass of Space Mountain Wind"
 	glass_desc = "Space Mountain Wind. As you know, there are no mountains in space, only wind."
 
-/datum/reagent/drink/dr_gibb
+/datum/reagent/drink/soda/dr_gibb
 	name = "Dr. Gibb"
 	id = "dr_gibb"
 	description = "A delicious blend of 42 different flavours"
@@ -844,7 +844,7 @@
 	glass_name = "glass of Dr. Gibb"
 	glass_desc = "Dr. Gibb. Not as dangerous as the name might imply."
 
-/datum/reagent/drink/space_up
+/datum/reagent/drink/soda/space_up
 	name = "Space-Up"
 	id = "space_up"
 	description = "Tastes like a hull breach in your mouth."
@@ -855,7 +855,7 @@
 	glass_name = "glass of Space-up"
 	glass_desc = "Space-up. It helps keep your cool."
 
-/datum/reagent/drink/lemon_lime
+/datum/reagent/drink/soda/lemon_lime
 	name = "Lemon Lime"
 	description = "A tangy substance made of 0.5% natural citrus!"
 	id = "lemon_lime"
@@ -1124,7 +1124,7 @@
 	glass_desc = "A glass of sake."
 	glass_center_of_mass = list("x"=16, "y"=12)
 
-/datum/reagent/ethanol/tequilla
+/datum/reagent/ethanol/tequila
 	name = "Tequila"
 	id = "tequilla"
 	description = "A strong and mildly flavoured, mexican produced spirit. Feeling thirsty hombre?"
@@ -1132,7 +1132,7 @@
 	strength = 25
 
 	glass_icon_state = "tequillaglass"
-	glass_name = "glass of Tequilla"
+	glass_name = "glass of Tequila"
 	glass_desc = "Now all that's missing is the weird colored shades!"
 	glass_center_of_mass = list("x"=16, "y"=12)
 
@@ -1893,7 +1893,7 @@
 	strength = 25
 
 	glass_icon_state = "tequillasunriseglass"
-	glass_name = "glass of Tequilla Sunrise"
+	glass_name = "glass of Tequila Sunrise"
 	glass_desc = "Oh great, now you feel nostalgic about sunrises back on Terra..."
 
 /datum/reagent/ethanol/threemileisland
