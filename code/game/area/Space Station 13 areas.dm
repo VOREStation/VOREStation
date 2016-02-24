@@ -1861,6 +1861,16 @@ area/space/atmosalert()
 	name = "\improper Emergency Treatment Centre"
 	icon_state = "exam_room"
 
+/area/medical/first_aid_station_starboard
+	name = "\improper Starboard First-Aid Station"
+	icon_state = "medbay2"
+
+/area/medical/first_aid_station
+	name = "\improper Port First-Aid Station"
+	icon_state = "medbay2"
+
+
+
 //Security
 
 /area/security/main
