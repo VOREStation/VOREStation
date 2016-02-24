@@ -5819,7 +5819,7 @@
 "chU" = (/obj/machinery/atmospherics/unary/vent_pump/on{dir = 8},/obj/effect/landmark/start{name = "Shaft Miner"},/turf/simulated/floor/tiled,/area/quartermaster/miningdock)
 "chV" = (/obj/effect/floor_decal/corner/brown,/turf/simulated/floor/tiled,/area/quartermaster/miningdock)
 "chW" = (/obj/item/weapon/pickaxe{pixel_x = 5},/obj/item/weapon/shovel{pixel_x = -5},/obj/structure/table/rack{dir = 1},/obj/effect/floor_decal/corner/brown/full{dir = 4},/obj/machinery/alarm{dir = 8; icon_state = "alarm0"; pixel_x = 24},/obj/machinery/ai_status_display{pixel_y = -32},/turf/simulated/floor/tiled,/area/quartermaster/miningdock)
-"chX" = (/obj/machinery/door/firedoor/border_only,/obj/machinery/door/airlock/maintenance{name = "Delivery Office Maintenance"; req_access = list(48)},/obj/structure/disposalpipe/segment,/turf/simulated/floor,/area/quartermaster/delivery)
+"chX" = (/obj/machinery/door/firedoor/border_only,/obj/machinery/door/airlock/maintenance{name = "Delivery Office Maintenance"; req_access = list(50)},/obj/structure/disposalpipe/segment,/turf/simulated/floor,/area/quartermaster/delivery)
 "chY" = (/turf/simulated/wall,/area/quartermaster/delivery)
 "chZ" = (/obj/structure/disposalpipe/segment,/turf/simulated/wall,/area/quartermaster/delivery)
 "cia" = (/obj/structure/cable/green{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 5},/obj/machinery/meter,/obj/structure/disposalpipe/segment{dir = 1; icon_state = "pipe-c"},/turf/simulated/floor,/area/maintenance/cargo)
