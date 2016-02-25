@@ -65,7 +65,9 @@
 	if(istype(usr, /mob/living/silicon/ai))
 		var/mob/living/silicon/ai/AI = usr
 		if(AI.eyeobj && AI.client.eye == AI.eyeobj)
-			AI.eyeobj.setLoc(src)
+			var/turf/T = get_turf(src)
+			if(T)
+				AI.eyeobj.setLoc(T)
 
 /mob/living/silicon/ai/proc/view_core()
 	camera = null
