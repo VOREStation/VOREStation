@@ -30,13 +30,10 @@ proc/random_hair_style(gender, species = "Human")
 	var/list/valid_hairstyles = list()
 	for(var/hairstyle in hair_styles_list)
 		var/datum/sprite_accessory/S = hair_styles_list[hairstyle]
-
-		if(gender != NEUTER && gender != PLURAL)
-			if(gender == MALE && S.gender == FEMALE)
-				continue
-			if(gender == FEMALE && S.gender == MALE)
-				continue
-
+		if(gender == MALE && S.gender == FEMALE)
+			continue
+		if(gender == FEMALE && S.gender == MALE)
+			continue
 		if( !(species in S.species_allowed))
 			continue
 		valid_hairstyles[hairstyle] = hair_styles_list[hairstyle]
@@ -52,13 +49,10 @@ proc/random_facial_hair_style(gender, species = "Human")
 	var/list/valid_facialhairstyles = list()
 	for(var/facialhairstyle in facial_hair_styles_list)
 		var/datum/sprite_accessory/S = facial_hair_styles_list[facialhairstyle]
-
-		if(gender != NEUTER && gender != PLURAL)
-			if(gender == MALE && S.gender == FEMALE)
-				continue
-			if(gender == FEMALE && S.gender == MALE)
-				continue
-
+		if(gender == MALE && S.gender == FEMALE)
+			continue
+		if(gender == FEMALE && S.gender == MALE)
+			continue
 		if( !(species in S.species_allowed))
 			continue
 
@@ -171,3 +165,93 @@ Proc for attack log creation, because really why not
 		return 0
 	var/mob/living/silicon/robot/R = thing.loc
 	return (thing in R.module.modules)
+
+/proc/get_exposed_defense_zone(var/atom/movable/target)
+	var/obj/item/weapon/grab/G = locate() in target
+	if(G && G.state >= GRAB_NECK) //works because mobs are currently not allowed to upgrade to NECK if they are grabbing two people.
+		return pick("head", "l_hand", "r_hand", "l_foot", "r_foot", "l_arm", "r_arm", "l_leg", "r_leg")
+	else
+		return pick("chest", "groin")
+
+/proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = 0, progress = 1)
+	if(!user || !target)
+		return 0
+	var/user_loc = user.loc
+	var/target_loc = target.loc
+
+	var/holding = user.get_active_hand()
+	var/datum/progressbar/progbar
+	if (progress)
+		progbar = new(user, time, target)
+
+	var/endtime = world.time+time
+	var/starttime = world.time
+	. = 1
+	while (world.time < endtime)
+		sleep(1)
+		if (progress)
+			progbar.update(world.time - starttime)
+		if(!user || !target)
+			. = 0
+			break
+		if(uninterruptible)
+			continue
+
+		if(!user || user.incapacitated() || user.loc != user_loc)
+			. = 0
+			break
+
+		if(target.loc != target_loc || user.get_active_hand() != holding)
+			. = 0
+			break
+	if (progbar)
+		qdel(progbar)
+
+/proc/do_after(mob/user, delay, atom/target = null, needhand = 1, progress = 1)
+	if(!user)
+		return 0
+	var/atom/target_loc = null
+	if(target)
+		target_loc = target.loc
+
+	var/atom/original_loc = user.loc
+
+	var/holding = user.get_active_hand()
+
+	var/holdingnull = 1 //User's hand started out empty, check for an empty hand
+	if(holding)
+		holdingnull = 0 //Users hand started holding something, check to see if it's still holding that
+
+	var/datum/progressbar/progbar
+	if (progress)
+		progbar = new(user, delay, target)
+
+	var/endtime = world.time + delay
+	var/starttime = world.time
+	. = 1
+	while (world.time < endtime)
+		sleep(1)
+		if (progress)
+			progbar.update(world.time - starttime)
+
+		if(!user || user.incapacitated() || user.loc != original_loc)
+			. = 0
+			break
+
+		if(target_loc && (!target || target_loc != target.loc))
+			. = 0
+			break
+
+		if(needhand)
+			//This might seem like an odd check, but you can still need a hand even when it's empty
+			//i.e the hand is used to pull some item/tool out of the construction
+			if(!holdingnull)
+				if(!holding)
+					. = 0
+					break
+			if(user.get_active_hand() != holding)
+				. = 0
+				break
+
+	if (progbar)
+		qdel(progbar)
