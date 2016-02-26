@@ -5,7 +5,7 @@
 	item_state = "electronic"
 	w_class = 2.0
 	slot_flags = SLOT_BELT
-	show_messages = 1
+	show_messages = 0
 
 	var/flush = null
 	origin_tech = list(TECH_DATA = 4, TECH_MATERIAL = 4)
