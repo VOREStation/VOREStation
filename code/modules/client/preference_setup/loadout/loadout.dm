@@ -123,7 +123,7 @@ var/list/gear_datums = list()
 		var/datum/gear/G = LC.gear[gear_name]
 		var/ticked = (G.display_name in pref.gear)
 		var/obj/item/temp = G.path
-		. += "<tr><td width=25%><a href='?src=\ref[src];toggle_gear=[G.display_name]'><font color='[ticked ? "#E67300" : "#3366CC"]'>[initial(temp.name)]</font></a></td>"
+		. += "<tr><td width=25%><a href='?src=\ref[src];toggle_gear=[G.display_name]'><font color='[ticked ? "#E67300" : "#3366CC"]'>[G.display_name]</font></a></td>"
 		. += "<td width = 10%>[G.cost]</td>"
 		. += "<td><font size=2><i>[initial(temp.desc)]</i></font></td></tr>"
 	. += "</table>"

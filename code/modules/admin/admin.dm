@@ -1333,7 +1333,7 @@ proc/admin_notice(var/message, var/rights)
 
 	var/msg
 
-	if(check_rights(R_ADMIN))
+	if(check_rights(R_ADMIN|R_MOD))
 		if (H.paralysis == 0)
 			H.paralysis = 8000
 			msg = "has paralyzed [key_name(H)]."
