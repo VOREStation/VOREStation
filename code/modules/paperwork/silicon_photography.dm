@@ -94,21 +94,19 @@
 /obj/item/device/camera/siliconcam/robot_camera/printpicture(mob/user, obj/item/weapon/photo/p)
 	injectmasteralbum(p)
 
-/obj/item/device/camera/siliconcam/ai_camera/verb/take_image()
+/mob/living/silicon/ai/proc/take_image()
 	set category = "AI Commands"
 	set name = "Take Image"
 	set desc = "Takes an image"
-	set src in usr
 
-	toggle_camera_mode()
+	aiCamera.toggle_camera_mode()
 
-/obj/item/device/camera/siliconcam/ai_camera/verb/view_images()
+/mob/living/silicon/ai/proc/view_images()
 	set category = "AI Commands"
 	set name = "View Images"
 	set desc = "View images"
-	set src in usr
 
-	viewpictures()
+	aiCamera.viewpictures()
 
 /obj/item/device/camera/siliconcam/ai_camera/verb/delete_images()
 	set category = "AI Commands"
@@ -123,7 +121,6 @@
 	set name = "Take Image"
 	set desc = "Takes an image"
 	set src in usr
-
 	toggle_camera_mode()
 
 /obj/item/device/camera/siliconcam/robot_camera/verb/view_images()
