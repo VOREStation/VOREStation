@@ -17,6 +17,7 @@
 
 	var/obj/item/confirm_item
 	var/datum/money_account/linked_account
+	var/account_to_connect = null
 
 
 // Claim machine ID
@@ -24,6 +25,7 @@
 	machine_id = "[station_name()] RETAIL #[num_financial_terminals++]"
 	if(locate(/obj/structure/table) in loc)
 		pixel_y = 3
+	transaction_devices += src // Global reference list to be properly set up by /proc/setup_economy()
 
 
 // Always face the user when put on a table
@@ -315,36 +317,29 @@
 //--Premades--//
 
 /obj/item/device/retail_scanner/command
-	New()
-		linked_account = department_accounts["Command"]
-		..()
-		/obj/item/device/retail_scanner/medical
+	account_to_connect = "Command"
+	..()
 
-	New()
-		linked_account = department_accounts["Medical"]
-		..()
+/obj/item/device/retail_scanner/medical
+	account_to_connect = "Medical"
+	..()
 
 /obj/item/device/retail_scanner/engineering
-	New()
-		linked_account = department_accounts["Engineering"]
-		..()
+	account_to_connect = "Engineering"
+	..()
 
 /obj/item/device/retail_scanner/science
-	New()
-		linked_account = department_accounts["Science"]
-		..()
+	account_to_connect = "Science"
+	..()
 
 /obj/item/device/retail_scanner/security
-	New()
-		linked_account = department_accounts["Security"]
-		..()
+	account_to_connect = "Security"
+	..()
 
 /obj/item/device/retail_scanner/cargo
-	New()
-		linked_account = department_accounts["Cargo"]
-		..()
+	account_to_connect = "Cargo"
+	..()
 
 /obj/item/device/retail_scanner/civilian
-	New()
-		linked_account = department_accounts["Civilian"]
-		..()
+	account_to_connect = "Civilian"
+	..()
