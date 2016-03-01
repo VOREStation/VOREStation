@@ -1,20 +1,23 @@
-/datum/species/seromi
-	name = "Seromi"
-	name_plural = "Seromii"
+/datum/species/teshari
+	name = "Teshari"
+	name_plural = "Tesharii"
 	blurb = "A race of feathered raptors who developed alongside the Skrell, inhabiting \
 	the polar tundral regions outside of Skrell territory. Extremely fragile, they developed \
 	hunting skills that emphasized taking out their prey without themselves getting hit. They \
-	are only recently becoming known in human space after reaching space with Skrell assistance."
+	are only recently becoming known on human stations after reaching space with Skrell assistance."
 
 	num_alternate_languages = 2
-	secondary_langs = list("Schechi")
+	secondary_langs = list("Schechi", "Skrellian")
 	name_language = "Schechi"
+	min_age = 12
+	max_age = 45
 
 	blood_color = "#D514F7"
 	flesh_color = "#5F7BB0"
 	base_color = "#001144"
 	tail = "seromitail"
 	tail_hair = "feathers"
+	reagent_tag = IS_TESHARI
 
 	icobase = 'icons/mob/human_races/r_seromi.dmi'
 	deform = 'icons/mob/human_races/r_seromi.dmi'
@@ -30,6 +33,8 @@
 	holder_type = /obj/item/weapon/holder/human
 	short_sighted = 1
 	gluttonous = 1
+	blood_volume = 400
+	hunger_factor = 0.2
 
 	spawn_flags = CAN_JOIN | IS_WHITELISTED
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_EYE_COLOR
@@ -83,7 +88,7 @@
 	var/hallucination_cap = 25
 
 // I'm... so... ronrery, so ronery...
-/datum/species/seromi/handle_environment_special(var/mob/living/carbon/human/H)
+/datum/species/teshari/handle_environment_special(var/mob/living/carbon/human/H)
 
 	// If they're dead or unconcious they're a bit beyond this kind of thing.
 	if(H.stat)
@@ -106,8 +111,12 @@
 	if(H.shock_stage >= shock_cap && H.hallucination < hallucination_cap)
 		H.hallucination += 2.5
 
-/datum/species/seromi/get_vision_flags(var/mob/living/carbon/human/H)
+/datum/species/teshari/get_vision_flags(var/mob/living/carbon/human/H)
 	if(!(H.sdisabilities & DEAF) && !H.ear_deaf)
 		return SEE_SELF|SEE_MOBS
 	else
 		return SEE_SELF
+
+/datum/species/teshari/equip_survival_gear(var/mob/living/carbon/human/H)
+	..()
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H),slot_shoes)

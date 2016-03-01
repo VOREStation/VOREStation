@@ -2,7 +2,19 @@ datum/preferences
 	//The mob should have a gender you want before running this proc. Will run fine without H
 	proc/randomize_appearance_for(var/mob/living/carbon/human/H)
 		gender = pick(MALE, FEMALE)
-		s_tone = random_skin_tone()
+		var/datum/species/current_species = all_species[species]
+
+		if(current_species)
+			if(current_species.flags & HAS_SKIN_TONE)
+				s_tone = random_skin_tone()
+			if(current_species.flags & HAS_EYE_COLOR)
+				randomize_eyes_color()
+			if(current_species.flags & HAS_SKIN_COLOR)
+				randomize_skin_color()
+			if(current_species.flags & HAS_UNDERWEAR)
+				underwear = rand(1,underwear_m.len)
+				undershirt = rand(1,undershirt_t.len)
+
 
 		var/use_head_species
 		var/obj/item/organ/external/head/temp_head = H.get_organ(BP_HEAD)
@@ -17,13 +29,11 @@ datum/preferences
 
 		randomize_hair_color("hair")
 		randomize_hair_color("facial")
-		randomize_eyes_color()
-		randomize_skin_color()
-		underwear = rand(1,underwear_m.len)
-		undershirt = rand(1,undershirt_t.len)
+
 		socks = rand(1,socks_t.len)
 		backbag = 2
-		age = rand(AGE_MIN,AGE_MAX)
+		var/datum/species/S = all_species[species]
+		age = rand(S.min_age,S.max_age)
 		if(H)
 			copy_to(H,1)
 

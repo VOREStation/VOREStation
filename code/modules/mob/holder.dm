@@ -10,7 +10,7 @@ var/list/holder_mob_icon_cache = list()
 
 	sprite_sheets = list(
 		"Vox" = 'icons/mob/species/vox/head.dmi',
-		"Seromi" = 'icons/mob/species/seromi/head.dmi'
+		"Teshari" = 'icons/mob/species/seromi/head.dmi'
 		)
 
 	origin_tech = null
@@ -98,8 +98,9 @@ var/list/holder_mob_icon_cache = list()
 
 /mob/living/MouseDrop(var/atom/over_object)
 	var/mob/living/carbon/human/H = over_object
-	if(holder_type && istype(H) && !H.lying && !issmall(H) && Adjacent(H))
-		get_scooped(H, (usr == src))
+	if(holder_type && istype(H) && !H.lying && Adjacent(H) && (src.a_intent == I_HELP && H.a_intent == I_HELP))
+		if(!issmall(H) || !istype(src, /mob/living/carbon/human))
+			get_scooped(H, (usr == src))
 		return
 	return ..()
 

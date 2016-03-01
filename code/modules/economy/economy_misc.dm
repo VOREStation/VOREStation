@@ -50,6 +50,7 @@
 /var/list/economic_species_modifier = list(
 												/datum/species/human	= 10,
 												/datum/species/skrell	= 12,
+												/datum/species/teshari	= 9, // Skrell sponsored!
 												/datum/species/tajaran	= 7,
 												/datum/species/unathi	= 7,
 												/datum/species/vox		= 1
@@ -80,6 +81,7 @@ var/global/list/datum/money_account/department_accounts = list()
 var/global/num_financial_terminals = 1
 var/global/next_account_number = 0
 var/global/list/all_money_accounts = list()
+var/global/list/transaction_devices = list()
 var/global/economy_init = 0
 
 /proc/setup_economy()
@@ -100,6 +102,13 @@ var/global/economy_init = 0
 		create_department_account(department)
 	create_department_account("Vendor")
 	vendor_account = department_accounts["Vendor"]
+
+	for(var/obj/item/device/retail_scanner/RS in transaction_devices)
+		if(RS.account_to_connect)
+			RS.linked_account = department_accounts[RS.account_to_connect]
+	for(var/obj/machinery/cash_register/CR in transaction_devices)
+		if(CR.account_to_connect)
+			CR.linked_account = department_accounts[CR.account_to_connect]
 
 	current_date_string = "[num2text(rand(1,31))] [pick("January","February","March","April","May","June","July","August","September","October","November","December")], [game_year]"
 

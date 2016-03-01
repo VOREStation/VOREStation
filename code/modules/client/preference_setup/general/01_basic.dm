@@ -20,7 +20,9 @@
 	S["OOC_Notes"]				<< pref.metadata
 
 /datum/category_item/player_setup_item/general/basic/sanitize_character()
-	pref.age			= sanitize_integer(pref.age, AGE_MIN, AGE_MAX, initial(pref.age))
+	if(!pref.species) pref.species = "Human"
+	var/datum/species/S = all_species[pref.species]
+	pref.age			= sanitize_integer(pref.age, S.min_age, S.max_age, initial(pref.age))
 	pref.gender 		= sanitize_inlist(pref.gender, valid_player_genders, pick(valid_player_genders))
 	pref.real_name		= sanitize_name(pref.real_name, pref.species)
 	if(!pref.real_name)
@@ -65,9 +67,11 @@
 		return TOPIC_REFRESH
 
 	else if(href_list["age"])
-		var/new_age = input(user, "Choose your character's age:\n([AGE_MIN]-[AGE_MAX])", "Character Preference", pref.age) as num|null
+		if(!pref.species) pref.species = "Human"
+		var/datum/species/S = all_species[pref.species]
+		var/new_age = input(user, "Choose your character's age:\n([S.min_age]-[S.max_age])", "Character Preference", pref.age) as num|null
 		if(new_age && CanUseTopic(user))
-			pref.age = max(min(round(text2num(new_age)), AGE_MAX), AGE_MIN)
+			pref.age = max(min(round(text2num(new_age)), S.max_age), S.min_age)
 			return TOPIC_REFRESH
 
 	else if(href_list["spawnpoint"])

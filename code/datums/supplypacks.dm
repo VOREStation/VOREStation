@@ -456,7 +456,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	group = "Medical"
 
 /datum/supply_packs/cryobag
-	name = "Statis bag crate"
+	name = "Stasis bag crate"
 	contains = list(/obj/item/bodybag/cryobag,
 				    /obj/item/bodybag/cryobag,
 	    			/obj/item/bodybag/cryobag)
@@ -1142,8 +1142,9 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 /datum/supply_packs/formal_wear
 	contains = list(/obj/item/clothing/head/bowler,
 					/obj/item/clothing/head/that,
+					/obj/item/clothing/suit/storage/toggle/internalaffairs,
 					/obj/item/clothing/suit/storage/toggle/lawyer/bluejacket,
-					/obj/item/clothing/suit/storage/lawyer/purpjacket,
+					/obj/item/clothing/suit/storage/toggle/lawyer/purpjacket,
 					/obj/item/clothing/under/suit_jacket,
 					/obj/item/clothing/under/suit_jacket/female,
 					/obj/item/clothing/under/suit_jacket/really_black,
@@ -1350,6 +1351,15 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	cost = 15
 	group = "Miscellaneous"
 	contains = list(/obj/item/stack/tile/carpet)
+	amount = 50
+
+/datum/supply_packs/linoleum
+	name = "Linoleum"
+	containertype = /obj/structure/closet
+	containername = "Linoleum crate"
+	cost = 15
+	group = "Miscellaneous"
+	contains = list(/obj/item/stack/tile/linoleum)
 	amount = 50
 
 /datum/supply_packs/hydrotray
@@ -1724,8 +1734,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/clothing/suit/storage/forensics/blue,
 					/obj/item/clothing/under/det/corporate,
 					/obj/item/clothing/under/det/corporate,
-					/obj/item/clothing/accessory/badge/detective,
-					/obj/item/clothing/accessory/badge/detective,
+					/obj/item/clothing/accessory/badge/holo/detective,
+					/obj/item/clothing/accessory/badge/holo/detective,
 					/obj/item/clothing/gloves/black,
 					/obj/item/clothing/gloves/black)
 	cost = 20
@@ -1775,7 +1785,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/clothing/glasses/sunglasses/sechud,
 					/obj/item/taperoll/police,
 					/obj/item/device/hailer,
-					/obj/item/clothing/accessory/badge/warden,
+					/obj/item/clothing/accessory/badge/holo/warden,
 					/obj/item/weapon/storage/box/flashbangs,
 					/obj/item/weapon/storage/belt/security,
 					/obj/item/weapon/reagent_containers/spray/pepper,
@@ -1801,7 +1811,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/storage/belt/security,
 					/obj/item/device/flash,
 					/obj/item/device/hailer,
-					/obj/item/clothing/accessory/badge/hos,
+					/obj/item/clothing/accessory/badge/holo/hos,
 					/obj/item/clothing/accessory/holster/waist,
 					/obj/item/weapon/melee/telebaton,
 					/obj/item/weapon/shield/riot/tele,

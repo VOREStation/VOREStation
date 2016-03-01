@@ -11,6 +11,7 @@
 		while sprite_sheets should be used for "flexible" clothing items that do not need to be refitted (e.g. vox wearing jumpsuits).
 	*/
 	var/list/sprite_sheets_refit = null
+	var/ear_protection = 0
 
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
@@ -101,7 +102,7 @@
 	w_class = 1.0
 	throwforce = 2
 	slot_flags = SLOT_EARS
-	sprite_sheets = list("Seromi" = 'icons/mob/species/seromi/ears.dmi')
+	sprite_sheets = list("Teshari" = 'icons/mob/species/seromi/ears.dmi')
 
 /obj/item/clothing/ears/attack_hand(mob/user as mob)
 	if (!user) return
@@ -162,6 +163,7 @@
 	icon_state = "earmuffs"
 	item_state = "earmuffs"
 	slot_flags = SLOT_EARS | SLOT_TWOEARS
+	ear_protection = 2
 
 /obj/item/clothing/ears/earmuffs/headphones
 	name = "headphones"
@@ -189,37 +191,6 @@
 
 	update_clothing_icon()
 
-///////////////////////////////////////////////////////////////////////
-//Glasses
-/*
-SEE_SELF  // can see self, no matter what
-SEE_MOBS  // can see all mobs, no matter what
-SEE_OBJS  // can see all objs, no matter what
-SEE_TURFS // can see all turfs (and areas), no matter what
-SEE_PIXELS// if an object is located on an unlit area, but some of its pixels are
-          // in a lit area (via pixel_x,y or smooth movement), can see those pixels
-BLIND     // can't see anything
-*/
-/obj/item/clothing/glasses
-	name = "glasses"
-	icon = 'icons/obj/clothing/glasses.dmi'
-	w_class = 2.0
-	body_parts_covered = EYES
-	slot_flags = SLOT_EYES
-	var/vision_flags = 0
-	var/darkness_view = 0//Base human is 2
-	var/see_invisible = -1
-	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/eyes.dmi',
-		"Seromi" = 'icons/mob/species/seromi/eyes.dmi',
-		)
-
-/obj/item/clothing/glasses/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
-		M.update_inv_glasses()
-
-///////////////////////////////////////////////////////////////////////
 //Gloves
 /obj/item/clothing/gloves
 	name = "gloves"
@@ -236,7 +207,7 @@ BLIND     // can't see anything
 	species_restricted = list("exclude","Unathi","Tajara", "Vox")
 	sprite_sheets = list(
 		"Vox" = 'icons/mob/species/vox/gloves.dmi',
-		"Seromi" = 'icons/mob/species/seromi/gloves.dmi',
+		"Teshari" = 'icons/mob/species/seromi/gloves.dmi',
 		)
 
 /obj/item/clothing/gloves/update_clothing_icon()
@@ -294,7 +265,7 @@ BLIND     // can't see anything
 
 	sprite_sheets = list(
 		"Vox" = 'icons/mob/species/vox/head.dmi',
-		"Seromi" = 'icons/mob/species/seromi/head.dmi'
+		"Teshari" = 'icons/mob/species/seromi/head.dmi'
 		)
 
 /obj/item/clothing/head/attack_self(mob/user)
@@ -393,7 +364,7 @@ BLIND     // can't see anything
 	body_parts_covered = FACE|EYES
 	sprite_sheets = list(
 		"Vox" = 'icons/mob/species/vox/masks.dmi',
-		"Seromi" = 'icons/mob/species/seromi/masks.dmi',
+		"Teshari" = 'icons/mob/species/seromi/masks.dmi',
 		)
 
 	var/voicechange = 0
@@ -426,10 +397,10 @@ BLIND     // can't see anything
 	slowdown = SHOES_SLOWDOWN
 	force = 2
 	var/overshoes = 0
-	species_restricted = list("exclude","Seromi", "Unathi","Tajara","Vox")
+	species_restricted = list("exclude","Teshari", "Unathi","Tajara","Vox")
 	sprite_sheets = list(
 		"Vox" = 'icons/mob/species/vox/shoes.dmi',
-		"Seromi" = 'icons/mob/species/seromi/shoes.dmi',
+		"Teshari" = 'icons/mob/species/seromi/shoes.dmi',
 		)
 
 /obj/item/clothing/shoes/proc/draw_knife()
@@ -504,7 +475,7 @@ BLIND     // can't see anything
 
 	sprite_sheets = list(
 		"Vox" = 'icons/mob/species/vox/suit.dmi',
-		"Seromi" = 'icons/mob/species/seromi/suit.dmi'
+		"Teshari" = 'icons/mob/species/seromi/suit.dmi'
 		)
 
 /obj/item/clothing/suit/update_clothing_icon()
@@ -538,9 +509,10 @@ BLIND     // can't see anything
 	var/list/accessories = list()
 	var/displays_id = 1
 	var/rolled_down = -1 //0 = unrolled, 1 = rolled, -1 = cannot be toggled
+	var/rolled_sleeves = -1 //0 = unrolled, 1 = rolled, -1 = cannot be toggled
 	sprite_sheets = list(
 		"Vox" = 'icons/mob/species/vox/uniform.dmi',
-		"Seromi" = 'icons/mob/species/seromi/uniform.dmi'
+		"Teshari" = 'icons/mob/species/seromi/uniform.dmi'
 		)
 
 	//convenience var for defining the icon state for the overlay used when the clothing is worn.
@@ -582,6 +554,29 @@ BLIND     // can't see anything
 			rolled_down = 0
 	else
 		rolled_down = -1
+	if(H) update_clothing_icon()
+
+/obj/item/clothing/under/proc/update_rollsleeves_status()
+	var/mob/living/carbon/human/H
+	if(istype(src.loc, /mob/living/carbon/human))
+		H = src.loc
+
+	var/icon/under_icon
+	if(icon_override)
+		under_icon = icon_override
+	else if(H && sprite_sheets && sprite_sheets[H.species.get_bodytype()])
+		under_icon = sprite_sheets[H.species.get_bodytype()]
+	else if(item_icons && item_icons[slot_w_uniform_str])
+		under_icon = item_icons[slot_w_uniform_str]
+	else
+		under_icon = INV_W_UNIFORM_DEF_ICON
+
+	// The _s is because the icon update procs append it.
+	if(("[worn_state]_r_s") in icon_states(under_icon))
+		if(rolled_sleeves != 1)
+			rolled_sleeves = 0
+	else
+		rolled_sleeves = -1
 	if(H) update_clothing_icon()
 
 /obj/item/clothing/under/update_clothing_icon()
@@ -729,14 +724,45 @@ BLIND     // can't see anything
 	if(rolled_down == -1)
 		usr << "<span class='notice'>You cannot roll down [src]!</span>"
 		return
+	if((rolled_sleeves == 1) && !(rolled_down))
+		rolled_sleeves = 0
 
 	rolled_down = !rolled_down
 	if(rolled_down)
-		body_parts_covered &= LOWER_TORSO|LEGS|FEET
+		body_parts_covered = initial(body_parts_covered)
+		body_parts_covered &= ~(UPPER_TORSO|ARMS)
 		item_state_slots[slot_w_uniform_str] = "[worn_state]_d"
+		usr << "<span class='notice'>You roll down your [src].</span>"
 	else
 		body_parts_covered = initial(body_parts_covered)
 		item_state_slots[slot_w_uniform_str] = "[worn_state]"
+		usr << "<span class='notice'>You roll up your [src].</span>"
+	update_clothing_icon()
+
+/obj/item/clothing/under/verb/rollsleeves()
+	set name = "Roll Up Sleeves"
+	set category = "Object"
+	set src in usr
+	if(!istype(usr, /mob/living)) return
+	if(usr.stat) return
+
+	update_rollsleeves_status()
+	if(rolled_sleeves == -1)
+		usr << "<span class='notice'>You cannot roll up your [src]'s sleeves!</span>"
+		return
+	if(rolled_down == 1)
+		usr << "<span class='notice'>You must roll up your [src] first!</span>"
+		return
+
+	rolled_sleeves = !rolled_sleeves
+	if(rolled_sleeves)
+		body_parts_covered &= ~(ARMS)
+		item_state_slots[slot_w_uniform_str] = "[worn_state]_r"
+		usr << "<span class='notice'>You roll up your [src]'s sleeves.</span>"
+	else
+		body_parts_covered = initial(body_parts_covered)
+		item_state_slots[slot_w_uniform_str] = "[worn_state]"
+		usr << "<span class='notice'>You roll down your [src]'s sleeves.</span>"
 	update_clothing_icon()
 
 /obj/item/clothing/under/proc/remove_accessory(mob/user, obj/item/clothing/accessory/A)

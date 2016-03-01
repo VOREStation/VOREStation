@@ -13,7 +13,7 @@
 	if(CE_SPEEDBOOST in chem_effects)
 		return -1
 
-	var/health_deficiency = (100 - health)
+	var/health_deficiency = (maxHealth - health)
 	if(health_deficiency >= 40) tally += (health_deficiency / 25)
 
 	if(can_feel_pain())
@@ -28,7 +28,7 @@
 	if(istype(buckled, /obj/structure/bed/chair/wheelchair))
 		for(var/organ_name in list(BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM))
 			var/obj/item/organ/external/E = get_organ(organ_name)
-			if(!E || (E.status & ORGAN_DESTROYED))
+			if(!E || E.is_stump())
 				tally += 4
 			if(E.status & ORGAN_SPLINTED)
 				tally += 0.5
@@ -40,7 +40,7 @@
 
 		for(var/organ_name in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT))
 			var/obj/item/organ/external/E = get_organ(organ_name)
-			if(!E || (E.status & ORGAN_DESTROYED))
+			if(!E || E.is_stump())
 				tally += 4
 			else if(E.status & ORGAN_SPLINTED)
 				tally += 0.5

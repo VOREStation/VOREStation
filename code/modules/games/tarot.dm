@@ -17,8 +17,6 @@
 		P.back_icon = "card_back_tarot"
 		cards += P
 	for(var/suit in list("wands","pentacles","cups","swords"))
-
-
 		for(var/number in list("ace","two","three","four","five","six","seven","eight","nine","ten","page","knight","queen","king"))
 			P = new()
 			P.name = "[number] of [suit]"

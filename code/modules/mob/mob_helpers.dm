@@ -37,6 +37,12 @@ proc/isdeaf(A)
 		return (M.sdisabilities & DEAF) || M.ear_deaf
 	return 0
 
+/mob/proc/get_ear_protection()
+	return 0
+
+/mob/proc/break_cloak()
+	return
+
 proc/hasorgans(A) // Fucking really??
 	return ishuman(A)
 
@@ -465,6 +471,12 @@ proc/is_blind(A)
 // Returns true if the mob has a client which has been active in the last given X minutes.
 /mob/proc/is_client_active(var/active = 1)
 	return client && client.inactivity < active MINUTES
+
+/mob/proc/can_eat()
+	return 1
+
+/mob/proc/can_force_feed()
+	return 1
 
 #define SAFE_PERP -50
 /mob/living/proc/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)

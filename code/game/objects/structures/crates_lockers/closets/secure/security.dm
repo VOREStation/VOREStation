@@ -125,7 +125,8 @@
 		new /obj/item/taperoll/police(src)
 		new /obj/item/weapon/shield/riot(src)
 		new /obj/item/weapon/shield/riot/tele(src)
-		new /obj/item/clothing/accessory/badge/hos(src)
+		new /obj/item/weapon/storage/box/holobadge/hos(src)
+		new /obj/item/clothing/accessory/badge/holo/hos(src)
 		new /obj/item/weapon/storage/box/flashbangs(src)
 		new /obj/item/weapon/storage/belt/security(src)
 		new /obj/item/device/flash(src)
@@ -135,6 +136,7 @@
 		new /obj/item/weapon/melee/telebaton(src)
 		new /obj/item/clothing/head/beret/sec/corporate/hos(src)
 		new /obj/item/clothing/suit/storage/hooded/wintercoat/security(src)
+		new /obj/item/device/flashlight/maglight(src)
 		return
 
 
@@ -169,7 +171,7 @@
 		new /obj/item/device/radio/headset/headset_sec/alt(src)
 		new /obj/item/clothing/glasses/sunglasses/sechud(src)
 		new /obj/item/taperoll/police(src)
-		new /obj/item/clothing/accessory/badge/warden(src)
+		new /obj/item/clothing/accessory/badge/holo/warden(src)
 		new /obj/item/weapon/storage/box/flashbangs(src)
 		new /obj/item/weapon/storage/belt/security(src)
 		new /obj/item/weapon/reagent_containers/spray/pepper(src)
@@ -178,6 +180,7 @@
 		new /obj/item/weapon/storage/box/holobadge(src)
 		new /obj/item/clothing/head/beret/sec/corporate/warden(src)
 		new /obj/item/clothing/suit/storage/hooded/wintercoat/security(src)
+		new /obj/item/device/flashlight/maglight(src)
 		return
 
 
@@ -220,6 +223,7 @@
 		new /obj/item/ammo_magazine/c45m/rubber(src)
 		new /obj/item/weapon/gun/energy/taser(src)
 		new /obj/item/clothing/suit/storage/hooded/wintercoat/security(src)
+		new /obj/item/device/flashlight/maglight(src)
 		return
 
 
@@ -277,7 +281,7 @@
 		new /obj/item/clothing/suit/storage/det_trench/grey(src)
 		new /obj/item/clothing/suit/storage/forensics/blue(src)
 		new /obj/item/clothing/suit/storage/forensics/red(src)
-		new /obj/item/clothing/accessory/badge/detective(src)
+		new /obj/item/clothing/accessory/badge/holo/detective(src)
 		new /obj/item/clothing/gloves/black(src)
 		new /obj/item/clothing/head/det(src)
 		new /obj/item/clothing/head/det/grey(src)

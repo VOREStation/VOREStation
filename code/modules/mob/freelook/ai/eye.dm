@@ -65,14 +65,9 @@
 	if(istype(usr, /mob/living/silicon/ai))
 		var/mob/living/silicon/ai/AI = usr
 		if(AI.eyeobj && AI.client.eye == AI.eyeobj)
-			AI.eyeobj.setLoc(src)
-
-// Return to the Core.
-/mob/living/silicon/ai/proc/core()
-	set category = "AI Commands"
-	set name = "AI Core"
-
-	view_core()
+			var/turf/T = get_turf(src)
+			if(T)
+				AI.eyeobj.setLoc(T)
 
 /mob/living/silicon/ai/proc/view_core()
 	camera = null
@@ -88,7 +83,7 @@
 	src.eyeobj.setLoc(src)
 
 /mob/living/silicon/ai/proc/toggle_acceleration()
-	set category = "AI Commands"
+	set category = "AI Settings"
 	set name = "Toggle Camera Acceleration"
 
 	if(!eyeobj)

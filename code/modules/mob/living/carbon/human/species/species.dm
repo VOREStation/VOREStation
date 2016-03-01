@@ -30,7 +30,12 @@
 	var/mob_size	= MOB_MEDIUM
 	var/show_ssd = "fast asleep"
 	var/virus_immune
-	var/short_sighted
+	var/short_sighted                                    // Permanent weldervision.
+	var/blood_volume = 560                               // Initial blood volume.
+	var/hunger_factor = 0.05                             // Multiplier for hunger.
+
+	var/min_age = 17
+	var/max_age = 70
 
 	// Language/culture vars.
 	var/default_language = "Galactic Common" // Default language is used when 'say' is used without modifiers.
@@ -263,18 +268,14 @@
 		var/obj/item/organ/O = new limb_path(H)
 		organ_data["descriptor"] = O.name
 
-	for(var/organ in has_organ)
-		var/organ_type = has_organ[organ]
-		H.internal_organs_by_name[organ] = new organ_type(H,1)
+	for(var/organ_tag in has_organ)
+		var/organ_type = has_organ[organ_tag]
+		var/obj/item/organ/O = new organ_type(H,1)
+		if(organ_tag != O.organ_tag)
+			warning("[O.type] has a default organ tag \"[O.organ_tag]\" that differs from the species' organ tag \"[organ_tag]\". Updating organ_tag to match.")
+			O.organ_tag = organ_tag
+		H.internal_organs_by_name[organ_tag] = O
 
-	for(var/name in H.organs_by_name)
-		H.organs |= H.organs_by_name[name]
-
-	for(var/name in H.internal_organs_by_name)
-		H.internal_organs |= H.internal_organs_by_name[name]
-
-	for(var/obj/item/organ/O in (H.organs|H.internal_organs))
-		O.owner = H
 
 /datum/species/proc/hug(var/mob/living/carbon/human/H,var/mob/living/target)
 

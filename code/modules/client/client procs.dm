@@ -158,6 +158,7 @@
 	spawn(5) // And wait a half-second, since it sounds like you can do this too fast.
 		if(src)
 			winset(src, null, "command=\".configure graphics-hwmode off\"")
+			sleep(2) // wait a bit more, possibly fixes hardware mode not re-activating right
 			winset(src, null, "command=\".configure graphics-hwmode on\"")
 
 	log_client_to_db()
@@ -279,6 +280,9 @@
 /client/proc/is_afk(duration=3000)
 	if(inactivity > duration)	return inactivity
 	return 0
+
+/client/proc/last_activity_seconds()
+	return inactivity / 10
 
 //send resources to the client. It's here in its own proc so we can move it around easiliy if need be
 /client/proc/send_resources()

@@ -6,7 +6,7 @@
 	w_class = 2.0
 	slot_flags = SLOT_BELT
 	origin_tech = list(TECH_DATA = 2)
-	show_messages = 1
+	show_messages = 0
 
 	var/obj/item/device/radio/radio
 	var/looking_for_personality = 0
@@ -322,7 +322,7 @@
 		qdel(src)
 
 /obj/item/device/paicard/see_emote(mob/living/M, text)
-	if(pai && pai.client)
+	if(pai && pai.client && !pai.canmove)
 		var/rendered = "<span class='message'>[text]</span>"
 		pai.show_message(rendered, 2)
 	..()

@@ -86,17 +86,17 @@
 
 	var/total_pellets = get_pellets(distance)
 	var/spread = max(base_spread - (spread_step*distance), 0)
-	
+
 	//shrapnel explosions miss prone mobs with a chance that increases with distance
 	var/prone_chance = 0
 	if(!base_spread)
 		prone_chance = max(spread_step*(distance - 2), 0)
-	
+
 	var/hits = 0
 	for (var/i in 1 to total_pellets)
 		if(target_mob.lying && target_mob != original && prob(prone_chance))
 			continue
-		
+
 		//pellet hits spread out across different zones, but 'aim at' the targeted zone with higher probability
 		//whether the pellet actually hits the def_zone or a different zone should still be determined by the parent using get_zone_with_miss_chance().
 		var/old_zone = def_zone
@@ -115,7 +115,7 @@
 
 /obj/item/projectile/bullet/pellet/Move()
 	. = ..()
-	
+
 	//If this is a shrapnel explosion, allow mobs that are prone to get hit, too
 	if(. && !base_spread && isturf(loc))
 		for(var/mob/living/M in loc)
@@ -136,10 +136,11 @@
 
 /obj/item/projectile/bullet/pistol/rubber //"rubber" bullets
 	name = "rubber bullet"
-	damage = 10
+	damage = 5
 	agony = 40
 	embed = 0
 	sharp = 0
+	check_armour = "melee"
 
 /* shotgun projectiles */
 
@@ -154,6 +155,7 @@
 	agony = 60
 	embed = 0
 	sharp = 0
+	check_armour = "melee"
 
 //Should do about 80 damage at 1 tile distance (adjacent), and 50 damage at 3 tiles distance.
 //Overall less damage than slugs in exchange for more damage at very close range and more embedding

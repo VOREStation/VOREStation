@@ -124,7 +124,7 @@
 		)
 
 /obj/machinery/portable_atmospherics/hydroponics/AltClick()
-	if(mechanical && !usr.stat && !usr.lying && Adjacent(usr))
+	if(mechanical && !usr.incapacitated() && Adjacent(usr))
 		close_lid(usr)
 		return 1
 	return ..()
@@ -217,7 +217,7 @@
 	if(reagents.total_volume <= 0)
 		return
 
-	reagents.trans_to(temp_chem_holder, min(reagents.total_volume,rand(1,3)))
+	reagents.trans_to_obj(temp_chem_holder, min(reagents.total_volume,rand(1,3)))
 
 	for(var/datum/reagent/R in temp_chem_holder.reagents.reagent_list)
 
@@ -357,12 +357,15 @@
 	set category = "Object"
 	set src in view(1)
 
-	if(labelled)
-		usr << "You remove the label."
-		labelled = null
-		update_icon()
-	else
-		usr << "There is no label to remove."
+	if(usr.incapacitated())
+		return
+	if(ishuman(usr) || istype(usr, /mob/living/silicon/robot))
+		if(labelled)
+			usr << "You remove the label."
+			labelled = null
+			update_icon()
+		else
+			usr << "There is no label to remove."
 	return
 
 /obj/machinery/portable_atmospherics/hydroponics/verb/setlight()
@@ -370,10 +373,14 @@
 	set category = "Object"
 	set src in view(1)
 
-	var/new_light = input("Specify a light level.") as null|anything in list(0,1,2,3,4,5,6,7,8,9,10)
-	if(new_light)
-		tray_light = new_light
-		usr << "You set the tray to a light level of [tray_light] lumens."
+	if(usr.incapacitated())
+		return
+	if(ishuman(usr) || istype(usr, /mob/living/silicon/robot))
+		var/new_light = input("Specify a light level.") as null|anything in list(0,1,2,3,4,5,6,7,8,9,10)
+		if(new_light)
+			tray_light = new_light
+			usr << "You set the tray to a light level of [tray_light] lumens."
+	return
 
 /obj/machinery/portable_atmospherics/hydroponics/proc/check_level_sanity()
 	//Make sure various values are sane.
@@ -560,11 +567,10 @@
 
 	..()
 
-	if(!seed)
+	if(seed)
+		usr << "<span class='notice'>[seed.display_name] are growing here.</span>"
+	else
 		usr << "[src] is empty."
-		return
-
-	usr << "<span class='notice'>[seed.display_name] are growing here.</span>"
 
 	if(!Adjacent(usr))
 		return
@@ -572,29 +578,30 @@
 	usr << "Water: [round(waterlevel,0.1)]/100"
 	usr << "Nutrient: [round(nutrilevel,0.1)]/10"
 
-	if(weedlevel >= 5)
-		usr << "\The [src] is <span class='danger'>infested with weeds</span>!"
-	if(pestlevel >= 5)
-		usr << "\The [src] is <span class='danger'>infested with tiny worms</span>!"
-
-	if(dead)
-		usr << "<span class='danger'>The plant is dead.</span>"
-	else if(health <= (seed.get_trait(TRAIT_ENDURANCE)/ 2))
-		usr << "The plant looks <span class='danger'>unhealthy</span>."
+	if(seed)
+		if(weedlevel >= 5)
+			usr << "\The [src] is <span class='danger'>infested with weeds</span>!"
+		if(pestlevel >= 5)
+			usr << "\The [src] is <span class='danger'>infested with tiny worms</span>!"
+		if(dead)
+			usr << "<span class='danger'>The plant is dead.</span>"
+		else if(health <= (seed.get_trait(TRAIT_ENDURANCE)/ 2))
+			usr << "The plant looks <span class='danger'>unhealthy</span>."
 
 	if(mechanical)
 		var/turf/T = loc
 		var/datum/gas_mixture/environment
 
-		if(closed_system && (connected_port || holding))
+		var/environment_type
+		if(closed_system && (connected_port || holding) && air_contents)
 			environment = air_contents
-
-		if(!environment)
+			environment_type = "connected"
+		else
 			if(istype(T))
 				environment = T.return_air()
-
-		if(!environment) //We're in a crate or nullspace, bail out.
-			return
+			if(!environment) //We're in a crate or nullspace, bail out.
+				return
+			environment_type = "surrounding"
 
 		var/light_string
 		if(closed_system && mechanical)
@@ -608,18 +615,20 @@
 				light_available =  5
 			light_string = "a light level of [light_available] lumens"
 
-		usr << "The tray's sensor suite is reporting [light_string] and a temperature of [environment.temperature]K."
+		usr << "The tray's sensor suite is reporting [light_string] and a temperature of [environment.temperature]K at [environment.return_pressure()] kPa in the [environment_type] environment"
 
 /obj/machinery/portable_atmospherics/hydroponics/verb/close_lid_verb()
 	set name = "Toggle Tray Lid"
 	set category = "Object"
 	set src in view(1)
-	close_lid(usr)
-
-/obj/machinery/portable_atmospherics/hydroponics/proc/close_lid(var/mob/living/user)
-	if(!user || user.stat || user.restrained())
+	if(usr.incapacitated())
 		return
 
+	if(ishuman(usr) || istype(usr, /mob/living/silicon/robot))
+		close_lid(usr)
+	return
+
+/obj/machinery/portable_atmospherics/hydroponics/proc/close_lid(var/mob/living/user)
 	closed_system = !closed_system
 	user << "You [closed_system ? "close" : "open"] the tray's lid."
 	update_icon()

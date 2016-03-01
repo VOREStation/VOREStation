@@ -90,7 +90,7 @@
 	else
 		togglelock(user)
 
-/obj/structure/closet/secure_closet/emag_act(var/remaining_charges, var/mob/user, var/visual_feedback, var/audible_feedback)
+/obj/structure/closet/secure_closet/emag_act(var/remaining_charges, var/mob/user, var/emag_source, var/visual_feedback = "", var/audible_feedback = "")
 	if(!broken)
 		broken = 1
 		locked = 0
@@ -100,8 +100,11 @@
 
 		if(visual_feedback)
 			visible_message(visual_feedback, audible_feedback)
+		else if(user && emag_source)
+			visible_message("<span class='warning'>\The [src] has been broken by \the [user] with \an [emag_source]!</span>", "You hear a faint electrical spark.")
 		else
-			visible_message("<span class='warning'>The locker has been broken by [user] with an electromagnetic card!</span>", "You hear a faint electrical spark.")
+			visible_message("<span class='warning'>\The [src] sparks and breaks open!</span>", "You hear a faint electrical spark.")
+		return 1
 
 /obj/structure/closet/secure_closet/attack_hand(mob/user as mob)
 	src.add_fingerprint(user)
@@ -126,8 +129,11 @@
 
 /obj/structure/closet/secure_closet/update_icon()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
 	overlays.Cut()
+
 	if(!opened)
-		if(locked)
+		if(broken)
+			icon_state = icon_off
+		else if(locked)
 			icon_state = icon_locked
 		else
 			icon_state = icon_closed
@@ -136,24 +142,12 @@
 	else
 		icon_state = icon_opened
 
-
 /obj/structure/closet/secure_closet/req_breakout()
 	if(!opened && locked) return 1
 	return ..() //It's a secure closet, but isn't locked.
 
 /obj/structure/closet/secure_closet/break_open()
 	desc += " It appears to be broken."
-	icon_state = icon_off
-	spawn()
-		flick(icon_broken, src)
-		sleep(10)
-		flick(icon_broken, src)
-		sleep(10)
 	broken = 1
 	locked = 0
-	update_icon()
-	//Do this to prevent contents from being opened into nullspace (read: bluespace)
-	if(istype(loc, /obj/structure/bigDelivery))
-		var/obj/structure/bigDelivery/BD = loc
-		BD.unwrap()
-	open()
+	..()

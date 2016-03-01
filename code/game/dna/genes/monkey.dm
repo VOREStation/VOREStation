@@ -52,13 +52,6 @@
 			O.suiciding = M.suiciding
 			M.suiciding = null
 
-
-	for(var/datum/disease/D in M.viruses)
-		O.viruses += D
-		D.affected_mob = O
-		M.viruses -= D
-
-
 	for(var/obj/T in (M.contents-implants))
 		qdel(T)
 
@@ -129,11 +122,6 @@
 		if (M.suiciding)
 			O.suiciding = M.suiciding
 			M.suiciding = null
-
-	for(var/datum/disease/D in M.viruses)
-		O.viruses += D
-		D.affected_mob = O
-		M.viruses -= D
 
 	//for(var/obj/T in M)
 	//	qdel(T)

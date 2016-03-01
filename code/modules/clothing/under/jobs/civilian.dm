@@ -6,6 +6,7 @@
 	icon_state = "ba_suit"
 	item_state = "ba_suit"
 	worn_state = "ba_suit"
+	rolled_sleeves = 0
 
 
 /obj/item/clothing/under/rank/captain //Alright, technically not a 'civilian' but its better then giving a .dm file for a single define.
@@ -14,6 +15,7 @@
 	icon_state = "captain"
 	item_state = "b_suit"
 	worn_state = "captain"
+	rolled_sleeves = 0
 
 
 /obj/item/clothing/under/rank/cargo
@@ -22,6 +24,7 @@
 	icon_state = "qm"
 	item_state = "lb_suit"
 	worn_state = "qm"
+	rolled_sleeves = 0
 
 /obj/item/clothing/under/rank/cargo/skirt
 	name = "quartermaster's jumpskirt"
@@ -29,6 +32,7 @@
 	icon_state = "qmf"
 	worn_state = "qmf"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	rolled_sleeves = -1
 
 /obj/item/clothing/under/rank/cargo/jeans
 	name = "quartermaster's jumpjeans"
@@ -41,6 +45,7 @@
 	desc = "Jeeeaaans! They're comfy!"
 	icon_state = "qmjf"
 	worn_state = "qmjf"
+	rolled_sleeves = -1
 
 /obj/item/clothing/under/rank/cargotech
 	name = "cargo technician's jumpsuit"
@@ -49,18 +54,21 @@
 	item_state = "lb_suit"
 	worn_state = "cargo"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	rolled_sleeves = 0
 
 /obj/item/clothing/under/rank/cargotech/skirt
 	name = "cargo technician's jumpskirt"
 	desc = "Skirrrrrts! They're comfy and easy to wear!"
 	icon_state = "cargof"
 	worn_state = "cargof"
+	rolled_sleeves = -1
 
 /obj/item/clothing/under/rank/cargotech/jeans
 	name = "cargo technician's jumpjeans"
 	desc = "Jeeeaaans! They're comfy!"
 	icon_state = "cargoj"
 	worn_state = "cargoj"
+	rolled_sleeves = -1
 
 /obj/item/clothing/under/rank/cargotech/jeans/female
 	name = "cargo technician's jumpjeans"
@@ -75,6 +83,7 @@
 	icon_state = "chaplain"
 	item_state = "bl_suit"
 	worn_state = "chapblack"
+	rolled_sleeves = 0
 
 
 /obj/item/clothing/under/rank/chef
@@ -83,6 +92,7 @@
 	icon_state = "chef"
 	item_state = "w_suit"
 	worn_state = "chef"
+	rolled_sleeves = 0
 
 
 /obj/item/clothing/under/rank/clown
@@ -91,6 +101,7 @@
 	icon_state = "clown"
 	item_state = "clown"
 	worn_state = "clown"
+	rolled_sleeves = -1
 
 
 /obj/item/clothing/under/rank/head_of_personnel
@@ -99,6 +110,7 @@
 	icon_state = "hop"
 	item_state = "b_suit"
 	worn_state = "hop"
+	rolled_sleeves = 0
 
 /obj/item/clothing/under/rank/head_of_personnel_whimsy
 	desc = "A blue jacket and red tie, with matching red cuffs! Snazzy. Wearing this makes you feel more important than your job title does."
@@ -106,6 +118,7 @@
 	icon_state = "hopwhimsy"
 	item_state = "b_suit"
 	worn_state = "hopwhimsy"
+	rolled_sleeves = -1
 
 
 /obj/item/clothing/under/rank/hydroponics
@@ -115,6 +128,7 @@
 	item_state = "g_suit"
 	worn_state = "hydroponics"
 	permeability_coefficient = 0.50
+	rolled_sleeves = 0
 
 
 /obj/item/clothing/under/rank/internalaffairs
@@ -123,6 +137,7 @@
 	icon_state = "internalaffairs"
 	item_state = "ba_suit"
 	worn_state = "internalaffairs"
+	rolled_sleeves = 0
 
 
 /obj/item/clothing/under/rank/janitor
@@ -132,6 +147,7 @@
 	worn_state = "janitor"
 	item_state = "janitor"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
+	rolled_sleeves = 0
 
 
 /obj/item/clothing/under/lawyer
@@ -209,3 +225,4 @@
 	icon_state = "miner"
 	item_state = "lb_suit"
 	worn_state = "miner"
+	rolled_sleeves = 0

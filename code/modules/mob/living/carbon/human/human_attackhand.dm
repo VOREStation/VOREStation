@@ -18,7 +18,7 @@
 		if(!temp || !temp.is_usable())
 			H << "\red You can't use your hand."
 			return
-
+	break_cloak()
 	..()
 
 	// Should this all be in Touch()?
@@ -138,7 +138,7 @@
 			var/hit_zone = H.zone_sel.selecting
 			var/obj/item/organ/external/affecting = get_organ(hit_zone)
 
-			if(!affecting || affecting.is_stump() || (affecting.status & ORGAN_DESTROYED))
+			if(!affecting || affecting.is_stump())
 				M << "<span class='danger'>They are missing that limb!</span>"
 				return 1
 

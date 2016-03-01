@@ -4,7 +4,8 @@
 	icon = 'icons/obj/clothing/species/seromi/uniform.dmi'
 	icon_state = "seromi_grey"
 	worn_state = "seromi_grey"
-	species_restricted = list("Seromi")
+	species_restricted = list("Teshari")
+	body_parts_covered = 0 // It's a thin piece of cloth with a neck hole.
 
 /obj/item/clothing/under/seromi/white
 	name = "small white smock"
@@ -24,7 +25,7 @@
 /obj/item/clothing/under/seromi/medical
 	name = "small Medical uniform"
 	icon_state = "seromi_medical"
-	worn_state = "Seromi_medical"
+	worn_state = "Teshari_medical"
 
 /obj/item/clothing/under/seromi/rainbow
 	name = "small rainbow smock"
