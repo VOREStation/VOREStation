@@ -132,6 +132,7 @@
 	name = "surgery kit"
 	desc = "Contains tools for surgery."
 	storage_slots = 10
+	max_storage_space = 23
 
 /obj/item/weapon/storage/firstaid/surgery/New()
 	..()
