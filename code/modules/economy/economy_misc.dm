@@ -52,8 +52,7 @@
 												/datum/species/skrell	= 12,
 												/datum/species/teshari	= 9, // Skrell sponsored!
 												/datum/species/tajaran	= 7,
-												/datum/species/unathi	= 7,
-												/datum/species/vox		= 1
+												/datum/species/unathi	= 7
 											)
 
 //---- The following corporations are friendly with NanoTrasen and loosely enable trade and travel:
