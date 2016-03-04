@@ -14,6 +14,18 @@
 	emote_see = list("jiggles", "bounces in place")
 	var/colour = "grey"
 
+/mob/living/simple_animal/slime/science
+	name = "Kendrick"
+	colour = "rainbow"
+	icon_state = "rainbow baby slime"
+	icon_living = "rainbow baby slime"
+	icon_dead = "rainbow baby slime dead"
+
+/mob/living/simple_animal/slime/science/initialize()
+	..()
+	overlays.Cut()
+	overlays += "aslime-:33"
+
 /mob/living/simple_animal/adultslime
 	name = "pet slime"
 	desc = "A lovable, domesticated slime."
@@ -33,8 +45,7 @@
 	..()
 	overlays += "aslime-:33"
 
-
-/mob/living/simple_animal/slime/adult/death()
+/mob/living/simple_animal/adultslime/death()
 	var/mob/living/simple_animal/slime/S1 = new /mob/living/simple_animal/slime (src.loc)
 	S1.icon_state = "[src.colour] baby slime"
 	S1.icon_living = "[src.colour] baby slime"
