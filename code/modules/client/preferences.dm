@@ -109,10 +109,14 @@ datum/preferences
 	// OOC Metadata:
 	var/metadata = ""
 
+<<<<<<< HEAD
 	// Communicator identity data
 	var/communicator_visibility = 0
 
 	var/client/client = null
+=======
+	var/client_ckey = null
+>>>>>>> 19b7ebf... Preferences now store client key instead of the client itself.
 
 	var/datum/category_collection/player_setup_collection/player_setup
 
@@ -125,7 +129,7 @@ datum/preferences
 	gear = list()
 
 	if(istype(C))
-		client = C
+		client_ckey = C.ckey
 		if(!IsGuestKey(C.key))
 			load_path(C.ckey)
 			if(load_preferences())
@@ -186,6 +190,12 @@ datum/preferences
 
 /datum/preferences/proc/ShowChoices(mob/user)
 	if(!user || !user.client)	return
+
+	if(!get_mob_by_key(client_ckey))
+		user << "<span class='danger'>No mob exists for the given client!</span>"
+		close_load_dialog(user)
+		return
+
 	var/dat = "<html><body><center>"
 
 	if(path)
