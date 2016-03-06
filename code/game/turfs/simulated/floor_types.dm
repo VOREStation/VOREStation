@@ -28,7 +28,7 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "plating"
 
-/turf/simulated/shuttle/plating/vox //Skipjack plating
+/turf/simulated/shuttle/plating/skipjack //Skipjack plating
 	oxygen = 0
 	nitrogen = MOLES_N2STANDARD + MOLES_O2STANDARD
 
@@ -36,7 +36,7 @@
 	name = "Brig floor"        // Also added it into the 2x3 brig area of the shuttle.
 	icon_state = "floor4"
 
-/turf/simulated/shuttle/floor4/vox //skipjack floors
+/turf/simulated/shuttle/floor4/skipjack //skipjack floors
 	name = "skipjack floor"
 	oxygen = 0
 	nitrogen = MOLES_N2STANDARD + MOLES_O2STANDARD

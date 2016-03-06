@@ -1,4 +1,4 @@
-/obj/machinery/computer/shuttle_control/multi/vox
+/obj/machinery/computer/shuttle_control/multi/skipjack
 	name = "skipjack control console"
 	req_access = list(access_syndicate)
 	shuttle_tag = "Skipjack"

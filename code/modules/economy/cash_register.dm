@@ -21,12 +21,14 @@
 	var/cash_stored = 0
 	var/obj/item/confirm_item
 	var/datum/money_account/linked_account
+	var/account_to_connect = null
 
 
 // Claim machine ID
 /obj/machinery/cash_register/New()
 	machine_id = "[station_name()] RETAIL #[num_financial_terminals++]"
 	cash_stored = rand(10, 70)*10
+	transaction_devices += src // Global reference list to be properly set up by /proc/setup_economy()
 
 
 /obj/machinery/cash_register/examine(mob/user as mob)
@@ -39,6 +41,9 @@
 
 
 /obj/machinery/cash_register/attack_hand(mob/user as mob)
+	// Don't be accessible from the wrong side of the machine
+	if(get_dir(src, user) & reverse_dir[src.dir]) return
+
 	if(cash_open)
 		if(cash_stored)
 			spawn_money(cash_stored, loc, user)
@@ -278,26 +283,24 @@
 		usr << "\icon[src]<span class='warning'>The cash box is open.</span>"
 		return
 
-	// Access account for transaction
-	if(check_account())
-		if(transaction_amount > SC.worth)
-			src.visible_message("\icon[src]<span class='warning'>Not enough money.</span>")
-		else
-			// Insert cash into magical slot
-			SC.worth -= transaction_amount
-			SC.update_icon()
-			if(!SC.worth)
-				if(ishuman(SC.loc))
-					var/mob/living/carbon/human/H = SC.loc
-					H.drop_from_inventory(SC)
-				qdel(SC)
-			cash_stored += transaction_amount
+	if(transaction_amount > SC.worth)
+		src.visible_message("\icon[src]<span class='warning'>Not enough money.</span>")
+	else
+		// Insert cash into magical slot
+		SC.worth -= transaction_amount
+		SC.update_icon()
+		if(!SC.worth)
+			if(ishuman(SC.loc))
+				var/mob/living/carbon/human/H = SC.loc
+				H.drop_from_inventory(SC)
+			qdel(SC)
+		cash_stored += transaction_amount
 
-			// Save log
-			add_transaction_log("n/A", "Cash", transaction_amount)
+		// Save log
+		add_transaction_log("n/A", "Cash", transaction_amount)
 
-			// Confirm and reset
-			transaction_complete()
+		// Confirm and reset
+		transaction_complete()
 
 
 /obj/machinery/cash_register/proc/scan_item_price(obj/O)
@@ -436,39 +439,33 @@
 		cash_locked = 0
 		open_cash_box()
 
+
 //--Premades--//
 
 /obj/machinery/cash_register/command
-	New()
-		linked_account = department_accounts["Command"]
-		..()
-		/obj/machinery/cash_register/medical
+	account_to_connect = "Command"
+	..()
 
-	New()
-		linked_account = department_accounts["Medical"]
-		..()
+/obj/machinery/cash_register/medical
+	account_to_connect = "Medical"
+	..()
 
 /obj/machinery/cash_register/engineering
-	New()
-		linked_account = department_accounts["Engineering"]
-		..()
+	account_to_connect = "Engineering"
+	..()
 
 /obj/machinery/cash_register/science
-	New()
-		linked_account = department_accounts["Science"]
-		..()
+	account_to_connect = "Science"
+	..()
 
 /obj/machinery/cash_register/security
-	New()
-		linked_account = department_accounts["Security"]
-		..()
+	account_to_connect = "Security"
+	..()
 
 /obj/machinery/cash_register/cargo
-	New()
-		linked_account = department_accounts["Cargo"]
-		..()
+	account_to_connect = "Cargo"
+	..()
 
 /obj/machinery/cash_register/civilian
-	New()
-		linked_account = department_accounts["Civilian"]
-		..()
+	account_to_connect = "Civilian"
+	..()

@@ -8,7 +8,7 @@
 		Sprites used when the clothing item is refit. This is done by setting icon_override.
 		For best results, if this is set then sprite_sheets should be null and vice versa, but that is by no means necessary.
 		Ideally, sprite_sheets_refit should be used for "hard" clothing items that can't change shape very well to fit the wearer (e.g. helmets, hardsuits),
-		while sprite_sheets should be used for "flexible" clothing items that do not need to be refitted (e.g. vox wearing jumpsuits).
+		while sprite_sheets should be used for "flexible" clothing items that do not need to be refitted (e.g. aliens wearing jumpsuits).
 	*/
 	var/list/sprite_sheets_refit = null
 	var/ear_protection = 0
@@ -204,9 +204,8 @@
 	body_parts_covered = HANDS
 	slot_flags = SLOT_GLOVES
 	attack_verb = list("challenged")
-	species_restricted = list("exclude","Unathi","Tajara", "Vox")
+	species_restricted = list("exclude","Unathi","Tajara")
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/gloves.dmi',
 		"Teshari" = 'icons/mob/species/seromi/gloves.dmi',
 		)
 
@@ -264,7 +263,6 @@
 	var/on = 0
 
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/head.dmi',
 		"Teshari" = 'icons/mob/species/seromi/head.dmi'
 		)
 
@@ -363,7 +361,6 @@
 	slot_flags = SLOT_MASK
 	body_parts_covered = FACE|EYES
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/masks.dmi',
 		"Teshari" = 'icons/mob/species/seromi/masks.dmi',
 		)
 
@@ -397,9 +394,8 @@
 	slowdown = SHOES_SLOWDOWN
 	force = 2
 	var/overshoes = 0
-	species_restricted = list("exclude","Teshari", "Unathi","Tajara","Vox")
+	species_restricted = list("exclude","Teshari", "Unathi","Tajara")
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/shoes.dmi',
 		"Teshari" = 'icons/mob/species/seromi/shoes.dmi',
 		)
 
@@ -474,7 +470,6 @@
 	w_class = 3
 
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/suit.dmi',
 		"Teshari" = 'icons/mob/species/seromi/suit.dmi'
 		)
 
@@ -511,7 +506,6 @@
 	var/rolled_down = -1 //0 = unrolled, 1 = rolled, -1 = cannot be toggled
 	var/rolled_sleeves = -1 //0 = unrolled, 1 = rolled, -1 = cannot be toggled
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/uniform.dmi',
 		"Teshari" = 'icons/mob/species/seromi/uniform.dmi'
 		)
 
