@@ -42,10 +42,10 @@
 
 // Beer //
 
-/datum/reagent/drink/ethanol/ale
+/datum/reagent/ethanol/ale
 	price_tag = 2
 
-/datum/reagent/drink/ethanol/beer
+/datum/reagent/ethanol/beer
 	price_tag = 2
 
 
@@ -67,244 +67,247 @@
 
 // Spirituous liquors //
 
-/datum/reagent/drink/ethanol/irish_cream
+/datum/reagent/ethanol/irish_cream
 	price_tag = 5
 
-/datum/reagent/drink/ethanol/absinthe
+/datum/reagent/ethanol/absinthe
 	price_tag = 5
 
-/datum/reagent/drink/ethanol/bluecuracao
+/datum/reagent/ethanol/bluecuracao
 	price_tag = 5
 
-/datum/reagent/drink/ethanol/deadrum
+/datum/reagent/ethanol/deadrum
 	price_tag = 5
 
-/datum/reagent/drink/ethanol/gin
+/datum/reagent/ethanol/gin
 	price_tag = 5
 
-/datum/reagent/drink/ethanol/coffee/kahlua
+/datum/reagent/ethanol/coffee/kahlua
 	price_tag = 5
 
-/datum/reagent/drink/ethanol/melonliquor
+/datum/reagent/ethanol/melonliquor
 	price_tag = 5
 
-/datum/reagent/drink/ethanol/rum
+/datum/reagent/ethanol/rum
 	price_tag = 5
 
-/datum/reagent/drink/ethanol/tequilla
+/datum/reagent/ethanol/tequilla
 	price_tag = 5
 
-/datum/reagent/drink/ethanol/thirteenloko
+/datum/reagent/ethanol/thirteenloko
 	price_tag = 5
 
-/datum/reagent/drink/ethanol/vodka
+/datum/reagent/ethanol/vodka
 	price_tag = 5
 
-/datum/reagent/drink/ethanol/whiskey
+/datum/reagent/ethanol/whiskey
 	price_tag = 5
+
+/datum/reagent/ethanol/coffee/brave_bull // Not an original liquor in its own. But since it's a mix of purely Tequila
+	price_tag = 5						 // and Kahlua, it's basically just another one and gets the same price.
 
 
 // Wines //
 
-/datum/reagent/drink/ethanol/wine
+/datum/reagent/ethanol/wine
 	price_tag = 8
 
-/datum/reagent/drink/ethanol/cognac
+/datum/reagent/ethanol/cognac
 	price_tag = 8
 
-/datum/reagent/drink/ethanol/sake
+/datum/reagent/ethanol/sake
 	price_tag = 8
 
-/datum/reagent/drink/ethanol/vermouth
+/datum/reagent/ethanol/vermouth
 	price_tag = 8
 
-/datum/reagent/drink/ethanol/pwine
+/datum/reagent/ethanol/pwine
 	price_tag = 8
 
 
 // Cocktails //
 
-/datum/reagent/drink/ethanol/acid_spit
+/datum/reagent/ethanol/acid_spit
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/alliescocktail
+/datum/reagent/ethanol/alliescocktail
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/aloe
+/datum/reagent/ethanol/aloe
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/amasec
+/datum/reagent/ethanol/amasec
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/andalusia
+/datum/reagent/ethanol/andalusia
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/antifreeze
+/datum/reagent/ethanol/antifreeze
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/atomicbomb
+/datum/reagent/ethanol/atomicbomb
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/coffee/b52
+/datum/reagent/ethanol/coffee/b52
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/bahama_mama
+/datum/reagent/ethanol/bahama_mama
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/barefoot
+/datum/reagent/ethanol/barefoot
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/beepsky_smash
+/datum/reagent/ethanol/beepsky_smash
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/bilk
+/datum/reagent/ethanol/bilk
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/black_russian
+/datum/reagent/ethanol/black_russian
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/bloody_mary
+/datum/reagent/ethanol/bloody_mary
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/booger
+/datum/reagent/ethanol/booger
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/brave_bull
+/datum/reagent/ethanol/brave_bull
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/changeling_sting
+/datum/reagent/ethanol/changeling_sting
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/martini
+/datum/reagent/ethanol/martini
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/cuba_libre
+/datum/reagent/ethanol/cuba_libre
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/demonsblood
+/datum/reagent/ethanol/demonsblood
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/devilskiss
+/datum/reagent/ethanol/devilskiss
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/driestmartini
+/datum/reagent/ethanol/driestmartini
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/ginfizz
+/datum/reagent/ethanol/ginfizz
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/grog
+/datum/reagent/ethanol/grog
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/erikasurprise
+/datum/reagent/ethanol/erikasurprise
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/gargleblaster
+/datum/reagent/ethanol/gargleblaster
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/gintonic
+/datum/reagent/ethanol/gintonic
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/goldschlager
+/datum/reagent/ethanol/goldschlager
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/hippies_delight
+/datum/reagent/ethanol/hippies_delight
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/hooch
+/datum/reagent/ethanol/hooch
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/iced_beer
+/datum/reagent/ethanol/iced_beer
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/irishcarbomb
+/datum/reagent/ethanol/irishcarbomb
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/coffee/irishcoffee
+/datum/reagent/ethanol/coffee/irishcoffee
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/longislandicedtea
+/datum/reagent/ethanol/longislandicedtea
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/manhattan
+/datum/reagent/ethanol/manhattan
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/manhattan_proj
+/datum/reagent/ethanol/manhattan_proj
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/manly_dorf
+/datum/reagent/ethanol/manly_dorf
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/margarita
+/datum/reagent/ethanol/margarita
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/mead
+/datum/reagent/ethanol/mead
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/moonshine
+/datum/reagent/ethanol/moonshine
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/neurotoxin
+/datum/reagent/ethanol/neurotoxin
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/patron
+/datum/reagent/ethanol/patron
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/red_mead
+/datum/reagent/ethanol/red_mead
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/sbiten
+/datum/reagent/ethanol/sbiten
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/screwdrivercocktail
+/datum/reagent/ethanol/screwdrivercocktail
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/silencer
+/datum/reagent/ethanol/silencer
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/singulo
+/datum/reagent/ethanol/singulo
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/snowwhite
+/datum/reagent/ethanol/snowwhite
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/suidream
+/datum/reagent/ethanol/suidream
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/syndicatebomb
+/datum/reagent/ethanol/syndicatebomb
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/tequillasunrise
+/datum/reagent/ethanol/tequillasunrise
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/threemileisland
+/datum/reagent/ethanol/threemileisland
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/toxins_special
+/datum/reagent/ethanol/toxins_special
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/vodkamartini
+/datum/reagent/ethanol/vodkamartini
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/vodkatonic
+/datum/reagent/ethanol/vodkatonic
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/white_russian
+/datum/reagent/ethanol/white_russian
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/whiskey_cola
+/datum/reagent/ethanol/whiskey_cola
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/whiskeysoda
+/datum/reagent/ethanol/whiskeysoda
 	price_tag = 4
 
-/datum/reagent/drink/ethanol/specialwhiskey
+/datum/reagent/ethanol/specialwhiskey
 	price_tag = 4
 
 
 // Cocktails without alcohol //
 
-/datum/reagent/drink/ethanol/bananahonk
+/datum/reagent/ethanol/bananahonk
 	price_tag = 3
 
 
