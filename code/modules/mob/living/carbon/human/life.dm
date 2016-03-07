@@ -960,7 +960,7 @@
 			src << "<span class='notice'>You're in too much pain to keep going...</span>"
 			src.visible_message("<B>[src]</B> slumps to the ground, too weak to continue fighting.")
 			Paralyse(10)
-			setHalLoss(99)
+			setHalLoss(species.total_health - 1)
 
 		if(paralysis || sleeping)
 			blinded = 1
