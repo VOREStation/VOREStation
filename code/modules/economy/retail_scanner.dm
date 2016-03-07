@@ -3,8 +3,11 @@
 	desc = "Swipe your ID card to make purchases electronically."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "retail_idle"
-	flags = NOBLUDGEON
+	flags = NOBLUDGEON|CONDUCT
+	slot_flags = SLOT_BELT
 	req_access = list(access_heads)
+	w_class = 2.0
+	origin_tech = list(TECH_MATERIAL = 1)
 
 	var/locked = 1
 	var/emagged = 0
@@ -137,6 +140,11 @@
 	// Not paying: Look up price and add it to transaction_amount
 	else
 		scan_item_price(O)
+
+
+/obj/item/device/retail_scanner/showoff(mob/user)
+	for (var/mob/M in view(user))
+		M.show_message("[user] holds up [src]. <a HREF=?src=\ref[M];clickitem=\ref[src]>Swipe card or item.</a>",1)
 
 
 /obj/item/device/retail_scanner/proc/confirm(var/obj/item/I)

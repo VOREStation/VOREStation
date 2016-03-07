@@ -400,19 +400,19 @@
 
 	if(usr.stat) return
 
-	if(cash_locked)
-		usr << "<span class='warning'>The cash box is locked.</span>"
-	else if(cash_open)
+	if(cash_open)
 		cash_open = 0
 		overlays -= "register_approve"
 		overlays -= "register_open"
 		overlays -= "register_cash"
-	else
+	else if(!cash_locked)
 		cash_open = 1
 		overlays += "register_approve"
 		overlays += "register_open"
 		if(cash_stored)
 			overlays += "register_cash"
+	else
+		usr << "<span class='warning'>The cash box is locked.</span>"
 
 
 /obj/machinery/cash_register/proc/toggle_anchors(obj/item/weapon/wrench/W, mob/user)

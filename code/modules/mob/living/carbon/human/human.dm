@@ -616,6 +616,11 @@
 		var/mob/M = locate(href_list["lookmob"])
 		src.examinate(M)
 
+	if (href_list["clickitem"])
+		var/obj/item/I = locate(href_list["clickitem"])
+		if(src.client)
+			src.ClickOn(I)
+
 	if (href_list["flavor_change"])
 		switch(href_list["flavor_change"])
 			if("done")
