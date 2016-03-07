@@ -25,7 +25,7 @@
 		usr.client.debug_variables(antag)
 		message_admins("Admin [key_name_admin(usr)] is debugging the [antag.role_text] template.")
 
-/client/proc/debug_controller(controller in list("Master","Ticker","Ticker Process","Air","Jobs","Sun","Radio","Supply","Shuttles","Emergency Shuttle","Configuration","pAI", "Cameras", "Transfer Controller", "Gas Data","Event","Plants","Alarm","Nano","Chemistry"))
+/client/proc/debug_controller(controller in list("Master","Ticker","Ticker Process","Air","Jobs","Sun","Radio","Supply","Shuttles","Emergency Shuttle","Configuration","pAI", "Cameras", "Transfer Controller", "Gas Data","Event","Plants","Alarm","Nano","Chemistry","Vote"))
 	set category = "Debug"
 	set name = "Debug Controller"
 	set desc = "Debug the various periodic loop controllers for the game (be careful!)"
@@ -92,5 +92,8 @@
 		if("Chemistry")
 			debug_variables(chemistryProcess)
 			feedback_add_details("admin_verb", "DChem")
+		if("Vote")
+			debug_variables(vote)
+			feedback_add_details("admin_verb", "DVote")
 	message_admins("Admin [key_name_admin(usr)] is debugging the [controller] controller.")
 	return
