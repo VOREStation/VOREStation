@@ -56,7 +56,8 @@
 		reset_memory()
 		user << "<span class='notice'>You reset the machine's memory.</span>"
 	else
-		custom_interface(user)
+		user.set_machine(src)
+		interact(user)
 
 
 /obj/machinery/cash_register/AltClick(mob/user)
@@ -64,8 +65,8 @@
 		open_cash_box()
 
 
-/obj/machinery/cash_register/proc/custom_interface(mob/user as mob)
-	var/dat = "<h2>Retail Scanner<hr></h2>"
+/obj/machinery/cash_register/interact(mob/user as mob)
+	var/dat = "<h2>Cash Register<hr></h2>"
 	if (locked)
 		dat += "<a href='?src=\ref[src];choice=toggle_lock'>Unlock</a><br>"
 		dat += "Linked account: <b>[linked_account ? linked_account.owner_name : "None"]</b><br>"
@@ -82,10 +83,17 @@
 		dat += locked ? "<br>" : "<a href='?src=\ref[src];choice=reset_log'>Reset Log</a><br>"
 		dat += "<br>"
 	dat += "<i>Device ID:</i> [machine_id]"
-	user << browse(dat, "window=retail;size=350x500")
+	user << browse(dat, "window=cash_register;size=350x500")
+	onclose(user, "cash_register")
 
 
 /obj/machinery/cash_register/Topic(var/href, var/href_list)
+	if(..())
+		return
+
+	usr.set_machine(src)
+	add_fingerprint(usr)
+
 	if(href_list["choice"])
 		switch(href_list["choice"])
 			if("toggle_lock")
@@ -119,7 +127,7 @@
 			if("reset_log")
 				transaction_logs.Cut()
 				usr << "\icon[src]<span class='notice'>Transaction log reset.</span>"
-	custom_interface(usr)
+	updateDialog()
 
 
 
@@ -323,7 +331,7 @@
 	transaction_purpose += "[O]: [price] Thaler\s"
 	transaction_amount += price
 	item_list += "[O]"
-	price_list += "[price] &thorn"
+	price_list += price
 	// Animation and sound
 	playsound(src, 'sound/machines/twobeep.ogg', 25)
 	// Reset confirmation
@@ -332,6 +340,7 @@
 
 /obj/machinery/cash_register/proc/add_transaction_log(var/c_name, var/p_method, var/t_amount)
 	var/dat = {"
+	<!DOCTYPE html><html>
 	<head><style>
 		.tx-table {border: 1px solid black;}
 		.tx-title {text-align: center; background-color:#ddddff; font-weight: bold}
@@ -348,9 +357,9 @@
 	<table width=300>
 	"}
 	for(var/i=1, i<=item_list.len, i++)
-		dat += "<tr><td class=\"tx-name\">[item_list[i]]</td><td class=\"tx-data\" width=50>[price_list[i]]</td></tr>"
+		dat += "<tr><td class=\"tx-name\">[item_list[i]]</td><td class=\"tx-data\" width=50>[price_list[i]] &thorn</td></tr>"
 	dat += "<tr></tr><tr><td colspan=\"2\" class=\"tx-name\" style='text-align: right'><b>Total Amount: [transaction_amount] &thorn</b></td></tr>"
-	dat += "</table>"
+	dat += "</table></html>"
 
 	transaction_logs += dat
 
@@ -372,6 +381,8 @@
 	src.visible_message("\icon[src]<span class='notice'>Transaction complete.</span>")
 	flick("register_approve", src)
 	reset_memory()
+	updateDialog()
+
 
 /obj/machinery/cash_register/proc/reset_memory()
 	transaction_amount = null

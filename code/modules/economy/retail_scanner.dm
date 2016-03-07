@@ -49,15 +49,17 @@
 		reset_memory()
 		user << "<span class='notice'>You reset the device.</span>"
 	else
-		custom_interface(user)
+		user.set_machine(src)
+		interact(user)
 
 
 /obj/item/device/retail_scanner/AltClick(var/mob/user)
 	if(Adjacent(user))
-		custom_interface(user)
+		user.set_machine(src)
+		interact(user)
 
 
-/obj/item/device/retail_scanner/proc/custom_interface(mob/user as mob)
+/obj/item/device/retail_scanner/interact(mob/user as mob)
 	var/dat = "<h2>Retail Scanner<hr></h2>"
 	if (locked)
 		dat += "<a href='?src=\ref[src];choice=toggle_lock'>Unlock</a><br>"
@@ -74,9 +76,16 @@
 		dat += "<br>"
 	dat += "<i>Device ID:</i> [machine_id]"
 	user << browse(dat, "window=retail;size=350x500")
+	onclose(user, "retail")
 
 
 /obj/item/device/retail_scanner/Topic(var/href, var/href_list)
+	if(..())
+		return
+
+	usr.set_machine(src)
+	add_fingerprint(usr)
+
 	if(href_list["choice"])
 		switch(href_list["choice"])
 			if("toggle_lock")
@@ -108,7 +117,7 @@
 			if("reset_log")
 				transaction_logs.Cut()
 				usr << "\icon[src]<span class='notice'>Transaction log reset.</span>"
-	custom_interface(usr)
+	updateDialog()
 
 
 
@@ -248,7 +257,7 @@
 	transaction_purpose += "[O]: [price] Thaler\s"
 	transaction_amount += price
 	item_list += "[O]"
-	price_list += "[price] &thorn"
+	price_list += price
 	// Animation and sound
 	flick("retail_scan", src)
 	playsound(src, 'sound/machines/twobeep.ogg', 25)
@@ -274,7 +283,7 @@
 	<table width=300>
 	"}
 	for(var/i=1, i<=item_list.len, i++)
-		dat += "<tr><td class=\"tx-name\">[item_list[i]]</td><td class=\"tx-data\" width=50>[price_list[i]]</td></tr>"
+		dat += "<tr><td class=\"tx-name\">[item_list[i]]</td><td class=\"tx-data\" width=50>[price_list[i]] &thorn</td></tr>"
 	dat += "<tr></tr><tr><td colspan=\"2\" class=\"tx-name\" style='text-align: right'><b>Total Amount: [transaction_amount] &thorn</b></td></tr>"
 	dat += "</table>"
 
@@ -298,6 +307,8 @@
 	src.visible_message("\icon[src]<span class='notice'>Transaction complete.</span>")
 	flick("retail_approve", src)
 	reset_memory()
+	updateDialog()
+
 
 /obj/item/device/retail_scanner/proc/reset_memory()
 	transaction_amount = null
