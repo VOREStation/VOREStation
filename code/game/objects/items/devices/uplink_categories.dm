@@ -27,6 +27,9 @@
 /datum/uplink_category/stealth_items
 	name = "Stealth and Camouflage Items"
 
+/datum/uplink_category/armor
+	name = "Armor"
+
 /datum/uplink_category/tools
 	name = "Devices and Tools"
 

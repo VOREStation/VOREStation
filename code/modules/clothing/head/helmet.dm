@@ -7,7 +7,7 @@
 		slot_r_hand_str = "helmet",
 		)
 	flags = THICKMATERIAL
-	armor = list(melee = 50, bullet = 15, laser = 50,energy = 10, bomb = 25, bio = 0, rad = 0)
+	armor = list(melee = 40, bullet = 30, laser = 30, energy = 10, bomb = 10, bio = 0, rad = 0)
 	flags_inv = HIDEEARS|HIDEEYES
 	cold_protection = HEAD
 	min_cold_protection_temperature = HELMET_MIN_COLD_PROTECTION_TEMPERATURE
@@ -21,7 +21,7 @@
 	name = "riot helmet"
 	desc = "It's a helmet specifically designed to protect against close range attacks."
 	icon_state = "riot"
-	armor = list(melee = 82, bullet = 15, laser = 5,energy = 5, bomb = 5, bio = 2, rad = 0)
+	armor = list(melee = 80, bullet = 10, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
 	flags_inv = HIDEEARS
 	siemens_coefficient = 0.7
 	action_button_name = "Toggle Visor"
@@ -41,6 +41,30 @@
 		src.icon_state = initial(icon_state)
 		user << "You flip the visor down."
 	update_clothing_icon()	//so our mob-overlays update
+
+/obj/item/clothing/head/helmet/laserproof
+	name = "ablative helmet"
+	desc = "It's a helmet specifically designed to protect against energy projectiles."
+	icon_state = "helmet_reflec"
+	armor = list(melee = 10, bullet = 10, laser = 80 ,energy = 50, bomb = 0, bio = 0, rad = 0)
+	flags_inv = HIDEEARS
+	siemens_coefficient = 0.1
+
+/obj/item/clothing/head/helmet/bulletproof
+	name = "bullet-resistant helmet"
+	desc = "It's a helmet specifically designed to protect against ballistic projectiles."
+	icon_state = "helmet_bulletproof"
+	armor = list(melee = 10, bullet = 80, laser = 10 ,energy = 10, bomb = 0, bio = 0, rad = 0)
+	flags_inv = HIDEEARS
+	siemens_coefficient = 0.7
+
+/obj/item/clothing/head/helmet/combat
+	name = "combat helmet"
+	desc = "It's a general purpose combat helmet, designed to protect against typical dangers to your head."
+	icon_state = "swat"
+	armor = list(melee = 50, bullet = 50, laser = 50 ,energy = 30, bomb = 30, bio = 0, rad = 0)
+	flags_inv = HIDEEARS
+	siemens_coefficient = 0.6
 
 /obj/item/clothing/head/helmet/swat
 	name = "\improper SWAT helmet"
@@ -78,7 +102,7 @@
 		"Unathi" = 'icons/mob/species/unathi/helmet.dmi',
 		)
 
-	armor = list(melee = 62, bullet = 50, laser = 50,energy = 35, bomb = 10, bio = 2, rad = 0)
+	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 40, bio = 0, rad = 0)
 	flags_inv = HIDEEARS
 	siemens_coefficient = 0.7
 

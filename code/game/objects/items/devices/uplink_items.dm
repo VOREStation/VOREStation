@@ -305,6 +305,22 @@ datum/uplink_item/dd_SortValue()
 	item_cost = 6
 	path = /obj/item/weapon/disk/file/cameras/syndicate
 
+/********
+* Armor *
+********/
+/datum/uplink_item/item/armor
+	category = /datum/uplink_category/armor
+
+/datum/uplink_item/item/armor/combat
+	name = "Combat Armor Set"
+	item_cost = 5
+	path = /obj/item/weapon/storage/box/syndie_kit/combat_armor
+
+/datum/uplink_item/item/armor/heavy_vest
+	name = "Heavy Armor Vest"
+	item_cost = 4
+	path = /obj/item/clothing/suit/storage/vest/heavy/merc
+
 /********************
 * Devices and Tools *
 ********************/
@@ -351,11 +367,6 @@ datum/uplink_item/dd_SortValue()
 	item_cost = 3
 	path = /obj/item/clothing/glasses/thermal/syndi
 
-/datum/uplink_item/item/tools/heavy_vest
-	name = "Heavy Armor Vest"
-	item_cost = 4
-	path = /obj/item/clothing/suit/storage/vest/heavy/merc
-
 /datum/uplink_item/item/tools/powersink
 	name = "Powersink (DANGER!)"
 	item_cost = 5
@@ -385,7 +396,7 @@ datum/uplink_item/dd_SortValue()
 	item_cost = 3
 	path = /obj/item/weapon/storage/secure/briefcase/money
 	desc = "A briefcase with 10,000 untraceable thalers for funding your sneaky activities."
-	
+
 /datum/uplink_item/item/tools/crystal
 	name = "Tradable Crystal"
 	item_cost = 1
