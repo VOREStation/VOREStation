@@ -18,18 +18,14 @@
 	mob_bump_flag = HEAVY
 
 	botcard_access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
+	max_target_dist = 250
 
-	var/busy = 0
-	var/mode = MULE_IDLE
 	var/atom/movable/load
 
 	var/crates_only = 1
 	var/auto_return = 1
 	var/safety = 1
 
-	var/list/path = list()
-	var/frustration = 0
-	var/turf/target
 	var/targetName
 	var/turf/home
 	var/homeName
@@ -71,19 +67,6 @@
 	dat += "Power: [on ? "On" : "Off"]<BR>"
 
 	if(!open)
-		dat += "Status: "
-		switch(mode)
-			if(MULE_IDLE)
-				dat += "Ready"
-			if(MULE_MOVING, MULE_UNLOAD, MULE_PATH_DONE)
-				dat += "Navigating"
-			if(MULE_UNLOAD)
-				dat += "Unloading"
-			if(MULE_LOST)
-				dat += "Processing commands"
-			if(MULE_CALC_MIN to MULE_CALC_MAX)
-				dat += "Calculating navigation path"
-
 		dat += "<BR>Current Load: [load ? load.name : "<i>none</i>"]<BR>"
 
 		if(locked)
@@ -177,10 +160,8 @@
 /mob/living/bot/mulebot/proc/obeyCommand(var/command)
 	switch(command)
 		if("Home")
-			mode = MULE_IDLE
 			target = home
 			targetName = "Home"
-			mode = MULE_LOST
 		if("SetD")
 			var/new_dest
 			var/list/beaconlist = new()
@@ -195,10 +176,9 @@
 				target = get_turf(beaconlist[new_dest])
 				targetName = new_dest
 		if("GoTD")
-			if(mode == MULE_IDLE)
-				mode = MULE_LOST
+			
 		if("Stop")
-			mode = MULE_IDLE
+			
 
 /mob/living/bot/mulebot/emag_act(var/remaining_charges, var/user)
 	locked = !locked
@@ -216,18 +196,21 @@
 		return
 	icon_state = "mulebot0"
 
-/mob/living/bot/mulebot/Life()
-	..()
-
-	if(busy)
-		return
-
+/mob/living/bot/mulebot/handleRegular()
 	if(!safety && prob(1))
 		flick("mulebot-emagged", src)
 
+/mob/living/bot/mulebot/handleAdjacentTarget()
+	if(get_turf(target) == src.loc)
+		UnarmedAttack(target)
+
+/mob/living/bot/mulebot/UnarmedAttack(var/turf/T)
+	unload(dir)
+
+/mob/living/bot/mulebot/Life()
+	..()
+
 	switch(mode)
-		if(MULE_IDLE) // Idle
-			return
 		if(MULE_MOVING) // Moving to target
 			if(!target) // Return home
 				if(auto_return && home)
@@ -255,7 +238,7 @@
 			update_icons()
 			return
 		if(MULE_UNLOAD)
-			unload(dir)
+			
 
 			if(auto_return && home && (loc != home))
 				target = home
@@ -264,22 +247,6 @@
 			else
 				mode = MULE_IDLE
 			update_icons()
-			return
-		if(MULE_LOST) // Lost my way
-			if(target)
-				spawn(0)
-					calc_path(obstacle)
-				mode = MULE_CALC_MIN
-			else
-				mode = MULE_IDLE
-			update_icons()
-			return
-		if(MULE_CALC_MIN to MULE_CALC_MAX) // Calcing path
-			if(path.len)
-				mode = MULE_PATH_DONE
-				update_icons()
-			else
-				++mode
 			return
 		if(MULE_PATH_DONE) // Done with path
 			obstacle = null
@@ -302,6 +269,7 @@
 		M.Weaken(5)
 	..()
 
+	/*
 /mob/living/bot/mulebot/proc/makeStep()
 	var/turf/next = path[1]
 	if(next == loc)
@@ -323,6 +291,7 @@
 		obstacle = next
 
 		mode = MULE_LOST
+		*/
 
 /mob/living/bot/mulebot/proc/runOver(var/mob/living/carbon/human/H)
 	if(istype(H)) // No safety checks - WILL run over lying humans. Stop ERPing in the maint!

@@ -6,8 +6,8 @@
 	health = 50
 	req_one_access = list(access_security, access_forensics_lockers)
 	botcard_access = list(access_security, access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels)
-
-	var/mob/target
+	patrol_speed = 2
+	target_speed = 3
 
 	var/idcheck = 0 // If true, arrests for having weapons without authorization.
 	var/check_records = 0 // If true, arrests people without a record.
@@ -16,30 +16,9 @@
 	var/declare_arrests = 0 // If true, announces arrests over sechuds.
 	var/auto_patrol = 0 // If true, patrols on its own
 
-	var/mode = 0
-#define SECBOT_IDLE 		0		// idle
-#define SECBOT_HUNT 		1		// found target, hunting
-#define SECBOT_ARREST		2		// arresting target
-#define SECBOT_START_PATROL	3		// start patrol
-#define SECBOT_WAIT_PATROL	4		// waiting for signals
-#define SECBOT_PATROL		5		// patrolling
-#define SECBOT_SUMMON		6		// summoned by PDA
-	var/is_attacking = 0
 	var/is_ranged = 0
 	var/awaiting_surrender = 0
 
-	var/obj/secbot_listener/listener = null
-	var/beacon_freq = 1445			// Navigation beacon frequency
-	var/control_freq = BOT_FREQ		// Bot control frequency
-	var/list/path = list()
-	var/frustration = 0
-	var/turf/patrol_target = null	// This is where we are headed
-	var/closest_dist				// Used to find the closest beakon
-	var/destination = "__nearest__"	// This is the current beacon's ID
-	var/next_destination = "__nearest__"	// This is the next beacon's ID
-	var/nearest_beacon				// Tag of the beakon that we assume to be the closest one
-
-	var/bot_version = 1.3
 	var/list/threat_found_sounds = new('sound/voice/bcriminal.ogg', 'sound/voice/bjustice.ogg', 'sound/voice/bfreeze.ogg')
 	var/list/preparing_arrest_sounds = new('sound/voice/bgod.ogg', 'sound/voice/biamthelaw.ogg', 'sound/voice/bsecureday.ogg', 'sound/voice/bradio.ogg', 'sound/voice/binsult.ogg', 'sound/voice/bcreep.ogg')
 
@@ -48,24 +27,8 @@
 	desc = "It's Officer Beep O'sky! Powered by a potato and a shot of whiskey."
 	auto_patrol = 1
 
-/mob/living/bot/secbot/New()
-	..()
-	listener = new /obj/secbot_listener(src)
-	listener.secbot = src
-
-	spawn(5) // Since beepsky is made on the start... this delay is necessary
-		if(radio_controller)
-			radio_controller.add_object(listener, control_freq, filter = RADIO_SECBOT)
-			radio_controller.add_object(listener, beacon_freq, filter = RADIO_NAVBEACONS)
-
-/mob/living/bot/secbot/turn_off()
-	..()
-	target = null
-	frustration = 0
-	mode = SECBOT_IDLE
-
 /mob/living/bot/secbot/update_icons()
-	if(on && is_attacking)
+	if(on && busy)
 		icon_state = "secbot-c"
 	else
 		icon_state = "secbot[on]"
@@ -78,7 +41,7 @@
 /mob/living/bot/secbot/attack_hand(var/mob/user)
 	user.set_machine(src)
 	var/dat
-	dat += "<TT><B>Automatic Security Unit v[bot_version]</B></TT><BR><BR>"
+	dat += "<TT><B>Automatic Security Unit</B></TT><BR><BR>"
 	dat += "Status: <A href='?src=\ref[src];power=1'>[on ? "On" : "Off"]</A><BR>"
 	dat += "Behaviour controls are [locked ? "locked" : "unlocked"]<BR>"
 	dat += "Maintenance panel is [open ? "opened" : "closed"]"
@@ -89,7 +52,7 @@
 		dat += "Operating Mode: <A href='?src=\ref[src];operation=switchmode'>[arrest_type ? "Detain" : "Arrest"]</A><BR>"
 		dat += "Report Arrests: <A href='?src=\ref[src];operation=declarearrests'>[declare_arrests ? "Yes" : "No"]</A><BR>"
 		dat += "Auto Patrol: <A href='?src=\ref[src];operation=patrol'>[auto_patrol ? "On" : "Off"]</A>"
-	user << browse("<HEAD><TITLE>Securitron v[bot_version] controls</TITLE></HEAD>[dat]", "window=autosec")
+	user << browse("<HEAD><TITLE>Securitron controls</TITLE></HEAD>[dat]", "window=autosec")
 	onclose(user, "autosec")
 	return
 
@@ -118,7 +81,6 @@
 			arrest_type = !arrest_type
 		if("patrol")
 			auto_patrol = !auto_patrol
-			mode = SECBOT_IDLE
 		if("declarearrests")
 			declare_arrests = !declare_arrests
 	attack_hand(usr)
@@ -129,127 +91,47 @@
 	if(health < curhealth)
 		target = user
 		awaiting_surrender = 5
-		mode = SECBOT_HUNT
 
-/mob/living/bot/secbot/Life()
+/mob/living/bot/secbot/startPatrol()
+	if(!locked) // Stop running away when we set you up
+		return
 	..()
-	if(!on)
-		return
-	if(client)
-		return
 
-	if(!target)
-		scan_view()
+/mob/living/bot/secbot/confirmTarget(var/atom/A)
+	if(!..())
+		return 0
 
-	if(!locked && (mode == SECBOT_START_PATROL || mode == SECBOT_PATROL)) // Stop running away when we set you up
-		mode = SECBOT_IDLE
+	return (check_threat(A) > 3)
 
-	switch(mode)
-		if(SECBOT_IDLE)
-			if(auto_patrol && locked)
-				mode = SECBOT_START_PATROL
+/mob/living/bot/secbot/lookForTargets()
+	for(var/mob/living/M in view(src))
+		if(M.stat == DEAD)
+			continue
+		if(confirmTarget(M))
+			var/threat = check_threat(M)
+			target = M
+			awaiting_surrender = -1
+			say("Level [threat] infraction alert!")
+			custom_emote(1, "points at [M.name]!")
 			return
 
-		if(SECBOT_HUNT) // Target is in the view or has been recently - chase it
-			if(frustration > 7)
-				target = null
-				frustration = 0
-				awaiting_surrender = 0
-				mode = SECBOT_IDLE
-				return
-			if(target)
-				var/threat = check_threat(target)
-				if(threat < 4) // Re-evaluate in case they dropped the weapon or something
-					target = null
-					frustration = 0
-					awaiting_surrender = 0
-					mode = SECBOT_IDLE
-					return
-				if(!(target in view(7, src)))
-					++frustration
-				if(Adjacent(target))
-					mode = SECBOT_ARREST
-					return
-				else
-					if(is_ranged)
-						RangedAttack(target)
-					else
-						step_towards(src, target) // Melee bots chase a bit faster
-					spawn(8)
-						if(!Adjacent(target))
-							step_towards(src, target)
-					spawn(16)
-						if(!Adjacent(target))
-							step_towards(src, target)
+/mob/living/bot/secbot/calcTargetPath()
+	..()
+	if(awaiting_surrender != -1)
+		awaiting_surrender = 5 // This implies that a) we have already approached the target and b) it has moved after the warning
 
-		if(SECBOT_ARREST) // Target is next to us - attack it
-			if(!target)
-				mode = SECBOT_IDLE
-			if(!Adjacent(target))
-				awaiting_surrender = 5 // I'm done playing nice
-				mode = SECBOT_HUNT
-				return
-			var/threat = check_threat(target)
-			if(threat < 4)
-				target = null
-				awaiting_surrender = 0
-				frustration = 0
-				mode = SECBOT_IDLE
-				return
-			if(awaiting_surrender < 5 && ishuman(target) && !target.lying)
-				if(awaiting_surrender == 0)
-					say("Down on the floor, [target]! You have five seconds to comply.")
-				++awaiting_surrender
-			else
-				UnarmedAttack(target)
-			if(ishuman(target) && declare_arrests)
-				var/area/location = get_area(src)
-				broadcast_security_hud_message("[src] is [arrest_type ? "detaining" : "arresting"] a level [check_threat(target)] suspect <b>[target]</b> in <b>[location]</b>.", src)
-			return
-
-		if(SECBOT_START_PATROL)
-			if(path.len && patrol_target)
-				mode = SECBOT_PATROL
-				return
-			else if(patrol_target)
-				spawn(0)
-					calc_path()
-					if(!path.len)
-						patrol_target = null
-						mode = SECBOT_IDLE
-					else
-						mode = SECBOT_PATROL
-			if(!patrol_target)
-				if(next_destination)
-					find_next_target()
-				else
-					find_patrol_target()
-					say("Engaging patrol mode.")
-				mode = SECBOT_WAIT_PATROL
-			return
-
-		if(SECBOT_WAIT_PATROL)
-			if(patrol_target)
-				mode = SECBOT_START_PATROL
-			else
-				++frustration
-				if(frustration > 120)
-					frustration = 0
-					mode = SECBOT_IDLE
-
-		if(SECBOT_PATROL)
-			patrol_step()
-			spawn(10)
-				patrol_step()
-			return
-
-		if(SECBOT_SUMMON)
-			patrol_step()
-			spawn(8)
-				patrol_step()
-			spawn(16)
-				patrol_step()
-			return
+/mob/living/bot/secbot/handleAdjacentTarget()
+	if(awaiting_surrender < 5 && ishuman(target) && !target:lying)
+		if(awaiting_surrender == -1)
+			say("Down on the floor, [target]! You have five seconds to comply.")
+		++awaiting_surrender
+	else
+		UnarmedAttack(target)
+	if(ishuman(target) && declare_arrests)
+		var/area/location = get_area(src)
+		broadcast_security_hud_message("[src] is [arrest_type ? "detaining" : "arresting"] a level [check_threat(target)] suspect <b>[target]</b> in <b>[location]</b>.", src)
+		
+	//				say("Engaging patrol mode.")
 
 /mob/living/bot/secbot/UnarmedAttack(var/mob/M, var/proximity)
 	if(!..())
@@ -271,31 +153,33 @@
 			C.stun_effect_act(0, 60, null)
 			playsound(loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 			do_attack_animation(C)
-			is_attacking = 1
+			busy = 1
 			update_icons()
 			spawn(2)
-				is_attacking = 0
+				busy = 0
 				update_icons()
 			visible_message("<span class='warning'>[C] was prodded by [src] with a stun baton!</span>")
 		else
 			playsound(loc, 'sound/weapons/handcuffs.ogg', 30, 1, -2)
 			visible_message("<span class='warning'>[src] is trying to put handcuffs on [C]!</span>")
+			busy = 1
 			if(do_mob(src, C, 60))
 				if(!C.handcuffed)
 					C.handcuffed = new /obj/item/weapon/handcuffs(C)
 					C.update_inv_handcuffed()
 				if(preparing_arrest_sounds.len)
 					playsound(loc, pick(preparing_arrest_sounds), 50, 0)
+			busy = 0
 	else if(istype(M, /mob/living/simple_animal))
 		var/mob/living/simple_animal/S = M
 		S.AdjustStunned(10)
 		S.adjustBruteLoss(15)
 		do_attack_animation(M)
 		playsound(loc, "swing_hit", 50, 1, -1)
-		is_attacking = 1
+		busy = 1
 		update_icons()
 		spawn(2)
-			is_attacking = 0
+			busy = 0
 			update_icons()
 		visible_message("<span class='warning'>[M] was beaten by [src] with a stun baton!</span>")
 
@@ -319,161 +203,14 @@
 	new /obj/effect/decal/cleanable/blood/oil(Tsec)
 	qdel(src)
 
-/mob/living/bot/secbot/proc/scan_view()
-	for(var/mob/living/M in view(7, src))
-		if(M.invisibility >= INVISIBILITY_LEVEL_ONE)
-			continue
-		if(M.stat)
-			continue
-
-		var/threat = check_threat(M)
-
-		if(threat >= 4)
-			target = M
-			say("Level [threat] infraction alert!")
-			custom_emote(1, "points at [M.name]!")
-			mode = SECBOT_HUNT
-			break
-	return
-
-/mob/living/bot/secbot/proc/calc_path(var/turf/avoid = null)
-	path = AStar(loc, patrol_target, /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, 0, 120, id=botcard, exclude=avoid)
-	if(!path)
-		path = list()
-
 /mob/living/bot/secbot/proc/check_threat(var/mob/living/M)
-	if(!M || !istype(M) || M.stat || src == M)
+	if(!M || !istype(M) || M.stat == DEAD || src == M)
 		return 0
 
 	if(emagged)
 		return 10
 
 	return M.assess_perp(access_scanner, 0, idcheck, check_records, check_arrest)
-
-/mob/living/bot/secbot/proc/patrol_step()
-	if(loc == patrol_target)
-		patrol_target = null
-		path = list()
-		mode = SECBOT_IDLE
-		return
-
-	if(path.len && patrol_target)
-		var/turf/next = path[1]
-		if(loc == next)
-			path -= next
-			return
-		var/moved = step_towards(src, next)
-		if(moved)
-			path -= next
-			frustration = 0
-		else
-			++frustration
-			if(frustration > 5) // Make a new path
-				mode = SECBOT_START_PATROL
-		return
-	else
-		mode = SECBOT_START_PATROL
-
-/mob/living/bot/secbot/proc/find_patrol_target()
-	send_status()
-	nearest_beacon = null
-	next_destination = "__nearest__"
-	listener.post_signal(beacon_freq, "findbeacon", "patrol")
-
-/mob/living/bot/secbot/proc/find_next_target()
-	send_status()
-	nearest_beacon = null
-	listener.post_signal(beacon_freq, "findbeacon", "patrol")
-
-/mob/living/bot/secbot/proc/send_status()
-	var/list/kv = list(
-	"type" = "secbot",
-	"name" = name,
-	"loca" = get_area(loc),
-	"mode" = mode
-	)
-	listener.post_signal_multiple(control_freq, kv)
-
-/obj/secbot_listener
-	var/mob/living/bot/secbot/secbot = null
-
-/obj/secbot_listener/proc/post_signal(var/freq, var/key, var/value) // send a radio signal with a single data key/value pair
-	post_signal_multiple(freq, list("[key]" = value))
-
-/obj/secbot_listener/proc/post_signal_multiple(var/freq, var/list/keyval) // send a radio signal with multiple data key/values
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(freq)
-	if(!frequency)
-		return
-
-	var/datum/signal/signal = new()
-	signal.source = secbot
-	signal.transmission_method = 1
-	signal.data = keyval.Copy()
-
-	if(signal.data["findbeacon"])
-		frequency.post_signal(secbot, signal, filter = RADIO_NAVBEACONS)
-	else if(signal.data["type"] == "secbot")
-		frequency.post_signal(secbot, signal, filter = RADIO_SECBOT)
-	else
-		frequency.post_signal(secbot, signal)
-
-/obj/secbot_listener/receive_signal(datum/signal/signal)
-	if(!secbot || !secbot.on)
-		return
-
-	var/recv = signal.data["command"]
-	if(recv == "bot_status")
-		secbot.send_status()
-		return
-
-	if(signal.data["active"] == secbot)
-		switch(recv)
-			if("stop")
-				secbot.mode = SECBOT_IDLE
-				secbot.auto_patrol = 0
-				return
-
-			if("go")
-				secbot.mode = SECBOT_IDLE
-				secbot.auto_patrol = 1
-				return
-
-			if("summon")
-				secbot.patrol_target = signal.data["target"]
-				secbot.next_destination = secbot.destination
-				secbot.destination = null
-				//secbot.awaiting_beacon = 0
-				secbot.mode = SECBOT_SUMMON
-				secbot.calc_path()
-				secbot.say("Responding.")
-				return
-
-	recv = signal.data["beacon"]
-	var/valid = signal.data["patrol"]
-	if(!recv || !valid)
-		return
-
-	if(recv == secbot.next_destination) // This beacon is our target
-		secbot.destination = secbot.next_destination
-		secbot.patrol_target = signal.source.loc
-		secbot.next_destination = signal.data["next_patrol"]
-	else if(secbot.next_destination == "__nearest__")
-		var/dist = get_dist(secbot, signal.source.loc)
-		if(dist <= 1)
-			return
-
-		if(secbot.nearest_beacon)
-			if(dist < secbot.closest_dist)
-				secbot.nearest_beacon = recv
-				secbot.patrol_target = secbot.nearest_beacon
-				secbot.next_destination = signal.data["next_patrol"]
-				secbot.closest_dist = dist
-				return
-		else
-			secbot.nearest_beacon = recv
-			secbot.patrol_target = secbot.nearest_beacon
-			secbot.next_destination = signal.data["next_patrol"]
-			secbot.closest_dist = dist
 
 //Secbot Construction
 
