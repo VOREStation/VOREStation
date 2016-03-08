@@ -775,14 +775,10 @@ Used In File(s): \code\game\objects\items\devices\PDA\PDA.dm
 				<div class="item">
 					<div class="itemLabel">Status:</div>
 					<div class="itemContent">
-						{{if value.mode == 0}}
-							Idle
-						{{else value.mode == 1}}
-							Moving
-						{{else value.mode == 2}}
-							Unloading
-						{{else}}
-							Calculating path
+						{{if value.paused == 0}}
+							Nominal
+						{{else value.paused == 1}}
+							Paused
 						{{/if}}
 					</div>
 				</div>
