@@ -18,6 +18,9 @@
 
 // Juices, soda and similar //
 
+/datum/reagent/water
+	price_tag = 2
+
 /datum/reagent/drink/juice
 	price_tag = 2
 
@@ -49,7 +52,6 @@
 	price_tag = 2
 
 
-
 // Hot Drinks //
 
 /datum/reagent/drink/rewriter
@@ -62,6 +64,15 @@
 	price_tag = 3
 
 /datum/reagent/drink/hot_coco
+	price_tag = 3
+
+/obj/item/weapon/reagent_containers/food/drinks/coffee
+	price_tag = 3
+
+/obj/item/weapon/reagent_containers/food/drinks/tea
+	price_tag = 3
+
+/obj/item/weapon/reagent_containers/food/drinks/h_chocolate
 	price_tag = 3
 
 
@@ -101,6 +112,15 @@
 	price_tag = 5
 
 /datum/reagent/ethanol/whiskey
+	price_tag = 5
+
+/datum/reagent/ethanol/specialwhiskey
+	price_tag = 5
+
+/datum/reagent/ethanol/patron
+	price_tag = 5
+
+/datum/reagent/ethanol/goldschlager
 	price_tag = 5
 
 /datum/reagent/ethanol/coffee/brave_bull // Not an original liquor in its own. But since it's a mix of purely Tequila
@@ -202,13 +222,10 @@
 /datum/reagent/ethanol/erikasurprise
 	price_tag = 4
 
-/datum/reagent/ethanol/gargleblaster
+/datum/reagent/ethanol/gargle_blaster
 	price_tag = 4
 
 /datum/reagent/ethanol/gintonic
-	price_tag = 4
-
-/datum/reagent/ethanol/goldschlager
 	price_tag = 4
 
 /datum/reagent/ethanol/hippies_delight
@@ -248,9 +265,6 @@
 	price_tag = 4
 
 /datum/reagent/ethanol/neurotoxin
-	price_tag = 4
-
-/datum/reagent/ethanol/patron
 	price_tag = 4
 
 /datum/reagent/ethanol/red_mead
@@ -301,9 +315,6 @@
 /datum/reagent/ethanol/whiskeysoda
 	price_tag = 4
 
-/datum/reagent/ethanol/specialwhiskey
-	price_tag = 4
-
 
 // Cocktails without alcohol //
 
@@ -339,9 +350,105 @@
 
 
 //***************//
-//---Foodstuff---//
+//----Bottles----//
 //***************//
 
+// Juices, soda and similar //
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/cola
+	price_tag = 6
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/space_up
+	price_tag = 6
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/space_mountain_wind
+	price_tag = 6
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/orangejuice
+	price_tag = 6
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/cream
+	price_tag = 6
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/tomatojuice
+	price_tag = 6
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/limejuice
+	price_tag = 6
+
+
+// Beer //
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer
+	price_tag = 3
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale
+	price_tag = 3
+
+
+// Spirituous Liquors //
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe
+	price_tag = 15
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/bluecuracao
+	price_tag = 15
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/gin
+	price_tag = 15
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/kahlua
+	price_tag = 15
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/melonliquor
+	price_tag = 15
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/rum
+	price_tag = 15
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/tequilla
+	price_tag = 15
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka
+	price_tag = 15
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey
+	price_tag = 15
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/specialwhiskey
+	price_tag = 15
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/patron
+	price_tag = 15
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/goldschlager
+	price_tag = 15
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/bottleofnothing
+	price_tag = 15
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/grenadine
+	price_tag = 15
+
+
+// Wines //
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/wine
+	price_tag = 25
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/cognac
+	price_tag = 25
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/vermouth
+	price_tag = 25
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/pwine
+	price_tag = 25
+
+
+//***************//
+//---Foodstuff---//
+//***************//
 
 // Snacks //
 
@@ -812,3 +919,38 @@
 /obj/item/pizzabox
 	get_item_cost()
 		return get_item_cost(pizza)
+
+
+//***************//
+//----Smokes-----//
+//***************//
+
+/obj/item/weapon/storage/fancy/cigarettes
+	price_tag = 15
+
+/obj/item/weapon/storage/fancy/cigarettes/luckystars
+	price_tag = 17
+
+/obj/item/weapon/storage/fancy/cigarettes/jerichos
+	price_tag = 22
+
+/obj/item/weapon/storage/fancy/cigarettes/menthols
+	price_tag = 18
+
+/obj/item/weapon/storage/fancy/cigar
+	price_tag = 27
+
+/obj/item/weapon/storage/fancy/cigarettes/carcinomas
+	price_tag  = 23
+
+/obj/item/weapon/storage/fancy/cigarettes/professionals
+	price_tag = 25
+
+/obj/item/weapon/storage/box/matches
+	price_tag = 1
+
+/obj/item/weapon/flame/lighter
+	price_tag = 2
+
+/obj/item/weapon/flame/lighter/zippo
+	price_tag = 5
