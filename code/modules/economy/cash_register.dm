@@ -123,7 +123,7 @@
 				transaction_amount += t_amount
 				price_list += t_amount
 				playsound(src, 'sound/machines/twobeep.ogg', 25)
-				src.visible_message("\icon[src][transaction_purpose]: [transaction_amount] Thaler\s.")
+				src.visible_message("\icon[src][transaction_purpose]: [t_amount] Thaler\s.")
 			if("reset_log")
 				transaction_logs.Cut()
 				usr << "\icon[src]<span class='notice'>Transaction log reset.</span>"
@@ -180,16 +180,16 @@
 	if (!transaction_amount)
 		return
 
-	if(!confirm(I))
+	if (cash_open)
+		playsound(src, 'sound/machines/buzz-sigh.ogg', 25)
+		usr << "\icon[src]<span class='warning'>The cash box is open.</span>"
+		return
+
+	if((item_list.len > 1 || item_list[item_list[1]] > 1) && !confirm(I))
 		return
 
 	if (!linked_account)
 		usr.visible_message("\icon[src]<span class='warning'>Unable to connect to linked account.</span>")
-		return
-
-	if (cash_open)
-		playsound(src, 'sound/machines/buzz-sigh.ogg', 25)
-		usr << "\icon[src]<span class='warning'>The cash box is open.</span>"
 		return
 
 	// Access account for transaction
@@ -245,12 +245,12 @@
 	if (!transaction_amount)
 		return
 
-	if(!confirm(E))
-		return
-
 	if (cash_open)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 25)
 		usr << "\icon[src]<span class='warning'>The cash box is open.</span>"
+		return
+
+	if((item_list.len > 1 || item_list[item_list[1]] > 1) && !confirm(E))
 		return
 
 	// Access account for transaction
@@ -283,12 +283,12 @@
 	if (!transaction_amount)
 		return
 
-	if(!confirm(SC))
-		return
-
 	if (cash_open)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 25)
 		usr << "\icon[src]<span class='warning'>The cash box is open.</span>"
+		return
+
+	if((item_list.len > 1 || item_list[item_list[1]] > 1) && !confirm(SC))
 		return
 
 	if(transaction_amount > SC.worth)
@@ -313,6 +313,9 @@
 
 /obj/machinery/cash_register/proc/scan_item_price(obj/O)
 	if(!istype(O))	return
+	if(item_list.len > 10)
+		src.visible_message("\icon[src]<span class='warning'>Only up to ten different items allowed per purchase.</span>")
+		return
 	if (cash_open)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 25)
 		usr << "\icon[src]<span class='warning'>The cash box is open.</span>"
@@ -330,8 +333,13 @@
 		transaction_purpose += "<br>"
 	transaction_purpose += "[O]: [price] Thaler\s"
 	transaction_amount += price
-	item_list += "[O]"
-	price_list += price
+	for(var/obj/previously_scanned in item_list)
+		if(O == previously_scanned || istype(O, previously_scanned.type))
+			. = item_list[previously_scanned]++
+	if(!.)
+		item_list[O] = 1
+		price_list += price
+		. = 1
 	// Animation and sound
 	playsound(src, 'sound/machines/twobeep.ogg', 25)
 	// Reset confirmation
@@ -356,8 +364,10 @@
 	</table>
 	<table width=300>
 	"}
+	var/obj/O
 	for(var/i=1, i<=item_list.len, i++)
-		dat += "<tr><td class=\"tx-name\">[item_list[i]]</td><td class=\"tx-data\" width=50>[price_list[i]] &thorn</td></tr>"
+		O = item_list[i]
+		dat += "<tr><td class=\"tx-name\">[item_list[O]] x [O.name]</td><td class=\"tx-data\" width=50>[price_list[i] * item_list[O]] &thorn</td></tr>"
 	dat += "<tr></tr><tr><td colspan=\"2\" class=\"tx-name\" style='text-align: right'><b>Total Amount: [transaction_amount] &thorn</b></td></tr>"
 	dat += "</table></html>"
 
