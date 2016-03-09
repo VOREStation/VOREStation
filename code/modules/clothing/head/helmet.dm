@@ -61,14 +61,14 @@
 /obj/item/clothing/head/helmet/combat
 	name = "combat helmet"
 	desc = "It's a general purpose combat helmet, designed to protect against typical dangers to your head."
-	icon_state = "swat"
+	icon_state = "helmet_combat"
 	armor = list(melee = 50, bullet = 50, laser = 50 ,energy = 30, bomb = 30, bio = 0, rad = 0)
 	flags_inv = HIDEEARS
 	siemens_coefficient = 0.6
 
 /obj/item/clothing/head/helmet/swat
 	name = "\improper SWAT helmet"
-	desc = "They're often used by highly trained SWAT Members."
+	desc = "They're often used by highly trained SWAT Officers."
 	icon_state = "swat"
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = 0)
 	flags_inv = HIDEEARS|HIDEEYES
