@@ -1265,7 +1265,7 @@
 "yq" = (/obj/machinery/atmospherics/pipe/manifold/visible/cyan{dir = 1},/turf/simulated/floor/plating,/area/outpost/engineering/mining/atmospherics)
 "yr" = (/obj/machinery/shower{dir = 4; icon_state = "shower"; pixel_x = 5},/obj/structure/curtain/open/shower,/turf/simulated/floor/tiled/freezer,/area/outpost/mining_main/dorms)
 "ys" = (/obj/structure/mirror{pixel_x = 30; pixel_y = -2},/obj/structure/sink{dir = 4; icon_state = "sink"; pixel_x = 11; pixel_y = 0},/obj/machinery/alarm{frequency = 1441; pixel_y = 22},/obj/machinery/atmospherics/unary/vent_pump/on,/turf/simulated/floor/tiled/freezer,/area/outpost/mining_main/dorms)
-"yt" = (/obj/structure/bed,/obj/item/weapon/bedsheet/brown,/turf/simulated/floor/carpet,/area/outpost/mining_main/dorms)
+"yt" = (/obj/item/weapon/bedsheet/brown,/obj/structure/bed/padded,/turf/simulated/floor/carpet,/area/outpost/mining_main/dorms)
 "yu" = (/obj/machinery/suspension_gen,/obj/effect/floor_decal/corner/purple{dir = 1},/obj/item/device/radio/intercom{dir = 1; name = "Station Intercom (General)"; pixel_y = 21},/turf/simulated/floor/tiled,/area/outpost/research/eva)
 "yv" = (/obj/structure/undies_wardrobe,/turf/simulated/floor/tiled,/area/outpost/mining_main/dorms)
 "yw" = (/obj/machinery/door/airlock/glass_mining{name = "Mining Outpost Airlock"; req_access = list(48)},/obj/machinery/door/firedoor/glass,/obj/structure/cable/blue{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/tiled,/area/outpost/mining_main/north_hall)
