@@ -47,13 +47,8 @@
 
 
 /obj/item/device/retail_scanner/attack_self(mob/user as mob)
-	// Reset if necessary
-	if(transaction_amount)
-		reset_memory()
-		user << "<span class='notice'>You reset the device.</span>"
-	else
-		user.set_machine(src)
-		interact(user)
+	user.set_machine(src)
+	interact(user)
 
 
 /obj/item/device/retail_scanner/AltClick(var/mob/user)
@@ -71,7 +66,12 @@
 		dat += "<a href='?src=\ref[src];choice=toggle_lock'>Lock</a><br>"
 		dat += "Linked account: <a href='?src=\ref[src];choice=link_account'>[linked_account ? linked_account.owner_name : "None"]</a><br>"
 	dat += "<a href='?src=\ref[src];choice=custom_order'>Custom Order</a><hr>"
-	for(var/i=1, i<=transaction_logs.len, i++)
+
+	if(item_list.len)
+		dat += get_current_transaction()
+		dat += "<br>"
+
+	for(var/i=transaction_logs.len, i>=1, i--)
 		dat += "[transaction_logs[i]]<br>"
 
 	if(transaction_logs.len)
@@ -111,12 +111,46 @@
 				if (!t_purpose || !Adjacent(usr)) return
 				transaction_purpose = t_purpose
 				item_list += t_purpose
-				var/t_amount = input("Enter price", "New price") as num
+				var/t_amount = round(input("Enter price", "New price") as num)
 				if (!t_amount || !Adjacent(usr)) return
 				transaction_amount += t_amount
 				price_list += t_amount
 				playsound(src, 'sound/machines/twobeep.ogg', 25)
 				src.visible_message("\icon[src][transaction_purpose]: [t_amount] Thaler\s.")
+			if("set_amount")
+				var/item_name = locate(href_list["item"])
+				var/n_amount = round(input("Enter amount", "New amount") as num)
+				n_amount = Clamp(n_amount, 0, 20)
+				if (!item_list[item_name] || !Adjacent(usr)) return
+				transaction_amount += (n_amount - item_list[item_name]) * price_list[item_name]
+				if(!n_amount)
+					item_list -= item_name
+					price_list -= item_name
+				else
+					item_list[item_name] = n_amount
+			if("subtract")
+				var/item_name = locate(href_list["item"])
+				if(item_name)
+					transaction_amount -= price_list[item_name]
+					item_list[item_name]--
+					if(item_list[item_name] <= 0)
+						item_list -= item_name
+						price_list -= item_name
+			if("add")
+				var/item_name = locate(href_list["item"])
+				if(item_list[item_name] >= 20) return
+				transaction_amount += price_list[item_name]
+				item_list[item_name]++
+			if("clear")
+				var/item_name = locate(href_list["item"])
+				if(item_name)
+					transaction_amount -= price_list[item_name] * item_list[item_name]
+					item_list -= item_name
+					price_list -= item_name
+				else
+					transaction_amount = 0
+					item_list.Cut()
+					price_list.Cut()
 			if("reset_log")
 				transaction_logs.Cut()
 				usr << "\icon[src]<span class='notice'>Transaction log reset.</span>"
@@ -255,6 +289,7 @@
 	if(item_list.len > 10)
 		src.visible_message("\icon[src]<span class='warning'>Only up to ten different items allowed per purchase.</span>")
 		return
+
 	// First check if item has a valid price
 	var/price = O.get_item_cost()
 	if(isnull(price))
@@ -267,12 +302,12 @@
 		transaction_purpose += "<br>"
 	transaction_purpose += "[O]: [price] Thaler\s"
 	transaction_amount += price
-	for(var/obj/previously_scanned in item_list)
-		if(O == previously_scanned || istype(O, previously_scanned.type))
+	for(var/previously_scanned in item_list)
+		if(price == price_list[previously_scanned] && O.name == previously_scanned)
 			. = item_list[previously_scanned]++
 	if(!.)
-		item_list[O] = 1
-		price_list += price
+		item_list[O.name] = 1
+		price_list[O.name] = price
 		. = 1
 	// Animation and sound
 	flick("retail_scan", src)
@@ -281,10 +316,29 @@
 	confirm_item = null
 
 
+/obj/item/device/retail_scanner/proc/get_current_transaction()
+	var/dat = {"
+	<head><style>
+		.tx-title-r {text-align: center; background-color:#ffdddd; font-weight: bold}
+		.tx-name-r {background-color: #eebbbb}
+		.tx-data-r {text-align: right; background-color: #ffcccc;}
+	</head></style>
+	<table width=300>
+	<tr><td colspan="2" class="tx-title-r">New Entry</td></tr>
+	<tr></tr>"}
+	var/item_name
+	for(var/i=1, i<=item_list.len, i++)
+		item_name = item_list[i]
+		dat += "<tr><td class=\"tx-name-r\">[item_list[item_name] ? "<a href='?src=\ref[src];choice=subtract;item=\ref[item_name]'>-</a> <a href='?src=\ref[src];choice=set_amount;item=\ref[item_name]'>Set</a> <a href='?src=\ref[src];choice=add;item=\ref[item_name]'>+</a> [item_list[item_name]] x " : ""][item_name] <a href='?src=\ref[src];choice=clear;item=\ref[item_name]'>Remove</a></td><td class=\"tx-data-r\" width=50>[price_list[item_name] * item_list[item_name]] &thorn</td></tr>"
+	dat += "</table><table width=300>"
+	dat += "<tr><td class=\"tx-name-r\"><a href='?src=\ref[src];choice=clear'>Clear Entry</a></td><td class=\"tx-name-r\" style='text-align: right'><b>Total Amount: [transaction_amount] &thorn</b></td></tr>"
+	dat += "</table></html>"
+	return dat
+
+
 /obj/item/device/retail_scanner/proc/add_transaction_log(var/c_name, var/p_method, var/t_amount)
 	var/dat = {"
 	<head><style>
-		.tx-table {border: 1px solid black;}
 		.tx-title {text-align: center; background-color:#ddddff; font-weight: bold}
 		.tx-name {background-color: #bbbbee}
 		.tx-data {text-align: right; background-color: #ccccff;}
@@ -298,10 +352,10 @@
 	</table>
 	<table width=300>
 	"}
-	var/obj/O
+	var/item_name
 	for(var/i=1, i<=item_list.len, i++)
-		O = item_list[i]
-		dat += "<tr><td class=\"tx-name\">[item_list[O]] x [O.name]</td><td class=\"tx-data\" width=50>[price_list[i] * item_list[O]] &thorn</td></tr>"
+		item_name = item_list[i]
+		dat += "<tr><td class=\"tx-name\">[item_list[item_name] ? "[item_list[item_name]] x " : ""][item_name]</td><td class=\"tx-data\" width=50>[price_list[item_name] * item_list[item_name]] &thorn</td></tr>"
 	dat += "<tr></tr><tr><td colspan=\"2\" class=\"tx-name\" style='text-align: right'><b>Total Amount: [transaction_amount] &thorn</b></td></tr>"
 	dat += "</table>"
 
