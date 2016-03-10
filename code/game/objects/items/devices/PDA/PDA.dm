@@ -235,19 +235,11 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		ownrank = ownjob
 	name = newname + " (" + ownjob + ")"
 
-
-/mob/living/silicon/ai/proc/cmd_send_pdamesg()
-	set category = "AI Commands"
-	set name = "Send Message"
-	aiPDA.cmd_send_pdamesg()
-
-/mob/living/silicon/ai/proc/cmd_show_message_log()
-	set category = "AI Commands"
-	set name = "Show Message Log"
-	aiPDA.cmd_show_message_log()
-
 //AI verb and proc for sending PDA messages.
-/obj/item/device/pda/ai/proc/cmd_send_pdamesg()
+/obj/item/device/pda/ai/verb/cmd_send_pdamesg()
+	set category = "AI IM"
+	set name = "Send Message"
+	set src in usr
 	if(usr.stat == 2)
 		usr << "You can't send PDA messages because you are dead!"
 		return
@@ -259,9 +251,8 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		var/selected = plist[c]
 		create_message(usr, selected, 0)
 
-
 /obj/item/device/pda/ai/verb/cmd_toggle_pda_receiver()
-	set category = "AI Settings"
+	set category = "AI IM"
 	set name = "Toggle Sender/Receiver"
 	set src in usr
 	if(usr.stat == 2)
@@ -270,9 +261,8 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	toff = !toff
 	usr << "<span class='notice'>PDA sender/receiver toggled [(toff ? "Off" : "On")]!</span>"
 
-
 /obj/item/device/pda/ai/verb/cmd_toggle_pda_silent()
-	set category = "AI Settings"
+	set category = "AI IM"
 	set name = "Toggle Ringer"
 	set src in usr
 	if(usr.stat == 2)
@@ -282,7 +272,10 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	usr << "<span class='notice'>PDA ringer toggled [(message_silent ? "Off" : "On")]!</span>"
 
 
-/obj/item/device/pda/ai/proc/cmd_show_message_log()
+/obj/item/device/pda/ai/verb/cmd_show_message_log()
+	set category = "AI IM"
+	set name = "Show Message Log"
+	set src in usr
 	if(usr.stat == 2)
 		usr << "You can't do that because you are dead!"
 		return

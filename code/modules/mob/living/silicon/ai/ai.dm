@@ -29,10 +29,7 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 	/mob/living/silicon/ai/proc/ai_checklaws,
 	/mob/living/silicon/ai/proc/toggle_camera_light,
 	/mob/living/silicon/ai/proc/take_image,
-	/mob/living/silicon/ai/proc/view_images,
-
-	/mob/living/silicon/ai/proc/cmd_send_pdamesg,
-	/mob/living/silicon/ai/proc/cmd_show_message_log
+	/mob/living/silicon/ai/proc/view_images
 )
 
 //Not sure why this is necessary...
