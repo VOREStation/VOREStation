@@ -35,7 +35,8 @@
 		else if(utype == "Socks")
 			H.socks = selection[pick]
 		else
-			H.underwear = selection[pick]
+			H.underwear_top = selection[pick]
+			H.underwear_bottom = selection[pick]
 		H.update_body(1)
 
 	return 1
