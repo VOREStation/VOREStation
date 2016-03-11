@@ -16,8 +16,6 @@ addons:
       - libc6-i386
       - libgcc1:i386
       - libstdc++6:i386
-      - python
-      - python-pip
 
 before_script:
   - chmod +x ./install-byond.sh
