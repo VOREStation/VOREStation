@@ -130,7 +130,7 @@
 	possible_transfer_amounts = list(1,20)
 	amount_per_transfer_from_this = 1
 	volume = 20
-	center_of_mass = null
+	center_of_mass = list()
 	on_reagent_change()	return
 
 /obj/item/weapon/reagent_containers/food/condiment/small/saltshaker	//Seperate from above since it's a small shaker rather then
