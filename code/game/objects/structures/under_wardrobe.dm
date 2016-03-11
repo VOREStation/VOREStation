@@ -12,16 +12,13 @@
 		user << "<span class='warning'>Sadly there's nothing in here for you to wear.</span>"
 		return 0
 
-	var/utype = alert("Which section do you want to pick from?",,"Underwear", "Undershirts", "Socks",)
+	var/utype = alert("Which section do you want to pick from?",,"Top Underwear", "Bottom Underwear", "Undershirts", "Socks",)
 	var/list/selection
 	switch(utype)
-		if("Underwear")
-			var/utype2 = alert("Which section do you want to pick from?",,"Male", "Female")
-			switch(utype2)
-				if("Male")
-					selection = underwear_m
-				if("Female")
-					selection = underwear_f
+		if("Top Underwear")
+			selection = underwear_top_t
+		if("Bottom Underwear")
+			selection = underwear_bottom_t
 		if("Undershirts")
 			selection = undershirt_t
 		if("Socks")
@@ -34,8 +31,9 @@
 			H.undershirt = selection[pick]
 		else if(utype == "Socks")
 			H.socks = selection[pick]
-		else
+		else if(utype == "Top Underwear")
 			H.underwear_top = selection[pick]
+		else
 			H.underwear_bottom = selection[pick]
 		H.update_body(1)
 

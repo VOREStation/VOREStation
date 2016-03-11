@@ -45,9 +45,9 @@
 	. += "PDA Type: <a href='?src=\ref[src];change_pda=1'><b>[pdachoicelist[pref.pdachoice]]</b></a><br>"
 
 /datum/category_item/player_setup_item/general/equipment/proc/get_undies_top()
-	return underwear_top
+	return underwear_top_t
 /datum/category_item/player_setup_item/general/equipment/proc/get_undies_bottom()
-	return underwear_bottom
+	return underwear_bottom_t
 
 /datum/category_item/player_setup_item/general/equipment/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(href_list["change_underwear_top"])

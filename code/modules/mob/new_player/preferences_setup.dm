@@ -12,8 +12,8 @@ datum/preferences
 			if(current_species.flags & HAS_SKIN_COLOR)
 				randomize_skin_color()
 			if(current_species.flags & HAS_UNDERWEAR)
-				underwear_top = rand(1,underwear_top.len)
-				underwear_bottom = rand(1,underwear_bottom.len)
+				underwear_top = rand(1,underwear_top_t.len)
+				underwear_bottom = rand(1,underwear_bottom_t.len)
 				undershirt = rand(1,undershirt_t.len)
 
 
