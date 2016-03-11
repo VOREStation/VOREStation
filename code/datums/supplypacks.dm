@@ -50,7 +50,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/storage/box/swabs,
 					/obj/item/weapon/storage/box/swabs,
 					/obj/item/weapon/storage/box/swabs,
-					/obj/item/weapon/storage/box/slides,
 					/obj/item/device/uv_light,
 					/obj/item/weapon/reagent_containers/spray/luminol)
 	cost = 30
@@ -775,7 +774,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	cost = 125
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Experimental weapons crate"
-	access = access_heads
+	access = access_armory
 	group = "Security"
 
 /datum/supply_packs/randomised/armor
