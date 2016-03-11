@@ -5,6 +5,7 @@ sudo: false
 env:
   BYOND_MAJOR="509"
   BYOND_MINOR="1318"
+  MACRO_COUNT=1004
 
 cache:
   directories:
@@ -30,8 +31,7 @@ script:
   - (! grep 'step_[xy]' maps/**/*.dmm)
   - (! find nano/templates/ -type f -exec md5sum {} + | sort | uniq -D -w 32 | grep nano)
   - (! grep -E "<\s*span\s+class\s*=\s*('[^'>]+|[^'>]+')\s*>" **/*.dm)
-  - md5sum -c - <<< "567c349d4b5d52ff28f9b7ea5f1ae6f9 *baystation12.int"
   - md5sum -c - <<< "88490b460c26947f5ec1ab1bb9fa9f17 *html/changelogs/example.yml"
-  - (num=`grep -E '\\\\(red|blue|green|black|b|i[^mc])' **/*.dm | wc -l`; echo "$num escapes (expecting 1355 or less)"; [ $num -le 1355 ])
+  - (num=`grep -E '\\\\(red|blue|green|black|b|i[^mc])' **/*.dm | wc -l`; echo "$num escapes (expecting ${MACRO_COUNT} or less)"; [ $num -le ${MACRO_COUNT} ])
   - source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
   - DreamMaker polaris.dme
