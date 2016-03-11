@@ -52,7 +52,8 @@ var/global/list/underwear_m = list(
 var/global/list/underwear_f = list(
 	"Red" = "f1", "White" = "f2", "Yellow" = "f3", "Blue" = "f4", "Black" = "f5", "Thong" = "f6",
 	"Black Sports" = "f7","White Sports" = "f8", "Black Sports Alt" = "f9", "White Sports Alt" = "f10", "Baby Blue" = "f11", "Green" = "f12", "Pink" = "f13",
-	 "Violet" = "f14", "Thong Alt" = "f15", "Thong Alt Violet" = "f16", "None")
+	 "Violet" = "f14", "Thong Alt" = "f15", "Thong Alt Violet" = "f16", "None", "Halterneck Black" = "f17", "Halterneck Blue" = "f18", "Halterneck Green" = "f19", "Halterneck Purple" = "f20",
+	 "Halterneck Red" = "f21", "Halterneck Teal" = "f22", "Halterneck Violet" = "f23", "Halterneck White" = "14")
 	//undershirt
 var/global/list/undershirt_t = list(
 	"White tank top" = "u1", "Black tank top" = "u2", "Black shirt" = "u3",
