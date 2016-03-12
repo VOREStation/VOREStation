@@ -269,21 +269,6 @@
 	throw_range = 5
 	w_class = 2.0
 
-/obj/item/weapon/wire
-	desc = "This is just a simple piece of regular insulated wire."
-	name = "wire"
-	icon = 'icons/obj/power.dmi'
-	icon_state = "item_wire"
-	var/amount = 1.0
-	var/laying = 0.0
-	var/old_lay = null
-	matter = list(DEFAULT_WALL_MATERIAL = 40)
-	attack_verb = list("whipped", "lashed", "disciplined", "tickled")
-
-	suicide_act(mob/user)
-		viewers(user) << "<span class='warning'><b>[user] is strangling \himself with \the [src]! It looks like \he's trying to commit suicide.</b></span>"
-		return (OXYLOSS)
-
 /obj/item/weapon/module
 	icon = 'icons/obj/module.dmi'
 	icon_state = "std_module"
