@@ -3,14 +3,16 @@
 	sort_order = 4
 
 /datum/category_item/player_setup_item/general/equipment/load_character(var/savefile/S)
-	S["underwear"]	>> pref.underwear
+	S["underwear_top"]	>> pref.underwear_top
+	S["underwear_bottom"]	>> pref.underwear_bottom
 	S["undershirt"]	>> pref.undershirt
 	S["socks"]		>> pref.socks
 	S["backbag"]	>> pref.backbag
 	S["pdachoice"]	>> pref.pdachoice
 
 /datum/category_item/player_setup_item/general/equipment/save_character(var/savefile/S)
-	S["underwear"]	<< pref.underwear
+	S["underwear_top"]	<< pref.underwear_top
+	S["underwear_bottom"] << pref.underwear_bottom
 	S["undershirt"]	<< pref.undershirt
 	S["socks"]		<< pref.socks
 	S["backbag"]	<< pref.backbag
@@ -22,9 +24,12 @@
 
 	if(!islist(pref.gear)) pref.gear = list()
 
-	var/undies = get_undies()
-	if(!get_key_by_value(undies, pref.underwear))
-		pref.underwear = undies[1]
+	var/undies_top = get_undies_top()
+	var/undies_bottom = get_undies_bottom()
+	if(!get_key_by_value(undies_top, pref.underwear_top))
+		pref.underwear_top = undies_top[1]
+	if(!get_key_by_value(undies_bottom, pref.underwear_bottom))
+		pref.underwear_bottom = undies_bottom[1]
 	if(!get_key_by_value(undershirt_t, pref.undershirt))
 		pref.undershirt = undershirt_t[1]
 	if(!get_key_by_value(socks_t, pref.socks))
@@ -32,21 +37,31 @@
 
 /datum/category_item/player_setup_item/general/equipment/content()
 	. += "<b>Equipment:</b><br>"
-	. += "Underwear: <a href='?src=\ref[src];change_underwear=1'><b>[get_key_by_value(get_undies(),pref.underwear)]</b></a><br>"
+	. += "Underwear Top: <a href='?src=\ref[src];change_underwear_top=1'><b>[get_key_by_value(get_undies_top(),pref.underwear_top)]</b></a><br>"
+	. += "Underwear Bottom: <a href='?src=\ref[src];change_underwear_bottom=1'><b>[get_key_by_value(get_undies_bottom(),pref.underwear_bottom)]</b></a><br>"
 	. += "Undershirt: <a href='?src=\ref[src];change_undershirt=1'><b>[get_key_by_value(undershirt_t,pref.undershirt)]</b></a><br>"
 	. += "Socks: <a href='?src=\ref[src];change_socks=1'><b>[get_key_by_value(socks_t,pref.socks)]</b></a><br>"
 	. += "Backpack Type: <a href='?src=\ref[src];change_backpack=1'><b>[backbaglist[pref.backbag]]</b></a><br>"
 	. += "PDA Type: <a href='?src=\ref[src];change_pda=1'><b>[pdachoicelist[pref.pdachoice]]</b></a><br>"
 
-/datum/category_item/player_setup_item/general/equipment/proc/get_undies()
-	return pref.gender == MALE ? underwear_m : underwear_f
+/datum/category_item/player_setup_item/general/equipment/proc/get_undies_top()
+	return underwear_top_t
+/datum/category_item/player_setup_item/general/equipment/proc/get_undies_bottom()
+	return underwear_bottom_t
 
 /datum/category_item/player_setup_item/general/equipment/OnTopic(var/href,var/list/href_list, var/mob/user)
-	if(href_list["change_underwear"])
-		var/underwear_options = get_undies()
-		var/new_underwear = input(user, "Choose your character's underwear:", "Character Preference", get_key_by_value(get_undies(),pref.underwear)) as null|anything in underwear_options
-		if(!isnull(new_underwear) && CanUseTopic(user))
-			pref.underwear = underwear_options[new_underwear]
+	if(href_list["change_underwear_top"])
+		var/underwear_top_options = get_undies_top()
+		var/new_underwear_top = input(user, "Choose your character's top underwear:", "Character Preference", get_key_by_value(get_undies_top(),pref.underwear_top)) as null|anything in underwear_top_options
+		if(!isnull(new_underwear_top) && CanUseTopic(user))
+			pref.underwear_top = underwear_top_options[new_underwear_top]
+			return TOPIC_REFRESH
+
+	else if(href_list["change_underwear_bottom"])
+		var/underwear_bottom_options = get_undies_bottom()
+		var/new_underwear_bottom = input(user, "Choose your character's bottom underwear:", "Character Preference", get_key_by_value(get_undies_bottom(),pref.underwear_bottom)) as null|anything in underwear_bottom_options
+		if(!isnull(new_underwear_bottom) && CanUseTopic(user))
+			pref.underwear_bottom = underwear_bottom_options[new_underwear_bottom]
 			return TOPIC_REFRESH
 
 	else if(href_list["change_undershirt"])

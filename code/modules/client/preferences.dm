@@ -30,7 +30,8 @@ datum/preferences
 	var/age = 30						//age of character
 	var/spawnpoint = "Arrivals Shuttle" //where this character will spawn (0-2).
 	var/b_type = "A+"					//blood type (not-chooseable)
-	var/underwear						//underwear type
+	var/underwear_top
+	var/underwear_bottom
 	var/undershirt						//undershirt type
 	var/socks							//socks type
 	var/backbag = 2						//backpack type
@@ -333,7 +334,8 @@ datum/preferences
 			else if(status == "mechanical")
 				I.robotize()
 
-	character.underwear = underwear
+	character.underwear_bottom = underwear_bottom
+	character.underwear_top = underwear_top
 	character.undershirt = undershirt
 	character.socks = socks
 

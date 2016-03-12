@@ -16,12 +16,12 @@
 	var/list/selection
 	switch(utype)
 		if("Underwear")
-			var/utype2 = alert("Which section do you want to pick from?",,"Male", "Female")
-			switch(utype2)
-				if("Male")
-					selection = underwear_m
-				if("Female")
-					selection = underwear_f
+			utype = alert("Which section do you want to pick from?",, "Top", "Bottom",)
+			switch(utype)
+				if("Top")
+					selection = underwear_top_t
+				if("Bottom")
+					selection = underwear_bottom_t
 		if("Undershirts")
 			selection = undershirt_t
 		if("Socks")
@@ -34,8 +34,10 @@
 			H.undershirt = selection[pick]
 		else if(utype == "Socks")
 			H.socks = selection[pick]
+		else if(utype == "Top")
+			H.underwear_top = selection[pick]
 		else
-			H.underwear = selection[pick]
+			H.underwear_bottom = selection[pick]
 		H.update_body(1)
 
 	return 1

@@ -12,7 +12,8 @@ datum/preferences
 			if(current_species.flags & HAS_SKIN_COLOR)
 				randomize_skin_color()
 			if(current_species.flags & HAS_UNDERWEAR)
-				underwear = rand(1,underwear_m.len)
+				underwear_top = rand(1,underwear_top_t.len)
+				underwear_bottom = rand(1,underwear_bottom_t.len)
 				undershirt = rand(1,undershirt_t.len)
 
 
@@ -278,9 +279,12 @@ datum/preferences
 			facial_s.Blend(rgb(r_facial, g_facial, b_facial), ICON_ADD)
 			eyes_s.Blend(facial_s, ICON_OVERLAY)
 
-		var/icon/underwear_s = null
-		if(underwear && current_species.appearance_flags & HAS_UNDERWEAR)
-			underwear_s = new/icon("icon" = 'icons/mob/human.dmi', "icon_state" = underwear)
+		var/icon/underwear_top_s = null
+		if(underwear_top && current_species.appearance_flags & HAS_UNDERWEAR)
+			underwear_top_s = new/icon("icon" = 'icons/mob/human.dmi', "icon_state" = underwear_top)
+		var/icon/underwear_bottom_s = null
+		if(underwear_bottom && current_species.appearance_flags & HAS_UNDERWEAR)
+			underwear_bottom_s = new/icon("icon" = 'icons/mob/human.dmi', "icon_state" = underwear_bottom)
 
 		var/icon/undershirt_s = null
 		if(undershirt && current_species.appearance_flags & HAS_UNDERWEAR)
@@ -723,8 +727,10 @@ datum/preferences
 			preview_icon.Blend(new /icon('icons/mob/eyes.dmi', "glasses"), ICON_OVERLAY)
 
 		preview_icon.Blend(eyes_s, ICON_OVERLAY)
-		if(underwear_s)
-			preview_icon.Blend(underwear_s, ICON_OVERLAY)
+		if(underwear_top_s)
+			preview_icon.Blend(underwear_top_s, ICON_OVERLAY)
+		if(underwear_bottom_s)
+			preview_icon.Blend(underwear_bottom_s, ICON_OVERLAY)
 		if(undershirt_s)
 			preview_icon.Blend(undershirt_s, ICON_OVERLAY)
 		if(socks_s)
@@ -735,7 +741,8 @@ datum/preferences
 		preview_icon_side = new(preview_icon, dir = WEST)
 
 		qdel(eyes_s)
-		qdel(underwear_s)
+		qdel(underwear_top_s)
+		qdel(underwear_bottom_s)
 		qdel(undershirt_s)
 		qdel(socks_s)
 		qdel(clothes_s)

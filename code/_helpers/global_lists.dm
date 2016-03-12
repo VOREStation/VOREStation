@@ -46,14 +46,18 @@ var/global/list/facial_hair_styles_male_list = list()
 var/global/list/facial_hair_styles_female_list = list()
 var/global/list/skin_styles_female_list = list()		//unused
 	//Underwear
-var/global/list/underwear_m = list(
-	"White" = "m1", "Grey" = "m2", "Green" = "m3", "Blue" = "m4", "Black" = "m5", "Mankini" = "m6",
-	"Boxers Heart" = "m7", "Boxers Black" = "m8", "Boxers Grey" = "m9", "Boxers Stripe" = "m10", "None") //Curse whoever made male/female underwear diffrent colours
-var/global/list/underwear_f = list(
-	"Red" = "f1", "White" = "f2", "Yellow" = "f3", "Blue" = "f4", "Black" = "f5", "Thong" = "f6",
-	"Black Sports" = "f7","White Sports" = "f8", "Black Sports Alt" = "f9", "White Sports Alt" = "f10", "Baby Blue" = "f11", "Green" = "f12", "Pink" = "f13",
-	 "Violet" = "f14", "Thong Alt" = "f15", "Thong Alt Violet" = "f16", "None", "Halterneck Black" = "f17", "Halterneck Blue" = "f18", "Halterneck Green" = "f19", "Halterneck Purple" = "f20",
-	 "Halterneck Red" = "f21", "Halterneck Teal" = "f22", "Halterneck Violet" = "f23", "Halterneck White" = "14")
+var/global/list/underwear_top_t = list(
+	"Bra, Red" = "t1", "Bra, White" = "t2", "Bra, Yellow" = "t3", "Bra, Blue" = "t4", "Bra, Black" = "t5", "Lacy Bra" = "t6", "Sports Bra, Black" = "t7", "Sports Bra, White" = "t8",
+	"Sports Bra Alt, Black" = "t9", "Sporta Bra Alt, White" = "t10", "Bra, Baby-Blue" = "t11", "Bra, Green" = "t12", "Bra, Pink" = "t13", "Bra, Violet" = "t14",
+	"Lacy Bra Alt" = "t15", "Lacy Bra Alt, Violet" = "t16", "Halterneck Bra, Black" = "t17", "Halterneck Bra, Blue" = "t18", "Halterneck Bra, Green" = "t19", "Halterneck Bra, Purple" = "t20",
+	"Halterneck Bra, Red" = "t21", "Halterneck Bra, Teal" = "t22", "Halterneck Bra, Violet" = "t23", "Halterneck Bra, White" = "t24", "None")
+var/global/list/underwear_bottom_t = list(
+	"Briefs, White" = "b1", "Briefs, Grey" = "b2", "Briefs, Green" = "b3", "Briefs, Blue" = "b4", "Briefs, Black" = "b5", "Boxers, Loveheart" = "b7", "Boxers, Black" = "b8",
+	"Boxers, Grey" = "b9", "Boxers, Green & Blue Striped" = "b10", "Panties, Red" = "b11", "Panties, White" = "b12", "Panties, Yellow" = "b13", "Panties, Blue" = "b14",
+	"Panties, Light-Black" = "b15", "Thong" = "b16", "Panties, Black" = "b17", "Panties Alt, White" = "b18", "Compression Shorts, Black" = "b19", "Compression Shorts, White" = "b20",
+	"Compression Shorts, Baby-Blue" = "b21", "Panties, Green" = "b22", "Compression Shorts, Pink" = "b23", "Thong, Violet" = "b24", "Thong Alt" = "b25", "Thong Alt, Violet" = "b26",
+	"Alt Thong, Black" = "b27", "Alt Thong, Blue" = "b28", "Alt Thong, Green" = "b29", "Alt Thong, Purple" = "b30", "Alt Thong, Red" = "b31", "Alt Thong, Teal" = "b32",
+	"Alt Thong, Violet" = "b33", "Alt Thong, White" = "b34", "None")
 	//undershirt
 var/global/list/undershirt_t = list(
 	"White tank top" = "u1", "Black tank top" = "u2", "Black shirt" = "u3",
