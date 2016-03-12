@@ -2,7 +2,7 @@
 	name = "leg guards"
 	desc = "These will protect your legs and feet."
 	body_parts_covered = LEGS|FEET
-	slowdown = 1
+	slowdown = 0 //Shoes have a slowdown of -1, so this needs to be 0 in order for it to effectively be 1 slowdown.
 	w_class = 3
 
 /obj/item/clothing/shoes/leg_guard/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
