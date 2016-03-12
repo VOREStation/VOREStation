@@ -502,6 +502,14 @@
 	icon_open = "nt_hoodie_open"
 	icon_closed = "nt_hoodie"
 
+/obj/item/clothing/suit/storage/toggle/hoodie/smw
+	name = "Space Mountain Wind hoodie"
+	desc = "A warm, black sweatshirt.  It has the logo for the popular softdrink Space Mountain Wind on both the front and the back."
+	icon_state = "smw_hoodie"
+	item_state = "smw_hoodie"
+	icon_open = "smw_hoodie_open"
+	icon_closed = "smw_hoodie"
+
 // FUN!
 
 /obj/item/clothing/suit/whitedress

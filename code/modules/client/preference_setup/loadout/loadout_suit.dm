@@ -98,6 +98,10 @@
 	display_name = "hoodie, NT"
 	path = /obj/item/clothing/suit/storage/toggle/hoodie/nt
 
+/datum/gear/suit/hoodie/smw
+	display_name = "hoodie, Space Mountain Wind"
+	path = /obj/item/clothing/suit/storage/toggle/hoodie/smw
+
 /datum/gear/suit/labcoat
 	display_name = "labcoat"
 	path = /obj/item/clothing/suit/storage/toggle/labcoat
