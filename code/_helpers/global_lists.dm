@@ -48,7 +48,7 @@ var/global/list/skin_styles_female_list = list()		//unused
 	//Underwear
 var/global/list/underwear_top_t = list(
 	"Bra, Red" = "t1", "Bra, White" = "t2", "Bra, Yellow" = "t3", "Bra, Blue" = "t4", "Bra, Black" = "t5", "Lacy Bra" = "t6", "Sports Bra, Black" = "t7", "Sports Bra, White" = "t8",
-	"Sports Bra Alt, Black" = "t9", "Sporta Bra Alt, White" = "t10", "Lacy Bra, Baby-Blue" = "t11", "Lacy Bra, Green" = "t12", "Lacy Bra, Pink" = "t13", "Lacy Bra, Violet" = "t14",
+	"Sports Bra Alt, Black" = "t9", "Sporta Bra Alt, White" = "t10", "Bra, Baby-Blue" = "t11", "Bra, Green" = "t12", "Bra, Pink" = "t13", "Bra, Violet" = "t14",
 	"Lacy Bra Alt" = "t15", "Lacy Bra Alt, Violet" = "t16", "Halterneck Bra, Black" = "t17", "Halterneck Bra, Blue" = "t18", "Halterneck Bra, Green" = "t19", "Halterneck Bra, Purple" = "t20",
 	"Halterneck Bra, Red" = "t21", "Halterneck Bra, Teal" = "t22", "Halterneck Bra, Violet" = "t23", "Halterneck Bra, White" = "t24", "None")
 var/global/list/underwear_bottom_t = list(
