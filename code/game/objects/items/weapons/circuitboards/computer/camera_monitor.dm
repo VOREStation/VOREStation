@@ -9,7 +9,7 @@
 	var/list/network
 	var/locked = 1
 	var/emagged = 0
-	
+
 /obj/item/weapon/circuitboard/security/New()
 	..()
 	network = station_networks
@@ -18,7 +18,7 @@
 	name = T_BOARD("engineering camera monitor")
 	build_path = /obj/machinery/computer/security/engineering
 	req_access = list()
-	
+
 /obj/item/weapon/circuitboard/security/engineering/New()
 	..()
 	network = engineering_networks
@@ -36,7 +36,7 @@
 /obj/item/weapon/circuitboard/security/deconstruct(var/obj/machinery/computer/security/C)
 	if (..(C))
 		network = C.network
-	
+
 /obj/item/weapon/circuitboard/security/emag_act(var/remaining_charges, var/mob/user)
 	if(emagged)
 		user << "Circuit lock is already removed."
@@ -60,12 +60,12 @@
 		if(locked)
 			user << "<span class='warning'>Circuit controls are locked.</span>"
 			return
-		var/existing_networks = list2text(network,",")
+		var/existing_networks = jointext(network,",")
 		var/input = sanitize(input(usr, "Which networks would you like to connect this camera console circuit to? Seperate networks with a comma. No Spaces!\nFor example: SS13,Security,Secret ", "Multitool-Circuitboard interface", existing_networks))
 		if(!input)
 			usr << "No input found please hang up and try your call again."
 			return
-		var/list/tempnetwork = text2list(input, ",")
+		var/list/tempnetwork = splittext(input, ",")
 		tempnetwork = difflist(tempnetwork,restricted_camera_networks,1)
 		if(tempnetwork.len < 1)
 			usr << "No network found please hang up and try your call again."

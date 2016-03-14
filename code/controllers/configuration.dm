@@ -265,7 +265,7 @@ var/list/gamemode_cache = list()
 		if(type == "config")
 			switch (name)
 				if ("resource_urls")
-					config.resource_urls = text2list(value, " ")
+					config.resource_urls = splittext(value, " ")
 
 				if ("admin_legacy_system")
 					config.admin_legacy_system = 1
@@ -337,7 +337,7 @@ var/list/gamemode_cache = list()
 					config.generate_asteroid = 1
 
 				if ("asteroid_z_levels")
-					config.asteroid_z_levels = text2list(value, ";")
+					config.asteroid_z_levels = splittext(value, ";")
 					//Numbers get stored as strings, so we'll fix that right now.
 					for(var/z_level in config.asteroid_z_levels)
 						z_level = text2num(z_level)
@@ -696,7 +696,7 @@ var/list/gamemode_cache = list()
 					config.starlight = value >= 0 ? value : 0
 
 				if("ert_species")
-					config.ert_species = text2list(value, ";")
+					config.ert_species = splittext(value, ";")
 					if(!config.ert_species.len)
 						config.ert_species += "Human"
 
@@ -707,7 +707,7 @@ var/list/gamemode_cache = list()
 					config.aggressive_changelog = 1
 
 				if("default_language_prefixes")
-					var/list/values = text2list(value, " ")
+					var/list/values = splittext(value, " ")
 					if(values.len > 0)
 						language_prefixes = values
 
