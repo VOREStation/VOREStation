@@ -58,7 +58,7 @@
 			return
 
 		// Antagonistic cyborgs? Left here for downstream
-		if(target.mind.special_role || target.emagged)
+		if(target.mind && (target.mind.special_role || target.emagged))
 			target << "Extreme danger.  Termination codes detected.  Scrambling security codes and automatic AI unlink triggered."
 			target.ResetSecurityCodes()
 		else
