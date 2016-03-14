@@ -16,7 +16,7 @@ var/const/BORG_WIRE_CAMERA = 16
 	. += text("<br>\n[(R.lawupdate ? "The LawSync light is on." : "The LawSync light is off.")]")
 	. += text("<br>\n[(R.connected_ai ? "The AI link light is on." : "The AI link light is off.")]")
 	. += text("<br>\n[((!isnull(R.camera) && R.camera.status == 1) ? "The Camera light is on." : "The Camera light is off.")]")
-	. += text("<br>\n[(R.lockcharge ? "The lockdown light is on." : "The lockdown light is off.")]")
+	. += text("<br>\n[(R.lockdown ? "The lockdown light is on." : "The lockdown light is off.")]")
 	return .
 
 /datum/wires/robot/UpdateCut(var/index, var/mended)
@@ -64,7 +64,7 @@ var/const/BORG_WIRE_CAMERA = 16
 				R << "Your camera lense focuses loudly."
 
 		if(BORG_WIRE_LOCKED_DOWN)
-			R.SetLockdown(!R.lockcharge) // Toggle
+			R.SetLockdown(!R.lockdown) // Toggle
 
 /datum/wires/robot/CanUse(var/mob/living/L)
 	var/mob/living/silicon/robot/R = holder
