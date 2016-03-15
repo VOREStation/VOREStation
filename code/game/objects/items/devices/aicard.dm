@@ -5,7 +5,7 @@
 	item_state = "electronic"
 	w_class = 2.0
 	slot_flags = SLOT_BELT
-	show_messages = 1
+	show_messages = 0
 
 	var/flush = null
 	origin_tech = list(TECH_DATA = 4, TECH_MATERIAL = 4)
@@ -100,31 +100,31 @@
 		user << "<span class='danger'>Transfer failed:</span> Existing AI found on remote terminal. Remove existing AI to install a new one."
 		return 0
 
-	if(ai.is_malf())
-		user << "<span class='danger'>ERROR:</span> Remote transfer interface disabled."
-		return 0
+	user.visible_message("\The [user] starts downloading \the [ai] into \the [src]...", "You start downloading \the [ai] into \the [src]...")
+	ai << "<span class='danger'>\The [user] is downloading you into \the [src]!</span>"
 
-	if(istype(ai.loc, /turf/))
-		new /obj/structure/AIcore/deactivated(get_turf(ai))
+	if(do_after(user, 100))
+		if(istype(ai.loc, /turf/))
+			new /obj/structure/AIcore/deactivated(get_turf(ai))
 
-	ai.carded = 1
-	admin_attack_log(user, ai, "Carded with [src.name]", "Was carded with [src.name]", "used the [src.name] to card")
-	src.name = "[initial(name)] - [ai.name]"
+		ai.carded = 1
+		admin_attack_log(user, ai, "Carded with [src.name]", "Was carded with [src.name]", "used the [src.name] to card")
+		src.name = "[initial(name)] - [ai.name]"
 
-	ai.loc = src
-	ai.destroy_eyeobj(src)
-	ai.cancel_camera()
-	ai.control_disabled = 1
-	ai.aiRestorePowerRoutine = 0
-	carded_ai = ai
+		ai.loc = src
+		ai.destroy_eyeobj(src)
+		ai.cancel_camera()
+		ai.control_disabled = 1
+		ai.aiRestorePowerRoutine = 0
+		carded_ai = ai
 
-	if(ai.client)
-		ai << "You have been downloaded to a mobile storage device. Remote access lost."
-	if(user.client)
-		user << "<span class='notice'><b>Transfer successful:</b></span> [ai.name] ([rand(1000,9999)].exe) removed from host terminal and stored within local memory."
+		if(ai.client)
+			ai << "You have been downloaded to a mobile storage device. Remote access lost."
+		if(user.client)
+			user << "<span class='notice'><b>Transfer successful:</b></span> [ai.name] ([rand(1000,9999)].exe) removed from host terminal and stored within local memory."
 
-	ai.canmove = 1
-	update_icon()
+		ai.canmove = 1
+		update_icon()
 	return 1
 
 /obj/item/device/aicard/proc/clear()

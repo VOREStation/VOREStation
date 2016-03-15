@@ -468,7 +468,8 @@ var/list/sacrificed = list()
 			D.r_eyes = 200
 			D.g_eyes = 200
 			D.update_eyes()
-			D.underwear = 0
+			D.underwear_top = 0
+			D.underwear_bottom = 0
 			D.key = ghost.key
 			cult.add_antagonist(D.mind)
 

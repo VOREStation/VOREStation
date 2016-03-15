@@ -50,7 +50,7 @@
 
 /obj/item/weapon/shield/riot
 	name = "riot shield"
-	desc = "A shield adept at blocking blunt objects from connecting with the torso of the shield wielder."
+	desc = "A shield adept for close quarters engagement.  It's also capable of protecting from less powerful projectiles."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "riot"
 	flags = CONDUCT
@@ -65,17 +65,31 @@
 	attack_verb = list("shoved", "bashed")
 	var/cooldown = 0 //shield bash cooldown. based on world.time
 
-/obj/item/weapon/shield/riot/handle_shield(mob/user)
-	. = ..()
-	if(.) playsound(user.loc, 'sound/weapons/Genhit.ogg', 50, 1)
+/obj/item/weapon/shield/riot/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+	if(user.incapacitated())
+		return 0
 
-/obj/item/weapon/shield/riot/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
-	if(istype(damage_source, /obj/item/projectile))
-		var/obj/item/projectile/P = damage_source
-		//plastic shields do not stop bullets or lasers, even in space. Will block beanbags, rubber bullets, and stunshots just fine though.
-		if((is_sharp(P) && damage > 10) || istype(P, /obj/item/projectile/beam))
-			return 0
-	return base_block_chance
+	//block as long as they are not directly behind us
+	var/bad_arc = reverse_direction(user.dir) //arc of directions from which we cannot block
+	if(check_shield_arc(user, bad_arc, damage_source, attacker))
+		if(prob(get_block_chance(user, damage, damage_source, attacker)))
+			//At this point, we succeeded in our roll for a block attempt, however these kinds of shields struggle to stand up
+			//to strong bullets and lasers.  They still do fine to pistol rounds of all kinds, however.
+			if(istype(damage_source, /obj/item/projectile))
+				var/obj/item/projectile/P = damage_source
+				if((is_sharp(P) && P.armor_penetration >= 10) || istype(P, /obj/item/projectile/beam))
+					//If we're at this point, the bullet/beam is going to go through the shield, however it will hit for less damage.
+					//Bullets get slowed down, while beams are diffused as they hit the shield, so these shields are not /completely/
+					//useless.  Extremely penetrating projectiles will go through the shield without less damage.
+					user.visible_message("<span class='danger'>\The [user]'s [src.name] is pierced by [attack_text]!</span>")
+					if(P.armor_penetration < 30) //PTR bullets and x-rays will bypass this entirely.
+						P.damage = P.damage / 2
+					return 0
+			//Otherwise, if we're here, we're gonna stop the attack entirely.
+			user.visible_message("<span class='danger'>\The [user] blocks [attack_text] with \the [src]!</span>")
+			playsound(user.loc, 'sound/weapons/Genhit.ogg', 50, 1)
+			return 1
+	return 0
 
 /obj/item/weapon/shield/riot/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/melee/baton))
@@ -159,39 +173,6 @@
 		set_light(1.5, 1.5, "#006AFF")
 	else
 		set_light(0)
-
-/obj/item/weapon/cloaking_device
-	name = "cloaking device"
-	desc = "Use this to become invisible to the human eye."
-	icon = 'icons/obj/device.dmi'
-	icon_state = "shield0"
-	var/active = 0.0
-	flags = CONDUCT
-	item_state = "electronic"
-	throwforce = 10.0
-	throw_speed = 2
-	throw_range = 10
-	w_class = 2.0
-	origin_tech = list(TECH_MAGNET = 3, TECH_ILLEGAL = 4)
-
-
-/obj/item/weapon/cloaking_device/attack_self(mob/user as mob)
-	src.active = !( src.active )
-	if (src.active)
-		user << "<span class='notice'>\The [src] is now active.</span>"
-		src.icon_state = "shield1"
-	else
-		user << "<span class='notice'>\The [src] is now inactive.</span>"
-		src.icon_state = "shield0"
-	src.add_fingerprint(user)
-	return
-
-/obj/item/weapon/cloaking_device/emp_act(severity)
-	active = 0
-	icon_state = "shield0"
-	if(ismob(loc))
-		loc:update_icons()
-	..()
 
 /obj/item/weapon/shield/riot/tele
 	name = "telescopic shield"

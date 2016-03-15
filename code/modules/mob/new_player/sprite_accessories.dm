@@ -61,19 +61,34 @@
 		name = "Short Hair 2"
 		icon_state = "hair_shorthair3"
 
-	Teshari
-		name = "Teshari Plumage"
+	teshari
+		name = "Teshari Default"
 		icon_state = "seromi_default"
 		species_allowed = list("Teshari")
 
-	Teshari_ears
-		name = "Teshari Ears"
-		icon_state = "seromi_ears"
-		species_allowed = list("Teshari")
-
-	Teshari_excited
+	teshari_excited
 		name = "Teshari Spiky"
 		icon_state = "seromi_spiky"
+		species_allowed = list("Teshari")
+
+	teshari_long
+		name = "Teshari Overgrown"
+		icon_state = "seromi_long"
+		species_allowed = list("Teshari")
+
+	teshari_burst
+		name = "Teshari Starburst"
+		icon_state = "seromi_burst"
+		species_allowed = list("Teshari")
+
+	teshari_burst
+		name = "Teshari Short Starburst"
+		icon_state = "seromi_burst_short"
+		species_allowed = list("Teshari")
+
+	teshari_mohawk
+		name = "Teshari Mohawk"
+		icon_state = "seromi_mohawk"
 		species_allowed = list("Teshari")
 
 	cut
@@ -88,10 +103,6 @@
 		name = "Shoulder-length Hair"
 		icon_state = "hair_b"
 
-	longalt
-		name = "Shoulder-length Hair Alt"
-		icon_state = "hair_longfringe"
-
 	/*longish
 		name = "Longer Hair"
 		icon_state = "hair_b2"*/
@@ -99,10 +110,6 @@
 	longer
 		name = "Long Hair"
 		icon_state = "hair_vlong"
-
-	longeralt
-		name = "Long Hair Alt"
-		icon_state = "hair_vlongfringe"
 
 	longest
 		name = "Very Long Hair"
@@ -450,6 +457,27 @@
 		name = "Bald"
 		icon_state = "bald"
 
+	longeralt2
+		name = "Long Hair Alt 2"
+		icon_state = "hair_longeralt2"
+
+	shortbangs
+		name = "Short Bangs"
+		icon_state = "hair_shortbangs"
+
+	halfshaved
+		name = "Half-Shaved Emo"
+		icon_state = "hair_halfshaved"
+
+	bun
+		name = "Casual Bun"
+		icon_state = "hair_bun"
+
+	doublebun
+		name = "Double-Bun"
+		icon_state = "hair_doublebun"
+
+
 /*
 ///////////////////////////////////
 /  =---------------------------=  /
@@ -467,7 +495,25 @@
 		name = "Shaved"
 		icon_state = "bald"
 		gender = NEUTER
-		species_allowed = list("Human","Unathi","Tajara","Skrell","Vox","Machine")
+		species_allowed = list("Human","Unathi","Tajara","Skrell", "Machine","Teshari")
+
+	teshari_beard
+		name = "Teshari Beard"
+		icon_state = "seromi_chin"
+		species_allowed = list("Teshari")
+		gender = NEUTER
+
+	teshari_scraggly
+		name = "Teshari Scraggly"
+		icon_state = "seromi_scraggly"
+		species_allowed = list("Teshari")
+		gender = NEUTER
+
+	teshari_chops
+		name = "Teshari Chops"
+		icon_state = "seromi_gap"
+		species_allowed = list("Teshari")
+		gender = NEUTER
 
 	watson
 		name = "Watson Mustache"
@@ -643,11 +689,6 @@
 		name = "Tajara Messy"
 		icon_state = "hair_messy"
 		species_allowed = list("Tajara")
-
-	vox_quills_short
-		name = "Short Vox Quills"
-		icon_state = "vox_shortquills"
-		species_allowed = list("Vox")
 
 /datum/sprite_accessory/facial_hair
 

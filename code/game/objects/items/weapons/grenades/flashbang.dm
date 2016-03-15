@@ -27,26 +27,16 @@
 		return
 
 	proc/bang(var/turf/T , var/mob/living/carbon/M)					// Added a new proc called 'bang' that takes a location and a person to be banged.
-		if (locate(/obj/item/weapon/cloaking_device, M))			// Called during the loop that bangs people in lockers/containers and when banging
-			for(var/obj/item/weapon/cloaking_device/S in M)			// people in normal view.  Could theroetically be called during other explosions.
-				S.active = 0										// -- Polymorph
-				S.icon_state = "shield0"
-
-		M << "<span class='danger'>BANG</span>"
-		playsound(src.loc, 'sound/effects/bang.ogg', 50, 1, 5)
+		M << "<span class='danger'>BANG</span>"						// Called during the loop that bangs people in lockers/containers and when banging
+		playsound(src.loc, 'sound/effects/bang.ogg', 50, 1, 5)		// people in normal view.  Could theroetically be called during other explosions.
+																	// -- Polymorph
 
 //Checking for protections
 		var/eye_safety = 0
 		var/ear_safety = 0
 		if(iscarbon(M))
 			eye_safety = M.eyecheck()
-			if(ishuman(M))
-				if(istype(M:l_ear, /obj/item/clothing/ears/earmuffs) || istype(M:r_ear, /obj/item/clothing/ears/earmuffs))
-					ear_safety += 2
-				if(HULK in M.mutations)
-					ear_safety += 1
-				if(istype(M:head, /obj/item/clothing/head/helmet))
-					ear_safety += 1
+			ear_safety = M.get_ear_protection()
 
 //Flashing everyone
 		if(eye_safety < 1)

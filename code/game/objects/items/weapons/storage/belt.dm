@@ -53,7 +53,8 @@
 		/obj/item/weapon/material/minihoe,
 		/obj/item/weapon/material/hatchet,
 		/obj/item/device/analyzer/plant_analyzer,
-		/obj/item/weapon/extinguisher/mini
+		/obj/item/weapon/extinguisher/mini,
+		/obj/item/device/flashlight/maglight
 		)
 
 
@@ -135,7 +136,6 @@
 		/obj/item/weapon/melee/baton,
 		/obj/item/weapon/gun/energy/taser,
 		/obj/item/weapon/flame/lighter,
-		/obj/item/clothing/glasses/hud/security,
 		/obj/item/device/flashlight,
 		/obj/item/device/pda,
 		/obj/item/device/radio/headset,
@@ -165,7 +165,6 @@
 		/obj/item/weapon/forensics/sample_kit/powder,
 		/obj/item/weapon/forensics/swab,
 		/obj/item/device/uv_light,
-		/obj/item/weapon/forensics/slide,
 		/obj/item/weapon/forensics/sample_kit,
 		/obj/item/weapon/photo,
 		/obj/item/device/camera_film,

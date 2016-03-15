@@ -37,9 +37,9 @@
 	..(newloc,"sandstone","diamond")
 
 // Kind of wondering if this is going to bite me in the butt.
-/turf/simulated/wall/voxshuttle/New(var/newloc)
-	..(newloc,"voxalloy")
-/turf/simulated/wall/voxshuttle/attackby()
+/turf/simulated/wall/skipjack/New(var/newloc)
+	..(newloc,"alienalloy")
+/turf/simulated/wall/skipjack/attackby()
 	return
 /turf/simulated/wall/titanium/New(var/newloc)
 	..(newloc,"titanium")

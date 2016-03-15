@@ -1601,6 +1601,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube
 	name = "monkey cube"
 	desc = "Just add water!"
+	flags = OPENCONTAINER
 	icon_state = "monkeycube"
 	bitesize = 12
 	filling_color = "#ADAC7F"
@@ -1613,27 +1614,19 @@
 		..()
 		reagents.add_reagent("protein", 10)
 
-	afterattack(obj/O as obj, var/mob/living/carbon/human/user as mob, proximity)
-		if(!proximity) return
-		if(istype(O,/obj/structure/sink) && !wrapped)
-			user << "You place \the [name] under a stream of water..."
-			if(istype(user))
-				user.unEquip(src)
-			src.loc = get_turf(src)
-			return Expand()
-		..()
-
 	attack_self(mob/user as mob)
 		if(wrapped)
 			Unwrap(user)
 
 	proc/Expand()
 		src.visible_message("<span class='notice'>\The [src] expands!</span>")
-		var/mob/living/carbon/human/H = new(src.loc)
+		var/mob/living/carbon/human/H = new(get_turf(src))
 		H.set_species(monkey_type)
 		H.real_name = H.species.get_random_name()
 		H.name = H.real_name
-		src.loc = null
+		if(ismob(loc))
+			var/mob/M = loc
+			M.unEquip(src)
 		qdel(src)
 		return 1
 
@@ -1642,11 +1635,17 @@
 		desc = "Just add water!"
 		user << "You unwrap the cube."
 		wrapped = 0
+		flags |= OPENCONTAINER
 		return
+
+/obj/item/weapon/reagent_containers/food/snacks/monkeycube/on_reagent_change()
+	if(reagents.has_reagent("water"))
+		Expand()
 
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped
 	desc = "Still wrapped in some paper."
 	icon_state = "monkeycubewrap"
+	flags = 0
 	wrapped = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/farwacube

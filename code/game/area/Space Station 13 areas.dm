@@ -1397,6 +1397,10 @@ area/space/atmosalert()
 	icon_state = "bar"
 	sound_env = LARGE_SOFTFLOOR
 
+/area/crew_quarters/barrestroom
+	name = "\improper Bar Restroom"
+	icon_state = "bar"
+
 /area/crew_quarters/theatre
 	name = "\improper Theatre"
 	icon_state = "Theatre"
@@ -1856,6 +1860,16 @@ area/space/atmosalert()
 /area/medical/sleeper
 	name = "\improper Emergency Treatment Centre"
 	icon_state = "exam_room"
+
+/area/medical/first_aid_station_starboard
+	name = "\improper Starboard First-Aid Station"
+	icon_state = "medbay2"
+
+/area/medical/first_aid_station
+	name = "\improper Port First-Aid Station"
+	icon_state = "medbay2"
+
+
 
 //Security
 

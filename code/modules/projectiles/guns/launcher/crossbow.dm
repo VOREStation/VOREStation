@@ -26,7 +26,7 @@
 	item_state = "bolt"
 
 /obj/item/weapon/arrow/quill
-	name = "vox quill"
+	name = "alien quill"
 	desc = "A wickedly barbed quill from some bizarre animal."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "quill"
@@ -116,7 +116,7 @@
 		//double check that the user hasn't removed the bolt in the meantime
 		if(!(bolt && tension && loc == current_user))
 			return
-		
+
 		tension++
 		update_icon()
 

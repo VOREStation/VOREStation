@@ -1,10 +1,4 @@
 // fun if you want to typecast humans/monkeys/etc without writing long path-filled lines.
-/proc/isxenomorph(A)
-	if(istype(A, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = A
-		return istype(H.species, /datum/species/xenos)
-	return 0
-
 /proc/issmall(A)
 	if(A && istype(A, /mob/living))
 		var/mob/living/L = A
@@ -36,6 +30,12 @@ proc/isdeaf(A)
 		var/mob/M = A
 		return (M.sdisabilities & DEAF) || M.ear_deaf
 	return 0
+
+/mob/proc/get_ear_protection()
+	return 0
+
+/mob/proc/break_cloak()
+	return
 
 proc/hasorgans(A) // Fucking really??
 	return ishuman(A)

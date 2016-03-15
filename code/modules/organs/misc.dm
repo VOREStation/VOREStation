@@ -56,6 +56,3 @@
 	if(owner && owner.stat != DEAD && !is_broken())
 		backup_time = world.time
 		if(owner.mind) backup = owner.mind
-
-/obj/item/organ/internal/stack/vox/stack
-	name = "vox cortical stack"

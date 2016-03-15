@@ -9,12 +9,15 @@
 	num_alternate_languages = 2
 	secondary_langs = list("Schechi", "Skrellian")
 	name_language = "Schechi"
+	min_age = 12
+	max_age = 45
 
 	blood_color = "#D514F7"
 	flesh_color = "#5F7BB0"
 	base_color = "#001144"
 	tail = "seromitail"
 	tail_hair = "feathers"
+	reagent_tag = IS_TESHARI
 
 	icobase = 'icons/mob/human_races/r_seromi.dmi'
 	deform = 'icons/mob/human_races/r_seromi.dmi'
@@ -22,7 +25,7 @@
 	damage_mask = 'icons/mob/human_races/masks/dam_mask_seromi.dmi'
 	blood_mask = 'icons/mob/human_races/masks/blood_seromi.dmi'
 
-	slowdown = -2
+	slowdown = -1
 	total_health = 50
 	brute_mod = 1.35
 	burn_mod =  1.35
@@ -30,6 +33,8 @@
 	holder_type = /obj/item/weapon/holder/human
 	short_sighted = 1
 	gluttonous = 1
+	blood_volume = 400
+	hunger_factor = 0.2
 
 	spawn_flags = CAN_JOIN | IS_WHITELISTED
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_EYE_COLOR

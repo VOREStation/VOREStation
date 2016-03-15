@@ -54,6 +54,10 @@
 		else if(prob(5))
 			audible_emote("snuffles.")
 
+/mob/living/simple_animal/mouse/lay_down() //Simply turns sprite into sleeping and back upon using "Rest".
+	..()
+	icon_state = resting ? "mouse_[body_color]_sleep" : "mouse_[body_color]"
+
 /mob/living/simple_animal/mouse/New()
 	..()
 

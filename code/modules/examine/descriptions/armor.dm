@@ -49,10 +49,30 @@
 	if(flags & STOPPRESSUREDAMAGE)
 		armor_stats += "Wearing this will protect you from the vacuum of space. \n"
 
+	if(flags & THICKMATERIAL)
+		armor_stats += "The material is exceptionally thick. \n"
+
 	if(max_heat_protection_temperature == FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE)
 		armor_stats += "It provides very good protection against fire and heat. \n"
 
 	if(min_cold_protection_temperature == SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE)
 		armor_stats += "It provides very good protection against very cold temperatures. \n"
+
+	var/list/covers = list()
+	var/list/slots = list()
+
+	for(var/name in string_part_flags)
+		if(body_parts_covered & string_part_flags[name])
+			covers += name
+
+	for(var/name in string_slot_flags)
+		if(slot_flags & string_slot_flags[name])
+			slots += name
+
+	if(covers.len)
+		armor_stats += "It covers the [english_list(covers)]. \n"
+
+	if(slots.len)
+		armor_stats += "It can be worn on your [english_list(slots)]. \n"
 
 	return armor_stats

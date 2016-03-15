@@ -107,7 +107,7 @@
 				return
 
 		self_feed_message(user)
-		reagents.trans_to_mob(user, amount_per_transfer_from_this, CHEM_INGEST)
+		reagents.trans_to_mob(user, issmall(user) ? ceil(amount_per_transfer_from_this/2) : amount_per_transfer_from_this, CHEM_INGEST)
 		feed_sound(user)
 		return 1
 	else

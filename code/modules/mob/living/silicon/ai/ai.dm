@@ -3,28 +3,33 @@
 
 var/list/ai_list = list()
 var/list/ai_verbs_default = list(
-	/mob/living/silicon/ai/proc/ai_announcement,
-	/mob/living/silicon/ai/proc/ai_call_shuttle,
 	// /mob/living/silicon/ai/proc/ai_recall_shuttle,
 	/mob/living/silicon/ai/proc/ai_emergency_message,
-	/mob/living/silicon/ai/proc/ai_camera_track,
-	/mob/living/silicon/ai/proc/ai_camera_list,
 	/mob/living/silicon/ai/proc/ai_goto_location,
 	/mob/living/silicon/ai/proc/ai_remove_location,
 	/mob/living/silicon/ai/proc/ai_hologram_change,
 	/mob/living/silicon/ai/proc/ai_network_change,
-	/mob/living/silicon/ai/proc/ai_roster,
 	/mob/living/silicon/ai/proc/ai_statuschange,
 	/mob/living/silicon/ai/proc/ai_store_location,
-	/mob/living/silicon/ai/proc/ai_checklaws,
 	/mob/living/silicon/ai/proc/control_integrated_radio,
-	/mob/living/silicon/ai/proc/core,
 	/mob/living/silicon/ai/proc/pick_icon,
 	/mob/living/silicon/ai/proc/sensor_mode,
 	/mob/living/silicon/ai/proc/show_laws_verb,
 	/mob/living/silicon/ai/proc/toggle_acceleration,
+	/mob/living/silicon/ai/proc/toggle_hologram_movement,
+	/mob/living/silicon/ai/proc/toggle_hidden_verbs,
+)
+
+var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.com/1172/
+	/mob/living/silicon/ai/proc/ai_announcement,
+	/mob/living/silicon/ai/proc/ai_call_shuttle,
+	/mob/living/silicon/ai/proc/ai_camera_track,
+	/mob/living/silicon/ai/proc/ai_camera_list,
+	/mob/living/silicon/ai/proc/ai_roster,
+	/mob/living/silicon/ai/proc/ai_checklaws,
 	/mob/living/silicon/ai/proc/toggle_camera_light,
-	/mob/living/silicon/ai/proc/toggle_hologram_movement
+	/mob/living/silicon/ai/proc/take_image,
+	/mob/living/silicon/ai/proc/view_images
 )
 
 //Not sure why this is necessary...
@@ -308,7 +313,7 @@ var/list/ai_verbs_default = list(
 		use_power = 2
 
 /mob/living/silicon/ai/proc/pick_icon()
-	set category = "AI Commands"
+	set category = "AI Settings"
 	set name = "Set AI Core Display"
 	if(stat || aiRestorePowerRoutine)
 		return
@@ -328,7 +333,6 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/proc/ai_announcement()
 	set category = "AI Commands"
 	set name = "Make Station Announcement"
-
 	if(check_unable(AI_CHECK_WIRELESS | AI_CHECK_RADIO))
 		return
 
@@ -350,7 +354,6 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/proc/ai_call_shuttle()
 	set category = "AI Commands"
 	set name = "Call Emergency Shuttle"
-
 	if(check_unable(AI_CHECK_WIRELESS))
 		return
 
@@ -477,9 +480,7 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/cancel_camera()
 	set category = "AI Commands"
 	set name = "Cancel Camera View"
-
-	//src.cameraFollow = null
-	src.view_core()
+	view_core()
 
 //Replaces /mob/living/silicon/ai/verb/change_network() in ai.dm & camera.dm
 //Adds in /mob/living/silicon/ai/proc/ai_network_change() instead
@@ -523,7 +524,7 @@ var/list/ai_verbs_default = list(
 //End of code by Mord_Sith
 
 /mob/living/silicon/ai/proc/ai_statuschange()
-	set category = "AI Commands"
+	set category = "AI Settings"
 	set name = "AI Status"
 
 	if(check_unable(AI_CHECK_WIRELESS))
@@ -536,7 +537,7 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/proc/ai_hologram_change()
 	set name = "Change Hologram"
 	set desc = "Change the default hologram available to AI to something else."
-	set category = "AI Commands"
+	set category = "AI Settings"
 
 	if(check_unable())
 		return
@@ -581,7 +582,6 @@ var/list/ai_verbs_default = list(
 	set name = "Toggle Camera Light"
 	set desc = "Toggles the light on the camera the AI is looking through."
 	set category = "AI Commands"
-
 	if(check_unable())
 		return
 
@@ -650,7 +650,7 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/proc/control_integrated_radio()
 	set name = "Radio Settings"
 	set desc = "Allows you to change settings of your radio."
-	set category = "AI Commands"
+	set category = "AI Settings"
 
 	if(check_unable(AI_CHECK_RADIO))
 		return
@@ -661,13 +661,13 @@ var/list/ai_verbs_default = list(
 
 /mob/living/silicon/ai/proc/sensor_mode()
 	set name = "Set Sensor Augmentation"
-	set category = "AI Commands"
+	set category = "AI Settings"
 	set desc = "Augment visual feed with internal sensor overlays"
 	toggle_sensor_mode()
 
 /mob/living/silicon/ai/proc/toggle_hologram_movement()
 	set name = "Toggle Hologram Movement"
-	set category = "AI Commands"
+	set category = "AI Settings"
 	set desc = "Toggles hologram movement based on moving with your virtual eye."
 
 	hologram_follow = !hologram_follow
@@ -723,6 +723,17 @@ var/list/ai_verbs_default = list(
 	var/obj/item/weapon/rig/rig = src.get_rig()
 	if(rig)
 		rig.force_rest(src)
+
+/mob/living/silicon/ai/proc/toggle_hidden_verbs()
+	set name = "Toggle Hidden Verbs"
+	set category = "AI Settings"
+
+	if(/mob/living/silicon/ai/proc/ai_announcement in verbs)
+		src << "Extra verbs toggled off."
+		verbs -= ai_verbs_hidden
+	else
+		src << "Extra verbs toggled on."
+		verbs |= ai_verbs_hidden
 
 #undef AI_CHECK_WIRELESS
 #undef AI_CHECK_RADIO

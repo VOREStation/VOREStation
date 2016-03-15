@@ -10,6 +10,16 @@
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.6
 
+/obj/item/clothing/suit/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+	if(..()) //This will only run if no other problems occured when equiping.
+		for(var/obj/item/clothing/I in list(H.gloves, H.shoes))
+			if(I && (src.body_parts_covered & ARMS && I.body_parts_covered & ARMS) )
+				H << "<span class='warning'>You can't wear \the [src] with \the [I], it's in the way.</span>"
+				return 0
+			if(I && (src.body_parts_covered & LEGS && I.body_parts_covered & LEGS) )
+				H << "<span class='warning'>You can't wear \the [src] with \the [I], it's in the way.</span>"
+				return 0
+		return 1
 
 /obj/item/clothing/suit/armor/vest
 	name = "armor"
@@ -17,7 +27,7 @@
 	icon_state = "armor"
 	item_state = "armor"
 	blood_overlay_type = "armor"
-	armor = list(melee = 50, bullet = 15, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
+	armor = list(melee = 40, bullet = 30, laser = 30, energy = 10, bomb = 10, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/armor/vest/alt
 	name = "security armor"
@@ -47,24 +57,21 @@
 
 
 /obj/item/clothing/suit/armor/riot
-	name = "Riot Suit"
-	desc = "A suit of armor with heavy padding to protect against melee attacks. Looks like it might impair movement."
+	name = "riot vest"
+	desc = "A vest with heavy padding to protect against melee attacks."
 	icon_state = "riot"
 	item_state = "swat_suit"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	slowdown = 1
 	armor = list(melee = 80, bullet = 10, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
 	flags_inv = HIDEJUMPSUIT
 	siemens_coefficient = 0.5
 
 /obj/item/clothing/suit/armor/riot/alt
-	name = "Riot Suit"
-	desc = "A suit of armor with heavy padding to protect against melee attacks. Looks like it might impair movement."
 	icon_state = "riot_new"
 	item_state = "riot_new"
 
 /obj/item/clothing/suit/armor/bulletproof
-	name = "Bulletproof Vest"
+	name = "bullet resistant vest"
 	desc = "A vest that excels in protecting the wearer against high-velocity solid projectiles."
 	icon_state = "bulletproof"
 	item_state = "armor"
@@ -73,20 +80,18 @@
 	siemens_coefficient = 0.7
 
 /obj/item/clothing/suit/armor/bulletproof/alt
-	name = "Bulletproof Vest"
-	desc = "A vest that excels in protecting the wearer against high-velocity solid projectiles."
 	icon_state = "bulletproof_new"
 	item_state = "bulletproof_new"
 	blood_overlay_type = "armor"
 
 /obj/item/clothing/suit/armor/laserproof
-	name = "Ablative Armor Vest"
+	name = "ablative armor vest"
 	desc = "A vest that excels in protecting the wearer against energy projectiles."
 	icon_state = "armor_reflec"
 	item_state = "armor_reflec"
 	blood_overlay_type = "armor"
 	armor = list(melee = 10, bullet = 10, laser = 80, energy = 50, bomb = 0, bio = 0, rad = 0)
-	siemens_coefficient = 0
+	siemens_coefficient = 0.1
 
 /obj/item/clothing/suit/armor/laserproof/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(istype(damage_source, /obj/item/projectile/energy) || istype(damage_source, /obj/item/projectile/beam))
@@ -107,6 +112,25 @@
 			P.redirect(new_x, new_y, curloc, user)
 
 			return PROJECTILE_CONTINUE // complete projectile permutation
+
+/obj/item/clothing/suit/armor/combat
+	name = "combat vest"
+	desc = "A vest that protects the wearer from several common types of weaponry."
+	icon_state = "combat"
+	item_state = "combat"
+	blood_overlay_type = "armor"
+	armor = list(melee = 50, bullet = 50, laser = 50, energy = 30, bomb = 30, bio = 0, rad = 0)
+	siemens_coefficient = 0.6
+
+/obj/item/clothing/suit/armor/tactical
+	name = "tactical armor"
+	desc = "A suit of armor most often used by Special Weapons and Tactics squads. Includes padded vest with pockets along with shoulder and kneeguards."
+	icon_state = "swatarmor"
+	item_state = "armor"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	slowdown = 1
+	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 40, bio = 0, rad = 0)
+	siemens_coefficient = 0.7
 
 /obj/item/clothing/suit/armor/swat
 	name = "swat suit"
@@ -143,7 +167,7 @@
 	item_state = "armor"
 	blood_overlay_type = "armor"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	armor = list(melee = 50, bullet = 15, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
+	armor = list(melee = 40, bullet = 30, laser = 30, energy = 10, bomb = 10, bio = 0, rad = 0)
 
 
 //Reactive armor
@@ -200,42 +224,6 @@
 	src.item_state = "reactiveoff"
 	..()
 
-/obj/item/clothing/suit/armor/tactical
-	name = "tactical armor"
-	desc = "A suit of armor most often used by Special Weapons and Tactics squads. Includes padded vest with pockets along with shoulder and kneeguards."
-	icon_state = "swatarmor"
-	item_state = "armor"
-	var/obj/item/weapon/gun/holstered = null
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	slowdown = 1
-	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 20, bio = 0, rad = 0)
-	siemens_coefficient = 0.7
-	var/obj/item/clothing/accessory/holster/holster
-
-/obj/item/clothing/suit/armor/tactical/New()
-	..()
-	holster = new(src)
-
-/obj/item/clothing/suit/armor/tactical/attackby(obj/item/W as obj, mob/user as mob)
-	..()
-	holster.attackby(W, user)
-
-/obj/item/clothing/suit/armor/tactical/verb/holster()
-	set name = "Holster"
-	set category = "Object"
-	set src in usr
-	if(!istype(usr, /mob/living)) return
-	if(usr.stat) return
-
-	if(!holster.holstered)
-		var/obj/item/W = usr.get_active_hand()
-		if(!istype(W, /obj/item))
-			usr << "<span class='warning'>You need your gun equiped to holster it.</span>"
-			return
-		holster.holster(W, usr)
-	else
-		holster.unholster(usr)
-
 //Non-hardsuit ERT armor.
 /obj/item/clothing/suit/armor/vest/ert
 	name = "emergency response team armor"
@@ -274,8 +262,17 @@
 	desc = "A simple kevlar plate carrier."
 	icon_state = "kvest"
 	item_state = "kvest"
-	armor = list(melee = 50, bullet = 15, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
+	armor = list(melee = 40, bullet = 30, laser = 30, energy = 10, bomb = 10, bio = 0, rad = 0)
 	allowed = list(/obj/item/weapon/gun,/obj/item/weapon/reagent_containers/spray/pepper,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs)
+
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	item_flags = THICKMATERIAL
+
+	cold_protection = UPPER_TORSO|LOWER_TORSO
+	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
+	heat_protection = UPPER_TORSO|LOWER_TORSO
+	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
+	siemens_coefficient = 0.6
 
 /obj/item/clothing/suit/storage/vest/officer
 	name = "officer armor vest"
@@ -322,7 +319,7 @@
 	desc = "A heavy kevlar plate carrier with webbing attached."
 	icon_state = "webvest"
 	item_state = "webvest"
-	armor = list(melee = 50, bullet = 40, laser = 50, energy = 25, bomb = 30, bio = 0, rad = 0)
+	armor = list(melee = 50, bullet = 40, laser = 40, energy = 25, bomb = 25, bio = 0, rad = 0)
 	slowdown = 1
 
 /obj/item/clothing/suit/storage/vest/heavy/officer

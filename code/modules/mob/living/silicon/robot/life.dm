@@ -97,6 +97,8 @@
 		else	//Not stunned.
 			src.stat = 0
 
+		confused = max(0, confused - 1)
+
 	else //Dead.
 		src.blinded = 1
 		src.stat = 2
@@ -334,7 +336,7 @@
 			weaponlock_time = 120
 
 /mob/living/silicon/robot/update_canmove()
-	if(paralysis || stunned || weakened || buckled || lockcharge || !is_component_functioning("actuator")) canmove = 0
+	if(paralysis || stunned || weakened || buckled || lockdown || !is_component_functioning("actuator")) canmove = 0
 	else canmove = 1
 	return canmove
 

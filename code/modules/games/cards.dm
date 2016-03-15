@@ -20,7 +20,6 @@
 
 /obj/item/weapon/deck/cards/New()
 	..()
-
 	var/datum/playingcard/P
 	for(var/suit in list("spades","clubs","diamonds","hearts"))
 
@@ -43,7 +42,6 @@
 			P.card_icon = "[colour]col"
 			P.back_icon = "card_back"
 			cards += P
-
 
 	for(var/i = 0,i<2,i++)
 		P = new()
@@ -135,7 +133,19 @@
 	H.throw_at(get_step(target,target.dir),10,1,H)
 
 /obj/item/weapon/hand/attackby(obj/O as obj, mob/user as mob)
-	if(istype(O,/obj/item/weapon/hand))
+	if(cards.len == 1 && istype(O, /obj/item/weapon/pen))
+		var/datum/playingcard/P = cards[1]
+		if(P.name != "Blank Card")
+			user << "You cannot write on that card."
+			return
+		var/cardtext = sanitize(input(user, "What do you wish to write on the card?", "Card Editing") as text|null, MAX_BOOK_MESSAGE_LEN)
+		if(!cardtext)
+			return
+		P.name = cardtext
+		// SNOWFLAKE FOR CAG, REMOVE IF OTHER CARDS ARE ADDED THAT USE THIS.
+		P.card_icon = "cag_white_card"
+		update_icon()
+	else if(istype(O,/obj/item/weapon/hand))
 		var/obj/item/weapon/hand/H = O
 		for(var/datum/playingcard/P in cards)
 			H.cards += P
@@ -214,7 +224,7 @@
 	if(!discarding || !to_discard[discarding] || !usr || !src) return
 
 	var/datum/playingcard/card = to_discard[discarding]
-	qdel(to_discard)
+	to_discard.Cut()
 
 	var/obj/item/weapon/hand/H = new(src.loc)
 	H.cards += card
@@ -238,7 +248,7 @@
 	if((!concealed || src.loc == user) && cards.len)
 		user << "It contains: "
 		for(var/datum/playingcard/P in cards)
-			user << "The [P.name]."
+			user << "\The [P.name]."
 
 /obj/item/weapon/hand/update_icon(var/direction = 0)
 

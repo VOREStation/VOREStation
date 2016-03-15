@@ -96,7 +96,7 @@
 
 		dat += "<br>This sample contains: "
 		for(var/datum/reagent/R in grown_reagents.reagent_list)
-			dat += "<br>- [R.id], [grown_reagents.get_reagent_amount(R.id)] unit(s)"
+			dat += "<br>- [R.name], [grown_reagents.get_reagent_amount(R.id)] unit(s)"
 
 	dat += "<h2>Other Data</h2>"
 
@@ -175,8 +175,12 @@
 
 	if(grown_seed.get_trait(TRAIT_PARASITE))
 		dat += "<br>It is capable of parisitizing and gaining sustenance from tray weeds."
+
+/*
+	There's currently no code that actually changes the temperature of the local environment, so let's not show it until there is.
 	if(grown_seed.get_trait(TRAIT_ALTER_TEMP))
 		dat += "<br>It will periodically alter the local temperature by [grown_seed.get_trait(TRAIT_ALTER_TEMP)] degrees Kelvin."
+*/
 
 	if(grown_seed.get_trait(TRAIT_BIOLUM))
 		dat += "<br>It is [grown_seed.get_trait(TRAIT_BIOLUM_COLOUR)  ? "<font color='[grown_seed.get_trait(TRAIT_BIOLUM_COLOUR)]'>bio-luminescent</font>" : "bio-luminescent"]."
@@ -197,18 +201,24 @@
 
 	if(grown_seed.get_trait(TRAIT_TELEPORTING))
 		dat += "<br>The fruit is temporal/spatially unstable."
-	
-	if(grown_seed.get_trait(TRAIT_EXUDE_GASSES))
-		dat += "<br>It will release gas into the environment."
 
-	if(grown_seed.get_trait(TRAIT_CONSUME_GASSES))
-		dat += "<br>It will remove gas from the environment."
+	if(grown_seed.exude_gasses && grown_seed.exude_gasses.len)
+		for(var/gas in grown_seed.exude_gasses)
+			var/amount = ""
+			if (grown_seed.exude_gasses[gas] > 7)
+				amount = "large amounts of "
+			else if (grown_seed.exude_gasses[gas] < 5)
+				amount = "small amounts of "
+			dat += "<br>It will release [amount][gas_data.name[gas]] into the environment."
 
-	if(grown_seed.get_trait(TRAIT_EXUDE_GASSES))
-		dat += "<br>It will release gas into the environment."
-
-	if(grown_seed.get_trait(TRAIT_CONSUME_GASSES))
-		dat += "<br>It will remove gas from the environment."
+	if(grown_seed.consume_gasses && grown_seed.consume_gasses.len)
+		for(var/gas in grown_seed.consume_gasses)
+			var/amount = ""
+			if (grown_seed.consume_gasses[gas] > 7)
+				amount = "large amounts of "
+			else if (grown_seed.consume_gasses[gas] < 5)
+				amount = "small amounts of "
+			dat += "<br>It will consume [amount][gas_data.name[gas]] from the environment."
 
 	if(dat)
 		last_data = dat

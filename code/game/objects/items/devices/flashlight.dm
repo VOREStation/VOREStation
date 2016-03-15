@@ -93,6 +93,20 @@
 	brightness_on = 2
 	w_class = 1
 
+/obj/item/device/flashlight/maglight
+	name = "maglight"
+	desc = "A very, very heavy duty flashlight."
+	icon_state = "maglight"
+	item_state = "maglight"
+	force = 10
+	flags = CONDUCT
+	brightness_on = 4
+	slot_flags = SLOT_BELT
+	w_class = 2
+	attack_verb = list ("smacked", "thwacked", "thunked")
+	matter = list(DEFAULT_WALL_MATERIAL = 200,"glass" = 50)
+	hitsound = "swing_hit"
+
 /obj/item/device/flashlight/drone
 	name = "low-power flashlight"
 	desc = "A miniature lamp, that might be used by small robots."
@@ -185,6 +199,14 @@
 		src.force = on_damage
 		src.damtype = "fire"
 		processing_objects += src
+		
+/obj/item/device/flashlight/flare/proc/ignite() //Used for flare launchers.
+	on = !on
+	update_icon()
+	force = on_damage
+	damtype = "fire"
+	processing_objects += src
+	return 1
 
 /obj/item/device/flashlight/slime
 	gender = PLURAL

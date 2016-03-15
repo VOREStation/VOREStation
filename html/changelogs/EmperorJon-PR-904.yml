@@ -1,4 +1,0 @@
-author: EmperorJon
-delete-after: True
-changes: 
-  - tweak: "Traitor synths can no longer be locked down from the robotics console. Attempting to lock them down (or release the lockdown) notifies the synth of the attempt and updates the console's UI as normal."

@@ -27,7 +27,6 @@ BLIND     // can't see anything
 	var/obj/screen/overlay = null
 
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/eyes.dmi',
 		"Teshari" = 'icons/mob/species/seromi/eyes.dmi'
 		)
 
@@ -184,6 +183,7 @@ BLIND     // can't see anything
 	icon_state = "welding-g"
 	item_state = "welding-g"
 	action_button_name = "Flip Welding Goggles"
+	matter = list(DEFAULT_WALL_MATERIAL = 1500, "glass" = 1000)
 	var/up = 0
 
 /obj/item/clothing/glasses/welding/attack_self()
@@ -240,6 +240,12 @@ BLIND     // can't see anything
 	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Larger than average enhanced shielding blocks many flashes."
 	icon_state = "bigsunglasses"
 	item_state = "bigsunglasses"
+
+/obj/item/clothing/glasses/fakesunglasses //Sunglasses without flash immunity
+	desc = "A pair of designer sunglasses. Doesn't seem like it'll block flashes."
+	name = "stylish sunglasses"
+	icon_state = "sun"
+	item_state = "sunglasses"
 
 /obj/item/clothing/glasses/sunglasses/sechud
 	name = "HUDSunglasses"
@@ -300,6 +306,8 @@ BLIND     // can't see anything
 	name = "Thermoncle"
 	desc = "A monocle thermal."
 	icon_state = "thermoncle"
+	toggleable = 1
+	action_button_name = "Toggle Monocle"
 	flags = null //doesn't protect eyes because it's a monocle, duh
 
 	body_parts_covered = 0
@@ -310,6 +318,8 @@ BLIND     // can't see anything
 	icon_state = "eyepatch"
 	item_state = "eyepatch"
 	body_parts_covered = 0
+	toggleable = 1
+	action_button_name = "Toggle Eyepatch"
 
 /obj/item/clothing/glasses/thermal/plain/jensen
 	name = "Optical Thermal Implants"

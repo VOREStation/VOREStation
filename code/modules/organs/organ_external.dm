@@ -89,6 +89,15 @@
 
 	return ..()
 
+/obj/item/organ/external/emp_act(severity)
+	if(!(status & ORGAN_ROBOT))
+		return
+	switch (severity)
+		if (1)
+			take_damage(8)
+		if (2)
+			take_damage(4)
+
 /obj/item/organ/external/attack_self(var/mob/user)
 	if(!contents.len)
 		return ..()
@@ -1316,9 +1325,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 /obj/item/organ/external/head/seromi
 	eye_icon = "eyes_seromi"
-
-/obj/item/organ/external/head/vox
-	eye_icon = "vox_eyes_s"
 
 /obj/item/organ/external/head/no_eyes
 	eye_icon = "blank_eyes"

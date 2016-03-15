@@ -20,33 +20,24 @@
 	if(istype(W, /obj/item/weapon/spacecash))
 		if(istype(W, /obj/item/weapon/spacecash/ewallet)) return 0
 
-		var/obj/item/weapon/spacecash/bundle/bundle
-		if(!istype(W, /obj/item/weapon/spacecash/bundle))
-			var/obj/item/weapon/spacecash/cash = W
-			user.drop_from_inventory(cash)
-			bundle = new (src.loc)
-			bundle.worth += cash.worth
-			qdel(cash)
-		else //is bundle
-			bundle = W
-		bundle.worth += src.worth
-		bundle.update_icon()
+		var/obj/item/weapon/spacecash/SC = W
+		SC.worth += src.worth
+		SC.update_icon()
 		if(istype(user, /mob/living/carbon/human))
 			var/mob/living/carbon/human/h_user = user
 			h_user.drop_from_inventory(src)
-			h_user.drop_from_inventory(bundle)
-			h_user.put_in_hands(bundle)
-		user << "<span class='notice'>You add [src.worth] Thalers worth of money to the bundles.<br>It holds [bundle.worth] Thalers now.</span>"
+			h_user.drop_from_inventory(SC)
+			h_user.put_in_hands(SC)
+		user << "<span class='notice'>You combine the Thalers to a bundle of [SC.worth] Thalers.</span>"
 		qdel(src)
 
-/obj/item/weapon/spacecash/bundle
-	name = "pile of thalers"
-	icon_state = ""
-	desc = "They are worth 0 Thalers."
-	worth = 0
-
-/obj/item/weapon/spacecash/bundle/update_icon()
+/obj/item/weapon/spacecash/update_icon()
 	overlays.Cut()
+	name = "[worth] Thaler\s"
+	if(worth in list(1000,500,200,100,50,20,10,1))
+		icon_state = "spacecash[worth]"
+		desc = "It's worth [worth] Thalers."
+		return
 	var/sum = src.worth
 	var/num = 0
 	for(var/i in list(1000,500,200,100,50,20,10,1))
@@ -68,7 +59,7 @@
 		src.overlays += banknote
 	src.desc = "They are worth [worth] Thalers."
 
-/obj/item/weapon/spacecash/bundle/attack_self()
+/obj/item/weapon/spacecash/attack_self()
 	var/amount = input(usr, "How many Thalers do you want to take? (0 to [src.worth])", "Take Money", 20) as num
 	amount = round(Clamp(amount, 0, src.worth))
 	if(amount==0) return 0
@@ -82,10 +73,10 @@
 		var/obj/cash = new cashtype (usr.loc)
 		usr.put_in_hands(cash)
 	else
-		var/obj/item/weapon/spacecash/bundle/bundle = new (usr.loc)
-		bundle.worth = amount
-		bundle.update_icon()
-		usr.put_in_hands(bundle)
+		var/obj/item/weapon/spacecash/SC = new (usr.loc)
+		SC.worth = amount
+		SC.update_icon()
+		usr.put_in_hands(SC)
 	if(!worth)
 		qdel(src)
 
@@ -138,17 +129,11 @@
 	worth = 1000
 
 proc/spawn_money(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
-	if(sum in list(1000,500,200,100,50,20,10,1))
-		var/cash_type = text2path("/obj/item/weapon/spacecash/c[sum]")
-		var/obj/cash = new cash_type (usr.loc)
-		if(ishuman(human_user) && !human_user.get_active_hand())
-			human_user.put_in_hands(cash)
-	else
-		var/obj/item/weapon/spacecash/bundle/bundle = new (spawnloc)
-		bundle.worth = sum
-		bundle.update_icon()
-		if (ishuman(human_user) && !human_user.get_active_hand())
-			human_user.put_in_hands(bundle)
+	var/obj/item/weapon/spacecash/SC = new (spawnloc)
+	SC.worth = sum
+	SC.update_icon()
+	if (ishuman(human_user) && !human_user.get_active_hand())
+		human_user.put_in_hands(SC)
 	return
 
 /obj/item/weapon/spacecash/ewallet
@@ -156,6 +141,9 @@ proc/spawn_money(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
 	icon_state = "efundcard"
 	desc = "A card that holds an amount of money."
 	var/owner_name = "" //So the ATM can set it so the EFTPOS can put a valid name on transactions.
+	attack_self() return  //Don't act
+	attackby()    return  //like actual
+	update_icon() return  //space cash
 
 /obj/item/weapon/spacecash/ewallet/examine(mob/user)
 	..(user)

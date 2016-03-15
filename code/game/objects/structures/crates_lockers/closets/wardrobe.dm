@@ -202,8 +202,8 @@
 
 /obj/structure/closet/wardrobe/yellow
 	name = "yellow wardrobe"
-	icon_state = "wardrobe-y"
-	icon_closed = "wardrobe-y"
+	icon_state = "yellow"
+	icon_closed = "yellow"
 
 /obj/structure/closet/wardrobe/yellow/New()
 	..()
@@ -342,26 +342,11 @@
 	new /obj/item/clothing/shoes/slippers(src)
 	new /obj/item/clothing/shoes/slippers(src)
 	new /obj/item/clothing/suit/storage/hooded/wintercoat/science(src)
+	new /obj/item/weapon/storage/backpack/toxins(src)
+	new /obj/item/weapon/storage/backpack/toxins(src)
+	new /obj/item/weapon/storage/backpack/satchel_tox(src)
+	new /obj/item/weapon/storage/backpack/satchel_tox(src)
 	return
-
-/obj/structure/closet/wardrobe/toxins_white/New()
-	..()
-	new /obj/item/clothing/under/rank/scientist(src)
-	new /obj/item/clothing/under/rank/scientist(src)
-	new /obj/item/clothing/under/rank/scientist(src)
-	new /obj/item/clothing/under/rank/scientist/skirt(src)
-	new /obj/item/clothing/under/rank/scientist/skirt(src)
-	new /obj/item/clothing/suit/storage/toggle/labcoat(src)
-	new /obj/item/clothing/suit/storage/toggle/labcoat(src)
-	new /obj/item/clothing/suit/storage/toggle/labcoat(src)
-	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/clothing/shoes/slippers(src)
-	new /obj/item/clothing/shoes/slippers(src)
-	new /obj/item/clothing/shoes/slippers(src)
-	return
-
 
 /obj/structure/closet/wardrobe/robotics_black
 	name = "robotics wardrobe"
@@ -378,6 +363,10 @@
 	new /obj/item/clothing/shoes/black(src)
 	new /obj/item/clothing/gloves/black(src)
 	new /obj/item/clothing/gloves/black(src)
+	new /obj/item/weapon/storage/backpack/toxins(src)
+	new /obj/item/weapon/storage/backpack/toxins(src)
+	new /obj/item/weapon/storage/backpack/satchel_tox(src)
+	new /obj/item/weapon/storage/backpack/satchel_tox(src)
 	return
 
 
@@ -396,6 +385,10 @@
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/suit/storage/toggle/labcoat/chemist(src)
 	new /obj/item/clothing/suit/storage/toggle/labcoat/chemist(src)
+	new /obj/item/weapon/storage/backpack/chemistry(src)
+	new /obj/item/weapon/storage/backpack/chemistry(src)
+	new /obj/item/weapon/storage/backpack/satchel_chem(src)
+	new /obj/item/weapon/storage/backpack/satchel_chem(src)
 	return
 
 
@@ -414,6 +407,10 @@
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/suit/storage/toggle/labcoat/genetics(src)
 	new /obj/item/clothing/suit/storage/toggle/labcoat/genetics(src)
+	new /obj/item/weapon/storage/backpack/genetics(src)
+	new /obj/item/weapon/storage/backpack/genetics(src)
+	new /obj/item/weapon/storage/backpack/satchel_gen(src)
+	new /obj/item/weapon/storage/backpack/satchel_gen(src)
 	return
 
 
@@ -434,6 +431,10 @@
 	new /obj/item/clothing/suit/storage/toggle/labcoat/virologist(src)
 	new /obj/item/clothing/mask/surgical(src)
 	new /obj/item/clothing/mask/surgical(src)
+	new /obj/item/weapon/storage/backpack/virology(src)
+	new /obj/item/weapon/storage/backpack/virology(src)
+	new /obj/item/weapon/storage/backpack/satchel_vir(src)
+	new /obj/item/weapon/storage/backpack/satchel_vir(src)
 	return
 
 
@@ -533,6 +534,7 @@
 	new /obj/item/clothing/suit/armor/tactical(src)
 	new /obj/item/clothing/head/helmet/tactical(src)
 	new /obj/item/clothing/mask/balaclava/tactical(src)
+	new /obj/item/clothing/mask/balaclava(src)
 	new /obj/item/clothing/glasses/sunglasses/sechud/tactical(src)
 	if(prob(25))
 		new /obj/item/weapon/storage/belt/security/tactical/bandolier(src)
@@ -556,10 +558,12 @@
 	new /obj/item/clothing/under/rank/centcom(src)
 	new /obj/item/clothing/under/ert(src)
 	new /obj/item/clothing/under/syndicate/combat(src)
-	new /obj/item/device/radio/headset/ert(src)
+	new /obj/item/device/radio/headset/ert/alt(src)
 	new /obj/item/clothing/glasses/sunglasses(src)
 	new /obj/item/clothing/shoes/swat(src)
 	new /obj/item/clothing/gloves/swat(src)
+	new /obj/item/clothing/mask/balaclava/tactical(src)
+	new /obj/item/clothing/mask/balaclava(src)
 	new /obj/item/clothing/mask/bandana/skull(src)
 	new /obj/item/clothing/mask/bandana/skull(src)
 	return
@@ -583,3 +587,5 @@
 	new /obj/item/clothing/under/suit_jacket/really_black(src)
 	new /obj/item/clothing/under/suit_jacket/red(src)
 	new /obj/item/clothing/under/scratch(src)
+	new /obj/item/weapon/storage/backpack/satchel(src)
+	new /obj/item/weapon/storage/backpack/satchel(src)

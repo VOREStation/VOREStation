@@ -146,7 +146,7 @@
 
 //Lawyer
 /obj/item/clothing/suit/storage/toggle/lawyer/bluejacket
-	name = "Blue Suit Jacket"
+	name = "blue suit jacket"
 	desc = "A snappy dress jacket."
 	icon_state = "suitjacket_blue_open"
 	item_state = "suitjacket_blue_open"
@@ -155,17 +155,19 @@
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|ARMS
 
-/obj/item/clothing/suit/storage/lawyer/purpjacket
-	name = "Purple Suit Jacket"
+/obj/item/clothing/suit/storage/toggle/lawyer/purpjacket
+	name = "purple suit jacket"
 	desc = "A snappy dress jacket."
-	icon_state = "suitjacket_purp"
-	item_state = "suitjacket_purp"
+	icon_state = "suitjacket_purp_open"
+	item_state = "suitjacket_purp_open"
+	icon_open = "suitjacket_purp_open"
+	icon_closed = "suitjacket_purp"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|ARMS
 
 //Internal Affairs
 /obj/item/clothing/suit/storage/toggle/internalaffairs
-	name = "Internal Affairs Jacket"
+	name = "black suit jacket"
 	desc = "A smooth black jacket."
 	icon_state = "ia_jacket_open"
 	item_state = "ia_jacket"
