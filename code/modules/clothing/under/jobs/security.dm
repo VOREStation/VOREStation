@@ -24,8 +24,6 @@
 	icon_state = "wardenf"
 	item_state = "r_suit"
 	worn_state = "wardenf"
-	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
-	siemens_coefficient = 0.9
 
 /obj/item/clothing/head/helmet/warden
 	name = "warden's hat"
@@ -49,8 +47,6 @@
 	icon_state = "secredf"
 	item_state = "r_suit"
 	worn_state = "secredf"
-	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
-	siemens_coefficient = 0.9
 
 /obj/item/clothing/under/rank/dispatch
 	name = "dispatcher's uniform"
@@ -184,8 +180,6 @@
 	icon_state = "hosredf"
 	item_state = "r_suit"
 	worn_state = "hosredf"
-	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
-	siemens_coefficient = 0.8
 
 /obj/item/clothing/under/rank/head_of_security/corp
 	icon_state = "hos_corporate"
