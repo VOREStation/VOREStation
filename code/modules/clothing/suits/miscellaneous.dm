@@ -343,6 +343,12 @@
 	icon_state = "blueponcho"
 	item_state = "blueponcho"
 
+/obj/item/clothing/suit/poncho/security
+	name = "security poncho"
+	desc = "A simple, comfortable cloak without sleeves. This one is black and red, standard NanoTrasen Security colors."
+	icon_state = "secponcho"
+	item_state = "secponcho"
+
 /obj/item/clothing/suit/jacket/puffer
 	name = "puffer jacket"
 	desc = "A thick jacket with a rubbery, water-resistant shell."
