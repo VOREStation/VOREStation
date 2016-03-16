@@ -1,0 +1,7 @@
+author: Datraen
+
+delete-after: True
+
+changes: 
+  - bugfix: "Stops traitorborgs from being able to hack other borgs."
+  - bugfix: "Stops traitorAIs from being able to hack unlinked borgs."
