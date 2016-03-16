@@ -5,6 +5,7 @@
 	resolve whatever caused them to die originally."
 	cost = 250
 	obj_path = /obj/item/weapon/spell/resurrect
+	ability_icon_state = "tech_resurrect"
 
 /obj/item/weapon/spell/resurrect
 	name = "resurrect"
@@ -47,7 +48,7 @@
 							(Verbs -> Ghost -> Re-enter corpse)</font></font>"
 							break
 
-				sleep(100)
+				sleep(10 SECONDS)
 				if(H.client)
 					L.stat = CONSCIOUS //Note that if whatever killed them in the first place wasn't fixed, they're likely to die again.
 					dead_mob_list -= H

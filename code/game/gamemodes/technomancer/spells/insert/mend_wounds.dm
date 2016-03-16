@@ -3,6 +3,7 @@
 	desc = "Heals minor wounds, such as cuts, bruises, and other non-lifethreatening injuries."
 	cost = 120
 	obj_path = /obj/item/weapon/spell/insert/mend_wounds
+	ability_icon_state = "tech_mendwounds"
 
 /obj/item/weapon/spell/insert/mend_wounds
 	name = "mend wounds"

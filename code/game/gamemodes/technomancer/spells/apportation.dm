@@ -52,7 +52,7 @@
 			user.drop_item(src)
 			src.loc = null
 
-			spawn(10)
+			spawn(1 SECOND)
 				if(!user.Adjacent(L))
 					user << "<span class='warning'>\The [L] is out of your reach.</span>"
 					qdel(src)

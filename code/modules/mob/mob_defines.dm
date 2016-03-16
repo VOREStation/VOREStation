@@ -37,6 +37,7 @@
 
 	//spells hud icons - this interacts with add_spell and remove_spell
 	var/list/obj/screen/movable/spell_master/spell_masters = null
+	var/obj/screen/movable/ability_master/ability_master = null
 
 	/*A bunch of this stuff really needs to go under their own defines instead of being globally attached to mob.
 	A variable should only be globally attached to turfs/objects/whatever, when it is in fact needed as such.

@@ -7,9 +7,11 @@ var/list/all_technomancer_presets = typesof(/datum/technomancer/presets) - /datu
 /datum/technomancer
 	var/name = "technomancer thing"
 	var/desc = "If you can see this, something broke."
+	var/enhancement_desc = "No effect."
 	var/cost = 100
 	var/hidden = 0
 	var/obj_path = null
+	var/ability_icon_state = null
 
 /obj/item/weapon/technomancer_catalog
 	name = "catalog"
@@ -27,6 +29,7 @@ var/list/all_technomancer_presets = typesof(/datum/technomancer/presets) - /datu
 	var/list/assistance_instances = list()
 	var/list/preset_instances = list()
 	var/tab = 0
+	var/show_scepter_text = 0
 
 /obj/item/weapon/technomancer_catalog/apprentice
 	name = "apprentice's catelog"
@@ -38,14 +41,24 @@ var/list/all_technomancer_presets = typesof(/datum/technomancer/presets) - /datu
 	budget = 2000
 	max_budget = 2000
 
+
+// Proc: bind_to_owner()
+// Parameters: 1 (new_owner - mob that the book is trying to bind to)
+// Description: Links the catelog to hopefully the technomancer, so that only they can access it.
 /obj/item/weapon/technomancer_catalog/proc/bind_to_owner(var/mob/living/carbon/human/new_owner)
 	if(!owner && technomancers.is_antagonist(new_owner.mind))
 		owner = new_owner
 
+// Proc: New()
+// Parameters: 0
+// Description: Sets up the catelog, as shown below.
 /obj/item/weapon/technomancer_catalog/New()
 	..()
 	set_up()
 
+// Proc: set_up()
+// Parameters: 0
+// Description: Instantiates all the catelog datums for everything that can be bought.
 /obj/item/weapon/technomancer_catalog/proc/set_up()
 	if(!spell_instances.len)
 		for(var/S in all_technomancer_spells)
@@ -63,6 +76,9 @@ var/list/all_technomancer_presets = typesof(/datum/technomancer/presets) - /datu
 		for(var/P in all_technomancer_presets)
 			preset_instances += new P()
 
+// Proc: attack_self()
+// Parameters: 1 (user - the mob clicking on the catelog)
+// Description: Shows an HTML window, to buy equipment and spells, if the user is the legitimate owner.  Otherwise it cannot be used.
 /obj/item/weapon/technomancer_catalog/attack_self(mob/user)
 	if(!user)
 		return 0
@@ -88,6 +104,8 @@ var/list/all_technomancer_presets = typesof(/datum/technomancer/presets) - /datu
 					continue
 				dat += "<b>[spell.name]</b><br>"
 				dat += "<i>[spell.desc]</i><br>"
+				if(show_scepter_text)
+					dat += "<span class='info'><i>[spell.enhancement_desc]</i></span>"
 				if(spell.cost <= budget)
 					dat += "<a href='byond://?src=\ref[src];spell_choice=[spell.name]'>Purchase</a> ([spell.cost])<br><br>"
 				else
@@ -107,7 +125,7 @@ var/list/all_technomancer_presets = typesof(/datum/technomancer/presets) - /datu
 				dat += "<b>[E.name]</b><br>"
 				dat += "<i>[E.desc]</i><br>"
 				if(E.cost <= budget)
-					dat += "<a href='byond://?src=\ref[src];spell_choice=[E.name]'>Purchase</a> ([E.cost])<br><br>"
+					dat += "<a href='byond://?src=\ref[src];item_choice=[E.name]'>Purchase</a> ([E.cost])<br><br>"
 				else
 					dat += "<font color='red'><b>Cannot afford!</b></font><br><br>"
 			user << browse(dat, "window=radio")
@@ -125,7 +143,7 @@ var/list/all_technomancer_presets = typesof(/datum/technomancer/presets) - /datu
 				dat += "<b>[C.name]</b><br>"
 				dat += "<i>[C.desc]</i><br>"
 				if(C.cost <= budget)
-					dat += "<a href='byond://?src=\ref[src];spell_choice=[C.name]'>Purchase</a> ([C.cost])<br><br>"
+					dat += "<a href='byond://?src=\ref[src];item_choice=[C.name]'>Purchase</a> ([C.cost])<br><br>"
 				else
 					dat += "<font color='red'><b>Cannot afford!</b></font><br><br>"
 			user << browse(dat, "window=radio")
@@ -143,7 +161,7 @@ var/list/all_technomancer_presets = typesof(/datum/technomancer/presets) - /datu
 				dat += "<b>[A.name]</b><br>"
 				dat += "<i>[A.desc]</i><br>"
 				if(A.cost <= budget)
-					dat += "<a href='byond://?src=\ref[src];spell_choice=[A.name]'>Purchase</a> ([A.cost])<br><br>"
+					dat += "<a href='byond://?src=\ref[src];item_choice=[A.name]'>Purchase</a> ([A.cost])<br><br>"
 				else
 					dat += "<font color='red'><b>Cannot afford!</b></font><br><br>"
 			user << browse(dat, "window=radio")
@@ -167,6 +185,9 @@ var/list/all_technomancer_presets = typesof(/datum/technomancer/presets) - /datu
 			user << browse(dat, "window=radio")
 			onclose(user, "radio")
 
+// Proc: Topic()
+// Parameters: 2 (href - don't know, href_list - the choice that the person using the interface above clicked on.)
+// Description: Acts upon clicks on links for the catelog, if they are the rightful owner.
 /obj/item/weapon/technomancer_catalog/Topic(href, href_list)
 	..()
 	var/mob/living/carbon/human/H = usr
@@ -201,13 +222,32 @@ var/list/all_technomancer_presets = typesof(/datum/technomancer/presets) - /datu
 					if(!core.has_spell(new_spell))
 						budget -= new_spell.cost
 						H << "<span class='notice'>You have just bought [new_spell.name].</span>"
-						core.add_spell(new_spell.obj_path, new_spell.name)
+						core.add_spell(new_spell.obj_path, new_spell.name, new_spell.ability_icon_state)
 					else //We already own it.
 						H << "<span class='danger'>You already have [new_spell.name]!</span>"
 						return
 				else //Can't afford.
 					H << "<span class='danger'>You can't afford that!</span>"
 					return
+
+		// This needs less copypasta.
+		if(href_list["item_choice"])
+			var/datum/technomancer/desired_object = null
+			for(var/datum/technomancer/O in list(equipment_instances, consumable_instances, assistance_instances))
+				if(O.name == href_list["item_choice"])
+					desired_object = O
+					break
+
+			if(desired_object)
+				if(desired_object.cost <= budget)
+					budget -= desired_object.cost
+					H << "<span class='notice'>You have just bought \a [desired_object.name].</span>"
+					new desired_object.obj_path(get_turf(H))
+
+				else //Can't afford.
+					H << "<span class='danger'>You can't afford that!</span>"
+					return
+
 
 		if(href_list["refund_functions"])
 			if(H.z != 2)
@@ -216,10 +256,11 @@ var/list/all_technomancer_presets = typesof(/datum/technomancer/presets) - /datu
 			var/obj/item/weapon/technomancer_core/core = null
 			if(istype(H.back, /obj/item/weapon/technomancer_core))
 				core = H.back
-			for(var/obj/spellbutton/spell in core.spells)
-				for(var/datum/technomancer/spell/spell_datum in spell_instances)
-					if(spell_datum.obj_path == spell.spellpath && !spell.was_bought_by_preset)
-						budget += spell_datum.cost
-						core.remove_spell(spell)
-						break
+			if(core)
+				for(var/obj/spellbutton/spell in core.spells)
+					for(var/datum/technomancer/spell/spell_datum in spell_instances)
+						if(spell_datum.obj_path == spell.spellpath && !spell.was_bought_by_preset)
+							budget += spell_datum.cost
+							core.remove_spell(spell)
+							break
 		attack_self(H)

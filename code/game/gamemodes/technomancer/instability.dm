@@ -3,15 +3,24 @@
 
 /mob/living
 	var/instability = 0
-	var/last_instability_event = null
+	var/last_instability_event = null // most recent world.time that something bad happened due to instability.
 
+// Proc: adjust_instability()
+// Parameters: 0
+// Description: Does nothing, because inheritence.
 /mob/living/proc/adjust_instability()
 	return
 
+// Proc: adjust_instability()
+// Parameters: 1 (amount - how much instability to give)
+// Description: Adds or subtracks instability to the mob, then updates the hud.
 /mob/living/carbon/human/adjust_instability(var/amount)
 	instability = min(max(instability + amount, 0), 200)
 	instability_update_hud()
 
+// Proc: instability_update_hud()
+// Parameters: 0
+// Description: Sets the HUD icon to the correct state.
 /mob/living/carbon/human/proc/instability_update_hud()
 	if(client && hud_used)
 		switch(instability)
@@ -26,10 +35,17 @@
 			if(101 to 200)
 				wiz_instability_display.icon_state = "instability3"
 
+// Proc: Life()
+// Parameters: 0
+// Description: Makes instability tick along with Life().
 /mob/living/carbon/human/Life()
 	. = ..()
 	handle_instability()
 
+// Proc: handle_instability()
+// Parameters: 0
+// Description: Makes instability decay.  instability_effects() handles the bad effects for having instability.  It will also hold back
+// from causing bad effects more than one every ten seconds, to prevent sudden death from angry RNG.
 /mob/living/carbon/human/proc/handle_instability()
 	instability = Clamp(instability, 0, 200)
 	instability_update_hud()
@@ -61,6 +77,10 @@
 [16:19:05] <PsiOmegaDelta> Things briefly duplicating
 [16:20:56] <PsiOmegaDelta> Glass cracking, eventually breaking
 */
+// Proc: instability_effects()
+// Parameters: 0
+// Description: Does a variety of bad effects to the entity holding onto the instability, with more severe effects occuring if they have
+// a lot of instability.
 /mob/living/carbon/human/proc/instability_effects()
 	if(instability)
 		var/rng = 0
@@ -96,9 +116,10 @@
 					if(0)
 						apply_effect(instability * 0.5, IRRADIATE)
 					if(1)
-						visible_message("<span class='warning'>\The [src] suddenly collapses!</span>",
-						"<span class='danger'>You suddenly feel very weak, and you fall down!</span>")
-						Weaken(instability * 0.1)
+						return
+//						visible_message("<span class='warning'>\The [src] suddenly collapses!</span>",
+//						"<span class='danger'>You suddenly feel very weak, and you fall down!</span>")
+//						Weaken(instability * 0.1)
 					if(2)
 						if(can_feel_pain())
 							apply_effect(instability * 0.5, AGONY)
@@ -126,9 +147,10 @@
 					if(0)
 						apply_effect(instability * 0.7, IRRADIATE)
 					if(1)
-						visible_message("<span class='warning'>\The [src] suddenly collapses!</span>",
-						"<span class='danger'>You suddenly feel very light-headed, and faint!</span>")
-						Paralyse(instability * 0.1)
+//						visible_message("<span class='warning'>\The [src] suddenly collapses!</span>",
+//						"<span class='danger'>You suddenly feel very light-headed, and faint!</span>")
+//						Paralyse(instability * 0.1)
+						return
 					if(2)
 						if(can_feel_pain())
 							apply_effect(instability * 0.7, AGONY)

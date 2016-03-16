@@ -156,7 +156,7 @@
 // It will keep doing this until it checks every content possible. This will fix any problems with mobs, that are inside objects,
 // being unable to hear people due to being in a box within a bag.
 
-/proc/recursive_content_check(var/atom/O,  var/list/L = list(), var/recursion_limit = 3, var/client_check = 1, var/sight_check = 1, var/include_mobs = 1, var/include_objects = 1)
+/proc/recursive_content_check(var/atom/O,  var/list/L = list(), var/recursion_limit = 3, var/client_check = 1, var/sight_check = 1, var/include_mobs = 1, var/include_objects = 1, var/ignore_show_messages = 0)
 
 	if(!recursion_limit)
 		return L
@@ -176,7 +176,7 @@
 
 		else if(istype(I,/obj/))
 			var/obj/check_obj = I
-			if(check_obj.show_messages)
+			if(ignore_show_messages || check_obj.show_messages)
 				if(!sight_check || isInSight(I, O))
 					L |= recursive_content_check(I, L, recursion_limit - 1, client_check, sight_check, include_mobs, include_objects)
 					if(include_objects)

@@ -3,6 +3,7 @@
 	desc = "Creates a large sum of energy, at the cost of a very large amount of instability afflicting you."
 	cost = 120
 	obj_path = /obj/item/weapon/spell/instability_tap
+	ability_icon_state = "tech_instabilitytap"
 
 /obj/item/weapon/spell/instability_tap
 	name = "instability tap"

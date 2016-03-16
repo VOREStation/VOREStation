@@ -3,6 +3,7 @@
 	desc = "Using a miniturized flamethrower in your gloves, you can emit a flame strong enough to melt both your enemies and walls."
 	cost = 100
 	obj_path = /obj/item/weapon/spell/flame_tongue
+	ability_icon_state = "tech_flametongue"
 
 /obj/item/weapon/spell/flame_tongue
 	name = "flame tongue"

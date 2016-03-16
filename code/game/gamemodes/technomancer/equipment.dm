@@ -1,4 +1,4 @@
-/datum/technomancer.equipment/classic_core
+/datum/technomancer/equipment/classic_core
 	name = "Classic Core"
 	desc = "A core cleverly disguised as an ordinary cloth cape, perfect for those wanting to make others think they are a \
 	real magician.  This version has the same performance as the default core."
@@ -63,3 +63,40 @@
 	desc = "A fancy monocle with a thermal optics lens installed.  Allows you to see people across walls."
 	cost = 150
 	obj_path = /obj/item/clothing/glasses/thermal/plain/monocle
+
+/datum/technomancer/equipment/med_hud
+	name = "Medical HUD"
+	desc = "A commonly available HUD for medical professionals, which displays how healthy an individual is.  \
+	Recommended for support-based apprentices!"
+	cost = 30
+	obj_path = /obj/item/clothing/glasses/thermal/plain/monocle
+
+
+/datum/technomancer/equipment/scepter
+	name = "Scepter of Empowerment"
+	desc = "A gem sometimes found in the depths of asteroids makes up the basis for this device.  Energy is channeled into it from \
+	the Core and the user, causing many functions to be enhanced in various ways, so long as it is held in the off-hand.  \
+	Be careful not to lose this!"
+	cost = 300
+	obj_path = /obj/item/weapon/scepter
+
+/obj/item/weapon/scepter
+	name = "scepter of empowerment"
+	desc = "It's a purple gem, attached to a rod and a handle, along with small wires.  It looks like it would make a good club."
+	icon = 'icons/obj/technomancer.dmi'
+	icon_state = "scepter"
+	force = 15
+
+/obj/item/weapon/scepter/attack_self(mob/living/carbon/human/user)
+	var/obj/item/item_to_test = user.get_other_hand(src)
+	if(istype(item_to_test, /obj/item/weapon/spell))
+		var/obj/item/weapon/spell/S = item_to_test
+		S.on_scepter_use_cast(user)
+
+/obj/item/weapon/scepter/afterattack(atom/target, mob/living/carbon/human/user, proximity_flag, click_parameters)
+	if(proximity_flag)
+		return ..()
+	var/obj/item/item_to_test = user.get_other_hand(src)
+	if(istype(item_to_test, /obj/item/weapon/spell))
+		var/obj/item/weapon/spell/S = item_to_test
+		S.on_scepter_ranged_cast(target, user)

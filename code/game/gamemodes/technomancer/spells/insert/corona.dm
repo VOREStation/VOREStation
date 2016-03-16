@@ -4,6 +4,7 @@
 	bright glow also makes it very difficult to be stealthy.  The effect lasts for one minute."
 	cost = 100
 	obj_path = /obj/item/weapon/spell/insert/corona
+	ability_icon_state = "tech_corona"
 
 /obj/item/weapon/spell/insert/corona
 	name = "corona"
@@ -23,6 +24,12 @@
 			L.evasion -= 2
 			L.visible_message("<span class='warning'>You start to glow very brightly!</span>")
 			spawn(1 MINUTE)
-				L.evasion += 2
-				L << "<span class='notice'>Your glow has ended.</span>"
-				qdel(src)
+				if(src)
+					on_expire()
+
+/obj/item/weapon/inserted_spell/corona/on_expire()
+	if(isliving(host))
+		var/mob/living/L = host
+		L.evasion += 2
+		L << "<span class='notice'>Your glow has ended.</span>"
+		..()

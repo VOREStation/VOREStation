@@ -3,6 +3,7 @@
 	desc = "Heals minor burns, such as from exposure to flame, electric shock, or lasers."
 	cost = 120
 	obj_path = /obj/item/weapon/spell/insert/mend_burns
+	ability_icon_state = "tech_mendburns"
 
 /obj/item/weapon/spell/insert/mend_burns
 	name = "mend burns"

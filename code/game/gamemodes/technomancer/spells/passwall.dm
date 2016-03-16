@@ -4,6 +4,7 @@
 	somewhere dangerous."
 	cost = 100
 	obj_path = /obj/item/weapon/spell/passwall
+	ability_icon_state = "tech_passwall"
 
 /obj/item/weapon/spell/passwall
 	name = "passwall"
@@ -15,6 +16,9 @@
 
 /obj/item/weapon/spell/passwall/on_melee_cast(atom/hit_atom, mob/user)
 	if(busy)	//Prevent someone from trying to get two uses of the spell from one instance.
+		return 0
+	if(!allowed_to_teleport())
+		user << "<span class='warning'>You can't teleport here!</span>"
 		return 0
 	if(isturf(hit_atom))
 		var/turf/T = hit_atom 				//Turf we touched.

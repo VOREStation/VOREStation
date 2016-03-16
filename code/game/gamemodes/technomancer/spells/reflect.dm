@@ -3,13 +3,15 @@
 	desc = "Emits a protective shield fron your hand in front of you, which will reflect one attack back at the attacker."
 	cost = 120
 	obj_path = /obj/item/weapon/spell/reflect
+	ability_icon_state = "tech_reflect"
 
 /obj/item/weapon/spell/reflect
 	name = "\proper reflect shield"
-	icon_state = "shield"
+	icon_state = "reflect"
 	desc = "A very protective combat shield that'll reflect the next attack at the unfortunate person who tried to shoot you."
 	aspect = ASPECT_FORCE
 	toggled = 1
+	var/reflecting = 0
 	var/damage_to_energy_multiplier = 60.0 //Determines how much energy to charge for blocking, e.g. 20 damage attack = 1200 energy cost
 	var/datum/effect/effect/system/spark_spread/spark_system = null
 
@@ -56,14 +58,34 @@
 
 				spark_system.start()
 				playsound(user.loc, 'sound/weapons/blade1.ogg', 50, 1)
+				// now send a log so that admins don't think they're shooting themselves on purpose.
+				log_and_message_admins("[user] reflected [attacker]'s attack back at them.")
 
-				spawn(1 SECOND) //To ensure that most or all of a burst fire cycle is reflected.
-					owner << "<span class='danger'>Your shield fades due being used up!</span>"
-					qdel(src)
+				if(!reflecting)
+					reflecting = 1
+					spawn(1 SECOND) //To ensure that most or all of a burst fire cycle is reflected.
+						owner << "<span class='danger'>Your shield fades due being used up!</span>"
+						qdel(src)
 
 				return PROJECTILE_CONTINUE // complete projectile permutation
 
+		else if(istype(damage_source, /obj/item/weapon))
+			var/obj/item/weapon/W = damage_source
+			if(attacker)
+				W.attack(attacker)
+				attacker << "<span class='danger'>Your [damage_source.name] goes through \the [src] in one location, comes out \
+				on the same side, and hits you!</span>"
 
+				spark_system.start()
+				playsound(user.loc, 'sound/weapons/blade1.ogg', 50, 1)
+
+				log_and_message_admins("[user] reflected [attacker]'s attack back at them.")
+
+				if(!reflecting)
+					reflecting = 1
+					spawn(1 SECOND) //To ensure that most or all of a burst fire cycle is reflected.
+						owner << "<span class='danger'>Your shield fades due being used up!</span>"
+						qdel(src)
 		return 1
 	return 0
 

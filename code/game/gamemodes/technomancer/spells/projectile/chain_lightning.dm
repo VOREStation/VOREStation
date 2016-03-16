@@ -9,7 +9,7 @@
 /obj/item/weapon/spell/projectile/chain_lightning
 	name = "chain lightning"
 	icon_state = "chain_lightning"
-	desc = "Fry the whole security team!  Just don't kill yourself in the process.."
+	desc = "Fun for the whole security team!  Just don't kill yourself in the process.."
 	cast_methods = CAST_RANGED
 	aspect = ASPECT_SHOCK
 	spell_projectile = /obj/item/projectile/beam/chain_lightning
@@ -29,7 +29,7 @@
 
 	var/bounces = 3				//How many times it 'chains'.  Note that the first hit is not counted as it counts /bounces/.
 	var/list/hit_mobs = list() 	//Mobs which were already hit.
-	var/power = 30				//How hard it will hit for with electrocute_act(), decreases with each bounce.
+	var/power = 25				//How hard it will hit for with electrocute_act(), decreases with each bounce.
 
 /obj/item/projectile/beam/chain_lightning/attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier=0)
 	//First we shock the guy we just hit.

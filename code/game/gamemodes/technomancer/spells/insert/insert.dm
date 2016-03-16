@@ -32,8 +32,11 @@
 /obj/item/weapon/inserted_spell/proc/on_insert()
 	return
 
+/obj/item/weapon/inserted_spell/proc/on_expire(var/dispelled = 0)
+	qdel(src)
+	return
+
 /obj/item/weapon/spell/insert/proc/insert(var/mob/living/L, mob/user)
-	world << "insert() called"
 	if(inserting)
 		if(!allow_stacking)
 			for(var/obj/item/weapon/inserted_spell/IS in L.contents)

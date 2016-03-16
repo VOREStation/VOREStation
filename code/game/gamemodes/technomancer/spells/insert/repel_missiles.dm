@@ -4,6 +4,7 @@
 	to hit you.  The field lasts for two minutes and can be granted to yourself or an ally."
 	cost = 60
 	obj_path = /obj/item/weapon/spell/insert/repel_missiles
+	ability_icon_state = "tech_repelmissiles"
 
 /obj/item/weapon/spell/insert/repel_missiles
 	name = "repel missiles"
@@ -21,6 +22,12 @@
 			L.evasion += 2
 			L << "<span class='notice'>You have a repulsion field around you, which will attempt to deflect projectiles.</span>"
 			spawn(2 MINUTES)
-				L.evasion -= 2
-				L << "<span class='warning'>Your repulsion field has expired.</span>"
-				qdel(src)
+				if(src)
+					on_expire()
+
+/obj/item/weapon/inserted_spell/repel_missiles/on_expire()
+	if(isliving(host))
+		var/mob/living/L = host
+		L.evasion -= 2
+		L << "<span class='warning'>Your repulsion field has expired.</span>"
+		..()

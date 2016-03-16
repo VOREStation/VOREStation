@@ -4,6 +4,7 @@
 	you, so long as you can power it."
 	cost = 120
 	obj_path = /obj/item/weapon/spell/shield
+	ability_icon_state = "tech_shield"
 
 /obj/item/weapon/spell/shield
 	name = "\proper energy shield"

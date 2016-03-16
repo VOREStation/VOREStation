@@ -3,6 +3,7 @@
 	desc = "Clenses the body of harmful impurities, such as toxins, radiation, viruses, and such."
 	cost = 100
 	obj_path = /obj/item/weapon/spell/insert/purify
+	ability_icon_state = "tech_purify"
 
 /obj/item/weapon/spell/insert/purify
 	name = "purify"

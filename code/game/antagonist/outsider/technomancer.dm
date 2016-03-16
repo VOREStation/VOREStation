@@ -36,14 +36,15 @@ var/datum/antagonist/technomancer/technomancers
 	if(!..())
 		return 0
 
-	technomancer_mob.equip_to_slot_or_del(new /obj/item/clothing/under/color/black(technomancer_mob), slot_w_uniform)
-	create_id("Technomage", technomancer_mob)
+	technomancer_mob.equip_to_slot_or_del(new /obj/item/clothing/under/technomancer/master(technomancer_mob), slot_w_uniform)
+	create_id("Technomagus", technomancer_mob)
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/weapon/disposable_teleporter/free(technomancer_mob), slot_r_store)
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/weapon/technomancer_catalog(technomancer_mob), slot_l_store)
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/device/radio/headset(technomancer_mob), slot_l_ear)
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/weapon/technomancer_core(technomancer_mob), slot_back)
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/device/flashlight(technomancer_mob), slot_belt)
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(technomancer_mob), slot_shoes)
+	technomancer_mob.equip_to_slot_or_del(new /obj/item/clothing/head/technomancer/master(technomancer_mob), slot_head)
 	technomancer_mob.update_icons()
 	return 1
 

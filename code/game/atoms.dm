@@ -230,6 +230,11 @@ its easier to just keep the beam vertical.
 /atom/proc/melt()
 	return
 
+// Previously this was defined both on /obj/ and /turf/ seperately.  And that's bad.
+/atom/proc/update_icon()
+	return
+
+
 /atom/proc/hitby(atom/movable/AM as mob|obj)
 	if (density)
 		AM.throwing = 0
