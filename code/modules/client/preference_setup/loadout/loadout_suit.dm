@@ -165,6 +165,10 @@
 	display_name = "poncho, red"
 	path = /obj/item/clothing/suit/poncho/red
 
+/datum/gear/suit/poncho/security
+	display_name = "poncho, security"
+	path = /obj/item/clothing/suit/poncho/security
+
 /datum/gear/suit/unathi_robe
 	display_name = "roughspun robe"
 	path = /obj/item/clothing/suit/unathi/robe
