@@ -73,18 +73,16 @@
 	else
 		return ..()
 
+
 /obj/item/weapon/storage/wallet/random/New()
 	..()
-	var/item1_type = pick( /obj/item/weapon/spacecash/c10,/obj/item/weapon/spacecash/c100,/obj/item/weapon/spacecash/c1000,/obj/item/weapon/spacecash/c20,/obj/item/weapon/spacecash/c200,/obj/item/weapon/spacecash/c50, /obj/item/weapon/spacecash/c500)
-	var/item2_type
-	if(prob(50))
-		item2_type = pick( /obj/item/weapon/spacecash/c10,/obj/item/weapon/spacecash/c100,/obj/item/weapon/spacecash/c1000,/obj/item/weapon/spacecash/c20,/obj/item/weapon/spacecash/c200,/obj/item/weapon/spacecash/c50, /obj/item/weapon/spacecash/c500)
-	var/item3_type = pick( /obj/item/weapon/coin/silver, /obj/item/weapon/coin/silver, /obj/item/weapon/coin/gold, /obj/item/weapon/coin/iron, /obj/item/weapon/coin/iron, /obj/item/weapon/coin/iron )
-
-	spawn(2)
-		if(item1_type)
-			new item1_type(src)
-		if(item2_type)
-			new item2_type(src)
-		if(item3_type)
-			new item3_type(src)
+	var/amount = rand(50, 100) + rand(50, 100) // Triangular distribution from 100 to 200
+	var/obj/item/weapon/spacecash/SC = null
+	for(var/i in list(100, 50, 20, 10, 5, 1))
+		if(amount < i)
+			continue
+		SC = new(src)
+		while(amount >= i)
+			amount -= i
+			SC.adjust_worth(i, 0)
+		SC.update_icon()
