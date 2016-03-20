@@ -232,11 +232,11 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 
 /mob/living/silicon/ai/proc/setup_icon()
 	var/file = file2text("config/custom_sprites.txt")
-	var/lines = text2list(file, "\n")
+	var/lines = splittext(file, "\n")
 
 	for(var/line in lines)
 	// split & clean up
-		var/list/Entry = text2list(line, ":")
+		var/list/Entry = splittext(line, ":")
 		for(var/i = 1 to Entry.len)
 			Entry[i] = trim(Entry[i])
 

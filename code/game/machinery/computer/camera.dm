@@ -58,7 +58,7 @@
 				var/cam = C.nano_structure()
 				cameras[++cameras.len] = cam
 
-			camera_cache=list2json(cameras)
+			camera_cache=json_encode(cameras)
 
 		if(current)
 			data["current"] = current.nano_structure()
