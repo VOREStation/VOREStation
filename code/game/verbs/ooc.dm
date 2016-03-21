@@ -15,7 +15,7 @@
 	msg = sanitize(msg)
 	if(!msg)	return
 
-	if(!(prefs.toggles & CHAT_OOC))
+	if(!is_preference_enabled(/datum/client_preference/show_ooc))
 		src << "<span class='warning'>You have OOC muted.</span>"
 		return
 
@@ -50,7 +50,7 @@
 			ooc_style = "admin"
 
 	for(var/client/target in clients)
-		if(target.prefs.toggles & CHAT_OOC)
+		if(target.is_preference_enabled(/datum/client_preference/show_ooc))
 			var/display_name = src.key
 			if(holder)
 				if(holder.fakekey)
@@ -83,7 +83,7 @@
 	if(!msg)
 		return
 
-	if(!(prefs.toggles & CHAT_LOOC))
+	if(!is_preference_enabled(/datum/client_preference/show_looc))
 		src << "<span class='danger'>You have LOOC muted.</span>"
 		return
 
@@ -117,7 +117,7 @@
 		display_name = mob.name
 
 	for(var/client/target in clients)
-		if(target.prefs.toggles & CHAT_LOOC)
+		if(target.is_preference_enabled(/datum/client_preference/show_looc))
 			var/prefix = ""
 			var/admin_stuff = ""
 			var/send = 0
