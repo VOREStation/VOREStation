@@ -18,7 +18,7 @@
 					entry += " - <font color='darkgray'><b>Unconscious</b></font>"
 				if(DEAD)
 					if(isobserver(C.mob))
-						var/mob/dead/observer/O = C.mob
+						var/mob/observer/dead/O = C.mob
 						if(O.started_as_observer)
 							entry += " - <font color='gray'>Observing</font>"
 						else
@@ -41,6 +41,13 @@
 
 			if(is_special_character(C.mob))
 				entry += " - <b><font color='red'>Antagonist</font></b>"
+
+			if(C.is_afk())
+				var/seconds = C.last_activity_seconds()
+				entry += " (AFK - "
+				entry += "[round(seconds / 60)] minutes, "
+				entry += "[seconds % 60] seconds)"
+
 			entry += " (<A HREF='?_src_=holder;adminmoreinfo=\ref[C.mob]'>?</A>)"
 			Lines += entry
 	else
@@ -86,7 +93,10 @@
 					msg += " - Playing"
 
 				if(C.is_afk())
-					msg += " (AFK)"
+					var/seconds = C.last_activity_seconds()
+					msg += " (AFK - "
+					msg += "[round(seconds / 60)] minutes, "
+					msg += "[seconds % 60] seconds)"
 				msg += "\n"
 
 				num_admins_online++
@@ -101,7 +111,10 @@
 					modmsg += " - Playing"
 
 				if(C.is_afk())
-					modmsg += " (AFK)"
+					var/seconds = C.last_activity_seconds()
+					modmsg += " (AFK - "
+					modmsg += "[round(seconds / 60)] minutes, "
+					modmsg += "[seconds % 60] seconds)"
 				modmsg += "\n"
 				num_mods_online++
 
@@ -115,7 +128,10 @@
 					mentmsg += " - Playing"
 
 				if(C.is_afk())
-					mentmsg += " (AFK)"
+					var/seconds = C.last_activity_seconds()
+					mentmsg += " (AFK - "
+					mentmsg += "[round(seconds / 60)] minutes, "
+					mentmsg += "[seconds % 60] seconds)"
 				mentmsg += "\n"
 				num_mentors_online++
 

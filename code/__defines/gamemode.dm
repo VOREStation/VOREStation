@@ -63,7 +63,6 @@ var/list/be_special_flags = list(
 
 // Mode/antag template macros.
 #define MODE_BORER "borer"
-#define MODE_XENOMORPH "xeno"
 #define MODE_LOYALIST "loyalist"
 #define MODE_MUTINEER "mutineer"
 #define MODE_COMMANDO "commando"
@@ -82,6 +81,7 @@ var/list/be_special_flags = list(
 #define MODE_LOYALIST "loyalist"
 #define MODE_MALFUNCTION "malf"
 #define MODE_TRAITOR "traitor"
+#define MODE_AUTOTRAITOR "autotraitor"
 
 #define DEFAULT_TELECRYSTAL_AMOUNT 12
 

@@ -21,7 +21,7 @@
 	generate_loot()
 
 /obj/structure/closet/crate/secure/loot/proc/generate_loot()
-	var/loot = rand(1, 100)
+	var/loot = rand(1, 99)
 	switch(loot)
 		if(1 to 5) // Common things go, 5%
 			new/obj/item/weapon/reagent_containers/food/drinks/bottle/rum(src)
@@ -104,7 +104,7 @@
 		if(88)
 			new/obj/item/xenos_claw(src)
 		if(89)
-			new/obj/item/organ/internal/xenos/plasmavessel(src)
+			new/obj/item/clothing/head/bearpelt(src)
 		if(90)
 			new/obj/item/organ/internal/heart(src)
 		if(91)
@@ -142,8 +142,6 @@
 		if(99)
 			new/obj/item/weapon/storage/belt/champion(src)
 			new/obj/item/clothing/mask/luchador(src)
-		if(100)
-			new/obj/item/clothing/head/bearpelt(src)
 
 /obj/structure/closet/crate/secure/loot/togglelock(mob/user as mob)
 	if(!locked)

@@ -245,15 +245,25 @@
 
 /obj/item/weapon/storage/secure/briefcase/money/New()
 	..()
-	new /obj/item/weapon/spacecash/bundle/c1000(src)
-	new /obj/item/weapon/spacecash/bundle/c1000(src)
-	new /obj/item/weapon/spacecash/bundle/c1000(src)
-	new /obj/item/weapon/spacecash/bundle/c1000(src)
-	new /obj/item/weapon/spacecash/bundle/c1000(src)
-	new /obj/item/weapon/spacecash/bundle/c1000(src)
-	new /obj/item/weapon/spacecash/bundle/c1000(src)
-	new /obj/item/weapon/spacecash/bundle/c1000(src)
-	new /obj/item/weapon/spacecash/bundle/c1000(src)
-	new /obj/item/weapon/spacecash/bundle/c1000(src)
+	new /obj/item/weapon/spacecash/c1000(src)
+	new /obj/item/weapon/spacecash/c1000(src)
+	new /obj/item/weapon/spacecash/c1000(src)
+	new /obj/item/weapon/spacecash/c1000(src)
+	new /obj/item/weapon/spacecash/c1000(src)
+	new /obj/item/weapon/spacecash/c1000(src)
+	new /obj/item/weapon/spacecash/c1000(src)
+	new /obj/item/weapon/spacecash/c1000(src)
+	new /obj/item/weapon/spacecash/c1000(src)
+	new /obj/item/weapon/spacecash/c1000(src)
 
+/obj/item/weapon/storage/box/syndie_kit/combat_armor
+	name = "combat armor kit"
+	desc = "Contains a full set of combat armor."
 
+/obj/item/weapon/storage/box/syndie_kit/combat_armor/New()
+	..()
+	new /obj/item/clothing/head/helmet/combat(src)
+	new /obj/item/clothing/suit/armor/combat(src)
+	new /obj/item/clothing/gloves/arm_guard/combat(src)
+	new /obj/item/clothing/shoes/leg_guard/combat(src)
+	return

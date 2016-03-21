@@ -103,10 +103,6 @@
 		name = "Shoulder-length Hair"
 		icon_state = "hair_b"
 
-	longalt
-		name = "Shoulder-length Hair Alt"
-		icon_state = "hair_longfringe"
-
 	/*longish
 		name = "Longer Hair"
 		icon_state = "hair_b2"*/
@@ -114,10 +110,6 @@
 	longer
 		name = "Long Hair"
 		icon_state = "hair_vlong"
-
-	longeralt
-		name = "Long Hair Alt"
-		icon_state = "hair_vlongfringe"
 
 	longest
 		name = "Very Long Hair"
@@ -465,6 +457,27 @@
 		name = "Bald"
 		icon_state = "bald"
 
+	longeralt2
+		name = "Long Hair Alt 2"
+		icon_state = "hair_longeralt2"
+
+	shortbangs
+		name = "Short Bangs"
+		icon_state = "hair_shortbangs"
+
+	halfshaved
+		name = "Half-Shaved Emo"
+		icon_state = "hair_halfshaved"
+
+	bun
+		name = "Casual Bun"
+		icon_state = "hair_bun"
+
+	doublebun
+		name = "Double-Bun"
+		icon_state = "hair_doublebun"
+
+
 /*
 ///////////////////////////////////
 /  =---------------------------=  /
@@ -482,7 +495,7 @@
 		name = "Shaved"
 		icon_state = "bald"
 		gender = NEUTER
-		species_allowed = list("Human","Unathi","Tajara","Skrell","Vox","Machine","Teshari")
+		species_allowed = list("Human","Unathi","Tajara","Skrell", "Machine","Teshari")
 
 	teshari_beard
 		name = "Teshari Beard"
@@ -676,11 +689,6 @@
 		name = "Tajara Messy"
 		icon_state = "hair_messy"
 		species_allowed = list("Tajara")
-
-	vox_quills_short
-		name = "Short Vox Quills"
-		icon_state = "vox_shortquills"
-		species_allowed = list("Vox")
 
 /datum/sprite_accessory/facial_hair
 

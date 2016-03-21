@@ -32,7 +32,7 @@
 		CtrlClickOn(A)
 		return
 
-	if(stat || lockcharge || weakened || stunned || paralysis)
+	if(stat || lockdown || weakened || stunned || paralysis)
 		return
 
 	if(!canClick())

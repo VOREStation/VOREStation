@@ -3,15 +3,15 @@
 // A mob that the AI controls to look around the station with.
 // It streams chunks as it moves around, which will show it what the AI can and cannot see.
 
-/mob/eye/aiEye
+/mob/observer/eye/aiEye
 	name = "Inactive AI Eye"
 	icon_state = "AI-eye"
 
-/mob/eye/aiEye/New()
+/mob/observer/eye/aiEye/New()
 	..()
 	visualnet = cameranet
 
-/mob/eye/aiEye/setLoc(var/T, var/cancel_tracking = 1)
+/mob/observer/eye/aiEye/setLoc(var/T, var/cancel_tracking = 1)
 	if(..())
 		var/mob/living/silicon/ai/ai = owner
 		if(cancel_tracking)
@@ -43,7 +43,7 @@
 /mob/living/silicon/ai/proc/create_eyeobj(var/newloc)
 	if(eyeobj) destroy_eyeobj()
 	if(!newloc) newloc = src.loc
-	eyeobj = PoolOrNew(/mob/eye/aiEye, newloc)
+	eyeobj = PoolOrNew(/mob/observer/eye/aiEye, newloc)
 	eyeobj.owner = src
 	eyeobj.name = "[src.name] (AI Eye)" // Give it a name
 	if(client) client.eye = eyeobj
@@ -65,14 +65,9 @@
 	if(istype(usr, /mob/living/silicon/ai))
 		var/mob/living/silicon/ai/AI = usr
 		if(AI.eyeobj && AI.client.eye == AI.eyeobj)
-			AI.eyeobj.setLoc(src)
-
-// Return to the Core.
-/mob/living/silicon/ai/proc/core()
-	set category = "AI Commands"
-	set name = "AI Core"
-
-	view_core()
+			var/turf/T = get_turf(src)
+			if(T)
+				AI.eyeobj.setLoc(T)
 
 /mob/living/silicon/ai/proc/view_core()
 	camera = null
@@ -88,7 +83,7 @@
 	src.eyeobj.setLoc(src)
 
 /mob/living/silicon/ai/proc/toggle_acceleration()
-	set category = "AI Commands"
+	set category = "AI Settings"
 	set name = "Toggle Camera Acceleration"
 
 	if(!eyeobj)

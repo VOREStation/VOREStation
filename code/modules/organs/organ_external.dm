@@ -121,7 +121,7 @@
 
 /obj/item/organ/external/examine()
 	..()
-	if(in_range(usr, src) || istype(usr, /mob/dead/observer))
+	if(in_range(usr, src) || istype(usr, /mob/observer/dead))
 		for(var/obj/item/I in contents)
 			if(istype(I, /obj/item/organ))
 				continue
@@ -1325,9 +1325,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 /obj/item/organ/external/head/seromi
 	eye_icon = "eyes_seromi"
-
-/obj/item/organ/external/head/vox
-	eye_icon = "vox_eyes_s"
 
 /obj/item/organ/external/head/no_eyes
 	eye_icon = "blank_eyes"

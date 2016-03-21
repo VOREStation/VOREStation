@@ -39,6 +39,11 @@
 				center_of_mass = R.glass_center_of_mass
 			else
 				center_of_mass = list("x"=16, "y"=10)
+
+			if(R.price_tag)
+				price_tag = R.price_tag
+			else
+				price_tag = null
 		else
 			icon_state = "glass_empty"
 			name = "glass"
@@ -77,6 +82,11 @@
 				center_of_mass = R.cup_center_of_mass
 			else
 				center_of_mass = list("x"=16, "y"=16)
+
+			if(R.price_tag)
+				price_tag = R.price_tag
+			else
+				price_tag = null
 
 		else
 			icon_state = "cup_empty"

@@ -58,7 +58,7 @@
 			return
 
 		// Antagonistic cyborgs? Left here for downstream
-		if(target.mind && target.mind.special_role && target.emagged)
+		if(target.mind && (target.mind.special_role || target.emagged))
 			target << "Extreme danger.  Termination codes detected.  Scrambling security codes and automatic AI unlink triggered."
 			target.ResetSecurityCodes()
 		else
@@ -101,6 +101,7 @@
 		else
 			target.canmove = !target.canmove
 			target.lockcharge = !target.canmove //when canmove is 1, lockcharge should be 0
+			target.lockdown = !target.canmove
 			if (target.lockcharge)
 				target << "You have been locked down!"
 			else
@@ -115,8 +116,8 @@
 		if(!target || !istype(target))
 			return
 
-		// Antag AI checks
-		if(!istype(user, /mob/living/silicon/ai) || !(user.mind.special_role && user.mind.original == user))
+		// Antag synthetic checks
+		if(!istype(user, /mob/living/silicon) || !(user.mind.special_role && user.mind.original == user))
 			user << "Access Denied"
 			return
 
@@ -131,7 +132,7 @@
 		if(!target || !istype(target))
 			return
 
-		message_admins("<span class='notice'>[key_name_admin(usr)] emagged [target.name] using robotic console!</span>")
+		message_admins("<span class='notice'>[key_name_admin(usr)] emagged [target.name] using the robotic console!</span>")
 		log_game("[key_name(usr)] emagged [target.name] using robotic console!")
 		target.emagged = 1
 		target << "<span class='notice'>Failsafe protocols overriden. New tools available.</span>"
@@ -202,8 +203,12 @@
 		robot["module"] = R.module ? R.module.name : "None"
 		robot["master_ai"] = R.connected_ai ? R.connected_ai.name : "None"
 		robot["hackable"] = 0
+		//Antag synths should be able to hack themselves and see their hacked status.
+		if(operator && isrobot(operator) && (operator.mind.special_role && operator.mind.original == operator) && (operator == R))
+			robot["hacked"] = R.emagged ? 1 : 0
+			robot["hackable"] = R.emagged? 0 : 1
 		// Antag AIs know whether linked cyborgs are hacked or not.
-		if(operator && istype(operator, /mob/living/silicon/ai) && (R.connected_ai == operator) && (operator.mind.special_role && operator.mind.original == operator))
+		if(operator && isAI(operator) && (R.connected_ai == operator) && (operator.mind.special_role && operator.mind.original == operator))
 			robot["hacked"] = R.emagged ? 1 : 0
 			robot["hackable"] = R.emagged? 0 : 1
 		robots.Add(list(robot))

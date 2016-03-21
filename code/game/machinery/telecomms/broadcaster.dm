@@ -298,7 +298,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 			continue
 
 		// Ghosts hearing all radio chat don't want to hear syndicate intercepts, they're duplicates
-		if(data == 3 && istype(R, /mob/dead/observer) && R.client && R.client.prefs && (R.client.prefs.toggles & CHAT_GHOSTRADIO))
+		if(data == 3 && istype(R, /mob/observer/dead) && R.client && R.client.prefs && (R.client.prefs.toggles & CHAT_GHOSTRADIO))
 			continue
 
 		// --- Check for compression ---

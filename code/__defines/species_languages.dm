@@ -1,5 +1,5 @@
 // Species flags.
-#define NO_MINOR_CUT      0x1    // Can step on broken glass with no ill-effects. Either thick skin (diona/vox), cut resistant (slimes) or incorporeal (shadows)
+#define NO_MINOR_CUT      0x1    // Can step on broken glass with no ill-effects. Either thick skin (diona), cut resistant (slimes) or incorporeal (shadows)
 #define IS_PLANT          0x2    // Is a treeperson.
 #define NO_SCAN           0x4    // Cannot be scanned in a DNA machine/genome-stolen.
 #define NO_PAIN           0x8    // Cannot suffer halloss/recieves deceptive health indicator.

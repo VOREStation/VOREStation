@@ -27,7 +27,6 @@ BLIND     // can't see anything
 	var/obj/screen/overlay = null
 
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/eyes.dmi',
 		"Teshari" = 'icons/mob/species/seromi/eyes.dmi'
 		)
 
