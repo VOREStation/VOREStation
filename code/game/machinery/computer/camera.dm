@@ -47,24 +47,6 @@
 		if(current_network)
 			data["cameras"] = camera_repository.cameras_in_network(current_network)
 
-		if(camera_cache_id != cache_id)
-			cache_id = camera_cache_id
-			cameranet.process_sort()
-
-			var/cameras[0]
-			for(var/obj/machinery/camera/C in cameranet.cameras)
-				if(!can_access_camera(C))
-					continue
-
-				var/cam = C.nano_structure()
-				cameras[++cameras.len] = cam
-
-			camera_cache=json_encode(cameras)
-
-		if(current)
-			data["current"] = current.nano_structure()
-		data["cameras"] = list("__json_cache" = camera_cache)
-
 		ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 		if (!ui)
 			ui = new(user, src, ui_key, "sec_camera.tmpl", "Camera Console", 900, 800)
@@ -222,7 +204,7 @@
 	icon_keyboard = null
 	icon_screen = null
 	light_range_on = 0
-	network = list("thunder")
+	network = list(NETWORK_THUNDER)
 	density = 0
 	circuit = null
 
@@ -234,7 +216,6 @@
 	light_color = "#FFEEDB"
 	light_range_on = 2
 	circuit = null
-
 /obj/machinery/computer/security/wooden_tv
 	name = "security camera monitor"
 	desc = "An old TV hooked into the stations camera network."
@@ -244,7 +225,6 @@
 	circuit = null
 	light_color = "#3848B3"
 	light_power_on = 0.5
-
 /obj/machinery/computer/security/mining
 	name = "outpost camera monitor"
 	desc = "Used to access the various cameras on the outpost."
@@ -253,7 +233,6 @@
 	network = list("MINE")
 	circuit = /obj/item/weapon/circuitboard/security/mining
 	light_color = "#F9BBFC"
-
 /obj/machinery/computer/security/engineering
 	name = "engineering camera monitor"
 	desc = "Used to monitor fires and breaches."
@@ -261,19 +240,16 @@
 	icon_screen = "engie_cams"
 	circuit = /obj/item/weapon/circuitboard/security/engineering
 	light_color = "#FAC54B"
-
 /obj/machinery/computer/security/engineering/New()
 	if(!network)
 		network = engineering_networks.Copy()
 	..()
-
 /obj/machinery/computer/security/nuclear
 	name = "head mounted camera monitor"
 	desc = "Used to access the built-in cameras in helmets."
 	icon_state = "syndicam"
 	network = list(NETWORK_MERCENARY)
 	circuit = null
-
 /obj/machinery/computer/security/nuclear/New()
 	..()
 	req_access = list(150)
