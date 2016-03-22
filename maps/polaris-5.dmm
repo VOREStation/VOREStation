@@ -602,7 +602,7 @@
 "lD" = (/obj/structure/sign/greencross,/turf/simulated/wall/r_wall,/area/outpost/research/medical)
 "lE" = (/obj/machinery/portable_atmospherics/canister/air/airlock,/obj/effect/floor_decal/corner/purple{dir = 9},/turf/simulated/floor/tiled/white,/area/outpost/research/dock)
 "lF" = (/obj/effect/floor_decal/corner/purple,/turf/simulated/floor/tiled/white,/area/outpost/research/dock)
-"lG" = (/obj/structure/reagent_dispensers/water_cooler,/turf/simulated/floor/wood,/area/outpost/research/dorms)
+"lG" = (/obj/structure/reagent_dispensers/water_cooler{bottle = 1},/turf/simulated/floor/wood,/area/outpost/research/dorms)
 "lH" = (/obj/machinery/atmospherics/unary/vent_pump/on{dir = 1},/turf/simulated/floor/wood,/area/outpost/research/dorms)
 "lI" = (/obj/structure/bed/chair{dir = 4},/turf/simulated/floor/wood,/area/outpost/research/dorms)
 "lJ" = (/obj/structure/table/glass,/obj/item/weapon/tape_roll,/turf/simulated/floor/wood,/area/outpost/research/dorms)

@@ -26,32 +26,6 @@ var/prison_shuttle_timeleft = 0
 	attack_ai(var/mob/user as mob)
 		return src.attack_hand(user)
 
-	attackby(I as obj, user as mob)
-		if(istype(I, /obj/item/weapon/screwdriver))
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-			if(do_after(user, 20))
-				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-				var/obj/item/weapon/circuitboard/prison_shuttle/M = new /obj/item/weapon/circuitboard/prison_shuttle( A )
-				for (var/obj/C in src)
-					C.loc = src.loc
-				A.circuit = M
-				A.anchored = 1
-
-				if (src.stat & BROKEN)
-					user << "<span class='notice'>The broken glass falls out.</span>"
-					new /obj/item/weapon/material/shard( src.loc )
-					A.state = 3
-					A.icon_state = "3"
-				else
-					user << "<span class='notice'>You disconnect the monitor.</span>"
-					A.state = 4
-					A.icon_state = "4"
-
-				qdel(src)
-		else
-			return src.attack_hand(user)
-
-
 	attack_hand(var/mob/user as mob)
 		if(!src.allowed(user) && (!hacked))
 			user << "<span class='warning'>Access Denied.</span>"

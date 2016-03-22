@@ -221,7 +221,7 @@
 					if (stat & BROKEN)
 						new /obj/item/weapon/circuitboard/broken(src.loc)
 					else
-						new/obj/item/weapon/airalarm_electronics(src.loc)
+						new/obj/item/weapon/circuitboard/airalarm(src.loc)
 
 					var/obj/structure/firedoor_assembly/FA = new/obj/structure/firedoor_assembly(src.loc)
 					FA.anchored = 1

@@ -202,10 +202,51 @@
 	icon_state = "water_cooler"
 	possible_transfer_amounts = null
 	anchored = 1
-	New()
-		..()
-		reagents.add_reagent("water",500)
+	var/bottle = 0
 
+/obj/structure/reagent_dispensers/water_cooler/New()
+	if(bottle == 1)
+		..()
+		reagents.add_reagent("water",120)
+	else
+		icon_state = "water_cooler_0"
+
+/obj/structure/reagent_dispensers/water_cooler/attackby(obj/item/I as obj, mob/user as mob)
+	if(istype(I, /obj/item/weapon/wrench))
+		if(bottle)
+			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+			if(do_after(user, 20))
+				user << "<span class='notice'>You unfasten the jug.</span>"
+				var/obj/item/weapon/reagent_containers/glass/cooler_bottle/G = new /obj/item/weapon/reagent_containers/glass/cooler_bottle( src.loc )
+				for(var/datum/reagent/R in reagents.reagent_list)
+					var/total_reagent = reagents.get_reagent_amount(R.id)
+					G.reagents.add_reagent(R.id, total_reagent)
+				reagents.clear_reagents()
+				bottle = 0
+				icon_state = "water_cooler_0"
+		return
+
+	if(istype(I, /obj/item/weapon/screwdriver))
+		if(!bottle)
+			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+			user << "<span class='notice'>You take the water-cooler apart.</span>"
+			new /obj/item/stack/material/plastic( src.loc, 4 )
+			qdel(src)
+		return
+
+	if(istype(I, /obj/item/weapon/reagent_containers/glass/cooler_bottle))
+		if(!bottle)
+			var/obj/item/weapon/reagent_containers/glass/cooler_bottle/G = I
+			user << "<span class='notice'>You start to screw the bottle onto the water-cooler.</span>"
+			if(do_after(user, 20))
+				bottle = 1
+				icon_state = "water_cooler"
+				user << "<span class='notice'>You screw the bottle onto the water-cooler but accidently spill some!</span>" //you spill some because it for somereason transfers 5 units to the bottle after it gets attached but before it's deleted...
+				for(var/datum/reagent/R in G.reagents.reagent_list)
+					var/total_reagent = G.reagents.get_reagent_amount(R.id)
+					reagents.add_reagent(R.id, total_reagent)
+				qdel(G)
+		return
 
 /obj/structure/reagent_dispensers/beerkeg
 	name = "beer keg"

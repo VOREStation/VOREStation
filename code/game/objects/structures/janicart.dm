@@ -107,7 +107,7 @@
 	if(!isliving(usr))
 		return
 	var/mob/living/user = usr
-	
+
 	if(href_list["take"])
 		switch(href_list["take"])
 			if("garbage")
@@ -213,10 +213,10 @@
 		..()
 
 
-/obj/structure/bed/chair/janicart/relaymove(mob/user, direction)
+/obj/structure/bed/chair/janicart/relaymove(mob/living/user, direction)
 	if(user.stat || user.stunned || user.weakened || user.paralysis)
 		unbuckle_mob()
-	if(istype(user.l_hand, /obj/item/key) || istype(user.r_hand, /obj/item/key))
+	if(user.get_type_in_hands(/obj/item/key))
 		step(src, direction)
 		update_mob()
 	else

@@ -17,6 +17,7 @@
 	density = 0
 	use_power = 1
 	idle_power_usage = 10
+	circuit =  /obj/item/weapon/circuitboard/status_display
 	var/mode = 1	// 0 = Blank
 					// 1 = Shuttle timer
 					// 2 = Arbitrary message(s)
@@ -50,6 +51,29 @@
 	if(radio_controller)
 		radio_controller.remove_object(src,frequency)
 	return ..()
+
+/obj/machinery/status_display/attackby(I as obj, user as mob)
+	if(istype(I, /obj/item/weapon/screwdriver) && circuit)
+		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+		if(do_after(user, 20))
+			var/obj/structure/frame/A = new /obj/structure/frame( src.loc )
+			var/obj/item/weapon/circuitboard/M = new circuit( A )
+			A.frame_type = "display"
+			A.pixel_x = pixel_x
+			A.pixel_y = pixel_y
+			A.circuit = M
+			A.anchored = 1
+			for (var/obj/C in src)
+				C.forceMove(loc)
+			user << "<span class='notice'>You disconnect the monitor.</span>"
+			A.state = 4
+			A.icon_state = "display_4"
+			M.deconstruct(src)
+			qdel(src)
+	else
+		src.attack_hand(user)
+	return
+
 
 // register for radio system
 /obj/machinery/status_display/initialize()

@@ -9,6 +9,7 @@
 	input_level_max = 0
 	output_level_max = 0
 	icon_state = "gsmes"
+	circuit = /obj/item/weapon/circuitboard/batteryrack
 	var/cells_amount = 0
 	var/capacitors_amount = 0
 	var/global/list/br_cache = null
@@ -22,7 +23,6 @@
 //Maybe this should be moved up to obj/machinery
 /obj/machinery/power/smes/batteryrack/proc/add_parts()
 	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/batteryrack
 	component_parts += new /obj/item/weapon/cell/high
 	component_parts += new /obj/item/weapon/cell/high
 	component_parts += new /obj/item/weapon/cell/high
@@ -49,7 +49,7 @@
 /obj/machinery/power/smes/batteryrack/update_icon()
 	overlays.Cut()
 	if(stat & BROKEN)	return
-	
+
 	if(!br_cache)
 		br_cache = list()
 		br_cache.len = 7
@@ -60,7 +60,7 @@
 		br_cache[5] = image('icons/obj/power.dmi', "gsmes_og2")
 		br_cache[6] = image('icons/obj/power.dmi', "gsmes_og3")
 		br_cache[7] = image('icons/obj/power.dmi', "gsmes_og4")
-	
+
 	if (output_attempt)
 		overlays += br_cache[1]
 	if(inputting)
@@ -83,9 +83,10 @@
 			if (charge < (capacity / 100))
 				if (!output_attempt && !input_attempt)
 					playsound(get_turf(src), 'sound/items/Crowbar.ogg', 50, 1)
-					var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)
+					var/obj/structure/frame/M = new /obj/structure/frame(src.loc)
+					M.frame_type = "machine"
 					M.state = 2
-					M.icon_state = "box_1"
+					M.icon_state = "machine_1"
 					for(var/obj/I in component_parts)
 						I.loc = src.loc
 					qdel(src)
@@ -117,12 +118,12 @@
 /obj/machinery/power/smes/batteryrack/makeshift
 	name = "makeshift PSU"
 	desc = "A rack of batteries connected by a mess of wires posing as a PSU."
+	circuit = /obj/item/weapon/circuitboard/ghettosmes
 	var/overcharge_percent = 0
 
 
 /obj/machinery/power/smes/batteryrack/makeshift/add_parts()
 	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/ghettosmes
 	component_parts += new /obj/item/weapon/cell/high
 	component_parts += new /obj/item/weapon/cell/high
 	component_parts += new /obj/item/weapon/cell/high

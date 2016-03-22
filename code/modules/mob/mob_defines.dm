@@ -60,7 +60,6 @@
 	var/next_move = null
 	var/transforming = null	//Carbon
 	var/other = 0.0
-	var/hand = null
 	var/eye_blind = null	//Carbon
 	var/eye_blurry = null	//Carbon
 	var/ear_deaf = null		//Carbon
@@ -119,12 +118,6 @@
 	var/m_intent = "run"//Living
 	var/lastKnownIP = null
 	var/obj/buckled = null//Living
-	var/obj/item/l_hand = null//Living
-	var/obj/item/r_hand = null//Living
-	var/obj/item/weapon/back = null//Human/Monkey
-	var/obj/item/weapon/tank/internal = null//Human/Monkey
-	var/obj/item/weapon/storage/s_active = null//Carbon
-	var/obj/item/clothing/mask/wear_mask = null//Carbon
 
 	var/seer = 0 //for cult//Carbon, probably Human
 

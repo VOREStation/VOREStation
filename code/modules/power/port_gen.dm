@@ -287,14 +287,15 @@
 			else
 				user << "\blue You close the access panel."
 		else if(istype(O, /obj/item/weapon/crowbar) && open)
-			var/obj/machinery/constructable_frame/machine_frame/new_frame = new /obj/machinery/constructable_frame/machine_frame(src.loc)
+			var/obj/structure/frame/new_frame = new /obj/structure/frame(src.loc)
 			for(var/obj/item/I in component_parts)
 				I.loc = src.loc
 			while ( sheets > 0 )
 				DropFuel()
 
+			new_frame.frame_type = "machine"
 			new_frame.state = 2
-			new_frame.icon_state = "box_1"
+			new_frame.icon_state = "machine_1"
 			qdel(src)
 
 /obj/machinery/power/port_gen/pacman/attack_hand(mob/user as mob)

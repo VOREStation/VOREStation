@@ -36,6 +36,8 @@
 	layer = 2.9
 	anchored = 1
 	density = 1
+	circuit = /obj/item/weapon/circuitboard/vending
+	frame_type = "vending"
 
 	var/icon_vend //Icon_state when vending
 	var/icon_deny //Icon_state when denying access
@@ -94,6 +96,14 @@
 /obj/machinery/vending/New()
 	..()
 	wires = new(src)
+	component_parts = list()
+	component_parts += new /obj/item/weapon/stock_parts/spring(src)
+	component_parts += new /obj/item/weapon/stock_parts/spring(src)
+	component_parts += new /obj/item/weapon/stock_parts/motor(src)
+	component_parts += new /obj/item/weapon/stock_parts/motor(src)
+	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
+	component_parts += new /obj/item/stack/material/glass/reinforced(src, 2)
+	RefreshParts()
 	spawn(4)
 		if(src.product_slogans)
 			src.slogan_list += splittext(src.product_slogans, ";")
@@ -231,6 +241,8 @@
 			if(!src) return
 			user << "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>"
 			anchored = !anchored
+		return
+	else if(default_deconstruction_crowbar(user, W))
 		return
 
 	else
@@ -922,7 +934,15 @@
 	icon_state = "engivend"
 	icon_deny = "engivend-deny"
 	req_access = list(access_engine_equip)
-	products = list(/obj/item/clothing/glasses/meson = 2,/obj/item/device/multitool = 4,/obj/item/weapon/airlock_electronics = 10,/obj/item/weapon/module/power_control = 10,/obj/item/weapon/airalarm_electronics = 10,/obj/item/weapon/cell/high = 10)
+	products = list(/obj/item/clothing/glasses/meson = 2,/obj/item/device/multitool = 4,/obj/item/weapon/cell/high = 10,
+					/obj/item/weapon/airlock_electronics = 10,/obj/item/weapon/module/power_control = 10,
+					/obj/item/weapon/circuitboard/airalarm = 10,/obj/item/weapon/circuitboard/firealarm = 10,/obj/item/weapon/circuitboard/status_display = 2,
+					/obj/item/weapon/circuitboard/ai_status_display = 2,/obj/item/weapon/circuitboard/newscaster = 2,/obj/item/weapon/circuitboard/holopad = 2,
+					/obj/item/weapon/circuitboard/intercom = 4,/obj/item/weapon/circuitboard/security/telescreen/entertainment = 4,
+					/obj/item/weapon/circuitboard/atm = 0,/obj/item/weapon/circuitboard/guestpass = 0,/obj/item/weapon/circuitboard/keycard_auth = 0,
+					/obj/item/weapon/circuitboard/photocopier = 0,/obj/item/weapon/circuitboard/fax = 0,/obj/item/weapon/circuitboard/conveyor = 0,
+					/obj/item/weapon/circuitboard/microwave = 0,/obj/item/weapon/circuitboard/vending = 0,/obj/item/weapon/circuitboard/washing = 0,
+					/obj/item/weapon/stock_parts/motor = 0,/obj/item/weapon/stock_parts/spring = 0,/obj/item/weapon/stock_parts/gear = 0)
 	contraband = list(/obj/item/weapon/cell/potato = 3)
 	premium = list(/obj/item/weapon/storage/belt/utility = 3)
 
