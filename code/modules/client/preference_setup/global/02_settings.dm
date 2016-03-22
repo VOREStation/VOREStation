@@ -25,13 +25,6 @@
 				continue
 			pref.preferences += client_pref.key
 
-<<<<<<< HEAD
-	for(var/preference in pref.preferences)
-		if(!get_client_preference_by_key(preference))
-			pref.preferences -= preference
-
-=======
->>>>>>> 19b7ebf... Preferences now store client key instead of the client itself.
 	pref.lastchangelog	= sanitize_text(pref.lastchangelog, initial(pref.lastchangelog))
 	pref.default_slot	= sanitize_integer(pref.default_slot, 1, config.character_slots, initial(pref.default_slot))
 
@@ -53,11 +46,8 @@
 		. += "</tr>"
 
 	. += "</table>"
-<<<<<<< HEAD
-	return jointext(.)
-=======
+
 	return jointext(., "")
->>>>>>> 19b7ebf... Preferences now store client key instead of the client itself.
 
 /datum/category_item/player_setup_item/player_global/settings/OnTopic(var/href,var/list/href_list, var/mob/user)
 	var/mob/pref_mob = preference_mob()

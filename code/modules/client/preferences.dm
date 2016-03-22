@@ -109,14 +109,10 @@ datum/preferences
 	// OOC Metadata:
 	var/metadata = ""
 
-<<<<<<< HEAD
+	var/client_ckey = null
+
 	// Communicator identity data
 	var/communicator_visibility = 0
-
-	var/client/client = null
-=======
-	var/client_ckey = null
->>>>>>> 19b7ebf... Preferences now store client key instead of the client itself.
 
 	var/datum/category_collection/player_setup_collection/player_setup
 
