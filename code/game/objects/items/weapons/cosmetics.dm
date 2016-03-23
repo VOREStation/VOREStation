@@ -77,7 +77,5 @@
 	icon_state = "purplecomb"
 	item_state = "purplecomb"
 
-/obj/item/weapon/haircomb/attack_self(mob/user)
-	if(user.r_hand == src || user.l_hand == src)
-		user.visible_message(text("<span class='notice'>[] uses [] to comb their hair with incredible style and sophistication. What a [].</span>", user, src, user.gender == FEMALE ? "lady" : "guy"))
-	return
+/obj/item/weapon/haircomb/attack_self(mob/living/user)
+	user.visible_message(text("<span class='notice'>[] uses [] to comb their hair with incredible style and sophistication. What a [].</span>", user, src, user.gender == FEMALE ? "lady" : "guy"))
