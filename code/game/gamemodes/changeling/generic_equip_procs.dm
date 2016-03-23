@@ -244,7 +244,7 @@
 
 	var/mob/living/carbon/human/M = src
 
-	if(M.l_hand && M.r_hand) //Make sure our hands aren't full.
+	if(M.hands_are_full()) //Make sure our hands aren't full.
 		src << "<span class='warning'>Our hands are full.  Drop something first.</span>"
 		return 0
 

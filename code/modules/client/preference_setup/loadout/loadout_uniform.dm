@@ -192,6 +192,21 @@
 	path = /obj/item/clothing/under/rank/cargo/skirt
 	allowed_roles = list("Quartermaster")
 
+/datum/gear/uniform/skirt/warden
+	display_name = "skirt, warden"
+	path = /obj/item/clothing/under/rank/warden/skirt
+	allowed_roles = list("Head of Security", "Warden")
+
+/datum/gear/uniform/skirt/security
+	display_name = "skirt, security"
+	path = /obj/item/clothing/under/rank/security/skirt
+	allowed_roles = list("Head of Security", "Warden", "Detective", "Security Officer")
+
+/datum/gear/uniform/skirt/head_of_security
+	display_name = "skirt, hos"
+	path = /obj/item/clothing/under/rank/head_of_security/skirt
+	allowed_roles = list("Head of Security")
+
 /datum/gear/uniform/jeans_qm
 	display_name = "jeans, QM"
 	path = /obj/item/clothing/under/rank/cargo/jeans
@@ -383,7 +398,7 @@
 /datum/gear/uniform/scrubs
 	display_name = "scrubs, black"
 	path = /obj/item/clothing/under/rank/medical/black
-	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist")
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Roboticist")
 
 /datum/gear/uniform/scrubs/blue
 	display_name = "scrubs, blue"

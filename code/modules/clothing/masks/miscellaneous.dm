@@ -22,7 +22,7 @@
     say_verbs = list("mumbles", "says")
 
 // Clumsy folks can't take the mask off themselves.
-/obj/item/clothing/mask/muzzle/attack_hand(mob/user as mob)
+/obj/item/clothing/mask/muzzle/attack_hand(mob/living/user as mob)
 	if(user.wear_mask == src && !user.IsAdvancedToolUser())
 		return 0
 	..()
@@ -129,7 +129,7 @@
 	item_state = "s-ninja"
 	flags_inv = HIDEFACE
 	body_parts_covered = 0
-	var/mob/eye/aiEye/eye
+	var/mob/observer/eye/aiEye/eye
 
 /obj/item/clothing/mask/ai/New()
 	eye = new(src)

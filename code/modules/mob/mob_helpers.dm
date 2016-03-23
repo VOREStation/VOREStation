@@ -266,7 +266,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 
 		var/atom/oldeye=M.client.eye
 		var/aiEyeFlag = 0
-		if(istype(oldeye, /mob/eye/aiEye))
+		if(istype(oldeye, /mob/observer/eye/aiEye))
 			aiEyeFlag = 1
 
 		var/x
@@ -288,12 +288,6 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 
 
 /mob/proc/abiotic(var/full_body = 0)
-	if(full_body && ((src.l_hand && !( src.l_hand.abstract )) || (src.r_hand && !( src.r_hand.abstract )) || (src.back || src.wear_mask)))
-		return 1
-
-	if((src.l_hand && !( src.l_hand.abstract )) || (src.r_hand && !( src.r_hand.abstract )))
-		return 1
-
 	return 0
 
 //converts intent-strings into numbers and back
@@ -399,8 +393,8 @@ proc/is_blind(A)
 					follow = "([ghost_follow_link(subject, M)]) "
 				if(M.stat != DEAD && M.client.holder)
 					follow = "([admin_jump_link(subject, M.client.holder)]) "
-				var/mob/dead/observer/DM
-				if(istype(subject, /mob/dead/observer))
+				var/mob/observer/dead/DM
+				if(istype(subject, /mob/observer/dead))
 					DM = subject
 				if(M.client.holder) 							// What admins see
 					lname = "[keyname][(DM && DM.anonsay) ? "*" : (DM ? "" : "^")] ([name])"

@@ -842,7 +842,7 @@
 		target.show_message("\blue You hear a voice that seems to echo around the room: [say]")
 	usr.show_message("\blue You project your mind into [target.real_name]: [say]")
 	log_say("[key_name(usr)] sent a telepathic message to [key_name(target)]: [say]")
-	for(var/mob/dead/observer/G in world)
+	for(var/mob/observer/dead/G in world)
 		G.show_message("<i>Telepathic message from <b>[src]</b> to <b>[target]</b>: [say]</i>")
 
 /mob/living/carbon/human/proc/remoteobserve()
@@ -1115,9 +1115,11 @@
 	spawn(0)
 		regenerate_icons()
 		if(vessel.total_volume < species.blood_volume)
+			vessel.maximum_volume = species.blood_volume
 			vessel.add_reagent("blood", species.blood_volume - vessel.total_volume)
 		else if(vessel.total_volume > species.blood_volume)
 			vessel.remove_reagent("blood", vessel.total_volume - species.blood_volume)
+			vessel.maximum_volume = species.blood_volume
 		fixblood()
 
 	// Rebuild the HUD. If they aren't logged in then login() should reinstantiate it for them.

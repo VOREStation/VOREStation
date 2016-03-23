@@ -81,6 +81,7 @@ var/list/be_special_flags = list(
 #define MODE_LOYALIST "loyalist"
 #define MODE_MALFUNCTION "malf"
 #define MODE_TRAITOR "traitor"
+#define MODE_AUTOTRAITOR "autotraitor"
 
 #define DEFAULT_TELECRYSTAL_AMOUNT 12
 

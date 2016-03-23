@@ -343,6 +343,12 @@
 	icon_state = "blueponcho"
 	item_state = "blueponcho"
 
+/obj/item/clothing/suit/poncho/security
+	name = "security poncho"
+	desc = "A simple, comfortable cloak without sleeves. This one is black and red, standard NanoTrasen Security colors."
+	icon_state = "secponcho"
+	item_state = "secponcho"
+
 /obj/item/clothing/suit/jacket/puffer
 	name = "puffer jacket"
 	desc = "A thick jacket with a rubbery, water-resistant shell."
@@ -501,6 +507,14 @@
 	item_state = "nt_hoodie"
 	icon_open = "nt_hoodie_open"
 	icon_closed = "nt_hoodie"
+
+/obj/item/clothing/suit/storage/toggle/hoodie/smw
+	name = "Space Mountain Wind hoodie"
+	desc = "A warm, black sweatshirt.  It has the logo for the popular softdrink Space Mountain Wind on both the front and the back."
+	icon_state = "smw_hoodie"
+	item_state = "smw_hoodie"
+	icon_open = "smw_hoodie_open"
+	icon_closed = "smw_hoodie"
 
 // FUN!
 

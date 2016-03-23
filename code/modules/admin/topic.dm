@@ -262,7 +262,7 @@
 		message_admins("\blue [key_name_admin(usr)] has used rudimentary transformation on [key_name_admin(M)]. Transforming to [href_list["simplemake"]]; deletemob=[delmob]", 1)
 
 		switch(href_list["simplemake"])
-			if("observer")			M.change_mob_type( /mob/dead/observer , null, null, delmob )
+			if("observer")			M.change_mob_type( /mob/observer/dead , null, null, delmob )
 			if("larva")				M.change_mob_type( /mob/living/carbon/alien/larva , null, null, delmob )
 			if("nymph")				M.change_mob_type( /mob/living/carbon/alien/diona , null, null, delmob )
 			if("human")				M.change_mob_type( /mob/living/carbon/human , null, null, delmob, href_list["species"])
@@ -769,7 +769,7 @@
 				message_admins("\blue [key_name_admin(usr)] removed [t]", 1)
 				jobban_remove(t)
 				href_list["ban"] = 1 // lets it fall through and refresh
-				var/t_split = text2list(t, " - ")
+				var/t_split = splittext(t, " - ")
 				var/key = t_split[1]
 				var/job = t_split[2]
 				DB_ban_unban(ckey(key), BANTYPE_JOB_PERMA, job)
@@ -1574,9 +1574,9 @@
 			alert("Select fewer object types, (max 5)")
 			return
 		else if(length(removed_paths))
-			alert("Removed:\n" + list2text(removed_paths, "\n"))
+			alert("Removed:\n" + jointext(removed_paths, "\n"))
 
-		var/list/offset = text2list(href_list["offset"],",")
+		var/list/offset = splittext(href_list["offset"],",")
 		var/number = dd_range(1, 100, text2num(href_list["object_count"]))
 		var/X = offset.len > 0 ? text2num(offset[1]) : 0
 		var/Y = offset.len > 1 ? text2num(offset[2]) : 0
@@ -1917,7 +1917,7 @@ mob/living/silicon/ai/can_centcom_reply()
 	if(client && eyeobj)
 		return "|<A HREF='?[source];adminplayerobservejump=\ref[eyeobj]'>EYE</A>"
 
-/mob/dead/observer/extra_admin_link(var/source)
+/mob/observer/dead/extra_admin_link(var/source)
 	if(mind && mind.current)
 		return "|<A HREF='?[source];adminplayerobservejump=\ref[mind.current]'>BDY</A>"
 

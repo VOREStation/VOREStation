@@ -71,7 +71,7 @@
 
 	var/mob/M = targets[target]
 
-	if(istype(M, /mob/dead/observer) || M.stat == DEAD)
+	if(istype(M, /mob/observer/dead) || M.stat == DEAD)
 		src << "Not even a [src.species.name] can speak to the dead."
 		return
 

@@ -58,7 +58,7 @@ world/loop_checks = 0
 		if(A.loc != null)
 			testing("GC: [A] | [A.type] is located in [A.loc] instead of null")
 		if(A.contents.len)
-			testing("GC: [A] | [A.type] has contents: [list2text(A.contents)]")
+			testing("GC: [A] | [A.type] has contents: [jointext(A.contents)]")
 	if(searching.len)
 		for(var/atom/D in world)
 			LookForRefs(D, searching)

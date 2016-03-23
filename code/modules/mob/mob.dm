@@ -195,21 +195,6 @@
 
 
 /mob/proc/show_inv(mob/user as mob)
-	user.set_machine(src)
-	var/dat = {"
-	<B><HR><FONT size=3>[name]</FONT></B>
-	<BR><HR>
-	<BR><B>Head(Mask):</B> <A href='?src=\ref[src];item=mask'>[(wear_mask ? wear_mask : "Nothing")]</A>
-	<BR><B>Left Hand:</B> <A href='?src=\ref[src];item=l_hand'>[(l_hand ? l_hand  : "Nothing")]</A>
-	<BR><B>Right Hand:</B> <A href='?src=\ref[src];item=r_hand'>[(r_hand ? r_hand : "Nothing")]</A>
-	<BR><B>Back:</B> <A href='?src=\ref[src];item=back'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/weapon/tank) && !( internal )) ? text(" <A href='?src=\ref[];item=internal'>Set Internal</A>", src) : "")]
-	<BR>[(internal ? text("<A href='?src=\ref[src];item=internal'>Remove Internal</A>") : "")]
-	<BR><A href='?src=\ref[src];item=pockets'>Empty Pockets</A>
-	<BR><A href='?src=\ref[user];refresh=1'>Refresh</A>
-	<BR><A href='?src=\ref[user];mach_close=mob[name]'>Close</A>
-	<BR>"}
-	user << browse(dat, text("window=mob[];size=325x500", name))
-	onclose(user, "mob[name]")
 	return
 
 //mob verbs are faster than object verbs. See http://www.byond.com/forum/?post=1326139&page=2#comment8198716 for why this isn't atom/verb/examine()
@@ -248,37 +233,6 @@
 
 
 /mob/proc/ret_grab(obj/effect/list_container/mobl/L as obj, flag)
-	if ((!( istype(l_hand, /obj/item/weapon/grab) ) && !( istype(r_hand, /obj/item/weapon/grab) )))
-		if (!( L ))
-			return null
-		else
-			return L.container
-	else
-		if (!( L ))
-			L = new /obj/effect/list_container/mobl( null )
-			L.container += src
-			L.master = src
-		if (istype(l_hand, /obj/item/weapon/grab))
-			var/obj/item/weapon/grab/G = l_hand
-			if (!( L.container.Find(G.affecting) ))
-				L.container += G.affecting
-				if (G.affecting)
-					G.affecting.ret_grab(L, 1)
-		if (istype(r_hand, /obj/item/weapon/grab))
-			var/obj/item/weapon/grab/G = r_hand
-			if (!( L.container.Find(G.affecting) ))
-				L.container += G.affecting
-				if (G.affecting)
-					G.affecting.ret_grab(L, 1)
-		if (!( flag ))
-			if (L.master == src)
-				var/list/temp = list(  )
-				temp += L.container
-				//L = null
-				qdel(L)
-				return temp
-			else
-				return L.container
 	return
 
 /mob/verb/mode()
@@ -286,18 +240,6 @@
 	set category = "Object"
 	set src = usr
 
-	if(istype(loc,/obj/mecha)) return
-
-	if(hand)
-		var/obj/item/W = l_hand
-		if (W)
-			W.attack_self(src)
-			update_inv_l_hand()
-	else
-		var/obj/item/W = r_hand
-		if (W)
-			W.attack_self(src)
-			update_inv_r_hand()
 	return
 
 /*
@@ -388,8 +330,8 @@
 		return
 	else
 		var/deathtime = world.time - src.timeofdeath
-		if(istype(src,/mob/dead/observer))
-			var/mob/dead/observer/G = src
+		if(istype(src,/mob/observer/dead))
+			var/mob/observer/dead/G = src
 			if(G.has_enabled_antagHUD == 1 && config.antag_hud_restricted)
 				usr << "\blue <B>Upon using the antagHUD you forfeighted the ability to join the round.</B>"
 				return
@@ -735,65 +677,6 @@
 
 //Updates canmove, lying and icons. Could perhaps do with a rename but I can't think of anything to describe it.
 /mob/proc/update_canmove()
-
-	if(!resting && cannot_stand() && can_stand_overridden())
-		lying = 0
-		canmove = 1
-	else
-		if(istype(buckled, /obj/vehicle))
-			var/obj/vehicle/V = buckled
-			if(cannot_stand())
-				lying = 0
-				canmove = 1
-				pixel_y = V.mob_offset_y - 5
-			else
-				if(buckled.buckle_lying != -1) lying = buckled.buckle_lying
-				canmove = 1
-				pixel_y = V.mob_offset_y
-		else if(buckled)
-			anchored = 1
-			canmove = 0
-			if(istype(buckled))
-				if(buckled.buckle_lying != -1)
-					lying = buckled.buckle_lying
-				if(buckled.buckle_movable)
-					anchored = 0
-					canmove = 1
-
-		else if(cannot_stand())
-			lying = 1
-			canmove = 0
-		else if(stunned)
-			canmove = 0
-		else if(captured)
-			anchored = 1
-			canmove = 0
-			lying = 0
-		else
-			lying = 0
-			canmove = 1
-
-	if(lying)
-		density = 0
-		if(l_hand) unEquip(l_hand)
-		if(r_hand) unEquip(r_hand)
-	else
-		density = initial(density)
-
-	for(var/obj/item/weapon/grab/G in grabbed_by)
-		if(G.state >= GRAB_AGGRESSIVE)
-			canmove = 0
-			break
-
-	//Temporarily moved here from the various life() procs
-	//I'm fixing stuff incrementally so this will likely find a better home.
-	//It just makes sense for now. ~Carn
-	if( update_icon )	//forces a full overlay update
-		update_icon = 0
-		regenerate_icons()
-	else if( lying != lying_prev )
-		update_icons()
-
 	return canmove
 
 
@@ -1007,8 +890,7 @@ mob/proc/yank_out_object()
 		R.adjustFireLoss(10)
 
 	selection.forceMove(get_turf(src))
-	if(!(U.l_hand && U.r_hand))
-		U.put_in_hands(selection)
+	U.put_in_hands(selection)
 
 	for(var/obj/item/weapon/O in pinned)
 		if(O == selection)

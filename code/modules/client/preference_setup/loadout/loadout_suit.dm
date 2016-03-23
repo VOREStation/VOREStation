@@ -98,6 +98,10 @@
 	display_name = "hoodie, NT"
 	path = /obj/item/clothing/suit/storage/toggle/hoodie/nt
 
+/datum/gear/suit/hoodie/smw
+	display_name = "hoodie, Space Mountain Wind"
+	path = /obj/item/clothing/suit/storage/toggle/hoodie/smw
+
 /datum/gear/suit/labcoat
 	display_name = "labcoat"
 	path = /obj/item/clothing/suit/storage/toggle/labcoat
@@ -160,6 +164,10 @@
 /datum/gear/suit/poncho/red
 	display_name = "poncho, red"
 	path = /obj/item/clothing/suit/poncho/red
+
+/datum/gear/suit/poncho/security
+	display_name = "poncho, security"
+	path = /obj/item/clothing/suit/poncho/security
 
 /datum/gear/suit/unathi_robe
 	display_name = "roughspun robe"

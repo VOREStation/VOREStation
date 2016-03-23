@@ -244,7 +244,7 @@
 			var/turf/ear = get_turf(M)
 			if(ear)
 				// Ghostship is magic: Ghosts can hear radio chatter from anywhere
-				if(speaker_coverage[ear] || (istype(M, /mob/dead/observer) && (M.client) && (M.client.prefs.toggles & CHAT_GHOSTRADIO)))
+				if(speaker_coverage[ear] || (istype(M, /mob/observer/dead) && (M.client) && (M.client.prefs.toggles & CHAT_GHOSTRADIO)))
 					. |= M		// Since we're already looping through mobs, why bother using |= ? This only slows things down.
 	return .
 
@@ -323,7 +323,7 @@ proc/isInSight(var/atom/A, var/atom/B)
 	var/list/candidates = list() //List of candidate KEYS to assume control of the new larva ~Carn
 	var/i = 0
 	while(candidates.len <= 0 && i < 5)
-		for(var/mob/dead/observer/G in player_list)
+		for(var/mob/observer/dead/G in player_list)
 			if(((G.client.inactivity/10)/60) <= buffer + i) // the most active players are more likely to become an alien
 				if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
 					candidates += G.key
@@ -337,7 +337,7 @@ proc/isInSight(var/atom/A, var/atom/B)
 	var/list/candidates = list() //List of candidate KEYS to assume control of the new larva ~Carn
 	var/i = 0
 	while(candidates.len <= 0 && i < 5)
-		for(var/mob/dead/observer/G in player_list)
+		for(var/mob/observer/dead/G in player_list)
 			if(G.client.prefs.be_special & BE_ALIEN)
 				if(((G.client.inactivity/10)/60) <= ALIEN_SELECT_AFK_BUFFER + i) // the most active players are more likely to become an alien
 					if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
