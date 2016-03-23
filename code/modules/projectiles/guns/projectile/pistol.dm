@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/colt
 	var/unique_reskin
-	name = "vintage .45 pistol"
+	name = ".45 pistol"
 	desc = "A cheap Martian knock-off of a Colt M1911. Uses .45 rounds."
 	magazine_type = /obj/item/ammo_magazine/c45m
 	icon_state = "colt"
