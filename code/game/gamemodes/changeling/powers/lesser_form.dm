@@ -78,7 +78,7 @@
 	qdel(animation)
 
 	for(var/obj/item/W in src)
-		C.drop_from_inventory(W)
+		C.removeItem(W, force = 1)
 
 	var/mob/living/carbon/human/O = new /mob/living/carbon/human( src )
 	if (C.dna.GetUIState(DNA_UI_GENDER))

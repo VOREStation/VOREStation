@@ -117,7 +117,7 @@
 			var/obj/item/organ/external/E = get_organ(limb_tag)
 			if(!E)
 				visible_message("<span class='danger'>Lacking a functioning left hand, \the [src] drops \the [l_hand].</span>")
-				drop_from_inventory(l_hand)
+				removeItem(l_hand)
 				break
 
 	if(r_hand)
@@ -125,7 +125,7 @@
 			var/obj/item/organ/external/E = get_organ(limb_tag)
 			if(!E)
 				visible_message("<span class='danger'>Lacking a functioning right hand, \the [src] drops \the [r_hand].</span>")
-				drop_from_inventory(r_hand)
+				removeItem(r_hand)
 				break
 
 	// Check again...
@@ -141,11 +141,11 @@
 				if(HAND_LEFT, ARM_LEFT)
 					if(!l_hand)
 						continue
-					drop_from_inventory(l_hand)
+					removeItem(l_hand)
 				if(HAND_RIGHT, ARM_RIGHT)
 					if(!r_hand)
 						continue
-					drop_from_inventory(r_hand)
+					removeItem(r_hand)
 
 			var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
 			emote("me", 1, "[(E.can_feel_pain()) ? "" : emote_scream ]drops what they were holding in their [E.name]!")
@@ -155,11 +155,11 @@
 				if(HAND_LEFT, ARM_LEFT)
 					if(!l_hand)
 						continue
-					drop_from_inventory(l_hand)
+					removeItem(l_hand)
 				if(HAND_RIGHT, ARM_RIGHT)
 					if(!r_hand)
 						continue
-					drop_from_inventory(r_hand)
+					removeItem(r_hand)
 
 			emote("me", 1, "drops what they were holding, their [E.name] malfunctioning!")
 

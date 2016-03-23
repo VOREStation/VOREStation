@@ -84,7 +84,7 @@
 /obj/item/Destroy()
 	if(ismob(loc))
 		var/mob/m = loc
-		m.drop_from_inventory(src)
+		m.removeItem(src, force = 1)
 		m.update_inv_r_hand()
 		m.update_inv_l_hand()
 		src.loc = null
@@ -177,7 +177,7 @@
 
 	src.throwing = 0
 	if (src.loc == user)
-		if(!user.unEquip(src))
+		if(!user.removeItem(src))
 			return
 	else
 		if(isliving(src.loc))

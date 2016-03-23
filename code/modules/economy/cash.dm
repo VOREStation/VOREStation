@@ -25,8 +25,8 @@
 		SC.update_icon()
 		if(istype(user, /mob/living/carbon/human))
 			var/mob/living/carbon/human/h_user = user
-			h_user.drop_from_inventory(src)
-			h_user.drop_from_inventory(SC)
+			h_user.removeItem(src)
+			h_user.removeItem(SC)
 			h_user.put_in_hands(SC)
 		user << "<span class='notice'>You combine the Thalers to a bundle of [SC.worth] Thalers.</span>"
 		qdel(src)
@@ -67,7 +67,7 @@
 	src.worth -= amount
 	src.update_icon()
 	if(!worth)
-		usr.drop_from_inventory(src)
+		usr.removeItem(src)
 	if(amount in list(1000,500,200,100,50,20,1))
 		var/cashtype = text2path("/obj/item/weapon/spacecash/c[amount]")
 		var/obj/cash = new cashtype (usr.loc)

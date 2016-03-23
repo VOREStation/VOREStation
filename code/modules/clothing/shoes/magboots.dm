@@ -43,8 +43,7 @@
 			user << "You are unable to wear \the [src] as \the [H.shoes] are in the way."
 			shoes = null
 			return 0
-		H.drop_from_inventory(shoes)	//Remove the old shoes so you can put on the magboots.
-		shoes.forceMove(src)
+		H.removeItem(shoes, src)	//Remove the old shoes so you can put on the magboots.
 
 	if(!..())
 		if(shoes) 	//Put the old shoes back on if the check fails.

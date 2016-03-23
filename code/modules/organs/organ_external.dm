@@ -828,12 +828,12 @@ Note that amputating the affected organ does in fact remove the infection from t
 		holder.visible_message(\
 			"\The [holder.handcuffed.name] falls off of [holder.name].",\
 			"\The [holder.handcuffed.name] falls off you.")
-		holder.drop_from_inventory(holder.handcuffed)
+		holder.removeItem(holder.handcuffed, force = 1)
 	if (holder.legcuffed && body_part in list(FOOT_LEFT, FOOT_RIGHT, LEG_LEFT, LEG_RIGHT))
 		holder.visible_message(\
 			"\The [holder.legcuffed.name] falls off of [holder.name].",\
 			"\The [holder.legcuffed.name] falls off you.")
-		holder.drop_from_inventory(holder.legcuffed)
+		holder.removeItem(holder.legcuffed, force = 1)
 
 /obj/item/organ/external/proc/bandage()
 	var/rval = 0
@@ -1000,7 +1000,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	W.add_blood(owner)
 	if(ismob(W.loc))
 		var/mob/living/H = W.loc
-		H.drop_from_inventory(W)
+		H.removeItem(W)
 	W.loc = owner
 
 /obj/item/organ/external/removed(var/mob/living/user, var/ignore_children = 0)

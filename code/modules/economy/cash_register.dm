@@ -182,7 +182,7 @@
 			overlays |= "register_cash"
 			if(ishuman(user))
 				var/mob/living/carbon/human/H = user
-				H.drop_from_inventory(SC)
+				H.removeItem(SC)
 			qdel(SC)
 		else
 			scan_cash(SC)
@@ -335,7 +335,7 @@
 		if(!SC.worth)
 			if(ishuman(SC.loc))
 				var/mob/living/carbon/human/H = SC.loc
-				H.drop_from_inventory(SC)
+				H.removeItem(SC)
 			qdel(SC)
 		cash_stored += transaction_amount
 

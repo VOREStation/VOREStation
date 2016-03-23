@@ -31,7 +31,7 @@
 					return
 
 			M << "<span class='notice'>You swallow \the [src].</span>"
-			M.drop_from_inventory(src) //icon update
+			M.removeItem(src) //icon update
 			if(reagents.total_volume)
 				reagents.trans_to_mob(M, reagents.total_volume, CHEM_INGEST)
 			qdel(src)
@@ -53,7 +53,7 @@
 			if(!do_mob(user, M))
 				return
 
-			user.drop_from_inventory(src) //icon update
+			user.removeItem(src) //icon update
 			user.visible_message("<span class='warning'>[user] forces [M] to swallow \the [src].</span>")
 
 			var/contained = reagentlist()
