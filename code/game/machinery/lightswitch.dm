@@ -8,7 +8,7 @@
 	icon_state = "light1"
 	anchored = 1.0
 	use_power = 1
-	idle_power_usage = 20
+	idle_power_usage = 10
 	power_channel = LIGHT
 	var/on = 1
 	var/area/area = null
