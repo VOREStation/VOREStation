@@ -1,5 +1,5 @@
 /datum/game_mode/intrigue
-	name = "Intrigue"
+	name = "Traitors & Ninja"
 	round_description = "Crewmembers are contacted by external elements while another infiltrates the colony."
 	extended_round_description = "Traitors and a ninja spawn during this round."
 	config_tag = "intrigue"

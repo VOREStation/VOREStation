@@ -1,5 +1,5 @@
 /datum/game_mode/paranoia
-	name = "paranoia"
+	name = "Malf AI, Renegades & Changelings"
 	round_description = "The AI has malfunctioned, and subversive elements infest the crew..."
 	extended_round_description = "Rampant AIs, renegades and changelings spawn in this mode."
 	config_tag = "paranoia"
