@@ -12,7 +12,7 @@
 /datum/controller/game_controller/proc/SetupXenoarch()
 	//create digsites
 	for(var/turf/simulated/mineral/M in block(locate(1,1,1), locate(world.maxx, world.maxy, world.maxz)))
-		if(M.density)
+		if(!(M.density))
 			continue
 			
 		if(isnull(M.geologic_data))
