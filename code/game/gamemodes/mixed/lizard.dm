@@ -1,5 +1,5 @@
 /datum/game_mode/lizard
-	name = "Wizard and Changelings"
+	name = "Wizard & Changelings"
 	round_description = "A space wizard and changelings have invaded the station!"
 	extended_round_description = "Changelings and a wizard spawn during this round."
 	config_tag = "lizard"
