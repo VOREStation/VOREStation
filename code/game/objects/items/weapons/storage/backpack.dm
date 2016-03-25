@@ -152,7 +152,7 @@
 	storage_slots = 12
 
 /obj/item/weapon/storage/backpack/dufflebag/syndie
-	name = "suspicious looking dufflebag"
+	name = "black dufflebag"
 	desc = "A large dufflebag for holding extra tactical supplies."
 	icon_state = "duffle_syndie"
 	item_state = "duffle_syndiemed"
