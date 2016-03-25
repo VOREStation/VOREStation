@@ -213,6 +213,7 @@
 
 /obj/structure/reagent_dispensers/water_cooler/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/weapon/wrench))
+		src.add_fingerprint(user)
 		if(bottle)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 			if(do_after(user, 20))
@@ -224,6 +225,15 @@
 				reagents.clear_reagents()
 				bottle = 0
 				icon_state = "water_cooler_0"
+		else
+			if(anchored)
+				user.visible_message("\The [user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
+			else
+				user.visible_message("\The [user] begins securing \the [src] to the floor.", "You start securing \the [src] to the floor.")
+			if(do_after(user, 20, src))
+				if(!src) return
+				user << "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>"
+				anchored = !anchored
 		return
 
 	if(istype(I, /obj/item/weapon/screwdriver))
@@ -235,18 +245,26 @@
 		return
 
 	if(istype(I, /obj/item/weapon/reagent_containers/glass/cooler_bottle))
+		src.add_fingerprint(user)
 		if(!bottle)
-			var/obj/item/weapon/reagent_containers/glass/cooler_bottle/G = I
-			user << "<span class='notice'>You start to screw the bottle onto the water-cooler.</span>"
-			if(do_after(user, 20))
-				bottle = 1
-				icon_state = "water_cooler"
-				user << "<span class='notice'>You screw the bottle onto the water-cooler but accidently spill some!</span>" //you spill some because it for somereason transfers 5 units to the bottle after it gets attached but before it's deleted...
-				for(var/datum/reagent/R in G.reagents.reagent_list)
-					var/total_reagent = G.reagents.get_reagent_amount(R.id)
-					reagents.add_reagent(R.id, total_reagent)
-				qdel(G)
+			if(anchored)
+				var/obj/item/weapon/reagent_containers/glass/cooler_bottle/G = I
+				user << "<span class='notice'>You start to screw the bottle onto the water-cooler.</span>"
+				if(do_after(user, 20))
+					bottle = 1
+					icon_state = "water_cooler"
+					user << "<span class='notice'>You screw the bottle onto the water-cooler but accidently spill some!</span>" //you spill some because it for somereason transfers 5 units to the bottle after it gets attached but before it's deleted...
+					for(var/datum/reagent/R in G.reagents.reagent_list)
+						var/total_reagent = G.reagents.get_reagent_amount(R.id)
+						reagents.add_reagent(R.id, total_reagent)
+					qdel(G)
+			else
+				user << "<span class='warning'>You need to wrench down the cooler first.</span>"
+		else
+			user << "<span class='warning'>There is already a bottle there!</span>"
 		return
+	else
+		return ..()
 
 /obj/structure/reagent_dispensers/beerkeg
 	name = "beer keg"
