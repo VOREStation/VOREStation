@@ -163,11 +163,6 @@
 		eye_blind =  1
 		blinded =    1
 		eye_blurry = 1
-	else
-		//blindness
-		if(!(sdisabilities & BLIND))
-			if(equipment_tint_total >= TINT_BLIND)	// Covered eyes, heal faster
-				eye_blurry = max(eye_blurry-2, 0)
 
 	if (disabilities & EPILEPSY)
 		if ((prob(1) && paralysis < 1))
