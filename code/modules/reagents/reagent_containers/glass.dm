@@ -40,7 +40,7 @@
 		/obj/machinery/sleeper,
 		/obj/machinery/smartfridge/,
 		/obj/machinery/biogenerator,
-		/obj/machinery/constructable_frame,
+		/obj/structure/frame,
 		/obj/machinery/radiocarbon_spectrometer
 		)
 
@@ -245,6 +245,17 @@
 	if (!is_open_container())
 		var/image/lid = image(icon, src, "lid_[initial(icon_state)]")
 		overlays += lid
+
+/obj/item/weapon/reagent_containers/glass/cooler_bottle
+	desc = "A bottle for a water-cooler."
+	name = "water-cooler bottle"
+	icon = 'icons/obj/vending.dmi'
+	icon_state = "water_cooler_bottle"
+	matter = list(DEFAULT_WALL_MATERIAL = 200)
+	w_class = 3.0
+	amount_per_transfer_from_this = 20
+	possible_transfer_amounts = list(10,20,30,60,120)
+	volume = 120
 
 /*
 /obj/item/weapon/reagent_containers/glass/blender_jug

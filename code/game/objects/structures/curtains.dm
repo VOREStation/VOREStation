@@ -35,6 +35,21 @@
 		icon_state = "open"
 		layer = SHOWER_OPEN_LAYER
 
+/obj/structure/curtain/attackby(obj/item/P, mob/user)
+	if(istype(P, /obj/item/weapon/wirecutters))
+		playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
+		user << "<span class='notice'>You start to cut the shower curtains.</span>"
+		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		if(do_after(user, 10))
+			user << "<span class='notice'>You cut the shower curtains.</span>"
+			var/obj/item/stack/material/plastic/A = new /obj/item/stack/material/plastic( src.loc )
+			A.amount = 3
+			qdel(src)
+		return
+	else
+		src.attack_hand(user)
+	return
+
 /obj/structure/curtain/black
 	name = "black curtain"
 	color = "#222222"

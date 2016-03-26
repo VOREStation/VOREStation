@@ -310,6 +310,7 @@
 	use_power = 1
 	idle_power_usage = 5
 	active_power_usage = 100
+	circuit = /obj/item/weapon/circuitboard/grinder
 	var/inuse = 0
 	var/obj/item/weapon/reagent_containers/beaker = null
 	var/limit = 10
@@ -326,6 +327,10 @@
 /obj/machinery/reagentgrinder/New()
 	..()
 	beaker = new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
+	component_parts = list()
+	component_parts += new /obj/item/weapon/stock_parts/motor(src)
+	component_parts += new /obj/item/weapon/stock_parts/gear(src)
+	RefreshParts()
 	return
 
 /obj/machinery/reagentgrinder/update_icon()
@@ -333,6 +338,11 @@
 	return
 
 /obj/machinery/reagentgrinder/attackby(var/obj/item/O as obj, var/mob/user as mob)
+	if(beaker)
+		if(default_deconstruction_screwdriver(user, O))
+			return
+		if(default_deconstruction_crowbar(user, O))
+			return
 
 	if (istype(O,/obj/item/weapon/reagent_containers/glass) || \
 		istype(O,/obj/item/weapon/reagent_containers/food/drinks/drinkingglass) || \

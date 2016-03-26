@@ -8,7 +8,7 @@
 "ah" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/mine/explored)
 "ai" = (/obj/item/weapon/circuitboard/teleporter,/turf/simulated/floor/airless,/area/mine/explored)
 "aj" = (/obj/structure/girder,/turf/simulated/mineral/floor/ignore_mapgen,/area/mine/explored)
-"ak" = (/obj/structure/computerframe,/turf/simulated/floor/airless,/area/mine/explored)
+"ak" = (/obj/structure/frame{frame_type = "computer"; icon_state = "computer_0"},/turf/simulated/floor/airless,/area/mine/explored)
 "al" = (/obj/machinery/teleport/station,/turf/simulated/floor/airless,/area/mine/explored)
 "am" = (/obj/machinery/teleport/hub,/turf/simulated/floor/airless,/area/mine/explored)
 "an" = (/turf/simulated/floor/tiled/white/airless,/area/mine/explored)

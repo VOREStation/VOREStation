@@ -158,17 +158,107 @@
 
 /datum/autolathe/recipe/airalarm
 	name = "air alarm electronics"
-	path = /obj/item/weapon/airalarm_electronics
+	path = /obj/item/weapon/circuitboard/airalarm
 	category = "Engineering"
 
 /datum/autolathe/recipe/firealarm
 	name = "fire alarm electronics"
-	path = /obj/item/weapon/firealarm_electronics
+	path = /obj/item/weapon/circuitboard/firealarm
 	category = "Engineering"
 
 /datum/autolathe/recipe/powermodule
 	name = "power control module"
 	path = /obj/item/weapon/module/power_control
+	category = "Engineering"
+
+/datum/autolathe/recipe/statusdisplay
+	name = "status display electronics"
+	path = /obj/item/weapon/circuitboard/status_display
+	category = "Engineering"
+
+/datum/autolathe/recipe/aistatusdisplay
+	name = "ai status display electronics"
+	path = /obj/item/weapon/circuitboard/ai_status_display
+	category = "Engineering"
+
+/datum/autolathe/recipe/newscaster
+	name = "newscaster electronics"
+	path = /obj/item/weapon/circuitboard/newscaster
+	category = "Engineering"
+
+/datum/autolathe/recipe/atm
+	name = "atm electronics"
+	path = /obj/item/weapon/circuitboard/atm
+	category = "Engineering"
+
+/datum/autolathe/recipe/intercom
+	name = "intercom electronics"
+	path = /obj/item/weapon/circuitboard/intercom
+	category = "Engineering"
+
+/datum/autolathe/recipe/holopad
+	name = "holopad electronics"
+	path = /obj/item/weapon/circuitboard/holopad
+	category = "Engineering"
+
+/datum/autolathe/recipe/guestpass
+	name = "guestpass console electronics"
+	path = /obj/item/weapon/circuitboard/guestpass
+	category = "Engineering"
+
+/datum/autolathe/recipe/entertainment
+	name = "entertainment camera electronics"
+	path = /obj/item/weapon/circuitboard/security/telescreen/entertainment
+	category = "Engineering"
+
+/datum/autolathe/recipe/keycard
+	name = "keycard authenticator electronics"
+	path = /obj/item/weapon/circuitboard/keycard_auth
+	category = "Engineering"
+
+/datum/autolathe/recipe/photocopier
+	name = "photocopier electronics"
+	path = /obj/item/weapon/circuitboard/photocopier
+	category = "Engineering"
+
+/datum/autolathe/recipe/fax
+	name = "fax machine electronics"
+	path = /obj/item/weapon/circuitboard/fax
+	category = "Engineering"
+
+/datum/autolathe/recipe/conveyor
+	name = "conveyor electronics"
+	path = /obj/item/weapon/circuitboard/conveyor
+	category = "Engineering"
+
+/datum/autolathe/recipe/microwave
+	name = "microwave electronics"
+	path = /obj/item/weapon/circuitboard/microwave
+	category = "Engineering"
+
+/datum/autolathe/recipe/vending
+	name = "vending machine electronics"
+	path = /obj/item/weapon/circuitboard/vending
+	category = "Engineering"
+
+/datum/autolathe/recipe/washing
+	name = "washing machine electronics"
+	path = /obj/item/weapon/circuitboard/washing
+	category = "Engineering"
+
+/datum/autolathe/recipe/motor
+	name = "motor"
+	path = /obj/item/weapon/stock_parts/motor
+	category = "Engineering"
+
+/datum/autolathe/recipe/gear
+	name = "gear"
+	path = /obj/item/weapon/stock_parts/gear
+	category = "Engineering"
+
+/datum/autolathe/recipe/spring
+	name = "spring"
+	path = /obj/item/weapon/stock_parts/spring
 	category = "Engineering"
 
 /datum/autolathe/recipe/rcd_ammo

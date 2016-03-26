@@ -116,7 +116,6 @@
 /obj/machinery/power/smes/buildable/New(var/install_coils = 1)
 	component_parts = list()
 	component_parts += new /obj/item/stack/cable_coil(src,30)
-	component_parts += new /obj/item/weapon/circuitboard/smes(src)
 	src.wires = new /datum/wires/smes(src)
 
 	// Allows for mapped-in SMESs with larger capacity/IO
@@ -345,9 +344,10 @@
 					return
 
 				usr << "\red You have disassembled the SMES cell!"
-				var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)
+				var/obj/structure/frame/M = new /obj/structure/frame(src.loc)
+				M.frame_type = "machine"
 				M.state = 2
-				M.icon_state = "box_1"
+				M.icon_state = "machine_1"
 				for(var/obj/I in component_parts)
 					I.loc = src.loc
 					component_parts -= I

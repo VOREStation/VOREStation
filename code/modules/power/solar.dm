@@ -407,25 +407,27 @@ var/list/solars_list = list()
 		if(do_after(user, 20))
 			if (src.stat & BROKEN)
 				user << "\blue The broken glass falls out."
-				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
+				var/obj/structure/frame/A = new /obj/structure/frame( src.loc )
 				new /obj/item/weapon/material/shard( src.loc )
 				var/obj/item/weapon/circuitboard/solar_control/M = new /obj/item/weapon/circuitboard/solar_control( A )
 				for (var/obj/C in src)
 					C.loc = src.loc
 				A.circuit = M
+				A.frame_type = "computer"
 				A.state = 3
-				A.icon_state = "3"
+				A.icon_state = "computer_3"
 				A.anchored = 1
 				qdel(src)
 			else
 				user << "\blue You disconnect the monitor."
-				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
+				var/obj/structure/frame/A = new /obj/structure/frame( src.loc )
 				var/obj/item/weapon/circuitboard/solar_control/M = new /obj/item/weapon/circuitboard/solar_control( A )
 				for (var/obj/C in src)
 					C.loc = src.loc
 				A.circuit = M
+				A.frame_type = "computer"
 				A.state = 4
-				A.icon_state = "4"
+				A.icon_state = "computer_4"
 				A.anchored = 1
 				qdel(src)
 	else
