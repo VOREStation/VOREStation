@@ -56,7 +56,7 @@
 /obj/item/weapon/melee/arm_blade/dropped(mob/user)
 	visible_message("<span class='warning'>With a sickening crunch, [creator] reforms their arm blade into an arm!</span>",
 	"<span class='notice'>We assimilate the weapon back into our body.</span>",
-	"<span class='italics>You hear organic matter ripping and tearing!</span>")
+	"<span class='italics'>You hear organic matter ripping and tearing!</span>")
 	playsound(src, 'sound/effects/blobattack.ogg', 30, 1)
 	spawn(1)
 		if(src)

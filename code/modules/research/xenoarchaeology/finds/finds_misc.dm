@@ -13,8 +13,8 @@
 
 //large finds
 				/*
-				/obj/machinery/syndicate_beacon
-				/obj/machinery/wish_granter
+				obj/machinery/syndicate_beacon
+				obj/machinery/wish_granter
 			if(18)
 				item_type = "jagged green crystal"
 				additional_desc = pick("It shines faintly as it catches the light.","It appears to have a faint inner glow.","It seems to draw you inward as you look it at.","Something twinkles faintly as you look at it.","It's mesmerizing to behold.")
