@@ -3,6 +3,7 @@
 	desc = "These will protect your legs and feet."
 	body_parts_covered = LEGS|FEET
 	slowdown = 0 //Shoes have a slowdown of -1, so this needs to be 0 in order for it to effectively be 1 slowdown.
+	species_restricted = null	//Unathi and Taj can wear leg armor now
 	w_class = 3
 
 /obj/item/clothing/shoes/leg_guard/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
@@ -25,14 +26,14 @@
 	desc = "These will protect your legs and feet from ballistic weapons."
 	icon_state = "leg_guards_bullet"
 	siemens_coefficient = 0.7
-	armor = list(melee = 10, bullet = 10, laser = 80, energy = 50, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 10, bullet = 80, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
 
 /obj/item/clothing/shoes/leg_guard/riot
 	name = "riot leg guards"
 	desc = "These will protect your legs and feet from close combat weapons."
 	icon_state = "leg_guards_riot"
 	siemens_coefficient = 0.5
-	armor = list(melee = 10, bullet = 10, laser = 80, energy = 50, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 80, bullet = 10, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
 
 /obj/item/clothing/shoes/leg_guard/combat
 	name = "combat leg guards"
