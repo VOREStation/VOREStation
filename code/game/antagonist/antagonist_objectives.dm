@@ -47,4 +47,4 @@
 	new_ambitions = sanitize(new_ambitions)
 	if(new_ambitions)
 		mind.ambitions = new_ambitions
-		src << "<span class='notice'>You've set your goal to be '[new_ambitions]'.<span>"
+		src << "<span class='notice'>You've set your goal to be '[new_ambitions]'.</span>"
