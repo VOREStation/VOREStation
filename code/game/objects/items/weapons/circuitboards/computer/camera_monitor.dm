@@ -29,13 +29,23 @@
 	network = list("MINE")
 	req_access = list()
 
+/obj/item/weapon/circuitboard/security/telescreen/entertainment
+	name = T_BOARD("entertainment camera monitor")
+	build_path = /obj/machinery/computer/security/telescreen/entertainment
+	board_type = "display"
+	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
+
+/obj/item/weapon/circuitboard/security/telescreen/entertainment/New()
+	..()
+	network = NETWORK_THUNDER
+
 /obj/item/weapon/circuitboard/security/construct(var/obj/machinery/computer/security/C)
 	if (..(C))
-		C.network = network
+		C.network = network.Copy()
 
 /obj/item/weapon/circuitboard/security/deconstruct(var/obj/machinery/computer/security/C)
 	if (..(C))
-		network = C.network
+		network = C.network.Copy()
 
 /obj/item/weapon/circuitboard/security/emag_act(var/remaining_charges, var/mob/user)
 	if(emagged)

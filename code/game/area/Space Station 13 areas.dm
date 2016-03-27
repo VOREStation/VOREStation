@@ -77,7 +77,7 @@ var/list/ghostteleportlocs = list()
 /hook/startup/proc/setupGhostTeleportLocs()
 	for(var/area/AR in world)
 		if(ghostteleportlocs.Find(AR.name)) continue
-		if(istype(AR, /area/turret_protected/aisat) || istype(AR, /area/derelict) || istype(AR, /area/tdome) || istype(AR, /area/shuttle/specops/centcom))
+		if(istype(AR, /area/aisat) || istype(AR, /area/derelict) || istype(AR, /area/tdome) || istype(AR, /area/shuttle/specops/centcom))
 			ghostteleportlocs += AR.name
 			ghostteleportlocs[AR.name] = AR
 		var/turf/picked = pick(get_area_turfs(AR.type))
@@ -121,8 +121,6 @@ area/space/atmosalert()
 
 /area/space/partyalert()
 	return
-
-/area/turret_protected/
 
 /area/arrival
 	requires_power = 0
@@ -2422,65 +2420,65 @@ area/space/atmosalert()
 	name = "Emergency Storage"
 	icon_state = "storage"
 
-/area/turret_protected/ai_upload
+/area/ai_upload
 	name = "\improper AI Upload Chamber"
 	icon_state = "ai_upload"
 	ambience = list('sound/ambience/ambimalf.ogg')
 
-/area/turret_protected/ai_upload_foyer
+/area/ai_upload_foyer
 	name = "AI Upload Access"
 	icon_state = "ai_foyer"
 	ambience = list('sound/ambience/ambimalf.ogg')
 	sound_env = SMALL_ENCLOSED
 
-/area/turret_protected/ai_server_room
+/area/ai_server_room
 	name = "Messaging Server Room"
 	icon_state = "ai_server"
 	sound_env = SMALL_ENCLOSED
 
-/area/turret_protected/ai
+/area/ai
 	name = "\improper AI Chamber"
 	icon_state = "ai_chamber"
 	ambience = list('sound/ambience/ambimalf.ogg')
 
-/area/turret_protected/ai_cyborg_station
+/area/ai_cyborg_station
 	name = "\improper Cyborg Station"
 	icon_state = "ai_cyborg"
 	sound_env = SMALL_ENCLOSED
 
-/area/turret_protected/aisat
+/area/aisat
 	name = "\improper AI Satellite"
 	icon_state = "ai"
 
-/area/turret_protected/aisat_interior
+/area/aisat_interior
 	name = "\improper AI Satellite"
 	icon_state = "ai"
 
-/area/turret_protected/AIsatextFP
+/area/AIsatextFP
 	name = "\improper AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
 	lighting_use_dynamic = 0
 
-/area/turret_protected/AIsatextFS
+/area/AIsatextFS
 	name = "\improper AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
 	lighting_use_dynamic = 0
 
-/area/turret_protected/AIsatextAS
+/area/AIsatextAS
 	name = "\improper AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
 	lighting_use_dynamic = 0
 
-/area/turret_protected/AIsatextAP
+/area/AIsatextAP
 	name = "\improper AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
 	lighting_use_dynamic = 0
 
-/area/turret_protected/NewAIMain
+/area/NewAIMain
 	name = "\improper AI Main New"
 	icon_state = "storage"
 
@@ -2524,22 +2522,22 @@ area/space/atmosalert()
 	name = "\improper Telecoms Central Compartment"
 	icon_state = "tcomsatcham"
 
-/area/turret_protected/tcomsat
+/area/tcomsat
 	name = "\improper Telecoms Satellite"
 	icon_state = "tcomsatlob"
 	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
 
-/area/turret_protected/tcomfoyer
+/area/tcomfoyer
 	name = "\improper Telecoms Foyer"
 	icon_state = "tcomsatentrance"
 	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
 
-/area/turret_protected/tcomwest
+/area/tcomwest
 	name = "\improper Telecommunications Satellite West Wing"
 	icon_state = "tcomsatwest"
 	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
 
-/area/turret_protected/tcomeast
+/area/tcomeast
 	name = "\improper Telecommunications Satellite East Wing"
 	icon_state = "tcomsateast"
 	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
@@ -2759,12 +2757,12 @@ var/list/the_station_areas = list (
 	/area/rnd,
 	/area/storage,
 	/area/construction,
-	/area/ai_monitored/storage/eva, //do not try to simplify to "/area/ai_monitored" --rastaf0
+	/area/ai_monitored/storage/eva,
 	/area/ai_monitored/storage/secure,
 	/area/ai_monitored/storage/emergency,
-	/area/turret_protected/ai_upload, //do not try to simplify to "/area/turret_protected" --rastaf0
-	/area/turret_protected/ai_upload_foyer,
-	/area/turret_protected/ai,
+	/area/ai_upload,
+	/area/ai_upload_foyer,
+	/area/ai
 )
 
 

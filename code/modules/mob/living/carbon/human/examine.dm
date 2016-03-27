@@ -48,7 +48,7 @@
 			else if(gender == FEMALE)
 				use_gender = "a gynoid"
 
-			msg += ", <font color='#555555'>[use_gender]!</font></b>"
+			msg += ", <b><font color='#555555'>[use_gender]!</font></b>"
 
 		else if(species.name != "Human")
 			msg += ", <b><font color='[species.get_flesh_colour(src)]'>\a [species.name]!</font></b>"

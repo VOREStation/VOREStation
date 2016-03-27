@@ -14,6 +14,15 @@ obj/machinery/recharger
 	var/icon_state_charging = "recharger1"
 	var/icon_state_idle = "recharger0" //also when unpowered
 	var/portable = 1
+	circuit = /obj/item/weapon/circuitboard/recharger
+	frame_type = "recharger"
+
+obj/machinery/recharger/New()
+	component_parts = list()
+	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
+	component_parts += new /obj/item/stack/cable_coil(src, 5)
+	RefreshParts()
+	return
 
 obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 	if(istype(user,/mob/living/silicon))
@@ -52,6 +61,10 @@ obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 		anchored = !anchored
 		user << "You [anchored ? "attached" : "detached"] the recharger."
 		playsound(loc, 'sound/items/Ratchet.ogg', 75, 1)
+	else if(default_deconstruction_screwdriver(user, G))
+		return
+	else if(default_deconstruction_crowbar(user, G))
+		return
 
 obj/machinery/recharger/attack_hand(mob/user as mob)
 	if(istype(user,/mob/living/silicon))
@@ -156,3 +169,5 @@ obj/machinery/recharger/wallcharger
 	icon_state_charging = "wrecharger1"
 	icon_state_idle = "wrecharger0"
 	portable = 0
+	circuit = /obj/item/weapon/circuitboard/recharger/wrecharger
+	frame_type = "wrecharger"

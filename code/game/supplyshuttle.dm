@@ -55,6 +55,20 @@ var/list/mechtoys = list(
 		/mob/living/silicon/robot/drone
 		)
 
+/obj/structure/plasticflaps/attackby(obj/item/P, mob/user)
+	if(istype(P, /obj/item/weapon/wirecutters))
+		playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
+		user << "<span class='notice'>You start to cut the plastic flaps.</span>"
+		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		if(do_after(user, 10))
+			user << "<span class='notice'>You cut the plastic flaps.</span>"
+			var/obj/item/stack/material/plastic/A = new /obj/item/stack/material/plastic( src.loc )
+			A.amount = 4
+			qdel(src)
+		return
+	else
+		return
+
 /obj/structure/plasticflaps/CanPass(atom/A, turf/T)
 	if(istype(A) && A.checkpass(PASSGLASS))
 		return prob(60)
