@@ -8,11 +8,11 @@
 	if(!src.mob)
 		return
 	if(prefs.muted & MUTE_DEADCHAT)
-		src << "<spcan class='warning'>You cannot send DSAY messages (muted).</span>"
+		src << "<span class='warning'>You cannot send DSAY messages (muted).</span>"
 		return
 
 	if(!is_preference_enabled(/datum/client_preference/show_dsay))
-		src << "<spcan class='warning'>You have deadchat muted.</span>"
+		src << "<span class='warning'>You have deadchat muted.</span>"
 		return
 
 	if (src.handle_spam_prevention(msg,MUTE_DEADCHAT))
