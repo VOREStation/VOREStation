@@ -2073,7 +2073,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/device/healthanalyzer,
 					/obj/item/weapon/cartridge/medical,
 					/obj/item/device/flashlight/pen,
-					/obj/item/weapon/reagent_containers/syringe)
+					/obj/item/weapon/reagent_containers/syringe,
+					/obj/item/clothing/accessory/storage/brown_vest)
 	cost = 20
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Paramedic equipment"
