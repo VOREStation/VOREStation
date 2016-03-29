@@ -41,3 +41,4 @@ script:
   - DreamMaker polaris.dme
   - DreamDaemon polaris.dmb -invisible -trusted -core 2>&1 | tee log.txt
   - grep "All Unit Tests Passed" log.txt
+
