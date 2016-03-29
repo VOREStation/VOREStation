@@ -22,6 +22,7 @@ obj/machinery/recharger/New()
 	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
 	component_parts += new /obj/item/stack/cable_coil(src, 5)
 	RefreshParts()
+	..()
 	return
 
 obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
