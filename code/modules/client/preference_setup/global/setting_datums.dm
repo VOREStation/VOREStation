@@ -5,7 +5,7 @@ var/list/_client_preferences_by_type
 /proc/get_client_preferences()
 	if(!_client_preferences)
 		_client_preferences = list()
-		for(var/ct in subtypesof(/datum/client_preference))
+		for(var/ct in subtypes(/datum/client_preference))
 			var/datum/client_preference/client_type = ct
 			if(initial(client_type.description))
 				_client_preferences += new client_type()
