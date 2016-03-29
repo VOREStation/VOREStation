@@ -151,19 +151,21 @@
 /mob/living/carbon/human/handle_disabilities()
 	..()
 	//Vision
-	var/obj/item/organ/vision
 	if(species.vision_organ)
-		vision = internal_organs_by_name[species.vision_organ]
-
-	if(!species.vision_organ) // Presumably if a species has no vision organs, they see via some other means.
+		if(internal_organs_by_name[species.vision_organ])  // Vision organs cut out? Permablind.
+			eye_blind =  0
+			blinded =    0
+			eye_blurry = 0
+		else
+			eye_blind =  1
+			blinded =    1
+			eye_blurry = 1
+	else // Presumably if a species has no vision organs, they see via some other means.
 		eye_blind =  0
 		blinded =    0
 		eye_blurry = 0
-	else if(!vision || (vision && vision.is_broken()))   // Vision organs cut out or broken? Permablind.
-		eye_blind =  1
-		blinded =    1
-		eye_blurry = 1
-
+		
+		
 	if (disabilities & EPILEPSY)
 		if ((prob(1) && paralysis < 1))
 			src << "\red You have a seizure!"
