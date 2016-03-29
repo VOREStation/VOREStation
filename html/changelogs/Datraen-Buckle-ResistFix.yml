@@ -1,7 +1,0 @@
-author: Datraen
-
-delete-after: True
-
-changes: 
-  - bugfix: "Fixes the buckled check limiting whether or not someone can interact while sitting."
-  - bugfix: "Resisting while buckled and cuffed will process the hand and leg cuffs before unbuckling."
