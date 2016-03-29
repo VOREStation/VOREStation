@@ -98,8 +98,8 @@
 						// Drop a circuit board too
 						C.loc = user.loc
 
-					// Create a machine frame and delete the current machine
-					var/obj/machinery/constructable_frame/machine_frame/F = new
+					// Create a frame and delete the current machine
+					var/obj/structure/frame/F = new
 					F.loc = src.loc
 					qdel(src)
 

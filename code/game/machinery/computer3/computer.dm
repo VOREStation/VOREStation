@@ -29,7 +29,7 @@
 	// when you had to search the list to find what you had.
 
 	// Mostly decorative, holds the OS rom
-	var/obj/item/part/computer/circuitboard/circuit
+	var/obj/item/part/computer/circuitboard/circuitb
 
 	// Storage
 	var/obj/item/part/computer/storage/hdd/hdd				= null
@@ -97,11 +97,11 @@
 			overlays += kb
 
 		if(!built)
-			if(!circuit || !istype(circuit))
-				circuit = new(src)
-			if(circuit.OS)
-				os = circuit.OS
-				circuit.OS.computer = src
+			if(!circuitb || !istype(circuitb))
+				circuitb = new(src)
+			if(circuitb.OS)
+				os = circuitb.OS
+				circuitb.OS.computer = src
 			else
 				os = null
 
@@ -121,10 +121,10 @@
 					floppy.addfile(P)
 					program = P
 				else
-					circuit.OS = P
-					circuit.OS.computer = src
-					os = circuit.OS
-					circuit.name = "Circuitboard ([P])"
+					circuitb.OS = P
+					circuitb.OS.computer = src
+					os = circuitb.OS
+					circuitb.name = "Circuitboard ([P])"
 
 
 			if(hdd)		// Spawn files

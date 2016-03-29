@@ -14,6 +14,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	use_power = 1
 	idle_power_usage = 30
 	active_power_usage = 200
+	frame_type = "fax"
 
 	var/obj/item/weapon/card/id/scan = null // identification
 	var/authenticated = 0

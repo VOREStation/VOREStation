@@ -114,3 +114,7 @@
 	new /obj/item/clothing/shoes/black(src)
 	new /obj/item/clothing/shoes/laceup(src)
 	new /obj/item/clothing/shoes/laceup(src)
+	new /obj/item/clothing/glasses/sunglasses/big(src)
+	new /obj/item/clothing/glasses/sunglasses/big(src)
+	new /obj/item/clothing/under/lawyer/blue(src)
+	new /obj/item/clothing/under/lawyer/blue(src)

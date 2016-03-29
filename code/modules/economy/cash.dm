@@ -21,8 +21,7 @@
 		if(istype(W, /obj/item/weapon/spacecash/ewallet)) return 0
 
 		var/obj/item/weapon/spacecash/SC = W
-		SC.worth += src.worth
-		SC.update_icon()
+		SC.adjust_worth(src.worth)
 		if(istype(user, /mob/living/carbon/human))
 			var/mob/living/carbon/human/h_user = user
 			h_user.drop_from_inventory(src)
@@ -59,26 +58,32 @@
 		src.overlays += banknote
 	src.desc = "They are worth [worth] Thalers."
 
+/obj/item/weapon/spacecash/proc/adjust_worth(var/adjust_worth = 0, var/update = 1)
+	worth += adjust_worth
+	if(worth > 0)
+		if(update)
+			update_icon()
+		return worth
+	else
+		qdel(src)
+		return 0
+
+/obj/item/weapon/spacecash/proc/set_worth(var/new_worth = 0, var/update = 1)
+	worth = max(0, new_worth)
+	if(update)
+		update_icon()
+	return worth
+
 /obj/item/weapon/spacecash/attack_self()
 	var/amount = input(usr, "How many Thalers do you want to take? (0 to [src.worth])", "Take Money", 20) as num
 	amount = round(Clamp(amount, 0, src.worth))
-	if(amount==0) return 0
+	if(!amount)
+		return
 
-	src.worth -= amount
-	src.update_icon()
-	if(!worth)
-		usr.drop_from_inventory(src)
-	if(amount in list(1000,500,200,100,50,20,1))
-		var/cashtype = text2path("/obj/item/weapon/spacecash/c[amount]")
-		var/obj/cash = new cashtype (usr.loc)
-		usr.put_in_hands(cash)
-	else
-		var/obj/item/weapon/spacecash/SC = new (usr.loc)
-		SC.worth = amount
-		SC.update_icon()
-		usr.put_in_hands(SC)
-	if(!worth)
-		qdel(src)
+	adjust_worth(-amount)
+	var/obj/item/weapon/spacecash/SC = new (usr.loc)
+	SC.set_worth(amount)
+	usr.put_in_hands(SC)
 
 /obj/item/weapon/spacecash/c1
 	name = "1 Thaler"
@@ -130,8 +135,7 @@
 
 proc/spawn_money(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
 	var/obj/item/weapon/spacecash/SC = new (spawnloc)
-	SC.worth = sum
-	SC.update_icon()
+	SC.set_worth(sum)
 	if (ishuman(human_user) && !human_user.get_active_hand())
 		human_user.put_in_hands(SC)
 	return

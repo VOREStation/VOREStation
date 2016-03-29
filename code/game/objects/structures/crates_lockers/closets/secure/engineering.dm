@@ -92,6 +92,9 @@
 		new /obj/item/weapon/weldpack(src)
 		new /obj/item/weapon/weldpack(src)
 		new /obj/item/weapon/weldpack(src)
+		new /obj/item/clothing/glasses/welding(src)
+		new /obj/item/clothing/glasses/welding(src)
+		new /obj/item/clothing/glasses/welding(src)
 		return
 
 

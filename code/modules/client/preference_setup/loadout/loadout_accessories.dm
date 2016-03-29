@@ -28,6 +28,10 @@
 	display_name = "armband, science"
 	path = /obj/item/clothing/accessory/armband/science
 
+/datum/gear/accessory/wallet
+	display_name = "wallet"
+	path = /obj/item/weapon/storage/wallet/random
+
 /datum/gear/accessory/holster
 	display_name = "holster, armpit"
 	path = /obj/item/clothing/accessory/holster/armpit

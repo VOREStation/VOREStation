@@ -297,6 +297,8 @@
 		new /obj/item/taperoll/police(src)
 		new /obj/item/weapon/gun/projectile/colt/detective(src)
 		new /obj/item/clothing/accessory/holster/armpit(src)
+		new /obj/item/device/flashlight/maglight(src)
+		new /obj/item/weapon/reagent_containers/food/drinks/flask/detflask(src)
 		return
 
 /obj/structure/closet/secure_closet/detective/update_icon()

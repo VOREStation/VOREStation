@@ -124,7 +124,6 @@ var/list/_client_preferences_by_type
 	key = "SHOW_PROGRESS"
 	enabled_description = "Show"
 	disabled_description = "Hide"
-
 /********************
 * Admin Preferences *
 ********************/

@@ -46,6 +46,7 @@
 	icon_keyboard = null
 	icon_screen = "pass"
 	density = 0
+	circuit = /obj/item/weapon/circuitboard/guestpass
 
 	var/obj/item/weapon/card/id/giver
 	var/list/accesses = list()
@@ -60,11 +61,30 @@
 	..()
 	uid = "[rand(100,999)]-G[rand(10,99)]"
 
-/obj/machinery/computer/guestpass/attackby(obj/O, mob/user)
-	if(istype(O, /obj/item/weapon/card/id))
-		if(!giver && user.unEquip(O))
-			O.loc = src
-			giver = O
+/obj/machinery/computer/guestpass/attackby(obj/I, mob/user)
+	if(istype(I, /obj/item/weapon/screwdriver) && circuit)
+		user << "<span class='notice'>You start disconnecting the monitor.</span>"
+		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+		if(do_after(user, 20))
+			var/obj/structure/frame/A = new /obj/structure/frame( src.loc )
+			var/obj/item/weapon/circuitboard/M = new circuit( A )
+			A.frame_type = "guestpass"
+			A.pixel_x = pixel_x
+			A.pixel_y = pixel_y
+			A.circuit = M
+			A.anchored = 1
+			for (var/obj/C in src)
+				C.forceMove(loc)
+			user << "<span class='notice'>You disconnect the monitor.</span>"
+			A.state = 4
+			A.icon_state = "guestpass_4"
+			M.deconstruct(src)
+			qdel(src)
+		return
+	if(istype(I, /obj/item/weapon/card/id))
+		if(!giver && user.unEquip(I))
+			I.loc = src
+			giver = I
 			updateUsrDialog()
 		else if(giver)
 			user << "<span class='warning'>There is already ID card inside.</span>"

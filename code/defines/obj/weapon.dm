@@ -269,21 +269,6 @@
 	throw_range = 5
 	w_class = 2.0
 
-/obj/item/weapon/wire
-	desc = "This is just a simple piece of regular insulated wire."
-	name = "wire"
-	icon = 'icons/obj/power.dmi'
-	icon_state = "item_wire"
-	var/amount = 1.0
-	var/laying = 0.0
-	var/old_lay = null
-	matter = list(DEFAULT_WALL_MATERIAL = 40)
-	attack_verb = list("whipped", "lashed", "disciplined", "tickled")
-
-	suicide_act(mob/user)
-		viewers(user) << "<span class='warning'><b>[user] is strangling \himself with \the [src]! It looks like \he's trying to commit suicide.</b></span>"
-		return (OXYLOSS)
-
 /obj/item/weapon/module
 	icon = 'icons/obj/module.dmi'
 	icon_state = "std_module"
@@ -599,3 +584,29 @@
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "smes_coil"
 	origin_tech = list(TECH_MATERIAL = 19, TECH_ENGINEERING = 19, TECH_PHORON = 19, TECH_POWER = 19, TECH_BLUESPACE = 19, TECH_BIO = 19, TECH_COMBAT = 19, TECH_MAGNET = 19, TECH_DATA = 19, TECH_ILLEGAL = 19, TECH_ARCANE = 19)
+
+// Additional construction stock parts
+
+/obj/item/weapon/stock_parts/gear
+	name = "gear"
+	desc = "A gear used for construction."
+	icon = 'icons/obj/stock_parts.dmi'
+	icon_state = "gear"
+	origin_tech = list(TECH_ENGINEERING = 1)
+	matter = list(DEFAULT_WALL_MATERIAL = 50)
+
+/obj/item/weapon/stock_parts/motor
+	name = "motor"
+	desc = "A motor used for construction."
+	icon = 'icons/obj/stock_parts.dmi'
+	icon_state = "motor"
+	origin_tech = list(TECH_ENGINEERING = 1)
+	matter = list(DEFAULT_WALL_MATERIAL = 60, "glass" = 10)
+
+/obj/item/weapon/stock_parts/spring
+	name = "spring"
+	desc = "A spring used for construction."
+	icon = 'icons/obj/stock_parts.dmi'
+	icon_state = "spring"
+	origin_tech = list(TECH_ENGINEERING = 1)
+	matter = list(DEFAULT_WALL_MATERIAL = 40)

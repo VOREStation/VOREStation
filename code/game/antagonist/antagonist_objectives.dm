@@ -30,3 +30,21 @@
 			world << "<span class='danger'><font size = 3>[loss_text]</font></span>"
 			if(loss_feedback_tag) feedback_set_details("round_end_result","[loss_feedback_tag]")
 
+/mob/living/proc/write_ambition()
+	set name = "Set Ambition"
+	set category = "IC"
+	set src = usr
+
+	if(!mind)
+		return
+	if(!src.mind.special_role)
+		src << "<span class='warning'>While you may perhaps have goals, this verb's meant to only be visible \
+		to antagonists.  Please make a bug report!</span>"
+		return
+	var/new_ambitions = input(src, "Write a short sentence of what your character hopes to accomplish \
+	today as an antagonist.  Remember that this is purely optional.  It will be shown at the end of the \
+	round for everybody else.", "Ambitions", mind.ambitions) as null|message
+	new_ambitions = sanitize(new_ambitions)
+	if(new_ambitions)
+		mind.ambitions = new_ambitions
+		src << "<span class='notice'>You've set your goal to be '[new_ambitions]'.</span>"
