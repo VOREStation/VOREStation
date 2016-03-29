@@ -453,6 +453,8 @@
 	new /obj/item/clothing/under/rank/medical/green(src)
 	new /obj/item/clothing/under/rank/medical/purple(src)
 	new /obj/item/clothing/under/rank/medical/black(src)
+	new /obj/item/clothing/under/rank/medical/navyblue(src)
+	new /obj/item/clothing/head/surgery/navyblue(src)
 	new /obj/item/clothing/head/surgery/purple(src)
 	new /obj/item/clothing/head/surgery/blue(src)
 	new /obj/item/clothing/head/surgery/green(src)
