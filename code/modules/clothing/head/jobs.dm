@@ -67,7 +67,7 @@
 	icon_state = "beret_navy_officer"
 /obj/item/clothing/head/beret/sec/navy/hos
 	name = "officer beret"
-	desc = "A navy blue beret with a commander's rank emblem. For officers that are more inclined towards style than safety."
+	desc = "A navy blue beret with a head of security's rank emblem. For officers that are more inclined towards style than safety."
 	icon_state = "beret_navy_hos"
 /obj/item/clothing/head/beret/sec/navy/warden
 	name = "warden beret"
@@ -79,7 +79,7 @@
 	icon_state = "beret_corporate_officer"
 /obj/item/clothing/head/beret/sec/corporate/hos
 	name = "officer beret"
-	desc = "A corporate black beret with a commander's rank emblem. For officers that are more inclined towards style than safety."
+	desc = "A corporate black beret with a head of security's rank emblem. For officers that are more inclined towards style than safety."
 	icon_state = "beret_corporate_hos"
 /obj/item/clothing/head/beret/sec/corporate/warden
 	name = "warden beret"
@@ -95,11 +95,11 @@
 	icon_state = "beret_purple"
 /obj/item/clothing/head/beret/centcom/officer
 	name = "officers beret"
-	desc = "A black beret adorned with the shield - a silver kite shield with an engraved sword - of the corporate security forces."
+	desc = "A dark blue beret adorned with a silver patch. Worn by NanoTrasen Officials."
 	icon_state = "beret_centcom_officer"
 /obj/item/clothing/head/beret/centcom/captain
 	name = "captains beret"
-	desc = "A white beret adorned with the shield - a silver kite shield with an engraved sword - of the corporate security forces."
+	desc = "A white beret adorned with a blue patch. Worn by NanoTrasen command staff."
 	icon_state = "beret_centcom_captain"
 
 //Medical
