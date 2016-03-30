@@ -546,20 +546,32 @@
 	if(ismob(AM))
 
 		if(!can_pull_mobs || !can_pull_size)
-			src << "<span class='warning'>It won't budge!</span>"
+			src << "<span class='warning'>They won't budge!</span>"
 			return
 
 		if((mob_size < M.mob_size) && (can_pull_mobs != MOB_PULL_LARGER))
-			src << "<span class='warning'>It won't budge!</span>"
+			src << "<span class='warning'>[M] is too large for you to move!</span>"
 			return
 
 		if((mob_size == M.mob_size) && (can_pull_mobs == MOB_PULL_SMALLER))
-			src << "<span class='warning'>It won't budge!</span>"
+			src << "<span class='warning'>[M] is too heavy for you to move!</span>"
 			return
 
 		// If your size is larger than theirs and you have some
 		// kind of mob pull value AT ALL, you will be able to pull
 		// them, so don't bother checking that explicitly.
+
+		if(M.grabbed_by.len)
+			// Only start pulling when nobody else has a grab on them
+			. = 1
+			for(var/obj/item/weapon/grab/G in M.grabbed_by)
+				if(G.assailant != usr)
+					. = 0
+				else
+					qdel(G)
+			if(!.)
+				src << "<span class='warning'>Somebody has a grip on them!</span>"
+				return
 
 		if(!iscarbon(src))
 			M.LAssailant = null
