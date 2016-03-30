@@ -38,7 +38,7 @@ var/datum/uplink_random_selection/default_uplink_selection = new/datum/uplink_ra
 /datum/uplink_random_selection/default/New()
 	..()
 
-	items += new/datum/uplink_random_item(/datum/uplink_item/item/visible_weapons/g9mm)
+	items += new/datum/uplink_random_item(/datum/uplink_item/item/visible_weapons/silenced_45)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/ammo/mc9mm)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/visible_weapons/revolver)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/ammo/a357)

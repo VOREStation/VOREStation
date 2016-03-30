@@ -66,6 +66,7 @@
 	var/mode_name = null
 	var/requires_two_hands
 	var/wielded_icon = "gun_wielded"
+	var/one_handed_penalty = 0 // Penalty applied if someone fires a two-handed gun with one hand.
 
 	var/next_fire_time = 0
 
@@ -180,8 +181,8 @@
 	var/held_disp_mod = 0
 	if(requires_two_hands)
 		if(user.item_is_in_hands(src) && user.hands_are_full())
-			held_acc_mod = -3
-			held_disp_mod = 3
+			held_acc_mod = held_acc_mod - one_handed_penalty
+			held_disp_mod = held_disp_mod - round(one_handed_penalty / 2)
 
 	//actually attempt to shoot
 	var/turf/targloc = get_turf(target) //cache this in case target gets deleted during shooting, e.g. if it was a securitron that got destroyed.
@@ -208,6 +209,12 @@
 		if(!(target && target.loc))
 			target = targloc
 			pointblank = 0
+
+	// We do this down here, so we don't get the message if we fire an empty gun.
+	if(requires_two_hands)
+		if(user.item_is_in_hands(src) && user.hands_are_full())
+			if(one_handed_penalty >= 2)
+				user << "<span class='warning'>You struggle to keep \the [src] pointed at the correct position with just one hand!</span>"
 
 	admin_attack_log(usr, attacker_message="Fired [src]", admin_message="fired a gun ([src]) (MODE: [src.mode_name]) [reflex ? "by reflex" : "manually"].")
 

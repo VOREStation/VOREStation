@@ -5,13 +5,14 @@
 	item_state = null	//so the human update icon uses the icon_state instead.
 	fire_sound = 'sound/weapons/Taser.ogg'
 	max_shots = 10
+	fire_delay = 10 // Handguns should be inferior to two-handed weapons.
 
 	projectile_type = /obj/item/projectile/beam/stun
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	modifystate = "energystun"
 
 	firemodes = list(
-		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun, modifystate="energystun", fire_sound='sound/weapons/Taser.ogg'),
+		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun/weak, modifystate="energystun", fire_sound='sound/weapons/Taser.ogg'),
 		list(mode_name="lethal", projectile_type=/obj/item/projectile/beam, modifystate="energykill", fire_sound='sound/weapons/Laser.ogg'),
 		)
 
@@ -33,6 +34,9 @@
 	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 2, TECH_ILLEGAL = 3)
 	modifystate = "fm-2tstun"
 
+//	requires_two_hands = 1
+	one_handed_penalty = 2
+
 	firemodes = list(
 		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun/weak, modifystate="fm-2tstun", fire_sound='sound/weapons/Taser.ogg'),
 		list(mode_name="stun 3-round bursts", burst=3, fire_delay=null, move_delay=4, burst_accuracy=list(0,-1,-1), dispersion=list(0.0, 0.6, 1.0), projectile_type=/obj/item/projectile/beam/stun, modifystate="fm-2tstun", fire_sound='sound/weapons/Taser.ogg'),
@@ -49,6 +53,9 @@
 	force = 8 //looks heavier than a pistol
 	self_recharge = 1
 	modifystate = null
+
+//	requires_two_hands = 1
+	one_handed_penalty = 1 // It's rather bulky, so holding it in one hand is a little harder than with two, however it's not 'required'.
 
 	firemodes = list(
 		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun, fire_sound='sound/weapons/Taser.ogg'),

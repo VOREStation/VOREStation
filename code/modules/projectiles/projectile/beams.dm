@@ -23,6 +23,11 @@
 	check_armour = "laser"
 	eyeblur = 2
 
+/obj/item/projectile/beam/weaklaser
+	name = "weak laser"
+	icon_state = "laser"
+	damage = 15
+
 /obj/item/projectile/beam/midlaser
 	damage = 40
 	armor_penetration = 10
@@ -32,15 +37,6 @@
 	icon_state = "heavylaser"
 	damage = 60
 	armor_penetration = 30
-
-	muzzle_type = /obj/effect/projectile/laser_heavy/muzzle
-	tracer_type = /obj/effect/projectile/laser_heavy/tracer
-	impact_type = /obj/effect/projectile/laser_heavy/impact
-
-/obj/item/projectile/beam/weaklaser
-	name = "weak laser"
-	icon_state = "laser"
-	damage = 15
 
 	muzzle_type = /obj/effect/projectile/laser_heavy/muzzle
 	tracer_type = /obj/effect/projectile/laser_heavy/tracer
@@ -163,11 +159,4 @@
 /obj/item/projectile/beam/stun/weak
 	name = "weak stun beam"
 	icon_state = "stun"
-	nodamage = 1
-	taser_effect = 1
 	agony = 25
-	damage_type = HALLOSS
-
-	muzzle_type = /obj/effect/projectile/stun/muzzle
-	tracer_type = /obj/effect/projectile/stun/tracer
-	impact_type = /obj/effect/projectile/stun/impact
