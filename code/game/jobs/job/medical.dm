@@ -19,6 +19,7 @@
 			access_chemistry, access_virology, access_cmo, access_surgery, access_RC_announce,
 			access_keycard_auth, access_sec_doors, access_psychiatrist, access_eva, access_external_airlocks, access_maint_tunnels)
 
+	minimum_character_age = 25
 	minimal_player_age = 10
 	ideal_character_age = 50
 
