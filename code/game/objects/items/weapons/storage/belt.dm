@@ -180,7 +180,13 @@
 		/obj/item/device/megaphone,
 		/obj/item/device/radio/headset,
 		/obj/item/clothing/gloves,
-		/obj/item/taperoll/police
+		/obj/item/taperoll/police,
+		/obj/item/weapon/reagent_containers/spray/pepper,
+		/obj/item/weapon/handcuffs,
+		/obj/item/device/flash,
+		/obj/item/weapon/flame/lighter,
+		/obj/item/weapon/reagent_containers/food/snacks/donut/,
+		/obj/item/ammo_magazine
 		)
 
 /obj/item/weapon/storage/belt/soulstone

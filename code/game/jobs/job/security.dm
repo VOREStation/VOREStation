@@ -92,7 +92,7 @@
 	spawn_positions = 2
 	supervisors = "the head of security"
 	selection_color = "#ffeeee"
-	alt_titles = list("Forensic Technician")
+	alt_titles = list("Forensic Technician","Investigator")
 	access = list(access_security, access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels, access_eva, access_external_airlocks)
 	minimal_access = list(access_security, access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels, access_eva, access_external_airlocks)
 	economic_modifier = 5
@@ -119,6 +119,7 @@
 		else
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/det_trench(H), slot_wear_suit)
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/det(H), slot_head)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/briefcase/crimekit(H), slot_r_hand)
 		return 1
 
 
