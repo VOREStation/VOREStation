@@ -9,10 +9,20 @@
 	idle_power_usage = 30
 	active_power_usage = 200
 	power_channel = EQUIP
+	circuit = /obj/item/weapon/circuitboard/photocopier
+	frame_type = "photocopier"
 	var/obj/item/copyitem = null	//what's in the copier!
 	var/copies = 1	//how many copies to print!
 	var/toner = 30 //how much toner is left! woooooo~
 	var/maxcopies = 10	//how many copies can be copied at once- idea shamelessly stolen from bs12's copier!
+
+/obj/machinery/photocopier/New()
+	component_parts = list()
+	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
+	component_parts += new /obj/item/weapon/stock_parts/motor(src)
+	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
+	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
+	RefreshParts()
 
 /obj/machinery/photocopier/attack_ai(mob/user as mob)
 	return attack_hand(user)
@@ -126,6 +136,12 @@
 		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
 		anchored = !anchored
 		user << "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>"
+
+	else if(default_deconstruction_screwdriver(user, O))
+		return
+	else if(default_deconstruction_crowbar(user, O))
+		return
+
 	return
 
 /obj/machinery/photocopier/ex_act(severity)

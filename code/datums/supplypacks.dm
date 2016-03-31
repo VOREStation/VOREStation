@@ -609,7 +609,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/solar_assembly,
 					/obj/item/solar_assembly,
 					/obj/item/solar_assembly,
-					/obj/item/solar_assembly, // 21 Solar Assemblies. 1 Extra for the controller
+					/obj/item/solar_assembly, // 21 Solar Assemblies. 1 Extra for the controller,
 					/obj/item/weapon/circuitboard/solar_control,
 					/obj/item/weapon/tracker_electronics,
 					/obj/item/weapon/paper/solar)
@@ -671,8 +671,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 /datum/supply_packs/mecha_ripley
 	name = "Circuit Crate (\"Ripley\" APLU)"
 	contains = list(/obj/item/weapon/book/manual/ripley_build_and_repair,
-					/obj/item/weapon/circuitboard/mecha/ripley/main, //TEMPORARY due to lack of circuitboard printer
-					/obj/item/weapon/circuitboard/mecha/ripley/peripherals) //TEMPORARY due to lack of circuitboard printer
+					/obj/item/weapon/circuitboard/mecha/ripley/main,
+					/obj/item/weapon/circuitboard/mecha/ripley/peripherals)
 	cost = 30
 	containertype = /obj/structure/closet/crate/secure
 	containername = "APLU \"Ripley\" Circuit Crate"
@@ -681,8 +681,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_packs/mecha_odysseus
 	name = "Circuit Crate (\"Odysseus\")"
-	contains = list(/obj/item/weapon/circuitboard/mecha/odysseus/peripherals, //TEMPORARY due to lack of circuitboard printer
-					/obj/item/weapon/circuitboard/mecha/odysseus/main) //TEMPORARY due to lack of circuitboard printer
+	contains = list(/obj/item/weapon/circuitboard/mecha/odysseus/peripherals,
+					/obj/item/weapon/circuitboard/mecha/odysseus/main)
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure
 	containername = "\"Odysseus\" Circuit Crate"
@@ -1001,7 +1001,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containername = "Security barrier crate"
 	group = "Security"
 
-/datum/supply_packs/securitybarriers
+/datum/supply_packs/securityshieldgen
 	name = "Wall shield Generators"
 	contains = list(/obj/machinery/shieldwallgen,
 					/obj/machinery/shieldwallgen,
@@ -1729,7 +1729,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/device/camera_film,
 					/obj/item/device/camera_film,
 					/obj/item/weapon/storage/photo_album,
-					/obj/item/device/reagent_scanner)
+					/obj/item/device/reagent_scanner,
+					/obj/item/device/flashlight/maglight)
 	cost = 35
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Forensic equipment"
@@ -1785,7 +1786,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/clothing/accessory/storage/black_vest,
 					/obj/item/clothing/head/soft/sec/corp,
 					/obj/item/clothing/under/rank/security/corp,
-					/obj/item/weapon/gun/energy/taser)
+					/obj/item/weapon/gun/energy/taser,
+					/obj/item/device/flashlight/maglight)
 	cost = 30
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Officer equipment"
@@ -1811,7 +1813,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/reagent_containers/spray/pepper,
 					/obj/item/weapon/melee/baton/loaded,
 					/obj/item/weapon/storage/box/holobadge,
-					/obj/item/clothing/head/beret/sec/corporate/warden)
+					/obj/item/clothing/head/beret/sec/corporate/warden,
+					/obj/item/device/flashlight/maglight)
 	cost = 45
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Warden equipment"
@@ -1835,7 +1838,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/clothing/accessory/holster/waist,
 					/obj/item/weapon/melee/telebaton,
 					/obj/item/weapon/shield/riot/tele,
-					/obj/item/clothing/head/beret/sec/corporate/hos)
+					/obj/item/clothing/head/beret/sec/corporate/hos,
+					/obj/item/device/flashlight/maglight)
 	cost = 65
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Head of security equipment"
@@ -2069,7 +2073,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/device/healthanalyzer,
 					/obj/item/weapon/cartridge/medical,
 					/obj/item/device/flashlight/pen,
-					/obj/item/weapon/reagent_containers/syringe)
+					/obj/item/weapon/reagent_containers/syringe,
+					/obj/item/clothing/accessory/storage/brown_vest)
 	cost = 20
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Paramedic equipment"

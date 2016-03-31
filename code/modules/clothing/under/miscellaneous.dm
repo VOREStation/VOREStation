@@ -141,8 +141,8 @@
 	item_state = "johnny"
 
 /obj/item/clothing/under/rainbow
-	name = "rainbow"
-	desc = "rainbow"
+	name = "rainbow jumpsuit"
+	desc = "A multi-colored jumpsuit."
 	icon_state = "rainbow"
 	item_state = "rainbow"
 	worn_state = "rainbow"

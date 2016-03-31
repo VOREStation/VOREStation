@@ -5,6 +5,7 @@
 	icon_state = "biogen-stand"
 	density = 1
 	anchored = 1
+	circuit = /obj/item/weapon/circuitboard/biogenerator
 	use_power = 1
 	idle_power_usage = 40
 	var/processing = 0
@@ -23,7 +24,6 @@
 	beaker = new /obj/item/weapon/reagent_containers/glass/bottle(src)
 
 	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/biogenerator(src)
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 

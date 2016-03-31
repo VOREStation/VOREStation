@@ -280,6 +280,9 @@
 	new /obj/item/clothing/suit/storage/hooded/wintercoat/engineering(src)
 	new /obj/item/clothing/suit/storage/hooded/wintercoat/engineering(src)
 	new /obj/item/clothing/suit/storage/hooded/wintercoat/engineering(src)
+	new /obj/item/clothing/shoes/workboots(src)
+	new /obj/item/clothing/shoes/workboots(src)
+	new /obj/item/clothing/shoes/workboots(src)
 	return
 
 
@@ -453,6 +456,8 @@
 	new /obj/item/clothing/under/rank/medical/green(src)
 	new /obj/item/clothing/under/rank/medical/purple(src)
 	new /obj/item/clothing/under/rank/medical/black(src)
+	new /obj/item/clothing/under/rank/medical/navyblue(src)
+	new /obj/item/clothing/head/surgery/navyblue(src)
 	new /obj/item/clothing/head/surgery/purple(src)
 	new /obj/item/clothing/head/surgery/blue(src)
 	new /obj/item/clothing/head/surgery/green(src)
@@ -589,3 +594,29 @@
 	new /obj/item/clothing/under/scratch(src)
 	new /obj/item/weapon/storage/backpack/satchel(src)
 	new /obj/item/weapon/storage/backpack/satchel(src)
+	return
+
+/obj/structure/closet/wardrobe/captain
+	name = "captain's wardrobe"
+	icon_state = "cabinet_closed"
+	icon_closed = "cabinet_closed"
+	icon_opened = "cabinet_open"
+
+/obj/structure/closet/wardrobe/captain/New()
+	..()
+	new /obj/item/weapon/storage/backpack/captain(src)
+	new /obj/item/clothing/suit/captunic(src)
+	new /obj/item/clothing/suit/captunic/capjacket(src)
+	new /obj/item/clothing/head/caphat/cap(src)
+	new /obj/item/clothing/under/rank/captain(src)
+	new /obj/item/clothing/shoes/brown(src)
+	new /obj/item/clothing/gloves/captain(src)
+	new /obj/item/clothing/under/dress/dress_cap(src)
+	new /obj/item/weapon/storage/backpack/satchel_cap(src)
+	new /obj/item/clothing/head/caphat/formal(src)
+	new /obj/item/clothing/under/captainformal(src)
+	new /obj/item/clothing/suit/storage/hooded/wintercoat/captain(src)
+	new /obj/item/clothing/head/beret/centcom/captain(src)
+	new /obj/item/clothing/under/gimmick/rank/captain/suit(src)
+	new /obj/item/clothing/glasses/sunglasses(src)
+	return

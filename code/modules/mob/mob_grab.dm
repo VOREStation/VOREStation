@@ -5,8 +5,10 @@
 ///Called by client/Move()
 ///Checks to see if you are grabbing anything and if moving will affect your grab.
 /client/proc/Process_Grab()
-	for(var/obj/item/weapon/grab/G in list(mob.l_hand, mob.r_hand))
-		G.reset_kill_state() //no wandering across the station/asteroid while choking someone
+	if(istype(mob, /mob/living))
+		var/mob/living/L = mob
+		for(var/obj/item/weapon/grab/G in list(L.l_hand, L.r_hand))
+			G.reset_kill_state() //no wandering across the station/asteroid while choking someone
 
 /obj/item/weapon/grab
 	name = "grab"
@@ -55,7 +57,13 @@
 				G.dancing = 1
 				G.adjust_position()
 				dancing = 1
+
+	//stop pulling the affected
+	if(assailant.pulling == affecting)
+		assailant.stop_pulling()
+
 	adjust_position()
+
 
 //Used by throw code to hand over the mob, instead of throwing the grab. The grab is then deleted by the throw code.
 /obj/item/weapon/grab/proc/throw_held()
@@ -88,9 +96,6 @@
 	if(assailant.client)
 		assailant.client.screen -= hud
 		assailant.client.screen += hud
-
-	if(assailant.pulling == affecting)
-		assailant.stop_pulling()
 
 	if(state <= GRAB_AGGRESSIVE)
 		allow_upgrade = 1

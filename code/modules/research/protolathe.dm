@@ -2,7 +2,7 @@
 	name = "Protolathe"
 	icon_state = "protolathe"
 	flags = OPENCONTAINER
-
+	circuit = /obj/item/weapon/circuitboard/protolathe
 	use_power = 1
 	idle_power_usage = 30
 	active_power_usage = 5000
@@ -20,7 +20,6 @@
 /obj/machinery/r_n_d/protolathe/New()
 	..()
 	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/protolathe(src)
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)

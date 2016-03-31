@@ -7,6 +7,18 @@
 	anchored = 1
 	var/notices = 0
 
+/obj/structure/noticeboard/New(var/loc, var/dir, var/building = 0)
+	..()
+
+	if(building)
+		if(loc)
+			src.loc = loc
+
+		pixel_x = (dir & 3)? 0 : (dir == 4 ? -32 : 32)
+		pixel_y = (dir & 3)? (dir ==1 ? -27 : 27) : 0
+		update_icon()
+		return
+
 /obj/structure/noticeboard/initialize()
 	for(var/obj/item/I in loc)
 		if(notices > 4) break
@@ -28,6 +40,14 @@
 			user << "<span class='notice'>You pin the paper to the noticeboard.</span>"
 		else
 			user << "<span class='notice'>You reach to pin your paper to the board but hesitate. You are certain your paper will not be seen among the many others already attached.</span>"
+	if(istype(O, /obj/item/weapon/wrench))
+		user << "<span class='notice'>You start to unwrench the noticeboard.</span>"
+		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		if(do_after(user, 15))
+			user << "<span class='notice'>You unwrench the noticeboard.</span>"
+			new /obj/item/frame/noticeboard( src.loc )
+			qdel(src)
+		return
 
 /obj/structure/noticeboard/attack_hand(var/mob/user)
 	examine(user)
@@ -64,15 +84,14 @@
 			return
 		var/obj/item/P = locate(href_list["write"])
 		if((P && P.loc == src)) //ifthe paper's on the board
-			if(istype(usr.r_hand, /obj/item/weapon/pen)) //and you're holding a pen
-				add_fingerprint(usr)
-				P.attackby(usr.r_hand, usr) //then do ittttt
-			else
-				if(istype(usr.l_hand, /obj/item/weapon/pen)) //check other hand for pen
-					add_fingerprint(usr)
-					P.attackby(usr.l_hand, usr)
+			var/mob/living/M = usr
+			if(istype(M))
+				var/obj/item/weapon/pen/E = M.get_type_in_hands(/obj/item/weapon/pen)
+				if(E)
+					add_fingerprint(M)
+					P.attackby(E, usr)
 				else
-					usr << "<span class='notice'>You'll need something to write with!</span>"
+					M << "<span class='notice'>You'll need something to write with!</span>"
 	if(href_list["read"])
 		var/obj/item/weapon/paper/P = locate(href_list["read"])
 		if((P && P.loc == src))

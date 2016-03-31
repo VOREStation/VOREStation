@@ -76,7 +76,7 @@
 			P.info = "The nuclear authorization code is: <b>[code]</b>"
 			P.name = "nuclear bomb code"
 			if(leader && leader.current)
-				if(get_turf(P) == get_turf(leader.current) && !(leader.current.l_hand && leader.current.r_hand))
+				if(get_turf(P) == get_turf(leader.current))
 					leader.current.put_in_hands(P)
 
 		if(!code_owner && leader)
@@ -104,6 +104,11 @@
 		create_nuke()
 
 	show_objectives(player)
+
+	player.current << "<span class='notice'>Once you decide on a goal to pursue, you can optionally display it to \
+	everyone at the end of the shift with the <b>Set Ambition</b> verb, located in the IC tab.  You can change this at any time, \
+	and it otherwise has no bearing on your round.</span>"
+	player.current.verbs |= /mob/living/proc/write_ambition
 
 	// Clown clumsiness check, I guess downstream might use it.
 	if (player.current.mind)

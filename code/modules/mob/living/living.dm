@@ -510,52 +510,38 @@ default behaviour is:
 			if ((get_dist(src, pulling) > 1 || diag))
 				if (isliving(pulling))
 					var/mob/living/M = pulling
-					var/ok = 1
-					if (locate(/obj/item/weapon/grab, M.grabbed_by))
-						if (prob(75))
-							var/obj/item/weapon/grab/G = pick(M.grabbed_by)
-							if (istype(G, /obj/item/weapon/grab))
-								for(var/mob/O in viewers(M, null))
-									O.show_message(text("\red [] has been pulled from []'s grip by []", G.affecting, G.assailant, src), 1)
-								//G = null
-								qdel(G)
-						else
-							ok = 0
-						if (locate(/obj/item/weapon/grab, M.grabbed_by.len))
-							ok = 0
-					if (ok)
-						var/atom/movable/t = M.pulling
-						M.stop_pulling()
+					var/atom/movable/t = M.pulling
+					M.stop_pulling()
 
-						if(!istype(M.loc, /turf/space))
-							var/area/A = get_area(M)
-							if(A.has_gravity)
-								//this is the gay blood on floor shit -- Added back -- Skie
-								if (M.lying && (prob(M.getBruteLoss() / 6)))
+					if(!istype(M.loc, /turf/space))
+						var/area/A = get_area(M)
+						if(A.has_gravity)
+							//this is the gay blood on floor shit -- Added back -- Skie
+							if (M.lying && (prob(M.getBruteLoss() / 6)))
+								var/turf/location = M.loc
+								if (istype(location, /turf/simulated))
+									location.add_blood(M)
+							//pull damage with injured people
+								if(prob(25))
+									M.adjustBruteLoss(1)
+									visible_message("<span class='danger'>\The [M]'s [M.isSynthetic() ? "state worsens": "wounds open more"] from being dragged!</span>")
+							if(M.pull_damage())
+								if(prob(25))
+									M.adjustBruteLoss(2)
+									visible_message("<span class='danger'>\The [M]'s [M.isSynthetic() ? "state" : "wounds"] worsen terribly from being dragged!</span>")
 									var/turf/location = M.loc
 									if (istype(location, /turf/simulated))
 										location.add_blood(M)
-								//pull damage with injured people
-									if(prob(25))
-										M.adjustBruteLoss(1)
-										visible_message("<span class='danger'>\The [M]'s [M.isSynthetic() ? "state worsens": "wounds open more"] from being dragged!</span>")
-								if(M.pull_damage())
-									if(prob(25))
-										M.adjustBruteLoss(2)
-										visible_message("<span class='danger'>\The [M]'s [M.isSynthetic() ? "state" : "wounds"] worsen terribly from being dragged!</span>")
-										var/turf/location = M.loc
-										if (istype(location, /turf/simulated))
-											location.add_blood(M)
-											if(ishuman(M))
-												var/mob/living/carbon/human/H = M
-												var/blood_volume = round(H.vessel.get_reagent_amount("blood"))
-												if(blood_volume > 0)
-													H.vessel.remove_reagent("blood", 1)
+										if(ishuman(M))
+											var/mob/living/carbon/human/H = M
+											var/blood_volume = round(H.vessel.get_reagent_amount("blood"))
+											if(blood_volume > 0)
+												H.vessel.remove_reagent("blood", 1)
 
 
-						step(pulling, get_dir(pulling.loc, T))
-						if(t)
-							M.start_pulling(t)
+					step(pulling, get_dir(pulling.loc, T))
+					if(t)
+						M.start_pulling(t)
 				else
 					if (pulling)
 						if (istype(pulling, /obj/structure/window))
@@ -864,4 +850,64 @@ default behaviour is:
 
 		sleep(350)
 		lastpuke = 0
+
+/mob/living/update_canmove()
+	if(!resting && cannot_stand() && can_stand_overridden())
+		lying = 0
+		canmove = 1
+	else
+		if(istype(buckled, /obj/vehicle))
+			var/obj/vehicle/V = buckled
+			if(cannot_stand())
+				lying = 0
+				canmove = 1
+				pixel_y = V.mob_offset_y - 5
+			else
+				if(buckled.buckle_lying != -1) lying = buckled.buckle_lying
+				canmove = 1
+				pixel_y = V.mob_offset_y
+		else if(buckled)
+			anchored = 1
+			canmove = 0
+			if(istype(buckled))
+				if(buckled.buckle_lying != -1)
+					lying = buckled.buckle_lying
+				if(buckled.buckle_movable)
+					anchored = 0
+					canmove = 1
+
+		else if(cannot_stand())
+			lying = 1
+			canmove = 0
+		else if(stunned)
+			canmove = 0
+		else if(captured)
+			anchored = 1
+			canmove = 0
+			lying = 0
+		else
+			lying = 0
+			canmove = 1
+
+	if(lying)
+		density = 0
+		if(l_hand) unEquip(l_hand)
+		if(r_hand) unEquip(r_hand)
+	else
+		density = initial(density)
+
+	for(var/obj/item/weapon/grab/G in grabbed_by)
+		if(G.state >= GRAB_AGGRESSIVE)
+			canmove = 0
+			break
+
+	//Temporarily moved here from the various life() procs
+	//I'm fixing stuff incrementally so this will likely find a better home.
+	//It just makes sense for now. ~Carn
+	if( update_icon )	//forces a full overlay update
+		update_icon = 0
+		regenerate_icons()
+	else if( lying != lying_prev )
+		update_icons()
+	return canmove
 
