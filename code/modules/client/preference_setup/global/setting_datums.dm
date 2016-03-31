@@ -125,19 +125,24 @@ var/list/_client_preferences_by_type
 	enabled_description = "Show"
 	disabled_description = "Hide"
 /********************
-* Admin Preferences *
+* Staff Preferences *
 ********************/
 /datum/client_preference/admin/may_toggle(var/mob/preference_mob)
 	return check_rights(R_ADMIN, 0, preference_mob)
-
-/datum/client_preference/admin/show_attack_logs
+/datum/client_preference/mod/may_toggle(var/mob/preference_mob)
+	return check_rights(R_MOD|R_ADMIN, 0, preference_mob)
+	
+/datum/client_preference/debug/may_toggle(var/mob/preference_mob)
+	return check_rights(R_DEBUG|R_ADMIN, 0, preference_mob)
+	
+/datum/client_preference/mod/show_attack_logs
 	description = "Attack Log Messages"
 	key = "CHAT_ATTACKLOGS"
 	enabled_description = "Show"
 	disabled_description = "Hide"
 	enabled_by_default = FALSE
 
-/datum/client_preference/admin/show_debug_logs
+/datum/client_preference/debug/show_debug_logs
 	description = "Debug Log Messages"
 	key = "CHAT_DEBUGLOGS"
 	enabled_description = "Show"
