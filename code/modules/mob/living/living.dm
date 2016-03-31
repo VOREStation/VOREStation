@@ -648,7 +648,7 @@ default behaviour is:
 	src << "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>"
 
 /mob/living/proc/is_allowed_vent_crawl_item(var/obj/item/carried_item)
-	return isnull(get_inventory_slot(carried_item))
+	return (get_inventory_slot(carried_item) == 0)
 
 /mob/living/simple_animal/spiderbot/is_allowed_vent_crawl_item(var/obj/item/carried_item)
 	if(carried_item == held_item)
@@ -716,10 +716,12 @@ default behaviour is:
 		return
 
 	if(!ignore_items)
+		var/list/badItems = list()
 		for(var/obj/item/carried_item in contents)//If the monkey got on objects.
-			if(is_allowed_vent_crawl_item(carried_item))
-				continue
-			src << "<span class='warning'>You can't be carrying items or have items equipped when vent crawling!</span>"
+			if(!is_allowed_vent_crawl_item(carried_item))
+				badItems += carried_item.name
+		if(badItems.len)
+			src << "<span class='warning'>Your [english_list(badItems)] prevent[badItems.len == 1 ? "s" : ""] you from ventcrawling.</span>"
 			return
 
 	if(isslime(src))
