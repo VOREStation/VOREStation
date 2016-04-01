@@ -322,7 +322,7 @@
 		H.equip_to_slot_or_del(new /obj/item/device/pda/mime(H), slot_belt)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/beret(H), slot_back)
-		H.equip_to_slow_or_del(new /obj/item/clothing/gloves/white(H),  slot_head)
+		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/white(H),  slot_head)
 		H.equip_to_slot_or_del(new /obj/item/clothing/suit/suspenders, slot_wear_suit)
 
 		if(H.backbag == 1)
