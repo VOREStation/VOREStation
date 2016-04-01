@@ -233,3 +233,27 @@
 	desc = "Can hold security gear like handcuffs and flashes, with more pouches for more storage."
 	icon_state = "bandolier"
 	item_state = "bandolier"
+
+/obj/item/weapon/storage/belt/janitor
+	name = "janitorial belt"
+	desc = "A belt used to hold most janitorial supplies."
+	icon_state = "janibelt"
+	item_state = "janibelt"
+	storage_slots = 7
+	max_w_class = 3
+	can_hold = list(
+		/obj/item/clothing/glasses,
+		/obj/item/device/flashlight,
+		/obj/item/weapon/grenade,
+		/obj/item/device/pda,
+		/obj/item/device/radio/headset,
+		/obj/item/clothing/gloves,
+		/obj/item/clothing/mask/surgical, //sterile mask,
+		/obj/item/device/assembly/mousetrap,
+		/obj/item/weapon/light/bulb,
+		/obj/item/weapon/light/tube,
+		/obj/item/weapon/flame/lighter,
+		/obj/item/device/megaphone,
+		/obj/item/weapon/reagent_containers/spray,
+		/obj/item/weapon/soap
+		)
