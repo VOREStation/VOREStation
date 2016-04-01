@@ -150,7 +150,7 @@
 		new /obj/item/weapon/crowbar(src)
 		new /obj/item/weapon/extinguisher/mini(src)
 		new /obj/item/weapon/storage/box/freezer(src)
-		new /obj/item/clothing/accessory/storage/brown_vest(src)
+		new /obj/item/clothing/accessory/storage/white_vest(src)
 		return
 
 /obj/structure/closet/secure_closet/CMO
