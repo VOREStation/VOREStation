@@ -267,3 +267,36 @@
 
 
 		return 1
+
+/datum/job/clown
+	title = "Clown"
+	flag = CLOWN
+	department = "Civilian"
+	department_flag = CIVILIAN
+	faction = "Clown"
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "the head of personnel"
+	selection_color = "#dddddd"
+	access = list(access_maint_tunnels)
+	minimal_access = list(access_maint_tunnels)
+
+
+	equip(var/mob/living/carbon/human/H)
+		if(!H)	return 0
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/clown(H), slot_w_uniform)
+		H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/clown_hat(H), slot_wear_mask)
+		H.equip_to_slot_or_del(new /obj/item/device/pda/clown(H), slot_belt)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/clown_shoes(H), slot_shoes)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/clown, slot_back)
+		if(H.backbag == 1)
+			H.equip_to_slot_or_del(new /obj/item/weapon/stamp/clown(H), slot_l_hand)
+			H.equip_to_slot_or_del(new /obj/item/toy/waterflower(H), slot_r_hand)
+			H.equip_to_slot_or_del(new /obj/item/weapon/pen/crayon/rainbow, slot_l_store)
+			H.equip_to_slot_or_del(new /obj/item/weapon/bikehorn, slot_r_store)
+		else
+			H.equip_to_slot_or_del(new /obj/item/weapon/stamp/clown(H), slot_in_backpack)
+			H.equip_to_slot_or_del(new /obj/item/toy/waterflower(H), slot_in_backpack)
+			H.equip_to_slot_or_del(new /obj/item/weapon/pen/crayon/rainbow, slot_in_backpack)
+			H.equip_to_slot_or_del(new /obj/item/weapon/bikehorn, slot_in_backpack)
+		return 1
