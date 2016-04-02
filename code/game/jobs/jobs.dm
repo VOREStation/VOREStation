@@ -102,8 +102,7 @@ var/list/civilian_positions = list(
 	"Lawyer",
 	"Chaplain",
 	"Assistant",
-	"Clown",
-	"Mime"
+	"Clown"
 )
 
 

@@ -300,35 +300,3 @@
 			H.equip_to_slot_or_del(new /obj/item/weapon/pen/crayon/rainbow, slot_in_backpack)
 			H.equip_to_slot_or_del(new /obj/item/weapon/bikehorn, slot_in_backpack)
 		return 1
-
-/datum/job/mime
-	title = "Mime"
-	flag = MIME
-	department = "Civilian"
-	department_flag = CIVILIAN
-	faction = "Station"
-	total_positions = 1
-	spawn_positions = 1
-	supervisors = "the head of personnel"
-	selection_color = "#dddddd"
-	access = list(access_maint_tunnels)
-	minimal_access = list(access_maint_tunnels)
-
-
-	equip(var/mob/living/carbon/human/H)
-		if(!H)	return 0
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/mime(H), slot_w_uniform)
-		H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/mime(H), slot_wear_mask)
-		H.equip_to_slot_or_del(new /obj/item/device/pda/mime(H), slot_belt)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
-		H.equip_to_slot_or_del(new /obj/item/clothing/head/beret(H), slot_back)
-		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/white(H),  slot_head)
-		H.equip_to_slot_or_del(new /obj/item/clothing/suit/suspenders, slot_wear_suit)
-
-		if(H.backbag == 1)
-			H.equip_to_slot_or_del(new /obj/item/weapon/pen/crayon/mime(H), slot_l_hand)
-			H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/bottleofnothing(H), slot_r_hand)
-		else
-			H.equip_to_slot_or_del(new /obj/item/weapon/pen/crayon/mime(H), slot_in_backpack)
-			H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/bottleofnothing(H), slot_in_backpack)
-		return 1
