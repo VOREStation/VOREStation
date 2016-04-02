@@ -66,9 +66,24 @@
 		icon_state = "seromi_default"
 		species_allowed = list("Teshari")
 
+	teshari_altdefault
+		name = "Teshari Alt. Default"
+		icon_state = "seromi_ears"
+		species_allowed = list("Teshari")
+
+	teshari_tight
+		name = "Teshari Tight"
+		icon_state = "seromi_tight"
+		species_allowed = list("Teshari")
+
 	teshari_excited
 		name = "Teshari Spiky"
 		icon_state = "seromi_spiky"
+		species_allowed = list("Teshari")
+
+	teshari_spike
+		name = "Teshari Spike"
+		icon_state = "seromi_spike"
 		species_allowed = list("Teshari")
 
 	teshari_long
@@ -81,7 +96,7 @@
 		icon_state = "seromi_burst"
 		species_allowed = list("Teshari")
 
-	teshari_burst
+	teshari_shortburst
 		name = "Teshari Short Starburst"
 		icon_state = "seromi_burst_short"
 		species_allowed = list("Teshari")
