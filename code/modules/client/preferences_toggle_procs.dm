@@ -10,6 +10,8 @@
 	
 	src << "You will [ (is_preference_enabled(pref_path)) ? "now" : " no longer"] hear all mob speech as a ghost."
 	
+	prefs.save_preferences()
+	
 	feedback_add_details("admin_verb","TGEars") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	
 /client/verb/toggle_ghost_vision()
@@ -22,6 +24,8 @@
 	toggle_preference(pref_path)
 	
 	src << "You will [ (is_preference_enabled(pref_path)) ? "now" : " no longer"] see all emotes as a ghost."
+	
+	prefs.save_preferences()
 	
 	feedback_add_details("admin_verb","TGVision") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	
@@ -36,6 +40,8 @@
 	
 	src << "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear all radios as a ghost."
 	
+	prefs.save_preferences()
+	
 	feedback_add_details("admin_verb","TGRadio") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	
 /client/verb/toggle_deadchat()
@@ -48,6 +54,8 @@
 	toggle_preference(pref_path)
 	
 	src << "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear dead chat as a ghost."
+	
+	prefs.save_preferences()
 	
 	feedback_add_details("admin_verb","TDeadChat") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	
@@ -62,6 +70,8 @@
 	
 	src << "You will [ (is_preference_enabled(/datum/client_preference/show_ooc)) ? "now" : "no longer"] hear global out of character chat."
 	
+	prefs.save_preferences()
+	
 	feedback_add_details("admin_verb","TOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	
 /client/verb/toggle_looc()
@@ -74,6 +84,8 @@
 	toggle_preference(pref_path)
 	
 	src << "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear local out of character chat."
+	
+	prefs.save_preferences()
 	
 	feedback_add_details("admin_verb","TLOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	
@@ -88,6 +100,8 @@
 	
 	src << "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] see the speech indicator."
 	
+	prefs.save_preferences()
+	
 	feedback_add_details("admin_verb","TLOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	
 /client/verb/toggle_ahelp_sound()
@@ -100,6 +114,8 @@
 	toggle_preference(pref_path)
 	
 	src << "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] receive noise from admin messages."
+	
+	prefs.save_preferences()
 	
 	feedback_add_details("admin_verb","TAHelp") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	
@@ -114,6 +130,8 @@
 
 	src << "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear music in the lobby."
 	
+	prefs.save_preferences()
+	
 	feedback_add_details("admin_verb","TLobMusic") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	
 /client/verb/toggle_admin_midis()
@@ -127,6 +145,8 @@
 	
 	src << "You will [ (is_preference_enabled(pref_path)) ? "now" : " no longer"] hear MIDIs from admins."
 	
+	prefs.save_preferences()
+	
 	feedback_add_details("admin_verb","TAMidis") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	
 /client/verb/toggle_ambience()
@@ -139,6 +159,8 @@
 	toggle_preference(pref_path)
 	
 	src << "You will [ (is_preference_enabled(pref_path)) ? "now" : " no longer"] hear ambient noise."
+	
+	prefs.save_preferences()
 	
 	feedback_add_details("admin_verb","TBeSpecial") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	
@@ -170,6 +192,7 @@
 	if(check_rights(R_ADMIN|R_DEBUG))
 		toggle_preference(pref_path)
 		src << "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] receive debug logs."
+		prefs.save_preferences()
 	
 	feedback_add_details("admin_verb","TBeSpecial") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	
@@ -184,5 +207,6 @@
 	if(check_rights(R_ADMIN|R_MOD))
 		toggle_preference(pref_path)
 		src << "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] receive attack logs."
+		prefs.save_preferences()
 	
 	feedback_add_details("admin_verb","TBeSpecial") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
