@@ -163,6 +163,8 @@
 
 	add_fingerprint(user)
 
+	user.break_cloak()
+
 	if(!special_check(user))
 		return
 
