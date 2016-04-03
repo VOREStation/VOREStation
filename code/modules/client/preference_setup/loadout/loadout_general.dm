@@ -38,34 +38,35 @@
 	display_name = "purple comb"
 	path = /obj/item/weapon/haircomb
 
-/datum/gear/rainbowlunchbox
+/datum/gear/lunchbox
 	display_name = "lunchbox, rainbow"
+	cost = 2
 	path = /obj/item/weapon/storage/toolbox/lunchbox/filled
 
-/datum/gear/heartlunchbox
+/datum/gear/lunchbox/heartlunchbox
 	display_name = "lunchbox, heart"
 	path = /obj/item/weapon/storage/toolbox/lunchbox/heart/filled
 
-/datum/gear/catlunchbox
+/datum/gear/lunchbox/catlunchbox
 	display_name = "lunchbox, cat"
 	path = /obj/item/weapon/storage/toolbox/lunchbox/cat/filled
 
-/datum/gear/ntlunchbox
+/datum/gear/lunchbox/ntlunchbox
 	display_name = "lunchbox, Nanotrasen"
 	path = /obj/item/weapon/storage/toolbox/lunchbox/nt/filled
 
-/datum/gear/marslunchbox
+/datum/gear/lunchbox/marslunchbox
 	display_name = "lunchbox, Mars university"
 	path = /obj/item/weapon/storage/toolbox/lunchbox/mars/filled
 
-/datum/gear/ctilunchbox
+/datum/gear/lunchbox/ctilunchbox
 	display_name = "lunchbox, CTI"
 	path = /obj/item/weapon/storage/toolbox/lunchbox/cti/filled
 
-/datum/gear/nymphlunchbox
+/datum/gear/lunchbox/nymphlunchbox
 	display_name = "lunchbox, Diona nymph"
 	path = /obj/item/weapon/storage/toolbox/lunchbox/nymph/filled
 
-/datum/gear/syndicatelunchbox
+/datum/gear/lunchbox/syndicatelunchbox
 	display_name = "lunchbox, black and red"
 	path = /obj/item/weapon/storage/toolbox/lunchbox/syndicate/filled
