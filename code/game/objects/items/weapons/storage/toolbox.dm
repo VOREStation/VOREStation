@@ -101,7 +101,7 @@
 						/obj/item/weapon/reagent_containers/food/snacks/muffin, /obj/item/weapon/reagent_containers/food/snacks/popcorn,
 						/obj/item/weapon/reagent_containers/food/snacks/sosjerky, /obj/item/weapon/reagent_containers/food/snacks/no_raisin,
 						/obj/item/weapon/reagent_containers/food/snacks/spacetwinkie, /obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers,
-						/obj/item/weapon/reagent_containers/food/snacks/poppypretzel, /obj/item/weapon/reagent_containers/food/snacks/carrotfries
+						/obj/item/weapon/reagent_containers/food/snacks/poppypretzel, /obj/item/weapon/reagent_containers/food/snacks/carrotfries,
 						/obj/item/weapon/reagent_containers/food/snacks/candiedapple, /obj/item/weapon/reagent_containers/food/snacks/applepie,
 						/obj/item/weapon/reagent_containers/food/snacks/cherrypie, /obj/item/weapon/reagent_containers/food/snacks/plumphelmetbiscuit,
 						/obj/item/weapon/reagent_containers/food/snacks/appletart, /obj/item/weapon/reagent_containers/food/snacks/carrotcakeslice,
