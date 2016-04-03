@@ -75,6 +75,15 @@
 	icon_state = "black_shorts_f"
 	worn_state = "black_shorts_f"
 
+/obj/item/clothing/under/shorts/jeans/grey
+	name = "grey jeans shorts"
+	icon_state = "greypants_shorts"
+	worn_state = "greypants_shorts"
+
+/obj/item/clothing/under/shorts/jeans/grey/female
+	icon_state = "grey_shorts_f"
+	worn_state = "grey_shorts_f"
+
 /obj/item/clothing/under/shorts/khaki
 	name = "khaki shorts"
 	desc = "For that island getaway. It's five o'clock somewhere, right?"

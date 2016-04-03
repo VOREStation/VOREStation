@@ -17,6 +17,11 @@
 	desc = "Only for those who can pull it off."
 	icon_state = "jeansblack"
 
+/obj/item/clothing/under/pants/greyjeans
+	name = "grey jeans"
+	desc = "Only for those who can pull it off."
+	icon_state = "jeansgrey"
+
 /obj/item/clothing/under/pants/youngfolksjeans
 	name = "Young Folks jeans"
 	desc = "For those tired of boring old jeans. Relive the passion of your youth!"

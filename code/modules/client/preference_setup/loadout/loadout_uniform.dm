@@ -271,6 +271,10 @@
 	display_name = "pants, black jeans"
 	path = /obj/item/clothing/under/pants/blackjeans
 
+/datum/gear/uniform/pants/jeans/grey
+	display_name = "pants, grey jeans"
+	path = /obj/item/clothing/under/pants/greyjeans
+
 /datum/gear/uniform/pants/jeans/youngfolks
 	display_name = "pants, young folks jeans"
 	path = /obj/item/clothing/under/pants/youngfolksjeans
@@ -295,6 +299,10 @@
 	display_name = "shorts, black jeans"
 	path = /obj/item/clothing/under/shorts/jeans/black
 
+/datum/gear/uniform/jeans/grey
+	display_name = "shorts, grey jeans"
+	path = /obj/item/clothing/under/shorts/jeans/grey
+
 /datum/gear/uniform/jeans/female
 	display_name = "shorts, female, jeans"
 	path = /obj/item/clothing/under/shorts/jeans/female
@@ -314,6 +322,10 @@
 /datum/gear/uniform/jeans/black/female
 	display_name = "shorts, female, black jeans"
 	path = /obj/item/clothing/under/shorts/jeans/black/female
+
+/datum/gear/uniform/jeans/grey/female
+	display_name = "shorts, female, grey jeans"
+	path = /obj/item/clothing/under/shorts/jeans/grey/female
 
 /datum/gear/uniform/khaki
 	display_name = "shorts, khaki"
