@@ -37,3 +37,35 @@
 /datum/gear/comb
 	display_name = "purple comb"
 	path = /obj/item/weapon/haircomb
+
+/datum/gear/rainbowlunchbox
+	display_name = "lunchbox, rainbow"
+	path = /obj/item/weapon/storage/toolbox/lunchbox/filled
+
+/datum/gear/heartlunchbox
+	display_name = "lunchbox, heart"
+	path = /obj/item/weapon/storage/toolbox/lunchbox/heart/filled
+
+/datum/gear/catlunchbox
+	display_name = "lunchbox, cat"
+	path = /obj/item/weapon/storage/toolbox/lunchbox/cat/filled
+
+/datum/gear/ntlunchbox
+	display_name = "lunchbox, Nanotrasen"
+	path = /obj/item/weapon/storage/toolbox/lunchbox/nt/filled
+
+/datum/gear/marslunchbox
+	display_name = "lunchbox, Mars university"
+	path = /obj/item/weapon/storage/toolbox/lunchbox/mars/filled
+
+/datum/gear/ctilunchbox
+	display_name = "lunchbox, CTI"
+	path = /obj/item/weapon/storage/toolbox/lunchbox/cti/filled
+
+/datum/gear/nymphlunchbox
+	display_name = "lunchbox, Diona nymph"
+	path = /obj/item/weapon/storage/toolbox/lunchbox/nymph/filled
+
+/datum/gear/syndicatelunchbox
+	display_name = "lunchbox, black and red"
+	path = /obj/item/weapon/storage/toolbox/lunchbox/syndicate/filled
