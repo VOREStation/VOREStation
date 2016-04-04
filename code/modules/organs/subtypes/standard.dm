@@ -145,6 +145,7 @@
 	joint = "jaw"
 	amputation_point = "neck"
 	gendered_icon = 1
+	cannot_gib = 1
 	encased = "skull"
 	var/can_intake_reagents = 1
 
