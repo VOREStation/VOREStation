@@ -1,7 +1,0 @@
-author: Yoshax
-
-delete-after: True
-
-changes: 
-  - rscadd: "Tasks that take time to perform now have a progress bar."
-  - rscadd: "Visibility of progress bars can be toggled in preferences. Default is on."
