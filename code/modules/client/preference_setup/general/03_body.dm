@@ -409,7 +409,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				choice_options = list("Normal","Prosthesis")
 
 		var/new_state = input(user, "What state do you wish the limb to be in?") as null|anything in choice_options
-		if(!new_state && !CanUseTopic(user)) return TOPIC_NOACTION
+		if(!new_state || !CanUseTopic(user)) return TOPIC_NOACTION
 
 		switch(new_state)
 			if("Normal")
