@@ -64,7 +64,12 @@ var/global/datum/global_init/init = new ()
 
 	. = ..()
 
+#if UNIT_TEST
+	log_unit_test("Unit Tests Enabled.  This will destroy the world when testing is complete.")
+	log_unit_test("If you did not intend to enable this please check code/__defines/unit_testing.dm")
+#else
 	sleep_offline = 1
+#endif
 
 	// Set up roundstart seed list.
 	plant_controller = new()
@@ -105,6 +110,9 @@ var/global/datum/global_init/init = new ()
 		processScheduler.deferSetupFor(/datum/controller/process/ticker)
 		processScheduler.setup()
 		master_controller.setup()
+#if UNIT_TEST
+		initialize_unit_tests()
+#endif
 
 	spawn(3000)		//so we aren't adding to the round-start lag
 		if(config.ToRban)

@@ -36,4 +36,9 @@ script:
   - (num=`grep -E '\\\\(red|blue|green|black|b|i[^mc])' **/*.dm | wc -l`; echo "$num escapes (expecting ${MACRO_COUNT} or less)"; [ $num -le ${MACRO_COUNT} ])
   - source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
   - python tools/TagMatcher/tag-matcher.py ../..
+  - echo "#define UNIT_TEST 1" > code/_unit_tests.dm
+  - cp config/example/* config/
   - DreamMaker polaris.dme
+  - DreamDaemon polaris.dmb -invisible -trusted -core 2>&1 | tee log.txt
+  - grep "All Unit Tests Passed" log.txt
+
