@@ -140,9 +140,6 @@
 	icon_state = "xray"
 	damage = 50
 	armor_penetration = 10
-	stun = 3
-	weaken = 3
-	stutter = 3
 
 	muzzle_type = /obj/effect/projectile/xray/muzzle
 	tracer_type = /obj/effect/projectile/xray/tracer
