@@ -34,6 +34,7 @@
 #include "code\__defines\species_languages.dm"
 #include "code\__defines\targeting.dm"
 #include "code\__defines\turfs.dm"
+#include "code\__defines\unit_tests.dm"
 #include "code\_compatibility\509\_JSON.dm"
 #include "code\_compatibility\509\JSON Reader.dm"
 #include "code\_compatibility\509\JSON Writer.dm"

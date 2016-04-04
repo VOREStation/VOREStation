@@ -12,11 +12,11 @@ var/total_unit_tests = 0
 	all_unit_tests_passed = 0
 	failed_unit_tests++
 	reported = 1
-	log_unit_test("!! FAILURE !! \[[name]\]: [message]")
+	log_unit_test("[ASCII_RED]!! FAILURE !! \[[name]\]: [message][ASCII_RESET]")
 
 /datum/unit_test/proc/pass(var/message)
 	reported = 1
-	log_unit_test("** SUCCESS ** \[[name]\]: [message]")
+	log_unit_test("[ASCII_GREEN]** SUCCESS ** \[[name]\]: [message][ASCII_RESET]")
 
 /datum/unit_test/proc/start_test()
 	fail("No test proc.")
@@ -60,7 +60,7 @@ var/total_unit_tests = 0
 		var/datum/unit_test/d = new test()
 
 		if(d.disabled)
-			d.pass("Check Disabled: [d.disabled]")
+			d.pass("[ASCII_RED]Check Disabled: [d.disabled][ASCII_RESET]")
 			continue
 
 		if(findtext(d.name, "template"))
@@ -92,8 +92,8 @@ var/total_unit_tests = 0
 			test.fail("Test failed to report a result.")
 
 	if(all_unit_tests_passed)
-		log_unit_test("*** All Unit Tests Passed \[[total_unit_tests]\] ***")
+		log_unit_test("[ASCII_GREEN]*** All Unit Tests Passed \[[total_unit_tests]\] ***[ASCII_RESET]")
 		world.Del()
 	else
-		log_unit_test("!!! \[[failed_unit_tests]\\[total_unit_tests]\] Unit Tests Failed !!!")
+		log_unit_test("[ASCII_RED]!!! \[[failed_unit_tests]\\[total_unit_tests]\] Unit Tests Failed !!![ASCII_RESET]")
 		world.Del()
