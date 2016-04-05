@@ -1,0 +1,6 @@
+author: Datraen
+
+delete-after: True
+
+changes: 
+  - bugfix: "Checks to see if new a two-handed weapon can be wielded when dropped."
