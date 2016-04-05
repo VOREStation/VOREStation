@@ -1970,7 +1970,7 @@
 "LY" = (/turf/simulated/shuttle/wall{icon_state = "swall_s"; dir = 2},/area/centcom/evac)
 "LZ" = (/turf/simulated/shuttle/wall{icon_state = "swall_straight"; dir = 4},/area/centcom/evac)
 "Ma" = (/obj/structure/table/standard,/obj,/obj,/obj,/obj,/obj,/obj,/obj,/turf/unsimulated/beach/sand,/area/beach)
-"Mb" = (/obj/structure/table/standard,/obj/item/clothing/under/rainbow,/obj/item/clothing/glasses/sunglasses,/obj/item/clothing/head/collectable/petehat{pixel_y = 5},/turf/unsimulated/beach/sand,/area/beach)
+"Mb" = (/obj/structure/table/standard,/obj/item/clothing/under/color/rainbow,/obj/item/clothing/glasses/sunglasses,/obj/item/clothing/head/collectable/petehat{pixel_y = 5},/turf/unsimulated/beach/sand,/area/beach)
 "Mc" = (/turf/simulated/shuttle/wall{tag = "icon-swall_s (EAST)"; icon_state = "swall_s"; dir = 4},/area/centcom/evac)
 "Md" = (/turf/simulated/shuttle/wall{icon_state = "swall_t"; dir = 1},/area/centcom/evac)
 "Me" = (/turf/simulated/shuttle/wall{icon_state = "wall3"},/area/centcom/evac)

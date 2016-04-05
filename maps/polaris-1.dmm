@@ -694,7 +694,7 @@
 "anr" = (/turf/simulated/wall,/area/hallway/secondary/escape/fore_escape_pod_hallway)
 "ans" = (/turf/simulated/floor/tiled,/area/hallway/secondary/escape/fore_escape_pod_hallway)
 "ant" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/tiled,/area/hallway/secondary/escape/fore_escape_pod_hallway)
-"anu" = (/obj/item/clothing/gloves/rainbow,/obj/item/clothing/head/soft/rainbow,/obj/item/clothing/shoes/rainbow,/obj/item/clothing/under/rainbow,/obj/item/weapon/bedsheet/rainbow,/obj/item/weapon/pen/crayon/rainbow,/turf/simulated/floor,/area/maintenance/library)
+"anu" = (/obj/item/clothing/gloves/rainbow,/obj/item/clothing/head/soft/rainbow,/obj/item/clothing/shoes/rainbow,/obj/item/clothing/under/color/rainbow,/obj/item/weapon/bedsheet/rainbow,/obj/item/weapon/pen/crayon/rainbow,/turf/simulated/floor,/area/maintenance/library)
 "anv" = (/obj/item/stack/material/glass,/turf/simulated/floor,/area/vacant/vacant_site)
 "anw" = (/turf/simulated/floor,/area/vacant/vacant_site)
 "anx" = (/obj/structure/table/reinforced,/obj/item/weapon/broken_bottle,/turf/simulated/floor,/area/vacant/vacant_site)
