@@ -21,7 +21,7 @@
 
 /obj/item/weapon/storage/box/donut/New()
 	..()
-	for(var/i=1; i <= startswith; i++)
+	for(var/i=1 to startswith)
 		new /obj/item/weapon/reagent_containers/food/snacks/donut/normal(src)
 	update_icon()
 	return

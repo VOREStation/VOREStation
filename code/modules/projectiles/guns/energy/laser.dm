@@ -89,7 +89,7 @@ obj/item/weapon/gun/energy/retro
 	max_shots = 4
 	fire_delay = 35
 	force = 10
-	w_class = 4
+	w_class = 5 // So it can't fit in a backpack.
 	accuracy = -3 //shooting at the hip
 	scoped_accuracy = 0
 

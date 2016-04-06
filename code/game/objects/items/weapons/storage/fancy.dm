@@ -53,7 +53,7 @@
 
 /obj/item/weapon/storage/fancy/egg_box/New()
 	..()
-	for(var/i=1; i <= storage_slots; i++)
+	for(var/i=1 to storage_slots)
 		new /obj/item/weapon/reagent_containers/food/snacks/egg(src)
 	return
 
@@ -74,7 +74,7 @@
 
 /obj/item/weapon/storage/fancy/candle_box/New()
 	..()
-	for(var/i=1; i <= 5; i++)
+	for(var/i=1 to 5)
 		new /obj/item/weapon/flame/candle(src)
 	return
 
@@ -159,12 +159,9 @@
 	if(!istype(M, /mob))
 		return
 
-	if(M == user && user.zone_sel.selecting == "mouth")
+	if(M == user && user.zone_sel.selecting == O_MOUTH)
 		// Find ourselves a cig. Note that we could be full of lighters.
-		var/obj/item/clothing/mask/smokable/cigarette/cig = null
-		for(var/obj/item/clothing/mask/smokable/cigarette/C in contents)
-			cig = C
-			break
+		var/obj/item/clothing/mask/smokable/cigarette/cig = locate() in src
 
 		if(cig == null)
 			user << "<span class='notice'>Looks like the packet is out of cigarettes.</span>"
@@ -279,7 +276,7 @@
 
 /obj/item/weapon/storage/fancy/vials/New()
 	..()
-	for(var/i=1; i <= storage_slots; i++)
+	for(var/i=1 to 6)
 		new /obj/item/weapon/reagent_containers/glass/beaker/vial(src)
 	return
 

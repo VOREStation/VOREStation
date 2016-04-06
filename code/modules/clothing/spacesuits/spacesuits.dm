@@ -51,7 +51,7 @@
 	desc = "A suit that protects against low pressure environments. \"NORTHERN STAR\" is written in large block letters on the back."
 	icon_state = "space"
 	item_state = "s_suit"
-	w_class = 4//bulky item
+	w_class = 5 // So you can't fit this in your bag and be prepared at all times.
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02
 	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL

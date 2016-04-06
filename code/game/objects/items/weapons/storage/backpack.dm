@@ -22,8 +22,8 @@
 		)
 	w_class = 4
 	slot_flags = SLOT_BACK
-	max_w_class = 5
-	max_storage_space = 16
+	max_w_class = 4
+	max_storage_space = 28
 
 /obj/item/weapon/storage/backpack/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (src.use_sound)
@@ -155,8 +155,7 @@
 		slot_r_hand_str = "duffle",
 		)
 	slowdown = 1
-	max_storage_space = 38
-	storage_slots = 12
+	max_storage_space = 36
 
 /obj/item/weapon/storage/backpack/dufflebag/syndie
 	name = "black dufflebag"

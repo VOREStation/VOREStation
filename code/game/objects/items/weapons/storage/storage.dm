@@ -14,7 +14,7 @@
 	var/list/can_hold = new/list() //List of objects which this item can store (if set, it can't store anything else)
 	var/list/cant_hold = new/list() //List of objects which this item can't store (in effect only if can_hold isn't set)
 	var/list/is_seeing = new/list() //List of mobs which are currently seeing the contents of this item's storage
-	var/max_w_class = 3 //Max size of objects that this object can store (in effect only if can_hold isn't set)
+	var/max_w_class = 2 //Max size of objects that this object can store (in effect only if can_hold isn't set)
 	var/max_storage_space = 8 //The sum of the storage costs of all the items in this storage item.
 	var/storage_slots = null //The number of storage slots in this container.  If null, it uses the volume-based storage instead.
 	var/obj/screen/storage/boxes = null
@@ -322,7 +322,7 @@
 
 	if (max_w_class != null && W.w_class > max_w_class)
 		if(!stop_messages)
-			usr << "<span class='notice'>[W] is too long for this [src].</span>"
+			usr << "<span class='notice'>[W] is too long for \the [src].</span>"
 		return 0
 
 	var/total_storage_space = W.get_storage_cost()
