@@ -4,6 +4,8 @@
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "utilitybelt"
 	item_state = "utility"
+	storage_slots = 7
+	max_w_class = 3
 	slot_flags = SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined")
 	sprite_sheets = list("Teshari" = 'icons/mob/species/seromi/belt.dmi')
@@ -121,7 +123,6 @@
 	desc = "Can hold security gear like handcuffs and flashes."
 	icon_state = "securitybelt"
 	item_state = "security"
-	storage_slots = 7
 	max_w_class = 3
 	max_storage_space = 28
 	can_hold = list(
