@@ -12,6 +12,13 @@
 	item_state = "bl_suit"
 	worn_state = "blackf"
 
+/obj/item/clothing/under/color/blackjumpskirt
+	name = "black jumpskirt"
+	desc = "A black jumpskirt, Sol size 0."
+	icon_state = "blackjumpskirt"
+	item_state = "bl_suit"
+	worn_state = "blackjumpskirt"
+
 /obj/item/clothing/under/color/blue
 	name = "blue jumpsuit"
 	icon_state = "blue"
@@ -96,7 +103,7 @@
 
 /obj/item/clothing/under/color
 	name = "purple jumpsuit"
-	desc = "A purple jumpsuit."
+	desc = "The latest in space fashion."
 	icon_state = "purple"
 	item_state = "p_suit"
 	worn_state = "purple"
