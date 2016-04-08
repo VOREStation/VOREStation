@@ -9805,7 +9805,7 @@
 "dGC" = (/obj/machinery/atmospherics/pipe/simple/visible/cyan,/turf/simulated/floor/tiled/hydro,/area/maintenance/engineering/pumpstation)
 "dGD" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/door/firedoor,/obj/machinery/door/airlock/engineering{name = "Pump Station"},/turf/simulated/floor,/area/maintenance/medbay_fore)
 "dGE" = (/obj/machinery/atmospherics/pipe/simple/visible/cyan{tag = "icon-intact (SOUTHEAST)"; icon_state = "intact"; dir = 6},/turf/simulated/floor/tiled/hydro,/area/maintenance/engineering/pumpstation)
-"dGF" = (/obj/machinery/atmospherics/pipe/tank/air{dir = 1; start_pressure = 740},/turf/simulated/floor/tiled/hydro,/area/maintenance/engineering/pumpstation)
+"dGF" = (/obj/machinery/atmospherics/pipe/tank/air{dir = 1; start_pressure = 15000},/turf/simulated/floor/tiled/hydro,/area/maintenance/engineering/pumpstation)
 "dGG" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0},/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/simulated/floor,/area/maintenance/medbay_fore)
 
 (1,1,1) = {"
