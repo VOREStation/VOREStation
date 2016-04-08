@@ -59,7 +59,7 @@
 	path = /obj/item/clothing/suit/storage/hazardvest
 
 /datum/gear/suit/hoodie
-	display_name = "hoodie"
+	display_name = "hoodie selection"
 	path = /obj/item/clothing/suit/storage/toggle/hoodie
 
 /datum/gear/suit/hoodie/New()
@@ -113,7 +113,7 @@
 	cost = 1
 
 /datum/gear/suit/poncho
-	display_name = "poncho"
+	display_name = "poncho selection"
 	path = /obj/item/clothing/suit/poncho
 	cost = 1
 

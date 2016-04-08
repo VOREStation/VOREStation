@@ -34,7 +34,7 @@
 	path = /obj/item/clothing/under/cuttop/red
 
 /datum/gear/uniform/jumpsuit
-	display_name = "generic jumpclothes"
+	display_name = "jumpclothes selection"
 	path = /obj/item/clothing/under/color/grey
 
 /datum/gear/uniform/jumpsuit/New()
@@ -152,7 +152,7 @@
 	allowed_roles = list("Quartermaster","Cargo Technician")
 
 /datum/gear/uniform/pants
-	display_name = "pants"
+	display_name = "pants selection"
 	path = /obj/item/clothing/under/pants/white
 
 /datum/gear/uniform/pants/New()
@@ -164,7 +164,7 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(pants))
 
 /datum/gear/uniform/shorts
-	display_name = "shorts"
+	display_name = "shorts selection"
 	path = /obj/item/clothing/under/shorts/jeans
 
 /datum/gear/uniform/shorts/New()
