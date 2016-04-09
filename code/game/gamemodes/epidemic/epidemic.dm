@@ -1,5 +1,5 @@
 /datum/game_mode/epidemic
-	name = "epidemic"
+	name = "Epidemic"
 	config_tag = "epidemic"
 	required_players = 1
 	required_players_secret = 15
