@@ -27,9 +27,10 @@
 	blobhealthdisplay.screen_loc = ui_internal
 	blobhealthdisplay.layer = 20
 
-	mymob.client.screen = null
+	mymob.client.screen = list()
 
 	mymob.client.screen += list(blobpwrdisplay, blobhealthdisplay)
+	mymob.client.screen += mymob.client.void
 
 /datum/hud/proc/slime_hud(ui_style = 'icons/mob/screen1_Midnight.dmi')
 
@@ -94,8 +95,9 @@
 	src.adding += using
 	hurt_intent = using
 
-	mymob.client.screen = null
+	mymob.client.screen = list()
 	mymob.client.screen += src.adding
+	mymob.client.screen += mymob.client.void
 
 	return
 
@@ -151,6 +153,7 @@
 		mymob.purged.name = "purged"
 		mymob.purged.screen_loc = ui_construct_purge
 
-	mymob.client.screen = null
+	mymob.client.screen = list()
 
 	mymob.client.screen += list(mymob.fire, mymob.healths, mymob.pullin, mymob.zone_sel, mymob.purged, mymob.flash)
+	mymob.client.screen += mymob.client.void
