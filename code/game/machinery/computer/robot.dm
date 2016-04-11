@@ -91,7 +91,7 @@
 		if(!target || !istype(target))
 			return
 
-		var/istraitor = traitors.is_antagonist(target.mind)
+		var/istraitor = (target.mind.special_role == "Traitor")
 		if (istraitor)
 			target.lockcharge = !target.lockcharge
 			if (target.lockcharge)
