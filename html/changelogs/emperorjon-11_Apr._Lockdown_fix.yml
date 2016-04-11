@@ -1,0 +1,6 @@
+author: EmperorJon
+
+delete-after: True
+
+changes: 
+  - bugfix: "Robotics Console now correctly shows the operational/lockdown state and button based off if it thinks the synthetic is locked down or not."
