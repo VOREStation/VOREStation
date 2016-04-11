@@ -94,7 +94,8 @@ var/list/admin_verbs_admin = list(
 	/client/proc/makePAI,
 	/client/proc/toggle_debug_logs,
 	/client/proc/toggle_attack_logs,
-	/datum/admins/proc/paralyze_mob
+	/datum/admins/proc/paralyze_mob,
+	/client/proc/fixatmos
 )
 var/list/admin_verbs_ban = list(
 	/client/proc/unban_panel,
