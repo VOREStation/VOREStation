@@ -91,7 +91,7 @@
 		if(!target || !istype(target))
 			return
 
-		var/istraitor = traitors.is_antagonist(target.mind)
+		var/istraitor = target.mind.special_role
 		if (istraitor)
 			target.lockcharge = !target.lockcharge
 			if (target.lockcharge)
@@ -187,7 +187,7 @@
 		robot["name"] = R.name
 		if(R.stat)
 			robot["status"] = "Not Responding"
-		else if (!R.canmove)
+		else if (R.lockcharge)
 			robot["status"] = "Lockdown"
 		else
 			robot["status"] = "Operational"
