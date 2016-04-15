@@ -295,6 +295,16 @@
 	path = /obj/item/clothing/under/rank/security/corp
 	allowed_roles = list("Security Officer","Head of Security","Warden")
 
+/datum/gear/uniform/corpwarsuit
+	display_name = "uniform, corporate (Warden)"
+	path = /obj/item/clothing/under/rank/warden/corp
+	allowed_roles = list("Head of Security","Warden")
+
+/datum/gear/uniform/corphossuit
+	display_name = "uniform, corporate (Head of Security)"
+	path = /obj/item/clothing/under/rank/head_of_security/corp
+	allowed_roles = list("Head of Security")
+
 /datum/gear/uniform/uniform_hop
 	display_name = "uniform, HoP's dress"
 	path = /obj/item/clothing/under/dress/dress_hop
@@ -307,6 +317,16 @@
 	allowed_roles = list("Head of Personnel")
 
 /datum/gear/uniform/navysecsuit
-	display_name = "uniform, navyblue (Security)"
+	display_name = "uniform, navy blue (Security)"
 	path = /obj/item/clothing/under/rank/security/navyblue
 	allowed_roles = list("Security Officer","Head of Security","Warden")
+
+/datum/gear/uniform/navywarsuit
+	display_name = "uniform, navy blue (Wardem)"
+	path = /obj/item/clothing/under/rank/warden/navyblue
+	allowed_roles = list("Head of Security","Warden")
+
+/datum/gear/uniform/navyhossuit
+	display_name = "uniform, navy blue (Head of Security)"
+	path = /obj/item/clothing/under/rank/head_of_security/navyblue
+	allowed_roles = list("Head of Security")
