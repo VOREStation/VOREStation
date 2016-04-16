@@ -149,6 +149,26 @@
 	if (rights & R_MENTOR)      . += "[seperator]+MENTOR"
 	return .
 
+// Converts a hexadecimal color (e.g. #FF0050) to a list of numbers for red, green, and blue (e.g. list(255,0,80) ).
+/proc/hex2rgb(hex)
+	// Strips the starting #, in case this is ever supplied without one, so everything doesn't break.
+	if(findtext(hex,"#",1,2))
+		hex = copytext(hex, 2)
+	return list(hex2rgb_r(hex), hex2rgb_g(hex), hex2rgb_b(hex))
+
+// The three procs below require that the '#' part of the hex be stripped, which hex2rgb() does automatically.
+/proc/hex2rgb_r(hex)
+	var/hex_to_work_on = copytext(hex,1,3)
+	return hex2num(hex_to_work_on)
+
+/proc/hex2rgb_g(hex)
+	var/hex_to_work_on = copytext(hex,3,5)
+	return hex2num(hex_to_work_on)
+
+/proc/hex2rgb_b(hex)
+	var/hex_to_work_on = copytext(hex,5,7)
+	return hex2num(hex_to_work_on)
+
 // heat2color functions. Adapted from: http://www.tannerhelland.com/4435/convert-temperature-rgb-algorithm-code/
 /proc/heat2color(temp)
 	return rgb(heat2color_r(temp), heat2color_g(temp), heat2color_b(temp))
