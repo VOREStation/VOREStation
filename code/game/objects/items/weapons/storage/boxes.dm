@@ -25,6 +25,7 @@
 	icon_state = "box"
 	item_state = "syringe_kit"
 	var/foldable = /obj/item/stack/material/cardboard	// BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
+	max_w_class = 2
 
 // BubbleWrap - A box can be folded up to make card
 /obj/item/weapon/storage/box/attack_self(mob/user as mob)
@@ -498,12 +499,11 @@
 	desc = "Drymate brand monkey cubes. Just add water!"
 	icon = 'icons/obj/food.dmi'
 	icon_state = "monkeycubebox"
-	storage_slots = 7
 	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/monkeycube)
 	New()
 		..()
 		if(src.type == /obj/item/weapon/storage/box/monkeycubes)
-			for(var/i = 1; i <= 5; i++)
+			for(var/i = 1 to 5)
 				new /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped(src)
 
 /obj/item/weapon/storage/box/monkeycubes/farwacubes
@@ -511,7 +511,7 @@
 	desc = "Drymate brand farwa cubes, shipped from Ahdomai. Just add water!"
 	New()
 		..()
-		for(var/i = 1; i <= 5; i++)
+		for(var/i = 1 to 5)
 			new /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/farwacube(src)
 
 /obj/item/weapon/storage/box/monkeycubes/stokcubes
@@ -519,7 +519,7 @@
 	desc = "Drymate brand stok cubes, shipped from Moghes. Just add water!"
 	New()
 		..()
-		for(var/i = 1; i <= 5; i++)
+		for(var/i = 1 to 5)
 			new /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/stokcube(src)
 
 /obj/item/weapon/storage/box/monkeycubes/neaeracubes
@@ -527,7 +527,7 @@
 	desc = "Drymate brand neaera cubes, shipped from Jargon 4. Just add water!"
 	New()
 		..()
-		for(var/i = 1; i <= 5; i++)
+		for(var/i = 1 to 5)
 			new /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/neaeracube(src)
 
 /obj/item/weapon/storage/box/ids
@@ -612,11 +612,10 @@
 	desc = "Eight wrappers of fun! Ages 8 and up. Not suitable for children."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "spbox"
-	storage_slots = 8
 	can_hold = list(/obj/item/toy/snappop)
 	New()
 		..()
-		for(var/i=1; i <= storage_slots; i++)
+		for(var/i = 1 to 8)
 			new /obj/item/toy/snappop(src)
 
 /obj/item/weapon/storage/box/matches
@@ -625,14 +624,13 @@
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "matchbox"
 	item_state = "zippo"
-	storage_slots = 10
 	w_class = 1
 	slot_flags = SLOT_BELT
 	can_hold = list(/obj/item/weapon/flame/match)
 
 	New()
 		..()
-		for(var/i=1; i <= storage_slots; i++)
+		for(var/i=1 to 10)
 			new /obj/item/weapon/flame/match(src)
 
 	attackby(obj/item/weapon/flame/match/W as obj, mob/user as mob)
@@ -650,7 +648,7 @@
 	icon_state = "syringe"
 	New()
 		..()
-		for (var/i; i < storage_slots; i++)
+		for (var/i = 1 to 7)
 			new /obj/item/weapon/reagent_containers/hypospray/autoinjector(src)
 
 /obj/item/weapon/storage/box/lights
@@ -696,7 +694,6 @@
 	icon_state = "portafreezer"
 	item_state = "medicalpack"
 	foldable = null
-	storage_slots=7
 	max_w_class = 3
 	can_hold = list(/obj/item/organ, /obj/item/weapon/reagent_containers/food, /obj/item/weapon/reagent_containers/glass)
 	max_storage_space = 21
