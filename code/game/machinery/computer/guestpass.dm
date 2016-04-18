@@ -155,8 +155,12 @@
 				var/A = text2num(href_list["access"])
 				if (A in accesses)
 					accesses.Remove(A)
-				else
-					accesses.Add(A)
+				else 
+					if(A in giver.access)	//Let's make sure the ID card actually has the access.
+						accesses.Add(A)
+					else
+						usr << "<span class='warning'>Invalid selection, please consult technical support if there are any issues.</span>"
+						log_debug("[key_name_admin(usr)] tried selecting an invalid guest pass terminal option.")
 	if (href_list["action"])
 		switch(href_list["action"])
 			if ("id")
