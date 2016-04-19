@@ -17,7 +17,7 @@ var/list/_client_preferences_by_type
 	if(ispath(preference))
 		return get_client_preference_by_type(preference)
 	return get_client_preference_by_key(preference)
-    
+
 /proc/get_client_preference_by_key(var/preference)
 	if(!_client_preferences_by_key)
 		_client_preferences_by_key = list()
@@ -131,6 +131,12 @@ var/list/_client_preferences_by_type
 	key = "SHOW_PROGRESS"
 	enabled_description = "Show"
 	disabled_description = "Hide"
+
+/datum/client_preference/safefiring
+	description = "Safe gun firing."
+	key = "SAFE_FIRING"
+	enabled_description = "Safe"
+	disabled_description = "Dangerous"
 /********************
 * Staff Preferences *
 ********************/
@@ -139,10 +145,10 @@ var/list/_client_preferences_by_type
 
 /datum/client_preference/mod/may_toggle(var/mob/preference_mob)
 	return check_rights(R_MOD|R_ADMIN, 0, preference_mob)
-	
+
 /datum/client_preference/debug/may_toggle(var/mob/preference_mob)
 	return check_rights(R_DEBUG|R_ADMIN, 0, preference_mob)
-	
+
 /datum/client_preference/mod/show_attack_logs
 	description = "Attack Log Messages"
 	key = "CHAT_ATTACKLOGS"
