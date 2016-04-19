@@ -268,9 +268,6 @@
 /mob/living/bot/proc/explode()
 	qdel(src)
 
-/mob/living/bot/attack_throat()
-	return
-
 /******************************************************************/
 // Navigation procs
 // Used for A-star pathfinding
