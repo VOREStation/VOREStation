@@ -133,7 +133,7 @@ var/list/_client_preferences_by_type
 	disabled_description = "Hide"
 
 /datum/client_preference/safefiring
-	description = "Safe Gun Firing"
+	description = "Gun Firing Intent Requirement"
 	key = "SAFE_FIRING"
 	enabled_description = "Safe"
 	disabled_description = "Dangerous"
