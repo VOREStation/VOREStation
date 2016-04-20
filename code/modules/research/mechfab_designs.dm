@@ -395,7 +395,7 @@
 
 /datum/design/item/mecha/drill
 	name = "Drill"
-	id = "drill"
+	id = "mech_drill"
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/drill
 
 /datum/design/item/mecha/extinguisher

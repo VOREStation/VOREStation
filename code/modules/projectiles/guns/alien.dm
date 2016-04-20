@@ -5,7 +5,7 @@
 	desc = "A vicious alien projectile weapon. Parts of it quiver gelatinously, as though the thing is insectile and alive."
 
 	var/last_regen = 0
-	var/spike_gen_time = 100
+	var/spike_gen_time = 150
 	var/max_spikes = 3
 	var/spikes = 3
 	release_force = 30

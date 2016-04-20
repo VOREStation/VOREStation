@@ -317,9 +317,9 @@ var/global/datum/shuttle_controller/shuttle_controller
 		"Arrivals dock" = "nuke_shuttle_dock_airlock",
 		)
 
-	MS.announcer = "NDV Icarus"
-	MS.arrival_message = "Attention, [station_short], you have a large signature approaching the station - looks unarmed to surface scans. We're too far out to intercept - brace for visitors."
-	MS.departure_message = "Your visitors are on their way out of the system, [station_short], burning delta-v like it's nothing. Good riddance."
+	MS.announcer = "Automated Traffic Control"
+	MS.arrival_message = "Attention.  A vessel is approaching the colony."
+	MS.departure_message = "Attention.  A vessel is now leaving from the colony."
 	MS.interim = locate(/area/syndicate_station/transit)
 
 	MS.warmup_time = 0

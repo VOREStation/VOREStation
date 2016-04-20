@@ -44,7 +44,7 @@
 	pref.job_engsec_high	= sanitize_integer(pref.job_engsec_high, 0, 65535, initial(pref.job_engsec_high))
 	pref.job_engsec_med 	= sanitize_integer(pref.job_engsec_med, 0, 65535, initial(pref.job_engsec_med))
 	pref.job_engsec_low 	= sanitize_integer(pref.job_engsec_low, 0, 65535, initial(pref.job_engsec_low))
-	if(!pref.player_alt_titles) pref.player_alt_titles = new()
+	if(!(pref.player_alt_titles)) pref.player_alt_titles = new()
 
 	if(!job_master)
 		return

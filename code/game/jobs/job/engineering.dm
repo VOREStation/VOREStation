@@ -13,6 +13,7 @@
 	req_admin_notify = 1
 	economic_modifier = 10
 
+	minimum_character_age = 25
 	ideal_character_age = 50
 
 

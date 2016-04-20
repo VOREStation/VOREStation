@@ -140,9 +140,9 @@
 	worn_state = "johnny"
 	item_state = "johnny"
 
-/obj/item/clothing/under/rainbow
-	name = "rainbow"
-	desc = "rainbow"
+/obj/item/clothing/under/color/rainbow
+	name = "rainbow jumpsuit"
+	desc = "A multi-colored jumpsuit."
 	icon_state = "rainbow"
 	item_state = "rainbow"
 	worn_state = "rainbow"
@@ -481,13 +481,6 @@
 	item_state = "sundress_white"
 	worn_state = "sundress_white"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-
-/obj/item/clothing/under/blackjumpskirt
-	name = "black jumpskirt"
-	desc = "A black jumpskirt, Sol size 0."
-	icon_state = "blackjumpskirt"
-	item_state = "bl_suit"
-	worn_state = "blackjumpskirt"
 
 /obj/item/clothing/under/captainformal
 	name = "captain's formal uniform"

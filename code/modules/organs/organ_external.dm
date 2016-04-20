@@ -56,6 +56,7 @@
 	var/disfigured = 0                 // Scarred/burned beyond recognition.
 	var/cannot_amputate                // Impossible to amputate.
 	var/cannot_break                   // Impossible to fracture.
+	var/cannot_gib                     // Impossible to gib, distinct from amputation.
 	var/joint = "joint"                // Descriptive string used in dislocation.
 	var/amputation_point               // Descriptive string used in amputation.
 	var/dislocated = 0                 // If you target a joint, you can dislocate the limb, causing temporary damage to the organ.
@@ -727,12 +728,16 @@ Note that amputating the affected organ does in fact remove the infection from t
 					"<span class='moderate'><b>Your [src.name] goes flying off!</b></span>",\
 					"<span class='danger'>You hear a terrible sound of [gore_sound].</span>")
 		if(DROPLIMB_BURN)
+			if(cannot_gib)
+				return
 			var/gore = "[(status & ORGAN_ROBOT) ? "": " of burning flesh"]"
 			owner.visible_message(
 				"<span class='danger'>\The [owner]'s [src.name] flashes away into ashes!</span>",\
 				"<span class='moderate'><b>Your [src.name] flashes away into ashes!</b></span>",\
 				"<span class='danger'>You hear a crackling sound[gore].</span>")
 		if(DROPLIMB_BLUNT)
+			if(cannot_gib)
+				return
 			var/gore = "[(status & ORGAN_ROBOT) ? "": " in shower of gore"]"
 			var/gore_sound = "[(status & ORGAN_ROBOT) ? "rending sound of tortured metal" : "sickening splatter of gore"]"
 			owner.visible_message(

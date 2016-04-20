@@ -12,6 +12,13 @@
 	item_state = "bl_suit"
 	worn_state = "blackf"
 
+/obj/item/clothing/under/color/blackjumpskirt
+	name = "black jumpskirt"
+	desc = "A black jumpskirt, Sol size 0."
+	icon_state = "blackjumpskirt"
+	item_state = "bl_suit"
+	worn_state = "blackjumpskirt"
+
 /obj/item/clothing/under/color/blue
 	name = "blue jumpsuit"
 	icon_state = "blue"
@@ -78,89 +85,89 @@
 	item_state = "psyche"
 	worn_state = "psyche"
 
-/obj/item/clothing/under/lightblue
+/obj/item/clothing/under/color/lightblue
 	name = "lightblue jumpsuit"
-	desc = "lightblue"
+	desc = "A light blue jumpsuit."
 	icon_state = "lightblue"
 	item_state = "b_suit"
 	worn_state = "lightblue"
 	rolled_sleeves = 0
 
-/obj/item/clothing/under/aqua
+/obj/item/clothing/under/color/aqua
 	name = "aqua jumpsuit"
-	desc = "aqua"
+	desc = "An aqua jumpsuit."
 	icon_state = "aqua"
 	item_state = "b_suit"
 	worn_state = "aqua"
 	rolled_sleeves = 0
 
-/obj/item/clothing/under/purple
+/obj/item/clothing/under/color
 	name = "purple jumpsuit"
-	desc = "purple"
+	desc = "The latest in space fashion."
 	icon_state = "purple"
 	item_state = "p_suit"
 	worn_state = "purple"
 	rolled_sleeves = 0
 
-/obj/item/clothing/under/lightpurple
+/obj/item/clothing/under/color/lightpurple
 	name = "lightpurple jumpsuit"
-	desc = "lightpurple"
+	desc = "A light purple jumpsuit."
 	icon_state = "lightpurple"
 	item_state = "p_suit"
 	worn_state = "lightpurple"
 	rolled_sleeves = 0
 
-/obj/item/clothing/under/lightgreen
+/obj/item/clothing/under/color/lightgreen
 	name = "lightgreen jumpsuit"
-	desc = "lightgreen"
+	desc = "A light green jumpsuit."
 	icon_state = "lightgreen"
 	item_state = "g_suit"
 	worn_state = "lightgreen"
 	rolled_sleeves = 0
 
-/obj/item/clothing/under/lightbrown
+/obj/item/clothing/under/color/lightbrown
 	name = "lightbrown jumpsuit"
-	desc = "lightbrown"
+	desc = "A light brown jumpsuit."
 	icon_state = "lightbrown"
 	item_state = "lb_suit"
 	worn_state = "lightbrown"
 	rolled_sleeves = 0
 
-/obj/item/clothing/under/brown
+/obj/item/clothing/under/color/brown
 	name = "brown jumpsuit"
-	desc = "brown"
+	desc = "A brown jumpsuit."
 	icon_state = "brown"
 	item_state = "lb_suit"
 	worn_state = "brown"
 	rolled_sleeves = 0
 
-/obj/item/clothing/under/yellowgreen
+/obj/item/clothing/under/color/yellowgreen
 	name = "yellowgreen jumpsuit"
-	desc = "yellowgreen"
+	desc = "A... yellow green jumpsuit?"
 	icon_state = "yellowgreen"
 	item_state = "y_suit"
 	worn_state = "yellowgreen"
 	rolled_sleeves = 0
 
-/obj/item/clothing/under/darkblue
+/obj/item/clothing/under/color/darkblue
 	name = "darkblue jumpsuit"
-	desc = "darkblue"
+	desc = "A dark blue jumpsuit."
 	icon_state = "darkblue"
 	item_state = "b_suit"
 	worn_state = "darkblue"
 	rolled_sleeves = 0
 
-/obj/item/clothing/under/lightred
+/obj/item/clothing/under/color/lightred
 	name = "lightred jumpsuit"
-	desc = "lightred"
+	desc = "A light red jumpsuit."
 	icon_state = "lightred"
 	item_state = "r_suit"
 	worn_state = "lightred"
 	rolled_sleeves = 0
 
-/obj/item/clothing/under/darkred
+/obj/item/clothing/under/color/darkred
 	name = "darkred jumpsuit"
-	desc = "darkred"
+	desc = "A dark red jumpsuit."
 	icon_state = "darkred"
 	item_state = "r_suit"
 	worn_state = "darkred"

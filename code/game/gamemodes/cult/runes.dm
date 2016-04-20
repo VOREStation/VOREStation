@@ -423,7 +423,7 @@ var/list/sacrificed = list()
 						L.ajourn=0
 						return
 					else
-						L.take_organ_damage(10, 0)
+						L.take_organ_damage(3, 0)
 					sleep(100)
 			return fizzle()
 

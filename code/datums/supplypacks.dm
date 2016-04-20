@@ -221,6 +221,12 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	name = "Janitorial supplies"
 	contains = list(/obj/item/weapon/reagent_containers/glass/bucket,
 					/obj/item/weapon/mop,
+					/obj/item/clothing/under/rank/janitor,
+					/obj/item/weapon/cartridge/janitor,
+					/obj/item/clothing/gloves/black,
+					/obj/item/clothing/head/soft/purple,
+					/obj/item/weapon/storage/belt/janitor,
+					/obj/item/clothing/shoes/galoshes,
 					/obj/item/weapon/caution,
 					/obj/item/weapon/caution,
 					/obj/item/weapon/caution,
@@ -1635,6 +1641,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	num_contained = 4
 	contains = list(/obj/item/clothing/accessory/storage/black_vest,
 					/obj/item/clothing/accessory/storage/brown_vest,
+					/obj/item/clothing/accessory/storage/white_vest,
 					/obj/item/clothing/accessory/storage/webbing)
 	cost = 15
 	containertype = "/obj/structure/closet/crate"
@@ -2074,7 +2081,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/cartridge/medical,
 					/obj/item/device/flashlight/pen,
 					/obj/item/weapon/reagent_containers/syringe,
-					/obj/item/clothing/accessory/storage/brown_vest)
+					/obj/item/clothing/accessory/storage/white_vest)
 	cost = 20
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Paramedic equipment"

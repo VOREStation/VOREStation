@@ -510,52 +510,38 @@ default behaviour is:
 			if ((get_dist(src, pulling) > 1 || diag))
 				if (isliving(pulling))
 					var/mob/living/M = pulling
-					var/ok = 1
-					if (locate(/obj/item/weapon/grab, M.grabbed_by))
-						if (prob(75))
-							var/obj/item/weapon/grab/G = pick(M.grabbed_by)
-							if (istype(G, /obj/item/weapon/grab))
-								for(var/mob/O in viewers(M, null))
-									O.show_message(text("\red [] has been pulled from []'s grip by []", G.affecting, G.assailant, src), 1)
-								//G = null
-								qdel(G)
-						else
-							ok = 0
-						if (locate(/obj/item/weapon/grab, M.grabbed_by.len))
-							ok = 0
-					if (ok)
-						var/atom/movable/t = M.pulling
-						M.stop_pulling()
+					var/atom/movable/t = M.pulling
+					M.stop_pulling()
 
-						if(!istype(M.loc, /turf/space))
-							var/area/A = get_area(M)
-							if(A.has_gravity)
-								//this is the gay blood on floor shit -- Added back -- Skie
-								if (M.lying && (prob(M.getBruteLoss() / 6)))
+					if(!istype(M.loc, /turf/space))
+						var/area/A = get_area(M)
+						if(A.has_gravity)
+							//this is the gay blood on floor shit -- Added back -- Skie
+							if (M.lying && (prob(M.getBruteLoss() / 6)))
+								var/turf/location = M.loc
+								if (istype(location, /turf/simulated))
+									location.add_blood(M)
+							//pull damage with injured people
+								if(prob(25))
+									M.adjustBruteLoss(1)
+									visible_message("<span class='danger'>\The [M]'s [M.isSynthetic() ? "state worsens": "wounds open more"] from being dragged!</span>")
+							if(M.pull_damage())
+								if(prob(25))
+									M.adjustBruteLoss(2)
+									visible_message("<span class='danger'>\The [M]'s [M.isSynthetic() ? "state" : "wounds"] worsen terribly from being dragged!</span>")
 									var/turf/location = M.loc
 									if (istype(location, /turf/simulated))
 										location.add_blood(M)
-								//pull damage with injured people
-									if(prob(25))
-										M.adjustBruteLoss(1)
-										visible_message("<span class='danger'>\The [M]'s [M.isSynthetic() ? "state worsens": "wounds open more"] from being dragged!</span>")
-								if(M.pull_damage())
-									if(prob(25))
-										M.adjustBruteLoss(2)
-										visible_message("<span class='danger'>\The [M]'s [M.isSynthetic() ? "state" : "wounds"] worsen terribly from being dragged!</span>")
-										var/turf/location = M.loc
-										if (istype(location, /turf/simulated))
-											location.add_blood(M)
-											if(ishuman(M))
-												var/mob/living/carbon/human/H = M
-												var/blood_volume = round(H.vessel.get_reagent_amount("blood"))
-												if(blood_volume > 0)
-													H.vessel.remove_reagent("blood", 1)
+										if(ishuman(M))
+											var/mob/living/carbon/human/H = M
+											var/blood_volume = round(H.vessel.get_reagent_amount("blood"))
+											if(blood_volume > 0)
+												H.vessel.remove_reagent("blood", 1)
 
 
-						step(pulling, get_dir(pulling.loc, T))
-						if(t)
-							M.start_pulling(t)
+					step(pulling, get_dir(pulling.loc, T))
+					if(t)
+						M.start_pulling(t)
 				else
 					if (pulling)
 						if (istype(pulling, /obj/structure/window))
@@ -595,11 +581,13 @@ default behaviour is:
 	//unbuckling yourself
 	if(buckled)
 		spawn() escape_buckle()
+		return TRUE
 
 	//Breaking out of a locker?
 	if( src.loc && (istype(src.loc, /obj/structure/closet)) )
 		var/obj/structure/closet/C = loc
 		spawn() C.mob_breakout(src)
+		return TRUE
 
 /mob/living/proc/escape_inventory(obj/item/weapon/holder/H)
 	if(H != src.loc) return
@@ -662,7 +650,7 @@ default behaviour is:
 	src << "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>"
 
 /mob/living/proc/is_allowed_vent_crawl_item(var/obj/item/carried_item)
-	return isnull(get_inventory_slot(carried_item))
+	return (get_inventory_slot(carried_item) == 0)
 
 /mob/living/simple_animal/spiderbot/is_allowed_vent_crawl_item(var/obj/item/carried_item)
 	if(carried_item == held_item)
@@ -730,10 +718,12 @@ default behaviour is:
 		return
 
 	if(!ignore_items)
+		var/list/badItems = list()
 		for(var/obj/item/carried_item in contents)//If the monkey got on objects.
-			if(is_allowed_vent_crawl_item(carried_item))
-				continue
-			src << "<span class='warning'>You can't be carrying items or have items equipped when vent crawling!</span>"
+			if(!is_allowed_vent_crawl_item(carried_item))
+				badItems += carried_item.name
+		if(badItems.len)
+			src << "<span class='warning'>Your [english_list(badItems)] prevent[badItems.len == 1 ? "s" : ""] you from ventcrawling.</span>"
 			return
 
 	if(isslime(src))

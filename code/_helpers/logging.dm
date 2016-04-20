@@ -31,7 +31,7 @@
 		diary << "\[[time_stamp()]]DEBUG: [text][log_end]"
 
 	for(var/client/C in admins)
-		if(C.is_preference_enabled(/datum/client_preference/admin/show_debug_logs))
+		if(C.is_preference_enabled(/datum/client_preference/debug/show_debug_logs))
 			C << "DEBUG: [text]"
 
 
@@ -81,6 +81,9 @@
 
 /proc/log_misc(text)
 	diary << "\[[time_stamp()]]MISC: [text][log_end]"
+
+/proc/log_unit_test(text)
+	world.log << "## UNIT_TEST: [text]"
 
 //pretty print a direction bitflag, can be useful for debugging.
 /proc/print_dir(var/dir)

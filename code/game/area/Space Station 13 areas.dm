@@ -838,6 +838,10 @@ area/space/atmosalert()
 /area/maintenance/engineering
 	name = "Engineering Maintenance"
 	icon_state = "maint_engineering"
+	
+/area/maintenance/engineering/pumpstation
+	name = "Engineering Pump Station"
+	icon_state = "maint_pumpstation"
 
 /area/maintenance/evahallway
 	name = "\improper EVA Maintenance"

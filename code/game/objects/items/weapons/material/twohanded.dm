@@ -68,6 +68,12 @@
 /obj/item/weapon/material/twohanded/update_icon()
 	icon_state = "[base_icon][wielded]"
 	item_state = icon_state
+	
+/obj/item/weapon/material/twohanded/dropped()
+	..()
+	if(wielded)
+		spawn(0)
+			update_held_icon()
 
 /*
  * Fireaxe

@@ -112,7 +112,7 @@ var/global/datum/controller/gameticker/ticker
 				tmpmodes+=M.name
 			tmpmodes = sortList(tmpmodes)
 			if(tmpmodes.len)
-				world << "<B>Possibilities:</B> [english_list(tmpmodes)]"
+				world << "<B>Possibilities:</B> [english_list(tmpmodes, and_text= "; ", comma_text = "; ")]"
 	else
 		src.mode.announce()
 

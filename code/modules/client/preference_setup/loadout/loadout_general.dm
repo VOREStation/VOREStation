@@ -30,10 +30,34 @@
 	display_name = "flask"
 	path = /obj/item/weapon/reagent_containers/food/drinks/flask/barflask
 
+/datum/gear/flask/New()
+	..()
+	gear_tweaks += new/datum/gear_tweak/reagents(lunchables_ethanol_reagents())
+
 /datum/gear/vacflask
 	display_name = "vacuum-flask"
 	path = /obj/item/weapon/reagent_containers/food/drinks/flask/vacuumflask
 
+/datum/gear/vacflask/New()
+	..()
+	gear_tweaks += new/datum/gear_tweak/reagents(lunchables_drink_reagents())
+
 /datum/gear/comb
 	display_name = "purple comb"
 	path = /obj/item/weapon/haircomb
+
+/datum/gear/lunchbox
+	display_name = "lunchbox"
+	description = "A little lunchbox."
+	cost = 2
+	path = /obj/item/weapon/storage/toolbox/lunchbox
+
+/datum/gear/lunchbox/New()
+	..()
+	var/list/lunchboxes = list()
+	for(var/lunchbox_type in typesof(/obj/item/weapon/storage/toolbox/lunchbox))
+		var/obj/item/weapon/storage/toolbox/lunchbox/lunchbox = lunchbox_type
+		if(!initial(lunchbox.filled))
+			lunchboxes[initial(lunchbox.name)] = lunchbox_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(lunchboxes))
+	gear_tweaks += new/datum/gear_tweak/contents(lunchables_lunches(), lunchables_snacks(), lunchables_drinks())

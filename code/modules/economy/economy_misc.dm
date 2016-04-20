@@ -87,7 +87,7 @@ var/global/economy_init = 0
 	if(economy_init)
 		return 2
 
-	news_network.CreateFeedChannel("The Vir Times", "SolGov Minister of Information", 1, 1)
+	news_network.CreateFeedChannel("The Vir Times", "Vir Times ExoNode - Northern Star", 1, 1)
 	news_network.CreateFeedChannel("The Gibson Gazette", "Editor Mike Hammers", 1, 1)
 
 	for(var/loc_type in typesof(/datum/trade_destination) - /datum/trade_destination)

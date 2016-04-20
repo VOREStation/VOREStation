@@ -7,7 +7,6 @@
 	health = 100
 	maxHealth = 100
 
-	bot_version = "2.5"
 	is_ranged = 1
 	preparing_arrest_sounds = new()
 
@@ -20,7 +19,7 @@
 	var/last_shot = 0
 
 /mob/living/bot/secbot/ed209/update_icons()
-	if(on && is_attacking)
+	if(on && busy)
 		icon_state = "ed209-c"
 	else
 		icon_state = "ed209[on]"
@@ -49,6 +48,9 @@
 
 	new /obj/effect/decal/cleanable/blood/oil(Tsec)
 	qdel(src)
+
+/mob/living/bot/secbot/ed209/handleRangedTarget()
+	RangedAttack(target)
 
 /mob/living/bot/secbot/ed209/RangedAttack(var/atom/A)
 	if(last_shot + shot_delay > world.time)

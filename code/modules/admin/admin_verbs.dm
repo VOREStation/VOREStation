@@ -8,8 +8,9 @@ var/list/admin_verbs_default = list(
 	/client/proc/debug_variables,		//allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify,
 //	/client/proc/check_antagonists,		//shows all antags,
 //	/client/proc/cmd_mod_say,
-	/client/proc/cmd_mentor_check_new_players
+	/client/proc/cmd_mentor_check_new_players,
 //	/client/proc/deadchat				//toggles deadchat on/off,
+//	/client/proc/toggle_ahelp_sound,
 	)
 var/list/admin_verbs_admin = list(
 	/client/proc/player_panel_new, //shows an interface for all players, with links to various panels,
@@ -91,7 +92,10 @@ var/list/admin_verbs_admin = list(
 	/client/proc/change_security_level,
 	/client/proc/view_chemical_reaction_logs,
 	/client/proc/makePAI,
-	/datum/admins/proc/paralyze_mob
+	/client/proc/toggle_debug_logs,
+	/client/proc/toggle_attack_logs,
+	/datum/admins/proc/paralyze_mob,
+	/client/proc/fixatmos
 )
 var/list/admin_verbs_ban = list(
 	/client/proc/unban_panel,
@@ -188,6 +192,7 @@ var/list/admin_verbs_debug = list(
 	/client/proc/jumptomob,
 	/client/proc/jumptocoord,
 	/client/proc/dsay,
+	/client/proc/toggle_debug_logs,
 	/client/proc/admin_ghost			//allows us to ghost/reenter body at will,
 	)
 
@@ -294,6 +299,7 @@ var/list/admin_verbs_mod = list(
 	/client/proc/check_antagonists,
 	/client/proc/aooc,
 	/client/proc/jobbans,
+	/client/proc/toggle_attack_logs,
 	/client/proc/cmd_admin_subtle_message, 	//send an message to somebody as a 'voice in their head',
 	/datum/admins/proc/paralyze_mob,
 	/client/proc/cmd_admin_direct_narrate,
@@ -515,12 +521,16 @@ var/list/admin_verbs_mentor = list(
 	if(holder)
 		if(holder.fakekey)
 			holder.fakekey = null
+			if(istype(src.mob, /mob/new_player))
+				mob.name = capitalize(ckey)
 		else
 			var/new_key = ckeyEx(input("Enter your desired display name.", "Fake Key", key) as text|null)
 			if(!new_key)	return
 			if(length(new_key) >= 26)
 				new_key = copytext(new_key, 1, 26)
 			holder.fakekey = new_key
+			if(istype(mob, /mob/new_player))
+				mob.name = new_key
 		log_admin("[key_name(usr)] has turned stealth mode [holder.fakekey ? "ON" : "OFF"]")
 		message_admins("[key_name_admin(usr)] has turned stealth mode [holder.fakekey ? "ON" : "OFF"]", 1)
 	feedback_add_details("admin_verb","SM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
