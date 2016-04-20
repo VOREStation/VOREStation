@@ -68,7 +68,7 @@
 //Dispensers
 /obj/structure/reagent_dispensers/watertank
 	name = "watertank"
-	desc = "A watertank"
+	desc = "A watertank."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "watertank"
 	amount_per_transfer_from_this = 10
@@ -78,7 +78,7 @@
 
 /obj/structure/reagent_dispensers/fueltank
 	name = "fueltank"
-	desc = "A fueltank"
+	desc = "A fueltank."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "weldtank"
 	amount_per_transfer_from_this = 10
@@ -183,7 +183,7 @@
 
 /obj/structure/reagent_dispensers/peppertank
 	name = "Pepper Spray Refiller"
-	desc = "Refill pepper spray canisters."
+	desc = "Refills pepper spray canisters."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "peppertank"
 	anchored = 1
@@ -284,7 +284,7 @@
 
 /obj/structure/reagent_dispensers/virusfood
 	name = "Virus Food Dispenser"
-	desc = "A dispenser of virus food."
+	desc = "A dispenser of virus food. Yum."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "virusfoodtank"
 	amount_per_transfer_from_this = 10
