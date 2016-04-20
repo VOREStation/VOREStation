@@ -155,7 +155,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		// This is dumb, but spacestation13.com's banners break if player count isn't the 8th field of the reply, so... this has to go here.
 		s["players"] = 0
 		s["stationtime"] = worldtime2text()
-		s["roundduration"] = round_duration()
+		s["roundduration"] = round_duration_as_text()
 
 		if(input["status"] == "2")
 			var/list/players = list()
@@ -422,6 +422,10 @@ var/world_topic_spam_protect_time = world.timeofday
 	return 1
 
 /world/proc/load_mode()
+	if(!fexists("data/mode.txt"))
+		return
+
+
 	var/list/Lines = file2list("data/mode.txt")
 	if(Lines.len)
 		if(Lines[1])
