@@ -180,7 +180,7 @@
 	feedback_add_details("admin_verb","TBeSpecial") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/toggle_safe_firing()
-	set name = "Toggle Safe Firearms Firing"
+	set name = "Toggle Gun Firing Intent Requirement"
 	set category = "Preferences"
 	set desc = "Toggles between safe and dangerous firing. Safe requires a non-help intent to fire, dangerous can be fired on help intent."
 
