@@ -1104,6 +1104,9 @@
 	if(species.holder_type)
 		holder_type = species.holder_type
 
+	if(!(gender in species.genders))
+		gender = species.genders[1]
+
 	icon_state = lowertext(species.name)
 
 	species.create_organs(src)
