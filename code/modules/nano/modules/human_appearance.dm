@@ -31,6 +31,10 @@
 			if(owner.change_gender(href_list["gender"]))
 				cut_and_generate_data()
 				return 1
+	if(href_list["gender_id"])
+		if(can_change(APPEARANCE_GENDER) && (href_list["gender_id"] in all_genders_define_list))
+			owner.identifying_gender = href_list["gender_id"]
+			return 1
 	if(href_list["skin_tone"])
 		if(can_change_skin_tone())
 			var/new_s_tone = input(usr, "Choose your character's skin-tone:\n(Light 1 - 220 Dark)", "Skin Tone", -owner.s_tone + 35) as num|null
@@ -100,6 +104,7 @@
 
 	data["specimen"] = owner.species.name
 	data["gender"] = owner.gender
+	data["gender_id"] = owner.identifying_gender
 	data["change_race"] = can_change(APPEARANCE_RACE)
 	if(data["change_race"])
 		var/species[0]
@@ -113,6 +118,11 @@
 		for(var/gender in owner.species.genders)
 			genders[++genders.len] =  list("gender_name" = gender2text(gender), "gender_key" = gender)
 		data["genders"] = genders
+		var/id_genders[0]
+		for(var/gender in all_genders_define_list)
+			id_genders[++id_genders.len] =  list("gender_name" = gender2text(gender), "gender_key" = gender)
+		data["id_genders"] = id_genders
+
 
 	data["change_skin_tone"] = can_change_skin_tone()
 	data["change_skin_color"] = can_change_skin_color()
