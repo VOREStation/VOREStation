@@ -14,6 +14,7 @@
 	throw_speed = 2
 	throw_range = 8
 	var/empty = 0
+	max_storage_space = 14
 
 
 /obj/item/weapon/storage/firstaid/fire
@@ -131,8 +132,8 @@
 /obj/item/weapon/storage/firstaid/surgery
 	name = "surgery kit"
 	desc = "Contains tools for surgery."
-	storage_slots = 10
-	max_storage_space = 23
+	max_storage_space = 21
+	max_w_class = 3
 
 /obj/item/weapon/storage/firstaid/surgery/New()
 	..()
@@ -163,6 +164,8 @@
 	allow_quick_gather = 1
 	use_to_pickup = 1
 	use_sound = null
+	max_storage_space = 14
+	max_w_class = 1
 
 /obj/item/weapon/storage/pill_bottle/antitox
 	name = "bottle of Dylovene pills"
