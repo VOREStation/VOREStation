@@ -6,20 +6,15 @@
 	sort_category = "Uniforms and Casual Dress"
 
 /datum/gear/uniform/cheongsam
-	display_name = "cheongsam, white"
-	path = /obj/item/clothing/under/cheongsam
+	display_name = "cheongsam"
 
-/datum/gear/uniform/cheongsam/red
-	display_name = "cheongsam, red"
-	path = /obj/item/clothing/under/cheongsam/red
-
-/datum/gear/uniform/cheongsam/blue
-	display_name = "cheongsam, blue"
-	path = /obj/item/clothing/under/cheongsam/blue
-
-/datum/gear/uniform/cheongsam/
-	display_name = "cheongsam, black"
-	path = /obj/item/clothing/under/cheongsam/black
+/datum/gear/uniform/cheongsam/New()
+	..()
+	var/list/cheongasms = list()
+	for(var/cheongasm in typesof(/obj/item/clothing/under/cheongsam))
+		var/obj/item/clothing/under/cheongsam/cheongasm_type = cheongasm
+		cheongasms[initial(cheongasm_type.name)] = cheongasm_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(cheongasms))
 
 /datum/gear/uniform/kilt
 	display_name = "kilt"
