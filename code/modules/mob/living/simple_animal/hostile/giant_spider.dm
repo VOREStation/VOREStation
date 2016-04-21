@@ -90,7 +90,7 @@
 /mob/living/simple_animal/hostile/giant_spider/Life()
 	..()
 	if(!stat)
-		if(stance == HOSTILE_STANCE_IDLE)
+		if(stance == STANCE_IDLE)
 			//1% chance to skitter madly away
 			if(!busy && prob(1))
 				/*var/list/move_targets = list()
@@ -113,7 +113,7 @@
 /mob/living/simple_animal/hostile/giant_spider/nurse/Life()
 	..()
 	if(!stat)
-		if(stance == HOSTILE_STANCE_IDLE)
+		if(stance == STANCE_IDLE)
 			var/list/can_see = view(src, 10)
 			//30% chance to stop wandering and do something
 			if(!busy && prob(30))
