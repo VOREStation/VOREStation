@@ -50,7 +50,7 @@
 /var/list/economic_species_modifier = list(
 												/datum/species/human	= 10,
 												/datum/species/skrell	= 12,
-												/datum/species/teshari	= 9, // Skrell sponsored!
+												/datum/species/teshari	= 9, // Skrell sponsored,
 												/datum/species/tajaran	= 7,
 												/datum/species/unathi	= 7
 											)
@@ -87,7 +87,7 @@ var/global/economy_init = 0
 	if(economy_init)
 		return 2
 
-	news_network.CreateFeedChannel("The Vir Times", "SolGov Minister of Information", 1, 1)
+	news_network.CreateFeedChannel("The Vir Times", "Vir Times ExoNode - Northern Star", 1, 1)
 	news_network.CreateFeedChannel("The Gibson Gazette", "Editor Mike Hammers", 1, 1)
 
 	for(var/loc_type in typesof(/datum/trade_destination) - /datum/trade_destination)

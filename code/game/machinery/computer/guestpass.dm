@@ -46,6 +46,7 @@
 	icon_keyboard = null
 	icon_screen = "pass"
 	density = 0
+	circuit = /obj/item/weapon/circuitboard/guestpass
 
 	var/obj/item/weapon/card/id/giver
 	var/list/accesses = list()
@@ -60,10 +61,29 @@
 	..()
 	uid = "[rand(100,999)]-G[rand(10,99)]"
 
-/obj/machinery/computer/guestpass/attackby(obj/O, mob/user)
-	if(istype(O, /obj/item/weapon/card/id))
-		if(!giver && user.removeItem(O, src))
-			giver = O
+/obj/machinery/computer/guestpass/attackby(obj/I, mob/user)
+	if(istype(I, /obj/item/weapon/screwdriver) && circuit)
+		user << "<span class='notice'>You start disconnecting the monitor.</span>"
+		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+		if(do_after(user, 20))
+			var/obj/structure/frame/A = new /obj/structure/frame( src.loc )
+			var/obj/item/weapon/circuitboard/M = new circuit( A )
+			A.frame_type = "guestpass"
+			A.pixel_x = pixel_x
+			A.pixel_y = pixel_y
+			A.circuit = M
+			A.anchored = 1
+			for (var/obj/C in src)
+				C.forceMove(loc)
+			user << "<span class='notice'>You disconnect the monitor.</span>"
+			A.state = 4
+			A.icon_state = "guestpass_4"
+			M.deconstruct(src)
+			qdel(src)
+		return
+	if(istype(I, /obj/item/weapon/card/id))
+		if(!giver && user.removeItem(I, src))
+			giver = I
 			updateUsrDialog()
 		else if(giver)
 			user << "<span class='warning'>There is already ID card inside.</span>"
@@ -134,8 +154,12 @@
 				var/A = text2num(href_list["access"])
 				if (A in accesses)
 					accesses.Remove(A)
-				else
-					accesses.Add(A)
+				else 
+					if(A in giver.access)	//Let's make sure the ID card actually has the access.
+						accesses.Add(A)
+					else
+						usr << "<span class='warning'>Invalid selection, please consult technical support if there are any issues.</span>"
+						log_debug("[key_name_admin(usr)] tried selecting an invalid guest pass terminal option.")
 	if (href_list["action"])
 		switch(href_list["action"])
 			if ("id")

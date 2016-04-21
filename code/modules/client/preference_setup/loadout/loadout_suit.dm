@@ -59,48 +59,16 @@
 	path = /obj/item/clothing/suit/storage/hazardvest
 
 /datum/gear/suit/hoodie
-	display_name = "hoodie, grey"
+	display_name = "hoodie selection"
 	path = /obj/item/clothing/suit/storage/toggle/hoodie
 
-/datum/gear/suit/hoodie/red
-	display_name = "hoodie, red"
-	path = /obj/item/clothing/suit/storage/toggle/hoodie/red
-
-/datum/gear/suit/hoodie/blue
-	display_name = "hoodie, blue"
-	path = /obj/item/clothing/suit/storage/toggle/hoodie/blue
-
-/datum/gear/suit/hoodie/yellow
-	display_name = "hoodie, yellow"
-	path = /obj/item/clothing/suit/storage/toggle/hoodie/yellow
-
-/datum/gear/suit/hoodie/green
-	display_name = "hoodie, green"
-	path = /obj/item/clothing/suit/storage/toggle/hoodie/green
-
-/datum/gear/suit/hoodie/orange
-	display_name = "hoodie, orange"
-	path = /obj/item/clothing/suit/storage/toggle/hoodie/orange
-
-/datum/gear/suit/hoodie/black
-	display_name = "hoodie, black"
-	path = /obj/item/clothing/suit/storage/toggle/hoodie/black
-
-/datum/gear/suit/hoodie/cti
-	display_name = "hoodie, CTI"
-	path = /obj/item/clothing/suit/storage/toggle/hoodie/cti
-
-/datum/gear/suit/hoodie/mu
-	display_name = "hoodie, MU"
-	path = /obj/item/clothing/suit/storage/toggle/hoodie/mu
-
-/datum/gear/suit/hoodie/nt
-	display_name = "hoodie, NT"
-	path = /obj/item/clothing/suit/storage/toggle/hoodie/nt
-
-/datum/gear/suit/hoodie/smw
-	display_name = "hoodie, Space Mountain Wind"
-	path = /obj/item/clothing/suit/storage/toggle/hoodie/smw
+/datum/gear/suit/hoodie/New()
+	..()
+	var/list/hoodies = list()
+	for(var/hoodie_style in typesof(/obj/item/clothing/suit/storage/toggle/hoodie))
+		var/obj/item/clothing/suit/storage/toggle/hoodie/hoodie = hoodie_style
+		hoodies[initial(hoodie.name)] = hoodie
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(hoodies))
 
 /datum/gear/suit/labcoat
 	display_name = "labcoat"
@@ -145,30 +113,43 @@
 	cost = 1
 
 /datum/gear/suit/poncho
-	display_name = "poncho, tan"
+	display_name = "poncho selection"
 	path = /obj/item/clothing/suit/poncho
 	cost = 1
 
-/datum/gear/suit/poncho/blue
-	display_name = "poncho, blue"
-	path = /obj/item/clothing/suit/poncho/blue
+/datum/gear/suit/poncho/New()
+	..()
+	var/list/ponchos = list()
+	for(var/poncho_style in (typesof(/obj/item/clothing/suit/poncho) - typesof(/obj/item/clothing/suit/poncho/roles)))
+		var/obj/item/clothing/suit/storage/toggle/hoodie/poncho = poncho_style
+		ponchos[initial(poncho.name)] = poncho
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(ponchos))
 
-/datum/gear/suit/poncho/green
-	display_name = "poncho, green"
-	path = /obj/item/clothing/suit/poncho/green
-
-/datum/gear/suit/poncho/purple
-	display_name = "poncho, purple"
-	path = /obj/item/clothing/suit/poncho/purple
-
-/datum/gear/suit/poncho/red
-	display_name = "poncho, red"
-	path = /obj/item/clothing/suit/poncho/red
-
-/datum/gear/suit/poncho/security
+/datum/gear/suit/poncho/roles/security
 	display_name = "poncho, security"
-	path = /obj/item/clothing/suit/poncho/security
+	path = /obj/item/clothing/suit/poncho/roles/security
+	allowed_roles = list("Head of Security", "Warden", "Detective", "Security Officer")
 
+/datum/gear/suit/poncho/roles/medical
+	display_name = "poncho, medical"
+	path = /obj/item/clothing/suit/poncho/roles/medical
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist")
+
+/datum/gear/suit/poncho/roles/engineering
+	display_name = "poncho, engineering"
+	path = /obj/item/clothing/suit/poncho/roles/engineering
+	allowed_roles = list("Chief Engineer","Atmospheric Technician", "Station Engineer")
+
+/datum/gear/suit/poncho/roles/science
+	display_name = "poncho, science"
+	path = /obj/item/clothing/suit/poncho/roles/science
+	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobotanist")
+
+/datum/gear/suit/poncho/roles/cargo
+	display_name = "poncho, cargo"
+	path = /obj/item/clothing/suit/poncho/roles/cargo
+	allowed_roles = list("Quartermaster","Cargo Technician")
+	
 /datum/gear/suit/unathi_robe
 	display_name = "roughspun robe"
 	path = /obj/item/clothing/suit/unathi/robe

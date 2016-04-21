@@ -219,7 +219,7 @@
 	var/disallow_occupant_types = list()
 
 	var/mob/occupant = null       // Person waiting to be despawned.
-	var/time_till_despawn = 18000 // 30 minutes-ish safe period before being despawned.
+	var/time_till_despawn = 9000  // Down to 15 minutes //30 minutes-ish is too long
 	var/time_entered = 0          // Used to keep track of the safe period.
 	var/obj/item/device/radio/intercom/announce //
 
@@ -486,32 +486,33 @@
 
 	if(istype(G, /obj/item/weapon/grab))
 
+		var/obj/item/weapon/grab/grab = G
 		if(occupant)
 			user << "<span class='notice'>\The [src] is in use.</span>"
 			return
 
-		if(!ismob(G:affecting))
+		if(!ismob(grab.affecting))
 			return
 
-		if(!check_occupant_allowed(G:affecting))
+		if(!check_occupant_allowed(grab.affecting))
 			return
 
 		var/willing = null //We don't want to allow people to be forced into despawning.
-		var/mob/M = G:affecting
+		var/mob/M = grab.affecting
 
 		if(M.client)
 			if(alert(M,"Would you like to enter long-term storage?",,"Yes","No") == "Yes")
-				if(!M || !G || !G:affecting) return
+				if(!M || !grab || !grab:affecting) return
 				willing = 1
 		else
 			willing = 1
 
 		if(willing)
 
-			visible_message("[user] starts putting [G:affecting:name] into \the [src].", 3)
+			visible_message("\The [user] starts putting [grab:affecting:name] into \the [src].", 3)
 
 			if(do_after(user, 20))
-				if(!M || !G || !G:affecting) return
+				if(!M || !grab || !grab:affecting) return
 
 				M.forceMove(src)
 

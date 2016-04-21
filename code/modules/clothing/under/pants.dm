@@ -1,4 +1,7 @@
 /obj/item/clothing/under/pants
+	name = "jeans"
+	desc = "A nondescript pair of tough blue jeans."
+	icon_state = "jeans"
 	gender = PLURAL
 	body_parts_covered = LOWER_TORSO|LEGS
 
@@ -16,6 +19,11 @@
 	name = "black jeans"
 	desc = "Only for those who can pull it off."
 	icon_state = "jeansblack"
+
+/obj/item/clothing/under/pants/greyjeans
+	name = "grey jeans"
+	desc = "Only for those who can pull it off."
+	icon_state = "jeansgrey"
 
 /obj/item/clothing/under/pants/youngfolksjeans
 	name = "Young Folks jeans"
@@ -46,11 +54,6 @@
 	name = "track pants"
 	desc = "A pair of track pants, for the athletic."
 	icon_state = "trackpants"
-
-/obj/item/clothing/under/pants/jeans
-	name = "jeans"
-	desc = "A nondescript pair of tough blue jeans."
-	icon_state = "jeans"
 
 /obj/item/clothing/under/pants/khaki
 	name = "khaki pants"

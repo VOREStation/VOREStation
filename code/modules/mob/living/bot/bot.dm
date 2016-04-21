@@ -6,6 +6,7 @@
 	layer = MOB_LAYER
 	universal_speak = 1
 	density = 0
+
 	var/obj/item/weapon/card/id/botcard = null
 	var/list/botcard_access = list()
 	var/on = 1
@@ -13,10 +14,29 @@
 	var/locked = 1
 	var/emagged = 0
 	var/light_strength = 3
+	var/busy = 0
 
 	var/obj/access_scanner = null
 	var/list/req_access = list()
 	var/list/req_one_access = list()
+
+	var/atom/target = null
+	var/list/ignore_list = list()
+	var/list/patrol_path = list()
+	var/list/target_path = list()
+	var/turf/obstacle = null
+
+	var/wait_if_pulled = 0 // Only applies to moving to the target
+	var/will_patrol = 0 // Not a setting - whether or no this type of bots patrols at all
+	var/patrol_speed = 1 // How many times per tick we move when patrolling
+	var/target_speed = 2 // Ditto for chasing the target
+	var/min_target_dist = 1 // How close we try to get to the target
+	var/max_target_dist = 50 // How far we are willing to go
+	var/max_patrol_dist = 250
+
+	var/target_patience = 5
+	var/frustration = 0
+	var/max_frustration = 0
 
 /mob/living/bot/New()
 	..()
@@ -39,6 +59,9 @@
 	weakened = 0
 	stunned = 0
 	paralysis = 0
+
+	if(on && !client && !busy)
+		handleAI()
 
 /mob/living/bot/updatehealth()
 	if(status_flags & GODMODE)
@@ -109,6 +132,123 @@
 /mob/living/bot/emag_act(var/remaining_charges, var/mob/user)
 	return 0
 
+/mob/living/bot/proc/handleAI()
+	if(ignore_list.len)
+		for(var/atom/A in ignore_list)
+			if(!A || !A.loc || prob(1))
+				ignore_list -= A
+	handleRegular()
+	if(target && confirmTarget(target))
+		if(Adjacent(target))
+			handleAdjacentTarget()
+		else
+			handleRangedTarget()
+		if(!wait_if_pulled || !pulledby)
+			for(var/i = 1 to target_speed)
+				stepToTarget()
+				if(i < target_speed)
+					sleep(20 / target_speed)
+		if(max_frustration && frustration > max_frustration * target_speed)
+			handleFrustrated(1)
+	else
+		resetTarget()
+		lookForTargets()
+		if(will_patrol && !pulledby && !target)
+			if(patrol_path.len)
+				for(var/i = 1 to patrol_speed)
+					handlePatrol()
+					if(i < patrol_speed)
+						sleep(20 / patrol_speed)
+				if(max_frustration && frustration > max_frustration * patrol_speed)
+					handleFrustrated(0)
+			else
+				startPatrol()
+		else
+			handleIdle()
+
+/mob/living/bot/proc/handleRegular()
+	return
+
+/mob/living/bot/proc/handleAdjacentTarget()
+	return
+
+/mob/living/bot/proc/handleRangedTarget()
+	return
+
+/mob/living/bot/proc/stepToTarget()
+	if(!target || !target.loc)
+		return
+	if(get_dist(src, target) > min_target_dist)
+		if(!target_path.len || get_turf(target) != target_path[target_path.len])
+			calcTargetPath()
+		if(makeStep(target_path))
+			frustration = 0
+		else if(max_frustration)
+			++frustration
+	return
+
+/mob/living/bot/proc/handleFrustrated(var/targ)
+	obstacle = targ ? target_path[1] : patrol_path[1]
+	target_path = list()
+	patrol_path = list()
+	return
+
+/mob/living/bot/proc/lookForTargets()
+	return
+
+/mob/living/bot/proc/confirmTarget(var/atom/A)
+	if(A.invisibility >= INVISIBILITY_LEVEL_ONE)
+		return 0
+	if(A in ignore_list)
+		return 0
+	if(!A.loc)
+		return 0
+	return 1
+
+/mob/living/bot/proc/handlePatrol()
+	makeStep(patrol_path)
+	return
+
+/mob/living/bot/proc/startPatrol()
+	var/turf/T = getPatrolTurf()
+	if(T)
+		patrol_path = AStar(get_turf(loc), T, /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, 0, max_patrol_dist, id = botcard, exclude = obstacle)
+		if(!patrol_path)
+			patrol_path = list()
+		obstacle = null
+	return
+
+/mob/living/bot/proc/getPatrolTurf()
+	return null
+
+/mob/living/bot/proc/handleIdle()
+	return
+
+/mob/living/bot/proc/calcTargetPath()
+	target_path = AStar(get_turf(loc), get_turf(target), /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, 0, max_target_dist, id = botcard, exclude = obstacle)
+	if(!target_path)
+		if(target && target.loc)
+			ignore_list |= target
+		resetTarget()
+		obstacle = null
+	return
+
+/mob/living/bot/proc/makeStep(var/list/path)
+	if(!path.len)
+		return 0
+	var/turf/T = path[1]
+	if(get_turf(src) == T)
+		path -= T
+		return makeStep(path)
+
+	return step_towards(src, T)
+
+/mob/living/bot/proc/resetTarget()
+	target = null
+	target_path = list()
+	frustration = 0
+	obstacle = null
+
 /mob/living/bot/proc/turn_on()
 	if(stat)
 		return 0
@@ -121,6 +261,9 @@
 	on = 0
 	set_light(0)
 	update_icons()
+	resetTarget()
+	patrol_path = list()
+	ignore_list = list()
 
 /mob/living/bot/proc/explode()
 	qdel(src)
@@ -141,7 +284,7 @@
 	//	for(var/turf/simulated/t in oview(src,1))
 
 	for(var/d in cardinal)
-		var/turf/simulated/T = get_step(src, d)
+		var/turf/T = get_step(src, d)
 		if(istype(T) && !T.density)
 			if(!LinkBlockedWithAccess(src, T, ID))
 				L.Add(T)

@@ -36,6 +36,7 @@
 	worn_state = "jeans_shorts"
 
 /obj/item/clothing/under/shorts/jeans/female
+	name = "jeans short shorts"
 	icon_state = "jeans_shorts_f"
 	worn_state = "jeans_shorts_f"
 
@@ -45,6 +46,7 @@
 	worn_state = "jeansclassic_shorts"
 
 /obj/item/clothing/under/shorts/jeans/classic/female
+	name = "classic jeans short shorts"
 	icon_state = "jeansclassic_shorts_f"
 	worn_state = "jeansclassic_shorts_f"
 
@@ -54,6 +56,7 @@
 	worn_state = "jeansmustang_shorts"
 
 /obj/item/clothing/under/shorts/jeans/mustang/female
+	name = "mustang jeans short shorts"
 	icon_state = "jeansmustang_shorts_f"
 	worn_state = "jeansmustang_shorts_f"
 
@@ -63,6 +66,7 @@
 	worn_state = "jeansyoungfolks_shorts"
 
 /obj/item/clothing/under/shorts/jeans/youngfolks/female
+	name = "young folks jeans short shorts"
 	icon_state = "jeansyoungfolks_shorts_f"
 	worn_state = "jeansyoungfolks_shorts_f"
 
@@ -72,8 +76,19 @@
 	worn_state = "blackpants_shorts"
 
 /obj/item/clothing/under/shorts/jeans/black/female
+	name = "black jeans short shorts"
 	icon_state = "black_shorts_f"
 	worn_state = "black_shorts_f"
+
+/obj/item/clothing/under/shorts/jeans/grey
+	name = "grey jeans shorts"
+	icon_state = "greypants_shorts"
+	worn_state = "greypants_shorts"
+
+/obj/item/clothing/under/shorts/jeans/grey/female
+	name = "grey jeans short shorts"
+	icon_state = "grey_shorts_f"
+	worn_state = "grey_shorts_f"
 
 /obj/item/clothing/under/shorts/khaki
 	name = "khaki shorts"
@@ -82,5 +97,6 @@
 	worn_state = "tanpants_shorts"
 
 /obj/item/clothing/under/shorts/khaki/female
+	name = "khaki short shorts"
 	icon_state = "khaki_shorts_f"
 	worn_state = "khaki_shorts_f"

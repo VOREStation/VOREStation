@@ -154,7 +154,9 @@
 /mob/proc/buckled()
 	// Preliminary work for a future buckle rewrite,
 	// where one might be fully restrained (like an elecrical chair), or merely secured (shuttle chair, keeping you safe but not otherwise restrained from acting)
-	return buckled ? FULLY_BUCKLED : UNBUCKLED
+	if(!buckled)
+		return UNBUCKLED
+	return restrained() ? FULLY_BUCKLED : PARTIALLY_BUCKLED
 
 /mob/proc/incapacitated(var/incapacitation_flags = INCAPACITATION_DEFAULT)
 	if (stat || paralysis || stunned || weakened || resting || sleeping || (status_flags & FAKEDEATH))
@@ -360,6 +362,7 @@
 		log_game("[usr.key] AM failed due to disconnect.")
 		return
 	client.screen.Cut()
+	client.screen += client.void
 	if(!client)
 		log_game("[usr.key] AM failed due to disconnect.")
 		return
@@ -544,20 +547,32 @@
 	if(ismob(AM))
 
 		if(!can_pull_mobs || !can_pull_size)
-			src << "<span class='warning'>It won't budge!</span>"
+			src << "<span class='warning'>They won't budge!</span>"
 			return
 
 		if((mob_size < M.mob_size) && (can_pull_mobs != MOB_PULL_LARGER))
-			src << "<span class='warning'>It won't budge!</span>"
+			src << "<span class='warning'>[M] is too large for you to move!</span>"
 			return
 
 		if((mob_size == M.mob_size) && (can_pull_mobs == MOB_PULL_SMALLER))
-			src << "<span class='warning'>It won't budge!</span>"
+			src << "<span class='warning'>[M] is too heavy for you to move!</span>"
 			return
 
 		// If your size is larger than theirs and you have some
 		// kind of mob pull value AT ALL, you will be able to pull
 		// them, so don't bother checking that explicitly.
+
+		if(M.grabbed_by.len)
+			// Only start pulling when nobody else has a grab on them
+			. = 1
+			for(var/obj/item/weapon/grab/G in M.grabbed_by)
+				if(G.assailant != usr)
+					. = 0
+				else
+					qdel(G)
+			if(!.)
+				src << "<span class='warning'>Somebody has a grip on them!</span>"
+				return
 
 		if(!iscarbon(src))
 			M.LAssailant = null
@@ -630,7 +645,7 @@
 	if(.)
 		if(statpanel("Status") && ticker && ticker.current_state != GAME_STATE_PREGAME)
 			stat("Station Time", worldtime2text())
-			stat("Round Duration", round_duration())
+			stat("Round Duration", round_duration_as_text())
 
 		if(client.holder)
 			if(statpanel("Status"))
@@ -898,49 +913,6 @@ mob/proc/yank_out_object()
 		if(!pinned.len)
 			anchored = 0
 	return 1
-
-/mob/living/proc/handle_statuses()
-	handle_stunned()
-	handle_weakened()
-	handle_stuttering()
-	handle_silent()
-	handle_drugged()
-	handle_slurring()
-
-/mob/living/proc/handle_stunned()
-	if(stunned)
-		AdjustStunned(-1)
-	return stunned
-
-/mob/living/proc/handle_weakened()
-	if(weakened)
-		weakened = max(weakened-1,0)	//before you get mad Rockdtben: I done this so update_canmove isn't called multiple times
-	return weakened
-
-/mob/living/proc/handle_stuttering()
-	if(stuttering)
-		stuttering = max(stuttering-1, 0)
-	return stuttering
-
-/mob/living/proc/handle_silent()
-	if(silent)
-		silent = max(silent-1, 0)
-	return silent
-
-/mob/living/proc/handle_drugged()
-	if(druggy)
-		druggy = max(druggy-1, 0)
-	return druggy
-
-/mob/living/proc/handle_slurring()
-	if(slurring)
-		slurring = max(slurring-1, 0)
-	return slurring
-
-/mob/living/proc/handle_paralysed() // Currently only used by simple_animal.dm, treated as a special case in other mobs
-	if(paralysis)
-		AdjustParalysis(-1)
-	return paralysis
 
 //Check for brain worms in head.
 /mob/proc/has_brain_worms()

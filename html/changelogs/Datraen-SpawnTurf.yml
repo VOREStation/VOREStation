@@ -1,6 +1,0 @@
-author: Datraen
-
-delete-after: True
-
-changes: 
-  - bugfix: "Artifacts will no longer spawn on floor turfs."

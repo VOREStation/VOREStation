@@ -5,6 +5,7 @@
 	icon_state = "borgcharger0"
 	density = 1
 	anchored = 1
+	circuit = /obj/item/weapon/circuitboard/recharge_station
 	use_power = 1
 	idle_power_usage = 50
 	var/mob/occupant = null
@@ -25,7 +26,6 @@
 	..()
 
 	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/recharge_station(src)
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)

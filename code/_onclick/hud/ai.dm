@@ -130,6 +130,8 @@
 	using.layer = SCREEN_LAYER
 	adding += using
 
+	mymob.client.screen = list()
 	mymob.client.screen += adding + other
+	mymob.client.screen += mymob.client.void
 
 	return

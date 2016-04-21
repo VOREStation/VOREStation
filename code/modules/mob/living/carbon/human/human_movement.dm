@@ -22,8 +22,15 @@
 	var/hungry = (500 - nutrition)/5 // So overeat would be 100 and default level would be 80
 	if (hungry >= 70) tally += hungry/50
 
-	if(wear_suit)
-		tally += wear_suit.slowdown
+	// Loop through some slots, and add up their slowdowns.  Shoes are handled below, unfortunately.
+	// Includes slots which can provide armor, the back slot, and suit storage.
+	for(var/obj/item/I in list(wear_suit, w_uniform, back, gloves, head, s_store) )
+		tally += I.slowdown
+
+	// Hands are also included, to make the 'take off your armor instantly and carry it with you to go faster' trick no longer viable.
+	// This is done seperately to disallow negative numbers.
+	for(var/obj/item/I in list(r_hand, l_hand) )
+		tally += max(I.slowdown, 0)
 
 	if(istype(buckled, /obj/structure/bed/chair/wheelchair))
 		for(var/organ_name in list(BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM))

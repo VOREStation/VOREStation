@@ -354,12 +354,12 @@
 			var/muleData[0]
 			muleData["name"] = M.suffix
 			muleData["location"] = get_area(M)
-			muleData["mode"] = M.mode
+			muleData["paused"] = M.paused
 			muleData["home"] = M.homeName
 			muleData["target"] = M.targetName
 			muleData["ref"] = "\ref[M]"
 			muleData["load"] = M.load ? M.load.name : "Nothing"
-			
+
 			mulebotsData[++mulebotsData.len] = muleData.Copy()
 
 		values["mulebotcount"] = count

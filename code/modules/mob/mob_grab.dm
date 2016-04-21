@@ -57,7 +57,13 @@
 				G.dancing = 1
 				G.adjust_position()
 				dancing = 1
+
+	//stop pulling the affected
+	if(assailant.pulling == affecting)
+		assailant.stop_pulling()
+
 	adjust_position()
+
 
 //Used by throw code to hand over the mob, instead of throwing the grab. The grab is then deleted by the throw code.
 /obj/item/weapon/grab/proc/throw_held()
@@ -90,9 +96,6 @@
 	if(assailant.client)
 		assailant.client.screen -= hud
 		assailant.client.screen += hud
-
-	if(assailant.pulling == affecting)
-		assailant.stop_pulling()
 
 	if(state <= GRAB_AGGRESSIVE)
 		allow_upgrade = 1

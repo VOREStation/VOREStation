@@ -8,6 +8,8 @@
 	desc = "A conveyor belt."
 	layer = 2			// so they appear under stuff
 	anchored = 1
+	circuit = /obj/item/weapon/circuitboard/conveyor
+	frame_type = "conveyor"
 	var/operating = 0	// 1 if running forward, -1 if backwards, 0 if off
 	var/operable = 1	// true if can operate (no broken segments in this belt run)
 	var/forwards		// this is the default (forward) direction, set by the map dir
@@ -36,6 +38,14 @@
 	if(on)
 		operating = 1
 		setmove()
+
+	component_parts = list()
+	component_parts += new /obj/item/weapon/stock_parts/gear(src)
+	component_parts += new /obj/item/weapon/stock_parts/motor(src)
+	component_parts += new /obj/item/weapon/stock_parts/gear(src)
+	component_parts += new /obj/item/weapon/stock_parts/motor(src)
+	component_parts += new /obj/item/stack/cable_coil(src,5)
+	RefreshParts()
 
 /obj/machinery/conveyor/proc/setmove()
 	if(operating == 1)
@@ -80,6 +90,23 @@
 /obj/machinery/conveyor/attackby(var/obj/item/I, mob/user)
 	if(isrobot(user))	return //Carn: fix for borgs dropping their modules on conveyor belts
 	if(I.loc != user)	return // This should stop mounted modules ending up outside the module.
+
+	if(default_deconstruction_screwdriver(user, I))
+		return
+	if(default_deconstruction_crowbar(user, I))
+		return
+
+	if(istype(I, /obj/item/device/multitool))
+		if(panel_open)
+			var/input = sanitize(input(usr, "What id would you like to give this conveyor?", "Multitool-Conveyor interface", id))
+			if(!input)
+				usr << "No input found please hang up and try your call again."
+				return
+			id = input
+			for(var/obj/machinery/conveyor_switch/C in world)
+				if(C.id == id)
+					C.conveyors += src
+			return
 
 	user.drop_item(get_turf(src))
 	return
@@ -220,6 +247,36 @@
 		if(S.id == src.id)
 			S.position = position
 			S.update()
+
+/obj/machinery/conveyor_switch/attackby(var/obj/item/I, mob/user)
+	if(default_deconstruction_screwdriver(user, I))
+		return
+
+	if(istype(I, /obj/item/weapon/weldingtool))
+		if(panel_open)
+			var/obj/item/weapon/weldingtool/WT = I
+			if(!WT.remove_fuel(0, user))
+				user << "The welding tool must be on to complete this task."
+				return
+			playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
+			if(do_after(user, 20))
+				if(!src || !WT.isOn()) return
+				user << "<span class='notice'>You deconstruct the frame.</span>"
+				new /obj/item/stack/material/steel( src.loc, 2 )
+				qdel(src)
+				return
+
+	if(istype(I, /obj/item/device/multitool))
+		if(panel_open)
+			var/input = sanitize(input(usr, "What id would you like to give this conveyor switch?", "Multitool-Conveyor interface", id))
+			if(!input)
+				usr << "No input found please hang up and try your call again."
+				return
+			id = input
+			for(var/obj/machinery/conveyor/C in world)
+				if(C.id == id)
+					conveyors += C
+			return
 
 /obj/machinery/conveyor_switch/oneway
 	var/convdir = 1 //Set to 1 or -1 depending on which way you want the convayor to go. (In other words keep at 1 and set the proper dir on the belts.)

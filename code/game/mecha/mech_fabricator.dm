@@ -9,6 +9,7 @@
 	idle_power_usage = 20
 	active_power_usage = 5000
 	req_access = list(access_robotics)
+	circuit = /obj/item/weapon/circuitboard/mechfab
 
 	var/speed = 1
 	var/mat_efficiency = 1
@@ -29,7 +30,6 @@
 	..()
 
 	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/mechfab(src)
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
@@ -89,7 +89,7 @@
 		return
 	ui_interact(user)
 
-/obj/machinery/mecha_part_fabricator/ui_interact(var/mob/user, var/ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1) 
+/obj/machinery/mecha_part_fabricator/ui_interact(var/mob/user, var/ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	var/data[0]
 
 	var/datum/design/current = queue.len ? queue[1] : null

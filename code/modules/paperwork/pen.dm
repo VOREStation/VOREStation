@@ -111,8 +111,8 @@
 /*
  * Parapens
  */
- /obj/item/weapon/pen/reagent/paralysis
-	origin_tech = "materials=2;syndicate=5"
+/obj/item/weapon/pen/reagent/paralysis
+	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
 
 /obj/item/weapon/pen/reagent/paralysis/New()
 	..()

@@ -14,6 +14,7 @@
 	var/screen = 0				// the screen number:
 	var/list/machinelist = list()	// the machines located by the computer
 	var/obj/machinery/telecomms/SelectedMachine
+	circuit = /obj/item/weapon/circuitboard/comm_monitor
 
 	var/network = "NULL"		// the network to probe
 
@@ -121,36 +122,6 @@
 					temp = "<font color = #336699>- NEW NETWORK TAG SET IN ADDRESS \[[network]\] -</font>"
 
 		updateUsrDialog()
-		return
-
-	attackby(var/obj/item/weapon/D as obj, var/mob/user as mob)
-		if(istype(D, /obj/item/weapon/screwdriver))
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-			if(do_after(user, 20))
-				if (src.stat & BROKEN)
-					user << "<span class='notice'>The broken glass falls out.</span>"
-					var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-					new /obj/item/weapon/material/shard( src.loc )
-					var/obj/item/weapon/circuitboard/comm_monitor/M = new /obj/item/weapon/circuitboard/comm_monitor( A )
-					for (var/obj/C in src)
-						C.loc = src.loc
-					A.circuit = M
-					A.state = 3
-					A.icon_state = "3"
-					A.anchored = 1
-					qdel(src)
-				else
-					user << "<span class='notice'>You disconnect the monitor.</span>"
-					var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-					var/obj/item/weapon/circuitboard/comm_monitor/M = new /obj/item/weapon/circuitboard/comm_monitor( A )
-					for (var/obj/C in src)
-						C.loc = src.loc
-					A.circuit = M
-					A.state = 4
-					A.icon_state = "4"
-					A.anchored = 1
-					qdel(src)
-		src.updateUsrDialog()
 		return
 
 /obj/machinery/computer/telecomms/monitor/emag_act(var/remaining_charges, var/mob/user)

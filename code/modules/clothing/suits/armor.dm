@@ -1,6 +1,6 @@
 
 /obj/item/clothing/suit/armor
-	allowed = list(/obj/item/weapon/gun/energy,/obj/item/weapon/reagent_containers/spray/pepper,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs)
+	allowed = list(/obj/item/weapon/gun/energy,/obj/item/weapon/reagent_containers/spray/pepper,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/device/flashlight/maglight)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	item_flags = THICKMATERIAL
 
@@ -143,6 +143,7 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
 	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/tank/emergency_oxygen)
 	slowdown = 1
+	w_class = 5
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 100, rad = 100)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
@@ -263,7 +264,7 @@
 	icon_state = "kvest"
 	item_state = "kvest"
 	armor = list(melee = 40, bullet = 30, laser = 30, energy = 10, bomb = 10, bio = 0, rad = 0)
-	allowed = list(/obj/item/weapon/gun,/obj/item/weapon/reagent_containers/spray/pepper,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs)
+	allowed = list(/obj/item/weapon/gun,/obj/item/weapon/reagent_containers/spray/pepper,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/device/flashlight/maglight)
 
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	item_flags = THICKMATERIAL
@@ -291,7 +292,7 @@
 	icon_nobadge = "wardenvest_nobadge"
 
 /obj/item/clothing/suit/storage/vest/hos
-	name = "commander armor vest"
+	name = "head of security armor vest"
 	desc = "A simple kevlar plate carrier. This one has a gold badge clipped to the chest."
 	icon_state = "hosvest_nobadge"
 	item_state = "hosvest_nobadge"
@@ -339,7 +340,7 @@
 	icon_nobadge = "wardenwebvest_nobadge"
 
 /obj/item/clothing/suit/storage/vest/heavy/hos
-	name = "commander heavy armor vest"
+	name = "head of security heavy armor vest"
 	desc = "A heavy kevlar plate carrier with webbing attached. This one has a gold badge clipped to the chest."
 	icon_state = "hoswebvest_nobadge"
 	item_state = "hoswebvest_nobadge"

@@ -31,7 +31,7 @@
 		diary << "\[[time_stamp()]]DEBUG: [text][log_end]"
 
 	for(var/client/C in admins)
-		if(C.prefs.toggles & CHAT_DEBUGLOGS)
+		if(C.is_preference_enabled(/datum/client_preference/debug/show_debug_logs))
 			C << "DEBUG: [text]"
 
 
@@ -82,6 +82,9 @@
 /proc/log_misc(text)
 	diary << "\[[time_stamp()]]MISC: [text][log_end]"
 
+/proc/log_unit_test(text)
+	world.log << "## UNIT_TEST: [text]"
+
 //pretty print a direction bitflag, can be useful for debugging.
 /proc/print_dir(var/dir)
 	var/list/comps = list()
@@ -91,7 +94,7 @@
 	if(dir & WEST) comps += "WEST"
 	if(dir & UP) comps += "UP"
 	if(dir & DOWN) comps += "DOWN"
-	
+
 	return english_list(comps, nothing_text="0", and_text="|", comma_text="|")
 
 //more or less a logging utility

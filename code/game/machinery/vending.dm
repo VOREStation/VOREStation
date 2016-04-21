@@ -36,6 +36,8 @@
 	layer = 2.9
 	anchored = 1
 	density = 1
+	circuit = /obj/item/weapon/circuitboard/vending
+	frame_type = "vending"
 
 	var/icon_vend //Icon_state when vending
 	var/icon_deny //Icon_state when denying access
@@ -94,6 +96,14 @@
 /obj/machinery/vending/New()
 	..()
 	wires = new(src)
+	component_parts = list()
+	component_parts += new /obj/item/weapon/stock_parts/spring(src)
+	component_parts += new /obj/item/weapon/stock_parts/spring(src)
+	component_parts += new /obj/item/weapon/stock_parts/motor(src)
+	component_parts += new /obj/item/weapon/stock_parts/motor(src)
+	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
+	component_parts += new /obj/item/stack/material/glass/reinforced(src, 2)
+	RefreshParts()
 	spawn(4)
 		if(src.product_slogans)
 			src.slogan_list += splittext(src.product_slogans, ";")
@@ -231,6 +241,8 @@
 			if(!src) return
 			user << "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>"
 			anchored = !anchored
+		return
+	else if(default_deconstruction_crowbar(user, W))
 		return
 
 	else
@@ -829,7 +841,7 @@
 	product_ads = "We like plants!;Don't you want some?;The greenest thumbs ever.;We like big plants.;Soft soil..."
 	icon_state = "nutri"
 	icon_deny = "nutri-deny"
-	products = list(/obj/item/weapon/reagent_containers/glass/fertilizer/ez = 35,/obj/item/weapon/reagent_containers/glass/fertilizer/l4z = 25,/obj/item/weapon/reagent_containers/glass/fertilizer/rh = 15,/obj/item/weapon/plantspray/pests = 20,
+	products = list(/obj/item/weapon/reagent_containers/glass/bottle/eznutrient = 6,/obj/item/weapon/reagent_containers/glass/bottle/left4zed = 4,/obj/item/weapon/reagent_containers/glass/bottle/robustharvest = 3,/obj/item/weapon/plantspray/pests = 20,
 					/obj/item/weapon/reagent_containers/syringe = 5,/obj/item/weapon/storage/bag/plants = 5)
 	premium = list(/obj/item/weapon/reagent_containers/glass/bottle/ammonia = 10,/obj/item/weapon/reagent_containers/glass/bottle/diethylamine = 5)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
@@ -921,7 +933,15 @@
 	icon_state = "engivend"
 	icon_deny = "engivend-deny"
 	req_access = list(access_engine_equip)
-	products = list(/obj/item/clothing/glasses/meson = 2,/obj/item/device/multitool = 4,/obj/item/weapon/airlock_electronics = 10,/obj/item/weapon/module/power_control = 10,/obj/item/weapon/airalarm_electronics = 10,/obj/item/weapon/cell/high = 10)
+	products = list(/obj/item/clothing/glasses/meson = 2,/obj/item/device/multitool = 4,/obj/item/weapon/cell/high = 10,
+					/obj/item/weapon/airlock_electronics = 10,/obj/item/weapon/module/power_control = 10,
+					/obj/item/weapon/circuitboard/airalarm = 10,/obj/item/weapon/circuitboard/firealarm = 10,/obj/item/weapon/circuitboard/status_display = 2,
+					/obj/item/weapon/circuitboard/ai_status_display = 2,/obj/item/weapon/circuitboard/newscaster = 2,/obj/item/weapon/circuitboard/holopad = 2,
+					/obj/item/weapon/circuitboard/intercom = 4,/obj/item/weapon/circuitboard/security/telescreen/entertainment = 4,
+					/obj/item/weapon/circuitboard/atm = 0,/obj/item/weapon/circuitboard/guestpass = 0,/obj/item/weapon/circuitboard/keycard_auth = 0,
+					/obj/item/weapon/circuitboard/photocopier = 0,/obj/item/weapon/circuitboard/fax = 0,/obj/item/weapon/circuitboard/conveyor = 0,
+					/obj/item/weapon/circuitboard/microwave = 0,/obj/item/weapon/circuitboard/vending = 0,/obj/item/weapon/circuitboard/washing = 0,
+					/obj/item/weapon/stock_parts/motor = 0,/obj/item/weapon/stock_parts/spring = 0,/obj/item/weapon/stock_parts/gear = 0)
 	contraband = list(/obj/item/weapon/cell/potato = 3)
 	premium = list(/obj/item/weapon/storage/belt/utility = 3)
 

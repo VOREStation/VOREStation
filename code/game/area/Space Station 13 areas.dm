@@ -838,6 +838,10 @@ area/space/atmosalert()
 /area/maintenance/engineering
 	name = "Engineering Maintenance"
 	icon_state = "maint_engineering"
+	
+/area/maintenance/engineering/pumpstation
+	name = "Engineering Pump Station"
+	icon_state = "maint_pumpstation"
 
 /area/maintenance/evahallway
 	name = "\improper EVA Maintenance"
@@ -2757,12 +2761,12 @@ var/list/the_station_areas = list (
 	/area/rnd,
 	/area/storage,
 	/area/construction,
-	/area/ai_monitored/storage/eva, //do not try to simplify to "/area/ai_monitored" --rastaf0
+	/area/ai_monitored/storage/eva,
 	/area/ai_monitored/storage/secure,
 	/area/ai_monitored/storage/emergency,
-	/area/ai_upload, //do not try to simplify to "/area" --rastaf0
+	/area/ai_upload,
 	/area/ai_upload_foyer,
-	/area/ai,
+	/area/ai
 )
 
 

@@ -20,7 +20,7 @@ var/list/ai_verbs_default = list(
 	/mob/living/silicon/ai/proc/toggle_hidden_verbs,
 )
 
-var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.com/1172/
+var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.com/1172/,
 	/mob/living/silicon/ai/proc/ai_announcement,
 	/mob/living/silicon/ai/proc/ai_call_shuttle,
 	/mob/living/silicon/ai/proc/ai_camera_track,

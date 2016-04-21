@@ -46,3 +46,8 @@ var/datum/robolimb/basic_robolimb
 	company = "Ward-Takahashi"
 	desc = "This limb features sleek black and white polymers."
 	icon = 'icons/mob/human_races/cyberlimbs/wardtakahashi.dmi'
+
+/datum/robolimb/veymed
+	company = "Vey-Med"
+	desc = "This high quality limb is nearly indistinguishable from an organic one."
+	icon = 'icons/mob/human_races/cyberlimbs/veymed.dmi'

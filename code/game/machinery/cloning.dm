@@ -30,6 +30,7 @@
 	desc = "An electronically-lockable pod for growing organic tissue."
 	density = 1
 	anchored = 1
+	circuit = /obj/item/weapon/circuitboard/clonepod
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "pod_0"
 	req_access = list(access_genetics) //For premature unlocking.
@@ -47,7 +48,6 @@
 /obj/machinery/clonepod/New()
 	..()
 	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/clonepod(src)
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)

@@ -62,29 +62,29 @@
 	display_name = "headtail-wear, female, pink, cloth (Skrell)"
 	path = /obj/item/clothing/ears/skrell/cloth_female/pink
 
-/datum/gear/uniform/jumpsuit/teshari
+/datum/gear/uniform/teshari
 	display_name = "smock, grey (Teshari)"
 	path = /obj/item/clothing/under/seromi
 	whitelisted = "Teshari"
 	sort_category = "Xenowear"
 
-/datum/gear/uniform/jumpsuit/teshari/yellow
+/datum/gear/uniform/teshari/jumpsuit
 	display_name = "smock, yellow (Teshari)"
 	path = /obj/item/clothing/under/seromi/yellow
 
-/datum/gear/uniform/jumpsuit/teshari/red
+/datum/gear/uniform/teshari/jumpsuit/red
 	display_name = "smock, red (Teshari)"
 	path = /obj/item/clothing/under/seromi/red
 
-/datum/gear/uniform/jumpsuit/teshari/white
+/datum/gear/uniform/teshari/jumpsuit/white
 	display_name = "smock, white (Teshari)"
 	path = /obj/item/clothing/under/seromi/white
 
-/datum/gear/uniform/jumpsuit/teshari/medical
+/datum/gear/uniform/teshari/jumpsuit/medical
 	display_name = "smock, Medical (Teshari)"
 	path = /obj/item/clothing/under/seromi/medical
 
-/datum/gear/uniform/jumpsuit/teshari/rainbow
+/datum/gear/uniform/teshari/jumpsuit/rainbow
 	display_name = "smock, rainbow (Teshari)"
 	path = /obj/item/clothing/under/seromi/rainbow
 

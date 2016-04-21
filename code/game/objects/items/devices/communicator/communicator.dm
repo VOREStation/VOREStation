@@ -43,13 +43,30 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	node = get_exonet_node()
 	processing_objects |= src
 	//This is a pretty terrible way of doing this.
-	spawn(50) //Wait for our mob to finish spawning.
+	spawn(5 SECONDS) //Wait for our mob to finish spawning.
 		if(ismob(loc))
 			register_device(loc)
+			initialize_exonet(loc)
 		else if(istype(loc, /obj/item/weapon/storage))
 			var/obj/item/weapon/storage/S = loc
 			if(ismob(S.loc))
 				register_device(S.loc)
+				initialize_exonet(S.loc)
+
+// Proc: initialize_exonet()
+// Parameters: 1 (user - the person the communicator belongs to)
+// Description: Sets up the exonet datum, gives the device an address, and then gets a node reference.  Afterwards, populates the device
+//				list.
+/obj/item/device/communicator/proc/initialize_exonet(mob/user)
+	if(!user || !istype(user, /mob/living))
+		return
+	if(!exonet)
+		exonet = new(src)
+	if(!exonet.address)
+		exonet.make_address("communicator-[user.client]-[user.name]")
+	if(!node)
+		node = get_exonet_node()
+	populate_known_devices()
 
 // Proc: examine()
 // Parameters: 1 (user - the person examining the device)
@@ -139,13 +156,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Description: Makes an exonet datum if one does not exist, allocates an address for it, maintains the lists of all devies, clears the alert icon, and
 //				finally makes NanoUI appear.
 /obj/item/device/communicator/attack_self(mob/user)
-	if(!exonet)
-		exonet = new(src)
-	if(!exonet.address)
-		exonet.make_address("communicator-[user.client]-[user.name]")
-	if(!node)
-		node = get_exonet_node()
-	populate_known_devices()
+	initialize_exonet(user)
 	alert_called = 0
 	update_icon()
 	ui_interact(user)
@@ -292,7 +303,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 			return
 		var/their_address = href_list["dial"]
 		exonet.send_message(their_address, "voice")
-		
+
 	if(href_list["disconnect"])
 		var/name_to_disconnect = href_list["disconnect"]
 		for(var/mob/living/voice/V in contents)
@@ -304,13 +315,13 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 
 	if(href_list["copy"])
 		target_address = href_list["copy"]
-		
+
 	if(href_list["hang_up"])
 		for(var/mob/living/voice/V in contents)
 			close_connection(usr, V, "[usr] hung up.")
 		for(var/obj/item/device/communicator/comm in communicating)
 			close_connection(usr, comm, "[usr] hung up.")
-			
+
 	if(href_list["switch_tab"])
 		selected_tab = href_list["switch_tab"]
 

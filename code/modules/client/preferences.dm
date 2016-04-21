@@ -19,7 +19,6 @@ datum/preferences
 	var/ooccolor = "#010000"			//Whatever this is set to acts as 'reset' color and is thus unusable as an actual custom color
 	var/be_special = 0					//Special role selection
 	var/UI_style = "Midnight"
-	var/toggles = TOGGLES_DEFAULT
 	var/UI_style_color = "#ffffff"
 	var/UI_style_alpha = 255
 
@@ -110,10 +109,11 @@ datum/preferences
 	// OOC Metadata:
 	var/metadata = ""
 
+	var/client/client = null
+	var/client_ckey = null
+
 	// Communicator identity data
 	var/communicator_visibility = 0
-
-	var/client/client = null
 
 	var/datum/category_collection/player_setup_collection/player_setup
 
@@ -127,6 +127,7 @@ datum/preferences
 
 	if(istype(C))
 		client = C
+		client_ckey = C.ckey
 		if(!IsGuestKey(C.key))
 			load_path(C.ckey)
 			if(load_preferences())
@@ -187,6 +188,12 @@ datum/preferences
 
 /datum/preferences/proc/ShowChoices(mob/user)
 	if(!user || !user.client)	return
+
+	if(!get_mob_by_key(client_ckey))
+		user << "<span class='danger'>No mob exists for the given client!</span>"
+		close_load_dialog(user)
+		return
+
 	var/dat = "<html><body><center>"
 
 	if(path)
@@ -204,7 +211,7 @@ datum/preferences
 	dat += player_setup.content(user)
 
 	dat += "</html></body>"
-	user << browse(dat, "window=preferences;size=625x736")
+	user << browse(dat, "window=preferences;size=635x736")
 
 /datum/preferences/proc/process_link(mob/user, list/href_list)
 	if(!user)	return

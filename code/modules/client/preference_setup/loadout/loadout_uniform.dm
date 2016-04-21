@@ -33,93 +33,17 @@
 	display_name = "cut top, red"
 	path = /obj/item/clothing/under/cuttop/red
 
-/datum/gear/uniform/jumpskirt
-	display_name = "jumpskirt, black"
-	path = /obj/item/clothing/under/blackjumpskirt
-
 /datum/gear/uniform/jumpsuit
-	display_name = "jumpsuit, rainbow"
-	path = /obj/item/clothing/under/rainbow
-
-/datum/gear/uniform/jumpsuit/black
-	display_name = "jumpsuit, black"
-	path = /obj/item/clothing/under/color/black
-
-/datum/gear/uniform/jumpsuit/blackfemale
-	display_name = "jumpsuit, female-black"
-	path = /obj/item/clothing/under/color/blackf
-
-/datum/gear/uniform/jumpsuit/blue
-	display_name = "jumpsuit, blue"
-	path = /obj/item/clothing/under/color/blue
-
-/datum/gear/uniform/jumpsuit/green
-	display_name = "jumpsuit, green"
-	path = /obj/item/clothing/under/color/green
-
-/datum/gear/uniform/jumpsuit/grey
-	display_name = "jumpsuit, grey"
+	display_name = "jumpclothes selection"
 	path = /obj/item/clothing/under/color/grey
 
-/datum/gear/uniform/jumpsuit/pink
-	display_name = "jumpsuit, pink"
-	path = /obj/item/clothing/under/color/pink
-
-/datum/gear/uniform/jumpsuit/white
-	display_name = "jumpsuit, white"
-	path = /obj/item/clothing/under/color/white
-
-/datum/gear/uniform/jumpsuit/yellow
-	display_name = "jumpsuit, yellow"
-	path = /obj/item/clothing/under/color/yellow
-
-/datum/gear/uniform/jumpsuit/lightblue
-	display_name = "jumpsuit, lightblue"
-	path = /obj/item/clothing/under/lightblue
-
-/datum/gear/uniform/jumpsuit/red
-	display_name = "jumpsuit, red"
-	path = /obj/item/clothing/under/color/red
-
-/datum/gear/uniform/jumpsuit/aqua
-	display_name = "jumpsuit, aqua"
-	path = /obj/item/clothing/under/aqua
-
-/datum/gear/uniform/jumpsuit/purple
-	display_name = "jumpsuit, purple"
-	path = /obj/item/clothing/under/purple
-
-/datum/gear/uniform/jumpsuit/lightpurple
-	display_name = "jumpsuit, lightpurple"
-	path = /obj/item/clothing/under/lightpurple
-
-/datum/gear/uniform/jumpsuit/lightgreen
-	display_name = "jumpsuit, lightgreen"
-	path = /obj/item/clothing/under/lightgreen
-
-/datum/gear/uniform/jumpsuit/lightbrown
-	display_name = "jumpsuit, lightbrown"
-	path = /obj/item/clothing/under/lightbrown
-
-/datum/gear/uniform/jumpsuit/brown
-	display_name = "jumpsuit, brown"
-	path = /obj/item/clothing/under/brown
-
-/datum/gear/uniform/jumpsuit/yellowgreen
-	display_name = "jumpsuit, yellowgreen"
-	path = /obj/item/clothing/under/yellowgreen
-
-/datum/gear/uniform/jumpsuit/darkblue
-	display_name = "jumpsuit, darkblue"
-	path = /obj/item/clothing/under/darkblue
-
-/datum/gear/uniform/jumpsuit/lightred
-	display_name = "jumpsuit, lightred"
-	path = /obj/item/clothing/under/lightred
-
-/datum/gear/uniform/jumpsuit/darkred
-	display_name = "jumpsuit, darkred"
-	path = /obj/item/clothing/under/darkred
+/datum/gear/uniform/jumpsuit/New()
+	..()
+	var/list/jumpclothes = list()
+	for(var/jump in typesof(/obj/item/clothing/under/color))
+		var/obj/item/clothing/under/color/jumps = jump
+		jumpclothes[initial(jumps.name)] = jumps
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(jumpclothes))
 
 /datum/gear/uniform/skirt
 	display_name = "plaid skirt, blue"
@@ -228,100 +152,28 @@
 	allowed_roles = list("Quartermaster","Cargo Technician")
 
 /datum/gear/uniform/pants
-	display_name = "pants, white"
+	display_name = "pants selection"
 	path = /obj/item/clothing/under/pants/white
 
-/datum/gear/uniform/pants/red
-	display_name = "pants, red"
-	path = /obj/item/clothing/under/pants/red
+/datum/gear/uniform/pants/New()
+	..()
+	var/list/pants = list()
+	for(var/pant in typesof(/obj/item/clothing/under/pants))
+		var/obj/item/clothing/under/pants/pant_type = pant
+		pants[initial(pant_type.name)] = pant_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(pants))
 
-/datum/gear/uniform/pants/black
-	display_name = "pants, black"
-	path = /obj/item/clothing/under/pants/black
-
-/datum/gear/uniform/pants/tan
-	display_name = "pants, tan"
-	path = /obj/item/clothing/under/pants/tan
-
-/datum/gear/uniform/pants/track
-	display_name = "pants, track"
-	path = /obj/item/clothing/under/pants/track
-
-/datum/gear/uniform/pants/khaki
-	display_name = "pants, khaki"
-	path = /obj/item/clothing/under/pants/khaki
-
-/datum/gear/uniform/pants/camo
-	display_name = "pants, camo"
-	path = /obj/item/clothing/under/pants/camo
-
-/datum/gear/uniform/pants/jeans
-	display_name = "pants, jeans"
-	path = /obj/item/clothing/under/pants/jeans
-
-/datum/gear/uniform/pants/jeans/classic
-	display_name = "pants, classic jeans"
-	path = /obj/item/clothing/under/pants/classicjeans
-
-/datum/gear/uniform/pants/jeans/mustang
-	display_name = "pants, mustang jeans"
-	path = /obj/item/clothing/under/pants/mustangjeans
-
-/datum/gear/uniform/pants/jeans/black
-	display_name = "pants, black jeans"
-	path = /obj/item/clothing/under/pants/blackjeans
-
-/datum/gear/uniform/pants/jeans/youngfolks
-	display_name = "pants, young folks jeans"
-	path = /obj/item/clothing/under/pants/youngfolksjeans
-
-/datum/gear/uniform/jeans
-	display_name = "shorts, jeans"
+/datum/gear/uniform/shorts
+	display_name = "shorts selection"
 	path = /obj/item/clothing/under/shorts/jeans
 
-/datum/gear/uniform/jeans/classic
-	display_name = "shorts, classic jeans"
-	path = /obj/item/clothing/under/shorts/jeans/classic
-
-/datum/gear/uniform/jeans/mustang
-	display_name = "shorts, mustang jeans"
-	path = /obj/item/clothing/under/shorts/jeans/mustang
-
-/datum/gear/uniform/jeans/youngfolks
-	display_name = "shorts, young folks jeans"
-	path = /obj/item/clothing/under/shorts/jeans/youngfolks
-
-/datum/gear/uniform/jeans/black
-	display_name = "shorts, black jeans"
-	path = /obj/item/clothing/under/shorts/jeans/black
-
-/datum/gear/uniform/jeans/female
-	display_name = "shorts, female, jeans"
-	path = /obj/item/clothing/under/shorts/jeans/female
-
-/datum/gear/uniform/jeans/classic/female
-	display_name = "shorts, female, classic jeans"
-	path = /obj/item/clothing/under/shorts/jeans/classic/female
-
-/datum/gear/uniform/jeans/mustang/female
-	display_name = "shorts, female, mustang jeans"
-	path = /obj/item/clothing/under/shorts/jeans/mustang/female
-
-/datum/gear/uniform/jeans/youngfolks/female
-	display_name = "shorts, female, young folks jeans"
-	path = /obj/item/clothing/under/shorts/jeans/youngfolks/female
-
-/datum/gear/uniform/jeans/black/female
-	display_name = "shorts, female, black jeans"
-	path = /obj/item/clothing/under/shorts/jeans/black/female
-
-/datum/gear/uniform/khaki
-	display_name = "shorts, khaki"
-	path = /obj/item/clothing/under/shorts/khaki
-
-/datum/gear/uniform/khaki/female
-	display_name = "shorts, female, khaki"
-	path = /obj/item/clothing/under/shorts/khaki/female
+/datum/gear/uniform/shorts/New()
+	..()
+	var/list/shorts = list()
+	for(var/short in typesof(/obj/item/clothing/under/shorts))
+		var/obj/item/clothing/under/pants/short_type = short
+		shorts[initial(short_type.name)] = short_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(shorts))
 
 /datum/gear/uniform/suit  //amish
 	display_name = "suit, amish"
@@ -412,6 +264,10 @@
 	display_name = "scrubs, green"
 	path = /obj/item/clothing/under/rank/medical/green
 
+/datum/gear/uniform/scrubs/navyblue
+	display_name = "scrubs, navy blue"
+	path = /obj/item/clothing/under/rank/medical/navyblue
+
 /datum/gear/uniform/sundress
 	display_name = "sundress"
 	path = /obj/item/clothing/under/sundress
@@ -439,6 +295,16 @@
 	path = /obj/item/clothing/under/rank/security/corp
 	allowed_roles = list("Security Officer","Head of Security","Warden")
 
+/datum/gear/uniform/corpwarsuit
+	display_name = "uniform, corporate (Warden)"
+	path = /obj/item/clothing/under/rank/warden/corp
+	allowed_roles = list("Head of Security","Warden")
+
+/datum/gear/uniform/corphossuit
+	display_name = "uniform, corporate (Head of Security)"
+	path = /obj/item/clothing/under/rank/head_of_security/corp
+	allowed_roles = list("Head of Security")
+
 /datum/gear/uniform/uniform_hop
 	display_name = "uniform, HoP's dress"
 	path = /obj/item/clothing/under/dress/dress_hop
@@ -451,6 +317,16 @@
 	allowed_roles = list("Head of Personnel")
 
 /datum/gear/uniform/navysecsuit
-	display_name = "uniform, navyblue (Security)"
+	display_name = "uniform, navy blue (Security)"
 	path = /obj/item/clothing/under/rank/security/navyblue
 	allowed_roles = list("Security Officer","Head of Security","Warden")
+
+/datum/gear/uniform/navywarsuit
+	display_name = "uniform, navy blue (Wardem)"
+	path = /obj/item/clothing/under/rank/warden/navyblue
+	allowed_roles = list("Head of Security","Warden")
+
+/datum/gear/uniform/navyhossuit
+	display_name = "uniform, navy blue (Head of Security)"
+	path = /obj/item/clothing/under/rank/head_of_security/navyblue
+	allowed_roles = list("Head of Security")

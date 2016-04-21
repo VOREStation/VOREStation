@@ -215,7 +215,8 @@
 	icon_screen = "entertainment"
 	light_color = "#FFEEDB"
 	light_range_on = 2
-	circuit = null
+	network = list(NETWORK_THUNDER)
+	circuit = /obj/item/weapon/circuitboard/security/telescreen/entertainment
 /obj/machinery/computer/security/wooden_tv
 	name = "security camera monitor"
 	desc = "An old TV hooked into the stations camera network."

@@ -28,6 +28,10 @@
 	display_name = "armband, science"
 	path = /obj/item/clothing/accessory/armband/science
 
+/datum/gear/accessory/wallet
+	display_name = "wallet"
+	path = /obj/item/weapon/storage/wallet/random
+
 /datum/gear/accessory/holster
 	display_name = "holster, armpit"
 	path = /obj/item/clothing/accessory/holster/armpit
@@ -126,6 +130,11 @@
 	display_name = "webbing, security"
 	path = /obj/item/clothing/accessory/storage/black_vest
 	allowed_roles = list("Security Officer","Head of Security","Warden")
+
+/datum/gear/accessory/white_vest
+	display_name = "webbing, medical"
+	path = /obj/item/clothing/accessory/storage/white_vest
+	allowed_roles = list("Paramedic","Chief Medical Officer","Medical Doctor")
 
 /datum/gear/accessory/webbing
 	display_name = "webbing, simple"

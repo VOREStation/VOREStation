@@ -65,33 +65,21 @@
 	src << "<span class='notice'>We have absorbed [T]!</span>"
 	src.visible_message("<span class='danger'>[src] sucks the fluids from [T]!</span>")
 	T << "<span class='danger'>You have been absorbed by the changeling!</span>"
-
-	T.dna.real_name = T.real_name //Set this again, just to be sure that it's properly set.
-	changeling.absorbed_dna |= T.dna
 	if(src.nutrition < 400)
 		src.nutrition = min((src.nutrition + T.nutrition), 400)
 	changeling.chem_charges += 10
-//	changeling.geneticpoints += 2
 	src.verbs += /mob/proc/changeling_respec
 	src << "<span class='notice'>We can now re-adapt, reverting our evolution so that we may start anew, if needed.</span>"
 
-	//Steal all of their languages!
-	for(var/language in T.languages)
-		if(!(language in changeling.absorbed_languages))
-			changeling.absorbed_languages += language
-
-	changeling_update_languages(changeling.absorbed_languages)
-
-	//Steal their species!
-	if(T.species && !(T.species.name in changeling.absorbed_species))
-		changeling.absorbed_species += T.species.name
+	var/datum/absorbed_dna/newDNA = new(T.real_name, T.dna, T.species.name, T.languages)
+	absorbDNA(newDNA)
 
 	if(T.mind && T.mind.changeling)
 		if(T.mind.changeling.absorbed_dna)
-			for(var/dna_data in T.mind.changeling.absorbed_dna)	//steal all their loot
+			for(var/datum/absorbed_dna/dna_data in T.mind.changeling.absorbed_dna)	//steal all their loot
 				if(dna_data in changeling.absorbed_dna)
 					continue
-				changeling.absorbed_dna += dna_data
+				absorbDNA(dna_data)
 				changeling.absorbedcount++
 			T.mind.changeling.absorbed_dna.len = 1
 
