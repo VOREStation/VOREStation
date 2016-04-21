@@ -108,23 +108,21 @@ Procs for targeting
 	
 /mob/living/simple_animal/xeno/proc/RandomizeTraits()
 	return
-	
-// I'm not positive if this even works, but
 
-/mob/living/simple_animal/xeno/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "",var/italics = 0, var/mob/speaker = null)
-	log_debug("[src] heard a message.")
+/mob/living/simple_animal/xeno/hear_say(var/message, var/verb = "says", var/datum/language/language, var/alt_name = "",var/italics = 0, var/mob/speaker = null)
 	if(traitdat.traits[TRAIT_XENO_CANLEARN])
-		var/learned_message = parse_language(message)
-		if(!message)
+		/*
+		Until this gets sorted out to a functioning point, or waiting on Psi's saycode update.
+		var/learned_message = say_understands(speaker, language)
+		if(!message || isxeno(speaker))
 			return
 		if(learned_message)	//Is it understood?
-			var/language_key = language.key + " "
-			var/complete_message = language_key + learned_message
+			var/complete_message = ",[language.key] [message]"
 			speech_buffer.Add(complete_message)
-			log_debug("Adding [learned_message] to speech_buffer.")
+			log_debug("Added '[complete_message]'.")
 		else
-			speech_buffer.Add(message)
-			log_debug("Adding [message] to speech_buffer.")
+		*/
+		speech_buffer.Add(message)
 	..(message,verb,language,alt_name,italics,speaker)
 
 /mob/living/simple_animal/xeno/proc/ProcessSpeechBuffer()

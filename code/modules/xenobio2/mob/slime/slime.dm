@@ -28,18 +28,15 @@ Slime definitions, Life and New live here.
 	
 	//Slimes can speak all of the languages, oh no!
 	universal_speak = 1
-	speak_chance = 10
-	speak = list( 
-				"Northern Star?",
-				"Hello?",
+	speak_chance = 1
+	speak = list("Hello?",
 				"Where's this going?",
 				"What's that?",
 				"What's in the box?",
-				"The?",
+				"Cargo.",
 				"Transport?",
 				"Special?",
-				"Slime?"
-				)
+				"Slime?")
 
 	//Overlay information
 	var/overlay = 1 // 1 = normal lighting, 0 = shiny, 2 = too shiny, -1 = no overlay
@@ -79,5 +76,8 @@ Slime definitions, Life and New live here.
 	
 /mob/living/simple_animal/xeno/slime/New()
 	..()
+	for(var/datum/language/L in (typesof(/datum/language) - /datum/language))
+		languages += L
+	speak += "[station_name()]?"
 	GenerateChild()
 	return 1
