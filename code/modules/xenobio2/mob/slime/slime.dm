@@ -21,6 +21,7 @@ Slime definitions, Life and New live here.
 	var/shiny = 0
 	move_to_delay = 17 //Slimes shouldn't be able to go faster than humans.
 	default_chems = list("slimejelly" = 5)
+	attacktext = "absorbed some of"
 	
 	var/emote_on = null
 	

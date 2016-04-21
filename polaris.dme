@@ -1874,6 +1874,7 @@
 #include "code\modules\xenobio2\mob\slime\slime life.dm"
 #include "code\modules\xenobio2\mob\slime\slime procs.dm"
 #include "code\modules\xenobio2\mob\slime\slime.dm"
+#include "code\modules\xenobio2\tools\slime_handling_tools.dm"
 #include "code\modules\xgm\xgm_gas_data.dm"
 #include "code\modules\xgm\xgm_gas_mixture.dm"
 #include "code\unit_tests\loadout_tests.dm"
