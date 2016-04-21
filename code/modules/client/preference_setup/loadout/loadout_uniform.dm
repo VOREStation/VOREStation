@@ -9,6 +9,18 @@
 	display_name = "cheongsam, white"
 	path = /obj/item/clothing/under/cheongsam
 
+/datum/gear/uniform/cheongsam/red
+	display_name = "cheongsam, red"
+	path = /obj/item/clothing/under/cheongsam/red
+
+/datum/gear/uniform/cheongsam/blue
+	display_name = "cheongsam, blue"
+	path = /obj/item/clothing/under/cheongsam/blue
+
+/datum/gear/uniform/cheongsam/
+	display_name = "cheongsam, black"
+	path = /obj/item/clothing/under/cheongsam/black
+
 /datum/gear/uniform/kilt
 	display_name = "kilt"
 	path = /obj/item/clothing/under/kilt
