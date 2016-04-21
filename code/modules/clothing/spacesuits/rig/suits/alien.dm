@@ -9,7 +9,7 @@
 	offline_slowdown = 10
 	vision_restriction = 1
 	offline_vision_restriction = 2
-	
+
 	chest_type = /obj/item/clothing/suit/space/rig
 	helm_type = /obj/item/clothing/head/helmet/space/rig/unathi
 	boot_type = /obj/item/clothing/shoes/magboots/rig/unathi
@@ -24,9 +24,10 @@
 
 /obj/item/clothing/head/helmet/space/rig/unathi
 	species_restricted = list("Unathi")
+	force = 5
 
 /obj/item/clothing/suit/space/rig/unathi
 	species_restricted = list("Unathi")
-	
+
 /obj/item/clothing/shoes/magboots/rig/unathi
 	species_restricted = list("Unathi")
