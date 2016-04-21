@@ -149,7 +149,7 @@
 	herbivores on the whole and tend to be co-operative with the other species of the galaxy, although they rarely reveal \
 	the secrets of their empire to their allies."
 	num_alternate_languages = 2
-	secondary_langs = list("Skrellian", "Teshari")
+	secondary_langs = list("Skrellian", "Schechi")
 	name_language = null
 
 	min_age = 19
