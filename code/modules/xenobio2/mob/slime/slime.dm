@@ -24,7 +24,7 @@ Slime definitions, Life and New live here.
 	
 	var/emote_on = null
 	
-	maleable = 2
+	maleable = MAX_MALEABLE
 	
 	//Slimes can speak all of the languages, oh no!
 	universal_speak = 1
@@ -44,38 +44,38 @@ Slime definitions, Life and New live here.
 	//Overlay information
 	var/overlay = 1 // 1 = normal lighting, 0 = shiny, 2 = too shiny, -1 = no overlay
 	
-	chemreact = list(	"nutriment" = list("nutr" = 5),
-						"radium" = list("toxic" = 3, "mut" = 10),
-						"mutagen" = list("nutr" = 4, "mut" = 20),
-						"water" = list("nutr" = -1),
-						"milk" = list("nutr" = 3),
-						"sacid" = list("toxic" = 10),
-						"pacid" = list("toxic" = 20),
-						"chlorine" = list("toxic" = 5),
-						"ammonia" = list("toxic" = 5),
-						"sodawater" = list("toxic" = 1, "nutr" = -1),
-						"beer" = list("nutr" = 6),
-						"diethylamine" = list("nutr" = 9),
-						"sugar" = list("toxic" = 4, "nutr" = 2),
-						"eznutrient" = list("nutr" = 8),
-						"cryoxadone" = list("toxic" = 4),
-						"flourine" = list("toxic" = 1),
-						"robustharvest" = list("nutr" = 15),
-						"glucose" = list("nutr" = 5),
-						"blood" = list("nutr" = 7.5, "toxic" = 0.5, "mut" = 4.5),
-						"fuel" = list("toxic" = 4),
-						"toxin" = list("toxic" = 5),
-						"carpotoxin" = list("toxic" = 10, "mut" = 15),
-						"phoron" = list("toxic" = 15, "mut" = 0.3),
-						"cyanide" = list("toxic" = 35),
-						"slimejelly" = list("nutr" = 5),
-						"amutationtoxin" = list("toxic" = 1, "heal" = 15, "mut" = 30),
-						"mutationtoxin" = list("toxic" = 1, "heal" = 10, "mut" = 15),
-						"gold" = list("heal" = 3, "nutr" = 7, "mut" = 3),
-						"uranium" = list("heal" = 3, "toxic" = 7, "mut" = 12),
-						"glycerol" = list("nutr" = 6),
-						"woodpulp" = list("heal" = 1, "nutr" = 7),
-						"docilitytoxin" = list("nutr" = 3)	)
+	chemreact = list(	"nutriment" = list("nutr" = 0.5),
+						"radium" = list("toxic" = 0.3, "mut" = 1),
+						"mutagen" = list("nutr" = 0.4, "mut" = 2),
+						"water" = list("nutr" = -0.1),
+						"milk" = list("nutr" = 0.3),
+						"sacid" = list("toxic" = 1),
+						"pacid" = list("toxic" = 2),
+						"chlorine" = list("toxic" = 0.5),
+						"ammonia" = list("toxic" = 0.5),
+						"sodawater" = list("toxic" = 0.1, "nutr" = -0.1),
+						"beer" = list("nutr" = 0.6),
+						"diethylamine" = list("nutr" = 0.9),
+						"sugar" = list("toxic" = 0.4, "nutr" = 0.2),
+						"eznutrient" = list("nutr" = 0.8),
+						"cryoxadone" = list("toxic" = 0.4),
+						"flourine" = list("toxic" = 0.1),
+						"robustharvest" = list("nutr" = 1.5),
+						"glucose" = list("nutr" = 0.5),
+						"blood" = list("nutr" = 0.75, "toxic" = 0.05, "mut" = 0.45),
+						"fuel" = list("toxic" = 0.4),
+						"toxin" = list("toxic" = 0.5),
+						"carpotoxin" = list("toxic" = 1, "mut" = 1.5),
+						"phoron" = list("toxic" = 1.5, "mut" = 0.03),
+						"cyanide" = list("toxic" = 3.5),
+						"slimejelly" = list("nutr" = 0.5),
+						"amutationtoxin" = list("toxic" = 0.1, "heal" = 1.5, "mut" = 3),
+						"mutationtoxin" = list("toxic" = 0.1, "heal" = 1, "mut" = 1.5),
+						"gold" = list("heal" = 0.3, "nutr" = 0.7, "mut" = 0.3),
+						"uranium" = list("heal" = 0.3, "toxic" = 0.7, "mut" = 1.2),
+						"glycerol" = list("nutr" = 0.6),
+						"woodpulp" = list("heal" = 0.1, "nutr" = 0.7),
+						"docilitytoxin" = list("nutr" = 0.3)	)
 	
 /mob/living/simple_animal/xeno/slime/New()
 	..()

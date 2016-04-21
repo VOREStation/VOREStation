@@ -8,7 +8,7 @@ Slime specific procs go here.
 /mob/living/simple_animal/xeno/slime/RandomizeTraits()
 	traitdat.traits[TRAIT_XENO_COLDRES] = rand(30,270)
 	traitdat.traits[TRAIT_XENO_HEATRES] = rand(30,270)
-	traitdat.traits[TRAIT_XENO_CHEMVOL] = round(rand(0,40))	//Wow, a slime core with the capacity to hold 2/3rd's a beaker's worth of chemicals.
+	traitdat.traits[TRAIT_XENO_CHEMVOL] = round(rand(20,40))	//Wow, a slime core with the capacity to hold 2/3rd's a beaker's worth of chemicals.
 	traitdat.traits[TRAIT_XENO_HEALTH] = round(rand(50, 75))
 	traitdat.traits[TRAIT_XENO_HUNGER] = rand(1, 20)
 	traitdat.traits[TRAIT_XENO_STARVEDAMAGE] = rand(1, 4)
@@ -98,7 +98,7 @@ Slime specific procs go here.
 			return
 		if(reagents.total_volume <= 0)
 			return
-		if(reagents["docilitytoxin"])	//Toxin that makes them docile? Good for quelling angry mobs.
+		/*if(reagents.has_reagent("docilitytoxin"))	//Toxin that makes them docile? Good for quelling angry mobs.
 			hostile = 0
-			traitdat.traits[TRAIT_XENO_HOSTILE] = 0
-	..()
+			traitdat.traits[TRAIT_XENO_HOSTILE] = 0*/
+		..()

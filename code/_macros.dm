@@ -34,3 +34,5 @@
 #define issilicon(A) istype(A, /mob/living/silicon)
 
 #define isslime(A) istype(A, /mob/living/carbon/slime)
+
+#define isxeno(A) istype(A, /mob/living/simple_animal/xeno)

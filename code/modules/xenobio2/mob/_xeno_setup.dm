@@ -13,33 +13,37 @@
 
 //Definitions for traits.
 
-#define TRAIT_XENO_COLOR "color"
-#define TRAIT_XENO_CHEMISTRY "chems"
-#define TRAIT_XENO_CHEMVOL "chem_vol"
-#define TRAIT_XENO_HEALTH "health"
-#define TRAIT_XENO_HUNGER "hunger"
-#define TRAIT_XENO_STARVEDAMAGE "starvedamage"
-#define TRAIT_XENO_EATS "eats"
-#define TRAIT_XENO_CHROMATIC "chrom"
-#define TRAIT_XENO_HOSTILE "hostile"
-#define TRAIT_XENO_BIOLUMESCENT "biolum"
-#define TRAIT_XENO_BIO_COLOR "biocolor"
-#define TRAIT_XENO_GLOW_STRENGTH "biostrength"
-#define TRAIT_XENO_GLOW_RANGE "biorange"
-#define TRAIT_XENO_TOXIC_CHEMS "tox_chems"
-#define TRAIT_XENO_NUTRITIONAL_CHEMS "nutr_chems"
-#define TRAIT_XENO_HEALING_CHEMS "heal_chems"
-#define TRAIT_XENO_MUTATING_CHEMS "mut_chems"
-#define TRAIT_XENO_SPEED "speed"
-#define TRAIT_XENO_COLDRES "cold_resistance"
-#define TRAIT_XENO_HEATRES "heat_resistance"
-#define TRAIT_XENO_LEARNCHANCE "learn_chance"
-#define TRAIT_XENO_CANLEARN "can_learn"
-#define TRAIT_XENO_SPEAKCHANCE "speak_chance"
-#define TRAIT_XENO_CANSPEAK "can_speak"
-#define TRAIT_XENO_STRENGTH "melee_strength"
-#define TRAIT_XENO_STR_RANGE "melee_range"
+#define TRAIT_XENO_COLOR 				"color"
+#define TRAIT_XENO_CHEMISTRY 			"chems"
+#define TRAIT_XENO_CHEMVOL 				"chem_vol"
+#define TRAIT_XENO_HEALTH 				"health"
+#define TRAIT_XENO_HUNGER 				"hunger"
+#define TRAIT_XENO_STARVEDAMAGE 		"starvedamage"
+#define TRAIT_XENO_EATS 				"eats"
+#define TRAIT_XENO_CHROMATIC 			"chrom"
+#define TRAIT_XENO_HOSTILE 				"hostile"
+#define TRAIT_XENO_BIOLUMESCENT 		"biolum"
+#define TRAIT_XENO_BIO_COLOR 			"biocolor"
+#define TRAIT_XENO_GLOW_STRENGTH 		"biostrength"
+#define TRAIT_XENO_GLOW_RANGE 			"biorange"
+#define TRAIT_XENO_TOXIC_CHEMS 			"tox_chems"
+#define TRAIT_XENO_NUTRITIONAL_CHEMS 	"nutr_chems"
+#define TRAIT_XENO_HEALING_CHEMS 		"heal_chems"
+#define TRAIT_XENO_MUTATING_CHEMS 		"mut_chems"
+#define TRAIT_XENO_SPEED 				"speed"
+#define TRAIT_XENO_COLDRES 				"cold_resistance"
+#define TRAIT_XENO_HEATRES 				"heat_resistance"
+#define TRAIT_XENO_LEARNCHANCE 			"learn_chance"
+#define TRAIT_XENO_CANLEARN 			"can_learn"
+#define TRAIT_XENO_SPEAKCHANCE 			"speak_chance"
+#define TRAIT_XENO_CANSPEAK 			"can_speak"
+#define TRAIT_XENO_STRENGTH 			"melee_strength"
+#define TRAIT_XENO_STR_RANGE 			"melee_range"
 
+//Maleability defines.
+#define MAX_MALEABLE 	2
+#define MINOR_MALEABLE 	1
+#define MIN_MALEABLE	0
 
 var/global/list/xenoChemList = list("mutationtoxin", 
 						"psilocybin", 
@@ -73,10 +77,7 @@ var/global/list/xenoChemList = list("mutationtoxin",
 						
 /datum/xeno/traits
 	var/list/traits = list()
-	var/list/tox_chems
-	var/list/nutr_chems
-	var/list/heal_chems
-	var/list/mut_chems
+	var/list/chemlist = list()
 	var/obj/chems
 	
 /datum/xeno/traits/proc/set_trait(var/trait, var/newval)
@@ -86,7 +87,7 @@ var/global/list/xenoChemList = list("mutationtoxin",
 /datum/xeno/traits/New()
 	..()
 	set_trait(TRAIT_XENO_COLOR,	"#CACACA")
-	set_trait(TRAIT_XENO_CHEMVOL, 10)
+	set_trait(TRAIT_XENO_CHEMVOL, 100)
 	set_trait(TRAIT_XENO_HEALTH, 20)
 	set_trait(TRAIT_XENO_HUNGER, 2)
 	set_trait(TRAIT_XENO_STARVEDAMAGE, 0)
@@ -102,7 +103,7 @@ var/global/list/xenoChemList = list("mutationtoxin",
 	set_trait(TRAIT_XENO_HEATRES, 20)
 	set_trait(TRAIT_XENO_LEARNCHANCE, 100)
 	set_trait(TRAIT_XENO_CANLEARN, 1)
-	set_trait(TRAIT_XENO_SPEAKCHANCE, 10)
+	set_trait(TRAIT_XENO_SPEAKCHANCE, 1)
 	set_trait(TRAIT_XENO_CANSPEAK, 1)
 	set_trait(TRAIT_XENO_STRENGTH, 0)
 	set_trait(TRAIT_XENO_STR_RANGE, 0)

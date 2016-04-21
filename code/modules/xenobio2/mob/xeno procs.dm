@@ -8,12 +8,15 @@ Procs for copying speech, if applicable
 Procs for targeting
 */
 /mob/living/simple_animal/xeno/proc/ProcessTraits()
-	if(maleable >= 2)
+	if(maleable >= MAX_MALEABLE)
 		maxHealth = traitdat.traits[TRAIT_XENO_HEALTH]
 		health = maxHealth
-		chemlist = traitdat.chemreact
+		if(traitdat.chemlist.len)	//Let's make sure that this has a length.
+			chemreact = traitdat.chemlist
+		else
+			traitdat.chemlist = chemreact
 		chromatic = traitdat.traits[TRAIT_XENO_CHROMATIC]
-	if(maleable >= 1)
+	if(maleable >= MINOR_MALEABLE)
 		if(colored)
 			color = traitdat.traits[TRAIT_XENO_COLOR]
 		speed = traitdat.traits[TRAIT_XENO_SPEED]
@@ -26,7 +29,7 @@ Procs for targeting
 		set_light(traitdat.traits[TRAIT_XENO_GLOW_RANGE], traitdat.traits[TRAIT_XENO_GLOW_STRENGTH], traitdat.traits[TRAIT_XENO_BIO_COLOR])
 	else
 		set_light(0, 0, "#000000")	//Should kill any light that shouldn't be there.
-	if(chromatic)
+	if(!(chromatic))
 		hostile = 0	//No. No laser-reflecting hostile creatures. Bad.
 	else
 		hostile = traitdat.traits[TRAIT_XENO_HOSTILE]
@@ -53,17 +56,17 @@ Procs for targeting
 
 		//Let's handle some chemical smoke, for scientific smoke bomb purposes.
 		for(var/obj/effect/effect/smoke/chem/smoke in view(1, src))
-		if(smoke.reagents.total_volume)
-			smoke.reagents.trans_to_mob(src, 10, CHEM_BLOOD, copy = 1)
+			if(smoke.reagents.total_volume)
+				smoke.reagents.trans_to_mob(src, 10, CHEM_BLOOD, copy = 1)
 			
-		reagents.trans_to(temp_chem_holder, min(reagents.total_volume,rand(1,4)))
+		reagents.trans_to_obj(temp_chem_holder, min(reagents.total_volume,rand(1,4)))
 		var/reagent_total
 		var/list/reagent_response = list()
 		for(var/datum/reagent/R in temp_chem_holder.reagents.reagent_list)
 		
 			reagent_total = temp_chem_holder.reagents.get_reagent_amount(R.id)
 			
-			reagent_response = chemreact[R]
+			reagent_response = chemreact[R.id]
 			
 			if(reagent_response["toxic"])
 				adjustToxLoss(reagent_response["toxic"] * reagent_total)

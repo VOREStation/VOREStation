@@ -29,7 +29,7 @@ Also includes Life and New
 	var/mut_level = 0 //How mutated a specimen is. Irrelevant while mutable = NOMUT.
 	var/mut_max = 100000
 	var/colored = 1
-	var/maleable = 0 //How easy is it to manipulate traitdat.traits after it's alive?
+	var/maleable = MIN_MALEABLE //How easy is it to manipulate traitdat.traits after it's alive.
 	
 	//Traits that might not be maleable.
 	var/list/chemreact = list()
@@ -45,16 +45,17 @@ Also includes Life and New
 	
 //Life additions
 /mob/living/simple_animal/xeno/Life()
-	..()
-	if(src.stat == 2)
+	if(src.stat == DEAD)
 		return 0
 	
-	if(src.stasis)
+	if(stasis)
 		stasis--
+		if(stasis < 0)
+			stasis = 0
 		return 0
-		
+	..()
 	handle_reagents()
-	if(mut_level == mut_max && !(mutable & NOMUT))
+	if((mut_level >= mut_max) && !(mutable & NOMUT))
 		Mutate()
 			
 	ProcessSpeechBuffer()
