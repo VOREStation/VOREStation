@@ -2,8 +2,8 @@
 	name = "medical pack"
 	singular_name = "medical pack"
 	icon = 'icons/obj/items.dmi'
-	amount = 5
-	max_amount = 5
+	amount = 10
+	max_amount = 10
 	w_class = 2
 	throw_speed = 4
 	throw_range = 20
