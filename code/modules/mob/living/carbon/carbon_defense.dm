@@ -6,7 +6,7 @@
 	..()
 
 /mob/living/carbon/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/blocked, var/hit_zone)
-	if(!effective_force || blocked >= 2) 
+	if(!effective_force || blocked >= 100) 
 		return 0
 
 	//Hulk modifier
@@ -26,7 +26,7 @@
 	if (I && I.damtype == BRUTE && !I.anchored && !is_robot_module(I))
 		var/damage = effective_force
 		if (blocked)
-			damage /= blocked+1
+			damage *= (100 - blocked)/100
 
 		//blunt objects should really not be embedding in things unless a huge amount of force is involved
 		var/embed_chance = weapon_sharp? damage/I.w_class : damage/(I.w_class*3)

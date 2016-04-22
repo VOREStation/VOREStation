@@ -146,7 +146,7 @@
 	
 	// You are going to knock someone out for longer if they are not wearing a helmet.
 	var/weaken_duration = 0
-	if(blocked < 2)
+	if(blocked < 100)
 		weaken_duration = smash_duration + min(0, force - target.getarmor(hit_zone, "melee") + 10)
 	
 	if(hit_zone == "head" && istype(target, /mob/living/carbon/))
