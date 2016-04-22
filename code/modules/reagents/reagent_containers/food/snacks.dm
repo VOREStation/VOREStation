@@ -19,7 +19,7 @@
 	if(!usr)	return
 	if(!reagents.total_volume)
 		M.visible_message("<span class='notice'>[M] finishes eating \the [src].</span>","<span class='notice'>You finish eating \the [src].</span>")
-		usr.drop_from_inventory(src)	//so icons update :[
+		usr.removeItem(src)	//so icons update :[
 
 		if(trash)
 			if(ispath(trash,/obj/item))
@@ -36,8 +36,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/attack(mob/M as mob, mob/user as mob, def_zone)
 	if(!reagents.total_volume)
 		user << "<span class='danger'>None of [src] left!</span>"
-		user.drop_from_inventory(src)
-		qdel(src)
+		user.deleteItem(src)
 		return 0
 
 	if(istype(M, /mob/living/carbon))
@@ -164,10 +163,8 @@
 				return
 
 			user << "\red You slip [W] inside [src]."
-			user.remove_from_mob(W)
-			W.dropped(user)
+			user.removeItem(W, src)
 			add_fingerprint(user)
-			contents += W
 			return
 
 		if (has_edge(W))
@@ -490,8 +487,7 @@
 		return
 	user << "You crack \the [src] into \the [O]."
 	reagents.trans_to(O, reagents.total_volume)
-	user.drop_from_inventory(src)
-	qdel(src)
+	user.deleteItem(src)
 
 /obj/item/weapon/reagent_containers/food/snacks/egg/throw_impact(atom/hit_atom)
 	..()
@@ -1626,7 +1622,7 @@
 		H.name = H.real_name
 		if(ismob(loc))
 			var/mob/M = loc
-			M.unEquip(src)
+			M.removeItem(src)
 		qdel(src)
 		return 1
 

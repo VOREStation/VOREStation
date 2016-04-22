@@ -327,8 +327,7 @@
 	if(!item) return //Grab processing has a chance of returning null
 
 
-	src.remove_from_mob(item)
-	item.loc = src.loc
+	src.removeItem(item, loc)
 
 	//actually throw it!
 	if (item)

@@ -432,8 +432,7 @@
 		if(holding)
 			user << "<span class='warning'>\The [src] is already holding \a [holding].</span>"
 			return
-		user.unEquip(I)
-		I.forceMove(src)
+		user.removeItem(I, src)
 		holding = I
 		user.visible_message("<span class='notice'>\The [user] shoves \the [I] into \the [src].</span>")
 		verbs |= /obj/item/clothing/shoes/proc/draw_knife
@@ -632,7 +631,7 @@
 		if (( usr.restrained() ) || ( usr.stat ))
 			return
 
-		if (!usr.unEquip(src))
+		if (!usr.removeItem(src))
 			return
 
 		switch(over_object.name)

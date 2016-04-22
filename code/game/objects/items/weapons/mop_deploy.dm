@@ -52,7 +52,7 @@
 	..()
 
 /obj/item/weapon/mop_deploy/attack_self(mob/user as mob)
-	user.drop_from_inventory(src)
+	user.removeItem(src, force = 1)
 	spawn(1) if(src) del(src)
 
 /obj/item/weapon/mop_deploy/dropped()
@@ -70,5 +70,5 @@
 							organ.implants -= src
 			host.pinned -= src
 			host.embedded -= src
-			host.drop_from_inventory(src)
+			host.removeItem(src, force = 1)
 		spawn(1) if(src) del(src)

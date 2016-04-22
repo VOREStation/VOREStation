@@ -273,8 +273,7 @@
 		cashmoney.worth -= currently_vending.price
 
 		if(cashmoney.worth <= 0)
-			usr.drop_from_inventory(cashmoney)
-			qdel(cashmoney)
+			usr.deleteItem(cashmoney)
 		else
 			cashmoney.update_icon()
 

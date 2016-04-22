@@ -24,8 +24,8 @@
 		SC.adjust_worth(src.worth)
 		if(istype(user, /mob/living/carbon/human))
 			var/mob/living/carbon/human/h_user = user
-			h_user.drop_from_inventory(src)
-			h_user.drop_from_inventory(SC)
+			h_user.removeItem(src)
+			h_user.removeItem(SC)
 			h_user.put_in_hands(SC)
 		user << "<span class='notice'>You combine the Thalers to a bundle of [SC.worth] Thalers.</span>"
 		qdel(src)

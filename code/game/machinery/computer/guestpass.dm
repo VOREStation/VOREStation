@@ -82,8 +82,7 @@
 			qdel(src)
 		return
 	if(istype(I, /obj/item/weapon/card/id))
-		if(!giver && user.unEquip(I))
-			I.loc = src
+		if(!giver && user.removeItem(I, src))
 			giver = I
 			updateUsrDialog()
 		else if(giver)
@@ -176,8 +175,7 @@
 					accesses.Cut()
 				else
 					var/obj/item/I = usr.get_active_hand()
-					if (istype(I, /obj/item/weapon/card/id) && usr.unEquip(I))
-						I.loc = src
+					if (istype(I, /obj/item/weapon/card/id) && usr.removeItem(I, src))
 						giver = I
 				updateUsrDialog()
 
