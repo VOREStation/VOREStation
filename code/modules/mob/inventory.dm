@@ -24,7 +24,13 @@ var/list/slot_equipment_priority = list( \
 //This proc is called whenever someone clicks an inventory ui slot.
 /mob/proc/attack_ui(var/slot)
 	var/obj/item/W = get_active_hand()
-	if(istype(W))
+	var/obj/item/E = get_equipped_item(slot)
+	if (istype(E))
+		if(istype(W))
+			E.attackby(W,src)
+		else
+			E.attack_hand(src)
+	else
 		equip_to_slot_if_possible(W, slot)
 
 /* Inventory manipulation */
