@@ -37,6 +37,8 @@
 
 /obj/machinery/iv_drip/MouseDrop(over_object, src_location, over_location)
 	..()
+	if(!isliving(usr))
+		return
 
 	if(attached)
 		visible_message("[src.attached] is detached from \the [src]")
