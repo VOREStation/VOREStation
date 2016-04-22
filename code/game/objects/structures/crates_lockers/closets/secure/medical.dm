@@ -131,6 +131,7 @@
 
 	New()
 		..()
+		new /obj/item/weapon/storage/backpack/dufflebag/emt(src)
 		new /obj/item/weapon/storage/box/autoinjectors(src)
 		new /obj/item/weapon/storage/box/syringes(src)
 		new /obj/item/weapon/reagent_containers/glass/bottle/inaprovaline(src)

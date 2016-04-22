@@ -203,6 +203,15 @@
 		slot_r_hand_str = "duffle_med",
 		)
 
+/obj/item/weapon/storage/backpack/dufflebag/emt
+	name = "EMT dufflebag"
+	desc = "A large dufflebag for holding extra medical supplies. This one has reflective stripes!"
+	icon_state = "duffle_emt"
+	item_state_slots = list(
+		slot_l_hand_str = "duffle_emt",
+		slot_r_hand_str = "duffle_emt",
+		)
+
 /obj/item/weapon/storage/backpack/dufflebag/sec
 	name = "security dufflebag"
 	desc = "A large dufflebag for holding extra security supplies and ammunition."
