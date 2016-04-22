@@ -199,11 +199,11 @@
 
 /obj/item/organ/external/replaced(var/mob/living/carbon/human/target)
 	owner = target
+	forceMove(owner)
 	if(istype(owner))
 		owner.organs_by_name[organ_tag] = src
 		owner.organs |= src
 		for(var/obj/item/organ/organ in src)
-			organ.loc = owner
 			organ.replaced(owner,src)
 
 	if(parent_organ)
@@ -212,6 +212,12 @@
 			if(!parent.children)
 				parent.children = list()
 			parent.children.Add(src)
+			//Remove all stump wounds since limb is not missing anymore
+			for(var/datum/wound/lost_limb/W in parent.wounds)
+				parent.wounds -= W
+				qdel(W)
+				break
+			parent.update_damages()
 
 /****************************************************
 			   DAMAGE PROCS
@@ -750,7 +756,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 	removed(null, ignore_children)
 	victim.traumatic_shock += 60
 
-	wounds.Cut()
 	if(parent_organ)
 		var/datum/wound/lost_limb/W = new (src, disintegrate, clean)
 		if(clean)
