@@ -2892,6 +2892,19 @@
 	var/list/boxes = list() // If the boxes are stacked, they come here
 	var/boxtag = ""
 
+
+/obj/item/pizzabox/proc/closepizzabox()
+
+	if( boxes.len > 0 )
+		return
+
+	open = !open
+
+	if( open && pizza )
+		ismessy = 1
+
+	update_icon()
+
 /obj/item/pizzabox/update_icon()
 
 	overlays = list()
@@ -2970,15 +2983,12 @@
 
 /obj/item/pizzabox/attack_self( mob/user as mob )
 
-	if( boxes.len > 0 )
-		return
+	closepizzabox()
 
-	open = !open
+/obj/item/pizzabox/AltClick()
 
-	if( open && pizza )
-		ismessy = 1
-
-	update_icon()
+	if(Adjacent(usr))
+		closepizzabox()
 
 /obj/item/pizzabox/attackby( obj/item/I as obj, mob/user as mob )
 	if( istype(I, /obj/item/pizzabox/) )
