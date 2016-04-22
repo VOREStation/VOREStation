@@ -99,11 +99,14 @@
 		player.current << "<span class='notice'>[leader_welcome_text]</span>"
 	else
 		player.current << "<span class='notice'>[welcome_text]</span>"
+	if (config.objectives_disabled)
+		player.current << "<span class='notice'>[antag_text]</span>"
 
 	if((flags & ANTAG_HAS_NUKE) && !spawned_nuke)
 		create_nuke()
 
-	show_objectives(player)
+	if (!config.objectives_disabled)
+		show_objectives(player)
 	return 1
 
 /datum/antagonist/proc/set_antag_name(var/mob/living/player)

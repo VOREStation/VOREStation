@@ -63,13 +63,19 @@
 	var/list/global_objectives =   list()   // Universal objectives if any.
 	var/list/candidates =          list()   // Potential candidates.
 	var/list/faction_members =     list()   // Semi-antags (in-round revs, borer thralls)
-	
+
 	var/allow_latejoin = 0					//Determines whether or not the game mode will allow for the template to spawn try_latespawn
 
 	// ID card stuff.
 	var/default_access = list()
 	var/id_type = /obj/item/weapon/card/id
 
+	var/antag_text = "You are an antagonist! Within the rules, \
+		try to act as an opposing force to the crew. Further RP and try to make sure \
+		other players have <i>fun</i>! If you are confused or at a loss, always adminhelp, \
+		and before taking extreme actions, please try to also contact the administration! \
+		Think through your actions and make the roleplay immersive! <b>Please remember all \
+		rules aside from those without explicit exceptions apply to antagonists.</b>"
 
 /datum/antagonist/New()
 	..()
