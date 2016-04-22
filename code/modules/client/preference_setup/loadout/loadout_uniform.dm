@@ -6,7 +6,7 @@
 	sort_category = "Uniforms and Casual Dress"
 
 /datum/gear/uniform/cheongsam
-	display_name = "cheongsam"
+	display_name = "cheongsam selection"
 
 /datum/gear/uniform/cheongsam/New()
 	..()
