@@ -227,7 +227,7 @@
 
 /datum/gear/suit/wintercoat/atmos
 	display_name = "winter coat, atmospherics"
-	path = /obj/item/clothing/suit/storage/hooded/wintercoat/atmos
+	path = /obj/item/clothing/suit/storage/hooded/wintercoat/engineering/atmos
 	allowed_roles = list("Chief Engineer", "Atmospheric Technician")
 
 /datum/gear/suit/wintercoat/hydro
