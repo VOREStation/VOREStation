@@ -75,7 +75,7 @@ datum/preferences/proc/set_biological_gender(var/gender)
 		return TOPIC_REFRESH
 
 	else if(href_list["bio_gender"])
-		var/new_gender = input(user, "Choose your character's biological gender:", "Character Preference", pref.biological_gender) as null|anything in S.genders
+		var/new_gender = input(user, "Choose your character's biological gender:", "Character Preference", pref.biological_gender) as null|anything in get_genders()
 		if(new_gender && CanUseTopic(user))
 			pref.set_biological_gender(new_gender)
 		return TOPIC_REFRESH
@@ -109,3 +109,12 @@ datum/preferences/proc/set_biological_gender(var/gender)
 			return TOPIC_REFRESH
 
 	return ..()
+
+/datum/category_item/player_setup_item/general/basic/proc/get_genders()
+	var/datum/species/S = all_species[pref.species]
+	var/list/possible_genders = S.genders
+	if(pref.organ_data[BP_TORSO] != "cyborg")
+		return possible_genders
+	possible_genders = possible_genders.Copy()
+	possible_genders += NEUTER
+	return possible_genders
