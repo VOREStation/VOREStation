@@ -18,6 +18,7 @@
 	dir = EAST
 	density = 1
 	var/obj/structure/m_tray/connected = null
+	var/list/occupants = list()
 	anchored = 1.0
 
 /obj/structure/morgue/Destroy()
@@ -26,12 +27,28 @@
 		connected = null
 	return ..()
 
-/obj/structure/morgue/proc/update()
+/obj/structure/morgue/proc/get_occupants()
+	occupants.Cut()
+	for(var/mob/living/carbon/human/H in contents)
+		occupants += H
+	for(var/obj/structure/closet/body_bag/B in contents)
+		occupants += B.get_occupants()
+
+/obj/structure/morgue/proc/update(var/broadcast=0)
 	if (src.connected)
 		src.icon_state = "morgue0"
 	else
 		if (src.contents.len)
 			src.icon_state = "morgue2"
+			get_occupants()
+			for (var/mob/living/carbon/human/H in occupants)
+				if(H.isSynthetic() || H.suiciding || !H.ckey || !H.client || (NOCLONE in H.mutations) || (H.species && H.species.flags & NO_SCAN))
+					src.icon_state = "morgue2"
+					break
+				else
+					src.icon_state = "morgue3"
+					if(broadcast)
+						broadcast_medical_hud_message("[src] was able to establish a mental interface with occupant.", src)
 		else
 			src.icon_state = "morgue1"
 	return
