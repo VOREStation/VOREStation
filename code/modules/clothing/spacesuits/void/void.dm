@@ -132,11 +132,17 @@
 
 	if(tank)
 		tank.canremove = 1
-		tank.forceMove(src)
+		H = tank.loc
+		if(istype(H))
+			if(tank && H.s_store == tank)
+				H.removeItem(tank, src)
 
 	if(cooler)
 		cooler.canremove = 1
-		cooler.forceMove(src)
+		H = cooler.loc
+		if(istype(H))
+			if(cooler && H.s_store == cooler)
+				H.removeItem(cooler, src)
 
 /obj/item/clothing/suit/space/void/verb/toggle_helmet()
 
