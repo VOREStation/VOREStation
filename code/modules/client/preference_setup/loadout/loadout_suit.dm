@@ -125,27 +125,27 @@
 		ponchos[initial(poncho.name)] = poncho
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(ponchos))
 
-/datum/gear/suit/poncho/roles/security
+/datum/gear/suit/roles/poncho/security
 	display_name = "poncho, security"
 	path = /obj/item/clothing/suit/poncho/roles/security
 	allowed_roles = list("Head of Security", "Warden", "Detective", "Security Officer")
 
-/datum/gear/suit/poncho/roles/medical
+/datum/gear/suit/roles/poncho/medical
 	display_name = "poncho, medical"
 	path = /obj/item/clothing/suit/poncho/roles/medical
 	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist")
 
-/datum/gear/suit/poncho/roles/engineering
+/datum/gear/suit/roles/poncho/engineering
 	display_name = "poncho, engineering"
 	path = /obj/item/clothing/suit/poncho/roles/engineering
 	allowed_roles = list("Chief Engineer","Atmospheric Technician", "Station Engineer")
 
-/datum/gear/suit/poncho/roles/science
+/datum/gear/suit/roles/poncho/science
 	display_name = "poncho, science"
 	path = /obj/item/clothing/suit/poncho/roles/science
 	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobotanist")
 
-/datum/gear/suit/poncho/roles/cargo
+/datum/gear/suit/roles/poncho/cargo
 	display_name = "poncho, cargo"
 	path = /obj/item/clothing/suit/poncho/roles/cargo
 	allowed_roles = list("Quartermaster","Cargo Technician")
