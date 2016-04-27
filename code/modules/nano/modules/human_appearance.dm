@@ -27,7 +27,7 @@
 				cut_and_generate_data()
 				return 1
 	if(href_list["gender"])
-		if(can_change(APPEARANCE_GENDER) && (href_list["gender"] in owner.species.genders))
+		if(can_change(APPEARANCE_GENDER) && (href_list["gender"] in get_genders()))
 			if(owner.change_gender(href_list["gender"]))
 				cut_and_generate_data()
 				return 1
@@ -115,7 +115,7 @@
 	data["change_gender"] = can_change(APPEARANCE_GENDER)
 	if(data["change_gender"])
 		var/genders[0]
-		for(var/gender in owner.species.genders)
+		for(var/gender in get_genders())
 			genders[++genders.len] =  list("gender_name" = gender2text(gender), "gender_key" = gender)
 		data["genders"] = genders
 		var/id_genders[0]
@@ -179,3 +179,13 @@
 	if(!valid_hairstyles.len || !valid_facial_hairstyles.len)
 		valid_hairstyles = owner.generate_valid_hairstyles(check_gender = 0)
 		valid_facial_hairstyles = owner.generate_valid_facial_hairstyles()
+
+
+/datum/nano_module/appearance_changer/proc/get_genders()
+	var/datum/species/S = owner.species
+	var/list/possible_genders = S.genders
+	if(!owner.internal_organs_by_name["cell"])
+		return possible_genders
+	possible_genders = possible_genders.Copy()
+	possible_genders |= NEUTER
+	return possible_genders

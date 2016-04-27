@@ -116,5 +116,5 @@ datum/preferences/proc/set_biological_gender(var/gender)
 	if(pref.organ_data[BP_TORSO] != "cyborg")
 		return possible_genders
 	possible_genders = possible_genders.Copy()
-	possible_genders += NEUTER
+	possible_genders |= NEUTER
 	return possible_genders
