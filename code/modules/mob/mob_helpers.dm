@@ -5,6 +5,21 @@
 		return L.mob_size <= MOB_SMALL
 	return 0
 
+
+/proc/istiny(A)
+	if(A && istype(A, /mob/living))
+		var/mob/living/L = A
+		return L.mob_size <= MOB_TINY
+	return 0
+
+
+/proc/ismini(A)
+	if(A && istype(A, /mob/living))
+		var/mob/living/L = A
+		return L.mob_size <= MOB_MINISCULE
+	return 0
+
+
 // If they are 100% robotic, they count as synthetic.
 /mob/living/carbon/human/isSynthetic()
 	if(isnull(full_prosthetic))
