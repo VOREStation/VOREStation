@@ -86,6 +86,17 @@
 			qdel(src)
 		return
 
+/obj/structure/closet/body_bag/proc/get_occupants()
+	var/list/occupants = list()
+	for(var/mob/living/carbon/human/H in contents)
+		occupants += H
+	return occupants
+
+/obj/structure/closet/body_bag/proc/update(var/broadcast=0)
+	if(istype(loc, /obj/structure/morgue))
+		var/obj/structure/morgue/M = loc
+		M.update(broadcast)
+
 /obj/structure/closet/body_bag/update_icon()
 	if(opened)
 		icon_state = icon_opened

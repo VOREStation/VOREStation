@@ -155,6 +155,12 @@ Works together with spawning an observer, noted above.
 		ghost.can_reenter_corpse = can_reenter_corpse
 		ghost.timeofdeath = src.timeofdeath //BS12 EDIT
 		ghost.key = key
+		if(istype(loc, /obj/structure/morgue))
+			var/obj/structure/morgue/M = loc
+			M.update()
+		else if(istype(loc, /obj/structure/closet/body_bag))
+			var/obj/structure/closet/body_bag/B = loc
+			B.update()
 		if(ghost.client)
 			ghost.client.time_died_as_mouse = ghost.timeofdeath
 		if(ghost.client && !ghost.client.holder && !config.antag_hud_allowed)		// For new ghosts we remove the verb from even showing up if it's not allowed.
@@ -224,6 +230,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	mind.current.ajourn=0
 	mind.current.key = key
 	mind.current.teleop = null
+	if(istype(mind.current.loc, /obj/structure/morgue))
+		var/obj/structure/morgue/M = mind.current.loc
+		M.update(1)
+	else if(istype(mind.current.loc, /obj/structure/closet/body_bag))
+		var/obj/structure/closet/body_bag/B = mind.current.loc
+		B.update(1)
 	if(!admin_ghosted)
 		announce_ghost_joinleave(mind, 0, "They now occupy their body again.")
 	return 1
