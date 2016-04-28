@@ -88,6 +88,7 @@
 	icon_opened = "hossecureopen"
 	icon_broken = "hossecurebroken"
 	icon_off = "hossecureoff"
+	storage_capacity = 2.5 * MOB_MEDIUM
 
 	New()
 		..()
