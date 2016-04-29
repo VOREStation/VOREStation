@@ -1,5 +1,5 @@
 /obj/item/weapon/grenade/smokebomb
-	desc = "It is set to detonate in 2 seconds."
+	desc = "It is set to detonate in 2 seconds. These high-tech grenades can have their color adapted on the fly with a multitool!"
 	name = "smoke bomb"
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "flashbang"
@@ -9,12 +9,6 @@
 	var/datum/effect/effect/system/smoke_spread/bad/smoke
 	var/smoke_color
 	var/smoke_strength = 4
-
-/obj/item/weapon/grenade/smokebomb/red
-	smoke_color = "#FF0000"
-
-/obj/item/weapon/grenade/smokebomb/blue
-	smoke_color = "#0000FF"
 
 /obj/item/weapon/grenade/smokebomb/New()
 	..()
@@ -41,3 +35,7 @@
 	sleep(80)
 	qdel(src)
 	return
+
+/obj/item/weapon/grenade/smokebomb/attackby(obj/item/I as obj, mob/user as mob)
+	if(istype(I,/obj/item/device/multitool))
+		smoke_color = input(user, "Choose a color for the smoke:") as color|null
