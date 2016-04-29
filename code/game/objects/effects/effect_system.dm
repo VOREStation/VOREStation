@@ -321,7 +321,7 @@ steam.start() -- spawns the effect
 	if(direct)
 		direction = direct
 
-/datum/effect/effect/system/smoke_spread/start()
+/datum/effect/effect/system/smoke_spread/start(var/I)
 	var/i = 0
 	for(i=0, i<src.number, i++)
 		if(src.total_smoke > 20)
@@ -331,6 +331,7 @@ steam.start() -- spawns the effect
 				src.location = get_turf(holder)
 			var/obj/effect/effect/smoke/smoke = PoolOrNew(smoke_type, src.location)
 			src.total_smoke++
+			smoke.color = I
 			var/direction = src.direction
 			if(!direction)
 				if(src.cardinals)
@@ -507,9 +508,9 @@ steam.start() -- spawns the effect
 				M << "<span class='warning'>The solution violently explodes.</span>"
 
 			explosion(
-				location, 
-				round(min(devst, BOMBCAP_DVSTN_RADIUS)), 
-				round(min(heavy, BOMBCAP_HEAVY_RADIUS)), 
-				round(min(light, BOMBCAP_LIGHT_RADIUS)), 
+				location,
+				round(min(devst, BOMBCAP_DVSTN_RADIUS)),
+				round(min(heavy, BOMBCAP_HEAVY_RADIUS)),
+				round(min(light, BOMBCAP_LIGHT_RADIUS)),
 				round(min(flash, BOMBCAP_FLASH_RADIUS))
 				)

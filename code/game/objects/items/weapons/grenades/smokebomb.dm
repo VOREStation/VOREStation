@@ -7,6 +7,14 @@
 	item_state = "flashbang"
 	slot_flags = SLOT_BELT
 	var/datum/effect/effect/system/smoke_spread/bad/smoke
+	var/smoke_color
+	var/smoke_strength = 4
+
+/obj/item/weapon/grenade/smokebomb/red
+	smoke_color = "#FF0000"
+
+/obj/item/weapon/grenade/smokebomb/blue
+	smoke_color = "#0000FF"
 
 /obj/item/weapon/grenade/smokebomb/New()
 	..()
@@ -22,13 +30,9 @@
 	playsound(src.loc, 'sound/effects/smoke.ogg', 50, 1, -3)
 	src.smoke.set_up(10, 0, usr.loc)
 	spawn(0)
-		src.smoke.start()
-		sleep(10)
-		src.smoke.start()
-		sleep(10)
-		src.smoke.start()
-		sleep(10)
-		src.smoke.start()
+		for(var/i = 1 to smoke_strength)
+			src.smoke.start(smoke_color)
+			sleep(10)
 
 	for(var/obj/effect/blob/B in view(8,src))
 		var/damage = round(30/(get_dist(B,src)+1))
