@@ -187,13 +187,13 @@
 		user.visible_message("<span class='notice'>[user] finishes splicing cable into [target]'s [affected.name].</span>", \
 		"<span class='notice'>You finishes splicing new cable into [target]'s [affected.name].</span>")
 		affected.heal_damage(0,rand(30,50),1,1)
+		affected.disfigured = 0
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		user.visible_message("<span class='warning'>[user] causes a short circuit in [target]'s [affected.name]!</span>",
 		"<span class='warning'>You cause a short circuit in [target]'s [affected.name]!</span>")
 		target.apply_damage(rand(5,10), BURN, affected)
-		affected.disfigured = 0
 
 /datum/surgery_step/robotics/fix_organ_robotic //For artificial organs
 	allowed_tools = list(
