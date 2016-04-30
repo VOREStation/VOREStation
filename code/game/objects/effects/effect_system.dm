@@ -193,7 +193,7 @@ steam.start() -- spawns the effect
 		affect(M)
 
 /obj/effect/effect/smoke/proc/affect(var/mob/living/carbon/M)
-	if (istype(M))
+	if (!istype(M))
 		return 0
 	if (M.internal != null)
 		if(M.wear_mask && (M.wear_mask.item_flags & AIRTIGHT))
@@ -226,6 +226,7 @@ steam.start() -- spawns the effect
 
 /obj/effect/effect/smoke/bad
 	time_to_live = 200
+	var/list/projectiles
 
 /obj/effect/effect/smoke/bad/Move()
 	..()
@@ -235,20 +236,23 @@ steam.start() -- spawns the effect
 /obj/effect/effect/smoke/bad/affect(var/mob/living/carbon/M)
 	if (!..())
 		return 0
-	M.drop_item()
 	M.adjustOxyLoss(1)
-	if (M.coughedtime != 1)
-		M.coughedtime = 1
+	if(prob(25))
 		M.emote("cough")
-		spawn ( 20 )
-			M.coughedtime = 0
 
-/obj/effect/effect/smoke/bad/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0)) return 1
-	if(istype(mover, /obj/item/projectile/beam))
-		var/obj/item/projectile/beam/B = mover
-		B.damage = (B.damage/2)
+/obj/effect/effect/smoke/bad/Crossed(atom/movable/M as mob|obj)
+	..()
+	if(istype(M, /obj/item/projectile/beam))
+		var/obj/item/projectile/beam/B = M
+		if(!(B in projectiles))
+			B.damage = (B.damage/2)
+			projectiles += B
+			destroyed_event.register(B, src, /obj/effect/effect/smoke/bad/proc/on_projectile_delete)
+		world << "Damage is: [B.damage]"
 	return 1
+
+/obj/effect/effect/smoke/bad/proc/on_projectile_delete(obj/item/projectile/beam/proj)
+	projectiles -= proj
 /////////////////////////////////////////////
 // Sleep smoke
 /////////////////////////////////////////////
@@ -266,11 +270,8 @@ steam.start() -- spawns the effect
 
 	M.drop_item()
 	M:sleeping += 1
-	if (M.coughedtime != 1)
-		M.coughedtime = 1
+	if(prob(20))
 		M.emote("cough")
-		spawn ( 20 )
-			M.coughedtime = 0
 /////////////////////////////////////////////
 // Mustard Gas
 /////////////////////////////////////////////
@@ -282,22 +283,20 @@ steam.start() -- spawns the effect
 
 /obj/effect/effect/smoke/mustard/Move()
 	..()
-	for(var/mob/living/carbon/human/R in get_turf(src))
-		affect(R)
+	for(var/mob/living/carbon/human/M in get_turf(src))
+		affect(M)
 
-/obj/effect/effect/smoke/mustard/affect(var/mob/living/carbon/human/R)
+/obj/effect/effect/smoke/mustard/affect(var/mob/living/carbon/human/M)
 	if (!..())
 		return 0
-	if (R.wear_suit != null)
+	if (M.wear_suit != null)
 		return 0
 
-	R.burn_skin(0.75)
-	if (R.coughedtime != 1)
-		R.coughedtime = 1
-		R.emote("gasp")
-		spawn (20)
-			R.coughedtime = 0
-	R.updatehealth()
+	M.burn_skin(0.75)
+	if(prob(20))
+		M.emote("cough")
+		M.emote("gasp")
+	M.updatehealth()
 	return
 
 /////////////////////////////////////////////
