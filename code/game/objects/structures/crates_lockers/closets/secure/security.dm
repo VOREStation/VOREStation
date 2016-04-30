@@ -95,7 +95,7 @@
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/security(src)
 		else
-			new /obj/item/weapon/storage/backpack/satchel_sec(src)
+			new /obj/item/weapon/storage/backpack/satchel/sec(src)
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/dufflebag/sec(src)
 		new /obj/item/clothing/head/helmet/HoS(src)
@@ -144,7 +144,7 @@
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/security(src)
 		else
-			new /obj/item/weapon/storage/backpack/satchel_sec(src)
+			new /obj/item/weapon/storage/backpack/satchel/sec(src)
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/dufflebag/sec(src)
 		new /obj/item/clothing/suit/storage/vest/warden(src)
@@ -188,7 +188,7 @@
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/security(src)
 		else
-			new /obj/item/weapon/storage/backpack/satchel_sec(src)
+			new /obj/item/weapon/storage/backpack/satchel/sec(src)
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/dufflebag/sec(src)
 		new /obj/item/clothing/suit/storage/vest/officer(src)
