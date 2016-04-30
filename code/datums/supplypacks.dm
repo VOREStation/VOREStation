@@ -1891,8 +1891,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_packs/navybluesecurityclothing
 	name = "Navy blue security uniform crate"
-	contains = list(/obj/item/weapon/storage/backpack/satchel_sec,
-					/obj/item/weapon/storage/backpack/satchel_sec,
+	contains = list(/obj/item/weapon/storage/backpack/satchel/sec,
+					/obj/item/weapon/storage/backpack/satchel/sec,
 					/obj/item/weapon/storage/backpack/security,
 					/obj/item/weapon/storage/backpack/security,
 					/obj/item/clothing/under/rank/security/navyblue,
@@ -1926,8 +1926,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_packs/corporatesecurityclothing
 	name = "Corporate security uniform crate"
-	contains = list(/obj/item/weapon/storage/backpack/satchel_sec,
-					/obj/item/weapon/storage/backpack/satchel_sec,
+	contains = list(/obj/item/weapon/storage/backpack/satchel/sec,
+					/obj/item/weapon/storage/backpack/satchel/sec,
 					/obj/item/weapon/storage/backpack/security,
 					/obj/item/weapon/storage/backpack/security,
 					/obj/item/clothing/under/rank/security/corp,

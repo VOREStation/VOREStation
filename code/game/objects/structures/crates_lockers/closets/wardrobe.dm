@@ -382,8 +382,8 @@
 	new /obj/item/clothing/gloves/black(src)
 	new /obj/item/weapon/storage/backpack/toxins(src)
 	new /obj/item/weapon/storage/backpack/toxins(src)
-	new /obj/item/weapon/storage/backpack/satchel_tox(src)
-	new /obj/item/weapon/storage/backpack/satchel_tox(src)
+	new /obj/item/weapon/storage/backpack/satchel/tox(src)
+	new /obj/item/weapon/storage/backpack/satchel/tox(src)
 	return
 
 
