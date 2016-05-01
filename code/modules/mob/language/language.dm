@@ -160,7 +160,7 @@
 /mob/proc/can_speak(datum/language/speaking)
 //Prevents someone from speaking a null language.
 	if(speaking)
-		return (speaking.can_speak_special(src) && (universal_speak || (speaking && speaking.flags & INNATE) || speaking in src.languages))
+		return (speaking.can_speak_special(src) && (universal_speak || (speaking && (speaking.flags & INNATE)) || speaking in src.languages))
 	else
 		log_debug("[src] attempted to speak a null language.")
 		return 0
