@@ -155,6 +155,10 @@ datum/uplink_item/dd_SortValue()
 	name = "9mm"
 	path = /obj/item/ammo_magazine/mc9mm
 
+/datum/uplink_item/item/ammo/c45m
+	name = ".45"
+	path = /obj/item/ammo_magazine/c45m
+
 /datum/uplink_item/item/ammo/darts
 	name = "Darts"
 	path = /obj/item/ammo_magazine/chemdart
@@ -163,6 +167,14 @@ datum/uplink_item/dd_SortValue()
 	name = "14.5mm"
 	path = /obj/item/weapon/storage/box/sniperammo
 
+/datum/uplink_item/item/ammo/a556
+	name = "5.56mm"
+	path = /obj/item/ammo_magazine/a556
+
+/datum/uplink_item/item/ammo/a556/ap
+	name = "5.56mm AP"
+	path = /obj/item/ammo_magazine/a556/ap
+
 /datum/uplink_item/item/ammo/a10mm
 	name = "10mm"
 	path = /obj/item/ammo_magazine/a10mm
@@ -170,6 +182,23 @@ datum/uplink_item/dd_SortValue()
 /datum/uplink_item/item/ammo/a762
 	name = "7.62mm"
 	path = /obj/item/ammo_magazine/a762
+
+/datum/uplink_item/item/ammo/a762/ap
+	name = "7.62mm AP"
+	path = /obj/item/ammo_magazine/a762/ap
+
+/datum/uplink_item/item/ammo/g12
+	name = "12 gauge"
+	path = /obj/item/ammo_magazine/g12
+
+/datum/uplink_item/item/ammo/g12/beanbag
+	name = "12 gauge beanbag"
+	path = /obj/item/ammo_magazine/g12/beanbag
+	item_cost = 1 // Discount due to it being LTL.
+
+/datum/uplink_item/item/ammo/g12/pellet
+	name = "12 gauge pellet"
+	path = /obj/item/ammo_magazine/g12/pellet
 
 /***************************************
 * Highly Visible and Dangerous Weapons *
@@ -192,10 +221,10 @@ datum/uplink_item/dd_SortValue()
 	item_cost = 5
 	path = /obj/item/weapon/gun/energy/crossbow
 
-/datum/uplink_item/item/visible_weapons/g9mm
-	name = "Silenced 9mm"
+/datum/uplink_item/item/visible_weapons/silenced_45
+	name = "Silenced .45"
 	item_cost = 5
-	path = /obj/item/weapon/storage/box/syndie_kit/g9mm
+	path = /obj/item/weapon/gun/projectile/silenced
 
 /datum/uplink_item/item/visible_weapons/riggedlaser
 	name = "Exosuit Rigged Laser"
@@ -222,6 +251,36 @@ datum/uplink_item/dd_SortValue()
 	name = "Assault Rifle"
 	item_cost = 7
 	path = /obj/item/weapon/gun/projectile/automatic/sts35
+
+/datum/uplink_item/item/visible_weapons/combatshotgun
+	name = "Combat Shotgun"
+	item_cost = 7
+	path = /obj/item/weapon/gun/projectile/shotgun/pump/combat
+
+/datum/uplink_item/item/visible_weapons/egun
+	name = "Energy Gun"
+	item_cost = 5
+	path = /obj/item/weapon/gun/energy/gun
+
+/datum/uplink_item/item/visible_weapons/lasercannon
+	name = "Laser Cannon"
+	item_cost = 6
+	path = /obj/item/weapon/gun/energy/lasercannon
+
+/datum/uplink_item/item/visible_weapons/lasercarbine
+	name = "Laser Carbine"
+	item_cost = 7
+	path = /obj/item/weapon/gun/energy/laser
+
+/datum/uplink_item/item/visible_weapons/ionrifle
+	name = "Ion Rifle"
+	item_cost = 5
+	path = /obj/item/weapon/gun/energy/ionrifle
+
+/datum/uplink_item/item/visible_weapons/xray
+	name = "Xray Gun"
+	item_cost = 7
+	path = /obj/item/weapon/gun/energy/xray
 
 /*************************************
 * Stealthy and Inconspicuous Weapons *
