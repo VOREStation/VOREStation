@@ -9,7 +9,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 /mob/observer/dead
 	name = "ghost"
 	desc = "It's a g-g-g-g-ghooooost!" //jinkies!
-	icon = 'icons/mob/mob.dmi'
+	icon = 'icons/mob/ghost.dmi'
 	icon_state = "ghost"
 	layer = 4
 	stat = DEAD
@@ -34,6 +34,39 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 	var/ghostvision = 1 //is the ghost able to see things humans can't?
 	var/seedarkness = 1
 	incorporeal_move = 1
+
+	var/is_manifest = 0 //If set to 1, the ghost is able to whisper. Usually only set if a cultist drags them through the veil.
+	var/ghost_sprite = null
+	var/global/list/possible_ghost_sprites = list(
+		"Clear" = "blank",
+		"Green Blob" = "otherthing",
+		"Bland" = "ghost",
+		"Robed-B" = "ghost1",
+		"Robed-BAlt" = "ghost2",
+		"Corgi" = "ghostian",
+		"King" = "ghostking",
+		"Shade" = "shade",
+		"Hecate" = "ghost-narsie",
+		"Glowing Statue" = "armour",
+		"Artificer" = "artificer",
+		"Behemoth" = "behemoth",
+		"Harvester" = "harvester",
+		"Wraith" = "wraith",
+		"Viscerator" = "viscerator",
+		"Bats" = "bat",
+		"Red Robes" = "robe_red",
+		"Faithless" = "faithless",
+		"Shadowform" = "forgotten",
+		"Black Cat" = "blackcat",
+		"Dark Ethereal" = "bloodguardian",
+		"Holy Ethereal" = "lightguardian",
+		"Red Elemental" = "magicRed",
+		"Blue Elemental" = "magicBlue",
+		"Pink Elemental" = "magicPink",
+		"Orange Elemental" = "magicOrange",
+		"Green Elemental" = "magicGreen",
+		"Daemon" = "daemon"
+		)
 
 /mob/observer/dead/New(mob/body)
 	sight |= SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
@@ -617,11 +650,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	return 1
 
 /mob/observer/dead/proc/manifest(mob/user)
-	var/is_manifest = 0
+	is_manifest = 0
 	if(!is_manifest)
 		is_manifest = 1
 		verbs += /mob/observer/dead/proc/toggle_visibility
-
+		verbs += /mob/observer/dead/proc/ghost_whisper
+		src << "<font color='purple'>As you are now in the realm of the living, you can whisper to the living with the <b>Spectral Whisper</b> verb, inside the IC tab.</font>"
 	if(src.invisibility != 0)
 		user.visible_message( \
 			"<span class='warning'>\The [user] drags ghost, [src], to our plane of reality!</span>", \
@@ -753,3 +787,44 @@ mob/observer/dead/MayRespawn(var/feedback = 0)
 	if((!target) || (!ghost)) return
 	. = "<a href='byond://?src=\ref[ghost];track=\ref[target]'>follow</a>"
 	. += target.extra_ghost_link(ghost)
+
+//Culted Ghosts
+
+/mob/observer/dead/proc/ghost_whisper()
+	set name = "Spectral Whisper"
+	set category = "IC"
+
+	if(is_manifest)  //Only able to whisper if it's hit with a tome.
+		var/list/options = list()
+		for(var/mob/living/Ms in view(src))
+			options += Ms
+		var/mob/living/M = input(src, "Select who to whisper to:", "Whisper to?", null) as null|mob in options
+		if(!M)
+			return 0
+		var/msg = sanitize(input(src, "Message:", "Spectral Whisper") as text|null)
+		if(msg)
+			log_say("SpectralWhisper: [key_name(usr)]->[M.key] : [msg]")
+			M << "<span class='warning'> You hear a strange, unidentifiable voice in your head... <font color='purple'>[msg]</font></span>"
+			src << "<span class='warning'> You said: '[msg]' to [M].</span>"
+		else
+			return
+		return 1
+	else
+		src << "<span class='danger'>You have not been pulled past the veil!</span>"
+
+/mob/observer/dead/verb/choose_ghost_sprite()
+	set category = "Ghost"
+	set name = "Choose Sprite"
+
+	icon = 'icons/mob/ghost.dmi'
+	var/choice
+	var/finalized = "No"
+	while(finalized == "No" && src.client)
+
+		choice = input(usr,"What would you like to use for your ghost sprite?") as null|anything in possible_ghost_sprites
+		if(!choice) return
+
+		icon_state = possible_ghost_sprites[choice]
+		finalized = alert("Look at your sprite. Is this what you wish to use?",,"No","Yes")
+
+	ghost_sprite = possible_ghost_sprites[choice]
