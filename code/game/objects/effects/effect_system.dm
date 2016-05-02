@@ -240,6 +240,7 @@ steam.start() -- spawns the effect
 	if(prob(25))
 		M.emote("cough")
 
+/* Not feasile until a later date
 /obj/effect/effect/smoke/bad/Crossed(atom/movable/M as mob|obj)
 	..()
 	if(istype(M, /obj/item/projectile/beam))
@@ -253,6 +254,8 @@ steam.start() -- spawns the effect
 
 /obj/effect/effect/smoke/bad/proc/on_projectile_delete(obj/item/projectile/beam/proj)
 	projectiles -= proj
+*/
+
 /////////////////////////////////////////////
 // Sleep smoke
 /////////////////////////////////////////////
