@@ -226,7 +226,7 @@ steam.start() -- spawns the effect
 
 /obj/effect/effect/smoke/bad
 	time_to_live = 200
-	var/list/projectiles
+	//var/list/projectiles
 
 /obj/effect/effect/smoke/bad/Move()
 	..()
@@ -255,52 +255,6 @@ steam.start() -- spawns the effect
 /obj/effect/effect/smoke/bad/proc/on_projectile_delete(obj/item/projectile/beam/proj)
 	projectiles -= proj
 */
-
-/////////////////////////////////////////////
-// Sleep smoke
-/////////////////////////////////////////////
-
-/obj/effect/effect/smoke/sleepy
-
-/obj/effect/effect/smoke/sleepy/Move()
-	..()
-	for(var/mob/living/carbon/M in get_turf(src))
-		affect(M)
-
-/obj/effect/effect/smoke/sleepy/affect(mob/living/carbon/M as mob )
-	if (!..())
-		return 0
-
-	M.drop_item()
-	M:sleeping += 1
-	if(prob(20))
-		M.emote("cough")
-/////////////////////////////////////////////
-// Mustard Gas
-/////////////////////////////////////////////
-
-
-/obj/effect/effect/smoke/mustard
-	name = "mustard gas"
-	icon_state = "mustard"
-
-/obj/effect/effect/smoke/mustard/Move()
-	..()
-	for(var/mob/living/carbon/human/M in get_turf(src))
-		affect(M)
-
-/obj/effect/effect/smoke/mustard/affect(var/mob/living/carbon/human/M)
-	if (!..())
-		return 0
-	if (M.wear_suit != null)
-		return 0
-
-	M.burn_skin(0.75)
-	if(prob(20))
-		M.emote("cough")
-		M.emote("gasp")
-	M.updatehealth()
-	return
 
 /////////////////////////////////////////////
 // Smoke spread
@@ -350,14 +304,6 @@ steam.start() -- spawns the effect
 
 /datum/effect/effect/system/smoke_spread/bad
 	smoke_type = /obj/effect/effect/smoke/bad
-
-/datum/effect/effect/system/smoke_spread/sleepy
-	smoke_type = /obj/effect/effect/smoke/sleepy
-
-
-/datum/effect/effect/system/smoke_spread/mustard
-	smoke_type = /obj/effect/effect/smoke/mustard
-
 
 /////////////////////////////////////////////
 //////// Attach an Ion trail to any object, that spawns when it moves (like for the jetpack)
