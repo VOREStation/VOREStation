@@ -193,7 +193,7 @@ steam.start() -- spawns the effect
 		affect(M)
 
 /obj/effect/effect/smoke/proc/affect(var/mob/living/carbon/M)
-	if (istype(M))
+	if (!istype(M))
 		return 0
 	if (M.internal != null)
 		if(M.wear_mask && (M.wear_mask.item_flags & AIRTIGHT))
@@ -226,6 +226,7 @@ steam.start() -- spawns the effect
 
 /obj/effect/effect/smoke/bad
 	time_to_live = 200
+	//var/list/projectiles
 
 /obj/effect/effect/smoke/bad/Move()
 	..()
@@ -235,70 +236,25 @@ steam.start() -- spawns the effect
 /obj/effect/effect/smoke/bad/affect(var/mob/living/carbon/M)
 	if (!..())
 		return 0
-	M.drop_item()
 	M.adjustOxyLoss(1)
-	if (M.coughedtime != 1)
-		M.coughedtime = 1
+	if(prob(25))
 		M.emote("cough")
-		spawn ( 20 )
-			M.coughedtime = 0
 
-/obj/effect/effect/smoke/bad/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0)) return 1
-	if(istype(mover, /obj/item/projectile/beam))
-		var/obj/item/projectile/beam/B = mover
-		B.damage = (B.damage/2)
+/* Not feasile until a later date
+/obj/effect/effect/smoke/bad/Crossed(atom/movable/M as mob|obj)
+	..()
+	if(istype(M, /obj/item/projectile/beam))
+		var/obj/item/projectile/beam/B = M
+		if(!(B in projectiles))
+			B.damage = (B.damage/2)
+			projectiles += B
+			destroyed_event.register(B, src, /obj/effect/effect/smoke/bad/proc/on_projectile_delete)
+		world << "Damage is: [B.damage]"
 	return 1
-/////////////////////////////////////////////
-// Sleep smoke
-/////////////////////////////////////////////
 
-/obj/effect/effect/smoke/sleepy
-
-/obj/effect/effect/smoke/sleepy/Move()
-	..()
-	for(var/mob/living/carbon/M in get_turf(src))
-		affect(M)
-
-/obj/effect/effect/smoke/sleepy/affect(mob/living/carbon/M as mob )
-	if (!..())
-		return 0
-
-	M.drop_item()
-	M:sleeping += 1
-	if (M.coughedtime != 1)
-		M.coughedtime = 1
-		M.emote("cough")
-		spawn ( 20 )
-			M.coughedtime = 0
-/////////////////////////////////////////////
-// Mustard Gas
-/////////////////////////////////////////////
-
-
-/obj/effect/effect/smoke/mustard
-	name = "mustard gas"
-	icon_state = "mustard"
-
-/obj/effect/effect/smoke/mustard/Move()
-	..()
-	for(var/mob/living/carbon/human/R in get_turf(src))
-		affect(R)
-
-/obj/effect/effect/smoke/mustard/affect(var/mob/living/carbon/human/R)
-	if (!..())
-		return 0
-	if (R.wear_suit != null)
-		return 0
-
-	R.burn_skin(0.75)
-	if (R.coughedtime != 1)
-		R.coughedtime = 1
-		R.emote("gasp")
-		spawn (20)
-			R.coughedtime = 0
-	R.updatehealth()
-	return
+/obj/effect/effect/smoke/bad/proc/on_projectile_delete(obj/item/projectile/beam/proj)
+	projectiles -= proj
+*/
 
 /////////////////////////////////////////////
 // Smoke spread
@@ -321,7 +277,7 @@ steam.start() -- spawns the effect
 	if(direct)
 		direction = direct
 
-/datum/effect/effect/system/smoke_spread/start()
+/datum/effect/effect/system/smoke_spread/start(var/I)
 	var/i = 0
 	for(i=0, i<src.number, i++)
 		if(src.total_smoke > 20)
@@ -331,6 +287,7 @@ steam.start() -- spawns the effect
 				src.location = get_turf(holder)
 			var/obj/effect/effect/smoke/smoke = PoolOrNew(smoke_type, src.location)
 			src.total_smoke++
+			smoke.color = I
 			var/direction = src.direction
 			if(!direction)
 				if(src.cardinals)
@@ -347,14 +304,6 @@ steam.start() -- spawns the effect
 
 /datum/effect/effect/system/smoke_spread/bad
 	smoke_type = /obj/effect/effect/smoke/bad
-
-/datum/effect/effect/system/smoke_spread/sleepy
-	smoke_type = /obj/effect/effect/smoke/sleepy
-
-
-/datum/effect/effect/system/smoke_spread/mustard
-	smoke_type = /obj/effect/effect/smoke/mustard
-
 
 /////////////////////////////////////////////
 //////// Attach an Ion trail to any object, that spawns when it moves (like for the jetpack)
@@ -507,9 +456,9 @@ steam.start() -- spawns the effect
 				M << "<span class='warning'>The solution violently explodes.</span>"
 
 			explosion(
-				location, 
-				round(min(devst, BOMBCAP_DVSTN_RADIUS)), 
-				round(min(heavy, BOMBCAP_HEAVY_RADIUS)), 
-				round(min(light, BOMBCAP_LIGHT_RADIUS)), 
+				location,
+				round(min(devst, BOMBCAP_DVSTN_RADIUS)),
+				round(min(heavy, BOMBCAP_HEAVY_RADIUS)),
+				round(min(light, BOMBCAP_LIGHT_RADIUS)),
 				round(min(flash, BOMBCAP_FLASH_RADIUS))
 				)
