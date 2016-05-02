@@ -166,6 +166,8 @@ var/list/slot_equipment_priority = list( \
 	return slot
 
 /mob/proc/removeItem(var/obj/item/I, var/atom/T = loc, var/force = 0)
+	if(!I) // Nothing to remove, so we succeed.
+		return 1
 	if(!force && !src.canUnEquip(I))
 		return 0
 
