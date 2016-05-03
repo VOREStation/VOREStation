@@ -8,7 +8,7 @@
 
 	toggle_preference(pref_path)
 
-	src << "You will [ (is_preference_enabled(pref_path)) ? "now" : " no longer"] hear all mob speech as a ghost."
+	src << "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear all mob speech as a ghost."
 
 	prefs.save_preferences()
 
@@ -23,7 +23,7 @@
 
 	toggle_preference(pref_path)
 
-	src << "You will [ (is_preference_enabled(pref_path)) ? "now" : " no longer"] see all emotes as a ghost."
+	src << "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] see all emotes as a ghost."
 
 	prefs.save_preferences()
 
