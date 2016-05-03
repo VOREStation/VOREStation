@@ -605,7 +605,7 @@ var/global/list/damage_icon_parts = list()
 	if(update_icons)   update_icons()
 
 /mob/living/carbon/human/update_inv_shoes(var/update_icons=1)
-	if(shoes && !(wear_suit && wear_suit.flags_inv & HIDESHOES) && !(w_uniform && w_uniform.flags_inv & HIDESHOES))
+	if(shoes && !((wear_suit && wear_suit.flags_inv & HIDESHOES) || (w_uniform && w_uniform.flags_inv & HIDESHOES)))
 
 		var/image/standing
 		if(shoes.icon_override)
