@@ -1551,7 +1551,9 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	contains = list(/obj/item/device/pipe_painter,
 					/obj/item/device/pipe_painter,
 					/obj/item/device/floor_painter,
-					/obj/item/device/floor_painter)
+					/obj/item/device/floor_painter,
+					/obj/item/device/closet_painter,
+					/obj/item/device/closet_painter)
 
 
 /datum/supply_packs/randomised/exosuit_mod

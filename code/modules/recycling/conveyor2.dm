@@ -9,7 +9,6 @@
 	layer = 2			// so they appear under stuff
 	anchored = 1
 	circuit = /obj/item/weapon/circuitboard/conveyor
-	frame_type = "conveyor"
 	var/operating = 0	// 1 if running forward, -1 if backwards, 0 if off
 	var/operable = 1	// true if can operate (no broken segments in this belt run)
 	var/forwards		// this is the default (forward) direction, set by the map dir
@@ -39,6 +38,9 @@
 		operating = 1
 		setmove()
 
+/obj/machinery/conveyor/map/New()
+	..()
+	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/gear(src)
 	component_parts += new /obj/item/weapon/stock_parts/motor(src)

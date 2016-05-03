@@ -22,11 +22,12 @@
 	if(!build_machine_type)
 		return
 
-	var/ndir
 	if(!frame_type)
 		var/response = input(usr, "What kind of frame would you like to make?", "Frame type request", null) in list("Computer", "Machine", "Holopad", "Conveyor",
-																													"Photocopier", "Fax", "Microwave", "Vending Machine",
+																													"Photocopier", "Fax", "Microwave",
 																													"Recharger", "Washing Machine", "Grinder",
+																													"Medical Console", "Medical Pod", "DNA Analyzer",
+																													"Mass Driver",
 																													"Cancel")
 
 		if(response == "Cancel")
@@ -37,22 +38,29 @@
 		switch(response)
 			if("Holopad")
 				new /obj/item/stack/material/steel( usr.loc, 1 ) //holopads are smaller, they only need 4 sheets
-			if("Conveyor")
-				ndir = get_dir(src,usr)
-				if (!(ndir in cardinal))
-					return
 			if("Fax")
 				new /obj/item/stack/material/steel( usr.loc, 2 ) //faxes are smaller, they only need 3 sheets
 			if("Microwave")
 				new /obj/item/stack/material/steel( usr.loc, 1 ) //microwaves are smaller, they only need 4 sheets
-			if("Vending Machine")
-				frame_type = "vending"
 			if("Recharger")
 				new /obj/item/stack/material/steel( usr.loc, 2 ) //rechargers are smaller, they only need 3 sheets
 			if("Washing Machine")
 				frame_type = "washing"
 			if("Grinder")
 				new /obj/item/stack/material/steel( usr.loc, 2 ) //grinders are smaller, they only need 3 sheets
+			if("Medical Console")
+				frame_type = "console"
+			if("Medical Pod")
+				frame_type = "medpod"
+			if("DNA Analyzer")
+				frame_type = "dna_analyzer"
+			if("Mass Driver")
+				frame_type = "massdriver"
+
+	var/ndir
+	ndir = usr.dir
+	if (!(ndir in cardinal))
+		return
 
 	var/obj/machinery/M = new build_machine_type(get_turf(src.loc), ndir, 1, frame_type)
 	M.fingerprints = src.fingerprints
@@ -64,7 +72,7 @@
 	if(!frame_type)
 		var/response = input(usr, "What kind of frame would you like to make?", "Frame type request", null) in list("Fire Alarm", "Air Alarm", "Display", "Newscaster",
 																													"ATM", "Guest Pass Console", "Intercom", "Keycard Authenticator",
-																													"Wall Charger",
+																													"Wall Charger", "Supply Request Console",
 																													"Cancel")
 
 		if(response == "Cancel")
@@ -92,6 +100,8 @@
 			if("Wall Charger")
 				frame_type = "wrecharger"
 				new /obj/item/stack/material/steel( usr.loc, 2 ) //wall rechargers are smaller, they only need 3 sheets
+			if("Supply Request Console")
+				frame_type = "request"
 
 	if(!build_machine_type)
 		return

@@ -25,6 +25,9 @@
 	..()
 	initialize_directions = dir
 
+/obj/machinery/atmospherics/unary/heater/map/New()
+	..()
+	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
