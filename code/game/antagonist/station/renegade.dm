@@ -15,13 +15,11 @@ var/datum/antagonist/renegade/renegades
 
 	id = MODE_RENEGADE
 	flags = ANTAG_SUSPICIOUS | ANTAG_IMPLANT_IMMUNE | ANTAG_RANDSPAWN | ANTAG_VOTABLE
-	hard_cap = 5
-	hard_cap_round = 7
-
+	
 	hard_cap = 8
 	hard_cap_round = 12
-	initial_spawn_req = 3
-	initial_spawn_target = 6
+	initial_spawn_req = 2
+	initial_spawn_target = 4
 
 	var/list/spawn_guns = list(
 		/obj/item/weapon/gun/energy/laser,
