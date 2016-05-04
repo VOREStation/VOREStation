@@ -1,5 +1,5 @@
 #ifndef T_BOARD
-#error T_BOARD macro is not defined but we need it! 
+#error T_BOARD macro is not defined but we need it!
 #endif
 
 /obj/item/weapon/circuitboard/pacman
@@ -8,10 +8,10 @@
 	board_type = "machine"
 	origin_tech = list(TECH_DATA = 3, TECH_POWER = 3, TECH_PHORON = 3, TECH_ENGINEERING = 3)
 	req_components = list(
-							"/obj/item/weapon/stock_parts/matter_bin" = 1,
-							"/obj/item/weapon/stock_parts/micro_laser" = 1,
-							"/obj/item/stack/cable_coil" = 2,
-							"/obj/item/weapon/stock_parts/capacitor" = 1)
+							/obj/item/weapon/stock_parts/matter_bin = 1,
+							/obj/item/weapon/stock_parts/micro_laser = 1,
+							/obj/item/stack/cable_coil = 2,
+							/obj/item/weapon/stock_parts/capacitor = 1)
 
 /obj/item/weapon/circuitboard/pacman/super
 	name = T_BOARD("SUPERPACMAN-type generator")

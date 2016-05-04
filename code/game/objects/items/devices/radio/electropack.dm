@@ -27,11 +27,13 @@
 		var/obj/item/assembly/shock_kit/A = new /obj/item/assembly/shock_kit( user )
 		A.icon = 'icons/obj/assemblies.dmi'
 
-		user.removeItem(W, A)
+		user.drop_from_inventory(W)
+		W.loc = A
 		W.master = A
 		A.part1 = W
 
-		user.removeItem(src, A)
+		user.drop_from_inventory(src)
+		loc = A
 		master = A
 		A.part2 = src
 

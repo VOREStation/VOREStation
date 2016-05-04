@@ -106,7 +106,9 @@
 	target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Headbutted by [attacker.name] ([attacker.ckey])</font>")
 	msg_admin_attack("[key_name(attacker)] has headbutted [key_name(target)]")
 
-	attacker.deleteItem(src)
+	attacker.drop_from_inventory(src)
+	src.loc = null
+	qdel(src)
 	return
 
 /obj/item/weapon/grab/proc/dislocate(mob/living/carbon/human/target, mob/living/attacker, var/target_zone)

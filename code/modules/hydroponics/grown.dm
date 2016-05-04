@@ -288,7 +288,7 @@
 			if(prob(35))
 				if(user)
 					user << "<span class='danger'>\The [src] has fallen to bits.</span>"
-					user.removeItem(src)
+					user.drop_from_inventory(src)
 				qdel(src)
 
 		add_fingerprint(user)

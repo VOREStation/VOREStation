@@ -19,7 +19,7 @@
 			var/obj/item/old_item = L.get_equipped_item(slot_id)
 			L.equip_to_slot(new_item, slot_id)
 			if(old_item)
-				L.removeItem(old_item)
+				L.remove_from_mob(old_item)
 				if(delete_old)
 					qdel(old_item)
 				else
@@ -33,7 +33,8 @@
 			for(var/obj/item/to_remove in summoned_items)
 				if(istype(to_remove.loc, /mob))
 					var/mob/M = to_remove.loc
-					M.deleteItem(to_remove)
+					M.remove_from_mob(to_remove)
+					qdel(to_remove)
 
 /spell/targeted/equip_item/proc/summon_item(var/newtype)
 	return new newtype

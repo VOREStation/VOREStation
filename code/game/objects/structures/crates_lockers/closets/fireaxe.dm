@@ -66,7 +66,8 @@
 					user << "<span class='warning'>Unwield the axe first.</span>"
 					return
 				fireaxe = O
-				user.removeItem(O, src)
+				user.remove_from_mob(O)
+				src.contents += O
 				user << "<span class='notice'>You place the fire axe back in the [src.name].</span>"
 				update_icon()
 			else

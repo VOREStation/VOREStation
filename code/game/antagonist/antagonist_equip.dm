@@ -6,7 +6,8 @@
 	// This could use work.
 	if(flags & ANTAG_CLEAR_EQUIPMENT)
 		for(var/obj/item/thing in player.contents)
-			if(player.removeItem(thing, force = 1))
+			player.drop_from_inventory(thing)
+			if(thing.loc != player)
 				qdel(thing)
 	return 1
 

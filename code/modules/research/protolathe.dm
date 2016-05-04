@@ -17,8 +17,9 @@
 
 	materials = list(DEFAULT_WALL_MATERIAL = 0, "glass" = 0, "gold" = 0, "silver" = 0, "phoron" = 0, "uranium" = 0, "diamond" = 0)
 
-/obj/machinery/r_n_d/protolathe/New()
+/obj/machinery/r_n_d/protolathe/map/New()
 	..()
+	circuit = new circuit()
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)

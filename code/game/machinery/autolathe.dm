@@ -23,12 +23,14 @@
 
 	var/datum/wires/autolathe/wires = null
 
-
 /obj/machinery/autolathe/New()
-
 	..()
 	wires = new(src)
+
+/obj/machinery/autolathe/map/New()
+	..()
 	//Create parts for lathe.
+	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
@@ -196,7 +198,8 @@
 		var/obj/item/stack/stack = eating
 		stack.use(max(1, round(total_used/mass_per_sheet))) // Always use at least 1 to prevent infinite materials.
 	else
-		user.deleteItem(O)
+		user.remove_from_mob(O)
+		qdel(O)
 
 	updateUsrDialog()
 	return

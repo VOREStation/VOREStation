@@ -118,7 +118,7 @@
 		return
 
 	for(var/obj/item/W in T)
-		T.removeItem(W)
+		T.drop_from_inventory(W)
 
 	new /obj/effect/decal/remains/human(T.loc) //Spawns a skeleton
 	T.invisibility = 101

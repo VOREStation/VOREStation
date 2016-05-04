@@ -3,7 +3,7 @@ var/datum/antagonist/renegade/renegades
 /datum/antagonist/renegade
 	role_text = "Renegade"
 	role_text_plural = "Renegades"
-	welcome_text = "Something's going to go wrong today, you can just feel it. Your paranoid, you've got a gun, and you're going to survive."
+	welcome_text = "Something's going to go wrong today, you can just feel it. You're paranoid, you've got a gun, and you're going to survive."
 	antag_text = "You are a <b>minor</b> antagonist! Within the rules, \
 		try to protect yourself and what's important to you. You aren't here to cause trouble, \
 		you're just more willing (and equipped) to go to extremes to stop it than others are. \
@@ -15,13 +15,11 @@ var/datum/antagonist/renegade/renegades
 
 	id = MODE_RENEGADE
 	flags = ANTAG_SUSPICIOUS | ANTAG_IMPLANT_IMMUNE | ANTAG_RANDSPAWN | ANTAG_VOTABLE
-	hard_cap = 5
-	hard_cap_round = 7
-
+	
 	hard_cap = 8
 	hard_cap_round = 12
-	initial_spawn_req = 3
-	initial_spawn_target = 6
+	initial_spawn_req = 2
+	initial_spawn_target = 4
 
 	var/list/spawn_guns = list(
 		/obj/item/weapon/gun/energy/laser,

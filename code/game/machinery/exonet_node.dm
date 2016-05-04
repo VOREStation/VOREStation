@@ -18,7 +18,7 @@
 // Proc: New()
 // Parameters: None
 // Description: Adds components to the machine for deconstruction.
-/obj/machinery/exonet_node/New()
+/obj/machinery/exonet_node/map/New()
 	..()
 
 	component_parts = list()

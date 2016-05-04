@@ -170,6 +170,7 @@
 	use_power = 1
 	idle_power_usage = 10
 	active_power_usage = 2000
+	circuit = /obj/item/weapon/circuitboard/teleporter_hub
 	var/obj/machinery/computer/teleporter/com
 
 
@@ -177,6 +178,21 @@
 	..()
 	underlays.Cut()
 	underlays += image('icons/obj/stationobjs.dmi', icon_state = "tele-wires")
+
+/obj/machinery/teleport/hub/map/New()
+	..()
+	circuit = new circuit(src)
+	component_parts = list()
+	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
+	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
+	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
+	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
+	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
+	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
+	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
+	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
+	component_parts += new /obj/item/stack/cable_coil(src, 10)
+	RefreshParts()
 
 /obj/machinery/teleport/hub/Bumped(M as mob|obj)
 	spawn()
@@ -307,12 +323,23 @@
 	use_power = 1
 	idle_power_usage = 10
 	active_power_usage = 2000
+	circuit = /obj/item/weapon/circuitboard/teleporter_station
 	var/obj/machinery/teleport/hub/com
 
 /obj/machinery/teleport/station/New()
 	..()
 	overlays.Cut()
 	overlays += image('icons/obj/stationobjs.dmi', icon_state = "controller-wires")
+
+/obj/machinery/teleport/station/map/New()
+	..()
+	circuit = new circuit(src)
+	component_parts = list()
+	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
+	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
+	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
+	component_parts += new /obj/item/stack/cable_coil(src, 10)
+	RefreshParts()
 
 /obj/machinery/teleport/station/attackby(var/obj/item/weapon/W)
 	src.attack_hand()

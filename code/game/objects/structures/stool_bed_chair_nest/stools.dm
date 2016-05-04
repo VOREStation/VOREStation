@@ -72,7 +72,7 @@ var/global/list/stool_cache = list() //haha stool
 /obj/item/weapon/stool/attack(mob/M as mob, mob/user as mob)
 	if (prob(5) && istype(M,/mob/living))
 		user.visible_message("<span class='danger'>[user] breaks [src] over [M]'s back!</span>")
-		user.removeItem(src)
+		user.remove_from_mob(src)
 		dismantle()
 		qdel(src)
 		var/mob/living/T = M
@@ -112,7 +112,9 @@ var/global/list/stool_cache = list() //haha stool
 			user << "\The [src] is already padded."
 			return
 		var/obj/item/stack/C = W
-		if(C.get_amount() < 1)
+		if(C.get_amount() < 1) // How??
+			user.drop_from_inventory(C)
+			qdel(C)
 			return
 		var/padding_type //This is awful but it needs to be like this until tiles are given a material var.
 		if(istype(W,/obj/item/stack/tile/carpet))
@@ -126,7 +128,8 @@ var/global/list/stool_cache = list() //haha stool
 			return
 		C.use(1)
 		if(!istype(src.loc, /turf))
-			user.removeItem(src, get_turf(src))
+			user.drop_from_inventory(src)
+			src.loc = get_turf(src)
 		user << "You add padding to \the [src]."
 		add_padding(padding_type)
 		return

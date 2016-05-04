@@ -6,6 +6,7 @@
 	icon_state = "dnaopen"
 	anchored = 1
 	density = 1
+	circuit = /obj/item/weapon/circuitboard/dna_analyzer
 
 	var/obj/item/weapon/forensics/swab/bloodsamp = null
 	var/closed = 0
@@ -15,6 +16,15 @@
 	var/last_process_worldtime = 0
 	var/report_num = 0
 
+/obj/machinery/dnaforensics/map/New()
+	circuit = new circuit(src)
+	component_parts = list()
+	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
+	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
+	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
+	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
+	RefreshParts()
+
 /obj/machinery/dnaforensics/attackby(var/obj/item/W, mob/user as mob)
 
 	if(bloodsamp)
@@ -22,13 +32,20 @@
 		return
 
 	if(closed)
-		user << "<span class='warning'>Open the cover before inserting the sample.</span>"
+		if(!scanning)
+			if(default_deconstruction_screwdriver(user, W))
+				return
+			if(default_deconstruction_crowbar(user, W))
+				return
+		else
+			user << "<span class='warning'>Open the cover before inserting the sample.</span>"
 		return
 
 	var/obj/item/weapon/forensics/swab/swab = W
 	if(istype(swab) && swab.is_used())
-		user.removeItem(swab, src)
+		user.unEquip(W)
 		src.bloodsamp = swab
+		swab.loc = src
 		user << "<span class='notice'>You insert \the [W] into \the [src].</span>"
 	else
 		user << "<span class='warning'>\The [src] only accepts used swabs.</span>"

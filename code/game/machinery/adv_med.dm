@@ -9,10 +9,30 @@
 	icon_state = "body_scanner_0"
 	density = 1
 	anchored = 1
+	circuit = /obj/item/weapon/circuitboard/body_scanner
 
 	use_power = 1
 	idle_power_usage = 60
 	active_power_usage = 10000	//10 kW. It's a big all-body scanner.
+
+/obj/machinery/bodyscanner/New()
+	..()
+	spawn( 5 )
+		var/obj/machinery/body_scanconsole/C = locate(/obj/machinery/body_scanconsole) in range(2,src)
+		if(C)
+			C.connected = src
+		return
+	return
+
+/obj/machinery/bodyscanner/map/New()
+	..()
+	circuit = new circuit(src)
+	component_parts = list()
+	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
+	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
+	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
+	component_parts += new /obj/item/stack/material/glass/reinforced(src, 2)
+	RefreshParts()
 
 /obj/machinery/bodyscanner/relaymove(mob/user as mob)
 	if (user.stat)
@@ -73,29 +93,36 @@
 	src.icon_state = "body_scanner_0"
 	return
 
-/obj/machinery/bodyscanner/attackby(obj/item/weapon/grab/G as obj, user as mob)
-	if ((!( istype(G, /obj/item/weapon/grab) ) || !( ismob(G.affecting) )))
+/obj/machinery/bodyscanner/attackby(var/obj/item/G, user as mob)
+	if(default_deconstruction_screwdriver(user, G))
 		return
-	if (src.occupant)
-		user << "<span class='warning'>The scanner is already occupied!</span>"
+	if(default_deconstruction_crowbar(user, G))
 		return
-	if (G.affecting.abiotic())
-		user << "<span class='warning'>Subject cannot have abiotic items on.</span>"
-		return
-	var/mob/M = G.affecting
-	if (M.client)
-		M.client.perspective = EYE_PERSPECTIVE
-		M.client.eye = src
-	M.loc = src
-	src.occupant = M
-	update_use_power(2)
-	src.icon_state = "body_scanner_1"
-	for(var/obj/O in src)
-		O.loc = src.loc
-		//Foreach goto(154)
-	src.add_fingerprint(user)
-	//G = null
-	qdel(G)
+
+	if(istype(G, /obj/item/weapon/grab))
+		var/obj/item/weapon/grab/H = G
+		if(!(ismob(H.affecting)))
+			return
+		if (src.occupant)
+			user << "<span class='warning'>The scanner is already occupied!</span>"
+			return
+		if (H.affecting.abiotic())
+			user << "<span class='warning'>Subject cannot have abiotic items on.</span>"
+			return
+		var/mob/M = H.affecting
+		if (M.client)
+			M.client.perspective = EYE_PERSPECTIVE
+			M.client.eye = src
+		M.loc = src
+		src.occupant = M
+		update_use_power(2)
+		src.icon_state = "body_scanner_1"
+		for(var/obj/O in src)
+			O.loc = src.loc
+			//Foreach goto(154)
+		src.add_fingerprint(user)
+		//G = null
+		qdel(G)
 	return
 
 /obj/machinery/bodyscanner/ex_act(severity)
@@ -166,11 +193,12 @@
 	dir = 8
 	density = 0
 	anchored = 1
+	circuit = /obj/item/weapon/circuitboard/scanner_console
 
 /obj/machinery/body_scanconsole/New()
 	..()
 	spawn( 5 )
-		src.connected = locate(/obj/machinery/bodyscanner, get_step(src, WEST)) //We assume dir = 8 so scanner is WEST. Other sprites do exist.
+		src.connected = locate(/obj/machinery/bodyscanner) in range(2,src)
 		return
 	return
 
@@ -228,6 +256,36 @@
 	user << browse(dat, "window=scanconsole;size=430x600")
 	return
 
+/obj/machinery/body_scanconsole/attackby(var/obj/item/I, var/mob/user)
+	if(istype(I, /obj/item/weapon/screwdriver) && circuit)
+		user << "<span class='notice'>You start disconnecting the monitor.</span>"
+		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+		if(do_after(user, 20))
+			var/obj/structure/frame/A = new /obj/structure/frame( src.loc )
+			var/obj/item/weapon/circuitboard/M = new circuit( A )
+			A.circuit = M
+			A.anchored = 1
+			A.density = 1
+			A.frame_type = M.board_type
+			for (var/obj/C in src)
+				C.forceMove(loc)
+			if (src.stat & BROKEN)
+				user << "<span class='notice'>The broken glass falls out.</span>"
+				new /obj/item/weapon/material/shard( src.loc )
+				A.state = 3
+				A.icon_state = "[A.frame_type]_3"
+			else
+				user << "<span class='notice'>You disconnect the monitor.</span>"
+				A.state = 4
+				A.icon_state = "[A.frame_type]_4"
+			A.pixel_x = pixel_x
+			A.pixel_y = pixel_y
+			A.dir = dir
+			M.deconstruct(src)
+			qdel(src)
+	else
+		src.attack_hand(user)
+	return
 
 /obj/machinery/body_scanconsole/Topic(href, href_list)
 	if (..())

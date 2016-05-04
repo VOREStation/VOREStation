@@ -139,7 +139,7 @@
 
 
 	for(var/obj/item/W in src)
-		removeItem(W, force = 1)
+		drop_from_inventory(W)
 
 	visible_message("<span class='warning'>\The [src] quivers slightly, then splits apart with a wet slithering noise.</span>")
 

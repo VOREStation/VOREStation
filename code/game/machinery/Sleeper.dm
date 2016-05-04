@@ -9,6 +9,7 @@
 	use_power = 1
 	idle_power_usage = 40
 	interact_offline = 1
+	circuit = /obj/item/weapon/circuitboard/sleeper_console
 
 //obj/machinery/sleep_console/New()
 	//..()
@@ -32,8 +33,39 @@
 /obj/machinery/sleep_console/attack_hand(var/mob/user)
 	if(..())
 		return 1
+	if(connected)
+		connected.ui_interact(user)
 
-	connected.ui_interact(user)
+/obj/machinery/sleep_console/attackby(var/obj/item/I, var/mob/user)
+	if(istype(I, /obj/item/weapon/screwdriver) && circuit)
+		user << "<span class='notice'>You start disconnecting the monitor.</span>"
+		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+		if(do_after(user, 20))
+			var/obj/structure/frame/A = new /obj/structure/frame( src.loc )
+			var/obj/item/weapon/circuitboard/M = new circuit( A )
+			A.circuit = M
+			A.anchored = 1
+			A.density = 1
+			A.frame_type = M.board_type
+			for (var/obj/C in src)
+				C.forceMove(loc)
+			if (src.stat & BROKEN)
+				user << "<span class='notice'>The broken glass falls out.</span>"
+				new /obj/item/weapon/material/shard( src.loc )
+				A.state = 3
+				A.icon_state = "[A.frame_type]_3"
+			else
+				user << "<span class='notice'>You disconnect the monitor.</span>"
+				A.state = 4
+				A.icon_state = "[A.frame_type]_4"
+			A.pixel_x = pixel_x
+			A.pixel_y = pixel_y
+			A.dir = dir
+			M.deconstruct(src)
+			qdel(src)
+	else
+		src.attack_hand(user)
+	return
 
 /obj/machinery/sleep_console/power_change()
 	..()
@@ -49,6 +81,7 @@
 	icon_state = "sleeper_0"
 	density = 1
 	anchored = 1
+	circuit = /obj/item/weapon/circuitboard/sleeper
 	var/mob/living/carbon/human/occupant = null
 	var/list/available_chemicals = list("inaprovaline" = "Inaprovaline", "stoxin" = "Soporific", "paracetamol" = "Paracetamol", "anti_toxin" = "Dylovene", "dexalin" = "Dexalin")
 	var/obj/item/weapon/reagent_containers/glass/beaker = null
@@ -60,7 +93,28 @@
 
 /obj/machinery/sleeper/New()
 	..()
+	spawn(5)
+		//src.machine = locate(/obj/machinery/mineral/processing_unit, get_step(src, machinedir))
+		var/obj/machinery/sleep_console/C = locate(/obj/machinery/sleep_console) in range(2,src)
+		if(C)
+			C.connected = src
+		return
+	return
+
+/obj/machinery/sleeper/map/New()
+	..()
 	beaker = new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
+	circuit = new circuit(src)
+	component_parts = list()
+	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
+	component_parts += new /obj/item/weapon/reagent_containers/glass/beaker(src)
+	component_parts += new /obj/item/weapon/reagent_containers/glass/beaker(src)
+	component_parts += new /obj/item/weapon/reagent_containers/glass/beaker(src)
+	component_parts += new /obj/item/weapon/reagent_containers/syringe(src)
+	component_parts += new /obj/item/weapon/reagent_containers/syringe(src)
+	component_parts += new /obj/item/weapon/reagent_containers/syringe(src)
+	component_parts += new /obj/item/stack/material/glass/reinforced(src, 2)
+	RefreshParts()
 
 /obj/machinery/sleeper/initialize()
 	update_icon()
@@ -156,6 +210,10 @@
 	return 1
 
 /obj/machinery/sleeper/attackby(var/obj/item/I, var/mob/user)
+	if(default_deconstruction_screwdriver(user, I))
+		return
+	if(default_deconstruction_crowbar(user, I))
+		return
 	add_fingerprint(user)
 	if(istype(I, /obj/item/weapon/reagent_containers/glass))
 		if(!beaker)

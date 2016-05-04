@@ -1,4 +1,3 @@
-
 /obj/machinery/microwave
 	name = "Microwave"
 	icon = 'icons/obj/kitchen.dmi'
@@ -31,6 +30,9 @@
 	reagents = new/datum/reagents(100)
 	reagents.my_atom = src
 
+/obj/machinery/microwave/map/New()
+	..()
+	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
 	component_parts += new /obj/item/weapon/stock_parts/motor(src)
@@ -126,7 +128,9 @@
 				"<span class='notice'>You add one of [O] to \the [src].</span>")
 			return
 		else
-			user.removeItem(O, src)
+		//	user.remove_from_mob(O)	//This just causes problems so far as I can tell. -Pete
+			user.drop_item()
+			O.loc = src
 			user.visible_message( \
 				"<span class='notice'>\The [user] has added \the [O] to \the [src].</span>", \
 				"<span class='notice'>You add \the [O] to \the [src].</span>")

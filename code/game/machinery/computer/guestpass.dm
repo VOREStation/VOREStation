@@ -61,6 +61,7 @@
 	..()
 	uid = "[rand(100,999)]-G[rand(10,99)]"
 
+
 /obj/machinery/computer/guestpass/attackby(obj/I, mob/user)
 	if(istype(I, /obj/item/weapon/screwdriver) && circuit)
 		user << "<span class='notice'>You start disconnecting the monitor.</span>"
@@ -82,7 +83,8 @@
 			qdel(src)
 		return
 	if(istype(I, /obj/item/weapon/card/id))
-		if(!giver && user.removeItem(I, src))
+		if(!giver && user.unEquip(I))
+			I.forceMove(src)
 			giver = I
 			updateUsrDialog()
 		else if(giver)
@@ -175,7 +177,8 @@
 					accesses.Cut()
 				else
 					var/obj/item/I = usr.get_active_hand()
-					if (istype(I, /obj/item/weapon/card/id) && usr.removeItem(I, src))
+					if (istype(I, /obj/item/weapon/card/id) && usr.unEquip(I))
+						I.loc = src
 						giver = I
 				updateUsrDialog()
 

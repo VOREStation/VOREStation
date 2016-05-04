@@ -93,7 +93,7 @@
 
 	playsound(src, 'sound/effects/supermatter.ogg', 50, 1)
 
-	user.removeItem(W, force = 1)
+	user.drop_from_inventory(W)
 	Consume(W)
 
 

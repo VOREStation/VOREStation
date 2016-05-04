@@ -226,24 +226,19 @@
 	path = /obj/item/weapon/circuitboard/fax
 	category = "Engineering"
 
-/datum/autolathe/recipe/conveyor
-	name = "conveyor electronics"
-	path = /obj/item/weapon/circuitboard/conveyor
-	category = "Engineering"
-
 /datum/autolathe/recipe/microwave
 	name = "microwave electronics"
 	path = /obj/item/weapon/circuitboard/microwave
 	category = "Engineering"
 
-/datum/autolathe/recipe/vending
-	name = "vending machine electronics"
-	path = /obj/item/weapon/circuitboard/vending
-	category = "Engineering"
-
 /datum/autolathe/recipe/washing
 	name = "washing machine electronics"
 	path = /obj/item/weapon/circuitboard/washing
+	category = "Engineering"
+
+/datum/autolathe/recipe/request
+	name = "request console electronics"
+	path = /obj/item/weapon/circuitboard/request
 	category = "Engineering"
 
 /datum/autolathe/recipe/motor
