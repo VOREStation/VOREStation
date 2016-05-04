@@ -258,8 +258,9 @@
 		preview_icon.Blend(E.get_icon(), ICON_OVERLAY)
 
 	//Tail
-	if(H.species.tail)
-		temp = new/icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[H.species.tail]_s")
+	var/use_species_tail = H.species.get_tail(H)
+	if(use_species_tail)
+		temp = new/icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[use_species_tail]_s")
 		preview_icon.Blend(temp, ICON_OVERLAY)
 
 	// Skin tone
