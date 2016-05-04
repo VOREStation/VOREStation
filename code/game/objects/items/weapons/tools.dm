@@ -195,12 +195,12 @@
 		if (user.client)
 			user.client.screen -= src
 		if (user.r_hand == src)
-			user.removeItem(src)
+			user.remove_from_mob(src)
 		else
-			user.removeItem(src)
+			user.remove_from_mob(src)
 		src.master = F
 		src.layer = initial(src.layer)
-		user.removeItem(src)
+		user.remove_from_mob(src)
 		if (user.client)
 			user.client.screen -= src
 		src.loc = F

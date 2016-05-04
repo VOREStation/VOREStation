@@ -69,7 +69,7 @@
 		if (( usr.restrained() ) || ( usr.stat ))
 			return
 
-		if ((src.loc == usr) && !usr.removeItem(src))
+		if ((src.loc == usr) && !usr.unEquip(src))
 			return
 
 		switch(over_object.name)
@@ -347,7 +347,7 @@
 /obj/item/weapon/storage/proc/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
 	if(!istype(W)) return 0
 	if(usr)
-		usr.removeItem(W)
+		usr.remove_from_mob(W)
 		usr.update_icons()	//update our overlays
 	W.loc = src
 	W.on_enter_storage(src)

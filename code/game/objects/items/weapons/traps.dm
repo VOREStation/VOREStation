@@ -36,7 +36,7 @@
 				)
 
 			deployed = 1
-			user.removeItem(src)
+			user.drop_from_inventory(src)
 			update_icon()
 			anchored = 1
 
