@@ -43,8 +43,9 @@
 
 	var/obj/item/weapon/forensics/swab/swab = W
 	if(istype(swab) && swab.is_used())
-		user.removeItem(swab, src)
+		user.unEquip(W)
 		src.bloodsamp = swab
+		swab.loc = src
 		user << "<span class='notice'>You insert \the [W] into \the [src].</span>"
 	else
 		user << "<span class='warning'>\The [src] only accepts used swabs.</span>"

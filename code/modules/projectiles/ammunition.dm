@@ -108,7 +108,8 @@
 		if(stored_ammo.len >= max_ammo)
 			user << "<span class='warning'>[src] is full!</span>"
 			return
-		user.removeItem(C, src)
+		user.remove_from_mob(C)
+		C.loc = src
 		stored_ammo.Insert(1, C) //add to the head of the list
 		update_icon()
 
