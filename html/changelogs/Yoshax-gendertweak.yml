@@ -1,0 +1,4 @@
+author: Yoshax
+delete-after: True
+changes:
+  - tweak"Splits gender into biological gender and gender identity. Biological gender modifies the sprite (for between male and female) and gender identity determines what pronouns show up when examined or suchlike. Both are displayed in medical records and such. "

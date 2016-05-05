@@ -253,6 +253,7 @@
 
 	reagent_tag = IS_DIONA
 
+	genders = list(PLURAL)
 /datum/species/diona/can_understand(var/mob/other)
 	var/mob/living/carbon/alien/diona/D = other
 	if(istype(D))

@@ -191,7 +191,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	return mob_species && (mob_species.appearance_flags & flag)
 
 /datum/category_item/player_setup_item/general/body/OnTopic(var/href,var/list/href_list, var/mob/user)
-	var/mob_species = all_species[pref.species]
+	var/datum/species/mob_species = all_species[pref.species]
 
 	if(href_list["random"])
 		pref.randomize_appearance_for()
@@ -220,13 +220,17 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		var/prev_species = pref.species
 		pref.species = href_list["set_species"]
 		if(prev_species != pref.species)
+			if(!(pref.biological_gender in mob_species.genders))
+				pref.set_biological_gender(mob_species.genders[1])
+
+
 			//grab one of the valid hair styles for the newly chosen species
 			var/list/valid_hairstyles = list()
 			for(var/hairstyle in hair_styles_list)
 				var/datum/sprite_accessory/S = hair_styles_list[hairstyle]
-				if(pref.gender == MALE && S.gender == FEMALE)
+				if(pref.biological_gender == MALE && S.gender == FEMALE)
 					continue
-				if(pref.gender == FEMALE && S.gender == MALE)
+				if(pref.biological_gender == FEMALE && S.gender == MALE)
 					continue
 				if(!(pref.species in S.species_allowed))
 					continue
@@ -242,9 +246,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			var/list/valid_facialhairstyles = list()
 			for(var/facialhairstyle in facial_hair_styles_list)
 				var/datum/sprite_accessory/S = facial_hair_styles_list[facialhairstyle]
-				if(pref.gender == MALE && S.gender == FEMALE)
+				if(pref.biological_gender == MALE && S.gender == FEMALE)
 					continue
-				if(pref.gender == FEMALE && S.gender == MALE)
+				if(pref.biological_gender == FEMALE && S.gender == MALE)
 					continue
 				if(!(pref.species in S.species_allowed))
 					continue
@@ -336,9 +340,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		var/list/valid_facialhairstyles = list()
 		for(var/facialhairstyle in facial_hair_styles_list)
 			var/datum/sprite_accessory/S = facial_hair_styles_list[facialhairstyle]
-			if(pref.gender == MALE && S.gender == FEMALE)
+			if(pref.biological_gender == MALE && S.gender == FEMALE)
 				continue
-			if(pref.gender == FEMALE && S.gender == MALE)
+			if(pref.biological_gender == FEMALE && S.gender == MALE)
 				continue
 			if(!(pref.species in S.species_allowed))
 				continue
