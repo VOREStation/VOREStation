@@ -288,7 +288,9 @@
 	occupant.loc = loc
 	occupant = null
 	for(var/atom/movable/A in src) // In case an object was dropped inside or something
-		if(A == beaker)
+		if(A == beaker || A == circuit)
+			continue
+		if(A in component_parts)
 			continue
 		A.loc = loc
 	update_use_power(1)

@@ -73,6 +73,10 @@
 	src.icon_state = "body_scanner_1"
 	for(var/obj/O in src)
 		//O = null
+		if(O in component_parts)
+			continue
+		if(O == circuit)
+			continue
 		qdel(O)
 		//Foreach goto(124)
 	src.add_fingerprint(usr)
@@ -82,6 +86,10 @@
 	if ((!( src.occupant ) || src.locked))
 		return
 	for(var/obj/O in src)
+		if(O in component_parts)
+			continue
+		if(O == circuit)
+			continue
 		O.loc = src.loc
 		//Foreach goto(30)
 	if (src.occupant.client)
@@ -118,6 +126,10 @@
 		update_use_power(2)
 		src.icon_state = "body_scanner_1"
 		for(var/obj/O in src)
+			if(O in component_parts)
+				continue
+			if(O == circuit)
+				continue
 			O.loc = src.loc
 			//Foreach goto(154)
 		src.add_fingerprint(user)
@@ -129,6 +141,10 @@
 	switch(severity)
 		if(1.0)
 			for(var/atom/movable/A as mob|obj in src)
+				if(A in component_parts)
+					continue
+				if(A == circuit)
+					continue
 				A.loc = src.loc
 				ex_act(severity)
 				//Foreach goto(35)
@@ -138,6 +154,10 @@
 		if(2.0)
 			if (prob(50))
 				for(var/atom/movable/A as mob|obj in src)
+					if(A in component_parts)
+						continue
+					if(A == circuit)
+						continue
 					A.loc = src.loc
 					ex_act(severity)
 					//Foreach goto(108)
@@ -147,6 +167,10 @@
 		if(3.0)
 			if (prob(25))
 				for(var/atom/movable/A as mob|obj in src)
+					if(A in component_parts)
+						continue
+					if(A == circuit)
+						continue
 					A.loc = src.loc
 					ex_act(severity)
 					//Foreach goto(181)
