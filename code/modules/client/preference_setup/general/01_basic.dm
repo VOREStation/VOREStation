@@ -14,7 +14,7 @@ datum/preferences/proc/set_biological_gender(var/gender)
 	S["real_name"]				>> pref.real_name
 	S["name_is_always_random"]	>> pref.be_random_name
 	S["gender"]					>> pref.biological_gender
-	S["id_gender"]				<< pref.identifying_gender
+	S["id_gender"]				>> pref.identifying_gender
 	S["age"]					>> pref.age
 	S["spawnpoint"]				>> pref.spawnpoint
 	S["OOC_Notes"]				>> pref.metadata
