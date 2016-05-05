@@ -32,7 +32,7 @@ datum/preferences/proc/set_biological_gender(var/gender)
 	if(!pref.species) pref.species = "Human"
 	var/datum/species/S = all_species[pref.species ? pref.species : "Human"]
 	pref.age                = sanitize_integer(pref.age, S.min_age, S.max_age, initial(pref.age))
-	pref.biological_gender  = sanitize_inlist(pref.biological_gender, S.genders, pick(S.genders))
+	pref.biological_gender  = sanitize_inlist(pref.biological_gender, get_genders(), pick(get_genders()))
 	pref.identifying_gender = (pref.identifying_gender in all_genders_define_list) ? pref.identifying_gender : pref.biological_gender
 	pref.real_name          = sanitize_name(pref.real_name, pref.species)
 	if(!pref.real_name)
