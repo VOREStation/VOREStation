@@ -8,7 +8,6 @@
 	worn_state = "ba_suit"
 	rolled_sleeves = 0
 
-
 /obj/item/clothing/under/rank/captain //Alright, technically not a 'civilian' but its better then giving a .dm file for a single define.
 	desc = "It's a blue jumpsuit with some gold markings denoting the rank of \"Captain\"."
 	name = "captain's jumpsuit"
@@ -17,7 +16,6 @@
 	worn_state = "captain"
 	rolled_sleeves = 0
 
-
 /obj/item/clothing/under/rank/cargo
 	name = "quartermaster's jumpsuit"
 	desc = "It's a jumpsuit worn by the quartermaster. It's specially designed to prevent back injuries caused by pushing paper."
@@ -25,14 +23,6 @@
 	item_state = "lb_suit"
 	worn_state = "qm"
 	rolled_sleeves = 0
-
-/obj/item/clothing/under/rank/cargo/skirt
-	name = "quartermaster's jumpskirt"
-	desc = "It's a jumpskirt worn by the quartermaster. It's specially designed to prevent back injuries caused by pushing paper."
-	icon_state = "qmf"
-	worn_state = "qmf"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	rolled_sleeves = -1
 
 /obj/item/clothing/under/rank/cargo/jeans
 	name = "quartermaster's jumpjeans"
@@ -56,13 +46,6 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	rolled_sleeves = 0
 
-/obj/item/clothing/under/rank/cargotech/skirt
-	name = "cargo technician's jumpskirt"
-	desc = "Skirrrrrts! They're comfy and easy to wear!"
-	icon_state = "cargof"
-	worn_state = "cargof"
-	rolled_sleeves = -1
-
 /obj/item/clothing/under/rank/cargotech/jeans
 	name = "cargo technician's jumpjeans"
 	desc = "Jeeeaaans! They're comfy!"
@@ -76,7 +59,6 @@
 	icon_state = "cargojf"
 	worn_state = "cargojf"
 
-
 /obj/item/clothing/under/rank/chaplain
 	desc = "It's a black jumpsuit, often worn by religious folk."
 	name = "chaplain's jumpsuit"
@@ -84,7 +66,6 @@
 	item_state = "bl_suit"
 	worn_state = "chapblack"
 	rolled_sleeves = 0
-
 
 /obj/item/clothing/under/rank/chef
 	desc = "It's an apron which is given only to the most <b>hardcore</b> chefs in space."
@@ -94,7 +75,6 @@
 	worn_state = "chef"
 	rolled_sleeves = 0
 
-
 /obj/item/clothing/under/rank/clown
 	name = "clown suit"
 	desc = "<i>'HONK!'</i>"
@@ -102,7 +82,6 @@
 	item_state = "clown"
 	worn_state = "clown"
 	rolled_sleeves = -1
-
 
 /obj/item/clothing/under/rank/head_of_personnel
 	desc = "It's a jumpsuit worn by someone who works in the position of \"Head of Personnel\"."
@@ -120,7 +99,6 @@
 	worn_state = "hopwhimsy"
 	rolled_sleeves = -1
 
-
 /obj/item/clothing/under/rank/hydroponics
 	desc = "It's a jumpsuit designed to protect against minor plant-related hazards."
 	name = "botanist's jumpsuit"
@@ -130,7 +108,6 @@
 	permeability_coefficient = 0.50
 	rolled_sleeves = 0
 
-
 /obj/item/clothing/under/rank/internalaffairs
 	desc = "The plain, professional attire of an Internal Affairs Agent. The collar is <i>immaculately</i> starched."
 	name = "Internal Affairs uniform"
@@ -138,7 +115,6 @@
 	item_state = "ba_suit"
 	worn_state = "internalaffairs"
 	rolled_sleeves = 0
-
 
 /obj/item/clothing/under/rank/janitor
 	desc = "It's the official uniform of the station's janitor. It has minor protection from biohazards."
@@ -149,11 +125,9 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
 	rolled_sleeves = 0
 
-
 /obj/item/clothing/under/lawyer
 	desc = "Slick threads."
 	name = "Lawyer suit"
-
 
 /obj/item/clothing/under/lawyer/black
 	name = "black Lawyer suit"
@@ -161,13 +135,11 @@
 	item_state = "lawyer_black"
 	worn_state = "lawyer_black"
 
-
 /obj/item/clothing/under/lawyer/female
 	name = "black Lawyer suit"
 	icon_state = "black_suit_fem"
 	item_state = "lawyer_black"
 	worn_state = "black_suit_fem"
-
 
 /obj/item/clothing/under/lawyer/red
 	name = "red Lawyer suit"
@@ -175,13 +147,11 @@
 	item_state = "lawyer_red"
 	worn_state = "lawyer_red"
 
-
 /obj/item/clothing/under/lawyer/blue
 	name = "blue Lawyer suit"
 	icon_state = "lawyer_blue"
 	item_state = "lawyer_blue"
 	worn_state = "lawyer_blue"
-
 
 /obj/item/clothing/under/lawyer/bluesuit
 	name = "Blue Suit"
@@ -189,7 +159,6 @@
 	icon_state = "bluesuit"
 	item_state = "ba_suit"
 	worn_state = "bluesuit"
-
 
 /obj/item/clothing/under/lawyer/purpsuit
 	name = "Purple Suit"
@@ -203,7 +172,6 @@
 	icon_state = "oldman"
 	item_state = "johnny"
 	worn_state = "oldman"
-
 
 /obj/item/clothing/under/librarian
 	name = "sensible suit"

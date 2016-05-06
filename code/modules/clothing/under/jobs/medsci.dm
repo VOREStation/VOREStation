@@ -36,13 +36,6 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
 	rolled_sleeves = 0
 
-/obj/item/clothing/under/rank/scientist/skirt
-	name = "scientist's jumpskirt"
-	icon_state = "sciencewhitef"
-	worn_state = "sciencewhitef"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	rolled_sleeves = -1
-
 /obj/item/clothing/under/rank/chemist
 	desc = "It's made of a special fiber that gives special protection against biohazards. It has a chemist rank stripe on it."
 	name = "chemist's jumpsuit"
@@ -52,13 +45,6 @@
 	permeability_coefficient = 0.50
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
 	rolled_sleeves = 0
-
-/obj/item/clothing/under/rank/chemist/skirt
-	name = "chemist's jumpskirt"
-	icon_state = "chemistrywhitef"
-	worn_state = "chemistrywhitef"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	rolled_sleeves = -1
 
 /*
  * Medical
@@ -73,14 +59,6 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
 	rolled_sleeves = 0
 
-/obj/item/clothing/under/rank/chief_medical_officer/skirt
-	desc = "It's a jumpskirt worn by those with the experience to be \"Chief Medical Officer\". It provides minor biological protection."
-	name = "chief medical officer's jumpskirt"
-	icon_state = "cmof"
-	worn_state = "cmof"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	rolled_sleeves = -1
-
 /obj/item/clothing/under/rank/geneticist
 	desc = "It's made of a special fiber that gives special protection against biohazards. It has a genetics rank stripe on it."
 	name = "geneticist's jumpsuit"
@@ -91,13 +69,6 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
 	rolled_sleeves = 0
 
-/obj/item/clothing/under/rank/geneticist/skirt
-	name = "geneticist's jumpskirt"
-	icon_state = "geneticswhitef"
-	worn_state = "geneticswhitef"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	rolled_sleeves = -1
-
 /obj/item/clothing/under/rank/virologist
 	desc = "It's made of a special fiber that gives special protection against biohazards. It has a virologist rank stripe on it."
 	name = "virologist's jumpsuit"
@@ -107,13 +78,6 @@
 	permeability_coefficient = 0.50
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
 	rolled_sleeves = 0
-
-/obj/item/clothing/under/rank/virologist/skirt
-	name = "virologist's jumpskirt"
-	icon_state = "virologywhitef"
-	worn_state = "virologywhitef"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	rolled_sleeves = -1
 
 /obj/item/clothing/under/rank/nursesuit
 	desc = "It's a jumpsuit commonly worn by nursing staff in the medical department."
@@ -156,13 +120,6 @@
 	permeability_coefficient = 0.50
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
 	rolled_sleeves = 0
-
-/obj/item/clothing/under/rank/medical/skirt
-	name = "medical doctor's jumpskirt"
-	icon_state = "medicalf"
-	worn_state = "medicalf"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	rolled_sleeves = -1
 
 /obj/item/clothing/under/rank/medical/paramedic
 	name = "short sleeve medical jumpsuit"
