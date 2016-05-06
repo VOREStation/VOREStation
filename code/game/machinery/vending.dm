@@ -509,8 +509,6 @@
 			qdel(coin)
 			categories &= ~CAT_COIN
 
-	R.amount--
-
 	if(((src.last_reply + (src.vend_delay + 200)) <= world.time) && src.vend_reply)
 		spawn(0)
 			src.speak(src.vend_reply)
@@ -520,7 +518,15 @@
 	if (src.icon_vend) //Show the vending animation if needed
 		flick(src.icon_vend,src)
 	spawn(src.vend_delay)
-		new R.product_path(get_turf(src))
+		if(prob(1))
+			for(var/I = 1 to 2)
+				new R.product_path(get_turf(src))
+				R.amount--
+			src.visible_message("<span class='notice'>\The [src] clunks as it vends an additional item.</span>")
+		else
+			new R.product_path(get_turf(src))
+			R.amount--
+
 		src.status_message = ""
 		src.status_error = 0
 		src.vend_ready = 1
