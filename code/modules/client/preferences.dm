@@ -25,7 +25,6 @@ datum/preferences
 	//character preferences
 	var/real_name						//our character's name
 	var/be_random_name = 0				//whether we are a random name every round
-	var/gender = MALE					//gender of character (well duh)
 	var/age = 30						//age of character
 	var/spawnpoint = "Arrivals Shuttle" //where this character will spawn (0-2).
 	var/b_type = "A+"					//blood type (not-chooseable)
@@ -108,6 +107,7 @@ datum/preferences
 
 	// OOC Metadata:
 	var/metadata = ""
+	var/list/ignored_players = list()
 
 	var/client/client = null
 	var/client_ckey = null
@@ -119,8 +119,8 @@ datum/preferences
 
 /datum/preferences/New(client/C)
 	player_setup = new(src)
-	gender = pick(MALE, FEMALE)
-	real_name = random_name(gender,species)
+	set_biological_gender(pick(MALE, FEMALE))
+	real_name = random_name(identifying_gender,species)
 	b_type = pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
 
 	gear = list()
@@ -254,7 +254,7 @@ datum/preferences
 	// Sanitizing rather than saving as someone might still be editing when copy_to occurs.
 	player_setup.sanitize_setup()
 	if(be_random_name)
-		real_name = random_name(gender,species)
+		real_name = random_name(identifying_gender,species)
 
 	if(config.humans_need_surnames)
 		var/firstspace = findtext(real_name, " ")
@@ -284,7 +284,8 @@ datum/preferences
 	character.gen_record = gen_record
 	character.exploit_record = exploit_record
 
-	character.gender = gender
+	character.gender = biological_gender
+	character.identifying_gender = identifying_gender
 	character.age = age
 	character.b_type = b_type
 

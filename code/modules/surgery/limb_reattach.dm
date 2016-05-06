@@ -30,7 +30,7 @@
 		var/obj/item/organ/external/E = tool
 		user.visible_message("<span class='notice'>[user] has attached [target]'s [E.name] to the [E.amputation_point].</span>>",	\
 		"<span class='notice'>You have attached [target]'s [E.name] to the [E.amputation_point].</span>")
-		user.removeItem(E)
+		user.drop_from_inventory(E)
 		E.replaced(target)
 		E.loc = target
 		target.update_body()

@@ -303,7 +303,7 @@
 	data["storedCapacity"] = round(100.0*charge/capacity, 0.1)
 	data["storedCapacityAbs"] = round(charge/(1000*60), 0.1)
 	data["storedCapacityMax"] = round(capacity/(1000*60))
-	data["charging"] = round(inputting/1000, 0.1)
+	data["charging"] = inputting
 	data["chargeMode"] = input_attempt
 	data["chargeLevel"] = round(input_level/1000, 0.1)
 	data["chargeMax"] = round(input_level_max/1000)

@@ -127,7 +127,7 @@
 			observer.alpha = 127
 
 			if(client.prefs.be_random_name)
-				client.prefs.real_name = random_name(client.prefs.gender)
+				client.prefs.real_name = random_name(client.prefs.identifying_gender)
 			observer.real_name = client.prefs.real_name
 			observer.name = observer.real_name
 			if(!client.holder && !config.antag_hud_allowed)           // For new ghosts we remove the verb from even showing up if it's not allowed.
@@ -493,7 +493,7 @@
 
 /mob/new_player/get_gender()
 	if(!client || !client.prefs) ..()
-	return client.prefs.gender
+	return client.prefs.biological_gender
 
 /mob/new_player/is_ready()
 	return ready && ..()

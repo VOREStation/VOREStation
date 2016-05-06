@@ -59,9 +59,13 @@
 	if(!istype(id_card))
 		return ..()
 
-	if(!scan && (access_change_ids in id_card.access) && user.removeItem(id_card, src))
+	if(!scan && (access_change_ids in id_card.access) && user.unEquip(id_card))
+		user.drop_item()
+		id_card.forceMove(src)
 		scan = id_card
-	else if(!modify && user.removeItem(id_card, src))
+	else if(!modify)
+		user.drop_item()
+		id_card.forceMove(src)
 		modify = id_card
 
 	nanomanager.update_uis(src)
@@ -153,7 +157,8 @@
 					modify = null
 			else
 				var/obj/item/I = usr.get_active_hand()
-				if (istype(I, /obj/item/weapon/card/id) && usr.removeItem(I, src))
+				if (istype(I, /obj/item/weapon/card/id) && usr.unEquip(I))
+					I.forceMove(src)
 					modify = I
 
 		if ("scan")

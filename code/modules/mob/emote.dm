@@ -84,4 +84,7 @@
 
 	if(input)
 		log_emote("Ghost/[src.key] : [input]")
-		say_dead_direct(input, src)
+		if(!invisibility) //If the ghost is made visible by admins or cult. And to see if the ghost has toggled its own visibility, as well. -Mech
+			visible_message("<span class='deadsay'><B>[src]</B> [input]</span>")
+		else
+			say_dead_direct(input, src)

@@ -21,11 +21,13 @@
 		if(istype(W, /obj/item/weapon/spacecash/ewallet)) return 0
 
 		var/obj/item/weapon/spacecash/SC = W
+
 		SC.adjust_worth(src.worth)
 		if(istype(user, /mob/living/carbon/human))
 			var/mob/living/carbon/human/h_user = user
-			h_user.removeItem(src)
-			h_user.removeItem(SC)
+
+			h_user.drop_from_inventory(src)
+			h_user.drop_from_inventory(SC)
 			h_user.put_in_hands(SC)
 		user << "<span class='notice'>You combine the Thalers to a bundle of [SC.worth] Thalers.</span>"
 		qdel(src)
@@ -77,6 +79,7 @@
 /obj/item/weapon/spacecash/attack_self()
 	var/amount = input(usr, "How many Thalers do you want to take? (0 to [src.worth])", "Take Money", 20) as num
 	amount = round(Clamp(amount, 0, src.worth))
+
 	if(!amount)
 		return
 
@@ -135,6 +138,7 @@
 
 proc/spawn_money(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
 	var/obj/item/weapon/spacecash/SC = new (spawnloc)
+
 	SC.set_worth(sum)
 	if (ishuman(human_user) && !human_user.get_active_hand())
 		human_user.put_in_hands(SC)

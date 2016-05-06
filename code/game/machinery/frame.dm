@@ -13,10 +13,13 @@
 	var/list/req_component_names = null
 
 	var/list/alarms = list("firealarm", "airalarm", "intercom", "keycard")
-	var/list/machines = list("machine", "photocopier", "fax", "microwave", "conveyor", "vending", "recharger", "wrecharger", "washing", "grinder")
-	var/list/computers = list("computer", "holopad")
-	var/list/displays = list("display", "guestpass", "newscaster", "atm")
-	var/list/no_circuit = list("wrecharger", "recharger", "grinder","conveyor")
+	var/list/machines = list(
+								"machine", "photocopier", "fax", "microwave", "conveyor", "recharger", "wrecharger",
+								"washing", "grinder", "teleporter_hub", "teleporter_station", "medpod", "dna_analyzer",
+								"massdriver")
+	var/list/computers = list("computer", "holopad", "console")
+	var/list/displays = list("display", "guestpass", "newscaster", "atm", "request")
+	var/list/no_circuit = list("wrecharger", "recharger", "grinder", "conveyor", "massdriver")
 
 /obj/structure/frame/proc/update_desc()
 	var/D
@@ -35,15 +38,16 @@
 		req_components[A] = circuit.req_components[A]
 	req_component_names = circuit.req_components.Copy()
 	for(var/A in req_components)
-		var/cp = text2path(A)
-		var/obj/ct = new cp() // have to quickly instantiate it get name
-		req_component_names[A] = ct.name
+		var/obj/ct = A
+		req_component_names[A] = initial(ct.name)
 
 /obj/structure/frame/New(var/loc, var/dir, var/building = 0, var/obj/item/frame/frame_type, mob/user as mob)
 	..()
 	if(building)
 		src.frame_type = frame_type
 		icon_state = "[frame_type]_0"
+		if(dir)
+			src.set_dir(dir)
 
 		if(frame_type in alarms)
 			if(loc)
@@ -69,7 +73,7 @@
 			if(loc)
 				src.loc = loc
 
-			if(frame_type == "display" || frame_type == "atm")
+			if(frame_type == "display" || frame_type == "atm" || frame_type == "request")
 				pixel_x = (dir & 3)? 0 : (dir == 4 ? -32 : 32)
 				pixel_y = (dir & 3)? (dir == 1 ? -32 : 32) : 0
 
@@ -104,8 +108,8 @@
 				circuit = new /obj/item/weapon/circuitboard/grinder(src)
 			if(frame_type == "conveyor")
 				circuit = new /obj/item/weapon/circuitboard/conveyor(src)
-				if(dir)
-					src.set_dir(dir)
+			if(frame_type == "massdriver")
+				circuit = new /obj/item/weapon/circuitboard/mass_driver(src)
 
 	if(frame_type == "computer")
 		density = 1
@@ -214,12 +218,25 @@
 				if(component_check)
 					playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 					var/obj/machinery/new_machine = new src.circuit.build_path(src.loc, src.dir)
-					if(!new_machine.component_parts)
-						for(var/obj/O in src.components)
-							O.forceMove(null)
-						new_machine.RefreshParts()
+					if(new_machine.component_parts)
+						new_machine.component_parts.Cut()
+					else
+						new_machine.component_parts = list()
 
 					src.circuit.construct(new_machine)
+
+					for(var/obj/O in src.components)
+						if(circuit.contain_parts)
+							O.loc = new_machine
+						else
+							O.loc = null
+						new_machine.component_parts += O
+
+					circuit.loc = null
+					new_machine.circuit = circuit
+
+					new_machine.RefreshParts()
+
 					new_machine.pixel_x = src.pixel_x
 					new_machine.pixel_y = src.pixel_y
 					qdel(src)
@@ -243,6 +260,7 @@
 				var/obj/machinery/B = new src.circuit.build_path ( src.loc )
 				B.pixel_x = src.pixel_x
 				B.pixel_y = src.pixel_y
+				B.set_dir(dir)
 				src.circuit.construct(B)
 				qdel(src)
 				return
@@ -253,6 +271,7 @@
 				var/obj/machinery/B = new src.circuit.build_path ( src.loc )
 				B.pixel_x = src.pixel_x
 				B.pixel_y = src.pixel_y
+				B.set_dir(dir)
 				src.circuit.construct(B)
 				qdel(src)
 				return
@@ -386,13 +405,13 @@
 		if(state == 3)
 			if(frame_type in machines)
 				for(var/I in req_components)
-					if(istype(P, text2path(I)) && (req_components[I] > 0))
+					if(istype(P, I) && (req_components[I] > 0))
 						playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-						if(istype(P, /obj/item/stack))
-							var/obj/item/stack/CP = P
+						if(istype(P, /obj/item/stack/cable_coil))
+							var/obj/item/stack/cable_coil/CP = P
 							if(CP.get_amount() > 1)
 								var/camt = min(CP.amount, req_components[I]) // amount of cable to take, idealy amount required, but limited by amount provided
-								var/obj/item/stack/CC = new /obj/item/stack(src)
+								var/obj/item/stack/cable_coil/CC = new /obj/item/stack/cable_coil(src)
 								CC.amount = camt
 								CC.update_icon()
 								CP.use(camt)
@@ -400,6 +419,20 @@
 								req_components[I] -= camt
 								update_desc()
 								break
+
+						if(istype(P, /obj/item/stack/material/glass/reinforced))
+							var/obj/item/stack/material/glass/reinforced/CP = P
+							if(CP.get_amount() > 1)
+								var/camt = min(CP.amount, req_components[I]) // amount of cable to take, idealy amount required, but limited by amount provided
+								var/obj/item/stack/material/glass/reinforced/CC = new /obj/item/stack/material/glass/reinforced(src)
+								CC.amount = camt
+								CC.update_icon()
+								CP.use(camt)
+								components += CC
+								req_components[I] -= camt
+								update_desc()
+								break
+
 						user.drop_item()
 						P.forceMove(src)
 						components += P

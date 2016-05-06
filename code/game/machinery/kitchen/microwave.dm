@@ -1,4 +1,3 @@
-
 /obj/machinery/microwave
 	name = "Microwave"
 	icon = 'icons/obj/kitchen.dmi'
@@ -31,6 +30,9 @@
 	reagents = new/datum/reagents(100)
 	reagents.my_atom = src
 
+/obj/machinery/microwave/map/New()
+	..()
+	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
 	component_parts += new /obj/item/weapon/stock_parts/motor(src)
@@ -114,7 +116,7 @@
 			user << "<span class='warning'>It's dirty!</span>"
 			return 1
 	else if(is_type_in_list(O,acceptable_items))
-		if (contents.len>=(max_n_of_items + component_parts.len))	//Adds component_parts to the maximum number of items.
+		if (contents.len>=(max_n_of_items + component_parts.len + 1))	//Adds component_parts to the maximum number of items.	The 1 is from the circuit
 			user << "<span class='warning'>This [src] is full of ingredients, you cannot put more.</span>"
 			return 1
 		if(istype(O, /obj/item/stack) && O:get_amount() > 1) // This is bad, but I can't think of how to change it
@@ -126,7 +128,9 @@
 				"<span class='notice'>You add one of [O] to \the [src].</span>")
 			return
 		else
-			user.removeItem(O, src)
+		//	user.remove_from_mob(O)	//This just causes problems so far as I can tell. -Pete
+			user.drop_item()
+			O.loc = src
 			user.visible_message( \
 				"<span class='notice'>\The [user] has added \the [O] to \the [src].</span>", \
 				"<span class='notice'>You add \the [O] to \the [src].</span>")
@@ -175,7 +179,7 @@
 		var/list/items_counts = new
 		var/list/items_measures = new
 		var/list/items_measures_p = new
-		for (var/obj/O in (contents-component_parts))
+		for (var/obj/O in ((contents - component_parts) - circuit))
 			var/display_name = O.name
 			if (istype(O,/obj/item/weapon/reagent_containers/food/snacks/egg))
 				items_measures[display_name] = "egg"
@@ -235,7 +239,7 @@
 	if(stat & (NOPOWER|BROKEN))
 		return
 	start()
-	if (reagents.total_volume==0 && !(locate(/obj) in (contents-component_parts))) //dry run
+	if (reagents.total_volume==0 && !(locate(/obj) in ((contents - component_parts) - circuit))) //dry run
 		if (!wzhzhzh(10))
 			abort()
 			return
@@ -297,7 +301,7 @@
 	return 1
 
 /obj/machinery/microwave/proc/has_extra_item()
-	for (var/obj/O in (contents-component_parts))
+	for (var/obj/O in ((contents - component_parts) - circuit))
 		if ( \
 				!istype(O,/obj/item/weapon/reagent_containers/food) && \
 				!istype(O, /obj/item/weapon/grown) \
@@ -358,7 +362,7 @@
 /obj/machinery/microwave/proc/fail()
 	var/obj/item/weapon/reagent_containers/food/snacks/badrecipe/ffuu = new(src)
 	var/amount = 0
-	for (var/obj/O in (contents-ffuu)-component_parts)
+	for (var/obj/O in (((contents - ffuu) - component_parts) - circuit))
 		amount++
 		if (O.reagents)
 			var/id = O.reagents.get_master_reagent_id()

@@ -16,7 +16,6 @@
 
 /obj/machinery/power/smes/batteryrack/New()
 	..()
-	add_parts()
 	RefreshParts()
 	return
 

@@ -36,8 +36,6 @@
 	layer = 2.9
 	anchored = 1
 	density = 1
-	circuit = /obj/item/weapon/circuitboard/vending
-	frame_type = "vending"
 
 	var/icon_vend //Icon_state when vending
 	var/icon_deny //Icon_state when denying access
@@ -96,14 +94,6 @@
 /obj/machinery/vending/New()
 	..()
 	wires = new(src)
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/spring(src)
-	component_parts += new /obj/item/weapon/stock_parts/spring(src)
-	component_parts += new /obj/item/weapon/stock_parts/motor(src)
-	component_parts += new /obj/item/weapon/stock_parts/motor(src)
-	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
-	component_parts += new /obj/item/stack/material/glass/reinforced(src, 2)
-	RefreshParts()
 	spawn(4)
 		if(src.product_slogans)
 			src.slogan_list += splittext(src.product_slogans, ";")
@@ -242,9 +232,6 @@
 			user << "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>"
 			anchored = !anchored
 		return
-	else if(default_deconstruction_crowbar(user, W))
-		return
-
 	else
 
 		for(var/datum/data/vending_product/R in product_records)
@@ -273,7 +260,8 @@
 		cashmoney.worth -= currently_vending.price
 
 		if(cashmoney.worth <= 0)
-			usr.deleteItem(cashmoney)
+			usr.drop_from_inventory(cashmoney)
+			qdel(cashmoney)
 		else
 			cashmoney.update_icon()
 
@@ -904,8 +892,26 @@
 	desc = "A kitchen and restaurant equipment vendor."
 	product_ads = "Mm, food stuffs!;Food and food accessories.;Get your plates!;You like forks?;I like forks.;Woo, utensils.;You don't really need these..."
 	icon_state = "dinnerware"
-	products = list(/obj/item/weapon/tray = 8,/obj/item/weapon/material/kitchen/utensil/fork = 6, /obj/item/weapon/material/kitchen/utensil/knife = 6, /obj/item/weapon/material/kitchen/utensil/spoon = 6, /obj/item/weapon/material/knife = 3,/obj/item/weapon/reagent_containers/food/drinks/drinkingglass = 8,/obj/item/clothing/suit/chef/classic = 2)
-	contraband = list(/obj/item/weapon/material/kitchen/rollingpin = 2, /obj/item/weapon/material/knife/butch = 2)
+	products = list(
+	/obj/item/weapon/tray = 8,
+	/obj/item/weapon/material/kitchen/utensil/fork = 6,
+	/obj/item/weapon/material/kitchen/utensil/knife = 6,
+	/obj/item/weapon/material/kitchen/utensil/spoon = 6,
+	/obj/item/weapon/material/knife = 3,
+	/obj/item/weapon/reagent_containers/food/drinks/drinkingglass = 8,
+	/obj/item/clothing/suit/chef/classic = 2,
+	/obj/item/weapon/storage/toolbox/lunchbox = 3,
+	/obj/item/weapon/storage/toolbox/lunchbox/heart = 3,
+	/obj/item/weapon/storage/toolbox/lunchbox/cat = 3,
+	/obj/item/weapon/storage/toolbox/lunchbox/nt = 3,
+	/obj/item/weapon/storage/toolbox/lunchbox/mars = 3,
+	/obj/item/weapon/storage/toolbox/lunchbox/cti = 3,
+	/obj/item/weapon/storage/toolbox/lunchbox/nymph = 3,
+	/obj/item/weapon/storage/toolbox/lunchbox/syndicate = 3)
+
+
+	contraband = list(/obj/item/weapon/material/kitchen/rollingpin = 2,
+	/obj/item/weapon/material/knife/butch = 2)
 
 /obj/machinery/vending/sovietsoda
 	name = "BODA"
@@ -938,12 +944,15 @@
 					/obj/item/weapon/circuitboard/airalarm = 10,/obj/item/weapon/circuitboard/firealarm = 10,/obj/item/weapon/circuitboard/status_display = 2,
 					/obj/item/weapon/circuitboard/ai_status_display = 2,/obj/item/weapon/circuitboard/newscaster = 2,/obj/item/weapon/circuitboard/holopad = 2,
 					/obj/item/weapon/circuitboard/intercom = 4,/obj/item/weapon/circuitboard/security/telescreen/entertainment = 4,
-					/obj/item/weapon/circuitboard/atm = 0,/obj/item/weapon/circuitboard/guestpass = 0,/obj/item/weapon/circuitboard/keycard_auth = 0,
-					/obj/item/weapon/circuitboard/photocopier = 0,/obj/item/weapon/circuitboard/fax = 0,/obj/item/weapon/circuitboard/conveyor = 0,
-					/obj/item/weapon/circuitboard/microwave = 0,/obj/item/weapon/circuitboard/vending = 0,/obj/item/weapon/circuitboard/washing = 0,
-					/obj/item/weapon/stock_parts/motor = 0,/obj/item/weapon/stock_parts/spring = 0,/obj/item/weapon/stock_parts/gear = 0)
+					/obj/item/weapon/stock_parts/motor = 2,/obj/item/weapon/stock_parts/spring = 2,/obj/item/weapon/stock_parts/gear = 2,
+					/obj/item/weapon/circuitboard/atm,/obj/item/weapon/circuitboard/guestpass,/obj/item/weapon/circuitboard/keycard_auth,
+					/obj/item/weapon/circuitboard/photocopier,/obj/item/weapon/circuitboard/fax,/obj/item/weapon/circuitboard/request,
+					/obj/item/weapon/circuitboard/microwave,/obj/item/weapon/circuitboard/washing,/obj/item/weapon/circuitboard/scanner_console,
+					/obj/item/weapon/circuitboard/sleeper_console,/obj/item/weapon/circuitboard/body_scanner,/obj/item/weapon/circuitboard/sleeper,
+					/obj/item/weapon/circuitboard/dna_analyzer)
 	contraband = list(/obj/item/weapon/cell/potato = 3)
 	premium = list(/obj/item/weapon/storage/belt/utility = 3)
+	product_records = list()
 
 //This one's from bay12
 /obj/machinery/vending/engineering

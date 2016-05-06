@@ -226,7 +226,8 @@
 		user << "You add [D] to [src]."
 		qdel(D)
 		user.put_in_hands(new /obj/item/weapon/bucket_sensor)
-		user.deleteItem(src)
+		user.drop_from_inventory(src)
+		qdel(src)
 		return
 	else if(istype(D, /obj/item/weapon/mop))
 		if(reagents.total_volume < 1)

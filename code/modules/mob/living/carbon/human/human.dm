@@ -1104,6 +1104,9 @@
 	if(species.holder_type)
 		holder_type = species.holder_type
 
+	if(!(gender in species.genders))
+		gender = species.genders[1]
+
 	icon_state = lowertext(species.name)
 
 	species.create_organs(src)
@@ -1348,10 +1351,10 @@
 		S << "<span class='danger'>[U] pops your [current_limb.joint] back in!</span>"
 	current_limb.undislocate()
 
-/mob/living/carbon/human/removeItem(var/obj/item/I, var/atom/T = loc, var/force = 0)
-	if(I in src.organs)
-		return 0
-	return ..()
+/mob/living/carbon/human/drop_from_inventory(var/obj/item/W, var/atom/Target = null)
+	if(W in organs)
+		return
+	..()
 
 /mob/living/carbon/human/reset_view(atom/A, update_hud = 1)
 	..()

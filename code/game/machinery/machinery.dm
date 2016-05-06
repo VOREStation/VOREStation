@@ -286,8 +286,7 @@ Class Procs:
 		var/obj/item/weapon/circuitboard/CB = circuit
 		var/P
 		for(var/obj/item/weapon/stock_parts/A in component_parts)
-			for(var/D in CB.req_components)
-				var/T = text2path(D)
+			for(var/T in CB.req_components)
 				if(ispath(A.type, T))
 					P = T
 					break
@@ -328,14 +327,14 @@ Class Procs:
 /obj/machinery/proc/dismantle()
 	playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
 	var/obj/structure/frame/A = new /obj/structure/frame( src.loc )
-	var/obj/item/weapon/circuitboard/M = new circuit( A )
+	var/obj/item/weapon/circuitboard/M = circuit
 	A.circuit = M
 	A.anchored = 1
 	A.density = 1
 	A.frame_type = M.board_type
 	if(A.frame_type in A.no_circuit)
 		A.need_circuit = 0
-	for (var/obj/D in src)
+	for (var/obj/D in src.component_parts)
 		D.forceMove(loc)
 	if(A.components)
 		A.components.Cut()
@@ -344,10 +343,12 @@ Class Procs:
 	component_parts = list()
 	A.icon_state = "[A.frame_type]_3"
 	A.state = 3
+	A.dir = dir
 	A.pixel_x = pixel_x
 	A.pixel_y = pixel_y
 	A.check_components()
 	A.update_desc()
+	M.loc = null
 	M.deconstruct(src)
 	qdel(src)
 	return 1

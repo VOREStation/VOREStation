@@ -23,6 +23,8 @@
 
 	death_message = "becomes completely motionless..."
 
+	genders = list(NEUTER)
+
 /datum/species/golem/handle_post_spawn(var/mob/living/carbon/human/H)
 	if(H.mind)
 		H.mind.assigned_role = "Golem"

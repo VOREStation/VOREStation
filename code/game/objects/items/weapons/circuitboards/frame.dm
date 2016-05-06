@@ -36,6 +36,12 @@
 	board_type = "atm"
 	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
 
+/obj/item/weapon/circuitboard/request
+	name = T_BOARD("reques console")
+	build_path = /obj/machinery/requests_console
+	board_type = "request"
+	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
+
 //Alarm
 
 /obj/item/weapon/circuitboard/firealarm
@@ -70,6 +76,18 @@
 	board_type = "holopad"
 	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
 
+/obj/item/weapon/circuitboard/scanner_console
+	name = T_BOARD("body scanner console")
+	build_path = /obj/machinery/body_scanconsole
+	board_type = "console"
+	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
+
+/obj/item/weapon/circuitboard/sleeper_console
+	name = T_BOARD("sleeper console")
+	build_path = /obj/machinery/sleep_console
+	board_type = "console"
+	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
+
 //Machine
 
 /obj/item/weapon/circuitboard/photocopier
@@ -78,10 +96,10 @@
 	board_type = "photocopier"
 	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
 	req_components = list(
-							"/obj/item/weapon/stock_parts/scanning_module" = 1,
-							"/obj/item/weapon/stock_parts/motor" = 1,
-							"/obj/item/weapon/stock_parts/micro_laser" = 1,
-							"/obj/item/weapon/stock_parts/matter_bin" = 1)
+							/obj/item/weapon/stock_parts/scanning_module = 1,
+							/obj/item/weapon/stock_parts/motor = 1,
+							/obj/item/weapon/stock_parts/micro_laser = 1,
+							/obj/item/weapon/stock_parts/matter_bin = 1)
 
 /obj/item/weapon/circuitboard/fax
 	name = T_BOARD("fax")
@@ -89,19 +107,19 @@
 	board_type = "fax"
 	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
 	req_components = list(
-							"/obj/item/weapon/stock_parts/scanning_module" = 1,
-							"/obj/item/weapon/stock_parts/motor" = 1,
-							"/obj/item/weapon/stock_parts/micro_laser" = 1,
-							"/obj/item/weapon/stock_parts/matter_bin" = 1)
+							/obj/item/weapon/stock_parts/scanning_module = 1,
+							/obj/item/weapon/stock_parts/motor = 1,
+							/obj/item/weapon/stock_parts/micro_laser = 1,
+							/obj/item/weapon/stock_parts/matter_bin = 1)
 
 /obj/item/weapon/circuitboard/conveyor
 	name = T_BOARD("conveyor")
 	build_path = /obj/machinery/conveyor
 	board_type = "conveyor"
 	req_components = list(
-							"/obj/item/weapon/stock_parts/gear" = 2,
-							"/obj/item/weapon/stock_parts/motor" = 2,
-							"/obj/item/stack/cable_coil" = 5)
+							/obj/item/weapon/stock_parts/gear = 2,
+							/obj/item/weapon/stock_parts/motor = 2,
+							/obj/item/stack/cable_coil = 5)
 
 /obj/item/weapon/circuitboard/microwave
 	name = T_BOARD("microwave")
@@ -109,29 +127,17 @@
 	board_type = "microwave"
 	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
 	req_components = list(
-							"/obj/item/weapon/stock_parts/console_screen" = 1,
-							"/obj/item/weapon/stock_parts/motor" = 1,
-							"/obj/item/weapon/stock_parts/capacitor" = 1)
-
-/obj/item/weapon/circuitboard/vending
-	name = T_BOARD("vending")
-	build_path = /obj/machinery/vending
-	board_type = "vending"
-	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
-	req_components = list(
-							"/obj/item/weapon/stock_parts/console_screen" = 1,
-							"/obj/item/weapon/stock_parts/motor" = 2,
-							"/obj/item/weapon/stock_parts/spring" = 2,
-							"/obj/item/stack/material/glass/reinforced" = 2)
+							/obj/item/weapon/stock_parts/console_screen = 1,
+							/obj/item/weapon/stock_parts/motor = 1,
+							/obj/item/weapon/stock_parts/capacitor = 1)
 
 /obj/item/weapon/circuitboard/recharger
 	name = T_BOARD("recharger")
 	build_path = /obj/machinery/recharger
 	board_type = "recharger"
-	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
 	req_components = list(
-							"/obj/item/weapon/stock_parts/capacitor" = 1,
-							"/obj/item/stack/cable_coil" = 5)
+							/obj/item/weapon/stock_parts/capacitor = 1,
+							/obj/item/stack/cable_coil = 5)
 
 /obj/item/weapon/circuitboard/recharger/wrecharger
 	name = T_BOARD("wall recharger")
@@ -144,18 +150,78 @@
 	board_type = "washing"
 	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
 	req_components = list(
-							"/obj/item/weapon/stock_parts/motor" = 1,
-							"/obj/item/weapon/stock_parts/gear" = 2)
+							/obj/item/weapon/stock_parts/motor = 1,
+							/obj/item/weapon/stock_parts/gear = 2)
 
 /obj/item/weapon/circuitboard/grinder
 	name = T_BOARD("reagent grinder")
 	build_path = /obj/machinery/reagentgrinder
 	board_type = "grinder"
-	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
 	req_components = list(
-							"/obj/item/weapon/stock_parts/motor" = 1,
-							"/obj/item/weapon/stock_parts/gear" = 1,
-							"/obj/item/weapon/reagent_containers/glass/beaker/large" = 1)
+							/obj/item/weapon/stock_parts/motor = 1,
+							/obj/item/weapon/stock_parts/gear = 1,
+							/obj/item/weapon/reagent_containers/glass/beaker/large = 1)
+
+/obj/item/weapon/circuitboard/teleporter_hub
+	name = T_BOARD("teleporter hub")
+	build_path = /obj/machinery/teleport/hub
+	board_type = "teleporter_hub"
+//	origin_tech = list(TECH_DATA = 2, TECH_BLUESPACE = 4)
+	req_components = list(
+							/obj/item/weapon/stock_parts/scanning_module = 4,
+							/obj/item/weapon/stock_parts/micro_laser = 4,
+							/obj/item/stack/cable_coil = 10)
+
+/obj/item/weapon/circuitboard/teleporter_station
+	name = T_BOARD("teleporter station")
+	build_path = /obj/machinery/teleport/station
+	board_type = "teleporter_station"
+//	origin_tech = list(TECH_DATA = 2, TECH_BLUESPACE = 3)
+	req_components = list(
+							/obj/item/weapon/stock_parts/console_screen = 1,
+							/obj/item/weapon/stock_parts/capacitor = 2,
+							/obj/item/stack/cable_coil = 10)
+
+/obj/item/weapon/circuitboard/body_scanner
+	name = T_BOARD("body scanner")
+	build_path = /obj/machinery/bodyscanner
+	board_type = "medpod"
+	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
+	req_components = list(
+							/obj/item/weapon/stock_parts/scanning_module = 3,
+							/obj/item/stack/material/glass/reinforced = 2)
+
+/obj/item/weapon/circuitboard/sleeper
+	name = T_BOARD("sleeper")
+	build_path = /obj/machinery/sleeper
+	board_type = "medpod"
+	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
+	req_components = list(
+							/obj/item/weapon/stock_parts/scanning_module = 1,
+							/obj/item/weapon/reagent_containers/glass/beaker = 3,
+							/obj/item/weapon/reagent_containers/syringe = 3,
+							/obj/item/stack/material/glass/reinforced = 2)
+
+/obj/item/weapon/circuitboard/dna_analyzer
+	name = T_BOARD("dna analyzer")
+	build_path = /obj/machinery/dnaforensics
+	board_type = "dna_analyzer"
+	origin_tech = list(TECH_MAGNET = 4, TECH_BIO = 2, TECH_DATA = 2)
+	req_components = list(
+							/obj/item/weapon/stock_parts/scanning_module = 2,
+							/obj/item/weapon/stock_parts/micro_laser = 1,
+							/obj/item/weapon/stock_parts/console_screen = 1)
+
+/obj/item/weapon/circuitboard/mass_driver
+	name = T_BOARD("mass driver")
+	build_path = /obj/machinery/mass_driver
+	board_type = "massdriver"
+	req_components = list(
+							/obj/item/weapon/stock_parts/gear = 2,
+							/obj/item/weapon/stock_parts/motor = 2,
+							/obj/item/weapon/stock_parts/capacitor = 1,
+							/obj/item/weapon/stock_parts/spring = 1,
+							/obj/item/stack/cable_coil = 5)
 
 //for testing - If this is still in when I commit, someone shoot me. --leaving in for now, shouldn't be able to get these on station anyways.
 /obj/item/weapon/storage/box/frame_parts
@@ -175,7 +241,6 @@
 		new /obj/item/weapon/circuitboard/photocopier( src )
 		new /obj/item/weapon/circuitboard/fax( src )
 		new /obj/item/weapon/circuitboard/microwave( src )
-		new /obj/item/weapon/circuitboard/vending( src )
 		new /obj/item/weapon/circuitboard/washing( src )
 		new /obj/item/weapon/stock_parts/scanning_module( src )
 		new /obj/item/weapon/stock_parts/motor( src )

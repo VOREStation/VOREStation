@@ -609,6 +609,7 @@
 	icon_state = "whitedress1"
 	item_state = "whitedress1"
 	worn_state = "whitedress1"
+	flags_inv = HIDESHOES
 
 /obj/item/clothing/under/dress/white2
 	name = "long dress"
@@ -616,6 +617,7 @@
 	icon_state = "whitedress2"
 	item_state = "whitedress2"
 	worn_state = "whitedress2"
+	flags_inv = HIDESHOES
 
 /obj/item/clothing/under/dress/white3
 	name = "short dress"
@@ -630,6 +632,7 @@
 	icon_state = "whitedress4"
 	item_state = "whitedress4"
 	worn_state = "whitedress4"
+	flags_inv = HIDESHOES
 
 /obj/item/clothing/under/dress/darkred
 	name = "fancy dark red dress"
