@@ -8,7 +8,7 @@
 	slot_flags = SLOT_BELT
 	var/datum/effect/effect/system/smoke_spread/bad/smoke
 	var/smoke_color
-	var/smoke_strength = 4
+	var/smoke_strength = 8
 
 /obj/item/weapon/grenade/smokebomb/New()
 	..()
@@ -27,13 +27,8 @@
 		for(var/i = 1 to smoke_strength)
 			src.smoke.start(smoke_color)
 			sleep(10)
+		qdel(src)
 
-	for(var/obj/effect/blob/B in view(8,src))
-		var/damage = round(30/(get_dist(B,src)+1))
-		B.health -= damage
-		B.update_icon()
-	sleep(80)
-	qdel(src)
 	return
 
 /obj/item/weapon/grenade/smokebomb/attackby(obj/item/I as obj, mob/user as mob)
