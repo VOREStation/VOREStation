@@ -517,8 +517,8 @@
 	icon_closed = "cti_hoodie"
 
 /obj/item/clothing/suit/storage/toggle/hoodie/mu
-	name = "mars university hoodie"
-	desc = "A warm, gray sweatshirt.  It bears the letters MU on the front, a lettering to the well-known public college, Mars University."
+	name = "mojave university hoodie"
+	desc = "A warm, gray sweatshirt.  It bears the letters MU on the front, a lettering to the well-known public college, Mojave University."
 	icon_state = "mu_hoodie"
 	item_state = "mu_hoodie"
 	icon_open = "mu_hoodie_open"
