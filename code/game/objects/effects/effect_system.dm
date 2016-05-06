@@ -195,14 +195,12 @@ steam.start() -- spawns the effect
 /obj/effect/effect/smoke/proc/affect(var/mob/living/carbon/M)
 	if (!istype(M))
 		return 0
-	if (M.internal != null)
-		if(M.wear_mask && (M.wear_mask.item_flags & AIRTIGHT))
-			return 0
-		if(istype(M,/mob/living/carbon/human))
-			var/mob/living/carbon/human/H = M
-			if(H.head && (H.head.item_flags & AIRTIGHT))
-				return 0
+	if(M.wear_mask && (M.wear_mask.item_flags & AIRTIGHT))
 		return 0
+	if(istype(M,/mob/living/carbon/human))
+		var/mob/living/carbon/human/H = M
+		if(H.head && (H.head.item_flags & AIRTIGHT))
+			return 0
 	return 1
 
 /////////////////////////////////////////////
@@ -225,7 +223,7 @@ steam.start() -- spawns the effect
 /////////////////////////////////////////////
 
 /obj/effect/effect/smoke/bad
-	time_to_live = 200
+	time_to_live = 600
 	//var/list/projectiles
 
 /obj/effect/effect/smoke/bad/Move()
