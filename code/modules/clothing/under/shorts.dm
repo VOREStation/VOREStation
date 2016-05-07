@@ -157,77 +157,77 @@
 	item_state = "kilt"
 	worn_state = "plaid_purple"
 
-/obj/item/clothing/under/skirt/cargo
+/obj/item/clothing/under/skirt/job/cargo
 	name = "quartermaster's jumpskirt"
 	desc = "It's a jumpskirt worn by the quartermaster. It's specially designed to prevent back injuries caused by pushing paper."
 	icon_state = "qmf"
 	worn_state = "qmf"
 
-/obj/item/clothing/under/skirt/cargotech
+/obj/item/clothing/under/skirt/job/cargotech
 	name = "cargo technician's jumpskirt"
 	desc = "Skirrrrrts! They're comfy and easy to wear!"
 	icon_state = "cargof"
 	worn_state = "cargof"
 
-/obj/item/clothing/under/skirt/engineer
+/obj/item/clothing/under/skirt/job/engineer
 	desc = "It's an orange high visibility jumpskirt worn by engineers. It has minor radiation shielding."
 	name = "engineer's jumpskirt"
 	icon_state = "enginef"
 	worn_state = "enginef"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 10)
 
-/obj/item/clothing/under/skirt/engineer/chief_engineer
+/obj/item/clothing/under/skirt/job/engineer/chief_engineer
 	desc = "It's a high visibility jumpskirt given to those engineers insane enough to achieve the rank of \"Chief engineer\". It has minor radiation shielding."
 	name = "chief engineer's jumpskirt"
 	icon_state = "chieff"
 	worn_state = "chieff"
 
-/obj/item/clothing/under/skirt/engineer/atmospheric_technician
+/obj/item/clothing/under/skirt/job/engineer/atmospheric_technician
 	desc = "It's a jumpskirt worn by atmospheric technicians."
 	name = "atmospheric technician's jumpskirt"
 	icon_state = "atmosf"
 	worn_state = "atmosf"
 
-/obj/item/clothing/under/skirt/roboticist
+/obj/item/clothing/under/skirt/job/roboticist
 	desc = "It's a slimming black jumpskirt with reinforced seams; great for industrial work."
 	name = "roboticist's jumpskirt"
 	icon_state = "roboticsf"
 	worn_state = "roboticsf"
 
-/obj/item/clothing/under/skirt/scientist
+/obj/item/clothing/under/skirt/job/scientist
 	name = "scientist's jumpskirt"
 	icon_state = "sciencewhitef"
 	worn_state = "sciencewhitef"
 	permeability_coefficient = 0.50
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
 
-/obj/item/clothing/under/skirt/medical
+/obj/item/clothing/under/skirt/job/medical
 	name = "medical doctor's jumpskirt"
 	icon_state = "medicalf"
 	worn_state = "medicalf"
 
-/obj/item/clothing/under/skirt/medical/chemist
+/obj/item/clothing/under/skirt/job/medical/chemist
 	name = "chemist's jumpskirt"
 	icon_state = "chemistrywhitef"
 	worn_state = "chemistrywhitef"
 
-/obj/item/clothing/under/skirt/medical/chief_medical_officer
+/obj/item/clothing/under/skirt/job/medical/chief_medical_officer
 	desc = "It's a jumpskirt worn by those with the experience to be \"Chief Medical Officer\". It provides minor biological protection."
 	name = "chief medical officer's jumpskirt"
 	icon_state = "cmof"
 	worn_state = "cmof"
 
-/obj/item/clothing/under/skirt/medical/geneticist
+/obj/item/clothing/under/skirt/job/medical/geneticist
 	name = "geneticist's jumpskirt"
 	icon_state = "geneticswhitef"
 	worn_state = "geneticswhitef"
 
-/obj/item/clothing/under/skirt/medical/virologist
+/obj/item/clothing/under/skirt/job/medical/virologist
 	name = "virologist's jumpskirt"
 	icon_state = "virologywhitef"
 	worn_state = "virologywhitef"
 
-/obj/item/clothing/under/skirt/security
+/obj/item/clothing/under/skirt/job/security
 	name = "security officer's jumpskirt"
 	desc = "Standard feminine fashion for Security Officers.  It's made of sturdier material than the standard jumpskirts."
 	icon_state = "secredf"
@@ -236,14 +236,14 @@
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
 
-/obj/item/clothing/under/skirt/security/warden
+/obj/item/clothing/under/skirt/job/security/warden
 	desc = "Standard feminine fashion for a Warden. It is made of sturdier material than standard jumpskirts. It has the word \"Warden\" written on the shoulders."
 	name = "warden's jumpskirt"
 	icon_state = "wardenf"
 	item_state = "r_suit"
 	worn_state = "wardenf"
 
-/obj/item/clothing/under/skirt/security/head_of_security
+/obj/item/clothing/under/skirt/job/security/head_of_security
 	desc = "It's a fashionable jumpskirt worn by those few with the dedication to achieve the position of \"Head of Security\". It has additional armor to protect the wearer."
 	name = "head of security's jumpskirt"
 	icon_state = "hosredf"

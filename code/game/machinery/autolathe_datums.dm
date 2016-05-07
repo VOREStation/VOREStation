@@ -32,6 +32,11 @@
 	path = /obj/item/weapon/reagent_containers/glass/bucket
 	category = "General"
 
+/datum/autolathe/recipe/bucket/drinkingglass
+	name = "drinking glass"
+	path = /obj/item/weapon/reagent_containers/food/drinks/drinkingglass
+	category = "General"
+
 /datum/autolathe/recipe/flashlight
 	name = "flashlight"
 	path = /obj/item/device/flashlight

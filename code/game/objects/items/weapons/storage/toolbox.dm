@@ -136,10 +136,10 @@
 	filled = TRUE
 
 /obj/item/weapon/storage/toolbox/lunchbox/mars
-	name = "\improper Mars university lunchbox"
+	name = "\improper Mojave university lunchbox"
 	icon_state = "lunchbox_marsuniversity"
 	item_state = "toolbox_red"
-	desc = "A little lunchbox. This one is branded with the Mars university logo!"
+	desc = "A little lunchbox. This one is branded with the Mojave university logo!"
 
 /obj/item/weapon/storage/toolbox/lunchbox/mars/filled
 	filled = TRUE
