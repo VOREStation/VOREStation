@@ -33,16 +33,11 @@
 	var/dat
 
 	if (is_vore_predator(user.loc))
-		var/vore/pred_capable/eater = user.loc
+		var/mob/living/eater = user.loc
 		var/datum/belly/inside_belly
 
 		//This big block here figures out where the prey is
-		for (var/bellytype in eater.vore_organs)
-			var/datum/belly/B = eater.vore_organs[bellytype]
-			for (var/mob/living/M in B.internal_contents)
-				if (M == user)
-					inside_belly = B
-					break
+		inside_belly = check_belly(user)
 
 		//Don't display this part if we couldn't find the belly since could be held in hand.
 		if(inside_belly)

@@ -13,35 +13,40 @@
 	M.verbs += /mob/living/proc/insidePanel
 	M.verbs += /mob/living/proc/escapeOOC
 
+	if(M.client && M.client.prefs && M.client.prefs.belly_prefs)
+		M.vore_organs = M.client.prefs.belly_prefs
+		M.vore_selected = M.vore_organs[1]
+
 	//Creates at least the typical 'stomach' on every mob.
-	spawn(20) //Wait a couple of seconds to make sure copy_to or whatever has gone
-		//In Polaris, when a character joins (not spawns), it creates some sort of 'Force' /mob/living/silicon/ai
-		//then immediately deletes it. I'm not sure why, but we should make sure M is still real 2 seconds later.
-		if(M && !M.vore_organs.len)
-			var/datum/belly/B = new /datum/belly(M)
-			B.immutable = 1
-			B.name = "Stomach"
-			B.inside_flavor = "It appears to be rather warm and wet. Makes sense, considering it's inside \the [M.name]."
-			M.vore_organs[B.name] = B
-			M.vore_selected = B.name
+	if(!M.vore_organs.len)
+		spawn(20) //Wait a couple of seconds to make sure copy_to or whatever has gone
+			//In Polaris, when a character joins (not spawns), it creates some sort of 'Force' /mob/living/silicon/ai
+			//then immediately deletes it. I'm not sure why, but we should make sure M is still real 2 seconds later.
+			if(M && !M.vore_organs.len)
+				var/datum/belly/B = new /datum/belly(M)
+				B.immutable = 1
+				B.name = "Stomach"
+				B.inside_flavor = "It appears to be rather warm and wet. Makes sense, considering it's inside \the [M.name]."
+				M.vore_organs[B.name] = B
+				M.vore_selected = B.name
 
-			//Simple_animal gets emotes. move this to that hook instead?
-			if(istype(src,/mob/living/simple_animal))
-				B.emote_lists[DM_HOLD] = list(
-					"The insides knead at you gently for a moment.",
-					"The guts glorp wetly around you as some air shifts.",
-					"Your predator takes a deep breath and sighs, shifting you somewhat.",
-					"The stomach squeezes you tight for a moment, then relaxes.",
-					"During a moment of quiet, breathing becomes the most audible thing.",
-					"The warm slickness surrounds and kneads on you.")
+				//Simple_animal gets emotes. move this to that hook instead?
+				if(istype(src,/mob/living/simple_animal))
+					B.emote_lists[DM_HOLD] = list(
+						"The insides knead at you gently for a moment.",
+						"The guts glorp wetly around you as some air shifts.",
+						"Your predator takes a deep breath and sighs, shifting you somewhat.",
+						"The stomach squeezes you tight for a moment, then relaxes.",
+						"During a moment of quiet, breathing becomes the most audible thing.",
+						"The warm slickness surrounds and kneads on you.")
 
-				B.emote_lists[DM_DIGEST] = list(
-					"The caustic acids eat away at your form.",
-					"The acrid air burns at your lungs.",
-					"Without a thought for you, the stomach grinds inwards painfully.",
-					"The guts treat you like food, squeezing to press more acids against you.",
-					"The onslaught against your body doesn't seem to be letting up; you're food now.",
-					"The insides work on you like they would any other food.")
+					B.emote_lists[DM_DIGEST] = list(
+						"The caustic acids eat away at your form.",
+						"The acrid air burns at your lungs.",
+						"Without a thought for you, the stomach grinds inwards painfully.",
+						"The guts treat you like food, squeezing to press more acids against you.",
+						"The onslaught against your body doesn't seem to be letting up; you're food now.",
+						"The insides work on you like they would any other food.")
 
 	//Return 1 to hook-caller
 	return 1

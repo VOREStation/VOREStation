@@ -246,9 +246,8 @@
 
 	// If digested prey is also a pred... anyone inside their bellies gets moved up.
 	if (is_vore_predator(M))
-		var/vore/pred_capable/P = M
-		for (var/bellytype in P.vore_organs)
-			var/datum/belly/belly = P.vore_organs[bellytype]
+		for (var/bellytype in M.vore_organs)
+			var/datum/belly/belly = M.vore_organs[bellytype]
 			for (var/obj/SubPrey in belly.internal_contents)
 				SubPrey.loc = src.owner
 				internal_contents += SubPrey
