@@ -23,27 +23,24 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 // Overrides/additions to stock defines go here, as well as hooks. Sort them by
 // the object they are overriding. So all /mob/living together, etc.
 //
-/datum/preferences
-	var/datum/vore_preferences/vore_preferences
+/client
+	var/datum/vore_preferences/prefs_vr
+
+/datum/vore_preferences
+	var/digestable = 1
+	var/list/belly_prefs = list()
 
 /datum/configuration
 	var/items_survive_digestion = 1		//For configuring if the important_items survive digestion
 
 //
-// The datum type bolted onto normal preferences datums for storing Virgo stuff
-//
-/datum/vore_preferences
-	var/digestable = 1
-	var/list/belly_prefs = list()
-
-//
 // Adding procs to types to support vore
 //
-/datum/preferences/proc/save_vore_preferences()
+/datum/vore_preferences/proc/save_vore_preferences()
 	//POLARISTODO
 	return
 
-/datum/preferences/proc/load_vore_preferences()
+/datum/vore_preferences/proc/load_vore_preferences()
 	//POLARISTODO
 	return
 

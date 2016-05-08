@@ -13,10 +13,10 @@
 	M.verbs += /mob/living/proc/insidePanel
 	M.verbs += /mob/living/proc/escapeOOC
 
-	if(M.client && M.client.prefs && M.client.prefs.vore_preferences.belly_prefs)
-		M.vore_organs = M.client.prefs.vore_preferences.belly_prefs
+	if(M.client && M.client.prefs_vr)
+		M.vore_organs = M.client.prefs_vr.belly_prefs
 		M.vore_selected = M.vore_organs[1]
-		M.digestable = M.client.prefs.vore_preferences.digestable
+		M.digestable = M.client.prefs_vr.digestable
 
 	//Creates at least the typical 'stomach' on every mob.
 	if(!M.vore_organs.len)
@@ -131,10 +131,10 @@
 
 	var/result = 0
 
-	if(client.prefs)
-		result = client.prefs.save_vore_preferences()
+	if(client.prefs_vr)
+		result = client.prefs_vr.save_vore_preferences()
 	else
-		src << "<span class='warning'>You attempted to save your vore prefs but somehow you're in this character without a client.prefs variable. Tell a dev.</span>"
+		src << "<span class='warning'>You attempted to save your vore prefs but somehow you're in this character without a client.prefs_vr variable. Tell a dev.</span>"
 		log_debug("[src] tried to save vore prefs but lacks a client.prefs var.")
 
 	return result

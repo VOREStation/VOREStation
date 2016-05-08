@@ -497,7 +497,7 @@
 		message_admins("[key_name(user)] toggled their digestability to [user.digestable] ([user ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[user.loc.];Y=[user.loc.y];Z=[user.loc.z]'>JMP</a>" : "null"])")
 
 		if(user.client.prefs)
-			user.client.prefs.vore_preferences.digestable = user.digestable
+			user.client.prefs_vr.digestable = user.digestable
 
 	//Refresh when interacted with, returning 1 makes vore_look.Topic update
 	return 1
