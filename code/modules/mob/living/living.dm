@@ -566,7 +566,7 @@ default behaviour is:
 	set name = "Resist"
 	set category = "IC"
 
-	if(!stat && canClick())
+	if(!incapacitated(INCAPACITATION_KNOCKOUT) && canClick())
 		setClickCooldown(20)
 		resist_grab()
 		if(!weakened)
@@ -631,7 +631,9 @@ default behaviour is:
 			if(GRAB_PASSIVE)
 				qdel(G)
 			if(GRAB_AGGRESSIVE)
-				if(prob(60)) //same chance of breaking the grab as disarm
+				//Not standing up makes it much harder to break, so it is easier to cuff someone who is down without forcing them into unconsciousness.
+				//Otherwise, it's the same chance of breaking the grab as disarm.
+				if(incapacitated(INCAPACITATION_KNOCKDOWN)? prob(15) : prob(60))
 					visible_message("<span class='warning'>[src] has broken free of [G.assailant]'s grip!</span>")
 					qdel(G)
 			if(GRAB_NECK)
@@ -862,7 +864,7 @@ default behaviour is:
 	else
 		if(istype(buckled, /obj/vehicle))
 			var/obj/vehicle/V = buckled
-			if(cannot_stand())
+			if(is_physically_disabled())
 				lying = 0
 				canmove = 1
 				pixel_y = V.mob_offset_y - 5
@@ -880,18 +882,13 @@ default behaviour is:
 					anchored = 0
 					canmove = 1
 
-		else if(cannot_stand())
-			lying = 1
-			canmove = 0
-		else if(stunned)
-			canmove = 0
 		else if(captured)
 			anchored = 1
 			canmove = 0
 			lying = 0
 		else
-			lying = 0
-			canmove = 1
+			lying = incapacitated(INCAPACITATION_KNOCKDOWN)
+			canmove = !incapacitated(INCAPACITATION_DISABLED)
 
 	if(lying)
 		density = 0

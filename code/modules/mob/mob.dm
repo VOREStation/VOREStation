@@ -158,8 +158,20 @@
 		return UNBUCKLED
 	return restrained() ? FULLY_BUCKLED : PARTIALLY_BUCKLED
 
+/mob/proc/is_physically_disabled()
+	return incapacitated(INCAPACITATION_DISABLED)
+
+/mob/proc/cannot_stand()
+	return incapacitated(INCAPACITATION_KNOCKDOWN)
+
 /mob/proc/incapacitated(var/incapacitation_flags = INCAPACITATION_DEFAULT)
-	if (stat || paralysis || stunned || weakened || resting || sleeping || (status_flags & FAKEDEATH))
+	if ((incapacitation_flags & INCAPACITATION_STUNNED) && stunned)
+		return 1
+
+	if ((incapacitation_flags & INCAPACITATION_FORCELYING) && (weakened || resting))
+		return 1
+
+	if ((incapacitation_flags & INCAPACITATION_KNOCKOUT) && (stat || paralysis || sleeping || (status_flags & FAKEDEATH)))
 		return 1
 
 	if((incapacitation_flags & INCAPACITATION_RESTRAINED) && restrained())
@@ -686,9 +698,6 @@
 // Not sure what to call this. Used to check if humans are wearing an AI-controlled exosuit and hence don't need to fall over yet.
 /mob/proc/can_stand_overridden()
 	return 0
-
-/mob/proc/cannot_stand()
-	return incapacitated(INCAPACITATION_DEFAULT & (~INCAPACITATION_RESTRAINED))
 
 //Updates canmove, lying and icons. Could perhaps do with a rename but I can't think of anything to describe it.
 /mob/proc/update_canmove()
