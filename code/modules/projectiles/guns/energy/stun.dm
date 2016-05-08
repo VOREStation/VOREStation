@@ -14,7 +14,7 @@
 
 /obj/item/weapon/gun/energy/taser/mounted/cyborg
 	name = "taser gun"
-	max_shots = 6
+	max_shots = 12
 	recharge_time = 10 //Time it takes for shots to recharge (in ticks)
 
 
