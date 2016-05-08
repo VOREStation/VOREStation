@@ -43,6 +43,8 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	//Actual preferences
 	var/digestable = 1
 	var/list/belly_prefs = list()
+	var/weight_gain = 1
+	var/weight_loss = 0.5
 
 	//Mechanically required
 	var/path
