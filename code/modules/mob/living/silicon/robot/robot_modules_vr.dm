@@ -24,6 +24,7 @@
 	src.modules += new /obj/item/borg/sight/hud/sec(src) //Security hud to see criminals.
 	src.emag 	 = new /obj/item/weapon/gun/energy/laser/mounted(src) //Emag. Not a big problem.
 	R.icon 		 = 'icons/mob/widerobot_vr.dmi'
+	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	R.icon_state = "k9"
 	R.pixel_x 	 = -16
 	..()
@@ -64,6 +65,7 @@
 	src.modules += new /obj/item/weapon/extinguisher/mini(src) //So they can put burning patients out.
 	src.modules += new /obj/item/weapon/reagent_containers/syringe(src) //In case the chemist is nice!
 	R.icon = 'icons/mob/widerobot_vr.dmi'
+	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	R.icon_state = "medihound"
 	R.pixel_x = -16
 	..()
