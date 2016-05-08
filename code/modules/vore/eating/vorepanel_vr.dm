@@ -33,16 +33,11 @@
 	var/dat
 
 	if (is_vore_predator(user.loc))
-		var/vore/pred_capable/eater = user.loc
+		var/mob/living/eater = user.loc
 		var/datum/belly/inside_belly
 
 		//This big block here figures out where the prey is
-		for (var/bellytype in eater.vore_organs)
-			var/datum/belly/B = eater.vore_organs[bellytype]
-			for (var/mob/living/M in B.internal_contents)
-				if (M == user)
-					inside_belly = B
-					break
+		inside_belly = check_belly(user)
 
 		//Don't display this part if we couldn't find the belly since could be held in hand.
 		if(inside_belly)
@@ -502,7 +497,7 @@
 		message_admins("[key_name(user)] toggled their digestability to [user.digestable] ([user ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[user.loc.];Y=[user.loc.y];Z=[user.loc.z]'>JMP</a>" : "null"])")
 
 		if(user.client.prefs)
-			user.client.prefs.digestable = user.digestable
+			user.client.prefs.vore_preferences.digestable = user.digestable
 
 	//Refresh when interacted with, returning 1 makes vore_look.Topic update
 	return 1

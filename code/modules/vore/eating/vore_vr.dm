@@ -24,11 +24,17 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 // the object they are overriding. So all /mob/living together, etc.
 //
 /datum/preferences
-	var/digestable = 1
-	var/list/belly_prefs = list()
+	var/datum/vore_preferences/vore_preferences
 
 /datum/configuration
 	var/items_survive_digestion = 1		//For configuring if the important_items survive digestion
+
+//
+// The datum type bolted onto normal preferences datums for storing Virgo stuff
+//
+/datum/vore_preferences
+	var/digestable = 1
+	var/list/belly_prefs = list()
 
 //
 // Adding procs to types to support vore
