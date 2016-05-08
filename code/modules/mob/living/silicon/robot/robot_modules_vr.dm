@@ -13,7 +13,6 @@ proc/robomoduless()
 	channels = list("Security" = 1)
 	networks = list(NETWORK_SECURITY)
 	can_be_pushed = 0
-	sprites = list("K9" = "k9")
 
 /obj/item/weapon/robot_module/knine/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/device/flash(src)
