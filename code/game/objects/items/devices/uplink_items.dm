@@ -446,10 +446,6 @@ datum/uplink_item/dd_SortValue()
 	item_cost = 20
 	path = /obj/item/weapon/circuitboard/teleporter
 
-/datum/uplink_item/item/tools/teleporter/New()
-	..()
-	antag_roles = list(MODE_MERCENARY)
-
 /datum/uplink_item/item/tools/money
 	name = "Operations Funding"
 	item_cost = 3
@@ -632,7 +628,6 @@ datum/uplink_item/dd_SortValue()
 
 /datum/uplink_item/item/badassery/surplus/New()
 	..()
-	antag_roles = list(MODE_MERCENARY)
 	desc = "A crate containing [item_worth] telecrystal\s worth of surplus leftovers."
 
 /datum/uplink_item/item/badassery/surplus/get_goods(var/obj/item/device/uplink/U, var/loc)
@@ -681,7 +676,6 @@ var/image/default_abstract_uplink_icon
 	..()
 	name = "[command_name()] Update Announcement"
 	desc = "Causes a falsified [command_name()] Update. Triggers immediately after supplying additional data."
-	antag_roles = list(MODE_MERCENARY)
 
 /datum/uplink_item/abstract/announcements/fake_centcom/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/user, var/list/args)
 	command_announcement.Announce(args.["message"], args.["title"])
@@ -691,10 +685,6 @@ var/image/default_abstract_uplink_icon
 	name = "Crew Arrival Announcement/Records"
 	desc = "Creates a fake crew arrival announcement as well as fake crew records, using your current appearance (including held items!) and worn id card. Trigger with care!"
 	item_cost = 4
-
-/datum/uplink_item/abstract/announcements/fake_crew_arrival/New()
-	..()
-	antag_roles = list(MODE_MERCENARY)
 
 /datum/uplink_item/abstract/announcements/fake_crew_arrival/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/user, var/list/args)
 	if(!user)
