@@ -518,14 +518,12 @@
 	if (src.icon_vend) //Show the vending animation if needed
 		flick(src.icon_vend,src)
 	spawn(src.vend_delay)
+		new R.product_path(get_turf(src))
+		R.amount--
 		if(prob(1))
-			for(var/I = 1 to 2)
-				new R.product_path(get_turf(src))
-				R.amount--
-			src.visible_message("<span class='notice'>\The [src] clunks as it vends an additional item.</span>")
-		else
 			new R.product_path(get_turf(src))
 			R.amount--
+			src.visible_message("<span class='notice'>\The [src] clunks as it vends an additional item.</span>")
 
 		src.status_message = ""
 		src.status_error = 0
