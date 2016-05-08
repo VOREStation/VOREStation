@@ -335,6 +335,10 @@ var/global/list/robot_modules = list(
 	R.synths = list(metal)
 	src.modules += R
 
+	var/obj/item/stack/tile/floor/cyborg/F = new /obj/item/stack/tile/floor/cyborg(src)
+	F.synths = list(metal)
+	src.modules += F
+
 	var/obj/item/stack/material/cyborg/plasteel/S = new (src)
 	S.synths = list(plasteel)
 	src.modules += S
