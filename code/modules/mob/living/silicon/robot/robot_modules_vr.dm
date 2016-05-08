@@ -3,8 +3,8 @@ hook/startup/proc/robomodules()
 	return 1
 
 proc/robomodules()
-	robot_modules += list( "Medihound" = /obj/item/weapon/robot_module/medihound
-	robot_modules += list( "K9" = /obj/item/weapon/robot_module/knine
+	robot_modules += "Medihound" = /obj/item/weapon/robot_module/medihound
+	robot_modules += "K9" = /obj/item/weapon/robot_module/knine
 
 /obj/item/weapon/robot_module/medihound
 	name = "medihound robot module"
@@ -45,7 +45,7 @@ proc/robomodules()
 	src.modules += new /obj/item/borg/sight/hud/sec(src) //Security hud to see criminals.
 	src.emag = new /obj/item/weapon/gun/energy/laser/mounted(src) //Emag. Not a big problem.
 	R.icon = 'icons/mob/widerobot_vr.dmi'
-	R.icon_state = "medihound"
+	R.icon_state = "k9
 	R.pixel_x = -16
 	..()
 
