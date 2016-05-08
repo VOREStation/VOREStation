@@ -35,6 +35,8 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 /datum/vore_preferences
 	var/digestable = 1
 	var/list/belly_prefs = list()
+	var/weight_gain = 1
+	var/weight_loss = 0.5
 
 //
 // Adding procs to types to support vore

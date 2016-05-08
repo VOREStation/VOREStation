@@ -4,7 +4,9 @@
 	var/datum/belly/vore_selected		// Default to no vore capability.
 	var/list/vore_organs = list()		// List of vore containers inside a mob
 	var/absorbed = 0					// If a mob is absorbed into another
-	var/weight = 100					// Weight for mobs for weightgain system
+	var/weight = 137					// Weight for mobs for weightgain system
+	var/weight_gain = 1 				//How fast you gain weight
+	var/weight_loss = 0.5 				//How fast you lose weight
 
 //
 // Hook for generic creation of stuff on new creatures
