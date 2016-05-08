@@ -13,6 +13,7 @@
 
 /mob/living/attackby(obj/item/I, mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	if(attempt_vr(src,"vore_attackby",args)) return //VOREStation Code
 	if(istype(I) && ismob(user))
 		I.attack(src, user)
 

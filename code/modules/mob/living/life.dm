@@ -26,6 +26,8 @@
 		//Random events (vomiting etc)
 		handle_random_events()
 
+		attempt_vr(src,"handle_internal_contents",args) //VOREStation Code
+
 		. = 1
 
 	//Handle temperature/pressure differences between body and environment
