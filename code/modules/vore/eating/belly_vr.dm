@@ -4,25 +4,9 @@
 //	It is not, however, for printing messages about entering/exiting the belly. That is done in voretype etc.
 //
 
-/*
-belly_prefs["name"] = STRING
-belly_prefs["digest_mode"] = CONSTANT (see belly.dm)
-belly_prefs["digest_modes"] = LIST
-belly_prefs["inside_flavor"] = STRING
-belly_prefs["vore_sound"] = FILE
-belly_prefs["vore_verb"] = STRING
-belly_prefs["human_prey_swallow_time"] = INTEGER
-belly_prefs["nonhuman_prey_swallow_time"] = INTEGER
-belly_prefs["digest_brute"] = INTEGER
-belly_prefs["digest_burn"] = INTEGER
-belly_prefs["digest_tickrate"] = INTEGER
-belly_prefs["immutable"] = BOOLEAN
-*/
-
-/*
-* Parent type of all the various "belly" varieties.
-*/
-
+//
+// Parent type of all the various "belly" varieties.
+//
 /datum/belly
 	var/name								// Name of this location
 	var/list/digest_modes = list(DM_HOLD,DM_DIGEST,DM_HEAL,DM_ABSORB)	// Possible digest modes
@@ -94,24 +78,11 @@ belly_prefs["immutable"] = BOOLEAN
 		"They have something solid in their %belly!",
 		"It looks like they have something in their %belly!")
 
-	var/list/vore_sounds = list(
-		"Gulp" = 'sound/vore/gulp.ogg',
-		"Insert" = 'sound/vore/insert.ogg',
-		"Insertion1" = 'sound/vore/insertion1.ogg',
-		"Insertion2" = 'sound/vore/insertion2.ogg',
-		"Insertion3" = 'sound/vore/insertion3.ogg',
-		"Schlorp" = 'sound/vore/schlorp.ogg',
-		"Squish1" = 'sound/vore/squish1.ogg',
-		"Squish2" = 'sound/vore/squish2.ogg',
-		"Squish3" = 'sound/vore/squish3.ogg',
-		"Squish4" = 'sound/vore/squish4.ogg')
-
 	//Mostly for being overridden on precreated bellies on mobs. Could be VV'd into
 	//a carbon's belly if someone really wanted. No UI for carbons to adjust this.
 	var/list/emote_lists = list()
 
 // Constructor that sets the owning mob
-// @Override
 /datum/belly/New(var/mob/living/owning_mob)
 	owner = owning_mob
 
@@ -121,7 +92,7 @@ belly_prefs["immutable"] = BOOLEAN
 	return
 
 // Checks if any mobs are present inside the belly
-// @return True if the belly is empty.
+// return True if the belly is empty.
 /datum/belly/proc/is_empty()
 	return internal_contents.len == 0
 
@@ -183,8 +154,6 @@ belly_prefs["immutable"] = BOOLEAN
 // Actually perform the mechanics of devouring the tasty prey.
 // The purpose of this method is to avoid duplicate code, and ensure that all necessary
 // steps are taken.
-// @param prey Mob to be eaten
-// @param user Optional: 3rd party is the one making this happen.
 /datum/belly/proc/nom_mob(var/mob/prey, var/mob/user)
 	if (prey.buckled)
 		prey.buckled.unbuckle_mob()
@@ -284,7 +253,7 @@ belly_prefs["immutable"] = BOOLEAN
 				SubPrey.loc = src.owner
 				internal_contents += SubPrey
 				if (istype(SubPrey, /mob))
-					SubPrey << "As [M] melts away around you, you find yourself in [src.owner]'s [name]"
+					SubPrey << "As [M] melts away around you, you find yourself in [owner]'s [name]"
 
 	//Drop all items into the belly.
 	if (config.items_survive_digestion)
@@ -297,7 +266,7 @@ belly_prefs["immutable"] = BOOLEAN
 		RL.trans_to(owner,RL.total_volume*0.5)
 
 	// Delete the digested mob
-	del(M)
+	qdel(M)
 
 // Recursive method - To recursively scan thru someone's inventory for digestable/indigestable.
 /datum/belly/proc/_handle_digested_item(var/obj/item/W)
@@ -307,7 +276,7 @@ belly_prefs["immutable"] = BOOLEAN
 		if (PDA.id)
 			W = PDA.id
 			PDA.id = null
-			del(PDA)
+			qdel(PDA)
 
 	if (istype(W, /obj/item/weapon/card/id))
 		// Keep IDs around, but destroy them!
@@ -323,7 +292,7 @@ belly_prefs["immutable"] = BOOLEAN
 	else
 		for (var/obj/item/SubItem in W)
 			_handle_digested_item(SubItem)
-		del(W)
+		qdel(W)
 
 /datum/belly/proc/_is_digestable(var/obj/item/I)
 	for (var/T in important_items)
@@ -389,12 +358,5 @@ belly_prefs["immutable"] = BOOLEAN
 		M.show_message(struggle_outer_message, 2) // hearable
 	user << struggle_user_message
 
-	switch(rand(1,4))
-		if(1)
-			playsound(user.loc, 'sound/vore/squish1.ogg', 50, 1)
-		if(2)
-			playsound(user.loc, 'sound/vore/squish2.ogg', 50, 1)
-		if(3)
-			playsound(user.loc, 'sound/vore/squish3.ogg', 50, 1)
-		if(4)
-			playsound(user.loc, 'sound/vore/squish4.ogg', 50, 1)
+	var/strsound = pick(struggle_sounds)
+	playsound(user.loc, strsound, 50, 1)

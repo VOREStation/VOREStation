@@ -460,12 +460,12 @@
 		selected.vore_verb = new_verb
 
 	if(href_list["b_sound"])
-		var/choice = input(user,"Currently set to [selected.vore_sound]","Select Sound") in selected.vore_sounds + "Cancel - No Changes"
+		var/choice = input(user,"Currently set to [selected.vore_sound]","Select Sound") in vore_sounds + "Cancel - No Changes"
 
 		if(choice == "Cancel")
 			return 1
 
-		selected.vore_sound = selected.vore_sounds[choice]
+		selected.vore_sound = vore_sounds[choice]
 
 	if(href_list["b_soundtest"])
 		user << selected.vore_sound
