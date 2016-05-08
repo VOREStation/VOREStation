@@ -1,4 +1,4 @@
-hook/startup/robot_modules/proc/robomodules()
+/hook/startup/proc/robot_modules_vr()
 	robot_modules["Medihound"] = /obj/item/weapon/robot_module/medihound
 	robot_modules["K9"] = /obj/item/weapon/robot_module/knine
 	return 1
