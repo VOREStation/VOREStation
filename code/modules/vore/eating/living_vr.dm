@@ -13,9 +13,10 @@
 	M.verbs += /mob/living/proc/insidePanel
 	M.verbs += /mob/living/proc/escapeOOC
 
-	if(M.client && M.client.prefs && M.client.prefs.belly_prefs)
-		M.vore_organs = M.client.prefs.belly_prefs
+	if(M.client && M.client.prefs && M.client.prefs.vore_preferences.belly_prefs)
+		M.vore_organs = M.client.prefs.vore_preferences.belly_prefs
 		M.vore_selected = M.vore_organs[1]
+		M.digestable = M.client.prefs.vore_preferences.digestable
 
 	//Creates at least the typical 'stomach' on every mob.
 	if(!M.vore_organs.len)
