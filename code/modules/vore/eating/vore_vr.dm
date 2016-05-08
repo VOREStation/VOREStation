@@ -42,14 +42,6 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	return
 
 //
-//	This is an "interface" type.  No instances of this type will exist, but any type which is supposed
-//  to be vore capable should implement the vars and procs defined here to be vore-compatible!
-//
-/vore/pred_capable
-	var/list/vore_organs
-	var/datum/voretype/vorifice
-
-//
 //	Check if an object is capable of eating things, based on vore_organs
 //
 /proc/is_vore_predator(var/mob/living/O)
