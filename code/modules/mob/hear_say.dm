@@ -184,9 +184,9 @@
 
 	var/formatted
 	if(language)
-		formatted = language.format_message_radio(message, verb)
+		formatted = "[language.format_message_radio(message, verb)]</span></span>"
 	else
-		formatted = "[verb], <span class=\"body\">\"[message]\"</span>"
+		formatted = "[verb], <span class=\"body\">\"[message]\"</span></span></span>"
 	if((sdisabilities & DEAF) || ear_deaf)
 		if(prob(20))
 			src << "<span class='warning'>You feel your headset vibrate but can hear nothing from it!</span>"
