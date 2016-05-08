@@ -1,11 +1,8 @@
-
 hook/startup/robot_modules/proc/robomodules()
-	robomoduless()
-	return 1
-
-proc/robomoduless()
 	robot_modules["Medihound"] = /obj/item/weapon/robot_module/medihound
 	robot_modules["K9"] = /obj/item/weapon/robot_module/knine
+	return 1
+
 
 /obj/item/weapon/robot_module/knine
 	name = "k9 robot module"
