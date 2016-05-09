@@ -88,6 +88,13 @@ default behaviour is:
 			if((tmob.mob_always_swap || (tmob.a_intent == I_HELP || tmob.restrained()) && (a_intent == I_HELP || src.restrained())) && tmob.canmove && canmove && !tmob.buckled && !buckled && !dense && can_move_mob(tmob, 1, 0)) // mutual brohugs all around!
 				var/turf/oldloc = loc
 				forceMove(tmob.loc)
+
+				// VOREStation Edit - Begin
+				// In case of micros, we don't swap positions; instead occupying the same square!
+				if (handle_micro_bump_helping(tmob)) return
+				// TODO - Check if we need to do something about the slime.UpdateFeed() we are skipping below.
+				// VOREStation Edit - End
+
 				tmob.forceMove(oldloc)
 				now_pushing = 0
 				for(var/mob/living/carbon/slime/slime in view(1,tmob))
@@ -101,6 +108,12 @@ default behaviour is:
 			if(a_intent == I_HELP || src.restrained())
 				now_pushing = 0
 				return
+
+			// VOREStation Edit - Begin
+			// Handle grabbing, stomping, and such of micros!
+			if(handle_micro_bump_other(tmob)) return
+			// VOREStation Edit - End
+
 			if(istype(tmob, /mob/living/carbon/human) && (FAT in tmob.mutations))
 				if(prob(40) && !(FAT in src.mutations))
 					src << "<span class='danger'>You fail to push [tmob]'s fat ass out of the way.</span>"
