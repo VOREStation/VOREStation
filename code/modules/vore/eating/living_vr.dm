@@ -80,7 +80,6 @@
 
 				var/mob/living/attacker = user  // Typecast to living
 
-				world << "[G] with [G.affecting] and [G.assailant] clicked on [src] with intent [user.a_intent] and target [user.zone_sel.selecting]"
 				// src is the mob clicked on
 
 				///// If grab clicked on grabber
