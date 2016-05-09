@@ -2,10 +2,6 @@
 // Called from /mob/living/Life() proc.
 /datum/belly/proc/process_Life()
 
-///////////////////////////// TIMER /////////////////////////////
-	if(!internal_contents.len || air_master.current_cycle%3 != 1)
-		return
-
 /////////////////////////// Auto-Emotes ///////////////////////////
 	if((digest_mode in emote_lists) && !emotePend)
 		emotePend = 1

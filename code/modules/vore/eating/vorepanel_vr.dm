@@ -470,19 +470,21 @@
 			usr << "<span class='warning'>Can't delete bellies with contents!</span>"
 		else if(selected.immutable)
 			usr << "<span class='warning'>This belly is marked as undeletable.</span>"
+		else if(user.vore_organs.len == 1)
+			usr << "<span class='warning'>You must have at least one belly.</span>"
 		else
 			var/alert = alert("Are you sure you want to delete [selected]?","Confirmation","Delete","Cancel")
 			if(alert == "Delete" && !selected.internal_contents.len)
 				user.vore_organs -= selected.name
 				user.vore_organs.Remove(selected)
-				selected = null
+				selected = user.vore_organs[1]
+				user.vore_selected = user.vore_organs[1]
 
 	if(href_list["saveprefs"])
-		if(user.save_vore_prefs())
-			user << "<span class='notice'>Saved belly preferences.</span>"
+		if(!user.save_vore_prefs())
+			user << "<span class='warning'>ERROR: Virgo-specific preferences failed to save!</span>"
 		else
-			user << "<span class='warning'>ERROR: Could not save vore prefs.</span>"
-			log_debug("Could not save vore prefs on USER: [user].")
+			user << "<span class='notice'>Virgo-specific preferences saved!</span>"
 
 	if(href_list["toggledg"])
 		var/choice = alert(user, "This button is for those who don't like being digested. It can make you undigestable. Don't abuse this button by toggling it back and forth to extend a scene or whatever, or you'll make the admins cry. Digesting you is currently: [user.digestable ? "Allowed" : "Prevented"]", "", "Allow Digestion", "Cancel", "Prevent Digestion")
@@ -496,7 +498,7 @@
 
 		message_admins("[key_name(user)] toggled their digestability to [user.digestable] ([user ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[user.loc.];Y=[user.loc.y];Z=[user.loc.z]'>JMP</a>" : "null"])")
 
-		if(user.client.prefs)
+		if(user.client.prefs_vr)
 			user.client.prefs_vr.digestable = user.digestable
 
 	//Refresh when interacted with, returning 1 makes vore_look.Topic update

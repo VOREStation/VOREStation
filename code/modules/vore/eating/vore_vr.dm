@@ -59,17 +59,6 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 		load_vore(C)
 
 //
-// Adding procs to types to support vore
-//
-/datum/vore_preferences/proc/save_vore_preferences()
-	save_vore()
-	return
-
-/datum/vore_preferences/proc/load_vore_preferences()
-	load_vore()
-	return
-
-//
 //	Check if an object is capable of eating things, based on vore_organs
 //
 /proc/is_vore_predator(var/mob/living/O)
@@ -95,24 +84,27 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 //
 // Save/Load Vore Preferences
 //
-/datum/vore_preferences/proc/load_vore(filename="preferences_vr.sav")
+/datum/vore_preferences/proc/load_vore()
 	if(!client || !client_ckey) return 0 //No client, how can we save?
-	if(!path)
-		path = "data/player_saves/[copytext(client_ckey,1,2)]/[client_ckey]/[filename]"
-		if(!path) return 0 //Path couldn't be set?
+
+	slot = client.prefs.default_slot
+
+	path = client.prefs.path
+
+	if(!path) return 0 //Path couldn't be set?
+	if(!fexists(path)) //Never saved before
+		save_vore() //Make the file first
+		return 1
 
 	var/savefile/S = new /savefile(path)
 	if(!S) return 0 //Savefile object couldn't be created?
 
-	S.cd = "/"
-	if(!slot)
-		slot = client.prefs.default_slot
-
-	slot = sanitize_integer(slot, 1, config.character_slots, initial(client.prefs.default_slot))
 	S.cd = "/character[slot]"
 
 	S["digestable"] >> digestable
 	S["belly_prefs"] >> belly_prefs
+	S["weight_gain"] >> weight_gain
+	S["weight_loss"] >> weight_loss
 
 	return 1
 
@@ -125,5 +117,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 
 	S["digestable"] << digestable
 	S["belly_prefs"] << belly_prefs
+	S["weight_gain"] << weight_gain
+	S["weight_loss"] << weight_loss
 
 	return 1
