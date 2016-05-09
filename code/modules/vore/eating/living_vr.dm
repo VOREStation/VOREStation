@@ -118,7 +118,23 @@
 					attacker.eat_held_mob(attacker, M, src)
 				return 1 //Return 1 to exit upper procs
 			else
-				log_debug("[attacker] attempted to feed [H.contents] to [src] ([src.type]) but it is not predator-capable")
+				log_debug("[attacker] attempted to feed [H.contents] to [src] ([src.type]) but it failed.")
+	return 0
+
+//
+// Our custom resist catches for /mob/living
+//
+/mob/living/proc/vore_process_resist()
+
+	//Are we resisting from inside a belly?
+	var/datum/belly/B = check_belly(src)
+	if(B)
+		spawn()	B.relay_resist(src)
+		return TRUE //resist() on living does this TRUE thing.
+
+	//Other overridden resists go here
+
+
 	return 0
 
 

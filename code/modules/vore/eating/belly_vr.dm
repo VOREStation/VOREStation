@@ -21,6 +21,8 @@
 	var/digest_burn = 3						// Burn damage per tick in digestion mode
 	var/digest_tickrate = 3					// Modulus this of air controller tick number to iterate gurgles on
 	var/immutable = 0						// Prevents this belly from being deleted
+	var/escapable = 0						// Belly can be resisted out of at any time
+	var/escapetime = 600					// Deciseconds, how long to escape this belly
 
 	var/tmp/digest_mode = DM_HOLD				// Whether or not to digest. Default to not digest.
 	var/tmp/mob/living/owner					// The mob whose belly this is.
@@ -325,24 +327,42 @@
 
 //Handle a mob struggling
 // Called from /mob/living/carbon/relaymove()
-/datum/belly/proc/relay_struggle(var/mob/living/user, var/direction)
-	if (!(user in internal_contents) || recent_struggle)
+/datum/belly/proc/relay_resist(var/mob/living/R)
+	if (!(R in internal_contents) || recent_struggle)
 		return  // User is not in this belly, or struggle too soon.
 
-	recent_struggle = 1
-	spawn(25)
-		recent_struggle = 0
+	R.setClickCooldown(50)
 
-	//if(prob(80)) //Using the cooldown above to prevent spam instead
+	if(owner.stat || escapable) //If owner is stat (dead, KO) we can actually escape, or if belly is set to escapable (non-default)
+		R << "<span class='warning'>You attempt to climb out of \the [name]. (This will take around [escapetime/10] seconds.)</span>"
+		owner << "<span class='warning'>Someone is attempting to climb out of your [name]!</span>"
+
+		if(do_after(R, escapetime, owner, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_RESTRAINED))
+			if((owner.stat || escapable) && (R in internal_contents)) //Can still escape?
+				release_specific_contents(R)
+				return
+			else if(!(R in internal_contents)) //Aren't even in the belly. Quietly fail.
+				return
+			else //Belly became inescapable or mob revived
+				R << "<span class='warning'>Your attempt to escape [name] has failed!</span>"
+				owner << "<span class='notice'>The attempt to escape from your [name] has failed!</span>"
+				return
+			return
+
+/* POLARISTODO - If this is made unnecessary by setClickCooldown, remove it and the var on bellies
+	recent_struggle = 1
+	spawn(30)
+		recent_struggle = 0
+*/
 	var/struggle_outer_message = pick(struggle_messages_outside)
 	var/struggle_user_message = pick(struggle_messages_inside)
 
 	struggle_outer_message = replacetext(struggle_outer_message,"%pred",owner)
-	struggle_outer_message = replacetext(struggle_outer_message,"%prey",user)
+	struggle_outer_message = replacetext(struggle_outer_message,"%prey",R)
 	struggle_outer_message = replacetext(struggle_outer_message,"%belly",lowertext(name))
 
 	struggle_user_message = replacetext(struggle_user_message,"%pred",owner)
-	struggle_user_message = replacetext(struggle_user_message,"%prey",user)
+	struggle_user_message = replacetext(struggle_user_message,"%prey",R)
 	struggle_user_message = replacetext(struggle_user_message,"%belly",lowertext(name))
 
 	struggle_outer_message = "<span class='alert'>" + struggle_outer_message + "</span>"
@@ -350,7 +370,7 @@
 
 	for(var/mob/M in hearers(4, owner))
 		M.show_message(struggle_outer_message, 2) // hearable
-	user << struggle_user_message
+	R << struggle_user_message
 
 	var/strsound = pick(struggle_sounds)
-	playsound(user.loc, strsound, 50, 1)
+	playsound(R.loc, strsound, 50, 1)
