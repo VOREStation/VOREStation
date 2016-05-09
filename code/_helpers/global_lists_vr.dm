@@ -1,3 +1,15 @@
+/**
+ * VOREStation global lists
+*/
+
+//stores numeric player size options indexed by name
+var/global/list/player_sizes_list = list(
+		"Macro" 	= RESIZE_HUGE,
+		"Big" 		= RESIZE_BIG,
+		"Normal" 	= RESIZE_NORMAL,
+		"Small" 	= RESIZE_SMALL,
+		"Tiny" 		= RESIZE_TINY)
+
 //Important items that are preserved when people are digested, cryo'd, etc.
 var/global/list/important_items = list(
 		/obj/item/weapon/hand_tele,

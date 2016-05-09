@@ -56,6 +56,11 @@
 
 	switch(M.a_intent)
 		if(I_HELP)
+
+			// VOREStation Edit - Begin
+			if (istype(H) && attempt_to_scoop(H))
+				return 0;
+			// VOREStation Edit - End
 			if(istype(H) && health < config.health_threshold_crit && health > config.health_threshold_dead)
 				if(!H.check_has_mouth())
 					H << "<span class='danger'>You don't have a mouth, you cannot perform CPR!</span>"

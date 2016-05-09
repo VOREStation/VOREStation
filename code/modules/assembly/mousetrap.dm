@@ -28,11 +28,11 @@
 			var/mob/living/carbon/human/H = target
 			switch(type)
 				if("feet")
-					if(!H.shoes)
+					if(!H.shoes || H.get_effective_size() < RESIZE_SMALL)
 						affecting = H.get_organ(pick("l_leg", "r_leg"))
 						H.Weaken(3)
 				if("l_hand", "r_hand")
-					if(!H.gloves)
+					if(!H.gloves || H.get_effective_size() < RESIZE_SMALL)
 						affecting = H.get_organ(type)
 						H.Stun(3)
 			if(affecting)

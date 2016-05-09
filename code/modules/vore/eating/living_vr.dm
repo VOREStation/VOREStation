@@ -65,7 +65,7 @@
 	//Things we can eat with vore code
 	var/list/vore_items = list(
 		/obj/item/weapon/grab,
-		/obj/item/weapon/holder)
+		/obj/item/weapon/holder/micro)
 
 	if(!(I.type in vore_items))
 		return 0
@@ -106,11 +106,19 @@
 					else
 						log_debug("[attacker] attempted to feed [G.affecting] to [src] ([src.type]) but it failed.")
 
-
 	//Handle case: /obj/item/weapon/holder
-		if(/obj/item/weapon/holder)
-			return 1
+		if(/obj/item/weapon/holder/micro)
+			var/obj/item/weapon/holder/H = I
 
+			if(!isliving(user)) return 0 // Return 0 to continue upper procs
+			var/mob/living/attacker = user  // Typecast to living
+
+			if (is_vore_predator(src))
+				for (var/mob/living/M in H.contents)
+					attacker.eat_held_mob(attacker, M, src)
+				return 1 //Return 1 to exit upper procs
+			else
+				log_debug("[attacker] attempted to feed [H.contents] to [src] ([src.type]) but it is not predator-capable")
 	return 0
 
 
