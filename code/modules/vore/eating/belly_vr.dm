@@ -100,25 +100,21 @@
 // If that location is another mob, contents are transferred into whichever of its bellies the owning mob is in.
 // Returns the number of mobs so released.
 /datum/belly/proc/release_all_contents()
-	var/tick = 0 //easiest way to check if the list has anything
 	for (var/atom/movable/M in internal_contents)
 		if(istype(M,/mob/living))
 			var/mob/living/ML = M
 			if(ML.absorbed)
 				continue
 
-		M.loc = owner.loc  // Move the belly contents into the same location as belly's owner.
-		src.internal_contents -= M  // Remove from the belly contents
+		M.forceMove(owner.loc)  // Move the belly contents into the same location as belly's owner.
+		internal_contents -= M  // Remove from the belly contents
 
-		if (isliving(owner.loc)) // This makes sure that the mob behaves properly if released into another mob
-			var/mob/living/carbon/loc_mob = owner.loc
-			for (var/bellytype in loc_mob.vore_organs)
-				var/datum/belly/belly = loc_mob.vore_organs[bellytype]
-				if (owner in belly.internal_contents)
-					belly.internal_contents += M
-		tick++
+		var/datum/belly/B = check_belly(owner) // This makes sure that the mob behaves properly if released into another mob
+		if(B)
+			B.internal_contents += M
+
 	owner.visible_message("<font color='green'><b>[owner] expels everything from their [lowertext(name)]!</b></font>")
-	return tick
+	return 1
 
 // Release a specific atom from the contents of this belly into the owning mob's location.
 // If that location is another mob, the atom is transferred into whichever of its bellies the owning mob is in.
@@ -127,7 +123,7 @@
 	if (!(M in internal_contents))
 		return 0 // They weren't in this belly anyway
 
-	M.loc = owner.loc  // Move the belly contents into the same location as belly's owner.
+	M.forceMove(owner.loc)  // Move the belly contents into the same location as belly's owner.
 	src.internal_contents -= M  // Remove from the belly contents
 
 	if(istype(M,/mob/living))
@@ -143,7 +139,7 @@
 
 			OR.trans_to(ML,OR.total_volume / absorbed_count)
 
-	var/datum/belly/B = check_belly(M.loc)
+	var/datum/belly/B = check_belly(owner)
 	if(B)
 		B.internal_contents += M
 
@@ -158,7 +154,7 @@
 	if (prey.buckled)
 		prey.buckled.unbuckle_mob()
 
-	prey.loc = owner
+	prey.forceMove(owner)
 	internal_contents += prey
 
 	if(inside_flavor)
@@ -249,10 +245,9 @@
 		for (var/bellytype in M.vore_organs)
 			var/datum/belly/belly = M.vore_organs[bellytype]
 			for (var/obj/SubPrey in belly.internal_contents)
-				SubPrey.loc = src.owner
+				SubPrey.forceMove(owner)
 				internal_contents += SubPrey
-				if (istype(SubPrey, /mob))
-					SubPrey << "As [M] melts away around you, you find yourself in [owner]'s [name]"
+				SubPrey << "As [M] melts away around you, you find yourself in [owner]'s [name]"
 
 	//Drop all items into the belly.
 	if (config.items_survive_digestion)
@@ -283,10 +278,10 @@
 		ID.desc = "A partially digested card that has seen better days.  Much of it's data has been destroyed."
 		ID.icon_state = "digested"
 		ID.access = list() // No access
-		ID.loc = src.owner
+		ID.forceMove(owner)
 		internal_contents += ID
 	else if (!_is_digestable(W))
-		W.loc = src.owner
+		W.forceMove(owner)
 		internal_contents += W
 	else
 		for (var/obj/item/SubItem in W)
@@ -314,7 +309,7 @@
 	del(PR)
 
 	//This is probably already the case, but for sub-prey, it won't be.
-	M.loc = owner
+	M.forceMove(owner)
 
 	//Seek out absorbed prey of the prey, absorb them too.
 	//This in particular will recurse oddly because if there is absorbed prey of prey of prey...
