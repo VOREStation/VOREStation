@@ -82,14 +82,6 @@
 
 				world << "[G] with [G.affecting] and [G.assailant] clicked on [src] with intent [user.a_intent] and target [user.zone_sel.selecting]"
 				// src is the mob clicked on
-				if(src == G.affecting)
-					world << "1 is true"
-				if(attacker.a_intent == I_GRAB)
-					world << "2 is true"
-				if(attacker.zone_sel.selecting == BP_TORSO)
-					world << "3 is true"
-				if(is_vore_predator(G.affecting))
-					world << "4 is true"
 
 				///// If grab clicked on grabber
 				if((src == G.assailant) && (is_vore_predator(src)))
