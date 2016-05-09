@@ -135,7 +135,7 @@
 		if(B.internal_contents.len)
 			B.process_Life() //AKA 'do bellymodes_vr.dm'
 
-	if(air_master.current_cycle%3 != 1) return //Occasionally do supercleanups.
+	if(air_master.current_cycle%90 != 1) return //Occasionally do supercleanups.
 	for (var/I in vore_organs)
 		var/datum/belly/B = vore_organs[I]
 		if(B.internal_contents.len)
