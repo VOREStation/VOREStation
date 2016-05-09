@@ -143,11 +143,8 @@
 
 			OR.trans_to(ML,OR.total_volume / absorbed_count)
 
-	world << "check_belly [M.loc]"
 	var/datum/belly/B = check_belly(M.loc)
-	world << "check_belly returned: [B]"
 	if(B)
-		world << "RSC adding: [M] to [B]"
 		B.internal_contents += M
 
 	owner.visible_message("<font color='green'><b>[owner] expels [M] from their [lowertext(name)]!</b></font>")
