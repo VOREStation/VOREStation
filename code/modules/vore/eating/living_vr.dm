@@ -15,17 +15,21 @@
 	M.verbs += /mob/living/proc/insidePanel
 	M.verbs += /mob/living/proc/escapeOOC
 
-	if(M.client && M.client.prefs && M.client.prefs.vore_preferences.belly_prefs)
-		M.vore_organs = M.client.prefs.vore_preferences.belly_prefs
-		M.vore_selected = M.vore_organs[1]
-		M.digestable = M.client.prefs.vore_preferences.digestable
-
-	//Creates at least the typical 'stomach' on every mob.
-	if(!M.vore_organs.len)
+	//Tries to load prefs if a client is present otherwise gives freebie stomach
+	if(!M.vore_organs || !M.vore_organs.len)
 		spawn(20) //Wait a couple of seconds to make sure copy_to or whatever has gone
-			//In Polaris, when a character joins (not spawns), it creates some sort of 'Force' /mob/living/silicon/ai
-			//then immediately deletes it. I'm not sure why, but we should make sure M is still real 2 seconds later.
-			if(M && !M.vore_organs.len)
+			if(!M) return
+
+			if(M.client && M.client.prefs_vr)
+				if(!M.copy_from_prefs_vr())
+					M << "<span class='warning'>ERROR: You seem to have saved VOREStation prefs, but they couldn't be loaded.</span>"
+					return 0
+				if(M.vore_organs && M.vore_organs.len)
+					M.vore_selected = M.vore_organs[1]
+
+			if(!M.vore_organs || !M.vore_organs.len)
+				if(!M.vore_organs)
+					M.vore_organs = list()
 				var/datum/belly/B = new /datum/belly(M)
 				B.immutable = 1
 				B.name = "Stomach"
@@ -77,32 +81,30 @@
 				var/mob/living/attacker = user  // Typecast to living
 
 				// src is the mob clicked on
-				// If grab clicked on grabber
-				if(src == G.assailant)
-					if (is_vore_predator(src))
-						if (src.feed_grabbed_to_self(src, G.affecting))
-							qdel(G) //Delete grab
-							return 1 //Return 1 to exit upper procs
-					else
-						log_debug("[attacker] attempted to feed [G.affecting] to [user] ([user.type]) but it is not predator-capable")
 
-				// If grab clicked on grabbed
-				if((src == G.affecting) && (user.a_intent == I_GRAB) && (user.zone_sel.selecting == BP_TORSO))
-					if (is_vore_predator(G.affecting))
-						if (attacker.feed_self_to_grabbed(attacker, G.affecting))
-							qdel(G) //Delete grab
-							return 1 //Return 1 to exit upper procs
+				///// If grab clicked on grabber
+				if((src == G.assailant) && (is_vore_predator(src)))
+					if (src.feed_grabbed_to_self(src, G.affecting))
+						qdel(G)
+						return 1
 					else
-						log_debug("[attacker] attempted to feed [user] to [G.affecting] ([G.affecting.type]) but it is not predator-capable")
+						log_debug("[attacker] attempted to feed [G.affecting] to [user] ([user.type]) but it failed.")
 
-				// If grab clicked on anything else
-				else
-					if (is_vore_predator(src))
-						if (attacker.feed_grabbed_to_other(attacker, G.affecting, src))
-							qdel(G) //Delete grab
-							return 1 //Return 1 to exit upper procs
+				///// If grab clicked on grabbed
+				else if((src == G.affecting) && (attacker.a_intent == I_GRAB) && (attacker.zone_sel.selecting == BP_TORSO) && (is_vore_predator(G.affecting)))
+					if (attacker.feed_self_to_grabbed(attacker, G.affecting))
+						qdel(G)
+						return 1
 					else
-						log_debug("[attacker] attempted to feed [G.affecting] to [src] ([src.type]) but it is not predator-capable")
+						log_debug("[attacker] attempted to feed [user] to [G.affecting] ([G.affecting.type]) but it failed.")
+
+				///// If grab clicked on anyone else
+				else if((src != G.affecting) && (src != G.assailant) && (is_vore_predator(src)))
+					if (attacker.feed_grabbed_to_other(attacker, G.affecting, src))
+						qdel(G)
+						return 1
+					else
+						log_debug("[attacker] attempted to feed [G.affecting] to [src] ([src.type]) but it failed.")
 
 
 	//Handle case: /obj/item/weapon/holder
@@ -116,37 +118,83 @@
 //	Proc for updating vore organs and digestion/healing/absorbing
 //
 /mob/living/proc/handle_internal_contents()
-	for (var/bellytype in vore_organs)
-		var/datum/belly/B = vore_organs[bellytype]
-		for(var/atom/movable/M in B.internal_contents)
-			if(M.loc != src)
-				B.internal_contents -= M
-				log_debug("Had to remove [M] from belly [B] in [src]")
-		B.process_Life()
+	if(air_master.current_cycle%3 != 1)
+		return //The accursed timer
+
+	for (var/I in vore_organs)
+		var/datum/belly/B = vore_organs[I]
+		if(B.internal_contents.len)
+			B.process_Life() //AKA 'do bellymodes_vr.dm'
+
+	if(air_master.current_cycle%90 != 1) return //Occasionally do supercleanups.
+	for (var/I in vore_organs)
+		var/datum/belly/B = vore_organs[I]
+		if(B.internal_contents.len)
+			for(var/atom/movable/M in B.internal_contents)
+				if(M.loc != src)
+					B.internal_contents -= M
+					log_debug("Had to remove [M] from belly [B] in [src]")
 
 //
 //	Verb for saving vore preferences to save file
 //
 /mob/living/proc/save_vore_prefs()
-	set name = "Save Vore Prefs"
-	set category = "Vore"
+	if(!(client || client.prefs_vr))
+		return 0
+	if(!copy_to_prefs_vr())
+		return 0
+	if(!client.prefs_vr.save_vore())
+		return 0
 
-	var/result = 0
+	return 1
 
-	if(client.prefs)
-		result = client.prefs.save_vore_preferences()
-	else
-		src << "<span class='warning'>You attempted to save your vore prefs but somehow you're in this character without a client.prefs variable. Tell a dev.</span>"
-		log_debug("[src] tried to save vore prefs but lacks a client.prefs var.")
+/mob/living/proc/apply_vore_prefs()
+	if(!(client || client.prefs_vr))
+		return 0
+	if(!client.prefs_vr.load_vore())
+		return 0
+	if(!copy_from_prefs_vr())
+		return 0
 
-	return result
+	return 1
+
+/mob/living/proc/copy_to_prefs_vr()
+	if(!client || !client.prefs_vr)
+		src << "<span class='warning'>You attempted to save your vore prefs but somehow you're in this character without a client.prefs_vr variable. Tell a dev.</span>"
+		return 0
+
+	var/datum/vore_preferences/P = client.prefs_vr
+
+	P.digestable = src.digestable
+	P.belly_prefs = src.vore_organs
+	P.weight_gain = src.weight_gain
+	P.weight_loss = src.weight_loss
+
+	return 1
 
 //
 //	Proc for applying vore preferences, given bellies
 //
-/mob/living/proc/apply_vore_prefs(var/list/bellies)
-	if(!bellies || bellies.len == 0)
-		log_debug("Tried to apply bellies to [src] and failed.")
+/mob/living/proc/copy_from_prefs_vr(var/list/bellies)
+	if(!client || !client.prefs_vr)
+		src << "<span class='warning'>You attempted to apply your vore prefs but somehow you're in this character without a client.prefs_vr variable. Tell a dev.</span>"
+		return 0
+
+	var/datum/vore_preferences/P = client.prefs_vr
+
+	src.digestable = P.digestable
+	src.vore_organs = P.belly_prefs
+	src.weight_gain = P.weight_gain
+	src.weight_loss = P.weight_loss
+
+	if(!src.vore_organs) //Emergency double-backup to stop runtimes from doing .len on this.
+		vore_organs = list()
+
+	for(var/I in vore_organs) //Set the owner at runtime since... yanno.
+		var/datum/belly/B = vore_organs[I]
+		B.owner = src
+
+	return 1
 
 //
 // OOC Escape code for pref-breaking or AFK preds
@@ -183,8 +231,6 @@
 				CB.release_specific_contents(src)
 			message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(pred)] (PC) ([pred ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[pred.x];Y=[pred.y];Z=[pred.z]'>JMP</a>" : "null"])")
 
-/* POLARISTODO - Depends on dogborgs
-
 	//You're in a dogborg!
 	else if(istype(src.loc, /obj/item/device/dogborg/sleeper))
 		var/mob/living/silicon/pred = src.loc.loc //Thing holding the belly!
@@ -195,7 +241,6 @@
 			message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(pred)] (BORG) ([pred ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[pred.x];Y=[pred.y];Z=[pred.z]'>JMP</a>" : "null"])")
 			belly.go_out(src) //Just force-ejects from the borg as if they'd clicked the eject button.
 
-*/
 
 	else
 		src << "<span class='alert'>You aren't inside anyone, you clod.</span>"

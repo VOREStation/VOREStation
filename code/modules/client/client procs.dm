@@ -159,7 +159,7 @@
 
 	send_resources()
 	nanomanager.send_resources(src)
-	
+
 	if(!void)
 		void = new()
 	screen += void
@@ -170,7 +170,7 @@
 		if(config.aggressive_changelog)
 			src.changes()
 
-
+	hook_vr("client_new",list(src)) //VOREStation Code
 
 	//////////////
 	//DISCONNECT//

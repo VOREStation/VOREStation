@@ -1,6 +1,8 @@
 //The base hooks themselves
 
 //New() hooks
+/hook/client_new
+
 /hook/mob_new
 
 /hook/living_new

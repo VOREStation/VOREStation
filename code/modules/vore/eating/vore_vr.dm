@@ -23,31 +23,40 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 // Overrides/additions to stock defines go here, as well as hooks. Sort them by
 // the object they are overriding. So all /mob/living together, etc.
 //
-/datum/preferences
-	var/datum/vore_preferences/vore_preferences
-
 /datum/configuration
 	var/items_survive_digestion = 1		//For configuring if the important_items survive digestion
 
 //
 // The datum type bolted onto normal preferences datums for storing Virgo stuff
 //
+/client
+	var/datum/vore_preferences/prefs_vr
+
+/hook/client_new/proc/add_prefs_vr(client/C)
+	C.prefs_vr = new/datum/vore_preferences(C)
+	if(C.prefs_vr)
+		return 1
+
+	return 0
+
 /datum/vore_preferences
+	//Actual preferences
 	var/digestable = 1
 	var/list/belly_prefs = list()
 	var/weight_gain = 1
 	var/weight_loss = 0.5
 
-//
-// Adding procs to types to support vore
-//
-/datum/preferences/proc/save_vore_preferences()
-	//POLARISTODO
-	return
+	//Mechanically required
+	var/path
+	var/slot
+	var/client/client
+	var/client_ckey
 
-/datum/preferences/proc/load_vore_preferences()
-	//POLARISTODO
-	return
+/datum/vore_preferences/New(client/C)
+	if(istype(C))
+		client = C
+		client_ckey = C.ckey
+		load_vore(C)
 
 //
 //	Check if an object is capable of eating things, based on vore_organs
@@ -71,3 +80,44 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 				return(B)
 
 	return 0
+
+//
+// Save/Load Vore Preferences
+//
+/datum/vore_preferences/proc/load_vore()
+	if(!client || !client_ckey) return 0 //No client, how can we save?
+
+	slot = client.prefs.default_slot
+
+	path = client.prefs.path
+
+	if(!path) return 0 //Path couldn't be set?
+	if(!fexists(path)) //Never saved before
+		save_vore() //Make the file first
+		return 1
+
+	var/savefile/S = new /savefile(path)
+	if(!S) return 0 //Savefile object couldn't be created?
+
+	S.cd = "/character[slot]"
+
+	S["digestable"] >> digestable
+	S["belly_prefs"] >> belly_prefs
+	S["weight_gain"] >> weight_gain
+	S["weight_loss"] >> weight_loss
+
+	return 1
+
+/datum/vore_preferences/proc/save_vore()
+	if(!path)				return 0
+	if(!slot)				return 0
+	var/savefile/S = new /savefile(path)
+	if(!S)					return 0
+	S.cd = "/character[slot]"
+
+	S["digestable"] << digestable
+	S["belly_prefs"] << belly_prefs
+	S["weight_gain"] << weight_gain
+	S["weight_loss"] << weight_loss
+
+	return 1
