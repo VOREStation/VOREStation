@@ -188,8 +188,6 @@
 		else*/
 		msg += "[T.He] [T.is] wearing \icon[wear_id] \a [wear_id].\n"
 
-	if(attempt_vr(src,"examine_weight",args)) return //VOREStation Code
-
 	//Jitters
 	if(is_jittery)
 		if(jitteriness >= 300)
@@ -207,6 +205,8 @@
 
 	if(suiciding)
 		msg += "<span class='warning'>[T.He] appears to have commited suicide... there is no hope of recovery.</span>\n"
+
+	msg += attempt_vr(src,"examine_weight",args) //VOREStation Code
 
 	if(mSmallsize in mutations)
 		msg += "[T.He] [T.is] small halfling!\n"
