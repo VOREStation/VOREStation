@@ -21,4 +21,4 @@
 		message = "\red [T.He] [T.is] incredibly obese. [T.his] massive potbelly sags over [T.his] waistline while [T.his] fat ass would probably require two chairs to sit down comfortably!\n"
 	else if(weight >= 475)
 		message = "\red [T.He] [T.is] so morbidly obese, you wonder how they can even stand, let alone waddle around the station. [T.He] can't get any fatter without being immobilized.\n"
-	return msg
+	return message
