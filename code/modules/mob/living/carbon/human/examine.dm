@@ -188,6 +188,8 @@
 		else*/
 		msg += "[T.He] [T.is] wearing \icon[wear_id] \a [wear_id].\n"
 
+	if(attempt_vr(src,"examine_weight",args)) return //VOREStation Code
+
 	//Jitters
 	if(is_jittery)
 		if(jitteriness >= 300)
