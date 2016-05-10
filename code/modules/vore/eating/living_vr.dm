@@ -356,9 +356,5 @@
 	gas = list(
 		"oxygen" = 21,
 		"nitrogen" = 79)
-	temperature = 310.150
+	temperature = 293.150
 	total_moles = 40
-
-/datum/gas_mixture/belly_air/proc/reset()
-	gas = initial(gas)
-	total_moles = initial(total_moles)
