@@ -1310,6 +1310,7 @@
 					if(O.helmet && O.helmet == head && (O.helmet.body_parts_covered & EYES))
 						if((O.offline && O.offline_vision_restriction == 1) || (!O.offline && O.vision_restriction == 1))
 							found_welder = 1
+				if(absorbed) found_welder = 1 //VOREStation Code
 			if(found_welder)
 				client.screen |= global_hud.darkMask
 

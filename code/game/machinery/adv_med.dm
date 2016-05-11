@@ -362,6 +362,7 @@
 		"internal_organs" = H.internal_organs.Copy(),
 		"species_organs" = H.species.has_organ //Just pass a reference for this, it shouldn't ever be modified outside of the datum.
 		)
+	occupant_data = attempt_vr(src,"get_occupant_data_vr",list(occupant_data,H))
 	return occupant_data
 
 
@@ -389,7 +390,7 @@
 	dat += text("[]\tApprox. Brain Damage %: []</font><br>", ("<font color='[occ["brainloss"] < 1  ? "blue" : "red"]'>"), occ["brainloss"])
 	dat += text("Paralysis Summary %: [] ([] seconds left!)<br>", occ["paralysis"], round(occ["paralysis"] / 4))
 	dat += text("Body Temperature: [occ["bodytemp"]-T0C]&deg;C ([occ["bodytemp"]*1.8-459.67]&deg;F)<br><HR>")
-
+	dat += attempt_vr(src,"format_occupant_data_vr",list(occ))
 	if(occ["borer_present"])
 		dat += "Large growth detected in frontal lobe, possibly cancerous. Surgical removal is recommended.<br>"
 
