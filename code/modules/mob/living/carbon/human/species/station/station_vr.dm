@@ -3,8 +3,8 @@
 	name_plural = "Sergals"
 	icobase = 'icons/mob/human_races/r_sergal.dmi'
 	deform = 'icons/mob/human_races/r_def_sergal.dmi'
-	//tail = "tajtail"
-	//tail_animation = 'icons/mob/species/tajaran/tail.dmi'
+	tail = "sergtail"
+	tail_animation = 'icons/mob/species/sergal/tail.dmi'
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	//darksight = 8
 	//slowdown = -0.5
@@ -12,8 +12,8 @@
 	//burn_mod =  1.15
 	//gluttonous = 1
 	num_alternate_languages = 2
-	//secondary_langs = list("Siik'tajr")
-	//name_language = "Siik'tajr"
+	secondary_langs = list("Sagaru")
+	name_language = "Sagaru"
 	color_mult = 1
 
 	min_age = 17
@@ -49,8 +49,8 @@
 	name_plural = "Akula"
 	icobase = 'icons/mob/human_races/r_akula.dmi'
 	deform = 'icons/mob/human_races/r_def_akula.dmi'
-	//tail = "tajtail"
-	//tail_animation = 'icons/mob/species/tajaran/tail.dmi'
+	tail = "sharktail"
+	tail_animation = 'icons/mob/species/akula/tail.dmi'
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	//darksight = 8
 	//slowdown = -0.5
@@ -58,8 +58,8 @@
 	//burn_mod =  1.15
 	//gluttonous = 1
 	num_alternate_languages = 2
-	//secondary_langs = list("Siik'tajr")
-	//name_language = "Siik'tajr"
+	secondary_langs = list("Skrellian")
+	name_language = "Skrellian"
 	color_mult = 1
 
 	min_age = 17
@@ -88,8 +88,8 @@
 	name_plural = "Nevreans"
 	icobase = 'icons/mob/human_races/r_nevrean.dmi'
 	deform = 'icons/mob/human_races/r_def_nevrean.dmi'
-	//tail = "tajtail"
-	//tail_animation = 'icons/mob/species/tajaran/tail.dmi'
+	tail = "nevrean"
+	tail_animation = 'icons/mob/species/nevrean/tail.dmi'
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	//darksight = 8
 	//slowdown = -0.5
@@ -97,8 +97,8 @@
 	//burn_mod =  1.15
 	//gluttonous = 1
 	num_alternate_languages = 2
-	//secondary_langs = list("Siik'tajr")
-	//name_language = "Siik'tajr"
+	secondary_langs = list("Birdsong")
+	name_language = "Birdsong"
 	color_mult = 1
 
 	min_age = 17

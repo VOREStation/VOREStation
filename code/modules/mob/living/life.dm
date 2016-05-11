@@ -38,7 +38,7 @@
 	handle_fire()
 
 	//stuff in the stomach
-	handle_stomach()
+	//handle_stomach() //VOREStation Code
 
 	update_gravity(mob_has_gravity())
 
