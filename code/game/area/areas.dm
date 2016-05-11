@@ -257,7 +257,10 @@ var/list/mob/living/forced_ambiance_list = new
 	if(forced_ambience)
 		if(forced_ambience.len)
 			forced_ambiance_list |= L
-			L << sound(pick(forced_ambience), repeat = 1, wait = 0, volume = 25, channel = 1)
+			var/sound/chosen_ambiance = pick(forced_ambience)
+			if(!istype(chosen_ambiance))
+				chosen_ambiance = sound(chosen_ambiance, repeat = 1, wait = 0, volume = 25, channel = 1)
+			L << chosen_ambiance
 		else
 			L << sound(null, channel = 1)
 	else if(src.ambience.len && prob(35))
