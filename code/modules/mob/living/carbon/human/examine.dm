@@ -207,6 +207,8 @@
 		msg += "<span class='warning'>[T.He] appears to have commited suicide... there is no hope of recovery.</span>\n"
 
 	msg += attempt_vr(src,"examine_weight",args) //VOREStation Code
+	msg += attempt_vr(src,"examine_nutrition",args) //VOREStation Code
+	msg += attempt_vr(src,"examine_bellies",args) //VOREStation Code
 
 	if(mSmallsize in mutations)
 		msg += "[T.He] [T.is] small halfling!\n"
