@@ -602,6 +602,8 @@ default behaviour is:
 		spawn() C.mob_breakout(src)
 		return TRUE
 
+	if(attempt_vr(src,"vore_process_resist",args)) return TRUE //VOREStation Code
+
 /mob/living/proc/escape_inventory(obj/item/weapon/holder/H)
 	if(H != src.loc) return
 

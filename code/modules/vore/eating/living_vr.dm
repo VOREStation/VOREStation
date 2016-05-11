@@ -5,8 +5,8 @@
 	var/list/vore_organs = list()		// List of vore containers inside a mob
 	var/absorbed = 0					// If a mob is absorbed into another
 	var/weight = 137					// Weight for mobs for weightgain system
-	var/weight_gain = 1 				//How fast you gain weight
-	var/weight_loss = 0.5 				//How fast you lose weight
+	var/weight_gain = 1 				// How fast you gain weight
+	var/weight_loss = 0.5 				// How fast you lose weight
 
 //
 // Hook for generic creation of stuff on new creatures
@@ -118,7 +118,23 @@
 					attacker.eat_held_mob(attacker, M, src)
 				return 1 //Return 1 to exit upper procs
 			else
-				log_debug("[attacker] attempted to feed [H.contents] to [src] ([src.type]) but it is not predator-capable")
+				log_debug("[attacker] attempted to feed [H.contents] to [src] ([src.type]) but it failed.")
+	return 0
+
+//
+// Our custom resist catches for /mob/living
+//
+/mob/living/proc/vore_process_resist()
+
+	//Are we resisting from inside a belly?
+	var/datum/belly/B = check_belly(src)
+	if(B)
+		spawn()	B.relay_resist(src)
+		return TRUE //resist() on living does this TRUE thing.
+
+	//Other overridden resists go here
+
+
 	return 0
 
 
@@ -324,3 +340,21 @@
 	else
 		msg_admin_attack("[key_name(user)] forced [key_name(pred)] to eat [key_name(prey)]. ([pred ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[pred.x];Y=[pred.y];Z=[pred.z]'>JMP</a>" : "null"])")
 	return 1
+
+//
+// Magical pred-air breathing for inside preds
+// overrides a proc defined on atom called by breathe.dm
+//
+/mob/living/return_air_for_internal_lifeform()
+	//Free air until someone wants to code processing it for reals from predbreaths
+	var/datum/gas_mixture/belly_air/air = new(1000)
+	return air
+
+// This is about 0.896m^3 of atmosphere
+/datum/gas_mixture/belly_air
+	volume = 1000
+	gas = list(
+		"oxygen" = 21,
+		"nitrogen" = 79)
+	temperature = 293.150
+	total_moles = 40
