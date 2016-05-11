@@ -3,8 +3,8 @@
 	name_plural = "Sergals"
 	icobase = 'icons/mob/human_races/r_sergal.dmi'
 	deform = 'icons/mob/human_races/r_def_sergal.dmi'
-	tail = "sergtail"
-	tail_animation = 'icons/mob/species/sergal/tail.dmi'
+	tail = "tail"
+	icobase_tail = 1
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	//darksight = 8
 	//slowdown = -0.5
@@ -49,8 +49,8 @@
 	name_plural = "Akula"
 	icobase = 'icons/mob/human_races/r_akula.dmi'
 	deform = 'icons/mob/human_races/r_def_akula.dmi'
-	tail = "sharktail"
-	tail_animation = 'icons/mob/species/akula/tail.dmi'
+	tail = "tail"
+	icobase_tail = 1
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	//darksight = 8
 	//slowdown = -0.5
@@ -88,8 +88,8 @@
 	name_plural = "Nevreans"
 	icobase = 'icons/mob/human_races/r_nevrean.dmi'
 	deform = 'icons/mob/human_races/r_def_nevrean.dmi'
-	tail = "nevrean"
-	tail_animation = 'icons/mob/species/nevrean/tail.dmi'
+	tail = "tail"
+	icobase_tail = 1
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	//darksight = 8
 	//slowdown = -0.5
