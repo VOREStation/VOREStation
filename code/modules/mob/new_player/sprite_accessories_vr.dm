@@ -1,9 +1,26 @@
 ////////////////////////
 // For sergals and stuff
 ////////////////////////
-/datum/sprite_accessory/hair
+/datum/sprite_accessory/hair/vr
 
-	una_horns
-		name = "Unathi Horns"
-		icon_state = "soghun_horns"
-		species_allowed = list("Unathi")
+	icon = 'icons/mob/human_face_vr.dmi'
+
+	sergal_plain
+		name = "Sergal Plain"
+		icon_state = "serg_plain"
+		species_allowed = list("Sergal")
+
+	sergal_plain
+		name = "Sergal Medicore"
+		icon_state = "serg_medicore"
+		species_allowed = list("Sergal")
+
+	sergal_plain
+		name = "Sergal Tapered"
+		icon_state = "serg_tapered"
+		species_allowed = list("Sergal")
+
+	sergal_plain
+		name = "Sergal Fairytail"
+		icon_state = "serg_fairytail"
+		species_allowed = list("Sergal")
