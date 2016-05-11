@@ -164,8 +164,8 @@
 		eye_blind =  0
 		blinded =    0
 		eye_blurry = 0
-		
-		
+
+
 	if (disabilities & EPILEPSY)
 		if ((prob(1) && paralysis < 1))
 			src << "\red You have a seizure!"
@@ -557,7 +557,7 @@
 /mob/living/carbon/human/handle_environment(datum/gas_mixture/environment)
 	if(!environment)
 		return
-
+	if(isliving(loc)) return //VOREStation Code - Ignore environments inside people
 	//Stuff like the xenomorph's plasma regen happens here.
 	species.handle_environment_special(src)
 

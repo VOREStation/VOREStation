@@ -65,18 +65,16 @@
 				M.adjustBruteLoss(2)
 				M.adjustFireLoss(3)
 
-			/* POLARISTODO - Depends on weight and scale
 				var/offset
 				if (M.weight > 137)
 					offset = 1 + ((M.weight - 137) / 137)
 				if (M.weight < 137)
 					offset = (137 - M.weight) / 137
-				var/difference = owner.playerscale / M.playerscale
+				var/difference = owner.size_multiplier / M.size_multiplier
 				if(offset) // If any different than default weight, multiply the % of offset.
 					owner.nutrition += offset*(10/difference)
 				else
 					owner.nutrition += (10/difference)
-			*/
 
 		return
 
