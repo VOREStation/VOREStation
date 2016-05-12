@@ -116,6 +116,7 @@ datum/preferences
 	var/communicator_visibility = 0
 
 	var/datum/category_collection/player_setup_collection/player_setup
+	var/datum/browser/panel
 
 /datum/preferences/New(client/C)
 	player_setup = new(src)
@@ -378,7 +379,11 @@ datum/preferences
 
 	dat += "<hr>"
 	dat += "</center></tt>"
-	user << browse(dat, "window=saves;size=300x390")
+	//user << browse(dat, "window=saves;size=300x390")
+	panel = new(user, "Character Slots", "Character Slots", 300, 390, src)
+	panel.set_content(dat)
+	panel.open()
 
 /datum/preferences/proc/close_load_dialog(mob/user)
-	user << browse(null, "window=saves")
+	//user << browse(null, "window=saves")
+	panel.close()
