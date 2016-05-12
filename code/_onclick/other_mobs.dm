@@ -92,7 +92,7 @@
 				if (powerlevel > 0 && !istype(A, /mob/living/carbon/slime))
 					if(ishuman(M))
 						var/mob/living/carbon/human/H = M
-						stunprob *= H.species.siemens_coefficient
+						stunprob *= max(H.species.siemens_coefficient,0)
 
 
 					switch(power * 10)

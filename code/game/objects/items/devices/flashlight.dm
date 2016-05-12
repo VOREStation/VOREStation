@@ -199,7 +199,7 @@
 		src.force = on_damage
 		src.damtype = "fire"
 		processing_objects += src
-		
+
 /obj/item/device/flashlight/flare/proc/ignite() //Used for flare launchers.
 	on = !on
 	update_icon()
@@ -207,6 +207,76 @@
 	damtype = "fire"
 	processing_objects += src
 	return 1
+
+//Glowsticks
+
+/obj/item/device/flashlight/glowstick
+	name = "green glowstick"
+	desc = "A green military-grade glowstick."
+	w_class = 2.0
+	brightness_on = 4
+	light_power = 2
+	light_color = "#49F37C"
+	icon_state = "glowstick"
+	item_state = "glowstick"
+	var/fuel = 0
+
+/obj/item/device/flashlight/glowstick/New()
+	fuel = rand(1600, 2000)
+	..()
+
+/obj/item/device/flashlight/glowstick/process()
+	fuel = max(fuel - 1, 0)
+	if(!fuel || !on)
+		turn_off()
+		if(!fuel)
+			src.icon_state = "[initial(icon_state)]-empty"
+		processing_objects -= src
+
+/obj/item/device/flashlight/glowstick/proc/turn_off()
+	on = 0
+	update_icon()
+
+/obj/item/device/flashlight/glowstick/attack_self(mob/user)
+
+	if(!fuel)
+		user << "<span class='notice'>The glowstick has already been turned on.</span>"
+		return
+	if(on)
+		return
+
+	. = ..()
+	if(.)
+		user.visible_message("<span class='notice'>[user] cracks and shakes the glowstick.</span>", "<span class='notice'>You crack and shake the glowstick, turning it on!</span>")
+		processing_objects += src
+
+/obj/item/device/flashlight/glowstick/red
+	name = "red glowstick"
+	desc = "A red military-grade glowstick."
+	light_color = "#FC0F29"
+	icon_state = "glowstick_red"
+	item_state = "glowstick_red"
+
+/obj/item/device/flashlight/glowstick/blue
+	name = "blue glowstick"
+	desc = "A blue military-grade glowstick."
+	light_color = "#599DFF"
+	icon_state = "glowstick_blue"
+	item_state = "glowstick_blue"
+
+/obj/item/device/flashlight/glowstick/orange
+	name = "orange glowstick"
+	desc = "A orange military-grade glowstick."
+	light_color = "#FA7C0B"
+	icon_state = "glowstick_orange"
+	item_state = "glowstick_orange"
+
+/obj/item/device/flashlight/glowstick/yellow
+	name = "yellow glowstick"
+	desc = "A yellow military-grade glowstick."
+	light_color = "#FEF923"
+	icon_state = "glowstick_yellow"
+	item_state = "glowstick_yellow"
 
 /obj/item/device/flashlight/slime
 	gender = PLURAL

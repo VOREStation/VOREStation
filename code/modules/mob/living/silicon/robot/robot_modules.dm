@@ -23,7 +23,7 @@ var/global/list/robot_modules = list(
 	var/hide_on_manifest = 0
 	var/channels = list()
 	var/networks = list()
-	var/languages = list(LANGUAGE_SOL_COMMON = 1, LANGUAGE_TRADEBAND = 1, LANGUAGE_UNATHI = 0, LANGUAGE_SIIK_TAJR = 0, LANGUAGE_SKRELLIAN = 0, LANGUAGE_GUTTER = 0)
+	var/languages = list(LANGUAGE_SOL_COMMON = 1, LANGUAGE_TRADEBAND = 1, LANGUAGE_UNATHI = 0, LANGUAGE_SIIK_TAJR = 0, LANGUAGE_SKRELLIAN = 0, LANGUAGE_GUTTER = 0, LANGUAGE_SCHECHI = 0)
 	var/sprites = list()
 	var/can_be_pushed = 1
 	var/no_slip = 0
@@ -479,11 +479,12 @@ var/global/list/robot_modules = list(
 					LANGUAGE_SOL_COMMON	= 1,
 					LANGUAGE_UNATHI		= 1,
 					LANGUAGE_SIIK_MAAS	= 1,
-					LANGUAGE_SIIK_TAJR	= 0,
+					LANGUAGE_SIIK_TAJR	= 1,
 					LANGUAGE_SKRELLIAN	= 1,
 					LANGUAGE_ROOTSPEAK	= 1,
 					LANGUAGE_TRADEBAND	= 1,
-					LANGUAGE_GUTTER		= 1
+					LANGUAGE_GUTTER		= 1,
+					LANGUAGE_SCHECHI	= 1
 					)
 
 /obj/item/weapon/robot_module/clerical/butler
@@ -623,9 +624,12 @@ var/global/list/robot_modules = list(
 					LANGUAGE_SOL_COMMON = 1,
 					LANGUAGE_TRADEBAND = 1,
 					LANGUAGE_UNATHI = 0,
+					LANGUAGE_SIIK_MAAS	= 0,
 					LANGUAGE_SIIK_TAJR = 0,
 					LANGUAGE_SKRELLIAN = 0,
-					LANGUAGE_GUTTER = 1
+					LANGUAGE_ROOTSPEAK	= 0,
+					LANGUAGE_GUTTER = 1,
+					LANGUAGE_SCHECHI = 0
 					)
 	sprites = list(
 					"Dread" = "securityrobot",

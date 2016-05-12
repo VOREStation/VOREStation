@@ -26,6 +26,7 @@
 	var/last_dam = -1                  // used in healing/processing calculations.
 
 	// Appearance vars.
+	var/nonsolid                       // Snowflake warning, reee. Used for slime limbs.
 	var/icon_name = null               // Icon state base.
 	var/body_part = null               // Part flag
 	var/icon_position = 0              // Used in mob overlay layering calculations.
@@ -199,11 +200,11 @@
 
 /obj/item/organ/external/replaced(var/mob/living/carbon/human/target)
 	owner = target
+	forceMove(owner)
 	if(istype(owner))
 		owner.organs_by_name[organ_tag] = src
 		owner.organs |= src
 		for(var/obj/item/organ/organ in src)
-			organ.loc = owner
 			organ.replaced(owner,src)
 
 	if(parent_organ)
@@ -212,6 +213,12 @@
 			if(!parent.children)
 				parent.children = list()
 			parent.children.Add(src)
+			//Remove all stump wounds since limb is not missing anymore
+			for(var/datum/wound/lost_limb/W in parent.wounds)
+				parent.wounds -= W
+				qdel(W)
+				break
+			parent.update_damages()
 
 /****************************************************
 			   DAMAGE PROCS
@@ -249,7 +256,10 @@
 	if(is_damageable(brute + burn) || !config.limbs_can_break)
 		if(brute)
 			if(can_cut)
-				createwound( CUT, brute )
+				if(sharp && !edge)
+					createwound( PIERCE, brute )
+				else
+					createwound( CUT, brute )
 			else
 				createwound( BRUISE, brute )
 		if(burn)
@@ -263,7 +273,10 @@
 			if (brute > 0)
 				//Inflict all burte damage we can
 				if(can_cut)
-					createwound( CUT, min(brute,can_inflict) )
+					if(sharp && !edge)
+						createwound( PIERCE, min(brute,can_inflict) )
+					else
+						createwound( CUT, min(brute,can_inflict) )
 				else
 					createwound( BRUISE, min(brute,can_inflict) )
 				var/temp = can_inflict
@@ -326,10 +339,10 @@
 			break
 
 		// heal brute damage
-		if(W.damage_type == CUT || W.damage_type == BRUISE)
-			brute = W.heal_damage(brute)
-		else if(W.damage_type == BURN)
+		if(W.damage_type == BURN)
 			burn = W.heal_damage(burn)
+		else
+			brute = W.heal_damage(brute)
 
 	if(internal)
 		status &= ~ORGAN_BROKEN
@@ -653,10 +666,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 	//update damage counts
 	for(var/datum/wound/W in wounds)
 		if(!W.internal) //so IB doesn't count towards crit/paincrit
-			if(W.damage_type == CUT || W.damage_type == BRUISE)
-				brute_dam += W.damage
-			else if(W.damage_type == BURN)
+			if(W.damage_type == BURN)
 				burn_dam += W.damage
+			else
+				brute_dam += W.damage
 
 		if(!(status & ORGAN_ROBOT) && W.bleeding() && (H && H.should_have_organ(O_HEART)))
 			W.bleed_timer--
@@ -719,6 +732,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(cannot_amputate || !owner)
 		return
 
+	if(disintegrate == DROPLIMB_EDGE && nonsolid)
+		disintegrate = DROPLIMB_BLUNT //splut
+
 	switch(disintegrate)
 		if(DROPLIMB_EDGE)
 			if(!clean)
@@ -747,10 +763,13 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	var/mob/living/carbon/human/victim = owner //Keep a reference for post-removed().
 	var/obj/item/organ/external/parent_organ = parent
+
+	var/use_flesh_colour = species.get_flesh_colour(owner)
+	var/use_blood_colour = species.get_blood_colour(owner)
+
 	removed(null, ignore_children)
 	victim.traumatic_shock += 60
 
-	wounds.Cut()
 	if(parent_organ)
 		var/datum/wound/lost_limb/W = new (src, disintegrate, clean)
 		if(clean)
@@ -795,10 +814,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 			else
 				gore = new /obj/effect/decal/cleanable/blood/gibs(get_turf(victim))
 				if(species)
-					if(species.get_flesh_colour())
-						gore.fleshcolor = species.get_flesh_colour()
-					if(species.get_blood_colour())
-						gore.basecolor = species.get_blood_colour()
+					gore.fleshcolor = use_flesh_colour
+					gore.basecolor =  use_blood_colour
 					gore.update_icon()
 
 			gore.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
@@ -840,13 +857,44 @@ Note that amputating the affected organ does in fact remove the infection from t
 			"\The [holder.legcuffed.name] falls off you.")
 		holder.drop_from_inventory(holder.legcuffed)
 
+// checks if all wounds on the organ are bandaged
+/obj/item/organ/external/proc/is_bandaged()
+	for(var/datum/wound/W in wounds)
+		if(W.internal) continue
+		if(!W.bandaged)
+			return 0
+	return 1
+
+// checks if all wounds on the organ are salved
+/obj/item/organ/external/proc/is_salved()
+	for(var/datum/wound/W in wounds)
+		if(W.internal) continue
+		if(!W.salved)
+			return 0
+	return 1
+
+// checks if all wounds on the organ are disinfected
+/obj/item/organ/external/proc/is_disinfected()
+	for(var/datum/wound/W in wounds)
+		if(W.internal) continue
+		if(!W.disinfected)
+			return 0
+	return 1
+
 /obj/item/organ/external/proc/bandage()
 	var/rval = 0
-	src.status &= ~ORGAN_BLEEDING
+	status &= ~ORGAN_BLEEDING
 	for(var/datum/wound/W in wounds)
 		if(W.internal) continue
 		rval |= !W.bandaged
 		W.bandaged = 1
+	return rval
+
+/obj/item/organ/external/proc/salve()
+	var/rval = 0
+	for(var/datum/wound/W in wounds)
+		rval |= !W.salved
+		W.salved = 1
 	return rval
 
 /obj/item/organ/external/proc/disinfect()
@@ -865,13 +913,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(W.internal) continue
 		rval |= !W.clamped
 		W.clamped = 1
-	return rval
-
-/obj/item/organ/external/proc/salve()
-	var/rval = 0
-	for(var/datum/wound/W in wounds)
-		rval |= !W.salved
-		W.salved = 1
 	return rval
 
 /obj/item/organ/external/proc/fracture()

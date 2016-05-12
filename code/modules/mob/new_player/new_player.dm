@@ -175,7 +175,7 @@
 				return 0
 
 			var/datum/species/S = all_species[client.prefs.species]
-			if(!(S.spawn_flags & CAN_JOIN))
+			if(!(S.spawn_flags & SPECIES_CAN_JOIN))
 				src << alert("Your current species, [client.prefs.species], is not available for play on the station.")
 				return 0
 
@@ -460,11 +460,13 @@
 	return new_character
 
 /mob/new_player/proc/ViewManifest()
-	var/dat = "<html><body>"
-	dat += "<h4>Show Crew Manifest</h4>"
+	var/dat = "<div align='center'>"
 	dat += data_core.get_manifest(OOC = 1)
 
-	src << browse(dat, "window=manifest;size=370x420;can_close=1")
+	//src << browse(dat, "window=manifest;size=370x420;can_close=1")
+	var/datum/browser/popup = new(src, "Crew Manifest", "Crew Manifest", 370, 420, src)
+	popup.set_content(dat)
+	popup.open()
 
 /mob/new_player/Move()
 	return 0
@@ -480,7 +482,7 @@
 
 /mob/new_player/proc/is_species_whitelisted(datum/species/S)
 	if(!S) return 1
-	return is_alien_whitelisted(src, S.name) || !config.usealienwhitelist || !(S.spawn_flags & IS_WHITELISTED)
+	return is_alien_whitelisted(src, S.name) || !config.usealienwhitelist || !(S.spawn_flags & SPECIES_IS_WHITELISTED)
 
 /mob/new_player/get_species()
 	var/datum/species/chosen_species
