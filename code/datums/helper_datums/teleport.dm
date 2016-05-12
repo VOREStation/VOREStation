@@ -113,6 +113,7 @@
 		var/mob/living/L = teleatom
 		if(L.buckled)
 			C = L.buckled
+	if(attempt_vr(src,"try_televore",args)) return
 	if(force_teleport)
 		teleatom.forceMove(destturf)
 		playSpecials(destturf,effectout,soundout)

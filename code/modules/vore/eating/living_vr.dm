@@ -123,16 +123,20 @@
 
 	//Handle case: /obj/item/device/radio/beacon
 		if(/obj/item/device/radio/beacon)
-			var/confirm = alert(usr, "[I.loc == user ? "Eat the beacon?" : "Let [user] feed you a beacon?"]", "Confirmation", "Yes!", "Cancel")
-				if(confirm == "Yes!")
-					var/I = input("Which belly?","Select A Belly") in target.vore_organs
-					var/datum/belly/B = target.vore_organs[I]
+			var/confirm = alert(user, "[I.loc == user ? "Eat the beacon?" : "Feed the beacon to [src]?"]", "Confirmation", "Yes!", "Cancel")
+			if(confirm == "Yes!")
+				var/bellychoice = input("Which belly?","Select A Belly") in src.vore_organs
+				var/datum/belly/B = src.vore_organs[bellychoice]
+				src.visible_message("<span class='warning'>[user] is trying to stuff a beacon into [src]'s [bellychoice]!</span>","<span class='warning'>[user] is trying to stuff a beacon into you!</span>")
+				if(do_after(user,30,src))
 					user.drop_item()
-					src.loc = target
-					B.internal_contents += src
-					target.visible_message("<span class='warning'>[target] is fed the [src]!</span>")
-					playsound(target, B.vore_sound, 100, 1)
+					I.loc = src
+					B.internal_contents += I
+					src.visible_message("<span class='warning'>[src] is fed the beacon!</span>","You're fed the beacon!")
+					playsound(src, B.vore_sound, 100, 1)
 					return 1
+				else
+					return 1 //You don't get to hit someone 'later'
 
 	return 0
 
