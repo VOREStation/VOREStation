@@ -65,7 +65,8 @@
 	//Things we can eat with vore code
 	var/list/vore_items = list(
 		/obj/item/weapon/grab,
-		/obj/item/weapon/holder/micro)
+		/obj/item/weapon/holder/micro,
+		/obj/item/device/radio/beacon)
 
 	if(!(I.type in vore_items))
 		return 0
@@ -119,6 +120,20 @@
 				return 1 //Return 1 to exit upper procs
 			else
 				log_debug("[attacker] attempted to feed [H.contents] to [src] ([src.type]) but it failed.")
+
+	//Handle case: /obj/item/device/radio/beacon
+		if(/obj/item/device/radio/beacon)
+			var/confirm = alert(usr, "[I.loc == user ? "Eat the beacon?" : "Let [user] feed you a beacon?"]", "Confirmation", "Yes!", "Cancel")
+				if(confirm == "Yes!")
+					var/I = input("Which belly?","Select A Belly") in target.vore_organs
+					var/datum/belly/B = target.vore_organs[I]
+					user.drop_item()
+					src.loc = target
+					B.internal_contents += src
+					target.visible_message("<span class='warning'>[target] is fed the [src]!</span>")
+					playsound(target, B.vore_sound, 100, 1)
+					return 1
+
 	return 0
 
 //
