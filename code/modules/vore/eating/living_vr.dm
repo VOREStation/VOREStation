@@ -123,7 +123,7 @@
 
 	//Handle case: /obj/item/device/radio/beacon
 		if(/obj/item/device/radio/beacon)
-			var/confirm = alert(user, "[I.loc == user ? "Eat the beacon?" : "Feed the beacon to [src]?"]", "Confirmation", "Yes!", "Cancel")
+			var/confirm = alert(user, "[src == user ? "Eat the beacon?" : "Feed the beacon to [src]?"]", "Confirmation", "Yes!", "Cancel")
 			if(confirm == "Yes!")
 				var/bellychoice = input("Which belly?","Select A Belly") in src.vore_organs
 				var/datum/belly/B = src.vore_organs[bellychoice]
