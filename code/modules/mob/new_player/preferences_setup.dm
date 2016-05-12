@@ -246,9 +246,31 @@
 				limb_icon.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
 		preview_icon.Blend(limb_icon, ICON_OVERLAY)
 
-	//Tail
-	if(current_species && (current_species.tail))
-		var/icon/temp = new/icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[current_species.tail]_s")
+	//Tails
+
+	// VoreStation Edit - Start
+	var/show_species_tail = 1
+	if(src.tail_style && tail_styles_list[src.tail_style])
+		var/datum/sprite_accessory/tail/tail_meta = tail_styles_list[src.tail_style]
+		var/icon/tail_s = new/icon("icon" = tail_meta.icon, "icon_state" = tail_meta.icon_state)
+		if(tail_meta.do_colouration)
+			tail_s.Blend(rgb(src.r_tail, src.g_tail, src.b_tail), tail_meta.do_colouration)
+		if(tail_meta.extra_overlay)
+			var/icon/overlay = new/icon("icon" = tail_meta.icon, "icon_state" = tail_meta.extra_overlay)
+			tail_s.Blend(overlay, ICON_OVERLAY)
+			qdel(overlay)
+
+		show_species_tail = tail_meta.show_species_tail
+		if(istype(tail_meta, /datum/sprite_accessory/tail/taur))
+			preview_icon.Blend(tail_s, ICON_OVERLAY, -16)
+		else
+			preview_icon.Blend(tail_s, ICON_OVERLAY)
+	// VoreStation Edit - End
+
+	if(show_species_tail && current_species && (current_species.tail))
+		var/icon/temp = new/icon(
+			"icon" = (current_species.icobase_tail ? current_species.icobase : 'icons/effects/species.dmi'),
+			"icon_state" = "[current_species.tail]_s")
 		if(current_species && (current_species.appearance_flags & HAS_SKIN_COLOR))
 			temp.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
 		if(current_species && (current_species.appearance_flags & HAS_SKIN_TONE))
@@ -283,6 +305,19 @@
 		var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 		facial_s.Blend(rgb(r_facial, g_facial, b_facial), ICON_ADD)
 		eyes_s.Blend(facial_s, ICON_OVERLAY)
+
+	// VoreStation Edit - Start
+	// Ear Items
+	var/datum/sprite_accessory/ears/ears_meta = ear_styles_list[src.ear_style]
+	if(ears_meta)
+		var/icon/ears_s = icon("icon" = ears_meta.icon, "icon_state" = ears_meta.icon_state)
+		if(ears_meta.do_colouration)
+			ears_s.Blend(rgb(src.r_hair, src.g_hair, src.b_hair), ears_meta.do_colouration)
+		if(ears_meta.extra_overlay)
+			var/icon/overlay = new/icon("icon" = ears_meta.icon, "icon_state" = ears_meta.extra_overlay)
+			ears_s.Blend(overlay, ICON_OVERLAY)
+		eyes_s.Blend(ears_s, ICON_OVERLAY)
+	// Vore Station Edit - End
 
 	var/icon/underwear_top_s = null
 	if(underwear_top && current_species.appearance_flags & HAS_UNDERWEAR)
