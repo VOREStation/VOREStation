@@ -558,6 +558,7 @@ var/failed_db_connections = 0
 var/failed_old_db_connections = 0
 
 /hook/startup/proc/connectDB()
+	if(!config.sql_enabled) return 1
 	if(!setup_database_connection())
 		world.log << "Your server failed to establish a connection with the feedback database."
 	else
@@ -600,6 +601,7 @@ proc/establish_db_connection()
 
 
 /hook/startup/proc/connectOldDB()
+	if(!config.sql_enabled) return 1
 	if(!setup_old_database_connection())
 		world.log << "Your server failed to establish a connection with the SQL database."
 	else
