@@ -24,7 +24,14 @@ var/list/slot_equipment_priority = list( \
 //This proc is called whenever someone clicks an inventory ui slot.
 /mob/proc/attack_ui(var/slot)
 	var/obj/item/W = get_active_hand()
-	if(istype(W))
+
+	var/obj/item/E = get_equipped_item(slot)
+	if (istype(E))
+		if(istype(W))
+			E.attackby(W,src)
+		else
+			E.attack_hand(src)
+	else
 		equip_to_slot_if_possible(W, slot)
 
 /* Inventory manipulation */
@@ -44,6 +51,7 @@ var/list/slot_equipment_priority = list( \
 	if(!W.mob_can_equip(src, slot))
 		if(del_on_fail)
 			qdel(W)
+
 		else
 			if(!disable_warning)
 				src << "\red You are unable to equip that." //Only print if del_on_fail is false
@@ -176,12 +184,14 @@ var/list/slot_equipment_priority = list( \
 			break
 	return slot
 
+
 //This differs from remove_from_mob() in that it checks if the item can be unequipped first.
 /mob/proc/unEquip(obj/item/I, force = 0) //Force overrides NODROP for things like wizarditis and admin undress.
 	if(!(force || canUnEquip(I)))
 		return
 	drop_from_inventory(I)
 	return 1
+
 
 //Attemps to remove an object on a mob.
 /mob/proc/remove_from_mob(var/obj/O)

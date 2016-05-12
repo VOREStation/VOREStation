@@ -169,14 +169,22 @@
 /* "Rifle" rounds */
 
 /obj/item/projectile/bullet/rifle
-	armor_penetration = 20
+	armor_penetration = 15
 	penetrating = 1
 
 /obj/item/projectile/bullet/rifle/a762
 	damage = 25
 
+/obj/item/projectile/bullet/rifle/a762/ap
+	damage = 20
+	armor_penetration = 50 // At 40 or more armor, this will do more damage than standard rounds.
+
 /obj/item/projectile/bullet/rifle/a556
 	damage = 35
+
+/obj/item/projectile/bullet/rifle/a556/ap
+	damage = 30
+	armor_penetration = 50 // At 30 or more armor, this will do more damage than standard rounds.
 
 /obj/item/projectile/bullet/rifle/a145
 	damage = 80

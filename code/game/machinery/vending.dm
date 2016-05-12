@@ -4,12 +4,14 @@
 /datum/data/vending_product
 	var/product_name = "generic" // Display name for the product
 	var/product_path = null
-	var/amount = 0  // Amount held in the vending machine
-	var/price = 0  // Price to buy one
-	var/display_color = null  // Display color for vending machine listing
+	var/amount = 0            // The original amount held in the vending machine
+	var/list/instances
+	var/price = 0              // Price to buy one
+	var/display_color = null   // Display color for vending machine listing
 	var/category = CAT_NORMAL  // CAT_HIDDEN for contraband, CAT_COIN for premium
+	var/vending_machine        // The vending machine we belong to
 
-/datum/data/vending_product/New(var/path, var/name = null, var/amount = 1, var/price = 0, var/color = null, var/category = CAT_NORMAL)
+/datum/data/vending_product/New(var/vending_machine, var/path, var/name = null, var/amount = 1, var/price = 0, var/color = null, var/category = CAT_NORMAL)
 	..()
 
 	src.product_path = path
@@ -24,6 +26,43 @@
 	src.price = price
 	src.display_color = color
 	src.category = category
+	src.vending_machine = vending_machine
+
+/datum/data/vending_product/Destroy()
+	vending_machine = null
+	if(instances)
+		for(var/product in instances)
+			qdel(product)
+		instances.Cut()
+	. = ..()
+
+/datum/data/vending_product/proc/get_amount()
+	return instances ? instances.len : amount
+
+/datum/data/vending_product/proc/add_product(var/atom/movable/product)
+	if(product.type != product_path)
+		return 0
+	init_products()
+	product.forceMove(vending_machine)
+	instances += product
+
+/datum/data/vending_product/proc/get_product(var/product_location)
+	if(!get_amount() || !product_location)
+		return
+	init_products()
+
+	var/atom/movable/product = instances[instances.len]	// Remove the last added product
+	instances -= product
+	product.forceMove(product_location)
+	return product
+
+/datum/data/vending_product/proc/init_products()
+	if(instances)
+		return
+	instances = list()
+	for(var/i = 1 to amount)
+		var/new_product = new product_path(vending_machine)
+		instances += new_product
 
 /**
  *  A vending machine
@@ -36,8 +75,6 @@
 	layer = 2.9
 	anchored = 1
 	density = 1
-	circuit = /obj/item/weapon/circuitboard/vending
-	frame_type = "vending"
 
 	var/icon_vend //Icon_state when vending
 	var/icon_deny //Icon_state when denying access
@@ -96,14 +133,6 @@
 /obj/machinery/vending/New()
 	..()
 	wires = new(src)
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/spring(src)
-	component_parts += new /obj/item/weapon/stock_parts/spring(src)
-	component_parts += new /obj/item/weapon/stock_parts/motor(src)
-	component_parts += new /obj/item/weapon/stock_parts/motor(src)
-	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
-	component_parts += new /obj/item/stack/material/glass/reinforced(src, 2)
-	RefreshParts()
 	spawn(4)
 		if(src.product_slogans)
 			src.slogan_list += splittext(src.product_slogans, ";")
@@ -140,7 +169,7 @@
 		var/category = current_list[2]
 
 		for(var/entry in current_list[1])
-			var/datum/data/vending_product/product = new/datum/data/vending_product(entry)
+			var/datum/data/vending_product/product = new/datum/data/vending_product(src, entry)
 
 			product.price = (entry in src.prices) ? src.prices[entry] : 0
 			product.amount = (current_list[1][entry]) ? current_list[1][entry] : 1
@@ -153,6 +182,9 @@
 	wires = null
 	qdel(coin)
 	coin = null
+	for(var/datum/data/vending_product/R in product_records)
+		qdel(R)
+	product_records = null
 	return ..()
 
 /obj/machinery/vending/ex_act(severity)
@@ -224,7 +256,7 @@
 		return
 	else if(istype(W, /obj/item/weapon/coin) && premium.len > 0)
 		user.drop_item()
-		W.loc = src
+		W.forceMove(src)
 		coin = W
 		categories |= CAT_COIN
 		user << "<span class='notice'>You insert \the [W] into \the [src].</span>"
@@ -242,9 +274,6 @@
 			user << "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>"
 			anchored = !anchored
 		return
-	else if(default_deconstruction_crowbar(user, W))
-		return
-
 	else
 
 		for(var/datum/data/vending_product/R in product_records)
@@ -423,7 +452,7 @@
 				"name" = I.product_name,
 				"price" = I.price,
 				"color" = I.display_color,
-				"amount" = I.amount)))
+				"amount" = I.get_amount())))
 
 		data["products"] = listed_products
 
@@ -453,10 +482,10 @@
 			usr << "There is no coin in this machine."
 			return
 
-		coin.loc = src.loc
+		coin.forceMove(src.loc)
 		if(!usr.get_active_hand())
 			usr.put_in_hands(coin)
-		usr << "<span class='notice'>You remove the [coin] from the [src]</span>"
+		usr << "<span class='notice'>You remove \the [coin] from \the [src]</span>"
 		coin = null
 		categories &= ~CAT_COIN
 
@@ -517,12 +546,12 @@
 			else
 				user << "<span class='notice'>You weren't able to pull the coin out fast enough, the machine ate it, string and all.</span>"
 				qdel(coin)
+				coin = null
 				categories &= ~CAT_COIN
 		else
 			qdel(coin)
+			coin = null
 			categories &= ~CAT_COIN
-
-	R.amount--
 
 	if(((src.last_reply + (src.vend_delay + 200)) <= world.time) && src.vend_reply)
 		spawn(0)
@@ -533,16 +562,31 @@
 	if (src.icon_vend) //Show the vending animation if needed
 		flick(src.icon_vend,src)
 	spawn(src.vend_delay)
-		new R.product_path(get_turf(src))
+		R.get_product(get_turf(src))
+		if(prob(1))
+			sleep(3)
+			if(R.get_product(get_turf(src)))
+				src.visible_message("<span class='notice'>\The [src] clunks as it vends an additional item.</span>")
+
 		src.status_message = ""
 		src.status_error = 0
 		src.vend_ready = 1
 		currently_vending = null
 		nanomanager.update_uis(src)
 
-/obj/machinery/vending/proc/stock(var/datum/data/vending_product/R, var/mob/user)
-	user << "<span class='notice'>You insert \the [src] in the product receptor.</span>"
-	R.amount++
+
+/**
+ * Add item to the machine
+ *
+ * Checks if item is vendable in this machine should be performed before
+ * calling. W is the item being inserted, R is the associated vending_product entry.
+ */
+/obj/machinery/vending/proc/stock(obj/item/weapon/W, var/datum/data/vending_product/R, var/mob/user)
+	if(!user.unEquip(W))
+		return
+
+	user << "<span class='notice'>You insert \the [W] in the product receptor.</span>"
+	R.add_product(W)
 
 	nanomanager.update_uis(src)
 
@@ -592,15 +636,8 @@
 //Oh no we're malfunctioning!  Dump out some product and break.
 /obj/machinery/vending/proc/malfunction()
 	for(var/datum/data/vending_product/R in src.product_records)
-		if (R.amount <= 0) //Try to use a record that actually has something to dump.
-			continue
-		var/dump_path = R.product_path
-		if (!dump_path)
-			continue
-
-		while(R.amount>0)
-			new dump_path(src.loc)
-			R.amount--
+		while(R.get_amount()>0)
+			R.get_product(loc)
 		break
 
 	stat |= BROKEN
@@ -615,20 +652,15 @@
 		return 0
 
 	for(var/datum/data/vending_product/R in src.product_records)
-		if (R.amount <= 0) //Try to use a record that actually has something to dump.
+		throw_item = R.get_product(loc)
+		if (!throw_item)
 			continue
-		var/dump_path = R.product_path
-		if (!dump_path)
-			continue
-
-		R.amount--
-		throw_item = new dump_path(src.loc)
 		break
 	if (!throw_item)
 		return 0
 	spawn(0)
 		throw_item.throw_at(target, 16, 3, src)
-	src.visible_message("<span class='warning'>[src] launches [throw_item.name] at [target.name]!</span>")
+	src.visible_message("<span class='warning'>\The [src] launches \a [throw_item] at \the [target]!</span>")
 	return 1
 
 /*
@@ -656,7 +688,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "dispenser"
 	product_paths = "/obj/item/weapon/tank/oxygen;/obj/item/weapon/tank/phoron;/obj/item/weapon/tank/emergency_oxygen;/obj/item/weapon/tank/emergency_oxygen/engi;/obj/item/clothing/mask/breath"
-	product_amounts = "10;10;10;5;25"
+	productamounts = "10;10;10;5;25"
 	vend_delay = 0
 */
 
@@ -882,7 +914,7 @@
 		for(var/entry in current_list[1])
 			var/obj/item/seeds/S = new entry(src)
 			var/name = S.name
-			var/datum/data/vending_product/product = new/datum/data/vending_product(entry, name)
+			var/datum/data/vending_product/product = new/datum/data/vending_product(src, entry, name)
 
 			product.price = (entry in src.prices) ? src.prices[entry] : 0
 			product.amount = (current_list[1][entry]) ? current_list[1][entry] : 1
@@ -905,8 +937,26 @@
 	desc = "A kitchen and restaurant equipment vendor."
 	product_ads = "Mm, food stuffs!;Food and food accessories.;Get your plates!;You like forks?;I like forks.;Woo, utensils.;You don't really need these..."
 	icon_state = "dinnerware"
-	products = list(/obj/item/weapon/tray = 8,/obj/item/weapon/material/kitchen/utensil/fork = 6, /obj/item/weapon/material/kitchen/utensil/knife = 6, /obj/item/weapon/material/kitchen/utensil/spoon = 6, /obj/item/weapon/material/knife = 3,/obj/item/weapon/reagent_containers/food/drinks/drinkingglass = 8,/obj/item/clothing/suit/chef/classic = 2)
-	contraband = list(/obj/item/weapon/material/kitchen/rollingpin = 2, /obj/item/weapon/material/knife/butch = 2)
+	products = list(
+	/obj/item/weapon/tray = 8,
+	/obj/item/weapon/material/kitchen/utensil/fork = 6,
+	/obj/item/weapon/material/kitchen/utensil/knife = 6,
+	/obj/item/weapon/material/kitchen/utensil/spoon = 6,
+	/obj/item/weapon/material/knife = 3,
+	/obj/item/weapon/reagent_containers/food/drinks/drinkingglass = 8,
+	/obj/item/clothing/suit/chef/classic = 2,
+	/obj/item/weapon/storage/toolbox/lunchbox = 3,
+	/obj/item/weapon/storage/toolbox/lunchbox/heart = 3,
+	/obj/item/weapon/storage/toolbox/lunchbox/cat = 3,
+	/obj/item/weapon/storage/toolbox/lunchbox/nt = 3,
+	/obj/item/weapon/storage/toolbox/lunchbox/mars = 3,
+	/obj/item/weapon/storage/toolbox/lunchbox/cti = 3,
+	/obj/item/weapon/storage/toolbox/lunchbox/nymph = 3,
+	/obj/item/weapon/storage/toolbox/lunchbox/syndicate = 3)
+
+
+	contraband = list(/obj/item/weapon/material/kitchen/rollingpin = 2,
+	/obj/item/weapon/material/knife/butch = 2)
 
 /obj/machinery/vending/sovietsoda
 	name = "BODA"
@@ -924,8 +974,10 @@
 	icon_deny = "tool-deny"
 	//req_access = list(access_maint_tunnels) //Maintenance access
 	products = list(/obj/item/stack/cable_coil/random = 10,/obj/item/weapon/crowbar = 5,/obj/item/weapon/weldingtool = 3,/obj/item/weapon/wirecutters = 5,
-					/obj/item/weapon/wrench = 5,/obj/item/device/analyzer = 5,/obj/item/device/t_scanner = 5,/obj/item/weapon/screwdriver = 5)
-	contraband = list(/obj/item/weapon/weldingtool/hugetank = 2,/obj/item/clothing/gloves/fyellow = 2)
+					/obj/item/weapon/wrench = 5,/obj/item/device/analyzer = 5,/obj/item/device/t_scanner = 5,/obj/item/weapon/screwdriver = 5,
+					/obj/item/device/flashlight/glowstick = 3, /obj/item/device/flashlight/glowstick/red = 3, /obj/item/device/flashlight/glowstick/blue = 3,
+					/obj/item/device/flashlight/glowstick/orange =3, /obj/item/device/flashlight/glowstick/yellow = 3)
+	contraband = list(/obj/item/weapon/weldingtool/hugetank = 2,/obj/item/clothing/gloves/fyellow = 2, )
 	premium = list(/obj/item/clothing/gloves/yellow = 1)
 
 /obj/machinery/vending/engivend
@@ -939,12 +991,15 @@
 					/obj/item/weapon/circuitboard/airalarm = 10,/obj/item/weapon/circuitboard/firealarm = 10,/obj/item/weapon/circuitboard/status_display = 2,
 					/obj/item/weapon/circuitboard/ai_status_display = 2,/obj/item/weapon/circuitboard/newscaster = 2,/obj/item/weapon/circuitboard/holopad = 2,
 					/obj/item/weapon/circuitboard/intercom = 4,/obj/item/weapon/circuitboard/security/telescreen/entertainment = 4,
-					/obj/item/weapon/circuitboard/atm = 0,/obj/item/weapon/circuitboard/guestpass = 0,/obj/item/weapon/circuitboard/keycard_auth = 0,
-					/obj/item/weapon/circuitboard/photocopier = 0,/obj/item/weapon/circuitboard/fax = 0,/obj/item/weapon/circuitboard/conveyor = 0,
-					/obj/item/weapon/circuitboard/microwave = 0,/obj/item/weapon/circuitboard/vending = 0,/obj/item/weapon/circuitboard/washing = 0,
-					/obj/item/weapon/stock_parts/motor = 0,/obj/item/weapon/stock_parts/spring = 0,/obj/item/weapon/stock_parts/gear = 0)
+					/obj/item/weapon/stock_parts/motor = 2,/obj/item/weapon/stock_parts/spring = 2,/obj/item/weapon/stock_parts/gear = 2,
+					/obj/item/weapon/circuitboard/atm,/obj/item/weapon/circuitboard/guestpass,/obj/item/weapon/circuitboard/keycard_auth,
+					/obj/item/weapon/circuitboard/photocopier,/obj/item/weapon/circuitboard/fax,/obj/item/weapon/circuitboard/request,
+					/obj/item/weapon/circuitboard/microwave,/obj/item/weapon/circuitboard/washing,/obj/item/weapon/circuitboard/scanner_console,
+					/obj/item/weapon/circuitboard/sleeper_console,/obj/item/weapon/circuitboard/body_scanner,/obj/item/weapon/circuitboard/sleeper,
+					/obj/item/weapon/circuitboard/dna_analyzer)
 	contraband = list(/obj/item/weapon/cell/potato = 3)
 	premium = list(/obj/item/weapon/storage/belt/utility = 3)
+	product_records = list()
 
 //This one's from bay12
 /obj/machinery/vending/engineering

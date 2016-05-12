@@ -27,12 +27,12 @@ var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called
 #define AI_CAMERA_LUMINOSITY 6
 
 // Camera networks
-#define NETWORK_CRESCENT "Crescent"
-#define NETWORK_CAFE_DOCK "Cafe Dock"
+#define NETWORK_CRESCENT "Spaceport"
+// #define NETWORK_CAFE_DOCK "Cafe Dock"
 #define NETWORK_CARGO "Cargo"
 #define NETWORK_CIVILIAN "Civilian"
-#define NETWORK_CIVILIAN_EAST "Civilian East"
-#define NETWORK_CIVILIAN_WEST "Civilian West"
+// #define NETWORK_CIVILIAN_EAST "Civilian East"
+// #define NETWORK_CIVILIAN_WEST "Civilian West"
 #define NETWORK_COMMAND "Command"
 #define NETWORK_ENGINE "Engine"
 #define NETWORK_ENGINEERING "Engineering"
@@ -41,7 +41,7 @@ var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called
 #define NETWORK_EXODUS "Northern Star"
 #define NETWORK_MEDICAL "Medical"
 #define NETWORK_MERCENARY "MercurialNet"
-#define NETWORK_MINE "MINE"
+#define NETWORK_MINE "Mining Outpost"
 #define NETWORK_NORTHERN_STAR "Northern Star"
 #define NETWORK_RESEARCH "Research"
 #define NETWORK_RESEARCH_OUTPOST "Research Outpost"

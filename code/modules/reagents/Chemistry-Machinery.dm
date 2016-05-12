@@ -21,7 +21,7 @@
 	var/obj/item/weapon/storage/pill_bottle/loaded_pill_bottle = null
 	var/mode = 0
 	var/condi = 0
-	var/useramount = 30 // Last used amount
+	var/useramount = 15 // Last used amount
 	var/pillamount = 10
 	var/bottlesprite = "bottle-1" //yes, strings
 	var/pillsprite = "1"
@@ -265,6 +265,8 @@
 				dat += "<A href='?src=\ref[src];add=[G.id];amount=1'>(1)</A> "
 				dat += "<A href='?src=\ref[src];add=[G.id];amount=5'>(5)</A> "
 				dat += "<A href='?src=\ref[src];add=[G.id];amount=10'>(10)</A> "
+				dat += "<A href='?src=\ref[src];add=[G.id];amount=30'>(30)</A> "
+				dat += "<A href='?src=\ref[src];add=[G.id];amount=60'>(60)</A> "
 				dat += "<A href='?src=\ref[src];add=[G.id];amount=[G.volume]'>(All)</A> "
 				dat += "<A href='?src=\ref[src];addcustom=[G.id]'>(Custom)</A><BR>"
 
@@ -276,6 +278,8 @@
 				dat += "<A href='?src=\ref[src];remove=[N.id];amount=1'>(1)</A> "
 				dat += "<A href='?src=\ref[src];remove=[N.id];amount=5'>(5)</A> "
 				dat += "<A href='?src=\ref[src];remove=[N.id];amount=10'>(10)</A> "
+				dat += "<A href='?src=\ref[src];remove=[N.id];amount=30'>(30)</A> "
+				dat += "<A href='?src=\ref[src];remove=[N.id];amount=60'>(60)</A> "
 				dat += "<A href='?src=\ref[src];remove=[N.id];amount=[N.volume]'>(All)</A> "
 				dat += "<A href='?src=\ref[src];removecustom=[N.id]'>(Custom)</A><BR>"
 		else

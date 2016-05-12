@@ -21,7 +21,8 @@
 	var/obj/crayon
 	var/list/washing = list()
 
-/obj/machinery/washing_machine/New()
+/obj/machinery/washing_machine/map/New()
+	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/motor(src)
 	component_parts += new /obj/item/weapon/stock_parts/gear(src)

@@ -14,15 +14,15 @@
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/security(src)
 	else
-		new /obj/item/weapon/storage/backpack/satchel_sec(src)
+		new /obj/item/weapon/storage/backpack/satchel/sec(src)
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/security(src)
 	else
-		new /obj/item/weapon/storage/backpack/satchel_sec(src)
+		new /obj/item/weapon/storage/backpack/satchel/sec(src)
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/security(src)
 	else
-		new /obj/item/weapon/storage/backpack/satchel_sec(src)
+		new /obj/item/weapon/storage/backpack/satchel/sec(src)
 	new /obj/item/clothing/under/rank/security(src)
 	new /obj/item/clothing/under/rank/security(src)
 	new /obj/item/clothing/under/rank/security(src)
@@ -361,8 +361,8 @@
 	new /obj/item/clothing/suit/storage/hooded/wintercoat/science(src)
 	new /obj/item/weapon/storage/backpack/toxins(src)
 	new /obj/item/weapon/storage/backpack/toxins(src)
-	new /obj/item/weapon/storage/backpack/satchel_tox(src)
-	new /obj/item/weapon/storage/backpack/satchel_tox(src)
+	new /obj/item/weapon/storage/backpack/satchel/tox(src)
+	new /obj/item/weapon/storage/backpack/satchel/tox(src)
 	return
 
 /obj/structure/closet/wardrobe/robotics_black
@@ -382,8 +382,8 @@
 	new /obj/item/clothing/gloves/black(src)
 	new /obj/item/weapon/storage/backpack/toxins(src)
 	new /obj/item/weapon/storage/backpack/toxins(src)
-	new /obj/item/weapon/storage/backpack/satchel_tox(src)
-	new /obj/item/weapon/storage/backpack/satchel_tox(src)
+	new /obj/item/weapon/storage/backpack/satchel/tox(src)
+	new /obj/item/weapon/storage/backpack/satchel/tox(src)
 	return
 
 
@@ -404,8 +404,8 @@
 	new /obj/item/clothing/suit/storage/toggle/labcoat/chemist(src)
 	new /obj/item/weapon/storage/backpack/chemistry(src)
 	new /obj/item/weapon/storage/backpack/chemistry(src)
-	new /obj/item/weapon/storage/backpack/satchel_chem(src)
-	new /obj/item/weapon/storage/backpack/satchel_chem(src)
+	new /obj/item/weapon/storage/backpack/satchel/chem(src)
+	new /obj/item/weapon/storage/backpack/satchel/chem(src)
 	return
 
 
@@ -426,8 +426,8 @@
 	new /obj/item/clothing/suit/storage/toggle/labcoat/genetics(src)
 	new /obj/item/weapon/storage/backpack/genetics(src)
 	new /obj/item/weapon/storage/backpack/genetics(src)
-	new /obj/item/weapon/storage/backpack/satchel_gen(src)
-	new /obj/item/weapon/storage/backpack/satchel_gen(src)
+	new /obj/item/weapon/storage/backpack/satchel/gen(src)
+	new /obj/item/weapon/storage/backpack/satchel/gen(src)
 	return
 
 
@@ -450,8 +450,8 @@
 	new /obj/item/clothing/mask/surgical(src)
 	new /obj/item/weapon/storage/backpack/virology(src)
 	new /obj/item/weapon/storage/backpack/virology(src)
-	new /obj/item/weapon/storage/backpack/satchel_vir(src)
-	new /obj/item/weapon/storage/backpack/satchel_vir(src)
+	new /obj/item/weapon/storage/backpack/satchel/vir(src)
+	new /obj/item/weapon/storage/backpack/satchel/vir(src)
 	return
 
 
@@ -626,7 +626,7 @@
 	new /obj/item/clothing/shoes/brown(src)
 	new /obj/item/clothing/gloves/captain(src)
 	new /obj/item/clothing/under/dress/dress_cap(src)
-	new /obj/item/weapon/storage/backpack/satchel_cap(src)
+	new /obj/item/weapon/storage/backpack/satchel/cap(src)
 	new /obj/item/clothing/head/caphat/formal(src)
 	new /obj/item/clothing/under/captainformal(src)
 	new /obj/item/clothing/suit/storage/hooded/wintercoat/captain(src)

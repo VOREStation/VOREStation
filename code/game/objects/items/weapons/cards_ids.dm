@@ -68,6 +68,7 @@
 	icon_state = "emag"
 	item_state = "card-id"
 	origin_tech = list(TECH_MAGNET = 2, TECH_ILLEGAL = 2)
+	var/default_uses = 10
 	var/uses = 10
 
 /obj/item/weapon/card/emag/resolve_attackby(atom/A, mob/user)
@@ -87,6 +88,12 @@
 		qdel(src)
 
 	return 1
+/obj/item/weapon/card/emag/attackby(obj/item/O as obj, mob/user as mob)
+	if(istype(O, /obj/item/device/telecrystal))
+		src.uses += default_uses/2 //Adds half the default amount of uses which is more than you get per TC when buying, as to balance the utility of having multiple emags vs one heavily usable one
+		usr << "<span class='notice'>You add \the [O] to \the [src]. Increasing the uses of \the [src] to [uses].</span>"
+		qdel(O)
+
 
 /obj/item/weapon/card/id
 	name = "identification card"

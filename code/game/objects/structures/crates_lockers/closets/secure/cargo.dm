@@ -13,7 +13,7 @@
 		if(prob(75))
 			new /obj/item/weapon/storage/backpack(src)
 		else
-			new /obj/item/weapon/storage/backpack/satchel_norm(src)
+			new /obj/item/weapon/storage/backpack/satchel/norm(src)
 		if(prob(25))
 			new /obj/item/weapon/storage/backpack/dufflebag(src)
 		new /obj/item/clothing/under/rank/cargotech(src)
@@ -44,7 +44,7 @@
 		if(prob(75))
 			new /obj/item/weapon/storage/backpack(src)
 		else
-			new /obj/item/weapon/storage/backpack/satchel_norm(src)
+			new /obj/item/weapon/storage/backpack/satchel/norm(src)
 		if(prob(25))
 			new /obj/item/weapon/storage/backpack/dufflebag(src)
 		new /obj/item/clothing/under/rank/cargo(src)

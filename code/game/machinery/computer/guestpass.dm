@@ -61,6 +61,7 @@
 	..()
 	uid = "[rand(100,999)]-G[rand(10,99)]"
 
+
 /obj/machinery/computer/guestpass/attackby(obj/I, mob/user)
 	if(istype(I, /obj/item/weapon/screwdriver) && circuit)
 		user << "<span class='notice'>You start disconnecting the monitor.</span>"
@@ -83,7 +84,7 @@
 		return
 	if(istype(I, /obj/item/weapon/card/id))
 		if(!giver && user.unEquip(I))
-			I.loc = src
+			I.forceMove(src)
 			giver = I
 			updateUsrDialog()
 		else if(giver)

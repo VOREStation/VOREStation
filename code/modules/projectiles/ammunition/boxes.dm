@@ -142,6 +142,10 @@
 	name = "magazine (5.56mm practice)"
 	ammo_type = /obj/item/ammo_casing/a556p
 
+/obj/item/ammo_magazine/a556/ap
+	name = "magazine (5.56mm armor-piercing)"
+	ammo_type = /obj/item/ammo_casing/a556/ap
+
 /obj/item/ammo_magazine/a50
 	name = "magazine (.50)"
 	icon_state = "50ae"
@@ -179,6 +183,10 @@
 	max_ammo = 50
 	multiple_sprites = 1
 
+/obj/item/ammo_magazine/a762/ap
+	name = "magazine box (7.62mm armor-piercing)"
+	ammo_type = /obj/item/ammo_casing/a762/ap
+
 /obj/item/ammo_magazine/a762/empty
 	initial_ammo = 0
 
@@ -192,6 +200,10 @@
 	max_ammo = 20
 	multiple_sprites = 1
 
+/obj/item/ammo_magazine/c762/ap
+	name = "magazine (7.62mm armor-piercing)"
+	ammo_type = /obj/item/ammo_casing/a762/ap
+
 /obj/item/ammo_magazine/caps
 	name = "speed loader (caps)"
 	icon_state = "T38"
@@ -201,6 +213,7 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 600)
 	max_ammo = 7
 	multiple_sprites = 1
+
 /obj/item/ammo_magazine/g12
 	name = "magazine (12 gauge)"
 	icon_state = "g12"

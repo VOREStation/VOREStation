@@ -65,7 +65,7 @@
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/medic(src)
 		else
-			new /obj/item/weapon/storage/backpack/satchel_med(src)
+			new /obj/item/weapon/storage/backpack/satchel/med(src)
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/dufflebag/med(src)
 		new /obj/item/clothing/under/rank/nursesuit (src)
@@ -131,6 +131,7 @@
 
 	New()
 		..()
+		new /obj/item/weapon/storage/backpack/dufflebag/emt(src)
 		new /obj/item/weapon/storage/box/autoinjectors(src)
 		new /obj/item/weapon/storage/box/syringes(src)
 		new /obj/item/weapon/reagent_containers/glass/bottle/inaprovaline(src)
@@ -168,7 +169,7 @@
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/medic(src)
 		else
-			new /obj/item/weapon/storage/backpack/satchel_med(src)
+			new /obj/item/weapon/storage/backpack/satchel/med(src)
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/dufflebag/med(src)
 		new /obj/item/clothing/suit/bio_suit/cmo(src)

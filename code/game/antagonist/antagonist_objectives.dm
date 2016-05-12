@@ -46,8 +46,8 @@
 	round for everybody else.", "Ambitions", mind.ambitions) as null|message
 	if(isnull(new_ambitions))
 		return
-	mind.ambitions = new_ambitions
 	new_ambitions = sanitize(new_ambitions)
+	mind.ambitions = new_ambitions
 	if(new_ambitions)
 		src << "<span class='notice'>You've set your goal to be '[new_ambitions]'.</span>"
 	else

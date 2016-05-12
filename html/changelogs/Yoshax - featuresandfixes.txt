@@ -22,7 +22,7 @@
 #################################
 
 # Your name.  
-author: Hubblenaut
+author: Yoshax
 
 # Optional: Remove this file after generating master changelog.  Useful for PR changelogs that won't get used again.
 delete-after: True
@@ -33,4 +33,8 @@ delete-after: True
 # Also, all entries are changed into a single [] after a master changelog generation. Just remove the brackets when you add new entries.
 # Please surround your changes in  double quotes ("), as certain characters otherwise screws up compiling. The quotes will not show up in the changelog.
 changes: 
-  - tweak: "Hydroponics vendor and biogenerator offer full bottles of fertilizer. Prices and amount available adjusted to accomodate."
+  - tweak: "Doubles the maximum length of records and names to 6144 & 52, resptively. Also increases book nelngth to 12288. (All numbers are in charatcers.)
+  - bugfix: "Makes various services in the antag uplink purchasable once again. This includes the fake crew arrival."
+  - bugifx: "Neckgrabs will no longer force people to the ground. In addition, weakened people can no longer resist."
+  - rscadd: "All vending machines now have a small chance of vending an additional item."
+   

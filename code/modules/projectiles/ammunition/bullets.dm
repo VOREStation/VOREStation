@@ -133,6 +133,11 @@
 	caliber = "a762"
 	projectile_type = /obj/item/projectile/bullet/rifle/a762
 
+/obj/item/ammo_casing/a762/ap
+	desc = "A 7.62mm armor-piercing bullet casing."
+	caliber = "a762"
+	projectile_type = /obj/item/projectile/bullet/rifle/a762/ap
+
 /obj/item/ammo_casing/a145
 	name = "shell casing"
 	desc = "A 14.5mm shell."
@@ -146,6 +151,11 @@
 	desc = "A 5.56mm bullet casing."
 	caliber = "a556"
 	projectile_type = /obj/item/projectile/bullet/rifle/a556
+
+/obj/item/ammo_casing/a556/ap
+	desc = "A 5.56mm armor-piercing bullet casing."
+	caliber = "a556"
+	projectile_type = /obj/item/projectile/bullet/rifle/a556/ap
 
 /obj/item/ammo_casing/a556p
 	desc = "A 5.56mm practice bullet casing."

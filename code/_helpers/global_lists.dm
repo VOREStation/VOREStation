@@ -23,6 +23,9 @@ var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
 
 var/global/list/turfs = list()						//list of all turfs
 
+#define all_genders_define_list list(MALE,FEMALE,PLURAL,NEUTER)
+#define all_genders_text_list list("Male","Female","Plural","Neuter")
+
 //Languages/species/whitelist.
 var/global/list/all_species[0]
 var/global/list/all_languages[0]
@@ -191,16 +194,22 @@ var/global/list/string_slot_flags = list(
 			language_keys[lowertext(L.key)] = L
 
 	var/rkey = 0
-	paths = typesof(/datum/species)-/datum/species
+	paths = typesof(/datum/species)
 	for(var/T in paths)
+
 		rkey++
-		var/datum/species/S = new T
+
+		var/datum/species/S = T
+		if(!initial(S.name))
+			continue
+
+		S = new T
 		S.race_key = rkey //Used in mob icon caching.
 		all_species[S.name] = S
 
-		if(!(S.spawn_flags & IS_RESTRICTED))
+		if(!(S.spawn_flags & SPECIES_IS_RESTRICTED))
 			playable_species += S.name
-		if(S.spawn_flags & IS_WHITELISTED)
+		if(S.spawn_flags & SPECIES_IS_WHITELISTED)
 			whitelisted_species += S.name
 
 	//Posters
