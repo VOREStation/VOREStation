@@ -232,7 +232,12 @@
 			limb_icon = new /icon(icobase, "[name]")
 		// Skin color
 		if(current_species && (current_species.appearance_flags & HAS_SKIN_COLOR))
-			limb_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
+			//VOREStation Code Start
+			if(current_species.color_mult)
+				limb_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_MULTIPLY)
+			else
+				limb_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
+			//VOREstation Code End
 		// Skin tone
 		if(current_species && (current_species.appearance_flags & HAS_SKIN_TONE))
 			if (s_tone >= 0)
