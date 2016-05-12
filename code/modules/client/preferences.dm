@@ -256,6 +256,11 @@ datum/preferences
 /datum/preferences/proc/copy_to(mob/living/carbon/human/character, safety = 0)
 	// Sanitizing rather than saving as someone might still be editing when copy_to occurs.
 	player_setup.sanitize_setup()
+
+	// VOREStation Edit - Start
+	player_setup.copy_to_mob(character)
+	// VOREStation Edit - End
+
 	if(be_random_name)
 		real_name = random_name(identifying_gender,species)
 

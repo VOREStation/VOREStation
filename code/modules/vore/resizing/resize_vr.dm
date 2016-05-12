@@ -110,7 +110,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 		now_pushing = 0
 		if(src.get_effective_size() > tmob.get_effective_size())
 			var/mob/living/carbon/human/M = src
-			if(0) // POLARISTODO istaur(src) && M.taur_style == 2)
+			if(istype(M) && istype(M.tail_style, /datum/sprite_accessory/tail/taur/naga))
 				src << "You carefully slither around [tmob]."
 				tmob << "[src]'s huge tail slithers past beside you!"
 			else
@@ -118,7 +118,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 				tmob << "[src] steps over you carefully!"
 		if(tmob.get_effective_size() > src.get_effective_size())
 			var/mob/living/carbon/human/M = tmob
-			if(0) // POLARISTODO istaur(src) && M.taur == 2)
+			if(istype(M) && istype(M.tail_style, /datum/sprite_accessory/tail/taur/naga))
 				src << "You jump over [tmob]'s thick tail."
 				tmob << "[src] bounds over your tail."
 			else
@@ -144,7 +144,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 			tmob.Stun(4)
 
 			var/mob/living/carbon/human/M = src
-			if(0) // POLARISTODO istaur(src) && M.taur_style == 2)
+			if(istype(M) && istype(M.tail_style, /datum/sprite_accessory/tail/taur/naga))
 				src << "You carefully squish [tmob] under your tail!"
 				tmob << "[src] pins you under their tail!"
 			else
@@ -159,7 +159,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 			tmob.apply_damage(10, HALLOSS)
 
 			var/mob/living/carbon/human/M = src
-			if(0) // POLARISTODO istaur(src) && M.taur_style == 2)
+			if(istype(M) && istype(M.tail_style, /datum/sprite_accessory/tail/taur/naga))
 				src << "You steamroller over [tmob] with your heavy tail!"
 				tmob << "[src] ploughs you down mercilessly with their heavy tail!"
 			else
@@ -176,13 +176,13 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 			if(istype(M) && !M.shoes)
 				// User is a human (capable of scooping) and not wearing shoes! Scoop into foot slot!
 				equip_to_slot_if_possible(tmob.get_scooped(M), slot_shoes, 0, 1)
-				if(0) // POLARISTODO M.taur == 2)
+				if(istype(M.tail_style, /datum/sprite_accessory/tail/taur/naga))
 					src << "You wrap up [tmob] with your powerful tail!"
 					tmob << "[src] binds you with their powerful tail!"
 				else
 					src << "You clench your toes around [tmob]'s body!"
 					tmob << "[src] grabs your body with their toes!"
-			else if(0) // POLARISTODO istaur(src) && M.taur_style == 2)
+			else if(istype(M) && istype(M.tail_style, /datum/sprite_accessory/tail/taur/naga))
 				src << "You carefully squish [tmob] under your tail!"
 				tmob << "[src] pins you under their tail!"
 			else

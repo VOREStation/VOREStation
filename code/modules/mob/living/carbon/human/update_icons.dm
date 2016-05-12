@@ -373,6 +373,12 @@ var/global/list/damage_icon_parts = list()
 
 			face_standing.Blend(hair_s, ICON_OVERLAY)
 
+	// VOREStation Edit - START
+	var/icon/ears_s = get_ears_overlay()
+	if (ears_s)
+		face_standing.Blend(ears_s, ICON_OVERLAY)
+	// VOREStation Edit - END
+
 	overlays_standing[HAIR_LAYER]	= image(face_standing)
 
 	if(update_icons)   update_icons()
@@ -962,6 +968,14 @@ var/global/list/damage_icon_parts = list()
 
 /mob/living/carbon/human/proc/update_tail_showing(var/update_icons=1)
 	overlays_standing[TAIL_LAYER] = null
+
+	// VOREStation Edit - START
+	overlays_standing[TAIL_LAYER] = get_tail_image()
+	if(overlays_standing[TAIL_LAYER])
+		if(update_icons)
+			update_icons()
+		return
+	// VOREStation Edit - END
 
 	if(species.tail && !(wear_suit && wear_suit.flags_inv & HIDETAIL))
 		var/icon/tail_s = get_tail_icon()

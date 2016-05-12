@@ -2,6 +2,9 @@
  * VOREStation global lists
 */
 
+var/global/list/ear_styles_list = list()	// Stores /datum/sprite_accessory/ears indexed by type
+var/global/list/tail_styles_list = list()	// Stores /datum/sprite_accessory/tail indexed by type
+
 //stores numeric player size options indexed by name
 var/global/list/player_sizes_list = list(
 		"Macro" 	= RESIZE_HUGE,
@@ -73,3 +76,20 @@ var/global/list/struggle_sounds = list(
 		"Squish2" = 'sound/vore/squish2.ogg',
 		"Squish3" = 'sound/vore/squish3.ogg',
 		"Squish4" = 'sound/vore/squish4.ogg')
+
+
+/hook/startup/proc/init_vore_datum_ref_lists()
+	var/paths
+
+	// Custom Ears
+	paths = typesof(/datum/sprite_accessory/ears) - /datum/sprite_accessory/ears
+	for(var/path in paths)
+		var/obj/item/clothing/head/instance = new path()
+		ear_styles_list[path] = instance
+
+	// Custom Tails
+	paths = typesof(/datum/sprite_accessory/tail) - /datum/sprite_accessory/tail - /datum/sprite_accessory/tail/taur
+	for(var/path in paths)
+		var/datum/sprite_accessory/tail/instance = new path()
+		tail_styles_list[path] = instance
+	return 1 // Hooks must return 1
