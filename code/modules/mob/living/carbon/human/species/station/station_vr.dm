@@ -30,7 +30,7 @@
 
 	primitive_form = "Farwa" //POLARISTODO - Add other monkeytypes
 
-	spawn_flags = CAN_JOIN
+	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
 	flesh_color = "#AFA59E"
@@ -75,7 +75,7 @@
 
 	primitive_form = "Farwa" //POLARISTODO - Add other monkeytypes
 
-	spawn_flags = CAN_JOIN
+	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
 	flesh_color = "#AFA59E"
@@ -108,7 +108,7 @@
 
 	primitive_form = "Farwa" //POLARISTODO - Add other monkeytypes
 
-	spawn_flags = CAN_JOIN
+	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
 	flesh_color = "#AFA59E"
