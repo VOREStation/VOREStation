@@ -540,9 +540,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		dat += "<img src='species_preview_[current_species.name].png' width='64px' height='64px'><br/><br/>"
 	dat += "<b>Language:</b> [current_species.language]<br/>"
 	dat += "<small>"
-	if(current_species.spawn_flags & CAN_JOIN)
+	if(current_species.spawn_flags & SPECIES_CAN_JOIN)
 		dat += "</br><b>Often present on human stations.</b>"
-	if(current_species.spawn_flags & IS_WHITELISTED)
+	if(current_species.spawn_flags & SPECIES_IS_WHITELISTED)
 		dat += "</br><b>Whitelist restricted.</b>"
 	if(!current_species.has_organ[O_HEART])
 		dat += "</br><b>Does not have a circulatory system.</b>"
@@ -570,9 +570,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	var/restricted = 0
 	if(config.usealienwhitelist) //If we're using the whitelist, make sure to check it!
-		if(!(current_species.spawn_flags & CAN_JOIN))
+		if(!(current_species.spawn_flags & SPECIES_CAN_JOIN))
 			restricted = 2
-		else if((current_species.spawn_flags & IS_WHITELISTED) && !is_alien_whitelisted(preference_mob(),current_species))
+		else if((current_species.spawn_flags & SPECIES_IS_WHITELISTED) && !is_alien_whitelisted(preference_mob(),current_species))
 			restricted = 1
 
 	if(restricted)

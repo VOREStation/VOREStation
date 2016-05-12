@@ -195,9 +195,8 @@ var/list/name_to_material
 
 // General wall debris product placement.
 // Not particularly necessary aside from snowflakey cult girders.
-/material/proc/place_dismantled_product(var/turf/target,var/is_devastated)
-	for(var/x=1;x<(is_devastated?2:3);x++)
-		place_sheet(target)
+/material/proc/place_dismantled_product(var/turf/target)
+	place_sheet(target)
 
 // Debris product. Used ALL THE TIME.
 /material/proc/place_sheet(var/turf/target)

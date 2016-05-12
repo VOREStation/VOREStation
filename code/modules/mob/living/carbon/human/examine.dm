@@ -51,7 +51,12 @@
 			msg += ", <b><font color='#555555'>[use_gender]!</font></b>"
 
 		else if(species.name != "Human")
-			msg += ", <b><font color='[species.get_flesh_colour(src)]'>\a [species.name]!</font></b>"
+			msg += ", <b><font color='[species.get_flesh_colour(src)]'>\a [species.get_examine_name()]!</font></b>"
+
+	var/extra_species_text = species.get_additional_examine_text(src)
+	if(extra_species_text)
+		msg += "[extra_species_text]<br>"
+
 	msg += "<br>"
 
 	//uniform

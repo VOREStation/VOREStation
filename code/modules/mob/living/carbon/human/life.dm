@@ -241,7 +241,13 @@
 
 	radiation = Clamp(radiation,0,100)
 
-	if (radiation)
+	if(!radiation)
+		if(species.appearance_flags & RADIATION_GLOWS)
+			set_light(0)
+	else
+		if(species.appearance_flags & RADIATION_GLOWS)
+			set_light(max(1,min(10,radiation/10)), max(1,min(20,radiation/20)), species.get_flesh_colour(src))
+		// END DOGSHIT SNOWFLAKE
 
 		var/obj/item/organ/internal/diona/nutrients/rad_organ = locate() in internal_organs
 		if(rad_organ && !rad_organ.is_broken())

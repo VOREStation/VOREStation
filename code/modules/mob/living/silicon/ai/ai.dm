@@ -151,11 +151,13 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 	add_language("Galactic Common", 1)
 	add_language("Sol Common", 0)
 	add_language("Sinta'unathi", 0)
+	add_language("Siik'maas", 0)
 	add_language("Siik'tajr", 0)
 	add_language("Skrellian", 0)
 	add_language("Tradeband", 1)
 	add_language("Gutter", 0)
 	add_language("Encoded Audio Language", 1)
+	add_language("Schechi", 0)
 
 	if(!safety)//Only used by AIize() to successfully spawn an AI.
 		if (!B)//If there is no player/brain inside.

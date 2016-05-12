@@ -337,11 +337,11 @@
 		overlays |= light_overlay_cache["[light_overlay]_icon"]
 
 		// Generate and cache the on-mob icon, which is used in update_inv_head().
-		var/cache_key = "[light_overlay][H ? "_[H.species.get_bodytype()]" : ""]"
+		var/cache_key = "[light_overlay][H ? "_[H.species.get_bodytype(H)]" : ""]"
 		if(!light_overlay_cache[cache_key])
 			var/use_icon = 'icons/mob/light_overlays.dmi'
-			if(H && sprite_sheets[H.species.get_bodytype()])
-				use_icon = sprite_sheets[H.species.get_bodytype()]
+			if(H && sprite_sheets[H.species.get_bodytype(H)])
+				use_icon = sprite_sheets[H.species.get_bodytype(H)]
 			light_overlay_cache[cache_key] = image("icon" = use_icon, "icon_state" = "[light_overlay]")
 
 	if(H)
@@ -535,8 +535,8 @@
 	var/icon/under_icon
 	if(icon_override)
 		under_icon = icon_override
-	else if(H && sprite_sheets && sprite_sheets[H.species.get_bodytype()])
-		under_icon = sprite_sheets[H.species.get_bodytype()]
+	else if(H && sprite_sheets && sprite_sheets[H.species.get_bodytype(H)])
+		under_icon = sprite_sheets[H.species.get_bodytype(H)]
 	else if(item_icons && item_icons[slot_w_uniform_str])
 		under_icon = item_icons[slot_w_uniform_str]
 	else
@@ -558,8 +558,8 @@
 	var/icon/under_icon
 	if(icon_override)
 		under_icon = icon_override
-	else if(H && sprite_sheets && sprite_sheets[H.species.get_bodytype()])
-		under_icon = sprite_sheets[H.species.get_bodytype()]
+	else if(H && sprite_sheets && sprite_sheets[H.species.get_bodytype(H)])
+		under_icon = sprite_sheets[H.species.get_bodytype(H)]
 	else if(item_icons && item_icons[slot_w_uniform_str])
 		under_icon = item_icons[slot_w_uniform_str]
 	else
