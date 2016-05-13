@@ -68,7 +68,7 @@
 /obj/machinery/meter/examine(mob/user)
 	var/t = "A gas flow meter. "
 	
-	if(get_dist(user, src) > 3 && !(istype(user, /mob/living/silicon/ai) || istype(user, /mob/observer/dead)))
+	if(get_dist(user, src) > 5 && !(istype(user, /mob/living/silicon/ai) || istype(user, /mob/observer/dead)))
 		t += "<span class='warning'>You are too far away to read it.</span>"
 	
 	else if(stat & (NOPOWER|BROKEN))
@@ -87,7 +87,7 @@
 
 /obj/machinery/meter/Click()
 
-	if(istype(usr, /mob/living/silicon/ai)) // ghosts can call ..() for examine
+	if(istype(usr, /mob/living/carbon/human) || istype(usr, /mob/living/silicon/ai)) // ghosts can call ..() for examine
 		usr.examinate(src)
 		return 1
 	
