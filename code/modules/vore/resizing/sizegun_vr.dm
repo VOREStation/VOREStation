@@ -32,10 +32,14 @@
 
 /obj/item/projectile/beam/shrinklaser
 	name = "shrink beam"
-	icon_state = "laser"
+	icon_state = "xray"
 	nodamage = 1
 	damage = 0
 	check_armour = "laser"
+
+	muzzle_type = /obj/effect/projectile/xray/muzzle
+	tracer_type = /obj/effect/projectile/xray/tracer
+	impact_type = /obj/effect/projectile/xray/impact
 
 /obj/item/projectile/beam/shrinklaser/on_hit(var/atom/target, var/blocked = 0)
 	if(istype(target, /mob/living))
@@ -52,13 +56,16 @@
 		M.update_icons()
 	return 1
 
-
 /obj/item/projectile/beam/growlaser
 	name = "growth beam"
 	icon_state = "bluelaser"
 	nodamage = 1
 	damage = 0
 	check_armour = "laser"
+
+	muzzle_type = /obj/effect/projectile/laser_blue/muzzle
+	tracer_type = /obj/effect/projectile/laser_blue/tracer
+	impact_type = /obj/effect/projectile/laser_blue/impact
 
 /obj/item/projectile/beam/growlaser/on_hit(var/atom/target, var/blocked = 0)
 	if(istype(target, /mob/living))
