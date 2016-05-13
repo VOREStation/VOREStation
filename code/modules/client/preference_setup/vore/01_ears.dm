@@ -69,7 +69,7 @@
 	if(tail_styles_list[pref.tail_style])
 		var/datum/sprite_accessory/tail/T = tail_styles_list[pref.tail_style]
 		if (T.do_colouration)
-			. += "<a href='?src=\ref[src];tail_color=1'>Change Color</a> \
+			. += "<br><a href='?src=\ref[src];tail_color=1'>Change Color</a> \
 				<font face='fixedsys' size='3' color='\
 				#[num2hex(pref.r_tail, 2)][num2hex(pref.g_tail, 2)][num2hex(pref.b_tail, 2)]'>\
 				<table style='display:inline;' bgcolor='\

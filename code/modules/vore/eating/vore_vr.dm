@@ -43,8 +43,6 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	//Actual preferences
 	var/digestable = 1
 	var/list/belly_prefs = list()
-	var/weight_gain = 1
-	var/weight_loss = 0.5
 
 	//Mechanically required
 	var/path
@@ -103,8 +101,6 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 
 	S["digestable"] >> digestable
 	S["belly_prefs"] >> belly_prefs
-	S["weight_gain"] >> weight_gain
-	S["weight_loss"] >> weight_loss
 
 	return 1
 
@@ -117,7 +113,5 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 
 	S["digestable"] << digestable
 	S["belly_prefs"] << belly_prefs
-	S["weight_gain"] << weight_gain
-	S["weight_loss"] << weight_loss
 
 	return 1
