@@ -118,11 +118,13 @@ Procs for targeting
 			return
 		if(learned_message)	//Is it understood?
 			var/complete_message = ",[language.key] [message]"
-			speech_buffer.Add(complete_message)
-			log_debug("Added '[complete_message]'.")
+			if(!(complete_message in speak))
+				speech_buffer.Add(complete_message)
+				log_debug("Added '[complete_message]'.")
 		else
 		*/
-		speech_buffer.Add(message)
+		if(!(message in speak))
+			speech_buffer.Add(message)
 	..(message,verb,language,alt_name,italics,speaker)
 
 /mob/living/simple_animal/xeno/proc/ProcessSpeechBuffer()

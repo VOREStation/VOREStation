@@ -73,19 +73,8 @@ Also includes Life and New
 	return 1	//Everything worked okay.
 	
 /mob/living/simple_animal/xeno/New()
-	var/traits
-	if(istype(loc, /mob/living/simple_animal/xeno))
-		var/mob/living/simple_animal/xeno/X = loc
-		traits = X.traitdat
-/*		
-	if(istype(loc, /obj/machinery/xenobio/replicator))
-		var/obj/machinery/xenobio/replicator/R = loc
-		traits = R.connected.traitdat
-*/
-	if(!traits)
-		traitdat = new()
-	else
-		traitdat = traits
+
+	traitdat = new()
 		
 	ProcessTraits()
 	
@@ -100,3 +89,4 @@ Also includes Life and New
 		traitdat.chems.reagents.add_reagent("[R]", default_chems[R])
 	if(!health)
 		stat = DEAD
+		

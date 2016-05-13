@@ -31,9 +31,9 @@ Slime definitions, Life and New live here.
 	universal_speak = 1
 	speak_chance = 1
 	speak = list("Hello?",
-				"Where's this going?",
-				"What's that?",
-				"What's in the box?",
+				"Where is this going?",
+				"What is that?",
+				"What is in the box?",
 				"Cargo.",
 				"Transport?",
 				"Special?",
@@ -82,3 +82,4 @@ Slime definitions, Life and New live here.
 	speak += "[station_name()]?"
 	GenerateChild()
 	return 1
+	
