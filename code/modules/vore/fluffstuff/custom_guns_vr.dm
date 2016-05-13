@@ -64,7 +64,7 @@
 	icon_state = "haloshotgun"
 
 	icon_override = 'icons/obj/gun_vr.dmi'
-	item_state = "haloshutgun"
+	item_state = "haloshotgun"
 	item_icons = null
 
 	ammo_type = /obj/item/ammo_casing/shotgun
@@ -150,7 +150,7 @@
 	name = "\"The Jury\""
 	desc = "A customized variant of the \"The Judge\" revolver sold by Cybersun Industries, built specifically for Joseph Skinner."
 
-	icon = 'icons/obj/gun_vr.dmi'
+	icon = 'icons/vore/custom_guns_vr.dmi'
 	icon_state = "jury"
 
 	item_state = "gun"
@@ -166,9 +166,7 @@
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "stg60"
 
-	icon = 'icons/vore/custom_guns_vr.dmi'
 	item_state = "gun"
-	item_icons = null
 
 	w_class = 4
 	max_shells = 30
@@ -198,6 +196,7 @@
 
 	icon_override = 'icons/obj/gun_vr.dmi'
 	item_state = "SVD"
+	item_icons = null
 
 	recoil = 2 //extra kickback
 	accuracy = -1
