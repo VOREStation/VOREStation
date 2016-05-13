@@ -1031,6 +1031,7 @@
 #include "code\modules\client\preference_setup\occupation\occupation.dm"
 #include "code\modules\client\preference_setup\skills\skills.dm"
 #include "code\modules\client\preference_setup\vore\01_ears.dm"
+#include "code\modules\client\preference_setup\vore\02_size.dm"
 #include "code\modules\clothing\chameleon.dm"
 #include "code\modules\clothing\clothing.dm"
 #include "code\modules\clothing\ears\skrell.dm"

@@ -210,8 +210,6 @@
 
 	P.digestable = src.digestable
 	P.belly_prefs = src.vore_organs
-	P.weight_gain = src.weight_gain
-	P.weight_loss = src.weight_loss
 
 	return 1
 
@@ -227,8 +225,6 @@
 
 	src.digestable = P.digestable
 	src.vore_organs = P.belly_prefs
-	src.weight_gain = P.weight_gain
-	src.weight_loss = P.weight_loss
 
 	if(!src.vore_organs) //Emergency double-backup to stop runtimes from doing .len on this.
 		vore_organs = list()
