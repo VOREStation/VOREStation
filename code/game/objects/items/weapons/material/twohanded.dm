@@ -68,7 +68,7 @@
 /obj/item/weapon/material/twohanded/update_icon()
 	icon_state = "[base_icon][wielded]"
 	item_state = icon_state
-	
+
 /obj/item/weapon/material/twohanded/dropped()
 	..()
 	if(wielded)
@@ -119,7 +119,7 @@
 	unwielded_force_divisor = 0.65 // 14 when unwielded based on above
 	thrown_force_divisor = 1.5 // 20 when thrown with weight 15 (glass)
 	throw_speed = 3
-	edge = 1
+	edge = 0
 	sharp = 1
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored")
