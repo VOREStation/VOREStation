@@ -277,7 +277,7 @@
 
 	modifystate = "kinh21stun"
 
-	projectile_type = /obj/item/projectile/beam/stun
+	projectile_type = /obj/item/projectile/beam/stun/kin21
 
 	max_shots = 8
 	charge_cost = 125
