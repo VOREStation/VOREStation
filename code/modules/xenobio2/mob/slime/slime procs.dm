@@ -24,11 +24,14 @@ Slime specific procs go here.
 	traitdat.traits[TRAIT_XENO_STR_RANGE] =round(rand(0,2))
 	traitdat.traits[TRAIT_XENO_CANLEARN] = prob(68)
 	traitdat.traits[TRAIT_XENO_SPEED] = round(rand(-10,10))
+	
+	//RandomChemicals()
+	
 
 /mob/living/simple_animal/xeno/slime/proc/GrowUp()
 	GenerateAdult()
 	
-	maxHealth = traitdat.traits[TRAIT_XENO_HEALTH]
+	maxHealth = traitdat.get_trait(TRAIT_XENO_HEALTH)
 	health = maxHealth
 	is_child = 0
 		

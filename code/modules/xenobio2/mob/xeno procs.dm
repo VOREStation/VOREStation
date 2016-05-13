@@ -9,7 +9,7 @@ Procs for targeting
 */
 /mob/living/simple_animal/xeno/proc/ProcessTraits()
 	if(maleable >= MAX_MALEABLE)
-		maxHealth = traitdat.traits[TRAIT_XENO_HEALTH]
+		maxHealth = traitdat.get_trait(TRAIT_XENO_HEALTH)
 		health = maxHealth
 		if(traitdat.chemlist.len)	//Let's make sure that this has a length.
 			chemreact = traitdat.chemlist
@@ -41,8 +41,8 @@ Procs for targeting
 	else
 		speak_chance = 0
 	
-	melee_damage_lower = traitdat.traits[TRAIT_XENO_STRENGTH] - traitdat.traits[TRAIT_XENO_STR_RANGE]
-	melee_damage_upper = traitdat.traits[TRAIT_XENO_STRENGTH] + traitdat.traits[TRAIT_XENO_STR_RANGE]
+	melee_damage_lower = traitdat.get_trait(TRAIT_XENO_STRENGTH) - traitdat.get_trait(TRAIT_XENO_STR_RANGE)
+	melee_damage_upper = traitdat.traits[TRAIT_XENO_STRENGTH] + traitdat.get_trait(TRAIT_XENO_STR_RANGE)
 	
 	
 	
@@ -127,7 +127,7 @@ Procs for targeting
 
 /mob/living/simple_animal/xeno/proc/ProcessSpeechBuffer()
 	if(speech_buffer.len)
-		if(prob(traitdat.traits[TRAIT_XENO_LEARNCHANCE]) && traitdat.traits[TRAIT_XENO_CANLEARN])
+		if(prob(traitdat.get_trait(TRAIT_XENO_LEARNCHANCE)) && traitdat.get_trait(TRAIT_XENO_CANLEARN))
 			var/chosen = pick(speech_buffer)
 			speak.Add(chosen)
 			log_debug("Added [chosen] to speak list.")
@@ -153,4 +153,16 @@ Procs for targeting
 	else
 		..()
 		
-
+/mob/living/simple_animal/xeno/proc/RandomChemicals()
+	traitdat.chemlist.Cut()	//Clear the amount first.
+	
+	var/num_chems = round(rand(1,4))
+	var/list/chemchoices = xenoChemList
+	
+	for(var/i = 1 to num_chems)
+		var/chemtype = pick(chemchoices)
+		chemchoices -= chemtype
+		var/chemamount = rand(1,5)
+		traitdat.chemlist[chemtype] = chemamount
+		
+	traitdat.chemlist += default_chems

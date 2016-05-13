@@ -73,11 +73,25 @@ Also includes Life and New
 	return 1	//Everything worked okay.
 	
 /mob/living/simple_animal/xeno/New()
-	traitdat = new()
+	var/traits
+	if(istype(loc, /mob/living/simple_animal/xeno))
+		var/mob/living/simple_animal/xeno/X = loc
+		traits = X.traitdat
+/*		
+	if(istype(loc, /obj/machinery/xenobio/replicator))
+		var/obj/machinery/xenobio/replicator/R = loc
+		traits = R.connected.traitdat
+*/
+	if(!traits)
+		traitdat = new()
+	else
+		traitdat = traits
+		
 	ProcessTraits()
+	
 	..()
 	if(colored)
-		color = traitdat.traits[TRAIT_XENO_COLOR]
+		color = traitdat.get_trait(TRAIT_XENO_COLOR)
 	create_reagents(internal_vol)
 	temp_chem_holder = new()
 	temp_chem_holder.create_reagents(20)
