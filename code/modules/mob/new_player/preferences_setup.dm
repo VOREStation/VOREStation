@@ -272,7 +272,12 @@
 			"icon" = (current_species.icobase_tail ? current_species.icobase : 'icons/effects/species.dmi'),
 			"icon_state" = "[current_species.tail]_s")
 		if(current_species && (current_species.appearance_flags & HAS_SKIN_COLOR))
-			temp.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
+			//VOREStation Code Start
+			if(current_species.color_mult)
+				temp.Blend(rgb(r_skin, g_skin, b_skin), ICON_MULTIPLY)
+			else
+				temp.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
+			//VOREStation Code End
 		if(current_species && (current_species.appearance_flags & HAS_SKIN_TONE))
 			if (s_tone >= 0)
 				temp.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
