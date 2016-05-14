@@ -89,7 +89,6 @@
 	icobase = 'icons/mob/human_races/r_nevrean.dmi'
 	deform = 'icons/mob/human_races/r_def_nevrean.dmi'
 	tail = "tail"
-	tail_animation = 'icons/mob/species/nevrean/tail.dmi'
 	icobase_tail = 1
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	//darksight = 8
