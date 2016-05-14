@@ -16,12 +16,22 @@
 	sort_order = 7
 	category_item_type = /datum/category_item/player_setup_item/vore
 
+// Define a place to save appearance in character setup
+/datum/preferences
+	var/custom_species	// Custom species name
+	var/ear_style		// Type of selected ear style
+	var/tail_style		// Type of selected tail style
+	var/r_tail = 30		// Tail/Taur color
+	var/g_tail = 30		// Tail/Taur color
+	var/b_tail = 30		// Tail/Taur color
+
 // Definition of the stuff for Ears
 /datum/category_item/player_setup_item/vore/ears
-	name = "Ears"
+	name = "Appearance"
 	sort_order = 1
 
 /datum/category_item/player_setup_item/vore/ears/load_character(var/savefile/S)
+	S["custom_species"]	>> pref.custom_species
 	S["ear_style"]		>> pref.ear_style
 	S["tail_style"]		>> pref.tail_style
 	S["r_tail"]			>> pref.r_tail
@@ -29,6 +39,7 @@
 	S["b_tail"]			>> pref.b_tail
 
 /datum/category_item/player_setup_item/vore/ears/save_character(var/savefile/S)
+	S["custom_species"]	<< pref.custom_species
 	S["ear_style"]		<< pref.ear_style
 	S["tail_style"]		<< pref.tail_style
 	S["r_tail"]			<< pref.r_tail
@@ -45,11 +56,12 @@
 		pref.tail_style	= sanitize_inlist(pref.tail_style, tail_styles_list, initial(pref.tail_style))
 
 /datum/category_item/player_setup_item/vore/ears/copy_to_mob(var/mob/living/carbon/human/character)
-	character.ear_style		= ear_styles_list[pref.ear_style]
-	character.tail_style	= tail_styles_list[pref.tail_style]
-	character.r_tail		= pref.r_tail
-	character.b_tail		= pref.b_tail
-	character.g_tail		= pref.g_tail
+	character.custom_species	= pref.custom_species
+	character.ear_style			= ear_styles_list[pref.ear_style]
+	character.tail_style		= tail_styles_list[pref.tail_style]
+	character.r_tail			= pref.r_tail
+	character.b_tail			= pref.b_tail
+	character.g_tail			= pref.g_tail
 
 /datum/category_item/player_setup_item/vore/ears/content(var/mob/user)
 	. += "<h2>VORE Station Settings</h2>"
@@ -69,16 +81,28 @@
 	if(tail_styles_list[pref.tail_style])
 		var/datum/sprite_accessory/tail/T = tail_styles_list[pref.tail_style]
 		if (T.do_colouration)
-			. += "<br><a href='?src=\ref[src];tail_color=1'>Change Color</a> \
+			. += "<a href='?src=\ref[src];tail_color=1'>Change Color</a> \
 				<font face='fixedsys' size='3' color='\
 				#[num2hex(pref.r_tail, 2)][num2hex(pref.g_tail, 2)][num2hex(pref.b_tail, 2)]'>\
 				<table style='display:inline;' bgcolor='\
 				#[num2hex(pref.r_tail, 2)][num2hex(pref.g_tail, 2)][num2hex(pref.b_tail)]'>\
-				<tr><td>__</td></tr></table> </font> "
+				<tr><td>__</td></tr></table> </font><br>"
+
+	. += "<b>Custom Species</b> "
+	. += "<a href='?src=\ref[src];custom_species=1'>[pref.custom_species ? pref.custom_species : "None"]</a><br>"
 
 /datum/category_item/player_setup_item/vore/ears/OnTopic(var/href,var/list/href_list, var/mob/user)
+	if(!CanUseTopic(user))
+		return TOPIC_NOACTION
 
-	if(href_list["ear_style"])
+	else if(href_list["custom_species"])
+		var/raw_choice = sanitize(input(user, "Input your character's species:",
+			"Character Preference", pref.custom_species) as null|text, MAX_NAME_LEN)
+		if (raw_choice && CanUseTopic(user))
+			pref.custom_species = raw_choice
+		return TOPIC_REFRESH
+
+	else if(href_list["ear_style"])
 		// Construct the list of names allowed for this user.
 		var/list/pretty_ear_styles = list("Normal")
 		for(var/path in ear_styles_list)
