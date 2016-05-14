@@ -399,7 +399,7 @@
 	icon_state = "screesuit"
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	item_state = "screesuit_s"
+	item_state = "screesuit"
 
 //HOS Hardsuit
 /obj/item/clothing/suit/space/void/security/fluff/hos // ToDo: Rig version.
