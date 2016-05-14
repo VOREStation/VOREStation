@@ -82,16 +82,16 @@
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "joanasuna"
 
-//JoanRisu:Joan Risu
+//Unknown. Please check records from the forums.
 /obj/item/clothing/under/suit_jacket/female/fluff/miqote
 	name = "Miqo'te Seperates"
 	desc = "This two-part set of clothing is very popular on the planet Hydaelyn. While made of very robust materials, its usefulness as armor is negated by the exposed midriff."
 
 	icon = 'icons/vore/custom_clothes_vr.dmi'
-	icon_state = "joanmiqote"
+	icon_state = "miqote"
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	item_state = "joanmiqote"
+	item_state = "miqote"
 
 //JoanRisu:Joan Risu
 /obj/item/clothing/under/fluff/nightgown
@@ -294,3 +294,157 @@
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "tasaldsuit"
+
+//Event Costumes Below
+/obj/item/clothing/head/helmet/fluff/freddy
+	name = "Animatronic Suit Helmet"
+	desc = "Votre toast, je peux vous le rendre."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "freddyhead"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "freddyhead_mob"
+	permeability_coefficient = 0.01
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	flags_inv = HIDEMASK|HIDEEARS
+	cold_protection = HEAD
+	siemens_coefficient = 0.9
+
+/obj/item/clothing/suit/fluff/freddy
+	name = "Animatronic Suit"
+	desc = "Votre toast, je peux vous le rendre."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "freddysuit"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "freddysuit_mob"
+	gas_transfer_coefficient = 0.01
+	permeability_coefficient = 0.02
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank)
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
+	siemens_coefficient = 0.9
+
+//These inherit freddy stats
+/obj/item/clothing/head/helmet/fluff/freddy/bonnie
+	desc = "Children's entertainer."
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "bonniehead"
+	item_state = "bonniehead_mob"
+
+/obj/item/clothing/suit/fluff/freddy/bonnie
+	desc = "Children's entertainer."
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "bonniesuit"
+	item_state = "bonniesuit_mob"
+
+/obj/item/clothing/head/helmet/fluff/freddy/foxy
+	desc = "I guess he doesn't like being watched."
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "foxyhead"
+	item_state = "foxyhead_mob"
+
+/obj/item/clothing/suit/fluff/freddy/foxy
+	desc = "I guess he doesn't like being watched."
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "foxysuit"
+	item_state = "foxysuit_mob"
+
+/obj/item/clothing/head/helmet/fluff/freddy/chica
+	desc = "<b><font color=red>LET'S EAT!</font></b>"
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "chicahead"
+	item_state = "chicahead_mob"
+
+/obj/item/clothing/suit/fluff/freddy/chica
+	desc = "<b><font color=red>LET'S EAT!</font></b>"
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "chicasuit"
+	item_state = "chicasuit_mob"
+
+//End event costumes
+
+//scree:Scree
+/obj/item/clothing/head/helmet/space/void/engineering/fluff/screehelm
+	name = "Modified Tajara Helmet"
+	desc = "A special helmet designed for work in a hazardous, low-pressure environment. Has radiation shielding. This one doesn't look like it was made for humans. Its been modified to include headlights."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "rig0-scree"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "rig0-scree_mob"
+
+//scree:Scree
+/obj/item/clothing/suit/space/void/engineering/fluff/screespess
+	name = "Modified Winged Suit"
+	desc = "A special suit that protects against hazardous, low pressure environments. Has radiation shielding. This one doesn't look like it was made for humans. This one was made with a special personal shielding for someone's wings."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "wingedsuit"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "wingedsuit"
+
+//scree:Scree
+/obj/item/clothing/under/fluff/screesuit
+	name = "Scree's feathers"
+	desc = "A mop of fluffy blue feathers, the honkmother only knows what kind of bird they originally came from."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "screesuit"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "screesuit"
+
+//HOS Hardsuit
+/obj/item/clothing/suit/space/void/security/fluff/hos // ToDo: Rig version.
+	name = "\improper prototype voidsuit"
+	desc = "A customized security voidsuit made to match the Head of Security's obession with black. Has additional composite armor."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "rig-hos"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "rig-hos_mob"
+
+//HOS Hardsuit Helmet
+/obj/item/clothing/head/helmet/space/void/security/fluff/hos // ToDo: Rig version.
+	name = "\improper prototype voidsuit helmet"
+	desc = "A customized security voidsuit helmet customized to include the Head of Security's signature hat. Has additional composite armor."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "rig0-hos"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "rig0-hos_mob"
+
+//adk09:Lethe
+/obj/item/clothing/head/helmet/hos/fluff/lethe
+	name = "Lethe's Hat"
+	desc = " This is Lethe's Hat! A little tag attached inside reads: 'If found please return to Lethe! Or else!' It looks rather worn in. It also lacks armor."
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+
+	icon = 'icons/obj/clothing/hats.dmi'
+	icon_state = "hoscap"
+
+	icon_override = 'icons/mob/head.dmi'
+	item_state = "hoscap"
+
+
+// molenar:Giliana Gamish
+/obj/item/clothing/suit/storage/toggle/labcoat/fluff/molenar
+	name = "Gili Custom Labcoat"
+	desc = " Custom made, lengthened labcoat with water resistant, durable material. And a custom set of holes inserted for Deathclaw anatomy. A tag inside has 'G.G.' monogram on it"
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "molenar"
+	icon_open = "molenar_open"
+	icon_closed = "molenar"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "molenar"

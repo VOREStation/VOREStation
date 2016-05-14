@@ -81,12 +81,12 @@
 	icon_state = "joanaria"
 	origin_tech = "materials=7"
 
-//JoanRisu:Joan Risu
-/obj/item/weapon/twohanded/fireaxe/fluff/joanmjollnir
+//john.wayne9392:Harmony Prechtl
+/obj/item/weapon/twohanded/fireaxe/fluff/mjollnir
 	name = "Mjollnir"
 	desc = "Large hammer that looks like it can do a great deal of damage if properly used."
 	icon = 'icons/vore/custom_items_vr.dmi'
-	icon_state = "joanmjollnir"
+	icon_state = "harmonymjollnir"
 	origin_tech = "materials=7"
 	attack_verb = list("attacked", "hammered", "smashed", "slammed", "crushed")
 
