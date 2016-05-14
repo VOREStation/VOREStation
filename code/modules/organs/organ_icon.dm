@@ -147,7 +147,10 @@ var/global/list/limb_icon_cache = list()
 		else
 			applying.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
 	else if(s_col && s_col.len >= 3)
-		applying.Blend(rgb(s_col[1], s_col[2], s_col[3]), ICON_ADD)
+		if(species && species.color_mult)
+			applying.Blend(rgb(s_col[1], s_col[2], s_col[3]), ICON_MULTIPLY)
+		else
+			applying.Blend(rgb(s_col[1], s_col[2], s_col[3]), ICON_ADD)
 
 	// Translucency.
 	if(nonsolid) applying += rgb(,,,180) // SO INTUITIVE TY BYOND
