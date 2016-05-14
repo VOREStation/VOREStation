@@ -16,10 +16,5 @@
 	var/g_tail = 30
 	var/b_tail = 30
 
-/datum/preferences
-	// Appearance
-	var/ear_style		// Type of selected ear style
-	var/tail_style		// Type of selected tail style
-	var/r_tail = 30		// Tail/Taur color
-	var/g_tail = 30		// Tail/Taur color
-	var/b_tail = 30		// Tail/Taur color
+	// Custom Species Name
+	var/custom_species
