@@ -50,6 +50,8 @@
 
 			msg += ", <b><font color='#555555'>[use_gender]!</font></b>"
 
+		else if(src.custom_species)
+			msg += ", a <b>[src.custom_species]</b>"
 		else if(species.name != "Human")
 			msg += ", <b><font color='[species.get_flesh_colour(src)]'>\a [species.get_examine_name()]!</font></b>"
 
