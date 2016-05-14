@@ -10,17 +10,17 @@
 		icon_state = "serg_plain"
 		species_allowed = list("Sergal")
 
-	sergal_plain
+	sergal_medicore
 		name = "Sergal Medicore"
 		icon_state = "serg_medicore"
 		species_allowed = list("Sergal")
 
-	sergal_plain
+	sergal_tapered
 		name = "Sergal Tapered"
 		icon_state = "serg_tapered"
 		species_allowed = list("Sergal")
 
-	sergal_plain
+	sergal_fairytail
 		name = "Sergal Fairytail"
 		icon_state = "serg_fairytail"
 		species_allowed = list("Sergal")
