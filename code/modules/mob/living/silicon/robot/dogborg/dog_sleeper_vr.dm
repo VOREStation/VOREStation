@@ -30,10 +30,10 @@
 	if(!ishuman(target))
 		return
 	if(target.buckled)
-		user << "\red The user is buckled and can not be put into your [src.name]."
+		user << "<span class='warning'>The user is buckled and can not be put into your [src.name].</span>"
 		return
 	if(patient)
-		user << "\red Your [src.name] is already occupied."
+		user << "<span class='warning'>Your [src.name] is already occupied.</span>"
 		return
 	user.visible_message("<span class='warning'>[hound.name] is ingesting [target.name] into their [src.name].</span>", "<span class='notice'>You start ingesting [target] into your [src]...</span>")
 	if(!patient && ishuman(target) && !target.buckled && do_after (user, 50))
@@ -144,12 +144,19 @@
 			else
 				dat += "<span class='bad'>DEAD</span>"
 
-		dat += text("[]\t-Pulse, bpm: []</FONT><BR>", (patient.pulse == PULSE_NONE || patient.pulse == PULSE_THREADY ? "<font color='red'>" : "<font color='white'>"), patient.get_pulse(GETPULSE_TOOL))
-		dat += text("[]\t-Overall Health %: []</FONT><BR>", (patient.health > 0 ? "<font color='white'>" : "<font color='red'>"), round(patient.health))
-		dat += text("[]\t-Brute Damage %: []</FONT><BR>", (patient.getBruteLoss() < 60 ? "<font color='gray'>" : "<font color='red'>"), patient.getBruteLoss())
-		dat += text("[]\t-Respiratory Damage %: []</FONT><BR>", (patient.getOxyLoss() < 60 ? "<font color='gray'>" : "<font color='red'>"), patient.getOxyLoss())
-		dat += text("[]\t-Toxin Content %: []</FONT><BR>", (patient.getToxLoss() < 60 ? "<font color='gray'>" : "<font color='red'>"), patient.getToxLoss())
-		dat += text("[]\t-Burn Severity %: []</FONT><BR>", (patient.getFireLoss() < 60 ? "<font color='gray'>" : "<font color='red'>"), patient.getFireLoss())
+		var/pulsecolor = (patient.pulse == PULSE_NONE || patient.pulse == PULSE_THREADY ? "color:red;" : "color:white;")
+		var/healthcolor = (patient.health > 0 ? "color:white;" : "color:red;")
+		var/brutecolor = (patient.getBruteLoss() < 60 ? "color:gray;" : "color:red;")
+		var/o2color = (patient.getOxyLoss() < 60 ? "color:gray;" : "color:red;")
+		var/toxcolor = (patient.getToxLoss() < 60 ? "color:gray;" : "color:red;")
+		var/burncolor = (patient.getFireLoss() < 60 ? "color:gray;" : "color:red;")
+
+		dat += "<span style='[pulsecolor]'>\t-Pulse, bpm: [patient.get_pulse(GETPULSE_TOOL)]</span><BR>"
+		dat += "<span style='[healthcolor]'>\t-Overall Health %: [round(patient.health)]</span><BR>"
+		dat += "<span style='[brutecolor]'>\t-Brute Damage %: [patient.getBruteLoss()]</span><BR>"
+		dat += "<span style='[o2color]'>\t-Respiratory Damage %: [patient.getOxyLoss()]</span><BR>"
+		dat += "<span style='[toxcolor]'>\t-Toxin Content %: [patient.getToxLoss()]</span><BR>"
+		dat += "<span style='[burncolor]'>\t-Burn Severity %: [patient.getFireLoss()]</span><BR>"
 
 		if(round(patient.paralysis / 4) >= 1)
 			dat += text("<HR>Patient paralyzed for: []<BR>", round(patient.paralysis / 4) >= 1 ? "[round(patient.paralysis / 4)] seconds" : "None")
