@@ -79,15 +79,15 @@
 
 	user.visible_message("<span class='notice'>[user] sniffs the air.</span>", "<span class='notice'>You sniff the air...</span>")
 
-	user << "\blue <B>Smells like:</B>"
+	user << "<span class='notice'><B>Smells like:</B></span>"
 	if(abs(pressure - ONE_ATMOSPHERE) < 10)
-		user << "\blue Pressure: [round(pressure,0.1)] kPa"
+		user << "<span class='notice'>Pressure: [round(pressure,0.1)] kPa</span>"
 	else
-		user << "\red Pressure: [round(pressure,0.1)] kPa"
+		user << "<span class='warning'>Pressure: [round(pressure,0.1)] kPa</span>"
 	if(total_moles)
 		for(var/g in environment.gas)
-			user << "\blue [gas_data.name[g]]: [round((environment.gas[g] / total_moles) * 100)]%"
-		user << "\blue Temperature: [round(environment.temperature-T0C,0.1)]&deg;C ([round(environment.temperature,0.1)]K)"
+			user << "<span class='notice'>[gas_data.name[g]]: [round((environment.gas[g] / total_moles) * 100)]%</span>"
+		user << "<span class='notice'>Temperature: [round(environment.temperature-T0C,0.1)]&deg;C ([round(environment.temperature,0.1)]K)</span>"
 
 /obj/item/device/dogborg/boop_module/afterattack(obj/O, mob/user as mob, proximity)
 	if(!proximity)
@@ -103,14 +103,14 @@
 		var/dat = ""
 		if(O.reagents.reagent_list.len > 0)
 			for (var/datum/reagent/R in O.reagents.reagent_list)
-				dat += "\n \t \blue [R]"
+				dat += "\n \t <span class='notice'>[R]</span>"
 
 		if(dat)
-			user << "\blue Your BOOP module indicates: [dat]"
+			user << "<span class='notice'>Your BOOP module indicates: [dat]</span>"
 		else
-			user << "\blue No active chemical agents smelled in [O]."
+			user << "<span class='notice'>No active chemical agents smelled in [O].</span>"
 	else
-		user << "\blue No significant chemical agents smelled in [O]."
+		user << "<span class='notice'>No significant chemical agents smelled in [O].</span>"
 
 	return
 

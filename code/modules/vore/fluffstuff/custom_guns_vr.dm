@@ -96,7 +96,7 @@
 	consume_next_projectile()
 		if(chambered)
 			return chambered.BB
-		usr << "\red It's a single action revolver, pull the hammer back!"
+		usr << "<span class='warning'>It's a single action revolver, pull the hammer back!</span>"
 		return null
 
 	attack_self(mob/living/user as mob)
@@ -237,13 +237,13 @@
 	switch(mode)
 		if(0)
 			mode = 1
-			user.visible_message("\red [src.name] folds up into a cool looking rifle.")
+			user.visible_message("<span class='warning'>[src.name] folds up into a cool looking rifle.</span>")
 			force = 5
 			throwforce = 2
 			modifystate = crestrose_fold
 		if(1)
 			mode = 0 // I feel like this mode should prevent it from shooting. Otherwise, what's the point? -Spades ||Probably need assistance in that. Original design of Crescent Rose is to shoot no matter what form it was in. Perhaps lowering accuracy will provide a con buffer here. -- Joan
-			user.visible_message("\red [src.name] changes into a very intimidating looking weapon.")
+			user.visible_message("<span class='warning'>[src.name] changes into a very intimidating looking weapon.</span>")
 			force = 40
 			throwforce = 10
 			modifystate = crestrose

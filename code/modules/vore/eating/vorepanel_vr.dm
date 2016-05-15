@@ -77,36 +77,34 @@
 		else
 			dat += "<a href='?src=\ref[src];bellypick=\ref[B]'>[B.name]"
 
+		var/spanstyle
 		switch(B.digest_mode)
 			if(DM_HOLD)
-				dat += "<span>"
+				spanstyle = ""
 			if(DM_DIGEST)
-				dat += "<span style='color:red;'>"
+				spanstyle = "color:red;"
 			if(DM_HEAL)
-				dat += "<span style='color:green;'>"
+				spanstyle = "color:green;"
 			if(DM_ABSORB)
-				dat += "<span style='color:purple;'>"
+				spanstyle = "color:purple;"
 			if(DM_TRANSFORM_MALE)
-				dat += "<span style='color:purple;'>"
+				spanstyle = "color:purple;"
 			if(DM_TRANSFORM_FEMALE)
-				dat += "<span style='color:purple;'>"
+				spanstyle = "color:purple;"
 			if(DM_TRANSFORM_KEEP_GENDER)
-				dat += "<span style='color:purple;'>"
+				spanstyle = "color:purple;"
 			if(DM_TRANSFORM_CHANGE_SPECIES)
-				dat += "<span style='color:purple;'>"
+				spanstyle = "color:purple;"
 			if(DM_TRANSFORM_CHANGE_SPECIES_EGG)
-				dat += "<span style='color:purple;'>"
+				spanstyle = "color:purple;"
 			if(DM_TRANSFORM_KEEP_GENDER_EGG)
-				dat += "<span style='color:purple;'>"
+				spanstyle = "color:purple;"
 			if(DM_TRANSFORM_MALE_EGG)
-				dat += "<span style='color:purple;'>"
+				spanstyle = "color:purple;"
 			if(DM_TRANSFORM_FEMALE_EGG)
-				dat += "<span style='color:purple;'>"
+				spanstyle = "color:purple;"
 
-			else
-				dat += "<span>"
-
-		dat += " ([B.internal_contents.len])</span></a>"
+		dat += "<span style='[spanstyle]'> ([B.internal_contents.len])</span></a>"
 
 	if(user.vore_organs.len < 10)
 		dat += "<a href='?src=\ref[src];newbelly=1'>New+</a>"
@@ -207,7 +205,7 @@
 
 					user << "<font color='green'>You begin to push [M] to freedom!</font>"
 					M << "[usr] begins to push you to freedom!"
-					M.loc << "<span class='warning'>Someone is trying to escape from inside you!<span>"
+					M.loc << "<span class='warning'>Someone is trying to escape from inside you!</span>"
 					sleep(50)
 					if(prob(33))
 						OB.release_specific_contents(M)
