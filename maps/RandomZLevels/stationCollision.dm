@@ -17,7 +17,7 @@
 
 /*
  * Areas
-*/
+ */
 //Gateroom gets its own APC specifically for the gate
 /area/awaymission/gateroom
 
@@ -112,22 +112,29 @@ var/sc_safecode5 = "[rand(0,9)]"
 //Pieces of paper actually containing the hints
 /obj/item/weapon/paper/sc_safehint_paper_prison
 	name = "smudged paper"
+	icon_state = "scrap_bloodied"
 
 /obj/item/weapon/paper/sc_safehint_paper_prison/New()
 	info = "<i>The ink is smudged, you can only make out a couple numbers:</i> '[sc_safecode1]**[sc_safecode4]*'"
 
 /obj/item/weapon/paper/sc_safehint_paper_hydro
 	name = "shredded paper"
+	icon_state = "scrap_bloodied"
+
 /obj/item/weapon/paper/sc_safehint_paper_hydro/New()
 	info = "<i>Although the paper is shredded, you can clearly see the number:</i> '[sc_safecode2]'"
 
 /obj/item/weapon/paper/sc_safehint_paper_caf
 	name = "blood-soaked paper"
-	//This does not have to be in New() because it is a constant. There are no variables in it i.e. [sc_safcode]
+	icon_state = "scrap_bloodied"
+
+/obj/item/weapon/paper/sc_safehint_paper_caf/New()
 	info = "<font color=red><i>This paper is soaked in blood, it is impossible to read any text.</i></font>"
 
 /obj/item/weapon/paper/sc_safehint_paper_bible
 	name = "hidden paper"
+	icon_state = "scrap_bloodied"
+
 /obj/item/weapon/paper/sc_safehint_paper_bible/New()
 	info = {"<i>It would appear that the pen hidden with the paper had leaked ink over the paper.
 			However you can make out the last three digits:</i>'[sc_safecode3][sc_safecode4][sc_safecode5]'
@@ -167,7 +174,7 @@ var/sc_safecode5 = "[rand(0,9)]"
  * Modified Nar-Sie
  */
 /obj/machinery/singularity/narsie/sc_Narsie
-	desc = "Your body becomes weak and your feel your mind slipping away as you try to comprehend what you know can't be possible."
+	desc = "Your body becomes weak and you feel your mind slipping away as you try to comprehend what you know can't be possible."
 	move_self = 0 //Contianed narsie does not move!
 	grav_pull = 0 //Contained narsie does not pull stuff in!
 
