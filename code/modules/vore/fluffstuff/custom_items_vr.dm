@@ -60,7 +60,7 @@
 			return
 		playsound(user.loc, 'sound/items/Screwdriver.ogg', 100, 1)
 		var/N = new to_type(O.loc)
-		user.visible_message("\red [user] opens \the [src] and modifies \the [O] into \the [N].","\red You open \the [src] and modify \the [O] into \the [N].")
+		user.visible_message("<span class='warning'>[user] opens \the [src] and modifies \the [O] into \the [N].</span>","<span class='warning'>You open \the [src] and modify \the [O] into \the [N].</span>")
 		qdel(O)
 		parts &= ~flag
 		if(!parts)
@@ -81,12 +81,12 @@
 	icon_state = "joanaria"
 	origin_tech = "materials=7"
 
-//JoanRisu:Joan Risu
-/obj/item/weapon/twohanded/fireaxe/fluff/joanmjollnir
+//john.wayne9392:Harmony Prechtl
+/obj/item/weapon/twohanded/fireaxe/fluff/mjollnir
 	name = "Mjollnir"
 	desc = "Large hammer that looks like it can do a great deal of damage if properly used."
 	icon = 'icons/vore/custom_items_vr.dmi'
-	icon_state = "joanmjollnir"
+	icon_state = "harmonymjollnir"
 	origin_tech = "materials=7"
 	attack_verb = list("attacked", "hammered", "smashed", "slammed", "crushed")
 
@@ -99,11 +99,11 @@
 
 	attack_self(mob/user as mob)
 		if(isliving(user))
-			user.visible_message("\red [user] flashes their golden security badge.\nIt reads:NT Security.","\red You display the faded badge.\nIt reads: NT Security.")
+			user.visible_message("<span class='warning'>[user] flashes their golden security badge.\nIt reads:NT Security.</span>","<span class='warning'>You display the faded badge.\nIt reads: NT Security.</span>")
 
 	attack(mob/living/carbon/human/M, mob/living/user)
 		if(isliving(user))
-			user.visible_message("\red [user] invades [M]'s personal space, thrusting [src] into their face insistently.","\red You invade [M]'s personal space, thrusting [src] into their face insistently.")
+			user.visible_message("<span class='warning'>[user] invades [M]'s personal space, thrusting [src] into their face insistently.</span>","<span class='warning'>You invade [M]'s personal space, thrusting [src] into their face insistently.</span>")
 
 //JoanRisu:Joan Risu
 /obj/item/device/pda/heads/hos/fluff/joanpda

@@ -25,7 +25,7 @@
 
 	var/datum/belly/B = vore_organs[vore_selected]
 	if(faction != usr.faction)
-		usr << "\red This predator isn't friendly, and doesn't give a shit about your opinions of it digesting you."
+		usr << "<span class='warning'>This predator isn't friendly, and doesn't give a shit about your opinions of it digesting you.</span>"
 		return
 	if(B.digest_mode == "Hold")
 		var/confirm = alert(usr, "Enabling digestion on [name] will cause it to digest all stomach contents. Using this to break OOC prefs is against the rules. Digestion will disable itself after 20 minutes.", "Enabling [name]'s Digestion", "Enable", "Cancel")

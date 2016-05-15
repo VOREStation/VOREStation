@@ -263,7 +263,7 @@
 		H.equip_to_slot_or_del(new /obj/item/device/pda/lawyer(H), slot_belt)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/briefcase(H), slot_l_hand)
 
-		H.implant_loyalty(H)
+		H.implant_loyalty()
 
 
 		return 1

@@ -30,7 +30,7 @@ var/global/list/important_items = list(
 		/obj/item/weapon/disk/nuclear)
 
 		/* TODOPOLARIS - Depends on porting object
-		/obj/item/weapon/card/id/digested)
+		///obj/item/weapon/card/id/digested)
 		*/
 
 var/global/list/digestion_sounds = list(

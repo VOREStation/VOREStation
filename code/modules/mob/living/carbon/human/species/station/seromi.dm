@@ -41,7 +41,7 @@
 	bump_flag = MONKEY
 	swap_flags = MONKEY|SLIME|SIMPLE_ANIMAL
 	push_flags = MONKEY|SLIME|SIMPLE_ANIMAL|ALIEN
-
+/* VOREStation Removal
 	cold_level_1 = 180
 	cold_level_2 = 130
 	cold_level_3 = 70
@@ -49,11 +49,12 @@
 	heat_level_2 = 370
 	heat_level_3 = 600
 	heat_discomfort_level = 292
+	cold_discomfort_level = 180
+*/
 	heat_discomfort_strings = list(
 		"Your feathers prickle in the heat.",
 		"You feel uncomfortably warm.",
 		)
-	cold_discomfort_level = 180
 
 	has_limbs = list(
 		BP_CHEST =  list("path" = /obj/item/organ/external/chest),

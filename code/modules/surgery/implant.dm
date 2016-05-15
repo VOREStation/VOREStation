@@ -153,8 +153,12 @@
 	max_duration = 100
 
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		var/obj/item/organ/internal/brain/sponge = target.internal_organs_by_name["brain"]
-		return ..() && (!sponge || !sponge.damage)
+		var/obj/item/organ/external/affected = target.get_organ(target_zone)
+		if(affected.organ_tag == BP_HEAD)
+			var/obj/item/organ/internal/brain/sponge = target.internal_organs_by_name["brain"]
+			return ..() && (!sponge || !sponge.damage)
+		else
+			return ..()
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)

@@ -21,13 +21,13 @@
 		//helmet and armor = 100% protection
 		if( istype(inventory_head,/obj/item/clothing/head/helmet) && istype(inventory_back,/obj/item/clothing/suit/armor) )
 			if( O.force )
-				usr << "\red This animal is wearing too much armor. You can't cause /him any damage."
+				usr << "<span class='warning'>This animal is wearing too much armor. You can't cause them any damage.</span>"
 				for (var/mob/M in viewers(src, null))
-					M.show_message("\red \b [user] hits [src] with the [O], however [src] is too armored.")
+					M.show_message("<span class='warning'><B>[user] hits [src] with the [O], however [src] is too armored.</B></span>")
 			else
-				usr << "\red This animal is wearing too much armor. You can't reach its skin."
+				usr << "<span class='warning'>This animal is wearing too much armor. You can't reach its skin.</span>"
 				for (var/mob/M in viewers(src, null))
-					M.show_message("\red [user] gently taps [src] with the [O]. ")
+					M.show_message("<span class='warning'>[user] gently taps [src] with the [O].</span>")
 			if(prob(15))
 				visible_emote("looks at [user] with [pick("an amused","an annoyed","a confused","a resentful", "a happy", "an excited")] expression on \his face")
 			return
@@ -72,12 +72,12 @@
 			return
 		var/add_to = href_list["add_inv"]
 		if(!usr.get_active_hand())
-			usr << "\red You have nothing in your hand to put on its [add_to]."
+			usr << "<span class='warning'>You have nothing in your hand to put on its [add_to].</span>"
 			return
 		switch(add_to)
 			if("head")
 				if(inventory_head)
-					usr << "\red It's is already wearing something."
+					usr << "<span class='warning'>It's is already wearing something.</span>"
 					return
 				else
 					place_on_head(usr.get_active_hand())
@@ -91,11 +91,7 @@
 						/obj/item/clothing/glasses/sunglasses,
 						/obj/item/clothing/head/caphat,
 						/obj/item/clothing/head/that,
-//						/obj/item/clothing/head/accessory/kitty,
-//						/obj/item/clothing/head/collectable/kitty,
-//						/obj/item/clothing/head/accessory/bunny,
 						/obj/item/clothing/head/beret,
-//						/obj/item/clothing/head/det_hat,
 						/obj/item/clothing/head/nursehat,
 						/obj/item/clothing/head/pirate,
 						/obj/item/clothing/head/ushanka,
@@ -119,7 +115,7 @@
 					)
 
 					if( ! ( item_to_add.type in allowed_types ) )
-						usr << "\red It doesn't seem too keen on wearing that item."
+						usr << "<span class='warning'>It doesn't seem too keen on wearing that item.</span>"
 						return
 
 					usr.drop_item()
@@ -128,7 +124,7 @@
 
 			if("back")
 				if(inventory_back)
-					usr << "\red It's already wearing something."
+					usr << "<span class='warning'>It's already wearing something.</span>"
 					return
 				else
 					var/obj/item/item_to_add = usr.get_active_hand()
@@ -144,15 +140,13 @@
 					)
 
 					if( ! ( item_to_add.type in allowed_types ) )
-						usr << "\red This object won't fit."
+						usr << "<span class='warning'>This object won't fit.</span>"
 						return
 
 					usr.drop_item()
 					item_to_add.loc = src
 					src.inventory_back = item_to_add
 					regenerate_icons()
-
-		//show_inv(usr) //Commented out because changing Ian's  name and then calling up his inventory opens a new inventory...which is annoying.
 	else
 		..()
 
