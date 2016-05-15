@@ -14,6 +14,6 @@
 			var/trash = pick(/obj/item/trash/raisins, /obj/item/trash/candy, /obj/item/trash/cheesie, /obj/item/trash/chips,
 							/obj/item/trash/popcorn, /obj/item/trash/sosjerky, /obj/item/trash/syndi_cakes, /obj/item/trash/plate,
 							/obj/item/trash/pistachios, /obj/item/trash/semki, /obj/item/trash/tray, /obj/item/trash/liquidfood,
-							/obj/item/trash/tastybread, /obj/item/trash/snack_bowl, /mob/living/simple_animal/crab/small)
+							/obj/item/trash/tastybread, /obj/item/trash/snack_bowl, /mob/living/simple_animal/crab)
 			new trash(get_turf(src))
 		del(src)
