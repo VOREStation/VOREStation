@@ -68,7 +68,7 @@
 	var/datum/job/lastJob
 	if (!job_master)		return
 	for(var/datum/job/job in job_master.occupations)
-
+		if(job.latejoin_only) continue //VOREStation Code
 		index += 1
 		if((index >= limit) || (job.title in splitJobs))
 			if((index < limit) && (lastJob != null))
