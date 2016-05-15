@@ -13,6 +13,7 @@
 	minimal_player_age = 14
 	economic_modifier = 20
 	whitelist_only = 1
+	latejoin_only = 1
 
 	minimum_character_age = 25
 	ideal_character_age = 40
@@ -55,6 +56,7 @@
 	minimal_player_age = 14
 	economic_modifier = 20
 	whitelist_only = 1
+	latejoin_only = 1
 
 	minimum_character_age = 25
 	ideal_character_age = 40
@@ -97,6 +99,7 @@
 	minimal_access = list()
 	alt_titles = list("Fun Mage","Happiness Witch","Joy Summoner","Asshole")
 	whitelist_only = 1
+	latejoin_only = 1
 
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
@@ -134,6 +137,7 @@
 	minimal_access = list()
 	alt_titles = list("Silent One","The Performer","Kabuki","Asshole")
 	whitelist_only = 1
+	latejoin_only = 1
 
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
