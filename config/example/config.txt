@@ -67,8 +67,8 @@ LOG_PDA
 ## log admin warning messages
 ##LOG_ADMINWARN  ## Also duplicates a bunch of other messages.
 
-## sql switching
-SQL_ENABLED 1
+## Enable/disable SQL connection (comment out to disable)
+SQL_ENABLED
 
 ## disconnect players who did nothing during the set amount of minutes
 # KICK_INACTIVE 10

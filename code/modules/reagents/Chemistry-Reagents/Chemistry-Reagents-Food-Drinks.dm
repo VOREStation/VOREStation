@@ -17,6 +17,8 @@
 	affect_ingest(M, alien, removed)
 
 /datum/reagent/nutriment/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	switch(alien)
+		if(IS_UNATHI) removed *= 0.5
 	if(issmall(M)) removed *= 2 // Small bodymass, more effect from lower volume.
 	M.heal_organ_damage(0.5 * removed, 0)
 	M.nutrition += nutriment_factor * removed // For hunger and fatness
@@ -42,6 +44,8 @@
 		if(IS_TESHARI)
 			..(M, alien, removed*1.2) // Teshari get a bit more nutrition from meat.
 			return
+		if(IS_UNATHI)
+			..(M, alien, removed*2.25) //Unathi get most of their nutrition from meat.
 	..()
 
 /datum/reagent/nutriment/protein/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -61,6 +65,27 @@
 	description = "A golden yellow syrup, loaded with sugary sweetness."
 	nutriment_factor = 10
 	color = "#FFFF00"
+
+/datum/reagent/honey/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+
+	var/effective_dose = dose
+	if(issmall(M))
+		effective_dose *= 2
+
+	if(alien == IS_UNATHI)
+		if(effective_dose < 2)
+			if(effective_dose == metabolism * 2 || prob(5))
+				M.emote("yawn")
+		else if(effective_dose < 5)
+			M.eye_blurry = max(M.eye_blurry, 10)
+		else if(effective_dose < 20)
+			if(prob(50))
+				M.Weaken(2)
+			M.drowsyness = max(M.drowsyness, 20)
+		else
+			M.sleeping = max(M.sleeping, 20)
+			M.drowsyness = max(M.drowsyness, 60)
 
 /datum/reagent/nutriment/flour
 	name = "flour"
@@ -395,6 +420,27 @@
 	glass_icon_state = "grapejuice"
 	glass_name = "glass of grape juice"
 	glass_desc = "It's grrrrrape!"
+
+/datum/reagent/juice/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+
+	var/effective_dose = dose/2
+	if(issmall(M))
+		effective_dose *= 2
+
+	if(alien == IS_UNATHI)
+		if(effective_dose < 2)
+			if(effective_dose == metabolism * 2 || prob(5))
+				M.emote("yawn")
+		else if(effective_dose < 5)
+			M.eye_blurry = max(M.eye_blurry, 10)
+		else if(effective_dose < 20)
+			if(prob(50))
+				M.Weaken(2)
+			M.drowsyness = max(M.drowsyness, 20)
+		else
+			M.sleeping = max(M.sleeping, 20)
+			M.drowsyness = max(M.drowsyness, 60)
 
 /datum/reagent/drink/juice/lemon
 	name = "Lemon Juice"
@@ -764,6 +810,27 @@
 	glass_name = "glass of milkshake"
 	glass_desc = "Glorious brainfreezing mixture."
 	glass_center_of_mass = list("x"=16, "y"=7)
+
+/datum/reagent/milkshake/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+
+	var/effective_dose = dose/2
+	if(issmall(M))
+		effective_dose *= 2
+
+	if(alien == IS_UNATHI)
+		if(effective_dose < 2)
+			if(effective_dose == metabolism * 2 || prob(5))
+				M.emote("yawn")
+		else if(effective_dose < 5)
+			M.eye_blurry = max(M.eye_blurry, 10)
+		else if(effective_dose < 20)
+			if(prob(50))
+				M.Weaken(2)
+			M.drowsyness = max(M.drowsyness, 20)
+		else
+			M.sleeping = max(M.sleeping, 20)
+			M.drowsyness = max(M.drowsyness, 60)
 
 /datum/reagent/drink/rewriter
 	name = "Rewriter"
