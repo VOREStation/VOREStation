@@ -72,6 +72,7 @@ Used In File(s): \code\game\machinery\requests_console.dm
 	<div class="statusDisplay" style="overflow: auto;">
 		{{for data.message_log}}
 			<div class="item">{{:value}}</div>
+			<div class="item">{{:helper.link('Print', null, { 'print' : index + 1 })}}</div>
 		{{empty}}
 			<div class="item">No messages have been recieved.</div>
 		{{/for}}
