@@ -17,6 +17,10 @@
 /mob/living/carbon/human/diona/New(var/new_loc)
 	..(new_loc, "Diona")
 
+/mob/living/carbon/human/teshari/New(var/new_loc)
+	h_style = "Teshari Default"
+	..(new_loc, "Teshari")
+
 /mob/living/carbon/human/machine/New(var/new_loc)
 	h_style = "blue IPC screen"
 	..(new_loc, "Machine")
