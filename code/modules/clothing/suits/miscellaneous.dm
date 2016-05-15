@@ -656,3 +656,29 @@
 	name = "mining winter coat"
 	icon_state = "coatminer"
 	armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+
+/obj/item/clothing/suit/varsity
+	name = "black varsity jacket"
+	desc = "A favorite of jocks everywhere from Sol to Nyx."
+	icon_state = "varsity"
+	item_state = "leather_jacket"
+
+/obj/item/clothing/suit/varsity/red
+	name = "red varsity jacket"
+	icon_state = "varsity_red"
+
+/obj/item/clothing/suit/varsity/purple
+	name = "purple varsity jacket"
+	icon_state = "varsity_purple"
+
+/obj/item/clothing/suit/varsity/green
+	name = "green varsity jacket"
+	icon_state = "varsity_green"
+
+/obj/item/clothing/suit/varsity/blue
+	name = "blue varsity jacket"
+	icon_state = "varsity_blue"
+
+/obj/item/clothing/suit/varsity/brown
+	name = "brown varsity jacket"
+	icon_state = "varsity_brown"
