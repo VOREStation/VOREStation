@@ -1,8 +1,7 @@
 var/list/job_whitelist = list()
 
 /hook/startup/proc/loadJobWhitelist()
-	if(config.usewhitelist)
-		load_jobwhitelist()
+	load_jobwhitelist()
 	return 1
 
 /proc/load_jobwhitelist()
@@ -24,9 +23,9 @@ var/list/job_whitelist = list()
 		return 0
 	if(M && rank)
 		for (var/s in job_whitelist)
-			if(findtext(s,"[M.ckey] - [rank]"))
+			if(findtext(s,"[lowertext(M.ckey)] - [lowertext(rank)]"))
 				return 1
 			if(findtext(s,"[M.ckey] - All"))
 				return 1
 	return 0
-	
+
