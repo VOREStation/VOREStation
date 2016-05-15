@@ -9,7 +9,7 @@
 /datum/category_item/player_setup_item/player_global/ooc/save_preferences(var/savefile/S)
 	S["ignored_players"]	<< pref.ignored_players
 
-
+/*
 /datum/category_item/player_setup_item/player_global/ooc/sanitize_preferences()
 	if(isnull(pref.ignored_players))
 		pref.ignored_players = list()
@@ -32,7 +32,11 @@
 			var/player_to_ignore = input(user, "Who do you want to ignore?","Ignore") as null|text
 			if(player_to_ignore)
 				player_to_ignore = sanitize(ckey(player_to_ignore))
+				if(player_to_ignore == user.ckey)
+					user <<"<span class='notice'>You can't ignore yourself.</span>"
+					return TOPIC_REFRESH
 				pref.ignored_players |= player_to_ignore
 			return TOPIC_REFRESH
 
 	return ..()
+*/

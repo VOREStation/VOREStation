@@ -10,6 +10,10 @@
 		if(key_to_ignore in prefs.ignored_players)
 			usr << "<span class='warning'>[key_to_ignore] is already being ignored.</span>"
 			return
+		if(key_to_ignore == usr.ckey)
+			usr <<"<span class='notice'>You can't ignore yourself.</span>"
+			return
+
 		prefs.ignored_players |= key_to_ignore
 		prefs.save_preferences()
 		usr << "<span class='notice'>Now ignoring <b>[key_to_ignore]</b>.</span>"

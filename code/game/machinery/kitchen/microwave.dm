@@ -327,7 +327,7 @@
 	src.updateUsrDialog()
 
 /obj/machinery/microwave/proc/dispose()
-	for (var/obj/O in (contents-component_parts))
+	for (var/obj/O in ((contents-component_parts)-circuit))
 		O.loc = src.loc
 	if (src.reagents.total_volume)
 		src.dirty++

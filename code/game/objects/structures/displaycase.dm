@@ -55,6 +55,9 @@
 
 
 /obj/structure/displaycase/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	user.do_attack_animation(src)
+	playsound(loc, 'sound/effects/Glasshit.ogg', 50, 1)
 	src.health -= W.force
 	src.healthcheck()
 	..()
