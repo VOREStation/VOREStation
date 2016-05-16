@@ -45,7 +45,6 @@
 	..()
 
 /obj/item/weapon/storage/MouseDrop(obj/over_object as obj)
-
 	if(!canremove)
 		return
 
@@ -69,7 +68,7 @@
 		if (( usr.restrained() ) || ( usr.stat ))
 			return
 
-		if ((src.loc == usr) && !usr.unEquip(src))
+		if ((src.loc == usr) && !(istype(over_object, /obj/screen)) && !usr.unEquip(src))
 			return
 
 		switch(over_object.name)
