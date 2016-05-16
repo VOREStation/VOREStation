@@ -29,6 +29,17 @@ Used In File(s): \code\game\objects\items\devices\uplinks.dm
 </div>
 
 {{if data.menu == 0}}
+	{{if data.discount_amount < 100}}
+		<div class="item">
+			<div class="itemLabel">
+				<b>Currently discounted</b>:
+			</div>
+			<div class="itemContent">
+				{{:data.discount_name}} - {{:data.discount_amount}}% off. Offer will expire at: {{:data.offer_expiry}}
+			</div>
+		</div>
+	{{/if}}
+
 	<H2>Categories:</H2>
 	{{for data.categories}}
 		<div class="item">
@@ -43,12 +54,9 @@ Used In File(s): \code\game\objects\items\devices\uplinks.dm
 		<div class="item">
 			{{:helper.link(value.name, 'gear', {'buy_item' : value.ref}, value.can_buy ? null : 'disabled')}} - <span class="white">{{:value.cost}}</span>
 		</div>
-            
-		{{if value.can_buy}}
-			<div class="item">
-				{{:value.description}}
-			</div>
-		{{/if}}
+		<div class="item">
+			{{:value.description}}
+		</div>
     {{/for}}
 {{else data.menu == 2}}
     <H2><span class="white">Information Record List:</span></H2>
