@@ -295,6 +295,35 @@
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "tasaldsuit"
 
+// bwoincognito:Tasald Corlethian
+/obj/item/clothing/suit/storage/det_suit/fluff/tasald
+	name = "Tasald's Vest"
+	desc = "A fancy looking vest. You look like a smooth operating officer in this."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "tasvest"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "tasvest_mob"
+
+	blood_overlay_type = "coat"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+
+// bwoincognito:Tasald Corlethian
+/obj/item/clothing/suit/storage/det_suit/fluff/tas_coat
+	name = "Armored Colony coat"
+	desc = "Dark green and grey colored sleeveless long coat with two thick metal shoulder pads. has seen some wear and tear, with noticeable patches in the fabric, scratches on the shoulder pads, but with a clean patch on the left upper chest. It has a red NT marked on the right shoulder pad and red Security on the left. "
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "tasaldcoat"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "tasaldcoat_mob"
+
+	blood_overlay_type = "coat"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+
+
 //Event Costumes Below
 /obj/item/clothing/head/helmet/fluff/freddy
 	name = "Animatronic Suit Helmet"
@@ -448,3 +477,42 @@
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "molenar"
+
+//scree:Scree
+/obj/item/clothing/head/fluff/pompom
+	name = "Pom-Pom"
+	desc = "A fluffy little thingus on a thin stalk, ideal for impersonating moogles and anglerfish. Kupomnomnom."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "pom"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "pom_mob"
+
+	w_class = 2.0
+	on = 0
+	brightness_on = 5
+	light_overlay = null
+
+	attack_self(mob/user)
+		if(brightness_on)
+			if(!isturf(user.loc))
+				user << "You cannot turn the light on while in this [user.loc]"
+				return
+			on = !on
+			user << "You [on ? "light up" : "dim"] your pom-pom."
+			update_light(user)
+		else
+			return ..(user)
+
+
+	update_icon(var/mob/user)
+		if(on)
+			icon_state = "pom-on"
+			item_state = "pom-on_mob"
+		else
+			icon_state = "pom"
+			item_state = "pom_mob"
+		if(istype(user,/mob/living/carbon/human))
+			var/mob/living/carbon/human/H = user
+			H.update_inv_head()

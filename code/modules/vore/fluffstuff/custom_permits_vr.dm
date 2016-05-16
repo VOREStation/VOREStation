@@ -102,3 +102,14 @@
 
 	The individual named above is licensed by the Nanotrasen Department of Civil Protection to carry one Clockwork Rifle (bolt-action variant).
 	This license expires on 14/Dec/2560 and must be renewed by CentCom prior to this date."}
+
+//eekasqueak: Serkii Miishy
+/obj/item/fluff/permit/serkiimiishy
+	name = "Serkii Miishy's Stun Revolver Permit"
+	desc = {"
+	<b>NAME:</b> Serkii Miishy | <b>RACE:</b> Mousemorph | <b>HOMEWORLD:</b> Mars, Sol
+	<b>DOB:</b> 10/9/2441 | <b>HEIGHT:</b> 122cm | <b>SEX:</b> Male
+
+	The individual named above is licensed by the Nanotrasen Department of Civil Protection to carry one stun revolver.
+	This license expires on 30/March/2561 and must be renewed by CentCom prior to this date."}
+
