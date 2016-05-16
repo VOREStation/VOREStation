@@ -838,7 +838,7 @@ area/space/atmosalert()
 /area/maintenance/engineering
 	name = "Engineering Maintenance"
 	icon_state = "maint_engineering"
-	
+
 /area/maintenance/engineering/pumpstation
 	name = "Engineering Pump Station"
 	icon_state = "maint_pumpstation"
@@ -2563,6 +2563,11 @@ area/space/atmosalert()
 /area/awaymission
 	name = "\improper Strange Location"
 	icon_state = "away"
+
+/area/awaymission/gateway
+	name = "\improper Gateway"
+	icon_state = "teleporter"
+	music = "signal"
 
 /area/awaymission/example
 	name = "\improper Strange Station"
