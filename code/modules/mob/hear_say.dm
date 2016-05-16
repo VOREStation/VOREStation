@@ -81,7 +81,7 @@
 	var/time = say_timestamp()
 	src << "[time] [message]"
 
-/mob/proc/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/part_a, var/part_b, var/mob/speaker = null, var/hard_to_hear = 0, var/vname ="")
+/mob/proc/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/part_a, var/part_b, var/part_c, var/mob/speaker = null, var/hard_to_hear = 0, var/vname ="")
 
 	if(!client)
 		return
@@ -184,9 +184,9 @@
 
 	var/formatted
 	if(language)
-		formatted = language.format_message_radio(message, verb)
+		formatted = "[language.format_message_radio(message, verb)][part_c]"
 	else
-		formatted = "[verb], <span class=\"body\">\"[message]\"</span>"
+		formatted = "[verb], <span class=\"body\">\"[message]\"</span>[part_c]"
 	if((sdisabilities & DEAF) || ear_deaf)
 		if(prob(20))
 			src << "<span class='warning'>You feel your headset vibrate but can hear nothing from it!</span>"
