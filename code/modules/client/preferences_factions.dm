@@ -22,7 +22,7 @@ var/global/list/citizenship_choices = list(
 
 var/global/list/home_system_choices = list(
 	"Sol",
-	"Vir",
+	starsys_name,
 	"Nyx",
 	"Tau Ceti",
 	"Epsilon Ursae Minoris",

@@ -22,19 +22,22 @@ var/global/datum/universal_state/universe = new
 var/global/list/global_map = null
 
 // Noises made when hit while typing.
-var/list/hit_appends = list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF")
+var/list/hit_appends	= list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF")
 var/diary				= null
-var/href_logfile        = null
-var/station_name        = "Northern Star"
-var/station_short       = "Northern Star"
-var/const/dock_name     = "Vir Interstellar Spaceport"
-var/const/boss_name     = "Central Command"
-var/const/boss_short    = "Centcomm"
-var/const/company_name  = "NanoTrasen"
-var/const/company_short = "NT"
-var/game_version        = "Polaris"
-var/changelog_hash      = ""
-var/game_year           = (text2num(time2text(world.realtime, "YYYY")) + 544)
+var/href_logfile		= null
+var/station_name		= "Northern Star"
+var/const/station_orig	= "Northern Star" //station_name can't be const due to event prefix/suffix
+var/const/station_short	= "Northern Star"
+var/const/dock_name		= "Vir Interstellar Spaceport"
+var/const/boss_name		= "Central Command"
+var/const/boss_short	= "Centcomm"
+var/const/company_name	= "NanoTrasen"
+var/const/company_short	= "NT"
+var/const/star_name		= "Vir"
+var/const/starsys_name	= "Vir"
+var/const/game_version	= "Polaris"
+var/changelog_hash		= ""
+var/game_year			= (text2num(time2text(world.realtime, "YYYY")) + 544)
 var/round_progressing = 1
 
 	//On some maps, it does not make sense for space turf to appear when something blows up (e.g. on an asteroid colony, or planetside)
