@@ -760,7 +760,7 @@ var/global/list/damage_icon_parts = list()
 
 		//VOREStation Code Start
 		var/t_state = wear_suit.icon_state
-		if(wear_suit.icon_override)
+		if(wear_suit.icon_override && wear_suit.item_state)
 			t_state = wear_suit.item_state
 		//VOREStation Code End
 
