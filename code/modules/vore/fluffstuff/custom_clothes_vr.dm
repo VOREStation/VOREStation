@@ -304,7 +304,7 @@
 	icon_state = "tasvest"
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	item_state = "tasvest_mob"
+	item_state = "tasvest"
 
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
@@ -323,7 +323,6 @@
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 
-
 //Event Costumes Below
 /obj/item/clothing/head/helmet/fluff/freddy
 	name = "Animatronic Suit Helmet"
@@ -340,6 +339,25 @@
 	cold_protection = HEAD
 	siemens_coefficient = 0.9
 
+	//Bonnie Head
+	bonnie
+		desc = "Children's entertainer."
+		icon_state = "bonniehead"
+		item_state = "bonniehead_mob"
+
+	//Foxy Head
+	foxy
+		desc = "I guess he doesn't like being watched."
+		icon_state = "foxyhead"
+		item_state = "foxyhead_mob"
+
+	//Chica Head
+	chica
+		desc = "<b><font color=red>LET'S EAT!</font></b>"
+		icon_state = "chicahead"
+		item_state = "chicahead_mob"
+
+//Anamatronic Suits
 /obj/item/clothing/suit/fluff/freddy
 	name = "Animatronic Suit"
 	desc = "Votre toast, je peux vous le rendre."
@@ -349,6 +367,7 @@
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "freddysuit_mob"
+
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
@@ -358,42 +377,24 @@
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	siemens_coefficient = 0.9
 
-//These inherit freddy stats
-/obj/item/clothing/head/helmet/fluff/freddy/bonnie
-	desc = "Children's entertainer."
-	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	icon_state = "bonniehead"
-	item_state = "bonniehead_mob"
+	//Bonnie Suit
+	bonnie
+		desc = "Children's entertainer."
+		icon_state = "bonniesuit"
+		item_state = "bonniesuit_mob"
 
-/obj/item/clothing/suit/fluff/freddy/bonnie
-	desc = "Children's entertainer."
-	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	icon_state = "bonniesuit"
-	item_state = "bonniesuit_mob"
+	//Foxy Suit
+	foxy
+		desc = "I guess he doesn't like being watched."
+		icon_state = "foxysuit"
+		item_state = "foxysuit_mob"
 
-/obj/item/clothing/head/helmet/fluff/freddy/foxy
-	desc = "I guess he doesn't like being watched."
-	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	icon_state = "foxyhead"
-	item_state = "foxyhead_mob"
 
-/obj/item/clothing/suit/fluff/freddy/foxy
-	desc = "I guess he doesn't like being watched."
-	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	icon_state = "foxysuit"
-	item_state = "foxysuit_mob"
-
-/obj/item/clothing/head/helmet/fluff/freddy/chica
-	desc = "<b><font color=red>LET'S EAT!</font></b>"
-	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	icon_state = "chicahead"
-	item_state = "chicahead_mob"
-
-/obj/item/clothing/suit/fluff/freddy/chica
-	desc = "<b><font color=red>LET'S EAT!</font></b>"
-	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	icon_state = "chicasuit"
-	item_state = "chicasuit_mob"
+	//Chica Suit
+	chica
+		desc = "<b><font color=red>LET'S EAT!</font></b>"
+		icon_state = "chicasuit"
+		item_state = "chicasuit_mob"
 
 //End event costumes
 
@@ -495,24 +496,25 @@
 	light_overlay = null
 
 	attack_self(mob/user)
-		if(brightness_on)
-			if(!isturf(user.loc))
-				user << "You cannot turn the light on while in this [user.loc]"
-				return
-			on = !on
-			user << "You [on ? "light up" : "dim"] your pom-pom."
-			update_light(user)
-		else
-			return ..(user)
+		if(!isturf(user.loc))
+			user << "You cannot turn the light on while in this [user.loc]"
+			return
 
+		switch(on)
+			if(0)
+				on = 1
+				user << "You light up your pom-pom."
+				icon_state = "pom-on"
+				item_state = "pom-on_mob"
+			if(1)
+				on = 0
+				user << "You dim your pom-pom."
+				icon_state = "pom"
+				item_state = "pom_mob"
 
-	update_icon(var/mob/user)
-		if(on)
-			icon_state = "pom-on"
-			item_state = "pom-on_mob"
-		else
-			icon_state = "pom"
-			item_state = "pom_mob"
-		if(istype(user,/mob/living/carbon/human))
+		update_light(user)
+
+		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
-			H.update_inv_head()
+			if(H.head == src)
+				H.update_inv_head()

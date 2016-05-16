@@ -7,7 +7,7 @@
 
 /obj/item/weapon/storage/box/fluff/New()
 	storage_slots = has_items.len
-	allowed.Cut()
+	allowed = list()
 	for(var/P in has_items)
 		allowed += P
 		new P(src)
