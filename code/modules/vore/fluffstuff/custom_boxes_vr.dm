@@ -7,7 +7,7 @@
 
 /obj/item/weapon/storage/box/fluff/New()
 	storage_slots = has_items.len
-	allowed.Cut()
+	allowed = list()
 	for(var/P in has_items)
 		allowed += P
 		new P(src)
@@ -28,7 +28,7 @@
 		/obj/item/clothing/under/thing4)
 */
 
-/*POLARISTODO - These fail to compile since not all items are ported yet
+//POLARISTODO - These fail to compile since not all items are ported yet
 // bwoincognito:Tasald Corlethian
 /obj/item/weapon/storage/box/fluff/tasald
 	name = "Tasald's Kit"
@@ -61,7 +61,7 @@
 		/obj/item/clothing/head/beret,
 		/obj/item/weapon/reagent_containers/food/drinks/bottle/bottleofnothing,
 		/obj/item/clothing/shoes/black,
-		/obj/item/toy/crayon/mime)
+		/*/obj/item/toy/crayon/mime*/) //Need to track down the code for crayons before adding this back in
 
 // joanrisu:Joan Risu
 /obj/item/weapon/storage/box/fluff/joanrisu
@@ -72,6 +72,5 @@
 		/obj/item/device/radio/headset/heads/captain,
 		/obj/item/weapon/storage/backpack/satchel,
 		/obj/item/clothing/suit/storage/fluff/fedcoat,
-		/obj/item/weapon/card/id/gold/fluff/badge/,
+		/obj/item/weapon/card/id/gold/fluff/joanbadge,
 		/obj/item/weapon/card/id/captains_spare)
-*/

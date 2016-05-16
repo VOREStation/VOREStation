@@ -135,3 +135,100 @@
 	from_suit = /obj/item/clothing/under/rank/captain
 	to_helmet = /obj/item/clothing/head/centhat/fluff/harmhat
 	to_suit = /obj/item/clothing/under/rank/captain/fluff/harmuniform
+
+//scree:Scree
+/obj/item/device/modkit_conversion/fluff/screekit
+	name = "Scree's hardsuit modification kit"
+	desc = "A kit containing all the needed tools and parts to modify a hardsuit for a specific user. This one looks like it's fitted for a winged creature."
+
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "modkit"
+
+	from_helmet = /obj/item/clothing/head/helmet/space/void/engineering
+	from_suit = /obj/item/clothing/suit/space/void/engineering
+	to_helmet = /obj/item/clothing/head/helmet/space/void/engineering/fluff/screehelm
+	to_suit = /obj/item/clothing/suit/space/void/engineering/fluff/screespess
+
+//General Use
+/obj/item/weapon/flag
+	name = "Nanotrasen Banner"
+	desc = "I pledge allegiance to the flag of a megacorporation in space."
+
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "Flag_Nanotrasen"
+
+	icon_override = 'icons/vore/custom_items_vr.dmi'
+	item_state = "Flag_Nanotrasen"
+
+	attack_self(mob/user as mob)
+		if(isliving(user))
+			user.visible_message("<span class='warning'>[user] waves their Banner around!</span>","<span class='warning'>You wave your Banner around.</span>")
+
+	attack(mob/living/carbon/human/M, mob/living/user)
+		if(isliving(user))
+			user.visible_message("<span class='warning'>[user] invades [M]'s personal space, thrusting [src] into their face insistently.</span>","<span class='warning'>You invade [M]'s personal space, thrusting [src] into their face insistently.</span>")
+
+
+	federation
+		name = "Federation Banner"
+		desc = "Space, The Final Frontier. Sorta. Just go with it and say the damn oath."
+
+		icon = 'icons/vore/custom_items_vr.dmi'
+		icon_state = "flag_federation"
+
+		icon_override = 'icons/vore/custom_items_vr.dmi'
+		item_state = "flag_federation"
+
+//zodiacshadow: ?
+/obj/item/device/radio/headset/fluff/zodiacshadow
+	name = "Nehi's 'phones"
+	desc = "A pair of old-fashioned purple headphones for listening to music that also double as an NT-approved headset; they connect nicely to any standard PDA. One side is engraved with the letters NEHI, the other having an elaborate inscription of the words \"My voice is my weapon of choice\" in a fancy font. A modern polymer allows switching between modes to either allow one to hear one's surroundings or to completely block them out."
+
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "headphones"
+
+	icon_override = 'icons/vore/custom_items_vr.dmi'
+	item_state = "headphones_mob"
+
+
+// OrbisA: Richard D'angelo
+/obj/item/weapon/melee/fluff/holochain
+	name = "Holographic Chain"
+	desc = "A High Tech solution to simple perversions. It has a red leather handle and the initials R.D. on the silver base."
+
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "holochain"
+
+	icon_override = 'icons/vore/custom_items_vr.dmi'
+	item_state = "holochain_mob"
+
+	flags = CONDUCT | NOBLOODY
+	no_attack_log = 1 //if you want to turn on the attack log for this, comment/delete this line. Orbis.
+	slot_flags = SLOT_BELT
+	force = 10
+	throwforce = 3
+	w_class = 3
+	damtype = HALLOSS
+	attack_verb = list("flogged", "whipped", "lashed", "disciplined", "chastised", "flayed")
+
+// joey4298:Emoticon
+/obj/item/device/fluff/id_kit_mime
+	name = "Mime ID reprinter"
+	desc = "Stick your ID in one end and it'll print a new ID out the other!"
+	icon = 'icons/obj/bureaucracy.dmi'
+	icon_state = "labeler1"
+
+	afterattack(obj/O, mob/user as mob)
+		var/new_icon = "mime"
+		if(istype(O,/obj/item/weapon/card/id) && O.icon_state != new_icon)
+			//O.icon = src.icon // just in case we're using custom sprite paths with fluff items.
+			O.icon_state = new_icon // Changes the icon without changing the access.
+			playsound(user.loc, 'sound/items/polaroid2.ogg', 100, 1)
+			user.visible_message("<span class='warning'> [user] reprints their ID.</span>")
+			del(src)
+		else if(O.icon_state == new_icon)
+			user << "<span class='notice'>[O] already has been reprinted.</span>"
+			return
+		else
+			user << "<span class='warning'>This isn't even an ID card you idiot.</span>"
+			return
