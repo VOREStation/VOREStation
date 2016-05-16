@@ -18,6 +18,7 @@ var/list/holder_mob_icon_cache = list()
 		slot_r_hand_str = 'icons/mob/items/righthand_holder.dmi',
 		)
 	pixel_y = 8
+	var/mob/living/held_mob
 
 /obj/item/weapon/holder/New()
 	..()
@@ -29,20 +30,25 @@ var/list/holder_mob_icon_cache = list()
 
 /obj/item/weapon/holder/process()
 	update_state()
+	drop_items()
 
 /obj/item/weapon/holder/dropped()
 	..()
 	spawn(1)
 		update_state()
 
-/obj/item/weapon/proc/update_state()
+/obj/item/weapon/holder/proc/update_state()
 	if(istype(loc,/turf) || !(contents.len))
-		for(var/mob/M in contents)
-			var/atom/movable/mob_container
-			mob_container = M
-			mob_container.forceMove(get_turf(src))
-			M.reset_view()
+		held_mob = null
+		drop_items()
 		qdel(src)
+
+/obj/item/weapon/holder/proc/drop_items()
+	if(contents.len > 1)
+		for(var/atom/movable/M in contents)
+			if(M == held_mob)
+				continue
+			M.forceMove(get_turf(src))
 
 /obj/item/weapon/holder/GetID()
 	for(var/mob/M in contents)
@@ -109,6 +115,7 @@ var/list/holder_mob_icon_cache = list()
 		return
 
 	var/obj/item/weapon/holder/H = new holder_type(get_turf(src))
+	H.held_mob = src
 	src.forceMove(H)
 	grabber.put_in_hands(H)
 

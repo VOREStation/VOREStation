@@ -52,7 +52,7 @@
 			affected_dest.temp_price_change[good_type] = rand(1,100) / 100
 
 /datum/event/economic_event/announce()
-	var/author = "The Vir Times"
+	var/author = "The "+starsys_name+" Times"
 	var/channel = author
 
 	//see if our location has custom event info for this event
