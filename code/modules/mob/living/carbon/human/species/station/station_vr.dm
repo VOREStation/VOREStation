@@ -15,6 +15,7 @@
 	secondary_langs = list("Sagaru")
 	name_language = "Sagaru"
 	color_mult = 1
+	egg_type = "Sergal"
 
 	min_age = 17
 	max_age = 80
@@ -61,6 +62,7 @@
 	secondary_langs = list("Skrellian")
 	name_language = "Skrellian"
 	color_mult = 1
+	egg_type = "Akula"
 
 	min_age = 17
 	max_age = 80
@@ -100,6 +102,7 @@
 	secondary_langs = list("Birdsong")
 	name_language = "Birdsong"
 	color_mult = 1
+	egg_type = "Nevrean"
 
 	min_age = 17
 	max_age = 80
@@ -121,3 +124,21 @@
 		"You feel uncomfortably warm.",
 		"Your overheated skin itches."
 		)
+
+
+
+
+/datum/species/unathi
+	egg_type = "Unathi"
+
+/datum/species/tajaran
+	egg_type = "Tajaran"
+
+/datum/species/skrell
+	egg_type = "Skrell"
+
+/datum/species/shapeshifter/promethean
+	egg_type = "Slime"
+
+/datum/species/human
+	egg_type = "Human"

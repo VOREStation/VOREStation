@@ -27,6 +27,7 @@
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	R.icon_state = "k9"
 	R.pixel_x 	 = -16
+	R.old_x 	 = -16
 	..()
 
 /obj/item/weapon/robot_module/knine/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
@@ -67,5 +68,6 @@
 	R.icon = 'icons/mob/widerobot_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	R.icon_state = "medihound"
-	R.pixel_x = -16
+	R.pixel_x 	 = -16
+	R.old_x  	 = -16
 	..()
