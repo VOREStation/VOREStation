@@ -117,10 +117,9 @@
 						M.nutrition += 1
 		return
 
-/* POLARISTODO - Depends on Taurs, and egg objects.
-
 ///////////////////////////// DM_TRANSFORM_MALE /////////////////////////////
-	if(digest_mode == DM_TRANSFORM_MALE && ishuman(owner))
+	if(digest_mode == DM_TRANSFORM_MALE && ishuman(owner)) //BYOND doesn't want you being fancy, so it has to be Transform (Male)
+		world << "DEBUG: Trying to TF! Male"
 		for (var/mob/living/carbon/human/P in internal_contents)
 			if(P.stat)
 				continue
@@ -170,6 +169,7 @@
 
 ///////////////////////////// DM_TRANSFORM_FEMALE /////////////////////////////
 	if(digest_mode == DM_TRANSFORM_FEMALE && ishuman(owner))
+		world << "DEBUG: Trying to TF! Female"
 		for (var/mob/living/carbon/human/P in internal_contents)
 			if(P.stat)
 				continue
@@ -215,6 +215,7 @@
 
 ///////////////////////////// DM_TRANSFORM_KEEP_GENDER  /////////////////////////////
 	if(digest_mode == DM_TRANSFORM_KEEP_GENDER && ishuman(owner))
+		world << "DEBUG: Trying to TF! Keep gender"
 		for (var/mob/living/carbon/human/P in internal_contents)
 			if(P.stat)
 				continue
@@ -257,6 +258,7 @@
 
 ///////////////////////////// DM_TRANSFORM_CHANGE_SPECIES  /////////////////////////////
 	if(digest_mode == DM_TRANSFORM_CHANGE_SPECIES && ishuman(owner))
+		world << "DEBUG: Trying to change species TF!"
 		for (var/mob/living/carbon/human/P in internal_contents)
 			if(P.stat)
 				continue
@@ -293,7 +295,7 @@
 					//No idea how to work with that one, species system got changed a lot
 					//Also this makes it similar to the previous one until fixed
 
-				if(TFmodify == 3 && P.r_hair != O.r_hair || P.g_hair != O.g_hair || P.b_hair != O.b_hair || P.r_skin != O.r_skin || P.g_skin != O.g_skin || P.b_skin != O.b_skin || P.taur != O.taur || P.r_taur != O.r_taur || P.g_taur != O.g_taur || P.b_taur != O.b_taur)
+				if(TFmodify == 3 && P.r_hair != O.r_hair || P.g_hair != O.g_hair || P.b_hair != O.b_hair || P.r_skin != O.r_skin || P.g_skin != O.g_skin || P.b_skin != O.b_skin || P.tail_style != O.tail_style || P.r_tail != O.r_tail || P.g_tail != O.g_tail || P.b_tail != O.b_tail || P.ear_style != O.ear_style)
 					P.r_hair = O.r_hair
 					P.r_facial = O.r_hair
 					P.g_hair = O.g_hair
@@ -303,10 +305,11 @@
 					P.r_skin = O.r_skin
 					P.g_skin = O.g_skin
 					P.b_skin = O.b_skin
-					P.taur = O.taur
-					P.r_taur = O.r_taur
-					P.g_taur = O.g_taur
-					P.b_taur = O.b_taur
+					P.tail_style = O.tail_style
+					P.r_tail = O.r_tail
+					P.g_tail = O.g_tail
+					P.b_tail = O.b_tail
+					P.ear_style = O.ear_style
 					P.h_style = "Bedhead"
 					P.species = O.species
 					P << "<span class='notice'>You lose sensation of your body, feeling only the warmth of the womb... </span>"
@@ -323,12 +326,14 @@
 
 
 ///////////////////////////// DM_TRANSFORM_CHANGE_SPECIES_EGG /////////////////////////////
-	if(digest_mode == DM_TRANSFORM_CHANGE_SPECIES_EGG && ishuman(owner))
+	if(digest_mode == DM_TRANSFORM_CHANGE_SPECIES_EGG && ishuman(owner)) //DM_TRANSFORM_CHANGE_SPECIES doesn't work, for whatever reason.
+		world << "DEBUG: Trying to transform change species egg tf!"
 		for (var/mob/living/carbon/human/P in internal_contents)
 			if(P.stat)
 				continue
 
 			var/mob/living/carbon/human/O = owner
+			world << "DEBUG: Trying to transform change species egg tf!"
 
 			if(O.species.name == "Unathi")
 				var/obj/structure/closet/secure_closet/egg/unathi/J = new /obj/structure/closet/secure_closet/egg/unathi(O.loc)
@@ -343,10 +348,11 @@
 					P.r_skin = O.r_skin
 					P.g_skin = O.g_skin
 					P.b_skin = O.b_skin
-					P.taur = O.taur
-					P.r_taur = O.r_taur
-					P.g_taur = O.g_taur
-					P.b_taur = O.b_taur
+					P.tail_style = O.tail_style
+					P.r_tail = O.r_tail
+					P.g_tail = O.g_tail
+					P.b_tail = O.b_tail
+					P.ear_style = O.ear_style
 					P.h_style = "Bedhead"
 					P.species = O.species
 					P.custom_species = O.custom_species
@@ -369,10 +375,11 @@
 					P.r_skin = O.r_skin
 					P.g_skin = O.g_skin
 					P.b_skin = O.b_skin
-					P.taur = O.taur
-					P.r_taur = O.r_taur
-					P.g_taur = O.g_taur
-					P.b_taur = O.b_taur
+					P.tail_style = O.tail_style
+					P.r_tail = O.r_tail
+					P.g_tail = O.g_tail
+					P.b_tail = O.b_tail
+					P.ear_style = O.ear_style
 					P.h_style = "Bedhead"
 					P.species = O.species
 					P.custom_species = O.custom_species
@@ -397,10 +404,11 @@
 					P.r_skin = O.r_skin
 					P.g_skin = O.g_skin
 					P.b_skin = O.b_skin
-					P.taur = O.taur
-					P.r_taur = O.r_taur
-					P.g_taur = O.g_taur
-					P.b_taur = O.b_taur
+					P.tail_style = O.tail_style
+					P.r_tail = O.r_tail
+					P.g_tail = O.g_tail
+					P.b_tail = O.b_tail
+					P.ear_style = O.ear_style
 					P.h_style = "Bedhead"
 					P.species = O.species
 					P.custom_species = O.custom_species
@@ -423,10 +431,11 @@
 					P.r_skin = O.r_skin
 					P.g_skin = O.g_skin
 					P.b_skin = O.b_skin
-					P.taur = O.taur
-					P.r_taur = O.r_taur
-					P.g_taur = O.g_taur
-					P.b_taur = O.b_taur
+					P.tail_style = O.tail_style
+					P.r_tail = O.r_tail
+					P.g_tail = O.g_tail
+					P.b_tail = O.b_tail
+					P.ear_style = O.ear_style
 					P.h_style = "Bedhead"
 					P.species = O.species
 					P.custom_species = O.custom_species
@@ -451,10 +460,11 @@
 					P.r_skin = O.r_skin
 					P.g_skin = O.g_skin
 					P.b_skin = O.b_skin
-					P.taur = O.taur
-					P.r_taur = O.r_taur
-					P.g_taur = O.g_taur
-					P.b_taur = O.b_taur
+					P.tail_style = O.tail_style
+					P.r_tail = O.r_tail
+					P.g_tail = O.g_tail
+					P.b_tail = O.b_tail
+					P.ear_style = O.ear_style
 					P.h_style = "Bedhead"
 					P.species = O.species
 					P.custom_species = O.custom_species
@@ -477,10 +487,11 @@
 					P.r_skin = O.r_skin
 					P.g_skin = O.g_skin
 					P.b_skin = O.b_skin
-					P.taur = O.taur
-					P.r_taur = O.r_taur
-					P.g_taur = O.g_taur
-					P.b_taur = O.b_taur
+					P.tail_style = O.tail_style
+					P.r_tail = O.r_tail
+					P.g_tail = O.g_tail
+					P.b_tail = O.b_tail
+					P.ear_style = O.ear_style
 					P.h_style = "Bedhead"
 					P.species = O.species
 					P.custom_species = O.custom_species
@@ -505,10 +516,11 @@
 					P.r_skin = O.r_skin
 					P.g_skin = O.g_skin
 					P.b_skin = O.b_skin
-					P.taur = O.taur
-					P.r_taur = O.r_taur
-					P.g_taur = O.g_taur
-					P.b_taur = O.b_taur
+					P.tail_style = O.tail_style
+					P.r_tail = O.r_tail
+					P.g_tail = O.g_tail
+					P.b_tail = O.b_tail
+					P.ear_style = O.ear_style
 					P.h_style = "Bedhead"
 					P.species = O.species
 					P.custom_species = O.custom_species
@@ -532,10 +544,11 @@
 					P.r_skin = O.r_skin
 					P.g_skin = O.g_skin
 					P.b_skin = O.b_skin
-					P.taur = O.taur
-					P.r_taur = O.r_taur
-					P.g_taur = O.g_taur
-					P.b_taur = O.b_taur
+					P.tail_style = O.tail_style
+					P.r_tail = O.r_tail
+					P.g_tail = O.g_tail
+					P.b_tail = O.b_tail
+					P.ear_style = O.ear_style
 					P.h_style = "Bedhead"
 					P.species = O.species
 					P.custom_species = O.custom_species
@@ -560,64 +573,11 @@
 					P.r_skin = O.r_skin
 					P.g_skin = O.g_skin
 					P.b_skin = O.b_skin
-					P.taur = O.taur
-					P.r_taur = O.r_taur
-					P.g_taur = O.g_taur
-					P.b_taur = O.b_taur
-					P.h_style = "Bedhead"
-					P.species = O.species
-					P.custom_species = O.custom_species
-					P << "<span class='notice'>You lose sensation of your body, feeling only the warmth of the womb as you're encased in an egg. </span>"
-					owner << "<span class='notice'>Your belly shifts as your womb makes dramatic changes to your captive's body as you encase them in an egg.</span>"
-					P.update_hair()
-					P.update_body()
-					P.update_tail_showing()
-					P.loc = J
-					J.name = "[defined_species] egg"
-					J.desc = "This egg has a very unique look to it."
-				else
-					var/defined_species = O.species
-					P.r_hair = O.r_hair
-					P.r_facial = O.r_hair
-					P.g_hair = O.g_hair
-					P.g_facial = O.g_hair
-					P.b_hair = O.b_hair
-					P.b_facial = O.b_hair
-					P.r_taur = O.r_taur
-					P.g_taur = O.g_taur
-					P.b_taur = O.b_taur
-					P.taur = O.taur
-					P.r_taur = O.r_taur
-					P.g_taur = O.g_taur
-					P.b_taur = O.b_taur
-					P.h_style = "Bedhead"
-					P.species = O.species
-					P.custom_species = O.custom_species
-					P << "<span class='notice'>You lose sensation of your body, feeling only the warmth of the womb as you're encased in an egg. </span>"
-					owner << "<span class='notice'>Your belly shifts as your womb makes dramatic changes to your captive's body as you encase them in an egg.</span>"
-					P.update_hair()
-					P.update_body()
-					P.update_tail_showing()
-					P.loc = J
-					J.name = "[defined_species] egg"
-
-			if(O.species.name == "Nevrean")
-				var/obj/structure/closet/secure_closet/egg/nevrean/J = new /obj/structure/closet/secure_closet/egg/nevrean(O.loc)
-				if (O.custom_species)
-					var/defined_species = O.custom_species
-					P.r_hair = O.r_hair
-					P.r_facial = O.r_hair
-					P.g_hair = O.g_hair
-					P.g_facial = O.g_hair
-					P.b_hair = O.b_hair
-					P.b_facial = O.b_hair
-					P.r_taur = O.r_taur
-					P.g_taur = O.g_taur
-					P.b_taur = O.b_taur
-					P.taur = O.taur
-					P.r_taur = O.r_taur
-					P.g_taur = O.g_taur
-					P.b_taur = O.b_taur
+					P.tail_style = O.tail_style
+					P.r_tail = O.r_tail
+					P.g_tail = O.g_tail
+					P.b_tail = O.b_tail
+					P.ear_style = O.ear_style
 					P.h_style = "Bedhead"
 					P.species = O.species
 					P.custom_species = O.custom_species
@@ -640,10 +600,67 @@
 					P.r_skin = O.r_skin
 					P.g_skin = O.g_skin
 					P.b_skin = O.b_skin
-					P.taur = O.taur
-					P.r_taur = O.r_taur
-					P.g_taur = O.g_taur
-					P.b_taur = O.b_taur
+					P.tail_style = O.tail_style
+					P.r_tail = O.r_tail
+					P.g_tail = O.g_tail
+					P.b_tail = O.b_tail
+					P.ear_style = O.ear_style
+					P.h_style = "Bedhead"
+					P.species = O.species
+					P.custom_species = O.custom_species
+					P << "<span class='notice'>You lose sensation of your body, feeling only the warmth of the womb as you're encased in an egg. </span>"
+					owner << "<span class='notice'>Your belly shifts as your womb makes dramatic changes to your captive's body as you encase them in an egg.</span>"
+					P.update_hair()
+					P.update_body()
+					P.update_tail_showing()
+					P.loc = J
+					J.name = "[defined_species] egg"
+
+			if(O.species.name == "Nevrean")
+				var/obj/structure/closet/secure_closet/egg/nevrean/J = new /obj/structure/closet/secure_closet/egg/nevrean(O.loc)
+				if (O.custom_species)
+					var/defined_species = O.custom_species
+					P.r_hair = O.r_hair
+					P.r_facial = O.r_hair
+					P.g_hair = O.g_hair
+					P.g_facial = O.g_hair
+					P.b_hair = O.b_hair
+					P.b_facial = O.b_hair
+					P.r_skin = O.r_skin
+					P.g_skin = O.g_skin
+					P.b_skin = O.b_skin
+					P.tail_style = O.tail_style
+					P.r_tail = O.r_tail
+					P.g_tail = O.g_tail
+					P.b_tail = O.b_tail
+					P.ear_style = O.ear_style
+					P.h_style = "Bedhead"
+					P.species = O.species
+					P.custom_species = O.custom_species
+					P << "<span class='notice'>You lose sensation of your body, feeling only the warmth of the womb as you're encased in an egg. </span>"
+					owner << "<span class='notice'>Your belly shifts as your womb makes dramatic changes to your captive's body as you encase them in an egg.</span>"
+					P.update_hair()
+					P.update_body()
+					P.update_tail_showing()
+					P.loc = J
+					J.name = "[defined_species] egg"
+					J.desc = "This egg has a very unique look to it."
+				else
+					var/defined_species = O.species
+					P.r_hair = O.r_hair
+					P.r_facial = O.r_hair
+					P.g_hair = O.g_hair
+					P.g_facial = O.g_hair
+					P.b_hair = O.b_hair
+					P.b_facial = O.b_hair
+					P.r_skin = O.r_skin
+					P.g_skin = O.g_skin
+					P.b_skin = O.b_skin
+					P.tail_style = O.tail_style
+					P.r_tail = O.r_tail
+					P.g_tail = O.g_tail
+					P.b_tail = O.b_tail
+					P.ear_style = O.ear_style
 					P.h_style = "Bedhead"
 					P.species = O.species
 					P.custom_species = O.custom_species
@@ -668,10 +685,11 @@
 					P.r_skin = O.r_skin
 					P.g_skin = O.g_skin
 					P.b_skin = O.b_skin
-					P.taur = O.taur
-					P.r_taur = O.r_taur
-					P.g_taur = O.g_taur
-					P.b_taur = O.b_taur
+					P.tail_style = O.tail_style
+					P.r_tail = O.r_tail
+					P.g_tail = O.g_tail
+					P.b_tail = O.b_tail
+					P.ear_style = O.ear_style
 					P.h_style = "Bedhead"
 					P.species = O.species
 					P.custom_species = O.custom_species
@@ -695,10 +713,11 @@
 					P.r_skin = O.r_skin
 					P.g_skin = O.g_skin
 					P.b_skin = O.b_skin
-					P.taur = O.taur
-					P.r_taur = O.r_taur
-					P.g_taur = O.g_taur
-					P.b_taur = O.b_taur
+					P.tail_style = O.tail_style
+					P.r_tail = O.r_tail
+					P.g_tail = O.g_tail
+					P.b_tail = O.b_tail
+					P.ear_style = O.ear_style
 					P.h_style = "Bedhead"
 					P.species = O.species
 					P.custom_species = O.custom_species
@@ -723,10 +742,11 @@
 					P.r_skin = O.r_skin
 					P.g_skin = O.g_skin
 					P.b_skin = O.b_skin
-					P.taur = O.taur
-					P.r_taur = O.r_taur
-					P.g_taur = O.g_taur
-					P.b_taur = O.b_taur
+					P.tail_style = O.tail_style
+					P.r_tail = O.r_tail
+					P.g_tail = O.g_tail
+					P.b_tail = O.b_tail
+					P.ear_style = O.ear_style
 					P.h_style = "Bedhead"
 					P.species = O.species
 					P.custom_species = O.custom_species
@@ -749,10 +769,11 @@
 					P.r_skin = O.r_skin
 					P.g_skin = O.g_skin
 					P.b_skin = O.b_skin
-					P.taur = O.taur
-					P.r_taur = O.r_taur
-					P.g_taur = O.g_taur
-					P.b_taur = O.b_taur
+					P.tail_style = O.tail_style
+					P.r_tail = O.r_tail
+					P.g_tail = O.g_tail
+					P.b_tail = O.b_tail
+					P.ear_style = O.ear_style
 					P.h_style = "Bedhead"
 					P.species = O.species
 					P.custom_species = O.custom_species
@@ -1785,4 +1806,3 @@
 					P.update_body()
 		return
 
-*/
