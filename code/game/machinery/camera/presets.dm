@@ -70,7 +70,7 @@ var/global/list/engineering_networks = list(
 	network = list(NETWORK_MINE)
 
 /obj/machinery/camera/network/northern_star
-	network = list(NETWORK_NORTHERN_STAR)
+	network = list(NETWORK_EXODUS)
 
 /obj/machinery/camera/network/prison
 	network = list(NETWORK_PRISON)
