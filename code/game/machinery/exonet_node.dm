@@ -1,6 +1,6 @@
 /obj/machinery/exonet_node
 	name = "exonet node"
-	desc = "This machine is one of many, many nodes inside Vir's section of the Exonet, connecting the Northern Star to the rest of the system, at least \
+	desc = "This machine is one of many, many nodes inside Vir's section of the Exonet, connecting Virgo Station to the rest of the system, at least \
 	electronically."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "exonet_node"
