@@ -758,7 +758,13 @@ var/global/list/damage_icon_parts = list()
 		else if(wear_suit.item_icons && wear_suit.item_icons[slot_wear_suit_str])
 			t_icon = wear_suit.item_icons[slot_wear_suit_str]
 
-		standing = image("icon" = t_icon, "icon_state" = "[wear_suit.item_state ? wear_suit.item_state : wear_suit.icon_state]") //VOREStation Edit
+		//VOREStation Code Start
+		var/t_state = wear_suit.icon_state
+		if(wear_suit.icon_override && wear_suit.item_state)
+			t_state = wear_suit.item_state
+		//VOREStation Code End
+
+		standing = image("icon" = t_icon, "icon_state" = t_state) //VOREStation Edit
 		standing.color = wear_suit.color
 
 		if( istype(wear_suit, /obj/item/clothing/suit/straight_jacket) )
