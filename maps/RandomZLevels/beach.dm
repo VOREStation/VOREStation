@@ -16,4 +16,4 @@
 							/obj/item/trash/pistachios, /obj/item/trash/semki, /obj/item/trash/tray, /obj/item/trash/liquidfood,
 							/obj/item/trash/tastybread, /obj/item/trash/snack_bowl, /mob/living/simple_animal/crab)
 			new trash(get_turf(src))
-		del(src)
+		qdel(src)
