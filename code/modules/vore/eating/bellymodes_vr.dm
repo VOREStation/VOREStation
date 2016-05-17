@@ -911,6 +911,7 @@
 		return
 
 
+///////////////////////////// DM_EGG /////////////////////////////
 	if(digest_mode == DM_EGG && ishuman(owner))
 		for (var/mob/living/carbon/human/P in internal_contents)
 			if(P.stat)
