@@ -909,3 +909,122 @@
 						J.name = "Odd egg" //Something went wrong. Since the default is "egg", they shouldn't see this.
 						internal_contents -= P
 		return
+
+
+///////////////////////////// DM_EGG /////////////////////////////
+	if(digest_mode == DM_EGG && ishuman(owner))
+		for (var/mob/living/carbon/human/P in internal_contents)
+			if(P.stat)
+				continue
+
+			var/mob/living/carbon/human/O = owner
+
+			if (O.custom_species)
+				var/defined_species = O.custom_species
+				P << "<span class='notice'>You lose sensation of your body, feeling only the warmth of the womb as you're encased in an egg. </span>"
+				owner << "<span class='notice'>Your belly shifts as your womb encases [P] in an egg.</span>"
+				switch(O.species.egg_type)
+					if("Unathi")
+						var/obj/structure/closet/secure_closet/egg/unathi/J = new /obj/structure/closet/secure_closet/egg/unathi(O.loc)
+						P.forceMove(J)
+						J.name = "[defined_species] egg"
+						J.desc = "This egg has a very unique look to it."
+						for(var/mob/living/M in internal_contents)
+						internal_contents -= P
+					if("Tajaran")
+						var/obj/structure/closet/secure_closet/egg/tajaran/J = new /obj/structure/closet/secure_closet/egg/tajaran(O.loc)
+						P.forceMove(J)
+						J.name = "[defined_species] egg"
+						J.desc = "This egg has a very unique look to it."
+						internal_contents -= P
+					if("Akula")
+						var/obj/structure/closet/secure_closet/egg/shark/J = new /obj/structure/closet/secure_closet/egg/shark(O.loc)
+						P.forceMove(J)
+						J.name = "[defined_species] egg"
+						J.desc = "This egg has a very unique look to it."
+						internal_contents -= P
+					if("Skrell")
+						var/obj/structure/closet/secure_closet/egg/skrell/J = new /obj/structure/closet/secure_closet/egg/skrell(O.loc)
+						P.forceMove(J)
+						J.name = "[defined_species] egg"
+						J.desc = "This egg has a very unique look to it."
+						internal_contents -= P
+					if("Sergal")
+						var/obj/structure/closet/secure_closet/egg/sergal/J = new /obj/structure/closet/secure_closet/egg/sergal(O.loc)
+						P.forceMove(J)
+						J.name = "[defined_species] egg"
+						J.desc = "This egg has a very unique look to it."
+						internal_contents -= P
+					if("Human")
+						var/obj/structure/closet/secure_closet/egg/human/J = new /obj/structure/closet/secure_closet/egg/human(O.loc)
+						P.forceMove(J)
+						J.name = "[defined_species] egg"
+						J.desc = "This egg has a very unique look to it."
+						internal_contents -= P
+					if("Slime")
+						var/obj/structure/closet/secure_closet/egg/slime/J = new /obj/structure/closet/secure_closet/egg/slime(O.loc)
+						P.forceMove(J)
+						J.name = "[defined_species] egg"
+						J.desc = "This egg has a very unique look to it."
+						internal_contents -= P
+					if("Egg")
+						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(O.loc)
+						P.forceMove(J)
+						J.name = "[defined_species] egg"
+						J.desc = "This egg has a very unique look to it."
+						internal_contents -= P
+					else
+						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(O.loc)
+						P.forceMove(J)
+						J.name = "[defined_species] egg"
+						J.desc = "This egg has a very unique look to it."
+						internal_contents -= P
+			else
+				P << "<span class='notice'>You lose sensation of your body, feeling only the warmth of the womb as you're encased in an egg. </span>"
+				owner << "<span class='notice'>Your belly shifts as your womb encases [P] in an egg.</span>"
+				switch(O.species.egg_type)
+					if("Unathi")
+						var/obj/structure/closet/secure_closet/egg/unathi/J = new /obj/structure/closet/secure_closet/egg/unathi(O.loc)
+						P.forceMove(J)
+						J.name = "Unathi egg"
+						internal_contents -= P
+					if("Tajaran")
+						var/obj/structure/closet/secure_closet/egg/tajaran/J = new /obj/structure/closet/secure_closet/egg/tajaran(O.loc)
+						P.forceMove(J)
+						J.name = "Tajaran egg"
+						internal_contents -= P
+					if("Akula")
+						var/obj/structure/closet/secure_closet/egg/shark/J = new /obj/structure/closet/secure_closet/egg/shark(O.loc)
+						P.forceMove(J)
+						J.name = "Akula egg"
+						internal_contents -= P
+					if("Skrell")
+						var/obj/structure/closet/secure_closet/egg/skrell/J = new /obj/structure/closet/secure_closet/egg/skrell(O.loc)
+						P.forceMove(J)
+						J.name = "Skrell egg"
+						internal_contents -= P
+					if("Sergal")
+						var/obj/structure/closet/secure_closet/egg/sergal/J = new /obj/structure/closet/secure_closet/egg/sergal(O.loc)
+						P.forceMove(J)
+						J.name = "Segal egg"
+						internal_contents -= P
+					if("Human")
+						var/obj/structure/closet/secure_closet/egg/human/J = new /obj/structure/closet/secure_closet/egg/human(O.loc)
+						P.forceMove(J)
+						J.name = "Human egg"
+						internal_contents -= P
+					if("Slime")
+						var/obj/structure/closet/secure_closet/egg/slime/J = new /obj/structure/closet/secure_closet/egg/slime(O.loc)
+						P.forceMove(J)
+						J.name = "Slime egg"
+						internal_contents -= P
+					if("Egg")
+						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(O.loc)
+						P.forceMove(J)
+						J.name = "Egg"
+						internal_contents -= P
+					else
+						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(O.loc)
+						P.forceMove(J)
+						J.name = "Odd egg" //Something went wrong. Since the default is "egg", they shouldn't see this.
+						internal_contents -= P
