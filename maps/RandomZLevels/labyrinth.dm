@@ -4,7 +4,6 @@
 /area/awaymission/labyrinth/arrival
 	icon_state = "away"
 	requires_power = 0
-	unlimited_power = 1
 
 /area/awaymission/labyrinth/cave
 	icon_state = "blue"
@@ -46,7 +45,6 @@
 /area/awaymission/labyrinth/temple/north
 	icon_state = "blue"
 
-
 /area/awaymission/labyrinth/boss
 	icon_state = "red"
 
@@ -77,12 +75,11 @@
 	icon_state = "cluwne-broken"
 	desc = "Not so funny anymore."
 
-
 /obj/structure/falsewall/cultspecial
 	name = "loose wall"
 	desc = "This wall tile seems loose. Try pushing on it."
 	icon_state = ""
-	mineral = "cultspecial"
+//	mineral = "cultspecial"
 	density = 1
 	opacity = 1
 
@@ -101,11 +98,10 @@
 	if(prob(50))
 		secured_wires = 0
 
-
-
 /obj/mecha/combat/honker/cluwne // What have I done?
 	desc = "Mechanized Assault Device for Juggernaughting Against Clown Killers. You've only heard legends about this exosuit..."
 	name = "M.A.D. J.A.C.K."
+	icon = 'icons/mecha/mecha_vr.dmi'
 	icon_state = "cluwne"
 	initial_icon = "cluwne"
 	step_in = 2
@@ -119,7 +115,6 @@
 	wreckage = /obj/effect/decal/mecha_wreckage/honker/cluwne
 	max_equip = 4
 
-
 /obj/mecha/combat/honker/cluwne/New()
 	..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/pulse
@@ -131,6 +126,65 @@
 	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/honker
 	ME.attach(src)
 	return
+
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/banana_mortar
+	name = "Banana Mortar"
+	icon = 'icons/mecha/mecha_equipment_vr.dmi'
+	icon_state = "mecha_bananamrtr"
+	projectile = /obj/item/weapon/bananapeel
+	fire_sound = 'sound/items/bikehorn.ogg'
+	projectiles = 15
+	missile_speed = 1.5
+	projectile_energy_cost = 100
+	equip_cooldown = 20
+
+	can_attach(obj/mecha/combat/honker/M as obj)
+		if(!istype(M))
+			return 0
+		return ..()
+
+/obj/item/mecha_parts/mecha_equipment/weapon/honker
+	name = "\improper HoNkER BlAsT 5000"
+	icon = 'icons/mecha/mecha_equipment_vr.dmi'
+	icon_state = "mecha_honker"
+	energy_drain = 200
+	equip_cooldown = 150
+	range = MELEE|RANGED
+
+	can_attach(obj/mecha/combat/honker/M as obj)
+		if(!istype(M))
+			return 0
+		return ..()
+
+	action(target)
+		if(!chassis)
+			return 0
+		if(energy_drain && chassis.get_charge() < energy_drain)
+			return 0
+		if(!equip_ready)
+			return 0
+
+		playsound(chassis, 'sound/items/AirHorn.ogg', 100, 1)
+		chassis.occupant_message("<font color='red' size='5'>HONK</font>")
+		for(var/mob/living/carbon/M in ohearers(6, chassis))
+			if(istype(M, /mob/living/carbon/human))
+				var/mob/living/carbon/human/H = M
+				if(istype(H.l_ear, /obj/item/clothing/ears/earmuffs) || istype(H.r_ear, /obj/item/clothing/ears/earmuffs))
+					continue
+			M << "<font color='red' size='7'>HONK</font>"
+			M.sleeping = 0
+			M.stuttering += 20
+			M.ear_deaf += 30
+			M.Weaken(3)
+			if(prob(30))
+				M.Stun(10)
+				M.Paralyse(4)
+			else
+				M.make_jittery(500)
+		chassis.use_power(energy_drain)
+		log_message("Honked from [src.name]. HONK!")
+		do_after_cooldown()
+		return
 
 /obj/effect/landmark/mobcorpse/tunnelclown
 	name = "dead tunnel clown"
@@ -147,11 +201,11 @@
 	corpsesuit = /obj/item/clothing/suit/cultrobes
 	corpsehelmet = /obj/item/clothing/head/culthood
 
-
 /mob/living/simple_animal/hostile/tunnelclown
 	name = "tunnel clown"
 	desc = "A clown driven to madness in the depths of the Honk Mother's Catacombs."
 	faction = "tunnelclown"
+	icon = 'icons/mob/clowns_vr.dmi'
 	icon_state = "tunnelclown"
 	icon_living = "tunnelclown"
 	icon_dead = "clown_dead"
@@ -193,11 +247,12 @@
 	name = "tunnel clown sentinel"
 	desc = "A clown warrior tasked with guarding the Honk Mother's Catacombs."
 	faction = "tunnelclown"
+	icon = 'icons/mob/clowns_vr.dmi'
 	icon_state = "sentinelclown"
 	icon_living = "sentinelclown"
 	icon_dead = "clown_dead"
 	corpse = /obj/effect/landmark/mobcorpse/tunnelclown/sentinel
-	weapon1 = /obj/item/weapon/twohanded/spear
+	weapon1 = /obj/item/weapon/material/twohanded/spear
 	maxHealth = 150
 	health = 150
 	melee_damage_lower = 15
@@ -216,6 +271,7 @@
 	name = "cluwne"
 	desc = "A mutated clown alleged to have been cursed by the Honk Mother and permanently banished to these catacombs for once being an unfunny shitter who brought grief instead of laughter."
 	faction = "tunnelclown"
+	icon = 'icons/mob/clowns_vr.dmi'
 	icon_state = "cluwne"
 	icon_living = "cluwne"
 	icon_dead = "cluwne_dead"
@@ -252,10 +308,15 @@
 	cold_damage_per_tick = 10
 	unsuitable_atoms_damage = 10
 
+/obj/machinery/media/jukebox/clowntemple
+	idle_power_usage = 0
+	active_power_usage = 0
+	tracks = list(new/datum/track("Mad Jack", 'sound/music/jukebox/madjack.ogg'))
+
 /obj/random/mob/clown
 	name = "Random Clown Mob"
 	desc = "This is a random clown spawn. You aren't supposed to see this. Call an admin because reality has broken into the meta."
-	icon = 'icons/mob/animal.dmi'
+	icon = 'icons/mob/clowns_vr.dmi'
 	icon_state = "clown"
 	spawn_nothing_percentage = 50
 	item_to_spawn()
@@ -302,3 +363,10 @@
 			My excavation team discovered two monoliths; one near the surface, and another at an underground shrine. I think this is it, but Dr. Madison hasn't come back with his team
 			to confirm. I'm about to leave and check it out for myself. I've translated some of the writing we copied, and it looks like a riddle. Maybe Dr. Madison has already figured
 			it out. He was excited to head back down with the team after I translated it. I wonder what it means. I'll translate the rest when I get back."}
+
+/obj/effect/spawner/lootdrop/labyrinth
+	icon = 'icons/mob/screen1.dmi'
+	icon_state = "x2"
+	lootcount = 1		//how many items will be spawned
+	lootdoubles = 0		//if the same item can be spawned twice
+	loot = ""			//a list of possible items to spawn- a string of paths

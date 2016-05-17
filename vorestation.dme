@@ -1983,4 +1983,5 @@
 #include "maps\virgo-3.dmm"
 #include "maps\virgo-4.dmm"
 #include "maps\virgo-5.dmm"
+#include "maps\RandomZLevels\labyrinth.dm"
 // END_INCLUDE
