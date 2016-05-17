@@ -1008,6 +1008,7 @@
 #include "code\modules\awaymissions\exile.dm"
 #include "code\modules\awaymissions\gateway.dm"
 #include "code\modules\awaymissions\loot.dm"
+#include "code\modules\awaymissions\loot_vr.dm"
 #include "code\modules\awaymissions\pamphlet.dm"
 #include "code\modules\awaymissions\trigger.dm"
 #include "code\modules\awaymissions\zlevel.dm"
@@ -1995,4 +1996,8 @@
 #include "maps\virgo-4.dmm"
 #include "maps\virgo-5.dmm"
 #include "maps\RandomZLevels\labyrinth.dm"
+#include "maps\RandomZLevels\beach.dm"
+#include "maps\RandomZLevels\blackmarketpackers.dm"
+#include "maps\RandomZLevels\carpfarm.dm"
+#include "maps\RandomZLevels\listeningpost.dm"
 // END_INCLUDE
