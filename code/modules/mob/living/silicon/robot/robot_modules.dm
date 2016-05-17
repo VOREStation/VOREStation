@@ -625,8 +625,8 @@ var/global/list/robot_modules = list(
 
 	var/datum/matter_synth/nanite = new /datum/matter_synth/nanite(10000)
 	synths += nanite
-	var/datum/matter_synth/wire = new /datum/matter_synth/wire()						//Added to allow repairs, would rather add cable now than be asked to add it later
-	synths += wire																		//Cable code, taken from engiborg
+	var/datum/matter_synth/wire = new /datum/matter_synth/wire()						//Added to allow repairs, would rather add cable now than be asked to add it later,
+	synths += wire																		//Cable code, taken from engiborg,
 
 	var/obj/item/stack/nanopaste/N = new /obj/item/stack/nanopaste(src)
 	N.uses_charge = 1
@@ -634,7 +634,7 @@ var/global/list/robot_modules = list(
 	N.synths = list(nanite)
 	src.modules += N
 
-	var/obj/item/stack/cable_coil/cyborg/C = new /obj/item/stack/cable_coil/cyborg(src)	//Cable code, taken from engiborg
+	var/obj/item/stack/cable_coil/cyborg/C = new /obj/item/stack/cable_coil/cyborg(src)	//Cable code, taken from engiborg,
 	C.synths = list(wire)
 	src.modules += C
 

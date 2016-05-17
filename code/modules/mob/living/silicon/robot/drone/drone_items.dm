@@ -62,7 +62,7 @@
 		/obj/item/robot_parts,
 		/obj/item/borg/upgrade,
 		/obj/item/device/flash, //to build borgs,
-		/obj/item/weapon/disk,		//Maaaaay be too general
+		/obj/item/weapon/disk,		//Maaaaay be too general,
 		/obj/item/weapon/circuitboard,
 		/obj/item/slime_extract,
 		/obj/item/weapon/reagent_containers/glass,
