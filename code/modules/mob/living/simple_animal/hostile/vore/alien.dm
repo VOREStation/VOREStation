@@ -73,7 +73,7 @@
 	rapid = 1
 	status_flags = 0
 
- /mob/living/simple_animal/hostile/vore/alien/queen/large
+/mob/living/simple_animal/hostile/vore/alien/queen/large
 	name = "alien empress"
 	icon = 'icons/mob/alienqueen.dmi'
 	icon_state = "queen_s"
