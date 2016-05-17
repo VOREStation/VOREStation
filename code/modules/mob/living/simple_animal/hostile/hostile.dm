@@ -106,7 +106,7 @@
 
 
 /mob/living/simple_animal/hostile/proc/ListTargets(var/dist = 7)
-	var/list/L = hearers(src, dist)
+	var/list/L = view(src, dist) //hearers(src, dist) <- This shit was broken and bad and caused a lot of lag because mobs would chase targets they can't see. -Spades
 
 	for (var/obj/mecha/M in mechas_list)
 		if (M.z == src.z && get_dist(src, M) <= dist)
