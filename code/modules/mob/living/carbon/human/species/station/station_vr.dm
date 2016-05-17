@@ -125,6 +125,96 @@
 		"Your overheated skin itches."
 		)
 
+/datum/species/hi_zoxxen
+	name = "Highlander Zorren"
+	name_plural = "Zorren"
+	icobase = 'icons/mob/human_races/r_fox.dmi'
+	deform = 'icons/mob/human_races/r_def_fox.dmi'
+	tail = "tail"
+	icobase_tail = 1
+	//primitive_form = /mob/living/carbon/monkey/tajara //We don't have fennec-monkey sprites.
+	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
+	num_alternate_languages = 2
+	secondary_langs = list("Siik'tajr")
+	name_language = "Siik'tajr"
+	egg_type = "Tajaran" //Placeholder.
+
+	min_age = 17
+	max_age = 80
+
+	blurb = "The fox-like Zorren are native to Virgo-Prime, however there are two distinct varieties of Zorren one with large ears and shorter fur, and the other with longer fur that is a bit more vibrant.  \
+	The long-eared, short-furred Zorren have come to be known as Flatland Zorren as that is where most of their settlements are located. \
+	The Flatland Zorren are somewhat tribal and shamanistic as they have only recently started to be hired by the Trans-Stellar Corporations. \
+	The other variety of Zorren are known as Highland Zorren as they frequently settle in hilly and/or mountainous areas, \
+	they have a differing societal structure than the Flatland Zorren having a more feudal social structure, like the Flatland Zorren, \
+	the Highland Zorren have also only recently been hired by the Trans-Stellar Corporations, but thanks to the different social structure they seem to have adjusted better to their new lives. \
+	Though similar fox-like beings have been seen they are different than the Zorren."
+/* VOREStation Removal
+	cold_level_1 = 200 //Default 260
+	cold_level_2 = 140 //Default 200
+	cold_level_3 = 80 //Default 120
+
+	heat_level_1 = 330 //Default 360
+	heat_level_2 = 380 //Default 400
+	heat_level_3 = 800 //Default 1000
+*/
+	spawn_flags = SPECIES_CAN_JOIN
+	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+	flesh_color = "#AFA59E"
+	base_color = "#333333"
+	color_mult = 1
+
+	heat_discomfort_strings = list(
+		"Your fur prickles in the heat.",
+		"You feel uncomfortably warm.",
+		"Your overheated skin itches."
+		)
+
+/datum/species/fl_zorren
+	name = "Flatland Zorren"
+	name_plural = "Zorren"
+	icobase = 'icons/mob/human_races/r_fennec.dmi'
+	deform = 'icons/mob/human_races/r_def_fennec.dmi'
+	tail = "tail"
+	icobase_tail = 1
+	//primitive_form = /mob/living/carbon/monkey/tajara //We don't have fennec-monkey sprites.
+	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
+	num_alternate_languages = 2
+	secondary_langs = list("Siik'tajr")
+	name_language = "Siik'tajr"
+	egg_type = "Tajaran" //Placeholder.
+
+	min_age = 17
+	max_age = 80
+
+	blurb = "The fox-like Zorren are native to Virgo-Prime, however there are two distinct varieties of Zorren one with large ears and shorter fur, and the other with longer fur that is a bit more vibrant.  \
+	The long-eared, short-furred Zorren have come to be known as Flatland Zorren as that is where most of their settlements are located. \
+	The Flatland Zorren are somewhat tribal and shamanistic as they have only recently started to be hired by the Trans-Stellar Corporations. \
+	The other variety of Zorren are known as Highland Zorren as they frequently settle in hilly and/or mountainous areas, \
+	they have a differing societal structure than the Flatland Zorren having a more feudal social structure, like the Flatland Zorren, \
+	the Highland Zorren have also only recently been hired by the Trans-Stellar Corporations, but thanks to the different social structure they seem to have adjusted better to their new lives. \
+	Though similar fox-like beings have been seen they are different than the Zorren."
+/* VOREStation Removal
+	cold_level_1 = 280 //Default 260 - Lower is better
+	cold_level_2 = 220 //Default 200
+	cold_level_3 = 130 //Default 120
+
+	heat_level_1 = 430 //Default 360 - Higher is better
+	heat_level_2 = 500 //Default 400
+	heat_level_3 = 1100 //Default 1000
+*/
+	spawn_flags = SPECIES_CAN_JOIN
+	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+
+	flesh_color = "#AFA59E"
+	base_color = "#333333"
+	color_mult = 1
+
+	heat_discomfort_strings = list(
+		"Your fur prickles in the heat.",
+		"You feel uncomfortably warm.",
+		"Your overheated skin itches."
+		)
 
 
 
