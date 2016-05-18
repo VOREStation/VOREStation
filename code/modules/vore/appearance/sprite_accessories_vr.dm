@@ -139,17 +139,20 @@
 	icon_state = "bear"
 	do_colouration = 1
 
+/datum/sprite_accessory/ears/squirrelhc
 	name = "squirrel, colorable"
 	desc = ""
 	icon_state = "squirrel"
 	do_colouration = 1
 
+/datum/sprite_accessory/ears/kittyhc
 	name = "kitty, colorable"
 	desc = ""
 	icon_state = "kitty"
 	do_colouration = 1
 	extra_overlay = "kittyinner"
 
+/datum/sprite_accessory/ears/bunnyhc
 	name = "bunny, colorable"
 	desc = ""
 	icon_state = "bunny"
