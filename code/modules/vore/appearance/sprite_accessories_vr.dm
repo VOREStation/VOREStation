@@ -573,7 +573,7 @@
 /datum/sprite_accessory/tail/taur
 	name = "You should not see this..."
 	icon = 'icons/mob/vore/taurs_vr.dmi'
-	do_colouration = ICON_ADD  // In fact, it should use tail color!
+	do_colouration = ICON_MULTIPLY  // In fact, it should use tail color!
 
 /datum/sprite_accessory/tail/taur/wolf
 	name = "Wolf"
