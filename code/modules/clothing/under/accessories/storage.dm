@@ -76,7 +76,7 @@
 	slots = 5
 
 /obj/item/clothing/accessory/storage/brown_drop_pouches
-	name = "black drop pouches"
+	name = "brown drop pouches"
 	gender = PLURAL
 	desc = "Worn brownish synthcotton bags to hold whatever you need, but cannot hold in hands."
 	icon_state = "thigh_brown"
