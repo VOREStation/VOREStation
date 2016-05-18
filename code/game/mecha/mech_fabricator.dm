@@ -103,7 +103,8 @@
 		var/list/T = list()
 		for(var/A in all_robolimbs)
 			var/datum/robolimb/R = all_robolimbs[A]
-			T += list(list("id" = A, "company" = R.company))
+			if(!R.unavailable_to_produce) //VOREStation Edit
+				T += list(list("id" = A, "company" = R.company))
 		data["manufacturers"] = T
 		data["manufacturer"] = manufacturer
 	data["materials"] = get_materials()
