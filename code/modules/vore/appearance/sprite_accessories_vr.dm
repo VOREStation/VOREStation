@@ -43,23 +43,23 @@
 	icon_state = "squirrel-red"
 
 /datum/sprite_accessory/ears/squirrel
-	name = "squirrel, tail-colored"
+	name = "squirrel, colorable"
 	desc = ""
 	icon_state = "squirrel"
-	do_colouration = ICON_MULTIPLY
+	do_colouration = ICON_ADD
 
 /datum/sprite_accessory/ears/kitty
-	name = "kitty, tail-colored"
+	name = "kitty, colorable"
 	desc = ""
 	icon_state = "kitty"
-	do_colouration = ICON_MULTIPLY
+	do_colouration = ICON_ADD
 	extra_overlay = "kittyinner"
 
 /datum/sprite_accessory/ears/bunny
-	name = "bunny, tail-colored"
+	name = "bunny, colorable"
 	desc = ""
 	icon_state = "bunny"
-	do_colouration = ICON_MULTIPLY
+	do_colouration = ICON_ADD
 
 /datum/sprite_accessory/ears/bunny_white
 	name = "bunny, white"
@@ -72,10 +72,10 @@
 	icon_state = "bear-brown"
 
 /datum/sprite_accessory/ears/bear
-	name = "bear, tail-colored"
+	name = "bear, colorable"
 	desc = ""
 	icon_state = "bear"
-	do_colouration = ICON_MULTIPLY
+	do_colouration = ICON_ADD
 
 /datum/sprite_accessory/ears/wolf_grey
 	name = "wolf, grey"
@@ -93,10 +93,10 @@
 	icon_state = "wolf-wise"
 
 /datum/sprite_accessory/ears/wolf
-	name = "wolf, tail-colored"
+	name = "wolf, colorable"
 	desc = ""
 	icon_state = "wolf"
-	do_colouration = ICON_MULTIPLY
+	do_colouration = ICON_ADD
 	extra_overlay = "wolfinner"
 
 /datum/sprite_accessory/ears/mouse_grey
@@ -105,10 +105,10 @@
 	icon_state = "mouse-grey"
 
 /datum/sprite_accessory/ears/mouse
-	name = "mouse, tail-colored"
+	name = "mouse, colorable"
 	desc = ""
 	icon_state = "mouse"
-	do_colouration = ICON_MULTIPLY
+	do_colouration = ICON_ADD
 	extra_overlay = "mouseinner"
 
 /datum/sprite_accessory/ears/bee
@@ -197,42 +197,42 @@
 	icon_state = "squirrel-red"
 
 /datum/sprite_accessory/tail/squirrel
-	name = "squirrel, tail-colored"
+	name = "squirrel, colorable"
 	desc = ""
 	icon_state = "squirrel"
-	do_colouration = ICON_MULTIPLY
+	do_colouration = ICON_ADD
 
 /datum/sprite_accessory/tail/kitty
-	name = "kitty, tail-colored, downwards"
+	name = "kitty, colorable, downwards"
 	desc = ""
 	icon_state = "kittydown"
-	do_colouration = ICON_MULTIPLY
+	do_colouration = ICON_ADD
 
 /datum/sprite_accessory/tail/kittyup
-	name = "kitty, tail-colored, upwards"
+	name = "kitty, colorable, upwards"
 	desc = ""
 	icon_state = "kittyup"
-	do_colouration = ICON_MULTIPLY
+	do_colouration = ICON_ADD
 
 /datum/sprite_accessory/tail/tiger_white
-	name = "tiger, tail-colored, white stripes"
+	name = "tiger, colorable, white stripes"
 	desc = ""
 	icon_state = "tiger"
-	do_colouration = ICON_MULTIPLY
+	do_colouration = ICON_ADD
 	extra_overlay = "tigerinnerwhite"
 
 /datum/sprite_accessory/tail/tiger_black
-	name = "tiger, tail-colored, black stripes"
+	name = "tiger, colorable, black stripes"
 	desc = ""
 	icon_state = "tiger"
-	do_colouration = ICON_MULTIPLY
+	do_colouration = ICON_ADD
 	extra_overlay = "tigerinnerblack"
 
 /datum/sprite_accessory/tail/stripey
-	name = "stripey taj, tail-colored"
+	name = "stripey taj, colorable"
 	desc = ""
 	icon_state = "stripeytail"
-	do_colouration = ICON_MULTIPLY
+	do_colouration = ICON_ADD
 
 /datum/sprite_accessory/tail/stripeytail_brown
 	name = "stripey taj, brown"
@@ -240,10 +240,10 @@
 	icon_state = "stripeytail-brown"
 
 /datum/sprite_accessory/tail/bunny
-	name = "bunny, tail-colored"
+	name = "bunny, colorable"
 	desc = ""
 	icon_state = "bunny"
-	do_colouration = ICON_MULTIPLY
+	do_colouration = ICON_ADD
 
 /datum/sprite_accessory/tail/bear_brown
 	name = "bear, brown"
@@ -251,10 +251,10 @@
 	icon_state = "bear-brown"
 
 /datum/sprite_accessory/tail/bear
-	name = "bear, tail-colored"
+	name = "bear, colorable"
 	desc = ""
 	icon_state = "bear"
-	do_colouration = ICON_MULTIPLY
+	do_colouration = ICON_ADD
 
 /datum/sprite_accessory/tail/wolf_grey
 	name = "wolf, grey"
@@ -277,10 +277,10 @@
 	icon_state = "wolf"
 
 /datum/sprite_accessory/tail/wolf
-	name = "wolf, tail-colored"
+	name = "wolf, colorable"
 	desc = ""
 	icon_state = "wolf"
-	do_colouration = ICON_MULTIPLY
+	do_colouration = ICON_ADD
 	extra_overlay = "wolfinner"
 
 /datum/sprite_accessory/tail/mouse_grey
@@ -294,10 +294,10 @@
 	icon_state = "crossfox"
 
 /datum/sprite_accessory/tail/mouse
-	name = "mouse, tail-colored"
+	name = "mouse, colorable"
 	desc = ""
 	icon_state = "mouse"
-	do_colouration = ICON_MULTIPLY
+	do_colouration = ICON_ADD
 	extra_overlay = "mouseinner"
 
 /datum/sprite_accessory/tail/bee
@@ -471,94 +471,94 @@
 
 
 /datum/sprite_accessory/tail/special/unathihc
-	name = "unathi tail, tail-colored"
+	name = "unathi tail, colorable"
 	desc = ""
 	icon_state = "sogtail_hc_s"
-	do_colouration = ICON_MULTIPLY
+	do_colouration = ICON_ADD
 
 /datum/sprite_accessory/tail/special/tajaranhc
-	name = "tajaran tail, tail-colored"
+	name = "tajaran tail, colorable"
 	desc = ""
 	icon_state = "tajtail_hc_s"
-	do_colouration = ICON_MULTIPLY
+	do_colouration = ICON_ADD
 
 /datum/sprite_accessory/tail/special/sergalhc
-	name = "sergal tail, tail-colored"
+	name = "sergal tail, colorable"
 	desc = ""
 	icon_state = "sergtail_hc_s"
-	do_colouration = ICON_MULTIPLY
+	do_colouration = ICON_ADD
 
 /datum/sprite_accessory/tail/special/akulahc
-	name = "akula tail, tail-colored"
+	name = "akula tail, colorable"
 	desc = ""
 	icon_state = "sharktail_hc_s"
-	do_colouration = ICON_MULTIPLY
+	do_colouration = ICON_ADD
 
 /datum/sprite_accessory/tail/special/nevreanhc
-	name = "nevrean tail, tail-colored"
+	name = "nevrean tail, colorable"
 	desc = ""
 	icon_state = "nevreantail_hc_s"
-	do_colouration = ICON_MULTIPLY
+	do_colouration = ICON_ADD
 
 /datum/sprite_accessory/tail/special/foxhc
 	name = "highlander zorren tail, hail colored"
 	desc = ""
 	icon_state = "foxtail_hc_s"
-	do_colouration = ICON_MULTIPLY
+	do_colouration = ICON_ADD
 
 /datum/sprite_accessory/tail/special/fennechc
-	name = "flatland zorren tail, tail-colored"
+	name = "flatland zorren tail, colorable"
 	desc = ""
 	icon_state = "fentail_hc_s"
-	do_colouration = ICON_MULTIPLY
+	do_colouration = ICON_ADD
 
 /datum/sprite_accessory/tail/special/armalishc
 	name = "armalis tail, hail colored"
 	desc = ""
 	icon_state = "armalis_tail_humanoid_hc_s"
-	do_colouration = ICON_MULTIPLY
+	do_colouration = ICON_ADD
 
 /datum/sprite_accessory/tail/special/xenodronehc
 	name = "xenomorph drone tail"
 	desc = ""
 	icon_state = "xenos_drone_tail_hc_s"
-	do_colouration = ICON_MULTIPLY
+	do_colouration = ICON_ADD
 
 /datum/sprite_accessory/tail/special/xenosentinelhc
 	name = "xenomorph sentinel tail"
 	desc = ""
 	icon_state = "xenos_sentinel_tail_hc_s"
-	do_colouration = ICON_MULTIPLY
+	do_colouration = ICON_ADD
 
 /datum/sprite_accessory/tail/special/xenohunterhc
 	name = "xenomorph hunter tail"
 	desc = ""
 	icon_state = "xenos_hunter_tail_hc_s"
-	do_colouration = ICON_MULTIPLY
+	do_colouration = ICON_ADD
 
 /datum/sprite_accessory/tail/special/xenoqueenhc
 	name = "xenomorph queen tail"
 	desc = ""
 	icon_state = "xenos_queen_tail_hc_s"
-	do_colouration = ICON_MULTIPLY
+	do_colouration = ICON_ADD
 
 /datum/sprite_accessory/tail/special/monkeyhc
-	name = "monkey tail, tail-colored"
+	name = "monkey tail, colorable"
 	desc = ""
 	icon_state = "chimptail_hc_s"
-	do_colouration = ICON_MULTIPLY
+	do_colouration = ICON_ADD
 
 /datum/sprite_accessory/tail/special/seromitailhc
 	name = "seromi tail"
 	desc = ""
 	icon_state = "seromitail_hc_s"
-	do_colouration = ICON_MULTIPLY
+	do_colouration = ICON_ADD
 
 /datum/sprite_accessory/tail/special/seromitailfeatheredhc
 	name = "seromi tail w/ feathers"
 	desc = ""
 	icon_state = "seromitail_feathers_hc_s"
-	do_colouration = ICON_MULTIPLY
+	do_colouration = ICON_ADD
 
 /*
 ////////////////////////////
@@ -573,7 +573,7 @@
 /datum/sprite_accessory/tail/taur
 	name = "You should not see this..."
 	icon = 'icons/mob/vore/taurs_vr.dmi'
-	do_colouration = ICON_MULTIPLY  // In fact, it should use tail color!
+	do_colouration = ICON_ADD  // In fact, it should use tail color!
 
 /datum/sprite_accessory/tail/taur/wolf
 	name = "Wolf"
