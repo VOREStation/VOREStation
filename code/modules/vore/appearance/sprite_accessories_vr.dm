@@ -492,7 +492,7 @@
 	do_colouration = 1
 
 /datum/sprite_accessory/tail/special/foxhc
-	name = "highlander zorren tail, hail colored"
+	name = "highlander zorren tail, colorable"
 	desc = ""
 	icon_state = "foxtail_hc_s"
 	do_colouration = 1
@@ -504,49 +504,49 @@
 	do_colouration = 1
 
 /datum/sprite_accessory/tail/special/armalishc
-	name = "armalis tail, hail colored"
+	name = "armalis tail, colorable"
 	desc = ""
 	icon_state = "armalis_tail_humanoid_hc_s"
 	do_colouration = 1
 
 /datum/sprite_accessory/tail/special/xenodronehc
-	name = "xenomorph drone tail"
+	name = "xenomorph drone tail, colorable"
 	desc = ""
 	icon_state = "xenos_drone_tail_hc_s"
 	do_colouration = 1
 
 /datum/sprite_accessory/tail/special/xenosentinelhc
-	name = "xenomorph sentinel tail"
+	name = "xenomorph sentinel tail, colorable"
 	desc = ""
 	icon_state = "xenos_sentinel_tail_hc_s"
 	do_colouration = 1
 
 /datum/sprite_accessory/tail/special/xenohunterhc
-	name = "xenomorph hunter tail"
+	name = "xenomorph hunter tail, colorable"
 	desc = ""
 	icon_state = "xenos_hunter_tail_hc_s"
 	do_colouration = 1
 
 /datum/sprite_accessory/tail/special/xenoqueenhc
-	name = "xenomorph queen tail"
+	name = "xenomorph queen tail, colorable"
 	desc = ""
 	icon_state = "xenos_queen_tail_hc_s"
 	do_colouration = 1
 
 /datum/sprite_accessory/tail/special/monkeyhc
-	name = "monkey tail, colorable"
+	name = "monkey tail, colorable, colorable"
 	desc = ""
 	icon_state = "chimptail_hc_s"
 	do_colouration = 1
 
 /datum/sprite_accessory/tail/special/seromitailhc
-	name = "seromi tail"
+	name = "seromi tail, colorable"
 	desc = ""
 	icon_state = "seromitail_hc_s"
 	do_colouration = 1
 
 /datum/sprite_accessory/tail/special/seromitailfeatheredhc
-	name = "seromi tail w/ feathers"
+	name = "seromi tail w/ feathers, colorable"
 	desc = ""
 	icon_state = "seromitail_feathers_hc_s"
 	do_colouration = 1
