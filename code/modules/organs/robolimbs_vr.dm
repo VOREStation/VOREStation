@@ -8,4 +8,4 @@
 	icon = 'icons/mob/human_races/cyberlimbs/kitsuhana.dmi'
 	includes_tail = 1
 	unavailable_to_produce = 1
-	//unavailable_at_chargen = 1
+	unavailable_at_chargen = 1

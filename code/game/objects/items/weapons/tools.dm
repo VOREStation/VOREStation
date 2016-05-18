@@ -441,6 +441,7 @@
 				return ..()
 		else
 			user << "<span class='notice'>Nothing to fix!</span>"
+			S.update_wounds()
 		return
 	return ..()
 

@@ -102,6 +102,11 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	S["digestable"] >> digestable
 	S["belly_prefs"] >> belly_prefs
 
+	if(isnull(digestable))
+		digestable = 1
+	if(isnull(belly_prefs))
+		belly_prefs = list()
+
 	return 1
 
 /datum/vore_preferences/proc/save_vore()
