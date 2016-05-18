@@ -459,17 +459,6 @@
 	desc = ""
 	icon_state = "seromitail_feathers_s"
 
-////////////////////////////////////////////////////////////////////////////////////////////
-//////CK///Alright, here's the deal. Setting it to ICON_MULTIPLY Will allow you to///CK/////
-//////CK///Set it to whatever tail-color you wish. Although, for it to /truely/ be///CK/////
-//////CK///The tail color it needs to be greyscale.  Seeing as I don't have enough///CK/////
-//////CK///Time to do this at the moment I hope someone will do it later...   I've///CK/////
-//////CK///Placed hc icon files in the species_tails_vr to be edited. Some of them///CK/////
-//////CK///Are already grayscale See Fox tail and Fennec  But the majority  aren't///CK/////
-////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
 /datum/sprite_accessory/tail/special/unathihc
 	name = "unathi tail, colorable"
 	desc = ""
