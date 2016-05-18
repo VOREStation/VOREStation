@@ -7276,7 +7276,7 @@
 "cJV" = (/obj/machinery/light{dir = 8; icon_state = "tube1"; pixel_y = 0},/turf/simulated/floor/tiled,/area/awaymission/gateway)
 "cJW" = (/obj/machinery/gateway{dir = 8},/turf/simulated/floor/tiled/dark,/area/awaymission/gateway)
 "cJX" = (/obj/machinery/gateway/centerstation,/turf/simulated/floor/tiled/dark,/area/awaymission/gateway)
-"cJY" = (/obj/machinery/gateway{dir = 4},/turf/unsimulated/floor{dir = 2; icon_state = "dark"},/area/awaymission/gateway)
+"cJY" = (/obj/machinery/gateway{dir = 4},/turf/simulated/floor/tiled/dark,/area/awaymission/gateway)
 "cJZ" = (/obj/machinery/light{dir = 4; icon_state = "tube1"},/turf/simulated/floor/tiled,/area/awaymission/gateway)
 "cKa" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; pixel_y = 0},/obj/effect/decal/cleanable/dirt,/turf/simulated/floor,/area/maintenance/evahallway)
 "cKb" = (/turf/simulated/floor,/area/maintenance/evahallway)
