@@ -69,10 +69,11 @@
 /mob/living/simple_animal/New()
 	..()
 	verbs -= /mob/verb/observe
+	verbs += /mob/living/proc/animal_nom
 
 /mob/living/simple_animal/Login()
 	if(src && src.client)
-		src.client.screen = list()
+		// src.client.screen = list() - Causes Runtime, client.screen can't be list.
 		src.client.screen += src.client.void
 	..()
 
