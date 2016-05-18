@@ -6,8 +6,7 @@ var/datum/robolimb/basic_robolimb
 	basic_robolimb = new()
 	for(var/limb_type in typesof(/datum/robolimb))
 		var/datum/robolimb/R = new limb_type()
-		if(!R.unavailable_to_produce) //VOREStation Edit
-			all_robolimbs[R.company] = R
+		all_robolimbs[R.company] = R
 		if(!R.unavailable_at_chargen)
 			chargen_robolimbs[R.company] = R
 

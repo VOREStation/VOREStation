@@ -41,7 +41,10 @@
 
 	var/is_synth = isSynthetic()
 	if(!(skipjumpsuit && skipface))
-		if(is_synth)
+		if(src.custom_species)
+			msg += ", a <b>[src.custom_species]</b>"
+
+		else if(is_synth)
 			var/use_gender = "a synthetic"
 			if(gender == MALE)
 				use_gender = "an android"
@@ -50,8 +53,6 @@
 
 			msg += ", <b><font color='#555555'>[use_gender]!</font></b>"
 
-		else if(src.custom_species)
-			msg += ", a <b>[src.custom_species]</b>"
 		else if(species.name != "Human")
 			msg += ", <b><font color='[species.get_flesh_colour(src)]'>\a [species.get_examine_name()]!</font></b>"
 
