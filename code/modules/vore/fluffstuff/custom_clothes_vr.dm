@@ -465,6 +465,27 @@
 	icon_override = 'icons/mob/head.dmi'
 	item_state = "hoscap"
 
+/obj/item/weapon/storage/belt/utility/fluff/vulpine
+	name = "vulpine belt"
+	desc = "A tool-belt in Atmos colours."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "vulpine_belt"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "vulpine_belt"
+
+	storage_slots = 9
+	New()
+		..()
+		new /obj/item/weapon/screwdriver(src)
+		new /obj/item/weapon/wrench(src)
+		new /obj/item/weapon/weldingtool(src)
+		new /obj/item/weapon/crowbar(src)
+		new /obj/item/weapon/wirecutters(src)
+		new /obj/item/device/multitool(src)
+		new /obj/item/stack/cable_coil(src, 30, "red")
+		new /obj/item/stack/cable_coil(src, 30, "green")
 
 // molenar:Giliana Gamish
 /obj/item/clothing/suit/storage/toggle/labcoat/fluff/molenar
