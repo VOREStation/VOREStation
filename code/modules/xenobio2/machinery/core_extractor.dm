@@ -6,6 +6,8 @@
 /obj/machinery/slime/extractor
 	name = "Slime extractor"
 	desc = "A machine for cutting up slimes to get to their cores."
+	icon = 'icons/obj/xenoarchaeology.dmi'
+	icon_state = "scanner_0old"
 	density = 1
 	anchored = 1
 	circuit = /obj/item/weapon/circuitboard/slimeextractor
@@ -94,18 +96,20 @@
 	inuse = 1
 	update_light_color()
 	spawn(30)
+		icon_state = "scanner_1old"
 		for(var/i=1 to occupant.cores)
-			var/obj/item/slime/core/C = new(src)
-			C.slimetraits = occupant.traitdat
+			var/obj/item/xenoproduct/slime/core/C = new(src)
+			C.traits = occupant.traitdat
 			
-			C.create_reagents(C.slimetraits.traits[TRAIT_XENO_CHEMVOL])
+			C.create_reagents(C.traits.traits[TRAIT_XENO_CHEMVOL])
 			for(var/reagent in occupant.traitdat.chems.reagents)
 				var/amount = occupant.traitdat.chems.reagents[reagent]
 				C.reagents.add_reagent(reagent, amount)
 				
-			C.color = C.slimetraits.traits[TRAIT_XENO_COLOR]
+			C.color = C.traits.traits[TRAIT_XENO_COLOR]
 			
 		spawn(30)
+			icon_state = "scanner_0old"
 			qdel(occupant)
 			inuse = 0
 			eject_contents()

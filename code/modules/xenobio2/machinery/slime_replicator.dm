@@ -4,12 +4,14 @@
 	To create more of these cores, stick the slime core in the extractor.
 */
 /obj/machinery/slime/replicator
-	name = "Slime replicator"
+	name = "slime core growth apparatus"
 	desc = "A machine for creating slimes from cores. Amazing!"
+	icon = 'icons/obj/xenoarchaeology.dmi'
+	icon_state = "restruct_0"
 	density = 1
 	anchored = 1
 	circuit = /obj/item/weapon/circuitboard/slimereplicator
-	var/obj/item/slime/core/core = null
+	var/obj/item/xenoproduct/slime/core/core = null
 	var/inuse
 	var/occupiedcolor = "#22FF22"
 	var/emptycolor = "#FF2222"
@@ -31,7 +33,7 @@
 		default_deconstruction_crowbar(user, W)
 		return
 
-	var/obj/item/slime/core/G = W
+	var/obj/item/xenoproduct/slime/core/G = W
 	
 	if(!istype(G))
 		return ..()
@@ -53,7 +55,7 @@
 	else
 		set_light(4, 4, emptycolor)
 		
-/obj/machinery/slime/replicator/proc/extract_cores()
+/obj/machinery/slime/replicator/proc/replicate_slime()
 	if(!src.core)
 		src.visible_message("\icon[src] [src] pings unhappily.")
 	else if(inuse)
@@ -61,14 +63,15 @@
 		
 	inuse = 1
 	update_light_color()
+	icon_state = "restruct_1"
 	spawn(30)
-		var/mob/living/simple_animal/xeno/slime/S = new()
-		S.traitdat = core.slimetraits
-		S.forceMove(src)
+		var/mob/living/simple_animal/xeno/slime/S = new(src)
+		S.traitdat = core.traits
+		qdel(core)
 		spawn(30)
-			qdel(core)
 			inuse = 0
 			eject_contents()
+			icon_state = "restruct_0"
 			update_light_color()
 			
 /obj/machinery/slime/replicator/proc/eject_contents()
@@ -77,6 +80,9 @@
 	if(core)
 		core.forceMove(loc)
 		core = null
+		
+//Here lies the UI
+
 	
 //Circuit board below,
 /obj/item/weapon/circuitboard/slimereplicator

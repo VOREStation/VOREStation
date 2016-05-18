@@ -30,6 +30,7 @@ Also includes Life and New
 	var/mut_max = 100000
 	var/colored = 1
 	var/maleable = MIN_MALEABLE //How easy is it to manipulate traitdat.traits after it's alive.
+	var/stability = 0	//Used in gene manipulation
 	
 	//Traits that might not be maleable.
 	var/list/chemreact = list()
@@ -87,6 +88,9 @@ Also includes Life and New
 	nutrition = 350
 	for(var/R in default_chems)
 		traitdat.chems.reagents.add_reagent("[R]", default_chems[R])
+		
+	traitdat.source = name
+	
 	if(!health)
 		stat = DEAD
 		

@@ -1,0 +1,29 @@
+<!-- 
+Title: Injector Control Console UI
+Used In File(s): \code\modules\xenobio2\machines\injector_computer.dm
+ -->
+ 
+{{if data.activity}}
+	Scanning...
+{{else}}
+	<h3>Injector Sensor Readings: </h3>
+	<div class="item">
+	{{if data.instability}}
+		<div class="itemLabel">
+			<div class="itemContent">
+				Instability: <br>
+				{{:data.instability}}%
+			</div>
+		</div>
+	{{else}}
+		<div class="itemLabel">
+			<div class="itemContent">
+				Instability: <br>
+				<font = '#FF0000'><b>ERRR</b></font>% <br>Please contact your local technician for assistance.
+			</div>
+		</div><br>
+	{{/if}}
+	</div>
+	<h3> Controls </h3>
+	<div class="item">
+{{/if}}
