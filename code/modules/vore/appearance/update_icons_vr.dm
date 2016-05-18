@@ -14,6 +14,15 @@
 
 
 /mob/living/carbon/human/proc/get_tail_image()
+	//If you are FBP with tail style
+	if(full_prosthetic && ("groin" in organs_by_name) && organs_by_name["groin"])
+		var/obj/item/organ/external/groin/G = organs_by_name["groin"]
+		var/datum/robolimb/R = all_robolimbs[G.model]
+		if(R.includes_tail)
+			var/icon/tail_s = new/icon("icon" = R.icon, "icon_state" = "tail")
+			return image(tail_s)
+
+	//If you have a custom tail selected
 	if(tail_style && !(wear_suit && wear_suit.flags_inv & HIDETAIL && !isTaurTail(tail_style)))
 		var/icon/tail_s = new/icon("icon" = tail_style.icon, "icon_state" = tail_style.icon_state)
 		if(tail_style.do_colouration)
