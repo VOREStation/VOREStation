@@ -28,3 +28,11 @@
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "serg_fairytail"
 		species_allowed = list("Sergal")
+
+	species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren") //This lets all races use the default hairstyles.
+
+	bald
+		name = "Bald"
+		icon_state = "bald"
+		gender = MALE
+		species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren") //Lets all the races be bald if they want.

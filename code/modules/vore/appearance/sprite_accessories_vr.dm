@@ -43,25 +43,6 @@
 	desc = ""
 	icon_state = "squirrel-red"
 
-/datum/sprite_accessory/ears/squirrel
-	name = "squirrel, colorable"
-	desc = ""
-	icon_state = "squirrel"
-	do_colouration = 1
-
-/datum/sprite_accessory/ears/kitty
-	name = "kitty, colorable"
-	desc = ""
-	icon_state = "kitty"
-	do_colouration = 1
-	extra_overlay = "kittyinner"
-
-/datum/sprite_accessory/ears/bunny
-	name = "bunny, colorable"
-	desc = ""
-	icon_state = "bunny"
-	do_colouration = 1
-
 /datum/sprite_accessory/ears/bunny_white
 	name = "bunny, white"
 	desc = ""
@@ -71,12 +52,6 @@
 	name = "bear, brown"
 	desc = ""
 	icon_state = "bear-brown"
-
-/datum/sprite_accessory/ears/bear
-	name = "bear, colorable"
-	desc = ""
-	icon_state = "bear"
-	do_colouration = 1
 
 /datum/sprite_accessory/ears/wolf_grey
 	name = "wolf, grey"
@@ -93,24 +68,10 @@
 	desc = ""
 	icon_state = "wolf-wise"
 
-/datum/sprite_accessory/ears/wolf
-	name = "wolf, colorable"
-	desc = ""
-	icon_state = "wolf"
-	do_colouration = 1
-	extra_overlay = "wolfinner"
-
 /datum/sprite_accessory/ears/mouse_grey
 	name = "mouse, grey"
 	desc = ""
 	icon_state = "mouse-grey"
-
-/datum/sprite_accessory/ears/mouse
-	name = "mouse, colorable"
-	desc = ""
-	icon_state = "mouse"
-	do_colouration = 1
-	extra_overlay = "mouseinner"
 
 /datum/sprite_accessory/ears/bee
 	name = "bee antennae"
@@ -126,6 +87,73 @@
 	name = "demon horns"
 	desc = ""
 	icon_state = "demon-horns1"
+
+/datum/sprite_accessory/ears/foxears
+	name = "highlander zorren ears"
+	desc = ""
+	icon_state = "foxears"
+
+/datum/sprite_accessory/ears/fenears
+	name = "flatland zorren ears"
+	desc = ""
+	icon_state = "fenears"
+
+/datum/sprite_accessory/ears/sergal
+	name = "Sergal ears"
+	icon_state = "serg_plain_s"
+
+/datum/sprite_accessory/ears/foxearshc
+	name = "highlander zorren ears, colorable"
+	desc = ""
+	icon_state = "foxearshc"
+	do_colouration = 1
+
+/datum/sprite_accessory/ears/fenearshc
+	name = "flatland zorren ears, colorable"
+	desc = ""
+	icon_state = "fenearshc"
+	do_colouration = 1
+
+/datum/sprite_accessory/ears/sergalhc
+	name = "Sergal ears, colorable"
+	icon_state = "serg_plain_s"
+	do_colouration = 1
+
+/datum/sprite_accessory/ears/mousehc
+	name = "mouse, colorable"
+	desc = ""
+	icon_state = "mouse"
+	do_colouration = 1
+	extra_overlay = "mouseinner"
+
+/datum/sprite_accessory/ears/wolfhc
+	name = "wolf, colorable"
+	desc = ""
+	icon_state = "wolf"
+	do_colouration = 1
+	extra_overlay = "wolfinner"
+
+/datum/sprite_accessory/ears/bearhc
+	name = "bear, colorable"
+	desc = ""
+	icon_state = "bear"
+	do_colouration = 1
+
+	name = "squirrel, colorable"
+	desc = ""
+	icon_state = "squirrel"
+	do_colouration = 1
+
+	name = "kitty, colorable"
+	desc = ""
+	icon_state = "kitty"
+	do_colouration = 1
+	extra_overlay = "kittyinner"
+
+	name = "bunny, colorable"
+	desc = ""
+	icon_state = "bunny"
+	do_colouration = 1
 
 // Special snowflake ears go below here.
 
