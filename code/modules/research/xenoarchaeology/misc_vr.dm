@@ -10,7 +10,6 @@
 
 	New()
 		..()
-		sleep(2)
 		new /obj/item/weapon/rig/hazmat(src)
 		return
 
@@ -22,5 +21,4 @@
 
 	New()
 		..()
-		sleep(2)
 		new /obj/item/device/binoculars(src)
