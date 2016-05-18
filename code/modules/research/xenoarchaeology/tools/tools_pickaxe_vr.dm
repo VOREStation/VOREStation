@@ -100,7 +100,7 @@
 
 /obj/item/weapon/pickaxe/excavationdrill
 	name = "excavation drill"
-	icon = 'icons/obj/xenoarchaeology.dmi'
+	icon = 'icons/obj/xenoarchaeology_vr.dmi'
 	icon_state = "excavationdrill"
 	item_state = "syringe_0"
 	excavation_amount = 15
