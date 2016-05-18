@@ -116,15 +116,12 @@ Don't use ranged mobs for vore mobs.
 		return
 
 	if(target_mob.lying && target_mob.size_multiplier >= min_size && target_mob.size_multiplier <= max_size && !(target_mob in prey_exclusions))
-		if(capacity)
-			var/check_size = target_mob.size_multiplier + fullness
-			if(check_size <= capacity)
-				animal_nom(target_mob)
-				target_mob = null
-		else
+		if(!capacity || (target_mob.size_multiplier + fullness) < capacity)
+			stance = HOSTILE_STANCE_EATING
+			stop_automated_movement = 1
 			animal_nom(target_mob)
-			target_mob = null
-
+			LoseTarget()
+			return
 	..()
 
 /mob/living/simple_animal/hostile/vore/death()

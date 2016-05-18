@@ -2,9 +2,9 @@
 	name = "alien hunter"
 	desc = "Hiss!"
 	icon = 'icons/mob/alien.dmi'
-	icon_state = "xenohunter"
-	icon_living = "xenohunter"
-	icon_dead = "xenohunter-dead"
+	icon_state = "alienh_running"
+	icon_living = "alienh_running"
+	icon_dead = "alienh_dead"
 	icon_gib = "gibbed-a"
 	response_help = "pokes"
 	response_disarm = "shoves"

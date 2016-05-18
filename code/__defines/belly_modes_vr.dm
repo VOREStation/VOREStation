@@ -12,3 +12,7 @@
 #define DM_TRANSFORM_MALE_EGG               "Transform (Male) (EGG)"
 #define DM_TRANSFORM_FEMALE_EGG             "Transform (Female) (EGG)"
 #define DM_EGG 								"Encase In Egg"
+
+
+// Stance for hostile mobs to be in while devouring someone.
+#define HOSTILE_STANCE_EATING	99
