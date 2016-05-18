@@ -10,70 +10,70 @@
 	amount_per_transfer_from_this = 5
 	volume = 50
 
-	on_reagent_change()
+/obj/item/weapon/reagent_containers/food/drinks/on_reagent_change()
 		return
 
-	attack_self(mob/user as mob)
-		if(!is_open_container())
-			open(user)
+/obj/item/weapon/reagent_containers/food/drinks/attack_self(mob/user as mob)
+	if(!is_open_container())
+		open(user)
 
-	proc/open(mob/user)
-		playsound(loc,'sound/effects/canopen.ogg', rand(10,50), 1)
-		user << "<span class='notice'>You open [src] with an audible pop!</span>"
-		flags |= OPENCONTAINER
+/obj/item/weapon/reagent_containers/food/drinks/proc/open(mob/user)
+	playsound(loc,'sound/effects/canopen.ogg', rand(10,50), 1)
+	user << "<span class='notice'>You open [src] with an audible pop!</span>"
+	flags |= OPENCONTAINER
 
-	attack(mob/M as mob, mob/user as mob, def_zone)
-		if(standard_feed_mob(user, M))
-			return
+/obj/item/weapon/reagent_containers/food/drinks/attack(mob/M as mob, mob/user as mob, def_zone)
+	if(standard_feed_mob(user, M))
+		return
 
-		return 0
+	return 0
 
-	afterattack(obj/target, mob/user, proximity)
-		if(!proximity) return
+/obj/item/weapon/reagent_containers/food/drinks/afterattack(obj/target, mob/user, proximity)
+	if(!proximity) return
 
-		if(standard_dispenser_refill(user, target))
-			return
-		if(standard_pour_into(user, target))
-			return
-		return ..()
+	if(standard_dispenser_refill(user, target))
+		return
+	if(standard_pour_into(user, target))
+		return
+	return ..()
 
-	standard_feed_mob(var/mob/user, var/mob/target)
-		if(!is_open_container())
-			user << "<span class='notice'>You need to open [src]!</span>"
-			return 1
-		return ..()
+/obj/item/weapon/reagent_containers/food/drinks/standard_feed_mob(var/mob/user, var/mob/target)
+	if(!is_open_container())
+		user << "<span class='notice'>You need to open [src]!</span>"
+		return 1
+	return ..()
 
-	standard_dispenser_refill(var/mob/user, var/obj/structure/reagent_dispensers/target)
-		if(!is_open_container())
-			user << "<span class='notice'>You need to open [src]!</span>"
-			return 1
-		return ..()
+/obj/item/weapon/reagent_containers/food/drinks/standard_dispenser_refill(var/mob/user, var/obj/structure/reagent_dispensers/target)
+	if(!is_open_container())
+		user << "<span class='notice'>You need to open [src]!</span>"
+		return 1
+	return ..()
 
-	standard_pour_into(var/mob/user, var/atom/target)
-		if(!is_open_container())
-			user << "<span class='notice'>You need to open [src]!</span>"
-			return 1
-		return ..()
+/obj/item/weapon/reagent_containers/food/drinks/standard_pour_into(var/mob/user, var/atom/target)
+	if(!is_open_container())
+		user << "<span class='notice'>You need to open [src]!</span>"
+		return 1
+	return ..()
 
-	self_feed_message(var/mob/user)
-		user << "<span class='notice'>You swallow a gulp from \the [src].</span>"
+/obj/item/weapon/reagent_containers/food/drinks/self_feed_message(var/mob/user)
+	user << "<span class='notice'>You swallow a gulp from \the [src].</span>"
 
-	feed_sound(var/mob/user)
-		playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), 1)
+/obj/item/weapon/reagent_containers/food/drinks/feed_sound(var/mob/user)
+	playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), 1)
 
-	examine(mob/user)
-		if(!..(user, 1))
-			return
-		if(!reagents || reagents.total_volume == 0)
-			user << "<span class='notice'>\The [src] is empty!</span>"
-		else if (reagents.total_volume <= volume * 0.25)
-			user << "<span class='notice'>\The [src] is almost empty!</span>"
-		else if (reagents.total_volume <= volume * 0.66)
-			user << "<span class='notice'>\The [src] is half full!</span>"
-		else if (reagents.total_volume <= volume * 0.90)
-			user << "<span class='notice'>\The [src] is almost full!</span>"
-		else
-			user << "<span class='notice'>\The [src] is full!</span>"
+/obj/item/weapon/reagent_containers/food/drinks/examine(mob/user)
+	if(!..(user, 1))
+		return
+	if(!reagents || reagents.total_volume == 0)
+		user << "<span class='notice'>\The [src] is empty!</span>"
+	else if (reagents.total_volume <= volume * 0.25)
+		user << "<span class='notice'>\The [src] is almost empty!</span>"
+	else if (reagents.total_volume <= volume * 0.66)
+		user << "<span class='notice'>\The [src] is half full!</span>"
+	else if (reagents.total_volume <= volume * 0.90)
+		user << "<span class='notice'>\The [src] is almost full!</span>"
+	else
+		user << "<span class='notice'>\The [src] is full!</span>"
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -108,9 +108,10 @@
 	icon_state = "milk"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
-	New()
-		..()
-		reagents.add_reagent("milk", 50)
+
+/obj/item/weapon/reagent_containers/food/drinks/milk/New()
+	..()
+	reagents.add_reagent("milk", 50)
 
 /obj/item/weapon/reagent_containers/food/drinks/soymilk
 	name = "SoyMilk"
@@ -118,18 +119,18 @@
 	icon_state = "soymilk"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
-	New()
-		..()
-		reagents.add_reagent("soymilk", 50)
+/obj/item/weapon/reagent_containers/food/drinks/soymilk/New()
+	..()
+	reagents.add_reagent("soymilk", 50)
 
 /obj/item/weapon/reagent_containers/food/drinks/coffee
 	name = "Robust Coffee"
 	desc = "Careful, the beverage you're about to enjoy is extremely hot."
 	icon_state = "coffee"
 	center_of_mass = list("x"=15, "y"=10)
-	New()
-		..()
-		reagents.add_reagent("coffee", 30)
+/obj/item/weapon/reagent_containers/food/drinks/coffee/New()
+	..()
+	reagents.add_reagent("coffee", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/tea
 	name = "Duke Purple Tea"
@@ -137,18 +138,19 @@
 	icon_state = "teacup"
 	item_state = "coffee"
 	center_of_mass = list("x"=16, "y"=14)
-	New()
-		..()
-		reagents.add_reagent("tea", 30)
+
+/obj/item/weapon/reagent_containers/food/drinks/tea/New()
+	..()
+	reagents.add_reagent("tea", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/ice
 	name = "Ice Cup"
 	desc = "Careful, cold ice, do not chew."
 	icon_state = "coffee"
 	center_of_mass = list("x"=15, "y"=10)
-	New()
-		..()
-		reagents.add_reagent("ice", 30)
+/obj/item/weapon/reagent_containers/food/drinks/ice/New()
+	..()
+	reagents.add_reagent("ice", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/h_chocolate
 	name = "Dutch Hot Coco"
@@ -156,19 +158,19 @@
 	icon_state = "hot_coco"
 	item_state = "coffee"
 	center_of_mass = list("x"=15, "y"=13)
-	New()
-		..()
-		reagents.add_reagent("hot_coco", 30)
+
+/obj/item/weapon/reagent_containers/food/drinks/h_chocolate/New()
+	..()
+	reagents.add_reagent("hot_coco", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/dry_ramen
 	name = "Cup Ramen"
 	desc = "Just add 10ml water, self heats! A taste that reminds you of your school years."
 	icon_state = "ramen"
 	center_of_mass = list("x"=16, "y"=11)
-	New()
-		..()
-		reagents.add_reagent("dry_ramen", 30)
-
+/obj/item/weapon/reagent_containers/food/drinks/dry_ramen/New()
+	..()
+	reagents.add_reagent("dry_ramen", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/sillycup
 	name = "Paper Cup"
@@ -177,13 +179,14 @@
 	possible_transfer_amounts = null
 	volume = 10
 	center_of_mass = list("x"=16, "y"=12)
-	New()
-		..()
-	on_reagent_change()
-		if(reagents.total_volume)
-			icon_state = "water_cup"
-		else
-			icon_state = "water_cup_e"
+/obj/item/weapon/reagent_containers/food/drinks/sillycup/New()
+	..()
+
+/obj/item/weapon/reagent_containers/food/drinks/sillycup/on_reagent_change()
+	if(reagents.total_volume)
+		icon_state = "water_cup"
+	else
+		icon_state = "water_cup_e"
 
 
 //////////////////////////drinkingglass and shaker//
