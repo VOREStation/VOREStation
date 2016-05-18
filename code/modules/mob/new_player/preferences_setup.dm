@@ -254,7 +254,7 @@
 		var/datum/sprite_accessory/tail/tail_meta = tail_styles_list[src.tail_style]
 		var/icon/tail_s = new/icon("icon" = tail_meta.icon, "icon_state" = tail_meta.icon_state)
 		if(tail_meta.do_colouration)
-			tail_s.Blend(rgb(src.r_tail, src.g_tail, src.b_tail), tail_meta.do_colouration)
+			tail_s.Blend(rgb(src.r_tail, src.g_tail, src.b_tail), tail_meta.color_blend_mode)
 		if(tail_meta.extra_overlay)
 			var/icon/overlay = new/icon("icon" = tail_meta.icon, "icon_state" = tail_meta.extra_overlay)
 			tail_s.Blend(overlay, ICON_OVERLAY)
@@ -317,7 +317,7 @@
 	if(ears_meta)
 		var/icon/ears_s = icon("icon" = ears_meta.icon, "icon_state" = ears_meta.icon_state)
 		if(ears_meta.do_colouration)
-			ears_s.Blend(rgb(src.r_hair, src.g_hair, src.b_hair), ears_meta.do_colouration)
+			ears_s.Blend(rgb(src.r_hair, src.g_hair, src.b_hair), ears_meta.color_blend_mode)
 		if(ears_meta.extra_overlay)
 			var/icon/overlay = new/icon("icon" = ears_meta.icon, "icon_state" = ears_meta.extra_overlay)
 			ears_s.Blend(overlay, ICON_OVERLAY)
