@@ -1,8 +1,12 @@
 var/datum/antagonist/renegade/renegades
 
 /datum/antagonist/renegade
+	id = MODE_RENEGADE
+	role_type = BE_RENEGADE
 	role_text = "Renegade"
 	role_text_plural = "Renegades"
+	bantype = "renegade"
+	restricted_jobs = list("AI", "Cyborg")
 	welcome_text = "Something's going to go wrong today, you can just feel it. You're paranoid, you've got a gun, and you're going to survive."
 	antag_text = "You are a <b>minor</b> antagonist! Within the rules, \
 		try to protect yourself and what's important to you. You aren't here to cause trouble, \
@@ -12,10 +16,8 @@ var/datum/antagonist/renegade/renegades
 		and before taking extreme actions, please try to also contact the administration! \
 		Think through your actions and make the roleplay immersive! <b>Please remember all \
 		rules aside from those without explicit exceptions apply to antagonists.</b>"
-
-	id = MODE_RENEGADE
 	flags = ANTAG_SUSPICIOUS | ANTAG_IMPLANT_IMMUNE | ANTAG_RANDSPAWN | ANTAG_VOTABLE
-	
+
 	hard_cap = 8
 	hard_cap_round = 12
 	initial_spawn_req = 2
