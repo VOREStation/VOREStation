@@ -25,8 +25,9 @@
 /datum/sprite_accessory/ears
 	name = "You should not see this..."
 	icon = 'icons/mob/vore/ears_vr.dmi'
-	do_colouration = 0 //Set to ICON_MULTIPLY to convert greyscale to the haircolor
+	do_colouration = 0 // Set to 1 to blend (ICON_ADD) hair color
 
+	var/color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
 	var/extra_overlay // Icon state of an additional overlay to blend in.
 	var/desc = "You should not see this..."
 
@@ -46,20 +47,20 @@
 	name = "squirrel, colorable"
 	desc = ""
 	icon_state = "squirrel"
-	do_colouration = ICON_ADD
+	do_colouration = 1
 
 /datum/sprite_accessory/ears/kitty
 	name = "kitty, colorable"
 	desc = ""
 	icon_state = "kitty"
-	do_colouration = ICON_ADD
+	do_colouration = 1
 	extra_overlay = "kittyinner"
 
 /datum/sprite_accessory/ears/bunny
 	name = "bunny, colorable"
 	desc = ""
 	icon_state = "bunny"
-	do_colouration = ICON_ADD
+	do_colouration = 1
 
 /datum/sprite_accessory/ears/bunny_white
 	name = "bunny, white"
@@ -75,7 +76,7 @@
 	name = "bear, colorable"
 	desc = ""
 	icon_state = "bear"
-	do_colouration = ICON_ADD
+	do_colouration = 1
 
 /datum/sprite_accessory/ears/wolf_grey
 	name = "wolf, grey"
@@ -96,7 +97,7 @@
 	name = "wolf, colorable"
 	desc = ""
 	icon_state = "wolf"
-	do_colouration = ICON_ADD
+	do_colouration = 1
 	extra_overlay = "wolfinner"
 
 /datum/sprite_accessory/ears/mouse_grey
@@ -108,7 +109,7 @@
 	name = "mouse, colorable"
 	desc = ""
 	icon_state = "mouse"
-	do_colouration = ICON_ADD
+	do_colouration = 1
 	extra_overlay = "mouseinner"
 
 /datum/sprite_accessory/ears/bee
@@ -174,8 +175,9 @@
 /datum/sprite_accessory/tail
 	name = "You should not see this..."
 	icon = 'icons/mob/vore/tails_vr.dmi'
-	do_colouration = 0 //Set to ICON_MULTIPLY to convert greyscale to the haircolor
+	do_colouration = 0 //Set to 1 to enable coloration using the tail color.
 
+	var/color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
 	var/extra_overlay // Icon state of an additional overlay to blend in.
 	var/show_species_tail = 0 // If false, do not render species' tail.
 	var/clothing_can_hide = 1 // If true, clothing with HIDETAIL hides it
@@ -200,39 +202,39 @@
 	name = "squirrel, colorable"
 	desc = ""
 	icon_state = "squirrel"
-	do_colouration = ICON_ADD
+	do_colouration = 1
 
 /datum/sprite_accessory/tail/kitty
 	name = "kitty, colorable, downwards"
 	desc = ""
 	icon_state = "kittydown"
-	do_colouration = ICON_ADD
+	do_colouration = 1
 
 /datum/sprite_accessory/tail/kittyup
 	name = "kitty, colorable, upwards"
 	desc = ""
 	icon_state = "kittyup"
-	do_colouration = ICON_ADD
+	do_colouration = 1
 
 /datum/sprite_accessory/tail/tiger_white
 	name = "tiger, colorable, white stripes"
 	desc = ""
 	icon_state = "tiger"
-	do_colouration = ICON_ADD
+	do_colouration = 1
 	extra_overlay = "tigerinnerwhite"
 
 /datum/sprite_accessory/tail/tiger_black
 	name = "tiger, colorable, black stripes"
 	desc = ""
 	icon_state = "tiger"
-	do_colouration = ICON_ADD
+	do_colouration = 1
 	extra_overlay = "tigerinnerblack"
 
 /datum/sprite_accessory/tail/stripey
 	name = "stripey taj, colorable"
 	desc = ""
 	icon_state = "stripeytail"
-	do_colouration = ICON_ADD
+	do_colouration = 1
 
 /datum/sprite_accessory/tail/stripeytail_brown
 	name = "stripey taj, brown"
@@ -243,7 +245,7 @@
 	name = "bunny, colorable"
 	desc = ""
 	icon_state = "bunny"
-	do_colouration = ICON_ADD
+	do_colouration = 1
 
 /datum/sprite_accessory/tail/bear_brown
 	name = "bear, brown"
@@ -254,7 +256,7 @@
 	name = "bear, colorable"
 	desc = ""
 	icon_state = "bear"
-	do_colouration = ICON_ADD
+	do_colouration = 1
 
 /datum/sprite_accessory/tail/wolf_grey
 	name = "wolf, grey"
@@ -280,7 +282,7 @@
 	name = "wolf, colorable"
 	desc = ""
 	icon_state = "wolf"
-	do_colouration = ICON_ADD
+	do_colouration = 1
 	extra_overlay = "wolfinner"
 
 /datum/sprite_accessory/tail/mouse_grey
@@ -297,7 +299,7 @@
 	name = "mouse, colorable"
 	desc = ""
 	icon_state = "mouse"
-	do_colouration = ICON_ADD
+	do_colouration = 1
 	extra_overlay = "mouseinner"
 
 /datum/sprite_accessory/tail/bee
@@ -463,91 +465,91 @@
 	name = "unathi tail, colorable"
 	desc = ""
 	icon_state = "sogtail_hc_s"
-	do_colouration = ICON_ADD
+	do_colouration = 1
 
 /datum/sprite_accessory/tail/special/tajaranhc
 	name = "tajaran tail, colorable"
 	desc = ""
 	icon_state = "tajtail_hc_s"
-	do_colouration = ICON_ADD
+	do_colouration = 1
 
 /datum/sprite_accessory/tail/special/sergalhc
 	name = "sergal tail, colorable"
 	desc = ""
 	icon_state = "sergtail_hc_s"
-	do_colouration = ICON_ADD
+	do_colouration = 1
 
 /datum/sprite_accessory/tail/special/akulahc
 	name = "akula tail, colorable"
 	desc = ""
 	icon_state = "sharktail_hc_s"
-	do_colouration = ICON_ADD
+	do_colouration = 1
 
 /datum/sprite_accessory/tail/special/nevreanhc
 	name = "nevrean tail, colorable"
 	desc = ""
 	icon_state = "nevreantail_hc_s"
-	do_colouration = ICON_ADD
+	do_colouration = 1
 
 /datum/sprite_accessory/tail/special/foxhc
 	name = "highlander zorren tail, hail colored"
 	desc = ""
 	icon_state = "foxtail_hc_s"
-	do_colouration = ICON_ADD
+	do_colouration = 1
 
 /datum/sprite_accessory/tail/special/fennechc
 	name = "flatland zorren tail, colorable"
 	desc = ""
 	icon_state = "fentail_hc_s"
-	do_colouration = ICON_ADD
+	do_colouration = 1
 
 /datum/sprite_accessory/tail/special/armalishc
 	name = "armalis tail, hail colored"
 	desc = ""
 	icon_state = "armalis_tail_humanoid_hc_s"
-	do_colouration = ICON_ADD
+	do_colouration = 1
 
 /datum/sprite_accessory/tail/special/xenodronehc
 	name = "xenomorph drone tail"
 	desc = ""
 	icon_state = "xenos_drone_tail_hc_s"
-	do_colouration = ICON_ADD
+	do_colouration = 1
 
 /datum/sprite_accessory/tail/special/xenosentinelhc
 	name = "xenomorph sentinel tail"
 	desc = ""
 	icon_state = "xenos_sentinel_tail_hc_s"
-	do_colouration = ICON_ADD
+	do_colouration = 1
 
 /datum/sprite_accessory/tail/special/xenohunterhc
 	name = "xenomorph hunter tail"
 	desc = ""
 	icon_state = "xenos_hunter_tail_hc_s"
-	do_colouration = ICON_ADD
+	do_colouration = 1
 
 /datum/sprite_accessory/tail/special/xenoqueenhc
 	name = "xenomorph queen tail"
 	desc = ""
 	icon_state = "xenos_queen_tail_hc_s"
-	do_colouration = ICON_ADD
+	do_colouration = 1
 
 /datum/sprite_accessory/tail/special/monkeyhc
 	name = "monkey tail, colorable"
 	desc = ""
 	icon_state = "chimptail_hc_s"
-	do_colouration = ICON_ADD
+	do_colouration = 1
 
 /datum/sprite_accessory/tail/special/seromitailhc
 	name = "seromi tail"
 	desc = ""
 	icon_state = "seromitail_hc_s"
-	do_colouration = ICON_ADD
+	do_colouration = 1
 
 /datum/sprite_accessory/tail/special/seromitailfeatheredhc
 	name = "seromi tail w/ feathers"
 	desc = ""
 	icon_state = "seromitail_feathers_hc_s"
-	do_colouration = ICON_ADD
+	do_colouration = 1
 
 /*
 ////////////////////////////
@@ -562,7 +564,8 @@
 /datum/sprite_accessory/tail/taur
 	name = "You should not see this..."
 	icon = 'icons/mob/vore/taurs_vr.dmi'
-	do_colouration = ICON_MULTIPLY  // In fact, it should use tail color!
+	do_colouration = 1 // Yes color, using tail color
+	color_blend_mode = ICON_MULTIPLY  // The sprites for taurs are designed for ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/taur/wolf
 	name = "Wolf"
