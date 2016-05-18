@@ -98,26 +98,6 @@
 	drill_verb = "clearing"
 	w_class = 3
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /obj/item/weapon/pickaxe/excavationdrill
 	name = "excavation drill"
 	icon = 'icons/obj/xenoarchaeology.dmi'
