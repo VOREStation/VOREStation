@@ -246,6 +246,7 @@ div.notice {
     width: 100%;
     margin: 4px 0 0 0;
     clear: both;
+	overflow: auto;
 }
 
 .itemContentNarrow, .itemContent {
@@ -306,6 +307,7 @@ div.notice {
     border: 1px solid #40628a;
     padding: 4px;
     margin: 3px 0;
+	overflow: hidden;
 }
 
 .statusDisplayRecords {
@@ -444,6 +446,10 @@ div.notice {
 
 .floatRight {
     float: right;
+}
+
+.floatLeft {
+	float: left;
 }
 
 /* Used in PDA */
@@ -594,4 +600,44 @@ th.misc {
 /* 75px width used in power monitoring console buttons */
 .width75btn {
     width: 75px;
+}
+
+/*Communicator Homescreen*/
+div.homeContainer {
+	width: 100%;
+	text-align: center;
+	margin: auto;
+	padding-top: 5px;
+}
+
+div.homeScreen {
+	width: 90%;
+}
+
+.link64, .linkOn64, .linkOff64, .selected64, .disabled64, .yellowButton64, .redButton64 {
+    float: left;
+    min-width: 15px;
+	max-width: 68px;
+    height: 64px;
+    text-align: center;
+    color: #ffffff;
+    text-decoration: none;
+    background: #40628a;
+    border: 1px solid #161616;
+    padding: 0 0 4px 0;
+	margin: 0 0 30px 5.5%;
+    cursor: default;
+    white-space: nowrap;
+	border-radius: 15px;
+}
+
+.linkOn64, a.linkOn:link, a.linkOn:visited, a.linkOn:active, a.linkOn:hover, .selected, a.selected:link, a.selected:visited, a.selected:active, a.selected:hover {
+    color: #ffffff;
+    background: #2f943c;
+}
+
+.linkOff64, a.linkOff:link, a.linkOff:visited, a.linkOff:active, a.linkOff:hover, .disabled, a.disabled:link, a.disabled:visited, a.disabled:active, a.disabled:hover {
+    color: #ffffff;
+    background: #999999;
+    border-color: #666666;
 }

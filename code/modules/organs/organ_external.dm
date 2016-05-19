@@ -349,6 +349,7 @@
 
 	//Sync the organ's damage with its wounds
 	src.update_damages()
+	src.update_wounds()
 	owner.updatehealth()
 
 	var/result = update_icon()
@@ -602,6 +603,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 /obj/item/organ/external/proc/update_wounds()
 
 	if((status & ORGAN_ROBOT)) //Robotic limbs don't heal or get worse.
+		for(var/datum/wound/W in wounds)
+			if(W.damage <= 0)
+				wounds -= W
 		return
 
 	for(var/datum/wound/W in wounds)
@@ -1129,17 +1133,23 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(brute_dam)
 			switch(brute_dam)
 				if(0 to 20)
-					. += " some dents"
+					. += "some dents"
 				if(21 to INFINITY)
-					. += pick(" a lot of dents"," severe denting")
+					. += pick("a lot of dents","severe denting")
 		if(brute_dam && burn_dam)
-			. += " and"
+			. += " and "
 		if(burn_dam)
 			switch(burn_dam)
 				if(0 to 20)
-					. += " some burns"
+					. += "some burns"
 				if(21 to INFINITY)
-					. += pick(" a lot of burns"," severe melting")
+					. += pick("a lot of burns","severe melting")
+		if(open)
+			if(brute_dam || burn_dam)
+				. += " and an open panel"
+			else
+				. += "an open panel"
+
 		return
 
 	var/list/wound_descriptors = list()

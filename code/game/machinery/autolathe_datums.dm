@@ -16,7 +16,10 @@
 			recipe.resources = list()
 			for(var/material in I.matter)
 				recipe.resources[material] = I.matter[material]*1.25 // More expensive to produce than they are to recycle.
-			qdel(I)
+		if(recipe.is_stack && istype(I, /obj/item/stack))
+			var/obj/item/stack/IS = I
+			recipe.max_stack = IS.max_amount
+		qdel(I)
 
 /datum/autolathe/recipe
 	var/name = "object"
@@ -26,15 +29,21 @@
 	var/category
 	var/power_use = 0
 	var/is_stack
+	var/max_stack
 
 /datum/autolathe/recipe/bucket
 	name = "bucket"
 	path = /obj/item/weapon/reagent_containers/glass/bucket
 	category = "General"
 
-/datum/autolathe/recipe/bucket/drinkingglass
+/datum/autolathe/recipe/drinkingglass
 	name = "drinking glass"
 	path = /obj/item/weapon/reagent_containers/food/drinks/drinkingglass
+	category = "General"
+
+/datum/autolathe/recipe/shotglass/
+	name = "shot glass"
+	path = /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass
 	category = "General"
 
 /datum/autolathe/recipe/flashlight

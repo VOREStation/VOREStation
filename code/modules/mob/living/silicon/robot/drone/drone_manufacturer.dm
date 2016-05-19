@@ -15,7 +15,7 @@
 	idle_power_usage = 20
 	active_power_usage = 5000
 
-	var/fabricator_tag = "Northern Star Upper Level"
+	var/fabricator_tag = station_short+" Upper Level"
 	var/drone_progress = 0
 	var/produce_drones = 1
 	var/time_last_drone = 500
@@ -26,7 +26,7 @@
 
 /obj/machinery/drone_fabricator/derelict
 	name = "construction drone fabricator"
-	fabricator_tag = "Northern Star Depths"
+	fabricator_tag = station_short+" Depths"
 	drone_type = /mob/living/silicon/robot/drone/construction
 
 /obj/machinery/drone_fabricator/New()

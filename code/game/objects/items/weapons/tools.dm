@@ -46,6 +46,7 @@
 	throw_range = 5
 	matter = list(DEFAULT_WALL_MATERIAL = 75)
 	attack_verb = list("stabbed")
+	sharp  = 1
 
 	suicide_act(mob/user)
 		viewers(user) << pick("<span class='danger'>\The [user] is stabbing the [src.name] into \his temple! It looks like \he's trying to commit suicide.</span>", \
@@ -440,6 +441,7 @@
 				return ..()
 		else
 			user << "<span class='notice'>Nothing to fix!</span>"
+			S.update_wounds()
 		return
 	return ..()
 

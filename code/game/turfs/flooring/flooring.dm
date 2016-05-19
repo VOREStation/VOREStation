@@ -69,7 +69,7 @@ var/list/flooring_types
 	name = "carpet"
 	icon_base = "bcarpet"
 	build_type = null
-	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BURN
+	flags = TURF_HAS_EDGES | TURF_REMOVE_CROWBAR
 
 /decl/flooring/tiling
 	name = "floor"

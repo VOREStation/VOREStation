@@ -43,20 +43,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	group = "Security"
 	hidden = 1
 
-/datum/supply_packs/forensics
-	name = "Auxiliary forensic tools"
-	contains = list(
-			/obj/item/weapon/forensics/sample_kit,
-			/obj/item/weapon/forensics/sample_kit/powder,
-			/obj/item/weapon/storage/box/swabs = 3,
-			/obj/item/device/uv_light,
-			/obj/item/weapon/reagent_containers/spray/luminol
-			)
-	cost = 30
-	containertype = /obj/structure/closet/crate
-	containername = "Auxiliary forensic tools"
-	group = "Security"
-
 /datum/supply_packs/food
 	name = "Kitchen supply crate"
 	contains = list(
@@ -132,7 +118,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 			/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,
 			/obj/item/weapon/lipstick/random,
 			/obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale = 2,
-			/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer = 4
+			/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer = 4,
+			/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass = 4
 			)
 	cost = 20
 	containertype = /obj/structure/closet/crate
@@ -1614,9 +1601,10 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 			/obj/item/device/camera_film = 2,
 			/obj/item/weapon/storage/photo_album,
 			/obj/item/device/reagent_scanner,
-			/obj/item/device/flashlight/maglight
+			/obj/item/device/flashlight/maglight,
+			/obj/item/weapon/storage/briefcase/crimekit
 			)
-	cost = 35
+	cost = 40
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Forensic equipment"
 	access = access_forensics_lockers

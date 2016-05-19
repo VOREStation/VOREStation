@@ -20,13 +20,32 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	var/list/voice_mobs = list()
 	var/list/voice_requests = list()
 	var/list/voice_invites = list()
-	var/selected_tab = 1	//1 equals dialing, 2 equals reviewing requests/invites.
+
+	var/list/im_contacts = list()
+	var/list/im_list = list()
+
+	var/note = "Thank you for choosing the T-14.2 Communicator, this is your notepad!" //Current note in the notepad function
+	var/notehtml = ""
+
+	var/obj/item/weapon/cartridge/cartridge = null //current cartridge
+	var/list/modules = list(
+							list("module" = "Phone", "icon" = "phone64", "number" = 2),
+							list("module" = "Contacts", "icon" = "person64", "number" = 3),
+							list("module" = "Messaging", "icon" = "comment64", "number" = 4),
+							list("module" = "Note", "icon" = "note64", "number" = 5),
+							list("module" = "Settings", "icon" = "gear64", "number" = 6)
+							)	//list("module" = "Name of Module", "icon" = "icon name64", "number" = "what tab is the module")
+
+	var/selected_tab = 1
 	var/owner = ""
+	var/occupation = ""
 	var/alert_called = 0
 	var/obj/machinery/exonet_node/node = null //Reference to the Exonet node, to avoid having to look it up so often.
 
 	var/target_address = ""
+	var/target_address_name = ""
 	var/network_visibility = 1
+	var/ringer = 1
 	var/list/known_devices = list()
 	var/datum/exonet_protocol/exonet = null
 	var/list/communicating = list()
@@ -151,6 +170,24 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 		if(!node || !node.on || !node.allow_external_communicators)
 			close_connection(reason = "Connection timed out")
 
+// Proc: attackby()
+// Parameters: 2 (C - what is used on the communicator. user - the mob that has the communicator)
+// Description: When an ID is swiped on the communicator, the communicator reads the job and checks it against the Owner name, if success, the occupation is added.
+/obj/item/device/communicator/attackby(obj/item/C as obj, mob/user as mob)
+	if(istype(C, /obj/item/weapon/card/id))
+		var/obj/item/weapon/card/id/idcard = C
+		if(!idcard.registered_name || !idcard.assignment)
+			user << "<span class='notice'>\The [src] rejects the ID.</span>"
+			return
+		if(!owner)
+			user << "<span class='notice'>\The [src] rejects the ID.</span>"
+			return
+		if(owner == idcard.registered_name)
+			occupation = idcard.assignment
+			user << "<span class='notice'>Occupation updated.</span>"
+			return
+	else return
+
 // Proc: attack_self()
 // Parameters: 1 (user - the mob that clicked the device in their hand)
 // Description: Makes an exonet datum if one does not exist, allocates an address for it, maintains the lists of all devies, clears the alert icon, and
@@ -205,6 +242,11 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	var/voices[0]					//Current /mob/living/voice s inside the device.
 	var/connected_communicators[0]	//Current communicators connected to the device.
 
+	var/im_contacts_ui[0]			//List of communicators that have been messaged.
+	var/im_list_ui[0]				//List of messages.
+
+	var/modules_ui[0]				//Home screen info.
+
 	//First we add other 'local' communicators.
 	for(var/obj/item/device/communicator/comm in known_devices)
 		if(comm.network_visibility && comm.exonet)
@@ -243,18 +285,38 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	for(var/obj/item/device/communicator/comm in communicating)
 		connected_communicators[++connected_communicators.len] = list("name" = sanitize(comm.name), "true_name" = sanitize(comm.name))
 
+	//Devices that have been messaged or recieved messages from.
+	for(var/obj/item/device/communicator/comm in im_contacts)
+		if(comm.exonet)
+			im_contacts_ui[++im_contacts_ui.len] = list("name" = sanitize(comm.name), "address" = comm.exonet.address)
+
+	//Actual messages.
+	for(var/I in im_list)
+		im_list_ui[++im_list_ui.len] = list("address" = I["address"], "to_address" = I["to_address"], "im" = I["im"])
+
+	//Modules for homescreen.
+	for(var/list/R in modules)
+		modules_ui[++modules_ui.len] = R
 
 	data["owner"] = owner ? owner : "Unset"
+	data["occupation"] = occupation ? occupation : "Swipe ID to set."
 	data["connectionStatus"] = get_connection_to_tcomms()
 	data["visible"] = network_visibility
 	data["address"] = exonet.address ? exonet.address : "Unallocated"
 	data["targetAddress"] = target_address
+	data["targetAddressName"] = target_address_name
 	data["currentTab"] = selected_tab
 	data["knownDevices"] = communicators
 	data["invitesSent"] = invites
 	data["requestsReceived"] = requests
 	data["voice_mobs"] = voices
 	data["communicating"] = connected_communicators
+	data["imContacts"] = im_contacts_ui
+	data["imList"] = im_list_ui
+	data["time"] = worldtime2text()
+	data["ring"] = ringer
+	data["homeScreen"] = modules_ui
+	data["note"] = note					// current notes
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
@@ -284,6 +346,9 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	if(href_list["toggle_visibility"])
 		network_visibility = !network_visibility
 
+	if(href_list["toggle_ringer"])
+		ringer = !ringer
+
 	if(href_list["add_hex"])
 		var/hex = href_list["add_hex"]
 		add_to_EPv2(hex)
@@ -304,6 +369,16 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 		var/their_address = href_list["dial"]
 		exonet.send_message(their_address, "voice")
 
+	if(href_list["message"])
+		if(!get_connection_to_tcomms())
+			usr << "<span class='danger'>Error: Cannot connect to Exonet node.</span>"
+			return
+		var/their_address = href_list["message"]
+		var/text = sanitizeSafe(input(usr,"Enter your message.","Text Message"))
+		if(text)
+			exonet.send_message(their_address, "text", text)
+			im_list += list(list("address" = exonet.address, "to_address" = their_address, "im" = text))
+
 	if(href_list["disconnect"])
 		var/name_to_disconnect = href_list["disconnect"]
 		for(var/mob/living/voice/V in contents)
@@ -316,6 +391,9 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	if(href_list["copy"])
 		target_address = href_list["copy"]
 
+	if(href_list["copy_name"])
+		target_address_name = href_list["copy_name"]
+
 	if(href_list["hang_up"])
 		for(var/mob/living/voice/V in contents)
 			close_connection(usr, V, "[usr] hung up.")
@@ -325,13 +403,25 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	if(href_list["switch_tab"])
 		selected_tab = href_list["switch_tab"]
 
+	if(href_list["edit"])
+		var/n = input(usr, "Please enter message", name, notehtml)
+		n = sanitizeSafe(n, extra = 0)
+		if(n)
+			note = html_decode(n)
+			notehtml = note
+			note = replacetext(note, "\n", "<br>")
+		else
+			note = ""
+			notehtml = note
+
 	nanomanager.update_uis(src)
 	add_fingerprint(usr)
 
 // Proc: receive_exonet_message()
-// Parameters: 3 (origin atom - the source of the message's holder, origin_address - where the message came from, message - the message received)
-// Description: Handles voice requests and invite messages originating from both real communicators and ghosts.  Also includes a ping response.
-/obj/item/device/communicator/receive_exonet_message(var/atom/origin_atom, origin_address, message)
+// Parameters: 4 (origin atom - the source of the message's holder, origin_address - where the message came from, message - the message received,
+//				  text - message text to send if message is of type "text")
+// Description: Handles voice requests and invite messages originating from both real communicators and ghosts.  Also includes a ping response and IM function.
+/obj/item/device/communicator/receive_exonet_message(var/atom/origin_atom, origin_address, message, text)
 	if(message == "voice")
 		if(isobserver(origin_atom) || istype(origin_atom, /obj/item/device/communicator))
 			if(origin_atom in voice_invites)
@@ -349,6 +439,9 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 			var/random = rand(200,350)
 			random = random / 10
 			exonet.send_message(origin_address, "64 bytes received from [exonet.address] ecmp_seq=1 ttl=51 time=[random] ms")
+	if(message == "text")
+		request_im(origin_atom, origin_address, text)
+		return
 
 // Proc: receive_exonet_message()
 // Parameters: 3 (origin atom - the source of the message's holder, origin_address - where the message came from, message - the message received)
@@ -368,6 +461,8 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 			var/random = rand(450,700)
 			random = random / 10
 			exonet.send_message(origin_address, "64 bytes received from [exonet.address] ecmp_seq=1 ttl=51 time=[random] ms")
+	if(message == "text") //Ghosts don't get texting yet. Mostly for spam prevention by ghosts but also due to ui requirements not sorted out yet.
+		return
 
 // Proc: register_device()
 // Parameters: 1 (user - the person to use their name for)
@@ -514,9 +609,10 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 
 	voice_requests |= candidate
 
-	playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)
-	for (var/mob/O in hearers(2, loc))
-		O.show_message(text("\icon[src] *beep*"))
+	if(ringer)
+		playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)
+		for (var/mob/O in hearers(2, loc))
+			O.show_message(text("\icon[src] *beep*"))
 
 	alert_called = 1
 	update_icon()
@@ -528,6 +624,42 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 
 	if(L)
 		L << "<span class='notice'>\icon[src] Communications request from [who].</span>"
+
+// Proc: request_im()
+// Parameters: 3 (candidate - the communicator wanting to message the device, origin_address - the address of the sender, text - the message)
+// Description: Response to a communicator trying to message the device.
+//				Adds them to the list of people that have messaged this device and adds the message to the message list.
+/obj/item/device/communicator/proc/request_im(var/atom/candidate, var/origin_address, var/text)
+	var/who = null
+	if(isobserver(candidate))
+		return
+	else if(istype(candidate, /obj/item/device/communicator))
+		var/obj/item/device/communicator/comm = candidate
+		who = comm.owner
+		comm.im_contacts |= src
+		im_list += list(list("address" = origin_address, "to_address" = exonet.address, "im" = text))
+	else return
+
+	im_contacts |= candidate
+
+	if(!who)
+		return
+
+	if(ringer)
+		playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)
+		for (var/mob/O in hearers(2, loc))
+			O.show_message(text("\icon[src] *beep*"))
+
+	alert_called = 1
+	update_icon()
+
+	//Search for holder of the device.
+	var/mob/living/L = null
+	if(loc && isliving(loc))
+		L = loc
+
+	if(L)
+		L << "<span class='notice'>\icon[src] Message from [who].</span>"
 
 // Proc: Destroy()
 // Parameters: None
