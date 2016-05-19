@@ -150,6 +150,10 @@
 
 /mob/living/carbon/human/handle_disabilities()
 	..()
+
+	if(stat != CONSCIOUS) //Let's not worry about tourettes if you're not conscious.
+		return
+
 	//Vision
 	if(species.vision_organ)
 		if(internal_organs_by_name[species.vision_organ])  // Vision organs cut out? Permablind.
@@ -164,7 +168,6 @@
 		eye_blind =  0
 		blinded =    0
 		eye_blurry = 0
-
 
 	if (disabilities & EPILEPSY)
 		if ((prob(1) && paralysis < 1))
@@ -198,27 +201,26 @@
 		if (prob(10))
 			stuttering = max(10, stuttering)
 
-	if(stat != 2)
-		var/rn = rand(0, 200)
-		if(getBrainLoss() >= 5)
-			if(0 <= rn && rn <= 3)
-				custom_pain("Your head feels numb and painful.")
-		if(getBrainLoss() >= 15)
-			if(4 <= rn && rn <= 6) if(eye_blurry <= 0)
-				src << "<span class='warning'>It becomes hard to see for some reason.</span>"
-				eye_blurry = 10
-		if(getBrainLoss() >= 35)
-			if(7 <= rn && rn <= 9) if(get_active_hand())
-				src << "<span class='danger'>Your hand won't respond properly, you drop what you're holding!</span>"
-				drop_item()
-		if(getBrainLoss() >= 45)
-			if(10 <= rn && rn <= 12)
-				if(prob(50))
-					src << "<span class='danger'>You suddenly black out!</span>"
-					Paralyse(10)
-				else if(!lying)
-					src << "<span class='danger'>Your legs won't respond properly, you fall down!</span>"
-					Weaken(10)
+	var/rn = rand(0, 200)
+	if(getBrainLoss() >= 5)
+		if(0 <= rn && rn <= 3)
+			custom_pain("Your head feels numb and painful.")
+	if(getBrainLoss() >= 15)
+		if(4 <= rn && rn <= 6) if(eye_blurry <= 0)
+			src << "<span class='warning'>It becomes hard to see for some reason.</span>"
+			eye_blurry = 10
+	if(getBrainLoss() >= 35)
+		if(7 <= rn && rn <= 9) if(get_active_hand())
+			src << "<span class='danger'>Your hand won't respond properly, you drop what you're holding!</span>"
+			drop_item()
+	if(getBrainLoss() >= 45)
+		if(10 <= rn && rn <= 12)
+			if(prob(50))
+				src << "<span class='danger'>You suddenly black out!</span>"
+				Paralyse(10)
+			else if(!lying)
+				src << "<span class='danger'>Your legs won't respond properly, you fall down!</span>"
+				Weaken(10)
 
 
 
