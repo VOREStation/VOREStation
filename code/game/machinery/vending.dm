@@ -278,7 +278,7 @@
 
 		for(var/datum/data/vending_product/R in product_records)
 			if(istype(W, R.product_path))
-				stock(R, user)
+				stock(W, R, user)
 				qdel(W)
 				return
 		..()
