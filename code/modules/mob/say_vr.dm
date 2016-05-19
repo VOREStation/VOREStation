@@ -11,5 +11,6 @@
 
 	set_typing_indicator(0)
 	if(use_me)
+		usr.emote("me",get_mobs_or_objects_in_view(1,src),message)
 	else
 		usr.emote(message)
