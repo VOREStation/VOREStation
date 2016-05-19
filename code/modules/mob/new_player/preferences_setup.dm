@@ -4,37 +4,32 @@
 	var/datum/species/current_species = all_species[species ? species : "Human"]
 	set_biological_gender(pick(current_species.genders))
 
+	h_style = random_hair_style(biological_gender, species)
+	f_style = random_facial_hair_style(biological_gender, species)
 	if(current_species)
-		if(current_species.flags & HAS_SKIN_TONE)
+		if(current_species.appearance_flags & HAS_SKIN_TONE)
 			s_tone = random_skin_tone()
-		if(current_species.flags & HAS_EYE_COLOR)
+		if(current_species.appearance_flags & HAS_EYE_COLOR)
 			randomize_eyes_color()
-		if(current_species.flags & HAS_SKIN_COLOR)
-			randomize_skin_color()
-		if(current_species.flags & HAS_UNDERWEAR)
-			underwear_top = rand(1,underwear_top_t.len)
-			underwear_bottom = rand(1,underwear_bottom_t.len)
-			undershirt = rand(1,undershirt_t.len)
+		if(current_species.appearance_flags & HAS_UNDERWEAR)
+			underwear_top = underwear_top_t[pick(underwear_top_t)]
+			underwear_bottom = underwear_bottom_t[pick(underwear_bottom_t)]
+			undershirt = undershirt_t[pick(undershirt_t)]
+			socks = socks_t[pick(socks_t)]
+		if(current_species.appearance_flags & HAS_HAIR_COLOR)
+			randomize_hair_color("hair")
+			randomize_hair_color("facial")
+		if(current_species.appearance_flags & HAS_SKIN_COLOR)
+			r_skin = rand (0,255)
+			g_skin = rand (0,255)
+			b_skin = rand (0,255)
 
 
-	var/use_head_species
-	var/obj/item/organ/external/head/temp_head = H.get_organ(BP_HEAD)
-	if(temp_head)
-		use_head_species = temp_head.species.get_bodytype()
-	else
-		use_head_species = H.species.get_bodytype()
-
-	if(use_head_species)
-		h_style = random_hair_style(biological_gender, species)
-		f_style = random_facial_hair_style(biological_gender, species)
-
-	randomize_hair_color("hair")
-	randomize_hair_color("facial")
-
-	socks = rand(1,socks_t.len)
-	backbag = 2
-	var/datum/species/S = all_species[species]
-	age = rand(S.min_age,S.max_age)
+	//backbag = 2
+	backbag = rand(1,4)
+	pdachoice = rand(1,3)
+	age = rand(current_species.min_age, current_species.max_age)
+	b_type = pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
 	if(H)
 		copy_to(H,1)
 
