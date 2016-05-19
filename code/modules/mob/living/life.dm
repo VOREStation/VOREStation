@@ -53,8 +53,7 @@
 
 	update_canmove()
 
-	if(client)
-		handle_regular_hud_updates()
+	handle_regular_hud_updates()
 
 /mob/living/proc/handle_breathing()
 	return

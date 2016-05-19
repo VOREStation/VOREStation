@@ -24,6 +24,7 @@
 	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
 	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
 	RefreshParts()
+	..()
 
 /obj/machinery/dnaforensics/attackby(var/obj/item/W, mob/user as mob)
 
