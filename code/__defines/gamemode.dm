@@ -18,7 +18,7 @@
 #define BE_ALIEN      0x40
 #define BE_AI         0x80
 #define BE_CULTIST    0x100
-#define BE_MONKEY     0x200
+#define BE_RENEGADE   0x200
 #define BE_NINJA      0x400
 #define BE_RAIDER     0x800
 #define BE_PLANT      0x1000
@@ -37,7 +37,7 @@ var/list/be_special_flags = list(
 	"Xenomorph"        = BE_ALIEN,
 	"Positronic Brain" = BE_AI,
 	"Cultist"          = BE_CULTIST,
-	"Monkey"           = BE_MONKEY,
+	"Renegade"         = BE_RENEGADE,
 	"Ninja"            = BE_NINJA,
 	"Raider"           = BE_RAIDER,
 	"Diona"            = BE_PLANT,

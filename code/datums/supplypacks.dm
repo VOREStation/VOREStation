@@ -132,7 +132,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 			/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,
 			/obj/item/weapon/lipstick/random,
 			/obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale = 2,
-			/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer = 4
+			/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer = 4,
+			/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass = 4
 			)
 	cost = 20
 	containertype = /obj/structure/closet/crate

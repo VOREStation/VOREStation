@@ -78,6 +78,22 @@ a.icon img, .linkOn.icon img
 	height: 18px;
 }
 
+a.icon64, .linkOn.icon64, .linkOff.icon64
+{
+	position: relative;
+	padding: 1px 4px 2px 68px;
+	font-size: 55px;
+}
+
+a.icon64 img, .linkOn.icon64 img
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 66px;
+	height: 66px;
+}
+
 ul
 {
 	padding: 4px 0 0 10px;

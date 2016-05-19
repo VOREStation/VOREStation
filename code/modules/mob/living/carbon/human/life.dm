@@ -563,7 +563,6 @@
 /mob/living/carbon/human/handle_environment(datum/gas_mixture/environment)
 	if(!environment)
 		return
-	if(isliving(loc)) return //VOREStation Code - Ignore environments inside people
 	//Stuff like the xenomorph's plasma regen happens here.
 	species.handle_environment_special(src)
 

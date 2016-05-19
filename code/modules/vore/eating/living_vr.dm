@@ -360,6 +360,9 @@
 // Magical pred-air breathing for inside preds
 // overrides a proc defined on atom called by breathe.dm
 //
+/mob/living/return_air()
+	return return_air_for_internal_lifeform()
+
 /mob/living/return_air_for_internal_lifeform()
 	//Free air until someone wants to code processing it for reals from predbreaths
 	var/datum/gas_mixture/belly_air/air = new(1000)

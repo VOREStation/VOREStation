@@ -5,10 +5,11 @@
 	health = 180
 	filling_color = "#FF1C1C"
 	center_of_mass = list("x"=16, "y"=14)
-	New()
-		..()
-		reagents.add_reagent("protein", 9)
-		src.bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/meat/New()
+	..()
+	reagents.add_reagent("protein", 9)
+	src.bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/material/knife))

@@ -49,10 +49,10 @@
 	if(!job_master)
 		return
 
-	for(var/datum/job/job in job_master.occupations)
+	/*for(var/datum/job/job in job_master.occupations)
 		var/alt_title = pref.player_alt_titles[job.title]
 		if(alt_title && !(alt_title in job.alt_titles))
-			pref.player_alt_titles -= job.title
+			pref.player_alt_titles -= job.title*/
 
 /datum/category_item/player_setup_item/occupation/content(mob/user, limit = 16, list/splitJobs = list("Chief Medical Officer"))
 	if(!job_master)
