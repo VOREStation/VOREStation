@@ -373,7 +373,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 		var/organ_tag = input(user, "Which limb do you want to change?") as null|anything in limb_selection_list
 
-		if(!organ_tag && !CanUseTopic(user)) return TOPIC_NOACTION
+		if(!organ_tag || !CanUseTopic(user)) return TOPIC_NOACTION
 
 		var/limb = null
 		var/second_limb = null // if you try to change the arm, the hand should also change

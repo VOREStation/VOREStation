@@ -1557,7 +1557,7 @@
 /mob/living/carbon/human/proc/handle_hud_list()
 	if (BITTEST(hud_updateflag, HEALTH_HUD))
 		var/image/holder = hud_list[HEALTH_HUD]
-		if(stat == 2)
+		if(stat == DEAD)
 			holder.icon_state = "hudhealth-100" 	// X_X
 		else
 			var/percentage_health = RoundHealth((health-config.health_threshold_crit)/(maxHealth-config.health_threshold_crit)*100)
@@ -1581,7 +1581,7 @@
 
 		var/image/holder = hud_list[STATUS_HUD]
 		var/image/holder2 = hud_list[STATUS_HUD_OOC]
-		if(stat == 2)
+		if(stat == DEAD)
 			holder.icon_state = "huddead"
 			holder2.icon_state = "huddead"
 		else if(status_flags & XENO_HOST)

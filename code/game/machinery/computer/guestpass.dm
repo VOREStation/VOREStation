@@ -25,6 +25,8 @@
 		user << "<span class='warning'>It expired at [worldtime2text(expiration_time)].</span>"
 
 /obj/item/weapon/card/id/guest/read()
+	if(!Adjacent(usr))
+		return //Too far to read
 	if (world.time > expiration_time)
 		usr << "<span class='notice'>This pass expired at [worldtime2text(expiration_time)].</span>"
 	else
