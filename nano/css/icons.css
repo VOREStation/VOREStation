@@ -242,6 +242,7 @@
 .uiIcon16.icon-person64 { background-image: url(uiIcons64.png); background-position: -320px 0; width: 64px; height: 64px; }
 .uiIcon16.icon-newspaper64 { background-image: url(uiIcons64.png); background-position: 0 -64px; width: 64px; height: 64px; }
 .uiIcon16.icon-note64 { background-image: url(uiIcons64.png); background-position: -64px -64px; width: 64px; height: 64px; }
+.uiIcon16.icon-close64 { background-image: url(uiIcons64.png); background-position: -128px -64px; width: 64px; height: 64px; }
 
 .mapIcon16 {
     position: absolute;
