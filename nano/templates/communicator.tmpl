@@ -3,7 +3,7 @@ Title: Communicator UI
 Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
  -->
 
-<div class="statusDisplay" style="overflow: auto;">
+<div class="statusDisplayComm">
 	<div class="item">
 		<div class="itemContent" style="width: 100%; text-align: center;">
 			<span class="average">{{:data.time}} | </span>
@@ -36,50 +36,49 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 	<HR>
 	<div class="itemContent" style="width: 100%;">{{:helper.link('Home', 'home', {'switch_tab' : 1})}}</div><BR>
 
+	
 	<div class="item">
-		<div class="itemLabel">
+		<div class="itemLabelWide">
 			Target EPv2 Address:
 		</div>
 		<div class="itemContent">
-			<div style="float: left; width: 180px;">{{:data.targetAddress}}</div>
-		</div>
-		<div class="itemContent">
-			<div style="float: left; width: 180px;">{{:helper.link('Write', 'pencil', {'write_target_address' : 1})}} {{:helper.link('Clear', 'close', {'clear_target_address' : 1})}}</div>
+			<div style="clear: both;">
+				{{:helper.link(data.targetAddress, 'pencil', {'write_target_address' : 1}, null, 'dialPadAddress')}}
+				{{:helper.link('Clear', 'close', {'clear_target_address' : 1}, null, 'dialPadClear')}}
+			</div>
 		</div>
 	</div>
 
 	<div class="item">
-		<div class="itemContent">
-			<div style='float: left; width: 300px;'>
-				<div style="clear: both; padding-top: 1px;">
-					{{:helper.link('0', null, {'add_hex' : '0'})}}
-					{{:helper.link('1', null, {'add_hex' : '1'})}}
-					{{:helper.link('2', null, {'add_hex' : '2'})}}
-					{{:helper.link('3', null, {'add_hex' : '3'})}}
-				</div>
-				<div style="clear: both; padding-top: 1px;">
-					{{:helper.link('4', null, {'add_hex' : '4'})}}
-					{{:helper.link('5', null, {'add_hex' : '5'})}}
-					{{:helper.link('6', null, {'add_hex' : '6'})}}
-					{{:helper.link('7', null, {'add_hex' : '7'})}}
-				</div>
-				<div style="clear: both; padding-top: 1px;">
-					{{:helper.link('8', null, {'add_hex' : '8'})}}
-					{{:helper.link('9', null, {'add_hex' : '9'})}}
-					{{:helper.link('A', null, {'add_hex' : 'a'})}}
-					{{:helper.link('B', null, {'add_hex' : 'b'})}}
-				</div>
-				<div style="clear: both; padding-top: 1px;">
-					{{:helper.link('C', null, {'add_hex' : 'c'})}}
-					{{:helper.link('D', null, {'add_hex' : 'd'})}}
-					{{:helper.link('E', null, {'add_hex' : 'e'})}}
-					{{:helper.link('F', null, {'add_hex' : 'f'})}}
-				</div>
-				<div style="clear: both; padding-top: 1px;">
-					{{:helper.link('Dial', 'signal-diag', {'dial' : data.targetAddress})}}
-					{{:helper.link('Message', 'comment', {'message' : data.targetAddress, 'switch_tab' : 4})}}
-					{{:helper.link('Hang Up', 'close', {'hang_up' : '1'})}}
-				</div>
+		<div class="dialPad">
+			<div style="clear: both; padding-top: 1px;">
+				{{:helper.link('0', null, {'add_hex' : '0'}, null, 'dialPadKeys')}}
+				{{:helper.link('1', null, {'add_hex' : '1'}, null, 'dialPadKeys')}}
+				{{:helper.link('2', null, {'add_hex' : '2'}, null, 'dialPadKeys')}}
+				{{:helper.link('3', null, {'add_hex' : '3'}, null, 'dialPadKeys')}}
+			</div>
+			<div style="clear: both; padding-top: 1px;">
+				{{:helper.link('4', null, {'add_hex' : '4'}, null, 'dialPadKeys')}}
+				{{:helper.link('5', null, {'add_hex' : '5'}, null, 'dialPadKeys')}}
+				{{:helper.link('6', null, {'add_hex' : '6'}, null, 'dialPadKeys')}}
+				{{:helper.link('7', null, {'add_hex' : '7'}, null, 'dialPadKeys')}}
+			</div>
+			<div style="clear: both; padding-top: 1px;">
+				{{:helper.link('8', null, {'add_hex' : '8'}, null, 'dialPadKeys')}}
+				{{:helper.link('9', null, {'add_hex' : '9'}, null, 'dialPadKeys')}}
+				{{:helper.link('A', null, {'add_hex' : 'a'}, null, 'dialPadKeys')}}
+				{{:helper.link('B', null, {'add_hex' : 'b'}, null, 'dialPadKeys')}}
+			</div>
+			<div style="clear: both; padding-top: 1px;">
+				{{:helper.link('C', null, {'add_hex' : 'c'}, null, 'dialPadKeys')}}
+				{{:helper.link('D', null, {'add_hex' : 'd'}, null, 'dialPadKeys')}}
+				{{:helper.link('E', null, {'add_hex' : 'e'}, null, 'dialPadKeys')}}
+				{{:helper.link('F', null, {'add_hex' : 'f'}, null, 'dialPadKeys')}}
+			</div>
+			<div style="clear: both; padding-top: 1px;">
+				{{:helper.link('Dial', 'phone64', {'dial' : data.targetAddress}, null, 'dialPadButtons')}}
+				{{:helper.link('Message', 'comment64', {'message' : data.targetAddress, 'switch_tab' : 4}, null, 'dialPadButtons')}}
+				{{:helper.link('Hang Up', 'close64', {'hang_up' : '1'}, null, 'dialPadButtons')}}
 			</div>
 		</div>
 	</div>
@@ -148,7 +147,7 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 				{{:value.name}}
 				</div>
 				<div class="itemContent">
-					<div style="float: left; width: 300px;">{{:value.address}}</div> {{:helper.link('Copy', 'pencil', {'copy' : value.address, 'switch_tab' : 2})}}
+					<div style="float: left; width: 100%;">{{:value.address}}</div> {{:helper.link('Copy', 'pencil', {'copy' : value.address, 'switch_tab' : 2})}}
 				</div>
 			</div>
 		{{/for}}
