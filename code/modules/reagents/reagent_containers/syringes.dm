@@ -344,3 +344,12 @@
 	reagents.add_reagent("chloralhydrate", 50)
 	mode = SYRINGE_INJECT
 	update_icon()
+
+/obj/item/weapon/reagent_containers/syringe/steroid
+	name = "Syringe (anabolic steroids)"
+	desc = "Contains drugs for muscle growth."
+
+/obj/item/weapon/reagent_containers/syringe/steroid/New()
+	..()
+	reagents.add_reagent("adrenaline",5)
+	reagents.add_reagent("hyperzine",10)
