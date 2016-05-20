@@ -19,7 +19,7 @@
 	item_cost = 6
 	path = /obj/item/weapon/storage/firstaid/combat
 
-/datum/uplink_item/item/medical/combat
+/datum/uplink_item/item/medical/freezer
 	name = "Portable Freezer"
 	item_cost = 2
 	path = /obj/item/weapon/storage/box/freezer

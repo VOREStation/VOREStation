@@ -37,7 +37,7 @@
 		H.status_flags -= DISFIGURED
 		H.update_body(1)
 	C << "<span class='notice'>We have regenerated.</span>"
-	C.status_flags &= ~(FAKEDEATH)
+	C.status_flags &= ~FAKEDEATH
 	C.update_canmove()
 	C.mind.changeling.purchased_powers -= C
 	feedback_add_details("changeling_powers","CR")

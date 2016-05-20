@@ -504,6 +504,9 @@ var/global/list/damage_icon_parts = list()
 	else
 		overlays_standing[UNIFORM_LAYER]	= null
 
+	//hiding/revealing shoes if necessary
+	update_inv_shoes(0)
+
 	if(update_icons)
 		update_icons()
 
@@ -786,9 +789,11 @@ var/global/list/damage_icon_parts = list()
 	else
 		overlays_standing[SUIT_LAYER]	= null
 		update_tail_showing(0)
-		update_inv_shoes(0)
 
 	update_collar(0)
+
+	//hide/show shoes if necessary
+	update_inv_shoes(0)
 
 	if(update_icons)   update_icons()
 

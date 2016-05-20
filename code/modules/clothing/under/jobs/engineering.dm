@@ -8,14 +8,6 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 10)
 	rolled_sleeves = 0
 
-/obj/item/clothing/under/rank/chief_engineer/skirt
-	desc = "It's a high visibility jumpskirt given to those engineers insane enough to achieve the rank of \"Chief engineer\". It has minor radiation shielding."
-	name = "chief engineer's jumpskirt"
-	icon_state = "chieff"
-	worn_state = "chieff"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	rolled_sleeves = -1
-
 /obj/item/clothing/under/rank/atmospheric_technician
 	desc = "It's a jumpsuit worn by atmospheric technicians."
 	name = "atmospheric technician's jumpsuit"
@@ -23,14 +15,6 @@
 	item_state = "atmos_suit"
 	worn_state = "atmos"
 	rolled_sleeves = 0
-
-/obj/item/clothing/under/rank/atmospheric_technician/skirt
-	desc = "It's a jumpskirt worn by atmospheric technicians."
-	name = "atmospheric technician's jumpskirt"
-	icon_state = "atmosf"
-	worn_state = "atmosf"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	rolled_sleeves = -1
 
 /obj/item/clothing/under/rank/engineer
 	desc = "It's an orange high visibility jumpsuit worn by engineers. It has minor radiation shielding."
@@ -41,14 +25,6 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 10)
 	rolled_sleeves = 0
 
-/obj/item/clothing/under/rank/engineer/skirt
-	desc = "It's an orange high visibility jumpskirt worn by engineers. It has minor radiation shielding."
-	name = "engineer's jumpskirt"
-	icon_state = "enginef"
-	worn_state = "enginef"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	rolled_sleeves = -1
-
 /obj/item/clothing/under/rank/roboticist
 	desc = "It's a slimming black jumpsuit with reinforced seams; great for industrial work."
 	name = "roboticist's jumpsuit"
@@ -56,10 +32,3 @@
 	item_state = "bl_suit"
 	worn_state = "robotics"
 	rolled_sleeves = 0
-
-/obj/item/clothing/under/rank/roboticist/skirt
-	desc = "It's a slimming black jumpskirt with reinforced seams; great for industrial work."
-	name = "roboticist's jumpskirt"
-	icon_state = "roboticsf"
-	worn_state = "roboticsf"
-	rolled_sleeves = -1
