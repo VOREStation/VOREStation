@@ -1,4 +1,4 @@
-// For mappers to make invisible borders. For best results, place at least 7 tiles away from map edge.
+// For mappers to make invisible borders. For best results, place at least 8 tiles away from map edge.
 
 /obj/effect/blocker
 	desc = "You can't go there!"
