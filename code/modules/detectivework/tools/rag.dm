@@ -49,7 +49,7 @@
 	if(!on_fire && istype(W, /obj/item/weapon/flame))
 		var/obj/item/weapon/flame/F = W
 		if(F.lit)
-			ignite()
+			src.ignite()
 			if(on_fire)
 				visible_message("<span class='warning'>\The [user] lights [src] with [W].</span>")
 			else
@@ -151,7 +151,7 @@
 
 /obj/item/weapon/reagent_containers/glass/rag/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature >= 50 + T0C)
-		ignite()
+		src.ignite()
 	if(exposed_temperature >= 900 + T0C)
 		new /obj/effect/decal/cleanable/ash(get_turf(src))
 		qdel(src)
