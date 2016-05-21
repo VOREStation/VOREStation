@@ -58,13 +58,13 @@
 	icon_state = "sec_corporate"
 	//item_state = "sec_corporate"
 	worn_state = "sec_corporate"
-	rolled_sleeves = -1
+	rolled_sleeves = 0
 
 /obj/item/clothing/under/rank/warden/corp
 	icon_state = "warden_corporate"
 	//item_state = "warden_corporate"
 	worn_state = "warden_corporate"
-	rolled_sleeves = -1
+	rolled_sleeves = 0
 
 /obj/item/clothing/under/tactical
 	name = "tactical jumpsuit"
@@ -164,7 +164,7 @@
 	icon_state = "hos_corporate"
 	//item_state = "hos_corporate"
 	worn_state = "hos_corporate"
-	rolled_sleeves = -1
+	rolled_sleeves = 0
 
 /obj/item/clothing/head/helmet/HoS
 	name = "Head of Security Hat"

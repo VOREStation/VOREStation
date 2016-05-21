@@ -39,16 +39,16 @@ var/list/holder_mob_icon_cache = list()
 
 /obj/item/weapon/holder/proc/update_state()
 	if(istype(loc,/turf) || !(contents.len))
-		held_mob = null
+		if(held_mob)
+			held_mob.forceMove(loc)
 		drop_items()
 		qdel(src)
 
 /obj/item/weapon/holder/proc/drop_items()
-	if(contents.len > 1)
-		for(var/atom/movable/M in contents)
-			if(M == held_mob)
-				continue
-			M.forceMove(get_turf(src))
+	for(var/atom/movable/M in contents)
+		if(M == held_mob)
+			continue
+		M.forceMove(get_turf(src))
 
 /obj/item/weapon/holder/GetID()
 	for(var/mob/M in contents)
