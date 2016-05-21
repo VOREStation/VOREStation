@@ -2,7 +2,7 @@
 #define isTaurTail(A)	istype(A, /datum/sprite_accessory/tail/taur)
 
 /mob/living/carbon/human/proc/get_ears_overlay()
-	if(ear_style && !(head && (head.flags_inv & BLOCKHEADHAIR)) && (src.species.get_bodytype() in ear_style.species_allowed))
+	if(ear_style && !(head && (head.flags_inv & BLOCKHEADHAIR)))
 		var/icon/ears_s = new/icon("icon" = ear_style.icon, "icon_state" = ear_style.icon_state)
 		if(ear_style.do_colouration)
 			ears_s.Blend(rgb(src.r_hair, src.g_hair, src.b_hair), ear_style.color_blend_mode)
