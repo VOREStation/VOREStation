@@ -13,7 +13,8 @@ var/global/list/player_sizes_list = list(
 		"Small" 	= RESIZE_SMALL,
 		"Tiny" 		= RESIZE_TINY)
 
-//Important items that are preserved when people are digested, cryo'd, etc.
+//Important items that are preserved when people are digested, etc.
+//On Polaris, different from Cryo list as MMIs need to be removed for FBPs to be logged out.
 var/global/list/important_items = list(
 		/obj/item/weapon/hand_tele,
 		/obj/item/weapon/card/id/captains_spare,
