@@ -112,7 +112,7 @@
 	worn_state = "detective3"
 	item_state = "sl_suit"
 	desc = "An immaculate white dress shirt, paired with a pair of dark grey dress pants, a red tie, and a charcoal vest."
-	starting_accessories = null
+	starting_accessories = list(/obj/item/clothing/accessory/red_long, /obj/item/clothing/accessory/vest)
 
 /obj/item/clothing/under/det/corporate
 	name = "detective's jumpsuit"
