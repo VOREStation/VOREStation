@@ -19,7 +19,6 @@
 
 	// Normally visible tracks
 	tracks = list(
-		// AND WE DO NOT CARE~! AND WE DO NOT CARE~!
 		new/datum/track("A Song About Hares", 'sound/music/jukebox/SongAboutHares.ogg'),
 		new/datum/track("Below The Asteroids", 'sound/music/jukebox/BelowTheAsteroids.ogg'),
 		new/datum/track("Beyond", 'sound/ambience/ambispace.ogg'),
@@ -35,10 +34,10 @@
 		new/datum/track("Ode to Greed", 'sound/music/jukebox/OdeToGreed.ogg'),
 		new/datum/track("Part A", 'sound/misc/TestLoop1.ogg'),
 		new/datum/track("Ransacked", 'sound/music/jukebox/Ransacked.ogg'),
-		 // EVEN THOUGH THE STATION IS FULL OF HUNGRY WOLVES
 		new/datum/track("Russkiy rep Diskoteka", 'sound/music/jukebox/russianrapdisco.ogg'),
 		new/datum/track("Scratch", 'sound/music/title1.ogg'),
 		new/datum/track("Space Oddity", 'sound/music/space_oddity.ogg'),
+		new/datum/track("Thunderdome", 'sound/music/THUNDERDOME.ogg'),
 		new/datum/track("Trai`Tor", 'sound/music/traitor.ogg'),
 		new/datum/track("Welcome To Jurassic Park", 'sound/music/jukebox/WelcomeToJurassicPark.mid')
 	)
