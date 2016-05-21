@@ -59,17 +59,17 @@
 
 	flesh_color = "#34AF10"
 
-	reagent_tag = IS_UNATHI
+	//reagent_tag = IS_UNATHI //VOREStation Removal
 	base_color = "#066000"
 
-	heat_discomfort_level = 295
+	//heat_discomfort_level = 295 //VOREStation Removal
 	heat_discomfort_strings = list(
 		"You feel soothingly warm.",
 		"You feel the heat sink into your bones.",
 		"You feel warm enough to take a nap."
 		)
 
-	cold_discomfort_level = 292
+	//cold_discomfort_level = 292 //VOREStation Removal
 	cold_discomfort_strings = list(
 		"You feel chilly.",
 		"You feel sluggish and cold.",
@@ -122,15 +122,15 @@
 	flesh_color = "#AFA59E"
 	base_color = "#333333"
 
-	reagent_tag = IS_TAJARA
+	//reagent_tag = IS_TAJARA //VOREStation Removal
 
-	heat_discomfort_level = 292
+	//heat_discomfort_level = 292 //VOREStation Removal
 	heat_discomfort_strings = list(
 		"Your fur prickles in the heat.",
 		"You feel uncomfortably warm.",
 		"Your overheated skin itches."
 		)
-	cold_discomfort_level = 275
+	//cold_discomfort_level = 275 //VOREStation Removal
 
 /datum/species/tajaran/equip_survival_gear(var/mob/living/carbon/human/H)
 	..()
@@ -162,7 +162,7 @@
 	blood_color = "#1D2CBF"
 	base_color = "#006666"
 
-	reagent_tag = IS_SKRELL
+	//reagent_tag = IS_SKRELL //VOREStation Removal
 
 	has_limbs = list(
 		BP_TORSO =  list("path" = /obj/item/organ/external/chest),

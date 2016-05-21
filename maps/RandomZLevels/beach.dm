@@ -1,4 +1,4 @@
-/obj/effect/spawner/beach // If this doesn't make the shit spawn I swear to fuck I will kill someone. I don't care how much lag this causes or how hacky it is.
+/obj/effect/spawner/beach // Hacky as all hell and causes slow round loads BUT IT FUCKING WORKS NOW, DOESN'T IT? -Ace
 	icon = 'icons/misc/beach.dmi'
 	icon_state = "coconuts"
 
