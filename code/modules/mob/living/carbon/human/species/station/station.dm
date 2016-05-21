@@ -59,7 +59,7 @@
 
 	flesh_color = "#34AF10"
 
-	reagent_tag = IS_UNATHI
+	//reagent_tag = IS_UNATHI //VOREStation Removal
 	base_color = "#066000"
 
 	//heat_discomfort_level = 295 //VOREStation Removal
@@ -122,7 +122,7 @@
 	flesh_color = "#AFA59E"
 	base_color = "#333333"
 
-	reagent_tag = IS_TAJARA
+	//reagent_tag = IS_TAJARA //VOREStation Removal
 
 	//heat_discomfort_level = 292 //VOREStation Removal
 	heat_discomfort_strings = list(
@@ -162,7 +162,7 @@
 	blood_color = "#1D2CBF"
 	base_color = "#006666"
 
-	reagent_tag = IS_SKRELL
+	//reagent_tag = IS_SKRELL //VOREStation Removal
 
 	has_limbs = list(
 		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
