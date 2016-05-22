@@ -30,10 +30,9 @@
 		input = sanitize(input(src,"Choose an emote to display.") as text|null)
 	else
 		input = message
-	if(input && m_type & 4)
+
+	if(input)
 		message = "<B>[src]</B> <I>[input]</I>"
-	else if(input)
-		message = "<B>[src]</B> [input]"
 	else
 		return
 
@@ -53,17 +52,16 @@
 				break
 			if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_sight) && !(M in viewers(src,null)))
 				M.show_message(message, m_type)
-		if (m_type & 4)
-			var/list/subtle = get_mobs_or_objects_in_view(1,src)
-			for(var/I in subtle)
-				if(isobj(I))
-					spawn(0)
-						if(I) //It's possible that it could be deleted in the meantime.
-							var/obj/O = I
-							O.see_emote(src, message, 2)
-				else if(ismob(I))
-					var/mob/M = I
-					M.show_message(message, 2)
+		var/list/subtle = get_mobs_or_objects_in_view(1,src)
+		for(var/I in subtle)
+			if(isobj(I))
+				spawn(0)
+					if(I) //It's possible that it could be deleted in the meantime.
+						var/obj/O = I
+						O.see_emote(src, message, 2)
+			else if(ismob(I))
+				var/mob/M = I
+				M.show_message(message, 2)
 
 
 
