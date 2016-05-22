@@ -256,11 +256,18 @@
 	msg += "</span>"
 
 	var/ssd_msg = species.get_ssd(src)
-	if(ssd_msg && (!should_have_organ("brain") || has_brain()) && stat != DEAD)
-		if(!key)
-			msg += "<span class='deadsay'>[T.He] [T.is] [ssd_msg]. It doesn't look like [T.he] [T.is] waking up anytime soon.</span>\n"
-		else if(!client)
-			msg += "<span class='deadsay'>[T.He] [T.is] [ssd_msg].</span>\n"
+	if(stat != DEAD)
+		if(ssd_msg && (!should_have_organ("brain") || has_brain()))
+			if(!key)
+				msg += "<span class='deadsay'>[T.He] [T.is] [ssd_msg]. It doesn't look like [T.he] [T.is] waking up anytime soon.</span>\n"
+			else if(!client)
+				msg += "<span class='deadsay'>[T.He] [T.is] [ssd_msg].</span>\n"
+
+			if(client && ((client.inactivity / 10) / 60 > 10)) //10 Minutes
+				msg += "\[Inactive for [round((client.inactivity/10)/60)] minutes\]\n"
+			else if(disconnect_time)
+				msg += "\[Disconnected/ghosted [round(((world.realtime - disconnect_time)/10)/60)] minutes ago\]\n"
+
 
 	var/list/wound_flavor_text = list()
 	var/list/is_bleeding = list()
