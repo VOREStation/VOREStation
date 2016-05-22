@@ -62,7 +62,8 @@
 		/obj/item/robot_parts,
 		/obj/item/borg/upgrade,
 		/obj/item/device/flash, //to build borgs,
-		/obj/item/weapon/disk,		//Maaaaay be too general,
+		/obj/item/organ/internal/brain, //to insert into MMIs,
+		/obj/item/weapon/disk,
 		/obj/item/weapon/circuitboard,
 		/obj/item/slime_extract,
 		/obj/item/weapon/reagent_containers/glass,
@@ -89,6 +90,16 @@
 
 	can_hold = list(
 		/obj/item/organ
+		)
+
+/obj/item/weapon/gripper/no_use/organ/robotics
+	name = "external organ gripper"
+	icon_state = "gripper-flesh"
+	desc = "A specialized grasping tool used in robotics work."
+
+	can_hold = list(
+		/obj/item/organ/external,
+		/obj/item/organ/internal/cell
 		)
 
 /obj/item/weapon/gripper/no_use/mech
