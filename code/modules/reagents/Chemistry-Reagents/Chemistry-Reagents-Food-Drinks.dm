@@ -555,6 +555,10 @@
 	color = "#74533b"
 
 	glass_icon_state = "glass_brown"
+	glass_name = "glass of chocolate milk"
+	glass_desc = "Delciously fattening!"
+
+	cup_icon_state = "cup_brown"
 	cup_name = "cup of chocolate milk"
 	cup_desc = "Deliciously fattening!"
 
