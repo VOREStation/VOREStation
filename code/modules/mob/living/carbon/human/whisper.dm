@@ -109,24 +109,18 @@
 			message = replacetext(message, "u", "µ")
 			message = replacetext(message, "b", "ß")
 
-	var/list/listening = get_mobs_or_objects_in_view(message_range, src) //VOREStation Edit - GMOOIV proc gets people in preds/objects(holders)
+	var/list/listening = get_mobs_or_objects_in_view(message_range, src)
 	listening |= src
 
 	//ghosts
-	for (var/mob/M in dead_mob_list)	//does this include players who joined as observers as well?
+	for (var/mob/M in dead_mob_list)
 		if (!(M.client))
 			continue
 		if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears))
 			listening |= M
-	/* VOREStation Removal - Unnecessary with GMOOIV proc above as it does this.
-	//Pass whispers on to anything inside the immediate listeners.
-	for(var/mob/L in listening)
-		for(var/mob/C in L.contents)
-			if(istype(C,/mob/living))
-				listening += C
-	*/
+
 	//pass on the message to objects that can hear us.
-	for (var/obj/O in listening) //VOREStation Edit - Already got a list above.
+	for (var/obj/O in listening)
 		spawn (0)
 			if (O)
 				O.hear_talk(src, message, verb, speaking)
