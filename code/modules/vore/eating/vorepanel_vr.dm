@@ -70,12 +70,13 @@
 
 	dat += "<HR>"
 
+	dat += "<ol style='list-style: none; padding: 0; overflow: auto;'>"
 	for(var/K in user.vore_organs) //Fuggin can't iterate over values
 		var/datum/belly/B = user.vore_organs[K]
 		if(B == selected)
-			dat += "<a href='?src=\ref[src];bellypick=\ref[B]'><b>[B.name]</b>"
+			dat += "<li style='float: left'><a href='?src=\ref[src];bellypick=\ref[B]'><b>[B.name]</b>"
 		else
-			dat += "<a href='?src=\ref[src];bellypick=\ref[B]'>[B.name]"
+			dat += "<li style='float: left'><a href='?src=\ref[src];bellypick=\ref[B]'>[B.name]"
 
 		var/spanstyle
 		switch(B.digest_mode)
@@ -106,11 +107,11 @@
 			if(DM_EGG)
 				spanstyle = "color:purple;"
 
-		dat += "<span style='[spanstyle]'> ([B.internal_contents.len])</span></a>"
+		dat += "<span style='[spanstyle]'> ([B.internal_contents.len])</span></a></li>"
 
 	if(user.vore_organs.len < 10)
-		dat += "<a href='?src=\ref[src];newbelly=1'>New+</a>"
-
+		dat += "<li style='float: left'><a href='?src=\ref[src];newbelly=1'>New+</a></li>"
+	dat += "</ol>"
 	dat += "<HR>"
 
 	// Selected Belly (contents, configuration)
