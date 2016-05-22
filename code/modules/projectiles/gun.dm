@@ -82,6 +82,10 @@
 	var/tmp/told_cant_shoot = 0 //So that it doesn't spam them with the fact they cannot hit them.
 	var/tmp/lock_time = -100
 
+	var/dna_lock = 0
+	var/stored_dna = null
+	var/safety_level = 0
+
 /obj/item/weapon/gun/New()
 	..()
 	for(var/i in 1 to firemodes.len)
@@ -114,6 +118,20 @@
 		return 0
 
 	var/mob/living/M = user
+	//if(dna_lock && && stored_dna && M.dna != stored_dna))
+	if(dna_lock && stored_dna)
+		if(!authorized_user(user))
+			if(safety_level == 0)
+				M << "<span class='danger'>\The [src] buzzes in dissapoint and displays an invalid DNA symbol.</span>"
+				return 0
+			if(safety_level == 1)
+				M << "<span class='danger'>\The [src] hisses in dissapointment.</span>"
+				for(var/mob/O in hearers(src, null))
+					O.show_message("<span class='game say'><span class='name'>\The [src]</span> announces, \"Self-destruct occurring in ten seconds.\"</span>",2)
+				M.show_message("<span class='game say'><span class='name'>\The [src]</span> announces, \"Self-destruct occurring in ten seconds.\"</span>",2)
+				sleep(100)
+				explosion(src, -1, 0, 2, 3, 0)
+				return 0
 	if(HULK in M.mutations)
 		M << "<span class='danger'>Your fingers are much too large for the trigger guard!</span>"
 		return 0
@@ -427,3 +445,41 @@
 
 /obj/item/weapon/gun/attack_self(mob/user)
 	switch_firemodes(user)
+
+/obj/item/weapon/gun/proc/get_dna(mob/user)
+	var/mob/living/M = user
+	if(stored_dna && stored_dna != M.dna)
+		M << "<span class='warning'>\The [src] buzzes and displays a symbol showing the gun is already DNA locked.</span>"
+		return 0
+	else
+		stored_dna = M.dna
+		M << "<span class='notice'>\The [src] pings and a needle flicks out from the grip, taking a DNA sample from you.</span>"
+		return 1
+
+/obj/item/weapon/gun/verb/give_dna()
+	set name = "Give DNA"
+	set category = "Object"
+	set src in usr
+	get_dna(usr)
+
+/obj/item/weapon/gun/proc/clear_dna(mob/user)
+	var/mob/living/M = user
+	if(!authorized_user(usr))
+		M << "span class='warning'>\The [src] buzzes and displays an invalid user symbol.</span>"
+		return 0
+	else
+		stored_dna = null
+		return 1
+
+/obj/item/weapon/gun/verb/remove_dna()
+	set name = "Remove DNA"
+	set category = "Object"
+	set src in usr
+	clear_dna(usr)
+
+/obj/item/weapon/gun/proc/authorized_user(mob/user)
+	if(!stored_dna)
+		return 1
+	if(stored_dna != user.dna)
+		return 0
+	return 1
