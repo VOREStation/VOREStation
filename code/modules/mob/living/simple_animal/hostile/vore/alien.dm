@@ -38,18 +38,18 @@
 
 /mob/living/simple_animal/hostile/vore/alien/drone
 	name = "alien drone"
-	icon_state = "xenodrone"
-	icon_living = "xenodrone"
-	icon_dead = "xenodrone-dead"
+	icon_state = "aliend_running"
+	icon_living = "aliend_running"
+	icon_dead = "aliend_dead"
 	health = 60
 	melee_damage_lower = 15
 	melee_damage_upper = 15
 
 /mob/living/simple_animal/hostile/vore/alien/sentinel
 	name = "alien sentinel"
-	icon_state = "xenosentinel"
-	icon_living = "xenosentinel"
-	icon_dead = "xenosentinel-dead"
+	icon_state = "aliens_running"
+	icon_living = "aliens_running"
+	icon_dead = "aliens_dead"
 	health = 120
 	melee_damage_lower = 15
 	melee_damage_upper = 15
@@ -60,9 +60,9 @@
 
 /mob/living/simple_animal/hostile/vore/alien/queen
 	name = "alien queen"
-	icon_state = "xenoqueen"
-	icon_living = "xenoqueen"
-	icon_dead = "xenoqueen-dead"
+	icon_state = "alienq_running"
+	icon_living = "alienq_running"
+	icon_dead = "alienq_dead"
 	maxHealth = 250
 	melee_damage_lower = 15
 	melee_damage_upper = 15
