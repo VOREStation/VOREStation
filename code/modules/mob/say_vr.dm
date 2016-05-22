@@ -1,4 +1,8 @@
-/mob/verb/me_verb_subtle(message as text)
+//////////////////////////////////////////////////////
+////////////////////SUBTLE COMMAND////////////////////
+//////////////////////////////////////////////////////
+
+/mob/verb/me_verb_subtle(message as text) //THIS HOT MESS SOMEHOW WORKS.
 	set name = "Subtle"
 	set category = "IC"
 	set desc = "Emote to nearby people (and your pred/prey)"
@@ -13,7 +17,7 @@
 	if(use_me)
 		usr.emote_vr("me",4,message)
 	else
-		usr.emote(message)
+		usr.emote_vr(message)
 
 
 
@@ -40,9 +44,6 @@
 	if (message)
 		log_emote("[name]/[key] : [message]")
 
- //Hearing gasp and such every five seconds is not good emotes were not global for a reason.
- // Maybe some people are okay with that.
-
 		for(var/mob/M in player_list)
 			if (!M.client)
 				continue //skip monkeys and leavers
@@ -66,5 +67,5 @@
 
 
 /mob/proc/emote_vr(var/act, var/type, var/message)
-	if(act == "subtle")
+	if(act == "me")
 		return custom_emote_vr(type, message)
