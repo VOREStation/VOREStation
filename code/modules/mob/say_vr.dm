@@ -2,7 +2,7 @@
 ////////////////////SUBTLE COMMAND////////////////////
 //////////////////////////////////////////////////////
 
-/mob/verb/me_verb_subtle(message as text) //THIS HOT MESS SOMEHOW WORKS.
+/mob/verb/me_verb_subtle(message as text) //This would normally go in say.dm
 	set name = "Subtle"
 	set category = "IC"
 	set desc = "Emote to nearby people (and your pred/prey)"
@@ -21,7 +21,7 @@
 
 
 
-/mob/proc/custom_emote_vr(var/m_type=1,var/message = null)
+/mob/proc/custom_emote_vr(var/m_type=1,var/message = null) //This would normally go in emote.dm
 	if(stat || !use_me && usr == src)
 		src << "You are unable to emote."
 		return
@@ -66,6 +66,6 @@
 
 
 
-/mob/proc/emote_vr(var/act, var/type, var/message)
+/mob/proc/emote_vr(var/act, var/type, var/message) //This would normally go in say.dm
 	if(act == "me")
 		return custom_emote_vr(type, message)
