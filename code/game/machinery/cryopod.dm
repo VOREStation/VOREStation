@@ -219,7 +219,7 @@
 	var/disallow_occupant_types = list()
 
 	var/mob/occupant = null       // Person waiting to be despawned.
-	var/time_till_despawn = 9000  // Down to 15 minutes //30 minutes-ish is too long
+	var/time_till_despawn = 599  // Down to 1 minute to reflect Vorestation respawn times.
 	var/time_entered = 0          // Used to keep track of the safe period.
 	var/obj/item/device/radio/intercom/announce //
 

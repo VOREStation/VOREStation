@@ -5,6 +5,9 @@
 // would require us to exclude that datum from the global list.
 
 /datum/sprite_accessory/hair
+
+	species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren") //This lets all races use the default hairstyles.
+
 	sergal_plain
 		name = "Sergal Plain"
 		icon = 'icons/mob/human_face_vr.dmi'
@@ -28,8 +31,6 @@
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "serg_fairytail"
 		species_allowed = list("Sergal")
-
-	species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren") //This lets all races use the default hairstyles.
 
 	bald
 		name = "Bald"

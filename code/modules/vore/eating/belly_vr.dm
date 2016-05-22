@@ -374,3 +374,4 @@
 
 	var/strsound = pick(struggle_sounds)
 	playsound(R.loc, strsound, 50, 1)
+	R << strsound //Might be too loud. We'll see.
