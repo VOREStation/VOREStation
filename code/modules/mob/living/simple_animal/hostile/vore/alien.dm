@@ -82,8 +82,9 @@
 	maxHealth = 400
 	health = 400
 	old_x = -16
-	old_y = -16
+	old_y = 0
 	pixel_x = -16
+	pixel_y = 0
 	capacity = 3
 
 /obj/item/projectile/neurotox
