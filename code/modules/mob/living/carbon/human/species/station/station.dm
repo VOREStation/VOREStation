@@ -15,7 +15,9 @@
 	max_age = 110
 
 	spawn_flags = SPECIES_CAN_JOIN
-	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR //VOREStation Edit - Skin Color
+	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_TONE | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
+//	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR //VOREStation Edit - Skin Color // NEED SPRITES. CAN'T USE IT UNTIL WE HAVE SPRITES.
+
 
 /datum/species/human/get_bodytype(var/mob/living/carbon/human/H)
 	return "Human"
