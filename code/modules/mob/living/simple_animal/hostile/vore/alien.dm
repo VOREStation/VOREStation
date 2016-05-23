@@ -78,6 +78,7 @@
 	icon_state = "queen_s"
 	icon_living = "queen_s"
 	icon_dead = "queen_dead"
+	faction = "alien"
 	move_to_delay = 4
 	maxHealth = 400
 	health = 400
