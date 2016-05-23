@@ -1,33 +1,33 @@
 /mob/living/carbon/human/proc/examine_weight()
-    var/message = ""
-
-    switch(weight)
-        if(0 to 74)
-            message = "<span class='warning'>They are terribly lithe and frail!</span>\n"
-        if(75 to 99)
-            message = "They have a very slender frame.\n"
-        if(100 to 124)
-            message = "They have a lightweight, athletic build.\n"
-        if(125 to 174)
-            message = "They have a healthy, average body.\n"
-        if(175 to 224)
-            message = "They have a thick, heavy physique.\n"
-        if(225 to 274)
-            message = "They have a plush, chubby figure.\n"
-        if(275 to 325)
-            message = "They have an especially plump body with a round potbelly and large hips.\n"
-        if(325 to 374)
-            message = "They have a very fat frame with a bulging potbelly, squishy rolls of pudge, very wide hips, and plump set of jiggling thighs.\n"
-        if(375 to 474)
-            message = "<span class='warning'>They are incredibly obese. Their massive potbelly sags over their waistline while their fat ass would probably require two chairs to sit down comfortably!</span>\n"
-        else
-            message += "<span class='warning'>They are so morbidly obese, you wonder how they can even stand, let alone waddle around the station. They can't get any fatter without being immobilized.</span>\n"
-    return message //Credit to Aronai for helping me actually get this working!
+	var/message = ""
+	var/weight_examine = round(weight)
+	switch(weight_examine)
+		if(0 to 74)
+			message = "<span class='warning'>They are terribly lithe and frail!</span>\n"
+		if(75 to 99)
+			message = "They have a very slender frame.\n"
+		if(100 to 124)
+			message = "They have a lightweight, athletic build.\n"
+		if(125 to 174)
+			message = "They have a healthy, average body.\n"
+		if(175 to 224)
+			message = "They have a thick, heavy physique.\n"
+		if(225 to 274)
+			message = "They have a plush, chubby figure.\n"
+		if(275 to 325)
+			message = "They have an especially plump body with a round potbelly and large hips.\n"
+		if(325 to 374)
+			message = "They have a very fat frame with a bulging potbelly, squishy rolls of pudge, very wide hips, and plump set of jiggling thighs.\n"
+		if(375 to 474)
+			message = "<span class='warning'>They are incredibly obese. Their massive potbelly sags over their waistline while their fat ass would probably require two chairs to sit down comfortably!</span>\n"
+		else
+			message += "<span class='warning'>They are so morbidly obese, you wonder how they can even stand, let alone waddle around the station. They can't get any fatter without being immobilized.</span>\n"
+	return message //Credit to Aronai for helping me actually get this working!
 
 /mob/living/carbon/human/proc/examine_nutrition()
 	var/message = ""
-
-	switch(nutrition)
+	var/nutrition_examine = round(nutrition)
+	switch(nutrition_examine)
 		if(0 to 49)
 			message = "<span class='warning'>They are starving! You can hear their stomach snarling from across the room!</span>\n"
 		if(50 to 99)
