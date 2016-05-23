@@ -35,6 +35,7 @@
 	hud_used = new /datum/hud(src)
 
 	next_move = 1
+	disconnect_time = null				//clear the disconnect time
 	sight |= SEE_SELF
 	..()
 
