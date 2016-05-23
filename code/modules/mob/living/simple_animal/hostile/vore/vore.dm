@@ -140,6 +140,9 @@ Don't use ranged mobs for vore mobs.
 	icon_dead = "snake-dead"
 	icon_living = "snake"
 	icon_state = "snake"
+	old_x = -16
+	old_y = -16
 	pixel_x = -16
+	pixel_y = -16
 	maxHealth = 200
 	health = 200

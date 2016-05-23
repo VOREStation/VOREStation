@@ -81,6 +81,8 @@
 	move_to_delay = 4
 	maxHealth = 400
 	health = 400
+	old_x = -16
+	old_y = -16
 	pixel_x = -16
 	capacity = 3
 
