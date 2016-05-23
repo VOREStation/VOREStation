@@ -53,7 +53,7 @@
 			if(COMPANY_OPPOSED)		loyalty = 0.70
 
 	//give them an account in the station database
-	var/money_amount = (rand(5,50) + rand(5, 50)) * loyalty * economic_modifier * (H.species ? economic_species_modifier[H.species.type] : 2)
+	var/money_amount = (rand(5,50) + rand(5, 50)) * loyalty * economic_modifier * ECO_MODIFIER
 	var/datum/money_account/M = create_account(H.real_name, money_amount, null)
 	if(H.mind)
 		var/remembered_info = ""
