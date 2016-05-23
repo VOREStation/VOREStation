@@ -78,10 +78,14 @@
 	icon_state = "queen_s"
 	icon_living = "queen_s"
 	icon_dead = "queen_dead"
+	faction = "alien"
 	move_to_delay = 4
 	maxHealth = 400
 	health = 400
+	old_x = -16
+	old_y = 0
 	pixel_x = -16
+	pixel_y = 0
 	capacity = 3
 
 /obj/item/projectile/neurotox
