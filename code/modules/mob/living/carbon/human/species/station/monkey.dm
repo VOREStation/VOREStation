@@ -103,16 +103,3 @@
 	flesh_color = "#34AF10"
 	base_color = "#066000"
 	reagent_tag = IS_UNATHI
-
-/datum/species/monkey/vulpkanin
-	name = "Wolpin"
-	name_plural = "Wolpin"
-
-	icobase = 'icons/mob/human_races/monkeys/r_wolpin.dmi'
-	deform = 'icons/mob/human_races/monkeys/r_wolpin.dmi'
-
-	greater_form = "Vulpkanin"
-	default_language = "Wolpin"
-	flesh_color = "#966464"
-	base_color = "#000000"
-	tail = "wolpintail"
