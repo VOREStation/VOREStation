@@ -847,7 +847,10 @@
 	if(!isSynthetic() && (species.flags & IS_PLANT) && (!light_organ || light_organ.is_broken()))
 		if(nutrition < 200)
 			take_overall_damage(2,0)
-			traumatic_shock++
+			
+			//traumatic_shock is updated every tick, incrementing that is pointless - shock_stage is the counter. 
+			//Not that it matters much for diona, who have NO_PAIN. 
+			shock_stage++
 
 	// TODO: stomach and bloodstream organ.
 	if(!isSynthetic())
