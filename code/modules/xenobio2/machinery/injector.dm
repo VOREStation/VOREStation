@@ -1,9 +1,9 @@
 /*
 	This file contains:
-	
+
 	Manual Injector:
 	Manually injects chemicals into a xenobiological creature from a linked machine.
-	
+
 */
 /obj/machinery/xenobio2/manualinjector
 	name = "biological injector"
@@ -16,7 +16,7 @@
 	var/mob/living/occupant
 	var/obj/item/weapon/reagent_containers/glass/beaker
 	var/obj/machinery/computer/xenobio2/computer
-	
+
 	circuit = /obj/item/weapon/circuitboard/xenobioinjectormachine
 
 /obj/machinery/xenobio2/manualinjector/New()
@@ -27,7 +27,7 @@
 
 /obj/machinery/xenobio2/manualinjector/map/New()
 	..()
-	beaker = new /obj/item/weapon/reagent_containers/glass/bottle(src)
+	beaker = new /obj/item/weapon/reagent_containers/glass/beaker(src)
 	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
@@ -35,7 +35,7 @@
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 	RefreshParts()
-	
+
 /obj/machinery/xenobio2/manualinjector/update_icon()
 	if(beaker)
 		if(occupant)
@@ -44,12 +44,12 @@
 			icon_state = "biogen-work"
 	else
 		icon_state = "biogen-empty"
-		
+
 /obj/machinery/xenobio2/manualinjector/MouseDrop_T(mob/target, mob/user)
 	if(user.stat || user.restrained())
 		return
 	move_into_injector(user,target)
-	
+
 /obj/machinery/xenobio2/manualinjector/proc/move_into_injector(var/mob/user,var/mob/living/victim)
 	if(src.occupant)
 		user << "<span class='danger'>The injector is full, empty it first!</span>"
@@ -68,14 +68,22 @@
 			victim.client.eye = src
 		victim.forceMove(src)
 		src.occupant = victim
-		
+
 /obj/machinery/xenobio2/manualinjector/proc/eject_contents()
-	for(var/obj/thing in (contents - component_parts - circuit))
+	for(var/obj/thing in (contents - component_parts - circuit - beaker))
 		thing.forceMove(loc)
 	if(occupant)
 		occupant.forceMove(loc)
 		occupant = null
-		
+	return
+
+/obj/machinery/xenobio2/manualinjector/proc/eject_beaker()
+	if(beaker)
+		var/obj/item/weapon/reagent_containers/glass/beaker/B = beaker
+		B.loc = loc
+		beaker = null
+	return
+
 /obj/machinery/xenobio2/manualinjector/proc/inject_reagents()
 	if(!occupant)
 		return
@@ -84,16 +92,23 @@
 		beaker.reagents.trans_to_holder(X.reagents, computer.transfer_amount, 1, 0)
 	else
 		beaker.reagents.trans_to_mob(occupant, computer.transfer_amount)
-		
+
 /obj/machinery/xenobio2/manualinjector/attackby(var/obj/item/W, var/mob/user)
 
 	//Let's try to deconstruct first.
 	if(istype(W, /obj/item/weapon/screwdriver))
 		default_deconstruction_screwdriver(user, W)
 		return
-	
+
 	if(istype(W, /obj/item/weapon/crowbar) && !occupant)
 		default_deconstruction_crowbar(user, W)
+		return
+
+	//are you smashing a beaker in me? Well then insert that shit!
+	if(istype(W, /obj/item/weapon/reagent_containers/glass/beaker))
+		beaker = W
+		user.drop_from_inventory(W)
+		W.loc = src
 		return
 
 	//Did you want to link it?
@@ -109,12 +124,12 @@
 			user << "<span class='warning'> You store the [src] in the [P]'s buffer!</span>"
 			P.connectable = src
 		return
-	
+
 	if(panel_open)
 		user << "<span class='warning'>Close the panel first!</span>"
 
 	var/obj/item/weapon/grab/G = W
-	
+
 	if(!istype(G))
 		return ..()
 
@@ -123,11 +138,11 @@
 		return
 
 	move_into_injector(user,G.affecting)
-	
-	
+
+
 /obj/item/weapon/circuitboard/xenobioinjectormachine
 	name = T_BOARD("biological injector")
 	build_path = "/obj/machinery/xenobio2/manualinjector"
 	board_type = "machine"
 	origin_tech = list()	//To be filled,
-	req_components = list()	//To be filled, 
+	req_components = list()	//To be filled,
