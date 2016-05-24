@@ -190,3 +190,9 @@ var/list/_client_preferences_by_type
 	key = "CHAT_RADIO"
 	enabled_description = "Show"
 	disabled_description = "Hide"
+
+/datum/client_preference/holder/show_rlooc
+	description ="Remote LOOC chat"
+	key = "CHAT_RLOOC"
+	enabled_description = "Show"
+	disabled_description = "Hide"

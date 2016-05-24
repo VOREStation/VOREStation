@@ -136,7 +136,7 @@
 					send = 1
 					prefix = "(Eye) "
 
-			if(!send && (target in admins))
+			if(!send && (target in admins) && target.is_preference_enabled(/datum/client_preference/holder/show_rlooc))
 				send = 1
 				prefix = "(R)"
 
