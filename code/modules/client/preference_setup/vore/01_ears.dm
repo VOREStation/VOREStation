@@ -70,7 +70,7 @@
 	pref.g_markings		= sanitize_integer(pref.g_markings, 0, 255, initial(pref.g_markings))
 	pref.b_markings		= sanitize_integer(pref.b_markings, 0, 255, initial(pref.b_markings))
 	if(pref.body_markings)
-		pref.body_markings	= sanitize_inlist(pref.body_markings, body_markings_list, initial(pref.body_markings))
+		pref.body_markings	= sanitize_inlist(pref.body_markings_style, body_markings_styles_list, initial(pref.body_markings_style))
 
 /datum/category_item/player_setup_item/vore/ears/copy_to_mob(var/mob/living/carbon/human/character)
 	character.custom_species	= pref.custom_species

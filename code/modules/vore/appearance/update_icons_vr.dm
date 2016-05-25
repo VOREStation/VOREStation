@@ -39,7 +39,7 @@
 	return null
 
 /mob/living/carbon/human/proc/get_body_markings_overlay()
-	if(body_markings_style && !(head && (head.flags_inv & BLOCKHEADHAIR)))
+	if(body_markings_style && !HIDEMARKINGS)
 		var/icon/body_markings_s = new/icon("icon" = body_markings_style.icon, "icon_state" = body_markings_style.icon_state)
 		if(body_markings_style.do_colouration)
 			body_markings_s.Blend(rgb(src.r_markings, src.g_markings, src.b_markings), body_markings_style.color_blend_mode)
