@@ -23,7 +23,6 @@
 	owner = newowner
 	loc = null
 	verbs.Cut()
-	toggle_permission(TARGET_CAN_RADIO)
 
 /obj/aiming_overlay/proc/toggle_permission(var/perm)
 
