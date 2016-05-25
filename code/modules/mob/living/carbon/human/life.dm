@@ -1568,9 +1568,6 @@
 		if(stat == DEAD)
 			holder.icon_state = "huddead"
 			holder2.icon_state = "huddead"
-		else if(status_flags & XENO_HOST)
-			holder.icon_state = "hudxeno"
-			holder2.icon_state = "hudxeno"
 		else if(foundVirus)
 			holder.icon_state = "hudill"
 		else if(has_brain_worms())
