@@ -104,3 +104,11 @@ Slime specific procs go here.
 			hostile = 0
 			traitdat.traits[TRAIT_XENO_HOSTILE] = 0
 		..()
+		
+/mob/living/simple_animal/xeno/slime/ProcessTraits()
+	..()
+	if(is_child)
+		GenerateChild()
+	else
+		GenerateAdult()
+		

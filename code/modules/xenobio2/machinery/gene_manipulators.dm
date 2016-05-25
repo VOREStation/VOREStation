@@ -53,6 +53,41 @@
 	var/eject_disk = 0
 	var/failed_task = 0
 	var/disk_needs_genes = 0
+	
+/obj/machinery/xenobio/attack_ai(mob/user as mob)
+	return attack_hand(user)
+
+/obj/machinery/xenobio/attack_hand(mob/user as mob)
+	ui_interact(user)
+	
+/obj/machinery/xenobio/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(default_deconstruction_screwdriver(user, W))
+		return
+	if(default_deconstruction_crowbar(user, W))
+		return
+	if(istype(W,/obj/item/weapon/disk/xenobio))
+		if(loaded_disk)
+			user << "There is already a data disk loaded."
+			return
+		else
+			var/obj/item/weapon/disk/xenobio/B = W
+
+			if(B.genes && B.genes.len)
+				if(!disk_needs_genes)
+					user << "That disk already has gene data loaded."
+					return
+			else
+				if(disk_needs_genes)
+					user << "That disk does not have any gene data loaded."
+					return
+
+			user.drop_from_inventory(W)
+			W.forceMove(src)
+			loaded_disk = W
+			user << "You load [W] into [src]."
+
+		return
+	..()
 
 /obj/machinery/xenobio/process()
 
@@ -86,9 +121,23 @@
 	var/obj/item/xenoproduct/product
 	var/datum/xeno/traits/genetics // Currently scanned xeno genetic structure.
 	var/degradation = 0     // Increments with each scan, stops allowing gene mods after a certain point.
+	
+/obj/machinery/xenobio/extractor/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype(W,/obj/item/xenoproduct))
+		if(product)
+			user << "There is already a xenobiological product loaded."
+			return
+		else
+			var/obj/item/xenoproduct/B = W
+			user.drop_from_inventory(B)
+			B.forceMove(src)
+			product = B
+			user << "You load [B] into [src]."
+
+		return
+	..()
 
 /obj/machinery/xenobio/extractor/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-
 	if(!user)
 		return
 
@@ -121,10 +170,16 @@
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "xenobio_isolator.tmpl", "Biological Product Destructive Analyzer UI", 470, 450)
+		ui = new(user, src, ui_key, "xenobio_isolator.tmpl", "B.P.D. Analyzer UI", 470, 450)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
+		
+/obj/machinery/xenobio/proc/eject_disk()
+	if(!loaded_disk) return
+	loaded_disk.forceMove(loc)
+	visible_message("\icon[src] [src] beeps and spits out [loaded_disk].")
+	loaded_disk = null
 
 /obj/machinery/xenobio/extractor/Topic(href, href_list)
 
@@ -139,11 +194,7 @@
 		product = null
 
 	if(href_list["eject_disk"])
-		if(!loaded_disk) return
-		
-		loaded_disk.forceMove(get_turf(src))
-		visible_message("\icon[src] [src] beeps and spits out [loaded_disk].")
-		loaded_disk = null
+		eject_disk()
 
 	if(href_list["scan_genome"])
 
@@ -172,7 +223,7 @@
 
 		loaded_disk.genesource = "[genetics.source]"
 
-		loaded_disk.name += " ([xenobio_controller.gene_tag_masks[href_list["get_gene"]]], [genetics.source]"
+		loaded_disk.name += " ([xenobio_controller.gene_tag_masks[href_list["get_gene"]]], [genetics.source])"
 		loaded_disk.desc += " The label reads \'gene [xenobio_controller.gene_tag_masks[href_list["get_gene"]]], sampled from [genetics.source]\'."
 		eject_disk = 1
 
@@ -201,6 +252,26 @@
 	circuit = /obj/item/weapon/circuitboard/biobombarder
 	
 	var/mob/living/simple_animal/xeno/slime/occupant
+	
+/obj/machinery/xenobio/editor/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype(W,/obj/item/weapon/grab))
+		var/obj/item/weapon/grab/G = W
+		if(occupant)
+			user << "There is already an organism loaded."
+			return
+		else
+			if(isxeno(G.affecting))
+				var/mob/living/simple_animal/xeno/X = G.affecting
+				if(do_after(user, 30) && X.Adjacent(src) && user.Adjacent(src) && X.Adjacent(user) && !occupant)
+					user.drop_from_inventory(G)
+					X.forceMove(src)
+					occupant = X
+					user << "You load [X] into [src]."
+			else
+				user << "<span class='danger'>This specimen is incompatible with the machinery!</span>"
+		return
+	..()
+
 
 /obj/machinery/xenobio/editor/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 
@@ -252,16 +323,23 @@
 
 		last_action = world.time
 		active = 1
+		occupant.nameVar = "modified"
 
 		if(prob(occupant.stability))
 			failed_task = 1
 			occupant.stability = 101
 
-		for(var/datum/plantgene/gene in loaded_disk.genes)
+		for(var/datum/xeno/genes/gene in loaded_disk.genes)
 			occupant.traitdat.apply_gene(gene)
 			occupant.stability += rand(5,10)
 			occupant.ProcessTraits()
-
+			
+	if(href_list["eject_disk"])
+		eject_disk()
+		
+	if(href_list["eject_xeno"])
+		eject_xeno()
+		
 	usr.set_machine(src)
 	src.add_fingerprint(usr)
 		
@@ -295,12 +373,14 @@
 		occupant = victim
 			
 /obj/machinery/xenobio/editor/proc/eject_contents()
-	for(var/obj/thing in (contents - component_parts - circuit))
-		thing.forceMove(loc)
+	eject_disk()
+	eject_xeno()
+		
+/obj/machinery/xenobio/editor/proc/eject_xeno()
 	if(occupant)
 		occupant.forceMove(loc)
 		occupant = null
-	
+		
 /obj/item/weapon/circuitboard/bioproddestanalyzer
 	name = T_BOARD("biological product destructive analyzer")
 	build_path = "/obj/machinery/xenobio/extractor"

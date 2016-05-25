@@ -92,6 +92,9 @@ Procs for targeting
 		traitdat.traits[TRAIT_XENO_COLOR] = "#"
 		for(var/i=0, i<6, i++)
 			traitdat.traits[TRAIT_XENO_COLOR] += pick(hexNums)
+		traitdat.traits[TRAIT_XENO_BIO_COLOR] = "#"
+		for(var/i=0, i<6, i++)
+			traitdat.traits[TRAIT_XENO_BIO_COLOR] += pick(hexNums)
 			
 	RandomChemicals()
 	//if(SPECIESMUT & mutable)

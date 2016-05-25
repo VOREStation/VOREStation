@@ -17,6 +17,11 @@
 	var/emptycolor = "#FF2222"
 	var/operatingcolor = "#FFFF22"
 	
+	
+/obj/machinery/slime/extractor/New()
+	..()
+	update_light_color()
+
 /obj/machinery/slime/extractor/map/New()
 	..()
 	circuit = new circuit(src)
@@ -67,7 +72,12 @@
 	if(!(istype(victim, /mob/living/simple_animal/xeno/slime)) )
 		user << "<span class='danger'>This is not a suitable subject for the core extractor!</span>"
 		return
-
+		
+	var/mob/living/simple_animal/xeno/slime/S = victim
+	if(S.is_child)
+		user << "<span class='danger'>This subject is not developed enough for the core extractor!</span>"
+		return
+		
 	user.visible_message("<span class='danger'>[user] starts to put [victim] into the core extractor!</span>")
 	src.add_fingerprint(user)
 	if(do_after(user, 30) && victim.Adjacent(src) && user.Adjacent(src) && victim.Adjacent(user) && !occupant)
@@ -81,11 +91,11 @@
 		
 /obj/machinery/slime/extractor/proc/update_light_color()
 	if(src.occupant && !(inuse))
-		set_light(1, 1, occupiedcolor)
+		set_light(2, 2, occupiedcolor)
 	else if(src.occupant)
-		set_light(1, 1, operatingcolor)
+		set_light(2, 2, operatingcolor)
 	else
-		set_light(1, 1, emptycolor)
+		set_light(2, 2, emptycolor)
 		
 /obj/machinery/slime/extractor/proc/extract_cores()
 	if(!src.occupant)
@@ -115,6 +125,7 @@
 			inuse = 0
 			eject_contents()
 			update_light_color()
+			src.updateUsrDialog()
 			
 /obj/machinery/slime/extractor/proc/eject_slime()			
 	if(occupant)

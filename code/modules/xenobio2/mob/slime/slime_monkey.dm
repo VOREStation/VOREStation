@@ -48,18 +48,18 @@ Slime cube lives here.
 	announce_ghost_joinleave(candidate, 0, "They are a promethean now.")
 	src.searching = 2
 	var/mob/living/carbon/human/S = new(get_turf(src))
+	S.client = candidate.client
 	S. << "<b>You are a promethean, brought into existence on [station_name()].</b>"
 	S.mind.assigned_role = "Promethean"
 	S.set_species("Promethean")
 	S.shapeshifter_set_colour("#05FF9B")
+	for(var/mob/M in viewers(get_turf(loc))
+		M.show_message("<span class='warning'>The monkey cube suddenly takes the shape of a humanoid!</span>")
 	var/newname = sanitize(input(S, "You are a Promethean. Would you like to change your name to something else?", "Name change") as null|text, MAX_NAME_LEN)
 	if (newname)
 		S.real_name = newname
 		S.name = S.real_name
 		S.dna.real_name = newname
 	if(S.mind) S.mind.name = S.name
-
-	for(var/mob/M in viewers(get_turf_or_move(loc)))
-		M.show_message("<span class='warning'>The monkey cube suddenly takes the shape of a man!</span>")
 	qdel(src)
 	

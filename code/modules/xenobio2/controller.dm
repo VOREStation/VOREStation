@@ -14,7 +14,7 @@
 	for(var/mask in xenobio_controller.gene_tag_masks)
 		usr << "[mask]: [xenobio_controller.gene_tag_masks[mask]]"
 
-var/global/datum/controller/plants/xenobio_controller // Set in New().
+var/global/datum/controller/xenobio/xenobio_controller // Set in New().
 
 /datum/controller/xenobio
 

@@ -160,6 +160,8 @@ var/global/list/xenoChemList = list("mutationtoxin",
 			G.values["[TRAIT_XENO_HOSTILE]"] = get_trait(TRAIT_XENO_HOSTILE)
 			G.values["[TRAIT_XENO_CHROMATIC]"] = get_trait(TRAIT_XENO_CHROMATIC)
 			
+	return G
+			
 /datum/xeno/traits/proc/apply_gene(var/datum/xeno/genes/genes)
 	if(!genes.genetype) return 0
 	

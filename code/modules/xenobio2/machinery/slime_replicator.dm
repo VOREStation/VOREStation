@@ -17,6 +17,10 @@
 	var/emptycolor = "#FF2222"
 	var/operatingcolor = "#FFFF22"
 	
+/obj/machinery/slime/replicator/New()
+	..()
+	update_light_color()
+	
 /obj/machinery/slime/replicator/map/New()
 	..()
 	circuit = new circuit(src)
@@ -50,11 +54,11 @@
 		
 /obj/machinery/slime/replicator/proc/update_light_color()
 	if(src.core && !(inuse))
-		set_light(1, 1, occupiedcolor)
+		set_light(2, 2, occupiedcolor)
 	else if(src.core)
-		set_light(1, 1, operatingcolor)
+		set_light(2, 2, operatingcolor)
 	else
-		set_light(1, 1, emptycolor)
+		set_light(2, 2, emptycolor)
 		
 /obj/machinery/slime/replicator/proc/replicate_slime()
 	if(!src.core)

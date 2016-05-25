@@ -83,6 +83,7 @@ Slime definitions, Life and New live here.
 	for(var/datum/language/L in (typesof(/datum/language) - /datum/language))
 		languages += L
 	speak += "[station_name()]?"
+	traitdat.source = "Slime"
 	resistances[BURN] = 4
 	resistances[BRUTE] = 0.2
 	resistances[TOX] = 1.5
