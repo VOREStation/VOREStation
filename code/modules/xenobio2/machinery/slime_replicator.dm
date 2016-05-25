@@ -24,9 +24,12 @@
 /obj/machinery/slime/replicator/map/New()
 	..()
 	circuit = new circuit(src)
-	component_parts = list()
-	//Component parts go here,
-
+	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
+	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
+	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
+	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
+	RefreshParts()
+	
 /obj/machinery/slime/replicator/attackby(var/obj/item/W, var/mob/user)
 	//Let's try to deconstruct first.
 	if(istype(W, /obj/item/weapon/screwdriver) && !inuse)
@@ -135,6 +138,11 @@
 	name = T_BOARD("Slime replicator")
 	build_path = "/obj/machinery/slime/replicator"
 	board_type = "machine"
-	origin_tech = list()	//To be filled,
-	req_components = list()	//To be filled, 
+	origin_tech = list(TECH_DATA = 3, TECH_BIO = 3)
+	req_components = list(
+							/obj/item/weapon/stock_parts/manipulator = 2,
+							/obj/item/weapon/stock_parts/matter_bin = 1,
+							/obj/item/weapon/stock_parts/micro_laser = 1
+							)
+
 	

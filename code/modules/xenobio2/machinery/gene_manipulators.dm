@@ -122,6 +122,18 @@
 	var/datum/xeno/traits/genetics // Currently scanned xeno genetic structure.
 	var/degradation = 0     // Increments with each scan, stops allowing gene mods after a certain point.
 	
+/obj/machinery/xenobio/extractor/map/New()
+	..()
+	circuit = new circuit(src)
+	component_parts = list()
+	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
+	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
+	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
+	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
+	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
+	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
+	RefreshParts()
+	
 /obj/machinery/xenobio/extractor/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/xenoproduct))
 		if(product)
@@ -252,6 +264,18 @@
 	circuit = /obj/item/weapon/circuitboard/biobombarder
 	
 	var/mob/living/simple_animal/xeno/slime/occupant
+	
+/obj/machinery/xenobio/editor/map/New()
+	..()
+	circuit = new circuit(src)
+	component_parts = list()
+	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
+	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
+	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
+	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
+	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
+	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
+	RefreshParts()
 	
 /obj/machinery/xenobio/editor/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/grab))
@@ -385,13 +409,21 @@
 	name = T_BOARD("biological product destructive analyzer")
 	build_path = "/obj/machinery/xenobio/extractor"
 	board_type = "machine"
-	origin_tech = list()	//To be filled,
-	req_components = list()	//To be filled, 
+	origin_tech = list(TECH_DATA = 4, TECH_BIO = 4)
+	req_components = list(
+							/obj/item/weapon/stock_parts/manipulator = 2,
+							/obj/item/weapon/stock_parts/matter_bin = 1,
+							/obj/item/weapon/stock_parts/scanning_module = 3
+							)
 	
 /obj/item/weapon/circuitboard/biobombarder
 	name = T_BOARD("biological genetic bombarder")
 	build_path = "/obj/machinery/xenobio/editor"
 	board_type = "machine"
-	origin_tech = list()	//To be filled,
-	req_components = list()	//To be filled, 
+	origin_tech = list(TECH_DATA = 4, TECH_BIO = 4)
+	req_components = list(
+							/obj/item/weapon/stock_parts/manipulator = 2,
+							/obj/item/weapon/stock_parts/matter_bin = 2,
+							/obj/item/weapon/stock_parts/scanning_module = 2
+							)
 	
