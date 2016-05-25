@@ -241,6 +241,15 @@
 				limb_icon.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
 		preview_icon.Blend(limb_icon, ICON_OVERLAY)
 
+	// VoreStation Edit - Start
+	// Body Markings
+	if(src.body_markings && body_markings_styles_list[src.body_markings_style])
+		var/datum/sprite_accessory/body_markings/body_markings_meta = body_markings_styles_list[src.body_markings_style]
+		var/icon/body_markings_s = new/icon("icon" = body_markings_meta.icon, "icon_state" = body_markings_meta.icon_state)
+		if(body_markings_meta.do_colouration)
+			body_markings_s.Blend(rgb(src.r_markings, src.g_markings, src.b_markings), body_markings_meta.color_blend_mode)
+	// Vore Station Edit - End
+
 	//Tails
 
 	// VoreStation Edit - Start

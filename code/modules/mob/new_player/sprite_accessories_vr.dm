@@ -144,7 +144,7 @@
 		species_allowed = list("Vulpkanin")
 		gender = NEUTER
 
-/datum/sprite_accessory/facial_hair
+/datum/sprite_accessory/body_markings
 
 	vulp_blaze
 		name = "Blaze"

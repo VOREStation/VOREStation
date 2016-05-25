@@ -24,6 +24,10 @@
 	var/r_tail = 30		// Tail/Taur color
 	var/g_tail = 30		// Tail/Taur color
 	var/b_tail = 30		// Tail/Taur color
+	var/body_markings_style	// Body markings style type
+	var/r_markings = 30
+	var/g_markings = 30	// Obvious colorizing of said markings
+	var/b_markings = 30
 
 // Definition of the stuff for Ears
 /datum/category_item/player_setup_item/vore/ears
@@ -37,6 +41,10 @@
 	S["r_tail"]			>> pref.r_tail
 	S["g_tail"]			>> pref.g_tail
 	S["b_tail"]			>> pref.b_tail
+	S["body_markings"]		>> pref.body_markings
+	S["r_markings"]			>> pref.r_markings
+	S["g_markings"]			>> pref.g_markings
+	S["b_markings"]			>> pref.b_markings
 
 /datum/category_item/player_setup_item/vore/ears/save_character(var/savefile/S)
 	S["custom_species"]	<< pref.custom_species
@@ -45,6 +53,10 @@
 	S["r_tail"]			<< pref.r_tail
 	S["g_tail"]			<< pref.g_tail
 	S["b_tail"]			<< pref.b_tail
+	S["body_markings"]		<< pref.body_markings
+	S["r_markings"]			<< pref.r_markings
+	S["g_markings"]			<< pref.g_markings
+	S["b_markings"]			<< pref.b_markings
 
 /datum/category_item/player_setup_item/vore/ears/sanitize_character()
 	pref.r_tail		= sanitize_integer(pref.r_tail, 0, 255, initial(pref.r_tail))
@@ -54,6 +66,11 @@
 		pref.ear_style	= sanitize_inlist(pref.ear_style, ear_styles_list, initial(pref.ear_style))
 	if(pref.tail_style)
 		pref.tail_style	= sanitize_inlist(pref.tail_style, tail_styles_list, initial(pref.tail_style))
+	pref.r_markings		= sanitize_integer(pref.r_markings, 0, 255, initial(pref.r_markings))
+	pref.g_markings		= sanitize_integer(pref.g_markings, 0, 255, initial(pref.g_markings))
+	pref.b_markings		= sanitize_integer(pref.b_markings, 0, 255, initial(pref.b_markings))
+	if(pref.body_markings)
+		pref.body_markings	= sanitize_inlist(pref.body_markings, body_markings_list, initial(pref.body_markings))
 
 /datum/category_item/player_setup_item/vore/ears/copy_to_mob(var/mob/living/carbon/human/character)
 	character.custom_species	= pref.custom_species
@@ -62,6 +79,10 @@
 	character.r_tail			= pref.r_tail
 	character.b_tail			= pref.b_tail
 	character.g_tail			= pref.g_tail
+	character.body_markings_style	= body_markings_styles_list[pref.body_markings_style]
+	character.r_markings			= pref.r_markings
+	character.b_markings			= pref.b_markings
+	character.g_markings			= pref.g_markings
 
 /datum/category_item/player_setup_item/vore/ears/content(var/mob/user)
 	. += "<h2>VORE Station Settings</h2>"
@@ -85,6 +106,14 @@
 
 	. += "<b>Custom Species</b> "
 	. += "<a href='?src=\ref[src];custom_species=1'>[pref.custom_species ? pref.custom_species : "None"]</a><br>"
+
+	. += "<b>Body Markings</b><br>"
+	. += " Style: <a href='?src=\ref[src];body_markings=1'>[pref.body_markings ? "Custom" : "Normal"]</a><br>"
+	if(body_markings_list[pref.body_markings])
+		var/datum/sprite_accessory/body_markings/B = body_markings_list[pref.body_markings]
+		if (B.do_colouration)
+			. += "<a href='?src=\ref[src];body_markings_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_markings, 2)][num2hex(pref.g_markings, 2)][num2hex(pref.b_markings, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_markings, 2)][num2hex(pref.g_markings, 2)][num2hex(pref.b_markings)]'><tr><td>__</td></tr></table> </font><br>"
+
 
 /datum/category_item/player_setup_item/vore/ears/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(!CanUseTopic(user))
@@ -136,5 +165,30 @@
 			pref.r_tail = hex2num(copytext(new_tailc, 2, 4))
 			pref.g_tail = hex2num(copytext(new_tailc, 4, 6))
 			pref.b_tail = hex2num(copytext(new_tailc, 6, 8))
+			return TOPIC_REFRESH
+
+	else if(href_list["body_markings"])
+		// Construct the list of names allowed for this user.
+		var/list/body_markings_styles = list("Normal")
+		for(var/path in body_markings_style_list)
+			var/datum/sprite_accessory/body_markings/instance = body_markings_styles_list[path]
+			if((!instance.ckeys_allowed) || (user.ckey in instance.ckeys_allowed)) // because I guess premium markings might be a thing?
+				body_markings_styles[instance.name] = path
+
+		// Present choice to user
+		var/selection = input(user, "Pick markings", "Character Preference") as null|anything in body_markings_styles
+		if(selection && selection != "Normal")
+			pref.body_markings = body_markings_styles[selection]
+		else
+			pref.body_markings = null
+		return TOPIC_REFRESH
+
+	else if(href_list["body_markings_color"])
+		var/new_markingsc = input(user, "Choose your character's body markings color:", "Character Preference",
+			rgb(pref.r_markings, pref.g_markings, pref.b_markings)) as color|null
+		if(new_markingsc)
+			pref.r_markings = hex2num(copytext(new_markingsc, 2, 4))
+			pref.g_markings = hex2num(copytext(new_markingsc, 4, 6))
+			pref.b_markings = hex2num(copytext(new_markingsc, 6, 8))
 			return TOPIC_REFRESH
 	return ..()
