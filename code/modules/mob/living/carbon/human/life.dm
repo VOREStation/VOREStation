@@ -154,21 +154,6 @@
 	if(stat != CONSCIOUS) //Let's not worry about tourettes if you're not conscious.
 		return
 
-	//Vision
-	if(species.vision_organ)
-		if(internal_organs_by_name[species.vision_organ])  // Vision organs cut out? Permablind.
-			eye_blind =  0
-			blinded =    0
-			eye_blurry = 0
-		else
-			eye_blind =  1
-			blinded =    1
-			eye_blurry = 1
-	else // Presumably if a species has no vision organs, they see via some other means.
-		eye_blind =  0
-		blinded =    0
-		eye_blurry = 0
-
 	if (disabilities & EPILEPSY)
 		if ((prob(1) && paralysis < 1))
 			src << "\red You have a seizure!"
@@ -970,19 +955,18 @@
 		if(species.vision_organ)
 			vision = internal_organs_by_name[species.vision_organ]
 
-		if(!vision) // Presumably if a species has no vision organs, they see via some other means.
+		if(!species.vision_organ) // Presumably if a species has no vision organs, they see via some other means.
 			eye_blind =  0
 			blinded =    0
 			eye_blurry = 0
-		else if(vision.is_broken())   // Vision organs cut out or broken? Permablind.
+		else if(!vision || vision.is_broken())   // Vision organs cut out or broken? Permablind.
 			eye_blind =  1
 			blinded =    1
 			eye_blurry = 1
-		else
-			//blindness
-			if(sdisabilities & BLIND) // Disabled-blind, doesn't get better on its own
+		else //You have the requisite organs
+			if(sdisabilities & BLIND) 	// Disabled-blind, doesn't get better on its own
 				blinded =    1
-			else if(eye_blind)		       // Blindness, heals slowly over time
+			else if(eye_blind)		  	// Blindness, heals slowly over time
 				eye_blind =  max(eye_blind-1,0)
 				blinded =    1
 			else if(istype(glasses, /obj/item/clothing/glasses/sunglasses/blindfold))	//resting your eyes with a blindfold heals blurry eyes faster
@@ -1584,9 +1568,6 @@
 		if(stat == DEAD)
 			holder.icon_state = "huddead"
 			holder2.icon_state = "huddead"
-		else if(status_flags & XENO_HOST)
-			holder.icon_state = "hudxeno"
-			holder2.icon_state = "hudxeno"
 		else if(foundVirus)
 			holder.icon_state = "hudill"
 		else if(has_brain_worms())
