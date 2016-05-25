@@ -143,7 +143,7 @@
 		icon_state = "spike"
 		species_allowed = list("Vulpkanin")
 		gender = NEUTER
-
+/*
 /datum/sprite_accessory/body_markings
 
 	vulp_blaze
@@ -201,7 +201,7 @@
 		icon_state = "vulp_facial_swift"
 		species_allowed = list("Vulpkanin")
 		gender = NEUTER
-
+*/
 	vulpkanin
 		name = "Default Vulpkanin skin"
 		icon_state = "default"
