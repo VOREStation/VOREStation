@@ -242,13 +242,17 @@ proc/get_radio_key_from_channel(var/channel)
 	spawn(30) qdel(speech_bubble)
 
 	for(var/mob/M in listening)
-		M << speech_bubble
-		M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol)
+		try
+			M << speech_bubble
+			M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol)
+		catch(var/exception/e)
+			log_debug("hear_say exception on mob - [e] in [e.file]:[e.line]")
 
 	for(var/obj/O in listening_obj)
-		spawn(0)
-			if(O) //It's possible that it could be deleted in the meantime.
-				O.hear_talk(src, message, verb, speaking)
+		try
+			O.hear_talk(src, message, verb, speaking)
+		catch(var/exception/e)
+			log_debug("hear_talk exception on obj - [e] in [e.file]:[e.line]")
 
 	log_say("[name]/[key] : [message]")
 	return 1
