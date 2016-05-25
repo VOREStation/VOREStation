@@ -11,6 +11,8 @@
 		"Vulpkanin"				= 'icons/mob/species/vulpkanin/helmet.dmi'
 		)
 
+	sprite_sheets_refit = list(
+		"Vulpkanin"				= 'icons/mob/species/vulpkanin/helmet.dmi')
 
 
 /obj/item/clothing/suit/space/void
@@ -25,3 +27,6 @@
 		"Highlander Zorren" 	= 'icons/mob/species/fox/suit_vr.dmi',
 		"Vulpkanin"				= 'icons/mob/species/vulpkanin/suit.dmi'
 		)
+
+	sprite_sheets_refit = list(
+		"Vulpkanin"				= 'icons/mob/species/vulpkanin/helmet.dmi')
