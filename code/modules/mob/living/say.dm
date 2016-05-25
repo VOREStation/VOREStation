@@ -303,7 +303,7 @@ proc/get_radio_key_from_channel(var/channel)
 			if(M && src) //If we still exist, when the spawn processes
 				var/dst = get_dist(get_turf(M),get_turf(src))
 
-				if(dst <= message_range) //Inside normal message range, FYI -1 is "from self to self" range
+				if(dst <= message_range || M.stat == DEAD) //Inside normal message range, or dead with ears (handled in the view proc)
 					M << speech_bubble
 					M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol)
 
