@@ -1,10 +1,10 @@
-/mob/living/carbon/human/say(var/message)
+/mob/living/carbon/human/say(var/message,var/whispering=0)
 	var/alt_name = ""
 	if(name != GetVoice())
 		alt_name = "(as [get_id_name("Unknown")])"
 
 	message = sanitize(message)
-	..(message, alt_name = alt_name)
+	..(message, alt_name = alt_name, whispering = whispering)
 
 /mob/living/carbon/human/proc/forcesay(list/append)
 	if(stat == CONSCIOUS)
@@ -181,9 +181,6 @@
 			if(has_radio)
 				R.talk_into(src,message,null,verb,speaking)
 				used_radios += R
-		if("whisper")
-			whisper_say(message, speaking, alt_name)
-			return 1
 		else
 			if(message_mode)
 				if(l_ear && istype(l_ear,/obj/item/device/radio))
