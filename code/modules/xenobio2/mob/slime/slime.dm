@@ -22,6 +22,9 @@ Slime definitions, Life and New live here.
 	move_to_delay = 17 //Slimes shouldn't be able to go faster than humans.
 	default_chems = list("slimejelly" = 5)
 	attacktext = "absorbed some of"
+	response_help = "pats"
+	response_disarm = "tries to stop"
+	response_harm = "hits"
 	
 	var/emote_on = null
 	
@@ -80,6 +83,9 @@ Slime definitions, Life and New live here.
 	for(var/datum/language/L in (typesof(/datum/language) - /datum/language))
 		languages += L
 	speak += "[station_name()]?"
+	resistances[BURN] = 4
+	resistances[BRUTE] = 0.2
+	resistances[TOX] = 1.5
 	GenerateChild()
 	return 1
 	

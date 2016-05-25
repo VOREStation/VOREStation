@@ -58,6 +58,7 @@ Also includes Life and New
 	handle_reagents()
 	if((mut_level >= mut_max) && !(mutable & NOMUT))
 		Mutate()
+		mut_level -= mut_max
 			
 	ProcessSpeechBuffer()
 	
@@ -87,7 +88,7 @@ Also includes Life and New
 	temp_chem_holder.create_reagents(20)
 	nutrition = 350
 	for(var/R in default_chems)
-		traitdat.chems.reagents.add_reagent("[R]", default_chems[R])
+		traitdat.chems[R] = default_chems[R]
 		
 	traitdat.source = name
 	

@@ -18,14 +18,13 @@ Slime specific procs go here.
 		traitdat.traits[TRAIT_XENO_HOSTILE] = 0
 	else
 		traitdat.traits[TRAIT_XENO_HOSTILE] = prob(30)
-	traitdat.traits[TRAIT_XENO_GLOW_STRENGTH] = round(rand(1,6))
-	traitdat.traits[TRAIT_XENO_GLOW_RANGE] = round(rand(1,6))
+	traitdat.traits[TRAIT_XENO_GLOW_STRENGTH] = round(rand(1,3))
+	traitdat.traits[TRAIT_XENO_GLOW_RANGE] = round(rand(1,3))
 	traitdat.traits[TRAIT_XENO_STRENGTH] = round(rand(4,9))
 	traitdat.traits[TRAIT_XENO_STR_RANGE] =round(rand(0,2))
 	traitdat.traits[TRAIT_XENO_CANLEARN] = prob(68)
 	traitdat.traits[TRAIT_XENO_SPEED] = round(rand(-10,10))
 	
-	//RandomChemicals()
 	
 
 /mob/living/simple_animal/xeno/slime/proc/GrowUp()
@@ -101,7 +100,7 @@ Slime specific procs go here.
 			return
 		if(reagents.total_volume <= 0)
 			return
-		/*if(reagents.has_reagent("docilitytoxin"))	//Toxin that makes them docile? Good for quelling angry mobs.
+		if(reagents.has_reagent("docilitytoxin"))	//Toxin that makes them docile? Good for quelling angry mobs.
 			hostile = 0
-			traitdat.traits[TRAIT_XENO_HOSTILE] = 0*/
+			traitdat.traits[TRAIT_XENO_HOSTILE] = 0
 		..()

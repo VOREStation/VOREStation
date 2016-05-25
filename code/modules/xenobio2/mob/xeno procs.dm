@@ -93,13 +93,7 @@ Procs for targeting
 		for(var/i=0, i<6, i++)
 			traitdat.traits[TRAIT_XENO_COLOR] += pick(hexNums)
 			
-	traitdat.chems.reagents.clear_reagents()
-	for(var/R in default_chems)
-		traitdat.chems.reagents.add_reagent("[R]", default_chems[R])
-	var/amount_of_chems = rand(1,6)
-	for(var/i = 0,i <= amount_of_chems, i++)
-		var/datum/reagent/R = pick(xenoChemList)
-		traitdat.chems.reagents.add_reagent(R, round(rand(1,10)))
+	RandomChemicals()
 	//if(SPECIESMUT & mutable)
 		//Placeholder, currently no xenos that have species mutations.
 	RandomizeTraits()
@@ -132,8 +126,9 @@ Procs for targeting
 		if(prob(traitdat.get_trait(TRAIT_XENO_LEARNCHANCE)) && traitdat.get_trait(TRAIT_XENO_CANLEARN))
 			var/chosen = pick(speech_buffer)
 			speak.Add(chosen)
+		/*	Uncoment for logging of speech list.
 			log_debug("Added [chosen] to speak list.")
-		log_debug("Speechlist cut.")
+		log_debug("Speechlist cut.") */
 		speech_buffer.Cut()
 //
 /mob/living/simple_animal/xeno/proc/BuildReagentLists()
@@ -156,7 +151,7 @@ Procs for targeting
 		..()
 		
 /mob/living/simple_animal/xeno/proc/RandomChemicals()
-	traitdat.chemlist.Cut()	//Clear the amount first.
+	traitdat.chems.Cut()	//Clear the amount first.
 	
 	var/num_chems = round(rand(1,4))
 	var/list/chemchoices = xenoChemList
@@ -165,6 +160,6 @@ Procs for targeting
 		var/chemtype = pick(chemchoices)
 		chemchoices -= chemtype
 		var/chemamount = rand(1,5)
-		traitdat.chemlist[chemtype] = chemamount
+		traitdat.chems[chemtype] = chemamount
 		
-	traitdat.chemlist += default_chems
+	traitdat.chems += default_chems

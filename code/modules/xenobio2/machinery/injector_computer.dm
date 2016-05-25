@@ -56,9 +56,11 @@
 
 	data["activity"] = active
 	data["beaker"] = injector.beaker
+	if(injector.occupant)
+		data["occupied"] = 1
 	if(isxeno(injector.occupant))
 		var/mob/living/simple_animal/xeno/X = injector.occupant
-		data["instability"] = (X.mut_level / X.mut_max)
+		data["instability"] = (X.mut_level / X.mut_max) * 100
 	else
 		data["instability"] = null
 

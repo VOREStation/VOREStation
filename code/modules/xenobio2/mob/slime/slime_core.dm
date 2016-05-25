@@ -8,10 +8,5 @@ Slime core lives here.
 	icon_state = "slime extract"
 	source = "Slime"
 	product = "core"
-	
-/obj/item/xenoproduct/slime/core/New()
-	..()
-	color = traits.get_trait(TRAIT_XENO_COLOR)
-	if(traits.get_trait(TRAIT_XENO_BIOLUMESCENT))
-		set_light(traits.get_trait(TRAIT_XENO_GLOW_STRENGTH),traits.get_trait(TRAIT_XENO_GLOW_RANGE),traits.get_trait(TRAIT_XENO_BIO_COLOR))
+
 	

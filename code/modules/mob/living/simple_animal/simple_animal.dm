@@ -82,6 +82,15 @@
 	var/shuttletarget = null
 	var/enroute = 0
 	
+	var/list/resistances = list(
+								HALLOSS = 0,
+								BRUTE = 1,
+								BURN = 1,
+								TOX = 1,
+								OXY = 0,
+								CLONE = 0
+								)
+	
 	var/hostile = 0
 
 /mob/living/simple_animal/New()
@@ -222,7 +231,6 @@
 
 	if(!atmos_suitable)
 		adjustBruteLoss(unsuitable_atoms_damage)
-	return 1
 		
 	//Hostility
 	if(!stat && !client && hostile)
@@ -239,6 +247,8 @@
 				if(destroy_surroundings)
 					DestroySurroundings()
 				AttackTarget()
+				
+	return 1
 
 /mob/living/simple_animal/proc/handle_supernatural()
 	if(purge)
@@ -331,9 +341,7 @@
 		return
 
 	if(O.force > resistance)
-		var/damage = O.force
-		if (O.damtype == HALLOSS)
-			damage = 0
+		var/damage = O.force * resistances[O.damtype]
 		if(supernatural && istype(O,/obj/item/weapon/nullrod))
 			damage *= 2
 			purge = 3

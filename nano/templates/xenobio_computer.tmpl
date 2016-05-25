@@ -17,26 +17,33 @@ Used In File(s): \code\modules\xenobio2\machines\injector_computer.dm
 	</div>
 	<div style="padding-left: 110px;">
 		<h3 style="clear: none;">Sensor Readings:</h3>
-		<div class="itemGroup floatLeft" style="clear: none;">
-			<div class="itemLabel">
-				Instability: 
+		{{if data.occupied}}
+			<div class="itemGroup floatLeft" style="clear: none;">
+				<div class="itemLabel">
+					Instability: 
+				</div>
+				<div class="itemContent">
+					{{if data.instability}}
+						{{:data.instability}}%
+					{{else}}
+						<span class='bad'><b>ERRR%</b></span> Please contact your local technician for assistance.
+					{{/if}}
+				</div>
+				<div class="itemLabel">
+					Occupant Health: 
+				</div>
+				<div class="itemContent">
+					{{if data.occupantHealth}}
+						{{:data.occupantHealth}}/{{:data.occupantHealthMax}}
+					{{else}}
+						<span class='bad'><b>ERRR%</b></span> Please contact your local technician for assistance.
+					{{/if}}
+		{{else}}
+			<div class="itemGroup floatLeft" style="clear: none;">
+				<div class="itemLabel">
+				<span class='bad'>Injector is not occupied.</span>
 			</div>
-			<div class="itemContent">
-				{{if data.instability}}
-					{{:data.instability}}%
-				{{else}}
-					<span class='bad'><b>ERRR%</b></span> Please contact your local technician for assistance.
-				{{/if}}
-			</div>
-			<div class="itemLabel">
-				Occupant Health: 
-			</div>
-			<div class="itemContent">
-				{{if data.occupantHealth}}
-					{{:data.occupantHealth}}/{{:data.occupantHealthMax}}
-				{{else}}
-					<span class='bad'><b>ERRR%</b></span> Please contact your local technician for assistance.
-				{{/if}}
+		{{/if}}
 			</div>
 		</div>
 	</div>

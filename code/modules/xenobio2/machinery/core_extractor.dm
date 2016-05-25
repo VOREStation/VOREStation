@@ -1,7 +1,7 @@
 /*
 	Here lives the slime core extractor
 	This machine extracts slime cores at the cost of the slime itself.
-	To create more of these slimes, stick the slime core in the replicator.
+	To create more of these slimes, stick the slime core in the extractor.
 */
 /obj/machinery/slime/extractor
 	name = "Slime extractor"
@@ -60,7 +60,7 @@
 		user << "<span class='danger'>The core extractor is full, empty it first!</span>"
 		return
 
-	if(in_use)
+	if(inuse)
 		user << "<span class='danger'>The core extractor is locked and running, wait for it to finish.</span>"
 		return
 
@@ -81,11 +81,11 @@
 		
 /obj/machinery/slime/extractor/proc/update_light_color()
 	if(src.occupant && !(inuse))
-		set_light(4, 4, occupiedcolor)
+		set_light(1, 1, occupiedcolor)
 	else if(src.occupant)
-		set_light(4, 4, operatingcolor)
+		set_light(1, 1, operatingcolor)
 	else
-		set_light(4, 4, emptycolor)
+		set_light(1, 1, emptycolor)
 		
 /obj/machinery/slime/extractor/proc/extract_cores()
 	if(!src.occupant)
@@ -102,11 +102,12 @@
 			C.traits = occupant.traitdat
 			
 			C.create_reagents(C.traits.traits[TRAIT_XENO_CHEMVOL])
-			for(var/reagent in occupant.traitdat.chems.reagents)
-				var/amount = occupant.traitdat.chems.reagents[reagent]
-				C.reagents.add_reagent(reagent, amount)
+			for(var/reagent in occupant.traitdat.chems)
+				C.reagents.add_reagent(reagent, occupant.traitdat.chems[reagent])
 				
 			C.color = C.traits.traits[TRAIT_XENO_COLOR]
+			if(occupant.traitdat.get_trait(TRAIT_XENO_BIOLUMESCENT))
+				C.set_light(occupant.traitdat.get_trait(TRAIT_XENO_GLOW_STRENGTH),occupant.traitdat.get_trait(TRAIT_XENO_GLOW_RANGE), occupant.traitdat.get_trait(TRAIT_XENO_BIO_COLOR))
 			
 		spawn(30)
 			icon_state = "scanner_0old"
@@ -115,13 +116,55 @@
 			eject_contents()
 			update_light_color()
 			
-/obj/machinery/slime/extractor/proc/eject_contents()
-	for(var/obj/thing in (contents - component_parts - circuit))
-		thing.forceMove(loc)
+/obj/machinery/slime/extractor/proc/eject_slime()			
 	if(occupant)
 		occupant.forceMove(loc)
 		occupant = null
+			
+/obj/machinery/slime/extractor/proc/eject_core()
+	for(var/obj/thing in (contents - component_parts - circuit))
+		thing.forceMove(loc)
+			
+/obj/machinery/slime/extractor/proc/eject_contents()
+	eject_core()
+	eject_slime()
 	
+//Here lies the UI
+/obj/machinery/slime/extractor/attack_hand(mob/user as mob)
+	user.set_machine(src)
+	interact(user)
+
+/obj/machinery/slime/extractor/interact(mob/user as mob)
+	var/dat = ""
+	if(!inuse)
+		dat = {"
+	<b>Slime held:</b><br>
+	[occupant]<br>
+	"}
+		if (occupant && !(stat & (NOPOWER|BROKEN)))
+			dat += "<A href='?src=\ref[src];action=extract'>Start the core extraction.</a><BR>"
+		if(occupant)
+			dat += "<A href='?src=\ref[src];action=eject'>Eject the slime</a><BR>"
+	else
+		dat += "Please wait..."
+	var/datum/browser/popup = new(user, "Slime Extractor", "Slime Extractor", src)
+	popup.set_content(dat)
+	popup.open()
+	return
+
+
+/obj/machinery/slime/extractor/Topic(href, href_list)
+	if(..())
+		return
+	usr.set_machine(src)
+	switch(href_list["action"])
+		if ("extract")
+			extract_cores()
+		if("eject")
+			eject_slime()
+	src.updateUsrDialog()
+	return
+
 //Circuit board below,
 /obj/item/weapon/circuitboard/slimeextractor
 	name = T_BOARD("Slime extractor")

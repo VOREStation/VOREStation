@@ -50,6 +50,6 @@ Slime specific life events go here.
 				icon_state = "slime adult dead"
 				color = traitdat.traits[TRAIT_XENO_COLOR]
 				
-		return 1 //Everything worked okay
+		return 0 //Everything worked okay
 	
-	return 0	//xeno/Life() returned 0.
+	return 	//xeno/Life() returned 0.

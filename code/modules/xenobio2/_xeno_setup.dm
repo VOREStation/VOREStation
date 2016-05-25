@@ -52,8 +52,7 @@ var/global/list/xenoChemList = list("mutationtoxin",
 						"psilocybin", 
 						"mindbreaker", 
 						"impedrezene", 
-						"cryptobiolin", 
-						"serotronium", 
+						"cryptobiolin",
 						"space_drugs", 
 						"chloralhydrate", 
 						"stoxin", 
@@ -76,12 +75,14 @@ var/global/list/xenoChemList = list("mutationtoxin",
 						"alkysine", 
 						"imidazoline", 
 						"peridaxon", 
-						"rezadone")
+						"rezadone",
+						"mutationtoxin",
+						"docilitytoxin")
 						
 /datum/xeno/traits
 	var/list/traits = list()
 	var/list/chemlist = list()
-	var/obj/chems
+	var/list/chems = list()
 	var/source = "unknown"
 	
 /datum/xeno/traits/proc/set_trait(var/trait, var/newval)
@@ -115,8 +116,6 @@ var/global/list/xenoChemList = list("mutationtoxin",
 	set_trait(TRAIT_XENO_CANSPEAK, 1)
 	set_trait(TRAIT_XENO_STRENGTH, 0)
 	set_trait(TRAIT_XENO_STR_RANGE, 0)
-	chems = new()
-	chems.create_reagents(traits[TRAIT_XENO_CHEMVOL])
 	
 /datum/xeno/traits/proc/get_gene(var/genetype)
 	
@@ -167,10 +166,8 @@ var/global/list/xenoChemList = list("mutationtoxin",
 	switch(genes.genetype)
 		if(GENE_XENO_BIOCHEMISTRY)
 			set_trait(TRAIT_XENO_CHEMVOL, genes.values["[TRAIT_XENO_CHEMVOL]"])
-			chems.reagents.maximum_volume = genes.values["[TRAIT_XENO_CHEMVOL]"]
-			for(var/reagent in genes.chems.reagents)
-				var/amount = genes.chems.reagents[reagent]
-				chems.reagents.add_reagent(reagent, amount)
+			for(var/reagent in genes.chems)
+				chems[reagent] = genes[reagent]
 				
 		if(GENE_XENO_HEALTH)
 			set_trait(TRAIT_XENO_HEALTH, genes.values["[TRAIT_XENO_HEALTH]"])
@@ -206,10 +203,7 @@ var/global/list/xenoChemList = list("mutationtoxin",
 /datum/xeno/genes
 	var/genetype	//Label for specifying what gene is used.
 	var/list/values	//What's going to be put into specific traits
-	var/obj/chems
+	var/list/chems
 	
-/datum/xeno/genes/New()
-	..()
-	chems = new()
-	chems.create_reagents(20)
+
 	

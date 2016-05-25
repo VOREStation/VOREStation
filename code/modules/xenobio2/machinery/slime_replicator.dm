@@ -39,21 +39,22 @@
 		return ..()
 		
 	if(core)
-		user << "<span class='warning'>The [src] is already filled!</span>"
+		user << "<span class='warning'>[src] is already filled!</span>"
 		return
 	if(panel_open)
 		user << "<span class='warning'>Close the panel first!</span>"
 	core = G
+	user.drop_from_inventory(G)
 	G.forceMove(src)
 	update_light_color()
 		
 /obj/machinery/slime/replicator/proc/update_light_color()
 	if(src.core && !(inuse))
-		set_light(4, 4, occupiedcolor)
+		set_light(1, 1, occupiedcolor)
 	else if(src.core)
-		set_light(4, 4, operatingcolor)
+		set_light(1, 1, operatingcolor)
 	else
-		set_light(4, 4, emptycolor)
+		set_light(1, 1, emptycolor)
 		
 /obj/machinery/slime/replicator/proc/replicate_slime()
 	if(!src.core)
@@ -67,22 +68,63 @@
 	spawn(30)
 		var/mob/living/simple_animal/xeno/slime/S = new(src)
 		S.traitdat = core.traits
+		S.ProcessTraits()
 		qdel(core)
 		spawn(30)
 			inuse = 0
-			eject_contents()
+			eject_slime()
 			icon_state = "restruct_0"
 			update_light_color()
+			src.updateUsrDialog()
 			
-/obj/machinery/slime/replicator/proc/eject_contents()
+/obj/machinery/slime/replicator/proc/eject_slime()
 	for(var/mob/thing in contents)
 		thing.forceMove(loc)
+
+/obj/machinery/slime/replicator/proc/eject_core()			
 	if(core)
 		core.forceMove(loc)
 		core = null
+
+/obj/machinery/slime/replicator/proc/eject_contents()
+	eject_slime()
+	eject_core()	
 		
 //Here lies the UI
+/obj/machinery/slime/replicator/attack_hand(mob/user as mob)
+	user.set_machine(src)
+	interact(user)
 
+/obj/machinery/slime/replicator/interact(mob/user as mob)
+	var/dat = ""
+	if(!inuse)
+		dat = {"
+	<b>Slime core container holds:</b><br>
+	[core]<br>
+	"}
+		if (core && !(stat & (NOPOWER|BROKEN)))
+			dat += "<A href='?src=\ref[src];action=replicate'>Start the replication process</a><BR>"
+		if(core)
+			dat += "<A href='?src=\ref[src];action=eject'>Eject the core</a><BR>"
+	else
+		dat += "Please wait..."
+	var/datum/browser/popup = new(user, "Slime Replicator", "Slime Replicator", src)
+	popup.set_content(dat)
+	popup.open()
+	return
+
+
+/obj/machinery/slime/replicator/Topic(href, href_list)
+	if(..())
+		return
+	usr.set_machine(src)
+	switch(href_list["action"])
+		if ("replicate")
+			replicate_slime()
+		if("eject")
+			eject_core()
+	src.updateUsrDialog()
+	return
 	
 //Circuit board below,
 /obj/item/weapon/circuitboard/slimereplicator
