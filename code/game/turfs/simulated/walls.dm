@@ -164,6 +164,8 @@
 			material.place_dismantled_girder(src)
 		if(!devastated)
 			material.place_dismantled_product(src)
+			if (!reinf_material)
+				material.place_dismantled_product(src)
 
 	for(var/obj/O in src.contents) //Eject contents!
 		if(istype(O,/obj/structure/sign/poster))
