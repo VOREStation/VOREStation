@@ -756,7 +756,7 @@ CIRCUITS BELOW
 	build_path = /obj/item/weapon/circuitboard/arcade/orion_trail
 	sort_string = "MAAAA"
 
-/datum/design/circuit/oriontrail
+/datum/design/circuit/jukebox
 	name = "jukebox"
 	id = "jukebox"
 	req_tech = list(TECH_MAGNET = 2, TECH_DATA = 1)
