@@ -141,9 +141,6 @@ proc/get_radio_key_from_channel(var/channel)
 			return say_dead(message)
 		return
 
-	if(src.client.handle_spam_prevention(message,MUTE_IC))
-		return
-
 	//Parse the mode
 	var/message_mode = parse_message_mode(message, "headset")
 
