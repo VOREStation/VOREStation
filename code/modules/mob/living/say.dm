@@ -106,7 +106,7 @@ proc/get_radio_key_from_channel(var/channel)
 
 	message_data[1] = message
 	message_data[2] = verb
-	message_data[2] = whispering
+	message_data[3] = whispering
 
 /mob/living/proc/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name)
 	if(message_mode == "intercom")
