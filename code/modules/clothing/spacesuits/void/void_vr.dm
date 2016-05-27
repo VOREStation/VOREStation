@@ -23,3 +23,8 @@
 		"Flatland Zorren" 		= 'icons/mob/species/fennec/suit_vr.dmi',
 		"Highlander Zorren" 	= 'icons/mob/species/fox/suit_vr.dmi'
 		)
+	// This is a hack to prevent the item_state variable on the suits from taking effect
+	// when the item is equipped in outer clothing slot.
+	// This variable is normally used to set the icon_override when the suit is refitted,
+	// however the species spritesheet now means we no longer need that anyway!
+	sprite_sheets_refit = list()
