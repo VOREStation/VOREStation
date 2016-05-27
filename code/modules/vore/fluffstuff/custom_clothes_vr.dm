@@ -473,7 +473,7 @@
 	icon_state = "vulpine_belt"
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	item_state = "vulpine_belt"
+	item_state = "vulpine_belt_mob"
 
 	storage_slots = 9
 	New()
