@@ -647,6 +647,9 @@
 /obj/item/weapon/reagent_containers/food/snacks/enchiladas
 	price_tag = 5
 
+/obj/item/weapon/reagent_containers/food/snacks/taco
+	price_tag = 5
+
 /obj/item/weapon/reagent_containers/food/snacks/monkeysdelight
 	price_tag = 5
 

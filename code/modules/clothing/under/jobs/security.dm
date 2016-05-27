@@ -18,13 +18,6 @@
 	siemens_coefficient = 0.9
 	rolled_sleeves = 0
 
-/obj/item/clothing/under/rank/warden/skirt
-	desc = "Standard feminine fashion for a Warden. It is made of sturdier material than standard jumpskirts. It has the word \"Warden\" written on the shoulders."
-	name = "warden's jumpskirt"
-	icon_state = "wardenf"
-	item_state = "r_suit"
-	worn_state = "wardenf"
-
 /obj/item/clothing/head/helmet/warden
 	name = "warden's hat"
 	desc = "It's a special helmet issued to the Warden of a securiy force."
@@ -40,13 +33,6 @@
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
 	rolled_sleeves = 0
-
-/obj/item/clothing/under/rank/security/skirt
-	name = "security officer's jumpskirt"
-	desc = "Standard feminine fashion for Security Officers.  It's made of sturdier material than the standard jumpskirts."
-	icon_state = "secredf"
-	item_state = "r_suit"
-	worn_state = "secredf"
 
 /obj/item/clothing/under/rank/dispatch
 	name = "dispatcher's uniform"
@@ -72,13 +58,13 @@
 	icon_state = "sec_corporate"
 	//item_state = "sec_corporate"
 	worn_state = "sec_corporate"
-	rolled_sleeves = -1
+	rolled_sleeves = 0
 
 /obj/item/clothing/under/rank/warden/corp
 	icon_state = "warden_corporate"
 	//item_state = "warden_corporate"
 	worn_state = "warden_corporate"
-	rolled_sleeves = -1
+	rolled_sleeves = 0
 
 /obj/item/clothing/under/tactical
 	name = "tactical jumpsuit"
@@ -174,18 +160,11 @@
 	siemens_coefficient = 0.8
 	rolled_sleeves = 0
 
-/obj/item/clothing/under/rank/head_of_security/skirt
-	desc = "It's a fashionable jumpskirt worn by those few with the dedication to achieve the position of \"Head of Security\". It has additional armor to protect the wearer."
-	name = "head of security's jumpskirt"
-	icon_state = "hosredf"
-	item_state = "r_suit"
-	worn_state = "hosredf"
-
 /obj/item/clothing/under/rank/head_of_security/corp
 	icon_state = "hos_corporate"
 	//item_state = "hos_corporate"
 	worn_state = "hos_corporate"
-	rolled_sleeves = -1
+	rolled_sleeves = 0
 
 /obj/item/clothing/head/helmet/HoS
 	name = "Head of Security Hat"

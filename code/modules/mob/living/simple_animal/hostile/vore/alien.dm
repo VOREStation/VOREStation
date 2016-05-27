@@ -1,10 +1,9 @@
 /mob/living/simple_animal/hostile/vore/alien
 	name = "alien hunter"
 	desc = "Hiss!"
-	icon = 'icons/mob/alien.dmi'
-	icon_state = "alienh_running"
-	icon_living = "alienh_running"
-	icon_dead = "alienh_dead"
+	icon_state = "xenohunter"
+	icon_living = "xenohunter"
+	icon_dead = "xenohunter-dead"
 	icon_gib = "gibbed-a"
 	response_help = "pokes"
 	response_disarm = "shoves"
@@ -75,14 +74,18 @@
 
 /mob/living/simple_animal/hostile/vore/alien/queen/large
 	name = "alien empress"
-	icon = 'icons/mob/alienqueen.dmi'
+	icon = 'icons/mob/vore64x64.dmi'
 	icon_state = "queen_s"
 	icon_living = "queen_s"
 	icon_dead = "queen_dead"
+	faction = "alien"
 	move_to_delay = 4
 	maxHealth = 400
 	health = 400
+	old_x = -16
+	old_y = 0
 	pixel_x = -16
+	pixel_y = 0
 	capacity = 3
 
 /obj/item/projectile/neurotox

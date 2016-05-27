@@ -375,8 +375,9 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 			return
 		var/their_address = href_list["message"]
 		var/text = sanitizeSafe(input(usr,"Enter your message.","Text Message"))
-		exonet.send_message(their_address, "text", text)
-		im_list += list(list("address" = exonet.address, "to_address" = their_address, "im" = text))
+		if(text)
+			exonet.send_message(their_address, "text", text)
+			im_list += list(list("address" = exonet.address, "to_address" = their_address, "im" = text))
 
 	if(href_list["disconnect"])
 		var/name_to_disconnect = href_list["disconnect"]
@@ -403,12 +404,15 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 		selected_tab = href_list["switch_tab"]
 
 	if(href_list["edit"])
-		var/n = input(usr, "Please enter message", name, notehtml) as message
+		var/n = input(usr, "Please enter message", name, notehtml)
 		n = sanitizeSafe(n, extra = 0)
-		if (selected_tab == 5)
+		if(n)
 			note = html_decode(n)
 			notehtml = note
 			note = replacetext(note, "\n", "<br>")
+		else
+			note = ""
+			notehtml = note
 
 	nanomanager.update_uis(src)
 	add_fingerprint(usr)

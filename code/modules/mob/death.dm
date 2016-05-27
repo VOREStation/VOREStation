@@ -85,6 +85,7 @@
 	dead_mob_list |= src
 
 	updateicon()
+	handle_regular_hud_updates()
 
 	if(ticker && ticker.mode)
 		ticker.mode.check_win()

@@ -192,7 +192,7 @@
 				new /obj/item/clothing/under/rank/medical/navyblue(src)
 				new /obj/item/clothing/head/surgery/navyblue(src)
 		new /obj/item/clothing/under/rank/chief_medical_officer(src)
-		new /obj/item/clothing/under/rank/chief_medical_officer/skirt(src)
+		new /obj/item/clothing/under/rank/medical/chief_medical_officer/skirt(src)
 		new /obj/item/clothing/suit/storage/toggle/labcoat/cmo(src)
 		new /obj/item/clothing/suit/storage/toggle/labcoat/cmoalt(src)
 		new /obj/item/weapon/cartridge/cmo(src)

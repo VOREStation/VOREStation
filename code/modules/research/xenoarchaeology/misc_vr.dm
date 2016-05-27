@@ -10,7 +10,7 @@
 
 	New()
 		..()
-		new /obj/item/weapon/rig/hazmat(src)
+		new /obj/item/weapon/rig/hazmat/equipped(src)
 		return
 
 /obj/structure/closet/excavation

@@ -11,7 +11,7 @@
 	icon = 'icons/obj/xenoarchaeology_vr.dmi'
 
 /obj/item/weapon/pickaxe/four_pick
-	icon = 'icons/obj/xenoarchaeology.dmi'
+	icon = 'icons/obj/xenoarchaeology_vr.dmi'
 
 /obj/item/weapon/pickaxe/five_pick
 	icon = 'icons/obj/xenoarchaeology_vr.dmi'

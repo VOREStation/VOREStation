@@ -25,6 +25,8 @@
 		user << "<span class='warning'>It expired at [worldtime2text(expiration_time)].</span>"
 
 /obj/item/weapon/card/id/guest/read()
+	if(!Adjacent(usr))
+		return //Too far to read
 	if (world.time > expiration_time)
 		usr << "<span class='notice'>This pass expired at [worldtime2text(expiration_time)].</span>"
 	else
@@ -146,9 +148,9 @@
 				if(reas)
 					reason = reas
 			if ("duration")
-				var/dur = input("Duration (in minutes) during which pass is valid (up to 30 minutes).", "Duration") as num|null
+				var/dur = input("Duration (in minutes) during which pass is valid (up to 120 minutes).", "Duration") as num|null
 				if (dur)
-					if (dur > 0 && dur <= 30)
+					if (dur > 0 && dur <= 120)
 						duration = dur
 					else
 						usr << "<span class='warning'>Invalid duration.</span>"
@@ -156,7 +158,7 @@
 				var/A = text2num(href_list["access"])
 				if (A in accesses)
 					accesses.Remove(A)
-				else 
+				else
 					if(A in giver.access)	//Let's make sure the ID card actually has the access.
 						accesses.Add(A)
 					else

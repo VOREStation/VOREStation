@@ -323,7 +323,7 @@
 		for(var/mob/inhearer in contents)
 			inhearer << sound(churnsound)
 	//If the timing is right, and there are items to be touched
-	if(air_master.current_cycle%2==1 && length(touchable_items))
+	if(air_master.current_cycle%3==1 && length(touchable_items))
 
 		//Burn all the mobs or add them to the exclusion list
 		for(var/mob/living/carbon/human/T in (touchable_items))

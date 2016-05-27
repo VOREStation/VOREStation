@@ -31,8 +31,6 @@
 	BITSET(hud_updateflag, STATUS_HUD)
 	BITSET(hud_updateflag, LIFE_HUD)
 
-	handle_hud_list()
-
 	//Handle species-specific deaths.
 	species.handle_death(src)
 	animate_tail_stop()
