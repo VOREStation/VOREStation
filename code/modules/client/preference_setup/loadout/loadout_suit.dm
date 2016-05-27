@@ -256,3 +256,15 @@
 		var/obj/item/clothing/suit/varsity/varsity = varsity_style
 		varsities[initial(varsity.name)] = varsity
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(varsities))
+
+/datum/gear/suit/track
+	display_name = "track jacket selection"
+	path = /obj/item/clothing/suit/storage/toggle/track
+
+/datum/gear/suit/track/New()
+	..()
+	var/list/tracks = list()
+	for(var/track_style in typesof(/obj/item/clothing/suit/storage/toggle/track))
+		var/obj/item/clothing/suit/storage/toggle/track/track = track_style
+		tracks[initial(track.name)] = track
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(tracks))
