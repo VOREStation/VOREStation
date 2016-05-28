@@ -68,7 +68,7 @@ var/list/flooring_types
 /decl/flooring/carpet/blue
 	name = "carpet"
 	icon_base = "bcarpet"
-	build_type = null
+	build_type = /obj/item/stack/tile/carpet/blue
 	flags = TURF_HAS_EDGES | TURF_REMOVE_CROWBAR
 
 /decl/flooring/tiling
