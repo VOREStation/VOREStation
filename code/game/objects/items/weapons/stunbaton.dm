@@ -12,6 +12,7 @@
 	w_class = 3
 	origin_tech = list(TECH_COMBAT = 2)
 	attack_verb = list("beaten")
+	var/lightcolor = "#FF6A00"
 	var/stunforce = 0
 	var/agonyforce = 60
 	var/status = 0		//whether the thing is on or not
@@ -52,7 +53,7 @@
 		icon_state = "[initial(name)]"
 
 	if(icon_state == "[initial(name)]_active")
-		set_light(1.5, 1, "#FF6A00")
+		set_light(1.5, 1, lightcolor)
 	else
 		set_light(0)
 

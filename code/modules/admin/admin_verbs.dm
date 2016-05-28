@@ -183,6 +183,7 @@ var/list/admin_verbs_debug = list(
 	/client/proc/overlay_random_map,
 	/client/proc/delete_random_map,
 	/client/proc/show_plant_genes,
+	/client/proc/show_xenobio_genes,
 	/client/proc/enable_debug_verbs,
 	/client/proc/callproc,
 	/client/proc/callproc_target,
