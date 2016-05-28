@@ -55,32 +55,32 @@
 		var/new_underwear_top = input(user, "Choose your character's top underwear:", "Character Preference", get_key_by_value(get_undies_top(),pref.underwear_top)) as null|anything in underwear_top_options
 		if(!isnull(new_underwear_top) && CanUseTopic(user))
 			pref.underwear_top = underwear_top_options[new_underwear_top]
-			return TOPIC_REFRESH
+			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["change_underwear_bottom"])
 		var/underwear_bottom_options = get_undies_bottom()
 		var/new_underwear_bottom = input(user, "Choose your character's bottom underwear:", "Character Preference", get_key_by_value(get_undies_bottom(),pref.underwear_bottom)) as null|anything in underwear_bottom_options
 		if(!isnull(new_underwear_bottom) && CanUseTopic(user))
 			pref.underwear_bottom = underwear_bottom_options[new_underwear_bottom]
-			return TOPIC_REFRESH
+			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["change_undershirt"])
 		var/new_undershirt = input(user, "Choose your character's undershirt:", "Character Preference", get_key_by_value(undershirt_t,pref.undershirt)) as null|anything in undershirt_t
 		if(!isnull(new_undershirt) && CanUseTopic(user))
 			pref.undershirt = undershirt_t[new_undershirt]
-			return TOPIC_REFRESH
+			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["change_socks"])
 		var/new_socks = input(user, "Choose your character's socks:", "Character Preference", get_key_by_value(socks_t,pref.socks)) as null|anything in socks_t
 		if(!isnull(new_socks) && CanUseTopic(user))
 			pref.socks = socks_t[new_socks]
-			return TOPIC_REFRESH
+			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["change_backpack"])
 		var/new_backbag = input(user, "Choose your character's style of bag:", "Character Preference", backbaglist[pref.backbag]) as null|anything in backbaglist
 		if(!isnull(new_backbag) && CanUseTopic(user))
 			pref.backbag = backbaglist.Find(new_backbag)
-			return TOPIC_REFRESH
+			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["change_pda"])
 		var/new_pdachoice = input(user, "Choose your character's style of PDA:", "Character Preference", pdachoicelist[pref.pdachoice]) as null|anything in pdachoicelist
