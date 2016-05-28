@@ -532,6 +532,7 @@
 		..()
 	if ((ishuman(usr) || issmall(usr)) && src.loc == user)
 		return
+	..()
 
 /obj/item/clothing/under/New()
 	..()
