@@ -87,6 +87,17 @@
 			spark_system.start()
 			playsound(src.loc, 'sound/weapons/blade1.ogg', 50, 1)
 			playsound(src.loc, "sparks", 50, 1)
+	else if(istype(W, /obj/item/weapon/wrench))
+		if(welded)
+			if(anchored)
+				user.visible_message("\The [user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
+			else
+				user.visible_message("\The [user] begins securing \the [src] to the floor.", "You start securing \the [src] to the floor.")
+			if(do_after(user, 20))
+				if(!src) return
+				user << "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>"
+				anchored = !anchored
+				return
 	else if(istype(W,/obj/item/weapon/packageWrap) || istype(W,/obj/item/weapon/weldingtool))
 		return ..(W,user)
 	else

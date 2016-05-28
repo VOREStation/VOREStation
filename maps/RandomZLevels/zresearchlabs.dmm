@@ -1049,7 +1049,7 @@
 "ui" = (/obj/structure/closet/secure_closet/warden,/obj/effect/decal/cleanable/cobweb2,/turf/simulated/floor{icon_state = "showroomfloor"},/area/awaymission/labs/security)
 "uj" = (/obj/structure/rack,/obj/item/ammo_magazine/c45,/turf/simulated/floor{tag = "icon-vault (WEST)"; icon_state = "vault"; dir = 8},/area/awaymission/labs/security)
 "uk" = (/obj/structure/rack,/obj/item/ammo_magazine/c45,/obj/item/weapon/gun/projectile/silenced/sc_silenced{desc = "A sidearm commonly favored by terrestrial security forces."; icon_state = "g115 Pistol"; name = "Pistol"; silenced = 0},/turf/simulated/floor{tag = "icon-vault (WEST)"; icon_state = "vault"; dir = 8},/area/awaymission/labs/security)
-"ul" = (/obj/structure/table/standard,/obj/item/weapon/storage/backpack/satchel_med,/turf/simulated/floor{icon_state = "white"},/area/awaymission/labs/medical)
+"ul" = (/obj/structure/table/standard,/obj/item/weapon/storage/backpack/satchel/med,/turf/simulated/floor{icon_state = "white"},/area/awaymission/labs/medical)
 "um" = (/obj/machinery/computer/prisoner,/turf/simulated/floor{icon_state = "showroomfloor"},/area/awaymission/labs/security)
 "un" = (/obj/machinery/computer/security,/turf/simulated/floor{icon_state = "showroomfloor"},/area/awaymission/labs/security)
 "uo" = (/obj/structure/table/standard,/obj/item/weapon/gun/syringe/rapidsyringe,/turf/simulated/floor{icon_state = "white"},/area/awaymission/labs/medical)

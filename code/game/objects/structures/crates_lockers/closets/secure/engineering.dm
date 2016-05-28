@@ -14,13 +14,13 @@
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/industrial(src)
 		else
-			new /obj/item/weapon/storage/backpack/satchel_eng(src)
+			new /obj/item/weapon/storage/backpack/satchel/eng(src)
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/dufflebag/eng(src)
 		new /obj/item/clothing/accessory/storage/brown_vest(src)
 		new /obj/item/blueprints(src)
 		new /obj/item/clothing/under/rank/chief_engineer(src)
-		new /obj/item/clothing/under/rank/chief_engineer/skirt(src)
+		new /obj/item/clothing/under/rank/engineer/chief_engineer/skirt(src)
 		new /obj/item/clothing/head/hardhat/white(src)
 		new /obj/item/clothing/head/welding(src)
 		new /obj/item/clothing/gloves/yellow(src)
@@ -113,7 +113,7 @@
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/industrial(src)
 		else
-			new /obj/item/weapon/storage/backpack/satchel_eng(src)
+			new /obj/item/weapon/storage/backpack/satchel/eng(src)
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/dufflebag/eng(src)
 		new /obj/item/clothing/accessory/storage/brown_vest(src)
@@ -147,7 +147,7 @@
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/industrial(src)
 		else
-			new /obj/item/weapon/storage/backpack/satchel_eng(src)
+			new /obj/item/weapon/storage/backpack/satchel/eng(src)
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/dufflebag/eng(src)
 		new /obj/item/clothing/accessory/storage/brown_vest(src)

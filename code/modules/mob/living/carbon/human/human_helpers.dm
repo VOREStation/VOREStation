@@ -55,6 +55,8 @@
 		sum += H.ear_protection
 	return sum
 
+/mob/living/carbon/human/get_gender()
+	return identifying_gender ? identifying_gender : gender
 
 #undef HUMAN_EATING_NO_ISSUE
 #undef HUMAN_EATING_NO_MOUTH

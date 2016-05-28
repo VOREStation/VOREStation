@@ -137,6 +137,13 @@ var/list/_client_preferences_by_type
 	key = "SAFE_FIRING"
 	enabled_description = "Safe"
 	disabled_description = "Dangerous"
+
+/datum/client_preference/browser_style
+	description = "Fake NanoUI Browser Style"
+	key = "BROWSER_STYLED"
+	enabled_description = "Fancy"
+	disabled_description = "Plain"
+
 /********************
 * Staff Preferences *
 ********************/
@@ -181,5 +188,11 @@ var/list/_client_preferences_by_type
 /datum/client_preference/holder/hear_radio
 	description = "Radio chatter"
 	key = "CHAT_RADIO"
+	enabled_description = "Show"
+	disabled_description = "Hide"
+
+/datum/client_preference/holder/show_rlooc
+	description ="Remote LOOC chat"
+	key = "CHAT_RLOOC"
 	enabled_description = "Show"
 	disabled_description = "Hide"

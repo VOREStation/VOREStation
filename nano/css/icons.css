@@ -172,6 +172,7 @@
 .uiIcon16.icon-video { background-position: -224px -128px; }
 .uiIcon16.icon-script { background-position: -240px -128px; }
 .uiIcon16.icon-alert { background-position: 0 -144px; }
+.uiIcon16.icon-alert-red { background-image: url(uiIcons16Red.png); background-position: 0 -144px; }
 .uiIcon16.icon-info { background-position: -16px -144px; }
 .uiIcon16.icon-notice { background-position: -32px -144px; }
 .uiIcon16.icon-help { background-position: -48px -144px; }
@@ -181,6 +182,8 @@
 .uiIcon16.icon-radio-off { background-position: -112px -144px; }
 .uiIcon16.icon-pin-w { background-position: -128px -144px; }
 .uiIcon16.icon-pin-s { background-position: -144px -144px; }
+.uiIcon16.icon-phone { background-position: -160px -144px; }
+.uiIcon16.icon-list { background-position: -176px -144px; }
 .uiIcon16.icon-play { background-position: 0 -160px; }
 .uiIcon16.icon-pause { background-position: -16px -160px; }
 .uiIcon16.icon-seek-next { background-position: -32px -160px; }
@@ -196,6 +199,7 @@
 .uiIcon16.icon-power { background-position: 0 -176px; }
 .uiIcon16.icon-signal-diag { background-position: -16px -176px; }
 .uiIcon16.icon-signal { background-position: -32px -176px; }
+.uiIcon16.icon-signal-green { background-image: url(uiIcons16Green.png); background-position: -32px -176px; }
 .uiIcon16.icon-battery-0 { background-position: -48px -176px; }
 .uiIcon16.icon-battery-1 { background-position: -64px -176px; }
 .uiIcon16.icon-battery-2 { background-position: -80px -176px; }
@@ -229,6 +233,16 @@
 .uiIcon16.icon-batt_full { background-image: url(c_max.gif); background-position: 0px 0px }
 .uiIcon16.icon-batt_disc { background-image: url(c_discharging.gif); background-position: 0px 0px }
 .uiIcon16.icon-batt_chrg { background-image: url(c_charging.gif); background-position: 0px 0px }
+/*yes, defining these all like this is awful, but unless the javascript for icon handling is sorted out this will have to do*/
+.uiIcon16.icon-empty64 { background-image: url(uiIcons64.png); background-position: 0 0; width: 64px; height: 64px; }
+.uiIcon16.icon-phone64 { background-image: url(uiIcons64.png); background-position: -64px 0; width: 64px; height: 64px; }
+.uiIcon16.icon-comment64 { background-image: url(uiIcons64.png); background-position: -128px 0; width: 64px; height: 64px; }
+.uiIcon16.icon-list64 { background-image: url(uiIcons64.png); background-position: -192px 0; width: 64px; height: 64px; }
+.uiIcon16.icon-gear64 { background-image: url(uiIcons64.png); background-position: -256px 0; width: 64px; height: 64px; }
+.uiIcon16.icon-person64 { background-image: url(uiIcons64.png); background-position: -320px 0; width: 64px; height: 64px; }
+.uiIcon16.icon-newspaper64 { background-image: url(uiIcons64.png); background-position: 0 -64px; width: 64px; height: 64px; }
+.uiIcon16.icon-note64 { background-image: url(uiIcons64.png); background-position: -64px -64px; width: 64px; height: 64px; }
+.uiIcon16.icon-close64 { background-image: url(uiIcons64.png); background-position: -128px -64px; width: 64px; height: 64px; }
 
 .mapIcon16 {
     position: absolute;

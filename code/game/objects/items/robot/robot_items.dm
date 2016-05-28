@@ -15,7 +15,7 @@
 	if(!istype(user))
 		var/mob/living/temp = user
 		if(istype(temp))
-			temp.removeItem(src, force = 1)
+			temp.drop_from_inventory(src)
 		qdel(src)
 		return
 

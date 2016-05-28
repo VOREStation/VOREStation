@@ -8,7 +8,7 @@
 	language = "Sol Common" //todo?
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/punch)
 	flags = NO_PAIN | NO_SCAN | NO_POISON | NO_MINOR_CUT
-	spawn_flags = IS_RESTRICTED
+	spawn_flags = SPECIES_IS_RESTRICTED
 	siemens_coefficient = 0
 
 	breath_type = null
@@ -22,6 +22,8 @@
 		)
 
 	death_message = "becomes completely motionless..."
+
+	genders = list(NEUTER)
 
 /datum/species/golem/handle_post_spawn(var/mob/living/carbon/human/H)
 	if(H.mind)

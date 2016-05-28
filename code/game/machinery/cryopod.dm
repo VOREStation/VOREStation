@@ -232,7 +232,6 @@
 		/obj/item/weapon/hand_tele,
 		/obj/item/weapon/card/id/captains_spare,
 		/obj/item/device/aicard,
-		/obj/item/device/mmi,
 		/obj/item/device/paicard,
 		/obj/item/weapon/gun,
 		/obj/item/weapon/pinpointer,
@@ -386,7 +385,8 @@
 /obj/machinery/cryopod/proc/despawn_occupant()
 	//Drop all items into the pod.
 	for(var/obj/item/W in occupant)
-		occupant.removeItem(W, src, force = 1)
+		occupant.drop_from_inventory(W)
+		W.forceMove(src)
 
 		if(W.contents.len) //Make sure we catch anything not handled by qdel() on the items.
 			for(var/obj/item/O in W.contents)

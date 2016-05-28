@@ -21,8 +21,11 @@
 	var/datum/reagents/R = new/datum/reagents(1000)
 	reagents = R
 	R.my_atom = src
-	beaker = new /obj/item/weapon/reagent_containers/glass/bottle(src)
 
+/obj/machinery/biogenerator/map/New()
+	..()
+	beaker = new /obj/item/weapon/reagent_containers/glass/bottle(src)
+	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
@@ -52,7 +55,8 @@
 		if(beaker)
 			user << "<span class='notice'>]The [src] is already loaded.</span>"
 		else
-			user.removeItem(O, src)
+			user.remove_from_mob(O)
+			O.loc = src
 			beaker = O
 			updateUsrDialog()
 	else if(processing)
@@ -83,7 +87,8 @@
 		if(i >= 10)
 			user << "<span class='notice'>\The [src] is full! Activate it.</span>"
 		else
-			user.removeItem(O, src)
+			user.remove_from_mob(O)
+			O.loc = src
 			user << "<span class='notice'>You put \the [O] in \the [src]</span>"
 	update_icon()
 	return

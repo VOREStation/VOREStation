@@ -16,7 +16,7 @@ var/global/list/limb_icon_cache = list()
 	s_tone = null
 	s_col = null
 	h_col = null
-	if(status & ORGAN_ROBOT)
+	if(robotic >= ORGAN_ROBOT)
 		return
 	if(species && human.species && species.name != human.species.name)
 		return
@@ -30,7 +30,7 @@ var/global/list/limb_icon_cache = list()
 	s_tone = null
 	s_col = null
 	h_col = null
-	if(status & ORGAN_ROBOT)
+	if(robotic >= ORGAN_ROBOT)
 		return
 	if(!isnull(dna.GetUIValue(DNA_UI_SKIN_TONE)) && (species.appearance_flags & HAS_SKIN_TONE))
 		s_tone = dna.GetUIValue(DNA_UI_SKIN_TONE)
@@ -71,7 +71,7 @@ var/global/list/limb_icon_cache = list()
 
 	if(owner.f_style)
 		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[owner.f_style]
-		if(facial_hair_style && facial_hair_style.species_allowed && (species.get_bodytype() in facial_hair_style.species_allowed))
+		if(facial_hair_style && facial_hair_style.species_allowed && (species.get_bodytype(owner) in facial_hair_style.species_allowed))
 			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 			if(facial_hair_style.do_colouration)
 				facial_s.Blend(rgb(owner.r_facial, owner.g_facial, owner.b_facial), ICON_ADD)
@@ -79,7 +79,7 @@ var/global/list/limb_icon_cache = list()
 
 	if(owner.h_style && !(owner.head && (owner.head.flags_inv & BLOCKHEADHAIR)))
 		var/datum/sprite_accessory/hair_style = hair_styles_list[owner.h_style]
-		if(hair_style && (species.get_bodytype() in hair_style.species_allowed))
+		if(hair_style && (species.get_bodytype(owner) in hair_style.species_allowed))
 			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 			if(hair_style.do_colouration && islist(h_col) && h_col.len >= 3)
 				hair_s.Blend(rgb(h_col[1], h_col[2], h_col[3]), ICON_ADD)
@@ -110,38 +110,49 @@ var/global/list/limb_icon_cache = list()
 
 			if(skeletal)
 				mob_icon = new /icon('icons/mob/human_races/r_skeleton.dmi', "[icon_name][gender ? "_[gender]" : ""]")
-			else if (status & ORGAN_ROBOT)
+			else if (robotic >= ORGAN_ROBOT)
 				mob_icon = new /icon('icons/mob/human_races/robotic.dmi', "[icon_name][gender ? "_[gender]" : ""]")
 			else
-				if (status & ORGAN_MUTATED)
-					mob_icon = new /icon(species.deform, "[icon_name][gender ? "_[gender]" : ""]")
-				else
-					mob_icon = new /icon(species.icobase, "[icon_name][gender ? "_[gender]" : ""]")
-
-				if(status & ORGAN_DEAD)
-					mob_icon.ColorTone(rgb(10,50,0))
-					mob_icon.SetIntensity(0.7)
-
-				if(!isnull(s_tone))
-					if(s_tone >= 0)
-						mob_icon.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
-					else
-						mob_icon.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
-				else if(s_col && s_col.len >= 3)
-					mob_icon.Blend(rgb(s_col[1], s_col[2], s_col[3]), ICON_ADD)
+				mob_icon = new /icon(species.get_icobase(owner, (status & ORGAN_MUTATED)), "[icon_name][gender ? "_[gender]" : ""]")
+				apply_colouration(mob_icon)
 
 			if(body_hair && islist(h_col) && h_col.len >= 3)
 				var/cache_key = "[body_hair]-[icon_name]-[h_col[1]][h_col[2]][h_col[3]]"
 				if(!limb_icon_cache[cache_key])
-					var/icon/I = icon(species.icobase, "[icon_name]_[body_hair]")
+					var/icon/I = icon(species.get_icobase(owner), "[icon_name]_[body_hair]")
 					I.Blend(rgb(h_col[1],h_col[2],h_col[3]), ICON_ADD)
 					limb_icon_cache[cache_key] = I
 				mob_icon.Blend(limb_icon_cache[cache_key], ICON_OVERLAY)
 
 	dir = EAST
 	icon = mob_icon
-
 	return mob_icon
+
+/obj/item/organ/external/proc/apply_colouration(var/icon/applying)
+
+	if(nonsolid)
+		applying.MapColors("#4D4D4D","#969696","#1C1C1C", "#000000")
+		if(species && species.get_bodytype(owner) != "Human")
+			applying.SetIntensity(1.5) // Unathi, Taj and Skrell have -very- dark base icons.
+		else
+			applying.SetIntensity(0.7)
+
+	else if(status & ORGAN_DEAD)
+		applying.ColorTone(rgb(10,50,0))
+		applying.SetIntensity(0.7)
+
+	if(!isnull(s_tone))
+		if(s_tone >= 0)
+			applying.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
+		else
+			applying.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
+	else if(s_col && s_col.len >= 3)
+		applying.Blend(rgb(s_col[1], s_col[2], s_col[3]), ICON_ADD)
+
+	// Translucency.
+	if(nonsolid) applying += rgb(,,,180) // SO INTUITIVE TY BYOND
+
+	return applying
 
 // new damage icon system
 // adjusted to set damage_state to brute/burn code only (without r_name0 as before)

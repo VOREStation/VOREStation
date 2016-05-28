@@ -13,22 +13,22 @@
 		// Handle things that are part of this interface but not removing/replacing a given item.
 		if("pockets")
 			visible_message("<span class='danger'>\The [user] is trying to empty \the [src]'s pockets!</span>")
-			if(do_after(user,HUMAN_STRIP_DELAY))
+			if(do_after(user,HUMAN_STRIP_DELAY,src))
 				empty_pockets(user)
 			return
 		if("splints")
 			visible_message("<span class='danger'>\The [user] is trying to remove \the [src]'s splints!</span>")
-			if(do_after(user,HUMAN_STRIP_DELAY))
+			if(do_after(user,HUMAN_STRIP_DELAY,src))
 				remove_splints(user)
 			return
 		if("sensors")
 			visible_message("<span class='danger'>\The [user] is trying to set \the [src]'s sensors!</span>")
-			if(do_after(user,HUMAN_STRIP_DELAY))
+			if(do_after(user,HUMAN_STRIP_DELAY,src))
 				toggle_sensors(user)
 			return
 		if("internals")
 			visible_message("<span class='danger'>\The [usr] is trying to set \the [src]'s internals!</span>")
-			if(do_after(user,HUMAN_STRIP_DELAY))
+			if(do_after(user,HUMAN_STRIP_DELAY,src))
 				toggle_internals(user)
 			return
 		if("tie")
@@ -40,7 +40,7 @@
 				return
 			visible_message("<span class='danger'>\The [usr] is trying to remove \the [src]'s [A.name]!</span>")
 
-			if(!do_after(user,HUMAN_STRIP_DELAY))
+			if(!do_after(user,HUMAN_STRIP_DELAY,src))
 				return
 
 			if(!A || suit.loc != src || !(A in suit.accessories))
@@ -74,7 +74,7 @@
 		else
 			visible_message("<span class='danger'>\The [user] is trying to put \a [held] on \the [src]!</span>")
 
-	if(!do_after(user,HUMAN_STRIP_DELAY))
+	if(!do_after(user,HUMAN_STRIP_DELAY,src))
 		return
 
 	if(!stripping && user.get_active_hand() != held)
@@ -82,8 +82,8 @@
 
 	if(stripping)
 		admin_attack_log(user, src, "Attempted to remove \a [target_slot]", "Target of an attempt to remove \a [target_slot].", "attempted to remove \a [target_slot] from")
-		removeItem(target_slot)
-	else if(user.removeItem(held))
+		unEquip(target_slot)
+	else if(user.unEquip(held))
 		equip_to_slot_if_possible(held, text2num(slot_to_strip), 0, 1, 1)
 		if(held.loc != src)
 			user.put_in_hands(held)
@@ -94,9 +94,9 @@
 		user << "<span class='warning'>\The [src] has nothing in their pockets.</span>"
 		return
 	if(r_store)
-		removeItem(r_store)
+		unEquip(r_store)
 	if(l_store)
-		removeItem(l_store)
+		unEquip(l_store)
 	visible_message("<span class='danger'>\The [user] empties \the [src]'s pockets!</span>")
 
 // Modify the current target sensor level.

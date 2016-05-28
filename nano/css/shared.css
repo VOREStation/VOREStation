@@ -246,6 +246,7 @@ div.notice {
     width: 100%;
     margin: 4px 0 0 0;
     clear: both;
+	overflow: auto;
 }
 
 .itemContentNarrow, .itemContent {
@@ -306,6 +307,7 @@ div.notice {
     border: 1px solid #40628a;
     padding: 4px;
     margin: 3px 0;
+	overflow: hidden;
 }
 
 .statusDisplayRecords {
@@ -316,6 +318,19 @@ div.notice {
     margin: 3px 0;
     overflow-x: hidden;
     overflow-y: auto;
+}
+
+.statusDisplayComm {
+	width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+	padding-bottom: 4px;
+	border-top: 0 none;
+	border-left: 0 none;
+	border-right: 0 none;
+	border-bottom: 2px inset #40628a;
+    margin: 3px 0;
+	overflow: hidden;
 }
 
 .statusLabel {
@@ -444,6 +459,10 @@ div.notice {
 
 .floatRight {
     float: right;
+}
+
+.floatLeft {
+	float: left;
 }
 
 /* Used in PDA */
@@ -594,4 +613,112 @@ th.misc {
 /* 75px width used in power monitoring console buttons */
 .width75btn {
     width: 75px;
+}
+
+/*Communicator Homescreen*/
+div.homeContainer {
+	width: 100%;
+	text-align: center;
+	margin: auto;
+	padding-top: 5px;
+}
+
+div.homeScreen {
+	padding: 0 20px 0 20px;
+}
+
+.link64 {
+    float: left;
+    min-width: 15px;
+	max-width: 68px;
+    height: 64px;
+    text-align: center;
+    color: #ffffff;
+    text-decoration: none;
+    background: rgba(64, 98, 138, 0.6);
+    border: 1px solid #161616;
+    padding: 0 0 4px 0;
+	margin: 0 0 30px 5.5%;
+    cursor: default;
+	border-radius: 10px;
+}
+
+.link64:hover {
+	font-size: 13px;
+}
+
+/*Communicator Dialing*/
+.dialPad {
+    clear: both;
+	text-align: center;
+	margin: auto;
+}
+
+.dialPadKeys {
+    float: left;
+	width: 47px;
+	height: 47px;
+	font-size: 32px;
+	text-align: center;
+    color: #ffffff;
+    text-decoration: none;
+    background: rgba(64, 98, 138, 0.15);
+    border: 1px inset rgba(100, 100, 100, 0.25);
+    cursor: default;
+	line-height: 47px;
+}
+
+.dialPadKeys:hover {
+	background: rgba(80, 122, 172, 0.5);
+}
+
+.dialPadButtons {
+    float: left;
+	width: 63.2px;
+    height: 63.2px;
+    text-align: center;
+    color: #ffffff;
+    text-decoration: none;
+    background: rgba(64, 98, 138, 0.15);
+    border: 1px inset rgba(100, 100, 100, 0.25);
+    padding: 0 0 4px 0;
+    cursor: default;
+	margin-bottom: 25px;
+}
+
+.dialPadButtons:hover {
+	background: rgba(80, 122, 172, 0.5);
+	font-size: 13px;
+	
+}
+
+.dialPadAddress {
+    float: left;
+	width: 192px;
+	height: 18px;
+    background: rgba(64, 98, 138, 0.15);
+	color: #ffffff;
+	border-left: 1px inset #40628a;
+	border-top: 1px inset #40628a;
+	border-bottom: 1px inset #40628a;
+
+}
+
+.dialPadAddress:hover{
+	background: rgba(80, 122, 172, 0.5);
+}
+
+.dialPadClear {
+    float: left;
+	width: 19%;
+	height: 18px;
+    background: rgba(64, 98, 138, 0.15);
+	color: #ffffff;
+	border-right: 1px inset #40628a;
+	border-top: 1px inset #40628a;
+	border-bottom: 1px inset #40628a;
+}
+
+.dialPadClear:hover{
+	background: rgba(80, 122, 172, 0.5);
 }

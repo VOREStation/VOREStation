@@ -26,7 +26,7 @@
 
 	var/msg = "<span class='info'>*---------*\nThis is "
 
-	var/datum/gender/T = gender_datums[gender]
+	var/datum/gender/T = gender_datums[get_gender()]
 	if(skipjumpsuit && skipface) //big suits/masks/helmets make it hard to tell their gender
 		T = gender_datums[PLURAL]
 	else
@@ -51,7 +51,12 @@
 			msg += ", <b><font color='#555555'>[use_gender]!</font></b>"
 
 		else if(species.name != "Human")
-			msg += ", <b><font color='[species.get_flesh_colour(src)]'>\a [species.name]!</font></b>"
+			msg += ", <b><font color='[species.get_flesh_colour(src)]'>\a [species.get_examine_name()]!</font></b>"
+
+	var/extra_species_text = species.get_additional_examine_text(src)
+	if(extra_species_text)
+		msg += "[extra_species_text]<br>"
+
 	msg += "<br>"
 
 	//uniform
@@ -271,18 +276,18 @@
 			if(temp.status & ORGAN_DESTROYED)
 				wound_flavor_text["[temp.name]"] = "<span class='warning'><b>[T.He] [T.is] missing [T.his] [temp.name].</b></span>\n"
 				continue
-			if(!is_synth && temp.status & ORGAN_ROBOT)
+			if(!is_synth && temp.robotic >= ORGAN_ROBOT)
 				if(!(temp.brute_dam + temp.burn_dam))
-					wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] [T.has] a [temp.name]!</span>\n"
-					continue
+					wound_flavor_text["[temp.name]"] = "[T.He] [T.has] a [temp.name].\n"
 				else
-					wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] [T.has] a [temp.name]. It has[temp.get_wounds_desc()]!</span>\n"
+					wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] [T.has] a [temp.name]. It has [temp.get_wounds_desc()]!</span>\n"
+				continue
 			else if(temp.wounds.len > 0 || temp.open)
 				if(temp.is_stump() && temp.parent_organ && organs_by_name[temp.parent_organ])
 					var/obj/item/organ/external/parent = organs_by_name[temp.parent_organ]
-					wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] has [temp.get_wounds_desc()] on [T.His] [parent.name].</span><br>"
+					wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] has [temp.get_wounds_desc()] on [T.his] [parent.name].</span><br>"
 				else
-					wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] has [temp.get_wounds_desc()] on [T.His] [temp.name].</span><br>"
+					wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] has [temp.get_wounds_desc()] on [T.his] [temp.name].</span><br>"
 				if(temp.status & ORGAN_BLEEDING)
 					is_bleeding["[temp.name]"] = "<span class='danger'>[T.His] [temp.name] is bleeding!</span><br>"
 			else

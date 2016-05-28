@@ -68,8 +68,8 @@ var/list/flooring_types
 /decl/flooring/carpet/blue
 	name = "carpet"
 	icon_base = "bcarpet"
-	build_type = null
-	flags = TURF_HAS_EDGES
+	build_type = /obj/item/stack/tile/carpet/blue
+	flags = TURF_HAS_EDGES | TURF_REMOVE_CROWBAR
 
 /decl/flooring/tiling
 	name = "floor"
@@ -186,7 +186,7 @@ var/list/flooring_types
 	icon = 'icons/turf/flooring/circuit.dmi'
 	icon_base = "bcircuit"
 	build_type = null
-	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK
+	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK | TURF_REMOVE_CROWBAR
 	can_paint = 1
 
 /decl/flooring/reinforced/circuit/green

@@ -22,7 +22,7 @@
 		for(var/obj/item/W in (H.contents-implants))
 			if (W==H.w_uniform) // will be teared
 				continue
-			H.removeItem(W, force = 1)
+			H.drop_from_inventory(W)
 		M.transforming = 1
 		M.canmove = 0
 		M.icon = null
@@ -90,7 +90,7 @@
 		W.loc = null
 	if(!connected)
 		for(var/obj/item/W in (Mo.contents-implants))
-			Mo.removeItem(W, force = 1)
+			Mo.drop_from_inventory(W)
 		M.transforming = 1
 		M.canmove = 0
 		M.icon = null

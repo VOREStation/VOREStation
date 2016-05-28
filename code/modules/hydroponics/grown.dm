@@ -236,9 +236,9 @@
 					return
 	..()
 
-/obj/item/weapon/reagent_containers/food/snacks/grown/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)	
+/obj/item/weapon/reagent_containers/food/snacks/grown/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
 	. = ..()
-	
+
 	if(seed && seed.get_trait(TRAIT_STINGS))
 		if(!reagents || reagents.total_volume <= 0)
 			return
@@ -250,7 +250,7 @@
 		if(prob(35))
 			if(user)
 				user << "<span class='danger'>\The [src] has fallen to bits.</span>"
-				user.removeItem(src)
+				user.drop_from_inventory(src)
 			qdel(src)
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/attack_self(mob/user as mob)

@@ -14,7 +14,6 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	use_power = 1
 	idle_power_usage = 30
 	active_power_usage = 200
-	frame_type = "fax"
 
 	var/obj/item/weapon/card/id/scan = null // identification
 	var/authenticated = 0
@@ -28,6 +27,16 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	if(!destination) destination = "[boss_name]"
 	if( !(("[department]" in alldepartments) || ("[department]" in admin_departments)) )
 		alldepartments |= department
+
+/obj/machinery/photocopier/faxmachine/map/New()
+	..()
+	circuit = new circuit(src)
+	component_parts = list()
+	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
+	component_parts += new /obj/item/weapon/stock_parts/motor(src)
+	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
+	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
+	RefreshParts()
 
 /obj/machinery/photocopier/faxmachine/attack_hand(mob/user as mob)
 	user.set_machine(src)
@@ -113,7 +122,8 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 				scan = null
 		else
 			var/obj/item/I = usr.get_active_hand()
-			if (istype(I, /obj/item/weapon/card/id) && usr.removeItem(I, src))
+			if (istype(I, /obj/item/weapon/card/id) && usr.unEquip(I))
+				I.loc = src
 				scan = I
 		authenticated = 0
 

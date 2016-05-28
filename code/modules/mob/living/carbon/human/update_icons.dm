@@ -174,9 +174,6 @@ var/global/list/damage_icon_parts = list()
 	for(var/obj/item/organ/external/O in organs)
 		if(O.is_stump())
 			continue
-		//if(O.status & ORGAN_DESTROYED) damage_appearance += "d" //what is this?
-		//else
-		//	damage_appearance += O.damage_state
 		damage_appearance += O.damage_state
 
 	if(damage_appearance == previous_damage_appearance)
@@ -194,15 +191,14 @@ var/global/list/damage_icon_parts = list()
 		if(O.is_stump())
 			continue
 
-
 		O.update_icon()
 		if(O.damage_state == "00") continue
 		var/icon/DI
-		var/cache_index = "[O.damage_state]/[O.icon_name]/[species.blood_color]/[species.get_bodytype()]"
+		var/cache_index = "[O.damage_state]/[O.icon_name]/[species.get_blood_colour(src)]/[species.get_bodytype(src)]"
 		if(damage_icon_parts[cache_index] == null)
-			DI = new /icon(species.damage_overlays, O.damage_state)			// the damage icon for whole human
-			DI.Blend(new /icon(species.damage_mask, O.icon_name), ICON_MULTIPLY)	// mask with this organ's pixels
-			DI.Blend(species.blood_color, ICON_MULTIPLY)
+			DI = new /icon(species.get_damage_overlays(src), O.damage_state)			// the damage icon for whole human
+			DI.Blend(new /icon(species.get_damage_mask(src), O.icon_name), ICON_MULTIPLY)	// mask with this organ's pixels
+			DI.Blend(species.get_blood_colour(src), ICON_MULTIPLY)
 			damage_icon_parts[cache_index] = DI
 		else
 			DI = damage_icon_parts[cache_index]
@@ -236,7 +232,7 @@ var/global/list/damage_icon_parts = list()
 	if(gender == FEMALE)
 		g = "female"
 
-	var/icon_key = "[species.race_key][g][s_tone][r_skin][g_skin][b_skin]"
+	var/icon_key = "[species.get_race_key(src)][g][s_tone][r_skin][g_skin][b_skin]"
 	if(lip_style)
 		icon_key += "[lip_style]"
 	else
@@ -251,14 +247,14 @@ var/global/list/damage_icon_parts = list()
 		var/obj/item/organ/external/part = organs_by_name[organ_tag]
 		if(isnull(part) || part.is_stump())
 			icon_key += "0"
-		else if(part.status & ORGAN_ROBOT)
+		else if(part.robotic >= ORGAN_ROBOT)
 			icon_key += "2[part.model ? "-[part.model]": ""]"
 		else if(part.status & ORGAN_DEAD)
 			icon_key += "3"
 		else
 			icon_key += "1"
 		if(part)
-			icon_key += "[part.species.race_key]"
+			icon_key += "[part.species.get_race_key(part.owner)]"
 			icon_key += "[part.dna.GetUIState(DNA_UI_GENDER)]"
 			icon_key += "[part.dna.GetUIValue(DNA_UI_SKIN_TONE)]"
 			if(part.s_col && part.s_col.len >= 3)
@@ -357,7 +353,7 @@ var/global/list/damage_icon_parts = list()
 
 	if(f_style)
 		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[f_style]
-		if(facial_hair_style && facial_hair_style.species_allowed && (src.species.get_bodytype() in facial_hair_style.species_allowed))
+		if(facial_hair_style && facial_hair_style.species_allowed && (src.species.get_bodytype(src) in facial_hair_style.species_allowed))
 			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 			if(facial_hair_style.do_colouration)
 				facial_s.Blend(rgb(r_facial, g_facial, b_facial), ICON_ADD)
@@ -366,12 +362,15 @@ var/global/list/damage_icon_parts = list()
 
 	if(h_style && !(head && (head.flags_inv & BLOCKHEADHAIR)))
 		var/datum/sprite_accessory/hair_style = hair_styles_list[h_style]
-		if(hair_style && (src.species.get_bodytype() in hair_style.species_allowed))
+		if(hair_style && (src.species.get_bodytype(src) in hair_style.species_allowed))
 			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 			if(hair_style.do_colouration)
 				hair_s.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
 
 			face_standing.Blend(hair_s, ICON_OVERLAY)
+
+	if(head_organ.nonsolid)
+		face_standing += rgb(,,,120)
 
 	overlays_standing[HAIR_LAYER]	= image(face_standing)
 
@@ -464,8 +463,8 @@ var/global/list/damage_icon_parts = list()
 		var/icon/under_icon
 		if(w_uniform.icon_override)
 			under_icon = w_uniform.icon_override
-		else if(w_uniform.sprite_sheets && w_uniform.sprite_sheets[species.get_bodytype()])
-			under_icon = w_uniform.sprite_sheets[species.get_bodytype()]
+		else if(w_uniform.sprite_sheets && w_uniform.sprite_sheets[species.get_bodytype(src)])
+			under_icon = w_uniform.sprite_sheets[species.get_bodytype(src)]
 		else if(w_uniform.item_icons && w_uniform.item_icons[slot_w_uniform_str])
 			under_icon = w_uniform.item_icons[slot_w_uniform_str]
 		else
@@ -486,7 +485,7 @@ var/global/list/damage_icon_parts = list()
 
 		//apply blood overlay
 		if(w_uniform.blood_DNA)
-			var/image/bloodsies	= image(icon = species.blood_mask, icon_state = "uniformblood")
+			var/image/bloodsies	= image(icon = species.get_blood_mask(src), icon_state = "uniformblood")
 			bloodsies.color		= w_uniform.blood_color
 			standing.overlays	+= bloodsies
 
@@ -500,6 +499,9 @@ var/global/list/damage_icon_parts = list()
 	else
 		overlays_standing[UNIFORM_LAYER]	= null
 
+	//hiding/revealing shoes if necessary
+	update_inv_shoes(0)
+
 	if(update_icons)
 		update_icons()
 
@@ -510,8 +512,8 @@ var/global/list/damage_icon_parts = list()
 			var/image/standing
 			if(wear_id.icon_override)
 				standing = image("icon" = wear_id.icon_override, "icon_state" = "[icon_state]")
-			else if(wear_id.sprite_sheets && wear_id.sprite_sheets[species.get_bodytype()])
-				standing = image("icon" = wear_id.sprite_sheets[species.get_bodytype()], "icon_state" = "[icon_state]")
+			else if(wear_id.sprite_sheets && wear_id.sprite_sheets[species.get_bodytype(src)])
+				standing = image("icon" = wear_id.sprite_sheets[species.get_bodytype(src)], "icon_state" = "[icon_state]")
 			else
 				standing = image("icon" = 'icons/mob/mob.dmi', "icon_state" = "id")
 			overlays_standing[ID_LAYER] = standing
@@ -533,13 +535,13 @@ var/global/list/damage_icon_parts = list()
 		var/image/standing
 		if(gloves.icon_override)
 			standing = image("icon" = gloves.icon_override, "icon_state" = "[t_state]")
-		else if(gloves.sprite_sheets && gloves.sprite_sheets[species.get_bodytype()])
-			standing = image("icon" = gloves.sprite_sheets[species.get_bodytype()], "icon_state" = "[t_state]")
+		else if(gloves.sprite_sheets && gloves.sprite_sheets[species.get_bodytype(src)])
+			standing = image("icon" = gloves.sprite_sheets[species.get_bodytype(src)], "icon_state" = "[t_state]")
 		else
 			standing = image("icon" = 'icons/mob/hands.dmi', "icon_state" = "[t_state]")
 
 		if(gloves.blood_DNA)
-			var/image/bloodsies	= image("icon" = species.blood_mask, "icon_state" = "bloodyhands")
+			var/image/bloodsies	= image("icon" = species.get_blood_mask(src), "icon_state" = "bloodyhands")
 			bloodsies.color = gloves.blood_color
 			standing.overlays	+= bloodsies
 		gloves.screen_loc = ui_gloves
@@ -547,7 +549,7 @@ var/global/list/damage_icon_parts = list()
 		overlays_standing[GLOVES_LAYER]	= standing
 	else
 		if(blood_DNA)
-			var/image/bloodsies	= image("icon" = species.blood_mask, "icon_state" = "bloodyhands")
+			var/image/bloodsies	= image("icon" = species.get_blood_mask(src), "icon_state" = "bloodyhands")
 			bloodsies.color = hand_blood_color
 			overlays_standing[GLOVES_LAYER]	= bloodsies
 		else
@@ -557,13 +559,15 @@ var/global/list/damage_icon_parts = list()
 
 /mob/living/carbon/human/update_inv_glasses(var/update_icons=1)
 	if(glasses)
-
+		var/image/standing
 		if(glasses.icon_override)
-			overlays_standing[GLASSES_LAYER] = image("icon" = glasses.icon_override, "icon_state" = "[glasses.icon_state]")
-		else if(glasses.sprite_sheets && glasses.sprite_sheets[species.get_bodytype()])
-			overlays_standing[GLASSES_LAYER]= image("icon" = glasses.sprite_sheets[species.get_bodytype()], "icon_state" = "[glasses.icon_state]")
+			standing = image("icon" = glasses.icon_override, "icon_state" = "[glasses.icon_state]")
+		else if(glasses.sprite_sheets && glasses.sprite_sheets[species.get_bodytype(src)])
+			standing = image("icon" = glasses.sprite_sheets[species.get_bodytype(src)], "icon_state" = "[glasses.icon_state]")
 		else
-			overlays_standing[GLASSES_LAYER]= image("icon" = 'icons/mob/eyes.dmi', "icon_state" = "[glasses.icon_state]")
+			standing = image("icon" = 'icons/mob/eyes.dmi', "icon_state" = "[glasses.icon_state]")
+		standing.color = glasses.color
+		overlays_standing[GLASSES_LAYER] = standing
 
 	else
 		overlays_standing[GLASSES_LAYER]	= null
@@ -576,54 +580,63 @@ var/global/list/damage_icon_parts = list()
 		return
 
 	if(l_ear || r_ear)
-		if(l_ear)
+		// Blank image upon which to layer left & right overlays.
+		var/image/both = image("icon" = 'icons/effects/effects.dmi', "icon_state" = "nothing")
 
+		if(l_ear)
+			var/image/standing
 			var/t_type = l_ear.icon_state
 			if(l_ear.icon_override)
 				t_type = "[t_type]_l"
-				overlays_standing[EARS_LAYER] = image("icon" = l_ear.icon_override, "icon_state" = "[t_type]")
-			else if(l_ear.sprite_sheets && l_ear.sprite_sheets[species.get_bodytype()])
+				standing = image("icon" = l_ear.icon_override, "icon_state" = "[t_type]")
+			else if(l_ear.sprite_sheets && l_ear.sprite_sheets[species.get_bodytype(src)])
 				t_type = "[t_type]_l"
-				overlays_standing[EARS_LAYER] = image("icon" = l_ear.sprite_sheets[species.get_bodytype()], "icon_state" = "[t_type]")
+				standing = image("icon" = l_ear.sprite_sheets[species.get_bodytype(src)], "icon_state" = "[t_type]")
 			else
-				overlays_standing[EARS_LAYER] = image("icon" = 'icons/mob/ears.dmi', "icon_state" = "[t_type]")
-
+				standing = image("icon" = 'icons/mob/ears.dmi', "icon_state" = "[t_type]")
+			standing.color = l_ear.color
+			both.overlays += standing
+			
 		if(r_ear)
-
+			var/image/standing
 			var/t_type = r_ear.icon_state
 			if(r_ear.icon_override)
 				t_type = "[t_type]_r"
-				overlays_standing[EARS_LAYER] = image("icon" = r_ear.icon_override, "icon_state" = "[t_type]")
-			else if(r_ear.sprite_sheets && r_ear.sprite_sheets[species.get_bodytype()])
+				standing = image("icon" = r_ear.icon_override, "icon_state" = "[t_type]")
+			else if(r_ear.sprite_sheets && r_ear.sprite_sheets[species.get_bodytype(src)])
 				t_type = "[t_type]_r"
-				overlays_standing[EARS_LAYER] = image("icon" = r_ear.sprite_sheets[species.get_bodytype()], "icon_state" = "[t_type]")
+				standing = image("icon" = r_ear.sprite_sheets[species.get_bodytype(src)], "icon_state" = "[t_type]")
 			else
-				overlays_standing[EARS_LAYER] = image("icon" = 'icons/mob/ears.dmi', "icon_state" = "[t_type]")
+				standing = image("icon" = 'icons/mob/ears.dmi', "icon_state" = "[t_type]")
+			standing.color = r_ear.color
+			both.overlays += standing
+			
+		overlays_standing[EARS_LAYER] = both
 
 	else
 		overlays_standing[EARS_LAYER]	= null
 	if(update_icons)   update_icons()
 
 /mob/living/carbon/human/update_inv_shoes(var/update_icons=1)
-	if(shoes && !(wear_suit && wear_suit.flags_inv & HIDESHOES))
+	if(shoes && !((wear_suit && wear_suit.flags_inv & HIDESHOES) || (w_uniform && w_uniform.flags_inv & HIDESHOES)))
 
 		var/image/standing
 		if(shoes.icon_override)
 			standing = image("icon" = shoes.icon_override, "icon_state" = "[shoes.icon_state]")
-		else if(shoes.sprite_sheets && shoes.sprite_sheets[species.get_bodytype()])
-			standing = image("icon" = shoes.sprite_sheets[species.get_bodytype()], "icon_state" = "[shoes.icon_state]")
+		else if(shoes.sprite_sheets && shoes.sprite_sheets[species.get_bodytype(src)])
+			standing = image("icon" = shoes.sprite_sheets[species.get_bodytype(src)], "icon_state" = "[shoes.icon_state]")
 		else
 			standing = image("icon" = 'icons/mob/feet.dmi', "icon_state" = "[shoes.icon_state]")
 
 		if(shoes.blood_DNA)
-			var/image/bloodsies = image("icon" = species.blood_mask, "icon_state" = "shoeblood")
+			var/image/bloodsies = image("icon" = species.get_blood_mask(src), "icon_state" = "shoeblood")
 			bloodsies.color = shoes.blood_color
 			standing.overlays += bloodsies
 		standing.color = shoes.color
 		overlays_standing[SHOES_LAYER] = standing
 	else
 		if(feet_blood_DNA)
-			var/image/bloodsies = image("icon" = species.blood_mask, "icon_state" = "shoeblood")
+			var/image/bloodsies = image("icon" = species.get_blood_mask(src), "icon_state" = "shoeblood")
 			bloodsies.color = feet_blood_color
 			overlays_standing[SHOES_LAYER] = bloodsies
 		else
@@ -649,8 +662,8 @@ var/global/list/damage_icon_parts = list()
 		var/t_icon
 		if(head.icon_override)
 			t_icon = head.icon_override
-		else if(head.sprite_sheets && head.sprite_sheets[species.get_bodytype()])
-			t_icon = head.sprite_sheets[species.get_bodytype()]
+		else if(head.sprite_sheets && head.sprite_sheets[species.get_bodytype(src)])
+			t_icon = head.sprite_sheets[species.get_bodytype(src)]
 
 		else if(head.item_icons && (slot_head_str in head.item_icons))
 			t_icon = head.item_icons[slot_head_str]
@@ -675,13 +688,13 @@ var/global/list/damage_icon_parts = list()
 		var/image/standing = image(icon = t_icon, icon_state = t_state)
 
 		if(head.blood_DNA)
-			var/image/bloodsies = image("icon" = species.blood_mask, "icon_state" = "helmetblood")
+			var/image/bloodsies = image("icon" = species.get_blood_mask(src), "icon_state" = "helmetblood")
 			bloodsies.color = head.blood_color
 			standing.overlays	+= bloodsies
 
 		if(istype(head,/obj/item/clothing/head))
 			var/obj/item/clothing/head/hat = head
-			var/cache_key = "[hat.light_overlay]_[species.get_bodytype()]"
+			var/cache_key = "[hat.light_overlay]_[species.get_bodytype(src)]"
 			if(hat.on && light_overlay_cache[cache_key])
 				standing.overlays |= light_overlay_cache[cache_key]
 
@@ -701,8 +714,8 @@ var/global/list/damage_icon_parts = list()
 
 		if(belt.icon_override)
 			standing.icon = belt.icon_override
-		else if(belt.sprite_sheets && belt.sprite_sheets[species.get_bodytype()])
-			standing.icon = belt.sprite_sheets[species.get_bodytype()]
+		else if(belt.sprite_sheets && belt.sprite_sheets[species.get_bodytype(src)])
+			standing.icon = belt.sprite_sheets[species.get_bodytype(src)]
 		else
 			standing.icon = 'icons/mob/belt.dmi'
 
@@ -739,7 +752,7 @@ var/global/list/damage_icon_parts = list()
 		var/t_icon = INV_SUIT_DEF_ICON
 		if(wear_suit.icon_override)
 			t_icon = wear_suit.icon_override
-		else if(wear_suit.sprite_sheets && wear_suit.sprite_sheets[species.get_bodytype()])
+		else if(wear_suit.sprite_sheets && wear_suit.sprite_sheets[species.get_bodytype(src)])
 			t_icon = wear_suit.sprite_sheets[species.name]
 		else if(wear_suit.item_icons && wear_suit.item_icons[slot_wear_suit_str])
 			t_icon = wear_suit.item_icons[slot_wear_suit_str]
@@ -748,16 +761,22 @@ var/global/list/damage_icon_parts = list()
 		standing.color = wear_suit.color
 
 		if( istype(wear_suit, /obj/item/clothing/suit/straight_jacket) )
-			removeItem(handcuffed, force = 1)
+			drop_from_inventory(handcuffed)
 			drop_l_hand()
 			drop_r_hand()
 
 		if(wear_suit.blood_DNA)
 			var/obj/item/clothing/suit/S = wear_suit
 			if(istype(S)) //You can put non-suits in your suit slot (diona nymphs etc).
-				var/image/bloodsies = image("icon" = species.blood_mask, "icon_state" = "[S.blood_overlay_type]blood")
+				var/image/bloodsies = image("icon" = species.get_blood_mask(src), "icon_state" = "[S.blood_overlay_type]blood")
 				bloodsies.color = wear_suit.blood_color
 				standing.overlays	+= bloodsies
+
+		// Accessories - copied from uniform, BOILERPLATE because fuck this system.
+		var/obj/item/clothing/suit/suit = wear_suit
+		if(istype(suit) && suit.accessories.len)
+			for(var/obj/item/clothing/accessory/A in suit.accessories)
+				standing.overlays |= A.get_mob_overlay()
 
 		overlays_standing[SUIT_LAYER]	= standing
 		update_tail_showing(0)
@@ -765,9 +784,11 @@ var/global/list/damage_icon_parts = list()
 	else
 		overlays_standing[SUIT_LAYER]	= null
 		update_tail_showing(0)
-		update_inv_shoes(0)
 
 	update_collar(0)
+
+	//hide/show shoes if necessary
+	update_inv_shoes(0)
 
 	if(update_icons)   update_icons()
 
@@ -784,14 +805,14 @@ var/global/list/damage_icon_parts = list()
 		var/image/standing
 		if(wear_mask.icon_override)
 			standing = image("icon" = wear_mask.icon_override, "icon_state" = "[wear_mask.icon_state]")
-		else if(wear_mask.sprite_sheets && wear_mask.sprite_sheets[species.get_bodytype()])
-			standing = image("icon" = wear_mask.sprite_sheets[species.get_bodytype()], "icon_state" = "[wear_mask.icon_state]")
+		else if(wear_mask.sprite_sheets && wear_mask.sprite_sheets[species.get_bodytype(src)])
+			standing = image("icon" = wear_mask.sprite_sheets[species.get_bodytype(src)], "icon_state" = "[wear_mask.icon_state]")
 		else
 			standing = image("icon" = 'icons/mob/mask.dmi', "icon_state" = "[wear_mask.icon_state]")
 		standing.color = wear_mask.color
 
 		if( !istype(wear_mask, /obj/item/clothing/mask/smokable/cigarette) && wear_mask.blood_DNA )
-			var/image/bloodsies = image("icon" = species.blood_mask, "icon_state" = "maskblood")
+			var/image/bloodsies = image("icon" = species.get_blood_mask(src), "icon_state" = "maskblood")
 			bloodsies.color = wear_mask.blood_color
 			standing.overlays	+= bloodsies
 		overlays_standing[FACEMASK_LAYER]	= standing
@@ -812,8 +833,8 @@ var/global/list/damage_icon_parts = list()
 			//If this is a rig and a mob_icon is set, it will take species into account in the rig update_icon() proc.
 			var/obj/item/weapon/rig/rig = back
 			overlay_icon = rig.mob_icon
-		else if(back.sprite_sheets && back.sprite_sheets[species.get_bodytype()])
-			overlay_icon = back.sprite_sheets[species.get_bodytype()]
+		else if(back.sprite_sheets && back.sprite_sheets[species.get_bodytype(src)])
+			overlay_icon = back.sprite_sheets[species.get_bodytype(src)]
 		else if(back.item_icons && (slot_back_str in back.item_icons))
 			overlay_icon = back.item_icons[slot_back_str]
 		else
@@ -857,8 +878,8 @@ var/global/list/damage_icon_parts = list()
 		var/image/standing
 		if(handcuffed.icon_override)
 			standing = image("icon" = handcuffed.icon_override, "icon_state" = "handcuff1")
-		else if(handcuffed.sprite_sheets && handcuffed.sprite_sheets[species.get_bodytype()])
-			standing = image("icon" = handcuffed.sprite_sheets[species.get_bodytype()], "icon_state" = "handcuff1")
+		else if(handcuffed.sprite_sheets && handcuffed.sprite_sheets[species.get_bodytype(src)])
+			standing = image("icon" = handcuffed.sprite_sheets[species.get_bodytype(src)], "icon_state" = "handcuff1")
 		else
 			standing = image("icon" = 'icons/mob/mob.dmi', "icon_state" = "handcuff1")
 		overlays_standing[HANDCUFF_LAYER] = standing
@@ -873,8 +894,8 @@ var/global/list/damage_icon_parts = list()
 		var/image/standing
 		if(legcuffed.icon_override)
 			standing = image("icon" = legcuffed.icon_override, "icon_state" = "legcuff1")
-		else if(legcuffed.sprite_sheets && legcuffed.sprite_sheets[species.get_bodytype()])
-			standing = image("icon" = legcuffed.sprite_sheets[species.get_bodytype()], "icon_state" = "legcuff1")
+		else if(legcuffed.sprite_sheets && legcuffed.sprite_sheets[species.get_bodytype(src)])
+			standing = image("icon" = legcuffed.sprite_sheets[species.get_bodytype(src)], "icon_state" = "legcuff1")
 		else
 			standing = image("icon" = 'icons/mob/mob.dmi', "icon_state" = "legcuff1")
 		overlays_standing[LEGCUFF_LAYER] = standing
@@ -963,24 +984,29 @@ var/global/list/damage_icon_parts = list()
 /mob/living/carbon/human/proc/update_tail_showing(var/update_icons=1)
 	overlays_standing[TAIL_LAYER] = null
 
-	if(species.tail && !(wear_suit && wear_suit.flags_inv & HIDETAIL))
+	var/species_tail = species.get_tail(src)
+
+	if(species_tail && !(wear_suit && wear_suit.flags_inv & HIDETAIL))
 		var/icon/tail_s = get_tail_icon()
-		overlays_standing[TAIL_LAYER] = image(tail_s, icon_state = "[species.tail]_s")
+		overlays_standing[TAIL_LAYER] = image(tail_s, icon_state = "[species_tail]_s")
 		animate_tail_reset(0)
 
 	if(update_icons)
 		update_icons()
 
 /mob/living/carbon/human/proc/get_tail_icon()
-	var/icon_key = "[species.race_key][r_skin][g_skin][b_skin][r_hair][g_hair][b_hair]"
+	var/icon_key = "[species.get_race_key(src)][r_skin][g_skin][b_skin][r_hair][g_hair][b_hair]"
 	var/icon/tail_icon = tail_icon_cache[icon_key]
 	if(!tail_icon)
 		//generate a new one
-		tail_icon = new/icon(icon = (species.tail_animation? species.tail_animation : 'icons/effects/species.dmi'))
+		var/species_tail_anim = species.get_tail_animation(src)
+		if(!species_tail_anim) species_tail_anim = 'icons/effects/species.dmi'
+		tail_icon = new/icon(species_tail_anim)
 		tail_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
 		// The following will not work with animated tails.
-		if(species.tail_hair)
-			var/icon/hair_icon = icon('icons/effects/species.dmi', "[species.tail]_[species.tail_hair]")
+		var/use_species_tail = species.get_tail_hair(src)
+		if(use_species_tail)
+			var/icon/hair_icon = icon('icons/effects/species.dmi', "[species.get_tail(src)]_[use_species_tail]")
 			hair_icon.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
 			tail_icon.Blend(hair_icon, ICON_OVERLAY)
 		tail_icon_cache[icon_key] = tail_icon
@@ -991,7 +1017,7 @@ var/global/list/damage_icon_parts = list()
 /mob/living/carbon/human/proc/set_tail_state(var/t_state)
 	var/image/tail_overlay = overlays_standing[TAIL_LAYER]
 
-	if(tail_overlay && species.tail_animation)
+	if(tail_overlay && species.get_tail_animation(src))
 		tail_overlay.icon_state = t_state
 		return tail_overlay
 	return null
@@ -999,7 +1025,7 @@ var/global/list/damage_icon_parts = list()
 //Not really once, since BYOND can't do that.
 //Update this if the ability to flick() images or make looping animation start at the first frame is ever added.
 /mob/living/carbon/human/proc/animate_tail_once(var/update_icons=1)
-	var/t_state = "[species.tail]_once"
+	var/t_state = "[species.get_tail(src)]_once"
 
 	var/image/tail_overlay = overlays_standing[TAIL_LAYER]
 	if(tail_overlay && tail_overlay.icon_state == t_state)
@@ -1016,29 +1042,28 @@ var/global/list/damage_icon_parts = list()
 		update_icons()
 
 /mob/living/carbon/human/proc/animate_tail_start(var/update_icons=1)
-	set_tail_state("[species.tail]_slow[rand(0,9)]")
+	set_tail_state("[species.get_tail(src)]_slow[rand(0,9)]")
 
 	if(update_icons)
 		update_icons()
 
 /mob/living/carbon/human/proc/animate_tail_fast(var/update_icons=1)
-	set_tail_state("[species.tail]_loop[rand(0,9)]")
+	set_tail_state("[species.get_tail(src)]_loop[rand(0,9)]")
 
 	if(update_icons)
 		update_icons()
 
 /mob/living/carbon/human/proc/animate_tail_reset(var/update_icons=1)
 	if(stat != DEAD)
-		set_tail_state("[species.tail]_idle[rand(0,9)]")
+		set_tail_state("[species.get_tail(src)]_idle[rand(0,9)]")
 	else
-		set_tail_state("[species.tail]_static")
-
+		set_tail_state("[species.get_tail(src)]_static")
 
 	if(update_icons)
 		update_icons()
 
 /mob/living/carbon/human/proc/animate_tail_stop(var/update_icons=1)
-	set_tail_state("[species.tail]_static")
+	set_tail_state("[species.get_tail(src)]_static")
 
 	if(update_icons)
 		update_icons()

@@ -47,8 +47,9 @@
 		if(attached_device)
 			user << "<span class='warning'>There is already an device attached to the valve, remove it first.</span>"
 			return
-		user.removeItem(A, src)
+		user.remove_from_mob(item)
 		attached_device = A
+		A.loc = src
 		user << "<span class='notice'>You attach the [item] to the valve controls and secure it.</span>"
 		A.holder = src
 		A.toggle_secure()	//this calls update_icon(), which calls update_icon() on the holder (i.e. the bomb).

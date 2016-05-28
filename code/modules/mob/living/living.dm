@@ -129,6 +129,7 @@ default behaviour is:
 					playsound(loc, "punch", 25, 1, -1)
 					visible_message("<span class='warning'>[src] [pick("ran", "slammed")] into \the [AM]!</span>")
 					src.apply_damage(5, BRUTE)
+					src << ("<span class='warning'>You just [pick("ran", "slammed")] into \the [AM]!</span>")
 				return
 			if (!now_pushing)
 				now_pushing = 1
@@ -393,11 +394,11 @@ default behaviour is:
 		var/mob/living/carbon/C = src
 
 		if (C.handcuffed && !initial(C.handcuffed))
-			C.removeItem(C.handcuffed)
+			C.drop_from_inventory(C.handcuffed)
 		C.handcuffed = initial(C.handcuffed)
 
 		if (C.legcuffed && !initial(C.legcuffed))
-			C.removeItem(C.legcuffed)
+			C.drop_from_inventory(C.legcuffed)
 		C.legcuffed = initial(C.legcuffed)
 	BITSET(hud_updateflag, HEALTH_HUD)
 	BITSET(hud_updateflag, STATUS_HUD)
@@ -566,7 +567,7 @@ default behaviour is:
 	set name = "Resist"
 	set category = "IC"
 
-	if(!stat && canClick())
+	if(!incapacitated(INCAPACITATION_KNOCKOUT) && canClick())
 		setClickCooldown(20)
 		resist_grab()
 		if(!weakened)
@@ -595,7 +596,7 @@ default behaviour is:
 	var/mob/M = H.loc //Get our mob holder (if any).
 
 	if(istype(M))
-		M.removeItem(H)
+		M.drop_from_inventory(H)
 		M << "<span class='warning'>\The [H] wriggles out of your grip!</span>"
 		src << "<span class='warning'>You wriggle out of \the [M]'s grip!</span>"
 
@@ -631,7 +632,9 @@ default behaviour is:
 			if(GRAB_PASSIVE)
 				qdel(G)
 			if(GRAB_AGGRESSIVE)
-				if(prob(60)) //same chance of breaking the grab as disarm
+				//Not standing up makes it much harder to break, so it is easier to cuff someone who is down without forcing them into unconsciousness.
+				//Otherwise, it's the same chance of breaking the grab as disarm.
+				if(incapacitated(INCAPACITATION_KNOCKDOWN)? prob(15) : prob(60))
 					visible_message("<span class='warning'>[src] has broken free of [G.assailant]'s grip!</span>")
 					qdel(G)
 			if(GRAB_NECK)
@@ -771,10 +774,10 @@ default behaviour is:
 /mob/living/proc/slip(var/slipped_on,stun_duration=8)
 	return 0
 
-/mob/living/carbon/removeItem(var/obj/item/I, var/atom/T = loc, var/force = 0)
-	if(I in src.internal_organs)
-		return 0
-	return ..()
+/mob/living/carbon/drop_from_inventory(var/obj/item/W, var/atom/Target = null)
+	if(W in internal_organs)
+		return
+	..()
 
 /mob/living/touch_map_edge()
 
@@ -862,7 +865,7 @@ default behaviour is:
 	else
 		if(istype(buckled, /obj/vehicle))
 			var/obj/vehicle/V = buckled
-			if(cannot_stand())
+			if(is_physically_disabled())
 				lying = 0
 				canmove = 1
 				pixel_y = V.mob_offset_y - 5
@@ -880,23 +883,18 @@ default behaviour is:
 					anchored = 0
 					canmove = 1
 
-		else if(cannot_stand())
-			lying = 1
-			canmove = 0
-		else if(stunned)
-			canmove = 0
 		else if(captured)
 			anchored = 1
 			canmove = 0
 			lying = 0
 		else
-			lying = 0
-			canmove = 1
+			lying = incapacitated(INCAPACITATION_KNOCKDOWN)
+			canmove = !incapacitated(INCAPACITATION_DISABLED)
 
 	if(lying)
 		density = 0
-		if(l_hand) removeItem(l_hand)
-		if(r_hand) removeItem(r_hand)
+		if(l_hand) unEquip(l_hand)
+		if(r_hand) unEquip(r_hand)
 	else
 		density = initial(density)
 

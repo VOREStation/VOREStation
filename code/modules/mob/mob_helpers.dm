@@ -5,12 +5,27 @@
 		return L.mob_size <= MOB_SMALL
 	return 0
 
+
+/proc/istiny(A)
+	if(A && istype(A, /mob/living))
+		var/mob/living/L = A
+		return L.mob_size <= MOB_TINY
+	return 0
+
+
+/proc/ismini(A)
+	if(A && istype(A, /mob/living))
+		var/mob/living/L = A
+		return L.mob_size <= MOB_MINISCULE
+	return 0
+
+
 // If they are 100% robotic, they count as synthetic.
 /mob/living/carbon/human/isSynthetic()
 	if(isnull(full_prosthetic))
 		robolimb_count = 0
 		for(var/obj/item/organ/external/E in organs)
-			if(E.status & ORGAN_ROBOT)
+			if(E.robotic >= ORGAN_ROBOT)
 				robolimb_count++
 		if(robolimb_count == organs.len)
 			full_prosthetic = 1
@@ -389,6 +404,8 @@ proc/is_blind(A)
 			var/follow
 			var/lname
 			if(subject)
+				if(M.is_key_ignored(subject.client.key)) // If we're ignored, do nothing.
+					continue
 				if(subject != M)
 					follow = "([ghost_follow_link(subject, M)]) "
 				if(M.stat != DEAD && M.client.holder)

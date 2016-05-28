@@ -37,10 +37,9 @@
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		H.b_type = "AB+" //For some reason we have two blood types on the mob.
-		for(var/flavor in H.flavor_texts) //Nulls out flavor text, so we don't keep our previous mob's flavor.
-			flavor = null
+		H.identifying_gender = chosen_dna.identifying_gender
+		H.flavor_texts = chosen_dna.flavour_texts ? chosen_dna.flavour_texts.Copy() : null
 	src.real_name = chosen_dna.name
-	src.flavor_text = ""
 	src.UpdateAppearance()
 	domutcheck(src, null)
 	changeling_update_languages(changeling.absorbed_languages)

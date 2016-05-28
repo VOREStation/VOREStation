@@ -88,13 +88,14 @@
 	icon_opened = "hossecureopen"
 	icon_broken = "hossecurebroken"
 	icon_off = "hossecureoff"
+	storage_capacity = 2.5 * MOB_MEDIUM
 
 	New()
 		..()
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/security(src)
 		else
-			new /obj/item/weapon/storage/backpack/satchel_sec(src)
+			new /obj/item/weapon/storage/backpack/satchel/sec(src)
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/dufflebag/sec(src)
 		new /obj/item/clothing/head/helmet/HoS(src)
@@ -143,7 +144,7 @@
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/security(src)
 		else
-			new /obj/item/weapon/storage/backpack/satchel_sec(src)
+			new /obj/item/weapon/storage/backpack/satchel/sec(src)
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/dufflebag/sec(src)
 		new /obj/item/clothing/suit/storage/vest/warden(src)
@@ -187,7 +188,7 @@
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/security(src)
 		else
-			new /obj/item/weapon/storage/backpack/satchel_sec(src)
+			new /obj/item/weapon/storage/backpack/satchel/sec(src)
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/dufflebag/sec(src)
 		new /obj/item/clothing/suit/storage/vest/officer(src)

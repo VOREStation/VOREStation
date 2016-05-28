@@ -11,7 +11,7 @@
 	sleep(1)
 
 	for(var/obj/item/I in src)
-		removeItem(I)
+		drop_from_inventory(I)
 		I.throw_at(get_edge_target_turf(src,pick(alldirs)), rand(1,3), round(30/I.w_class))
 
 	..(species.gibbed_anim)
@@ -30,8 +30,6 @@
 	BITSET(hud_updateflag, HEALTH_HUD)
 	BITSET(hud_updateflag, STATUS_HUD)
 	BITSET(hud_updateflag, LIFE_HUD)
-
-	handle_hud_list()
 
 	//Handle species-specific deaths.
 	species.handle_death(src)

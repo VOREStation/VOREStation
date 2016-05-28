@@ -15,12 +15,14 @@
 	sprite_sheets_refit = list(
 		"Unathi" = 'icons/mob/species/unathi/helmet.dmi',
 		"Tajara" = 'icons/mob/species/tajaran/helmet.dmi',
-		"Skrell" = 'icons/mob/species/skrell/helmet.dmi',
+		"Skrell" = 'icons/mob/species/skrell/helmet.dmi'
+		//Teshari have a general sprite sheet defined in modules/clothing/clothing.dm
 		)
 	sprite_sheets_obj = list(
 		"Unathi" = 'icons/obj/clothing/species/unathi/hats.dmi',
 		"Tajara" = 'icons/obj/clothing/species/tajaran/hats.dmi',
 		"Skrell" = 'icons/obj/clothing/species/skrell/hats.dmi',
+		"Teshari" = 'icons/obj/clothing/species/seromi/hats.dmi'
 		)
 
 	light_overlay = "helmet_light"
@@ -40,12 +42,14 @@
 	sprite_sheets_refit = list(
 		"Unathi" = 'icons/mob/species/unathi/suit.dmi',
 		"Tajara" = 'icons/mob/species/tajaran/suit.dmi',
-		"Skrell" = 'icons/mob/species/skrell/suit.dmi',
+		"Skrell" = 'icons/mob/species/skrell/suit.dmi'
+		//Teshari have a general sprite sheet defined in modules/clothing/clothing.dm
 		)
 	sprite_sheets_obj = list(
 		"Unathi" = 'icons/obj/clothing/species/unathi/suits.dmi',
 		"Tajara" = 'icons/obj/clothing/species/tajaran/suits.dmi',
 		"Skrell" = 'icons/obj/clothing/species/skrell/suits.dmi',
+		"Teshari" = 'icons/obj/clothing/species/seromi/suits.dmi'
 		)
 
 	//Breach thresholds, should ideally be inherited by most (if not all) voidsuits.
@@ -121,14 +125,16 @@
 		H = helmet.loc
 		if(istype(H))
 			if(helmet && H.head == helmet)
-				H.removeItem(helmet, src)
+				H.drop_from_inventory(helmet)
+				helmet.forceMove(src)
 
 	if(boots)
 		boots.canremove = 1
 		H = boots.loc
 		if(istype(H))
 			if(boots && H.shoes == boots)
-				H.removeItem(boots, src)
+				H.drop_from_inventory(boots)
+				boots.forceMove(src)
 
 	if(tank)
 		tank.canremove = 1
@@ -159,7 +165,8 @@
 	if(H.head == helmet)
 		H << "<span class='notice'>You retract your suit helmet.</span>"
 		helmet.canremove = 1
-		H.removeItem(helmet, src)
+		H.drop_from_inventory(helmet)
+		helmet.forceMove(src)
 	else
 		if(H.head)
 			H << "<span class='danger'>You cannot deploy your helmet while wearing \the [H.head].</span>"
@@ -197,14 +204,17 @@
 		cooler = null
 	H << "<span class='info'>You press the emergency release, ejecting \the [removing] from your suit.</span>"
 	removing.canremove = 1
-	H.removeItem(removing)
+	H.drop_from_inventory(removing)
 
 /obj/item/clothing/suit/space/void/attackby(obj/item/W as obj, mob/user as mob)
 
 	if(!istype(user,/mob/living)) return
 
+	if(istype(W,/obj/item/clothing/accessory) || istype(W, /obj/item/weapon/hand_labeler))
+		return ..()
+
 	if(istype(src.loc,/mob/living))
-		user << "<span class='danger'>How do you propose to modify a voidsuit while it is being worn?</span>"
+		user << "<span class='warning'>You cannot modify \the [src] while it is being worn.</span>"
 		return
 
 	if(istype(W,/obj/item/weapon/screwdriver))

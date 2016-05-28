@@ -150,22 +150,10 @@
 
 /mob/living/carbon/human/handle_disabilities()
 	..()
-	//Vision
-	if(species.vision_organ)
-		if(internal_organs_by_name[species.vision_organ])  // Vision organs cut out? Permablind.
-			eye_blind =  0
-			blinded =    0
-			eye_blurry = 0
-		else
-			eye_blind =  1
-			blinded =    1
-			eye_blurry = 1
-	else // Presumably if a species has no vision organs, they see via some other means.
-		eye_blind =  0
-		blinded =    0
-		eye_blurry = 0
-		
-		
+
+	if(stat != CONSCIOUS) //Let's not worry about tourettes if you're not conscious.
+		return
+
 	if (disabilities & EPILEPSY)
 		if ((prob(1) && paralysis < 1))
 			src << "\red You have a seizure!"
@@ -182,7 +170,6 @@
 				emote("cough")
 				return
 	if (disabilities & TOURETTES)
-		speech_problem_flag = 1
 		if ((prob(10) && paralysis <= 1))
 			Stun(10)
 			spawn( 0 )
@@ -194,31 +181,29 @@
 				make_jittery(100)
 				return
 	if (disabilities & NERVOUS)
-		speech_problem_flag = 1
 		if (prob(10))
 			stuttering = max(10, stuttering)
 
-	if(stat != 2)
-		var/rn = rand(0, 200)
-		if(getBrainLoss() >= 5)
-			if(0 <= rn && rn <= 3)
-				custom_pain("Your head feels numb and painful.")
-		if(getBrainLoss() >= 15)
-			if(4 <= rn && rn <= 6) if(eye_blurry <= 0)
-				src << "<span class='warning'>It becomes hard to see for some reason.</span>"
-				eye_blurry = 10
-		if(getBrainLoss() >= 35)
-			if(7 <= rn && rn <= 9) if(get_active_hand())
-				src << "<span class='danger'>Your hand won't respond properly, you drop what you're holding!</span>"
-				drop_item()
-		if(getBrainLoss() >= 45)
-			if(10 <= rn && rn <= 12)
-				if(prob(50))
-					src << "<span class='danger'>You suddenly black out!</span>"
-					Paralyse(10)
-				else if(!lying)
-					src << "<span class='danger'>Your legs won't respond properly, you fall down!</span>"
-					Weaken(10)
+	var/rn = rand(0, 200)
+	if(getBrainLoss() >= 5)
+		if(0 <= rn && rn <= 3)
+			custom_pain("Your head feels numb and painful.")
+	if(getBrainLoss() >= 15)
+		if(4 <= rn && rn <= 6) if(eye_blurry <= 0)
+			src << "<span class='warning'>It becomes hard to see for some reason.</span>"
+			eye_blurry = 10
+	if(getBrainLoss() >= 35)
+		if(7 <= rn && rn <= 9) if(get_active_hand())
+			src << "<span class='danger'>Your hand won't respond properly, you drop what you're holding!</span>"
+			drop_item()
+	if(getBrainLoss() >= 45)
+		if(10 <= rn && rn <= 12)
+			if(prob(50))
+				src << "<span class='danger'>You suddenly black out!</span>"
+				Paralyse(10)
+			else if(!lying)
+				src << "<span class='danger'>Your legs won't respond properly, you fall down!</span>"
+				Weaken(10)
 
 
 
@@ -236,12 +221,17 @@
 		if(!gene.block)
 			continue
 		if(gene.is_active(src))
-			speech_problem_flag = 1
 			gene.OnMobLife(src)
 
 	radiation = Clamp(radiation,0,100)
 
-	if (radiation)
+	if(!radiation)
+		if(species.appearance_flags & RADIATION_GLOWS)
+			set_light(0)
+	else
+		if(species.appearance_flags & RADIATION_GLOWS)
+			set_light(max(1,min(10,radiation/10)), max(1,min(20,radiation/20)), species.get_flesh_colour(src))
+		// END DOGSHIT SNOWFLAKE
 
 		var/obj/item/organ/internal/diona/nutrients/rad_organ = locate() in internal_organs
 		if(rad_organ && !rad_organ.is_broken())
@@ -923,7 +913,6 @@
 			adjustHalLoss(-3)
 
 			if(sleeping)
-				speech_problem_flag = 1
 				handle_dreams()
 				if (mind)
 					//Are they SSD? If so we'll keep them asleep but work off some of that sleep var in case of stoxin or similar.
@@ -962,19 +951,18 @@
 		if(species.vision_organ)
 			vision = internal_organs_by_name[species.vision_organ]
 
-		if(!vision) // Presumably if a species has no vision organs, they see via some other means.
+		if(!species.vision_organ) // Presumably if a species has no vision organs, they see via some other means.
 			eye_blind =  0
 			blinded =    0
 			eye_blurry = 0
-		else if(vision.is_broken())   // Vision organs cut out or broken? Permablind.
+		else if(!vision || vision.is_broken())   // Vision organs cut out or broken? Permablind.
 			eye_blind =  1
 			blinded =    1
 			eye_blurry = 1
-		else
-			//blindness
-			if(sdisabilities & BLIND) // Disabled-blind, doesn't get better on its own
+		else //You have the requisite organs
+			if(sdisabilities & BLIND) 	// Disabled-blind, doesn't get better on its own
 				blinded =    1
-			else if(eye_blind)		       // Blindness, heals slowly over time
+			else if(eye_blind)		  	// Blindness, heals slowly over time
 				eye_blind =  max(eye_blind-1,0)
 				blinded =    1
 			else if(istype(glasses, /obj/item/clothing/glasses/sunglasses/blindfold))	//resting your eyes with a blindfold heals blurry eyes faster
@@ -1524,7 +1512,7 @@
 
 	var/obj/item/organ/internal/heart/H = internal_organs_by_name[O_HEART]
 
-	if(!H || (H.status & ORGAN_ROBOT))
+	if(!H || (H.robotic >= ORGAN_ROBOT))
 		return
 
 	if(pulse >= PULSE_2FAST || shock_stage >= 10 || istype(get_turf(src), /turf/space))
@@ -1549,7 +1537,7 @@
 /mob/living/carbon/human/proc/handle_hud_list()
 	if (BITTEST(hud_updateflag, HEALTH_HUD))
 		var/image/holder = hud_list[HEALTH_HUD]
-		if(stat == 2)
+		if(stat == DEAD)
 			holder.icon_state = "hudhealth-100" 	// X_X
 		else
 			var/percentage_health = RoundHealth((health-config.health_threshold_crit)/(maxHealth-config.health_threshold_crit)*100)
@@ -1573,12 +1561,9 @@
 
 		var/image/holder = hud_list[STATUS_HUD]
 		var/image/holder2 = hud_list[STATUS_HUD_OOC]
-		if(stat == 2)
+		if(stat == DEAD)
 			holder.icon_state = "huddead"
 			holder2.icon_state = "huddead"
-		else if(status_flags & XENO_HOST)
-			holder.icon_state = "hudxeno"
-			holder2.icon_state = "hudxeno"
 		else if(foundVirus)
 			holder.icon_state = "hudill"
 		else if(has_brain_worms())
@@ -1674,28 +1659,11 @@
 			hud_list[SPECIALROLE_HUD] = holder
 	hud_updateflag = 0
 
-/mob/living/carbon/human/handle_silent()
-	if(..())
-		speech_problem_flag = 1
-	return silent
-
-/mob/living/carbon/human/handle_slurring()
-	if(..())
-		speech_problem_flag = 1
-	return slurring
-
 /mob/living/carbon/human/handle_stunned()
 	if(!can_feel_pain())
 		stunned = 0
 		return 0
-	if(..())
-		speech_problem_flag = 1
-	return stunned
-
-/mob/living/carbon/human/handle_stuttering()
-	if(..())
-		speech_problem_flag = 1
-	return stuttering
+	return ..()
 
 /mob/living/carbon/human/handle_fire()
 	if(..())

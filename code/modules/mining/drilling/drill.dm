@@ -39,10 +39,10 @@
 	var/need_update_field = 0
 	var/need_player_check = 0
 
-/obj/machinery/mining/drill/New()
+/obj/machinery/mining/drill/map/New()
 
 	..()
-
+	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
@@ -161,7 +161,7 @@
 /obj/machinery/mining/drill/attack_hand(mob/user as mob)
 	check_supports()
 
-	if (panel_open && cell)
+	if (panel_open && cell && user.Adjacent(src))
 		user << "You take out \the [cell]."
 		cell.loc = get_turf(user)
 		component_parts -= cell
@@ -290,7 +290,7 @@
 
 /obj/machinery/mining/brace/New()
 	..()
-	
+
 	component_parts = list()
 	component_parts += new /obj/item/weapon/circuitboard/miningdrillbrace(src)
 

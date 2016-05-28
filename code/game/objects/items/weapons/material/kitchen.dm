@@ -57,6 +57,8 @@
 	name = "fork"
 	desc = "It's a fork. Sure is pointy."
 	icon_state = "fork"
+	sharp = 1
+	edge = 0
 
 /obj/item/weapon/material/kitchen/utensil/fork/plastic
 	default_material = "plastic"

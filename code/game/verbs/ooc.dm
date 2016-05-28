@@ -29,8 +29,6 @@
 		if(prefs.muted & MUTE_OOC)
 			src << "<span class='danger'>You cannot use OOC (muted).</span>"
 			return
-		if(handle_spam_prevention(msg,MUTE_OOC))
-			return
 		if(findtext(msg, "byond://"))
 			src << "<B>Advertising other servers is not allowed.</B>"
 			log_admin("[key_name(src)] has attempted to advertise in OOC: [msg]")
@@ -51,6 +49,8 @@
 
 	for(var/client/target in clients)
 		if(target.is_preference_enabled(/datum/client_preference/show_ooc))
+			if(target.is_key_ignored(key)) // If we're ignored by this person, then do nothing.
+				continue
 			var/display_name = src.key
 			if(holder)
 				if(holder.fakekey)
@@ -97,8 +97,6 @@
 		if(prefs.muted & MUTE_OOC)
 			src << "<span class='danger'>You cannot use OOC (muted).</span>"
 			return
-		if(handle_spam_prevention(msg, MUTE_OOC))
-			return
 		if(findtext(msg, "byond://"))
 			src << "<B>Advertising other servers is not allowed.</B>"
 			log_admin("[key_name(src)] has attempted to advertise in OOC: [msg]")
@@ -138,7 +136,7 @@
 					send = 1
 					prefix = "(Eye) "
 
-			if(!send && (target in admins))
+			if(!send && (target in admins) && target.is_preference_enabled(/datum/client_preference/holder/show_rlooc))
 				send = 1
 				prefix = "(R)"
 

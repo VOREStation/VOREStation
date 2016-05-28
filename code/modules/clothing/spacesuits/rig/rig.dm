@@ -133,7 +133,6 @@
 		chest = new chest_type(src)
 		if(allowed)
 			chest.allowed = allowed
-		chest.slowdown = offline_slowdown
 		verbs |= /obj/item/weapon/rig/proc/toggle_chest
 
 	for(var/obj/item/piece in list(gloves,helmet,boots,chest))
@@ -157,7 +156,7 @@
 	for(var/obj/item/piece in list(gloves,boots,helmet,chest))
 		var/mob/living/M = piece.loc
 		if(istype(M))
-			M.removeItem(piece)
+			M.drop_from_inventory(piece)
 		qdel(piece)
 	processing_objects -= src
 	qdel(wires)
@@ -307,7 +306,7 @@
 		if(piece.loc != src && !(wearer && piece.loc == wearer))
 			if(istype(piece.loc, /mob/living))
 				M = piece.loc
-				M.removeItem(piece)
+				M.unEquip(piece)
 			piece.forceMove(src)
 
 	if(!istype(wearer) || loc != wearer || wearer.back != src || canremove || !cell || cell.charge <= 0)
@@ -332,14 +331,14 @@
 			offline = 0
 			if(istype(wearer) && !wearer.wearing_rig)
 				wearer.wearing_rig = src
-			chest.slowdown = initial(slowdown)
+			slowdown = initial(slowdown)
 
 	if(offline)
 		if(offline == 1)
 			for(var/obj/item/rig_module/module in installed_modules)
 				module.deactivate()
 			offline = 2
-			chest.slowdown = offline_slowdown
+			slowdown = offline_slowdown
 		return
 
 	if(cell && cell.charge > 0 && electrified > 0)
@@ -472,8 +471,8 @@
 		var/species_icon = 'icons/mob/rig_back.dmi'
 		// Since setting mob_icon will override the species checks in
 		// update_inv_wear_suit(), handle species checks here.
-		if(wearer && sprite_sheets && sprite_sheets[wearer.species.get_bodytype()])
-			species_icon =  sprite_sheets[wearer.species.get_bodytype()]
+		if(wearer && sprite_sheets && sprite_sheets[wearer.species.get_bodytype(wearer)])
+			species_icon =  sprite_sheets[wearer.species.get_bodytype(wearer)]
 		mob_icon = image("icon" = species_icon, "icon_state" = "[icon_state]")
 
 	if(installed_modules.len)
@@ -495,6 +494,8 @@
 		return 1
 
 	if(istype(user))
+		if(!canremove)
+			return 1
 		if(malfunction_check(user))
 			return 0
 		if(user.back != src)
@@ -560,7 +561,7 @@
 		M.visible_message("<font color='blue'>[M] starts putting on \the [src]...</font>", "<font color='blue'>You start putting on \the [src]...</font>")
 		if(!do_after(M,seal_delay))
 			if(M && M.back == src)
-				if(!M.removeItem(src))
+				if(!M.unEquip(src))
 					return
 			src.forceMove(get_turf(src))
 			return
@@ -618,7 +619,7 @@
 					if(use_obj && check_slot == use_obj)
 						H << "<font color='blue'><b>Your [use_obj.name] [use_obj.gender == PLURAL ? "retract" : "retracts"] swiftly.</b></font>"
 						use_obj.canremove = 1
-						holder.removeItem(use_obj)
+						holder.drop_from_inventory(use_obj)
 						use_obj.forceMove(get_turf(src))
 						use_obj.dropped()
 						use_obj.canremove = 0
@@ -651,23 +652,27 @@
 	if(sealed)
 		if(H.head)
 			var/obj/item/garbage = H.head
-			H.deleteItem(garbage)
+			H.drop_from_inventory(garbage)
 			H.head = null
+			qdel(garbage)
 
 		if(H.gloves)
 			var/obj/item/garbage = H.gloves
-			H.deleteItem(garbage)
+			H.drop_from_inventory(garbage)
 			H.gloves = null
+			qdel(garbage)
 
 		if(H.shoes)
 			var/obj/item/garbage = H.shoes
-			H.deleteItem(garbage)
+			H.drop_from_inventory(garbage)
 			H.shoes = null
+			qdel(garbage)
 
 		if(H.wear_suit)
 			var/obj/item/garbage = H.wear_suit
-			H.deleteItem(garbage)
+			H.drop_from_inventory(garbage)
 			H.wear_suit = null
+			qdel(garbage)
 
 	for(var/piece in list("helmet","gauntlets","chest","boots"))
 		toggle_piece(piece, H, ONLY_DEPLOY)

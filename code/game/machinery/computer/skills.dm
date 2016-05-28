@@ -25,7 +25,8 @@
 	var/order = 1 // -1 = Descending - 1 = Ascending
 
 /obj/machinery/computer/skills/attackby(obj/item/O as obj, var/mob/user)
-	if(istype(O, /obj/item/weapon/card/id) && !scan && user.removeItem(O, src))
+	if(istype(O, /obj/item/weapon/card/id) && !scan && user.unEquip(O))
+		O.loc = src
 		scan = O
 		user << "You insert [O]."
 	else
@@ -184,7 +185,8 @@ What a mess.*/
 					scan = null
 				else
 					var/obj/item/I = usr.get_active_hand()
-					if (istype(I, /obj/item/weapon/card/id) && usr.removeItem(I, src))
+					if (istype(I, /obj/item/weapon/card/id) && usr.unEquip(I))
+						I.loc = src
 						scan = I
 
 			if("Log Out")

@@ -85,7 +85,7 @@
 /obj/item/Destroy()
 	if(ismob(loc))
 		var/mob/m = loc
-		m.removeItem(src, force = 1)
+		m.drop_from_inventory(src)
 		m.update_inv_r_hand()
 		m.update_inv_l_hand()
 		src.loc = null
@@ -178,7 +178,7 @@
 
 	src.throwing = 0
 	if (src.loc == user)
-		if(!user.removeItem(src))
+		if(!user.unEquip(src))
 			return
 	else
 		if(isliving(src.loc))
@@ -484,7 +484,7 @@ var/list/global/slot_flags_enumeration = list(
 		eyes.damage += rand(3,4)
 		if(eyes.damage >= eyes.min_bruised_damage)
 			if(M.stat != 2)
-				if(!(eyes.status & ORGAN_ROBOT)) //robot eyes bleeding might be a bit silly
+				if(!(eyes.robotic >= ORGAN_ROBOT)) //robot eyes bleeding might be a bit silly
 					M << "<span class='danger'>Your eyes start to bleed profusely!</span>"
 			if(prob(50))
 				if(M.stat != 2)

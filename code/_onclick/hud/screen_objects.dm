@@ -420,7 +420,7 @@
 				var/mob/living/silicon/ai/AI = usr
 				AI.toggle_camera_light()
 
-		if("Crew Monitorting")
+		if("Crew Monitoring")
 			if(isAI(usr))
 				var/mob/living/silicon/ai/AI = usr
 				AI.subsystem_crew_monitor()

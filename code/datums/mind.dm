@@ -344,7 +344,7 @@
 				log_admin("[key_name_admin(usr)] has de-loyalty implanted [current].")
 			if("add")
 				H << "<span class='danger'><font size =3>You somehow have become the recepient of a loyalty transplant, and it just activated!</font></span>"
-				H.implant_loyalty(H, override = TRUE)
+				H.implant_loyalty(override = TRUE)
 				log_admin("[key_name_admin(usr)] has loyalty implanted [current].")
 			else
 	else if (href_list["silicon"])
@@ -391,7 +391,7 @@
 		switch(href_list["common"])
 			if("undress")
 				for(var/obj/item/W in current)
-					current.removeItem(W, force = 1)
+					current.drop_from_inventory(W)
 			if("takeuplink")
 				take_uplink()
 				memory = null//Remove any memory they may have had.

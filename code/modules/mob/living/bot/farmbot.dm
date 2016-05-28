@@ -22,12 +22,14 @@
 
 	var/obj/structure/reagent_dispensers/watertank/tank
 
+
 /mob/living/bot/farmbot/New(var/newloc, var/newTank)
 	..(newloc)
 	if(!newTank)
 		newTank = new /obj/structure/reagent_dispensers/watertank(src)
 	tank = newTank
 	tank.forceMove(src)
+
 
 /mob/living/bot/farmbot/attack_hand(var/mob/user as mob)
 	. = ..()
@@ -105,9 +107,12 @@
 	else
 		icon_state = "farmbot[on]"
 
+
 /mob/living/bot/farmbot/handleRegular()
 	if(emagged && prob(1))
 		flick("farmbot_broke", src)
+
+
 
 /mob/living/bot/farmbot/handleAdjacentTarget()
 	UnarmedAttack(target)
@@ -148,11 +153,13 @@
 /mob/living/bot/farmbot/UnarmedAttack(var/atom/A, var/proximity)
 	if(!..())
 		return
+
 	if(busy)
 		return
 
 	if(istype(A, /obj/machinery/portable_atmospherics/hydroponics))
 		var/obj/machinery/portable_atmospherics/hydroponics/T = A
+
 		var/t = confirmTarget(T)
 		switch(t)
 			if(0)
@@ -161,6 +168,7 @@
 				action = "water" // Needs a better one
 				update_icons()
 				visible_message("<span class='notice'>[src] starts [T.dead? "removing the plant from" : "harvesting"] \the [A].</span>")
+
 				busy = 1
 				if(do_after(src, 30))
 					visible_message("<span class='notice'>[src] [T.dead? "removes the plant from" : "harvests"] \the [A].</span>")
@@ -169,6 +177,7 @@
 				action = "water"
 				update_icons()
 				visible_message("<span class='notice'>[src] starts watering \the [A].</span>")
+
 				busy = 1
 				if(do_after(src, 30))
 					playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
@@ -178,6 +187,7 @@
 				action = "hoe"
 				update_icons()
 				visible_message("<span class='notice'>[src] starts uprooting the weeds in \the [A].</span>")
+
 				busy = 1
 				if(do_after(src, 30))
 					visible_message("<span class='notice'>[src] uproots the weeds in \the [A].</span>")
@@ -186,10 +196,13 @@
 				action = "fertile"
 				update_icons()
 				visible_message("<span class='notice'>[src] starts fertilizing \the [A].</span>")
+
 				busy = 1
 				if(do_after(src, 30))
+
 					visible_message("<span class='notice'>[src] fertilizes \the [A].</span>")
 					T.reagents.add_reagent("ammonia", 10)
+
 		busy = 0
 		action = ""
 		update_icons()
@@ -200,19 +213,23 @@
 		action = "water"
 		update_icons()
 		visible_message("<span class='notice'>[src] starts refilling its tank from \the [A].</span>")
+
 		busy = 1
 		while(do_after(src, 10) && tank.reagents.total_volume < tank.reagents.maximum_volume)
 			tank.reagents.add_reagent("water", 10)
 			if(prob(5))
 				playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+
 		busy = 0
 		action = ""
 		update_icons()
 		visible_message("<span class='notice'>[src] finishes refilling its tank.</span>")
 	else if(emagged && ishuman(A))
 		var/action = pick("weed", "water")
+
 		busy = 1
 		spawn(50) // Some delay
+
 			busy = 0
 		switch(action)
 			if("weed")
@@ -225,6 +242,7 @@
 				A.attack_generic(src, 5, t)
 			if("water")
 				flick("farmbot_water", src)
+
 				visible_message("<span class='danger'>[src] splashes [A] with water!</span>")
 				tank.reagents.splash(A, 100)
 
@@ -248,6 +266,7 @@
 	s.start()
 	qdel(src)
 	return
+
 
 /mob/living/bot/farmbot/confirmTarget(var/atom/targ)
 	if(!..())
@@ -296,6 +315,7 @@
 	var/obj/tank
 	w_class = 3.0
 
+
 /obj/item/weapon/farmbot_arm_assembly/New(var/newloc, var/theTank)
 	..(newloc)
 	if(!theTank) // If an admin spawned it, it won't have a watertank it, so lets make one for em!
@@ -309,8 +329,11 @@
 		..()
 		return
 
+
 	user << "You add the robot arm to [src]."
-	user.deleteItem(S)
+
+	user.drop_from_inventory(S)
+	qdel(S)
 
 	new /obj/item/weapon/farmbot_arm_assembly(loc, src)
 
@@ -320,26 +343,35 @@
 		build_step++
 		user << "You add the plant analyzer to [src]."
 		name = "farmbot assembly"
-		user.deleteItem(W)
+
+		user.remove_from_mob(W)
+		qdel(W)
 
 	else if((istype(W, /obj/item/weapon/reagent_containers/glass/bucket)) && (build_step == 1))
 		build_step++
 		user << "You add a bucket to [src]."
 		name = "farmbot assembly with bucket"
-		user.deleteItem(W)
+
+		user.remove_from_mob(W)
+		qdel(W)
 
 	else if((istype(W, /obj/item/weapon/material/minihoe)) && (build_step == 2))
 		build_step++
 		user << "You add a minihoe to [src]."
 		name = "farmbot assembly with bucket and minihoe"
-		user.deleteItem(W)
+
+		user.remove_from_mob(W)
+		qdel(W)
 
 	else if((isprox(W)) && (build_step == 3))
 		build_step++
 		user << "You complete the Farmbot! Beep boop."
+
 		var/mob/living/bot/farmbot/S = new /mob/living/bot/farmbot(get_turf(src), tank)
 		S.name = created_name
-		user.deleteItem(W)
+
+		user.remove_from_mob(W)
+		qdel(W)
 		qdel(src)
 
 	else if(istype(W, /obj/item/weapon/pen))

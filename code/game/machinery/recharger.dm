@@ -15,9 +15,9 @@ obj/machinery/recharger
 	var/icon_state_idle = "recharger0" //also when unpowered
 	var/portable = 1
 	circuit = /obj/item/weapon/circuitboard/recharger
-	frame_type = "recharger"
 
-obj/machinery/recharger/New()
+obj/machinery/recharger/map/New()
+	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
 	component_parts += new /obj/item/stack/cable_coil(src, 5)
@@ -172,3 +172,12 @@ obj/machinery/recharger/wallcharger
 	portable = 0
 	circuit = /obj/item/weapon/circuitboard/recharger/wrecharger
 	frame_type = "wrecharger"
+
+obj/machinery/recharger/wallcharger/map/New()
+	circuit = new circuit(src)
+	component_parts = list()
+	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
+	component_parts += new /obj/item/stack/cable_coil(src, 5)
+	RefreshParts()
+	..()
+	return

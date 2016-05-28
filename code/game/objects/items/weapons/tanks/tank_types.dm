@@ -104,7 +104,8 @@
 		if ((!F.status)||(F.ptank))	return
 		src.master = F
 		F.ptank = src
-		user.removeItem(src, F)
+		user.remove_from_mob(src)
+		src.loc = F
 	return
 
 /*

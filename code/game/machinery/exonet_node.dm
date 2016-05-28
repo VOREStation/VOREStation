@@ -1,6 +1,6 @@
 /obj/machinery/exonet_node
 	name = "exonet node"
-	desc = "This machine is one of many, many nodes inside Vir's section of the Exonet, connecting the Northern Star to the rest of the system, at least \
+	desc = "This machine is one of many, many nodes inside "+starsys_name+"'s section of the Exonet, connecting the "+station_orig+" to the rest of the system, at least \
 	electronically."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "exonet_node"
@@ -18,7 +18,7 @@
 // Proc: New()
 // Parameters: None
 // Description: Adds components to the machine for deconstruction.
-/obj/machinery/exonet_node/New()
+/obj/machinery/exonet_node/map/New()
 	..()
 
 	component_parts = list()

@@ -517,8 +517,8 @@
 	icon_closed = "cti_hoodie"
 
 /obj/item/clothing/suit/storage/toggle/hoodie/mu
-	name = "mars university hoodie"
-	desc = "A warm, gray sweatshirt.  It bears the letters MU on the front, a lettering to the well-known public college, Mars University."
+	name = "mojave university hoodie"
+	desc = "A warm, gray sweatshirt.  It bears the letters MU on the front, a lettering to the well-known public college, Mojave University."
 	icon_state = "mu_hoodie"
 	item_state = "mu_hoodie"
 	icon_open = "mu_hoodie_open"
@@ -656,3 +656,67 @@
 	name = "mining winter coat"
 	icon_state = "coatminer"
 	armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+
+/obj/item/clothing/suit/varsity
+	name = "black varsity jacket"
+	desc = "A favorite of jocks everywhere from Sol to Nyx."
+	icon_state = "varsity"
+	item_state = "leather_jacket"
+
+/obj/item/clothing/suit/varsity/red
+	name = "red varsity jacket"
+	icon_state = "varsity_red"
+
+/obj/item/clothing/suit/varsity/purple
+	name = "purple varsity jacket"
+	icon_state = "varsity_purple"
+
+/obj/item/clothing/suit/varsity/green
+	name = "green varsity jacket"
+	icon_state = "varsity_green"
+
+/obj/item/clothing/suit/varsity/blue
+	name = "blue varsity jacket"
+	icon_state = "varsity_blue"
+
+/obj/item/clothing/suit/varsity/brown
+	name = "brown varsity jacket"
+	icon_state = "varsity_brown"
+
+//Track Jackets
+
+/obj/item/clothing/suit/storage/toggle/track
+	name = "track jacket"
+	desc = "a track jacket, for the athletic."
+	icon_state = "trackjacket"
+	item_state = "trackjacket"
+	icon_open = "trackjacket_open"
+	icon_closed = "trackjacket"
+
+/obj/item/clothing/suit/storage/toggle/track/blue
+	name = "blue track jacket"
+	icon_state = "trackjacketblue"
+	item_state = "trackjacketblue"
+	icon_open = "trackjacketblue_open"
+	icon_closed = "trackjacketblue"
+
+/obj/item/clothing/suit/storage/toggle/track/green
+	name = "green track jacket"
+	icon_state = "trackjacketgreen"
+	item_state = "trackjacketgreen"
+	icon_open = "trackjacketgreen_open"
+	icon_closed = "trackjacketgreen"
+
+/obj/item/clothing/suit/storage/toggle/track/red
+	name = "red track jacket"
+	icon_state = "trackjacketred"
+	item_state = "trackjacketred"
+	icon_open = "trackjacketred_open"
+	icon_closed = "trackjacketred"
+
+/obj/item/clothing/suit/storage/toggle/track/white
+	name = "white track jacket"
+	icon_state = "trackjacketwhite"
+	item_state = "trackjacketwhite"
+	icon_open = "trackjacketwhite_open"
+	icon_closed = "trackjacketwhite"

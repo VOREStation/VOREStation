@@ -207,7 +207,7 @@
 	..()
 
 /obj/item/weapon/melee/energy/blade/attack_self(mob/user as mob)
-	user.removeItem(src, force = 1)
+	user.drop_from_inventory(src)
 	spawn(1) if(src) qdel(src)
 
 /obj/item/weapon/melee/energy/blade/dropped()
@@ -225,5 +225,5 @@
 							organ.implants -= src
 			host.pinned -= src
 			host.embedded -= src
-			host.removeItem(src, force = 1)
+			host.drop_from_inventory(src)
 		spawn(1) if(src) qdel(src)

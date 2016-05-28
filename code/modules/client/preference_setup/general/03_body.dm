@@ -73,6 +73,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	if(!pref.rlimb_data) pref.rlimb_data = list()
 
 /datum/category_item/player_setup_item/general/body/content(var/mob/user)
+	. = list()
 	pref.update_preview_icon()
 	if(pref.preview_icon_front && pref.preview_icon_side)
 		user << browse_rsc(pref.preview_icon_front, "preview_icon.png")
@@ -186,12 +187,13 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	if(has_flag(mob_species, HAS_SKIN_COLOR))
 		. += "<br><b>Body Color</b><br>"
 		. += "<a href='?src=\ref[src];skin_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_skin, 2)][num2hex(pref.g_skin, 2)][num2hex(pref.b_skin, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_skin, 2)][num2hex(pref.g_skin, 2)][num2hex(pref.b_skin)]'><tr><td>__</td></tr></table></font><br>"
+	. = jointext(.,null)
 
 /datum/category_item/player_setup_item/general/body/proc/has_flag(var/datum/species/mob_species, var/flag)
 	return mob_species && (mob_species.appearance_flags & flag)
 
 /datum/category_item/player_setup_item/general/body/OnTopic(var/href,var/list/href_list, var/mob/user)
-	var/mob_species = all_species[pref.species]
+	var/datum/species/mob_species = all_species[pref.species]
 
 	if(href_list["random"])
 		pref.randomize_appearance_for()
@@ -220,13 +222,17 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		var/prev_species = pref.species
 		pref.species = href_list["set_species"]
 		if(prev_species != pref.species)
+			if(!(pref.biological_gender in mob_species.genders))
+				pref.set_biological_gender(mob_species.genders[1])
+
+
 			//grab one of the valid hair styles for the newly chosen species
 			var/list/valid_hairstyles = list()
 			for(var/hairstyle in hair_styles_list)
 				var/datum/sprite_accessory/S = hair_styles_list[hairstyle]
-				if(pref.gender == MALE && S.gender == FEMALE)
+				if(pref.biological_gender == MALE && S.gender == FEMALE)
 					continue
-				if(pref.gender == FEMALE && S.gender == MALE)
+				if(pref.biological_gender == FEMALE && S.gender == MALE)
 					continue
 				if(!(pref.species in S.species_allowed))
 					continue
@@ -242,9 +248,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			var/list/valid_facialhairstyles = list()
 			for(var/facialhairstyle in facial_hair_styles_list)
 				var/datum/sprite_accessory/S = facial_hair_styles_list[facialhairstyle]
-				if(pref.gender == MALE && S.gender == FEMALE)
+				if(pref.biological_gender == MALE && S.gender == FEMALE)
 					continue
-				if(pref.gender == FEMALE && S.gender == MALE)
+				if(pref.biological_gender == FEMALE && S.gender == MALE)
 					continue
 				if(!(pref.species in S.species_allowed))
 					continue
@@ -336,9 +342,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		var/list/valid_facialhairstyles = list()
 		for(var/facialhairstyle in facial_hair_styles_list)
 			var/datum/sprite_accessory/S = facial_hair_styles_list[facialhairstyle]
-			if(pref.gender == MALE && S.gender == FEMALE)
+			if(pref.biological_gender == MALE && S.gender == FEMALE)
 				continue
-			if(pref.gender == FEMALE && S.gender == MALE)
+			if(pref.biological_gender == FEMALE && S.gender == MALE)
 				continue
 			if(!(pref.species in S.species_allowed))
 				continue
@@ -367,7 +373,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 		var/organ_tag = input(user, "Which limb do you want to change?") as null|anything in limb_selection_list
 
-		if(!organ_tag && !CanUseTopic(user)) return TOPIC_NOACTION
+		if(!organ_tag || !CanUseTopic(user)) return TOPIC_NOACTION
 
 		var/limb = null
 		var/second_limb = null // if you try to change the arm, the hand should also change
@@ -536,9 +542,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		dat += "<img src='species_preview_[current_species.name].png' width='64px' height='64px'><br/><br/>"
 	dat += "<b>Language:</b> [current_species.language]<br/>"
 	dat += "<small>"
-	if(current_species.spawn_flags & CAN_JOIN)
+	if(current_species.spawn_flags & SPECIES_CAN_JOIN)
 		dat += "</br><b>Often present on human stations.</b>"
-	if(current_species.spawn_flags & IS_WHITELISTED)
+	if(current_species.spawn_flags & SPECIES_IS_WHITELISTED)
 		dat += "</br><b>Whitelist restricted.</b>"
 	if(!current_species.has_organ[O_HEART])
 		dat += "</br><b>Does not have a circulatory system.</b>"
@@ -566,9 +572,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	var/restricted = 0
 	if(config.usealienwhitelist) //If we're using the whitelist, make sure to check it!
-		if(!(current_species.spawn_flags & CAN_JOIN))
+		if(!(current_species.spawn_flags & SPECIES_CAN_JOIN))
 			restricted = 2
-		else if((current_species.spawn_flags & IS_WHITELISTED) && !is_alien_whitelisted(preference_mob(),current_species))
+		else if((current_species.spawn_flags & SPECIES_IS_WHITELISTED) && !is_alien_whitelisted(preference_mob(),current_species))
 			restricted = 1
 
 	if(restricted)
