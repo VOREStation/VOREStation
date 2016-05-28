@@ -65,7 +65,6 @@
 			bound_height = width * world.icon_size
 
 	health = maxhealth
-	update_icon()
 
 	update_nearby_tiles(need_rebuild=1)
 	return
