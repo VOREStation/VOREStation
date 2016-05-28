@@ -70,12 +70,11 @@ var/list/flooring_types
 /decl/flooring/snow/plating
 	name = "snowy plating"
 	desc = "Steel plating coated with a light layer of snow."
-	icon = 'icons/turf/snow.dmi'
-	icon_base = "plating"
+	icon_base = "snowyplating"
 	flags = null
 
 /decl/flooring/snow/plating/drift
-	icon_base = "platingdrift"
+	icon_base = "snowyplayingdrift"
 
 /decl/flooring/carpet
 	name = "carpet"

@@ -47,7 +47,7 @@
 
 /turf/simulated/floor/snow
 	name = "snow"
-	icon = 'icons/turf/floors.dmi'
+	icon = 'icons/turf/snow.dmi'
 	icon_state = "snow"
 	initial_flooring = /decl/flooring/snow
 
@@ -58,12 +58,12 @@
 
 /turf/simulated/floor/snow/plating
 	name = "snowy playing"
-	icon_state = "plating"
+	icon_state = "snowyplating"
 	initial_flooring = /decl/flooring/snow/plating
 
 /turf/simulated/floor/snow/plating/drift
 	name = "snowy plating"
-	icon_state = "platingdrift"
+	icon_state = "snowyplayingdrift"
 	initial_flooring = /decl/flooring/snow/plating/drift
 
 /turf/simulated/floor/reinforced/airless
