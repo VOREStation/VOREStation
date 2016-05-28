@@ -21,9 +21,6 @@
 /obj/machinery/slime/extractor/New()
 	..()
 	update_light_color()
-
-/obj/machinery/slime/extractor/map/New()
-	..()
 	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)

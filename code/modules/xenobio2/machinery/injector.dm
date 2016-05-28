@@ -24,9 +24,6 @@
 	var/datum/reagents/R = new/datum/reagents(1000)
 	reagents = R
 	R.my_atom = src
-
-/obj/machinery/xenobio2/manualinjector/map/New()
-	..()
 	beaker = new /obj/item/weapon/reagent_containers/glass/beaker(src)
 	circuit = new circuit(src)
 	component_parts = list()

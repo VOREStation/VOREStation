@@ -19,16 +19,14 @@
 	
 /obj/machinery/slime/replicator/New()
 	..()
-	update_light_color()
-	
-/obj/machinery/slime/replicator/map/New()
-	..()
 	circuit = new circuit(src)
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
 	RefreshParts()
+	update_light_color()
+	
 	
 /obj/machinery/slime/replicator/attackby(var/obj/item/W, var/mob/user)
 	//Let's try to deconstruct first.

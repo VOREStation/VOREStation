@@ -122,7 +122,7 @@
 	var/datum/xeno/traits/genetics // Currently scanned xeno genetic structure.
 	var/degradation = 0     // Increments with each scan, stops allowing gene mods after a certain point.
 	
-/obj/machinery/xenobio/extractor/map/New()
+/obj/machinery/xenobio/extractor/New()
 	..()
 	circuit = new circuit(src)
 	component_parts = list()
@@ -265,7 +265,7 @@
 	
 	var/mob/living/simple_animal/xeno/slime/occupant
 	
-/obj/machinery/xenobio/editor/map/New()
+/obj/machinery/xenobio/editor/New()
 	..()
 	circuit = new circuit(src)
 	component_parts = list()
