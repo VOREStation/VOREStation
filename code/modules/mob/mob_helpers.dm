@@ -25,7 +25,7 @@
 	if(isnull(full_prosthetic))
 		robolimb_count = 0
 		for(var/obj/item/organ/external/E in organs)
-			if(E.status & ORGAN_ROBOT)
+			if(E.robotic >= ORGAN_ROBOT)
 				robolimb_count++
 		if(robolimb_count == organs.len)
 			full_prosthetic = 1

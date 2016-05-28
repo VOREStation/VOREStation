@@ -276,12 +276,12 @@
 			if(temp.status & ORGAN_DESTROYED)
 				wound_flavor_text["[temp.name]"] = "<span class='warning'><b>[T.He] [T.is] missing [T.his] [temp.name].</b></span>\n"
 				continue
-			if(!is_synth && temp.status & ORGAN_ROBOT)
+			if(!is_synth && temp.robotic >= ORGAN_ROBOT)
 				if(!(temp.brute_dam + temp.burn_dam))
-					wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] [T.has] a [temp.name]!</span>\n"
-					continue
+					wound_flavor_text["[temp.name]"] = "[T.He] [T.has] a [temp.name].\n"
 				else
-					wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] [T.has] a [temp.name]. It has[temp.get_wounds_desc()]!</span>\n"
+					wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] [T.has] a [temp.name]. It has [temp.get_wounds_desc()]!</span>\n"
+				continue
 			else if(temp.wounds.len > 0 || temp.open)
 				if(temp.is_stump() && temp.parent_organ && organs_by_name[temp.parent_organ])
 					var/obj/item/organ/external/parent = organs_by_name[temp.parent_organ]

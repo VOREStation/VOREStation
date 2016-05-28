@@ -257,7 +257,7 @@
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]
 		if(istype(E))
-			if(E.status & ORGAN_ROBOT)
+			if(E.robotic >= ORGAN_ROBOT)
 				return
 			if(E.damage > 0)
 				E.damage = max(E.damage - 5 * removed, 0)
@@ -277,7 +277,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		for(var/obj/item/organ/I in H.internal_organs)
-			if(I.status & ORGAN_ROBOT)
+			if(I.robotic >= ORGAN_ROBOT)
 				continue
 			if(I.damage > 0) //Peridaxon heals only non-robotic organs
 				I.damage = max(I.damage - removed, 0)

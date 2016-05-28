@@ -428,22 +428,18 @@
 		var/mob/living/carbon/human/H = A
 		var/obj/item/organ/external/S = H.organs_by_name[user.zone_sel.selecting]
 
-		if(!S || !(S.status & ORGAN_ROBOT))
+		if(!S || S.robotic < ORGAN_ROBOT || S.open == 3)
 			return ..()
 
-		if(S.brute_dam)
-			if(S.brute_dam < ROBOLIMB_SELF_REPAIR_CAP)
-				S.heal_damage(15,0,0,1)
-				user.visible_message("<span class='notice'>\The [user] patches some dents on \the [H]'s [S.name] with \the [src].</span>")
-			else if(S.open < 3)
-				user << "<span class='danger'>The damage is far too severe to patch over externally.</span>"
-			else
-				return ..()
-		else
-			user << "<span class='notice'>Nothing to fix!</span>"
-			S.update_wounds()
-		return
-	return ..()
+		if(!welding)
+			user << "<span class='warning'>You'll need to turn [src] on to patch the damage on [H]'s [S.name]!</span>"
+			return 1
+
+		if(S.robo_repair(15, BRUTE, "some dents", src, user))
+			remove_fuel(1, user)
+
+	else
+		return ..()
 
 /*/obj/item/weapon/combitool
 	name = "combi-tool"

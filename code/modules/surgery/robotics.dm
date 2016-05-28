@@ -17,7 +17,7 @@
 			return 0
 		if (affected.status & ORGAN_DESTROYED)
 			return 0
-		if (!(affected.status & ORGAN_ROBOT))
+		if (!(affected.robotic >= ORGAN_ROBOT))
 			return 0
 		return 1
 
@@ -213,7 +213,7 @@
 		if(!affected) return
 		var/is_organ_damaged = 0
 		for(var/obj/item/organ/I in affected.internal_organs)
-			if(I.damage > 0 && (I.status & ORGAN_ROBOT))
+			if(I.damage > 0 && (I.robotic >= ORGAN_ROBOT))
 				is_organ_damaged = 1
 				break
 		return affected.open == 3 && is_organ_damaged
@@ -226,7 +226,7 @@
 
 		for(var/obj/item/organ/I in affected.internal_organs)
 			if(I && I.damage > 0)
-				if(I.status & ORGAN_ROBOT)
+				if(I.robotic >= ORGAN_ROBOT)
 					user.visible_message("[user] starts mending the damage to [target]'s [I.name]'s mechanisms.", \
 					"You start mending the damage to [target]'s [I.name]'s mechanisms." )
 
@@ -242,7 +242,7 @@
 		for(var/obj/item/organ/I in affected.internal_organs)
 
 			if(I && I.damage > 0)
-				if(I.status & ORGAN_ROBOT)
+				if(I.robotic >= ORGAN_ROBOT)
 					user.visible_message("<span class='notice'>[user] repairs [target]'s [I.name] with [tool].</span>", \
 					"<span class='notice'>You repair [target]'s [I.name] with [tool].</span>" )
 					I.damage = 0
@@ -277,7 +277,7 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		if(!(affected && (affected.status & ORGAN_ROBOT)))
+		if(!(affected && (affected.robotic >= ORGAN_ROBOT)))
 			return 0
 		if(affected.open < 3)
 			return 0
@@ -326,7 +326,7 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		if(!(affected && (affected.status & ORGAN_ROBOT)))
+		if(!(affected && (affected.robotic >= ORGAN_ROBOT)))
 			return 0
 		if(affected.open < 3)
 			return 0
@@ -336,7 +336,7 @@
 		var/list/removable_organs = list()
 		for(var/organ in target.internal_organs_by_name)
 			var/obj/item/organ/I = target.internal_organs_by_name[organ]
-			if(I && (I.status & ORGAN_CUT_AWAY) && (I.status & ORGAN_ROBOT) && I.parent_organ == target_zone)
+			if(I && (I.status & ORGAN_CUT_AWAY) && (I.robotic >= ORGAN_ROBOT) && I.parent_organ == target_zone)
 				removable_organs |= organ
 
 		var/organ_to_replace = input(user, "Which organ do you want to reattach?") as null|anything in removable_organs
@@ -388,12 +388,11 @@
 			user << "<span class='danger'>That brain is not usable.</span>"
 			return SURGERY_FAILURE
 
-		if(!(affected.status & ORGAN_ROBOT))
+		if(!(affected.robotic >= ORGAN_ROBOT))
 			user << "<span class='danger'>You cannot install a computer brain into a meat skull.</span>"
 			return SURGERY_FAILURE
 
 		if(!target.should_have_organ("brain"))
-
 			user << "<span class='danger'>You're pretty sure [target.species.name_plural] don't normally have a brain.</span>"
 			return SURGERY_FAILURE
 

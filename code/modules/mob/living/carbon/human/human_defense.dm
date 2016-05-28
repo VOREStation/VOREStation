@@ -57,7 +57,7 @@ emp_act
 				msg_admin_attack("[src.name] ([src.ckey]) was disarmed by a stun effect")
 
 				drop_from_inventory(c_hand)
-				if (affected.status & ORGAN_ROBOT)
+				if (affected.robotic >= ORGAN_ROBOT)
 					emote("me", 1, "drops what they were holding, their [affected.name] malfunctioning!")
 				else
 					var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
@@ -165,7 +165,7 @@ emp_act
 		return 0
 
 	if(istype(I,/obj/item/weapon/card/emag))
-		if(!(affecting.status & ORGAN_ROBOT))
+		if(!(affecting.robotic >= ORGAN_ROBOT))
 			user << "\red That limb isn't robotic."
 			return
 		if(affecting.sabotaged)
