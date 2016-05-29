@@ -80,7 +80,7 @@ datum/preferences/proc/set_biological_gender(var/gender)
 		var/new_gender = input(user, "Choose your character's biological gender:", "Character Preference", pref.biological_gender) as null|anything in get_genders()
 		if(new_gender && CanUseTopic(user))
 			pref.set_biological_gender(new_gender)
-		return TOPIC_REFRESH
+		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["id_gender"])
 		var/new_gender = input(user, "Choose your character's identifying gender:", "Character Preference", pref.identifying_gender) as null|anything in all_genders_define_list
