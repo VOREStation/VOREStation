@@ -47,3 +47,26 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 8
 	melee_damage_upper = 25
+
+
+	/mob/living/simple_animal/hostile/creature/strong/cult
+	faction = "cult"
+
+	min_oxy = 0
+	max_oxy = 0
+	min_tox = 0
+	max_tox = 0
+	min_co2 = 0
+	max_co2 = 0
+	min_n2 = 0
+	max_n2 = 0
+	minbodytemp = 0
+
+	supernatural = 1
+
+/mob/living/simple_animal/hostile/creature/cult/cultify()
+	return
+
+/mob/living/simple_animal/hostile/creature/cult/Life()
+	..()
+	check_horde()
