@@ -289,7 +289,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 
 	VS.announcer = "Colony Automated Radar Array"
 	VS.arrival_message = "Attention.  Unidentified object approaching the colony."
-	VS.departure_message = "Attention.  Unidentified object exiting local space.  Unidentified object expected to escape local gravity well with current velocity." // Vorestation edit
+	VS.departure_message = "Attention.  Unidentified object exiting local space.  Unidentified object expected to escape Virgo-3's gravity well with current velocity." // Vorestation edit
 	VS.interim = locate(/area/skipjack_station/transit)
 
 	VS.warmup_time = 0
