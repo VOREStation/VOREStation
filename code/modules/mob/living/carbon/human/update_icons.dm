@@ -220,6 +220,8 @@ var/global/list/damage_icon_parts = list()
 	var/hulk = (HULK in src.mutations)
 	var/skeleton = (SKELETON in src.mutations)
 
+	robolimb_count = 0
+
 	//CACHING: Generate an index key from visible bodyparts.
 	//0 = destroyed, 1 = normal, 2 = robotic, 3 = necrotic.
 
@@ -247,8 +249,9 @@ var/global/list/damage_icon_parts = list()
 		var/obj/item/organ/external/part = organs_by_name[organ_tag]
 		if(isnull(part) || part.is_stump())
 			icon_key += "0"
-		else if(part.status & ORGAN_ROBOT)
+		else if(part.robotic >= ORGAN_ROBOT)
 			icon_key += "2[part.model ? "-[part.model]": ""]"
+			robolimb_count++
 		else if(part.status & ORGAN_DEAD)
 			icon_key += "3"
 		else
@@ -316,16 +319,10 @@ var/global/list/damage_icon_parts = list()
 	stand_icon.Blend(base_icon,ICON_OVERLAY)
 
 	//Underwear
-	if(underwear_top && species.appearance_flags & HAS_UNDERWEAR)
-		stand_icon.Blend(new /icon('icons/mob/human.dmi', underwear_top), ICON_OVERLAY)
-	if(underwear_bottom && species.appearance_flags & HAS_UNDERWEAR)
-		stand_icon.Blend(new /icon('icons/mob/human.dmi', underwear_bottom), ICON_OVERLAY)
-
-	if(undershirt && species.appearance_flags & HAS_UNDERWEAR)
-		stand_icon.Blend(new /icon('icons/mob/human.dmi', undershirt), ICON_OVERLAY)
-
-	if(socks && species.appearance_flags & HAS_UNDERWEAR)
-		stand_icon.Blend(new /icon('icons/mob/human.dmi', socks), ICON_OVERLAY)
+	if(species.appearance_flags & HAS_UNDERWEAR)
+		for(var/category in all_underwear)
+			var/datum/category_item/underwear/UW = all_underwear[category]
+			UW.apply_to_icon(stand_icon)
 
 	if(update_icons)
 		update_icons()
@@ -782,6 +779,12 @@ var/global/list/damage_icon_parts = list()
 				var/image/bloodsies = image("icon" = species.get_blood_mask(src), "icon_state" = "[S.blood_overlay_type]blood")
 				bloodsies.color = wear_suit.blood_color
 				standing.overlays	+= bloodsies
+
+		// Accessories - copied from uniform, BOILERPLATE because fuck this system.
+		var/obj/item/clothing/suit/suit = wear_suit
+		if(istype(suit) && suit.accessories.len)
+			for(var/obj/item/clothing/accessory/A in suit.accessories)
+				standing.overlays |= A.get_mob_overlay()
 
 		overlays_standing[SUIT_LAYER]	= standing
 		update_tail_showing(0)

@@ -756,6 +756,13 @@ CIRCUITS BELOW
 	build_path = /obj/item/weapon/circuitboard/arcade/orion_trail
 	sort_string = "MAAAA"
 
+/datum/design/circuit/jukebox
+	name = "jukebox"
+	id = "jukebox"
+	req_tech = list(TECH_MAGNET = 2, TECH_DATA = 1)
+	build_path = /obj/item/weapon/circuitboard/jukebox
+	sort_string = "MAAAB"
+
 /datum/design/circuit/seccamera
 	name = "security camera monitor"
 	id = "seccamera"

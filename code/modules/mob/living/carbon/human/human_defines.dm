@@ -33,11 +33,9 @@
 
 	var/age = 30		//Player's age (pure fluff)
 	var/b_type = "A+"	//Player's bloodtype
+	var/datum/robolimb/synthetic		//If they are a synthetic (aka synthetic torso)
 
-	var/underwear_top = 1	//Which underwear the player wants
-	var/underwear_bottom = 1
-	var/undershirt = 0	//Which undershirt the player wants.
-	var/socks = 0		//Which socks the player wants.
+	var/list/all_underwear = list()
 	var/backbag = 2		//Which backpack type the player has chosen. Nothing, Satchel or Backpack.
 	var/pdachoice = 1	//Which PDA type the player has chosen. Default, Slim, or Old.
 
@@ -85,7 +83,6 @@
 	var/list/flavor_texts = list()
 	var/gunshot_residue
 	var/pulling_punches    // Are you trying not to hurt your opponent?
-	var/full_prosthetic    // We are a robutt.
 	var/robolimb_count = 0 // Number of robot limbs.
 
 	mob_bump_flag = HUMAN
