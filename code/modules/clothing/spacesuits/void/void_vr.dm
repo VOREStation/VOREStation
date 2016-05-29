@@ -66,5 +66,3 @@
 	// This variable is normally used to set the icon_override when the suit is refitted,
 	// however the species spritesheet now means we no longer need that anyway!
 	sprite_sheets_refit = list()
->>>>>>> refs/remotes/VOREStation/master
->>>>>>> refs/remotes/origin/master
