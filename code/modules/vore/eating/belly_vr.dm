@@ -372,6 +372,6 @@
 		M.show_message(struggle_outer_message, 2) // hearable
 	R << struggle_user_message
 
-	var/strsound = pick(struggle_sounds)
+	var/strpick = pick(struggle_sounds)
+	var/strsound = struggle_sounds[strpick]
 	playsound(R.loc, strsound, 50, 1)
-	R << strsound //Might be too loud. We'll see.
