@@ -37,8 +37,13 @@
 				user << "<span class='warning'>You can't apply [src] through [H.wear_suit]!</span>"
 				return 1
 
-		if(affecting.robotic >= ORGAN_ROBOT)
-			user << "<span class='warning'>This isn't useful at all on a robotic limb..</span>"
+		if(affecting.robotic == ORGAN_ROBOT)
+			user << "<span class='warning'>This isn't useful at all on a robotic limb.</span>"
+			return 1
+
+		if(affecting.robotic >= ORGAN_LIFELIKE)
+			user << "<span class='warning'>You apply the [src], but it seems to have no effect...</span>"
+			use(1)
 			return 1
 
 		H.UpdateDamageIcon()

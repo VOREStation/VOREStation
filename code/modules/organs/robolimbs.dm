@@ -15,6 +15,9 @@ var/datum/robolimb/basic_robolimb
 	var/desc = "A generic unbranded robotic prosthesis." // Seen when examining a limb.
 	var/icon = 'icons/mob/human_races/robotic.dmi'       // Icon base to draw from.
 	var/unavailable_at_chargen                           // If set, not available at chargen.
+	var/unavailable_to_build							 // If set, can't be constructed.
+	var/lifelike										 // If set, appears organic.
+	var/blood_color = "#030303"
 	var/list/species_cannot_use = list("Teshari")
 
 /datum/robolimb/bishop
@@ -48,6 +51,8 @@ var/datum/robolimb/basic_robolimb
 	icon = 'icons/mob/human_races/cyberlimbs/wardtakahashi.dmi'
 
 /datum/robolimb/veymed
+	lifelike = 1
+	blood_color = "#CCCCCC"
 	company = "Vey-Med"
 	desc = "This high quality limb is nearly indistinguishable from an organic one."
 	icon = 'icons/mob/human_races/cyberlimbs/veymed.dmi'
