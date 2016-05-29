@@ -319,16 +319,10 @@ var/global/list/damage_icon_parts = list()
 	stand_icon.Blend(base_icon,ICON_OVERLAY)
 
 	//Underwear
-	if(underwear_top && species.appearance_flags & HAS_UNDERWEAR)
-		stand_icon.Blend(new /icon('icons/mob/human.dmi', underwear_top), ICON_OVERLAY)
-	if(underwear_bottom && species.appearance_flags & HAS_UNDERWEAR)
-		stand_icon.Blend(new /icon('icons/mob/human.dmi', underwear_bottom), ICON_OVERLAY)
-
-	if(undershirt && species.appearance_flags & HAS_UNDERWEAR)
-		stand_icon.Blend(new /icon('icons/mob/human.dmi', undershirt), ICON_OVERLAY)
-
-	if(socks && species.appearance_flags & HAS_UNDERWEAR)
-		stand_icon.Blend(new /icon('icons/mob/human.dmi', socks), ICON_OVERLAY)
+	if(species.appearance_flags & HAS_UNDERWEAR)
+		for(var/category in all_underwear)
+			var/datum/category_item/underwear/UW = all_underwear[category]
+			UW.apply_to_icon(stand_icon)
 
 	if(update_icons)
 		update_icons()

@@ -15,11 +15,6 @@
 			b_skin = rand (0,255)
 		if(current_species.appearance_flags & HAS_EYE_COLOR)
 			randomize_eyes_color()
-		if(current_species.appearance_flags & HAS_UNDERWEAR)
-			underwear_top = underwear_top_t[pick(underwear_top_t)]
-			underwear_bottom = underwear_bottom_t[pick(underwear_bottom_t)]
-			undershirt = undershirt_t[pick(undershirt_t)]
-			socks = socks_t[pick(socks_t)]
 		if(current_species.appearance_flags & HAS_HAIR_COLOR)
 			randomize_hair_color("hair")
 			randomize_hair_color("facial")
@@ -27,6 +22,11 @@
 			r_skin = rand (0,255)
 			g_skin = rand (0,255)
 			b_skin = rand (0,255)
+	if(current_species.appearance_flags & HAS_UNDERWEAR)
+		all_underwear.Cut()
+		for(var/datum/category_group/underwear/WRC in global_underwear.categories)
+			var/datum/category_item/underwear/WRI = pick(WRC.items)
+			all_underwear[WRC.name] = WRI.name
 
 
 	backbag = rand(1,4)
