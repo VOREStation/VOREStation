@@ -74,6 +74,8 @@
 	spawn(30)
 		var/mob/living/simple_animal/xeno/slime/S = new(src)
 		S.traitdat = core.traits
+		S.nameVar = core.nameVar
+		S.name = "[S.nameVar] baby slime"
 		S.ProcessTraits()
 		qdel(core)
 		spawn(30)
