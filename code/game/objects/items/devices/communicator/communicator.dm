@@ -499,7 +499,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 		comm.visible_message("<span class='notice'>\icon[src] Connecting to [src].</span>")
 		user << "<span class='notice'>\icon[src] Attempting to call [comm].</span>"
 		sleep(10)
-		user << "<span class='notice'>\icon[src] Dialing internally from [station_name()], Kara Subsystem, [system_name()].</span>"
+		user << "<span class='notice'>\icon[src] Dialing internally from [station_name()], [system_name()].</span>" // Vorestation edit
 		sleep(20) //If they don't have an exonet something is very wrong and we want a runtime.
 		user << "<span class='notice'>\icon[src] Connection re-routed to [comm] at [comm.exonet.address].</span>"
 		sleep(40)
