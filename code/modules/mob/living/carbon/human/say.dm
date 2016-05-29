@@ -1,10 +1,10 @@
-/mob/living/carbon/human/say(var/message)
+/mob/living/carbon/human/say(var/message,var/whispering=0)
 	var/alt_name = ""
 	if(name != GetVoice())
 		alt_name = "(as [get_id_name("Unknown")])"
 
 	message = sanitize(message)
-	..(message, alt_name = alt_name)
+	..(message, alt_name = alt_name, whispering = whispering)
 
 /mob/living/carbon/human/proc/forcesay(list/append)
 	if(stat == CONSCIOUS)
@@ -125,29 +125,20 @@
 
 	return verb
 
-/mob/living/carbon/human/handle_speech_problems(var/message, var/verb)
+/mob/living/carbon/human/handle_speech_problems(var/list/message_data)
 	if(silent || (sdisabilities & MUTE))
-		message = ""
-		speech_problem_flag = 1
+		message_data[1] = ""
+		. = 1
+
 	else if(istype(wear_mask, /obj/item/clothing/mask))
 		var/obj/item/clothing/mask/M = wear_mask
 		if(M.voicechange)
-			message = pick(M.say_messages)
-			verb = pick(M.say_verbs)
-			speech_problem_flag = 1
+			message_data[1] = pick(M.say_messages)
+			message_data[2] = pick(M.say_verbs)
+			. = 1
 
-	if(message != "")
-		var/list/parent = ..()
-		message = parent[1]
-		verb = parent[2]
-		if(parent[3])
-			speech_problem_flag = 1
-
-	var/list/returns[3]
-	returns[1] = message
-	returns[2] = verb
-	returns[3] = speech_problem_flag
-	return returns
+	else
+		. = ..(message_data)
 
 /mob/living/carbon/human/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name)
 	switch(message_mode)
@@ -190,9 +181,6 @@
 			if(has_radio)
 				R.talk_into(src,message,null,verb,speaking)
 				used_radios += R
-		if("whisper")
-			whisper_say(message, speaking, alt_name)
-			return 1
 		else
 			if(message_mode)
 				if(l_ear && istype(l_ear,/obj/item/device/radio))
