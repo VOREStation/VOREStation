@@ -11,7 +11,7 @@ Used In File(s): \code\modules\xenobio2\machines\injector_computer.dm
 			{{:data.reagentAmount}}u / {{:data.reagentMax}}u
 			{{:helper.displayBar(data.reagentAmount, data.reagentMax, data.reagentMin, 'good', null, 'displayBarBeaker')}}
 		{{else}}
-			<span class='bad'><b>ERRR%</b></span>
+			<span class='bad'><b>ERR</b></span>
 			{{:helper.displayBar(data.reagentAmount, data.reagentMax, data.reagentMin, 'good', null, 'displayBarBeaker')}}
 		{{/if}}
 	</div>
@@ -23,7 +23,7 @@ Used In File(s): \code\modules\xenobio2\machines\injector_computer.dm
 					Instability: 
 				</div>
 				<div class="itemContent">
-					{{if data.instability}}
+					{{if data.compatible}}
 						{{:data.instability}}%
 					{{else}}
 						<span class='bad'><b>ERRR%</b></span> Please contact your local technician for assistance.

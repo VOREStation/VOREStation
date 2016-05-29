@@ -51,8 +51,6 @@ Procs for targeting
 	if(!stasis)
 		if(!reagents)
 			return
-		if(reagents.total_volume <= 0)
-			return
 
 		//Let's handle some chemical smoke, for scientific smoke bomb purposes.
 		for(var/obj/effect/effect/smoke/chem/smoke in view(1, src))

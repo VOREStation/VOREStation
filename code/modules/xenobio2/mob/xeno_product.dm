@@ -9,4 +9,5 @@ Xenobiological product lives here as a basic type.
 	var/datum/xeno/traits/traits
 	var/source = "Unknown"
 	var/product = "mess"
+	var/nameVar = "blah"
 	
