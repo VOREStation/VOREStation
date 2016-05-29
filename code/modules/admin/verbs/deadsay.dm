@@ -15,9 +15,6 @@
 		src << "<span class='warning'>You have deadchat muted.</span>"
 		return
 
-	if (src.handle_spam_prevention(msg,MUTE_DEADCHAT))
-		return
-
 	var/stafftype = uppertext(holder.rank)
 
 	msg = sanitize(msg)

@@ -21,6 +21,27 @@ If d1 = 0 and d2 = dir, it's a O-X cable, getting from the center of the tile to
 If d1 = dir1 and d2 = dir2, it's a full X-X cable, getting from dir1 to dir2
 By design, d1 is the smallest direction and d2 is the highest
 */
+var/list/possible_cable_coil_colours = list(
+		"White" = COLOR_WHITE,
+		"Silver" = COLOR_SILVER,
+		"Gray" = COLOR_GRAY,
+		"Black" = COLOR_BLACK,
+		"Red" = COLOR_RED,
+		"Maroon" = COLOR_MAROON,
+		"Yellow" = COLOR_YELLOW,
+		"Olive" = COLOR_OLIVE,
+		"Lime" = COLOR_GREEN,
+		"Green" = COLOR_LIME,
+		"Cyan" = COLOR_CYAN,
+		"Teal" = COLOR_TEAL,
+		"Blue" = COLOR_BLUE,
+		"Navy" = COLOR_NAVY,
+		"Pink" = COLOR_PINK,
+		"Purple" = COLOR_PURPLE,
+		"Orange" = COLOR_ORANGE,
+		"Beige" = COLOR_BEIGE,
+		"Brown" = COLOR_BROWN
+	)
 
 /obj/structure/cable
 	level = 1
@@ -464,6 +485,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	slot_flags = SLOT_BELT
 	item_state = "coil"
 	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
+	stacktype = /obj/item/stack/cable_coil
 
 /obj/item/stack/cable_coil/cyborg
 	name = "cable coil synthesizer"
@@ -472,7 +494,6 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	matter = null
 	uses_charge = 1
 	charge_costs = list(1)
-	stacktype = /obj/item/stack/cable_coil
 
 /obj/item/stack/cable_coil/suicide_act(mob/user)
 	if(locate(/obj/item/weapon/stool) in user.loc)
@@ -531,6 +552,17 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		icon_state = "coil"
 		name = "cable coil"
 
+/obj/item/stack/cable_coil/proc/set_cable_color(var/selected_color, var/user)
+	if(!selected_color)
+		return
+
+	var/final_color = possible_cable_coil_colours[selected_color]
+	if(!final_color)
+		final_color = possible_cable_coil_colours["Red"]
+		selected_color = "red"
+	color = final_color
+	user << "<span class='notice'>You change \the [src]'s color to [lowertext(selected_color)].</span>"
+
 /obj/item/stack/cable_coil/proc/update_wclass()
 	if(amount == 1)
 		w_class = 1.0
@@ -571,42 +603,17 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	set name = "Change Colour"
 	set category = "Object"
 
-	var/list/possible_colours = list ("Yellow", "Green", "Pink", "Blue", "Orange", "Cyan", "Red")
-	var/selected_type = input("Pick new colour.", "Cable Colour", null, null) as null|anything in possible_colours
-
-	if(selected_type)
-		switch(selected_type)
-			if("Yellow")
-				color = COLOR_YELLOW
-			if("Green")
-				color = COLOR_LIME
-			if("Pink")
-				color = COLOR_PINK
-			if("Blue")
-				color = COLOR_BLUE
-			if("Orange")
-				color = COLOR_ORANGE
-			if("Cyan")
-				color = COLOR_CYAN
-			else
-				color = COLOR_RED
-		usr << "You change your cable coil's colour to [selected_type]"
+	var/selected_type = input("Pick new colour.", "Cable Colour", null, null) as null|anything in possible_cable_coil_colours
+	set_cable_color(selected_type, usr)
 
 // Items usable on a cable coil :
 //   - Wirecutters : cut them duh !
 //   - Cable coil : merge cables
-/obj/item/stack/cable_coil/proc/can_merge(var/obj/item/stack/cable_coil/C)
-	return color == C.color
-
-/obj/item/stack/cable_coil/cyborg/can_merge()
-	return 1
 
 /obj/item/stack/cable_coil/transfer_to(obj/item/stack/cable_coil/S)
 	if(!istype(S))
+		world << 1
 		return
-	if(!can_merge(S))
-		return
-
 	..()
 
 /obj/item/stack/cable_coil/use()
@@ -880,7 +887,51 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	stacktype = /obj/item/stack/cable_coil
 	color = COLOR_WHITE
 
+/obj/item/stack/cable_coil/silver
+	stacktype = /obj/item/stack/cable_coil
+	color = COLOR_SILVER
+
+/obj/item/stack/cable_coil/gray
+	stacktype = /obj/item/stack/cable_coil
+	color = COLOR_GRAY
+
+/obj/item/stack/cable_coil/black
+	stacktype = /obj/item/stack/cable_coil
+	color = COLOR_BLACK
+
+/obj/item/stack/cable_coil/maroon
+	stacktype = /obj/item/stack/cable_coil
+	color = COLOR_MAROON
+
+/obj/item/stack/cable_coil/olive
+	stacktype = /obj/item/stack/cable_coil
+	color = COLOR_OLIVE
+
+/obj/item/stack/cable_coil/lime
+	stacktype = /obj/item/stack/cable_coil
+	color = COLOR_LIME
+
+/obj/item/stack/cable_coil/teal
+	stacktype = /obj/item/stack/cable_coil
+	color = COLOR_TEAL
+
+/obj/item/stack/cable_coil/navy
+	stacktype = /obj/item/stack/cable_coil
+	color = COLOR_NAVY
+
+/obj/item/stack/cable_coil/purple
+	stacktype = /obj/item/stack/cable_coil
+	color = COLOR_PURPLE
+
+/obj/item/stack/cable_coil/beige
+	stacktype = /obj/item/stack/cable_coil
+	color = COLOR_BEIGE
+
+/obj/item/stack/cable_coil/brown
+	stacktype = /obj/item/stack/cable_coil
+	color = COLOR_BROWN
+
 /obj/item/stack/cable_coil/random/New()
 	stacktype = /obj/item/stack/cable_coil
-	color = pick(COLOR_RED, COLOR_BLUE, COLOR_LIME, COLOR_WHITE, COLOR_PINK, COLOR_YELLOW, COLOR_CYAN)
+	color = pick(COLOR_RED, COLOR_BLUE, COLOR_LIME, COLOR_WHITE, COLOR_PINK, COLOR_YELLOW, COLOR_CYAN, COLOR_SILVER, COLOR_GRAY, COLOR_BLACK, COLOR_MAROON, COLOR_OLIVE, COLOR_LIME, COLOR_TEAL, COLOR_NAVY, COLOR_PURPLE, COLOR_BEIGE, COLOR_BROWN)
 	..()
