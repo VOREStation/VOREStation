@@ -49,7 +49,7 @@
 	melee_damage_upper = 25
 
 
-	/mob/living/simple_animal/hostile/creature/strong/cult
+/mob/living/simple_animal/hostile/creature/strong/cult
 	faction = "cult"
 
 	min_oxy = 0
