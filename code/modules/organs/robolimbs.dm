@@ -36,6 +36,9 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	var/desc = "A generic unbranded robotic prosthesis." // Seen when examining a limb.
 	var/icon = 'icons/mob/human_races/robotic.dmi'       // Icon base to draw from.
 	var/unavailable_at_chargen                           // If set, not available at chargen.
+	var/unavailable_to_build							 // If set, can't be constructed.
+	var/lifelike										 // If set, appears organic.
+	var/blood_color = "#030303"
 	var/list/species_cannot_use = list("Teshari")
 	var/list/monitor_styles			 		 			 //If empty, the model of limbs offers a head compatible with monitors.
 	var/parts = BP_ALL						 			 //Defines what parts said brand can replace on a body.
@@ -97,6 +100,8 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	unavailable_at_chargen = null
 
 /datum/robolimb/veymed
+	lifelike = 1
+	blood_color = "#CCCCCC"
 	company = "Vey-Med"
 	desc = "This high quality limb is nearly indistinguishable from an organic one."
 	icon = 'icons/mob/human_races/cyberlimbs/veymed/veymed_main.dmi'

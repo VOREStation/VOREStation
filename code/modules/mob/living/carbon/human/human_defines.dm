@@ -31,6 +31,7 @@
 
 	var/age = 30		//Player's age (pure fluff)
 	var/b_type = "A+"	//Player's bloodtype
+	var/synthetic		//If they are a synthetic (aka synthetic torso)
 
 	var/underwear_top = 1	//Which underwear the player wants
 	var/underwear_bottom = 1
@@ -83,7 +84,6 @@
 	var/list/flavor_texts = list()
 	var/gunshot_residue
 	var/pulling_punches    // Are you trying not to hurt your opponent?
-	var/full_prosthetic    // We are a robutt.
 	var/robolimb_count = 0 // Number of robot limbs.
 
 	mob_bump_flag = HUMAN

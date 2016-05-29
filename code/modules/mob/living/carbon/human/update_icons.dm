@@ -220,6 +220,8 @@ var/global/list/damage_icon_parts = list()
 	var/hulk = (HULK in src.mutations)
 	var/skeleton = (SKELETON in src.mutations)
 
+	robolimb_count = 0
+
 	//CACHING: Generate an index key from visible bodyparts.
 	//0 = destroyed, 1 = normal, 2 = robotic, 3 = necrotic.
 
@@ -249,6 +251,7 @@ var/global/list/damage_icon_parts = list()
 			icon_key += "0"
 		else if(part.robotic >= ORGAN_ROBOT)
 			icon_key += "2[part.model ? "-[part.model]": ""]"
+			robolimb_count++
 		else if(part.status & ORGAN_DEAD)
 			icon_key += "3"
 		else
@@ -596,7 +599,7 @@ var/global/list/damage_icon_parts = list()
 				standing = image("icon" = 'icons/mob/ears.dmi', "icon_state" = "[t_type]")
 			standing.color = l_ear.color
 			both.overlays += standing
-			
+
 		if(r_ear)
 			var/image/standing
 			var/t_type = r_ear.icon_state
@@ -610,7 +613,7 @@ var/global/list/damage_icon_parts = list()
 				standing = image("icon" = 'icons/mob/ears.dmi', "icon_state" = "[t_type]")
 			standing.color = r_ear.color
 			both.overlays += standing
-			
+
 		overlays_standing[EARS_LAYER] = both
 
 	else

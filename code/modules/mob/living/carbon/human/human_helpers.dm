@@ -58,6 +58,37 @@
 /mob/living/carbon/human/get_gender()
 	return identifying_gender ? identifying_gender : gender
 
+// This is the 'mechanical' check for synthetic-ness, not appearance
+// Returns the company that made the synthetic
+/mob/living/carbon/human/isSynthetic()
+	if(synthetic) return synthetic //Your synthetic-ness is not going away
+	var/obj/item/organ/external/T = organs_by_name[BP_TORSO]
+	if(T && T.robotic >= ORGAN_ROBOT)
+		var/datum/robolimb/R = all_robolimbs[T.model]
+		synthetic = R
+		return synthetic
+
+	return 0
+
+// Would an onlooker know this person is synthetic?
+// Based on sort of logical reasoning, 'Look at head, look at torso'
+/mob/living/carbon/human/proc/looksSynthetic()
+	var/obj/item/organ/external/T = organs_by_name[BP_TORSO]
+	var/obj/item/organ/external/H = organs_by_name[BP_HEAD]
+
+	//Look at their head
+	if(!head || !(head && (head.flags_inv & HIDEFACE)))
+		if(H && H.robotic == ORGAN_ROBOT) //Exactly robotic, not higher as lifelike is higher
+			return 1
+
+	//Look at their torso
+	if(!wear_suit || (wear_suit && !(wear_suit.flags_inv & HIDEJUMPSUIT)))
+		if(!w_uniform || (w_uniform && !(w_uniform.body_parts_covered & UPPER_TORSO)))
+			if(T && T.robotic == ORGAN_ROBOT)
+				return 1
+
+	return 0
+
 #undef HUMAN_EATING_NO_ISSUE
 #undef HUMAN_EATING_NO_MOUTH
 #undef HUMAN_EATING_BLOCKED_MOUTH

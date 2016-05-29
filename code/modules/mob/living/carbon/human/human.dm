@@ -1140,8 +1140,6 @@
 			qdel(hud_used)
 		hud_used = new /datum/hud(src)
 
-	full_prosthetic = null
-
 	if(species)
 		return 1
 	else
