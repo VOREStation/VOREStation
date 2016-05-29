@@ -359,6 +359,11 @@
 	if(href_list["item"])
 		handle_strip(href_list["item"],usr)
 
+	// VOREStation Start
+	if(href_list["ooc_notes"])
+		src.Examine_OOC()
+	// VOREStation End
+
 	if (href_list["criminal"])
 		if(hasHUD(usr,"security"))
 
