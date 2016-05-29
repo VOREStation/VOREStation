@@ -271,6 +271,9 @@
 			else
 				new glasstype(loc)
 			qdel(src)
+	else if(istype(W,/obj/item/frame) && anchored)
+		var/obj/item/frame/F = W
+		F.try_build(src)
 	else
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		if(W.damtype == BRUTE || W.damtype == BURN)
