@@ -1,433 +1,426 @@
 "aa" = (/turf/space,/area/awaymission/space)
-"ab" = (/turf/space{density = 1; desc = "You can't go there!"; name = "The 4th Wall"},/area/awaymission/space)
-"ac" = (/turf/simulated/mineral,/area/awaymission)
-"ad" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/awaymission)
-"ae" = (/obj/item/weapon/circular_saw,/obj/structure/lattice,/turf/space,/area/awaymission/space)
-"af" = (/turf/simulated/shuttle/wall{icon_state = "swall_s"; dir = 4},/area/awaymission/BMPship3)
-"ag" = (/turf/simulated/shuttle/wall{icon_state = "swall_straight"; dir = 4},/area/awaymission/BMPship3)
-"ah" = (/turf/simulated/shuttle/wall{icon_state = "swall_t"; dir = 1},/area/awaymission/BMPship3)
-"ai" = (/turf/simulated/shuttle/wall{icon_state = "swall_s"; dir = 2},/area/awaymission/BMPship3)
-"aj" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 8},/obj/structure/grille,/turf/simulated/floor/reinforced,/area/awaymission/BMPship3)
-"ak" = (/obj/machinery/porta_turret{dir = 8; emagged = 1; installation = /obj/item/weapon/gun/energy/lasercannon},/turf/simulated/floor/reinforced,/area/awaymission/BMPship3)
-"al" = (/turf/simulated/floor/reinforced,/area/awaymission/BMPship3)
-"am" = (/turf/simulated/shuttle/wall{icon_state = "swall_straight"; dir = 1},/area/awaymission/BMPship3)
-"an" = (/obj/machinery/light/small{dir = 8},/turf/simulated/floor/plating,/area/awaymission/BMPship3)
-"ao" = (/turf/simulated/floor/plating,/turf/simulated/shuttle/wall{dir = 2},/turf/simulated/shuttle/wall{icon_state = "swall_c"; dir = 1},/area/awaymission/BMPship3)
-"ap" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8},/obj/structure/grille,/turf/simulated/floor/reinforced,/area/awaymission/BMPship3)
-"aq" = (/obj/machinery/door/unpowered/shuttle,/turf/simulated/floor/plating,/area/awaymission/BMPship3)
-"ar" = (/turf/simulated/floor/plating,/area/awaymission/BMPship3)
-"as" = (/obj/structure/lattice,/turf/space,/area/awaymission/space)
-"at" = (/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8},/obj/structure/grille,/turf/simulated/floor/reinforced,/area/awaymission/BMPship3)
-"au" = (/obj/machinery/light/small,/turf/simulated/floor/reinforced,/area/awaymission/BMPship3)
-"av" = (/turf/simulated/shuttle/wall,/turf/simulated/shuttle/wall{icon_state = "swall_c"; dir = 1},/area/awaymission/BMPship3)
-"aw" = (/turf/simulated/shuttle/wall{icon_state = "swall_s"; dir = 4},/area/awaymission/BMPship1)
-"ax" = (/turf/simulated/shuttle/wall{icon_state = "swall_straight"; dir = 4},/area/awaymission/BMPship1)
-"ay" = (/turf/simulated/shuttle/wall{icon_state = "swall_t"; dir = 2},/area/awaymission/BMPship1)
-"az" = (/turf/simulated/shuttle/wall{icon_state = "swall"; dir = 8},/area/awaymission/BMPship1)
-"aA" = (/obj/machinery/door/airlock/silver{icon_state = "door_locked"; locked = 1},/turf/simulated/floor/plating{tag = "icon-panelscorched"; icon_state = "panelscorched"},/area/awaymission/BMPship1)
-"aB" = (/turf/simulated/shuttle/wall{icon_state = "swall_s"; dir = 2},/area/awaymission/BMPship1)
-"aC" = (/turf/simulated/shuttle/wall,/area/awaymission/BMPship1)
-"aD" = (/obj/structure/bed/roller,/turf/simulated/floor/airless,/area/awaymission/BMPship1)
-"aE" = (/turf/simulated/floor/airless,/area/awaymission/BMPship1)
-"aF" = (/obj/item/weapon/handcuffs,/obj/item/weapon/handcuffs,/obj/structure/closet/crate,/turf/simulated/floor/airless,/area/awaymission/BMPship1)
-"aG" = (/obj/item/weapon/scalpel,/obj/structure/closet/crate,/obj/item/weapon/tank/anesthetic,/turf/simulated/floor/airless,/area/awaymission/BMPship1)
-"aH" = (/obj/item/bodybag,/turf/simulated/floor/airless,/area/awaymission/BMPship1)
-"aI" = (/obj/item/weapon/storage/box/syringes,/turf/simulated/floor/airless,/area/awaymission/BMPship1)
-"aJ" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"; tag = ""},/turf/simulated/floor/airless,/area/awaymission/BMPship1)
-"aK" = (/obj/machinery/optable,/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_y = 0; tag = ""},/turf/simulated/floor/airless,/area/awaymission/BMPship1)
-"aL" = (/obj/machinery/computer/operating,/obj/structure/cable{d2 = 8; icon_state = "0-8"},/turf/simulated/floor/airless,/area/awaymission/BMPship1)
-"aM" = (/turf/simulated/shuttle/wall{icon_state = "swall_straight"; dir = 1},/area/awaymission/BMPship1)
-"aN" = (/obj/effect/floor_decal/industrial/warning{icon_state = "warning"; dir = 9},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"aO" = (/obj/structure/closet/crate/freezer,/obj/item/organ/internal/appendix,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/effect/floor_decal/industrial/warning{dir = 1},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"aP" = (/obj/structure/closet/crate/freezer,/obj/item/organ/internal/brain,/obj/item/organ/internal/appendix,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/effect/floor_decal/industrial/warning{dir = 1},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"aQ" = (/obj/structure/table,/obj/item/weapon/packageWrap,/obj/effect/floor_decal/industrial/warning{dir = 1},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"aR" = (/obj/structure/table,/obj/item/weapon/storage/box,/obj/machinery/light/small{dir = 1},/obj/effect/floor_decal/industrial/warning{dir = 1},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"aS" = (/obj/effect/floor_decal/industrial/warning{dir = 1},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"aT" = (/turf/simulated/floor/plating{tag = "icon-warnplate (NORTHEAST)"; icon_state = "warnplate"; dir = 5},/turf/simulated/shuttle/wall{dir = 2},/area/awaymission/BMPship1)
-"aU" = (/turf/simulated/floor/airless{tag = "icon-dmg2"; icon_state = "dmg2"},/area/awaymission/BMPship1)
-"aV" = (/turf/simulated/floor/airless{tag = "icon-dmg3"; icon_state = "dmg3"},/area/awaymission/BMPship1)
-"aW" = (/obj/effect/gibspawner/generic,/turf/simulated/floor/airless,/area/awaymission/BMPship1)
-"aX" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/turf/simulated/floor/airless,/area/awaymission/BMPship1)
-"aY" = (/obj/effect/floor_decal/industrial/warning{dir = 8},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"aZ" = (/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"ba" = (/obj/item/weapon/storage/box,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"bb" = (/obj/machinery/gateway{dir = 9},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"bc" = (/obj/machinery/gateway{dir = 1},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"bd" = (/obj/machinery/gateway{dir = 5},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"be" = (/obj/item/weapon/hand_labeler,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"bf" = (/obj/structure/largecrate,/obj/effect/floor_decal/industrial/warning{dir = 4},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"bg" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 1},/obj/structure/grille,/turf/simulated/floor/reinforced,/area/awaymission/BMPship3)
-"bh" = (/obj/structure/table/woodentable,/obj/item/weapon/spacecash/c500,/obj/item/weapon/spacecash/c100,/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,/turf/simulated/floor/wood,/area/awaymission/BMPship3)
-"bi" = (/obj/structure/bed,/obj/item/weapon/bedsheet/yellow,/turf/simulated/floor/wood,/area/awaymission/BMPship3)
-"bj" = (/obj/effect/floor_decal/industrial/warning{icon_state = "warning"; dir = 9},/turf/simulated/floor/plating,/area/awaymission/BMPship3)
-"bk" = (/obj/structure/table/rack,/obj/item/weapon/tank/oxygen/yellow,/obj/item/clothing/suit/space/emergency,/obj/item/clothing/head/helmet/space/emergency,/obj/effect/floor_decal/industrial/warning{dir = 1},/turf/simulated/floor/plating,/area/awaymission/BMPship3)
-"bl" = (/obj/effect/floor_decal/industrial/warning{dir = 1},/turf/simulated/floor/plating,/area/awaymission/BMPship3)
-"bm" = (/obj/effect/floor_decal/industrial/warning{dir = 5},/turf/simulated/floor/plating,/area/awaymission/BMPship3)
-"bn" = (/obj/structure/sign/vacuum,/turf/simulated/shuttle/wall,/area/awaymission/BMPship3)
-"bo" = (/turf/simulated/floor/airless{tag = "icon-dmg1"; icon_state = "dmg1"},/area/awaymission/BMPship1)
-"bp" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"; tag = ""},/obj/item/clothing/glasses/regular/hipster,/turf/simulated/floor/airless,/area/awaymission/BMPship1)
-"bq" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_y = 0; tag = ""},/turf/simulated/floor/airless,/area/awaymission/BMPship1)
-"br" = (/obj/machinery/door/unpowered/shuttle,/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_y = 0; tag = ""},/turf/simulated,/area/awaymission/BMPship1)
-"bs" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_y = 0; tag = ""},/obj/effect/floor_decal/industrial/warning{dir = 8},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"bt" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"; tag = ""},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"bu" = (/obj/structure/closet/crate/freezer,/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"bv" = (/obj/machinery/gateway{dir = 8},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"bw" = (/obj/structure/cable{icon_state = "0-4"; d2 = 4},/obj/machinery/gateway/centeraway{calibrated = 0},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"bx" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_y = 0; tag = ""},/obj/machinery/gateway{dir = 4},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"by" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"bz" = (/turf/simulated/floor/wood,/area/awaymission/BMPship3)
-"bA" = (/obj/machinery/light/small{dir = 4},/turf/simulated/floor/wood,/area/awaymission/BMPship3)
-"bB" = (/obj/effect/floor_decal/industrial/warning{dir = 8},/turf/simulated/floor/plating,/area/awaymission/BMPship3)
-"bC" = (/obj/machinery/door/airlock/external,/turf/simulated/floor/plating,/area/awaymission/BMPship3)
-"bD" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"bE" = (/obj/machinery/gateway{dir = 10},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"bF" = (/obj/machinery/gateway,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"bG" = (/obj/machinery/gateway{dir = 6},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"bH" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"bI" = (/obj/structure/closet/crate,/obj/item/weapon/spacecash/c1000,/obj/item/weapon/spacecash/c50,/obj/effect/floor_decal/industrial/warning{dir = 4},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"bJ" = (/turf/simulated/floor/wood{tag = "icon-wood_broken0"; icon_state = "wood_broken0"},/area/awaymission/BMPship3)
-"bK" = (/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor/plating,/area/awaymission/BMPship3)
-"bL" = (/obj/machinery/light/small,/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor/plating,/area/awaymission/BMPship3)
-"bM" = (/obj/effect/floor_decal/industrial/warning{dir = 6},/turf/simulated/floor/plating,/area/awaymission/BMPship3)
-"bN" = (/turf/simulated/shuttle/wall,/area/awaymission/BMPship3)
-"bO" = (/obj/machinery/light,/turf/simulated/floor/airless,/area/awaymission/BMPship1)
-"bP" = (/obj/machinery/button/remote/airlock{id = "packerMed"; pixel_y = -24},/turf/simulated/floor/airless,/area/awaymission/BMPship1)
-"bQ" = (/obj/machinery/sleeper,/turf/simulated/floor/airless,/area/awaymission/BMPship1)
-"bR" = (/obj/machinery/sleep_console,/turf/simulated/floor/airless,/area/awaymission/BMPship1)
-"bS" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"; tag = ""},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"bT" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_y = 0; tag = ""},/obj/item/weapon/hand_labeler,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"bU" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_y = 0; tag = ""},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"bV" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_y = 0; tag = ""},/obj/item/weapon/storage/box,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"bW" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_y = 0; tag = ""},/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"bX" = (/obj/effect/floor_decal/industrial/warning{dir = 4},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"bY" = (/turf/simulated/shuttle/wall{icon_state = "swall"; dir = 8},/area/awaymission/BMPship3)
-"bZ" = (/obj/machinery/door/unpowered/shuttle,/turf/simulated/floor{tag = "icon-carpetside (NORTH)"; icon_state = "carpetside"; dir = 1},/area/awaymission/BMPship3)
-"ca" = (/turf/simulated/shuttle/wall{icon_state = "swall_t"; dir = 2},/area/awaymission/BMPship3)
-"cb" = (/obj/machinery/door/airlock/silver{icon_state = "door_locked"; locked = 1},/turf/simulated/floor{tag = "icon-carpetside (NORTH)"; icon_state = "carpetside"; dir = 1},/area/awaymission/BMPship3)
-"cc" = (/turf/simulated/shuttle/wall{icon_state = "swall_t"; dir = 1},/area/awaymission/BMPship2)
-"cd" = (/turf/simulated/shuttle/wall{icon_state = "swall_straight"; dir = 4},/area/awaymission/BMPship2)
-"ce" = (/turf/simulated/shuttle/wall{icon_state = "swall15"; dir = 2},/area/awaymission/BMPship1)
-"cf" = (/obj/machinery/door/blast/shutters{id = "packerMed"},/turf/simulated/floor/airless,/area/awaymission/BMPship1)
-"cg" = (/turf/simulated/shuttle/wall{icon_state = "swall"; dir = 4},/area/awaymission/BMPship1)
-"ch" = (/turf/simulated/shuttle/wall{icon_state = "swall_t"; dir = 4},/area/awaymission/BMPship1)
-"ci" = (/obj/structure/largecrate,/obj/effect/floor_decal/industrial/warning{dir = 10},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"cj" = (/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"ck" = (/obj/machinery/light/small,/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"cl" = (/obj/structure/kitchenspike,/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"cm" = (/obj/structure/closet/crate,/obj/item/device/analyzer,/obj/item/weapon/spacecash/c10,/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"cn" = (/obj/structure/closet/crate,/obj/item/weapon/spacecash/c1000,/obj/item/weapon/spacecash/c200,/obj/item/weapon/spacecash/c500,/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"co" = (/obj/structure/closet/crate/freezer,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/hugemushroomslice,/obj/item/organ/internal/appendix,/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"cp" = (/obj/machinery/button/remote/airlock{id = "packerCargo"; pixel_y = -24},/obj/machinery/light/small,/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"cq" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"cr" = (/obj/effect/floor_decal/industrial/warning{dir = 6},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"cs" = (/turf/simulated/floor/carpet,/turf/simulated/shuttle/wall{icon_state = "swall_c"; dir = 8},/area/awaymission/BMPship3)
-"ct" = (/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
-"cu" = (/obj/structure/cable{icon_state = "0-2"; d2 = 2},/obj/machinery/power/apc{dir = 1; name = "north bump-derelict"; operating = 0; pixel_x = 0; pixel_y = 24},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
-"cv" = (/turf/simulated/shuttle/wall{icon_state = "swall_straight"; dir = 1},/area/awaymission/BMPship2)
-"cw" = (/obj/structure/table,/obj/item/weapon/screwdriver,/obj/item/weapon/screwdriver,/obj/item/weapon/paper{info = "The next person who takes one of my screwdrivers gets stabbed with one. They are MINE. - Love, Madsen"; name = "scribbled note"},/obj/item/weapon/screwdriver,/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"cx" = (/obj/machinery/light{dir = 1},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"cy" = (/obj/machinery/portable_atmospherics/hydroponics,/obj/effect/floor_decal/corner/green{dir = 9},/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"cz" = (/obj/structure/sink{dir = 2},/obj/effect/floor_decal/corner/beige{dir = 5},/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"cA" = (/obj/machinery/vending/hydroseeds{slogan_delay = 700},/obj/effect/floor_decal/corner/beige{dir = 5},/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"cB" = (/obj/machinery/vending/hydronutrients,/obj/effect/floor_decal/corner/beige{dir = 5},/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"cC" = (/obj/machinery/portable_atmospherics/hydroponics,/obj/effect/floor_decal/corner/green{dir = 6},/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"cD" = (/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"cE" = (/obj/structure/table,/obj/item/weapon/material/knife/butch,/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/obj/effect/floor_decal/corner/blue/diagonal,/turf/simulated/floor/tiled/white,/area/awaymission/BMPship2)
-"cF" = (/obj/structure/table,/obj/item/weapon/storage/box/donkpockets,/obj/effect/floor_decal/corner/blue/diagonal,/turf/simulated/floor/tiled/white,/area/awaymission/BMPship2)
-"cG" = (/obj/structure/table,/obj/machinery/microwave,/obj/effect/floor_decal/corner/blue/diagonal,/turf/simulated/floor/tiled/white,/area/awaymission/BMPship2)
-"cH" = (/obj/machinery/light{dir = 1},/obj/structure/window/reinforced{dir = 4},/obj/effect/floor_decal/corner/blue/diagonal,/turf/simulated/floor/tiled/white,/area/awaymission/BMPship2)
-"cI" = (/obj/structure/table,/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"cJ" = (/obj/structure/table,/obj/item/weapon/material/kitchen/utensil/knife,/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"cK" = (/obj/structure/table,/obj/machinery/light/small{dir = 1},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"cL" = (/obj/structure/table,/obj/effect/decal/cleanable/cobweb2,/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"cM" = (/turf/simulated/shuttle/wall{icon_state = "swall_t"; dir = 8},/area/awaymission/BMPship1)
-"cN" = (/turf/simulated/shuttle/wall{icon_state = "swall_t"; dir = 1},/area/awaymission/BMPship1)
-"cO" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/obj/machinery/door/blast/shutters{id = "packerCargo"},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"cP" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; pixel_y = 0; tag = ""},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
-"cQ" = (/obj/item/weapon/reagent_containers/food/snacks/hugemushroomslice,/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"cR" = (/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"cS" = (/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"cT" = (/obj/effect/floor_decal/corner/blue/diagonal,/turf/simulated/floor/tiled/white,/area/awaymission/BMPship2)
-"cU" = (/obj/structure/window/reinforced{dir = 4},/obj/effect/floor_decal/corner/blue/diagonal,/turf/simulated/floor/tiled/white,/area/awaymission/BMPship2)
-"cV" = (/obj/item/weapon/stool,/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"cW" = (/obj/structure/kitchenspike,/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
-"cX" = (/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
-"cY" = (/obj/machinery/door/airlock/silver,/turf/simulated/floor{icon_state = "showroomfloor"},/area/awaymission/BMPship1)
-"cZ" = (/turf/simulated/floor/tiled/white,/area/awaymission/BMPship1)
-"da" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled/white,/area/awaymission/BMPship1)
-"db" = (/obj/machinery/gibber,/turf/simulated/floor/tiled/white,/area/awaymission/BMPship1)
-"dc" = (/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
-"dd" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
-"de" = (/turf/simulated/shuttle/wall{icon_state = "swall"; dir = 5},/area/awaymission/BMPship1)
-"df" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"; tag = ""},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
-"dg" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"; tag = ""},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
-"dh" = (/obj/item/weapon/reagent_containers/food/snacks/hugemushroomslice,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"di" = (/obj/machinery/door/unpowered/shuttle,/turf/simulated/floor{icon_state = "bar"},/area/awaymission/BMPship2)
-"dj" = (/obj/structure/window/reinforced,/obj/effect/floor_decal/corner/blue/diagonal,/turf/simulated/floor/tiled/white,/area/awaymission/BMPship2)
-"dk" = (/obj/structure/window/reinforced,/obj/structure/cable{icon_state = "0-2"; pixel_y = 1; d2 = 2},/obj/effect/floor_decal/corner/blue/diagonal,/turf/simulated/floor/tiled/white,/area/awaymission/BMPship2)
-"dl" = (/obj/machinery/door/window{dir = 2},/obj/effect/floor_decal/corner/blue/diagonal,/turf/simulated/floor/tiled/white,/area/awaymission/BMPship2)
-"dm" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced,/obj/effect/floor_decal/corner/blue/diagonal,/turf/simulated/floor/tiled/white,/area/awaymission/BMPship2)
-"dn" = (/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"do" = (/obj/machinery/light/small{dir = 8},/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
-"dp" = (/obj/structure/cable{icon_state = "0-2"; pixel_y = 1; d2 = 2},/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
-"dq" = (/obj/structure/closet/secure_closet/freezer/meat{opened = 1},/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/turf/simulated/floor/tiled/white,/area/awaymission/BMPship1)
-"dr" = (/obj/structure/closet/crate/freezer,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/turf/simulated/floor/tiled/white,/area/awaymission/BMPship1)
-"ds" = (/obj/effect/landmark{name = "awaystart"},/obj/effect/decal/cleanable/blood/splatter,/turf/simulated/floor/tiled/white,/area/awaymission/BMPship1)
-"dt" = (/obj/item/weapon/crowbar,/turf/simulated/floor/tiled/white,/area/awaymission/BMPship1)
-"du" = (/obj/effect/floor_decal/industrial/warning{dir = 8},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
-"dv" = (/obj/structure/cable{icon_state = "0-2"; pixel_y = 1; d2 = 2},/obj/machinery/power/apc{dir = 1; name = "north bump-derelict"; operating = 0; pixel_x = 0; pixel_y = 24},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
-"dw" = (/obj/effect/floor_decal/industrial/warning{dir = 4},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
-"dx" = (/obj/structure/table,/obj/item/weapon/paper{info = "I'm no scientist, but judging from the design and components, it seems to be some kind of gateway. This thing is gonna be worth a lot of cash to the right man. The boys are excited, as they have every right to be, and I've let them crack into that case of beer we got. I normally wouldn't allow such a thing, but this is a time for celebration! It's not like a couple drinks will hurt anything."; name = "Captain's log entry"},/obj/effect/floor_decal/carpet{dir = 9},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
-"dy" = (/obj/structure/table,/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,/obj/effect/floor_decal/carpet{dir = 1},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
-"dz" = (/obj/structure/frame{anchored = 1},/obj/effect/floor_decal/carpet{dir = 1},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
-"dA" = (/obj/effect/floor_decal/carpet{dir = 5},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
-"dB" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
-"dC" = (/obj/machinery/portable_atmospherics/hydroponics,/obj/effect/floor_decal/corner/green/full,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"dD" = (/obj/effect/floor_decal/corner/green{dir = 10},/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"dE" = (/obj/machinery/seed_extractor,/obj/item/seeds/angelmycelium,/obj/effect/floor_decal/corner/green{dir = 10},/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"dF" = (/obj/machinery/portable_atmospherics/hydroponics,/obj/effect/floor_decal/corner/green/full{dir = 4},/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"dG" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"; tag = ""},/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"dH" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0; tag = ""},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"dI" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"; tag = ""},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"dJ" = (/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
-"dK" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"; tag = ""},/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"; tag = ""},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
-"dL" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0; tag = ""},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
-"dM" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0; tag = ""},/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"; tag = ""},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
-"dN" = (/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
-"dO" = (/obj/machinery/light/small{dir = 4},/obj/effect/floor_decal/industrial/warning{dir = 4},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
-"dP" = (/obj/item/device/multitool,/turf/simulated/floor/reinforced,/area/awaymission/BMPship1)
-"dQ" = (/obj/structure/shuttle/engine/heater{tag = "icon-heater (EAST)"; icon_state = "heater"; dir = 4},/obj/structure/window/reinforced{dir = 8},/turf/simulated/floor/airless{tag = "icon-engine"; icon_state = "engine"},/area/awaymission/BMPship1)
-"dR" = (/obj/structure/shuttle/engine/propulsion{tag = "icon-propulsion (WEST)"; icon_state = "propulsion"; dir = 8},/turf/space,/area/awaymission/BMPship1)
-"dS" = (/obj/structure/table,/obj/machinery/recharger,/obj/effect/floor_decal/carpet{dir = 10},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
-"dT" = (/obj/item/weapon/stool,/obj/effect/floor_decal/carpet,/mob/living/simple_animal/hostile/pirate/ranged,/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
-"dU" = (/obj/effect/floor_decal/carpet,/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
-"dV" = (/obj/effect/floor_decal/carpet{dir = 6},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
-"dW" = (/obj/machinery/light{icon_state = "tube1"; dir = 4},/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
-"dX" = (/obj/machinery/light/small{dir = 8},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"dY" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"; tag = ""},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"dZ" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_y = 0; tag = ""},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"ea" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"eb" = (/obj/machinery/light/small{dir = 4},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"ec" = (/turf/simulated/wall/r_wall,/area/awaymission/BMPship2)
-"ed" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
-"ee" = (/obj/machinery/light/small{dir = 4},/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
-"ef" = (/obj/machinery/light/small{dir = 8},/obj/effect/floor_decal/industrial/warning{dir = 8},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
-"eg" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; pixel_y = 0; tag = ""},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
-"eh" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; pixel_y = 0},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"ei" = (/obj/machinery/door/unpowered/shuttle,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"ej" = (/turf/simulated/floor/reinforced,/area/awaymission/BMPship1)
-"ek" = (/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/obj/structure/grille,/turf/simulated/floor/plating,/area/awaymission/BMPship3)
-"el" = (/obj/structure/frame{anchored = 1},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
-"em" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"; tag = ""},/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"; tag = ""},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
-"en" = (/obj/machinery/door/airlock/silver{icon_state = "door_locked"; locked = 1},/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_y = 0; tag = ""},/turf/simulated/floor{tag = "icon-carpetside (EAST)"; icon_state = "carpetside"; dir = 4},/area/awaymission/BMPship2)
-"eo" = (/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"; tag = ""},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"ep" = (/obj/machinery/shieldwallgen,/obj/structure/cable{icon_state = "0-4"; d2 = 4},/turf/simulated/floor/plating,/area/awaymission/BMPship2)
-"eq" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"; tag = ""},/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"er" = (/obj/structure/cable{icon_state = "0-2"; d2 = 2},/obj/machinery/power/apc{dir = 1; name = "north bump-derelict"; operating = 0; pixel_x = 0; pixel_y = 24},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"es" = (/obj/machinery/conveyor{dir = 4; id = "meatConvey1"},/turf/simulated/shuttle/plating,/area/awaymission/BMPship2)
-"et" = (/obj/machinery/conveyor{dir = 4; id = "meatConvey1"},/obj/structure/plasticflaps,/turf/simulated/shuttle/plating,/area/awaymission/BMPship2)
-"eu" = (/obj/structure/disposalpipe/trunk{dir = 4},/obj/machinery/disposal/deliveryChute{dir = 8},/turf/simulated/shuttle/plating,/area/awaymission/BMPship2)
-"ev" = (/obj/structure/disposalpipe/segment{dir = 4},/turf/simulated/wall/r_wall,/area/awaymission/BMPship2)
-"ew" = (/obj/structure/disposalpipe/segment{dir = 4},/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"ex" = (/obj/structure/disposalpipe/segment{dir = 2; icon_state = "pipe-c"},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"ey" = (/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 1},/turf/simulated/shuttle/plating,/area/awaymission/BMPship1)
-"ez" = (/obj/structure/window/reinforced{dir = 1},/turf/simulated/shuttle/plating,/area/awaymission/BMPship1)
-"eA" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/turf/simulated/shuttle/plating,/area/awaymission/BMPship1)
-"eB" = (/obj/structure/table/rack,/obj/item/weapon/storage/box/lights,/obj/effect/floor_decal/industrial/warning{dir = 8},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
-"eC" = (/obj/structure/cable{icon_state = "0-4"; d2 = 4},/obj/structure/cable,/obj/structure/cable{icon_state = "0-2"; d2 = 2},/obj/machinery/power/fractal_reactor/fluff/converter{mapped_in = 1; power_generation_rate = 10000},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"eD" = (/obj/machinery/power/terminal{dir = 8},/obj/structure/cable{icon_state = "0-4"; d2 = 4},/obj/structure/cable{d2 = 8; icon_state = "0-8"},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"eE" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0},/obj/effect/floor_decal/industrial/warning{dir = 4},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
-"eF" = (/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/grille,/turf/simulated/floor/plating,/area/awaymission/BMPship3)
-"eG" = (/obj/structure/table,/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
-"eH" = (/obj/structure/bed/chair/office/dark{dir = 8},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
-"eI" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/plating,/area/awaymission/BMPship2)
-"eJ" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/blood/xeno,/turf/simulated/floor/plating,/area/awaymission/BMPship2)
-"eK" = (/obj/effect/decal/cleanable/dirt,/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/turf/simulated/floor/plating,/area/awaymission/BMPship2)
-"eL" = (/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/plating,/area/awaymission/BMPship2)
-"eM" = (/turf/simulated/floor/plating,/area/awaymission/BMPship2)
-"eN" = (/obj/item/weapon/reagent_containers/glass/bucket,/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"eO" = (/obj/machinery/conveyor_switch/oneway{id = "meatConvey1"},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"eP" = (/obj/structure/disposalpipe/segment{dir = 1; icon_state = "pipe-c"},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"eQ" = (/obj/structure/disposalpipe/segment{dir = 4},/obj/machinery/light/small{dir = 1},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
-"eR" = (/obj/structure/disposalpipe/segment{dir = 4},/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
-"eS" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/obj/structure/disposalpipe/segment{dir = 4},/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
-"eT" = (/obj/structure/window/reinforced{dir = 8},/obj/structure/disposalpipe/trunk{dir = 8},/obj/structure/disposaloutlet{dir = 4},/turf/simulated/shuttle/plating,/area/awaymission/BMPship1)
-"eU" = (/turf/simulated/shuttle/plating,/area/awaymission/BMPship1)
-"eV" = (/obj/effect/decal/cleanable/blood/xeno,/turf/simulated/shuttle/plating,/area/awaymission/BMPship1)
-"eW" = (/obj/structure/window/reinforced{dir = 4},/turf/simulated/shuttle/plating,/area/awaymission/BMPship1)
-"eX" = (/obj/structure/table/rack,/obj/item/weapon/storage/belt/utility/full,/obj/effect/floor_decal/industrial/warning{dir = 8},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
-"eY" = (/turf/simulated/shuttle/wall{icon_state = "swall_s"; dir = 8},/area/awaymission/BMPship1)
-"eZ" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"; tag = ""},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
-"fa" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0; tag = ""},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
-"fb" = (/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"; tag = ""},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
-"fc" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"; tag = ""},/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"; tag = ""},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"fd" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_y = 0; tag = ""},/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"; tag = ""},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"fe" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"; tag = ""},/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"; tag = ""},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"ff" = (/obj/machinery/light/small{dir = 1},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"fg" = (/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
-"fh" = (/obj/structure/window/reinforced{dir = 8},/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/turf/simulated/shuttle/plating,/area/awaymission/BMPship1)
-"fi" = (/obj/machinery/door/window{base_state = "right"; dir = 4; icon_state = "right"},/turf/simulated/shuttle/plating,/area/awaymission/BMPship1)
-"fj" = (/obj/structure/table/rack,/obj/item/weapon/cell/high,/obj/effect/floor_decal/industrial/warning{dir = 8},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
-"fk" = (/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced,/obj/structure/grille,/turf/simulated/floor/plating,/area/awaymission/BMPship3)
-"fl" = (/obj/machinery/door/airlock/silver{icon_state = "door_locked"; locked = 1},/turf/simulated/floor{tag = "icon-carpetside (EAST)"; icon_state = "carpetside"; dir = 4},/area/awaymission/BMPship2)
-"fm" = (/obj/effect/floor_decal/corner/red/diagonal,/mob/living/simple_animal/hostile/pirate,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"fn" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/light/small{dir = 8},/turf/simulated/floor/plating,/area/awaymission/BMPship2)
-"fo" = (/obj/machinery/door/window{base_state = "right"; dir = 4; icon_state = "right"},/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/turf/simulated/floor/plating,/area/awaymission/BMPship2)
-"fp" = (/obj/machinery/light,/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"fq" = (/obj/effect/gibspawner/generic,/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"fr" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"; tag = ""},/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"; tag = ""},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"fs" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0; tag = ""},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
-"ft" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0; tag = ""},/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
-"fu" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"; tag = ""},/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
-"fv" = (/obj/structure/window/reinforced{dir = 8},/turf/simulated/shuttle/plating,/area/awaymission/BMPship1)
-"fw" = (/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/turf/simulated/shuttle/plating,/area/awaymission/BMPship1)
-"fx" = (/obj/structure/table/rack,/obj/effect/floor_decal/industrial/warning{dir = 8},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
-"fy" = (/obj/machinery/power/fractal_reactor/fluff/converter{mapped_in = 1; power_generation_rate = 10000},/obj/structure/cable{icon_state = "0-4"; d2 = 4},/obj/structure/cable,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"fz" = (/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
-"fA" = (/obj/effect/decal/cleanable/blood/xeno,/turf/simulated/floor/plating,/area/awaymission/BMPship2)
-"fB" = (/obj/item/weapon/wrench,/turf/simulated/floor/plating,/area/awaymission/BMPship2)
-"fC" = (/obj/structure/disposalpipe/segment{dir = 4; icon_state = "pipe-c"},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"fD" = (/obj/structure/disposalpipe/segment{dir = 4},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
-"fE" = (/obj/structure/mopbucket,/turf/simulated/shuttle/plating,/area/awaymission/BMPship1)
-"fF" = (/obj/structure/window/reinforced{dir = 4},/obj/item/weapon/material/kitchen/utensil/knife,/turf/simulated/shuttle/plating,/area/awaymission/BMPship1)
-"fG" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; pixel_y = 0; tag = ""},/obj/item/weapon/cell/high,/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
-"fH" = (/turf/simulated/shuttle/wall{icon_state = "swall_s"; dir = 1},/area/awaymission/BMPship3)
-"fI" = (/obj/machinery/door/airlock/silver{icon_state = "door_locked"; locked = 1},/turf/simulated/floor{tag = "icon-carpetside"; icon_state = "carpetside"},/area/awaymission/BMPship3)
-"fJ" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; pixel_y = 0; tag = ""},/obj/machinery/door/airlock/silver{icon_state = "door_locked"; locked = 1},/turf/simulated/floor{tag = "icon-carpetside"; icon_state = "carpetside"},/area/awaymission/BMPship3)
-"fK" = (/turf/simulated/shuttle/wall{icon_state = "swall"; dir = 4},/area/awaymission/BMPship3)
-"fL" = (/turf/simulated/shuttle/wall{icon_state = "swall_t"; dir = 4},/area/awaymission/BMPship2)
-"fM" = (/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/turf/simulated/floor/plating,/area/awaymission/BMPship2)
-"fN" = (/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor{tag = "icon-panelscorched"; icon_state = "panelscorched"},/area/awaymission/BMPship2)
-"fO" = (/obj/structure/kitchenspike,/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"fP" = (/obj/machinery/conveyor{dir = 4; id = "meatConvey2"},/obj/item/weapon/material/kitchen/utensil/knife,/turf/simulated/shuttle/plating,/area/awaymission/BMPship2)
-"fQ" = (/obj/machinery/conveyor{dir = 4; id = "meatConvey2"},/obj/structure/plasticflaps,/turf/simulated/shuttle/plating,/area/awaymission/BMPship2)
-"fR" = (/obj/machinery/conveyor{dir = 4; id = "meatConvey2"},/turf/simulated/shuttle/plating,/area/awaymission/BMPship2)
-"fS" = (/obj/structure/disposalpipe/segment{dir = 8; icon_state = "pipe-c"},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"fT" = (/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced,/turf/simulated/shuttle/plating,/area/awaymission/BMPship1)
-"fU" = (/obj/structure/window/reinforced,/turf/simulated/shuttle/plating,/area/awaymission/BMPship1)
-"fV" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced,/turf/simulated/shuttle/plating,/area/awaymission/BMPship1)
-"fW" = (/obj/item/stack/cable_coil/random,/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
-"fX" = (/turf/simulated/floor/airless{tag = "icon-dmg1"; icon_state = "dmg1"},/area/awaymission/BMPship3)
-"fY" = (/obj/structure/lattice,/turf/space,/area/awaymission/BMPship3)
-"fZ" = (/turf/simulated/floor/airless{tag = "icon-dmg3"; icon_state = "dmg3"},/area/awaymission/BMPship3)
-"ga" = (/obj/item/stack/cable_coil/random{amount = 5},/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"; tag = ""},/turf/simulated/floor/airless,/area/awaymission/BMPship3)
-"gb" = (/obj/item/weapon/material/shard{icon_state = "small"},/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0; tag = ""},/turf/simulated/floor/airless,/area/awaymission/BMPship3)
-"gc" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0; tag = ""},/turf/simulated/floor/airless{tag = "icon-dmg2"; icon_state = "dmg2"},/area/awaymission/BMPship3)
-"gd" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"; tag = ""},/turf/simulated/floor/airless{tag = "icon-dmg3"; icon_state = "dmg3"},/area/awaymission/BMPship3)
-"ge" = (/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"; tag = ""},/obj/item/weapon/material/kitchen/utensil/knife,/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"gf" = (/obj/machinery/conveyor_switch/oneway{id = "meatConvey2"},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"gg" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"; tag = ""},/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
-"gh" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_y = 0; tag = ""},/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
-"gi" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"; tag = ""},/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
-"gj" = (/obj/item/weapon/mop,/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
-"gk" = (/obj/structure/reagent_dispensers/fueltank,/obj/effect/floor_decal/industrial/warning{dir = 4},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
-"gl" = (/turf/simulated/floor/airless{tag = "icon-dmg2"; icon_state = "dmg2"},/area/awaymission/BMPship3)
-"gm" = (/obj/item/weapon/material/shard,/turf/simulated/floor/airless{tag = "icon-dmg1"; icon_state = "dmg1"},/area/awaymission/BMPship3)
-"gn" = (/obj/item/weapon/stool,/turf/simulated/floor/airless{tag = "icon-dmg3"; icon_state = "dmg3"},/area/awaymission/BMPship3)
-"go" = (/turf/simulated/floor/airless,/area/awaymission/BMPship3)
-"gp" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; pixel_y = 0; tag = ""},/turf/simulated/floor/airless,/area/awaymission/BMPship3)
-"gq" = (/turf/simulated/floor{tag = "icon-plating"; icon_state = "plating"},/area/awaymission/BMPship2)
-"gr" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"; tag = ""},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"gs" = (/obj/structure/closet/crate/freezer,/obj/item/weapon/reagent_containers/food/snacks/meat,/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
-"gt" = (/obj/item/weapon/reagent_containers/glass/bucket,/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
-"gu" = (/obj/structure/reagent_dispensers,/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
-"gv" = (/turf/simulated/shuttle/wall{icon_state = "swall"; dir = 6},/area/awaymission/BMPship1)
-"gw" = (/turf/simulated/floor/airless{tag = "icon-dmg2"; icon_state = "dmg2"},/turf/simulated/shuttle/wall{dir = 3; icon_state = "swall_f10"; layer = 2; tag = "icon-swall_f10"},/area/awaymission/BMPship3)
-"gx" = (/obj/structure/frame{anchored = 1},/turf/simulated/floor/airless{tag = "icon-dmg2"; icon_state = "dmg2"},/area/awaymission/BMPship3)
-"gy" = (/obj/structure/frame{anchored = 1},/turf/simulated/floor/airless{tag = "icon-dmg1"; icon_state = "dmg1"},/area/awaymission/BMPship3)
-"gz" = (/obj/machinery/light/small,/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
-"gA" = (/turf/simulated/floor{tag = "icon-dmg3"; icon_state = "dmg3"},/area/awaymission/BMPship2)
-"gB" = (/turf/simulated/floor{tag = "icon-dmg1"; icon_state = "dmg1"},/area/awaymission/BMPship2)
-"gC" = (/obj/machinery/door/airlock/silver,/turf/simulated/floor,/area/awaymission/BMPship1)
-"gD" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/obj/machinery/door/airlock/silver,/turf/simulated/floor,/area/awaymission/BMPship1)
-"gE" = (/obj/machinery/door/unpowered/shuttle,/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; pixel_y = 0; tag = ""},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
-"gF" = (/obj/item/device/multitool,/turf/simulated/floor/airless{tag = "icon-dmg2"; icon_state = "dmg2"},/area/awaymission)
-"gG" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/obj/machinery/door/airlock/silver{icon_state = "door_locked"; locked = 1},/turf/simulated/floor/airless,/area/awaymission/BMPship3)
-"gH" = (/turf/simulated/shuttle/wall{icon_state = "swall_t"; dir = 2},/area/awaymission/BMPship2)
-"gI" = (/turf/simulated/mineral,/area/awaymission/BMPship2)
-"gJ" = (/turf/simulated/shuttle/wall,/area/awaymission/BMPship2)
-"gK" = (/turf/simulated/shuttle/wall{icon_state = "swall15"; dir = 2},/area/awaymission/BMPship2)
-"gL" = (/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
-"gM" = (/obj/machinery/light{dir = 1},/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
-"gN" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
-"gO" = (/obj/item/weapon/stool,/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
-"gP" = (/obj/structure/table,/obj/item/weapon/paper{info = "DEAR DAIRY: So we was doing our typpical route when the captain says we've been picking up weird signals on some backwatter planet. Madsen wanted to stay on course but he ain't the captain, so we went out of the way to check it out. There was lots of rocks on the way, but we got to the planet fine. Found a big fancy camp with nobody around and this big metal donut thing with NT stamps all over it right in the middle. Case of beer too. Captain reckons we can pass it off to some buyer in the Syndicate. Ingram says it's bad luck and that someone is going to come look for it but it sounds like better money than selling bad meat to jerky companies."; name = "Old Diary"},/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
-"gQ" = (/obj/structure/table,/obj/item/weapon/pen/red,/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
-"gR" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; pixel_y = 0; tag = ""},/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
-"gS" = (/obj/structure/closet,/obj/item/clothing/under/overalls,/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
-"gT" = (/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/grille,/turf/simulated/floor/reinforced,/area/awaymission/BMPship3)
-"gU" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/reinforced,/area/awaymission/BMPship3)
-"gV" = (/obj/structure/cable,/turf/simulated/floor/airless{tag = "icon-dmg3"; icon_state = "dmg3"},/area/awaymission/BMPship3)
-"gW" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/airless,/area/awaymission/BMPship3)
-"gX" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/awaymission/BMPship3)
-"gY" = (/obj/structure/table/rack,/turf/simulated/floor/airless,/area/awaymission/BMPship3)
-"gZ" = (/obj/machinery/light/small{dir = 1},/turf/simulated/mineral/floor/ignore_mapgen,/area/awaymission/BMPship3)
-"ha" = (/turf/simulated/shuttle/wall,/area/awaymission)
-"hb" = (/turf/simulated/shuttle/wall{icon_state = "swall_straight"; dir = 1},/area/awaymission)
-"hc" = (/turf/simulated/floor/airless,/area/awaymission)
-"hd" = (/turf/simulated/floor/airless{tag = "icon-dmg1"; icon_state = "dmg1"},/area/awaymission)
-"he" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/airless,/area/awaymission)
-"hf" = (/turf/simulated/floor/plating{tag = "icon-dmg3"; icon_state = "dmg3"},/area/awaymission)
-"hg" = (/obj/item/frame/apc,/turf/simulated/floor/airless,/area/awaymission)
-"hh" = (/obj/structure/ore_box,/obj/machinery/light/small{dir = 1},/turf/simulated/floor/airless,/area/awaymission)
-"hi" = (/obj/item/stack/cable_coil/random{amount = 5},/turf/simulated/floor/airless,/area/awaymission)
-"hj" = (/obj/structure/ore_box,/turf/simulated/floor/airless,/area/awaymission)
-"hk" = (/obj/machinery/computer/arcade,/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
-"hl" = (/obj/effect/decal/remains/human,/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"; tag = ""},/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
-"hm" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_y = 0; tag = ""},/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
-"hn" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"; tag = ""},/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"; tag = ""},/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
-"ho" = (/obj/structure/cable{d2 = 8; icon_state = "0-8"},/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
-"hp" = (/obj/effect/decal/remains/human,/obj/item/clothing/head/helmet/space/syndicate/green/dark,/obj/effect/gibspawner/generic,/turf/simulated/mineral/floor/ignore_mapgen,/area/awaymission)
-"hq" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/grille,/obj/item/weapon/material/shard{icon_state = "small"},/turf/simulated/floor/reinforced,/area/awaymission/BMPship3)
-"hr" = (/obj/machinery/door/unpowered/shuttle,/turf/simulated,/area/awaymission/BMPship3)
-"hs" = (/obj/effect/gibspawner/robot,/turf/simulated/floor/airless{tag = "icon-dmg2"; icon_state = "dmg2"},/area/awaymission/BMPship3)
-"ht" = (/turf/simulated/floor/airless{tag = "icon-dmg2"; icon_state = "dmg2"},/area/awaymission)
-"hu" = (/obj/effect/decal/mecha_wreckage/ripley,/turf/simulated/floor/airless,/area/awaymission)
-"hv" = (/obj/effect/landmark{name = "awaystart"},/turf/simulated/mineral/floor/ignore_mapgen,/area/awaymission)
-"hw" = (/obj/effect/landmark{name = "awaystart"},/turf/simulated/floor/plating{tag = "icon-dmg3"; icon_state = "dmg3"},/area/awaymission)
-"hx" = (/obj/effect/landmark{name = "awaystart"},/turf/simulated/floor/airless,/area/awaymission)
-"hy" = (/obj/structure/bed,/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
-"hz" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/obj/item/weapon/storage/wallet/random,/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
-"hA" = (/obj/structure/closet,/obj/item/clothing/under/lawyer/bluesuit,/obj/item/clothing/suit/apron,/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
-"hB" = (/obj/item/clothing/suit/space/syndicate/green/dark,/turf/simulated/mineral/floor/ignore_mapgen,/area/awaymission)
-"hC" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced,/obj/structure/grille,/turf/simulated/floor/reinforced,/area/awaymission/BMPship3)
-"hD" = (/obj/effect/gibspawner/robot,/turf/simulated/floor/airless{tag = "icon-dmg3"; icon_state = "dmg3"},/area/awaymission)
-"hE" = (/obj/structure/cable{icon_state = "0-4"; d2 = 4},/turf/simulated/floor/airless,/area/awaymission)
-"hF" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0; tag = ""},/turf/simulated/floor/airless,/area/awaymission)
-"hG" = (/obj/machinery/door/unpowered/shuttle,/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0; tag = ""},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"hH" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0; tag = ""},/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
-"hI" = (/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"; tag = ""},/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
-"hJ" = (/obj/item/weapon/material/shard{icon_state = "medium"},/turf/space,/area/awaymission/space)
-"hK" = (/obj/effect/decal/remains/human,/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
-"hL" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
-"hM" = (/obj/machinery/door/unpowered/shuttle,/turf/simulated/floor{icon_state = "cafeteria"; dir = 2},/area/awaymission/BMPship1)
-"hN" = (/obj/structure/mirror{pixel_y = 28},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
-"hO" = (/obj/structure/toilet{dir = 8},/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
-"hP" = (/obj/item/weapon/caution,/turf/simulated/floor/airless,/area/awaymission)
-"hQ" = (/obj/machinery/portable_atmospherics/canister/air,/turf/simulated/floor/airless,/area/awaymission)
-"hR" = (/obj/structure/closet/crate,/obj/item/weapon/spacecash/c10,/obj/item/weapon/spacecash/c200,/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
-"hS" = (/obj/structure/closet/crate,/obj/item/weapon/spacecash/c10,/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
-"hT" = (/obj/structure/sink{dir = 2},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
-"hU" = (/turf/simulated/floor/tiled,/turf/simulated/shuttle/wall{icon_state = "swall_c"; dir = 4},/area/awaymission/BMPship1)
-"hV" = (/obj/item/clothing/gloves/fyellow,/turf/simulated/mineral/floor/ignore_mapgen,/area/awaymission)
-"hW" = (/turf/simulated/shuttle/wall{icon_state = "swall_straight"; dir = 4},/area/awaymission)
-"hX" = (/obj/machinery/door/airlock/silver{icon_state = "door_locked"; locked = 1},/turf/simulated/floor,/area/awaymission/BMPship1)
-"hY" = (/obj/item/weapon/storage/box/matches,/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,/turf/simulated/floor/plating,/area/awaymission/BMPship3)
-"hZ" = (/obj/item/weapon/contraband/poster,/turf/simulated/floor/plating,/area/awaymission/BMPship3)
-"ia" = (/turf/simulated/shuttle/wall{icon_state = "swall_s"; dir = 8},/area/awaymission/BMPship3)
-"ib" = (/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,/turf/simulated/floor/plating,/area/awaymission/BMPship3)
-"ic" = (/turf/simulated/floor/plating,/turf/simulated/shuttle/wall{dir = 2},/area/awaymission/BMPship3)
-"id" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced,/obj/structure/grille,/turf/simulated/floor/reinforced,/area/awaymission/BMPship3)
+"ab" = (/obj/effect/blocker,/turf/space,/area/awaymission/space)
+"ac" = (/obj/effect/blocker,/turf/space{density = 1; desc = "You can't go there!"; name = "The 4th Wall"},/area/awaymission/space)
+"ad" = (/turf/simulated/mineral,/area/awaymission)
+"ae" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/awaymission)
+"af" = (/obj/item/weapon/circular_saw,/obj/structure/lattice,/turf/space,/area/awaymission/space)
+"ag" = (/turf/simulated/shuttle/wall{icon_state = "swall_s"; dir = 4},/area/awaymission/BMPship3)
+"ah" = (/turf/simulated/shuttle/wall{icon_state = "swall_straight"; dir = 4},/area/awaymission/BMPship3)
+"ai" = (/turf/simulated/shuttle/wall{icon_state = "swall_t"; dir = 1},/area/awaymission/BMPship3)
+"aj" = (/turf/simulated/shuttle/wall{icon_state = "swall_s"; dir = 2},/area/awaymission/BMPship3)
+"ak" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 8},/obj/structure/grille,/turf/simulated/floor/reinforced,/area/awaymission/BMPship3)
+"al" = (/obj/machinery/porta_turret{dir = 8; emagged = 1; installation = /obj/item/weapon/gun/energy/lasercannon},/turf/simulated/floor/reinforced,/area/awaymission/BMPship3)
+"am" = (/turf/simulated/floor/reinforced,/area/awaymission/BMPship3)
+"an" = (/turf/simulated/shuttle/wall{icon_state = "swall_straight"; dir = 1},/area/awaymission/BMPship3)
+"ao" = (/obj/machinery/light/small{dir = 8},/turf/simulated/floor/plating,/area/awaymission/BMPship3)
+"ap" = (/turf/simulated/floor/plating,/turf/simulated/shuttle/wall{dir = 2},/turf/simulated/shuttle/wall{icon_state = "swall_c"; dir = 1},/area/awaymission/BMPship3)
+"aq" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8},/obj/structure/grille,/turf/simulated/floor/reinforced,/area/awaymission/BMPship3)
+"ar" = (/obj/machinery/door/unpowered/shuttle,/turf/simulated/floor/plating,/area/awaymission/BMPship3)
+"as" = (/turf/simulated/floor/plating,/area/awaymission/BMPship3)
+"at" = (/obj/structure/lattice,/turf/space,/area/awaymission/space)
+"au" = (/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8},/obj/structure/grille,/turf/simulated/floor/reinforced,/area/awaymission/BMPship3)
+"av" = (/obj/machinery/light/small,/turf/simulated/floor/reinforced,/area/awaymission/BMPship3)
+"aw" = (/turf/simulated/shuttle/wall,/turf/simulated/shuttle/wall{icon_state = "swall_c"; dir = 1},/area/awaymission/BMPship3)
+"ax" = (/turf/simulated/shuttle/wall{icon_state = "swall_s"; dir = 4},/area/awaymission/BMPship1)
+"ay" = (/turf/simulated/shuttle/wall{icon_state = "swall_straight"; dir = 4},/area/awaymission/BMPship1)
+"az" = (/turf/simulated/shuttle/wall{icon_state = "swall_t"; dir = 2},/area/awaymission/BMPship1)
+"aA" = (/turf/simulated/shuttle/wall{icon_state = "swall"; dir = 8},/area/awaymission/BMPship1)
+"aB" = (/obj/machinery/door/airlock/silver{icon_state = "door_locked"; locked = 1},/turf/simulated/floor/plating{tag = "icon-panelscorched"; icon_state = "panelscorched"},/area/awaymission/BMPship1)
+"aC" = (/turf/simulated/shuttle/wall{icon_state = "swall_s"; dir = 2},/area/awaymission/BMPship1)
+"aD" = (/turf/simulated/shuttle/wall,/area/awaymission/BMPship1)
+"aE" = (/obj/structure/bed/roller,/turf/simulated/floor/airless,/area/awaymission/BMPship1)
+"aF" = (/turf/simulated/floor/airless,/area/awaymission/BMPship1)
+"aG" = (/obj/item/weapon/handcuffs,/obj/item/weapon/handcuffs,/obj/structure/closet/crate,/turf/simulated/floor/airless,/area/awaymission/BMPship1)
+"aH" = (/obj/item/weapon/scalpel,/obj/structure/closet/crate,/obj/item/weapon/tank/anesthetic,/turf/simulated/floor/airless,/area/awaymission/BMPship1)
+"aI" = (/obj/item/bodybag,/turf/simulated/floor/airless,/area/awaymission/BMPship1)
+"aJ" = (/obj/item/weapon/storage/box/syringes,/turf/simulated/floor/airless,/area/awaymission/BMPship1)
+"aK" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"; tag = ""},/turf/simulated/floor/airless,/area/awaymission/BMPship1)
+"aL" = (/obj/machinery/optable,/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_y = 0; tag = ""},/turf/simulated/floor/airless,/area/awaymission/BMPship1)
+"aM" = (/obj/machinery/computer/operating,/obj/structure/cable{d2 = 8; icon_state = "0-8"},/turf/simulated/floor/airless,/area/awaymission/BMPship1)
+"aN" = (/turf/simulated/shuttle/wall{icon_state = "swall_straight"; dir = 1},/area/awaymission/BMPship1)
+"aO" = (/obj/effect/floor_decal/industrial/warning{icon_state = "warning"; dir = 9},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"aP" = (/obj/structure/closet/crate/freezer,/obj/item/organ/internal/appendix,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/effect/floor_decal/industrial/warning{dir = 1},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"aQ" = (/obj/structure/closet/crate/freezer,/obj/item/organ/internal/brain,/obj/item/organ/internal/appendix,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/effect/floor_decal/industrial/warning{dir = 1},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"aR" = (/obj/structure/table,/obj/item/weapon/packageWrap,/obj/effect/floor_decal/industrial/warning{dir = 1},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"aS" = (/obj/structure/table,/obj/item/weapon/storage/box,/obj/machinery/light/small{dir = 1},/obj/effect/floor_decal/industrial/warning{dir = 1},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"aT" = (/obj/effect/floor_decal/industrial/warning{dir = 1},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"aU" = (/turf/simulated/floor/plating{tag = "icon-warnplate (NORTHEAST)"; icon_state = "warnplate"; dir = 5},/turf/simulated/shuttle/wall{dir = 2},/area/awaymission/BMPship1)
+"aV" = (/turf/simulated/floor/airless{tag = "icon-dmg2"; icon_state = "dmg2"},/area/awaymission/BMPship1)
+"aW" = (/turf/simulated/floor/airless{tag = "icon-dmg3"; icon_state = "dmg3"},/area/awaymission/BMPship1)
+"aX" = (/obj/effect/gibspawner/generic,/turf/simulated/floor/airless,/area/awaymission/BMPship1)
+"aY" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/turf/simulated/floor/airless,/area/awaymission/BMPship1)
+"aZ" = (/obj/effect/floor_decal/industrial/warning{dir = 8},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"ba" = (/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"bb" = (/obj/item/weapon/storage/box,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"bc" = (/obj/machinery/gateway{dir = 9},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"bd" = (/obj/machinery/gateway{dir = 1},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"be" = (/obj/machinery/gateway{dir = 5},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"bf" = (/obj/item/weapon/hand_labeler,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"bg" = (/obj/structure/largecrate,/obj/effect/floor_decal/industrial/warning{dir = 4},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"bh" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 1},/obj/structure/grille,/turf/simulated/floor/reinforced,/area/awaymission/BMPship3)
+"bi" = (/obj/structure/table/woodentable,/obj/item/weapon/spacecash/c500,/obj/item/weapon/spacecash/c100,/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,/turf/simulated/floor/wood,/area/awaymission/BMPship3)
+"bj" = (/obj/structure/bed,/obj/item/weapon/bedsheet/yellow,/turf/simulated/floor/wood,/area/awaymission/BMPship3)
+"bk" = (/obj/effect/floor_decal/industrial/warning{icon_state = "warning"; dir = 9},/turf/simulated/floor/plating,/area/awaymission/BMPship3)
+"bl" = (/obj/structure/table/rack,/obj/item/weapon/tank/oxygen/yellow,/obj/item/clothing/suit/space/emergency,/obj/item/clothing/head/helmet/space/emergency,/obj/effect/floor_decal/industrial/warning{dir = 1},/turf/simulated/floor/plating,/area/awaymission/BMPship3)
+"bm" = (/obj/effect/floor_decal/industrial/warning{dir = 1},/turf/simulated/floor/plating,/area/awaymission/BMPship3)
+"bn" = (/obj/effect/floor_decal/industrial/warning{dir = 5},/turf/simulated/floor/plating,/area/awaymission/BMPship3)
+"bo" = (/obj/structure/sign/vacuum,/turf/simulated/shuttle/wall,/area/awaymission/BMPship3)
+"bp" = (/turf/simulated/floor/airless{tag = "icon-dmg1"; icon_state = "dmg1"},/area/awaymission/BMPship1)
+"bq" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"; tag = ""},/obj/item/clothing/glasses/regular/hipster,/turf/simulated/floor/airless,/area/awaymission/BMPship1)
+"br" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_y = 0; tag = ""},/turf/simulated/floor/airless,/area/awaymission/BMPship1)
+"bs" = (/obj/machinery/door/unpowered/shuttle,/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_y = 0; tag = ""},/turf/simulated,/area/awaymission/BMPship1)
+"bt" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_y = 0; tag = ""},/obj/effect/floor_decal/industrial/warning{dir = 8},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"bu" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"; tag = ""},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"bv" = (/obj/structure/closet/crate/freezer,/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"bw" = (/obj/machinery/gateway{dir = 8},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"bx" = (/obj/structure/cable{icon_state = "0-4"; d2 = 4},/obj/machinery/gateway/centeraway{calibrated = 0},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"by" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_y = 0; tag = ""},/obj/machinery/gateway{dir = 4},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"bz" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"bA" = (/turf/simulated/floor/wood,/area/awaymission/BMPship3)
+"bB" = (/obj/machinery/light/small{dir = 4},/turf/simulated/floor/wood,/area/awaymission/BMPship3)
+"bC" = (/obj/effect/floor_decal/industrial/warning{dir = 8},/turf/simulated/floor/plating,/area/awaymission/BMPship3)
+"bD" = (/obj/machinery/door/airlock/external,/turf/simulated/floor/plating,/area/awaymission/BMPship3)
+"bE" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"bF" = (/obj/machinery/gateway{dir = 10},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"bG" = (/obj/machinery/gateway,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"bH" = (/obj/machinery/gateway{dir = 6},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"bI" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"bJ" = (/obj/structure/closet/crate,/obj/item/weapon/spacecash/c1000,/obj/item/weapon/spacecash/c50,/obj/effect/floor_decal/industrial/warning{dir = 4},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"bK" = (/turf/simulated/floor/wood{tag = "icon-wood_broken0"; icon_state = "wood_broken0"},/area/awaymission/BMPship3)
+"bL" = (/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor/plating,/area/awaymission/BMPship3)
+"bM" = (/obj/machinery/light/small,/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor/plating,/area/awaymission/BMPship3)
+"bN" = (/obj/effect/floor_decal/industrial/warning{dir = 6},/turf/simulated/floor/plating,/area/awaymission/BMPship3)
+"bO" = (/turf/simulated/shuttle/wall,/area/awaymission/BMPship3)
+"bP" = (/obj/machinery/light,/turf/simulated/floor/airless,/area/awaymission/BMPship1)
+"bQ" = (/obj/machinery/button/remote/airlock{id = "packerMed"; pixel_y = -24},/turf/simulated/floor/airless,/area/awaymission/BMPship1)
+"bR" = (/obj/machinery/sleeper,/turf/simulated/floor/airless,/area/awaymission/BMPship1)
+"bS" = (/obj/machinery/sleep_console,/turf/simulated/floor/airless,/area/awaymission/BMPship1)
+"bT" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"; tag = ""},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"bU" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_y = 0; tag = ""},/obj/item/weapon/hand_labeler,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"bV" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_y = 0; tag = ""},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"bW" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_y = 0; tag = ""},/obj/item/weapon/storage/box,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"bX" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_y = 0; tag = ""},/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"bY" = (/obj/effect/floor_decal/industrial/warning{dir = 4},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"bZ" = (/turf/simulated/shuttle/wall{icon_state = "swall"; dir = 8},/area/awaymission/BMPship3)
+"ca" = (/obj/machinery/door/unpowered/shuttle,/turf/simulated/floor{tag = "icon-carpetside (NORTH)"; icon_state = "carpetside"; dir = 1},/area/awaymission/BMPship3)
+"cb" = (/turf/simulated/shuttle/wall{icon_state = "swall_t"; dir = 2},/area/awaymission/BMPship3)
+"cc" = (/obj/machinery/door/airlock/silver{icon_state = "door_locked"; locked = 1},/turf/simulated/floor{tag = "icon-carpetside (NORTH)"; icon_state = "carpetside"; dir = 1},/area/awaymission/BMPship3)
+"cd" = (/turf/simulated/shuttle/wall{icon_state = "swall_t"; dir = 1},/area/awaymission/BMPship2)
+"ce" = (/turf/simulated/shuttle/wall{icon_state = "swall_straight"; dir = 4},/area/awaymission/BMPship2)
+"cf" = (/turf/simulated/shuttle/wall{icon_state = "swall15"; dir = 2},/area/awaymission/BMPship1)
+"cg" = (/obj/machinery/door/blast/shutters{id = "packerMed"},/turf/simulated/floor/airless,/area/awaymission/BMPship1)
+"ch" = (/turf/simulated/shuttle/wall{icon_state = "swall"; dir = 4},/area/awaymission/BMPship1)
+"ci" = (/turf/simulated/shuttle/wall{icon_state = "swall_t"; dir = 4},/area/awaymission/BMPship1)
+"cj" = (/obj/structure/largecrate,/obj/effect/floor_decal/industrial/warning{dir = 10},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"ck" = (/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"cl" = (/obj/machinery/light/small,/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"cm" = (/obj/structure/kitchenspike,/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"cn" = (/obj/structure/closet/crate,/obj/item/device/analyzer,/obj/item/weapon/spacecash/c10,/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"co" = (/obj/structure/closet/crate,/obj/item/weapon/spacecash/c1000,/obj/item/weapon/spacecash/c200,/obj/item/weapon/spacecash/c500,/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"cp" = (/obj/structure/closet/crate/freezer,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/hugemushroomslice,/obj/item/organ/internal/appendix,/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"cq" = (/obj/machinery/button/remote/airlock{id = "packerCargo"; pixel_y = -24},/obj/machinery/light/small,/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"cr" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"cs" = (/obj/effect/floor_decal/industrial/warning{dir = 6},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"ct" = (/turf/simulated/floor/carpet,/turf/simulated/shuttle/wall{icon_state = "swall_c"; dir = 8},/area/awaymission/BMPship3)
+"cu" = (/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
+"cv" = (/obj/structure/cable{icon_state = "0-2"; d2 = 2},/obj/machinery/power/apc{dir = 1; name = "north bump-derelict"; operating = 0; pixel_x = 0; pixel_y = 24},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
+"cw" = (/turf/simulated/shuttle/wall{icon_state = "swall_straight"; dir = 1},/area/awaymission/BMPship2)
+"cx" = (/obj/structure/table,/obj/item/weapon/screwdriver,/obj/item/weapon/screwdriver,/obj/item/weapon/paper{info = "The next person who takes one of my screwdrivers gets stabbed with one. They are MINE. - Love, Madsen"; name = "scribbled note"},/obj/item/weapon/screwdriver,/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"cy" = (/obj/machinery/light{dir = 1},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"cz" = (/obj/machinery/portable_atmospherics/hydroponics,/obj/effect/floor_decal/corner/green{dir = 9},/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"cA" = (/obj/structure/sink{dir = 2},/obj/effect/floor_decal/corner/beige{dir = 5},/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"cB" = (/obj/machinery/vending/hydroseeds{slogan_delay = 700},/obj/effect/floor_decal/corner/beige{dir = 5},/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"cC" = (/obj/machinery/vending/hydronutrients,/obj/effect/floor_decal/corner/beige{dir = 5},/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"cD" = (/obj/machinery/portable_atmospherics/hydroponics,/obj/effect/floor_decal/corner/green{dir = 6},/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"cE" = (/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"cF" = (/obj/structure/table,/obj/item/weapon/material/knife/butch,/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/obj/effect/floor_decal/corner/blue/diagonal,/turf/simulated/floor/tiled/white,/area/awaymission/BMPship2)
+"cG" = (/obj/structure/table,/obj/item/weapon/storage/box/donkpockets,/obj/effect/floor_decal/corner/blue/diagonal,/turf/simulated/floor/tiled/white,/area/awaymission/BMPship2)
+"cH" = (/obj/structure/table,/obj/machinery/microwave,/obj/effect/floor_decal/corner/blue/diagonal,/turf/simulated/floor/tiled/white,/area/awaymission/BMPship2)
+"cI" = (/obj/machinery/light{dir = 1},/obj/structure/window/reinforced{dir = 4},/obj/effect/floor_decal/corner/blue/diagonal,/turf/simulated/floor/tiled/white,/area/awaymission/BMPship2)
+"cJ" = (/obj/structure/table,/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"cK" = (/obj/structure/table,/obj/item/weapon/material/kitchen/utensil/knife,/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"cL" = (/obj/structure/table,/obj/machinery/light/small{dir = 1},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"cM" = (/obj/structure/table,/obj/effect/decal/cleanable/cobweb2,/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"cN" = (/turf/simulated/shuttle/wall{icon_state = "swall_t"; dir = 8},/area/awaymission/BMPship1)
+"cO" = (/turf/simulated/shuttle/wall{icon_state = "swall_t"; dir = 1},/area/awaymission/BMPship1)
+"cP" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/obj/machinery/door/blast/shutters{id = "packerCargo"},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"cQ" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; pixel_y = 0; tag = ""},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
+"cR" = (/obj/item/weapon/reagent_containers/food/snacks/hugemushroomslice,/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"cS" = (/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"cT" = (/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"cU" = (/obj/effect/floor_decal/corner/blue/diagonal,/turf/simulated/floor/tiled/white,/area/awaymission/BMPship2)
+"cV" = (/obj/structure/window/reinforced{dir = 4},/obj/effect/floor_decal/corner/blue/diagonal,/turf/simulated/floor/tiled/white,/area/awaymission/BMPship2)
+"cW" = (/obj/item/weapon/stool,/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"cX" = (/obj/structure/kitchenspike,/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
+"cY" = (/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
+"cZ" = (/obj/machinery/door/airlock/silver,/turf/simulated/floor{icon_state = "showroomfloor"},/area/awaymission/BMPship1)
+"da" = (/turf/simulated/floor/tiled/white,/area/awaymission/BMPship1)
+"db" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled/white,/area/awaymission/BMPship1)
+"dc" = (/obj/machinery/gibber,/turf/simulated/floor/tiled/white,/area/awaymission/BMPship1)
+"dd" = (/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
+"de" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
+"df" = (/turf/simulated/shuttle/wall{icon_state = "swall"; dir = 5},/area/awaymission/BMPship1)
+"dg" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"; tag = ""},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
+"dh" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"; tag = ""},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
+"di" = (/obj/item/weapon/reagent_containers/food/snacks/hugemushroomslice,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"dj" = (/obj/machinery/door/unpowered/shuttle,/turf/simulated/floor{icon_state = "bar"},/area/awaymission/BMPship2)
+"dk" = (/obj/structure/window/reinforced,/obj/effect/floor_decal/corner/blue/diagonal,/turf/simulated/floor/tiled/white,/area/awaymission/BMPship2)
+"dl" = (/obj/structure/window/reinforced,/obj/structure/cable{icon_state = "0-2"; pixel_y = 1; d2 = 2},/obj/effect/floor_decal/corner/blue/diagonal,/turf/simulated/floor/tiled/white,/area/awaymission/BMPship2)
+"dm" = (/obj/machinery/door/window{dir = 2},/obj/effect/floor_decal/corner/blue/diagonal,/turf/simulated/floor/tiled/white,/area/awaymission/BMPship2)
+"dn" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced,/obj/effect/floor_decal/corner/blue/diagonal,/turf/simulated/floor/tiled/white,/area/awaymission/BMPship2)
+"do" = (/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"dp" = (/obj/machinery/light/small{dir = 8},/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
+"dq" = (/obj/structure/cable{icon_state = "0-2"; pixel_y = 1; d2 = 2},/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
+"dr" = (/obj/structure/closet/secure_closet/freezer/meat{opened = 1},/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/turf/simulated/floor/tiled/white,/area/awaymission/BMPship1)
+"ds" = (/obj/structure/closet/crate/freezer,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/turf/simulated/floor/tiled/white,/area/awaymission/BMPship1)
+"dt" = (/obj/effect/landmark{name = "awaystart"},/obj/effect/decal/cleanable/blood/splatter,/turf/simulated/floor/tiled/white,/area/awaymission/BMPship1)
+"du" = (/obj/item/weapon/crowbar,/turf/simulated/floor/tiled/white,/area/awaymission/BMPship1)
+"dv" = (/obj/effect/floor_decal/industrial/warning{dir = 8},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
+"dw" = (/obj/structure/cable{icon_state = "0-2"; pixel_y = 1; d2 = 2},/obj/machinery/power/apc{dir = 1; name = "north bump-derelict"; operating = 0; pixel_x = 0; pixel_y = 24},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
+"dx" = (/obj/effect/floor_decal/industrial/warning{dir = 4},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
+"dy" = (/obj/structure/table,/obj/item/weapon/paper{info = "I'm no scientist, but judging from the design and components, it seems to be some kind of gateway. This thing is gonna be worth a lot of cash to the right man. The boys are excited, as they have every right to be, and I've let them crack into that case of beer we got. I normally wouldn't allow such a thing, but this is a time for celebration! It's not like a couple drinks will hurt anything."; name = "Captain's log entry"},/obj/effect/floor_decal/carpet{dir = 9},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
+"dz" = (/obj/structure/table,/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,/obj/effect/floor_decal/carpet{dir = 1},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
+"dA" = (/obj/structure/frame{anchored = 1},/obj/effect/floor_decal/carpet{dir = 1},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
+"dB" = (/obj/effect/floor_decal/carpet{dir = 5},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
+"dC" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
+"dD" = (/obj/machinery/portable_atmospherics/hydroponics,/obj/effect/floor_decal/corner/green/full,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"dE" = (/obj/effect/floor_decal/corner/green{dir = 10},/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"dF" = (/obj/machinery/seed_extractor,/obj/item/seeds/angelmycelium,/obj/effect/floor_decal/corner/green{dir = 10},/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"dG" = (/obj/machinery/portable_atmospherics/hydroponics,/obj/effect/floor_decal/corner/green/full{dir = 4},/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"dH" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"; tag = ""},/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"dI" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0; tag = ""},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"dJ" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"; tag = ""},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"dK" = (/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
+"dL" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"; tag = ""},/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"; tag = ""},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
+"dM" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0; tag = ""},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
+"dN" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0; tag = ""},/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"; tag = ""},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
+"dO" = (/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
+"dP" = (/obj/machinery/light/small{dir = 4},/obj/effect/floor_decal/industrial/warning{dir = 4},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
+"dQ" = (/obj/item/device/multitool,/turf/simulated/floor/reinforced,/area/awaymission/BMPship1)
+"dR" = (/obj/structure/shuttle/engine/heater{tag = "icon-heater (EAST)"; icon_state = "heater"; dir = 4},/obj/structure/window/reinforced{dir = 8},/turf/simulated/floor/airless{tag = "icon-engine"; icon_state = "engine"},/area/awaymission/BMPship1)
+"dS" = (/obj/structure/shuttle/engine/propulsion{tag = "icon-propulsion (WEST)"; icon_state = "propulsion"; dir = 8},/turf/space,/area/awaymission/BMPship1)
+"dT" = (/obj/structure/table,/obj/machinery/recharger,/obj/effect/floor_decal/carpet{dir = 10},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
+"dU" = (/obj/item/weapon/stool,/obj/effect/floor_decal/carpet,/mob/living/simple_animal/hostile/pirate/ranged,/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
+"dV" = (/obj/effect/floor_decal/carpet,/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
+"dW" = (/obj/effect/floor_decal/carpet{dir = 6},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
+"dX" = (/obj/machinery/light{icon_state = "tube1"; dir = 4},/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
+"dY" = (/obj/machinery/light/small{dir = 8},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"dZ" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"; tag = ""},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"ea" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_y = 0; tag = ""},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"eb" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"ec" = (/obj/machinery/light/small{dir = 4},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"ed" = (/turf/simulated/wall/r_wall,/area/awaymission/BMPship2)
+"ee" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
+"ef" = (/obj/machinery/light/small{dir = 4},/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
+"eg" = (/obj/machinery/light/small{dir = 8},/obj/effect/floor_decal/industrial/warning{dir = 8},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
+"eh" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; pixel_y = 0; tag = ""},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
+"ei" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; pixel_y = 0},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"ej" = (/obj/machinery/door/unpowered/shuttle,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"ek" = (/turf/simulated/floor/reinforced,/area/awaymission/BMPship1)
+"el" = (/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/obj/structure/grille,/turf/simulated/floor/plating,/area/awaymission/BMPship3)
+"em" = (/obj/structure/frame{anchored = 1},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
+"en" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"; tag = ""},/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"; tag = ""},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
+"eo" = (/obj/machinery/door/airlock/silver{icon_state = "door_locked"; locked = 1},/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_y = 0; tag = ""},/turf/simulated/floor{tag = "icon-carpetside (EAST)"; icon_state = "carpetside"; dir = 4},/area/awaymission/BMPship2)
+"ep" = (/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"; tag = ""},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"eq" = (/obj/machinery/shieldwallgen,/obj/structure/cable{icon_state = "0-4"; d2 = 4},/turf/simulated/floor/plating,/area/awaymission/BMPship2)
+"er" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"; tag = ""},/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"es" = (/obj/structure/cable{icon_state = "0-2"; d2 = 2},/obj/machinery/power/apc{dir = 1; name = "north bump-derelict"; operating = 0; pixel_x = 0; pixel_y = 24},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"et" = (/obj/machinery/conveyor{dir = 4; id = "meatConvey1"},/turf/simulated/shuttle/plating,/area/awaymission/BMPship2)
+"eu" = (/obj/machinery/conveyor{dir = 4; id = "meatConvey1"},/obj/structure/plasticflaps,/turf/simulated/shuttle/plating,/area/awaymission/BMPship2)
+"ev" = (/obj/structure/disposalpipe/trunk{dir = 4},/obj/machinery/disposal/deliveryChute{dir = 8},/turf/simulated/shuttle/plating,/area/awaymission/BMPship2)
+"ew" = (/obj/structure/disposalpipe/segment{dir = 4},/turf/simulated/wall/r_wall,/area/awaymission/BMPship2)
+"ex" = (/obj/structure/disposalpipe/segment{dir = 4},/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"ey" = (/obj/structure/disposalpipe/segment{dir = 2; icon_state = "pipe-c"},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"ez" = (/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 1},/turf/simulated/shuttle/plating,/area/awaymission/BMPship1)
+"eA" = (/obj/structure/window/reinforced{dir = 1},/turf/simulated/shuttle/plating,/area/awaymission/BMPship1)
+"eB" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/turf/simulated/shuttle/plating,/area/awaymission/BMPship1)
+"eC" = (/obj/structure/table/rack,/obj/item/weapon/storage/box/lights,/obj/effect/floor_decal/industrial/warning{dir = 8},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
+"eD" = (/obj/structure/cable{icon_state = "0-4"; d2 = 4},/obj/structure/cable,/obj/structure/cable{icon_state = "0-2"; d2 = 2},/obj/machinery/power/fractal_reactor/fluff/converter{mapped_in = 1; power_generation_rate = 10000},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"eE" = (/obj/machinery/power/terminal{dir = 8},/obj/structure/cable{icon_state = "0-4"; d2 = 4},/obj/structure/cable{d2 = 8; icon_state = "0-8"},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"eF" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0},/obj/effect/floor_decal/industrial/warning{dir = 4},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
+"eG" = (/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/grille,/turf/simulated/floor/plating,/area/awaymission/BMPship3)
+"eH" = (/obj/structure/table,/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
+"eI" = (/obj/structure/bed/chair/office/dark{dir = 8},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
+"eJ" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/plating,/area/awaymission/BMPship2)
+"eK" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/blood/xeno,/turf/simulated/floor/plating,/area/awaymission/BMPship2)
+"eL" = (/obj/effect/decal/cleanable/dirt,/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/turf/simulated/floor/plating,/area/awaymission/BMPship2)
+"eM" = (/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/plating,/area/awaymission/BMPship2)
+"eN" = (/turf/simulated/floor/plating,/area/awaymission/BMPship2)
+"eO" = (/obj/item/weapon/reagent_containers/glass/bucket,/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"eP" = (/obj/machinery/conveyor_switch/oneway{id = "meatConvey1"},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"eQ" = (/obj/structure/disposalpipe/segment{dir = 1; icon_state = "pipe-c"},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"eR" = (/obj/structure/disposalpipe/segment{dir = 4},/obj/machinery/light/small{dir = 1},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
+"eS" = (/obj/structure/disposalpipe/segment{dir = 4},/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
+"eT" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/obj/structure/disposalpipe/segment{dir = 4},/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
+"eU" = (/obj/structure/window/reinforced{dir = 8},/obj/structure/disposalpipe/trunk{dir = 8},/obj/structure/disposaloutlet{dir = 4},/turf/simulated/shuttle/plating,/area/awaymission/BMPship1)
+"eV" = (/turf/simulated/shuttle/plating,/area/awaymission/BMPship1)
+"eW" = (/obj/effect/decal/cleanable/blood/xeno,/turf/simulated/shuttle/plating,/area/awaymission/BMPship1)
+"eX" = (/obj/structure/window/reinforced{dir = 4},/turf/simulated/shuttle/plating,/area/awaymission/BMPship1)
+"eY" = (/obj/structure/table/rack,/obj/item/weapon/storage/belt/utility/full,/obj/effect/floor_decal/industrial/warning{dir = 8},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
+"eZ" = (/turf/simulated/shuttle/wall{icon_state = "swall_s"; dir = 8},/area/awaymission/BMPship1)
+"fa" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"; tag = ""},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
+"fb" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0; tag = ""},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
+"fc" = (/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"; tag = ""},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
+"fd" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"; tag = ""},/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"; tag = ""},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"fe" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_y = 0; tag = ""},/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"; tag = ""},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"ff" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"; tag = ""},/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"; tag = ""},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"fg" = (/obj/machinery/light/small{dir = 1},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"fh" = (/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
+"fi" = (/obj/structure/window/reinforced{dir = 8},/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/turf/simulated/shuttle/plating,/area/awaymission/BMPship1)
+"fj" = (/obj/machinery/door/window{base_state = "right"; dir = 4; icon_state = "right"},/turf/simulated/shuttle/plating,/area/awaymission/BMPship1)
+"fk" = (/obj/structure/table/rack,/obj/item/weapon/cell/high,/obj/effect/floor_decal/industrial/warning{dir = 8},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
+"fl" = (/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced,/obj/structure/grille,/turf/simulated/floor/plating,/area/awaymission/BMPship3)
+"fm" = (/obj/machinery/door/airlock/silver{icon_state = "door_locked"; locked = 1},/turf/simulated/floor{tag = "icon-carpetside (EAST)"; icon_state = "carpetside"; dir = 4},/area/awaymission/BMPship2)
+"fn" = (/obj/effect/floor_decal/corner/red/diagonal,/mob/living/simple_animal/hostile/pirate,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"fo" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/light/small{dir = 8},/turf/simulated/floor/plating,/area/awaymission/BMPship2)
+"fp" = (/obj/machinery/door/window{base_state = "right"; dir = 4; icon_state = "right"},/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/turf/simulated/floor/plating,/area/awaymission/BMPship2)
+"fq" = (/obj/machinery/light,/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"fr" = (/obj/effect/gibspawner/generic,/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"fs" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"; tag = ""},/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"; tag = ""},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"ft" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0; tag = ""},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
+"fu" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0; tag = ""},/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
+"fv" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"; tag = ""},/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
+"fw" = (/obj/structure/window/reinforced{dir = 8},/turf/simulated/shuttle/plating,/area/awaymission/BMPship1)
+"fx" = (/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/turf/simulated/shuttle/plating,/area/awaymission/BMPship1)
+"fy" = (/obj/structure/table/rack,/obj/effect/floor_decal/industrial/warning{dir = 8},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
+"fz" = (/obj/machinery/power/fractal_reactor/fluff/converter{mapped_in = 1; power_generation_rate = 10000},/obj/structure/cable{icon_state = "0-4"; d2 = 4},/obj/structure/cable,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"fA" = (/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/carpet,/area/awaymission/BMPship3)
+"fB" = (/obj/effect/decal/cleanable/blood/xeno,/turf/simulated/floor/plating,/area/awaymission/BMPship2)
+"fC" = (/obj/item/weapon/wrench,/turf/simulated/floor/plating,/area/awaymission/BMPship2)
+"fD" = (/obj/structure/disposalpipe/segment{dir = 4; icon_state = "pipe-c"},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"fE" = (/obj/structure/disposalpipe/segment{dir = 4},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
+"fF" = (/obj/structure/mopbucket,/turf/simulated/shuttle/plating,/area/awaymission/BMPship1)
+"fG" = (/obj/structure/window/reinforced{dir = 4},/obj/item/weapon/material/kitchen/utensil/knife,/turf/simulated/shuttle/plating,/area/awaymission/BMPship1)
+"fH" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; pixel_y = 0; tag = ""},/obj/item/weapon/cell/high,/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
+"fI" = (/turf/simulated/shuttle/wall{icon_state = "swall_s"; dir = 1},/area/awaymission/BMPship3)
+"fJ" = (/obj/machinery/door/airlock/silver{icon_state = "door_locked"; locked = 1},/turf/simulated/floor{tag = "icon-carpetside"; icon_state = "carpetside"},/area/awaymission/BMPship3)
+"fK" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; pixel_y = 0; tag = ""},/obj/machinery/door/airlock/silver{icon_state = "door_locked"; locked = 1},/turf/simulated/floor{tag = "icon-carpetside"; icon_state = "carpetside"},/area/awaymission/BMPship3)
+"fL" = (/turf/simulated/shuttle/wall{icon_state = "swall"; dir = 4},/area/awaymission/BMPship3)
+"fM" = (/turf/simulated/shuttle/wall{icon_state = "swall_t"; dir = 4},/area/awaymission/BMPship2)
+"fN" = (/obj/item/weapon/reagent_containers/food/snacks/xenomeat,/turf/simulated/floor/plating,/area/awaymission/BMPship2)
+"fO" = (/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor{tag = "icon-panelscorched"; icon_state = "panelscorched"},/area/awaymission/BMPship2)
+"fP" = (/obj/structure/kitchenspike,/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"fQ" = (/obj/machinery/conveyor{dir = 4; id = "meatConvey2"},/obj/item/weapon/material/kitchen/utensil/knife,/turf/simulated/shuttle/plating,/area/awaymission/BMPship2)
+"fR" = (/obj/machinery/conveyor{dir = 4; id = "meatConvey2"},/obj/structure/plasticflaps,/turf/simulated/shuttle/plating,/area/awaymission/BMPship2)
+"fS" = (/obj/machinery/conveyor{dir = 4; id = "meatConvey2"},/turf/simulated/shuttle/plating,/area/awaymission/BMPship2)
+"fT" = (/obj/structure/disposalpipe/segment{dir = 8; icon_state = "pipe-c"},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"fU" = (/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced,/turf/simulated/shuttle/plating,/area/awaymission/BMPship1)
+"fV" = (/obj/structure/window/reinforced,/turf/simulated/shuttle/plating,/area/awaymission/BMPship1)
+"fW" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced,/turf/simulated/shuttle/plating,/area/awaymission/BMPship1)
+"fX" = (/obj/item/stack/cable_coil/random,/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
+"fY" = (/turf/simulated/floor/airless{tag = "icon-dmg1"; icon_state = "dmg1"},/area/awaymission/BMPship3)
+"fZ" = (/obj/structure/lattice,/turf/space,/area/awaymission/BMPship3)
+"ga" = (/turf/simulated/floor/airless{tag = "icon-dmg3"; icon_state = "dmg3"},/area/awaymission/BMPship3)
+"gb" = (/obj/item/stack/cable_coil/random{amount = 5},/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"; tag = ""},/turf/simulated/floor/airless,/area/awaymission/BMPship3)
+"gc" = (/obj/item/weapon/material/shard{icon_state = "small"},/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0; tag = ""},/turf/simulated/floor/airless,/area/awaymission/BMPship3)
+"gd" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0; tag = ""},/turf/simulated/floor/airless{tag = "icon-dmg2"; icon_state = "dmg2"},/area/awaymission/BMPship3)
+"ge" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"; tag = ""},/turf/simulated/floor/airless{tag = "icon-dmg3"; icon_state = "dmg3"},/area/awaymission/BMPship3)
+"gf" = (/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"; tag = ""},/obj/item/weapon/material/kitchen/utensil/knife,/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"gg" = (/obj/machinery/conveyor_switch/oneway{id = "meatConvey2"},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"gh" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"; tag = ""},/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
+"gi" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_y = 0; tag = ""},/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
+"gj" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"; tag = ""},/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
+"gk" = (/obj/item/weapon/mop,/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
+"gl" = (/obj/structure/reagent_dispensers/fueltank,/obj/effect/floor_decal/industrial/warning{dir = 4},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
+"gm" = (/turf/simulated/floor/airless{tag = "icon-dmg2"; icon_state = "dmg2"},/area/awaymission/BMPship3)
+"gn" = (/obj/item/weapon/material/shard,/turf/simulated/floor/airless{tag = "icon-dmg1"; icon_state = "dmg1"},/area/awaymission/BMPship3)
+"go" = (/obj/item/weapon/stool,/turf/simulated/floor/airless{tag = "icon-dmg3"; icon_state = "dmg3"},/area/awaymission/BMPship3)
+"gp" = (/turf/simulated/floor/airless,/area/awaymission/BMPship3)
+"gq" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; pixel_y = 0; tag = ""},/turf/simulated/floor/airless,/area/awaymission/BMPship3)
+"gr" = (/turf/simulated/floor{tag = "icon-plating"; icon_state = "plating"},/area/awaymission/BMPship2)
+"gs" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"; tag = ""},/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"gt" = (/obj/structure/closet/crate/freezer,/obj/item/weapon/reagent_containers/food/snacks/meat,/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
+"gu" = (/obj/item/weapon/reagent_containers/glass/bucket,/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
+"gv" = (/obj/structure/reagent_dispensers,/turf/simulated/floor/tiled/freezer,/area/awaymission/BMPship1)
+"gw" = (/turf/simulated/shuttle/wall{icon_state = "swall"; dir = 6},/area/awaymission/BMPship1)
+"gx" = (/turf/simulated/floor/airless{tag = "icon-dmg2"; icon_state = "dmg2"},/turf/simulated/shuttle/wall{dir = 3; icon_state = "swall_f10"; layer = 2; tag = "icon-swall_f10"},/area/awaymission/BMPship3)
+"gy" = (/obj/structure/frame{anchored = 1},/turf/simulated/floor/airless{tag = "icon-dmg2"; icon_state = "dmg2"},/area/awaymission/BMPship3)
+"gz" = (/obj/structure/frame{anchored = 1},/turf/simulated/floor/airless{tag = "icon-dmg1"; icon_state = "dmg1"},/area/awaymission/BMPship3)
+"gA" = (/obj/machinery/light/small,/obj/effect/floor_decal/corner/red/diagonal,/turf/simulated/floor/tiled,/area/awaymission/BMPship2)
+"gB" = (/turf/simulated/floor{tag = "icon-dmg3"; icon_state = "dmg3"},/area/awaymission/BMPship2)
+"gC" = (/turf/simulated/floor{tag = "icon-dmg1"; icon_state = "dmg1"},/area/awaymission/BMPship2)
+"gD" = (/obj/machinery/door/airlock/silver,/turf/simulated/floor,/area/awaymission/BMPship1)
+"gE" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/obj/machinery/door/airlock/silver,/turf/simulated/floor,/area/awaymission/BMPship1)
+"gF" = (/obj/machinery/door/unpowered/shuttle,/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; pixel_y = 0; tag = ""},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
+"gG" = (/obj/item/device/multitool,/turf/simulated/floor/airless{tag = "icon-dmg2"; icon_state = "dmg2"},/area/awaymission)
+"gH" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/obj/machinery/door/airlock/silver{icon_state = "door_locked"; locked = 1},/turf/simulated/floor/airless,/area/awaymission/BMPship3)
+"gI" = (/turf/simulated/shuttle/wall{icon_state = "swall_t"; dir = 2},/area/awaymission/BMPship2)
+"gJ" = (/turf/simulated/mineral,/area/awaymission/BMPship2)
+"gK" = (/turf/simulated/shuttle/wall,/area/awaymission/BMPship2)
+"gL" = (/turf/simulated/shuttle/wall{icon_state = "swall15"; dir = 2},/area/awaymission/BMPship2)
+"gM" = (/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
+"gN" = (/obj/machinery/light{dir = 1},/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
+"gO" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
+"gP" = (/obj/item/weapon/stool,/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
+"gQ" = (/obj/structure/table,/obj/item/weapon/paper{info = "DEAR DAIRY: So we was doing our typpical route when the captain says we've been picking up weird signals on some backwatter planet. Madsen wanted to stay on course but he ain't the captain, so we went out of the way to check it out. There was lots of rocks on the way, but we got to the planet fine. Found a big fancy camp with nobody around and this big metal donut thing with NT stamps all over it right in the middle. Case of beer too. Captain reckons we can pass it off to some buyer in the Syndicate. Ingram says it's bad luck and that someone is going to come look for it but it sounds like better money than selling bad meat to jerky companies."; name = "Old Diary"},/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
+"gR" = (/obj/structure/table,/obj/item/weapon/pen/red,/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
+"gS" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; pixel_y = 0; tag = ""},/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
+"gT" = (/obj/structure/closet,/obj/item/clothing/under/overalls,/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
+"gU" = (/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/grille,/turf/simulated/floor/reinforced,/area/awaymission/BMPship3)
+"gV" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/reinforced,/area/awaymission/BMPship3)
+"gW" = (/obj/structure/cable,/turf/simulated/floor/airless{tag = "icon-dmg3"; icon_state = "dmg3"},/area/awaymission/BMPship3)
+"gX" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/airless,/area/awaymission/BMPship3)
+"gY" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/awaymission/BMPship3)
+"gZ" = (/obj/structure/table/rack,/turf/simulated/floor/airless,/area/awaymission/BMPship3)
+"ha" = (/obj/machinery/light/small{dir = 1},/turf/simulated/mineral/floor/ignore_mapgen,/area/awaymission/BMPship3)
+"hb" = (/turf/simulated/shuttle/wall,/area/awaymission)
+"hc" = (/turf/simulated/shuttle/wall{icon_state = "swall_straight"; dir = 1},/area/awaymission)
+"hd" = (/turf/simulated/floor/airless,/area/awaymission)
+"he" = (/turf/simulated/floor/airless{tag = "icon-dmg1"; icon_state = "dmg1"},/area/awaymission)
+"hf" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/airless,/area/awaymission)
+"hg" = (/turf/simulated/floor/plating{tag = "icon-dmg3"; icon_state = "dmg3"},/area/awaymission)
+"hh" = (/obj/item/frame/apc,/turf/simulated/floor/airless,/area/awaymission)
+"hi" = (/obj/structure/ore_box,/obj/machinery/light/small{dir = 1},/turf/simulated/floor/airless,/area/awaymission)
+"hj" = (/obj/item/stack/cable_coil/random{amount = 5},/turf/simulated/floor/airless,/area/awaymission)
+"hk" = (/obj/structure/ore_box,/turf/simulated/floor/airless,/area/awaymission)
+"hl" = (/obj/machinery/computer/arcade,/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
+"hm" = (/obj/effect/decal/remains/human,/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"; tag = ""},/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
+"hn" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_y = 0; tag = ""},/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
+"ho" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"; tag = ""},/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"; tag = ""},/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
+"hp" = (/obj/structure/cable{d2 = 8; icon_state = "0-8"},/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
+"hq" = (/obj/effect/decal/remains/human,/obj/item/clothing/head/helmet/space/syndicate/green/dark,/obj/effect/gibspawner/generic,/turf/simulated/mineral/floor/ignore_mapgen,/area/awaymission)
+"hr" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/grille,/obj/item/weapon/material/shard{icon_state = "small"},/turf/simulated/floor/reinforced,/area/awaymission/BMPship3)
+"hs" = (/obj/machinery/door/unpowered/shuttle,/turf/simulated,/area/awaymission/BMPship3)
+"ht" = (/obj/effect/gibspawner/robot,/turf/simulated/floor/airless{tag = "icon-dmg2"; icon_state = "dmg2"},/area/awaymission/BMPship3)
+"hu" = (/turf/simulated/floor/airless{tag = "icon-dmg2"; icon_state = "dmg2"},/area/awaymission)
+"hv" = (/obj/effect/decal/mecha_wreckage/ripley,/turf/simulated/floor/airless,/area/awaymission)
+"hw" = (/obj/effect/landmark{name = "awaystart"},/turf/simulated/mineral/floor/ignore_mapgen,/area/awaymission)
+"hx" = (/obj/effect/landmark{name = "awaystart"},/turf/simulated/floor/plating{tag = "icon-dmg3"; icon_state = "dmg3"},/area/awaymission)
+"hy" = (/obj/effect/landmark{name = "awaystart"},/turf/simulated/floor/airless,/area/awaymission)
+"hz" = (/obj/structure/bed,/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
+"hA" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/obj/item/weapon/storage/wallet/random,/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
+"hB" = (/obj/structure/closet,/obj/item/clothing/under/lawyer/bluesuit,/obj/item/clothing/suit/apron,/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
+"hC" = (/obj/item/clothing/suit/space/syndicate/green/dark,/turf/simulated/mineral/floor/ignore_mapgen,/area/awaymission)
+"hD" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced,/obj/structure/grille,/turf/simulated/floor/reinforced,/area/awaymission/BMPship3)
+"hE" = (/obj/effect/gibspawner/robot,/turf/simulated/floor/airless{tag = "icon-dmg3"; icon_state = "dmg3"},/area/awaymission)
+"hF" = (/obj/structure/cable{icon_state = "0-4"; d2 = 4},/turf/simulated/floor/airless,/area/awaymission)
+"hG" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0; tag = ""},/turf/simulated/floor/airless,/area/awaymission)
+"hH" = (/obj/machinery/door/unpowered/shuttle,/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0; tag = ""},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"hI" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0; tag = ""},/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
+"hJ" = (/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"; tag = ""},/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
+"hK" = (/obj/item/weapon/material/shard{icon_state = "medium"},/turf/space,/area/awaymission/space)
+"hL" = (/obj/effect/decal/remains/human,/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
+"hM" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
+"hN" = (/obj/machinery/door/unpowered/shuttle,/turf/simulated/floor{icon_state = "cafeteria"; dir = 2},/area/awaymission/BMPship1)
+"hO" = (/obj/structure/mirror{pixel_y = 28},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
+"hP" = (/obj/structure/toilet{dir = 8},/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
+"hQ" = (/obj/item/weapon/caution,/turf/simulated/floor/airless,/area/awaymission)
+"hR" = (/obj/machinery/portable_atmospherics/canister/air,/turf/simulated/floor/airless,/area/awaymission)
+"hS" = (/obj/structure/closet/crate,/obj/item/weapon/spacecash/c10,/obj/item/weapon/spacecash/c200,/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
+"hT" = (/obj/structure/closet/crate,/obj/item/weapon/spacecash/c10,/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
+"hU" = (/obj/structure/sink{dir = 2},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
+"hV" = (/turf/simulated/floor/tiled,/turf/simulated/shuttle/wall{icon_state = "swall_c"; dir = 4},/area/awaymission/BMPship1)
+"hW" = (/obj/item/clothing/gloves/fyellow,/turf/simulated/mineral/floor/ignore_mapgen,/area/awaymission)
+"hX" = (/turf/simulated/shuttle/wall{icon_state = "swall_straight"; dir = 4},/area/awaymission)
+"hY" = (/obj/machinery/door/airlock/silver{icon_state = "door_locked"; locked = 1},/turf/simulated/floor,/area/awaymission/BMPship1)
+"hZ" = (/obj/item/weapon/storage/box/matches,/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,/turf/simulated/floor/plating,/area/awaymission/BMPship3)
+"ia" = (/obj/item/weapon/contraband/poster,/turf/simulated/floor/plating,/area/awaymission/BMPship3)
+"ib" = (/turf/simulated/shuttle/wall{icon_state = "swall_s"; dir = 8},/area/awaymission/BMPship3)
+"ic" = (/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,/turf/simulated/floor/plating,/area/awaymission/BMPship3)
+"id" = (/turf/simulated/floor/plating,/turf/simulated/shuttle/wall{dir = 2},/area/awaymission/BMPship3)
+"ie" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced,/obj/structure/grille,/turf/simulated/floor/reinforced,/area/awaymission/BMPship3)
 
 (1,1,1) = {"
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
@@ -435,117 +428,125 @@ aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
+abababababababacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacababababababab
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadadadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadadadadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadadadaeadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadadaeaeadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadadaeadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadaeaeadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadaeaeaeadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadaeaeaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaafaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaagahahaiahajaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakalamanaoapajaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaqamamarasasapajaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaataaaaaaaaaaaaaaaaaaaaaaaaaualavanasasasawajaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaataxayayayayayayayayayayayayayazaAaBayayayayayaCaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaataaataDaEaFaGaHaIaJaKaLaMaNaOaPaQaRaSaTaTaTaTaTaTaUaCaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaagahahaiahahahahahahahajaaaaaaaaaaaaataVaWaFaFaXaFaFaFaYaFaFaNaZbababbbababcbdbebabfbgaNaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeadadaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabhbibjanbkblbmblbmblbnboaaaaaaaaaaatbpaWaFbpaFaFaFaEaFbqbrbrbsbtbubabvbababwbxbybzbabgaNaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeadadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaqbAbBanbCasasasasasasbDaaaaaaataxaDaFbpaWaFbpaFaFaFaXaFaFaFaNaZbEbababababFbGbHbIbabJaNaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaubKbAanasbLbLbMbLbLbNbOaaaaaaaxaDbpbpaFbPbQaFaFaFbRbSbPbRbSaNaZbTbUbVbVbWbVbVbVbXbubYaNaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabObZcacbcccdcececececececececececfayayayayaAcgcgcgchayayayaycicjckclcmckckcncocpcqcrcsaNaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaagctcucucvcucwcxcyczcAcBcCcAcDcycEcwcFcGcHcIcEcEcEcEcJcKcLcJcMcNayayayayayayayaycOaAcPchcfaCaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaagctcucucucQcucwcEcRczcScScScTcDcEcEcwcUcUcUcVcEcEcEcEcWcWcEcWcEaNcXcXcYcZdadbdadcaNdddedddfaDaycOaCaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaagctcucucucudgdhcwcEcEczcSdicScScDcEcEdjdkdldmdncEcEcEcEcEcEdocEcEaNdpdqcYaDdrdsdtduaNdvdedddddwdxaNayayaCaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaagctcucudydzdAdBdCcwcEcEdDdEdEdFdEdGcEcEcwcEdHdIdIdIdIdIdIdIdIdIdJcEaNcYdKcYdfayayayaycidvdLdMdNdOdPaNdQdRdSaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaancucucudTdUdVdWdXcwdYdZeaeaeaeaeaeadJcEcwcEebcEecedededededededebcEaNcYeecYcYcYcYcYefaNegehbaeibadxejekdRdSaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaelemcucucucucucueneoeaepedededededeqercEescEebcEeteuetetetetevewexeyaDcYeeezeAeAeBcYcYaNeCehbaeDeEeFaNekdRdSaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeGeHeIcucucucucudCcwcEcEedeJeKeLeMeNebeOebcEebcEePedededededededebeQeReSeTeUeVeWeXcYcYaNeYehbaeibadxaNayayeZaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeGeHeIcucufafbfbfccwcEcEedeJeJeNeMeNfdeafeeaffcEcEcEcEcEfgcEcEcEebcEfhcYeefieVeVfjcYcYaNfkeheVeibadxaNayayaCaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaflcucucucucQcucucufmcEfnedfoeJeNfpeNebcEfqcEebcEcEfrcEcEcEcEcEcEfsdIftfufvfweWfxfjcYcYaNfyeheVfzeEeFaNekdRdSaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaancucucucucQcucufAcwdYcEedeJeNfBeMfCebcEcwcEebcEecedededededededebfDfEeSeTeUfFeVfGcYefaNegfHeVbabadxejekdRdSaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaafIahahbZfJfKfLahahfMcEcEedeNfNeNfOeNebfPcwcEebcEfQfRfSfSfSfSevewexfTaDcYeefUfVfVfWcYcYaNdvehddfXdddPaNekdRdSaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaafIfYfZgagbgcgdgecwcEcEedededededeqgfcEdjcEebcEggedededededededebcEaNdpghgigigigjcYgkaNdvehddddddglaNaDaDeZaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaatgmgnfZgogpgqcwcEcEcEcEcEcEcEcEgrcEcwcEgseaeaeaeaeaeadIdIdIepcEaNgtcYcYcYcYeegugvaNdvehddgwaDaDaDeZaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeaaaaataaaaaaaagxgygzgagqcwcEgAcEcEcEcEgBcEgCgBcwcEgAcEcEcEgAcEcEcEcEgAcEcEcNayaAgDchaAgEchayazaAgFchaDeZaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadaeaaataagGataabOahahbOgHgIcecececececececegJgKgLcecececececececececececececigMgMgMgMgNgOgPgQgRgNgSgTaNaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadaeaaaaaaaaaagUalgVbOgWgXgYgZfYhagahbadadadadhcaeaehdheaehfhdaehghhhihjhkaNhlgMgMgMgMhmhnhnhnhnhohpaNaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadhqaaaaaaaaaahramamhsgpgmgpgYhtgpgYadadadadadadhbaehuhvhdhwhxhyhyhdhdhdhdaNgPgMgMhzgMhAgMhzgMgMgMhBaNaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadaehCaaaaaaaaaahDalambOgagagYfYgYgagYhbadadadhbadadadaehEaehyhyhyhyhdhdhFhGhHhIhIhIhIhIhJgMgMgMgwayayciaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaaaaaaaahKaebOahahahahahadgYhbadadadadadadadadadadadhehuhyhyhwhyhdhuhdhdaNgMgMhLhMgMhzgMhzgMhNhOhPaNaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeadadadadadadadadadadadadadadadadadadadhbaehuhdhdhghQhQhQhRaNhShTgMgMgMgMgMgMgMaNhUhVeZaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahWaeaeaeadadadadadadadadadadadhbadadadadadadadadhXhXhXhXhXhXhXhXhXayayayayaDaAhYaDayayazayeZaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeaeadadadadadadadadadadadadadadadadadadadadadadadadaeaeaaaaaaaaaabhalgVanhZasiabOibaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeaeaeadadadadadadadadadadadadadadadadadadadadadadadadaeaeaaaaaaaaaaaqamamarasicidibaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeaeaeadadadadadadadadadadadadadadadadadadadadadadadadaeaeaaaaaaaaaaiealambOaoidibaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeadadaeaeadadadadadadadadadadadadadadadadadadadadadadadadaeaeaaaaaaaaaabOahahcbahibaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadaeaeaeadadadadadadadadadadadadadadadadadadadadadadadaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadadaeaeadadadadadadadadadadadadadadadadadadadadadadaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadadaeaeaeadadadadadadadadadadadadadadadadadadadadadaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadadaeaeaeadadadadadadadadadadadadadadadadadadadadaeaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadadaeaeaeadadadadadadadadadadadadadadadadadadaeaeaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadadaeaeaeadadadadadadadadadadadadadadadadaeaeaeaeadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadaeaeaeaeadadadadadadadadadadadadadadadaeaeadadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadaeaeaeaeaeaeadadadadadadadadadadadadaeaeaeaeadadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeaeaeaeadadadadadadadadaeaeaeaeaaaaaaadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeaeaeaeaeaeaeaeaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+abababababababacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacababababababab
 aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacacacadacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacacadadacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacacadacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacadadacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacadadadacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaafagagahagaiaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaajakalamanaoaiaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaapalalaqararaoaiaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasaaaaaaaaaaaaaaaaaaaaaaaaatakauamarararavaiaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasawaxaxaxaxaxaxaxaxaxaxaxaxaxayazaAaxaxaxaxaxaBaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasaaasaCaDaEaFaGaHaIaJaKaLaMaNaOaPaQaRaSaSaSaSaSaSaTaBaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaafagagahagagagagagagagaiaaaaaaaaaaaaasaUaVaEaEaWaEaEaEaXaEaEaMaYaZaZbaaZaZbbbcbdaZbebfaMaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadacacadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabgbhbiambjbkblbkblbkbmbnaaaaaaaaaaasboaVaEboaEaEaEaDaEbpbqbqbrbsbtaZbuaZaZbvbwbxbyaZbfaMaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaapbzbAambBararararararbCaaaaaaasawaCaEboaVaEboaEaEaEaWaEaEaEaMaYbDaZaZaZaZbEbFbGbHaZbIaMaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaatbJbzamarbKbKbLbKbKbMbNaaaaaaawaCboboaEbObPaEaEaEbQbRbObQbRaMaYbSbTbUbUbVbUbUbUbWbtbXaMaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabNbYbZcacbcccdcdcdcdcdcdcdcdcdcdceaxaxaxaxazcfcfcfcgaxaxaxaxchcicjckclcjcjcmcncocpcqcraMaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaafcsctctcuctcvcwcxcyczcAcBczcCcxcDcvcEcFcGcHcDcDcDcDcIcJcKcIcLcMaxaxaxaxaxaxaxaxcNazcOcgceaBaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaafcsctctctcPctcvcDcQcycRcRcRcScCcDcDcvcTcTcTcUcDcDcDcDcVcVcDcVcDaMcWcWcXcYcZdacZdbaMdcdddcdeaCaxcNaBaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaafcsctctctctdfdgcvcDcDcycRdhcRcRcCcDcDdidjdkdldmcDcDcDcDcDcDdncDcDaMdodpcXaCdqdrdsdtaMdudddcdcdvdwaMaxaxaBaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaafcsctctdxdydzdAdBcvcDcDdCdDdDdEdDdFcDcDcvcDdGdHdHdHdHdHdHdHdHdHdIcDaMcXdJcXdeaxaxaxaxchdudKdLdMdNdOaMdPdQdRaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaamctctctdSdTdUdVdWcvdXdYdZdZdZdZdZdZdIcDcvcDeacDebecececececececeacDaMcXedcXcXcXcXcXeeaMefegaZehaZdweiejdQdRaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaekelctctctctctctemendZeoecececececepeqcDercDeacDeseteseseseseuevewexaCcXedeyezezeAcXcXaMeBegaZeCeDeEaMejdQdRaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeFeGeHctctctctctdBcvcDcDeceIeJeKeLeMeaeNeacDeacDeOecececececececeaePeQeReSeTeUeVeWcXcXaMeXegaZehaZdwaMaxaxeYaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeFeGeHctcteZfafafbcvcDcDeceIeIeMeLeMfcdZfddZfecDcDcDcDcDffcDcDcDeacDfgcXedfheUeUficXcXaMfjegeUehaZdwaMaxaxaBaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaafkctctctctcPctctctflcDfmecfneIeMfoeMeacDfpcDeacDcDfqcDcDcDcDcDcDfrdHfsftfufveVfwficXcXaMfxegeUfyeDeEaMejdQdRaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaamctctctctcPctctfzcvdXcDeceIeMfAeLfBeacDcvcDeacDebecececececececeafCfDeReSeTfEeUfFcXeeaMeffGeUaZaZdweiejdQdRaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaafHagagbYfIfJfKagagfLcDcDeceMfMeMfNeMeafOcvcDeacDfPfQfRfRfRfReuevewfSaCcXedfTfUfUfVcXcXaMduegdcfWdcdOaMejdQdRaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaafHfXfYfZgagbgcgdcvcDcDecececececepgecDdicDeacDgfecececececececeacDaMdoggghghghgicXgjaMduegdcdcdcgkaMaCaCeYaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasglgmfYgngogpcvcDcDcDcDcDcDcDcDgqcDcvcDgrdZdZdZdZdZdZdHdHdHeocDaMgscXcXcXcXedgtguaMduegdcgvaCaCaCeYaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadaaaaasaaaaaaaagwgxgyfZgpcvcDgzcDcDcDcDgAcDgBgAcvcDgzcDcDcDgzcDcDcDcDgzcDcDcMaxazgCcgazgDcgaxayazgEcgaCeYaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacadaaasaagFasaabNagagbNgGgHcdcdcdcdcdcdcdcdgIgJgKcdcdcdcdcdcdcdcdcdcdcdcdcdchgLgLgLgLgMgNgOgPgQgMgRgSaMaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacadaaaaaaaaaagTakgUbNgVgWgXgYfXgZfZhaacacacachbadadhchdadhehcadhfhghhhihjaMhkgLgLgLgLhlhmhmhmhmhnhoaMaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacachpaaaaaaaaaahqalalhrgoglgogXhsgogXacacacacacachaadhthuhchvhwhxhxhchchchcaMgOgLgLhygLhzgLhygLgLgLhAaMaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacadhBaaaaaaaaaahCakalbNfZfZgXfXgXfZgXhaacacachaacacacadhDadhxhxhxhxhchchEhFhGhHhHhHhHhHhIgLgLgLgvaxaxchaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadaaaaaaaahJadbNagagagagagacgXhaacacacacacacacacacacachdhthxhxhvhxhchthchcaMgLgLhKhLgLhygLhygLhMhNhOaMaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadacacacacacacacacacacacacacacacacacacachaadhthchchfhPhPhPhQaMhRhSgLgLgLgLgLgLgLaMhThUeYaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahVadadadacacacacacacacacacacachaacacacacacacacachWhWhWhWhWhWhWhWhWaxaxaxaxaCazhXaCaxaxayaxeYaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadacacacacacacacacacacacacacacacacacacacacacacacacadadaaaaaaaaaabgakgUamhYarhZbNiaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadadacacacacacacacacacacacacacacacacacacacacacacacacadadaaaaaaaaaaapalalaqaribiciaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadadacacacacacacacacacacacacacacacacacacacacacacacacadadaaaaaaaaaaidakalbNaniciaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadacacadadacacacacacacacacacacacacacacacacacacacacacacacacadadaaaaaaaaaabNagagcaagiaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacadadadacacacacacacacacacacacacacacacacacacacacacacacadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacacadadacacacacacacacacacacacacacacacacacacacacacacadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacacadadadacacacacacacacacacacacacacacacacacacacacacadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacacadadadacacacacacacacacacacacacacacacacacacacacadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacacadadadacacacacacacacacacacacacacacacacacacadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacacadadadacacacacacacacacacacacacacacacacadadadadacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacadadadadacacacacacacacacacacacacacacacadadacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacadadadadadadacacacacacacacacacacacacadadadadacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadadadacacacacacacacacadadadadaaaaaaacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadadadadadadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}

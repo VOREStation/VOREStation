@@ -207,3 +207,4 @@
 
 	var/list/active_genes=list()
 	var/mob_size = MOB_MEDIUM
+	var/disconnect_time = null		//Time of client loss, set by Logout(), for timekeeping

@@ -42,8 +42,6 @@
 			<I>This spell temporarly blinds a single person and does not require wizard garb.</I><BR>
 			<A href='byond://?src=\ref[src];spell_choice=subjugation'>Subjugation</A> (30)<BR>
 			<I>This spell temporarily subjugates a target's mind and does not require wizard garb.</I><BR>
-			<A href='byond://?src=\ref[src];spell_choice=mindswap'>Mind Transfer</A> (60)<BR>
-			<I>This spell allows the user to switch bodies with a target. Careful to not lose your memory in the process.</I><BR>
 			<A href='byond://?src=\ref[src];spell_choice=forcewall'>Forcewall</A> (10)<BR>
 			<I>This spell creates an unbreakable wall that lasts for 30 seconds and does not need wizard garb.</I><BR>
 			<A href='byond://?src=\ref[src];spell_choice=blink'>Blink</A> (2)<BR>
@@ -56,8 +54,6 @@
 			<I>This spell creates your ethereal form, temporarily making you invisible and able to pass through walls.</I><BR>
 			<A href='byond://?src=\ref[src];spell_choice=knock'>Knock</A> (10)<BR>
 			<I>This spell opens nearby doors and does not require wizard garb.</I><BR>
-			<A href='byond://?src=\ref[src];spell_choice=horseman'>Curse of the Horseman</A> (15)<BR>
-			<I>This spell will curse a person to wear an unremovable horse mask (it has glue on the inside) and speak like a horse. It does not require wizard garb.</I><BR>
 			<A href='byond://?src=\ref[src];spell_choice=noclothes'>Remove Clothes Requirement</A> <b>Warning: this takes away 2 spell choices.</b><BR>
 			<HR>
 			<B>Artefacts:</B><BR>
@@ -174,10 +170,10 @@
 							feedback_add_details("wizard_spell_learned","SJ") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
 							H.add_spell(new/spell/targeted/subjugation)
 							temp = "You have learned subjugate."
-						if("mindswap")
-							feedback_add_details("wizard_spell_learned","MT") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
-							H.add_spell(new/spell/targeted/mind_transfer)
-							temp = "You have learned mindswap."
+//						if("mindswap")
+//							feedback_add_details("wizard_spell_learned","MT") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
+//							H.add_spell(new/spell/targeted/mind_transfer)
+//							temp = "You have learned mindswap."
 						if("forcewall")
 							feedback_add_details("wizard_spell_learned","FW") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
 							H.add_spell(new/spell/aoe_turf/conjure/forcewall)
@@ -202,10 +198,10 @@
 							feedback_add_details("wizard_spell_learned","KN") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
 							H.add_spell(new/spell/aoe_turf/knock)
 							temp = "You have learned knock."
-						if("horseman")
-							feedback_add_details("wizard_spell_learned","HH") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
-							H.add_spell(new/spell/targeted/equip_item/horsemask)
-							temp = "You have learned curse of the horseman."
+//						if("horseman")
+//							feedback_add_details("wizard_spell_learned","HH") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
+//							H.add_spell(new/spell/targeted/equip_item/horsemask)
+//							temp = "You have learned curse of the horseman."
 						if("mentalfocus")
 							feedback_add_details("wizard_spell_learned","MF") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
 							new /obj/item/weapon/gun/energy/staff/focus(get_turf(H))

@@ -116,7 +116,7 @@ Don't use ranged mobs for vore mobs.
 		return
 
 	if(target_mob.lying && target_mob.size_multiplier >= min_size && target_mob.size_multiplier <= max_size && !(target_mob in prey_exclusions))
-		if(!capacity || (target_mob.size_multiplier + fullness) < capacity)
+		if(!capacity || (target_mob.size_multiplier + fullness) <= capacity)
 			stance = HOSTILE_STANCE_EATING
 			stop_automated_movement = 1
 			animal_nom(target_mob)
@@ -140,6 +140,9 @@ Don't use ranged mobs for vore mobs.
 	icon_dead = "snake-dead"
 	icon_living = "snake"
 	icon_state = "snake"
+	old_x = -16
+	old_y = -16
 	pixel_x = -16
+	pixel_y = -16
 	maxHealth = 200
 	health = 200
