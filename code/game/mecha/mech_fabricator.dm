@@ -145,43 +145,32 @@
 	if(default_part_replacement(user, I))
 		return
 
-	var/material
-	switch(I.type)
-		if(/obj/item/stack/material/gold)
-			material = "gold"
-		if(/obj/item/stack/material/silver)
-			material = "silver"
-		if(/obj/item/stack/material/diamond)
-			material = "diamond"
-		if(/obj/item/stack/material/phoron)
-			material = "phoron"
-		if(/obj/item/stack/material/steel)
-			material = DEFAULT_WALL_MATERIAL
-		if(/obj/item/stack/material/glass)
-			material = "glass"
-		if(/obj/item/stack/material/uranium)
-			material = "uranium"
+	if(istype(I,/obj/item/stack/material))
+		var/obj/item/stack/material/S = I
+		if(!S.material in materials)
+			user << "<span class='warning>The [src] doesn't accept [S.material]!</span>"
+			return
+
+		var/sname = "[S.name]"
+		var/amnt = S.perunit
+		if(materials[S.material.name] + amnt <= res_max_amount)
+			if(S && S.amount >= 1)
+				var/count = 0
+				overlays += "fab-load-metal"
+				spawn(10)
+					overlays -= "fab-load-metal"
+				while(materials[S.material.name] + amnt <= res_max_amount && S.amount >= 1)
+					materials[S.material.name] += amnt
+					S.use(1)
+					count++
+				user << "You insert [count] [sname] into the fabricator."
+				update_busy()
 		else
-			return ..()
+			user << "The fabricator cannot hold more [sname]."
 
-	var/obj/item/stack/material/stack = I
-	var/sname = "[stack.name]"
-	var/amnt = stack.perunit
+		return
 
-	if(materials[material] + amnt <= res_max_amount)
-		if(stack && stack.amount >= 1)
-			var/count = 0
-			overlays += "fab-load-metal"
-			spawn(10)
-				overlays -= "fab-load-metal"
-			while(materials[material] + amnt <= res_max_amount && stack.amount >= 1)
-				materials[material] += amnt
-				stack.use(1)
-				count++
-			user << "You insert [count] [sname] into the fabricator."
-			update_busy()
-	else
-		user << "The fabricator cannot hold more [sname]."
+	..()
 
 /obj/machinery/mecha_part_fabricator/emag_act(var/remaining_charges, var/mob/user)
 	switch(emagged)
@@ -288,36 +277,20 @@
 
 /obj/machinery/mecha_part_fabricator/proc/eject_materials(var/material, var/amount) // 0 amount = 0 means ejecting a full stack; -1 means eject everything
 	var/recursive = amount == -1 ? 1 : 0
-	material = lowertext(material)
-	var/mattype
-	switch(material)
-		if(DEFAULT_WALL_MATERIAL)
-			mattype = /obj/item/stack/material/steel
-		if("glass")
-			mattype = /obj/item/stack/material/glass
-		if("gold")
-			mattype = /obj/item/stack/material/gold
-		if("silver")
-			mattype = /obj/item/stack/material/silver
-		if("diamond")
-			mattype = /obj/item/stack/material/diamond
-		if("phoron")
-			mattype = /obj/item/stack/material/phoron
-		if("uranium")
-			mattype = /obj/item/stack/material/uranium
-		else
-			return
-	var/obj/item/stack/material/S = new mattype(loc)
+	var/matstring = lowertext(material)
+	var/material/M = get_material_by_name(matstring)
+
+	var/obj/item/stack/material/S = M.place_sheet(get_turf(src))
 	if(amount <= 0)
 		amount = S.max_amount
-	var/ejected = min(round(materials[material] / S.perunit), amount)
+	var/ejected = min(round(materials[matstring] / S.perunit), amount)
 	S.amount = min(ejected, amount)
 	if(S.amount <= 0)
 		qdel(S)
 		return
-	materials[material] -= ejected * S.perunit
-	if(recursive && materials[material] >= S.perunit)
-		eject_materials(material, -1)
+	materials[matstring] -= ejected * S.perunit
+	if(recursive && materials[matstring] >= S.perunit)
+		eject_materials(matstring, -1)
 	update_busy()
 
 /obj/machinery/mecha_part_fabricator/proc/sync()
