@@ -154,7 +154,7 @@
 
 	src << "<span class='notice'>Performing self-diagnostic, please wait...</span>"
 	sleep(50)
-	var/output = "<span class='notice'>Self-Diagnostic Results:\n"
+	var/output = "<span class='notice'>Self-Diagnostic Results:\n</span>"
 
 	for(var/obj/item/organ/external/EO in organs)
 		if(EO.brute_dam || EO.burn_dam)
