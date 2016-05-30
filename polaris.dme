@@ -41,6 +41,7 @@
 #include "code\_compatibility\509\JSON Writer.dm"
 #include "code\_compatibility\509\text.dm"
 #include "code\_compatibility\509\type2type.dm"
+#include "code\_helpers\_global_objects.dm"
 #include "code\_helpers\atmospherics.dm"
 #include "code\_helpers\datum_pool.dm"
 #include "code\_helpers\files.dm"

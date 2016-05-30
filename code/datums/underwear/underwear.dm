@@ -41,6 +41,12 @@ datum/category_group/underwear/dd_SortValue()
 	var/is_default = FALSE           // Should this entry be considered the default for its type?
 	var/icon = 'icons/mob/human.dmi' // Which icon to get the underwear from
 	var/icon_state                   // And the particular item state
+	var/list/tweaks = list()         // Underwear customizations.
+	var/has_color = FALSE
+
+/datum/category_item/underwear/New()
+	if(has_color)
+		tweaks += gear_tweak_free_color_choice
 
 /datum/category_item/underwear/dd_SortValue()
 	if(always_last)
@@ -50,7 +56,11 @@ datum/category_group/underwear/dd_SortValue()
 /datum/category_item/underwear/proc/is_default(var/gender)
 	return is_default
 
-/datum/category_item/underwear/proc/apply_to_icon(var/icon/I)
+/datum/category_item/underwear/proc/generate_image(var/list/metadata)
 	if(!icon_state)
 		return
-	I.Blend(new /icon('icons/mob/human.dmi', icon_state), ICON_OVERLAY)
+
+	var/image/I = image(icon = 'icons/mob/human.dmi', icon_state = icon_state)
+	for(var/datum/gear_tweak/gt in tweaks)
+		gt.tweak_item(I, metadata && metadata["[gt]"] ? metadata["[gt]"] : gt.get_default())
+	return I

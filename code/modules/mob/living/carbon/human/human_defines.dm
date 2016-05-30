@@ -34,6 +34,7 @@
 	var/synthetic		//If they are a synthetic (aka synthetic torso)
 
 	var/list/all_underwear = list()
+	var/list/all_underwear_metadata = list()
 	var/backbag = 2		//Which backpack type the player has chosen. Nothing, Satchel or Backpack.
 	var/pdachoice = 1	//Which PDA type the player has chosen. Default, Slim, or Old.
 
