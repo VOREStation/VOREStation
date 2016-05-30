@@ -84,6 +84,7 @@ var/global/list/struggle_sounds = list(
 	var/paths
 
 	// Body Markings
+	paths = typesof(/datum/sprite_accessory/body_markings, body_markings_list)
 	for(var/path in paths)
 		var/datum/sprite_accessory/body_markings/instance = new path()
 		markings_styles_list[path] = instance
