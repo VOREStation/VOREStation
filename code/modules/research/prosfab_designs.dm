@@ -48,7 +48,6 @@
 
 //////////////////// Prosthetics ////////////////////
 /datum/design/item/prosfab/pros/torso
-	build_path = /obj/item/organ/external/chest
 	time = 35
 	materials = list(DEFAULT_WALL_MATERIAL = 60000, "glass" = 10000, "plasteel" = 2000)
 	req_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 3, TECH_DATA = 3)
@@ -57,11 +56,15 @@
 /datum/design/item/prosfab/pros/torso/male
 	name = "FBP torso (M)"
 	id = "pros_torso_m"
+	build_path = /obj/item/organ/external/chest
 	gender = MALE
+
+/obj/item/organ/external/chest/f //To satisfy Travis. :|
 
 /datum/design/item/prosfab/pros/torso/female
 	name = "FBP torso (F)"
 	id = "pros_torso_f"
+	build_path = /obj/item/organ/external/chest/f
 	gender = FEMALE
 
 /datum/design/item/prosfab/pros/head
