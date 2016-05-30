@@ -223,12 +223,12 @@
 	icobase = 'icons/mob/human_races/r_vulpkanin.dmi'
 	deform = 'icons/mob/human_races/r_vulpkanin.dmi'
 //	path = /mob/living/carbon/human/vulpkanin
-	default_language = "Sol Common"
-	language = "Canilunzt"
+//	default_language = "Sol Common"
+	secondary_langs = list("Canilunzt")
+	name_language = "Canilunzt"
 	primitive_form = "Wolpin"
 	tail = "vulptail"
-//	tail_animation = 'icons/mob/species/vulpkanin/tail.dmi' // this will need to be changed.
-	icobase_tail = 1
+	tail_animation = 'icons/mob/species/vulpkanin/tail.dmi' // probably need more than just one of each, but w/e
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	darksight = 5 //worse than cats, but better than lizards. -- Poojawa
 	gluttonous = 1

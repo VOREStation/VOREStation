@@ -27,7 +27,7 @@
 
 /datum/language/vulpkanin
 	name = "Canilunzt"
-	desc = "The guttural language spoken and utilized by the inhabitants of Vazzend system, composed of growls, barks, yaps, and heavy utilization of ears and tail movements.Vulpkanin speak this language with ease."
+	desc = "The guttural language spoken and utilized by the inhabitants of Vazzend system, composed of growls, barks, yaps, and heavy utilization of ears and tail movements. Vulpkanin speak this language with ease."
 	speech_verb = "rrrfts"
 	ask_verb = "rurs"
 	exclaim_verb = "barks"

@@ -29,7 +29,7 @@
 		"Sergal"			= 'icons/obj/clothing/species/sergal/hats.dmi',
 		"Flatland Zorren"	= 'icons/obj/clothing/species/fennec/hats.dmi',
 		"Highlander Zorren"	= 'icons/obj/clothing/species/fox/hats.dmi',
-		"Vulpkanin"			= 'icons/mob/species/vulpkanin/helmet.dmi'
+		"Vulpkanin"				= 'icons/mob/species/vulpkanin/helmet.dmi'
 		)
 
 /obj/item/clothing/suit/space/void
@@ -46,6 +46,8 @@
 		"Vulpkanin"				= 'icons/mob/species/vulpkanin/suit.dmi'
 		)
 
+
+
 	sprite_sheets_obj = list(
 		"Tajara"			= 'icons/obj/clothing/species/tajaran/suits.dmi', // Copied from void.dm
 		"Skrell"			= 'icons/obj/clothing/species/skrell/suits.dmi',  // Copied from void.dm
@@ -56,12 +58,12 @@
 		"Sergal"			= 'icons/obj/clothing/species/sergal/suits.dmi',
 		"Flatland Zorren"	= 'icons/obj/clothing/species/fennec/suits.dmi',
 		"Highlander Zorren"	= 'icons/obj/clothing/species/fox/suits.dmi',
-		"Vulpkanin"			= 'icons/mob/species/vulpkanin/helmet.dmi')
+		"Vulpkanin"			= 'icons/mob/species/vulpkanin/helmet.dmi'
 		)
+
 
 	// This is a hack to prevent the item_state variable on the suits from taking effect
 	// when the item is equipped in outer clothing slot.
 	// This variable is normally used to set the icon_override when the suit is refitted,
 	// however the species spritesheet now means we no longer need that anyway!
 	sprite_sheets_refit = list()
->>>>>>> refs/remotes/VOREStation/master
