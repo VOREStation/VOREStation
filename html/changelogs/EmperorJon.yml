@@ -1,7 +1,0 @@
-author: EmperorJon
-
-delete-after: True
-
-changes: 
-  - rscadd: "Ports Baystation's setup screen changes, thanks to PsiOmegaDelta."
-  - rscadd: "Includes character preview with toggleable equipment, visible loadout items, ghost character sprites, and custom colour underwear. Your underwear will have reset, so you'll need to set it back."
