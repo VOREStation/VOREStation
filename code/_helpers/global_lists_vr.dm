@@ -4,7 +4,7 @@
 
 var/global/list/ear_styles_list = list()	// Stores /datum/sprite_accessory/ears indexed by type
 var/global/list/tail_styles_list = list()	// Stores /datum/sprite_accessory/tail indexed by type
-var/global/list/body_markings_styles_list = list()	// Stores /datum/sprite_accessory/body_markings indexed by type
+var/global/list/markings_styles_list = list()	// Stores /datum/sprite_accessory/body_markings indexed by type
 
 //stores numeric player size options indexed by name
 var/global/list/player_sizes_list = list(
@@ -84,10 +84,9 @@ var/global/list/struggle_sounds = list(
 	var/paths
 
 	// Body Markings
-	paths = typesof(/datum/sprite_accessory/body_markings) - /datum/sprite_accessory/body_markings
 	for(var/path in paths)
 		var/datum/sprite_accessory/body_markings/instance = new path()
-		body_markings_styles_list[path] = instance
+		markings_styles_list[path] = instance
 	return 1 // Hooks must return 1
 
 	// Custom Ears

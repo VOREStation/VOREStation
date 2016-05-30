@@ -1,1 +1,3 @@
 #define ECO_MODIFIER 10
+
+#define APPEARANCE_MARKINGS 0x200
