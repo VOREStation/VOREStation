@@ -2,7 +2,7 @@
 	icon = 'icons/obj/robotics.dmi'
 	icon_state = "fab-idle"
 	name = "Exosuit Fabricator"
-	desc = "A machine used for construction of robotcs and mechas."
+	desc = "A machine used for construction of mechas."
 	density = 1
 	anchored = 1
 	use_power = 1
@@ -23,7 +23,6 @@
 
 	var/list/categories = list()
 	var/category = null
-	var/manufacturer = null
 	var/sync_message = ""
 
 /obj/machinery/mecha_part_fabricator/New()
@@ -41,7 +40,6 @@
 	return
 
 /obj/machinery/mecha_part_fabricator/initialize()
-	manufacturer = basic_robolimb.company
 	update_categories()
 
 /obj/machinery/mecha_part_fabricator/process()
@@ -99,13 +97,6 @@
 	data["buildable"] = get_build_options()
 	data["category"] = category
 	data["categories"] = categories
-	if(all_robolimbs)
-		var/list/T = list()
-		for(var/A in all_robolimbs)
-			var/datum/robolimb/R = all_robolimbs[A]
-			T += list(list("id" = A, "company" = R.company))
-		data["manufacturers"] = T
-		data["manufacturer"] = manufacturer
 	data["materials"] = get_materials()
 	data["maxres"] = res_max_amount
 	data["sync"] = sync_message
@@ -132,10 +123,6 @@
 	if(href_list["category"])
 		if(href_list["category"] in categories)
 			category = href_list["category"]
-
-	if(href_list["manufacturer"])
-		if(href_list["manufacturer"] in all_robolimbs)
-			manufacturer = href_list["manufacturer"]
 
 	if(href_list["eject"])
 		eject_materials(href_list["eject"], text2num(href_list["amount"]))
@@ -254,7 +241,7 @@
 	for(var/M in D.materials)
 		materials[M] = max(0, materials[M] - D.materials[M] * mat_efficiency)
 	if(D.build_path)
-		var/obj/new_item = D.Fabricate(loc, src)
+		var/obj/new_item = D.Fabricate(get_step(get_turf(src), src.dir), src)
 		visible_message("\The [src] pings, indicating that \the [D] is complete.", "You hear a ping.")
 		if(mat_efficiency != 1)
 			if(new_item.matter && new_item.matter.len > 0)

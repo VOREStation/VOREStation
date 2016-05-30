@@ -206,60 +206,6 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/weapon/storage/part_replacer
 	sort_string = "CBAAA"
 
-/datum/design/item/powercell
-	build_type = PROTOLATHE | MECHFAB
-
-/datum/design/item/powercell/AssembleDesignName()
-	name = "Power cell model ([item_name])"
-
-/datum/design/item/powercell/AssembleDesignDesc()
-	if(build_path)
-		var/obj/item/weapon/cell/C = build_path
-		desc = "Allows the construction of power cells that can hold [initial(C.maxcharge)] units of energy."
-
-/datum/design/item/powercell/Fabricate()
-	var/obj/item/weapon/cell/C = ..()
-	C.charge = 0 //shouldn't produce power out of thin air.
-	return C
-
-/datum/design/item/powercell/basic
-	name = "basic"
-	build_type = PROTOLATHE | MECHFAB
-	id = "basic_cell"
-	req_tech = list(TECH_POWER = 1)
-	materials = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 50)
-	build_path = /obj/item/weapon/cell
-	category = "Misc"
-	sort_string = "DAAAA"
-
-/datum/design/item/powercell/high
-	name = "high-capacity"
-	build_type = PROTOLATHE | MECHFAB
-	id = "high_cell"
-	req_tech = list(TECH_POWER = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 60)
-	build_path = /obj/item/weapon/cell/high
-	category = "Misc"
-	sort_string = "DAAAB"
-
-/datum/design/item/powercell/super
-	name = "super-capacity"
-	id = "super_cell"
-	req_tech = list(TECH_POWER = 3, TECH_MATERIAL = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 70)
-	build_path = /obj/item/weapon/cell/super
-	category = "Misc"
-	sort_string = "DAAAC"
-
-/datum/design/item/powercell/hyper
-	name = "hyper-capacity"
-	id = "hyper_cell"
-	req_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
-	materials = list(DEFAULT_WALL_MATERIAL = 400, "gold" = 150, "silver" = 150, "glass" = 70)
-	build_path = /obj/item/weapon/cell/hyper
-	category = "Misc"
-	sort_string = "DAAAD"
-
 /datum/design/item/hud
 	materials = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
 
@@ -651,7 +597,7 @@ other types of metals and chemistry for reagents).
 	name = "Positronic brain"
 	id = "posibrain"
 	req_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 6, TECH_BLUESPACE = 2, TECH_DATA = 4)
-	build_type = PROTOLATHE | MECHFAB
+	build_type = PROTOLATHE | PROSFAB
 	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 1000, "silver" = 1000, "gold" = 500, "phoron" = 500, "diamond" = 100)
 	build_path = /obj/item/device/mmi/digital/posibrain
 	category = "Misc"
@@ -661,7 +607,7 @@ other types of metals and chemistry for reagents).
 	name = "Man-machine interface"
 	id = "mmi"
 	req_tech = list(TECH_DATA = 2, TECH_BIO = 3)
-	build_type = PROTOLATHE | MECHFAB
+	build_type = PROTOLATHE | PROSFAB
 	materials = list(DEFAULT_WALL_MATERIAL = 1000, "glass" = 500)
 	build_path = /obj/item/device/mmi
 	category = "Misc"
@@ -671,7 +617,7 @@ other types of metals and chemistry for reagents).
 	name = "Radio-enabled man-machine interface"
 	id = "mmi_radio"
 	req_tech = list(TECH_DATA = 2, TECH_BIO = 4)
-	build_type = PROTOLATHE | MECHFAB
+	build_type = PROTOLATHE | PROSFAB
 	materials = list(DEFAULT_WALL_MATERIAL = 1200, "glass" = 500)
 	build_path = /obj/item/device/mmi/radio_enabled
 	category = "Misc"
@@ -945,6 +891,13 @@ CIRCUITS BELOW
 	req_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
 	build_path = /obj/item/weapon/circuitboard/mechfab
 	sort_string = "HABAE"
+
+/datum/design/circuit/prosfab
+	name = "prosthetics fabricator"
+	id = "prosfab"
+	req_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
+	build_path = /obj/item/weapon/circuitboard/prosthetics
+	sort_string = "HABAF"
 
 /datum/design/circuit/mech_recharger
 	name = "mech recharger"

@@ -70,6 +70,8 @@ var/list/organ_cache = list()
 				blood_DNA[dna.unique_enzymes] = dna.b_type
 		if(internal)
 			holder.internal_organs |= src
+	else
+		species = all_species["Human"]
 
 /obj/item/organ/proc/set_dna(var/datum/dna/new_dna)
 	if(new_dna)
