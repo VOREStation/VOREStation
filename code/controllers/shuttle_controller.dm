@@ -282,13 +282,14 @@ var/global/datum/shuttle_controller/shuttle_controller
 		"Fore Starboard Solars" = locate(/area/skipjack_station/northeast_solars),
 		"Fore Port Solars" = locate(/area/skipjack_station/northwest_solars),
 		"Aft Starboard Solars" = locate(/area/skipjack_station/southeast_solars),
-		"Aft Port Solars" = locate(/area/skipjack_station/southwest_solars),
+		"Aft Port Solars" = locate(/area/skipjack_station/southwest_solars), // Vorestation edit
+		"[station_short] Arrivals Dock" = locate(/area/skipjack_station/southwest_solars),
 		"Mining Station" = locate(/area/skipjack_station/mining)
 		)
 
 	VS.announcer = "Colony Automated Radar Array"
 	VS.arrival_message = "Attention.  Unidentified object approaching the colony."
-	VS.departure_message = "Attention.  Unidentified object exiting local space.  Unidentified object expected to escape Kara gravity well with current velocity."
+	VS.departure_message = "Attention.  Unidentified object exiting local space.  Unidentified object expected to escape Virgo-3's gravity well with current velocity." // Vorestation edit
 	VS.interim = locate(/area/skipjack_station/transit)
 
 	VS.warmup_time = 0
