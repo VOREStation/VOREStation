@@ -107,31 +107,32 @@ Please contact me on #coderbus IRC. ~Carn x
 
 //Human Overlays Indexes/////////
 #define MUTATIONS_LAYER			1
-#define DAMAGE_LAYER			2
-#define SURGERY_LEVEL			3		//bs12 specific.
-#define UNIFORM_LAYER			4
-#define ID_LAYER				5
-#define SHOES_LAYER				6
-#define GLOVES_LAYER			7
-#define BELT_LAYER				8
-#define SUIT_LAYER				9
-#define TAIL_LAYER				10		//bs12 specific. this hack is probably gonna come back to haunt me
-#define GLASSES_LAYER			11
-#define BELT_LAYER_ALT			12
-#define SUIT_STORE_LAYER		13
-#define BACK_LAYER				14
-#define HAIR_LAYER				15		//TODO: make part of head layer?
-#define EARS_LAYER				16
-#define FACEMASK_LAYER			17
-#define HEAD_LAYER				18
-#define COLLAR_LAYER			19
-#define HANDCUFF_LAYER			20
-#define LEGCUFF_LAYER			21
-#define L_HAND_LAYER			22
-#define R_HAND_LAYER			23
-#define FIRE_LAYER				24		//If you're on fire
-#define TARGETED_LAYER			25		//BS12: Layer for the target overlay from weapon targeting system
-#define TOTAL_LAYERS			25
+#define MARKINGS_LAYER			2
+#define DAMAGE_LAYER			3
+#define SURGERY_LEVEL			4		//bs12 specific.
+#define UNIFORM_LAYER			5
+#define ID_LAYER				6
+#define SHOES_LAYER				7
+#define GLOVES_LAYER			8
+#define BELT_LAYER				9
+#define SUIT_LAYER				10
+#define TAIL_LAYER				11		//bs12 specific. this hack is probably gonna come back to haunt me
+#define GLASSES_LAYER			12
+#define BELT_LAYER_ALT			13
+#define SUIT_STORE_LAYER		14
+#define BACK_LAYER				15
+#define HAIR_LAYER				16		//TODO: make part of head layer?
+#define EARS_LAYER				17
+#define FACEMASK_LAYER			18
+#define HEAD_LAYER				19
+#define COLLAR_LAYER			20
+#define HANDCUFF_LAYER			21
+#define LEGCUFF_LAYER			22
+#define L_HAND_LAYER			23
+#define R_HAND_LAYER			24
+#define FIRE_LAYER				25		//If you're on fire
+#define TARGETED_LAYER			26		//BS12: Layer for the target overlay from weapon targeting system
+#define TOTAL_LAYERS			26
 //////////////////////////////////
 
 /mob/living/carbon/human
@@ -333,6 +334,39 @@ var/global/list/damage_icon_parts = list()
 
 	//tail
 	update_tail_showing(0)
+
+	//markings
+	update_markings(0)
+
+//MARKINGS OVERLAY VORESTATION
+/mob/living/carbon/human/proc/update_markings(var/update_icons=1)
+	//Reset our markings
+	overlays_standing[MARKINGS_LAYER]	= null
+
+	var/obj/item/organ/external/chest/chest_organ = get_organ("chest")
+	if(!chest_organ || chest_organ.is_stump() || (chest_organ.status & ORGAN_DESTROYED) )
+		if(update_icons)   update_icons()
+		return
+
+	//base icons
+	var/icon/markings_standing	= new /icon('icons/mob/body_accessory.dmi',"accessory_none_s")
+
+	if(m_style && m_style != "None")
+		var/datum/sprite_accessory/marking_style = marking_styles_list[m_style]
+		if(marking_style)
+			var/obj/item/organ/external/head/head_organ = get_organ("head")
+			if((!head_organ || head_organ.is_stump() || (head_organ.status & ORGAN_DESTROYED)) && marking_style.marking_location == "head")
+				return //If the head is destroyed and it is the organ the marking is located on, get us out of here. This prevents floating optical markings on decapitated IPCs, for example.
+			var/icon/markings_s = new/icon("icon" = marking_style.icon, "icon_state" = "[marking_style.icon_state]_s")
+			if(marking_style.do_colouration)
+				markings_s.Blend(rgb(r_markings, g_markings, b_markings), ICON_ADD)
+			markings_standing.Blend(markings_s, ICON_OVERLAY)
+		else
+			//warning("Invalid m_style for [species.name]: [m_style]")
+
+	overlays_standing[MARKINGS_LAYER]	= image(markings_standing)
+
+	if(update_icons)   update_icons()
 
 //HAIR OVERLAY
 /mob/living/carbon/human/proc/update_hair(var/update_icons=1)

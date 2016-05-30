@@ -242,12 +242,13 @@
 		preview_icon.Blend(limb_icon, ICON_OVERLAY)
 
 	// VoreStation Edit - Start
-	// Body Markings
-	if(src.body_markings && body_markings_styles_list[src.body_markings_style])
-		var/datum/sprite_accessory/body_markings/body_markings_meta = body_markings_styles_list[src.body_markings_style]
-		var/icon/body_markings_s = new/icon("icon" = body_markings_meta.icon, "icon_state" = body_markings_meta.icon_state)
-		if(body_markings_meta.do_colouration)
-			body_markings_s.Blend(rgb(src.r_markings, src.g_markings, src.b_markings), body_markings_meta.color_blend_mode)
+	//Body Markings
+	if(current_species && (current_species.bodyflags & HAS_MARKINGS))
+		var/datum/sprite_accessory/marking_style = marking_styles_list[m_style]
+		if(marking_style && marking_style.species_allowed)
+			var/icon/markings_s = new/icon("icon" = marking_style.icon, "icon_state" = "[marking_style.icon_state]_s")
+			markings_s.Blend(rgb(r_markings, g_markings, b_markings), ICON_ADD)
+			preview_icon.Blend(markings_s, ICON_OVERLAY)
 	// Vore Station Edit - End
 
 	//Tails

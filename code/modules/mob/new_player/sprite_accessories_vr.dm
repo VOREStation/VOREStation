@@ -143,67 +143,52 @@
 		icon_state = "spike"
 		species_allowed = list("Vulpkanin")
 		gender = NEUTER
-/*
+
+/* BODY MARKINGS */
+
 /datum/sprite_accessory/body_markings
+	icon = 'icons/mob/vore/body_markings_vr.dmi'
+	species_allowed = list("Unathi", "Tajaran", "Vulpkanin")
+	icon_state = "accessory_none"
 
-	vulp_blaze
-		name = "Blaze"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "vulp_facial_blaze"
-		species_allowed = list("Vulpkanin")
-		gender = NEUTER
+/datum/sprite_accessory/body_markings/none
+	name = "None"
+	species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin")
+	icon_state = "accessory_none"
 
-	vulp_vulpine
-		name = "Vulpine"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "vulp_facial_vulpine"
-		species_allowed = list("Vulpkanin")
-		gender = NEUTER
+/datum/sprite_accessory/body_markings/stripe
+	name = "Stripe"
+	species_allowed = list("Unathi")
+	icon_state = "markings_stripe"
 
-	vulp_earfluff
-		name = "Earfluff"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "vulp_facial_earfluff"
-		species_allowed = list("Vulpkanin")
-		gender = NEUTER
+/datum/sprite_accessory/body_markings/tiger
+	name = "Tiger Body"
+	species_allowed = list("Unathi", "Tajaran", "Vulpkanin")
+	icon_state = "markings_tiger"
 
-	vulp_mask
-		name = "Mask"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "vulp_facial_mask"
-		species_allowed = list("Vulpkanin")
-		gender = NEUTER
+/datum/sprite_accessory/body_markings/tigerhead
+	name = "Tiger Body + Head"
+	species_allowed = list("Unathi", "Tajaran", "Vulpkanin")
+	icon_state = "markings_tigerhead"
 
-	vulp_patch
-		name = "Patch"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "vulp_facial_patch"
-		species_allowed = list("Vulpkanin")
-		gender = NEUTER
+/datum/sprite_accessory/body_markings/tigerheadface_taj
+	name = "Tajaran Tiger Body + Head + Face"
+	species_allowed = list("Tajaran")
+	icon_state = "markings_tigerheadface_taj"
 
-	vulp_ruff
-		name = "Ruff"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "vulp_facial_ruff"
-		species_allowed = list("Vulpkanin")
-		gender = NEUTER
+/datum/sprite_accessory/body_markings/tigerheadface_vulp
+	name = "Vulpkanin Tiger Body + Head + Face"
+	species_allowed = list("Vulpkanin")
+	icon_state = "markings_tigerheadface_vulp"
 
-	vulp_kita
-		name = "Kita"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "vulp_facial_kita"
-		species_allowed = list("Vulpkanin")
-		gender = NEUTER
-
-	vulp_swift
-		name = "Swift"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "vulp_facial_swift"
-		species_allowed = list("Vulpkanin")
-		gender = NEUTER
-*/
+/datum/sprite_accessory/body_markings/tigerheadface_una
+	name = "Unathi Tiger Body + Head + Face"
+	species_allowed = list("Unathi")
+	icon_state = "markings_tigerheadface_una"
 	vulpkanin
 		name = "Default Vulpkanin skin"
 		icon_state = "default"
 		icon = 'icons/mob/human_races/r_vulpkanin.dmi'
 		species_allowed = list("Vulpkanin")
+
+
