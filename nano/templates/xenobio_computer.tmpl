@@ -9,10 +9,10 @@ Used In File(s): \code\modules\xenobio2\machines\injector_computer.dm
 	<div class="itemContent" style="text-align: center; width: 100px">
 		{{if data.beaker}}
 			{{:data.reagentAmount}}u / {{:data.reagentMax}}u
-			{{:helper.displayBar(data.reagentAmount, data.reagentMax, data.reagentMin, 'good', null, 'displayBarBeaker')}}
+			{{:helper.displayBar(data.reagentAmount, data.reagentMax, data.reagentMin, 'good', null, 'Beaker', 1)}}
 		{{else}}
 			<span class='bad'><b>ERR</b></span>
-			{{:helper.displayBar(data.reagentAmount, data.reagentMax, data.reagentMin, 'good', null, 'displayBarBeaker')}}
+			{{:helper.displayBar(data.reagentAmount, data.reagentMax, data.reagentMin, 'good', null, 'Beaker', 1)}}
 		{{/if}}
 	</div>
 	<div style="padding-left: 110px;">
