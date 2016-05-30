@@ -175,7 +175,7 @@
 	if(istype(I,/obj/item/stack/material))
 		var/obj/item/stack/material/S = I
 		if(!S.material in materials)
-			user << "<span class='warning>The [src] doesn't accept [S.material]!</span>"
+			user << "<span class='warning'>The [src] doesn't accept [S.material]!</span>"
 			return
 
 		var/sname = "[S.name]"
