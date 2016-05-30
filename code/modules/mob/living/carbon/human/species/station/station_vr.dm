@@ -217,6 +217,56 @@
 		)
 
 
+/datum/species/vulpkanin
+	name = "Vulpkanin"
+	name_plural = "Vulpkanin"
+	icobase = 'icons/mob/human_races/r_vulpkanin.dmi'
+	deform = 'icons/mob/human_races/r_vulpkanin.dmi'
+//	path = /mob/living/carbon/human/vulpkanin
+//	default_language = "Sol Common"
+	secondary_langs = list("Canilunzt")
+	name_language = "Canilunzt"
+	primitive_form = "Wolpin"
+	tail = "vulptail"
+	tail_animation = 'icons/mob/species/vulpkanin/tail.dmi' // probably need more than just one of each, but w/e
+	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
+	darksight = 5 //worse than cats, but better than lizards. -- Poojawa
+	gluttonous = 1
+	num_alternate_languages = 2
+	color_mult = 1
+	egg_type = "Tajaran" //also placeholder. because I see other things using it
+
+	blurb = "Vulpkanin are a species of sharp-witted canine-pideds residing on the planet Altam just barely within the \
+	dual-star Vazzend system. Their politically de-centralized society and independent natures have led them to become a species and \
+	culture both feared and respected for their scientific breakthroughs. Discovery, loyalty, and utilitarianism dominates their lifestyles \
+	to the degree it can cause conflict with more rigorous and strict authorities. They speak a guttural language known as 'Canilunzt' \
+    which has a heavy emphasis on utilizing tail positioning and ear twitches to communicate intent."
+
+//	flags = HAS_LIPS
+//	clothing_flags = HAS_UNDERWEAR | HAS_UNDERSHIRT | HAS_SOCKS
+	spawn_flags = SPECIES_CAN_JOIN
+	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+/*	bodyflags = FEET_PADDED | HAS_TAIL | HAS_HEAD_ACCESSORY | HAS_MARKINGS | HAS_SKIN_COLOR | TAIL_WAGGING | HAS_FUR // Paradise stuff	dietflags = DIET_OMNI
+	flesh_color = "#966464"
+	base_color = "#B43214"
+	butt_sprite = "vulp" */
+
+	min_age = 17
+	max_age = 80
+
+/* // I figured both of these things aren't exactly needed - Poojawa
+
+	allowed_consumed_mobs = list(/mob/living/simple_animal/mouse, /mob/living/simple_animal/lizard, /mob/living/simple_animal/chick, /mob/living/simple_animal/chicken,
+								 /mob/living/simple_animal/crab, /mob/living/simple_animal/butterfly, /mob/living/simple_animal/parrot, /mob/living/simple_animal/tribble)
+
+	suicide_messages = list(
+		"is attempting to bite their tongue off!",
+		"is jamming their claws into their eye sockets!",
+		"is twisting their own neck!",
+		"is holding their breath!") */
+
+//datum/species/vulpkanin //just to write it out, no idea where any of it goes -- Pooj
+//	egg_type = "Vulpkanin"
 
 /datum/species/unathi
 	egg_type = "Unathi"

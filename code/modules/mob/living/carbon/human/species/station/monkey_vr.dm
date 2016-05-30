@@ -33,3 +33,16 @@
 	base_color = "#333333"
 	tail = "farwatail"
 */
+
+/datum/species/monkey/vulpkanin
+	name = "Wolpin"
+	name_plural = "Wolpin"
+	speak_emote = list("rrfts")
+
+	icobase = 'icons/mob/human_races/monkeys/r_wolpin.dmi'
+	deform = 'icons/mob/human_races/monkeys/r_wolpin.dmi'
+
+	greater_form = "Vulpkanin"
+	default_language = "Canilunzt"
+	flesh_color = "#966464"
+	base_color = "#000000"
