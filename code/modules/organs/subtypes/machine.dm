@@ -25,6 +25,7 @@
 	organ_tag = "brain"
 	parent_organ = BP_HEAD
 	vital = 1
+	var/brain_type = /obj/item/device/mmi
 	var/obj/item/device/mmi/stored_mmi
 
 /obj/item/organ/internal/mmi_holder/Destroy()
@@ -38,8 +39,7 @@
 	var/mob/living/carbon/human/dummy/mannequin/M = new_owner
 	if(istype(M))
 		return
-	if(!stored_mmi)
-		stored_mmi = new(src)
+	stored_mmi = new brain_type(src)
 	sleep(-1)
 	update_from_mmi()
 
@@ -83,10 +83,8 @@
 
 /obj/item/organ/internal/mmi_holder/posibrain
 	name = "positronic brain interface"
-
-/obj/item/organ/internal/mmi_holder/posibrain/New()
-	stored_mmi = new /obj/item/device/mmi/digital/posibrain(src)
-	..()
+	brain_type = /obj/item/device/mmi/digital/posibrain
+	
 
 /obj/item/organ/internal/mmi_holder/posibrain/update_from_mmi()
 	..()
