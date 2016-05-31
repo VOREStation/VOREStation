@@ -6,6 +6,7 @@
 	company = "Kitsuhana"
 	desc = "This limb seems rather vulpine and fuzzy, with realistic-feeling flesh."
 	icon = 'icons/mob/human_races/cyberlimbs/kitsuhana.dmi'
+	blood_color = "#1CDDDD"
 	includes_tail = 1
 	unavailable_to_build = 1
 	unavailable_at_chargen = 1
