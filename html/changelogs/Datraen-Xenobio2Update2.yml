@@ -1,0 +1,9 @@
+author: Datraen
+
+
+delete-after: True
+
+changes: 
+  - rscadd: "Adds a trait tool for Xenobio2. It was supposed to be in the initial implementation, but fell through the cracks, sorry!"
+  - bugfix: "Fixed the xenobio smartfridge not displaying it's starting core amount."
+  - bugfix: "Fixed an inverted check with slimes."

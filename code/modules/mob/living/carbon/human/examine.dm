@@ -4,25 +4,68 @@
 	var/skipjumpsuit = 0
 	var/skipshoes = 0
 	var/skipmask = 0
+
 	var/skipears = 0
 	var/skipeyes = 0
 	var/skipface = 0
+	var/skipchest = 0
+	var/skipgroin = 0
+	var/skiphands = 0
+	var/skiplegs = 0
+	var/skiparms = 0
+	var/skipfeet = 0
+
+	var/looks_synth = looksSynthetic()
 
 	//exosuits and helmets obscure our view and stuff.
 	if(wear_suit)
-		skipgloves = wear_suit.flags_inv & HIDEGLOVES
-		skipsuitstorage = wear_suit.flags_inv & HIDESUITSTORAGE
-		skipjumpsuit = wear_suit.flags_inv & HIDEJUMPSUIT
-		skipshoes = wear_suit.flags_inv & HIDESHOES
+		skipsuitstorage |= wear_suit.flags_inv & HIDESUITSTORAGE
+		if(wear_suit.flags_inv & HIDEJUMPSUIT)
+			skiparms |= 1
+			skiplegs |= 1
+			skipchest |= 1
+			skipgroin |= 1
+		if(wear_suit.flags_inv & HIDESHOES)
+			skipshoes |= 1
+			skipfeet |= 1
+		if(wear_suit.flags_inv & HIDEGLOVES)
+			skipgloves |= 1
+			skiphands |= 1
+
+	if(w_uniform)
+		skiplegs |= w_uniform.body_parts_covered & LEGS
+		skiparms |= w_uniform.body_parts_covered & ARMS
+		skipchest |= w_uniform.body_parts_covered & UPPER_TORSO
+		skipgroin |= w_uniform.body_parts_covered & LOWER_TORSO
+
+	if(gloves)
+		skiphands |= gloves.body_parts_covered & HANDS
+
+	if(shoes)
+		skipfeet |= shoes.body_parts_covered & FEET
 
 	if(head)
-		skipmask = head.flags_inv & HIDEMASK
-		skipeyes = head.flags_inv & HIDEEYES
-		skipears = head.flags_inv & HIDEEARS
-		skipface = head.flags_inv & HIDEFACE
+		skipmask |= head.flags_inv & HIDEMASK
+		skipeyes |= head.flags_inv & HIDEEYES
+		skipears |= head.flags_inv & HIDEEARS
+		skipface |= head.flags_inv & HIDEFACE
 
 	if(wear_mask)
 		skipface |= wear_mask.flags_inv & HIDEFACE
+
+	//This is what hides what
+	var/list/hidden = list(
+		BP_GROIN = skipgroin,
+		BP_TORSO = skipchest,
+		BP_HEAD  = skipface,
+		BP_L_ARM = skiparms,
+		BP_R_ARM = skiparms,
+		BP_L_HAND= skiphands,
+		BP_R_HAND= skiphands,
+		BP_L_FOOT= skipfeet,
+		BP_R_FOOT= skipfeet,
+		BP_L_LEG = skiplegs,
+		BP_R_LEG = skiplegs)
 
 	var/msg = "<span class='info'>*---------*\nThis is "
 
@@ -39,9 +82,8 @@
 
 	msg += "<EM>[src.name]</EM>"
 
-	var/is_synth = isSynthetic()
 	if(!(skipjumpsuit && skipface))
-		if(is_synth)
+		if(looks_synth)
 			var/use_gender = "a synthetic"
 			if(gender == MALE)
 				use_gender = "an android"
@@ -123,8 +165,6 @@
 			msg += "[T.He] [T.has] \icon[gloves] \a [gloves] on [T.his] hands.\n"
 	else if(blood_DNA)
 		msg += "<span class='warning'>[T.He] [T.has] [(hand_blood_color != SYNTH_BLOOD_COLOUR) ? "blood" : "oil"]-stained hands!</span>\n"
-
-	//handcuffed?
 
 	//handcuffed?
 	if(handcuffed)
@@ -273,15 +313,17 @@
 
 	for(var/obj/item/organ/external/temp in organs)
 		if(temp)
+			if((temp.organ_tag in hidden) && hidden[temp.organ_tag])
+				continue //Organ is hidden, don't talk about it
 			if(temp.status & ORGAN_DESTROYED)
 				wound_flavor_text["[temp.name]"] = "<span class='warning'><b>[T.He] [T.is] missing [T.his] [temp.name].</b></span>\n"
 				continue
-			if(!is_synth && temp.status & ORGAN_ROBOT)
+			if(!looks_synth && temp.robotic == ORGAN_ROBOT)
 				if(!(temp.brute_dam + temp.burn_dam))
-					wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] [T.has] a [temp.name]!</span>\n"
-					continue
+					wound_flavor_text["[temp.name]"] = "[T.He] [T.has] a [temp.name].\n"
 				else
-					wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] [T.has] a [temp.name]. It has[temp.get_wounds_desc()]!</span>\n"
+					wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] [T.has] a [temp.name] with [temp.get_wounds_desc()]!</span>\n"
+				continue
 			else if(temp.wounds.len > 0 || temp.open)
 				if(temp.is_stump() && temp.parent_organ && organs_by_name[temp.parent_organ])
 					var/obj/item/organ/external/parent = organs_by_name[temp.parent_organ]

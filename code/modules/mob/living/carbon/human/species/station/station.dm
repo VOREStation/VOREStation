@@ -150,7 +150,7 @@
 	the secrets of their empire to their allies."
 	num_alternate_languages = 2
 	secondary_langs = list("Skrellian", "Schechi")
-	name_language = null
+	name_language = "Skrellian"
 
 	min_age = 19
 	max_age = 80

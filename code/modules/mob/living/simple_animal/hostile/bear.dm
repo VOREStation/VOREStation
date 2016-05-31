@@ -57,16 +57,16 @@
 
 	switch(stance)
 
-		if(HOSTILE_STANCE_TIRED)
+		if(STANCE_TIRED)
 			stop_automated_movement = 1
 			stance_step++
 			if(stance_step >= 10) //rests for 10 ticks
 				if(target_mob && target_mob in ListTargets(10))
-					stance = HOSTILE_STANCE_ATTACK //If the mob he was chasing is still nearby, resume the attack, otherwise go idle.
+					stance = STANCE_ATTACK //If the mob he was chasing is still nearby, resume the attack, otherwise go idle.
 				else
-					stance = HOSTILE_STANCE_IDLE
+					stance = STANCE_IDLE
 
-		if(HOSTILE_STANCE_ALERT)
+		if(STANCE_ALERT)
 			stop_automated_movement = 1
 			var/found_mob = 0
 			if(target_mob && target_mob in ListTargets(10))
@@ -84,14 +84,14 @@
 				stance_step--
 
 			if(stance_step <= -20) //If we have not found a mob for 20-ish ticks, revert to idle mode
-				stance = HOSTILE_STANCE_IDLE
+				stance = STANCE_IDLE
 			if(stance_step >= 7)   //If we have been staring at a mob for 7 ticks,
-				stance = HOSTILE_STANCE_ATTACK
+				stance = STANCE_ATTACK
 
-		if(HOSTILE_STANCE_ATTACKING)
+		if(STANCE_ATTACKING)
 			if(stance_step >= 20)	//attacks for 20 ticks, then it gets tired and needs to rest
 				custom_emote(1, "is worn out and needs to rest." )
-				stance = HOSTILE_STANCE_TIRED
+				stance = STANCE_TIRED
 				stance_step = 0
 				walk(src, 0) //This stops the bear's walking
 				return
@@ -99,15 +99,15 @@
 
 
 /mob/living/simple_animal/hostile/bear/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(stance != HOSTILE_STANCE_ATTACK && stance != HOSTILE_STANCE_ATTACKING)
-		stance = HOSTILE_STANCE_ALERT
+	if(stance != STANCE_ATTACK && stance != STANCE_ATTACKING)
+		stance = STANCE_ALERT
 		stance_step = 6
 		target_mob = user
 	..()
 
 /mob/living/simple_animal/hostile/bear/attack_hand(mob/living/carbon/human/M as mob)
-	if(stance != HOSTILE_STANCE_ATTACK && stance != HOSTILE_STANCE_ATTACKING)
-		stance = HOSTILE_STANCE_ALERT
+	if(stance != STANCE_ATTACK && stance != STANCE_ATTACKING)
+		stance = STANCE_ALERT
 		stance_step = 6
 		target_mob = M
 	..()
@@ -119,7 +119,7 @@
 	. = ..()
 	if(.)
 		custom_emote(1,"stares alertly at [.]")
-		stance = HOSTILE_STANCE_ALERT
+		stance = STANCE_ALERT
 
 /mob/living/simple_animal/hostile/bear/LoseTarget()
 	..(5)

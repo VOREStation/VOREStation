@@ -41,6 +41,8 @@
 		return 0
 
 	if(istype(M, /mob/living/carbon))
+		//TODO: replace with standard_feed_mob() call.
+
 		var/fullness = M.nutrition + (M.reagents.get_reagent_amount("nutriment") * 25)
 		if(M == user)								//If you're eating it yourself
 			if(istype(M,/mob/living/carbon/human))
@@ -53,6 +55,7 @@
 					user << "<span class='warning'>\The [blocked] is in the way!</span>"
 					return
 
+			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) //puts a limit on how fast people can eat/drink things
 			if (fullness <= 50)
 				M << "<span class='danger'>You hungrily chew out a piece of [src] and gobble it!</span>"
 			if (fullness > 50 && fullness <= 150)
@@ -83,6 +86,7 @@
 					user.visible_message("<span class='danger'>[user] cannot force anymore of [src] down [M]'s throat.</span>")
 					return 0
 
+				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 				if(!do_mob(user, M)) return
 
 				M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been fed [src.name] by [user.name] ([user.ckey]) Reagents: [reagentlist(src)]</font>")
@@ -272,6 +276,19 @@
 	reagents.add_reagent("nutriment", 1)
 	reagents.add_reagent("sugar", 3)
 	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar
+	name = "protein bar"
+	desc = "SwoleMAX brand protein bars, guaranteed to get you feeling perfectly overconfident."
+	icon_state = "proteinbar"
+	trash = /obj/item/trash/candy/proteinbar
+
+/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar/New()
+	..()
+	reagents.add_reagent("nutriment", 9)
+	reagents.add_reagent("protein", 4)
+	reagents.add_reagent("sugar", 4)
+	bitesize = 6
 
 /obj/item/weapon/reagent_containers/food/snacks/candy/donor
 	name = "Donor Candy"

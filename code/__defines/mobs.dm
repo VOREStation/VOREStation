@@ -13,7 +13,6 @@
 #define GODMODE     0x1000
 #define FAKEDEATH   0x2000  // Replaces stuff like changeling.changeling_fakedeath.
 #define DISFIGURED  0x4000  // Set but never checked. Remove this sometime and replace occurences with the appropriate organ code
-#define XENO_HOST   0x8000  // Tracks whether we're gonna be a baby alien's mummy.
 
 // Grab levels.
 #define GRAB_PASSIVE    1
@@ -27,11 +26,11 @@
 #define BORGXRAY  0x4
 #define BORGMATERIAL  8
 
-#define HOSTILE_STANCE_IDLE      1
-#define HOSTILE_STANCE_ALERT     2
-#define HOSTILE_STANCE_ATTACK    3
-#define HOSTILE_STANCE_ATTACKING 4
-#define HOSTILE_STANCE_TIRED     5
+#define STANCE_IDLE      1
+#define STANCE_ALERT     2
+#define STANCE_ATTACK    3
+#define STANCE_ATTACKING 4
+#define STANCE_TIRED     5
 
 #define LEFT  1
 #define RIGHT 2
@@ -187,3 +186,8 @@
 #define MOB_PULL_SMALLER 1
 #define MOB_PULL_SAME 2
 #define MOB_PULL_LARGER 3
+
+//XENOBIO2 FLAGS
+#define NOMUT		0
+#define COLORMUT 	1
+#define SPECIESMUT	2
