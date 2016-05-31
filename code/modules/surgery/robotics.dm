@@ -424,6 +424,20 @@
 		if(M.brainmob && M.brainmob.mind)
 			M.brainmob.mind.transfer_to(target)
 
+		spawn(0) //Name yourself on your own damn time
+			var/new_name = ""
+			while(!new_name)
+				if(!target) return
+				var/try_name = input(target,"Pick a name for your new form!", "New Name", target.name)
+				var/clean_name = sanitizeName(try_name)
+				if(clean_name)
+					var/okay = alert(target,"New name will be '[clean_name]', ok?", "Cancel", "Ok")
+					if(okay == "Ok")
+						new_name = clean_name
+
+			target.name = new_name
+			target.real_name = target.name
+
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		user.visible_message("<span class='warning'>[user]'s hand slips.</span>", \
 		"<span class='warning'>Your hand slips.</span>")
