@@ -13,7 +13,7 @@
 <b>Implant Details:</b> Subjects injected with implant can understand and speak almost all known languages.<BR>
 <b>Function:</b> Contains specialized nanobots to stimulate the brain so the user can speak and understand previously unknown languages.<BR>
 <b>Special Features:</b> Will allow the user to understand almost all languages.<BR>
-<b>Integrity:</b> Implant can only be used three times before the nanobots are depleted."}
+<b>Integrity:</b> Implant can only be used once before the nanobots are depleted."}
 		return dat
 
 
