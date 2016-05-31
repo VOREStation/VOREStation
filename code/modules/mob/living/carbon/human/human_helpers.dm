@@ -64,6 +64,7 @@
 	if(synthetic) return synthetic //Your synthetic-ness is not going away
 	var/obj/item/organ/external/T = organs_by_name[BP_TORSO]
 	if(T && T.robotic >= ORGAN_ROBOT)
+		src.verbs += /mob/living/carbon/human/proc/self_diagnostics
 		var/datum/robolimb/R = all_robolimbs[T.model]
 		synthetic = R
 		return synthetic
