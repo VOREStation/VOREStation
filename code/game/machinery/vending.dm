@@ -796,6 +796,28 @@
 					/obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea = 1,/obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice = 1)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 
+/obj/machinery/vending/fitness
+	name = "SweatMAX"
+	desc = "Fueled by your inner inadequacy!"
+	icon_state = "fitness"
+	products = list(/obj/item/weapon/reagent_containers/food/drinks/milk/smallcarton = 8,
+					/obj/item/weapon/reagent_containers/food/drinks/milk/smallcarton/chocolate = 8,
+					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake = 8,
+					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 8,
+					/obj/item/weapon/reagent_containers/pill/diet = 8)
+
+	prices = list(/obj/item/weapon/reagent_containers/food/drinks/milk/smallcarton = 3,
+					/obj/item/weapon/reagent_containers/food/drinks/milk/smallcarton/chocolate = 3,
+					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake = 20,
+					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask = 5,
+					/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar = 5,
+					/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 5,
+					/obj/item/weapon/reagent_containers/pill/diet = 25)
+
+	contraband = list(/obj/item/weapon/reagent_containers/syringe/steroid = 4)
+
 //This one's from bay12
 /obj/machinery/vending/cart
 	name = "PTech"
@@ -1052,25 +1074,3 @@
 					/obj/item/weapon/scalpel = 2,/obj/item/weapon/circular_saw = 2,/obj/item/weapon/tank/anesthetic = 2,/obj/item/clothing/mask/breath/medical = 5,
 					/obj/item/weapon/screwdriver = 5,/obj/item/weapon/crowbar = 5)
 	//everything after the power cell had no amounts, I improvised.  -Sayu
-
-/obj/machinery/vending/fitness
-	name = "SweatMAX"
-	desc = "Fueled by your inner inadequacy!"
-	icon_state = "fitness"
-	products = list(/obj/item/weapon/reagent_containers/food/drinks/milk/smallcarton = 8,
-					/obj/item/weapon/reagent_containers/food/drinks/milk/smallcarton/chocolate = 8,
-					//obj/item/weapon/reagent_containers/food/drinks/drinkingglass/fitnessflask/proteinshake = 8,
-					//obj/item/weapon/reagent_containers/food/drinks/drinkingglass/fitnessflask = 8,
-					/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar = 8,
-					/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 8,
-					/obj/item/weapon/reagent_containers/pill/diet = 8)
-
-	prices = list(/obj/item/weapon/reagent_containers/food/drinks/milk/smallcarton = 3,
-					/obj/item/weapon/reagent_containers/food/drinks/milk/smallcarton/chocolate = 3,
-					//obj/item/weapon/reagent_containers/food/drinks/drinkingglass/fitnessflask/proteinshake = 20,
-					//obj/item/weapon/reagent_containers/food/drinks/drinkingglass/fitnessflask = 5,
-					/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar = 5,
-					/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 5,
-					/obj/item/weapon/reagent_containers/pill/diet = 25)
-
-	contraband = list(/obj/item/weapon/reagent_containers/syringe/steroid = 4)

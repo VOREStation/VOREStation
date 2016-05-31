@@ -542,12 +542,13 @@
 	description = "A delicious mixture of perfectly healthy mix and terrible chocolate."
 	color = "#74533b"
 
-	glass_name = "glass of chocolate milk"
-	glass_desc = "Delciously fattening!"
-
 	cup_icon_state = "cup_brown"
 	cup_name = "cup of chocolate milk"
 	cup_desc = "Deliciously fattening!"
+
+	glass_name = "chocolate milk"
+	glass_desc = "Deliciously fattening!"
+
 
 /datum/reagent/drink/milk/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
