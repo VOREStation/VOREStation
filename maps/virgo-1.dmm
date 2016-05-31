@@ -7183,7 +7183,7 @@
 "cIg" = (/obj/structure/table/reinforced,/obj/item/stack/material/glass{amount = 50},/obj/item/stack/material/glass{amount = 50},/obj/item/stack/material/glass{amount = 50},/obj/effect/floor_decal/industrial/warning{dir = 4},/turf/simulated/floor/tiled,/area/ai_monitored/storage/eva)
 "cIh" = (/obj/machinery/door/firedoor/border_only,/obj/structure/grille,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 8},/obj/structure/cable/green{d2 = 2; icon_state = "0-2"},/turf/simulated/floor/plating,/area/ai_monitored/storage/eva)
 "cIi" = (/obj/structure/table/rack{dir = 8; layer = 2.9},/obj/item/clothing/head/helmet/space/skrell/black,/obj/item/clothing/mask/breath,/obj/item/clothing/suit/space/skrell/black,/obj/item/clothing/head/helmet/space/skrell/white,/obj/item/clothing/mask/breath,/obj/item/clothing/suit/space/skrell/white,/turf/simulated/floor/tiled/dark,/area/ai_monitored/storage/eva)
-"cIj" = (/obj/structure/table/rack{dir = 8; layer = 2.9},/obj/item/weapon/rig/unathi,/obj/item/clothing/mask/breath,/turf/simulated/floor/tiled/dark,/area/ai_monitored/storage/eva)
+"cIj" = (/obj/structure/table/rack{dir = 8; layer = 2.9},/obj/item/weapon/rig/breacher,/obj/item/clothing/mask/breath,/turf/simulated/floor/tiled/dark,/area/ai_monitored/storage/eva)
 "cIk" = (/obj/machinery/floodlight,/turf/simulated/floor/tiled,/area/awaymission/gateway)
 "cIl" = (/obj/effect/floor_decal/industrial/warning{icon_state = "warning"; dir = 8},/obj/structure/window/reinforced{dir = 8},/turf/simulated/floor/tiled/dark,/area/awaymission/gateway)
 "cIm" = (/obj/machinery/gateway{dir = 9},/turf/simulated/floor/tiled/dark,/area/awaymission/gateway)

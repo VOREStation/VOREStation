@@ -400,7 +400,7 @@
 			"potassium",
 			"plasticide",
 			"mutationtoxin",
-			"amutationtoxin",
+			"docilitytoxin",
 			"inaprovaline",
 			"space_drugs",
 			"paroxetine",

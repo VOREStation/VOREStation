@@ -66,12 +66,13 @@
 /datum/category_item/player_setup_item/vore/ears/content(var/mob/user)
 	. += "<h2>VORE Station Settings</h2>"
 
-	pref.update_preview_icon()
-	if(pref.preview_icon_front && pref.preview_icon_side)
-		user << browse_rsc(pref.preview_icon_front, "preview_icon.png")
-		user << browse_rsc(pref.preview_icon_side, "preview_icon2.png")
+	if(!pref.preview_icon)
+		pref.update_preview_icon()
+ 	user << browse_rsc(pref.preview_icon, "previewicon.png")
+
 	. += "<b>Preview</b><br>"
-	. += "<img src=preview_icon.png height=64 width=64><img src=preview_icon2.png height=64 width=64><br>"
+	. += "<div class='statusDisplay'><center><img src=previewicon.png width=[pref.preview_icon.Width()] height=[pref.preview_icon.Height()]></center></div>"
+	. += "<br><a href='?src=\ref[src];toggle_clothing=1'>[pref.dress_mob ? "Hide equipment" : "Show equipment"]</a><br>"
 
 	. += "<b>Ears</b><br>"
 	. += " Style: <a href='?src=\ref[src];ear_style=1'>[pref.ear_style ? "Custom" : "Normal"]</a><br>"
@@ -111,7 +112,7 @@
 			pref.ear_style = pretty_ear_styles[selection]
 		else
 			pref.ear_style = null
-		return TOPIC_REFRESH
+		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["tail_style"])
 		// Construct the list of names allowed for this user.
@@ -127,7 +128,7 @@
 			pref.tail_style = pretty_tail_styles[selection]
 		else
 			pref.tail_style = null
-		return TOPIC_REFRESH
+		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["tail_color"])
 		var/new_tailc = input(user, "Choose your character's tail/taur colour:", "Character Preference",
@@ -136,5 +137,10 @@
 			pref.r_tail = hex2num(copytext(new_tailc, 2, 4))
 			pref.g_tail = hex2num(copytext(new_tailc, 4, 6))
 			pref.b_tail = hex2num(copytext(new_tailc, 6, 8))
-			return TOPIC_REFRESH
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["toggle_clothing"])
+		pref.dress_mob = !pref.dress_mob
+		return TOPIC_REFRESH_UPDATE_PREVIEW
+
 	return ..()

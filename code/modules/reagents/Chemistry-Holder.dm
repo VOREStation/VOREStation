@@ -383,6 +383,10 @@
 		if(type == CHEM_TOUCH)
 			var/datum/reagents/R = C.touching
 			return trans_to_holder(R, amount, multiplier, copy)
+	else if(isxeno(target))
+		var/mob/living/simple_animal/xeno/X = target
+		var/datum/reagents/R = X.reagents
+		return trans_to_holder(R, amount, multiplier, copy)
 	else
 		var/datum/reagents/R = new /datum/reagents(amount)
 		. = trans_to_holder(R, amount, multiplier, copy)
