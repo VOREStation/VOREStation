@@ -41,11 +41,19 @@
 	var/datum/xeno/traits/trait_info
 	var/datum/reagents/prod_reagents
 	var/targetName
+	var/growth_level
+	var/growth_max
 	if(istype(target,/obj/structure/table))
 		return ..()
 	else if(istype(target,/mob/living/simple_animal/xeno))
 
 		var/mob/living/simple_animal/xeno/X = target
+		if(istype(X, /mob/living/simple_animal/xeno/slime))
+			var/mob/living/simple_animal/xeno/slime/S = X
+			if(S.is_child)
+				growth_level = S.growthcounter
+				growth_max = S.growthpoint
+				
 		targetName = X.name
 		trait_info = X.traitdat
 
@@ -101,6 +109,16 @@
 			dat += "It bears characteristics that indicate susceptibility to damage.<br>"
 		else
 			dat += "It bears no characters indicating resilience to damage.<br>"
+			
+	if(growth_max)
+		if(growth_level < 25)
+			dat += "It appears to be far to growing up.<br>"
+		else if(growth_level > 40)
+			dat += "It appears to be close to growing up.<br>"
+		else
+			dat += "It appears to be growing.<br>"
+	else
+		dat += "It appears to be fully grown.<br>"
 
 	if(trait_info.get_trait(TRAIT_XENO_COLDRES))
 		if(trait_info.get_trait(TRAIT_XENO_COLDRES) < 10)

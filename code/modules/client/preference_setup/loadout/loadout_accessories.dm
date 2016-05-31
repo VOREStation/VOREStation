@@ -57,9 +57,17 @@
 	display_name = "tie, blue with clip"
 	path = /obj/item/clothing/accessory/blue_clip
 
+/datum/gear/accessory/tie/blue_long
+	display_name = "tie, blue long"
+	path = /obj/item/clothing/accessory/blue_long
+
 /datum/gear/accessory/tie/red
 	display_name = "tie, red"
 	path = /obj/item/clothing/accessory/red
+
+/datum/gear/accessory/tie/red_clip
+	display_name = "tie, red with clip"
+	path = /obj/item/clothing/accessory/red_clip
 
 /datum/gear/accessory/tie/red_long
 	display_name = "tie, red long"
@@ -136,6 +144,30 @@
 /datum/gear/accessory/scarf/stripedblue
 	display_name = "scarf, striped blue"
 	path = /obj/item/clothing/accessory/stripedbluescarf
+
+/datum/gear/accessory/suitjacket
+	display_name = "suit jacket, tan"
+	path = /obj/item/clothing/accessory/tan_jacket
+
+/datum/gear/accessory/suitjacket/charcoal
+	display_name = "suit jacket, charcoal"
+	path = /obj/item/clothing/accessory/charcoal_jacket
+
+/datum/gear/accessory/suitjacket/navy
+	display_name = "suit jacket, navy blue"
+	path = /obj/item/clothing/accessory/navy_jacket
+
+/datum/gear/accessory/suitjacket/burgundy
+	display_name = "suit jacket, burgundy"
+	path = /obj/item/clothing/accessory/burgundy_jacket
+
+/datum/gear/accessory/suitjacket/checkered
+	display_name = "suit jacket, checkered"
+	path = /obj/item/clothing/accessory/checkered_jacket
+
+/datum/gear/accessory/suitvest
+	display_name = "suit vest"
+	path = /obj/item/clothing/accessory/vest
 
 /datum/gear/accessory/brown_vest
 	display_name = "webbing, engineering"
