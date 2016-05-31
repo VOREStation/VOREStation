@@ -233,3 +233,8 @@ var/list/slot_equipment_priority = list( \
 	//if(hasvar(src,"r_hand")) if(src:r_hand) items += src:r_hand
 
 	return items
+
+/mob/proc/delete_inventory()
+	for(var/entry in get_equipped_items())
+		drop_from_inventory(entry)
+		qdel(entry)

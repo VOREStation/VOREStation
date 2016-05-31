@@ -1242,16 +1242,19 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_packs/carpet
 	name = "Imported carpet"
-	containertype = /obj/structure/closet
+	containertype = /obj/structure/closet/crate
 	containername = "Imported carpet crate"
 	cost = 15
 	group = "Miscellaneous"
-	contains = list(/obj/item/stack/tile/carpet)
+	contains = list(
+					/obj/item/stack/tile/carpet,
+					/obj/item/stack/tile/carpet/blue
+					)
 	amount = 50
 
 /datum/supply_packs/linoleum
 	name = "Linoleum"
-	containertype = /obj/structure/closet
+	containertype = /obj/structure/closet/crate
 	containername = "Linoleum crate"
 	cost = 15
 	group = "Miscellaneous"

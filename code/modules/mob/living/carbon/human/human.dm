@@ -1035,7 +1035,7 @@
 					src << msg
 
 				organ.take_damage(rand(1,3), 0, 0)
-				if(!(organ.status & ORGAN_ROBOT) && !should_have_organ(O_HEART)) //There is no blood in protheses.
+				if(!(organ.robotic >= ORGAN_ROBOT) && !(should_have_organ(O_HEART))) //There is no blood in protheses.
 					organ.status |= ORGAN_BLEEDING
 					src.adjustToxLoss(rand(1,3))
 
@@ -1145,8 +1145,6 @@
 			qdel(hud_used)
 		hud_used = new /datum/hud(src)
 
-	full_prosthetic = null
-
 	if(species)
 		return 1
 	else
@@ -1221,7 +1219,7 @@
 	if(!affecting)
 		. = 0
 		fail_msg = "They are missing that limb."
-	else if (affecting.status & ORGAN_ROBOT)
+	else if (affecting.robotic >= ORGAN_ROBOT)
 		. = 0
 		fail_msg = "That limb is robotic."
 	else
@@ -1449,7 +1447,7 @@
 	else if(organ_check in list(O_LIVER, O_KIDNEYS))
 		affecting = organs_by_name[BP_GROIN]
 
-	if(affecting && (affecting.status & ORGAN_ROBOT))
+	if(affecting && (affecting.robotic >= ORGAN_ROBOT))
 		return 0
 	return (species && species.has_organ[organ_check])
 

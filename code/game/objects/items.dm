@@ -453,6 +453,9 @@ var/list/global/slot_flags_enumeration = list(
 	M.attack_log += "\[[time_stamp()]\]<font color='orange'> Attacked by [user.name] ([user.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)])</font>"
 	msg_admin_attack("[user.name] ([user.ckey]) attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)") //BS12 EDIT ALG
 
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	user.do_attack_animation(M)
+
 	src.add_fingerprint(user)
 	//if((CLUMSY in user.mutations) && prob(50))
 	//	M = user
@@ -481,7 +484,7 @@ var/list/global/slot_flags_enumeration = list(
 		eyes.damage += rand(3,4)
 		if(eyes.damage >= eyes.min_bruised_damage)
 			if(M.stat != 2)
-				if(!(eyes.status & ORGAN_ROBOT)) //robot eyes bleeding might be a bit silly
+				if(!(eyes.robotic >= ORGAN_ROBOT)) //robot eyes bleeding might be a bit silly
 					M << "<span class='danger'>Your eyes start to bleed profusely!</span>"
 			if(prob(50))
 				if(M.stat != 2)
@@ -632,7 +635,4 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 /obj/item/proc/pwr_drain()
 	return 0 // Process Kill
-
-/obj/item/proc/resolve_attackby(atom/A, mob/source)
-	return A.attackby(src,source)
 

@@ -137,6 +137,13 @@ var/list/_client_preferences_by_type
 	key = "SAFE_FIRING"
 	enabled_description = "Safe"
 	disabled_description = "Dangerous"
+
+/datum/client_preference/browser_style
+	description = "Fake NanoUI Browser Style"
+	key = "BROWSER_STYLED"
+	enabled_description = "Fancy"
+	disabled_description = "Plain"
+
 /********************
 * Staff Preferences *
 ********************/

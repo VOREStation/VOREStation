@@ -28,7 +28,7 @@
 
 /obj/machinery/mecha_part_fabricator/New()
 	..()
-
+	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
@@ -103,7 +103,7 @@
 		var/list/T = list()
 		for(var/A in all_robolimbs)
 			var/datum/robolimb/R = all_robolimbs[A]
-			if(!R.unavailable_to_produce) //VOREStation Edit
+			if(!R.unavailable_to_build) //VOREStation Edit
 				T += list(list("id" = A, "company" = R.company))
 		data["manufacturers"] = T
 		data["manufacturer"] = manufacturer

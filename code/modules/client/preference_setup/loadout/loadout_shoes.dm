@@ -7,7 +7,7 @@
 
 /datum/gear/shoes/toeless
 	display_name = "toe-less jackboots"
-	path = /obj/item/clothing/shoes/jackboots/unathi
+	path = /obj/item/clothing/shoes/jackboots/toeless
 
 /datum/gear/shoes/workboots
 	display_name = "workboots"
