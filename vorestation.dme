@@ -1078,6 +1078,7 @@
 #include "code\modules\client\preference_setup\skills\skills.dm"
 #include "code\modules\client\preference_setup\vore\01_ears.dm"
 #include "code\modules\client\preference_setup\vore\02_size.dm"
+#include "code\modules\client\preference_setup\vore\03_markings.dm"
 #include "code\modules\clothing\chameleon.dm"
 #include "code\modules\clothing\clothing.dm"
 #include "code\modules\clothing\clothing_accessories.dm"
