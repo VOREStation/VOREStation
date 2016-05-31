@@ -57,14 +57,22 @@
 	return 0
 
 /obj/machinery/smartfridge/secure/extract
-	name = "\improper Slime Extract Storage"
-	desc = "A refrigerated storage unit for slime extracts"
+	name = "\improper Biological Sample Storage"
+	desc = "A refrigerated storage unit for xenobiological samples."
 	req_access = list(access_research)
 
 /obj/machinery/smartfridge/secure/extract/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/slime_extract))
+	if(istype(O,/obj/item/xenoproduct/))
 		return 1
 	return 0
+
+/obj/machinery/smartfridge/secure/extract/New()
+	..()
+	for(var/i=1 to 5)
+		var/obj/item/xenoproduct/slime/core/C = new(src)
+		C.traits = new()
+		C.nameVar = "grey"
+		item_quants[C.name]++
 
 /obj/machinery/smartfridge/secure/medbay
 	name = "\improper Refrigerated Medicine Storage"

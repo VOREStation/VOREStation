@@ -170,6 +170,10 @@
 		name = "Ponytail 6"
 		icon_state = "hair_ponytail6"
 
+	fringetail
+		name = "Fringetail"
+		icon_state = "hair_fringetail"
+
 	sideponytail
 		name = "Side Ponytail"
 		icon_state = "hair_stail"
@@ -197,6 +201,10 @@
 	pompadour
 		name = "Pompadour"
 		icon_state = "hair_pompadour"
+
+	sleeze
+		name = "Sleeze"
+		icon_state = "hair_sleeze"
 
 	quiff
 		name = "Quiff"
@@ -292,6 +300,14 @@
 	afro_large
 		name = "Big Afro"
 		icon_state = "hair_bigafro"
+
+	rows
+		name = "Rows"
+		icon_state = "hair_rows1"
+
+	rows2
+		name = "Rows 2"
+		icon_state = "hair_rows2"
 
 	sargeant
 		name = "Flat Top"

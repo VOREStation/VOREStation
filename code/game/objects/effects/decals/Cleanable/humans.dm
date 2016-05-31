@@ -17,6 +17,7 @@ var/global/list/image/splatter_cache=list()
 	var/base_icon = 'icons/effects/blood.dmi'
 	blood_DNA = list()
 	var/basecolor="#A10808" // Color when wet.
+	var/synthblood = 0
 	var/list/datum/disease2/disease/virus2 = list()
 	var/amount = 5
 	var/drytime
@@ -61,9 +62,9 @@ var/global/list/image/splatter_cache=list()
 /obj/effect/decal/cleanable/blood/update_icon()
 	if(basecolor == "rainbow") basecolor = "#[get_random_colour(1)]"
 	color = basecolor
-	if(basecolor == SYNTH_BLOOD_COLOUR)
-		name = "oil"
-		desc = "It's black and greasy."
+	if(synthblood)
+		name = "synthetic blood"
+		desc = "It's quite greasy."
 	else
 		name = initial(name)
 		desc = initial(desc)
@@ -181,7 +182,7 @@ var/global/list/image/splatter_cache=list()
 	layer = 2
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "gibbl5"
-	random_icon_states = list("gib1", "gib2", "gib3", "gib4", "gib5", "gib6")
+	random_icon_states = list("gib1", "gib2", "gib3", "gib5", "gib6")
 	var/fleshcolor = "#FFFFFF"
 
 /obj/effect/decal/cleanable/blood/gibs/update_icon()

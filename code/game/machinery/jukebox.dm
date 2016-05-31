@@ -19,6 +19,7 @@ datum/track/New(var/title_name, var/audio)
 	use_power = 1
 	idle_power_usage = 10
 	active_power_usage = 100
+	circuit = /obj/item/weapon/circuitboard/jukebox
 
 	var/playing = 0
 
@@ -35,6 +36,14 @@ datum/track/New(var/title_name, var/audio)
 		new/datum/track("Trai`Tor", 'sound/music/traitor.ogg'),
 	)
 
+/obj/machinery/media/jukebox/New()
+	..()
+	circuit = new circuit(src)
+	component_parts = list()
+	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
+	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
+	component_parts += new /obj/item/stack/cable_coil(src, 5)
+	RefreshParts()
 
 /obj/machinery/media/jukebox/Destroy()
 	StopPlaying()
@@ -163,6 +172,10 @@ datum/track/New(var/title_name, var/audio)
 /obj/machinery/media/jukebox/attackby(obj/item/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
 
+	if(default_deconstruction_screwdriver(user, W))
+		return
+	if(default_deconstruction_crowbar(user, W))
+		return
 	if(istype(W, /obj/item/weapon/wrench))
 		if(playing)
 			StopPlaying()

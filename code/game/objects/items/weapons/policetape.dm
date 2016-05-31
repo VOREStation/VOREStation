@@ -9,6 +9,20 @@
 	var/tape_type = /obj/item/tape
 	var/icon_base
 
+	var/apply_tape = FALSE
+
+/obj/item/taperoll/initialize()
+	..()
+	if(apply_tape)
+		var/turf/T = get_turf(src)
+		if(!T)
+			return
+		var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in T
+		if(airlock)
+			afterattack(airlock, null, TRUE)
+		qdel(src)
+
+
 var/list/image/hazard_overlays
 var/list/tape_roll_applications = list()
 
@@ -62,6 +76,9 @@ var/list/tape_roll_applications = list()
 	icon_state = "engineering"
 	tape_type = /obj/item/tape/engineering
 	icon_base = "engineering"
+
+/obj/item/taperoll/engineering/applied
+	apply_tape = TRUE
 
 /obj/item/tape/engineering
 	name = "engineering tape"
@@ -220,8 +237,7 @@ var/list/tape_roll_applications = list()
 
 	if (istype(A, /obj/machinery/door/airlock))
 		var/turf/T = get_turf(A)
-		var/obj/item/tape/P = new tape_type(T.x,T.y,T.z)
-		P.loc = locate(T.x,T.y,T.z)
+		var/obj/item/tape/P = new tape_type(T)
 		P.update_icon()
 		P.layer = 3.2
 		user << "<span class='notice'>You finish placing \the [src].</span>"

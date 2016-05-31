@@ -17,7 +17,7 @@
 	siemens_coefficient = 0.7
 	can_hold_knife = 1
 
-/obj/item/clothing/shoes/jackboots/unathi
+/obj/item/clothing/shoes/jackboots/toeless
 	name = "toe-less jackboots"
 	desc = "Modified pair of jackboots, particularly friendly to those species whose toes hold claws."
 	item_state = "digiboots"

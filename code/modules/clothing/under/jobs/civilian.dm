@@ -115,6 +115,7 @@
 	item_state = "ba_suit"
 	worn_state = "internalaffairs"
 	rolled_sleeves = 0
+	starting_accessories = list(/obj/item/clothing/accessory/black)
 
 /obj/item/clothing/under/rank/janitor
 	desc = "It's the official uniform of the station's janitor. It has minor protection from biohazards."
@@ -155,10 +156,11 @@
 
 /obj/item/clothing/under/lawyer/bluesuit
 	name = "Blue Suit"
-	desc = "A classy suit and tie"
+	desc = "A classy suit."
 	icon_state = "bluesuit"
 	item_state = "ba_suit"
 	worn_state = "bluesuit"
+	starting_accessories = list(/obj/item/clothing/accessory/red)
 
 /obj/item/clothing/under/lawyer/purpsuit
 	name = "Purple Suit"
