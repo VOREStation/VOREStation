@@ -49,9 +49,6 @@
 		if(!(species.name in S.species_allowed)) //If the user's head is not of a species the marking style allows, skip it. Otherwise, add it to the list.
 			continue
 		if(H.species.flags & ALL_RPARTS) //If the user is a species that can have a robotic head...
-			var/datum/robolimb/robohead = all_robolimbs[H.model]
-			if(!(S.models_allowed && (robohead.company in S.models_allowed))) //Make sure they don't get markings incompatible with their head.
-				continue
 		valid_markings += marking
 
 	return valid_markings

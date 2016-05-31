@@ -25,12 +25,6 @@
 	var/g_tail = 30		// Tail/Taur color
 	var/b_tail = 30		// Tail/Taur color
 
-	//Marking colour and style
-	var/r_markings = 0
-	var/g_markings = 0
-	var/b_markings = 0
-	var/m_style = "None"
-
 // Definition of the stuff for Ears
 /datum/category_item/player_setup_item/vore/ears
 	name = "Appearance"
@@ -43,10 +37,6 @@
 	S["r_tail"]			>> pref.r_tail
 	S["g_tail"]			>> pref.g_tail
 	S["b_tail"]			>> pref.b_tail
-	S["m_style"]		>> pref.m_style
-	S["r_markings"]			>> pref.r_markings
-	S["g_markings"]			>> pref.g_markings
-	S["b_markings"]			>> pref.b_markings
 
 /datum/category_item/player_setup_item/vore/ears/save_character(var/savefile/S)
 	S["custom_species"]	<< pref.custom_species
@@ -55,10 +45,6 @@
 	S["r_tail"]			<< pref.r_tail
 	S["g_tail"]			<< pref.g_tail
 	S["b_tail"]			<< pref.b_tail
-	S["m_style"]		<< pref.m_style
-	S["r_markings"]			<< pref.r_markings
-	S["g_markings"]			<< pref.g_markings
-	S["b_markings"]			<< pref.b_markings
 
 /datum/category_item/player_setup_item/vore/ears/sanitize_character()
 	pref.r_tail		= sanitize_integer(pref.r_tail, 0, 255, initial(pref.r_tail))
@@ -68,10 +54,6 @@
 		pref.ear_style	= sanitize_inlist(pref.ear_style, ear_styles_list, initial(pref.ear_style))
 	if(pref.tail_style)
 		pref.tail_style	= sanitize_inlist(pref.tail_style, tail_styles_list, initial(pref.tail_style))
-	pref.r_markings		= sanitize_integer(pref.r_markings, 0, 255, initial(pref.r_markings))
-	pref.g_markings		= sanitize_integer(pref.g_markings, 0, 255, initial(pref.g_markings))
-	pref.b_markings		= sanitize_integer(pref.b_markings, 0, 255, initial(pref.b_markings))
-	pref.m_style			= sanitize_inlist(m_style, marking_styles_list, initial(pref.m_style))
 
 /datum/category_item/player_setup_item/vore/ears/copy_to_mob(var/mob/living/carbon/human/character)
 	character.custom_species	= pref.custom_species
@@ -80,12 +62,6 @@
 	character.r_tail			= pref.r_tail
 	character.b_tail			= pref.b_tail
 	character.g_tail			= pref.g_tail
-
-	if(character.species.bodyflags & HAS_MARKINGS)
-		character.r_markings = r_markings
-		character.g_markings = g_markings
-		character.b_markings = b_markings
-		character.m_style = m_style
 
 /datum/category_item/player_setup_item/vore/ears/content(var/mob/user)
 	. += "<h2>VORE Station Settings</h2>"
@@ -109,10 +85,6 @@
 
 	. += "<b>Custom Species</b> "
 	. += "<a href='?src=\ref[src];custom_species=1'>[pref.custom_species ? pref.custom_species : "None"]</a><br>"
-
-	. += "<br><b>Body Markings</b><br>"
-	. += "<a href='?_src_=prefs;preference=markings;task=input'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_markings, 2)][num2hex(g_markings, 2)][num2hex(b_markings, 2)]'><table style='display:inline;' bgcolor='#[num2hex(r_markings, 2)][num2hex(g_markings, 2)][num2hex(b_markings)]'><tr><td>__</td></tr></table></font> "
-	. += "<br>Style: <a href='?_src_=prefs;preference=m_style;task=input'>[m_style]</a><br>"
 
 /datum/category_item/player_setup_item/vore/ears/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(!CanUseTopic(user))
@@ -165,36 +137,4 @@
 			pref.g_tail = hex2num(copytext(new_tailc, 4, 6))
 			pref.b_tail = hex2num(copytext(new_tailc, 6, 8))
 			return TOPIC_REFRESH
-
-	else if(href_list["body_markings"])
-		if((species in list("Unathi", "Vulpkanin", "Tajaran"))) // Species with markings
-			var/list/valid_markings = list()
-			for(var/markingstyle in marking_styles_list)
-				var/datum/sprite_accessory/M = marking_styles_list[markingstyle]
-				if( !(species in M.species_allowed))
-					continue
-
-				valid_markings[markingstyle] = marking_styles_list[markingstyle]
-
-			var/new_marking_style = input(user, "Choose the style of your character's body markings:", "Character Preference") as null|anything in valid_markings
-			if(new_marking_style)
-				m_style = new_marking_style
-
-		// Present choice to user
-		var/selection = input(user, "Pick markings", "Character Preference") as null|anything in body_markings_styles
-		if(selection && selection != "Normal")
-			pref.body_markings = body_markings_styles[selection]
-		else
-			pref.body_markings = null
-		return TOPIC_REFRESH
-
-	else if(href_list["body_markings_color"])
-		var/input = "Choose the colour of your your character's body markings:"
-			var/new_markings = input(user, input, "Character Preference", rgb(r_markings, g_markings, b_markings)) as color|null
-			if(new_markings)
-				r_markings = hex2num(copytext(new_markings, 2, 4))
-				g_markings = hex2num(copytext(new_markings, 4, 6))
-				b_markings = hex2num(copytext(new_markings, 6, 8))
-				return TOPIC_REFRESH
-
 	return ..()

@@ -349,7 +349,7 @@ var/global/list/damage_icon_parts = list()
 		return
 
 	//base icons
-	var/icon/markings_standing	= new /icon('icons/mob/body_accessory.dmi',"accessory_none_s")
+	var/icon/markings_standing	= new /icon('icons/mob/vore/body_markings_vr.dmi',"accessory_none_s")
 
 	if(m_style && m_style != "None")
 		var/datum/sprite_accessory/marking_style = marking_styles_list[m_style]

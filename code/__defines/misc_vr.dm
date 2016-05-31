@@ -1,3 +1,4 @@
 #define ECO_MODIFIER 10
 
-#define APPEARANCE_MARKINGS 0x200
+//marking flags
+#define HAS_MARKINGS 0x1
