@@ -57,10 +57,11 @@
 	name = "snow"
 	icon = 'icons/turf/overlays.dmi'
 	icon_state = "snow"
-	layer = 10
+	anchored = 1
 
 /obj/effect/overlay/snow/floor
 	icon_state = "snowfloor"
+	layer = 2.01 //Just above floor
 
 /obj/effect/overlay/snow/floor/edges
 	icon_state = "snow_edges"
@@ -70,6 +71,7 @@
 
 /obj/effect/overlay/snow/airlock
 	icon_state = "snowairlock"
+	layer = 3.2 //Just above airlocks
 
 /obj/effect/overlay/snow/floor/north
 	icon_state = "snowfloor_n"
@@ -85,6 +87,7 @@
 
 /obj/effect/overlay/snow/wall/north
 	icon_state = "snowwall_n"
+	layer = 5 //Same as lights so humans can stand under it
 
 /obj/effect/overlay/snow/wall/south
 	icon_state = "snowwall_s"
