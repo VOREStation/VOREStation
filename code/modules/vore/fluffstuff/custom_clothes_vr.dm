@@ -104,6 +104,17 @@
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "joannightgown"
 
+//Vorrarkul:Lucina Dakarim
+/obj/item/clothing/under/dress/fluff/lucinadress
+	name = "Elegant Purple Dress"
+	desc = "An expertly tailored dress, made out of fine fabrics. The interwoven necklace appears to be made out of gold, with three complicated symbols engraved in the front."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "solara_dress"
+
+	icon_override = 'icons/mob/uniform.dmi'
+	item_state = "solara_dress"
+
 //For general use
 /obj/item/clothing/suit/armor/hos/fluff/brittrenchcoat
 	name = "Britania Trench Coat"
@@ -219,6 +230,17 @@
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "gogblue"
 */
+
+//wickedtemp:chakat tempest
+/obj/item/clothing/glasses/hud/health/fluff/wickedtemphud
+	name = "Purple MedHUD"
+	desc = "A standard Medical HUD, only this one is colored purple with a violet lens."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "healthhud"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "healthhud"
 
 //For general use
 /obj/item/clothing/accessory/fluff/smilepin
@@ -539,3 +561,34 @@
 			var/mob/living/carbon/human/H = user
 			if(H.head == src)
 				H.update_inv_head()
+
+// arokha : Aronai Kadigan
+/obj/item/clothing/head/helmet/space/fluff/aronai
+	name = "Aronai's Helmet"
+	desc = "This spacesuit helmet appears to be custom-made for someone with pointed ears and a muzzle. \
+		It is form-fitting enough that it's unlikely to fit anyone but the person it was intended for. \
+		'Aronai' is printed on the back of the helmet."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "arohelm"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "arohelm_mob"
+
+	light_overlay = "helmet_light_dual"
+	camera_networks = list(NETWORK_MEDICAL)
+
+/obj/item/clothing/suit/space/fluff/aronai
+	name = "Aronai's Spacesuit"
+	desc = "This spacesuit appears to be custom-made for someone with digitigrade legs and a tail. \
+		It is form-fitting enough that it's unlikely to fit anyone but the person it was intended for. \
+		'Aronai' is printed just above the spine on the back of the neckpiece. It has no space for an O2 tank. \
+		In fact, it's practically paper-thin. It doesn't seem to retain body heat at all."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "arosuit"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "arosuit_mob"
+	w_class = 4 //Oh but I can.
+	allowed = list(/obj/item/device/suit_cooling_unit) //Can't fit O2 tanks
