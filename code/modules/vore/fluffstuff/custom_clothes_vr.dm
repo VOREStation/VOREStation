@@ -104,6 +104,17 @@
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "joannightgown"
 
+//Vorrarkul:Lucina Dakarim
+/obj/item/clothing/under/dress/fluff/lucinadress
+	name = "Elegant Purple Dress"
+	desc = "An expertly tailored dress, made out of fine fabrics. The interwoven necklace appears to be made out of gold, with three complicated symbols engraved in the front."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "solara_dress"
+
+	icon_override = 'icons/mob/uniform.dmi'
+	item_state = "solara_dress"
+
 //For general use
 /obj/item/clothing/suit/armor/hos/fluff/brittrenchcoat
 	name = "Britania Trench Coat"
@@ -219,6 +230,17 @@
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "gogblue"
 */
+
+//wickedtemp:chakat tempest
+/obj/item/clothing/glasses/hud/health/fluff/wickedtemphud
+	name = "Purple MedHUD"
+	desc = "A standard Medical HUD, only this one is colored purple with a violet lens."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "healthhud"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "healthhud"
 
 //For general use
 /obj/item/clothing/accessory/fluff/smilepin

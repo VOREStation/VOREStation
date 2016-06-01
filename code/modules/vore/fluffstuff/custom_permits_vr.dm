@@ -113,3 +113,12 @@
 	The individual named above is licensed by the Nanotrasen Department of Civil Protection to carry one stun revolver.
 	This license expires on 30/March/2561 and must be renewed by CentCom prior to this date."}
 
+//Razerwing:Archer Maximus
+/obj/item/fluff/permit/archermaximus
+	name = "Archer Maximus's MEUSOC 45 Permit"
+	desc = {"
+	<b>NAME:</b> FArcher Maximus | <b>RACE:</b> Human | <b>HOMEWORLD:</b> Charybdis
+	<b>DOB:</b> 04/18/2521 | <b>HEIGHT:</b> 172.7cm | <b>SEX:</b> female
+
+	The individual named above is licensed by the Nanotrasen Department of Civil Protection to openly carry a MEUSOC 45. CONDITIONS.
+	This license expires on 31/May/2561 and must be renewed by CentCom prior to this date."}

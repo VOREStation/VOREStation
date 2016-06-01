@@ -110,6 +110,11 @@
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "pda-joan"
 
+//Vorrarkul:Lucina Dakarim
+/obj/item/device/pda/heads/hos/fluff/lucinapda
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "pda-lucina"
+
 //john.wayne9392:Harmony Prechtl
 /obj/item/device/modkit_conversion/fluff/harmonyspace
 	name = "Harmony's captain space suit modkit"
