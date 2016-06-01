@@ -44,7 +44,7 @@
 	var/list/wounds = list()           // wound datum list.
 	var/number_wounds = 0              // number of wounds, which is NOT wounds.len!
 	var/obj/item/organ/external/parent // Master-limb.
-	var/list/children                  // Sub-limbs.
+	var/list/children = list()         // Sub-limbs.
 	var/list/internal_organs = list()  // Internal organs of this body part
 	var/sabotaged = 0                  // If a prosthetic limb is emagged, it will detonate when it fails.
 	var/list/implants = list()         // Currently implanted objects.
@@ -1274,7 +1274,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(..())
 		// Give them a new cell.
 		owner.internal_organs_by_name["cell"] = new /obj/item/organ/internal/cell(owner,1)
-
 
 /obj/item/organ/external/groin
 	name = "lower body"

@@ -237,3 +237,11 @@
 		else
 			user << "<span class='warning'>This isn't even an ID card you idiot.</span>"
 			return
+
+//arokha:Aronai Kadigan
+/obj/item/weapon/card/id/centcom/fluff/aro
+	registered_name = "Aronai Kadigan"
+	assignment = "CC Medical"
+
+	New()
+		update_name()
