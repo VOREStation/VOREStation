@@ -5,6 +5,7 @@
 	var/buckle_lying = -1 //bed-like behavior, forces mob.lying = buckle_lying if != -1
 	var/buckle_require_restraints = 0 //require people to be handcuffed before being able to buckle. eg: pipes
 	var/mob/living/buckled_mob = null
+	var/has_buckled
 
 /obj/attack_hand(mob/living/user)
 	. = ..()
@@ -29,12 +30,17 @@
 /obj/proc/buckle_mob(mob/living/M)
 	if(!can_buckle || !istype(M) || (M.loc != loc) || M.buckled || M.pinned.len || (buckle_require_restraints && !M.restrained()))
 		return 0
+	if(has_buckled) //Handles trying to buckle yourself to the chair when someone is on it
+		M  << "<span class='notice'>\The [src] already has someone buckled to it.</span>"
+		return 0
 
 	M.buckled = src
 	M.facing_dir = null
 	M.set_dir(buckle_dir ? buckle_dir : dir)
 	M.update_canmove()
 	buckled_mob = M
+	has_buckled = 1
+
 	post_buckle_mob(M)
 	return 1
 
@@ -45,6 +51,7 @@
 		buckled_mob.anchored = initial(buckled_mob.anchored)
 		buckled_mob.update_canmove()
 		buckled_mob = null
+		has_buckled = 0
 
 		post_buckle_mob(.)
 
