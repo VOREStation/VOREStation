@@ -225,7 +225,7 @@
 /obj/item/weapon/storage/box/emps/New()
 	..()
 	for(var/i = 1 to 5)
-	new /obj/item/weapon/grenade/empgrenade(src)
+		new /obj/item/weapon/grenade/empgrenade(src)
 
 /obj/item/weapon/storage/box/empslite
 	name = "box of low yield emp grenades"
