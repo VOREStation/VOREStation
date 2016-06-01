@@ -49,7 +49,7 @@
 	if(!on_fire && istype(W, /obj/item/weapon/flame))
 		var/obj/item/weapon/flame/F = W
 		if(F.lit)
-			ignite()
+			src.ignite()
 			if(on_fire)
 				visible_message("<span class='warning'>\The [user] lights [src] with [W].</span>")
 			else
@@ -151,15 +151,21 @@
 
 /obj/item/weapon/reagent_containers/glass/rag/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature >= 50 + T0C)
-		ignite()
+		src.ignite()
 	if(exposed_temperature >= 900 + T0C)
 		new /obj/effect/decal/cleanable/ash(get_turf(src))
 		qdel(src)
 
-//rag must have a minimum of 2 units welder fuel and at least 80% of the reagents must be welder fuel.
-//maybe generalize flammable reagents someday
+//rag must have a minimum of 2 units welder fuel or ehtanol based reagents and at least 80% of the reagents must so.
 /obj/item/weapon/reagent_containers/glass/rag/proc/can_ignite()
-	var/fuel = reagents.get_reagent_amount("fuel")
+	var/fuel
+	if(reagents.get_reagent_amount("fuel"))
+		fuel += reagents.get_reagent_amount("fuel")
+
+	else
+		for(var/datum/reagent/ethanol/R in reagents.reagent_list)
+			fuel += reagents.get_reagent_amount(R.id)
+
 	return (fuel >= 2 && fuel >= reagents.total_volume*0.8)
 
 /obj/item/weapon/reagent_containers/glass/rag/proc/ignite()
@@ -217,5 +223,8 @@
 		return
 
 	reagents.remove_reagent("fuel", reagents.maximum_volume/25)
+	for(var/datum/reagent/ethanol/R in reagents.reagent_list)
+		if(istype(R, /datum/reagent/ethanol))
+			reagents.remove_reagent(R.id, reagents.maximum_volume/25)
 	update_name()
 	burn_time--

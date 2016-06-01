@@ -13,15 +13,15 @@
 	var/charge_tick = 0
 	var/recharge_time = 5 //Time it takes for shots to recharge (in seconds)
 
-	var/list/reagent_ids = list("tricordrazine", "inaprovaline", "spaceacillin")
+	var/list/reagent_ids = list("tricordrazine", "inaprovaline", "tramadol", "dexalin" ,"spaceacillin")
 	var/list/reagent_volumes = list()
 	var/list/reagent_names = list()
 
 /obj/item/weapon/reagent_containers/borghypo/surgeon
-	reagent_ids = list("bicaridine", "inaprovaline", "dexalin")
+	reagent_ids = list("tricordrazine", "inaprovaline", "tramadol", "dexalin" ,"spaceacillin")
 
 /obj/item/weapon/reagent_containers/borghypo/crisis
-	reagent_ids = list("tricordrazine", "inaprovaline", "tramadol")
+	reagent_ids = list("tricordrazine", "inaprovaline", "tramadol", "dexalin" ,"spaceacillin")
 
 /obj/item/weapon/reagent_containers/borghypo/New()
 	..()
@@ -65,7 +65,7 @@
 		if(!affected)
 			user << "<span class='danger'>\The [H] is missing that limb!</span>"
 			return
-		else if(affected.status & ORGAN_ROBOT)
+		else if(affected.robotic >= ORGAN_ROBOT)
 			user << "<span class='danger'>You cannot inject a robotic limb.</span>"
 			return
 

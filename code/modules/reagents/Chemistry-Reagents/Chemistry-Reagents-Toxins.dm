@@ -474,42 +474,46 @@
 	color = "#13BC5E"
 
 /datum/reagent/slimetoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(H.species.name != "Promethean")
-			M << "<span class='danger'>Your flesh rapidly mutates!</span>"
-			H.set_species("Promethean")
-			H.shapeshifter_set_colour("#05FF9B")
-			H.verbs -= /mob/living/carbon/human/proc/shapeshifter_select_colour
+	if(M.isSynthetic())
+		return
+
+	var/mob/living/carbon/human/H = M
+	if(istype(H) && (H.species.flags & NO_SCAN))
+		return
+
+	if(M.dna)
+		if(prob(removed * 0.1)) 
+			randmuti(M)
+			if(prob(98))
+				randmutb(M)
+			else
+				randmutg(M)
+			domutcheck(M, null)
+			M.UpdateAppearance()
+	M.apply_effect(16 * removed, IRRADIATE, 0)
 
 /datum/reagent/aslimetoxin
-	name = "Advanced Mutation Toxin"
-	id = "amutationtoxin"
-	description = "An advanced corruptive toxin produced by slimes."
+	name = "Docility Toxin"
+	id = "docilitytoxin"
+	description = "A corruptive toxin produced by slimes."
 	reagent_state = LIQUID
-	color = "#13BC5E"
+	color = "#FF69B4"
 
 /datum/reagent/aslimetoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed) // TODO: check if there's similar code anywhere else
-	if(M.transforming)
+	if(M.isSynthetic())
 		return
-	M << "<span class='danger'>Your flesh rapidly mutates!</span>"
-	M.transforming = 1
-	M.canmove = 0
-	M.icon = null
-	M.overlays.Cut()
-	M.invisibility = 101
-	for(var/obj/item/W in M)
-		if(istype(W, /obj/item/weapon/implant)) //TODO: Carn. give implants a dropped() or something
-			qdel(W)
-			continue
-		W.layer = initial(W.layer)
-		W.loc = M.loc
-		W.dropped(M)
-	var/mob/living/carbon/slime/new_mob = new /mob/living/carbon/slime(M.loc)
-	new_mob.a_intent = "hurt"
-	new_mob.universal_speak = 1
-	if(M.mind)
-		M.mind.transfer_to(new_mob)
-	else
-		new_mob.key = M.key
-	qdel(M)
+
+	var/mob/living/carbon/human/H = M
+	if(istype(H) && (H.species.flags & NO_SCAN))
+		return
+
+	if(M.dna)
+		if(prob(removed * 0.1)) 
+			randmuti(M)
+			if(prob(98))
+				randmutb(M)
+			else
+				randmutg(M)
+			domutcheck(M, null)
+			M.UpdateAppearance()
+	M.apply_effect(6 * removed, IRRADIATE, 0)

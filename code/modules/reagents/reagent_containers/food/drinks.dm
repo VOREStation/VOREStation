@@ -23,6 +23,9 @@
 	flags |= OPENCONTAINER
 
 /obj/item/weapon/reagent_containers/food/drinks/attack(mob/M as mob, mob/user as mob, def_zone)
+	if(force && !(flags & NOBLUDGEON) && user.a_intent == I_HURT)
+		return ..()
+
 	if(standard_feed_mob(user, M))
 		return
 
@@ -93,10 +96,6 @@
 	volume = 150
 	flags = CONDUCT | OPENCONTAINER
 
-/obj/item/weapon/reagent_containers/food/drinks/golden_cup/tournament_26_06_2011
-	desc = "A golden cup. It will be presented to a winner of tournament 26 june and name of the winner will be graved on it."
-
-
 ///////////////////////////////////////////////Drinks
 //Notes by Darem: Drinks are simply containers that start preloaded. Unlike condiments, the contents can be ingested directly
 //	rather then having to add it to something else first. They should only contain liquids. They have a default container size of 50.
@@ -122,6 +121,23 @@
 /obj/item/weapon/reagent_containers/food/drinks/soymilk/New()
 	..()
 	reagents.add_reagent("soymilk", 50)
+
+/obj/item/weapon/reagent_containers/food/drinks/milk/smallcarton
+	name = "Small Carton of Milk"
+	volume = 30
+	icon_state = "mini-milk"
+/obj/item/weapon/reagent_containers/food/drinks/milk/smallcarton/New()
+	..()
+	reagents.add_reagent("milk", 30)
+
+/obj/item/weapon/reagent_containers/food/drinks/milk/smallcarton/chocolate
+	name = "Small Carton of Chocolate Milk"
+	desc = "It's milk! This one is in delicious chocolate flavour."
+
+/obj/item/weapon/reagent_containers/food/drinks/milk/smallcarton/chocolate/New()
+	..()
+	reagents.add_reagent("chocolate_milk", 30)
+
 
 /obj/item/weapon/reagent_containers/food/drinks/coffee
 	name = "Robust Coffee"

@@ -6,9 +6,9 @@
 	name = "space heater"
 	desc = "Made by Space Amish using traditional space techniques, this heater is guaranteed not to set the station on fire."
 	var/obj/item/weapon/cell/cell
-	var/cell_type = /obj/item/weapon/cell/apc
+	var/cell_type = /obj/item/weapon/cell/high
 	var/on = 0
-	var/set_temperature = T0C + 50	//K
+	var/set_temperature = T0C + 20	//K
 	var/heating_power = 40000
 
 

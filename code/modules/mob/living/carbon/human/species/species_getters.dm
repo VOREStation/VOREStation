@@ -47,10 +47,19 @@
 		return "no message"
 
 /datum/species/proc/get_ssd(var/mob/living/carbon/human/H)
-	return ((H && H.isSynthetic()) ? "flashing a 'system offline' glyph on their monitor" : show_ssd)
+	if(H)
+		if(H.looksSynthetic())
+			return "flashing a 'system offline' light"
+		else
+			return show_ssd
 
 /datum/species/proc/get_blood_colour(var/mob/living/carbon/human/H)
-	return ((H && H.isSynthetic()) ? SYNTH_BLOOD_COLOUR : blood_color)
+	if(H)
+		var/datum/robolimb/company = H.isSynthetic()
+		if(company)
+			return company.blood_color
+		else
+			return blood_color
 
 /datum/species/proc/get_virus_immune(var/mob/living/carbon/human/H)
 	return ((H && H.isSynthetic()) ? 1 : virus_immune)

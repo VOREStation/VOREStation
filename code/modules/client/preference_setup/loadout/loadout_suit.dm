@@ -143,7 +143,7 @@
 /datum/gear/suit/roles/poncho/science
 	display_name = "poncho, science"
 	path = /obj/item/clothing/suit/poncho/roles/science
-	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobotanist")
+	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist")
 
 /datum/gear/suit/roles/poncho/cargo
 	display_name = "poncho, cargo"
@@ -218,7 +218,7 @@
 /datum/gear/suit/wintercoat/science
 	display_name = "winter coat, science"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/science
-	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobotanist")
+	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist")
 
 /datum/gear/suit/wintercoat/engineering
 	display_name = "winter coat, engineering"
@@ -233,7 +233,7 @@
 /datum/gear/suit/wintercoat/hydro
 	display_name = "winter coat, hydroponics"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/hydro
-	allowed_roles = list("Botanist", "Xenobotanist")
+	allowed_roles = list("Botanist", "Xenobiologist")
 
 /datum/gear/suit/wintercoat/cargo
 	display_name = "winter coat, cargo"
@@ -256,3 +256,15 @@
 		var/obj/item/clothing/suit/varsity/varsity = varsity_style
 		varsities[initial(varsity.name)] = varsity
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(varsities))
+
+/datum/gear/suit/track
+	display_name = "track jacket selection"
+	path = /obj/item/clothing/suit/storage/toggle/track
+
+/datum/gear/suit/track/New()
+	..()
+	var/list/tracks = list()
+	for(var/track_style in typesof(/obj/item/clothing/suit/storage/toggle/track))
+		var/obj/item/clothing/suit/storage/toggle/track/track = track_style
+		tracks[initial(track.name)] = track
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(tracks))

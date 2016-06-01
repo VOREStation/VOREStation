@@ -43,7 +43,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 		"Bland" = "ghost",
 		"Robed-B" = "ghost1",
 		"Robed-BAlt" = "ghost2",
-		"Corgi" = "ghostian",
+		"Corgi" = "corgi",
 		"King" = "ghostking",
 		"Shade" = "shade",
 		"Hecate" = "ghost-narsie",
@@ -65,7 +65,15 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 		"Pink Elemental" = "magicPink",
 		"Orange Elemental" = "magicOrange",
 		"Green Elemental" = "magicGreen",
-		"Daemon" = "daemon"
+		"Daemon" = "daemon",
+		"Guard Spider" = "guard",
+		"Hunter Spider" = "hunter",
+		"Nurse Spider" = "nurse",
+		"Carp" = "carp",
+		"Space Bear" = "bear",
+		"Rogue Drone" = "drone",
+		"ED-209" = "ed209",
+		"Beepsky" = "secbot"
 		)
 
 /mob/observer/dead/New(mob/body)
@@ -219,7 +227,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 					return
 				src.client.admin_ghost()
 		else
-			response = alert(src, "Are you -sure- you want to ghost?\n(You are alive. If you ghost, you won't be able to play this round for another 30 minutes! You can't change your mind so choose wisely!)", "Are you sure you want to ghost?", "Ghost", "Stay in body")
+			response = alert(src, "Are you -sure- you want to ghost?\n(You are alive. Don't abuse ghost unless you are inside a cryopod or equivalent! You can't change your mind so choose wisely!)", "Are you sure you want to ghost?", "Ghost", "Stay in body") // VOREStation edit because we don't make players stay dead for 30 minutes.
 		if(response != "Ghost")
 			return
 		resting = 1
@@ -817,6 +825,7 @@ mob/observer/dead/MayRespawn(var/feedback = 0)
 	set name = "Choose Sprite"
 
 	icon = 'icons/mob/ghost.dmi'
+	overlays.Cut()
 	var/choice
 	var/finalized = "No"
 	while(finalized == "No" && src.client)

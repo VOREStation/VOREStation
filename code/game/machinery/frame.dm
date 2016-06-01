@@ -218,7 +218,10 @@
 				if(component_check)
 					playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 					var/obj/machinery/new_machine = new src.circuit.build_path(src.loc, src.dir)
+					// Handle machines that have allocated default parts in thier constructor.
 					if(new_machine.component_parts)
+						for(var/CP in new_machine.component_parts)
+							qdel(CP)
 						new_machine.component_parts.Cut()
 					else
 						new_machine.component_parts = list()

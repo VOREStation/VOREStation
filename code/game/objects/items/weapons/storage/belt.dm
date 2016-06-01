@@ -187,7 +187,8 @@
 		/obj/item/device/flash,
 		/obj/item/weapon/flame/lighter,
 		/obj/item/weapon/reagent_containers/food/snacks/donut/,
-		/obj/item/ammo_magazine
+		/obj/item/ammo_magazine,
+		/obj/item/weapon/gun/projectile/colt/detective
 		)
 
 /obj/item/weapon/storage/belt/soulstone
