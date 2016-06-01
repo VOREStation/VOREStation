@@ -145,4 +145,27 @@
 
 	qdel(src)
 
+/mob/living/carbon/human/proc/self_diagnostics()
+	set name = "Self-Diagnostics"
+	set desc = "Run an internal self-diagnostic to check for damage."
+	set category = "IC"
 
+	if(stat == DEAD) return
+
+	src << "<span class='notice'>Performing self-diagnostic, please wait...</span>"
+	sleep(50)
+	var/output = "<span class='notice'>Self-Diagnostic Results:\n</span>"
+
+	for(var/obj/item/organ/external/EO in organs)
+		if(EO.brute_dam || EO.burn_dam)
+			output += "[EO.name] - <span class='warning'>[EO.burn_dam + EO.brute_dam > ROBOLIMB_REPAIR_CAP ? "Heavy Damage" : "Light Damage"]</span>\n"
+		else
+			output += "[EO.name] - <span style='color:green;'>OK</span>\n"
+
+	for(var/obj/item/organ/IO in internal_organs)
+		if(IO.damage)
+			output += "[IO.name] - <span class='warning'>[IO.damage > 10 ? "Heavy Damage" : "Light Damage"]</span>\n"
+		else
+			output += "[IO.name] - <span style='color:green;'>OK</span>\n"
+
+	src << output

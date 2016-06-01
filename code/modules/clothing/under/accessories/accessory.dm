@@ -84,6 +84,14 @@
 	name = "blue tie with a clip"
 	icon_state = "bluecliptie"
 
+/obj/item/clothing/accessory/blue_long
+	name = "blue long tie"
+	icon_state = "bluelongtie"
+
+/obj/item/clothing/accessory/red_clip
+	name = "red tie with a clip"
+	icon_state = "redcliptie"
+
 /obj/item/clothing/accessory/red_long
 	name = "red long tie"
 	icon_state = "redlongtie"

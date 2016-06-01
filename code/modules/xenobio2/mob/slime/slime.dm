@@ -12,12 +12,12 @@ Slime definitions, Life and New live here.
 	icon_living = "slime adult"
 	icon_dead = "slime adult dead"
 	internal_vol = 200
-	mut_max = 200
+	mut_max = 50
 	mutable = COLORMUT
 	var/is_child = 1
 	var/cores = 3
 	var/growthcounter = 0
-	var/growthpoint = 150 //At what point they grow up.
+	var/growthpoint = 50 //At what point they grow up.
 	var/shiny = 0
 	move_to_delay = 17 //Slimes shouldn't be able to go faster than humans.
 	default_chems = list("slimejelly" = 5)

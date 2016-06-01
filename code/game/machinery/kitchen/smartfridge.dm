@@ -71,6 +71,8 @@
 	for(var/i=1 to 5)
 		var/obj/item/xenoproduct/slime/core/C = new(src)
 		C.traits = new()
+		C.nameVar = "grey"
+		item_quants[C.name]++
 
 /obj/machinery/smartfridge/secure/medbay
 	name = "\improper Refrigerated Medicine Storage"
