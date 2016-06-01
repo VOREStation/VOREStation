@@ -1,12 +1,12 @@
 /obj/item/weapon/gun/projectile/revolver
 	name = "revolver"
-	desc = "The Lumoco Arms HE Colt is a choice revolver for when you absolutely, positively need to put a hole in the other guy. Uses .357 ammo."
+	desc = "The Lumoco Arms HE Colt is a choice revolver for when you absolutely, positively need to put a hole in the other guy. Uses .357 rounds."
 	icon_state = "revolver"
 	item_state = "revolver"
 	caliber = "357"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	handle_casings = CYCLE_CASINGS
-	max_shells = 7
+	max_shells = 6
 	ammo_type = /obj/item/ammo_casing/a357
 	var/chamber_offset = 0 //how many empty chambers in the cylinder until you hit a round
 
@@ -42,7 +42,6 @@
 	name = "revolver"
 	desc = "A cheap Martian knock-off of a Smith & Wesson Model 10. Uses .38-Special rounds."
 	icon_state = "detective"
-	max_shells = 6
 	caliber = "38"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	fire_sound = 'sound/weapons/Gunshot_light.ogg'
@@ -68,10 +67,9 @@
 
 // Blade Runner pistol.
 /obj/item/weapon/gun/projectile/revolver/deckard
-	name = "Deckard .44"
+	name = "Deckard .38"
 	desc = "A custom-built revolver, based off the semi-popular Detective Special model."
 	icon_state = "deckard-empty"
-	max_shells = 6
 	caliber = "38"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	fire_sound = 'sound/weapons/Gunshot_light.ogg'
@@ -100,3 +98,14 @@
 	max_shells = 7
 	ammo_type = /obj/item/ammo_casing/cap
 
+/obj/item/weapon/gun/projectile/revolver/judge
+	name = "\"The Judge\""
+	desc = "A revolving hand-shotgun by Cybersun Industries that packs the power of a 12 guage in the palm of your hand (if you don't break your wrist). \"It's never been easier to be Judge, Jury, and Executioner.\"™ Uses 12 shotgun rounds."
+	icon_state = "judge"
+	caliber = "shotgun"
+	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 4)
+	max_shells = 5
+	recoil = 2 // ow my fucking hand
+	accuracy = -1 // smooth bore + short barrel = shit accuracy
+	ammo_type = /obj/item/ammo_casing/shotgun
+	// ToDo: Remove accuracy debuf in exchange for slightly injuring your hand every time you fire it.

@@ -150,6 +150,22 @@
 	if(is_robot_module(O))
 		return 0
 
+	if(istype(O,/obj/item/ammo_magazine/clip) || istype(O,/obj/item/ammo_magazine/a357) || istype(O,/obj/item/ammo_magazine/c38)) // Prevents ammo recycling exploit with speedloaders.
+		user << "\The [O] is too hazardous to recycle with the autolathe!"
+		return
+		/*  ToDo: Make this actually check for ammo and let me recycle if the ammo is spent or gone. -Spades
+		var/obj/item/ammo_magazine/speedloader = O
+		if(speedloader.stored_ammo)
+			user << "\The [speedloader] is too hazardous to put back into the autolathe while there's ammunition inside of it!"
+			return
+		else
+			speedloader.matter = list(DEFAULT_WALL_MATERIAL = 75) // It's just a hunk of scrap metal now.
+	if(istype(O,/obj/item/ammo_magazine)) // This was just for immersion consistency with above.
+		var/obj/item/ammo_magazine/mag = O
+		if(mag.stored_ammo)
+			user << "\The [mag] is too hazardous to put back into the autolathe while there's ammunition inside of it!"
+			return*/
+
 	//Resources are being loaded.
 	var/obj/item/eating = O
 	if(!eating.matter)

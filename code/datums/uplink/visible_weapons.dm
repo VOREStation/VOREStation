@@ -34,21 +34,41 @@
 	item_cost = 6
 	path = /obj/item/weapon/gun/projectile/revolver
 
+/datum/uplink_item/item/visible_weapons/Derringer
+	name = ".357 Derringer Pistol"
+	item_cost = 5
+	path = /obj/item/weapon/gun/projectile/derringer
+
+/datum/uplink_item/item/visible_weapons/SVD
+	name = "Dragunov Sniper (7.62mm)"
+	item_cost = 7
+	path = /obj/item/weapon/gun/projectile/SVD
+
 /datum/uplink_item/item/visible_weapons/heavysniper
-	name = "Anti-materiel Rifle"
+	name = "Anti-Materiel Rifle (14.5mm)"
 	item_cost = DEFAULT_TELECRYSTAL_AMOUNT
 	path = /obj/item/weapon/gun/projectile/heavysniper
 
+/datum/uplink_item/item/visible_weapons/tommygun
+	name = "Tommygun (.45)"
+	item_cost = DEFAULT_TELECRYSTAL_AMOUNT
+	path = /obj/item/weapon/gun/projectile/automatic/tommygun
+
 //These are for traitors (or other antags, perhaps) to have the option of purchasing some merc gear.
 /datum/uplink_item/item/visible_weapons/submachinegun
-	name = "Submachine Gun"
+	name = "Submachine Gun (10mm)"
 	item_cost = 6
 	path = /obj/item/weapon/gun/projectile/automatic/c20r
 
 /datum/uplink_item/item/visible_weapons/assaultrifle
-	name = "Assault Rifle"
+	name = "Assault Rifle (7.62mm)"
 	item_cost = 7
 	path = /obj/item/weapon/gun/projectile/automatic/sts35
+
+/datum/uplink_item/item/visible_weapons/bullpuprifle
+	name = "Assault Rifle (5.56mm)"
+	item_cost = 7
+	path = /obj/item/weapon/gun/projectile/automatic/fn3000
 
 /datum/uplink_item/item/visible_weapons/combatshotgun
 	name = "Combat Shotgun"

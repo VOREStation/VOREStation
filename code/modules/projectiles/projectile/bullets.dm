@@ -128,6 +128,10 @@
 /obj/item/projectile/bullet/pistol
 	damage = 20
 
+/obj/item/projectile/bullet/pistol/small
+	damage = 15
+	armor_penetration = 50
+
 /obj/item/projectile/bullet/pistol/medium
 	damage = 25
 
@@ -227,8 +231,9 @@
 /obj/item/projectile/bullet/pistol/practice
 	damage = 5
 
-/obj/item/projectile/bullet/rifle/a556/practice
+/obj/item/projectile/bullet/rifle/practice
 	damage = 5
+	penetrating = 0
 
 /obj/item/projectile/bullet/shotgun/practice
 	name = "practice"

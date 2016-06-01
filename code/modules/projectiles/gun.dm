@@ -251,7 +251,8 @@
 //called after successfully firing
 /obj/item/weapon/gun/proc/handle_post_fire(mob/user, atom/target, var/pointblank=0, var/reflex=0)
 	if(silenced)
-		playsound(user, fire_sound, 10, 1)
+		/*playsound(user, fire_sound, 10, 1)*/
+		playsound(user, 'sound/weapons/silenced.ogg', 10, 1)
 	else
 		playsound(user, fire_sound, 50, 1)
 
@@ -362,7 +363,8 @@
 	if (istype(in_chamber))
 		user.visible_message("<span class = 'warning'>[user] pulls the trigger.</span>")
 		if(silenced)
-			playsound(user, fire_sound, 10, 1)
+			/*playsound(user, fire_sound, 10, 1)*/
+			playsound(user, 'sound/weapons/silenced.ogg', 10, 1)
 		else
 			playsound(user, fire_sound, 50, 1)
 		if(istype(in_chamber, /obj/item/projectile/beam/lastertag))
