@@ -28,10 +28,6 @@ datum/preferences
 	var/age = 30						//age of character
 	var/spawnpoint = "Arrivals Shuttle" //where this character will spawn (0-2).
 	var/b_type = "A+"					//blood type (not-chooseable)
-	var/underwear_top
-	var/underwear_bottom
-	var/undershirt						//undershirt type
-	var/socks							//socks type
 	var/backbag = 2						//backpack type
 	var/pdachoice = 1					//PDA type
 	var/h_style = "Bald"				//Hair type
@@ -63,8 +59,6 @@ datum/preferences
 
 		//Mob preview
 	var/icon/preview_icon = null
-	var/icon/preview_icon_front = null
-	var/icon/preview_icon_side = null
 
 		//Jobs, uses bitflags
 	var/job_civilian_high = 0
@@ -122,7 +116,7 @@ datum/preferences
 	player_setup = new(src)
 	set_biological_gender(pick(MALE, FEMALE))
 	real_name = random_name(identifying_gender,species)
-	b_type = pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
+	b_type = RANDOM_BLOOD_TYPE
 
 	gear = list()
 
@@ -213,7 +207,7 @@ datum/preferences
 
 	dat += "</html></body>"
 	//user << browse(dat, "window=preferences;size=635x736")
-	var/datum/browser/popup = new(user, "Character Setup","Character Setup", 635, 736, src)
+	var/datum/browser/popup = new(user, "Character Setup","Character Setup", 800, 800, src)
 	popup.set_content(dat)
 	popup.open()
 
@@ -254,9 +248,10 @@ datum/preferences
 	ShowChoices(usr)
 	return 1
 
-/datum/preferences/proc/copy_to(mob/living/carbon/human/character, safety = 0)
+/datum/preferences/proc/copy_to(mob/living/carbon/human/character, icon_updates = 1)
 	// Sanitizing rather than saving as someone might still be editing when copy_to occurs.
 	player_setup.sanitize_setup()
+	character.set_species(species)
 	if(be_random_name)
 		real_name = random_name(identifying_gender,species)
 
@@ -297,10 +292,12 @@ datum/preferences
 	character.g_eyes = g_eyes
 	character.b_eyes = b_eyes
 
+	character.h_style = h_style
 	character.r_hair = r_hair
 	character.g_hair = g_hair
 	character.b_hair = b_hair
 
+	character.f_style = f_style
 	character.r_facial = r_facial
 	character.g_facial = g_facial
 	character.b_facial = b_facial
@@ -346,10 +343,18 @@ datum/preferences
 			else if(status == "mechanical")
 				I.robotize()
 
-	character.underwear_bottom = underwear_bottom
-	character.underwear_top = underwear_top
-	character.undershirt = undershirt
-	character.socks = socks
+	character.all_underwear.Cut()
+	character.all_underwear_metadata.Cut()
+
+	for(var/underwear_category_name in all_underwear)
+		var/datum/category_group/underwear/underwear_category = global_underwear.categories_by_name[underwear_category_name]
+		if(underwear_category)
+			var/underwear_item_name = all_underwear[underwear_category_name]
+			character.all_underwear[underwear_category_name] = underwear_category.items_by_name[underwear_item_name]
+			if(all_underwear_metadata[underwear_category_name])
+				character.all_underwear_metadata[underwear_category_name] = all_underwear_metadata[underwear_category_name]
+		else
+			all_underwear -= underwear_category_name
 
 	if(backbag > 4 || backbag < 1)
 		backbag = 1 //Same as above
@@ -359,7 +364,13 @@ datum/preferences
 		pdachoice = 1
 	character.pdachoice = pdachoice
 
-	character.update_body()
+	if(icon_updates)
+		character.force_update_limbs()
+		character.update_mutations(0)
+		character.update_body(0)
+		character.update_underwear(0)
+		character.update_hair(0)
+		character.update_icons()
 
 /datum/preferences/proc/open_load_dialog(mob/user)
 	var/dat = "<body>"

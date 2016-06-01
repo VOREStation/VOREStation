@@ -60,9 +60,10 @@
 		data["occupied"] = 1
 	if(isxeno(injector.occupant))
 		var/mob/living/simple_animal/xeno/X = injector.occupant
-		data["instability"] = (X.mut_level / X.mut_max) * 100
+		data["compatible"] = 1
+		data["instability"] = 100 * (X.mut_level / X.mut_max) 
 	else
-		data["instability"] = null
+		data["compatible"] = null
 
 	if(injector.beaker)
 		data["reagentAmount"] = injector.beaker.reagents.total_volume

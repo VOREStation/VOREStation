@@ -56,8 +56,8 @@
 /mob/living/carbon/human/Stat()
 	..()
 	if(statpanel("Status"))
-		stat(null, "Intent: [a_intent]")
-		stat(null, "Move Mode: [m_intent]")
+		stat("Intent:", "[a_intent]")
+		stat("Move Mode:", "[m_intent]")
 		if(emergency_shuttle)
 			var/eta_status = emergency_shuttle.get_status_panel_eta()
 			if(eta_status)
@@ -1139,8 +1139,6 @@
 		if(hud_used)
 			qdel(hud_used)
 		hud_used = new /datum/hud(src)
-
-	full_prosthetic = null
 
 	if(species)
 		return 1

@@ -112,6 +112,8 @@
 			var/obj/item/xenoproduct/slime/core/C = new(src)
 			C.traits = occupant.traitdat
 			
+			C.nameVar = occupant.nameVar
+			
 			C.create_reagents(C.traits.traits[TRAIT_XENO_CHEMVOL])
 			for(var/reagent in occupant.traitdat.chems)
 				C.reagents.add_reagent(reagent, occupant.traitdat.chems[reagent])

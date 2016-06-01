@@ -44,7 +44,7 @@
 	var/list/wounds = list()           // wound datum list.
 	var/number_wounds = 0              // number of wounds, which is NOT wounds.len!
 	var/obj/item/organ/external/parent // Master-limb.
-	var/list/children                  // Sub-limbs.
+	var/list/children = list()         // Sub-limbs.
 	var/list/internal_organs = list()  // Internal organs of this body part
 	var/sabotaged = 0                  // If a prosthetic limb is emagged, it will detonate when it fails.
 	var/list/implants = list()         // Currently implanted objects.
@@ -363,15 +363,16 @@
 
 	var/damage_amount
 	switch(damage_type)
-		if(BRUTE) damage_amount = brute_dam
-		if(BURN)  damage_amount = burn_dam
+		if(BRUTE)   damage_amount = brute_dam
+		if(BURN)    damage_amount = burn_dam
+		if("omni")  damage_amount = max(brute_dam,burn_dam)
 		else return 0
 
 	if(!damage_amount)
 		user << "<span class='notice'>Nothing to fix!</span>"
 		return 0
 
-	if(damage_amount >= ROBOLIMB_SELF_REPAIR_CAP)
+	if(damage_amount >= ROBOLIMB_REPAIR_CAP)
 		user << "<span class='danger'>The damage is far too severe to patch over externally.</span>"
 		return 0
 
@@ -394,10 +395,13 @@
 	switch(damage_type)
 		if(BRUTE) src.heal_damage(repair_amount, 0, 0, 1)
 		if(BURN)  src.heal_damage(0, repair_amount, 0, 1)
-	if(user == src.owner)
-		user.visible_message("<span class='notice'>\The [user] patches [damage_desc] on \his [src.name] with [tool].</span>")
-	else
-		user.visible_message("<span class='notice'>\The [user] patches [damage_desc] on [owner]'s [src.name] with [tool].</span>")
+		if("omni")src.heal_damage(repair_amount, repair_amount, 0, 1)
+
+	if(damage_desc)
+		if(user == src.owner)
+			user.visible_message("<span class='notice'>\The [user] patches [damage_desc] on \his [src.name] with [tool].</span>")
+		else
+			user.visible_message("<span class='notice'>\The [user] patches [damage_desc] on [owner]'s [src.name] with [tool].</span>")
 
 	return 1
 
@@ -1028,7 +1032,11 @@ Note that amputating the affected organ does in fact remove the infection from t
 			R = basic_robolimb
 		if(R)
 			force_icon = R.icon
-			name = "robotic [initial(name)]"
+			if(R.lifelike)
+				robotic = ORGAN_LIFELIKE
+				name = "[initial(name)]"
+			else
+				name = "robotic [initial(name)]"
 			desc = "[R.desc] It looks like it was produced by [R.company]."
 
 	dislocated = -1
@@ -1040,9 +1048,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 		T.robotize(company, 1)
 
 	if(owner)
-
-		if(!skip_prosthetics)
-			owner.full_prosthetic = null // Will be rechecked next isSynthetic() call.
 
 		if(!keep_organs)
 			for(var/obj/item/organ/thing in internal_organs)
@@ -1175,29 +1180,39 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(status & ORGAN_DESTROYED && !is_stump())
 		. += "tear at [amputation_point] so severe that it hangs by a scrap of flesh"
 
+	//Handle robotic and synthetic organ damage
 	if(robotic >= ORGAN_ROBOT)
+		var/LL //Life-Like, aka only show that it's robotic in heavy damage
+		if(robotic >= ORGAN_LIFELIKE)
+			LL = 1
 		if(brute_dam)
 			switch(brute_dam)
 				if(0 to 20)
-					. += "some dents"
+					. += "some [LL ? "cuts" : "dents"]"
 				if(21 to INFINITY)
-					. += pick("a lot of dents","severe denting")
+					. += "[LL ? pick("exposed wiring","torn-back synthflesh") : pick("a lot of dents","severe denting")]"
+
 		if(brute_dam && burn_dam)
 			. += " and "
+
 		if(burn_dam)
 			switch(burn_dam)
 				if(0 to 20)
 					. += "some burns"
 				if(21 to INFINITY)
-					. += pick("a lot of burns","severe melting")
+					. += "[LL ? pick("roasted synth-flesh","melted internal wiring") : pick("many burns","scorched metal")]"
+
 		if(open)
 			if(brute_dam || burn_dam)
-				. += " and an open panel"
+				. += " and "
+			if(open == 1)
+				. += "some exposed screws"
 			else
 				. += "an open panel"
 
 		return
 
+	//Normal organic organ damage
 	var/list/wound_descriptors = list()
 	if(open > 1)
 		wound_descriptors["an open incision"] = 1
@@ -1259,7 +1274,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(..())
 		// Give them a new cell.
 		owner.internal_organs_by_name["cell"] = new /obj/item/organ/internal/cell(owner,1)
-
 
 /obj/item/organ/external/groin
 	name = "lower body"
