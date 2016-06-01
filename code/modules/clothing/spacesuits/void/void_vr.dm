@@ -29,7 +29,7 @@
 		"Sergal"			= 'icons/obj/clothing/species/sergal/hats.dmi',
 		"Flatland Zorren"	= 'icons/obj/clothing/species/fennec/hats.dmi',
 		"Highlander Zorren"	= 'icons/obj/clothing/species/fox/hats.dmi',
-		"Vulpkanin"				= 'icons/mob/species/vulpkanin/helmet.dmi'
+		"Vulpkanin"				= 'icons/obj/clothing/species/vulpkanin/hats.dmi'
 		)
 
 /obj/item/clothing/suit/space/void
@@ -58,7 +58,7 @@
 		"Sergal"			= 'icons/obj/clothing/species/sergal/suits.dmi',
 		"Flatland Zorren"	= 'icons/obj/clothing/species/fennec/suits.dmi',
 		"Highlander Zorren"	= 'icons/obj/clothing/species/fox/suits.dmi',
-		"Vulpkanin"			= 'icons/mob/species/vulpkanin/helmet.dmi'
+		"Vulpkanin"			= 'icons/obj/clothing/species/vulpkanin/suits.dmi'
 		)
 
 
