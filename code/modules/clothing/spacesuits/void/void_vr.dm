@@ -15,8 +15,10 @@
 		"Akula" 				= 'icons/mob/species/akula/helmet_vr.dmi',
 		"Sergal"				= 'icons/mob/species/sergal/helmet_vr.dmi',
 		"Flatland Zorren" 		= 'icons/mob/species/fennec/helmet_vr.dmi',
-		"Highlander Zorren" 	= 'icons/mob/species/fox/helmet_vr.dmi'
+		"Highlander Zorren" 	= 'icons/mob/species/fox/helmet_vr.dmi',
+		"Vulpkanin"				= 'icons/mob/species/vulpkanin/helmet.dmi'
 		)
+
 	sprite_sheets_obj = list(
 		"Tajara" 			= 'icons/obj/clothing/species/tajaran/hats.dmi', // Copied from void.dm
 		"Skrell"			= 'icons/obj/clothing/species/skrell/hats.dmi',  // Copied from void.dm
@@ -26,7 +28,8 @@
 		"Akula"				= 'icons/obj/clothing/species/akula/hats.dmi',
 		"Sergal"			= 'icons/obj/clothing/species/sergal/hats.dmi',
 		"Flatland Zorren"	= 'icons/obj/clothing/species/fennec/hats.dmi',
-		"Highlander Zorren"	= 'icons/obj/clothing/species/fox/hats.dmi'
+		"Highlander Zorren"	= 'icons/obj/clothing/species/fox/hats.dmi',
+		"Vulpkanin"				= 'icons/mob/species/vulpkanin/helmet.dmi'
 		)
 
 /obj/item/clothing/suit/space/void
@@ -39,8 +42,12 @@
 		"Akula" 				= 'icons/mob/species/akula/suit_vr.dmi',
 		"Sergal"				= 'icons/mob/species/sergal/suit_vr.dmi',
 		"Flatland Zorren" 		= 'icons/mob/species/fennec/suit_vr.dmi',
-		"Highlander Zorren" 	= 'icons/mob/species/fox/suit_vr.dmi'
+		"Highlander Zorren" 	= 'icons/mob/species/fox/suit_vr.dmi',
+		"Vulpkanin"				= 'icons/mob/species/vulpkanin/suit.dmi'
 		)
+
+
+
 	sprite_sheets_obj = list(
 		"Tajara"			= 'icons/obj/clothing/species/tajaran/suits.dmi', // Copied from void.dm
 		"Skrell"			= 'icons/obj/clothing/species/skrell/suits.dmi',  // Copied from void.dm
@@ -50,7 +57,8 @@
 		"Akula"				= 'icons/obj/clothing/species/akula/suits.dmi',
 		"Sergal"			= 'icons/obj/clothing/species/sergal/suits.dmi',
 		"Flatland Zorren"	= 'icons/obj/clothing/species/fennec/suits.dmi',
-		"Highlander Zorren"	= 'icons/obj/clothing/species/fox/suits.dmi'
+		"Highlander Zorren"	= 'icons/obj/clothing/species/fox/suits.dmi',
+		"Vulpkanin"			= 'icons/mob/species/vulpkanin/helmet.dmi'
 		)
 
 	// This is a hack to prevent the item_state variable on the suits from taking effect

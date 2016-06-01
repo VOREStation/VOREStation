@@ -57,7 +57,7 @@
 		var/new_size = input(user, "Choose your character's size:", "Character Preference", pref.size_multiplier) as null|anything in size_types
 		if(new_size)
 			pref.size_multiplier = size_types[new_size]
-			return TOPIC_REFRESH
+			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["weight"])
 		var/new_weight = input(user, "Choose your character's relative body weight.\n\

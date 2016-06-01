@@ -1512,7 +1512,7 @@
 
 	var/obj/item/organ/internal/heart/H = internal_organs_by_name[O_HEART]
 
-	if(!H || (H.status & ORGAN_ROBOT))
+	if(!H || (H.robotic >= ORGAN_ROBOT))
 		return
 
 	if(pulse >= PULSE_2FAST || shock_stage >= 10 || istype(get_turf(src), /turf/space))

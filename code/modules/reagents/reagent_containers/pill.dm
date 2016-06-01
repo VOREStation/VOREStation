@@ -12,12 +12,15 @@
 	slot_flags = SLOT_EARS
 	volume = 60
 
+
+
 /obj/item/weapon/reagent_containers/pill/New()
 	..()
 	if(!icon_state)
 		icon_state = "pill[rand(1, 20)]"
 
 /obj/item/weapon/reagent_containers/pill/attack(mob/M as mob, mob/user as mob, def_zone)
+
 	if(M == user)
 
 		if(istype(M, /mob/living/carbon/human))
@@ -50,6 +53,7 @@
 
 		user.visible_message("<span class='warning'>[user] attempts to force [M] to swallow \the [src].</span>")
 
+		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		if(!do_mob(user, M))
 			return
 
