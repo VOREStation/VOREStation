@@ -22,7 +22,7 @@
 		L.force_update = 0
 		L.needs_update = 0
 
-		scheck()
+		SCHECK
 
 	var/list/lighting_update_overlays_old = lighting_update_overlays //Same as above.
 	lighting_update_overlays = null //Same as above
@@ -32,4 +32,4 @@
 		O.update_overlay()
 		O.needs_update = 0
 
-		scheck()
+		SCHECK
