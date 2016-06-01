@@ -74,3 +74,15 @@
 		/obj/item/clothing/suit/storage/fluff/fedcoat,
 		/obj/item/weapon/card/id/gold/fluff/joanbadge,
 		/obj/item/weapon/card/id/captains_spare)
+
+// arokha:Aronai Kadigan
+/obj/item/weapon/storage/backpack/dufflebag/emt/fluff/aro
+	name = "Aronai's Equipment"
+	desc = "A big dufflebag, containing the stuff Aronai likes to carry with him."
+
+	New()
+		..()
+		new /obj/item/clothing/head/helmet/space/fluff/aronai(src)
+		new /obj/item/clothing/suit/space/fluff/aronai(src)
+		new /obj/item/device/suit_cooling_unit(src)
+		new /obj/item/weapon/card/id/centcom/fluff/aro(src)

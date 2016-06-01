@@ -539,3 +539,34 @@
 			var/mob/living/carbon/human/H = user
 			if(H.head == src)
 				H.update_inv_head()
+
+// arokha : Aronai Kadigan
+/obj/item/clothing/head/helmet/space/fluff/aronai
+	name = "Aronai's Helmet"
+	desc = "This spacesuit helmet appears to be custom-made for someone with pointed ears and a muzzle. \
+		It is form-fitting enough that it's unlikely to fit anyone but the person it was intended for. \
+		'Aronai' is printed on the back of the helmet."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "arohelm"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "arohelm_mob"
+
+	light_overlay = "helmet_light_dual"
+	camera_networks = list(NETWORK_MEDICAL)
+
+/obj/item/clothing/suit/space/fluff/aronai
+	name = "Aronai's Spacesuit"
+	desc = "This spacesuit appears to be custom-made for someone with digitigrade legs and a tail. \
+		It is form-fitting enough that it's unlikely to fit anyone but the person it was intended for. \
+		'Aronai' is printed just above the spine on the back of the neckpiece. It has no space for an O2 tank. \
+		In fact, it's practically paper-thin. It doesn't seem to retain body heat at all."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "arosuit"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "arosuit_mob"
+	w_class = 4 //Oh but I can.
+	allowed = list(/obj/item/device/suit_cooling_unit) //Can't fit O2 tanks

@@ -251,9 +251,11 @@
 	icon_state = "centcom"
 	registered_name = "Central Command"
 	assignment = "General"
-	New()
-		access = get_all_centcom_access()
+	New(var/loc, var/name, var/rank)
 		..()
+		if(name) registered_name = name
+		if(rank) assignment = rank
+		access = get_all_centcom_access()
 
 /obj/item/weapon/card/id/centcom/ERT
 	name = "\improper Emergency Response Team ID"
