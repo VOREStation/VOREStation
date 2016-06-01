@@ -45,7 +45,7 @@
 	var/eject_wait = 0 //Don't eject them as soon as they are created fuckkk
 	var/biomass = CLONE_BIOMASS * 3
 
-/obj/machinery/clonepod/map/New()
+/obj/machinery/clonepod/New()
 	..()
 	circuit = new circuit(src)
 	component_parts = list()

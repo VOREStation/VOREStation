@@ -22,8 +22,6 @@
 	reagents = R
 	R.my_atom = src
 
-/obj/machinery/biogenerator/map/New()
-	..()
 	beaker = new /obj/item/weapon/reagent_containers/glass/bottle(src)
 	circuit = new circuit(src)
 	component_parts = list()
