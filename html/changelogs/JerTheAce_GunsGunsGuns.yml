@@ -40,6 +40,7 @@ changes:
   - tweak: "Revolvers now use 6 shots. Finally."
   - tweak: "Most guns that didn't use magazines before for some reason (such as the Uzi) now use magazines."
   - tweak: "All casings now update icons if they have been spent."
+  - tweak: "Corrects Pulse Rifle charge cost consistency."
   - tweak: "Corrects and improves a number of icons for guns, including a couple of energy guns, and adds fallback icons so they do not turn invisible when held or strapped to your back."
   - tweak: "Made the icons for some guns look differently depending on what magazine is loaded into them."
   - tweak: "Made antag uplink menu for guns and ammo more informative."
