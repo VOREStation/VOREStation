@@ -29,10 +29,8 @@ Procs for targeting
 		set_light(traitdat.traits[TRAIT_XENO_GLOW_RANGE], traitdat.traits[TRAIT_XENO_GLOW_STRENGTH], traitdat.traits[TRAIT_XENO_BIO_COLOR])
 	else
 		set_light(0, 0, "#000000")	//Should kill any light that shouldn't be there.
-	if(chromatic)
-		hostile = 0	//No. No laser-reflecting hostile creatures. Bad.
-	else
-		hostile = traitdat.traits[TRAIT_XENO_HOSTILE]
+	
+	hostile = traitdat.traits[TRAIT_XENO_HOSTILE]
 
 	speed = traitdat.traits[TRAIT_XENO_SPEED]
 
