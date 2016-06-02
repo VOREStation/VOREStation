@@ -81,7 +81,7 @@
 
 /obj/item/weapon/gun/projectile/automatic/wt550
 	name = "machine pistol"
-	desc = "The W-T 550 Saber is a cheap self-defense weapon, mass-produced by Ward-Takahashi for paramilitary and private use. Uses 9mm rounds."
+	desc = "The WT550 Saber is a cheap self-defense weapon, mass-produced by Ward-Takahashi for paramilitary and private use. Uses 9mm rounds."
 	icon_state = "wt550"
 	item_state = "wt550"
 	w_class = 3
@@ -322,7 +322,7 @@
 	icon_state = "p90smg-[ammo_magazine ? round(ammo_magazine.stored_ammo.len, 6) : "empty"]"
 
 /obj/item/weapon/gun/projectile/automatic/tommygun
-	name = "\improper M1A1 \"Thompson\""
+	name = "\improper Tommygun"
 	desc = "Some little typewriter, huh? I'm gonna write my name all over this town with big letters! Uses .45 rounds."
 	icon_state = "tommygun"
 	w_class = 3
