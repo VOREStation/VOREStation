@@ -108,6 +108,8 @@ steam.start() -- spawns the effect
 	if (istype(T, /turf))
 		T.hotspot_expose(1000,100)
 
+/obj/effect/effect/sparks/initialize()
+	..()
 	schedule_task_in(5 SECONDS, /proc/qdel, list(src))
 
 /obj/effect/effect/sparks/Destroy()
