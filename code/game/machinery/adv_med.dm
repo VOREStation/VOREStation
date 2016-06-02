@@ -17,21 +17,19 @@
 
 /obj/machinery/bodyscanner/New()
 	..()
-	spawn( 5 )
-		var/obj/machinery/body_scanconsole/C = locate(/obj/machinery/body_scanconsole) in range(2,src)
-		if(C)
-			C.connected = src
-		return
-	return
-
-/obj/machinery/bodyscanner/map/New()
-	..()
 	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
 	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
 	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
 	component_parts += new /obj/item/stack/material/glass/reinforced(src, 2)
+
+	spawn( 5 )
+		var/obj/machinery/body_scanconsole/C = locate(/obj/machinery/body_scanconsole) in range(2,src)
+		if(C)
+			C.connected = src
+		return
+
 	RefreshParts()
 
 /obj/machinery/bodyscanner/relaymove(mob/user as mob)
