@@ -416,7 +416,7 @@
 
 /obj/item/ammo_magazine/g12
 	name = "magazine (12 gauge)"
-	icon_state = "g12"
+	icon_state = "12g"
 	mag_type = MAGAZINE
 	caliber = "shotgun"
 	matter = list(DEFAULT_WALL_MATERIAL = 200)
