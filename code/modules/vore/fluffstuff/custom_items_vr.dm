@@ -247,7 +247,7 @@
 		update_name()
 
 //Swat43:Fortune Bloise
-/obj/item/weapon/storage/backpack/satchel
+/obj/item/weapon/storage/backpack/satchel/fluff/swat43bag
 	name = "Coloured Satchel"
 	desc = "That's a coloured satchel with red stripes, with a heart and ripley logo on each side."
 	icon = 'icons/vore/custom_items_vr.dmi'
