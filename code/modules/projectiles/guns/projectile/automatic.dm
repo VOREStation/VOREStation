@@ -103,7 +103,7 @@
 	return
 
 /obj/item/weapon/gun/projectile/automatic/z8
-	name = "bullpup assault rifle"
+	name = "\improper Z8 bullpup rifle"
 	desc = "The Z8 Bulldog is an older model bullpup carbine, made by the now defunct Zendai Foundries. Uses armor piercing 5.56mm rounds. Makes you feel like a space marine when you hold it."
 	icon_state = "carbine"
 	item_state = "z8carbine"
@@ -300,8 +300,8 @@
 		icon_state = "mini-uzi-empty"
 
 /obj/item/weapon/gun/projectile/automatic/p90
-	name = "\improper FN P90"
-	desc = "Despite its fierce reputation, it still manages to feel like a toy. Uses 5mm rounds."
+	name = "\improper H90K"
+	desc = "A compact, high capacity SMG produced by Hephaistos Industries. Despite its fierce reputation, it still manages to feel like a toy. Uses 5mm rounds."
 	icon_state = "p90smg"
 	item_state = "p90"
 	w_class = 3
@@ -343,9 +343,9 @@
 	icon_state = (ammo_magazine)? "tommygun" : "tommygun-empty"
 //	update_held_icon()
 
-/obj/item/weapon/gun/projectile/automatic/fn3000
-	name = "bullpup assault rifle"
-	desc = "The tacticool bullpup configured FN3000 is a light, compact, military-grade assault rifle that is most <i>definitely</i> illegal for civilians to own. What fun! Uses 5.56mm rounds."
+/obj/item/weapon/gun/projectile/automatic/wt3000
+	name = "\improper WT3000"
+	desc = "The bullpup configured WT3000 is a light, compact, military-grade assault rifle that is most <i>definitely</i> illegal for civilians to own. What fun! Uses 5.56mm rounds."
 	icon_state = "bullpupm"
 	item_state = "bullpup"
 	w_class = 4
@@ -364,7 +364,7 @@
 		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    burst_accuracy=list(0,-1,-2), dispersion=list(0.0, 0.6, 0.6))
 		)
 
-/obj/item/weapon/gun/projectile/automatic/fn3000/update_icon(var/ignore_inhands)
+/obj/item/weapon/gun/projectile/automatic/wt3000/update_icon(var/ignore_inhands)
 	..()
 	if(istype(ammo_magazine,/obj/item/ammo_magazine/a556m))
 		icon_state = "bullpupm"
