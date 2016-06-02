@@ -37,7 +37,7 @@
 		return 1
 
 	get_access()
-		var/access = get_all_access()
+		var/access = get_all_accesses()
 		return access
 
 /datum/job/centcom_visitor //For Pleasure
@@ -79,7 +79,7 @@
 		return 1
 
 	get_access()
-		var/access = get_all_access()
+		var/access = get_all_accesses()
 		return access
 
 /datum/job/clown
