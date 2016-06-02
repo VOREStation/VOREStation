@@ -279,6 +279,7 @@
 		var/obj/item/weapon/card/id/ID = W
 		ID.desc = "A partially digested card that has seen better days.  Much of it's data has been destroyed."
 		ID.icon = 'icons/obj/card_vr.dmi'
+		ID.icon_state = "digested"
 		ID.access = list() // No access
 		ID.forceMove(owner)
 		internal_contents += ID
