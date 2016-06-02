@@ -244,4 +244,5 @@
 	assignment = "CC Medical"
 
 	New()
+		..()
 		update_name()
