@@ -15,12 +15,9 @@
 
 /mob/living/carbon/human/proc/get_tail_image()
 	//If you are FBP with tail style
-	if(full_prosthetic && ("groin" in organs_by_name) && organs_by_name["groin"])
-		var/obj/item/organ/external/groin/G = organs_by_name["groin"]
-		var/datum/robolimb/R = all_robolimbs[G.model]
-		if(R.includes_tail)
-			var/icon/tail_s = new/icon("icon" = R.icon, "icon_state" = "tail")
-			return image(tail_s)
+	if(synthetic && synthetic.includes_tail)
+		var/icon/tail_s = new/icon("icon" = synthetic.icon, "icon_state" = "tail")
+		return image(tail_s)
 
 	//If you have a custom tail selected
 	if(tail_style && !(wear_suit && wear_suit.flags_inv & HIDETAIL && !isTaurTail(tail_style)))
@@ -36,4 +33,15 @@
 			return image(tail_s, "pixel_x" = -16)
 		else
 			return image(tail_s)
+	return null
+
+/mob/living/carbon/human/proc/get_body_markings_overlay()
+	if(body_markings_style && !HIDEMARKINGS)
+		var/icon/body_markings_s = new/icon("icon" = body_markings_style.icon, "icon_state" = body_markings_style.icon_state)
+		if(body_markings_style.do_colouration)
+			body_markings_s.Blend(rgb(src.r_markings, src.g_markings, src.b_markings), body_markings_style.color_blend_mode)
+		if(body_markings_style.extra_overlay)
+			var/icon/overlay = new/icon("icon" = body_markings_style.icon, "icon_state" = body_markings_style.extra_overlay)
+			body_markings_s.Blend(overlay, ICON_OVERLAY)
+		return body_markings_s
 	return null

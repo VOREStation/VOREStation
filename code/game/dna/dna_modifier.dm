@@ -92,6 +92,12 @@
 		for(var/mob/M in src)//Failsafe so you can get mobs out
 			M.loc = get_turf(src)
 
+/obj/machinery/dna_scannernew/Bumped(user as mob|obj)
+	if (user == usr) // Only if we are actually being walked into by real client
+		move_inside()
+		return
+	return ..()
+
 /obj/machinery/dna_scannernew/verb/move_inside()
 	set src in oview(1)
 	set category = "Object"

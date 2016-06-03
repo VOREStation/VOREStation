@@ -43,7 +43,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 		"Bland" = "ghost",
 		"Robed-B" = "ghost1",
 		"Robed-BAlt" = "ghost2",
-		"Corgi" = "ghostian",
+		"Corgi" = "corgi",
 		"King" = "ghostking",
 		"Shade" = "shade",
 		"Hecate" = "ghost-narsie",
@@ -65,7 +65,15 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 		"Pink Elemental" = "magicPink",
 		"Orange Elemental" = "magicOrange",
 		"Green Elemental" = "magicGreen",
-		"Daemon" = "daemon"
+		"Daemon" = "daemon",
+		"Guard Spider" = "guard",
+		"Hunter Spider" = "hunter",
+		"Nurse Spider" = "nurse",
+		"Carp" = "carp",
+		"Space Bear" = "bear",
+		"Rogue Drone" = "drone",
+		"ED-209" = "ed209",
+		"Beepsky" = "secbot"
 		)
 
 /mob/observer/dead/New(mob/body)
@@ -817,6 +825,7 @@ mob/observer/dead/MayRespawn(var/feedback = 0)
 	set name = "Choose Sprite"
 
 	icon = 'icons/mob/ghost.dmi'
+	overlays.Cut()
 	var/choice
 	var/finalized = "No"
 	while(finalized == "No" && src.client)

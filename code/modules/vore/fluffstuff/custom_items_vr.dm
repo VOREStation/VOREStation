@@ -91,7 +91,7 @@
 	attack_verb = list("attacked", "hammered", "smashed", "slammed", "crushed")
 
 //JoanRisu:Joan Risu
-/obj/item/weapon/card/id/gold/fluff/joanbadge
+/obj/item/weapon/card/id/centcom/fluff/joanbadge
 	name = "Faded Badge"
 	desc = "A faded badge, backed with leather, that reads 'NT Security Force' across the front."
 	icon = 'icons/vore/custom_items_vr.dmi'
@@ -109,6 +109,11 @@
 /obj/item/device/pda/heads/hos/fluff/joanpda
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "pda-joan"
+
+//Vorrarkul:Lucina Dakarim
+/obj/item/device/pda/heads/hos/fluff/lucinapda
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "pda-lucina"
 
 //john.wayne9392:Harmony Prechtl
 /obj/item/device/modkit_conversion/fluff/harmonyspace
@@ -232,3 +237,22 @@
 		else
 			user << "<span class='warning'>This isn't even an ID card you idiot.</span>"
 			return
+
+//arokha:Aronai Kadigan
+/obj/item/weapon/card/id/centcom/fluff/aro
+	registered_name = "Aronai Kadigan"
+	assignment = "CC Medical"
+
+	New()
+		..()
+		update_name()
+
+//Swat43:Fortune Bloise
+/obj/item/weapon/storage/backpack/satchel/fluff/swat43bag
+	name = "Coloured Satchel"
+	desc = "That's a coloured satchel with red stripes, with a heart and ripley logo on each side."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "swat43-bag"
+
+	icon_override = 'icons/vore/custom_items_vr.dmi'
+	item_state = "swat43-bag_mob"

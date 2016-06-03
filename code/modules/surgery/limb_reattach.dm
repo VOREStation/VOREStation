@@ -21,6 +21,18 @@
 	min_duration = 50
 	max_duration = 70
 
+	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+		var/obj/item/organ/external/E = tool
+		var/obj/item/organ/external/P = target.organs_by_name[E.parent_organ]
+		if(!P)
+			user << "<span class='warning'>There's nothing to attach [E] to!</span>"
+			return 0
+		else if((P.robotic >= ORGAN_ROBOT) && (E.robotic < ORGAN_ROBOT))
+			user << "<span class='warning'>Attaching [E] to [P] wouldn't work well.</span>"
+			return 0
+		else
+			return 1
+
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/E = tool
 		user.visible_message("[user] starts attaching [E.name] to [target]'s [E.amputation_point].", \

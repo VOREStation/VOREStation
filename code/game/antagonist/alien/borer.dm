@@ -46,7 +46,7 @@ var/datum/antagonist/borer/borers
 		for(var/mob/living/carbon/human/H in mob_list)
 			if(H.stat != DEAD && !H.has_brain_worms())
 				var/obj/item/organ/external/head = H.get_organ(BP_HEAD)
-				if(head && !(head.status & ORGAN_ROBOT))
+				if(head && !(head.robotic >= ORGAN_ROBOT))
 					host = H
 					break
 		if(istype(host))

@@ -278,6 +278,7 @@
 		// Keep IDs around, but destroy them!
 		var/obj/item/weapon/card/id/ID = W
 		ID.desc = "A partially digested card that has seen better days.  Much of it's data has been destroyed."
+		ID.icon = 'icons/obj/card_vr.dmi'
 		ID.icon_state = "digested"
 		ID.access = list() // No access
 		ID.forceMove(owner)
@@ -372,6 +373,6 @@
 		M.show_message(struggle_outer_message, 2) // hearable
 	R << struggle_user_message
 
-	var/strsound = pick(struggle_sounds)
+	var/strpick = pick(struggle_sounds)
+	var/strsound = struggle_sounds[strpick]
 	playsound(R.loc, strsound, 50, 1)
-	R << strsound //Might be too loud. We'll see.

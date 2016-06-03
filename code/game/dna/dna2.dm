@@ -33,7 +33,13 @@
 #define DNA_UI_GENDER      14
 #define DNA_UI_BEARD_STYLE 15
 #define DNA_UI_HAIR_STYLE  16
-#define DNA_UI_LENGTH      16 // Update this when you add something, or you WILL break shit.
+#define DNA_UI_EAR_STYLE   17
+#define DNA_UI_TAIL_STYLE  18
+#define DNA_UI_PLAYERSCALE 19
+#define DNA_UI_TAIL_R      20
+#define DNA_UI_TAIL_G      21
+#define DNA_UI_TAIL_B      22
+#define DNA_UI_LENGTH      22 // Update this when you add something, or you WILL break shit.
 
 #define DNA_SE_LENGTH 27
 // For later:
@@ -82,6 +88,10 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	var/b_type = "A+"  // Should probably change to an integer => string map but I'm lazy.
 	var/real_name          // Stores the real name of the person who originally got this dna datum. Used primarily for changelings,
 
+	// VOREStation
+	var/custom_species
+	// VOREStation
+
 	// New stuff
 	var/species = "Human"
 
@@ -128,6 +138,40 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	if(!character.f_style)
 		character.f_style = "Shaved"
 	var/beard	= facial_hair_styles_list.Find(character.f_style)
+
+
+	// VOREStation Edit Start
+
+	// Demi Ears
+	var/ear_style = 0
+	if(character.ear_style)
+		ear_style = ear_styles_list.Find(character.ear_style.type)
+
+	// Demi Tails
+	var/tail_style = 0
+	if(character.tail_style)
+		tail_style = tail_styles_list.Find(character.tail_style.type)
+
+	// Playerscale (This assumes list is sorted big->small)
+	var/size_multiplier = player_sizes_list.len // If fail to find, take smallest
+	for(var/N in player_sizes_list)
+		if(character.size_multiplier >= player_sizes_list[N])
+			size_multiplier = player_sizes_list.Find(N)
+			break
+
+	// Technically custom_species is not part of the UI, but this place avoids merge problems.
+	src.custom_species = character.custom_species
+
+	// +1 to account for the none-of-the-above possibility
+	SetUIValueRange(DNA_UI_EAR_STYLE,	ear_style + 1,     ear_styles_list.len  + 1,  1)
+	SetUIValueRange(DNA_UI_TAIL_STYLE,	tail_style + 1,    tail_styles_list.len + 1,  1)
+	SetUIValueRange(DNA_UI_PLAYERSCALE,	size_multiplier,   player_sizes_list.len,     1)
+
+	SetUIValueRange(DNA_UI_TAIL_R,    character.r_tail,    255,    1)
+	SetUIValueRange(DNA_UI_TAIL_G,    character.g_tail,    255,    1)
+	SetUIValueRange(DNA_UI_TAIL_B,    character.b_tail,    255,    1)
+
+	// VORE Station Edit End
 
 	SetUIValueRange(DNA_UI_HAIR_R,    character.r_hair,    255,    1)
 	SetUIValueRange(DNA_UI_HAIR_G,    character.g_hair,    255,    1)
@@ -183,7 +227,7 @@ var/global/list/datum/dna/gene/dna_genes[0]
 /datum/dna/proc/GetUIValueRange(var/block,var/maxvalue)
 	if (block<=0) return 0
 	var/value = GetUIValue(block)
-	return round(1 +(value / 4096)*maxvalue)
+	return round(0.5 + (value / 4096) * maxvalue)
 
 // Is the UI gene "on" or "off"?
 // For UI, this is simply a check of if the value is > 2050.
@@ -322,7 +366,7 @@ var/global/list/datum/dna/gene/dna_genes[0]
 
 
 /proc/EncodeDNABlock(var/value)
-	return add_zero2(num2hex(value,1), 3)
+	return num2hex(value, 3)
 
 /datum/dna/proc/UpdateUI()
 	src.uni_identity=""

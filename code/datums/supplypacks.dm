@@ -618,6 +618,35 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	access = access_robotics
 	group = "Engineering"
 
+/datum/supply_packs/robolimbs_basic
+	name = "Basic robolimb blueprints"
+	contains = list(
+			/obj/item/weapon/disk/limb/morpheus,
+			/obj/item/weapon/disk/limb/xion
+			)
+	cost = 15
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "Robolimb blueprints (basic)"
+	access = access_robotics
+	group = "Engineering"
+
+/datum/supply_packs/robolimbs_adv
+	name = "All robolimb blueprints"
+	contains = list(
+	/obj/item/weapon/disk/limb/bishop,
+	/obj/item/weapon/disk/limb/hesphiastos,
+	/obj/item/weapon/disk/limb/morpheus,
+	/obj/item/weapon/disk/limb/veymed,
+	/obj/item/weapon/disk/limb/wardtakahashi,
+	/obj/item/weapon/disk/limb/xion,
+	/obj/item/weapon/disk/limb/zenghu,
+			)
+	cost = 40
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "Robolimb blueprints (adv)"
+	access = access_robotics
+	group = "Engineering"
+
 /datum/supply_packs/phoron
 	name = "Phoron assembly crate"
 	contains = list(
@@ -1242,16 +1271,19 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_packs/carpet
 	name = "Imported carpet"
-	containertype = /obj/structure/closet
+	containertype = /obj/structure/closet/crate
 	containername = "Imported carpet crate"
 	cost = 15
 	group = "Miscellaneous"
-	contains = list(/obj/item/stack/tile/carpet)
+	contains = list(
+					/obj/item/stack/tile/carpet,
+					/obj/item/stack/tile/carpet/blue
+					)
 	amount = 50
 
 /datum/supply_packs/linoleum
 	name = "Linoleum"
-	containertype = /obj/structure/closet
+	containertype = /obj/structure/closet/crate
 	containername = "Linoleum crate"
 	cost = 15
 	group = "Miscellaneous"

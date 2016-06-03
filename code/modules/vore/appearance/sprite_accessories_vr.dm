@@ -621,3 +621,84 @@
 /datum/sprite_accessory/tail/taur/spider
 	name = "Spider"
 	icon_state = "spider_s"
+
+
+/*
+/////////////////////////////////////
+/  =-----------------------------=  /
+/  == Body Markings Definitions ==  /
+/  =-----------------------------=  /
+/////////////////////////////////////
+*/
+/datum/sprite_accessory/body_markings
+	name = "You can't even see this..."
+	icon = 'icons/mob/vore/body_markings_vr.dmi'
+	do_colouration = 1 //Set to 1 to enable coloration using the markings color.
+
+	var/color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
+	var/extra_overlay // Icon state of an additional overlay to blend in.
+	var/show_body_markings = 0 // If false, do not render species' tail.
+	var/clothing_can_hide = 1 // If true, clothing with HIDEMARKINGS hides it
+	var/desc = "You should not see this..."
+
+/datum/sprite_accessory/body_markings/vulp_blaze
+	name = "Blaze"
+	icon = 'icons/mob/human_face_vr.dmi'
+	icon_state = "vulp_facial_blaze"
+	species_allowed = list("Vulpkanin")
+	gender = NEUTER
+
+/datum/sprite_accessory/body_markings/vulp_vulpine
+	name = "Vulpine"
+	icon = 'icons/mob/human_face_vr.dmi'
+	icon_state = "vulp_facial_vulpine"
+	species_allowed = list("Vulpkanin")
+	gender = NEUTER
+
+/datum/sprite_accessory/body_markings/vulp_earfluff
+	name = "Earfluff"
+	icon = 'icons/mob/human_face_vr.dmi'
+	icon_state = "vulp_facial_earfluff"
+	species_allowed = list("Vulpkanin")
+	gender = NEUTER
+
+/datum/sprite_accessory/body_markings/vulp_mask
+	name = "Mask"
+	icon = 'icons/mob/human_face_vr.dmi'
+	icon_state = "vulp_facial_mask"
+	species_allowed = list("Vulpkanin")
+	gender = NEUTER
+
+/datum/sprite_accessory/body_markings/vulp_patch
+	name = "Patch"
+	icon = 'icons/mob/human_face_vr.dmi'
+	icon_state = "vulp_facial_patch"
+	species_allowed = list("Vulpkanin")
+	gender = NEUTER
+
+/datum/sprite_accessory/body_markings/vulp_ruff
+	name = "Ruff"
+	icon = 'icons/mob/human_face_vr.dmi'
+	icon_state = "vulp_facial_ruff"
+	species_allowed = list("Vulpkanin")
+	gender = NEUTER
+
+/datum/sprite_accessory/body_markings/vulp_kita
+	name = "Kita"
+	icon = 'icons/mob/human_face_vr.dmi'
+	icon_state = "vulp_facial_kita"
+	species_allowed = list("Vulpkanin")
+	gender = NEUTER
+
+/datum/sprite_accessory/body_markings/vulp_swift
+	name = "Swift"
+	icon = 'icons/mob/human_face_vr.dmi'
+	icon_state = "vulp_facial_swift"
+	species_allowed = list("Vulpkanin")
+	gender = NEUTER
+
+/datum/sprite_accessory/body_markings/vulpkanin
+	name = "Default Vulpkanin skin"
+	icon_state = "default"
+	icon = 'icons/mob/human_races/r_vulpkanin.dmi'
+	species_allowed = list("Vulpkanin")

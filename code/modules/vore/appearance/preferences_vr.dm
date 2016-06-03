@@ -18,3 +18,9 @@
 
 	// Custom Species Name
 	var/custom_species
+
+	// Body Markings
+	var/m_style = "None"
+	var/r_markings = 30
+	var/g_markings = 30
+	var/b_markings = 30

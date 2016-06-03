@@ -4,6 +4,7 @@
  *		Grass
  *		Wood
  *		Carpet
+ * 		Blue Carpet
  *		Linoleum
  */
 
@@ -69,6 +70,12 @@
 	throw_speed = 5
 	throw_range = 20
 	flags = 0
+
+/obj/item/stack/tile/carpet/blue
+	name = "blue carpet"
+	singular_name = "blue carpet"
+	desc = "A piece of blue carpet. It is the same size as a normal floor tile!"
+	icon_state = "tile-bluecarpet"
 
 /obj/item/stack/tile/floor
 	name = "floor tile"

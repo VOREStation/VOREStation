@@ -166,7 +166,39 @@
 		if((0 < beard) && (beard <= facial_hair_styles_list.len))
 			H.f_style = facial_hair_styles_list[beard]
 
+		// VORE StationEdit Start
+
+		//Ears
+		var/ears = dna.GetUIValueRange(DNA_UI_EAR_STYLE, ear_styles_list.len + 1) - 1
+		if(ears <= 1)
+			H.ear_style = null
+		else if((0 < ears) && (ears <= ear_styles_list.len))
+			H.ear_style = ear_styles_list[ear_styles_list[ears]]
+
+		//Tail
+		var/tail = dna.GetUIValueRange(DNA_UI_TAIL_STYLE, tail_styles_list.len + 1) - 1
+		if(tail <= 1)
+			H.tail_style = null
+		else if((0 < tail) && (tail <= tail_styles_list.len))
+			H.tail_style = tail_styles_list[tail_styles_list[tail]]
+
+		// Playerscale
+		var/size = dna.GetUIValueRange(DNA_UI_PLAYERSCALE, player_sizes_list.len)
+		if((0 < size) && (size <= player_sizes_list.len))
+			H.size_multiplier = player_sizes_list[player_sizes_list[size]]
+
+		// Tail/Taur Color
+		H.r_tail   = dna.GetUIValueRange(DNA_UI_TAIL_R,    255)
+		H.g_tail   = dna.GetUIValueRange(DNA_UI_TAIL_G,    255)
+		H.b_tail   = dna.GetUIValueRange(DNA_UI_TAIL_B,    255)
+
+		// Technically custom_species is not part of the UI, but this place avoids merge problems.
+		H.custom_species = dna.custom_species
+
+		// VOREStation Edit End
+
 		H.force_update_limbs()
+		H.update_body(0)
 		H.update_eyes()
 		H.update_hair()
 

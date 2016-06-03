@@ -263,6 +263,11 @@
 	item_state = "clockworkrifle"
 	item_icons = null
 
+//Razerwing:Archer Maximus
+/obj/item/weapon/gun/projectile/colt/fluff/archercolt
+	name = "MEUSOC .45"
+	desc = "Some serious drywall work, coming up!"
+
 //////////////////// Energy Weapons ////////////////////
 //arokha:Aronai Kadigan
 /obj/item/weapon/gun/energy/gun/fluff/aro

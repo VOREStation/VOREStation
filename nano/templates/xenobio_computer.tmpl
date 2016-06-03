@@ -1,0 +1,57 @@
+<!-- 
+Title: Injector Control Console UI
+Used In File(s): \code\modules\xenobio2\machines\injector_computer.dm
+ -->
+ 
+{{if data.activity}}
+	Scanning...
+{{else}}
+	<div class="itemContent" style="text-align: center; width: 100px">
+		{{if data.beaker}}
+			{{:data.reagentAmount}}u / {{:data.reagentMax}}u
+			{{:helper.displayBar(data.reagentAmount, data.reagentMax, data.reagentMin, 'good', null, 'Beaker', 1)}}
+		{{else}}
+			<span class='bad'><b>ERR</b></span>
+			{{:helper.displayBar(data.reagentAmount, data.reagentMax, data.reagentMin, 'good', null, 'Beaker', 1)}}
+		{{/if}}
+	</div>
+	<div style="padding-left: 110px;">
+		<h3 style="clear: none;">Sensor Readings:</h3>
+		{{if data.occupied}}
+			<div class="itemGroup floatLeft" style="clear: none;">
+				<div class="itemLabel">
+					Instability: 
+				</div>
+				<div class="itemContent">
+					{{if data.compatible}}
+						{{:data.instability}}%
+					{{else}}
+						<span class='bad'><b>ERRR%</b></span> Please contact your local technician for assistance.
+					{{/if}}
+				</div>
+				<div class="itemLabel">
+					Occupant Health: 
+				</div>
+				<div class="itemContent">
+					{{if data.occupantHealth}}
+						{{:data.occupantHealth}}/{{:data.occupantHealthMax}}
+					{{else}}
+						<span class='bad'><b>ERRR%</b></span> Please contact your local technician for assistance.
+					{{/if}}
+		{{else}}
+			<div class="itemGroup floatLeft" style="clear: none;">
+				<div class="itemLabel">
+				<span class='bad'>Injector is not occupied.</span>
+			</div>
+		{{/if}}
+			</div>
+		</div>
+	</div>
+	<div class="item">
+		<h3 style="clear: none;">Controls:</h3>
+		<div class="floatLeft">
+			{{:helper.link('Eject Beaker', 'eject', {'eject_beaker' : 1})}} {{:helper.link('Eject Occupant', 'eject', {'eject_occupant' : 1})}} {{:helper.link('Inject Occupant', 'syringe', {'inject_target' : 1})}}
+		</div>
+	</div>
+
+{{/if}}

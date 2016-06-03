@@ -149,7 +149,7 @@
 				if(!affected)
 					user << "<span class='danger'>\The [H] is missing that limb!</span>"
 					return
-				else if(affected.status & ORGAN_ROBOT)
+				else if(affected.robotic >= ORGAN_ROBOT)
 					user << "<span class='danger'>You cannot inject a robotic limb.</span>"
 					return
 
@@ -174,6 +174,8 @@
 					user.visible_message("<span class='warning'>[user] is trying to inject [target] with [visible_name]!</span>")
 				else
 					user.visible_message("<span class='warning'>[user] begins hunting for an injection port on [target]'s suit!</span>")
+
+				user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 
 				if(!do_mob(user, target, injtime))
 					return
@@ -344,3 +346,12 @@
 	reagents.add_reagent("chloralhydrate", 50)
 	mode = SYRINGE_INJECT
 	update_icon()
+
+/obj/item/weapon/reagent_containers/syringe/steroid
+	name = "Syringe (anabolic steroids)"
+	desc = "Contains drugs for muscle growth."
+
+/obj/item/weapon/reagent_containers/syringe/steroid/New()
+	..()
+	reagents.add_reagent("adrenaline",5)
+	reagents.add_reagent("hyperzine",10)
