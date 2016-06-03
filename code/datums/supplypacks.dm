@@ -893,8 +893,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 /datum/supply_packs/randomised/automatic/hidden
 	name = "Assault weapon crate"
 	contains = list(
-			/obj/item/weapon/gun/projectile/automatic/wt3000,
-			/obj/item/weapon/gun/projectile/automatic/wt3000
+			/obj/item/weapon/gun/projectile/automatic/bullpup,
+			/obj/item/weapon/gun/projectile/automatic/bullpup
 			)
 	cost = 100
 	hidden = 1

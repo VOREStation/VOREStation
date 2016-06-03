@@ -343,9 +343,9 @@
 	icon_state = (ammo_magazine)? "tommygun" : "tommygun-empty"
 //	update_held_icon()
 
-/obj/item/weapon/gun/projectile/automatic/wt3000
-	name = "\improper WT3000"
-	desc = "The bullpup configured WT3000 is a lightweight, compact, military-grade assault rifle produced by Ward-Takahashi that is sold almost exclusively to standing armies. The serial number on this one has been scratched off. Uses 5.56mm rounds."
+/obj/item/weapon/gun/projectile/automatic/bullpup
+	name = "\improper GP3000"
+	desc = "The bullpup configured GP3000 is a lightweight, compact, military-grade assault rifle produced by Gurov Projectile Weapons LLC. It is sold almost exclusively to standing armies. The serial number on this one has been scratched off. Uses 5.56mm rounds."
 	icon_state = "bullpupm"
 	item_state = "bullpup"
 	w_class = 4
@@ -364,7 +364,7 @@
 		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    burst_accuracy=list(0,-1,-2), dispersion=list(0.0, 0.6, 0.6))
 		)
 
-/obj/item/weapon/gun/projectile/automatic/wt3000/update_icon(var/ignore_inhands)
+/obj/item/weapon/gun/projectile/automatic/bullpup/update_icon(var/ignore_inhands)
 	..()
 	if(istype(ammo_magazine,/obj/item/ammo_magazine/a556m))
 		icon_state = "bullpupm"
