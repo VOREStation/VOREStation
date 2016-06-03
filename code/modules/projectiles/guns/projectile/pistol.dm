@@ -135,7 +135,7 @@
 
 /obj/item/weapon/gun/projectile/fiveseven
 	name = "\improper WT-AP57"
-	desc = "This tacticool pistol makes you feel like you're playing Counter Strike in Space. Uses 5mm rounds."
+	desc = "This tacticool pistol made by Ward-Takahashi trades stopping power for armor piercing and a high capacity. Uses 5mm rounds."
 	icon_state = "fnseven"
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2)
 	caliber = "5mm"
@@ -151,7 +151,7 @@
 	else
 		icon_state = "fnseven-empty"
 
-/obj/item/weapon/gun/projectile/gyropistol
+/obj/item/weapon/gun/projectile/gyropistol // Does this even appear anywhere outside of admin abuse?
 	name = "gyrojet pistol"
 	desc = "Speak softly, and carry a big gun. Fires rare .75 caliber self-propelled exploding bolts--because fuck you and everything around you."
 	icon_state = "gyropistol"
@@ -281,7 +281,7 @@
 
 /obj/item/weapon/gun/projectile/luger
 	name = "\improper P08 Luger"
-	desc = "Not some cheap Scheisse .45 caliber Martian knockoff! This Luger is an authentic reproduction by RauMauser. Accuracy, easy handling, and its signature appearance make it popular among collectors... and space Nazis. Uses 9mm rounds."
+	desc = "Not some cheap Scheisse .45 caliber Martian knockoff! This Luger is an authentic reproduction by RauMauser. Accuracy, easy handling, and its signature appearance make it popular among historic gun collectors. Uses 9mm rounds."
 	icon_state = "p08"
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2)
 	caliber = "9mm"

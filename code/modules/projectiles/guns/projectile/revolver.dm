@@ -35,6 +35,7 @@
 
 /obj/item/weapon/gun/projectile/revolver/mateba
 	name = "mateba"
+	desc = "This unique looking handgun is named after an Italian company famous for the manufacture of these revolvers, and pasta kneading machines. Uses .357 rounds." // Yes I'm serious. -Spades
 	icon_state = "mateba"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 
@@ -100,7 +101,7 @@
 
 /obj/item/weapon/gun/projectile/revolver/judge
 	name = "\"The Judge\""
-	desc = "A revolving hand-shotgun by Cybersun Industries that packs the power of a 12 guage in the palm of your hand (if you don't break your wrist). \"It's never been easier to be Judge, Jury, and Executioner.\"<sup>TM</sup> Uses 12 shotgun rounds."
+	desc = "A revolving hand-shotgun by Cybersun Industries that packs the power of a 12 guage in the palm of your hand (if you don't break your wrist). Uses 12 shotgun rounds."
 	icon_state = "judge"
 	caliber = "shotgun"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 4)

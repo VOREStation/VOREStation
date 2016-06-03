@@ -351,6 +351,7 @@
 	caliber = "a762"
 	matter = list(DEFAULT_WALL_MATERIAL = 10000)
 	ammo_type = /obj/item/ammo_casing/a762
+	w_class = 3 // This should NOT fit in your pocket!!
 	max_ammo = 50
 	multiple_sprites = 1
 

@@ -44,6 +44,7 @@ changes:
   - tweak: "Corrects and improves a number of icons for guns, including a couple of energy guns, and adds fallback icons so they do not turn invisible when held or strapped to your back."
   - tweak: "Made the icons for some guns look differently depending on what magazine is loaded into them."
   - tweak: "Made antag uplink menu for guns and ammo more informative."
+  - tweak: "Machinegun magazines no longer fit in pockets."
   - spellcheck: "Made names and descriptions for all projectile guns and ammo consistent while removing grammar and spelling errors."
   - bugfix: "Autolathe no longer exploitable for ammo by repeatedly recycling empty magazines."
   - bugfix: "Guns now check a list of compatible magazines."

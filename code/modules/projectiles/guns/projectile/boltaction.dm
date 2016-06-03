@@ -19,12 +19,12 @@
 
 /obj/item/weapon/gun/projectile/shotgun/pump/rifle/ceremonial
 	name = "ceremonial bolt-action rifle"
-	desc = "A bolt-action rifle decorated with dazzling engravings across the stock. Usually loaded with blanks, but can fire live rounds. Popular among well-dressed guardsmen. Uses 7.62mm rounds."
+	desc = "A bolt-action rifle with a heavy, high-quality wood stock that has a beautiful finish. Clearly not intended to be used in combat. Uses 7.62mm rounds."
 	ammo_type = /obj/item/ammo_casing/a762/blank
 
 /obj/item/weapon/gun/projectile/shotgun/pump/rifle/mosin
 	name = "\improper Mosin Nagant"
-	desc = "How else are you going to arm five people for just $400? Uses 7.62mm rounds."
+	desc = "Despite its age, the Mosin Nagant continues to be a favorite weapon among colonists, conscripts, and militias across the cosmos. It's hard to say who built this one, considering the design has been ripped off by just about every arms manufacturer in the galaxy. Uses 7.62mm rounds."
 	icon_state = "mosin"
 	item_state = "mosin"
 
@@ -37,7 +37,7 @@
 			playsound(user, fire_sound, 50, 1)
 			user.visible_message("<span class='danger'>[src] goes off!</span>", "<span class='danger'>The rifle goes off in your face!</span>")
 			return
-		if(do_after(user, 30))	//SHIT IS STEALTHY EYYYYY
+		if(do_after(user, 30))
 			icon_state = "obrez"
 			w_class = 3
 			recoil = 2 // Owch
@@ -46,7 +46,7 @@
 			slot_flags &= ~SLOT_BACK	//you can't sling it on your back
 			slot_flags |= (SLOT_BELT|SLOT_HOLSTER) //but you can wear it on your belt (poorly concealed under a trenchcoat, ideally) - or in a holster, why not.
 			name = "\improper Obrez"
-			desc = "cheeki breeki"
+			desc = "The firepower of a Mosin, now the size of a pistol, with an effective combat range of about three feet. Uses 7.62mm rounds."
 			user << "<span class='warning'>You shorten the barrel and stock of \the [src]!</span>"
 	else
 		..()

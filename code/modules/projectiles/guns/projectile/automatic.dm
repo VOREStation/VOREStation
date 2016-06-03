@@ -81,7 +81,7 @@
 
 /obj/item/weapon/gun/projectile/automatic/wt550
 	name = "machine pistol"
-	desc = "The WT550 Saber is a cheap self-defense weapon, mass-produced by Ward-Takahashi for paramilitary and private use. Uses 9mm rounds."
+	desc = "The WT550 Saber is a cheap personal defense weapon mass-produced by Ward-Takahashi for paramilitary and private use. Uses 9mm rounds."
 	icon_state = "wt550"
 	item_state = "wt550"
 	w_class = 3
@@ -323,7 +323,7 @@
 
 /obj/item/weapon/gun/projectile/automatic/tommygun
 	name = "\improper Tommygun"
-	desc = "Some little typewriter, huh? I'm gonna write my name all over this town with big letters! Uses .45 rounds."
+	desc = "This weapon was made famous by gangsters in the 20th century. Cybersun Industries is currently reproducing these for a target market of historic gun collectors and classy criminals. Uses .45 rounds."
 	icon_state = "tommygun"
 	w_class = 3
 	caliber = ".45"
@@ -345,7 +345,7 @@
 
 /obj/item/weapon/gun/projectile/automatic/wt3000
 	name = "\improper WT3000"
-	desc = "The bullpup configured WT3000 is a light, compact, military-grade assault rifle that is most <i>definitely</i> illegal for civilians to own. What fun! Uses 5.56mm rounds."
+	desc = "The bullpup configured WT3000 is a lightweight, compact, military-grade assault rifle produced by Ward-Takahashi that is sold almost exclusively to standing armies. The serial number on this one has been scratched off. Uses 5.56mm rounds."
 	icon_state = "bullpupm"
 	item_state = "bullpup"
 	w_class = 4
