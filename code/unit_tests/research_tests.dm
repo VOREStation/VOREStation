@@ -40,3 +40,33 @@
 			issues++
 
 	return issues
+
+/datum/unit_test/research_designs_have_valid_materials
+	name = "RESEARCH: Designs Shall Have Valid Materials and Chemicals"
+
+/datum/unit_test/research_designs_have_valid_materials/start_test()
+	var/number_of_issues = 0
+
+	for(var/design_type in typesof(/datum/design) - /datum/design)
+		var/datum/design/design = design_type
+		if(initial(design.id) == "id")
+			continue
+		design = new design_type() // Unfortunately we have to actually instantiate to get a list.
+
+		for(var/material_name in design.materials)
+			var/material/material = get_material_by_name(material_name)
+			if(!material)
+				log_unit_test("The entry [design_type] has invalid material type [material_name]")
+				number_of_issues++
+
+		for(var/reagent_name in design.chemicals)
+			if(!(reagent_name in chemical_reagents_list))
+				log_unit_test("The entry [design_type] has invalid chemical type [reagent_name]")
+				number_of_issues++
+
+	if(number_of_issues)
+		fail("[number_of_issues] issues with research designs found.")
+	else
+		pass("All research designs have valid materials.")
+
+	return 1
