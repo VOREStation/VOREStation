@@ -192,6 +192,9 @@
 		H.g_tail   = dna.GetUIValueRange(DNA_UI_TAIL_G,    255)
 		H.b_tail   = dna.GetUIValueRange(DNA_UI_TAIL_B,    255)
 
+		// Technically custom_species is not part of the UI, but this place avoids merge problems.
+		H.custom_species = dna.custom_species
+
 		// VOREStation Edit End
 
 		H.force_update_limbs()
