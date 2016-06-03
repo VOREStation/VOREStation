@@ -149,7 +149,7 @@
 	if(istype(O,/obj/item/ammo_magazine/clip) || istype(O,/obj/item/ammo_magazine/a357) || istype(O,/obj/item/ammo_magazine/c38)) // Prevents ammo recycling exploit with speedloaders.
 		user << "\The [O] is too hazardous to recycle with the autolathe!"
 		return
-		/*  ToDo: Make this actually check for ammo and let me recycle if the ammo is spent or gone. -Spades
+		/*  ToDo: Make this actually check for ammo and change the value of the magazine if it's empty. -Spades
 		var/obj/item/ammo_magazine/speedloader = O
 		if(speedloader.stored_ammo)
 			user << "\The [speedloader] is too hazardous to put back into the autolathe while there's ammunition inside of it!"

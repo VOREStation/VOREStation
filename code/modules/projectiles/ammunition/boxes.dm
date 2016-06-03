@@ -1,5 +1,3 @@
-// Don't set DEFAULT_WALL_MATERIAL under 75 or you'll risk giving away free ammo on the autolathe.
-
 ///////// .357 /////////
 
 /obj/item/ammo_magazine/a357
@@ -8,7 +6,7 @@
 	icon_state = "38"
 	caliber = "357"
 	ammo_type = /obj/item/ammo_casing/a357
-	matter = list(DEFAULT_WALL_MATERIAL = 1080)
+	matter = list(DEFAULT_WALL_MATERIAL = 1260)
 	max_ammo = 6
 	multiple_sprites = 1
 
@@ -35,7 +33,7 @@
 	icon_state = "45"
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/c45
-	matter = list(DEFAULT_WALL_MATERIAL = 100) // Only cost of the magazine its self.
+	matter = list(DEFAULT_WALL_MATERIAL = 525) //metal costs are very roughly based around 1 .45 casing = 75 metal
 	caliber = ".45"
 	max_ammo = 7
 	multiple_sprites = 1
@@ -60,7 +58,7 @@
 	icon_state = "uzi45"
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/c45
-	matter = list(DEFAULT_WALL_MATERIAL = 150)
+	matter = list(DEFAULT_WALL_MATERIAL = 1200)
 	caliber = ".45"
 	max_ammo = 16
 	multiple_sprites = 1
@@ -73,7 +71,7 @@
 	icon_state = "tommy-mag"
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/c45
-	matter = list(DEFAULT_WALL_MATERIAL = 200)
+	matter = list(DEFAULT_WALL_MATERIAL = 1500)
 	caliber = ".45"
 	max_ammo = 20
 
@@ -86,7 +84,7 @@
 	w_class = 3 // Bulky ammo doesn't fit in your pockets!
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/c45
-	matter = list(DEFAULT_WALL_MATERIAL = 500)
+	matter = list(DEFAULT_WALL_MATERIAL = 3750)
 	caliber = ".45"
 	max_ammo = 50
 
@@ -122,7 +120,7 @@
 	icon_state = "9x19p"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
-	matter = list(DEFAULT_WALL_MATERIAL = 100)
+	matter = list(DEFAULT_WALL_MATERIAL = 480)
 	caliber = "9mm"
 	ammo_type = /obj/item/ammo_casing/c9mm
 	max_ammo = 8
@@ -138,12 +136,16 @@
 	name = "magazine (9mm rubber)"
 	ammo_type = /obj/item/ammo_casing/c9mmr
 
+/obj/item/ammo_magazine/mc9mm/practice
+	name = "magazine (9mm practice)"
+	ammo_type = /obj/item/ammo_casing/c9mmp
+
 /obj/item/ammo_magazine/mc9mmt
 	name = "top mounted magazine (9mm)"
 	icon_state = "9mmt"
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/c9mm
-	matter = list(DEFAULT_WALL_MATERIAL = 250)
+	matter = list(DEFAULT_WALL_MATERIAL = 1200)
 	caliber = "9mm"
 	max_ammo = 20
 	multiple_sprites = 1
@@ -181,7 +183,7 @@
 	name = "ammo clip (.45 flash)"
 	ammo_type = /obj/item/ammo_casing/c9mmf
 
-/obj/item/ammo_magazine/c9mm // Exclusively for Prototype SMG and should probably be removed because why does it require DIAMONDS to make bullets?
+/obj/item/ammo_magazine/c9mm // Made by RnD for Prototype SMG and should probably be removed because why does it require DIAMONDS to make bullets?
 	name = "ammunition Box (9mm)"
 	icon_state = "9mm"
 	origin_tech = list(TECH_COMBAT = 2)
@@ -200,7 +202,7 @@
 	icon_state = "p90"
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/c5mm
-	matter = list(DEFAULT_WALL_MATERIAL = 500)
+	matter = list(DEFAULT_WALL_MATERIAL = 3000)
 	caliber = "5mm"
 	max_ammo = 50
 	multiple_sprites = 1
@@ -210,7 +212,7 @@
 	icon_state = "fiveseven"
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/c5mm
-	matter = list(DEFAULT_WALL_MATERIAL = 200)
+	matter = list(DEFAULT_WALL_MATERIAL = 1200)
 	caliber = "5mm"
 	max_ammo = 20
 	//multiple_sprites = 1
@@ -233,7 +235,7 @@
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	caliber = "10mm"
-	matter = list(DEFAULT_WALL_MATERIAL = 250)
+	matter = list(DEFAULT_WALL_MATERIAL = 1500)
 	ammo_type = /obj/item/ammo_casing/a10mm
 	max_ammo = 20
 	multiple_sprites = 1
@@ -259,7 +261,7 @@
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	caliber = "a556"
-	matter = list(DEFAULT_WALL_MATERIAL = 150)
+	matter = list(DEFAULT_WALL_MATERIAL = 1800)
 	ammo_type = /obj/item/ammo_casing/a556
 	max_ammo = 10
 	multiple_sprites = 1
@@ -281,7 +283,7 @@
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	caliber = "a556"
-	matter = list(DEFAULT_WALL_MATERIAL = 300)
+	matter = list(DEFAULT_WALL_MATERIAL = 3600)
 	ammo_type = /obj/item/ammo_casing/a556
 	max_ammo = 20
 	multiple_sprites = 1
@@ -302,17 +304,16 @@
 	icon_state = "clip_rifle"
 	caliber = "a556"
 	ammo_type = /obj/item/ammo_casing/a556
-	matter = list(DEFAULT_WALL_MATERIAL = 450)
- // metal costs are very roughly based around one 10mm casing = 180 metal
+	matter = list(DEFAULT_WALL_MATERIAL = 450) // metal costs are very roughly based around one 10mm casing = 180 metal
 	max_ammo = 5
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/clip/a556/ap
-	name = "rifle clip (7.62mm armor-piercing)"
+	name = "rifle clip (5.56mm armor-piercing)"
 	ammo_type = /obj/item/ammo_casing/a556/ap
 
 /obj/item/ammo_magazine/clip/a556/practice
-	name = "rifle clip (7.62mm practice)"
+	name = "rifle clip (5.56mm practice)"
 	ammo_type = /obj/item/ammo_casing/a556
 
 ///////// .50 AE /////////
@@ -323,7 +324,7 @@
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	caliber = ".50"
-	matter = list(DEFAULT_WALL_MATERIAL = 150)
+	matter = list(DEFAULT_WALL_MATERIAL = 1260)
 	ammo_type = /obj/item/ammo_casing/a50
 	max_ammo = 7
 	multiple_sprites = 1
@@ -420,7 +421,7 @@
 	icon_state = "12g"
 	mag_type = MAGAZINE
 	caliber = "shotgun"
-	matter = list(DEFAULT_WALL_MATERIAL = 200)
+	matter = list(DEFAULT_WALL_MATERIAL = 2200)
 	ammo_type = /obj/item/ammo_casing/shotgun
 	max_ammo = 24
 	multiple_sprites = 1
