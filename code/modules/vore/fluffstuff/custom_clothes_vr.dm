@@ -592,3 +592,8 @@
 	item_state = "arosuit_mob"
 	w_class = 4 //Oh but I can.
 	allowed = list(/obj/item/device/suit_cooling_unit) //Can't fit O2 tanks
+
+//Viveret:Keturah
+/obj/item/clothing/under/dress/maid/
+	name = "Maid Outfit"
+	desc = "A french maid outfit made ironically in Gaia's version of the far east."

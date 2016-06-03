@@ -63,14 +63,14 @@
 		/obj/item/clothing/shoes/black,
 		/*/obj/item/toy/crayon/mime*/) //Need to track down the code for crayons before adding this back in
 
-// joanrisu:Joan Risu
+//joanrisu:Joan Risu
 /obj/item/weapon/storage/box/fluff/joanrisu
 	name = "Federation Officer's Kit"
 	desc = "A care package for every serving Federation officer serving away from the Federation."
 	has_items = list(
 		/obj/item/clothing/accessory/holster/hip,
 		/obj/item/clothing/suit/storage/fluff/fedcoat/fedcapt,
-		/obj/item/weapon/card/id/gold/fluff/joanbadge,
+		/obj/item/weapon/card/id/centcom/fluff/joanbadge,
 		/obj/item/weapon/gun/energy/gun/fluff/dominator,
 		/obj/item/clothing/suit/armor/det_suit,)
 
