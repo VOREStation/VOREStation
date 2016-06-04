@@ -8,6 +8,7 @@
 	icon = 'icons/mob/human_races/cyberlimbs/kitsuhana.dmi'
 	blood_color = "#5dd4fc"
 	includes_tail = 1
+	lifelike = 1
 	unavailable_to_build = 1
 	unavailable_at_chargen = 1
 
