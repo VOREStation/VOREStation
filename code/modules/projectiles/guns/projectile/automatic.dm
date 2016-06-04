@@ -81,7 +81,7 @@
 
 /obj/item/weapon/gun/projectile/automatic/wt550
 	name = "machine pistol"
-	desc = "The WT550 Saber is a cheap personal defense weapon mass-produced by Ward-Takahashi for paramilitary and private use. Uses 9mm rounds."
+	desc = "The WT550 Saber is a cheap self-defense weapon mass-produced by Ward-Takahashi for paramilitary and private use. Uses 9mm rounds."
 	icon_state = "wt550"
 	item_state = "wt550"
 	w_class = 3
@@ -103,9 +103,9 @@
 	return
 
 /obj/item/weapon/gun/projectile/automatic/z8
-	name = "\improper Z8 bullpup rifle"
-	desc = "The Z8 Bulldog is an older model bullpup carbine, made by the now defunct Zendai Foundries. Uses armor piercing 5.56mm rounds. Makes you feel like a space marine when you hold it."
-	icon_state = "carbine"
+	name = "designated marksman rifle"
+	desc = "The Z8 Bulldog is an older model designated marksman rifle, made by the now defunct Zendai Foundries. Makes you feel like a space marine when you hold it, even though it can only hold 10 round magazines. Uses 5.56mm rounds and has an under barrel grenade launcher."
+	icon_state = "carbine" // This isn't a carbine. :T
 	item_state = "z8carbine"
 	w_class = 4
 	force = 10
@@ -246,8 +246,8 @@
 	..()
 
 /obj/item/weapon/gun/projectile/automatic/as24
-	name = "\improper AS-24 automatic shotgun"
-	desc = "A durable, rugged looking automatic weapon of a make popular on the frontier worlds. Uses 12 gauge shells. It is unmarked."
+	name = "automatic shotgun"
+	desc = "The AS-24 is a durable, rugged looking automatic weapon of a make popular on the frontier worlds. Uses 12 gauge shells. It is unmarked."
 	icon_state = "ashot"
 	item_state = null
 	w_class = 4
@@ -289,7 +289,7 @@
 
 	firemodes = list(
 		list(mode_name="semiauto", burst=1, fire_delay=0),
-		list(mode_name="short bursts", burst=4, burst_delay=1, fire_delay=3, move_delay=3, burst_accuracy = list(0,-1,-1,-2), dispersion = list(0.6, 1.0, 1.0, 1.2))
+		list(mode_name="3-round bursts", burst=3, burst_delay=1, fire_delay=4, move_delay=4, burst_accuracy = list(0,-1,-1,-2,-2), dispersion = list(0.6, 1.0, 1.0))
 		)
 
 /obj/item/weapon/gun/projectile/automatic/mini_uzi/update_icon()
@@ -300,8 +300,8 @@
 		icon_state = "mini-uzi-empty"
 
 /obj/item/weapon/gun/projectile/automatic/p90
-	name = "\improper H90K"
-	desc = "A compact, high capacity SMG produced by Hephaistos Industries. Despite its fierce reputation, it still manages to feel like a toy. Uses 5mm rounds."
+	name = "personal defense weapon"
+	desc = "The H90K is a compact, high capacity submachine gun produced by Hephaistos Industries. Despite its fierce reputation, it still manages to feel like a toy. Uses 5mm rounds."
 	icon_state = "p90smg"
 	item_state = "p90"
 	w_class = 3
@@ -315,7 +315,7 @@
 
 	firemodes = list(
 		list(mode_name="semiauto", burst=1, fire_delay=0),
-		list(mode_name="short bursts", burst=5, burst_delay=1, fire_delay=4, move_delay=4, burst_accuracy = list(0,-1,-1,-2,-2), dispersion = list(0.6, 1.0, 1.0, 1.2, 1.2)),
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-1,-1), dispersion=list(0.0, 0.6, 1.0))
 		)
 
 /obj/item/weapon/gun/projectile/automatic/p90/update_icon()
@@ -343,8 +343,8 @@
 	icon_state = (ammo_magazine)? "tommygun" : "tommygun-empty"
 //	update_held_icon()
 
-/obj/item/weapon/gun/projectile/automatic/bullpup
-	name = "\improper GP3000"
+/obj/item/weapon/gun/projectile/automatic/carbine
+	name = "assault carbine"
 	desc = "The bullpup configured GP3000 is a lightweight, compact, military-grade assault rifle produced by Gurov Projectile Weapons LLC. It is sold almost exclusively to standing armies. The serial number on this one has been scratched off. Uses 5.56mm rounds."
 	icon_state = "bullpupm"
 	item_state = "bullpup"
@@ -364,7 +364,7 @@
 		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    burst_accuracy=list(0,-1,-2), dispersion=list(0.0, 0.6, 0.6))
 		)
 
-/obj/item/weapon/gun/projectile/automatic/bullpup/update_icon(var/ignore_inhands)
+/obj/item/weapon/gun/projectile/automatic/carbine/update_icon(var/ignore_inhands)
 	..()
 	if(istype(ammo_magazine,/obj/item/ammo_magazine/a556m))
 		icon_state = "bullpupm"

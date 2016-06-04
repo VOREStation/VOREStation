@@ -80,7 +80,7 @@ var/datum/antagonist/raider/raiders
 		/obj/item/weapon/gun/projectile/automatic/c20r,
 		/obj/item/weapon/gun/projectile/automatic/wt550,
 		/obj/item/weapon/gun/projectile/automatic/sts35,
-		/obj/item/weapon/gun/projectile/automatic/bullpup,
+		/obj/item/weapon/gun/projectile/automatic/carbine,
 		/obj/item/weapon/gun/projectile/automatic/p90,
 		/obj/item/weapon/gun/projectile/automatic/tommygun,
 		/obj/item/weapon/gun/projectile/silenced,
@@ -94,7 +94,6 @@ var/datum/antagonist/raider/raiders
 		/obj/item/weapon/gun/projectile/pistol,
 		/obj/item/weapon/gun/projectile/revolver,
 		/obj/item/weapon/gun/projectile/pirate,
-		/obj/item/weapon/gun/projectile/SVD,
 		/obj/item/weapon/gun/projectile/revolver/judge,
 		list(/obj/item/weapon/gun/projectile/luger,/obj/item/weapon/gun/projectile/luger/brown),
 		list(/obj/item/weapon/gun/projectile/deagle, /obj/item/weapon/gun/projectile/deagle/gold, /obj/item/weapon/gun/projectile/deagle/camo)

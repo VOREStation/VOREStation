@@ -39,19 +39,14 @@
 	item_cost = 5
 	path = /obj/item/weapon/gun/projectile/derringer
 
-/datum/uplink_item/item/visible_weapons/SVD
-	name = "Dragunov Sniper (7.62mm)"
-	item_cost = 7
-	path = /obj/item/weapon/gun/projectile/SVD
-
 /datum/uplink_item/item/visible_weapons/heavysniper
 	name = "Anti-Materiel Rifle (14.5mm)"
 	item_cost = DEFAULT_TELECRYSTAL_AMOUNT
 	path = /obj/item/weapon/gun/projectile/heavysniper
 
 /datum/uplink_item/item/visible_weapons/tommygun
-	name = "Tommygun (.45)"
-	item_cost = DEFAULT_TELECRYSTAL_AMOUNT
+	name = "Tommygun (.45)" // We're keeping this because it's CLASSY. -Spades
+	item_cost = 7
 	path = /obj/item/weapon/gun/projectile/automatic/tommygun
 
 //These are for traitors (or other antags, perhaps) to have the option of purchasing some merc gear.
@@ -68,7 +63,7 @@
 /datum/uplink_item/item/visible_weapons/bullpuprifle
 	name = "Assault Rifle (5.56mm)"
 	item_cost = 7
-	path = /obj/item/weapon/gun/projectile/automatic/bullpup
+	path = /obj/item/weapon/gun/projectile/automatic/carbine
 
 /datum/uplink_item/item/visible_weapons/combatshotgun
 	name = "Combat Shotgun"

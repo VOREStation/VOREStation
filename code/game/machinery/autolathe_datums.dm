@@ -372,11 +372,13 @@
 //////////////////
 
 /////// 5mm
+/*
 /datum/autolathe/recipe/pistol_5mm
 	name = "pistol magazine (5mm)"
 	path = /obj/item/ammo_magazine/c5mm
 	category = "Arms and Ammunition"
 	hidden = 1
+*/
 
 /datum/autolathe/recipe/smg_5mm
 	name = "top-mounted SMG magazine (5mm)"

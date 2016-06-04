@@ -69,6 +69,7 @@
 
 ////////////// Dragunov Sniper Rifle //////////////
 
+/* // Commented out until it's not worthless.
 /obj/item/weapon/gun/projectile/SVD
 	name = "\improper Dragunov"
 	desc = "The SVD, also known as the Dragunov, was mass produced with an Optical Sniper Sight so simple that even Ivan can figure out how it works. Too bad for you that it's written in Russian. Uses 7.62mm rounds."
@@ -103,4 +104,4 @@
 	set name = "Use Scope"
 	set popup_menu = 1
 
-	toggle_scope(2.0)
+	toggle_scope(2.0)*/

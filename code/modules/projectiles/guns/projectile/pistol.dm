@@ -55,6 +55,7 @@
 	options["NT Mk. 58"] = "secguncomp"
 	options["NT Mk. 58 Custom"] = "secgundark"
 	options["Colt M1911"] = "colt"
+	options["FiveSeven"] = "fnseven"
 	options["USP"] = "usp"
 	options["H&K VP"] = "VP78"
 	options["P08 Luger"] = "p08"
@@ -133,6 +134,7 @@
 	icon_state = "deaglecamo"
 	item_state = "deagleg"
 
+/*
 /obj/item/weapon/gun/projectile/fiveseven
 	name = "\improper WT-AP57"
 	desc = "This tacticool pistol made by Ward-Takahashi trades stopping power for armor piercing and a high capacity. Uses 5mm rounds."
@@ -150,6 +152,7 @@
 		icon_state = "fnseven"
 	else
 		icon_state = "fnseven-empty"
+*/
 
 /obj/item/weapon/gun/projectile/gyropistol // Does this even appear anywhere outside of admin abuse?
 	name = "gyrojet pistol"
