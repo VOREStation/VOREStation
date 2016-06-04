@@ -74,7 +74,7 @@
 	icon_state = "joanzip"
 
 //JoanRisu:Joan Risu
-/obj/item/weapon/claymore/fluff/joanaria
+/obj/item/weapon/material/sword/fluff/joanaria
 	name = "Aria"
 	desc = "A beautifully crafted rapier owned by Joan Risu. It has a thin blade and is used for quick attacks."
 	icon = 'icons/vore/custom_items_vr.dmi'
@@ -82,7 +82,7 @@
 	origin_tech = "materials=7"
 
 //For General use
-/obj/item/weapon/claymore/fluff/scisword
+/obj/item/weapon/material/sword/fluff/scisword
 	name = "Sci Blade"
 	desc = "A sword that can not only cut down your enemies, it can also cut fabric really neatly"
 	icon = 'icons/vore/custom_items_vr.dmi'
