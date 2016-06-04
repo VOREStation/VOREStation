@@ -597,3 +597,31 @@
 /obj/item/clothing/under/dress/maid/
 	name = "Maid Outfit"
 	desc = "A french maid outfit made ironically in Gaia's version of the far east."
+
+/obj/item/clothing/head/helmet/space/fluff/joan
+	name = "Joan's Combat Space Helmet"
+	desc = "A customized combat space helmet made for a certain squirrely Commissioned Officer. \
+	The top has the signature ears that are held up with a harder back covering. 'Joan' is engraved on the back.\
+	There are some indications that the helmet has seen combat."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "joanhelm"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "joanhelm_mob"
+
+	light_overlay = "helmet_light"
+
+/obj/item/clothing/suit/space/fluff/joan
+	name = "Joan's Combat Spacesuit"
+	desc = "A customized combat spacesuit made for a certain squirrely Commissioned Officer, tail slot included. \
+	On the right shoulder, the United Federation's Emblem sits proudly. On the left, there are faded indications \
+	that there were different ranks painted on and off. On the collar where the suit is softer is a rectangular \
+	name-tag with the name 'Joan' on it. There are indications that the suit has seen combat."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "joansuit"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "joansuit_mob"
+
