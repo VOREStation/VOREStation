@@ -210,46 +210,68 @@
 
 		toggle_scope(2.0)
 
-//This weapon is shelved until someone can fix the modifystate var and apply a safety to the scythe mode.
-/*
-/obj/item/weapon/gun/projectile/automatic/crestrose
+//Currently, the only problem I have now is that this weapon's item_state isn't working.
+/obj/item/weapon/gun/projectile/automatic/fluff/crestrose
 	name = "Crescent Rose"
 	desc = "Can you match my resolve? If so then you will succeed. I believe that the human spirit is indomitable. Keep Moving Forward."
-	origin_tech = "materials=7"
-	icon = 'icons/obj/custom_items.dmi'
-	icon_state = "crestrose"
-	item_state = null // So it inherits the icon_state.
+	icon = 'icons/vore/custom_guns_vr.dmi'
+	icon_state = "crestrose_fold"
+
+	icon_override = 'icons/vore/custom_guns_vr.dmi'
+	item_state = "crestrose_fold_mob"
+
 	w_class = 4
-	fire_sound = 'sound/weapons/rifleshot.ogg'
-	force = 40
-	throwforce = 10
-	max_shells = 10
-	magazine_type = /obj/item/ammo_magazine/m14
-	allowed_magazines = list(magazine_type = /obj/item/ammo_magazine/m14)
+	caliber = "75"
+	origin_tech = list(TECH_COMBAT = 7, TECH_MATERIAL = 4)
+	slot_flags = null
+	ammo_type = "/obj/item/ammo_casing/a75"
+	fire_sound = 'sound/weapons/Gunshot_light.ogg'
 	load_method = MAGAZINE
-	caliber = "a762"
+	magazine_type = /obj/item/ammo_magazine/a75
+	force = 3
+	var/on = 0
+	auto_eject = 1
+	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
+	hitsound = null
 
-	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	var/modifystate = "crestrose"
-	var/mode = 0 //0 = unfolded, 1 = folded
 
-/obj/item/weapon/gun/projectile/automatic/crestrose/attack_self(mob/living/user as mob)
-	switch(mode)
-		if(0)
-			mode = 1
-			user.visible_message("<span class='warning'>[src.name] folds up into a cool looking rifle.</span>")
-			force = 5
-			throwforce = 2
-			modifystate = crestrose_fold
-		if(1)
-			mode = 0 // I feel like this mode should prevent it from shooting. Otherwise, what's the point? -Spades ||Probably need assistance in that. Original design of Crescent Rose is to shoot no matter what form it was in. Perhaps lowering accuracy will provide a con buffer here. -- Joan
-			user.visible_message("<span class='warning'>[src.name] changes into a very intimidating looking weapon.</span>")
-			force = 40
-			throwforce = 10
-			modifystate = crestrose
-	update_icon()
-	update_held_icon()
-*/
+/obj/item/weapon/gun/projectile/automatic/fluff/crestrose/attack_self(mob/user as mob)
+	on = !on
+	if(on)
+		user.visible_message("<span class='warning'>With a press of a button, [user]'s gun turns into a deadly scythe.</span>",\
+		"<span class='warning'>You extend The Rose's thorns.</span>",\
+		"You hear an ominous click.")
+		icon = 'icons/vore/custom_guns_vr.dmi'
+		icon_state = "crestrose"
+		icon_override = 'icons/vore/custom_guns_vr.dmi'
+		item_state = "crestrose_mob"
+		w_class = 4
+		force = 15//Obscenely robust
+		attack_verb = list("slashed", "cut", "drives")
+		hitsound = 'sound/weapons/bladeslice.ogg'
+	else
+		user.visible_message("<span class='notice'>\The [user] folds the weapon back up into a gun.</span>",\
+		"<span class='notice'>You fold up the weapon.</span>",\
+		"You hear a click.")
+		icon = 'icons/vore/custom_guns_vr.dmi'
+		icon_state = "crestrose_fold"
+		icon_override = 'icons/vore/custom_guns_vr.dmi'
+		item_state = "crestrose_fold_mob"
+		w_class = 3
+		force = 3//Not so obscenely robust
+		attack_verb = list("hit", "melee'd")
+		hitsound = null
+
+
+/obj/item/weapon/gun/projectile/automatic/fluff/crestrose/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+
+	if(default_parry_check(user, attacker, damage_source) && prob(50))
+		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
+		playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, 1)
+		return 1
+	return 0
+
+
 
 // molenar:Kari Akiren
 /obj/item/weapon/gun/projectile/shotgun/pump/rifle/fluff/kari_akiren
@@ -265,7 +287,7 @@
 
 //Razerwing:Archer Maximus
 /obj/item/weapon/gun/projectile/colt/fluff/archercolt
-	name = "MEUSOC 45"
+	name = "MEUSOC .45"
 	desc = "Some serious drywall work, coming up!"
 
 //////////////////// Energy Weapons ////////////////////
