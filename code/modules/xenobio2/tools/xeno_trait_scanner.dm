@@ -111,7 +111,7 @@
 			dat += "It bears no characters indicating resilience to damage.<br>"
 			
 	if(growth_max)
-		if(growth_level < 25)
+		if(growth_level < 35)
 			dat += "It appears to be far to growing up.<br>"
 		else if(growth_level > 40)
 			dat += "It appears to be close to growing up.<br>"

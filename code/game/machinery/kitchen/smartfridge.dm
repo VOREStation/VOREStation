@@ -1,3 +1,63 @@
+/*
+*	Datum that holds the instances and information about the items in the smartfridge.
+*/
+/datum/data/stored_item
+		var/item_name = "name"	//Name of the item(s) displayed
+		var/item_path = null	
+		var/amount = 0
+		var/list/instances		//What items are actually stored
+		var/fridge				//The attatched fridge
+		
+/datum/data/stored_item/New(var/fridge, var/path, var/name = null, var/amount = 0)
+	..()
+
+	src.item_path = path
+
+	if(!name)
+		var/atom/tmp = path
+		src.item_name = initial(tmp.name)
+	else
+		src.item_name = name
+		
+	src.amount  = amount
+	src.fridge = fridge
+
+/datum/data/stored_item/Destroy()
+	fridge = null
+	if(instances)
+		for(var/product in instances)
+			qdel(product)
+		instances.Cut()
+	. = ..()
+	
+/datum/data/stored_item/proc/get_amount()
+	return instances ? instances.len : amount
+	
+/datum/data/stored_item/proc/get_product(var/product_location)
+	if(!get_amount() || !product_location)
+		return
+	init_products()
+
+	var/atom/movable/product = instances[instances.len]	// Remove the last added product
+	instances -= product
+	product.forceMove(product_location)
+	
+/datum/data/stored_item/proc/add_product(var/atom/movable/product)
+	if(product.type != item_path)
+		return 0
+	init_products()
+	product.forceMove(fridge)
+	instances += product
+	
+/datum/data/stored_item/proc/init_products()
+	if(instances)
+		return
+	instances = list()
+	for(var/i = 1 to amount)
+		var/new_product = new item_path(fridge)
+		instances += new_product
+
+	
 /* SmartFridge.  Much todo
 */
 /obj/machinery/smartfridge
@@ -15,7 +75,8 @@
 	var/icon_on = "smartfridge"
 	var/icon_off = "smartfridge-off"
 	var/icon_panel = "smartfridge-panel"
-	var/item_quants = list()
+	var/list/item_records = list()
+	var/datum/data/stored_item/currently_vending = null	//What we're putting out of the machine.
 	var/seconds_electrified = 0;
 	var/shoot_inventory = 0
 	var/locked = 0
@@ -68,11 +129,14 @@
 
 /obj/machinery/smartfridge/secure/extract/New()
 	..()
+	var/datum/data/stored_item/I = new(src, /obj/item/xenoproduct/slime/core)
+	item_records.Add(I)
 	for(var/i=1 to 5)
 		var/obj/item/xenoproduct/slime/core/C = new(src)
 		C.traits = new()
 		C.nameVar = "grey"
-		item_quants[C.name]++
+		I.add_product(C)
+		
 
 /obj/machinery/smartfridge/secure/medbay
 	name = "\improper Refrigerated Medicine Storage"
@@ -162,20 +226,19 @@
 			overlays += "drying_rack_drying"
 
 /obj/machinery/smartfridge/drying_rack/proc/dry()
-	for(var/obj/item/weapon/reagent_containers/food/snacks/S in contents)
-		if(S.dry) continue
-		if(S.dried_type == S.type)
-			S.dry = 1
-			item_quants[S.name]--
-			S.name = "dried [S.name]"
-			S.color = "#AAAAAA"
-			S.loc = loc
-		else
-			var/D = S.dried_type
-			new D(loc)
-			item_quants[S.name]--
-			qdel(S)
-		return
+	for(var/datum/data/stored_item/I in item_records)
+		for(var/obj/item/weapon/reagent_containers/food/snacks/S in I.instances)
+			if(S.dry) continue
+			if(S.dried_type == S.type)
+				S.dry = 1
+				S.name = "dried [S.name]"
+				S.color = "#AAAAAA"
+				I.get_product(loc)
+			else
+				var/D = S.dried_type
+				new D(loc)
+				qdel(S)
+			return
 	return
 
 /obj/machinery/smartfridge/process()
@@ -222,35 +285,38 @@
 		return
 
 	if(accept_check(O))
-		if(contents.len >= max_n_of_items)
-			user << "<span class='notice'>\The [src] is full.</span>"
-			return 1
-		else
-			user.remove_from_mob(O)
-			O.loc = src
-			if(item_quants[O.name])
-				item_quants[O.name]++
-			else
-				item_quants[O.name] = 1
-			user.visible_message("<span class='notice'>[user] has added \the [O] to \the [src].</span>", "<span class='notice'>You add \the [O] to \the [src].</span>")
+		user.remove_from_mob(O)
+		var/hasRecord = FALSE	//Check to see if this passes or not.
+		for(var/datum/data/stored_item/I in item_records)
+			if(istype(O, I.item_path))
+				stock(O, I)
+				qdel(O)
+				return
+		if(!hasRecord)
+			var/datum/data/stored_item/item = new/datum/data/stored_item(src, O.type)
+			stock(O, item)
+			item_records.Add(item)
+			
+		user.visible_message("<span class='notice'>[user] has added \the [O] to \the [src].</span>", "<span class='notice'>You add \the [O] to \the [src].</span>")
 
-			nanomanager.update_uis(src)
+		nanomanager.update_uis(src)
 
 	else if(istype(O, /obj/item/weapon/storage/bag))
 		var/obj/item/weapon/storage/bag/P = O
 		var/plants_loaded = 0
 		for(var/obj/G in P.contents)
 			if(accept_check(G))
-				if(contents.len >= max_n_of_items)
-					user << "<span class='notice'>\The [src] is full.</span>"
-					return 1
-				else
-					P.remove_from_storage(G,src)
-					if(item_quants[G.name])
-						item_quants[G.name]++
-					else
-						item_quants[G.name] = 1
-					plants_loaded++
+				plants_loaded++
+				var/hasRecord = FALSE	//Check to see if this passes or not.
+				for(var/datum/data/stored_item/I in item_records)
+					if(istype(G, I.item_path))
+						stock(G, I)
+						hasRecord = TRUE
+				if(!hasRecord)
+					var/datum/data/stored_item/item = new/datum/data/stored_item(src, G.type)
+					stock(G, item)
+					item_records.Add(item)
+					
 		if(plants_loaded)
 
 			user.visible_message("<span class='notice'>[user] loads \the [src] with \the [P].</span>", "<span class='notice'>You load \the [src] with \the [P].</span>")
@@ -269,6 +335,14 @@
 		locked = -1
 		user << "You short out the product lock on [src]."
 		return 1
+		
+/obj/machinery/smartfridge/proc/stock(obj/item/O, var/datum/data/stored_item/I)
+	I.add_product(O)
+	nanomanager.update_uis(src)
+	
+/obj/machinery/smartfridge/proc/vend(datum/data/stored_item/I)
+	I.get_product(get_turf(src))
+	nanomanager.update_uis(src)
 
 /obj/machinery/smartfridge/attack_ai(mob/user as mob)
 	attack_hand(user)
@@ -294,11 +368,11 @@
 	data["secure"] = is_secure
 
 	var/list/items[0]
-	for (var/i=1 to length(item_quants))
-		var/K = item_quants[i]
-		var/count = item_quants[K]
+	for (var/i=1 to length(item_records))
+		var/datum/data/stored_item/I = item_records[i]
+		var/count = I.get_amount()
 		if(count > 0)
-			items.Add(list(list("display_name" = html_encode(capitalize(K)), "vend" = i, "quantity" = count)))
+			items.Add(list(list("display_name" = html_encode(capitalize(I.item_name)), "vend" = i, "quantity" = count)))
 
 	if(items.len > 0)
 		data["contents"] = items
@@ -325,20 +399,15 @@
 	if(href_list["vend"])
 		var/index = text2num(href_list["vend"])
 		var/amount = text2num(href_list["amount"])
-		var/K = item_quants[index]
-		var/count = item_quants[K]
+		var/datum/data/stored_item/I = item_records[index]
+		var/count = I.get_amount()
 
 		// Sanity check, there are probably ways to press the button when it shouldn't be possible.
 		if(count > 0)
-			item_quants[K] = max(count - amount, 0)
-
-			var/i = amount
-			for(var/obj/O in contents)
-				if(O.name == K)
-					O.loc = loc
-					i--
-					if(i <= 0)
-						return 1
+			if((count - amount) < 0)
+				amount = count
+			for(var/i = 1 to amount)
+				vend(I)
 
 		return 1
 	return 0
@@ -349,17 +418,12 @@
 	if(!target)
 		return 0
 
-	for (var/O in item_quants)
-		if(item_quants[O] <= 0) //Try to use a record that actually has something to dump.
+	for(var/datum/data/stored_item/I in src.item_records)
+		throw_item = I.get_product(loc)
+		if (!throw_item)
 			continue
-
-		item_quants[O]--
-		for(var/obj/T in contents)
-			if(T.name == O)
-				T.loc = src.loc
-				throw_item = T
-				break
 		break
+		
 	if(!throw_item)
 		return 0
 	spawn(0)

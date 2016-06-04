@@ -22,7 +22,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 	idle_power_usage = 30
 	active_power_usage = 2500
 
-/obj/machinery/r_n_d/circuit_imprinter/map/New()
+/obj/machinery/r_n_d/circuit_imprinter/New()
 	..()
 	circuit = new circuit()
 	component_parts = list()
