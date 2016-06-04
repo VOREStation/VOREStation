@@ -33,6 +33,7 @@ delete-after: True
 # Also, all entries are changed into a single [] after a master changelog generation. Just remove the brackets when you add new entries.
 # Please surround your changes in  double quotes ("), as certain characters otherwise screws up compiling. The quotes will not show up in the changelog.
 changes: 
+  - rscadd: "Adds a variety of new guns. Some of these guns and and their ammunition are purchasable through antag uplink, cargo, or can be spawned during Renegade or Heist modes."
   - rscadd: "Adds ammunition clips for reloading magazines and some guns (such as bolt-actions)."
   - rscadd: "All magazines and ammunitions can now be produced with the autolathe."
   - maptweak: "New bullpup SMG is available in armory area on CentCom level."
