@@ -37,8 +37,7 @@
 		return 1
 
 	get_access()
-		var/access = get_all_station_access()
-		access += list("VIP Guest","Custodian","Thunderdome Overseer","Intel Officer","Medical Officer","Death Commando","Research Officer")
+		var/access = get_all_accesses()
 		return access
 
 /datum/job/centcom_visitor //For Pleasure
@@ -80,8 +79,7 @@
 		return 1
 
 	get_access()
-		var/access = get_all_station_access()
-		access += list("VIP Guest","Custodian","Thunderdome Overseer","Intel Officer","Medical Officer","Death Commando","Research Officer")
+		var/access = get_all_accesses()
 		return access
 
 /datum/job/clown

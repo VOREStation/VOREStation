@@ -74,12 +74,21 @@
 	icon_state = "joanzip"
 
 //JoanRisu:Joan Risu
-/obj/item/weapon/claymore/fluff/joanaria
+/obj/item/weapon/material/sword/fluff/joanaria
 	name = "Aria"
 	desc = "A beautifully crafted rapier owned by Joan Risu. It has a thin blade and is used for quick attacks."
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "joanaria"
 	origin_tech = "materials=7"
+
+//For General use
+/obj/item/weapon/material/sword/fluff/scisword
+	name = "Sci Blade"
+	desc = "A sword that can not only cut down your enemies, it can also cut fabric really neatly"
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "scisword"
+	origin_tech = "materials=7"
+
 
 //john.wayne9392:Harmony Prechtl
 /obj/item/weapon/twohanded/fireaxe/fluff/mjollnir
@@ -91,11 +100,14 @@
 	attack_verb = list("attacked", "hammered", "smashed", "slammed", "crushed")
 
 //JoanRisu:Joan Risu
-/obj/item/weapon/card/id/gold/fluff/joanbadge
+/obj/item/weapon/card/id/centcom/fluff/joanbadge
 	name = "Faded Badge"
 	desc = "A faded badge, backed with leather, that reads 'NT Security Force' across the front."
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "joanbadge"
+	registered_name = "Joan Risu"
+	assignment = "Centcom Officer"
+
 
 	attack_self(mob/user as mob)
 		if(isliving(user))
@@ -244,4 +256,15 @@
 	assignment = "CC Medical"
 
 	New()
+		..()
 		update_name()
+
+//Swat43:Fortune Bloise
+/obj/item/weapon/storage/backpack/satchel/fluff/swat43bag
+	name = "Coloured Satchel"
+	desc = "That's a coloured satchel with red stripes, with a heart and ripley logo on each side."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "swat43-bag"
+
+	icon_override = 'icons/vore/custom_items_vr.dmi'
+	item_state = "swat43-bag_mob"

@@ -88,6 +88,10 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	var/b_type = "A+"  // Should probably change to an integer => string map but I'm lazy.
 	var/real_name          // Stores the real name of the person who originally got this dna datum. Used primarily for changelings,
 
+	// VOREStation
+	var/custom_species
+	// VOREStation
+
 	// New stuff
 	var/species = "Human"
 
@@ -154,6 +158,9 @@ var/global/list/datum/dna/gene/dna_genes[0]
 		if(character.size_multiplier >= player_sizes_list[N])
 			size_multiplier = player_sizes_list.Find(N)
 			break
+
+	// Technically custom_species is not part of the UI, but this place avoids merge problems.
+	src.custom_species = character.custom_species
 
 	// +1 to account for the none-of-the-above possibility
 	SetUIValueRange(DNA_UI_EAR_STYLE,	ear_style + 1,     ear_styles_list.len  + 1,  1)
