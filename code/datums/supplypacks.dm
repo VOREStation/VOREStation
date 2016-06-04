@@ -1851,7 +1851,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	group = "Security"
 
 /datum/supply_packs/bolt_rifles_mosin
-	name = "Surplus Soviet rifles"
+	name = "Surplus militia rifles"
 	contains = list(
 			/obj/item/weapon/gun/projectile/shotgun/pump/rifle/mosin = 3,
 			/obj/item/ammo_magazine/clip/a762 = 6
