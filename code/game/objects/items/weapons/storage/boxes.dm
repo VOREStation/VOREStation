@@ -275,7 +275,7 @@
 /obj/item/weapon/storage/box/metalfoam/New()
 	..()
 	for(var/i = 1 to 7)
-		new /obj/item/weapon/grenade/chem_grenade/metalfoam
+		new /obj/item/weapon/grenade/chem_grenade/metalfoam(src)
 
 /obj/item/weapon/storage/box/trackimp
 	name = "boxed tracking implant kit"

@@ -184,6 +184,9 @@
 	icon_state = "doublebed"
 	base_icon = "doublebed"
 
+/obj/structure/bed/double/padded/New(var/newloc)
+	..(newloc,"wood","cotton")
+
 /obj/structure/bed/double/post_buckle_mob(mob/living/M as mob)
 	if(M == buckled_mob)
 		M.pixel_y = 13
