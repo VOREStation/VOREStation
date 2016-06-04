@@ -128,9 +128,9 @@
 /obj/item/projectile/bullet/pistol
 	damage = 20
 
-/obj/item/projectile/bullet/pistol/small
-	damage = 15
-	armor_penetration = 50
+/obj/item/projectile/bullet/pistol/ap
+	damage = 20
+	armor_penetration = 30
 
 /obj/item/projectile/bullet/pistol/medium
 	damage = 25

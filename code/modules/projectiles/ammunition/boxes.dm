@@ -165,6 +165,19 @@
 	name = "top mounted magazine (9mm practice)"
 	ammo_type = /obj/item/ammo_casing/c9mmp
 
+/obj/item/ammo_magazine/p90
+	name = "high capacity top mounted magazine (9mm armor-piercing)"
+	icon_state = "p90"
+	mag_type = MAGAZINE
+	ammo_type = /obj/item/ammo_casing/c9mm/ap
+	matter = list(DEFAULT_WALL_MATERIAL = 3000)
+	caliber = "9mm"
+	max_ammo = 50
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/p90/empty
+	initial_ammo = 0
+
 /obj/item/ammo_magazine/clip/c9mm
 	name = "ammo clip (9mm)"
 	icon_state = "clip_pistol"
@@ -200,17 +213,7 @@
 	initial_ammo = 0
 
 ///////// 5mm /////////
-
-/obj/item/ammo_magazine/c5mmt
-	name = "top mounted magazine (5mm)"
-	icon_state = "p90"
-	mag_type = MAGAZINE
-	ammo_type = /obj/item/ammo_casing/c5mm
-	matter = list(DEFAULT_WALL_MATERIAL = 3000)
-	caliber = "5mm"
-	max_ammo = 50
-	multiple_sprites = 1
-
+/*
 /obj/item/ammo_magazine/c5mm
 	name = "magazine (5mm)"
 	icon_state = "fiveseven"
@@ -230,7 +233,7 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 540) // metal costs are very roughly based around one 5mm casing = 60 metal
 	max_ammo = 9
 	multiple_sprites = 1
-
+*/
 ///////// 10mm /////////
 
 /obj/item/ammo_magazine/a10mm

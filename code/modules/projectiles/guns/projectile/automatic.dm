@@ -301,7 +301,7 @@
 
 /obj/item/weapon/gun/projectile/automatic/p90
 	name = "personal defense weapon"
-	desc = "The H90K is a compact, high capacity submachine gun produced by Hephaistos Industries. Despite its fierce reputation, it still manages to feel like a toy. Uses 5mm rounds."
+	desc = "The H90K is a compact, high capacity submachine gun produced by Hephaistos Industries. Despite its fierce reputation, it still manages to feel like a toy. Uses 9mm rounds."
 	icon_state = "p90smg"
 	item_state = "p90"
 	w_class = 3
@@ -310,8 +310,8 @@
 	slot_flags = SLOT_BELT // ToDo: Belt sprite.
 	fire_sound = 'sound/weapons/Gunshot_light.ogg'
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/c5mmt
-	allowed_magazines = list(/obj/item/ammo_magazine/c5mmt)
+	magazine_type = /obj/item/ammo_magazine/p90
+	allowed_magazines = list(/obj/item/ammo_magazine/p90, /obj/item/ammo_magazine/mc9mmt) // ToDo: New sprite for the different mag.
 
 	firemodes = list(
 		list(mode_name="semiauto", burst=1, fire_delay=0),

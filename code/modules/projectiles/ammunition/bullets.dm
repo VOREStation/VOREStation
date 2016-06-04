@@ -29,6 +29,10 @@
 	caliber = "9mm"
 	projectile_type = /obj/item/projectile/bullet/pistol
 
+/obj/item/ammo_casing/c9mm/ap
+	desc = "A 9mm armor-piercing bullet casing."
+	projectile_type = /obj/item/projectile/bullet/pistol/ap
+
 /obj/item/ammo_casing/c9mmf
 	desc = "A 9mm flash shell casing."
 	caliber = "9mm"
@@ -47,10 +51,12 @@
 	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/bullet/pistol/practice
 
+/*
 /obj/item/ammo_casing/c5mm
 	desc = "A 5mm bullet casing."
 	caliber = "5mm"
-	projectile_type = /obj/item/projectile/bullet/pistol/small
+	projectile_type = /obj/item/projectile/bullet/pistol/ap
+*/
 
 /obj/item/ammo_casing/c45
 	desc = "A .45 bullet casing."
