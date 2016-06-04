@@ -1,6 +1,6 @@
 /obj/machinery/pros_fabricator
 	icon = 'icons/obj/robotics.dmi'
-	icon_state = "pros-idle"
+	icon_state = "fab-idle"
 	name = "Prosthetics Fabricator"
 	desc = "A machine used for construction of prosthetics."
 	density = 1
@@ -59,11 +59,11 @@
 /obj/machinery/pros_fabricator/update_icon()
 	overlays.Cut()
 	if(panel_open)
-		icon_state = "pros-o"
+		icon_state = "fab-o"
 	else
-		icon_state = "pros-idle"
+		icon_state = "fab-idle"
 	if(busy)
-		overlays += "pros-active"
+		overlays += "fab-active"
 
 /obj/machinery/pros_fabricator/dismantle()
 	for(var/f in materials)
