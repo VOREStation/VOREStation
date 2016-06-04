@@ -109,7 +109,7 @@
 	light_color="#ff0000"
 	spawnable=list(
 		/mob/living/simple_animal/hostile/scarybat,
-		/mob/living/simple_animal/hostile/creature,
+		/mob/living/simple_animal/hostile/vore/creature,  // Vorestation Edit
 		/mob/living/simple_animal/hostile/faithless
 	)
 
@@ -118,7 +118,7 @@
 	light_color="#ff0000"
 	spawnable=list(
 		/mob/living/simple_animal/hostile/scarybat/cult,
-		/mob/living/simple_animal/hostile/creature/cult,
+		/mob/living/simple_animal/hostile/vore/creature/cult,  // Vorestation Edit
 		/mob/living/simple_animal/hostile/faithless/cult
 	)
 
