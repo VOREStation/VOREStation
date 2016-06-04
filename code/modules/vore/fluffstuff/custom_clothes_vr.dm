@@ -598,6 +598,7 @@
 	name = "Maid Outfit"
 	desc = "A french maid outfit made ironically in Gaia's version of the far east."
 
+//JoanRisu:Joan Risu
 /obj/item/clothing/head/helmet/space/fluff/joan
 	name = "Joan's Combat Space Helmet"
 	desc = "A customized combat space helmet made for a certain squirrely Commissioned Officer. \
@@ -612,6 +613,8 @@
 
 	light_overlay = "helmet_light"
 
+
+//JoanRisu:Joan Risu
 /obj/item/clothing/suit/space/fluff/joan
 	name = "Joan's Combat Spacesuit"
 	desc = "A customized combat spacesuit made for a certain squirrely Commissioned Officer, tail slot included. \
