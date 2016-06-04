@@ -24,10 +24,11 @@
 	if(prob(33))
 		spawn_type = pick(\
 		/mob/living/simple_animal/hostile/giant_spider/nurse,\
-		/mob/living/simple_animal/hostile/vore/alien,\  // Vorestation Edit
-		/mob/living/simple_animal/hostile/vore/bear,\  // Vorestation Edit
-		/mob/living/simple_animal/hostile/vore/creature\  // Vorestation Edit
-		)
+		/mob/living/simple_animal/hostile/vore/alien,\
+		/mob/living/simple_animal/hostile/vore/bear,\
+		/mob/living/simple_animal/hostile/vore/carp,\
+		/mob/living/simple_animal/hostile/vore/creature\
+		) // Vorestation Edits
 	else
 		spawn_type = pick(\
 		/mob/living/simple_animal/cat,\
