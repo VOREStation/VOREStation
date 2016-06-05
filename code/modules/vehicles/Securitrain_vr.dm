@@ -93,13 +93,13 @@
 	..()
 
 //cargo trains are open topped, so there is a chance the projectile will hit the mob ridding the train instead
-/obj/vehicle/train/cargo/bullet_act(var/obj/item/projectile/Proj)
+/obj/vehicle/train/securitrolley/bullet_act(var/obj/item/projectile/Proj)
 	if(buckled_mob && prob(70))
 		buckled_mob.bullet_act(Proj)
 		return
 	..()
 
-/obj/vehicle/train/cargo/update_icon()
+/obj/vehicle/train/securitrolley/update_icon()
 	if(open)
 		icon_state = initial(icon_state) + "_open"
 	else
@@ -158,7 +158,7 @@
 	else
 		verbs += /obj/vehicle/train/securiengine/verb/stop_engine
 
-/obj/vehicle/train/cargo/RunOver(var/mob/living/carbon/human/H)
+/obj/vehicle/train/securitrolley/RunOver(var/mob/living/carbon/human/H)
 	var/list/parts = list(BP_HEAD, BP_TORSO, BP_L_LEG, BP_R_LEG, BP_L_ARM, BP_R_ARM)
 
 	H.apply_effects(5, 5)
@@ -454,7 +454,7 @@
 		return
 
 	siren_on()
-	if (siren)
+	if (!siren)
 		usr << "You light up the [src]'s warning lights"
 		icon_state = "[initial(icon_state)]-on"
 
@@ -478,7 +478,7 @@
 		return
 
 	siren_off()
-	if (!siren)
+	if (siren)
 		usr << "You douse the [src]'s warning lights"
 		icon_state = "[initial(icon_state)]"
 
