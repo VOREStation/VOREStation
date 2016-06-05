@@ -1,0 +1,6 @@
+author: EmperorJon
+
+delete-after: True
+
+changes: 
+  - tweak: "Increased loadout points from 10 back to 15. We've added so many things like lunchboxes and communicators that everyone just takes by default, so a few more points will be nice."
