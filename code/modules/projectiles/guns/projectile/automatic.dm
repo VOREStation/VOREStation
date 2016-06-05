@@ -305,7 +305,7 @@
 	icon_state = "p90smg"
 	item_state = "p90"
 	w_class = 3
-	caliber = "5mm"
+	caliber = "9mm"
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT // ToDo: Belt sprite.
 	fire_sound = 'sound/weapons/Gunshot_light.ogg'
