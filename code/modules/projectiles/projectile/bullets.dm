@@ -128,6 +128,10 @@
 /obj/item/projectile/bullet/pistol
 	damage = 20
 
+/obj/item/projectile/bullet/pistol/ap
+	damage = 20
+	armor_penetration = 30
+
 /obj/item/projectile/bullet/pistol/medium
 	damage = 25
 
@@ -173,17 +177,17 @@
 	penetrating = 1
 
 /obj/item/projectile/bullet/rifle/a762
-	damage = 25
+	damage = 35
 
 /obj/item/projectile/bullet/rifle/a762/ap
-	damage = 20
+	damage = 30
 	armor_penetration = 50 // At 40 or more armor, this will do more damage than standard rounds.
 
 /obj/item/projectile/bullet/rifle/a556
-	damage = 35
+	damage = 25
 
 /obj/item/projectile/bullet/rifle/a556/ap
-	damage = 30
+	damage = 20
 	armor_penetration = 50 // At 30 or more armor, this will do more damage than standard rounds.
 
 /obj/item/projectile/bullet/rifle/a145
@@ -227,8 +231,9 @@
 /obj/item/projectile/bullet/pistol/practice
 	damage = 5
 
-/obj/item/projectile/bullet/rifle/a556/practice
+/obj/item/projectile/bullet/rifle/practice
 	damage = 5
+	penetrating = 0
 
 /obj/item/projectile/bullet/shotgun/practice
 	name = "practice"

@@ -216,7 +216,7 @@
 	body_parts_covered = HANDS
 	slot_flags = SLOT_GLOVES
 	attack_verb = list("challenged")
-	species_restricted = list("exclude","Unathi","Tajara")
+	species_restricted = null
 	sprite_sheets = list(
 		"Teshari" = 'icons/mob/species/seromi/gloves.dmi',
 		)
@@ -238,7 +238,7 @@
 /obj/item/clothing/gloves/proc/Touch(var/atom/A, var/proximity)
 	return 0 // return 1 to cancel attack_hand()
 
-/obj/item/clothing/gloves/attackby(obj/item/weapon/W, mob/user)
+/*/obj/item/clothing/gloves/attackby(obj/item/weapon/W, mob/user)
 	if(istype(W, /obj/item/weapon/wirecutters) || istype(W, /obj/item/weapon/scalpel))
 		if (clipped)
 			user << "<span class='notice'>The [src] have already been clipped!</span>"
@@ -255,7 +255,7 @@
 			species_restricted -= "Unathi"
 			species_restricted -= "Tajara"
 		return
-
+*/
 ///////////////////////////////////////////////////////////////////////
 //Head
 /obj/item/clothing/head
@@ -406,7 +406,7 @@
 	slowdown = SHOES_SLOWDOWN
 	force = 2
 	var/overshoes = 0
-	species_restricted = list("exclude","Teshari", "Unathi","Tajara")
+	species_restricted = list("exclude","Teshari")
 	sprite_sheets = list(
 		"Teshari" = 'icons/mob/species/seromi/shoes.dmi',
 		)

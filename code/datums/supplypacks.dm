@@ -1834,6 +1834,35 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	access = access_security
 	group = "Security"
 
+/datum/supply_packs/bolt_rifles_competitive
+	name = "Competitive shooting crate"
+	contains = list(
+			/obj/item/device/assembly/timer,
+			/obj/item/weapon/gun/projectile/shotgun/pump/rifle/practice = 2,
+			/obj/item/ammo_magazine/clip/a762/practice = 4,
+			/obj/item/target = 2,
+			/obj/item/target/alien = 2,
+			/obj/item/target/syndicate = 2
+			)
+	cost = 40
+	containertype = /obj/structure/closet/crate/secure/weapon
+	containername = "Weapons crate"
+	access = access_security
+	group = "Security"
+
+/datum/supply_packs/bolt_rifles_mosin
+	name = "Surplus militia rifles"
+	contains = list(
+			/obj/item/weapon/gun/projectile/shotgun/pump/rifle/mosin = 3,
+			/obj/item/ammo_magazine/clip/a762 = 6
+			)
+	cost = 50
+	hidden = 1
+	containertype = /obj/structure/closet/crate/secure/weapon
+	containername = "Weapons crate"
+	access = access_security
+	group = "Security"
+
 /datum/supply_packs/medicalextragear
 	name = "Medical surplus equipment"
 	contains = list(

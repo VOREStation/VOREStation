@@ -54,6 +54,7 @@
 	silenced = 1
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/chemdart
+	allowed_magazines = list(/obj/item/ammo_magazine/chemdart)
 	auto_eject = 0
 
 	var/list/beakers = list() //All containers inside the gun.
