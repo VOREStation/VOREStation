@@ -69,7 +69,7 @@
 
 ////////////// Dragunov Sniper Rifle //////////////
 
-/* // Commented out until it's not worthless.
+/* // Commented out until it's not worthless. Also might be nice to have a new icon that looks more sci-fi Dragunov-ish.
 /obj/item/weapon/gun/projectile/SVD
 	name = "\improper Dragunov"
 	desc = "The SVD, also known as the Dragunov, was mass produced with an Optical Sniper Sight so simple that even Ivan can figure out how it works. Too bad for you that it's written in Russian. Uses 7.62mm rounds."
@@ -92,8 +92,8 @@
 
 /obj/item/weapon/gun/projectile/SVD/update_icon()
 	..()
-	/*if(istype(ammo_magazine,/obj/item/ammo_magazine/c762)
-		icon_state = "SVD-bigmag"*/ //No icon for this exists yet.
+//	if(istype(ammo_magazine,/obj/item/ammo_magazine/c762)
+//		icon_state = "SVD-bigmag" //No icon for this exists yet.
 	if(ammo_magazine)
 		icon_state = "SVD"
 	else
