@@ -42,7 +42,7 @@
 	icon = 'icons/obj/vehicles_vr.dmi'
 	icon_state = "paddy_trailer"
 	passenger_allowed = 0
-
+	load_item_visible = 0
 
 //-------------------------------------------
 // Standard procs
@@ -338,9 +338,8 @@
 	// it is in and it should probably be attached with the engine in the lead
 	if(istype(T, /obj/vehicle/train/securitrolley))
 		T.attach_to(src, user)
-	if (/* condition */)
-	
-		/* code */
+	if (istype(T, /obj/vehicle/train/securitrolley/cargo))
+		T.attach_to(src, user)
 	else
 		var/T_dir = get_dir(src, T)	//figure out where T is wrt src
 
