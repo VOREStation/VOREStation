@@ -1,7 +1,8 @@
-//This is the initial set up for the new carts
+//This is the initial set up for the new carts. Feel free to improve and/or rewrite everything here. 
+//I don't know what the hell I'm doing right now. -Joan Risu
 
 /obj/vehicle/train/securiengine
-	name = "A train tug"
+	name = "Security Cart"
 	desc = "A ridable electric car designed for pulling trolleys as well as personal transport."
 	icon = 'icons/obj/vehicles_vr.dmi'
 	icon_state = "paddywagon"
@@ -9,17 +10,20 @@
 	powered = 1
 	locked = 0
 
+	move_delay = 0.7
+
 	load_item_visible = 1
 	load_offset_x = 0
 	mob_offset_y = 7
 
-	var/car_limit = 3		//how many cars an engine can pull before performance degrades
+	var/car_limit = 0		//how many cars an engine can pull before performance degrades
 	active_engines = 1
 	var/obj/item/weapon/key/securitrain/key
+	var/siren = 0
 
 /obj/item/weapon/key/securitrain
-	name = "key"
-	desc = "A Key. Yes indeed, a key indeed." 
+	name = "The Security Cart key"
+	desc = "The Security Cart Key used to start it." 
 	icon = 'icons/obj/vehicles_vr.dmi'
 	icon_state = "securikey"
 	w_class = 1
@@ -40,7 +44,7 @@
 /obj/vehicle/train/securitrolley/cargo
 	name = "Train trolley"
 	icon = 'icons/obj/vehicles_vr.dmi'
-	icon_state = "paddy_trailer"
+	icon_state = "secitemcarrierbot"
 	passenger_allowed = 0
 	load_item_visible = 0
 
@@ -181,19 +185,6 @@
 //-------------------------------------------
 // Interaction procs
 //-------------------------------------------
-/obj/vehicle/train/securiengine/relaymove(mob/user, direction)
-	if(user != load)
-		return 0
-
-	if(is_train_head())
-		if(direction == reverse_direction(dir) && tow)
-			return 0
-		if(Move(get_step(src, direction)))
-			return 1
-		return 0
-	else
-		return ..()
-
 /obj/vehicle/train/securiengine/examine(mob/user)
 	if(!..(user, 1))
 		return
@@ -370,7 +361,7 @@
 		move_delay = max(0, (-car_limit * active_engines) + train_length - active_engines)	//limits base overweight so you cant overspeed trains
 		move_delay *= (1 / max(1, active_engines)) * 2 										//overweight penalty (scaled by the number of engines)
 		move_delay += config.run_speed 														//base reference speed
-		move_delay *= 1.1																	//makes cargo trains 10% slower than running when not overweight
+		move_delay *= 1.5																	//makes cargo trains 10% slower than running when not overweight
 
 /obj/vehicle/train/securitrolley/update_car(var/train_length, var/active_engines)
 	src.train_length = train_length
@@ -382,15 +373,59 @@
 		anchored = 1
 
 //-----------------------------------------------------
-//Update layer and icon procs
+//Update layer and icon stuff plus new verbs.
 //
-//This is so the security train layers properly depending on direction and show the proper sprite
+//This is so the security train layers properly depending on direction and show the proper sprite.
 //-----------------------------------------------------
 /obj/vehicle/train/securiengine/proc/update_layer()
-	if(src.dir == NORTH)
-		src.layer = FLY_LAYER
+	if(dir == SOUTH)
+		layer = FLY_LAYER
 	else
-		src.layer = OBJ_LAYER
+		layer = OBJ_LAYER
+
+/obj/vehicle/train/securiengine/proc/update_mob()
+	if(buckled_mob)
+		buckled_mob.set_dir(dir)
+		switch(dir)
+			if(SOUTH)
+				buckled_mob.pixel_x = 0
+				buckled_mob.pixel_y = 7
+			if(WEST)
+				buckled_mob.pixel_x = 13
+				buckled_mob.pixel_y = 7
+			if(NORTH)
+				buckled_mob.pixel_x = 0
+				buckled_mob.pixel_y = 4
+			if(EAST)
+				buckled_mob.pixel_x = -13
+				buckled_mob.pixel_y = 7
+
+
+/obj/vehicle/train/securiengine/siren_on()
+	if(!key)
+		return
+	else
+		..()
+		update_stats()
+
+		verbs -= /obj/vehicle/train/securiengine/verb/stop_lights
+		verbs -= /obj/vehicle/train/securiengine/verb/start_lights
+
+		if(on)
+			verbs += /obj/vehicle/train/securiengine/verb/stop_lights
+		else
+			verbs += /obj/vehicle/train/securiengine/verb/start_lights
+
+/obj/vehicle/train/securiengine/siren_off()
+	..()
+
+	verbs -= /obj/vehicle/train/securiengine/verb/stop_lights
+	verbs -= /obj/vehicle/train/securiengine/verb/start_lights
+
+	if(!on)
+		verbs += /obj/vehicle/train/securiengine/verb/start_lights
+	else
+		verbs += /obj/vehicle/train/securiengine/verb/stop_lights
 
 /obj/vehicle/train/securiengine/verb/start_lights()
 	set name = "Warning Lights on"
@@ -400,12 +435,12 @@
 	if(!istype(usr, /mob/living/carbon/human))
 		return
 
-	if(on)
+	if(siren)
 		usr << "The Warning lights are already on."
 		return
 
-	turn_on()
-	if (on)
+	siren_on()
+	if (siren)
 		usr << "You light up the [src]'s warning lights"
 		icon_state = "[initial(icon_state)]-on"
 
@@ -424,12 +459,26 @@
 	if(!istype(usr, /mob/living/carbon/human))
 		return
 
-	if(!on)
+	if(!siren)
 		usr << "The Warning lights are already off."
 		return
 
-	turn_off()
-	if (!on)
+	siren_off()
+	if (!siren)
 		usr << "You douse the [src]'s warning lights"
 		icon_state = "[initial(icon_state)]"
 
+/obj/vehicle/train/securiengine/proc/siren_on()
+	if(stat)
+		return 0
+	if(powered && cell.charge < charge_use)
+		return 0
+	siren = 1
+	set_light(initial(light_range))
+	update_icon()
+	return 1
+
+/obj/vehicle/train/securiengine/proc/siren_off()
+	siren = 0
+	set_light(0)
+	update_icon()
