@@ -185,6 +185,20 @@
 //-------------------------------------------
 // Interaction procs
 //-------------------------------------------
+/obj/vehicle/train/securiengine/relaymove(mob/user, direction)
+	if(user != load)
+		return 0
+
+	if(is_train_head())
+		if(direction == reverse_direction(dir) && tow)
+			return 0
+		if(Move(get_step(src, direction)))
+			return 1
+		return 0
+	else
+		return ..()
+
+
 /obj/vehicle/train/securiengine/examine(mob/user)
 	if(!..(user, 1))
 		return
