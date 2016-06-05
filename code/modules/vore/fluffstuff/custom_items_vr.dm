@@ -74,12 +74,21 @@
 	icon_state = "joanzip"
 
 //JoanRisu:Joan Risu
-/obj/item/weapon/claymore/fluff/joanaria
+/obj/item/weapon/material/sword/fluff/joanaria
 	name = "Aria"
 	desc = "A beautifully crafted rapier owned by Joan Risu. It has a thin blade and is used for quick attacks."
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "joanaria"
 	origin_tech = "materials=7"
+
+//For General use
+/obj/item/weapon/material/sword/fluff/scisword
+	name = "Sci Blade"
+	desc = "A sword that can not only cut down your enemies, it can also cut fabric really neatly"
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "scisword"
+	origin_tech = "materials=7"
+
 
 //john.wayne9392:Harmony Prechtl
 /obj/item/weapon/twohanded/fireaxe/fluff/mjollnir
@@ -96,6 +105,9 @@
 	desc = "A faded badge, backed with leather, that reads 'NT Security Force' across the front."
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "joanbadge"
+	registered_name = "Joan Risu"
+	assignment = "Centcom Officer"
+
 
 	attack_self(mob/user as mob)
 		if(isliving(user))

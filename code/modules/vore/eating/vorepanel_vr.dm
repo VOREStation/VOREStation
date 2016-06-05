@@ -385,7 +385,7 @@
 			selected.digest_mode = input("Choose Mode (currently [selected.digest_mode])") in menu_list
 
 	if(href_list["b_desc"])
-		var/new_desc = html_encode(input(usr,"Belly Description (1024 char limit):","New Description") as message|null)
+		var/new_desc = html_encode(input(usr,"Belly Description (1024 char limit):","New Description",selected.inside_flavor) as message|null)
 		new_desc = readd_quotes(new_desc)
 
 		if(length(new_desc) > 1024)
