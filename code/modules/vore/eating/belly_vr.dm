@@ -272,6 +272,7 @@
 		if (PDA.id)
 			W = PDA.id
 			PDA.id = null
+			W.forceMove(owner) //I think this might be necessary with qdel?
 			qdel(PDA)
 
 	if (istype(W, /obj/item/weapon/card/id))
@@ -282,7 +283,8 @@
 		ID.icon_state = "digested"
 		ID.access = list() // No access
 		ID.forceMove(owner)
-		internal_contents += ID
+		internal_contents += W
+
 	else if (!_is_digestable(W))
 		W.forceMove(owner)
 		internal_contents += W
