@@ -425,7 +425,7 @@
 		verbs -= /obj/vehicle/train/securiengine/verb/stop_lights
 		verbs -= /obj/vehicle/train/securiengine/verb/start_lights
 
-		if(on)
+		if(siren)
 			verbs += /obj/vehicle/train/securiengine/verb/stop_lights
 		else
 			verbs += /obj/vehicle/train/securiengine/verb/start_lights
@@ -436,7 +436,7 @@
 	verbs -= /obj/vehicle/train/securiengine/verb/stop_lights
 	verbs -= /obj/vehicle/train/securiengine/verb/start_lights
 
-	if(!on)
+	if(!siren)
 		verbs += /obj/vehicle/train/securiengine/verb/start_lights
 	else
 		verbs += /obj/vehicle/train/securiengine/verb/stop_lights
