@@ -491,7 +491,7 @@
 /////// 5.56mm
 /datum/autolathe/recipe/rifle_556
 	name = "10rnd rifle magazine (5.56mm)"
-	path = /obj/item/ammo_magazine/a556/empty
+	path = /obj/item/ammo_magazine/a556
 	category = "Arms and Ammunition"
 	hidden = 1
 
