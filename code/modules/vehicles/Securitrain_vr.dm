@@ -9,8 +9,13 @@
 	on = 0
 	powered = 1
 	locked = 0
-
 	move_delay = 0.5
+	
+	//Health stuff
+	health = 100
+	maxhealth = 100
+	fire_dam_coeff = 0.6
+	brute_dam_coeff = 0.5
 
 	load_item_visible = 1
 	load_offset_x = 0
