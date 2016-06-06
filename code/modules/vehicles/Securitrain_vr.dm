@@ -1,5 +1,5 @@
 //This is the initial set up for the new carts. Feel free to improve and/or rewrite everything here. 
-//I don't know what the hell I'm doing right now. -Joan Risu
+//I don't know what the hell I'm doing right now. Please help. Especially with the update_icons stuff. -Joan Risu
 
 /obj/vehicle/train/securiengine
 	name = "Security Cart"
@@ -10,16 +10,16 @@
 	powered = 1
 	locked = 0
 
-	move_delay = 0.7
+	move_delay = 0.5
 
 	load_item_visible = 1
 	load_offset_x = 0
 	mob_offset_y = 7
 
-	var/car_limit = 0		//how many cars an engine can pull before performance degrades
+	var/car_limit = 0		//how many cars an engine can pull before performance degrades. This should be 0 to prevent trailers from unhitching.
 	active_engines = 1
 	var/obj/item/weapon/key/securitrain/key
-	var/siren = 0
+	var/siren = 0 //This is for eventually getting the siren sprite to work. 
 
 /obj/item/weapon/key/securitrain
 	name = "The Security Cart key"
@@ -45,8 +45,8 @@
 	name = "Train trolley"
 	icon = 'icons/obj/vehicles_vr.dmi'
 	icon_state = "secitemcarrierbot"
-	passenger_allowed = 0
-	load_item_visible = 0
+	passenger_allowed = 0 //Stick a man inside the box. :v
+	load_item_visible = 0 //The load is supposed to be invisible.
 
 //-------------------------------------------
 // Standard procs
@@ -387,9 +387,10 @@
 		anchored = 1
 
 //-----------------------------------------------------
-//Update layer and icon stuff plus new verbs.
+//Update layer stuff
 //
-//This is so the security train layers properly depending on direction and show the proper sprite.
+//This is supposed to update the layers and put the mob in the correct spot. 
+//Pls help squirrel get this to work. ;m;
 //-----------------------------------------------------
 /obj/vehicle/train/securiengine/proc/update_layer()
 	if(dir == SOUTH)
@@ -413,86 +414,3 @@
 			if(EAST)
 				buckled_mob.pixel_x = -13
 				buckled_mob.pixel_y = 7
-
-
-/obj/vehicle/train/securiengine/siren_on()
-	if(!key)
-		return
-	else
-		..()
-		update_stats()
-
-		verbs -= /obj/vehicle/train/securiengine/verb/stop_lights
-		verbs -= /obj/vehicle/train/securiengine/verb/start_lights
-
-		if(siren)
-			verbs += /obj/vehicle/train/securiengine/verb/stop_lights
-		else
-			verbs += /obj/vehicle/train/securiengine/verb/start_lights
-
-/obj/vehicle/train/securiengine/siren_off()
-	..()
-
-	verbs -= /obj/vehicle/train/securiengine/verb/stop_lights
-	verbs -= /obj/vehicle/train/securiengine/verb/start_lights
-
-	if(!siren)
-		verbs += /obj/vehicle/train/securiengine/verb/start_lights
-	else
-		verbs += /obj/vehicle/train/securiengine/verb/stop_lights
-
-/obj/vehicle/train/securiengine/verb/start_lights()
-	set name = "Warning Lights on"
-	set category = "Vehicle"
-	set src in view(0)
-
-	if(!istype(usr, /mob/living/carbon/human))
-		return
-
-	if(siren)
-		usr << "The Warning lights are already on."
-		return
-
-	siren_on()
-	if (!siren)
-		usr << "You light up the [src]'s warning lights"
-		icon_state = "[initial(icon_state)]-on"
-
-
-	else
-		if(cell.charge < charge_use)
-			usr << "[src] is out of power."
-		else
-			usr << "[src]'s light won't light."
-
-/obj/vehicle/train/securiengine/verb/stop_lights()
-	set name = "Warning Lights off"
-	set category = "Vehicle"
-	set src in view(0)
-
-	if(!istype(usr, /mob/living/carbon/human))
-		return
-
-	if(!siren)
-		usr << "The Warning lights are already off."
-		return
-
-	siren_off()
-	if (siren)
-		usr << "You douse the [src]'s warning lights"
-		icon_state = "[initial(icon_state)]"
-
-/obj/vehicle/train/securiengine/proc/siren_on()
-	if(stat)
-		return 0
-	if(powered && cell.charge < charge_use)
-		return 0
-	siren = 1
-	set_light(initial(light_range))
-	update_icon()
-	return 1
-
-/obj/vehicle/train/securiengine/proc/siren_off()
-	siren = 0
-	set_light(0)
-	update_icon()
