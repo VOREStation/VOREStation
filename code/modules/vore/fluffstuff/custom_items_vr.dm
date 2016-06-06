@@ -268,3 +268,13 @@
 
 	icon_override = 'icons/vore/custom_items_vr.dmi'
 	item_state = "swat43-bag_mob"
+
+
+//Dhaeleena:Dhaeleena M'iar
+/obj/item/clothing/accessory/medal/silver/security/fluff/dhael
+	desc = "An award for distinguished combat and sacrifice in defence of corporate commercial interests. Often awarded to security staff. It's engraved with the letters S.W.A.T."
+
+//Vorrarkul:Lucina Dakarim
+/obj/item/clothing/accessory/medal/gold/fluff/lucina
+	name = "Medal of Medical Excellence"
+	desc = "A medal awarded to Lucina Darkarim for excellence in medical service."
