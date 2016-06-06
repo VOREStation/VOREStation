@@ -221,18 +221,19 @@
 	item_state = "crestrose_fold_mob"
 
 	w_class = 4
-	caliber = "75"
 	origin_tech = list(TECH_COMBAT = 7, TECH_MATERIAL = 4)
 	slot_flags = null
-	ammo_type = "/obj/item/ammo_casing/a75"
 	fire_sound = 'sound/weapons/Gunshot_light.ogg'
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/a75
 	force = 3
+	recoil = 2
 	var/on = 0
 	auto_eject = 1
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	hitsound = null
+	caliber = "9.5x40mm"
+	ammo_type = "/obj/item/ammo_casing/a95mm"
 
 
 /obj/item/weapon/gun/projectile/automatic/fluff/crestrose/attack_self(mob/user as mob)
@@ -264,14 +265,11 @@
 
 
 /obj/item/weapon/gun/projectile/automatic/fluff/crestrose/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
-
 	if(default_parry_check(user, attacker, damage_source) && prob(50))
 		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
 		playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return 1
 	return 0
-
-
 
 // molenar:Kari Akiren
 /obj/item/weapon/gun/projectile/shotgun/pump/rifle/fluff/kari_akiren
@@ -419,4 +417,17 @@
 	penetrating = 2 // Better penetration than the 7.62mm
 
 /obj/item/ammo_magazine/battlerifle/empty
+	initial_ammo = 0
+
+//--------------Crescent Rose Ammo --------------
+/obj/item/ammo_magazine/a75/crestrose
+	name = "ammo magazine (9.5x40mm)"
+	icon_state = "75"
+	mag_type = MAGAZINE
+	caliber = "9.5x40mm"
+	ammo_type = /obj/item/ammo_casing/a95mm
+	multiple_sprites = 1
+	max_ammo = 10
+
+/obj/item/ammo_magazine/a75/crestrose/empty
 	initial_ammo = 0
