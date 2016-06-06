@@ -14,3 +14,14 @@
 
 /obj/item/weapon/disk/limb/kitsuhana
 	company = "Kitsuhana"
+
+
+
+/datum/robolimb/talon //They're buildable by default due to being extremely basic.
+	company = "Talon LLC"
+	desc = "This metallic limb is sleek and featuresless apart from some exposed motors"
+	icon = 'icons/mob/human_races/cyberlimbs/talon/talon_main.dmi'
+
+
+/obj/item/weapon/disk/limb/talon
+	company = "Talon LLC"
