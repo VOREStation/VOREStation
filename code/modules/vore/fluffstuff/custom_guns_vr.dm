@@ -234,7 +234,7 @@
 	hitsound = null
 	caliber = "9.5x40mm"
 	ammo_type = "/obj/item/ammo_casing/a95mm"
-
+	max_shells = 10
 
 /obj/item/weapon/gun/projectile/automatic/fluff/crestrose/attack_self(mob/user as mob)
 	on = !on

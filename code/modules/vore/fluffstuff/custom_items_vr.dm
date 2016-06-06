@@ -83,6 +83,8 @@
 	force = 15
 	sharp = 1
 	edge = 1
+	hitsound = 'sound/weapons/bladeslice.ogg'
+
 
 /obj/item/weapon/sword/fluff/joanaria/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	
