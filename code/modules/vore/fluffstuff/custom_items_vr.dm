@@ -92,6 +92,19 @@
 		return 1
 	return 0
 
+//joanrisu:Katarina Eine
+/obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina
+	name = "tactical Knife"
+	desc = "A tactical knife with a small butterly engraved on the blade."
+
+obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+	
+	if(default_parry_check(user, attacker, damage_source) && prob(75))
+		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
+		playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, 1)
+		return 1
+	return 0
+
 //For General use
 /obj/item/weapon/sword/fluff/joanaria/scisword
 	name = "Scissor Blade"
