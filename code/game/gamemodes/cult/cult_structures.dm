@@ -109,18 +109,18 @@
 	light_color="#ff0000"
 	spawnable=list(
 		/mob/living/simple_animal/hostile/scarybat,
-		/mob/living/simple_animal/hostile/creature,
+		/mob/living/simple_animal/hostile/vore/creature,
 		/mob/living/simple_animal/hostile/faithless
-	)
+	)   // Vorestation Edit
 
 /obj/effect/gateway/active/cult
 	light_range=5
 	light_color="#ff0000"
 	spawnable=list(
 		/mob/living/simple_animal/hostile/scarybat/cult,
-		/mob/living/simple_animal/hostile/creature/cult,
+		/mob/living/simple_animal/hostile/vore/creature/cult,
 		/mob/living/simple_animal/hostile/faithless/cult
-	)
+	)  // Vorestation Edit
 
 /obj/effect/gateway/active/cult/cultify()
 	return
