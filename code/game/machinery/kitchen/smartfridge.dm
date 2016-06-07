@@ -310,10 +310,11 @@
 				var/hasRecord = FALSE	//Check to see if this passes or not.
 				for(var/datum/data/stored_item/I in item_records)
 					if(istype(G, I.item_path))
-						stock(G, I)
-						hasRecord = TRUE
+						if(G.name == I.item_name)
+							stock(G, I)
+							hasRecord = TRUE
 				if(!hasRecord)
-					var/datum/data/stored_item/item = new/datum/data/stored_item(src, G.type)
+					var/datum/data/stored_item/item = new/datum/data/stored_item(src, G.type, G.name)
 					stock(G, item)
 					item_records.Add(item)
 					
