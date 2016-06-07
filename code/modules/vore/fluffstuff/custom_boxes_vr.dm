@@ -99,8 +99,6 @@
 		new /obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina(src)
 		new /obj/item/clothing/under/rank/internalaffairs/fluff/joan(src)
 
-
-
 //Razerwing:Archer Maximus
 /obj/item/weapon/storage/box/fluff/archermaximus
 	desc = "Personal Effects"
@@ -112,10 +110,18 @@
 /obj/item/weapon/storage/backpack/dufflebag/emt/fluff/aro
 	name = "Aronai's Equipment"
 	desc = "A big dufflebag, containing the stuff Aronai likes to carry with him."
+	slowdown = 0 //HAX!
 
 	New()
 		..()
 		new /obj/item/clothing/head/helmet/space/fluff/aronai(src)
 		new /obj/item/clothing/suit/space/fluff/aronai(src)
 		new /obj/item/device/suit_cooling_unit(src)
-		new /obj/item/weapon/card/id/centcom/fluff/aro(src)
+		new /obj/item/weapon/material/hatchet/tacknife/combatknife(src)
+
+		//Fanciful jamming of ID into wallet for convienence sake.
+		var/obj/item/weapon/storage/wallet/wallet = new /obj/item/weapon/storage/wallet(src)
+		var/obj/item/weapon/card/ID = new /obj/item/weapon/card/id/centcom/fluff/aro(wallet)
+		wallet.front_id = ID
+		wallet.name = "[wallet.name] ([wallet.front_id])"
+		wallet.update_icon()
