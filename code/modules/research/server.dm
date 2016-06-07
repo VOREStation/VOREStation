@@ -17,16 +17,13 @@
 
 /obj/machinery/r_n_d/server/New()
 	..()
-	initialize();
-
-/obj/machinery/r_n_d/server/map/New()
 	circuit = new circuit()
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
 	component_parts += new /obj/item/stack/cable_coil(src)
 	component_parts += new /obj/item/stack/cable_coil(src)
 	RefreshParts()
-	..()
+	initialize();
 
 /obj/machinery/r_n_d/server/Destroy()
 	griefProtection()
@@ -126,15 +123,6 @@
 /obj/machinery/r_n_d/server/centcom
 	name = "Central R&D Database"
 	server_id = -1
-
-/obj/machinery/r_n_d/server/centcom/map/New()
-	circuit = new circuit()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/stack/cable_coil(src)
-	component_parts += new /obj/item/stack/cable_coil(src)
-	RefreshParts()
-	..()
 
 /obj/machinery/r_n_d/server/centcom/initialize()
 	..()
@@ -319,26 +307,8 @@
 	id_with_download_string = "1;2"
 	server_id = 2
 
-/obj/machinery/r_n_d/server/robotics/map/New()
-	circuit = new circuit()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/stack/cable_coil(src)
-	component_parts += new /obj/item/stack/cable_coil(src)
-	RefreshParts()
-	..()
-
 /obj/machinery/r_n_d/server/core
 	name = "Core R&D Server"
 	id_with_upload_string = "1"
 	id_with_download_string = "1"
 	server_id = 1
-
-/obj/machinery/r_n_d/server/core/map/New()
-	circuit = new circuit()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/stack/cable_coil(src)
-	component_parts += new /obj/item/stack/cable_coil(src)
-	RefreshParts()
-	..()
