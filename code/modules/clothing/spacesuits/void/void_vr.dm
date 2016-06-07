@@ -2,7 +2,7 @@
 // Because of our custom change in update_icons, we cannot rely upon the normal
 // method of switching sprites when refitting (which is to have the referitter
 // set the value of icon_override).  Therefore we use the sprite sheets method
-// instead.
+// instead. 
 //
 
 /obj/item/clothing/head/helmet/space/void
