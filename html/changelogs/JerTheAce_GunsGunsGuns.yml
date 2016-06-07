@@ -38,7 +38,6 @@ changes:
   - rscadd: "All magazines and ammunitions can now be produced with the autolathe."
   - maptweak: "New bullpup SMG is available in armory area on CentCom level."
   - tweak: "Revolvers now use 6 shots. Finally."
-  - tweak: "5.56 now does less damage, 7.62 does more, because previously it was backwards which made no sense."
   - tweak: "Most guns that didn't use magazines before for some reason (such as the Uzi) now use magazines."
   - tweak: "All casings now update icons if they have been spent."
   - tweak: "Corrects Pulse Rifle charge cost consistency."

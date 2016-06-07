@@ -491,7 +491,7 @@
 /////// 5.56mm
 /datum/autolathe/recipe/rifle_556
 	name = "10rnd rifle magazine (5.56mm)"
-	path = /obj/item/ammo_magazine/a556/empty
+	path = /obj/item/ammo_magazine/a556
 	category = "Arms and Ammunition"
 	hidden = 1
 
@@ -513,9 +513,9 @@
 	hidden = 1
 
 /////// 7.62
-/datum/autolathe/recipe/rifle_SVD
+/datum/autolathe/recipe/rifle_small_762
 	name = "10rnd rifle magazine (7.62mm)"
-	path = /obj/item/ammo_magazine/SVD
+	path = /obj/item/ammo_magazine/s762
 	category = "Arms and Ammunition"
 	hidden = 1
 
