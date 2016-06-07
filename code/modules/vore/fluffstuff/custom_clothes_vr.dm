@@ -628,3 +628,11 @@
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "joansuit_mob"
 
+/obj/item/clothing/under/rank/internalaffairs/fluff/joan
+	desc = "The plain, professional attire of a Federation Law Enforcement Detective. The collar is <i>immaculately</i> starched."
+	name = "Federation Dress Shirt"
+	icon_state = "internalaffairs"
+	item_state = "ba_suit"
+	worn_state = "internalaffairs"
+	rolled_sleeves = 0
+	starting_accessories = list(/obj/item/clothing/accessory/black)

@@ -74,16 +74,42 @@
 	icon_state = "joanzip"
 
 //JoanRisu:Joan Risu
-/obj/item/weapon/material/sword/fluff/joanaria
+/obj/item/weapon/sword/fluff/joanaria
 	name = "Aria"
 	desc = "A beautifully crafted rapier owned by Joan Risu. It has a thin blade and is used for quick attacks."
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "joanaria"
 	origin_tech = "materials=7"
+	force = 15
+	sharp = 1
+	edge = 1
+	hitsound = 'sound/weapons/bladeslice.ogg'
+
+
+/obj/item/weapon/sword/fluff/joanaria/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+	
+	if(default_parry_check(user, attacker, damage_source) && prob(75))
+		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
+		playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, 1)
+		return 1
+	return 0
+
+//joanrisu:Katarina Eine
+/obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina
+	name = "tactical Knife"
+	desc = "A tactical knife with a small butterly engraved on the blade."
+
+obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+	
+	if(default_parry_check(user, attacker, damage_source) && prob(75))
+		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
+		playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, 1)
+		return 1
+	return 0
 
 //For General use
-/obj/item/weapon/material/sword/fluff/scisword
-	name = "Sci Blade"
+/obj/item/weapon/sword/fluff/joanaria/scisword
+	name = "Scissor Blade"
 	desc = "A sword that can not only cut down your enemies, it can also cut fabric really neatly"
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "scisword"
