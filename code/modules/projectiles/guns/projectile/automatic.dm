@@ -61,7 +61,7 @@
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/c762
-	allowed_magazines = list(/obj/item/ammo_magazine/c762, /obj/item/ammo_magazine/SVD)
+	allowed_magazines = list(/obj/item/ammo_magazine/c762, /obj/item/ammo_magazine/s762)
 
 	one_handed_penalty = 4
 
@@ -73,7 +73,7 @@
 
 /obj/item/weapon/gun/projectile/automatic/sts35/update_icon(var/ignore_inhands)
 	..()
-	if(istype(ammo_magazine,/obj/item/ammo_magazine/SVD))
+	if(istype(ammo_magazine,/obj/item/ammo_magazine/s762))
 		icon_state = "arifle-small"
 	else
 		icon_state = (ammo_magazine)? "arifle" : "arifle-empty"
