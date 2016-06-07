@@ -29,12 +29,16 @@
 /obj/proc/buckle_mob(mob/living/M)
 	if(!can_buckle || !istype(M) || (M.loc != loc) || M.buckled || M.pinned.len || (buckle_require_restraints && !M.restrained()))
 		return 0
+	if(buckled_mob) //Handles trying to buckle yourself to the chair when someone is on it
+		M  << "<span class='notice'>\The [src] already has someone buckled to it.</span>"
+		return 0
 
 	M.buckled = src
 	M.facing_dir = null
 	M.set_dir(buckle_dir ? buckle_dir : dir)
 	M.update_canmove()
 	buckled_mob = M
+
 	post_buckle_mob(M)
 	return 1
 

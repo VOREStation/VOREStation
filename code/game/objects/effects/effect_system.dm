@@ -107,9 +107,10 @@ steam.start() -- spawns the effect
 	var/turf/T = src.loc
 	if (istype(T, /turf))
 		T.hotspot_expose(1000,100)
-	spawn (20)
-		qdel(src)
-	return
+
+/obj/effect/effect/sparks/initialize()
+	..()
+	schedule_task_in(5 SECONDS, /proc/qdel, list(src))
 
 /obj/effect/effect/sparks/Destroy()
 	var/turf/T = src.loc
@@ -185,7 +186,6 @@ steam.start() -- spawns the effect
 	..()
 	spawn (time_to_live)
 		qdel(src)
-	return
 
 /obj/effect/effect/smoke/Crossed(mob/living/carbon/M as mob )
 	..()

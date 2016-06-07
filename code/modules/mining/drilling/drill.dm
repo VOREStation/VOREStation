@@ -39,7 +39,7 @@
 	var/need_update_field = 0
 	var/need_player_check = 0
 
-/obj/machinery/mining/drill/map/New()
+/obj/machinery/mining/drill/New()
 
 	..()
 	circuit = new circuit(src)
