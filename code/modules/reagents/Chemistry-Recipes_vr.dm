@@ -259,14 +259,14 @@
 	required_reagents = list("phoron" = 20, "nutriment" = 20, "sugar" = 20, "mutationtoxin" = 20) //Can't do slime jelly as it'll conflict with another, but mutation toxin will do.
 	result_amount = 1
 	on_reaction(var/datum/reagents/holder)
-
+		var/mob_path = /mob/living/simple_animal/hostile/vore
 		var/blocked = list(
 			/mob/living/simple_animal/hostile/vore/mimic,
 			/mob/living/simple_animal/hostile/vore/mimic/copy,
 			/mob/living/simple_animal/hostile/vore/mimic/crate,
 			/mob/living/simple_animal/hostile/vore/alien/queen/large
 			)//exclusion list for things you don't want the reaction to create.
-		var/list/critters = typesof(/mob/living/simple_animal/hostile/vore) - blocked // list of possible hostile mobs
+		var/list/voremobs = typesof(mob_path) - mob_path - blocked // list of possible hostile mobs
 
 		playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
 
@@ -276,7 +276,7 @@
 
 		var/spawn_count = rand(1,3)
 		for(var/i = 1, i <= spawn_count, i++)
-			var/chosen = pick(critters)
+			var/chosen = pick(voremobs)
 			var/mob/living/simple_animal/hostile/C = new chosen
 			C.faction = "slimesummon"
 			C.loc = get_turf(holder.my_atom)
