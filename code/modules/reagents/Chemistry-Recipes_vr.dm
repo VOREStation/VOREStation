@@ -202,7 +202,7 @@
 	name = "Slime fire"
 	id = "m_fire"
 	result = null
-	required_reagents = list("phoron" = 15, "slimejelly" = 15, "potassium" = 15)
+	required_reagents = list("phoron" = 60, "slimejelly" = 30, "potassium" = 30)
 	result_amount = 1
 	on_reaction(var/datum/reagents/holder)
 		for(var/mob/O in viewers(get_turf(holder.my_atom), null))
