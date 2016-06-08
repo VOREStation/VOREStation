@@ -48,7 +48,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/Fire(atom/A, atom/target)
 	var/obj/item/projectile/P = A
-	P.launch(target) 
+	P.launch(target)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy
 	name = "general energy weapon"
@@ -95,7 +95,7 @@
 	energy_drain = 120
 	origin_tech = list(TECH_MATERIAL = 3, TECH_COMBAT = 6, TECH_POWER = 4)
 	projectile = /obj/item/projectile/beam/pulse/heavy
-	fire_sound = 'sound/weapons/marauder.ogg'
+	fire_sound = 'sound/weapons/gauss_shoot.ogg'
 
 /obj/item/projectile/beam/pulse/heavy
 	name = "heavy pulse laser"
@@ -205,7 +205,7 @@
 	icon_state = "mecha_uac2"
 	equip_cooldown = 10
 	projectile = /obj/item/projectile/bullet/pistol/medium
-	fire_sound = 'sound/weapons/Gunshot.ogg'
+	fire_sound = 'sound/weapons/machinegun.ogg'
 	projectiles = 300
 	projectiles_per_shot = 3
 	deviation = 0.3
@@ -218,7 +218,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/Fire(atom/movable/AM, atom/target, turf/aimloc)
 	AM.throw_at(target,missile_range, missile_speed, chassis)
-	
+
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flare
 	name = "\improper BNI Flare Launcher"
 	icon_state = "mecha_flaregun"
@@ -231,7 +231,7 @@
 	missile_speed = 1
 	missile_range = 15
 	required_type = /obj/mecha  //Why restrict it to just mining or combat mechs?
-	
+
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flare/Fire(atom/movable/AM, atom/target, turf/aimloc)
 	var/obj/item/device/flashlight/flare/fired = AM
 	fired.ignite()
@@ -241,7 +241,7 @@
 	name = "\improper SRM-8 missile rack"
 	icon_state = "mecha_missilerack"
 	projectile = /obj/item/missile
-	fire_sound = 'sound/effects/bang.ogg'
+	fire_sound = 'sound/weapons/rpg.ogg'
 	projectiles = 8
 	projectile_energy_cost = 1000
 	equip_cooldown = 60

@@ -110,7 +110,8 @@
 		icon_state = "scanner_1old"
 		for(var/i=1 to occupant.cores)
 			var/obj/item/xenoproduct/slime/core/C = new(src)
-			C.traits = occupant.traitdat
+			C.traits = new()
+			occupant.traitdat.copy_traits(C.traits)
 			
 			C.nameVar = occupant.nameVar
 			
