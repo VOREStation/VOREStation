@@ -63,3 +63,391 @@
 	result = "unsorbitol"
 	required_reagents = list("mutagen" = 3, "lipozine" = 2)
 	result_amount = 5
+
+
+
+
+
+
+
+///////////////////////////////
+//SLIME CORES BELOW HERE///////
+///////////////////////////////
+
+
+
+/datum/chemical_reaction/slime_food
+	name = "Slime Bork"
+	id = "m_tele2"
+	result = null
+	required_reagents = list("phoron" = 10, "slimejelly" = 10, "nutriment" = 10)
+	result_amount = 1
+	on_reaction(var/datum/reagents/holder)
+
+		var/list/borks = typesof(/obj/item/weapon/reagent_containers/food/snacks) - /obj/item/weapon/reagent_containers/food/snacks // BORK BORK BORK
+
+		playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
+
+		for(var/mob/living/carbon/human/M in viewers(get_turf(holder.my_atom), null))
+			if(M:eyecheck() <= 0)
+				flick("e_flash", M.flash)
+
+		for(var/i = 1, i <= 4 + rand(1,2), i++)
+			var/chosen = pick(borks)
+			var/obj/B = new chosen
+			if(B)
+				B.loc = get_turf(holder.my_atom)
+				if(prob(50))
+					for(var/j = 1, j <= rand(1, 3), j++)
+						step(B, pick(NORTH,SOUTH,EAST,WEST))
+
+
+
+
+/datum/chemical_reaction/materials
+	name = "Slime materials"
+	id = "slimematerial"
+	result = null
+	required_reagents = list("phoron" = 20, "slimejelly" = 40, "aluminum" = 20) //Woah there! You have the possibility of making diamonds! 8 ground up slimes required for one of these, and you still have a 10% chance for it to fail.
+	result_amount = 1
+	on_reaction(var/datum/reagents/holder)
+		var/fail_chance = rand(1,1000)
+		if(fail_chance == 1) // 0.1% chance of exploding, so scientists don't exclusively abuse this to obtain materials.
+			for(var/mob/O in viewers(get_turf(holder.my_atom), null))
+				O.show_message(text("\red The solution begins to vibrate violently!"), 1) // It was at this moment, the Xenobiologist knew... he fucked up.
+			sleep(30)
+			playsound(get_turf(holder.my_atom), 'sound/items/Welder2.ogg', 100, 1)
+			for(var/mob/O in viewers(get_turf(holder.my_atom), null))
+				O.show_message(text("\red <b>The reaction begins to rapidly sizzle and swell outwards!!</b>"), 1)
+			sleep(20)
+			explosion(get_turf(holder.my_atom), 0 ,4, 8) //Enough to cause severe damage in the area, but not so much that it'll instantly gib the person.
+			empulse(get_turf(holder.my_atom), 3, 7) //Uh oh, it produced some uranium, too! EMP blast!
+			return
+
+		if(fail_chance < 101) // 10% chance of it not working at all.
+			playsound(get_turf(holder.my_atom), 'sound/items/Welder.ogg', 100, 1)
+			for(var/mob/O in viewers(get_turf(holder.my_atom), null))
+				O.show_message(text("\red The slime core fizzles disappointingly."), 1)
+			return
+
+		var/blocked = list(/obj/item/stack/material, /obj/item/stack/material/cyborg, /obj/item/stack/material/cyborg/plastic, /obj/item/stack/material/cyborg/plasteel, /obj/item/stack/material/cyborg/glass/reinforced, /obj/item/stack/material/cyborg/wood, /obj/item/stack/material/animalhide/human, /obj/item/stack/material/animalhide/corgi, /obj/item/stack/material/animalhide/cat, /obj/item/stack/material/animalhide/monkey, /obj/item/stack/material/animalhide/lizard , /obj/item/stack/material/animalhide/xeno, /obj/item/stack/material/cyborg, /obj/item/stack/material/cyborg/glass/reinforced)
+		var/list/material = typesof(/obj/item/stack/material) - blocked
+
+		playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
+
+		for(var/mob/living/carbon/human/M in viewers(get_turf(holder.my_atom), null))
+			if(M:eyecheck() <= 0)
+				flick("e_flash", M.flash)
+
+		var/spawn_amount = rand(1,50)
+		var/chosen = pick(material)
+		var/obj/item/stack/material/C = new chosen
+		C.amount = spawn_amount
+		C.loc = get_turf(holder.my_atom)
+
+
+/datum/chemical_reaction/slimelight
+	name = "Slime Glow"
+	id = "m_glow"
+	result = null
+	required_reagents = list("phoron" = 5, "slimejelly" = 5, "water" = 10) //Takes 10 water so it doesn't mess with the frost oil.
+	result_amount = 1
+	on_reaction(var/datum/reagents/holder)
+		for(var/mob/O in viewers(get_turf(holder.my_atom), null))
+			O.show_message(text("\red The contents of the slime core harden and begin to emit a warm, bright light."), 1)
+		var/obj/item/device/flashlight/slime/F = new /obj/item/device/flashlight/slime
+		F.loc = get_turf(holder.my_atom)
+
+
+/datum/chemical_reaction/slimephoron
+	name = "Slime Phoron"
+	id = "m_plasma"
+	result = null
+	required_reagents = list("phoron" = 20, "uranium" = 20, "slimejelly" = 20)
+	result_amount = 1
+	on_reaction(var/datum/reagents/holder)
+		var/obj/item/stack/material/phoron/P = new /obj/item/stack/material/phoron
+		P.amount = 10
+		P.loc = get_turf(holder.my_atom)
+
+/datum/chemical_reaction/slimefreeze
+	name = "Slime Freeze"
+	id = "m_freeze"
+	result = null
+	required_reagents = list("phoron" = 10, "coolant" = 10, "slimejelly" = 10)
+	result_amount = 1
+	on_reaction(var/datum/reagents/holder)
+		for(var/mob/O in viewers(get_turf(holder.my_atom), null))
+			O.show_message(text("\red The slime extract begins to vibrate violently!"), 1)
+		sleep(50)
+		playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
+		for(var/mob/living/M in range (get_turf(holder.my_atom), 7))
+			M.bodytemperature -= 140
+			M << "\blue You suddenly feel a chill!"
+
+
+
+
+/datum/chemical_reaction/slimefrost
+	name = "Slime Frost Oil"
+	id = "m_frostoil"
+	result = "frostoil"
+	required_reagents = list("phoron" = 5, "slimejelly" = 5, "water" = 5, "coolant" = 5)
+	result_amount = 10
+
+
+
+
+/datum/chemical_reaction/slimefire
+	name = "Slime fire"
+	id = "m_fire"
+	result = null
+	required_reagents = list("phoron" = 15, "slimejelly" = 15, "potassium" = 15)
+	result_amount = 1
+	on_reaction(var/datum/reagents/holder)
+		for(var/mob/O in viewers(get_turf(holder.my_atom), null))
+			O.show_message(text("\red The slime extract begins to vibrate violently!"), 1)
+		sleep(50)
+		var/turf/location = get_turf(holder.my_atom.loc)
+		for(var/turf/simulated/floor/target_tile in range(0,location))
+			target_tile.assume_gas("phoron", 25, 1400)
+			spawn (0) target_tile.hotspot_expose(700, 400)
+
+
+/datum/chemical_reaction/slimeify
+	name = "Advanced Mutation Toxin"
+	id = "advmutationtoxin2"
+	result = "advmutationtoxin"
+	required_reagents = list("phoron" = 15, "slimejelly" = 15, "mutationtoxin" = 15) //In case a xenobiologist wants to become a fully fledged slime person.
+	result_amount = 1
+
+
+
+
+
+/datum/chemical_reaction/slimeheal //A slime healing mixture. Why not.
+	name = "Slime Health"
+	id = "slimeheal"
+	result = "null"
+	required_reagents = list("phoron" = 10, "bicaridine" = 10, "kelotane" = 10, "inaprovaline" = 10, "slimejelly" = 10)
+	on_reaction(var/datum/reagents/holder, var/created_volume)
+		for (var/mob/living/carbon/C in viewers(get_turf(holder.my_atom), null))
+			C << "\blue A wave of energy suddenly invigorates you."
+			C.adjustBruteLoss(-25)
+			C.adjustFireLoss(-25)
+			C.adjustToxLoss(-25)
+			C.adjustOxyLoss(-25)
+			C.adjustBrainLoss(-25)
+			C.adjustCloneLoss(-25)
+			C.updatehealth()
+
+/datum/chemical_reaction/slimejelly
+	name = "Slime Jam"
+	id = "m_jam"
+	result = "slimejelly"
+	required_reagents = list("phoron" = 20, "sugar" = 50, "lithium" = 50) //In case a xenobiologist is impatient and is willing to drain their dispenser resources, along with plasma!
+	result_amount = 5
+
+
+
+
+
+/datum/chemical_reaction/slimevore
+	name = "Slime Vore" // Hostile vore mobs only
+	id = "m_tele"
+	result = null
+	required_reagents = list("phoron" = 20, "nutriment" = 20, "sugar" = 20, "mutationtoxin" = 20) //Can't do slime jelly as it'll conflict with another, but mutation toxin will do.
+	result_amount = 1
+	on_reaction(var/datum/reagents/holder)
+
+		var/blocked = list(
+			/mob/living/simple_animal/hostile/vore/mimic,
+			/mob/living/simple_animal/hostile/vore/mimic/copy,
+			/mob/living/simple_animal/hostile/vore/mimic/crate,
+			/mob/living/simple_animal/hostile/vore/alien/queen/large
+			)//exclusion list for things you don't want the reaction to create.
+		var/list/critters = typesof(/mob/living/simple_animal/hostile/vore) - blocked // list of possible hostile mobs
+
+		playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
+
+		for(var/mob/living/carbon/human/M in viewers(get_turf(holder.my_atom), null))
+			if(M:eyecheck() <= 0)
+				flick("e_flash", M.flash)
+
+		var/spawn_count = rand(1,3)
+		for(var/i = 1, i <= spawn_count, i++)
+			var/chosen = pick(critters)
+			var/mob/living/simple_animal/hostile/C = new chosen
+			C.faction = "slimesummon"
+			C.loc = get_turf(holder.my_atom)
+			if(prob(50))
+				for(var/j = 1, j <= rand(1, 3), j++)
+					step(C, pick(NORTH,SOUTH,EAST,WEST))
+
+
+
+
+
+
+
+
+
+
+//Someone can work on this at a later time.
+/*
+/datum/chemical_reaction/slimehostile
+	name = "Slime Crit" // Hostile mobs
+	id = "m_tele"
+	result = null
+	required_reagents = list("phoron" = 20, "mutationtoxin" = 20, "docilitytoxin" = 20, "slimejelly" = 20)
+	result_amount = 1
+	on_reaction(var/datum/reagents/holder)
+		for(var/mob/O in viewers(get_turf(holder.my_atom), null))
+			O.show_message(text("\red The slime extract begins to pulsate ferociously!"), 1)
+		sleep(50)
+		message_admins("[key_name(usr)] triggered a hostile gold slime reaction ([usr ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>" : "null"])") // In case of slime griff. Should check if it happened outside Xenobio. I'll do that later maybe.
+		var/blocked = list(
+			/mob/living/simple_animal/hostile,
+			/mob/living/simple_animal/hostile/pirate,
+			/mob/living/simple_animal/hostile/pirate/ranged,
+			/mob/living/simple_animal/hostile/russian,
+			/mob/living/simple_animal/hostile/russian/ranged,
+			/mob/living/simple_animal/hostile/syndicate,
+			/mob/living/simple_animal/hostile/syndicate/melee,
+			/mob/living/simple_animal/hostile/syndicate/melee/space,
+			/mob/living/simple_animal/hostile/syndicate/ranged,
+			/mob/living/simple_animal/hostile/syndicate/ranged/space,
+			/mob/living/simple_animal/hostile/vore/alien/queen/large,
+			/mob/living/simple_animal/hostile/carp/holodeck,
+			/mob/living/simple_animal/hostile/carp, // old
+			/mob/living/simple_animal/hostile/vore/large/carp,
+			/mob/living/simple_animal/hostile/retaliate,
+			/mob/living/simple_animal/hostile/retaliate/clown,
+			/mob/living/simple_animal/hostile/retaliate/malf_drone,
+			/mob/living/simple_animal/hostile/viscerator,
+			/mob/living/simple_animal/hostile/tunnelclown,
+			/mob/living/simple_animal/hostile/tunnelclown/sentinel,
+			/mob/living/simple_animal/hostile/giant_spider/nurse, // fuck that
+			/mob/living/simple_animal/hostile/tree, // Holiday events only.
+			/mob/living/simple_animal/hostile/vore/mimic,
+			/mob/living/simple_animal/hostile/vore/mimic/copy,
+			/mob/living/simple_animal/hostile/vore/mimic/crate,
+			/mob/living/simple_animal/hostile/mimic,
+			/mob/living/simple_animal/hostile/mimic/copy,
+			/mob/living/simple_animal/hostile/mimic/crate,
+			/mob/living/simple_animal/hostile/bear,  // old
+			/mob/living/simple_animal/hostile/bear/Hudson,  // old
+			/mob/living/simple_animal/hostile/vore/bear/Hudson,
+			/mob/living/simple_animal/hostile/hivebot/tele,  // old
+			/mob/living/simple_animal/hostile/creature // old
+			)//exclusion list for things you don't want the reaction to create.
+		var/list/critters = typesof(/mob/living/simple_animal/hostile) - blocked // list of possible hostile mobs
+
+		playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
+
+		for(var/mob/living/carbon/human/M in viewers(get_turf(holder.my_atom), null))
+			if(M:eyecheck() <= 0)
+				flick("e_flash", M.flash)
+
+		var/spawn_count = rand(1,3)
+		for(var/i = 1, i <= spawn_count, i++)
+			var/chosen = pick(critters)
+			var/mob/living/simple_animal/hostile/C = new chosen
+			C.faction = "slimesummon"
+			C.loc = get_turf(holder.my_atom)
+			if(prob(50))
+				for(var/j = 1, j <= rand(1, 3), j++)
+					step(C, pick(NORTH,SOUTH,EAST,WEST))
+*/
+
+/* //Someone can fix this, too.
+/datum/chemical_reaction/slimenonhostile
+	name = "Slime Non-Crit"
+	id = "m_tele"
+	result = null
+	required_reagents = list("phoron" = 20, "silicon" = 20, "docilitytoxin" = 20, "slimejelly" = 20, ")
+	result_amount = 1
+	on_reaction(var/datum/reagents/holder)
+
+		var/blocked = list(
+			/mob/living/simple_animal,
+			/mob/living/simple_animal/hostile,
+			/mob/living/simple_animal/hostile/pirate,
+			/mob/living/simple_animal/hostile/pirate/ranged,
+			/mob/living/simple_animal/hostile/russian,
+			/mob/living/simple_animal/hostile/russian/ranged,
+			/mob/living/simple_animal/hostile/syndicate,
+			/mob/living/simple_animal/hostile/syndicate/melee,
+			/mob/living/simple_animal/hostile/syndicate/melee/space,
+			/mob/living/simple_animal/hostile/syndicate/ranged,
+			/mob/living/simple_animal/hostile/syndicate/ranged/space,
+			/mob/living/simple_animal/hostile/vore, // Not a true mob.
+			/mob/living/simple_animal/hostile/vore/alien,
+			/mob/living/simple_animal/hostile/vore/alien/drone,
+			/mob/living/simple_animal/hostile/vore/alien/sentinel,
+			/mob/living/simple_animal/hostile/vore/alien/queen,
+			/mob/living/simple_animal/hostile/vore/alien/queen/large,
+			/mob/living/simple_animal/hostile/carp/holodeck,
+			/mob/living/simple_animal/hostile/carp,
+			/mob/living/simple_animal/hostile/vore/carp,
+			/mob/living/simple_animal/hostile/vore/large/carp,
+			/mob/living/simple_animal/hostile/retaliate,
+			/mob/living/simple_animal/hostile/retaliate/clown,
+			/mob/living/simple_animal/hostile/retaliate/malf_drone,
+			/mob/living/simple_animal/hostile/bear,
+			/mob/living/simple_animal/hostile/bear/Hudson,
+			/mob/living/simple_animal/hostile/vore/bear,
+			/mob/living/simple_animal/hostile/vore/bear/Hudson,
+			/mob/living/simple_animal/hostile/hivebot/tele, // bugged
+			/mob/living/simple_animal/hostile/viscerator,
+			/mob/living/simple_animal/hostile/tunnelclown,
+			/mob/living/simple_animal/hostile/tunnelclown/sentinel,
+			/mob/living/simple_animal/hostile/giant_spider/nurse, // because fuck that shit
+			/mob/living/simple_animal/hostile/tree,
+			/mob/living/simple_animal/hostile/vore/mimic,
+			/mob/living/simple_animal/hostile/vore/mimic/copy,
+			/mob/living/simple_animal/hostile/vore/mimic/crate,
+			/mob/living/simple_animal/hostile/mimic, // old
+			/mob/living/simple_animal/hostile/mimic/copy, // old
+			/mob/living/simple_animal/hostile/mimic/crate, // old
+			/mob/living/simple_animal/hostile/creature, // old
+			/mob/living/simple_animal/bee,
+			/mob/living/simple_animal/borer,
+			/mob/living/simple_animal/borer/roundstart,
+			/mob/living/simple_animal/cat/fluff/bones,
+			/mob/living/simple_animal/cat/fluff/Runtime,
+			/mob/living/simple_animal/cat/fluff,
+			/mob/living/simple_animal/construct,
+			/mob/living/simple_animal/construct/armoured,
+			/mob/living/simple_animal/construct/behemoth,
+			/mob/living/simple_animal/construct/builder,
+			/mob/living/simple_animal/construct/wraith,
+			/mob/living/simple_animal/corgi/Ian,
+			/mob/living/simple_animal/corgi/Lisa,
+			/mob/living/simple_animal/crab/Coffee,
+			/mob/living/simple_animal/parrot/Poly,
+			/mob/living/simple_animal/mouse/brown/Tom,
+			/mob/living/simple_animal/snake/Noodle,
+			/mob/living/simple_animal/shade,
+			/mob/living/simple_animal/space_worm, // broken
+			/mob/living/simple_animal/space_worm/head, // broken
+			/mob/living/simple_animal/spiderbot
+			)
+		var/list/critters = typesof(/mob/living/simple_animal) - blocked // list of possible hostile mobs
+
+		playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
+
+		for(var/mob/living/carbon/human/M in viewers(get_turf(holder.my_atom), null))
+			if(M:eyecheck() <= 0)
+				flick("e_flash", M.flash)
+
+		var/spawn_count = rand(1,3)
+		for(var/i = 1, i <= spawn_count, i++)
+			var/chosen = pick(critters)
+			var/mob/living/simple_animal/hostile/C = new chosen
+			C.faction = "neutral"  // So they don't fucking murder everyone. Xenopets!
+			C.loc = get_turf(holder.my_atom)
+			if(prob(50))
+				for(var/j = 1, j <= rand(1, 3), j++)
+					step(C, pick(NORTH,SOUTH,EAST,WEST))
+*/
