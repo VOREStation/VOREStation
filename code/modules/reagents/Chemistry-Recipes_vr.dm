@@ -118,7 +118,7 @@
 			sleep(30)
 			playsound(get_turf(holder.my_atom), 'sound/items/Welder2.ogg', 100, 1)
 			for(var/mob/O in viewers(get_turf(holder.my_atom), null))
-				O.show_message(text("<span class='warning'>The reaction begins to rapidly sizzle and swell outwards!</span></b>"), 1)
+				O.show_message(text("<span class='warning'>The reaction begins to rapidly sizzle and swell outwards!</span>"), 1)
 			sleep(20)
 			explosion(get_turf(holder.my_atom), 0 ,4, 8) //Enough to cause severe damage in the area, but not so much that it'll instantly gib the person.
 			empulse(get_turf(holder.my_atom), 3, 7) //Uh oh, it produced some uranium, too! EMP blast!
