@@ -87,7 +87,7 @@
 
 
 /obj/item/weapon/sword/fluff/joanaria/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
-	
+
 	if(default_parry_check(user, attacker, damage_source) && prob(75))
 		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
 		playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, 1)
@@ -100,7 +100,7 @@
 	desc = "A tactical knife with a small butterly engraved on the blade."
 
 obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
-	
+
 	if(default_parry_check(user, attacker, damage_source) && prob(75))
 		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
 		playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, 1)
@@ -278,12 +278,28 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 
 //arokha:Aronai Kadigan
 /obj/item/weapon/card/id/centcom/fluff/aro
-	registered_name = "Aronai Kadigan"
+	registered_name = "CONFIGURE ME"
 	assignment = "CC Medical"
+	var/configured = 0
+
+	attack_self(mob/user as mob)
+		if(configured == 1) return ..()
+
+		user.set_id_info(src)
+		configured = 1
+		user << "<span class='notice'>Card settings set.</span>"
+
+//arokha:Aronai Kadigan
+/obj/item/weapon/reagent_containers/hypospray/fluff/aronai
+	name = "worn hypospray"
+	desc = "This hypospray seems a bit well-used. The blue band indicates it's from the CentCom medical division. There's an 'A' scratched into the bottom."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "aro_hypo"
 
 	New()
 		..()
-		update_name()
+		reagents.add_reagent("inaprovaline", 5)
+		reagents.add_reagent("tricordrazine", 25)
 
 //Swat43:Fortune Bloise
 /obj/item/weapon/storage/backpack/satchel/fluff/swat43bag

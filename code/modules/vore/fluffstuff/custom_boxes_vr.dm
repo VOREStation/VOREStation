@@ -118,10 +118,5 @@
 		new /obj/item/clothing/suit/space/fluff/aronai(src)
 		new /obj/item/device/suit_cooling_unit(src)
 		new /obj/item/weapon/material/hatchet/tacknife/combatknife(src)
-
-		//Fanciful jamming of ID into wallet for convienence sake.
-		var/obj/item/weapon/storage/wallet/wallet = new /obj/item/weapon/storage/wallet(src)
-		var/obj/item/weapon/card/ID = new /obj/item/weapon/card/id/centcom/fluff/aro(wallet)
-		wallet.front_id = ID
-		wallet.name = "[wallet.name] ([wallet.front_id])"
-		wallet.update_icon()
+		new /obj/item/weapon/card/id/centcom/fluff/aro(src)
+		new /obj/item/weapon/reagent_containers/hypospray/fluff/aronai(src)
