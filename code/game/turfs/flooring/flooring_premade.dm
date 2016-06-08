@@ -45,6 +45,27 @@
 	icon_state = "reinforced"
 	initial_flooring = /decl/flooring/reinforced
 
+/turf/simulated/floor/snow
+	name = "snow"
+	icon = 'icons/turf/snow.dmi'
+	icon_state = "snow"
+	initial_flooring = /decl/flooring/snow
+
+/turf/simulated/floor/snow/gravsnow
+	name = "snow"
+	icon_state = "gravsnow"
+	initial_flooring = /decl/flooring/snow/gravsnow
+
+/turf/simulated/floor/snow/plating
+	name = "snowy playing"
+	icon_state = "snowyplating"
+	initial_flooring = /decl/flooring/snow/plating
+
+/turf/simulated/floor/snow/plating/drift
+	name = "snowy plating"
+	icon_state = "snowyplayingdrift"
+	initial_flooring = /decl/flooring/snow/plating/drift
+
 /turf/simulated/floor/reinforced/airless
 	oxygen = 0
 	nitrogen = 0
@@ -195,7 +216,6 @@
 
 /turf/simulated/floor/airless/lava
 /turf/simulated/floor/light
-/turf/simulated/floor/snow
 /*
 /turf/simulated/floor/beach
 /turf/simulated/floor/beach/sand
@@ -204,5 +224,5 @@
 /turf/simulated/floor/beach/water
 /turf/simulated/floor/beach/water/ocean
 */
-/turf/simulated/floor/plating/snow
 /turf/simulated/floor/airless/ceiling
+/turf/simulated/floor/plating

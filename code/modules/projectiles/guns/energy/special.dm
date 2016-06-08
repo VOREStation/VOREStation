@@ -19,7 +19,7 @@
 /obj/item/weapon/gun/energy/ionrifle/update_icon()
 	..()
 	if(power_supply.charge < charge_cost)
-		item_state = "ionrifle-empty"
+		item_state = "ionrifle0"
 	else
 		item_state = initial(item_state)
 

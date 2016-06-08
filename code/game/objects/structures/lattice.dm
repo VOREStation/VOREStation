@@ -9,7 +9,7 @@
 	layer = 2.3 //under pipes
 	//	flags = CONDUCT
 
-/obj/structure/lattice/New() //turf/simulated/floor/asteroid
+/obj/structure/lattice/initialize()
 	..()
 
 	if(!(istype(src.loc, /turf/space) || istype(src.loc, /turf/simulated/open) || istype(src.loc, /turf/simulated/mineral)))
