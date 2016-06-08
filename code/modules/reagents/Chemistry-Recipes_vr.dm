@@ -320,7 +320,6 @@
 			/mob/living/simple_animal/hostile/vore/alien/queen/large,
 			/mob/living/simple_animal/hostile/carp/holodeck,
 			/mob/living/simple_animal/hostile/carp, // old
-			/mob/living/simple_animal/hostile/vore/large/carp,
 			/mob/living/simple_animal/hostile/retaliate,
 			/mob/living/simple_animal/hostile/retaliate/clown,
 			/mob/living/simple_animal/hostile/retaliate/malf_drone,
@@ -328,18 +327,13 @@
 			/mob/living/simple_animal/hostile/tunnelclown,
 			/mob/living/simple_animal/hostile/tunnelclown/sentinel,
 			/mob/living/simple_animal/hostile/giant_spider/nurse, // fuck that
-			/mob/living/simple_animal/hostile/tree, // Holiday events only.
-			/mob/living/simple_animal/hostile/vore/mimic,
 			/mob/living/simple_animal/hostile/vore/mimic/copy,
 			/mob/living/simple_animal/hostile/vore/mimic/crate,
 			/mob/living/simple_animal/hostile/mimic,
 			/mob/living/simple_animal/hostile/mimic/copy,
 			/mob/living/simple_animal/hostile/mimic/crate,
 			/mob/living/simple_animal/hostile/bear,  // old
-			/mob/living/simple_animal/hostile/bear/Hudson,  // old
-			/mob/living/simple_animal/hostile/vore/bear/Hudson,
 			/mob/living/simple_animal/hostile/hivebot/tele,  // old
-			/mob/living/simple_animal/hostile/creature // old
 			)//exclusion list for things you don't want the reaction to create.
 		var/list/critters = typesof(/mob/living/simple_animal/hostile) - blocked // list of possible hostile mobs
 
@@ -382,7 +376,6 @@
 			/mob/living/simple_animal/hostile/syndicate/ranged,
 			/mob/living/simple_animal/hostile/syndicate/ranged/space,
 			/mob/living/simple_animal/hostile/vore, // Not a true mob.
-			/mob/living/simple_animal/hostile/vore/alien,
 			/mob/living/simple_animal/hostile/vore/alien/drone,
 			/mob/living/simple_animal/hostile/vore/alien/sentinel,
 			/mob/living/simple_animal/hostile/vore/alien/queen,
@@ -399,19 +392,13 @@
 			/mob/living/simple_animal/hostile/vore/bear,
 			/mob/living/simple_animal/hostile/vore/bear/Hudson,
 			/mob/living/simple_animal/hostile/hivebot/tele, // bugged
-			/mob/living/simple_animal/hostile/viscerator,
 			/mob/living/simple_animal/hostile/tunnelclown,
 			/mob/living/simple_animal/hostile/tunnelclown/sentinel,
 			/mob/living/simple_animal/hostile/giant_spider/nurse, // because fuck that shit
-			/mob/living/simple_animal/hostile/tree,
 			/mob/living/simple_animal/hostile/vore/mimic,
 			/mob/living/simple_animal/hostile/vore/mimic/copy,
 			/mob/living/simple_animal/hostile/vore/mimic/crate,
 			/mob/living/simple_animal/hostile/mimic, // old
-			/mob/living/simple_animal/hostile/mimic/copy, // old
-			/mob/living/simple_animal/hostile/mimic/crate, // old
-			/mob/living/simple_animal/hostile/creature, // old
-			/mob/living/simple_animal/bee,
 			/mob/living/simple_animal/borer,
 			/mob/living/simple_animal/borer/roundstart,
 			/mob/living/simple_animal/cat/fluff/bones,
@@ -430,8 +417,6 @@
 			/mob/living/simple_animal/snake/Noodle,
 			/mob/living/simple_animal/shade,
 			/mob/living/simple_animal/space_worm, // broken
-			/mob/living/simple_animal/space_worm/head, // broken
-			/mob/living/simple_animal/spiderbot
 			)
 		var/list/critters = typesof(/mob/living/simple_animal) - blocked // list of possible hostile mobs
 
