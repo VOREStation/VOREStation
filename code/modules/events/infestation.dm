@@ -102,7 +102,7 @@
 #undef LOC_HYDRO
 #undef LOC_VAULT
 #undef LOC_TECH
-#undef LOC_TACTICAL
+#undef LOC_GARDEN
 
 #undef VERM_MICE
 #undef VERM_LIZARDS
