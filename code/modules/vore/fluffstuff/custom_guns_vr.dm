@@ -35,25 +35,25 @@
 // For general use
 /obj/item/weapon/gun/projectile/automatic/battlerifle
 	name = "\improper BR55 Service Rifle"
-	desc = "You had your chance to be afraid before you joined my beloved Corps! But, to guide you back to the true path, I brought this motivational device! Uses unique 9.5x40mm ammo."
-
+	desc = "You had your chance to be afraid before you joined my beloved Corps! But, to guide you back to the true path, I brought this motivational device! Uses unique 9.5x40mm rounds."
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "battlerifle"
-
 	icon_override = 'icons/obj/gun_vr.dmi'
 	item_state = "battlerifle"
 	item_icons = null
-
 	w_class = 4
 	recoil = 2 // The battlerifle was known for its nasty recoil.
 	max_shells = 36
 	caliber = "9.5x40mm"
-	origin_tech = "combat=2;materials=2;"
+	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	ammo_type = /obj/item/ammo_casing/a95mm
 	magazine_type = /obj/item/ammo_magazine/battlerifle
+	allowed_magazines = list(obj/item/ammo_magazine/battlerifle)
 	fire_sound = 'sound/weapons/battlerifle.ogg'
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK
+	//requires_two_hands = 1
+	one_handed_penalty = 4 // The weapon itself is heavy
 
 // For general use
 /obj/item/weapon/gun/projectile/shotgun/pump/unsc
@@ -118,23 +118,10 @@
 
 		update_icon()
 
-// roaper : Callum Leamas
-/obj/item/weapon/gun/projectile/revolver/detective/fluff/callum_leamas
-	name = "Deckard .38"
-	desc = "A custom built revolver, based off the semi-popular Detective Special model."
-	icon = 'icons/vore/custom_guns_vr.dmi'
-	icon_state = "leamas"
-	ammo_type = /obj/item/ammo_magazine/c38/rubber
-
-	load_ammo(var/obj/item/A, mob/user)
-		if(istype(A, /obj/item/ammo_magazine))
-			flick("leamas-reloading",src)
-		..()
-
 // wankersonofjerkin : Ryan Winz
 /obj/item/weapon/gun/projectile/revolver/fluff/ryan_winz_revolver
 	name = "Ryan's 'Devilgun'"
-	desc = "You notice the serial number on the revolver is 666. The word 'Sin' is engraved on the blood-red rosewood grip. Uses .357 ammo."
+	desc = "You notice the serial number on the revolver is 666. The word 'Sin' is engraved on the blood-red rosewood grip. Uses .357 rounds."
 
 	icon = 'icons/vore/custom_guns_vr.dmi'
 	icon_state = "ryan_winz"
@@ -143,12 +130,12 @@
 
 /obj/item/weapon/gun/projectile/revolver/fluff/ryan_winz_revolver/redemption
 	name = "Ryan's 'Redeemer'"
-	desc = "You notice the serial number on the revolver is 667. The word 'Redemption' is engraved on dark rosewood grip. Uses .357 ammo."
+	desc = "You notice the serial number on the revolver is 667. The word 'Redemption' is engraved on dark rosewood grip. Uses .357 rounds."
 
 // sasoperative : Joseph Skinner
 /obj/item/weapon/gun/projectile/revolver/shotgun/fluff/sasoperative
 	name = "\"The Jury\""
-	desc = "A customized variant of the \"The Judge\" revolver sold by Cybersun Industries, built specifically for Joseph Skinner."
+	desc = "A customized variant of the \"The Judge\" revolver sold by Cybersun Industries, built specifically for Joseph Skinner. Uses 12g shells."
 
 	icon = 'icons/vore/custom_guns_vr.dmi'
 	icon_state = "jury"
@@ -160,36 +147,39 @@
 
 // For general use
 /obj/item/weapon/gun/projectile/automatic/stg
-	name = "\improper StG-650"
-	desc = "Experience the terror of the Siegfried line, redone for the 26th century! With a fire rate of over 1,400 rounds per minute, the Kaiser would be proud. Uses unique 7.92x33mm Kurz ammo."
-
+	name = "\improper Sturmgewehr"
+	desc = "An STG-560 built by RauMauser. Experience the terror of the Siegfried line, redone for the 26th century! The Kaiser would be proud. Uses unique 7.92x33mm Kurz rounds."
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "stg60"
-
-	item_state = "gun"
-
+	item_state = "arifle"
 	w_class = 4
 	max_shells = 30
 	caliber = "kurz"
-	origin_tech = "combat=5;materials=2;syndicate=8"
-	ammo_type = /obj/item/ammo_casing/stg
+	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2, TECH_ILLEGAL = 6)
 	magazine_type = /obj/item/ammo_magazine/stg
+	allowed_magazines = list(obj/item/ammo_magazine/stg)
 	load_method = MAGAZINE
+
+/obj/item/weapon/gun/projectile/automatic/stg/update_icon(var/ignore_inhands)
+	..()
+	icon_state = (ammo_magazine)? "stg60" : "stg60-empty"
+	item_state = (ammo_magazine)? "arifle" : "arifle-empty"
+	if(!ignore_inhands) update_held_icon()
 
 // For general use
 /obj/item/weapon/gun/projectile/automatic/m14/fluff/gallian
 	name = "\improper Gallian 4 Rifle"
-	desc = "The ever reliable Gallian 4 Rifle. Produced by the National Armory on the Planet of Gaia located in Gallia, the Gallian 4 Rifle offers high accuracy and is widely used in the United Federation's Military. Uses 7.62mm ammo."
+	desc = "The ever reliable Gallian 4 Rifle. Produced by the National Armory on the Planet of Gaia located in Gallia, the Gallian 4 Rifle offers high accuracy and is widely used in the United Federation's Military. Uses 7.62mm rounds."
 
 // For general use
 /obj/item/weapon/gun/projectile/shotgun/pump/rifle/zmkar
 	name = "\improper ZM Kar 1"
-	desc = "A reproduction of an old ZM Kar 1 Rifle from the Autocratic East Europan Imperial Alliance of Gaia. Popular among imperials and collectors within the Federation and its allies. Uses 7.62mm ammo."
+	desc = "A reproduction of an old ZM Kar 1 Rifle from the Autocratic East Europan Imperial Alliance of Gaia. Popular among imperials and collectors within the Federation and its allies. Uses 7.62mm rounds."
 
 // For general use
 /obj/item/weapon/gun/projectile/shotgun/pump/rifle/wicked
-	name = "'Wicked Butterfly' ZM Kar S1"
-	desc = "A customized bolt-action sniper rifle that was carried by some of the most revered snipers in the Federation. The stock has a small butterfly engraved on it. Uses 7.62mm ammo."
+	name = "Wicked Butterfly ZM Kar S1"
+	desc = "A customized bolt-action sniper rifle that was carried by some of the most revered snipers in the Federation. The stock has a small butterfly engraved on it. Uses 7.62mm rounds."
 
 	icon = 'icons/vore/custom_guns_vr.dmi'
 	icon_state = "wickedbutterfly"
@@ -213,7 +203,7 @@
 //Currently, the only problem I have now is that this weapon's item_state isn't working.
 /obj/item/weapon/gun/projectile/automatic/fluff/crestrose
 	name = "Crescent Rose"
-	desc = "Can you match my resolve? If so then you will succeed. I believe that the human spirit is indomitable. Keep Moving Forward."
+	desc = "Can you match my resolve? If so then you will succeed. I believe that the human spirit is indomitable. Keep Moving Forward. Uses 5.56mm rounds."
 	icon = 'icons/vore/custom_guns_vr.dmi'
 	icon_state = "crestrose_fold"
 
@@ -225,16 +215,15 @@
 	slot_flags = null
 	fire_sound = 'sound/weapons/Gunshot_light.ogg'
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/a75
 	force = 3
 	recoil = 2
 	var/on = 0
 	auto_eject = 1
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	hitsound = null
-	caliber = "9.5x40mm"
-	ammo_type = "/obj/item/ammo_casing/a95mm"
-	max_shells = 10
+	caliber = "a556"
+	magazine_type = /obj/item/ammo_magazine/a556
+	allowed_magazines = list(/obj/item/ammo_magazine/a556)
 
 /obj/item/weapon/gun/projectile/automatic/fluff/crestrose/attack_self(mob/user as mob)
 	on = !on
@@ -273,7 +262,7 @@
 
 // molenar:Kari Akiren
 /obj/item/weapon/gun/projectile/shotgun/pump/rifle/fluff/kari_akiren
-	name = "Clockwork Rifle"
+	name = "clockwork rifle"
 	desc = "Brass, copper, and lots of gears. Well lubricated for fluid movement as each round is loaded, locked, and fired. Just like clockwork."
 
 	icon = 'icons/vore/custom_guns_vr.dmi'
@@ -285,13 +274,13 @@
 
 //Razerwing:Archer Maximus
 /obj/item/weapon/gun/projectile/colt/fluff/archercolt
-	name = "MEUSOC .45"
+	name = "\improper MEUSOC .45"
 	desc = "Some serious drywall work, coming up!"
 
 //////////////////// Energy Weapons ////////////////////
 //arokha:Aronai Kadigan
 /obj/item/weapon/gun/energy/gun/fluff/aro
-	name = "KIN-H21"
+	name = "\improper KIN-H21"
 	desc = "The Kitsuhana Heavy Industries standard Imperial Navy energy sidearm, commonly called the KIN21. This one appears to have been modified to have additional features at the cost of battery life."
 
 	icon = 'icons/vore/custom_guns_vr.dmi'
@@ -316,7 +305,7 @@
 
 // -------------- Dominator -------------
 /obj/item/weapon/gun/energy/gun/fluff/dominator
-	name = "MWPSB Dominator"
+	name = "\improper MWPSB Dominator"
 	desc = "A MWPSB's Dominator from the Federation. Like the basic Energy Gun, this gun has two settings. It is used by the United Federation Public Safety Bureau's Criminal Investigation Division."
 
 	icon = 'icons/vore/custom_guns_vr.dmi'
@@ -328,7 +317,6 @@
 
 	fire_sound = 'sound/weapons/Taser.ogg'
 	projectile_type = /obj/item/projectile/beam/stun
-	origin_tech = "combat=3;magnets=2"
 
 	modifystate = "dominatorstun"
 
@@ -379,26 +367,28 @@
 	impact_type = /obj/effect/projectile/laser_omni/impact
 
 //--------------- StG-60 ----------------
-/obj/item/ammo_casing/stg
-	desc = "A 7.92×33mm Kurz casing."
-	icon_state = "762-casing"
-	caliber = "kurz"
-	projectile_type = /obj/item/projectile/bullet/rifle/a762
-
 /obj/item/ammo_magazine/stg
 	name = "box mag (7.92x33mm Kurz)"
+	icon = 'icons/obj/ammo_vr.dmi'
 	icon_state = "stg_30rnd"
 	caliber = "kurz"
 	ammo_type = /obj/item/ammo_casing/stg
 	max_ammo = 30
 	mag_type = MAGAZINE
 
+/obj/item/ammo_casing/stg
+	desc = "A 7.92×33mm Kurz casing."
+	icon_state = "762-casing"
+	caliber = "kurz"
+	projectile_type = /obj/item/projectile/bullet/rifle/a762
+
 /obj/item/ammo_magazine/stg/empty
 	initial_ammo = 0
 
-//---------------- Battle ----------------
+//------------- Battlerifle -------------
 /obj/item/ammo_magazine/battlerifle
 	name = "box mag (9.5x40mm)"
+	icon = 'icons/obj/ammo_vr.dmi'
 	icon_state = "battlerifle"
 	caliber = "9.5x40mm"
 	ammo_type = /obj/item/ammo_casing/a95mm
@@ -417,17 +407,4 @@
 	penetrating = 2 // Better penetration than the 7.62mm
 
 /obj/item/ammo_magazine/battlerifle/empty
-	initial_ammo = 0
-
-//--------------Crescent Rose Ammo --------------
-/obj/item/ammo_magazine/a75/crestrose
-	name = "ammo magazine (9.5x40mm)"
-	icon_state = "75"
-	mag_type = MAGAZINE
-	caliber = "9.5x40mm"
-	ammo_type = /obj/item/ammo_casing/a95mm
-	multiple_sprites = 1
-	max_ammo = 10
-
-/obj/item/ammo_magazine/a75/crestrose/empty
 	initial_ammo = 0
