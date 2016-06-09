@@ -102,6 +102,9 @@
 	volume = 150
 	flags = CONDUCT | OPENCONTAINER
 
+/obj/item/weapon/reagent_containers/food/drinks/golden_cup/on_reagent_change()
+	..()
+
 ///////////////////////////////////////////////Drinks
 //Notes by Darem: Drinks are simply containers that start preloaded. Unlike condiments, the contents can be ingested directly
 //	rather then having to add it to something else first. They should only contain liquids. They have a default container size of 50.
@@ -205,6 +208,7 @@
 	..()
 
 /obj/item/weapon/reagent_containers/food/drinks/sillycup/on_reagent_change()
+	..()
 	if(reagents.total_volume)
 		icon_state = "water_cup"
 	else
@@ -224,6 +228,9 @@
 	volume = 120
 	center_of_mass = list("x"=17, "y"=10)
 
+/obj/item/weapon/reagent_containers/food/drinks/shaker/on_reagent_change()
+	..()
+
 /obj/item/weapon/reagent_containers/food/drinks/teapot
 	name = "teapot"
 	desc = "An elegant teapot. It simply oozes class."
@@ -233,12 +240,18 @@
 	volume = 120
 	center_of_mass = list("x"=17, "y"=7)
 
+/obj/item/weapon/reagent_containers/food/drinks/teapot/on_reagent_change()
+	..()
+
 /obj/item/weapon/reagent_containers/food/drinks/flask
 	name = "\improper Captain's flask"
 	desc = "A metal flask belonging to the captain"
 	icon_state = "flask"
 	volume = 60
 	center_of_mass = list("x"=17, "y"=7)
+
+/obj/item/weapon/reagent_containers/food/drinks/flask/on_reagent_change()
+	..()
 
 /obj/item/weapon/reagent_containers/food/drinks/flask/shiny
 	name = "shiny flask"
@@ -277,3 +290,7 @@
 	icon_state = "britcup"
 	volume = 30
 	center_of_mass = list("x"=15, "y"=13)
+
+/obj/item/weapon/reagent_containers/food/drinks/britcup/on_reagent_change()
+	..()
+
