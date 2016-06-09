@@ -99,6 +99,7 @@
 		
 /obj/machinery/xenobio/proc/finished_task()
 	active = 0
+	in_use = 0
 	if(failed_task)
 		failed_task = 0
 		visible_message("\icon[src] [src] pings unhappily, flashing a red warning light.")
@@ -332,7 +333,7 @@
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "xenobio_editor.tmpl", "Biological Genetic Bombarder UI", 470, 450)
+		ui = new(user, src, ui_key, "xenobio_editor.tmpl", "biological genetic bombarder UI", 470, 450)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
@@ -375,21 +376,21 @@
 /obj/machinery/xenobio/editor/proc/move_into_editor(var/mob/user,var/mob/living/victim)
 
 	if(src.occupant)
-		user << "<span class='danger'>The biological genetic bombarder is full, empty it first!</span>"
+		user << "<span class='danger'>The [src] is full, empty it first!</span>"
 		return
 
 	if(in_use)
-		user << "<span class='danger'>The biological genetic bombarder is locked and running, wait for it to finish.</span>"
+		user << "<span class='danger'>The [src] is locked and running, wait for it to finish.</span>"
 		return
 
 	if(!(istype(victim, /mob/living/simple_animal/xeno/slime)) )
-		user << "<span class='danger'>This is not a suitable subject for the biological genetic bombarder!</span>"
+		user << "<span class='danger'>This is not a suitable subject for the [src]!</span>"
 		return
 
-	user.visible_message("<span class='danger'>[user] starts to put [victim] into the biological genetic bombarder!</span>")
+	user.visible_message("<span class='danger'>[user] starts to put [victim] into the [src]!</span>")
 	src.add_fingerprint(user)
 	if(do_after(user, 30) && victim.Adjacent(src) && user.Adjacent(src) && victim.Adjacent(user) && !occupant)
-		user.visible_message("<span class='danger'>[user] stuffs [victim] into the biological genetic bombarder!</span>")
+		user.visible_message("<span class='danger'>[user] stuffs [victim] into the [src]!</span>")
 		if(victim.client)
 			victim.client.perspective = EYE_PERSPECTIVE
 			victim.client.eye = src
