@@ -64,7 +64,7 @@
 				for(var/obj/machinery/teleport/hub/H in range(1))
 					var/amount = rand(2,5)
 					for(var/i=0;i<amount;i++)
-						new /mob/living/simple_animal/hostile/carp(get_turf(H))
+						new /mob/living/simple_animal/hostile/vore/carp(get_turf(H)) // Vorestation edit
 				//
 			else
 				for(var/mob/O in hearers(src, null))
@@ -179,8 +179,6 @@
 	underlays.Cut()
 	underlays += image('icons/obj/stationobjs.dmi', icon_state = "tele-wires")
 
-/obj/machinery/teleport/hub/map/New()
-	..()
 	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
@@ -331,8 +329,6 @@
 	overlays.Cut()
 	overlays += image('icons/obj/stationobjs.dmi', icon_state = "controller-wires")
 
-/obj/machinery/teleport/station/map/New()
-	..()
 	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)

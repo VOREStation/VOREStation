@@ -76,6 +76,28 @@
 		new /obj/item/weapon/gun/energy/gun/fluff/dominator(src)
 		new /obj/item/clothing/suit/armor/det_suit(src)
 		new /obj/item/fluff/permit/joanrisu(src)
+		new /obj/item/clothing/accessory/storage/black_vest(src)
+		new /obj/item/weapon/sword/fluff/joanaria(src)
+		new /obj/item/weapon/flame/lighter/zippo/fluff/joan(src)
+		new /obj/item/clothing/under/rank/internalaffairs/fluff/joan(src)
+
+//joanrisu:Katarina Eine
+/obj/item/weapon/storage/backpack/dufflebag/sec/fluff/Katarina
+	name = "Katarina's Workbag"
+	desc = "A duffle bag Katarina uses to carry her tools."
+
+	New()
+		..()
+		new /obj/item/clothing/accessory/holster/hip(src)
+		new /obj/item/clothing/suit/storage/fluff/fedcoat(src)
+		new /obj/item/weapon/gun/energy/gun/fluff/dominator(src)
+		new /obj/item/clothing/suit/armor/det_suit(src)
+		new /obj/item/clothing/accessory/storage/black_vest(src)
+		new /obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina(src)
+		new /obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina(src)
+		new /obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina(src)
+		new /obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina(src)
+		new /obj/item/clothing/under/rank/internalaffairs/fluff/joan(src)
 
 //Razerwing:Archer Maximus
 /obj/item/weapon/storage/box/fluff/archermaximus
@@ -88,10 +110,13 @@
 /obj/item/weapon/storage/backpack/dufflebag/emt/fluff/aro
 	name = "Aronai's Equipment"
 	desc = "A big dufflebag, containing the stuff Aronai likes to carry with him."
+	slowdown = 0 //HAX!
 
 	New()
 		..()
 		new /obj/item/clothing/head/helmet/space/fluff/aronai(src)
 		new /obj/item/clothing/suit/space/fluff/aronai(src)
 		new /obj/item/device/suit_cooling_unit(src)
+		new /obj/item/weapon/material/hatchet/tacknife/combatknife(src)
 		new /obj/item/weapon/card/id/centcom/fluff/aro(src)
+		new /obj/item/weapon/reagent_containers/hypospray/fluff/aronai(src)

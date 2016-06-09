@@ -93,6 +93,12 @@ var/global/list/xenoChemList = list("mutationtoxin",
 	var/val = traits["[trait]"]
 	return val
 	
+/datum/xeno/traits/proc/copy_traits(var/datum/xeno/traits/target)
+	target.traits = traits
+	target.chemlist = chemlist
+	target.chems = chems
+	target.source = source
+	
 /datum/xeno/traits/New()
 	..()
 	set_trait(TRAIT_XENO_COLOR,	"#CACACA")

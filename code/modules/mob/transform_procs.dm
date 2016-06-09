@@ -300,7 +300,7 @@
 		return 1
 	if(ispath(MP, /mob/living/simple_animal/crab))
 		return 1
-	if(ispath(MP, /mob/living/simple_animal/hostile/carp))
+	if(ispath(MP, /mob/living/simple_animal/hostile/vore/carp)) // Vorestation edit
 		return 1
 	if(ispath(MP, /mob/living/simple_animal/shade))
 		return 1
@@ -308,7 +308,7 @@
 		return 1
 	if(ispath(MP, /mob/living/simple_animal/mouse))
 		return 1 //It is impossible to pull up the player panel for mice (Fixed! - Nodrak)
-	if(ispath(MP, /mob/living/simple_animal/hostile/bear))
+	if(ispath(MP, /mob/living/simple_animal/hostile/vore/bear)) // Vorestation edit
 		return 1 //Bears will auto-attack mobs, even if they're player controlled (Fixed! - Nodrak)
 	if(ispath(MP, /mob/living/simple_animal/parrot))
 		return 1 //Parrots are no longer unfinished! -Nodrak

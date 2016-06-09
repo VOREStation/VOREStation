@@ -90,7 +90,7 @@ obj/item/weapon/gun/energy/retro
 	standard photonic beams, resulting in an effective 'anti-armor' energy weapon."
 	icon_state = "xray"
 	item_state = "xray"
-	fire_sound = 'sound/weapons/laser3.ogg'
+	fire_sound = 'sound/weapons/eluger.ogg'
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 3, TECH_MAGNET = 2)
 	projectile_type = /obj/item/projectile/beam/xray
 	charge_cost = 100
@@ -101,8 +101,8 @@ obj/item/weapon/gun/energy/retro
 	desc = "The HI DMR 9E is an older design of Hesphaistos Industries. A designated marksman rifle capable of shooting powerful \
 	ionized beams, this is a weapon to kill from a distance."
 	icon_state = "sniper"
-	item_state = "laser"
-	fire_sound = 'sound/weapons/marauder.ogg'
+	item_state = "laser" // placeholder
+	fire_sound = 'sound/weapons/gauss_shoot.ogg'
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 5, TECH_POWER = 4)
 	projectile_type = /obj/item/projectile/beam/sniper
 	slot_flags = SLOT_BACK

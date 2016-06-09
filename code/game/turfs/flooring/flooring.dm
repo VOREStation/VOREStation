@@ -56,6 +56,26 @@ var/list/flooring_types
 	flags = TURF_HAS_EDGES | TURF_REMOVE_SHOVEL
 	build_type = null
 
+/decl/flooring/snow
+	name = "snow"
+	desc = "A layer of many tiny bits of frozen water. It's hard to tell how deep it is."
+	icon = 'icons/turf/snow.dmi'
+	icon_base = "snow"
+	flags = TURF_HAS_EDGES
+
+/decl/flooring/snow/gravsnow
+	name = "snow"
+	icon_base = "gravsnow"
+
+/decl/flooring/snow/plating
+	name = "snowy plating"
+	desc = "Steel plating coated with a light layer of snow."
+	icon_base = "snowyplating"
+	flags = null
+
+/decl/flooring/snow/plating/drift
+	icon_base = "snowyplayingdrift"
+
 /decl/flooring/carpet
 	name = "carpet"
 	desc = "Imported and comfy."
