@@ -14,6 +14,6 @@
  */
 /proc/logTheThing(type, source, target, text, diaryType)
 	if(diaryType)
-		world << "Diary: \[[diaryType]:[type]] [text]"
+		log_debug("Diary: \[[diaryType]:[type]] [text]")
 	else
-		world << "Log: \[[type]] [text]"
+		log_debug("Log: \[[type]] [text]")
