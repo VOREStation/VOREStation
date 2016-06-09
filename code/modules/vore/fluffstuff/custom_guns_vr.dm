@@ -48,7 +48,7 @@
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	ammo_type = /obj/item/ammo_casing/a95mm
 	magazine_type = /obj/item/ammo_magazine/battlerifle
-	allowed_magazines = list(obj/item/ammo_magazine/battlerifle)
+	allowed_magazines = list(/obj/item/ammo_magazine/battlerifle)
 	fire_sound = 'sound/weapons/battlerifle.ogg'
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK
@@ -157,7 +157,7 @@
 	caliber = "kurz"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2, TECH_ILLEGAL = 6)
 	magazine_type = /obj/item/ammo_magazine/stg
-	allowed_magazines = list(obj/item/ammo_magazine/stg)
+	allowed_magazines = list(/obj/item/ammo_magazine/stg)
 	load_method = MAGAZINE
 
 /obj/item/weapon/gun/projectile/automatic/stg/update_icon(var/ignore_inhands)
