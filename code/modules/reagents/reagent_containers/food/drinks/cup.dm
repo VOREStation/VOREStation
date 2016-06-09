@@ -7,6 +7,7 @@
 	center_of_mass = list("x"=16, "y"=16)
 
 /obj/item/weapon/reagent_containers/food/drinks/cup/on_reagent_change()
+	..()
 	if (reagents.reagent_list.len > 0)
 		var/datum/reagent/R = reagents.get_master_reagent()
 
@@ -29,11 +30,6 @@
 			center_of_mass = R.cup_center_of_mass
 		else
 			center_of_mass = list("x"=16, "y"=16)
-
-		if(R.price_tag)
-			price_tag = R.price_tag
-		else
-			price_tag = null
 
 	else
 		icon_state = "cup_empty"

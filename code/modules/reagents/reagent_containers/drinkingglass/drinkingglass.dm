@@ -68,6 +68,7 @@
 	icon_state = base_icon
 
 /obj/item/weapon/reagent_containers/food/drinks/glass2/on_reagent_change()
+	..()
 	update_icon()
 
 /obj/item/weapon/reagent_containers/food/drinks/glass2/proc/can_add_extra(obj/item/weapon/glass_extra/GE)

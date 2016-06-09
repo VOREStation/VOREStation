@@ -11,7 +11,13 @@
 	volume = 50
 
 /obj/item/weapon/reagent_containers/food/drinks/on_reagent_change()
-		return
+	if (reagents.reagent_list.len > 0)
+		var/datum/reagent/R = reagents.get_master_reagent()
+		if(R.price_tag)
+			price_tag = R.price_tag
+		else
+			price_tag = null
+	return
 
 /obj/item/weapon/reagent_containers/food/drinks/attack_self(mob/user as mob)
 	if(!is_open_container())
