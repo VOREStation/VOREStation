@@ -3,7 +3,7 @@
 	name = "Sample Permit"
 	desc = {"There is a bright red <b><font color=red>SAMPLE PERMIT</font></b> stamped across the stock photo displayed on the card. Obviously this is only an example to educate security.
 	<b>NAME:</b> First Last | <b>RACE:</b> Human | <b>HOMEWORLD:</b> Moon (if applicable), Planet, System
-	<b>DOB:</b> DD/Month/YYYY | <b>HEIGHT:</b> XXcm | <b>SEX:</b> Female
+	<b>DOB:</b> DD/Mon/YYYY | <b>HEIGHT:</b> XXcm | <b>SEX:</b> Female
 
 	The individual named above is licensed by the Nanotrasen Department of Civil Protection to ___________________.
 	This license expires on DD/Month/YYYY and must be renewed by CentCom prior to this date."}
@@ -33,6 +33,7 @@
 	The individual named above is licensed by the Nanotrasen Department of Civil Protection to carry one .38 pistol.
 	This license expires on 30/March/2561 and must be renewed by CentCom prior to this date."}
 
+/*
 // jertheace:Jeremiah 'Ace' Acacius
 /obj/item/fluff/permit/jerace
 	name = "Ace's Shotgun Permit"
@@ -42,7 +43,9 @@
 
 	The individual named above is licensed by the Nanotrasen Department of Civil Protection to openly carry one M45D shotgun loaded with less-than-lethal munitions as a head of staff. Else this weapon is to be turned in to security for holding until the end of the shift.
 	This license expires on 01/Jun/2560 and must be renewed by CentCom prior to this date."}
+*/
 
+/*
 // sasoperative:Joseph Skinner
 /obj/item/fluff/permit/josephskinner
 	name = "Joseph Skinner's 12g Revolver Permit"
@@ -52,7 +55,9 @@
 
 	The individual named above is licensed by the Nanotrasen Department of Civil Protection to carry one 12 gauge revolver loaded with less-than-lethal munitions as a member of security or head of staff. Else this weapon is to be turned in to security for holding until the end of the shift.
 	This license expires on 29/Nov/2559 and must be renewed by CentCom prior to this date."}
+*/
 
+/*
 // wankersonofjerkin:Ryan Winz
 /obj/item/fluff/permit/ryanwinz
 	name = "Ryan Winz's Revolver Permit"
@@ -62,6 +67,7 @@
 
 	The individual named above is licensed by the Nanotrasen Department of Civil Protection to openly carry one Colt Single-Action Army revolver as a security officer or head of staff. Else this weapon is to be turned in to security for holding until the end of the shift.
 	This license expires on 26/Dec/2559 and must be renewed by CentCom prior to this date."}
+*/
 
 // bwoincognito:Tasald Corlethian
 /obj/item/fluff/permit/tasald_corlethian

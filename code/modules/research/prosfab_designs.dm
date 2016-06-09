@@ -50,7 +50,7 @@
 /datum/design/item/prosfab/pros/torso
 	time = 35
 	materials = list(DEFAULT_WALL_MATERIAL = 60000, "glass" = 10000, "plasteel" = 2000)
-	req_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 3, TECH_DATA = 3)
+//	req_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 3, TECH_DATA = 3)	//Saving the values just in case
 	var/gender = MALE
 
 /datum/design/item/prosfab/pros/torso/male
@@ -73,7 +73,7 @@
 	build_path = /obj/item/organ/external/head
 	time = 30
 	materials = list(DEFAULT_WALL_MATERIAL = 25000, "glass" = 5000, "plasteel" = 1000)
-	req_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 3, TECH_DATA = 3)
+//	req_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 3, TECH_DATA = 3)	//Saving the values just in case
 
 /datum/design/item/prosfab/pros/l_arm
 	name = "Prosthetic left arm"
@@ -137,7 +137,7 @@
 	build_path = /obj/item/organ/internal/cell
 	time = 15
 	materials = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 4000, "plasteel" = 2000)
-	req_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 2)
+//	req_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 2)
 
 /datum/design/item/prosfab/pros/eyes
 	name = "Prosthetic eyes"
@@ -145,7 +145,7 @@
 	build_path = /obj/item/organ/internal/eyes/robot
 	time = 15
 	materials = list(DEFAULT_WALL_MATERIAL = 7500, "glass" = 7500)
-	req_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 2)
+//	req_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 2)
 
 //////////////////// Cyborg Parts ////////////////////
 /datum/design/item/prosfab/cyborg

@@ -93,16 +93,6 @@
 
 /obj/machinery/sleeper/New()
 	..()
-	spawn(5)
-		//src.machine = locate(/obj/machinery/mineral/processing_unit, get_step(src, machinedir))
-		var/obj/machinery/sleep_console/C = locate(/obj/machinery/sleep_console) in range(2,src)
-		if(C)
-			C.connected = src
-		return
-	return
-
-/obj/machinery/sleeper/map/New()
-	..()
 	beaker = new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
 	circuit = new circuit(src)
 	component_parts = list()
@@ -114,6 +104,14 @@
 	component_parts += new /obj/item/weapon/reagent_containers/syringe(src)
 	component_parts += new /obj/item/weapon/reagent_containers/syringe(src)
 	component_parts += new /obj/item/stack/material/glass/reinforced(src, 2)
+
+	spawn(5)
+		//src.machine = locate(/obj/machinery/mineral/processing_unit, get_step(src, machinedir))
+		var/obj/machinery/sleep_console/C = locate(/obj/machinery/sleep_console) in range(2,src)
+		if(C)
+			C.connected = src
+		return
+
 	RefreshParts()
 
 /obj/machinery/sleeper/initialize()
