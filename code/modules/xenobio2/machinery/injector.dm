@@ -67,19 +67,20 @@
 		src.occupant = victim
 
 /obj/machinery/xenobio2/manualinjector/proc/eject_contents()
-	for(var/obj/thing in (contents - component_parts - circuit - beaker))
-		thing.forceMove(loc)
+	eject_xeno()
+	eject_beaker()
+	return
+
+/obj/machinery/xenobio2/manualinjector/proc/eject_xeno()
 	if(occupant)
 		occupant.forceMove(loc)
 		occupant = null
-	return
-
+	
 /obj/machinery/xenobio2/manualinjector/proc/eject_beaker()
 	if(beaker)
 		var/obj/item/weapon/reagent_containers/glass/beaker/B = beaker
 		B.loc = loc
 		beaker = null
-	return
 
 /obj/machinery/xenobio2/manualinjector/proc/inject_reagents()
 	if(!occupant)
