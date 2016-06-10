@@ -278,6 +278,13 @@
 	icon_state = "bunny"
 	do_colouration = 1
 
+/datum/sprite_accessory/tail/moth
+	name = "moth wings, colorable"
+	desc = ""
+	icon_state = "moth"
+	do_colouration = 1
+
+
 /datum/sprite_accessory/tail/bear_brown
 	name = "bear, brown"
 	desc = ""
