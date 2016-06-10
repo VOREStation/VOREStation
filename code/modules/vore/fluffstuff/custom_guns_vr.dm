@@ -378,7 +378,7 @@
 
 /obj/item/ammo_casing/stg
 	desc = "A 7.92×33mm Kurz casing."
-	icon_state = "762-casing"
+	icon_state = "rifle-casing"
 	caliber = "kurz"
 	projectile_type = /obj/item/projectile/bullet/rifle/a762
 
@@ -398,7 +398,7 @@
 
 /obj/item/ammo_casing/a95mm
 	desc = "A 9.5x40mm bullet casing."
-	icon_state = "762-casing"
+	icon_state = "rifle-casing"
 	caliber = "9.5x40mm"
 	projectile_type = /obj/item/projectile/bullet/rifle/a95mm
 
