@@ -16,7 +16,8 @@
 		"Sergal"				= 'icons/mob/species/sergal/helmet_vr.dmi',
 		"Flatland Zorren" 		= 'icons/mob/species/fennec/helmet_vr.dmi',
 		"Highlander Zorren" 	= 'icons/mob/species/fox/helmet_vr.dmi',
-		"Vulpkanin"				= 'icons/mob/species/vulpkanin/helmet.dmi'
+		"Vulpkanin"				= 'icons/mob/species/vulpkanin/helmet.dmi',
+		"Promethean"			= 'icons/mob/species/skrell/helmet.dmi'
 		)
 
 	sprite_sheets_obj = list(
@@ -29,7 +30,8 @@
 		"Sergal"			= 'icons/obj/clothing/species/sergal/hats.dmi',
 		"Flatland Zorren"	= 'icons/obj/clothing/species/fennec/hats.dmi',
 		"Highlander Zorren"	= 'icons/obj/clothing/species/fox/hats.dmi',
-		"Vulpkanin"				= 'icons/obj/clothing/species/vulpkanin/hats.dmi'
+		"Vulpkanin"			= 'icons/obj/clothing/species/vulpkanin/hats.dmi',
+		"Promethean"		= 'icons/obj/clothing/species/skrell/hats.dmi'
 		)
 
 /obj/item/clothing/suit/space/void
@@ -43,7 +45,8 @@
 		"Sergal"				= 'icons/mob/species/sergal/suit_vr.dmi',
 		"Flatland Zorren" 		= 'icons/mob/species/fennec/suit_vr.dmi',
 		"Highlander Zorren" 	= 'icons/mob/species/fox/suit_vr.dmi',
-		"Vulpkanin"				= 'icons/mob/species/vulpkanin/suit.dmi'
+		"Vulpkanin"				= 'icons/mob/species/vulpkanin/suit.dmi',
+		"Promethean"			= 'icons/mob/species/skrell/suit.dmi'
 		)
 
 
@@ -58,7 +61,8 @@
 		"Sergal"			= 'icons/obj/clothing/species/sergal/suits.dmi',
 		"Flatland Zorren"	= 'icons/obj/clothing/species/fennec/suits.dmi',
 		"Highlander Zorren"	= 'icons/obj/clothing/species/fox/suits.dmi',
-		"Vulpkanin"			= 'icons/obj/clothing/species/vulpkanin/suits.dmi'
+		"Vulpkanin"			= 'icons/obj/clothing/species/vulpkanin/suits.dmi',
+		"Promethean"		= 'icons/obj/clothing/species/skrell/suits.dmi'
 		)
 
 
