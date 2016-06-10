@@ -266,17 +266,8 @@
 
 // Recursive method - To recursively scan thru someone's inventory for digestable/indigestable.
 /datum/belly/proc/_handle_digested_item(var/obj/item/W)
-	// PDA's are handled specially in order to get the ID out of them.
-	if (istype(W, /obj/item/device/pda))
-		var/obj/item/device/pda/PDA = W
-		if (PDA.id)
-			W = PDA.id
-			PDA.id = null
-			W.forceMove(owner) //I think this might be necessary with qdel?
-			qdel(PDA)
-
-	if (istype(W, /obj/item/weapon/card/id))
-		// Keep IDs around, but destroy them!
+	// IDs are handled specially to 'digest' them
+	if(istype(W,/obj/item/weapon/card/id))
 		var/obj/item/weapon/card/id/ID = W
 		ID.desc = "A partially digested card that has seen better days.  Much of it's data has been destroyed."
 		ID.icon = 'icons/obj/card_vr.dmi'
@@ -285,18 +276,25 @@
 		ID.forceMove(owner)
 		internal_contents += W
 
-	else if (!_is_digestable(W))
-		W.forceMove(owner)
-		internal_contents += W
+	// Posibrains have to be pulled 'out' of their organ version.
+	else if(istype(W,/obj/item/organ/internal/mmi_holder))
+		var/obj/item/organ/internal/mmi_holder/MMI = W
+		var/atom/movable/brain = MMI.removed()
+		if(brain)
+			brain.forceMove(owner)
+			internal_contents += brain
+	
 	else
-		for (var/obj/item/SubItem in W)
-			_handle_digested_item(SubItem)
-		qdel(W)
+		if(!_is_digestable(W))
+			W.forceMove(owner)
+			internal_contents += W
+		else
+			for (var/obj/item/SubItem in W)
+				_handle_digested_item(SubItem)
 
 /datum/belly/proc/_is_digestable(var/obj/item/I)
-	for (var/T in important_items)
-		if(istype(I, T))
-			return 0
+	if(I.type in important_items)
+		return 0
 	return 1
 
 // Handle a mob being absorbed
