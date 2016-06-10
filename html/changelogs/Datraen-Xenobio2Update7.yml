@@ -1,0 +1,9 @@
+author: Datraen
+
+delete-after: True
+
+changes: 
+  - tweak: "Adds a chance for slimes to get mutation toxin for creation of prometheans (40%)."
+  - bugfix: "Simple animals outside of the hostile subtype won't follow you as a zombie."
+  - bugfix: "Xeno hostility is more apparent now."
+  - bugfix: "Slime cores can no longer create twice as many slimes through an exploit."

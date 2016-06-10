@@ -117,6 +117,8 @@
 			living_mob_list += src
 			stat = CONSCIOUS
 			density = 1
+		else
+			walk(src, 0)
 		return 0
 
 
