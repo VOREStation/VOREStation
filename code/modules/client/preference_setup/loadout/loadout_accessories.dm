@@ -29,8 +29,12 @@
 	path = /obj/item/clothing/accessory/armband/science
 
 /datum/gear/accessory/wallet
-	display_name = "wallet"
+	display_name = "wallet, orange"
 	path = /obj/item/weapon/storage/wallet/random
+
+/datum/gear/accessory/wallet_poly
+	display_name = "wallet, polychromic"
+	path = /obj/item/weapon/storage/wallet/poly
 
 /datum/gear/accessory/holster
 	display_name = "holster, armpit"
