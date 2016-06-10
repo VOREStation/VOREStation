@@ -162,7 +162,12 @@
 		icon_state = icon_off
 	else
 		icon_state = icon_on
-	if(contents.len)
+	var/hasItems
+	for(var/datum/stored_item/I in item_records)
+		if(I.get_amount())
+			hasItems = 1
+			break
+	if(hasItems)
 		overlays += "drying_rack_filled"
 		if(!not_working)
 			overlays += "drying_rack_drying"
@@ -175,7 +180,8 @@
 				S.dry = 1
 				S.name = "dried [S.name]"
 				S.color = "#AAAAAA"
-				stock(S)
+				I.instances -= S
+				S.forceMove(get_turf(src))
 			else
 				var/D = S.dried_type
 				new D(get_turf(src))
