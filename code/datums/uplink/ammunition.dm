@@ -60,14 +60,14 @@
 	name = "20rnd Rifle Magazine (7.62mm AP)"
 	path = /obj/item/ammo_magazine/c762/ap
 
-/datum/uplink_item/item/ammo/SVD
+/datum/uplink_item/item/ammo/s762
 	name = "10rnd Rifle Magazine (7.62mm)"
-	path = /obj/item/ammo_magazine/SVD
+	path = /obj/item/ammo_magazine/s762
 	item_cost = 1 // Half the capacity.
 
-/datum/uplink_item/item/ammo/SVD/ap
+/datum/uplink_item/item/ammo/s762/ap
 	name = "10rnd Rifle Magazine (7.62mm AP)"
-	path = /obj/item/ammo_magazine/SVD/ap
+	path = /obj/item/ammo_magazine/s762/ap
 
 /datum/uplink_item/item/ammo/a10mm
 	name = "SMG Magazine (10mm)"
