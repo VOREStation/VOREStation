@@ -46,8 +46,6 @@ BLIND     // can't see anything
 			active = 1
 			icon_state = initial(icon_state)
 			user.update_inv_glasses()
-			if(activation_sound)
-				usr << activation_sound
 			usr << "You activate the optical matrix on the [src]."
 		user.update_action_buttons()
 
