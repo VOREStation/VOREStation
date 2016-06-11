@@ -4,16 +4,16 @@
 
 
 
-/datum/species/chimera //Scree's race.
-	name = "Chimera"
-	name_plural = "Chimeras"
-	icobase = 'icons/mob/human_races/r_tajaran.dmi' //Tajara basis, as it has working skin color. Replace with human when sprites are edited & available.
+/datum/species/xenochimera //Scree's race.
+	name = "Xenochimera"
+	name_plural = "Xenochimeras"
+	icobase = 'icons/mob/human_races/r_tajaran.dmi' //Tajara basis, as it has working skin color.
 	deform = 'icons/mob/human_races/r_def_tajaran.dmi'
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/punch, /datum/unarmed_attack/bite)
 	num_alternate_languages = 2
 	secondary_langs = list("Sol Common")
 	color_mult = 1
-	egg_type = "Sergal" //Placeholder egg.
+	egg_type = "Scree" //Scree egg.
 	inherent_verbs = list(/mob/living/carbon/human/verb/chimera_revive)
 
 	min_age = 17

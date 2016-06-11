@@ -17,7 +17,8 @@
 		"Flatland Zorren" 		= 'icons/mob/species/fennec/helmet_vr.dmi',
 		"Highlander Zorren" 	= 'icons/mob/species/fox/helmet_vr.dmi',
 		"Vulpkanin"				= 'icons/mob/species/vulpkanin/helmet.dmi',
-		"Promethean"			= 'icons/mob/species/skrell/helmet.dmi'
+		"Promethean"			= 'icons/mob/species/skrell/helmet.dmi',
+		"Xenochimera"			= 'icons/mob/species/tajaran/helmet.dmi'
 		)
 
 	sprite_sheets_obj = list(
@@ -31,7 +32,8 @@
 		"Flatland Zorren"	= 'icons/obj/clothing/species/fennec/hats.dmi',
 		"Highlander Zorren"	= 'icons/obj/clothing/species/fox/hats.dmi',
 		"Vulpkanin"			= 'icons/obj/clothing/species/vulpkanin/hats.dmi',
-		"Promethean"		= 'icons/obj/clothing/species/skrell/hats.dmi'
+		"Promethean"		= 'icons/obj/clothing/species/skrell/hats.dmi',
+		"Xenochimera"		= 'icons/obj/clothing/species/tajaran/hats.dmi'
 		)
 
 /obj/item/clothing/suit/space/void
