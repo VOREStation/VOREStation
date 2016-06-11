@@ -23,7 +23,7 @@
 
 		var/old_nutrition = C.nutrition //Since the game is being annoying.
 
-		var/time = (500+1/((nutrition_used/200+1)/2500))
+		var/time = (500+1/((nutrition_used/100+1)/1300))
 
 		C.weakened = 10000 //Since it takes 1 tick to lose one weaken. Due to prior rounding errors, you'd sometimes unweaken before regenning. This fixes that.
 		regenerating = 1
