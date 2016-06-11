@@ -3,6 +3,7 @@
 *	related to voidsuits live.
 */
 
+
 /datum/supply_packs/voidsuits
 	group = "Voidsuits"
 

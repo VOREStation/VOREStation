@@ -2,6 +2,8 @@
 *	Here is where any supply packs
 *	related to medical tasks live.
 */
+
+
 /datum/supply_packs/med
 	group = "Medical"
 

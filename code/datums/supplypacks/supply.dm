@@ -2,9 +2,9 @@
 *	Here is where any supply packs
 *	related to civilian tasks live
 */
+
 /datum/supply_packs/supply
 	group = "Supplies"
-
 
 /datum/supply_packs/supply/food
 	name = "Kitchen supply crate"

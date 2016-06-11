@@ -3,14 +3,14 @@
 *	related to weapons live.
 */
 
-/datum/supply_packs/weaponry
-	group = "Weaponry"
+/datum/supply_packs/munitions
+	group = "Munitions"
 
-/datum/supply_packs/randomised/weaponry
-	group = "Weaponry"
+/datum/supply_packs/randomised/munitions
+	group = "Munitions"
 	access = access_security
 
-/datum/supply_packs/weaponry/weapons
+/datum/supply_packs/munitions/weapons
 	name = "Weapons crate"
 	contains = list(
 			/obj/item/weapon/melee/baton = 2,
@@ -23,7 +23,7 @@
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Weapons crate"
 
-/datum/supply_packs/weaponry/flareguns
+/datum/supply_packs/munitions/flareguns
 	name = "Flare guns crate"
 	contains = list(
 			/obj/item/weapon/gun/projectile/sec/flash,
@@ -35,7 +35,7 @@
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Flare gun crate"
 
-/datum/supply_packs/weaponry/eweapons
+/datum/supply_packs/munitions/eweapons
 	name = "Experimental weapons crate"
 	contains = list(
 			/obj/item/weapon/gun/energy/xray = 2,
@@ -45,7 +45,7 @@
 	containername = "Experimental weapons crate"
 	access = access_armory
 
-/datum/supply_packs/weaponry/energyweapons
+/datum/supply_packs/munitions/energyweapons
 	name = "Energy weapons crate"
 	contains = list(/obj/item/weapon/gun/energy/laser = 3)
 	cost = 50
@@ -53,7 +53,7 @@
 	containername = "energy weapons crate"
 	access = access_armory
 
-/datum/supply_packs/weaponry/shotgun
+/datum/supply_packs/munitions/shotgun
 	name = "Shotgun crate"
 	contains = list(
 			/obj/item/weapon/storage/box/shotgunammo,
@@ -65,7 +65,7 @@
 	containername = "Shotgun crate"
 	access = access_armory
 
-/datum/supply_packs/weaponry/erifle
+/datum/supply_packs/munitions/erifle
 	name = "Energy marksman crate"
 	contains = list(/obj/item/weapon/gun/energy/sniperrifle = 2)
 	cost = 90
@@ -73,7 +73,7 @@
 	containername = "Energy marksman crate"
 	access = access_armory
 
-/datum/supply_packs/weaponry/ionweapons
+/datum/supply_packs/munitions/ionweapons
 	name = "Electromagnetic weapons crate"
 	contains = list(
 			/obj/item/weapon/gun/energy/ionrifle = 2,
@@ -84,7 +84,7 @@
 	containername = "electromagnetic weapons crate"
 	access = access_armory
 
-/datum/supply_packs/randomised/weaponry/automatic
+/datum/supply_packs/randomised/munitions/automatic
 	name = "Automatic weapon crate"
 	num_contained = 2
 	contains = list(
@@ -96,7 +96,7 @@
 	containername = "Automatic weapon crate"
 	access = access_armory
 
-/datum/supply_packs/weaponry/energy_guns
+/datum/supply_packs/munitions/energy_guns
 	name = "energy guns crate"
 	contains = list(/obj/item/weapon/gun/energy/gun = 2)
 	cost = 50
@@ -104,7 +104,7 @@
 	containername = "energy guns crate"
 	access = access_armory
 
-/datum/supply_packs/weaponry/bolt_rifles_competitive
+/datum/supply_packs/munitions/bolt_rifles_competitive
  	name = "Competitive shooting crate"
  	contains = list(
  			/obj/item/device/assembly/timer,
@@ -117,3 +117,35 @@
  	cost = 40
  	containertype = /obj/structure/closet/crate/secure/weapon
  	containername = "Weapons crate"
+
+/datum/supply_packs/munitions/shotgunammo
+	name = "Ballistic ammunition crate"
+	contains = list(
+			/obj/item/weapon/storage/box/shotgunammo = 2,
+			/obj/item/weapon/storage/box/shotgunshells = 2
+			)
+	cost = 60
+	containertype = /obj/structure/closet/crate/secure
+	containername = "ballistic ammunition crate"
+	access = access_armory
+
+/datum/supply_packs/randomised/munitions/autoammo
+	name = "Automatic weapon ammunition crate"
+	num_contained = 6
+	contains = list(
+			/obj/item/ammo_magazine/mc9mmt,
+			/obj/item/ammo_magazine/mc9mmt/rubber,
+			/obj/item/ammo_magazine/a556
+			)
+	cost = 20
+	containertype = /obj/structure/closet/crate/secure
+	containername = "Automatic weapon ammunition crate"
+	access = access_armory
+
+/datum/supply_packs/munitions/beanbagammo
+	name = "Beanbag shells"
+	contains = list(/obj/item/weapon/storage/box/beanbags = 3)
+	cost = 30
+	containertype = /obj/structure/closet/crate
+	containername = "Beanbag shells"
+	access = null

@@ -3,7 +3,7 @@
 *	related to security tasks live
 */
 /datum/supply_packs/sci
-	group = "Security"
+	group = "Science"
 
 /datum/supply_packs/sci/coolanttank
 	name = "Coolant tank crate"

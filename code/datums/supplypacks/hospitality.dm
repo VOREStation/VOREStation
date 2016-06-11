@@ -2,6 +2,8 @@
 *	Here is where any supply packs related
 *		to being hospitable tasks live
 */
+
+
 /datum/supply_packs/hospitality
 	group = "Hospitality"
 
@@ -58,4 +60,3 @@
 	cost = 15
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Pizza crate"
-

@@ -2,23 +2,13 @@
 *	Here is where any supply packs
 *	related to weapons live.
 */
+
+
 /datum/supply_packs/costumes
 	group = "Costumes & Clothes"
 
 /datum/supply_packs/randomised/costumes
 	group = "Costumes & Clothes"
-
-/datum/supply_packs/costumes/lasertag
-	name = "Lasertag equipment"
-	contains = list(
-			/obj/item/weapon/gun/energy/lasertag/red,
-			/obj/item/clothing/suit/redtag,
-			/obj/item/weapon/gun/energy/lasertag/blue,
-			/obj/item/clothing/suit/bluetag
-			)
-	containertype = /obj/structure/closet
-	containername = "Lasertag Closet"
-	cost = 20
 
 /datum/supply_packs/costumes/wizard
 	name = "Wizard costume"
@@ -31,18 +21,6 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate
 	containername = "Wizard costume crate"
-
-/datum/supply_packs/costumes/foam_weapons
-	name = "Foam Weapon Crate"
-	contains = list(
-			/obj/item/weapon/material/sword/foam = 2,
-			/obj/item/weapon/material/twohanded/baseballbat/foam = 2,
-			/obj/item/weapon/material/twohanded/spear/foam = 2,
-			/obj/item/weapon/material/twohanded/fireaxe/foam = 2
-			)
-	cost = 80
-	containertype = /obj/structure/closet/crate
-	containername = "foam weapon crate"
 
 /datum/supply_packs/randomised/costumes/hats
 	num_contained = 4
@@ -130,3 +108,58 @@
 	cost = 30
 	containertype = /obj/structure/closet
 	containername = "Formalwear for the best occasions."
+
+datum/supply_packs/misc/witch
+	name = "Witch costume"
+	containername = "Witch costume"
+	containertype = /obj/structure/closet
+	cost = 20
+	contains = list(
+			/obj/item/clothing/suit/wizrobe/marisa/fake,
+			/obj/item/clothing/shoes/sandal,
+			/obj/item/clothing/head/wizard/marisa/fake,
+			/obj/item/weapon/staff/broom
+			)
+
+/datum/supply_packs/randomised/costumes/costume_hats
+	name = "Costume hats"
+	containername = "Actor hats crate"
+	containertype = /obj/structure/closet
+	cost = 10
+	num_contained = 3
+	contains = list(
+			/obj/item/clothing/head/redcoat,
+			/obj/item/clothing/head/mailman,
+			/obj/item/clothing/head/plaguedoctorhat,
+			/obj/item/clothing/head/pirate,
+			/obj/item/clothing/head/hasturhood,
+			/obj/item/clothing/head/powdered_wig,
+			/obj/item/clothing/head/hairflower,
+			/obj/item/clothing/head/hairflower/yellow,
+			/obj/item/clothing/head/hairflower/blue,
+			/obj/item/clothing/head/hairflower/pink,
+			/obj/item/clothing/mask/gas/owl_mask,
+			/obj/item/clothing/mask/gas/monkeymask,
+			/obj/item/clothing/head/helmet/gladiator,
+			/obj/item/clothing/head/ushanka
+			)
+
+/datum/supply_packs/randomised/costumes/dresses
+	name = "Womens formal dress locker"
+	containername = "Pretty dress locker"
+	containertype = /obj/structure/closet
+	cost = 15
+	num_contained = 3
+	contains = list(
+			/obj/item/clothing/under/wedding/bride_orange,
+			/obj/item/clothing/under/wedding/bride_purple,
+			/obj/item/clothing/under/wedding/bride_blue,
+			/obj/item/clothing/under/wedding/bride_red,
+			/obj/item/clothing/under/wedding/bride_white,
+			/obj/item/clothing/under/sundress,
+			/obj/item/clothing/under/dress/dress_green,
+			/obj/item/clothing/under/dress/dress_pink,
+			/obj/item/clothing/under/dress/dress_orange,
+			/obj/item/clothing/under/dress/dress_yellow,
+			/obj/item/clothing/under/dress/dress_saloon
+			)

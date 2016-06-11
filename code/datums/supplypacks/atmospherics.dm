@@ -2,6 +2,8 @@
 *	Here is where any supply packs related
 *	to being atmospherics tasks live.
 */
+
+
 /datum/supply_packs/atmos
 	group = "Atmospherics"
 
