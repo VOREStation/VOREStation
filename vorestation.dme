@@ -1465,6 +1465,8 @@
 #include "code\modules\mob\living\carbon\human\species\station\prometheans_vr.dm"
 #include "code\modules\mob\living\carbon\human\species\station\seromi.dm"
 #include "code\modules\mob\living\carbon\human\species\station\station.dm"
+#include "code\modules\mob\living\carbon\human\species\station\station_special_abilities_vr.dm"
+#include "code\modules\mob\living\carbon\human\species\station\station_special_vr.dm"
 #include "code\modules\mob\living\carbon\human\species\station\station_vr.dm"
 #include "code\modules\mob\living\carbon\metroid\death.dm"
 #include "code\modules\mob\living\carbon\metroid\emote.dm"
