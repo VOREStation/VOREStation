@@ -1,4 +1,4 @@
-/mob/living/carbon/human/verb/chimera_revive()
+/mob/living/carbon/human/verb/chimera_revive() //Scree's race ability.in exchange for: No cloning.
 	set name = "Chimera Regenerate"
 	set category = "Abilities"
 
@@ -21,37 +21,24 @@
 
 		C.nutrition -= C.nutrition/2 //Cut their nutrition in half.
 
+		var/old_nutrition = C.nutrition //Since the game is being annoying.
+
 		var/time = (500+1/((nutrition_used/200+1)/2500))
 
-		C.weakened = round(time/3) //Since it takes 1 tick to lose one weaken.
+		C.weakened = 10000 //Since it takes 1 tick to lose one weaken. Due to prior rounding errors, you'd sometimes unweaken before regenning. This fixes that.
 		regenerating = 1
-		spawn(30) //Spawn works in deciseconds.
+		spawn(time SECONDS)
 			C << "<span class='notice'>We have regenerated.</span>"
-			viewers(C) << "<span class='danger'> [C] stands up, all prior injuries gone." //OHGODITSACHANGELINGKILLIT!!
-			C.setOxyLoss(0)
-			C.setCloneLoss(0)
-			//C.setParalysis(0) //why
-			//C.setStunned(0)   //wont
-			//C.setWeakened(0)  //you work
-			C.radiation = 0
-			C.halloss = 0
-			C.canmove = 1
+			viewers(C) << "<span class='danger'><p><font size=4> [C] suddenly bursts into a gorey mess, a copy of theirself laying in the viscera and blood. What the fuck?!</font> </span>" //Bloody hell...
+			var/T = get_turf(src)
+			new /obj/effect/gibspawner/human/scree(T)
 			regenerating = 0
-			C.setToxLoss(0)
-			C.shock_stage = 0 //Pain
-			C.heal_overall_damage(C.getBruteLoss(), C.getFireLoss())
-			C.reagents.clear_reagents()
-			C.restore_all_organs() //Covers things like fractures and other things not covered by the above.
-			C.stat = CONSCIOUS
-			C.lying = 0
-			C.sdisabilities = 0
-			C.disabilities = 0
-			C.bodytemperature = T20C
-			C.blinded = 0
-			C.eye_blind = 0
-			C.restore_blood()
-			C.eye_blurry = 0
-			C.ear_deaf = 0
-			C.ear_damage = 0
+			C.revive() // I did have special snowflake code, but this is easier.
+			C.weakened = 2 //Not going to let you get up immediately. 2 ticks before you get up. Overrides the above 10000 weaken.
+			C.nutrition = old_nutrition
 			C.update_canmove()
 			return
+
+/obj/effect/gibspawner/human/scree
+	fleshcolor = "#14AD8B" //Scree blood.
+	bloodcolor = "#14AD8B"
