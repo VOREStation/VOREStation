@@ -35,8 +35,9 @@
 
 /datum/species/chimera/handle_environment_special(var/mob/living/carbon/human/H) //Actually handles hunger.
 
-	// If they're dead or unconcious they won't think about being all feral.
-	if(H.stat)
+	if(H.stat) // If they're dead or unconcious they won't think about being all feral.
+		return
+	if(H.absorbed == 1) //If they get nomphed and absorbed.
 		return
 
 	if(H.nutrition > 100 && H.species.has_fine_manipulation == 0) //If they went feral then ate something.
@@ -48,26 +49,26 @@
 		return
 
 	else if(H.nutrition < 300 && H.nutrition > 200)
-		if(prob(100))
-			if(prob(100)) //1 in 200 chance to give them a message.
+		if(prob(1))
+			if(prob(50)) //1 in 200 chance to give them a message.
 				H << "<span class='info'>You feel extremely hungry. It might be a good idea to find some some food...</span>"
 				return
 
 	else if(H.nutrition < 200 && H.nutrition > 100)
-		if(prob(100))
-			if(prob(100))// 1 in 200 chance to give them a message.
+		if(prob(1))
+			if(prob(50))// 1 in 200 chance to give them a message.
 				H << "<span class='warning'>You feel like you're going to starve and give into your hunger soon... It might would be for the best to find some [pick("food","prey")] to eat...</span>"
 				return
 
 	else if(H.nutrition < 100 && H.nutrition > 50)
-		if(prob(100))
-			if(prob(100)) //1 in 200 chance.
+		if(prob(1))
+			if(prob(50)) //1 in 200 chance.
 				H << "<span class='danger'> You feel a sharp jabbing pain in your abdomen. You feel as if you're beginning to become feral, with food being the only thing on your mind. </span>"
 				return
 
 	else if(H.nutrition <= 50)
-		if(prob(100))
-			if(prob(100))
+		if(prob(1))
+			if(prob(50))
 				H << "<span class='danger'><big>You suddenly feel a sharp stabbing pain in your stomach. You feel as if you've became completely feral, food the only thing on your mind.</big></span>"
 				H.emote("twitch")
 				H.species.has_fine_manipulation = 0 //Unable  to use objects.
@@ -76,14 +77,14 @@
 
 	for(var/mob/living/M in viewers(H))
 		if(M != H)
-			if(prob(100))
-				if(prob(100)) //1 in 200 chance to tell them that person looks like food. This is so irregular so it doesn't pop up 24/7 during ERP.
+			if(prob(1))
+				if(prob(50)) //1 in 200 chance to tell them that person looks like food. This is so irregular so it doesn't pop up 24/7 during ERP.
 					H << "<span class='danger'> You feel a stabbing pain in your gut, causing you to twitch in pain.. It would be extremely wise to find some type of food... In fact, [M] looks extremely appetizing...</span>"
 					H.emote("twitch")
 					return
 
 		else if(M == H && H.nutrition < 100) //Hungry and nobody is in view.
-			if(prob(100)) //Constantly nag them to go and find someone or something to eat.
+			if(prob(1)) //Constantly nag them to go and find someone or something to eat.
 				H << "<span class='danger'> You feel a sharp jab in your stomach from hunger, causing you to twitch in pain. You need to find something to eat immediately.</span>"
 				H.emote("twitch")
 				return
