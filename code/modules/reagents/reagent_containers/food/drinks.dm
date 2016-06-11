@@ -11,7 +11,13 @@
 	volume = 50
 
 /obj/item/weapon/reagent_containers/food/drinks/on_reagent_change()
-		return
+	if (reagents.reagent_list.len > 0)
+		var/datum/reagent/R = reagents.get_master_reagent()
+		if(R.price_tag)
+			price_tag = R.price_tag
+		else
+			price_tag = null
+	return
 
 /obj/item/weapon/reagent_containers/food/drinks/attack_self(mob/user as mob)
 	if(!is_open_container())
@@ -96,13 +102,16 @@
 	volume = 150
 	flags = CONDUCT | OPENCONTAINER
 
+/obj/item/weapon/reagent_containers/food/drinks/golden_cup/on_reagent_change()
+	..()
+
 ///////////////////////////////////////////////Drinks
 //Notes by Darem: Drinks are simply containers that start preloaded. Unlike condiments, the contents can be ingested directly
 //	rather then having to add it to something else first. They should only contain liquids. They have a default container size of 50.
 //	Formatting is the same as food.
 
 /obj/item/weapon/reagent_containers/food/drinks/milk
-	name = "Space Milk"
+	name = "milk carton"
 	desc = "It's milk. White and nutritious goodness!"
 	icon_state = "milk"
 	item_state = "carton"
@@ -113,7 +122,7 @@
 	reagents.add_reagent("milk", 50)
 
 /obj/item/weapon/reagent_containers/food/drinks/soymilk
-	name = "SoyMilk"
+	name = "soymilk carton"
 	desc = "It's soy milk. White and nutritious goodness!"
 	icon_state = "soymilk"
 	item_state = "carton"
@@ -123,7 +132,7 @@
 	reagents.add_reagent("soymilk", 50)
 
 /obj/item/weapon/reagent_containers/food/drinks/milk/smallcarton
-	name = "Small Carton of Milk"
+	name = "small chocolate milk carton"
 	volume = 30
 	icon_state = "mini-milk"
 /obj/item/weapon/reagent_containers/food/drinks/milk/smallcarton/New()
@@ -140,7 +149,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/drinks/coffee
-	name = "Robust Coffee"
+	name = "\improper Robust Coffee"
 	desc = "Careful, the beverage you're about to enjoy is extremely hot."
 	icon_state = "coffee"
 	center_of_mass = list("x"=15, "y"=10)
@@ -149,7 +158,7 @@
 	reagents.add_reagent("coffee", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/tea
-	name = "Duke Purple Tea"
+	name = "cup of Duke Purple Tea"
 	desc = "An insult to Duke Purple is an insult to the Space Queen! Any proper gentleman will fight you, if you sully this tea."
 	icon_state = "teacup"
 	item_state = "coffee"
@@ -160,7 +169,7 @@
 	reagents.add_reagent("tea", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/ice
-	name = "Ice Cup"
+	name = "cup of ice"
 	desc = "Careful, cold ice, do not chew."
 	icon_state = "coffee"
 	center_of_mass = list("x"=15, "y"=10)
@@ -169,7 +178,7 @@
 	reagents.add_reagent("ice", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/h_chocolate
-	name = "Dutch Hot Coco"
+	name = "cup of Dutch hot coco"
 	desc = "Made in Space South America."
 	icon_state = "hot_coco"
 	item_state = "coffee"
@@ -189,7 +198,7 @@
 	reagents.add_reagent("dry_ramen", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/sillycup
-	name = "Paper Cup"
+	name = "paper cup"
 	desc = "A paper water cup."
 	icon_state = "water_cup_e"
 	possible_transfer_amounts = null
@@ -199,6 +208,7 @@
 	..()
 
 /obj/item/weapon/reagent_containers/food/drinks/sillycup/on_reagent_change()
+	..()
 	if(reagents.total_volume)
 		icon_state = "water_cup"
 	else
@@ -211,12 +221,15 @@
 //	icon states.
 
 /obj/item/weapon/reagent_containers/food/drinks/shaker
-	name = "Shaker"
+	name = "shaker"
 	desc = "A metal shaker to mix drinks in."
 	icon_state = "shaker"
 	amount_per_transfer_from_this = 10
 	volume = 120
 	center_of_mass = list("x"=17, "y"=10)
+
+/obj/item/weapon/reagent_containers/food/drinks/shaker/on_reagent_change()
+	..()
 
 /obj/item/weapon/reagent_containers/food/drinks/teapot
 	name = "teapot"
@@ -227,12 +240,18 @@
 	volume = 120
 	center_of_mass = list("x"=17, "y"=7)
 
+/obj/item/weapon/reagent_containers/food/drinks/teapot/on_reagent_change()
+	..()
+
 /obj/item/weapon/reagent_containers/food/drinks/flask
-	name = "Captain's Flask"
+	name = "\improper Captain's flask"
 	desc = "A metal flask belonging to the captain"
 	icon_state = "flask"
 	volume = 60
 	center_of_mass = list("x"=17, "y"=7)
+
+/obj/item/weapon/reagent_containers/food/drinks/flask/on_reagent_change()
+	..()
 
 /obj/item/weapon/reagent_containers/food/drinks/flask/shiny
 	name = "shiny flask"
@@ -245,7 +264,7 @@
 	icon_state = "lithiumflask"
 
 /obj/item/weapon/reagent_containers/food/drinks/flask/detflask
-	name = "Detective's Flask"
+	name = "\improper Detective's flask"
 	desc = "A metal flask with a leather band and golden badge belonging to the detective."
 	icon_state = "detflask"
 	volume = 60
@@ -271,3 +290,7 @@
 	icon_state = "britcup"
 	volume = 30
 	center_of_mass = list("x"=15, "y"=13)
+
+/obj/item/weapon/reagent_containers/food/drinks/britcup/on_reagent_change()
+	..()
+

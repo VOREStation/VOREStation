@@ -656,7 +656,7 @@
 "mG" = (/obj/structure/table/standard,/obj/item/weapon/material/ashtray/glass,/obj/item/weapon/reagent_containers/food/drinks/coffee,/obj/machinery/light,/turf/simulated/floor/tiled/white,/area/outpost/research/dock)
 "mH" = (/obj/effect/floor_decal/corner/purple{dir = 6},/turf/simulated/floor/tiled/white,/area/outpost/research/dock)
 "mI" = (/obj/structure/table/standard,/obj/item/weapon/storage/box/donkpockets,/obj/machinery/atmospherics/unary/vent_scrubber/on,/obj/machinery/status_display{layer = 4; pixel_x = 0; pixel_y = 32},/turf/simulated/floor/wood,/area/outpost/research/dorms)
-"mJ" = (/obj/structure/table/glass,/obj/item/weapon/storage/box/cups,/obj/item/weapon/storage/box/drinkingglasses{pixel_x = 1; pixel_y = 4},/obj/machinery/light,/turf/simulated/floor/wood,/area/outpost/research/dorms)
+"mJ" = (/obj/structure/table/glass,/obj/item/weapon/storage/box/cups,/obj/item/weapon/storage/box/glasses/square{pixel_x = 1; pixel_y = 4},/obj/machinery/light,/turf/simulated/floor/wood,/area/outpost/research/dorms)
 "mK" = (/obj/structure/table/glass,/obj/item/device/camera_film{pixel_x = 2; pixel_y = 2},/obj/item/device/camera,/turf/simulated/floor/wood,/area/outpost/research/dorms)
 "mL" = (/obj/item/weapon/bedsheet/purple,/obj/structure/bed/padded,/obj/machinery/atmospherics/unary/vent_pump/on{dir = 1},/turf/simulated/floor/carpet/blue,/area/outpost/research/dorms)
 "mM" = (/obj/structure/table/standard,/obj/machinery/alarm{dir = 1; pixel_y = -25},/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/carpet/blue,/area/outpost/research/dorms)
