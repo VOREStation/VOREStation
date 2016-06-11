@@ -17,7 +17,7 @@
 		C.canmove = 0 //Make them unable to move. In case they somehow get up before the delay.
 		C << "You begin to regenerate. You will not be able to move during this time."
 
-		var/nutrition_used = C.nutrition
+		var/nutrition_used = C.nutrition/2
 
 		C.nutrition -= C.nutrition/2 //Cut their nutrition in half.
 
