@@ -23,7 +23,7 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate
 	containername = "Party equipment"
-	
+
 /datum/supply_packs/hospitality/barsupplies
 	name = "Bar supplies"
 	contains = list(
@@ -42,19 +42,7 @@
 	cost = 10
 	containertype = /obj/structure/closet/crate
 	containername = "crate of bar supplies"
-	
-/datum/supply_packs/hospitality/lasertag
-	name = "Lasertag equipment"
-	contains = list(
-			/obj/item/weapon/gun/energy/lasertag/red,
-			/obj/item/clothing/suit/redtag,
-			/obj/item/weapon/gun/energy/lasertag/blue,
-			/obj/item/clothing/suit/bluetag
-			)
-	containertype = /obj/structure/closet
-	containername = "Lasertag Closet"
-	cost = 20
-	
+
 /datum/supply_packs/randomised/hospitality/
 	group = "Hospitality"
 
@@ -70,3 +58,4 @@
 	cost = 15
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Pizza crate"
+
