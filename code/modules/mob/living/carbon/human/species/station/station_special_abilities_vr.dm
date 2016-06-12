@@ -40,6 +40,8 @@
 						C.brainloss = (braindamage+10) //Gives them half their prior brain damage plus ten more.
 						C.bruteloss = (10) //There is some moderate damage from completely recreating yourself. Not much, but some. Natural health regen should heal it over time.
 						C.update_canmove()
+						for(var/obj/item/W in C)
+							C.drop_from_inventory(W)
 						return
 					else
 						return //Something went wrong.
@@ -69,6 +71,8 @@
 					C.nutrition = old_nutrition
 					C.brainloss = (braindamage) //Gives them half their prior brain damage plus ten more.
 					C.update_canmove()
+					for(var/obj/item/W in C)
+						C.drop_from_inventory(W)
 					return
 				else if(C.stat == DEAD)
 					if(C.reagents.has_reagent("nutriment")) //Let's hope you have nutriment in you.... If not
@@ -91,6 +95,8 @@
 							C.brainloss = (braindamage+10) //Gives them half their prior brain damage plus ten more.
 							C.bruteloss = (10) //There is some moderate damage from completely recreating yourself. Not much, but some. Natural health regen should heal it over time.
 							C.update_canmove()
+							for(var/obj/item/W in C)
+								C.drop_from_inventory(W)
 							return
 					else //Dead until nutrition injected.
 						C << "You're dead and have no liquid nutriment to use for the regeneration process."

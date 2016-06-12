@@ -12,6 +12,7 @@
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/punch, /datum/unarmed_attack/bite)
 	num_alternate_languages = 2
 	secondary_langs = list("Sol Common")
+	//color_mult = 1 //It seemed to work fine in testing, but I've been informed it's unneeded.
 	tail = "tail" //Scree's tail. Can be disabled in the vore tab by choosing "hide species specific tail sprite"
 	icobase_tail = 1
 	egg_type = "Scree" //Scree egg.
