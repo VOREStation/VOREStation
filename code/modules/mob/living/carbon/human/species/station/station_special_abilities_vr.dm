@@ -63,7 +63,7 @@
 				C.revive() // I did have special snowflake code, but this is easier.
 				C.weakened = 2 //Not going to let you get up immediately. 2 ticks before you get up. Overrides the above 10000 weaken.
 				C.nutrition = old_nutrition
-				C.brainloss = (braindamage+10) //Gives them half their prior brain damage plus ten more.
+				C.brainloss = (braindamage) //Gives them half their prior brain damage plus ten more.
 				C.bruteloss = (20)
 				C.update_canmove()
 				return
