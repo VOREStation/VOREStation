@@ -9,8 +9,7 @@
 		"Flatland Zorren" 		= 'icons/mob/species/fennec/helmet_vr.dmi',
 		"Highlander Zorren" 	= 'icons/mob/species/fox/helmet_vr.dmi',
 		"Vulpkanin"				= 'icons/mob/species/vulpkanin/helmet.dmi',
-		"Promethean"			= 'icons/mob/species/skrell/helmet.dmi',
-		"Xenochimera"			= 'icons/mob/species/tajaran/helmet.dmi'
+		"Promethean"			= 'icons/mob/species/skrell/helmet.dmi'
 		)
 
 
@@ -26,6 +25,5 @@
 		"Flatland Zorren" 		= 'icons/mob/species/fennec/suit_vr.dmi',
 		"Highlander Zorren" 	= 'icons/mob/species/fox/suit_vr.dmi',
 		"Vulpkanin"				= 'icons/mob/species/vulpkanin/suit.dmi',
-		"Promethean"			= 'icons/mob/species/skrell/suit.dmi',
-		"Xenochimera"			= 'icons/mob/species/tajaran/suit.dmi'
+		"Promethean"			= 'icons/mob/species/skrell/suit.dmi'
 		)
