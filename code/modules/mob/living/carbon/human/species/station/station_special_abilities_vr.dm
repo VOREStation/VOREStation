@@ -1,5 +1,5 @@
-/mob/living/carbon/human/proc/chimera_revive() //Scree's race ability.in exchange for: No cloning.
-	set name = "Chimera Regenerate"
+/mob/living/carbon/human/proc/reconstitute_form() //Scree's race ability.in exchange for: No cloning.
+	set name = "Reconstitute Form"
 	set category = "Abilities"
 
 	if(world.time < last_special)
@@ -7,13 +7,13 @@
 
 	last_special = world.time + 50 //To prevent button spam.
 
-	var/confirm = alert(usr, "Are you sure you want to regenerate? This process can take up to thirty minutes, depending on how hungry you are, and you will be unable to move.", "Confirm Regeneration", "Yes", "No")
+	var/confirm = alert(usr, "Are you sure you want to completely reconstruct your form?? This process can take up to thirty minutes, depending on how hungry you are, and you will be unable to move.", "Confirm Regeneration", "Yes", "No")
 	if(confirm == "Yes")
 		var/mob/living/carbon/human/C = src
 		var/nutrition_used = C.nutrition/2
 
 		if(C.species.reviving == 1) //If they're already unable to
-			C << "You are already regenerating!"
+			C << "You are already reconstructing!"
 			return
 
 		if(C.stat == DEAD) //Uh oh, you died!
@@ -24,10 +24,10 @@
 				C.weakened = 10000 //Since it takes 1 tick to lose one weaken. Due to prior rounding errors, you'd sometimes unweaken before regenning. This fixes that.
 				C.species.reviving = 1
 				C.canmove = 0 //Make them unable to move. In case they somehow get up before the delay.
-				C << "You begin to regenerate. You will not be able to move during this time."
+				C << "You begin to reconstruct your form. You will not be able to move during this time."
 
 				spawn(time SECONDS)
-					C << "<span class='notice'>We have regenerated.</span>"
+					C << "<span class='notice'>We have reconstituted our form.</span>"
 					viewers(C) << "<span class='danger'><p><font size=4> [C] suddenly bursts into a gorey mess, a copy of theirself laying in the viscera and blood. What the fuck?!</font> </span>" //Bloody hell...
 					var/T = get_turf(src)
 					new /obj/effect/gibspawner/human/scree(T)
@@ -37,7 +37,7 @@
 					C.weakened = 2 //Not going to let you get up immediately. 2 ticks before you get up. Overrides the above 10000 weaken.
 					C.nutrition = old_nutrition
 					C.brainloss = (braindamage+10) //Gives them half their prior brain damage plus ten more.
-					C.bruteloss = (20)
+					C.bruteloss = (10) //There is some moderate damage from completely recreating yourself. Not much, but some. Natural health regen should heal it over time.
 					C.update_canmove()
 					return
 			else //Dead until nutrition injected.
@@ -51,10 +51,10 @@
 			C.weakened = 10000 //Since it takes 1 tick to lose one weaken. Due to prior rounding errors, you'd sometimes unweaken before regenning. This fixes that.
 			C.species.reviving	 = 1
 			C.canmove = 0 //Make them unable to move. In case they somehow get up before the delay.
-			C << "You begin to regenerate. You will not be able to move during this time."
+			C << "You begin to reconstruct your form. You will not be able to move during this time."
 
 			spawn(time SECONDS) //Not going to do another "if stat = dead" check because that'd make me have to do more lines than needed.
-				C << "<span class='notice'>We have regenerated.</span>"
+				C << "<span class='notice'>We have reconstituted our form.</span>"
 				viewers(C) << "<span class='danger'><p><font size=4> [C] suddenly bursts into a gorey mess, a copy of theirself laying in the viscera and blood. What the fuck?!</font> </span>" //Bloody hell...
 				var/T = get_turf(src)
 				new /obj/effect/gibspawner/human/scree(T)
@@ -64,7 +64,6 @@
 				C.weakened = 2 //Not going to let you get up immediately. 2 ticks before you get up. Overrides the above 10000 weaken.
 				C.nutrition = old_nutrition
 				C.brainloss = (braindamage) //Gives them half their prior brain damage plus ten more.
-				C.bruteloss = (20)
 				C.update_canmove()
 				return
 
