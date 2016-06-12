@@ -42,12 +42,9 @@
 // Parameters: None
 // Description: Adds a static overlay to the client's screen.
 /mob/living/voice/Login()
-	var/obj/screen/static_effect = new() //Since what the player sees is essentially a video feed, from a vast distance away, the view isn't going to be perfect.
-	static_effect.screen_loc = ui_entire_screen
-	static_effect.icon = 'icons/effects/static.dmi'
-	static_effect.icon_state = "1 light"
-	static_effect.mouse_opacity = 0 //So the static doesn't get in the way of clicking.
-	client.screen.Add(static_effect)
+	..()
+	client.screen |= global_hud.whitense
+	client.screen |= global_hud.darkMask
 
 // Proc: Destroy()
 // Parameters: None
