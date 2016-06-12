@@ -1,4 +1,4 @@
-/mob/living/carbon/human/verb/chimera_revive() //Scree's race ability.in exchange for: No cloning.
+/mob/living/carbon/human/proc/chimera_revive() //Scree's race ability.in exchange for: No cloning.
 	set name = "Chimera Regenerate"
 	set category = "Abilities"
 

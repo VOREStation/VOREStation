@@ -14,7 +14,7 @@
 	secondary_langs = list("Sol Common")
 	color_mult = 1
 	egg_type = "Scree" //Scree egg.
-	inherent_verbs = list(/mob/living/carbon/human/verb/chimera_revive)
+	inherent_verbs = list(/mob/living/carbon/human/proc/chimera_revive)
 
 	min_age = 17
 	max_age = 80
