@@ -630,7 +630,9 @@ default behaviour is:
 		resisting++
 		switch(G.state)
 			if(GRAB_PASSIVE)
-				qdel(G)
+				if(!incapacitated(INCAPACITATION_KNOCKDOWN))
+					visible_message("<span class='warning'>[src] has broken free of [G.assailant]'s grip!</span>")
+					qdel(G)
 			if(GRAB_AGGRESSIVE)
 				//Not standing up makes it much harder to break, so it is easier to cuff someone who is down without forcing them into unconsciousness.
 				//Otherwise, it's the same chance of breaking the grab as disarm.
