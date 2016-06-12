@@ -147,42 +147,6 @@
 		var/admin_stuff = "/([key])([admin_jump_link(mob, target.holder)])"
 		
 		target << "<span class='ooc'><span class='looc'>" + create_text_tag("looc", "LOOC:", target) + " <span class='prefix'>(R)</span><EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span></span></span>"
-/*
-	for(var/client/target in clients)
-		if(target.is_preference_enabled(/datum/client_preference/show_looc))
-			var/prefix = ""
-			var/admin_stuff = ""
-			var/send = 0
-
-			// Admins get extra data.
-			if(target in admins)
-				admin_stuff += "/([key])"
-				if(target != src)
-					admin_stuff += "([admin_jump_link(mob, target.holder)])"
-
-			// For AIs, needs work done to see if the eye is in range as we're going over clients not mobs.
-			if(isAI(target.mob))
-				var/mob/living/silicon/ai/A = target.mob
-				if(A.eyeobj in m_viewers)
-					send = 1
-					prefix = "(Eye) " // Prefer the (Eye) prefix if they are in range of core and eye.
-				else if (A in m_viewers)
-					send = 1
-					prefix = "(Core) "
-
-			// If you're in range, you get the LOOC.
-			else if(target.mob in m_viewers)
-				send = 1
-				
-			// If you weren't going to otherwise get it, but can see (R)LOOC.
-			if(!send && (target in admins) && target.is_preference_enabled(/datum/client_preference/holder/show_rlooc))
-				send = 1
-				prefix = "(R)"
-
-			// Deliver message directly to the client with stream operator, not another proc. LOOC is important.
-			if(send)
-				target << "<span class='ooc'><span class='looc'>" + create_text_tag("looc", "LOOC:", target) + " <span class='prefix'>[prefix]</span><EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span></span></span>"
-*/
 
 /mob/proc/get_looc_source()
 	return src
