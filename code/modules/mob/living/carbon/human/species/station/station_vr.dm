@@ -270,12 +270,18 @@
 
 /datum/species/unathi
 	egg_type = "Unathi"
+	spawn_flags = SPECIES_CAN_JOIN
 
 /datum/species/tajaran
 	egg_type = "Tajaran"
+	spawn_flags = SPECIES_CAN_JOIN
 
 /datum/species/skrell
 	egg_type = "Skrell"
+	spawn_flags = SPECIES_CAN_JOIN
+
+/datum/species/diona
+	spawn_flags = SPECIES_CAN_JOIN
 
 /datum/species/shapeshifter/promethean
 	egg_type = "Slime"
