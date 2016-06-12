@@ -26,7 +26,7 @@
 				C.canmove = 0 //Make them unable to move. In case they somehow get up before the delay.
 				C << "You begin to regenerate. You will not be able to move during this time."
 
-				spawn(30)
+				spawn(time SECONDS)
 					C << "<span class='notice'>We have regenerated.</span>"
 					viewers(C) << "<span class='danger'><p><font size=4> [C] suddenly bursts into a gorey mess, a copy of theirself laying in the viscera and blood. What the fuck?!</font> </span>" //Bloody hell...
 					var/T = get_turf(src)
@@ -53,7 +53,7 @@
 			C.canmove = 0 //Make them unable to move. In case they somehow get up before the delay.
 			C << "You begin to regenerate. You will not be able to move during this time."
 
-			spawn(30) //Not going to do another "if stat = dead" check because that'd make me have to do more lines than needed.
+			spawn(time SECONDS) //Not going to do another "if stat = dead" check because that'd make me have to do more lines than needed.
 				C << "<span class='notice'>We have regenerated.</span>"
 				viewers(C) << "<span class='danger'><p><font size=4> [C] suddenly bursts into a gorey mess, a copy of theirself laying in the viscera and blood. What the fuck?!</font> </span>" //Bloody hell...
 				var/T = get_turf(src)
