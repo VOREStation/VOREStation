@@ -7,12 +7,13 @@
 /datum/species/xenochimera //Scree's race.
 	name = "Xenochimera"
 	name_plural = "Xenochimeras"
-	icobase = 'icons/mob/human_races/r_tajaran.dmi' //Tajara basis, as it has working skin color.
-	deform = 'icons/mob/human_races/r_def_tajaran.dmi'
+	icobase = 'icons/mob/human_races/r_xenochimera.dmi'
+	deform = 'icons/mob/human_races/r_def_xenochimera.dmi'
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/punch, /datum/unarmed_attack/bite)
 	num_alternate_languages = 2
 	secondary_langs = list("Sol Common")
-	color_mult = 1
+	tail = "tail" //Scree's tail. Can be disabled in the vore tab by choosing "hide species specific tail sprite"
+	icobase_tail = 1
 	egg_type = "Scree" //Scree egg.
 	inherent_verbs = list(/mob/living/carbon/human/proc/reconstitute_form)
 
@@ -66,19 +67,22 @@
 
 	else if(H.nutrition <= 50 && H.species.has_fine_manipulation == 1) //Should've eaten sooner!
 		H << "<span class='danger'><big>You suddenly feel a sharp stabbing pain in your stomach. You feel as if you've became completely feral, food the only thing on your mind.</big></span>"
-		H.emote("twitch")
+		if(H.stat == CONSCIOUS)
+			H.emote("twitch")
 		H.species.has_fine_manipulation = 0 //Unable  to use objects.
 
 	for(var/mob/living/M in viewers(H))
 		if(M != H)
 			if(prob(0.5))//1 in 200 chance to tell them that person looks like food. This is so irregular so it doesn't pop up 24/7 during ERP.
 				H << "<span class='danger'> You feel a stabbing pain in your gut, causing you to twitch in pain.. It would be extremely wise to find some type of food... In fact, [M] looks extremely appetizing...</span>"
-				H.emote("twitch")
+				if(H.stat == CONSCIOUS)
+					H.emote("twitch")
 				return
 
 		else if(M == H && H.nutrition <= 50) //Hungry and nobody is in view.
 			if(prob(1)) //Constantly nag them to go and find someone or something to eat.
 				H << "<span class='danger'> You feel a sharp jab in your stomach from hunger, causing you to twitch in pain. You need to find something to eat immediately.</span>"
-				H.emote("twitch")
+				if(H.stat == CONSCIOUS)
+					H.emote("twitch")
 				return
 			return
