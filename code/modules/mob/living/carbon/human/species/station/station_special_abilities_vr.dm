@@ -41,7 +41,7 @@
 						C.update_canmove()
 						for(var/obj/item/W in C)
 							C.drop_from_inventory(W)
-						spawn(3600 seconds) //1 hour wait until you can revive.
+						spawn(3600 SECONDS) //1 hour wait until you can revive.
 							C.species.reviving = 0
 						return
 					else
@@ -74,7 +74,7 @@
 					C.update_canmove()
 					for(var/obj/item/W in C)
 						C.drop_from_inventory(W)
-					spawn(3600 seconds) //1 hour wait until you can revive again.
+					spawn(3600 SECONDS) //1 hour wait until you can revive again.
 						C.species.reviving = 0
 					C.in_stasis = 0
 					return
@@ -93,7 +93,7 @@
 						C.update_canmove()
 						for(var/obj/item/W in C)
 							C.drop_from_inventory(W)
-						spawn(3600 seconds) //1 hour wait until you can revive.
+						spawn(3600 SECONDS) //1 hour wait until you can revive.
 							C.species.reviving = 0
 						C.in_stasis = 0
 						return
