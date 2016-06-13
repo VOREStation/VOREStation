@@ -1257,7 +1257,7 @@ var/list/WALLITEMS = list(
 		arglist = list2params(arglist)
 	return "<a href='?src=\ref[D];[arglist]'>[content]</a>"
 
-/proc/get_random_colour(var/simple, var/lower, var/upper)
+/proc/get_random_colour(var/simple, var/lower=0, var/upper=255)
 	var/colour
 	if(simple)
 		colour = pick(list("FF0000","FF7F00","FFFF00","00FF00","0000FF","4B0082","8F00FF"))
