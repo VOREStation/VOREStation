@@ -4,6 +4,7 @@ Slime definitions, Life and New live here.
 /mob/living/simple_animal/xeno/slime //Adult values are found here
 	nameVar = "grey"		//When mutated, nameVar might change.
 	desc = "A shifting, mass of goo."
+	faction = "slime"
 	speak_emote = list("garbles", "chirps", "blurbles")
 	colored = 1
 	color = "#CACACA"
@@ -68,6 +69,7 @@ Slime definitions, Life and New live here.
 						"toxin" = list("toxic" = 0.5),
 						"carpotoxin" = list("toxic" = 1, "mut" = 1.5),
 						"phoron" = list("toxic" = 1.5, "mut" = 0.03),
+						"virusfood" = list("nutr" = 1.5, "mut" = 0.32),
 						"cyanide" = list("toxic" = 3.5),
 						"slimejelly" = list("nutr" = 0.5),
 						"amutationtoxin" = list("toxic" = 0.1, "heal" = 1.5, "mut" = 3),

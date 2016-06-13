@@ -17,6 +17,8 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_MAGNET = 2, TECH_BLUESPACE = 2, TECH_DATA = 2)
 	matter = list(DEFAULT_WALL_MATERIAL = 30,"glass" = 10)
 
+	var/video_range = 4
+
 	var/list/voice_mobs = list()
 	var/list/voice_requests = list()
 	var/list/voice_invites = list()
@@ -474,6 +476,24 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 
 	name = "[owner]'s [initial(name)]"
 
+
+// Proc: add_communicating()
+// Parameters: 1 (comm - the communicator to add to communicating)
+// Description: Used when this communicator gets a new communicator to relay say/me messages to
+/obj/item/device/communicator/proc/add_communicating(obj/item/device/communicator/comm)
+	if(!comm || !istype(comm)) return
+
+	communicating |= comm
+	listening_objects |= src
+	
+// Proc: del_communicating()
+// Parameters: 1 (comm - the communicator to remove from communicating)
+// Description: Used when this communicator is being asked to stop relaying say/me messages to another
+/obj/item/device/communicator/proc/del_communicating(obj/item/device/communicator/comm)
+	if(!comm || !istype(comm)) return
+
+	communicating.Remove(comm)
+
 // Proc: open_connection()
 // Parameters: 2 (user - the person who initiated the connecting being opened, candidate - the communicator or observer that will connect to the device)
 // Description: Typechecks the candidate, then calls the correct proc for further connecting.
@@ -507,8 +527,8 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 		comm.visible_message("<span class='notice'>\icon[src] Connection to [src] at [exonet.address] established.</span>")
 		sleep(20)
 
-	communicating |= comm
-	comm.communicating |= src
+	src.add_communicating(comm)
+	comm.add_communicating(src)
 
 // Proc: open_connection_to_ghost()
 // Parameters: 2 (user - the person who initiated this, candidate - the ghost that will be turned into a voice mob)
@@ -530,6 +550,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	new_voice.mind = candidate.mind			//Transfer the mind, if any.
 	new_voice.ckey = candidate.ckey			//Finally, bring the client over.
 	voice_mobs.Add(new_voice)
+	listening_objects |= src
 
 	var/obj/screen/blackness = new() 	//Makes a black screen, so the candidate can't see what's going on before actually 'connecting' to the communicator.
 	blackness.screen_loc = ui_entire_screen
@@ -586,9 +607,12 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 			continue
 		comm.visible_message("<span class='danger'>\icon[src] [reason].</span>")
 		visible_message("<span class='danger'>\icon[src] [reason].</span>")
-		comm.communicating.Remove(src)
-		communicating.Remove(comm)
+		src.del_communicating(comm)
+		comm.del_communicating(src)
 	update_icon()
+
+	if(voice_mobs.len == 0 && communicating.len == 0)
+		listening_objects.Remove(src)
 
 // Proc: request()
 // Parameters: 1 (candidate - the ghost or communicator wanting to call the device)
@@ -675,6 +699,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	voice_invites.Cut()
 	all_communicators -= src
 	processing_objects -= src
+	listening_objects.Remove(src)
 	if(exonet)
 		exonet.remove_address()
 		exonet = null
@@ -700,10 +725,18 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 /obj/item/device/communicator/see_emote(mob/living/M, text)
 	var/rendered = "\icon[src] <span class='message'>[text]</span>"
 	for(var/obj/item/device/communicator/comm in communicating)
-		for(var/mob/mob in viewers(get_turf(comm))) //We can't use visible_message(), or else we will get an infinite loop if two communicators hear each other.
-			mob.show_message(rendered)
-		for(var/mob/living/voice/V in comm.contents)
-			V.show_message(rendered)
+		var/turf/T = get_turf(comm)
+		if(!T) return
+		var/list/in_range = get_mobs_and_objs_in_view_fast(T,world.view,0) //Range of 3 since it's a tiny video display
+		var/list/mobs_to_relay = in_range["mobs"]
+		
+		for(var/mob/mob in mobs_to_relay) //We can't use visible_message(), or else we will get an infinite loop if two communicators hear each other.
+			var/dst = get_dist(get_turf(mob),get_turf(comm))
+			if(dst <= video_range)
+				mob.show_message(rendered)
+			else
+				mob << "You can barely see some movement on \the [src]'s display."
+
 	..()
 
 // Proc: hear_talk()
@@ -712,9 +745,12 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Description: Relays the speech to all linked communicators.
 /obj/item/device/communicator/hear_talk(mob/living/M, text, verb, datum/language/speaking)
 	for(var/obj/item/device/communicator/comm in communicating)
-		var/list/mobs_to_relay = list()
-		mobs_to_relay |= viewers(get_turf(comm))
-		mobs_to_relay |= comm.contents //Needed so ghost-callers can see speech.
+		
+		var/turf/T = get_turf(comm)
+		if(!T) return
+		var/list/in_range = get_mobs_and_objs_in_view_fast(T,world.view,0)
+		var/list/mobs_to_relay = in_range["mobs"]
+
 		for(var/mob/mob in mobs_to_relay)
 			//Can whoever is hearing us understand?
 			if(!mob.say_understands(M, speaking))
@@ -736,7 +772,12 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 /obj/item/device/communicator/show_message(msg, type, alt, alt_type)
 	var/rendered = "\icon[src] <span class='message'>[msg]</span>"
 	for(var/obj/item/device/communicator/comm in communicating)
-		for(var/mob/mob in hearers(get_turf(comm))) //Ditto for audible messages.
+		var/turf/T = get_turf(comm)
+		if(!T) return
+		var/list/in_range = get_mobs_and_objs_in_view_fast(T,world.view,0)
+		var/list/mobs_to_relay = in_range["mobs"]
+
+		for(var/mob/mob in mobs_to_relay)
 			mob.show_message(rendered)
 	..()
 

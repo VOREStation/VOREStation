@@ -106,7 +106,13 @@
 	log_ooc("(LOCAL) [mob.name]/[key] : [msg]")
 
 	var/mob/source = mob.get_looc_source()
-	var/list/heard = get_mobs_or_objects_in_view(7, get_turf(source), 1, 0)
+	var/turf/T = get_turf(source)
+	if(!T) return
+	var/list/in_range = get_mobs_and_objs_in_view_fast(T,world.view,0)
+	var/list/m_viewers = in_range["mobs"]
+
+	var/list/receivers = list() // Clients, not mobs.
+	var/list/r_receivers = list()
 
 	var/display_name = key
 	if(holder && holder.fakekey)
@@ -114,34 +120,33 @@
 	if(mob.stat != DEAD)
 		display_name = mob.name
 
-	for(var/client/target in clients)
-		if(target.is_preference_enabled(/datum/client_preference/show_looc))
-			var/prefix = ""
-			var/admin_stuff = ""
-			var/send = 0
+	// Everyone in normal viewing range of the LOOC
+	for(var/mob/viewer in m_viewers)
+		if(viewer.client && viewer.client.is_preference_enabled(/datum/client_preference/show_looc))
+			receivers |= viewer.client
+		else if(istype(viewer,/mob/observer/eye)) // For AI eyes and the like
+			var/mob/observer/eye/E = viewer
+			if(E.owner && E.owner.client)
+				receivers |= E.owner.client
 
-			if(target in admins)
-				admin_stuff += "/([key])"
-				if(target != src)
-					admin_stuff += "([admin_jump_link(mob, target.holder)])"
+	// Admins with RLOOC displayed who weren't already in
+	for(var/client/admin in admins)
+		if(!(admin in receivers) && admin.is_preference_enabled(/datum/client_preference/holder/show_rlooc))
+			r_receivers |= admin
 
-			if(target.mob in heard)
-				send = 1
-				if(isAI(target.mob))
-					prefix = "(Core) "
+	// Send a message
+	for(var/client/target in receivers)
+		var/admin_stuff = ""
+		
+		if(target in admins)
+			admin_stuff += "/([key])"
 
-			else if(isAI(target.mob)) // Special case
-				var/mob/living/silicon/ai/A = target.mob
-				if(A.eyeobj in hearers(7, source))
-					send = 1
-					prefix = "(Eye) "
+		target << "<span class='ooc'><span class='looc'>" + create_text_tag("looc", "LOOC:", target) + " <EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span></span></span>"
 
-			if(!send && (target in admins) && target.is_preference_enabled(/datum/client_preference/holder/show_rlooc))
-				send = 1
-				prefix = "(R)"
-
-			if(send)
-				target << "<span class='ooc'><span class='looc'>" + create_text_tag("looc", "LOOC:", target) + " <span class='prefix'>[prefix]</span><EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span></span></span>"
+	for(var/client/target in r_receivers)
+		var/admin_stuff = "/([key])([admin_jump_link(mob, target.holder)])"
+		
+		target << "<span class='ooc'><span class='looc'>" + create_text_tag("looc", "LOOC:", target) + " <span class='prefix'>(R)</span><EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span></span></span>"
 
 /mob/proc/get_looc_source()
 	return src
