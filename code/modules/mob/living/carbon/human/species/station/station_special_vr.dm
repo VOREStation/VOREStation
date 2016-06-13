@@ -16,7 +16,7 @@
 	tail = "tail" //Scree's tail. Can be disabled in the vore tab by choosing "hide species specific tail sprite"
 	icobase_tail = 1
 	egg_type = "Scree" //Scree egg.
-	inherent_verbs = list(/mob/living/carbon/human/proc/reconstitute_form)
+	inherent_verbs = list(/mob/living/carbon/human/proc/begin_reconstitute_form)
 
 	min_age = 17
 	max_age = 80
