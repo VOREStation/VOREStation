@@ -42,12 +42,9 @@
 // Parameters: None
 // Description: Adds a static overlay to the client's screen.
 /mob/living/voice/Login()
-	var/obj/screen/static_effect = new() //Since what the player sees is essentially a video feed, from a vast distance away, the view isn't going to be perfect.
-	static_effect.screen_loc = ui_entire_screen
-	static_effect.icon = 'icons/effects/static.dmi'
-	static_effect.icon_state = "1 light"
-	static_effect.mouse_opacity = 0 //So the static doesn't get in the way of clicking.
-	client.screen.Add(static_effect)
+	..()
+	client.screen |= global_hud.whitense
+	client.screen |= global_hud.darkMask
 
 // Proc: Destroy()
 // Parameters: None
@@ -110,7 +107,7 @@
 // Proc: say()
 // Parameters: 4 (generic say() arguments)
 // Description: Adds a speech bubble to the communicator device, then calls ..() to do the real work.
-/mob/living/voice/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="")
+/mob/living/voice/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="", var/whispering=0)
 	//Speech bubbles.
 	if(comm)
 		var/speech_bubble_test = say_test(message)
@@ -122,4 +119,8 @@
 			M << speech_bubble
 		src << speech_bubble
 
-	..(message, speaking, verb, alt_name) //mob/living/say() can do the actual talking.
+	..(message, speaking, verb, alt_name, whispering) //mob/living/say() can do the actual talking.
+
+/mob/living/voice/custom_emote(var/m_type=1,var/message = null,var/range=world.view)
+	if(!comm) return
+	..(m_type,message,comm.video_range)

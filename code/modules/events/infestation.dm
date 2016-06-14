@@ -6,7 +6,7 @@
 #define LOC_VAULT 5
 #define LOC_CONSTR 6
 #define LOC_TECH 7
-#define LOC_TACTICAL 8
+#define LOC_GARDEN 8
 
 #define VERM_MICE 0
 #define VERM_LIZARDS 1
@@ -50,9 +50,9 @@
 		if(LOC_TECH)
 			spawn_area_type = /area/storage/tech
 			locstring = "technical storage"
-		if(LOC_TACTICAL)
-			spawn_area_type = /area/security/tactical
-			locstring = "tactical equipment storage"
+		if(LOC_GARDEN)
+			spawn_area_type = /area/hydroponics/garden
+			locstring = "the public garden"
 
 	for(var/areapath in typesof(spawn_area_type))
 		var/area/A = locate(areapath)
@@ -102,7 +102,7 @@
 #undef LOC_HYDRO
 #undef LOC_VAULT
 #undef LOC_TECH
-#undef LOC_TACTICAL
+#undef LOC_GARDEN
 
 #undef VERM_MICE
 #undef VERM_LIZARDS

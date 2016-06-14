@@ -73,12 +73,14 @@
 	icon_state = "restruct_1"
 	spawn(30)
 		var/mob/living/simple_animal/xeno/slime/S = new(src)
-		S.traitdat = core.traits
+		S.traitdat = new()	//New instance, so that if the core is deleted, the slime retains a trait datum.
 		S.nameVar = core.nameVar
 		S.name = "[S.nameVar] baby slime"
+		core.traits.copy_traits(S.traitdat)
 		S.ProcessTraits()
-		qdel(core)
 		spawn(30)
+			qdel(core)
+			core = null	//If qdel's being a bit slow or acting up, let's just make sure we can't clone the core.
 			inuse = 0
 			eject_slime()
 			icon_state = "restruct_0"

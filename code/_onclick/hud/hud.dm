@@ -6,12 +6,14 @@ var/datum/global_hud/global_hud = new()
 var/list/global_huds = list(
 		global_hud.druggy,
 		global_hud.blurry,
+		global_hud.whitense,
 		global_hud.vimpaired,
 		global_hud.darkMask,
 		global_hud.nvg,
 		global_hud.thermal,
 		global_hud.meson,
-		global_hud.science)
+		global_hud.science
+		)
 
 /datum/hud/var/obj/screen/grab_intent
 /datum/hud/var/obj/screen/hurt_intent
@@ -21,6 +23,7 @@ var/list/global_huds = list(
 /datum/global_hud
 	var/obj/screen/druggy
 	var/obj/screen/blurry
+	var/obj/screen/whitense
 	var/list/vimpaired
 	var/list/darkMask
 	var/obj/screen/nvg
@@ -52,6 +55,14 @@ var/list/global_huds = list(
 	blurry.icon_state = "blurry"
 	blurry.layer = 17
 	blurry.mouse_opacity = 0
+
+	//static overlay effect for cameras and the like
+	whitense = new /obj/screen()
+	whitense.screen_loc = ui_entire_screen
+	whitense.icon = 'icons/effects/static.dmi'
+	whitense.icon_state = "1 light"
+	whitense.layer = 17
+	whitense.mouse_opacity = 0
 
 	nvg = setup_overlay("nvg_hud")
 	thermal = setup_overlay("thermal_hud")
