@@ -124,6 +124,13 @@
 	magazine_type = /obj/item/ammo_magazine/a50
 	allowed_magazines = list(/obj/item/ammo_magazine/a50)
 
+/obj/item/weapon/gun/projectile/deagle/update_icon()
+	..()
+	if(ammo_magazine)
+		icon_state = "[initial(icon_state)]"
+	else
+		icon_state = "[initial(icon_state)]-e"
+
 /obj/item/weapon/gun/projectile/deagle/gold
 	desc = "A gold plated gun folded over a million times by superior martian gunsmiths. Uses .50 AE rounds."
 	icon_state = "deagleg"
