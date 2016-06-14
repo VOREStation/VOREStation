@@ -508,7 +508,12 @@
 /mob/new_player/is_ready()
 	return ready && ..()
 
+// Prevents lobby players from seeing say, even with ghostears
 /mob/new_player/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "",var/italics = 0, var/mob/speaker = null)
+	return
+
+// Prevents lobby players from seeing emotes, even with ghosteyes
+/mob/new_player/show_message(msg, type, alt, alt_type)
 	return
 
 /mob/new_player/hear_radio()
