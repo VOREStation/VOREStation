@@ -46,12 +46,12 @@
 			spawn(time SECONDS)
 				if(C.stat != DEAD) //If they're still alive after regenning.
 					C << "<span class='notice'>We have reconstituted our form and are ready to hatch..</span>"
-					verbs += /mob/living/carbon/human/proc/hatch
+					C.verbs += /mob/living/carbon/human/proc/hatch
 					return
 				else if(C.stat == DEAD)
 					if(C.reagents.has_reagent("nutriment")) //Let's hope you have nutriment in you.... If not
 						C << "<span class='notice'>We have reconstituted our form and are ready to hatch..</span>"
-						verbs += /mob/living/carbon/human/proc/hatch
+						C.verbs += /mob/living/carbon/human/proc/hatch
 					else //Dead until nutrition injected.
 						C << "You're dead and have no liquid nutriment to use for the regeneration process."
 						return
@@ -119,7 +119,7 @@
 			spawn(3600 SECONDS) //1 hour wait until you can revive again.
 				C.species.reviving = 0
 			C.in_stasis = 0
-			verbs -= /mob/living/carbon/human/proc/hatch
+			C.verbs -= /mob/living/carbon/human/proc/hatch
 			return
 		else
 			return //Runtime prevention.
