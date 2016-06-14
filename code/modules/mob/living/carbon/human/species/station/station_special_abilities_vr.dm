@@ -27,7 +27,7 @@
 				spawn(time SECONDS)
 					if(C) //Runtime prevention.
 						C << "<span class='notice'>We have reconstituted our form and are ready to hatch..</span>"
-						verbs += /mob/living/carbon/human/proc/hatch
+						C.verbs += /mob/living/carbon/human/proc/hatch
 						return
 					else
 						return //Something went wrong.
@@ -94,7 +94,7 @@
 						C.drop_from_inventory(W)
 					spawn(3600 SECONDS) //1 hour wait until you can revive.
 						C.species.reviving = 0
-						verbs -= /mob/living/carbon/human/proc/hatch
+						C.verbs -= /mob/living/carbon/human/proc/hatch
 					return
 				else
 					return //Ruuntime prevention
