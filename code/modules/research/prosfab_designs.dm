@@ -49,7 +49,7 @@
 //////////////////// Prosthetics ////////////////////
 /datum/design/item/prosfab/pros/torso
 	time = 35
-	materials = list(DEFAULT_WALL_MATERIAL = 60000, "glass" = 10000, "plasteel" = 2000)
+	materials = list(DEFAULT_WALL_MATERIAL = 45000, "glass" = 7500, "plasteel" = 1500)
 //	req_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 3, TECH_DATA = 3)	//Saving the values just in case
 	var/gender = MALE
 
@@ -72,7 +72,7 @@
 	id = "pros_head"
 	build_path = /obj/item/organ/external/head
 	time = 30
-	materials = list(DEFAULT_WALL_MATERIAL = 25000, "glass" = 5000, "plasteel" = 1000)
+	materials = list(DEFAULT_WALL_MATERIAL = 18750, "glass" = 3750, "plasteel" = 750)
 //	req_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 3, TECH_DATA = 3)	//Saving the values just in case
 
 /datum/design/item/prosfab/pros/l_arm
@@ -80,63 +80,63 @@
 	id = "pros_l_arm"
 	build_path = /obj/item/organ/external/arm
 	time = 20
-	materials = list(DEFAULT_WALL_MATERIAL = 18000)
+	materials = list(DEFAULT_WALL_MATERIAL = 13500)
 
 /datum/design/item/prosfab/pros/l_hand
 	name = "Prosthetic left hand"
 	id = "pros_l_hand"
 	build_path = /obj/item/organ/external/hand
 	time = 15
-	materials = list(DEFAULT_WALL_MATERIAL = 10000)
+	materials = list(DEFAULT_WALL_MATERIAL = 7500)
 
 /datum/design/item/prosfab/pros/l_leg
 	name = "Prosthetic left leg"
 	id = "pros_l_leg"
 	build_path = /obj/item/organ/external/leg
 	time = 20
-	materials = list(DEFAULT_WALL_MATERIAL = 15000)
+	materials = list(DEFAULT_WALL_MATERIAL = 11250)
 
 /datum/design/item/prosfab/pros/l_foot
 	name = "Prosthetic left foot"
 	id = "pros_l_foot"
 	build_path = /obj/item/organ/external/foot
 	time = 15
-	materials = list(DEFAULT_WALL_MATERIAL = 10000)
+	materials = list(DEFAULT_WALL_MATERIAL = 7500)
 
 /datum/design/item/prosfab/pros/r_arm
 	name = "Prosthetic right arm"
 	id = "pros_r_arm"
 	build_path = /obj/item/organ/external/arm/right
 	time = 20
-	materials = list(DEFAULT_WALL_MATERIAL = 18000)
+	materials = list(DEFAULT_WALL_MATERIAL = 13500)
 
 /datum/design/item/prosfab/pros/r_hand
 	name = "Prosthetic right hand"
 	id = "pros_r_hand"
 	build_path = /obj/item/organ/external/hand/right
 	time = 15
-	materials = list(DEFAULT_WALL_MATERIAL = 10000)
+	materials = list(DEFAULT_WALL_MATERIAL = 7500)
 
 /datum/design/item/prosfab/pros/r_leg
 	name = "Prosthetic right leg"
 	id = "pros_r_leg"
 	build_path = /obj/item/organ/external/leg/right
 	time = 20
-	materials = list(DEFAULT_WALL_MATERIAL = 15000)
+	materials = list(DEFAULT_WALL_MATERIAL = 11250)
 
 /datum/design/item/prosfab/pros/r_foot
 	name = "Prosthetic right foot"
 	id = "pros_r_foot"
 	build_path = /obj/item/organ/external/foot/right
 	time = 15
-	materials = list(DEFAULT_WALL_MATERIAL = 10000)
+	materials = list(DEFAULT_WALL_MATERIAL = 7500)
 
 /datum/design/item/prosfab/pros/cell
 	name = "Prosthetic powercell"
 	id = "pros_cell"
 	build_path = /obj/item/organ/internal/cell
 	time = 15
-	materials = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 4000, "plasteel" = 2000)
+	materials = list(DEFAULT_WALL_MATERIAL = 7500, "glass" = 3000, "plasteel" = 1500)
 //	req_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 2)
 
 /datum/design/item/prosfab/pros/eyes
@@ -144,63 +144,63 @@
 	id = "pros_eyes"
 	build_path = /obj/item/organ/internal/eyes/robot
 	time = 15
-	materials = list(DEFAULT_WALL_MATERIAL = 7500, "glass" = 7500)
+	materials = list(DEFAULT_WALL_MATERIAL = 5625, "glass" = 5625)
 //	req_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 2)
 
 //////////////////// Cyborg Parts ////////////////////
 /datum/design/item/prosfab/cyborg
 	category = "Cyborg Parts"
 	time = 20
-	materials = list(DEFAULT_WALL_MATERIAL = 5000)
+	materials = list(DEFAULT_WALL_MATERIAL = 3750)
 
 /datum/design/item/prosfab/cyborg/exoskeleton
 	name = "Robot exoskeleton"
 	id = "robot_exoskeleton"
 	build_path = /obj/item/robot_parts/robot_suit
 	time = 50
-	materials = list(DEFAULT_WALL_MATERIAL = 50000)
+	materials = list(DEFAULT_WALL_MATERIAL = 37500)
 
 /datum/design/item/prosfab/cyborg/torso
 	name = "Robot torso"
 	id = "robot_torso"
 	build_path = /obj/item/robot_parts/chest
 	time = 35
-	materials = list(DEFAULT_WALL_MATERIAL = 40000)
+	materials = list(DEFAULT_WALL_MATERIAL = 30000)
 
 /datum/design/item/prosfab/cyborg/head
 	name = "Robot head"
 	id = "robot_head"
 	build_path = /obj/item/robot_parts/head
 	time = 35
-	materials = list(DEFAULT_WALL_MATERIAL = 25000)
+	materials = list(DEFAULT_WALL_MATERIAL = 18750)
 
 /datum/design/item/prosfab/cyborg/l_arm
 	name = "Robot left arm"
 	id = "robot_l_arm"
 	build_path = /obj/item/robot_parts/l_arm
 	time = 20
-	materials = list(DEFAULT_WALL_MATERIAL = 18000)
+	materials = list(DEFAULT_WALL_MATERIAL = 13500)
 
 /datum/design/item/prosfab/cyborg/r_arm
 	name = "Robot right arm"
 	id = "robot_r_arm"
 	build_path = /obj/item/robot_parts/r_arm
 	time = 20
-	materials = list(DEFAULT_WALL_MATERIAL = 18000)
+	materials = list(DEFAULT_WALL_MATERIAL = 13500)
 
 /datum/design/item/prosfab/cyborg/l_leg
 	name = "Robot left leg"
 	id = "robot_l_leg"
 	build_path = /obj/item/robot_parts/l_leg
 	time = 20
-	materials = list(DEFAULT_WALL_MATERIAL = 15000)
+	materials = list(DEFAULT_WALL_MATERIAL = 11250)
 
 /datum/design/item/prosfab/cyborg/r_leg
 	name = "Robot right leg"
 	id = "robot_r_leg"
 	build_path = /obj/item/robot_parts/r_leg
 	time = 20
-	materials = list(DEFAULT_WALL_MATERIAL = 15000)
+	materials = list(DEFAULT_WALL_MATERIAL = 11250)
 
 
 //////////////////// Cyborg Internals ////////////////////
@@ -208,7 +208,7 @@
 	category = "Cyborg Internals"
 	build_type = PROSFAB
 	time = 12
-	materials = list(DEFAULT_WALL_MATERIAL = 10000)
+	materials = list(DEFAULT_WALL_MATERIAL = 7500)
 
 /datum/design/item/prosfab/cyborg/component/binary_communication_device
 	name = "Binary communication device"
@@ -246,7 +246,7 @@
 	category = "Cyborg Modules"
 	build_type = PROSFAB
 	time = 12
-	materials = list(DEFAULT_WALL_MATERIAL = 10000)
+	materials = list(DEFAULT_WALL_MATERIAL = 7500)
 
 /datum/design/item/prosfab/robot_upgrade/rename
 	name = "Rename module"
@@ -264,28 +264,28 @@
 	name = "Emergency restart module"
 	desc = "Used to force a restart of a disabled-but-repaired robot, bringing it back online."
 	id = "borg_restart_module"
-	materials = list(DEFAULT_WALL_MATERIAL = 60000, "glass" = 5000)
+	materials = list(DEFAULT_WALL_MATERIAL = 45000, "glass" = 3750)
 	build_path = /obj/item/borg/upgrade/restart
 
 /datum/design/item/prosfab/robot_upgrade/vtec
 	name = "VTEC module"
 	desc = "Used to kick in a robot's VTEC systems, increasing their speed."
 	id = "borg_vtec_module"
-	materials = list(DEFAULT_WALL_MATERIAL = 80000, "glass" = 6000, "gold" = 5000)
+	materials = list(DEFAULT_WALL_MATERIAL = 60000, "glass" = 4500, "gold" = 3750)
 	build_path = /obj/item/borg/upgrade/vtec
 
 /datum/design/item/prosfab/robot_upgrade/tasercooler
 	name = "Rapid taser cooling module"
 	desc = "Used to cool a mounted taser, increasing the potential current in it and thus its recharge rate."
 	id = "borg_taser_module"
-	materials = list(DEFAULT_WALL_MATERIAL = 80000, "glass" = 6000, "gold" = 2000, "diamond" = 500)
+	materials = list(DEFAULT_WALL_MATERIAL = 60000, "glass" = 4500, "gold" = 1500, "diamond" = 375)
 	build_path = /obj/item/borg/upgrade/tasercooler
 
 /datum/design/item/prosfab/robot_upgrade/jetpack
 	name = "Jetpack module"
 	desc = "A carbon dioxide jetpack suitable for low-gravity mining operations."
 	id = "borg_jetpack_module"
-	materials = list(DEFAULT_WALL_MATERIAL = 10000, "phoron" = 15000, "uranium" = 20000)
+	materials = list(DEFAULT_WALL_MATERIAL = 7500, "phoron" = 11250, "uranium" = 15000)
 	build_path = /obj/item/borg/upgrade/jetpack
 
 /datum/design/item/prosfab/robot_upgrade/syndicate
@@ -293,5 +293,5 @@
 	desc = "Allows for the construction of lethal upgrades for cyborgs."
 	id = "borg_syndicate_module"
 	req_tech = list(TECH_COMBAT = 4, TECH_ILLEGAL = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 15000, "diamond" = 10000)
+	materials = list(DEFAULT_WALL_MATERIAL = 7500, "glass" = 11250, "diamond" = 7500)
 	build_path = /obj/item/borg/upgrade/syndicate

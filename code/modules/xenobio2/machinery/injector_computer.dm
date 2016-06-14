@@ -99,7 +99,7 @@
 			injector.inject_reagents()
 			active = 0
 	if(href_list["eject_occupant"])
-		injector.eject_contents()
+		injector.eject_xeno()
 
 	if(href_list["eject_beaker"])
 		injector.eject_beaker()
