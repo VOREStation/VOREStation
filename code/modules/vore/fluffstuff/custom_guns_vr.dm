@@ -201,10 +201,9 @@
 		toggle_scope(2.0)
 
 // For general use
-/obj/item/weapon/gun/projectile/automatic/pdw
+/obj/item/weapon/gun/projectile/automatic/pdw // Vorestation SMG because the WT550 is ugly and bad.
 	name = "personal defense weapon"
-	desc = "The X-9MM is a compact personal defense weapon designed in-house by Xing Private Security. It was made to compete with the WT550 Saber, but never caught on in popularity outside of the Virgo-Erigone system. Most autolathes don't even have the schematics for the large magazine it was built for. Uses 9mm rounds."
-	icon = 'icons/obj/gun_vr.dmi'
+	desc = "The X-9MM is a select-fire personal defense weapon designed in-house by Xing Private Security. It was made to compete with the WT550 Saber, but hasn't yet caught on in popularity outside of the Virgo-Erigone system. Uses 9mm rounds."	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "pdw"
 	item_state = "c20r" // Placeholder
 	w_class = 3
