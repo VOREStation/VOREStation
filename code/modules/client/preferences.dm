@@ -251,118 +251,15 @@ datum/preferences
 /datum/preferences/proc/copy_to(mob/living/carbon/human/character, icon_updates = 1)
 	// Sanitizing rather than saving as someone might still be editing when copy_to occurs.
 	player_setup.sanitize_setup()
+
+	// This needs to happen before anything else becuase it sets some variables.
 	character.set_species(species)
+	// Special Case: This references variables owned by two different datums, so do it here.
 	if(be_random_name)
 		real_name = random_name(identifying_gender,species)
 
-	if(config.humans_need_surnames)
-		var/firstspace = findtext(real_name, " ")
-		var/name_length = length(real_name)
-		if(!firstspace)	//we need a surname
-			real_name += " [pick(last_names)]"
-		else if(firstspace == name_length)
-			real_name += "[pick(last_names)]"
-
-	character.real_name = real_name
-	character.name = character.real_name
-	if(character.dna)
-		character.dna.real_name = character.real_name
-
-	character.flavor_texts["general"] = flavor_texts["general"]
-	character.flavor_texts["head"] = flavor_texts["head"]
-	character.flavor_texts["face"] = flavor_texts["face"]
-	character.flavor_texts["eyes"] = flavor_texts["eyes"]
-	character.flavor_texts["torso"] = flavor_texts["torso"]
-	character.flavor_texts["arms"] = flavor_texts["arms"]
-	character.flavor_texts["hands"] = flavor_texts["hands"]
-	character.flavor_texts["legs"] = flavor_texts["legs"]
-	character.flavor_texts["feet"] = flavor_texts["feet"]
-
-	character.med_record = med_record
-	character.sec_record = sec_record
-	character.gen_record = gen_record
-	character.exploit_record = exploit_record
-
-	character.gender = biological_gender
-	character.identifying_gender = identifying_gender
-	character.age = age
-	character.b_type = b_type
-
-	character.r_eyes = r_eyes
-	character.g_eyes = g_eyes
-	character.b_eyes = b_eyes
-
-	character.h_style = h_style
-	character.r_hair = r_hair
-	character.g_hair = g_hair
-	character.b_hair = b_hair
-
-	character.f_style = f_style
-	character.r_facial = r_facial
-	character.g_facial = g_facial
-	character.b_facial = b_facial
-
-	character.r_skin = r_skin
-	character.g_skin = g_skin
-	character.b_skin = b_skin
-
-	character.s_tone = s_tone
-
-	character.h_style = h_style
-	character.f_style = f_style
-
-	character.home_system = home_system
-	character.citizenship = citizenship
-	character.personal_faction = faction
-	character.religion = religion
-
-	character.skills = skills
-	character.used_skillpoints = used_skillpoints
-
-	// Destroy/cyborgize organs and limbs.
-	for(var/name in list(BP_HEAD, BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM, BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_TORSO))
-		var/status = organ_data[name]
-		var/obj/item/organ/external/O = character.organs_by_name[name]
-		if(O)
-			if(status == "amputated")
-				O.remove_rejuv()
-			else if(status == "cyborg")
-				if(rlimb_data[name])
-					O.robotize(rlimb_data[name])
-				else
-					O.robotize()
-
-	for(var/name in list(O_HEART,O_EYES,O_BRAIN))
-		var/status = organ_data[name]
-		if(!status)
-			continue
-		var/obj/item/organ/I = character.internal_organs_by_name[name]
-		if(I)
-			if(status == "assisted")
-				I.mechassist()
-			else if(status == "mechanical")
-				I.robotize()
-
-	character.all_underwear.Cut()
-	character.all_underwear_metadata.Cut()
-
-	for(var/underwear_category_name in all_underwear)
-		var/datum/category_group/underwear/underwear_category = global_underwear.categories_by_name[underwear_category_name]
-		if(underwear_category)
-			var/underwear_item_name = all_underwear[underwear_category_name]
-			character.all_underwear[underwear_category_name] = underwear_category.items_by_name[underwear_item_name]
-			if(all_underwear_metadata[underwear_category_name])
-				character.all_underwear_metadata[underwear_category_name] = all_underwear_metadata[underwear_category_name]
-		else
-			all_underwear -= underwear_category_name
-
-	if(backbag > 4 || backbag < 1)
-		backbag = 1 //Same as above
-	character.backbag = backbag
-
-	if(pdachoice > 3 || pdachoice < 1)
-		pdachoice = 1
-	character.pdachoice = pdachoice
+	// Ask the preferences datums to apply their own settings to the new mob 
+	player_setup.copy_to_mob(character)
 
 	if(icon_updates)
 		character.force_update_limbs()

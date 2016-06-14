@@ -30,6 +30,16 @@
 
 	pref.nanotrasen_relation = sanitize_inlist(pref.nanotrasen_relation, COMPANY_ALIGNMENTS, initial(pref.nanotrasen_relation))
 
+// Moved from /datum/preferences/proc/copy_to()
+/datum/category_item/player_setup_item/general/background/copy_to_mob(var/mob/living/carbon/human/character)
+	character.med_record		= pref.med_record
+	character.sec_record		= pref.sec_record
+	character.gen_record		= pref.gen_record
+	character.home_system		= pref.home_system
+	character.citizenship		= pref.citizenship
+	character.personal_faction	= pref.faction
+	character.religion			= pref.religion
+
 /datum/category_item/player_setup_item/general/background/content(var/mob/user)
 	. += "<b>Background Information</b><br>"
 	. += "[company_name] Relation: <a href='?src=\ref[src];nt_relation=1'>[pref.nanotrasen_relation]</a><br/>"
