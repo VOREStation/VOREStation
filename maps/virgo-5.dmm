@@ -683,7 +683,7 @@
 "ng" = (/obj/effect/floor_decal/corner/purple{dir = 9},/turf/simulated/floor/tiled/white,/area/outpost/research/dock)
 "nh" = (/obj/effect/floor_decal/corner/purple{dir = 6},/turf/simulated/floor/tiled/white,/area/outpost/research/dock)
 "ni" = (/obj/machinery/newscaster{layer = 3.3; pixel_x = 0; pixel_y = -27},/obj/item/device/radio/intercom{dir = 8; name = "Station Intercom (General)"; pixel_x = -21},/turf/simulated/floor/wood,/area/outpost/research/dorms)
-"nj" = (/obj/structure/table/glass,/obj/item/weapon/storage/box/cups,/obj/item/weapon/storage/box/drinkingglasses{pixel_x = 1; pixel_y = 4},/obj/machinery/light,/turf/simulated/floor/wood,/area/outpost/research/dorms)
+"nj" = (/obj/structure/table/glass,/obj/item/weapon/storage/box/cups,/obj/item/weapon/storage/box/glasses{pixel_x = 1; pixel_y = 4},/obj/machinery/light,/turf/simulated/floor/wood,/area/outpost/research/dorms)
 "nk" = (/obj/structure/table/glass,/obj/item/device/camera_film{pixel_x = 2; pixel_y = 2},/obj/item/device/camera,/turf/simulated/floor/wood,/area/outpost/research/dorms)
 "nl" = (/obj/item/weapon/bedsheet/purple,/obj/structure/bed/padded,/obj/machinery/atmospherics/unary/vent_pump/on{dir = 1},/turf/simulated/floor/carpet/blue,/area/outpost/research/dorms)
 "nm" = (/obj/structure/table/standard,/obj/machinery/alarm{dir = 1; pixel_y = -25},/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/carpet/blue,/area/outpost/research/dorms)
