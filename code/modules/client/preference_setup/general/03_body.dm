@@ -76,6 +76,53 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	if(!pref.organ_data) pref.organ_data = list()
 	if(!pref.rlimb_data) pref.rlimb_data = list()
 
+// Moved from /datum/preferences/proc/copy_to()
+/datum/category_item/player_setup_item/general/body/copy_to_mob(var/mob/living/carbon/human/character)
+	// Copy basic values
+	character.r_eyes	= pref.r_eyes
+	character.g_eyes	= pref.g_eyes
+	character.b_eyes	= pref.b_eyes
+	character.h_style	= pref.h_style
+	character.r_hair	= pref.r_hair
+	character.g_hair	= pref.g_hair
+	character.b_hair	= pref.b_hair
+	character.f_style	= pref.f_style
+	character.r_facial	= pref.r_facial
+	character.g_facial	= pref.g_facial
+	character.b_facial	= pref.b_facial
+	character.r_skin	= pref.r_skin
+	character.g_skin	= pref.g_skin
+	character.b_skin	= pref.b_skin
+	character.s_tone	= pref.s_tone
+	character.h_style	= pref.h_style
+	character.f_style	= pref.f_style
+	character.b_type	= pref.b_type
+
+	// Destroy/cyborgize organs and limbs.
+	for(var/name in list(BP_HEAD, BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM, BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_TORSO))
+		var/status = pref.organ_data[name]
+		var/obj/item/organ/external/O = character.organs_by_name[name]
+		if(O)
+			if(status == "amputated")
+				O.remove_rejuv()
+			else if(status == "cyborg")
+				if(pref.rlimb_data[name])
+					O.robotize(pref.rlimb_data[name])
+				else
+					O.robotize()
+
+	for(var/name in list(O_HEART,O_EYES,O_BRAIN))
+		var/status = pref.organ_data[name]
+		if(!status)
+			continue
+		var/obj/item/organ/I = character.internal_organs_by_name[name]
+		if(I)
+			if(status == "assisted")
+				I.mechassist()
+			else if(status == "mechanical")
+				I.robotize()
+	return
+
 /datum/category_item/player_setup_item/general/body/content(var/mob/user)
 	. = list()
 	if(!pref.preview_icon)
