@@ -103,7 +103,12 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 				{{:value.name}}
 				</div>
 				<div class="itemContent">
-					<div style="float: left; width: 200px;">{{:helper.link('Disconnect', 'close', {'disconnect' : value.true_name}, null, 'redButton')}}</div>
+					{{:helper.link('Disconnect', 'close', {'disconnect' : value.true_name}, null, 'redButton')}}
+					{{if data.video_comm == null}}
+						{{:helper.link('Start Video', 'signal-diag', {'startvideo' : value.ref})}}
+					{{else data.video_comm == value.ref}}
+						{{:helper.link('End Video', 'signal-diag', {'endvideo' : value.true_name}, null, 'redButton')}}
+					{{/if}}
 				</div>
 			</div>
 		{{/for}}
@@ -114,7 +119,7 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 				{{:value.name}}
 				</div>
 				<div class="itemContent">
-					<div style="float: left; width: 300px;">{{:value.address}}</div> {{:helper.link('Dial', 'signal-diag', {'dial' : value.address})}}
+					<div style="float: left; width: 300px;">{{:value.address}}</div> {{:helper.link('Accept', 'signal-diag', {'dial' : value.address})}}{{:helper.link('Decline', 'close', {'decline' : value.ref})}}
 				</div>
 			</div>
 		{{/for}}
