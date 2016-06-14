@@ -454,6 +454,10 @@
 /obj/item/ammo_magazine/mc9mml/empty
 	initial_ammo = 0
 
+/obj/item/ammo_magazine/mc9mml/ap
+	name = "\improper SMG magazine (9mm armor-piercing)"
+	ammo_type = /obj/item/ammo_casing/c9mm/ap
+
 /obj/item/ammo_magazine/mc9mml/flash
 	name = "\improper SMG magazine (9mm flash)"
 	ammo_type = /obj/item/ammo_casing/c9mmf
