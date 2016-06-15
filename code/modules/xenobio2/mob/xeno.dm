@@ -8,6 +8,7 @@ Also includes Life and New
 /mob/living/simple_animal/xeno
 	name = "Xeno"
 	real_name = "Xeno"
+	faction = "xeno"	//Needs to be set.
 	desc = "Something's broken, yell at someone."
 	melee_damage_lower = 0
 	melee_damage_upper = 0
@@ -46,33 +47,32 @@ Also includes Life and New
 	
 //Life additions
 /mob/living/simple_animal/xeno/Life()
-	if(src.stat == DEAD)
-		return 0
-	
 	if(stasis)
 		stasis--
 		if(stasis < 0)
 			stasis = 0
 		return 0
+		
 	..()
-	handle_reagents()
-	if((mut_level >= mut_max) && !(mutable & NOMUT))
-		Mutate()
-		mut_level -= mut_max
+	if(!(stat == DEAD))
+		handle_reagents()
+		if((mut_level >= mut_max) && !(mutable & NOMUT))
+			Mutate()
+			mut_level -= mut_max
 			
-	ProcessSpeechBuffer()
+		ProcessSpeechBuffer()
 	
-	//Have to feed the xenos somehow.
-	if(nutrition < 0)
-		nutrition = 0
-	if((nutrition > 0 ) && traitdat.traits[TRAIT_XENO_EATS])
-		if(nutrition >= 300)
-			nutrition -= hunger_factor
-	else
-		if(traitdat.traits[TRAIT_XENO_EATS])
-			health = starve_damage
+		//Have to feed the xenos somehow.
+		if(nutrition < 0)
+			nutrition = 0
+		if((nutrition > 0 ) && traitdat.traits[TRAIT_XENO_EATS])
+			if(nutrition >= 300)
+				nutrition -= hunger_factor
+		else
+			if(traitdat.traits[TRAIT_XENO_EATS])
+				health = starve_damage
 	
-	return 1	//Everything worked okay.
+		return 1	//Everything worked okay.
 	
 /mob/living/simple_animal/xeno/New()
 
@@ -95,3 +95,7 @@ Also includes Life and New
 	if(!health)
 		stat = DEAD
 		
+/mob/living/simple_animal/xeno/Destroy()
+	traitdat.Destroy()	//Let's clean up after ourselves.
+	traitdat = null
+	..()

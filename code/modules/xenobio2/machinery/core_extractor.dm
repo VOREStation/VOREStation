@@ -126,6 +126,7 @@
 		spawn(30)
 			icon_state = "scanner_0old"
 			qdel(occupant)
+			occupant = null	//If qdel's being slow or acting up, let's make sure we can't make more cores from this one.
 			inuse = 0
 			eject_contents()
 			update_light_color()

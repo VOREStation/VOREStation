@@ -228,7 +228,7 @@
 
 	for(var/I in P.belly_prefs)
 		var/datum/belly/Bp = P.belly_prefs[I]
-		src.vore_organs[Bp.name] = Bp.copy()
+		src.vore_organs[Bp.name] = Bp.copy(src)
 
 	return 1
 

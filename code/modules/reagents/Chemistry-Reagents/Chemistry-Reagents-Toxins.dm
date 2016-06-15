@@ -331,13 +331,10 @@
 	id = "beer2"
 	description = "An alcoholic beverage made from malted grains, hops, yeast, and water. The fermentation appears to be incomplete." //If the players manage to analyze this, they deserve to know something is wrong.
 	reagent_state = LIQUID
-	color = "#664300"
+	color = "#FFD300"
 
-	glass_icon_state = "beerglass"
-	glass_name = "glass of beer"
+	glass_name = "beer"
 	glass_desc = "A freezing pint of beer"
-	glass_center_of_mass = list("x"=16, "y"=8)
-
 /* Drugs */
 
 /datum/reagent/space_drugs

@@ -54,3 +54,7 @@
 	name = "Thong"
 	icon_state = "thong"
 	has_color = TRUE
+
+/datum/category_item/underwear/bottom/fishnet_lower
+	name = "Fishnets"
+	icon_state = "fishnet_lower"

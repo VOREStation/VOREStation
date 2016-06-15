@@ -5,11 +5,4 @@
 	destroy_surroundings = 1
 	a_intent = I_HURT
 	hostile = 1
-
-
-/mob/living/simple_animal/hostile/Life()
-
-	. = ..()
-	if(!.)
-		walk(src, 0)
-		return 0
+	

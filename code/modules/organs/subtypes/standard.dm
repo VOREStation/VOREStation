@@ -18,6 +18,13 @@
 	cannot_amputate = 1
 	parent_organ = null
 	encased = "ribcage"
+	organ_rel_size = 70
+	base_miss_chance = 10
+
+/obj/item/organ/external/chest/robotize()
+	if(..())
+		// Give them a new cell.
+		owner.internal_organs_by_name["cell"] = new /obj/item/organ/internal/cell(owner,1)
 
 /obj/item/organ/external/groin
 	name = "lower body"
@@ -33,6 +40,7 @@
 	joint = "hip"
 	dislocated = -1
 	gendered_icon = 1
+	organ_rel_size = 30
 
 /obj/item/organ/external/arm
 	organ_tag = "l_arm"
@@ -93,7 +101,8 @@
 	can_stand = 1
 
 /obj/item/organ/external/foot/removed()
-	if(owner) owner.u_equip(owner.shoes)
+	if(owner)
+		owner.drop_from_inventory(owner.shoes)
 	..()
 
 /obj/item/organ/external/foot/right
@@ -118,9 +127,12 @@
 	joint = "left wrist"
 	amputation_point = "left wrist"
 	can_grasp = 1
+	organ_rel_size = 10
+	base_miss_chance = 50
 
 /obj/item/organ/external/hand/removed()
-	owner.u_equip(owner.gloves)
+	if(owner)
+		owner.drop_from_inventory(owner.gloves)
 	..()
 
 /obj/item/organ/external/hand/right
@@ -147,18 +159,24 @@
 	gendered_icon = 1
 	cannot_gib = 1
 	encased = "skull"
+	base_miss_chance = 40
 	var/can_intake_reagents = 1
+	var/eye_icon = "eyes_s"
+
+/obj/item/organ/external/head/robotize(var/company, var/skip_prosthetics, var/keep_organs)
+	return ..(company, skip_prosthetics, 1)
 
 /obj/item/organ/external/head/removed()
 	if(owner)
 		name = "[owner.real_name]'s head"
-		owner.u_equip(owner.glasses)
-		owner.u_equip(owner.head)
-		owner.u_equip(owner.l_ear)
-		owner.u_equip(owner.r_ear)
-		owner.u_equip(owner.wear_mask)
+		owner.drop_from_inventory(owner.glasses)
+		owner.drop_from_inventory(owner.head)
+		owner.drop_from_inventory(owner.l_ear)
+		owner.drop_from_inventory(owner.r_ear)
+		owner.drop_from_inventory(owner.wear_mask)
 		spawn(1)
 			owner.update_hair()
+	get_icon()
 	..()
 
 /obj/item/organ/external/head/take_damage(brute, burn, sharp, edge, used_weapon = null, list/forbidden_limbs = list())
@@ -169,3 +187,12 @@
 				disfigure("brute")
 		if (burn_dam > 40)
 			disfigure("burn")
+
+/obj/item/organ/external/head/skrell
+	eye_icon = "skrell_eyes_s"
+
+/obj/item/organ/external/head/seromi
+	eye_icon = "eyes_seromi"
+
+/obj/item/organ/external/head/no_eyes
+	eye_icon = "blank_eyes"
