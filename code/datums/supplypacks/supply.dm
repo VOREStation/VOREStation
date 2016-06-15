@@ -2,9 +2,9 @@
 *	Here is where any supply packs
 *	related to civilian tasks live
 */
-/datum/supply_packs/supply
-	group = "Supply"
 
+/datum/supply_packs/supply
+	group = "Supplies"
 
 /datum/supply_packs/supply/food
 	name = "Kitchen supply crate"
@@ -19,14 +19,14 @@
 	cost = 10
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Food crate"
-	
+
 /datum/supply_packs/supply/toner
 	name = "Toner cartridges"
 	contains = list(/obj/item/device/toner = 6)
 	cost = 10
 	containertype = /obj/structure/closet/crate
 	containername = "Toner cartridges"
-	
+
 /datum/supply_packs/supply/janitor
 	name = "Janitorial supplies"
 	contains = list(
@@ -49,14 +49,14 @@
 	cost = 10
 	containertype = /obj/structure/closet/crate
 	containername = "Janitorial supplies"
-	
+
 /datum/supply_packs/supply/boxes
 	name = "Empty boxes"
 	contains = list(/obj/item/weapon/storage/box = 10)
 	cost = 10
 	containertype = "/obj/structure/closet/crate"
 	containername = "Empty box crate"
-	
+
 /datum/supply_packs/supply/bureaucracy
 	contains = list(
 			/obj/item/weapon/clipboard = 2,
@@ -76,28 +76,14 @@
 	cost = 15
 	containertype = /obj/structure/closet/crate
 	containername = "Office supplies crate"
-	
-	
+
 /datum/supply_packs/supply/spare_pda
 	name = "Spare PDAs"
 	cost = 10
 	containertype = /obj/structure/closet/crate
 	containername = "Spare PDA crate"
 	contains = list(/obj/item/device/pda = 3)
-	
-/datum/supply_packs/supply/voidsuits
-	name = "Mining voidsuits"
-	contains = list(
-			/obj/item/clothing/suit/space/void/mining = 2,
-			/obj/item/clothing/head/helmet/space/void/mining = 2,
-			/obj/item/clothing/mask/breath = 2,
-			/obj/item/weapon/tank/oxygen = 2
-			)
-	cost = 35
-	containertype = "/obj/structure/closet/crate/secure"
-	containername = "Mining voidsuit crate"
-	access = access_mining
-	
+
 /datum/supply_packs/supply/minergear
 	name = "Shaft miner equipment"
 	contains = list(
@@ -121,3 +107,24 @@
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Shaft miner equipment"
 	access = access_mining
+
+/datum/supply_packs/supply/mule
+	name = "Mulebot Crate"
+	contains = list()
+	cost = 20
+	containertype = /obj/structure/largecrate/animal/mulebot
+	containername = "Mulebot Crate"
+
+/datum/supply_packs/supply/cargotrain
+	name = "Cargo Train Tug"
+	contains = list(/obj/vehicle/train/cargo/engine)
+	cost = 45
+	containertype = /obj/structure/largecrate
+	containername = "Cargo Train Tug Crate"
+
+/datum/supply_packs/supply/cargotrailer
+	name = "Cargo Train Trolley"
+	contains = list(/obj/vehicle/train/cargo/trolley)
+	cost = 15
+	containertype = /obj/structure/largecrate
+	containername = "Cargo Train Trolley Crate"

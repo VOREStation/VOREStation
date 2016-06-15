@@ -5,7 +5,22 @@
 //BIG NOTE: Don't add living things to crates, that's bad, it will break the shuttle.
 //NEW NOTE: Do NOT set the price of any crates below 7 points. Doing so allows infinite points.
 
-var/list/all_supply_groups = list("Operations","Security","Hospitality","Engineering","Atmospherics","Medical","Reagents","Reagent Cartridges","Science","Hydroponics", "Supply", "Miscellaneous")
+//var/list/all_supply_groups = list("Operations","Security","Hospitality","Engineering","Atmospherics","Medical","Reagents","Reagent Cartridges","Science","Hydroponics", "Supply", "Miscellaneous")
+var/list/all_supply_groups = list("Atmospherics",
+								  "Costumes & Clothes",
+								  "Engineering",
+								  "Hospitality",
+								  "Materials",
+								  "Medical",
+								  "Miscellaneous",
+								  "Reagents",
+								  "Reagent Cartridges",
+								  "Recreation",
+								  "Robotics",
+								  "Science",
+								  "Security",
+								  "Supplies",
+								  "Voidsuits")
 
 /datum/supply_packs
 	var/name = null
