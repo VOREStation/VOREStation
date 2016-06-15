@@ -200,6 +200,35 @@
 
 		toggle_scope(2.0)
 
+// For general use
+/obj/item/weapon/gun/projectile/automatic/pdw // Vorestation SMG because the WT550 is ugly and bad.
+	name = "personal defense weapon"
+	desc = "The X-9MM is a select-fire personal defense weapon designed in-house by Xing Private Security. It was made to compete with the WT550 Saber, but hasn't yet caught on in popularity outside of the Virgo-Erigone system. Uses 9mm rounds."
+	icon = 'icons/obj/gun_vr.dmi'
+	icon_state = "pdw"
+	item_state = "c20r" // Placeholder
+	w_class = 3
+	caliber = "9mm"
+	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
+	slot_flags = SLOT_BELT
+	load_method = MAGAZINE
+	magazine_type = /obj/item/ammo_magazine/mc9mml
+	allowed_magazines = list(/obj/item/ammo_magazine/mc9mm, /obj/item/ammo_magazine/mc9mml)
+
+	firemodes = list(
+		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    burst_accuracy=list(0,-1,-2), dispersion=list(0.0, 0.6, 0.6))
+		)
+
+/obj/item/weapon/gun/projectile/automatic/pdw/update_icon(var/ignore_inhands)
+	..()
+	if(istype(ammo_magazine,/obj/item/ammo_magazine/mc9mm))
+		icon_state = "pdw-short"
+	else
+		icon_state = (ammo_magazine)? "pdw" : "pdw-empty"
+	if(!ignore_inhands) update_held_icon()
+
+
 //Currently, the only problem I have now is that this weapon's item_state isn't working.
 /obj/item/weapon/gun/projectile/automatic/fluff/crestrose
 	name = "Crescent Rose"
@@ -378,7 +407,7 @@
 
 /obj/item/ammo_casing/stg
 	desc = "A 7.92×33mm Kurz casing."
-	icon_state = "762-casing"
+	icon_state = "rifle-casing"
 	caliber = "kurz"
 	projectile_type = /obj/item/projectile/bullet/rifle/a762
 
@@ -398,7 +427,7 @@
 
 /obj/item/ammo_casing/a95mm
 	desc = "A 9.5x40mm bullet casing."
-	icon_state = "762-casing"
+	icon_state = "rifle-casing"
 	caliber = "9.5x40mm"
 	projectile_type = /obj/item/projectile/bullet/rifle/a95mm
 
@@ -408,3 +437,35 @@
 
 /obj/item/ammo_magazine/battlerifle/empty
 	initial_ammo = 0
+
+//---------------- PDW ------------------
+/obj/item/ammo_magazine/mc9mml
+	name = "\improper SMG magazine (9mm)"
+	icon = 'icons/obj/ammo_vr.dmi'
+	icon_state = "smg"
+	origin_tech = list(TECH_COMBAT = 2)
+	mag_type = MAGAZINE
+	matter = list(DEFAULT_WALL_MATERIAL = 1800)
+	caliber = "9mm"
+	ammo_type = /obj/item/ammo_casing/c9mm
+	max_ammo = 30
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/mc9mml/empty
+	initial_ammo = 0
+
+/obj/item/ammo_magazine/mc9mml/ap
+	name = "\improper SMG magazine (9mm armor-piercing)"
+	ammo_type = /obj/item/ammo_casing/c9mm/ap
+
+/obj/item/ammo_magazine/mc9mml/flash
+	name = "\improper SMG magazine (9mm flash)"
+	ammo_type = /obj/item/ammo_casing/c9mmf
+
+/obj/item/ammo_magazine/mc9mml/rubber
+	name = "\improper SMG magazine (9mm rubber)"
+	ammo_type = /obj/item/ammo_casing/c9mmr
+
+/obj/item/ammo_magazine/mc9mml/practice
+	name = "\improper SMG magazine (9mm practice)"
+	ammo_type = /obj/item/ammo_casing/c9mmp

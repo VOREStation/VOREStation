@@ -62,3 +62,4 @@
 	xenoChemList += "capsaicin"
 	xenoChemList += "condensedcapsaicin"
 	xenoChemList += "neurotoxin"
+	return 1
