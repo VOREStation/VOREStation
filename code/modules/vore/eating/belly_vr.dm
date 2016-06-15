@@ -375,8 +375,8 @@
 
 // Belly copies and then returns the copy
 // Needs to be updated for any var changes
-/datum/belly/proc/copy()
-	var/datum/belly/dupe = new /datum/belly()
+/datum/belly/proc/copy(mob/new_owner)
+	var/datum/belly/dupe = new /datum/belly(new_owner)
 
 	//// Non-object variables
 	dupe.name = name
