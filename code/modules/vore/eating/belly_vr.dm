@@ -10,8 +10,6 @@
 //
 /datum/belly
 	var/name								// Name of this location
-	var/list/digest_modes = list(DM_HOLD,DM_DIGEST,DM_HEAL,DM_ABSORB)	// Possible digest modes
-	var/list/transform_modes = list(DM_TRANSFORM_MALE,DM_TRANSFORM_FEMALE,DM_TRANSFORM_KEEP_GENDER,DM_TRANSFORM_CHANGE_SPECIES,DM_TRANSFORM_CHANGE_SPECIES_EGG,DM_TRANSFORM_KEEP_GENDER_EGG,DM_TRANSFORM_MALE_EGG,DM_TRANSFORM_FEMALE_EGG, DM_EGG)
 	var/inside_flavor						// Flavor text description of inside sight/sound/smells/feels.
 	var/vore_sound = 'sound/vore/gulp.ogg'	// Sound when ingesting someone
 	var/vore_verb = "ingest"				// Verb for eating with this in messages
@@ -26,6 +24,8 @@
 	var/escapetime = 600					// Deciseconds, how long to escape this belly
 
 	var/tmp/digest_mode = DM_HOLD				// Whether or not to digest. Default to not digest.
+	var/tmp/list/digest_modes = list(DM_HOLD,DM_DIGEST,DM_HEAL,DM_ABSORB)	// Possible digest modes
+	var/tmp/list/transform_modes = list(DM_TRANSFORM_MALE,DM_TRANSFORM_FEMALE,DM_TRANSFORM_KEEP_GENDER,DM_TRANSFORM_CHANGE_SPECIES,DM_TRANSFORM_CHANGE_SPECIES_EGG,DM_TRANSFORM_KEEP_GENDER_EGG,DM_TRANSFORM_MALE_EGG,DM_TRANSFORM_FEMALE_EGG, DM_EGG)
 	var/tmp/mob/living/owner					// The mob whose belly this is.
 	var/tmp/list/internal_contents = list()		// People/Things you've eaten into this belly!
 	var/tmp/is_full								// Flag for if digested remeans are present. (for disposal messages)
@@ -394,16 +394,6 @@
 	dupe.escapetime = escapetime
 
 	//// Object-holding variables
-	//digest_modes - just constants
-	dupe.digest_modes.Cut()
-	for(var/I in digest_modes)
-		dupe.digest_modes += I
-
-	//transform_modes - just constants
-	dupe.transform_modes.Cut()
-	for(var/I in transform_modes)
-		dupe.transform_modes += I
-
 	//struggle_messages_outside - strings
 	dupe.struggle_messages_outside.Cut()
 	for(var/I in struggle_messages_outside)

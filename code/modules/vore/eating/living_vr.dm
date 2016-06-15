@@ -230,6 +230,10 @@
 		var/datum/belly/Bp = P.belly_prefs[I]
 		src.vore_organs[Bp.name] = Bp.copy()
 
+	for(var/I in vore_organs)
+		var/datum/belly/B = vore_organs[I]
+		B.owner = src
+
 	return 1
 
 //
