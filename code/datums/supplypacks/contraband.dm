@@ -3,6 +3,7 @@
 *	  and require modification of the supply controller live.
 */
 
+
 /datum/supply_packs/randomised/contraband
 	num_contained = 5
 	contains = list(
@@ -17,7 +18,7 @@
 	containertype = /obj/structure/closet/crate
 	containername = "Unlabeled crate"
 	contraband = 1
-	group = "Operations"
+	group = "Supplies"
 
 /datum/supply_packs/security/specialops
 	name = "Special Ops supplies"
@@ -31,7 +32,7 @@
 	containertype = /obj/structure/closet/crate
 	containername = "Special Ops crate"
 	hidden = 1
-	
+
 /datum/supply_packs/security/bolt_rifles_mosin
  	name = "Surplus militia rifles"
  	contains = list(
