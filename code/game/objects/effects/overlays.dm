@@ -74,7 +74,7 @@
 	layer = 3.2 //Just above airlocks
 
 /obj/effect/overlay/snow/floor/pointy
-	icon_state = "snowfloorpointy
+	icon_state = "snowfloorpointy"
 
 /obj/effect/overlay/snow/wall
 	icon_state = "snowwall"
