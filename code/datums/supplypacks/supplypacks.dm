@@ -7,7 +7,7 @@
 
 //var/list/all_supply_groups = list("Operations","Security","Hospitality","Engineering","Atmospherics","Medical","Reagents","Reagent Cartridges","Science","Hydroponics", "Supply", "Miscellaneous")
 var/list/all_supply_groups = list("Atmospherics",
-								  "Costumes & Clothes",
+								  "Costumes",
 								  "Engineering",
 								  "Hospitality",
 								  "Materials",
