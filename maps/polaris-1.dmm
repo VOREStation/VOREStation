@@ -1379,7 +1379,7 @@
 "aAA" = (/obj/structure/disposalpipe/segment{dir = 4},/turf/simulated/floor/tiled,/area/hallway/secondary/chapel_hallway)
 "aAB" = (/obj/structure/disposalpipe/segment{dir = 4},/obj/machinery/light,/turf/simulated/floor/tiled,/area/hallway/secondary/chapel_hallway)
 "aAC" = (/obj/structure/disposalpipe/segment{dir = 4},/obj/machinery/alarm{dir = 1; pixel_y = -22},/turf/simulated/floor/tiled,/area/hallway/secondary/chapel_hallway)
-"aAD" = (/obj/machinery/newscaster{pixel_x = 0; pixel_y = 32},/obj/structure/bed/double/padded,/turf/simulated/floor/wood,/area/crew_quarters/sleep/vistor_room_12)
+"aAD" = (/obj/machinery/newscaster{pixel_x = 0; pixel_y = 32},/obj/structure/bed/double/padded,/obj/item/weapon/bedsheet/doublebrown,/turf/simulated/floor/wood,/area/crew_quarters/sleep/vistor_room_12)
 "aAE" = (/turf/simulated/floor/wood,/area/crew_quarters/sleep/vistor_room_5)
 "aAF" = (/turf/simulated/floor/wood,/area/crew_quarters/sleep/vistor_room_6)
 "aAG" = (/turf/simulated/floor/wood,/area/crew_quarters/sleep/vistor_room_11)
