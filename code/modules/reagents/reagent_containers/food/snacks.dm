@@ -80,11 +80,12 @@
 
 			if(!istype(M, /mob/living/carbon/slime))		//If you're feeding it to someone else.
 
-				if (fullness <= (550 * (1 + M.overeatduration / 1000)))
+				/*if (fullness <= (550 * (1 + M.overeatduration / 1000))) // Vorestation edit
 					user.visible_message("<span class='danger'>[user] attempts to feed [M] [src].</span>")
 				else
 					user.visible_message("<span class='danger'>[user] cannot force anymore of [src] down [M]'s throat.</span>")
-					return 0
+					return 0*/
+				user.visible_message("<span class='danger'>[user] attempts to feed [M] [src].</span>") // Vorestation edit
 
 				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 				if(!do_mob(user, M)) return
