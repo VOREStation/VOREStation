@@ -74,8 +74,7 @@ obj/item/weapon/gun/energy/retro
 //	requires_two_hands = 1
 	one_handed_penalty = 6 // The thing's heavy and huge.
 	accuracy = 3
-	self_recharge = 1
-	recharge_time = 60
+	charge_cost = 400
 
 
 /obj/item/weapon/gun/energy/lasercannon/mounted
