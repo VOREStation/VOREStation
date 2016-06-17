@@ -8,6 +8,8 @@
 	throwforce = 10
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	edge = 1
+	sharp = 1
 
 /obj/item/weapon/melee/cultblade/cultify()
 	return
