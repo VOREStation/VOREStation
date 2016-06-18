@@ -69,7 +69,7 @@
 			"<span class='notice'>You slam your fist into the punching bag.</span>",
 			"<span class='notice'>You jab the punching bag with your elbow.</span>")
 		user << message
-		playsound(src.loc, 'punch', 50, 1)
+		playsound(src.loc, "punch", 50, 1)
 
 	else if(user.nutrition < 35)
 		user << "<span class='notice'>You need more energy to workout on the mat!</span>"
@@ -107,8 +107,8 @@
 			"<span class='notice'>A honk emits from the punching bag as you hit it.</span>")
 		user << message
 		playsound(src.loc, 'sound/items/bikehorn.ogg', 50, 1)
-		playsound(src.loc, 'clownstep', 50, 1)
-		playsound(src.loc, 'punch', 50, 1)
+		playsound(src.loc, "clownstep", 50, 1)
+		playsound(src.loc, "punch", 50, 1)
 
 	else if(user.nutrition < 35)
 		user << "<span class='notice'>You need more energy to workout on the mat!</span>"
