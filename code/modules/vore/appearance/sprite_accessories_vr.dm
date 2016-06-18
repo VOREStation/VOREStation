@@ -633,6 +633,6 @@
 	name = "Spider"
 	icon_state = "spider_s"
 
-/datum/sprite_accessory/tail/taur/slime
+/datum/sprite_accessory/tail/taur/slime //Travis is bad
 	name = "Slime trail"
 	icon_state = "slime_s"
