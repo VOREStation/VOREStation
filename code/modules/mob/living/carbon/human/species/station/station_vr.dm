@@ -283,6 +283,9 @@
 /datum/species/diona
 	spawn_flags = SPECIES_CAN_JOIN
 
+/datum/species/teshari
+	spawn_flags = SPECIES_CAN_JOIN
+
 /datum/species/shapeshifter/promethean
 	egg_type = "Slime"
 
