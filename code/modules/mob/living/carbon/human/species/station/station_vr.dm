@@ -270,7 +270,7 @@
 
 /datum/species/unathi
 	egg_type = "Unathi"
-	spawn_flags = SPECIES_CAN_JOIN
+	spawn_flags = SPECIES_CAN_JOIN //Species_can_join is the only spawn flag all the races get, so that none of them will be whitelist only if whitelist is enabled.
 
 /datum/species/tajaran
 	egg_type = "Tajaran"
@@ -288,6 +288,7 @@
 
 /datum/species/shapeshifter/promethean
 	egg_type = "Slime"
+	spawn_flags = SPECIES_CAN_JOIN
 
 /datum/species/human
 	egg_type = "Human"
