@@ -36,8 +36,7 @@
 	base_color 	= "#333333"
 	blood_color = "#14AD8B"
 
-/datum/species/chimera/handle_environment_special(var/mob/living/carbon/human/H) //Actually handles hunger.
-
+/datum/species/chimera/handle_environment_special(var/mob/living/carbon/human/H)
 	if(H.stat) // If they're dead or unconcious they won't think about being all feral.
 		return
 	if(H.absorbed == 1) //If they get nomphed and absorbed.

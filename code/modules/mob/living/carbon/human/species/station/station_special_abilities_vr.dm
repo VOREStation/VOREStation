@@ -23,6 +23,7 @@
 				C.species.reviving = 1
 				C.canmove = 0 //Make them unable to move. In case they somehow get up before the delay.
 				C << "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds."
+				C.in_stasis = 1
 
 				spawn(time SECONDS)
 					if(C) //Runtime prevention.
@@ -84,6 +85,7 @@
 					var/T = get_turf(src)
 					new /obj/effect/gibspawner/human/scree(T)
 					var/braindamage = C.brainloss/2 //If you have 100 brainloss, it gives you 50.
+					C.in_stasis = 0
 					C.revive() // I did have special snowflake code, but this is easier.
 					C.weakened = 2 //Not going to let you get up immediately. 2 ticks before you get up. Overrides the above 10000 weaken.
 					C.nutrition = old_nutrition
@@ -94,7 +96,7 @@
 						C.drop_from_inventory(W)
 					spawn(3600 SECONDS) //1 hour wait until you can revive.
 						C.species.reviving = 0
-						C.verbs -= /mob/living/carbon/human/proc/hatch
+					C.verbs -= /mob/living/carbon/human/proc/hatch
 					return
 				else
 					return //Ruuntime prevention
