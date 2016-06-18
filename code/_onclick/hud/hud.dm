@@ -383,8 +383,8 @@ datum/hud/New(mob/owner)
 	hud_used.persistant_inventory_update()
 	update_action_buttons()
 
-///mob/proc/add_click_catcher()
-//	client.screen += client.void
+/mob/proc/add_click_catcher()
+	client.screen += client.void
 
-///mob/new_player/add_click_catcher()
-//	return
+/mob/new_player/add_click_catcher()
+	return

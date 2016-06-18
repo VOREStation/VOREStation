@@ -141,4 +141,4 @@
 	mymob.client.screen = list()
 
 	mymob.client.screen += list(mymob.fire, mymob.healths, mymob.pullin, mymob.zone_sel, mymob.purged)
-//	mymob.client.screen += mymob.client.void
+	mymob.client.screen += mymob.client.void

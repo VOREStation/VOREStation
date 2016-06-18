@@ -157,7 +157,7 @@
 	nanomanager.send_resources(src)
 
 	if(!void)
-		void = void.MakeGreed()
+		void = new()
 	screen += void
 
 	if(prefs.lastchangelog != changelog_hash) //bolds the changelog button on the interface so we know there are updates.
