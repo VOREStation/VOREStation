@@ -571,3 +571,6 @@ var/list/global/organ_rel_size = list(
 	"l_foot" = 10,
 	"r_foot" = 10,
 )
+
+/mob/proc/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /obj/screen/fullscreen/flash)
+	return

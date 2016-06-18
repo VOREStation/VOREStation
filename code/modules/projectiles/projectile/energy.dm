@@ -23,7 +23,7 @@
 	//blind adjacent people
 	for (var/mob/living/carbon/M in viewers(T, flash_range))
 		if(M.eyecheck() < 1)
-			flick("e_flash", M.flash)
+			M.flash_eyes()
 
 	//snap pop
 	playsound(src, 'sound/effects/snap.ogg', 50, 1)

@@ -84,7 +84,7 @@
 
 /mob/living/carbon/human/ex_act(severity)
 	if(!blinded)
-		flick("flash", flash)
+		flash_eyes()
 
 	var/shielded = 0
 	var/b_loss = null
@@ -773,13 +773,6 @@
 		g_eyes = hex2num(copytext(new_eyes, 4, 6))
 		b_eyes = hex2num(copytext(new_eyes, 6, 8))
 		update_eyes()
-
-	var/new_tone = input("Please select skin tone level: 1-220 (1=albino, 35=caucasian, 150=black, 220='very' black)", "Character Generation", "[35-s_tone]")  as text
-
-	if (!new_tone)
-		new_tone = 35
-	s_tone = max(min(round(text2num(new_tone)), 220), 1)
-	s_tone =  -s_tone + 35
 
 	// hair
 	var/list/all_hairs = typesof(/datum/sprite_accessory/hair) - /datum/sprite_accessory/hair

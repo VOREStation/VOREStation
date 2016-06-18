@@ -269,7 +269,7 @@ datum/hud/New(mob/owner)
 	else if(isrobot(mymob))
 		robot_hud(ui_style, ui_color, ui_alpha, mymob)
 	else if(isbrain(mymob))
-		brain_hud(ui_style)
+		mymob.instantiate_hud(src)
 	else if(isalien(mymob))
 		larva_hud()
 	else if(isslime(mymob))
@@ -382,3 +382,9 @@ datum/hud/New(mob/owner)
 	hud_used.hidden_inventory_update()
 	hud_used.persistant_inventory_update()
 	update_action_buttons()
+
+///mob/proc/add_click_catcher()
+//	client.screen += client.void
+
+///mob/new_player/add_click_catcher()
+//	return
