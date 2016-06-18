@@ -633,6 +633,6 @@
 	name = "Spider"
 	icon_state = "spider_s"
 
-/datum/sprite_accessory/tail/taur/slime //Coder  comment so this will actually compile with travis.
+/datum/sprite_accessory/tail/taur/slime
 	name = "Slime trail"
 	icon_state = "slime_s"
