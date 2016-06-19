@@ -11,9 +11,9 @@
 		if(!L.canmove && L.grabbed_by.len)
 			L.resist() //shortcut for resisting grabs
 
-	//if we are grabbing someone
-	for(var/obj/item/weapon/grab/G in list(mob.l_hand, mob.r_hand))
-		G.reset_kill_state() //no wandering across the station/asteroid while choking someone
+		//if we are grabbing someone
+		for(var/obj/item/weapon/grab/G in list(L.l_hand, L.r_hand))
+			G.reset_kill_state() //no wandering across the station/asteroid while choking someone
 
 /obj/item/weapon/grab
 	name = "grab"
