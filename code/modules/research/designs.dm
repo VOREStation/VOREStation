@@ -510,7 +510,8 @@ other types of metals and chemistry for reagents).
 /datum/design/item/weapon/decloner
 	id = "decloner"
 	req_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 7, TECH_BIO = 5, TECH_POWER = 6)
-	materials = list("gold" = 5000,"uranium" = 10000, "mutagen" = 40)
+	materials = list("gold" = 5000,"uranium" = 10000)
+	chemicals = list("mutagen" = 40)
 	build_path = /obj/item/weapon/gun/energy/decloner
 	sort_string = "TAAAE"
 
@@ -651,7 +652,7 @@ other types of metals and chemistry for reagents).
 	name = "Positronic brain"
 	id = "posibrain"
 	req_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 6, TECH_BLUESPACE = 2, TECH_DATA = 4)
-	build_type = PROTOLATHE | MECHFAB
+	build_type = PROTOLATHE | PROSFAB
 	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 1000, "silver" = 1000, "gold" = 500, "phoron" = 500, "diamond" = 100)
 	build_path = /obj/item/device/mmi/digital/posibrain
 	category = "Misc"
@@ -661,7 +662,7 @@ other types of metals and chemistry for reagents).
 	name = "Man-machine interface"
 	id = "mmi"
 	req_tech = list(TECH_DATA = 2, TECH_BIO = 3)
-	build_type = PROTOLATHE | MECHFAB
+	build_type = PROTOLATHE | PROSFAB
 	materials = list(DEFAULT_WALL_MATERIAL = 1000, "glass" = 500)
 	build_path = /obj/item/device/mmi
 	category = "Misc"
@@ -671,7 +672,7 @@ other types of metals and chemistry for reagents).
 	name = "Radio-enabled man-machine interface"
 	id = "mmi_radio"
 	req_tech = list(TECH_DATA = 2, TECH_BIO = 4)
-	build_type = PROTOLATHE | MECHFAB
+	build_type = PROTOLATHE | PROSFAB
 	materials = list(DEFAULT_WALL_MATERIAL = 1200, "glass" = 500)
 	build_path = /obj/item/device/mmi/radio_enabled
 	category = "Misc"
@@ -726,17 +727,13 @@ CIRCUITS BELOW
 /datum/design/circuit/AssembleDesignName()
 	..()
 	if(build_path)
-		var/obj/item/weapon/circuitboard/C = new build_path()
-		if(C && istype(C))
-			if(C.board_type == "machine")
-				name = "Machine circuit design ([item_name])"
-				qdel(C)
-				return
-			else if(C.board_type == "computer")
-				name = "Computer circuit design ([item_name])"
-				qdel(C)
-				return
-	name = "Circuit design ([item_name])"
+		var/obj/item/weapon/circuitboard/C = build_path
+		if(initial(C.board_type) == "machine")
+			name = "Machine circuit design ([item_name])"
+		else if(initial(C.board_type) == "computer")
+			name = "Computer circuit design ([item_name])"
+		else
+			name = "Circuit design ([item_name])"
 
 /datum/design/circuit/AssembleDesignDesc()
 	if(!desc)
@@ -755,6 +752,13 @@ CIRCUITS BELOW
 	req_tech = list(TECH_DATA = 1)
 	build_path = /obj/item/weapon/circuitboard/arcade/orion_trail
 	sort_string = "MAAAA"
+
+/datum/design/circuit/jukebox
+	name = "jukebox"
+	id = "jukebox"
+	req_tech = list(TECH_MAGNET = 2, TECH_DATA = 1)
+	build_path = /obj/item/weapon/circuitboard/jukebox
+	sort_string = "MAAAB"
 
 /datum/design/circuit/seccamera
 	name = "security camera monitor"
@@ -938,6 +942,13 @@ CIRCUITS BELOW
 	req_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
 	build_path = /obj/item/weapon/circuitboard/mechfab
 	sort_string = "HABAE"
+
+/datum/design/circuit/prosfab
+	name = "prosthetics fabricator"
+	id = "prosfab"
+	req_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
+	build_path = /obj/item/weapon/circuitboard/prosthetics
+	sort_string = "HABAF"
 
 /datum/design/circuit/mech_recharger
 	name = "mech recharger"

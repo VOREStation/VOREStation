@@ -9,7 +9,7 @@
 	spawn_positions = 1
 	supervisors = "the captain"
 	selection_color = "#8E2929"
-	idtype = /obj/item/weapon/card/id/silver
+	idtype = /obj/item/weapon/card/id/security/head
 	req_admin_notify = 1
 	economic_modifier = 10
 	access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory,
@@ -56,6 +56,7 @@
 	spawn_positions = 1
 	supervisors = "the head of security"
 	selection_color = "#601C1C"
+	idtype = /obj/item/weapon/card/id/security
 	economic_modifier = 5
 	access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory, access_maint_tunnels, access_morgue, access_external_airlocks)
 	minimal_access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory, access_maint_tunnels, access_external_airlocks)
@@ -93,12 +94,13 @@
 	spawn_positions = 2
 	supervisors = "the head of security"
 	selection_color = "#601C1C"
+	idtype = /obj/item/weapon/card/id/security
 	alt_titles = list("Forensic Technician","Investigator")
 	access = list(access_security, access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels, access_eva, access_external_airlocks)
 	minimal_access = list(access_security, access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels, access_eva, access_external_airlocks)
 	economic_modifier = 5
 	minimal_player_age = 3
-	equip(var/mob/living/carbon/human/H)
+	equip(var/mob/living/carbon/human/H, var/alt_title)
 		if(!H)	return 0
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_sec(H), slot_l_ear)
 		switch(H.backbag)
@@ -114,7 +116,7 @@
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/evidence(H), slot_l_hand)
 		else
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/evidence(H), slot_in_backpack)
-		if(H.mind.role_alt_title && H.mind.role_alt_title == "Forensic Technician")
+		if(has_alt_title(H, alt_title,"Forensic Technician"))
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/forensics/blue(H), slot_wear_suit)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/briefcase/crimekit, slot_r_hand)
 		else
@@ -135,6 +137,7 @@
 	spawn_positions = 4
 	supervisors = "the head of security"
 	selection_color = "#601C1C"
+	idtype = /obj/item/weapon/card/id/security
 	alt_titles = list("Junior Officer")
 	economic_modifier = 4
 	access = list(access_security, access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_morgue, access_external_airlocks)

@@ -196,7 +196,7 @@
 
 // Returns a multitool from a user depending on their mobtype.
 
-/obj/machinery/telecomms/proc/get_multitool(mob/user as mob)
+/obj/machinery/proc/get_multitool(mob/user as mob)	//No need to have this being a telecomms specific proc.
 
 	var/obj/item/device/multitool/P = null
 	// Let's double check

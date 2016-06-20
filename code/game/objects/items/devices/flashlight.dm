@@ -79,7 +79,9 @@
 					user << "<span class='notice'>\The [M]'s pupils narrow slightly, but are still very dilated.</span>"
 				else
 					user << "<span class='notice'>\The [M]'s pupils narrow.</span>"
-			flick("flash", M.flash)
+
+			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) //can be used offensively
+			M.flash_eyes()
 	else
 		return ..()
 

@@ -9,7 +9,7 @@
 	projectile_type = /obj/item/projectile/bullet/pistol/strong
 
 /obj/item/ammo_casing/a75
-	desc = "A 20mm bullet casing."
+	desc = "A .75 gyrojet rocket sheathe."
 	caliber = "75"
 	projectile_type = /obj/item/projectile/bullet/gyro
 
@@ -21,6 +21,7 @@
 /obj/item/ammo_casing/c38r
 	desc = "A .38 rubber bullet casing."
 	caliber = "38"
+	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/bullet/pistol/rubber
 
 /obj/item/ammo_casing/c9mm
@@ -28,21 +29,34 @@
 	caliber = "9mm"
 	projectile_type = /obj/item/projectile/bullet/pistol
 
+/obj/item/ammo_casing/c9mm/ap
+	desc = "A 9mm armor-piercing bullet casing."
+	projectile_type = /obj/item/projectile/bullet/pistol/ap
+
 /obj/item/ammo_casing/c9mmf
 	desc = "A 9mm flash shell casing."
 	caliber = "9mm"
+	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/energy/flash
 
 /obj/item/ammo_casing/c9mmr
 	desc = "A 9mm rubber bullet casing."
 	caliber = "9mm"
+	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/bullet/pistol/rubber
 
 /obj/item/ammo_casing/c9mmp
 	desc = "A 9mm practice bullet casing."
 	caliber = "9mm"
+	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/bullet/pistol/practice
 
+/*
+/obj/item/ammo_casing/c5mm
+	desc = "A 5mm bullet casing."
+	caliber = "5mm"
+	projectile_type = /obj/item/projectile/bullet/pistol/ap
+*/
 
 /obj/item/ammo_casing/c45
 	desc = "A .45 bullet casing."
@@ -52,16 +66,19 @@
 /obj/item/ammo_casing/c45p
 	desc = "A .45 practice bullet casing."
 	caliber = ".45"
+	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/bullet/pistol/practice
 
 /obj/item/ammo_casing/c45r
 	desc = "A .45 rubber bullet casing."
 	caliber = ".45"
+	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/bullet/pistol/rubber
 
 /obj/item/ammo_casing/c45f
 	desc = "A .45 flash shell casing."
 	caliber = ".45"
+	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/energy/flash
 
 /obj/item/ammo_casing/a10mm
@@ -112,7 +129,6 @@
 	name = "stun shell"
 	desc = "A 12 gauge taser cartridge."
 	icon_state = "stunshell"
-	spent_icon = "stunshell-spent"
 	projectile_type = /obj/item/projectile/energy/electrode/stunshot
 	matter = list(DEFAULT_WALL_MATERIAL = 360, "glass" = 720)
 
@@ -131,18 +147,27 @@
 /obj/item/ammo_casing/a762
 	desc = "A 7.62mm bullet casing."
 	caliber = "a762"
+	icon_state = "rifle-casing"
 	projectile_type = /obj/item/projectile/bullet/rifle/a762
 
 /obj/item/ammo_casing/a762/ap
 	desc = "A 7.62mm armor-piercing bullet casing."
-	caliber = "a762"
 	projectile_type = /obj/item/projectile/bullet/rifle/a762/ap
 
+/obj/item/ammo_casing/a762p
+	desc = "A 7.62mm practice bullet casing."
+	caliber = "a762"
+	icon_state = "rifle-casing" // Need to make an icon for these
+	projectile_type = /obj/item/projectile/bullet/rifle/practice
+
+/obj/item/ammo_casing/a762/blank
+	desc = "A blank 7.62mm bullet casing."
+	projectile_type = /obj/item/projectile/bullet/blank
+	matter = list(DEFAULT_WALL_MATERIAL = 90)
+
 /obj/item/ammo_casing/a145
-	name = "shell casing"
 	desc = "A 14.5mm shell."
 	icon_state = "lcasing"
-	spent_icon = "lcasing-spent"
 	caliber = "14.5mm"
 	projectile_type = /obj/item/projectile/bullet/rifle/a145
 	matter = list(DEFAULT_WALL_MATERIAL = 1250)
@@ -150,17 +175,18 @@
 /obj/item/ammo_casing/a556
 	desc = "A 5.56mm bullet casing."
 	caliber = "a556"
+	icon_state = "rifle-casing"
 	projectile_type = /obj/item/projectile/bullet/rifle/a556
 
 /obj/item/ammo_casing/a556/ap
 	desc = "A 5.56mm armor-piercing bullet casing."
-	caliber = "a556"
 	projectile_type = /obj/item/projectile/bullet/rifle/a556/ap
 
 /obj/item/ammo_casing/a556p
 	desc = "A 5.56mm practice bullet casing."
 	caliber = "a556"
-	projectile_type = /obj/item/projectile/bullet/rifle/a556/practice
+	icon_state = "rifle-casing" // Need to make an icon for these
+	projectile_type = /obj/item/projectile/bullet/rifle/practice
 
 /obj/item/ammo_casing/rocket
 	name = "rocket shell"
@@ -173,5 +199,11 @@
 	name = "cap"
 	desc = "A cap for children toys."
 	caliber = "caps"
+	icon_state = "r-casing"
 	color = "#FF0000"
 	projectile_type = /obj/item/projectile/bullet/pistol/cap
+
+/obj/item/ammo_casing/spent // For simple hostile mobs only, so they don't cough up usable bullets when firing. This is for literally nothing else.
+	icon_state = "s-casing-spent"
+	BB = null
+	projectile_type = null

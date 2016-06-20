@@ -7,7 +7,7 @@ obj/machinery/recharger
 	anchored = 1
 	use_power = 1
 	idle_power_usage = 4
-	active_power_usage = 15000	//15 kW
+	active_power_usage = 40000	//40 kW
 	var/obj/item/charging = null
 	var/list/allowed_devices = list(/obj/item/weapon/gun/energy, /obj/item/weapon/melee/baton, /obj/item/device/laptop, /obj/item/weapon/cell)
 	var/icon_state_charged = "recharger2"
@@ -16,7 +16,7 @@ obj/machinery/recharger
 	var/portable = 1
 	circuit = /obj/item/weapon/circuitboard/recharger
 
-obj/machinery/recharger/map/New()
+obj/machinery/recharger/New()
 	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
@@ -172,12 +172,3 @@ obj/machinery/recharger/wallcharger
 	portable = 0
 	circuit = /obj/item/weapon/circuitboard/recharger/wrecharger
 	frame_type = "wrecharger"
-
-obj/machinery/recharger/wallcharger/map/New()
-	circuit = new circuit(src)
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	component_parts += new /obj/item/stack/cable_coil(src, 5)
-	RefreshParts()
-	..()
-	return

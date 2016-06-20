@@ -248,6 +248,46 @@
 					. |= M		// Since we're already looping through mobs, why bother using |= ? This only slows things down.
 	return .
 
+//Uses dview to quickly return mobs and objects in view,
+// then adds additional mobs or objects if they are in range 'smartly',
+// based on their presence in lists of players or registered objects
+// Type: 1-audio, 2-visual, 0-neither
+/proc/get_mobs_and_objs_in_view_fast(var/turf/T, var/range, var/type = 1)
+	var/list/mobs = list()
+	var/list/objs = list()
+
+	var/list/hear = dview(range,T,INVISIBILITY_MAXIMUM)
+	var/list/hearturfs = list()
+
+	for(var/atom/movable/AM in hear)
+		if(ismob(AM))
+			mobs += AM
+			hearturfs += AM.locs[1]
+		else if(isobj(AM))
+			objs += AM
+			hearturfs += AM.locs[1]
+
+	//A list of every mob with a client
+	for(var/mob/M in player_list)
+		if(M.loc && M.locs[1] in hearturfs)
+			mobs |= M
+
+		else if(M.stat == DEAD)
+			switch(type)
+				if(1) //Audio messages use ghost_ears
+					if(M.is_preference_enabled(/datum/client_preference/ghost_ears))
+						mobs |= M
+				if(2) //Visual messages use ghost_sight
+					if(M.is_preference_enabled(/datum/client_preference/ghost_sight))
+						mobs |= M
+
+	//For objects below the top level who still want to hear
+	for(var/obj/O in listening_objects)
+		if(O.loc && O.locs[1] in hearturfs)
+			objs |= O
+
+	return list("mobs" = mobs, "objs" = objs)
+
 #define SIGN(X) ((X<0)?-1:1)
 
 proc

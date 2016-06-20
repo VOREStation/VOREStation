@@ -9,7 +9,7 @@
 	spawn_positions = 1
 	supervisors = "the captain"
 	selection_color = "#AD6BAD"
-	idtype = /obj/item/weapon/card/id/silver
+	idtype = /obj/item/weapon/card/id/science/head
 	req_admin_notify = 1
 	economic_modifier = 15
 	access = list(access_rd, access_heads, access_tox, access_genetics, access_morgue,
@@ -51,6 +51,7 @@
 	spawn_positions = 3
 	supervisors = "the research director"
 	selection_color = "#633D63"
+	idtype = /obj/item/weapon/card/id/science
 	economic_modifier = 7
 	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenoarch)
 	minimal_access = list(access_tox, access_tox_storage, access_research, access_xenoarch)
@@ -81,6 +82,7 @@
 	spawn_positions = 2
 	supervisors = "the research director"
 	selection_color = "#633D63"
+	idtype = /obj/item/weapon/card/id/science
 	economic_modifier = 7
 	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_hydroponics)
 	minimal_access = list(access_research, access_xenobiology, access_hydroponics, access_tox_storage)
@@ -111,6 +113,7 @@
 	spawn_positions = 2
 	supervisors = "research director"
 	selection_color = "#633D63"
+	idtype = /obj/item/weapon/card/id/science
 	economic_modifier = 5
 	access = list(access_robotics, access_tox, access_tox_storage, access_tech_storage, access_morgue, access_research) //As a job that handles so many corpses, it makes sense for them to have morgue access.
 	minimal_access = list(access_robotics, access_tech_storage, access_morgue, access_research) //As a job that handles so many corpses, it makes sense for them to have morgue access.

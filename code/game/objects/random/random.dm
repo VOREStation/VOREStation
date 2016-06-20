@@ -11,8 +11,10 @@
 	..()
 	if (!prob(spawn_nothing_percentage))
 		spawn_item()
-	qdel(src)
 
+/obj/random/initialize()
+	..()
+	qdel(src)
 
 // this function should return a specific item to spawn
 /obj/random/proc/item_to_spawn()
@@ -108,7 +110,7 @@
 					prob(2);/obj/random/bomb_supply,\
 					prob(1);/obj/item/weapon/extinguisher,\
 					prob(1);/obj/item/clothing/gloves/fyellow,\
-					prob(3);/obj/item/stack/cable_coil,\
+					prob(3);/obj/item/stack/cable_coil/random,\
 					prob(2);/obj/random/toolbox,\
 					prob(2);/obj/item/weapon/storage/belt/utility,\
 					prob(5);/obj/random/tool,\

@@ -268,9 +268,6 @@
 /mob/living/bot/proc/explode()
 	qdel(src)
 
-/mob/living/bot/attack_throat()
-	return
-
 /******************************************************************/
 // Navigation procs
 // Used for A-star pathfinding
@@ -337,3 +334,4 @@
 			//if((dir & EAST ) && (D.dir & (NORTH|SOUTH)))	return !D.check_access(ID)
 		else return !D.check_access(ID)	// it's a real, air blocking door
 	return 0
+

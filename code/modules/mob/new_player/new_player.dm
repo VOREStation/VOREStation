@@ -127,9 +127,13 @@
 			observer.timeofdeath = world.time // Set the time of death so that the respawn timer works correctly.
 
 			announce_ghost_joinleave(src)
-			client.prefs.update_preview_icon()
-			observer.icon = client.prefs.preview_icon
+			var/mob/living/carbon/human/dummy/mannequin = new()
+			client.prefs.dress_preview_mob(mannequin)
+			observer.appearance = mannequin
 			observer.alpha = 127
+			observer.layer = initial(observer.layer)
+			observer.invisibility = initial(observer.invisibility)
+			qdel(mannequin)
 
 			if(client.prefs.be_random_name)
 				client.prefs.real_name = random_name(client.prefs.identifying_gender)
@@ -427,7 +431,7 @@
 	if(ticker.random_players)
 		new_character.gender = pick(MALE, FEMALE)
 		client.prefs.real_name = random_name(new_character.gender)
-		client.prefs.randomize_appearance_for(new_character)
+		client.prefs.randomize_appearance_and_body_for(new_character)
 	else
 		client.prefs.copy_to(new_character)
 
@@ -507,7 +511,12 @@
 /mob/new_player/is_ready()
 	return ready && ..()
 
+// Prevents lobby players from seeing say, even with ghostears
 /mob/new_player/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "",var/italics = 0, var/mob/speaker = null)
+	return
+
+// Prevents lobby players from seeing emotes, even with ghosteyes
+/mob/new_player/show_message(msg, type, alt, alt_type)
 	return
 
 /mob/new_player/hear_radio()

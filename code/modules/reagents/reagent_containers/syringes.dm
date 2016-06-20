@@ -52,6 +52,14 @@
 /obj/item/weapon/reagent_containers/syringe/attackby(obj/item/I as obj, mob/user as mob)
 	return
 
+/obj/item/weapon/reagent_containers/syringe/do_surgery(mob/living/carbon/M, mob/living/user)
+	if(user.a_intent == I_HURT)
+		return 0
+	if(user.a_intent != I_HELP) //in case it is ever used as a surgery tool
+		return ..()
+	afterattack(M, user, 1)
+	return 1
+
 /obj/item/weapon/reagent_containers/syringe/afterattack(obj/target, mob/user, proximity)
 	if(!proximity || !target.reagents)
 		return
@@ -65,7 +73,6 @@
 			target = user
 		syringestab(target, user)
 		return
-
 
 	switch(mode)
 		if(SYRINGE_DRAW)
@@ -149,7 +156,7 @@
 				if(!affected)
 					user << "<span class='danger'>\The [H] is missing that limb!</span>"
 					return
-				else if(affected.status & ORGAN_ROBOT)
+				else if(affected.robotic >= ORGAN_ROBOT)
 					user << "<span class='danger'>You cannot inject a robotic limb.</span>"
 					return
 
@@ -174,6 +181,8 @@
 					user.visible_message("<span class='warning'>[user] is trying to inject [target] with [visible_name]!</span>")
 				else
 					user.visible_message("<span class='warning'>[user] begins hunting for an injection port on [target]'s suit!</span>")
+
+				user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 
 				if(!do_mob(user, target, injtime))
 					return

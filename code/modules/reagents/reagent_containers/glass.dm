@@ -41,7 +41,8 @@
 		/obj/machinery/smartfridge/,
 		/obj/machinery/biogenerator,
 		/obj/structure/frame,
-		/obj/machinery/radiocarbon_spectrometer
+		/obj/machinery/radiocarbon_spectrometer,
+		/obj/machinery/xenobio2/manualinjector
 		)
 
 /obj/item/weapon/reagent_containers/glass/New()
@@ -68,8 +69,15 @@
 		flags |= OPENCONTAINER
 	update_icon()
 
-/obj/item/weapon/reagent_containers/glass/afterattack(var/obj/target, var/mob/user, var/flag)
-	if(!is_open_container() || !flag)
+/obj/item/weapon/reagent_containers/glass/do_surgery(mob/living/carbon/M, mob/living/user)
+	if(user.a_intent != I_HELP) //in case it is ever used as a surgery tool
+		return ..()
+	afterattack(M, user, 1)
+	return 1
+
+/obj/item/weapon/reagent_containers/glass/afterattack(var/obj/target, var/mob/user, var/proximity)
+
+	if(!is_open_container() || !proximity)
 		return
 
 	for(var/type in can_be_placed_into)

@@ -31,6 +31,7 @@
 /obj/item/weapon/syringe_cartridge/attack_self(mob/user)
 	if(syringe)
 		user << "<span class='notice'>You remove [syringe] from [src].</span>"
+		playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
 		user.put_in_hands(syringe)
 		syringe = null
 		sharp = initial(sharp)
@@ -114,6 +115,7 @@
 		darts -= C
 		user.put_in_hands(C)
 		user.visible_message("[user] removes \a [C] from [src].", "<span class='notice'>You remove \a [C] from [src].</span>")
+		playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
 	else
 		..()
 

@@ -17,7 +17,7 @@
 			return 0
 		if (affected.status & ORGAN_DESTROYED)
 			return 0
-		if (!(affected.status & ORGAN_ROBOT))
+		if (!(affected.robotic >= ORGAN_ROBOT))
 			return 0
 		return 1
 
@@ -166,15 +166,18 @@
 		if(..())
 			var/obj/item/stack/cable_coil/C = tool
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			var/limb_can_operate = ((affected && affected.open >= 3) && (affected.disfigured || affected.burn_dam > 0) && target_zone != O_MOUTH)
-			if(limb_can_operate)
-				if(istype(C))
-					if(!C.get_amount() >= 3)
-						user << "<span class='danger'>You need three or more cable pieces to repair this damage.</span>"
-						return SURGERY_FAILURE
-					C.use(3)
-					return 1
-			return SURGERY_FAILURE
+
+			var/limb_can_operate = (affected && affected.open == 2 && affected.burn_dam > 0 && target_zone != "mouth")
+
+			if(!limb_can_operate)
+				return 0
+
+			if(istype(C))
+				if(!C.can_use(10))
+					user << "<span class='danger'>You need ten or more cable pieces to repair this damage.</span>" //usage amount made more consistent with regular cable repair
+					return SURGERY_FAILURE
+				C.use(10)
+			return 1
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -213,7 +216,7 @@
 		if(!affected) return
 		var/is_organ_damaged = 0
 		for(var/obj/item/organ/I in affected.internal_organs)
-			if(I.damage > 0 && (I.status & ORGAN_ROBOT))
+			if(I.damage > 0 && (I.robotic >= ORGAN_ROBOT))
 				is_organ_damaged = 1
 				break
 		return affected.open == 3 && is_organ_damaged
@@ -226,7 +229,7 @@
 
 		for(var/obj/item/organ/I in affected.internal_organs)
 			if(I && I.damage > 0)
-				if(I.status & ORGAN_ROBOT)
+				if(I.robotic >= ORGAN_ROBOT)
 					user.visible_message("[user] starts mending the damage to [target]'s [I.name]'s mechanisms.", \
 					"You start mending the damage to [target]'s [I.name]'s mechanisms." )
 
@@ -242,7 +245,7 @@
 		for(var/obj/item/organ/I in affected.internal_organs)
 
 			if(I && I.damage > 0)
-				if(I.status & ORGAN_ROBOT)
+				if(I.robotic >= ORGAN_ROBOT)
 					user.visible_message("<span class='notice'>[user] repairs [target]'s [I.name] with [tool].</span>", \
 					"<span class='notice'>You repair [target]'s [I.name] with [tool].</span>" )
 					I.damage = 0
@@ -277,7 +280,7 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		if(!(affected && (affected.status & ORGAN_ROBOT)))
+		if(!(affected && (affected.robotic >= ORGAN_ROBOT)))
 			return 0
 		if(affected.open < 3)
 			return 0
@@ -326,7 +329,7 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		if(!(affected && (affected.status & ORGAN_ROBOT)))
+		if(!(affected && (affected.robotic >= ORGAN_ROBOT)))
 			return 0
 		if(affected.open < 3)
 			return 0
@@ -336,7 +339,7 @@
 		var/list/removable_organs = list()
 		for(var/organ in target.internal_organs_by_name)
 			var/obj/item/organ/I = target.internal_organs_by_name[organ]
-			if(I && (I.status & ORGAN_CUT_AWAY) && (I.status & ORGAN_ROBOT) && I.parent_organ == target_zone)
+			if(I && (I.status & ORGAN_CUT_AWAY) && (I.robotic >= ORGAN_ROBOT) && I.parent_organ == target_zone)
 				removable_organs |= organ
 
 		var/organ_to_replace = input(user, "Which organ do you want to reattach?") as null|anything in removable_organs
@@ -388,12 +391,11 @@
 			user << "<span class='danger'>That brain is not usable.</span>"
 			return SURGERY_FAILURE
 
-		if(!(affected.status & ORGAN_ROBOT))
+		if(!(affected.robotic >= ORGAN_ROBOT))
 			user << "<span class='danger'>You cannot install a computer brain into a meat skull.</span>"
 			return SURGERY_FAILURE
 
 		if(!target.should_have_organ("brain"))
-
 			user << "<span class='danger'>You're pretty sure [target.species.name_plural] don't normally have a brain.</span>"
 			return SURGERY_FAILURE
 
@@ -424,6 +426,20 @@
 
 		if(M.brainmob && M.brainmob.mind)
 			M.brainmob.mind.transfer_to(target)
+
+		spawn(0) //Name yourself on your own damn time
+			var/new_name = ""
+			while(!new_name)
+				if(!target) return
+				var/try_name = input(target,"Pick a name for your new form!", "New Name", target.name)
+				var/clean_name = sanitizeName(try_name)
+				if(clean_name)
+					var/okay = alert(target,"New name will be '[clean_name]', ok?", "Cancel", "Ok")
+					if(okay == "Ok")
+						new_name = clean_name
+
+			target.name = new_name
+			target.real_name = target.name
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		user.visible_message("<span class='warning'>[user]'s hand slips.</span>", \

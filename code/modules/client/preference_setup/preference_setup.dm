@@ -1,7 +1,8 @@
-// These are not flags, binary operations not intended
 #define TOPIC_NOACTION 0
 #define TOPIC_HANDLED 1
 #define TOPIC_REFRESH 2
+#define TOPIC_UPDATE_PREVIEW 4
+#define TOPIC_REFRESH_UPDATE_PREVIEW (TOPIC_REFRESH|TOPIC_UPDATE_PREVIEW)
 
 /datum/category_group/player_setup_category/general_preferences
 	name = "General"
@@ -70,6 +71,10 @@
 /datum/category_collection/player_setup_collection/proc/save_preferences(var/savefile/S)
 	for(var/datum/category_group/player_setup_category/PS in categories)
 		PS.save_preferences(S)
+
+/datum/category_collection/player_setup_collection/proc/copy_to_mob(var/mob/living/carbon/human/C)
+	for(var/datum/category_group/player_setup_category/PS in categories)
+		PS.copy_to_mob(C)
 
 /datum/category_collection/player_setup_collection/proc/header()
 	var/dat = ""
@@ -142,6 +147,10 @@
 	for(var/datum/category_item/player_setup_item/PI in items)
 		PI.save_preferences(S)
 
+/datum/category_group/player_setup_category/proc/copy_to_mob(var/mob/living/carbon/human/C)
+	for(var/datum/category_item/player_setup_item/PI in items)
+		PI.copy_to_mob(C)
+
 /datum/category_group/player_setup_category/proc/content(var/mob/user)
 	. = "<table style='width:100%'><tr style='vertical-align:top'><td style='width:50%'>"
 	var/current = 0
@@ -200,6 +209,12 @@
 /datum/category_item/player_setup_item/proc/save_preferences(var/savefile/S)
 	return
 
+/*
+* Called when the item is asked to apply its per character settings to a new mob.
+*/
+/datum/category_item/player_setup_item/proc/copy_to_mob(var/mob/living/carbon/human/C)
+	return
+
 /datum/category_item/player_setup_item/proc/content()
 	return
 
@@ -217,7 +232,9 @@
 		return 1
 
 	. = OnTopic(href, href_list, usr)
-	if(. == TOPIC_REFRESH)
+	if(. & TOPIC_UPDATE_PREVIEW)
+		pref_mob.client.prefs.preview_icon = null
+	if(. & TOPIC_REFRESH)
 		pref_mob.client.prefs.ShowChoices(usr)
 
 /datum/category_item/player_setup_item/CanUseTopic(var/mob/user)

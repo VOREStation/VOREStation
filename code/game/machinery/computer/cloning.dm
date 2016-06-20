@@ -295,7 +295,7 @@
 		return
 
 	if(subject.isSynthetic())
-		scantemp = "Error: Subject is not organic."
+		scantemp = "Error: Majority of subject is non-organic."
 		return
 	if (subject.suiciding == 1)
 		scantemp = "Error: Subject's brain is not responding to scanning stimuli."

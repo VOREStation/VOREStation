@@ -56,18 +56,18 @@
 			if (aiRestorePowerRoutine==2)
 				src << "Alert cancelled. Power has been restored without our assistance."
 				aiRestorePowerRoutine = 0
-				src.blind.layer = 0
+				clear_fullscreen("blind")
 				updateicon()
 				return
 			else if (aiRestorePowerRoutine==3)
 				src << "Alert cancelled. Power has been restored."
 				aiRestorePowerRoutine = 0
-				src.blind.layer = 0
+				clear_fullscreen("blind")
 				updateicon()
 				return
 			else if (APU_power)
 				aiRestorePowerRoutine = 0
-				src.blind.layer = 0
+				clear_fullscreen("blind")
 				updateicon()
 				return
 		else
@@ -79,9 +79,7 @@
 
 					//Blind the AI
 					updateicon()
-					src.blind.screen_loc = ui_entire_screen
-					if (src.blind.layer!=18)
-						src.blind.layer = 18
+					overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
 					src.sight = src.sight&~SEE_TURFS
 					src.sight = src.sight&~SEE_MOBS
 					src.sight = src.sight&~SEE_OBJS
@@ -99,7 +97,7 @@
 							if (!istype(T, /turf/space))
 								src << "Alert cancelled. Power has been restored without our assistance."
 								aiRestorePowerRoutine = 0
-								src.blind.layer = 0
+								clear_fullscreen("blind")
 								return
 						src << "Fault confirmed: missing external power. Shutting down main control system to save power."
 						sleep(20)
@@ -129,7 +127,7 @@
 								if (!istype(T, /turf/space))
 									src << "Alert cancelled. Power has been restored without our assistance."
 									aiRestorePowerRoutine = 0
-									src.blind.layer = 0 //This, too, is a fix to issue 603
+									clear_fullscreen("blind") //This, too, is a fix to issue 603
 									return
 							switch(PRP)
 								if (1) src << "APC located. Optimizing route to APC to avoid needless power waste."

@@ -51,7 +51,7 @@
 			if(!A.air_vent_info.len && !(A.type in exempt_from_atmos))
 				log_unit_test("[bad_msg] lacks an Air vent.")
 				area_good = 0
-		
+
 			if(!area_good)
 				bad_areas.Add(A)
 
@@ -95,5 +95,19 @@
 		fail("\[[bad_tests] / [wire_test_count]\] Some turfs had overlapping wires going the same direction.")
 	else
 		pass("All \[[wire_test_count]\] wires had no overlapping cables going the same direction.")
+
+	return 1
+
+/datum/unit_test/active_edges
+	name = "MAP: Active edges (all maps)"
+
+/datum/unit_test/active_edges/start_test()
+
+	var/active_edges = air_master.active_edges.len
+
+	if(active_edges)
+		fail("Maps contained [active_edges] active edges at round-start.")
+	else
+		pass("No active edges.")
 
 	return 1

@@ -40,7 +40,7 @@
 /mob/living/silicon/Destroy()
 	silicon_mob_list -= src
 	for(var/datum/alarm_handler/AH in alarm_manager.all_handlers)
-		AH.unregister(src)
+		AH.unregister_alarm(src)
 	..()
 
 /mob/living/silicon/proc/init_id()
@@ -67,7 +67,7 @@
 		if(2)
 			src.take_organ_damage(0,10,emp=1)
 			confused = (min(confused + 2, 30))
-	flick("noise", src.flash)
+	flash_eyes(affect_silicon = 1)
 	src << "<span class='danger'><B>*BZZZT*</B></span>"
 	src << "<span class='danger'>Warning: Electromagnetic pulse detected.</span>"
 	..()
@@ -131,9 +131,6 @@
 			drowsyness = max(drowsyness,(effect/(blocked+1)))
 	updatehealth()
 	return 1*/
-
-/mob/living/silicon/attack_throat()
-	return
 
 /proc/islinked(var/mob/living/silicon/robot/bot, var/mob/living/silicon/ai/ai)
 	if(!istype(bot) || !istype(ai))
@@ -267,7 +264,7 @@
 
 /mob/living/silicon/ex_act(severity)
 	if(!blinded)
-		flick("flash", flash)
+		flash_eyes()
 
 	switch(severity)
 		if(1.0)
@@ -364,3 +361,7 @@
 	..()
 	if(cameraFollow)
 		cameraFollow = null
+
+/mob/living/silicon/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /obj/screen/fullscreen/flash)
+	if(affect_silicon)
+		return ..()

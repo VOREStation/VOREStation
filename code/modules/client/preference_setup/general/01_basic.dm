@@ -40,6 +40,25 @@ datum/preferences/proc/set_biological_gender(var/gender)
 	pref.spawnpoint         = sanitize_inlist(pref.spawnpoint, spawntypes, initial(pref.spawnpoint))
 	pref.be_random_name     = sanitize_integer(pref.be_random_name, 0, 1, initial(pref.be_random_name))
 
+// Moved from /datum/preferences/proc/copy_to()
+/datum/category_item/player_setup_item/general/basic/copy_to_mob(var/mob/living/carbon/human/character)
+	if(config.humans_need_surnames)
+		var/firstspace = findtext(pref.real_name, " ")
+		var/name_length = length(pref.real_name)
+		if(!firstspace)	//we need a surname
+			pref.real_name += " [pick(last_names)]"
+		else if(firstspace == name_length)
+			pref.real_name += "[pick(last_names)]"
+
+	character.real_name = pref.real_name
+	character.name = character.real_name
+	if(character.dna)
+		character.dna.real_name = character.real_name
+
+	character.gender = pref.biological_gender
+	character.identifying_gender = pref.identifying_gender
+	character.age = pref.age
+
 /datum/category_item/player_setup_item/general/basic/content()
 	. = list()
 	. += "<b>Name:</b> "
@@ -80,7 +99,7 @@ datum/preferences/proc/set_biological_gender(var/gender)
 		var/new_gender = input(user, "Choose your character's biological gender:", "Character Preference", pref.biological_gender) as null|anything in get_genders()
 		if(new_gender && CanUseTopic(user))
 			pref.set_biological_gender(new_gender)
-		return TOPIC_REFRESH
+		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["id_gender"])
 		var/new_gender = input(user, "Choose your character's identifying gender:", "Character Preference", pref.identifying_gender) as null|anything in all_genders_define_list
@@ -107,7 +126,7 @@ datum/preferences/proc/set_biological_gender(var/gender)
 	else if(href_list["metadata"])
 		var/new_metadata = sanitize(input(user, "Enter any information you'd like others to see, such as Roleplay-preferences:", "Game Preference" , pref.metadata)) as message|null
 		if(new_metadata && CanUseTopic(user))
-			pref.metadata = sanitize(new_metadata)
+			pref.metadata = new_metadata
 			return TOPIC_REFRESH
 
 	return ..()

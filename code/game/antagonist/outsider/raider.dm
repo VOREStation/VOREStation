@@ -80,16 +80,22 @@ var/datum/antagonist/raider/raiders
 		/obj/item/weapon/gun/projectile/automatic/c20r,
 		/obj/item/weapon/gun/projectile/automatic/wt550,
 		/obj/item/weapon/gun/projectile/automatic/sts35,
+		/obj/item/weapon/gun/projectile/automatic/carbine,
+		/obj/item/weapon/gun/projectile/automatic/tommygun,
 		/obj/item/weapon/gun/projectile/silenced,
 		/obj/item/weapon/gun/projectile/shotgun/pump,
 		/obj/item/weapon/gun/projectile/shotgun/pump/combat,
+		/obj/item/weapon/gun/projectile/shotgun/pump/rifle/mosin,
 		/obj/item/weapon/gun/projectile/shotgun/doublebarrel,
 		/obj/item/weapon/gun/projectile/shotgun/doublebarrel/pellet,
 		/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn,
 		/obj/item/weapon/gun/projectile/colt/detective,
 		/obj/item/weapon/gun/projectile/pistol,
 		/obj/item/weapon/gun/projectile/revolver,
-		/obj/item/weapon/gun/projectile/pirate
+		/obj/item/weapon/gun/projectile/pirate,
+		/obj/item/weapon/gun/projectile/revolver/judge,
+		list(/obj/item/weapon/gun/projectile/luger,/obj/item/weapon/gun/projectile/luger/brown),
+		list(/obj/item/weapon/gun/projectile/deagle, /obj/item/weapon/gun/projectile/deagle/gold, /obj/item/weapon/gun/projectile/deagle/camo)
 		)
 
 	var/list/raider_holster = list(
@@ -207,7 +213,7 @@ var/datum/antagonist/raider/raiders
 	player.equip_to_slot_or_del(new new_shoes(player),slot_shoes)
 	if(!player.shoes)
 		//If equipping shoes failed, fall back to equipping sandals
-		var/fallback_type = pick(/obj/item/clothing/shoes/sandal, /obj/item/clothing/shoes/jackboots/unathi)
+		var/fallback_type = pick(/obj/item/clothing/shoes/sandal, /obj/item/clothing/shoes/jackboots/toeless)
 		player.equip_to_slot_or_del(new fallback_type(player), slot_shoes)
 
 	player.equip_to_slot_or_del(new new_uniform(player),slot_w_uniform)
