@@ -203,13 +203,19 @@
 	possible_transfer_amounts = null
 	anchored = 1
 	var/bottle = 0
+	var/cups = 0
+	var/cupholder = 0
+
+/obj/structure/reagent_dispensers/water_cooler/full
+	bottle = 1
+	cupholder = 1
+	cups = 10
 
 /obj/structure/reagent_dispensers/water_cooler/New()
-	if(bottle == 1)
+	if(bottle)
 		..()
 		reagents.add_reagent("water",120)
-	else
-		icon_state = "water_cooler_0"
+	update_icon()
 
 /obj/structure/reagent_dispensers/water_cooler/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/weapon/wrench))
@@ -224,7 +230,7 @@
 					G.reagents.add_reagent(R.id, total_reagent)
 				reagents.clear_reagents()
 				bottle = 0
-				icon_state = "water_cooler_0"
+				update_icon()
 		else
 			if(anchored)
 				user.visible_message("\The [user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
@@ -237,11 +243,24 @@
 		return
 
 	if(istype(I, /obj/item/weapon/screwdriver))
-		if(!bottle)
+		if(cupholder)
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-			user << "<span class='notice'>You take the water-cooler apart.</span>"
-			new /obj/item/stack/material/plastic( src.loc, 4 )
-			qdel(src)
+			user << "<span class='notice'>You take the cup dispenser off.</span>"
+			new /obj/item/stack/material/plastic( src.loc )
+			if(cups)
+				for(var/i = 0 to cups)
+					new /obj/item/weapon/reagent_containers/food/drinks/sillycup(src.loc)
+			cups = 0
+			cupholder = 0
+			update_icon()
+			return
+		if(!bottle && !cupholder)
+			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+			user << "<span class='notice'>You start taking the water-cooler apart.</span>"
+			if(do_after(user, 20))
+				user << "<span class='notice'>You take the water-cooler apart.</span>"
+				new /obj/item/stack/material/plastic( src.loc, 4 )
+				qdel(src)
 		return
 
 	if(istype(I, /obj/item/weapon/reagent_containers/glass/cooler_bottle))
@@ -252,7 +271,7 @@
 				user << "<span class='notice'>You start to screw the bottle onto the water-cooler.</span>"
 				if(do_after(user, 20))
 					bottle = 1
-					icon_state = "water_cooler"
+					update_icon()
 					user << "<span class='notice'>You screw the bottle onto the water-cooler but accidently spill some!</span>" //you spill some because it for somereason transfers 5 units to the bottle after it gets attached but before it's deleted...
 					for(var/datum/reagent/R in G.reagents.reagent_list)
 						var/total_reagent = G.reagents.get_reagent_amount(R.id)
@@ -263,8 +282,46 @@
 		else
 			user << "<span class='warning'>There is already a bottle there!</span>"
 		return
-	else
-		return ..()
+
+	if(istype(I, /obj/item/stack/material/plastic))
+		if(!cupholder)
+			if(anchored)
+				var/obj/item/stack/material/plastic/P = I
+				src.add_fingerprint(user)
+				user << "<span class='notice'>You start to attach a cup dispenser onto the water-cooler.</span>"
+				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+				if(do_after(user, 20))
+					if (P.use(1))
+						user << "<span class='notice'>You attach a cup dispenser onto the water-cooler.</span>"
+						cupholder = 1
+						update_icon()
+			else
+				user << "<span class='warning'>You need to wrench down the cooler first.</span>"
+		else
+			user << "<span class='warning'>There is already a cup dispenser there!</span>"
+		return
+
+/obj/structure/reagent_dispensers/water_cooler/attack_hand(mob/user)
+	if(cups)
+		new /obj/item/weapon/reagent_containers/food/drinks/sillycup(src.loc)
+		cups--
+		update_icon()
+	return
+
+/obj/structure/reagent_dispensers/water_cooler/update_icon()
+	icon_state = "water_cooler"
+	overlays.Cut()
+	var/image/I
+	if(bottle)
+		I = image(icon, "water_cooler_bottle")
+		overlays += I
+	if(cupholder)
+		I = image(icon, "water_cooler_cupholder")
+		overlays += I
+	if(cups)
+		I = image(icon, "water_cooler_cups")
+		overlays += I
+	return
 
 /obj/structure/reagent_dispensers/beerkeg
 	name = "beer keg"

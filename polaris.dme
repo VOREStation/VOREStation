@@ -856,6 +856,7 @@
 #include "code\game\objects\structures\crates_lockers\closets\secure\secure_closets.dm"
 #include "code\game\objects\structures\crates_lockers\closets\secure\security.dm"
 #include "code\game\objects\structures\stool_bed_chair_nest\bed.dm"
+#include "code\game\objects\structures\stool_bed_chair_nest\bench.dm"
 #include "code\game\objects\structures\stool_bed_chair_nest\chairs.dm"
 #include "code\game\objects\structures\stool_bed_chair_nest\stools.dm"
 #include "code\game\objects\structures\stool_bed_chair_nest\wheelchair.dm"

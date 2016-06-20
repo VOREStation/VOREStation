@@ -195,6 +195,7 @@
 	possible_transfer_amounts = null
 	volume = 10
 	center_of_mass = list("x"=16, "y"=12)
+
 /obj/item/weapon/reagent_containers/food/drinks/sillycup/New()
 	..()
 
@@ -204,6 +205,16 @@
 	else
 		icon_state = "water_cup_e"
 
+/obj/item/weapon/reagent_containers/food/drinks/sillycup/MouseDrop(obj/over_object as obj)
+	if(!reagents.total_volume)
+		if(istype(over_object, /obj/structure/reagent_dispensers/water_cooler))
+			var/obj/structure/reagent_dispensers/water_cooler/W = over_object
+			if(W.cupholder && W.cups < 10)
+				W.cups++
+				qdel(src)
+				W.update_icon()
+	else
+		return ..()
 
 //////////////////////////drinkingglass and shaker//
 //Note by Darem: This code handles the mixing of drinks. New drinks go in three places: In Chemistry-Reagents.dm (for the drink
