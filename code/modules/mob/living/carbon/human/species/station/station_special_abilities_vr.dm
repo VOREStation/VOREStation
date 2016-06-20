@@ -90,7 +90,6 @@
 					C.weakened = 2 //Not going to let you get up immediately. 2 ticks before you get up. Overrides the above 10000 weaken.
 					C.nutrition = old_nutrition
 					C.brainloss = (braindamage+10) //Gives them half their prior brain damage plus ten more.
-					C.bruteloss = (10) //There is some moderate damage from completely recreating yourself. Not much, but some. Natural health regen should heal it over time.
 					C.update_canmove()
 					for(var/obj/item/W in C)
 						C.drop_from_inventory(W)
