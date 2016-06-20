@@ -217,6 +217,11 @@
 		reagents.add_reagent("water",120)
 	update_icon()
 
+/obj/structure/reagent_dispensers/water_cooler/examine(mob/user)
+	..()
+	if(cupholder)
+		user << "\blue There are [cups] cups in the cup dispenser."
+
 /obj/structure/reagent_dispensers/water_cooler/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/weapon/wrench))
 		src.add_fingerprint(user)

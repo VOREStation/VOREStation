@@ -453,6 +453,11 @@
 				electrocute_mob(user, get_area(src), src, rand(0.7,1.0))
 
 /obj/machinery/light/flamp/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/weapon/wrench))
+		anchored = !anchored
+		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		user << "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>"
+
 	if(!lamp_shade)
 		if(istype(W, /obj/item/weapon/lampshade))
 			lamp_shade = 1
