@@ -1,0 +1,33 @@
+<!-- 
+	Interface for holodeck computers 
+	See: code/modules/holodeck/HolodeckControl.dm
+-->
+
+Current Loaded Programs:
+{{for data.supportedPrograms}}
+	{{:helper.link(value.name, data.currentProgram == value.program ? 'check' : 'clear', {'program' : value.program}, data.currentProgram == value.program ? 'linkOn' : null)}}
+{{/for}}
+Please ensure that only holographic weapons are used in the holodeck if a combat simulation has been loaded.
+{{if data.isSilicon}}
+	{{if data.safetyDisabled}}
+		{{if data.emagged}}
+			<span class='bad'><b>ERROR</b></span>: Cannot re-enable Safety Protocols.
+		{{else}}
+			{{:helper.link('Re-Enable Safety Protocols?', 'help', {'AIoverride' : 1}, null, 'linkOn')}}
+		{{/if}}
+	{{else}}
+		{{:helper.link('Re-Enable Safety Protocols?', 'help', {'AIoverride' : 1}, null, 'linkDanger')}}
+	{{/if}}
+{{/if}}
+
+{{if data.safetyDisabled}}
+	{{for data.restrictedPrograms}}
+		{{:helper.link('Begin ' + value.name, data.currentProgram == value.program ? 'check' : 'clear', {'program' : value.program}, data.currentProgram == value.program ? 'linkOn' : null)}}
+		Ensure the holodeck is empty before testing.
+	{{/for}}
+	Safety Protocols are <span class='bad'>DISABLED</span>
+{{else}}
+	Safety Protocols are <span class='good'>ENABLED</span>
+{{/if}}
+
+{{:helper.link(data.gravity ? 'On ' : 'Off', data.gravity ? 'check' : 'clear', {'gravity' : 1}, null, data.gravity ? 'linkOn' : linkDanger')}}

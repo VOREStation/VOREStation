@@ -1,0 +1,32 @@
+<!-- 
+	Interface for fax machines 
+	See: code/modules/paperwork/faxmachine.dm
+-->
+
+Confirm Identity: {{:helper.link(data.scanName, 'check', {'scan' : 1})}}
+{{if data.authenticated}}
+	{{:helper.link('Log Out', 'eject', {'logout' : 1}, null, 'linkDanger')}}
+	<hr>
+	<b>Logged in to:</b> {{:data.bossName}} Quantum Entanglement Network
+	{{if data.copyItem}}
+		{{:helper.link('Remove Item', 'eject', {'remove' : 1})}}
+		{{if data.cooldown}}
+			<b>Transmitter arrays realigning. Please stand by.</b>
+		{{else}}
+			{{:helper.link('Send', 'signal-diag', {'send' : 1})}}
+			<b>Currently sending:</b> {{:data.copyItemName}}
+			<b>Sending to:</b> {{:helper.link(data.destination, 'tag', {'dept' : 1})}}
+		{{/if}}
+	{{else}}
+		Please insert paper to send via secure connection.
+		{{if data.cooldown}}
+			<b>Transmitter arrays realigning. Please stand by.</b>
+		{{/if}}
+	{{/if}}
+{{else}}
+	{{:helper.link('Log In', 'person', {'auth' : 1})}}
+	Proper authentication is required to use this device.
+	{{if data.copyItem}}
+		{{:helper.link('Remove Item', 'eject', {'remove' : 1})}}
+	{{/if}}
+{{/if}}

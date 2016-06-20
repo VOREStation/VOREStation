@@ -1,0 +1,115 @@
+<!-- 
+	Interface for cloning computers machines 
+	See: code/game/machinery/computer/cloning.dm
+-->
+
+{{:data.temp}}
+
+{{if data.menu == 1}}
+	<!-- Modules -->
+	<h3>Modules</h3>
+	{{if data.scanner}}
+		DNA scanner found. <!-- Green -->
+	{{else}}
+		DNA scanner not found. <!-- Red -->
+	{{/if}}
+		
+	{{if data.podsLen > 0}}
+		{{:data.podsLen}} cloning vat\s found. <!-- Green -->
+	{{else}}
+		No cloning vats found. <!-- Red -->
+	{{/if}}
+	
+	<!-- Scanner -->
+	<h3>Scanner Functions</h3>
+
+	{{if data.loading}}
+		<b>Scanning...</b>
+	{{else}}
+		<b>{{:data.scantemp}}</b>
+	{{/if}}
+
+	{{if data.scanner}}
+		{{if data.occupant}}
+			<!-- if(scantemp == "Scanner unoccupied") scantemp = "" // Stupid check to remove the text -->
+			{{:helper.link('Scan - ' + {{:data.occupant}}, 'play', {'scan' : 1})}}
+		{{else}}
+			Scanner unoccupied
+		{{/if}}
+		
+		{{if data.locked}}
+			{{:helper.link('Unlock', 'locked', {'lock' : 1}, null, 'redButton')}}
+		{{else}}
+			{{:helper.link('Lock', 'unlocked', {'lock' : 1})}}
+		{{/if}}
+
+	{{else}}
+		No scanner connected!
+	{{/if}}
+
+	{{if data.podsLen}}
+		{{for data.pods}}
+			{{:value.pod}} biomass: <i>{{:value.biomass}}</i>
+		{{/for}}
+	{{/if}}
+
+	<!-- Database -->
+	<h3>Database Functions</h3>
+	
+	{{:helper.link('View Records', 'list', {'menu' : 2})}}
+	
+	{{:helper.link('Eject Disk', 'eject', {'disk' : 'eject'}, data.diskette ? null : 'linkOff')}}
+
+{{else data.menu == 2}}
+	<h3>Current records</h3>
+	
+	{{:helper.link('Back', 'arrowreturn-1-w', {'menu' : 1})}}
+
+	{{for data.records}}
+		<li>{{:helper.link(value.name, 'document', {'view_rec' : value.record})}}</li>
+	{{/for}}
+
+{{else data.menu == 3}}
+	<h3>Selected Record</h3>
+	{{:helper.link('Back', 'arrowreturn-1-w', {'menu' : 2})}}
+
+	{{if activeRecord}}
+		{{:helper.link('Delete Record', 'trash', {'del_rec' : 1}, null, 'redButton')}}
+		<b>Name:</b> {{:data.activeRecord.real_name}}
+		
+		<!--
+		var/obj/item/weapon/implant/health/H = null
+		if(src.active_record.implant)
+			H=locate(src.active_record.implant)
+
+		if ((H) && (istype(H)))
+			dat += "<b>Health:</b> [H.sensehealth()] | OXY-BURN-TOX-BRUTE<br>
+		{{else}}
+			Unable to locate implant. <<Red
+		-->
+		
+		{{:helper.link('Load from disk', 'transfer-e-w', {'disk' : 'load'}, data.disk ? null : 'linkOff')}}
+
+		Save: {{:helper.link('UI + UE', 'disk', {'save_disk' : 'ue'}, data.disk ? null : 'linkOff')}} 
+		{{:helper.link('UI', 'disk', {'save_disk' : 'ui'}, data.disk ? null : 'linkOff')}} 
+		{{:helper.link('SE', 'disk', {'save_disk' : 'se'}, data.disk ? null : 'linkOff')}}
+		
+		<b>UI:</b> {{:data.activeRecord.ui}}
+		<b>SE:</b> {{:data.activeRecord.se}}
+
+		{{:helper.link('Clone', 'play', {'clone' : data.activeRecord.active_record}, data.podsLen ? null : 'linkOff')}}
+		
+	{{else}}
+		ERROR: Record not found. <!-- Red -->
+	{{/if}}
+
+{{else data.menu == 4}}
+	{{:data.temp}}
+	
+	<h3>Confirm Record Deletion</h3>
+
+	<b>Scan card to confirm.</b>
+	
+	{{:helper.link('Cancel', 'cancel', {'menu' : 3})}}
+	
+{{/if}} 
