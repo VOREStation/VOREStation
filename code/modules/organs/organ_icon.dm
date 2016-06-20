@@ -43,10 +43,6 @@ var/global/list/limb_icon_cache = list()
 	var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name[O_EYES]
 	if(eyes) eyes.update_colour()
 
-/obj/item/organ/external/head/removed()
-	get_icon()
-	..()
-
 /obj/item/organ/external/head/get_icon()
 
 	..()

@@ -18,6 +18,11 @@
 	if(!pref.skills.len)			pref.ZeroSkills()
 	if(pref.used_skillpoints < 0)	pref.used_skillpoints = 0
 
+// Moved from /datum/preferences/proc/copy_to()
+/datum/category_item/player_setup_item/skills/copy_to_mob(var/mob/living/carbon/human/character)
+	character.skills			= pref.skills
+	character.used_skillpoints	= pref.used_skillpoints
+
 /datum/category_item/player_setup_item/skills/content()
 	. = list()
 	. += "<b>Select your Skills</b><br>"
