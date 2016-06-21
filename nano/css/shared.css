@@ -45,6 +45,19 @@ hr {
     white-space: nowrap;
 }
 
+.link32 {
+    float: left;
+    min-width: 15px;
+	max-width: 31px;
+    height: 31px;
+    text-align: center;
+	text-decoration: none;
+	background: #40628a;
+    border: 1px solid #161616;
+	margin: 0 2px 2px 0;
+    cursor: default;
+}
+
 .hasIcon {
     padding: 0px 4px 4px 0px;
 }
@@ -649,7 +662,7 @@ th.misc {
 }
 
 .oxyloss {
-    color: blue;
+    color: #0000A9;
 }
 
 /* 75px width used in power monitoring console buttons */

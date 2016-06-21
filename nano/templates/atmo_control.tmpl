@@ -5,30 +5,37 @@
 {{if data.sensors}}
 	{{for data.sensors}}
 		{{if value.sensor_data}}
-			<div class='item'>
-				{{:value.long_name}}
+			<div class='itemGroup'>
+				<div class='item'><b>{{:value.long_name}}</b></div>
 				{{if value.sensor_data.pressure}}
-					<div class='itemLabel'><b>Pressure</b>: </div>
-					{{:value.sensor_data.pressure}} kPa
+					<div class='item'>
+						<div class='itemLabel'>Pressure:</div>
+						<div class='itemContentNarrow'>{{:value.sensor_data.pressure}} kPa</div>
+					</div>
 				{{/if}}
 				{{if value.sensor_data.temperature}}
-					<div class='itemLabel'><b>Temperature</b>: </div>
-					{{:value.sensor_data.temperature}} kPa
+					<div class='item'>
+						<div class='itemLabel'>Temperature:</div>
+						<div class='itemContentNarrow'>{{:value.sensor_data.temperature}} kPa</div>
+					</div>
 				{{/if}}
 				{{if value.sensor_data.oxygen || value.sensor_data.nitrogen || value.sensor_data.carbon_dioxide || value.sensor_data.phoron}}
-					<div class='itemLabel'><b>Gas Composition</b>: </div>
-					{{if value.sensor_data.oxygen}}
-						{{:value.sensor_data.pressure}} % O2
-					{{/if}}
-					{{if value.sensor_data.nitrogen}}
-						{{:value.sensor_data.pressure}} % N
-					{{/if}}
-					{{if value.sensor_data.carbon_dioxide}}
-						{{:value.sensor_data.pressure}} % CO2
-					{{/if}}
-					{{if value.sensor_data.phoron}}
-						{{:value.sensor_data.pressure}} % TX
-					{{/if}}
+					<div class='item'>
+						<div class='itemLabel'>Gas Composition:</div>
+							{{if value.sensor_data.oxygen}}
+								<div class='itemContent' style='width: 15%;'>{{:value.sensor_data.pressure}} % O2</div>
+							{{/if}}
+							{{if value.sensor_data.nitrogen}}
+								<div class='itemContent' style='width: 15%;'>{{:value.sensor_data.pressure}} % N</div>
+							{{/if}}
+							{{if value.sensor_data.carbon_dioxide}}
+								<div class='itemContent' style='width: 15%;'>{{:value.sensor_data.pressure}} % CO2</div>
+							{{/if}}
+							{{if value.sensor_data.phoron}}
+								<div class='itemContent' style='width: 15%;'>{{:value.sensor_data.pressure}} % TX</div>
+							{{/if}}
+						
+					</div>
 				{{/if}}
 			</div>
 		{{else}}
@@ -68,7 +75,6 @@
 					On Hold
 				{{/if}}
 			</div>
-			{{:helper.link('Refresh', null, {'in_refresh_status' : 1})}}
 		</div>
 		<div class='item'>
 			<div class='itemLabel'>Flow Rate Limit:</div>
@@ -78,6 +84,7 @@
 			<div class='itemLabel'>Command:</div>
 			{{:helper.link('Toggle Power', null, {'in_toggle_injector' : 1})}}
 			{{:helper.link('Set Flow Rate', null, {'in_set_flowrate' : 1})}}
+			{{:helper.link('Refresh', null, {'in_refresh_status' : 1})}}
 		</div>
 	{{else}}
 		<div class='item'>
@@ -112,13 +119,12 @@
 				{{/if}}
 			</div>
 			<div class='itemContent'>
-				{{if data.input_info.power}}
+				{{if data.output_info.power}}
 					Open
 				{{else}}
 					On Hold
 				{{/if}}
 			</div>
-			{{:helper.link('Refresh', null, {'out_refresh_status' : 1})}}
 		</div>
 		<div class='item'>
 			{{if data.tanks}}
@@ -133,6 +139,7 @@
 			<div class='itemLabel'>Command:</div>
 			{{:helper.link('Toggle Power', null, {'out_toggle_power' : 1})}}
 			{{:helper.link('Set Pressure', null, {'out_set_pressure' : 1})}}
+			{{:helper.link('Refresh', null, {'out_refresh_status' : 1})}}
 		</div>
 	{{else}}
 		<div class='item'>
@@ -190,8 +197,8 @@
 				{{else}}
 					On Hold
 				{{/if}}
+				<div class='floatRight'>{{:helper.link('Refresh', null, {'refresh_status' : 1})}}</div>
 			</div>
-			{{:helper.link('Refresh', null, {'refresh_status' : 1})}}
 		</div>
 		<div class='item'>
 			<div class='itemLabel'>Rate:</div>

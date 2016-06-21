@@ -32,9 +32,11 @@
 	if(vendmode == 1 && I)
 		scan_id(I, W)
 		vendmode = 0
+		nanomanager.update_uis(src)
 	if(vendmode == 2 && I)
 		if(reimburse_id(I, W))
 			vendmode = 0
+			nanomanager.update_uis(src)
 	if(vendmode == 0)
 		if(istype(W, /obj/item/device/laptop))
 			var/obj/item/device/laptop/L = W
@@ -44,6 +46,7 @@
 			L.loc = src
 			vendmode = 2
 			usr << "<span class='notice'>You slot your [L.name] into \The [src.name]</span>"
+			nanomanager.update_uis(src)
 	else
 		..()
 
@@ -74,7 +77,7 @@
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "laptop_vendor.tmpl", src.name, 480, 500)
+		ui = new(user, src, ui_key, "laptop_vendor.tmpl", src.name, 480, 425)
 		ui.set_initial_data(data)
 		ui.open()
 		//ui.set_auto_update(5)

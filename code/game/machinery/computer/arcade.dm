@@ -84,6 +84,7 @@
 	circuit = /obj/item/weapon/circuitboard/arcade/battle
 	var/enemy_name = "Space Villian"
 	var/temp = "Winners don't use space drugs" //Temporary message, for attack messages, etc
+	var/enemy_action = ""
 	var/player_hp = 30 //Player health/attack points
 	var/player_mp = 10
 	var/enemy_hp = 45 //Enemy health/attack points
@@ -123,6 +124,7 @@
 
 	var/list/data = list()
 	data["temp"] = temp
+	data["enemyAction"] = enemy_action
 	data["enemyName"] = enemy_name
 	data["playerHP"] = player_hp
 	data["playerMP"] = player_mp
@@ -131,7 +133,7 @@
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "arcade_battle.tmpl", src.name, 400, 500)
+		ui = new(user, src, ui_key, "arcade_battle.tmpl", src.name, 400, 300)
 		ui.set_initial_data(data)
 		ui.open()
 		//ui.set_auto_update(2)
@@ -218,12 +220,12 @@
 
 	else if (emagged && (turtle >= 4))
 		var/boomamt = rand(5,10)
-		temp = "[enemy_name] throws a bomb, exploding you for [boomamt] damage!"
+		enemy_action = "[enemy_name] throws a bomb, exploding you for [boomamt] damage!"
 		player_hp -= boomamt
 
 	else if ((enemy_mp <= 5) && (prob(70)))
 		var/stealamt = rand(2,3)
-		temp = "[enemy_name] steals [stealamt] of your power!"
+		enemy_action = "[enemy_name] steals [stealamt] of your power!"
 		player_mp -= stealamt
 
 		if (player_mp <= 0)
@@ -237,13 +239,13 @@
 				feedback_inc("arcade_loss_mana_normal")
 
 	else if ((enemy_hp <= 10) && (enemy_mp > 4))
-		temp = "[enemy_name] heals for 4 health!"
+		enemy_action = "[enemy_name] heals for 4 health!"
 		enemy_hp += 4
 		enemy_mp -= 4
 
 	else
 		var/attackamt = rand(3,6)
-		temp = "[enemy_name] attacks for [attackamt] damage!"
+		enemy_action = "[enemy_name] attacks for [attackamt] damage!"
 		player_hp -= attackamt
 
 	if ((player_mp <= 0) || (player_hp <= 0))

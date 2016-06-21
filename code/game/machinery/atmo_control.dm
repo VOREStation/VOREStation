@@ -122,7 +122,7 @@ obj/machinery/computer/general_air_control/Destroy()
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "atmo_control.tmpl", src.name, 400, 500)
+		ui = new(user, src, ui_key, "atmo_control.tmpl", src.name, 525, 500)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(5)
@@ -169,6 +169,7 @@ obj/machinery/computer/general_air_control/Destroy()
 		data["input_info"] = list("power" = input_info["power"], "volume_rate" = round(input_info["volume_rate"], 0.1))
 	else
 		data["input_info"] = null
+
 	if(output_info)
 		data["output_info"] = list("power" = output_info["power"], "output_pressure" = output_info["internal"])
 	else
@@ -179,7 +180,7 @@ obj/machinery/computer/general_air_control/Destroy()
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "atmo_control.tmpl", src.name, 400, 500)
+		ui = new(user, src, ui_key, "atmo_control.tmpl", src.name, 525, 500)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(5)
@@ -201,12 +202,12 @@ obj/machinery/computer/general_air_control/Destroy()
 		return 1
 
 	if(href_list["adj_pressure"])
-		var/change = href_list["adj_pressure"]
+		var/change = text2num(href_list["adj_pressure"])
 		pressure_setting = between(0, pressure_setting + change, 50*ONE_ATMOSPHERE)
 		return 1
 
 	if(href_list["adj_input_flow_rate"])
-		var/change = href_list["adj_input_flow_rate"]
+		var/change = text2num(href_list["adj_input_flow_rate"])
 		input_flow_setting = between(0, input_flow_setting + change, ATMOS_DEFAULT_VOLUME_PUMP + 500) //default flow rate limit for air injectors
 		return 1
 
@@ -292,7 +293,7 @@ obj/machinery/computer/general_air_control/Destroy()
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "atmo_control.tmpl", src.name, 400, 500)
+		ui = new(user, src, ui_key, "atmo_control.tmpl", src.name, 525, 500)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(5)
@@ -314,12 +315,12 @@ obj/machinery/computer/general_air_control/Destroy()
 		return 1
 
 	if(href_list["adj_pressure"])
-		var/change = href_list["adj_pressure"]
+		var/change = text2num(href_list["adj_pressure"])
 		pressure_setting = between(0, pressure_setting + change, 10*ONE_ATMOSPHERE)
 		return 1
 
 	if(href_list["adj_input_flow_rate"])
-		var/change = href_list["adj_input_flow_rate"]
+		var/change = text2num(href_list["adj_input_flow_rate"])
 		input_flow_setting = between(0, input_flow_setting + change, ATMOS_DEFAULT_VOLUME_PUMP + 500) //default flow rate limit for air injectors
 		return 1
 

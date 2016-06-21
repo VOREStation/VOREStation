@@ -80,10 +80,10 @@
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "holodeck.tmpl", src.name, 400, 500)
+		ui = new(user, src, ui_key, "holodeck.tmpl", src.name, 400, 550)
 		ui.set_initial_data(data)
 		ui.open()
-		//ui.set_auto_update(5)
+		ui.set_auto_update(20)
 
 /obj/machinery/computer/HolodeckControl/Topic(href, href_list)
 	if(..())

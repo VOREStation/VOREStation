@@ -77,7 +77,7 @@
 		{{:helper.link('Delete Record', 'trash', {'del_rec' : 1}, null, 'redButton')}}
 		<b>Name:</b> {{:data.activeRecord.real_name}}
 		
-		<!--
+<!--
 		var/obj/item/weapon/implant/health/H = null
 		if(src.active_record.implant)
 			H=locate(src.active_record.implant)
@@ -86,7 +86,7 @@
 			dat += "<b>Health:</b> [H.sensehealth()] | OXY-BURN-TOX-BRUTE<br>
 		{{else}}
 			Unable to locate implant. <<Red
-		-->
+ -->
 		
 		{{:helper.link('Load from disk', 'transfer-e-w', {'disk' : 'load'}, data.disk ? null : 'linkOff')}}
 

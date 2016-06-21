@@ -4,8 +4,12 @@
 -->
 
 <h3 style='text-align: center;'>{{:data.enemyName}}</h3>
-
-<h5 style='text-align: center;'>{{:data.temp}}</h5>
+{{if data.gameOver}}
+	<h5 style='text-align: center;'>{{:data.temp}}</h5>
+{{else}}
+	<h5 style='text-align: center;'>{{:data.temp}}</h5>
+	<h5 style='text-align: center;'>{{:data.enemyAction}}</h5>
+{{/if}}
 <div class='item'>
 	<div class='itemLabel' style='width: auto; margin-right: 5px;'>Health:</div>
 	<div class='itemContent' style='width: auto; margin-right: 15px;'><b>{{:data.playerHP}}</b></div>

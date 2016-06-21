@@ -59,7 +59,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "fax.tmpl", src.name, 400, 500)
+		ui = new(user, src, ui_key, "fax.tmpl", src.name, 500, 500)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(10) //this machine is so unimportant let's not have it update that often.

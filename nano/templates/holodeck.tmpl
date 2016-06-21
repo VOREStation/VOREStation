@@ -3,31 +3,34 @@
 	See: code/modules/holodeck/HolodeckControl.dm
 -->
 
-Current Loaded Programs:
+<h3>Current Loaded Programs:</h3>
 {{for data.supportedPrograms}}
-	{{:helper.link(value.name, data.currentProgram == value.program ? 'check' : 'clear', {'program' : value.program}, data.currentProgram == value.program ? 'linkOn' : null)}}
+	<div class='item'>{{:helper.link(value.name, data.currentProgram == value.program ? 'check' : 'close', {'program' : value.program}, null, data.currentProgram == value.program ? 'linkOn' : null)}}</div>
 {{/for}}
-Please ensure that only holographic weapons are used in the holodeck if a combat simulation has been loaded.
+<div class='item'>Please ensure that only holographic weapons are used in the holodeck if a combat simulation has been loaded.</div>
 {{if data.isSilicon}}
 	{{if data.safetyDisabled}}
 		{{if data.emagged}}
-			<span class='bad'><b>ERROR</b></span>: Cannot re-enable Safety Protocols.
+			<div class='item'><span class='bad'><b>ERROR</b></span>: Cannot re-enable Safety Protocols.</div>
 		{{else}}
-			{{:helper.link('Re-Enable Safety Protocols?', 'help', {'AIoverride' : 1}, null, 'linkOn')}}
+			<div class='item'>{{:helper.link('Re-Enable Safety Protocols?', 'help', {'AIoverride' : 1}, null, 'linkOn')}}</div>
 		{{/if}}
 	{{else}}
-		{{:helper.link('Re-Enable Safety Protocols?', 'help', {'AIoverride' : 1}, null, 'linkDanger')}}
+		<div class='item'>{{:helper.link('Re-Enable Safety Protocols?', 'help', {'AIoverride' : 1}, null, 'redButton')}}</div>
 	{{/if}}
 {{/if}}
 
 {{if data.safetyDisabled}}
 	{{for data.restrictedPrograms}}
-		{{:helper.link('Begin ' + value.name, data.currentProgram == value.program ? 'check' : 'clear', {'program' : value.program}, data.currentProgram == value.program ? 'linkOn' : null)}}
-		Ensure the holodeck is empty before testing.
+		<div class='item'>{{:helper.link('Begin ' + value.name, data.currentProgram == value.program ? 'check' : 'close', {'program' : value.program}, null, data.currentProgram == value.program ? 'linkOn' : null)}}</div>
 	{{/for}}
-	Safety Protocols are <span class='bad'>DISABLED</span>
+	<div class='item average'>Ensure the holodeck is empty before testing.</div>
+	<div class='item'>Safety Protocols are <span class='bad'>DISABLED</span></div>
 {{else}}
-	Safety Protocols are <span class='good'>ENABLED</span>
+	<div class='item'>Safety Protocols are <span class='good'>ENABLED</span></div>
 {{/if}}
 
-{{:helper.link(data.gravity ? 'On ' : 'Off', data.gravity ? 'check' : 'clear', {'gravity' : 1}, null, data.gravity ? 'linkOn' : linkDanger')}}
+<div class='item'>
+	<div class='itemLabelNarrow'>Gravity:</div>
+	{{:helper.link(data.gravity ? 'On ' : 'Off', data.gravity ? 'check' : 'close', {'gravity' : 1}, null, data.gravity ? 'linkOn' : 'redButton')}}
+</div>

@@ -120,7 +120,7 @@
 		pods_list_ui[++pods_list_ui.len] = list("pod" = pod, "biomass" = pod.biomass)
 
 	if(pods)
-		data["pods"] = pods
+		data["pods"] = pods_list_ui
 	else
 		data["pods"] = null
 
