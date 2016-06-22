@@ -8,7 +8,6 @@
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "body_scanner_0"
 	density = 1
-	dir = 8
 	anchored = 1
 
 	circuit = /obj/item/weapon/circuitboard/body_scanner
@@ -25,8 +24,6 @@
 		var/obj/machinery/body_scanconsole/C = locate(/obj/machinery/body_scanconsole) in range(2,src)
 		if(C)
 			C.connected = src
-		return
-	return
 
 /obj/machinery/bodyscanner/map/New()
 	..()
@@ -255,7 +252,6 @@
 			bodyscannernew = locate(/obj/machinery/bodyscanner, get_step(src, dir))
 		src.connected = bodyscannernew
 		return
-	return
 
 /obj/machinery/body_scanconsole/attack_ai(user as mob)
 	return attack_hand(user)
