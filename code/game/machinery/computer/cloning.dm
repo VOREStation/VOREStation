@@ -113,7 +113,7 @@
 
 	var/records_list_ui[0]
 	for(var/datum/dna2/record/R in records)
-		records_list_ui[++records_list_ui.len] = list("record" = R, "name" = R.dna.real_name)
+		records_list_ui[++records_list_ui.len] = list("ckey" = R.ckey, "name" = R.dna.real_name)
 
 	var/pods_list_ui[0]
 	for(var/obj/machinery/clonepod/pod in pods)
@@ -130,7 +130,7 @@
 		data["records"] = null
 
 	if(active_record)
-		data["activeRecord"] = list("active_record" = active_record, "real_name" = active_record.dna.real_name, \
+		data["activeRecord"] = list("ckey" = active_record.ckey, "real_name" = active_record.dna.real_name, \
 									"ui" = active_record.dna.uni_identity, "se" = active_record.dna.struc_enzymes)
 	else
 		data["activeRecord"] = null
@@ -139,6 +139,8 @@
 	data["connected"] = scanner
 	data["podsLen"] = pods.len
 	data["loading"] = loading
+	if(!scanner.occupant)
+		scantemp = ""
 	data["scantemp"] = scantemp
 	data["occupant"] = scanner.occupant
 	data["locked"] = scanner.locked
@@ -147,7 +149,7 @@
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "cloning.tmpl", src.name, 400, 300)
+		ui = new(user, src, ui_key, "cloning.tmpl", src.name, 400, 450)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(5)
@@ -176,8 +178,12 @@
 		else
 			scanner.locked = 0
 
+	else if ((href_list["eject"]) && (!isnull(scanner)))
+		if ((!scanner.locked) && (scanner.occupant))
+			scanner.eject_occupant()
+
 	else if (href_list["view_rec"])
-		active_record = locate(href_list["view_rec"])
+		active_record = find_record(href_list["view_rec"])
 		if(istype(active_record,/datum/dna2/record))
 			if ((isnull(active_record.ckey)))
 				qdel(active_record)
@@ -235,7 +241,7 @@
 		updateUsrDialog()
 
 	else if (href_list["clone"])
-		var/datum/dna2/record/C = locate(href_list["clone"])
+		var/datum/dna2/record/C = find_record(href_list["clone"])
 		//Look for that player! They better be dead!
 		if(istype(C))
 			//Can't clone without someone to clone.  Or a pod.  Or if the pod is busy. Or full of gibs.
@@ -277,6 +283,8 @@
 
 	else if (href_list["menu"])
 		menu = href_list["menu"]
+		temp = ""
+		scantemp = ""
 
 	nanomanager.update_uis(src)
 	add_fingerprint(usr)

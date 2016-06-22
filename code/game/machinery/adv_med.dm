@@ -317,9 +317,11 @@
 			occupantData["blood"] = bloodData
 
 			var/reagentData[0]
-			if(H.reagents)
-				for(var/datum/reagent/R in H.reagents)
+			if(H.reagents.reagent_list.len >= 1)
+				for(var/datum/reagent/R in H.reagents.reagent_list)
 					reagentData[++reagentData.len] = list("name" = R.name, "amount" = R.volume)
+			else
+				reagentData = null
 
 			occupantData["reagents"] = reagentData
 
@@ -374,7 +376,12 @@
 			for(var/obj/item/organ/I in H.internal_organs)
 				var/organData[0]
 				organData["name"] = I.name
-				organData["desc"] = I.desc
+				if(I.status & ORGAN_ASSISTED)
+					organData["desc"] = "Assisted"
+				else if(I.robotic >= ORGAN_ROBOT)
+					organData["desc"] = "Mechanical"
+				else
+					organData["desc"] = null
 				organData["germ_level"] = I.germ_level
 				organData["damage"] = I.damage
 
@@ -389,7 +396,7 @@
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "adv_med.tmpl", "Body Scanner", 690, 600)
+		ui = new(user, src, ui_key, "adv_med.tmpl", "Body Scanner", 690, 800)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
@@ -543,7 +550,11 @@
 					dat += "<td>[e.name]</td><td>-</td><td>-</td><td>Not Found</td>"
 				dat += "</tr>"
 			for(var/obj/item/organ/i in occupant.internal_organs)
-				var/mech = i.desc
+				var/mech = ""
+				if(i.status & ORGAN_ASSISTED)
+					mech = "Assisted:"
+				if(i.robotic >= ORGAN_ROBOT)
+					mech = "Mechanical:"
 				var/infection = "None"
 				switch (i.germ_level)
 					if (1 to INFECTION_LEVEL_ONE + 200)

@@ -9,32 +9,31 @@
 				<div class='item'><b>{{:value.long_name}}</b></div>
 				{{if value.sensor_data.pressure}}
 					<div class='item'>
-						<div class='itemLabel'>Pressure:</div>
+						<div class='itemLabel' style='width: 24%;'>Pressure:</div>
 						<div class='itemContentNarrow'>{{:value.sensor_data.pressure}} kPa</div>
 					</div>
 				{{/if}}
 				{{if value.sensor_data.temperature}}
 					<div class='item'>
-						<div class='itemLabel'>Temperature:</div>
+						<div class='itemLabel' style='width: 24%;'>Temperature:</div>
 						<div class='itemContentNarrow'>{{:value.sensor_data.temperature}} kPa</div>
 					</div>
 				{{/if}}
 				{{if value.sensor_data.oxygen || value.sensor_data.nitrogen || value.sensor_data.carbon_dioxide || value.sensor_data.phoron}}
 					<div class='item'>
-						<div class='itemLabel'>Gas Composition:</div>
-							{{if value.sensor_data.oxygen}}
-								<div class='itemContent' style='width: 15%;'>{{:value.sensor_data.pressure}} % O2</div>
-							{{/if}}
-							{{if value.sensor_data.nitrogen}}
-								<div class='itemContent' style='width: 15%;'>{{:value.sensor_data.pressure}} % N</div>
-							{{/if}}
-							{{if value.sensor_data.carbon_dioxide}}
-								<div class='itemContent' style='width: 15%;'>{{:value.sensor_data.pressure}} % CO2</div>
-							{{/if}}
-							{{if value.sensor_data.phoron}}
-								<div class='itemContent' style='width: 15%;'>{{:value.sensor_data.pressure}} % TX</div>
-							{{/if}}
-						
+						<div class='itemLabel' style='width: 24%;'>Gas Composition:</div>
+						{{if value.sensor_data.oxygen}}
+							<div class='itemContent' style='width: 19%;'>{{:value.sensor_data.pressure}}% O2</div>
+						{{/if}}
+						{{if value.sensor_data.nitrogen}}
+							<div class='itemContent' style='width: 19%;'>{{:value.sensor_data.pressure}}% N</div>
+						{{/if}}
+						{{if value.sensor_data.carbon_dioxide}}
+							<div class='itemContent' style='width: 19%;'>{{:value.sensor_data.pressure}}% CO2</div>
+						{{/if}}
+						{{if value.sensor_data.phoron}}
+							<div class='itemContent' style='width: 19%;'>{{:value.sensor_data.pressure}}% TX</div>
+						{{/if}}
 					</div>
 				{{/if}}
 			</div>
@@ -61,7 +60,7 @@
 	
 	{{if data.input_info}}
 		<div class='item'>
-			<div class='itemLabel'>
+			<div class='itemLabel' style='width: 25%;'>
 				{{if data.tanks}}
 					<b>Input</b>:
 				{{else data.core}}
@@ -77,41 +76,41 @@
 			</div>
 		</div>
 		<div class='item'>
-			<div class='itemLabel'>Flow Rate Limit:</div>
+			<div class='itemLabel' style='width: 25%;'>Flow Rate Limit:</div>
 			<div class='itemContent'>{{:data.input_info.volume_rate}} L/s</div>
 		</div>
 		<div class='item'>
-			<div class='itemLabel'>Command:</div>
-			{{:helper.link('Toggle Power', null, {'in_toggle_injector' : 1})}}
-			{{:helper.link('Set Flow Rate', null, {'in_set_flowrate' : 1})}}
-			{{:helper.link('Refresh', null, {'in_refresh_status' : 1})}}
+			<div class='itemLabel' style='width: 25%;'>Command:</div>
+			{{:helper.link('Toggle Power', 'power', {'in_toggle_injector' : 1})}}
+			{{:helper.link('Set Flow Rate', 'pencil', {'in_set_flowrate' : 1})}}
+			{{:helper.link('Refresh', 'refresh', {'in_refresh_status' : 1})}}
 		</div>
 	{{else}}
 		<div class='item'>
 			<div class='bad'>ERROR: Can not find input port</div>
-			{{:helper.link('Search', null, {'in_refresh_status' : 1})}}
+			{{:helper.link('Search', 'search', {'in_refresh_status' : 1})}}
 		</div>
 	{{/if}}
 	<div class='item'>
-		<div class='itemLabel'>
+		<div class='itemLabel' style='width: 25%;'>
 			Flow Rate Limit:
 		</div>
-		<div class='itemContent'>
-			{{:helper.link('-', null, {'adj_input_flow_rate' : -100})}}
-			{{:helper.link('-', null, {'adj_input_flow_rate' : -10})}}
-			{{:helper.link('-', null, {'adj_input_flow_rate' : -1})}}
-			{{:helper.link('-', null, {'adj_input_flow_rate' : -0.1})}}
-			<div style="float: left; width: 80px; text-align: center;">&nbsp;{{:data.input_flow_setting}} L/s&nbsp;</div>
-			{{:helper.link('+', null, {'adj_input_flow_rate' : 0.1})}}
-			{{:helper.link('+', null, {'adj_input_flow_rate' : 1})}}
-			{{:helper.link('+', null, {'adj_input_flow_rate' : 10})}}
-			{{:helper.link('+', null, {'adj_input_flow_rate' : 100})}}
+		<div class='itemContent' style='width: 75%;'>
+			{{:helper.link('100', 'minus', {'adj_input_flow_rate' : -100})}}
+			{{:helper.link('10', 'minus', {'adj_input_flow_rate' : -10})}}
+			{{:helper.link('1', 'minus', {'adj_input_flow_rate' : -1})}}
+			{{:helper.link('0.1', 'minus', {'adj_input_flow_rate' : -0.1})}}
+			<div style="float: left; width: 100px; text-align: center;">&nbsp;{{:data.input_flow_setting}} L/s&nbsp;</div>
+			{{:helper.link('0.1', 'plus', {'adj_input_flow_rate' : 0.1})}}
+			{{:helper.link('1', 'plus', {'adj_input_flow_rate' : 1})}}
+			{{:helper.link('10', 'plus', {'adj_input_flow_rate' : 10})}}
+			{{:helper.link('100', 'plus', {'adj_input_flow_rate' : 100})}}
 		</div>
 	</div>
 
 	{{if data.output_info}}
 		<div class='item'>
-			<div class='itemLabel'>
+			<div class='itemLabel' style='width: 25%;'>
 				{{if data.tanks}}
 					<b>Output</b>:
 				{{else data.core}}
@@ -128,56 +127,56 @@
 		</div>
 		<div class='item'>
 			{{if data.tanks}}
-				<div class='itemLabel'>Max Output Pressure:</div>
+				<div class='itemLabel' style='width: 25%;'>Max Output Pressure:</div>
 				<div class='itemContent'>{{:data.output_info.output_pressure}} kPa</div>
 			{{else data.core}}
-				<div class='itemLabel'>Min Core Pressure:</div>
+				<div class='itemLabel' style='width: 25%;'>Min Core Pressure:</div>
 				<div class='itemContent'>{{:data.output_info.pressure_limit}} kPa</div>
 			{{/if}}
 		</div>
 		<div class='item'>
-			<div class='itemLabel'>Command:</div>
-			{{:helper.link('Toggle Power', null, {'out_toggle_power' : 1})}}
-			{{:helper.link('Set Pressure', null, {'out_set_pressure' : 1})}}
-			{{:helper.link('Refresh', null, {'out_refresh_status' : 1})}}
+			<div class='itemLabel' style='width: 25%;'>Command:</div>
+			{{:helper.link('Toggle Power', 'power', {'out_toggle_power' : 1})}}
+			{{:helper.link('Set Pressure', 'pencil', {'out_set_pressure' : 1})}}
+			{{:helper.link('Refresh', 'refresh', {'out_refresh_status' : 1})}}
 		</div>
 	{{else}}
 		<div class='item'>
 			<div class='bad'>ERROR: Can not find output port</div>
-			{{:helper.link('Search', null, {'out_refresh_status' : 1})}}
+			{{:helper.link('Search', 'search', {'out_refresh_status' : 1})}}
 		</div>
 	{{/if}}
 	
 	<div class='item'>
 	{{if data.tanks}}
-		<div class='itemLabel'>
+		<div class='itemLabel' style='width: 25%;'>
 			Max Output Pressure Set:
 		</div>
-		<div class='itemContent'>
-			{{:helper.link('-', null, {'adj_pressure' : -1000})}}
-			{{:helper.link('-', null, {'adj_pressure' : -100})}}
-			{{:helper.link('-', null, {'adj_pressure' : -10})}}
-			{{:helper.link('-', null, {'adj_pressure' : -1})}}
-			<div style="float: left; width: 80px; text-align: center;">&nbsp;{{:data.pressure_setting}} kPa&nbsp;</div>
-			{{:helper.link('+', null, {'adj_pressure' : 1})}}
-			{{:helper.link('+', null, {'adj_pressure' : 10})}}
-			{{:helper.link('+', null, {'adj_pressure' : 100})}}
-			{{:helper.link('+', null, {'adj_pressure' : 1000})}}
+		<div class='itemContent' style='width: 75%;'>
+			{{:helper.link('1000', 'minus', {'adj_pressure' : -1000})}}
+			{{:helper.link('100', 'minus', {'adj_pressure' : -100})}}
+			{{:helper.link('10', 'minus', {'adj_pressure' : -10})}}
+			{{:helper.link('1', 'minus', {'adj_pressure' : -1})}}
+			<div style="float: left; width: 100px; text-align: center;">&nbsp;{{:data.pressure_setting}} kPa&nbsp;</div>
+			{{:helper.link('1', 'plus', {'adj_pressure' : 1})}}
+			{{:helper.link('10', 'plus', {'adj_pressure' : 10})}}
+			{{:helper.link('100', 'plus', {'adj_pressure' : 100})}}
+			{{:helper.link('1000', 'plus', {'adj_pressure' : 1000})}}
 		</div>
 	{{else data.core}}
-		<div class='itemLabel'>
+		<div class='itemLabel' style='width: 25%;'>
 			Min Core Pressure Set:
 		</div>
-		<div class='itemContent'>
-			{{:helper.link('-', null, {'adj_pressure' : -100})}}
-			{{:helper.link('-', null, {'adj_pressure' : -50})}}
-			{{:helper.link('-', null, {'adj_pressure' : -10})}}
-			{{:helper.link('-', null, {'adj_pressure' : -1})}}
-			<div style="float: left; width: 80px; text-align: center;">&nbsp;{{:data.pressure_setting}} kPa&nbsp;</div>
-			{{:helper.link('+', null, {'adj_pressure' : 1})}}
-			{{:helper.link('+', null, {'adj_pressure' : 10})}}
-			{{:helper.link('+', null, {'adj_pressure' : 50})}}
-			{{:helper.link('+', null, {'adj_pressure' : 100})}}
+		<div class='itemContent' style='width: 75%;'>
+			{{:helper.link('100', 'minus', {'adj_pressure' : -100})}}
+			{{:helper.link('50', 'minus', {'adj_pressure' : -50})}}
+			{{:helper.link('10', 'minus', {'adj_pressure' : -10})}}
+			{{:helper.link('1', 'minus', {'adj_pressure' : -1})}}
+			<div style="float: left; width: 100px; text-align: center;">&nbsp;{{:data.pressure_setting}} kPa&nbsp;</div>
+			{{:helper.link('1', 'plus', {'adj_pressure' : 1})}}
+			{{:helper.link('10', 'plus', {'adj_pressure' : 10})}}
+			{{:helper.link('50', 'plus', {'adj_pressure' : 50})}}
+			{{:helper.link('100', 'plus', {'adj_pressure' : 100})}}
 		</div>
 	{{/if}}
 	</div>
@@ -197,7 +196,7 @@
 				{{else}}
 					On Hold
 				{{/if}}
-				<div class='floatRight'>{{:helper.link('Refresh', null, {'refresh_status' : 1})}}</div>
+				<div class='floatRight'>{{:helper.link('Refresh', 'refresh', {'refresh_status' : 1})}}</div>
 			</div>
 		</div>
 		<div class='item'>
@@ -207,19 +206,19 @@
 		<div class='item'>
 			<div class='itemLabel'>Automated Fuel Injection:</div>
 			{{if data.automation}}
-				{{:helper.link('Engaged', null, {'toggle_automation' : 1})}}
+				{{:helper.link('Engaged', 'check', {'toggle_automation' : 1})}}
 				<div class='itemContent'>Injector Controls Locked Out</div>
 			{{else}}
-				{{:helper.link('Disengaged', null, {'toggle_automation' : 1})}}
+				{{:helper.link('Disengaged', 'close', {'toggle_automation' : 1})}}
 				<div class='itemLabel'>Injector:</div>
-				{{:helper.link('Toggle Power', null, {'toggle_injector' : 1})}}
-				{{:helper.link('Inject (1 Cycle)', null, {'injection' : 1})}}
+				{{:helper.link('Toggle Power', 'power', {'toggle_injector' : 1})}}
+				{{:helper.link('Inject (1 Cycle)', 'syringe', {'injection' : 1})}}
 			{{/if}}
 		</div>
 	{{else}}
 		<div class='item'>
 			<div class='bad'>ERROR: Can not find device</div>
-			{{:helper.link('Search', null, {'refresh_status' : 1})}}
+			{{:helper.link('Search', 'search', {'refresh_status' : 1})}}
 		</div>
 	{{/if}}
 {{/if}}

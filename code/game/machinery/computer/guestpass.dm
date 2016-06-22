@@ -88,7 +88,7 @@
 		if(!giver && user.unEquip(I))
 			I.forceMove(src)
 			giver = I
-			updateUsrDialog()
+			nanomanager.update_uis(src)
 		else if(giver)
 			user << "<span class='warning'>There is already ID card inside.</span>"
 		return
@@ -224,3 +224,6 @@
 					pass.name = "guest pass #[number]"
 				else
 					usr << "<span class='warning'>Cannot issue pass without issuing ID.</span>"
+
+	src.add_fingerprint(usr)
+	nanomanager.update_uis(src)

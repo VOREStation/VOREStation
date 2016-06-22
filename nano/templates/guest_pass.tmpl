@@ -26,7 +26,7 @@
 		<div class='itemLabelWide'>
 			Issuing ID: 
 		</div>
-		{{:helper.link(data.giver, 'person', {'action' : 'id'})}}
+		{{:helper.link(data.giver ? data.giver : 'Insert ID', 'person', {'action' : 'id'})}}
 	</div>
 	<div class='item'>
 		<div class='itemLabelWide'>

@@ -262,7 +262,7 @@ div.notice {
 	overflow: auto;
 }
 
-.itemContentNarrow, .itemContent {
+.itemContentNarrow, .itemContent, .itemContentWide, .itemContentSmall, .itemContentMedium {
     float: left;
 }
 
@@ -300,17 +300,14 @@ div.notice {
 }
 
 .itemContentWide {
-    float: left;
     width: 79%;
 }
 
 .itemContentSmall {
-    float: left;
     width: 33%;
 }
 
 .itemContentMedium {
-    float: left;
     width: 55%;
 }
 
@@ -662,7 +659,7 @@ th.misc {
 }
 
 .oxyloss {
-    color: #0000A9;
+    color: #4444FF;
 }
 
 /* 75px width used in power monitoring console buttons */

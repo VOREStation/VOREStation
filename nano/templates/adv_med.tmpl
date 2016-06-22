@@ -28,73 +28,46 @@ Used In File(s): \code\game\machinery\adv_med.dm
 		</div>
 		<div class="itemContent">
 			{{if data.occupant.stat==0}}
-				Alive
+				Stable
 			{{else data.occupant.stat==1}}
-				Critical
+				Non-Responsive
 			{{else}}
 				Dead
 			{{/if}}
 		</div>
 	</div>
 	{{:helper.link('Print', 'document', {'print_p' : 1, 'name' : data.occupant.name})}}
-	<div class="item">
-		<h4><b>Damage:</b></h4>
-		<div class="itemLabelWide">
-			Brute: 
-		</div>
-		<div class="itemContentMedium brute">
-			{{:data.occupant.bruteLoss}}
-		</div><br>
-		<div class="itemLabelWide">
-			Burn: 
-		</div>
-		<div class="itemContentMedium burn">
-			{{:data.occupant.fireLoss}}
-		</div><br>
-		<div class="itemLabelWide">
-			Oxygen: 
-		</div>
-		<div class="itemContentMedium oxyloss">
-			{{:data.occupant.oxyLoss}}
-		</div><br>
-		<div class="itemLabelWide">
-			Toxins: 
-		</div>
-		<div class="itemContentMedium toxin">
-			{{:data.occupant.toxLoss}}
-		</div><br>
-		<div class="itemLabelWide">
-			Brain:
-		</div>
-		<div class="itemContentMedium">
-			{{:data.occupant.brainLoss}}
-		</div><br>
-		<div class="itemLabelWide">
-			Radiation Level:
-		</div>
-		<div class="itemContentMedium">
-			{{:data.occupant.radLoss}}
-		</div><br>
-		<div class="itemLabelWide">
-			Genetic:
-		</div>
-		<div class="itemContentMedium">
-			{{:data.occupant.cloneLoss}}
-		</div><br>
-		<div class="itemLabelWide">
-			Paralysis:
-		</div>
-		<div class="itemContentMedium">
-			{{:data.occupant.paralysis}}% ({{:data.occupant.paralysisSeconds}} seconds left!)
-		</div><br>
-	</div>
-	<div class="item">
-		<div class="itemLabelWide">
-			Body Temperature:
-		</div>
-		<div class="itemContentMedium">
-			{{:data.occupant.bodyTempC}}&deg;C, {{:data.occupant.bodyTempF}}&deg;F
-		</div>
+	<h4><b>Damage:</b></h4>
+	<table class='item'>
+		<tr>
+			<td class='itemLabel' style='width: 10%;'>Brute:</td>
+			<td class='itemContent brute' style='width: 10%;'>{{:data.occupant.bruteLoss}}</td>
+			<td class='itemLabel' style='width: 15%;'>Brain:</td>
+			<td class='itemContent' style='width: 15%;'>{{:data.occupant.brainLoss}}</td>
+		</tr>
+		<tr>
+			<td class='itemLabel' style='width: 10%;'>Burn:</td>
+			<td class='itemContent burn' style='width: 10%;'>{{:data.occupant.fireLoss}}</td>
+			<td class='itemLabel' style='width: 15%;'>Radiation:</td>
+			<td class='itemContent' style='width: 15%;'>{{:data.occupant.radLoss}}</td>
+		</tr>
+		<tr>
+			<td class='itemLabel' style='width: 10%;'>Oxygen:</td>
+			<td class='itemContent oxyloss' style='width: 10%;'>{{:data.occupant.oxyLoss}}</td>
+			<td class='itemLabel' style='width: 15%;'>Genetic:</td>
+			<td class='itemContent' style='width: 15%;'>{{:data.occupant.cloneLoss}}</td>
+		</tr>
+		<tr>
+			<td class='itemLabel' style='width: 10%;'>Toxins:</td>
+			<td class='itemContent toxin' style='width: 10%;'>{{:data.occupant.toxLoss}}</td>
+			<td class='itemLabel' style='width: 15%;'>Paralysis:</td>
+			<td class='itemContent' style='width: 20%;'>{{:data.occupant.paralysis}}% ({{:data.occupant.paralysisSeconds}} seconds left!)</td>
+		</tr>
+		<tr>
+			<td class='itemLabelNarrow'>Body Temperature:</td>
+			<td class="itemContentMedium">{{:helper.round(data.occupant.bodyTempC*10)/10}}&deg;C, {{:helper.round(data.occupant.bodyTempF*10)/10}}&deg;F</td>
+		</tr>
+	</table>
 	</div>
 	{{if data.occupant.hasVirus}}
 		<div class="notice">
@@ -107,45 +80,34 @@ Used In File(s): \code\game\machinery\adv_med.dm
 		</div>
 	{{/if}}
 	{{if data.occupant.blind}}
-		<span class="bad">Pupils unresponsive.</span><br>
+		<div class="item bad">Pupils unresponsive.</div>
 	{{/if}}
 	{{if data.occupant.nearsighted}}
-		<span class="bad">Retinal Misalignment Detected</span>
+		<div class="item bad">Retinal Misalignment Detected</div>
 	{{/if}}
-	<br>
-	<div class="item">
-		<b>Blood</b>
-	</div>
-	<div class="item">
-		<div class="itemLabelWide">
-			Volume
-		</div>
-		<div class="itemContentMedium">
-			{{:data.occupant.blood.volume}}
-		</div>
-		<div class="itemLabelWide">
-			Percent
-		</div>
-		<div class="itemContentMedium">
-			{{:data.occupant.blood.percent}}%
-		</div>
-	</div>
-	<br>
-	<div class="item">
-		<b>Reagents</b>
-	</div>
-	<div class="item">
-		{{for data.occupant.reagents}}
-			<div class="itemLabelWide">
-				{{:value.name}}
-			</div>
-			<div class="itemContentMedium">
-				{{:value.amount}}
-			</div>
-		{{/for}}
-	</div>
-	<br>
-	<b>External Organs</b>
+	<h4><b>Blood</b></h4>
+	<table class="item">
+		<tr>
+			<td class='itemLabel' style='width: 10%;'>Volume:</td>
+			<td class='itemContent' style='width: 10%;'>{{:data.occupant.blood.volume}}</td>
+			<td class='itemLabel' style='width: 10%;'>Percent:</td>
+			<td class='itemContent' style='width: 10%;'>{{:data.occupant.blood.percent}}%</td>
+		</tr>
+	</table>
+	<h4>Reagents</h4>
+	{{if data.occupant.reagents}}
+		<table class='item'>
+			{{for data.occupant.reagents}}
+				<tr>
+					<td class='itemLabel' style='width: 20%;'>{{:value.name}}:</td>
+					<td class='itemContent' style='width: 10%;'>{{:value.amount}}</td>
+				</tr>
+			{{/for}}
+		</table>
+	{{else}}
+		<div class='item'>No reagents detected.</div>
+	{{/if}}
+	<h4><b>External Organs</b></h4>
 	<div class="itemGroup">
 	{{for data.occupant.extOrgan}}
 		<div class="item">
@@ -225,23 +187,26 @@ Used In File(s): \code\game\machinery\adv_med.dm
 				{{if value.implants_len}}
 					<div class="itemLabelWide">
 						&nbsp;Implants
-					</div><br>
+					</div>
 					{{for value.implants :impValue:impindex}}
 						<div class="itemContentNarrow">
 							&nbsp;&nbsp;{{:impValue.known ? impValue.name : "Unknown"}}
-						</div><br>
+						</div>
 					{{/for}}
 				{{/if}}
 			{{/if}}
-		</div><br>
+		</div>
 	{{/for}}
 	</div>
-	<b>Internal Organs</b>
+	<h4><b>Internal Organs</b></h4>
 	<div class="itemGroup">
 	{{for data.occupant.intOrgan}}
 		<div class="item">
 			<div class="itemLabelWide">
 				<b>{{:value.name}}</b>
+			</div>
+			<div class='itemContentNarrow'>
+				{{:value.desc != null ? value.desc : ""}}
 			</div>
 		</div>
 		<div class="item">
