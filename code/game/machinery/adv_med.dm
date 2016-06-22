@@ -436,31 +436,31 @@
 					t1 = "Unconscious"
 				else
 					t1 = "*dead*"
-			dat += "[occupant.health > 50 ? "<font color='blue'>" : "<font color='red'>"]\tHealth %: [occupant.health], ([t1])</font><br>"
+			dat += "<font color=[occupant.health > 50 ? "blue" : "red"]>\tHealth %: [occupant.health], ([t1])</font><br>"
 
 			if(occupant.virus2.len)
 				dat += "<font color='red'>Viral pathogen detected in blood stream.</font><BR>"
 
 			var/extra_font = null
-			extra_font = (occupant.getBruteLoss() < 60 ? "<font color='blue'>" : "<font color='red'>")
+			extra_font = "<font color=[occupant.getBruteLoss() < 60 ? "blue" : "red"]>"
 			dat += "[extra_font]\t-Brute Damage %: [occupant.getBruteLoss()]</font><br>"
 
-			extra_font = (occupant.getOxyLoss() < 60 ? "<font color='blue'>" : "<font color='red'>")
+			extra_font = "<font color=[occupant.getOxyLoss() < 60 ? "blue" : "red"]>"
 			dat += "[extra_font]\t-Respiratory Damage %: [occupant.getOxyLoss()]</font><br>"
 
-			extra_font = (occupant.getToxLoss() < 60 ? "<font color='blue'>" : "<font color='red'>")
+			extra_font = "<font color=[occupant.getToxLoss() < 60 ? "blue" : "red"]>"
 			dat += "[extra_font]\t-Toxin Content %: [occupant.getToxLoss()]</font><br>"
 
-			extra_font = (occupant.getFireLoss() < 60 ? "<font color='blue'>" : "<font color='red'>")
+			extra_font = "<font color=[occupant.getFireLoss() < 60 ? "blue" : "red"]>"
 			dat += "[extra_font]\t-Burn Severity %: [occupant.getFireLoss()]</font><br>"
 
-			extra_font = (occupant.radiation < 10 ?"<font color='blue'>" : "<font color='red'>")
+			extra_font = "<font color=[occupant.radiation() < 10 ? "blue" : "red"]>"
 			dat += "[extra_font]\tRadiation Level %: [occupant.radiation]</font><br>"
 
-			extra_font = (occupant.getCloneLoss() < 1 ?"<font color='blue'>" : "<font color='red'>")
+			extra_font = "<font color=[occupant.getCloneLoss() < 1 ? "blue" : "red"]>"
 			dat += "[extra_font]\tGenetic Tissue Damage %: [occupant.getCloneLoss()]<br>"
 
-			extra_font = (occupant.getBrainLoss() < 1 ?"<font color='blue'>" : "<font color='red'>")
+			extra_font = "<font color=[occupant.getBrainLoss() < 1 ? "blue" : "red"]>"
 			dat += "[extra_font]\tApprox. Brain Damage %: [occupant.getBrainLoss()]<br>"
 
 			dat += "Paralysis Summary %: [occupant.paralysis] ([round(occupant.paralysis / 4)] seconds left!)<br>"
@@ -476,7 +476,7 @@
 				var/blood_percent =  blood_volume / 560
 				blood_percent *= 100
 
-				extra_font = (blood_volume > 448 ? "<font color='blue'>" : "<font color='red'>")
+				extra_font = "<font color=[blood_volume > 448 ? "blue" : "red"]>"
 				dat += "[extra_font]\tBlood Level %: [blood_percent] ([blood_volume] units)</font><br>"
 
 			if(occupant.reagents)
