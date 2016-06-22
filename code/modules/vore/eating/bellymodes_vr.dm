@@ -65,14 +65,10 @@
 				M.adjustBruteLoss(2)
 				M.adjustFireLoss(3)
 
-				var/offset
-				if (M.weight > 137)
-					offset = 1 + ((M.weight - 137) / 137)
-				if (M.weight < 137)
-					offset = (137 - M.weight) / 137
+				var/offset = (1 + ((M.weight - 137) / 137)) // 130 pounds = .95 140 pounds = 1.02
 				var/difference = owner.size_multiplier / M.size_multiplier
 				if(offset) // If any different than default weight, multiply the % of offset.
-					owner.nutrition += offset*(10/difference)
+					owner.nutrition += offset*(10/difference) // 9.5 nutrition per digestion tick if they're 130 pounds and it's same size. 10.2 per digestion tick if they're 140 and it's same size. Etc etc.
 				else
 					owner.nutrition += (10/difference)
 
@@ -403,6 +399,13 @@
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
+					if("Scree")
+						var/obj/structure/closet/secure_closet/egg/scree/J = new /obj/structure/closet/secure_closet/egg/scree(O.loc)
+						P.forceMove(J)
+						J.name = "[defined_species] egg"
+						J.desc = "This egg has a very unique look to it."
+						internal_contents -= P
+
 					else
 						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(O.loc)
 						P.forceMove(J)
