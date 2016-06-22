@@ -454,14 +454,14 @@
 			extra_font = "<font color=[occupant.getFireLoss() < 60 ? "blue" : "red"]>"
 			dat += "[extra_font]\t-Burn Severity %: [occupant.getFireLoss()]</font><br>"
 
-			extra_font = "<font color=[occupant.radiation() < 10 ? "blue" : "red"]>"
+			extra_font = "<font color=[occupant.radiation < 10 ? "blue" : "red"]>"
 			dat += "[extra_font]\tRadiation Level %: [occupant.radiation]</font><br>"
 
 			extra_font = "<font color=[occupant.getCloneLoss() < 1 ? "blue" : "red"]>"
-			dat += "[extra_font]\tGenetic Tissue Damage %: [occupant.getCloneLoss()]<br>"
+			dat += "[extra_font]\tGenetic Tissue Damage %: [occupant.getCloneLoss()]</font><br>"
 
 			extra_font = "<font color=[occupant.getBrainLoss() < 1 ? "blue" : "red"]>"
-			dat += "[extra_font]\tApprox. Brain Damage %: [occupant.getBrainLoss()]<br>"
+			dat += "[extra_font]\tApprox. Brain Damage %: [occupant.getBrainLoss()]</font><br>"
 
 			dat += "Paralysis Summary %: [occupant.paralysis] ([round(occupant.paralysis / 4)] seconds left!)<br>"
 			dat += "Body Temperature: [occupant.bodytemperature-T0C]&deg;C ([occupant.bodytemperature*1.8-459.67]&deg;F)<br>"
