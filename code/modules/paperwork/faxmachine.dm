@@ -32,54 +32,37 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 /obj/machinery/photocopier/faxmachine/attack_hand(mob/user as mob)
 	user.set_machine(src)
 
-	var/dat = "Fax Machine<BR>"
+	ui_interact(user)
 
-	var/scan_name
+/**
+ *  Display the NanoUI window for the fax machine.
+ *
+ *  See NanoUI documentation for details.
+ */
+/obj/machinery/photocopier/faxmachine/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+	user.set_machine(src)
+
+	var/list/data = list()
 	if(scan)
-		scan_name = scan.name
+		data["scanName"] = scan.name
 	else
-		scan_name = "--------"
-
-	dat += "Confirm Identity: <a href='byond://?src=\ref[src];scan=1'>[scan_name]</a><br>"
-
-	if(authenticated)
-		dat += "<a href='byond://?src=\ref[src];logout=1'>{Log Out}</a>"
+		data["scanName"] = null
+	data["bossName"] = boss_name
+	data["authenticated"] = authenticated
+	data["copyItem"] = copyitem
+	if(copyitem)
+		data["copyItemName"] = copyitem.name
 	else
-		dat += "<a href='byond://?src=\ref[src];auth=1'>{Log In}</a>"
+		data["copyItemName"] = null
+	data["cooldown"] = sendcooldown
+	data["destination"] = destination
 
-	dat += "<hr>"
-
-	if(authenticated)
-		dat += "<b>Logged in to:</b> [boss_name] Quantum Entanglement Network<br><br>"
-
-		if(copyitem)
-			dat += "<a href='byond://?src=\ref[src];remove=1'>Remove Item</a><br><br>"
-
-			if(sendcooldown)
-				dat += "<b>Transmitter arrays realigning. Please stand by.</b><br>"
-
-			else
-
-				dat += "<a href='byond://?src=\ref[src];send=1'>Send</a><br>"
-				dat += "<b>Currently sending:</b> [copyitem.name]<br>"
-				dat += "<b>Sending to:</b> <a href='byond://?src=\ref[src];dept=1'>[destination]</a><br>"
-
-		else
-			if(sendcooldown)
-				dat += "Please insert paper to send via secure connection.<br><br>"
-				dat += "<b>Transmitter arrays realigning. Please stand by.</b><br>"
-			else
-				dat += "Please insert paper to send via secure connection.<br><br>"
-
-	else
-		dat += "Proper authentication is required to use this device.<br><br>"
-
-		if(copyitem)
-			dat += "<a href ='byond://?src=\ref[src];remove=1'>Remove Item</a><br>"
-
-	user << browse(dat, "window=copier")
-	onclose(user, "copier")
-	return
+	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if (!ui)
+		ui = new(user, src, ui_key, "fax.tmpl", src.name, 500, 500)
+		ui.set_initial_data(data)
+		ui.open()
+		ui.set_auto_update(10) //this machine is so unimportant let's not have it update that often.
 
 /obj/machinery/photocopier/faxmachine/Topic(href, href_list)
 	if(href_list["send"])
@@ -99,7 +82,6 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 			usr.put_in_hands(copyitem)
 			usr << "<span class='notice'>You take \the [copyitem] out of \the [src].</span>"
 			copyitem = null
-			updateUsrDialog()
 
 	if(href_list["scan"])
 		if (scan)
@@ -131,7 +113,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	if(href_list["logout"])
 		authenticated = 0
 
-	updateUsrDialog()
+	nanomanager.update_uis(src)
 
 /obj/machinery/photocopier/faxmachine/proc/sendfax(var/destination)
 	if(stat & (BROKEN|NOPOWER))

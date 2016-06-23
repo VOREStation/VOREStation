@@ -1,0 +1,173 @@
+<!-- 
+	Interface for laptop vending machines 
+	See: code/game/machinery/computer3/lapvend.dm
+-->
+
+{{if data.mode == 0}}
+	<div class='item'>
+		<b>Please choose your laptop customization options.</b><br>
+		Your comptuer will automatically be loaded with any programs you can use after the transaction is complete.<br>
+		<b>Some programs will require additional components to be installed!</b>
+	</div>
+	
+	<hr>
+
+	<div class='item'>
+		<div class='itemLabel'><b>HDD (Required)</b>: </div>
+		<div class='itemContent'>Added</div>
+	</div>
+	
+	<div class='item'>
+		<div class='itemLabel'>
+			<b>Card Reader</b>: 
+		</div>
+		{{:helper.link('Single (50)', data.cardreader == 1 ? 'check' : 'plus', {'choice' : 'single_add'}, data.cardreader == 1 ? 'selected' : null)}}
+		{{:helper.link('Dual (125)', data.cardreader == 2 ? 'check' : 'plus', {'choice' : 'dual_add'}, data.cardreader == 2 ? 'selected' : null)}}
+		{{:helper.link('None', 'close', {'choice' : 'cardreader_rem'}, data.cardreader == 0 ? 'redButton' : null)}}
+	</div>
+	
+	<div class='item'>
+		<div class='itemLabel'>
+			<b>Floppy Drive</b>: 
+		</div>
+		{{:helper.link('Add (50)', data.floppy == 1 ? 'check' : 'plus', {'choice' : 'floppy_add'}, data.floppy == 1 ? 'selected' : null)}}
+		{{:helper.link('None', 'close', {'choice' : 'floppy_rem'}, data.floppy == 0 ? 'redButton' : null)}}
+	</div>
+	
+	<div class='item'>
+		<div class='itemLabel'>
+			<b>Radio card</b>: 
+		</div>
+		{{:helper.link('Add (50)', data.radionet == 1 ? 'check' : 'plus', {'choice' : 'radio_add'}, data.radionet == 1 ? 'selected' : null)}}
+		{{:helper.link('None', 'close', {'choice' : 'radio_rem'}, data.radionet == 0 ? 'redButton' : null)}}
+	</div>
+	
+	<div class='item'>
+		<div class='itemLabel'>
+			<b>Camera Card</b>: 
+		</div>
+		{{:helper.link('Add (100)', data.camera == 1 ? 'check' : 'plus', {'choice' : 'camnet_add'}, data.camera == 1 ? 'selected' : null)}}
+		{{:helper.link('None', 'close', {'choice' : 'camnet_rem'}, data.camera == 0 ? 'redButton' : null)}}
+	</div>
+	
+	<div class='item'>
+		<div class='itemLabel'>
+			<b>Network card</b>: 
+		</div>
+		<div style='overflow: auto;'>
+			{{:helper.link('Area (75)', data.network == 1 ? 'check' : 'plus', {'choice' : 'area_add'}, data.network == 1 ? 'selected' : null)}}
+			{{:helper.link('Adjacent (50)', data.network == 2 ? 'check' : 'plus', {'choice' : 'prox_add'}, data.network == 2 ? 'selected' : null)}}
+			{{:helper.link('Powernet (25)', data.network == 3 ? 'check' : 'plus', {'choice' : 'cable_add'}, data.network == 3 ? 'selected' : null)}}
+			{{:helper.link('None', 'close', {'choice' : 'network_rem'}, data.network == 0 ? 'redButton' : null)}}
+		</div>
+	</div>
+	
+	<hr>
+	
+	<div class='item'>
+		<div class='itemLabel'>
+			<b>Power Source</b>: 
+		</div>
+		{{:helper.link('Extended (175)', data.power == 1 ? 'check' : 'plus', {'choice' : 'high_add'}, data.power == 1 ? 'selected' : null)}}
+		{{:helper.link('Unreal (250)', data.power == 2 ? 'check' : 'plus', {'choice' : 'super_add'}, data.power == 2 ? 'selected' : null)}}
+		{{:helper.link('Default', data.power == 0 ? 'check' : 'plus', {'choice' : 'power_rem'}, data.power == 0 ? 'selected' : null)}}
+	</div>
+	
+	<hr>
+	<div class='item'>
+		<div class='itemLabel'><b>Total</b>: </div>
+		<div class='itemContentNarrow'>{{:data.total}}</div>
+		{{:helper.link('Vend Laptop', 'cart', {'choice' : 'vend'})}}
+	</div>
+	
+{{else data.mode == 1}}
+	<h2 style='text-align: center;'>Cart</h2>
+	
+	<hr>
+	
+	<div class='item'>
+		<div class='itemLabel'><b>Total</b>: </div>
+		<div class='itemContent'>{{:data.total}}</div>
+	</div>
+	
+	<div class='item'>
+		<div class='itemLabel'><b>Card Reader</b>: </div>
+		{{if data.cardreader == 1}}
+			{{:helper.link('(single) (50)', 'close', {'choice' : 'cardreader_rem'})}}
+		{{else data.cardreader == 2}}
+			{{:helper.link('(double) (125)', 'close', {'choice' : 'cardreader_rem'})}}
+		{{else}}
+			<div class='itemContent'>None</div>
+		{{/if}}
+	</div>
+	
+	<div class='item'>
+		<div class='itemLabel'><b>Floppy Drive</b>: </div>
+		{{if data.floppy == 1}}
+			{{:helper.link('Added (50)', 'close', {'choice' : 'floppy_rem'})}}
+		{{else}}
+			<div class='itemContent'>None</div>
+		{{/if}}
+	</div>
+	
+	<div class='item'>
+		<div class='itemLabel'><b>Radio Card</b>: </div>
+		{{if data.radionet == 1}}
+			{{:helper.link('Added (50)', 'close', {'choice' : 'radio_rem'})}}
+		{{else}}
+			<div class='itemContent'>None</div>
+		{{/if}}
+	</div>
+	
+	<div class='item'>
+		<div class='itemLabel'><b>Camera Card</b>: </div>
+		{{if data.camera == 1}}
+			{{:helper.link('Added (100)', 'close', {'choice' : 'camnet_rem'})}}
+		{{else}}
+			<div class='itemContent'>None</div>
+		{{/if}}
+	</div>
+	
+	<div class='item'>	
+		<div class='itemLabel'><b>Network Card</b>: </div>
+		{{if data.network == 1}}
+			{{:helper.link('Area (75)', 'close', {'choice' : 'network_rem'})}}
+		{{else data.network == 2}}
+			{{:helper.link('Adjacent (50)', 'close', {'choice' : 'network_rem'})}}
+		{{else data.network == 3}}
+			{{:helper.link('Powernet (25)', 'close', {'choice' : 'network_rem'})}}
+		{{else}}
+			<div class='itemContent'>None</div>
+		{{/if}}
+	</div>
+	
+	<div class='item'>
+		<div class='itemLabel'><b>Power Source</b>: </div>
+		{{if data.power == 1}}
+			{{:helper.link('Unreal (250)', 'close', {'choice' : 'power_rem'})}}
+		{{else data.power == 2}}
+			{{:helper.link('Extended (175)', 'close', {'choice' : 'power_rem'})}}
+		{{else}}
+			<div class='itemContent'>Regular</div>
+		{{/if}}
+	</div>
+	
+	<hr>
+	
+	<div class='item'>
+		<div class='itemContent'>Please swipe your card and enter your PIN to complete the transaction</div>
+	</div>
+	
+	<hr>
+	
+	{{:helper.link('Cancel', 'close', {'choice' : 'cancel'}, null, 'redButton')}}
+	
+{{else data.mode == 2}}
+	<div class='item'>
+		Please swipe your card and enter your PIN to finish returning your computer.
+		
+		<hr>
+		
+		{{:helper.link('Cancel', 'close', {'choice' : 'cancel'}, null, 'redButton')}}
+	</div>
+{{/if}}

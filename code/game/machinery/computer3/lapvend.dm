@@ -6,11 +6,9 @@
 	layer = 2.9
 	anchored = 1
 	density = 1
-	var/datum/browser/popup = null
 	var/obj/machinery/computer3/laptop/vended/newlap = null
 	var/obj/item/device/laptop/relap = null
 	var/vendmode = 0
-
 
 	var/cardreader = 0
 	var/floppy = 0
@@ -34,9 +32,11 @@
 	if(vendmode == 1 && I)
 		scan_id(I, W)
 		vendmode = 0
-	if(vendmode == 3 && I)
+		nanomanager.update_uis(src)
+	if(vendmode == 2 && I)
 		if(reimburse_id(I, W))
 			vendmode = 0
+			nanomanager.update_uis(src)
 	if(vendmode == 0)
 		if(istype(W, /obj/item/device/laptop))
 			var/obj/item/device/laptop/L = W
@@ -44,84 +44,49 @@
 			calc_reimburse(L)
 			usr.drop_item()
 			L.loc = src
-			vendmode = 3
+			vendmode = 2
 			usr << "<span class='notice'>You slot your [L.name] into \The [src.name]</span>"
+			nanomanager.update_uis(src)
 	else
 		..()
 
 
 /obj/machinery/lapvend/attack_hand(mob/user as mob)
+	if(stat & (BROKEN|NOPOWER))
+		return
+
+	ui_interact(user)
+
+/**
+ *  Display the NanoUI window for the vending machine.
+ *
+ *  See NanoUI documentation for details.
+ */
+/obj/machinery/lapvend/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	user.set_machine(src)
-	var/vendorname = (src.name)  //import the machine's name
-	var/dat = "<TT><center><b>[vendorname]</b></center><hr /><br>" //display the name, and added a horizontal rule
-	if(vendmode == 0)
-		dat += "<center><b>Please choose your laptop customization options</b></center><br>"
-		dat += "<center>Your comptuer will automatically be loaded with any programs you can use after the transaction is complete.</center>"
-		dat += "<center><b>Some programs will require additional components to be installed!</center></b><hr /><br>"
-		dat += "<center><b>HDD (Required)</b> : Added</center><br>"
-		dat += "<center><b>Card Reader</b> : <A href='?src=\ref[src];choice=single_add'>Single (50)</a> | <A href='?src=\ref[src];choice=dual_add'>Dual (125)</a></center><br>"
-		dat += "<center><b>Floppy Drive</b>: <A href='?src=\ref[src];choice=floppy_add'>Add (50)</a></center><br>"
-		dat += "<center><b>Radio Network card</b> <A href='?src=\ref[src];choice=radio_add'>Add (50)</a></center><br>"
-		dat += "<center><b>Camera Card</b> <A href='?src=\ref[src];choice=camnet_add'>Add (100)</a></center><br>"
-		dat += "<center><b> Network card</b> <A href='?src=\ref[src];choice=area_add'>Area (75)</a> <A href='?src=\ref[src];choice=prox_add'>Adjacent (50)</a><A href='?src=\ref[src];choice=cable_add'>Powernet (25)</a></center><br>"
-		dat += "<hr /><center> Power source upgrade</center> <A href='?src=\ref[src];choice=high_add'>Extended (175)</a> <A href='?src=\ref[src];choice=super_add'>Unreal (250)</a>"
 
-	if(vendmode == 0 || vendmode == 1)
-		dat += "<hr /><br><center>Cart</center><br>"
-		dat += "<b>Total: [total()]</b><br>"
-		if(cardreader == 1)
-			dat += "<A href='?src=\ref[src];choice=single_rem'>Card Reader: (single) (50)</a><br>"
-		else if (cardreader == 2)
-			dat += "<A href='?src=\ref[src];choice=dual_rem'>Card Reader: (double) (125)</a><br>"
-		else
-			dat += "Card Reader: None<br>"
-		if(floppy == 0)
-			dat += "Floppy Drive: None<br>"
-		else
-			dat += "<A href='?src=\ref[src];choice=floppy_rem'>Floppy Drive: Added (50)</a><br>"
-		if(radionet == 1)
-			dat += "<A href='?src=\ref[src];choice=radio_rem'>Radio Card: Added (50)</a><br>"
-		else
-			dat += "Radio Card: None<br>"
-		if(camera == 1)
-			dat += "<A href='?src=\ref[src];choice=camnet_rem'>Camera Card: Added (100)</a><br>"
-		else
-			dat += "Camera Card: None<br>"
-		if(network == 1)
-			dat += "<A href='?src=\ref[src];choice=area_rem'>Network card: Area (75)</a><br>"
-		else if(network == 2)
-			dat += "<A href='?src=\ref[src];choice=prox_rem'>Network card: Adjacent (50)</a><br>"
-		else if(network == 3)
-			dat += "<A href='?src=\ref[src];choice=cable_rem'>Network card: Powernet (25)</a><br>"
-		else
-			dat += "Network card: None"
-		if (power == 0)
-			dat += "Power source: Regular"
-		else if (power == 1)
-			dat += "<A href='?src=\ref[src];choice=high_rem'>Power source: Extended (175)</a><br>"
-		else
-			dat += "<A href='?src=\ref[src];choice=super_rem'>Power source: Unreal (250)</a><br>"
+	var/list/data = list()
+	data["mode"] = vendmode
+	data["cardreader"] = cardreader
+	data["floppy"] = floppy
+	data["radionet"] = radionet
+	data["camera"] = camera
+	data["network"] = network
+	data["power"] = power
+	data["total"] = total()
 
-	if(vendmode == 0)
-		dat += "<br><A href='?src=\ref[src];choice=vend'>Vend Laptop</a>"
-
-	if(vendmode == 1)
-		dat += "Please swipe your card and enter your PIN to complete the transaction"
-
-	if(vendmode == 3)
-		dat += "Please swipe your card and enter your PIN to be finish returning your computer<br>"
-		dat += "<a href='?src=\ref[src];choice=cancel'>Cancel</a>"
-
-
-
-
-	popup = new(user, "lapvend", name, 450, 500)
-	popup.set_content(dat)
-	popup.open()
-	return
-
+	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if (!ui)
+		ui = new(user, src, ui_key, "laptop_vendor.tmpl", src.name, 480, 425)
+		ui.set_initial_data(data)
+		ui.open()
+		//ui.set_auto_update(5)
 
 /obj/machinery/lapvend/Topic(href, href_list)
+	if(stat & (BROKEN|NOPOWER))
+		return
+	if(usr.stat || usr.restrained())
+		return
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))
 		usr.set_machine(src)
 	switch(href_list["choice"])
@@ -146,7 +111,7 @@
 		if ("super_add")
 			power = 2
 
-		if ("single_rem" || "dual_rem")
+		if ("cardreader_rem")
 			cardreader = 0
 		if ("floppy_rem")
 			floppy = 0
@@ -154,9 +119,9 @@
 			radionet = 0
 		if ("camnet_rem")
 			camera = 0
-		if ("area_rem" || "prox_rem" || "cable_rem")
+		if ("network_rem")
 			network = 0
-		if ("high_rem" || "super_rem")
+		if ("power_rem")
 			power = 0
 
 		if("vend")
@@ -168,9 +133,8 @@
 				relap = null
 			vendmode = 0
 
-	src.updateUsrDialog()
-	return
-
+	src.add_fingerprint(usr)
+	nanomanager.update_uis(src)
 
 /obj/machinery/lapvend/proc/vend()
 	if(cardreader > 0)
@@ -253,7 +217,6 @@
 
 		choose_progs(C)
 		vend()
-		popup.close()
 		newlap.close_laptop()
 		newlap = null
 		cardreader = 0
