@@ -26,7 +26,7 @@
 //Area allowing backpacks to be placed on hardsuits.
 
 /obj/item/clothing/suit/space/void/engineering
-	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/storage/bag/ore,/obj/item/device/t_scanner,/obj/item/weapon/pickaxe, /obj/item/weapon/rcd,/obj/item/weapon/storage/backpack)
+	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/storage/bag/ore,/obj/item/device/t_scanner,/obj/item/weapon/pickaxe,/obj/item/weapon/rcd,/obj/item/weapon/storage/backpack)
 /obj/item/clothing/suit/space/void/medical
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/storage/firstaid,/obj/item/device/healthanalyzer,/obj/item/stack/medical,/obj/item/weapon/storage/backpack)
 /obj/item/clothing/suit/space/void/security
