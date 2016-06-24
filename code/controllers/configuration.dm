@@ -4,6 +4,8 @@ var/list/gamemode_cache = list()
 	var/server_name = null				// server name (for world name / status)
 	var/server_suffix = 0				// generate numeric suffix based on server port
 
+	var/start_hub_visible = 0			// world.visibility to set on world start
+
 	var/nudge_script_path = "nudge.py"  // where the nudge.py script is located
 
 	var/log_ooc = 0						// log OOC channel
@@ -267,6 +269,9 @@ var/list/gamemode_cache = list()
 			switch (name)
 				if ("resource_urls")
 					config.resource_urls = splittext(value, " ")
+
+				if ("start_hub_visible")
+					config.start_hub_visible = 1
 
 				if ("admin_legacy_system")
 					config.admin_legacy_system = 1
