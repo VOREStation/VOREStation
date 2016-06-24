@@ -27,38 +27,38 @@ Used In File(s): \code\game\machinery\cryo.dm
 				{{else}}
 					{{:helper.displayBar(data.occupant.health, 0, data.occupant.minHealth, 'average alignRight')}}
 				{{/if}}
-				<div class="statusValue">{{:helper.round(data.occupant.health)}}</div>
+				<div class="statusValue">{{:helper.smoothRound(data.occupant.health)}}</div>
 			</div>
 		
 			<div class="line">
 				<div class="statusLabel">=&gt; Brute Damage:</div>
 				{{:helper.displayBar(data.occupant.bruteLoss, 0, data.occupant.maxHealth, 'bad')}}
-				<div class="statusValue">{{:helper.round(data.occupant.bruteLoss)}}</div>
+				<div class="statusValue">{{:helper.smoothRound(data.occupant.bruteLoss)}}</div>
 			</div>
 		
 			<div class="line">
 				<div class="statusLabel">=&gt; Resp. Damage:</div>
 				{{:helper.displayBar(data.occupant.oxyLoss, 0, data.occupant.maxHealth, 'bad')}}
-				<div class="statusValue">{{:helper.round(data.occupant.oxyLoss)}}</div>
+				<div class="statusValue">{{:helper.smoothRound(data.occupant.oxyLoss)}}</div>
 			</div>
 		
 			<div class="line">
 				<div class="statusLabel">=&gt; Toxin Damage:</div>
 				{{:helper.displayBar(data.occupant.toxLoss, 0, data.occupant.maxHealth, 'bad')}}
-				<div class="statusValue">{{:helper.round(data.occupant.toxLoss)}}</div>
+				<div class="statusValue">{{:helper.smoothRound(data.occupant.toxLoss)}}</div>
 			</div>
 		
 			<div class="line">
 				<div class="statusLabel">=&gt; Burn Severity:</div>
 				{{:helper.displayBar(data.occupant.fireLoss, 0, data.occupant.maxHealth, 'bad')}}
-				<div class="statusValue">{{:helper.round(data.occupant.fireLoss)}}</div>
+				<div class="statusValue">{{:helper.smoothRound(data.occupant.fireLoss)}}</div>
 			</div>
 		{{/if}}
 	{{/if}}
 	<hr>
 	<div class="line">
 		<div class="statusLabel">Cell Temperature:</div><div class="statusValue">
-			<span class="{{:data.cellTemperatureStatus}}">{{:data.cellTemperature}} K</span>
+			<span class="{{:data.cellTemperatureStatus}}">{{:helper.smoothRound(data.cellTemperature)}} K</span>
 		</div>
 	</div>
 </div>
@@ -69,10 +69,10 @@ Used In File(s): \code\game\machinery\cryo.dm
 		Cryo Cell Status:
 	</div>
 	<div class="itemContent" style="width: 40%;">
-		{{:helper.link('On', 'power', {'switchOn' : 1}, data.isOperating ? 'selected' : null)}}{{:helper.link('Off', 'close', {'switchOff' : 1}, data.isOperating ? null : 'selected')}}
+		{{:helper.link('On', 'power-off', {'switchOn' : 1}, data.isOperating ? 'selected' : null)}}{{:helper.link('Off', 'close', {'switchOff' : 1}, data.isOperating ? null : 'selected')}}
 	</div>
 	<div class="itemContent" style="width: 26%;">
-		{{:helper.link('Eject Occupant', 'arrowreturnthick-1-s', {'ejectOccupant' : 1}, data.hasOccupant ? null : 'disabled')}}
+		{{:helper.link('Eject Occupant', 'arrow-circle-o-down', {'ejectOccupant' : 1}, data.hasOccupant ? null : 'disabled')}}
 	</div>
 </div>
 <div class="item">&nbsp;</div>
@@ -84,7 +84,7 @@ Used In File(s): \code\game\machinery\cryo.dm
 		{{if data.isBeakerLoaded}}		
 			{{:data.beakerLabel ? data.beakerLabel : '<span class="average">No label</span>'}}<br>
 			{{if data.beakerVolume}}
-				<span class="highlight">{{:data.beakerVolume}} units remaining</span><br>
+				<span class="highlight">{{:helper.smoothRound(data.beakerVolume)}} units remaining</span><br>
 			{{else}}
 				<span class="bad">Beaker is empty</span>
 			{{/if}}

@@ -95,7 +95,7 @@
         </div>
       </div>
       <div class='item'>
-        {{:helper.link(data.suspended ? "Unsuspend" : "Suspend", 'gear', {'choice' : 'toggle_suspension'})}}
+        {{:helper.link(data.suspended ? "Unsuspend" : "Suspend", 'cog', {'choice' : 'toggle_suspension'})}}
       </div>
 
       <div class="statusDisplay" style="overflow: auto;">
@@ -123,7 +123,7 @@
           </tbody>
         </table>
         {{else}}
-          <span class='alert'>This account has no financial transactions on record for today.</span>
+          <span class='exclamation-triangle'>This account has no financial transactions on record for today.</span>
         {{/if}}
       </div>
         <div class='item'>
@@ -133,7 +133,7 @@
           <div class='fixedLeft'>
             Payroll:
           </div>
-          {{:helper.link('Revoke', 'transferthick-e-w', {'choice' : 'revoke_payroll'}, data.account_number == data.station_account_number ? 'disabled' : null, 'linkDanger')}}
+          {{:helper.link('Revoke', 'exchange', {'choice' : 'revoke_payroll'}, data.account_number == data.station_account_number ? 'disabled' : null, 'linkDanger')}}
         </div>
         {{if data.access_level >= 2}}
         <div class='item'>
@@ -160,7 +160,7 @@
           {{/for}}
         </table>
       {{else}}
-        <span class='alert'>There are no accounts available.</span>
+        <span class='exclamation-triangle'>There are no accounts available.</span>
       {{/if}}
     {{/if}}
   {{/if}}

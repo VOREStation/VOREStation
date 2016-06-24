@@ -144,6 +144,12 @@ var/list/_client_preferences_by_type
 	enabled_description = "Fancy"
 	disabled_description = "Plain"
 
+/datum/client_preference/nanoui_style
+	description = "Fancy NanoUI style"
+	key = "NANO_STYLED"
+	enabled_description = "Fancy"
+	disabled_description = "Plain"
+
 /********************
 * Staff Preferences *
 ********************/

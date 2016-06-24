@@ -47,4 +47,6 @@
 
 	preload_rsc = 0 // This is 0 so we can set it to an URL once the player logs in and have them download the resources from a different server.
 	var/global/obj/screen/click_catcher/void
-	
+
+	//NanoUI//
+	var/topic_debugging = 0 //if set to true, allows client to see nanoUI errors -- yes i realize this is messy but it'll make live testing infinitely easier

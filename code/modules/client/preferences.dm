@@ -258,7 +258,7 @@ datum/preferences
 	if(be_random_name)
 		real_name = random_name(identifying_gender,species)
 
-	// Ask the preferences datums to apply their own settings to the new mob 
+	// Ask the preferences datums to apply their own settings to the new mob
 	player_setup.copy_to_mob(character)
 
 	if(icon_updates)

@@ -21,11 +21,13 @@ datum/controller/game_controller/New()
 			qdel(master_controller)
 		master_controller = src
 
+	var/watch = 0
 	if(!job_master)
+		watch = start_watch()
 		job_master = new /datum/controller/occupations()
 		job_master.SetupOccupations()
 		job_master.LoadJobs("config/jobs.txt")
-		admin_notice("<span class='danger'>Job setup complete</span>", R_DEBUG)
+		log_startup_progress("Job setup complete in [stop_watch(watch)]s.")
 
 	if(!syndicate_code_phrase)		syndicate_code_phrase	= generate_code_phrase()
 	if(!syndicate_code_response)	syndicate_code_response	= generate_code_phrase()
@@ -44,31 +46,56 @@ datum/controller/game_controller/proc/setup()
 
 
 datum/controller/game_controller/proc/setup_objects()
-	admin_notice("<span class='danger'>Initializing objects</span>", R_DEBUG)
-	sleep(-1)
+	var/watch = start_watch()
+	var/count = 0
+	var/overwatch = start_watch() //Overall.
+
+	log_startup_progress("Populating asset cache...")
+	populate_asset_cache()
+	log_startup_progress("  Populated [asset_cache.len] assets in [stop_watch(watch)]s.")
+
+	watch = start_watch()
+	log_startup_progress("Initializing objects")
+//	sleep(-1)
 	for(var/atom/movable/object in world)
 		if(isnull(object.gcDestroyed))
 			object.initialize()
+			count++
+	log_startup_progress("  Initialized [count] objects in [stop_watch(watch)]s.")
 
-	admin_notice("<span class='danger'>Initializing areas</span>", R_DEBUG)
-	sleep(-1)
+	watch = start_watch()
+	count = 0
+	log_startup_progress("Initializing areas")
+//	sleep(-1)
 	for(var/area/area in all_areas)
 		area.initialize()
+		count++
+	log_startup_progress("  Initialized [count] areas in [stop_watch(watch)]s.")
 
-	admin_notice("<span class='danger'>Initializing pipe networks</span>", R_DEBUG)
-	sleep(-1)
+	watch = start_watch()
+	count = 0
+	log_startup_progress("Initializing pipe networks")
+//	sleep(-1)
 	for(var/obj/machinery/atmospherics/machine in machines)
 		machine.build_network()
+		count++
+	log_startup_progress("  Initialized [count] pipe networks in [stop_watch(watch)]s.")
 
-	admin_notice("<span class='danger'>Initializing atmos machinery.</span>", R_DEBUG)
-	sleep(-1)
+	watch = start_watch()
+	count = 0
+	log_startup_progress("Initializing atmos machinery.")
+//	sleep(-1)
 	for(var/obj/machinery/atmospherics/unary/U in machines)
 		if(istype(U, /obj/machinery/atmospherics/unary/vent_pump))
 			var/obj/machinery/atmospherics/unary/vent_pump/T = U
 			T.broadcast_status()
+			count++
 		else if(istype(U, /obj/machinery/atmospherics/unary/vent_scrubber))
 			var/obj/machinery/atmospherics/unary/vent_scrubber/T = U
 			T.broadcast_status()
+			count++
+	log_startup_progress("  Initialized [count] atmospherics devices in [stop_watch(watch)]s.")
+	log_startup_progress("Finished object initializations in [stop_watch(overwatch)]s.")
 
 	// Set up antagonists.
 	populate_antag_type_list()
@@ -76,5 +103,5 @@ datum/controller/game_controller/proc/setup_objects()
 	//Set up spawn points.
 	populate_spawn_points()
 
-	admin_notice("<span class='danger'>Initializations complete.</span>", R_DEBUG)
-	sleep(-1)
+	log_startup_progress("Initializations complete.")
+//	sleep(-1)

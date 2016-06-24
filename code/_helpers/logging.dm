@@ -82,6 +82,13 @@
 	if(config.log_world_output)
 		diary << "\[[time_stamp()]]DD_OUTPUT: [text][log_end]"
 
+/*
+	Standardized method for tracking startup times.
+*/
+/proc/log_startup_progress(var/message)
+	admin_notice("<span class='danger'>[message]</span>", R_DEBUG)
+	log_to_dd(message)
+
 /proc/log_misc(text)
 	diary << "\[[time_stamp()]]MISC: [text][log_end]"
 

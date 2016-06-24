@@ -96,6 +96,9 @@ nanoui is used to open and update nano browser uis
 
 	add_common_assets()
 
+	var/datum/asset/assets = get_asset_datum(/datum/asset/nanoui)
+	assets.send(user, ntemplate_filename)
+
  /**
   * Use this proc to add assets which are common to (and required by) all nano uis
   *
@@ -103,15 +106,13 @@ nanoui is used to open and update nano browser uis
   */
 /datum/nanoui/proc/add_common_assets()
 	add_script("libraries.min.js") // A JS file comprising of jQuery, doT.js and jQuery Timer libraries (compressed together)
-	add_script("nano_utility.js") // The NanoUtility JS, this is used to store utility functions.
-	add_script("nano_template.js") // The NanoTemplate JS, this is used to render templates.
-	add_script("nano_state_manager.js") // The NanoStateManager JS, it handles updates from the server and passes data to the current state
-	add_script("nano_state.js") // The NanoState JS, this is the base state which all states must inherit from
-	add_script("nano_state_default.js") // The NanoStateDefault JS, this is the "default" state (used by all UIs by default), which inherits from NanoState
-	add_script("nano_base_callbacks.js") // The NanoBaseCallbacks JS, this is used to set up (before and after update) callbacks which are common to all UIs
-	add_script("nano_base_helpers.js") // The NanoBaseHelpers JS, this is used to set up template helpers which are common to all UIs
-	add_stylesheet("shared.css") // this CSS sheet is common to all UIs
-	add_stylesheet("icons.css") // this CSS sheet is common to all UIs
+	add_script("nano.js")          // A JS file of the NanoUI JavaScript compressed into one file.
+	add_stylesheet("nanoui.css")   // Concatenated CSS sheet common to all UIs, contains all of the standard NanoUI styling.
+
+	// CodeMirror
+	add_script("codemirror-compressed.js") // A custom minified JavaScript file of CodeMirror, with the following plugins: CSS Mode, NTSL Mode, CSS-hint addon, Search addon, Sublime Keymap.
+	add_stylesheet("codemirror.css")       // A CSS sheet containing the basic stylings and formatting information for CodeMirror.
+	add_stylesheet("cm_lesser-dark.css")   // A theme for CodeMirror to use, which closely resembles the rest of the NanoUI style.
 
  /**
   * Set the current status (also known as visibility) of this ui.
@@ -186,7 +187,15 @@ nanoui is used to open and update nano browser uis
 			"autoUpdateContent" = auto_update_content,
 			"showMap" = show_map,
 			"mapZLevel" = map_z_level,
-			"user" = list("name" = user.name)
+			"user" = list(
+					"name" = user.name,
+					"fancy" = user.client.is_preference_enabled(/datum/client_preference/browser_style)
+			),
+			"window" = list(
+					"width" = width,
+					"height" = height,
+					"ref" = window_id
+			)
 		)
 	return config_data
 
@@ -334,7 +343,7 @@ nanoui is used to open and update nano browser uis
 /datum/nanoui/proc/get_html()
 
 	// before the UI opens, add the layout files based on the layout key
-	add_stylesheet("layout_[layout_key].css")
+	//add_stylesheet("layout_[layout_key].css")
 	add_template("layout", "layout_[layout_key].tmpl")
 
 	var/head_content = ""
@@ -383,9 +392,9 @@ nanoui is used to open and update nano browser uis
 		</div>
 		<noscript>
 			<div id='uiNoScript'>
-				<h2>JAVASCRIPT REQUIRED</h2>
-				<p>Your Internet Explorer's Javascript is disabled (or broken).<br/>
-				Enable Javascript and then open this UI again.</p>
+				<h1>Javascript Required</h1>
+				<p>Javascript is required in order to use this NanoUI interface.</p>
+				<p>Please enable Javascript in Internet Explorer, and restart your game.</p>
 			</div>
 		</noscript>
 	</body>

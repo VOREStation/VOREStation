@@ -1,10 +1,10 @@
 <h3>Machine Status</h3>
 <div class="item">
 	<div class="itemContent" style="width: 20%;">
-		{{:helper.link(data.scanning ? 'Halt Scan' : 'Begin Scan', 'signal-diag', {'scanItem' : 1}, null)}}
+		{{:helper.link(data.scanning ? 'Halt Scan' : 'Begin Scan', 'signal', {'scanItem' : 1}, null)}}
 	</div>
 	<div class="itemContent" style="width: 20%;">
-		{{:helper.link((data.lidstate ? 'Open Lid' : 'Close Lid'), (data.lidstate ? 'unlocked' : 'locked'), {'toggleLid' : 1}, null)}}
+		{{:helper.link((data.lidstate ? 'Open Lid' : 'Close Lid'), (data.lidstate ? 'unlock' : 'lock'), {'toggleLid' : 1}, null)}}
 	</div>
 	<div class="itemContent" style="width: 20%;">
 		{{:helper.link('Eject item', 'eject', {'ejectItem' : 1}, (data.bloodsamp && !data.scanning) ? null : 'disabled')}}

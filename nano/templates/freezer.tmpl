@@ -3,7 +3,7 @@
 		Status:
 	</div>
 	<div class="itemContent">		
-		{{:helper.link('On', 'power', {'toggleStatus' : 1}, data.on ? 'selected' : null)}}{{:helper.link('Off', 'close', {'toggleStatus' : 1}, data.on ? null : 'selected')}}
+		{{:helper.link('On', 'power-off', {'toggleStatus' : 1}, data.on ? 'selected' : null)}}{{:helper.link('Off', 'close', {'toggleStatus' : 1}, data.on ? null : 'selected')}}
 	</div>
 </div>
 
@@ -25,7 +25,7 @@
 		Gas Pressure:
 	</div>
 	<div class="itemContent">		
-		{{:data.gasPressure}} kPa
+		{{:helper.smoothRound(data.gasPressure)}} kPa
 	</div>
 </div>
 
@@ -37,7 +37,7 @@
 	<div class="itemContent">		
 		{{:helper.displayBar(data.gasTemperature, data.minGasTemperature, data.maxGasTemperature, data.gasTemperatureClass)}}
 		<div class="statusValue">
-			<span class="{{:data.gasTemperatureClass}}">{{:data.gasTemperature}} K</span>
+			<span class="{{:data.gasTemperatureClass}}">{{:helper.smoothRound(data.gasTemperature)}} K</span>
 		</div>
 	</div>
 </div>

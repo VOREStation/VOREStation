@@ -16,7 +16,7 @@
 			Occupant status:
 			</div>
 			<div class="itemContent">
-				Health: {{:data.health}}% ({{:data.stat}}).
+				Health: {{:helper.smoothRound(data.health)}}% ({{:data.stat}}).
 			</div>
 			<div class="itemLabel">
 				Pulse:
@@ -28,25 +28,25 @@
 				Brute damage:
 			</div>
 			<div class="itemContent">
-				{{:helper.displayBar(data.brute, 0, 100, (data.brute <= 25) ? 'good' : (data.brute <= 50) ? 'average' : 'bad')}}{{:helper.round(data.brute)}}
+				{{:helper.displayBar(data.brute, 0, 100, (data.brute <= 25) ? 'good' : (data.brute <= 50) ? 'average' : 'bad')}}{{:helper.smoothRound(data.brute)}}
 			</div>
 			<div class="itemLabel">
 				Burn severity:
 			</div>
 			<div class="itemContent">
-			{{:helper.displayBar(data.burn, 0, 100, (data.burn <= 25) ? 'good' : (data.burn <= 50) ? 'average' : 'bad')}}{{:helper.round(data.burn)}}
+			{{:helper.displayBar(data.burn, 0, 100, (data.burn <= 25) ? 'good' : (data.burn <= 50) ? 'average' : 'bad')}}{{:helper.smoothRound(data.burn)}}
 			</div>
 			<div class="itemLabel">
 				Respiratory damage:
 			</div>
 			<div class="itemContent">
-			{{:helper.displayBar(data.oxy, 0, 100, (data.oxy <= 25) ? 'good' : (data.oxy <= 50) ? 'average' : 'bad')}}{{:helper.round(data.oxy)}}
+			{{:helper.displayBar(data.oxy, 0, 100, (data.oxy <= 25) ? 'good' : (data.oxy <= 50) ? 'average' : 'bad')}}{{:helper.smoothRound(data.oxy)}}
 			</div>
 			<div class="itemLabel">
 				Toxin content:
 			</div>
 			<div class="itemContent">
-			{{:helper.displayBar(data.tox, 0, 100, (data.tox <= 25) ? 'good' : (data.tox <= 50) ? 'average' : 'bad')}}{{:helper.round(data.tox)}}
+			{{:helper.displayBar(data.tox, 0, 100, (data.tox <= 25) ? 'good' : (data.tox <= 50) ? 'average' : 'bad')}}{{:helper.smoothRound(data.tox)}}
 			</div>
 			<div class="itemContent">
 			{{:helper.link(data.filtering ? "Dialysis active" : "Dialysis inactive", null, {'filter' : !data.filtering})}}
@@ -77,7 +77,7 @@
 				Beaker:
 			</div>
 			<div class="itemContent">
-				{{:data.beaker}} units of free space remaining.
+				{{:helper.smoothRound(data.beaker)}} units of free space remaining.
 				{{:helper.link("Eject", null, {'beaker' : 0})}}
 			</div>
 		</div>

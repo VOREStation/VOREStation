@@ -44,7 +44,7 @@
                 <div class="white" style="height: 26px">Lock</div>
                 {{for data.ports}}
                     <div style="height: 26px">
-                        {{:helper.link(' ', value.con_lock ? 'locked' : 'unlocked', {'command' : 'switch_conlock', 'dir' : value.dir}, value.input ? null : 'disabled', value.con_lock ? 'selected' : null)}}
+                        {{:helper.link(' ', value.con_lock ? 'lock' : 'unlock', {'command' : 'switch_conlock', 'dir' : value.dir}, value.input ? null : 'disabled', value.con_lock ? 'selected' : null)}}
                     </div>
                 {{/for}}
             </div>

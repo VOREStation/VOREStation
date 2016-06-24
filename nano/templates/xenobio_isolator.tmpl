@@ -30,7 +30,7 @@ Copy of Lysis-isolation Centrifuge's NanoUI Template
 						{{:value.mask}}
 					</div>
 					<div class="itemContent">
-						{{:helper.link('Extract', 'circle-arrow-s', {'get_gene' : value.tag}, null)}}
+						{{:helper.link('Extract', 'arrow-circle-down', {'get_gene' : value.tag}, null)}}
 					</div>
 				</div>
 			{{empty}}
@@ -38,7 +38,7 @@ Copy of Lysis-isolation Centrifuge's NanoUI Template
 			{{/for}}
 			<br>
 			<div class="item">
-				{{:helper.link('Eject Loaded Disk', 'circle-arrow-e', {'eject_disk' : 1}, null)}}
+				{{:helper.link('Eject Loaded Disk', 'arrow-circle-right', {'eject_disk' : 1}, null)}}
 				{{:helper.link('Clear Genetic Buffer', 'gear', {'clear_buffer' : 1}, null)}}
 			</div>
 		{{else}}
@@ -49,7 +49,7 @@ Copy of Lysis-isolation Centrifuge's NanoUI Template
 		{{if data.disk}}
 			<br>
 			<div class="item">
-				{{:helper.link('Eject Loaded Disk', 'circle-arrow-e', {'eject_disk' : 1}, null)}}
+				{{:helper.link('Eject Loaded Disk', 'arrow-circle-right', {'eject_disk' : 1}, null)}}
 			</div>
 		{{else}}
 			<div class="notice">No disk inserted.</div>
@@ -65,7 +65,7 @@ Copy of Lysis-isolation Centrifuge's NanoUI Template
 				{{:data.loaded}}
 			</div>
 			<div class="item">
-				{{:helper.link('Process Genome', 'gear', {'scan_genome' : 1}, null)}}{{:helper.link('Eject Product', 'circle-arrow-e', {'eject_product' : 1}, null)}}
+				{{:helper.link('Process Genome', 'gear', {'scan_genome' : 1}, null)}}{{:helper.link('Eject Product', 'arrow-circle-right', {'eject_product' : 1}, null)}}
 			</div>
 		</div>
 	{{else}}

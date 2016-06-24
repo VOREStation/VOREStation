@@ -29,12 +29,12 @@
 						<tr><td>
 						Input: {{:value.input_val}} kW - {{:value.input_set ? "AUTO" : "OFF"}}
 						<td>
-						{{:helper.link('', 'power', { 'smes_in_toggle' : value.RCON_tag})}}
+						{{:helper.link('', 'power-off', { 'smes_in_toggle' : value.RCON_tag})}}
 						{{:helper.link('', 'pencil', { 'smes_in_set' : value.RCON_tag})}}
 						<tr><td>
 						Output: {{:value.output_val}} kW - {{:value.output_set ? "ONLINE" : "OFFLINE"}}
 						<td>
-						{{:helper.link('', 'power', { 'smes_out_toggle' : value.RCON_tag})}}
+						{{:helper.link('', 'power-off', { 'smes_out_toggle' : value.RCON_tag})}}
 						{{:helper.link('', 'pencil', { 'smes_out_set' : value.RCON_tag})}}
 					
 						<tr><td>
@@ -63,7 +63,7 @@
 				<tr><td>
 					{{:value.enabled ? "[<span class='good'>ENABLED</span>]" : "[<span class='bad'>DISABLED</span>]"}}
 				<td>
-					{{:helper.link('', 'power', {'toggle_breaker' : value.RCON_tag})}}
+					{{:helper.link('', 'power-off', {'toggle_breaker' : value.RCON_tag})}}
 				</table>
 			</div>
 		</div>

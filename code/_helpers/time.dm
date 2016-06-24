@@ -55,3 +55,16 @@ var/round_start_time = 0
 	last_round_duration = "[hours]:[mins]"
 	next_duration_update = world.time + 1 MINUTES
 	return last_round_duration
+
+/*
+	Returns "watch handle" (really just a timestamp)
+*/
+/proc/start_watch()
+	return world.timeofday
+
+/*
+	Returns number of seconds elapsed.
+	@param wh number The "Watch Handle" from start_watch(). (timestamp)
+*/
+/proc/stop_watch(wh)
+	return round(0.1*(world.timeofday-wh),0.1)

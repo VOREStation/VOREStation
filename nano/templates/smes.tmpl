@@ -5,10 +5,10 @@
 	<div class="itemContent">
 		{{:helper.displayBar(data.storedCapacity, 0, 100, data.charging ? 'good' : 'average')}}
 		<div class="statusValue">
-			{{:helper.round(data.storedCapacity)}}%
+			{{:helper.smoothRound(data.storedCapacity)}}%
 		</div><br>
 		<div class="statusValue">
-			{{:data.storedCapacityAbs}} kWh / {{:data.storedCapacityMax}} kWh
+			{{:helper.smoothRound(data.storedCapacityAbs)}} kWh / {{:data.storedCapacityMax}} kWh
 		</div>
 	</div>
 </div>
@@ -53,7 +53,7 @@
 	<div class="itemContent">
 		{{:helper.displayBar(data.chargeLoad, 0, data.chargeMax, (data.chargeLoad < data.chargeLevel) ? 'good' : 'average')}}
 		<div class="statusValue">
-			{{:data.chargeLoad}} kW
+			{{:helper.smoothRound(data.chargeLoad)}} kW
 		</div>
 	</div>
 </div>
@@ -64,7 +64,7 @@
 		Output Status:
 	</div>
 	<div class="itemContent">
-		{{:helper.link('Online', 'power', {'online' : 1}, data.outputOnline ? 'selected' : null)}}{{:helper.link('Offline', 'close', {'online' : 1}, data.outputOnline ? null : 'selected')}}
+		{{:helper.link('Online', 'power-off', {'online' : 1}, data.outputOnline ? 'selected' : null)}}{{:helper.link('Offline', 'close', {'online' : 1}, data.outputOnline ? null : 'selected')}}
 		&nbsp;
 		{{if data.outputting == 2}}
 			[<span class='good'>Outputting</span>]
@@ -98,7 +98,7 @@
 	<div class="itemContent">
 		{{:helper.displayBar(data.outputLoad, 0, data.outputMax, (data.outputLoad < data.outputLevel) ? 'good' : 'average')}}
 		<div class="statusValue">
-			{{:data.outputLoad}} kW
+			{{:helper.smoothRound(data.outputLoad)}} kW
 		</div>
 	</div>
 </div>

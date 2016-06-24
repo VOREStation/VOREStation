@@ -1,6 +1,6 @@
 {{if data.focus}}
 	<div class="notice" style="height: 22px">
-		{{:helper.link('Show List', 'cancel', { 'clear' : 1})}}   Sensor selected: {{:data.focus.name}} 
+		{{:helper.link('Show List', 'ban', { 'clear' : 1})}}   Sensor selected: {{:data.focus.name}} 
 	</div>
 	{{if data.focus.error}}
 		{{:data.focus.error}}
@@ -64,11 +64,11 @@
 			<td>{{:value.s_lighting}}
 			<td>{{:value.s_environment}}
 			{{if value.cell_status == "N"}}
-				<td>{{:helper.link(value.cell_charge + '%', 'batt_disc', null,'disabled', 'width75btn')}}
+				<td>{{:helper.link(value.cell_charge + '%', 'battery-empty', null,'disabled', 'width75btn')}}
 			{{else value.cell_status == "C"}}
-				<td>{{:helper.link(value.cell_charge + '%', 'batt_chrg', null,'disabled', 'width75btn')}}
+				<td>{{:helper.link(value.cell_charge + '%', 'battery-half', null,'disabled', 'width75btn')}}
 			{{else}}
-				<td>{{:helper.link(value.cell_charge + '%', 'batt_full', null,'disabled', 'width75btn')}}
+				<td>{{:helper.link(value.cell_charge + '%', 'battery-full', null,'disabled', 'width75btn')}}
 			{{/if}}
 			<td>{{:value.total_load}}
 		{{empty}}

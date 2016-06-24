@@ -476,7 +476,7 @@
 			usr << "This can only be done on mobs with clients"
 			return
 
-		nanomanager.send_resources(H.client)
+		H.client.reload_nanoui_resources()
 
 		usr << "Resource files sent"
 		H << "Your NanoUI Resource files have been refreshed"

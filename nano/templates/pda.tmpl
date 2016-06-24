@@ -12,7 +12,7 @@ Used In File(s): \code\game\objects\items\devices\PDA\PDA.dm
 			<!--{{:helper.link('Refresh', 'refresh', {'choice' : "Refresh"}, null, 'fixedLeft')}}-->
 			{{:helper.link('Close', 'gear', {'choice' : "Close"}, null, 'fixedLeft')}}
 			{{if data.idInserted}} {{:helper.link('Update PDA Info', 'eject', {'choice' : "UpdateInfo"}, null, 'fixedLeftWide')}} {{/if}}
-			{{if data.mode != 0}} {{:helper.link('Return', 'arrowreturn-1-w', {'choice' : "Return"}, null, 'fixedLeft')}} {{/if}}
+			{{if data.mode != 0}} {{:helper.link('Return', 'arrow-left', {'choice' : "Return"}, null, 'fixedLeft')}} {{/if}}
 		</div>
 	</div>
 	<br>
@@ -66,9 +66,9 @@ Used In File(s): \code\game\objects\items\devices\PDA\PDA.dm
                 <b>General</b>:
             </div>
             <div class="itemContent">
-                {{:helper.link('Notekeeper', 'note', {'choice' : "1"}, null, 'fixedLeftWide')}}
-                {{:helper.link('Messenger', data.new_Message ? 'mail-closed' : 'mail-open', {'choice' : "2"}, null, 'fixedLeftWide')}}
-                {{:helper.link('Crew Manifest', 'contact', {'choice' : "41"}, null, 'fixedLeftWide')}}
+                {{:helper.link('Notekeeper', 'sticky-note', {'choice' : "1"}, null, 'fixedLeftWide')}}
+                {{:helper.link('Messenger', data.new_Message ? 'envelope' : 'envelope-o', {'choice' : "2"}, null, 'fixedLeftWide')}}
+                {{:helper.link('Crew Manifest', 'user', {'choice' : "41"}, null, 'fixedLeftWide')}}
 				{{:helper.link('News', data.new_News ? 'mail-closed' : 'mail-open', {'choice' : "6"}, null, 'fixedLeftWide')}}
             </div>
         </div>
@@ -91,7 +91,7 @@ Used In File(s): \code\game\objects\items\devices\PDA\PDA.dm
                         <b>Engineering</b>:
                     </div>
                     <div class="itemContent">
-                        {{:helper.link('Power Monitor', 'alert', {'choice' : "43"}, null, 'fixedLeftWide')}}
+                        {{:helper.link('Power Monitor', 'exclamation-triangle', {'choice' : "43"}, null, 'fixedLeftWide')}}
                     </div>
                 </div>
                  <br>
@@ -165,7 +165,7 @@ Used In File(s): \code\game\objects\items\devices\PDA\PDA.dm
                     {{/if}}
                 {{/if}}
                 {{:helper.link('Atmospheric Scan', 'gear', {'choice' : "3"}, null, 'fixedLeftWide')}}
-                {{:helper.link(data.fon==1 ? 'Disable Flashlight' : 'Enable Flashlight', 'lightbulb', {'choice' : "Light"}, null,'fixedLeftWide')}}
+                {{:helper.link(data.fon==1 ? 'Disable Flashlight' : 'Enable Flashlight', 'lightbulb-o', {'choice' : "Light"}, null,'fixedLeftWide')}}
             </div>
         </div>
         {{if data.pai}}
@@ -208,7 +208,7 @@ Used In File(s): \code\game\objects\items\devices\PDA\PDA.dm
                 <b>Messenger Functions</b>:
             </div>
             <div class ="itemContent">
-                {{:helper.link(data.message_silent==1 ? 'Ringer: Off' : 'Ringer: On', data.message_silent==1 ? 'volume-off' : 'volume-on', {'choice' : "Toggle Ringer"}, null, 'fixedLeftWide')}}
+                {{:helper.link(data.message_silent==1 ? 'Ringer: Off' : 'Ringer: On', data.message_silent==1 ? 'volume-off' : 'volume-up', {'choice' : "Toggle Ringer"}, null, 'fixedLeftWide')}}
                 {{:helper.link(data.toff==1 ? 'Messenger: Off' : 'Messenger: On',data.toff==1 ? 'close':'check', {'choice' : "Toggle Messenger"}, null, 'fixedLeftWide')}}
                 {{:helper.link('Set Ringtone', 'comment', {'choice' : "Ringtone"}, null, 'fixedLeftWide')}}
                 {{:helper.link('Delete all Conversations', 'trash', {'choice' : "Clear", 'option' : "All"}, null, 'fixedLeftWider')}}
@@ -234,16 +234,16 @@ Used In File(s): \code\game\objects\items\devices\PDA\PDA.dm
                 <H3>Current Conversations</H3>
                 {{for data.convopdas}}
                     <div class="item">
-                        {{:helper.link(value.Name, 'circle-arrow-s', {'choice' : "Select Conversation", 'convo' : value.Reference } , null, value.fixedLeftWider)}}
+                        {{:helper.link(value.Name, 'arrow-circle-down', {'choice' : "Select Conversation", 'convo' : value.Reference } , null, value.fixedLeftWider)}}
                         {{if data.cartridge}}
                             {{if data.cartridge.access.access_detonate_pda && value.Detonate}}
-                                {{:helper.link('*Detonate*', 'radiation', {'choice' : "Detonate", 'target' : value.Reference}, null, 'fixedLeft')}}
+                                {{:helper.link('*Detonate*', 'exclamation-circle', {'choice' : "Detonate", 'target' : value.Reference}, null, 'fixedLeft')}}
                             {{/if}}
                             {{if data.cartridge.access.access_clown}}
                                 {{:helper.link('*Send Virus*', 'star', {'choice' : "Send Honk", 'target' : value.Reference}, null, 'fixedLeft')}}
                             {{/if}}
                             {{if data.cartridge.access.access_mime}}
-                                {{:helper.link('*Send Virus*', 'circle-arrow-s', {'choice' : "Send Silence", 'target' : value.Reference}, null, 'fixedLeft')}}
+                                {{:helper.link('*Send Virus*', 'arrow-circle-down', {'choice' : "Send Silence", 'target' : value.Reference}, null, 'fixedLeft')}}
                             {{/if}}
                         {{/if}}
                     </div>
@@ -251,11 +251,11 @@ Used In File(s): \code\game\objects\items\devices\PDA\PDA.dm
                 <H3>Other PDAs</H3>
                 {{for data.pdas}}
                     <div class="item">
-                        {{:helper.link(value.Name, 'circle-arrow-s', {'choice' : "Message", 'target' : value.Reference}, null, value.fixedLeftWider)}}
+                        {{:helper.link(value.Name, 'arrow-circle-down', {'choice' : "Message", 'target' : value.Reference}, null, value.fixedLeftWider)}}
                         {{if data.cartridge}}
-                            {{if data.cartridge.access.access_detonate_pda && value.Detonate}} {{:helper.link('*Detonate*', 'radiation', {'choice' : "Detonate", 'target' : value.Reference}, null, 'fixedLeft')}}  {{/if}}
+                            {{if data.cartridge.access.access_detonate_pda && value.Detonate}} {{:helper.link('*Detonate*', 'exclamation-circle', {'choice' : "Detonate", 'target' : value.Reference}, null, 'fixedLeft')}}  {{/if}}
                             {{if data.cartridge.access.access_clown}} {{:helper.link('*Send Virus*', 'star', {'choice' : "Send Honk", 'target' : value.Reference}, null, 'fixedLeft')}}  {{/if}}
-                            {{if data.cartridge.access.access_mime}}  {{:helper.link('*Send Virus*', 'circle-arrow-s', {'choice' : "Send Silence", 'target' : value.Reference}, null, 'fixedLeft')}}  {{/if}}
+                            {{if data.cartridge.access.access_mime}}  {{:helper.link('*Send Virus*', 'arrow-circle-down', {'choice' : "Send Silence", 'target' : value.Reference}, null, 'fixedLeft')}}  {{/if}}
                         {{/if}}
                     </div>
                 {{/for}}
@@ -471,7 +471,7 @@ Used In File(s): \code\game\objects\items\devices\PDA\PDA.dm
             </div>
         </div>
         <div class="item">
-            {{:helper.link('Send Signal', 'radiation', {'cartmenu' : "1", 'choice' : "Send Signal"}, null, null)}}
+            {{:helper.link('Send Signal', 'exclamation-circle', {'cartmenu' : "1", 'choice' : "Send Signal"}, null, null)}}
         </div>
 
 
@@ -511,10 +511,10 @@ Used In File(s): \code\game\objects\items\devices\PDA\PDA.dm
                 <b> ALERT!</b>:
             </div>
             <div class="itemContent">
-                {{:helper.link('None', 'alert', {'cartmenu' : "1", 'choice' : "Status",'statdisp' : "alert", 'alert' : "default"}, null, null)}}
-                {{:helper.link('Red Alert', 'alert', {'cartmenu' : "1", 'choice' : "Status",'statdisp' : "alert", 'alert' : "redalert"}, null, null)}}
-                {{:helper.link('Lockdown', 'caution', {'cartmenu' : "1", 'choice' : "Status",'statdisp' : "alert", 'alert' : "lockdown"}, null, null)}}
-                {{:helper.link('Biohazard', 'radiation', {'cartmenu' : "1", 'choice' : "Status",'statdisp' : "alert", 'alert' : "biohazard"}, null, null)}}
+                {{:helper.link('None', 'exclamation-triangle', {'cartmenu' : "1", 'choice' : "Status",'statdisp' : "alert", 'alert' : "default"}, null, null)}}
+                {{:helper.link('Red Alert', 'exclamation-triangle', {'cartmenu' : "1", 'choice' : "Status",'statdisp' : "alert", 'alert' : "redalert"}, null, null)}}
+                {{:helper.link('Lockdown', 'bell', {'cartmenu' : "1", 'choice' : "Status",'statdisp' : "alert", 'alert' : "lockdown"}, null, null)}}
+                {{:helper.link('Biohazard', 'exclamation-circle', {'cartmenu' : "1", 'choice' : "Status",'statdisp' : "alert", 'alert' : "biohazard"}, null, null)}}
             </div>
         </div>
 
@@ -850,7 +850,7 @@ Used In File(s): \code\game\objects\items\devices\PDA\PDA.dm
                 <b>Functions</b>:
             </div>
             <div class ="itemContent">
-					{{:helper.link(data.news_silent==1 ? 'Ringer: Off' : 'Ringer: On', data.news_silent==1 ? 'volume-off' : 'volume-on', {'choice' : "Toggle News"}, null, 'fixedLeftWide')}}
+					{{:helper.link(data.news_silent==1 ? 'Ringer: Off' : 'Ringer: On', data.news_silent==1 ? 'volume-off' : 'volume-up', {'choice' : "Toggle News"}, null, 'fixedLeftWide')}}
                 {{:helper.link('Set news tone', 'comment', {'choice' : "Newstone"}, null, 'fixedLeftWide')}}
             </div>
         </div>
@@ -863,9 +863,9 @@ Used In File(s): \code\game\objects\items\devices\PDA\PDA.dm
             <div class="itemContent">
                 {{for data.feedChannels}}
                     {{if value.censored}}
-						{{:helper.link(value.name, 'circle-arrow-s', {'choice' : "Select Feed", 'feed' : value.feed, 'name' : value.name } , null, 'fixedLeftWiderRed')}}
+						{{:helper.link(value.name, 'arrow-circle-down', {'choice' : "Select Feed", 'feed' : value.feed, 'name' : value.name } , null, 'fixedLeftWiderRed')}}
                     {{else}}
-                        {{:helper.link(value.name, 'circle-arrow-s', {'choice' : "Select Feed", 'feed' : value.feed, 'name' : value.name } , null, 'fixedLeftWider')}}
+                        {{:helper.link(value.name, 'arrow-circle-down', {'choice' : "Select Feed", 'feed' : value.feed, 'name' : value.name } , null, 'fixedLeftWider')}}
                     {{/if}}
                 {{empty}}
                     <I>No active channels found...</I>
