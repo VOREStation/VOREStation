@@ -632,3 +632,7 @@
 /datum/sprite_accessory/tail/taur/spider
 	name = "Spider"
 	icon_state = "spider_s"
+
+/datum/sprite_accessory/tail/taur/slime
+	name = "Slime trail" //TRAVIS WONT COMPILE THIS FOR SOME ODD REASON
+	icon_state = "slime_s" // I DONT KNOW WHY
