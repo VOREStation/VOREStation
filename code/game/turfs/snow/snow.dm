@@ -32,3 +32,20 @@
 
         for(var/i in 1 to amt)
             overlays += icon(icon, "footprint[i]", text2num(d))
+
+/turf/snow/snow2
+	name = "snow"
+	icon = 'icons/turf/snow.dmi'
+	icon_state = "snow"
+
+/turf/snow/gravsnow
+	name = "snow"
+	icon_state = "gravsnow"
+
+/turf/snow/plating
+	name = "snowy playing"
+	icon_state = "snowyplating"
+
+/turf/snow/drift
+	name = "snowy plating"
+	icon_state = "snowyplayingdrift"
