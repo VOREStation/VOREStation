@@ -45,27 +45,6 @@
 	icon_state = "reinforced"
 	initial_flooring = /decl/flooring/reinforced
 
-/turf/simulated/floor/snow
-	name = "snow"
-	icon = 'icons/turf/snow.dmi'
-	icon_state = "snow"
-	initial_flooring = /decl/flooring/snow
-
-/turf/simulated/floor/snow/gravsnow
-	name = "snow"
-	icon_state = "gravsnow"
-	initial_flooring = /decl/flooring/snow/gravsnow
-
-/turf/simulated/floor/snow/plating
-	name = "snowy playing"
-	icon_state = "snowyplating"
-	initial_flooring = /decl/flooring/snow/plating
-
-/turf/simulated/floor/snow/plating/drift
-	name = "snowy plating"
-	icon_state = "snowyplayingdrift"
-	initial_flooring = /decl/flooring/snow/plating/drift
-
 /turf/simulated/floor/reinforced/airless
 	oxygen = 0
 	nitrogen = 0
@@ -226,3 +205,56 @@
 */
 /turf/simulated/floor/airless/ceiling
 /turf/simulated/floor/plating
+
+
+//**** Here lives snow ****
+/turf/simulated/floor/snow
+	name = "snow"
+	icon = 'icons/turf/snow_new.dmi'
+	icon_state = "snow"
+	var/list/crossed_dirs = list()
+
+/turf/simulated/floor/snow/snow2
+	name = "snow"
+	icon = 'icons/turf/snow.dmi'
+	icon_state = "snow"
+	initial_flooring = /decl/flooring/snow
+
+/turf/simulated/floor/snow/gravsnow
+	name = "snow"
+	icon_state = "gravsnow"
+	initial_flooring = /decl/flooring/snow/gravsnow
+
+/turf/simulated/floor/snow/plating
+	name = "snowy playing"
+	icon_state = "snowyplating"
+	initial_flooring = /decl/flooring/snow/plating
+
+/turf/simulated/floor/snow/plating/drift
+	name = "snowy plating"
+	icon_state = "snowyplayingdrift"
+	initial_flooring = /decl/flooring/snow/plating/drift
+
+#define FOOTSTEP_SPRITE_AMT 2
+
+/turf/snow/Entered(atom/A)
+    if(ismob(A))
+        var/mdir = "[A.dir]"
+        if(crossed_dirs[mdir])
+            crossed_dirs[mdir] = min(crossed_dirs[mdir] + 1, FOOTSTEP_SPRITE_AMT)
+        else
+            crossed_dirs[mdir] = 1
+
+        update_icon()
+
+    . = ..()
+
+/turf/snow/update_icon()
+    overlays.Cut()
+    for(var/d in crossed_dirs)
+        var/amt = crossed_dirs[d]
+
+        for(var/i in 1 to amt)
+            overlays += icon(icon, "footprint[i]", text2num(d))
+
+//**** Here ends snow ****

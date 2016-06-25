@@ -49,7 +49,7 @@ Used In File(s): \code\modules\reagents\Chemistry-Machinery.dm
 	<div class="item">
 		<div class="itemContent" style="width: 100%;">
 			{{if data.isBeakerLoaded}}
-				<b>Volume:&nbsp;{{:helper.smoothRound(data.beakerCurrentVolume)}}&nbsp;/&nbsp;{{:data.beakerMaxVolume}}</b><br>
+				<b>Volume:&nbsp;{{:data.beakerCurrentVolume}}&nbsp;/&nbsp;{{:data.beakerMaxVolume}}</b><br>
 				{{for data.beakerContents}}
 					<span class="highlight">{{:value.volume}} units of {{:value.name}}</span><br>
 				{{empty}}

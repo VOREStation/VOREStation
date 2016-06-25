@@ -1,0 +1,104 @@
+<!-- 
+	Interface for cloning computers machines 
+	See: code/game/machinery/computer/cloning.dm
+-->
+
+<b>{{:data.temp}}</b>
+
+{{if data.menu == 1}}
+	<!-- Modules -->
+	<h3>Modules</h3>
+	<div class='item'>
+	{{if data.connected}}
+			<span class='good'>DNA scanner found.</span>
+	{{else}}
+		<span class='bad'>DNA scanner not found.</span>
+	{{/if}}
+	</div>
+	<div class='item'>
+	{{if data.podsLen > 0}}
+		<span class='good'>{{:data.podsLen}} cloning vat\s found.</span>
+	{{else}}
+		<span class='bad'>No cloning vats found.</span>
+	{{/if}}
+	</div>
+	
+	<!-- Scanner -->
+	<h3>Scanner Functions</h3>
+	<div class='item'>
+	{{if data.loading}}
+		<b>Scanning...</b>
+	{{else}}
+		<b>{{:data.scantemp}}</b>
+	{{/if}}
+	</div>
+	<div class='item'>
+		{{if data.connected}}
+			<div style='float: left; width: auto; margin-right: 4px;'>
+				{{:helper.link(data.occupant ? 'Scan - ' + data.occupant : 'Scanner unoccupied', 'play', {'scan' : 1}, data.occupant ? null : 'linkOff')}}
+			</div>
+			<div style='float: left; width: auto; margin-right: 4px;'>
+				{{:helper.link(data.locked ? 'Unlock' : 'Lock', data.locked ? 'locked' : 'unlocked', {'lock' : 1}, null, data.locked ? 'redButton' : null)}}
+			</div>
+			<div style='float: left; width: auto; margin-right: 4px;'>
+				{{:helper.link('Eject', 'eject', {'eject' : 1}, data.occupant ? null : 'linkOff')}}
+			</div>
+		{{else}}
+			No scanner connected!
+		{{/if}}
+	</div>
+
+	{{if data.podsLen}}
+		{{for data.pods}}
+			<div class='item'>{{:value.pod}}, biomass: <i>{{:value.biomass}}</i></div>
+		{{/for}}
+	{{/if}}
+
+	<!-- Database -->
+	<h3>Database Functions</h3>
+	<div class='item'>
+		{{:helper.link('View Records', 'list', {'menu' : 2})}}
+		{{:helper.link('Eject Disk', 'eject', {'disk' : 'eject'}, data.diskette ? null : 'linkOff')}}
+	</div>
+
+{{else data.menu == 2}}
+	<h3>Current records</h3>
+	{{:helper.link('Back', 'arrowreturn-1-w', {'menu' : 1})}}
+	<div class='item'>
+		{{for data.records}}
+			{{:helper.link(value.name, 'document', {'view_rec' : value.ckey})}}
+		{{/for}}
+	</div>
+
+{{else data.menu == 3}}
+	<h3>Selected Record</h3>
+	<div class='item'>{{:helper.link('Back', 'arrowreturn-1-w', {'menu' : 2})}}</div>
+
+	{{if data.activeRecord}}
+		{{:helper.link('Delete Record', 'trash', {'del_rec' : 1}, null, 'redButton')}}
+		<div class='item'>
+			<div class='itemLabel'>Name:</div>
+			<div class='itemContent'>{{:data.activeRecord.real_name}}</div>
+		</div>
+
+		{{:helper.link('Load from disk', 'transfer-e-w', {'disk' : 'load'}, data.disk ? null : 'linkOff')}}
+
+		<div class='item'>
+			<div class='itemLabel'>Save:</div>
+			{{:helper.link('UI + UE', 'disk', {'save_disk' : 'ue'}, data.disk ? null : 'linkOff')}}
+			{{:helper.link('UI', 'disk', {'save_disk' : 'ui'}, data.disk ? null : 'linkOff')}} 
+			{{:helper.link('SE', 'disk', {'save_disk' : 'se'}, data.disk ? null : 'linkOff')}}
+		</div>
+
+		{{:helper.link('Clone', 'play', {'clone' : data.activeRecord.ckey}, data.podsLen ? null : 'linkOff')}}
+		
+	{{else}}
+		<div class='item bad'>ERROR: Record not found.</div>
+	{{/if}}
+
+{{else data.menu == 4}}
+	{{:data.temp}}
+	<h3>Confirm Record Deletion</h3>
+	<div class='item'><b>Scan card to confirm.</b></div>
+	{{:helper.link('Cancel', 'cancel', {'menu' : 3})}}
+{{/if}} 
