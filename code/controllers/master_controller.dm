@@ -32,7 +32,6 @@ datum/controller/game_controller/New()
 
 datum/controller/game_controller/proc/setup()
 	world.tick_lag = config.Ticklag
-	world.visibility = config.start_hub_visible
 
 	spawn(20)
 		createRandomZlevel()
