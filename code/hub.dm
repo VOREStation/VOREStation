@@ -2,6 +2,7 @@
 
 	hub = "Exadv1.spacestation13"
 	hub_password = "kMZy3U5jJHSiBQjr"
+	//hub_password = "SORRYNOPASSWORD"
 	name = "Space Station 13"
 	visibility = 0
 
