@@ -1072,6 +1072,12 @@
 						P.forceMove(J)
 						J.name = "Egg"
 						internal_contents -= P
+					if("Scree")
+						var/obj/structure/closet/secure_closet/egg/scree/J = new /obj/structure/closet/secure_closet/egg/scree(T.loc)
+						P.forceMove(J)
+						J.name = "[defined_species] egg"
+						J.desc = "This egg has a very unique look to it."
+						internal_contents -= P
 					else
 						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(T.loc)
 						P.forceMove(J)
