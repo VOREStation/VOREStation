@@ -23,7 +23,7 @@
 		spawn(600) reset_search()
 
 /obj/item/device/mmi/digital/posibrain/proc/request_player()
-	for(var/mob/dead/observer/O in player_list)
+	for(var/mob/observer/dead/O in player_list)
 		if(!O.MayRespawn())
 			continue
 		if(jobban_isbanned(O, "AI") && jobban_isbanned(O, "Cyborg"))
@@ -74,6 +74,7 @@
 /obj/item/device/mmi/digital/posibrain/proc/reset_search() //We give the players sixty seconds to decide, then reset the timer.
 
 	if(src.brainmob && src.brainmob.key) return
+	world.log << "Resetting Posibrain: [brainmob][brainmob ? ", [brainmob.key]" : ""]"
 
 	src.searching = 0
 	icon_state = "posibrain"

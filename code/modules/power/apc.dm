@@ -866,7 +866,7 @@
 
 	if(locked && !issilicon(usr) )
 		if(isobserver(usr) )
-			var/mob/dead/observer/O = usr	//Added to allow admin nanoUI interactions.
+			var/mob/observer/dead/O = usr	//Added to allow admin nanoUI interactions.
 			if(!O.can_admin_interact() )	//NanoUI /should/ make this not needed, but better safe than sorry.
 				usr << "Try as you might, your ghostly fingers can't press the buttons."
 				return 1

@@ -10,6 +10,7 @@ LINEN BINS
 	icon = 'icons/obj/items.dmi'
 	icon_state = "sheet"
 	item_state = "bedsheet"
+	slot_flags = SLOT_BACK
 	layer = 4.0
 	throwforce = 1
 	throw_speed = 1
@@ -19,7 +20,7 @@ LINEN BINS
 /obj/item/weapon/bedsheet/attack_self(mob/user as mob)
 	user.drop_item()
 	if(layer == initial(layer))
-		layer = 5
+		layer = MOB_LAYER + 0.1
 	else
 		layer = initial(layer)
 	add_fingerprint(user)
@@ -38,51 +39,139 @@ LINEN BINS
 
 /obj/item/weapon/bedsheet/blue
 	icon_state = "sheetblue"
+	item_state = "sheetblue"
 
 /obj/item/weapon/bedsheet/green
 	icon_state = "sheetgreen"
+	item_state = "sheetgreen"
 
 /obj/item/weapon/bedsheet/orange
 	icon_state = "sheetorange"
+	item_state = "sheetorange"
 
 /obj/item/weapon/bedsheet/purple
 	icon_state = "sheetpurple"
+	item_state = "sheetpurple"
 
 /obj/item/weapon/bedsheet/rainbow
 	icon_state = "sheetrainbow"
+	item_state = "sheetrainbow"
 
 /obj/item/weapon/bedsheet/red
 	icon_state = "sheetred"
+	item_state = "sheetred"
 
 /obj/item/weapon/bedsheet/yellow
 	icon_state = "sheetyellow"
+	item_state = "sheetyellow"
 
 /obj/item/weapon/bedsheet/mime
 	icon_state = "sheetmime"
+	item_state = "sheetmime"
 
 /obj/item/weapon/bedsheet/clown
 	icon_state = "sheetclown"
+	item_state = "sheetclown"
 
 /obj/item/weapon/bedsheet/captain
 	icon_state = "sheetcaptain"
+	item_state = "sheetcaptain"
 
 /obj/item/weapon/bedsheet/rd
 	icon_state = "sheetrd"
+	item_state = "sheetrd"
 
 /obj/item/weapon/bedsheet/medical
 	icon_state = "sheetmedical"
+	item_state = "sheetmedical"
 
 /obj/item/weapon/bedsheet/hos
 	icon_state = "sheethos"
+	item_state = "sheethos"
 
 /obj/item/weapon/bedsheet/hop
 	icon_state = "sheethop"
+	item_state = "sheethop"
 
 /obj/item/weapon/bedsheet/ce
 	icon_state = "sheetce"
+	item_state = "sheetce"
 
 /obj/item/weapon/bedsheet/brown
 	icon_state = "sheetbrown"
+	item_state = "sheetbrown"
+
+/obj/item/weapon/bedsheet/ian
+	icon_state = "sheetian"
+	item_state = "bedsheet"
+
+/obj/item/weapon/bedsheet/double
+	icon_state = "doublesheet"
+	item_state = "bedsheet"
+
+/obj/item/weapon/bedsheet/bluedouble
+	icon_state = "doublesheetblue"
+	item_state = "sheetblue"
+
+/obj/item/weapon/bedsheet/greendouble
+	icon_state = "doublesheetgreen"
+	item_state = "sheetgreen"
+
+/obj/item/weapon/bedsheet/orangedouble
+	icon_state = "doublesheetorange"
+	item_state = "sheetorange"
+
+/obj/item/weapon/bedsheet/purpledouble
+	icon_state = "doublesheetpurple"
+	item_state = "sheetpurple"
+
+/obj/item/weapon/bedsheet/doublerainbow //all the way across the sky.
+	icon_state = "doublesheetrainbow"
+	item_state = "sheetrainbow"
+
+/obj/item/weapon/bedsheet/doublered
+	icon_state = "doublesheetred"
+	item_state = "sheetred"
+
+/obj/item/weapon/bedsheet/doubleyellow
+	icon_state = "doublesheetyellow"
+	item_state = "sheetyellow"
+
+/obj/item/weapon/bedsheet/doublemime
+	icon_state = "doublesheetmime"
+	item_state = "sheetmime"
+
+/obj/item/weapon/bedsheet/doubleclown
+	icon_state = "doublesheetclown"
+	item_state = "sheetclown"
+
+/obj/item/weapon/bedsheet/doublecaptain
+	icon_state = "doublesheetcaptain"
+	item_state = "sheetcaptain"
+
+/obj/item/weapon/bedsheet/doublerd
+	icon_state = "doublesheetrd"
+	item_state = "sheetrd"
+
+/obj/item/weapon/bedsheet/doublehos
+	icon_state = "doublesheethos"
+	item_state = "sheethos"
+
+/obj/item/weapon/bedsheet/doublehop
+	icon_state = "doublesheethop"
+	item_state = "sheethop"
+
+/obj/item/weapon/bedsheet/doublece
+	icon_state = "doublesheetce"
+	item_state = "sheetce"
+
+/obj/item/weapon/bedsheet/doublebrown
+	icon_state = "doublesheetbrown"
+	item_state = "sheetbrown"
+
+/obj/item/weapon/bedsheet/doubleian
+	icon_state = "doublesheetian"
+	item_state = "bedsheet"
 
 
 /obj/structure/bedsheetbin

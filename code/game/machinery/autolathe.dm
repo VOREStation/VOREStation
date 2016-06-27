@@ -7,7 +7,7 @@
 	use_power = 1
 	idle_power_usage = 10
 	active_power_usage = 2000
-
+	circuit = /obj/item/weapon/circuitboard/autolathe
 	var/list/machine_recipes
 	var/list/stored_material =  list(DEFAULT_WALL_MATERIAL = 0, "glass" = 0)
 	var/list/storage_capacity = list(DEFAULT_WALL_MATERIAL = 0, "glass" = 0)
@@ -23,21 +23,18 @@
 
 	var/datum/wires/autolathe/wires = null
 
-
 /obj/machinery/autolathe/New()
-
 	..()
 	wires = new(src)
-	//Create parts for lathe.
+	circuit = new circuit(src)
 	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/autolathe(src)
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
 	RefreshParts()
-	
+
 /obj/machinery/autolathe/Destroy()
 	qdel(wires)
 	wires = null
@@ -101,6 +98,7 @@
 				//Build list of multipliers for sheets.
 				if(R.is_stack)
 					if(max_sheets && max_sheets > 0)
+						max_sheets = min(max_sheets, R.max_stack) // Limit to the max allowed by stack type.
 						multiplier_string  += "<br>"
 						for(var/i = 5;i<max_sheets;i*=2) //5,10,20,40...
 							multiplier_string  += "<a href='?src=\ref[src];make=[index];multiplier=[i]'>\[x[i]\]</a>"
@@ -147,6 +145,22 @@
 
 	if(is_robot_module(O))
 		return 0
+
+	if(istype(O,/obj/item/ammo_magazine/clip) || istype(O,/obj/item/ammo_magazine/a357) || istype(O,/obj/item/ammo_magazine/c38)) // Prevents ammo recycling exploit with speedloaders.
+		user << "\The [O] is too hazardous to recycle with the autolathe!"
+		return
+		/*  ToDo: Make this actually check for ammo and change the value of the magazine if it's empty. -Spades
+		var/obj/item/ammo_magazine/speedloader = O
+		if(speedloader.stored_ammo)
+			user << "\The [speedloader] is too hazardous to put back into the autolathe while there's ammunition inside of it!"
+			return
+		else
+			speedloader.matter = list(DEFAULT_WALL_MATERIAL = 75) // It's just a hunk of scrap metal now.
+	if(istype(O,/obj/item/ammo_magazine)) // This was just for immersion consistency with above.
+		var/obj/item/ammo_magazine/mag = O
+		if(mag.stored_ammo)
+			user << "\The [mag] is too hazardous to put back into the autolathe while there's ammunition inside of it!"
+			return*/
 
 	//Resources are being loaded.
 	var/obj/item/eating = O

@@ -40,9 +40,9 @@
 	using.layer = SCREEN_LAYER
 	adding += using
 
-//Crew Monitorting
+//Crew Monitoring
 	using = new /obj/screen()
-	using.name = "Crew Monitorting"
+	using.name = "Crew Monitoring"
 	using.icon = 'icons/mob/screen_ai.dmi'
 	using.icon_state = "crew_monitor"
 	using.screen_loc = ui_ai_crew_monitor
@@ -130,6 +130,8 @@
 	using.layer = SCREEN_LAYER
 	adding += using
 
+	mymob.client.screen = list()
 	mymob.client.screen += adding + other
+	mymob.client.screen += mymob.client.void
 
 	return

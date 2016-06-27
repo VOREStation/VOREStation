@@ -48,20 +48,6 @@
 	toxicity = 8
 	pest_kill_str = 7
 
-/obj/item/weapon/material/minihoe // -- Numbers
-	name = "mini hoe"
-	desc = "It's used for removing weeds or scratching your back."
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "hoe"
-	item_state = "hoe"
-	flags = CONDUCT | NOBLUDGEON
-	force = 5.0
-	throwforce = 7.0
-	w_class = 2.0
-	matter = list(DEFAULT_WALL_MATERIAL = 50)
-	attack_verb = list("slashed", "sliced", "cut", "clawed")
-
-
 // *************************************
 // Weedkiller defines for hydroponics
 // *************************************
@@ -93,46 +79,3 @@
 	icon_state = "bottle15"
 	toxicity = 8
 	weed_kill_str = 7
-
-// *************************************
-// Nutrient defines for hydroponics
-// *************************************
-
-/obj/item/weapon/reagent_containers/glass/fertilizer
-	name = "fertilizer bottle"
-	desc = "A small glass bottle. Can hold up to 10 units."
-	icon = 'icons/obj/chemical.dmi'
-	icon_state = "bottle16"
-	flags = OPENCONTAINER
-	possible_transfer_amounts = null
-	w_class = 2.0
-
-	var/fertilizer //Reagent contained, if any.
-
-	//Like a shot glass!
-	amount_per_transfer_from_this = 10
-	volume = 10
-
-/obj/item/weapon/reagent_containers/glass/fertilizer/New()
-	..()
-
-	src.pixel_x = rand(-5.0, 5)
-	src.pixel_y = rand(-5.0, 5)
-
-	if(fertilizer)
-		reagents.add_reagent(fertilizer,10)
-
-/obj/item/weapon/reagent_containers/glass/fertilizer/ez
-	name = "bottle of E-Z-Nutrient"
-	icon_state = "bottle16"
-	fertilizer = "eznutrient"
-
-/obj/item/weapon/reagent_containers/glass/fertilizer/l4z
-	name = "bottle of Left 4 Zed"
-	icon_state = "bottle18"
-	fertilizer = "left4zed"
-
-/obj/item/weapon/reagent_containers/glass/fertilizer/rh
-	name = "bottle of Robust Harvest"
-	icon_state = "bottle15"
-	fertilizer = "robustharvest"

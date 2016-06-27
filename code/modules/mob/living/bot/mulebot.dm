@@ -17,23 +17,22 @@
 	maxHealth = 150
 	mob_bump_flag = HEAVY
 
+	min_target_dist = 0
+	max_target_dist = 250
+	target_speed = 3
+	max_frustration = 5
 	botcard_access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
 
-	var/busy = 0
-	var/mode = MULE_IDLE
 	var/atom/movable/load
 
+	var/paused = 0
 	var/crates_only = 1
 	var/auto_return = 1
 	var/safety = 1
 
-	var/list/path = list()
-	var/frustration = 0
-	var/turf/target
 	var/targetName
 	var/turf/home
 	var/homeName
-	var/turf/obstacle
 
 	var/global/amount = 0
 
@@ -71,19 +70,6 @@
 	dat += "Power: [on ? "On" : "Off"]<BR>"
 
 	if(!open)
-		dat += "Status: "
-		switch(mode)
-			if(MULE_IDLE)
-				dat += "Ready"
-			if(MULE_MOVING, MULE_UNLOAD, MULE_PATH_DONE)
-				dat += "Navigating"
-			if(MULE_UNLOAD)
-				dat += "Unloading"
-			if(MULE_LOST)
-				dat += "Processing commands"
-			if(MULE_CALC_MIN to MULE_CALC_MAX)
-				dat += "Calculating navigation path"
-
 		dat += "<BR>Current Load: [load ? load.name : "<i>none</i>"]<BR>"
 
 		if(locked)
@@ -177,10 +163,9 @@
 /mob/living/bot/mulebot/proc/obeyCommand(var/command)
 	switch(command)
 		if("Home")
-			mode = MULE_IDLE
+			resetTarget()
 			target = home
 			targetName = "Home"
-			mode = MULE_LOST
 		if("SetD")
 			var/new_dest
 			var/list/beaconlist = new()
@@ -192,13 +177,13 @@
 			else
 				alert("No destination beacons available.")
 			if(new_dest)
+				resetTarget()
 				target = get_turf(beaconlist[new_dest])
 				targetName = new_dest
 		if("GoTD")
-			if(mode == MULE_IDLE)
-				mode = MULE_LOST
+			paused = 0
 		if("Stop")
-			mode = MULE_IDLE
+			paused = 1
 
 /mob/living/bot/mulebot/emag_act(var/remaining_charges, var/user)
 	locked = !locked
@@ -211,89 +196,49 @@
 	if(open)
 		icon_state = "mulebot-hatch"
 		return
-	if(mode == MULE_MOVING || mode == MULE_UNLOAD)
+	if(target_path.len && !paused)
 		icon_state = "mulebot1"
 		return
 	icon_state = "mulebot0"
 
-/mob/living/bot/mulebot/Life()
-	..()
-
-	if(busy)
-		return
-
+/mob/living/bot/mulebot/handleRegular()
 	if(!safety && prob(1))
 		flick("mulebot-emagged", src)
+	update_icons()
 
-	switch(mode)
-		if(MULE_IDLE) // Idle
-			return
-		if(MULE_MOVING) // Moving to target
-			if(!target) // Return home
-				if(auto_return && home)
-					target = home
-					targetName = "Home"
-					mode = MULE_LOST
-				else
-					mode = MULE_IDLE
-				update_icons()
-				return
-			if(loc == target) // Unload or stop
-				custom_emote(2, "makes a chiming sound.")
-				playsound(loc, 'sound/machines/chime.ogg', 50, 0)
-				mode = MULE_UNLOAD
-				update_icons()
-				return
-			if(path.len) // Move
-				makeStep()
-				sleep(10)
-				if(path.len)
-					makeStep()
-			else
-				mode = MULE_LOST
+/mob/living/bot/mulebot/handleFrustrated()
+	custom_emote(2, "makes a sighing buzz.")
+	playsound(loc, 'sound/machines/buzz-sigh.ogg', 50, 0)
+	..()
 
-			update_icons()
-			return
-		if(MULE_UNLOAD)
-			unload(dir)
+/mob/living/bot/mulebot/handleAdjacentTarget()
+	if(target == src.loc)
+		custom_emote(2, "makes a chiming sound.")
+		playsound(loc, 'sound/machines/chime.ogg', 50, 0)
+		UnarmedAttack(target)
+		resetTarget()
+		if(auto_return && home && (loc != home))
+			target = home
+			targetName = "Home"
 
-			if(auto_return && home && (loc != home))
-				target = home
-				targetName = "Home"
-				mode = MULE_LOST
-			else
-				mode = MULE_IDLE
-			update_icons()
-			return
-		if(MULE_LOST) // Lost my way
-			if(target)
-				spawn(0)
-					calc_path(obstacle)
-				mode = MULE_CALC_MIN
-			else
-				mode = MULE_IDLE
-			update_icons()
-			return
-		if(MULE_CALC_MIN to MULE_CALC_MAX) // Calcing path
-			if(path.len)
-				mode = MULE_PATH_DONE
-				update_icons()
-			else
-				++mode
-			return
-		if(MULE_PATH_DONE) // Done with path
-			obstacle = null
-			if(path.len)
-				frustration = 0
-				mode = MULE_MOVING
-			else
-				if(home)
-					target = home
-					targetName = "Home"
-					mode = MULE_LOST
-				else
-					mode = MULE_IDLE
-			update_icons()
+/mob/living/bot/mulebot/confirmTarget()
+	return 1
+
+/mob/living/bot/mulebot/calcTargetPath()
+	..()
+	if(!target_path.len && target != home) // I presume that target is not null
+		resetTarget()
+		target = home
+		targetName = "Home"
+
+/mob/living/bot/mulebot/stepToTarget()
+	if(paused)
+		return
+	..()
+
+/mob/living/bot/mulebot/UnarmedAttack(var/turf/T)
+	if(T == src.loc)
+		unload(dir)
 
 /mob/living/bot/mulebot/Bump(var/mob/living/M)
 	if(!safety && istype(M))
@@ -301,28 +246,6 @@
 		M.Stun(8)
 		M.Weaken(5)
 	..()
-
-/mob/living/bot/mulebot/proc/makeStep()
-	var/turf/next = path[1]
-	if(next == loc)
-		path -= next
-		return
-
-	var/moved = step_towards(src, next)
-	if(moved)
-		frustration = 0
-		path -= next
-	else if(frustration < 6)
-		if(frustration == 3)
-			custom_emote(2, "makes an annoyed buzzing sound")
-			playsound(loc, 'sound/machines/buzz-two.ogg', 50, 0)
-		++frustration
-	else
-		custom_emote(2, "makes a sighing buzz.")
-		playsound(loc, 'sound/machines/buzz-sigh.ogg', 50, 0)
-		obstacle = next
-
-		mode = MULE_LOST
 
 /mob/living/bot/mulebot/proc/runOver(var/mob/living/carbon/human/H)
 	if(istype(H)) // No safety checks - WILL run over lying humans. Stop ERPing in the maint!
@@ -362,11 +285,6 @@
 	new /obj/effect/decal/cleanable/blood/oil(Tsec)
 	..()
 
-/mob/living/bot/mulebot/proc/calc_path(var/turf/avoid = null)
-	path = AStar(loc, target, /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, 0, 250, id = botcard, exclude = avoid)
-	if(!path)
-		path = list()
-
 /mob/living/bot/mulebot/proc/load(var/atom/movable/C)
 	if(busy || load || get_dist(C, src) > 1 || !isturf(C.loc))
 		return
@@ -384,10 +302,6 @@
 	if(istype(crate))
 		crate.close()
 
-	//I'm sure someone will come along and ask why this is here... well people were dragging screen items onto the mule, and that was not cool.
-	//So this is a simple fix that only allows a selection of item types to be considered. Further narrowing-down is below.
-	//if(!istype(C,/obj/item) && !istype(C,/obj/machinery) && !istype(C,/obj/structure) && !ismob(C))
-	//	return
 	busy = 1
 
 	C.loc = loc
@@ -428,11 +342,3 @@
 		AM.layer = initial(AM.layer)
 		AM.pixel_y = initial(AM.pixel_y)
 	busy = 0
-
-#undef MULE_IDLE
-#undef MULE_MOVING
-#undef MULE_UNLOAD
-#undef MULE_LOST
-#undef MULE_CALC_MIN
-#undef MULE_CALC_MAX
-#undef MULE_PATH_DONE

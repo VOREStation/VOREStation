@@ -54,10 +54,8 @@
 	if(istype(L, /mob/living/simple_animal))
 		var/mob/living/simple_animal/SA = L
 		SA.ai_inactive = 1
-		if(istype(SA, /mob/living/simple_animal/hostile))
-			var/mob/living/simple_animal/hostile/SAH = SA
-			SAH.friends |= src.owner
-			SAH.stance = HOSTILE_STANCE_IDLE
+		SA.friends |= src.owner
+		SA.stance = STANCE_IDLE
 
 	L.overlays |= control_overlay
 	controlled_mobs |= L
@@ -81,12 +79,10 @@
 		if(living.stat)
 			deselect(living)
 			continue
-		if(istype(living, /mob/living/simple_animal/hostile))
-			var/mob/living/simple_animal/hostile/SAH = living
-			SAH.target_mob = null
-			SAH.stance = HOSTILE_STANCE_IDLE
 		if(istype(living, /mob/living/simple_animal))
 			var/mob/living/simple_animal/SA = living
+			SA.target_mob = null
+			SA.stance = STANCE_IDLE
 			walk_towards(SA,T,SA.speed)
 		else
 			walk_towards(living,T,5)

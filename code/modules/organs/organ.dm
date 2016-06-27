@@ -10,9 +10,10 @@ var/list/organ_cache = list()
 	var/parent_organ = BP_TORSO       // Organ holding this object.
 
 	// Status tracking.
-	var/status = 0                    // Various status flags (such as robotic)
+	var/status = 0                    // Various status flags
 	var/vital                         // Lose a vital limb, die immediately.
 	var/damage = 0                    // Current damage to the organ
+	var/robotic = 0
 
 	// Reference data.
 	var/mob/living/carbon/human/owner // Current mob owning the organ.
@@ -49,6 +50,7 @@ var/list/organ_cache = list()
 		max_damage = min_broken_damage * 2
 	if(istype(holder))
 		src.owner = holder
+		src.w_class = max(src.w_class + mob_size_difference(holder.mob_size, MOB_MEDIUM), 1) //smaller mobs have smaller organs.
 		species = all_species["Human"]
 		if(holder.dna)
 			dna = holder.dna.Clone()
@@ -69,6 +71,8 @@ var/list/organ_cache = list()
 				blood_DNA[dna.unique_enzymes] = dna.b_type
 		if(internal)
 			holder.internal_organs |= src
+	else
+		species = all_species["Human"]
 
 /obj/item/organ/proc/set_dna(var/datum/dna/new_dna)
 	if(new_dna)
@@ -77,7 +81,7 @@ var/list/organ_cache = list()
 		blood_DNA[dna.unique_enzymes] = dna.b_type
 
 /obj/item/organ/proc/die()
-	if(status & ORGAN_ROBOT)
+	if(robotic >= ORGAN_ROBOT)
 		return
 	damage = max_damage
 	status |= ORGAN_DEAD
@@ -96,10 +100,10 @@ var/list/organ_cache = list()
 	// Don't process if we're in a freezer, an MMI or a stasis bag.or a freezer or something I dunno
 	if(istype(loc,/obj/item/device/mmi))
 		return
-	if(istype(loc,/obj/structure/closet/body_bag/cryobag) || istype(loc,/obj/structure/closet/crate/freezer) || istype(loc,/obj/item/weapon/storage/box/freezer))
+	if(istype(loc,/obj/structure/closet/body_bag/cryobag) || istype(loc,/obj/structure/closet/crate/freezer) || istype(loc,/obj/item/weapon/storage/box/freezer) || istype(loc,/obj/item/weapon/gripper/no_use/organ))
 		return
 	//Process infections
-	if ((status & ORGAN_ROBOT) || (owner && owner.species && (owner.species.flags & IS_PLANT)))
+	if ((robotic >= ORGAN_ROBOT) || (owner && owner.species && (owner.species.flags & IS_PLANT)))
 		germ_level = 0
 		return
 
@@ -231,7 +235,7 @@ var/list/organ_cache = list()
 
 //Note: external organs have their own version of this proc
 /obj/item/organ/proc/take_damage(amount, var/silent=0)
-	if(src.status & ORGAN_ROBOT)
+	if(src.robotic >= ORGAN_ROBOT)
 		src.damage = between(0, src.damage + (amount * 0.8), max_damage)
 	else
 		src.damage = between(0, src.damage + amount, max_damage)
@@ -243,19 +247,20 @@ var/list/organ_cache = list()
 				owner.custom_pain("Something inside your [parent.name] hurts a lot.", 1)
 
 /obj/item/organ/proc/robotize() //Being used to make robutt hearts, etc
-	status = 0
-	status |= ORGAN_ASSISTED
-	status |= ORGAN_ROBOT
-
+	robotic = ORGAN_ROBOT
+	src.status &= ~ORGAN_BROKEN
+	src.status &= ~ORGAN_BLEEDING
+	src.status &= ~ORGAN_SPLINTED
+	src.status &= ~ORGAN_CUT_AWAY
 
 /obj/item/organ/proc/mechassist() //Used to add things like pacemakers, etc
-	status = 0
-	status |= ORGAN_ASSISTED
+	robotize()
+	robotic = ORGAN_ASSISTED
 	min_bruised_damage = 15
 	min_broken_damage = 35
 
 /obj/item/organ/emp_act(severity)
-	if(!(status & ORGAN_ROBOT))
+	if(!(robotic >= ORGAN_ROBOT))
 		return
 	switch (severity)
 		if (1)
@@ -316,7 +321,7 @@ var/list/organ_cache = list()
 
 /obj/item/organ/proc/bitten(mob/user)
 
-	if(status & ORGAN_ROBOT)
+	if(robotic >= ORGAN_ROBOT)
 		return
 
 	user << "<span class='notice'>You take an experimental bite out of \the [src].</span>"
@@ -342,9 +347,9 @@ var/list/organ_cache = list()
 /obj/item/organ/attack_self(mob/user as mob)
 
 	// Convert it to an edible form, yum yum.
-	if(!(status & ORGAN_ROBOT) && user.a_intent == I_HELP && user.zone_sel.selecting == O_MOUTH)
+	if(!(robotic >= ORGAN_ROBOT) && user.a_intent == I_HELP && user.zone_sel.selecting == O_MOUTH)
 		bitten(user)
 		return
 
 /obj/item/organ/proc/can_feel_pain()
-	return !(status & (ORGAN_ROBOT|ORGAN_DESTROYED)) && !(species.flags & NO_PAIN)
+	return !(robotic >= (ORGAN_ROBOT|ORGAN_DESTROYED)) && !(species.flags & NO_PAIN)

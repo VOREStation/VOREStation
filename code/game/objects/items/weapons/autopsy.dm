@@ -160,34 +160,18 @@
 	P.icon_state = "paper_words"
 
 	if(istype(usr,/mob/living/carbon))
-		// place the item in the usr's hand if possible
-		if(!usr.r_hand)
-			P.loc = usr
-			usr.r_hand = P
-			P.layer = 20
-		else if(!usr.l_hand)
-			P.loc = usr
-			usr.l_hand = P
-			P.layer = 20
+		usr.put_in_hands(src)
 
-	if (ismob(src.loc))
-		var/mob/M = src.loc
-		M.update_inv_l_hand()
-		M.update_inv_r_hand()
-
-/obj/item/weapon/autopsy_scanner/attack(mob/living/carbon/human/M as mob, mob/living/carbon/user as mob)
+/obj/item/weapon/autopsy_scanner/do_surgery(mob/living/carbon/human/M, mob/living/user)
 	if(!istype(M))
-		return
-
-	if(!can_operate(M))
-		return
+		return 0
 
 	if(target_name != M.name)
 		target_name = M.name
 		src.wdata = list()
 		src.chemtraces = list()
 		src.timeofdeath = null
-		user << "<span class='notice'>A new patient has been registered.. Purging data for previous patient.</span>"
+		user << "<span class='notice'>A new patient has been registered. Purging data for previous patient.</span>"
 
 	src.timeofdeath = M.timeofdeath
 
@@ -196,10 +180,9 @@
 		usr << "<span class='warning'>You can't scan this body part.</span>"
 		return
 	if(!S.open)
-		usr << "<span class='warning'>You have to cut the limb open first!</span>"
+		usr << "<span class='warning'>You have to cut [S] open first!</span>"
 		return
-	for(var/mob/O in viewers(M))
-		O.show_message("<span class='notice'>\The [user] scans the wounds on [M.name]'s [S.name] with \the [src]</span>", 1)
+	M.visible_message("<span class='notice'>\The [user] scans the wounds on [M]'s [S.name] with [src]</span>")
 
 	src.add_data(S)
 

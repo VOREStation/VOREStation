@@ -22,7 +22,7 @@
 		)
 	w_class = 4
 	slot_flags = SLOT_BACK
-	max_w_class = 3
+	max_w_class = 4
 	max_storage_space = 28
 
 /obj/item/weapon/storage/backpack/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -53,6 +53,7 @@
 	icon_state = "holdingpack"
 	max_w_class = 4
 	max_storage_space = 56
+	storage_cost = 29
 
 	New()
 		..()
@@ -77,7 +78,6 @@
 	icon_state = "giftbag0"
 	item_state = "giftbag"
 	w_class = 4.0
-	storage_slots = 20
 	max_w_class = 3
 	max_storage_space = 400 // can store a ton of shit!
 	item_state_slots = null
@@ -142,57 +142,93 @@
 	desc = "It's an orange backpack which was designed to hold beakers, pill bottles and bottles."
 	icon_state = "chempack"
 
+/*
+ * Duffle Types
+ */
+
 /obj/item/weapon/storage/backpack/dufflebag
 	name = "dufflebag"
 	desc = "A large dufflebag for holding extra things."
 	icon_state = "duffle"
-	item_state = "duffle"
+	item_state_slots = list(
+		slot_l_hand_str = "duffle",
+		slot_r_hand_str = "duffle",
+		)
 	slowdown = 1
-	max_storage_space = 38
-	storage_slots = 12
+	max_storage_space = 36
 
 /obj/item/weapon/storage/backpack/dufflebag/syndie
-	name = "suspicious looking dufflebag"
+	name = "black dufflebag"
 	desc = "A large dufflebag for holding extra tactical supplies."
 	icon_state = "duffle_syndie"
-	item_state = "duffle_syndiemed"
+	item_state_slots = list(
+		slot_l_hand_str = "duffle_syndiemed",
+		slot_r_hand_str = "duffle_syndiemed",
+		)
 	slowdown = 0
 
 /obj/item/weapon/storage/backpack/dufflebag/syndie/med
 	name = "medical dufflebag"
 	desc = "A large dufflebag for holding extra tactical medical supplies."
 	icon_state = "duffle_syndiemed"
-	item_state = "duffle_syndiemed"
+	item_state_slots = list(
+		slot_l_hand_str = "duffle_syndiemed",
+		slot_r_hand_str = "duffle_syndiemed",
+		)
 
 /obj/item/weapon/storage/backpack/dufflebag/syndie/ammo
 	name = "ammunition dufflebag"
 	desc = "A large dufflebag for holding extra weapons ammunition and supplies."
 	icon_state = "duffle_syndieammo"
-	item_state = "duffle_syndieammo"
+	item_state_slots = list(
+		slot_l_hand_str = "duffle_syndieammo",
+		slot_r_hand_str = "duffle_syndieammo",
+		)
 
 /obj/item/weapon/storage/backpack/dufflebag/captain
 	name = "captain's dufflebag"
 	desc = "A large dufflebag for holding extra captainly goods."
 	icon_state = "duffle_captain"
-	item_state = "duffle_captain"
+	item_state_slots = list(
+		slot_l_hand_str = "duffle_captain",
+		slot_r_hand_str = "duffle_captain",
+		)
 
 /obj/item/weapon/storage/backpack/dufflebag/med
 	name = "medical dufflebag"
 	desc = "A large dufflebag for holding extra medical supplies."
 	icon_state = "duffle_med"
-	item_state = "duffle_med"
+	item_state_slots = list(
+		slot_l_hand_str = "duffle_med",
+		slot_r_hand_str = "duffle_med",
+		)
+
+/obj/item/weapon/storage/backpack/dufflebag/emt
+	name = "EMT dufflebag"
+	desc = "A large dufflebag for holding extra medical supplies. This one has reflective stripes!"
+	icon_state = "duffle_emt"
+	item_state_slots = list(
+		slot_l_hand_str = "duffle_emt",
+		slot_r_hand_str = "duffle_emt",
+		)
 
 /obj/item/weapon/storage/backpack/dufflebag/sec
 	name = "security dufflebag"
 	desc = "A large dufflebag for holding extra security supplies and ammunition."
 	icon_state = "duffle_sec"
-	item_state = "duffle_sec"
+	item_state_slots = list(
+		slot_l_hand_str = "duffle_sec",
+		slot_r_hand_str = "duffle_sec",
+		)
 
 /obj/item/weapon/storage/backpack/dufflebag/eng
 	name = "industrial dufflebag"
 	desc = "A large dufflebag for holding extra tools and supplies."
 	icon_state = "duffle_eng"
-	item_state = "duffle_eng"
+	item_state_slots = list(
+		slot_l_hand_str = "duffle_eng",
+		slot_r_hand_str = "duffle_eng",
+		)
 
 /*
  * Satchel Types
@@ -208,12 +244,12 @@
 		..()
 		new /obj/item/weapon/storage/wallet/random( src )
 
-/obj/item/weapon/storage/backpack/satchel_norm
+/obj/item/weapon/storage/backpack/satchel/norm
 	name = "satchel"
 	desc = "A trendy looking satchel."
 	icon_state = "satchel-norm"
 
-/obj/item/weapon/storage/backpack/satchel_eng
+/obj/item/weapon/storage/backpack/satchel/eng
 	name = "industrial satchel"
 	desc = "A tough satchel with extra pockets."
 	icon_state = "satchel-eng"
@@ -222,7 +258,7 @@
 		slot_r_hand_str = "engiepack",
 		)
 
-/obj/item/weapon/storage/backpack/satchel_med
+/obj/item/weapon/storage/backpack/satchel/med
 	name = "medical satchel"
 	desc = "A sterile satchel used in medical departments."
 	icon_state = "satchel-med"
@@ -231,27 +267,27 @@
 		slot_r_hand_str = "medicalpack",
 		)
 
-/obj/item/weapon/storage/backpack/satchel_vir
+/obj/item/weapon/storage/backpack/satchel/vir
 	name = "virologist satchel"
 	desc = "A sterile satchel with virologist colours."
 	icon_state = "satchel-vir"
 
-/obj/item/weapon/storage/backpack/satchel_chem
+/obj/item/weapon/storage/backpack/satchel/chem
 	name = "chemist satchel"
 	desc = "A sterile satchel with chemist colours."
 	icon_state = "satchel-chem"
 
-/obj/item/weapon/storage/backpack/satchel_gen
+/obj/item/weapon/storage/backpack/satchel/gen
 	name = "geneticist satchel"
 	desc = "A sterile satchel with geneticist colours."
 	icon_state = "satchel-gen"
 
-/obj/item/weapon/storage/backpack/satchel_tox
+/obj/item/weapon/storage/backpack/satchel/tox
 	name = "scientist satchel"
 	desc = "Useful for holding research materials."
 	icon_state = "satchel-tox"
 
-/obj/item/weapon/storage/backpack/satchel_sec
+/obj/item/weapon/storage/backpack/satchel/sec
 	name = "security satchel"
 	desc = "A robust satchel for security related needs."
 	icon_state = "satchel-sec"
@@ -260,12 +296,12 @@
 		slot_r_hand_str = "securitypack",
 		)
 
-/obj/item/weapon/storage/backpack/satchel_hyd
+/obj/item/weapon/storage/backpack/satchel/hyd
 	name = "hydroponics satchel"
 	desc = "A green satchel for plant related work."
 	icon_state = "satchel_hyd"
 
-/obj/item/weapon/storage/backpack/satchel_cap
+/obj/item/weapon/storage/backpack/satchel/cap
 	name = "captain's satchel"
 	desc = "An exclusive satchel for officers."
 	icon_state = "satchel-cap"

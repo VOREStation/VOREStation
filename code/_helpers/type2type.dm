@@ -50,141 +50,15 @@
 	while (left-- > 0)
 		. = "0[.]"
 
-// Concatenates a list of strings into a single string.  A seperator may optionally be provided.
-/proc/list2text(list/ls, sep)
-	if (ls.len <= 1) // Early-out code for empty or singleton lists.
-		return ls.len ? ls[1] : ""
-
-	var/l = ls.len // Made local for sanic speed.
-	var/i = 0      // Incremented every time a list index is accessed.
-
-	if (sep <> null)
-		// Macros expand to long argument lists like so: sep, ls[++i], sep, ls[++i], sep, ls[++i], etc...
-		#define S1  sep, ls[++i]
-		#define S4  S1,  S1,  S1,  S1
-		#define S16 S4,  S4,  S4,  S4
-		#define S64 S16, S16, S16, S16
-
-		. = "[ls[++i]]" // Make sure the initial element is converted to text.
-
-		// Having the small concatenations come before the large ones boosted speed by an average of at least 5%.
-		if (l-1 & 0x01) // 'i' will always be 1 here.
-			. = text("[][][]", ., S1) // Append 1 element if the remaining elements are not a multiple of 2.
-		if (l-i & 0x02)
-			. = text("[][][][][]", ., S1, S1) // Append 2 elements if the remaining elements are not a multiple of 4.
-		if (l-i & 0x04)
-			. = text("[][][][][][][][][]", ., S4) // And so on....
-		if (l-i & 0x08)
-			. = text("[][][][][][][][][][][][][][][][][]", ., S4, S4)
-		if (l-i & 0x10)
-			. = text("[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]", ., S16)
-		if (l-i & 0x20)
-			. = text("[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-			          [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]", ., S16, S16)
-		if (l-i & 0x40)
-			. = text("[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-			          [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-			          [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-			          [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]", ., S64)
-		while (l > i) // Chomp through the rest of the list, 128 elements at a time.
-			. = text("[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-			          [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-			          [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-			          [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-			          [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-			          [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-			          [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-			          [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]", ., S64, S64)
-
-		#undef S64
-		#undef S16
-		#undef S4
-		#undef S1
-	else
-		// Macros expand to long argument lists like so: ls[++i], ls[++i], ls[++i], etc...
-		#define S1  ls[++i]
-		#define S4  S1,  S1,  S1,  S1
-		#define S16 S4,  S4,  S4,  S4
-		#define S64 S16, S16, S16, S16
-
-		. = "[ls[++i]]" // Make sure the initial element is converted to text.
-
-		if (l-1 & 0x01) // 'i' will always be 1 here.
-			. += S1 // Append 1 element if the remaining elements are not a multiple of 2.
-		if (l-i & 0x02)
-			. = text("[][][]", ., S1, S1) // Append 2 elements if the remaining elements are not a multiple of 4.
-		if (l-i & 0x04)
-			. = text("[][][][][]", ., S4) // And so on...
-		if (l-i & 0x08)
-			. = text("[][][][][][][][][]", ., S4, S4)
-		if (l-i & 0x10)
-			. = text("[][][][][][][][][][][][][][][][][]", ., S16)
-		if (l-i & 0x20)
-			. = text("[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]", ., S16, S16)
-		if (l-i & 0x40)
-			. = text("[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-			          [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]", ., S64)
-		while (l > i) // Chomp through the rest of the list, 128 elements at a time.
-			. = text("[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-			          [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-			          [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-			          [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]", ., S64, S64)
-
-		#undef S64
-		#undef S16
-		#undef S4
-		#undef S1
-
-// Slower then list2text, but correctly processes associative lists.
-proc/tg_list2text(list/list, glue=",")
-	if (!istype(list) || !list.len)
-		return
-	var/output
-	for(var/i=1 to list.len)
-		output += (i!=1? glue : null)+(!isnull(list["[list[i]]"])?"[list["[list[i]]"]]":"[list[i]]")
-	return output
-
-// Converts a string into a list by splitting the string at each delimiter found. (discarding the seperator)
-/proc/text2list(text, delimiter="\n")
-	var/delim_len = length(delimiter)
-	if (delim_len < 1)
-		return list(text)
-
-	. = list()
-	var/last_found = 1
-	var/found
-
-	do
-		found       = findtext(text, delimiter, last_found, 0)
-		.          += copytext(text, last_found, found)
-		last_found  = found + delim_len
-	while (found)
-
-// Case sensitive version of /proc/text2list().
-/proc/text2listEx(text, delimiter="\n")
-	var/delim_len = length(delimiter)
-	if (delim_len < 1)
-		return list(text)
-
-	. = list()
-	var/last_found = 1
-	var/found
-
-	do
-		found       = findtextEx(text, delimiter, last_found, 0)
-		.          += copytext(text, last_found, found)
-		last_found  = found + delim_len
-	while (found)
-
 /proc/text2numlist(text, delimiter="\n")
 	var/list/num_list = list()
-	for(var/x in text2list(text, delimiter))
+	for(var/x in splittext(text, delimiter))
 		num_list += text2num(x)
 	return num_list
 
 // Splits the text of a file at seperator and returns them in a list.
 /proc/file2list(filename, seperator="\n")
-	return text2list(return_file_text(filename),seperator)
+	return splittext(return_file_text(filename),seperator)
 
 // Turns a direction into text
 /proc/num2dir(direction)
@@ -274,6 +148,26 @@ proc/tg_list2text(list/list, glue=",")
 	if (rights & R_MOD)         . += "[seperator]+MODERATOR"
 	if (rights & R_MENTOR)      . += "[seperator]+MENTOR"
 	return .
+
+// Converts a hexadecimal color (e.g. #FF0050) to a list of numbers for red, green, and blue (e.g. list(255,0,80) ).
+/proc/hex2rgb(hex)
+	// Strips the starting #, in case this is ever supplied without one, so everything doesn't break.
+	if(findtext(hex,"#",1,2))
+		hex = copytext(hex, 2)
+	return list(hex2rgb_r(hex), hex2rgb_g(hex), hex2rgb_b(hex))
+
+// The three procs below require that the '#' part of the hex be stripped, which hex2rgb() does automatically.
+/proc/hex2rgb_r(hex)
+	var/hex_to_work_on = copytext(hex,1,3)
+	return hex2num(hex_to_work_on)
+
+/proc/hex2rgb_g(hex)
+	var/hex_to_work_on = copytext(hex,3,5)
+	return hex2num(hex_to_work_on)
+
+/proc/hex2rgb_b(hex)
+	var/hex_to_work_on = copytext(hex,5,7)
+	return hex2num(hex_to_work_on)
 
 // heat2color functions. Adapted from: http://www.tannerhelland.com/4435/convert-temperature-rgb-algorithm-code/
 /proc/heat2color(temp)

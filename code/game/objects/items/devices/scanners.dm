@@ -24,8 +24,16 @@ REAGENT SCANNER
 	origin_tech = list(TECH_MAGNET = 1, TECH_BIO = 1)
 	var/mode = 1;
 
+/obj/item/device/healthanalyzer/do_surgery(mob/living/M, mob/living/user)
+	if(user.a_intent != I_HELP) //in case it is ever used as a surgery tool
+		return ..()
+	scan_mob(M, user) //default surgery behaviour is just to scan as usual
+	return 1
 
-/obj/item/device/healthanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/device/healthanalyzer/attack(mob/living/M, mob/living/user)
+	scan_mob(M, user)
+
+/obj/item/device/healthanalyzer/proc/scan_mob(mob/living/M, mob/living/user)
 	if ((CLUMSY in user.mutations) && prob(50))
 		user << text("<span class='warning'>You try to analyze the floor's vitals!</span>")
 		for(var/mob/O in viewers(M, null))
@@ -75,7 +83,7 @@ REAGENT SCANNER
 			for(var/obj/item/organ/external/org in damaged)
 				user.show_message(text("<span class='notice'>     [][]: [][] - []</span>",
 				capitalize(org.name),
-				(org.status & ORGAN_ROBOT) ? "(Cybernetic)" : "",
+				(org.robotic >= ORGAN_ROBOT) ? "(Cybernetic)" : "",
 				(org.brute_dam > 0) ? "<span class='warning'>[org.brute_dam]</span>" : 0,
 				(org.status & ORGAN_BLEEDING)?"<span class='danger'>\[Bleeding\]</span>":"",
 				(org.burn_dam > 0) ? "<font color='#FFA500'>[org.burn_dam]</font>" : 0),1)
@@ -168,8 +176,7 @@ REAGENT SCANNER
 			else
 				user.show_message("<span class='notice'>Blood Level Normal: [blood_percent]% [blood_volume]cl. Type: [blood_type]</span>")
 		user.show_message("<span class='notice'>Subject's pulse: <font color='[H.pulse == PULSE_THREADY || H.pulse == PULSE_NONE ? "red" : "blue"]'>[H.get_pulse(GETPULSE_TOOL)] bpm.</font></span>")
-	src.add_fingerprint(user)
-	return
+
 
 /obj/item/device/healthanalyzer/verb/toggle_mode()
 	set name = "Switch Verbosity"

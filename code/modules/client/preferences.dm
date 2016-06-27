@@ -19,21 +19,15 @@ datum/preferences
 	var/ooccolor = "#010000"			//Whatever this is set to acts as 'reset' color and is thus unusable as an actual custom color
 	var/be_special = 0					//Special role selection
 	var/UI_style = "Midnight"
-	var/toggles = TOGGLES_DEFAULT
 	var/UI_style_color = "#ffffff"
 	var/UI_style_alpha = 255
 
 	//character preferences
 	var/real_name						//our character's name
 	var/be_random_name = 0				//whether we are a random name every round
-	var/gender = MALE					//gender of character (well duh)
 	var/age = 30						//age of character
 	var/spawnpoint = "Arrivals Shuttle" //where this character will spawn (0-2).
 	var/b_type = "A+"					//blood type (not-chooseable)
-	var/underwear_top
-	var/underwear_bottom
-	var/undershirt						//undershirt type
-	var/socks							//socks type
 	var/backbag = 2						//backpack type
 	var/pdachoice = 1					//PDA type
 	var/h_style = "Bald"				//Hair type
@@ -65,8 +59,6 @@ datum/preferences
 
 		//Mob preview
 	var/icon/preview_icon = null
-	var/icon/preview_icon_front = null
-	var/icon/preview_icon_side = null
 
 		//Jobs, uses bitflags
 	var/job_civilian_high = 0
@@ -109,24 +101,28 @@ datum/preferences
 
 	// OOC Metadata:
 	var/metadata = ""
+	var/list/ignored_players = list()
+
+	var/client/client = null
+	var/client_ckey = null
 
 	// Communicator identity data
 	var/communicator_visibility = 0
 
-	var/client/client = null
-
 	var/datum/category_collection/player_setup_collection/player_setup
+	var/datum/browser/panel
 
 /datum/preferences/New(client/C)
 	player_setup = new(src)
-	gender = pick(MALE, FEMALE)
-	real_name = random_name(gender,species)
-	b_type = pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
+	set_biological_gender(pick(MALE, FEMALE))
+	real_name = random_name(identifying_gender,species)
+	b_type = RANDOM_BLOOD_TYPE
 
 	gear = list()
 
 	if(istype(C))
 		client = C
+		client_ckey = C.ckey
 		if(!IsGuestKey(C.key))
 			load_path(C.ckey)
 			if(load_preferences())
@@ -187,6 +183,12 @@ datum/preferences
 
 /datum/preferences/proc/ShowChoices(mob/user)
 	if(!user || !user.client)	return
+
+	if(!get_mob_by_key(client_ckey))
+		user << "<span class='danger'>No mob exists for the given client!</span>"
+		close_load_dialog(user)
+		return
+
 	var/dat = "<html><body><center>"
 
 	if(path)
@@ -204,7 +206,10 @@ datum/preferences
 	dat += player_setup.content(user)
 
 	dat += "</html></body>"
-	user << browse(dat, "window=preferences;size=625x736")
+	//user << browse(dat, "window=preferences;size=635x736")
+	var/datum/browser/popup = new(user, "Character Setup","Character Setup", 800, 800, src)
+	popup.set_content(dat)
+	popup.open()
 
 /datum/preferences/proc/process_link(mob/user, list/href_list)
 	if(!user)	return
@@ -243,111 +248,26 @@ datum/preferences
 	ShowChoices(usr)
 	return 1
 
-/datum/preferences/proc/copy_to(mob/living/carbon/human/character, safety = 0)
+/datum/preferences/proc/copy_to(mob/living/carbon/human/character, icon_updates = 1)
 	// Sanitizing rather than saving as someone might still be editing when copy_to occurs.
 	player_setup.sanitize_setup()
+
+	// This needs to happen before anything else becuase it sets some variables.
+	character.set_species(species)
+	// Special Case: This references variables owned by two different datums, so do it here.
 	if(be_random_name)
-		real_name = random_name(gender,species)
+		real_name = random_name(identifying_gender,species)
 
-	if(config.humans_need_surnames)
-		var/firstspace = findtext(real_name, " ")
-		var/name_length = length(real_name)
-		if(!firstspace)	//we need a surname
-			real_name += " [pick(last_names)]"
-		else if(firstspace == name_length)
-			real_name += "[pick(last_names)]"
+	// Ask the preferences datums to apply their own settings to the new mob 
+	player_setup.copy_to_mob(character)
 
-	character.real_name = real_name
-	character.name = character.real_name
-	if(character.dna)
-		character.dna.real_name = character.real_name
-
-	character.flavor_texts["general"] = flavor_texts["general"]
-	character.flavor_texts["head"] = flavor_texts["head"]
-	character.flavor_texts["face"] = flavor_texts["face"]
-	character.flavor_texts["eyes"] = flavor_texts["eyes"]
-	character.flavor_texts["torso"] = flavor_texts["torso"]
-	character.flavor_texts["arms"] = flavor_texts["arms"]
-	character.flavor_texts["hands"] = flavor_texts["hands"]
-	character.flavor_texts["legs"] = flavor_texts["legs"]
-	character.flavor_texts["feet"] = flavor_texts["feet"]
-
-	character.med_record = med_record
-	character.sec_record = sec_record
-	character.gen_record = gen_record
-	character.exploit_record = exploit_record
-
-	character.gender = gender
-	character.age = age
-	character.b_type = b_type
-
-	character.r_eyes = r_eyes
-	character.g_eyes = g_eyes
-	character.b_eyes = b_eyes
-
-	character.r_hair = r_hair
-	character.g_hair = g_hair
-	character.b_hair = b_hair
-
-	character.r_facial = r_facial
-	character.g_facial = g_facial
-	character.b_facial = b_facial
-
-	character.r_skin = r_skin
-	character.g_skin = g_skin
-	character.b_skin = b_skin
-
-	character.s_tone = s_tone
-
-	character.h_style = h_style
-	character.f_style = f_style
-
-	character.home_system = home_system
-	character.citizenship = citizenship
-	character.personal_faction = faction
-	character.religion = religion
-
-	character.skills = skills
-	character.used_skillpoints = used_skillpoints
-
-	// Destroy/cyborgize organs and limbs.
-	for(var/name in list(BP_HEAD, BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM, BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_TORSO))
-		var/status = organ_data[name]
-		var/obj/item/organ/external/O = character.organs_by_name[name]
-		if(O)
-			if(status == "amputated")
-				O.remove_rejuv()
-			else if(status == "cyborg")
-				if(rlimb_data[name])
-					O.robotize(rlimb_data[name])
-				else
-					O.robotize()
-
-	for(var/name in list(O_HEART,O_EYES,O_BRAIN))
-		var/status = organ_data[name]
-		if(!status)
-			continue
-		var/obj/item/organ/I = character.internal_organs_by_name[name]
-		if(I)
-			if(status == "assisted")
-				I.mechassist()
-			else if(status == "mechanical")
-				I.robotize()
-
-	character.underwear_bottom = underwear_bottom
-	character.underwear_top = underwear_top
-	character.undershirt = undershirt
-	character.socks = socks
-
-	if(backbag > 4 || backbag < 1)
-		backbag = 1 //Same as above
-	character.backbag = backbag
-
-	if(pdachoice > 3 || pdachoice < 1)
-		pdachoice = 1
-	character.pdachoice = pdachoice
-
-	character.update_body()
+	if(icon_updates)
+		character.force_update_limbs()
+		character.update_mutations(0)
+		character.update_body(0)
+		character.update_underwear(0)
+		character.update_hair(0)
+		character.update_icons()
 
 /datum/preferences/proc/open_load_dialog(mob/user)
 	var/dat = "<body>"
@@ -367,7 +287,11 @@ datum/preferences
 
 	dat += "<hr>"
 	dat += "</center></tt>"
-	user << browse(dat, "window=saves;size=300x390")
+	//user << browse(dat, "window=saves;size=300x390")
+	panel = new(user, "Character Slots", "Character Slots", 300, 390, src)
+	panel.set_content(dat)
+	panel.open()
 
 /datum/preferences/proc/close_load_dialog(mob/user)
-	user << browse(null, "window=saves")
+	//user << browse(null, "window=saves")
+	panel.close()

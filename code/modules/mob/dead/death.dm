@@ -1,5 +1,5 @@
-/mob/dead/dust()	//ghosts can't be vaporised.
+/mob/observer/dust()	//ghosts can't be vaporised.
 	return
 
-/mob/dead/gib()		//ghosts can't be gibbed.
+/mob/observer/gib()		//ghosts can't be gibbed.
 	return

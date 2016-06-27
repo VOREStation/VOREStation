@@ -1,6 +1,3 @@
-/mob
-	var/obj/screen/wizard/instability/wiz_instability_display = null //Unfortunately, this needs to be a mob var due to HUD code.
-
 /mob/living
 	var/instability = 0
 	var/last_instability_event = null // most recent world.time that something bad happened due to instability.

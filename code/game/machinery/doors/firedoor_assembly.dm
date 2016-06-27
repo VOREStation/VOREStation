@@ -36,7 +36,7 @@ obj/structure/firedoor_assembly/attackby(C as obj, mob/user as mob)
 			new/obj/item/stack/cable_coil(src.loc, 1)
 			wired = 0
 
-	else if(istype(C, /obj/item/weapon/airalarm_electronics) && wired)
+	else if(istype(C, /obj/item/weapon/circuitboard/airalarm) && wired)
 		if(anchored)
 			playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 			user.visible_message("<span class='warning'>[user] has inserted a circuit into \the [src]!</span>",

@@ -11,15 +11,15 @@ Note: Must be placed within 3 tiles of the R&D Console
 	icon_state = "d_analyzer"
 	var/obj/item/weapon/loaded_item = null
 	var/decon_mod = 0
-
+	circuit = /obj/item/weapon/circuitboard/destructive_analyzer
 	use_power = 1
 	idle_power_usage = 30
 	active_power_usage = 2500
 
 /obj/machinery/r_n_d/destructive_analyzer/New()
 	..()
+	circuit = new circuit()
 	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/destructive_analyzer(src)
 	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
@@ -39,7 +39,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 	else
 		icon_state = "d_analyzer"
 
-/obj/machinery/r_n_d/destructive_analyzer/attackby(var/obj/O as obj, var/mob/user as mob)
+/obj/machinery/r_n_d/destructive_analyzer/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(busy)
 		user << "<span class='notice'>\The [src] is busy right now.</span>"
 		return
@@ -61,7 +61,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 	if(!linked_console)
 		user << "<span class='notice'>\The [src] must be linked to an R&D console first.</span>"
 		return
-	if(istype(O, /obj/item) && !loaded_item)
+	if(!loaded_item)
 		if(isrobot(user)) //Don't put your module items in there!
 			return
 		if(!O.origin_tech)

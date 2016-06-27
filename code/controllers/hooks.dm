@@ -9,11 +9,11 @@
  *
  * To add some code to be called by the hook, define a proc under the type, as so:
  * @code
-	/hook/foo/proc/bar()
-		if(1)
-			return 1 //Sucessful
-		else
-			return 0 //Error, or runtime.
+/hook/foo/proc/bar()
+	if(1)
+		return 1 //Sucessful
+	else
+		return 0 //Error, or runtime.
  * @endcode
  * All hooks must return nonzero on success, as runtimes will force return null.
  */

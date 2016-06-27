@@ -162,7 +162,7 @@
 		inv_box.name = "r_hand"
 		inv_box.icon = ui_style
 		inv_box.icon_state = "r_hand_inactive"
-		if(mymob && !mymob.hand)	//This being 0 or null means the right hand is in use
+		if(!target.hand)	//This being 0 or null means the right hand is in use
 			inv_box.icon_state = "r_hand_active"
 		inv_box.screen_loc = ui_rhand
 		inv_box.slot_id = slot_r_hand
@@ -177,7 +177,7 @@
 		inv_box.name = "l_hand"
 		inv_box.icon = ui_style
 		inv_box.icon_state = "l_hand_inactive"
-		if(mymob && mymob.hand)	//This being 1 means the left hand is in use
+		if(target.hand)	//This being 1 means the left hand is in use
 			inv_box.icon_state = "l_hand_active"
 		inv_box.screen_loc = ui_lhand
 		inv_box.slot_id = slot_l_hand
@@ -313,31 +313,6 @@
 	mymob.wiz_energy_display.icon_state = "wiz_energy"
 	hud_elements |= mymob.wiz_energy_display
 
-	mymob.blind = new /obj/screen()
-	mymob.blind.icon = 'icons/mob/screen1_full.dmi'
-	mymob.blind.icon_state = "blackimageoverlay"
-	mymob.blind.name = " "
-	mymob.blind.screen_loc = "1,1"
-	mymob.blind.mouse_opacity = 0
-	mymob.blind.layer = 0
-	hud_elements |= mymob.blind
-
-	mymob.damageoverlay = new /obj/screen()
-	mymob.damageoverlay.icon = 'icons/mob/screen1_full.dmi'
-	mymob.damageoverlay.icon_state = "oxydamageoverlay0"
-	mymob.damageoverlay.name = "dmg"
-	mymob.damageoverlay.screen_loc = "1,1"
-	mymob.damageoverlay.mouse_opacity = 0
-	mymob.damageoverlay.layer = 18.1 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
-	hud_elements |= mymob.damageoverlay
-
-	mymob.flash = new /obj/screen()
-	mymob.flash.icon = ui_style
-	mymob.flash.icon_state = "blank"
-	mymob.flash.name = "flash"
-	mymob.flash.screen_loc = ui_entire_screen
-	mymob.flash.layer = 17
-	hud_elements |= mymob.flash
 
 	mymob.pain = new /obj/screen( null )
 
@@ -371,11 +346,12 @@
 	mymob.radio_use_icon.color = ui_color
 	mymob.radio_use_icon.alpha = ui_alpha
 
-	mymob.client.screen = null
+	mymob.client.screen = list()
 
 	mymob.client.screen += hud_elements
 	mymob.client.screen += src.adding + src.hotkeybuttons
-	inventory_shown = 0;
+	mymob.client.screen += mymob.client.void
+	inventory_shown = 0
 
 	return
 
@@ -397,10 +373,7 @@
 	f_style = "Shaved"
 	if(dna.species == "Human") //no more xenos losing ears/tentacles
 		h_style = pick("Bedhead", "Bedhead 2", "Bedhead 3")
-	undershirt = null
-	underwear_top = null
-	underwear_bottom = null
-	socks = null
+	all_underwear.Cut()
 	regenerate_icons()
 
 /obj/screen/ling
@@ -416,7 +389,6 @@
 /obj/screen/wizard/instability
 	name = "instability"
 	icon_state = "instability-1"
-	invisibility = 0
 
 /obj/screen/wizard/energy
 	name = "energy"

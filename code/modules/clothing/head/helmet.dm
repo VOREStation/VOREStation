@@ -25,21 +25,14 @@
 	flags_inv = HIDEEARS
 	siemens_coefficient = 0.7
 	action_button_name = "Toggle Visor"
-	var/flipped = 0 //Piggybacked from cap flipping.
 
-/obj/item/clothing/head/helmet/riot/dropped()
-	src.icon_state = initial(icon_state)
-	src.flipped=0
-	..()
-
-/obj/item/clothing/head/helmet/riot/attack_self(mob/user)
-	src.flipped = !src.flipped
-	if(src.flipped)
-		icon_state = "[icon_state]up"
-		user << "You flip the visor up."
+/obj/item/clothing/head/helmet/riot/attack_self(mob/user as mob)
+	if(src.icon_state == initial(icon_state))
+		src.icon_state = "[icon_state]up"
+		user << "You raise the visor on the riot helmet."
 	else
 		src.icon_state = initial(icon_state)
-		user << "You flip the visor down."
+		user << "You lower the visor on the riot helmet."
 	update_clothing_icon()	//so our mob-overlays update
 
 /obj/item/clothing/head/helmet/laserproof

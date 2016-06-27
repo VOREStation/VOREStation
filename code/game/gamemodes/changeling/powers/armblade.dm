@@ -2,6 +2,7 @@
 	name = "Arm Blade"
 	desc = "We reform one of our arms into a deadly blade."
 	helptext = "We may retract our armblade by dropping it.  It can deflect projectiles."
+	enhancedtext = "The blade will have armor peneratration."
 	genomecost = 2
 	verbpath = /mob/proc/changeling_arm_blade
 
@@ -10,9 +11,16 @@
 	set category = "Changeling"
 	set name = "Arm Blade (20)"
 
-	if(changeling_generic_weapon(/obj/item/weapon/melee/arm_blade))
-		return 1
-	return 0
+	if(src.mind.changeling.recursive_enhancement)
+		if(changeling_generic_weapon(/obj/item/weapon/melee/arm_blade/greater))
+			src << "<span class='notice'>We prepare an extra sharp blade.</span>"
+			src.mind.changeling.recursive_enhancement = 0
+			return 1
+
+	else
+		if(changeling_generic_weapon(/obj/item/weapon/melee/arm_blade))
+			return 1
+		return 0
 
 /obj/item/weapon/melee/arm_blade
 	name = "arm blade"
@@ -31,6 +39,11 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	var/mob/living/creator //This is just like ninja swords, needed to make sure dumb shit that removes the sword doesn't make it stay around.
 
+/obj/item/weapon/melee/arm_blade/greater
+	name = "arm greatblade"
+	desc = "A grotesque blade made out of bone and flesh that cleaves through people and armor as a hot knife through butter."
+	armor_penetration = 30
+
 /obj/item/weapon/melee/arm_blade/New(location)
 	..()
 	processing_objects |= src
@@ -43,7 +56,7 @@
 /obj/item/weapon/melee/arm_blade/dropped(mob/user)
 	visible_message("<span class='warning'>With a sickening crunch, [creator] reforms their arm blade into an arm!</span>",
 	"<span class='notice'>We assimilate the weapon back into our body.</span>",
-	"<span class='italics>You hear organic matter ripping and tearing!</span>")
+	"<span class='italics'>You hear organic matter ripping and tearing!</span>")
 	playsound(src, 'sound/effects/blobattack.ogg', 30, 1)
 	spawn(1)
 		if(src)
@@ -55,7 +68,7 @@
 	..()
 
 /obj/item/weapon/melee/arm_blade/process()  //Stolen from ninja swords.
-	if(!creator || loc != creator || (creator.l_hand != src && creator.r_hand != src))
+	if(!creator || loc != creator || !creator.item_is_in_hands(src))
 		// Tidy up a bit.
 		if(istype(loc,/mob/living))
 			var/mob/living/carbon/human/host = loc

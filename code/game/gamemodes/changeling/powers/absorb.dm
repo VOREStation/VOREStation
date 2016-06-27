@@ -1,10 +1,10 @@
 /datum/power/changeling/absorb_dna
 	name = "Absorb DNA"
-	desc = "Permits us to syphon the DNA from a human. They become one with us, and we become stronger."
+	desc = "Permits us to syphon the DNA from a human. They become one with us, and we become stronger if they were of our kind."
 	genomecost = 0
 	verbpath = /mob/proc/changeling_absorb_dna
 
-//Absorbs the victim's DNA making them uncloneable. Requires a strong grip on the victim.
+//Absorbs the victim's DNA. Requires a strong grip on the victim.
 //Doesn't cost anything as it's the most basic ability.
 /mob/proc/changeling_absorb_dna()
 	set category = "Changeling"
@@ -27,9 +27,10 @@
 		src << "<span class='warning'>We do not know how to parse this creature's DNA!</span>"
 		return
 
-	if(HUSK in T.mutations)
-		src << "<span class='warning'>This creature's DNA is ruined beyond useability!</span>"
-		return
+	if(HUSK in T.mutations) //Lings can always absorb other lings, unless someone beat them to it first.
+		if(!T.mind.changeling || T.mind.changeling && T.mind.changeling.geneticpoints < 0)
+			src << "<span class='warning'>This creature's DNA is ruined beyond useability!</span>"
+			return
 
 	if(G.state != GRAB_KILL)
 		src << "<span class='warning'>We must have a tighter grip to absorb this creature.</span>"
@@ -64,33 +65,21 @@
 	src << "<span class='notice'>We have absorbed [T]!</span>"
 	src.visible_message("<span class='danger'>[src] sucks the fluids from [T]!</span>")
 	T << "<span class='danger'>You have been absorbed by the changeling!</span>"
-
-	T.dna.real_name = T.real_name //Set this again, just to be sure that it's properly set.
-	changeling.absorbed_dna |= T.dna
 	if(src.nutrition < 400)
 		src.nutrition = min((src.nutrition + T.nutrition), 400)
 	changeling.chem_charges += 10
-//	changeling.geneticpoints += 2
 	src.verbs += /mob/proc/changeling_respec
 	src << "<span class='notice'>We can now re-adapt, reverting our evolution so that we may start anew, if needed.</span>"
 
-	//Steal all of their languages!
-	for(var/language in T.languages)
-		if(!(language in changeling.absorbed_languages))
-			changeling.absorbed_languages += language
-
-	changeling_update_languages(changeling.absorbed_languages)
-
-	//Steal their species!
-	if(T.species && !(T.species.name in changeling.absorbed_species))
-		changeling.absorbed_species += T.species.name
+	var/datum/absorbed_dna/newDNA = new(T.real_name, T.dna, T.species.name, T.languages, T.identifying_gender, T.flavor_texts)
+	absorbDNA(newDNA)
 
 	if(T.mind && T.mind.changeling)
 		if(T.mind.changeling.absorbed_dna)
-			for(var/dna_data in T.mind.changeling.absorbed_dna)	//steal all their loot
+			for(var/datum/absorbed_dna/dna_data in T.mind.changeling.absorbed_dna)	//steal all their loot
 				if(dna_data in changeling.absorbed_dna)
 					continue
-				changeling.absorbed_dna += dna_data
+				absorbDNA(dna_data)
 				changeling.absorbedcount++
 			T.mind.changeling.absorbed_dna.len = 1
 

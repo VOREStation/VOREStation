@@ -189,9 +189,6 @@
 			return 1
 	return 0
 
-/mob
-	var/obj/screen/wizard/energy/wiz_energy_display = null //Unfortunately, this needs to be a mob var due to HUD code.
-
 /mob/living/carbon/human/proc/wiz_energy_update_hud()
 	if(client && hud_used)
 		if(istype(back, /obj/item/weapon/technomancer_core)) //I reckon there's a better way of doing this.

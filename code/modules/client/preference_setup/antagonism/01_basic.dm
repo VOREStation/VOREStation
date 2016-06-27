@@ -15,6 +15,10 @@ var/global/list/uplink_locations = list("PDA", "Headset", "None")
 /datum/category_item/player_setup_item/antagonism/basic/sanitize_character()
 	pref.uplinklocation	= sanitize_inlist(pref.uplinklocation, uplink_locations, initial(pref.uplinklocation))
 
+// Moved from /datum/preferences/proc/copy_to()
+/datum/category_item/player_setup_item/antagonism/basic/copy_to_mob(var/mob/living/carbon/human/character)
+	character.exploit_record = pref.exploit_record
+
 /datum/category_item/player_setup_item/antagonism/basic/content(var/mob/user)
 	. +="<b>Uplink Type : <a href='?src=\ref[src];antagtask=1'>[pref.uplinklocation]</a></b>"
 	. +="<br>"

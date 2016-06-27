@@ -1,4 +1,3 @@
-
 /obj/machinery/microwave
 	name = "Microwave"
 	icon = 'icons/obj/kitchen.dmi'
@@ -10,6 +9,7 @@
 	idle_power_usage = 5
 	active_power_usage = 100
 	flags = OPENCONTAINER | NOREACT
+	circuit = /obj/item/weapon/circuitboard/microwave
 	var/operating = 0 // Is it on?
 	var/dirty = 0 // = {0..100} Does it need cleaning?
 	var/broken = 0 // ={0,1,2} How broken is it???
@@ -29,6 +29,13 @@
 	..()
 	reagents = new/datum/reagents(100)
 	reagents.my_atom = src
+
+	circuit = new circuit(src)
+	component_parts = list()
+	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
+	component_parts += new /obj/item/weapon/stock_parts/motor(src)
+	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
+
 	if (!available_recipes)
 		available_recipes = new
 		for (var/type in (typesof(/datum/recipe)-/datum/recipe))
@@ -47,6 +54,8 @@
 		// impure carbon. ~Z
 		acceptable_items |= /obj/item/weapon/holder
 		acceptable_items |= /obj/item/weapon/reagent_containers/food/snacks/grown
+
+	RefreshParts()
 
 /*******************
 *   Item Adding
@@ -82,6 +91,11 @@
 		else
 			user << "<span class='warning'>It's broken!</span>"
 			return 1
+	else if(default_deconstruction_screwdriver(user, O))
+		return
+	else if(default_deconstruction_crowbar(user, O))
+		return
+
 	else if(src.dirty==100) // The microwave is all dirty so can't be used!
 		if(istype(O, /obj/item/weapon/reagent_containers/spray/cleaner)) // If they're trying to clean it then let them
 			user.visible_message( \
@@ -101,7 +115,7 @@
 			user << "<span class='warning'>It's dirty!</span>"
 			return 1
 	else if(is_type_in_list(O,acceptable_items))
-		if (contents.len>=max_n_of_items)
+		if (contents.len>=(max_n_of_items + component_parts.len + 1))	//Adds component_parts to the maximum number of items.	The 1 is from the circuit
 			user << "<span class='warning'>This [src] is full of ingredients, you cannot put more.</span>"
 			return 1
 		if(istype(O, /obj/item/stack) && O:get_amount() > 1) // This is bad, but I can't think of how to change it
@@ -164,7 +178,7 @@
 		var/list/items_counts = new
 		var/list/items_measures = new
 		var/list/items_measures_p = new
-		for (var/obj/O in contents)
+		for (var/obj/O in ((contents - component_parts) - circuit))
 			var/display_name = O.name
 			if (istype(O,/obj/item/weapon/reagent_containers/food/snacks/egg))
 				items_measures[display_name] = "egg"
@@ -224,7 +238,7 @@
 	if(stat & (NOPOWER|BROKEN))
 		return
 	start()
-	if (reagents.total_volume==0 && !(locate(/obj) in contents)) //dry run
+	if (reagents.total_volume==0 && !(locate(/obj) in ((contents - component_parts) - circuit))) //dry run
 		if (!wzhzhzh(10))
 			abort()
 			return
@@ -286,7 +300,7 @@
 	return 1
 
 /obj/machinery/microwave/proc/has_extra_item()
-	for (var/obj/O in contents)
+	for (var/obj/O in ((contents - component_parts) - circuit))
 		if ( \
 				!istype(O,/obj/item/weapon/reagent_containers/food) && \
 				!istype(O, /obj/item/weapon/grown) \
@@ -312,7 +326,7 @@
 	src.updateUsrDialog()
 
 /obj/machinery/microwave/proc/dispose()
-	for (var/obj/O in contents)
+	for (var/obj/O in ((contents-component_parts)-circuit))
 		O.loc = src.loc
 	if (src.reagents.total_volume)
 		src.dirty++
@@ -347,7 +361,7 @@
 /obj/machinery/microwave/proc/fail()
 	var/obj/item/weapon/reagent_containers/food/snacks/badrecipe/ffuu = new(src)
 	var/amount = 0
-	for (var/obj/O in contents-ffuu)
+	for (var/obj/O in (((contents - ffuu) - component_parts) - circuit))
 		amount++
 		if (O.reagents)
 			var/id = O.reagents.get_master_reagent_id()

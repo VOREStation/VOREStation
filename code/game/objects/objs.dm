@@ -2,16 +2,13 @@
 	//Used to store information about the contents of the object.
 	var/list/matter
 	var/w_class // Size of the object.
-	var/list/origin_tech = null	//Used by R&D to determine what research bonuses it grants.
 	var/unacidable = 0 //universal "unacidabliness" var, here so you can use it in any obj.
 	animate_movement = 2
 	var/throwforce = 1
-	var/list/attack_verb = list() //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
 	var/sharp = 0		// whether this object cuts
 	var/edge = 0		// whether this object is more likely to dismember
 	var/in_use = 0 // If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
 	var/damtype = "brute"
-	var/force = 0
 	var/armor_penetration = 0
 	var/show_messages
 
@@ -93,11 +90,12 @@
 		// check for TK users
 
 		if (istype(usr, /mob/living/carbon/human))
-			if(istype(usr.l_hand, /obj/item/tk_grab) || istype(usr.r_hand, /obj/item/tk_grab/))
-				if(!(usr in nearby))
-					if(usr.client && usr.machine==src)
+			var/mob/living/carbon/human/H = usr
+			if(H.get_type_in_hands(/obj/item/tk_grab))
+				if(!(H in nearby))
+					if(H.client && H.machine==src)
 						is_in_use = 1
-						src.attack_hand(usr)
+						src.attack_hand(H)
 		in_use = is_in_use
 
 /obj/proc/updateDialog()

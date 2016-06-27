@@ -126,7 +126,7 @@
 
 //DIONA ORGANS.
 /obj/item/organ/external/diona/removed()
-	if(status & ORGAN_ROBOT)
+	if(robotic >= ORGAN_ROBOT)
 		return ..()
 	var/mob/living/carbon/human/H = owner
 	..()
@@ -142,7 +142,7 @@
 	organ_tag = "special" // Turns into a nymph instantly, no transplanting possible.
 
 /obj/item/organ/internal/diona/removed(var/mob/living/user, var/skip_nymph)
-	if(status & ORGAN_ROBOT)
+	if(robotic >= ORGAN_ROBOT)
 		return ..()
 	var/mob/living/carbon/human/H = owner
 	..()
@@ -198,3 +198,13 @@
 
 /obj/item/organ/internal/diona/node/removed()
 	return
+
+/obj/item/organ/external/head/no_eyes/diona
+	max_damage = 50
+	min_broken_damage = 25
+	cannot_break = 1
+	amputation_point = "branch"
+	joint = "structural ligament"
+	dislocated = -1
+	vital = 0
+	slot_flags = SLOT_BELT

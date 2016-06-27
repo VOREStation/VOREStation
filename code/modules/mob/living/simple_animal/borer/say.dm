@@ -16,8 +16,6 @@
 		if(client.prefs.muted & MUTE_IC)
 			src << "\red You cannot speak in IC (muted)."
 			return
-		if (src.client.handle_spam_prevention(message,MUTE_IC))
-			return
 
 	if (copytext(message, 1, 2) == "*")
 		return emote(copytext(message, 2))
@@ -38,5 +36,5 @@
 	for (var/mob/M in player_list)
 		if (istype(M, /mob/new_player))
 			continue
-		else if(M.stat == 2 &&  M.client.prefs.toggles & CHAT_GHOSTEARS)
+		else if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears))
 			M << "[src.truename] whispers to [host], \"[message]\""

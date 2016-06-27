@@ -103,25 +103,26 @@ var/global/list/all_exonet_connections = list()
 	return null
 
 // Proc: send_message()
-// Parameters: 2 (target_address - the desired address to send the message to, message - the message to send)
+// Parameters: 3 (target_address - the desired address to send the message to, message - the message to send, text - the message text if message is of type "text")
 // Description: Sends the message to target_address, by calling receive_message() on the desired datum.
-/datum/exonet_protocol/proc/send_message(var/target_address, var/message)
+/datum/exonet_protocol/proc/send_message(var/target_address, var/message, var/text)
 	if(!address)
 		return 0
 	for(var/datum/exonet_protocol/exonet in all_exonet_connections)
 		if(exonet.address == target_address)
-			exonet.receive_message(holder, address, message)
+			exonet.receive_message(holder, address, message, text)
 			break
 
 // Proc: receive_message()
-// Parameters: 3 (origin_atom - the origin datum's holder, origin_address - the address the message originated from, message - the message that was sent)
+// Parameters: 4 (origin_atom - the origin datum's holder, origin_address - the address the message originated from, message - the message that was sent,
+//				  text - the message text if message is of type "text")
 // Description: Called when send_message() successfully reaches the intended datum.  By default, calls receive_exonet_message() on the holder atom.
-/datum/exonet_protocol/proc/receive_message(var/atom/origin_atom, var/origin_address, var/message)
-	holder.receive_exonet_message(origin_atom, origin_address, message)
+/datum/exonet_protocol/proc/receive_message(var/atom/origin_atom, var/origin_address, var/message, var/text)
+	holder.receive_exonet_message(origin_atom, origin_address, message, text)
 	return
 
 // Proc: receive_exonet_message()
 // Parameters: 3 (origin_atom - the origin datum's holder, origin_address - the address the message originated from, message - the message that was sent)
 // Description: Override this to make your atom do something when a message is received.
-/atom/proc/receive_exonet_message(var/atom/origin_atom, var/origin_address, var/message)
+/atom/proc/receive_exonet_message(var/atom/origin_atom, var/origin_address, var/message, var/text)
 	return

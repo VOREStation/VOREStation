@@ -30,13 +30,6 @@
 
 		return "[output][and_text][input[index]]"
 
-
-/proc/ConvertReqString2List(var/list/source_list)
-	var/list/temp_list = params2list(source_list)
-	for(var/O in temp_list)
-		temp_list[O] = text2num(temp_list[O])
-	return temp_list
-
 //Returns list element or null. Should prevent "index out of bounds" error.
 proc/listgetindex(var/list/list,index)
 	if(istype(list) && list.len)
@@ -48,9 +41,7 @@ proc/listgetindex(var/list/list,index)
 	return
 
 proc/islist(list/list)
-	if(istype(list))
-		return 1
-	return 0
+	return(istype(list))
 
 //Return either pick(list) or null if list is not of type /list or is empty
 proc/safepick(list/list)
@@ -611,13 +602,13 @@ proc/dd_sortedTextList(list/incoming)
 /datum/alarm/dd_SortValue()
 	return "[sanitize_old(last_name)]"
 
-/proc/subtypes(prototype)
+/proc/subtypesof(prototype)
 	return (typesof(prototype) - prototype)
 
 //creates every subtype of prototype (excluding prototype) and adds it to list L.
 //if no list/L is provided, one is created.
 /proc/init_subtypes(prototype, list/L)
 	if(!istype(L))	L = list()
-	for(var/path in subtypes(prototype))
+	for(var/path in subtypesof(prototype))
 		L += new path()
 	return L

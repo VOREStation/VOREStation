@@ -9,10 +9,20 @@
 	idle_power_usage = 30
 	active_power_usage = 200
 	power_channel = EQUIP
+	circuit = /obj/item/weapon/circuitboard/photocopier
 	var/obj/item/copyitem = null	//what's in the copier!
 	var/copies = 1	//how many copies to print!
 	var/toner = 30 //how much toner is left! woooooo~
 	var/maxcopies = 10	//how many copies can be copied at once- idea shamelessly stolen from bs12's copier!
+
+/obj/machinery/photocopier/New()
+	circuit = new circuit(src)
+	component_parts = list()
+	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
+	component_parts += new /obj/item/weapon/stock_parts/motor(src)
+	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
+	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
+	RefreshParts()
 
 /obj/machinery/photocopier/attack_ai(mob/user as mob)
 	return attack_hand(user)
@@ -20,24 +30,32 @@
 /obj/machinery/photocopier/attack_hand(mob/user as mob)
 	user.set_machine(src)
 
-	var/dat = "Photocopier<BR><BR>"
-	if(copyitem)
-		dat += "<a href='byond://?src=\ref[src];remove=1'>Remove Item</a><BR>"
-		if(toner)
-			dat += "<a href='byond://?src=\ref[src];copy=1'>Copy</a><BR>"
-			dat += "Printing: [copies] copies."
-			dat += "<a href='byond://?src=\ref[src];min=1'>-</a> "
-			dat += "<a href='byond://?src=\ref[src];add=1'>+</a><BR><BR>"
-	else if(toner)
-		dat += "Please insert something to copy.<BR><BR>"
+	ui_interact(user)
+
+/**
+ *  Display the NanoUI window for the photocopier.
+ *
+ *  See NanoUI documentation for details.
+ */
+/obj/machinery/photocopier/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+	user.set_machine(src)
+
+	var/list/data = list()
+	data["copyItem"] = copyitem
+	data["toner"] = toner
+	data["copies"] = copies
+	data["maxCopies"] = maxcopies
 	if(istype(user,/mob/living/silicon))
-		dat += "<a href='byond://?src=\ref[src];aipic=1'>Print photo from database</a><BR><BR>"
-	dat += "Current toner level: [toner]"
-	if(!toner)
-		dat +="<BR>Please insert a new toner cartridge!"
-	user << browse(dat, "window=copier")
-	onclose(user, "copier")
-	return
+		data["isSilicon"] = 1
+	else
+		data["isSilicon"] = null
+
+	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if (!ui)
+		ui = new(user, src, ui_key, "photocopier.tmpl", src.name, 300, 250)
+		ui.set_initial_data(data)
+		ui.open()
+		ui.set_auto_update(10)
 
 /obj/machinery/photocopier/Topic(href, href_list)
 	if(href_list["copy"])
@@ -62,22 +80,18 @@
 				break
 
 			use_power(active_power_usage)
-		updateUsrDialog()
 	else if(href_list["remove"])
 		if(copyitem)
 			copyitem.loc = usr.loc
 			usr.put_in_hands(copyitem)
 			usr << "<span class='notice'>You take \the [copyitem] out of \the [src].</span>"
 			copyitem = null
-			updateUsrDialog()
 	else if(href_list["min"])
 		if(copies > 1)
 			copies--
-			updateUsrDialog()
 	else if(href_list["add"])
 		if(copies < maxcopies)
 			copies++
-			updateUsrDialog()
 	else if(href_list["aipic"])
 		if(!istype(usr,/mob/living/silicon)) return
 		if(stat & (BROKEN|NOPOWER)) return
@@ -99,7 +113,8 @@
 				p.desc += " - Copied by [tempAI.name]"
 			toner -= 5
 			sleep(15)
-		updateUsrDialog()
+
+	nanomanager.update_uis(src)
 
 /obj/machinery/photocopier/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/weapon/paper) || istype(O, /obj/item/weapon/photo) || istype(O, /obj/item/weapon/paper_bundle))
@@ -109,7 +124,6 @@
 			O.loc = src
 			user << "<span class='notice'>You insert \the [O] into \the [src].</span>"
 			flick(insert_anim, src)
-			updateUsrDialog()
 		else
 			user << "<span class='notice'>There is already something in \the [src].</span>"
 	else if(istype(O, /obj/item/device/toner))
@@ -119,13 +133,18 @@
 			var/obj/item/device/toner/T = O
 			toner += T.toner_amount
 			qdel(O)
-			updateUsrDialog()
 		else
 			user << "<span class='notice'>This cartridge is not yet ready for replacement! Use up the rest of the toner.</span>"
 	else if(istype(O, /obj/item/weapon/wrench))
 		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
 		anchored = !anchored
 		user << "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>"
+
+	else if(default_deconstruction_screwdriver(user, O))
+		return
+	else if(default_deconstruction_crowbar(user, O))
+		return
+
 	return
 
 /obj/machinery/photocopier/ex_act(severity)

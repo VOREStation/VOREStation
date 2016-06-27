@@ -5,14 +5,6 @@
 /datum/hud/proc/ghost_hud()
 	return
 
-/datum/hud/proc/brain_hud(ui_style = 'icons/mob/screen1_Midnight.dmi')
-	mymob.blind = new /obj/screen()
-	mymob.blind.icon = 'icons/mob/screen1_full.dmi'
-	mymob.blind.icon_state = "blackimageoverlay"
-	mymob.blind.name = " "
-	mymob.blind.screen_loc = "1,1"
-	mymob.blind.layer = 0
-
 /datum/hud/proc/blob_hud(ui_style = 'icons/mob/screen1_Midnight.dmi')
 
 	blobpwrdisplay = new /obj/screen()
@@ -27,9 +19,10 @@
 	blobhealthdisplay.screen_loc = ui_internal
 	blobhealthdisplay.layer = 20
 
-	mymob.client.screen = null
+	mymob.client.screen = list()
 
 	mymob.client.screen += list(blobpwrdisplay, blobhealthdisplay)
+	mymob.client.screen += mymob.client.void
 
 /datum/hud/proc/slime_hud(ui_style = 'icons/mob/screen1_Midnight.dmi')
 
@@ -94,8 +87,9 @@
 	src.adding += using
 	hurt_intent = using
 
-	mymob.client.screen = null
+	mymob.client.screen = list()
 	mymob.client.screen += src.adding
+	mymob.client.screen += mymob.client.void
 
 	return
 
@@ -113,13 +107,6 @@
 		constructtype = "wraith"
 	else if(istype(mymob,/mob/living/simple_animal/construct/harvester))
 		constructtype = "harvester"
-
-	mymob.flash = new /obj/screen()
-	mymob.flash.icon = 'icons/mob/screen1.dmi'
-	mymob.flash.icon_state = "blank"
-	mymob.flash.name = "flash"
-	mymob.flash.screen_loc = ui_entire_screen
-	mymob.flash.layer = 17
 
 	if(constructtype)
 		mymob.fire = new /obj/screen()
@@ -151,6 +138,7 @@
 		mymob.purged.name = "purged"
 		mymob.purged.screen_loc = ui_construct_purge
 
-	mymob.client.screen = null
+	mymob.client.screen = list()
 
-	mymob.client.screen += list(mymob.fire, mymob.healths, mymob.pullin, mymob.zone_sel, mymob.purged, mymob.flash)
+	mymob.client.screen += list(mymob.fire, mymob.healths, mymob.pullin, mymob.zone_sel, mymob.purged)
+	mymob.client.screen += mymob.client.void

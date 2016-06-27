@@ -140,11 +140,11 @@ note dizziness decrements automatically in the mob's Life() proc.
 	//reset the pixel offsets to zero
 	is_floating = 0
 
-/atom/movable/proc/do_attack_animation(atom/A)
+/mob/proc/do_attack_animation(mob/M)
 
 	var/pixel_x_diff = 0
 	var/pixel_y_diff = 0
-	var/direction = get_dir(src, A)
+	var/direction = get_dir(src, M)
 	switch(direction)
 		if(NORTH)
 			pixel_y_diff = 8
@@ -167,7 +167,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 			pixel_x_diff = -8
 			pixel_y_diff = -8
 	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, time = 2)
-	animate(pixel_x = initial(pixel_x), pixel_y = initial(pixel_y), time = 2)
+	animate(pixel_x = old_x, pixel_y = old_y, time = 2)
 
 /mob/do_attack_animation(atom/A)
 	..()

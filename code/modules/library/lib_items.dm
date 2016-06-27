@@ -45,7 +45,7 @@
 		user << "<span class='notice'>You begin dismantling \the [src].</span>"
 		if(do_after(user,25))
 			user << "<span class='notice'>You dismantle \the [src].</span>"
-			new /obj/item/stack/material/wood(get_turf(src), amount = 3)
+			new /obj/item/stack/material/wood(get_turf(src), 3)
 			for(var/obj/item/weapon/book/b in contents)
 				b.loc = (get_turf(src))
 			qdel(src)
@@ -256,6 +256,7 @@
 		user.visible_message("<span class='notice'>You open up the book and show it to [M]. </span>", \
 			"<span class='notice'> [user] opens up a book and shows it to [M]. </span>")
 		M << browse("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book")
+		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN) //to prevent spam
 
 
 /*

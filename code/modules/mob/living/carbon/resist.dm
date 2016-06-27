@@ -1,4 +1,3 @@
-
 /mob/living/carbon/process_resist()
 
 	//drop && roll
@@ -17,14 +16,17 @@
 				"<span class='notice'>You extinguish yourself.</span>"
 				)
 			ExtinguishMob()
-		return
+		return TRUE
 
-	..()
+	if(..())
+		return TRUE
 
 	if(handcuffed)
 		spawn() escape_handcuffs()
 	else if(legcuffed)
 		spawn() escape_legcuffs()
+	else
+		..()
 
 /mob/living/carbon/proc/escape_handcuffs()
 	//if(!(last_special <= world.time)) return
@@ -57,8 +59,8 @@
 		"<span class='warning'>You attempt to remove \the [HC]. (This will take around [displaytime] minutes and you need to stand still)</span>"
 		)
 
-	if(do_after(src, breakouttime))
-		if(!handcuffed)
+	if(do_after(src, breakouttime, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_RESTRAINED))
+		if(!handcuffed || buckled)
 			return
 		visible_message(
 			"<span class='danger'>\The [src] manages to remove \the [handcuffed]!</span>",
@@ -91,7 +93,7 @@
 		"<span class='warning'>You attempt to remove \the [HC]. (This will take around [displaytime] minutes and you need to stand still)</span>"
 		)
 
-	if(do_after(src, breakouttime))
+	if(do_after(src, breakouttime, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_RESTRAINED))
 		if(!legcuffed || buckled)
 			return
 		visible_message(
@@ -113,7 +115,7 @@
 		"<span class='warning'>You attempt to break your [handcuffed.name]. (This will take around 5 seconds and you need to stand still)</span>"
 		)
 
-	if(do_after(src, 50))
+	if(do_after(src, 5 SECONDS, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_RESTRAINED))
 		if(!handcuffed || buckled)
 			return
 
@@ -134,7 +136,7 @@
 	src << "<span class='warning'>You attempt to break your legcuffs. (This will take around 5 seconds and you need to stand still)</span>"
 	visible_message("<span class='danger'>[src] is trying to break the legcuffs!</span>")
 
-	if(do_after(src, 50))
+	if(do_after(src, 5 SECONDS, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_RESTRAINED))
 		if(!legcuffed || buckled)
 			return
 
@@ -166,7 +168,7 @@
 			"<span class='warning'>You attempt to unbuckle yourself. (This will take around 2 minutes and you need to stand still)</span>"
 			)
 
-		if(do_after(usr, 1200))
+		if(do_after(usr, 2 MINUTES, incapacitation_flags = INCAPACITATION_DEFAULT & ~(INCAPACITATION_RESTRAINED | INCAPACITATION_BUCKLED_FULLY)))
 			if(!buckled)
 				return
 			visible_message("<span class='danger'>[usr] manages to unbuckle themself!</span>",

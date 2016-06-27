@@ -20,7 +20,7 @@ var/list/ai_verbs_default = list(
 	/mob/living/silicon/ai/proc/toggle_hidden_verbs,
 )
 
-var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.com/1172/
+var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.com/1172/,
 	/mob/living/silicon/ai/proc/ai_announcement,
 	/mob/living/silicon/ai/proc/ai_call_shuttle,
 	/mob/living/silicon/ai/proc/ai_camera_track,
@@ -52,7 +52,7 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 	density = 1
 	status_flags = CANSTUN|CANPARALYSE|CANPUSH
 	shouldnt_see = list(/obj/effect/rune)
-	var/list/network = list("Northern Star")
+	var/list/network = list(station_short)
 	var/obj/machinery/camera/camera = null
 	var/list/connected_robots = list()
 	var/aiRestorePowerRoutine = 0
@@ -151,11 +151,13 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 	add_language("Galactic Common", 1)
 	add_language("Sol Common", 0)
 	add_language("Sinta'unathi", 0)
+	add_language("Siik'maas", 0)
 	add_language("Siik'tajr", 0)
 	add_language("Skrellian", 0)
 	add_language("Tradeband", 1)
 	add_language("Gutter", 0)
 	add_language("Encoded Audio Language", 1)
+	add_language("Schechi", 0)
 
 	if(!safety)//Only used by AIize() to successfully spawn an AI.
 		if (!B)//If there is no player/brain inside.
@@ -232,11 +234,11 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 
 /mob/living/silicon/ai/proc/setup_icon()
 	var/file = file2text("config/custom_sprites.txt")
-	var/lines = text2list(file, "\n")
+	var/lines = splittext(file, "\n")
 
 	for(var/line in lines)
 	// split & clean up
-		var/list/Entry = text2list(line, ":")
+		var/list/Entry = splittext(line, ":")
 		for(var/i = 1 to Entry.len)
 			Entry[i] = trim(Entry[i])
 

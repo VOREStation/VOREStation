@@ -47,14 +47,13 @@
 
 	if(handle_regular_status_updates()) // Status & health update, are we dead or alive etc.
 		handle_disabilities() // eye, ear, brain damages
-		handle_status_effects() //all special effects, stunned, weakened, jitteryness, hallucination, sleeping, etc
+		handle_statuses() //all special effects, stunned, weakened, jitteryness, hallucination, sleeping, etc
 
 	handle_actions()
 
 	update_canmove()
 
-	if(client)
-		handle_regular_hud_updates()
+	handle_regular_hud_updates()
 
 /mob/living/proc/handle_breathing()
 	return
@@ -94,23 +93,59 @@
 			stat = CONSCIOUS
 		return 1
 
-//this updates all special effects: stunned, sleeping, weakened, druggy, stuttering, etc..
-/mob/living/proc/handle_status_effects()
-	if(paralysis)
-		paralysis = max(paralysis-1,0)
+/mob/living/proc/handle_statuses()
+	handle_stunned()
+	handle_weakened()
+	handle_paralysed()
+	handle_stuttering()
+	handle_silent()
+	handle_drugged()
+	handle_slurring()
+
+/mob/living/proc/handle_stunned()
 	if(stunned)
-		stunned = max(stunned-1,0)
+		AdjustStunned(-1)
 		if(!stunned)
 			update_icons()
+	return stunned
 
+/mob/living/proc/handle_weakened()
 	if(weakened)
 		weakened = max(weakened-1,0)
 		if(!weakened)
 			update_icons()
+	return weakened
+
+/mob/living/proc/handle_stuttering()
+	if(stuttering)
+		stuttering = max(stuttering-1, 0)
+	return stuttering
+
+/mob/living/proc/handle_silent()
+	if(silent)
+		silent = max(silent-1, 0)
+	return silent
+
+/mob/living/proc/handle_drugged()
+	if(druggy)
+		druggy = max(druggy-1, 0)
+	return druggy
+
+/mob/living/proc/handle_slurring()
+	if(slurring)
+		slurring = max(slurring-1, 0)
+	return slurring
+
+/mob/living/proc/handle_paralysed()
+	if(paralysis)
+		AdjustParalysis(-1)
+		if(!paralysis)
+			update_icons()
+	return paralysis
 
 /mob/living/proc/handle_disabilities()
 	//Eyes
-	if(disabilities & BLIND || stat)	//blindness from disability or unconsciousness doesn't get better on its own
+	if(sdisabilities & BLIND || stat)	//blindness from disability or unconsciousness doesn't get better on its own
 		eye_blind = max(eye_blind, 1)
 	else if(eye_blind)			//blindness, heals slowly over time
 		eye_blind = max(eye_blind-1,0)
@@ -118,7 +153,7 @@
 		eye_blurry = max(eye_blurry-1, 0)
 
 	//Ears
-	if(disabilities & DEAF)		//disabled-deaf, doesn't get better on its own
+	if(sdisabilities & DEAF)		//disabled-deaf, doesn't get better on its own
 		setEarDamage(-1, max(ear_deaf, 1))
 	else
 		// deafness heals slowly over time, unless ear_damage is over 100

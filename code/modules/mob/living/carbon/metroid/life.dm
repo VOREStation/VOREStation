@@ -106,14 +106,11 @@
 	else
 		if (src.paralysis || src.stunned || src.weakened || (status_flags && FAKEDEATH)) //Stunned etc.
 			if (src.stunned > 0)
-				AdjustStunned(-1)
 				src.stat = 0
 			if (src.weakened > 0)
-				AdjustWeakened(-1)
 				src.lying = 0
 				src.stat = 0
 			if (src.paralysis > 0)
-				AdjustParalysis(-1)
 				src.blinded = 0
 				src.lying = 0
 				src.stat = 0
@@ -220,7 +217,7 @@
 
 				if(istype(L, /mob/living/carbon/human) && dna) //Ignore slime(wo)men
 					var/mob/living/carbon/human/H = L
-					if(H.species.name == "Slime")
+					if(H.species.name == "Promethean")
 						continue
 
 				if(!L.canmove) // Only one slime can latch on at a time.

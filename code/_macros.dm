@@ -7,13 +7,15 @@
 
 #define isanimal(A) istype(A, /mob/living/simple_animal)
 
+#define isairlock(A) istype(A, /obj/machinery/door/airlock)
+
 #define isbrain(A) istype(A, /mob/living/carbon/brain)
 
 #define iscarbon(A) istype(A, /mob/living/carbon)
 
 #define iscorgi(A) istype(A, /mob/living/simple_animal/corgi)
 
-#define isEye(A) istype(A, /mob/eye)
+#define isEye(A) istype(A, /mob/observer/eye)
 
 #define ishuman(A) istype(A, /mob/living/carbon/human)
 
@@ -23,7 +25,7 @@
 
 #define isnewplayer(A) istype(A, /mob/new_player)
 
-#define isobserver(A) istype(A, /mob/dead/observer)
+#define isobserver(A) istype(A, /mob/observer/dead)
 
 #define isorgan(A) istype(A, /obj/item/organ/external)
 
@@ -34,3 +36,7 @@
 #define issilicon(A) istype(A, /mob/living/silicon)
 
 #define isslime(A) istype(A, /mob/living/carbon/slime)
+
+#define isxeno(A) istype(A, /mob/living/simple_animal/xeno)
+
+#define RANDOM_BLOOD_TYPE pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")

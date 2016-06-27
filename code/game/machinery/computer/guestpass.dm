@@ -25,6 +25,8 @@
 		user << "<span class='warning'>It expired at [worldtime2text(expiration_time)].</span>"
 
 /obj/item/weapon/card/id/guest/read()
+	if(!Adjacent(usr))
+		return //Too far to read
 	if (world.time > expiration_time)
 		usr << "<span class='notice'>This pass expired at [worldtime2text(expiration_time)].</span>"
 	else
@@ -46,6 +48,7 @@
 	icon_keyboard = null
 	icon_screen = "pass"
 	density = 0
+	circuit = /obj/item/weapon/circuitboard/guestpass
 
 	var/obj/item/weapon/card/id/giver
 	var/list/accesses = list()
@@ -60,12 +63,32 @@
 	..()
 	uid = "[rand(100,999)]-G[rand(10,99)]"
 
-/obj/machinery/computer/guestpass/attackby(obj/O, mob/user)
-	if(istype(O, /obj/item/weapon/card/id))
-		if(!giver && user.unEquip(O))
-			O.loc = src
-			giver = O
-			updateUsrDialog()
+
+/obj/machinery/computer/guestpass/attackby(obj/I, mob/user)
+	if(istype(I, /obj/item/weapon/screwdriver) && circuit)
+		user << "<span class='notice'>You start disconnecting the monitor.</span>"
+		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+		if(do_after(user, 20))
+			var/obj/structure/frame/A = new /obj/structure/frame( src.loc )
+			var/obj/item/weapon/circuitboard/M = new circuit( A )
+			A.frame_type = "guestpass"
+			A.pixel_x = pixel_x
+			A.pixel_y = pixel_y
+			A.circuit = M
+			A.anchored = 1
+			for (var/obj/C in src)
+				C.forceMove(loc)
+			user << "<span class='notice'>You disconnect the monitor.</span>"
+			A.state = 4
+			A.icon_state = "guestpass_4"
+			M.deconstruct(src)
+			qdel(src)
+		return
+	if(istype(I, /obj/item/weapon/card/id))
+		if(!giver && user.unEquip(I))
+			I.forceMove(src)
+			giver = I
+			nanomanager.update_uis(src)
 		else if(giver)
 			user << "<span class='warning'>There is already ID card inside.</span>"
 		return
@@ -79,40 +102,51 @@
 		return
 
 	user.set_machine(src)
-	var/dat
 
-	if (mode == 1) //Logs
-		dat += "<h3>Activity log</h3><br>"
-		for (var/entry in internal_log)
-			dat += "[entry]<br><hr>"
-		dat += "<a href='?src=\ref[src];action=print'>Print</a><br>"
-		dat += "<a href='?src=\ref[src];mode=0'>Back</a><br>"
-	else
-		dat += "<h3>Guest pass terminal #[uid]</h3><br>"
-		dat += "<a href='?src=\ref[src];mode=1'>View activity log</a><br><br>"
-		dat += "Issuing ID: <a href='?src=\ref[src];action=id'>[giver]</a><br>"
-		dat += "Issued to: <a href='?src=\ref[src];choice=giv_name'>[giv_name]</a><br>"
-		dat += "Reason:  <a href='?src=\ref[src];choice=reason'>[reason]</a><br>"
-		dat += "Duration (minutes):  <a href='?src=\ref[src];choice=duration'>[duration] m</a><br>"
-		dat += "Access to areas:<br>"
-		if (giver && giver.access)
-			for (var/A in giver.access)
-				var/area = get_access_desc(A)
-				if (A in accesses)
-					area = "<b>[area]</b>"
-				dat += "<a href='?src=\ref[src];choice=access;access=[A]'>[area]</a><br>"
-		dat += "<br><a href='?src=\ref[src];action=issue'>Issue pass</a><br>"
+	ui_interact(user)
 
-	user << browse(dat, "window=guestpass;size=400x520")
-	onclose(user, "guestpass")
+/**
+ *  Display the NanoUI window for the guest pass console.
+ *
+ *  See NanoUI documentation for details.
+ */
+/obj/machinery/computer/guestpass/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+	user.set_machine(src)
 
+	var/list/data = list()
+
+	var/area_list[0]
+
+	if (giver && giver.access)
+		data["access"] = giver.access
+		for (var/A in giver.access)
+			if(A in accesses)
+				area_list[++area_list.len] = list("area" = A, "area_name" = get_access_desc(A), "on" = 1)
+			else
+				area_list[++area_list.len] = list("area" = A, "area_name" = get_access_desc(A), "on" = null)
+
+	data["giver"] = giver
+	data["giveName"] = giv_name
+	data["reason"] = reason
+	data["duration"] = duration
+	data["area"] = area_list
+	data["mode"] = mode
+	data["log"] = internal_log
+	data["uid"] = uid
+
+	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if (!ui)
+		ui = new(user, src, ui_key, "guest_pass.tmpl", src.name, 400, 520)
+		ui.set_initial_data(data)
+		ui.open()
+		//ui.set_auto_update(5)
 
 /obj/machinery/computer/guestpass/Topic(href, href_list)
 	if(..())
 		return 1
 	usr.set_machine(src)
 	if (href_list["mode"])
-		mode = text2num(href_list["mode"])
+		mode = href_list["mode"]
 
 	if (href_list["choice"])
 		switch(href_list["choice"])
@@ -125,9 +159,9 @@
 				if(reas)
 					reason = reas
 			if ("duration")
-				var/dur = input("Duration (in minutes) during which pass is valid (up to 30 minutes).", "Duration") as num|null
+				var/dur = input("Duration (in minutes) during which pass is valid (up to 120 minutes).", "Duration") as num|null
 				if (dur)
-					if (dur > 0 && dur <= 30)
+					if (dur > 0 && dur <= 120)
 						duration = dur
 					else
 						usr << "<span class='warning'>Invalid duration.</span>"
@@ -136,7 +170,11 @@
 				if (A in accesses)
 					accesses.Remove(A)
 				else
-					accesses.Add(A)
+					if(A in giver.access)	//Let's make sure the ID card actually has the access.
+						accesses.Add(A)
+					else
+						usr << "<span class='warning'>Invalid selection, please consult technical support if there are any issues.</span>"
+						log_debug("[key_name_admin(usr)] tried selecting an invalid guest pass terminal option.")
 	if (href_list["action"])
 		switch(href_list["action"])
 			if ("id")
@@ -155,7 +193,6 @@
 					if (istype(I, /obj/item/weapon/card/id) && usr.unEquip(I))
 						I.loc = src
 						giver = I
-				updateUsrDialog()
 
 			if ("print")
 				var/dat = "<h3>Activity log of guest pass terminal #[uid]</h3><br>"
@@ -187,5 +224,6 @@
 					pass.name = "guest pass #[number]"
 				else
 					usr << "<span class='warning'>Cannot issue pass without issuing ID.</span>"
-	updateUsrDialog()
-	return
+
+	src.add_fingerprint(usr)
+	nanomanager.update_uis(src)

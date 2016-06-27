@@ -64,10 +64,18 @@ var/global/datum/global_init/init = new ()
 
 	. = ..()
 
+#if UNIT_TEST
+	log_unit_test("Unit Tests Enabled.  This will destroy the world when testing is complete.")
+	log_unit_test("If you did not intend to enable this please check code/__defines/unit_testing.dm")
+#else
 	sleep_offline = 1
+#endif
 
 	// Set up roundstart seed list.
 	plant_controller = new()
+
+	// Set up roundstart gene masking
+	xenobio_controller = new()
 
 	// This is kinda important. Set up details of what the hell things are made of.
 	populate_material_list()
@@ -105,6 +113,9 @@ var/global/datum/global_init/init = new ()
 		processScheduler.deferSetupFor(/datum/controller/process/ticker)
 		processScheduler.setup()
 		master_controller.setup()
+#if UNIT_TEST
+		initialize_unit_tests()
+#endif
 
 	spawn(3000)		//so we aren't adding to the round-start lag
 		if(config.ToRban)
@@ -147,7 +158,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		// This is dumb, but spacestation13.com's banners break if player count isn't the 8th field of the reply, so... this has to go here.
 		s["players"] = 0
 		s["stationtime"] = worldtime2text()
-		s["roundduration"] = round_duration()
+		s["roundduration"] = round_duration_as_text()
 
 		if(input["status"] == "2")
 			var/list/players = list()
@@ -414,6 +425,10 @@ var/world_topic_spam_protect_time = world.timeofday
 	return 1
 
 /world/proc/load_mode()
+	if(!fexists("data/mode.txt"))
+		return
+
+
 	var/list/Lines = file2list("data/mode.txt")
 	if(Lines.len)
 		if(Lines[1])
@@ -452,7 +467,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		if (!text)
 			error("Failed to load config/mods.txt")
 		else
-			var/list/lines = text2list(text, "\n")
+			var/list/lines = splittext(text, "\n")
 			for(var/line in lines)
 				if (!line)
 					continue
@@ -473,7 +488,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		if (!text)
 			error("Failed to load config/mentors.txt")
 		else
-			var/list/lines = text2list(text, "\n")
+			var/list/lines = splittext(text, "\n")
 			for(var/line in lines)
 				if (!line)
 					continue
@@ -535,7 +550,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		features += "hosted by <b>[config.hostedby]</b>"
 
 	if (features)
-		s += ": [list2text(features, ", ")]"
+		s += ": [jointext(features, ", ")]"
 
 	/* does this help? I do not know */
 	if (src.status != s)
@@ -546,7 +561,9 @@ var/failed_db_connections = 0
 var/failed_old_db_connections = 0
 
 /hook/startup/proc/connectDB()
-	if(!setup_database_connection())
+	if(!config.sql_enabled)
+		world.log << "SQL connection disabled in config."
+	else if(!setup_database_connection())
 		world.log << "Your server failed to establish a connection with the feedback database."
 	else
 		world.log << "Feedback database connection established."
@@ -588,7 +605,9 @@ proc/establish_db_connection()
 
 
 /hook/startup/proc/connectOldDB()
-	if(!setup_old_database_connection())
+	if(!config.sql_enabled)
+		world.log << "SQL connection disabled in config."
+	else if(!setup_old_database_connection())
 		world.log << "Your server failed to establish a connection with the SQL database."
 	else
 		world.log << "SQL database connection established."
