@@ -15,7 +15,7 @@ mob/attacked_with_item() should then do mob-type specific stuff (like determinin
 
 Item Hit Effects:
 
-item/apply_hit_effect() can be overriden to do whatever you want. However "standard" physical damage based weapons should make use of the target mob's hit_with_weapon() proc to 
+item/apply_hit_effect() can be overriden to do whatever you want. However "standard" physical damage based weapons should make use of the target mob's hit_with_weapon() proc to
 avoid code duplication. This includes items that may sometimes act as a standard weapon in addition to having other effects (e.g. stunbatons on harm intent).
 */
 
@@ -76,9 +76,10 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 //Called when a weapon is used to make a successful melee attack on a mob. Returns the blocked result
 /obj/item/proc/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+	user.break_cloak()
 	if(hitsound)
 		playsound(loc, hitsound, 50, 1, -1)
-	
+
 	var/power = force
 	if(HULK in user.mutations)
 		power *= 2
