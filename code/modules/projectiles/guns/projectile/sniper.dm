@@ -10,15 +10,14 @@
 	slot_flags = SLOT_BACK
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
 	caliber = "14.5mm"
-	recoil = 3 //extra kickback
+	recoil = 5 //extra kickback
 	fire_sound = 'sound/weapons/sniper.ogg' // extra boom
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING
 	max_shells = 1
 	ammo_type = /obj/item/ammo_casing/a145
-	//+2 accuracy over the LWAP because only one shot
-	accuracy = -1
-	scoped_accuracy = 2
+	accuracy = -5
+	scoped_accuracy = 5
 	var/bolt_open = 0
 
 /obj/item/weapon/gun/projectile/heavysniper/update_icon()
