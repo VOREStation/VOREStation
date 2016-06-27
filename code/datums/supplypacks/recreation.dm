@@ -19,7 +19,7 @@
 			/obj/item/weapon/material/twohanded/spear/foam = 2,
 			/obj/item/weapon/material/twohanded/fireaxe/foam = 2
 			)
-	cost = 80
+	cost = 50
 	containertype = /obj/structure/closet/crate
 	containername = "foam weapon crate"
 
@@ -33,7 +33,7 @@
 			)
 	containertype = /obj/structure/closet
 	containername = "Lasertag Closet"
-	cost = 20
+	cost = 10
 
 /datum/supply_packs/recreation/artscrafts
 	name = "Arts and Crafts supplies"

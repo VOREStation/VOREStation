@@ -82,7 +82,7 @@
 			/obj/item/clothing/gloves/arm_guard/bulletproof,
 			/obj/item/clothing/shoes/leg_guard/bulletproof
 			)
-	cost = 35
+	cost = 40
 	containertype = /obj/structure/closet/crate/secure
 	containername = "bullet resistant armor set crate"
 	access = access_armory
@@ -104,7 +104,7 @@
 	name = "Tactical suits"
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Tactical Suit Locker"
-	cost = 60
+	cost = 40
 	access = access_armory
 	contains = list(
 			/obj/item/clothing/under/tactical,
@@ -162,7 +162,7 @@
 			/obj/item/device/radio/headset/headset_sec/alt = 3,
 			/obj/item/clothing/suit/storage/hooded/wintercoat/security = 3
 			)
-	cost = 25
+	cost = 10
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Security surplus equipment"
 	access = null
@@ -189,7 +189,7 @@
 			/obj/item/device/flashlight/maglight,
 			/obj/item/weapon/storage/briefcase/crimekit
 			)
-	cost = 40
+	cost = 20
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Forensic equipment"
 	access = access_forensics_lockers
@@ -210,7 +210,7 @@
 			/obj/item/clothing/accessory/badge/holo/detective = 2,
 			/obj/item/clothing/gloves/black = 2
 			)
-	cost = 20
+	cost = 10
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Investigation clothing"
 	access = access_forensics_lockers
@@ -240,7 +240,7 @@
 			/obj/item/weapon/gun/energy/taser,
 			/obj/item/device/flashlight/maglight
 			)
-	cost = 30
+	cost = 20
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Officer equipment"
 	access = access_brig
@@ -268,7 +268,7 @@
 			/obj/item/clothing/head/beret/sec/corporate/warden,
 			/obj/item/device/flashlight/maglight
 			)
-	cost = 45
+	cost = 20
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Warden equipment"
 	access = access_armory
@@ -294,7 +294,7 @@
 			/obj/item/clothing/head/beret/sec/corporate/hos,
 			/obj/item/device/flashlight/maglight
 			)
-	cost = 65
+	cost = 50
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Head of security equipment"
 	access = access_hos
@@ -314,7 +314,7 @@
 			/obj/item/clothing/gloves/black = 4,
 			/obj/item/weapon/storage/box/holobadge
 			)
-	cost = 20
+	cost = 10
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Security uniform crate"
 
@@ -335,7 +335,7 @@
 			/obj/item/clothing/gloves/black = 4,
 			/obj/item/weapon/storage/box/holobadge
 			)
-	cost = 20
+	cost = 10
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Navy blue security uniform crate"
 
@@ -355,21 +355,22 @@
 			/obj/item/clothing/gloves/black = 4,
 			/obj/item/weapon/storage/box/holobadge
 			)
-	cost = 20
+	cost = 10
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Corporate security uniform crate"
 
 /datum/supply_packs/security/biosuit
 	name = "Security biohazard gear"
 	contains = list(
-			/obj/item/clothing/head/bio_hood/security,
-			/obj/item/clothing/under/rank/security,
-			/obj/item/clothing/suit/bio_suit/security,
-			/obj/item/clothing/shoes/white,
-			/obj/item/clothing/mask/gas,
-			/obj/item/weapon/tank/oxygen,
-			/obj/item/clothing/gloves/latex
+			/obj/item/clothing/head/bio_hood/security = 3,
+			/obj/item/clothing/under/rank/security = 3,
+			/obj/item/clothing/suit/bio_suit/security = 3,
+			/obj/item/clothing/shoes/white = 3,
+			/obj/item/clothing/mask/gas = 3,
+			/obj/item/weapon/tank/oxygen = 3,
+			/obj/item/clothing/gloves/latex,
+			/obj/item/weapon/storage/box/gloves
 			)
-	cost = 35
+	cost = 50
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Security biohazard gear"
