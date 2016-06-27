@@ -29,7 +29,7 @@
 			/obj/item/weapon/cell = 2,
 			/obj/item/weapon/cell/high = 2
 			)
-	cost = 15
+	cost = 10
 	containertype = /obj/structure/closet/crate
 	containername = "Electrical maintenance crate"
 
@@ -48,7 +48,7 @@
 /datum/supply_packs/eng/fueltank
 	name = "Fuel tank crate"
 	contains = list(/obj/structure/reagent_dispensers/fueltank)
-	cost = 8
+	cost = 10
 	containertype = /obj/structure/largecrate
 	containername = "fuel tank crate"
 
@@ -110,7 +110,7 @@
 /datum/supply_packs/eng/shield_gen
 	contains = list(/obj/item/weapon/circuitboard/shield_gen)
 	name = "Bubble shield generator circuitry"
-	cost = 50
+	cost = 30
 	containertype = /obj/structure/closet/crate/secure
 	containername = "bubble shield generator circuitry crate"
 	access = access_ce
@@ -118,7 +118,7 @@
 /datum/supply_packs/eng/shield_gen_ex
 	contains = list(/obj/item/weapon/circuitboard/shield_gen_ex)
 	name = "Hull shield generator circuitry"
-	cost = 50
+	cost = 30
 	containertype = /obj/structure/closet/crate/secure
 	containername = "hull shield generator circuitry crate"
 	access = access_ce
@@ -126,7 +126,7 @@
 /datum/supply_packs/eng/shield_cap
 	contains = list(/obj/item/weapon/circuitboard/shield_cap)
 	name = "Bubble shield capacitor circuitry"
-	cost = 50
+	cost = 30
 	containertype = /obj/structure/closet/crate/secure
 	containername = "shield capacitor circuitry crate"
 	access = access_ce
@@ -142,7 +142,7 @@
 /datum/supply_packs/eng/teg
 	contains = list(/obj/machinery/power/generator)
 	name = "Mark I Thermoelectric Generator"
-	cost = 75
+	cost = 50
 	containertype = /obj/structure/closet/crate/secure/large
 	containername = "Mk1 TEG crate"
 	access = access_engine
@@ -150,7 +150,7 @@
 /datum/supply_packs/eng/circulator
 	contains = list(/obj/machinery/atmospherics/binary/circulator)
 	name = "Binary atmospheric circulator"
-	cost = 60
+	cost = 50
 	containertype = /obj/structure/closet/crate/secure/large
 	containername = "Atmospheric circulator crate"
 	access = access_engine
@@ -167,7 +167,7 @@
 
 /datum/supply_packs/eng/pacman_parts
 	name = "P.A.C.M.A.N. portable generator parts"
-	cost = 45
+	cost = 25
 	containername = "P.A.C.M.A.N. Portable Generator Construction Kit"
 	containertype = /obj/structure/closet/crate/secure
 	access = access_tech_storage
@@ -180,7 +180,7 @@
 
 /datum/supply_packs/eng/super_pacman_parts
 	name = "Super P.A.C.M.A.N. portable generator parts"
-	cost = 55
+	cost = 35
 	containername = "Super P.A.C.M.A.N. portable generator construction kit"
 	containertype = /obj/structure/closet/crate/secure
 	access = access_tech_storage

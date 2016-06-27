@@ -14,7 +14,7 @@
 			)
 
 	name = "Contraband crate"
-	cost = 30
+	cost = 25
 	containertype = /obj/structure/closet/crate
 	containername = "Unlabeled crate"
 	contraband = 1
@@ -28,7 +28,7 @@
 			/obj/item/weapon/pen/reagent/paralysis,
 			/obj/item/weapon/grenade/chem_grenade/incendiary
 			)
-	cost = 20
+	cost = 25
 	containertype = /obj/structure/closet/crate
 	containername = "Special Ops crate"
 	hidden = 1
