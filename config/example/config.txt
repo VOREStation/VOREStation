@@ -76,6 +76,8 @@ SQL_ENABLED
 ## disconnect players who did nothing during the set amount of minutes
 # KICK_INACTIVE 10
 
+##Show developers on staffwho
+SHOW_DEVS
 ##Show mods on staffwho
 SHOW_MODS
 
