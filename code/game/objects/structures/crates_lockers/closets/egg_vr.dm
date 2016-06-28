@@ -58,6 +58,7 @@
 /obj/structure/closet/secure_closet/egg/shark
 	name = "akula egg"
 	desc = "Its soft and slimy to the touch"
+	icon_state  = "egg_akula"
 	icon_closed = "egg_akula"
 	icon_opened = "egg_akula_open"
 
