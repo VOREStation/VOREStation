@@ -72,6 +72,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	supervisors = "the captain"
 	selection_color = "#2F2F7F"
 	idtype = /obj/item/weapon/card/id/silver
+	alt_titles = list("Crew Resources Officer")
 	req_admin_notify = 1
 	minimal_player_age = 10
 	economic_modifier = 10
