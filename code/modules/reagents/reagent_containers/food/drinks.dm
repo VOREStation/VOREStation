@@ -216,8 +216,8 @@
 		icon_state = "water_cup_e"
 
 /obj/item/weapon/reagent_containers/food/drinks/sillycup/MouseDrop(obj/over_object as obj)
-	if(!reagents.total_volume)
-		if(istype(over_object, /obj/structure/reagent_dispensers/water_cooler))
+	if(!reagents.total_volume && istype(over_object, /obj/structure/reagent_dispensers/water_cooler))
+		if(over_object.Adjacent(usr))
 			var/obj/structure/reagent_dispensers/water_cooler/W = over_object
 			if(W.cupholder && W.cups < 10)
 				W.cups++

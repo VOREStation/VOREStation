@@ -311,7 +311,7 @@
 		new /obj/item/weapon/reagent_containers/food/drinks/sillycup(src.loc)
 		cups--
 		update_icon()
-	return
+		return
 
 /obj/structure/reagent_dispensers/water_cooler/update_icon()
 	icon_state = "water_cooler"
