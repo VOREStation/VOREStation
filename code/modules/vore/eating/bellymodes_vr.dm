@@ -88,10 +88,10 @@
 			if(M.absorbed)
 				continue
 
-			if(M.nutrition >= 4) //Drain them until there's no nutrients left. Slowly "absorb" them.
-				M.nutrition -= 3
-				owner.nutrition += 3
-			else if(M.nutrition < 4) //When they're finally drained.
+			if(M.nutrition >= 100) //Drain them until there's no nutrients left. Slowly "absorb" them.
+				M.nutrition = (M.nutrition * 0.9)
+				owner.nutrition += (M.nutrition * 0.1)
+			else if(M.nutrition < 100) //When they're finally drained.
 				absorb_living(M)
 
 		return
