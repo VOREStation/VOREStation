@@ -3,17 +3,11 @@
 	for(var/obj/structure/table/T in view(src, 1))
 		T.update_connections()
 		T.update_icon()
-	for(var/obj/structure/bench/T in view(src, 1))
-		T.update_connections()
-		T.update_icon()
 
 /obj/structure/window/Destroy()
 	var/oldloc = loc
 	loc=null
 	for(var/obj/structure/table/T in view(oldloc, 1))
-		T.update_connections()
-		T.update_icon()
-	for(var/obj/structure/bench/T in view(oldloc, 1))
 		T.update_connections()
 		T.update_icon()
 	loc=oldloc
@@ -24,8 +18,5 @@
 	. = ..()
 	if(loc != oldloc)
 		for(var/obj/structure/table/T in view(oldloc, 1) | view(loc, 1))
-			T.update_connections()
-			T.update_icon()
-		for(var/obj/structure/bench/T in view(oldloc, 1) | view(loc, 1))
 			T.update_connections()
 			T.update_icon()
