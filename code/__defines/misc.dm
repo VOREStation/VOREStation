@@ -162,3 +162,8 @@
 #define CAT_NORMAL 1
 #define CAT_HIDDEN 2
 #define CAT_COIN   4
+
+//Antag Faction Visbility
+#define ANTAG_HIDDEN	"Hidden"
+#define ANTAG_SHARED	"Shared"
+#define ANTAG_KNOWN		"Known"
