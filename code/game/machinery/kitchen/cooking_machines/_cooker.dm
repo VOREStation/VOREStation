@@ -119,20 +119,21 @@
 		cook_path = /obj/item/weapon/reagent_containers/food/snacks/variable
 	var/obj/item/weapon/reagent_containers/food/snacks/result = new cook_path(src) //Holy typepaths, Batman.
 
-	if(cooking_obj.reagents && cooking_obj.reagents.total_volume)
-		cooking_obj.reagents.trans_to(result, cooking_obj.reagents.total_volume)
-
 	// Set icon and appearance.
 	change_product_appearance(result)
 
 	// Update strings.
 	change_product_strings(result)
 
-	// Set cooked data.
+	// Set cooked data. trans_to and trans_to_obj must be kept separate, as trans_to fails on snacks due to them failing is_open_container().
 	var/obj/item/weapon/reagent_containers/food/snacks/food_item = cooking_obj
 	if(istype(food_item) && islist(food_item.cooked))
+		if(cooking_obj.reagents && cooking_obj.reagents.total_volume)
+			cooking_obj.reagents.trans_to_obj(result, cooking_obj.reagents.total_volume)
 		result.cooked = food_item.cooked.Copy()
 	else
+		if(cooking_obj.reagents && cooking_obj.reagents.total_volume)
+			cooking_obj.reagents.trans_to(result, cooking_obj.reagents.total_volume)
 		result.cooked = list()
 	result.cooked |= cook_type
 
