@@ -89,8 +89,9 @@
 				continue
 
 			if(M.nutrition >= 100) //Drain them until there's no nutrients left. Slowly "absorb" them.
+				var/oldnutrition = (M.nutrition * 0.1)
 				M.nutrition = (M.nutrition * 0.9)
-				owner.nutrition += (M.nutrition * 0.1)
+				owner.nutrition += oldnutrition
 			else if(M.nutrition < 100) //When they're finally drained.
 				absorb_living(M)
 
