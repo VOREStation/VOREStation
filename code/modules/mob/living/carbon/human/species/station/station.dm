@@ -32,7 +32,7 @@
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	primitive_form = "Stok"
 	darksight = 3
-	gluttonous = 1
+//	gluttonous = 1 // Vorestation edit. Redundant feature.
 	slowdown = 0.5
 	brute_mod = 0.8
 	num_alternate_languages = 2
@@ -94,7 +94,7 @@
 	slowdown = -0.5
 	brute_mod = 1.15
 	burn_mod =  1.15
-	gluttonous = 1
+//	gluttonous = 1 // Vorestation edit. Redundant feature.
 	num_alternate_languages = 2
 	secondary_langs = list("Siik'tajr")
 	name_language = "Siik'tajr"

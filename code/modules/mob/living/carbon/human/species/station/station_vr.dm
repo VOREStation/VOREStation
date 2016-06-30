@@ -1,3 +1,8 @@
+/datum/species/human
+	color_mult = 1
+	icobase = 'icons/mob/human_races/r_human_vr.dmi'
+	deform = 'icons/mob/human_races/r_def_human_vr.dmi'
+
 /datum/species/sergal
 	name = "Sergal"
 	name_plural = "Sergals"
@@ -107,9 +112,13 @@
 	min_age = 17
 	max_age = 80
 
-	blurb = "Nevreans are a race of avian and dinosaur-like creatures living on Tal. They belong to a group of races that hails from Eltus. "
+	blurb = "Nevreans are a race of avian and dinosaur-like creatures living on Tal. They belong to a group of races that hails from Eltus, \
+	in the Vilous system. Unlike sergals whom they share a star system with, their species is a very peaceful one. They possess remarkable \
+	intelligence and very skillful hands that are put use for constructing precision instruments, but tire-out fast when repeatedly working \
+	over and over again. Consequently, they struggle to make copies of same things. Both genders have a voice that echoes a lot. Their natural \
+	tone oscillates between tenor and soprano. They are excessively noisy when they quarrel in their native language."
 
-	primitive_form = "Farwa" //POLARISTODO - Add other monkeytypes
+//	primitive_form = "Farwa" //POLARISTODO - Add other monkeytypes
 
 	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
@@ -142,13 +151,13 @@
 	min_age = 17
 	max_age = 80
 
-	blurb = "The fox-like Zorren are native to Virgo-Prime, however there are two distinct varieties of Zorren one with large ears and shorter fur, and the other with longer fur that is a bit more vibrant.  \
-	The long-eared, short-furred Zorren have come to be known as Flatland Zorren as that is where most of their settlements are located. \
-	The Flatland Zorren are somewhat tribal and shamanistic as they have only recently started to be hired by the Trans-Stellar Corporations. \
-	The other variety of Zorren are known as Highland Zorren as they frequently settle in hilly and/or mountainous areas, \
-	they have a differing societal structure than the Flatland Zorren having a more feudal social structure, like the Flatland Zorren, \
-	the Highland Zorren have also only recently been hired by the Trans-Stellar Corporations, but thanks to the different social structure they seem to have adjusted better to their new lives. \
-	Though similar fox-like beings have been seen they are different than the Zorren."
+	blurb = "The fox-like Zorren are native to Virgo-Prime, however there are two distinct varieties of Zorren one with large ears and shorter fur, \
+	and the other with longer fur that is a bit more vibrant. The long-eared, short-furred Zorren have come to be known as Flatland Zorren as that \
+	is where most of their settlements are located. The Flatland Zorren are somewhat tribal and shamanistic as they have only recently started to be \
+	hired by the Trans-Stellar Corporations. The other variety of Zorren are known as Highland Zorren as they frequently settle in hilly and/or \
+	mountainous areas, they have a differing societal structure than the Flatland Zorren having a more feudal social structure, like the Flatland Zorren, \
+	the Highland Zorren have also only recently been hired by the Trans-Stellar Corporations, but thanks to the different social structure they seem to \
+	have adjusted better to their new lives. Though similar fox-like beings have been seen they are different than the Zorren."
 /* VOREStation Removal
 	cold_level_1 = 200 //Default 260
 	cold_level_2 = 140 //Default 200
@@ -187,13 +196,13 @@
 	min_age = 17
 	max_age = 80
 
-	blurb = "The fox-like Zorren are native to Virgo-Prime, however there are two distinct varieties of Zorren one with large ears and shorter fur, and the other with longer fur that is a bit more vibrant.  \
-	The long-eared, short-furred Zorren have come to be known as Flatland Zorren as that is where most of their settlements are located. \
-	The Flatland Zorren are somewhat tribal and shamanistic as they have only recently started to be hired by the Trans-Stellar Corporations. \
-	The other variety of Zorren are known as Highland Zorren as they frequently settle in hilly and/or mountainous areas, \
-	they have a differing societal structure than the Flatland Zorren having a more feudal social structure, like the Flatland Zorren, \
-	the Highland Zorren have also only recently been hired by the Trans-Stellar Corporations, but thanks to the different social structure they seem to have adjusted better to their new lives. \
-	Though similar fox-like beings have been seen they are different than the Zorren."
+	blurb = "The fox-like Zorren are native to Virgo-Prime, however there are two distinct varieties of Zorren one with large ears and shorter fur, \
+	and the other with longer fur that is a bit more vibrant. The long-eared, short-furred Zorren have come to be known as Flatland Zorren as that is \
+	where most of their settlements are located. The Flatland Zorren are somewhat tribal and shamanistic as they have only recently started to be \
+	hired by the Trans-Stellar Corporations. The other variety of Zorren are known as Highland Zorren as they frequently settle in hilly and/or \
+	mountainous areas, they have a differing societal structure than the Flatland Zorren having a more feudal social structure, like the Flatland Zorren, \
+	the Highland Zorren have also only recently been hired by the Trans-Stellar Corporations, but thanks to the different social structure they \
+	seem to have adjusted better to their new lives. Though similar fox-like beings have been seen they are different than the Zorren."
 /* VOREStation Removal
 	cold_level_1 = 280 //Default 260 - Lower is better
 	cold_level_2 = 220 //Default 200
@@ -231,7 +240,7 @@
 	tail_animation = 'icons/mob/species/vulpkanin/tail.dmi' // probably need more than just one of each, but w/e
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	darksight = 5 //worse than cats, but better than lizards. -- Poojawa
-	gluttonous = 1
+//	gluttonous = 1
 	num_alternate_languages = 2
 	color_mult = 1
 	egg_type = "Tajaran" //also placeholder. because I see other things using it
@@ -242,8 +251,6 @@
 	to the degree it can cause conflict with more rigorous and strict authorities. They speak a guttural language known as 'Canilunzt' \
     which has a heavy emphasis on utilizing tail positioning and ear twitches to communicate intent."
 
-//	flags = HAS_LIPS
-//	clothing_flags = HAS_UNDERWEAR | HAS_UNDERSHIRT | HAS_SOCKS
 	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 /*	bodyflags = FEET_PADDED | HAS_TAIL | HAS_HEAD_ACCESSORY | HAS_MARKINGS | HAS_SKIN_COLOR | TAIL_WAGGING | HAS_FUR // Paradise stuff	dietflags = DIET_OMNI
@@ -253,17 +260,6 @@
 
 	min_age = 17
 	max_age = 80
-
-/* // I figured both of these things aren't exactly needed - Poojawa
-
-	allowed_consumed_mobs = list(/mob/living/simple_animal/mouse, /mob/living/simple_animal/lizard, /mob/living/simple_animal/chick, /mob/living/simple_animal/chicken,
-								 /mob/living/simple_animal/crab, /mob/living/simple_animal/butterfly, /mob/living/simple_animal/parrot, /mob/living/simple_animal/tribble)
-
-	suicide_messages = list(
-		"is attempting to bite their tongue off!",
-		"is jamming their claws into their eye sockets!",
-		"is twisting their own neck!",
-		"is holding their breath!") */
 
 //datum/species/vulpkanin //just to write it out, no idea where any of it goes -- Pooj
 //	egg_type = "Vulpkanin"
