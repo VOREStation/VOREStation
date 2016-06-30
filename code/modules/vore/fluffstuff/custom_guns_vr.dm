@@ -280,6 +280,7 @@
 		force = 3//Not so obscenely robust
 		attack_verb = list("hit", "melee'd")
 		hitsound = null
+	update_icon()
 
 
 /obj/item/weapon/gun/projectile/automatic/fluff/crestrose/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
