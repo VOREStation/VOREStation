@@ -259,6 +259,9 @@ var/list/organ_cache = list()
 	min_bruised_damage = 15
 	min_broken_damage = 35
 
+/obj/item/organ/proc/digitize() //Used to make the circuit-brain. On this level in the event more circuit-organs are added/tweaks are wanted.
+	robotize()
+
 /obj/item/organ/emp_act(severity)
 	if(!(robotic >= ORGAN_ROBOT))
 		return
