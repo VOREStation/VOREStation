@@ -27,7 +27,7 @@ var/datum/antagonist/technomancer/technomancers
 
 /datum/antagonist/technomancer/update_antag_mob(var/datum/mind/technomancer)
 	..()
-	technomancer.store_memory("<B>Remember:</B> Do not forget to purchase the functions you need.")
+	technomancer.store_memory("<B>Remember:</B> Do not forget to purchase the functions and equipment you need.")
 	technomancer.current.real_name = "[pick(wizard_first)] [pick(wizard_second)]"
 	technomancer.current.name = technomancer.current.real_name
 
@@ -45,6 +45,24 @@ var/datum/antagonist/technomancer/technomancers
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/device/flashlight(technomancer_mob), slot_belt)
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(technomancer_mob), slot_shoes)
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/clothing/head/technomancer/master(technomancer_mob), slot_head)
+	technomancer_mob.update_icons()
+	return 1
+
+/datum/antagonist/technomancer/proc/equip_apprentice(var/mob/living/carbon/human/technomancer_mob)
+
+	technomancer_mob.equip_to_slot_or_del(new /obj/item/clothing/under/technomancer/apprentice(technomancer_mob), slot_w_uniform)
+	create_id("Techno-apprentice", technomancer_mob)
+	technomancer_mob.equip_to_slot_or_del(new /obj/item/weapon/disposable_teleporter/free(technomancer_mob), slot_r_store)
+
+	var/obj/item/weapon/technomancer_catalog/apprentice/catalog = new /obj/item/weapon/technomancer_catalog/apprentice()
+	catalog.bind_to_owner(technomancer_mob)
+	technomancer_mob.equip_to_slot_or_del(catalog, slot_l_store)
+
+	technomancer_mob.equip_to_slot_or_del(new /obj/item/device/radio/headset(technomancer_mob), slot_l_ear)
+	technomancer_mob.equip_to_slot_or_del(new /obj/item/weapon/technomancer_core(technomancer_mob), slot_back)
+	technomancer_mob.equip_to_slot_or_del(new /obj/item/device/flashlight(technomancer_mob), slot_belt)
+	technomancer_mob.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(technomancer_mob), slot_shoes)
+	technomancer_mob.equip_to_slot_or_del(new /obj/item/clothing/head/technomancer/apprentice(technomancer_mob), slot_head)
 	technomancer_mob.update_icons()
 	return 1
 

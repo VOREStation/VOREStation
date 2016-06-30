@@ -3,6 +3,7 @@
 	desc = "This creates a link to a target that drains electricity, converts it to energy that the Core can use, then absorbs it.  \
 	Every second, electricity is stolen until the link is broken by the target moving too far away, or having no more energy left.  \
 	Can drain from powercells, microbatteries, and other Cores.  The beam created by the siphoning is harmful to touch."
+	enhancement_desc = "Rate of siphoning is doubled."
 	cost = 150
 	obj_path = /obj/item/weapon/spell/energy_siphon
 	ability_icon_state = "tech_energysiphon"
@@ -100,6 +101,8 @@
 		for(var/atom/movable/AM in things_to_drain)
 			if(AM.drain_power(1) <= 0)
 				things_to_drain.Remove(AM)
+		if(!things_to_drain.len)
+			return
 		var/charge_to_steal = round(flow_remaining / things_to_drain.len) // This is to drain all the cells evenly.
 		for(var/atom/movable/AM in things_to_drain)
 			var/big_number = AM.drain_power(0,0,charge_to_steal / CELLRATE) // This drains the cell, and leaves us with a big number.
@@ -117,14 +120,12 @@
 				H.nutrition = max(H.nutrition - nutrition_to_steal, 0)
 				var/nutrition_delta = old_nutrition - H.nutrition
 				charge_to_give += nutrition_delta * SIPHON_FBP_TO_ENERGY
-				world << "Stole [nutrition_delta * SIPHON_FBP_TO_ENERGY] energy from [H]'s microcell."
 				flow_remaining = flow_remaining - nutrition_to_steal / 0.025
 			// Let's steal some energy from another Technomancer.
 			if(istype(H.back, /obj/item/weapon/technomancer_core) && H != user)
 				var/obj/item/weapon/technomancer_core/their_core = H.back
 				if(their_core.pay_energy(flow_remaining / 2)) // Don't give energy from nothing.
 					charge_to_give += flow_remaining * SIPHON_CORE_TO_ENERGY
-					world << "Stole [flow_remaining * SIPHON_CORE_TO_ENERGY] energy from [H]'s Core."
 					flow_remaining = 0
 
 	if(charge_to_give) // Shock anyone standing in the beam.

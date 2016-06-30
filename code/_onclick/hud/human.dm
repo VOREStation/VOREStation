@@ -389,6 +389,7 @@
 /obj/screen/wizard/instability
 	name = "instability"
 	icon_state = "instability-1"
+	invisibility = 0
 
 /obj/screen/wizard/energy
 	name = "energy"

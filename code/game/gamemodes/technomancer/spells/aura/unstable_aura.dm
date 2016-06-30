@@ -24,10 +24,18 @@
 
 		var/damage_to_inflict = max(L.health / L.maxHealth, 0) // Otherwise, those in crit would actually be healed.
 
+		var/armor_factor = abs(L.getarmor(null, "energy") - 100)
+
+		damage_to_inflict = damage_to_inflict * armor_factor
+
 		if(L.isSynthetic())
 			L.adjustBruteLoss(damage_to_inflict)
+			if(damage_to_inflict && prob(10))
+				L << "<span class='danger'>Your chassis seems to slowly be decaying and breaking down.</span>"
 		else
 			L.adjustToxLoss(damage_to_inflict)
+			if(damage_to_inflict && prob(10))
+				L << "<span class='danger'>You feel almost like you're melting from the inside!</span>"
 
 
 	owner.adjust_instability(2)

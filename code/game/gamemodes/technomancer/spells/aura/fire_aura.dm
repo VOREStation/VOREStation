@@ -3,6 +3,7 @@
 	desc = "This causes everyone within four meters of you to heat up, eventually burning to death if they remain for too long.  \
 	This does not affect you or your allies.  It also causes a large amount of fire to erupt around you, however the main threat is \
 	still the heating up."
+	enhancement_desc = "Increased heat generation, more fires, and higher temperature cap."
 	cost = 150
 	obj_path = /obj/item/weapon/spell/aura/fire
 	ability_icon_state = "tech_fireaura"
@@ -19,7 +20,7 @@
 		qdel(src)
 	var/list/nearby_things = range(4,owner)
 
-	var/fire_prob = 5
+	var/fire_prob = 10
 	var/temp_change = 25
 	var/temp_cap = 500
 	var/fire_power = 2

@@ -25,7 +25,6 @@
 	origin = user
 	if(light_color)
 		spawn(1)
-			world << "Woo!"
 			set_light(inserter.spell_light_range, inserter.spell_light_intensity, inserter.spell_color)
 	on_insert()
 

@@ -45,6 +45,7 @@
 	name = "Recall"
 	desc = "This function teleports you to where you placed a mark using the Mark function.  Without the Mark function, this \
 	function is useless.  Note that teleporting takes three seconds.  Being incapacitated while teleporting will cancel it."
+	enhancement_desc = "Recall takes two seconds instead of three."
 	cost = 50
 	obj_path = /obj/item/weapon/spell/recall
 	ability_icon_state = "tech_recall"
@@ -65,6 +66,8 @@
 			visible_message("<span class='warning'>\The [user] starts glowing!</span>")
 			var/light_intensity = 2
 			var/time_left = 3
+			if(check_for_scepter())
+				time_left = 2
 			while(time_left)
 				if(user.incapacitated())
 					visible_message("<span class='notice'>\The [user]'s glow fades.</span>")

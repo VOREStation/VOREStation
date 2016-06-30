@@ -3,7 +3,7 @@
 	desc = "This function injects various regenetive medical compounds and nanomachines, in an effort to restart the body, \
 	however this must be done soon after they die, as this will have no effect on people who have died long ago.  It also doesn't \
 	resolve whatever caused them to die originally."
-	cost = 250
+	cost = 100
 	obj_path = /obj/item/weapon/spell/resurrect
 	ability_icon_state = "tech_resurrect"
 

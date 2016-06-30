@@ -20,7 +20,7 @@
 	slowdown = 0
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 	var/active = 0
-	var/damage_to_energy_multiplier = 50.0 //Determines how much energy to charge for blocking, e.g. 20 damage attack = 1000 energy cost
+	var/damage_to_energy_multiplier = 50.0 //Determines how much energy to charge for blocking, e.g. 20 damage attack = 750 energy cost
 	var/datum/effect/effect/system/spark_spread/spark_system = null
 	var/block_percentage = 75
 
@@ -30,7 +30,7 @@
 	spark_system.set_up(5, 0, src)
 
 /obj/item/clothing/suit/armor/shield/Destroy()
-	spark_system = null
+	qdel(spark_system)
 	..()
 
 /obj/item/clothing/suit/armor/shield/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
@@ -38,7 +38,13 @@
 	if(!active)
 		return 0
 
-	var/damage_blocked = damage * (block_percentage / 100)
+	var/modified_block_percentage = block_percentage
+
+	if(issmall(user)) // Smaller shield means better protection.
+		modified_block_percentage += 15
+
+
+	var/damage_blocked = damage * (modified_block_percentage / 100)
 
 	var/damage_to_energy_cost = (damage_to_energy_multiplier * damage_blocked)
 

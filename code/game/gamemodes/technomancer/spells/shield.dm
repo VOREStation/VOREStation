@@ -29,7 +29,16 @@
 	if(user.incapacitated())
 		return 0
 
-	var/damage_to_energy_cost = (damage_to_energy_multiplier * damage)
+	var/damage_to_energy_cost = damage_to_energy_multiplier * damage
+
+	if(issmall(user)) // Smaller shields are more efficent.
+		damage_to_energy_cost *= 0.75
+
+	if(istype(owner.get_other_hand(src), src.type)) // Two shields in both hands.
+		damage_to_energy_cost *= 0.75
+
+	else if(check_for_scepter())
+		damage_to_energy_cost *= 0.50
 
 	if(!pay_energy(damage_to_energy_cost))
 		owner << "<span class='danger'>Your shield fades due to lack of energy!</span>"

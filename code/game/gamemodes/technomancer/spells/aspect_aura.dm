@@ -21,7 +21,6 @@
 		if(!spell.aspect || spell.aspect == ASPECT_CHROMATIC)
 			user << "<span class='warning'>You cannot combine \the [spell] with \the [src], as the aspects are incompatable.</span>"
 			return
-		world << spell.aspect
 		user.drop_item(src)
 		src.loc = null
 		spawn(1)

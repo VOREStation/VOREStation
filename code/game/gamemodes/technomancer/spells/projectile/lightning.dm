@@ -28,7 +28,7 @@
 	tracer_type = /obj/effect/projectile/lightning/tracer
 	impact_type = /obj/effect/projectile/lightning/impact
 
-	var/power = 30				//How hard it will hit for with electrocute_act().
+	var/power = 60				//How hard it will hit for with electrocute_act().
 
 /obj/item/projectile/beam/lightning/attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier=0)
 	if(ishuman(target_mob))

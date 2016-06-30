@@ -5,6 +5,7 @@
 	Available creatures are; mice, crabs, parrots, bats, goats, cats, corgis, spiders, and space carp. \
 	The creatures take a few moments to be teleported to the targeted tile. Note that the creatures summoned are \
 	not inherently loyal to the technomancer, and that the creatures will be hurt slightly from being teleported to you."
+	enhancement_desc = "Summoned entities will never harm their summoner."
 	cost = 200
 	obj_path = /obj/item/weapon/spell/summon/summon_creature
 
@@ -39,6 +40,6 @@
 	if(check_for_scepter())
 //		summoned.faction = "technomancer"
 		if(istype(summoned, /mob/living/simple_animal/hostile))
-			var/mob/living/simple_animal/hostile/SAH = summoned
-			SAH.friends.Add(owner)
+			var/mob/living/simple_animal/SA = summoned
+			SA.friends.Add(owner)
 	summoned.health = round(summoned.maxHealth * 0.7)

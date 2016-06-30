@@ -2,6 +2,7 @@
 	name = "Chilling Aura"
 	desc = "Lowers the core body temperature of everyone around you (except for your friends), causing them to freeze to death if \
 	they stay within four meters of you."
+	enhancement_desc = "The chill becomes lethal."
 	cost = 150
 	obj_path = /obj/item/weapon/spell/aura/frost
 	ability_icon_state = "tech_frostaura"
@@ -20,7 +21,7 @@
 	var/list/nearby_mobs = range(4,owner)
 
 	var/temp_change = 25
-	var/temp_cap = 260
+	var/temp_cap = 260 // Just above the damage threshold, for humans.  Unathi are less fortunate.
 
 	if(check_for_scepter())
 		temp_change = 50

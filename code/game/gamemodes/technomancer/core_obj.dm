@@ -12,6 +12,9 @@
 		TECH_MATERIAL = 8, TECH_ENGINEERING = 8, TECH_POWER = 8, TECH_BLUESPACE = 10,
 		TECH_COMBAT = 7, TECH_MAGNET = 9, TECH_DATA = 5
 		)
+	sprite_sheets = list(
+		"Teshari" = 'icons/mob/species/seromi/back.dmi'
+		)
 	var/energy = 10000
 	var/max_energy = 10000
 	var/regen_rate = 50				// 200 seconds to full
@@ -39,12 +42,14 @@
 	processing_objects.Remove(src)
 	..()
 
+// Add the spell buttons to the HUD.
 /obj/item/weapon/technomancer_core/equipped(mob/user)
 	wearer = user
 	for(var/obj/spellbutton/spell in spells)
 		wearer.ability_master.add_technomancer_ability(spell, spell.ability_icon_state)
 	..()
 
+// Removes the spell buttons from the HUD.
 /obj/item/weapon/technomancer_core/dropped(mob/user)
 	for(var/obj/screen/ability/obj_based/technomancer/A in wearer.ability_master.ability_objects)
 		wearer.ability_master.remove_ability(A)
@@ -204,14 +209,6 @@
 
 //Variants which the wizard can buy.
 
-//For those wanting to look like a classic wizard.
-/obj/item/weapon/technomancer_core/classic
-	name = "wizard's cloak"
-	desc = "It appears to be a simple cloak, however it is actually a deceptively hidden manipulation core.  For those who wish to \
-	fool the Lessers into believing that you are a real magician."
-	icon_state = "wizard_cloak"
-	item_state = "wizard_cloak"
-
 //High risk, high reward core.
 /obj/item/weapon/technomancer_core/unstable
 	name = "unstable core"
@@ -235,10 +232,11 @@
 /obj/item/weapon/technomancer_core/rapid
 	name = "rapid core"
 	desc = "A bewilderingly complex 'black box' that allows the wearer to accomplish amazing feats.  This one has a superior \
-	recharge rate, at the price of storage capacity."
+	recharge rate, at the price of storage capacity.  It also includes integrated motion assistance, increasing agility somewhat."
 	energy = 7000
 	max_energy = 7000
 	regen_rate = 70 //100 seconds to full
+	slowdown = -1
 
 //Big batteries but slow regen, buying energy spells is highly recommended.
 /obj/item/weapon/technomancer_core/bulky
@@ -249,6 +247,7 @@
 	energy = 20000
 	max_energy = 20000
 	regen_rate = 25 //800 seconds to full
+	slowdown = 1
 
 // Using this can result in abilities costing less energy.  If you're lucky.
 /obj/item/weapon/technomancer_core/recycling

@@ -2,6 +2,7 @@
 	name = "Passwall"
 	desc = "An uncommon function that allows the user to phase through matter (usually walls) in order to enter or exit a room.  Be careful you don't pass into \
 	somewhere dangerous."
+	enhancement_desc = "Cost per tile is halved."
 	cost = 100
 	obj_path = /obj/item/weapon/spell/passwall
 	ability_icon_state = "tech_passwall"
@@ -40,7 +41,7 @@
 
 		while(i)
 			checked_turf = get_step(checked_turf, direction) //Advance in the given direction
-			total_cost += 800 //Phasing through matter's expensive, you know.
+			total_cost += check_for_scepter() ? 400 : 800 //Phasing through matter's expensive, you know.
 			i--
 			if(!checked_turf.density) //If we found a destination (a non-dense turf), then we can stop.
 				var/dense_objs_on_turf = 0

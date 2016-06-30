@@ -1,6 +1,7 @@
 /datum/technomancer/spell/illusion
 	name = "Illusion"
 	desc = "Allows you to create and control a holographic illusion, that can take the form of most object or entities."
+	enhancement_desc = "Illusions will be made of hard light, allowing the interception of attacks, appearing more realistic."
 	cost = 100
 	obj_path = /obj/item/weapon/spell/illusion
 	ability_icon_state = "tech_illusion"
@@ -106,7 +107,6 @@
 	if(path && path.len)
 		step_to(src, path[1])
 		path -= path[1]
-		world << "Walking!"
 		return
 	else
 		if(targeted_loc)

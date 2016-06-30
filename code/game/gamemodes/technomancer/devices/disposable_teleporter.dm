@@ -31,7 +31,6 @@
 		user << "<span class='danger'>\The [src] has ran out of uses, and is now useless to you!</span>"
 		return
 	else
-		world << "Ideal"
 		var/area/A = input(user, "Area to teleport to", "Teleportation") in teleportlocs
 		if(!A)
 			return
@@ -54,7 +53,7 @@
 
 		//Copypasta
 		valid_turfs:
-			for(var/turf/simulated/T in A)
+			for(var/turf/simulated/T in A.contents)
 				if(T.density || istype(T, /turf/simulated/mineral)) //Don't blink to vacuum or a wall
 					continue
 				for(var/atom/movable/stuff in T.contents)

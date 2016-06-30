@@ -76,6 +76,11 @@ var/list/all_technomancer_presets = typesof(/datum/technomancer/presets) - /datu
 		for(var/P in all_technomancer_presets)
 			preset_instances += new P()
 
+/obj/item/weapon/technomancer_catalog/apprentice/set_up()
+	..()
+	for(var/datum/technomancer/assistance/apprentice/A in assistance_instances)
+		assistance_instances.Remove(A)
+
 // Proc: attack_self()
 // Parameters: 1 (user - the mob clicking on the catelog)
 // Description: Shows an HTML window, to buy equipment and spells, if the user is the legitimate owner.  Otherwise it cannot be used.
@@ -233,7 +238,7 @@ var/list/all_technomancer_presets = typesof(/datum/technomancer/presets) - /datu
 		// This needs less copypasta.
 		if(href_list["item_choice"])
 			var/datum/technomancer/desired_object = null
-			for(var/datum/technomancer/O in list(equipment_instances, consumable_instances, assistance_instances))
+			for(var/datum/technomancer/O in equipment_instances + consumable_instances + assistance_instances)
 				if(O.name == href_list["item_choice"])
 					desired_object = O
 					break

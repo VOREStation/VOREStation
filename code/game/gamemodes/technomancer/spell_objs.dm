@@ -169,7 +169,7 @@
 // Parameters: 0
 // Description: Terrible code to check if a scepter is in the offhand, returns 1 if yes.
 /obj/item/weapon/spell/proc/check_for_scepter()
-	if(!src) return 0
+	if(!src || !owner) return 0
 	if(owner.r_hand == src)
 		if(istype(owner.l_hand, /obj/item/weapon/scepter))
 			return 1

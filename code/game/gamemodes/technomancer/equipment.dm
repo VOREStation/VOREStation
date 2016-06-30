@@ -1,10 +1,3 @@
-/datum/technomancer/equipment/classic_core
-	name = "Classic Core"
-	desc = "A core cleverly disguised as an ordinary cloth cape, perfect for those wanting to make others think they are a \
-	real magician.  This version has the same performance as the default core."
-	cost = 100
-	obj_path = /obj/item/weapon/technomancer_core/classic
-
 /datum/technomancer/equipment/default_core
 	name = "Manipulation Core"
 	desc = "The default core that you most likely already have.  This is here in-case you change your mind after buying \

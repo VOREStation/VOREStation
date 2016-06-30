@@ -20,8 +20,8 @@
 	set_light(3, 2, l_color = "#006AFF")
 	spark_system = PoolOrNew(/datum/effect/effect/system/spark_spread)
 	spark_system.set_up(5, 0, src)
-	owner << "<span class='notice'>Your shield will expire in 20 seconds.</span>"
-	spawn(20 SECONDS)
+	owner << "<span class='notice'>Your shield will expire in 3 seconds!</span>"
+	spawn(3 SECONDS)
 		if(src)
 			owner << "<span class='danger'>Your shield expires!</span>"
 			qdel(src)
@@ -48,13 +48,16 @@
 		if(istype(damage_source, /obj/item/projectile))
 			var/obj/item/projectile/P = damage_source
 
-			if(P.starting)
+			if(P.starting && !P.reflected)
 				visible_message("<span class='danger'>\The [user]'s [src.name] reflects [attack_text]!</span>")
 
 				var/turf/curloc = get_turf(user)
 
 				// redirect the projectile
 				P.redirect(P.starting.x, P.starting.y, curloc, user)
+				P.reflected = 1
+				if(check_for_scepter())
+					P.damage = P.damage * 1.5
 
 				spark_system.start()
 				playsound(user.loc, 'sound/weapons/blade1.ogg', 50, 1)
@@ -88,25 +91,3 @@
 						qdel(src)
 		return 1
 	return 0
-
-/*
-/obj/item/clothing/suit/armor/laserproof/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
-	if(istype(damage_source, /obj/item/projectile/energy) || istype(damage_source, /obj/item/projectile/beam))
-		var/obj/item/projectile/P = damage_source
-
-		var/reflectchance = 40 - round(damage/3)
-		if(!(def_zone in list(BP_TORSO, BP_GROIN)))
-			reflectchance /= 2
-		if(P.starting && prob(reflectchance))
-			visible_message("<span class='danger'>\The [user]'s [src.name] reflects [attack_text]!</span>")
-
-			// Find a turf near or on the original location to bounce to
-			var/new_x = P.starting.x + pick(0, 0, 0, 0, 0, -1, 1, -2, 2)
-			var/new_y = P.starting.y + pick(0, 0, 0, 0, 0, -1, 1, -2, 2)
-			var/turf/curloc = get_turf(user)
-
-			// redirect the projectile
-			P.redirect(new_x, new_y, curloc, user)
-
-			return PROJECTILE_CONTINUE // complete projectile permutation
-*/

@@ -1,7 +1,7 @@
 /datum/technomancer/spell/haste
 	name = "Haste"
 	desc = "Allows the target to run at speeds that should not be possible for an ordinary being.  For three seconds, the target \
-	runs extremly fast, and cannot be slowed."
+	runs extremly fast, and cannot be slowed by any means."
 	cost = 100
 	obj_path = /obj/item/weapon/spell/insert/haste
 	ability_icon_state = "tech_haste"

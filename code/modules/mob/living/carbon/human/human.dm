@@ -341,6 +341,8 @@
 
 	var/obj/item/organ/external/affected_organ = get_organ(check_zone(def_zone))
 	var/siemens_coeff = base_siemens_coeff * get_siemens_coefficient_organ(affected_organ)
+	if(fire_stacks < 0) // Water makes you more conductive.
+		siemens_coeff *= 1.5
 
 	return ..(shock_damage, source, siemens_coeff, def_zone)
 

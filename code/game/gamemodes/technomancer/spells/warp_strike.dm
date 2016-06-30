@@ -7,7 +7,7 @@
 /obj/item/weapon/spell/warp_strike
 	name = "warp strike"
 	desc = "The answer to the problem of bringing a knife to a gun fight."
-	icon_state = "warp_strike"
+	icon_state = "tech_warpstrike"
 	cast_methods = CAST_RANGED
 	aspect = ASPECT_TELE
 	var/datum/effect/effect/system/spark_spread/sparks

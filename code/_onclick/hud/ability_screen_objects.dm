@@ -186,16 +186,6 @@
 	..()
 	ability_master = new /obj/screen/movable/ability_master(src)
 
-/mob/verb/test_ability_master()
-	if(!ability_master)
-		ability_master = new /obj/screen/movable/ability_master(src)
-	ability_master.add_ability("wiz_mm")
-
-/mob/verb/test_ability_master2()
-	if(!ability_master)
-		ability_master = new /obj/screen/movable/ability_master(src)
-	ability_master.add_verb_ability(client,/client/verb/who, "who test", "wiz_fireball", list())
-
 ///////////ACTUAL ABILITIES////////////
 //This is what you click to do things//
 ///////////////////////////////////////

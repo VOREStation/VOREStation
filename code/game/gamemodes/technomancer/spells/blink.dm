@@ -1,7 +1,8 @@
 /datum/technomancer/spell/blink
 	name = "Blink"
 	desc = "Force the target to teleport a short distance away.  This target could be anything from something lying on the ground, to someone trying to \
-	fight you, or even yourself."
+	fight you, or even yourself.  Using this on someone next to you makes their potential distance after teleportation greater."
+	enhancement_desc = "Blink distance is increased greatly."
 	cost = 100
 	obj_path = /obj/item/weapon/spell/blink
 
@@ -19,7 +20,7 @@
 	var/list/targets = list()
 
 	valid_turfs:
-		for(var/turf/simulated/T in view(AM, range))
+		for(var/turf/simulated/T in range(AM, range))
 			if(T.density || istype(T, /turf/simulated/mineral)) //Don't blink to vacuum or a wall
 				continue
 			for(var/atom/movable/stuff in T.contents)
@@ -48,13 +49,22 @@
 /obj/item/weapon/spell/blink/on_ranged_cast(atom/hit_atom, mob/user)
 	if(istype(hit_atom, /atom/movable))
 		var/atom/movable/AM = hit_atom
-		safe_blink(AM)
+		if(check_for_scepter())
+			safe_blink(user, 6)
+		else
+			safe_blink(AM, 3)
 
 /obj/item/weapon/spell/blink/on_use_cast(mob/user)
-	safe_blink(user, 6)
+	if(check_for_scepter())
+		safe_blink(user, 10)
+	else
+		safe_blink(user, 6)
 
 /obj/item/weapon/spell/blink/on_melee_cast(atom/hit_atom, mob/living/user, def_zone)
 	if(istype(hit_atom, /atom/movable))
 		var/atom/movable/AM = hit_atom
 		visible_message("<span class='danger'>\The [user] reaches out towards \the [AM] with a glowing hand.</span>")
-		safe_blink(AM, 6)
+		if(check_for_scepter())
+			safe_blink(user, 10)
+		else
+			safe_blink(AM, 6)
