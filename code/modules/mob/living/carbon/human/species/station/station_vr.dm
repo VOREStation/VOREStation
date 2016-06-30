@@ -1,8 +1,3 @@
-/datum/species/human
-	color_mult = 1
-	icobase = 'icons/mob/human_races/r_human_vr.dmi'
-	deform = 'icons/mob/human_races/r_def_human_vr.dmi'
-
 /datum/species/sergal
 	name = "Sergal"
 	name_plural = "Sergals"
@@ -34,7 +29,7 @@
 	lifespan, but due to their lust for violence, only a handful have ever survived beyond the age of 80, such as the infamous and \
 	legendary General Rain Silves who is claimed to have lived to 5000."
 
-	primitive_form = "Farwa" //POLARISTODO - Add other monkeytypes
+	primitive_form = "Sergaling"
 
 	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
@@ -80,7 +75,7 @@
 	surviving in open air for long periods of time. However, Akula even today still require a high humidity environment to avoid drying out \
 	after a few days, which would make life on an arid world like Virgo-Prime nearly impossible if it were not for Skrellean technology to aid them."
 
-	primitive_form = "Farwa" //POLARISTODO - Add other monkeytypes
+	primitive_form = "Sobaka"
 
 	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
@@ -118,7 +113,7 @@
 	over and over again. Consequently, they struggle to make copies of same things. Both genders have a voice that echoes a lot. Their natural \
 	tone oscillates between tenor and soprano. They are excessively noisy when they quarrel in their native language."
 
-//	primitive_form = "Farwa" //POLARISTODO - Add other monkeytypes
+	primitive_form = "Sparra"
 
 	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
@@ -141,7 +136,6 @@
 	deform = 'icons/mob/human_races/r_def_fox.dmi'
 	tail = "tail"
 	icobase_tail = 1
-	//primitive_form = /mob/living/carbon/monkey/tajara //We don't have fennec-monkey sprites.
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	num_alternate_languages = 2
 	secondary_langs = list("Siik'tajr")
@@ -167,6 +161,8 @@
 	heat_level_2 = 380 //Default 400
 	heat_level_3 = 800 //Default 1000
 */
+	//primitive_form = "" //We don't have fox-monkey sprites.
+
 	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 	flesh_color = "#AFA59E"
@@ -186,7 +182,6 @@
 	deform = 'icons/mob/human_races/r_def_fennec.dmi'
 	tail = "tail"
 	icobase_tail = 1
-	//primitive_form = /mob/living/carbon/monkey/tajara //We don't have fennec-monkey sprites.
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	num_alternate_languages = 2
 	secondary_langs = list("Siik'tajr")
@@ -212,6 +207,7 @@
 	heat_level_2 = 500 //Default 400
 	heat_level_3 = 1100 //Default 1000
 */
+	//primitive_form = "" //We don't have fennec-monkey sprites.
 	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
@@ -251,12 +247,13 @@
 	to the degree it can cause conflict with more rigorous and strict authorities. They speak a guttural language known as 'Canilunzt' \
     which has a heavy emphasis on utilizing tail positioning and ear twitches to communicate intent."
 
+	primitive_form = "Wolpin"
+
 	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
-/*	bodyflags = FEET_PADDED | HAS_TAIL | HAS_HEAD_ACCESSORY | HAS_MARKINGS | HAS_SKIN_COLOR | TAIL_WAGGING | HAS_FUR // Paradise stuff	dietflags = DIET_OMNI
+
 	flesh_color = "#966464"
 	base_color = "#B43214"
-	butt_sprite = "vulp" */
 
 	min_age = 17
 	max_age = 80
@@ -288,3 +285,7 @@
 
 /datum/species/human
 	egg_type = "Human"
+	color_mult = 1
+	icobase = 'icons/mob/human_races/r_human_vr.dmi'
+	deform = 'icons/mob/human_races/r_def_human_vr.dmi'
+	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
