@@ -1,4 +1,0 @@
- author: Datraen
-delete-after: True
-changes: 
-  - rscadd: "Antagonistic factions can now be set and viewed on the uplink. Visibilities can be set for these as well, to help identify sympathizers/potential aids, or to hide the information from those outside of your faction."
