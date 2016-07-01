@@ -76,9 +76,15 @@
 	else if(istype(check, /obj/item/weapon/disk/nuclear))
 		user << "Central Command would kill you if you [cook_type] that."
 		return 0
-	else if(!istype(check) && !istype(check, /obj/item/weapon/holder))
+	else if(!istype(check) && !istype(check, /obj/item/weapon/holder) && !istype(check, /obj/item/organ))
 		user << "<span class='warning'>That's not edible.</span>"
 		return 0
+		
+	if(istype(I, /obj/item/organ))
+		var/obj/item/organ/O = I
+		if(O.robotic)
+			user << "<span class='warning'>That would probably break [src].</span>"
+			return
 
 	// Gotta hurt.
 	if(istype(cooking_obj, /obj/item/weapon/holder))
@@ -125,15 +131,15 @@
 	// Update strings.
 	change_product_strings(result)
 
-	// Set cooked data. trans_to and trans_to_obj must be kept separate, as trans_to fails on snacks due to them failing is_open_container().
+	// Copy reagents over. trans_to_obj must be used, as trans_to fails for snacks due to is_open_container() failing.
+	if(cooking_obj.reagents && cooking_obj.reagents.total_volume)
+		cooking_obj.reagents.trans_to_obj(result, cooking_obj.reagents.total_volume)
+		
+	// Set cooked data.
 	var/obj/item/weapon/reagent_containers/food/snacks/food_item = cooking_obj
 	if(istype(food_item) && islist(food_item.cooked))
-		if(cooking_obj.reagents && cooking_obj.reagents.total_volume)
-			cooking_obj.reagents.trans_to_obj(result, cooking_obj.reagents.total_volume)
 		result.cooked = food_item.cooked.Copy()
 	else
-		if(cooking_obj.reagents && cooking_obj.reagents.total_volume)
-			cooking_obj.reagents.trans_to(result, cooking_obj.reagents.total_volume)
 		result.cooked = list()
 	result.cooked |= cook_type
 
@@ -152,11 +158,13 @@
 		var/failed
 		var/overcook_period = max(Floor(cook_time/5),1)
 		cooking_obj = result
+		var/count = overcook_period
 		while(1)
 			sleep(overcook_period)
+			count += overcook_period
 			if(!cooking || !result || result.loc != src)
 				failed = 1
-			else if(prob(burn_chance))
+			else if(prob(burn_chance) || count == cook_time)	//Fail before it has a chance to cook again.
 				// You dun goofed.
 				qdel(cooking_obj)
 				cooking_obj = new /obj/item/weapon/reagent_containers/food/snacks/badrecipe(src)
