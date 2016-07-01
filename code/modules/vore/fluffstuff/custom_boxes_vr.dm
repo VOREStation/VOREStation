@@ -67,6 +67,7 @@
 /obj/item/weapon/storage/backpack/dufflebag/sec/fluff/joanrisu
 	name = "Joan's Workbag"
 	desc = "A duffle bag Joan uses to carry her work equipment."
+	slowdown = 0
 
 	New()
 		..()
@@ -85,6 +86,7 @@
 /obj/item/weapon/storage/backpack/dufflebag/sec/fluff/Katarina
 	name = "Katarina's Workbag"
 	desc = "A duffle bag Katarina uses to carry her tools."
+	slowdown = 0
 
 	New()
 		..()

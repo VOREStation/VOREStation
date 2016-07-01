@@ -79,6 +79,8 @@
 	desc = "A beautifully crafted rapier owned by Joan Risu. It has a thin blade and is used for quick attacks."
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "joanaria"
+	icon_override = 'icons/vore/custom_items_vr.dmi'
+	item_state = "joanariamob"
 	origin_tech = "materials=7"
 	force = 15
 	sharp = 1
@@ -201,7 +203,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	icon_state = "Flag_Nanotrasen"
 
 	icon_override = 'icons/vore/custom_items_vr.dmi'
-	item_state = "Flag_Nanotrasen"
+	item_state = "Flag_Nanotrasen_mob"
 
 	attack_self(mob/user as mob)
 		if(isliving(user))
@@ -220,7 +222,28 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 		icon_state = "flag_federation"
 
 		icon_override = 'icons/vore/custom_items_vr.dmi'
-		item_state = "flag_federation"
+		item_state = "flag_federation_mob"
+
+	xcom
+		name = "Alien Combat Command Banner"
+		desc = "A banner bearing the symbol of a task force fighting an unknown alien power."
+
+		icon = 'icons/vore/custom_items_vr.dmi'
+		icon_state = "flag_xcom"
+
+		icon_override = 'icons/vore/custom_items_vr.dmi'
+		item_state = "flag_xcom_mob"
+
+	advent
+		name = "ALIEN Coalition Banner"
+		desc = "A banner belonging to traitors who work for an unknown alien power."
+
+		icon = 'icons/vore/custom_items_vr.dmi'
+		icon_state = "flag_advent"
+
+		icon_override = 'icons/vore/custom_items_vr.dmi'
+		item_state = "flag_advent_mob"
+
 
 //zodiacshadow: ?
 /obj/item/device/radio/headset/fluff/zodiacshadow
