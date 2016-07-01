@@ -22,8 +22,8 @@
 	var/condi = 0
 	var/useramount = 15 // Last used amount
 	var/pillamount = 10
-	var/bottlesprite = 1
-	var/pillsprite = 1
+	var/bottlesprite = "1"
+	var/pillsprite = "1"
 	var/max_pill_count = 20
 	var/tab = "home"
 	var/analyze_data[0]
