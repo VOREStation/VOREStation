@@ -5,6 +5,9 @@
 		return L.mob_size <= MOB_SMALL
 	return 0
 
+//returns the number of size categories between two mob_sizes, rounded. Positive means A is larger than B
+/proc/mob_size_difference(var/mob_size_A, var/mob_size_B)
+	return round(log(2, mob_size_A/mob_size_B), 1)
 
 /proc/istiny(A)
 	if(A && istype(A, /mob/living))
@@ -571,3 +574,6 @@ var/list/global/organ_rel_size = list(
 	"l_foot" = 10,
 	"r_foot" = 10,
 )
+
+/mob/proc/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /obj/screen/fullscreen/flash)
+	return

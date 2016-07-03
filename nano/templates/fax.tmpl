@@ -1,0 +1,55 @@
+<!-- 
+	Interface for fax machines 
+	See: code/modules/paperwork/faxmachine.dm
+-->
+
+<div class='item'>
+	<div class='itemLabel'>
+		Confirm Identity:
+	</div>
+	{{:helper.link(data.scanName ? data.scanName : 'Insert Card', 'check', {'scan' : 1})}}
+	{{if data.authenticated}}
+		{{:helper.link('Log Out', 'eject', {'logout' : 1}, null, 'redButton')}}
+	{{else}}
+		{{:helper.link('Log In', 'person', {'auth' : 1}, data.scanName ? null : 'linkOff')}}
+	{{/if}}
+</div>
+{{if data.authenticated}}
+
+	<hr>
+	
+	<div class='item'>
+		<div class='itemLabel'>
+			<b>Logged in to:</b>
+		</div>
+		<div class='itemContent'>
+			{{:data.bossName}} Quantum Entanglement Network
+		</div>
+	</div>
+	{{if data.copyItem}}
+		{{if data.cooldown}}
+			<div class='item'><b>Transmitter arrays realigning. Please stand by.</b></div>
+		{{else}}
+			<div class='item'>
+				<div class='itemLabel'><b>Currently sending:</b></div>
+				<div class='itemContent'>{{:data.copyItemName}}</div>
+			</div>
+			<div class='item'>
+				<div class='itemLabel'><b>Sending to:</b></div>
+				{{:helper.link(data.destination, 'tag', {'dept' : 1})}}
+			</div>
+			<div class='item'>{{:helper.link('Send', 'signal-diag', {'send' : 1})}}</div>
+		{{/if}}
+	{{else}}
+		<div class='item'>Please insert paper to send via secure connection.</div>
+		{{if data.cooldown}}
+			<div class='item'><b>Transmitter arrays realigning. Please stand by.</b></div>
+		{{/if}}
+	{{/if}}
+{{else}}
+	<div class='item'>Proper authentication is required to use this device.</div>
+{{/if}}
+{{if data.copyItem}}
+	<div class='item'>{{:helper.link('Remove Item', 'eject', {'remove' : 1})}}</div>
+{{/if}}
+

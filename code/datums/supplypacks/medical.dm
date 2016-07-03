@@ -42,7 +42,7 @@
 /datum/supply_packs/med/cryobag
 	name = "Stasis bag crate"
 	contains = list(/obj/item/bodybag/cryobag = 3)
-	cost = 50
+	cost = 40
 	containertype = /obj/structure/closet/crate/medical
 	containername = "Stasis bag crate"
 
@@ -75,7 +75,7 @@
 			/obj/item/weapon/storage/box/gloves,
 			/obj/item/weapon/storage/belt/medical = 3
 			)
-	cost = 15
+	cost = 10
 	containertype = "/obj/structure/closet/crate"
 	containername = "Sterile equipment crate"
 
@@ -87,7 +87,7 @@
 			/obj/item/device/radio/headset/headset_med/alt = 3,
 			/obj/item/clothing/suit/storage/hooded/wintercoat/medical = 3
 			)
-	cost = 15
+	cost = 10
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Medical surplus equipment"
 	access = access_medical
@@ -111,7 +111,7 @@
 			/obj/item/device/flashlight/pen,
 			/obj/item/weapon/reagent_containers/syringe
 			)
-	cost = 60
+	cost = 50
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Chief medical officer equipment"
 	access = access_cmo
@@ -157,7 +157,7 @@
 			/obj/item/weapon/storage/box/pillbottles,
 			/obj/item/weapon/reagent_containers/syringe
 			)
-	cost = 15
+	cost = 20
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Chemist equipment"
 	access = access_chemistry
@@ -204,7 +204,7 @@
 			/obj/item/weapon/pen,
 			/obj/item/weapon/cartridge/medical
 			)
-	cost = 15
+	cost = 20
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Psychiatrist equipment"
 	access = access_psychiatrist
@@ -225,7 +225,7 @@
 			/obj/item/weapon/storage/box/masks,
 			/obj/item/weapon/storage/box/gloves
 			)
-	cost = 15
+	cost = 10
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Medical scrubs crate"
 	access = access_medical_equip
@@ -269,7 +269,7 @@
 			/obj/item/weapon/storage/box/masks,
 			/obj/item/weapon/storage/box/gloves
 			)
-	cost = 15
+	cost = 10
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Medical uniform crate"
 	access = access_medical_equip

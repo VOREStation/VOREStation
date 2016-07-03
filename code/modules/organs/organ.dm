@@ -50,6 +50,7 @@ var/list/organ_cache = list()
 		max_damage = min_broken_damage * 2
 	if(istype(holder))
 		src.owner = holder
+		src.w_class = max(src.w_class + mob_size_difference(holder.mob_size, MOB_MEDIUM), 1) //smaller mobs have smaller organs.
 		species = all_species["Human"]
 		if(holder.dna)
 			dna = holder.dna.Clone()
@@ -257,6 +258,9 @@ var/list/organ_cache = list()
 	robotic = ORGAN_ASSISTED
 	min_bruised_damage = 15
 	min_broken_damage = 35
+
+/obj/item/organ/proc/digitize() //Used to make the circuit-brain. On this level in the event more circuit-organs are added/tweaks are wanted.
+	robotize()
 
 /obj/item/organ/emp_act(severity)
 	if(!(robotic >= ORGAN_ROBOT))

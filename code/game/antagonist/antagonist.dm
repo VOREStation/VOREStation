@@ -99,19 +99,23 @@
 
 	// Prune restricted status. Broke it up for readability.
 	// Note that this is done before jobs are handed out.
-	for(var/datum/mind/player in ticker.mode.get_players_for_role(role_type, id))
+	candidates = ticker.mode.get_players_for_role(role_type, id, ghosts_only)
+	for(var/datum/mind/player in candidates)
 		if(ghosts_only && !istype(player.current, /mob/observer/dead))
-			log_debug("[key_name(player)] is not eligible to become a [role_text]: Only ghosts may join as this role!")
+			candidates -= player
+			log_debug("[key_name(player)] is not eligible to become a [role_text]: Only ghosts may join as this role! They have been removed from the draft.")
 		else if(player.special_role)
-			log_debug("[key_name(player)] is not eligible to become a [role_text]: They already have a special role ([player.special_role])!")
+			candidates -= player
+			log_debug("[key_name(player)] is not eligible to become a [role_text]: They already have a special role ([player.special_role])! They have been removed from the draft.")
 		else if (player in pending_antagonists)
-			log_debug("[key_name(player)] is not eligible to become a [role_text]: They have already been selected for this role!")
+			candidates -= player
+			log_debug("[key_name(player)] is not eligible to become a [role_text]: They have already been selected for this role! They have been removed from the draft.")
 		else if(!can_become_antag(player))
-			log_debug("[key_name(player)] is not eligible to become a [role_text]: They are blacklisted for this role!")
+			candidates -= player
+			log_debug("[key_name(player)] is not eligible to become a [role_text]: They are blacklisted for this role! They have been removed from the draft.")
 		else if(player_is_antag(player))
-			log_debug("[key_name(player)] is not eligible to become a [role_text]: They are already an antagonist!")
-		else
-			candidates += player
+			candidates -= player
+			log_debug("[key_name(player)] is not eligible to become a [role_text]: They are already an antagonist! They have been removed from the draft.")
 
 	return candidates
 

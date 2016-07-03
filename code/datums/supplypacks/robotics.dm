@@ -58,7 +58,7 @@
 			/obj/item/weapon/circuitboard/mecha/ripley/main,
 			/obj/item/weapon/circuitboard/mecha/ripley/peripherals
 			)
-	cost = 30
+	cost = 25
 	containertype = /obj/structure/closet/crate/secure
 	containername = "APLU \"Ripley\" Circuit Crate"
 	access = access_robotics

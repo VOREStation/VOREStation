@@ -88,7 +88,7 @@
 		if(!giver && user.unEquip(I))
 			I.forceMove(src)
 			giver = I
-			updateUsrDialog()
+			nanomanager.update_uis(src)
 		else if(giver)
 			user << "<span class='warning'>There is already ID card inside.</span>"
 		return
@@ -102,40 +102,51 @@
 		return
 
 	user.set_machine(src)
-	var/dat
 
-	if (mode == 1) //Logs
-		dat += "<h3>Activity log</h3><br>"
-		for (var/entry in internal_log)
-			dat += "[entry]<br><hr>"
-		dat += "<a href='?src=\ref[src];action=print'>Print</a><br>"
-		dat += "<a href='?src=\ref[src];mode=0'>Back</a><br>"
-	else
-		dat += "<h3>Guest pass terminal #[uid]</h3><br>"
-		dat += "<a href='?src=\ref[src];mode=1'>View activity log</a><br><br>"
-		dat += "Issuing ID: <a href='?src=\ref[src];action=id'>[giver]</a><br>"
-		dat += "Issued to: <a href='?src=\ref[src];choice=giv_name'>[giv_name]</a><br>"
-		dat += "Reason:  <a href='?src=\ref[src];choice=reason'>[reason]</a><br>"
-		dat += "Duration (minutes):  <a href='?src=\ref[src];choice=duration'>[duration] m</a><br>"
-		dat += "Access to areas:<br>"
-		if (giver && giver.access)
-			for (var/A in giver.access)
-				var/area = get_access_desc(A)
-				if (A in accesses)
-					area = "<b>[area]</b>"
-				dat += "<a href='?src=\ref[src];choice=access;access=[A]'>[area]</a><br>"
-		dat += "<br><a href='?src=\ref[src];action=issue'>Issue pass</a><br>"
+	ui_interact(user)
 
-	user << browse(dat, "window=guestpass;size=400x520")
-	onclose(user, "guestpass")
+/**
+ *  Display the NanoUI window for the guest pass console.
+ *
+ *  See NanoUI documentation for details.
+ */
+/obj/machinery/computer/guestpass/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+	user.set_machine(src)
 
+	var/list/data = list()
+
+	var/area_list[0]
+
+	if (giver && giver.access)
+		data["access"] = giver.access
+		for (var/A in giver.access)
+			if(A in accesses)
+				area_list[++area_list.len] = list("area" = A, "area_name" = get_access_desc(A), "on" = 1)
+			else
+				area_list[++area_list.len] = list("area" = A, "area_name" = get_access_desc(A), "on" = null)
+
+	data["giver"] = giver
+	data["giveName"] = giv_name
+	data["reason"] = reason
+	data["duration"] = duration
+	data["area"] = area_list
+	data["mode"] = mode
+	data["log"] = internal_log
+	data["uid"] = uid
+
+	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if (!ui)
+		ui = new(user, src, ui_key, "guest_pass.tmpl", src.name, 400, 520)
+		ui.set_initial_data(data)
+		ui.open()
+		//ui.set_auto_update(5)
 
 /obj/machinery/computer/guestpass/Topic(href, href_list)
 	if(..())
 		return 1
 	usr.set_machine(src)
 	if (href_list["mode"])
-		mode = text2num(href_list["mode"])
+		mode = href_list["mode"]
 
 	if (href_list["choice"])
 		switch(href_list["choice"])
@@ -182,7 +193,6 @@
 					if (istype(I, /obj/item/weapon/card/id) && usr.unEquip(I))
 						I.loc = src
 						giver = I
-				updateUsrDialog()
 
 			if ("print")
 				var/dat = "<h3>Activity log of guest pass terminal #[uid]</h3><br>"
@@ -214,5 +224,6 @@
 					pass.name = "guest pass #[number]"
 				else
 					usr << "<span class='warning'>Cannot issue pass without issuing ID.</span>"
-	updateUsrDialog()
-	return
+
+	src.add_fingerprint(usr)
+	nanomanager.update_uis(src)

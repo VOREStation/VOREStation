@@ -207,3 +207,4 @@
 	joint = "structural ligament"
 	dislocated = -1
 	vital = 0
+	slot_flags = SLOT_BELT
