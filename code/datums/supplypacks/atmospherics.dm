@@ -52,7 +52,7 @@
 
 /datum/supply_packs/atmos/canister_sleeping_agent
 	name = "N2O gas canister"
-	cost = 40
+	cost = 15
 	containername = "N2O gas canister crate"
 	containertype = /obj/structure/closet/crate/secure/large
 	access = access_atmospherics
@@ -60,7 +60,7 @@
 
 /datum/supply_packs/atmos/canister_carbon_dioxide
 	name = "Carbon dioxide gas canister"
-	cost = 40
+	cost = 15
 	containername = "CO2 canister crate"
 	containertype = /obj/structure/closet/crate/secure/large
 	access = access_atmospherics
@@ -69,7 +69,7 @@
 /datum/supply_packs/atmos/air_dispenser
 	contains = list(/obj/machinery/pipedispenser/orderable)
 	name = "Pipe Dispenser"
-	cost = 35
+	cost = 25
 	containertype = /obj/structure/closet/crate/secure/large
 	containername = "Pipe Dispenser Crate"
 	access = access_atmospherics
@@ -77,7 +77,7 @@
 /datum/supply_packs/atmos/disposals_dispenser
 	contains = list(/obj/machinery/pipedispenser/disposal/orderable)
 	name = "Disposals Pipe Dispenser"
-	cost = 35
+	cost = 25
 	containertype = /obj/structure/closet/crate/secure/large
 	containername = "Disposal Dispenser Crate"
 	access = access_atmospherics

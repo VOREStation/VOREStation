@@ -17,21 +17,21 @@
 /datum/supply_packs/hydro/farwa
 	name = "Farwa crate"
 	contains = list (/obj/item/weapon/storage/box/monkeycubes/farwacubes)
-	cost = 30
+	cost = 20
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Farwa crate"
 
 /datum/supply_packs/hydro/neara
 	name = "Neaera crate"
 	contains = list (/obj/item/weapon/storage/box/monkeycubes/neaeracubes)
-	cost = 30
+	cost = 20
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Neaera crate"
 
 /datum/supply_packs/hydro/stok
 	name = "Stok crate"
 	contains = list (/obj/item/weapon/storage/box/monkeycubes/stokcubes)
-	cost = 30
+	cost = 20
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Stok crate"
 
@@ -55,14 +55,14 @@
 			/obj/item/weapon/material/minihoe,
 			/obj/item/weapon/storage/box/botanydisk
 			)
-	cost = 15
+	cost = 20
 	containertype = /obj/structure/closet/crate/hydroponics
 	containername = "Hydroponics crate"
 	access = access_hydroponics
 
 /datum/supply_packs/hydro/cow
 	name = "Cow crate"
-	cost = 30
+	cost = 25
 	containertype = /obj/structure/largecrate/animal/cow
 	containername = "Cow crate"
 	access = access_hydroponics
@@ -76,7 +76,7 @@
 
 /datum/supply_packs/hydro/chicken
 	name = "Chicken crate"
-	cost = 20
+	cost = 25
 	containertype = /obj/structure/largecrate/animal/chick
 	containername = "Chicken crate"
 	access = access_hydroponics
@@ -123,7 +123,7 @@
 /datum/supply_packs/hydro/watertank
 	name = "Water tank crate"
 	contains = list(/obj/structure/reagent_dispensers/watertank)
-	cost = 8
+	cost = 10
 	containertype = /obj/structure/largecrate
 	containername = "water tank crate"
 
@@ -142,7 +142,7 @@
 
 /datum/supply_packs/hydro/tray
 	name = "Empty hydroponics tray"
-	cost = 30
+	cost = 20
 	containertype = /obj/structure/closet/crate/hydroponics
 	containername = "Hydroponics tray crate"
 	contains = list(/obj/machinery/portable_atmospherics/hydroponics{anchored = 0})

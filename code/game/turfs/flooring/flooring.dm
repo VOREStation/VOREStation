@@ -59,6 +59,12 @@ var/list/flooring_types
 /decl/flooring/snow
 	name = "snow"
 	desc = "A layer of many tiny bits of frozen water. It's hard to tell how deep it is."
+	icon = 'icons/turf/snow_new.dmi'
+	icon_base = "snow"
+
+/decl/flooring/snow/snow2
+	name = "snow"
+	desc = "A layer of many tiny bits of frozen water. It's hard to tell how deep it is."
 	icon = 'icons/turf/snow.dmi'
 	icon_base = "snow"
 	flags = TURF_HAS_EDGES
