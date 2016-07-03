@@ -310,6 +310,7 @@
 					P.update_hair()
 					P.update_body()
 					P.update_tail_showing()
+					P.updateicon()
 
 			if(O.nutrition > 0)
 				O.nutrition -= 2
@@ -350,6 +351,7 @@
 				P.update_hair()
 				P.update_body()
 				P.update_tail_showing()
+				P.updateicon()
 				switch(O.egg_type)
 					if("Unathi")
 						var/obj/structure/closet/secure_closet/egg/unathi/J = new /obj/structure/closet/secure_closet/egg/unathi(O.loc)
@@ -441,6 +443,7 @@
 				P.update_hair()
 				P.update_body()
 				P.update_tail_showing()
+				P.updateicon()
 				switch(O.egg_type)
 					if("Unathi")
 						var/obj/structure/closet/secure_closet/egg/unathi/J = new /obj/structure/closet/secure_closet/egg/unathi(O.loc)
