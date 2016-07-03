@@ -16,7 +16,6 @@
 
 	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_TONE | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
-//	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR //VOREStation Edit - Skin Color // NEED SPRITES. CAN'T USE IT UNTIL WE HAVE SPRITES.
 
 
 /datum/species/human/get_bodytype(var/mob/living/carbon/human/H)
@@ -32,7 +31,7 @@
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	primitive_form = "Stok"
 	darksight = 3
-	gluttonous = 1
+//	gluttonous = 1 // Vorestation edit. Redundant feature.
 	slowdown = 0.5
 	brute_mod = 0.8
 	num_alternate_languages = 2
@@ -94,7 +93,7 @@
 	slowdown = -0.5
 	brute_mod = 1.15
 	burn_mod =  1.15
-	gluttonous = 1
+//	gluttonous = 1 // Vorestation edit. Redundant feature.
 	num_alternate_languages = 2
 	secondary_langs = list("Siik'tajr")
 	name_language = "Siik'tajr"

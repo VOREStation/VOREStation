@@ -15,6 +15,7 @@
 	secondary_langs = list("Sagaru")
 	name_language = "Sagaru"
 	color_mult = 1
+	egg_type = "Sergal"
 
 	min_age = 17
 	max_age = 80
@@ -61,6 +62,7 @@
 	secondary_langs = list("Skrellian")
 	name_language = "Skrellian"
 	color_mult = 1
+	egg_type = "Akula"
 
 	min_age = 17
 	max_age = 80
@@ -100,6 +102,7 @@
 	secondary_langs = list("Birdsong")
 	name_language = "Birdsong"
 	color_mult = 1
+	egg_type = "Nevrean"
 
 	min_age = 17
 	max_age = 80
@@ -137,6 +140,7 @@
 	num_alternate_languages = 2
 	secondary_langs = list("Siik'tajr")
 	name_language = "Siik'tajr"
+	egg_type = "Tajaran" //Placeholder.
 
 	min_age = 17
 	max_age = 80
@@ -182,6 +186,7 @@
 	num_alternate_languages = 2
 	secondary_langs = list("Siik'tajr")
 	name_language = "Siik'tajr"
+	egg_type = "Tajaran" //Placeholder.
 
 	min_age = 17
 	max_age = 80
@@ -234,6 +239,7 @@
 //	gluttonous = 1
 	num_alternate_languages = 2
 	color_mult = 1
+	egg_type = "Tajaran" //also placeholder. because I see other things using it
 
 	blurb = "Vulpkanin are a species of sharp-witted canine-pideds residing on the planet Altam just barely within the \
 	dual-star Vazzend system. Their politically de-centralized society and independent natures have led them to become a species and \
@@ -252,13 +258,19 @@
 	min_age = 17
 	max_age = 80
 
+//datum/species/vulpkanin //just to write it out, no idea where any of it goes -- Pooj
+//	egg_type = "Vulpkanin"
+
 /datum/species/unathi
+	egg_type = "Unathi"
 	spawn_flags = SPECIES_CAN_JOIN //Species_can_join is the only spawn flag all the races get, so that none of them will be whitelist only if whitelist is enabled.
 
 /datum/species/tajaran
+	egg_type = "Tajaran"
 	spawn_flags = SPECIES_CAN_JOIN
 
 /datum/species/skrell
+	egg_type = "Skrell"
 	spawn_flags = SPECIES_CAN_JOIN
 
 /datum/species/diona
@@ -268,9 +280,11 @@
 	spawn_flags = SPECIES_CAN_JOIN
 
 /datum/species/shapeshifter/promethean
+	egg_type = "Slime"
 	spawn_flags = SPECIES_CAN_JOIN
 
 /datum/species/human
+	egg_type = "Human"
 	color_mult = 1
 	icobase = 'icons/mob/human_races/r_human_vr.dmi'
 	deform = 'icons/mob/human_races/r_def_human_vr.dmi'
