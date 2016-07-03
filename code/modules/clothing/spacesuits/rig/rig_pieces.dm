@@ -17,7 +17,7 @@
 		)
 	species_restricted = null
 
-/obj/item/clothing/gloves/rig
+/obj/item/clothing/gloves/gauntlets/rig
 	name = "gauntlets"
 	item_flags = THICKMATERIAL
 	body_parts_covered = HANDS
@@ -128,7 +128,7 @@
 	species_restricted = null
 	gender = PLURAL
 
-/obj/item/clothing/gloves/lightrig
+/obj/item/clothing/gloves/gauntlets/lightrig
 	name = "gloves"
 	flags = THICKMATERIAL
 	body_parts_covered = HANDS
