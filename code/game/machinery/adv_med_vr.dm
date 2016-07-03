@@ -13,19 +13,9 @@
 			else
 				objectprey++
 
-	incoming["livingprey"] = livingprey
-	incoming["humanprey"] = humanprey
-	incoming["objectprey"] = objectprey
+	incoming["livingPrey"] = livingprey
+	incoming["humanPrey"] = humanprey
+	incoming["objectPrey"] = objectprey
 	incoming["weight"] = H.weight
 
 	return incoming
-
-/obj/machinery/body_scanconsole/proc/format_occupant_data_vr(list/incoming)
-	var/message = ""
-
-	message += text("Body Weight (to scale): [incoming["weight"]]lbs / [incoming["weight"] / 2.20463]kg<br><HR>")
-
-	if(incoming["livingprey"] || incoming["humanprey"] || incoming["objectprey"])
-		message += text("<font color='red'>Foreign bodies detected:<br>[incoming["humanprey"] ? "- [incoming["humanprey"]] humanoid(s)<br>" : ""][incoming["livingprey"] ? "- [incoming["humanprey"]] non-humanoid(s)<br>" : ""][incoming["objectprey"] ? "- [incoming["humanprey"]] object(s)<br>" : ""]</font><hr>")
-
-	return message

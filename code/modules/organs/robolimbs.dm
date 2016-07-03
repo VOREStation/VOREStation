@@ -43,6 +43,11 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	var/list/monitor_styles			 		 			 //If empty, the model of limbs offers a head compatible with monitors.
 	var/parts = BP_ALL						 			 //Defines what parts said brand can replace on a body.
 
+/datum/robolimb/nanotrasen
+	company = "NanoTrasen"
+	desc = "A simple but efficient robotic limb, created by NanoTrasen."
+	icon = 'icons/mob/human_races/cyberlimbs/nanotrasen/nanotrasen_main.dmi'
+
 /datum/robolimb/bishop
 	company = "Bishop"
 	desc = "This limb has a white polymer casing with blue holo-displays."
@@ -190,6 +195,9 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 
 	zenghu
 		company = "Zeng-Hu"
+
+	nanotrasen
+		company = "NanoTrasen"
 
 /obj/item/weapon/disk/limb/New(var/newloc)
 	..()

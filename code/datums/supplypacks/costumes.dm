@@ -5,10 +5,10 @@
 
 
 /datum/supply_packs/costumes
-	group = "Costumes & Clothes"
+	group = "Costumes"
 
 /datum/supply_packs/randomised/costumes
-	group = "Costumes & Clothes"
+	group = "Costumes"
 
 /datum/supply_packs/costumes/wizard
 	name = "Wizard costume"
@@ -109,7 +109,7 @@
 	containertype = /obj/structure/closet
 	containername = "Formalwear for the best occasions."
 
-datum/supply_packs/misc/witch
+datum/supply_packs/costumes/witch
 	name = "Witch costume"
 	containername = "Witch costume"
 	containertype = /obj/structure/closet
@@ -124,7 +124,7 @@ datum/supply_packs/misc/witch
 /datum/supply_packs/randomised/costumes/costume_hats
 	name = "Costume hats"
 	containername = "Actor hats crate"
-	containertype = /obj/structure/closet
+	containertype = /obj/structure/closet/crate
 	cost = 10
 	num_contained = 3
 	contains = list(

@@ -103,7 +103,7 @@
 			/obj/item/clothing/glasses/material,
 			/obj/item/clothing/glasses/meson
 			)
-	cost = 15
+	cost = 10
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Shaft miner equipment"
 	access = access_mining
@@ -118,7 +118,7 @@
 /datum/supply_packs/supply/cargotrain
 	name = "Cargo Train Tug"
 	contains = list(/obj/vehicle/train/cargo/engine)
-	cost = 45
+	cost = 35
 	containertype = /obj/structure/largecrate
 	containername = "Cargo Train Tug Crate"
 

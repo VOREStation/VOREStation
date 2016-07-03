@@ -632,3 +632,9 @@
 /datum/sprite_accessory/tail/taur/spider
 	name = "Spider"
 	icon_state = "spider_s"
+
+/datum/sprite_accessory/tail/taur/tents
+	name = "Tentacles"
+	icon_state = "tent_s"
+
+

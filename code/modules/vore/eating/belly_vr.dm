@@ -158,7 +158,7 @@
 		prey.buckled.unbuckle_mob()
 
 	prey.forceMove(owner)
-	internal_contents += prey
+	internal_contents |= prey
 
 	if(inside_flavor)
 		prey << "<span class='notice'><B>[inside_flavor]</B></span>"

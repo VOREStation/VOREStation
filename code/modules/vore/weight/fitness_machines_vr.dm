@@ -105,12 +105,10 @@
 			"<span class='notice'>You jab the punching bag with your elbow.</span>",
 			"<span class='notice'>You hammer the clown right in it's face with your fist.</span>",
 			"<span class='notice'>A honk emits from the punching bag as you hit it.</span>")
-		var/sound = pick(
-			"punch",
-			"clownstep",
-			'sound/items/bikehorn.ogg')
 		user << message
-		playsound(src.loc, sound, 50, 1)
+		playsound(src.loc, 'sound/items/bikehorn.ogg', 50, 1)
+		playsound(src.loc, "clownstep", 50, 1)
+		playsound(src.loc, "punch", 50, 1)
 
 	else if(user.nutrition < 35)
 		user << "<span class='notice'>You need more energy to workout on the mat!</span>"

@@ -6,6 +6,7 @@
 	var/list/nanoui_items				// List of items for NanoUI use
 	var/nanoui_menu = 0					// The current menu we are in
 	var/list/nanoui_data = new 			// Additional data for NanoUI use
+	var/faction = ""					//Antag faction holder.
 
 	var/list/purchase_log = new
 	var/datum/mind/uplink_owner = null
@@ -96,6 +97,9 @@
 	var/title = "Remote Uplink"
 	var/data[0]
 	uses = user.mind.tcrystals
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		faction = H.antag_faction
 
 	data["welcome"] = welcome
 	data["crystals"] = uses
@@ -188,7 +192,10 @@
 				nanoui_data["exploit"]["faction"] =  html_encode(L.fields["faction"])
 				nanoui_data["exploit"]["religion"] =  html_encode(L.fields["religion"])
 				nanoui_data["exploit"]["fingerprint"] =  html_encode(L.fields["fingerprint"])
-
+				if(L.fields["antagvis"] == ANTAG_KNOWN || (faction == L.fields["antagfac"] && (L.fields["antagvis"] == ANTAG_SHARED)))
+					nanoui_data["exploit"]["antagfaction"] = html_encode(L.fields["antagfac"])
+				else
+					nanoui_data["exploit"]["antagfaction"] = html_encode("None")
 				nanoui_data["exploit_exists"] = 1
 				break
 

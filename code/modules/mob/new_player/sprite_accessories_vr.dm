@@ -38,6 +38,11 @@
 		gender = MALE
 		species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin") //Lets all the races be bald if they want.
 
+
+	una_hood
+		name = "Cobra Hood"
+		icon = 'icons/mob/human_face_vr.dmi'
+		icon_state = "soghun_hood"
 // Vulpa stuffs
 
 	vulp_hair_none

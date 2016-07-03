@@ -134,7 +134,7 @@
 		if(P.name != "Blank Card")
 			user << "You cannot write on that card."
 			return
-		var/cardtext = sanitize(input(user, "What do you wish to write on the card?", "Card Editing") as text|null, MAX_BOOK_MESSAGE_LEN)
+		var/cardtext = sanitize(input(user, "What do you wish to write on the card?", "Card Editing") as text|null, MAX_PAPER_MESSAGE_LEN)
 		if(!cardtext)
 			return
 		P.name = cardtext

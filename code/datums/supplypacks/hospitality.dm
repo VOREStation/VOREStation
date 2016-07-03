@@ -22,7 +22,7 @@
 			/obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale = 2,
 			/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer = 4,
 			)
-	cost = 20
+	cost = 10
 	containertype = /obj/structure/closet/crate
 	containername = "Party equipment"
 

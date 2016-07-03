@@ -65,14 +65,10 @@
 				M.adjustBruteLoss(2)
 				M.adjustFireLoss(3)
 
-				var/offset
-				if (M.weight > 137)
-					offset = 1 + ((M.weight - 137) / 137)
-				if (M.weight < 137)
-					offset = (137 - M.weight) / 137
+				var/offset = (1 + ((M.weight - 137) / 137)) // 130 pounds = .95 140 pounds = 1.02
 				var/difference = owner.size_multiplier / M.size_multiplier
 				if(offset) // If any different than default weight, multiply the % of offset.
-					owner.nutrition += offset*(10/difference)
+					owner.nutrition += offset*(10/difference) // 9.5 nutrition per digestion tick if they're 130 pounds and it's same size. 10.2 per digestion tick if they're 140 and it's same size. Etc etc.
 				else
 					owner.nutrition += (10/difference)
 
@@ -92,10 +88,11 @@
 			if(M.absorbed)
 				continue
 
-			if(M.nutrition >= 4) //Drain them until there's no nutrients left. Slowly "absorb" them.
-				M.nutrition -= 3
-				owner.nutrition += 3
-			else if(M.nutrition < 4) //When they're finally drained.
+			if(M.nutrition >= 100) //Drain them until there's no nutrients left. Slowly "absorb" them.
+				var/oldnutrition = (M.nutrition * 0.05)
+				M.nutrition = (M.nutrition * 0.95)
+				owner.nutrition += oldnutrition
+			else if(M.nutrition < 100) //When they're finally drained.
 				absorb_living(M)
 
 		return
@@ -328,6 +325,7 @@
 				continue
 
 			var/mob/living/carbon/human/O = owner
+			var/turf/T = get_turf(O)
 
 			if (O.custom_species)
 				var/defined_species = O.custom_species
@@ -355,56 +353,62 @@
 				P.update_tail_showing()
 				switch(O.species.egg_type)
 					if("Unathi")
-						var/obj/structure/closet/secure_closet/egg/unathi/J = new /obj/structure/closet/secure_closet/egg/unathi(O.loc)
+						var/obj/structure/closet/secure_closet/egg/unathi/J = new /obj/structure/closet/secure_closet/egg/unathi(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						for(var/mob/living/M in internal_contents)
 						internal_contents -= P
 					if("Tajaran")
-						var/obj/structure/closet/secure_closet/egg/tajaran/J = new /obj/structure/closet/secure_closet/egg/tajaran(O.loc)
+						var/obj/structure/closet/secure_closet/egg/tajaran/J = new /obj/structure/closet/secure_closet/egg/tajaran(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					if("Akula")
-						var/obj/structure/closet/secure_closet/egg/shark/J = new /obj/structure/closet/secure_closet/egg/shark(O.loc)
+						var/obj/structure/closet/secure_closet/egg/shark/J = new /obj/structure/closet/secure_closet/egg/shark(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					if("Skrell")
-						var/obj/structure/closet/secure_closet/egg/skrell/J = new /obj/structure/closet/secure_closet/egg/skrell(O.loc)
+						var/obj/structure/closet/secure_closet/egg/skrell/J = new /obj/structure/closet/secure_closet/egg/skrell(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					if("Sergal")
-						var/obj/structure/closet/secure_closet/egg/sergal/J = new /obj/structure/closet/secure_closet/egg/sergal(O.loc)
+						var/obj/structure/closet/secure_closet/egg/sergal/J = new /obj/structure/closet/secure_closet/egg/sergal(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					if("Human")
-						var/obj/structure/closet/secure_closet/egg/human/J = new /obj/structure/closet/secure_closet/egg/human(O.loc)
+						var/obj/structure/closet/secure_closet/egg/human/J = new /obj/structure/closet/secure_closet/egg/human(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					if("Slime")
-						var/obj/structure/closet/secure_closet/egg/slime/J = new /obj/structure/closet/secure_closet/egg/slime(O.loc)
+						var/obj/structure/closet/secure_closet/egg/slime/J = new /obj/structure/closet/secure_closet/egg/slime(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					if("Egg")
-						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(O.loc)
+						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(T.loc)
+						P.forceMove(J)
+						J.name = "[defined_species] egg"
+						J.desc = "This egg has a very unique look to it."
+						internal_contents -= P
+					if("Scree")
+						var/obj/structure/closet/secure_closet/egg/scree/J = new /obj/structure/closet/secure_closet/egg/scree(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					else
-						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(O.loc)
+						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
@@ -434,47 +438,53 @@
 				P.update_tail_showing()
 				switch(O.species.egg_type)
 					if("Unathi")
-						var/obj/structure/closet/secure_closet/egg/unathi/J = new /obj/structure/closet/secure_closet/egg/unathi(O.loc)
+						var/obj/structure/closet/secure_closet/egg/unathi/J = new /obj/structure/closet/secure_closet/egg/unathi(T.loc)
 						P.forceMove(J)
 						J.name = "Unathi egg"
 						internal_contents -= P
 					if("Tajaran")
-						var/obj/structure/closet/secure_closet/egg/tajaran/J = new /obj/structure/closet/secure_closet/egg/tajaran(O.loc)
+						var/obj/structure/closet/secure_closet/egg/tajaran/J = new /obj/structure/closet/secure_closet/egg/tajaran(T.loc)
 						P.forceMove(J)
 						J.name = "Tajaran egg"
 						internal_contents -= P
 					if("Akula")
-						var/obj/structure/closet/secure_closet/egg/shark/J = new /obj/structure/closet/secure_closet/egg/shark(O.loc)
+						var/obj/structure/closet/secure_closet/egg/shark/J = new /obj/structure/closet/secure_closet/egg/shark(T.loc)
 						P.forceMove(J)
 						J.name = "Akula egg"
 						internal_contents -= P
 					if("Skrell")
-						var/obj/structure/closet/secure_closet/egg/skrell/J = new /obj/structure/closet/secure_closet/egg/skrell(O.loc)
+						var/obj/structure/closet/secure_closet/egg/skrell/J = new /obj/structure/closet/secure_closet/egg/skrell(T.loc)
 						P.forceMove(J)
 						J.name = "Skrell egg"
 						internal_contents -= P
 					if("Sergal")
-						var/obj/structure/closet/secure_closet/egg/sergal/J = new /obj/structure/closet/secure_closet/egg/sergal(O.loc)
+						var/obj/structure/closet/secure_closet/egg/sergal/J = new /obj/structure/closet/secure_closet/egg/sergal(T.loc)
 						P.forceMove(J)
 						J.name = "Segal egg"
 						internal_contents -= P
 					if("Human")
-						var/obj/structure/closet/secure_closet/egg/human/J = new /obj/structure/closet/secure_closet/egg/human(O.loc)
+						var/obj/structure/closet/secure_closet/egg/human/J = new /obj/structure/closet/secure_closet/egg/human(T.loc)
 						P.forceMove(J)
 						J.name = "Human egg"
 						internal_contents -= P
 					if("Slime")
-						var/obj/structure/closet/secure_closet/egg/slime/J = new /obj/structure/closet/secure_closet/egg/slime(O.loc)
+						var/obj/structure/closet/secure_closet/egg/slime/J = new /obj/structure/closet/secure_closet/egg/slime(T.loc)
 						P.forceMove(J)
 						J.name = "Slime egg"
 						internal_contents -= P
 					if("Egg")
-						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(O.loc)
+						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(T.loc)
 						P.forceMove(J)
 						J.name = "Egg"
 						internal_contents -= P
+					if("Scree")
+						var/obj/structure/closet/secure_closet/egg/scree/J = new /obj/structure/closet/secure_closet/egg/scree(T.loc)
+						P.forceMove(J)
+						J.name = "Scree egg"
+						J.desc = "This egg has a very unique look to it."
+						internal_contents -= P
 					else
-						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(O.loc)
+						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(T.loc)
 						P.forceMove(J)
 						J.name = "Odd egg" //Something went wrong. Since the default is "egg", they shouldn't see this.
 						internal_contents -= P
@@ -487,6 +497,7 @@
 				continue
 
 			var/mob/living/carbon/human/O = owner
+			var/turf/T = get_turf(O)
 
 			if (O.custom_species)
 				var/defined_species = O.custom_species
@@ -506,55 +517,61 @@
 				P.update_body()
 				switch(O.species.egg_type)
 					if("Unathi")
-						var/obj/structure/closet/secure_closet/egg/unathi/J = new /obj/structure/closet/secure_closet/egg/unathi(O.loc)
+						var/obj/structure/closet/secure_closet/egg/unathi/J = new /obj/structure/closet/secure_closet/egg/unathi(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					if("Tajaran")
-						var/obj/structure/closet/secure_closet/egg/tajaran/J = new /obj/structure/closet/secure_closet/egg/tajaran(O.loc)
+						var/obj/structure/closet/secure_closet/egg/tajaran/J = new /obj/structure/closet/secure_closet/egg/tajaran(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					if("Akula")
-						var/obj/structure/closet/secure_closet/egg/shark/J = new /obj/structure/closet/secure_closet/egg/shark(O.loc)
+						var/obj/structure/closet/secure_closet/egg/shark/J = new /obj/structure/closet/secure_closet/egg/shark(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					if("Skrell")
-						var/obj/structure/closet/secure_closet/egg/skrell/J = new /obj/structure/closet/secure_closet/egg/skrell(O.loc)
+						var/obj/structure/closet/secure_closet/egg/skrell/J = new /obj/structure/closet/secure_closet/egg/skrell(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					if("Sergal")
-						var/obj/structure/closet/secure_closet/egg/sergal/J = new /obj/structure/closet/secure_closet/egg/sergal(O.loc)
+						var/obj/structure/closet/secure_closet/egg/sergal/J = new /obj/structure/closet/secure_closet/egg/sergal(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					if("Human")
-						var/obj/structure/closet/secure_closet/egg/human/J = new /obj/structure/closet/secure_closet/egg/human(O.loc)
+						var/obj/structure/closet/secure_closet/egg/human/J = new /obj/structure/closet/secure_closet/egg/human(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					if("Slime")
-						var/obj/structure/closet/secure_closet/egg/slime/J = new /obj/structure/closet/secure_closet/egg/slime(O.loc)
+						var/obj/structure/closet/secure_closet/egg/slime/J = new /obj/structure/closet/secure_closet/egg/slime(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					if("Egg")
-						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(O.loc)
+						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(T.loc)
+						P.forceMove(J)
+						J.name = "[defined_species] egg"
+						J.desc = "This egg has a very unique look to it."
+						internal_contents -= P
+					if("Scree")
+						var/obj/structure/closet/secure_closet/egg/scree/J = new /obj/structure/closet/secure_closet/egg/scree(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					else
-						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(O.loc)
+						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
@@ -577,47 +594,53 @@
 				P.update_body()
 				switch(O.species.egg_type)
 					if("Unathi")
-						var/obj/structure/closet/secure_closet/egg/unathi/J = new /obj/structure/closet/secure_closet/egg/unathi(O.loc)
+						var/obj/structure/closet/secure_closet/egg/unathi/J = new /obj/structure/closet/secure_closet/egg/unathi(T.loc)
 						P.forceMove(J)
 						J.name = "Unathi egg"
 						internal_contents -= P
 					if("Tajaran")
-						var/obj/structure/closet/secure_closet/egg/tajaran/J = new /obj/structure/closet/secure_closet/egg/tajaran(O.loc)
+						var/obj/structure/closet/secure_closet/egg/tajaran/J = new /obj/structure/closet/secure_closet/egg/tajaran(T.loc)
 						P.forceMove(J)
 						J.name = "Tajaran egg"
 						internal_contents -= P
 					if("Akula")
-						var/obj/structure/closet/secure_closet/egg/shark/J = new /obj/structure/closet/secure_closet/egg/shark(O.loc)
+						var/obj/structure/closet/secure_closet/egg/shark/J = new /obj/structure/closet/secure_closet/egg/shark(T.loc)
 						P.forceMove(J)
 						J.name = "Akula egg"
 						internal_contents -= P
 					if("Skrell")
-						var/obj/structure/closet/secure_closet/egg/skrell/J = new /obj/structure/closet/secure_closet/egg/skrell(O.loc)
+						var/obj/structure/closet/secure_closet/egg/skrell/J = new /obj/structure/closet/secure_closet/egg/skrell(T.loc)
 						P.forceMove(J)
 						J.name = "Skrell egg"
 						internal_contents -= P
 					if("Sergal")
-						var/obj/structure/closet/secure_closet/egg/sergal/J = new /obj/structure/closet/secure_closet/egg/sergal(O.loc)
+						var/obj/structure/closet/secure_closet/egg/sergal/J = new /obj/structure/closet/secure_closet/egg/sergal(T.loc)
 						P.forceMove(J)
 						J.name = "Segal egg"
 						internal_contents -= P
 					if("Human")
-						var/obj/structure/closet/secure_closet/egg/human/J = new /obj/structure/closet/secure_closet/egg/human(O.loc)
+						var/obj/structure/closet/secure_closet/egg/human/J = new /obj/structure/closet/secure_closet/egg/human(T.loc)
 						P.forceMove(J)
 						J.name = "Human egg"
 						internal_contents -= P
 					if("Slime")
-						var/obj/structure/closet/secure_closet/egg/slime/J = new /obj/structure/closet/secure_closet/egg/slime(O.loc)
+						var/obj/structure/closet/secure_closet/egg/slime/J = new /obj/structure/closet/secure_closet/egg/slime(T.loc)
 						P.forceMove(J)
 						J.name = "Slime egg"
 						internal_contents -= P
 					if("Egg")
-						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(O.loc)
+						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(T.loc)
 						P.forceMove(J)
 						J.name = "Egg"
 						internal_contents -= P
+					if("Scree")
+						var/obj/structure/closet/secure_closet/egg/scree/J = new /obj/structure/closet/secure_closet/egg/scree(T.loc)
+						P.forceMove(J)
+						J.name = "Scree egg"
+						J.desc = "This egg has a very unique look to it."
+						internal_contents -= P
 					else
-						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(O.loc)
+						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(T.loc)
 						P.forceMove(J)
 						J.name = "Odd egg" //Something went wrong. Since the default is "egg", they shouldn't see this.
 						internal_contents -= P
@@ -630,6 +653,7 @@
 				continue
 
 			var/mob/living/carbon/human/O = owner
+			var/turf/T = get_turf(O)
 
 			if (O.custom_species)
 				var/defined_species = O.custom_species
@@ -650,55 +674,61 @@
 				P.update_body()
 				switch(O.species.egg_type)
 					if("Unathi")
-						var/obj/structure/closet/secure_closet/egg/unathi/J = new /obj/structure/closet/secure_closet/egg/unathi(O.loc)
+						var/obj/structure/closet/secure_closet/egg/unathi/J = new /obj/structure/closet/secure_closet/egg/unathi(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					if("Tajaran")
-						var/obj/structure/closet/secure_closet/egg/tajaran/J = new /obj/structure/closet/secure_closet/egg/tajaran(O.loc)
+						var/obj/structure/closet/secure_closet/egg/tajaran/J = new /obj/structure/closet/secure_closet/egg/tajaran(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					if("Akula")
-						var/obj/structure/closet/secure_closet/egg/shark/J = new /obj/structure/closet/secure_closet/egg/shark(O.loc)
+						var/obj/structure/closet/secure_closet/egg/shark/J = new /obj/structure/closet/secure_closet/egg/shark(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					if("Skrell")
-						var/obj/structure/closet/secure_closet/egg/skrell/J = new /obj/structure/closet/secure_closet/egg/skrell(O.loc)
+						var/obj/structure/closet/secure_closet/egg/skrell/J = new /obj/structure/closet/secure_closet/egg/skrell(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					if("Sergal")
-						var/obj/structure/closet/secure_closet/egg/sergal/J = new /obj/structure/closet/secure_closet/egg/sergal(O.loc)
+						var/obj/structure/closet/secure_closet/egg/sergal/J = new /obj/structure/closet/secure_closet/egg/sergal(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					if("Human")
-						var/obj/structure/closet/secure_closet/egg/human/J = new /obj/structure/closet/secure_closet/egg/human(O.loc)
+						var/obj/structure/closet/secure_closet/egg/human/J = new /obj/structure/closet/secure_closet/egg/human(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					if("Slime")
-						var/obj/structure/closet/secure_closet/egg/slime/J = new /obj/structure/closet/secure_closet/egg/slime(O.loc)
+						var/obj/structure/closet/secure_closet/egg/slime/J = new /obj/structure/closet/secure_closet/egg/slime(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					if("Egg")
-						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(O.loc)
+						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(T.loc)
+						P.forceMove(J)
+						J.name = "[defined_species] egg"
+						J.desc = "This egg has a very unique look to it."
+						internal_contents -= P
+					if("Scree")
+						var/obj/structure/closet/secure_closet/egg/scree/J = new /obj/structure/closet/secure_closet/egg/scree(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					else
-						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(O.loc)
+						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
@@ -719,47 +749,53 @@
 				owner << "<span class='notice'>You feel strange as you alter your captive's gender.</span>"
 				switch(O.species.egg_type)
 					if("Unathi")
-						var/obj/structure/closet/secure_closet/egg/unathi/J = new /obj/structure/closet/secure_closet/egg/unathi(O.loc)
+						var/obj/structure/closet/secure_closet/egg/unathi/J = new /obj/structure/closet/secure_closet/egg/unathi(T.loc)
 						P.forceMove(J)
 						J.name = "Unathi egg"
 						internal_contents -= P
 					if("Tajaran")
-						var/obj/structure/closet/secure_closet/egg/tajaran/J = new /obj/structure/closet/secure_closet/egg/tajaran(O.loc)
+						var/obj/structure/closet/secure_closet/egg/tajaran/J = new /obj/structure/closet/secure_closet/egg/tajaran(T.loc)
 						P.forceMove(J)
 						J.name = "Tajaran egg"
 						internal_contents -= P
 					if("Akula")
-						var/obj/structure/closet/secure_closet/egg/shark/J = new /obj/structure/closet/secure_closet/egg/shark(O.loc)
+						var/obj/structure/closet/secure_closet/egg/shark/J = new /obj/structure/closet/secure_closet/egg/shark(T.loc)
 						P.forceMove(J)
 						J.name = "Akula egg"
 						internal_contents -= P
 					if("Skrell")
-						var/obj/structure/closet/secure_closet/egg/skrell/J = new /obj/structure/closet/secure_closet/egg/skrell(O.loc)
+						var/obj/structure/closet/secure_closet/egg/skrell/J = new /obj/structure/closet/secure_closet/egg/skrell(T.loc)
 						P.forceMove(J)
 						J.name = "Skrell egg"
 						internal_contents -= P
 					if("Sergal")
-						var/obj/structure/closet/secure_closet/egg/sergal/J = new /obj/structure/closet/secure_closet/egg/sergal(O.loc)
+						var/obj/structure/closet/secure_closet/egg/sergal/J = new /obj/structure/closet/secure_closet/egg/sergal(T.loc)
 						P.forceMove(J)
 						J.name = "Segal egg"
 						internal_contents -= P
 					if("Human")
-						var/obj/structure/closet/secure_closet/egg/human/J = new /obj/structure/closet/secure_closet/egg/human(O.loc)
+						var/obj/structure/closet/secure_closet/egg/human/J = new /obj/structure/closet/secure_closet/egg/human(T.loc)
 						P.forceMove(J)
 						J.name = "Human egg"
 						internal_contents -= P
 					if("Slime")
-						var/obj/structure/closet/secure_closet/egg/slime/J = new /obj/structure/closet/secure_closet/egg/slime(O.loc)
+						var/obj/structure/closet/secure_closet/egg/slime/J = new /obj/structure/closet/secure_closet/egg/slime(T.loc)
 						P.forceMove(J)
 						J.name = "Slime egg"
 						internal_contents -= P
 					if("Egg")
-						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(O.loc)
+						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(T.loc)
 						P.forceMove(J)
 						J.name = "Egg"
 						internal_contents -= P
+					if("Scree")
+						var/obj/structure/closet/secure_closet/egg/scree/J = new /obj/structure/closet/secure_closet/egg/scree(T.loc)
+						P.forceMove(J)
+						J.name = "Scree egg"
+						J.desc = "This egg has a very unique look to it."
+						internal_contents -= P
 					else
-						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(O.loc)
+						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(T.loc)
 						P.forceMove(J)
 						J.name = "Odd egg" //Something went wrong. Since the default is "egg", they shouldn't see this.
 						internal_contents -= P
@@ -772,6 +808,7 @@
 				continue
 
 			var/mob/living/carbon/human/O = owner
+			var/turf/T = get_turf(O)
 
 
 			if (O.custom_species)
@@ -793,55 +830,61 @@
 				P.update_body()
 				switch(O.species.egg_type)
 					if("Unathi")
-						var/obj/structure/closet/secure_closet/egg/unathi/J = new /obj/structure/closet/secure_closet/egg/unathi(O.loc)
+						var/obj/structure/closet/secure_closet/egg/unathi/J = new /obj/structure/closet/secure_closet/egg/unathi(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					if("Tajaran")
-						var/obj/structure/closet/secure_closet/egg/tajaran/J = new /obj/structure/closet/secure_closet/egg/tajaran(O.loc)
+						var/obj/structure/closet/secure_closet/egg/tajaran/J = new /obj/structure/closet/secure_closet/egg/tajaran(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					if("Akula")
-						var/obj/structure/closet/secure_closet/egg/shark/J = new /obj/structure/closet/secure_closet/egg/shark(O.loc)
+						var/obj/structure/closet/secure_closet/egg/shark/J = new /obj/structure/closet/secure_closet/egg/shark(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					if("Skrell")
-						var/obj/structure/closet/secure_closet/egg/skrell/J = new /obj/structure/closet/secure_closet/egg/skrell(O.loc)
+						var/obj/structure/closet/secure_closet/egg/skrell/J = new /obj/structure/closet/secure_closet/egg/skrell(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					if("Sergal")
-						var/obj/structure/closet/secure_closet/egg/sergal/J = new /obj/structure/closet/secure_closet/egg/sergal(O.loc)
+						var/obj/structure/closet/secure_closet/egg/sergal/J = new /obj/structure/closet/secure_closet/egg/sergal(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					if("Human")
-						var/obj/structure/closet/secure_closet/egg/human/J = new /obj/structure/closet/secure_closet/egg/human(O.loc)
+						var/obj/structure/closet/secure_closet/egg/human/J = new /obj/structure/closet/secure_closet/egg/human(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					if("Slime")
-						var/obj/structure/closet/secure_closet/egg/slime/J = new /obj/structure/closet/secure_closet/egg/slime(O.loc)
+						var/obj/structure/closet/secure_closet/egg/slime/J = new /obj/structure/closet/secure_closet/egg/slime(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					if("Egg")
-						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(O.loc)
+						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(T.loc)
+						P.forceMove(J)
+						J.name = "[defined_species] egg"
+						J.desc = "This egg has a very unique look to it."
+						internal_contents -= P
+					if("Scree")
+						var/obj/structure/closet/secure_closet/egg/scree/J = new /obj/structure/closet/secure_closet/egg/scree(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					else
-						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(O.loc)
+						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
@@ -864,47 +907,53 @@
 				P.update_body()
 				switch(O.species.egg_type)
 					if("Unathi")
-						var/obj/structure/closet/secure_closet/egg/unathi/J = new /obj/structure/closet/secure_closet/egg/unathi(O.loc)
+						var/obj/structure/closet/secure_closet/egg/unathi/J = new /obj/structure/closet/secure_closet/egg/unathi(T.loc)
 						P.forceMove(J)
 						J.name = "Unathi egg"
 						internal_contents -= P
 					if("Tajaran")
-						var/obj/structure/closet/secure_closet/egg/tajaran/J = new /obj/structure/closet/secure_closet/egg/tajaran(O.loc)
+						var/obj/structure/closet/secure_closet/egg/tajaran/J = new /obj/structure/closet/secure_closet/egg/tajaran(T.loc)
 						P.forceMove(J)
 						J.name = "Tajaran egg"
 						internal_contents -= P
 					if("Akula")
-						var/obj/structure/closet/secure_closet/egg/shark/J = new /obj/structure/closet/secure_closet/egg/shark(O.loc)
+						var/obj/structure/closet/secure_closet/egg/shark/J = new /obj/structure/closet/secure_closet/egg/shark(T.loc)
 						P.forceMove(J)
 						J.name = "Akula egg"
 						internal_contents -= P
 					if("Skrell")
-						var/obj/structure/closet/secure_closet/egg/skrell/J = new /obj/structure/closet/secure_closet/egg/skrell(O.loc)
+						var/obj/structure/closet/secure_closet/egg/skrell/J = new /obj/structure/closet/secure_closet/egg/skrell(T.loc)
 						P.forceMove(J)
 						J.name = "Skrell egg"
 						internal_contents -= P
 					if("Sergal")
-						var/obj/structure/closet/secure_closet/egg/sergal/J = new /obj/structure/closet/secure_closet/egg/sergal(O.loc)
+						var/obj/structure/closet/secure_closet/egg/sergal/J = new /obj/structure/closet/secure_closet/egg/sergal(T.loc)
 						P.forceMove(J)
 						J.name = "Segal egg"
 						internal_contents -= P
 					if("Human")
-						var/obj/structure/closet/secure_closet/egg/human/J = new /obj/structure/closet/secure_closet/egg/human(O.loc)
+						var/obj/structure/closet/secure_closet/egg/human/J = new /obj/structure/closet/secure_closet/egg/human(T.loc)
 						P.forceMove(J)
 						J.name = "Human egg"
 						internal_contents -= P
 					if("Slime")
-						var/obj/structure/closet/secure_closet/egg/slime/J = new /obj/structure/closet/secure_closet/egg/slime(O.loc)
+						var/obj/structure/closet/secure_closet/egg/slime/J = new /obj/structure/closet/secure_closet/egg/slime(T.loc)
 						P.forceMove(J)
 						J.name = "Slime egg"
 						internal_contents -= P
 					if("Egg")
-						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(O.loc)
+						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(T.loc)
 						P.forceMove(J)
 						J.name = "Egg"
 						internal_contents -= P
+					if("Scree")
+						var/obj/structure/closet/secure_closet/egg/scree/J = new /obj/structure/closet/secure_closet/egg/scree(T.loc)
+						P.forceMove(J)
+						J.name = "Scree egg"
+						J.desc = "This egg has a very unique look to it."
+						internal_contents -= P
 					else
-						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(O.loc)
+						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(T.loc)
 						P.forceMove(J)
 						J.name = "Odd egg" //Something went wrong. Since the default is "egg", they shouldn't see this.
 						internal_contents -= P
@@ -918,6 +967,7 @@
 				continue
 
 			var/mob/living/carbon/human/O = owner
+			var/turf/T = get_turf(O)
 
 			if (O.custom_species)
 				var/defined_species = O.custom_species
@@ -925,56 +975,56 @@
 				owner << "<span class='notice'>Your body shifts as you encase [P] in an egg.</span>"
 				switch(O.species.egg_type)
 					if("Unathi")
-						var/obj/structure/closet/secure_closet/egg/unathi/J = new /obj/structure/closet/secure_closet/egg/unathi(O.loc)
+						var/obj/structure/closet/secure_closet/egg/unathi/J = new /obj/structure/closet/secure_closet/egg/unathi(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						for(var/mob/living/M in internal_contents)
 						internal_contents -= P
 					if("Tajaran")
-						var/obj/structure/closet/secure_closet/egg/tajaran/J = new /obj/structure/closet/secure_closet/egg/tajaran(O.loc)
+						var/obj/structure/closet/secure_closet/egg/tajaran/J = new /obj/structure/closet/secure_closet/egg/tajaran(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					if("Akula")
-						var/obj/structure/closet/secure_closet/egg/shark/J = new /obj/structure/closet/secure_closet/egg/shark(O.loc)
+						var/obj/structure/closet/secure_closet/egg/shark/J = new /obj/structure/closet/secure_closet/egg/shark(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					if("Skrell")
-						var/obj/structure/closet/secure_closet/egg/skrell/J = new /obj/structure/closet/secure_closet/egg/skrell(O.loc)
+						var/obj/structure/closet/secure_closet/egg/skrell/J = new /obj/structure/closet/secure_closet/egg/skrell(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					if("Sergal")
-						var/obj/structure/closet/secure_closet/egg/sergal/J = new /obj/structure/closet/secure_closet/egg/sergal(O.loc)
+						var/obj/structure/closet/secure_closet/egg/sergal/J = new /obj/structure/closet/secure_closet/egg/sergal(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					if("Human")
-						var/obj/structure/closet/secure_closet/egg/human/J = new /obj/structure/closet/secure_closet/egg/human(O.loc)
+						var/obj/structure/closet/secure_closet/egg/human/J = new /obj/structure/closet/secure_closet/egg/human(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					if("Slime")
-						var/obj/structure/closet/secure_closet/egg/slime/J = new /obj/structure/closet/secure_closet/egg/slime(O.loc)
+						var/obj/structure/closet/secure_closet/egg/slime/J = new /obj/structure/closet/secure_closet/egg/slime(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					if("Egg")
-						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(O.loc)
+						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
 						internal_contents -= P
 					else
-						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(O.loc)
+						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(T.loc)
 						P.forceMove(J)
 						J.name = "[defined_species] egg"
 						J.desc = "This egg has a very unique look to it."
@@ -984,47 +1034,52 @@
 				owner << "<span class='notice'>Your body shifts as you encase [P] in an egg.</span>"
 				switch(O.species.egg_type)
 					if("Unathi")
-						var/obj/structure/closet/secure_closet/egg/unathi/J = new /obj/structure/closet/secure_closet/egg/unathi(O.loc)
+						var/obj/structure/closet/secure_closet/egg/unathi/J = new /obj/structure/closet/secure_closet/egg/unathi(T.loc)
 						P.forceMove(J)
 						J.name = "Unathi egg"
 						internal_contents -= P
 					if("Tajaran")
-						var/obj/structure/closet/secure_closet/egg/tajaran/J = new /obj/structure/closet/secure_closet/egg/tajaran(O.loc)
+						var/obj/structure/closet/secure_closet/egg/tajaran/J = new /obj/structure/closet/secure_closet/egg/tajaran(T.loc)
 						P.forceMove(J)
 						J.name = "Tajaran egg"
 						internal_contents -= P
 					if("Akula")
-						var/obj/structure/closet/secure_closet/egg/shark/J = new /obj/structure/closet/secure_closet/egg/shark(O.loc)
+						var/obj/structure/closet/secure_closet/egg/shark/J = new /obj/structure/closet/secure_closet/egg/shark(T.loc)
 						P.forceMove(J)
 						J.name = "Akula egg"
 						internal_contents -= P
 					if("Skrell")
-						var/obj/structure/closet/secure_closet/egg/skrell/J = new /obj/structure/closet/secure_closet/egg/skrell(O.loc)
+						var/obj/structure/closet/secure_closet/egg/skrell/J = new /obj/structure/closet/secure_closet/egg/skrell(T.loc)
 						P.forceMove(J)
 						J.name = "Skrell egg"
 						internal_contents -= P
 					if("Sergal")
-						var/obj/structure/closet/secure_closet/egg/sergal/J = new /obj/structure/closet/secure_closet/egg/sergal(O.loc)
+						var/obj/structure/closet/secure_closet/egg/sergal/J = new /obj/structure/closet/secure_closet/egg/sergal(T.loc)
 						P.forceMove(J)
 						J.name = "Segal egg"
 						internal_contents -= P
 					if("Human")
-						var/obj/structure/closet/secure_closet/egg/human/J = new /obj/structure/closet/secure_closet/egg/human(O.loc)
+						var/obj/structure/closet/secure_closet/egg/human/J = new /obj/structure/closet/secure_closet/egg/human(T.loc)
 						P.forceMove(J)
 						J.name = "Human egg"
 						internal_contents -= P
 					if("Slime")
-						var/obj/structure/closet/secure_closet/egg/slime/J = new /obj/structure/closet/secure_closet/egg/slime(O.loc)
+						var/obj/structure/closet/secure_closet/egg/slime/J = new /obj/structure/closet/secure_closet/egg/slime(T.loc)
 						P.forceMove(J)
 						J.name = "Slime egg"
 						internal_contents -= P
 					if("Egg")
-						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(O.loc)
+						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(T.loc)
 						P.forceMove(J)
 						J.name = "Egg"
 						internal_contents -= P
+					if("Scree")
+						var/obj/structure/closet/secure_closet/egg/scree/J = new /obj/structure/closet/secure_closet/egg/scree(T.loc)
+						P.forceMove(J)
+						J.name = "Scree egg"
+						internal_contents -= P
 					else
-						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(O.loc)
+						var/obj/structure/closet/secure_closet/egg/J = new /obj/structure/closet/secure_closet/egg(T.loc)
 						P.forceMove(J)
 						J.name = "Odd egg" //Something went wrong. Since the default is "egg", they shouldn't see this.
 						internal_contents -= P

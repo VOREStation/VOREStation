@@ -58,7 +58,7 @@
 /obj/structure/closet/secure_closet/egg/shark
 	name = "akula egg"
 	desc = "Its soft and slimy to the touch"
-	icon = 'icons/obj/closet.dmi'
+	icon_state  = "egg_akula"
 	icon_closed = "egg_akula"
 	icon_opened = "egg_akula_open"
 
@@ -82,6 +82,13 @@
 	icon_state = "egg_unique"
 	icon_closed = "egg_unique"
 	icon_opened = "egg_unique_open"
+
+/obj/structure/closet/secure_closet/egg/scree
+	name = "Chimera egg"
+	desc = "...You don't know what type of creature layed this egg."
+	icon_state = "egg_scree"
+	icon_closed = "egg_scree"
+	icon_opened = "egg_scree_open"
 
 //In case anyone stumbles upon this, MAJOR thanks to Vorrakul and Nightwing. Without them, this wouldn't be a reality.
 //Also, huge thanks for Ace for helping me through with this and getting me to work at my full potential instead of tapping out early, along with coding advice.

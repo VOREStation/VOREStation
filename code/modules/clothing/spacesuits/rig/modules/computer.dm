@@ -434,6 +434,8 @@
 	holder.spark_system.start()
 	playsound(H.loc, 'sound/effects/sparks2.ogg', 50, 1)
 
+	H.break_cloak()
+
 	if(!holder.cell)
 		H << "<span class = 'danger'>Your power sink flashes an error; there is no cell in your rig.</span>"
 		drain_complete(H)

@@ -16,7 +16,7 @@
 			/obj/item/clothing/shoes/magboots = 2,
 			/obj/item/weapon/tank/oxygen = 2,
 			)
-	cost = 45
+	cost = 40
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Atmospheric voidsuit crate"
 	access = access_atmospherics
@@ -58,7 +58,7 @@
 			/obj/item/clothing/shoes/magboots = 2,
 			/obj/item/weapon/tank/oxygen = 2
 			)
-	cost = 55
+	cost = 40
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Security voidsuit crate"
 
@@ -70,7 +70,7 @@
 			/obj/item/clothing/mask/breath = 2,
 			/obj/item/weapon/tank/oxygen = 2
 			)
-	cost = 35
+	cost = 40
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Mining voidsuit crate"
 	access = access_mining
