@@ -67,6 +67,31 @@ Used In File(s): \code\game\machinery\adv_med.dm
 			<td class='itemLabelNarrow'>Body Temperature:</td>
 			<td class="itemContentMedium">{{:helper.round(data.occupant.bodyTempC*10)/10}}&deg;C, {{:helper.round(data.occupant.bodyTempF*10)/10}}&deg;F</td>
 		</tr>
+		<!-- VORESTATION SECTION -->
+		<tr>
+			<td class='itemLabelNarrow'>Body Weight:</td>
+			<td class='itemContentMedium'>{{:helper.round(data.occupant.weight)}} lbs, {{:helper.round(
+			data.occupant.weight/2.20463)}} kgs</td>
+		{{if data.occupant.humanPrey}}
+			<tr>
+				<td class='itemLabel brute'>Foreign Humanoids:</td>
+				<td class='itemContent brute'>{{:data.occupant.humanPrey}}</td>
+			</tr>
+		{{/if}}
+		{{if data.occupant.livingPrey}}
+			<tr>	
+				<td class='itemLabel brute'>Foreign Creatures:</td>
+				<td class='itemContent brute'>{{:data.occupant.livingPrey}}</td>
+			</tr>
+		{{/if}}
+		{{if data.occupant.objectPrey}}
+			<tr>	
+				<td class='itemLabel brute'>Foreign Objects:</td>
+				<td class='itemContent brute'>{{:data.occupant.objectPrey}}</td>
+			</tr>
+		{{/if}}
+		<!-- VORESTATION END -->
+
 	</table>
 	</div>
 	{{if data.occupant.hasVirus}}
