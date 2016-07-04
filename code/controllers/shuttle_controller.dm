@@ -224,6 +224,17 @@ var/global/datum/shuttle_controller/shuttle_controller
 	process_shuttles += shuttle
 
 	shuttle = new()
+	shuttle.location = 1
+	shuttle.warmup_time = 10	//want some warmup time so people can cancel.
+	shuttle.area_offsite = locate(/area/shuttle/trade/centcom)
+	shuttle.area_station = locate(/area/shuttle/trade/station)
+	shuttle.docking_controller_tag = "trade_shuttle"
+	shuttle.dock_target_station = "trade_shuttle_dock_airlock"
+	shuttle.dock_target_offsite = "trade_shuttle_bay"
+	shuttles["Trade"] = shuttle
+	process_shuttles += shuttle
+
+	shuttle = new()
 	shuttle.area_offsite = locate(/area/shuttle/alien/base)
 	shuttle.area_station = locate(/area/shuttle/alien/mine)
 	shuttles["Alien"] = shuttle
