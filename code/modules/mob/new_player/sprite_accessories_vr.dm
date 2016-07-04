@@ -32,6 +32,10 @@
 		icon_state = "serg_fairytail"
 		species_allowed = list("Sergal")
 
+	braid
+		name = "Floorlength Braid"
+		icon_state = "hair_braid" //Trust me, it's better this way.
+
 	bald
 		name = "Bald"
 		icon_state = "bald"

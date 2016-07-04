@@ -90,6 +90,14 @@
 	icon_closed = "egg_scree"
 	icon_opened = "egg_scree_open"
 
+/obj/structure/closet/secure_closet/egg/xenomorph
+	name = "Xenomorph egg"
+	desc = "Some type of pitch black egg. It has a slimy exterior coating."
+	icon_state = "egg_xenomorph"
+	icon_closed = "egg_xenomorph"
+	icon_opened = "egg_xenomorph_open"
+
+
 //In case anyone stumbles upon this, MAJOR thanks to Vorrakul and Nightwing. Without them, this wouldn't be a reality.
 //Also, huge thanks for Ace for helping me through with this and getting me to work at my full potential instead of tapping out early, along with coding advice.
 //Additionally, huge thanks to the entire Virgo community for giving suggestions about egg TF, the sprites, descriptions, etc etc. Cheers to everyone. Also, you should totally eat Cadence. ~CK

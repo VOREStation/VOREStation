@@ -15,7 +15,6 @@
 	//color_mult = 1 //It seemed to work fine in testing, but I've been informed it's unneeded.
 	tail = "tail" //Scree's tail. Can be disabled in the vore tab by choosing "hide species specific tail sprite"
 	icobase_tail = 1
-	egg_type = "Scree" //Scree egg.
 	inherent_verbs = list(/mob/living/carbon/human/proc/begin_reconstitute_form)
 
 	min_age = 17
