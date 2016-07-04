@@ -83,7 +83,7 @@
 		/datum/unarmed_attack/claws,
 		/datum/unarmed_attack/stomp/weak
 		)
-
+/*
 	var/shock_cap = 30
 	var/hallucination_cap = 25
 
@@ -110,7 +110,7 @@
 		H.shock_stage += 1
 	if(H.shock_stage >= shock_cap && H.hallucination < hallucination_cap)
 		H.hallucination += 2.5
-
+*/
 /datum/species/teshari/get_vision_flags(var/mob/living/carbon/human/H)
 	if(!(H.sdisabilities & DEAF) && !H.ear_deaf)
 		return SEE_SELF|SEE_MOBS
