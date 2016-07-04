@@ -38,6 +38,31 @@
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.01
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 60, rad = 0)
+	var/hanging = 0
+
+/obj/item/clothing/mask/surgical/proc/adjust_mask(mob_user)
+	if(usr.canmove && !usr.stat)
+		src.hanging = !src.hanging
+		if (src.hanging)
+			gas_transfer_coefficient = 1
+			body_parts_covered = body_parts_covered & ~FACE
+			armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+			icon_state = "steriledown"
+			usr << "You pull the mask below your chin."
+		else
+			gas_transfer_coefficient = initial(gas_transfer_coefficient)
+			body_parts_covered = initial(body_parts_covered)
+			icon_state = initial(icon_state)
+			armor = initial(armor)
+			usr << "You pull the mask up to cover your face."
+		update_clothing_icon()
+
+/obj/item/clothing/mask/surgical/verb/toggle()
+	set category = "Object"
+	set name = "Adjust mask"
+	set src in usr
+
+	adjust_mask(usr)
 
 /obj/item/clothing/mask/fakemoustache
 	name = "fake moustache"
@@ -160,7 +185,32 @@
 	flags_inv = HIDEFACE
 	slot_flags = SLOT_MASK
 	icon_state = "bandblack"
-	item_state = null
+	item_state = "bandblack"
+	var/tied = 0
+
+/obj/item/clothing/mask/bandana/proc/adjust_bandana(mob/user)
+	if(usr.canmove && !usr.stat)
+		src.tied = !src.tied
+		if (src.tied)
+			flags_inv = flags_inv & ~HIDEFACE
+			slot_flags = SLOT_HEAD
+			icon_state = "[icon_state]_up"
+			item_state = "[item_state]_up"
+			usr << "You tie the bandana so that it can be worn on the head."
+		else
+			flags_inv = initial(flags_inv)
+			slot_flags = initial(slot_flags)
+			icon_state = initial(icon_state)
+			item_state = initial(item_state)
+			usr << "You tie the bandana so that it can be worn on the face."
+
+/obj/item/clothing/mask/bandana/verb/toggle()
+	set category = "Object"
+	set name = "Tie bandana"
+	set src in usr
+
+	adjust_bandana(usr)
+	update_icon()
 
 /obj/item/clothing/mask/bandana/red
 	name = "red bandana"
