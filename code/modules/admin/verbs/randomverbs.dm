@@ -356,15 +356,15 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 	//I frontload all the questions so we don't have a half-done process while you're reading.
-	var/client/picked_client = input(src, "Please specify which client's character to spawn.", "Client", "") in clients
+	var/client/picked_client = input(src, "Please specify which client's character to spawn.", "Client", "") as null|anything in clients
 	if(!picked_client)
 		return
 
-	var/location = input(src,"Please specify where to spawn them.", "Location", "Right Here") in list("Right Here","Arrivals","Cancel")
-	if(!location || location == "Cancel")
+	var/location = alert(src,"Please specify where to spawn them.", "Location", "Right Here", "Arrivals", "Cancel")
+	if(!location)
 		return
 
-	var/announce = alert(src,"Do an announcement as if they had just arrived?", "Announce", "Yes", "No", "Cancel")
+	var/announce = alert(src,"Announce as if they had just arrived?", "Announce", "Yes", "No", "Cancel")
 	if(announce == "Cancel")
 		return
 	else if(announce == "Yes") //Too bad buttons can't just have 1/0 values and different display strings
@@ -380,38 +380,78 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	else
 		inhabit = 0
 
-	var/equipment = alert(src,"Give equipment? Last job's equipment, or assistant if none.", "Equipment", "Yes", "No", "Cancel")
-	if(equipment == "Cancel")
-		return
-	else if(equipment == "Yes")
-		equipment = 1
+	//Name matching is ugly but mind doesn't persist to look at.
+	var/charjob
+	var/records
+	var/datum/data/record/record_found
+	record_found = find_general_record("name",picked_client.prefs.real_name)
+
+	//Found their record, they were spawned previously
+	if(record_found)
+		var/samejob = alert(src,"Found [picked_client.prefs.real_name] in data core. They were [record_found.fields["real_rank"]] this round. Assign same job? They will not be re-added to the manifest/records, either way.","Previously spawned","Yes","Assistant","No")
+		if(samejob == "Yes")
+			charjob = record_found.fields["real_rank"]
+		else if(samejob == "Assistant")
+			charjob = "Assistant"
 	else
-		equipment = 0
+		records = alert(src,"No data core entry detected. Would you like add them to the manifest, and sec/med/HR records?","Records","Yes","No","Cancel")
+		if(records == "Cancel")
+			return
+		if(records == "Yes")
+			records = 1
+		else
+			records = 0
+
+	//Well you're not reloading their job or they never had one.
+	if(!charjob)
+		var/pickjob = input(src,"Pick a job to assign them (or none).","Job Select","-No Job-") as null|anything in joblist + "-No Job-"
+		if(!pickjob)
+			return
+		if(pickjob != "-No Job-")
+			charjob = pickjob
+
+	//If you've picked a job by now, you can equip them.
+	var/equipment
+	if(charjob)
+		equipment = alert(src,"Spawn them with equipment?", "Equipment", "Yes", "No", "Cancel")
+		if(equipment == "Cancel")
+			return
+		else if(equipment == "Yes")
+			equipment = 1
+		else
+			equipment = 0
 
 	//For logging later
 	var/admin = key_name_admin(src)
 	var/player_key = picked_client.key
 
 	var/mob/living/carbon/human/new_character
+	var/spawnloc
 
-	if(location == "Right Here") //Spawn them on your turf
-		if(!src.mob)
-			src << "You can't use 'Right Here' when you are not 'Right Anywhere'!"
+	//Where did you want to spawn them?
+	switch(location)
+		if("Right Here") //Spawn them on your turf
+			if(!src.mob)
+				src << "You can't use 'Right Here' when you are not 'Right Anywhere'!"
+				return
+
+			spawnloc = get_turf(src.mob)
+
+		if("Arrivals") //Spawn them at a latejoin spawnpoint
+			spawnloc = pick(latejoin)
+
+		else //I have no idea how you're here
+			src << "Invalid spawn location choice."
 			return
 
-		var/turf/srcturf = get_turf(src.mob)
-		if(!srcturf)
-			src << "Unsure where to spawn the mob. Try using Arrivals?"
-			return
-
-		new_character = new(srcturf)
-
-	else if(location == "Arrivals") //Spawn them at a latejoin spawnpoint
-		new_character = new(pick(latejoin))
-
-	else //I have no idea how you're here
+	//Did we actually get a loc to spawn them?
+	if(!spawnloc)
+		src << "Couldn't get valid spawn location."
 		return
 
+	new_character = new(spawnloc)
+
+	//We were able to spawn them, right?
 	if(!new_character)
 		src << "Something went wrong and spawning failed."
 		return
@@ -427,20 +467,13 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		antag_data.add_antagonist(new_character.mind)
 		antag_data.place_mob(new_character)
 
-	//Referenced to later to apply previous settings (role, antag) if any
-	var/datum/data/record/record_found
-	var/formerjob = "Assistant"
-	if(new_character.mind)
-		/*Try and locate a record for the person being respawned through data_core.
-		This isn't an exact science but it does the trick more often than not.*/
-		record_found = find_general_record("name",new_character.real_name)
-		if(record_found)
-			formerjob = record_found.fields["real_rank"]
-			new_character.mind.assigned_role = formerjob
+	//If desired, apply equipment.
+	if(equipment && charjob)
+		job_master.EquipRank(new_character, charjob, 1)
 
-	//If they had a job before, re-equip them for their job.
-	if(equipment)
-		job_master.EquipRank(new_character, formerjob, 1)
+	//If desired, add records.
+	if(records)
+		data_core.manifest_inject(new_character)
 
 	//A redraw for good measure
 	new_character.update_icons()
@@ -449,12 +482,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(announce)
 		AnnounceArrival(new_character, new_character.mind.assigned_role)
 
-	//Announces the character on all the systems, based on the record.
-	if(!record_found)
-		if(alert(new_character,"Warning: No data core entry detected. Would you like add them to various databases, such as medical records?","Records","Yes","No")=="Yes")
-			data_core.manifest_inject(new_character)
-
-	message_admins("\blue [admin] has spawned [player_key]'s character [new_character.real_name].", 1)
+	log_admin("[admin] has spawned [player_key]'s character [new_character.real_name].")
+	message_admins("[admin] has spawned [player_key]'s character [new_character.real_name].", 1)
 
 	new_character << "You have been fully spawned. Enjoy the game."
 
