@@ -12,6 +12,8 @@
 	var/image/mob_overlay = null
 	var/overlay_state = null
 
+	sprite_sheets = list("Teshari" = 'icons/mob/species/seromi/ties.dmi') //Teshari can into webbing, too!
+
 /obj/item/clothing/accessory/Destroy()
 	on_removed()
 	return ..()

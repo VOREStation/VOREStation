@@ -87,11 +87,11 @@
 		var/list/borks = typesof(/obj/item/weapon/reagent_containers/food/snacks) - /obj/item/weapon/reagent_containers/food/snacks // BORK BORK BORK
 
 		playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
-
+/* Removed at some point, unsure what to replace with
 		for(var/mob/living/carbon/human/M in viewers(get_turf(holder.my_atom), null))
 			if(M:eyecheck() <= 0)
 				flick("e_flash", M.flash)
-
+*/
 		for(var/i = 1, i <= 4 + rand(1,2), i++)
 			var/chosen = pick(borks)
 			var/obj/B = new chosen
@@ -134,11 +134,11 @@
 		var/list/material = typesof(/obj/item/stack/material) - blocked
 
 		playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
-
+/* Removed at some point, unsure what to replace with
 		for(var/mob/living/carbon/human/M in viewers(get_turf(holder.my_atom), null))
 			if(M:eyecheck() <= 0)
 				flick("e_flash", M.flash)
-
+*/
 		var/spawn_amount = rand(1,50)
 		var/chosen = pick(material)
 		var/obj/item/stack/material/C = new chosen
@@ -269,11 +269,11 @@
 		var/list/voremobs = typesof(mob_path) - mob_path - blocked // list of possible hostile mobs
 
 		playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
-
+/* Removed at some point, unsure what to replace with
 		for(var/mob/living/carbon/human/M in viewers(get_turf(holder.my_atom), null))
 			if(M:eyecheck() <= 0)
 				flick("e_flash", M.flash)
-
+*/
 		var/spawn_count = rand(1,3)
 		for(var/i = 1, i <= spawn_count, i++)
 			var/chosen = pick(voremobs)

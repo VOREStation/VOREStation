@@ -16,6 +16,7 @@
 	var/obj/item/weapon/disk/data/diskette = null //Mostly so the geneticist can steal everything.
 	var/loading = 0 // Nice loading text
 
+
 /obj/machinery/computer/cloning/initialize()
 	..()
 	updatemodules()
@@ -25,7 +26,7 @@
 	..()
 
 /obj/machinery/computer/cloning/proc/updatemodules()
-	src.scanner = findscanner()
+	scanner = findscanner()
 	releasecloner()
 	findcloner()
 
@@ -63,12 +64,12 @@
 
 /obj/machinery/computer/cloning/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weapon/disk/data)) //INSERT SOME DISKETTES
-		if (!src.diskette)
+		if (!diskette)
 			user.drop_item()
 			W.loc = src
-			src.diskette = W
+			diskette = W
 			user << "You insert [W]."
-			src.updateUsrDialog()
+			updateUsrDialog()
 			return
 	else if(istype(W, /obj/item/device/multitool))
 		var/obj/item/device/multitool/M = W
@@ -78,6 +79,15 @@
 			P.connected = src
 			P.name = "[initial(P.name)] #[pods.len]"
 			user << "<span class='notice'>You connect [P] to [src].</span>"
+
+	else if (menu == 4 && (istype(W, /obj/item/weapon/card/id) || istype(W, /obj/item/device/pda)))
+		if(check_access(W))
+			records.Remove(active_record)
+			qdel(active_record)
+			temp = "Record deleted."
+			menu = 2
+		else
+			temp = "Access Denied."
 	else
 		..()
 	return
@@ -94,109 +104,55 @@
 
 	updatemodules()
 
-	var/dat = "<h3>Cloning System Control</h3>"
-	dat += "<font size=-1><a href='byond://?src=\ref[src];refresh=1'>Refresh</a></font>"
+	ui_interact(user)
 
-	dat += "<br><tt>[temp]</tt><br>"
+/obj/machinery/computer/cloning/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+	user.set_machine(src)
 
-	switch(src.menu)
-		if(1)
-			// Modules
-			dat += "<h4>Modules</h4>"
-			//dat += "<a href='byond://?src=\ref[src];relmodules=1'>Reload Modules</a>"
-			if (isnull(src.scanner))
-				dat += " <font color=red>DNA scanner not found.</font><br>"
-			else
-				dat += " <font color=green>DNA scanner found.</font><br>"
-			if (pods.len)
-				dat += " <font color=green>[pods.len] cloning vat\s found.</font><br>"
-			else
-				dat += " <font color=red>No cloning vats found.</font><br>"
+	var/data[0]
 
-			// Scanner
-			dat += "<h4>Scanner Functions</h4>"
+	var/records_list_ui[0]
+	for(var/datum/dna2/record/R in records)
+		records_list_ui[++records_list_ui.len] = list("ckey" = R.ckey, "name" = R.dna.real_name)
 
-			if(loading)
-				dat += "<b>Scanning...</b><br>"
-			else
-				dat += "<b>[scantemp]</b><br>"
+	var/pods_list_ui[0]
+	for(var/obj/machinery/clonepod/pod in pods)
+		pods_list_ui[++pods_list_ui.len] = list("pod" = pod, "biomass" = pod.biomass)
 
-			if (isnull(src.scanner))
-				dat += "No scanner connected!<br>"
-			else
-				if (src.scanner.occupant)
-					if(scantemp == "Scanner unoccupied") scantemp = "" // Stupid check to remove the text
+	if(pods)
+		data["pods"] = pods_list_ui
+	else
+		data["pods"] = null
 
-					dat += "<a href='byond://?src=\ref[src];scan=1'>Scan - [src.scanner.occupant]</a><br>"
-				else
-					scantemp = "Scanner unoccupied"
+	if(records)
+		data["records"] = records_list_ui
+	else
+		data["records"] = null
 
-				dat += "Lock status: <a href='byond://?src=\ref[src];lock=1'>[src.scanner.locked ? "Locked" : "Unlocked"]</a><br>"
+	if(active_record)
+		data["activeRecord"] = list("ckey" = active_record.ckey, "real_name" = active_record.dna.real_name, \
+									"ui" = active_record.dna.uni_identity, "se" = active_record.dna.struc_enzymes)
+	else
+		data["activeRecord"] = null
 
-			if (pods.len)
-				for (var/obj/machinery/clonepod/pod in pods)
-					dat += "[pod] biomass: <i>[pod.biomass]</i><br>"
+	data["menu"] = menu
+	data["connected"] = scanner
+	data["podsLen"] = pods.len
+	data["loading"] = loading
+	if(!scanner.occupant)
+		scantemp = ""
+	data["scantemp"] = scantemp
+	data["occupant"] = scanner.occupant
+	data["locked"] = scanner.locked
+	data["diskette"] = diskette
+	data["temp"] = temp
 
-			// Database
-			dat += "<h4>Database Functions</h4>"
-			dat += "<a href='byond://?src=\ref[src];menu=2'>View Records</a><br>"
-			if (src.diskette)
-				dat += "<a href='byond://?src=\ref[src];disk=eject'>Eject Disk</a>"
-
-
-		if(2)
-			dat += "<h4>Current records</h4>"
-			dat += "<a href='byond://?src=\ref[src];menu=1'>Back</a><br><br>"
-			for(var/datum/dna2/record/R in src.records)
-				dat += "<li><a href='byond://?src=\ref[src];view_rec=\ref[R]'>[R.dna.real_name]</a></li>"
-
-		if(3)
-			dat += "<h4>Selected Record</h4>"
-			dat += "<a href='byond://?src=\ref[src];menu=2'>Back</a><br>"
-
-			if (!src.active_record)
-				dat += "<font color=red>ERROR: Record not found.</font>"
-			else
-				dat += {"<br><font size=1><a href='byond://?src=\ref[src];del_rec=1'>Delete Record</a></font><br>
-					<b>Name:</b> [src.active_record.dna.real_name]<br>"}
-				var/obj/item/weapon/implant/health/H = null
-				if(src.active_record.implant)
-					H=locate(src.active_record.implant)
-
-				if ((H) && (istype(H)))
-					dat += "<b>Health:</b> [H.sensehealth()] | OXY-BURN-TOX-BRUTE<br>"
-				else
-					dat += "<font color=red>Unable to locate implant.</font><br>"
-
-				if (!isnull(src.diskette))
-					dat += "<a href='byond://?src=\ref[src];disk=load'>Load from disk.</a>"
-
-					dat += " | Save: <a href='byond://?src=\ref[src];save_disk=ue'>UI + UE</a>"
-					dat += " | Save: <a href='byond://?src=\ref[src];save_disk=ui'>UI</a>"
-					dat += " | Save: <a href='byond://?src=\ref[src];save_disk=se'>SE</a>"
-					dat += "<br>"
-				else
-					dat += "<br>" //Keeping a line empty for appearances I guess.
-
-				dat += {"<b>UI:</b> [src.active_record.dna.uni_identity]<br>
-				<b>SE:</b> [src.active_record.dna.struc_enzymes]<br><br>"}
-
-				if(pods.len)
-					dat += {"<a href='byond://?src=\ref[src];clone=\ref[src.active_record]'>Clone</a><br>"}
-
-		if(4)
-			if (!src.active_record)
-				src.menu = 2
-			dat = "[src.temp]<br>"
-			dat += "<h4>Confirm Record Deletion</h4>"
-
-			dat += "<b><a href='byond://?src=\ref[src];del_rec=1'>Scan card to confirm.</a></b><br>"
-			dat += "<b><a href='byond://?src=\ref[src];menu=3'>No</a></b>"
-
-
-	user << browse(dat, "window=cloning")
-	onclose(user, "cloning")
-	return
+	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if (!ui)
+		ui = new(user, src, ui_key, "cloning.tmpl", src.name, 400, 450)
+		ui.set_initial_data(data)
+		ui.open()
+		ui.set_auto_update(5)
 
 /obj/machinery/computer/cloning/Topic(href, href_list)
 	if(..())
@@ -205,101 +161,87 @@
 	if(loading)
 		return
 
-	if ((href_list["scan"]) && (!isnull(src.scanner)))
+	if ((href_list["scan"]) && (!isnull(scanner)))
 		scantemp = ""
 
 		loading = 1
-		src.updateUsrDialog()
 
 		spawn(20)
-			src.scan_mob(src.scanner.occupant)
+			scan_mob(scanner.occupant)
 
 			loading = 0
-			src.updateUsrDialog()
-
 
 		//No locking an open scanner.
-	else if ((href_list["lock"]) && (!isnull(src.scanner)))
-		if ((!src.scanner.locked) && (src.scanner.occupant))
-			src.scanner.locked = 1
+	else if ((href_list["lock"]) && (!isnull(scanner)))
+		if ((!scanner.locked) && (scanner.occupant))
+			scanner.locked = 1
 		else
-			src.scanner.locked = 0
+			scanner.locked = 0
+
+	else if ((href_list["eject"]) && (!isnull(scanner)))
+		if ((!scanner.locked) && (scanner.occupant))
+			scanner.eject_occupant()
 
 	else if (href_list["view_rec"])
-		src.active_record = locate(href_list["view_rec"])
-		if(istype(src.active_record,/datum/dna2/record))
-			if ((isnull(src.active_record.ckey)))
-				qdel(src.active_record)
-				src.temp = "ERROR: Record Corrupt"
+		active_record = find_record(href_list["view_rec"])
+		if(istype(active_record,/datum/dna2/record))
+			if ((isnull(active_record.ckey)))
+				qdel(active_record)
+				temp = "ERROR: Record Corrupt"
 			else
-				src.menu = 3
+				menu = 3
 		else
-			src.active_record = null
-			src.temp = "Record missing."
+			active_record = null
+			temp = "Record missing."
 
 	else if (href_list["del_rec"])
-		if ((!src.active_record) || (src.menu < 3))
+		if ((!active_record) || (menu < 3))
 			return
-		if (src.menu == 3) //If we are viewing a record, confirm deletion
-			src.temp = "Delete record?"
-			src.menu = 4
-
-		else if (src.menu == 4)
-			var/obj/item/weapon/card/id/C = usr.get_active_hand()
-			if (istype(C)||istype(C, /obj/item/device/pda))
-				if(src.check_access(C))
-					src.records.Remove(src.active_record)
-					qdel(src.active_record)
-					src.temp = "Record deleted."
-					src.menu = 2
-				else
-					src.temp = "Access Denied."
+		if (menu == 3) //If we are viewing a record, confirm deletion
+			temp = "Delete record?"
+			menu = 4
 
 	else if (href_list["disk"]) //Load or eject.
 		switch(href_list["disk"])
 			if("load")
-				if ((isnull(src.diskette)) || isnull(src.diskette.buf))
-					src.temp = "Load error."
-					src.updateUsrDialog()
+				if ((isnull(diskette)) || isnull(diskette.buf))
+					temp = "Load error."
 					return
-				if (isnull(src.active_record))
-					src.temp = "Record error."
-					src.menu = 1
-					src.updateUsrDialog()
+				if (isnull(active_record))
+					temp = "Record error."
+					menu = 1
 					return
 
-				src.active_record = src.diskette.buf
+				active_record = diskette.buf
 
-				src.temp = "Load successful."
+				temp = "Load successful."
 			if("eject")
-				if (!isnull(src.diskette))
-					src.diskette.loc = src.loc
-					src.diskette = null
+				if (!isnull(diskette))
+					diskette.loc = loc
+					diskette = null
 
 	else if (href_list["save_disk"]) //Save to disk!
-		if ((isnull(src.diskette)) || (src.diskette.read_only) || (isnull(src.active_record)))
-			src.temp = "Save error."
-			src.updateUsrDialog()
-			return
+		if ((isnull(diskette)) || (diskette.read_only) || (isnull(active_record)))
+			temp = "Save error."
 
 		// DNA2 makes things a little simpler.
-		src.diskette.buf=src.active_record
-		src.diskette.buf.types=0
+		diskette.buf = active_record
+		diskette.buf.types = 0
 		switch(href_list["save_disk"]) //Save as Ui/Ui+Ue/Se
 			if("ui")
-				src.diskette.buf.types=DNA2_BUF_UI
+				diskette.buf.types = DNA2_BUF_UI
 			if("ue")
-				src.diskette.buf.types=DNA2_BUF_UI|DNA2_BUF_UE
+				diskette.buf.types = DNA2_BUF_UI | DNA2_BUF_UE
 			if("se")
-				src.diskette.buf.types=DNA2_BUF_SE
-		src.diskette.name = "data disk - '[src.active_record.dna.real_name]'"
-		src.temp = "Save \[[href_list["save_disk"]]\] successful."
+				diskette.buf.types = DNA2_BUF_SE
+		diskette.name = "data disk - '[active_record.dna.real_name]'"
+		temp = "Save \[[href_list["save_disk"]]\] successful."
 
 	else if (href_list["refresh"])
-		src.updateUsrDialog()
+		updateUsrDialog()
 
 	else if (href_list["clone"])
-		var/datum/dna2/record/C = locate(href_list["clone"])
+		var/datum/dna2/record/C = find_record(href_list["clone"])
 		//Look for that player! They better be dead!
 		if(istype(C))
 			//Can't clone without someone to clone.  Or a pod.  Or if the pod is busy. Or full of gibs.
@@ -340,11 +282,12 @@
 			temp = "Error: Data corruption."
 
 	else if (href_list["menu"])
-		src.menu = text2num(href_list["menu"])
+		menu = href_list["menu"]
+		temp = ""
+		scantemp = ""
 
-	src.add_fingerprint(usr)
-	src.updateUsrDialog()
-	return
+	nanomanager.update_uis(src)
+	add_fingerprint(usr)
 
 /obj/machinery/computer/cloning/proc/scan_mob(mob/living/carbon/human/subject as mob)
 	if ((isnull(subject)) || (!(ishuman(subject))) || (!subject.dna))
@@ -381,13 +324,13 @@
 	subject.dna.check_integrity()
 
 	var/datum/dna2/record/R = new /datum/dna2/record()
-	R.dna=subject.dna
+	R.dna = subject.dna
 	R.ckey = subject.ckey
-	R.id= copytext(md5(subject.real_name), 2, 6)
-	R.name=R.dna.real_name
-	R.types=DNA2_BUF_UI|DNA2_BUF_UE|DNA2_BUF_SE
-	R.languages=subject.languages
-	R.flavor=subject.flavor_texts.Copy()
+	R.id = copytext(md5(subject.real_name), 2, 6)
+	R.name = R.dna.real_name
+	R.types = DNA2_BUF_UI|DNA2_BUF_UE|DNA2_BUF_SE
+	R.languages = subject.languages
+	R.flavor = subject.flavor_texts.Copy()
 
 	//Add an implant if needed
 	var/obj/item/weapon/implant/health/imp = locate(/obj/item/weapon/implant/health, subject)
@@ -402,13 +345,13 @@
 	if (!isnull(subject.mind)) //Save that mind so traitors can continue traitoring after cloning.
 		R.mind = "\ref[subject.mind]"
 
-	src.records += R
+	records += R
 	scantemp = "Subject successfully scanned."
 
 //Find a specific record by key.
 /obj/machinery/computer/cloning/proc/find_record(var/find_key)
 	var/selected_record = null
-	for(var/datum/dna2/record/R in src.records)
+	for(var/datum/dna2/record/R in records)
 		if (R.ckey == find_key)
 			selected_record = R
 			break

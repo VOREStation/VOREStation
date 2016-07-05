@@ -67,7 +67,7 @@
 			/obj/item/clothing/accessory/storage/white_drop_pouches,
 			/obj/item/clothing/accessory/storage/webbing
 			)
-	cost = 15
+	cost = 10
 	containertype = "/obj/structure/closet/crate"
 	containername = "Webbing crate"
 
@@ -92,6 +92,6 @@
 			/obj/item/clothing/head/helmet/space/emergency = 4,
 			/obj/item/clothing/mask/gas = 4
 			)
-	cost = 45
+	cost = 35
 	containertype = /obj/structure/closet/crate/internals
 	containername = "Emergency crate"

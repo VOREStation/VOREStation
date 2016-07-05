@@ -30,13 +30,13 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 			if(2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/captain(H), slot_back)
 			if(3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel/cap(H), slot_back)
 			if(4) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/captain(H), slot_w_uniform) 
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/captain(H), slot_w_uniform)
 		if(H.age>49)
-			// Since we can have something other than the default uniform at this  
+			// Since we can have something other than the default uniform at this
 			// point, check if we can actually attach the medal
 			var/obj/item/clothing/uniform = H.w_uniform
 			var/obj/item/clothing/accessory/medal/gold/captain/medal = new()
-			
+
 			if(uniform && uniform.can_attach_accessory(medal))
 				uniform.attach_accessory(null, medal)
 			else
@@ -72,6 +72,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	supervisors = "the captain"
 	selection_color = "#2F2F7F"
 	idtype = /obj/item/weapon/card/id/silver
+	alt_titles = list("Crew Resources Officer")
 	req_admin_notify = 1
 	minimal_player_age = 10
 	economic_modifier = 10
@@ -107,4 +108,5 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/ids(H), slot_l_hand)
 		else
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/ids(H.back), slot_in_backpack)
+		H.implant_loyalty()
 		return 1

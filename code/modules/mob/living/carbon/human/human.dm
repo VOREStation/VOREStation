@@ -84,7 +84,7 @@
 
 /mob/living/carbon/human/ex_act(severity)
 	if(!blinded)
-		flick("flash", flash)
+		flash_eyes()
 
 	var/shielded = 0
 	var/b_loss = null
@@ -779,13 +779,6 @@
 		b_eyes = hex2num(copytext(new_eyes, 6, 8))
 		update_eyes()
 
-	var/new_tone = input("Please select skin tone level: 1-220 (1=albino, 35=caucasian, 150=black, 220='very' black)", "Character Generation", "[35-s_tone]")  as text
-
-	if (!new_tone)
-		new_tone = 35
-	s_tone = max(min(round(text2num(new_tone)), 220), 1)
-	s_tone =  -s_tone + 35
-
 	// hair
 	var/list/all_hairs = typesof(/datum/sprite_accessory/hair) - /datum/sprite_accessory/hair
 	var/list/hairs = list()
@@ -1336,8 +1329,8 @@
 	var/list/limbs = list()
 	for(var/limb in organs_by_name)
 		var/obj/item/organ/external/current_limb = organs_by_name[limb]
-		if(current_limb && current_limb.dislocated == 2)
-			limbs |= limb
+		if(current_limb && current_limb.dislocated > 0 && !current_limb.is_parent_dislocated()) //if the parent is also dislocated you will have to relocate that first
+			limbs |= current_limb
 	var/choice = input(usr,"Which joint do you wish to relocate?") as null|anything in limbs
 
 	if(!choice)

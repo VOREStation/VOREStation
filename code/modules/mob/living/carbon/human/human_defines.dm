@@ -45,6 +45,8 @@
 	var/citizenship = ""
 	var/personal_faction = ""
 	var/religion = ""
+	var/antag_faction = ""
+	var/antag_vis = ""
 
 	//Equipment slots
 	var/obj/item/wear_suit = null
