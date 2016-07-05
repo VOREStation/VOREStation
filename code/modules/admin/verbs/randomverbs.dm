@@ -349,111 +349,146 @@ Traitors and the like can also be revived with the previous role mostly intact.
 /N */
 /client/proc/respawn_character()
 	set category = "Special Verbs"
-	set name = "Respawn Character"
-	set desc = "Respawn a person that has been gibbed/dusted/killed. They must be a ghost for this to work and preferably should not have a body to go back into."
+	set name = "Spawn Character"
+	set desc = "(Re)Spawn a client's loaded character."
 	if(!holder)
 		src << "Only administrators may use this command."
 		return
-	var/input = ckey(input(src, "Please specify which key will be respawned.", "Key", ""))
-	if(!input)
+
+	//I frontload all the questions so we don't have a half-done process while you're reading.
+	var/client/picked_client = input(src, "Please specify which client's character to spawn.", "Client", "") as null|anything in clients
+	if(!picked_client)
 		return
 
-	var/mob/observer/dead/G_found
-	for(var/mob/observer/dead/G in player_list)
-		if(G.ckey == input)
-			G_found = G
-			break
-
-	if(!G_found)//If a ghost was not found.
-		usr << "<font color='red'>There is no active key like that in the game or the person is not currently a ghost.</font>"
+	var/location = alert(src,"Please specify where to spawn them.", "Location", "Right Here", "Arrivals", "Cancel")
+	if(!location)
 		return
 
-	var/mob/living/carbon/human/new_character = new(pick(latejoin))//The mob being spawned.
-
-	var/datum/data/record/record_found			//Referenced to later to either randomize or not randomize the character.
-	if(G_found.mind && !G_found.mind.active)	//mind isn't currently in use by someone/something
-		/*Try and locate a record for the person being respawned through data_core.
-		This isn't an exact science but it does the trick more often than not.*/
-		var/id = md5("[G_found.real_name][G_found.mind.assigned_role]")
-		for(var/datum/data/record/t in data_core.locked)
-			if(t.fields["id"]==id)
-				record_found = t//We shall now reference the record.
-				break
-
-	if(record_found)//If they have a record we can determine a few things.
-		new_character.real_name = record_found.fields["name"]
-		new_character.gender = record_found.fields["sex"]
-		new_character.age = record_found.fields["age"]
-		new_character.b_type = record_found.fields["b_type"]
+	var/announce = alert(src,"Announce as if they had just arrived?", "Announce", "Yes", "No", "Cancel")
+	if(announce == "Cancel")
+		return
+	else if(announce == "Yes") //Too bad buttons can't just have 1/0 values and different display strings
+		announce = 1
 	else
-		new_character.gender = pick(MALE,FEMALE)
-		var/datum/preferences/A = new()
-		A.randomize_appearance_and_body_for(new_character)
-		new_character.real_name = G_found.real_name
+		announce = 0
 
-	if(!new_character.real_name)
-		if(new_character.gender == MALE)
-			new_character.real_name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
+	var/inhabit = alert(src,"Put the person into the spawned mob?", "Inhabit", "Yes", "No", "Cancel")
+	if(inhabit == "Cancel")
+		return
+	else if(inhabit == "Yes")
+		inhabit = 1
+	else
+		inhabit = 0
+
+	//Name matching is ugly but mind doesn't persist to look at.
+	var/charjob
+	var/records
+	var/datum/data/record/record_found
+	record_found = find_general_record("name",picked_client.prefs.real_name)
+
+	//Found their record, they were spawned previously
+	if(record_found)
+		var/samejob = alert(src,"Found [picked_client.prefs.real_name] in data core. They were [record_found.fields["real_rank"]] this round. Assign same job? They will not be re-added to the manifest/records, either way.","Previously spawned","Yes","Assistant","No")
+		if(samejob == "Yes")
+			charjob = record_found.fields["real_rank"]
+		else if(samejob == "Assistant")
+			charjob = "Assistant"
+	else
+		records = alert(src,"No data core entry detected. Would you like add them to the manifest, and sec/med/HR records?","Records","Yes","No","Cancel")
+		if(records == "Cancel")
+			return
+		if(records == "Yes")
+			records = 1
 		else
-			new_character.real_name = capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
-	new_character.name = new_character.real_name
+			records = 0
 
-	if(G_found.mind && !G_found.mind.active)
-		G_found.mind.transfer_to(new_character)	//be careful when doing stuff like this! I've already checked the mind isn't in use
-		new_character.mind.special_verbs = list()
-	else
-		new_character.mind_initialize()
-	if(!new_character.mind.assigned_role)	new_character.mind.assigned_role = "Assistant"//If they somehow got a null assigned role.
+	//Well you're not reloading their job or they never had one.
+	if(!charjob)
+		var/pickjob = input(src,"Pick a job to assign them (or none).","Job Select","-No Job-") as null|anything in joblist + "-No Job-"
+		if(!pickjob)
+			return
+		if(pickjob != "-No Job-")
+			charjob = pickjob
 
-	//DNA
-	if(record_found)//Pull up their name from database records if they did have a mind.
-		new_character.dna = new()//Let's first give them a new DNA.
-		new_character.dna.unique_enzymes = record_found.fields["b_dna"]//Enzymes are based on real name but we'll use the record for conformity.
+	//If you've picked a job by now, you can equip them.
+	var/equipment
+	if(charjob)
+		equipment = alert(src,"Spawn them with equipment?", "Equipment", "Yes", "No", "Cancel")
+		if(equipment == "Cancel")
+			return
+		else if(equipment == "Yes")
+			equipment = 1
+		else
+			equipment = 0
 
-		// I HATE BYOND.  HATE.  HATE. - N3X
-		var/list/newSE= record_found.fields["enzymes"]
-		var/list/newUI = record_found.fields["identity"]
-		new_character.dna.SE = newSE.Copy() //This is the default of enzymes so I think it's safe to go with.
-		new_character.dna.UpdateSE()
-		new_character.UpdateAppearance(newUI.Copy())//Now we configure their appearance based on their unique identity, same as with a DNA machine or somesuch.
-	else//If they have no records, we just do a random DNA for them, based on their random appearance/savefile.
-		new_character.dna.ready_dna(new_character)
-
-	new_character.key = G_found.key
-
-	/*
-	The code below functions with the assumption that the mob is already a traitor if they have a special role.
-	So all it does is re-equip the mob with powers and/or items. Or not, if they have no special role.
-	If they don't have a mind, they obviously don't have a special role.
-	*/
-
-	//Two variables to properly announce later on.
+	//For logging later
 	var/admin = key_name_admin(src)
-	var/player_key = G_found.key
+	var/player_key = picked_client.key
 
-	//Now for special roles and equipment.
+	var/mob/living/carbon/human/new_character
+	var/spawnloc
+
+	//Where did you want to spawn them?
+	switch(location)
+		if("Right Here") //Spawn them on your turf
+			if(!src.mob)
+				src << "You can't use 'Right Here' when you are not 'Right Anywhere'!"
+				return
+
+			spawnloc = get_turf(src.mob)
+
+		if("Arrivals") //Spawn them at a latejoin spawnpoint
+			spawnloc = pick(latejoin)
+
+		else //I have no idea how you're here
+			src << "Invalid spawn location choice."
+			return
+
+	//Did we actually get a loc to spawn them?
+	if(!spawnloc)
+		src << "Couldn't get valid spawn location."
+		return
+
+	new_character = new(spawnloc)
+
+	//We were able to spawn them, right?
+	if(!new_character)
+		src << "Something went wrong and spawning failed."
+		return
+
+	//Write the appearance and whatnot out to the character
+	picked_client.prefs.copy_to(new_character)
+	if(inhabit)
+		new_character.key = player_key
+
+	//Were they any particular special role? If so, copy.
 	var/datum/antagonist/antag_data = get_antag_data(new_character.mind.special_role)
 	if(antag_data)
 		antag_data.add_antagonist(new_character.mind)
 		antag_data.place_mob(new_character)
-	else
-		job_master.EquipRank(new_character, new_character.mind.assigned_role, 1)
 
-	//Announces the character on all the systems, based on the record.
-	if(!issilicon(new_character))//If they are not a cyborg/AI.
-		if(!record_found && !player_is_antag(new_character.mind, only_offstation_roles = 1)) //If there are no records for them. If they have a record, this info is already in there. MODE people are not announced anyway.
-			//Power to the user!
-			if(alert(new_character,"Warning: No data core entry detected. Would you like to announce the arrival of this character by adding them to various databases, such as medical records?",,"No","Yes")=="Yes")
-				data_core.manifest_inject(new_character)
+	//If desired, apply equipment.
+	if(equipment && charjob)
+		job_master.EquipRank(new_character, charjob, 1)
 
-			if(alert(new_character,"Would you like an active AI to announce this character?",,"No","Yes")=="Yes")
-				call(/proc/AnnounceArrival)(new_character, new_character.mind.assigned_role)
+	//If desired, add records.
+	if(records)
+		data_core.manifest_inject(new_character)
 
-	message_admins("\blue [admin] has respawned [player_key] as [new_character.real_name].", 1)
+	//A redraw for good measure
+	new_character.update_icons()
 
-	new_character << "You have been fully respawned. Enjoy the game."
+	//If we're announcing their arrival
+	if(announce)
+		AnnounceArrival(new_character, new_character.mind.assigned_role)
+
+	log_admin("[admin] has spawned [player_key]'s character [new_character.real_name].")
+	message_admins("[admin] has spawned [player_key]'s character [new_character.real_name].", 1)
+
+	new_character << "You have been fully spawned. Enjoy the game."
 
 	feedback_add_details("admin_verb","RSPCH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 	return new_character
 
 /client/proc/cmd_admin_add_freeform_ai_law()
