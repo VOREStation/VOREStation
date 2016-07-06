@@ -164,6 +164,12 @@
 	item_state = "sheet-metal"
 	default_type = "plasteel"
 
+/obj/item/stack/material/durasteel
+	name = "durasteel"
+	icon_state = "sheet-durasteel"
+	item_state = "sheet-metal"
+	default_type = "durasteel"
+
 /obj/item/stack/material/wood
 	name = "wooden plank"
 	icon_state = "sheet-wood"
