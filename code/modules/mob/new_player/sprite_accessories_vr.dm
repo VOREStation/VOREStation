@@ -6,7 +6,7 @@
 
 /datum/sprite_accessory/hair
 
-	species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin") //This lets all races use the default hairstyles.
+	species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Xenochimera") //This lets all races use the default hairstyles.
 
 	sergal_plain
 		name = "Sergal Plain"
@@ -40,13 +40,73 @@
 		name = "Bald"
 		icon_state = "bald"
 		gender = MALE
-		species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin") //Lets all the races be bald if they want.
+		species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Xenochimera") //Lets all the races be bald if they want.
 
 
 	una_hood
 		name = "Cobra Hood"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "soghun_hood"
+
+		taj_ears
+		name = "Tajaran Ears"
+		icon_state = "ears_plain"
+		species_allowed = list("Tajara", "Xenochimera")
+
+	taj_ears_clean
+		name = "Tajara Clean"
+		icon_state = "hair_clean"
+		species_allowed = list("Tajara", "Xenochimera") //Xenochimera get tajaran hairstyles since they're the same sprite.
+
+	taj_ears_bangs
+		name = "Tajara Bangs"
+		icon_state = "hair_bangs"
+		species_allowed = list("Tajara", "Xenochimera")
+
+	taj_ears_braid
+		name = "Tajara Braid"
+		icon_state = "hair_tbraid"
+		species_allowed = list("Tajara", "Xenochimera")
+
+	taj_ears_shaggy
+		name = "Tajara Shaggy"
+		icon_state = "hair_shaggy"
+		species_allowed = list("Tajara", "Xenochimera")
+
+	taj_ears_mohawk
+		name = "Tajaran Mohawk"
+		icon_state = "hair_mohawk"
+		species_allowed = list("Tajara", "Xenochimera")
+
+	taj_ears_plait
+		name = "Tajara Plait"
+		icon_state = "hair_plait"
+		species_allowed = list("Tajara", "Xenochimera")
+
+	taj_ears_straight
+		name = "Tajara Straight"
+		icon_state = "hair_straight"
+		species_allowed = list("Tajara", "Xenochimera")
+
+	taj_ears_long
+		name = "Tajara Long"
+		icon_state = "hair_long"
+		species_allowed = list("Tajara", "Xenochimera")
+
+	taj_ears_rattail
+		name = "Tajara Rat Tail"
+		icon_state = "hair_rattail"
+		species_allowed = list("Tajara", "Xenochimera")
+
+	taj_ears_spiky
+		name = "Tajara Spiky"
+		icon_state = "hair_tajspiky"
+		species_allowed = list("Tajara", "Xenochimera")
+
+	taj_ears_messy
+		name = "Tajara Messy"
+		icon_state = "hair_messy"
+		species_allowed = list("Tajara", "Xenochimera")
 // Vulpa stuffs
 
 	vulp_hair_none
