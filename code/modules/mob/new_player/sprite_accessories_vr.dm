@@ -48,6 +48,30 @@
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "soghun_hood"
 
+	una_spines_long
+		name = "Long Unathi Spines"
+		icon_state = "soghun_longspines"
+		species_allowed = list("Unathi", "Xenochimera") //Xenochimera get most hairstyles since they're abominations.
+
+	una_spines_short
+		name = "Short Unathi Spines"
+		icon_state = "soghun_shortspines"
+		species_allowed = list("Unathi", "Xenochimera")
+
+	una_frills_long
+		name = "Long Unathi Frills"
+		icon_state = "soghun_longfrills"
+		species_allowed = list("Unathi", "Xenochimera")
+
+	una_frills_short
+		name = "Short Unathi Frills"
+		icon_state = "soghun_shortfrills"
+		species_allowed = list("Unathi", "Xenochimera")
+
+	una_horns
+		name = "Unathi Horns"
+		icon_state = "soghun_horns"
+		species_allowed = list("Unathi", "Xenochimera")
 		taj_ears
 		name = "Tajaran Ears"
 		icon_state = "ears_plain"
@@ -56,7 +80,7 @@
 	taj_ears_clean
 		name = "Tajara Clean"
 		icon_state = "hair_clean"
-		species_allowed = list("Tajara", "Xenochimera") //Xenochimera get tajaran hairstyles since they're the same sprite.
+		species_allowed = list("Tajara", "Xenochimera")
 
 	taj_ears_bangs
 		name = "Tajara Bangs"
