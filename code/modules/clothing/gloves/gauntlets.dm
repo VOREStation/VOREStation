@@ -1,8 +1,14 @@
+/*
+ *	WORKS FOR RIGS, NOT AS A STANDALONE RIGHT NOW
+ *
+ *	TODO: 	FIX QUICK_EQUIP SO IT DOESN'T EQUIP THESE TO YOUR BACK WHEN YOU HAVE NO GLOVES
+ *			CHECK SLOWDOWN ON EQUIP/UNEQUIP
+ *			ADD SPRITES FOR ANY ACTUAL GAUNTLET ITEMS, THE BASE GLOVE ITEM HAS NO SPRITE, FOR GOOD REASON
+ */
+
 /obj/item/clothing/gloves/gauntlets	//Used to cover gloves, otherwise act as gloves.
 	name = "gauntlets"
 	desc = "These gloves go over regular gloves."
-	icon_state = "yellow"
-//	item_state = "ygloves"
 	overgloves = 1
 	var/obj/item/clothing/gloves/gloves = null	//Undergloves
 	var/mob/living/carbon/human/wearer = null	//For glove procs
