@@ -15,13 +15,13 @@
 	chest_type = /obj/item/clothing/suit/space/rig/light
 	helm_type =  /obj/item/clothing/head/helmet/space/rig/light
 	boot_type =  /obj/item/clothing/shoes/magboots/rig/light
-	glove_type = /obj/item/clothing/gloves/rig/light
+	glove_type = /obj/item/clothing/gloves/gauntlets/rig/light
 
 /obj/item/clothing/suit/space/rig/light
 	name = "suit"
 	breach_threshold = 18 //comparable to voidsuits
 
-/obj/item/clothing/gloves/rig/light
+/obj/item/clothing/gloves/gauntlets/rig/light
 	name = "gloves"
 
 /obj/item/clothing/shoes/magboots/rig/light
@@ -43,7 +43,7 @@
 
 	helm_type = /obj/item/clothing/head/lightrig/hacker
 	chest_type = /obj/item/clothing/suit/lightrig/hacker
-	glove_type = /obj/item/clothing/gloves/lightrig/hacker
+	glove_type = /obj/item/clothing/gloves/gauntlets/lightrig/hacker
 	boot_type = /obj/item/clothing/shoes/lightrig/hacker
 
 	initial_modules = list(
@@ -68,7 +68,7 @@
 	siemens_coefficient = 0.4
 	flags = NOSLIP //All the other rigs have magboots anyways, hopefully gives the hacker suit something more going for it.
 
-/obj/item/clothing/gloves/lightrig/hacker
+/obj/item/clothing/gloves/gauntlets/lightrig/hacker
 	siemens_coefficient = 0
 
 /obj/item/weapon/rig/light/ninja
@@ -81,7 +81,7 @@
 	slowdown = 0
 
 	chest_type = /obj/item/clothing/suit/space/rig/light/ninja
-	glove_type = /obj/item/clothing/gloves/rig/light/ninja
+	glove_type = /obj/item/clothing/gloves/gauntlets/rig/light/ninja
 	cell_type =  /obj/item/weapon/cell/hyper
 
 	req_access = list(access_syndicate)
@@ -103,7 +103,7 @@
 
 	..()
 
-/obj/item/clothing/gloves/rig/light/ninja
+/obj/item/clothing/gloves/gauntlets/rig/light/ninja
 	name = "insulated gloves"
 	siemens_coefficient = 0
 
