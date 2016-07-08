@@ -26,6 +26,8 @@
 
 	var/list/connections = list("nw0", "ne0", "sw0", "se0")
 
+	var/item_place = 1 //allows items to be placed on the table, but not on benches.
+
 /obj/structure/table/proc/update_material()
 	var/old_maxhealth = maxhealth
 	if(!material)
@@ -217,7 +219,7 @@
 // Returns the material to set the table to.
 /obj/structure/table/proc/common_material_remove(mob/user, material/M, delay, what, type_holding, sound)
 	if(!M.stack_type)
-		user << "<span class='warning'>You are unable to remove the [what] from this table!</span>"
+		user << "<span class='warning'>You are unable to remove the [what] from this [src]!</span>"
 		return M
 
 	if(manipulating) return M
