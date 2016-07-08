@@ -208,7 +208,7 @@
 /datum/gear/suit/wintercoat/security
 	display_name = "winter coat, security"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/security
-	allowed_roles = list("Security Officer, Head of Security, Warden, Detective")
+	allowed_roles = list("Security Officer", "Head of Security", "Warden", "Detective")
 
 /datum/gear/suit/wintercoat/medical
 	display_name = "winter coat, medical"
