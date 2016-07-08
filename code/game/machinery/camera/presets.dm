@@ -17,8 +17,7 @@ var/global/list/station_networks = list(
 										NETWORK_RESEARCH_OUTPOST,
 										NETWORK_ROBOTS,
 										NETWORK_PRISON,
-										NETWORK_SECURITY,
-										NETWORK_COMMUNICATORS
+										NETWORK_SECURITY
 										)
 var/global/list/engineering_networks = list(
 										NETWORK_ENGINE,
