@@ -221,6 +221,7 @@
 			var/obj/structure/reagent_dispensers/water_cooler/W = over_object
 			if(W.cupholder && W.cups < 10)
 				W.cups++
+				usr << "<span class='notice'>You put the [src] in the cup dispenser.</span>"
 				qdel(src)
 				W.update_icon()
 	else
