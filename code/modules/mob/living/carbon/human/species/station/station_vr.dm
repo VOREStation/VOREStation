@@ -284,6 +284,7 @@
 	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
+	blood_color = "#12ff12"
 	flesh_color = "#201730"
 	base_color = "#201730"
 
