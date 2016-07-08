@@ -268,3 +268,15 @@
 		var/obj/item/clothing/suit/storage/toggle/track/track = track_style
 		tracks[initial(track.name)] = track
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(tracks))
+
+/datum/gear/suit/flannel
+	display_name = "grey flannel"
+	path = /obj/item/clothing/suit/storage/flannel
+
+/datum/gear/suit/flannel/red
+	display_name = "red flannel"
+	path = /obj/item/clothing/suit/storage/flannel/red
+
+/datum/gear/suit/flannel/aqua
+	display_name = "aqua flannel"
+	path = /obj/item/clothing/suit/storage/flannel/aqua
