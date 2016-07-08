@@ -133,6 +133,7 @@
 					P << "<span class='notice'>You feel lightheaded and drowsy...</span>"
 					owner << "<span class='notice'>You feel warm as you make subtle changes to your captive's body.</span>"
 					P.update_body()
+					P.updateicon()
 
 				if(TFmodify == 2 && P.r_hair != O.r_hair || P.g_hair != O.g_hair || P.b_hair != O.b_hair || P.r_skin != O.r_skin || P.g_skin != O.g_skin || P.b_skin != O.b_skin || P.r_facial != O.r_facial || P.g_facial != O.g_facial || P.b_facial != O.b_facial)
 					P.r_hair = O.r_hair
@@ -144,17 +145,19 @@
 					P.r_skin = O.r_skin
 					P.g_skin = O.g_skin
 					P.b_skin = O.b_skin
-					P.h_style = "Bedhead"
+					P.h_style = O.h_style
 					P << "<span class='notice'>Your body tingles all over...</span>"
 					owner << "<span class='notice'>You tingle as you make noticeable changes to your captive's body.</span>"
 					P.update_hair()
 					P.update_body()
+					P.updateicon()
 
 				if(TFmodify == 3 && P.gender != MALE)
 					P.gender = MALE
 					P << "<span class='notice'>Your body feels very strange...</span>"
 					owner << "<span class='notice'>You feel strange as you alter your captive's gender.</span>"
 					P.update_body()
+					P.updateicon()
 
 			if(O.nutrition > 0)
 				O.nutrition -= 2
@@ -181,6 +184,7 @@
 					P << "<span class='notice'>You feel lightheaded and drowsy...</span>"
 					owner << "<span class='notice'>You feel warm as your make subtle changes to your captive's body.</span>"
 					P.update_body()
+					P.updateicon()
 
 				if(TFmodify == 2 && P.r_hair != O.r_hair || P.g_hair != O.g_hair || P.b_hair != O.b_hair || P.r_skin != O.r_skin || P.g_skin != O.g_skin || P.b_skin != O.b_skin)
 					P.r_hair = O.r_hair
@@ -189,11 +193,12 @@
 					P.r_skin = O.r_skin
 					P.g_skin = O.g_skin
 					P.b_skin = O.b_skin
-					P.h_style = "Bedhead"
+					P.h_style = O.h_style
 					P << "<span class='notice'>Your body tingles all over...</span>"
 					owner << "<span class='notice'>You tingle as your make noticeable changes to your captive's body.</span>"
 					P.update_hair()
 					P.update_body()
+					P.updateicon()
 
 				if(TFmodify == 3 && P.gender != FEMALE)
 					P.f_style = "Shaved"
@@ -201,6 +206,7 @@
 					P << "<span class='notice'>Your body feels very strange...</span>"
 					owner << "<span class='notice'>You feel strange as you alter your captive's gender.</span>"
 					P.update_body()
+					P.updateicon()
 
 			if(O.nutrition > 0)
 				O.nutrition -= 2
@@ -227,6 +233,7 @@
 					P << "<span class='notice'>You feel lightheaded and drowsy...</span>"
 					owner << "<span class='notice'>You feel warm as you make subtle changes to your captive's body.</span>"
 					P.update_body()
+					P.updateicon()
 
 				if(TFmodify == 2 && P.r_hair != O.r_hair || P.g_hair != O.g_hair || P.b_hair != O.b_hair || P.r_skin != O.r_skin || P.g_skin != O.g_skin || P.b_skin != O.b_skin || P.r_facial != O.r_facial || P.g_facial != O.g_facial || P.b_facial != O.b_facial)
 					P.r_hair = O.r_hair
@@ -238,11 +245,12 @@
 					P.r_skin = O.r_skin
 					P.g_skin = O.g_skin
 					P.b_skin = O.b_skin
-					P.h_style = "Bedhead"
+					P.h_style = O.h_style
 					P << "<span class='notice'>Your body tingles all over...</span>"
 					owner << "<span class='notice'>You tingle as you make noticeable changes to your captive's body.</span>"
 					P.update_hair()
 					P.update_body()
+					P.updateicon()
 
 			if(O.nutrition > 0)
 				O.nutrition -= 2
@@ -268,6 +276,7 @@
 					P << "<span class='notice'>You feel lightheaded and drowsy...</span>"
 					owner << "<span class='notice'>You feel warm as you make subtle changes to your captive's body.</span>"
 					P.update_body()
+					P.updateicon()
 
 				if(TFmodify == 2 && P.r_hair != O.r_hair || P.g_hair != O.g_hair || P.b_hair != O.b_hair || P.r_skin != O.r_skin || P.g_skin != O.g_skin || P.b_skin != O.b_skin || P.r_facial != O.r_facial || P.g_facial != O.g_facial || P.b_facial != O.b_facial)
 					P.r_hair = O.r_hair
@@ -279,14 +288,12 @@
 					P.r_skin = O.r_skin
 					P.g_skin = O.g_skin
 					P.b_skin = O.b_skin
-					P.h_style = "Bedhead"
+					P.h_style = O.h_style
 					P << "<span class='notice'>Your body tingles all over...</span>"
 					owner << "<span class='notice'>You tingle as you make noticeable changes to your captive's body.</span>"
 					P.update_hair()
 					P.update_body()
-					//Omitted clause : P.race_icon != O.race_icon
-					//No idea how to work with that one, species system got changed a lot
-					//Also this makes it similar to the previous one until fixed
+					P.updateicon()
 
 				if(TFmodify == 3 && P.r_hair != O.r_hair || P.g_hair != O.g_hair || P.b_hair != O.b_hair || P.r_skin != O.r_skin || P.g_skin != O.g_skin || P.b_skin != O.b_skin || P.tail_style != O.tail_style || P.r_tail != O.r_tail || P.g_tail != O.g_tail || P.b_tail != O.b_tail || P.ear_style != O.ear_style || P.r_facial != O.r_facial || P.g_facial != O.g_facial || P.b_facial != O.b_facial)
 					P.r_hair = O.r_hair
@@ -303,8 +310,12 @@
 					P.g_tail = O.g_tail
 					P.b_tail = O.b_tail
 					P.ear_style = O.ear_style
-					P.h_style = "Bedhead"
 					P.species = O.species
+					P.custom_species = O.custom_species
+					for(var/obj/item/organ/I in P.internal_organs) //This prevents organ rejection
+						I.species = O.species
+					for(var/obj/item/organ/external/Z in P.organs) //This makes their limb sprites look correct.
+						Z.species = O.species
 					P << "<span class='notice'>You lose sensation of your body, feeling only the warmth of everything around you... </span>"
 					owner << "<span class='notice'>Your body shifts as you make dramatic changes to your captive's body.</span>"
 					P.update_hair()
@@ -343,9 +354,13 @@
 				P.g_tail 			= O.g_tail
 				P.b_tail 			= O.b_tail
 				P.ear_style 		= O.ear_style
-				P.h_style 			= "Bedhead"
+				P.h_style 			= O.h_style //Since some things are required, like the cobra hood.
 				P.species 			= O.species
 				P.custom_species 	= O.custom_species
+				for(var/obj/item/organ/I in P.internal_organs) //This prevents organ rejection
+					I.species = O.species
+				for(var/obj/item/organ/external/Z in P.organs) //This makes their limb sprites look correct.
+					Z.species = O.species
 				P << "<span class='notice'>You lose sensation of your body, feeling only the warmth around you as you're encased in an egg. </span>"
 				owner << "<span class='notice'>You shift as you make dramatic changes to your captive's body as you encase them in an egg.</span>"
 				P.update_hair()
@@ -435,9 +450,13 @@
 				P.g_tail 			= O.g_tail
 				P.b_tail 			= O.b_tail
 				P.ear_style 		= O.ear_style
-				P.h_style 			= "Bedhead"
+				P.h_style 			= O.h_style
 				P.species 			= O.species
 				P.custom_species 	= O.custom_species
+				for(var/obj/item/organ/I in P.internal_organs) //This prevents organ rejection
+					I.species = O.species
+				for(var/obj/item/organ/external/Z in P.organs) //This makes their limb sprites look correct.
+					Z.species = O.species
 				P << "<span class='notice'>You lose sensation of your body, feeling only the warmth are you as you're encased in an egg. </span>"
 				owner << "<span class='notice'>You shift as you make dramatic changes to your captive's body as you encase them in an egg.</span>"
 				P.update_hair()
@@ -519,11 +538,12 @@
 				P.r_skin 			= O.r_skin
 				P.g_skin 			= O.g_skin
 				P.b_skin 			= O.b_skin
-				P.h_style 			= "Bedhead"
+				P.h_style 			= O.h_style
 				P << "<span class='notice'>Your body tingles all over...</span>"
 				owner << "<span class='notice'>You tingle as you make noticeable changes to your captive's body.</span>"
 				P.update_hair()
 				P.update_body()
+				P.updateicon()
 				switch(O.egg_type)
 					if("Unathi")
 						var/obj/structure/closet/secure_closet/egg/unathi/J = new /obj/structure/closet/secure_closet/egg/unathi(O.loc)
@@ -602,11 +622,12 @@
 				P.r_skin 			= O.r_skin
 				P.g_skin 			= O.g_skin
 				P.b_skin 			= O.b_skin
-				P.h_style 			= "Bedhead"
+				P.h_style 			= O.h_style
 				P << "<span class='notice'>Your body tingles all over...</span>"
 				owner << "<span class='notice'>You tingle as you make noticeable changes to your captive's body.</span>"
 				P.update_hair()
 				P.update_body()
+				P.updateicon()
 				switch(O.egg_type)
 					if("Unathi")
 						var/obj/structure/closet/secure_closet/egg/unathi/J = new /obj/structure/closet/secure_closet/egg/unathi(O.loc)
@@ -684,12 +705,13 @@
 				P.r_skin 			= O.r_skin
 				P.g_skin 			= O.g_skin
 				P.b_skin 			= O.b_skin
-				P.h_style 			= "Bedhead"
+				P.h_style 			= O.h_style
 				P.gender 			= MALE
 				P << "<span class='notice'>Your body feels very strange...</span>"
 				owner << "<span class='notice'>Your body feels strange as you alter your captive's gender.</span>"
 				P.update_hair()
 				P.update_body()
+				P.updateicon()
 				switch(O.egg_type)
 					if("Unathi")
 						var/obj/structure/closet/secure_closet/egg/unathi/J = new /obj/structure/closet/secure_closet/egg/unathi(O.loc)
@@ -767,10 +789,13 @@
 				P.r_skin 			= O.r_skin
 				P.g_skin 			= O.g_skin
 				P.b_skin 			= O.b_skin
-				P.h_style			= "Bedhead"
+				P.h_style			= O.h_style
 				P.gender 			= MALE
 				P << "<span class='notice'>Your body feels very strange...</span>"
 				owner << "<span class='notice'>You feel strange as you alter your captive's gender.</span>"
+				P.update_hair()
+				P.update_body()
+				P.updateicon()
 				switch(O.egg_type)
 					if("Unathi")
 						var/obj/structure/closet/secure_closet/egg/unathi/J = new /obj/structure/closet/secure_closet/egg/unathi(O.loc)
@@ -849,12 +874,13 @@
 				P.r_skin 			= O.r_skin
 				P.g_skin 			= O.g_skin
 				P.b_skin 			= O.b_skin
-				P.h_style 			= "Bedhead"
+				P.h_style 			= O.h_style
 				P.gender 			= FEMALE
 				P << "<span class='notice'>Your body feels very strange...</span>"
 				owner << "<span class='notice'>You feels strange as you alter your captive's gender.</span>"
 				P.update_hair()
 				P.update_body()
+				P.updateicon()
 				switch(O.egg_type)
 					if("Unathi")
 						var/obj/structure/closet/secure_closet/egg/unathi/J = new /obj/structure/closet/secure_closet/egg/unathi(O.loc)
@@ -932,12 +958,13 @@
 				P.r_skin 			= O.r_skin
 				P.g_skin 			= O.g_skin
 				P.b_skin 			= O.b_skin
-				P.h_style 			= "Bedhead"
+				P.h_style 			= O.h_style
 				P.gender 			= FEMALE
 				owner << "<span class='notice'>You feel strange as you alter your captive's gender.</span>"
 				P << "<span class='notice'>Your body feels very strange...</span>"
 				P.update_hair()
 				P.update_body()
+				P.updateicon()
 				switch(O.egg_type)
 					if("Unathi")
 						var/obj/structure/closet/secure_closet/egg/unathi/J = new /obj/structure/closet/secure_closet/egg/unathi(O.loc)
