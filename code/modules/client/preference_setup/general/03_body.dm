@@ -121,6 +121,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				I.mechassist()
 			else if(status == "mechanical")
 				I.robotize()
+			else if(status == "digital")
+				I.digitize()
 	return
 
 /datum/category_item/player_setup_item/general/body/content(var/mob/user)
@@ -197,6 +199,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			if(ind > 1)
 				. += ", "
 			. += "\tSynthetic [organ_name]"
+		else if(status == "digital")
+			++ind
+			if(ind > 1)
+				. += ", "
+			. += "\tDigital [organ_name]"
 		else if(status == "assisted")
 			++ind
 			if(ind > 1)
@@ -549,6 +556,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		var/list/organ_choices = list("Normal","Assisted","Mechanical")
 		if(pref.organ_data[BP_TORSO] == "cyborg")
 			organ_choices -= "Normal"
+			if(organ_name == "Brain")
+				organ_choices += "Digital"
 
 		var/new_state = input(user, "What state do you wish the organ to be in?") as null|anything in organ_choices
 		if(!new_state) return
@@ -560,6 +569,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				pref.organ_data[organ] = "assisted"
 			if("Mechanical")
 				pref.organ_data[organ] = "mechanical"
+			if("Digital")
+				pref.organ_data[organ] = "digital"
 		return TOPIC_REFRESH
 
 	else if(href_list["disabilities"])
@@ -629,11 +640,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	dat += "</table><center><hr/>"
 
 	var/restricted = 0
-	if(config.usealienwhitelist) //If we're using the whitelist, make sure to check it!
-		if(!(current_species.spawn_flags & SPECIES_CAN_JOIN))
-			restricted = 2
-		else if((current_species.spawn_flags & SPECIES_IS_WHITELISTED) && !is_alien_whitelisted(preference_mob(),current_species))
-			restricted = 1
+
+	if(!(current_species.spawn_flags & SPECIES_CAN_JOIN))
+		restricted = 2
+	else if(!is_alien_whitelisted(preference_mob(),current_species))
+		restricted = 1
 
 	if(restricted)
 		if(restricted == 1)

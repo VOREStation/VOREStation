@@ -84,9 +84,18 @@
 /obj/item/organ/internal/mmi_holder/posibrain
 	name = "positronic brain interface"
 	brain_type = /obj/item/device/mmi/digital/posibrain
-	
+
 
 /obj/item/organ/internal/mmi_holder/posibrain/update_from_mmi()
 	..()
 	stored_mmi.icon_state = "posibrain-occupied"
+	icon_state = stored_mmi.icon_state
+
+/obj/item/organ/internal/mmi_holder/robot
+	name = "digital brain interface"
+	brain_type = /obj/item/device/mmi/digital/robot
+
+/obj/item/organ/internal/mmi_holder/robot/update_from_mmi()
+	..()
+	stored_mmi.icon_state = "mainboard"
 	icon_state = stored_mmi.icon_state

@@ -8,7 +8,7 @@
 /datum/supply_packs/sci/coolanttank
 	name = "Coolant tank crate"
 	contains = list(/obj/structure/reagent_dispensers/coolanttank)
-	cost = 16
+	cost = 15
 	containertype = /obj/structure/largecrate
 	containername = "coolant tank crate"
 

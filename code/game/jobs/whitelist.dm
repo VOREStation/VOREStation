@@ -30,22 +30,48 @@ var/list/whitelist = list()
 	else
 		alien_whitelist = splittext(text, "\n")
 
-//todo: admin aliens
-/proc/is_alien_whitelisted(mob/M, var/species)
-	if(!config.usealienwhitelist)
-		return 1
-	if(species == "human" || species == "Human")
-		return 1
-	if(check_rights(R_ADMIN, 0))
-		return 1
-	if(!alien_whitelist)
-		return 0
-	if(M && species)
+/proc/is_alien_whitelisted(mob/M, var/datum/species/species)
+	//They are admin or the whitelist isn't in use
+	if(whitelist_overrides(M)) return 1
+
+	//You did something wrong
+	if(!M || !species) return 0
+
+	//The species isn't even whitelisted
+	if(!(species.spawn_flags & SPECIES_IS_WHITELISTED)) return 1
+
+	//If we have a loaded file, search it
+	if(alien_whitelist)
 		for (var/s in alien_whitelist)
-			if(findtext(s,"[M.ckey] - [species]"))
+			if(findtext(s,"[M.ckey] - [species.name]"))
 				return 1
 			if(findtext(s,"[M.ckey] - All"))
 				return 1
+
+/proc/is_lang_whitelisted(mob/M, var/datum/language/language)
+	//They are admin or the whitelist isn't in use
+	if(whitelist_overrides(M)) return 1
+
+	//You did something wrong
+	if(!M || !language) return 0
+
+	//The language isn't even whitelisted
+	if(!(language.flags & WHITELISTED)) return 1
+
+	//If we have a loaded file, search it
+	if(alien_whitelist)
+		for (var/s in alien_whitelist)
+			if(findtext(s,"[M.ckey] - [language.name]"))
+				return 1
+			if(findtext(s,"[M.ckey] - All"))
+				return 1
+
+/proc/whitelist_overrides(mob/M)
+	if(!config.usealienwhitelist)
+		return 1
+	if(check_rights(R_ADMIN, 0))
+		return 1
+
 	return 0
 
 #undef WHITELISTFILE
