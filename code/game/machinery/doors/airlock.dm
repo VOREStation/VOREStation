@@ -727,7 +727,7 @@ About the new airlock wires panel:
 	update_icon()
 	return 1
 
-/obj/machinery/door/airlock/attackby(C as obj, mob/user as mob)
+/obj/machinery/door/airlock/attackby(obj/C as obj, mob/user as mob)
 	//world << text("airlock attackby src [] obj [] mob []", src, C, user)
 	if(!istype(usr, /mob/living/silicon))
 		if(src.isElectrified())
@@ -810,7 +810,7 @@ About the new airlock wires panel:
 				spawn(0)	close(1)
 
 	// Check if we're using a crowbar or armblade, and if the airlock's unpowered for whatever reason (off, broken, etc).
-	else if( (istype(C, /obj/item/weapon/material/twohanded/fireaxe) || istype(C, /obj/item/weapon/melee/arm_blade) ) && !arePowerSystemsOn())
+	else if((C.pry == 1) && !arePowerSystemsOn())
 		if(locked)
 			user << "<span class='notice'>The airlock's bolts prevent it from being forced.</span>"
 		else if( !welded && !operating )
