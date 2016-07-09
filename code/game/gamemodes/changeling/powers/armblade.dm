@@ -32,6 +32,7 @@
 	force = 40
 	sharp = 1
 	edge = 1
+	pry = 1
 	anchored = 1
 	throwforce = 0 //Just to be on the safe side
 	throw_range = 0
