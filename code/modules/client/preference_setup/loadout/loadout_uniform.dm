@@ -325,7 +325,7 @@
 	allowed_roles = list("Security Officer","Head of Security","Warden")
 
 /datum/gear/uniform/navywarsuit
-	display_name = "uniform, navy blue (Wardem)"
+	display_name = "uniform, navy blue (Warden)"
 	path = /obj/item/clothing/under/rank/warden/navyblue
 	allowed_roles = list("Head of Security","Warden")
 
