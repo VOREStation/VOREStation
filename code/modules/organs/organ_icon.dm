@@ -90,7 +90,6 @@ var/global/list/limb_icon_cache = list()
 		gender = "m"
 
 	icon_cache_key = "[icon_name]_[species ? species.name : "Human"]"
-	world << "ICON: Added species.  icon_cache_key is now [icon_cache_key]."
 
 	if(force_icon)
 		mob_icon = new /icon(force_icon, "[icon_name][gendered_icon ? "_[gender]" : ""]")
@@ -140,7 +139,6 @@ var/global/list/limb_icon_cache = list()
 		icon_cache_key += "_dead"
 		applying.ColorTone(rgb(10,50,0))
 		applying.SetIntensity(0.7)
-		world << "ICON: Added deadness.  icon_cache_key is now [icon_cache_key]."
 
 	if(!isnull(s_tone))
 		if(s_tone >= 0)
@@ -148,11 +146,9 @@ var/global/list/limb_icon_cache = list()
 		else
 			applying.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
 		icon_cache_key += "_tone_[s_tone]"
-		world << "ICON: Added skin tone.  icon_cache_key is now [icon_cache_key]."
 	else if(s_col && s_col.len >= 3)
 		applying.Blend(rgb(s_col[1], s_col[2], s_col[3]), ICON_ADD)
 		icon_cache_key += "_color_[s_col[1]]_[s_col[2]]_[s_col[3]]"
-		world << "ICON: Added skin color.  icon_cache_key is now [icon_cache_key]."
 
 	// Translucency.
 	if(nonsolid) applying += rgb(,,,180) // SO INTUITIVE TY BYOND
@@ -180,7 +176,6 @@ var/list/flesh_hud_colours = list("#02BA08","#9ECF19","#DEDE10","#FFAA00","#FF00
 var/list/robot_hud_colours = list("#CFCFCF","#AFAFAF","#8F8F8F","#6F6F6F","#4F4F4F","#2F2F2F","#000000")
 
 /obj/item/organ/external/proc/get_damage_hud_image(var/min_dam_state)
-	world << "get_damage_hud_image([min_dam_state]) called."
 
 	// Generate the greyscale base icon and cache it for later.
 	// icon_cache_key is set by any get_icon() calls that are made.
