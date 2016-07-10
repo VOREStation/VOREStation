@@ -34,6 +34,19 @@ var/list/mining_overlay_cache = list()
 	var/datum/artifact_find/artifact_find
 	var/ignore_mapgen
 
+	var/ore_types = list(
+		"iron" = /obj/item/weapon/ore/iron,
+		"uranium" = /obj/item/weapon/ore/uranium,
+		"gold" = /obj/item/weapon/ore/gold,
+		"silver" = /obj/item/weapon/ore/silver,
+		"diamond" = /obj/item/weapon/ore/diamond,
+		"phoron" = /obj/item/weapon/ore/phoron,
+		"osmium" = /obj/item/weapon/ore/osmium,
+		"hydrogen" = /obj/item/weapon/ore/hydrogen,
+		"silicates" = /obj/item/weapon/ore/glass,
+		"carbonaceous rock" = /obj/item/weapon/ore/coal
+	)
+
 	has_resources = 1
 
 /turf/simulated/mineral/ignore_mapgen
@@ -153,6 +166,16 @@ var/list/mining_overlay_cache = list()
 		if(1.0)
 			mined_ore = 2 //some of the stuff gets blown up
 			GetDrilled()
+
+	if(severity <= 2) // Now to expose the ore lying under the sand.
+		spawn(1) // Otherwise most of the ore is lost to the explosion, which makes this rather moot.
+			var/losses = rand(0.5, 1) // Between 0% to 50% loss due to booms.
+			for(var/ore in resources)
+				var/amount_to_give = Ceiling(resources[ore] * losses) // Should result in at least one piece of ore.
+				for(var/i=1, i <= amount_to_give, i++)
+					var/oretype = ore_types[ore]
+					new oretype(src)
+				resources[ore] = 0
 
 /turf/simulated/mineral/bullet_act(var/obj/item/projectile/Proj)
 
