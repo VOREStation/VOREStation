@@ -1,0 +1,4 @@
+author: Anewbe
+delete-after: True
+changes: 
+  - bugfix: "Changelings will no longer remain stunned or suchlike when attempting to regenerate."

@@ -1,0 +1,4 @@
+author: Readstyrker
+delete-after: True
+changes: 
+  - bugfix: "Communicators will no longer show up on camera networks by default."

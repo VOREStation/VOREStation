@@ -1,0 +1,4 @@
+author: Yoshax
+delete-after: True
+changes: 
+  - rscadd: "Ports an Advanced Who verb that allows normal players to see what players are in game, and which aren't."
