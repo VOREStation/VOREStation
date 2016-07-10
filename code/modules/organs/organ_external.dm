@@ -68,6 +68,8 @@
 	var/stage = 0
 	var/cavity = 0
 
+	// HUD element variable, see organ_icon.dm get_damage_hud_image()
+	var/image/hud_damage_image
 
 /obj/item/organ/external/Destroy()
 
