@@ -387,10 +387,6 @@
 		name = "Hime Cut"
 		icon_state = "hair_himecut"
 
-	braid
-		name = "Floorlength Braid"
-		icon_state = "bald" //Trust me, it's better this way.
-
 	mbraid
 		name = "Medium Braid"
 		icon_state = "hair_shortbraid"
