@@ -1,5 +1,5 @@
 /datum/game_mode/visitors
-	name = "Wizard & Ninja"
+	name = "Technomancer & Ninja"
 	round_description = "A space wizard and a ninja have invaded the station!"
 	extended_round_description = "A ninja and wizard spawn during this round."
 	config_tag = "visitors"
@@ -7,5 +7,6 @@
 	required_players_secret = 8
 	required_enemies = 2
 	end_on_antag_death = 0
-	antag_tags = list(MODE_WIZARD, MODE_NINJA)
+	antag_tags = list(MODE_TECHNOMANCER, MODE_NINJA)
 	require_all_templates = 1
+	votable = 0
