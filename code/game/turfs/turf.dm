@@ -38,9 +38,6 @@
 	else
 		luminosity = 1
 
-/turf/proc/update_icon()
-	return
-
 /turf/Destroy()
 	turfs -= src
 	..()

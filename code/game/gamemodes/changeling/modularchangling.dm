@@ -12,6 +12,8 @@ var/list/datum/power/changeling/powerinstances = list()
 	var/enhancedtext = ""
 	var/isVerb = 1 	// Is it an active power, or passive?
 	var/verbpath // Path to a verb that contains the effects.
+	var/make_hud_button = 1 // Is this ability significant enough to dedicate screen space for a HUD button?
+	var/ability_icon_state = null // icon_state for icons for the ability HUD.  Must be in screen_spells.dmi.
 
 /datum/power/changeling
 	var/allowduringlesserform = 0
@@ -339,6 +341,17 @@ var/list/datum/power/changeling/powerinstances = list()
 
 	if(Thepower.genomecost > 0)
 		purchased_powers_history.Add("[Pname] ([Thepower.genomecost] points)")
+
+	if(Thepower.make_hud_button && Thepower.isVerb)
+		if(!M.current.ability_master)
+			M.current.ability_master = new /obj/screen/movable/ability_master(M.current)
+		M.current.ability_master.add_ling_ability(
+			object_given = M.current,
+			verb_given = Thepower.verbpath,
+			name_given = Thepower.name,
+			ability_icon_given = Thepower.ability_icon_state,
+			arguments = list()
+			)
 
 	if(!Thepower.isVerb && Thepower.verbpath)
 		call(M.current, Thepower.verbpath)()
