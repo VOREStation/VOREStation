@@ -348,7 +348,7 @@
 	if(usr)
 		usr.remove_from_mob(W)
 		usr.update_icons()	//update our overlays
-	W.loc = src
+	W.forceMove(src)
 	W.on_enter_storage(src)
 	if(usr)
 		if (usr.client && usr.s_active != src)
@@ -391,9 +391,9 @@
 			W.layer = 20
 		else
 			W.layer = initial(W.layer)
-		W.loc = new_location
+		W.forceMove(new_location)
 	else
-		W.loc = get_turf(src)
+		W.forceMove(get_turf(src))
 
 	if(usr)
 		src.orient2hud(usr)
@@ -437,7 +437,7 @@
 				user << "<span class='warning'>The tray won't fit in [src].</span>"
 				return
 			else
-				W.loc = user.loc
+				W.forceMove(get_turf(user))
 				if ((user.client && user.s_active != src))
 					user.client.screen -= W
 				W.dropped(user)

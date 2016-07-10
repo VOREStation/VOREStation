@@ -88,6 +88,9 @@
 	default_type = "iron"
 	apply_colour = 1
 
+/obj/item/stack/material/iron/fifty
+	amount = 50
+
 /obj/item/stack/material/sandstone
 	name = "sandstone brick"
 	icon_state = "sheet-sandstone"
@@ -228,6 +231,9 @@
 	icon_state = "sheet-cloth"
 	default_type = "cloth"
 
+/obj/item/stack/material/cloth/fifty
+	amount = 50
+
 /obj/item/stack/material/cardboard
 	name = "cardboard"
 	icon_state = "sheet-card"
@@ -241,6 +247,9 @@
 	desc = "The by-product of mob grinding."
 	icon_state = "sheet-leather"
 	default_type = "leather"
+
+/obj/item/stack/material/leather/fifty
+	amount = 50
 
 /obj/item/stack/material/glass
 	name = "glass"

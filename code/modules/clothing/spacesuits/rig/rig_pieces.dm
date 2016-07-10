@@ -82,7 +82,7 @@
 /obj/item/clothing/head/helmet/space/rig/proc/prevent_track()
 	return 0
 
-/obj/item/clothing/gloves/rig/Touch(var/atom/A, var/proximity)
+/obj/item/clothing/gloves/gauntlets/rig/Touch(var/atom/A, var/proximity)
 
 	if(!A || !proximity)
 		return 0
