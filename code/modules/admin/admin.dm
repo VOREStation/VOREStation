@@ -1342,10 +1342,12 @@ proc/admin_notice(var/message, var/rights)
 		if (H.paralysis == 0)
 			H.paralysis = 8000
 			msg = "has paralyzed [key_name(H)]."
+			log_and_message_admins(msg)
 		else
-			H.paralysis = 0
-			msg = "has unparalyzed [key_name(H)]."
-		log_and_message_admins(msg)
+			if(alert(src, "[key_name(H)] is paralyzed, would you like to unparalyze them?",,"Yes","No") == "Yes")
+				H.paralysis = 0
+				msg = "has unparalyzed [key_name(H)]."
+				log_and_message_admins(msg)
 /datum/admins/proc/set_tcrystals(mob/living/carbon/human/H as mob)
 	set category = "Debug"
 	set name = "Set Telecrystals"
