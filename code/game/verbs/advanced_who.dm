@@ -49,11 +49,7 @@
 				entry += "[seconds % 60] seconds)"
 
 			entry += " (<A HREF='?_src_=holder;adminmoreinfo=\ref[C.mob]'>?</A>)"
-			if(C.is_afk())
-				var/seconds = C.last_activity_seconds()
-				entry += " (AFK - "
-				entry += "[round(seconds / 60)] minutes, "
-				entry += "[seconds % 60] seconds)" //Let's go into the seconds, why not?
+
 			Lines += entry
 	else
 		for(var/client/C in clients)
