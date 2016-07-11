@@ -112,9 +112,9 @@
 
 /datum/reagent/tricordrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien != IS_DIONA)
-		M.adjustOxyLoss(-6 * removed)
-		M.heal_organ_damage(3 * removed, 3 * removed)
-		M.adjustToxLoss(-3 * removed)
+		M.adjustOxyLoss(-3 * removed)
+		M.heal_organ_damage(1.5 * removed, 1.5 * removed)
+		M.adjustToxLoss(-1.5 * removed)
 
 /datum/reagent/cryoxadone
 	name = "Cryoxadone"
