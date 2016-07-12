@@ -186,8 +186,9 @@
 					prob(2);/obj/item/weapon/material/butterfly/switchblade,
 					prob(2);/obj/item/weapon/material/knuckledusters,
 					prob(1);/obj/item/weapon/material/hatchet/tacknife,
-					prob(0.5);/datum/autolathe/recipe/beartrap,
-					prob(1);/datum/autolathe/recipe/handcuffs,
+					prob(0.5);/obj/item/weapon/beartrap,
+					prob(1);/obj/item/weapon/handcuffs,
+					prob(1);/obj/item/weapon/legcuffs,
 					prob(2);/obj/item/weapon/reagent_containers/syringe/drugs)
 
 
