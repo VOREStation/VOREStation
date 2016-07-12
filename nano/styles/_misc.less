@@ -105,7 +105,7 @@ div.clock {
 	left: 0;
 	bottom: 0;
 	width: 100%;
-	background: @dark-color;
+	background: black;
 }
 
 .pdaFooterButton {
@@ -177,3 +177,114 @@ div.clock {
 }
 /********************\
 \********************/
+
+/*******************
+    Communicator
+*******************/
+
+/*General*/
+.statusDisplayComm {
+	width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+	padding-bottom: 4px;
+	border-top: 0 none;
+	border-left: 0 none;
+	border-right: 0 none;
+	border-bottom: 2px inset #40628a;
+    margin: 3px 0;
+	overflow: hidden;
+}
+
+/*Home Screen*/
+div.homeContainer {
+	width: 100%;
+	text-align: center;
+	margin: auto;
+	padding-top: 5px;
+}
+
+div.homeScreen {
+	padding: 0 20px 0 20px;
+}
+
+.homeButton {
+	height: 64px;
+	width: 63.2px;
+	text-align: center;
+	margin: 0 0 30px 7.5%;
+	border-radius: 10px;
+	text-decoration: none;
+    border: 1px inset rgba(100, 100, 100, 0.25);
+	padding: 0 0 0 0;
+	cursor: default;
+	font-size: 48px;
+	line-height: 60px;
+}
+
+.homeButtonText {
+	font-size: 12px;
+	position: relative;
+	top: -30px;
+}
+
+/*Dial Pad*/
+.dialPad {
+    clear: both;
+	text-align: center;
+	margin: auto;
+}
+
+.dialPadKeys, .dialPadButtons, .dialPadAddress, .dialPadClear, .homeButton {
+	float: left;
+    color: #ffffff;
+	background: rgba(64, 98, 138, 0.15);
+}
+
+.dialPadKeys {
+	width: 47px;
+	height: 47px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 2em;
+    border: 1px inset rgba(100, 100, 100, 0.25);
+	line-height: 47px;
+	cursor: default;
+}
+
+.dialPadButtons {
+	width: 63.2px;
+    height: 63.2px;
+	text-decoration: none;
+    border: 1px inset rgba(100, 100, 100, 0.25);
+	padding: 0 0 0 0;
+	cursor: default;
+	font-size: 48px;
+	overflow: hidden;
+}
+
+.dialPadButtonText {
+	font-size: 12px;
+	position: relative;
+	top: -17px;
+}
+
+.dialPadAddress {
+	width: 192px;
+	height: 18px;
+	border-left: 1px inset #40628a;
+	border-top: 1px inset #40628a;
+	border-bottom: 1px inset #40628a;
+}
+
+.dialPadAddress.hover, .dialPadClear.hover, .dialPadButtons.hover, .dialPadKeys.hover, .homeButton.hover {
+	background: rgba(80, 122, 172, 0.5);
+}
+
+.dialPadClear {
+	width: 19%;
+	height: 18px;
+	border-right: 1px inset #40628a;
+	border-top: 1px inset #40628a;
+	border-bottom: 1px inset #40628a;
+}

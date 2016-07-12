@@ -54,6 +54,37 @@ NanoBaseHelpers = function ()
                 return '<div unselectable="on" class="linkActive ' + iconClass + ' ' + tid + '" data-href="' + NanoUtility.generateHref(parameters) + '" ' + elementIdHtml + '>' + iconHtml + text + '</div><script>$(function() { var newState = {"..class": "' + elementClass + '"}; var old = NanoTransition.transitionElement("' + tid + '", null, newState, 200); NanoTransition.animateHover("' + tid + '", null, old, newState); });</script>';
             },
 
+			// Generate a Byond link
+			customLink: function( text, icon, parameters, status, elementClass, elementId ) {
+				var iconHtml = '';
+				var iconClass = 'noIcon';
+				if (typeof icon != 'undefined' && icon)
+				{
+					iconHtml = '<div class="uiLinkPendingIcon"></div><div class="' + icon + '"></div>';
+					iconClass = 'hasIcon';
+				}
+
+				if (typeof elementClass == 'undefined' || !elementClass)
+				{
+					elementClass = 'link';
+				}
+
+				var elementIdHtml = '';
+				if (typeof elementId != 'undefined' && elementId)
+				{
+					elementIdHtml = 'id="' + elementId + '"';
+				}
+				
+				var tid = NanoTransition.allocID(elementIdHtml + "_" + text.toString().replace(/[^a-z0-9_]/gi, "_") + "_" + icon);
+				
+				if (typeof status != 'undefined' && status)
+				{
+					return '<div unselectable="on" class="link ' + iconClass + ' ' + tid + '" ' + elementIdHtml + '>' + iconHtml + text + '</div><script>$(function() { var newState = {"..class": "' + elementClass + ' ' + status + '"}; var old = NanoTransition.transitionElement("' + tid + '", null, newState, 200); NanoTransition.animateHover("' + tid + '", null, old, newState); });</script>';
+				}
+
+				return '<div unselectable="on" class="linkActive ' + iconClass + ' ' + tid + '" data-href="' + NanoUtility.generateHref(parameters) + '" ' + elementIdHtml + '>' + iconHtml + text + '</div><script>$(function() { var newState = {"..class": "' + elementClass + '"}; var old = NanoTransition.transitionElement("' + tid + '", null, newState, 200); NanoTransition.animateHover("' + tid + '", null, old, newState); });</script>';
+			},
+			
             xor: function (number,bit) {
                 return number ^ bit;
             },

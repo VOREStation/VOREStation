@@ -33,12 +33,12 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 
 	var/obj/item/weapon/cartridge/cartridge = null //current cartridge
 	var/list/modules = list(
-							list("module" = "Phone", "icon" = "phone64", "number" = 2),
-							list("module" = "Contacts", "icon" = "person64", "number" = 3),
-							list("module" = "Messaging", "icon" = "comment64", "number" = 4),
-							list("module" = "Note", "icon" = "note64", "number" = 5),
-							list("module" = "Settings", "icon" = "gear64", "number" = 6)
-							)	//list("module" = "Name of Module", "icon" = "icon name64", "number" = "what tab is the module")
+							list("module" = "Phone", "icon" = "mobile", "number" = 2),
+							list("module" = "Contacts", "icon" = "users", "number" = 3),
+							list("module" = "Messaging", "icon" = "envelope", "number" = 4),
+							list("module" = "Note", "icon" = "file-text", "number" = 5),
+							list("module" = "Settings", "icon" = "gear", "number" = 6)
+							)	//list("module" = "Name of Module", "icon" = "icon name", "number" = "what tab is the module")
 
 	var/selected_tab = 1
 	var/owner = ""
@@ -533,7 +533,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	communicating |= comm
 	listening_objects |= src
 	update_icon()
-	
+
 // Proc: del_communicating()
 // Parameters: 1 (comm - the communicator to remove from communicating)
 // Description: Used when this communicator is being asked to stop relaying say/me messages to another
@@ -811,7 +811,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 		if(!T) return
 		var/list/in_range = get_mobs_and_objs_in_view_fast(T,world.view,0) //Range of 3 since it's a tiny video display
 		var/list/mobs_to_relay = in_range["mobs"]
-		
+
 		for(var/mob/mob in mobs_to_relay) //We can't use visible_message(), or else we will get an infinite loop if two communicators hear each other.
 			var/dst = get_dist(get_turf(mob),get_turf(comm))
 			if(dst <= video_range)
@@ -827,7 +827,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Description: Relays the speech to all linked communicators.
 /obj/item/device/communicator/hear_talk(mob/living/M, text, verb, datum/language/speaking)
 	for(var/obj/item/device/communicator/comm in communicating)
-		
+
 		var/turf/T = get_turf(comm)
 		if(!T) return
 		var/list/in_range = get_mobs_and_objs_in_view_fast(T,world.view,0)
@@ -963,7 +963,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Description: Cleans up mob's client when they stop watching a video
 /obj/item/device/communicator/proc/video_cleanup(mob/user)
 	if(!user) return
-	
+
 	user.reset_view(null)
 	user.unset_machine()
 
@@ -972,14 +972,14 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Description: Ends the video call by clearing video_source
 /obj/item/device/communicator/proc/end_video(var/reason)
 	video_source = null
-	
+
 	. = "<span class='danger'>\icon[src] [reason ? reason : "Video session ended"].</span>"
-	
+
 	visible_message(.)
 	update_icon()
 
 //For synths who have no hands.
-/obj/item/device/communicator/integrated 
+/obj/item/device/communicator/integrated
 	name = "integrated communicator"
 	desc = "A circuit used for long-range communications, able to be integrated into a system."
 

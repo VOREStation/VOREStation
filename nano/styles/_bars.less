@@ -1,15 +1,34 @@
-.displayBar {
+.displayBar, .displayBarVertical, .displayBarBeaker {
     position: relative;
-    width: 236px;
-    height: 16px;
-    border: 1px solid #666666;
     float: left;
     margin: 0 5px 0 0;
     overflow: hidden;
+}
+
+.displayBar {
+    width: 236px;
+    height: 16px;
+    border: 1px solid #666666;
     background: #000000;
 }
 
-.displayBarText {
+.displayBarVertical {
+    width: 16px;
+    height: 200px;
+    border: 1px solid #666666;
+	background: #40628a;
+}
+
+.displayBarBeaker {
+    width: 100px;
+    height: 110px;
+    border-right: 2px solid rgb(102, 179, 255);
+	border-left: 2px solid rgb(102, 179, 255);
+	border-bottom: 2px solid rgb(102, 179, 255);
+	background: #40628a;
+}
+
+.displayBarText, .displayBarVerticalText, .displayBarBeakerText {
     position: absolute;
     top: -2px;
     left: 5px;
@@ -19,12 +38,27 @@
     font-weight: normal;
 }
 
+.displayBarFill, .displayBarVerticalFill, .displayBarBeakerFill {
+    overflow: hidden;
+    float: left;
+}
+
 .displayBarFill {
     width: 0%;
     height: 100%;
     background: #40628a;
-    overflow: hidden;
-    float: left;
+}
+
+.displayBarVerticalFill {
+    width: 100%;
+    height: 0%;
+	background: #000000;
+}
+
+.displayBarBeakerFill {
+    width: 100%;
+    height: 0%;
+	background: rgba(153, 204, 255, 0.3);
 }
 
 .displayBarFill.alignRight {

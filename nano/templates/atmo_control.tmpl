@@ -16,7 +16,7 @@
 				{{if value.sensor_data.temperature}}
 					<div class='item'>
 						<div class='itemLabel' style='width: 24%;'>Temperature:</div>
-						<div class='itemContentNarrow'>{{:value.sensor_data.temperature}} kPa</div>
+						<div class='itemContentNarrow'>{{:value.sensor_data.temperature}} K</div>
 					</div>
 				{{/if}}
 				{{if value.sensor_data.oxygen || value.sensor_data.nitrogen || value.sensor_data.carbon_dioxide || value.sensor_data.phoron}}
@@ -81,7 +81,7 @@
 		</div>
 		<div class='item'>
 			<div class='itemLabel' style='width: 25%;'>Command:</div>
-			{{:helper.link('Toggle Power', 'power', {'in_toggle_injector' : 1})}}
+			{{:helper.link('Toggle Power', 'power-off', {'in_toggle_injector' : 1})}}
 			{{:helper.link('Set Flow Rate', 'pencil', {'in_set_flowrate' : 1})}}
 			{{:helper.link('Refresh', 'refresh', {'in_refresh_status' : 1})}}
 		</div>
@@ -136,7 +136,7 @@
 		</div>
 		<div class='item'>
 			<div class='itemLabel' style='width: 25%;'>Command:</div>
-			{{:helper.link('Toggle Power', 'power', {'out_toggle_power' : 1})}}
+			{{:helper.link('Toggle Power', 'power-off', {'out_toggle_power' : 1})}}
 			{{:helper.link('Set Pressure', 'pencil', {'out_set_pressure' : 1})}}
 			{{:helper.link('Refresh', 'refresh', {'out_refresh_status' : 1})}}
 		</div>
@@ -211,8 +211,8 @@
 			{{else}}
 				{{:helper.link('Disengaged', 'close', {'toggle_automation' : 1})}}
 				<div class='itemLabel'>Injector:</div>
-				{{:helper.link('Toggle Power', 'power', {'toggle_injector' : 1})}}
-				{{:helper.link('Inject (1 Cycle)', 'syringe', {'injection' : 1})}}
+				{{:helper.link('Toggle Power', 'power-off', {'toggle_injector' : 1})}}
+				{{:helper.link('Inject (1 Cycle)', 'dropper', {'injection' : 1})}}
 			{{/if}}
 		</div>
 	{{else}}

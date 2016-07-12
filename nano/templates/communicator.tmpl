@@ -8,9 +8,9 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 		<div class="itemContent" style="width: 100%; text-align: center;">
 			<span class="average">{{:data.time}} | </span>
 			{{if data.connectionStatus == 1}}
-				<img class='uiIcon16 icon-signal-green' style='float: none; vertical-align: top'></img>
+				<i class="fa fa-signal" style='color: green; float: none;'></i>
 			{{else}}
-				<img class='uiIcon16 icon-alert-red' style='float: none; vertical-align: top'></img>
+				<i class="fa fa-times" style='float: none; color: red;'></i>
 			{{/if}}
 			<span class="average"> | {{:data.owner}} | {{:data.occupation}}</span>
 		</div>
@@ -22,7 +22,7 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 	<div class='homeContainer'>
 		<div class='homeScreen'>
 			{{for data.homeScreen}}
-				{{:helper.link(value.module, value.icon, {'switch_tab' : value.number}, null, 'link64')}}
+				{{:helper.link("<span class='homeButtonText'>" + value.module + "</span>", value.icon, {'switch_tab' : value.number}, null, "homeButton")}}
 			{{/for}}
 		</div>
 	</div>
@@ -76,9 +76,9 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 				{{:helper.link('F', null, {'add_hex' : 'f'}, null, 'dialPadKeys')}}
 			</div>
 			<div style="clear: both; padding-top: 1px;">
-				{{:helper.link('Dial', 'phone64', {'dial' : data.targetAddress}, null, 'dialPadButtons')}}
-				{{:helper.link('Message', 'comment64', {'message' : data.targetAddress, 'switch_tab' : 4}, null, 'dialPadButtons')}}
-				{{:helper.link('Hang Up', 'close64', {'hang_up' : '1'}, null, 'dialPadButtons')}}
+				{{:helper.link("<span class='dialPadButtonText'>Dial</span>", 'mobile', {'dial' : data.targetAddress}, null, 'dialPadButtons')}}
+				{{:helper.link("<span class='dialPadButtonText'>Message</span>", 'comment', {'message' : data.targetAddress, 'switch_tab' : 4}, null, 'dialPadButtons')}}
+				{{:helper.link("<span class='dialPadButtonText'>Hang Up</span>", 'close', {'hang_up' : '1'}, null, 'dialPadButtons')}}
 			</div>
 		</div>
 	</div>

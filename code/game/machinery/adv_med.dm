@@ -311,7 +311,6 @@
 				bloodData["volume"] = blood_volume
 				bloodData["percent"] = round(((blood_volume / 560)*100))
 				bloodData["bloodLevel"] = round(H.vessel.get_reagent_amount("blood"))
-				bloodData["bloodMax"] = H.max_blood
 
 			occupantData["blood"] = bloodData
 
@@ -334,6 +333,8 @@
 				organData["fireLoss"] = E.burn_dam
 				organData["totalLoss"] = E.brute_dam + E.burn_dam
 				organData["maxHealth"] = E.max_damage
+				organData["bruised"] = E.min_bruised_damage
+				organData["broken"] = E.min_broken_damage
 
 				var/implantData[0]
 				for(var/obj/I in E.implants)
@@ -378,14 +379,16 @@
 				var/organData[0]
 				organData["name"] = I.name
 				if(I.status & ORGAN_ASSISTED)
-					organData["desc"] = "Assisted"
+					organData["robotic"] = 1
 				else if(I.robotic >= ORGAN_ROBOT)
-					organData["desc"] = "Mechanical"
+					organData["robotic"] = 2
 				else
-					organData["desc"] = null
+					organData["robotic"] = null
 				organData["germ_level"] = I.germ_level
 				organData["damage"] = I.damage
 				organData["maxHealth"] = I.max_damage
+				organData["bruised"] = I.min_broken_damage
+				organData["broken"] = I.min_bruised_damage
 
 				intOrganData.Add(list(organData))
 
