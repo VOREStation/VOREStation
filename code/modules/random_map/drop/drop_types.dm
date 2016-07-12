@@ -42,8 +42,7 @@ var/global/list/datum/supply_drop_loot/supply_drop
 		/obj/item/weapon/gun/energy/xray,
 		/obj/item/weapon/storage/box/emps,
 		/obj/item/weapon/storage/box/flashbangs,
-		/obj/item/weapon/material/hatchet/tacknife/combatknife
-		)
+		/obj/item/weapon/material/hatchet/tacknife/combatknife)
 
 /datum/supply_drop_loot/ballistics
 	name = "Ballistic Warfare"
@@ -67,8 +66,7 @@ var/global/list/datum/supply_drop_loot/supply_drop
 		/obj/item/ammo_magazine/c762/ap,
 		/obj/item/weapon/gun/projectile/colt,
 		/obj/item/ammo_magazine/c45m,
-		/obj/item/weapon/material/hatchet/tacknife/combatknife
-		)
+		/obj/item/weapon/material/hatchet/tacknife/combatknife)
 
 /datum/supply_drop_loot/heavy_warfare
 	name = "Heavy Warfare"
@@ -96,8 +94,7 @@ var/global/list/datum/supply_drop_loot/supply_drop
 		/obj/item/weapon/grenade/flashbang,
 		/obj/item/weapon/grenade/empgrenade,
 		/obj/item/weapon/grenade/empgrenade,
-		/obj/item/weapon/material/hatchet/tacknife/combatknife
-		)
+		/obj/item/weapon/material/hatchet/tacknife/combatknife)
 
 datum/supply_drop_loot/riot
 	name = "Riot Gear"
@@ -121,8 +118,7 @@ datum/supply_drop_loot/riot
 		/obj/item/weapon/gun/energy/gun,
 		/obj/item/clothing/accessory/holster,
 		/obj/item/weapon/gun/launcher/grenade,
-		/obj/item/weapon/storage/backpack/dufflebag/sec
-		)
+		/obj/item/weapon/storage/backpack/dufflebag/sec)
 
 /datum/supply_drop_loot/seeds
 	name = "Plant Growing"
@@ -204,8 +200,7 @@ datum/supply_drop_loot/riot
 		/obj/item/clothing/suit/storage/hazardvest,
 		/obj/item/clothing/suit/storage/hazardvest,
 		/obj/item/device/flashlight/flare,
-		/obj/item/device/flashlight/flare
-		)
+		/obj/item/device/flashlight/flare)
 
 /datum/supply_drop_loot/plushie
 	name = "Cuddly Fun!"
@@ -235,7 +230,34 @@ datum/supply_drop_loot/riot
 		/obj/item/toy/katana,
 		/obj/item/toy/katana,
 		/obj/item/weapon/inflatable_duck,
-		/obj/item/weapon/inflatable_duck
+		/obj/item/weapon/inflatable_duck)
+
+/datum/supply_drop_loot/christmas
+	name = "Surplus Christmas Supplies"
+	container = /obj/structure/largecrate
+/datum/supply_drop_loot/christmas/New()
+	..()
+	contents = list(
+		/obj/item/toy/xmastree,
+		/obj/item/toy/xmastree,
+		/obj/item/toy/xmastree,
+		/obj/item/toy/xmastree,
+		/obj/item/toy/xmastree,
+		/obj/item/toy/xmastree,
+		/obj/item/toy/xmastree,
+		/obj/item/toy/xmastree,
+		/obj/item/clothing/head/santa,
+		/obj/item/clothing/head/santa,
+		/obj/item/clothing/head/santa,
+		/obj/item/clothing/head/santa,
+		/obj/item/clothing/head/santa/green,
+		/obj/item/clothing/head/santa/green,
+		/obj/item/clothing/head/santa/green,
+		/obj/item/clothing/head/santa/green,
+		/obj/item/clothing/accessory/scarf/christmas,
+		/obj/item/clothing/accessory/scarf/christmas,
+		/obj/item/clothing/accessory/scarf/christmas,
+		/obj/item/clothing/accessory/scarf/christmas
 		)
 
 /datum/supply_drop_loot/materials
