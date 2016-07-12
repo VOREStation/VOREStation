@@ -8,12 +8,11 @@
 	proc
 		process_hud(var/mob/M)	return
 
-
-
 /obj/item/clothing/glasses/hud/health
 	name = "Health Scanner HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status."
 	icon_state = "healthhud"
+	item_state = "headset"
 	body_parts_covered = 0
 
 /obj/item/clothing/glasses/hud/health/prescription
@@ -21,7 +20,7 @@
 	desc = "A medical HUD integrated with a set of prescription glasses"
 	prescription = 1
 	icon_state = "healthhudpresc"
-	item_state = "healthhudpresc"
+	item_state = "glasses"
 
 /obj/item/clothing/glasses/hud/health/process_hud(var/mob/M)
 	process_med_hud(M, 1)
@@ -30,6 +29,7 @@
 	name = "Security HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status and security records."
 	icon_state = "securityhud"
+	item_state = "headset"
 	body_parts_covered = 0
 	var/global/list/jobs[0]
 
@@ -38,13 +38,13 @@
 	desc = "A security HUD integrated with a set of prescription glasses"
 	prescription = 1
 	icon_state = "sechudpresc"
-	item_state = "sechudpresc"
+	item_state = "glasses"
 
 /obj/item/clothing/glasses/hud/security/jensenshades
 	name = "Augmented shades"
 	desc = "Polarized bioneural eyewear, designed to augment your vision."
 	icon_state = "jensenshades"
-	item_state = "jensenshades"
+	item_state = "sunglasses"
 	vision_flags = SEE_MOBS
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 

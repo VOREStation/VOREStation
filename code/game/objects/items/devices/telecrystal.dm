@@ -8,7 +8,6 @@ For new antags, make sure to add "player.mind.accept_tcrystals = 1" if you want 
 	desc = "A strange, red, glowing crystal."
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "telecrystal"
-	item_state = "telecrystal"
 	force = 5
 	origin_tech = list(TECH_MATERIAL = 2, TECH_BLUESPACE = 1, TECH_ILLEGAL = 1)
 	

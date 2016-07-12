@@ -14,7 +14,6 @@
 	name = "red labcoat"
 	desc = "A suit that protects against minor chemical spills. This one is red."
 	icon_state = "red_labcoat_open"
-	item_state = "red_labcoat"
 	icon_open = "red_labcoat_open"
 	icon_closed = "red_labcoat"
 
@@ -22,7 +21,6 @@
 	name = "blue labcoat"
 	desc = "A suit that protects against minor chemical spills. This one is blue."
 	icon_state = "blue_labcoat_open"
-	item_state = "blue_labcoat"
 	icon_open = "blue_labcoat_open"
 	icon_closed = "blue_labcoat"
 
@@ -30,7 +28,6 @@
 	name = "purple labcoat"
 	desc = "A suit that protects against minor chemical spills. This one is purple."
 	icon_state = "purple_labcoat_open"
-	item_state = "purple_labcoat"
 	icon_open = "purple_labcoat_open"
 	icon_closed = "purple_labcoat"
 
@@ -38,7 +35,6 @@
 	name = "orange labcoat"
 	desc = "A suit that protects against minor chemical spills. This one is orange."
 	icon_state = "orange_labcoat_open"
-	item_state = "orange_labcoat"
 	icon_open = "orange_labcoat_open"
 	icon_closed = "orange_labcoat"
 
@@ -46,7 +42,6 @@
 	name = "green labcoat"
 	desc = "A suit that protects against minor chemical spills. This one is green."
 	icon_state = "green_labcoat_open"
-	item_state = "green_labcoat"
 	icon_open = "green_labcoat_open"
 	icon_closed = "green_labcoat"
 
@@ -54,7 +49,6 @@
 	name = "yellow labcoat"
 	desc = "A suit that protects against minor chemical spills. This one is yellow."
 	icon_state = "yellow_labcoat_open"
-	item_state = "yellow_labcoat"
 	icon_open = "yellow_labcoat_open"
 	icon_closed = "yellow_labcoat"
 
@@ -62,7 +56,6 @@
 	name = "pink labcoat"
 	desc = "A suit that protects against minor chemical spills. This one is pink."
 	icon_state = "pink_labcoat_open"
-	item_state = "pink_labcoat"
 	icon_open = "pink_labcoat_open"
 	icon_closed = "pink_labcoat"
 
@@ -70,7 +63,6 @@
 	name = "chief medical officer's labcoat"
 	desc = "Bluer than the standard model."
 	icon_state = "labcoat_cmo_open"
-	item_state = "labcoat_cmo"
 	icon_open = "labcoat_cmo_open"
 	icon_closed = "labcoat_cmo"
 
@@ -85,7 +77,6 @@
 	name = "The Mad's labcoat"
 	desc = "It makes you look capable of konking someone on the noggin and shooting them into space."
 	icon_state = "labgreen_open"
-	item_state = "labgreen"
 	icon_open = "labgreen_open"
 	icon_closed = "labgreen"
 
@@ -122,6 +113,5 @@
 	name = "EMT's labcoat"
 	desc = "A dark blue labcoat with reflective strips for emergency medical technicians."
 	icon_state = "labcoat_emt_open"
-	item_state = "labcoat_emt"
 	icon_open = "labcoat_emt_open"
 	icon_closed = "labcoat_emt"

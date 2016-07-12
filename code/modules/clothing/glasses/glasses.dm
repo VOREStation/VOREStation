@@ -102,7 +102,7 @@ BLIND     // can't see anything
 	name = "eyepatch"
 	desc = "Yarr."
 	icon_state = "eyepatch"
-	item_state = "eyepatch"
+	item_state = "blindfold"
 	body_parts_covered = 0
 	var/eye = null
 
@@ -124,7 +124,7 @@ BLIND     // can't see anything
 	name = "monocle"
 	desc = "Such a dapper eyepiece!"
 	icon_state = "monocle"
-	item_state = "headset" // lol
+	item_state = "headset" // lol -- well I guess that works
 	body_parts_covered = 0
 
 /obj/item/clothing/glasses/material
@@ -154,20 +154,19 @@ BLIND     // can't see anything
 	name = "Prescription Glasses"
 	desc = "Made by Uncool. Co."
 	icon_state = "hipster_glasses"
-	item_state = "hipster_glasses"
 
 /obj/item/clothing/glasses/threedglasses
 	desc = "A long time ago, people used these glasses to makes images from screens threedimensional."
 	name = "3D glasses"
 	icon_state = "3d"
-	item_state = "3d"
+	item_state = "glasses"
 	body_parts_covered = 0
 
 /obj/item/clothing/glasses/gglasses
 	name = "Green Glasses"
 	desc = "Forest green glasses, like the kind you'd wear when hatching a nasty scheme."
 	icon_state = "gglasses"
-	item_state = "gglasses"
+	item_state = "glasses"
 	body_parts_covered = 0
 
 /obj/item/clothing/glasses/sunglasses
@@ -215,7 +214,6 @@ BLIND     // can't see anything
 	name = "superior welding goggles"
 	desc = "Welding goggles made from more expensive materials, strangely smells like potatoes."
 	icon_state = "rwelding-g"
-	item_state = "rwelding-g"
 
 /obj/item/clothing/glasses/sunglasses/blindfold
 	name = "blindfold"
@@ -239,8 +237,7 @@ BLIND     // can't see anything
 /obj/item/clothing/glasses/sunglasses/big
 	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Larger than average enhanced shielding blocks many flashes."
 	icon_state = "bigsunglasses"
-	item_state = "bigsunglasses"
-
+	
 /obj/item/clothing/glasses/fakesunglasses //Sunglasses without flash immunity
 	desc = "A pair of designer sunglasses. Doesn't seem like it'll block flashes."
 	name = "stylish sunglasses"
@@ -306,6 +303,7 @@ BLIND     // can't see anything
 	name = "Thermoncle"
 	desc = "A monocle thermal."
 	icon_state = "thermoncle"
+	item_state = "sunglasses"
 	toggleable = 1
 	action_button_name = "Toggle Monocle"
 	flags = null //doesn't protect eyes because it's a monocle, duh
@@ -316,7 +314,7 @@ BLIND     // can't see anything
 	name = "Optical Thermal Eyepatch"
 	desc = "An eyepatch with built-in thermal optics"
 	icon_state = "eyepatch"
-	item_state = "eyepatch"
+	item_state = "blindfold"
 	body_parts_covered = 0
 	toggleable = 1
 	action_button_name = "Toggle Eyepatch"
@@ -325,4 +323,4 @@ BLIND     // can't see anything
 	name = "Optical Thermal Implants"
 	desc = "A set of implantable lenses designed to augment your vision"
 	icon_state = "thermalimplants"
-	item_state = "syringe_kit"
+	item_state = "sunglasses"

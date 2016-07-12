@@ -8,7 +8,6 @@
 	heat_protection = FEET
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 
-
 /obj/item/clothing/shoes/brown
 	name = "brown shoes"
 	desc = "A pair of brown shoes."
@@ -29,10 +28,6 @@
 /obj/item/clothing/shoes/purple
 	name = "purple shoes"
 	icon_state = "purple"
-
-/obj/item/clothing/shoes/brown
-	name = "brown shoes"
-	icon_state = "brown"
 
 /obj/item/clothing/shoes/red
 	name = "red shoes"
@@ -58,36 +53,43 @@
 	name = "black flats"
 	desc = "Sleek black flats."
 	icon_state = "flatsblack"
+	item_state = "black"
 
 /obj/item/clothing/shoes/flats/white
 	name = "white flats"
 	desc = "Shiny white flats."
 	icon_state = "flatswhite"
+	item_state = "white"
 
 /obj/item/clothing/shoes/flats/red
 	name = "red flats"
 	desc = "Ruby red flats."
 	icon_state = "flatsred"
+	item_state = "red"
 
 /obj/item/clothing/shoes/flats/purple
 	name = "purple flats"
 	desc = "Royal purple flats."
 	icon_state = "flatspurple"
+	item_state = "purple"
 
 /obj/item/clothing/shoes/flats/blue
 	name = "blue flats"
 	desc = "Sleek blue flats."
 	icon_state = "flatsblue"
+	item_state = "blue"
 
 /obj/item/clothing/shoes/flats/brown
 	name = "brown flats"
 	desc = "Sleek brown flats."
 	icon_state = "flatsbrown"
+	item_state = "brown"
 
 /obj/item/clothing/shoes/flats/orange
 	name = "orange flats"
 	desc = "Radiant orange flats."
 	icon_state = "flatsorange"
+	item_state = "orange"
 
 /obj/item/clothing/shoes/orange
 	name = "orange shoes"
@@ -95,23 +97,23 @@
 	var/obj/item/weapon/handcuffs/chained = null
 
 /obj/item/clothing/shoes/orange/proc/attach_cuffs(var/obj/item/weapon/handcuffs/cuffs, mob/user as mob)
-	if (src.chained) return
+	if (chained) return
 
 	user.drop_item()
 	cuffs.loc = src
-	src.chained = cuffs
-	src.slowdown = 15
-	src.icon_state = "orange1"
+	chained = cuffs
+	slowdown = 15
+	icon_state = "orange1"
 
 /obj/item/clothing/shoes/orange/proc/remove_cuffs(mob/user as mob)
-	if (!src.chained) return
+	if (!chained) return
 
-	user.put_in_hands(src.chained)
-	src.chained.add_fingerprint(user)
+	user.put_in_hands(chained)
+	chained.add_fingerprint(user)
 
-	src.slowdown = initial(slowdown)
-	src.icon_state = "orange"
-	src.chained = null
+	slowdown = initial(slowdown)
+	icon_state = "orange"
+	chained = null
 
 /obj/item/clothing/shoes/orange/attack_self(mob/user as mob)
 	..()

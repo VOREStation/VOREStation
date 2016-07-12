@@ -7,7 +7,7 @@
 	desc = "Triangulates the approximate co-ordinates using a nearby satellite network."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "locator"
-	item_state = "locator"
+	item_state = "analyzer"
 	w_class = 2
 
 /obj/item/device/gps/attack_self(var/mob/user as mob)

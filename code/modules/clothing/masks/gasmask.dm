@@ -32,7 +32,7 @@
 	name = "plague doctor mask"
 	desc = "A modernised version of the classic design, this mask will not only filter out phoron but it can also be connected to an air supply."
 	icon_state = "plaguedoctor"
-	item_state = "gas_mask"
+	item_state = "gas"
 	armor = list(melee = 0, bullet = 0, laser = 2,energy = 2, bomb = 0, bio = 90, rad = 0)
 	body_parts_covered = HEAD|FACE|EYES
 
@@ -59,7 +59,7 @@
 	name = "sexy-clown wig and mask"
 	desc = "A feminine clown mask for the dabbling crossdressers or female entertainers."
 	icon_state = "sexyclown"
-	item_state = "sexyclown"
+	item_state = "clown_hat"
 
 /obj/item/clothing/mask/gas/mime
 	name = "mime mask"
@@ -71,19 +71,18 @@
 	name = "monkey mask"
 	desc = "A mask used when acting as a monkey."
 	icon_state = "monkeymask"
-	item_state = "monkeymask"
 	body_parts_covered = HEAD|FACE|EYES
 
 /obj/item/clothing/mask/gas/sexymime
 	name = "sexy mime mask"
 	desc = "A traditional female mime's mask."
 	icon_state = "sexymime"
-	item_state = "sexymime"
+	item_state = "mime"
 
 /obj/item/clothing/mask/gas/death_commando
 	name = "Death Commando Mask"
 	icon_state = "death_commando_mask"
-	item_state = "death_commando_mask"
+	item_state = "swat"
 	siemens_coefficient = 0.2
 
 /obj/item/clothing/mask/gas/cyborg

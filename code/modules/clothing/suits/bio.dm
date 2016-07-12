@@ -2,10 +2,7 @@
 /obj/item/clothing/head/bio_hood
 	name = "bio hood"
 	icon_state = "bio"
-	item_state_slots = list(
-		slot_l_hand_str = "bio_hood",
-		slot_r_hand_str = "bio_hood",
-		)
+	item_state = "bio_hood"
 	desc = "A hood that protects the head and face from biological comtaminants."
 	permeability_coefficient = 0.01
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 100, rad = 20)

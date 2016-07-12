@@ -76,7 +76,7 @@
 	desc = "Some sort of bizarre assembly."
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "ed209_frame"
-	item_state = "ed209_frame"
+	item_state = "buildpipe"
 	created_name = "ED-209 Security Robot"
 	var/lasercolor = ""
 
@@ -101,10 +101,8 @@
 				user << "<span class='notice'>You add the robot leg to [src].</span>"
 				name = "legs/frame assembly"
 				if(build_step == 1)
-					item_state = "ed209_leg"
 					icon_state = "ed209_leg"
 				else
-					item_state = "ed209_legs"
 					icon_state = "ed209_legs"
 
 		if(2)

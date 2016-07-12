@@ -15,10 +15,7 @@
 	name = "welding helmet"
 	desc = "A head-mounted face cover designed to protect the wearer completely from space-arc eye."
 	icon_state = "welding"
-	item_state_slots = list(
-		slot_l_hand_str = "welding",
-		slot_r_hand_str = "welding",
-		)
+	item_state = "welding"
 	matter = list(DEFAULT_WALL_MATERIAL = 3000, "glass" = 1000)
 	var/up = 0
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
@@ -64,7 +61,6 @@
 	name = "cake-hat"
 	desc = "It's tasty looking!"
 	icon_state = "cake0"
-	item_state = "cake0"
 	var/onfire = 0
 	body_parts_covered = HEAD
 
@@ -83,18 +79,16 @@
 		location.hotspot_expose(700, 1)
 
 /obj/item/clothing/head/cakehat/attack_self(mob/user as mob)
-	src.onfire = !( src.onfire )
-	if (src.onfire)
-		src.force = 3
-		src.damtype = "fire"
-		src.icon_state = "cake1"
-		src.item_state = "cake1"
+	onfire = !(onfire)
+	if (onfire)
+		force = 3
+		damtype = "fire"
+		icon_state = "cake1"
 		processing_objects.Add(src)
 	else
-		src.force = null
-		src.damtype = "brute"
-		src.icon_state = "cake0"
-		src.item_state = "cake0"
+		force = null
+		damtype = "brute"
+		icon_state = "cake0"
 	return
 
 
@@ -151,6 +145,7 @@
 	name = "chicken mask"
 	desc = "You can hear the distant sounds of rhythmic electronica."
 	icon_state = "richard"
+	item_state = "chickenhead"
 	body_parts_covered = HEAD|FACE
 	flags_inv = BLOCKHAIR
 
@@ -158,10 +153,12 @@
 	name = "santa hat"
 	desc = "It's a festive christmas hat, in red!"
 	icon_state = "santahatnorm"
+	item_state = "santahat"
 	body_parts_covered = 0
 
 /obj/item/clothing/head/santa/green
 	name = "green santa hat"
 	desc = "It's a festive christmas hat, in green!"
 	icon_state = "santahatgreen"
+	item_state = "santahatgreen"
 	body_parts_covered = 0

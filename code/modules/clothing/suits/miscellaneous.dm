@@ -12,7 +12,7 @@
 	name = "blue laser tag armour"
 	desc = "Blue Pride, Station Wide."
 	icon_state = "bluetag"
-	item_state = "bluetag"
+	item_state = "armor"
 	blood_overlay_type = "armor"
 	body_parts_covered = UPPER_TORSO
 	allowed = list (/obj/item/weapon/gun/energy/lasertag/blue)
@@ -22,7 +22,7 @@
 	name = "red laser tag armour"
 	desc = "Reputed to go faster."
 	icon_state = "redtag"
-	item_state = "redtag"
+	item_state = "armor"
 	blood_overlay_type = "armor"
 	body_parts_covered = UPPER_TORSO
 	allowed = list (/obj/item/weapon/gun/energy/lasertag/red)
@@ -35,61 +35,50 @@
 	name = "pirate coat"
 	desc = "Yarr."
 	icon_state = "pirate"
-	item_state = "pirate"
 	body_parts_covered = UPPER_TORSO|ARMS
-
 
 /obj/item/clothing/suit/hgpirate
 	name = "pirate captain coat"
 	desc = "Yarr."
 	icon_state = "hgpirate"
-	item_state = "hgpirate"
 	flags_inv = HIDEJUMPSUIT
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-
 
 /obj/item/clothing/suit/cyborg_suit
 	name = "cyborg suit"
 	desc = "Suit for a cyborg costume."
 	icon_state = "death"
-	item_state = "death"
 	flags = CONDUCT
 	fire_resist = T0C+5200
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-
-
+	
 /obj/item/clothing/suit/greatcoat
 	name = "great coat"
 	desc = "A heavy great coat"
 	icon_state = "nazi"
-	item_state = "nazi"
-
+	item_state = "greatcoat"
 
 /obj/item/clothing/suit/johnny_coat
 	name = "johnny~~ coat"
 	desc = "Johnny~~"
 	icon_state = "johnny"
-	item_state = "johnny"
-
+	item_state = "johnny_coat"
 
 /obj/item/clothing/suit/justice
 	name = "justice suit"
 	desc = "This pretty much looks ridiculous."
 	icon_state = "justice"
-	item_state = "justice"
+	item_state = "greatcoat"
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|HANDS|LEGS|FEET
-
 
 /obj/item/clothing/suit/judgerobe
 	name = "judge's robe"
 	desc = "This robe commands authority."
 	icon_state = "judge"
-	item_state = "judge"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	allowed = list(/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/spacecash)
 	flags_inv = HIDEJUMPSUIT
-
 
 /obj/item/clothing/suit/wcoat
 	name = "waistcoat"
@@ -99,14 +88,12 @@
 	blood_overlay_type = "armor"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
-
 /obj/item/clothing/suit/apron/overalls
 	name = "coveralls"
 	desc = "A set of denim overalls."
 	icon_state = "overalls"
 	item_state = "overalls"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
-
 
 /obj/item/clothing/suit/syndicatefake
 	name = "red space suit replica"
@@ -122,19 +109,15 @@
 	name = "Hastur's Robes"
 	desc = "Robes not meant to be worn by man"
 	icon_state = "hastur"
-	item_state = "hastur"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-
 
 /obj/item/clothing/suit/imperium_monk
 	name = "Imperium monk"
 	desc = "Have YOU killed a xenos today?"
 	icon_state = "imperium_monk"
-	item_state = "imperium_monk"
 	body_parts_covered = HEAD|UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
 	flags_inv = HIDESHOES|HIDEJUMPSUIT
-
 
 /obj/item/clothing/suit/chickensuit
 	name = "Chicken Suit"
@@ -145,31 +128,25 @@
 	flags_inv = HIDESHOES|HIDEJUMPSUIT
 	siemens_coefficient = 2.0
 
-
 /obj/item/clothing/suit/monkeysuit
 	name = "Monkey Suit"
 	desc = "A suit that looks like a primate"
 	icon_state = "monkeysuit"
-	item_state = "monkeysuit"
 	body_parts_covered = UPPER_TORSO|ARMS|LOWER_TORSO|LEGS|FEET|HANDS
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	siemens_coefficient = 2.0
-
 
 /obj/item/clothing/suit/holidaypriest
 	name = "Holiday Priest"
 	desc = "This is a nice holiday my son."
 	icon_state = "holidaypriest"
-	item_state = "holidaypriest"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	flags_inv = HIDEJUMPSUIT
-
 
 /obj/item/clothing/suit/cardborg
 	name = "cardborg suit"
 	desc = "An ordinary cardboard box with holes cut in the sides."
 	icon_state = "cardborg"
-	item_state = "cardborg"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	flags_inv = HIDEJUMPSUIT
 
@@ -181,7 +158,6 @@
 	name = "straight jacket"
 	desc = "A suit that completely restrains the wearer."
 	icon_state = "straight_jacket"
-	item_state = "straight_jacket"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
 
@@ -189,7 +165,6 @@
 	name = "worn shirt"
 	desc = "A worn out, curiously comfortable t-shirt with a picture of Ian. You wouldn't go so far as to say it feels like being hugged when you wear it but it's pretty close. Good for sleeping in."
 	icon_state = "ianshirt"
-	item_state = "ianshirt"
 	body_parts_covered = UPPER_TORSO|ARMS
 
 //pyjamas
@@ -199,14 +174,12 @@
 	name = "blue pyjamas"
 	desc = "Slightly old-fashioned sleepwear."
 	icon_state = "blue_pyjamas"
-	item_state = "blue_pyjamas"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 
 /obj/item/clothing/under/redpyjamas
 	name = "red pyjamas"
 	desc = "Slightly old-fashioned sleepwear."
 	icon_state = "red_pyjamas"
-	item_state = "red_pyjamas"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 
 //coats
@@ -215,25 +188,25 @@
 	name = "leather coat"
 	desc = "A long, thick black leather coat."
 	icon_state = "leathercoat_alt"
-	item_state = "leathercoat_alt"
+	item_state = "leather_jacket"
 
 /obj/item/clothing/suit/leathercoat/sec
 	name = "leather coat"
 	desc = "A long, thick black leather coat."
 	icon_state = "leathercoat_sec"
-	item_state = "leathercoat_sec"
+	item_state = "leather_jacket"
 
 /obj/item/clothing/suit/browncoat
 	name = "brown leather coat"
 	desc = "A long, brown leather coat."
 	icon_state = "browncoat"
-	item_state = "browncoat"
+	item_state = "brown_jacket"
 
 /obj/item/clothing/suit/neocoat
 	name = "black coat"
 	desc = "A flowing, black coat."
 	icon_state = "neocoat"
-	item_state = "neocoat"
+	item_state = "leather_jacket"
 
 //stripper
 /obj/item/clothing/under/stripper
@@ -261,7 +234,6 @@
 	name = "green skimpy dress"
 	desc = "A rather skimpy green dress."
 	icon_state = "stripper_g_over"
-	item_state = "stripper_g"
 	siemens_coefficient = 1
 
 /obj/item/clothing/under/stripper/mankini
@@ -278,6 +250,7 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	siemens_coefficient = 2.0
+	
 //swimsuit
 /obj/item/clothing/under/swimsuit/
 	siemens_coefficient = 1
@@ -317,91 +290,77 @@
 	name = "poncho"
 	desc = "A simple, comfortable poncho."
 	icon_state = "classicponcho"
-	item_state = "classicponcho"
 
 /obj/item/clothing/suit/poncho/green
 	name = "green poncho"
 	desc = "A simple, comfortable cloak without sleeves. This one is green."
 	icon_state = "greenponcho"
-	item_state = "greenponcho"
 
 /obj/item/clothing/suit/poncho/red
 	name = "red poncho"
 	desc = "A simple, comfortable cloak without sleeves. This one is red."
 	icon_state = "redponcho"
-	item_state = "redponcho"
 
 /obj/item/clothing/suit/poncho/purple
 	name = "purple poncho"
 	desc = "A simple, comfortable cloak without sleeves. This one is purple."
 	icon_state = "purpleponcho"
-	item_state = "purpleponcho"
 
 /obj/item/clothing/suit/poncho/blue
 	name = "blue poncho"
 	desc = "A simple, comfortable cloak without sleeves. This one is blue."
 	icon_state = "blueponcho"
-	item_state = "blueponcho"
 
 /obj/item/clothing/suit/poncho/roles/security
 	name = "security poncho"
 	desc = "A simple, comfortable cloak without sleeves. This one is black and red, standard NanoTrasen Security colors."
 	icon_state = "secponcho"
-	item_state = "secponcho"
 
 /obj/item/clothing/suit/poncho/roles/medical
 	name = "medical poncho"
 	desc = "A simple, comfortable cloak without sleeves. This one is white with green and blue tint, standard Medical colors."
 	icon_state = "medponcho"
-	item_state = "medponcho"
 
 /obj/item/clothing/suit/poncho/roles/engineering
 	name = "engineering poncho"
 	desc = "A simple, comfortable cloak without sleeves. This one is yellow and orange, standard Engineering colors."
 	icon_state = "engiponcho"
-	item_state = "engiponcho"
 
 /obj/item/clothing/suit/poncho/roles/science
 	name = "science poncho"
 	desc = "A simple, comfortable cloak without sleeves. This one is white with purple trim, standard NanoTrasen Science colors."
 	icon_state = "sciponcho"
-	item_state = "sciponcho"
 
 /obj/item/clothing/suit/poncho/roles/cargo
 	name = "cargo poncho"
 	desc = "A simple, comfortable cloak without sleeves. This one is tan and grey, the colors of Cargo."
 	icon_state = "cargoponcho"
-	item_state = "cargoponcho"
 
 /obj/item/clothing/suit/jacket/puffer
 	name = "puffer jacket"
 	desc = "A thick jacket with a rubbery, water-resistant shell."
 	icon_state = "pufferjacket"
-	item_state = "pufferjacket"
 
 /obj/item/clothing/suit/jacket/puffer/vest
 	name = "puffer vest"
 	desc = "A thick vest with a rubbery, water-resistant shell."
 	icon_state = "puffervest"
-	item_state = "puffervest"
 
 /obj/item/clothing/suit/storage/miljacket
 	name = "military jacket"
 	desc = "A canvas jacket styled after classical American military garb. Feels sturdy, yet comfortable."
 	icon_state = "militaryjacket_nobadge"
-	item_state = "militaryjacket_nobadge"
 
 /obj/item/clothing/suit/storage/miljacket/alt
 	name = "military jacket"
 	desc = "A canvas jacket styled after classical American military garb. Feels sturdy, yet comfortable."
 	icon_state = "militaryjacket_badge"
-	item_state = "militaryjacket_badge"
 
 /obj/item/clothing/suit/storage/toggle/bomber
 	name = "bomber jacket"
 	desc = "A thick, well-worn WW2 leather bomber jacket."
 	icon_state = "bomber"
-	item_state = "bomber"
+	item_state = "brown_jacket"
 	icon_open = "bomber_open"
 	icon_closed = "bomber"
 	body_parts_covered = UPPER_TORSO|ARMS
@@ -413,7 +372,7 @@
 	name = "bomber jacket"
 	desc = "A thick, well-worn WW2 leather bomber jacket."
 	icon_state = "bomberjacket_new"
-	item_state = "bomberjacket_new"
+	item_state = "brown_jacket"
 	body_parts_covered = UPPER_TORSO|ARMS
 	cold_protection = UPPER_TORSO|ARMS
 	min_cold_protection_temperature = T0C - 20
@@ -423,12 +382,11 @@
 	name = "leather jacket"
 	desc = "A black leather coat."
 	icon_state = "leather_jacket"
-	item_state = "leather_jacket"
 	body_parts_covered = UPPER_TORSO|ARMS
 
 /obj/item/clothing/suit/storage/leather_jacket/alt
 	icon_state = "leather_jacket_alt"
-	item_state = "leather_jacket_alt"
+	item_state = "leather_jacket"
 
 /obj/item/clothing/suit/storage/leather_jacket/nanotrasen
 	desc = "A black leather coat. A corporate logo is proudly displayed on the back."
