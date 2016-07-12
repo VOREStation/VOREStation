@@ -87,12 +87,15 @@
 
 /mob/living/bot/secbot/emag_act(var/remaining_uses, var/mob/user)
 	. = ..()
-	if(user)
-		user << "<span class='notice'>The [src] buzzes and beeps.</span>"
-	emagged = 1
-	patrol_speed = 3
-	target_speed = 4
-	return 1
+	if(!emagged)
+		if(user)
+			user << "<span class='notice'>\The [src] buzzes and beeps.</span>"
+		emagged = 1
+		patrol_speed = 3
+		target_speed = 4
+		return 1
+	else
+		user << "<span class='notice'>\The [src] is already corrupt.</span>"
 
 /mob/living/bot/secbot/attackby(var/obj/item/O, var/mob/user)
 	var/curhealth = health
