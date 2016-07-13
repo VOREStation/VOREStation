@@ -31,8 +31,8 @@ var/global/list/datum/supply_drop_loot/supply_drop
 	contents = list(
 		/obj/item/clothing/gloves/arm_guard/laserproof,
 		/obj/item/clothing/shoes/leg_guard/laserproof,
-		/obj/item/clothing/head/helmet/bulletproof,
-		/obj/item/clothing/suit/armor/bulletproof,
+		/obj/item/clothing/head/helmet/laserproof,
+		/obj/item/clothing/suit/armor/laserproof,
 		/obj/item/clothing/glasses/sunglasses/sechud/tactical,
 		/obj/item/weapon/storage/belt/security/tactical/bandolier,
 		/obj/item/clothing/accessory/storage/black_drop_pouches,
