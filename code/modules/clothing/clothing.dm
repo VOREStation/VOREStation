@@ -108,7 +108,7 @@
 		icon = initial(icon)
 
 ///////////////////////////////////////////////////////////////////////
-// Ears: headsets, earmuffs and tiny objects
+// Ears: headsets, earmuffs and tiny objects --BECAUSE THERE ISNT A FOLDER FOR THESE OR ANYTHING. -S2-
 /obj/item/clothing/ears
 	name = "ears"
 	w_class = 1.0

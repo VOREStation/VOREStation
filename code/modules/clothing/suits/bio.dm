@@ -27,7 +27,7 @@
 /obj/item/clothing/head/bio_hood/general
 	icon_state = "bio_general"
 	item_state = "bio"
-	body_parts_covered = HsEAD|FACE|EYES
+	body_parts_covered = HEAD|FACE|EYES
 
 /obj/item/clothing/suit/bio_suit/general
 	icon_state = "bio_general"
