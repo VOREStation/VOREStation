@@ -1,0 +1,13 @@
+# Your name.  
+author: Yoshax
+
+# Optional: Remove this file after generating master changelog.  Useful for PR changelogs that won't get used again.
+delete-after: True
+
+# Any changes you've made.  See valid prefix list above.
+# INDENT WITH TWO SPACES.  NOT TABS.  SPACES.
+# SCREW THIS UP AND IT WON'T WORK.
+# Also, all entries are changed into a single [] after a master changelog generation. Just remove the brackets when you add new entries.
+# Please surround your changes in  double quotes ("), as certain characters otherwise screws up compiling. The quotes will not show up in the changelog.
+changes: 
+  - tweak: "Drop pod contents have been adjusted. In general, you will get something more useful and the less useful contents have been made more interesting. There is a total of 12 drop pod content lists and 7/12 are  useful, 4/12 are useless, 1/12 is potentially useful."
