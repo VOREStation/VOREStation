@@ -32,13 +32,16 @@ var/list/whitelist = list()
 
 /proc/is_alien_whitelisted(mob/M, var/datum/species/species)
 	//They are admin or the whitelist isn't in use
-	if(whitelist_overrides(M)) return 1
+	if(whitelist_overrides(M))
+		return 1
 
 	//You did something wrong
-	if(!M || !species) return 0
+	if(!M || !species)
+		return 0
 
 	//The species isn't even whitelisted
-	if(!(species.spawn_flags & SPECIES_IS_WHITELISTED)) return 1
+	if(!(species.spawn_flags & SPECIES_IS_WHITELISTED))
+		return 1
 
 	//If we have a loaded file, search it
 	if(alien_whitelist)
@@ -50,13 +53,16 @@ var/list/whitelist = list()
 
 /proc/is_lang_whitelisted(mob/M, var/datum/language/language)
 	//They are admin or the whitelist isn't in use
-	if(whitelist_overrides(M)) return 1
+	if(whitelist_overrides(M))
+		return 1
 
 	//You did something wrong
-	if(!M || !language) return 0
+	if(!M || !language)
+		return 0
 
 	//The language isn't even whitelisted
-	if(!(language.flags & WHITELISTED)) return 1
+	if(!(language.flags & WHITELISTED))
+		return 1
 
 	//If we have a loaded file, search it
 	if(alien_whitelist)
