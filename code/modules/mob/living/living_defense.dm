@@ -162,7 +162,7 @@
 
 //returns 0 if the effects failed to apply for some reason, 1 otherwise.
 /mob/living/proc/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/blocked, var/hit_zone)
-	if(!effective_force || blocked >= 100) 
+	if(!effective_force || blocked >= 100)
 		return 0
 
 	//Hulk modifier
@@ -299,6 +299,9 @@
 /mob/living/proc/handle_fire()
 	if(fire_stacks < 0)
 		fire_stacks = min(0, ++fire_stacks) //If we've doused ourselves in water to avoid fire, dry off slowly
+
+	if(fire_stacks > 0)
+		fire_stacks = max(0, (fire_stacks-0.1))	//Should slowly burn out
 
 	if(!on_fire)
 		return 1
