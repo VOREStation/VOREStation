@@ -74,16 +74,42 @@
 	icon_state = "joanzip"
 
 //JoanRisu:Joan Risu
-/obj/item/weapon/material/sword/fluff/joanaria
+/obj/item/weapon/sword/fluff/joanaria
 	name = "Aria"
 	desc = "A beautifully crafted rapier owned by Joan Risu. It has a thin blade and is used for quick attacks."
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "joanaria"
 	origin_tech = "materials=7"
+	force = 15
+	sharp = 1
+	edge = 1
+	hitsound = 'sound/weapons/bladeslice.ogg'
+
+
+/obj/item/weapon/sword/fluff/joanaria/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+
+	if(default_parry_check(user, attacker, damage_source) && prob(75))
+		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
+		playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, 1)
+		return 1
+	return 0
+
+//joanrisu:Katarina Eine
+/obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina
+	name = "tactical Knife"
+	desc = "A tactical knife with a small butterly engraved on the blade."
+
+obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+
+	if(default_parry_check(user, attacker, damage_source) && prob(75))
+		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
+		playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, 1)
+		return 1
+	return 0
 
 //For General use
-/obj/item/weapon/material/sword/fluff/scisword
-	name = "Sci Blade"
+/obj/item/weapon/sword/fluff/joanaria/scisword
+	name = "Scissor Blade"
 	desc = "A sword that can not only cut down your enemies, it can also cut fabric really neatly"
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "scisword"
@@ -252,12 +278,28 @@
 
 //arokha:Aronai Kadigan
 /obj/item/weapon/card/id/centcom/fluff/aro
-	registered_name = "Aronai Kadigan"
+	registered_name = "CONFIGURE ME"
 	assignment = "CC Medical"
+	var/configured = 0
+
+	attack_self(mob/user as mob)
+		if(configured == 1) return ..()
+
+		user.set_id_info(src)
+		configured = 1
+		user << "<span class='notice'>Card settings set.</span>"
+
+//arokha:Aronai Kadigan
+/obj/item/weapon/reagent_containers/hypospray/fluff/aronai
+	name = "worn hypospray"
+	desc = "This hypospray seems a bit well-used. The blue band indicates it's from the CentCom medical division. There's an 'A' scratched into the bottom."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "aro_hypo"
 
 	New()
 		..()
-		update_name()
+		reagents.add_reagent("inaprovaline", 5)
+		reagents.add_reagent("tricordrazine", 25)
 
 //Swat43:Fortune Bloise
 /obj/item/weapon/storage/backpack/satchel/fluff/swat43bag
@@ -268,3 +310,13 @@
 
 	icon_override = 'icons/vore/custom_items_vr.dmi'
 	item_state = "swat43-bag_mob"
+
+
+//Dhaeleena:Dhaeleena M'iar
+/obj/item/clothing/accessory/medal/silver/security/fluff/dhael
+	desc = "An award for distinguished combat and sacrifice in defence of corporate commercial interests. Often awarded to security staff. It's engraved with the letters S.W.A.T."
+
+//Vorrarkul:Lucina Dakarim
+/obj/item/clothing/accessory/medal/gold/fluff/lucina
+	name = "Medal of Medical Excellence"
+	desc = "A medal awarded to Lucina Darkarim for excellence in medical service."

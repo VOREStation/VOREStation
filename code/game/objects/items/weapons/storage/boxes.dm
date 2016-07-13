@@ -225,7 +225,7 @@
 /obj/item/weapon/storage/box/emps/New()
 	..()
 	for(var/i = 1 to 5)
-	new /obj/item/weapon/grenade/empgrenade(src)
+		new /obj/item/weapon/grenade/empgrenade(src)
 
 /obj/item/weapon/storage/box/empslite
 	name = "box of low yield emp grenades"
@@ -275,7 +275,7 @@
 /obj/item/weapon/storage/box/metalfoam/New()
 	..()
 	for(var/i = 1 to 7)
-		new /obj/item/weapon/grenade/chem_grenade/metalfoam
+		new /obj/item/weapon/grenade/chem_grenade/metalfoam(src)
 
 /obj/item/weapon/storage/box/trackimp
 	name = "boxed tracking implant kit"
@@ -311,15 +311,6 @@
 	..()
 	for(var/i = 1 to 7)
 		new /obj/item/clothing/glasses/regular(src)
-
-/obj/item/weapon/storage/box/drinkingglasses
-	name = "box of drinking glasses"
-	desc = "It has a picture of drinking glasses on it."
-
-/obj/item/weapon/storage/box/drinkingglasses/New()
-	..()
-	for(var/i = 1 to 7)
-		new /obj/item/weapon/reagent_containers/food/drinks/drinkingglass(src)
 
 /obj/item/weapon/storage/box/cdeathalarm_kit
 	name = "death alarm kit"

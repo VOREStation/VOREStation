@@ -85,7 +85,7 @@
 		else if (E.is_malfunctioning())
 			//malfunctioning only happens intermittently so treat it as a missing limb when it procs
 			stance_damage += 2
-			if(prob(10))
+			if(isturf(loc) && prob(10))
 				visible_message("\The [src]'s [E.name] [pick("twitches", "shudders")] and sparks!")
 				var/datum/effect/effect/system/spark_spread/spark_system = new ()
 				spark_system.set_up(5, 0, src)
@@ -110,7 +110,7 @@
 
 	// standing is poor
 	if(stance_damage >= 4 || (stance_damage >= 2 && prob(5)))
-		if(!(lying || resting))
+		if(!(lying || resting) && !isliving(loc))
 			if(limb_pain)
 				emote("scream")
 			custom_emote(1, "collapses!")

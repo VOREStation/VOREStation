@@ -13,11 +13,10 @@ Slime specific procs go here.
 	traitdat.traits[TRAIT_XENO_HUNGER] = rand(1, 20)
 	traitdat.traits[TRAIT_XENO_STARVEDAMAGE] = rand(1, 4)
 	traitdat.traits[TRAIT_XENO_EATS] = prob(95)	//Odds are, that thing'll need to eat.
-	traitdat.traits[TRAIT_XENO_CHROMATIC] = prob(5)	
-	if(traitdat.traits[TRAIT_XENO_CHROMATIC])
+	traitdat.traits[TRAIT_XENO_HOSTILE] = prob(60)	//Let's increase this probabilty.
+	if(prob(10))
+		traitdat.traits[TRAIT_XENO_CHROMATIC] = 1
 		traitdat.traits[TRAIT_XENO_HOSTILE] = 0
-	else
-		traitdat.traits[TRAIT_XENO_HOSTILE] = prob(30)
 	traitdat.traits[TRAIT_XENO_GLOW_STRENGTH] = round(rand(1,3))
 	traitdat.traits[TRAIT_XENO_GLOW_RANGE] = round(rand(1,3))
 	traitdat.traits[TRAIT_XENO_STRENGTH] = round(rand(4,9))
@@ -25,7 +24,23 @@ Slime specific procs go here.
 	traitdat.traits[TRAIT_XENO_CANLEARN] = prob(68)
 	traitdat.traits[TRAIT_XENO_SPEED] = round(rand(-10,10))
 	
-	
+/mob/living/simple_animal/xeno/slime/RandomChemicals()
+	..()
+	if(prob(40))
+		var/hasMutToxin
+		for(var/R in traitdat.chems)
+			if(R == "mutationtoxin")
+				hasMutToxin = 1
+		var/chemamount
+		if(hasMutToxin)
+			var/list/chemchoices = (xenoChemList - traitdat.chems)
+					
+			var/chemtype = pick(chemchoices)
+			chemamount = rand(1,5)
+			traitdat.chems[chemtype] = chemamount
+		else
+			chemamount = rand(1,5)
+			traitdat.chems["mutationtoxin"] = chemamount
 
 /mob/living/simple_animal/xeno/slime/proc/GrowUp()
 	GenerateAdult()

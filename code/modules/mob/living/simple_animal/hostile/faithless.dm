@@ -58,3 +58,26 @@
 /mob/living/simple_animal/hostile/faithless/cult/Life()
 	..()
 	check_horde()
+
+
+
+
+/mob/living/simple_animal/hostile/faithless/strong
+	maxHealth = 100
+	health = 100
+
+	harm_intent_damage = 5
+	melee_damage_lower = 7
+	melee_damage_upper = 20
+
+
+/mob/living/simple_animal/hostile/faithless/strong/cult
+	faction = "cult"
+	supernatural = 1
+
+/mob/living/simple_animal/hostile/faithless/cult/cultify()
+	return
+
+/mob/living/simple_animal/hostile/faithless/cult/Life()
+	..()
+	check_horde()

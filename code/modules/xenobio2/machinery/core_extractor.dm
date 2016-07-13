@@ -110,7 +110,8 @@
 		icon_state = "scanner_1old"
 		for(var/i=1 to occupant.cores)
 			var/obj/item/xenoproduct/slime/core/C = new(src)
-			C.traits = occupant.traitdat
+			C.traits = new()
+			occupant.traitdat.copy_traits(C.traits)
 			
 			C.nameVar = occupant.nameVar
 			
@@ -125,6 +126,7 @@
 		spawn(30)
 			icon_state = "scanner_0old"
 			qdel(occupant)
+			occupant = null	//If qdel's being slow or acting up, let's make sure we can't make more cores from this one.
 			inuse = 0
 			eject_contents()
 			update_light_color()

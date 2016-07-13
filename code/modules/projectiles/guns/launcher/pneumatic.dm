@@ -54,6 +54,7 @@
 		item_storage.remove_from_storage(removing, src.loc)
 		user.put_in_hands(removing)
 		user << "You remove [removing] from the hopper."
+		playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
 	else
 		user << "There is nothing to remove in \the [src]."
 

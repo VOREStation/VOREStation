@@ -20,18 +20,18 @@
 	if(!anchored)
 		user << "<span class='notice'>For safety reasons, you are required to have this equipment wrenched down before using it!</span>"
 		return
-	if(user.loc != src.loc)
+
+	else if(user.loc != src.loc)
 		user << "<span class='notice'>For safety reasons, you need to be sitting in the fitness lifter for it to work!</span>"
 		return
-	if(user.nutrition > 70 && user.weight > 70) //If they have enough nutrition and body weight, they can exercise.
+
+	else if(user.nutrition > 70 && user.weight > 70) //If they have enough nutrition and body weight, they can exercise.
+		user.setClickCooldown(40)
 		user.dir = src.dir
 		user.nutrition = user.nutrition - 20 //Working out burns a lot of calories!
 		user.weight = user.weight - 0.05 //Burn a bit of weight. Not much, but quite a bit. This can't be spammed, as they'll need nutrition to be able to work out.
-		icon_state = "fitnesslifter2"
+		flick("fitnesslifter2",src)
 		user << "<span class='notice'>You lift some weights.</span>"
-		sleep(50)
-		icon_state = "fitnesslifter"
-
 
 	else if(user.nutrition < 70)
 		user << "<span class='notice'>You need more energy to workout on the mat!</span>"
@@ -61,19 +61,15 @@
 /obj/machinery/punching_bag/attack_hand(var/mob/living/user)
 
 	if(user.nutrition > 35 && user.weight > 70) //If they have enough nutrition and body weight, they can exercise.
-		var/workout = rand(1,2)
+		user.setClickCooldown(10)
 		user.nutrition = user.nutrition - 10 //A punching bag uses less calories.
 		user.weight = user.weight - 0.025 //And burns less weight.
-		icon_state = "punchingbag2"
-		switch(workout)
-			if(1)
-				user << "<span class='notice'>You slam your fist into the punching bag.</span>"
-			if(2)
-				user << "<span class='notice'>You jab the punching bag with your elbow.</span>"
+		flick("punchingbag2",src)
+		var/message = pick(
+			"<span class='notice'>You slam your fist into the punching bag.</span>",
+			"<span class='notice'>You jab the punching bag with your elbow.</span>")
+		user << message
 		playsound(src.loc, "punch", 50, 1)
-		sleep(50)
-		icon_state = "punchingbag"
-
 
 	else if(user.nutrition < 35)
 		user << "<span class='notice'>You need more energy to workout on the mat!</span>"
@@ -100,25 +96,19 @@
 /obj/machinery/punching_clown/attack_hand(var/mob/living/user)
 
 	if(user.nutrition > 35 && user.weight > 70) //If they have enough nutrition and body weight, they can exercise.
-		var/workout = rand(1,4)
+		user.setClickCooldown(10)
 		user.nutrition = user.nutrition - 10
 		user.weight = user.weight - 0.025
-		icon_state = "bopbag2"
-		switch(workout)
-			if(1)
-				user << "<span class='notice'>You slam your fist into the punching bag.</span>"
-			if(2)
-				user << "<span class='notice'>You jab the punching bag with your elbow.</span>"
-			if(3)
-				user << "<span class='notice'>You hammer the clown right in it's face with your fist.</span>"
-			if(4)
-				user << "<span class='notice'>A honk emits from the punching bag as you hit it.</span>"
-		playsound(src.loc, "punch", 50, 1)
-		playsound(src.loc, "clownstep", 50, 1)
+		flick("bopbag2",src)
+		var/message = pick(
+			"<span class='notice'>You slam your fist into the punching bag.</span>",
+			"<span class='notice'>You jab the punching bag with your elbow.</span>",
+			"<span class='notice'>You hammer the clown right in it's face with your fist.</span>",
+			"<span class='notice'>A honk emits from the punching bag as you hit it.</span>")
+		user << message
 		playsound(src.loc, 'sound/items/bikehorn.ogg', 50, 1)
-		sleep(50)
-		icon_state = "bopbag"
-
+		playsound(src.loc, "clownstep", 50, 1)
+		playsound(src.loc, "punch", 50, 1)
 
 	else if(user.nutrition < 35)
 		user << "<span class='notice'>You need more energy to workout on the mat!</span>"
@@ -129,9 +119,6 @@
 	else
 		user << "<span class='notice'>You're unable to use the punching bag.</span>"
 		return //Something went wrong. They shouldn't see this.
-
-
-
 
 /obj/machinery/scale
 	name = "scale"

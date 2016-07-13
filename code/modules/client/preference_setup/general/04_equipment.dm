@@ -18,6 +18,30 @@
 	S["backbag"]	<< pref.backbag
 	S["pdachoice"]	<< pref.pdachoice
 
+// Moved from /datum/preferences/proc/copy_to()
+/datum/category_item/player_setup_item/general/equipment/copy_to_mob(var/mob/living/carbon/human/character)
+	character.all_underwear.Cut()
+	character.all_underwear_metadata.Cut()
+
+	for(var/underwear_category_name in pref.all_underwear)
+		var/datum/category_group/underwear/underwear_category = global_underwear.categories_by_name[underwear_category_name]
+		if(underwear_category)
+			var/underwear_item_name = pref.all_underwear[underwear_category_name]
+			character.all_underwear[underwear_category_name] = underwear_category.items_by_name[underwear_item_name]
+			if(pref.all_underwear_metadata[underwear_category_name])
+				character.all_underwear_metadata[underwear_category_name] = pref.all_underwear_metadata[underwear_category_name]
+		else
+			pref.all_underwear -= underwear_category_name
+
+	// TODO - Looks like this is duplicating the work of sanitize_character() if so, remove
+	if(pref.backbag > 4 || pref.backbag < 1)
+		pref.backbag = 1 //Same as above
+	character.backbag = pref.backbag
+
+	if(pref.pdachoice > 3 || pref.pdachoice < 1)
+		pref.pdachoice = 1
+	character.pdachoice = pref.pdachoice
+
 /datum/category_item/player_setup_item/general/equipment/sanitize_character()
 	if(!islist(pref.gear)) pref.gear = list()
 

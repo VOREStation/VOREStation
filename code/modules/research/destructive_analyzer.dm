@@ -16,7 +16,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 	idle_power_usage = 30
 	active_power_usage = 2500
 
-/obj/machinery/r_n_d/destructive_analyzer/map/New()
+/obj/machinery/r_n_d/destructive_analyzer/New()
 	..()
 	circuit = new circuit()
 	component_parts = list()
