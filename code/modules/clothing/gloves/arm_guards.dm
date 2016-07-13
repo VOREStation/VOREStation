@@ -3,6 +3,7 @@
 	desc = "These arm guards will protect your hands and arms."
 	body_parts_covered = HANDS|ARMS
 	slowdown = 1
+	overgloves = 1
 	w_class = 3
 
 /obj/item/clothing/gloves/arm_guard/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)

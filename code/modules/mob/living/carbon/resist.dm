@@ -50,7 +50,7 @@
 		displaytime = breakouttime / 600 //Minutes
 
 	var/mob/living/carbon/human/H = src
-	if(istype(H) && H.gloves && istype(H.gloves,/obj/item/clothing/gloves/rig))
+	if(istype(H) && H.gloves && istype(H.gloves,/obj/item/clothing/gloves/gauntlets/rig))
 		breakouttime /= 2
 		displaytime /= 2
 

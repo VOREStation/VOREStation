@@ -351,3 +351,10 @@
 	icon_state = "civGold"
 	primary_color = rgb(0,94,142)
 	secondary_color = rgb(255,223,127)
+
+/obj/item/weapon/card/id/external
+	name = "identification card"
+	desc = "An identification card of some sort. It does not look like it is issued by NT."
+	icon_state = "permit"
+	primary_color = rgb(142,94,0)
+	secondary_color = rgb(191,159,95)

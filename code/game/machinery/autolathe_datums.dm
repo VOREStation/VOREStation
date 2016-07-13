@@ -36,6 +36,11 @@
 	path = /obj/item/weapon/reagent_containers/glass/bucket
 	category = "General"
 
+/datum/autolathe/recipe/cooler_bottle
+	name = "water-cooler bottle"
+	path = /obj/item/weapon/reagent_containers/glass/cooler_bottle
+	category = "General"
+
 /datum/autolathe/recipe/drinkingglass
 	name = "drinking glass"
 	path = /obj/item/weapon/reagent_containers/food/drinks/glass2/square

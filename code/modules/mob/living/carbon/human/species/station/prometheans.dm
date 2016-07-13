@@ -23,6 +23,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 	flags =            NO_SCAN | NO_SLIP | NO_MINOR_CUT
 	appearance_flags = HAS_SKIN_COLOR | HAS_EYE_COLOR | HAS_HAIR_COLOR | RADIATION_GLOWS
 	spawn_flags =      SPECIES_IS_RESTRICTED
+	health_hud_intensity = 2
 
 	breath_type = null
 	poison_type = null

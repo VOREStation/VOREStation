@@ -212,6 +212,8 @@
 	if(!hacked)
 		user << "<span class='notice'>Special supplies unlocked.</span>"
 		hacked = 1
+		can_order_contraband = 1
+		req_access = list()
 		return 1
 
 /obj/machinery/computer/supplycomp/Topic(href, href_list)

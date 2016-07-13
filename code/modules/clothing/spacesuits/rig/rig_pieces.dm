@@ -17,7 +17,7 @@
 		)
 	species_restricted = null
 
-/obj/item/clothing/gloves/rig
+/obj/item/clothing/gloves/gauntlets/rig
 	name = "gauntlets"
 	item_flags = THICKMATERIAL
 	body_parts_covered = HANDS
@@ -82,7 +82,7 @@
 /obj/item/clothing/head/helmet/space/rig/proc/prevent_track()
 	return 0
 
-/obj/item/clothing/gloves/rig/Touch(var/atom/A, var/proximity)
+/obj/item/clothing/gloves/gauntlets/rig/Touch(var/atom/A, var/proximity)
 
 	if(!A || !proximity)
 		return 0
@@ -128,7 +128,7 @@
 	species_restricted = null
 	gender = PLURAL
 
-/obj/item/clothing/gloves/lightrig
+/obj/item/clothing/gloves/gauntlets/lightrig
 	name = "gloves"
 	flags = THICKMATERIAL
 	body_parts_covered = HANDS

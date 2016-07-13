@@ -98,6 +98,15 @@
 	item_state = "bl_suit"
 	worn_state = "ert_uniform"
 
+/obj/item/clothing/under/gov
+	desc = "A neat proper uniform of someone on offical business. The plain, professional attire of an Internal Affairs Agent. The collar is <i>immaculately</i> starched."
+	name = "Green formal uniform"
+	icon_state = "greensuit"
+	item_state = "greensuit"
+	worn_state = "greensuit"
+	rolled_sleeves = 0
+	starting_accessories = list(/obj/item/clothing/accessory/darkgreen)
+
 /obj/item/clothing/under/space
 	name = "\improper NASA jumpsuit"
 	desc = "It has a NASA logo on it and is made of space-proofed materials."

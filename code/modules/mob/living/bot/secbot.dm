@@ -130,7 +130,7 @@
 	if(ishuman(target) && declare_arrests)
 		var/area/location = get_area(src)
 		broadcast_security_hud_message("[src] is [arrest_type ? "detaining" : "arresting"] a level [check_threat(target)] suspect <b>[target]</b> in <b>[location]</b>.", src)
-		
+
 	//				say("Engaging patrol mode.")
 
 /mob/living/bot/secbot/UnarmedAttack(var/mob/M, var/proximity)
@@ -145,7 +145,7 @@
 		var/cuff = 1
 		if(istype(C, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = C
-			if(istype(H.back, /obj/item/weapon/rig) && istype(H.gloves,/obj/item/clothing/gloves/rig))
+			if(istype(H.back, /obj/item/weapon/rig) && istype(H.gloves,/obj/item/clothing/gloves/gauntlets/rig))
 				cuff = 0
 		if(!C.lying || C.handcuffed || arrest_type)
 			cuff = 0

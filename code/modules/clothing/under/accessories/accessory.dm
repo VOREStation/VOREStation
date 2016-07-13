@@ -102,6 +102,10 @@
 	name = "black tie"
 	icon_state = "blacktie"
 
+/obj/item/clothing/accessory/darkgreen
+	name = "dark green tie"
+	icon_state = "dgreentie"
+
 /obj/item/clothing/accessory/yellow
 	name = "yellow tie"
 	icon_state = "yellowtie"

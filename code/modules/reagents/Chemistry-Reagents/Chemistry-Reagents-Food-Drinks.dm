@@ -924,6 +924,50 @@
 	glass_desc = "A tangy substance made of 0.5% natural citrus!"
 	glass_special = list(DRINK_FIZZ)
 
+/datum/reagent/drink/shirley_temple
+	name = "Shirley Temple"
+	description = "A sweet concotion hated even by its namesake."
+	id =  "shirley_temple"
+	color = "#EF304F"
+	adj_temp = -8
+
+	glass_name = "shirley temple"
+	glass_desc = "A sweet concotion hated even by its namesake."
+	glass_special = list(DRINK_FIZZ)
+
+/datum/reagent/drink/roy_rogers
+	name = "Roy Rogers"
+	description = "I'm a cowboy, on a steel horse I ride."
+	id = "roy_rogers"
+	color = "#4F1811"
+	adj_temp = -8
+
+	glass_name = "roy rogers"
+	glass_desc = "I'm a cowboy, on a steel horse I ride"
+	glass_special = list(DRINK_FIZZ)
+
+/datum/reagent/drink/collins_mix
+	name = "Collins Mix"
+	description = "Best hope it isn't a hoax."
+	id = "collins_mix"
+	color = "#D7D0B3"
+	adj_temp = -8
+
+	glass_name = "collins mix"
+	glass_desc = "Best hope it isn't a hoax."
+	glass_special = list(DRINK_FIZZ)
+
+/datum/reagent/drink/arnold_palmer
+	name = "Arnold Palmer"
+	description = "Tastes just like the old man."
+	id = "arnold_palmer"
+	color = "#AF5517"
+	adj_temp = -8
+
+	glass_name = "arnold palmer"
+	glass_desc = "Tastes just like the old man."
+	glass_special = list(DRINK_FIZZ)
+
 /datum/reagent/drink/doctor_delight
 	name = "The Doctor's Delight"
 	id = "doctorsdelight"

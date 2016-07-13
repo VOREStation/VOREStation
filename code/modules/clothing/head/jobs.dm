@@ -117,6 +117,12 @@
 	icon_state = "beret_centcom_captain"
 	item_state = "beret_white"
 
+/obj/item/clothing/head/beret/sec/gov
+	name = "officer beret"
+	desc = "A black beret with a gold emblem."
+	icon_state = "beret_corporate_hos"
+	item_state = "beret_black"
+
 //Medical
 /obj/item/clothing/head/surgery
 	name = "surgical cap"

@@ -128,15 +128,15 @@ var/global/list/datum/supply_drop_loot/supply_drop
 /datum/supply_drop_loot/materials/New()
 	..()
 	contents = list(
-		/obj/item/stack/material/steel,
-		/obj/item/stack/material/steel,
-		/obj/item/stack/material/steel,
-		/obj/item/stack/material/glass,
-		/obj/item/stack/material/glass,
-		/obj/item/stack/material/wood,
-		/obj/item/stack/material/plastic,
-		/obj/item/stack/material/glass/reinforced,
-		/obj/item/stack/material/plasteel)
+		/obj/item/stack/material/steel/fifty,
+		/obj/item/stack/material/steel/fifty,
+		/obj/item/stack/material/steel/fifty,
+		/obj/item/stack/material/glass/fifty,
+		/obj/item/stack/material/glass/fifty,
+		/obj/item/stack/material/wood/fifty,
+		/obj/item/stack/material/plastic/fifty,
+		/obj/item/stack/material/glass/reinforced/fifty,
+		/obj/item/stack/material/plasteel/fifty)
 
 /datum/supply_drop_loot/medical
 	name = "Medical"

@@ -81,6 +81,7 @@
 	var/destroy_surroundings = 0
 	var/shuttletarget = null
 	var/enroute = 0
+	var/ai_inactive = 0 // Set to 1 to turn off most AI actions in Life()
 
 	var/list/resistances = list(
 								HALLOSS = 0,
@@ -135,7 +136,7 @@
 	handle_supernatural()
 
 	//Movement
-	if(!client && !stop_automated_movement && wander && !anchored)
+	if(!client && !stop_automated_movement && wander && !anchored && !ai_inactive)
 		if(isturf(src.loc) && !resting && !buckled && canmove)		//This is so it only moves if it's not inside a closet, gentics machine, etc.
 			turns_since_move++
 			if(turns_since_move >= turns_per_move)
@@ -235,7 +236,7 @@
 		adjustBruteLoss(unsuitable_atoms_damage)
 
 	//Hostility
-	if(!stat && !client && hostile)
+	if(!stat && !client && hostile && !ai_inactive)
 		switch(stance)
 			if(STANCE_IDLE)
 				target_mob = FindTarget()

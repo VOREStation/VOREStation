@@ -25,6 +25,7 @@
 	C.sdisabilities = 0
 	C.disabilities = 0
 	C.reagents.clear_reagents()
+	C.ingested.clear_reagents()
 
 	var/heal_amount = 5
 	if(src.mind.changeling.recursive_enhancement)

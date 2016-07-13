@@ -28,6 +28,7 @@ var/list/organ_cache = list()
 	var/min_broken_damage = 30        // Damage before becoming broken
 	var/max_damage                    // Damage cap
 	var/rejecting                     // Is this organ already being rejected?
+	var/preserved = 0                 // If this is 1, prevents organ decay.
 
 /obj/item/organ/Destroy()
 
@@ -100,7 +101,7 @@ var/list/organ_cache = list()
 	// Don't process if we're in a freezer, an MMI or a stasis bag.or a freezer or something I dunno
 	if(istype(loc,/obj/item/device/mmi))
 		return
-	if(istype(loc,/obj/structure/closet/body_bag/cryobag) || istype(loc,/obj/structure/closet/crate/freezer) || istype(loc,/obj/item/weapon/storage/box/freezer) || istype(loc,/obj/item/weapon/gripper/no_use/organ))
+	if(preserved)
 		return
 	//Process infections
 	if ((robotic >= ORGAN_ROBOT) || (owner && owner.species && (owner.species.flags & IS_PLANT)))

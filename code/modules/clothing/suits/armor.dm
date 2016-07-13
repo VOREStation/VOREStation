@@ -105,6 +105,7 @@
 
 			// redirect the projectile
 			P.redirect(new_x, new_y, curloc, user)
+			P.reflected = 1
 
 			return PROJECTILE_CONTINUE // complete projectile permutation
 

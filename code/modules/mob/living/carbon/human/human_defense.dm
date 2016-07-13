@@ -40,6 +40,8 @@ emp_act
 /mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone)
 	var/obj/item/organ/external/affected = get_organ(check_zone(def_zone))
 	var/siemens_coeff = get_siemens_coefficient_organ(affected)
+	if(fire_stacks < 0) // Water makes you more conductive.
+		siemens_coeff *= 1.5
 	stun_amount *= siemens_coeff
 	agony_amount *= siemens_coeff
 
