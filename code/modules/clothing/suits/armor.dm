@@ -43,14 +43,12 @@
 	name = "Warden's jacket"
 	desc = "An armoured jacket with silver rank pips and livery."
 	icon_state = "warden_jacket"
-	item_state = "armor"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 
 /obj/item/clothing/suit/armor/vest/warden/alt
 	name = "Warden's jacket"
 	desc = "An armoured jacket with silver rank pips and livery."
 	icon_state = "warden_alt"
-	item_state = "armor"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 
 
@@ -58,7 +56,7 @@
 	name = "riot vest"
 	desc = "A vest with heavy padding to protect against melee attacks."
 	icon_state = "riot"
-	item_state = "swat_suit"
+	item_state = "swat"
 	slowdown = 1
 	armor = list(melee = 80, bullet = 10, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
 	flags_inv = HIDEJUMPSUIT
@@ -66,7 +64,7 @@
 
 /obj/item/clothing/suit/armor/riot/alt
 	icon_state = "riot_new"
-	item_state = "swat_suit"
+	item_state = "riot_new"
 
 /obj/item/clothing/suit/armor/bulletproof
 	name = "bullet resistant vest"
@@ -79,14 +77,13 @@
 
 /obj/item/clothing/suit/armor/bulletproof/alt
 	icon_state = "bulletproof_new"
-	item_state = "armor"
+	item_state = "bulletproof_new"
 	blood_overlay_type = "armor"
 
 /obj/item/clothing/suit/armor/laserproof
 	name = "ablative armor vest"
 	desc = "A vest that excels in protecting the wearer against energy projectiles."
 	icon_state = "armor_reflec"
-	item_state = "armor_reflec"
 	blood_overlay_type = "armor"
 	armor = list(melee = 10, bullet = 10, laser = 80, energy = 50, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.1
@@ -115,7 +112,6 @@
 	name = "combat vest"
 	desc = "A vest that protects the wearer from several common types of weaponry."
 	icon_state = "combat"
-	item_state = "armor"
 	blood_overlay_type = "armor"
 	armor = list(melee = 50, bullet = 50, laser = 50, energy = 30, bomb = 30, bio = 0, rad = 0)
 	siemens_coefficient = 0.6
@@ -124,7 +120,7 @@
 	name = "tactical armor"
 	desc = "A suit of armor most often used by Special Weapons and Tactics squads. Includes padded vest with pockets along with shoulder and kneeguards."
 	icon_state = "swatarmor"
-	item_state = "armor"
+	item_state = "swat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	slowdown = 1
 	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 40, bio = 0, rad = 0)
@@ -134,7 +130,7 @@
 	name = "swat suit"
 	desc = "A heavily armored suit that protects against moderate damage. Used in special operations."
 	icon_state = "deathsquad"
-	item_state = "swat_suit"
+	item_state = "swat"
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL
@@ -153,7 +149,7 @@
 	name = "officer jacket"
 	desc = "An armored jacket used in special operations."
 	icon_state = "detective"
-	item_state = "det_suit"
+	item_state = "detective"
 	blood_overlay_type = "coat"
 	flags_inv = 0
 	body_parts_covered = UPPER_TORSO|ARMS
@@ -176,7 +172,7 @@
 	desc = "Someone separated our Research Director from their own head!"
 	var/active = 0.0
 	icon_state = "reactiveoff"
-	item_state = "armor"
+	item_state = "armor_reflec_old"
 	blood_overlay_type = "armor"
 	slowdown = 1
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
@@ -205,22 +201,19 @@
 	return 0
 
 /obj/item/clothing/suit/armor/reactive/attack_self(mob/user as mob)
-	src.active = !( src.active )
-	if (src.active)
+	active = !( active )
+	if (active)
 		user << "\blue The reactive armor is now active."
-		src.icon_state = "reactive"
-		src.item_state = "armor"
+		icon_state = "reactive"
 	else
 		user << "\blue The reactive armor is now inactive."
-		src.icon_state = "reactiveoff"
-		src.item_state = "armor"
-		src.add_fingerprint(user)
+		icon_state = "reactiveoff"
+		add_fingerprint(user)
 	return
 
 /obj/item/clothing/suit/armor/reactive/emp_act(severity)
 	active = 0
-	src.icon_state = "reactiveoff"
-	src.item_state = "armor"
+	icon_state = "reactiveoff"
 	..()
 
 //Non-hardsuit ERT armor.
@@ -317,7 +310,7 @@
 	name = "heavy armor vest"
 	desc = "A heavy kevlar plate carrier with webbing attached."
 	icon_state = "webvest"
-	item_state = "swat_suit"
+	item_state = "swat"
 	armor = list(melee = 50, bullet = 40, laser = 40, energy = 25, bomb = 25, bio = 0, rad = 0)
 	slowdown = 1
 
@@ -325,7 +318,7 @@
 	name = "officer heavy armor vest"
 	desc = "A heavy kevlar plate carrier with webbing attached. This one has a security holobadge clipped to the chest."
 	icon_state = "officerwebvest_nobadge"
-	item_state = "swat_suit"
+	item_state = "swat"
 	icon_badge = "officerwebvest_badge"
 	icon_nobadge = "officerwebvest_nobadge"
 
@@ -333,7 +326,7 @@
 	name = "warden heavy armor vest"
 	desc = "A heavy kevlar plate carrier with webbing attached. This one has a silver badge clipped to the chest."
 	icon_state = "wardenwebvest_nobadge"
-	item_state = "swat_suit"
+	item_state = "swat"
 	icon_badge = "wardenwebvest_badge"
 	icon_nobadge = "wardenwebvest_nobadge"
 
@@ -341,7 +334,7 @@
 	name = "head of security heavy armor vest"
 	desc = "A heavy kevlar plate carrier with webbing attached. This one has a gold badge clipped to the chest."
 	icon_state = "hoswebvest_nobadge"
-	item_state = "swat_suit"
+	item_state = "swat"
 	icon_badge = "hoswebvest_badge"
 	icon_nobadge = "hoswebvest_nobadge"
 
@@ -349,7 +342,7 @@
 	name = "PCRC heavy armor vest"
 	desc = "A heavy kevlar plate carrier belonging to Proxima Centauri Risk Control with webbing attached. This one has a PCRC crest clipped to the chest."
 	icon_state = "pcrcwebvest_nobadge"
-	item_state = "swat_suit"
+	item_state = "swat"
 	icon_badge = "pcrcwebvest_badge"
 	icon_nobadge = "pcrcwebvest_nobadge"
 
@@ -358,7 +351,7 @@
 	name = "heavy armor vest"
 	desc = "A high-quality heavy kevlar plate carrier in a fetching tan. The vest is surprisingly flexible, and possibly made of an advanced material."
 	icon_state = "mercwebvest"
-	item_state = "armor"
+	item_state = "swat"
 	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 40, bio = 0, rad = 0)
 	slowdown = 0
 
@@ -381,7 +374,7 @@
 	name = "heavy armor"
 	desc = "A heavily armored suit that protects against moderate damage."
 	icon_state = "heavy"
-	item_state = "swat_suit"
+	item_state = "swat"
 	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 40, bio = 0, rad = 0)
 	w_class = 4//bulky item
 	gas_transfer_coefficient = 0.90
@@ -399,12 +392,10 @@
 	name = "Thunderdome suit (red)"
 	desc = "Reddish armor."
 	icon_state = "tdred"
-	item_state = "tdred"
 	siemens_coefficient = 1
 
 /obj/item/clothing/suit/armor/tdome/green
 	name = "Thunderdome suit (green)"
 	desc = "Pukish armor."
 	icon_state = "tdgreen"
-	item_state = "tdgreen"
 	siemens_coefficient = 1

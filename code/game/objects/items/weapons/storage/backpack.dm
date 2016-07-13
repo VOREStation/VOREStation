@@ -6,7 +6,6 @@
 	name = "backpack"
 	desc = "You wear this on your back and put items into it."
 	icon_state = "backpack"
-	item_state = "backpack"
 	sprite_sheets = list(
 		"Teshari" = 'icons/mob/species/seromi/back.dmi'
 		)

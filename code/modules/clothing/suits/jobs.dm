@@ -7,6 +7,7 @@
 	name = "apron"
 	desc = "A basic blue apron."
 	icon_state = "apron"
+	item_state = "overalls"
 	blood_overlay_type = "armor"
 	body_parts_covered = 0
 	allowed = list (/obj/item/weapon/reagent_containers/spray/plantbgone,/obj/item/device/analyzer/plant_analyzer,/obj/item/seeds,/obj/item/weapon/reagent_containers/glass/bottle,/obj/item/weapon/material/minihoe)
@@ -31,6 +32,7 @@
 	name = "chaplain hoodie"
 	desc = "This suit says to you 'hush'!"
 	icon_state = "chaplain_hoodie"
+	item_state = "suit_black"
 	body_parts_covered = UPPER_TORSO|ARMS
 
 //Chaplain
@@ -64,18 +66,21 @@
 	name = "security officer's jacket"
 	desc = "This jacket is for those special occasions when a security officer actually feels safe."
 	icon_state = "officerbluejacket"
+	item_state = "suit_navy"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
 /obj/item/clothing/suit/security/navywarden
 	name = "warden's jacket"
 	desc = "Perfectly suited for the warden that wants to leave an impression of style on those who visit the brig."
 	icon_state = "wardenbluejacket"
+	item_state = "suit_navy"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
 /obj/item/clothing/suit/security/navyhos
 	name = "head of security's jacket"
 	desc = "This piece of clothing was specifically designed for asserting superior authority."
 	icon_state = "hosbluejacket"
+	item_state = "suit_navy"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
 //Detective
@@ -83,7 +88,6 @@
 	name = "brown trenchcoat"
 	desc = "A rugged canvas trenchcoat, designed and created by TX Fabrication Corp. The coat is externally impact resistant - perfect for your next act of autodefenestration!"
 	icon_state = "detective"
-	item_state = "det_suit"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|ARMS
 	allowed = list(/obj/item/weapon/tank/emergency_oxygen, /obj/item/device/flashlight,/obj/item/weapon/gun/energy,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/device/taperecorder,/obj/item/device/uv_light)
@@ -92,12 +96,12 @@
 /obj/item/clothing/suit/storage/det_trench/grey
 	name = "grey trenchcoat"
 	icon_state = "detective2"
+	item_state = "leather_jacket"
 
 //Forensics
 /obj/item/clothing/suit/storage/forensics
 	name = "jacket"
 	desc = "A forensics technician jacket."
-	item_state = "det_suit"
 	body_parts_covered = UPPER_TORSO|ARMS
 	allowed = list(/obj/item/weapon/tank/emergency_oxygen, /obj/item/device/flashlight,/obj/item/weapon/gun/energy,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/device/taperecorder,/obj/item/device/uv_light)
 	armor = list(melee = 10, bullet = 10, laser = 15, energy = 10, bomb = 0, bio = 0, rad = 0)
@@ -106,6 +110,7 @@
 	name = "red jacket"
 	desc = "A red forensics technician jacket."
 	icon_state = "forensics_red"
+	item_state = "suit_red"
 
 /obj/item/clothing/suit/storage/forensics/red/long
 	name = "long red jacket"
@@ -116,6 +121,7 @@
 	name = "blue jacket"
 	desc = "A blue forensics technician jacket."
 	icon_state = "forensics_blue"
+	item_state = "suit_navy"
 
 /obj/item/clothing/suit/storage/forensics/blue/long
 	name = "long blue jacket"
@@ -138,6 +144,7 @@
 	name = "blue suit jacket"
 	desc = "A snappy dress jacket."
 	icon_state = "suitjacket_blue_open"
+	item_state = "suit_blue"
 	icon_open = "suitjacket_blue_open"
 	icon_closed = "suitjacket_blue"
 	blood_overlay_type = "coat"
@@ -147,6 +154,7 @@
 	name = "purple suit jacket"
 	desc = "A snappy dress jacket."
 	icon_state = "suitjacket_purp_open"
+	item_state = "suit_purple"
 	icon_open = "suitjacket_purp_open"
 	icon_closed = "suitjacket_purp"
 	blood_overlay_type = "coat"
@@ -157,6 +165,7 @@
 	name = "black suit jacket"
 	desc = "A smooth black jacket."
 	icon_state = "ia_jacket_open"
+	item_state = "suit_black"
 	icon_open = "ia_jacket_open"
 	icon_closed = "ia_jacket"
 	blood_overlay_type = "coat"
@@ -179,6 +188,7 @@
 	name = "\improper EMS jacket"
 	desc = "A dark blue, martian-pattern, EMS jacket. It sports high-visibility reflective stripes and a star of life on the back."
 	icon_state = "ems_jacket_closed"
+	item_state = "ems_jacket"
 	icon_open = "ems_jacket_open"
 	icon_closed = "ems_jacket_closed"
 

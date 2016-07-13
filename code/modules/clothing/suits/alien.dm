@@ -1,5 +1,4 @@
 //Unathi clothing.
-
 /obj/item/clothing/suit/unathi/robe
 	name = "roughspun robes"
 	desc = "A traditional Unathi garment."
@@ -13,7 +12,6 @@
 	body_parts_covered = UPPER_TORSO
 
 //Taj clothing.
-
 /obj/item/clothing/suit/tajaran/furs
 	name = "heavy furs"
 	desc = "A traditional Zhan-Khazan garment."
@@ -24,4 +22,5 @@
 	name = "headscarf"
 	desc = "A scarf of coarse fabric. Seems to have ear-holes."
 	icon_state = "zhan_scarf"
+	item_state = "beret_white"
 	body_parts_covered = HEAD|FACE
