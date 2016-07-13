@@ -1,6 +1,7 @@
 /datum/power/changeling/DeathSting
 	name = "Death Sting"
 	desc = "We silently sting a human, filling him with potent chemicals. His rapid death is all but assured."
+	ability_icon_state = "ling_sting_death"
 	genomecost = 10
 	verbpath = /mob/proc/changeling_DEATHsting
 
