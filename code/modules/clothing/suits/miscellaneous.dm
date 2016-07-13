@@ -397,6 +397,12 @@
 	icon_state = "militaryjacket_badge"
 	item_state = "militaryjacket_badge"
 
+/obj/item/clothing/suit/storage/miljacket/green
+	name = "military jacket"
+	desc = "A dark green canvas jacket. Feels sturdy, yet comfortable."
+	icon_state = "militaryjacket_green"
+	item_state = "militaryjacket_green"
+
 /obj/item/clothing/suit/storage/toggle/bomber
 	name = "bomber jacket"
 	desc = "A thick, well-worn WW2 leather bomber jacket."
@@ -797,3 +803,15 @@
 	desc = "A comfy, aqua flannel shirt.  Unleash your inner hipster."
 	icon_state = "flannel_aqua"
 	item_state = "b_suit"
+
+//Green Uniform
+
+/obj/item/clothing/suit/storage/toggle/greengov
+	name = "green formal jacket"
+	desc = "A sleek proper formal jacket with gold buttons."
+	icon_state = "suitjacket_green_open"
+	item_state = "suitjacket_green_open"
+	icon_open = "suitjacket_green_open"
+	icon_closed = "suitjacket_green"
+	blood_overlay_type = "coat"
+	body_parts_covered = UPPER_TORSO|ARMS

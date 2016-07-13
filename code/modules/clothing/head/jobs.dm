@@ -101,6 +101,10 @@
 	name = "captains beret"
 	desc = "A white beret adorned with a blue patch. Worn by NanoTrasen command staff."
 	icon_state = "beret_centcom_captain"
+/obj/item/clothing/head/beret/sec/gov
+	name = "officer beret"
+	desc = "A black beret with a gold emblem."
+	icon_state = "beret_corporate_hos"
 
 //Medical
 /obj/item/clothing/head/surgery

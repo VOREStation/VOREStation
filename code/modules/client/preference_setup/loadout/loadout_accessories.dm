@@ -45,6 +45,10 @@
 	display_name = "holster, hip"
 	path = /obj/item/clothing/accessory/holster/hip
 
+/datum/gear/accessory/holster/leg
+	display_name = "holster, leg"
+	path = /obj/item/clothing/accessory/holster/leg
+
 /datum/gear/accessory/holster/waist
 	display_name = "holster, waist"
 	path = /obj/item/clothing/accessory/holster/waist
