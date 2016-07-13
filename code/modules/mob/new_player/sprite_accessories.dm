@@ -190,6 +190,9 @@
 		name = "Tress Shoulder"
 		icon_state = "hair_tressshoulder"
 
+	spikyponytail
+		name = "Spiky Ponytail"
+		icon_state = "hair_spikyponytail"
 	wisp
 		name = "Wisp"
 		icon_state = "hair_wisp"
