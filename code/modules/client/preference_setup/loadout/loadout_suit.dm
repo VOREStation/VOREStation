@@ -54,6 +54,10 @@
 	display_name = "military jacket, alt"
 	path = /obj/item/clothing/suit/storage/miljacket/alt
 
+/datum/gear/suit/mil/green
+	display_name = "military jacket, green"
+	path = /obj/item/clothing/suit/storage/miljacket/green
+
 /datum/gear/suit/hazard_vest
 	display_name = "hazard vest"
 	path = /obj/item/clothing/suit/storage/hazardvest
