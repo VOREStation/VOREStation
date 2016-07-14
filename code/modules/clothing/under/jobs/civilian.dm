@@ -61,7 +61,7 @@
 	desc = "It's a black jumpsuit, often worn by religious folk."
 	name = "chaplain's jumpsuit"
 	icon_state = "chaplain"
-	item_state = "bl_suit"
+	item_state = "black"
 	worn_state = "chapblack"
 	rolled_sleeves = 0
 
@@ -98,7 +98,7 @@
 	desc = "It's a jumpsuit designed to protect against minor plant-related hazards."
 	name = "botanist's jumpsuit"
 	icon_state = "hydroponics"
-	item_state = "g_suit"
+	item_state = "green"
 	worn_state = "hydroponics"
 	permeability_coefficient = 0.50
 	rolled_sleeves = 0
@@ -116,7 +116,6 @@
 	desc = "It's the official uniform of the station's janitor. It has minor protection from biohazards."
 	name = "janitor's jumpsuit"
 	icon_state = "janitor"
-	item_state = "janitor"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
 	rolled_sleeves = 0
 
@@ -156,7 +155,7 @@
 /obj/item/clothing/under/lawyer/purpsuit
 	name = "Purple Suit"
 	icon_state = "lawyer_purp"
-	item_state = "p_suit"
+	item_state = "purple"
 	worn_state = "lawyer_purp"
 
 /obj/item/clothing/under/lawyer/oldman
@@ -177,13 +176,11 @@
 	name = "mime's outfit"
 	desc = "It's not very colourful."
 	icon_state = "mime"
-	item_state = "ba_suit"
 	worn_state = "mime"
 
 /obj/item/clothing/under/rank/miner
 	desc = "It's a snappy jumpsuit with a sturdy set of overalls. It is very dirty."
 	name = "shaft miner's jumpsuit"
 	icon_state = "miner"
-	item_state = "lb_suit"
 	worn_state = "miner"
 	rolled_sleeves = 0
