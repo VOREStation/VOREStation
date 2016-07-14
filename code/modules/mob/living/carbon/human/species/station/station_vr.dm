@@ -252,6 +252,47 @@
 	min_age = 17
 	max_age = 80
 
+/datum/species/xenohybrid
+	name = "Xenomorph Hybrid"
+	name_plural = "Xenomorphs"
+	icobase = 'icons/mob/human_races/r_xenomorph.dmi'
+	deform = 'icons/mob/human_races/r_def_xenomorph.dmi'
+	tail = "tail"
+	icobase_tail = 1
+	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
+	darksight = 4 //Better hunters in the dark.
+	hunger_factor = 0.1 //In exchange, they get hungry a tad faster.
+	num_alternate_languages = 2
+	//secondary_langs = list("Sagaru") //No special language, yet. And I'm pretty sure this doesn't even work.
+	//name_language = "Sagaru"
+	//color_mult = 1 //Since it's a black sprite, it adds instead of multiplies.
+
+	min_age = 17
+	max_age = 80
+
+	blurb = "Xenomorphs hybrids are a mixture of xenomorph DNA and some other humanoid species. \
+	Xenomorph hyrids mostly have had had their natural aggression removed due to the gene modification process \
+	although there are some exceptions, such as when they are harmed. Most xenomorph hybrids are female, due to their natural xenomorph genes, \
+	but there are multiple exceptions. All xenomorph hybrids have had their ability to lay eggs containing facehuggers \
+	removed if they had the ability to, although hybrids that previously contained this ability is extremely rare."
+
+	//primitive_form = "Sergaling" //No official sprite for them yet.
+
+	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
+	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+
+	blood_color = "#12ff12"
+	flesh_color = "#201730"
+	base_color = "#201730"
+
+	//reagent_tag = IS_SERGAL //No specific reagent tag.
+
+	heat_discomfort_strings = list(
+		"Your chitin feels extremely warm.",
+		"You feel uncomfortably warm.",
+		"Your chitin feels hot."
+		)
+
 /datum/species/unathi
 	spawn_flags = SPECIES_CAN_JOIN //Species_can_join is the only spawn flag all the races get, so that none of them will be whitelist only if whitelist is enabled.
 
