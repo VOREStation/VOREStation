@@ -191,13 +191,15 @@
 	set src in usr
 	if(!istype(usr, /mob/living)) return
 	if(usr.stat) return
+	
+	var/base_icon = copytext(icon_state,1,(length(icon_state) - 3 + headphones_on))
 
 	if(headphones_on)
-		icon_state = "headphones_off"
+		icon_state = "[base_icon]_off"
 		headphones_on = 0
 		usr << "<span class='notice'>You turn the music off.</span>"
 	else
-		icon_state = "headphones_on"
+		icon_state = "[base_icon]_on"
 		headphones_on = 1
 		usr << "<span class='notice'>You turn the music on.</span>"
 
