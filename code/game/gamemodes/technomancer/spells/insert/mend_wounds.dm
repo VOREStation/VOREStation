@@ -1,7 +1,8 @@
 /datum/technomancer/spell/mend_wounds
 	name = "Mend Wounds"
-	desc = "Heals minor wounds, such as cuts, bruises, and other non-lifethreatening injuries."
-	cost = 120
+	desc = "Heals minor wounds, such as cuts, bruises, and other non-lifethreatening injuries.  \
+	Instability is split between the target and technomancer, if seperate."
+	cost = 50
 	obj_path = /obj/item/weapon/spell/insert/mend_wounds
 	ability_icon_state = "tech_mendwounds"
 
@@ -24,4 +25,4 @@
 					H.adjust_instability(0.5)
 					origin.adjust_instability(0.5)
 					sleep(10)
-	qdel(src)
+		on_expire()

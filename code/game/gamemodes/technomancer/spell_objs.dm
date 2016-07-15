@@ -110,8 +110,9 @@
 // Parameters: 1 (amount - how much instability to give)
 // Description: Use this to quickly add or subtract instability from the caster of the spell.  Owner is set by New().
 /obj/item/weapon/spell/proc/adjust_instability(var/amount)
-	if(!owner)
+	if(!owner || !core)
 		return 0
+	amount = round(amount * core.instability_modifer, 0.1)
 	owner.adjust_instability(amount)
 
 // Proc: New()

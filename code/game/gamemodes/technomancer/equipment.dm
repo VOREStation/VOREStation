@@ -2,14 +2,15 @@
 	name = "Manipulation Core"
 	desc = "The default core that you most likely already have.  This is here in-case you change your mind after buying \
 	another core, don't forget to refund the old core.  This has a capacity of 10,000 units of energy, and recharges at a \
-	rate of 50 units."
+	rate of 50 units.  It also reduces incoming instability from functions by 20%."
 	cost = 100
 	obj_path = /obj/item/weapon/technomancer_core
 
 /datum/technomancer/equipment/rapid_core
 	name = "Rapid Core"
 	desc = "A core optimized for passive regeneration, however at the cost of capacity.  Has a capacity of 7,000 units of energy, and \
-	recharges at a rate of 70 units."
+	recharges at a rate of 70 units.  Complex gravatics and force manipulation allows the wearer to also run slightly faster, and \
+	reduces incoming instability from functions by 10%."
 	cost = 150
 	obj_path = /obj/item/weapon/technomancer_core/rapid
 
@@ -17,7 +18,8 @@
 	name = "Bulky Core"
 	desc = "This core has very large capacitors, however it also has a subpar fractal reactor.  The user is recommended to \
 	purchase one or more energy-generating Functions as well if using this core.  Has a capacity of 20,000 units of energy, \
-	and recharges at a rate of 25 units."
+	and recharges at a rate of 25 units.  The intense weight of the core unfortunately can cause the wear to move slightly slower, \
+	and the closeness of the capacitors causes a slight increase in incoming instability by 10%."
 	cost = 150
 	obj_path = /obj/item/weapon/technomancer_core/bulky
 
@@ -26,9 +28,27 @@
 	desc = "This core feeds off unstable energies around the user in addition to a fractal reactor.  This means that it performs \
 	better as the user has more instability, which could prove dangerous to the inexperienced or unprepared.  Has a capacity of 13,000 \
 	units of energy, and recharges at a rate of 35 units at no instability, and approximately 110 units when within the \
-	'yellow zone' of instability."
+	'yellow zone' of instability.  Incoming instability is also amplified by 30%, due to the nature of this core."
 	cost = 150
 	obj_path = /obj/item/weapon/technomancer_core/unstable
+
+/datum/technomancer/equipment/recycling
+	name = "Recycling Core"
+	desc = "This core is optimized for energy efficency, being able to sometimes recover energy that would have been lost with other \
+	cores.  The focus on efficency also makes instability less of an issue, as incoming instability from functions are reduced by \
+	40%.  The capacitor is also slightly better, holding 12,000 units of energy, however the reactor is slower to recharge, at a rate \
+	of 40 units."
+	cost = 150
+	obj_path = /obj/item/weapon/technomancer_core/recycling
+
+/datum/technomancer/equipment/summoning
+	name = "Summoning Core"
+	desc = "A unique type of core, this one sacrifices other characteristics in order to optimize it for the purposes teleporting \
+	entities from vast distances, and keeping them there.  Wearers of this core can maintain up to 30 summons at once, and the energy \
+	demand for maintaining summons is severely reduced.  This comes at the price of capcitors that can only hold 8,000 units of energy, \
+	a recharging rate of 35 energy, and no shielding from instability."
+	cost = 150
+	obj_path = /obj/item/weapon/technomancer_core/summoner
 
 /datum/technomancer/equipment/hypo_belt
 	name = "Hypo Belt"
