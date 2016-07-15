@@ -831,6 +831,8 @@ About the new airlock wires panel:
 				else
 					spawn(0)
 						close(1)
+		else
+			..()
 	else
 		..()
 	return
