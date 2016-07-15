@@ -20,7 +20,7 @@
 	var/regen_rate = 50				// 200 seconds to full
 	var/energy_delta = 0			// How much we're gaining (or perhaps losing) every process().
 	var/mob/living/wearer = null	// Reference to the mob wearing the core.
-	var/instability_modifer = 1.0	// Multiplier on how much instability is added.
+	var/instability_modifer = 0.8	// Multiplier on how much instability is added.
 	var/list/spells = list()		// This contains the buttons used to make spells in the user's hand.
 	var/list/appearances = list(	// Assoc list containing possible icon_states that the wiz can change the core to.
 		"default"			= "technomancer_core",
@@ -217,6 +217,7 @@
 	energy = 13000
 	max_energy = 13000
 	regen_rate = 35 //~371 seconds to full, 118 seconds to full at 50 instability (rate of 110)
+	instability_modifer = 1.2
 
 /obj/item/weapon/technomancer_core/unstable/regenerate()
 	var/instability_bonus = 0
@@ -237,6 +238,7 @@
 	max_energy = 7000
 	regen_rate = 70 //100 seconds to full
 	slowdown = -1
+	instability_modifer = 0.9
 
 //Big batteries but slow regen, buying energy spells is highly recommended.
 /obj/item/weapon/technomancer_core/bulky
@@ -248,6 +250,7 @@
 	max_energy = 20000
 	regen_rate = 25 //800 seconds to full
 	slowdown = 1
+	instability_modifer = 1.0
 
 // Using this can result in abilities costing less energy.  If you're lucky.
 /obj/item/weapon/technomancer_core/recycling
@@ -257,6 +260,7 @@
 	energy = 12000
 	max_energy = 12000
 	regen_rate = 40 //300 seconds to full
+	instability_modifer = 0.6
 
 /obj/item/weapon/technomancer_core/recycling/pay_energy(amount)
 	..()
@@ -276,6 +280,7 @@
 	max_energy = 8000
 	regen_rate = 35 //228 seconds to full
 	max_summons = 40
+	instability_modifer = 1.0
 
 /obj/item/weapon/technomancer_core/summoner/pay_dues()
 	if(summoned_mobs.len)

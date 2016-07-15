@@ -1,7 +1,8 @@
 /datum/technomancer/spell/purify
 	name = "Purify"
-	desc = "Clenses the body of harmful impurities, such as toxins, radiation, viruses, and such."
-	cost = 100
+	desc = "Clenses the body of harmful impurities, such as toxins, radiation, viruses, and such.  \
+	Instability is split between the target and technomancer, if seperate."
+	cost = 25
 	obj_path = /obj/item/weapon/spell/insert/purify
 	ability_icon_state = "tech_purify"
 
@@ -30,4 +31,4 @@
 					H.adjust_instability(0.5)
 					origin.adjust_instability(0.5)
 					sleep(10)
-	qdel(src)
+		on_expire()

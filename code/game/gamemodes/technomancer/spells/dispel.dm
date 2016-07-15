@@ -3,7 +3,7 @@
 	desc = "Ends most on-going effects caused by another Technomancer function on the target.  Useful if you are worried about \
 	hitting an ally with a deterimental function, if your opponent has similar capabilities to you, or if you're tired of Instability \
 	plaguing you."
-	cost = 75
+	cost = 25
 	obj_path = /obj/item/weapon/spell/dispel
 	ability_icon_state = "tech_dispel"
 
@@ -20,3 +20,4 @@
 		for(var/obj/item/weapon/inserted_spell/I in target)
 			I.on_expire(dispelled = 1)
 	user.adjust_instability(10)
+	qdel(src)
