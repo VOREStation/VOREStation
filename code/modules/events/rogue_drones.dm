@@ -29,7 +29,7 @@
 			msg = "A combat drone wing operating near various asteroids in the Kara subsystem has failed to return from a anti-piracy sweep.  If any are sighted, \
 			approach with caution."
 		if(2)
-			msg = "Contact has been lost with a combat drone wring operating out in the asteroid field near Kara.  If any are sighted in the area, approach with \
+			msg = "Contact has been lost with a combat drone wing operating out in the asteroid field near Kara.  If any are sighted in the area, approach with \
 			caution."
 		if(3)
 			msg = "Unidentified hackers have targeted a combat drone wing deployed in the Kara subsystem. If any are sighted in the area, approach with caution."
