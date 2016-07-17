@@ -35,13 +35,14 @@
 	return
 
 /obj/item/weapon/melee/baton/proc/deductcharge(var/chrgdeductamt)
-	if(bcell)
-		if(bcell.checked_use(chrgdeductamt))
-			return 1
-		else
-			status = 0
-			update_icon()
-			return 0
+	if(status == 1)		//Only deducts charge when it's on
+		if(bcell)
+			if(bcell.checked_use(chrgdeductamt))
+				return 1
+			else
+				status = 0
+				update_icon()
+				return 0
 	return null
 
 /obj/item/weapon/melee/baton/update_icon()
@@ -109,6 +110,7 @@
 		user.Weaken(30)
 		deductcharge(hitcost)
 		return
+	deductcharge(hitcost)
 	return ..()
 
 /obj/item/weapon/melee/baton/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
@@ -143,8 +145,6 @@
 	if(status)
 		target.stun_effect_act(stun, agony, hit_zone, src)
 		msg_admin_attack("[key_name(user)] stunned [key_name(target)] with the [src].")
-
-		deductcharge(hitcost)
 
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
