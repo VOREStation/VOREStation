@@ -57,7 +57,7 @@
 	cold_discomfort_level = 180
 
 	has_limbs = list(
-		BP_CHEST =  list("path" = /obj/item/organ/external/chest),
+		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
 		BP_GROIN =  list("path" = /obj/item/organ/external/groin),
 		BP_HEAD =   list("path" = /obj/item/organ/external/head/seromi),
 		BP_L_ARM =  list("path" = /obj/item/organ/external/arm),
