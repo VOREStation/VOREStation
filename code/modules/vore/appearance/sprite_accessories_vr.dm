@@ -348,6 +348,11 @@
 	name = "bee thorax (+wings)"
 	desc = ""
 	icon_state = "bee"
+	
+/datum/sprite_accessory/tail/moth_full
+	name = "moth antenna and wings"
+	desc = ""
+	icon_state = "moth_full"
 
 /datum/sprite_accessory/tail/succubus_purple
 	name = "succubus, purple (+wings)"
