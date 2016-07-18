@@ -1324,7 +1324,7 @@
 
 	// Puke if toxloss is too high
 	if(!stat)
-		if (getToxLoss() >= 45 && nutrition > 20)
+		if (getToxLoss() >= 45)
 			spawn vomit()
 
 	//0.1% chance of playing a scary sound to someone who's in complete darkness
