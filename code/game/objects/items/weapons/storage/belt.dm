@@ -50,14 +50,15 @@
 		/obj/item/clothing/gloves,
 		/obj/item/device/pda,
 		/obj/item/device/megaphone,
-		/obj/item/taperoll/engineering,
+		/obj/item/taperoll,
 		/obj/item/device/radio/headset,
 		/obj/item/device/robotanalyzer,
 		/obj/item/weapon/material/minihoe,
 		/obj/item/weapon/material/hatchet,
 		/obj/item/device/analyzer/plant_analyzer,
 		/obj/item/weapon/extinguisher/mini,
-		/obj/item/device/flashlight/maglight
+		/obj/item/device/flashlight/maglight,
+		/obj/item/weapon/tape_roll,
 		)
 
 
@@ -101,6 +102,7 @@
 		/obj/item/stack/medical,
 		/obj/item/device/radio/headset,
 		/obj/item/device/pda,
+		/obj/item/taperoll,
 		/obj/item/device/megaphone,
 		/obj/item/device/flashlight/pen,
 		/obj/item/clothing/mask/surgical,
@@ -146,7 +148,7 @@
 		/obj/item/weapon/melee,
 		/obj/item/clothing/accessory/badge,
 		/obj/item/weapon/gun/projectile/sec,
-		/obj/item/taperoll/police,
+		/obj/item/taperoll,
 		/obj/item/weapon/gun/projectile/colt/detective
 		)
 
@@ -181,7 +183,7 @@
 		/obj/item/device/megaphone,
 		/obj/item/device/radio/headset,
 		/obj/item/clothing/gloves,
-		/obj/item/taperoll/police,
+		/obj/item/taperoll,
 		/obj/item/weapon/reagent_containers/spray/pepper,
 		/obj/item/weapon/handcuffs,
 		/obj/item/device/flash,
@@ -256,6 +258,7 @@
 		/obj/item/weapon/light/tube,
 		/obj/item/weapon/flame/lighter,
 		/obj/item/device/megaphone,
+		/obj/item/taperoll,
 		/obj/item/weapon/reagent_containers/spray,
 		/obj/item/weapon/soap
 		)
