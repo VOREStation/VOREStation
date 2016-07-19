@@ -149,12 +149,6 @@
 	icon_state = "rainbow"
 	worn_state = "rainbow"
 
-/obj/item/clothing/under/cloud
-	name = "cloud" //what..? -S2-
-	desc = "cloud"
-	icon_state = "cloud"
-	worn_state = "cloud"
-
 /obj/item/clothing/under/psysuit
 	name = "dark undersuit"
 	desc = "A thick, layered grey undersuit lined with power cables. Feels a little like wearing an electrical storm."
@@ -284,35 +278,31 @@
 	name = "black tango dress"
 	desc = "Filled with Latin fire."
 	icon_state = "black_tango"
-	item_state = "blackskirt" //Someone please make these -S2-
 	worn_state = "black_tango"
 
 /obj/item/clothing/under/dress/blacktango/alt
 	name = "black tango dress"
 	desc = "Filled with Latin fire."
 	icon_state = "black_tango_alt"
-	item_state = "blackskirt" //Someone please make these -S2-
+	item_state = "black_tango"
 	worn_state = "black_tango_alt"
 
 /obj/item/clothing/under/dress/stripeddress
 	name = "striped dress"
 	desc = "Fashion in space."
 	icon_state = "striped_dress" 
-	item_state = "blue" //Someone please make these -S2-
 	worn_state = "striped_dress"
 
 /obj/item/clothing/under/dress/sailordress
 	name = "sailor dress"
 	desc = "Formal wear for a leading lady."
 	icon_state = "sailor_dress"
-	item_state = "blue" //Someone please make these -S2-
 	worn_state = "sailor_dress"
 
 /obj/item/clothing/under/dress/redeveninggown
 	name = "red evening gown"
 	desc = "Fancy dress for space bar singers."
 	icon_state = "red_evening_gown"
-	item_state = "red" //Someone please make these -S2-
 	worn_state = "red_evening_gown"
 
 /obj/item/clothing/under/dress/maid
@@ -331,50 +321,43 @@
 	name = "flame dress"
 	desc = "A small black dress with blue flames print on it."
 	icon_state = "dress_fire"
-	item_state = "black" //Someone please make these -S2-
 	worn_state = "dress_fire"
 
 /obj/item/clothing/under/dress/dress_green
 	name = "green dress"
 	desc = "A simple, tight fitting green dress."
 	icon_state = "dress_green"
-	item_state = "green" //Someone please make these -S2-
 	worn_state = "dress_green"
 
 /obj/item/clothing/under/dress/dress_orange
 	name = "orange dress"
 	desc = "A fancy orange gown for those who like to show leg."
 	icon_state = "dress_orange"
-	item_state = "yellow" //Someone please make these -S2-
 	worn_state = "dress_orange"
 
 /obj/item/clothing/under/dress/dress_pink
 	name = "pink dress"
 	desc = "A simple, tight fitting pink dress."
 	icon_state = "dress_pink"
-	item_state = "pink" //Someone please make these -S2-
 	worn_state = "dress_pink"
 
 /obj/item/clothing/under/dress/dress_yellow
 	name = "yellow dress"
 	desc = "A flirty, little yellow dress."
 	icon_state = "dress_yellow"
-	item_state = "yellow" //You get the idea -S2-
 	worn_state = "dress_yellow"
 
 /obj/item/clothing/under/dress/dress_saloon
 	name = "saloon girl dress"
 	desc = "A old western inspired gown for the girl who likes to drink."
 	icon_state = "dress_saloon"
-	item_state = "red"
+	item_state = "dress_white"
 	worn_state = "dress_saloon"
-
 
 /obj/item/clothing/under/dress/dress_cap
 	name = "captain's dress uniform"
 	desc = "Feminine fashion for the style concious captain."
 	icon_state = "dress_cap"
-	item_state = "blue"
 	worn_state = "dress_cap"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
@@ -382,7 +365,6 @@
 	name = "head of personnel dress uniform"
 	desc = "Feminine fashion for the style concious HoP."
 	icon_state = "dress_hop"
-	item_state = "blue"
 	worn_state = "dress_hop"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
@@ -390,7 +372,6 @@
 	name = "human resources director uniform"
 	desc = "Superior class for the nosy H.R. Director."
 	icon_state = "huresource"
-	item_state = "yellow"
 	worn_state = "huresource"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
@@ -404,7 +385,6 @@
 	name = "orange wedding dress"
 	desc = "A big and puffy orange dress."
 	icon_state = "bride_orange"
-	item_state = "orange"
 	worn_state = "bride_orange"
 	flags_inv = HIDESHOES
 
@@ -412,7 +392,6 @@
 	name = "purple wedding dress"
 	desc = "A big and puffy purple dress."
 	icon_state = "bride_purple"
-	item_state = "purple"
 	worn_state = "bride_purple"
 	flags_inv = HIDESHOES
 
@@ -420,7 +399,6 @@
 	name = "blue wedding dress"
 	desc = "A big and puffy blue dress."
 	icon_state = "bride_blue"
-	item_state = "blue"
 	worn_state = "bride_blue"
 	flags_inv = HIDESHOES
 
@@ -428,7 +406,6 @@
 	name = "red wedding dress"
 	desc = "A big and puffy red dress."
 	icon_state = "bride_red"
-	item_state = "red"
 	worn_state = "bride_red"
 	flags_inv = HIDESHOES
 
@@ -436,7 +413,6 @@
 	name = "silky wedding dress"
 	desc = "A white wedding gown made from the finest silk."
 	icon_state = "bride_white"
-	item_state = "nursesuit"
 	worn_state = "bride_white"
 	flags_inv = HIDESHOES
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
@@ -445,7 +421,6 @@
 	name = "sundress"
 	desc = "Makes you want to frolic in a field of daisies."
 	icon_state = "sundress"
-	item_state = "blue"
 	worn_state = "sundress"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
@@ -453,7 +428,6 @@
 	name = "white sundress"
 	desc = "A white sundress decorated with purple lilies."
 	icon_state = "sundress_white"
-	item_state = "white"
 	worn_state = "sundress_white"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
@@ -521,6 +495,7 @@
 	name = "tan suit"
 	desc = "A tan suit. Smart, but casual."
 	icon_state = "tan_suit"
+	item_state = "tan_suit"
 	worn_state = "tan_suit"
 	starting_accessories = list(/obj/item/clothing/accessory/yellow, /obj/item/clothing/accessory/tan_jacket)
 
@@ -543,21 +518,18 @@
 	name = "red cheongsam"
 	desc = "It is a red cheongsam dress."
 	icon_state = "cheongsam-red"
-	item_state = "mai_yang"
 	worn_state = "cheongsam-red"
 
 /obj/item/clothing/under/cheongsam/blue
 	name = "blue cheongsam"
 	desc = "It is a blue cheongsam dress."
 	icon_state = "cheongsam-blue"
-	item_state = "mai_yang"
 	worn_state = "cheongsam-blue"
 
 /obj/item/clothing/under/cheongsam/black
 	name = "black cheongsam"
 	desc = "It is a black cheongsam dress."
 	icon_state = "cheongsam-black"
-	item_state = "mai_yang"
 	worn_state = "cheongsam-black"
 
 /obj/item/clothing/under/blazer
@@ -613,7 +585,6 @@
 	name = "white wedding dress"
 	desc = "A fancy white dress with a blue underdress."
 	icon_state = "whitedress1"
-	item_state = "nursesuit"
 	worn_state = "whitedress1"
 	flags_inv = HIDESHOES
 
@@ -621,7 +592,6 @@
 	name = "long dress"
 	desc = "A long dress."
 	icon_state = "whitedress2"
-	item_state = "nursesuit"
 	worn_state = "whitedress2"
 	flags_inv = HIDESHOES
 
@@ -629,14 +599,12 @@
 	name = "short dress"
 	desc = "A short, plain dress."
 	icon_state = "whitedress3"
-	item_state = "nursesuit"
 	worn_state = "whitedress3"
 
 /obj/item/clothing/under/dress/white4
 	name = "long flared dress"
 	desc = "A long white dress that flares out at the bottom."
 	icon_state = "whitedress4"
-	item_state = "nursesuit"
 	worn_state = "whitedress4"
 	flags_inv = HIDESHOES
 
@@ -644,7 +612,6 @@
 	name = "fancy dark red dress"
 	desc = "A short, red dress with a black belt. Fancy."
 	icon_state = "darkreddress"
-	item_state = "red"
 	worn_state = "darkreddress"
 	
 /*

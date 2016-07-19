@@ -3,7 +3,6 @@
 	desc = "Can hold various things."
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "utilitybelt"
-	item_state = "utility"
 	storage_slots = 7
 	max_storage_space = 28 //This should ensure belts always have enough room to store whatever.
 	max_w_class = 3
@@ -33,7 +32,6 @@
 	name = "tool-belt" //Carn: utility belt is nicer, but it bamboozles the text parsing.
 	desc = "Can hold various tools."
 	icon_state = "utilitybelt"
-	item_state = "utility"
 	can_hold = list(
 		///obj/item/weapon/combitool,
 		/obj/item/weapon/crowbar,
@@ -86,7 +84,6 @@
 	name = "medical belt"
 	desc = "Can hold various medical equipment."
 	icon_state = "medicalbelt"
-	item_state = "medical"
 	can_hold = list(
 		/obj/item/device/healthanalyzer,
 		/obj/item/weapon/dnainjector,
@@ -117,13 +114,11 @@
 	name = "EMT utility belt"
 	desc = "A sturdy black webbing belt with attached pouches."
 	icon_state = "emsbelt"
-	item_state = "emsbelt"
 
 /obj/item/weapon/storage/belt/security
 	name = "security belt"
 	desc = "Can hold security gear like handcuffs and flashes."
 	icon_state = "securitybelt"
-	item_state = "security"
 	max_w_class = 3
 	can_hold = list(
 		/obj/item/weapon/grenade,
@@ -154,7 +149,6 @@
 	name = "forensic utility belt"
 	desc = "A belt for holding forensics equipment."
 	icon_state = "securitybelt"
-	item_state = "security"
 	storage_slots = 7
 	max_w_class = 3
 	can_hold = list(
@@ -195,7 +189,6 @@
 	name = "soul stone belt"
 	desc = "Designed for ease of access to the shards during a fight, as to not let a single enemy spirit slip away"
 	icon_state = "soulstonebelt"
-	item_state = "soulstonebelt"
 	storage_slots = 6
 	can_hold = list(
 		/obj/item/device/soulstone
@@ -215,7 +208,6 @@
 	name = "championship belt"
 	desc = "Proves to the world that you are the strongest!"
 	icon_state = "championbelt"
-	item_state = "champion"
 	storage_slots = 1
 	can_hold = list(
 		"/obj/item/clothing/mask/luchador"
@@ -225,7 +217,6 @@
 	name = "combat belt"
 	desc = "Can hold security gear like handcuffs and flashes, with more pouches for more storage."
 	icon_state = "swatbelt"
-	item_state = "swatbelt"
 	storage_slots = 9
 	max_w_class = 3
 	max_storage_space = 28
@@ -234,13 +225,11 @@
 	name = "combat belt"
 	desc = "Can hold security gear like handcuffs and flashes, with more pouches for more storage."
 	icon_state = "bandolier"
-	item_state = "bandolier"
 
 /obj/item/weapon/storage/belt/janitor
 	name = "janitorial belt"
 	desc = "A belt used to hold most janitorial supplies."
 	icon_state = "janibelt"
-	item_state = "janibelt"
 	storage_slots = 7
 	max_w_class = 3
 	can_hold = list(

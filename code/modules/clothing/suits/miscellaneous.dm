@@ -5,7 +5,7 @@
  *		Misc
  */
 
-// -S2-note- Sort these and categorize these please
+// -S2-note- Needs categorizing and sorting.
 
 /*
  * Lasertag
@@ -33,7 +33,6 @@
 /*
  * Costume
  */
- 
 /obj/item/clothing/suit/pirate
 	name = "pirate coat"
 	desc = "Yarr."
@@ -112,7 +111,7 @@
 	name = "Hastur's Robes"
 	desc = "Robes not meant to be worn by man"
 	icon_state = "hastur"
-	item_state = "rad" //get over it or make your own
+	item_state = "rad"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
@@ -158,7 +157,6 @@
 /*
  * Misc
  */
-
 /obj/item/clothing/suit/straight_jacket
 	name = "straight jacket"
 	desc = "A suit that completely restrains the wearer."
@@ -170,13 +168,12 @@
 	name = "worn shirt"
 	desc = "A worn out, curiously comfortable t-shirt with a picture of Ian. You wouldn't go so far as to say it feels like being hugged when you wear it but it's pretty close. Good for sleeping in."
 	icon_state = "ianshirt"
-	item_state = "labcoat" //someone should make an item state for this, but that shall not be me -S2-
+	item_state = "labcoat" //placeholder -S2-
 	body_parts_covered = UPPER_TORSO|ARMS
 
 /*
  * coats
  */
-
 /obj/item/clothing/suit/leathercoat
 	name = "leather coat"
 	desc = "A long, thick black leather coat."
@@ -204,7 +201,6 @@
 /*
  * stripper
  */
- 
 /obj/item/clothing/suit/stripper/stripper_pink
 	name = "pink skimpy dress"
 	desc = "A rather skimpy pink dress."
@@ -219,7 +215,7 @@
 	item_state = "green_labcoat"
 	siemens_coefficient = 1
 
-/obj/item/clothing/suit/xenos //because these are for strippers *wink*
+/obj/item/clothing/suit/xenos
 	name = "xenos suit"
 	desc = "A suit made out of chitinous alien hide."
 	icon_state = "xenos"
@@ -231,7 +227,6 @@
 /*
  * Poncho
  */
- 
 /obj/item/clothing/suit/poncho
 	name = "poncho"
 	desc = "A simple, comfortable poncho."
@@ -468,7 +463,7 @@
 	name = "carp costume"
 	desc = "A costume made from 'synthetic' carp scales, it smells."
 	icon_state = "carp_casual"
-	item_state = "carp_casual" //someone not me can make these -S2-
+	item_state = "carp_casual" //Does not exist -S2-
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE	//Space carp like space, so you should too
@@ -479,7 +474,7 @@
 /obj/item/clothing/head/carp_hood
 	name = "carp hood"
 	desc = "A hood attached to a carp costume."
-	icon_state = "carp_casual" //someone not me can make these -S2-
+	icon_state = "carp_casual" //Does not exist -S2-
 	body_parts_covered = HEAD
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
@@ -488,7 +483,7 @@
 	name = "corgi costume"
 	desc = "A costume that looks like someone made a human-like corgi, it won't guarantee belly rubs."
 	icon_state = "ian"
-	item_state = "ian" //someone not me can make these -S2-
+	item_state = "ian" //Does not exist -S2-
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	//cold_protection = CHEST|GROIN|ARMS
 	//min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
@@ -500,7 +495,7 @@
 	name = "corgi hood"
 	desc = "A hood that looks just like a corgi's head, it won't guarantee dog biscuits."
 	icon_state = "ian"
-	item_state = "ian" //someone not me can make these -S2-
+	item_state = "ian" //Does not exist -S2-
 	body_parts_covered = HEAD
 	//cold_protection = HEAD
 	//min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
@@ -509,7 +504,7 @@
 	name = "winter coat"
 	desc = "A heavy jacket made from 'synthetic' animal furs."
 	icon_state = "coatwinter"
-	item_state = "brown_jacket" //someone not me can make these -S2-
+	item_state = "coatwinter"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
@@ -530,52 +525,52 @@
 /obj/item/clothing/suit/storage/hooded/wintercoat/captain
 	name = "captain's winter coat"
 	icon_state = "coatcaptain"
-	item_state = "suit_blue"
+	item_state = "coatcaptain"
 	armor = list(melee = 20, bullet = 15, laser = 20, energy = 10, bomb = 15, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/security
 	name = "security winter coat"
 	icon_state = "coatsecurity"
-	item_state = "suit_red"
+	item_state = "coatsecurity"
 	armor = list(melee = 25, bullet = 20, laser = 20, energy = 15, bomb = 20, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/medical
 	name = "medical winter coat"
 	icon_state = "coatmedical"
-	item_state = "labcoat"
+	item_state = "coatmedical"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 50, rad = 0)
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/science
 	name = "science winter coat"
 	icon_state = "coatscience"
-	item_state = "suit_purple"
+	item_state = "coatscience"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/engineering
 	name = "engineering winter coat"
 	icon_state = "coatengineer"
-	item_state = "suit_yellow"
+	item_state = "coatengineer"
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 20)
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/engineering/atmos
 	name = "atmospherics winter coat"
 	icon_state = "coatatmos"
-	item_state = "suit_navy"
+	item_state = "coatatmos"
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/hydro
 	name = "hydroponics winter coat"
 	icon_state = "coathydro"
-	item_state = "suit_olive"
+	item_state = "coathydro"
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/cargo
 	name = "cargo winter coat"
 	icon_state = "coatcargo"
-	item_state = "brown_jacket"
+	item_state = "coatcargo"
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/miner
 	name = "mining winter coat"
 	icon_state = "coatminer"
-	item_state = "brown_jacket"
+	item_state = "coatminer"
 	armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/varsity
@@ -594,7 +589,7 @@
 
 /obj/item/clothing/suit/varsity/green
 	name = "green varsity jacket"
-	icon_state = "suit_olive" //idc
+	icon_state = "suit_olive"
 
 /obj/item/clothing/suit/varsity/blue
 	name = "blue varsity jacket"
@@ -607,33 +602,32 @@
 /*
  * Track Jackets
  */
-
 /obj/item/clothing/suit/storage/toggle/track
 	name = "track jacket"
 	desc = "a track jacket, for the athletic."
 	icon_state = "trackjacket"
-	item_state = "suit_black"
+	item_state = "black_labcoat"
 	icon_open = "trackjacket_open"
 	icon_closed = "trackjacket"
 
 /obj/item/clothing/suit/storage/toggle/track/blue
 	name = "blue track jacket"
 	icon_state = "trackjacketblue"
-	item_state = "suit_blue"
+	item_state = "blue_labcoat"
 	icon_open = "trackjacketblue_open"
 	icon_closed = "trackjacketblue"
 
 /obj/item/clothing/suit/storage/toggle/track/green
 	name = "green track jacket"
 	icon_state = "trackjacketgreen"
-	item_state = "suit_green"
+	item_state = "green_labcoat"
 	icon_open = "trackjacketgreen_open"
 	icon_closed = "trackjacketgreen"
 
 /obj/item/clothing/suit/storage/toggle/track/red
 	name = "red track jacket"
 	icon_state = "trackjacketred"
-	item_state = "suit_red"
+	item_state = "red_labcoat"
 	icon_open = "trackjacketred_open"
 	icon_closed = "trackjacketred"
 
@@ -650,7 +644,7 @@
 	name = "Flannel shirt"
 	desc = "A comfy, grey flannel shirt.  Unleash your inner hipster."
 	icon_state = "flannel"
-	item_state = "gy_suit"
+	item_state = "black_labcoat"
 	var/rolled = 0
 	var/tucked = 0
 	var/buttoned = 0
@@ -714,12 +708,12 @@
 /obj/item/clothing/suit/storage/flannel/red
 	desc = "A comfy, red flannel shirt.  Unleash your inner hipster."
 	icon_state = "flannel_red"
-	item_state = "r_suit"
+	item_state = "red_labcoat"
 
 /obj/item/clothing/suit/storage/flannel/aqua
 	desc = "A comfy, aqua flannel shirt.  Unleash your inner hipster."
 	icon_state = "flannel_aqua"
-	item_state = "b_suit"
+	item_state = "blue_labcoat"
 
 //Green Uniform
 
@@ -727,7 +721,7 @@
 	name = "green formal jacket"
 	desc = "A sleek proper formal jacket with gold buttons."
 	icon_state = "suitjacket_green_open"
-	item_state = "suitjacket_green_open"
+	item_state = "suit_olive"
 	icon_open = "suitjacket_green_open"
 	icon_closed = "suitjacket_green"
 	blood_overlay_type = "coat"

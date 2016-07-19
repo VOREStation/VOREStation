@@ -98,7 +98,6 @@
 	name = "black medical space helmet"
 	desc = "A black helmet sporting a medical cross and durable plating. Hopefully the wearer abides by space geneva."
 	icon_state = "syndicate-helm-black-med"
-//	item_state_slots = list(slot_head_str = "syndicate-helm-black-med")
 
 /obj/item/clothing/suit/space/syndicate/black/med
 	name = "black medical space suit"
@@ -109,7 +108,6 @@
 /obj/item/clothing/head/helmet/space/syndicate/black/orange
 	name = "black and orange space helmet"
 	icon_state = "syndicate-helm-black-orange"
-//	item_state_slots = list(slot_head_str = "syndicate-helm-black-orange")
 
 /obj/item/clothing/suit/space/syndicate/black/orange
 	name = "black and orange space suit"
@@ -132,7 +130,6 @@
 	name = "black engineering space helmet"
 	desc = "A black helmet sporting red and yellow stripes and durable plating. Engineered to look well... engineering-ish."
 	icon_state = "syndicate-helm-black-engie"
-//	item_state_slots = list(slot_head_str = "syndicate-helm-black-engie")
 
 /obj/item/clothing/suit/space/syndicate/black/engie
 	name = "black engineering space suit"

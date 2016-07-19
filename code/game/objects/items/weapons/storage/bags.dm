@@ -56,7 +56,6 @@
 	desc = "It's a very flimsy, very noisy alternative to a bag."
 	icon = 'icons/obj/trash.dmi'
 	icon_state = "plasticbag"
-	item_state = "plasticbag"
 
 	w_class = 4
 	max_w_class = 2

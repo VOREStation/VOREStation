@@ -80,7 +80,7 @@
 /obj/item/clothing/head/bio_hood/cmo
 	icon_state = "bio_cmo"
 
-//Plague Dr mask can be found in clothing/masks/gasmask.dm --LIKE IT SHOULD
+//Plague Dr mask can be found in clothing/masks/gasmask.dm
 /obj/item/clothing/suit/bio_suit/plaguedoctorsuit
 	name = "Plague doctor suit"
 	desc = "It protected doctors from the Black Death, back then. You bet your arse it's gonna help you against viruses."

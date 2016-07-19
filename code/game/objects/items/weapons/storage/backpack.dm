@@ -196,6 +196,7 @@
 	name = "satchel"
 	desc = "A trendy looking satchel."
 	icon_state = "satchel-norm"
+	item_state = "briefcase"
 
 /obj/item/weapon/storage/backpack/satchel/eng
 	name = "industrial satchel"
