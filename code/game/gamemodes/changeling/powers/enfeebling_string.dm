@@ -4,6 +4,7 @@
 	helptext = "Lowers the maximum health of the victim for a few minutes.  This sting will also warn them of this.  Has a \
 	five minute coodown between uses."
 	enhancedtext = "Maximum health is lowered further."
+	ability_icon_state = "ling_sting_enfeeble"
 	genomecost = 1
 	verbpath = /mob/proc/changeling_enfeebling_string
 

@@ -331,8 +331,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 			reset_limbs() // Safety for species with incompatible manufacturers; easier than trying to do it case by case.
 
-			var/datum/species/S = all_species[pref.species]
-			pref.age = max(min(pref.age, S.max_age), S.min_age)
+			var/min_age = get_min_age()
+			var/max_age = get_max_age()
+			pref.age = max(min(pref.age, max_age), min_age)
 
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 

@@ -3,6 +3,7 @@
 	desc = "We reform one of our arms into a deadly blade."
 	helptext = "We may retract our armblade by dropping it.  It can deflect projectiles."
 	enhancedtext = "The blade will have armor peneratration."
+	ability_icon_state = "ling_armblade"
 	genomecost = 2
 	verbpath = /mob/proc/changeling_arm_blade
 

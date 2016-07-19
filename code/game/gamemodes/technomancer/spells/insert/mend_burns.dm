@@ -1,7 +1,8 @@
 /datum/technomancer/spell/mend_burns
 	name = "Mend Burns"
-	desc = "Heals minor burns, such as from exposure to flame, electric shock, or lasers."
-	cost = 120
+	desc = "Heals minor burns, such as from exposure to flame, electric shock, or lasers.  \
+	Instability is split between the target and technomancer, if seperate."
+	cost = 50
 	obj_path = /obj/item/weapon/spell/insert/mend_burns
 	ability_icon_state = "tech_mendburns"
 
@@ -24,4 +25,4 @@
 					H.adjust_instability(0.5)
 					origin.adjust_instability(0.5)
 					sleep(10)
-	qdel(src)
+		on_expire()

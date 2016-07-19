@@ -3,6 +3,7 @@
 	desc = "Expels impurifications from our form; curing diseases, removing toxins, chemicals, radiation, and resetting our genetic code completely."
 	helptext = "Can be used while unconscious.  This will also purge any reagents inside ourselves, both harmful and beneficial."
 	enhancedtext = "We heal more toxins."
+	ability_icon_state = "ling_anatomic_panacea"
 	genomecost = 1
 	verbpath = /mob/proc/changeling_panacea
 

@@ -17,6 +17,7 @@ var/global/list/changeling_fabricated_clothing = list(
 	We cannot be relieved of this clothing by others."
 	helptext = "The disguise we create offers no defensive ability.  Each equipment slot that is empty will be filled with fabricated equipment. \
 	To remove our new fabricated clothing, use this ability again."
+	ability_icon_state = "ling_fabricate_clothing"
 	genomecost = 2
 	verbpath = /mob/proc/changeling_fabricate_clothing
 

@@ -2,13 +2,13 @@
 	name = "Organic Space Suit"
 	desc = "We grow an organic suit to protect ourselves from space exposure."
 	helptext = "To remove the suit, use the ability again."
+	ability_icon_state = "ling_space_suit"
 	genomecost = 1
 	verbpath = /mob/proc/changeling_spacesuit
 
 /mob/proc/changeling_spacesuit()
 	set category = "Changeling"
 	set name = "Organic Space Suit (20)"
-
 	if(changeling_generic_armor(/obj/item/clothing/suit/space/changeling,/obj/item/clothing/head/helmet/space/changeling))
 		return 1
 	return 0
@@ -17,6 +17,7 @@
 	name = "Chitinous Spacearmor"
 	desc = "We turn our skin into tough chitin to protect us from damage and space exposure."
 	helptext = "To remove the armor, use the ability again."
+	ability_icon_state = "ling_armor"
 	genomecost = 3
 	verbpath = /mob/proc/changeling_spacearmor
 

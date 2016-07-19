@@ -53,6 +53,7 @@
 					L.stat = CONSCIOUS //Note that if whatever killed them in the first place wasn't fixed, they're likely to die again.
 					dead_mob_list -= H
 					living_mob_list += H
+					H.timeofdeath = null
 					visible_message("<span class='danger'>\The [H]'s eyes open!</span>")
 					user << "<span class='notice'>It's alive!</span>"
 					owner.adjust_instability(100)
