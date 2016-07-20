@@ -38,6 +38,22 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "unathiknife"
 	attack_verb = list("ripped", "torn", "cut")
+	var hits = 0
+
+/obj/item/weapon/material/hatchet/unathiknife/attack(mob/M as mob, mob/user as mob)
+	if(hits > 0)
+		return
+	var/obj/item/I = user.get_inactive_hand()
+	if(istype(I, /obj/item/weapon/material/hatchet/unathiknife))
+		hits ++
+		var/obj/item/weapon/W = I
+		W.attack(M, user)
+		W.afterattack(M, user)
+	..()
+
+/obj/item/weapon/material/hatchet/unathiknife/afterattack(mob/M as mob, mob/user as mob)
+	hits = initial(hits)
+	..()
 
 /obj/item/weapon/material/hatchet/tacknife
 	name = "tactical knife"
