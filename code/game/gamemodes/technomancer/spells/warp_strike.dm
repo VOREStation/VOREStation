@@ -3,11 +3,12 @@
 	desc = "Teleports you next to your target, and attacks them with whatever is in your off-hand, spell or object."
 	cost = 200
 	obj_path = /obj/item/weapon/spell/warp_strike
+	ability_icon_state = "tech_warpstrike"
 
 /obj/item/weapon/spell/warp_strike
 	name = "warp strike"
 	desc = "The answer to the problem of bringing a knife to a gun fight."
-	icon_state = "tech_warpstrike"
+	icon_state = "warp_strike"
 	cast_methods = CAST_RANGED
 	aspect = ASPECT_TELE
 	var/datum/effect/effect/system/spark_spread/sparks
@@ -23,16 +24,7 @@
 	if(T)
 		//First, we handle who to teleport to.
 		user.setClickCooldown(5)
-		var/list/potential_targets = view(T, 2)	//Everyone in a 5x5 range of the tile we clicked on.
-		var/mob/living/chosen_target = null		//The person who's about to get attacked.
-
-		//Find us someone to robust.
-		for(var/mob/living/L in potential_targets)
-			if(L == user || L.invisibility > user.see_invisible) //Don't target ourselves or people we can't see.
-				continue
-			if(!L.stat) //Don't want to target dead people or SSDs.
-				chosen_target = L
-				break
+		var/mob/living/chosen_target = targeting_assist(T,5)		//The person who's about to get attacked.
 
 		if(!chosen_target)
 			return 0
@@ -60,7 +52,12 @@
 
 		//Finally, we handle striking the victim with whatever's in the user's offhand.
 		var/obj/item/I = user.get_inactive_hand()
-		var/list/blacklisted_items = list(/obj/item/weapon/gun) //We don't want these items to be used, likely because it would break balance.
+		// List of items we don't want used, for balance reasons or to avoid infinite loops.
+		var/list/blacklisted_items = list(
+			/obj/item/weapon/gun,
+			/obj/item/weapon/spell/warp_strike,
+			/obj/item/weapon/spell/targeting_matrix
+			)
 		if(I)
 
 			if(is_path_in_list(I.type, blacklisted_items))

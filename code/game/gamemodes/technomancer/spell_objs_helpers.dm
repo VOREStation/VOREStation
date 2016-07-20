@@ -24,3 +24,19 @@
 	if(owner && owner.z in config.admin_levels)
 		return 0
 	return 1
+
+// Returns a 'target' mob from a radius around T.
+/obj/item/weapon/spell/proc/targeting_assist(var/turf/T, radius = 5)
+	var/chosen_target = null
+	var/potential_targets = view(T,radius)
+	for(var/mob/living/L in potential_targets)
+		if(is_ally(L)) // Don't shoot our friends.
+			continue
+		if(L.invisibility > owner.see_invisible) // Don't target ourselves or people we can't see.
+			continue
+		if(!L in viewers(owner)) // So we don't shoot at walls if someone is hiding behind one.
+			continue
+		if(!L.stat) // Don't want to target dead people or SSDs.
+			chosen_target = L
+			break
+	return chosen_target

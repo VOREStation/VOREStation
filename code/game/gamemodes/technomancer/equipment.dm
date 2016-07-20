@@ -71,11 +71,53 @@
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/combat(src)
 	..()
 
+/datum/technomancer/equipment/belt_of_holding
+	name = "Belt of Holding"
+	desc = "A belt with a literal pocket which opens to a localized pocket of 'Blue-Space', allowing for more storage.  \
+	The nature of the pocket allows for storage of larger objects than what is typical for other belts, and in larger quanities.  \
+	It will also help keep your pants on."
+	cost = 100
+	obj_path = /obj/item/weapon/storage/belt/holding
+
+/obj/item/weapon/storage/belt/holding
+	name = "Belt of Holding"
+	desc = "Can hold more than you'd expect."
+	icon_state = "emsbelt"
+	item_state = "emsbelt"
+	max_w_class = 3		// Can hold normal sized items.
+	storage_slots = 14	// Twice the capacity of a typical belt.
+	max_storage_space = 42
+
 /datum/technomancer/equipment/thermals
 	name = "Thermoncle"
 	desc = "A fancy monocle with a thermal optics lens installed.  Allows you to see people across walls."
 	cost = 150
 	obj_path = /obj/item/clothing/glasses/thermal/plain/monocle
+
+/datum/technomancer/equipment/night_vision
+	name = "Night Vision Goggles"
+	desc = "Strategical goggles which will allow the wearer to see in the dark.  Perfect for the sneaky type, just get rid of the \
+	lights first."
+	cost = 50
+	obj_path = /obj/item/clothing/glasses/night
+
+/datum/technomancer/equipment/omni_sight
+	name = "Omnisight Scanner"
+	desc = "A very rare scanner worn on the face, which allows the wearer to see nearly anything across walls."
+	cost = 400
+	obj_path = /obj/item/clothing/glasses/omni
+
+/obj/item/clothing/glasses/omni
+	name = "Omnisight Scanner"
+	desc = "A pair of goggles which, while on the surface appear to be build very poorly, reveal to be very advanced in \
+	capabilities.  The lens appear to be multiple optical matrices layered together, allowing the wearer to see almost anything \
+	across physical barriers."
+	icon_state = "uzenwa_sissra_1"
+	action_button_name = "Toggle Goggles"
+	origin_tech = list(TECH_MAGNET = 6, TECH_ENGINEERING = 6)
+	toggleable = 1
+	vision_flags = SEE_TURFS|SEE_MOBS|SEE_OBJS
+	prescription = 1 // So two versions of these aren't needed.
 
 /datum/technomancer/equipment/med_hud
 	name = "Medical HUD"
@@ -83,7 +125,6 @@
 	Recommended for support-based apprentices!"
 	cost = 30
 	obj_path = /obj/item/clothing/glasses/thermal/plain/monocle
-
 
 /datum/technomancer/equipment/scepter
 	name = "Scepter of Empowerment"
