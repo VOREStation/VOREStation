@@ -309,7 +309,6 @@
 			/obj/item/clothing/under/rank/security2 = 4,
 			/obj/item/clothing/under/rank/warden,
 			/obj/item/clothing/under/rank/head_of_security,
-			/obj/item/clothing/suit/armor/hos/jensen,
 			/obj/item/clothing/head/soft/sec = 4,
 			/obj/item/clothing/gloves/black = 4,
 			/obj/item/weapon/storage/box/holobadge
