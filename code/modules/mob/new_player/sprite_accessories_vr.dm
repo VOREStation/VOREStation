@@ -58,6 +58,7 @@
 		icon_state = "soghun_shortspines"
 		species_allowed = list("Unathi", "Xenochimera")
 
+
 	una_frills_long
 		name = "Long Unathi Frills"
 		icon_state = "soghun_longfrills"
@@ -72,10 +73,18 @@
 		name = "Unathi Horns"
 		icon_state = "soghun_horns"
 		species_allowed = list("Unathi", "Xenochimera")
-		taj_ears
+
+	una_doublehorns
+		name = "Double Unathi Horns"
+		icon = 'icons/mob/human_face_vr.dmi'
+		icon_state = "soghun_dubhorns"
+		species_allowed = list("Unathi", "Xenochimera")
+
+	taj_ears
 		name = "Tajaran Ears"
 		icon_state = "ears_plain"
 		species_allowed = list("Tajara", "Xenochimera")
+
 
 	taj_ears_clean
 		name = "Tajara Clean"
