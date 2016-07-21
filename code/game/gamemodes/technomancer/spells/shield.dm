@@ -51,5 +51,6 @@
 		user.visible_message("<span class='danger'>\The [user]'s [src] blocks [attack_text]!</span>")
 		spark_system.start()
 		playsound(user.loc, 'sound/weapons/blade1.ogg', 50, 1)
+		adjust_instability(2)
 		return 1
 	return 0

@@ -26,6 +26,9 @@
 	aspect = ASPECT_TELE
 
 /obj/item/weapon/spell/mark/on_use_cast(mob/living/user)
+	if(!allowed_to_teleport()) // Otherwise you could teleport back to the admin Z-level.
+		user << "<span class='warning'>You can't teleport here!</span>"
+		return 0
 	if(pay_energy(1000))
 		if(!mark_spell_ref)
 			mark_spell_ref = new(get_turf(user))
@@ -77,8 +80,23 @@
 				set_light(light_intensity, light_intensity, l_color = "#006AFF")
 				time_left--
 				sleep(1 SECOND)
-			user.forceMove(get_turf(mark_spell_ref))
+
+			var/turf/target_turf = get_turf(mark_spell_ref)
+			var/turf/old_turf = get_turf(user)
+
+			for(var/obj/item/weapon/grab/G in user.contents) // People the Technomancer is grabbing come along for the ride.
+				if(G.affecting)
+					G.affecting.forceMove(locate( target_turf.x+rand(-1,1), target_turf.y+rand(-1,1), target_turf.z))
+					G.affecting << "<span class='warning'>You are teleported along with [user]!</span>"
+
+			user.forceMove(target_turf)
 			user << "<span class='notice'>You are teleported to your Mark.</span>"
+
+			playsound(target_turf, 'sound/effects/phasein.ogg', 25, 1)
+			playsound(target_turf, 'sound/effects/sparks2.ogg', 50, 1)
+
+			playsound(old_turf, 'sound/effects/sparks2.ogg', 50, 1)
+
 			owner.adjust_instability(25)
 			qdel(src)
 			return 1

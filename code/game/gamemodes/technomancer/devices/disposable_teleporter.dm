@@ -31,7 +31,8 @@
 		user << "<span class='danger'>\The [src] has ran out of uses, and is now useless to you!</span>"
 		return
 	else
-		var/area/A = input(user, "Area to teleport to", "Teleportation") in teleportlocs
+		var/area_wanted = input(user, "Area to teleport to", "Teleportation") in teleportlocs
+		var/area/A = teleportlocs[area_wanted]
 		if(!A)
 			return
 
@@ -62,8 +63,8 @@
 				targets.Add(T)
 
 		if(!targets.len)
-			user <<"The teleporter matrix was unable to locate a suitable teleport destination, as all the possibilities were nonexistant \
-			or hazardous. Try a different area."
+			user << "The teleporter matrix was unable to locate a suitable teleport destination, as all the possibilities \
+			were nonexistant or hazardous. Try a different area."
 			return
 		var/turf/simulated/destination = null
 
