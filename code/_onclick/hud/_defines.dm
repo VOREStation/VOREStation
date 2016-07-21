@@ -140,5 +140,5 @@
 #define ui_iarrowleft "SOUTH-1,EAST-4"
 #define ui_iarrowright "SOUTH-1,EAST-2"
 
-#define ui_spell_master "EAST-1:16,NORTH-1:16"
+#define ui_spell_master "EAST-2:16,NORTH-1:26"
 #define ui_genetic_master "EAST-1:16,NORTH-3:16"

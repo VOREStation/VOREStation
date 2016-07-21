@@ -44,26 +44,26 @@
 // Description: Makes instability decay.  instability_effects() handles the bad effects for having instability.  It will also hold back
 // from causing bad effects more than one every ten seconds, to prevent sudden death from angry RNG.
 /mob/living/carbon/human/proc/handle_instability()
-	instability = Clamp(instability, 0, 200)
+	instability = round(Clamp(instability, 0, 200))
 	instability_update_hud()
 	//This should cushon against really bad luck.
 	if(instability && last_instability_event < (world.time - 10 SECONDS) && prob(20))
 		instability_effects()
 		switch(instability)
 			if(1 to 10)
-				adjust_instability(-1)
-			if(11 to 20)
 				adjust_instability(-2)
-			if(21 to 30)
-				adjust_instability(-3)
-			if(31 to 40)
+			if(11 to 20)
 				adjust_instability(-4)
+			if(21 to 30)
+				adjust_instability(-6)
+			if(31 to 40)
+				adjust_instability(-8)
 			if(41 to 50)
-				adjust_instability(-5)
-			if(51 to 100)
 				adjust_instability(-10)
-			if(101 to 200)
+			if(51 to 100)
 				adjust_instability(-20)
+			if(101 to 200)
+				adjust_instability(-40)
 
 /*
 [16:18:08] <PsiOmegaDelta> Sparks
@@ -88,6 +88,7 @@
 			sleep(4)
 			overlays.Remove(instability_flash)
 			qdel(instability_flash)
+		radiate_instability()
 		switch(instability)
 			if(1 to 10) //Harmless
 				return
@@ -165,6 +166,7 @@
 						src << "<span class='danger'>You feel your body slowly degenerate.</span>"
 					if(7)
 						adjustToxLoss(instability * 0.25) //25 tox @ 100 instability
+
 			if(101 to 200) //Lethal
 				rng = rand(0,8)
 				switch(rng)
@@ -191,3 +193,18 @@
 						src << "<span class='danger'>You feel your body slowly degenerate.</span>"
 					if(7)
 						adjustToxLoss(instability * 0.40) //25 tox @ 100 instability
+
+/mob/living/carbon/human/proc/radiate_instability()
+	var/distance = round(sqrt(instability / 2))
+	if(instability <= 30)
+		distance = 0
+	if(distance)
+		for(var/mob/living/carbon/human/H in range(src, distance) )
+			if(H == src) // This instability is radiating away from them, so don't include them.
+				continue
+			var/radius = max(get_dist(H, src), 1)
+			// People next to the source take a third of the instability.  Further distance decreases the amount absorbed.
+			var/outgoing_instability = (instability / 3) * ( 1 / (radius**2) )
+			H.adjust_instability(outgoing_instability)
+
+	set_light(distance, distance, l_color = "#C26DDE")
