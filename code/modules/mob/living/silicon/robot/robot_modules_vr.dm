@@ -1,8 +1,8 @@
 /hook/startup/proc/robot_modules_vr()
 	robot_modules["Medihound"] = /obj/item/weapon/robot_module/medihound
 	robot_modules["K9"] = /obj/item/weapon/robot_module/knine
-	robot_modules["K92"] = /obj/item/weapon/robot_module/knine2 
-	robot_modules["medihounddark"] = /obj/item/weapon/robot_module/medihound2
+	robot_modules["K92"] = /obj/item/weapon/robot_module/kninea
+	robot_modules["Dark Medihound"] = /obj/item/weapon/robot_module/medihounda
 	return 1
 
 
@@ -74,7 +74,15 @@
 	R.old_x  	 = -16
 	..()
 
-/obj/item/weapon/robot_module/knine2/New(var/mob/living/silicon/robot/R)
+
+/obj/item/weapon/robot_module/kninea
+	name = "k92 robot module"
+	sprites = list("K92 hound" = "k92")
+	channels = list("Security" = 1)
+	networks = list(NETWORK_SECURITY)
+	can_be_pushed = 0
+
+/obj/item/weapon/robot_module/kninea/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/device/flash(src)
 	src.modules += new /obj/item/weapon/handcuffs/cyborg(src) //You need cuffs to be a proper sec borg!
 	src.modules += new /obj/item/weapon/dogborg/jaws/big(src) //In case there's some kind of hostile mob.
@@ -93,7 +101,7 @@
 	R.old_x 	 = -16
 	..()
 
-/obj/item/weapon/robot_module/knine2/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+/obj/item/weapon/robot_module/kninea/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
 	var/obj/item/device/flash/F = locate() in src.modules
 	if(F.broken)
 		F.broken = 0
@@ -111,7 +119,15 @@
 	if(B && B.bcell)
 		B.bcell.give(amount)
 
-/obj/item/weapon/robot_module/medihound2/New(var/mob/living/silicon/robot/R)
+
+/obj/item/weapon/robot_module/medihounda
+	name = "Dark MediHound module"
+	channels = list("Medical" = 1)
+	networks = list(NETWORK_MEDICAL)
+	can_be_pushed = 0
+	sprites = list("Dark Medical Hound" = "medihounddark")
+
+/obj/item/weapon/robot_module/medihounda/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/weapon/dogborg/jaws/small(src) //In case a patient is being attacked by carp.
 	src.modules += new /obj/item/device/dogborg/boop_module(src) //Boop the crew.
 	src.modules += new /obj/item/device/dogborg/tongue(src) //Clean up bloody items by licking them, and eat rubbish for minor energy.
