@@ -88,13 +88,15 @@
 		qdel(src)
 
 	return 1
+
 /obj/item/weapon/card/emag/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/stack/telecrystal))
 		var/obj/item/stack/telecrystal/T = O
-		if(T.amount/2 < 0)
+		if(T.amount < 1)
 			usr << "<span class='notice'>You are not adding enough telecrystals to fuel \the [src].</span>"
 			return
-		src.uses += T.amount/2 //Gives 5 uses per 10 TC
+		uses += T.amount/2 //Gives 5 uses per 10 TC
+		uses = ceil(uses) //Ensures no decimal uses nonsense, rounds up to be nice
 		usr << "<span class='notice'>You add \the [O] to \the [src]. Increasing the uses of \the [src] to [uses].</span>"
 		qdel(O)
 
