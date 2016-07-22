@@ -53,8 +53,8 @@
 ****************/
 /datum/uplink_item/item/badassery/surplus
 	name = "Surplus Crate"
-	item_cost = 40
-	var/item_worth = 60
+	item_cost = 400
+	var/item_worth = 600
 	var/icon
 
 /datum/uplink_item/item/badassery/surplus/New()
