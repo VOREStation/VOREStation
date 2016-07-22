@@ -7,7 +7,7 @@
 		if(sleeper_r == 1)
 			overlays += "[module_sprites[icontype]]-sleeper_r"
 
-	if(opened)g
+	if(opened)
 		var/panelprefix = custom_sprite ? src.ckey : "ov"
 		if(wiresexposed)
 			overlays += "[panelprefix]-openpanel +w"
