@@ -3,11 +3,11 @@
 	if(stat == CONSCIOUS)
 		overlays += "eyes-[module_sprites[icontype]]"
 		if(sleeper_g == 1)
-			overlays += "sleeper_g"
+			overlays += "[module_sprites[icontype]]-sleeper_g"
 		if(sleeper_r == 1)
-			overlays += "sleeper_r"
+			overlays += "[module_sprites[icontype]]-sleeper_r"
 
-	if(opened)
+	if(opened)g
 		var/panelprefix = custom_sprite ? src.ckey : "ov"
 		if(wiresexposed)
 			overlays += "[panelprefix]-openpanel +w"
@@ -27,6 +27,6 @@
 		return
 	if(stat == 0)
 		if(sleeper_g == 1)
-			overlays += "sleeper_g"
+			overlays += "[module_sprites[icontype]]-sleeper_g"
 		if(sleeper_r == 1)
-			overlays += "sleeper_r"
+			overlays += "[module_sprites[icontype]]-sleeper_r"
