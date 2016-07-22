@@ -6,40 +6,40 @@
 
 /datum/uplink_item/item/stealth_items/id
 	name = "Agent ID card"
-	item_cost = 2
+	item_cost = 20
 	path = /obj/item/weapon/card/id/syndicate
 
 /datum/uplink_item/item/stealth_items/syndigaloshes
 	name = "No-Slip Shoes"
-	item_cost = 2
+	item_cost = 20
 	path = /obj/item/clothing/shoes/syndigaloshes
 
 /datum/uplink_item/item/stealth_items/spy
 	name = "Bug Kit"
-	item_cost = 2
+	item_cost = 20
 	path = /obj/item/weapon/storage/box/syndie_kit/spy
 
 /datum/uplink_item/item/stealth_items/chameleon_kit
 	name = "Chameleon Kit"
-	item_cost = 3
+	item_cost = 30
 	path = /obj/item/weapon/storage/box/syndie_kit/chameleon
 
 /datum/uplink_item/item/stealth_items/chameleon_projector
 	name = "Chameleon-Projector"
-	item_cost = 4
+	item_cost = 40
 	path = /obj/item/device/chameleon
 
 /datum/uplink_item/item/stealth_items/chameleon_projector
 	name = "Chameleon-Projector"
-	item_cost = 4
+	item_cost = 40
 	path = /obj/item/device/chameleon
 
 /datum/uplink_item/item/stealth_items/voice
 	name = "Voice Changer"
-	item_cost = 4
+	item_cost = 40
 	path = /obj/item/clothing/mask/gas/voice
 
 /datum/uplink_item/item/stealth_items/camera_floppy
 	name = "Camera Network Access - Floppy"
-	item_cost = 6
+	item_cost = 60
 	path = /obj/item/weapon/disk/file/cameras/syndicate

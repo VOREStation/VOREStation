@@ -47,3 +47,6 @@ datum/uplink_category/ammunition
 
 /datum/uplink_category/visible_weapons
 	name = "Highly Visible and Dangerous Weapons"
+
+/datum/uplink_category/telecrystals
+	name = "Telecrystals"
