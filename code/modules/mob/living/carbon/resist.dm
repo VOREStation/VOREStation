@@ -19,17 +19,13 @@
 		return TRUE
 
 	if(handcuffed)
-		world << "1"
 		spawn() escape_handcuffs()
 	else if(legcuffed)
-		world << "2"
 		spawn() escape_legcuffs()
 	else
-		world << "3"
 		..()
 
 /mob/living/carbon/proc/escape_handcuffs()
-	world << "4"
 	//if(!(last_special <= world.time)) return
 
 	//This line represent a significant buff to grabs...
@@ -62,7 +58,6 @@
 
 	if(do_after(src, breakouttime, incapacitation_flags = INCAPACITATION_DISABLED & INCAPACITATION_KNOCKDOWN))
 		if(!handcuffed)
-			world << "5"
 			return
 		visible_message(
 			"<span class='danger'>\The [src] manages to remove \the [handcuffed]!</span>",
