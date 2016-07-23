@@ -704,6 +704,7 @@
 		icon_state += "t"
 	if(buttoned)
 		icon_state += "b"
+	update_clothing_icon()
 
 /obj/item/clothing/suit/storage/flannel/red
 	desc = "A comfy, red flannel shirt.  Unleash your inner hipster."
@@ -714,6 +715,11 @@
 	desc = "A comfy, aqua flannel shirt.  Unleash your inner hipster."
 	icon_state = "flannel_aqua"
 	item_state = "blue_labcoat"
+
+/obj/item/clothing/suit/storage/flannel/brown
+	desc = "A comfy, brown flannel shirt.  Unleash your inner hipster."
+	icon_state = "flannel_brown"
+	item_state = "johnny"
 
 //Green Uniform
 

@@ -56,6 +56,10 @@
 	name = "quartermaster's stamp"
 	icon_state = "stamp-qm"
 
+/obj/item/weapon/stamp/solgov
+	name = "solgov stamp"
+	icon_state = "stamp-sg"
+
 // Syndicate stamp to forge documents.
 /obj/item/weapon/stamp/chameleon/attack_self(mob/user as mob)
 

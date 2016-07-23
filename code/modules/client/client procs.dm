@@ -287,6 +287,7 @@
 		'html/panels.css',
 		'html/images/loading.gif',
 		'html/images/ntlogo.png',
+		'html/images/sglogo.png',
 		'html/images/talisman.png',
 		'icons/pda_icons/pda_atmos.png',
 		'icons/pda_icons/pda_back.png',

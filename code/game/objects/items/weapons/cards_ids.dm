@@ -69,7 +69,6 @@
 	icon_state = "emag"
 	item_state = "card-id"
 	origin_tech = list(TECH_MAGNET = 2, TECH_ILLEGAL = 2)
-	var/default_uses = 10
 	var/uses = 10
 
 /obj/item/weapon/card/emag/resolve_attackby(atom/A, mob/user)
@@ -89,9 +88,15 @@
 		qdel(src)
 
 	return 1
+
 /obj/item/weapon/card/emag/attackby(obj/item/O as obj, mob/user as mob)
-	if(istype(O, /obj/item/device/telecrystal))
-		src.uses += default_uses/2 //Adds half the default amount of uses which is more than you get per TC when buying, as to balance the utility of having multiple emags vs one heavily usable one
+	if(istype(O, /obj/item/stack/telecrystal))
+		var/obj/item/stack/telecrystal/T = O
+		if(T.amount < 1)
+			usr << "<span class='notice'>You are not adding enough telecrystals to fuel \the [src].</span>"
+			return
+		uses += T.amount/2 //Gives 5 uses per 10 TC
+		uses = ceil(uses) //Ensures no decimal uses nonsense, rounds up to be nice
 		usr << "<span class='notice'>You add \the [O] to \the [src]. Increasing the uses of \the [src] to [uses].</span>"
 		qdel(O)
 

@@ -2,7 +2,7 @@
 * Ammunition *
 *************/
 /datum/uplink_item/item/ammo
-	item_cost = 2
+	item_cost = 20
 	category = /datum/uplink_category/ammunition
 
 /datum/uplink_item/item/ammo/a357
@@ -63,7 +63,7 @@
 /datum/uplink_item/item/ammo/s762
 	name = "10rnd Rifle Magazine (7.62mm)"
 	path = /obj/item/ammo_magazine/s762
-	item_cost = 1 // Half the capacity.
+	item_cost = 10 // Half the capacity.
 
 /datum/uplink_item/item/ammo/s762/ap
 	name = "10rnd Rifle Magazine (7.62mm AP)"
@@ -88,7 +88,7 @@
 /datum/uplink_item/item/ammo/g12/beanbag
 	name = "12g Auto-Shotgun Magazine (Beanbag)"
 	path = /obj/item/ammo_magazine/g12/beanbag
-	item_cost = 1 // Discount due to it being LTL.
+	item_cost = 10 // Discount due to it being LTL.
 
 /datum/uplink_item/item/ammo/g12/pellet
 	name = "12g Auto-Shotgun Magazine (Pellet)"
