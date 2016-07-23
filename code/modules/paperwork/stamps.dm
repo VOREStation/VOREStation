@@ -24,6 +24,10 @@
 	name = "head of security's rubber stamp"
 	icon_state = "stamp-hos"
 
+/obj/item/weapon/stamp/ward
+	name = "warden's rubber stamp"
+	icon_state = "stamp-ward"
+
 /obj/item/weapon/stamp/ce
 	name = "chief engineer's rubber stamp"
 	icon_state = "stamp-ce"
@@ -53,12 +57,17 @@
 	icon_state = "stamp-cent"
 
 /obj/item/weapon/stamp/qm
-	name = "quartermaster's stamp"
+	name = "quartermaster's rubber stamp"
 	icon_state = "stamp-qm"
+
+/obj/item/weapon/stamp/cargo
+	name = "cargo rubber stamp"
+	icon_state = "stamp-cargo"
 
 /obj/item/weapon/stamp/solgov
 	name = "solgov stamp"
 	icon_state = "stamp-sg"
+
 
 // Syndicate stamp to forge documents.
 /obj/item/weapon/stamp/chameleon/attack_self(mob/user as mob)
