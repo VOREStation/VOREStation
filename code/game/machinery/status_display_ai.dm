@@ -23,6 +23,12 @@ var/list/ai_status_emotions = list(
 	"Dorfy" 					= new /datum/ai_emotion("ai_urist"),
 	"Facepalm" 					= new /datum/ai_emotion("ai_facepalm"),
 	"Friend Computer" 			= new /datum/ai_emotion("ai_friend"),
+	"Your Best Friend" 			= new /datum/ai_emotion("ai_flowey"),
+	"Your Best Nightmare" 		= new /datum/ai_emotion("ai_floweymalf"),
+	"Soviet Union" 				= new /datum/ai_emotion("ai_soviet"),
+	"Holly" 					= new /datum/ai_emotion("ai_holly"),
+	"Hilly" 					= new /datum/ai_emotion("ai_hilly"),
+	"Fish" 						= new /datum/ai_emotion("ai_fishtank"),
 	"Tribunal" 					= new /datum/ai_emotion("ai_tribunal", "serithi"),
 	"Tribunal Malfunctioning"	= new /datum/ai_emotion("ai_tribunal_malf", "serithi")
 	)
