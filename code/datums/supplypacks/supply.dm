@@ -50,12 +50,19 @@
 	containertype = /obj/structure/closet/crate
 	containername = "Janitorial supplies"
 
-/datum/supply_packs/supply/boxes
-	name = "Empty boxes"
-	contains = list(/obj/item/weapon/storage/box = 10)
+/datum/supply_packs/supply/shipping
+	name = "Shipping supplies"
+	contains = list(
+				/obj/item/stack/material/cardboard/fifty,
+				/obj/item/weapon/packageWrap = 4,
+				/obj/item/weapon/wrapping_paper = 2,
+				/obj/item/device/destTagger,
+				/obj/item/weapon/hand_labeler,
+				/obj/item/weapon/wirecutters,
+				/obj/item/weapon/tape_roll = 2)
 	cost = 10
 	containertype = "/obj/structure/closet/crate"
-	containername = "Empty box crate"
+	containername = "Shipping supplies crate"
 
 /datum/supply_packs/supply/bureaucracy
 	contains = list(

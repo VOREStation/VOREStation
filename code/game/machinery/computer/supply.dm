@@ -8,7 +8,6 @@
 	circuit = /obj/item/weapon/circuitboard/supplycomp
 	var/temp = null
 	var/reqtime = 0 //Cooldown for requisitions - Quarxink
-	var/hacked = 0
 	var/can_order_contraband = 0
 	var/last_viewed_group = "categories"
 
@@ -209,9 +208,8 @@
 	return
 
 /obj/machinery/computer/supplycomp/emag_act(var/remaining_charges, var/mob/user)
-	if(!hacked)
+	if(!can_order_contraband)
 		user << "<span class='notice'>Special supplies unlocked.</span>"
-		hacked = 1
 		can_order_contraband = 1
 		req_access = list()
 		return 1
@@ -267,17 +265,8 @@
 			temp += "<b>Request from: [last_viewed_group]</b><BR><BR>"
 			for(var/supply_name in supply_controller.supply_packs )
 				var/datum/supply_packs/N = supply_controller.supply_packs[supply_name]
-				if((N.hidden && !hacked) || (N.contraband && !can_order_contraband) || N.group != last_viewed_group) continue								//Have to send the type instead of a reference to
+				if((N.contraband && !can_order_contraband) || N.group != last_viewed_group) continue								//Have to send the type instead of a reference to
 				temp += "<A href='?src=\ref[src];doorder=[supply_name]'>[supply_name]</A> Cost: [N.cost]<BR>"		//the obj because it would get caught by the garbage
-
-		/*temp = "Supply points: [supply_controller.points]<BR><HR><BR>Request what?<BR><BR>"
-
-		for(var/supply_name in supply_controller.supply_packs )
-			var/datum/supply_packs/N = supply_controller.supply_packs[supply_name]
-			if(N.hidden && !hacked) continue
-			if(N.contraband && !can_order_contraband) continue
-			temp += "<A href='?src=\ref[src];doorder=[supply_name]'>[supply_name]</A> Cost: [N.cost]<BR>"    //the obj because it would get caught by the garbage
-		temp += "<BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"*/
 
 	else if (href_list["doorder"])
 		if(world.time < reqtime)
