@@ -92,7 +92,7 @@
 
 /datum/uplink_item/item/visible_weapons/lasercarbine
 	name = "Laser Carbine"
-	item_cost = 65
+	item_cost = 75
 	path = /obj/item/weapon/gun/energy/laser
 
 /datum/uplink_item/item/visible_weapons/ionrifle
@@ -102,5 +102,5 @@
 
 /datum/uplink_item/item/visible_weapons/xray
 	name = "Xray Gun"
-	item_cost = 80
+	item_cost = 85
 	path = /obj/item/weapon/gun/energy/xray
