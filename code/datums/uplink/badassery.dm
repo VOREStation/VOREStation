@@ -60,12 +60,12 @@
 /datum/uplink_item/item/badassery/surplus/merc2
 	name = "Surplus Crate - 240 TC"
 	item_cost = DEFAULT_TELECRYSTAL_AMOUNT * 2
-	item_worth = 480
+	item_worth = 360
 
 /datum/uplink_item/item/badassery/surplus/merc4
 	name = "Surplus Crate - 480 TC"
 	item_cost = DEFAULT_TELECRYSTAL_AMOUNT * 4
-	item_worth = 960
+	item_worth = 720
 
 /datum/uplink_item/item/badassery/surplus/merc6
 	name = "Surplus Crate - 720 TC"
