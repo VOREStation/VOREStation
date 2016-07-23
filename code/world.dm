@@ -106,6 +106,9 @@ var/global/datum/global_init/init = new ()
 	// Create autolathe recipes, as above.
 	populate_lathe_recipes()
 
+	// Create frame types, as above.
+	populate_frame_types()
+
 	// Create robolimbs for chargen.
 	populate_robolimb_list()
 

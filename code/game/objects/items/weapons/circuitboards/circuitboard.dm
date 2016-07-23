@@ -19,7 +19,7 @@
 	throw_speed = 3
 	throw_range = 15
 	var/build_path = null
-	var/board_type = "computer"
+	var/board_type = new /datum/frame/frame_types/computer
 	var/list/req_components = null
 	var/contain_parts = 1
 

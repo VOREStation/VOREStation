@@ -171,4 +171,3 @@ obj/machinery/recharger/wallcharger
 	icon_state_idle = "wrecharger0"
 	portable = 0
 	circuit = /obj/item/weapon/circuitboard/recharger/wrecharger
-	frame_type = "wrecharger"

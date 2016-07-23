@@ -11,13 +11,6 @@
 	interact_offline = 1
 	circuit = /obj/item/weapon/circuitboard/sleeper_console
 
-//obj/machinery/sleep_console/New()
-	//..()
-	//spawn( 5 )
-		//src.connected = locate(/obj/machinery/sleeper, get_step(src, WEST)) //We assume dir = 8 so sleeper is WEST. Other sprites do exist.
-		//return
-	//return
-
 /obj/machinery/sleep_console/New()
 	..()
 	spawn(5)
@@ -37,32 +30,8 @@
 		connected.ui_interact(user)
 
 /obj/machinery/sleep_console/attackby(var/obj/item/I, var/mob/user)
-	if(istype(I, /obj/item/weapon/screwdriver) && circuit)
-		user << "<span class='notice'>You start disconnecting the monitor.</span>"
-		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-		if(do_after(user, 20))
-			var/obj/structure/frame/A = new /obj/structure/frame( src.loc )
-			var/obj/item/weapon/circuitboard/M = new circuit( A )
-			A.circuit = M
-			A.anchored = 1
-			A.density = 1
-			A.frame_type = M.board_type
-			for (var/obj/C in src)
-				C.forceMove(loc)
-			if (src.stat & BROKEN)
-				user << "<span class='notice'>The broken glass falls out.</span>"
-				new /obj/item/weapon/material/shard( src.loc )
-				A.state = 3
-				A.icon_state = "[A.frame_type]_3"
-			else
-				user << "<span class='notice'>You disconnect the monitor.</span>"
-				A.state = 4
-				A.icon_state = "[A.frame_type]_4"
-			A.pixel_x = pixel_x
-			A.pixel_y = pixel_y
-			A.dir = dir
-			M.deconstruct(src)
-			qdel(src)
+	if(computer_deconstruction_screwdriver(user, I))
+		return
 	else
 		src.attack_hand(user)
 	return

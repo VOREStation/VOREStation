@@ -113,7 +113,6 @@ Class Procs:
 	var/global/gl_uid = 1
 	var/interact_offline = 0 // Can the machine be interacted with while de-powered.
 	var/circuit = null
-	var/frame_type = "machine"
 
 /obj/machinery/New(l, d=0)
 	..(l)
@@ -318,11 +317,44 @@ Class Procs:
 /obj/machinery/proc/default_deconstruction_screwdriver(var/mob/user, var/obj/item/weapon/screwdriver/S)
 	if(!istype(S))
 		return 0
-	playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+	playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
 	panel_open = !panel_open
 	user << "<span class='notice'>You [panel_open ? "open" : "close"] the maintenance hatch of [src].</span>"
 	update_icon()
 	return 1
+
+/obj/machinery/proc/alarm_deconstruction_wirecutters(var/mob/user, var/obj/item/weapon/wirecutters/W, var/wiresexposed)
+	if(!istype(W))
+		return 0
+	if(!wiresexposed)
+		return 0
+	user.visible_message("<span class='warning'>[user] has cut the wires inside \the [src]!</span>", "You have cut the wires inside \the [src].")
+	playsound(loc, 'sound/items/Wirecutter.ogg', 50, 1)
+	new/obj/item/stack/cable_coil(get_turf(src), 5)
+	. = dismantle()
+
+/obj/machinery/proc/alarm_deconstruction_screwdriver(var/mob/user, var/obj/item/weapon/screwdriver/S, var/wiresexposed)
+	if(!istype(S))
+		return 0
+	wiresexposed = !wiresexposed
+	user << "The wires have been [wiresexposed ? "exposed" : "unexposed"]"
+	update_icon()
+	return 1
+
+/obj/machinery/proc/computer_deconstruction_screwdriver(var/mob/user, var/obj/item/weapon/screwdriver/S)
+	if(!istype(S))
+		return 0
+	if(!circuit)
+		return 0
+	user << "<span class='notice'>You start disconnecting the monitor.</span>"
+	playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
+	if(do_after(user, 20))
+		if(stat & BROKEN)
+			user << "<span class='notice'>The broken glass falls out.</span>"
+			new /obj/item/weapon/material/shard(loc)
+		else
+			user << "<span class='notice'>You disconnect the monitor.</span>"
+		. = dismantle()
 
 /obj/machinery/proc/dismantle()
 	playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
@@ -332,22 +364,38 @@ Class Procs:
 	A.anchored = 1
 	A.density = 1
 	A.frame_type = M.board_type
-	if(A.frame_type in A.no_circuit)
+	if(A.frame_type.circuit)
 		A.need_circuit = 0
+
 	for (var/obj/D in src.component_parts)
 		D.forceMove(loc)
+
 	if(A.components)
 		A.components.Cut()
 	else
 		A.components = list()
+
 	component_parts = list()
-	A.icon_state = "[A.frame_type]_3"
-	A.state = 3
-	A.dir = dir
+
+	for(var/obj/C in src)
+		C.forceMove(loc)
+
+	if(A.frame_type.frame_class == "alarm")
+		A.state = 2
+	else if(A.frame_type.frame_class == "computer" || A.frame_type.frame_class == "display")
+		if(stat & BROKEN)
+			A.state = 3
+		else
+			A.state = 4
+	else
+		A.state = 3
+
+	A.set_dir(dir)
 	A.pixel_x = pixel_x
 	A.pixel_y = pixel_y
 	A.check_components()
 	A.update_desc()
+	A.update_icon()
 	M.loc = null
 	M.deconstruct(src)
 	qdel(src)
