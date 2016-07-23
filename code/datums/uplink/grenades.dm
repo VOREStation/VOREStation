@@ -57,7 +57,7 @@
 /datum/uplink_item/item/grenades/frags_singular
 	name = "1x Frag Grenade"
 	item_cost = 15
-	/obj/item/weapon/grenade/explosive
+	path = /obj/item/weapon/grenade/explosive
 
 /datum/uplink_item/item/grenades/flashbangs
 	name = "7xFlashbangs"
