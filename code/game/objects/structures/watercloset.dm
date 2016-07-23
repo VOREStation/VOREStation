@@ -328,9 +328,6 @@
 	desc = "Rubber ducky you're so fine, you make bathtime lots of fuuun. Rubber ducky I'm awfully fooooond of yooooouuuu~"	//thanks doohl
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "rubberducky"
-	item_state = "rubberducky"
-
-
 
 /obj/structure/sink
 	name = "sink"
@@ -388,7 +385,6 @@
 	for(var/mob/V in viewers(src, null))
 		V.show_message("<span class='notice'>[user] washes their hands using \the [src].</span>")
 
-
 /obj/structure/sink/attackby(obj/item/O as obj, mob/user as mob)
 	if(busy)
 		user << "<span class='warning'>Someone's already washing here.</span>"
@@ -443,7 +439,6 @@
 	user.visible_message( \
 		"<span class='notice'>[user] washes \a [I] using \the [src].</span>", \
 		"<span class='notice'>You wash \a [I] using \the [src].</span>")
-
 
 /obj/structure/sink/kitchen
 	name = "kitchen sink"

@@ -2,7 +2,7 @@
 	name = "balaclava"
 	desc = "LOADSAMONEY"
 	icon_state = "balaclava"
-	item_state = "balaclava"
+	item_state = "bandblack"
 	flags_inv = HIDEFACE|BLOCKHAIR
 	body_parts_covered = FACE|HEAD
 	w_class = 2
@@ -15,7 +15,7 @@
 	name = "green balaclava"
 	desc = "Designed to both hide identities and keep your face comfy and warm."
 	icon_state = "swatclava"
-	item_state = "balaclava"
+	item_state = "bandgreen"
 	flags_inv = HIDEFACE|BLOCKHAIR
 	w_class = 2
 	sprite_sheets = list(
@@ -27,7 +27,6 @@
 	name = "Luchador Mask"
 	desc = "Worn by robust fighters, flying high to defeat their foes!"
 	icon_state = "luchag"
-	item_state = "luchag"
 	flags_inv = HIDEFACE|BLOCKHAIR
 	body_parts_covered = HEAD|FACE
 	w_class = 2
@@ -37,10 +36,8 @@
 	name = "Tecnicos Mask"
 	desc = "Worn by robust fighters who uphold justice and fight honorably."
 	icon_state = "luchador"
-	item_state = "luchador"
 
 /obj/item/clothing/mask/luchador/rudos
 	name = "Rudos Mask"
 	desc = "Worn by robust fighters who are willing to do anything to win."
 	icon_state = "luchar"
-	item_state = "luchar"

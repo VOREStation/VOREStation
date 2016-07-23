@@ -2,7 +2,7 @@
 	name = "labcoat"
 	desc = "A suit that protects against minor chemical spills."
 	icon_state = "labcoat_open"
-	item_state = "labcoat" //Is this even used for anything?
+	item_state = "labcoat"
 	icon_open = "labcoat_open"
 	icon_closed = "labcoat"
 	blood_overlay_type = "coat"
@@ -14,65 +14,65 @@
 	name = "red labcoat"
 	desc = "A suit that protects against minor chemical spills. This one is red."
 	icon_state = "red_labcoat_open"
-	item_state = "red_labcoat"
 	icon_open = "red_labcoat_open"
 	icon_closed = "red_labcoat"
+	item_state = "red_labcoat"
 
 /obj/item/clothing/suit/storage/toggle/labcoat/blue
 	name = "blue labcoat"
 	desc = "A suit that protects against minor chemical spills. This one is blue."
 	icon_state = "blue_labcoat_open"
-	item_state = "blue_labcoat"
 	icon_open = "blue_labcoat_open"
 	icon_closed = "blue_labcoat"
+	item_state = "blue_labcoat"
 
 /obj/item/clothing/suit/storage/toggle/labcoat/purple
 	name = "purple labcoat"
 	desc = "A suit that protects against minor chemical spills. This one is purple."
 	icon_state = "purple_labcoat_open"
-	item_state = "purple_labcoat"
 	icon_open = "purple_labcoat_open"
 	icon_closed = "purple_labcoat"
+	item_state = "purple_labcoat"
 
 /obj/item/clothing/suit/storage/toggle/labcoat/orange
 	name = "orange labcoat"
 	desc = "A suit that protects against minor chemical spills. This one is orange."
 	icon_state = "orange_labcoat_open"
-	item_state = "orange_labcoat"
 	icon_open = "orange_labcoat_open"
 	icon_closed = "orange_labcoat"
+	item_state = "orange_labcoat"
 
 /obj/item/clothing/suit/storage/toggle/labcoat/green
 	name = "green labcoat"
 	desc = "A suit that protects against minor chemical spills. This one is green."
 	icon_state = "green_labcoat_open"
-	item_state = "green_labcoat"
 	icon_open = "green_labcoat_open"
 	icon_closed = "green_labcoat"
+	item_state = "green_labcoat"
 
 /obj/item/clothing/suit/storage/toggle/labcoat/yellow
 	name = "yellow labcoat"
 	desc = "A suit that protects against minor chemical spills. This one is yellow."
 	icon_state = "yellow_labcoat_open"
-	item_state = "yellow_labcoat"
 	icon_open = "yellow_labcoat_open"
 	icon_closed = "yellow_labcoat"
+	item_state = "yellow_labcoat"
 
 /obj/item/clothing/suit/storage/toggle/labcoat/pink
 	name = "pink labcoat"
 	desc = "A suit that protects against minor chemical spills. This one is pink."
 	icon_state = "pink_labcoat_open"
-	item_state = "pink_labcoat"
 	icon_open = "pink_labcoat_open"
 	icon_closed = "pink_labcoat"
+	item_state = "pink_labcoat"
 
 /obj/item/clothing/suit/storage/toggle/labcoat/cmo
 	name = "chief medical officer's labcoat"
 	desc = "Bluer than the standard model."
 	icon_state = "labcoat_cmo_open"
-	item_state = "labcoat_cmo"
 	icon_open = "labcoat_cmo_open"
 	icon_closed = "labcoat_cmo"
+	item_state = "cmo_labcoat"
 
 /obj/item/clothing/suit/storage/toggle/labcoat/cmoalt
 	name = "chief medical officer labcoat"
@@ -80,14 +80,15 @@
 	icon_state = "labcoat_cmoalt_open"
 	icon_open = "labcoat_cmoalt_open"
 	icon_closed = "labcoat_cmoalt"
+	item_state = "cmo_labcoat"
 
 /obj/item/clothing/suit/storage/toggle/labcoat/mad
 	name = "The Mad's labcoat"
 	desc = "It makes you look capable of konking someone on the noggin and shooting them into space."
 	icon_state = "labgreen_open"
-	item_state = "labgreen"
 	icon_open = "labgreen_open"
 	icon_closed = "labgreen"
+	item_state = "green_labcoat"
 
 /obj/item/clothing/suit/storage/toggle/labcoat/genetics
 	name = "Geneticist labcoat"
@@ -95,6 +96,7 @@
 	icon_state = "labcoat_gen_open"
 	icon_open = "labcoat_gen_open"
 	icon_closed = "labcoat_gen"
+	item_state = "genetics_labcoat"
 
 /obj/item/clothing/suit/storage/toggle/labcoat/chemist
 	name = "Chemist labcoat"
@@ -102,6 +104,7 @@
 	icon_state = "labcoat_chem_open"
 	icon_open = "labcoat_chem_open"
 	icon_closed = "labcoat_chem"
+	item_state = "chemist_labcoat"
 
 /obj/item/clothing/suit/storage/toggle/labcoat/virologist
 	name = "Virologist labcoat"
@@ -109,6 +112,7 @@
 	icon_state = "labcoat_vir_open"
 	icon_open = "labcoat_vir_open"
 	icon_closed = "labcoat_vir"
+	item_state = "virologist_labcoat"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 60, rad = 0)
 
 /obj/item/clothing/suit/storage/toggle/labcoat/science
@@ -117,11 +121,12 @@
 	icon_state = "labcoat_tox_open"
 	icon_open = "labcoat_tox_open"
 	icon_closed = "labcoat_tox"
+	item_state = "science_labcoat"
 
 /obj/item/clothing/suit/storage/toggle/labcoat/emt
 	name = "EMT's labcoat"
 	desc = "A dark blue labcoat with reflective strips for emergency medical technicians."
 	icon_state = "labcoat_emt_open"
-	item_state = "labcoat_emt"
 	icon_open = "labcoat_emt_open"
 	icon_closed = "labcoat_emt"
+	item_state = "emt_labcoat"

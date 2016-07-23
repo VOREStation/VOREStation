@@ -6,6 +6,10 @@
 	throw_speed = 3
 	throw_range = 3
 	max_amount = 50
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand_material.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand_material.dmi',
+		)
 
 	var/default_type = DEFAULT_WALL_MATERIAL
 	var/material/material
@@ -203,7 +207,6 @@
 /obj/item/stack/material/plasteel
 	name = "plasteel"
 	icon_state = "sheet-plasteel"
-	item_state = "sheet-metal"
 	default_type = "plasteel"
 
 /obj/item/stack/material/plasteel/fifty

@@ -12,7 +12,7 @@
 	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for more robust protection. It has the word \"Warden\" written on the shoulders."
 	name = "warden's jumpsuit"
 	icon_state = "warden"
-	item_state = "r_suit"
+	item_state = "red" //Red should be just fine -S2-
 	worn_state = "warden"
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
@@ -28,7 +28,7 @@
 	name = "security officer's jumpsuit"
 	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for robust protection."
 	icon_state = "security"
-	item_state = "r_suit"
+	item_state = "red"
 	worn_state = "secred"
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
@@ -38,7 +38,7 @@
 	name = "dispatcher's uniform"
 	desc = "A dress shirt and khakis with a security patch sewn on."
 	icon_state = "dispatch"
-	//item_state = "dispatch"
+	item_state = "detective"
 	worn_state = "dispatch"
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
@@ -48,7 +48,7 @@
 	name = "security officer's uniform"
 	desc = "It's made of a slightly sturdier material, to allow for robust protection."
 	icon_state = "redshirt2"
-	item_state = "r_suit"
+	item_state = "red"
 	worn_state = "redshirt2"
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
@@ -56,13 +56,13 @@
 
 /obj/item/clothing/under/rank/security/corp
 	icon_state = "sec_corporate"
-	//item_state = "sec_corporate"
+	item_state = "black"
 	worn_state = "sec_corporate"
 	rolled_sleeves = 0
 
 /obj/item/clothing/under/rank/warden/corp
 	icon_state = "warden_corporate"
-	//item_state = "warden_corporate"
+	item_state = "black"
 	worn_state = "warden_corporate"
 	rolled_sleeves = 0
 
@@ -70,7 +70,7 @@
 	name = "tactical jumpsuit"
 	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for robust protection."
 	icon_state = "swatunder"
-	//item_state = "swatunder"
+	item_state = "green"
 	worn_state = "swatunder"
 	armor = list(melee = 10, bullet = 5, laser = 5,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
@@ -83,7 +83,6 @@
 	name = "detective's suit"
 	desc = "A rumpled white dress shirt paired with well-worn grey slacks."
 	icon_state = "detective"
-	item_state = "det"
 	worn_state = "detective"
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
@@ -117,7 +116,7 @@
 /obj/item/clothing/under/det/corporate
 	name = "detective's jumpsuit"
 	icon_state = "det_corporate"
-	item_state = "bl_suit"
+	item_state = "black"
 	worn_state = "det_corporate"
 	desc = "A more modern uniform for corporate investigators."
 
@@ -131,15 +130,10 @@
 	worn_state = "detective2_waistcoat"
 	desc = "A serious-looking tan dress shirt paired with freshly-pressed black slacks, complete with a red striped tie and waistcoat."
 
-
 /obj/item/clothing/head/det
 	name = "fedora"
 	desc = "A brown fedora - either the cornerstone of a detective's style or a poor attempt at looking cool, depending on the person wearing it."
 	icon_state = "detective"
-	item_state_slots = list(
-		slot_l_hand_str = "det_hat",
-		slot_r_hand_str = "det_hat",
-		)
 	allowed = list(/obj/item/weapon/reagent_containers/food/snacks/candy_corn, /obj/item/weapon/pen)
 	armor = list(melee = 50, bullet = 5, laser = 25,energy = 10, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
@@ -147,8 +141,8 @@
 
 /obj/item/clothing/head/det/grey
 	icon_state = "detective2"
+	item_state = "detective"
 	desc = "A grey fedora - either the cornerstone of a detective's style or a poor attempt at looking cool, depending on the person wearing it."
-
 
 /*
  * Head of Security
@@ -157,7 +151,7 @@
 	desc = "It's a jumpsuit worn by those few with the dedication to achieve the position of \"Head of Security\". It has additional armor to protect the wearer."
 	name = "head of security's jumpsuit"
 	icon_state = "hos"
-	item_state = "r_suit"
+	item_state = "red"
 	worn_state = "hosred"
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.8
@@ -165,7 +159,7 @@
 
 /obj/item/clothing/under/rank/head_of_security/corp
 	icon_state = "hos_corporate"
-	//item_state = "hos_corporate"
+	item_state = "black"
 	worn_state = "hos_corporate"
 	rolled_sleeves = 0
 
@@ -180,13 +174,13 @@
 	name = "Dermal Armour Patch"
 	desc = "You're not quite sure how you manage to take it on and off, but it implants nicely in your head."
 	icon_state = "dermal"
+	item_state = ""
 	siemens_coefficient = 0.6
 
 /obj/item/clothing/suit/armor/hos
 	name = "armored coat"
 	desc = "A greatcoat enhanced with a special alloy for some protection and style."
 	icon_state = "hos"
-	item_state = "hos"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	armor = list(melee = 65, bullet = 30, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
 	flags_inv = HIDEJUMPSUIT
@@ -197,7 +191,6 @@
 	desc = "You never asked for anything that stylish."
 	name = "head of security's jumpsuit"
 	icon_state = "jensen"
-	item_state = "jensen"
 	worn_state = "jensen"
 	siemens_coefficient = 0.6
 	rolled_sleeves = -1
@@ -206,14 +199,12 @@
 	name = "armored trenchcoat"
 	desc = "A trenchcoat augmented with a special alloy for some protection and style."
 	icon_state = "hostrench"
-	item_state = "hostrench"
 	flags_inv = 0
 	siemens_coefficient = 0.6
 
 /*
  * Navy uniforms
  */
-
 /obj/item/clothing/under/rank/security/navyblue
 	name = "security officer's uniform"
 	desc = "The latest in fashionable security outfits."

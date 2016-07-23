@@ -169,45 +169,13 @@
 		icon_state = O.icon_state
 		set_dir(O.dir)
 
-/obj/item/clothing/ears/earmuffs
-	name = "earmuffs"
-	desc = "Protects your hearing from loud noises, and quiet ones as well."
-	icon_state = "earmuffs"
-	item_state = "earmuffs"
-	slot_flags = SLOT_EARS | SLOT_TWOEARS
-	ear_protection = 2
-
-/obj/item/clothing/ears/earmuffs/headphones
-	name = "headphones"
-	desc = "Unce unce unce unce."
-	var/headphones_on = 0
-	icon_state = "headphones_off"
-	item_state = "headphones"
-	slot_flags = SLOT_EARS | SLOT_TWOEARS
-
-/obj/item/clothing/ears/earmuffs/headphones/verb/togglemusic()
-	set name = "Toggle Headphone Music"
-	set category = "Object"
-	set src in usr
-	if(!istype(usr, /mob/living)) return
-	if(usr.stat) return
-	
-	var/base_icon = copytext(icon_state,1,(length(icon_state) - 3 + headphones_on))
-
-	if(headphones_on)
-		icon_state = "[base_icon]_off"
-		headphones_on = 0
-		usr << "<span class='notice'>You turn the music off.</span>"
-	else
-		icon_state = "[base_icon]_on"
-		headphones_on = 1
-		usr << "<span class='notice'>You turn the music on.</span>"
-
-	update_clothing_icon()
-
 //Gloves
 /obj/item/clothing/gloves
 	name = "gloves"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand_gloves.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand_gloves.dmi',
+		)
 	gender = PLURAL //Carn: for grammarically correct text-parsing
 	w_class = 2.0
 	icon = 'icons/obj/clothing/gloves.dmi'
@@ -371,6 +339,10 @@
 /obj/item/clothing/mask
 	name = "mask"
 	icon = 'icons/obj/clothing/masks.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand_masks.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand_masks.dmi',
+		)
 	body_parts_covered = HEAD
 	slot_flags = SLOT_MASK
 	body_parts_covered = FACE|EYES
@@ -395,6 +367,10 @@
 /obj/item/clothing/shoes
 	name = "shoes"
 	icon = 'icons/obj/clothing/shoes.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand_shoes.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand_shoes.dmi',
+		)
 	desc = "Comfortable-looking shoes."
 	gender = PLURAL //Carn: for grammarically correct text-parsing
 	siemens_coefficient = 0.9
@@ -473,6 +449,10 @@
 //Suit
 /obj/item/clothing/suit
 	icon = 'icons/obj/clothing/suits.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand_suits.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand_suits.dmi',
+		)
 	name = "suit"
 	var/fire_resist = T0C+100
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS

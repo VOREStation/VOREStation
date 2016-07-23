@@ -4,7 +4,6 @@
 	//icon = 'icons/obj/grenade.dmi'
 	//det_time = 50
 	//icon_state = "frggrenade"
-	//item_state = "frggrenade"
 	//origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 3)
 
 //obj/item/weapon/grenade/explosive/prime()
@@ -31,7 +30,7 @@
 	name = "fragmentation grenade"
 	desc = "A fragmentation grenade, optimized for harming personnel without causing massive structural damage."
 	icon_state = "frggrenade"
-	item_state = "frggrenade"
+	item_state = "grenade"
 
 	var/num_fragments = 50  //total number of fragments produced by the grenade
 	var/fragment_damage = 10

@@ -2,7 +2,6 @@
 	name = "floor painter"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "labeler1"
-	item_state = "flight"
 
 	var/decal =        "remove all decals"
 	var/paint_dir =    "precise"

@@ -79,7 +79,10 @@
 	desc = "A cane used by a true gentlemen. Or a clown."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "cane"
-	item_state = "stick"
+	item_icons = list(
+			slot_l_hand_str = 'icons/mob/items/lefthand_melee.dmi',
+			slot_r_hand_str = 'icons/mob/items/righthand_melee.dmi',
+			)
 	flags = CONDUCT
 	force = 5.0
 	throwforce = 7.0
@@ -135,7 +138,6 @@
 	desc = "A cane used by the blind."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "whitecane"
-	item_state = "whitecane"
 
 /obj/item/weapon/disk
 	name = "disk"
@@ -245,6 +247,10 @@
 	desc = "Apparently a staff used by the wizard."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "staff"
+	item_icons = list(
+			slot_l_hand_str = 'icons/mob/items/lefthand_melee.dmi',
+			slot_r_hand_str = 'icons/mob/items/righthand_melee.dmi',
+			)
 	force = 3.0
 	throwforce = 5.0
 	throw_speed = 1
@@ -263,14 +269,13 @@
 	desc = "An ebony can with an ivory tip."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "cane"
-	item_state = "stick"
 
 /obj/item/weapon/staff/stick
 	name = "stick"
 	desc = "A great tool to drag someone else's drinks across the bar."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "stick"
-	item_state = "stick"
+	item_state = "cane"
 	force = 3.0
 	throwforce = 5.0
 	throw_speed = 1
@@ -380,7 +385,6 @@
 	name = "rapid part exchange device"
 	desc = "Special mechanical module made to store, sort, and apply standard machine parts."
 	icon_state = "RPED"
-	item_state = "RPED"
 	w_class = 5
 	can_hold = list(/obj/item/weapon/stock_parts)
 	storage_slots = 50

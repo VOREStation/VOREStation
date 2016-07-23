@@ -13,7 +13,6 @@
 	name = "firesuit"
 	desc = "A suit that protects against fire and heat."
 	icon_state = "fire"
-	item_state = "fire_suit"
 	w_class = 4//bulky item
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.50
@@ -26,17 +25,14 @@
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 
-
 /obj/item/clothing/suit/fire/firefighter
 	icon_state = "firesuit"
-	item_state = "firefighter"
 
-
-/obj/item/clothing/suit/fire/heavy
+/obj/item/clothing/suit/fire/heavy //Is this even used?? -S2-
 	name = "firesuit"
 	desc = "A suit that protects against extreme fire and heat."
 	//icon_state = "thermal"
-	item_state = "ro_suit"
+	item_state = "black_suit"
 	w_class = 4//bulky item
 	slowdown = 1.5
 
@@ -52,12 +48,10 @@
 	body_parts_covered = HEAD|FACE|EYES
 	siemens_coefficient = 0
 
-
 /obj/item/clothing/suit/bomb_suit
 	name = "bomb suit"
 	desc = "A suit designed for safety when handling explosives."
 	icon_state = "bombsuit"
-	item_state = "bombsuit"
 	w_class = 4//bulky item
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
@@ -67,7 +61,6 @@
 	heat_protection = UPPER_TORSO|LOWER_TORSO
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0
-
 
 /obj/item/clothing/head/bomb_hood/security
 	icon_state = "bombsuitsec"
@@ -89,12 +82,10 @@
 	body_parts_covered = HEAD|FACE|EYES
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 60, rad = 100)
 
-
 /obj/item/clothing/suit/radiation
 	name = "Radiation suit"
 	desc = "A suit that protects against radiation. Label: Made with lead, do not eat insulation."
 	icon_state = "rad"
-	item_state = "rad_suit"
 	w_class = 4//bulky item
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.50

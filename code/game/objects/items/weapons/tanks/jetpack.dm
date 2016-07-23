@@ -6,6 +6,10 @@
 	icon_state = "jetpack"
 	gauge_icon = null
 	w_class = 4.0
+	item_icons = list(
+			slot_l_hand_str = 'icons/mob/items/lefthand_storage.dmi',
+			slot_r_hand_str = 'icons/mob/items/righthand_storage.dmi',
+			)
 	item_state = "jetpack"
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 	var/datum/effect/effect/system/ion_trail_follow/ion_trail
