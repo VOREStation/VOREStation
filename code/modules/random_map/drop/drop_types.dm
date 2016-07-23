@@ -175,7 +175,7 @@ datum/supply_drop_loot/riot
 		/obj/item/weapon/reagent_containers/glass/bucket)
 
 /datum/supply_drop_loot/food
-	name = "Emergeny Provisions For Two"
+	name = "Emergency Provisions For Two"
 	container = /obj/structure/largecrate
 /datum/supply_drop_loot/food/New()
 	..()
@@ -238,14 +238,14 @@ datum/supply_drop_loot/riot
 /datum/supply_drop_loot/christmas/New()
 	..()
 	contents = list(
-		/obj/item/toy/xmastree,
-		/obj/item/toy/xmastree,
-		/obj/item/toy/xmastree,
-		/obj/item/toy/xmastree,
-		/obj/item/toy/xmastree,
-		/obj/item/toy/xmastree,
-		/obj/item/toy/xmastree,
-		/obj/item/toy/xmastree,
+		/obj/structure/flora/pottedplant/xmas,
+		/obj/structure/flora/pottedplant/xmas,
+		/obj/structure/flora/pottedplant/xmas,
+		/obj/structure/flora/pottedplant/xmas,
+		/obj/structure/flora/pottedplant/xmas,
+		/obj/structure/flora/pottedplant/xmas,
+		/obj/structure/flora/pottedplant/xmas,
+		/obj/structure/flora/pottedplant/xmas,
 		/obj/item/clothing/head/santa,
 		/obj/item/clothing/head/santa,
 		/obj/item/clothing/head/santa,

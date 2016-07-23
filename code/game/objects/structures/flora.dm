@@ -78,6 +78,11 @@
 	icon = 'icons/obj/plants.dmi'
 	icon_state = "plant-26"
 
+/obj/structure/flora/pottedplant/xmas/New()
+	..()
+	icon_state = "plant-xmas"
+
+
 //newbushes
 
 /obj/structure/flora/ausbushes
