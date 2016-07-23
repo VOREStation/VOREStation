@@ -31,7 +31,7 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate
 	containername = "Special Ops crate"
-	hidden = 1
+	contraband = 1
 
 /datum/supply_packs/security/bolt_rifles_mosin
  	name = "Surplus militia rifles"
@@ -40,6 +40,6 @@
  			/obj/item/ammo_magazine/clip/a762 = 6
  			)
  	cost = 50
- 	hidden = 1
+ 	contraband = 1
  	containertype = /obj/structure/closet/crate/secure/weapon
  	containername = "Weapons crate"
