@@ -11,7 +11,7 @@
 
 /datum/uplink_item/item/implants/imp_compress
 	name = "Compressed Matter Implant"
-	item_cost = 40
+	item_cost = 30
 	path = /obj/item/weapon/storage/box/syndie_kit/imp_compress
 
 /datum/uplink_item/item/implants/imp_explosive
