@@ -1259,7 +1259,7 @@
 "ayk" = (/obj/structure/closet/secure_closet/medical3,/obj/structure/extinguisher_cabinet{pixel_x = -5; pixel_y = 30},/obj/effect/floor_decal/corner/paleblue/full{dir = 1},/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/obj/item/weapon/soap/nanotrasen,/turf/simulated/floor/tiled/white,/area/medical/medbay_primary_storage)
 "ayl" = (/obj/structure/table/marble,/obj/effect/floor_decal/corner/grey/diagonal{dir = 4},/obj/machinery/reagentgrinder,/turf/simulated/floor/tiled/white,/area/crew_quarters/kitchen)
 "aym" = (/turf/simulated/floor/tiled,/area/hallway/secondary/chapel_hallway)
-"ayn" = (/obj/structure/closet/chefcloset,/obj/item/glass_jar,/obj/effect/floor_decal/corner/grey/diagonal{dir = 4},/obj/item/device/retail_scanner/civilian,/obj/item/weapon/soap/nanotrasen,/turf/simulated/floor/tiled/white,/area/crew_quarters/kitchen)
+"ayn" = (/obj/structure/closet/chefcloset,/obj/item/glass_jar,/obj/effect/floor_decal/corner/grey/diagonal{dir = 4},/obj/item/device/retail_scanner/civilian,/obj/item/weapon/soap/nanotrasen,/obj/item/device/destTagger{pixel_x = 4; pixel_y = 3},/obj/item/weapon/packageWrap,/obj/item/weapon/packageWrap,/obj/item/weapon/packageWrap,/turf/simulated/floor/tiled/white,/area/crew_quarters/kitchen)
 "ayo" = (/obj/structure/table/standard,/obj/item/weapon/soap/nanotrasen,/turf/simulated/floor/tiled/white,/area/crew_quarters/sleep/vistor_room_5)
 "ayp" = (/obj/structure/closet/emcloset,/turf/simulated/floor/tiled/dark,/area/hallway/secondary/chapel_hallway)
 "ayq" = (/obj/structure/table/standard,/obj/item/weapon/soap/nanotrasen,/turf/simulated/floor/tiled/white,/area/crew_quarters/sleep/vistor_room_6)
