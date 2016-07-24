@@ -39,18 +39,6 @@
 	icon_state = "armorsec"
 	item_state_slots = list(slot_r_hand_str = "armor", slot_l_hand_str = "armor")
 
-/obj/item/clothing/suit/armor/vest/warden
-	name = "Warden's jacket"
-	desc = "An armoured jacket with silver rank pips and livery."
-	icon_state = "warden_jacket"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-
-/obj/item/clothing/suit/armor/vest/warden/alt
-	name = "Warden's jacket"
-	desc = "An armoured jacket with silver rank pips and livery."
-	icon_state = "warden_alt"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-
 /obj/item/clothing/suit/armor/riot
 	name = "riot vest"
 	desc = "A vest with heavy padding to protect against melee attacks."
@@ -282,6 +270,18 @@
 	icon_badge = "wardenvest_badge"
 	icon_nobadge = "wardenvest_nobadge"
 
+/obj/item/clothing/suit/storage/vest/wardencoat
+	name = "Warden's jacket"
+	desc = "An armoured jacket with silver rank pips and livery."
+	icon_state = "warden_jacket"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+
+/obj/item/clothing/suit/storage/vest/wardencoat/alt
+	name = "Warden's jacket"
+	desc = "An armoured jacket with silver rank pips and livery."
+	icon_state = "warden_alt"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+
 /obj/item/clothing/suit/storage/vest/hos
 	name = "head of security armor vest"
 	desc = "A simple kevlar plate carrier. This one has a gold badge clipped to the chest."
@@ -289,6 +289,23 @@
 	item_state_slots = list(slot_r_hand_str = "armor", slot_l_hand_str = "armor")
 	icon_badge = "hosvest_badge"
 	icon_nobadge = "hosvest_nobadge"
+
+/obj/item/clothing/suit/storage/vest/hoscoat
+	name = "armored coat"
+	desc = "A greatcoat enhanced with a special alloy for some protection and style."
+	icon_state = "hos"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	armor = list(melee = 65, bullet = 30, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
+	flags_inv = HIDEJUMPSUIT
+	siemens_coefficient = 0.6
+
+//Jensen cosplay gear
+/obj/item/clothing/suit/storage/vest/hoscoat/jensen
+	name = "armored trenchcoat"
+	desc = "A trenchcoat augmented with a special alloy for some protection and style."
+	icon_state = "hostrench"
+	flags_inv = 0
+	siemens_coefficient = 0.6
 
 /obj/item/clothing/suit/storage/vest/pcrc
 	name = "PCRC armor vest"
