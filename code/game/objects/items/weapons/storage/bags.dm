@@ -30,7 +30,7 @@
 	desc = "It's the heavy-duty black polymer kind. Time to take out the trash!"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "trashbag0"
-	item_state = "trashbag"
+	item_state_slots = list(slot_r_hand_str = "trashbag", slot_l_hand_str = "trashbag")
 
 	w_class = 4
 	max_w_class = 2
@@ -167,7 +167,6 @@
 			usr.s_active.show_to(usr)
 		update_icon()
 		return 1
-
 
 // Sets up numbered display to show the stack size of each stored mineral
 // NOTE: numbered display is turned off currently because it's broken

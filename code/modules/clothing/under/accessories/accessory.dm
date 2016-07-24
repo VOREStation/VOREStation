@@ -3,7 +3,7 @@
 	desc = "A neosilk clip-on tie."
 	icon = 'icons/obj/clothing/ties.dmi'
 	icon_state = "bluetie"
-	item_state = ""	//no inhands
+	item_state_slots = list(slot_r_hand_str = "", slot_l_hand_str = "")
 	slot_flags = SLOT_TIE
 	w_class = 2.0
 	var/slot = "decor"
@@ -172,7 +172,6 @@
 				user.visible_message("[user] places [src] against [M]'s [body_part] and listens attentively.", "You place [src] against [their] [body_part]. You [sound_strength] [sound].")
 				return
 	return ..(M,user)
-
 
 //Medals
 /obj/item/clothing/accessory/medal

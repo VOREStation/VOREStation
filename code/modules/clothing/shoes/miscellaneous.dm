@@ -17,7 +17,7 @@
 	name = "\improper SWAT shoes"
 	desc = "When you want to turn up the heat."
 	icon_state = "swat"
-	item_state = "swat"
+	item_state_slots = list(slot_r_hand_str = "swat", slot_l_hand_str = "swat")
 	force = 3
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = 0)
 	item_flags = NOSLIP
@@ -58,7 +58,7 @@
 	name = "combat boots"
 	desc = "Standard issue combat boots for combat scenarios or combat situations. All combat, all the time.  It can hold a Strategical knife."
 	icon_state = "jackboots"
-	item_state = "jackboots"
+	item_state_slots = list(slot_r_hand_str = "jackboots", slot_l_hand_str = "jackboots")
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = 0)
 	siemens_coefficient = 0.6
 	var/obj/item/weapon/material/hatchet/tacknife
@@ -144,7 +144,7 @@
 	name = "boots"
 	desc = "A pair of boots worn by the followers of Nar-Sie."
 	icon_state = "cult"
-	item_state = "cult"
+	item_state_slots = list(slot_r_hand_str = "cult", slot_l_hand_str = "cult")
 	force = 2
 	siemens_coefficient = 0.7
 
@@ -174,7 +174,7 @@
 	name = "worn bunny slippers"
 	desc = "Fluffy..."
 	icon_state = "slippers_worn"
-	item_state = "slippers"
+	item_state_slots = list(slot_r_hand_str = "slippers", slot_l_hand_str = "slippers")
 	force = 0
 	w_class = 2
 
@@ -187,7 +187,7 @@
 	desc = "Help you swim good."
 	name = "swimming fins"
 	icon_state = "flippers"
-	item_state = "galoshes"
+	item_state_slots = list(slot_r_hand_str = "galoshes", slot_l_hand_str = "galoshes")
 	item_flags = NOSLIP
 	slowdown = SHOES_SLOWDOWN+1
 	species_restricted = null

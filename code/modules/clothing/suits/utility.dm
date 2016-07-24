@@ -32,7 +32,7 @@
 	name = "firesuit"
 	desc = "A suit that protects against extreme fire and heat."
 	//icon_state = "thermal"
-	item_state = "black_suit"
+	item_state_slots = list(slot_r_hand_str = "black_suit", slot_l_hand_str = "black_suit")
 	w_class = 4//bulky item
 	slowdown = 1.5
 

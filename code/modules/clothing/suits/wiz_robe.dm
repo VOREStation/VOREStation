@@ -42,7 +42,7 @@
 	name = "Gentlemans Cap"
 	desc = "A checkered gray flat cap woven together with the rarest of threads."
 	icon_state = "gentcap"
-	item_state = "detective"
+	item_state_slots = list(slot_r_hand_str = "detective", slot_l_hand_str = "detective")
 	siemens_coefficient = 0.8
 
 /obj/item/clothing/suit/wizrobe
@@ -88,14 +88,14 @@
 	name = "Gentlemans Coat"
 	desc = "A heavy threaded twead gray jacket. For a different sort of Gentleman."
 	icon_state = "gentlecoat"
-	item_state = "greatcoat"
+	item_state_slots = list(slot_r_hand_str = "greatcoat", slot_l_hand_str = "greatcoat")
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
 /obj/item/clothing/suit/wizrobe/fake
 	name = "wizard robe"
 	desc = "A rather dull, blue robe meant to mimick real wizard robes."
 	icon_state = "wizard-fake"
-	item_state = "wizard"
+	item_state_slots = list(slot_r_hand_str = "wizard", slot_l_hand_str = "wizard")
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 1.0
 

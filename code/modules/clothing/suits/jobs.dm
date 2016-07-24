@@ -7,7 +7,7 @@
 	name = "apron"
 	desc = "A basic blue apron."
 	icon_state = "apron"
-	item_state = "overalls"
+	item_state_slots = list(slot_r_hand_str = "overalls", slot_l_hand_str = "overalls")
 	blood_overlay_type = "armor"
 	body_parts_covered = 0
 	allowed = list (/obj/item/weapon/reagent_containers/spray/plantbgone,/obj/item/device/analyzer/plant_analyzer,/obj/item/seeds,/obj/item/weapon/reagent_containers/glass/bottle,/obj/item/weapon/material/minihoe)
@@ -32,7 +32,7 @@
 	name = "chaplain hoodie"
 	desc = "This suit says to you 'hush'!"
 	icon_state = "chaplain_hoodie"
-	item_state = "suit_black"
+	item_state_slots = list(slot_r_hand_str = "suit_black", slot_l_hand_str = "suit_black")
 	body_parts_covered = UPPER_TORSO|ARMS
 
 //Chaplain
@@ -66,21 +66,21 @@
 	name = "security officer's jacket"
 	desc = "This jacket is for those special occasions when a security officer actually feels safe."
 	icon_state = "officerbluejacket"
-	item_state = "suit_navy"
+	item_state_slots = list(slot_r_hand_str = "suit_navy", slot_l_hand_str = "suit_navy")
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
 /obj/item/clothing/suit/security/navywarden
 	name = "warden's jacket"
 	desc = "Perfectly suited for the warden that wants to leave an impression of style on those who visit the brig."
 	icon_state = "wardenbluejacket"
-	item_state = "suit_navy"
+	item_state_slots = list(slot_r_hand_str = "suit_navy", slot_l_hand_str = "suit_navy")
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
 /obj/item/clothing/suit/security/navyhos
 	name = "head of security's jacket"
 	desc = "This piece of clothing was specifically designed for asserting superior authority."
 	icon_state = "hosbluejacket"
-	item_state = "suit_navy"
+	item_state_slots = list(slot_r_hand_str = "suit_navy", slot_l_hand_str = "suit_navy")
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
 //Detective
@@ -96,7 +96,7 @@
 /obj/item/clothing/suit/storage/det_trench/grey
 	name = "grey trenchcoat"
 	icon_state = "detective2"
-	item_state = "leather_jacket"
+	item_state_slots = list(slot_r_hand_str = "leather_jacket", slot_l_hand_str = "leather_jacket")
 
 //Forensics
 /obj/item/clothing/suit/storage/forensics
@@ -110,7 +110,7 @@
 	name = "red jacket"
 	desc = "A red forensics technician jacket."
 	icon_state = "forensics_red"
-	item_state = "suit_red"
+	item_state_slots = list(slot_r_hand_str = "suit_red", slot_l_hand_str = "suit_red")
 
 /obj/item/clothing/suit/storage/forensics/red/long
 	name = "long red jacket"
@@ -121,7 +121,7 @@
 	name = "blue jacket"
 	desc = "A blue forensics technician jacket."
 	icon_state = "forensics_blue"
-	item_state = "suit_navy"
+	item_state_slots = list(slot_r_hand_str = "suit_navy", slot_l_hand_str = "suit_navy")
 
 /obj/item/clothing/suit/storage/forensics/blue/long
 	name = "long blue jacket"
@@ -144,7 +144,7 @@
 	name = "blue suit jacket"
 	desc = "A snappy dress jacket."
 	icon_state = "suitjacket_blue_open"
-	item_state = "suit_blue"
+	item_state_slots = list(slot_r_hand_str = "suit_blue", slot_l_hand_str = "suit_blue")
 	icon_open = "suitjacket_blue_open"
 	icon_closed = "suitjacket_blue"
 	blood_overlay_type = "coat"
@@ -154,7 +154,7 @@
 	name = "purple suit jacket"
 	desc = "A snappy dress jacket."
 	icon_state = "suitjacket_purp_open"
-	item_state = "suit_purple"
+	item_state_slots = list(slot_r_hand_str = "suit_purple", slot_l_hand_str = "suit_purple")
 	icon_open = "suitjacket_purp_open"
 	icon_closed = "suitjacket_purp"
 	blood_overlay_type = "coat"
@@ -165,7 +165,7 @@
 	name = "black suit jacket"
 	desc = "A smooth black jacket."
 	icon_state = "ia_jacket_open"
-	item_state = "suit_black"
+	item_state_slots = list(slot_r_hand_str = "suit_black", slot_l_hand_str = "suit_black")
 	icon_open = "ia_jacket_open"
 	icon_closed = "ia_jacket"
 	blood_overlay_type = "coat"
@@ -176,7 +176,7 @@
 	name = "first responder jacket"
 	desc = "A high-visibility jacket worn by medical first responders."
 	icon_state = "fr_jacket_open"
-	item_state = "fr_jacket"
+	item_state_slots = list(slot_r_hand_str = "fr_jacket", slot_l_hand_str = "fr_jacket")
 	icon_open = "fr_jacket_open"
 	icon_closed = "fr_jacket"
 	blood_overlay_type = "armor"
@@ -188,7 +188,7 @@
 	name = "\improper EMS jacket"
 	desc = "A dark blue, martian-pattern, EMS jacket. It sports high-visibility reflective stripes and a star of life on the back."
 	icon_state = "ems_jacket_closed"
-	item_state = "ems_jacket"
+	item_state_slots = list(slot_r_hand_str = "ems_jacket", slot_l_hand_str = "ems_jacket")
 	icon_open = "ems_jacket_open"
 	icon_closed = "ems_jacket_closed"
 

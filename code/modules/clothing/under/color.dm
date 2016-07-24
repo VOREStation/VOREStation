@@ -14,7 +14,7 @@
 	name = "black jumpskirt"
 	desc = "A slimming black jumpskirt."
 	icon_state = "blackjumpskirt"
-	item_state = "black"
+	item_state_slots = list(slot_r_hand_str = "black", slot_l_hand_str = "black")
 	worn_state = "blackjumpskirt"
 
 /obj/item/clothing/under/color/blue
@@ -78,7 +78,7 @@
 	name = "lightblue jumpsuit"
 	desc = "A light blue jumpsuit."
 	icon_state = "lightblue"
-	item_state = "blue"
+	item_state_slots = list(slot_r_hand_str = "blue", slot_l_hand_str = "blue")
 	worn_state = "lightblue"
 	rolled_sleeves = 0
 
@@ -86,7 +86,7 @@
 	name = "aqua jumpsuit"
 	desc = "An aqua jumpsuit."
 	icon_state = "aqua"
-	item_state = "blue"
+	item_state_slots = list(slot_r_hand_str = "blue", slot_l_hand_str = "blue")
 	worn_state = "aqua"
 	rolled_sleeves = 0
 
@@ -101,7 +101,7 @@
 	name = "lightpurple jumpsuit"
 	desc = "A light purple jumpsuit."
 	icon_state = "lightpurple"
-	item_state = "purple"
+	item_state_slots = list(slot_r_hand_str = "purple", slot_l_hand_str = "purple")
 	worn_state = "lightpurple"
 	rolled_sleeves = 0
 
@@ -109,7 +109,7 @@
 	name = "lightgreen jumpsuit"
 	desc = "A light green jumpsuit."
 	icon_state = "lightgreen"
-	item_state = "green"
+	item_state_slots = list(slot_r_hand_str = "green", slot_l_hand_str = "green")
 	worn_state = "lightgreen"
 	rolled_sleeves = 0
 
@@ -124,7 +124,7 @@
 	name = "brown jumpsuit"
 	desc = "A brown jumpsuit."
 	icon_state = "brown"
-	item_state = "lightbrown"
+	item_state_slots = list(slot_r_hand_str = "lightbrown", slot_l_hand_str = "lightbrown")
 	worn_state = "brown"
 	rolled_sleeves = 0
 
@@ -132,7 +132,7 @@
 	name = "yellowgreen jumpsuit"
 	desc = "A... yellow green jumpsuit?"
 	icon_state = "yellowgreen"
-	item_state = "yellow"
+	item_state_slots = list(slot_r_hand_str = "yellow", slot_l_hand_str = "yellow")
 	worn_state = "yellowgreen"
 	rolled_sleeves = 0
 
@@ -140,7 +140,7 @@
 	name = "darkblue jumpsuit"
 	desc = "A dark blue jumpsuit."
 	icon_state = "darkblue"
-	item_state = "blue"
+	item_state_slots = list(slot_r_hand_str = "blue", slot_l_hand_str = "blue")
 	worn_state = "darkblue"
 	rolled_sleeves = 0
 
@@ -148,7 +148,7 @@
 	name = "lightred jumpsuit"
 	desc = "A light red jumpsuit."
 	icon_state = "lightred"
-	item_state = "red"
+	item_state_slots = list(slot_r_hand_str = "red", slot_l_hand_str = "red")
 	worn_state = "lightred"
 	rolled_sleeves = 0
 
@@ -156,6 +156,6 @@
 	name = "darkred jumpsuit"
 	desc = "A dark red jumpsuit."
 	icon_state = "darkred"
-	item_state = "red"
+	item_state_slots = list(slot_r_hand_str = "red", slot_l_hand_str = "red")
 	worn_state = "darkred"
 	rolled_sleeves = 0

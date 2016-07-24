@@ -2,7 +2,7 @@
 	name = "balaclava"
 	desc = "LOADSAMONEY"
 	icon_state = "balaclava"
-	item_state = "bandblack"
+	item_state_slots = list(slot_r_hand_str = "bandblack", slot_l_hand_str = "bandblack")
 	flags_inv = HIDEFACE|BLOCKHAIR
 	body_parts_covered = FACE|HEAD
 	w_class = 2
@@ -15,7 +15,7 @@
 	name = "green balaclava"
 	desc = "Designed to both hide identities and keep your face comfy and warm."
 	icon_state = "swatclava"
-	item_state = "bandgreen"
+	item_state_slots = list(slot_r_hand_str = "bandgreen", slot_l_hand_str = "bandgreen")
 	flags_inv = HIDEFACE|BLOCKHAIR
 	w_class = 2
 	sprite_sheets = list(

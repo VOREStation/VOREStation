@@ -15,7 +15,7 @@
 	name = "welding helmet"
 	desc = "A head-mounted face cover designed to protect the wearer completely from space-arc eye."
 	icon_state = "welding"
-	item_state = "welding"
+	item_state_slots = list(slot_r_hand_str = "welding", slot_l_hand_str = "welding")
 	matter = list(DEFAULT_WALL_MATERIAL = 3000, "glass" = 1000)
 	var/up = 0
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
@@ -145,7 +145,7 @@
 	name = "chicken mask"
 	desc = "You can hear the distant sounds of rhythmic electronica."
 	icon_state = "richard"
-	item_state = "chickenhead"
+	item_state_slots = list(slot_r_hand_str = "chickenhead", slot_l_hand_str = "chickenhead")
 	body_parts_covered = HEAD|FACE
 	flags_inv = BLOCKHAIR
 
@@ -153,12 +153,12 @@
 	name = "santa hat"
 	desc = "It's a festive christmas hat, in red!"
 	icon_state = "santahatnorm"
-	item_state = "santahat"
+	item_state_slots = list(slot_r_hand_str = "santahat", slot_l_hand_str = "santahat")
 	body_parts_covered = 0
 
 /obj/item/clothing/head/santa/green
 	name = "green santa hat"
 	desc = "It's a festive christmas hat, in green!"
 	icon_state = "santahatgreen"
-	item_state = "santahatgreen"
+	item_state_slots = list(slot_r_hand_str = "santahatgreen", slot_l_hand_str = "santahatgreen")
 	body_parts_covered = 0
