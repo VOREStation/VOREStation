@@ -103,8 +103,6 @@ var/global/datum/global_init/init = new ()
 		for(var/turf/simulated/mineral/M in world) // Ugh.
 			M.update_icon()
 
-	// Create autolathe recipes, as above.
-	populate_lathe_recipes()
 
 	// Create robolimbs for chargen.
 	populate_robolimb_list()
