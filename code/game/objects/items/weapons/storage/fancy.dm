@@ -19,8 +19,8 @@
 	var/icon_type = "donut"
 
 /obj/item/weapon/storage/fancy/update_icon(var/itemremoved = 0)
-	var/total_contents = src.contents.len - itemremoved
-	src.icon_state = "[src.icon_type]box[total_contents]"
+	var/total_contents = contents.len - itemremoved
+	icon_state = "[icon_type]box[total_contents]"
 	return
 
 /obj/item/weapon/storage/fancy/examine(mob/user)
@@ -28,11 +28,11 @@
 		return
 
 	if(contents.len <= 0)
-		user << "There are no [src.icon_type]s left in the box."
+		user << "There are no [icon_type]s left in the box."
 	else if(contents.len == 1)
-		user << "There is one [src.icon_type] left in the box."
+		user << "There is one [icon_type] left in the box."
 	else
-		user << "There are [src.contents.len] [src.icon_type]s in the box."
+		user << "There are [contents.len] [icon_type]s in the box."
 
 	return
 
@@ -70,7 +70,6 @@
 	item_state = "candlebox5"
 	throwforce = 2
 	slot_flags = SLOT_BELT
-
 
 /obj/item/weapon/storage/fancy/candle_box/New()
 	..()
@@ -128,7 +127,7 @@
 	desc = "A ubiquitous brand of cigarettes, found in every major spacefaring corporation in the universe. As mild and flavorless as it gets."
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "cigpacket"
-	item_state = "cigpacket"
+	item_state_slots = list(slot_r_hand_str = "cigpacket", slot_l_hand_str = "cigpacket")
 	w_class = 1
 	throwforce = 2
 	slot_flags = SLOT_BELT
@@ -265,7 +264,6 @@
 	storage_slots = 6
 	can_hold = list(/obj/item/weapon/reagent_containers/glass/beaker/vial)
 
-
 /obj/item/weapon/storage/fancy/vials/New()
 	..()
 	for(var/i=1 to 6)
@@ -277,7 +275,7 @@
 	desc = "A locked box for keeping things away from children."
 	icon = 'icons/obj/vialbox.dmi'
 	icon_state = "vialbox0"
-	item_state = "syringe_kit"
+	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
 	max_w_class = 2
 	can_hold = list(/obj/item/weapon/reagent_containers/glass/beaker/vial)
 	max_storage_space = 12 //The sum of the w_classes of all the items in this storage item.
@@ -289,9 +287,9 @@
 	update_icon()
 
 /obj/item/weapon/storage/lockbox/vials/update_icon(var/itemremoved = 0)
-	var/total_contents = src.contents.len - itemremoved
-	src.icon_state = "vialbox[total_contents]"
-	src.overlays.Cut()
+	var/total_contents = contents.len - itemremoved
+	icon_state = "vialbox[total_contents]"
+	overlays.Cut()
 	if (!broken)
 		overlays += image(icon, src, "led[locked]")
 		if(locked)
