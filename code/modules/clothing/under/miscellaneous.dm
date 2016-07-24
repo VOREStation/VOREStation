@@ -3,20 +3,20 @@
 	desc = "Sleepwear."
 	icon_state = "red_pyjamas"
 	worn_state = "red_pyjamas"
-	item_state = "white"
+	item_state_slots = list(slot_r_hand_str = "white", slot_l_hand_str = "white")
 
 /obj/item/clothing/under/pj/blue
 	name = "blue pj's"
 	desc = "Sleepwear."
 	icon_state = "blue_pyjamas"
 	worn_state = "blue_pyjamas"
-	item_state = "white"
+	item_state_slots = list(slot_r_hand_str = "white", slot_l_hand_str = "white")
 
 /obj/item/clothing/under/captain_fly
 	name = "rogue's uniform"
 	desc = "For the man who doesn't care because he's still free."
 	icon_state = "captain_fly"
-	item_state = "red"
+	item_state_slots = list(slot_r_hand_str = "red", slot_l_hand_str = "red")
 	worn_state = "captain_fly"
 
 /obj/item/clothing/under/scratch
@@ -43,7 +43,7 @@
 	name = "mailman's jumpsuit"
 	desc = "<i>'Special delivery!'</i>"
 	icon_state = "mailman"
-	item_state = "blue"
+	item_state_slots = list(slot_r_hand_str = "blue", slot_l_hand_str = "blue")
 	worn_state = "mailman"
 	rolled_sleeves = 0
 
@@ -51,7 +51,7 @@
 	name = "sexy-clown suit"
 	desc = "It makes you look HONKable!"
 	icon_state = "sexyclown"
-	item_state = "clown"
+	item_state_slots = list(slot_r_hand_str = "clown", slot_l_hand_str = "clown")
 	worn_state = "sexyclown"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	rolled_sleeves = -1 //Please never
@@ -60,7 +60,7 @@
 	name = "vice officer's jumpsuit"
 	desc = "It's the standard issue pretty-boy outfit, as seen on Holo-Vision."
 	icon_state = "vice"
-	item_state = "grey"
+	item_state_slots = list(slot_r_hand_str = "grey", slot_l_hand_str = "grey")
 	worn_state = "vice"
 
 //This set of uniforms looks fairly fancy and is generally used for high-ranking NT personnel from what I've seen, so lets give them appropriate ranks.
@@ -68,7 +68,7 @@
 	desc = "Gold trim on space-black cloth, this uniform displays the rank of \"Captain.\""
 	name = "\improper Officer's Dress Uniform"
 	icon_state = "officer"
-	item_state = "lawyer_black"
+	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
 	worn_state = "officer"
 	displays_id = 0
 
@@ -76,7 +76,7 @@
 	desc = "Gold trim on space-black cloth, this uniform displays the rank of \"Admiral.\""
 	name = "\improper Officer's Dress Uniform"
 	icon_state = "officer"
-	item_state = "lawyer_black"
+	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
 	worn_state = "officer"
 	displays_id = 0
 
@@ -84,7 +84,7 @@
 	desc = "Gold trim on space-black cloth, this uniform displays the rank of \"Admiral-Executive.\""
 	name = "\improper Officer's Dress Uniform"
 	icon_state = "centcom"
-	item_state = "lawyer_black"
+	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
 	worn_state = "centcom"
 	displays_id = 0
 
@@ -92,14 +92,14 @@
 	name = "ERT tactical uniform"
 	desc = "A short-sleeved black uniform, paired with grey digital-camo cargo pants. It looks very tactical."
 	icon_state = "ert_uniform"
-	item_state = "black"
+	item_state_slots = list(slot_r_hand_str = "black", slot_l_hand_str = "black")
 	worn_state = "ert_uniform"
 
 /obj/item/clothing/under/gov
 	desc = "A neat proper uniform of someone on offical business. The plain, professional attire of an Internal Affairs Agent. The collar is <i>immaculately</i> starched."
 	name = "Green formal uniform"
 	icon_state = "greensuit"
-	item_state = "centcom"
+	item_state_slots = list(slot_r_hand_str = "centcom", slot_l_hand_str = "centcom")
 	worn_state = "greensuit"
 	rolled_sleeves = 0
 	starting_accessories = list(/obj/item/clothing/accessory/darkgreen)
@@ -120,7 +120,7 @@
 /obj/item/clothing/under/acj
 	name = "administrative cybernetic jumpsuit"
 	icon_state = "syndicate"
-	item_state = "black"
+	item_state_slots = list(slot_r_hand_str = "black", slot_l_hand_str = "black")
 	worn_state = "syndicate"
 	desc = "it's a cybernetically enhanced jumpsuit used for administrative duties."
 	gas_transfer_coefficient = 0.01
@@ -153,7 +153,7 @@
 	name = "dark undersuit"
 	desc = "A thick, layered grey undersuit lined with power cables. Feels a little like wearing an electrical storm."
 	icon_state = "psysuit"
-	item_state = "black"
+	item_state_slots = list(slot_r_hand_str = "black", slot_l_hand_str = "black")
 	worn_state = "psysuit"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 
@@ -161,7 +161,7 @@
 	name = "gentlemans suit"
 	desc = "A silk black shirt with a white tie and a matching gray vest and slacks. Feels proper."
 	icon_state = "gentlesuit"
-	item_state = "grey"
+	item_state_slots = list(slot_r_hand_str = "grey", slot_l_hand_str = "grey")
 	worn_state = "gentlesuit"
 	rolled_sleeves = 0
 
@@ -169,49 +169,49 @@
 	name = "captain's suit"
 	desc = "A green suit and yellow necktie. Exemplifies authority."
 	icon_state = "green_suit"
-	item_state = "centcom"
+	item_state_slots = list(slot_r_hand_str = "centcom", slot_l_hand_str = "centcom")
 	worn_state = "green_suit"
 
 /obj/item/clothing/under/gimmick/rank/head_of_personnel/suit
 	name = "head of personnel's suit"
 	desc = "A teal suit and yellow necktie. An authoritative yet tacky ensemble."
 	icon_state = "teal_suit"
-	item_state = "green"
+	item_state_slots = list(slot_r_hand_str = "green", slot_l_hand_str = "green")
 	worn_state = "teal_suit"
 
 /obj/item/clothing/under/suit_jacket
 	name = "black suit"
 	desc = "A black suit and red tie. Very formal."
 	icon_state = "black_suit"
-	item_state = "lawyer_black"
+	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
 	worn_state = "black_suit"
 
 /obj/item/clothing/under/suit_jacket/really_black
 	name = "executive suit"
 	desc = "A formal black suit and red tie, intended for the station's finest."
 	icon_state = "really_black_suit"
-	item_state = "lawyer_black"
+	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
 	worn_state = "black_suit"
 
 /obj/item/clothing/under/suit_jacket/female
 	name = "executive suit"
 	desc = "A formal trouser suit for women, intended for the station's finest."
 	icon_state = "black_suit_fem"
-	item_state = "lawyer_black"
+	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
 	worn_state = "black_suit_fem"
 
 /obj/item/clothing/under/suit_jacket/red
 	name = "red suit"
 	desc = "A red suit and blue tie. Somewhat formal."
 	icon_state = "red_suit"
-	item_state = "lawyer_red"
+	item_state_slots = list(slot_r_hand_str = "lawyer_red", slot_l_hand_str = "lawyer_red")
 	worn_state = "red_suit"
 
 /obj/item/clothing/under/schoolgirl
 	name = "schoolgirl uniform"
 	desc = "It's just like one of my Japanese animes!"
 	icon_state = "schoolgirl"
-	item_state = "blue"
+	item_state_slots = list(slot_r_hand_str = "blue", slot_l_hand_str = "blue")
 	worn_state = "schoolgirl"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
@@ -219,14 +219,14 @@
 	name = "laborer's overalls"
 	desc = "A set of durable overalls for getting the job done."
 	icon_state = "overalls"
-	item_state = "cargo"
+	item_state_slots = list(slot_r_hand_str = "cargo", slot_l_hand_str = "cargo")
 	worn_state = "overalls"
 
 /obj/item/clothing/under/pirate
 	name = "pirate outfit"
 	desc = "Yarr."
 	icon_state = "pirate"
-	item_state = "sl_suit"
+	item_state_slots = list(slot_r_hand_str = "sl_suit", slot_l_hand_str = "sl_suit")
 	worn_state = "pirate"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
 
@@ -234,14 +234,14 @@
 	name = "soviet uniform"
 	desc = "For the Motherland!"
 	icon_state = "soviet"
-	item_state = "grey"
+	item_state_slots = list(slot_r_hand_str = "grey", slot_l_hand_str = "grey")
 	worn_state = "soviet"
 
 /obj/item/clothing/under/redcoat
 	name = "redcoat uniform"
 	desc = "Looks old."
 	icon_state = "redcoat"
-	item_state = "red"
+	item_state_slots = list(slot_r_hand_str = "red", slot_l_hand_str = "red")
 	worn_state = "redcoat"
 
 /obj/item/clothing/under/kilt
@@ -255,7 +255,7 @@
 	name = "sexy mime outfit"
 	desc = "The only time when you DON'T enjoy looking at someone's rack."
 	icon_state = "sexymime"
-	item_state = "mime"
+	item_state_slots = list(slot_r_hand_str = "mime", slot_l_hand_str = "mime")
 	worn_state = "sexymime"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	rolled_sleeves = -1 //Please never
@@ -264,7 +264,7 @@
 	name = "gladiator uniform"
 	desc = "Are you not entertained? Is that not why you are here?"
 	icon_state = "gladiator"
-	item_state = "yellow"
+	item_state_slots = list(slot_r_hand_str = "yellow", slot_l_hand_str = "yellow")
 	worn_state = "gladiator"
 	body_parts_covered = LOWER_TORSO
 
@@ -284,7 +284,7 @@
 	name = "black tango dress"
 	desc = "Filled with Latin fire."
 	icon_state = "black_tango_alt"
-	item_state = "black_tango"
+	item_state_slots = list(slot_r_hand_str = "black_tango", slot_l_hand_str = "black_tango")
 	worn_state = "black_tango_alt"
 
 /obj/item/clothing/under/dress/stripeddress
@@ -351,7 +351,7 @@
 	name = "saloon girl dress"
 	desc = "A old western inspired gown for the girl who likes to drink."
 	icon_state = "dress_saloon"
-	item_state = "dress_white"
+	item_state_slots = list(slot_r_hand_str = "dress_white", slot_l_hand_str = "dress_white")
 	worn_state = "dress_saloon"
 
 /obj/item/clothing/under/dress/dress_cap
@@ -435,35 +435,35 @@
 	name = "captain's formal uniform"
 	desc = "A captain's formal-wear, for special occasions."
 	icon_state = "captain_formal"
-	item_state = "lawyer_blue"
+	item_state_slots = list(slot_r_hand_str = "lawyer_blue", slot_l_hand_str = "lawyer_blue")
 	worn_state = "captain_formal"
 
 /obj/item/clothing/under/hosformalmale
 	name = "head of security's formal uniform"
 	desc = "A male head of security's formal-wear, for special occasions."
 	icon_state = "hos_formal_male"
-	item_state = "lawyer_red"
+	item_state_slots = list(slot_r_hand_str = "lawyer_red", slot_l_hand_str = "lawyer_red")
 	worn_state = "hos_formal_male"
 
 /obj/item/clothing/under/hosformalfem
 	name = "head of security's formal uniform"
 	desc = "A female head of security's formal-wear, for special occasions."
 	icon_state = "hos_formal_fem"
-	item_state = "lawyer_red"
+	item_state_slots = list(slot_r_hand_str = "lawyer_red", slot_l_hand_str = "lawyer_red")
 	worn_state = "hos_formal_fem"
 
 /obj/item/clothing/under/assistantformal
 	name = "assistant's formal uniform"
 	desc = "An assistant's formal-wear. Why an assistant needs formal-wear is still unknown."
 	icon_state = "assistant_formal"
-	item_state = "lawyer_black"
+	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
 	worn_state = "assistant_formal"
 
 /obj/item/clothing/under/suit_jacket/charcoal
 	name = "charcoal suit"
 	desc = "A charcoal suit and red tie. Very professional."
 	icon_state = "charcoal_suit"
-	item_state = "lawyer_black"
+	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
 	worn_state = "charcoal_suit"
 	starting_accessories = list(/obj/item/clothing/accessory/navy, /obj/item/clothing/accessory/charcoal_jacket)
 
@@ -471,7 +471,7 @@
 	name = "navy suit"
 	desc = "A navy suit and red tie, intended for the station's finest."
 	icon_state = "navy_suit"
-	item_state = "lawyer_blue"
+	item_state_slots = list(slot_r_hand_str = "lawyer_blue", slot_l_hand_str = "lawyer_blue")
 	worn_state = "navy_suit"
 	starting_accessories = list(/obj/item/clothing/accessory/red, /obj/item/clothing/accessory/navy_jacket)
 
@@ -479,7 +479,7 @@
 	name = "burgundy suit"
 	desc = "A burgundy suit and black tie. Somewhat formal."
 	icon_state = "burgundy_suit"
-	item_state = "lawyer_red"
+	item_state_slots = list(slot_r_hand_str = "lawyer_red", slot_l_hand_str = "lawyer_red")
 	worn_state = "burgundy_suit"
 	starting_accessories = list(/obj/item/clothing/accessory/black, /obj/item/clothing/accessory/burgundy_jacket)
 
@@ -487,7 +487,7 @@
 	name = "checkered suit"
 	desc = "That's a very nice suit you have there. Shame if something were to happen to it, eh?"
 	icon_state = "checkered_suit"
-	item_state = "lawyer_black"
+	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
 	worn_state = "checkered_suit"
 	starting_accessories = list(/obj/item/clothing/accessory/black, /obj/item/clothing/accessory/checkered_jacket)
 
@@ -495,7 +495,7 @@
 	name = "tan suit"
 	desc = "A tan suit. Smart, but casual."
 	icon_state = "tan_suit"
-	item_state = "tan_suit"
+	item_state_slots = list(slot_r_hand_str = "tan_suit", slot_l_hand_str = "tan_suit")
 	worn_state = "tan_suit"
 	starting_accessories = list(/obj/item/clothing/accessory/yellow, /obj/item/clothing/accessory/tan_jacket)
 
@@ -503,7 +503,7 @@
 	name = "workman outfit"
 	desc = "The very image of a working man. Not that you're probably doing work."
 	icon_state = "mechanic"
-	item_state = "cargo"
+	item_state_slots = list(slot_r_hand_str = "cargo", slot_l_hand_str = "cargo")
 	worn_state = "mechanic"
 	rolled_sleeves = 0
 
@@ -536,42 +536,42 @@
 	name = "blue blazer"
 	desc = "A bold but yet conservative outfit, red corduroys, navy blazer and a tie."
 	icon_state = "blue_blazer"
-	item_state = "lawyer_blue"
+	item_state_slots = list(slot_r_hand_str = "lawyer_blue", slot_l_hand_str = "lawyer_blue")
 	worn_state = "blue_blazer"
 
 /obj/item/clothing/under/croptop
 	name = "crop top"
 	desc = "A shirt that has had the top cropped. This one is NT sponsored."
 	icon_state = "croptop"
-	item_state = "grey"
+	item_state_slots = list(slot_r_hand_str = "grey", slot_l_hand_str = "grey")
 	worn_state = "croptop"
 
 /obj/item/clothing/under/croptop/red
 	name = "red crop top"
 	desc = "A red shirt that has had the top cropped."
 	icon_state = "croptop_red"
-	item_state = "red"
+	item_state_slots = list(slot_r_hand_str = "red", slot_l_hand_str = "red")
 	worn_state = "croptop_red"
 
 /obj/item/clothing/under/croptop/grey
 	name = "grey crop top"
 	desc = "A grey shirt that has had the top cropped."
 	icon_state = "croptop_grey"
-	item_state = "grey"
+	item_state_slots = list(slot_r_hand_str = "grey", slot_l_hand_str = "grey")
 	worn_state = "croptop_grey"
 
 /obj/item/clothing/under/cuttop
 	name = "grey cut top"
 	desc = "A grey shirt that has had the top cut low."
 	icon_state = "cuttop"
-	item_state = "grey"
+	item_state_slots = list(slot_r_hand_str = "grey", slot_l_hand_str = "grey")
 	worn_state = "cuttop"
 
 /obj/item/clothing/under/cuttop/red
 	name = "red cut top"
 	desc = "A red shirt that has had the top cut low."
 	icon_state = "cuttop_red"
-	item_state = "red"
+	item_state_slots = list(slot_r_hand_str = "red", slot_l_hand_str = "red")
 	worn_state = "cuttop_red"
 
 /obj/item/clothing/under/harness
@@ -658,14 +658,14 @@
 	name = "blue pyjamas"
 	desc = "Slightly old-fashioned sleepwear."
 	icon_state = "blue_pyjamas"
-	item_state = "blue"
+	item_state_slots = list(slot_r_hand_str = "blue", slot_l_hand_str = "blue")
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 
 /obj/item/clothing/under/redpyjamas
 	name = "red pyjamas"
 	desc = "Slightly old-fashioned sleepwear."
 	icon_state = "red_pyjamas"
-	item_state = "red"
+	item_state_slots = list(slot_r_hand_str = "red", slot_l_hand_str = "red")
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	
 /obj/item/clothing/under/stripper

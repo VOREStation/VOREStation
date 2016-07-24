@@ -23,7 +23,7 @@
 	name = "collectable xenomorph helmet!"
 	desc = "Hiss hiss hiss!"
 	icon_state = "xenom"
-	item_state = "xenos_helm"
+	item_state_slots = list(slot_r_hand_str = "xenos_helm", slot_l_hand_str = "xenos_helm")
 	body_parts_covered = HEAD|FACE|EYES
 
 /obj/item/clothing/head/collectable/chef
@@ -71,13 +71,13 @@
 	name = "collectable slime hat"
 	desc = "Just like a real Brain Slug!"
 	icon_state = "headslime"
-	item_state = "greenbandana"
+	item_state_slots = list(slot_r_hand_str = "greenbandana", slot_l_hand_str = "greenbandana")
 
 /obj/item/clothing/head/collectable/flatcap
 	name = "collectable flat cap"
 	desc = "A Collectible farmer's Flat Cap!"
 	icon_state = "flat_cap"
-	item_state = "detective"
+	item_state_slots = list(slot_r_hand_str = "detective", slot_l_hand_str = "detective")
 
 /obj/item/clothing/head/collectable/pirate
 	name = "collectable pirate hat"

@@ -18,7 +18,7 @@
 	name = "quartermaster's jumpsuit"
 	desc = "It's a jumpsuit worn by the quartermaster. It's specially designed to prevent back injuries caused by pushing paper."
 	icon_state = "qm"
-	item_state = "cargo"
+	item_state_slots = list(slot_r_hand_str = "cargo", slot_l_hand_str = "cargo")
 	worn_state = "qm"
 	rolled_sleeves = 0
 
@@ -39,7 +39,7 @@
 	name = "cargo technician's jumpsuit"
 	desc = "Shooooorts! They're comfy and easy to wear!"
 	icon_state = "cargotech"
-	item_state = "cargo"
+	item_state_slots = list(slot_r_hand_str = "cargo", slot_l_hand_str = "cargo")
 	worn_state = "cargo"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	rolled_sleeves = 0
@@ -61,7 +61,7 @@
 	desc = "It's a black jumpsuit, often worn by religious folk."
 	name = "chaplain's jumpsuit"
 	icon_state = "chaplain"
-	item_state = "black"
+	item_state_slots = list(slot_r_hand_str = "black", slot_l_hand_str = "black")
 	worn_state = "chapblack"
 	rolled_sleeves = 0
 
@@ -90,7 +90,7 @@
 	desc = "A blue jacket and red tie, with matching red cuffs! Snazzy. Wearing this makes you feel more important than your job title does."
 	name = "head of personnel's suit"
 	icon_state = "hopwhimsy"
-	item_state = "hop"
+	item_state_slots = list(slot_r_hand_str = "hop", slot_l_hand_str = "hop")
 	worn_state = "hopwhimsy"
 	rolled_sleeves = -1
 
@@ -98,7 +98,7 @@
 	desc = "It's a jumpsuit designed to protect against minor plant-related hazards."
 	name = "botanist's jumpsuit"
 	icon_state = "hydroponics"
-	item_state = "green"
+	item_state_slots = list(slot_r_hand_str = "green", slot_l_hand_str = "green")
 	worn_state = "hydroponics"
 	permeability_coefficient = 0.50
 	rolled_sleeves = 0
@@ -107,7 +107,7 @@
 	desc = "The plain, professional attire of an Internal Affairs Agent. The collar is <i>immaculately</i> starched."
 	name = "Internal Affairs uniform"
 	icon_state = "internalaffairs"
-	item_state = "ba_suit"
+	item_state_slots = list(slot_r_hand_str = "ba_suit", slot_l_hand_str = "ba_suit")
 	worn_state = "internalaffairs"
 	rolled_sleeves = 0
 	starting_accessories = list(/obj/item/clothing/accessory/black)
@@ -131,7 +131,7 @@
 /obj/item/clothing/under/lawyer/female
 	name = "black Lawyer suit"
 	icon_state = "black_suit_fem"
-	item_state = "lawyer_black"
+	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
 	worn_state = "black_suit_fem"
 
 /obj/item/clothing/under/lawyer/red
@@ -148,28 +148,28 @@
 	name = "Blue Suit"
 	desc = "A classy suit."
 	icon_state = "bluesuit"
-	item_state = "lawyer_blue"
+	item_state_slots = list(slot_r_hand_str = "lawyer_blue", slot_l_hand_str = "lawyer_blue")
 	worn_state = "bluesuit"
 	starting_accessories = list(/obj/item/clothing/accessory/red)
 
 /obj/item/clothing/under/lawyer/purpsuit
 	name = "Purple Suit"
 	icon_state = "lawyer_purp"
-	item_state = "purple"
+	item_state_slots = list(slot_r_hand_str = "purple", slot_l_hand_str = "purple")
 	worn_state = "lawyer_purp"
 
 /obj/item/clothing/under/lawyer/oldman
 	name = "Old Man's Suit"
 	desc = "A classic suit for the older gentleman with built in back support."
 	icon_state = "oldman"
-	item_state = "johnny"
+	item_state_slots = list(slot_r_hand_str = "johnny", slot_l_hand_str = "johnny")
 	worn_state = "oldman"
 
 /obj/item/clothing/under/librarian
 	name = "sensible suit"
 	desc = "It's very... sensible."
 	icon_state = "red_suit"
-	item_state = "lawyer_red"
+	item_state_slots = list(slot_r_hand_str = "lawyer_red", slot_l_hand_str = "lawyer_red")
 	worn_state = "red_suit"
 
 /obj/item/clothing/under/mime

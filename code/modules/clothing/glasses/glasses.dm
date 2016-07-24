@@ -53,7 +53,7 @@ BLIND     // can't see anything
 	name = "Optical Meson Scanner"
 	desc = "Used for seeing walls, floors, and stuff through anything."
 	icon_state = "meson"
-	item_state = "meson"
+	item_state_slots = list(slot_r_hand_str = "meson", slot_l_hand_str = "meson")
 	action_button_name = "Toggle Goggles"
 	origin_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2)
 	toggleable = 1
@@ -72,7 +72,7 @@ BLIND     // can't see anything
 	name = "Science Goggles"
 	desc = "The goggles do nothing!"
 	icon_state = "purple"
-	item_state = "glasses"
+	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
 	toggleable = 1
 	action_button_name = "Toggle Goggles"
 
@@ -84,7 +84,7 @@ BLIND     // can't see anything
 	name = "Night Vision Goggles"
 	desc = "You can totally see in the dark now!"
 	icon_state = "night"
-	item_state = "glasses"
+	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
 	origin_tech = list(TECH_MAGNET = 2)
 	darkness_view = 7
 	toggleable = 1
@@ -100,7 +100,7 @@ BLIND     // can't see anything
 	name = "eyepatch"
 	desc = "Yarr."
 	icon_state = "eyepatch"
-	item_state = "blindfold"
+	item_state_slots = list(slot_r_hand_str = "blindfold", slot_l_hand_str = "blindfold")
 	body_parts_covered = 0
 	var/eye = null
 
@@ -122,14 +122,14 @@ BLIND     // can't see anything
 	name = "monocle"
 	desc = "Such a dapper eyepiece!"
 	icon_state = "monocle"
-	item_state = "headset" // lol
+	item_state_slots = list(slot_r_hand_str = "headset", slot_l_hand_str = "headset")
 	body_parts_covered = 0
 
 /obj/item/clothing/glasses/material
 	name = "Optical Material Scanner"
 	desc = "Very confusing glasses."
 	icon_state = "material"
-	item_state = "glasses"
+	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
 	origin_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 3)
 	toggleable = 1
 	action_button_name = "Toggle Goggles"
@@ -139,7 +139,7 @@ BLIND     // can't see anything
 	name = "Prescription Glasses"
 	desc = "Made by Nerd. Co."
 	icon_state = "glasses"
-	item_state = "glasses"
+	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
 	prescription = 1
 	body_parts_covered = 0
 
@@ -157,28 +157,28 @@ BLIND     // can't see anything
 	desc = "A long time ago, people used these glasses to makes images from screens threedimensional."
 	name = "3D glasses"
 	icon_state = "3d"
-	item_state = "glasses"
+	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
 	body_parts_covered = 0
 
 /obj/item/clothing/glasses/gglasses
 	name = "Green Glasses"
 	desc = "Forest green glasses, like the kind you'd wear when hatching a nasty scheme."
 	icon_state = "gglasses"
-	item_state = "glasses"
+	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
 	body_parts_covered = 0
 
 /obj/item/clothing/glasses/sunglasses
 	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Enhanced shielding blocks many flashes."
 	name = "sunglasses"
 	icon_state = "sun"
-	item_state = "sunglasses"
+	item_state_slots = list(slot_r_hand_str = "sunglasses", slot_l_hand_str = "sunglasses")
 	darkness_view = -1
 
 /obj/item/clothing/glasses/welding
 	name = "welding goggles"
 	desc = "Protects the eyes from welders, approved by the mad scientist association."
 	icon_state = "welding-g"
-	item_state = "welding-g"
+	item_state_slots = list(slot_r_hand_str = "g", slot_l_hand_str = "g")
 	action_button_name = "Flip Welding Goggles"
 	matter = list(DEFAULT_WALL_MATERIAL = 1500, "glass" = 1000)
 	var/up = 0
@@ -217,7 +217,7 @@ BLIND     // can't see anything
 	name = "blindfold"
 	desc = "Covers the eyes, preventing sight."
 	icon_state = "blindfold"
-	item_state = "blindfold"
+	item_state_slots = list(slot_r_hand_str = "blindfold", slot_l_hand_str = "blindfold")
 	//vision_flags = BLIND  	// This flag is only supposed to be used if it causes permanent blindness, not temporary because of glasses
 
 /obj/item/clothing/glasses/sunglasses/blindfold/tape
@@ -225,7 +225,7 @@ BLIND     // can't see anything
 	desc = "It's a robust DIY blindfold!"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "tape_cross"
-	item_state = null
+	item_state_slots = list(slot_r_hand_str = null, slot_l_hand_str = null)
 	w_class = 1
 
 /obj/item/clothing/glasses/sunglasses/prescription
@@ -240,7 +240,7 @@ BLIND     // can't see anything
 	desc = "A pair of designer sunglasses. Doesn't seem like it'll block flashes."
 	name = "stylish sunglasses"
 	icon_state = "sun"
-	item_state = "sunglasses"
+	item_state_slots = list(slot_r_hand_str = "sunglasses", slot_l_hand_str = "sunglasses")
 
 /obj/item/clothing/glasses/sunglasses/sechud
 	name = "HUDSunglasses"
@@ -262,7 +262,7 @@ BLIND     // can't see anything
 	name = "Optical Thermal Scanner"
 	desc = "Thermals in the shape of glasses."
 	icon_state = "thermal"
-	item_state = "glasses"
+	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
 	origin_tech = list(TECH_MAGNET = 3)
 	toggleable = 1
 	action_button_name = "Toggle Goggles"
@@ -290,7 +290,7 @@ BLIND     // can't see anything
 	name = "Optical Meson Scanner"
 	desc = "Used for seeing walls, floors, and stuff through anything."
 	icon_state = "meson"
-	item_state = "meson"
+	item_state_slots = list(slot_r_hand_str = "meson", slot_l_hand_str = "meson")
 	origin_tech = list(TECH_MAGNET = 3, TECH_ILLEGAL = 4)
 
 /obj/item/clothing/glasses/thermal/plain
@@ -302,7 +302,7 @@ BLIND     // can't see anything
 	name = "Thermoncle"
 	desc = "A monocle thermal."
 	icon_state = "thermoncle"
-	item_state = "sunglasses"
+	item_state_slots = list(slot_r_hand_str = "sunglasses", slot_l_hand_str = "sunglasses")
 	toggleable = 1
 	action_button_name = "Toggle Monocle"
 	flags = null //doesn't protect eyes because it's a monocle, duh
@@ -313,7 +313,7 @@ BLIND     // can't see anything
 	name = "Optical Thermal Eyepatch"
 	desc = "An eyepatch with built-in thermal optics"
 	icon_state = "eyepatch"
-	item_state = "blindfold"
+	item_state_slots = list(slot_r_hand_str = "blindfold", slot_l_hand_str = "blindfold")
 	body_parts_covered = 0
 	toggleable = 1
 	action_button_name = "Toggle Eyepatch"
@@ -322,4 +322,4 @@ BLIND     // can't see anything
 	name = "Optical Thermal Implants"
 	desc = "A set of implantable lenses designed to augment your vision"
 	icon_state = "thermalimplants"
-	item_state = "sunglasses"
+	item_state_slots = list(slot_r_hand_str = "sunglasses", slot_l_hand_str = "sunglasses")

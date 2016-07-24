@@ -26,12 +26,12 @@
 //Standard biosuit, orange stripe
 /obj/item/clothing/head/bio_hood/general
 	icon_state = "bio_general"
-	item_state = "bio"
+	item_state_slots = list(slot_r_hand_str = "bio", slot_l_hand_str = "bio")
 	body_parts_covered = HEAD|FACE|EYES
 
 /obj/item/clothing/suit/bio_suit/general
 	icon_state = "bio_general"
-	item_state = "bio"
+	item_state_slots = list(slot_r_hand_str = "bio", slot_l_hand_str = "bio")
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
 
@@ -85,5 +85,5 @@
 	name = "Plague doctor suit"
 	desc = "It protected doctors from the Black Death, back then. You bet your arse it's gonna help you against viruses."
 	icon_state = "plaguedoctor"
-	item_state = "bio"
+	item_state_slots = list(slot_r_hand_str = "bio", slot_l_hand_str = "bio")
 	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL

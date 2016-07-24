@@ -12,7 +12,7 @@
 	desc = "It's a robust DIY muzzle!"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "tape_cross"
-	item_state = null
+	item_state_slots = list(slot_r_hand_str = null, slot_l_hand_str = null)
 	w_class = 1
 
 /obj/item/clothing/mask/muzzle/New()
@@ -30,7 +30,7 @@
 	name = "sterile mask"
 	desc = "A sterile mask designed to help prevent the spread of diseases."
 	icon_state = "sterile"
-	item_state = "sterile"
+	item_state_slots = list(slot_r_hand_str = "sterile", slot_l_hand_str = "sterile")
 	w_class = 2
 	body_parts_covered = FACE
 	item_flags = FLEXIBLEMATERIAL
@@ -144,7 +144,7 @@
 	name = "camera MIU"
 	desc = "Allows for direct mental connection to accessible camera networks."
 	icon_state = "s-ninja"
-	item_state = "mime"
+	item_state_slots = list(slot_r_hand_str = "mime", slot_l_hand_str = "mime")
 	flags_inv = HIDEFACE
 	body_parts_covered = 0
 	var/mob/observer/eye/aiEye/eye
@@ -178,7 +178,7 @@
 	flags_inv = HIDEFACE
 	slot_flags = SLOT_MASK
 	icon_state = "bandblack"
-	item_state = "bandblack"
+	item_state_slots = list(slot_r_hand_str = "bandblack", slot_l_hand_str = "bandblack")
 	var/tied = 0
 
 /obj/item/clothing/mask/bandana/proc/adjust_bandana(mob/user)
@@ -207,28 +207,28 @@
 	name = "red bandana"
 	desc = "A fine red bandana with nanotech lining."
 	icon_state = "bandred"
-	item_state = "bandred"
+	item_state_slots = list(slot_r_hand_str = "bandred", slot_l_hand_str = "bandred")
 
 /obj/item/clothing/mask/bandana/blue
 	name = "blue bandana"
 	desc = "A fine blue bandana with nanotech lining."
 	icon_state = "bandblue"
-	item_state = "bandblue"
+	item_state_slots = list(slot_r_hand_str = "bandblue", slot_l_hand_str = "bandblue")
 
 /obj/item/clothing/mask/bandana/green
 	name = "green bandana"
 	desc = "A fine green bandana with nanotech lining."
 	icon_state = "bandgreen"
-	item_state = "bandgreen"
+	item_state_slots = list(slot_r_hand_str = "bandgreen", slot_l_hand_str = "bandgreen")
 
 /obj/item/clothing/mask/bandana/gold
 	name = "gold bandana"
 	desc = "A fine gold bandana with nanotech lining."
 	icon_state = "bandgold"
-	item_state = "bandgold"
+	item_state_slots = list(slot_r_hand_str = "bandgold", slot_l_hand_str = "bandgold")
 
 /obj/item/clothing/mask/bandana/skull
 	name = "skull bandana"
 	desc = "A fine black bandana with nanotech lining and a skull emblem."
 	icon_state = "bandskull"
-	item_state = "bandskull"
+	item_state_slots = list(slot_r_hand_str = "bandskull", slot_l_hand_str = "bandskull")

@@ -22,5 +22,5 @@
 	name = "headscarf"
 	desc = "A scarf of coarse fabric. Seems to have ear-holes."
 	icon_state = "zhan_scarf"
-	item_state = "beret_white"
+	item_state_slots = list(slot_r_hand_str = "beret_white", slot_l_hand_str = "beret_white")
 	body_parts_covered = HEAD|FACE

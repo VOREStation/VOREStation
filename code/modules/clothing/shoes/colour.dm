@@ -53,43 +53,43 @@
 	name = "black flats"
 	desc = "Sleek black flats."
 	icon_state = "flatsblack"
-	item_state = "black"
+	item_state_slots = list(slot_r_hand_str = "black", slot_l_hand_str = "black")
 
 /obj/item/clothing/shoes/flats/white
 	name = "white flats"
 	desc = "Shiny white flats."
 	icon_state = "flatswhite"
-	item_state = "white"
+	item_state_slots = list(slot_r_hand_str = "white", slot_l_hand_str = "white")
 
 /obj/item/clothing/shoes/flats/red
 	name = "red flats"
 	desc = "Ruby red flats."
 	icon_state = "flatsred"
-	item_state = "red"
+	item_state_slots = list(slot_r_hand_str = "red", slot_l_hand_str = "red")
 
 /obj/item/clothing/shoes/flats/purple
 	name = "purple flats"
 	desc = "Royal purple flats."
 	icon_state = "flatspurple"
-	item_state = "purple"
+	item_state_slots = list(slot_r_hand_str = "purple", slot_l_hand_str = "purple")
 
 /obj/item/clothing/shoes/flats/blue
 	name = "blue flats"
 	desc = "Sleek blue flats."
 	icon_state = "flatsblue"
-	item_state = "blue"
+	item_state_slots = list(slot_r_hand_str = "blue", slot_l_hand_str = "blue")
 
 /obj/item/clothing/shoes/flats/brown
 	name = "brown flats"
 	desc = "Sleek brown flats."
 	icon_state = "flatsbrown"
-	item_state = "brown"
+	item_state_slots = list(slot_r_hand_str = "brown", slot_l_hand_str = "brown")
 
 /obj/item/clothing/shoes/flats/orange
 	name = "orange flats"
 	desc = "Radiant orange flats."
 	icon_state = "flatsorange"
-	item_state = "orange"
+	item_state_slots = list(slot_r_hand_str = "orange", slot_l_hand_str = "orange")
 
 /obj/item/clothing/shoes/orange
 	name = "orange shoes"
@@ -123,5 +123,3 @@
 	..()
 	if (istype(H, /obj/item/weapon/handcuffs))
 		attach_cuffs(H, user)
-
-

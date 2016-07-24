@@ -41,7 +41,7 @@
 	name = "nun hood"
 	desc = "Maximum piety in this star system."
 	icon_state = "nun_hood"
-	item_state = "beret_black"
+	item_state_slots = list(slot_r_hand_str = "beret_black", slot_l_hand_str = "beret_black")
 	flags_inv = BLOCKHAIR
 	body_parts_covered = HEAD
 
@@ -57,101 +57,101 @@
 	name = "security beret"
 	desc = "A beret with the security insignia emblazoned on it. For officers that are more inclined towards style than safety."
 	icon_state = "beret_officer"
-	item_state = "beret"
-	
+	item_state_slots = list(slot_r_hand_str = "beret", slot_l_hand_str = "beret")
+
 /obj/item/clothing/head/beret/sec/navy/officer
 	name = "officer beret"
 	desc = "A navy blue beret with an officer's rank emblem. For officers that are more inclined towards style than safety."
 	icon_state = "beret_navy_officer"
-	item_state = "beret_navy"
-	
+	item_state_slots = list(slot_r_hand_str = "beret_navy", slot_l_hand_str = "beret_navy")
+
 /obj/item/clothing/head/beret/sec/navy/hos
 	name = "officer beret"
 	desc = "A navy blue beret with a head of security's rank emblem. For officers that are more inclined towards style than safety."
 	icon_state = "beret_navy_hos"
-	item_state = "beret_navy"
-	
+	item_state_slots = list(slot_r_hand_str = "beret_navy", slot_l_hand_str = "beret_navy")
+
 /obj/item/clothing/head/beret/sec/navy/warden
 	name = "warden beret"
 	desc = "A navy blue beret with a warden's rank emblem. For officers that are more inclined towards style than safety."
 	icon_state = "beret_navy_warden"
-	item_state = "beret_navy"
-	
+	item_state_slots = list(slot_r_hand_str = "beret_navy", slot_l_hand_str = "beret_navy")
+
 /obj/item/clothing/head/beret/sec/corporate/officer
 	name = "officer beret"
 	desc = "A corporate black beret with an officer's rank emblem. For officers that are more inclined towards style than safety."
 	icon_state = "beret_corporate_officer"
-	item_state = "beret_black"
-	
+	item_state_slots = list(slot_r_hand_str = "beret_black", slot_l_hand_str = "beret_black")
+
 /obj/item/clothing/head/beret/sec/corporate/hos
 	name = "officer beret"
 	desc = "A corporate black beret with a head of security's rank emblem. For officers that are more inclined towards style than safety."
 	icon_state = "beret_corporate_hos"
-	item_state = "beret_black"
-	
+	item_state_slots = list(slot_r_hand_str = "beret_black", slot_l_hand_str = "beret_black")
+
 /obj/item/clothing/head/beret/sec/corporate/warden
 	name = "warden beret"
 	desc = "A corporate black beret with a warden's rank emblem. For officers that are more inclined towards style than safety."
 	icon_state = "beret_corporate_warden"
-	item_state = "beret_black"
-	
+	item_state_slots = list(slot_r_hand_str = "beret_black", slot_l_hand_str = "beret_black")
+
 /obj/item/clothing/head/beret/engineering
 	name = "engineering beret"
 	desc = "A beret with the engineering insignia emblazoned on it. For engineers that are more inclined towards style than safety."
 	icon_state = "beret_engineering"
-	
+
 /obj/item/clothing/head/beret/purple
 	name = "purple beret"
 	desc = "A stylish, if purple, beret."
 	icon_state = "beret_purple"
-	
+
 /obj/item/clothing/head/beret/centcom/officer
 	name = "officers beret"
 	desc = "A dark blue beret adorned with a silver patch. Worn by NanoTrasen Officials."
 	icon_state = "beret_centcom_officer"
-	item_state = "beret_white"
-	
+	item_state_slots = list(slot_r_hand_str = "beret_white", slot_l_hand_str = "beret_white")
+
 /obj/item/clothing/head/beret/centcom/captain
 	name = "captains beret"
 	desc = "A white beret adorned with a blue patch. Worn by NanoTrasen command staff."
 	icon_state = "beret_centcom_captain"
-	item_state = "beret_white"
+	item_state_slots = list(slot_r_hand_str = "beret_white", slot_l_hand_str = "beret_white")
 
 /obj/item/clothing/head/beret/sec/gov
 	name = "officer beret"
 	desc = "A black beret with a gold emblem."
 	icon_state = "beret_corporate_hos"
-	item_state = "beret_black"
+	item_state_slots = list(slot_r_hand_str = "beret_black", slot_l_hand_str = "beret_black")
 
 //Medical
 /obj/item/clothing/head/surgery
 	name = "surgical cap"
 	desc = "A cap surgeons wear during operations. Keeps their hair from tickling your internal organs."
 	icon_state = "surgcap_blue"
-	item_state = "beret_blue"
+	item_state_slots = list(slot_r_hand_str = "beret_blue", slot_l_hand_str = "beret_blue")
 	flags_inv = BLOCKHEADHAIR
 
 /obj/item/clothing/head/surgery/purple
 	desc = "A cap surgeons wear during operations. Keeps their hair from tickling your internal organs. This one is deep purple."
 	icon_state = "surgcap_purple"
-	item_state = "beret_purple"
+	item_state_slots = list(slot_r_hand_str = "beret_purple", slot_l_hand_str = "beret_purple")
 
 /obj/item/clothing/head/surgery/blue
 	desc = "A cap surgeons wear during operations. Keeps their hair from tickling your internal organs. This one is baby blue."
 	icon_state = "surgcap_blue"
-	item_state = "beret_blue"
+	item_state_slots = list(slot_r_hand_str = "beret_blue", slot_l_hand_str = "beret_blue")
 
 /obj/item/clothing/head/surgery/green
 	desc = "A cap surgeons wear during operations. Keeps their hair from tickling your internal organs. This one is dark green."
 	icon_state = "surgcap_green"
-	item_state = "beret_green"
+	item_state_slots = list(slot_r_hand_str = "beret_green", slot_l_hand_str = "beret_green")
 
 /obj/item/clothing/head/surgery/black
 	desc = "A cap surgeons wear during operations. Keeps their hair from tickling your internal organs. This one is black."
 	icon_state = "surgcap_black"
-	item_state = "beret_black"
+	item_state_slots = list(slot_r_hand_str = "beret_black", slot_l_hand_str = "beret_black")
 
 /obj/item/clothing/head/surgery/navyblue
 	desc = "A cap surgeons wear during operations. Keeps their hair from tickling your internal organs. This one is navy blue."
 	icon_state = "surgcap_navyblue"
-	item_state = "beret_navy"
+	item_state_slots = list(slot_r_hand_str = "beret_navy", slot_l_hand_str = "beret_navy")
