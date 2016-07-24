@@ -21,17 +21,17 @@
 
 /datum/uplink_item/item/visible_weapons/dartgun
 	name = "Dart Gun"
-	item_cost = 50
+	item_cost = 30
 	path = /obj/item/weapon/gun/projectile/dartgun
 
 /datum/uplink_item/item/visible_weapons/crossbow
 	name = "Energy Crossbow"
-	item_cost = 50
+	item_cost = 40
 	path = /obj/item/weapon/gun/energy/crossbow
 
 /datum/uplink_item/item/visible_weapons/silenced_45
 	name = "Silenced .45"
-	item_cost = 50
+	item_cost = 40
 	path = /obj/item/weapon/gun/projectile/silenced
 
 /datum/uplink_item/item/visible_weapons/riggedlaser
@@ -41,12 +41,12 @@
 
 /datum/uplink_item/item/visible_weapons/revolver
 	name = "Revolver"
-	item_cost = 60
+	item_cost = 70
 	path = /obj/item/weapon/gun/projectile/revolver
 
 /datum/uplink_item/item/visible_weapons/Derringer
 	name = ".357 Derringer Pistol"
-	item_cost = 50
+	item_cost = 40
 	path = /obj/item/weapon/gun/projectile/derringer
 
 /datum/uplink_item/item/visible_weapons/heavysniper
@@ -56,7 +56,7 @@
 
 /datum/uplink_item/item/visible_weapons/tommygun
 	name = "Tommygun (.45)" // We're keeping this because it's CLASSY. -Spades
-	item_cost = 70
+	item_cost = 60
 	path = /obj/item/weapon/gun/projectile/automatic/tommygun
 
 //These are for traitors (or other antags, perhaps) to have the option of purchasing some merc gear.
@@ -67,7 +67,7 @@
 
 /datum/uplink_item/item/visible_weapons/assaultrifle
 	name = "Assault Rifle (7.62mm)"
-	item_cost = 70
+	item_cost = 75
 	path = /obj/item/weapon/gun/projectile/automatic/sts35
 
 /*/datum/uplink_item/item/visible_weapons/bullpuprifle
@@ -77,12 +77,12 @@
 */
 /datum/uplink_item/item/visible_weapons/combatshotgun
 	name = "Combat Shotgun"
-	item_cost = 70
+	item_cost = 75
 	path = /obj/item/weapon/gun/projectile/shotgun/pump/combat
 
 /datum/uplink_item/item/visible_weapons/egun
 	name = "Energy Gun"
-	item_cost = 50
+	item_cost = 60
 	path = /obj/item/weapon/gun/energy/gun
 
 /datum/uplink_item/item/visible_weapons/lasercannon
@@ -92,15 +92,15 @@
 
 /datum/uplink_item/item/visible_weapons/lasercarbine
 	name = "Laser Carbine"
-	item_cost = 70
+	item_cost = 75
 	path = /obj/item/weapon/gun/energy/laser
 
 /datum/uplink_item/item/visible_weapons/ionrifle
 	name = "Ion Rifle"
-	item_cost = 50
+	item_cost = 40
 	path = /obj/item/weapon/gun/energy/ionrifle
 
 /datum/uplink_item/item/visible_weapons/xray
 	name = "Xray Gun"
-	item_cost = 70
+	item_cost = 85
 	path = /obj/item/weapon/gun/energy/xray

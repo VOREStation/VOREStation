@@ -10,7 +10,7 @@
 		log_and_message_admins("has triggered a falsified [src]", user)
 
 /datum/uplink_item/abstract/announcements/fake_centcom
-	item_cost = DEFAULT_TELECRYSTAL_AMOUNT / 2
+	item_cost = DEFAULT_TELECRYSTAL_AMOUNT / 3
 
 /datum/uplink_item/abstract/announcements/fake_centcom/New()
 	..()
@@ -33,7 +33,7 @@
 /datum/uplink_item/abstract/announcements/fake_crew_arrival
 	name = "Crew Arrival Announcement/Records"
 	desc = "Creates a fake crew arrival announcement as well as fake crew records, using your current appearance (including held items!) and worn id card. Trigger with care!"
-	item_cost = 40
+	item_cost = 30
 
 /datum/uplink_item/abstract/announcements/fake_crew_arrival/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/user, var/list/args)
 	if(!user)
@@ -100,7 +100,7 @@
 /datum/uplink_item/abstract/announcements/fake_radiation
 	name = "Radiation Storm Announcement"
 	desc = "Interferes with the station's radiation sensors. Triggers immediately upon investment."
-	item_cost = 30
+	item_cost = 15
 
 /datum/uplink_item/abstract/announcements/fake_radiation/get_goods(var/obj/item/device/uplink/U, var/loc)
 	var/datum/event_meta/EM = new(EVENT_LEVEL_MUNDANE, "Fake Radiation Storm", add_to_queue = 0)

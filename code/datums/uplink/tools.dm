@@ -29,7 +29,7 @@
 
 /datum/uplink_item/item/tools/encryptionkey_binary
 	name = "Binary Translator Key"
-	item_cost = 30
+	item_cost = 20
 	path = /obj/item/device/encryptionkey/binary
 
 /datum/uplink_item/item/tools/emag
@@ -39,18 +39,18 @@
 
 /datum/uplink_item/item/tools/clerical
 	name = "Morphic Clerical Kit"
-	item_cost = 30
+	item_cost = 15
 	path = /obj/item/weapon/storage/box/syndie_kit/clerical
 
 /datum/uplink_item/item/tools/money
 	name = "Operations Funding"
-	item_cost = 30
+	item_cost = 15
 	path = /obj/item/weapon/storage/secure/briefcase/money
 	desc = "A briefcase with 10,000 untraceable thalers for funding your sneaky activities."
 
 /datum/uplink_item/item/tools/space_suit
 	name = "Space Suit"
-	item_cost = 30
+	item_cost = 15
 	path = /obj/item/weapon/storage/box/syndie_kit/space
 
 /datum/uplink_item/item/tools/thermal
@@ -65,15 +65,15 @@
 
 /datum/uplink_item/item/tools/ai_module
 	name = "Hacked AI Upload Module"
-	item_cost = 70
+	item_cost = 60
 	path = /obj/item/weapon/aiModule/syndicate
 
 /datum/uplink_item/item/tools/supply_beacon
 	name = "Hacked Supply Beacon (DANGER!)"
-	item_cost = 70
+	item_cost = 60
 	path = /obj/item/supply_beacon
 
 /datum/uplink_item/item/tools/teleporter
 	name = "Teleporter Circuit Board"
-	item_cost = 200
+	item_cost = DEFAULT_TELECRYSTAL_AMOUNT * 1.5
 	path = /obj/item/weapon/circuitboard/teleporter

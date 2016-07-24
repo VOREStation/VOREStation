@@ -6,7 +6,7 @@
 
 /datum/uplink_item/item/armor/combat
 	name = "Combat Armor Set"
-	item_cost = 50
+	item_cost = 60
 	path = /obj/item/weapon/storage/box/syndie_kit/combat_armor
 
 /datum/uplink_item/item/armor/heavy_vest

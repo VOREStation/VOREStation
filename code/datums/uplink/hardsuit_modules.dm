@@ -6,22 +6,22 @@
 
 /datum/uplink_item/item/hardsuit_modules/thermal
 	name = "Thermal Scanner"
-	item_cost = 20
+	item_cost = 15
 	path = /obj/item/rig_module/vision/thermal
 
 /datum/uplink_item/item/hardsuit_modules/energy_net
 	name = "Net Projector"
-	item_cost = 30
+	item_cost = 20
 	path = /obj/item/rig_module/fabricator/energy_net
 
 /datum/uplink_item/item/ewar_voice
 	name = "Electrowarfare Suite and Voice Synthesiser"
-	item_cost = 40
+	item_cost = 30
 	path = /obj/item/weapon/storage/box/syndie_kit/ewar_voice
 
 /datum/uplink_item/item/hardsuit_modules/maneuvering_jets
 	name = "Maneuvering Jets"
-	item_cost = 40
+	item_cost = 30
 	path = /obj/item/rig_module/maneuvering_jets
 
 /datum/uplink_item/item/hardsuit_modules/egun
@@ -31,7 +31,7 @@
 
 /datum/uplink_item/item/hardsuit_modules/power_sink
 	name = "Power Sink"
-	item_cost = 60
+	item_cost = 45
 	path = /obj/item/rig_module/power_sink
 
 /datum/uplink_item/item/hardsuit_modules/laser_canon

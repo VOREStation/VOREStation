@@ -224,7 +224,7 @@
 
 /obj/item/weapon/storage/box/emps/New()
 	..()
-	for(var/i = 1 to 5)
+	for(var/i = 1 to 7)
 		new /obj/item/weapon/grenade/empgrenade(src)
 
 /obj/item/weapon/storage/box/empslite
@@ -234,7 +234,7 @@
 
 /obj/item/weapon/storage/box/empslite/New()
 	..()
-	for(var/i = 1 to 5)
+	for(var/i = 1 to 7)
 		new /obj/item/weapon/grenade/empgrenade/low_yield(src)
 
 /obj/item/weapon/storage/box/smokes
@@ -249,22 +249,32 @@
 
 /obj/item/weapon/storage/box/anti_photons
 	name = "box of anti-photon grenades"
-	desc = "A box containing 5 experimental photon disruption grenades."
+	desc = "A box containing 7 experimental photon disruption grenades."
 	icon_state = "flashbang"
 
 /obj/item/weapon/storage/box/anti_photons/New()
 	..()
-	for(var/i = 1 to 5)
+	for(var/i = 1 to 7)
 		new /obj/item/weapon/grenade/anti_photon(src)
 
 /obj/item/weapon/storage/box/frags
 	name = "box of fragmentation grenades (WARNING)"
-	desc = "A box containing 5 military grade fragmentation grenades.<br> WARNING: These devices are extremely dangerous and can cause limb loss or death in repeated use."
+	desc = "A box containing 7 military grade fragmentation grenades.<br> WARNING: These devices are extremely dangerous and can cause limb loss or death in repeated use."
 	icon_state = "frag"
 
 /obj/item/weapon/storage/box/frags/New()
 	..()
-	for(var/i = 1 to 5)
+	for(var/i = 1 to 7)
+		new /obj/item/weapon/grenade/explosive(src)
+
+/obj/item/weapon/storage/box/frags_half_box
+	name = "box of fragmentation grenades (WARNING)"
+	desc = "A box containing 4 military grade fragmentation grenades.<br> WARNING: These devices are extremely dangerous and can cause limb loss or death in repeated use."
+	icon_state = "frag"
+
+/obj/item/weapon/storage/box/frags_half_box/New()
+	..()
+	for(var/i = 1 to 4)
 		new /obj/item/weapon/grenade/explosive(src)
 
 /obj/item/weapon/storage/box/metalfoam
