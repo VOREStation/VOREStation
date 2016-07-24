@@ -51,8 +51,10 @@
 			icon_state = "[base_state]up"
 			usr << "You push the [src] up out of your face."
 		update_clothing_icon()	//so our mob-overlays
+		if (ismob(src.loc)) //should allow masks to update when it is opened/closed
+			var/mob/M = src.loc
+			M.update_inv_wear_mask()
 		usr.update_action_buttons()
-
 
 /*
  * Cakehat
