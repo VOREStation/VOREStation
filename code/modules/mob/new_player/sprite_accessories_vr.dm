@@ -76,6 +76,7 @@
 
 	una_doublehorns
 		name = "Double Unathi Horns"
+		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "soghun_dubhorns"
 		species_allowed = list("Unathi", "Xenochimera")
 
