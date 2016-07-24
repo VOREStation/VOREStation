@@ -378,7 +378,6 @@
 		return
 	..()
 
-
 //Suicide handling.
 /obj/item/weapon/gun/var/mouthshoot = 0 //To stop people from suiciding twice... >.>
 /obj/item/weapon/gun/proc/handle_suicide(mob/living/user)

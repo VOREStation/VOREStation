@@ -5,6 +5,7 @@
 	desc = "A portable anti-armour rifle fitted with a scope, the HI PTR-7 Rifle was originally designed to used against armoured exosuits. It is capable of punching through windows and non-reinforced walls with ease. Fires armor piercing 14.5mm shells."
 	icon_state = "heavysniper"
 	item_state = "l6closed-empty" // placeholder
+	item_state_slots = list(slot_r_hand_str = "heavysniper", slot_l_hand_str = "heavysniper")
 	w_class = 5 // So it can't fit in a backpack.
 	force = 10
 	slot_flags = SLOT_BACK

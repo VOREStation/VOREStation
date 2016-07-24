@@ -90,12 +90,12 @@
 
 /datum/gear/uniform/job_skirt/ce
 	display_name = "skirt, ce"
-	path = /obj/item/clothing/under/rank/engineer/chief_engineer/skirt
+	path = /obj/item/clothing/under/rank/chief_engineer/skirt
 	allowed_roles = list("Chief Engineer")
 
 /datum/gear/uniform/job_skirt/atmos
 	display_name = "skirt, atmos"
-	path = /obj/item/clothing/under/rank/engineer/atmospheric_technician/skirt
+	path = /obj/item/clothing/under/rank/atmospheric_technician/skirt
 	allowed_roles = list("Chief Engineer","Atmospheric Technician")
 
 /datum/gear/uniform/job_skirt/eng
@@ -110,17 +110,17 @@
 
 /datum/gear/uniform/job_skirt/cmo
 	display_name = "skirt, cmo"
-	path = /obj/item/clothing/under/rank/medical/chief_medical_officer/skirt
+	path = /obj/item/clothing/under/rank/chief_medical_officer/skirt
 	allowed_roles = list("Chief Medical Officer")
 
 /datum/gear/uniform/job_skirt/chem
 	display_name = "skirt, chemist"
-	path = /obj/item/clothing/under/rank/medical/chemist/skirt
+	path = /obj/item/clothing/under/rank/chemist/skirt
 	allowed_roles = list("Chief Medical Officer","Chemist")
 
 /datum/gear/uniform/job_skirt/viro
 	display_name = "skirt, virologist"
-	path = /obj/item/clothing/under/rank/medical/virologist/skirt
+	path = /obj/item/clothing/under/rank/virologist/skirt
 	allowed_roles = list("Chief Medical Officer","Medical Doctor")
 
 /datum/gear/uniform/job_skirt/med
@@ -145,7 +145,7 @@
 
 /datum/gear/uniform/job_skirt/warden
 	display_name = "skirt, warden"
-	path = /obj/item/clothing/under/rank/security/warden/skirt
+	path = /obj/item/clothing/under/rank/warden/skirt
 	allowed_roles = list("Head of Security", "Warden")
 
 /datum/gear/uniform/job_skirt/security
@@ -155,7 +155,7 @@
 
 /datum/gear/uniform/job_skirt/head_of_security
 	display_name = "skirt, hos"
-	path = /obj/item/clothing/under/rank/security/head_of_security/skirt
+	path = /obj/item/clothing/under/rank/head_of_security/skirt
 	allowed_roles = list("Head of Security")
 
 /datum/gear/uniform/jeans_qm

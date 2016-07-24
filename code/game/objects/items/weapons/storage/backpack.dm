@@ -186,6 +186,7 @@
 	name = "leather satchel"
 	desc = "It's a very fancy satchel made with fine leather."
 	icon_state = "satchel"
+	item_state_slots = list(slot_r_hand_str = "briefcase", slot_l_hand_str = "briefcase")
 
 /obj/item/weapon/storage/backpack/satchel/withwallet
 	New()
@@ -196,7 +197,6 @@
 	name = "satchel"
 	desc = "A trendy looking satchel."
 	icon_state = "satchel-norm"
-	item_state_slots = list(slot_r_hand_str = "briefcase", slot_l_hand_str = "briefcase")
 
 /obj/item/weapon/storage/backpack/satchel/eng
 	name = "industrial satchel"
