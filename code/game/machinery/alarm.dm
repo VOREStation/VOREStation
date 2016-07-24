@@ -54,7 +54,7 @@
 	var/wiresexposed = 0 // If it's been screwdrivered open.
 	var/aidisabled = 0
 	var/shorted = 0
-	circuit =  /obj/item/weapon/circuitboard/airalarm
+	circuit = /obj/item/weapon/circuitboard/airalarm
 
 	var/datum/wires/alarm/wires
 

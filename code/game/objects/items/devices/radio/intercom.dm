@@ -46,6 +46,7 @@
 /obj/item/device/radio/intercom/New()
 	..()
 	processing_objects += src
+	circuit = new circuit(src)
 
 /obj/item/device/radio/intercom/department/medbay/New()
 	..()
@@ -96,20 +97,18 @@
 		else
 			icon_state = "intercom"
 		return
-	if (wiresexposed && istype(W, /obj/item/weapon/wirecutters))
+	if(wiresexposed && istype(W, /obj/item/weapon/wirecutters))
 		user.visible_message("<span class='warning'>[user] has cut the wires inside \the [src]!</span>", "You have cut the wires inside \the [src].")
 		playsound(loc, 'sound/items/Wirecutter.ogg', 50, 1)
 		new/obj/item/stack/cable_coil(get_turf(src), 5)
 		var/obj/structure/frame/A = new /obj/structure/frame(loc)
-		var/obj/item/weapon/circuitboard/M = new circuit(A)
+		var/obj/item/weapon/circuitboard/M = circuit
 		A.frame_type = M.board_type
 		A.pixel_x = pixel_x
 		A.pixel_y = pixel_y
 		A.circuit = M
 		A.set_dir(dir)
 		A.anchored = 1
-		for (var/obj/C in src)
-			C.forceMove(loc)
 		A.state = 2
 		A.update_icon()
 		M.deconstruct(src)

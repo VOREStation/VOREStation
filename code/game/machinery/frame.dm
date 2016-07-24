@@ -1,3 +1,177 @@
+/var/global/list/construction_frame_wall
+/var/global/list/construction_frame_floor
+
+/proc/populate_frame_types()
+	//Create global frame type list if it hasn't been made already.
+	construction_frame_wall = list()
+	construction_frame_floor = list()
+	for(var/R in typesof(/datum/frame/frame_types)-/datum/frame/frame_types)
+		var/datum/frame/frame_types/type = new R
+		if(type.frame_style == "wall")
+			construction_frame_wall += type
+		else
+			construction_frame_floor += type
+
+	var/datum/frame/frame_types/cancel/cancel = new /datum/frame/frame_types/cancel
+	construction_frame_wall += cancel
+	construction_frame_floor += cancel
+
+/datum/frame/frame_types
+	var/name
+	var/frame_size = 5
+	var/frame_class
+	var/circuit
+	var/frame_style = "floor"
+	var/x_offset
+	var/y_offset
+
+/datum/frame/frame_types/computer
+	name = "Computer"
+	frame_class = "computer"
+
+/datum/frame/frame_types/machine
+	name = "Machine"
+	frame_class = "machine"
+
+/datum/frame/frame_types/conveyor
+	name = "Conveyor"
+	frame_class = "machine"
+	circuit = /obj/item/weapon/circuitboard/conveyor
+
+/datum/frame/frame_types/photocopier
+	name = "Photocopier"
+	frame_class = "machine"
+
+/datum/frame/frame_types/washing_machine
+	name = "Washing Machine"
+	frame_class = "machine"
+
+/datum/frame/frame_types/medical_console
+	name = "Medical Console"
+	frame_class = "computer"
+
+/datum/frame/frame_types/medical_pod
+	name = "Medical Pod"
+	frame_class = "machine"
+
+/datum/frame/frame_types/dna_analyzer
+	name = "DNA Analyzer"
+	frame_class = "machine"
+
+/datum/frame/frame_types/mass_driver
+	name = "Mass Driver"
+	frame_class = "machine"
+	circuit = /obj/item/weapon/circuitboard/mass_driver
+
+/datum/frame/frame_types/holopad
+	name = "Holopad"
+	frame_class = "computer"
+	frame_size = 4
+
+/datum/frame/frame_types/microwave
+	name = "Microwave"
+	frame_class = "machine"
+	frame_size = 4
+
+/datum/frame/frame_types/fax
+	name = "Fax"
+	frame_class = "machine"
+	frame_size = 3
+
+/datum/frame/frame_types/recharger
+	name = "Recharger"
+	frame_class = "machine"
+	circuit = /obj/item/weapon/circuitboard/recharger
+	frame_size = 3
+
+/datum/frame/frame_types/grinder
+	name = "Grinder"
+	frame_class = "machine"
+	circuit = /obj/item/weapon/circuitboard/grinder
+	frame_size = 3
+
+/datum/frame/frame_types/display
+	name = "Display"
+	frame_class = "display"
+	frame_style = "wall"
+	x_offset = 32
+	y_offset = 32
+
+/datum/frame/frame_types/supply_request_console
+	name = "Supply Request Console"
+	frame_class = "display"
+	frame_style = "wall"
+	x_offset = 32
+	y_offset = 32
+
+/datum/frame/frame_types/atm
+	name = "ATM"
+	frame_class = "display"
+	frame_size = 3
+	frame_style = "wall"
+	x_offset = 32
+	y_offset = 32
+
+/datum/frame/frame_types/newscaster
+	name = "Newscaster"
+	frame_class = "display"
+	frame_size = 3
+	frame_style = "wall"
+	x_offset = 28
+	y_offset = 30
+
+/datum/frame/frame_types/wall_charger
+	name = "Wall Charger"
+	frame_class = "machine"
+	circuit = /obj/item/weapon/circuitboard/recharger/wrecharger
+	frame_size = 3
+	frame_style = "wall"
+	x_offset = 32
+	y_offset = 32
+
+/datum/frame/frame_types/fire_alarm
+	name = "Fire Alarm"
+	frame_class = "alarm"
+	frame_size = 2
+	frame_style = "wall"
+	x_offset = 24
+	y_offset = 24
+
+/datum/frame/frame_types/air_alarm
+	name = "Air Alarm"
+	frame_class = "alarm"
+	frame_size = 2
+	frame_style = "wall"
+	x_offset = 24
+	y_offset = 24
+
+/datum/frame/frame_types/guest_pass_console
+	name = "Guest Pass Console"
+	frame_class = "display"
+	frame_size = 2
+	frame_style = "wall"
+	x_offset = 30
+	y_offset = 30
+
+/datum/frame/frame_types/intercom
+	name = "Intercom"
+	frame_class = "alarm"
+	frame_size = 2
+	frame_style = "wall"
+	x_offset = 28
+	y_offset = 28
+
+/datum/frame/frame_types/keycard_authenticator
+	name = "Keycard Authenticator"
+	frame_class = "alarm"
+	frame_size = 1
+	frame_style = "wall"
+	x_offset = 24
+	y_offset = 24
+
+/datum/frame/frame_types/cancel //used to get out of input dialogue
+	name = "Cancel"
+
 /obj/structure/frame
 	anchored = 0
 	name = "frame"
@@ -112,7 +286,8 @@
 	else if(istype(P, /obj/item/weapon/circuitboard) && need_circuit && !circuit)
 		if(state == 0 && anchored)
 			var/obj/item/weapon/circuitboard/B = P
-			if(B.board_type == frame_type)
+			var/datum/frame/frame_types/board_type = B.board_type
+			if(board_type.name == frame_type.name)
 				playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 				user << "<span class='notice'>You place the circuit board inside the frame.</span>"
 				circuit = P
@@ -189,6 +364,8 @@
 				B.pixel_y = pixel_y
 				B.set_dir(dir)
 				circuit.construct(B)
+				circuit.loc = null
+				B.circuit = circuit
 				qdel(src)
 				return
 
@@ -201,6 +378,8 @@
 				B.pixel_y = pixel_y
 				B.set_dir(dir)
 				circuit.construct(B)
+				circuit.loc = null
+				B.circuit = circuit
 				qdel(src)
 				return
 
@@ -212,6 +391,8 @@
 				B.pixel_y = pixel_y
 				B.set_dir(dir)
 				circuit.construct(B)
+				circuit.loc = null
+				B.circuit = circuit
 				qdel(src)
 				return
 

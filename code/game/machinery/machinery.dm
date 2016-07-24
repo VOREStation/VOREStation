@@ -123,6 +123,8 @@ Class Procs:
 	else
 		machines += src
 		machinery_sort_required = 1
+	if(circuit)
+		circuit = new circuit(src)
 
 /obj/machinery/Destroy()
 	machines -= src
@@ -358,7 +360,7 @@ Class Procs:
 
 /obj/machinery/proc/dismantle()
 	playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
-	var/obj/structure/frame/A = new /obj/structure/frame( src.loc )
+	var/obj/structure/frame/A = new /obj/structure/frame(loc)
 	var/obj/item/weapon/circuitboard/M = circuit
 	A.circuit = M
 	A.anchored = 1
@@ -367,18 +369,15 @@ Class Procs:
 	if(A.frame_type.circuit)
 		A.need_circuit = 0
 
-	for (var/obj/D in src.component_parts)
-		D.forceMove(loc)
-
-	if(A.components)
-		A.components.Cut()
-	else
-		A.components = list()
-
-	component_parts = list()
-
-	for(var/obj/C in src)
-		C.forceMove(loc)
+	if(A.frame_type.frame_class == "machine")
+		for(var/obj/D in src.component_parts)
+			D.forceMove(loc)
+		if(A.components)
+			A.components.Cut()
+		else
+			A.components = list()
+		component_parts = list()
+		A.check_components()
 
 	if(A.frame_type.frame_class == "alarm")
 		A.state = 2
@@ -393,7 +392,6 @@ Class Procs:
 	A.set_dir(dir)
 	A.pixel_x = pixel_x
 	A.pixel_y = pixel_y
-	A.check_components()
 	A.update_desc()
 	A.update_icon()
 	M.loc = null
