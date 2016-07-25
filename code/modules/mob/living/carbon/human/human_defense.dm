@@ -159,9 +159,9 @@ emp_act
 	if(user.eye_blind)
 		accuracy_penalty += 75
 	if(user.eye_blurry)
-		accuracy_penalty += 15
-	if(user.confused)
 		accuracy_penalty += 30
+	if(user.confused)
+		accuracy_penalty += 45
 
 	var/hit_zone = get_zone_with_miss_chance(target_zone, src, accuracy_penalty)
 
