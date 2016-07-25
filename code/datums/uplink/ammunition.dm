@@ -4,6 +4,7 @@
 /datum/uplink_item/item/ammo
 	item_cost = 20
 	category = /datum/uplink_category/ammunition
+	blacklisted = 1
 
 /datum/uplink_item/item/ammo/a357
 	name = ".357 Speedloader"
