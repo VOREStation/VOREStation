@@ -11,7 +11,7 @@
 	group = "Robotics"
 	access = access_robotics
 
-/datum/supply_packs/eng/robotics
+/datum/supply_packs/robotics/robotics_assembly
 	name = "Robotics assembly crate"
 	contains = list(
 			/obj/item/device/assembly/prox_sensor = 3,
