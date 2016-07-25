@@ -13,12 +13,15 @@
 	containername = "coolant tank crate"
 
 /datum/supply_packs/sci/phoron
-	name = "Phoron assembly crate"
+	name = "Phoron research crate"
 	contains = list(
 			/obj/item/weapon/tank/phoron = 3,
+			/obj/item/weapon/tank/oxygen = 3,
 			/obj/item/device/assembly/igniter = 3,
 			/obj/item/device/assembly/prox_sensor = 3,
-			/obj/item/device/assembly/timer = 3
+			/obj/item/device/assembly/timer = 3,
+			/obj/item/device/assembly/signaler = 3,
+			/obj/item/device/transfer_valve = 3
 			)
 	cost = 10
 	containertype = /obj/structure/closet/crate/secure/phoron
