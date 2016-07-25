@@ -16,7 +16,7 @@
 /obj/item/clothing/head/collectable/slime
 	name = "collectable slime cap!"
 	desc = "It just latches right in place!"
-	icon_state = "slime"
+	icon_state = "headslime"
 	body_parts_covered = 0
 
 /obj/item/clothing/head/collectable/xenom
