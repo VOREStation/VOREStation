@@ -9,5 +9,5 @@
 		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
 			return 1
 		else
-			H << "<span class='warning'>You need to have a horse half to wear this.</span>
+			H << "<span class='warning'>You need to have a horse half to wear this.</span>""
 			return 0
