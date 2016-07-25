@@ -11,7 +11,7 @@
 	var/list/purchase_log = new
 	var/datum/mind/uplink_owner = null
 	var/used_TC = 0
-	var/offer_time = 15 MINUTES			//The time increment per discount offered
+	var/offer_time = 10 MINUTES			//The time increment per discount offered
 	var/next_offer_time					//The time a discount will next be offered
 	var/datum/uplink_item/discount_item	//The item to be discounted
 	var/discount_amount					//The amount as a percent the item will be discounted by
