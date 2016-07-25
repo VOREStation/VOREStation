@@ -28,13 +28,10 @@ var/datum/uplink_random_selection/all_uplink_selection = new/datum/uplink_random
 	for(var/i = 0; i < attempts; i++)
 		var/datum/uplink_random_item/RI
 		if(items_override)
-			world << 1
 			RI = pick(all_items)
 		else
-			world << 2
 			RI = pick(items)
 		if(!prob(RI.keep_probability))
-			world << 3
 			continue
 		var/datum/uplink_item/I = uplink.items_assoc[RI.uplink_item]
 		if(I.cost(telecrystals, U) > telecrystals)
@@ -46,6 +43,7 @@ var/datum/uplink_random_selection/all_uplink_selection = new/datum/uplink_random
 		return I
 
 /datum/uplink_random_selection/all/New()
+	..()
 	for(var/datum/uplink_item/item in uplink.items)
 		if(item.blacklisted)
 			continue

@@ -3,6 +3,7 @@
 *****************/
 /datum/uplink_item/abstract/announcements
 	category = /datum/uplink_category/services
+	blacklisted = 1
 
 /datum/uplink_item/abstract/announcements/buy(var/obj/item/device/uplink/U, var/mob/user)
 	. = ..()

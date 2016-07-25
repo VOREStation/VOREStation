@@ -19,6 +19,7 @@
 /datum/uplink_item/item/badassery/random_one
 	name = "Random Item"
 	desc = "Buys you one random item."
+	blacklisted = 1
 
 /datum/uplink_item/item/badassery/random_one/buy(var/obj/item/device/uplink/U, var/mob/user)
 	var/datum/uplink_item/item = default_uplink_selection.get_random_item(U.uses)
