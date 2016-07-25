@@ -4,8 +4,8 @@
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "ed2090"
 	density = 1
-	health = 100
-	maxHealth = 100
+	health = 200
+	maxHealth = 200
 
 	is_ranged = 1
 	preparing_arrest_sounds = new()
