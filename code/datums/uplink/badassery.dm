@@ -78,7 +78,7 @@
 
 /datum/uplink_item/item/badassery/surplus/get_goods(var/obj/item/device/uplink/U, var/loc)
 	var/obj/structure/largecrate/C = new(loc)
-	var/random_items = get_random_uplink_items(null, item_worth, C)
+	var/random_items = get_surplus_items(null, item_worth, C)
 	for(var/datum/uplink_item/I in random_items)
 		I.purchase_log(U)
 		I.get_goods(U, C)
