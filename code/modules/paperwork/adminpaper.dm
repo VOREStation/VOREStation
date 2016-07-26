@@ -38,13 +38,13 @@
 
 /obj/item/weapon/paper/admin/proc/generateHeader()
 	var/originhash = md5("[origin]")
-	var/challengehash = copytext(md5("[game_id]"),1,10) // changed to a hash of the game ID so it's more consistant but changes every round.
+	var/timehash = copytext(md5("[world.time]"),1,10)
 	var/text = null
 	//TODO change logo based on who you're contacting.
 	text = "<center><img src = ntlogo.png></br>"
 	text += "<b>[origin] Quantum Uplink Signed Message</b><br>"
 	text += "<font size = \"1\">Encryption key: [originhash]<br>"
-	text += "Challenge: [challengehash]<br></font></center><hr>"
+	text += "Challenge: [timehash]<br></font></center><hr>"
 
 	header = text
 

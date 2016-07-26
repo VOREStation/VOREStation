@@ -13,6 +13,7 @@ var/list/admin_datums = list()
 	var/datum/feed_channel/admincaster_feed_channel = new /datum/feed_channel
 	var/admincaster_signature	//What you'll sign the newsfeeds as
 
+
 /datum/admins/New(initial_rank = "Temporary Admin", initial_rights = 0, ckey)
 	if(!ckey)
 		error("Admin datum created without a ckey argument. Datum has been deleted")
@@ -57,21 +58,24 @@ proc/admin_proc()
 
 NOTE: It checks usr by default. Supply the "user" argument if you wish to check for a specific mob.
 */
-/proc/check_rights(rights_required, show_msg=1, var/mob/user = usr)
-	if(user && user.client)
+/proc/check_rights(rights_required, show_msg=1, var/client/C = usr)
+	if(ismob(C))
+		var/mob/M = C
+		C = M.client
+
+	if(C)
 		if(rights_required)
-			if(user.client.holder)
-				if(rights_required & user.client.holder.rights)
-					return 1
-				else
-					if(show_msg)
-						user << "<font color='red'>Error: You do not have sufficient rights to do that. You require one of the following flags:[rights2text(rights_required," ")].</font>"
-		else
-			if(user.client.holder)
+			if(rights_required & C.holder.rights)
 				return 1
 			else
 				if(show_msg)
-					user << "<font color='red'>Error: You are not an admin.</font>"
+					C << "<font color='red'>Error: You do not have sufficient rights to do that. You require one of the following flags:[rights2text(rights_required," ")].</font>"
+		else
+			if(C.holder)
+				return 1
+			else
+				if(show_msg)
+					C << "<font color='red'>Error: You are not an admin.</font>"
 	return 0
 
 //probably a bit iffy - will hopefully figure out a better solution
