@@ -82,3 +82,4 @@
 	name = "Teleporter Circuit Board"
 	item_cost = DEFAULT_TELECRYSTAL_AMOUNT * 1.5
 	path = /obj/item/weapon/circuitboard/teleporter
+	blacklisted = 1
