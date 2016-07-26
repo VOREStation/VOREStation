@@ -95,7 +95,7 @@
 	icon_state = "beret_corporate_warden"
 	item_state_slots = list(slot_r_hand_str = "beret_black", slot_l_hand_str = "beret_black")
 
-/obj/item/clothing/head/helmet/warden
+/obj/item/clothing/head/helmet/warden //should these be helmets?
 	name = "warden's hat"
 	desc = "It's a special helmet issued to the Warden of a securiy force."
 	icon_state = "policehelm"
