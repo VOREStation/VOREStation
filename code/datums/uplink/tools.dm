@@ -4,6 +4,11 @@
 /datum/uplink_item/item/tools
 	category = /datum/uplink_category/tools
 
+/datum/uplink_item/item/tools/binoculars
+	name = "Binoculars"
+	item_cost = 5
+	path = /obj/item/device/binoculars
+
 /datum/uplink_item/item/tools/toolbox
 	name = "Fully Loaded Toolbox"
 	item_cost = 10
@@ -77,3 +82,4 @@
 	name = "Teleporter Circuit Board"
 	item_cost = DEFAULT_TELECRYSTAL_AMOUNT * 1.5
 	path = /obj/item/weapon/circuitboard/teleporter
+	blacklisted = 1
