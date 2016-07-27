@@ -39,17 +39,16 @@
 
 /obj/item/weapon/syndie/c4explosive/proc/detonate()
 	icon_state = "c-4[size]_1"
-	spawn(50)
-		explosion(get_turf(src), power, power*2, power*3, power*4, power*5)
-		for(var/dirn in cardinal)		//This is to guarantee that C4 at least breaks down all immediately adjacent walls and doors.
-			var/turf/simulated/wall/T = get_step(src,dirn)
-			if(locate(/obj/machinery/door/airlock) in T)
-				var/obj/machinery/door/airlock/D = locate() in T
-				if(D.density)
-					D.open()
-			if(istype(T,/turf/simulated/wall))
-				T.dismantle_wall(1)
-		qdel(src)
+	explosion(get_turf(src), power, power*2, power*3, power*4, power*5)
+	for(var/dirn in cardinal)		//This is to guarantee that C4 at least breaks down all immediately adjacent walls and doors.
+		var/turf/simulated/wall/T = get_step(src,dirn)
+		if(locate(/obj/machinery/door/airlock) in T)
+			var/obj/machinery/door/airlock/D = locate() in T
+			if(D.density)
+				D.open()
+		if(istype(T,/turf/simulated/wall))
+			T.dismantle_wall(1)
+	qdel(src)
 
 
 /*Detonator, disguised as a lighter*/

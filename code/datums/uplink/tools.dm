@@ -16,8 +16,25 @@
 
 /datum/uplink_item/item/tools/plastique
 	name = "C-4 (Destroys walls)"
-	item_cost = 20
+	item_cost = 10
 	path = /obj/item/weapon/plastique
+
+/datum/uplink_item/item/tools/packagebomb
+	name = "Package Bomb (Small)"
+	item_cost = 20
+	path = /obj/item/weapon/storage/box/syndie_kit/demolitions
+
+/datum/uplink_item/item/tools/packagebomb/large
+	name = "Package Bomb (Large)"
+	item_cost = 40
+	path = /obj/item/weapon/storage/box/syndie_kit/demolitions_heavy
+
+/*
+/datum/uplink_item/item/tools/packagebomb/huge
+	name = "Package Bomb (Huge)
+	item_cost = 60
+	path = /obj/item/weapon/storage/box/syndie_kit/demolitions_super_heavy
+*/
 
 /datum/uplink_item/item/tools/encryptionkey_radio
 	name = "Encrypted Radio Channel Key"
