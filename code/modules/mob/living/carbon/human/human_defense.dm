@@ -40,6 +40,8 @@ emp_act
 /mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone)
 	var/obj/item/organ/external/affected = get_organ(check_zone(def_zone))
 	var/siemens_coeff = get_siemens_coefficient_organ(affected)
+	if(fire_stacks < 0) // Water makes you more conductive.
+		siemens_coeff *= 1.5
 	stun_amount *= siemens_coeff
 	agony_amount *= siemens_coeff
 
@@ -152,7 +154,16 @@ emp_act
 	if(user == src) // Attacking yourself can't miss
 		return target_zone
 
-	var/hit_zone = get_zone_with_miss_chance(target_zone, src)
+	// Certain statuses make it harder to score a hit.  These are the same as gun accuracy, however melee doesn't use multiples of 15.
+	var/accuracy_penalty = 0
+	if(user.eye_blind)
+		accuracy_penalty += 75
+	if(user.eye_blurry)
+		accuracy_penalty += 30
+	if(user.confused)
+		accuracy_penalty += 45
+
+	var/hit_zone = get_zone_with_miss_chance(target_zone, src, accuracy_penalty)
 
 	if(!hit_zone)
 		visible_message("<span class='danger'>\The [user] misses [src] with \the [I]!</span>")

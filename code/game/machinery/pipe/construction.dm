@@ -476,7 +476,7 @@ Buildable meters
 
 		if(PIPE_SUPPLY_STRAIGHT, PIPE_SUPPLY_BENT)
 			var/obj/machinery/atmospherics/pipe/simple/hidden/supply/P = new( src.loc )
-			P.color = color
+			P.pipe_color = color
 			P.set_dir(src.dir)
 			P.initialize_directions = pipe_dir
 			var/turf/T = P.loc
@@ -495,7 +495,7 @@ Buildable meters
 
 		if(PIPE_SCRUBBERS_STRAIGHT, PIPE_SCRUBBERS_BENT)
 			var/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers/P = new( src.loc )
-			P.color = color
+			P.pipe_color = color
 			P.set_dir(src.dir)
 			P.initialize_directions = pipe_dir
 			var/turf/T = P.loc
@@ -514,7 +514,7 @@ Buildable meters
 
 		if(PIPE_UNIVERSAL)
 			var/obj/machinery/atmospherics/pipe/simple/hidden/universal/P = new( src.loc )
-			P.color = color
+			P.pipe_color = color
 			P.set_dir(src.dir)
 			P.initialize_directions = pipe_dir
 			var/turf/T = P.loc
@@ -588,7 +588,7 @@ Buildable meters
 
 		if(PIPE_SUPPLY_MANIFOLD)		//manifold
 			var/obj/machinery/atmospherics/pipe/manifold/hidden/supply/M = new( src.loc )
-			M.color = color
+			M.pipe_color = color
 			M.set_dir(dir)
 			M.initialize_directions = pipe_dir
 			//M.New()
@@ -611,7 +611,7 @@ Buildable meters
 
 		if(PIPE_SCRUBBERS_MANIFOLD)		//manifold
 			var/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers/M = new( src.loc )
-			M.color = color
+			M.pipe_color = color
 			M.set_dir(dir)
 			M.initialize_directions = pipe_dir
 			//M.New()
@@ -660,7 +660,7 @@ Buildable meters
 
 		if(PIPE_SUPPLY_MANIFOLD4W)		//4-way manifold
 			var/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply/M = new( src.loc )
-			M.color = color
+			M.pipe_color = color
 			M.set_dir(dir)
 			M.initialize_directions = pipe_dir
 			M.connect_types = src.connect_types
@@ -687,7 +687,7 @@ Buildable meters
 
 		if(PIPE_SCRUBBERS_MANIFOLD4W)		//4-way manifold
 			var/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers/M = new( src.loc )
-			M.color = color
+			M.pipe_color = color
 			M.set_dir(dir)
 			M.initialize_directions = pipe_dir
 			M.connect_types = src.connect_types

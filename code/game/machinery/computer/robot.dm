@@ -8,8 +8,6 @@
 	req_access = list(access_robotics)
 	circuit = /obj/item/weapon/circuitboard/robotics
 
-	var/safety = 1
-
 /obj/machinery/computer/robotics/attack_ai(var/mob/user as mob)
 	ui_interact(user)
 
@@ -19,8 +17,6 @@
 /obj/machinery/computer/robotics/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	var/data[0]
 	data["robots"] = get_cyborgs(user)
-	data["safety"] = safety
-	// Also applies for cyborgs. Hides the manual self-destruct button.
 	data["is_ai"] = issilicon(user)
 
 
@@ -39,39 +35,8 @@
 		user << "Access Denied"
 		return
 
-	// Destroys the cyborg
-	if(href_list["detonate"])
-		var/mob/living/silicon/robot/target = get_cyborg_by_name(href_list["detonate"])
-		if(!target || !istype(target))
-			return
-		if(isAI(user) && (target.connected_ai != user))
-			user << "Access Denied. This robot is not linked to you."
-			return
-		// Cyborgs may blow up themselves via the console
-		if(isrobot(user) && user != target)
-			user << "Access Denied."
-			return
-		var/choice = input("Really detonate [target.name]?") in list ("Yes", "No")
-		if(choice != "Yes")
-			return
-		if(!target || !istype(target))
-			return
-
-		// Antagonistic cyborgs? Left here for downstream
-		if(target.mind && (target.mind.special_role || target.emagged))
-			target << "Extreme danger.  Termination codes detected.  Scrambling security codes and automatic AI unlink triggered."
-			target.ResetSecurityCodes()
-		else
-			message_admins("<span class='notice'>[key_name_admin(usr)] detonated [target.name]!</span>")
-			log_game("[key_name(usr)] detonated [target.name]!")
-			target << "<span class='danger'>Self-destruct command received.</span>"
-			spawn(10)
-				target.self_destruct()
-
-
-
 	// Locks or unlocks the cyborg
-	else if (href_list["lockdown"])
+	if (href_list["lockdown"])
 		var/mob/living/silicon/robot/target = get_cyborg_by_name(href_list["lockdown"])
 		if(!target || !istype(target))
 			return
@@ -136,37 +101,6 @@
 		log_game("[key_name(usr)] emagged [target.name] using robotic console!")
 		target.emagged = 1
 		target << "<span class='notice'>Failsafe protocols overriden. New tools available.</span>"
-
-	// Arms the emergency self-destruct system
-	else if(href_list["arm"])
-		if(istype(user, /mob/living/silicon))
-			user << "Access Denied"
-			return
-
-		safety = !safety
-		user << "You [safety ? "disarm" : "arm"] the emergency self destruct"
-
-	// Destroys all accessible cyborgs if safety is disabled
-	else if(href_list["nuke"])
-		if(istype(user, /mob/living/silicon))
-			user << "Access Denied"
-			return
-		if(safety)
-			user << "Self-destruct aborted - safety active"
-			return
-
-		message_admins("<span class='notice'>[key_name_admin(usr)] detonated all cyborgs!</span>")
-		log_game("[key_name(usr)] detonated all cyborgs!")
-
-		for(var/mob/living/silicon/robot/R in mob_list)
-			if(istype(R, /mob/living/silicon/robot/drone))
-				continue
-			// Ignore antagonistic cyborgs
-			if(R.scrambledcodes)
-				continue
-			R << "<span class='danger'>Self-destruct command received.</span>"
-			spawn(10)
-				R.self_destruct()
 
 
 // Proc: get_cyborgs()

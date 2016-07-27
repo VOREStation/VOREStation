@@ -1139,12 +1139,15 @@ obj/machinery/power/apc/proc/autoset(var/val, var/on)
 
 // damage and destruction acts
 /obj/machinery/power/apc/emp_act(severity)
+	if(is_critical)
+		severity += 2
 	if(cell)
 		cell.emp_act(severity)
 
 	lighting = 0
-	equipment = 0
-	environ = 0
+	if(!is_critical)
+		equipment = 0
+		environ = 0
 	update()
 	update_icon()
 

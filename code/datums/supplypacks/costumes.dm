@@ -124,7 +124,7 @@ datum/supply_packs/costumes/witch
 /datum/supply_packs/randomised/costumes/costume_hats
 	name = "Costume hats"
 	containername = "Actor hats crate"
-	containertype = /obj/structure/closet
+	containertype = /obj/structure/closet/crate
 	cost = 10
 	num_contained = 3
 	contains = list(

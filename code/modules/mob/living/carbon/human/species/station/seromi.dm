@@ -11,6 +11,7 @@
 	name_language = "Schechi"
 	min_age = 12
 	max_age = 45
+	health_hud_intensity = 3
 
 	blood_color = "#D514F7"
 	flesh_color = "#5F7BB0"
@@ -56,7 +57,7 @@
 	cold_discomfort_level = 180
 
 	has_limbs = list(
-		BP_CHEST =  list("path" = /obj/item/organ/external/chest),
+		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
 		BP_GROIN =  list("path" = /obj/item/organ/external/groin),
 		BP_HEAD =   list("path" = /obj/item/organ/external/head/seromi),
 		BP_L_ARM =  list("path" = /obj/item/organ/external/arm),
@@ -83,7 +84,7 @@
 		/datum/unarmed_attack/claws,
 		/datum/unarmed_attack/stomp/weak
 		)
-
+/*
 	var/shock_cap = 30
 	var/hallucination_cap = 25
 
@@ -110,7 +111,7 @@
 		H.shock_stage += 1
 	if(H.shock_stage >= shock_cap && H.hallucination < hallucination_cap)
 		H.hallucination += 2.5
-
+*/
 /datum/species/teshari/get_vision_flags(var/mob/living/carbon/human/H)
 	if(!(H.sdisabilities & DEAF) && !H.ear_deaf)
 		return SEE_SELF|SEE_MOBS

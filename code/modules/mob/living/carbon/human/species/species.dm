@@ -108,6 +108,7 @@
 	// HUD data vars.
 	var/datum/hud_data/hud
 	var/hud_type
+	var/health_hud_intensity = 1  // This modifies how intensely the health hud is colored.
 
 	// Body/form vars.
 	var/list/inherent_verbs 	  // Species-specific verbs.

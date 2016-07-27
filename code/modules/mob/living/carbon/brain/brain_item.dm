@@ -21,6 +21,9 @@
 /obj/item/organ/internal/brain/mechassist()
 	replace_self_with(/obj/item/organ/internal/mmi_holder)
 
+/obj/item/organ/internal/brain/digitize()
+	replace_self_with(/obj/item/organ/internal/mmi_holder/robot)
+
 /obj/item/organ/internal/brain/proc/replace_self_with(replace_path)
 	var/mob/living/carbon/human/tmp_owner = owner
 	qdel(src)

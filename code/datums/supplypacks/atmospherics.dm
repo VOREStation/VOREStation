@@ -52,7 +52,7 @@
 
 /datum/supply_packs/atmos/canister_sleeping_agent
 	name = "N2O gas canister"
-	cost = 40
+	cost = 15
 	containername = "N2O gas canister crate"
 	containertype = /obj/structure/closet/crate/secure/large
 	access = access_atmospherics
@@ -60,7 +60,7 @@
 
 /datum/supply_packs/atmos/canister_carbon_dioxide
 	name = "Carbon dioxide gas canister"
-	cost = 40
+	cost = 15
 	containername = "CO2 canister crate"
 	containertype = /obj/structure/closet/crate/secure/large
 	access = access_atmospherics
@@ -69,7 +69,7 @@
 /datum/supply_packs/atmos/air_dispenser
 	contains = list(/obj/machinery/pipedispenser/orderable)
 	name = "Pipe Dispenser"
-	cost = 35
+	cost = 25
 	containertype = /obj/structure/closet/crate/secure/large
 	containername = "Pipe Dispenser Crate"
 	access = access_atmospherics
@@ -77,7 +77,32 @@
 /datum/supply_packs/atmos/disposals_dispenser
 	contains = list(/obj/machinery/pipedispenser/disposal/orderable)
 	name = "Disposals Pipe Dispenser"
-	cost = 35
+	cost = 25
 	containertype = /obj/structure/closet/crate/secure/large
 	containername = "Disposal Dispenser Crate"
 	access = access_atmospherics
+
+/datum/supply_packs/atmos/internals
+	name = "Internals crate"
+	contains = list(
+			/obj/item/clothing/mask/gas = 3,
+			/obj/item/weapon/tank/air = 3
+			)
+	cost = 10
+	containertype = /obj/structure/closet/crate/internals
+	containername = "Internals crate"
+
+/datum/supply_packs/atmos/evacuation
+	name = "Emergency equipment"
+	contains = list(
+			/obj/item/weapon/storage/toolbox/emergency = 2,
+			/obj/item/clothing/suit/storage/hazardvest = 2,
+			/obj/item/clothing/suit/storage/vest = 2,
+			/obj/item/weapon/tank/emergency_oxygen/engi = 4,
+			/obj/item/clothing/suit/space/emergency = 4,
+			/obj/item/clothing/head/helmet/space/emergency = 4,
+			/obj/item/clothing/mask/gas = 4
+			)
+	cost = 35
+	containertype = /obj/structure/closet/crate/internals
+	containername = "Emergency crate"

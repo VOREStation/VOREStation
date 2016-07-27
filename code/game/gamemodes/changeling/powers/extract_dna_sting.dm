@@ -2,6 +2,7 @@
 	name = "Extract DNA"
 	desc = "We stealthily sting a target and extract the DNA from them."
 	helptext = "Will give you the DNA of your target, allowing you to transform into them. Does not count towards absorb objectives."
+	ability_icon_state = "ling_sting_extract"
 	genomecost = 0
 	allowduringlesserform = 1
 	verbpath = /mob/proc/changeling_extract_dna_sting

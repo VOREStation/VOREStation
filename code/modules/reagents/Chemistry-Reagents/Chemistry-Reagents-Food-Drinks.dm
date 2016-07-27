@@ -636,25 +636,16 @@
 	if(alien == IS_DIONA)
 		return
 	..()
-	if(alien == IS_TAJARA)
-		M.adjustToxLoss(0.5 * removed)
-		M.make_jittery(4) //extra sensitive to caffine
+
 	if(adj_temp > 0)
 		holder.remove_reagent("frostoil", 10 * removed)
 
 /datum/reagent/nutriment/coffee/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	if(alien == IS_TAJARA)
-		M.adjustToxLoss(2 * removed)
-		M.make_jittery(4)
-		return
 
 /datum/reagent/drink/coffee/overdose(var/mob/living/carbon/M, var/alien)
 	if(alien == IS_DIONA)
 		return
-	if(alien == IS_TAJARA)
-		M.adjustToxLoss(4 * REM)
-		M.apply_effect(3, STUTTER)
 	M.make_jittery(5)
 
 /datum/reagent/drink/coffee/icecoffee
@@ -922,6 +913,50 @@
 
 	glass_name = "lemon lime soda"
 	glass_desc = "A tangy substance made of 0.5% natural citrus!"
+	glass_special = list(DRINK_FIZZ)
+
+/datum/reagent/drink/shirley_temple
+	name = "Shirley Temple"
+	description = "A sweet concotion hated even by its namesake."
+	id =  "shirley_temple"
+	color = "#EF304F"
+	adj_temp = -8
+
+	glass_name = "shirley temple"
+	glass_desc = "A sweet concotion hated even by its namesake."
+	glass_special = list(DRINK_FIZZ)
+
+/datum/reagent/drink/roy_rogers
+	name = "Roy Rogers"
+	description = "I'm a cowboy, on a steel horse I ride."
+	id = "roy_rogers"
+	color = "#4F1811"
+	adj_temp = -8
+
+	glass_name = "roy rogers"
+	glass_desc = "I'm a cowboy, on a steel horse I ride"
+	glass_special = list(DRINK_FIZZ)
+
+/datum/reagent/drink/collins_mix
+	name = "Collins Mix"
+	description = "Best hope it isn't a hoax."
+	id = "collins_mix"
+	color = "#D7D0B3"
+	adj_temp = -8
+
+	glass_name = "collins mix"
+	glass_desc = "Best hope it isn't a hoax."
+	glass_special = list(DRINK_FIZZ)
+
+/datum/reagent/drink/arnold_palmer
+	name = "Arnold Palmer"
+	description = "Tastes just like the old man."
+	id = "arnold_palmer"
+	color = "#AF5517"
+	adj_temp = -8
+
+	glass_name = "arnold palmer"
+	glass_desc = "Tastes just like the old man."
 	glass_special = list(DRINK_FIZZ)
 
 /datum/reagent/drink/doctor_delight

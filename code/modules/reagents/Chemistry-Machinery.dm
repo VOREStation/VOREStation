@@ -22,8 +22,8 @@
 	var/condi = 0
 	var/useramount = 15 // Last used amount
 	var/pillamount = 10
-	var/bottlesprite = 1
-	var/pillsprite = 1
+	var/bottlesprite = "1"
+	var/pillsprite = "1"
 	var/max_pill_count = 20
 	var/tab = "home"
 	var/analyze_data[0]
@@ -249,7 +249,7 @@
 				P.name = "[name] bottle"
 				P.pixel_x = rand(-7, 7) //random position
 				P.pixel_y = rand(-7, 7)
-				P.icon_state = "bottle"+bottlesprite
+				P.icon_state = "bottle-"+bottlesprite
 				reagents.trans_to_obj(P,60)
 				P.update_icon()
 			else

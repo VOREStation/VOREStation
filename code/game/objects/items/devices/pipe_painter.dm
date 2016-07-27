@@ -2,7 +2,6 @@
 	name = "pipe painter"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "labeler1"
-	item_state = "flight"
 	var/list/modes
 	var/mode
 

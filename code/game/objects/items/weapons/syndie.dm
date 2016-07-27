@@ -8,7 +8,7 @@
 
 /obj/item/weapon/syndie/c4explosive
 	icon_state = "c-4small_0"
-	item_state = "c-4small"
+	item_state = "radio"
 	name = "normal-sized package"
 	desc = "A small wrapped package."
 	w_class = 3
@@ -18,7 +18,7 @@
 
 /obj/item/weapon/syndie/c4explosive/heavy
 	icon_state = "c-4large_0"
-	item_state = "c-4large"
+	item_state = "radio"
 	desc = "A mysterious package, it's quite heavy."
 	power = 2
 	size = "large"
@@ -52,7 +52,7 @@
 
 /obj/item/weapon/syndie/c4detonator
 	icon_state = "c-4detonator_0"
-	item_state = "c-4detonator"
+	item_state = "zippo"
 	name = "\improper Zippo lighter"  /*Sneaky, thanks Dreyfus.*/
 	desc = "The zippo."
 	w_class = 1

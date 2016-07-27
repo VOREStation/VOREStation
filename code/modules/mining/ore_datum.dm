@@ -61,6 +61,7 @@ var/global/list/ore_data = list()
 	name = "sand"
 	display_name = "sand"
 	smelts_to = "glass"
+	alloy = 1
 	compresses_to = "sandstone"
 
 /ore/phoron

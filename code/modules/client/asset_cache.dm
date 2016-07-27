@@ -201,6 +201,7 @@ proc/getFilesSlow(var/client/client, var/list/files, var/register_asset = TRUE)
 		"large_stamp-cent.png"	= 'icons/paper_icons/large_stamp-cent.png',
 		"talisman.png"			= 'icons/paper_icons/talisman.png',
 		"ntlogo.png"			= 'icons/paper_icons/ntlogo.png'
+		"sglogo.png"			= 'icons/paper_icons/sglogo.png'
 	)
 
 /datum/asset/nanoui

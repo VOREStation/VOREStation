@@ -18,9 +18,6 @@
 			ExtinguishMob()
 		return TRUE
 
-	if(..())
-		return TRUE
-
 	if(handcuffed)
 		spawn() escape_handcuffs()
 	else if(legcuffed)
@@ -50,7 +47,7 @@
 		displaytime = breakouttime / 600 //Minutes
 
 	var/mob/living/carbon/human/H = src
-	if(istype(H) && H.gloves && istype(H.gloves,/obj/item/clothing/gloves/rig))
+	if(istype(H) && H.gloves && istype(H.gloves,/obj/item/clothing/gloves/gauntlets/rig))
 		breakouttime /= 2
 		displaytime /= 2
 
@@ -59,8 +56,8 @@
 		"<span class='warning'>You attempt to remove \the [HC]. (This will take around [displaytime] minutes and you need to stand still)</span>"
 		)
 
-	if(do_after(src, breakouttime, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_RESTRAINED))
-		if(!handcuffed || buckled)
+	if(do_after(src, breakouttime, incapacitation_flags = INCAPACITATION_DISABLED & INCAPACITATION_KNOCKDOWN))
+		if(!handcuffed)
 			return
 		visible_message(
 			"<span class='danger'>\The [src] manages to remove \the [handcuffed]!</span>",

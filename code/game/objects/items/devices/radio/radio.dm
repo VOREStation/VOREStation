@@ -25,7 +25,7 @@ var/global/list/default_medbay_channels = list(
 	name = "station bounced radio"
 	suffix = "\[3\]"
 	icon_state = "walkietalkie"
-	item_state = "walkietalkie"
+	item_state = "radio"
 
 	var/on = 1 // 0 for off
 	var/last_transmission

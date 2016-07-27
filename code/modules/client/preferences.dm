@@ -54,8 +54,10 @@ datum/preferences
 		//Some faction information.
 	var/home_system = "Unset"           //System of birth.
 	var/citizenship = "None"            //Current home system.
-	var/faction = "None"                //Antag faction/general associated faction.
+	var/faction = "None"                //General associated faction.
 	var/religion = "None"               //Religious association.
+	var/antag_faction = "None"			//Antag associated faction.
+	var/antag_vis = "Hidden"			//How visible antag association is to others.
 
 		//Mob preview
 	var/icon/preview_icon = null

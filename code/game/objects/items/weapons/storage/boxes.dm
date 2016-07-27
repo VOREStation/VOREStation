@@ -23,7 +23,7 @@
 	name = "box"
 	desc = "It's just an ordinary box."
 	icon_state = "box"
-	item_state = "syringe_kit"
+	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
 	var/foldable = /obj/item/stack/material/cardboard	// BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
 	max_w_class = 2
 
@@ -35,20 +35,20 @@
 	if ( contents.len )
 		return
 
-	if ( !ispath(src.foldable) )
+	if ( !ispath(foldable) )
 		return
 	var/found = 0
 	// Close any open UI windows first
 	for(var/mob/M in range(1))
 		if (M.s_active == src)
-			src.close(M)
+			close(M)
 		if ( M == user )
 			found = 1
 	if ( !found )	// User is too far away
 		return
 	// Now make the cardboard
 	user << "<span class='notice'>You fold [src] flat.</span>"
-	new src.foldable(get_turf(src))
+	new foldable(get_turf(src))
 	qdel(src)
 
 /obj/item/weapon/storage/box/survival/New()
@@ -125,7 +125,7 @@
 	name = "box of blank shells"
 	desc = "It has a picture of a gun and several warning symbols on the front."
 	icon_state = "blankshot_box"
-	item_state = "syringe_kit"
+	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
 
 /obj/item/weapon/storage/box/blanks/New()
 	..()
@@ -136,7 +136,7 @@
 	name = "box of beanbag shells"
 	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
 	icon_state = "beanshot_box"
-	item_state = "syringe_kit"
+	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
 
 /obj/item/weapon/storage/box/beanbags/New()
 	..()
@@ -147,7 +147,7 @@
 	name = "box of shotgun slugs"
 	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
 	icon_state = "lethalshellshot_box"
-	item_state = "syringe_kit"
+	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
 
 /obj/item/weapon/storage/box/shotgunammo/New()
 	..()
@@ -158,7 +158,7 @@
 	name = "box of shotgun shells"
 	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
 	icon_state = "lethalslug_box"
-	item_state = "syringe_kit"
+	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
 
 /obj/item/weapon/storage/box/shotgunshells/New()
 	..()
@@ -169,7 +169,7 @@
 	name = "box of illumination shells"
 	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
 	icon_state = "illumshot_box"
-	item_state = "syringe_kit"
+	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
 
 /obj/item/weapon/storage/box/flashshells/New()
 	..()
@@ -180,7 +180,7 @@
 	name = "box of stun shells"
 	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
 	icon_state = "stunshot_box"
-	item_state = "syringe_kit"
+	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
 
 /obj/item/weapon/storage/box/stunshells/New()
 	..()
@@ -191,7 +191,7 @@
 	name = "box of practice shells"
 	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
 	icon_state = "blankshot_box"
-	item_state = "syringe_kit"
+	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
 
 /obj/item/weapon/storage/box/practiceshells/New()
 	..()
@@ -224,7 +224,7 @@
 
 /obj/item/weapon/storage/box/emps/New()
 	..()
-	for(var/i = 1 to 5)
+	for(var/i = 1 to 7)
 		new /obj/item/weapon/grenade/empgrenade(src)
 
 /obj/item/weapon/storage/box/empslite
@@ -234,7 +234,7 @@
 
 /obj/item/weapon/storage/box/empslite/New()
 	..()
-	for(var/i = 1 to 5)
+	for(var/i = 1 to 7)
 		new /obj/item/weapon/grenade/empgrenade/low_yield(src)
 
 /obj/item/weapon/storage/box/smokes
@@ -249,22 +249,32 @@
 
 /obj/item/weapon/storage/box/anti_photons
 	name = "box of anti-photon grenades"
-	desc = "A box containing 5 experimental photon disruption grenades."
+	desc = "A box containing 7 experimental photon disruption grenades."
 	icon_state = "flashbang"
 
 /obj/item/weapon/storage/box/anti_photons/New()
 	..()
-	for(var/i = 1 to 5)
+	for(var/i = 1 to 7)
 		new /obj/item/weapon/grenade/anti_photon(src)
 
 /obj/item/weapon/storage/box/frags
 	name = "box of fragmentation grenades (WARNING)"
-	desc = "A box containing 5 military grade fragmentation grenades.<br> WARNING: These devices are extremely dangerous and can cause limb loss or death in repeated use."
+	desc = "A box containing 7 military grade fragmentation grenades.<br> WARNING: These devices are extremely dangerous and can cause limb loss or death in repeated use."
 	icon_state = "frag"
 
 /obj/item/weapon/storage/box/frags/New()
 	..()
-	for(var/i = 1 to 5)
+	for(var/i = 1 to 7)
+		new /obj/item/weapon/grenade/explosive(src)
+
+/obj/item/weapon/storage/box/frags_half_box
+	name = "box of fragmentation grenades (WARNING)"
+	desc = "A box containing 4 military grade fragmentation grenades.<br> WARNING: These devices are extremely dangerous and can cause limb loss or death in repeated use."
+	icon_state = "frag"
+
+/obj/item/weapon/storage/box/frags_half_box/New()
+	..()
+	for(var/i = 1 to 4)
 		new /obj/item/weapon/grenade/explosive(src)
 
 /obj/item/weapon/storage/box/metalfoam
@@ -316,7 +326,7 @@
 	name = "death alarm kit"
 	desc = "Box of stuff used to implant death alarms."
 	icon_state = "implant"
-	item_state = "syringe_kit"
+	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
 
 /obj/item/weapon/storage/box/cdeathalarm_kit/New()
 	..()
@@ -371,7 +381,7 @@
 
 /obj/item/weapon/storage/box/monkeycubes/New()
 	..()
-	if(src.type == /obj/item/weapon/storage/box/monkeycubes)
+	if(type == /obj/item/weapon/storage/box/monkeycubes)
 		for(var/i = 1 to 4)
 			new /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped(src)
 
@@ -468,7 +478,6 @@
 	desc = "A small box of 'Space-Proof' premium matches."
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "matchbox"
-	item_state = "zippo"
 	w_class = 1
 	slot_flags = SLOT_BELT
 	can_hold = list(/obj/item/weapon/flame/match)
@@ -502,7 +511,7 @@
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "light"
 	desc = "This box is shaped on the inside so that only light tubes and bulbs fit."
-	item_state = "syringe_kit"
+	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
 	storage_slots=21
 	can_hold = list(/obj/item/weapon/light/tube, /obj/item/weapon/light/bulb)
 	max_storage_space = 42	//holds 21 items of w_class 2
@@ -538,12 +547,28 @@
 	desc = "This nifty shock-resistant device will keep your 'groceries' nice and non-spoiled."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "portafreezer"
-	item_state = "medicalpack"
+	item_state_slots = list(slot_r_hand_str = "medicalpack", slot_l_hand_str = "medicalpack")
 	foldable = null
 	max_w_class = 3
 	can_hold = list(/obj/item/organ, /obj/item/weapon/reagent_containers/food, /obj/item/weapon/reagent_containers/glass)
 	max_storage_space = 21
 	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
+
+/obj/item/weapon/storage/box/freezer/Entered(var/atom/movable/AM)
+	if(istype(AM, /obj/item/organ))
+		var/obj/item/organ/O = AM
+		O.preserved = 1
+		for(var/obj/item/organ/organ in O)
+			organ.preserved = 1
+	..()
+
+/obj/item/weapon/storage/box/freezer/Exited(var/atom/movable/AM)
+	if(istype(AM, /obj/item/organ))
+		var/obj/item/organ/O = AM
+		O.preserved = 0
+		for(var/obj/item/organ/organ in O)
+			organ.preserved = 0
+	..()
 
 /obj/item/weapon/storage/box/ambrosia
 	name = "ambrosia seeds box"
