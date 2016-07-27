@@ -266,3 +266,18 @@
 	new /obj/item/clothing/gloves/arm_guard/combat(src)
 	new /obj/item/clothing/shoes/leg_guard/combat(src)
 	return
+
+/obj/item/weapon/storage/box/syndie_kit/demolitions/New()
+	..()
+	new /obj/item/weapon/syndie/c4explosive(src)
+	new /obj/item/weapon/screwdriver(src)
+
+/obj/item/weapon/storage/box/syndie_kit/demolitions_heavy/New()
+	..()
+	new /obj/item/weapon/syndie/c4explosive/heavy(src)
+	new /obj/item/weapon/screwdriver(src)
+
+/obj/item/weapon/storage/box/syndie_kit/demolitions_super_heavy/New()
+	..()
+	new /obj/item/weapon/syndie/c4explosive/heavy/super_heavy(src)
+	new /obj/item/weapon/screwdriver(src)

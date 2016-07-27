@@ -23,62 +23,70 @@
 	power = 2
 	size = "large"
 
+/obj/item/weapon/syndie/c4explosive/heavy/super_heavy
+	name = "large-sized package"
+	desc = "A mysterious package, it's quite exceptionally heavy."
+	power = 3
+
 /obj/item/weapon/syndie/c4explosive/New()
 	var/K = rand(1,2000)
 	K = md5(num2text(K)+name)
 	K = copytext(K,1,7)
-	src.desc += "\n You see [K] engraved on \the [src]."
-	var/obj/item/weapon/syndie/c4detonator/detonator = new(src.loc)
-	detonator.desc += "\n You see [K] engraved on the lighter."
+	desc += "\n You see [K] engraved on \the [src]."
+	var/obj/item/weapon/flame/lighter/zippo/c4detonator/detonator = new(src.loc)
+	detonator.desc += " You see [K] engraved on the lighter."
 	detonator.bomb = src
 
 /obj/item/weapon/syndie/c4explosive/proc/detonate()
 	icon_state = "c-4[size]_1"
-	spawn(50)
-		explosion(get_turf(src), power, power*2, power*3, power*4, power*4)
-		for(var/dirn in cardinal)		//This is to guarantee that C4 at least breaks down all immediately adjacent walls and doors.
-			var/turf/simulated/wall/T = get_step(src,dirn)
-			if(locate(/obj/machinery/door/airlock) in T)
-				var/obj/machinery/door/airlock/D = locate() in T
-				if(D.density)
-					D.open()
-			if(istype(T,/turf/simulated/wall))
-				T.dismantle_wall(1)
-		qdel(src)
+	explosion(get_turf(src), power, power*2, power*3, power*4, power*5)
+	for(var/dirn in cardinal)		//This is to guarantee that C4 at least breaks down all immediately adjacent walls and doors.
+		var/turf/simulated/wall/T = get_step(src,dirn)
+		if(locate(/obj/machinery/door/airlock) in T)
+			var/obj/machinery/door/airlock/D = locate() in T
+			if(D.density)
+				D.open()
+		if(istype(T,/turf/simulated/wall))
+			T.dismantle_wall(1)
+	qdel(src)
 
 
 /*Detonator, disguised as a lighter*/
 /*Click it when closed to open, when open to bring up a prompt asking you if you want to close it or press the button.*/
 
-/obj/item/weapon/syndie/c4detonator
-	icon_state = "c-4detonator_0"
-	item_state = "zippo"
-	name = "\improper Zippo lighter"  /*Sneaky, thanks Dreyfus.*/
-	desc = "The zippo."
-	w_class = 1
-
+/obj/item/weapon/flame/lighter/zippo/c4detonator
+	var/detonator_mode = 0
 	var/obj/item/weapon/syndie/c4explosive/bomb
-	var/pr_open = 0  /*Is the "What do you want to do?" prompt open?*/
 
-/obj/item/weapon/syndie/c4detonator/attack_self(mob/user as mob)
-	switch(src.icon_state)
-		if("c-4detonator_0")
-			src.icon_state = "c-4detonator_1"
-			user << "You flick open the lighter."
+/obj/item/weapon/flame/lighter/zippo/c4detonator/attack_self(mob/user as mob)
+	if(!detonator_mode)
+		..()
 
-		if("c-4detonator_1")
-			if(!pr_open)
-				pr_open = 1
-				switch(alert(user, "What would you like to do?", "Lighter", "Press the button.", "Close the lighter."))
-					if("Press the button.")
-						user << "<span class='warning'>You press the button.</span>"
-						flick("c-4detonator_click", src)
-						if(src.bomb)
-							src.bomb.detonate()
-							log_admin("[key_name(user)] has triggered [src.bomb] with [src].")
-							message_admins("<span class='danger'>[key_name_admin(user)] has triggered [src.bomb] with [src].</span>")
+	else if(!lit)
+		base_state = icon_state
+		lit = 1
+		icon_state = "[base_state]1"
+		//item_state = "[base_state]on"
+		user.visible_message("<span class='rose'>Without even breaking stride, \the [user] flips open \the [src] in one smooth movement.</span>")
 
-					if("Close the lighter.")
-						src.icon_state = "c-4detonator_0"
-						user << "You close the lighter."
-				pr_open = 0
+	else if(lit && detonator_mode)
+		switch(alert(user, "What would you like to do?", "Lighter", "Press the button.", "Close the lighter."))
+			if("Press the button.")
+				user << "<span class='warning'>You press the button.</span>"
+				icon_state = "[base_state]click"
+				if(src.bomb)
+					src.bomb.detonate()
+					log_admin("[key_name(user)] has triggered [src.bomb] with [src].")
+					message_admins("<span class='danger'>[key_name_admin(user)] has triggered [src.bomb] with [src].</span>")
+
+			if("Close the lighter.")
+				lit = 0
+				icon_state = "[base_state]"
+				//item_state = "[base_state]"
+				user.visible_message("<span class='rose'>You hear a quiet click, as \the [user] shuts off \the [src] without even looking at what they're doing.</span>")
+
+
+/obj/item/weapon/flame/lighter/zippo/c4detonator/attackby(obj/item/weapon/W, mob/user as mob)
+	if(istype(W, /obj/item/weapon/screwdriver))
+		detonator_mode = !detonator_mode
+		user << "<span class='notice'>You unscrew the top panel of \the [src] revealing a button.</span>"
