@@ -115,6 +115,7 @@
 
 /obj/attack_ghost(mob/user)
 	ui_interact(user)
+	tg_ui_interact(user)
 	..()
 
 /obj/proc/interact(mob/user)

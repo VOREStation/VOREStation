@@ -69,8 +69,8 @@
 				{{:helper.link('Create bottle (60 units max)', null, {'createbottle' : 1})}}
 			</div>
 			<div class='item'>
-				{{:helper.link('', 'pill pill' + data.pillSprite, {'tab_select' : 'pill'}, null, 'link32')}}
-				{{:helper.link('', 'pill bottle' + data.bottleSprite, {'tab_select' : 'bottle'}, null, 'link32')}}
+				{{:helper.link("<div class='pillIcon pill" + data.pillSprite + "'></div>", null, {'tab_select' : 'pill'}, null, 'link pillIcon32')}}
+				{{:helper.link("<div class='pillIcon bottle" + data.bottleSprite + "'></div>", null, {'tab_select' : 'bottle'}, null, 'link pillIcon32')}}
 			</div>
 		{{/if}}
 	{{/if}}
@@ -104,13 +104,13 @@
 
 {{else data.tab == 'pill'}}
 	{{for data.pillSpritesAmount}}
-		{{:helper.link('', 'pill pill' + value, {'pill_sprite' : value}, null, data.pillSprite == value ? 'linkOn link32' : 'link32')}}
+		{{:helper.link("<div class='pillIcon pill" + value + "'></div>", null, {'pill_sprite' : value}, null, data.pillSprite == value ? 'linkOn pillIcon32' : 'link pillIcon32')}}
 	{{/for}}
 	<div class='item'><br>{{:helper.link('Return', 'arrowreturn-1-w', {'tab_select' : 'home'})}}</div>
 	
 {{else data.tab == 'bottle'}}
 	{{for data.bottleSpritesAmount}}
-		{{:helper.link('', 'pill bottle' + value, {'bottle_sprite' : value}, null, data.bottleSprite == value ? 'linkOn link32' : 'link32')}}
+		{{:helper.link("<div class='pillIcon bottle" + value + "'></div>", null, {'bottle_sprite' : value}, null, data.bottleSprite == value ? 'linkOn pillIcon32' : 'link pillIcon32')}}
 	{{/for}}
 	<div class='item'><br>{{:helper.link('Return', 'arrowreturn-1-w', {'tab_select' : 'home'})}}</div>
 {{/if}}

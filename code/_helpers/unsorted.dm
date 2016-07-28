@@ -1315,3 +1315,15 @@ var/mob/dview/dview_mob = new
 	tY = max(1, min(world.maxy, origin.y + (text2num(tY) - (world.view + 1))))
 	return locate(tX, tY, tZ)
 
+//Key thing that stops lag. Cornerstone of performance in ss13, Just sitting here, in unsorted.dm.
+/proc/stoplag()
+	. = 1
+	sleep(world.tick_lag)
+	if(world.tick_usage > TICK_LIMIT_TO_RUN) //woke up, still not enough tick, sleep for more.
+		. += 2
+		sleep(world.tick_lag*2)
+		if(world.tick_usage > TICK_LIMIT_TO_RUN) //woke up, STILL not enough tick, sleep for more.
+			. += 4
+			sleep(world.tick_lag*4)
+			//you might be thinking of adding more steps to this, or making it use a loop and a counter var
+			//	not worth it.

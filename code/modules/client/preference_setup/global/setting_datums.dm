@@ -150,6 +150,18 @@ var/list/_client_preferences_by_type
 	enabled_description = "Fancy"
 	disabled_description = "Plain"
 
+/datum/client_preference/tgui_style
+	description ="tgui Style"
+	key = "TGUI_FANCY"
+	enabled_description = "Fancy"
+	disabled_description = "Plain"
+
+/datum/client_preference/tgui_monitor
+	description ="tgui Monitor"
+	key = "TGUI_MONITOR"
+	enabled_description = "Primary"
+	disabled_description = "All"
+
 /********************
 * Staff Preferences *
 ********************/

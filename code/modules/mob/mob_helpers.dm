@@ -577,3 +577,9 @@ var/list/global/organ_rel_size = list(
 
 /mob/proc/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /obj/screen/fullscreen/flash)
 	return
+
+/proc/get_both_hands(mob/living/carbon/M)
+	if(!istype(M))
+		return
+	var/list/hands = list(M.l_hand, M.r_hand)
+	return hands

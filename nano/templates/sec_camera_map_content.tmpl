@@ -4,7 +4,7 @@ Used In File(s): \code\game\machinery\computer\camera.dm
  -->
 {{for data.cameras}}
 	{{if value.z == 1}}
-		<div class="mapIcon mapIcon16" style="left: {{:(value.x)}}px; bottom: {{:(value.y - 14.75)}}px;">
+		<div class="mapIcon mapIcon16" style="left: {{:(value.x - 9.75)}}px; bottom: {{:(value.y - 14.25)}}px;">
 			{{if data.current && value.name == data.current.name}}
 				{{:helper.link("#", '', {'switch_camera' : value.camera}, 'selected')}}
 			{{else value.deact}}

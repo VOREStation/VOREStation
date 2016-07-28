@@ -6,9 +6,11 @@ env:
   BYOND_MAJOR="510"
   BYOND_MINOR="1346"
   MACRO_COUNT=986
+  NODE_VERSION="4"
 
 cache:
   directories:
+    - tgui/node_modules
     - $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}
 
 addons:
@@ -19,10 +21,13 @@ addons:
       - libstdc++6:i386
 
 before_script:
+  - cd tgui && npm install && cd ..
   - chmod +x ./install-byond.sh
   - ./install-byond.sh
 
 install:
+  - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $NODE_VERSION
+  - npm install -g gulp-cli
   - pip install --user PyYaml -q
   - pip install --user beautifulsoup4 -q
 
@@ -34,6 +39,8 @@ script:
   - awk -f tools/indentation.awk **/*.dm
   - md5sum -c - <<< "88490b460c26947f5ec1ab1bb9fa9f17 *html/changelogs/example.yml"
   - (num=`grep -E '\\\\(red|blue|green|black|b|i[^mc])' **/*.dm | wc -l`; echo "$num escapes (expecting ${MACRO_COUNT} or less)"; [ $num -le ${MACRO_COUNT} ])
+  - cd tgui && gulp
+  - cd ..
   - source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
   - python tools/TagMatcher/tag-matcher.py ../..
   - echo "#define UNIT_TEST 1" > code/_unit_tests.dm
