@@ -13,7 +13,7 @@
 	icon_state = "generic"
 	cast_methods = null
 	aspect = ASPECT_FROST
-	glow_color = "#FF6A00"
+	glow_color = "#00B3FF"
 
 /obj/item/weapon/spell/aura/frost/process()
 	if(!pay_energy(100))

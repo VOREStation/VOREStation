@@ -33,15 +33,24 @@
 		AM.forceMove(get_turf(src))
 	..()
 
+/obj/effect/phase_shift/relaymove(mob/user as mob)
+	if(user.stat)
+		return
+
+	user << "<span class='notice'>You step out of the rift.</span>"
+	user.forceMove(get_turf(src))
+	qdel(src)
+
 /obj/item/weapon/spell/phase_shift/on_use_cast(mob/user)
 	if(isturf(user.loc)) //Check if we're not already in a rift.
-		var/obj/effect/phase_shift/PS = new(get_turf(user))
-		visible_message("<span class='warning'>[user] vanishes into a pink rift!</span>")
-		user << "<span class='info'>You create an unstable rift, and go through it.  Be sure to not stay too long.</span>"
-		user.forceMove(PS)
-	else //We're already in a rift, time to get out.
-		if(istype(loc, /obj/effect/phase_shift))
-			var/obj/effect/phase_shift/PS = user.loc
-			qdel(PS) //Ejecting is handled in Destory()
-			visible_message("<span class='warning'>[user] reappears from the rift as it collapses.</span>")
+		if(pay_energy(2000))
+			var/obj/effect/phase_shift/PS = new(get_turf(user))
+			visible_message("<span class='warning'>[user] vanishes into a pink rift!</span>")
+			user << "<span class='info'>You create an unstable rift, and go through it.  Be sure to not stay too long.</span>"
+			user.forceMove(PS)
+			adjust_instability(10)
 			qdel(src)
+		else
+			user << "<span class='warning'>You don't have enough energy to make a rift!</span>"
+	else //We're already in a rift or something like a closet.
+		user << "<span class='warning'>Making a rift here would probably be a bad idea.</span>"
