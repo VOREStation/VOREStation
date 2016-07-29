@@ -14,7 +14,6 @@
 	name = "low yield emp grenade"
 	desc = "A weaker variant of the EMP grenade"
 	icon_state = "lyemp"
-	item_state = "lyempgrenade"
 	origin_tech = list(TECH_MATERIAL = 2, TECH_MAGNET = 3)
 
 	prime()

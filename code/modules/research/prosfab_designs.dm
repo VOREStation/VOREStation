@@ -49,7 +49,7 @@
 //////////////////// Prosthetics ////////////////////
 /datum/design/item/prosfab/pros/torso
 	time = 35
-	materials = list(DEFAULT_WALL_MATERIAL = 45000, "glass" = 7500, "plasteel" = 1500)
+	materials = list(DEFAULT_WALL_MATERIAL = 30000, "glass" = 7500)
 //	req_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 3, TECH_DATA = 3)	//Saving the values just in case
 	var/gender = MALE
 
@@ -72,7 +72,7 @@
 	id = "pros_head"
 	build_path = /obj/item/organ/external/head
 	time = 30
-	materials = list(DEFAULT_WALL_MATERIAL = 18750, "glass" = 3750, "plasteel" = 750)
+	materials = list(DEFAULT_WALL_MATERIAL = 18750, "glass" = 3750)
 //	req_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 3, TECH_DATA = 3)	//Saving the values just in case
 
 /datum/design/item/prosfab/pros/l_arm
@@ -80,63 +80,63 @@
 	id = "pros_l_arm"
 	build_path = /obj/item/organ/external/arm
 	time = 20
-	materials = list(DEFAULT_WALL_MATERIAL = 13500)
+	materials = list(DEFAULT_WALL_MATERIAL = 10125)
 
 /datum/design/item/prosfab/pros/l_hand
 	name = "Prosthetic left hand"
 	id = "pros_l_hand"
 	build_path = /obj/item/organ/external/hand
 	time = 15
-	materials = list(DEFAULT_WALL_MATERIAL = 7500)
-
-/datum/design/item/prosfab/pros/l_leg
-	name = "Prosthetic left leg"
-	id = "pros_l_leg"
-	build_path = /obj/item/organ/external/leg
-	time = 20
-	materials = list(DEFAULT_WALL_MATERIAL = 11250)
-
-/datum/design/item/prosfab/pros/l_foot
-	name = "Prosthetic left foot"
-	id = "pros_l_foot"
-	build_path = /obj/item/organ/external/foot
-	time = 15
-	materials = list(DEFAULT_WALL_MATERIAL = 7500)
+	materials = list(DEFAULT_WALL_MATERIAL = 3375)
 
 /datum/design/item/prosfab/pros/r_arm
 	name = "Prosthetic right arm"
 	id = "pros_r_arm"
 	build_path = /obj/item/organ/external/arm/right
 	time = 20
-	materials = list(DEFAULT_WALL_MATERIAL = 13500)
+	materials = list(DEFAULT_WALL_MATERIAL = 10125)
 
 /datum/design/item/prosfab/pros/r_hand
 	name = "Prosthetic right hand"
 	id = "pros_r_hand"
 	build_path = /obj/item/organ/external/hand/right
 	time = 15
-	materials = list(DEFAULT_WALL_MATERIAL = 7500)
+	materials = list(DEFAULT_WALL_MATERIAL = 3375)
+
+/datum/design/item/prosfab/pros/l_leg
+	name = "Prosthetic left leg"
+	id = "pros_l_leg"
+	build_path = /obj/item/organ/external/leg
+	time = 20
+	materials = list(DEFAULT_WALL_MATERIAL = 8437)
+
+/datum/design/item/prosfab/pros/l_foot
+	name = "Prosthetic left foot"
+	id = "pros_l_foot"
+	build_path = /obj/item/organ/external/foot
+	time = 15
+	materials = list(DEFAULT_WALL_MATERIAL = 2813)
 
 /datum/design/item/prosfab/pros/r_leg
 	name = "Prosthetic right leg"
 	id = "pros_r_leg"
 	build_path = /obj/item/organ/external/leg/right
 	time = 20
-	materials = list(DEFAULT_WALL_MATERIAL = 11250)
+	materials = list(DEFAULT_WALL_MATERIAL = 8437)
 
 /datum/design/item/prosfab/pros/r_foot
 	name = "Prosthetic right foot"
 	id = "pros_r_foot"
 	build_path = /obj/item/organ/external/foot/right
 	time = 15
-	materials = list(DEFAULT_WALL_MATERIAL = 7500)
+	materials = list(DEFAULT_WALL_MATERIAL = 2813)
 
 /datum/design/item/prosfab/pros/cell
 	name = "Prosthetic powercell"
 	id = "pros_cell"
 	build_path = /obj/item/organ/internal/cell
 	time = 15
-	materials = list(DEFAULT_WALL_MATERIAL = 7500, "glass" = 3000, "plasteel" = 1500)
+	materials = list(DEFAULT_WALL_MATERIAL = 7500, "glass" = 3000)
 //	req_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 2)
 
 /datum/design/item/prosfab/pros/eyes

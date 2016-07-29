@@ -158,6 +158,7 @@
 
 	if(!void)
 		void = new()
+		void.MakeGreed()
 	screen += void
 
 	if(prefs.lastchangelog != changelog_hash) //bolds the changelog button on the interface so we know there are updates.
@@ -286,6 +287,7 @@
 		'html/panels.css',
 		'html/images/loading.gif',
 		'html/images/ntlogo.png',
+		'html/images/sglogo.png',
 		'html/images/talisman.png',
 		'icons/pda_icons/pda_atmos.png',
 		'icons/pda_icons/pda_back.png',

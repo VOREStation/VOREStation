@@ -2,6 +2,7 @@
 	name = "Mimic Voice"
 	desc = "We shape our vocal glands to sound like a desired voice."
 	helptext = "Will turn your voice into the name that you enter. We must constantly expend chemicals to maintain our form like this"
+	ability_icon_state = "ling_mimic_voice"
 	genomecost = 1
 	verbpath = /mob/proc/changeling_mimicvoice
 

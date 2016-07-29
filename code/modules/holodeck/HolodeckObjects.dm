@@ -121,6 +121,10 @@
 	name = "boxing gloves"
 	desc = "Because you really needed another excuse to punch your crewmates."
 	icon_state = "boxing"
+	item_icons = list(
+			slot_l_hand_str = 'icons/mob/items/lefthand_gloves.dmi',
+			slot_r_hand_str = 'icons/mob/items/righthand_gloves.dmi',
+			)
 	item_state = "boxing"
 
 /obj/structure/window/reinforced/holowindow/Destroy()
@@ -235,6 +239,10 @@
 /obj/item/weapon/holo/esword
 	desc = "May the force be within you. Sorta."
 	icon_state = "sword0"
+	item_icons = list(
+			slot_l_hand_str = 'icons/mob/items/lefthand_melee.dmi',
+			slot_r_hand_str = 'icons/mob/items/righthand_melee.dmi',
+			)
 	force = 3.0
 	throw_speed = 1
 	throw_range = 5
@@ -295,7 +303,6 @@
 	icon = 'icons/obj/basketball.dmi'
 	icon_state = "basketball"
 	name = "basketball"
-	item_state = "basketball"
 	desc = "Here's your chance, do your dance at the Space Jam."
 	w_class = 4 //Stops people from hiding it in their bags/pockets
 

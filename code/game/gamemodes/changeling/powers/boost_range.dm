@@ -3,6 +3,7 @@
 	desc = "We evolve the ability to shoot our stingers at humans, with some preperation."
 	helptext = "Allows us to prepare the next sting to have a range of two tiles."
 	enhancedtext = "The range is extended to five tiles."
+	ability_icon_state = "ling_sting_boost_range"
 	genomecost = 1
 	allowduringlesserform = 1
 	verbpath = /mob/proc/changeling_boost_range

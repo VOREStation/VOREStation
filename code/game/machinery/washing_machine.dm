@@ -20,6 +20,10 @@
 	var/gibs_ready = 0
 	var/obj/crayon
 	var/list/washing = list()
+	var/list/disallowed_types = list(
+		/obj/item/clothing/suit/space,
+		/obj/item/clothing/head/helmet/space
+		)
 
 /obj/machinery/washing_machine/New()
 	circuit = new circuit(src)
@@ -107,53 +111,12 @@
 				state = 3
 		else
 			..()
-	else if(istype(W,/obj/item/stack/material/hairlesshide) || \
-		istype(W,/obj/item/clothing/under) || \
-		istype(W,/obj/item/clothing/mask) || \
-		istype(W,/obj/item/clothing/head) || \
-		istype(W,/obj/item/clothing/gloves) || \
-		istype(W,/obj/item/clothing/shoes) || \
-		istype(W,/obj/item/clothing/suit) || \
-		istype(W,/obj/item/weapon/bedsheet))
 
-		//YES, it's hardcoded... saves a var/can_be_washed for every single clothing item.
-		if ( istype(W,/obj/item/clothing/suit/space ) )
-			user << "This item does not fit."
-			return
-		if ( istype(W,/obj/item/clothing/suit/syndicatefake ) )
-			user << "This item does not fit."
-			return
-//		if ( istype(W,/obj/item/clothing/suit/powered ) )
-//			user << "This item does not fit."
-//			return
-		if ( istype(W,/obj/item/clothing/suit/cyborg_suit ) )
-			user << "This item does not fit."
-			return
-		if ( istype(W,/obj/item/clothing/suit/bomb_suit ) )
-			user << "This item does not fit."
-			return
-		if ( istype(W,/obj/item/clothing/suit/armor ) )
-			user << "This item does not fit."
-			return
-		if ( istype(W,/obj/item/clothing/suit/armor ) )
-			user << "This item does not fit."
-			return
-		if ( istype(W,/obj/item/clothing/mask/gas ) )
-			user << "This item does not fit."
-			return
-		if ( istype(W,/obj/item/clothing/mask/smokable/cigarette ) )
-			user << "This item does not fit."
-			return
-		if ( istype(W,/obj/item/clothing/head/syndicatefake ) )
-			user << "This item does not fit."
-			return
-//		if ( istype(W,/obj/item/clothing/head/powered ) )
-//			user << "This item does not fit."
-//			return
-		if ( istype(W,/obj/item/clothing/head/helmet ) )
-			user << "This item does not fit."
-			return
+	else if(is_type_in_list(W, disallowed_types))
+		user << "<span class='warning'>You can't fit \the [W] inside.</span>"
+		return
 
+	else if(istype(W, /obj/item/clothing))
 		if(washing.len < 5)
 			if ( state in list(1, 3) )
 				user.drop_item()

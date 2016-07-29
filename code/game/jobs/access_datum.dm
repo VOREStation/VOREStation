@@ -457,3 +457,8 @@
 /datum/access/crate_cash
 	id = access_crate_cash
 	access_type = ACCESS_TYPE_NONE
+
+/var/const/access_trader = 160//General Beruang Trader Access
+/datum/access/trader
+	id = access_trader
+	access_type = ACCESS_TYPE_PRIVATE

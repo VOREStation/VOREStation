@@ -66,9 +66,6 @@
 
 	layer = MOB_LAYER
 
-	if(blind && client)
-		blind.layer = 0
-
 	sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
 	see_in_dark = 8
 	see_invisible = SEE_INVISIBLE_LEVEL_TWO
@@ -77,6 +74,7 @@
 	drop_l_hand()
 
 	if(healths)
+		healths.overlays = null // This is specific to humans but the relevant code is here; shouldn't mess with other mobs.
 		healths.icon_state = "health6"
 
 	timeofdeath = world.time

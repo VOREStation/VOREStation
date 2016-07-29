@@ -3,7 +3,6 @@
 	desc = "An updated, modular intercom that fits over the head. Takes encryption keys"
 	var/radio_desc = ""
 	icon_state = "headset"
-	item_state = "headset"
 	matter = list(DEFAULT_WALL_MATERIAL = 75)
 	subspace_transmission = 1
 	canhear_range = 0 // can't hear headsets from very far away
@@ -71,7 +70,7 @@
 
 /obj/item/device/radio/headset/syndicate/alt
 	icon_state = "syndie_headset"
-	item_state = "syndie_headset"
+	item_state = "headset"
 	origin_tech = list(TECH_ILLEGAL = 3)
 	syndie = 1
 	ks1type = /obj/item/device/encryptionkey/syndicate
@@ -91,7 +90,7 @@
 	name = "security bowman headset"
 	desc = "This is used by your elite security force."
 	icon_state = "sec_headset_alt"
-	item_state = "sec_headset_alt"
+	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/headset_sec
 
 /obj/item/device/radio/headset/headset_eng
@@ -105,7 +104,7 @@
 	name = "engineering bowman headset"
 	desc = "When the engineers wish to chat like girls."
 	icon_state = "eng_headset_alt"
-	item_state = "eng_headset_alt"
+	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/headset_eng
 
 /obj/item/device/radio/headset/headset_rob
@@ -126,7 +125,7 @@
 	name = "medical bowman headset"
 	desc = "A headset for the trained staff of the medbay."
 	icon_state = "med_headset_alt"
-	item_state = "med_headset_alt"
+	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/headset_med
 
 /obj/item/device/radio/headset/headset_sci
@@ -154,7 +153,7 @@
 	name = "command bowman headset"
 	desc = "A headset with a commanding channel."
 	icon_state = "com_headset_alt"
-	item_state = "com_headset_alt"
+	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/headset_com
 
 
@@ -169,7 +168,7 @@
 	name = "captain's bowman headset"
 	desc = "The headset of the boss."
 	icon_state = "com_headset_alt"
-	item_state = "com_headset_alt"
+	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/heads/captain
 
 /obj/item/device/radio/headset/heads/ai_integrated //No need to care about icons, it should be hidden inside the AI anyway.
@@ -198,7 +197,7 @@
 	name = "research director's bowman headset"
 	desc = "Headset of the researching God."
 	icon_state = "com_headset_alt"
-	item_state = "com_headset_alt"
+	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/heads/rd
 
 /obj/item/device/radio/headset/heads/hos
@@ -212,7 +211,7 @@
 	name = "head of security's bowman headset"
 	desc = "The headset of the man who protects your worthless lifes."
 	icon_state = "com_headset_alt"
-	item_state = "com_headset_alt"
+	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/heads/hos
 
 /obj/item/device/radio/headset/heads/ce
@@ -226,7 +225,7 @@
 	name = "chief engineer's bowman headset"
 	desc = "The headset of the guy who is in charge of morons"
 	icon_state = "com_headset_alt"
-	item_state = "com_headset_alt"
+	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/heads/ce
 
 /obj/item/device/radio/headset/heads/cmo
@@ -240,7 +239,7 @@
 	name = "chief medical officer's bowman headset"
 	desc = "The headset of the highly trained medical chief."
 	icon_state = "com_headset_alt"
-	item_state = "com_headset_alt"
+	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/heads/cmo
 
 /obj/item/device/radio/headset/heads/hop
@@ -254,7 +253,7 @@
 	name = "head of personnel's bowman headset"
 	desc = "The headset of the guy who will one day be captain."
 	icon_state = "com_headset_alt"
-	item_state = "com_headset_alt"
+	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/heads/hop
 /*
 /obj/item/device/radio/headset/headset_mine
@@ -275,7 +274,7 @@
 	name = "supply bowman headset"
 	desc = "A bowman headset used by the QM and his slaves."
 	icon_state = "cargo_headset_alt"
-	item_state = "cargo_headset_alt"
+	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/headset_cargo
 
 /obj/item/device/radio/headset/headset_service
@@ -297,7 +296,7 @@
 	name = "emergency response team bowman headset"
 	desc = "The headset of the boss's boss."
 	icon_state = "com_headset_alt"
-	item_state = "com_headset_alt"
+	item_state = "headset"
 //	freerange = 1
 	ks2type = /obj/item/device/encryptionkey/ert
 

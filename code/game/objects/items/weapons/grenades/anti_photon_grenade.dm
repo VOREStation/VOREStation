@@ -3,7 +3,6 @@
 	name = "photon disruption grenade"
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "emp"
-	item_state = "emp"
 	det_time = 20
 	origin_tech = list(TECH_BLUESPACE = 4, TECH_MATERIAL = 4)
 

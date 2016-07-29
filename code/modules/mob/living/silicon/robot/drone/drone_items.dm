@@ -50,6 +50,15 @@
 		/obj/item/weapon/newspaper
 		)
 
+/obj/item/weapon/gripper/chemistry
+	name = "chemistry gripper"
+	desc = "A simple grasping tool for chemical work."
+
+	can_hold = list(
+		/obj/item/weapon/reagent_containers/glass,
+		/obj/item/weapon/storage/pill_bottle
+		)
+
 /obj/item/weapon/gripper/research //A general usage gripper, used for toxins/robotics/xenobio/etc
 	name = "scientific gripper"
 	icon_state = "gripper-sci"
@@ -91,6 +100,22 @@
 	can_hold = list(
 		/obj/item/organ
 		)
+
+/obj/item/weapon/gripper/no_use/organ/Entered(var/atom/movable/AM)
+	if(istype(AM, /obj/item/organ))
+		var/obj/item/organ/O = AM
+		O.preserved = 1
+		for(var/obj/item/organ/organ in O)
+			organ.preserved = 1
+	..()
+
+/obj/item/weapon/gripper/no_use/organ/Exited(var/atom/movable/AM)
+	if(istype(AM, /obj/item/organ))
+		var/obj/item/organ/O = AM
+		O.preserved = 0
+		for(var/obj/item/organ/organ in O)
+			organ.preserved = 0
+	..()
 
 /obj/item/weapon/gripper/no_use/organ/robotics
 	name = "external organ gripper"

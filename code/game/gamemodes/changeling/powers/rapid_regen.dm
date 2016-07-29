@@ -4,6 +4,7 @@
 	helptext = "This will heal a significant amount of brute, fire, oxy, clone, and brain damage, and heal broken bones, internal bleeding, low blood, \
 	and organ damage.  The process is fast, but anyone who sees us do this will likely realize we are not what we seem."
 	enhancedtext = "Healing increased to heal up to maximum health."
+	ability_icon_state = "ling_rapid_regeneration"
 	genomecost = 2
 	verbpath = /mob/proc/changeling_rapid_regen
 

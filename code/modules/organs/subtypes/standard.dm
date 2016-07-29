@@ -2,6 +2,8 @@
 			   ORGAN DEFINES
 ****************************************************/
 
+//Make sure that w_class is set as if the parent mob was medium sized! This is because w_class is adjusted automatically for mob_size in New()
+
 /obj/item/organ/external/chest
 	name = "upper body"
 	organ_tag = BP_TORSO
@@ -46,7 +48,7 @@
 	organ_tag = "l_arm"
 	name = "left arm"
 	icon_name = "l_arm"
-	max_damage = 50
+	max_damage = 80
 	min_broken_damage = 30
 	w_class = 3
 	body_part = ARM_LEFT
@@ -67,7 +69,7 @@
 	organ_tag = "l_leg"
 	name = "left leg"
 	icon_name = "l_leg"
-	max_damage = 50
+	max_damage = 80
 	min_broken_damage = 30
 	w_class = 3
 	body_part = LEG_LEFT
@@ -90,7 +92,7 @@
 	organ_tag = "l_foot"
 	name = "left foot"
 	icon_name = "l_foot"
-	max_damage = 30
+	max_damage = 50
 	min_broken_damage = 15
 	w_class = 2
 	body_part = FOOT_LEFT
@@ -119,7 +121,7 @@
 	organ_tag = "l_hand"
 	name = "left hand"
 	icon_name = "l_hand"
-	max_damage = 30
+	max_damage = 50
 	min_broken_damage = 15
 	w_class = 2
 	body_part = HAND_LEFT
@@ -148,6 +150,7 @@
 	organ_tag = BP_HEAD
 	icon_name = "head"
 	name = "head"
+	slot_flags = SLOT_BELT
 	max_damage = 75
 	min_broken_damage = 35
 	w_class = 3

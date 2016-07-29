@@ -124,3 +124,15 @@
 //----------------------------
 /obj/effect/projectile/bullet/muzzle
 	icon_state = "muzzle_bullet"
+
+//----------------------------
+// Lightning beam
+//----------------------------
+/obj/effect/projectile/lightning/tracer
+	icon_state = "lightning"
+
+/obj/effect/projectile/lightning/muzzle
+	icon_state = "muzzle_lightning"
+
+/obj/effect/projectile/lightning/impact
+	icon_state = "impact_lightning"
