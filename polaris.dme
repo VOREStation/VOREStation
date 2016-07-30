@@ -429,6 +429,7 @@
 #include "code\game\gamemodes\technomancer\devices\disposable_teleporter.dm"
 #include "code\game\gamemodes\technomancer\devices\gloves_of_regen.dm"
 #include "code\game\gamemodes\technomancer\devices\hypos.dm"
+#include "code\game\gamemodes\technomancer\devices\implants.dm"
 #include "code\game\gamemodes\technomancer\devices\shield_armor.dm"
 #include "code\game\gamemodes\technomancer\devices\tesla_armor.dm"
 #include "code\game\gamemodes\technomancer\spells\abjuration.dm"

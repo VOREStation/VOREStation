@@ -58,9 +58,9 @@ var/list/technomancer_belongings = list()
 		icon_state = "track_unknown"
 
 	else
-		set_dir(get_dir(src,tracked))
+		set_dir(get_dir(src,get_turf(tracked)))
 
-		switch(get_dist(src,tracked))
+		switch(get_dist(src,get_turf(tracked)))
 			if(0)
 				icon_state = "track_direct"
 			if(1 to 8)
