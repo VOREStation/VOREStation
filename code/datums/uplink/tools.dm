@@ -19,22 +19,39 @@
 	item_cost = 10
 	path = /obj/item/weapon/plastique
 
+/datum/uplink_item/item/tools/duffle
+	name = "Black Duffle Bag"
+	item_cost = 10
+	path = /obj/item/weapon/storage/backpack/dufflebag/syndie
+
+/datum/uplink_item/item/tools/duffle/med
+	name = "Black Medical Duffle Bag"
+	path = /obj/item/weapon/storage/backpack/dufflebag/syndie/med
+
+/datum/uplink_item/item/tools/duffle/ammo
+	name = "Black Ammunition Duffle Bag"
+	path = /obj/item/weapon/storage/backpack/dufflebag/syndie/ammo
+
+/datum/uplink_item/item/tools/clerical
+	name = "Morphic Clerical Kit"
+	item_cost = 15
+	path = /obj/item/weapon/storage/box/syndie_kit/clerical
+
+/datum/uplink_item/item/tools/money
+	name = "Operations Funding"
+	item_cost = 15
+	path = /obj/item/weapon/storage/secure/briefcase/money
+	desc = "A briefcase with 10,000 untraceable thalers for funding your sneaky activities."
+
+/datum/uplink_item/item/tools/space_suit
+	name = "Space Suit"
+	item_cost = 15
+	path = /obj/item/weapon/storage/box/syndie_kit/space
+
 /datum/uplink_item/item/tools/packagebomb
 	name = "Package Bomb (Small)"
 	item_cost = 20
 	path = /obj/item/weapon/storage/box/syndie_kit/demolitions
-
-/datum/uplink_item/item/tools/packagebomb/large
-	name = "Package Bomb (Large)"
-	item_cost = 40
-	path = /obj/item/weapon/storage/box/syndie_kit/demolitions_heavy
-
-/*
-/datum/uplink_item/item/tools/packagebomb/huge
-	name = "Package Bomb (Huge)
-	item_cost = 60
-	path = /obj/item/weapon/storage/box/syndie_kit/demolitions_super_heavy
-*/
 
 /datum/uplink_item/item/tools/encryptionkey_radio
 	name = "Encrypted Radio Channel Key"
@@ -54,26 +71,22 @@
 	item_cost = 20
 	path = /obj/item/device/encryptionkey/binary
 
+/datum/uplink_item/item/tools/packagebomb/large
+	name = "Package Bomb (Large)"
+	item_cost = 40
+	path = /obj/item/weapon/storage/box/syndie_kit/demolitions_heavy
+
+/*
+/datum/uplink_item/item/tools/packagebomb/huge
+	name = "Package Bomb (Huge)
+	item_cost = 60
+	path = /obj/item/weapon/storage/box/syndie_kit/demolitions_super_heavy
+*/
+
 /datum/uplink_item/item/tools/emag
 	name = "Cryptographic Sequencer"
 	item_cost = 30
 	path = /obj/item/weapon/card/emag
-
-/datum/uplink_item/item/tools/clerical
-	name = "Morphic Clerical Kit"
-	item_cost = 15
-	path = /obj/item/weapon/storage/box/syndie_kit/clerical
-
-/datum/uplink_item/item/tools/money
-	name = "Operations Funding"
-	item_cost = 15
-	path = /obj/item/weapon/storage/secure/briefcase/money
-	desc = "A briefcase with 10,000 untraceable thalers for funding your sneaky activities."
-
-/datum/uplink_item/item/tools/space_suit
-	name = "Space Suit"
-	item_cost = 15
-	path = /obj/item/weapon/storage/box/syndie_kit/space
 
 /datum/uplink_item/item/tools/thermal
 	name = "Thermal Imaging Glasses"
