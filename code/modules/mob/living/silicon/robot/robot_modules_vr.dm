@@ -6,7 +6,10 @@
 
 /obj/item/weapon/robot_module/knine
 	name = "k9 robot module"
-	sprites = list("K9 hound" = "k9")
+	sprites = list(
+					"K9 hound" = "k9",
+					"K9 Alternative (Static)" = "k92"
+					)
 	channels = list("Security" = 1)
 	networks = list(NETWORK_SECURITY)
 	can_be_pushed = 0
@@ -25,7 +28,7 @@
 	src.emag 	 = new /obj/item/weapon/gun/energy/laser/mounted(src) //Emag. Not a big problem.
 	R.icon 		 = 'icons/mob/widerobot_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
-	R.icon_state = "k9"
+	//R.icon_state = "k9"
 	R.pixel_x 	 = -16
 	R.old_x 	 = -16
 	..()
@@ -54,7 +57,10 @@
 	channels = list("Medical" = 1)
 	networks = list(NETWORK_MEDICAL)
 	can_be_pushed = 0
-	sprites = list("Medical Hound" = "medihound")
+	sprites = list(
+					"Medical Hound" = "medihound",
+					"Dark Medical Hound (Static)" = "medihounddark"
+					)
 
 /obj/item/weapon/robot_module/medihound/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/weapon/dogborg/jaws/small(src) //In case a patient is being attacked by carp.
@@ -67,7 +73,7 @@
 	src.modules += new /obj/item/weapon/reagent_containers/syringe(src) //In case the chemist is nice!
 	R.icon = 'icons/mob/widerobot_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
-	R.icon_state = "medihound"
+	//R.icon_state = "medihound"
 	R.pixel_x 	 = -16
 	R.old_x  	 = -16
 	..()
