@@ -4,7 +4,7 @@
 	w_class = 4
 	icon = 'icons/obj/device.dmi'
 	icon_state = "suitcooler0"
-	slot_flags = SLOT_BACK	//you can carry it on your back if you want, but it won't do anything unless attached to suit storage
+	slot_flags = SLOT_BACK
 
 	//copied from tank.dm
 	flags = CONDUCT
@@ -87,7 +87,7 @@
 
 	var/mob/living/carbon/human/H = M
 
-	if (!H.wear_suit || H.s_store != src)
+	if (!H.wear_suit || (H.s_store != src && H.back != src))
 		return 0
 
 	return 1
