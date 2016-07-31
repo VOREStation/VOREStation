@@ -122,7 +122,7 @@
 
 			var/mob/living/carbon/human/O = owner
 
-			var/TFchance = prob(10)
+			var/TFchance = 1
 			if(TFchance == 1)
 
 				var/TFmodify = rand(1,3)
@@ -174,7 +174,7 @@
 
 			var/mob/living/carbon/human/O = owner
 
-			var/TFchance = prob(10)
+			var/TFchance = 1
 			if(TFchance == 1)
 				var/TFmodify = rand(1,3)
 				if(TFmodify == 1 && P.r_eyes != O.r_eyes || P.g_eyes != O.g_eyes || P.b_eyes != O.b_eyes)
@@ -222,7 +222,7 @@
 
 			var/mob/living/carbon/human/O = owner
 
-			var/TFchance = prob(10)
+			var/TFchance = 1
 			if(TFchance == 1)
 
 				var/TFmodify = rand(1,2)
@@ -266,7 +266,7 @@
 
 			var/mob/living/carbon/human/O = owner
 
-			var/TFchance = prob(10)
+			var/TFchance = 1 //This used to be RNG, resulting people waiting ages. This way does it instantly.
 			if(TFchance == 1)
 				var/TFmodify = rand(1,3)
 				if(TFmodify == 1 && P.r_eyes != O.r_eyes || P.g_eyes != O.g_eyes || P.b_eyes != O.b_eyes)
@@ -295,7 +295,7 @@
 					P.update_body()
 					P.updateicon()
 
-				if(TFmodify == 3 && P.r_hair != O.r_hair || P.g_hair != O.g_hair || P.b_hair != O.b_hair || P.r_skin != O.r_skin || P.g_skin != O.g_skin || P.b_skin != O.b_skin || P.tail_style != O.tail_style || P.r_tail != O.r_tail || P.g_tail != O.g_tail || P.b_tail != O.b_tail || P.ear_style != O.ear_style || P.r_facial != O.r_facial || P.g_facial != O.g_facial || P.b_facial != O.b_facial)
+				if(TFmodify == 3 && P.r_hair != O.r_hair || P.g_hair != O.g_hair || P.species != O.species || P.b_hair != O.b_hair || P.r_skin != O.r_skin || P.g_skin != O.g_skin || P.b_skin != O.b_skin || P.tail_style != O.tail_style || P.r_tail != O.r_tail || P.g_tail != O.g_tail || P.b_tail != O.b_tail || P.ear_style != O.ear_style || P.r_facial != O.r_facial || P.g_facial != O.g_facial || P.b_facial != O.b_facial || P.custom_species != O.custom_species)
 					P.r_hair = O.r_hair
 					P.r_facial = O.r_facial
 					P.g_hair = O.g_hair
