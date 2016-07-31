@@ -97,30 +97,30 @@
 		return 0
 	if(my_atom.flags & NOREACT) // No reactions here
 		return 0
-	
+
 	var/reaction_occured
 	var/list/effect_reactions = list()
 	var/list/eligible_reactions = list()
 	for(var/i in 1 to PROCESS_REACTION_ITER)
 		reaction_occured = 0
-		
+
 		//need to rebuild this to account for chain reactions
 		for(var/datum/reagent/R in reagent_list)
 			eligible_reactions |= chemical_reactions_list[R.id]
-		
+
 		for(var/datum/chemical_reaction/C in eligible_reactions)
 			if(C.can_happen(src) && C.process(src))
 				effect_reactions |= C
 				reaction_occured = 1
-		
+
 		eligible_reactions.Cut()
-		
+
 		if(!reaction_occured)
 			break
-	
+
 	for(var/datum/chemical_reaction/C in effect_reactions)
 		C.post_reaction(src)
-	
+
 	update_total()
 	return reaction_occured
 
@@ -300,7 +300,7 @@
 		amount -= spill
 	if(spill)
 		splash(target.loc, spill, multiplier, copy, min_spill, max_spill)
-	
+
 	trans_to(target, amount, multiplier, copy)
 
 /datum/reagents/proc/trans_id_to(var/atom/target, var/id, var/amount = 1)
@@ -366,6 +366,10 @@
 	var/perm = 1
 	if(isliving(target)) //will we ever even need to tranfer reagents to non-living mobs?
 		var/mob/living/L = target
+		if(ishuman(L))
+			var/mob/living/carbon/human/H = L
+			if(H.check_shields(0, null, null, null, "the spray") == 1)		//If they block the spray, it does nothing.
+				amount = 0
 		perm = L.reagent_permeability()
 	return trans_to_mob(target, amount, CHEM_TOUCH, perm, copy)
 

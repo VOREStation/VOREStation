@@ -205,6 +205,11 @@
 			var/radius = max(get_dist(H, src), 1)
 			// People next to the source take a third of the instability.  Further distance decreases the amount absorbed.
 			var/outgoing_instability = (instability / 3) * ( 1 / (radius**2) )
+
+			// Energy armor like from the AMI RIG can protect from this.
+			var/armor = getarmor(null, "energy")
+			var/armor_factor = abs( (armor - 100) / 100)
+			outgoing_instability = outgoing_instability * armor_factor
 			H.adjust_instability(outgoing_instability)
 
 	set_light(distance, distance, l_color = "#C26DDE")

@@ -83,6 +83,9 @@
 	energy_delta = energy - old_energy
 	if(world.time % 5 == 0) // Maintaining fat lists is expensive, I imagine.
 		maintain_summon_list()
+	if(wearer && wearer.mind)
+		if(!(technomancers.is_antagonist(wearer.mind))) // In case someone tries to wear a stolen core.
+			wearer.adjust_instability(20)
 
 /obj/item/weapon/technomancer_core/proc/regenerate()
 	energy = min(max(energy + regen_rate, 0), max_energy)

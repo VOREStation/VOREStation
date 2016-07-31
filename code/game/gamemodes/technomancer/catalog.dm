@@ -247,7 +247,8 @@ var/list/all_technomancer_presets = typesof(/datum/technomancer/presets) - /datu
 				if(desired_object.cost <= budget)
 					budget -= desired_object.cost
 					H << "<span class='notice'>You have just bought \a [desired_object.name].</span>"
-					new desired_object.obj_path(get_turf(H))
+					var/obj/O = new desired_object.obj_path(get_turf(H))
+					technomancer_belongings.Add(O) // Used for the Track spell.
 
 				else //Can't afford.
 					H << "<span class='danger'>You can't afford that!</span>"
