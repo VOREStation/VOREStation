@@ -34,7 +34,7 @@
 
 	braid
 		name = "Floorlength Braid"
-		icon_state = "hair_braid" //Trust me, it's better this way.
+		icon_state = "hair_braid_s" //Trust me, it's better this way.
 
 	bald
 		name = "Bald"
