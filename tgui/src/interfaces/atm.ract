@@ -1,0 +1,138 @@
+{{#if data.emagged}}
+	<ui-notice>
+			<span class='danger'>Unauthorized terminal access detected! This ATM has been locked. Please contact IT Support.</span>
+	</ui-notice>
+{{elseif data.lockdown}}
+	<ui-notice>
+		<span>Maximum number of pin attempts exceeded! Access to this ATM has been temporarily disabled.</span>
+	</ui-notice>
+{{elseif data.authAccount}}
+	{{#if data.authAccount.suspended}}
+		<ui-notice>
+			<span>Access to this account has been suspended, and the funds within frozen.</span>
+		</ui-notice>
+	{{elseif data.screen == 1}}
+		<ui-display title='Security Settings' button>
+			{{#partial button}}
+				<ui-button icon='arrow-circle-o-left' action='screen' params='{"new_screen": 0}'>Back</ui-button>
+			{{/partial}}
+			<ui-section label='Security Level'>
+				<ui-button icon='{{data.authAccount.securityLevel == 0 ? "check-square-o" : "square-o"}}' 
+					state='{{data.authAccount.securityLevel == 0 ? "selected" : null}}' action='security_level' params='{"new_security_level": 0}'>Zero</ui-button>
+				<ui-button icon='{{data.authAccount.securityLevel == 1 ? "check-square-o" : "square-o"}}' 
+					state='{{data.authAccount.securityLevel == 1 ? "selected" : null}}' action='security_level' params='{"new_security_level": 1}'>One</ui-button>
+				<ui-button icon='{{data.authAccount.securityLevel == 2 ? "check-square-o" : "square-o"}}' 
+					state='{{data.authAccount.securityLevel == 2 ? "selected" : null}}' action='security_level' params='{"new_security_level": 2}'>Two</ui-button>
+			</ui-section>
+		</ui-display>
+		<ui-display title='Security Level Info'>
+			<ui-section label='Zero'>
+				<span>Either the account number or card is required to access this account. EFTPOS transactions will require a card and ask for a pin, but not verify the pin is correct.</span>
+			</ui-section>
+			<ui-section label='One'>
+				<span>An account number and pin must be manually entered to access this account and process transactions.</span>
+			</ui-section>
+			<ui-section label='Two'>
+				<span>In addition to account number and pin, a card is required to access this account and process transactions.</span>
+			</ui-section>
+		</ui-display>
+	{{elseif data.screen == 2}}
+		<ui-display title='Transaction Log' button>
+			{{#partial button}}
+				<ui-button icon='arrow-circle-o-left' action='screen' params='{"new_screen": 0}'>Back</ui-button>
+			{{/partial}}
+			<table>
+				<thead>
+					<tr>
+						<th>Date</th>
+						<th>Time</th>
+						<th>Target</th>
+						<th>Purpose</th>
+						<th>Value</th>
+						<th>Source terminal ID</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each data.authAccount.transactionLog}}
+						<tr>
+							<td>{{date}}</td>
+							<td>{{time}}</td>
+							<td>{{target_name}}</td>
+							<td>{{purpose}}</td>
+							<td>${{amount}}</td>
+							<td>{{source_terminal}}</td>
+						</tr>
+					{{/each}}
+				</tbody>
+			</table>
+			<ui-button icon='print' action='print' params='{"print_type": "transaction"}'>Print</ui-button>
+		</ui-display>
+	{{elseif data.screen == 3}}
+		<ui-display title='Transfer Funds' button>
+			{{#partial button}}
+				<ui-button icon='arrow-circle-o-left' action='screen' params='{"new_screen": 0}'>Back</ui-button>
+			{{/partial}}
+			<ui-section label='Account balance'>
+				<span>{{data.authAccount.money}}</span>
+			</ui-section>
+			<hr/>
+			<ui-section label='Target account number'>
+				<ui-button icon='hashtag' action='input' params='{"input_name": "transactiontarget", "input_current": {{data.transactionTargetNumber}}}'>{{data.transactionTargetNumber}}</ui-button>
+			</ui-section>
+			<ui-section label='Funds to transfer'>
+				<ui-button action='input' params='{"input_name": "transactionamount", "input_current": {{data.transactionTargetAmount}}}'>&thorn;{{data.transactionTargetAmount}}</ui-button>
+			</ui-section>
+			<ui-section label='Transaction purpose'>
+				<ui-button icon='pencil' action='input' params='{"input_name": "transactionpurpose", "input_current": {{data.transactionPurpose}}}'>{{data.transactionPurpose}}</ui-button>
+			</ui-section>
+			<ui-section>
+				<ui-button action='submit' params='{"submit_type": "transaction"}'>Submit</ui-button>
+			</ui-section>
+		</ui-display>
+	{{else}}
+		<ui-display title='Account'>
+			<ui-section label='Account owner'>
+				<span>{{data.authAccount.name}}</span>
+			</ui-section>
+			<ui-section label='Account balance'>
+				<span>{{data.authAccount.money}}</span>
+			</ui-section>
+		</ui-display>
+		<ui-display title='Withdrawal'>
+			<ui-section label='Withdrawal type'>
+				<ui-button icon='{{data.withdrawalType == 1 ? "check-square-o" : "square-o"}}' state='{{data.withdrawalType == 1 ? "selected" : null}}'
+					action='withdrawal_type' params='{"type": 1}'>Cash</ui-button>
+				<ui-button icon='{{data.withdrawalType == 2 ? "check-square-o" : "square-o"}}' state='{{data.withdrawalType == 2 ? "selected" : null}}' 
+					action='withdrawal_type' params='{"type": 2}'>Chargecard</ui-button>
+			</ui-section>
+			<ui-section>
+				<ui-button icon='pencil' action='input' params='{"input_name": "withdrawalamount", "input_current": {{data.withdrawal}}}'>{{data.withdrawal}}</ui-button>
+				<ui-button icon='eject' action='withdraw'>Withdraw</ui-button>
+			</ui-section>
+		</ui-display>
+		<ui-display title='Acount Actions'>
+			<ul>
+				<li><ui-button icon='lock' action='screen' params='{"new_screen": 1}'>Change account security level</ui-button></li>
+				<li><ui-button icon='list' action='screen' params='{"new_screen": 2}'>View transaction log</ui-button></li>
+				<li><ui-button icon='exchange' action='screen' params='{"new_screen": 3}'>Make transfer</ui-button></li>
+				<li><ui-button icon='print' action='print' params='{"print_type": "balance"}'>Print balance statement</ui-button></li>
+				<li><ui-button icon='eject' action='logout'>Logout</ui-button></li>
+			</ul>
+		</ui-display>
+	{{/if}}
+{{else}}
+	<ui-display title='Log In'>
+		<ui-section label='Card'>
+			<ui-button icon='eject' action='insert_card'>{{data.card ? data.cardName : "Insert Card"}}</ui-button>
+		</ui-section>
+		<ui-section label='Account'>
+			<ui-button icon='hashtag' action='input' params='{"input_name": "account", "input_current": {{data.account}}}'>{{data.account}}</ui-button>
+		</ui-section>
+		<ui-section label='PIN'>
+			<ui-button icon='pencil' action='input' params='{"input_name": "pin", "input_current": {{data.pin}}}'>{{data.pin}}</ui-button>
+		</ui-section>
+		<ui-section>
+			<ui-button action='submit' params='{"submit_type": "login"}'>Submit</ui-button>
+		</ui-section>
+	</ui-display>
+{{/if}}

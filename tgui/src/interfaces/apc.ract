@@ -109,9 +109,6 @@
 {{#if data.siliconUser}}
   <ui-display title='System Overrides'>
     <ui-button icon='lightbulb-o' action='overload'>Overload</ui-button>
-    {{#if data.malfStatus}}
-      <ui-button icon='{{malfIcon}}' state='{{data.malfStatus == 4 ? "disabled" : null}}' action='{{malfAction}}'>{{malfButton}}</ui-button>
-    {{/if}}
   </ui-display>
 {{/if}}
 <ui-notice>

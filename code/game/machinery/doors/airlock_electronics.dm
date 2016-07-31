@@ -16,15 +16,11 @@
 	var/last_configurator = null
 	var/locked = 1
 
-
-
 /obj/item/weapon/airlock_electronics/attack_self(mob/user as mob)
 	if (!ishuman(user) && !istype(user,/mob/living/silicon/robot))
 		return ..(user)
 
 	tg_ui_interact(user)
-
-
 
 //tgui interact code generously lifted from tgstation.
 /obj/item/weapon/airlock_electronics/tg_ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, \

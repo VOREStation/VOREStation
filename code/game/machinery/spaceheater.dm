@@ -4,13 +4,14 @@
 	icon = 'icons/obj/atmos.dmi'
 	icon_state = "sheater0"
 	name = "space heater"
-	desc = "Made by Space Amish using traditional space techniques, this heater is guaranteed not to set the station on fire."
+	desc = "Made by Space Amish using traditional space techniques, this heater/cooler is guaranteed not to set the station on fire."
 	var/obj/item/weapon/cell/cell
 	var/cell_type = /obj/item/weapon/cell/high
 	var/on = 0
-	var/set_temperature = T0C + 20	//K
+	var/set_temperature = T20C
 	var/heating_power = 40000
-
+	var/settableTemperatureMedian = 30 + T0C
+	var/settableTemperatureRange = 30
 
 /obj/machinery/space_heater/New()
 	..()
@@ -80,110 +81,104 @@
 
 /obj/machinery/space_heater/attack_hand(mob/user as mob)
 	src.add_fingerprint(user)
-	interact(user)
+	tg_ui_interact(user)
 
-/obj/machinery/space_heater/interact(mob/user as mob)
+/obj/machinery/space_heater/tg_ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = tg_physical_state)
+	ui = tgui_process.try_update_ui(user, src, ui_key, ui, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "space_heater", name, 400, 305, master_ui, state)
+		ui.open()
 
-	if(panel_open)
-
-		var/dat
-		dat = "Power cell: "
-		if(cell)
-			dat += "<A href='byond://?src=\ref[src];op=cellremove'>Installed</A><BR>"
-		else
-			dat += "<A href='byond://?src=\ref[src];op=cellinstall'>Removed</A><BR>"
-
-		dat += "Power Level: [cell ? round(cell.percent(),1) : 0]%<BR><BR>"
-
-		dat += "Set Temperature: "
-
-		dat += "<A href='?src=\ref[src];op=temp;val=-5'>-</A>"
-
-		dat += " [set_temperature]K ([set_temperature-T0C]&deg;C)"
-		dat += "<A href='?src=\ref[src];op=temp;val=5'>+</A><BR>"
-
-		user.set_machine(src)
-		user << browse("<HEAD><TITLE>Space Heater Control Panel</TITLE></HEAD><TT>[dat]</TT>", "window=spaceheater")
-		onclose(user, "spaceheater")
+/obj/machinery/space_heater/ui_data(mob/user)
+	var/list/data = list()
+	data["open"] = panel_open
+	data["hasPowercell"] = cell
+	data["on"] = on
+	data["powerLevel"] = cell ? round(cell.percent(), 1) : 0
+	data["targetTemp"] = round(set_temperature - T0C, 1)
+	data["minTemp"] = max(settableTemperatureMedian - settableTemperatureRange - T0C, TCMB)
+	data["maxTemp"] = settableTemperatureMedian + settableTemperatureRange - T0C
+	var/turf/L = get_turf(loc)
+	var/curTemp
+	if(istype(L))
+		var/datum/gas_mixture/env = L.return_air()
+		curTemp = env.temperature
+	else if(isturf(L))
+		curTemp = L.temperature
+	if(isnull(curTemp))
+		data["currentTemp"] = "N/A"
 	else
-		on = !on
-		user.visible_message("<span class='notice'>[user] switches [on ? "on" : "off"] the [src].</span>","<span class='notice'>You switch [on ? "on" : "off"] the [src].</span>")
-		update_icon()
-	return
+		data["currentTemp"] = round(curTemp - T0C, 1)
 
+	return data
 
-/obj/machinery/space_heater/Topic(href, href_list)
-	if (usr.stat)
-		return
-	if ((in_range(src, usr) && istype(src.loc, /turf)) || (istype(usr, /mob/living/silicon)))
-		usr.set_machine(src)
+/obj/machinery/space_heater/ui_act(action, params)
+	if(..())
+		return TRUE
+	if(usr.stat)
+		return TRUE
+	if((in_range(src, usr) && istype(src.loc, /turf)) || (istype(usr, /mob/living/silicon)))
+		switch(action)
+			if("power")
+				on = !on
+				usr.visible_message("[usr] switches [on ? "on" : "off"] \the [src].", "<span class='notice'>You switch [on ? "on" : "off"] \the [src].</span>")
 
-		switch(href_list["op"])
+			if("target")
+				if(!panel_open)
+					return
+				var/target = params["target"]
+				var/adjust = text2num(params["adjust"])
+				if(target == "input")
+					target = input("New target temperature:", name, round(set_temperature - T0C, 1)) as num|null
+					if(!isnull(target) && !..())
+						target += T0C
+				else if(adjust)
+					target = set_temperature + adjust
+				else if(text2num(target) != null)
+					target = text2num(target) + T0C
+				if(.)
+					set_temperature = Clamp(round(target),
+						max(settableTemperatureMedian - settableTemperatureRange, TCMB),
+						settableTemperatureMedian + settableTemperatureRange)
 
-			if("temp")
-				var/value = text2num(href_list["val"])
-
-				// limit to 0-90 degC
-				set_temperature = dd_range(T0C, T0C + 90, set_temperature + value)
-
-			if("cellremove")
-				if(panel_open && cell && !usr.get_active_hand())
-					usr.visible_message("<span class='notice'>\The usr] removes \the [cell] from \the [src].</span>", "<span class='notice'>You remove \the [cell] from \the [src].</span>")
-					cell.update_icon()
-					usr.put_in_hands(cell)
-					cell.add_fingerprint(usr)
+			if("eject")
+				if(panel_open && cell)
+					cell.loc = get_turf(src)
 					cell = null
-					power_change()
 
-
-			if("cellinstall")
-				if(panel_open && !cell)
-					var/obj/item/weapon/cell/C = usr.get_active_hand()
-					if(istype(C))
-						usr.drop_item()
-						cell = C
-						C.loc = src
-						C.add_fingerprint(usr)
-						power_change()
-						usr.visible_message("<span class='notice'>[usr] inserts \the [C] into \the [src].</span>", "<span class='notice'>You insert \the [C] into \the [src].</span>")
-
-		updateDialog()
-	else
-		usr << browse(null, "window=spaceheater")
-		usr.unset_machine()
-	return
-
-
+	src.update_icon()
+	return TRUE
 
 /obj/machinery/space_heater/process()
-	if(on)
-		if(cell && cell.charge)
-			var/datum/gas_mixture/env = loc.return_air()
-			if(env && abs(env.temperature - set_temperature) > 0.1)
-				var/transfer_moles = 0.25 * env.total_moles
-				var/datum/gas_mixture/removed = env.remove(transfer_moles)
+	if(!on)
+		return
+	if(cell && cell.charge > 0)
+		var/datum/gas_mixture/env = loc.return_air()
+		if(env && abs(env.temperature - set_temperature) > 0.1)
+			var/transfer_moles = 0.25 * env.total_moles
+			var/datum/gas_mixture/removed = env.remove(transfer_moles)
 
-				if(removed)
-					var/heat_transfer = removed.get_thermal_energy_change(set_temperature)
-					if(heat_transfer > 0)	//heating air
-						heat_transfer = min( heat_transfer , heating_power ) //limit by the power rating of the heater
+			if(removed)
+				var/heat_transfer = removed.get_thermal_energy_change(set_temperature)
+				if(heat_transfer > 0)	//heating air
+					heat_transfer = min( heat_transfer , heating_power ) //limit by the power rating of the heater
 
-						removed.add_thermal_energy(heat_transfer)
-						cell.use(heat_transfer*CELLRATE)
-					else	//cooling air
-						heat_transfer = abs(heat_transfer)
+					removed.add_thermal_energy(heat_transfer)
+					cell.use(heat_transfer*CELLRATE)
+				else	//cooling air
+					heat_transfer = abs(heat_transfer)
 
-						//Assume the heat is being pumped into the hull which is fixed at 20 C
-						var/cop = removed.temperature/T20C	//coefficient of performance from thermodynamics -> power used = heat_transfer/cop
-						heat_transfer = min(heat_transfer, cop * heating_power)	//limit heat transfer by available power
+					//Assume the heat is being pumped into the hull which is fixed at 20 C
+					var/cop = removed.temperature/T20C	//coefficient of performance from thermodynamics -> power used = heat_transfer/cop
+					heat_transfer = min(heat_transfer, cop * heating_power)	//limit heat transfer by available power
 
-						heat_transfer = removed.add_thermal_energy(-heat_transfer)	//get the actual heat transfer
+					heat_transfer = removed.add_thermal_energy(-heat_transfer)	//get the actual heat transfer
 
-						var/power_used = abs(heat_transfer)/cop
-						cell.use(power_used*CELLRATE)
+					var/power_used = abs(heat_transfer)/cop
+					cell.use(power_used*CELLRATE)
 
-				env.merge(removed)
-		else
-			on = 0
-			power_change()
-			update_icon()
+			env.merge(removed)
+	else
+		on = 0
+		power_change()
+		update_icon()
