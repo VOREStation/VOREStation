@@ -539,6 +539,9 @@
 				P.g_skin 			= O.g_skin
 				P.b_skin 			= O.b_skin
 				P.h_style 			= O.h_style
+				P.r_eyes 			= O.r_eyes
+				P.g_eyes 			= O.g_eyes
+				P.b_eyes 			= O.b_eyes
 				P << "<span class='notice'>Your body tingles all over...</span>"
 				owner << "<span class='notice'>You tingle as you make noticeable changes to your captive's body.</span>"
 				P.update_hair()
@@ -623,6 +626,9 @@
 				P.g_skin 			= O.g_skin
 				P.b_skin 			= O.b_skin
 				P.h_style 			= O.h_style
+				P.r_eyes 			= O.r_eyes
+				P.g_eyes 			= O.g_eyes
+				P.b_eyes 			= O.b_eyes
 				P << "<span class='notice'>Your body tingles all over...</span>"
 				owner << "<span class='notice'>You tingle as you make noticeable changes to your captive's body.</span>"
 				P.update_hair()
