@@ -7,3 +7,9 @@
 
 /mob/living/carbon/human/nevrean/New(var/new_loc)
 	..(new_loc, "Nevrean")
+
+/mob/living/carbon/human/xenochimera/New(var/new_loc)
+	..(new_loc, "Xenochimera")
+
+/mob/living/carbon/human/xenohybrid/New(var/new_loc)
+	..(new_loc, "Xenomorph Hybrid")

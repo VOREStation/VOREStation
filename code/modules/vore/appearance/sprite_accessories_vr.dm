@@ -349,6 +349,11 @@
 	desc = ""
 	icon_state = "bee"
 
+/datum/sprite_accessory/tail/moth_full
+	name = "moth antenna and wings"
+	desc = ""
+	icon_state = "moth_full"
+
 /datum/sprite_accessory/tail/succubus_purple
 	name = "succubus, purple (+wings)"
 	desc = ""
@@ -632,3 +637,9 @@
 /datum/sprite_accessory/tail/taur/spider
 	name = "Spider"
 	icon_state = "spider_s"
+
+/datum/sprite_accessory/tail/taur/tents
+	name = "Tentacles"
+	icon_state = "tent_s"
+
+

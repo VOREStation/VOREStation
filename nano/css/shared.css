@@ -45,6 +45,19 @@ hr {
     white-space: nowrap;
 }
 
+.link32 {
+    float: left;
+    min-width: 15px;
+	max-width: 31px;
+    height: 31px;
+    text-align: center;
+	text-decoration: none;
+	background: #40628a;
+    border: 1px solid #161616;
+	margin: 0 2px 2px 0;
+    cursor: default;
+}
+
 .hasIcon {
     padding: 0px 4px 4px 0px;
 }
@@ -249,7 +262,7 @@ div.notice {
 	overflow: auto;
 }
 
-.itemContentNarrow, .itemContent {
+.itemContentNarrow, .itemContent, .itemContentWide, .itemContentSmall, .itemContentMedium {
     float: left;
 }
 
@@ -287,17 +300,14 @@ div.notice {
 }
 
 .itemContentWide {
-    float: left;
     width: 79%;
 }
 
 .itemContentSmall {
-    float: left;
     width: 33%;
 }
 
 .itemContentMedium {
-    float: left;
     width: 55%;
 }
 
@@ -649,7 +659,7 @@ th.misc {
 }
 
 .oxyloss {
-    color: blue;
+    color: #4444FF;
 }
 
 /* 75px width used in power monitoring console buttons */

@@ -39,7 +39,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 /mob/living/attackby(obj/item/I, mob/user)
 	if(!ismob(user))
 		return 0
-	if(can_operate(src) && do_surgery(src,user,I)) //Surgery
+	if(can_operate(src) && I.do_surgery(src,user)) //Surgery
 		return 1
 	if(attempt_vr(src,"vore_attackby",args)) return //VOREStation Code
 	return I.attack(src, user, user.zone_sel.selecting)
@@ -77,6 +77,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 //Called when a weapon is used to make a successful melee attack on a mob. Returns the blocked result
 /obj/item/proc/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+	user.break_cloak()
 	if(hitsound)
 		playsound(loc, hitsound, 50, 1, -1)
 

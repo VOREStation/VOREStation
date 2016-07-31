@@ -622,7 +622,7 @@
 					if(istype(M:glasses, /obj/item/clothing/glasses/sunglasses))
 						continue
 
-				flick("e_flash", M.flash)
+				M.flash_eyes()
 				M.Weaken(15)
 
 			if(4 to 5)
@@ -630,7 +630,7 @@
 					if(istype(M:glasses, /obj/item/clothing/glasses/sunglasses))
 						continue
 
-				flick("e_flash", M.flash)
+				M.flash_eyes()
 				M.Stun(5)
 
 /datum/chemical_reaction/emp_pulse
@@ -1003,7 +1003,7 @@
 	if(holder.my_atom && istype(holder.my_atom, required))
 		return ..()
 	return 0
-	
+
 /datum/chemical_reaction/slime/golem
 	name = "Prometheans"
 	id = "m_promethean"
@@ -1016,7 +1016,7 @@
 	var/location = get_turf(holder.my_atom)
 	new /obj/item/slime_cube(location)
 	qdel(holder.my_atom)
-	
+
 /* Food */
 
 /datum/chemical_reaction/tofu
@@ -1499,7 +1499,7 @@
 	name = "Allies Cocktail"
 	id = "alliescocktail"
 	result = "alliescocktail"
-	required_reagents = list("classicmartini" = 1, "vodka" = 1)
+	required_reagents = list("martini" = 1, "vodka" = 1)
 	result_amount = 2
 
 /datum/chemical_reaction/demonsblood

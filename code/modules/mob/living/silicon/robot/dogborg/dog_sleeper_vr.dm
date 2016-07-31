@@ -362,7 +362,7 @@
 					hearer << deathsound
 				T << deathsound
 				//Spill(T) //TODOPOLARIS
-				T.Del()
+				qdel(T)
 				src.update_patient()
 
 		//Handle the target being anything but a /mob/living/carbon/human
@@ -392,7 +392,7 @@
 				//Anything not perserved, PDA, or ID
 				else
 					//Spill(T) //Needs the spill proc to be added
-					T.Del()
+					qdel(T)
 					src.update_patient()
 					src.hound.cell.charge += 10
 		return

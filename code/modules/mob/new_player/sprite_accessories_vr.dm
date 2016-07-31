@@ -6,7 +6,7 @@
 
 /datum/sprite_accessory/hair
 
-	species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin") //This lets all races use the default hairstyles.
+	species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Xenochimera", "Xenomorph Hybrid") //This lets all races use the default hairstyles.
 
 	sergal_plain
 		name = "Sergal Plain"
@@ -32,12 +32,114 @@
 		icon_state = "serg_fairytail"
 		species_allowed = list("Sergal")
 
+	braid
+		name = "Floorlength Braid"
+		icon_state = "hair_braid" //Trust me, it's better this way.
+
 	bald
 		name = "Bald"
 		icon_state = "bald"
 		gender = MALE
-		species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin") //Lets all the races be bald if they want.
+		species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Xenochimera") //Lets all the races be bald if they want.
 
+
+	una_hood
+		name = "Cobra Hood"
+		icon = 'icons/mob/human_face_vr.dmi'
+		icon_state = "soghun_hood"
+
+	una_spines_long
+		name = "Long Unathi Spines"
+		icon_state = "soghun_longspines"
+		species_allowed = list("Unathi", "Xenochimera") //Xenochimera get most hairstyles since they're abominations.
+
+	una_spines_short
+		name = "Short Unathi Spines"
+		icon_state = "soghun_shortspines"
+		species_allowed = list("Unathi", "Xenochimera")
+
+
+	una_frills_long
+		name = "Long Unathi Frills"
+		icon_state = "soghun_longfrills"
+		species_allowed = list("Unathi", "Xenochimera")
+
+	una_frills_short
+		name = "Short Unathi Frills"
+		icon_state = "soghun_shortfrills"
+		species_allowed = list("Unathi", "Xenochimera")
+
+	una_horns
+		name = "Unathi Horns"
+		icon_state = "soghun_horns"
+		species_allowed = list("Unathi", "Xenochimera")
+
+	una_doublehorns
+		name = "Double Unathi Horns"
+		icon = 'icons/mob/human_face_vr.dmi'
+		icon_state = "soghun_dubhorns"
+		species_allowed = list("Unathi", "Xenochimera")
+
+	taj_ears
+		name = "Tajaran Ears"
+		icon_state = "ears_plain"
+		species_allowed = list("Tajara", "Xenochimera")
+
+
+	taj_ears_clean
+		name = "Tajara Clean"
+		icon_state = "hair_clean"
+		species_allowed = list("Tajara", "Xenochimera")
+
+	taj_ears_bangs
+		name = "Tajara Bangs"
+		icon_state = "hair_bangs"
+		species_allowed = list("Tajara", "Xenochimera")
+
+	taj_ears_braid
+		name = "Tajara Braid"
+		icon_state = "hair_tbraid"
+		species_allowed = list("Tajara", "Xenochimera")
+
+	taj_ears_shaggy
+		name = "Tajara Shaggy"
+		icon_state = "hair_shaggy"
+		species_allowed = list("Tajara", "Xenochimera")
+
+	taj_ears_mohawk
+		name = "Tajaran Mohawk"
+		icon_state = "hair_mohawk"
+		species_allowed = list("Tajara", "Xenochimera")
+
+	taj_ears_plait
+		name = "Tajara Plait"
+		icon_state = "hair_plait"
+		species_allowed = list("Tajara", "Xenochimera")
+
+	taj_ears_straight
+		name = "Tajara Straight"
+		icon_state = "hair_straight"
+		species_allowed = list("Tajara", "Xenochimera")
+
+	taj_ears_long
+		name = "Tajara Long"
+		icon_state = "hair_long"
+		species_allowed = list("Tajara", "Xenochimera")
+
+	taj_ears_rattail
+		name = "Tajara Rat Tail"
+		icon_state = "hair_rattail"
+		species_allowed = list("Tajara", "Xenochimera")
+
+	taj_ears_spiky
+		name = "Tajara Spiky"
+		icon_state = "hair_tajspiky"
+		species_allowed = list("Tajara", "Xenochimera")
+
+	taj_ears_messy
+		name = "Tajara Messy"
+		icon_state = "hair_messy"
+		species_allowed = list("Tajara", "Xenochimera")
 // Vulpa stuffs
 
 	vulp_hair_none

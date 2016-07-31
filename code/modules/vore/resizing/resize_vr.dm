@@ -88,6 +88,9 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 /mob/living/proc/attempt_to_scoop(var/mob/living/carbon/human/M)
 	if(!istype(M))
 		return 0;
+	if(M.buckled)
+		usr << "<span class='notice'>You have to unbuckle \the [M] before you pick them up.</span>"
+		return 0
 	if(M.get_effective_size() - src.get_effective_size() >= 0.75)
 		var/obj/item/weapon/holder/m_holder = get_scooped(M)
 		if (m_holder)

@@ -30,62 +30,60 @@
 	"Snow Field" = "snowfield",	\
 	"Theatre" = "theatre",	\
 	"Meeting Hall" = "meetinghall",	\
-	"Courtroom" = "courtroom"	\
+	"Courtroom" = "courtroom",	\
+	"Turn Off" = "turnoff"	\
 	)
 	var/list/restricted_programs = list("Atmospheric Burn Simulation" = "burntest", "Wildlife Simulation" = "wildlifecarp")
+	var/current_program = "turnoff"
 
 /obj/machinery/computer/HolodeckControl/attack_ai(var/mob/user as mob)
 	return src.attack_hand(user)
 
 /obj/machinery/computer/HolodeckControl/attack_hand(var/mob/user as mob)
-
 	if(..())
 		return
 	user.set_machine(src)
-	var/dat
 
-	dat += "<B>Holodeck Control System</B><BR>"
-	dat += "<HR>Current Loaded Programs:<BR>"
-	for(var/prog in supported_programs)
-		dat += "<A href='?src=\ref[src];program=[supported_programs[prog]]'>([prog])</A><BR>"
+	ui_interact(user)
 
-	dat += "<BR>"
-	dat += "<A href='?src=\ref[src];program=turnoff'>(Turn Off)</A><BR>"
+/**
+ *  Display the NanoUI window for the Holodeck Computer.
+ *
+ *  See NanoUI documentation for details.
+ */
+/obj/machinery/computer/HolodeckControl/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+	user.set_machine(src)
 
-	dat += "<BR>"
-	dat += "Please ensure that only holographic weapons are used in the holodeck if a combat simulation has been loaded.<BR>"
+	var/list/data = list()
+	var/program_list[0]
+	var/restricted_program_list[0]
 
+	for(var/P in supported_programs)
+		program_list[++program_list.len] = list("name" = P, "program" = supported_programs[P])
+
+	for(var/P in restricted_programs)
+		restricted_program_list[++restricted_program_list.len] = list("name" = P, "program" = restricted_programs[P])
+
+	data["supportedPrograms"] = program_list
+	data["restrictedPrograms"] = restricted_program_list
+	data["currentProgram"] = current_program
 	if(issilicon(user))
-		dat += "<BR>"
-		if(safety_disabled)
-			if (emagged)
-				dat += "<font color=red><b>ERROR</b>: Cannot re-enable Safety Protocols.</font><BR>"
-			else
-				dat += "<A href='?src=\ref[src];AIoverride=1'>(<font color=green>Re-Enable Safety Protocols?</font>)</A><BR>"
-		else
-			dat += "<A href='?src=\ref[src];AIoverride=1'>(<font color=red>Override Safety Protocols?</font>)</A><BR>"
-
-	dat += "<BR>"
-
-	if(safety_disabled)
-		for(var/prog in restricted_programs)
-			dat += "<A href='?src=\ref[src];program=[restricted_programs[prog]]'>(<font color=red>Begin [prog]</font>)</A><BR>"
-			dat += "Ensure the holodeck is empty before testing.<BR>"
-			dat += "<BR>"
-		dat += "Safety Protocols are <font color=red> DISABLED </font><BR>"
+		data["isSilicon"] = 1
 	else
-		dat += "Safety Protocols are <font color=green> ENABLED </font><BR>"
-
+		data["isSilicon"] = null
+	data["safetyDisabled"] = safety_disabled
+	data["emagged"] = emagged
 	if(linkedholodeck.has_gravity)
-		dat += "Gravity is <A href='?src=\ref[src];gravity=1'><font color=green>(ON)</font></A><BR>"
+		data["gravity"] = 1
 	else
-		dat += "Gravity is <A href='?src=\ref[src];gravity=1'><font color=blue>(OFF)</font></A><BR>"
+		data["gravity"] = null
 
-	user << browse(dat, "window=computer;size=400x500")
-	onclose(user, "computer")
-
-	return
-
+	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if (!ui)
+		ui = new(user, src, ui_key, "holodeck.tmpl", src.name, 400, 550)
+		ui.set_initial_data(data)
+		ui.open()
+		ui.set_auto_update(20)
 
 /obj/machinery/computer/HolodeckControl/Topic(href, href_list)
 	if(..())
@@ -97,6 +95,7 @@
 			var/prog = href_list["program"]
 			if(prog in holodeck_programs)
 				loadProgram(holodeck_programs[prog])
+				current_program = href_list["program"]
 
 		else if(href_list["AIoverride"])
 			if(!issilicon(usr))
@@ -118,8 +117,8 @@
 			toggleGravity(linkedholodeck)
 
 		src.add_fingerprint(usr)
-	src.updateUsrDialog()
-	return
+
+	nanomanager.update_uis(src)
 
 /obj/machinery/computer/HolodeckControl/emag_act(var/remaining_charges, var/mob/user as mob)
 	playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
@@ -132,7 +131,6 @@
 		user << "Warning.  Automatic shutoff and derezing protocols have been corrupted.  Please call [company_name] maintenance and do not use the simulator."
 		log_game("[key_name(usr)] emagged the Holodeck Control Computer")
 		return 1
-	src.updateUsrDialog()
 	return
 
 /obj/machinery/computer/HolodeckControl/proc/update_projections()

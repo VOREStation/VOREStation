@@ -27,7 +27,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 	breath_type = null
 	poison_type = null
 
-	gluttonous =            2
+//	gluttonous =            2 // Vorestation edit. Redundant feature.
 	virus_immune =          1
 	blood_volume =          600
 	min_age =               1

@@ -65,6 +65,7 @@ var/list/gamemode_cache = list()
 	var/usewhitelist = 0
 	var/kick_inactive = 0				//force disconnect for inactive players after this many minutes, if non-0
 	var/show_mods = 0
+	var/show_devs = 0
 	var/show_mentors = 0
 	var/mods_can_tempban = 0
 	var/mods_can_job_tempban = 0
@@ -504,6 +505,9 @@ var/list/gamemode_cache = list()
 
 				if("show_mods")
 					config.show_mods = 1
+
+				if("show_devs")
+					config.show_devs = 1
 
 				if("show_mentors")
 					config.show_mentors = 1

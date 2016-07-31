@@ -372,7 +372,7 @@ var/global/list/additional_antag_types = list()
 /datum/game_mode/proc/check_win() //universal trigger to be called at mob death, nuke explosion, etc. To be called from everywhere.
 	return 0
 
-/datum/game_mode/proc/get_players_for_role(var/role, var/antag_id)
+/datum/game_mode/proc/get_players_for_role(var/role, var/antag_id, var/ghosts_only)
 	var/list/players = list()
 	var/list/candidates = list()
 
@@ -386,6 +386,8 @@ var/global/list/additional_antag_types = list()
 			if(!player.client)
 				continue
 			if(istype(player, /mob/new_player))
+				continue
+			if(istype(player, /mob/observer/dead) && !ghosts_only)
 				continue
 			if(!role || (player.client.prefs.be_special & role))
 				log_debug("[player.key] had [antag_id] enabled, so we are drafting them.")

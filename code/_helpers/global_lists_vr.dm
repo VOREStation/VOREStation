@@ -79,6 +79,18 @@ var/global/list/struggle_sounds = list(
 		"Squish4" = 'sound/vore/squish4.ogg')
 
 
+var/global/list/global_egg_types = list(
+		"Unathi" 		= UNATHI_EGG,
+		"Tajaran" 		= TAJARAN_EGG,
+		"Akula" 		= AKULA_EGG,
+		"Skrell" 		= SKRELL_EGG,
+		"Sergal" 		= SERGAL_EGG,
+		"Human"			= HUMAN_EGG,
+		"Slime"			= SLIME_EGG,
+		"Egg"			= EGG_EGG,
+		"Xenochimera" 	= XENOCHIMERA_EGG,
+		"Xenomorph"		= XENOMORPH_EGG)
+
 /hook/startup/proc/init_vore_datum_ref_lists()
 	var/paths
 
