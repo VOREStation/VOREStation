@@ -26,10 +26,10 @@
 
 /datum/uplink_item/item/stealthy_weapons/cigarette_kit
 	name = "Cigarette Kit"
-	item_cost = 15
+	item_cost = 10
 	path = /obj/item/weapon/storage/box/syndie_kit/cigarette
 
 /datum/uplink_item/item/stealthy_weapons/random_toxin
 	name = "Random Toxin - Beaker"
-	item_cost = 15
+	item_cost = 10
 	path = /obj/item/weapon/storage/box/syndie_kit/toxin
