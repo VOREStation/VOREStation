@@ -114,6 +114,8 @@
 		new /obj/item/weapon/shield/riot/tele(src)
 		new /obj/item/weapon/storage/box/holobadge/hos(src)
 		new /obj/item/clothing/accessory/badge/holo/hos(src)
+		new /obj/item/weapon/reagent_containers/spray/pepper(src)
+		new /obj/item/weapon/crowbar/red(src)
 		new /obj/item/weapon/storage/box/flashbangs(src)
 		new /obj/item/weapon/storage/belt/security(src)
 		new /obj/item/device/flash(src)
