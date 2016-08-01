@@ -18,12 +18,11 @@ emp_act
 
 	//Shields
 	var/shield_check = check_shields(P.damage, P, null, def_zone, "the [P.name]")
-	if(shield_check)
-		if(shield_check < 0)
-			return shield_check
-		else
-			P.on_hit(src, 2, def_zone)
-			return 2
+	if(shield_check) // If the block roll succeeded, this is true.
+		if(shield_check < 0) // The shield did something weird and the bullet needs to keep doing things (e.g. it was reflected).
+			return shield_check // Likely equal to PROJECTILE_FORCE_MISS or PROJECTILE_CONTINUE.
+		else // Otherwise we blocked normally and stopped all the damage.
+			return 0
 
 	//Shrapnel
 	if(P.can_embed())
