@@ -318,6 +318,7 @@
 						Z.species = O.species
 					P << "<span class='notice'>You lose sensation of your body, feeling only the warmth of everything around you... </span>"
 					owner << "<span class='notice'>Your body shifts as you make dramatic changes to your captive's body.</span>"
+					P.fixblood()
 					P.update_hair()
 					P.update_body()
 					P.update_tail_showing()
@@ -363,6 +364,7 @@
 					Z.species = O.species
 				P << "<span class='notice'>You lose sensation of your body, feeling only the warmth around you as you're encased in an egg. </span>"
 				owner << "<span class='notice'>You shift as you make dramatic changes to your captive's body as you encase them in an egg.</span>"
+				P.fixblood()
 				P.update_hair()
 				P.update_body()
 				P.update_tail_showing()
@@ -459,6 +461,7 @@
 					Z.species = O.species
 				P << "<span class='notice'>You lose sensation of your body, feeling only the warmth are you as you're encased in an egg. </span>"
 				owner << "<span class='notice'>You shift as you make dramatic changes to your captive's body as you encase them in an egg.</span>"
+				P.fixblood()
 				P.update_hair()
 				P.update_body()
 				P.update_tail_showing()
