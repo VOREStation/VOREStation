@@ -9,9 +9,12 @@
 	throwforce = 15.0
 	throw_speed = 5
 	throw_range = 20
-	matter = list(DEFAULT_WALL_MATERIAL = 1875)
+	matter = list(DEFAULT_WALL_MATERIAL = SHEET_MATERIAL_AMOUNT / 2)
 	max_amount = 60
 	attack_verb = list("hit", "bludgeoned", "whacked")
+
+/obj/item/stack/rods/fifty //Calling this path still fifty because sixty is confusing
+	amount = 60
 
 /obj/item/stack/rods/cyborg
 	name = "metal rod synthesizer"

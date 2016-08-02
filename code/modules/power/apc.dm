@@ -866,7 +866,7 @@
 
 	if(locked && !issilicon(usr) )
 		if(isobserver(usr) )
-			var/mob/dead/observer/O = usr	//Added to allow admin nanoUI interactions.
+			var/mob/observer/dead/O = usr	//Added to allow admin nanoUI interactions.
 			if(!O.can_admin_interact() )	//NanoUI /should/ make this not needed, but better safe than sorry.
 				usr << "Try as you might, your ghostly fingers can't press the buttons."
 				return 1
@@ -1139,12 +1139,15 @@ obj/machinery/power/apc/proc/autoset(var/val, var/on)
 
 // damage and destruction acts
 /obj/machinery/power/apc/emp_act(severity)
+	if(is_critical)
+		severity += 2
 	if(cell)
 		cell.emp_act(severity)
 
 	lighting = 0
-	equipment = 0
-	environ = 0
+	if(!is_critical)
+		equipment = 0
+		environ = 0
 	update()
 	update_icon()
 

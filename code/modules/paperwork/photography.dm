@@ -14,7 +14,7 @@
 	icon = 'icons/obj/items.dmi'
 	desc = "A camera film cartridge. Insert it into a camera to reload it."
 	icon_state = "film"
-	item_state = "electropack"
+	item_state = "camera"
 	w_class = 1.0
 
 
@@ -91,7 +91,7 @@ var/global/photo_count = 0
 /obj/item/weapon/storage/photo_album/MouseDrop(obj/over_object as obj)
 
 	if((istype(usr, /mob/living/carbon/human)))
-		var/mob/M = usr
+		var/mob/living/carbon/human/M = usr
 		if(!( istype(over_object, /obj/screen) ))
 			return ..()
 		playsound(loc, "rustle", 50, 1, -5)
@@ -120,7 +120,7 @@ var/global/photo_count = 0
 	icon = 'icons/obj/items.dmi'
 	desc = "A polaroid camera. 10 photos left."
 	icon_state = "camera"
-	item_state = "electropack"
+	item_state = "camera"
 	w_class = 2.0
 	flags = CONDUCT
 	slot_flags = SLOT_BELT

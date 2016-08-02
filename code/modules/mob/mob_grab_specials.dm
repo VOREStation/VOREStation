@@ -51,10 +51,16 @@
 		return
 
 	attacker.visible_message("<span class='danger'>[attacker] [pick("bent", "twisted")] [target]'s [organ.name] into a jointlock!</span>")
+
+	if(target.species.flags & NO_PAIN)
+		return
+
 	var/armor = target.run_armor_check(target, "melee")
 	if(armor < 60)
 		target << "<span class='danger'>You feel extreme pain!</span>"
-		affecting.adjustHalLoss(Clamp(0, 60-affecting.halloss, 30)) //up to 60 halloss
+
+		var/max_halloss = round(target.species.total_health * 0.8) //up to 80% of passing out
+		affecting.adjustHalLoss(Clamp(0, max_halloss - affecting.halloss, 30))
 
 /obj/item/weapon/grab/proc/attack_eye(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
 	if(!istype(attacker))
@@ -125,6 +131,10 @@
 		return
 	if(force_down)
 		attacker << "<span class='warning'>You are already pinning [target] to the ground.</span>"
+		return
+	if(size_difference(affecting, assailant) > 0)
+		attacker << "<span class='warning'>You are too small to do that!</span>"
+		return
 
 	attacker.visible_message("<span class='danger'>[attacker] starts forcing [target] to the ground!</span>")
 	if(do_after(attacker, 20) && target)
@@ -142,14 +152,14 @@
 
 /obj/item/weapon/grab/proc/devour(mob/target, mob/user)
 	var/can_eat
-	if((FAT in user.mutations) && issmall(target))
+	if((FAT in user.mutations) && ismini(target))
 		can_eat = 1
 	else
 		var/mob/living/carbon/human/H = user
 		if(istype(H) && H.species.gluttonous)
 			if(H.species.gluttonous == 2)
 				can_eat = 2
-			else if((H.mob_size > target.mob_size) && !ishuman(target) && iscarbon(target))
+			else if((H.mob_size > target.mob_size) && !ishuman(target) && ismini(target))
 				can_eat = 1
 
 	if(can_eat)
@@ -158,7 +168,7 @@
 		if(can_eat == 2)
 			if(!do_mob(user, target)||!do_after(user, 30)) return
 		else
-			if(!do_mob(user, target)||!do_after(user, 100)) return
+			if(!do_mob(user, target)||!do_after(user, 70)) return
 		user.visible_message("<span class='danger'>[user] devours [target]!</span>")
 		target.loc = user
 		attacker.stomach_contents.Add(target)

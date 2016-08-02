@@ -7,7 +7,6 @@
 	if(density)
 		can_open = WALL_OPENING
 		//flick("[material.icon_base]fwall_opening", src)
-		sleep(15)
 		density = 0
 		update_icon()
 		set_light(0)
@@ -20,7 +19,6 @@
 		//flick("[material.icon_base]fwall_closing", src)
 		density = 1
 		update_icon()
-		sleep(15)
 		set_light(1)
 		src.blocks_air = 1
 		src.opacity = 1
@@ -217,8 +215,7 @@
 				if (istype(W, /obj/item/weapon/wirecutters))
 					playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
 					construction_stage = 5
-					new /obj/item/stack/rods( src )
-					user << "<span class='notice'>You cut the outer grille.</span>"
+					user << "<span class='notice'>You cut through the outer grille.</span>"
 					update_icon()
 					return
 			if(5)
@@ -229,16 +226,13 @@
 						return
 					construction_stage = 4
 					update_icon()
-					user << "<span class='notice'>You remove the support lines.</span>"
+					user << "<span class='notice'>You unscrew the support lines.</span>"
 					return
-				else if( istype(W, /obj/item/stack/rods) )
-					var/obj/item/stack/O = W
-					if(O.get_amount()>0)
-						O.use(1)
-						construction_stage = 6
-						update_icon()
-						user << "<span class='notice'>You replace the outer grille.</span>"
-						return
+				else if (istype(W, /obj/item/weapon/wirecutters))
+					construction_stage = 6
+					user << "<span class='notice'>You mend the outer grille.</span>"
+					update_icon()
+					return
 			if(4)
 				var/cut_cover
 				if(istype(W,/obj/item/weapon/weldingtool))
@@ -260,6 +254,15 @@
 					construction_stage = 3
 					update_icon()
 					user << "<span class='notice'>You press firmly on the cover, dislodging it.</span>"
+					return
+				else if (istype(W, /obj/item/weapon/screwdriver))
+					user << "<span class='notice'>You begin screwing down the support lines.</span>"
+					playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
+					if(!do_after(user,40) || !istype(src, /turf/simulated/wall) || construction_stage != 4)
+						return
+					construction_stage = 5
+					update_icon()
+					user << "<span class='notice'>You screw down the support lines.</span>"
 					return
 			if(3)
 				if (istype(W, /obj/item/weapon/crowbar))
@@ -299,15 +302,14 @@
 						return
 					construction_stage = 0
 					update_icon()
-					new /obj/item/stack/rods(src)
-					user << "<span class='notice'>The support rods drop out as you cut them loose from the frame.</span>"
+					user << "<span class='notice'>The slice through the support rods.</span>"
 					return
 			if(0)
 				if(istype(W, /obj/item/weapon/crowbar))
 					user << "<span class='notice'>You struggle to pry off the outer sheath.</span>"
 					playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
-					sleep(100)
-					if(!istype(src, /turf/simulated/wall) || !user || !W || !T )	return
+					if(!do_after(user,100) || !istype(src, /turf/simulated/wall) || !user || !W || !T )
+						return
 					if(user.loc == T && user.get_active_hand() == W )
 						user << "<span class='notice'>You pry off the outer sheath.</span>"
 						dismantle_wall()

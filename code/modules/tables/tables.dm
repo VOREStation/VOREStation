@@ -26,6 +26,8 @@
 
 	var/list/connections = list("nw0", "ne0", "sw0", "se0")
 
+	var/item_place = 1 //allows items to be placed on the table, but not on benches.
+
 /obj/structure/table/proc/update_material()
 	var/old_maxhealth = maxhealth
 	if(!material)
@@ -51,8 +53,9 @@
 		visible_message("<span class='warning'>\The [src] breaks down!</span>")
 		return break_to_parts() // if we break and form shards, return them to the caller to do !FUN! things with
 
-/obj/structure/table/New()
+/obj/structure/table/initialize()
 	..()
+
 	// One table per turf.
 	for(var/obj/structure/table/T in loc)
 		if(T != src)
@@ -61,8 +64,6 @@
 			break_to_parts(full_return = 1)
 			return
 
-/obj/structure/table/initialize()
-	..()
 	// reset color/alpha, since they're set for nice map previews
 	color = "#ffffff"
 	alpha = 255
@@ -218,7 +219,7 @@
 // Returns the material to set the table to.
 /obj/structure/table/proc/common_material_remove(mob/user, material/M, delay, what, type_holding, sound)
 	if(!M.stack_type)
-		user << "<span class='warning'>You are unable to remove the [what] from this table!</span>"
+		user << "<span class='warning'>You are unable to remove the [what] from this [src]!</span>"
 		return M
 
 	if(manipulating) return M

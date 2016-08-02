@@ -6,12 +6,14 @@ var/datum/global_hud/global_hud = new()
 var/list/global_huds = list(
 		global_hud.druggy,
 		global_hud.blurry,
+		global_hud.whitense,
 		global_hud.vimpaired,
 		global_hud.darkMask,
 		global_hud.nvg,
 		global_hud.thermal,
 		global_hud.meson,
-		global_hud.science)
+		global_hud.science
+		)
 
 /datum/hud/var/obj/screen/grab_intent
 /datum/hud/var/obj/screen/hurt_intent
@@ -21,6 +23,7 @@ var/list/global_huds = list(
 /datum/global_hud
 	var/obj/screen/druggy
 	var/obj/screen/blurry
+	var/obj/screen/whitense
 	var/list/vimpaired
 	var/list/darkMask
 	var/obj/screen/nvg
@@ -52,6 +55,14 @@ var/list/global_huds = list(
 	blurry.icon_state = "blurry"
 	blurry.layer = 17
 	blurry.mouse_opacity = 0
+
+	//static overlay effect for cameras and the like
+	whitense = new /obj/screen()
+	whitense.screen_loc = ui_entire_screen
+	whitense.icon = 'icons/effects/static.dmi'
+	whitense.icon_state = "1 light"
+	whitense.layer = 17
+	whitense.mouse_opacity = 0
 
 	nvg = setup_overlay("nvg_hud")
 	thermal = setup_overlay("thermal_hud")
@@ -122,6 +133,8 @@ var/list/global_huds = list(
 	var/hotkey_ui_hidden = 0	//This is to hide the buttons that can be used via hotkeys. (hotkeybuttons list of buttons)
 
 	var/obj/screen/lingchemdisplay
+	var/obj/screen/wiz_instability_display
+	var/obj/screen/wiz_energy_display
 	var/obj/screen/blobpwrdisplay
 	var/obj/screen/blobhealthdisplay
 	var/obj/screen/r_hand_hud_object
@@ -148,6 +161,8 @@ datum/hud/New(mob/owner)
 	disarm_intent = null
 	help_intent = null
 	lingchemdisplay = null
+	wiz_instability_display = null
+	wiz_energy_display = null
 	blobpwrdisplay = null
 	blobhealthdisplay = null
 	r_hand_hud_object = null
@@ -256,9 +271,9 @@ datum/hud/New(mob/owner)
 	if(ishuman(mymob))
 		human_hud(ui_style, ui_color, ui_alpha, mymob) // Pass the player the UI style chosen in preferences
 	else if(isrobot(mymob))
-		robot_hud()
+		robot_hud(ui_style, ui_color, ui_alpha, mymob)
 	else if(isbrain(mymob))
-		brain_hud(ui_style)
+		mymob.instantiate_hud(src)
 	else if(isalien(mymob))
 		larva_hud()
 	else if(isslime(mymob))
@@ -371,3 +386,9 @@ datum/hud/New(mob/owner)
 	hud_used.hidden_inventory_update()
 	hud_used.persistant_inventory_update()
 	update_action_buttons()
+
+/mob/proc/add_click_catcher()
+	client.screen += client.void
+
+/mob/new_player/add_click_catcher()
+	return

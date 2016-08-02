@@ -49,7 +49,7 @@ var/datum/antagonist/deathsquad/deathsquad
 	player.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/pulse_rifle(player), slot_r_hand)
 	player.equip_to_slot_or_del(new /obj/item/weapon/rig/ert/assetprotection(player), slot_back)
 	player.equip_to_slot_or_del(new /obj/item/weapon/melee/energy/sword(player), slot_s_store)
-	player.implant_loyalty(player)
+	player.implant_loyalty()
 
 	var/obj/item/weapon/card/id/id = create_id("Asset Protection", player)
 	if(id)
@@ -70,7 +70,7 @@ var/datum/antagonist/deathsquad/deathsquad
 	var/syndicate_commando_name = pick(last_names)
 
 	var/datum/preferences/A = new() //Randomize appearance for the commando.
-	A.randomize_appearance_for(player.current)
+	A.randomize_appearance_and_body_for(player.current)
 
 	player.name = "[syndicate_commando_rank] [syndicate_commando_name]"
 	player.current.name = player.name

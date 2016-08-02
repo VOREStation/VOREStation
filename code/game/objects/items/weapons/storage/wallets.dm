@@ -2,7 +2,8 @@
 	name = "wallet"
 	desc = "It can hold a few small and personal things."
 	storage_slots = 10
-	icon_state = "wallet"
+	icon = 'icons/obj/wallet.dmi'
+	icon_state = "wallet-orange"
 	w_class = 2
 	can_hold = list(
 		/obj/item/weapon/spacecash,
@@ -27,7 +28,6 @@
 
 	var/obj/item/weapon/card/id/front_id = null
 
-
 /obj/item/weapon/storage/wallet/remove_from_storage(obj/item/W as obj, atom/new_location)
 	. = ..(W, new_location)
 	if(.)
@@ -45,23 +45,14 @@
 			update_icon()
 
 /obj/item/weapon/storage/wallet/update_icon()
-
+	overlays.Cut()
 	if(front_id)
-		switch(front_id.icon_state)
-			if("id")
-				icon_state = "walletid"
-				return
-			if("silver")
-				icon_state = "walletid_silver"
-				return
-			if("gold")
-				icon_state = "walletid_gold"
-				return
-			if("centcom")
-				icon_state = "walletid_centcom"
-				return
-	icon_state = "wallet"
-
+		var/tiny_state = "id-generic"
+		if("id-"+front_id.icon_state in icon_states(icon))
+			tiny_state = "id-"+front_id.icon_state
+		var/image/tiny_image = new/image(icon, icon_state = tiny_state)
+		tiny_image.appearance_flags = RESET_COLOR
+		overlays += tiny_image
 
 /obj/item/weapon/storage/wallet/GetID()
 	return front_id
@@ -75,16 +66,49 @@
 
 /obj/item/weapon/storage/wallet/random/New()
 	..()
-	var/item1_type = pick( /obj/item/weapon/spacecash/c10,/obj/item/weapon/spacecash/c100,/obj/item/weapon/spacecash/c1000,/obj/item/weapon/spacecash/c20,/obj/item/weapon/spacecash/c200,/obj/item/weapon/spacecash/c50, /obj/item/weapon/spacecash/c500)
-	var/item2_type
-	if(prob(50))
-		item2_type = pick( /obj/item/weapon/spacecash/c10,/obj/item/weapon/spacecash/c100,/obj/item/weapon/spacecash/c1000,/obj/item/weapon/spacecash/c20,/obj/item/weapon/spacecash/c200,/obj/item/weapon/spacecash/c50, /obj/item/weapon/spacecash/c500)
-	var/item3_type = pick( /obj/item/weapon/coin/silver, /obj/item/weapon/coin/silver, /obj/item/weapon/coin/gold, /obj/item/weapon/coin/iron, /obj/item/weapon/coin/iron, /obj/item/weapon/coin/iron )
+	var/amount = rand(50, 100) + rand(50, 100) // Triangular distribution from 100 to 200
+	var/obj/item/weapon/spacecash/SC = null
+	for(var/i in list(100, 50, 20, 10, 5, 1))
+		if(amount < i)
+			continue
+		SC = new(src)
+		while(amount >= i)
+			amount -= i
+			SC.adjust_worth(i, 0)
+		SC.update_icon()
 
-	spawn(2)
-		if(item1_type)
-			new item1_type(src)
-		if(item2_type)
-			new item2_type(src)
-		if(item3_type)
-			new item3_type(src)
+/obj/item/weapon/storage/wallet/poly
+	name = "polychromic wallet"
+	desc = "You can recolor it! Fancy! The future is NOW!"
+	icon_state = "wallet-white"
+
+/obj/item/weapon/storage/wallet/poly/New()
+	..()
+	verbs |= /obj/item/weapon/storage/wallet/poly/proc/change_color
+	color = "#"+get_random_colour()
+	update_icon()
+	
+/obj/item/weapon/storage/wallet/poly/proc/change_color()
+	set name = "Change Wallet Color"
+	set category = "Object"
+	set desc = "Change the color of the wallet."
+	set src in usr
+
+	if(usr.stat || usr.restrained() || usr.incapacitated())
+		return
+
+	var/new_color = input(usr, "Pick a new color", "Wallet Color", color) as color|null
+
+	if(new_color && (new_color != color))
+		color = new_color
+
+/obj/item/weapon/storage/wallet/poly/emp_act()
+	var/original_state = icon_state
+	icon_state = "wallet-emp"
+	update_icon()
+	
+	spawn(200)
+		if(src)
+			icon_state = original_state
+			update_icon()
+			

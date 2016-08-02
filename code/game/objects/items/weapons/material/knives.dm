@@ -72,7 +72,6 @@
 	name = "meat hook"
 	desc = "A sharp, metal hook what sticks into things."
 	icon_state = "hook_knife"
-	item_state = "hook_knife"
 
 /obj/item/weapon/material/knife/ritual
 	name = "ritual knife"

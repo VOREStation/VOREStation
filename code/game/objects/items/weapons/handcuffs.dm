@@ -60,7 +60,7 @@
 		user << "<span class='danger'>\The [H] needs at least two wrists before you can cuff them together!</span>"
 		return 0
 
-	if(istype(H.gloves,/obj/item/clothing/gloves/rig) && !elastic) // Can't cuff someone who's in a deployed hardsuit.
+	if(istype(H.gloves,/obj/item/clothing/gloves/gauntlets/rig) && !elastic) // Can't cuff someone who's in a deployed hardsuit.
 		user << "<span class='danger'>\The [src] won't fit around \the [H.gloves]!</span>"
 		return 0
 
@@ -73,6 +73,9 @@
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to handcuff [H.name] ([H.ckey])</font>")
 	msg_admin_attack("[key_name(user)] attempted to handcuff [key_name(H)]")
 	feedback_add_details("handcuffs","H")
+
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	user.do_attack_animation(H)
 
 	user.visible_message("<span class='danger'>\The [user] has put [cuff_type] on \the [H]!</span>")
 

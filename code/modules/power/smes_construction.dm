@@ -12,29 +12,29 @@
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "smes_coil"			// Just few icons patched together. If someone wants to make better icon, feel free to do so!
 	w_class = 4.0 						// It's LARGE (backpack size)
-	var/ChargeCapacity = 5000000
-	var/IOCapacity = 250000
+	var/ChargeCapacity = 6000000		// 100 kWh
+	var/IOCapacity = 250000				// 250 kW
 
 // 20% Charge Capacity, 60% I/O Capacity. Used for substation/outpost SMESs.
 /obj/item/weapon/smes_coil/weak
 	name = "basic superconductive magnetic coil"
 	desc = "Cheaper model of standard superconductive magnetic coil. It's capacity and I/O rating are considerably lower."
-	ChargeCapacity = 1000000
-	IOCapacity = 150000
+	ChargeCapacity = 1200000			// 20 kWh
+	IOCapacity = 150000					// 150 kW
 
 // 1000% Charge Capacity, 20% I/O Capacity
 /obj/item/weapon/smes_coil/super_capacity
 	name = "superconductive capacitance coil"
 	desc = "Specialised version of standard superconductive magnetic coil. This one has significantly stronger containment field, allowing for significantly larger power storage. It's IO rating is much lower, however."
-	ChargeCapacity = 50000000
-	IOCapacity = 50000
+	ChargeCapacity = 60000000			// 1000 kWh
+	IOCapacity = 50000					// 50 kW
 
 // 10% Charge Capacity, 400% I/O Capacity. Technically turns SMES into large super capacitor.Ideal for shields.
 /obj/item/weapon/smes_coil/super_io
 	name = "superconductive transmission coil"
 	desc = "Specialised version of standard superconductive magnetic coil. While this one won't store almost any power, it rapidly transfers power, making it useful in systems which require large throughput."
-	ChargeCapacity = 500000
-	IOCapacity = 1000000
+	ChargeCapacity = 600000				// 10 kWh
+	IOCapacity = 1000000				// 1000 kW
 
 
 // SMES SUBTYPES - THESE ARE MAPPED IN AND CONTAIN DIFFERENT TYPES OF COILS
@@ -116,7 +116,6 @@
 /obj/machinery/power/smes/buildable/New(var/install_coils = 1)
 	component_parts = list()
 	component_parts += new /obj/item/stack/cable_coil(src,30)
-	component_parts += new /obj/item/weapon/circuitboard/smes(src)
 	src.wires = new /datum/wires/smes(src)
 
 	// Allows for mapped-in SMESs with larger capacity/IO
@@ -345,9 +344,10 @@
 					return
 
 				usr << "\red You have disassembled the SMES cell!"
-				var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)
+				var/obj/structure/frame/M = new /obj/structure/frame(src.loc)
+				M.frame_type = "machine"
 				M.state = 2
-				M.icon_state = "box_1"
+				M.icon_state = "machine_1"
 				for(var/obj/I in component_parts)
 					I.loc = src.loc
 					component_parts -= I

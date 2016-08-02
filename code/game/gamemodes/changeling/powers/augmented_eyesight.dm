@@ -4,6 +4,7 @@
 	name = "Augmented Eyesight"
 	desc = "Creates heat receptors in our eyes and dramatically increases light sensing ability."
 	helptext = "Grants us night vision and thermal vision. It may be toggled on or off. We will become more vulnerable to flash-based devices while active."
+	ability_icon_state = "ling_augmented_eyesight"
 	genomecost = 2
 	var/active = 0 //Whether or not vision is enhanced
 	verbpath = /mob/proc/changeling_augmented_eyesight

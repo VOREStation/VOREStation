@@ -6,8 +6,7 @@
 	metabolism = REM * 5
 	color = "#C80000"
 
-	glass_icon_state = "glass_red"
-	glass_name = "glass of tomato juice"
+	glass_name = "tomato juice"
 	glass_desc = "Are you sure this is tomato juice?"
 
 /datum/reagent/blood/initialize_data(var/newdata)
@@ -91,8 +90,7 @@
 	color = "#0064C877"
 	metabolism = REM * 10
 
-	glass_icon_state = "glass_clear"
-	glass_name = "glass of water"
+	glass_name = "water"
 	glass_desc = "The father of all refreshments."
 
 /datum/reagent/water/touch_turf(var/turf/simulated/T)
@@ -129,12 +127,9 @@
 	if(istype(L))
 		var/needed = L.fire_stacks * 10
 		if(amount > needed)
-			L.fire_stacks = 0
 			L.ExtinguishMob()
-			remove_self(needed)
-		else
-			L.adjust_fire_stacks(-(amount / 10))
-			remove_self(amount)
+		L.adjust_fire_stacks(-(amount / 10))
+		remove_self(needed)
 
 /datum/reagent/water/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	if(istype(M, /mob/living/carbon/slime))
@@ -154,8 +149,7 @@
 	reagent_state = LIQUID
 	color = "#660000"
 
-	glass_icon_state = "dr_gibb_glass"
-	glass_name = "glass of welder fuel"
+	glass_name = "welder fuel"
 	glass_desc = "Unless you are an industrial tool, this is probably not safe for consumption."
 
 /datum/reagent/fuel/touch_turf(var/turf/T)

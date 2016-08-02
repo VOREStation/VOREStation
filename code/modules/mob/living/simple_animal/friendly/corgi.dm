@@ -195,3 +195,23 @@
 				for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
 					set_dir(i)
 					sleep(1)
+
+//Technically this should be like, its own file or something or a subset of dog but whatever. Not a coder.
+/mob/living/simple_animal/corgi/tamaskan
+	name = "\improper tamaskan"
+	real_name = "tamaskan"
+	desc = "It's a tamaskan."
+	icon_state = "tamaskan"
+	icon_living = "tamaskan"
+	icon_dead = "tamaskan_dead"
+
+/mob/living/simple_animal/corgi/tamaskan/spice
+	name = "Spice"
+	real_name = "Spice"	//Intended to hold the name without altering it.
+	gender = FEMALE
+	desc = "It's a tamaskan, the name Spice can be found on its collar."
+	var/turns_since_scan = 0
+	var/obj/movement_target
+	response_help  = "pets"
+	response_disarm = "bops"
+	response_harm   = "kicks"

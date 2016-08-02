@@ -7,7 +7,7 @@ var/list/nuke_disks = list()
 /datum/game_mode/nuclear
 	name = "Mercenary"
 	round_description = "A mercenary strike force is approaching the station!"
-	extended_round_description = "The Company's majority control of phoron in Vir has marked the \
+	extended_round_description = "The Company's majority control of phoron in "+starsys_name+" has marked the \
 		station to be a highly valuable target for many competing organizations and individuals. Being a \
 		colony of sizable population and considerable wealth causes it to often be the target of various \
 		attempts of robbery, fraud and other malicious actions."
@@ -34,6 +34,7 @@ var/list/nuke_disks = list()
 
 /datum/game_mode/nuclear/declare_completion()
 	if(config.objectives_disabled)
+		..()
 		return
 	var/disk_rescued = 1
 	for(var/obj/item/weapon/disk/nuclear/D in world)

@@ -127,7 +127,6 @@
 /obj/item/weapon/storage/box/syndie_kit/chameleon
 	name = "chameleon kit"
 	desc = "Comes with all the clothes you need to impersonate most people.  Acting lessons sold seperately."
-	storage_slots = 10
 
 /obj/item/weapon/storage/box/syndie_kit/chameleon/New()
 	..()
@@ -256,4 +255,29 @@
 	new /obj/item/weapon/spacecash/c1000(src)
 	new /obj/item/weapon/spacecash/c1000(src)
 
+/obj/item/weapon/storage/box/syndie_kit/combat_armor
+	name = "combat armor kit"
+	desc = "Contains a full set of combat armor."
 
+/obj/item/weapon/storage/box/syndie_kit/combat_armor/New()
+	..()
+	new /obj/item/clothing/head/helmet/combat(src)
+	new /obj/item/clothing/suit/armor/combat(src)
+	new /obj/item/clothing/gloves/arm_guard/combat(src)
+	new /obj/item/clothing/shoes/leg_guard/combat(src)
+	return
+
+/obj/item/weapon/storage/box/syndie_kit/demolitions/New()
+	..()
+	new /obj/item/weapon/syndie/c4explosive(src)
+	new /obj/item/weapon/screwdriver(src)
+
+/obj/item/weapon/storage/box/syndie_kit/demolitions_heavy/New()
+	..()
+	new /obj/item/weapon/syndie/c4explosive/heavy(src)
+	new /obj/item/weapon/screwdriver(src)
+
+/obj/item/weapon/storage/box/syndie_kit/demolitions_super_heavy/New()
+	..()
+	new /obj/item/weapon/syndie/c4explosive/heavy/super_heavy(src)
+	new /obj/item/weapon/screwdriver(src)

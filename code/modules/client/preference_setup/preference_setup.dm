@@ -1,7 +1,12 @@
-// These are not flags, binary operations not intended
 #define TOPIC_NOACTION 0
 #define TOPIC_HANDLED 1
 #define TOPIC_REFRESH 2
+#define TOPIC_UPDATE_PREVIEW 4
+#define TOPIC_REFRESH_UPDATE_PREVIEW (TOPIC_REFRESH|TOPIC_UPDATE_PREVIEW)
+
+#define PREF_FBP_CYBORG "cyborg"
+#define PREF_FBP_POSI "posi"
+#define PREF_FBP_SOFTWARE "software"
 
 /datum/category_group/player_setup_category/general_preferences
 	name = "General"
@@ -70,6 +75,10 @@
 /datum/category_collection/player_setup_collection/proc/save_preferences(var/savefile/S)
 	for(var/datum/category_group/player_setup_category/PS in categories)
 		PS.save_preferences(S)
+
+/datum/category_collection/player_setup_collection/proc/copy_to_mob(var/mob/living/carbon/human/C)
+	for(var/datum/category_group/player_setup_category/PS in categories)
+		PS.copy_to_mob(C)
 
 /datum/category_collection/player_setup_collection/proc/header()
 	var/dat = ""
@@ -142,6 +151,10 @@
 	for(var/datum/category_item/player_setup_item/PI in items)
 		PI.save_preferences(S)
 
+/datum/category_group/player_setup_category/proc/copy_to_mob(var/mob/living/carbon/human/C)
+	for(var/datum/category_item/player_setup_item/PI in items)
+		PI.copy_to_mob(C)
+
 /datum/category_group/player_setup_category/proc/content(var/mob/user)
 	. = "<table style='width:100%'><tr style='vertical-align:top'><td style='width:50%'>"
 	var/current = 0
@@ -200,6 +213,12 @@
 /datum/category_item/player_setup_item/proc/save_preferences(var/savefile/S)
 	return
 
+/*
+* Called when the item is asked to apply its per character settings to a new mob.
+*/
+/datum/category_item/player_setup_item/proc/copy_to_mob(var/mob/living/carbon/human/C)
+	return
+
 /datum/category_item/player_setup_item/proc/content()
 	return
 
@@ -212,13 +231,15 @@
 /datum/category_item/player_setup_item/Topic(var/href,var/list/href_list)
 	if(..())
 		return 1
-	var/mob/user = usr
-	if(!user.client)
+	var/mob/pref_mob = preference_mob()
+	if(!pref_mob || !pref_mob.client)
 		return 1
 
-	. = OnTopic(href, href_list, user)
-	if(. == TOPIC_REFRESH)
-		user.client.prefs.ShowChoices(user)
+	. = OnTopic(href, href_list, usr)
+	if(. & TOPIC_UPDATE_PREVIEW)
+		pref_mob.client.prefs.preview_icon = null
+	if(. & TOPIC_REFRESH)
+		pref_mob.client.prefs.ShowChoices(usr)
 
 /datum/category_item/player_setup_item/CanUseTopic(var/mob/user)
 	return 1
@@ -227,5 +248,58 @@
 	return TOPIC_NOACTION
 
 /datum/category_item/player_setup_item/proc/preference_mob()
-	if(pref && pref.client && pref.client.mob)
+	if(!pref.client)
+		for(var/client/C)
+			if(C.ckey == pref.client_ckey)
+				pref.client = C
+				break
+
+	if(pref.client)
 		return pref.client.mob
+
+// Checks in a really hacky way if a character's preferences say they are an FBP or not.
+/datum/category_item/player_setup_item/proc/is_FBP()
+	if(pref.organ_data && pref.organ_data[BP_TORSO] != "cyborg")
+		return 0
+	return 1
+
+// Returns what kind of FBP the player's prefs are.  Returns 0 if they're not an FBP.
+/datum/category_item/player_setup_item/proc/get_FBP_type()
+	if(!is_FBP())
+		return 0 // Not a robot.
+	switch(pref.organ_data["brain"])
+		if("assisted")
+			return PREF_FBP_CYBORG
+		if("mechanical")
+			return PREF_FBP_POSI
+		if("digital")
+			return PREF_FBP_SOFTWARE
+	return 0 //Something went wrong!
+
+/datum/category_item/player_setup_item/proc/get_min_age()
+	var/datum/species/S = all_species[pref.species ? pref.species : "Human"]
+	if(!is_FBP())
+		return S.min_age // If they're not a robot, we can just use the species var.
+	var/FBP_type = get_FBP_type()
+	switch(FBP_type)
+		if(PREF_FBP_CYBORG)
+			return S.min_age
+		if(PREF_FBP_POSI)
+			return 1
+		if(PREF_FBP_SOFTWARE)
+			return 1
+	return S.min_age // welp
+
+/datum/category_item/player_setup_item/proc/get_max_age()
+	var/datum/species/S = all_species[pref.species ? pref.species : "Human"]
+	if(!is_FBP())
+		return S.max_age // If they're not a robot, we can just use the species var.
+	var/FBP_type = get_FBP_type()
+	switch(FBP_type)
+		if(PREF_FBP_CYBORG)
+			return S.max_age + 20
+		if(PREF_FBP_POSI)
+			return 220
+		if(PREF_FBP_SOFTWARE)
+			return 150
+	return S.max_age // welp

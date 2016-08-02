@@ -86,6 +86,17 @@
 			qdel(src)
 		return
 
+/obj/structure/closet/body_bag/proc/get_occupants()
+	var/list/occupants = list()
+	for(var/mob/living/carbon/human/H in contents)
+		occupants += H
+	return occupants
+
+/obj/structure/closet/body_bag/proc/update(var/broadcast=0)
+	if(istype(loc, /obj/structure/morgue))
+		var/obj/structure/morgue/M = loc
+		M.update(broadcast)
+
 /obj/structure/closet/body_bag/update_icon()
 	if(opened)
 		icon_state = icon_opened
@@ -144,12 +155,24 @@
 		var/mob/living/carbon/human/H = AM
 		H.in_stasis = 1
 		src.used = 1
+
+	if(istype(AM, /obj/item/organ))
+		var/obj/item/organ/O = AM
+		O.preserved = 1
+		for(var/obj/item/organ/organ in O)
+			organ.preserved = 1
 	..()
 
 /obj/structure/closet/body_bag/cryobag/Exited(atom/movable/AM)
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		H.in_stasis = 0
+
+	if(istype(AM, /obj/item/organ))
+		var/obj/item/organ/O = AM
+		O.preserved = 0
+		for(var/obj/item/organ/organ in O)
+			organ.preserved = 0
 	..()
 
 /obj/structure/closet/body_bag/cryobag/return_air() //Used to make stasis bags protect from vacuum.

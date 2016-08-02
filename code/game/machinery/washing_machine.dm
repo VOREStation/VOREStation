@@ -4,6 +4,7 @@
 	icon_state = "wm_10"
 	density = 1
 	anchored = 1.0
+	circuit = /obj/item/weapon/circuitboard/washing
 	var/state = 1
 	//1 = empty, open door
 	//2 = empty, closed door
@@ -13,14 +14,24 @@
 	//6 = blood, open door
 	//7 = blood, closed door
 	//8 = blood, running
-	var/panel = 0
-	//0 = closed
-	//1 = open
 	var/hacked = 1 //Bleh, screw hacking, let's have it hacked by default.
 	//0 = not hacked
 	//1 = hacked
 	var/gibs_ready = 0
 	var/obj/crayon
+	var/list/washing = list()
+	var/list/disallowed_types = list(
+		/obj/item/clothing/suit/space,
+		/obj/item/clothing/head/helmet/space
+		)
+
+/obj/machinery/washing_machine/New()
+	circuit = new circuit(src)
+	component_parts = list()
+	component_parts += new /obj/item/weapon/stock_parts/motor(src)
+	component_parts += new /obj/item/weapon/stock_parts/gear(src)
+	component_parts += new /obj/item/weapon/stock_parts/gear(src)
+	RefreshParts()
 
 /obj/machinery/washing_machine/verb/start()
 	set name = "Start Washing"
@@ -34,25 +45,25 @@
 		usr << "The washing machine cannot run in this state."
 		return
 
-	if( locate(/mob,contents) )
+	if( locate(/mob,washing) )
 		state = 8
 	else
 		state = 5
 	update_icon()
 	sleep(200)
-	for(var/atom/A in contents)
+	for(var/atom/A in washing)
 		A.clean_blood()
 
-	for(var/obj/item/I in contents)
+	for(var/obj/item/I in washing)
 		I.decontaminate()
 
 	//Tanning!
-	for(var/obj/item/stack/material/hairlesshide/HH in contents)
+	for(var/obj/item/stack/material/hairlesshide/HH in washing)
 		var/obj/item/stack/material/wetleather/WL = new(src)
 		WL.amount = HH.amount
 		qdel(HH)
 
-	if( locate(/mob,contents) )
+	if( locate(/mob,washing) )
 		state = 7
 		gibs_ready = 1
 	else
@@ -70,9 +81,14 @@
 
 
 /obj/machinery/washing_machine/update_icon()
-	icon_state = "wm_[state][panel]"
+	icon_state = "wm_[state][panel_open]"
 
 /obj/machinery/washing_machine/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(state == 2 && washing.len < 1)
+		if(default_deconstruction_screwdriver(user, W))
+			return
+		if(default_deconstruction_crowbar(user, W))
+			return
 	/*if(istype(W,/obj/item/weapon/screwdriver))
 		panel = !panel
 		user << "<span class='notice'>You [panel ? "open" : "close"] the [src]'s maintenance panel</span>"*/
@@ -95,57 +111,17 @@
 				state = 3
 		else
 			..()
-	else if(istype(W,/obj/item/stack/material/hairlesshide) || \
-		istype(W,/obj/item/clothing/under) || \
-		istype(W,/obj/item/clothing/mask) || \
-		istype(W,/obj/item/clothing/head) || \
-		istype(W,/obj/item/clothing/gloves) || \
-		istype(W,/obj/item/clothing/shoes) || \
-		istype(W,/obj/item/clothing/suit) || \
-		istype(W,/obj/item/weapon/bedsheet))
 
-		//YES, it's hardcoded... saves a var/can_be_washed for every single clothing item.
-		if ( istype(W,/obj/item/clothing/suit/space ) )
-			user << "This item does not fit."
-			return
-		if ( istype(W,/obj/item/clothing/suit/syndicatefake ) )
-			user << "This item does not fit."
-			return
-//		if ( istype(W,/obj/item/clothing/suit/powered ) )
-//			user << "This item does not fit."
-//			return
-		if ( istype(W,/obj/item/clothing/suit/cyborg_suit ) )
-			user << "This item does not fit."
-			return
-		if ( istype(W,/obj/item/clothing/suit/bomb_suit ) )
-			user << "This item does not fit."
-			return
-		if ( istype(W,/obj/item/clothing/suit/armor ) )
-			user << "This item does not fit."
-			return
-		if ( istype(W,/obj/item/clothing/suit/armor ) )
-			user << "This item does not fit."
-			return
-		if ( istype(W,/obj/item/clothing/mask/gas ) )
-			user << "This item does not fit."
-			return
-		if ( istype(W,/obj/item/clothing/mask/smokable/cigarette ) )
-			user << "This item does not fit."
-			return
-		if ( istype(W,/obj/item/clothing/head/syndicatefake ) )
-			user << "This item does not fit."
-			return
-//		if ( istype(W,/obj/item/clothing/head/powered ) )
-//			user << "This item does not fit."
-//			return
-		if ( istype(W,/obj/item/clothing/head/helmet ) )
-			user << "This item does not fit."
-			return
+	else if(is_type_in_list(W, disallowed_types))
+		user << "<span class='warning'>You can't fit \the [W] inside.</span>"
+		return
 
-		if(contents.len < 5)
+	else if(istype(W, /obj/item/clothing))
+		if(washing.len < 5)
 			if ( state in list(1, 3) )
 				user.drop_item()
 				W.loc = src
+				washing += W
 				state = 3
 			else
 				user << "<span class='notice'>You can't put the item in right now.</span>"
@@ -161,15 +137,17 @@
 			state = 2
 		if(2)
 			state = 1
-			for(var/atom/movable/O in contents)
+			for(var/atom/movable/O in washing)
 				O.loc = src.loc
+			washing.Cut()
 		if(3)
 			state = 4
 		if(4)
 			state = 3
-			for(var/atom/movable/O in contents)
+			for(var/atom/movable/O in washing)
 				O.loc = src.loc
 			crayon = null
+			washing.Cut()
 			state = 1
 		if(5)
 			user << "<span class='warning'>The [src] is busy.</span>"
@@ -178,13 +156,13 @@
 		if(7)
 			if(gibs_ready)
 				gibs_ready = 0
-				if(locate(/mob,contents))
-					var/mob/M = locate(/mob,contents)
+				if(locate(/mob,washing))
+					var/mob/M = locate(/mob,washing)
 					M.gib()
-			for(var/atom/movable/O in contents)
+			for(var/atom/movable/O in washing)
 				O.loc = src.loc
 			crayon = null
 			state = 1
-
+			washing.Cut()
 
 	update_icon()

@@ -4,7 +4,7 @@
 	w_class = 4
 	icon = 'icons/obj/device.dmi'
 	icon_state = "suitcooler0"
-	slot_flags = SLOT_BACK	//you can carry it on your back if you want, but it won't do anything unless attached to suit storage
+	slot_flags = SLOT_BACK
 
 	//copied from tank.dm
 	flags = CONDUCT
@@ -31,7 +31,7 @@
 
 /obj/item/device/suit_cooling_unit/New()
 	processing_objects |= src
-	cell = new/obj/item/weapon/cell()	//comes with the crappy default power cell - high-capacity ones shouldn't be hard to find
+	cell = new/obj/item/weapon/cell/high()	//comes not with the crappy default power cell - because this is dedicated EVA equipment
 	cell.loc = src
 
 /obj/item/device/suit_cooling_unit/process()
@@ -66,7 +66,7 @@
 	if (ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		if(istype(H.loc, /obj/mecha))
-			var/obj/mecha/M = loc
+			var/obj/mecha/M = H.loc
 			return M.return_temperature()
 		else if(istype(H.loc, /obj/machinery/atmospherics/unary/cryo_cell))
 			return H.loc:air_contents.temperature
@@ -87,7 +87,7 @@
 
 	var/mob/living/carbon/human/H = M
 
-	if (!H.wear_suit || H.s_store != src)
+	if (!H.wear_suit || (H.s_store != src && H.back != src))
 		return 0
 
 	return 1

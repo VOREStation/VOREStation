@@ -8,9 +8,19 @@
 	var/obj/item/weapon/extinguisher/has_extinguisher
 	var/opened = 0
 
-/obj/structure/extinguisher_cabinet/New()
+/obj/structure/extinguisher_cabinet/New(var/loc, var/dir, var/building = 0)
 	..()
-	has_extinguisher = new/obj/item/weapon/extinguisher(src)
+
+	if(building)
+		if(loc)
+			src.loc = loc
+
+		pixel_x = (dir & 3)? 0 : (dir == 4 ? -27 : 27)
+		pixel_y = (dir & 3)? (dir ==1 ? -27 : 27) : 0
+		update_icon()
+		return
+	else
+		has_extinguisher = new/obj/item/weapon/extinguisher(src)
 
 /obj/structure/extinguisher_cabinet/attackby(obj/item/O, mob/user)
 	if(isrobot(user))
@@ -23,12 +33,21 @@
 			user << "<span class='notice'>You place [O] in [src].</span>"
 		else
 			opened = !opened
+	if(istype(O, /obj/item/weapon/wrench))
+		if(!has_extinguisher)
+			user << "<span class='notice'>You start to unwrench the extinguisher cabinet.</span>"
+			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+			if(do_after(user, 15))
+				user << "<span class='notice'>You unwrench the extinguisher cabinet.</span>"
+				new /obj/item/frame/extinguisher_cabinet( src.loc )
+				qdel(src)
+			return
 	else
 		opened = !opened
 	update_icon()
 
 
-/obj/structure/extinguisher_cabinet/attack_hand(mob/user)
+/obj/structure/extinguisher_cabinet/attack_hand(mob/living/user)
 	if(isrobot(user))
 		return
 	if (ishuman(user))

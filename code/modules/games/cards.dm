@@ -77,12 +77,8 @@
 		usr << "There are no cards in the deck."
 		return
 
-	var/obj/item/weapon/hand/H
-	if(user.l_hand && istype(user.l_hand,/obj/item/weapon/hand))
-		H = user.l_hand
-	else if(user.r_hand && istype(user.r_hand,/obj/item/weapon/hand))
-		H = user.r_hand
-	else
+	var/obj/item/weapon/hand/H = user.get_type_in_hands(/obj/item/weapon/hand)
+	if(!H)
 		H = new(get_turf(src))
 		user.put_in_hands(H)
 
@@ -138,7 +134,7 @@
 		if(P.name != "Blank Card")
 			user << "You cannot write on that card."
 			return
-		var/cardtext = sanitize(input(user, "What do you wish to write on the card?", "Card Editing") as text|null, MAX_BOOK_MESSAGE_LEN)
+		var/cardtext = sanitize(input(user, "What do you wish to write on the card?", "Card Editing") as text|null, MAX_PAPER_MESSAGE_LEN)
 		if(!cardtext)
 			return
 		P.name = cardtext

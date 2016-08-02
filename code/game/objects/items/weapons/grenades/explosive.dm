@@ -4,7 +4,6 @@
 	//icon = 'icons/obj/grenade.dmi'
 	//det_time = 50
 	//icon_state = "frggrenade"
-	//item_state = "frggrenade"
 	//origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 3)
 
 //obj/item/weapon/grenade/explosive/prime()
@@ -18,7 +17,8 @@
 //Explosive grenade projectile, borrowed from fragmentation grenade code.
 /obj/item/projectile/bullet/pellet/fragment
 	damage = 10
-	range_step = 2
+	armor_penetration = 30
+	range_step = 2 //projectiles lose a fragment each time they travel this distance. Can be a non-integer.
 
 	base_spread = 0 //causes it to be treated as a shrapnel explosion instead of cone
 	spread_step = 20
@@ -31,11 +31,10 @@
 	name = "fragmentation grenade"
 	desc = "A fragmentation grenade, optimized for harming personnel without causing massive structural damage."
 	icon_state = "frggrenade"
-	item_state = "frggrenade"
+	item_state = "grenade"
 
-	var/num_fragments = 50  //total number of fragments produced by the grenade
-	var/fragment_damage = 10
-	var/damage_step = 2      //projectiles lose a fragment each time they travel this distance. Can be a non-integer.
+	var/fragment_type = /obj/item/projectile/bullet/pellet/fragment
+	var/num_fragments = 63  //total number of fragments produced by the grenade
 	var/explosion_size = 2   //size of the center explosion
 
 	//The radius of the circle used to launch projectiles. Lower values mean less projectiles are used but if set too low gaps may appear in the spread pattern
@@ -57,9 +56,7 @@
 	for(var/turf/T in target_turfs)
 		var/obj/item/projectile/bullet/pellet/fragment/P = new (O)
 
-		P.damage = fragment_damage
 		P.pellets = fragments_per_projectile
-		P.range_step = damage_step
 		P.shot_from = src.name
 
 		P.launch(T)

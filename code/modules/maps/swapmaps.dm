@@ -419,8 +419,8 @@ swapmap
 		Build procs: Take 2 turfs as corners, plus an item type.
 		An item may be like:
 
-		/turf/wall
-		/obj/fence{icon_state="iron"}
+		turf/wall
+		obj/fence{icon_state="iron"}
 	 */
 	proc/BuildFilledRectangle(turf/T1,turf/T2,item)
 		if(!Contains(T1) || !Contains(T2)) return

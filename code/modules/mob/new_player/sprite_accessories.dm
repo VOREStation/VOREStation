@@ -66,9 +66,24 @@
 		icon_state = "seromi_default"
 		species_allowed = list("Teshari")
 
+	teshari_altdefault
+		name = "Teshari Alt. Default"
+		icon_state = "seromi_ears"
+		species_allowed = list("Teshari")
+
+	teshari_tight
+		name = "Teshari Tight"
+		icon_state = "seromi_tight"
+		species_allowed = list("Teshari")
+
 	teshari_excited
 		name = "Teshari Spiky"
 		icon_state = "seromi_spiky"
+		species_allowed = list("Teshari")
+
+	teshari_spike
+		name = "Teshari Spike"
+		icon_state = "seromi_spike"
 		species_allowed = list("Teshari")
 
 	teshari_long
@@ -81,7 +96,7 @@
 		icon_state = "seromi_burst"
 		species_allowed = list("Teshari")
 
-	teshari_burst
+	teshari_shortburst
 		name = "Teshari Short Starburst"
 		icon_state = "seromi_burst_short"
 		species_allowed = list("Teshari")
@@ -155,6 +170,10 @@
 		name = "Ponytail 6"
 		icon_state = "hair_ponytail6"
 
+	fringetail
+		name = "Fringetail"
+		icon_state = "hair_fringetail"
+
 	sideponytail
 		name = "Side Ponytail"
 		icon_state = "hair_stail"
@@ -171,6 +190,9 @@
 		name = "Tress Shoulder"
 		icon_state = "hair_tressshoulder"
 
+	spikyponytail
+		name = "Spiky Ponytail"
+		icon_state = "hair_spikyponytail"
 	wisp
 		name = "Wisp"
 		icon_state = "hair_wisp"
@@ -182,6 +204,10 @@
 	pompadour
 		name = "Pompadour"
 		icon_state = "hair_pompadour"
+
+	sleeze
+		name = "Sleeze"
+		icon_state = "hair_sleeze"
 
 	quiff
 		name = "Quiff"
@@ -278,6 +304,14 @@
 		name = "Big Afro"
 		icon_state = "hair_bigafro"
 
+	rows
+		name = "Rows"
+		icon_state = "hair_rows1"
+
+	rows2
+		name = "Rows 2"
+		icon_state = "hair_rows2"
+
 	sargeant
 		name = "Flat Top"
 		icon_state = "hair_sargeant"
@@ -355,10 +389,6 @@
 	himecut
 		name = "Hime Cut"
 		icon_state = "hair_himecut"
-
-	braid
-		name = "Floorlength Braid"
-		icon_state = "bald" //Trust me, it's better this way.
 
 	mbraid
 		name = "Medium Braid"
@@ -456,6 +486,27 @@
 	bald
 		name = "Bald"
 		icon_state = "bald"
+
+	longeralt2
+		name = "Long Hair Alt 2"
+		icon_state = "hair_longeralt2"
+
+	shortbangs
+		name = "Short Bangs"
+		icon_state = "hair_shortbangs"
+
+	halfshaved
+		name = "Half-Shaved Emo"
+		icon_state = "hair_halfshaved"
+
+	bun
+		name = "Casual Bun"
+		icon_state = "hair_bun"
+
+	doublebun
+		name = "Double-Bun"
+		icon_state = "hair_doublebun"
+
 
 /*
 ///////////////////////////////////
@@ -667,6 +718,31 @@
 	taj_ears_messy
 		name = "Tajara Messy"
 		icon_state = "hair_messy"
+		species_allowed = list("Tajara")
+
+	taj_ears_curls
+		name = "Tajara Curly"
+		icon_state = "hair_curly"
+		species_allowed = list("Tajara")
+
+	taj_ears_wife
+		name = "Tajara Housewife"
+		icon_state = "hair_wife"
+		species_allowed = list("Tajara")
+
+	taj_ears_victory
+		name = "Tajara Victory Curls"
+		icon_state = "hair_victory"
+		species_allowed = list("Tajara")
+
+	taj_ears_bob
+		name = "Tajara Bob"
+		icon_state = "hair_tbob"
+		species_allowed = list("Tajara")
+
+	taj_ears_fingercurl
+		name = "Tajara Finger Curls"
+		icon_state = "hair_fingerwave"
 		species_allowed = list("Tajara")
 
 /datum/sprite_accessory/facial_hair

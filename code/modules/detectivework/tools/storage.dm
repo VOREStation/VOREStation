@@ -8,26 +8,18 @@
 
 /obj/item/weapon/storage/box/swabs/New()
 	..()
-	for(var/i=0;i<storage_slots,i++) // Fill 'er up.
+	for(var/i = 1 to storage_slots) // Fill 'er up.
 		new /obj/item/weapon/forensics/swab(src)
-
-/obj/item/weapon/storage/box/slides
-	name = "microscope slide box"
-	icon_state = "solution_trays"
-	storage_slots = 7
-
-/obj/item/weapon/storage/box/slides/New()
-	..()
-	for(var/i=0;i<storage_slots,i++)
-		new /obj/item/weapon/forensics/slide(src)
 
 /obj/item/weapon/storage/box/evidence
 	name = "evidence bag box"
 	desc = "A box claiming to contain evidence bags."
+	storage_slots = 7
+	can_hold = list(/obj/item/weapon/evidencebag)
 
 /obj/item/weapon/storage/box/evidence/New()
 	..()
-	for(var/i=0;i<storage_slots,i++)
+	for(var/i = 1 to storage_slots)
 		new /obj/item/weapon/evidencebag(src)
 
 /obj/item/weapon/storage/box/fingerprints
@@ -40,5 +32,5 @@
 
 /obj/item/weapon/storage/box/fingerprints/New()
 	..()
-	for(var/i=0;i<storage_slots,i++)
+	for(var/i = 1 to storage_slots)
 		new /obj/item/weapon/sample/print(src)

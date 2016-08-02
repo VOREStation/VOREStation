@@ -7,11 +7,11 @@
 	use_power = 1
 	idle_power_usage = 10
 	active_power_usage = 2000
-
-	var/list/machine_recipes
+	circuit = /obj/item/weapon/circuitboard/autolathe
+	var/datum/category_collection/autolathe/machine_recipes
 	var/list/stored_material =  list(DEFAULT_WALL_MATERIAL = 0, "glass" = 0)
 	var/list/storage_capacity = list(DEFAULT_WALL_MATERIAL = 0, "glass" = 0)
-	var/show_category = "All"
+	var/datum/category_group/autolathe/current_category
 
 	var/hacked = 0
 	var/disabled = 0
@@ -23,21 +23,18 @@
 
 	var/datum/wires/autolathe/wires = null
 
-
 /obj/machinery/autolathe/New()
-
 	..()
 	wires = new(src)
-	//Create parts for lathe.
+	circuit = new circuit(src)
 	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/autolathe(src)
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
 	RefreshParts()
-	
+
 /obj/machinery/autolathe/Destroy()
 	qdel(wires)
 	wires = null
@@ -45,7 +42,10 @@
 
 /obj/machinery/autolathe/proc/update_recipe_list()
 	if(!machine_recipes)
+		if(!autolathe_recipes)
+			autolathe_recipes = new()
 		machine_recipes = autolathe_recipes
+		current_category = machine_recipes.categories[1]
 
 /obj/machinery/autolathe/interact(mob/user as mob)
 
@@ -70,12 +70,10 @@
 			material_bottom += "<td width = '25%' align = center>[stored_material[material]]<b>/[storage_capacity[material]]</b></td>"
 
 		dat += "[material_top]</tr>[material_bottom]</tr></table><hr>"
-		dat += "<h2>Printable Designs</h2><h3>Showing: <a href='?src=\ref[src];change_category=1'>[show_category]</a>.</h3></center><table width = '100%'>"
+		dat += "<h2>Printable Designs</h2><h3>Showing: <a href='?src=\ref[src];change_category=1'>[current_category]</a>.</h3></center><table width = '100%'>"
 
-		var/index = 0
-		for(var/datum/autolathe/recipe/R in machine_recipes)
-			index++
-			if(R.hidden && !hacked || (show_category != "All" && show_category != R.category))
+		for(var/datum/category_item/autolathe/R in current_category.items)
+			if(R.hidden && !hacked)
 				continue
 			var/can_make = 1
 			var/material_string = ""
@@ -101,12 +99,13 @@
 				//Build list of multipliers for sheets.
 				if(R.is_stack)
 					if(max_sheets && max_sheets > 0)
+						max_sheets = min(max_sheets, R.max_stack) // Limit to the max allowed by stack type.
 						multiplier_string  += "<br>"
 						for(var/i = 5;i<max_sheets;i*=2) //5,10,20,40...
-							multiplier_string  += "<a href='?src=\ref[src];make=[index];multiplier=[i]'>\[x[i]\]</a>"
-						multiplier_string += "<a href='?src=\ref[src];make=[index];multiplier=[max_sheets]'>\[x[max_sheets]\]</a>"
+							multiplier_string  += "<a href='?src=\ref[src];make=\ref[R];multiplier=[i]'>\[x[i]\]</a>"
+						multiplier_string += "<a href='?src=\ref[src];make=\ref[R];multiplier=[max_sheets]'>\[x[max_sheets]\]</a>"
 
-			dat += "<tr><td width = 180>[R.hidden ? "<font color = 'red'>*</font>" : ""]<b>[can_make ? "<a href='?src=\ref[src];make=[index];multiplier=1'>" : ""][R.name][can_make ? "</a>" : ""]</b>[R.hidden ? "<font color = 'red'>*</font>" : ""][multiplier_string]</td><td align = right>[material_string]</tr>"
+			dat += "<tr><td width = 180>[R.hidden ? "<font color = 'red'>*</font>" : ""]<b>[can_make ? "<a href='?src=\ref[src];make=\ref[R];multiplier=1'>" : ""][R.name][can_make ? "</a>" : ""]</b>[R.hidden ? "<font color = 'red'>*</font>" : ""][multiplier_string]</td><td align = right>[material_string]</tr>"
 
 		dat += "</table><hr>"
 	//Hacking.
@@ -147,6 +146,22 @@
 
 	if(is_robot_module(O))
 		return 0
+
+	if(istype(O,/obj/item/ammo_magazine/clip) || istype(O,/obj/item/ammo_magazine/a357) || istype(O,/obj/item/ammo_magazine/c38)) // Prevents ammo recycling exploit with speedloaders.
+		user << "\The [O] is too hazardous to recycle with the autolathe!"
+		return
+		/*  ToDo: Make this actually check for ammo and change the value of the magazine if it's empty. -Spades
+		var/obj/item/ammo_magazine/speedloader = O
+		if(speedloader.stored_ammo)
+			user << "\The [speedloader] is too hazardous to put back into the autolathe while there's ammunition inside of it!"
+			return
+		else
+			speedloader.matter = list(DEFAULT_WALL_MATERIAL = 75) // It's just a hunk of scrap metal now.
+	if(istype(O,/obj/item/ammo_magazine)) // This was just for immersion consistency with above.
+		var/obj/item/ammo_magazine/mag = O
+		if(mag.stored_ammo)
+			user << "\The [mag] is too hazardous to put back into the autolathe while there's ammunition inside of it!"
+			return*/
 
 	//Resources are being loaded.
 	var/obj/item/eating = O
@@ -221,18 +236,13 @@
 
 	if(href_list["change_category"])
 
-		var/choice = input("Which category do you wish to display?") as null|anything in autolathe_categories+"All"
+		var/choice = input("Which category do you wish to display?") as null|anything in machine_recipes.categories
 		if(!choice) return
-		show_category = choice
+		current_category = choice
 
 	if(href_list["make"] && machine_recipes)
-
-		var/index = text2num(href_list["make"])
 		var/multiplier = text2num(href_list["multiplier"])
-		var/datum/autolathe/recipe/making
-
-		if(index > 0 && index <= machine_recipes.len)
-			making = machine_recipes[index]
+		var/datum/category_item/autolathe/making = locate(href_list["make"]) in current_category.items
 
 		//Exploit detection, not sure if necessary after rewrite.
 		if(!making || multiplier < 0 || multiplier > 100)

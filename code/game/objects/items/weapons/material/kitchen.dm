@@ -1,6 +1,6 @@
 /obj/item/weapon/material/kitchen
 	icon = 'icons/obj/kitchen.dmi'
-
+	
 /*
  * Utensils
  */
@@ -57,6 +57,8 @@
 	name = "fork"
 	desc = "It's a fork. Sure is pointy."
 	icon_state = "fork"
+	sharp = 1
+	edge = 0
 
 /obj/item/weapon/material/kitchen/utensil/fork/plastic
 	default_material = "plastic"
@@ -97,13 +99,6 @@
 /obj/item/weapon/material/kitchen/utensil/knife/attack(target as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
 		user << "<span class='warning'>You accidentally cut yourself with \the [src].</span>"
-		user.take_organ_damage(20)
-		return
-	return ..()
-
-/obj/item/weapon/material/kitchen/utensil/knife/attack(target as mob, mob/living/user as mob)
-	if ((CLUMSY in user.mutations) && prob(50))
-		user << "<span class='warning'>You somehow managed to cut yourself with \the [src].</span>"
 		user.take_organ_damage(20)
 		return
 	return ..()

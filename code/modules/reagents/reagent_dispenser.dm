@@ -26,12 +26,12 @@
 	examine(mob/user)
 		if(!..(user, 2))
 			return
-		user << "\blue It contains:"
+		user << "<span class='notice'>It contains:</span>"
 		if(reagents && reagents.reagent_list.len)
 			for(var/datum/reagent/R in reagents.reagent_list)
-				user << "\blue [R.volume] units of [R.name]"
+				user << "<span class='notice'>[R.volume] units of [R.name]</span>"
 		else
-			user << "\blue Nothing."
+			user << "<span class='notice'>Nothing.</span>"
 
 	verb/set_APTFT() //set amount_per_transfer_from_this
 		set name = "Set transfer amount"
@@ -68,7 +68,7 @@
 //Dispensers
 /obj/structure/reagent_dispensers/watertank
 	name = "watertank"
-	desc = "A watertank"
+	desc = "A watertank."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "watertank"
 	amount_per_transfer_from_this = 10
@@ -78,7 +78,7 @@
 
 /obj/structure/reagent_dispensers/fueltank
 	name = "fueltank"
-	desc = "A fueltank"
+	desc = "A fueltank."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "weldtank"
 	amount_per_transfer_from_this = 10
@@ -92,7 +92,7 @@
 	if(!..(user, 2))
 		return
 	if (modded)
-		user << "\red Fuel faucet is wrenched open, leaking the fuel!"
+		user << "<span class='warning'>Fuel faucet is wrenched open, leaking the fuel!</span>"
 	if(rig)
 		user << "<span class='notice'>There is some kind of device rigged to the tank.</span>"
 
@@ -100,7 +100,7 @@
 	if (rig)
 		usr.visible_message("[usr] begins to detach [rig] from \the [src].", "You begin to detach [rig] from \the [src]")
 		if(do_after(usr, 20))
-			usr.visible_message("\blue [usr] detaches [rig] from \the [src].", "\blue  You detach [rig] from \the [src]")
+			usr.visible_message("<span class='notice'>[usr] detaches [rig] from \the [src].</span>", "<span class='notice'>You detach [rig] from \the [src]</span>")
 			rig.loc = get_turf(usr)
 			rig = null
 			overlays = new/list()
@@ -117,11 +117,11 @@
 			leak_fuel(amount_per_transfer_from_this)
 	if (istype(W,/obj/item/device/assembly_holder))
 		if (rig)
-			user << "\red There is another device in the way."
+			user << "<span class='warning'>There is another device in the way.</span>"
 			return ..()
 		user.visible_message("[user] begins rigging [W] to \the [src].", "You begin rigging [W] to \the [src]")
 		if(do_after(user, 20))
-			user.visible_message("\blue [user] rigs [W] to \the [src].", "\blue  You rig [W] to \the [src]")
+			user.visible_message("<span class='notice'>[user] rigs [W] to \the [src].</span>", "<span class='notice'>You rig [W] to \the [src]</span>")
 
 			var/obj/item/device/assembly_holder/H = W
 			if (istype(H.a_left,/obj/item/device/assembly/igniter) || istype(H.a_right,/obj/item/device/assembly/igniter))
@@ -183,7 +183,7 @@
 
 /obj/structure/reagent_dispensers/peppertank
 	name = "Pepper Spray Refiller"
-	desc = "Refill pepper spray canisters."
+	desc = "Refills pepper spray canisters."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "peppertank"
 	anchored = 1
@@ -202,14 +202,135 @@
 	icon_state = "water_cooler"
 	possible_transfer_amounts = null
 	anchored = 1
-	New()
-		..()
-		reagents.add_reagent("water",500)
+	var/bottle = 0
+	var/cups = 0
+	var/cupholder = 0
 
+/obj/structure/reagent_dispensers/water_cooler/full
+	bottle = 1
+	cupholder = 1
+	cups = 10
+
+/obj/structure/reagent_dispensers/water_cooler/New()
+	if(bottle)
+		..()
+		reagents.add_reagent("water",120)
+	update_icon()
+
+/obj/structure/reagent_dispensers/water_cooler/examine(mob/user)
+	..()
+	if(cupholder)
+		user << "<span class='notice'>There are [cups] cups in the cup dispenser.</span>"
+
+/obj/structure/reagent_dispensers/water_cooler/attackby(obj/item/I as obj, mob/user as mob)
+	if(istype(I, /obj/item/weapon/wrench))
+		src.add_fingerprint(user)
+		if(bottle)
+			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+			if(do_after(user, 20))
+				user << "<span class='notice'>You unfasten the jug.</span>"
+				var/obj/item/weapon/reagent_containers/glass/cooler_bottle/G = new /obj/item/weapon/reagent_containers/glass/cooler_bottle( src.loc )
+				for(var/datum/reagent/R in reagents.reagent_list)
+					var/total_reagent = reagents.get_reagent_amount(R.id)
+					G.reagents.add_reagent(R.id, total_reagent)
+				reagents.clear_reagents()
+				bottle = 0
+				update_icon()
+		else
+			if(anchored)
+				user.visible_message("\The [user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
+			else
+				user.visible_message("\The [user] begins securing \the [src] to the floor.", "You start securing \the [src] to the floor.")
+			if(do_after(user, 20, src))
+				if(!src) return
+				user << "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>"
+				anchored = !anchored
+		return
+
+	if(istype(I, /obj/item/weapon/screwdriver))
+		if(cupholder)
+			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+			user << "<span class='notice'>You take the cup dispenser off.</span>"
+			new /obj/item/stack/material/plastic( src.loc )
+			if(cups)
+				for(var/i = 0 to cups)
+					new /obj/item/weapon/reagent_containers/food/drinks/sillycup(src.loc)
+			cups = 0
+			cupholder = 0
+			update_icon()
+			return
+		if(!bottle && !cupholder)
+			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+			user << "<span class='notice'>You start taking the water-cooler apart.</span>"
+			if(do_after(user, 20))
+				user << "<span class='notice'>You take the water-cooler apart.</span>"
+				new /obj/item/stack/material/plastic( src.loc, 4 )
+				qdel(src)
+		return
+
+	if(istype(I, /obj/item/weapon/reagent_containers/glass/cooler_bottle))
+		src.add_fingerprint(user)
+		if(!bottle)
+			if(anchored)
+				var/obj/item/weapon/reagent_containers/glass/cooler_bottle/G = I
+				user << "<span class='notice'>You start to screw the bottle onto the water-cooler.</span>"
+				if(do_after(user, 20))
+					bottle = 1
+					update_icon()
+					user << "<span class='notice'>You screw the bottle onto the water-cooler!</span>"
+					for(var/datum/reagent/R in G.reagents.reagent_list)
+						var/total_reagent = G.reagents.get_reagent_amount(R.id)
+						reagents.add_reagent(R.id, total_reagent)
+					qdel(G)
+			else
+				user << "<span class='warning'>You need to wrench down the cooler first.</span>"
+		else
+			user << "<span class='warning'>There is already a bottle there!</span>"
+		return
+
+	if(istype(I, /obj/item/stack/material/plastic))
+		if(!cupholder)
+			if(anchored)
+				var/obj/item/stack/material/plastic/P = I
+				src.add_fingerprint(user)
+				user << "<span class='notice'>You start to attach a cup dispenser onto the water-cooler.</span>"
+				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+				if(do_after(user, 20))
+					if (P.use(1))
+						user << "<span class='notice'>You attach a cup dispenser onto the water-cooler.</span>"
+						cupholder = 1
+						update_icon()
+			else
+				user << "<span class='warning'>You need to wrench down the cooler first.</span>"
+		else
+			user << "<span class='warning'>There is already a cup dispenser there!</span>"
+		return
+
+/obj/structure/reagent_dispensers/water_cooler/attack_hand(mob/user)
+	if(cups)
+		new /obj/item/weapon/reagent_containers/food/drinks/sillycup(src.loc)
+		cups--
+		update_icon()
+		return
+
+/obj/structure/reagent_dispensers/water_cooler/update_icon()
+	icon_state = "water_cooler"
+	overlays.Cut()
+	var/image/I
+	if(bottle)
+		I = image(icon, "water_cooler_bottle")
+		overlays += I
+	if(cupholder)
+		I = image(icon, "water_cooler_cupholder")
+		overlays += I
+	if(cups)
+		I = image(icon, "water_cooler_cups")
+		overlays += I
+	return
 
 /obj/structure/reagent_dispensers/beerkeg
 	name = "beer keg"
-	desc = "A beer keg"
+	desc = "A beer keg."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "beertankTEMP"
 	amount_per_transfer_from_this = 10
@@ -217,9 +338,15 @@
 		..()
 		reagents.add_reagent("beer",1000)
 
+/obj/structure/reagent_dispensers/beerkeg/fakenuke
+	name = "nuclear beer keg"
+	desc = "A beer keg in the form of a nuclear bomb! An absolute blast at parties!"
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "nuclearbomb0"
+
 /obj/structure/reagent_dispensers/virusfood
 	name = "Virus Food Dispenser"
-	desc = "A dispenser of virus food."
+	desc = "A dispenser of virus food. Yum."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "virusfoodtank"
 	amount_per_transfer_from_this = 10

@@ -44,6 +44,7 @@
 
 /obj/item/weapon/soap/deluxe/New()
 	desc = "A deluxe Waffle Co. brand bar of soap. Smells of [pick("lavender", "vanilla", "strawberry", "chocolate" ,"space")]."
+	..()
 
 /obj/item/weapon/soap/syndie
 	desc = "An untrustworthy bar of soap. Smells of fear."
@@ -78,7 +79,10 @@
 	desc = "A cane used by a true gentlemen. Or a clown."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "cane"
-	item_state = "stick"
+	item_icons = list(
+			slot_l_hand_str = 'icons/mob/items/lefthand_melee.dmi',
+			slot_r_hand_str = 'icons/mob/items/righthand_melee.dmi',
+			)
 	flags = CONDUCT
 	force = 5.0
 	throwforce = 7.0
@@ -128,6 +132,12 @@
 		name = "cane shaft"
 		icon_state = "nullrod"
 		item_state = "foldcane"
+
+/obj/item/weapon/cane/whitecane
+	name = "white cane"
+	desc = "A cane used by the blind."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "whitecane"
 
 /obj/item/weapon/disk
 	name = "disk"
@@ -237,6 +247,10 @@
 	desc = "Apparently a staff used by the wizard."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "staff"
+	item_icons = list(
+			slot_l_hand_str = 'icons/mob/items/lefthand_melee.dmi',
+			slot_r_hand_str = 'icons/mob/items/righthand_melee.dmi',
+			)
 	force = 3.0
 	throwforce = 5.0
 	throw_speed = 1
@@ -255,34 +269,18 @@
 	desc = "An ebony can with an ivory tip."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "cane"
-	item_state = "stick"
 
 /obj/item/weapon/staff/stick
 	name = "stick"
 	desc = "A great tool to drag someone else's drinks across the bar."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "stick"
-	item_state = "stick"
+	item_state = "cane"
 	force = 3.0
 	throwforce = 5.0
 	throw_speed = 1
 	throw_range = 5
 	w_class = 2.0
-
-/obj/item/weapon/wire
-	desc = "This is just a simple piece of regular insulated wire."
-	name = "wire"
-	icon = 'icons/obj/power.dmi'
-	icon_state = "item_wire"
-	var/amount = 1.0
-	var/laying = 0.0
-	var/old_lay = null
-	matter = list(DEFAULT_WALL_MATERIAL = 40)
-	attack_verb = list("whipped", "lashed", "disciplined", "tickled")
-
-	suicide_act(mob/user)
-		viewers(user) << "<span class='warning'><b>[user] is strangling \himself with \the [src]! It looks like \he's trying to commit suicide.</b></span>"
-		return (OXYLOSS)
 
 /obj/item/weapon/module
 	icon = 'icons/obj/module.dmi'
@@ -387,7 +385,6 @@
 	name = "rapid part exchange device"
 	desc = "Special mechanical module made to store, sort, and apply standard machine parts."
 	icon_state = "RPED"
-	item_state = "RPED"
 	w_class = 5
 	can_hold = list(/obj/item/weapon/stock_parts)
 	storage_slots = 50
@@ -406,9 +403,11 @@
 	icon = 'icons/obj/stock_parts.dmi'
 	w_class = 2.0
 	var/rating = 1
-	New()
-		src.pixel_x = rand(-5.0, 5)
-		src.pixel_y = rand(-5.0, 5)
+
+/obj/item/weapon/stock_parts/New()
+	src.pixel_x = rand(-5.0, 5)
+	src.pixel_y = rand(-5.0, 5)
+	..()
 
 //Rank 1
 
@@ -599,3 +598,29 @@
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "smes_coil"
 	origin_tech = list(TECH_MATERIAL = 19, TECH_ENGINEERING = 19, TECH_PHORON = 19, TECH_POWER = 19, TECH_BLUESPACE = 19, TECH_BIO = 19, TECH_COMBAT = 19, TECH_MAGNET = 19, TECH_DATA = 19, TECH_ILLEGAL = 19, TECH_ARCANE = 19)
+
+// Additional construction stock parts
+
+/obj/item/weapon/stock_parts/gear
+	name = "gear"
+	desc = "A gear used for construction."
+	icon = 'icons/obj/stock_parts.dmi'
+	icon_state = "gear"
+	origin_tech = list(TECH_ENGINEERING = 1)
+	matter = list(DEFAULT_WALL_MATERIAL = 50)
+
+/obj/item/weapon/stock_parts/motor
+	name = "motor"
+	desc = "A motor used for construction."
+	icon = 'icons/obj/stock_parts.dmi'
+	icon_state = "motor"
+	origin_tech = list(TECH_ENGINEERING = 1)
+	matter = list(DEFAULT_WALL_MATERIAL = 60, "glass" = 10)
+
+/obj/item/weapon/stock_parts/spring
+	name = "spring"
+	desc = "A spring used for construction."
+	icon = 'icons/obj/stock_parts.dmi'
+	icon_state = "spring"
+	origin_tech = list(TECH_ENGINEERING = 1)
+	matter = list(DEFAULT_WALL_MATERIAL = 40)

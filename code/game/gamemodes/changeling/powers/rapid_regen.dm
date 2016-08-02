@@ -4,6 +4,7 @@
 	helptext = "This will heal a significant amount of brute, fire, oxy, clone, and brain damage, and heal broken bones, internal bleeding, low blood, \
 	and organ damage.  The process is fast, but anyone who sees us do this will likely realize we are not what we seem."
 	enhancedtext = "Healing increased to heal up to maximum health."
+	ability_icon_state = "ling_rapid_regeneration"
 	genomecost = 2
 	verbpath = /mob/proc/changeling_rapid_regen
 
@@ -48,7 +49,7 @@
 			new /obj/effect/gibspawner/human(T)
 			visible_message("<span class='warning'>With a sickening squish, [src] reforms their whole body, casting their old parts on the floor!</span>",
 			"<span class='notice'>We reform our body.  We are whole once more.</span>",
-			"<span class='italics>You hear organic matter ripping and tearing!</span>")
+			"<span class='italics'>You hear organic matter ripping and tearing!</span>")
 
 	feedback_add_details("changeling_powers","RR")
 	return 1

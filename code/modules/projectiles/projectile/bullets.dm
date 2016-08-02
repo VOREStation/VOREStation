@@ -42,7 +42,7 @@
 			damage *= 0.7 //squishy mobs absorb KE
 		return 1
 
-	var/chance = 0
+	var/chance = damage
 	if(istype(A, /turf/simulated/wall))
 		var/turf/simulated/wall/W = A
 		chance = round(damage/W.material.integrity*180)
@@ -52,8 +52,6 @@
 		if(D.glass) chance *= 2
 	else if(istype(A, /obj/structure/girder))
 		chance = 100
-	else if(istype(A, /obj/machinery) || istype(A, /obj/structure))
-		chance = damage
 
 	if(prob(chance))
 		if(A.opacity)
@@ -128,6 +126,10 @@
 /obj/item/projectile/bullet/pistol
 	damage = 20
 
+/obj/item/projectile/bullet/pistol/ap
+	damage = 20
+	armor_penetration = 30
+
 /obj/item/projectile/bullet/pistol/medium
 	damage = 25
 
@@ -169,14 +171,22 @@
 /* "Rifle" rounds */
 
 /obj/item/projectile/bullet/rifle
-	armor_penetration = 20
+	armor_penetration = 15
 	penetrating = 1
 
 /obj/item/projectile/bullet/rifle/a762
 	damage = 25
 
+/obj/item/projectile/bullet/rifle/a762/ap
+	damage = 20
+	armor_penetration = 50 // At 40 or more armor, this will do more damage than standard rounds.
+
 /obj/item/projectile/bullet/rifle/a556
 	damage = 35
+
+/obj/item/projectile/bullet/rifle/a556/ap
+	damage = 30
+	armor_penetration = 50 // At 30 or more armor, this will do more damage than standard rounds.
 
 /obj/item/projectile/bullet/rifle/a145
 	damage = 80
@@ -219,8 +229,9 @@
 /obj/item/projectile/bullet/pistol/practice
 	damage = 5
 
-/obj/item/projectile/bullet/rifle/a556/practice
+/obj/item/projectile/bullet/rifle/practice
 	damage = 5
+	penetrating = 0
 
 /obj/item/projectile/bullet/shotgun/practice
 	name = "practice"

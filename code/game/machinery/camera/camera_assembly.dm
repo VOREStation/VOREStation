@@ -80,12 +80,12 @@
 			if(isscrewdriver(W))
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 
-				var/input = sanitize(input(usr, "Which networks would you like to connect this camera to? Separate networks with a comma. No Spaces!\nFor example: Northern Star,Security,Secret ", "Set Network", camera_network ? camera_network : NETWORK_EXODUS))
+				var/input = sanitize(input(usr, "Which networks would you like to connect this camera to? Separate networks with a comma. No Spaces!\nFor example: "+station_short+",Security,Secret ", "Set Network", camera_network ? camera_network : NETWORK_EXODUS))
 				if(!input)
 					usr << "No input found please hang up and try your call again."
 					return
 
-				var/list/tempnetwork = text2list(input, ",")
+				var/list/tempnetwork = splittext(input, ",")
 				if(tempnetwork.len < 1)
 					usr << "No network found please hang up and try your call again."
 					return

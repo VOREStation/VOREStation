@@ -23,27 +23,7 @@
 
 // Some arbitrary defines to be used by self-pruning global lists. (see master_controller)
 #define PROCESS_KILL 26 // Used to trigger removal from a processing list.
-#define MAX_GEAR_COST 10 // Used in chargen for accessory loadout limit.
-
-// Preference toggles.
-#define SOUND_ADMINHELP 0x1
-#define SOUND_MIDI      0x2
-#define SOUND_AMBIENCE  0x4
-#define SOUND_LOBBY     0x8
-#define CHAT_OOC        0x10
-#define CHAT_DEAD       0x20
-#define CHAT_GHOSTEARS  0x40
-#define CHAT_GHOSTSIGHT 0x80
-#define CHAT_PRAYER     0x100
-#define CHAT_RADIO      0x200
-#define CHAT_ATTACKLOGS 0x400
-#define CHAT_DEBUGLOGS  0x800
-#define CHAT_LOOC       0x1000
-#define CHAT_GHOSTRADIO 0x2000
-#define SHOW_TYPING     0x4000
-#define CHAT_NOICONS    0x8000
-
-#define TOGGLES_DEFAULT (SOUND_ADMINHELP|SOUND_MIDI|SOUND_AMBIENCE|SOUND_LOBBY|CHAT_OOC|CHAT_DEAD|CHAT_GHOSTEARS|CHAT_GHOSTSIGHT|CHAT_PRAYER|CHAT_RADIO|CHAT_ATTACKLOGS|CHAT_LOOC)
+#define MAX_GEAR_COST 15 // Used in chargen for accessory loadout limit.
 
 // For secHUDs and medHUDs and variants. The number is the location of the image on the list hud_list of humans.
 #define      HEALTH_HUD 1 // A simple line rounding the mob's number health.
@@ -58,24 +38,37 @@
 #define 	  LIFE_HUD 10 // STATUS_HUD that only reports dead or alive
 
 //some colors
-#define COLOR_WHITE   "#FFFFFF"
-#define COLOR_SILVER  "#C0C0C0"
-#define COLOR_GRAY    "#808080"
-#define COLOR_BLACK   "#000000"
-#define COLOR_RED     "#FF0000"
-#define COLOR_MAROON  "#800000"
-#define COLOR_YELLOW  "#FFFF00"
-#define COLOR_OLIVE   "#808000"
-#define COLOR_LIME    "#00FF00"
-#define COLOR_GREEN   "#008000"
-#define COLOR_CYAN    "#00FFFF"
-#define COLOR_TEAL    "#008080"
-#define COLOR_BLUE    "#0000FF"
-#define COLOR_NAVY    "#000080"
-#define COLOR_PINK    "#FF00FF"
-#define COLOR_PURPLE  "#800080"
-#define COLOR_ORANGE  "#FF9900"
-#define COLOR_LUMINOL "#66FFFF"
+#define COLOR_WHITE   			"#FFFFFF"
+#define COLOR_SILVER  			"#C0C0C0"
+#define COLOR_GRAY    			"#808080"
+#define COLOR_BLACK   			"#000000"
+#define COLOR_RED     			"#FF0000"
+#define COLOR_MAROON 			"#800000"
+#define COLOR_YELLOW  			"#FFFF00"
+#define COLOR_OLIVE  			"#808000"
+#define COLOR_LIME   			"#00FF00"
+#define COLOR_GREEN   			"#008000"
+#define COLOR_CYAN    			"#00FFFF"
+#define COLOR_TEAL    			"#008080"
+#define COLOR_BLUE    			"#0000FF"
+#define COLOR_NAVY    			"#000080"
+#define COLOR_PINK    			"#FF00FF"
+#define COLOR_PURPLE  			"#800080"
+#define COLOR_ORANGE  			"#FF9900"
+#define COLOR_LUMINOL 			"#66FFFF"
+#define COLOR_BEIGE 			"#CEB689"
+#define COLOR_BLUE_GRAY 		"#6A97B0"
+#define COLOR_BROWN 			"#B19664"
+#define COLOR_DARK_BROWN 		"#917448"
+#define COLOR_DARK_ORANGE 		"#B95A00"
+#define COLOR_GREEN_GRAY 		"#8DAF6A"
+#define COLOR_RED_GRAY 			"#AA5F61"
+#define COLOR_PALE_BLUE_GRAY	"#8BBBD5"
+#define COLOR_PALE_GREEN_GRAY 	"#AED18B"
+#define COLOR_PALE_RED_GRAY		"#CC9090"
+#define COLOR_PALE_PURPLE_GRAY	"#BDA2BA"
+#define COLOR_PURPLE_GRAY 		"#A2819E"
+
 //	Shuttles.
 
 // These define the time taken for the shuttle to get to the space station, and the time before it leaves again.
@@ -98,10 +91,11 @@
 
 // Setting this much higher than 1024 could allow spammers to DOS the server easily.
 #define MAX_MESSAGE_LEN       1024
-#define MAX_PAPER_MESSAGE_LEN 3072
-#define MAX_BOOK_MESSAGE_LEN  9216
+#define MAX_PAPER_MESSAGE_LEN 6144
+#define MAX_BOOK_MESSAGE_LEN  24576
+#define MAX_RECORD_LENGTH	  24576
 #define MAX_LNAME_LEN         64
-#define MAX_NAME_LEN          26
+#define MAX_NAME_LEN          52
 
 // Event defines.
 #define EVENT_LEVEL_MUNDANE  1
@@ -163,21 +157,13 @@
 #define PROJECTILE_CONTINUE   -1 //if the projectile should continue flying after calling bullet_act()
 #define PROJECTILE_FORCE_MISS -2 //if the projectile should treat the attack as a miss (suppresses attack and admin logs) - only applies to mobs.
 
-// Custom colors
-#define COLOR_BEIGE "#CEB689"
-#define COLOR_BLUE_GRAY "#6A97B0"
-#define COLOR_BROWN "#B19664"
-#define COLOR_DARK_BROWN "#917448"
-#define COLOR_DARK_ORANGE "#B95A00"
-#define COLOR_GREEN_GRAY "#8DAF6A"
-#define COLOR_RED_GRAY "#AA5F61"
-#define COLOR_PALE_BLUE_GRAY "#8BBBD5"
-#define COLOR_PALE_GREEN_GRAY "#AED18B"
-#define COLOR_PALE_RED_GRAY "#CC9090"
-#define COLOR_PALE_PURPLE_GRAY "#BDA2BA"
-#define COLOR_PURPLE_GRAY "#A2819E"
 
 // Vending stuff
 #define CAT_NORMAL 1
 #define CAT_HIDDEN 2
 #define CAT_COIN   4
+
+//Antag Faction Visbility
+#define ANTAG_HIDDEN	"Hidden"
+#define ANTAG_SHARED	"Shared"
+#define ANTAG_KNOWN		"Known"

@@ -62,9 +62,8 @@ using /datum/datacore/proc/manifest_inject( ), or manifest_insert( )
 */
 
 var/global/list/PDA_Manifest = list()
-var/global/ManifestJSON
 
-/datum/datacore/proc/get_manifest_json()
+/datum/datacore/proc/get_manifest_list()
 	if(PDA_Manifest.len)
 		return
 	var/heads[0]
@@ -114,7 +113,7 @@ var/global/ManifestJSON
 			department = 1
 			if(depthead && sci.len != 1)
 				sci.Swap(1,sci.len)
-				
+
 		if(real_rank in cargo_positions)
 			car[++car.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
@@ -146,7 +145,6 @@ var/global/ManifestJSON
 		"bot" = bot,\
 		"misc" = misc\
 		)
-	ManifestJSON = list2json(PDA_Manifest)
 	return
 
 
@@ -192,9 +190,8 @@ var/global/ManifestJSON
 
 /obj/item/weapon/beach_ball
 	icon = 'icons/misc/beach.dmi'
-	icon_state = "ball"
+	icon_state = "beachball"
 	name = "beach ball"
-	item_state = "beachball"
 	density = 0
 	anchored = 0
 	w_class = 4

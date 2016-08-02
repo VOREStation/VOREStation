@@ -8,6 +8,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 	name = "Circuit Imprinter"
 	icon_state = "circuit_imprinter"
 	flags = OPENCONTAINER
+	circuit = /obj/item/weapon/circuitboard/circuit_imprinter
 	var/list/datum/design/queue = list()
 	var/progress = 0
 
@@ -23,8 +24,8 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 
 /obj/machinery/r_n_d/circuit_imprinter/New()
 	..()
+	circuit = new circuit()
 	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/circuit_imprinter(src)
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 	component_parts += new /obj/item/weapon/reagent_containers/glass/beaker(src)

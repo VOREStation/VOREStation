@@ -129,6 +129,9 @@
 	else if(istype(W, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = W
 		var/mob/living/affecting = G.affecting
+		if(buckled_mob) //Handles trying to buckle someone else to a chair when someone else is on it
+			user  << "<span class='notice'>\The [src] already has someone buckled to it.</span>"
+			return
 		user.visible_message("<span class='notice'>[user] attempts to buckle [affecting] into \the [src]!</span>")
 		if(do_after(user, 20))
 			affecting.loc = loc
@@ -175,6 +178,22 @@
 
 /obj/structure/bed/alien/New(var/newloc)
 	..(newloc,"resin")
+
+/obj/structure/bed/double
+	name = "double bed"
+	icon_state = "doublebed"
+	base_icon = "doublebed"
+
+/obj/structure/bed/double/padded/New(var/newloc)
+	..(newloc,"wood","cotton")
+
+/obj/structure/bed/double/post_buckle_mob(mob/living/M as mob)
+	if(M == buckled_mob)
+		M.pixel_y = 13
+		M.old_y = 13
+	else
+		M.pixel_y = 0
+		M.old_y = 0
 
 /*
  * Roller beds

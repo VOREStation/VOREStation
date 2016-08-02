@@ -3,119 +3,86 @@ Title: Communicator UI
 Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
  -->
 
-<h1>Status</h1>
-<div class="item">
-	<div class="itemLabel">
-		Owner:
-	</div>
-	<div class="itemContent">
-		<div style="float: left; width: 180px;">{{:data.owner}}</div> {{:helper.link('Rename', 'pencil', {'rename' : 1})}}
-	</div>
-</div>
-
-<div class="item">
-	<div class="itemLabel">
-		Connection:
-	</div>
-	<div class="itemContent">
-		{{if data.connectionStatus == 1}}
-			<span class="good">Connected</span>
-		{{else}}
-			<span class="bad">Disconnected</span>
-		{{/if}}
-	</div>
-</div>
-
-<div class="item">
-	<div class="itemLabel">
-		Device EPv2 Address:
-	</div>
-	<div class="itemContent">
-		<div style="float: left; width: 180px;">{{:data.address}}</div>
-	</div>
-	<div class="itemContent">
-		<div style="float: left; width: 180px;">{{:helper.link('Visible', 'signal-diag', {'toggle_visibility' : 1}, data.visible ? 'selected' : null)}}{{:helper.link('Invisible', 'close', {'toggle_visibility' : 1}, data.visible ? null : 'selected')}}</div>
-	</div>
-</div>
-
-<!-- First tab -->
-
-<div class="item">
-	<div class="itemContent">
-		<div style="float: left;">{{:helper.link('Dialing', 'gear', {'switch_tab' : 1}, data.currentTab == 1 ? 'selected' : null)}}{{:helper.link('Manage Connections', 'gear', {'switch_tab' : 2}, data.currentTab == 1 ? null : 'selected')}}</div>
+<div class="statusDisplayComm">
+	<div class="item">
+		<div class="itemContent" style="width: 100%; text-align: center;">
+			<span class="average">{{:data.time}} | </span>
+			{{if data.connectionStatus == 1}}
+				<img class='uiIcon16 icon-signal-green' style='float: none; vertical-align: top'></img>
+			{{else}}
+				<img class='uiIcon16 icon-alert-red' style='float: none; vertical-align: top'></img>
+			{{/if}}
+			<span class="average"> | {{:data.owner}} | {{:data.occupation}}</span>
+		</div>
 	</div>
 </div>
 
 {{if data.currentTab == 1}}
+	
+	<div class='homeContainer'>
+		<div class='homeScreen'>
+			{{for data.homeScreen}}
+				{{:helper.link(value.module, value.icon, {'switch_tab' : value.number}, null, 'link64')}}
+			{{/for}}
+		</div>
+	</div>
+
+<!-- Second tab, Dialing and Current Active Connections -->
+
+{{else data.currentTab == 2}}
 
 	<h3>Manual Dial</h3>
 
 	<HR>
+	<div class="itemContent" style="width: 100%;">{{:helper.link('Home', 'home', {'switch_tab' : 1})}}</div><BR>
 
+	
 	<div class="item">
-		<div class="itemLabel">
+		<div class="itemLabelWide">
 			Target EPv2 Address:
 		</div>
 		<div class="itemContent">
-			<div style="float: left; width: 180px;">{{:data.targetAddress}}</div>
-		</div>
-		<div class="itemContent">
-			<div style="float: left; width: 180px;">{{:helper.link('Write', 'pencil', {'write_target_address' : 1})}} {{:helper.link('Clear', 'close', {'clear_target_address' : 1})}}</div>
+			<div style="clear: both;">
+				{{:helper.link(data.targetAddress, 'pencil', {'write_target_address' : 1}, null, 'dialPadAddress')}}
+				{{:helper.link('Clear', 'close', {'clear_target_address' : 1}, null, 'dialPadClear')}}
+			</div>
 		</div>
 	</div>
 
 	<div class="item">
-		<div class="itemContent">
-			<div style="width: 100%;">
-				<div style="clear: both; padding-top: 1px;">
-					{{:helper.link('0', null, {'add_hex' : '0'})}}
-					{{:helper.link('1', null, {'add_hex' : '1'})}}
-					{{:helper.link('2', null, {'add_hex' : '2'})}}
-					{{:helper.link('3', null, {'add_hex' : '3'})}}
-				</div>
-				<div style="clear: both; padding-top: 1px;">
-					{{:helper.link('4', null, {'add_hex' : '4'})}}
-					{{:helper.link('5', null, {'add_hex' : '5'})}}
-					{{:helper.link('6', null, {'add_hex' : '6'})}}
-					{{:helper.link('7', null, {'add_hex' : '7'})}}
-				</div>
-				<div style="clear: both; padding-top: 1px;">
-					{{:helper.link('8', null, {'add_hex' : '8'})}}
-					{{:helper.link('9', null, {'add_hex' : '9'})}}
-					{{:helper.link('A', null, {'add_hex' : 'a'})}}
-					{{:helper.link('B', null, {'add_hex' : 'b'})}}
-				</div>
-				<div style="clear: both; padding-top: 1px;">
-					{{:helper.link('C', null, {'add_hex' : 'c'})}}
-					{{:helper.link('D', null, {'add_hex' : 'd'})}}
-					{{:helper.link('E', null, {'add_hex' : 'e'})}}
-					{{:helper.link('F', null, {'add_hex' : 'f'})}}
-				</div>
-				<div style="clear: both; padding-top: 1px;">
-					{{:helper.link('Dial', 'signal-diag', {'dial' : data.targetAddress})}}
-					{{:helper.link('Hang Up', 'close', {'hang_up' : '1'})}}
-				</div>
+		<div class="dialPad">
+			<div style="clear: both; padding-top: 1px;">
+				{{:helper.link('0', null, {'add_hex' : '0'}, null, 'dialPadKeys')}}
+				{{:helper.link('1', null, {'add_hex' : '1'}, null, 'dialPadKeys')}}
+				{{:helper.link('2', null, {'add_hex' : '2'}, null, 'dialPadKeys')}}
+				{{:helper.link('3', null, {'add_hex' : '3'}, null, 'dialPadKeys')}}
+			</div>
+			<div style="clear: both; padding-top: 1px;">
+				{{:helper.link('4', null, {'add_hex' : '4'}, null, 'dialPadKeys')}}
+				{{:helper.link('5', null, {'add_hex' : '5'}, null, 'dialPadKeys')}}
+				{{:helper.link('6', null, {'add_hex' : '6'}, null, 'dialPadKeys')}}
+				{{:helper.link('7', null, {'add_hex' : '7'}, null, 'dialPadKeys')}}
+			</div>
+			<div style="clear: both; padding-top: 1px;">
+				{{:helper.link('8', null, {'add_hex' : '8'}, null, 'dialPadKeys')}}
+				{{:helper.link('9', null, {'add_hex' : '9'}, null, 'dialPadKeys')}}
+				{{:helper.link('A', null, {'add_hex' : 'a'}, null, 'dialPadKeys')}}
+				{{:helper.link('B', null, {'add_hex' : 'b'}, null, 'dialPadKeys')}}
+			</div>
+			<div style="clear: both; padding-top: 1px;">
+				{{:helper.link('C', null, {'add_hex' : 'c'}, null, 'dialPadKeys')}}
+				{{:helper.link('D', null, {'add_hex' : 'd'}, null, 'dialPadKeys')}}
+				{{:helper.link('E', null, {'add_hex' : 'e'}, null, 'dialPadKeys')}}
+				{{:helper.link('F', null, {'add_hex' : 'f'}, null, 'dialPadKeys')}}
+			</div>
+			<div style="clear: both; padding-top: 1px;">
+				{{:helper.link('Dial', 'phone64', {'dial' : data.targetAddress}, null, 'dialPadButtons')}}
+				{{:helper.link('Message', 'comment64', {'message' : data.targetAddress, 'switch_tab' : 4}, null, 'dialPadButtons')}}
+				{{:helper.link('Hang Up', 'close64', {'hang_up' : '1'}, null, 'dialPadButtons')}}
 			</div>
 		</div>
 	</div>
 	<HR>
-
-	<h3>Known Devices</h3>
-
-		{{for data.knownDevices}}
-			<div class='item'>
-				<div class="itemLabel">
-				{{:value.name}}
-				</div>
-				<div class="itemContent">
-					<div style="float: left; width: 300px;">{{:value.address}}</div> {{:helper.link('Copy', 'pencil', {'copy' : value.address})}}
-				</div>
-			</div>
-		{{/for}}
-
-
-<!-- Second tab, managing active invitations/requests/calls -->
-{{else}}
 	<h3>Connection Management</h3>
 	<HR>
 	<h3>External Connections</h3>
@@ -136,7 +103,12 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 				{{:value.name}}
 				</div>
 				<div class="itemContent">
-					<div style="float: left; width: 200px;">{{:helper.link('Disconnect', 'close', {'disconnect' : value.true_name}, null, 'redButton')}}</div>
+					{{:helper.link('Disconnect', 'close', {'disconnect' : value.true_name}, null, 'redButton')}}
+					{{if data.video_comm == null}}
+						{{:helper.link('Start Video', 'signal-diag', {'startvideo' : value.ref})}}
+					{{else data.video_comm == value.ref}}
+						{{:helper.link('End Video', 'signal-diag', {'endvideo' : value.true_name}, null, 'redButton')}}
+					{{/if}}
 				</div>
 			</div>
 		{{/for}}
@@ -147,7 +119,7 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 				{{:value.name}}
 				</div>
 				<div class="itemContent">
-					<div style="float: left; width: 300px;">{{:value.address}}</div> {{:helper.link('Copy', 'pencil', {'copy' : value.address})}}
+					<div style="float: left; width: 300px;">{{:value.address}}</div> {{:helper.link('Accept', 'signal-diag', {'dial' : value.address})}}{{:helper.link('Decline', 'close', {'decline' : value.ref})}}
 				</div>
 			</div>
 		{{/for}}
@@ -164,4 +136,160 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 		</div>
 	{{/for}}
 	<HR>
+
+<!-- Third tab, Known Devices -->
+
+{{else data.currentTab == 3}}
+
+	<h3>Known Devices</h3>
+	
+	<HR>
+	<div class="itemContent" style="width: 100%;">{{:helper.link('Home', 'home', {'switch_tab' : 1})}}</div><BR>
+	
+		{{for data.knownDevices}}
+			<div class='item'>
+				<div class="itemLabel">
+				{{:value.name}}
+				</div>
+				<div class="itemContent">
+					<div style="float: left; width: 100%;">{{:value.address}}</div> {{:helper.link('Copy', 'pencil', {'copy' : value.address, 'switch_tab' : 2})}}
+				</div>
+			</div>
+		{{/for}}
+
+<!-- Fourth Tab, Messaging -->
+
+{{else data.currentTab == 4}}
+
+	<h3>Messaging</h3>
+
+	<HR>
+	<div class="itemContent" style="width: 100%; margin-bottom: 5px;">{{:helper.link('Home', 'home', {'switch_tab' : 1})}}</div><BR>
+	
+	{{for data.imContacts}}
+		<div class='item' style="margin-top: 5px;">
+			<div class="itemGroup" style="float: left;">
+				<div style="width: 100%;">
+					<span class="itemLabel" style="margin-right: 5px;">{{:value.name}}</span><span class='itemContent' style="margin-right: 5px;">{{:value.address}}</span>{{:helper.link('View', 'mail-closed', {'copy' : value.address, 'copy_name' : value.name, 'switch_tab' : 40})}}
+				</div>
+			</div>
+		</div>
+	{{/for}}
+	
+<!-- Fourth Tab Special, Opened Thread from Tab Four -->
+
+{{else data.currentTab == 40}}
+
+	<h3>Conversation With: {{:data.targetAddressName}}</h3>
+
+	<HR>
+	<div class="itemContent" style="width: 100%;">{{:helper.link('Back', 'arrowreturnthick-1-w', {'switch_tab' : 4})}}</div><BR>
+	
+	<div class='statusDisplay' style='overflow: auto; float: left; width: 95%;'>
+		<div class='item' style='width: 100%;'>
+			<div class='itemLabel' style='width: 100%;'>
+				{{for data.imList}}
+					{{if data.targetAddress == value.address}}
+						<span class='average'><B>Them</B>: {{:value.im}}</span><BR>
+					{{else data.targetAddress == value.to_address}}
+						<span class='good'><B>You</B>: {{:value.im}}</span><BR>
+					{{/if}}
+				{{/for}}
+			</div>
+		</div>
+	</div>
+	<div class='item'>
+		<div class='itemContent'>
+			{{:helper.link('Message', 'comment', {'message' : data.targetAddress})}}
+		</div>
+	</div>
+
+<!-- Fifth tab, Notekeeper -->
+
+{{else data.currentTab == 5}}
+
+	<h3>Note Keeper</h3>
+
+	<HR>
+	<div class="itemContent" style="width: 100%;">{{:helper.link('Home', 'home', {'switch_tab' : 1})}}</div><BR>
+
+	<div class="item">
+		<div class="itemLabel">
+			<b>Notes</b>:
+		</div>
+	</div>
+	<div class="statusDisplayRecords">
+		<div class="item">
+			<div class="itemContent" style="width: 100%;">
+				<span class="average">{{:data.note}}</span>
+			</div>
+		</div>
+	</div>
+	<div class="item">
+		<div class="itemLabel">
+			{{:helper.link('Edit Notes', 'pencil', {'edit' : 'edit'}, null, 'fixedLeft')}}
+		</div>
+	</div>
+
+<!-- Sixth Tab, Settings -->
+
+{{else data.currentTab == 6}}
+
+	<h3>Settings</h3>
+	
+	<HR>
+	<div class="itemContent" style="width: 100%;">{{:helper.link('Home', 'home', {'switch_tab' : 1})}}</div><BR>
+
+	<div class="item">
+		<div class="itemLabel">
+			Owner:
+		</div>
+		<div class="itemContent">
+			<div style="float: left; width: 180px;">{{:data.owner}}</div> {{:helper.link('Rename', 'pencil', {'rename' : 1})}}
+		</div>
+	</div>
+	
+	<div class="item">
+		<div class="itemLabel">
+			Occupation:
+		</div>
+		<div class="itemContent">
+			<div style="float: left; width: 180px;">{{:data.occupation}}</div>
+		</div>
+	</div>
+
+	<div class="item">
+		<div class="itemLabel">
+			Connection:
+		</div>
+		<div class="itemContent">
+			{{if data.connectionStatus == 1}}
+				<span class="good">Connected</span>
+			{{else}}
+				<span class="bad">Disconnected</span>
+			{{/if}}
+		</div>
+	</div>
+
+	<div class="item">
+		<div class="itemLabel">
+			Device EPv2 Address:
+		</div>
+		<div class="itemContent">
+			<div style="float: left; width: 180px;">{{:data.address}}</div>
+		</div>
+		<div class="itemContent">
+			<div style="float: left; width: 180px;">{{:helper.link('Visible', 'signal-diag', {'toggle_visibility' : 1}, data.visible ? 'selected' : null)}}{{:helper.link('Invisible', 'close', {'toggle_visibility' : 1}, data.visible ? null : 'selected')}}</div>
+		</div>
+	</div>
+	
+	<div class="item">
+		<div class="itemLabel">
+			Ringer:
+		</div>
+		<div class="itemContent">
+			<div style="float: left; width: 180px;">{{:helper.link('On', 'volume-on', {'toggle_ringer' : 1}, data.ring ? 'selected' : null)}}{{:helper.link('Off', 'volume-off', {'toggle_ringer' : 1}, data.ring ? null : 'selected')}}</div>
+		</div>
+	</div>
+
 {{/if}}

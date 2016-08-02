@@ -2,13 +2,13 @@
 	name = "Organic Space Suit"
 	desc = "We grow an organic suit to protect ourselves from space exposure."
 	helptext = "To remove the suit, use the ability again."
+	ability_icon_state = "ling_space_suit"
 	genomecost = 1
 	verbpath = /mob/proc/changeling_spacesuit
 
 /mob/proc/changeling_spacesuit()
 	set category = "Changeling"
 	set name = "Organic Space Suit (20)"
-
 	if(changeling_generic_armor(/obj/item/clothing/suit/space/changeling,/obj/item/clothing/head/helmet/space/changeling))
 		return 1
 	return 0
@@ -17,6 +17,7 @@
 	name = "Chitinous Spacearmor"
 	desc = "We turn our skin into tough chitin to protect us from damage and space exposure."
 	helptext = "To remove the armor, use the ability again."
+	ability_icon_state = "ling_armor"
 	genomecost = 3
 	verbpath = /mob/proc/changeling_spacearmor
 
@@ -70,7 +71,6 @@
 	name = "chitinous mass"
 	desc = "A tough, hard covering of black chitin."
 	icon_state = "lingarmor"
-	item_state = "lingarmor"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	armor = list(melee = 75, bullet = 60, laser = 60, energy = 60, bomb = 60, bio = 0, rad = 0) //It costs 3 points, so it should be very protective.
 	siemens_coefficient = 0.3
@@ -91,7 +91,6 @@
 	name = "chitinous mass"
 	desc = "A tough, hard covering of black chitin with transparent chitin in front."
 	icon_state = "lingarmorhelmet"
-	item_state = "lingarmorhelmet"
 	armor = list(melee = 75, bullet = 60, laser = 60,energy = 60, bomb = 60, bio = 0, rad = 0)
 	siemens_coefficient = 0.3
 	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE

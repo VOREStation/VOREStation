@@ -5,11 +5,11 @@
 	self-explanatory but the various object types may have their own documentation. ~Z
 
 	PATHS THAT USE DATUMS
-		/turf/simulated/wall
-		/obj/item/weapon/material
-		/obj/structure/barricade
-		/obj/item/stack/material
-		/obj/structure/table
+		turf/simulated/wall
+		obj/item/weapon/material
+		obj/structure/barricade
+		obj/item/stack/material
+		obj/structure/table
 
 	VALID ICONS
 		WALLS
@@ -91,6 +91,7 @@ var/list/name_to_material
 	var/melting_point = 1800     // K, walls will take damage if they're next to a fire hotter than this
 	var/integrity = 150          // General-use HP value for products.
 	var/opacity = 1              // Is the material transparent? 0.5< makes transparent walls/doors.
+	var/reflectivity = 0         // How reflective to light is the material?  Currently used for laser defense.
 	var/explosion_resistance = 5 // Only used by walls currently.
 	var/conductive = 1           // Objects with this var add CONDUCTS to flags on spawn.
 	var/list/composite_material  // If set, object matter var will be a list containing these values.
@@ -128,7 +129,7 @@ var/list/name_to_material
 	S.add_fingerprint(user)
 	S.add_to_stacks(user)
 
-/material/proc/build_wired_product(var/mob/user, var/obj/item/stack/used_stack, var/obj/item/stack/target_stack)
+/material/proc/build_wired_product(var/mob/living/user, var/obj/item/stack/used_stack, var/obj/item/stack/target_stack)
 	if(!wire_product)
 		user << "<span class='warning'>You cannot make anything out of \the [target_stack]</span>"
 		return
@@ -140,8 +141,7 @@ var/list/name_to_material
 	target_stack.use(1)
 	user << "<span class='notice'>You attach wire to the [name].</span>"
 	var/obj/item/product = new wire_product(get_turf(user))
-	if(!(user.l_hand && user.r_hand))
-		user.put_in_hands(product)
+	user.put_in_hands(product)
 
 // Make sure we have a display name and shard icon even if they aren't explicitly set.
 /material/New()
@@ -196,9 +196,8 @@ var/list/name_to_material
 
 // General wall debris product placement.
 // Not particularly necessary aside from snowflakey cult girders.
-/material/proc/place_dismantled_product(var/turf/target,var/is_devastated)
-	for(var/x=1;x<(is_devastated?2:3);x++)
-		place_sheet(target)
+/material/proc/place_dismantled_product(var/turf/target)
+	place_sheet(target)
 
 // Debris product. Used ALL THE TIME.
 /material/proc/place_sheet(var/turf/target)
@@ -236,6 +235,7 @@ var/list/name_to_material
 	cut_delay = 60
 	icon_colour = "#00FFE1"
 	opacity = 0.4
+	reflectivity = 0.6
 	shard_type = SHARD_SHARD
 	tableslam_noise = 'sound/effects/Glasshit.ogg'
 	hardness = 100
@@ -356,7 +356,23 @@ var/list/name_to_material
 	hardness = 80
 	weight = 23
 	stack_origin_tech = list(TECH_MATERIAL = 2)
-	composite_material = list(DEFAULT_WALL_MATERIAL = 3750, "platinum" = 3750) //todo
+	composite_material = list(DEFAULT_WALL_MATERIAL = SHEET_MATERIAL_AMOUNT, "platinum" = SHEET_MATERIAL_AMOUNT) //todo
+
+// Very rare alloy that is reflective, should be used sparingly.
+/material/durasteel
+	name = "durasteel"
+	stack_type = /obj/item/stack/material/durasteel
+	integrity = 600
+	melting_point = 7000
+	icon_base = "metal"
+	icon_reinf = "reinf_metal"
+	icon_colour = "#6EA7BE"
+	explosion_resistance = 75
+	hardness = 100
+	weight = 28
+	reflectivity = 0.7 // Not a perfect mirror, but close.
+	stack_origin_tech = list(TECH_MATERIAL = 8)
+	composite_material = list("plasteel" = SHEET_MATERIAL_AMOUNT, "diamond" = SHEET_MATERIAL_AMOUNT) //shrug
 
 /material/plasteel/titanium
 	name = "titanium"
@@ -467,7 +483,7 @@ var/list/name_to_material
 	hardness = 40
 	weight = 30
 	stack_origin_tech = "materials=2"
-	composite_material = list(DEFAULT_WALL_MATERIAL = 1875,"glass" = 3750)
+	composite_material = list(DEFAULT_WALL_MATERIAL = SHEET_MATERIAL_AMOUNT / 2, "glass" = SHEET_MATERIAL_AMOUNT)
 	window_options = list("One Direction" = 1, "Full Window" = 4, "Windoor" = 5)
 	created_window = /obj/structure/window/reinforced
 	wire_product = null

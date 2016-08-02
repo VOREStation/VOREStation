@@ -4,12 +4,10 @@
 			if(client.prefs.muted & MUTE_IC)
 				src << "You cannot send IC messages (muted)."
 				return 0
-			if (src.client.handle_spam_prevention(message,MUTE_IC))
-				return 0
 
 		message = sanitize(message)
 
-		if (stat == 2)
+		if (stat == DEAD)
 			return say_dead(message)
 
 		if(copytext(message,1,2) == "*")
@@ -34,7 +32,7 @@
 		for (var/mob/M in player_list)
 			if (istype(M, /mob/new_player))
 				continue
-			else if(M.stat == 2 &&  M.client.prefs.toggles & CHAT_GHOSTEARS)
+			else if(M.stat == DEAD &&  M.is_preference_enabled(/datum/client_preference/ghost_ears))
 				if(M.client) M << "<b>[src]</b> transmits, \"[message]\""
 		return 1
 	return ..(message, 0)

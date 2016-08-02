@@ -11,6 +11,7 @@ var/global/list/human_mob_list = list()				//List of all human mobs and sub-type
 var/global/list/silicon_mob_list = list()			//List of all silicon mobs, including clientless
 var/global/list/living_mob_list = list()			//List of all alive mobs, including clientless. Excludes /mob/new_player
 var/global/list/dead_mob_list = list()				//List of all dead mobs, including clientless. Excludes /mob/new_player
+var/global/list/listening_objects = list()			//List of all objects which care about receiving messages (communicators, radios, etc)
 
 var/global/list/cable_list = list()					//Index for all cables, so that powernets don't have to look through the entire world all the time
 var/global/list/chemical_reactions_list				//list of all /datum/chemical_reaction datums. Used during chemical reactions
@@ -23,12 +24,17 @@ var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
 
 var/global/list/turfs = list()						//list of all turfs
 
+#define all_genders_define_list list(MALE,FEMALE,PLURAL,NEUTER)
+#define all_genders_text_list list("Male","Female","Plural","Neuter")
+
 //Languages/species/whitelist.
 var/global/list/all_species[0]
 var/global/list/all_languages[0]
 var/global/list/language_keys[0]					// Table of say codes for all languages
 var/global/list/whitelisted_species = list("Human") // Species that require a whitelist check.
 var/global/list/playable_species = list("Human")    // A list of ALL playable species, whitelisted, latejoin or otherwise.
+
+var/list/mannequins_
 
 // Posters
 var/global/list/poster_designs = list()
@@ -46,34 +52,7 @@ var/global/list/facial_hair_styles_male_list = list()
 var/global/list/facial_hair_styles_female_list = list()
 var/global/list/skin_styles_female_list = list()		//unused
 	//Underwear
-var/global/list/underwear_m = list(
-	"White" = "m1", "Grey" = "m2", "Green" = "m3", "Blue" = "m4", "Black" = "m5", "Mankini" = "m6",
-	"Boxers Heart" = "m7", "Boxers Black" = "m8", "Boxers Grey" = "m9", "Boxers Stripe" = "m10", "None") //Curse whoever made male/female underwear diffrent colours
-var/global/list/underwear_f = list(
-	"Red" = "f1", "White" = "f2", "Yellow" = "f3", "Blue" = "f4", "Black" = "f5", "Thong" = "f6",
-	"Black Sports" = "f7","White Sports" = "f8", "Black Sports Alt" = "f9", "White Sports Alt" = "f10", "Baby Blue" = "f11", "Green" = "f12", "Pink" = "f13",
-	 "Violet" = "f14", "Thong Alt" = "f15", "Thong Alt Violet" = "f16", "None")
-	//undershirt
-var/global/list/undershirt_t = list(
-	"White tank top" = "u1", "Black tank top" = "u2", "Black shirt" = "u3",
-	"White shirt" = "u4", "White shirt 2" = "shirt_white_s", "White tank top 2" = "tank_white_s",
-	"Black shirt 2" = "shirt_black_s", "Grey shirt" = "shirt_grey_s", "Heart shirt" = "lover_s",
-	"I love NT shirt" = "ilovent_s", "White shortsleeve shirt" = "whiteshortsleeve_s", "Purple shortsleeve shirt" = "purpleshortsleeve_s",
-	"Blue shortsleeve shirt" = "blueshortsleeve_s", "Green shortsleeve shirt" = "greenshortsleeve_s", "Black shortsleeve shirt" = "blackshortsleeve_s",
-	"Blue shirt" = "blueshirt_s", "Red shirt" = "redshirt_s", "Yellow shirt" = "yellowshirt_s", "Green shirt" = "greenshirt_s",
-	"Blue polo shirt" = "bluepolo_s", "Red polo shirt" = "redpolo_s", "White polo shirt" = "whitepolo_s",
-	"Grey-yellow polo shirt" = "grayyellowpolo_s", "Fire tank top" = "tank_fire_s", "NT shirt" = "shirt_nano_s",
-	"Blue shirt 2" = "shirt_blue_s", "Red shirt 2" = "shirt_red_s", "Red tank top" = "tank_red_s", "Green shirt 2" = "shirt_green_s",
-	"Tiedye shirt" = "shirt_tiedye_s", "Green sport shirt" = "greenshirtsport_s", "Red sport shirt" = "redshirtsport_s",
-	"Blue striped shirt" = "shirt_stripes_s", "Blue sport shirt" = "blueshirtsport_s", "None")
-	//Socks
-var/global/list/socks_t = list(
-	"White normal" = "white_norm", "White short" = "white_short", "White knee" = "white_knee",
-	"White thigh" = "white_thigh", "Black normal" = "black_norm", "Black short" = "black_short",
-	"Black knee" = "black_knee", "Black thigh" = "black_thigh", "Thin knee" = "thin_knee",
-	"Thin thigh" = "thin_thigh", "Pantyhose" = "pantyhose", "Striped thigh" = "striped_thigh",
-	"Striped knee" = "striped_knee", "Rainbow knee" = "rainbow_knee", "Rainbow thigh" = "rainbow_thigh",
-	"Fishnets" = "fishnet", "Thin white thigh" = "thinwhite_thigh", "Thin white knee" = "thinwhite_knee", "None")
+var/datum/category_collection/underwear/global_underwear = new()
 
 	//Backpacks
 var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Alt")
@@ -122,6 +101,14 @@ var/global/list/string_slot_flags = list(
 	"uniform" = SLOT_TIE,
 	"holster" = SLOT_HOLSTER
 )
+
+/proc/get_mannequin(var/ckey)
+	if(!mannequins_)
+		mannequins_ = new()
+ 	. = mannequins_[ckey]
+	if(!.)
+		. = new/mob/living/carbon/human/dummy/mannequin()
+		mannequins_[ckey] = .
 
 //////////////////////////
 /////Initial Building/////
@@ -180,16 +167,22 @@ var/global/list/string_slot_flags = list(
 			language_keys[lowertext(L.key)] = L
 
 	var/rkey = 0
-	paths = typesof(/datum/species)-/datum/species
+	paths = typesof(/datum/species)
 	for(var/T in paths)
+
 		rkey++
-		var/datum/species/S = new T
+
+		var/datum/species/S = T
+		if(!initial(S.name))
+			continue
+
+		S = new T
 		S.race_key = rkey //Used in mob icon caching.
 		all_species[S.name] = S
 
-		if(!(S.spawn_flags & IS_RESTRICTED))
+		if(!(S.spawn_flags & SPECIES_IS_RESTRICTED))
 			playable_species += S.name
-		if(S.spawn_flags & IS_WHITELISTED)
+		if(S.spawn_flags & SPECIES_IS_WHITELISTED)
 			whitelisted_species += S.name
 
 	//Posters
@@ -211,3 +204,5 @@ var/global/list/string_slot_flags = list(
 				. += "    has: [t]\n"
 	world << .
 */
+//Hexidecimal numbers
+var/global/list/hexNums = list("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F")

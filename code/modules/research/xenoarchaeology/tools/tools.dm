@@ -7,7 +7,7 @@
 	desc = "Triangulates the approximate co-ordinates using a nearby satellite network."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "locator"
-	item_state = "locator"
+	item_state = "analyzer"
 	w_class = 2
 
 /obj/item/device/gps/attack_self(var/mob/user as mob)
@@ -30,7 +30,6 @@
 	icon_state = "satchel"
 	slot_flags = SLOT_BELT | SLOT_POCKET
 	w_class = 3
-	storage_slots = 50
-	max_storage_space = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * ore.w_class
+	max_storage_space = 100
 	max_w_class = 3
 	can_hold = list(/obj/item/weapon/fossil)

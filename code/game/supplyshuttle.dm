@@ -55,6 +55,20 @@ var/list/mechtoys = list(
 		/mob/living/silicon/robot/drone
 		)
 
+/obj/structure/plasticflaps/attackby(obj/item/P, mob/user)
+	if(istype(P, /obj/item/weapon/wirecutters))
+		playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
+		user << "<span class='notice'>You start to cut the plastic flaps.</span>"
+		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		if(do_after(user, 10))
+			user << "<span class='notice'>You cut the plastic flaps.</span>"
+			var/obj/item/stack/material/plastic/A = new /obj/item/stack/material/plastic( src.loc )
+			A.amount = 4
+			qdel(src)
+		return
+	else
+		return
+
 /obj/structure/plasticflaps/CanPass(atom/A, turf/T)
 	if(istype(A) && A.checkpass(PASSGLASS))
 		return prob(60)
@@ -274,9 +288,10 @@ var/list/mechtoys = list(
 
 			for(var/typepath in contains)
 				if(!typepath)	continue
-				var/atom/B2 = new typepath(A)
-				if(SP.amount && B2:amount) B2:amount = SP.amount
-				if(slip) slip.info += "<li>[B2.name]</li>" //add the item to the manifest
+				var/number_of_items = max(1, contains[typepath])
+				for(var/j = 1 to number_of_items)
+					var/atom/B2 = new typepath(A)
+					if(slip) slip.info += "<li>[B2.name]</li>" //add the item to the manifest
 
 			//manifest finalisation
 			if(slip)

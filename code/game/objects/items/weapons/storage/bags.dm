@@ -30,11 +30,10 @@
 	desc = "It's the heavy-duty black polymer kind. Time to take out the trash!"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "trashbag0"
-	item_state = "trashbag"
+	item_state_slots = list(slot_r_hand_str = "trashbag", slot_l_hand_str = "trashbag")
 
 	w_class = 4
 	max_w_class = 2
-	storage_slots = 21
 	can_hold = list() // any
 	cant_hold = list(/obj/item/weapon/disk/nuclear)
 
@@ -57,11 +56,9 @@
 	desc = "It's a very flimsy, very noisy alternative to a bag."
 	icon = 'icons/obj/trash.dmi'
 	icon_state = "plasticbag"
-	item_state = "plasticbag"
 
 	w_class = 4
 	max_w_class = 2
-	storage_slots = 21
 	can_hold = list() // any
 	cant_hold = list(/obj/item/weapon/disk/nuclear)
 
@@ -76,8 +73,7 @@
 	icon_state = "satchel"
 	slot_flags = SLOT_BELT | SLOT_POCKET
 	w_class = 3
-	storage_slots = 50
-	max_storage_space = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * ore.w_class
+	max_storage_space = 100
 	max_w_class = 3
 	can_hold = list(/obj/item/weapon/ore)
 
@@ -90,8 +86,7 @@
 	name = "plant bag"
 	icon = 'icons/obj/hydroponics_machines.dmi'
 	icon_state = "plantbag"
-	storage_slots = 50; //the number of plant pieces it can carry.
-	max_storage_space = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * plants.w_class
+	max_storage_space = 100
 	max_w_class = 3
 	w_class = 2
 	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/grown,/obj/item/seeds,/obj/item/weapon/grown)
@@ -111,6 +106,7 @@
 
 	var/capacity = 300; //the number of sheets it can carry.
 	w_class = 3
+	storage_slots = 7
 
 	allow_quick_empty = 1 // this function is superceded
 	New()
@@ -172,7 +168,6 @@
 		update_icon()
 		return 1
 
-
 // Sets up numbered display to show the stack size of each stored mineral
 // NOTE: numbered display is turned off currently because it's broken
 	orient2hud(mob/user as mob)
@@ -193,7 +188,7 @@
 		var/col_count = min(7,storage_slots) -1
 		if (adjusted_contents > 7)
 			row_num = round((adjusted_contents-1) / 7) // 7 is the maximum allowed width.
-		src.standard_orient_objs(row_num, col_count, numbered_contents)
+		src.slot_orient_objs(row_num, col_count, numbered_contents)
 		return
 
 
@@ -248,8 +243,7 @@
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "cashbag"
 	desc = "A bag for carrying lots of cash. It's got a big dollar sign printed on the front."
-	storage_slots = 50; //the number of cash pieces it can carry.
-	max_storage_space = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * cash.w_class
+	max_storage_space = 100
 	max_w_class = 3
 	w_class = 2
 	can_hold = list(/obj/item/weapon/coin,/obj/item/weapon/spacecash)

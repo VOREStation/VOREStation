@@ -342,10 +342,11 @@ var/list/sacrificed = list()
 					usr << "<span class='warning'>The sacrifical corpse is not dead. You must free it from this world of illusions before it may be used.</span>"
 				return fizzle()
 
-			var/mob/dead/observer/ghost
-			for(var/mob/dead/observer/O in loc)
+			var/mob/observer/dead/ghost
+			for(var/mob/observer/dead/O in loc)
 				if(!O.client)	continue
 				if(O.mind && O.mind.current && O.mind.current.stat != DEAD)	continue
+				if(!(O.client.prefs.be_special & BE_CULTIST)) continue
 				ghost = O
 				break
 
@@ -423,7 +424,7 @@ var/list/sacrificed = list()
 						L.ajourn=0
 						return
 					else
-						L.take_organ_damage(10, 0)
+						L.take_organ_damage(3, 0)
 					sleep(100)
 			return fizzle()
 
@@ -437,11 +438,12 @@ var/list/sacrificed = list()
 			src = null
 			if(usr.loc!=this_rune.loc)
 				return this_rune.fizzle()
-			var/mob/dead/observer/ghost
-			for(var/mob/dead/observer/O in this_rune.loc)
+			var/mob/observer/dead/ghost
+			for(var/mob/observer/dead/O in this_rune.loc)
 				if(!O.client)	continue
 				if(!O.MayRespawn()) continue
 				if(O.mind && O.mind.current && O.mind.current.stat != DEAD)	continue
+				if(!(O.client.prefs.be_special & BE_CULTIST)) continue
 				ghost = O
 				break
 			if(!ghost)
@@ -463,12 +465,11 @@ var/list/sacrificed = list()
 					break
 			D.universal_speak = 1
 			D.status_flags &= ~GODMODE
-			D.s_tone = 35
 			D.b_eyes = 200
 			D.r_eyes = 200
 			D.g_eyes = 200
 			D.update_eyes()
-			D.underwear = 0
+			D.all_underwear.Cut()
 			D.key = ghost.key
 			cult.add_antagonist(D.mind)
 
@@ -1050,7 +1051,7 @@ var/list/sacrificed = list()
 				for(var/mob/living/L in viewers(src))
 					if(iscarbon(L))
 						var/mob/living/carbon/C = L
-						flick("e_flash", C.flash)
+						C.flash_eyes()
 						if(C.stuttering < 1 && (!(HULK in C.mutations)))
 							C.stuttering = 1
 						C.Weaken(1)
@@ -1079,7 +1080,7 @@ var/list/sacrificed = list()
 						admin_attack_log(usr, T, "Used a stun rune.", "Was victim of a stun rune.", "used a stun rune on")
 					else if(iscarbon(T))
 						var/mob/living/carbon/C = T
-						flick("e_flash", C.flash)
+						C.flash_eyes()
 						if (!(HULK in C.mutations))
 							C.silent += 15
 						C.Weaken(25)

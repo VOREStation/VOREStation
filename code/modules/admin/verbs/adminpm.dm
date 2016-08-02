@@ -21,7 +21,7 @@
 		if(T.mob)
 			if(istype(T.mob, /mob/new_player))
 				targets["(New Player) - [T]"] = T
-			else if(istype(T.mob, /mob/dead/observer))
+			else if(istype(T.mob, /mob/observer/dead))
 				targets["[T.mob.name](Ghost) - [T]"] = T
 			else
 				targets["[T.mob.real_name](as [T.mob.name]) - [T]"] = T
@@ -55,9 +55,6 @@
 			if(holder)	src << "<font color='red'>Error: Admin-PM: Client not found.</font>"
 			else		src << "<font color='red'>Error: Private-Message: Client not found. They may have lost connection, so try using an adminhelp!</font>"
 			return
-
-	if (src.handle_spam_prevention(msg,MUTE_ADMINHELP))
-		return
 
 	//clean the message if it's not sent by a high-rank admin
 	//todo: sanitize for all???
@@ -104,7 +101,7 @@
 
 	//play the recieving admin the adminhelp sound (if they have them enabled)
 	//non-admins shouldn't be able to disable this
-	if(C.prefs && C.prefs.toggles & SOUND_ADMINHELP)
+	if(C.is_preference_enabled(/datum/client_preference/holder/play_adminhelp_ping))
 		C << 'sound/effects/adminhelp.ogg'
 
 	log_admin("PM: [key_name(src)]->[key_name(C)]: [msg]")

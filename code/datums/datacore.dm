@@ -1,3 +1,4 @@
+
 /hook/startup/proc/createDatacore()
 	data_core = new /datum/datacore()
 	return 1
@@ -25,11 +26,11 @@
 	var/dat = {"
 	<head><style>
 		.manifest {border-collapse:collapse;}
-		.manifest td, th {border:1px solid [monochrome?"black":"#DEF; background-color:white; color:black"]; padding:.25em}
-		.manifest th {height: 2em; [monochrome?"border-top-width: 3px":"background-color: #48C; color:white"]}
-		.manifest tr.head th { [monochrome?"border-top-width: 1px":"background-color: #488;"] }
+		.manifest td, th {border:1px solid [monochrome?"black":"[OOC?"black; background-color:#272727; color:white":"#DEF; background-color:white; color:black"]"]; padding:.25em}
+		.manifest th {height: 2em; [monochrome?"border-top-width: 3px":"background-color: [OOC?"#40628A":"#48C"]; color:white"]}
+		.manifest tr.head th { [monochrome?"border-top-width: 1px":"background-color: [OOC?"#013D3B;":"#488;"]"] }
 		.manifest td:first-child {text-align:right}
-		.manifest tr.alt td {[monochrome?"border-top-width: 2px":"background-color: #DEF"]}
+		.manifest tr.alt td {[monochrome?"border-top-width: 2px":"background-color: [OOC?"#373737; color:white":"#DEF"]"]}
 	</style></head>
 	<table class="manifest" width='350px'>
 	<tr class='head'><th>Name</th><th>Rank</th><th>Activity</th></tr>
@@ -74,11 +75,21 @@
 		if(real_rank in civilian_positions)
 			civ[name] = rank
 			department = 1
-		if(real_rank in nonhuman_positions)
-			bot[name] = rank
-			department = 1
 		if(!department && !(name in heads))
 			misc[name] = rank
+
+	// Synthetics don't have actual records, so we will pull them from here.
+	for(var/mob/living/silicon/ai/ai in mob_list)
+		bot[ai.name] = "Artificial Intelligence"
+
+	for(var/mob/living/silicon/robot/robot in mob_list)
+		// No combat/syndicate cyborgs, no drones.
+		if(robot.module && robot.module.hide_on_manifest)
+			continue
+
+		bot[robot.name] = "[robot.modtype] [robot.braintype]"
+
+
 	if(heads.len > 0)
 		dat += "<tr><th colspan=3>Heads</th></tr>"
 		for(name in heads)
@@ -176,7 +187,7 @@
 		G.fields["fingerprint"]	= md5(H.dna.uni_identity)
 		G.fields["p_stat"]		= "Active"
 		G.fields["m_stat"]		= "Stable"
-		G.fields["sex"]			= H.gender
+		G.fields["sex"]			= gender2text(H.gender)
 		G.fields["species"]		= H.get_species()
 		G.fields["home_system"]	= H.home_system
 		G.fields["citizenship"]	= H.citizenship
@@ -189,6 +200,7 @@
 		var/datum/data/record/M = CreateMedicalRecord(H.real_name, id)
 		M.fields["b_type"]		= H.b_type
 		M.fields["b_dna"]		= H.dna.unique_enzymes
+		M.fields["id_gender"]	= gender2text(H.identifying_gender)
 		if(H.med_record && !jobban_isbanned(H, "Records"))
 			M.fields["notes"] = H.med_record
 
@@ -204,7 +216,8 @@
 		L.fields["rank"] 		= H.mind.assigned_role
 		L.fields["age"]			= H.age
 		L.fields["fingerprint"]	= md5(H.dna.uni_identity)
-		L.fields["sex"]			= H.gender
+		L.fields["sex"]			= gender2text(H.gender)
+		L.fields["id_gender"]	= gender2text(H.identifying_gender)
 		L.fields["b_type"]		= H.b_type
 		L.fields["b_dna"]		= H.dna.unique_enzymes
 		L.fields["enzymes"]		= H.dna.SE // Used in respawning
@@ -215,6 +228,8 @@
 		L.fields["faction"]		= H.personal_faction
 		L.fields["religion"]	= H.religion
 		L.fields["image"]		= getFlatIcon(H)	//This is god-awful
+		L.fields["antagfac"]	= H.antag_faction
+		L.fields["antagvis"]	= H.antag_vis
 		if(H.exploit_record && !jobban_isbanned(H, "Records"))
 			L.fields["exploit_record"] = H.exploit_record
 		else
@@ -245,8 +260,9 @@
 		preview_icon.Blend(E.get_icon(), ICON_OVERLAY)
 
 	//Tail
-	if(H.species.tail)
-		temp = new/icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[H.species.tail]_s")
+	var/use_species_tail = H.species.get_tail(H)
+	if(use_species_tail)
+		temp = new/icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[use_species_tail]_s")
 		preview_icon.Blend(temp, ICON_OVERLAY)
 
 	// Skin tone
@@ -408,7 +424,7 @@
 	G.fields["id"] = id
 	G.fields["rank"] = "Unassigned"
 	G.fields["real_rank"] = "Unassigned"
-	G.fields["sex"] = "Male"
+	G.fields["sex"] = "Unknown"
 	G.fields["age"] = "Unknown"
 	G.fields["fingerprint"] = "Unknown"
 	G.fields["p_stat"] = "Active"
@@ -450,6 +466,7 @@
 	M.fields["name"]		= name
 	M.fields["b_type"]		= "AB+"
 	M.fields["b_dna"]		= md5(name)
+	M.fields["id_gender"]	= "Unknown"
 	M.fields["mi_dis"]		= "None"
 	M.fields["mi_dis_d"]	= "No minor disabilities have been declared."
 	M.fields["ma_dis"]		= "None"

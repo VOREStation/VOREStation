@@ -32,7 +32,8 @@
 	var/projectile = null	//holder for bullettype
 	var/eprojectile = null	//holder for the shot when emagged
 	var/reqpower = 500		//holder for power needed
-	var/iconholder = null	//holder for the icon_state. 1 for orange sprite, null for blue.
+	var/iconholder = null	//holder for the icon_state. 1 for sprite based on icon_color, null for blue.
+	var/icon_color = "orange" // When iconholder is set to 1, the icon_state changes based on what is in this variable.
 	var/egun = null			//holder to handle certain guns switching bullettypes
 
 	var/last_fired = 0		//1: if the turret is cooling down from a shot, 0: turret is ready to fire
@@ -59,6 +60,7 @@
 
 	var/wrenching = 0
 	var/last_target			//last target fired at, prevents turrets from erratically firing at all valid targets in range
+	var/timeout = 10		// When a turret pops up, then finds nothing to shoot at, this number decrements until 0, when it pops down.
 
 /obj/machinery/porta_turret/crescent
 	enabled = 0
@@ -74,6 +76,13 @@
 	ailock = 1
 	lethal = 1
 	installation = /obj/item/weapon/gun/energy/laser
+
+/obj/machinery/porta_turret/ai_defense
+	name = "defense turret"
+	desc = "This varient appears to be much more durable."
+	installation = /obj/item/weapon/gun/energy/xray // For the armor pen.
+	health = 250 // Since lasers do 40 each.
+	maxhealth = 250
 
 /obj/machinery/porta_turret/New()
 	..()
@@ -148,6 +157,14 @@
 			eshot_sound = 'sound/weapons/Laser.ogg'
 			egun = 1
 
+		if(/obj/item/weapon/gun/energy/xray)
+			eprojectile = /obj/item/projectile/beam/xray
+			projectile = /obj/item/projectile/beam/stun // Otherwise we fire xrays on both modes.
+			eshot_sound = 'sound/weapons/eluger.ogg'
+			shot_sound = 'sound/weapons/Taser.ogg'
+			iconholder = 1
+			icon_color = "green"
+
 var/list/turret_icons
 
 /obj/machinery/porta_turret/update_icon()
@@ -164,7 +181,7 @@ var/list/turret_icons
 		if(powered() && enabled)
 			if(iconholder)
 				//lasers have a orange icon
-				icon_state = "orange_target_prism"
+				icon_state = "[icon_color]_target_prism"
 			else
 				//almost everything has a blue icon
 				icon_state = "target_prism"
@@ -410,6 +427,11 @@ var/list/turret_icons
 
 	..()
 
+/obj/machinery/porta_turret/ai_defense/emp_act(severity)
+	if(prob(33)) // One in three chance to resist an EMP.  This is significant if an AoE EMP is involved against multiple turrets.
+		return
+	..()
+
 /obj/machinery/porta_turret/ex_act(severity)
 	switch (severity)
 		if (1)
@@ -449,8 +471,10 @@ var/list/turret_icons
 
 	if(!tryToShootAt(targets))
 		if(!tryToShootAt(secondarytargets)) // if no valid targets, go for secondary targets
-			spawn()
-				popDown() // no valid targets, close the cover
+			timeout--
+			if(timeout <= 0)
+				spawn()
+					popDown() // no valid targets, close the cover
 
 	if(auto_repair && (health < maxhealth))
 		use_power(20000)
@@ -552,6 +576,7 @@ var/list/turret_icons
 
 	set_raised_raising(1, 0)
 	update_icon()
+	timeout = 10
 
 /obj/machinery/porta_turret/proc/popDown()	//pops the turret down
 	last_target = null
@@ -572,6 +597,7 @@ var/list/turret_icons
 
 	set_raised_raising(0, 0)
 	update_icon()
+	timeout = 10
 
 /obj/machinery/porta_turret/proc/set_raised_raising(var/raised, var/raising)
 	src.raised = raised
@@ -633,6 +659,9 @@ var/list/turret_icons
 
 	//Shooting Code:
 	A.launch(target, def_zone)
+
+	// Reset the time needed to go back down, since we just tried to shoot at someone.
+	timeout = 10
 
 /datum/turret_checks
 	var/enabled

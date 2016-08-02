@@ -15,7 +15,7 @@
 	idle_power_usage = 20
 	active_power_usage = 5000
 
-	var/fabricator_tag = "Northern Star Upper Level"
+	var/fabricator_tag = station_short+" Upper Level"
 	var/drone_progress = 0
 	var/produce_drones = 1
 	var/time_last_drone = 500
@@ -26,7 +26,7 @@
 
 /obj/machinery/drone_fabricator/derelict
 	name = "construction drone fabricator"
-	fabricator_tag = "Northern Star Depths"
+	fabricator_tag = station_short+" Depths"
 	drone_type = /mob/living/silicon/robot/drone/construction
 
 /obj/machinery/drone_fabricator/New()
@@ -59,7 +59,7 @@
 
 /obj/machinery/drone_fabricator/examine(mob/user)
 	..(user)
-	if(produce_drones && drone_progress >= 100 && istype(user,/mob/dead) && config.allow_drone_spawn && count_drones() < config.max_maint_drones)
+	if(produce_drones && drone_progress >= 100 && istype(user,/mob/observer/dead) && config.allow_drone_spawn && count_drones() < config.max_maint_drones)
 		user << "<BR><B>A drone is prepared. Select 'Join As Drone' from the Ghost tab to spawn as a maintenance drone.</B>"
 
 /obj/machinery/drone_fabricator/proc/create_drone(var/client/player)
@@ -70,7 +70,7 @@
 	if(!produce_drones || !config.allow_drone_spawn || count_drones() >= config.max_maint_drones)
 		return
 
-	if(!player || !istype(player.mob,/mob/dead))
+	if(!player || !istype(player.mob,/mob/observer/dead))
 		return
 
 	announce_ghost_joinleave(player, 0, "They have taken control over a maintenance drone.")
@@ -85,7 +85,7 @@
 
 	drone_progress = 0
 
-/mob/dead/verb/join_as_drone()
+/mob/observer/dead/verb/join_as_drone()
 
 	set category = "Ghost"
 	set name = "Join As Drone"

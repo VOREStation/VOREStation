@@ -217,6 +217,15 @@
 				M.show_message("<span class='notice'>\The [src] has been cut apart by [user] with \the [WT].</span>", 3, "You hear welding.", 2)
 			qdel(src)
 			return
+		if(istype(W, /obj/item/weapon/storage/laundry_basket) && W.contents.len)
+			var/obj/item/weapon/storage/laundry_basket/LB = W
+			var/turf/T = get_turf(src)
+			for(var/obj/item/I in LB.contents)
+				LB.remove_from_storage(I, T)
+			user.visible_message("<span class='notice'>[user] empties \the [LB] into \the [src].</span>", \
+								 "<span class='notice'>You empty \the [LB] into \the [src].</span>", \
+								 "<span class='notice'>You hear rustling of clothes.</span>")
+			return
 		if(isrobot(user))
 			return
 		if(W.loc != user) // This should stop mounted modules ending up outside the module.
@@ -238,6 +247,16 @@
 		src.update_icon()
 		for(var/mob/M in viewers(src))
 			M.show_message("<span class='warning'>[src] has been [welded?"welded shut":"unwelded"] by [user.name].</span>", 3, "You hear welding.", 2)
+	else if(istype(W, /obj/item/weapon/wrench))
+		if(welded)
+			if(anchored)
+				user.visible_message("\The [user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
+			else
+				user.visible_message("\The [user] begins securing \the [src] to the floor.", "You start securing \the [src] to the floor.")
+			if(do_after(user, 20))
+				if(!src) return
+				user << "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>"
+				anchored = !anchored
 	else
 		src.attack_hand(user)
 	return

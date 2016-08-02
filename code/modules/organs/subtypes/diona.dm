@@ -52,7 +52,7 @@
 	name = "left upper tendril"
 	organ_tag = "l_arm"
 	icon_name = "l_arm"
-	max_damage = 35
+	max_damage = 50
 	min_broken_damage = 20
 	w_class = 3
 	body_part = ARM_LEFT
@@ -69,7 +69,7 @@
 	name = "left lower tendril"
 	organ_tag = "l_leg"
 	icon_name = "l_leg"
-	max_damage = 35
+	max_damage = 50
 	min_broken_damage = 20
 	w_class = 3
 	body_part = LEG_LEFT
@@ -88,7 +88,7 @@
 	name = "left foot"
 	organ_tag = "l_foot"
 	icon_name = "l_foot"
-	max_damage = 20
+	max_damage = 35
 	min_broken_damage = 10
 	w_class = 2
 	body_part = FOOT_LEFT
@@ -110,7 +110,7 @@
 	name = "left grasper"
 	organ_tag = "l_hand"
 	icon_name = "l_hand"
-	max_damage = 30
+	max_damage = 40
 	min_broken_damage = 15
 	w_class = 2
 	body_part = HAND_LEFT
@@ -126,7 +126,7 @@
 
 //DIONA ORGANS.
 /obj/item/organ/external/diona/removed()
-	if(status & ORGAN_ROBOT)
+	if(robotic >= ORGAN_ROBOT)
 		return ..()
 	var/mob/living/carbon/human/H = owner
 	..()
@@ -142,7 +142,7 @@
 	organ_tag = "special" // Turns into a nymph instantly, no transplanting possible.
 
 /obj/item/organ/internal/diona/removed(var/mob/living/user, var/skip_nymph)
-	if(status & ORGAN_ROBOT)
+	if(robotic >= ORGAN_ROBOT)
 		return ..()
 	var/mob/living/carbon/human/H = owner
 	..()
@@ -198,3 +198,13 @@
 
 /obj/item/organ/internal/diona/node/removed()
 	return
+
+/obj/item/organ/external/head/no_eyes/diona
+	max_damage = 50
+	min_broken_damage = 25
+	cannot_break = 1
+	amputation_point = "branch"
+	joint = "structural ligament"
+	dislocated = -1
+	vital = 0
+	slot_flags = SLOT_BELT

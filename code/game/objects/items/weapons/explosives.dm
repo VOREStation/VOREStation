@@ -18,7 +18,7 @@
 	wires = new(src)
 	image_overlay = image('icons/obj/assemblies.dmi', "plastic-explosive2")
 	..()
-	
+
 /obj/item/weapon/plastique/Destroy()
 	qdel(wires)
 	wires = null
@@ -46,6 +46,7 @@
 	if (ismob(target) || istype(target, /turf/unsimulated) || istype(target, /turf/simulated/shuttle) || istype(target, /obj/item/weapon/storage/) || istype(target, /obj/item/clothing/accessory/storage/) || istype(target, /obj/item/clothing/under))
 		return
 	user << "Planting explosives..."
+	user.do_attack_animation(target)
 
 	if(do_after(user, 50) && in_range(user, target))
 		user.drop_item()
@@ -78,7 +79,7 @@
 	if(target)
 		if (istype(target, /turf/simulated/wall))
 			var/turf/simulated/wall/W = target
-			W.dismantle_wall(1)
+			W.dismantle_wall(1,1,1)
 		else if(istype(target, /mob/living))
 			target.ex_act(2) // c4 can't gib mobs anymore.
 		else

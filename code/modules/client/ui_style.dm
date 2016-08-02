@@ -5,7 +5,17 @@
 	"Orange"       = 'icons/mob/screen/orange.dmi',
 	"old"          = 'icons/mob/screen/old.dmi',
 	"White"        = 'icons/mob/screen/white.dmi',
-	"old-noborder" = 'icons/mob/screen/old-noborder.dmi'
+	"old-noborder" = 'icons/mob/screen/old-noborder.dmi',
+	"minimalist"   = 'icons/mob/screen/minimalist.dmi'
+	)
+
+/var/all_ui_styles_robot = list(
+	"Midnight"     = 'icons/mob/screen1_robot.dmi',
+	"Orange"       = 'icons/mob/screen1_robot.dmi',
+	"old"          = 'icons/mob/screen1_robot.dmi',
+	"White"        = 'icons/mob/screen1_robot.dmi',
+	"old-noborder" = 'icons/mob/screen1_robot.dmi',
+	"minimalist"   = 'icons/mob/screen1_robot_minimalist.dmi'
 	)
 
 /proc/ui_style2icon(ui_style)
@@ -20,8 +30,9 @@
 	set desc = "Configure your user interface"
 
 	if(!ishuman(usr))
-		usr << "<span class='warning'>You must be human to use this verb.</span>"
-		return
+		if(!isrobot(usr))
+			usr << "<span class='warning'>You must be a human or a robot to use this verb.</span>"
+			return
 
 	var/UI_style_new = input(usr, "Select a style. White is recommended for customization") as null|anything in all_ui_styles
 	if(!UI_style_new) return
@@ -41,6 +52,8 @@
 	icons.Add(usr.radio_use_icon)
 
 	var/icon/ic = all_ui_styles[UI_style_new]
+	if(isrobot(usr))
+		ic = all_ui_styles_robot[UI_style_new]
 
 	for(var/obj/screen/I in icons)
 		if(I.name in list(I_HELP, I_HURT, I_DISARM, I_GRAB)) continue

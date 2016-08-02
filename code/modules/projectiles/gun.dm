@@ -66,6 +66,7 @@
 	var/mode_name = null
 	var/requires_two_hands
 	var/wielded_icon = "gun_wielded"
+	var/one_handed_penalty = 0 // Penalty applied if someone fires a two-handed gun with one hand.
 
 	var/next_fire_time = 0
 
@@ -81,6 +82,13 @@
 	var/tmp/told_cant_shoot = 0 //So that it doesn't spam them with the fact they cannot hit them.
 	var/tmp/lock_time = -100
 
+	var/dna_lock = 0				//whether or not the gun is locked to dna
+	var/list/stored_dna = list()	//list of the dna stored in the gun, used to allow users to use it or not
+	var/safety_level = 0			//either 0 or 1, at 0 the game buzzes and tells the user they can't use it, at 1 it self destructs after 10 seconds
+	var/controller_dna = null		//The dna of the person who is the primary controller of the gun
+	var/controller_lock = 0			//whether or not the gun is locked by the primar controller, 0 or 1, at 1 it is locked and does not allow
+	var/exploding = 0
+
 /obj/item/weapon/gun/New()
 	..()
 	for(var/i in 1 to firemodes.len)
@@ -89,11 +97,16 @@
 	if(isnull(scoped_accuracy))
 		scoped_accuracy = accuracy
 
+	if(!dna_lock)
+		verbs -= /obj/item/weapon/gun/verb/remove_dna
+		verbs -= /obj/item/weapon/gun/verb/give_dna
+		verbs -= /obj/item/weapon/gun/verb/allow_dna
+
 /obj/item/weapon/gun/update_held_icon()
 	if(requires_two_hands)
 		var/mob/living/M = loc
 		if(istype(M))
-			if((M.l_hand == src && !M.r_hand) || (M.r_hand == src && !M.l_hand))
+			if(M.item_is_in_hands(src) && !M.hands_are_full())
 				name = "[initial(name)] (wielded)"
 				item_state = wielded_icon
 			else
@@ -113,6 +126,20 @@
 		return 0
 
 	var/mob/living/M = user
+	if(dna_lock && stored_dna)
+		if(!authorized_user(user))
+			if(safety_level == 0)
+				M << "<span class='danger'>\The [src] buzzes in dissapoint and displays an invalid DNA symbol.</span>"
+				return 0
+			if(!exploding)
+				if(safety_level == 1)
+					M << "<span class='danger'>\The [src] hisses in dissapointment.</span>"
+					visible_message("<span class='game say'><span class='name'>\The [src]</span> announces, \"Self-destruct occurring in ten seconds.\"</span>", "<span class='game say'><span class='name'>\The [src]</span> announces, \"Self-destruct occurring in ten seconds.\"</span>")
+					sleep(100)
+					explosion(src, -1, 0, 2, 3, 0)
+					exploding = 1
+					qdel(src)
+					return 0
 	if(HULK in M.mutations)
 		M << "<span class='danger'>Your fingers are much too large for the trigger guard!</span>"
 		return 0
@@ -145,7 +172,7 @@
 		PreFire(A,user,params) //They're using the new gun system, locate what they're aiming at.
 		return
 
-	if(user && user.a_intent == I_HELP) //regardless of what happens, refuse to shoot if help intent is on
+	if(user && user.a_intent == I_HELP && user.is_preference_enabled(/datum/client_preference/safefiring)) //regardless of what happens, refuse to shoot if help intent is on
 		user << "<span class='warning'>You refrain from firing your [src] as your intent is set to help.</span>"
 	else
 		Fire(A,user,params) //Otherwise, fire normally.
@@ -163,6 +190,8 @@
 
 	add_fingerprint(user)
 
+	user.break_cloak()
+
 	if(!special_check(user))
 		return
 
@@ -179,9 +208,9 @@
 	var/held_acc_mod = 0
 	var/held_disp_mod = 0
 	if(requires_two_hands)
-		if((user.l_hand == src && user.r_hand) || (user.r_hand == src && user.l_hand))
-			held_acc_mod = -3
-			held_disp_mod = 3
+		if(user.item_is_in_hands(src) && user.hands_are_full())
+			held_acc_mod = held_acc_mod - one_handed_penalty
+			held_disp_mod = held_disp_mod - round(one_handed_penalty / 2)
 
 	//actually attempt to shoot
 	var/turf/targloc = get_turf(target) //cache this in case target gets deleted during shooting, e.g. if it was a securitron that got destroyed.
@@ -209,10 +238,16 @@
 			target = targloc
 			pointblank = 0
 
+	// We do this down here, so we don't get the message if we fire an empty gun.
+	if(requires_two_hands)
+		if(user.item_is_in_hands(src) && user.hands_are_full())
+			if(one_handed_penalty >= 2)
+				user << "<span class='warning'>You struggle to keep \the [src] pointed at the correct position with just one hand!</span>"
+
 	admin_attack_log(usr, attacker_message="Fired [src]", admin_message="fired a gun ([src]) (MODE: [src.mode_name]) [reflex ? "by reflex" : "manually"].")
 
 	//update timing
-	user.setClickCooldown(4)
+	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 	user.setMoveCooldown(move_delay)
 	next_fire_time = world.time + fire_delay
 
@@ -298,6 +333,14 @@
 	P.accuracy = accuracy + acc_mod
 	P.dispersion = dispersion
 
+	// Certain statuses make it harder to aim, blindness especially.  Same chances as melee, however guns accuracy uses multiples of 15.
+	if(user.eye_blind)
+		accuracy -= 5
+	if(user.eye_blurry)
+		accuracy -= 2
+	if(user.confused)
+		accuracy -= 3
+
 	//accuracy bonus from aiming
 	if (aim_targets && (target in aim_targets))
 		//If you aim at someone beforehead, it'll hit more often.
@@ -334,7 +377,6 @@
 		reskin_gun(user)
 		return
 	..()
-
 
 //Suicide handling.
 /obj/item/weapon/gun/var/mouthshoot = 0 //To stop people from suiciding twice... >.>
@@ -418,3 +460,77 @@
 
 /obj/item/weapon/gun/attack_self(mob/user)
 	switch_firemodes(user)
+
+/obj/item/weapon/gun/proc/get_dna(mob/user)
+	var/mob/living/M = user
+	if(!controller_lock)
+
+		if(!stored_dna && !(M.dna in stored_dna))
+			M << "<span class='warning'>\The [src] buzzes and displays a symbol showing the gun already contains your DNA.</span>"
+			return 0
+		else
+			stored_dna += M.dna
+			M << "<span class='notice'>\The [src] pings and a needle flicks out from the grip, taking a DNA sample from you.</span>"
+			if(!controller_dna)
+				controller_dna = M.dna
+				M << "<span class='notice'>\The [src] processes the dna sample and pings, acknowledging you as the primary controller.</span>"
+			return 1
+	else
+		M << "<span class='warning'>\The [src] buzzes and displays a locked symbol. It is not allowing DNA samples at this time.</span>"
+		return 0
+
+/obj/item/weapon/gun/verb/give_dna()
+	set name = "Give DNA"
+	set category = "Object"
+	set src in usr
+	get_dna(usr)
+
+/obj/item/weapon/gun/proc/clear_dna(mob/user)
+	var/mob/living/M = user
+	if(!controller_lock)
+		if(!authorized_user(M))
+			M << "<span class='warning'>\The [src] buzzes and displays an invalid user symbol.</span>"
+			return 0
+		else
+			stored_dna -= user.dna
+			M << "<span class='notice'>\The [src] beeps and clears the DNA it has stored.</span>"
+			if(M.dna == controller_dna)
+				controller_dna = null
+				M << "<span class='notice'>\The [src] beeps and removes you as the primary controller.</span>"
+				if(controller_lock)
+					controller_lock = 0
+			return 1
+	else
+		M << "<span class='warning'>\The [src] buzzes and displays a locked symbol. It is not allowing DNA modifcation at this time.</span>"
+		return 0
+
+/obj/item/weapon/gun/verb/remove_dna()
+	set name = "Remove DNA"
+	set category = "Object"
+	set src in usr
+	clear_dna(usr)
+
+/obj/item/weapon/gun/proc/toggledna(mob/user)
+	var/mob/living/M = user
+	if(authorized_user(M) && user.dna == controller_dna)
+		if(!controller_lock)
+			controller_lock = 1
+			M << "<span class='notice'>\The [src] beeps and displays a locked symbol, informing you it will no longer allow DNA samples.</span>"
+		else
+			controller_lock = 0
+			M << "<span class='notice'>\The [src] beeps and displays an unlocked symbol, informing you it will now allow DNA samples.</span>"
+	else
+		M << "<span class='warning'>\The [src] buzzes and displays an invalid user symbol.</span>"
+
+/obj/item/weapon/gun/verb/allow_dna()
+	set name = "Toggle DNA Samples Allowance"
+	set category = "Object"
+	set src in usr
+	toggledna(usr)
+
+/obj/item/weapon/gun/proc/authorized_user(mob/user)
+	if(!stored_dna || !stored_dna.len)
+		return 1
+	if(!(user.dna in stored_dna))
+		return 0
+	return 1

@@ -98,8 +98,8 @@
 						// Drop a circuit board too
 						C.loc = user.loc
 
-					// Create a machine frame and delete the current machine
-					var/obj/machinery/constructable_frame/machine_frame/F = new
+					// Create a frame and delete the current machine
+					var/obj/structure/frame/F = new
 					F.loc = src.loc
 					qdel(src)
 
@@ -196,7 +196,7 @@
 
 // Returns a multitool from a user depending on their mobtype.
 
-/obj/machinery/telecomms/proc/get_multitool(mob/user as mob)
+/obj/machinery/proc/get_multitool(mob/user as mob)	//No need to have this being a telecomms specific proc.
 
 	var/obj/item/device/multitool/P = null
 	// Let's double check

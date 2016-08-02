@@ -9,6 +9,7 @@
 	name = "mining drill head"
 	desc = "An enormous drill."
 	icon_state = "mining_drill"
+	circuit = /obj/item/weapon/circuitboard/miningdrill
 	var/braces_needed = 2
 	var/list/supports = list()
 	var/supported = 0
@@ -41,9 +42,8 @@
 /obj/machinery/mining/drill/New()
 
 	..()
-
+	circuit = new circuit(src)
 	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/miningdrill(src)
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
 	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
@@ -161,7 +161,7 @@
 /obj/machinery/mining/drill/attack_hand(mob/user as mob)
 	check_supports()
 
-	if (panel_open && cell)
+	if (panel_open && cell && user.Adjacent(src))
 		user << "You take out \the [cell]."
 		cell.loc = get_turf(user)
 		component_parts -= cell
@@ -288,15 +288,26 @@
 	icon_state = "mining_brace"
 	var/obj/machinery/mining/drill/connected
 
+/obj/machinery/mining/brace/New()
+	..()
+
+	component_parts = list()
+	component_parts += new /obj/item/weapon/circuitboard/miningdrillbrace(src)
+
 /obj/machinery/mining/brace/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(connected && connected.active)
+		user << "<span class='notice'>You can't work with the brace of a running drill!</span>"
+		return
+
+	if(default_deconstruction_screwdriver(user, W))
+		return
+	if(default_deconstruction_crowbar(user, W))
+		return
+
 	if(istype(W,/obj/item/weapon/wrench))
 
 		if(istype(get_turf(src), /turf/space))
 			user << "<span class='notice'>You can't anchor something to empty space. Idiot.</span>"
-			return
-
-		if(connected && connected.active)
-			user << "<span class='notice'>You can't unanchor the brace of a running drill!</span>"
 			return
 
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)

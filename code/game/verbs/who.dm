@@ -18,7 +18,7 @@
 					entry += " - <font color='darkgray'><b>Unconscious</b></font>"
 				if(DEAD)
 					if(isobserver(C.mob))
-						var/mob/dead/observer/O = C.mob
+						var/mob/observer/dead/O = C.mob
 						if(O.started_as_observer)
 							entry += " - <font color='gray'>Observing</font>"
 						else
@@ -41,6 +41,13 @@
 
 			if(is_special_character(C.mob))
 				entry += " - <b><font color='red'>Antagonist</font></b>"
+
+			if(C.is_afk())
+				var/seconds = C.last_activity_seconds()
+				entry += " (AFK - "
+				entry += "[round(seconds / 60)] minutes, "
+				entry += "[seconds % 60] seconds)"
+
 			entry += " (<A HREF='?_src_=holder;adminmoreinfo=\ref[C.mob]'>?</A>)"
 			Lines += entry
 	else
@@ -62,9 +69,11 @@
 
 	var/msg = ""
 	var/modmsg = ""
+	var/devmsg = ""
 	var/mentmsg = ""
 	var/num_mods_online = 0
 	var/num_admins_online = 0
+	var/num_devs_online = 0
 	var/num_mentors_online = 0
 	if(holder)
 		for(var/client/C in admins)
@@ -111,6 +120,23 @@
 				modmsg += "\n"
 				num_mods_online++
 
+			else if(R_SERVER & C.holder.rights)
+				devmsg += "\t[C] is a [C.holder.rank]"
+				if(isobserver(C.mob))
+					devmsg += " - Observing"
+				else if(istype(C.mob,/mob/new_player))
+					devmsg += " - Lobby"
+				else
+					devmsg += " - Playing"
+
+				if(C.is_afk())
+					var/seconds = C.last_activity_seconds()
+					devmsg += "(AFK - "
+					devmsg += "[round(seconds / 60)] minutes, "
+					devmsg += "[seconds % 60] seconds)"
+				devmsg += "\n"
+				num_devs_online++
+
 			else if(R_MENTOR & C.holder.rights)
 				mentmsg += "\t[C] is a [C.holder.rank]"
 				if(isobserver(C.mob))
@@ -137,6 +163,9 @@
 			else if (R_MOD & C.holder.rights)
 				modmsg += "\t[C] is a [C.holder.rank]\n"
 				num_mods_online++
+			else if (R_SERVER & C.holder.rights)
+				devmsg += "\t[C] is a [C.holder.rank]\n"
+				num_devs_online++
 			else if (R_MENTOR & C.holder.rights)
 				mentmsg += "\t[C] is a [C.holder.rank]\n"
 				num_mentors_online++
@@ -147,6 +176,9 @@
 
 	if(config.show_mods)
 		msg += "\n<b> Current Moderators ([num_mods_online]):</b>\n" + modmsg
+
+	if(config.show_devs)
+		msg += "\n<b> Current Developers ([num_devs_online]):</b>\n" + devmsg
 
 	if(config.show_mentors)
 		msg += "\n<b> Current Mentors ([num_mentors_online]):</b>\n" + mentmsg

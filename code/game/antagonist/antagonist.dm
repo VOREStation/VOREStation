@@ -64,10 +64,18 @@
 	var/list/candidates =          list()   // Potential candidates.
 	var/list/faction_members =     list()   // Semi-antags (in-round revs, borer thralls)
 
+	var/allow_latejoin = 0					//Determines whether or not the game mode will allow for the template to spawn try_latespawn
+
 	// ID card stuff.
 	var/default_access = list()
 	var/id_type = /obj/item/weapon/card/id
 
+	var/antag_text = "You are an antagonist! Within the rules, \
+		try to act as an opposing force to the crew. Further RP and try to make sure \
+		other players have <i>fun</i>! If you are confused or at a loss, always adminhelp, \
+		and before taking extreme actions, please try to also contact the administration! \
+		Think through your actions and make the roleplay immersive! <b>Please remember all \
+		rules aside from those without explicit exceptions apply to antagonists.</b>"
 
 /datum/antagonist/New()
 	..()
@@ -91,19 +99,26 @@
 
 	// Prune restricted status. Broke it up for readability.
 	// Note that this is done before jobs are handed out.
-	for(var/datum/mind/player in ticker.mode.get_players_for_role(role_type, id))
-		if(ghosts_only && !istype(player.current, /mob/dead))
-			log_debug("[key_name(player)] is not eligible to become a [role_text]: Only ghosts may join as this role!")
+	candidates = ticker.mode.get_players_for_role(role_type, id, ghosts_only)
+	for(var/datum/mind/player in candidates)
+		if(ghosts_only && !istype(player.current, /mob/observer/dead))
+			candidates -= player
+			log_debug("[key_name(player)] is not eligible to become a [role_text]: Only ghosts may join as this role! They have been removed from the draft.")
+		else if(istype(player.current, /mob/living/voice))
+			candidates -= player
+			log_debug("[key_name(player)] is not eligible to become a [role_text]: They are only a communicator voice. They have been removed from the draft.")
 		else if(player.special_role)
-			log_debug("[key_name(player)] is not eligible to become a [role_text]: They already have a special role ([player.special_role])!")
+			candidates -= player
+			log_debug("[key_name(player)] is not eligible to become a [role_text]: They already have a special role ([player.special_role])! They have been removed from the draft.")
 		else if (player in pending_antagonists)
-			log_debug("[key_name(player)] is not eligible to become a [role_text]: They have already been selected for this role!")
+			candidates -= player
+			log_debug("[key_name(player)] is not eligible to become a [role_text]: They have already been selected for this role! They have been removed from the draft.")
 		else if(!can_become_antag(player))
-			log_debug("[key_name(player)] is not eligible to become a [role_text]: They are blacklisted for this role!")
+			candidates -= player
+			log_debug("[key_name(player)] is not eligible to become a [role_text]: They are blacklisted for this role! They have been removed from the draft.")
 		else if(player_is_antag(player))
-			log_debug("[key_name(player)] is not eligible to become a [role_text]: They are already an antagonist!")
-		else
-			candidates += player
+			candidates -= player
+			log_debug("[key_name(player)] is not eligible to become a [role_text]: They are already an antagonist! They have been removed from the draft.")
 
 	return candidates
 
@@ -124,7 +139,7 @@
 		return 0
 	player.current << "<span class='danger'><i>You have been selected this round as an antagonist!</i></span>"
 	message_admins("[uppertext(ticker.mode.name)]: Selected [player] as a [role_text].")
-	if(istype(player.current, /mob/dead))
+	if(istype(player.current, /mob/observer/dead))
 		create_default(player.current)
 	else
 		add_antagonist(player,0,0,0,1,1)

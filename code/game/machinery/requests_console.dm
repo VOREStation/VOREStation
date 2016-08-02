@@ -28,6 +28,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 	anchored = 1
 	icon = 'icons/obj/terminals.dmi'
 	icon_state = "req_comp0"
+	circuit = /obj/item/weapon/circuitboard/request
 	var/department = "Unknown" //The list of all departments on the station (Determined from this variable on each unit) Set this to the same thing if you want several consoles in one department
 	var/list/message_log = list() //List of all messages
 	var/departmentType = 0 		//Bitflag. Zero is reply-only. Map currently uses raw numbers instead of defines.
@@ -79,7 +80,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 		req_console_supplies |= department
 	if (departmentType & RC_INFO)
 		req_console_information |= department
-	
+
 	set_light(1)
 
 /obj/machinery/requests_console/Destroy()
@@ -199,27 +200,29 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 
 					//err... hacking code, which has no reason for existing... but anyway... it was once supposed to unlock priority 3 messanging on that console (EXTREME priority...), but the code for that was removed.
 /obj/machinery/requests_console/attackby(var/obj/item/weapon/O as obj, var/mob/user as mob)
-	/*
-	if (istype(O, /obj/item/weapon/crowbar))
-		if(open)
-			open = 0
-			icon_state="req_comp0"
-		else
-			open = 1
-			if(hackState == 0)
-				icon_state="req_comp_open"
-			else if(hackState == 1)
-				icon_state="req_comp_rewired"
-	if (istype(O, /obj/item/weapon/screwdriver))
-		if(open)
-			if(hackState == 0)
-				hackState = 1
-				icon_state="req_comp_rewired"
-			else if(hackState == 1)
-				hackState = 0
-				icon_state="req_comp_open"
-		else
-			user << "You can't do much with that."*/
+	if(default_deconstruction_screwdriver(user, O))
+		return
+	if(default_deconstruction_crowbar(user, O))
+		return
+	if(istype(O, /obj/item/device/multitool))
+		if(panel_open)
+			var/input = sanitize(input(usr, "What Department id would you like to give this Request Console?", "Multitool-Request Console interface", department))
+			if(!input)
+				usr << "No input found please hang up and try your call again."
+				return
+			department = input
+			announcement.title = "[department] announcement"
+			announcement.newscast = 1
+
+			name = "[department] Requests Console"
+			allConsoles += src
+			if (departmentType & RC_ASSIST)
+				req_console_assistance |= department
+			if (departmentType & RC_SUPPLY)
+				req_console_supplies |= department
+			if (departmentType & RC_INFO)
+				req_console_information |= department
+			return
 
 	if (istype(O, /obj/item/weapon/card/id))
 		if(inoperable(MAINT)) return

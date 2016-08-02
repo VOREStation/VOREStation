@@ -14,6 +14,7 @@
 	mob_size = MOB_SMALL
 	has_fine_manipulation = 0
 	show_ssd = null
+	health_hud_intensity = 2
 
 	gibbed_anim = "gibbed-m"
 	dusted_anim = "dust-m"
@@ -30,7 +31,7 @@
 	brute_mod = 1.5
 	burn_mod = 1.5
 
-	spawn_flags = IS_RESTRICTED
+	spawn_flags = SPECIES_IS_RESTRICTED
 
 	bump_flag = MONKEY
 	swap_flags = MONKEY|SLIME|SIMPLE_ANIMAL

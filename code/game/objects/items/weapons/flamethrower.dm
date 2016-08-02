@@ -3,6 +3,10 @@
 	desc = "You are a firestarter!"
 	icon = 'icons/obj/flamethrower.dmi'
 	icon_state = "flamethrowerbase"
+	item_icons = list(
+			slot_l_hand_str = 'icons/mob/items/lefthand_guns.dmi',
+			slot_r_hand_str = 'icons/mob/items/righthand_guns.dmi',
+			)
 	item_state = "flamethrower_0"
 	flags = CONDUCT
 	force = 3.0
@@ -39,8 +43,8 @@
 		return null
 	var/turf/location = loc
 	if(istype(location, /mob/))
-		var/mob/M = location
-		if(M.l_hand == src || M.r_hand == src)
+		var/mob/living/M = location
+		if(M.item_is_in_hands(src))
 			location = M.loc
 	if(isturf(location)) //start a fire if possible
 		location.hotspot_expose(700, 2)

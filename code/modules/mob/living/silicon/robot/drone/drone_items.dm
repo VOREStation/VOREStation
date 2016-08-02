@@ -11,8 +11,6 @@
 	//Has a list of items that it can hold.
 	var/list/can_hold = list(
 		/obj/item/weapon/cell,
-		/obj/item/weapon/firealarm_electronics,
-		/obj/item/weapon/airalarm_electronics,
 		/obj/item/weapon/airlock_electronics,
 		/obj/item/weapon/tracker_electronics,
 		/obj/item/weapon/module/power_control,
@@ -52,6 +50,15 @@
 		/obj/item/weapon/newspaper
 		)
 
+/obj/item/weapon/gripper/chemistry
+	name = "chemistry gripper"
+	desc = "A simple grasping tool for chemical work."
+
+	can_hold = list(
+		/obj/item/weapon/reagent_containers/glass,
+		/obj/item/weapon/storage/pill_bottle
+		)
+
 /obj/item/weapon/gripper/research //A general usage gripper, used for toxins/robotics/xenobio/etc
 	name = "scientific gripper"
 	icon_state = "gripper-sci"
@@ -63,9 +70,9 @@
 		/obj/item/device/mmi,
 		/obj/item/robot_parts,
 		/obj/item/borg/upgrade,
-		/obj/item/device/flash, //to build borgs
-		/obj/item/organ/internal/brain, //to insert into MMIs.
-		/obj/item/stack/cable_coil, //again, for borg building
+		/obj/item/device/flash, //to build borgs,
+		/obj/item/organ/internal/brain, //to insert into MMIs,
+		/obj/item/weapon/disk,
 		/obj/item/weapon/circuitboard,
 		/obj/item/slime_extract,
 		/obj/item/weapon/reagent_containers/glass,
@@ -83,6 +90,51 @@
 		/obj/item/weapon/reagent_containers/food,
 		/obj/item/seeds,
 		/obj/item/weapon/grown
+		)
+
+/obj/item/weapon/gripper/no_use/organ
+	name = "organ gripper"
+	icon_state = "gripper-flesh"
+	desc = "A specialized grasping tool used to preserve and manipulate organic material."
+
+	can_hold = list(
+		/obj/item/organ
+		)
+
+/obj/item/weapon/gripper/no_use/organ/Entered(var/atom/movable/AM)
+	if(istype(AM, /obj/item/organ))
+		var/obj/item/organ/O = AM
+		O.preserved = 1
+		for(var/obj/item/organ/organ in O)
+			organ.preserved = 1
+	..()
+
+/obj/item/weapon/gripper/no_use/organ/Exited(var/atom/movable/AM)
+	if(istype(AM, /obj/item/organ))
+		var/obj/item/organ/O = AM
+		O.preserved = 0
+		for(var/obj/item/organ/organ in O)
+			organ.preserved = 0
+	..()
+
+/obj/item/weapon/gripper/no_use/organ/robotics
+	name = "external organ gripper"
+	icon_state = "gripper-flesh"
+	desc = "A specialized grasping tool used in robotics work."
+
+	can_hold = list(
+		/obj/item/organ/external,
+		/obj/item/organ/internal/cell
+		)
+
+/obj/item/weapon/gripper/no_use/mech
+	name = "exosuit gripper"
+	icon_state = "gripper-mech"
+	desc = "A large, heavy-duty grasping tool used in construction of mechs."
+
+	can_hold = list(
+		/obj/item/mecha_parts/part,
+		/obj/item/mecha_parts/mecha_equipment
 		)
 
 /obj/item/weapon/gripper/no_use //Used when you want to hold and put items in other things, but not able to 'use' the item

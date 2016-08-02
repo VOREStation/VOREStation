@@ -1,6 +1,6 @@
 #define SOLAR_MAX_DIST 40
-#define SOLARGENRATE 1500
 
+var/solar_gen_rate = 1500
 var/list/solars_list = list()
 
 /obj/machinery/power/solar
@@ -130,7 +130,7 @@ var/list/solars_list = list()
 		if(powernet == control.powernet)//check if the panel is still connected to the computer
 			if(obscured) //get no light from the sun, so don't generate power
 				return
-			var/sgen = SOLARGENRATE * sunfrac
+			var/sgen = solar_gen_rate * sunfrac
 			add_avail(sgen)
 			control.gen += sgen
 		else //if we're no longer on the same powernet, remove from control computer
@@ -206,7 +206,7 @@ var/list/solars_list = list()
 	desc = "A solar panel assembly kit, allows constructions of a solar panel, or with a tracking circuit board, a solar tracker"
 	icon = 'icons/obj/power.dmi'
 	icon_state = "sp_base"
-	item_state = "electropack"
+	item_state = "camera"
 	w_class = 4 // Pretty big!
 	anchored = 0
 	var/tracker = 0
@@ -407,25 +407,27 @@ var/list/solars_list = list()
 		if(do_after(user, 20))
 			if (src.stat & BROKEN)
 				user << "\blue The broken glass falls out."
-				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
+				var/obj/structure/frame/A = new /obj/structure/frame( src.loc )
 				new /obj/item/weapon/material/shard( src.loc )
 				var/obj/item/weapon/circuitboard/solar_control/M = new /obj/item/weapon/circuitboard/solar_control( A )
 				for (var/obj/C in src)
 					C.loc = src.loc
 				A.circuit = M
+				A.frame_type = "computer"
 				A.state = 3
-				A.icon_state = "3"
+				A.icon_state = "computer_3"
 				A.anchored = 1
 				qdel(src)
 			else
 				user << "\blue You disconnect the monitor."
-				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
+				var/obj/structure/frame/A = new /obj/structure/frame( src.loc )
 				var/obj/item/weapon/circuitboard/solar_control/M = new /obj/item/weapon/circuitboard/solar_control( A )
 				for (var/obj/C in src)
 					C.loc = src.loc
 				A.circuit = M
+				A.frame_type = "computer"
 				A.state = 4
-				A.icon_state = "4"
+				A.icon_state = "computer_4"
 				A.anchored = 1
 				qdel(src)
 	else

@@ -3,14 +3,20 @@
 	desc = "A neosilk clip-on tie."
 	icon = 'icons/obj/clothing/ties.dmi'
 	icon_state = "bluetie"
-	item_state = ""	//no inhands
+	item_state_slots = list(slot_r_hand_str = "", slot_l_hand_str = "")
 	slot_flags = SLOT_TIE
 	w_class = 2.0
 	var/slot = "decor"
-	var/obj/item/clothing/under/has_suit = null		//the suit the tie may be attached to
+	var/obj/item/clothing/has_suit = null		//the suit the tie may be attached to
 	var/image/inv_overlay = null	//overlay used when attached to clothing.
 	var/image/mob_overlay = null
 	var/overlay_state = null
+
+	sprite_sheets = list("Teshari" = 'icons/mob/species/seromi/ties.dmi') //Teshari can into webbing, too!
+
+/obj/item/clothing/accessory/Destroy()
+	on_removed()
+	return ..()
 
 /obj/item/clothing/accessory/proc/get_inv_overlay()
 	if(!inv_overlay)
@@ -36,23 +42,27 @@
 	return mob_overlay
 
 //when user attached an accessory to S
-/obj/item/clothing/accessory/proc/on_attached(obj/item/clothing/under/S, mob/user as mob)
+/obj/item/clothing/accessory/proc/on_attached(var/obj/item/clothing/S, var/mob/user)
 	if(!istype(S))
 		return
 	has_suit = S
 	loc = has_suit
 	has_suit.overlays += get_inv_overlay()
 
-	user << "<span class='notice'>You attach [src] to [has_suit].</span>"
-	src.add_fingerprint(user)
+	if(user)
+		user << "<span class='notice'>You attach \the [src] to \the [has_suit].</span>"
+		add_fingerprint(user)
 
-/obj/item/clothing/accessory/proc/on_removed(mob/user as mob)
+/obj/item/clothing/accessory/proc/on_removed(var/mob/user)
 	if(!has_suit)
 		return
 	has_suit.overlays -= get_inv_overlay()
 	has_suit = null
-	usr.put_in_hands(src)
-	src.add_fingerprint(user)
+	if(user)
+		usr.put_in_hands(src)
+		add_fingerprint(user)
+	else
+		forceMove(get_turf(src))
 
 //default attackby behaviour
 /obj/item/clothing/accessory/attackby(obj/item/I, mob/user)
@@ -72,9 +82,37 @@
 	name = "red tie"
 	icon_state = "redtie"
 
+/obj/item/clothing/accessory/blue_clip
+	name = "blue tie with a clip"
+	icon_state = "bluecliptie"
+
+/obj/item/clothing/accessory/blue_long
+	name = "blue long tie"
+	icon_state = "bluelongtie"
+
+/obj/item/clothing/accessory/red_clip
+	name = "red tie with a clip"
+	icon_state = "redcliptie"
+
+/obj/item/clothing/accessory/red_long
+	name = "red long tie"
+	icon_state = "redlongtie"
+
 /obj/item/clothing/accessory/black
 	name = "black tie"
 	icon_state = "blacktie"
+
+/obj/item/clothing/accessory/darkgreen
+	name = "dark green tie"
+	icon_state = "dgreentie"
+
+/obj/item/clothing/accessory/yellow
+	name = "yellow tie"
+	icon_state = "yellowtie"
+
+/obj/item/clothing/accessory/navy
+	name = "navy tie"
+	icon_state = "navytie"
 
 /obj/item/clothing/accessory/horrible
 	name = "horrible tie"
@@ -85,6 +123,12 @@
 	name = "stethoscope"
 	desc = "An outdated medical apparatus for listening to the sounds of the human body. It also makes you look like you know what you're doing."
 	icon_state = "stethoscope"
+
+/obj/item/clothing/accessory/stethoscope/do_surgery(mob/living/carbon/human/M, mob/living/user)
+	if(user.a_intent != I_HELP) //in case it is ever used as a surgery tool
+		return ..()
+	attack(M, user) //default surgery behaviour is just to scan as usual
+	return 1
 
 /obj/item/clothing/accessory/stethoscope/attack(mob/living/carbon/human/M, mob/living/user)
 	if(ishuman(M) && isliving(user))
@@ -100,7 +144,7 @@
 				var/sound_strength = "cannot hear"
 				var/heartbeat = 0
 				var/obj/item/organ/internal/heart/heart = M.internal_organs_by_name[O_HEART]
-				if(heart && !(heart.status & ORGAN_ROBOT))
+				if(heart && !(heart.robotic >= ORGAN_ROBOT))
 					heartbeat = 1
 				if(M.stat == DEAD || (M.status_flags&FAKEDEATH))
 					sound_strength = "cannot hear"
@@ -134,7 +178,6 @@
 				user.visible_message("[user] places [src] against [M]'s [body_part] and listens attentively.", "You place [src] against [their] [body_part]. You [sound_strength] [sound].")
 				return
 	return ..(M,user)
-
 
 //Medals
 /obj/item/clothing/accessory/medal

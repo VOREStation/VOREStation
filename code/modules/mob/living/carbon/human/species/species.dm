@@ -21,10 +21,12 @@
 	var/prone_icon                                       // If set, draws this from icobase when mob is prone.
 	var/blood_color = "#A10808"                          // Red.
 	var/flesh_color = "#FFC896"                          // Pink.
-	var/base_color                                       // Used by changelings. Should also be used for icon previes..
+	var/base_color                                       // Used by changelings. Should also be used for icon previews.
+
 	var/tail                                             // Name of tail state in species effects icon file.
 	var/tail_animation                                   // If set, the icon to obtain tail animation states from.
 	var/tail_hair
+
 	var/race_key = 0       	                             // Used for mob icon cache string.
 	var/icon/icon_template                               // Used for mob icon generation for non-32x32 species.
 	var/mob_size	= MOB_MEDIUM
@@ -48,7 +50,7 @@
 
 	// Combat vars.
 	var/total_health = 100                   // Point at which the mob will enter crit.
-	var/list/unarmed_types = list(           // Possible unarmed attacks that the mob will use in combat.
+	var/list/unarmed_types = list(           // Possible unarmed attacks that the mob will use in combat,
 		/datum/unarmed_attack,
 		/datum/unarmed_attack/bite
 		)
@@ -106,6 +108,7 @@
 	// HUD data vars.
 	var/datum/hud_data/hud
 	var/hud_type
+	var/health_hud_intensity = 1  // This modifies how intensely the health hud is colored.
 
 	// Body/form vars.
 	var/list/inherent_verbs 	  // Species-specific verbs.
@@ -147,6 +150,8 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
 		)
 
+	var/list/genders = list(MALE, FEMALE)
+
 	// Bump vars
 	var/bump_flag = HUMAN	// What are we considered to be when bumped?
 	var/push_flags = ~HEAVY	// What can we push?
@@ -173,70 +178,8 @@
 			inherent_verbs = list()
 		inherent_verbs |= /mob/living/carbon/human/proc/regurgitate
 
-/datum/species/proc/get_station_variant()
-	return name
-
-/datum/species/proc/get_bodytype()
-	return name
-
-/datum/species/proc/get_knockout_message(var/mob/living/carbon/human/H)
-	return ((H && H.isSynthetic()) ? "encounters a hardware fault and suddenly reboots!" : knockout_message)
-
-/datum/species/proc/get_death_message(var/mob/living/carbon/human/H)
-	if(config.show_human_death_message)
-		return ((H && H.isSynthetic()) ? "gives one shrill beep before falling lifeless." : death_message)
-	else
-		return "no message"
-
-/datum/species/proc/get_ssd(var/mob/living/carbon/human/H)
-	return ((H && H.isSynthetic()) ? "flashing a 'system offline' glyph on their monitor" : show_ssd)
-
-/datum/species/proc/get_blood_colour(var/mob/living/carbon/human/H)
-	return ((H && H.isSynthetic()) ? SYNTH_BLOOD_COLOUR : blood_color)
-
-/datum/species/proc/get_virus_immune(var/mob/living/carbon/human/H)
-	return ((H && H.isSynthetic()) ? 1 : virus_immune)
-
-/datum/species/proc/get_flesh_colour(var/mob/living/carbon/human/H)
-	return ((H && H.isSynthetic()) ? SYNTH_FLESH_COLOUR : flesh_color)
-
-/datum/species/proc/get_environment_discomfort(var/mob/living/carbon/human/H, var/msg_type)
-
-	if(!prob(5))
-		return
-
-	var/covered = 0 // Basic coverage can help.
-	for(var/obj/item/clothing/clothes in H)
-		if(H.l_hand == clothes|| H.r_hand == clothes)
-			continue
-		if((clothes.body_parts_covered & UPPER_TORSO) && (clothes.body_parts_covered & LOWER_TORSO))
-			covered = 1
-			break
-
-	switch(msg_type)
-		if("cold")
-			if(!covered)
-				H << "<span class='danger'>[pick(cold_discomfort_strings)]</span>"
-		if("heat")
-			if(covered)
-				H << "<span class='danger'>[pick(heat_discomfort_strings)]</span>"
-
 /datum/species/proc/sanitize_name(var/name)
 	return sanitizeName(name)
-
-/datum/species/proc/get_random_name(var/gender)
-	if(!name_language)
-		if(gender == FEMALE)
-			return capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
-		else
-			return capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
-
-	var/datum/language/species_language = all_languages[name_language]
-	if(!species_language)
-		species_language = all_languages[default_language]
-	if(!species_language)
-		return "unknown"
-	return species_language.get_random_name(gender)
 
 /datum/species/proc/equip_survival_gear(var/mob/living/carbon/human/H,var/extendedtank = 1)
 	if(H.backbag == 1)
@@ -248,6 +191,7 @@
 
 /datum/species/proc/create_organs(var/mob/living/carbon/human/H) //Handles creation of mob organs.
 
+	H.mob_size = mob_size
 	for(var/obj/item/organ/organ in H.contents)
 		if((organ in H.organs) || (organ in H.internal_organs))
 			qdel(organ)
@@ -307,7 +251,6 @@
 	H.mob_swap_flags = swap_flags
 	H.mob_push_flags = push_flags
 	H.pass_flags = pass_flags
-	H.mob_size = mob_size
 
 /datum/species/proc/handle_death(var/mob/living/carbon/human/H) //Handles any species-specific death events (such as dionaea nymph spawns).
 	return
@@ -349,6 +292,3 @@
 // Called in life() when the mob has no client.
 /datum/species/proc/handle_npc(var/mob/living/carbon/human/H)
 	return
-
-/datum/species/proc/get_vision_flags(var/mob/living/carbon/human/H)
-	return vision_flags

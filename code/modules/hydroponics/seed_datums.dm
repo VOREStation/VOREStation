@@ -73,7 +73,7 @@
 	set_trait(TRAIT_PRODUCTION,5)
 	set_trait(TRAIT_YIELD,2)
 	set_trait(TRAIT_POTENCY,10)
-	set_trait(TRAIT_PRODUCT_COLOUR,"c9fa16")
+	set_trait(TRAIT_PRODUCT_COLOUR,"#c9fa16")
 	set_trait(TRAIT_WATER_CONSUMPTION, 3)
 	set_trait(TRAIT_NUTRIENT_CONSUMPTION, 0.25)
 
@@ -549,6 +549,25 @@
 	set_trait(TRAIT_IDEAL_LIGHT, 7)
 	set_trait(TRAIT_WATER_CONSUMPTION, 6)
 	set_trait(TRAIT_NUTRIENT_CONSUMPTION, 0.15)
+
+/datum/seed/flower/lavender
+	name = "lavender"
+	seed_name = "lavender"
+	display_name = "lavender"
+	chems = list("nutriment" = list(1,20), "bicaridine" = list(1,10))
+
+/datum/seed/flower/lavender/New()
+	..()
+	set_trait(TRAIT_MATURATION,7)
+	set_trait(TRAIT_PRODUCTION,5)
+	set_trait(TRAIT_YIELD,5)
+	set_trait(TRAIT_PRODUCT_ICON,"flower6")
+	set_trait(TRAIT_PRODUCT_COLOUR,"#B57EDC")
+	set_trait(TRAIT_PLANT_COLOUR,"#6B8C5E")
+	set_trait(TRAIT_PLANT_ICON,"flower4")
+	set_trait(TRAIT_IDEAL_LIGHT, 7)
+	set_trait(TRAIT_NUTRIENT_CONSUMPTION, 0.05)
+	set_trait(TRAIT_WATER_CONSUMPTION, 0.5)
 
 //Grapes/varieties
 /datum/seed/grapes

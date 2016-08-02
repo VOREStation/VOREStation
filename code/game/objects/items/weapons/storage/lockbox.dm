@@ -4,11 +4,10 @@
 	name = "lockbox"
 	desc = "A locked box."
 	icon_state = "lockbox+l"
-	item_state = "syringe_kit"
+	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
 	w_class = 4
 	max_w_class = 3
 	max_storage_space = 14 //The sum of the w_classes of all the items in this storage item.
-	storage_slots = 4
 	req_access = list(access_armory)
 	var/locked = 1
 	var/broken = 0
@@ -27,6 +26,7 @@
 				if(src.locked)
 					src.icon_state = src.icon_locked
 					user << "<span class='notice'>You lock \the [src]!</span>"
+					close_all()
 					return
 				else
 					src.icon_state = src.icon_closed

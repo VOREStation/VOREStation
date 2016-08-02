@@ -58,6 +58,9 @@ LOG_ATTACK
 ## log pda messages
 LOG_PDA
 
+## log world.log messages
+# LOG_WORLD_OUTPUT
+
 ## log all Topic() calls (for use by coders in tracking down Topic issues)
 # LOG_HREFS
 
@@ -67,12 +70,14 @@ LOG_PDA
 ## log admin warning messages
 ##LOG_ADMINWARN  ## Also duplicates a bunch of other messages.
 
-## sql switching
-# SQL_ENABLED
+## Enable/disable SQL connection (comment out to disable)
+SQL_ENABLED
 
 ## disconnect players who did nothing during the set amount of minutes
 # KICK_INACTIVE 10
 
+##Show developers on staffwho
+SHOW_DEVS
 ##Show mods on staffwho
 SHOW_MODS
 
@@ -100,9 +105,13 @@ PROBABILITY EXTENDED 1
 PROBABILITY MALFUNCTION 1
 PROBABILITY MERCENARY 1
 PROBABILITY WIZARD 1
+PROBABILITY TECHNOMANCER 1
 PROBABILITY CHANGELING 1
 PROBABILITY CULT 1
 PROBABILITY EXTEND-A-TRAITORMONGOUS 6
+PROBABILITY LIZARD 1
+PROBABILITY INTRIGUE 1
+PROBABILITY VISITORS 1
 
 ## Hash out to disable random events during the round.
 ALLOW_RANDOM_EVENTS

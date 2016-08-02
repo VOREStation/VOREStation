@@ -3,7 +3,6 @@
 	desc = "A hand-held emergency light."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "flashlight"
-	item_state = "flashlight"
 	w_class = 2
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
@@ -79,7 +78,9 @@
 					user << "<span class='notice'>\The [M]'s pupils narrow slightly, but are still very dilated.</span>"
 				else
 					user << "<span class='notice'>\The [M]'s pupils narrow.</span>"
-			flick("flash", M.flash)
+
+			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) //can be used offensively
+			M.flash_eyes()
 	else
 		return ..()
 
@@ -87,7 +88,7 @@
 	name = "penlight"
 	desc = "A pen-sized light, used by medical staff."
 	icon_state = "penlight"
-	item_state = ""
+	item_state = "pen"
 	flags = CONDUCT
 	slot_flags = SLOT_EARS
 	brightness_on = 2
@@ -97,7 +98,6 @@
 	name = "maglight"
 	desc = "A very, very heavy duty flashlight."
 	icon_state = "maglight"
-	item_state = "maglight"
 	force = 10
 	flags = CONDUCT
 	brightness_on = 4
@@ -111,7 +111,7 @@
 	name = "low-power flashlight"
 	desc = "A miniature lamp, that might be used by small robots."
 	icon_state = "penlight"
-	item_state = ""
+	item_state = null
 	flags = CONDUCT
 	brightness_on = 2
 	w_class = 1
@@ -122,7 +122,6 @@
 	name = "desk lamp"
 	desc = "A desk lamp with an adjustable mount."
 	icon_state = "lamp"
-	item_state = "lamp"
 	brightness_on = 5
 	w_class = 4
 	flags = CONDUCT
@@ -134,7 +133,6 @@
 /obj/item/device/flashlight/lamp/green
 	desc = "A classic green-shaded desk lamp."
 	icon_state = "lampgreen"
-	item_state = "lampgreen"
 	brightness_on = 5
 	light_color = "#FFC58F"
 
@@ -199,7 +197,7 @@
 		src.force = on_damage
 		src.damtype = "fire"
 		processing_objects += src
-		
+
 /obj/item/device/flashlight/flare/proc/ignite() //Used for flare launchers.
 	on = !on
 	update_icon()
@@ -207,6 +205,76 @@
 	damtype = "fire"
 	processing_objects += src
 	return 1
+
+//Glowsticks
+
+/obj/item/device/flashlight/glowstick
+	name = "green glowstick"
+	desc = "A green military-grade glowstick."
+	w_class = 2.0
+	brightness_on = 4
+	light_power = 2
+	light_color = "#49F37C"
+	icon_state = "glowstick"
+	item_state = "glowstick"
+	var/fuel = 0
+
+/obj/item/device/flashlight/glowstick/New()
+	fuel = rand(1600, 2000)
+	..()
+
+/obj/item/device/flashlight/glowstick/process()
+	fuel = max(fuel - 1, 0)
+	if(!fuel || !on)
+		turn_off()
+		if(!fuel)
+			src.icon_state = "[initial(icon_state)]-empty"
+		processing_objects -= src
+
+/obj/item/device/flashlight/glowstick/proc/turn_off()
+	on = 0
+	update_icon()
+
+/obj/item/device/flashlight/glowstick/attack_self(mob/user)
+
+	if(!fuel)
+		user << "<span class='notice'>The glowstick has already been turned on.</span>"
+		return
+	if(on)
+		return
+
+	. = ..()
+	if(.)
+		user.visible_message("<span class='notice'>[user] cracks and shakes the glowstick.</span>", "<span class='notice'>You crack and shake the glowstick, turning it on!</span>")
+		processing_objects += src
+
+/obj/item/device/flashlight/glowstick/red
+	name = "red glowstick"
+	desc = "A red military-grade glowstick."
+	light_color = "#FC0F29"
+	icon_state = "glowstick_red"
+	item_state = "glowstick_red"
+
+/obj/item/device/flashlight/glowstick/blue
+	name = "blue glowstick"
+	desc = "A blue military-grade glowstick."
+	light_color = "#599DFF"
+	icon_state = "glowstick_blue"
+	item_state = "glowstick_blue"
+
+/obj/item/device/flashlight/glowstick/orange
+	name = "orange glowstick"
+	desc = "A orange military-grade glowstick."
+	light_color = "#FA7C0B"
+	icon_state = "glowstick_orange"
+	item_state = "glowstick_orange"
+
+/obj/item/device/flashlight/glowstick/yellow
+	name = "yellow glowstick"
+	desc = "A yellow military-grade glowstick."
+	light_color = "#FEF923"
+	icon_state = "glowstick_yellow"
+	item_state = "glowstick_yellow"
 
 /obj/item/device/flashlight/slime
 	gender = PLURAL

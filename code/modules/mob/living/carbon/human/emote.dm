@@ -112,8 +112,6 @@
 				if (client.prefs.muted & MUTE_IC)
 					src << "\red You cannot send IC messages (muted)."
 					return
-				if (src.client.handle_spam_prevention(message,MUTE_IC))
-					return
 			if (stat)
 				return
 			if(!(message))
@@ -538,9 +536,9 @@
 		if ("handshake")
 			m_type = 1
 			if (!src.restrained() && !src.r_hand)
-				var/mob/M = null
+				var/mob/living/M = null
 				if (param)
-					for (var/mob/A in view(1, null))
+					for (var/mob/living/A in view(1, null))
 						if (param == A.name)
 							M = A
 							break
@@ -615,7 +613,7 @@ wink, yawn, swish, sway/wag, fastsway/qwag, stopsway/swag"}
 	set desc = "Sets a description which will be shown when someone examines you."
 	set category = "IC"
 
-	pose =  sanitize(input(usr, "This is [src]. [get_visible_gender() == MALE ? "He" : get_visible_gender() == FEMALE ? "She" : "They"] [get_visible_gender() == NEUTER ? "are" : "is"]...", "Pose", null)  as text)
+	pose =  sanitize(input(usr, "This is [src]. [get_visible_gender() == MALE ? "He" : get_visible_gender() == FEMALE ? "She" : "They"]...", "Pose", null)  as text)
 
 /mob/living/carbon/human/verb/set_flavor()
 	set name = "Set Flavour Text"

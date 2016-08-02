@@ -38,7 +38,6 @@
 //starts off as black
 	name = "black jumpsuit"
 	icon_state = "black"
-	item_state = "bl_suit"
 	worn_state = "black"
 	desc = "It's a plain jumpsuit. It seems to have a small dial on the wrist."
 	origin_tech = list(TECH_ILLEGAL = 3)
@@ -47,7 +46,7 @@
 /obj/item/clothing/under/chameleon/New()
 	..()
 	if(!clothing_choices)
-		var/blocked = list(src.type, /obj/item/clothing/under/cloud, /obj/item/clothing/under/gimmick)//Prevent infinite loops and bad jumpsuits.
+		var/blocked = list(src.type, /obj/item/clothing/under/gimmick)//Prevent infinite loops and bad jumpsuits.
 		clothing_choices = generate_chameleon_choices(/obj/item/clothing/under, blocked)
 
 /obj/item/clothing/under/chameleon/emp_act(severity)
@@ -112,7 +111,6 @@
 /obj/item/clothing/suit/chameleon
 	name = "armor"
 	icon_state = "armor"
-	item_state = "armor"
 	desc = "It appears to be a vest of standard armor, except this is embedded with a hidden holographic cloaker, allowing it to change it's appearance, but offering no protection.. It seems to have a small dial inside."
 	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
@@ -147,7 +145,6 @@
 /obj/item/clothing/shoes/chameleon
 	name = "black shoes"
 	icon_state = "black"
-	item_state = "black"
 	desc = "They're comfy black shoes, with clever cloaking technology built in. It seems to have a small dial on the back of each shoe."
 	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
@@ -162,7 +159,6 @@
 	name = "black shoes"
 	desc = "A pair of black shoes."
 	icon_state = "black"
-	item_state = "black"
 	update_icon()
 	update_clothing_icon()
 
@@ -183,7 +179,6 @@
 /obj/item/weapon/storage/backpack/chameleon
 	name = "backpack"
 	icon_state = "backpack"
-	item_state = "backpack"
 	desc = "A backpack outfitted with cloaking tech. It seems to have a small dial inside, kept away from the storage."
 	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
@@ -198,7 +193,6 @@
 	name = "backpack"
 	desc = "You wear this on your back and put items into it."
 	icon_state = "backpack"
-	item_state = "backpack"
 	update_icon()
 	if (ismob(src.loc))
 		var/mob/M = src.loc
@@ -226,7 +220,6 @@
 /obj/item/clothing/gloves/chameleon
 	name = "black gloves"
 	icon_state = "black"
-	item_state = "bgloves"
 	desc = "It looks like a pair of gloves, but it seems to have a small dial inside."
 	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
@@ -261,7 +254,6 @@
 /obj/item/clothing/mask/chameleon
 	name = "gas mask"
 	icon_state = "gas_alt"
-	item_state = "gas_alt"
 	desc = "It looks like a plain gask mask, but on closer inspection, it seems to have a small dial inside."
 	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
@@ -296,7 +288,7 @@
 /obj/item/clothing/glasses/chameleon
 	name = "Optical Meson Scanner"
 	icon_state = "meson"
-	item_state = "glasses"
+	item_state_slots = list(slot_r_hand_str = "meson", slot_l_hand_str = "meson")
 	desc = "It looks like a plain set of mesons, but on closer inspection, it seems to have a small dial inside."
 	origin_tech = list(TECH_ILLEGAL = 3)
 	var/list/global/clothing_choices
@@ -333,7 +325,6 @@
 	desc = "Can hold various things.  It also has a small dial inside one of the pouches."
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "utilitybelt"
-	item_state = "utility"
 	origin_tech = list(TECH_ILLEGAL = 3)
 	var/list/clothing_choices = list()
 
@@ -346,7 +337,6 @@
 	name = "belt"
 	desc = "Can hold various things."
 	icon_state = "utilitybelt"
-	item_state = "utility"
 	update_icon()
 	if(ismob(src.loc))
 		var/mob/M = src.loc

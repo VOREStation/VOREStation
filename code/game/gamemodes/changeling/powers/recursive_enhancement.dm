@@ -2,6 +2,7 @@
 	name = "Recursive Enhancement"
 	desc = "We cause our next ability use to have increased or additional effects."
 	helptext = "To check the effects for each ability, check the blue text underneath the ability in the evolution menu."
+	ability_icon_state = "ling_recursive_enhancement"
 	genomecost = 3
 	verbpath = /mob/proc/changeling_recursive_enhancement
 

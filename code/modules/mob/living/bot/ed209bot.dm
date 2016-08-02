@@ -4,10 +4,9 @@
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "ed2090"
 	density = 1
-	health = 100
-	maxHealth = 100
+	health = 200
+	maxHealth = 200
 
-	bot_version = "2.5"
 	is_ranged = 1
 	preparing_arrest_sounds = new()
 
@@ -20,7 +19,7 @@
 	var/last_shot = 0
 
 /mob/living/bot/secbot/ed209/update_icons()
-	if(on && is_attacking)
+	if(on && busy)
 		icon_state = "ed209-c"
 	else
 		icon_state = "ed209[on]"
@@ -50,6 +49,9 @@
 	new /obj/effect/decal/cleanable/blood/oil(Tsec)
 	qdel(src)
 
+/mob/living/bot/secbot/ed209/handleRangedTarget()
+	RangedAttack(target)
+
 /mob/living/bot/secbot/ed209/RangedAttack(var/atom/A)
 	if(last_shot + shot_delay > world.time)
 		src << "You are not ready to fire yet!"
@@ -74,7 +76,7 @@
 	desc = "Some sort of bizarre assembly."
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "ed209_frame"
-	item_state = "ed209_frame"
+	item_state = "buildpipe"
 	created_name = "ED-209 Security Robot"
 	var/lasercolor = ""
 
@@ -99,10 +101,8 @@
 				user << "<span class='notice'>You add the robot leg to [src].</span>"
 				name = "legs/frame assembly"
 				if(build_step == 1)
-					item_state = "ed209_leg"
 					icon_state = "ed209_leg"
 				else
-					item_state = "ed209_legs"
 					icon_state = "ed209_legs"
 
 		if(2)

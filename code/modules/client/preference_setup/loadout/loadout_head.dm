@@ -31,6 +31,21 @@
 	path = /obj/item/clothing/head/beret/sec/navy/hos
 	allowed_roles = list("Head of Security")
 
+/datum/gear/head/beret/csec
+	display_name = "beret, corporate (officer)"
+	path = /obj/item/clothing/head/beret/sec/corporate/officer
+	allowed_roles = list("Security Officer","Head of Security","Warden")
+
+/datum/gear/head/beret/csec_warden
+	display_name = "beret, corporate (warden)"
+	path = /obj/item/clothing/head/beret/sec/corporate/warden
+	allowed_roles = list("Head of Security","Warden")
+
+/datum/gear/head/beret/csec_hos
+	display_name = "beret, corporate (hos)"
+	path = /obj/item/clothing/head/beret/sec/corporate/hos
+	allowed_roles = list("Head of Security")
+
 /datum/gear/head/beret/eng
 	display_name = "beret, engie-orange"
 	path = /obj/item/clothing/head/beret/engineering
@@ -187,85 +202,25 @@
 	whitelisted = "Tajara"
 
 /datum/gear/head/hijab
-	display_name = "Black hijab"
+	display_name = "hijab"
 	path = /obj/item/clothing/head/hijab
 
-/datum/gear/head/hijab/white
-	display_name = "White hijab"
-	path = /obj/item/clothing/head/hijab/white
+/datum/gear/head/hijab/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
 
-/datum/gear/head/hijab/aqua
-	display_name = "Aqua hijab"
-	path = /obj/item/clothing/head/hijab/aqua
+/datum/gear/head/kippa
+	display_name = "kippa"
+	path = /obj/item/clothing/head/kippa
 
-/datum/gear/head/hijab/blue
-	display_name = "Blue hijab"
-	path = /obj/item/clothing/head/hijab/blue
+/datum/gear/head/kippa/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
 
-/datum/gear/head/hijab/brown
-	display_name = "Brown hijab"
-	path = /obj/item/clothing/head/hijab/brown
+/datum/gear/head/turban
+	display_name = "turban"
+	path = /obj/item/clothing/head/turban
 
-/datum/gear/head/hijab/darkblue
-	display_name = "Dark blue hijab"
-	path = /obj/item/clothing/head/hijab/darkblue
-
-/datum/gear/head/hijab/darkred
-	display_name = "Dark red hijab"
-	path = /obj/item/clothing/head/hijab/darkred
-
-/datum/gear/head/hijab/green
-	display_name = "Green hijab"
-	path = /obj/item/clothing/head/hijab/green
-
-/datum/gear/head/hijab/green
-	display_name = "Green hijab"
-	path = /obj/item/clothing/head/hijab/grey
-
-/datum/gear/head/hijab/lightblue
-	display_name = "Light blue hijab"
-	path = /obj/item/clothing/head/hijab/lightblue
-
-/datum/gear/head/hijab/lightbrown
-	display_name = "Light brown hijab"
-	path = /obj/item/clothing/head/hijab/lightbrown
-
-/datum/gear/head/hijab/lightgreen
-	display_name = "Light green hijab"
-	path = /obj/item/clothing/head/hijab/lightgreen
-
-/datum/gear/head/hijab/lightpurple
-	display_name = "Light purple hijab"
-	path = /obj/item/clothing/head/hijab/lightpurple
-
-/datum/gear/head/hijab/lightred
-	display_name = "Light red hijab"
-	path = /obj/item/clothing/head/hijab/lightred
-
-/datum/gear/head/hijab/maroon
-	display_name = "Maroon hijab"
-	path = /obj/item/clothing/head/hijab/maroon
-
-/datum/gear/head/hijab/orange
-	display_name = "Orange hijab"
-	path = /obj/item/clothing/head/hijab/orange
-
-/datum/gear/head/hijab/pink
-	display_name = "Pink hijab"
-	path = /obj/item/clothing/head/hijab/pink
-
-/datum/gear/head/hijab/purple
-	display_name = "Purple hijab"
-	path = /obj/item/clothing/head/hijab/purple
-
-/datum/gear/head/hijab/red
-	display_name = "Red hijab"
-	path = /obj/item/clothing/head/hijab/red
-
-/datum/gear/head/hijab/yellowgreen
-	display_name = "Yellow green hijab"
-	path = /obj/item/clothing/head/hijab/yellowgreen
-
-/datum/gear/head/hijab/yellow
-	display_name = "Yellow hijab"
-	path = /obj/item/clothing/head/hijab/yellow
+/datum/gear/head/turban/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
