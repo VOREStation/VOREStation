@@ -395,7 +395,7 @@ var/list/name_to_material
 	weight = 15
 	door_icon_base = "stone"
 	destruction_desc = "shatters"
-	window_options = list("One Direction" = 1, "Full Window" = 4)
+	window_options = list("One Direction" = 1, "Full Window" = 4, "Windoor" = 2)
 	created_window = /obj/structure/window/basic
 	rod_product = /obj/item/stack/material/glass/reinforced
 
@@ -425,6 +425,12 @@ var/list/name_to_material
 	for (var/obj/structure/window/check_window in user.loc)
 		window_count++
 		possible_directions  -= check_window.dir
+	for (var/obj/structure/windoor_assembly/check_assembly in user.loc)
+		window_count++
+		possible_directions -= check_assembly.dir
+	for (var/obj/machinery/door/window/check_windoor in user.loc)
+		window_count++
+		possible_directions -= check_windoor.dir
 
 	// Get the closest available dir to the user's current facing.
 	var/build_dir = SOUTHWEST //Default to southwest for fulltile windows.
@@ -435,18 +441,12 @@ var/list/name_to_material
 	else
 		if(choice in list("One Direction","Windoor"))
 			if(possible_directions.len)
-				for(var/direction in list(user.dir, turn(user.dir,90), turn(user.dir,180), turn(user.dir,270) ))
+				for(var/direction in list(user.dir, turn(user.dir,90), turn(user.dir,270), turn(user.dir,180)))
 					if(direction in possible_directions)
 						build_dir = direction
 						break
 			else
 				failed_to_build = 1
-			if(!failed_to_build && choice == "Windoor")
-				if(!is_reinforced())
-					user << "<span class='warning'>This material is not reinforced enough to use for a door.</span>"
-					return
-				if((locate(/obj/structure/windoor_assembly) in T.contents) || (locate(/obj/machinery/door/window) in T.contents))
-					failed_to_build = 1
 	if(failed_to_build)
 		user << "<span class='warning'>There is no room in this location.</span>"
 		return 1
@@ -454,7 +454,8 @@ var/list/name_to_material
 	var/build_path = /obj/structure/windoor_assembly
 	var/sheets_needed = window_options[choice]
 	if(choice == "Windoor")
-		build_dir = user.dir
+		if(is_reinforced())
+			build_path = /obj/structure/windoor_assembly/secure
 	else
 		build_path = created_window
 
@@ -484,7 +485,7 @@ var/list/name_to_material
 	weight = 30
 	stack_origin_tech = "materials=2"
 	composite_material = list(DEFAULT_WALL_MATERIAL = SHEET_MATERIAL_AMOUNT / 2, "glass" = SHEET_MATERIAL_AMOUNT)
-	window_options = list("One Direction" = 1, "Full Window" = 4, "Windoor" = 5)
+	window_options = list("One Direction" = 1, "Full Window" = 4, "Windoor" = 2)
 	created_window = /obj/structure/window/reinforced
 	wire_product = null
 	rod_product = null
@@ -497,6 +498,7 @@ var/list/name_to_material
 	integrity = 100
 	icon_colour = "#FC2BC5"
 	stack_origin_tech = list(TECH_MATERIAL = 4)
+	window_options = list("One Direction" = 1, "Full Window" = 4)
 	created_window = /obj/structure/window/phoronbasic
 	wire_product = null
 	rod_product = /obj/item/stack/material/glass/phoronrglass
@@ -507,6 +509,7 @@ var/list/name_to_material
 	stack_type = /obj/item/stack/material/glass/phoronrglass
 	stack_origin_tech = list(TECH_MATERIAL = 5)
 	composite_material = list() //todo
+	window_options = list("One Direction" = 1, "Full Window" = 4)
 	created_window = /obj/structure/window/phoronreinforced
 	hardness = 40
 	weight = 30
