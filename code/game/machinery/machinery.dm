@@ -166,11 +166,11 @@ Class Procs:
 			qdel(src)
 			return
 		if(2.0)
-			if (prob(50))
+			if(prob(50))
 				qdel(src)
 				return
 		if(3.0)
-			if (prob(25))
+			if(prob(25))
 				qdel(src)
 				return
 		else
@@ -183,20 +183,20 @@ Class Procs:
 /obj/machinery/proc/auto_use_power()
 	if(!powered(power_channel))
 		return 0
-	if(src.use_power == 1)
-		use_power(idle_power_usage,power_channel, 1)
-	else if(src.use_power >= 2)
-		use_power(active_power_usage,power_channel, 1)
+	if(use_power == 1)
+		use_power(idle_power_usage, power_channel, 1)
+	else if(use_power >= 2)
+		use_power(active_power_usage, power_channel, 1)
 	return 1
 
 /obj/machinery/proc/operable(var/additional_flags = 0)
 	return !inoperable(additional_flags)
 
 /obj/machinery/proc/inoperable(var/additional_flags = 0)
-	return (stat & (NOPOWER|BROKEN|additional_flags))
+	return (stat & (NOPOWER | BROKEN | additional_flags))
 
 /obj/machinery/CanUseTopic(var/mob/user)
-	if(!interact_offline && (stat & (NOPOWER|BROKEN)))
+	if(!interact_offline && (stat & (NOPOWER | BROKEN)))
 		return STATUS_CLOSE
 
 	return ..()
@@ -224,11 +224,10 @@ Class Procs:
 		return 1
 	if(user.lying || user.stat)
 		return 1
-	if ( ! (istype(usr, /mob/living/carbon/human) || \
-			istype(usr, /mob/living/silicon)))
+	if(!(istype(usr, /mob/living/carbon/human) || istype(usr, /mob/living/silicon)))
 		usr << "<span class='warning'>You don't have the dexterity to do this!</span>"
 		return 1
-	if (ishuman(user))
+	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.getBrainLoss() >= 55)
 			visible_message("<span class='warning'>[H] stares cluelessly at [src].</span>")
@@ -253,7 +252,7 @@ Class Procs:
 		O.show_message("\icon[src] <span class = 'notice'>[msg]</span>", 2)
 
 /obj/machinery/proc/ping(text=null)
-	if (!text)
+	if(!text)
 		text = "\The [src] pings."
 
 	state(text, "blue")
@@ -267,7 +266,7 @@ Class Procs:
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(5, 1, src)
 	s.start()
-	if (electrocute_mob(user, get_area(src), src, 0.7))
+	if(electrocute_mob(user, get_area(src), src, 0.7))
 		var/area/temp_area = get_area(src)
 		if(temp_area)
 			var/obj/machinery/power/apc/temp_apc = temp_area.get_apc()
@@ -305,7 +304,7 @@ Class Procs:
 			RefreshParts()
 	else
 		user << "<span class='notice'>Following parts detected in the machine:</span>"
-		for(var/var/obj/item/C in component_parts)
+		for(var/var/obj/item/C in component_parts) //var/var/obj/item/C?
 			user << "<span class='notice'>    [C.name]</span>"
 	return 1
 
@@ -319,27 +318,9 @@ Class Procs:
 /obj/machinery/proc/default_deconstruction_screwdriver(var/mob/user, var/obj/item/weapon/screwdriver/S)
 	if(!istype(S))
 		return 0
-	playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
+	playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 	panel_open = !panel_open
 	user << "<span class='notice'>You [panel_open ? "open" : "close"] the maintenance hatch of [src].</span>"
-	update_icon()
-	return 1
-
-/obj/machinery/proc/alarm_deconstruction_wirecutters(var/mob/user, var/obj/item/weapon/wirecutters/W, var/wiresexposed)
-	if(!istype(W))
-		return 0
-	if(!wiresexposed)
-		return 0
-	user.visible_message("<span class='warning'>[user] has cut the wires inside \the [src]!</span>", "You have cut the wires inside \the [src].")
-	playsound(loc, 'sound/items/Wirecutter.ogg', 50, 1)
-	new/obj/item/stack/cable_coil(get_turf(src), 5)
-	. = dismantle()
-
-/obj/machinery/proc/alarm_deconstruction_screwdriver(var/mob/user, var/obj/item/weapon/screwdriver/S, var/wiresexposed)
-	if(!istype(S))
-		return 0
-	wiresexposed = !wiresexposed
-	user << "The wires have been [wiresexposed ? "exposed" : "unexposed"]"
 	update_icon()
 	return 1
 
@@ -349,18 +330,37 @@ Class Procs:
 	if(!circuit)
 		return 0
 	user << "<span class='notice'>You start disconnecting the monitor.</span>"
-	playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
+	playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 	if(do_after(user, 20))
 		if(stat & BROKEN)
 			user << "<span class='notice'>The broken glass falls out.</span>"
-			new /obj/item/weapon/material/shard(loc)
+			new /obj/item/weapon/material/shard(src.loc)
 		else
 			user << "<span class='notice'>You disconnect the monitor.</span>"
 		. = dismantle()
 
+/obj/machinery/proc/alarm_deconstruction_screwdriver(var/mob/user, var/obj/item/weapon/screwdriver/S, var/wiresexposed)
+	if(!istype(S))
+		return 0
+	playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+	wiresexposed = !wiresexposed
+	user << "The wires have been [wiresexposed ? "exposed" : "unexposed"]"
+	update_icon()
+	return 1
+
+/obj/machinery/proc/alarm_deconstruction_wirecutters(var/mob/user, var/obj/item/weapon/wirecutters/W, var/wiresexposed)
+	if(!istype(W))
+		return 0
+	if(!wiresexposed)
+		return 0
+	user.visible_message("<span class='warning'>[user] has cut the wires inside \the [src]!</span>", "You have cut the wires inside \the [src].")
+	playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
+	new/obj/item/stack/cable_coil(get_turf(src), 5)
+	. = dismantle()
+
 /obj/machinery/proc/dismantle()
-	playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
-	var/obj/structure/frame/A = new /obj/structure/frame(loc)
+	playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
+	var/obj/structure/frame/A = new /obj/structure/frame(src.loc)
 	var/obj/item/weapon/circuitboard/M = circuit
 	A.circuit = M
 	A.anchored = 1
@@ -370,8 +370,8 @@ Class Procs:
 		A.need_circuit = 0
 
 	if(A.frame_type.frame_class == "machine")
-		for(var/obj/D in src.component_parts)
-			D.forceMove(loc)
+		for(var/obj/D in component_parts)
+			D.forceMove(src.loc)
 		if(A.components)
 			A.components.Cut()
 		else

@@ -99,9 +99,9 @@
 		return
 	if(wiresexposed && istype(W, /obj/item/weapon/wirecutters))
 		user.visible_message("<span class='warning'>[user] has cut the wires inside \the [src]!</span>", "You have cut the wires inside \the [src].")
-		playsound(loc, 'sound/items/Wirecutter.ogg', 50, 1)
+		playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
 		new/obj/item/stack/cable_coil(get_turf(src), 5)
-		var/obj/structure/frame/A = new /obj/structure/frame(loc)
+		var/obj/structure/frame/A = new /obj/structure/frame(src.loc)
 		var/obj/item/weapon/circuitboard/M = circuit
 		A.frame_type = M.board_type
 		A.pixel_x = pixel_x

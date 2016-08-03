@@ -19,7 +19,7 @@
 
 /obj/item/frame/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/wrench))
-		new refund_type(get_turf(loc), refund_amt)
+		new refund_type(get_turf(src.loc), refund_amt)
 		qdel(src)
 		return
 	..()
@@ -44,7 +44,7 @@
 	if(!(ndir in cardinal))
 		return
 
-	var/obj/machinery/M = new build_machine_type(get_turf(loc), ndir, 1, frame_type)
+	var/obj/machinery/M = new build_machine_type(get_turf(src.loc), ndir, 1, frame_type)
 	M.fingerprints = fingerprints
 	M.fingerprintshidden = fingerprintshidden
 	M.fingerprintslast = fingerprintslast
@@ -64,14 +64,14 @@
 		if(frame_type.frame_size != 5)
 			new /obj/item/stack/material/steel(usr.loc, (5 - frame_type.frame_size))
 
-	if(get_dist(on_wall,usr)>1)
+	if(get_dist(on_wall, usr)>1)
 		return
 
 	var/ndir
 	if(reverse)
-		ndir = get_dir(usr,on_wall)
+		ndir = get_dir(usr, on_wall)
 	else
-		ndir = get_dir(on_wall,usr)
+		ndir = get_dir(on_wall, usr)
 
 	if(!(ndir in cardinal))
 		return

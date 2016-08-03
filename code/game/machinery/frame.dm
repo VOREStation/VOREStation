@@ -5,7 +5,7 @@
 	//Create global frame type list if it hasn't been made already.
 	construction_frame_wall = list()
 	construction_frame_floor = list()
-	for(var/R in typesof(/datum/frame/frame_types)-/datum/frame/frame_types)
+	for(var/R in typesof(/datum/frame/frame_types) - /datum/frame/frame_types)
 		var/datum/frame/frame_types/type = new R
 		if(type.frame_style == "wall")
 			construction_frame_wall += type
@@ -251,7 +251,7 @@
 	if(istype(P, /obj/item/weapon/wrench))
 		if(state == 0 && !anchored)
 			user << "<span class='notice'>You start to wrench the frame into place.</span>"
-			playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
+			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 			if(do_after(user, 20))
 				anchored = 1
 				if(!need_circuit && circuit)
@@ -263,7 +263,7 @@
 					user << "<span class='notice'>You wrench the frame into place.</span>"
 
 		else if(state == 0 && anchored)
-			playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
+			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 			if(do_after(user, 20))
 				user << "<span class='notice'>You unfasten the frame.</span>"
 				anchored = 0
@@ -272,11 +272,11 @@
 		if(state == 0)
 			var/obj/item/weapon/weldingtool/WT = P
 			if(WT.remove_fuel(0, user))
-				playsound(loc, 'sound/items/Welder.ogg', 50, 1)
+				playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
 				if(do_after(user, 20))
 					if(src && WT.isOn())
 						user << "<span class='notice'>You deconstruct the frame.</span>"
-						new /obj/item/stack/material/steel(loc, frame_type.frame_size)
+						new /obj/item/stack/material/steel(src.loc, frame_type.frame_size)
 						qdel(src)
 						return
 			else if(!WT.remove_fuel(0, user))
@@ -288,7 +288,7 @@
 			var/obj/item/weapon/circuitboard/B = P
 			var/datum/frame/frame_types/board_type = B.board_type
 			if(board_type.name == frame_type.name)
-				playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
+				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 				user << "<span class='notice'>You place the circuit board inside the frame.</span>"
 				circuit = P
 				user.drop_item()
@@ -304,18 +304,18 @@
 	else if(istype(P, /obj/item/weapon/screwdriver))
 		if(state == 1)
 			if(need_circuit && circuit)
-				playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
+				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				user << "<span class='notice'>You screw the circuit board into place.</span>"
 				state = 2
 
 		else if(state == 2)
 			if(need_circuit && circuit)
-				playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
+				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				user << "<span class='notice'>You unfasten the circuit board.</span>"
 				state = 1
 
 			else if(!need_circuit && circuit)
-				playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
+				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				user << "<span class='notice'>You unfasten the outer cover.</span>"
 				state = 0
 
@@ -327,8 +327,8 @@
 						component_check = 0
 						break
 				if(component_check)
-					playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
-					var/obj/machinery/new_machine = new circuit.build_path(loc, dir)
+					playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+					var/obj/machinery/new_machine = new circuit.build_path(src.loc, dir)
 					// Handle machines that have allocated default parts in thier constructor.
 					if(new_machine.component_parts)
 						for(var/CP in new_machine.component_parts)
@@ -357,9 +357,9 @@
 					return
 
 			else if(frame_type.frame_class == "alarm")
-				playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
+				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				user << "<span class='notice'>You fasten the cover.</span>"
-				var/obj/machinery/B = new circuit.build_path(loc)
+				var/obj/machinery/B = new circuit.build_path(src.loc)
 				B.pixel_x = pixel_x
 				B.pixel_y = pixel_y
 				B.set_dir(dir)
@@ -371,9 +371,9 @@
 
 		else if(state == 4)
 			if(frame_type.frame_class == "computer")
-				playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
+				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				user << "<span class='notice'>You connect the monitor.</span>"
-				var/obj/machinery/B = new circuit.build_path(loc)
+				var/obj/machinery/B = new circuit.build_path(src.loc)
 				B.pixel_x = pixel_x
 				B.pixel_y = pixel_y
 				B.set_dir(dir)
@@ -384,9 +384,9 @@
 				return
 
 			else if(frame_type.frame_class == "display")
-				playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
+				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				user << "<span class='notice'>You connect the monitor.</span>"
-				var/obj/machinery/B = new circuit.build_path(loc)
+				var/obj/machinery/B = new circuit.build_path(src.loc)
 				B.pixel_x = pixel_x
 				B.pixel_y = pixel_y
 				B.set_dir(dir)
@@ -399,39 +399,39 @@
 	else if(istype(P, /obj/item/weapon/crowbar))
 		if(state == 1)
 			if(need_circuit && circuit)
-				playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
+				playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
 				user << "<span class='notice'>You remove the circuit board.</span>"
 				state = 0
-				circuit.loc = loc
+				circuit.forceMove(src.loc)
 				circuit = null
 				if(frame_type.frame_class == "machine")
 					req_components = null
 
 		else if(state == 3)
 			if(frame_type.frame_class == "machine")
-				playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
+				playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
 				if(components.len == 0)
 					user << "<span class='notice'>There are no components to remove.</span>"
 				else
 					user << "<span class='notice'>You remove the components.</span>"
 					for(var/obj/item/weapon/W in components)
-						W.forceMove(loc)
+						W.forceMove(src.loc)
 					check_components()
 					update_desc()
 					user << desc
 
 		else if(state == 4)
 			if(frame_type.frame_class == "computer")
-				playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
+				playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
 				user << "<span class='notice'>You remove the glass panel.</span>"
 				state = 3
-				new /obj/item/stack/material/glass(loc, 2)
+				new /obj/item/stack/material/glass(src.loc, 2)
 
 			else if(frame_type.frame_class == "display")
-				playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
+				playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
 				user << "<span class='notice'>You remove the glass panel.</span>"
 				state = 3
-				new /obj/item/stack/material/glass(loc, 2)
+				new /obj/item/stack/material/glass(src.loc, 2)
 
 	else if(istype(P, /obj/item/stack/cable_coil))
 		if(state == 2)
@@ -440,7 +440,7 @@
 				user << "<span class='warning'>You need five coils of wire to add them to the frame.</span>"
 				return
 			user << "<span class='notice'>You start to add cables to the frame.</span>"
-			playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
+			playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 			if(do_after(user, 20) && state == 2)
 				if(C.use(5))
 					user << "<span class='notice'>You add cables to the frame.</span>"
@@ -451,28 +451,28 @@
 	else if(istype(P, /obj/item/weapon/wirecutters))
 		if(state == 3)
 			if(frame_type.frame_class == "computer")
-				playsound(loc, 'sound/items/Wirecutter.ogg', 50, 1)
+				playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
 				user << "<span class='notice'>You remove the cables.</span>"
 				state = 2
-				new /obj/item/stack/cable_coil(loc, 5)
+				new /obj/item/stack/cable_coil(src.loc, 5)
 
 			else if(frame_type.frame_class == "display")
-				playsound(loc, 'sound/items/Wirecutter.ogg', 50, 1)
+				playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
 				user << "<span class='notice'>You remove the cables.</span>"
 				state = 2
-				new /obj/item/stack/cable_coil(loc, 5)
+				new /obj/item/stack/cable_coil(src.loc, 5)
 
 			else if(frame_type.frame_class == "alarm")
-				playsound(loc, 'sound/items/Wirecutter.ogg', 50, 1)
+				playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
 				user << "<span class='notice'>You remove the cables.</span>"
 				state = 2
-				new /obj/item/stack/cable_coil(loc, 5)
+				new /obj/item/stack/cable_coil(src.loc, 5)
 
 			else if(frame_type.frame_class == "machine")
-				playsound(loc, 'sound/items/Wirecutter.ogg', 50, 1)
+				playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
 				user << "<span class='notice'>You remove the cables.</span>"
 				state = 2
-				new /obj/item/stack/cable_coil(loc, 5)
+				new /obj/item/stack/cable_coil(src.loc, 5)
 
 	else if(istype(P, /obj/item/stack/material) && P.get_material_name() == "glass")
 		if(state == 3)
@@ -481,7 +481,7 @@
 				if(G.get_amount() < 2)
 					user << "<span class='warning'>You need two sheets of glass to put in the glass panel.</span>"
 					return
-				playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
+				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 				user << "<span class='notice'>You start to put in the glass panel.</span>"
 				if(do_after(user, 20) && state == 3)
 					if(G.use(2))
@@ -493,7 +493,7 @@
 				if(G.get_amount() < 2)
 					user << "<span class='warning'>You need two sheets of glass to put in the glass panel.</span>"
 					return
-				playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
+				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 				user << "<span class='notice'>You start to put in the glass panel.</span>"
 				if(do_after(user, 20) && state == 3)
 					if(G.use(2))
@@ -505,7 +505,7 @@
 			if(frame_type.frame_class == "machine")
 				for(var/I in req_components)
 					if(istype(P, I) && (req_components[I] > 0))
-						playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
+						playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 						if(istype(P, /obj/item/stack/cable_coil))
 							var/obj/item/stack/cable_coil/CP = P
 							if(CP.get_amount() > 1)
@@ -522,7 +522,7 @@
 						else if(istype(P, /obj/item/stack/material/glass/reinforced))
 							var/obj/item/stack/material/glass/reinforced/CP = P
 							if(CP.get_amount() > 1)
-								var/camt = min(CP.amount, req_components[I]) // amount of cable to take, idealy amount required, but limited by amount provided
+								var/camt = min(CP.amount, req_components[I]) // amount of glass to take, idealy amount required, but limited by amount provided
 								var/obj/item/stack/material/glass/reinforced/CC = new /obj/item/stack/material/glass/reinforced(src)
 								CC.amount = camt
 								CC.update_icon()
