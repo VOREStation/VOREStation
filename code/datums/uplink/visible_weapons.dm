@@ -11,7 +11,7 @@
 
 /datum/uplink_item/item/visible_weapons/combatknife
 	name = "Combat Knife"
-	item_cost = 30
+	item_cost = 20
 	path = /obj/item/weapon/material/hatchet/tacknife/combatknife
 
 /datum/uplink_item/item/visible_weapons/energy_sword

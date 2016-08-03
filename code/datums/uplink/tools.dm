@@ -38,7 +38,7 @@
 
 /datum/uplink_item/item/tools/encryptionkey_radio
 	name = "Encrypted Radio Channel Key"
-	item_cost = 20
+	item_cost = 10
 	path = /obj/item/device/encryptionkey/syndicate
 
 /datum/uplink_item/item/tools/hacking_tool
@@ -51,7 +51,7 @@
 
 /datum/uplink_item/item/tools/encryptionkey_binary
 	name = "Binary Translator Key"
-	item_cost = 20
+	item_cost = 15
 	path = /obj/item/device/encryptionkey/binary
 
 /datum/uplink_item/item/tools/emag
@@ -61,12 +61,12 @@
 
 /datum/uplink_item/item/tools/clerical
 	name = "Morphic Clerical Kit"
-	item_cost = 15
+	item_cost = 10
 	path = /obj/item/weapon/storage/box/syndie_kit/clerical
 
 /datum/uplink_item/item/tools/money
 	name = "Operations Funding"
-	item_cost = 15
+	item_cost = 10
 	path = /obj/item/weapon/storage/secure/briefcase/money
 	desc = "A briefcase with 10,000 untraceable thalers for funding your sneaky activities."
 
@@ -82,7 +82,7 @@
 
 /datum/uplink_item/item/tools/powersink
 	name = "Powersink (DANGER!)"
-	item_cost = 50
+	item_cost = 40
 	path = /obj/item/device/powersink
 
 /datum/uplink_item/item/tools/ai_module
