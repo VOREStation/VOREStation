@@ -78,7 +78,7 @@
 /obj/item/clothing/head/nursehat
 	name = "nurse's hat"
 	desc = "It allows quick identification of trained medical personnel."
-	item_state_slots = list(slot_r_hand_str = "nursehat", slot_l_hand_str = "nursehat")
+	icon_state = "nursehat"
 	siemens_coefficient = 0.9
 	body_parts_covered = 0
 
