@@ -39,6 +39,8 @@ var/list/technomancer_belongings = list()
 	for(var/mob/living/L in mob_list)
 		if(!is_ally(L) && !can_track_non_allies)
 			continue
+		if(L == user)
+			continue
 		mob_choices += L
 	var/choice = input(user,"Decide what or who to track.","Tracking") as null|anything in object_choices + mob_choices
 	if(choice)

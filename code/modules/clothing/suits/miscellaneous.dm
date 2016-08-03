@@ -55,7 +55,7 @@
 	flags = CONDUCT
 	fire_resist = T0C+5200
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	
+
 /obj/item/clothing/suit/greatcoat
 	name = "great coat"
 	desc = "A heavy great coat"
@@ -91,6 +91,31 @@
 	item_state_slots = list(slot_r_hand_str = "wcoat", slot_l_hand_str = "wcoat")
 	blood_overlay_type = "armor"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+
+/obj/item/clothing/suit/wcoat/red
+	name = "red waistcoat"
+	icon_state = "red_waistcoat"
+
+/obj/item/clothing/suit/wcoat/grey
+	name = "grey waistcoat"
+	icon_state = "grey_waistcoat"
+
+/obj/item/clothing/suit/wcoat/brown
+	name = "brown waistcoat"
+	icon_state = "brown_waistcoat"
+
+/obj/item/clothing/suit/wcoat/swvest
+	name = "black sweatervest"
+	desc = "A sleeveless sweater. Wear this if you don't want your arms to be warm, or if you're a nerd."
+	icon_state = "sweatervest"
+
+/obj/item/clothing/suit/wcoat/swvest/blue
+	name = "blue sweatervest"
+	icon_state = "sweatervest_blue"
+
+/obj/item/clothing/suit/wcoat/swvest/red
+	name = "red sweatervest"
+	icon_state = "sweatervest_red"
 
 /obj/item/clothing/suit/apron/overalls
 	name = "coveralls"
@@ -197,7 +222,13 @@
 	desc = "A flowing, black coat."
 	icon_state = "neocoat"
 	item_state_slots = list(slot_r_hand_str = "leather_jacket", slot_l_hand_str = "leather_jacket")
-	
+
+/obj/item/clothing/suit/customs
+	name = "customs jacket"
+	desc = "A standard SolGov Customs formal jacket."
+	icon_state = "customs_jacket"
+	item_state_slots = list(slot_r_hand_str = "suit_blue", slot_l_hand_str = "suit_blue")
+
 /*
  * stripper
  */

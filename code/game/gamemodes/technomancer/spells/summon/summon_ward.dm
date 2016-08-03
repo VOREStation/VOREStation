@@ -43,6 +43,8 @@
 /mob/living/simple_animal/ward/death()
 	if(creator)
 		creator << "<span class='danger'>Your ward inside [get_area(src)] was killed!</span>"
+	..()
+	qdel(src)
 
 /mob/living/simple_animal/ward/proc/expire()
 	if(creator && src)
