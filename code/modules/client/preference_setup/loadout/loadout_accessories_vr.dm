@@ -31,3 +31,8 @@
 
 /datum/gear/accessory/white_vest
 	allowed_roles = list("Paramedic","Chief Medical Officer","Medical Doctor","Chemist")
+
+/datum/gear/accessory/saddlebag
+    display_name = "Saddle Bag"
+    path = /obj/item/weapon/storage/backpack/saddlebag
+    slot = slot_back
