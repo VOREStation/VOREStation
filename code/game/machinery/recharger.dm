@@ -17,6 +17,7 @@ obj/machinery/recharger
 	circuit = /obj/item/weapon/circuitboard/recharger
 
 obj/machinery/recharger/New()
+	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
 	component_parts += new /obj/item/stack/cable_coil(src, 5)
@@ -170,3 +171,4 @@ obj/machinery/recharger/wallcharger
 	icon_state_idle = "wrecharger0"
 	portable = 0
 	circuit = /obj/item/weapon/circuitboard/recharger/wrecharger
+	frame_type = "wrecharger"

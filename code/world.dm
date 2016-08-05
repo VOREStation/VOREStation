@@ -104,9 +104,6 @@ var/global/datum/global_init/init = new ()
 			M.update_icon()
 
 
-	// Create frame types, as above.
-	populate_frame_types()
-
 	// Create robolimbs for chargen.
 	populate_robolimb_list()
 
