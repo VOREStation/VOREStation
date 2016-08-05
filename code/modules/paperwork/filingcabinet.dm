@@ -24,10 +24,12 @@
 /obj/structure/filingcabinet/filingcabinet	//not changing the path to avoid unecessary map issues, but please don't name stuff like this in the future -Pete
 	icon_state = "tallcabinet"
 
+
 /obj/structure/filingcabinet/initialize()
 	for(var/obj/item/I in loc)
 		if(istype(I, /obj/item/weapon/paper) || istype(I, /obj/item/weapon/folder) || istype(I, /obj/item/weapon/photo) || istype(I, /obj/item/weapon/paper_bundle))
 			I.loc = src
+
 
 /obj/structure/filingcabinet/attackby(obj/item/P as obj, mob/user as mob)
 	if(istype(P, /obj/item/weapon/paper) || istype(P, /obj/item/weapon/folder) || istype(P, /obj/item/weapon/photo) || istype(P, /obj/item/weapon/paper_bundle))
@@ -54,6 +56,7 @@
 		return
 	else
 		user << "<span class='notice'>You can't put [P] in [src]!</span>"
+
 
 /obj/structure/filingcabinet/attack_hand(mob/user as mob)
 	if(contents.len <= 0)
@@ -100,11 +103,13 @@
 				sleep(5)
 				icon_state = initial(icon_state)
 
+
 /*
  * Security Record Cabinets
  */
 /obj/structure/filingcabinet/security
 	var/virgin = 1
+
 
 /obj/structure/filingcabinet/security/proc/populate()
 	if(virgin)

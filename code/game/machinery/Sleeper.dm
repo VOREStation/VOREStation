@@ -2,7 +2,7 @@
 	name = "Sleeper Console"
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "sleeperconsole"
-	var/obj/machinery/sleeper/sleeper
+	var/obj/machinery/sleeper/connected = null
 	anchored = 1 //About time someone fixed this.
 	density = 0
 	dir = 8
@@ -11,19 +11,21 @@
 	interact_offline = 1
 	circuit = /obj/item/weapon/circuitboard/sleeper_console
 
+//obj/machinery/sleep_console/New()
+	//..()
+	//spawn( 5 )
+		//src.connected = locate(/obj/machinery/sleeper, get_step(src, WEST)) //We assume dir = 8 so sleeper is WEST. Other sprites do exist.
+		//return
+	//return
+
 /obj/machinery/sleep_console/New()
 	..()
-	findsleeper()
-
-/obj/machinery/sleep_console/proc/findsleeper()
-	spawn( 5 )
-		var/obj/machinery/sleeper/sleepernew = null
-		for(dir in list(NORTH,EAST,SOUTH,WEST)) // Loop through every direction
-			sleepernew = locate(/obj/machinery/sleeper, get_step(src, dir)) // Try to find a scanner in that direction
-		if(sleepernew)
-			sleeper = sleepernew
-			sleepernew.console = src
+	spawn(5)
+		//src.machine = locate(/obj/machinery/mineral/processing_unit, get_step(src, machinedir))
+		src.connected = locate(/obj/machinery/sleeper) in range(2,src)
 		return
+	return
+
 
 /obj/machinery/sleep_console/attack_ai(var/mob/user)
 	return attack_hand(user)
@@ -31,18 +33,39 @@
 /obj/machinery/sleep_console/attack_hand(var/mob/user)
 	if(..())
 		return 1
-	if(!sleeper)
-		findsleeper()
-		if(sleeper)
-			return sleeper.ui_interact(user)
-	else
-		user << "<span class='warning'>Sleeper not found!</span>"
+	if(connected)
+		connected.ui_interact(user)
 
 /obj/machinery/sleep_console/attackby(var/obj/item/I, var/mob/user)
-	if(computer_deconstruction_screwdriver(user, I))
-		return
+	if(istype(I, /obj/item/weapon/screwdriver) && circuit)
+		user << "<span class='notice'>You start disconnecting the monitor.</span>"
+		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+		if(do_after(user, 20))
+			var/obj/structure/frame/A = new /obj/structure/frame( src.loc )
+			var/obj/item/weapon/circuitboard/M = new circuit( A )
+			A.circuit = M
+			A.anchored = 1
+			A.density = 1
+			A.frame_type = M.board_type
+			for (var/obj/C in src)
+				C.forceMove(loc)
+			if (src.stat & BROKEN)
+				user << "<span class='notice'>The broken glass falls out.</span>"
+				new /obj/item/weapon/material/shard( src.loc )
+				A.state = 3
+				A.icon_state = "[A.frame_type]_3"
+			else
+				user << "<span class='notice'>You disconnect the monitor.</span>"
+				A.state = 4
+				A.icon_state = "[A.frame_type]_4"
+			A.pixel_x = pixel_x
+			A.pixel_y = pixel_y
+			A.dir = dir
+			M.deconstruct(src)
+			qdel(src)
 	else
-		return attack_hand(user)
+		src.attack_hand(user)
+	return
 
 /obj/machinery/sleep_console/power_change()
 	..()
@@ -63,7 +86,6 @@
 	var/list/available_chemicals = list("inaprovaline" = "Inaprovaline", "stoxin" = "Soporific", "paracetamol" = "Paracetamol", "anti_toxin" = "Dylovene", "dexalin" = "Dexalin")
 	var/obj/item/weapon/reagent_containers/glass/beaker = null
 	var/filtering = 0
-	var/obj/machinery/sleep_console/console
 
 	use_power = 1
 	idle_power_usage = 15
@@ -72,6 +94,7 @@
 /obj/machinery/sleeper/New()
 	..()
 	beaker = new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
+	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
 	component_parts += new /obj/item/weapon/reagent_containers/glass/beaker(src)
@@ -81,6 +104,14 @@
 	component_parts += new /obj/item/weapon/reagent_containers/syringe(src)
 	component_parts += new /obj/item/weapon/reagent_containers/syringe(src)
 	component_parts += new /obj/item/stack/material/glass/reinforced(src, 2)
+
+	spawn(5)
+		//src.machine = locate(/obj/machinery/mineral/processing_unit, get_step(src, machinedir))
+		var/obj/machinery/sleep_console/C = locate(/obj/machinery/sleep_console) in range(2,src)
+		if(C)
+			C.connected = src
+		return
+
 	RefreshParts()
 
 /obj/machinery/sleeper/initialize()
@@ -177,12 +208,12 @@
 	return 1
 
 /obj/machinery/sleeper/attackby(var/obj/item/I, var/mob/user)
-	add_fingerprint(user)
 	if(default_deconstruction_screwdriver(user, I))
 		return
-	else if(default_deconstruction_crowbar(user, I))
+	if(default_deconstruction_crowbar(user, I))
 		return
-	else if(istype(I, /obj/item/weapon/reagent_containers/glass))
+	add_fingerprint(user)
+	if(istype(I, /obj/item/weapon/reagent_containers/glass))
 		if(!beaker)
 			beaker = I
 			user.drop_item()
@@ -252,21 +283,21 @@
 	if(occupant.client)
 		occupant.client.eye = occupant.client.mob
 		occupant.client.perspective = MOB_PERSPECTIVE
-	occupant.loc = src.loc
+	occupant.loc = loc
 	occupant = null
 	for(var/atom/movable/A in src) // In case an object was dropped inside or something
 		if(A == beaker || A == circuit)
 			continue
 		if(A in component_parts)
 			continue
-		A.loc = src.loc
+		A.loc = loc
 	update_use_power(1)
 	update_icon()
 	toggle_filter()
 
 /obj/machinery/sleeper/proc/remove_beaker()
 	if(beaker)
-		beaker.loc = src.loc
+		beaker.loc = loc
 		beaker = null
 		toggle_filter()
 

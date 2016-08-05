@@ -49,8 +49,25 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 	var/holo_range = 5 // Change to change how far the AI can move away from the holopad before deactivating.
 
 /obj/machinery/hologram/holopad/attackby(obj/item/I as obj, user as mob)
-	if(computer_deconstruction_screwdriver(user, I))
-		return
+	if(istype(I, /obj/item/weapon/screwdriver) && circuit)
+		user << "<span class='notice'>You start removing the glass.</span>"
+		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+		if(do_after(user, 20))
+			var/obj/structure/frame/A = new /obj/structure/frame( src.loc )
+			var/obj/item/weapon/circuitboard/M = new circuit( A )
+			A.circuit = M
+			A.anchored = 1
+			A.density = 1
+			A.frame_type = "holopad"
+			for (var/obj/C in src)
+				C.forceMove(loc)
+			user << "<span class='notice'>You remove the glass.</span>"
+			A.state = 4
+			A.icon_state = "holopad_4"
+			M.deconstruct(src)
+			for (var/mob/living/silicon/ai/master in masters)
+				clear_holo(master)
+			qdel(src)
 	else
 		src.attack_hand(user)
 	return

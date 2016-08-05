@@ -23,6 +23,7 @@
 	R.my_atom = src
 
 	beaker = new /obj/item/weapon/reagent_containers/glass/bottle(src)
+	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)

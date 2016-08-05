@@ -1,5 +1,6 @@
 // Pretty much everything here is stolen from the dna scanner FYI
 
+
 /obj/machinery/bodyscanner
 	var/mob/living/carbon/occupant
 	var/locked
@@ -8,15 +9,25 @@
 	icon_state = "body_scanner_0"
 	density = 1
 	anchored = 1
+
 	circuit = /obj/item/weapon/circuitboard/body_scanner
+
 	use_power = 1
 	idle_power_usage = 60
 	active_power_usage = 10000	//10 kW. It's a big all-body scanner.
+
 	light_color = "#00FF00"
-	var/obj/machinery/body_scanconsole/console
 
 /obj/machinery/bodyscanner/New()
 	..()
+	spawn( 5 )
+		var/obj/machinery/body_scanconsole/C = locate(/obj/machinery/body_scanconsole) in range(2,src)
+		if(C)
+			C.connected = src
+
+/obj/machinery/bodyscanner/map/New()
+	..()
+	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
 	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
@@ -34,9 +45,10 @@
 /obj/machinery/bodyscanner/attackby(var/obj/item/G, user as mob)
 	if(default_deconstruction_screwdriver(user, G))
 		return
-	else if(default_deconstruction_crowbar(user, G))
+	if(default_deconstruction_crowbar(user, G))
 		return
-	else if(istype(G, /obj/item/weapon/grab))
+
+	if(istype(G, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/H = G
 		if(panel_open)
 			user << "<span class='notice'>Close the maintenance panel first.</span>"
@@ -59,8 +71,6 @@
 		icon_state = "body_scanner_1"
 		add_fingerprint(user)
 		qdel(G)
-	else
-		return
 
 /obj/machinery/bodyscanner/MouseDrop_T(mob/living/carbon/O, mob/user as mob)
 	if(!istype(O))
@@ -159,6 +169,7 @@
 
 //Body Scan Console
 /obj/machinery/body_scanconsole
+	var/obj/machinery/bodyscanner/connected
 	var/known_implants = list(/obj/item/weapon/implant/chem, /obj/item/weapon/implant/death_alarm, /obj/item/weapon/implant/loyalty, /obj/item/weapon/implant/tracking)
 	var/delete
 	var/temphtml
@@ -171,30 +182,41 @@
 	circuit = /obj/item/weapon/circuitboard/scanner_console
 	var/printing = null
 	var/printing_text = null
-	var/obj/machinery/bodyscanner/scanner
 
 /obj/machinery/body_scanconsole/New()
 	..()
 	findscanner()
 
 /obj/machinery/body_scanconsole/attackby(var/obj/item/I, var/mob/user)
-	if(computer_deconstruction_screwdriver(user, I))
-		return
-	else if(istype(I, /obj/item/device/multitool)) //Did you want to link it?
-		var/obj/item/device/multitool/P = I
-		if(P.connectable)
-			if(istype(P.connectable, /obj/machinery/bodyscanner))
-				var/obj/machinery/bodyscanner/C = P.connectable
-				scanner = C
-				C.console = src
-				user << "<span class='warning'> You link the [src] to the [P.connectable]!</span>"
-		else
-			user << "<span class='warning'> You store the [src] in the [P]'s buffer!</span>"
-			P.connectable = src
-		return
+	if(istype(I, /obj/item/weapon/screwdriver) && circuit)
+		user << "<span class='notice'>You start disconnecting the monitor.</span>"
+		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+		if(do_after(user, 20))
+			var/obj/structure/frame/A = new /obj/structure/frame( src.loc )
+			var/obj/item/weapon/circuitboard/M = new circuit( A )
+			A.circuit = M
+			A.anchored = 1
+			A.density = 1
+			A.frame_type = M.board_type
+			for (var/obj/C in src)
+				C.forceMove(loc)
+			if (src.stat & BROKEN)
+				user << "<span class='notice'>The broken glass falls out.</span>"
+				new /obj/item/weapon/material/shard( src.loc )
+				A.state = 3
+				A.icon_state = "[A.frame_type]_3"
+			else
+				user << "<span class='notice'>You disconnect the monitor.</span>"
+				A.state = 4
+				A.icon_state = "[A.frame_type]_4"
+			A.pixel_x = pixel_x
+			A.pixel_y = pixel_y
+			A.dir = dir
+			M.deconstruct(src)
+			qdel(src)
 	else
 		src.attack_hand(user)
-		return
+	return
 
 /obj/machinery/body_scanconsole/power_change()
 	if(stat & BROKEN)
@@ -204,7 +226,7 @@
 		stat &= ~NOPOWER
 	else
 		spawn(rand(0, 15))
-			icon_state = "body_scannerconsole-p"
+			src.icon_state = "body_scannerconsole-p"
 			stat |= NOPOWER
 
 /obj/machinery/body_scanconsole/ex_act(severity)
@@ -224,11 +246,11 @@
 /obj/machinery/body_scanconsole/proc/findscanner()
 	spawn( 5 )
 		var/obj/machinery/bodyscanner/bodyscannernew = null
-		for(dir in list(NORTH,EAST,SOUTH,WEST)) // Loop through every direction
-			bodyscannernew = locate(/obj/machinery/bodyscanner, get_step(src, dir)) // Try to find a scanner in that direction
-		if(bodyscannernew)
-			scanner = bodyscannernew
-			bodyscannernew.console = src
+		// Loop through every direction
+		for(dir in list(NORTH,EAST,SOUTH,WEST))
+			// Try to find a scanner in that direction
+			bodyscannernew = locate(/obj/machinery/bodyscanner, get_step(src, dir))
+		src.connected = bodyscannernew
 		return
 
 /obj/machinery/body_scanconsole/attack_ai(user as mob)
@@ -245,22 +267,22 @@
 		user << "<span class='notice'>Close the maintenance panel first.</span>"
 		return
 
-	if(!scanner)
-		user << "<span class='warning'>Scanner not found!</span>"
+	if(!src.connected)
+		findscanner()
 
 	ui_interact(user)
 
 /obj/machinery/body_scanconsole/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	var/data[0]
 
-	data["connected"] = scanner ? 1 : 0
+	data["connected"] = connected ? 1 : 0
 
-	if(scanner)
-		data["occupied"] = scanner.occupant ? 1 : 0
+	if(connected)
+		data["occupied"] = connected.occupant ? 1 : 0
 
 		var/occupantData[0]
-		if(scanner.occupant && ishuman(scanner.occupant))
-			var/mob/living/carbon/human/H = scanner.occupant
+		if(connected.occupant && ishuman(connected.occupant))
+			var/mob/living/carbon/human/H = connected.occupant
 			occupantData["name"] = H.name
 			occupantData["stat"] = H.stat
 			occupantData["health"] = H.health
@@ -398,8 +420,8 @@
 /obj/machinery/body_scanconsole/proc/generate_printing_text()
 	var/dat = ""
 
-	if(scanner)
-		var/mob/living/carbon/human/occupant = scanner.occupant
+	if(connected)
+		var/mob/living/carbon/human/occupant = connected.occupant
 		dat = "<font color='blue'><b>Occupant Statistics:</b></font><br>" //Blah obvious
 		if(istype(occupant)) //is there REALLY someone in there?
 			var/t1
