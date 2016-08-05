@@ -76,7 +76,7 @@
 			stat("Game Mode:", "Secret")
 		else
 			if(ticker.hide_mode == 0)
-				stat("Game Mode:", "[master_mode]") // Old setting for showing the game mode
+				stat("Game Mode:", "[config.mode_names[master_mode]]") // Old setting for showing the game mode
 
 		if(ticker.current_state == GAME_STATE_PREGAME)
 			stat("Time To Start:", "[ticker.pregame_timeleft][round_progressing ? "" : " (DELAYED)"]")

@@ -75,7 +75,7 @@ var/total_unit_tests = 0
 
 	//
 	// Check the async tests to see if they are finished.
-	// 
+	//
 
 	while(async_test.len)
 		for(var/datum/unit_test/test in async_test)
