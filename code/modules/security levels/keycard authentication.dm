@@ -42,22 +42,25 @@
 				broadcast_request() //This is the device making the initial event request. It needs to broadcast to other devices
 
 	if(istype(W, /obj/item/weapon/screwdriver))
-		user << "You remove the faceplate from the [src]"
-		var/obj/structure/frame/A = new /obj/structure/frame( src.loc )
-		var/obj/item/weapon/circuitboard/M = new circuit( A )
-		A.frame_type = "keycard"
-		A.pixel_x = pixel_x
-		A.pixel_y = pixel_y
-		A.set_dir(dir)
-		A.circuit = M
-		A.anchored = 1
-		for (var/obj/C in src)
-			C.forceMove(loc)
-		A.state = 3
-		A.icon_state = "keycard_3"
-		M.deconstruct(src)
-		qdel(src)
-		return
+		user << "You begin removing the faceplate from the [src]"
+		if(do_after(user, 10))
+			user << "You remove the faceplate from the [src]"
+			var/obj/structure/frame/A = new /obj/structure/frame(loc)
+			var/obj/item/weapon/circuitboard/M = new circuit(A)
+			A.frame_type = M.board_type
+			A.need_circuit = 0
+			A.pixel_x = pixel_x
+			A.pixel_y = pixel_y
+			A.set_dir(dir)
+			A.circuit = M
+			A.anchored = 1
+			for (var/obj/C in src)
+				C.forceMove(loc)
+			A.state = 3
+			A.update_icon()
+			M.deconstruct(src)
+			qdel(src)
+			return
 
 /obj/machinery/keycard_auth/power_change()
 	..()

@@ -47,7 +47,6 @@
 
 /obj/machinery/clonepod/New()
 	..()
-	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)

@@ -179,7 +179,6 @@
 	underlays.Cut()
 	underlays += image('icons/obj/stationobjs.dmi', icon_state = "tele-wires")
 
-	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
 	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
@@ -329,7 +328,6 @@
 	overlays.Cut()
 	overlays += image('icons/obj/stationobjs.dmi', icon_state = "controller-wires")
 
-	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
 	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)

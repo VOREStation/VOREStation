@@ -54,7 +54,7 @@
 	var/wiresexposed = 0 // If it's been screwdrivered open.
 	var/aidisabled = 0
 	var/shorted = 0
-	circuit =  /obj/item/weapon/circuitboard/airalarm
+	circuit = /obj/item/weapon/circuitboard/airalarm
 
 	var/datum/wires/alarm/wires
 
@@ -745,31 +745,10 @@
 
 /obj/machinery/alarm/attackby(obj/item/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
-	if(istype(W, /obj/item/weapon/screwdriver))  // Opening that Air Alarm up.
-		//user << "You pop the Air Alarm's maintence panel open."
-		wiresexposed = !wiresexposed
-		user << "The wires have been [wiresexposed ? "exposed" : "unexposed"]"
-		update_icon()
-		return
 
-	if (wiresexposed && istype(W, /obj/item/weapon/wirecutters))
-		user.visible_message("<span class='warning'>[user] has cut the wires inside \the [src]!</span>", "You have cut the wires inside \the [src].")
-		playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
-		new/obj/item/stack/cable_coil(get_turf(src), 5)
-		var/obj/structure/frame/A = new /obj/structure/frame( src.loc )
-		var/obj/item/weapon/circuitboard/M = new circuit( A )
-		A.frame_type = "airalarm"
-		A.pixel_x = pixel_x
-		A.pixel_y = pixel_y
-		A.set_dir(dir)
-		A.circuit = M
-		A.anchored = 1
-		for (var/obj/C in src)
-			C.forceMove(loc)
-		A.state = 2
-		A.icon_state = "airalarm_2"
-		M.deconstruct(src)
-		qdel(src)
+	if(alarm_deconstruction_screwdriver(user, W, wiresexposed))
+		return
+	if(alarm_deconstruction_wirecutters(user, W, wiresexposed))
 		return
 
 	if (istype(W, /obj/item/weapon/card/id) || istype(W, /obj/item/device/pda))// trying to unlock the interface with an ID card
@@ -824,7 +803,7 @@ FIRE ALARM
 	var/last_process = 0
 	var/wiresexposed = 0
 	var/seclevel
-	circuit =  /obj/item/weapon/circuitboard/firealarm
+	circuit = /obj/item/weapon/circuitboard/firealarm
 
 /obj/machinery/firealarm/update_icon()
 	overlays.Cut()
@@ -873,9 +852,9 @@ FIRE ALARM
 /obj/machinery/firealarm/attackby(obj/item/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
 
-	if (istype(W, /obj/item/weapon/screwdriver))
-		wiresexposed = !wiresexposed
-		update_icon()
+	if(alarm_deconstruction_screwdriver(user, W, wiresexposed))
+		return
+	if(alarm_deconstruction_wirecutters(user, W, wiresexposed))
 		return
 
 	if(wiresexposed)
@@ -885,24 +864,6 @@ FIRE ALARM
 				user.visible_message("<span class='notice'>\The [user] has reconnected [src]'s detecting unit!</span>", "<span class='notice'>You have reconnected [src]'s detecting unit.</span>")
 			else
 				user.visible_message("<span class='notice'>\The [user] has disconnected [src]'s detecting unit!</span>", "<span class='notice'>You have disconnected [src]'s detecting unit.</span>")
-		else if (istype(W, /obj/item/weapon/wirecutters))
-			user.visible_message("<span class='notice'>\The [user] has cut the wires inside \the [src]!</span>", "<span class='notice'>You have cut the wires inside \the [src].</span>")
-			new/obj/item/stack/cable_coil(get_turf(src), 5)
-			playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
-			var/obj/structure/frame/A = new /obj/structure/frame( src.loc )
-			var/obj/item/weapon/circuitboard/M = new circuit( A )
-			A.frame_type = "firealarm"
-			A.pixel_x = pixel_x
-			A.pixel_y = pixel_y
-			A.set_dir(dir)
-			A.circuit = M
-			A.anchored = 1
-			for (var/obj/C in src)
-				C.forceMove(loc)
-			A.state = 2
-			A.icon_state = "firealarm_2"
-			M.deconstruct(src)
-			qdel(src)
 		return
 
 	src.alarm()

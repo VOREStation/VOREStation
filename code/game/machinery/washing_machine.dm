@@ -26,7 +26,7 @@
 		)
 
 /obj/machinery/washing_machine/New()
-	circuit = new circuit(src)
+	..()
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/motor(src)
 	component_parts += new /obj/item/weapon/stock_parts/gear(src)
