@@ -16,7 +16,7 @@
 		safe_blink(target, 14)
 		use(5)
 	else
-		user << "<span class='warning'>There is not enough telecrystal's to do that.</span>"
+		user << "<span class='warning'>There are not enough telecrystals to do that.</span>"
 
 /obj/item/stack/telecrystal/attack_self(mob/user as mob)
 	if(user.mind.accept_tcrystals) //Checks to see if antag type allows for tcrystals
