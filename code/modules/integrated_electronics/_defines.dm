@@ -7,6 +7,7 @@
 	icon = 'icons/obj/electronic_assemblies.dmi'
 	icon_state = "template"
 	w_class = 1
+	var/extended_desc = null
 	var/list/inputs = list()
 	var/list/outputs = list()
 	var/list/activators = list()
@@ -33,6 +34,8 @@
 	for(var/datum/integrated_io/activate/A in activators)
 		if(A.linked.len)
 			user << "\The [A.name] is connected to [A.get_linked_to_desc()]."
+
+	interact(user)
 
 /obj/item/integrated_circuit/New()
 	..()
@@ -65,7 +68,7 @@
 
 	i = 1
 	if(activator_names.len)
-		for(var/datum/integrated_io/activate/A in outputs)
+		for(var/datum/integrated_io/activate/A in activators)
 			A.name = "[activator_names[i]]"
 			i++
 
@@ -77,6 +80,10 @@
 	for(var/datum/integrated_io/A in activators)
 		qdel(A)
 	..()
+
+/obj/item/integrated_circuit/emp_act(severity)
+	for(var/datum/integrated_io/io in inputs + outputs + activators)
+		io.scramble()
 
 /obj/item/integrated_circuit/verb/rename_component()
 	set name = "Rename Circuit"
@@ -90,6 +97,153 @@
 	if(src && input)
 		M << "<span class='notice'>The circuit '[src.name]' is now labeled '[input]'.</span>"
 		name = input
+
+/obj/item/integrated_circuit/proc/get_pin_ref(var/pin_type, var/pin_number)
+	switch(pin_type)
+		if("input")
+			if(pin_number > inputs.len)
+				return null
+			return inputs[pin_number]
+		if("output")
+			if(pin_number > outputs.len)
+				return null
+			return outputs[pin_number]
+		if("activator")
+			if(pin_number > activators.len)
+				return null
+			return activators[pin_number]
+	return null
+
+/obj/item/integrated_circuit/interact(mob/user)
+	if(get_dist(src, user) > 1)
+		user.unset_machine(src)
+		return
+	var/HTML = "<html><head><title>[src.name]</title></head><body>"
+	HTML += "<div align='center'>"
+	HTML += "<table border='1' style='undefined;table-layout: fixed; width: 424px'>"
+
+	HTML += "<colgroup>"
+	HTML += "<col style='width: 121px'>"
+	HTML += "<col style='width: 181px'>"
+	HTML += "<col style='width: 122px'>"
+	HTML += "</colgroup>"
+
+	var/column_width = 3
+	var/row_height = max(inputs.len, outputs.len, 1)
+	var/i
+	var/j
+	for(i = 1, i < row_height+1, i++)
+		HTML += "<tr>"
+		for(j = 1, j < column_width+1, j++)
+			var/datum/integrated_io/io = null
+			var/words = null
+			var/height = 1
+			switch(j)
+				if(1)
+					io = get_pin_ref("input",i)
+					if(io)
+						if(io.linked.len)
+							words = "<a href=?src=\ref[src];action=wire;user=\ref[user]><b>[io.name] [io.display_data()]</b></a><br>"
+							for(var/datum/integrated_io/linked in io.linked)
+								words += "<a href=?src=\ref[src];action=unwire;user=\ref[user];pin=\ref[io]>\[[linked.name]\]</a> \
+								@ <a href=?src[src];action=examine;user=\ref[user]>[linked.holder]</a><br>"
+						else // "Click <a href=?src=\ref[src];action=start>here</a>!"
+							words = "<a href=?src=\ref[src];action=wire;user=\ref[user]>[io.name] [io.display_data()]</a><br>"
+							for(var/datum/integrated_io/linked in io.linked)
+								words += "<a href=?src=\ref[src];action=unwire;user=\ref[user];pin=\ref[io]>\[[linked.name]\]</a> \
+								@ <a href=?src[src];action=examine;user=\ref[user]>[linked.holder]</a><br>"
+						if(outputs.len > inputs.len)
+							height = Floor(outputs.len / inputs.len)
+						//world << "I wrote [words] at ([i],[j])."
+				if(2)
+					if(i == 1)
+						words = "[src.name]<br><br>[src.desc]"
+						height = row_height
+						//world << "I wrote the center piece because i was equal to 1, at ([i],[j])."
+					else
+						continue
+				if(3)
+					io = get_pin_ref("output",i)
+					if(io)
+						if(io.linked.len)
+							words = "<a href=?src=\ref[src];action=wire;user=\ref[user]><b>[io.name] [io.display_data()]</b></a><br>"
+							for(var/datum/integrated_io/linked in io.linked)
+								words += "<a href=?src=\ref[src];action=unwire;user=\ref[user];pin=\ref[io]>\[[linked.name]\]</a> \
+								@ <a href=?src[src];action=examine;user=\ref[user]>[linked.holder]</a><br>"
+						else
+							words = "<a href=?src=\ref[src];action=wire;user=\ref[user]>[io.name] [io.display_data()]</a><br>"
+							for(var/datum/integrated_io/linked in io.linked)
+								words += "<a href=?src=\ref[src];action=unwire;user=\ref[user];pin=\ref[io]>\[[linked.name]\]</a> \
+								@ <a href=?src[src];action=examine;user=\ref[user]>[linked.holder]</a><br>"
+						if(inputs.len > outputs.len)
+							height = Floor(inputs.len / outputs.len)
+						//world << "I wrote [words] at ([i],[j])."
+			HTML += "<td align='center' rowspan='[height]'>[words]</td>"
+			//HTML += "<td align='center'>[words]</td>"
+			//world << "Writing to ([i],[j])."
+		HTML += "</tr>"
+
+	if(activators.len)
+		for(i = 1, i < activators.len+1, i++)
+			var/datum/integrated_io/io = null
+			var/words = null
+			io = get_pin_ref("activator",i)
+			if(io)
+				if(io.linked.len)
+					words = "<a href=?src=\ref[src];action=wire;user=\ref[user]><font color='FF0000'><b>[io.name]</b></font></a><br>"
+					for(var/datum/integrated_io/linked in io.linked)
+						words += "<a href=?src=\ref[src];action=unwire;user=\ref[user];pin=\ref[io]>\[[linked.name]\]</a> \
+						@ <a href=?src[src];action=examine;user=\ref[user]>[linked.holder]</a><br>"
+				else // "Click <a href=?src=\ref[src];action=start>here</a>!"
+					words = "<a href=?src=\ref[src];action=wire;user=\ref[user]><font color='FF0000'>[io.name]</font></a><br>"
+					for(var/datum/integrated_io/linked in io.linked)
+						words += "<a href=?src=\ref[src];action=unwire;user=\ref[user];pin=\ref[io]>\[[linked.name]\]</a> \
+						@ <a href=?src[src];action=examine;user=\ref[user]>[linked.holder]</a><br>"
+			HTML += "<tr>"
+			HTML += "<td colspan='3' align='center'>[words]</td>"
+			HTML += "</tr>"
+
+	HTML += "</table>"
+	HTML += "</div>"
+
+	HTML += "<br><br><a href='?src=\ref[src]'>Refresh</a>"
+	HTML += "<br><font color='0000FF'>[extended_desc]</font>"
+
+	HTML += "</body></html>"
+	user << browse(HTML, "window=circuit-\ref[src];size=400x440;border=1;can_resize=1;can_close=1;can_minimize=1")
+
+	user.set_machine(src)
+	onclose(user, "circuit-\ref[src]")
+	//user << sanitize(HTML, "window=debug;size=400x400;border=1;can_resize=1;can_close=1;can_minimize=1")
+	//world << sanitize(HTML)
+
+/obj/item/integrated_circuit/Topic(href, href_list[])
+	if(..())
+		return 1
+	var/user = locate(href_list["user"]) in mob_list
+	var/pin = locate(href_list["pin"]) in contents
+	switch(href_list["action"])
+		if("examine")
+			examine(user)
+
+		if("wire")
+			if(ishuman(user) && Adjacent(user))
+				var/mob/living/carbon/human/H = user
+				var/obj/item/device/integrated_electronics/wirer/wirer = null
+				if(istype(H.r_hand, /obj/item/device/integrated_electronics/wirer))
+					wirer = H.r_hand
+				else if(istype(H.l_hand, /obj/item/device/integrated_electronics/wirer))
+					wirer = H.l_hand
+
+				if(wirer && pin)
+					wirer.wire(pin, user)
+				else
+					user << "<span class='warning'>You can't do a whole lot without tools.</span>"
+
+	//updateDialog()
+	world << "[src] received Topic([href], [href_list]) call from [user]."
+	world << "href_list contained [english_list(href_list)]."
+	interact(user)
 
 /datum/integrated_io
 	var/name = "input/output"
@@ -109,6 +263,70 @@
 	disconnect()
 	holder = null
 	..()
+
+/datum/integrated_io/Topic(href, href_list[])
+	if(..())
+		return 1
+	var/user = locate(href_list["user"]) in mob_list
+	switch(href_list["action"])
+	//	if("view")
+	//		var/HTML = "<html><head><title>[src.name]</title></head><body>"
+	//		HTML += "Parent: [holder]"
+	//		HTML += "Pin Type: [io_type]"
+	//		HTML += "Linked Pins:<br>"
+	//		for(var/datum/integrated_io/io in src.linked)
+	//			HTML += "<a href=?src=\ref[io];action=view;user=\ref[user]>[io.name] [io.display_data()] @ [io.holder]</a><br>"
+	//		HTML += "<a href=?src=\ref[src];action=interact;user=\ref[user]>\[Wire This\]</a>"
+	//
+	//		HTML += "</body></html>"
+	//		user << browse(HTML, "window=pin-\ref[src];size=400x400;border=1;can_resize=1;can_close=1;can_minimize=1")
+
+		if("examine_holder")
+			holder.examine(user)
+
+		if("wire")
+			if(ishuman(user))
+				var/mob/living/carbon/human/H = user
+				var/obj/item/device/integrated_electronics/wirer/wirer = null
+				if(istype(H.r_hand, /obj/item/device/integrated_electronics/wirer))
+					wirer = H.r_hand
+				else if(istype(H.l_hand, /obj/item/device/integrated_electronics/wirer))
+					wirer = H.l_hand
+
+				if(wirer)
+					wirer.wire(src, user)
+
+
+
+				else
+					user << "<span class='warning'>You can't do a whole lot without tools.</span>"
+	//updateDialog()
+			//world << "[src] inside [src.holder] was clicked by [user]."
+
+/datum/integrated_io/proc/display_data()
+	if(!data)
+		return "(null)" // Empty data means nothing to show.
+	if(istext(data))
+		return "(\"[data]\")" // Wraps the 'string' in escaped quotes, so that people know it's a 'string'.
+	if(istype(data, /atom))
+		var/atom/A = data
+		return "([A.name] \[Ref\])" // For refs, we want just the name displayed.
+	return "([data])" // Nothing special needed for numbers or other stuff.
+
+/datum/integrated_io/activate/display_data()
+	return "(\[pulse\])"
+
+/datum/integrated_io/proc/scramble()
+	if(isnull(data))
+		return
+	if(isnum(data))
+		data = rand(-10000, 10000)
+	if(istext(data))
+		data = "ERROR"
+	push_data()
+
+/datum/integrated_io/activate/scramble()
+	push_data()
 
 /datum/integrated_io/proc/push_data()
 	if(linked.len)

@@ -22,7 +22,7 @@
 				if(istext(temporary_data))
 					probe.data = temporary_data
 			if("number")
-				temporary_data = sanitize(input(user, "Please a number.", "number input") as null|num)
+				temporary_data = sanitize(input(user, "Please give a number.", "number input") as null|num)
 				if(isnum(temporary_data))
 					probe.data = temporary_data
 			if("reference")
@@ -63,8 +63,10 @@
 
 
 /obj/item/device/integrated_electronics/wirer
-	name = "data wirer"
-	desc = "Used to connect various inputs and outputs together."
+	name = "circuit wirer"
+	desc = "It's a small wiring tool, with a wire roll, electric soldering iron, wire cutter, and more in one package. \
+	The wires used are generally useful for small electronics, such as circuitboards and breadboards, as opposed to larger wires \
+	used for power or data transmission."
 	icon_state = "multitool"
 	flags = CONDUCT
 	w_class = 2
@@ -73,6 +75,58 @@
 
 /obj/item/device/integrated_electronics/wirer/New()
 	..()
+
+/obj/item/device/integrated_electronics/wirer/proc/wire(var/datum/integrated_io/io, mob/user)
+	if(mode == WIRE)
+		selected_io = io
+		user << "<span class='notice'>You attach a data wire to \the [selected_io.holder]'s [selected_io.name] data channel.</span>"
+		mode = WIRING
+	else if(mode == WIRING)
+		if(io == selected_io)
+			user << "<span class='warning'>Wiring \the [selected_io.holder]'s [selected_io.name] into itself is rather pointless.<span>"
+			return
+		if(io.io_type != selected_io.io_type)
+			user << "<span class='warning'>Those two types of channels are incompatable.  The first is a [selected_io.io_type], \
+			while the second is a [io.io_type].<span>"
+			return
+		selected_io.linked |= io
+		io.linked |= selected_io
+
+		user << "<span class='notice'>You connect \the [selected_io.holder]'s [selected_io.name] to \the [io.holder]'s [io.name].</span>"
+		mode = WIRE
+		//io.updateDialog()
+		//selected_io.updateDialog()
+		selected_io = null
+
+	else if(mode == UNWIRE)
+		selected_io = io
+		if(!io.linked.len)
+			user << "<span class='warning'>There is nothing connected to \the [selected_io] data channel.</span>"
+			selected_io = null
+			return
+		user << "<span class='notice'>You prepare to detach a data wire from \the [selected_io.holder]'s [selected_io.name] data channel.</span>"
+		mode = UNWIRING
+		return
+
+	else if(mode == UNWIRING)
+		if(io == selected_io)
+			user << "<span class='warning'>You can't wire a pin into each other, so unwiring \the [selected_io.holder] from \
+			the same pin is rather moot.<span>"
+			return
+		if(selected_io in io.linked)
+			io.linked.Remove(selected_io)
+			selected_io.linked.Remove(io)
+			user << "<span class='notice'>You disconnect \the [selected_io.holder]'s [selected_io.name] from \
+			\the [io.holder]'s [io.name].</span>"
+			//io.updateDialog()
+			//selected_io.updateDialog()
+			selected_io = null
+			mode = UNWIRE
+		else
+			user << "<span class='warning'>\The [selected_io.holder]'s [selected_io.name] and \the [io.holder]'s \
+			[io.name] are not connected.<span>"
+			return
+	return
 
 /obj/item/device/integrated_electronics/wirer/afterattack(atom/target, mob/user)
 	if(isobj(target))
@@ -158,6 +212,11 @@
 			mode = UNWIRE
 		if(UNWIRE)
 			mode = WIRE
+		if(UNWIRING)
+			if(selected_io)
+				user << "<span class='notice'>You decide not to disconnect the data channel.</span>"
+			selected_io = null
+			mode = UNWIRE
 	user << "<span class='notice'>You set \the [src] to [mode].<span>"
 
 #undef WIRE
