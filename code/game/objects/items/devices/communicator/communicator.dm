@@ -18,6 +18,8 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	matter = list(DEFAULT_WALL_MATERIAL = 30,"glass" = 10)
 
 	var/video_range = 4
+	var/obj/machinery/camera/communicator/video_source	// Their camera
+	var/obj/machinery/camera/communicator/camera		// Our camera
 
 	var/list/voice_mobs = list()
 	var/list/voice_requests = list()
@@ -63,6 +65,9 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	all_communicators = sortAtom(all_communicators)
 	node = get_exonet_node()
 	processing_objects |= src
+	camera = new(src)
+	camera.name = "[src] #[rand(100,999)]"
+	camera.c_tag = camera.name
 	//This is a pretty terrible way of doing this.
 	spawn(5 SECONDS) //Wait for our mob to finish spawning.
 		if(ismob(loc))
@@ -73,6 +78,14 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 			if(ismob(S.loc))
 				register_device(S.loc)
 				initialize_exonet(S.loc)
+
+// Proc: examine()
+// Parameters: user - the user doing the examining
+// Description: Allows the user to click a link when examining to look at video if one is going.
+/obj/item/device/communicator/examine(mob/user)
+	. = ..(user, 1)
+	if(. && video_source)
+		user << "<span class='notice'>It looks like it's on a video call: <a href='?src=\ref[src];watchvideo=1'>\[view\]</a></span>"
 
 // Proc: initialize_exonet()
 // Parameters: 1 (user - the person the communicator belongs to)
@@ -209,6 +222,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 
 /mob/observer/dead
 	var/datum/exonet_protocol/exonet = null
+	var/list/exonet_messages = list()
 
 // Proc: New()
 // Parameters: None
@@ -257,27 +271,27 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	//Now for ghosts who we pretend have communicators.
 	for(var/mob/observer/dead/O in known_devices)
 		if(O.client && O.client.prefs.communicator_visibility == 1 && O.exonet)
-			communicators[++communicators.len] = list("name" = sanitize("[O.client.prefs.real_name]'s communicator"), "address" = O.exonet.address)
+			communicators[++communicators.len] = list("name" = sanitize("[O.client.prefs.real_name]'s communicator"), "address" = O.exonet.address, "ref" = "\ref[O]")
 
 	//Lists all the other communicators that we invited.
 	for(var/obj/item/device/communicator/comm in voice_invites)
 		if(comm.exonet)
-			invites[++invites.len] = list("name" = sanitize(comm.name), "address" = comm.exonet.address)
+			invites[++invites.len] = list("name" = sanitize(comm.name), "address" = comm.exonet.address, "ref" = "\ref[comm]")
 
 	//Ghosts we invited.
 	for(var/mob/observer/dead/O in voice_invites)
 		if(O.exonet && O.client)
-			invites[++invites.len] = list("name" = sanitize("[O.client.prefs.real_name]'s communicator"), "address" = O.exonet.address)
+			invites[++invites.len] = list("name" = sanitize("[O.client.prefs.real_name]'s communicator"), "address" = O.exonet.address, "ref" = "\ref[O]")
 
 	//Communicators that want to talk to us.
 	for(var/obj/item/device/communicator/comm in voice_requests)
 		if(comm.exonet)
-			requests[++requests.len] = list("name" = sanitize(comm.name), "address" = comm.exonet.address)
+			requests[++requests.len] = list("name" = sanitize(comm.name), "address" = comm.exonet.address, "ref" = "\ref[comm]")
 
 	//Ghosts that want to talk to us.
 	for(var/mob/observer/dead/O in voice_requests)
 		if(O.exonet && O.client)
-			requests[++requests.len] = list("name" = sanitize("[O.client.prefs.real_name]'s communicator"), "address" = O.exonet.address)
+			requests[++requests.len] = list("name" = sanitize("[O.client.prefs.real_name]'s communicator"), "address" = O.exonet.address, "ref" = "\ref[O]")
 
 	//Now for all the voice mobs inside the communicator.
 	for(var/mob/living/voice/voice in contents)
@@ -285,12 +299,16 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 
 	//Finally, all the communicators linked to this one.
 	for(var/obj/item/device/communicator/comm in communicating)
-		connected_communicators[++connected_communicators.len] = list("name" = sanitize(comm.name), "true_name" = sanitize(comm.name))
+		connected_communicators[++connected_communicators.len] = list("name" = sanitize(comm.name), "true_name" = sanitize(comm.name), "ref" = "\ref[comm]")
 
 	//Devices that have been messaged or recieved messages from.
 	for(var/obj/item/device/communicator/comm in im_contacts)
 		if(comm.exonet)
-			im_contacts_ui[++im_contacts_ui.len] = list("name" = sanitize(comm.name), "address" = comm.exonet.address)
+			im_contacts_ui[++im_contacts_ui.len] = list("name" = sanitize(comm.name), "address" = comm.exonet.address, "ref" = "\ref[comm]")
+
+	for(var/mob/observer/dead/ghost in im_contacts)
+		if(ghost.exonet)
+			im_contacts_ui[++im_contacts_ui.len] = list("name" = sanitize(ghost.name), "address" = ghost.exonet.address, "ref" = "\ref[ghost]")
 
 	//Actual messages.
 	for(var/I in im_list)
@@ -313,6 +331,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	data["requestsReceived"] = requests
 	data["voice_mobs"] = voices
 	data["communicating"] = connected_communicators
+	data["video_comm"] = video_source ? "\ref[video_source.loc]" : null
 	data["imContacts"] = im_contacts_ui
 	data["imList"] = im_list_ui
 	data["time"] = worldtime2text()
@@ -325,7 +344,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	if(!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "communicator.tmpl", "Communicator", 450, 700)
+		ui = new(user, src, ui_key, "communicator.tmpl", "Communicator", 475, 700)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window
@@ -344,9 +363,20 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 		if(new_name)
 			owner = new_name
 			name = "[owner]'s [initial(name)]"
+			if(camera)
+				camera.name = name
+				camera.c_tag = name
 
 	if(href_list["toggle_visibility"])
-		network_visibility = !network_visibility
+		switch(network_visibility)
+			if(1) //Visible, becoming invisbile
+				network_visibility = 0
+				if(camera)
+					camera.remove_network(NETWORK_COMMUNICATORS)
+			if(0) //Invisible, becoming visible
+				network_visibility = 1
+				if(camera)
+					camera.add_network(NETWORK_COMMUNICATORS)
 
 	if(href_list["toggle_ringer"])
 		ringer = !ringer
@@ -371,6 +401,12 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 		var/their_address = href_list["dial"]
 		exonet.send_message(their_address, "voice")
 
+	if(href_list["decline"])
+		var/ref_to_remove = href_list["decline"]
+		var/atom/decline = locate(ref_to_remove)
+		if(decline)
+			del_request(decline)
+
 	if(href_list["message"])
 		if(!get_connection_to_tcomms())
 			usr << "<span class='danger'>Error: Cannot connect to Exonet node.</span>"
@@ -380,15 +416,30 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 		if(text)
 			exonet.send_message(their_address, "text", text)
 			im_list += list(list("address" = exonet.address, "to_address" = their_address, "im" = text))
+			log_pda("[usr] (COMM: [src]) sent \"[text]\" to [exonet.get_atom_from_address(their_address)]")
 
 	if(href_list["disconnect"])
 		var/name_to_disconnect = href_list["disconnect"]
 		for(var/mob/living/voice/V in contents)
 			if(name_to_disconnect == V.name)
-				close_connection(usr, V, "[usr] hung up.")
+				close_connection(usr, V, "[usr] hung up")
 		for(var/obj/item/device/communicator/comm in communicating)
 			if(name_to_disconnect == comm.name)
-				close_connection(usr, comm, "[usr] hung up.")
+				close_connection(usr, comm, "[usr] hung up")
+
+	if(href_list["startvideo"])
+		var/ref_to_video = href_list["startvideo"]
+		var/obj/item/device/communicator/comm = locate(ref_to_video)
+		if(comm)
+			connect_video(usr, comm)
+
+	if(href_list["endvideo"])
+		if(video_source)
+			end_video()
+
+	if(href_list["watchvideo"])
+		if(video_source)
+			watch_video(usr,video_source.loc)
 
 	if(href_list["copy"])
 		target_address = href_list["copy"]
@@ -398,9 +449,9 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 
 	if(href_list["hang_up"])
 		for(var/mob/living/voice/V in contents)
-			close_connection(usr, V, "[usr] hung up.")
+			close_connection(usr, V, "[usr] hung up")
 		for(var/obj/item/device/communicator/comm in communicating)
-			close_connection(usr, comm, "[usr] hung up.")
+			close_connection(usr, comm, "[usr] hung up")
 
 	if(href_list["switch_tab"])
 		selected_tab = href_list["switch_tab"]
@@ -448,7 +499,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Proc: receive_exonet_message()
 // Parameters: 3 (origin atom - the source of the message's holder, origin_address - where the message came from, message - the message received)
 // Description: Handles voice requests and invite messages originating from both real communicators and ghosts.  Also includes a ping response.
-/mob/observer/dead/receive_exonet_message(origin_atom, origin_address, message)
+/mob/observer/dead/receive_exonet_message(origin_atom, origin_address, message, text)
 	if(message == "voice")
 		if(istype(origin_atom, /obj/item/device/communicator))
 			var/obj/item/device/communicator/comm = origin_atom
@@ -463,7 +514,9 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 			var/random = rand(450,700)
 			random = random / 10
 			exonet.send_message(origin_address, "64 bytes received from [exonet.address] ecmp_seq=1 ttl=51 time=[random] ms")
-	if(message == "text") //Ghosts don't get texting yet. Mostly for spam prevention by ghosts but also due to ui requirements not sorted out yet.
+	if(message == "text")
+		src << "<span class='notice'>\icon[origin_atom] Received text message from [origin_atom]: <b>\"[text]\"</b></span>"
+		exonet_messages.Add("<b>From [origin_atom]:</b><br>[text]")
 		return
 
 // Proc: register_device()
@@ -475,7 +528,9 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	owner = user.name
 
 	name = "[owner]'s [initial(name)]"
-
+	if(camera)
+		camera.name = name
+		camera.c_tag = name
 
 // Proc: add_communicating()
 // Parameters: 1 (comm - the communicator to add to communicating)
@@ -485,7 +540,8 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 
 	communicating |= comm
 	listening_objects |= src
-	
+	update_icon()
+
 // Proc: del_communicating()
 // Parameters: 1 (comm - the communicator to remove from communicating)
 // Description: Used when this communicator is being asked to stop relaying say/me messages to another
@@ -493,6 +549,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	if(!comm || !istype(comm)) return
 
 	communicating.Remove(comm)
+	update_icon()
 
 // Proc: open_connection()
 // Parameters: 2 (user - the person who initiated the connecting being opened, candidate - the communicator or observer that will connect to the device)
@@ -601,15 +658,19 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 		visible_message("<span class='danger'>\icon[src] [reason].</span>")
 		voice_mobs.Remove(voice)
 		qdel(voice)
+		update_icon()
 
 	for(var/obj/item/device/communicator/comm in communicating) //Now we handle real communicators.
 		if(target && comm != target)
 			continue
-		comm.visible_message("<span class='danger'>\icon[src] [reason].</span>")
-		visible_message("<span class='danger'>\icon[src] [reason].</span>")
 		src.del_communicating(comm)
 		comm.del_communicating(src)
-	update_icon()
+		comm.visible_message("<span class='danger'>\icon[src] [reason].</span>")
+		visible_message("<span class='danger'>\icon[src] [reason].</span>")
+		if(comm.camera && video_source == comm.camera) //We hung up on the person on video
+			end_video()
+		if(camera && comm.video_source == camera) //We hung up on them while they were watching us
+			comm.end_video()
 
 	if(voice_mobs.len == 0 && communicating.len == 0)
 		listening_objects.Remove(src)
@@ -649,6 +710,29 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	if(L)
 		L << "<span class='notice'>\icon[src] Communications request from [who].</span>"
 
+// Proc: del_request()
+// Parameters: 1 (candidate - the ghost or communicator to be declined)
+// Description: Declines a request and cleans up both ends
+/obj/item/device/communicator/proc/del_request(var/atom/candidate)
+	if(!(candidate in voice_requests))
+		return
+
+	if(isobserver(candidate))
+		candidate << "<span class='warning'>Your communicator call request was declined.</span>"
+	else if(istype(candidate, /obj/item/device/communicator))
+		var/obj/item/device/communicator/comm = candidate
+		comm.voice_invites -= src
+
+	voice_requests -= candidate
+
+	//Search for holder of our device.
+	var/mob/living/us = null
+	if(loc && isliving(loc))
+		us = loc
+
+	if(us)
+		us << "<span class='notice'>\icon[src] Declined request.</span>"
+
 // Proc: request_im()
 // Parameters: 3 (candidate - the communicator wanting to message the device, origin_address - the address of the sender, text - the message)
 // Description: Response to a communicator trying to message the device.
@@ -656,7 +740,9 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 /obj/item/device/communicator/proc/request_im(var/atom/candidate, var/origin_address, var/text)
 	var/who = null
 	if(isobserver(candidate))
-		return
+		var/mob/observer/dead/ghost = candidate
+		who = ghost
+		im_list += list(list("address" = origin_address, "to_address" = exonet.address, "im" = text))
 	else if(istype(candidate, /obj/item/device/communicator))
 		var/obj/item/device/communicator/comm = candidate
 		who = comm.owner
@@ -700,6 +786,8 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	all_communicators -= src
 	processing_objects -= src
 	listening_objects.Remove(src)
+	qdel(camera)
+	camera = null
 	if(exonet)
 		exonet.remove_address()
 		exonet = null
@@ -709,7 +797,11 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Parameters: None
 // Description: Self explanatory
 /obj/item/device/communicator/update_icon()
-	if(voice_mobs.len > 0)
+	if(video_source)
+		icon_state = "communicator-video"
+		return
+
+	if(voice_mobs.len || communicating.len)
 		icon_state = "communicator-active"
 		return
 
@@ -729,7 +821,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 		if(!T) return
 		var/list/in_range = get_mobs_and_objs_in_view_fast(T,world.view,0) //Range of 3 since it's a tiny video display
 		var/list/mobs_to_relay = in_range["mobs"]
-		
+
 		for(var/mob/mob in mobs_to_relay) //We can't use visible_message(), or else we will get an infinite loop if two communicators hear each other.
 			var/dst = get_dist(get_turf(mob),get_turf(comm))
 			if(dst <= video_range)
@@ -745,7 +837,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Description: Relays the speech to all linked communicators.
 /obj/item/device/communicator/hear_talk(mob/living/M, text, verb, datum/language/speaking)
 	for(var/obj/item/device/communicator/comm in communicating)
-		
+
 		var/turf/T = get_turf(comm)
 		if(!T) return
 		var/list/in_range = get_mobs_and_objs_in_view_fast(T,world.view,0)
@@ -833,7 +925,136 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 
 			src << "A communications request has been sent to [chosen_communicator].  Now you need to wait until someone answers."
 
-/obj/item/device/communicator/integrated //For synths who have no hands.
+// Verb: text_communicator()
+// Parameters: None
+// Description: Allows a ghost to send a text message to a communicator.
+/mob/observer/dead/verb/text_communicator()
+	set category = "Ghost"
+	set name = "Text Communicator"
+	set desc = "If there is a communicator available, send a text message to it."
+
+	if(ticker.current_state < GAME_STATE_PLAYING)
+		src << "<span class='danger'>The game hasn't started yet!</span>"
+		return
+
+	if (!src.stat)
+		return
+
+	if (usr != src)
+		return //something is terribly wrong
+
+	for(var/mob/living/L in mob_list) //Simple check so you don't have dead people calling.
+		if(src.client.prefs.real_name == L.real_name)
+			src << "<span class='danger'>Your identity is already present in the game world.  Please load in a different character first.</span>"
+			return
+
+	var/obj/machinery/exonet_node/E = get_exonet_node()
+	if(!E || !E.on || !E.allow_external_communicators)
+		src << "<span class='danger'>The Exonet node at telecommunications is down at the moment, or is actively blocking you, so your call can't go through.</span>"
+		return
+
+	var/list/choices = list()
+	for(var/obj/item/device/communicator/comm in all_communicators)
+		if(!comm.network_visibility || !comm.exonet || !comm.exonet.address)
+			continue
+		choices.Add(comm)
+
+	if(!choices.len)
+		src << "<span class='danger'>There are no available communicators, sorry.</span>"
+		return
+
+	var/choice = input(src,"Send a text message to whom?") as null|anything in choices
+	if(choice)
+		var/obj/item/device/communicator/chosen_communicator = choice
+		var/mob/observer/dead/O = src
+		var/text_message = sanitize(input(src, "What do you want the message to say?")) as message
+		if(text_message && O.exonet)
+			O.exonet.send_message(chosen_communicator.exonet.address, "text", text_message)
+
+			src << "<span class='notice'>You have sent '[text_message]' to [chosen_communicator].</span>."
+			exonet_messages.Add("<b>To [chosen_communicator]:</b><br>[text_message]")
+			log_pda("[usr] (COMM: [src]) sent \"[text_message]\" to [chosen_communicator]")
+
+
+// Verb: show_text_messages()
+// Parameters: None
+// Description: Lets ghosts review messages they've sent or received.
+/mob/observer/dead/verb/show_text_messages()
+	set category = "Ghost"
+	set name = "Show Text Messages"
+	set desc = "Allows you to see exonet text messages you've sent and received."
+
+	var/HTML = "<html><head><title>Exonet Message Log</title></head><body>"
+	for(var/line in exonet_messages)
+		HTML += line + "<br>"
+	HTML +="</body></html>"
+	usr << browse(HTML, "window=log;size=400x444;border=1;can_resize=1;can_close=1;can_minimize=0")
+
+// Proc: connect_video()
+// Parameters: user - the mob doing the viewing of video, comm - the communicator at the far end
+// Description: Sets up a videocall and puts the first view into it using watch_video, and updates the icon
+/obj/item/device/communicator/proc/connect_video(mob/user,obj/item/device/communicator/comm)
+	if((!user) || (!comm) || user.stat) return //KO or dead, or already in a video
+
+	if(video_source) //Already in a video
+		user << "<span class='danger'>You are already connected to a video call!</span>"
+
+	if(user.blinded) //User is blinded
+		user << "<span class='danger'>You cannot see well enough to do that!</span>"
+
+	if(!(src in comm.communicating) || !comm.camera) //You called someone with a broken communicator or one that's fake or yourself or something
+		user << "<span class='danger'>\icon[src]ERROR: Video failed. Either bandwidth is too low, or the other communicator is malfunctioning.</span>"
+
+	user << "<span class='notice'>\icon[src] Attempting to start video over existing call.</span>"
+	sleep(30)
+	user << "<span class='notice'>\icon[src] Please wait...</span>"
+
+	video_source = comm.camera
+	comm.visible_message("<span class='danger'>\icon[src] New video connection from [comm].</span>")
+	watch_video(user)
+	update_icon()
+
+// Proc: watch_video()
+// Parameters: user - the mob doing the viewing of video
+// Description: Moves a mob's eye to the far end for the duration of viewing the far end
+/obj/item/device/communicator/proc/watch_video(mob/user)
+	if(!Adjacent(user) || !video_source) return
+	user.set_machine(video_source)
+	user.reset_view(video_source)
+	user << "<span class='notice'>Now viewing video session. To leave camera view: OOC -> Cancel Camera View</span>"
+	spawn(0)
+		while(user.machine == video_source && Adjacent(user))
+			var/turf/T = get_turf(video_source)
+			if(!T || !is_on_same_plane_or_station(T.z, user.z) || !video_source.can_use())
+				user << "<span class='warning'>The screen bursts into static, then goes black.</span>"
+				video_cleanup(user)
+				return
+			sleep(10)
+
+		video_cleanup(user)
+
+// Proc: video_cleanup()
+// Parameters: user - the mob who doesn't want to see video anymore
+// Description: Cleans up mob's client when they stop watching a video
+/obj/item/device/communicator/proc/video_cleanup(mob/user)
+	if(!user) return
+
+	user.reset_view(null)
+	user.unset_machine()
+
+// Proc: end_video()
+// Parameters: reason - the text reason to print for why it ended
+// Description: Ends the video call by clearing video_source
+/obj/item/device/communicator/proc/end_video(var/reason)
+	video_source = null
+
+	. = "<span class='danger'>\icon[src] [reason ? reason : "Video session ended"].</span>"
+
+	visible_message(.)
+	update_icon()
+
+//For synths who have no hands.
+/obj/item/device/communicator/integrated
 	name = "integrated communicator"
 	desc = "A circuit used for long-range communications, able to be integrated into a system."
 
@@ -864,3 +1085,12 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 		return
 
 	src.attack_self(usr)
+
+// A camera preset for spawning in the communicator
+/obj/machinery/camera/communicator
+	network = list(NETWORK_COMMUNICATORS)
+
+/obj/machinery/camera/communicator/New()
+	..()
+	client_huds |= global_hud.whitense
+	client_huds |= global_hud.darkMask

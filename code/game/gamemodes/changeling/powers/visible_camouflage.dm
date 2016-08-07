@@ -4,6 +4,7 @@
 	We are undetectable, so long as we move slowly.(Toggle)"
 	helptext = "Running, and performing most acts will reveal us.  Our chemical regeneration is halted while we are hidden."
 	enhancedtext = "True invisiblity while cloaked."
+	ability_icon_state = "ling_camoflage"
 	genomecost = 3
 	verbpath = /mob/proc/changeling_visible_camouflage
 

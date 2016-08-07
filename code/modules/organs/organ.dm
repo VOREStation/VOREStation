@@ -28,6 +28,7 @@ var/list/organ_cache = list()
 	var/min_broken_damage = 30        // Damage before becoming broken
 	var/max_damage                    // Damage cap
 	var/rejecting                     // Is this organ already being rejected?
+	var/preserved = 0                 // If this is 1, prevents organ decay.
 
 /obj/item/organ/Destroy()
 
@@ -50,6 +51,7 @@ var/list/organ_cache = list()
 		max_damage = min_broken_damage * 2
 	if(istype(holder))
 		src.owner = holder
+		src.w_class = max(src.w_class + mob_size_difference(holder.mob_size, MOB_MEDIUM), 1) //smaller mobs have smaller organs.
 		species = all_species["Human"]
 		if(holder.dna)
 			dna = holder.dna.Clone()
@@ -99,7 +101,7 @@ var/list/organ_cache = list()
 	// Don't process if we're in a freezer, an MMI or a stasis bag.or a freezer or something I dunno
 	if(istype(loc,/obj/item/device/mmi))
 		return
-	if(istype(loc,/obj/structure/closet/body_bag/cryobag) || istype(loc,/obj/structure/closet/crate/freezer) || istype(loc,/obj/item/weapon/storage/box/freezer) || istype(loc,/obj/item/weapon/gripper/no_use/organ))
+	if(preserved)
 		return
 	//Process infections
 	if ((robotic >= ORGAN_ROBOT) || (owner && owner.species && (owner.species.flags & IS_PLANT)))
@@ -257,6 +259,9 @@ var/list/organ_cache = list()
 	robotic = ORGAN_ASSISTED
 	min_bruised_damage = 15
 	min_broken_damage = 35
+
+/obj/item/organ/proc/digitize() //Used to make the circuit-brain. On this level in the event more circuit-organs are added/tweaks are wanted.
+	robotize()
 
 /obj/item/organ/emp_act(severity)
 	if(!(robotic >= ORGAN_ROBOT))

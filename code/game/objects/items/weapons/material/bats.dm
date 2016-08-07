@@ -3,7 +3,6 @@
 	desc = "HOME RUN!"
 	icon_state = "metalbat0"
 	base_icon = "metalbat"
-	item_state = "metalbat"
 	throwforce = 7
 	attack_verb = list("smashed", "beaten", "slammed", "smacked", "struck", "battered", "bonked")
 	hitsound = 'sound/weapons/genhit3.ogg'

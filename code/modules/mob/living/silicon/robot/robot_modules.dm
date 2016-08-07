@@ -247,6 +247,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/reagent_containers/dropper/industrial(src)
 	src.modules += new /obj/item/weapon/reagent_containers/syringe(src)
 	src.modules += new /obj/item/weapon/gripper/no_use/organ(src)
+	src.modules += new /obj/item/weapon/gripper/chemistry(src)
 	src.modules += new /obj/item/weapon/extinguisher/mini(src)
 	src.emag = new /obj/item/weapon/reagent_containers/spray(src)
 	src.emag.reagents.add_reagent("pacid", 250)
@@ -684,7 +685,7 @@ var/global/list/robot_modules = list(
 	hide_on_manifest = 1
 	sprites = list("Combat Android" = "droid-combat")
 
-/obj/item/weapon/robot_module/combat/New()
+/obj/item/weapon/robot_module/security/combat/New()
 	src.modules += new /obj/item/device/flash(src)
 	src.modules += new /obj/item/borg/sight/thermal(src)
 	src.modules += new /obj/item/weapon/gun/energy/laser/mounted(src)

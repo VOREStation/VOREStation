@@ -102,6 +102,15 @@ var/global/list/all_exonet_connections = list()
 			return exonet.address
 	return null
 
+// Proc: get_atom_from_address()
+// Parameters: 1 (target_address - the desired address to find)
+// Description: Searches an address for the atom it is attached for, otherwise returns null.
+/datum/exonet_protocol/proc/get_atom_from_address(var/target_address)
+	for(var/datum/exonet_protocol/exonet in all_exonet_connections)
+		if(exonet.address == target_address)
+			return exonet.holder
+	return null
+
 // Proc: send_message()
 // Parameters: 3 (target_address - the desired address to send the message to, message - the message to send, text - the message text if message is of type "text")
 // Description: Sends the message to target_address, by calling receive_message() on the desired datum.

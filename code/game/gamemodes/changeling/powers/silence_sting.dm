@@ -3,6 +3,7 @@
 	desc = "We silently sting a human, completely silencing them for a short time."
 	helptext = "Does not provide a warning to a victim that they have been stung, until they try to speak and cannot."
 	enhancedtext = "Silence duration is extended."
+	ability_icon_state = "ling_sting_mute"
 	genomecost = 2
 	allowduringlesserform = 1
 	verbpath = /mob/proc/changeling_silence_sting

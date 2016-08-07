@@ -10,8 +10,6 @@
 	//Not in use yet
 	var/obj/effect/organstructure/organStructure = null
 
-	var/obj/screen/flash = null
-	var/obj/screen/blind = null
 	var/obj/screen/hands = null
 	var/obj/screen/pullin = null
 	var/obj/screen/purged = null
@@ -26,7 +24,6 @@
 	var/obj/screen/throw_icon = null
 	var/obj/screen/nutrition_icon = null
 	var/obj/screen/pressure = null
-	var/obj/screen/damageoverlay = null
 	var/obj/screen/pain = null
 	var/obj/screen/gun/item/item_use_icon = null
 	var/obj/screen/gun/radio/radio_use_icon = null
@@ -34,9 +31,12 @@
 	var/obj/screen/gun/run/gun_run_icon = null
 	var/obj/screen/gun/mode/gun_setting_icon = null
 	var/obj/screen/ling/chems/ling_chem_display = null
+	var/obj/screen/wizard/energy/wiz_energy_display = null
+	var/obj/screen/wizard/instability/wiz_instability_display = null
 
 	//spells hud icons - this interacts with add_spell and remove_spell
 	var/list/obj/screen/movable/spell_master/spell_masters = null
+	var/obj/screen/movable/ability_master/ability_master = null
 
 	/*A bunch of this stuff really needs to go under their own defines instead of being globally attached to mob.
 	A variable should only be globally attached to turfs/objects/whatever, when it is in fact needed as such.
@@ -124,7 +124,6 @@
 	var/datum/hud/hud_used = null
 
 	var/list/grabbed_by = list(  )
-	var/list/requests = list(  )
 
 	var/list/mapobjs = list()
 

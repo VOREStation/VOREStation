@@ -65,7 +65,7 @@
 		else if(!anchored)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
 			user << "<span class='notice'>Now securing the girder...</span>"
-			if(get_turf(user, 40))
+			if(do_after(user, 40,src))
 				user << "<span class='notice'>You secured the girder!</span>"
 				reset_girder()
 
@@ -126,7 +126,8 @@
 		return ..()
 
 /obj/structure/girder/proc/construct_wall(obj/item/stack/material/S, mob/user)
-	if(S.get_amount() < 2)
+	var/amount_to_use = reinf_material ? 1 : 2
+	if(S.get_amount() < amount_to_use)
 		user << "<span class='notice'>There isn't enough material here to construct a wall.</span>"
 		return 0
 
@@ -143,7 +144,6 @@
 
 	user << "<span class='notice'>You begin adding the plating...</span>"
 
-	var/amount_to_use = reinf_material ? 1 : 2
 	if(!do_after(user,40) || !S.use(amount_to_use))
 		return 1 //once we've gotten this far don't call parent attackby()
 

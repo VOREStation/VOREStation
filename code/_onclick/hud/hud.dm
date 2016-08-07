@@ -133,6 +133,8 @@ var/list/global_huds = list(
 	var/hotkey_ui_hidden = 0	//This is to hide the buttons that can be used via hotkeys. (hotkeybuttons list of buttons)
 
 	var/obj/screen/lingchemdisplay
+	var/obj/screen/wiz_instability_display
+	var/obj/screen/wiz_energy_display
 	var/obj/screen/blobpwrdisplay
 	var/obj/screen/blobhealthdisplay
 	var/obj/screen/r_hand_hud_object
@@ -159,6 +161,8 @@ datum/hud/New(mob/owner)
 	disarm_intent = null
 	help_intent = null
 	lingchemdisplay = null
+	wiz_instability_display = null
+	wiz_energy_display = null
 	blobpwrdisplay = null
 	blobhealthdisplay = null
 	r_hand_hud_object = null
@@ -269,7 +273,7 @@ datum/hud/New(mob/owner)
 	else if(isrobot(mymob))
 		robot_hud(ui_style, ui_color, ui_alpha, mymob)
 	else if(isbrain(mymob))
-		brain_hud(ui_style)
+		mymob.instantiate_hud(src)
 	else if(isalien(mymob))
 		larva_hud()
 	else if(isslime(mymob))
@@ -382,3 +386,9 @@ datum/hud/New(mob/owner)
 	hud_used.hidden_inventory_update()
 	hud_used.persistant_inventory_update()
 	update_action_buttons()
+
+/mob/proc/add_click_catcher()
+	client.screen += client.void
+
+/mob/new_player/add_click_catcher()
+	return

@@ -34,7 +34,6 @@
 	desc = "A translucent balloon. There's nothing in it."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "waterballoon-e"
-	item_state = "balloon-empty"
 
 /obj/item/toy/balloon/New()
 	var/datum/reagents/R = new/datum/reagents(10)
@@ -85,10 +84,8 @@
 /obj/item/toy/balloon/update_icon()
 	if(src.reagents.total_volume >= 1)
 		icon_state = "waterballoon"
-		item_state = "balloon"
 	else
 		icon_state = "waterballoon-e"
-		item_state = "balloon-empty"
 
 /obj/item/toy/syndicateballoon
 	name = "criminal balloon"
@@ -99,7 +96,6 @@
 	force = 0
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "syndballoon"
-	item_state = "syndballoon"
 	w_class = 4.0
 
 /obj/item/toy/nanotrasenballoon
@@ -111,7 +107,6 @@
 	force = 0
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "ntballoon"
-	item_state = "ntballoon"
 	w_class = 4.0
 
 /*
@@ -142,7 +137,6 @@
 	desc = "A weapon favored by many overactive children. Ages 8 and up."
 	icon = 'icons/obj/gun.dmi'
 	icon_state = "crossbow"
-	item_state = "crossbow"
 	item_icons = list(
 		icon_l_hand = 'icons/mob/items/lefthand_guns.dmi',
 		icon_r_hand = 'icons/mob/items/righthand_guns.dmi',
@@ -251,7 +245,6 @@
 	anchored = 1
 	density = 0
 
-
 /*
  * Toy swords
  */
@@ -260,7 +253,10 @@
 	desc = "A cheap, plastic replica of an energy sword. Realistic sounds! Ages 8 and up."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "sword0"
-	item_state = "sword0"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand_melee.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand_melee.dmi',
+		)
 	var/active = 0.0
 	w_class = 2.0
 	attack_verb = list("attacked", "struck", "hit")
@@ -271,13 +267,11 @@
 			user << "<span class='notice'>You extend the plastic blade with a quick flick of your wrist.</span>"
 			playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
 			src.icon_state = "swordblue"
-			src.item_state = "swordblue"
 			src.w_class = 4
 		else
 			user << "<span class='notice'>You push the plastic blade back down into the handle.</span>"
 			playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
 			src.icon_state = "sword0"
-			src.item_state = "sword0"
 			src.w_class = 2
 
 		if(istype(user,/mob/living/carbon/human))
@@ -293,7 +287,10 @@
 	desc = "Woefully underpowered in D20."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "katana"
-	item_state = "katana"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand_material.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand_material.dmi',
+		)
 	flags = CONDUCT
 	slot_flags = SLOT_BELT | SLOT_BACK
 	force = 5
@@ -863,7 +860,10 @@
 	desc = "An arcane weapon (made of foam) wielded by the followers of the hit Saturday morning cartoon \"King Nursee and the Acolytes of Heroism\"."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "cultblade"
-	item_state = "cultblade"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand_melee.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand_melee.dmi',
+		)
 	w_class = 4
 	attack_verb = list("attacked", "slashed", "stabbed", "poked")
 
@@ -883,7 +883,6 @@
 	name = "inflatable duck"
 	desc = "No bother to sink or swim when you can just float!"
 	icon_state = "inflatable"
-	item_state = "inflatable"
 	icon = 'icons/obj/clothing/belts.dmi'
 	slot_flags = SLOT_BELT
 

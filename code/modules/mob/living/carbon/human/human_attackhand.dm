@@ -9,7 +9,6 @@
 	return null
 
 /mob/living/carbon/human/attack_hand(mob/living/carbon/M as mob)
-
 	var/mob/living/carbon/human/H = M
 	if(istype(H))
 		var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
@@ -18,7 +17,7 @@
 		if(!temp || !temp.is_usable())
 			H << "\red You can't use your hand."
 			return
-	break_cloak()
+	H.break_cloak()
 	..()
 
 	// Should this all be in Touch()?
@@ -326,7 +325,7 @@
 	if(!target_zone)
 		return 0
 	var/obj/item/organ/external/organ = get_organ(check_zone(target_zone))
-	if(!organ || organ.is_dislocated() || organ.dislocated == -1)
+	if(!organ || organ.dislocated > 0 || organ.dislocated == -1) //don't use is_dislocated() here, that checks parent
 		return 0
 
 	user.visible_message("<span class='warning'>[user] begins to dislocate [src]'s [organ.joint]!</span>")

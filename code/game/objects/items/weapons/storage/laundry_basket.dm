@@ -7,7 +7,7 @@
 	name = "laundry basket"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "laundry-empty"
-	item_state = "laundry"
+	item_state_slots = list(slot_r_hand_str = "laundry", slot_l_hand_str = "laundry")
 	desc = "The peak of thousands of years of laundry evolution."
 
 	w_class = 5

@@ -42,6 +42,10 @@
 	tracer_type = /obj/effect/projectile/laser_heavy/tracer
 	impact_type = /obj/effect/projectile/laser_heavy/impact
 
+/obj/item/projectile/beam/heavylaser/cannon
+	damage = 90
+	armor_penetration = 100
+
 /obj/item/projectile/beam/xray
 	name = "xray beam"
 	icon_state = "xray"

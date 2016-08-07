@@ -69,8 +69,15 @@
 		flags |= OPENCONTAINER
 	update_icon()
 
-/obj/item/weapon/reagent_containers/glass/afterattack(var/obj/target, var/mob/user, var/flag)
-	if(!is_open_container() || !flag)
+/obj/item/weapon/reagent_containers/glass/do_surgery(mob/living/carbon/M, mob/living/user)
+	if(user.a_intent != I_HELP) //in case it is ever used as a surgery tool
+		return ..()
+	afterattack(M, user, 1)
+	return 1
+
+/obj/item/weapon/reagent_containers/glass/afterattack(var/obj/target, var/mob/user, var/proximity)
+
+	if(!is_open_container() || !proximity)
 		return
 
 	for(var/type in can_be_placed_into)
@@ -248,7 +255,7 @@
 	name = "water-cooler bottle"
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "water_cooler_bottle"
-	matter = list(DEFAULT_WALL_MATERIAL = 200)
+	matter = list("glass" = 2000)
 	w_class = 3.0
 	amount_per_transfer_from_this = 20
 	possible_transfer_amounts = list(10,20,30,60,120)

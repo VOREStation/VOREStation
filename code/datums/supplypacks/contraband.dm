@@ -3,6 +3,7 @@
 *	  and require modification of the supply controller live.
 */
 
+
 /datum/supply_packs/randomised/contraband
 	num_contained = 5
 	contains = list(
@@ -13,11 +14,11 @@
 			)
 
 	name = "Contraband crate"
-	cost = 30
+	cost = 25
 	containertype = /obj/structure/closet/crate
 	containername = "Unlabeled crate"
 	contraband = 1
-	group = "Operations"
+	group = "Supplies"
 
 /datum/supply_packs/security/specialops
 	name = "Special Ops supplies"
@@ -27,11 +28,11 @@
 			/obj/item/weapon/pen/reagent/paralysis,
 			/obj/item/weapon/grenade/chem_grenade/incendiary
 			)
-	cost = 20
+	cost = 25
 	containertype = /obj/structure/closet/crate
 	containername = "Special Ops crate"
-	hidden = 1
-	
+	contraband = 1
+
 /datum/supply_packs/security/bolt_rifles_mosin
  	name = "Surplus militia rifles"
  	contains = list(
@@ -39,6 +40,6 @@
  			/obj/item/ammo_magazine/clip/a762 = 6
  			)
  	cost = 50
- 	hidden = 1
+ 	contraband = 1
  	containertype = /obj/structure/closet/crate/secure/weapon
  	containername = "Weapons crate"

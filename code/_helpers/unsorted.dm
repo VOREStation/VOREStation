@@ -1037,12 +1037,6 @@ proc/get_mob_with_client_list()
 	else if (zone == "r_foot") return "right foot"
 	else return zone
 
-//gets the turf the atom is located in (or itself, if it is a turf).
-//returns null if the atom is not in a turf.
-/proc/get_turf(atom/movable/A)
-	if(isturf(A)) return A
-	if(A && A.locs.len) return A.locs[1]
-
 /proc/get(atom/loc, type)
 	while(loc)
 		if(istype(loc, type))
@@ -1257,7 +1251,7 @@ var/list/WALLITEMS = list(
 		arglist = list2params(arglist)
 	return "<a href='?src=\ref[D];[arglist]'>[content]</a>"
 
-/proc/get_random_colour(var/simple, var/lower, var/upper)
+/proc/get_random_colour(var/simple, var/lower=0, var/upper=255)
 	var/colour
 	if(simple)
 		colour = pick(list("FF0000","FF7F00","FFFF00","00FF00","0000FF","4B0082","8F00FF"))

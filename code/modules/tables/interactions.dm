@@ -10,6 +10,8 @@
 			return 1
 	if(istype(mover) && mover.checkpass(PASSTABLE))
 		return 1
+	if(locate(/obj/structure/table/bench) in get_turf(mover))
+		return 0
 	if(locate(/obj/structure/table) in get_turf(mover))
 		return 1
 	return 0
@@ -136,7 +138,8 @@
 		user << "<span class='warning'>There's nothing to put \the [W] on! Try adding plating to \the [src] first.</span>"
 		return
 
-	user.drop_item(src.loc)
+	if(item_place)
+		user.drop_item(src.loc)
 	return
 
 /obj/structure/table/attack_tk() // no telehulk sorry

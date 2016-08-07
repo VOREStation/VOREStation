@@ -7,6 +7,7 @@
 	var/throwforce = 1
 	var/sharp = 0		// whether this object cuts
 	var/edge = 0		// whether this object is more likely to dismember
+	var/pry = 0			//Used in attackby() to open doors
 	var/in_use = 0 // If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
 	var/damtype = "brute"
 	var/armor_penetration = 0
@@ -117,9 +118,6 @@
 	..()
 
 /obj/proc/interact(mob/user)
-	return
-
-/obj/proc/update_icon()
 	return
 
 /mob/proc/unset_machine()

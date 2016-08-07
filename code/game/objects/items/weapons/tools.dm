@@ -413,6 +413,7 @@
 	slot_flags = SLOT_BELT
 	force = 6
 	throwforce = 7
+	pry = 1
 	item_state = "crowbar"
 	w_class = 2
 	origin_tech = list(TECH_ENGINEERING = 1)

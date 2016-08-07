@@ -240,7 +240,7 @@ var/list/mob_hat_cache = list()
 //Drones killed by damage will gib.
 /mob/living/silicon/robot/drone/handle_regular_status_updates()
 	var/turf/T = get_turf(src)
-	if((!T || health <= -35 || (master_fabricator && T.z != master_fabricator.z)) && src.stat != DEAD)
+	if(!T || health <= -35 )
 		timeofdeath = world.time
 		death() //Possibly redundant, having trouble making death() cooperate.
 		gib()

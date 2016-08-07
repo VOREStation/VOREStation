@@ -228,6 +228,8 @@
 		L.fields["faction"]		= H.personal_faction
 		L.fields["religion"]	= H.religion
 		L.fields["image"]		= getFlatIcon(H)	//This is god-awful
+		L.fields["antagfac"]	= H.antag_faction
+		L.fields["antagvis"]	= H.antag_vis
 		if(H.exploit_record && !jobban_isbanned(H, "Records"))
 			L.fields["exploit_record"] = H.exploit_record
 		else

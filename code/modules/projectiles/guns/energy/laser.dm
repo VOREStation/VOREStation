@@ -68,13 +68,14 @@ obj/item/weapon/gun/energy/retro
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3)
 	slot_flags = SLOT_BELT|SLOT_BACK
-	projectile_type = /obj/item/projectile/beam/heavylaser
-	charge_cost = 400
-	max_shots = 6
-	fire_delay = 20
+	projectile_type = /obj/item/projectile/beam/heavylaser/cannon
+	max_shots = 1
+	fire_delay = 30
 //	requires_two_hands = 1
 	one_handed_penalty = 6 // The thing's heavy and huge.
-	accuracy = 2
+	accuracy = 3
+	charge_cost = 400
+
 
 /obj/item/weapon/gun/energy/lasercannon/mounted
 	name = "mounted laser cannon"
@@ -83,6 +84,10 @@ obj/item/weapon/gun/energy/retro
 	recharge_time = 10
 	accuracy = 0 // Mounted cannons are just fine the way they are.
 	requires_two_hands = 0 // Not sure if two-handing gets checked for mounted weapons, but better safe than sorry.
+	projectile_type = /obj/item/projectile/beam/heavylaser
+	charge_cost = 400
+	max_shots = 6
+	fire_delay = 20
 
 /obj/item/weapon/gun/energy/xray
 	name = "xray laser gun"
@@ -101,7 +106,7 @@ obj/item/weapon/gun/energy/retro
 	desc = "The HI DMR 9E is an older design of Hesphaistos Industries. A designated marksman rifle capable of shooting powerful \
 	ionized beams, this is a weapon to kill from a distance."
 	icon_state = "sniper"
-	item_state = "laser" // placeholder
+	item_state_slots = list(slot_r_hand_str = "laser", slot_l_hand_str = "laser") //placeholder
 	fire_sound = 'sound/weapons/gauss_shoot.ogg'
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 5, TECH_POWER = 4)
 	projectile_type = /obj/item/projectile/beam/sniper

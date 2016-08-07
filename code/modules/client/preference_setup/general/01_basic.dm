@@ -29,9 +29,7 @@ datum/preferences/proc/set_biological_gender(var/gender)
 	S["OOC_Notes"]				<< pref.metadata
 
 /datum/category_item/player_setup_item/general/basic/sanitize_character()
-	if(!pref.species) pref.species = "Human"
-	var/datum/species/S = all_species[pref.species ? pref.species : "Human"]
-	pref.age                = sanitize_integer(pref.age, S.min_age, S.max_age, initial(pref.age))
+	pref.age                = sanitize_integer(pref.age, get_min_age(), get_max_age(), initial(pref.age))
 	pref.biological_gender  = sanitize_inlist(pref.biological_gender, get_genders(), pick(get_genders()))
 	pref.identifying_gender = (pref.identifying_gender in all_genders_define_list) ? pref.identifying_gender : pref.biological_gender
 	pref.real_name          = sanitize_name(pref.real_name, pref.species)
@@ -39,6 +37,25 @@ datum/preferences/proc/set_biological_gender(var/gender)
 		pref.real_name      = random_name(pref.identifying_gender, pref.species)
 	pref.spawnpoint         = sanitize_inlist(pref.spawnpoint, spawntypes, initial(pref.spawnpoint))
 	pref.be_random_name     = sanitize_integer(pref.be_random_name, 0, 1, initial(pref.be_random_name))
+
+// Moved from /datum/preferences/proc/copy_to()
+/datum/category_item/player_setup_item/general/basic/copy_to_mob(var/mob/living/carbon/human/character)
+	if(config.humans_need_surnames)
+		var/firstspace = findtext(pref.real_name, " ")
+		var/name_length = length(pref.real_name)
+		if(!firstspace)	//we need a surname
+			pref.real_name += " [pick(last_names)]"
+		else if(firstspace == name_length)
+			pref.real_name += "[pick(last_names)]"
+
+	character.real_name = pref.real_name
+	character.name = character.real_name
+	if(character.dna)
+		character.dna.real_name = character.real_name
+
+	character.gender = pref.biological_gender
+	character.identifying_gender = pref.identifying_gender
+	character.age = pref.age
 
 /datum/category_item/player_setup_item/general/basic/content()
 	. = list()
@@ -56,7 +73,6 @@ datum/preferences/proc/set_biological_gender(var/gender)
 	. = jointext(.,null)
 
 /datum/category_item/player_setup_item/general/basic/OnTopic(var/href,var/list/href_list, var/mob/user)
-	var/datum/species/S = all_species[pref.species]
 	if(href_list["rename"])
 		var/raw_name = input(user, "Choose your character's name:", "Character Name")  as text|null
 		if (!isnull(raw_name) && CanUseTopic(user))
@@ -89,10 +105,11 @@ datum/preferences/proc/set_biological_gender(var/gender)
 		return TOPIC_REFRESH
 
 	else if(href_list["age"])
-		if(!pref.species) pref.species = "Human"
-		var/new_age = input(user, "Choose your character's age:\n([S.min_age]-[S.max_age])", "Character Preference", pref.age) as num|null
+		var/min_age = get_min_age()
+		var/max_age = get_max_age()
+		var/new_age = input(user, "Choose your character's age:\n([min_age]-[max_age])", "Character Preference", pref.age) as num|null
 		if(new_age && CanUseTopic(user))
-			pref.age = max(min(round(text2num(new_age)), S.max_age), S.min_age)
+			pref.age = max(min(round(text2num(new_age)), max_age), min_age)
 			return TOPIC_REFRESH
 
 	else if(href_list["spawnpoint"])

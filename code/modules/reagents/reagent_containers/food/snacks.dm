@@ -11,8 +11,14 @@
 	var/slices_num
 	var/dried_type = null
 	var/dry = 0
+	var/nutriment_amt = 0
 	center_of_mass = list("x"=16, "y"=16)
 	w_class = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/New()
+	..()
+	if(nutriment_amt)
+		reagents.add_reagent("nutriment", nutriment_amt)
 
 	//Placeholder for effect that trigger on eating that aren't tied to reagents.
 /obj/item/weapon/reagent_containers/food/snacks/proc/On_Consume(var/mob/M)
@@ -3175,6 +3181,17 @@
 		return
 	else
 		..()
+
+/obj/item/weapon/reagent_containers/food/snacks/bunbun
+	name = "\improper Bun Bun"
+	desc = "A small bread monkey fashioned from two burger buns."
+	icon_state = "bunbun"
+	bitesize = 2
+	center_of_mass = list("x"=16, "y"=8)
+
+/obj/item/weapon/reagent_containers/food/snacks/bunbun/New()
+	..()
+	reagents.add_reagent("nutriment", 8)
 
 /obj/item/weapon/reagent_containers/food/snacks/taco
 	name = "taco"

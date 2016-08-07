@@ -2,8 +2,8 @@
 	name = "Securitron"
 	desc = "A little security robot.  He looks less than thrilled."
 	icon_state = "secbot0"
-	maxHealth = 50
-	health = 50
+	maxHealth = 100
+	health = 100
 	req_one_access = list(access_security, access_forensics_lockers)
 	botcard_access = list(access_security, access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels)
 	patrol_speed = 2
@@ -85,6 +85,18 @@
 			declare_arrests = !declare_arrests
 	attack_hand(usr)
 
+/mob/living/bot/secbot/emag_act(var/remaining_uses, var/mob/user)
+	. = ..()
+	if(!emagged)
+		if(user)
+			user << "<span class='notice'>\The [src] buzzes and beeps.</span>"
+		emagged = 1
+		patrol_speed = 3
+		target_speed = 4
+		return 1
+	else
+		user << "<span class='notice'>\The [src] is already corrupt.</span>"
+
 /mob/living/bot/secbot/attackby(var/obj/item/O, var/mob/user)
 	var/curhealth = health
 	..()
@@ -130,7 +142,7 @@
 	if(ishuman(target) && declare_arrests)
 		var/area/location = get_area(src)
 		broadcast_security_hud_message("[src] is [arrest_type ? "detaining" : "arresting"] a level [check_threat(target)] suspect <b>[target]</b> in <b>[location]</b>.", src)
-		
+
 	//				say("Engaging patrol mode.")
 
 /mob/living/bot/secbot/UnarmedAttack(var/mob/M, var/proximity)
@@ -145,7 +157,7 @@
 		var/cuff = 1
 		if(istype(C, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = C
-			if(istype(H.back, /obj/item/weapon/rig) && istype(H.gloves,/obj/item/clothing/gloves/rig))
+			if(istype(H.back, /obj/item/weapon/rig) && istype(H.gloves,/obj/item/clothing/gloves/gauntlets/rig))
 				cuff = 0
 		if(!C.lying || C.handcuffed || arrest_type)
 			cuff = 0
@@ -238,6 +250,10 @@
 	desc = "Some sort of bizarre assembly."
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "helmet_signaler"
+	item_icons = list(
+			slot_l_hand_str = 'icons/mob/items/lefthand_hats.dmi',
+			slot_r_hand_str = 'icons/mob/items/righthand_hats.dmi',
+			)
 	item_state = "helmet"
 	var/build_step = 0
 	var/created_name = "Securitron"

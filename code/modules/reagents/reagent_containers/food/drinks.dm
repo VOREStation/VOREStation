@@ -132,7 +132,7 @@
 	reagents.add_reagent("soymilk", 50)
 
 /obj/item/weapon/reagent_containers/food/drinks/milk/smallcarton
-	name = "small chocolate milk carton"
+	name = "small milk carton"
 	volume = 30
 	icon_state = "mini-milk"
 /obj/item/weapon/reagent_containers/food/drinks/milk/smallcarton/New()
@@ -140,9 +140,9 @@
 	reagents.add_reagent("milk", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/milk/smallcarton/chocolate
-	name = "Small Carton of Chocolate Milk"
+	name = "small chocolate milk carton"
 	desc = "It's milk! This one is in delicious chocolate flavour."
-
+	icon_state = "mini-milk_choco"
 /obj/item/weapon/reagent_containers/food/drinks/milk/smallcarton/chocolate/New()
 	..()
 	reagents.add_reagent("chocolate_milk", 30)
@@ -204,6 +204,7 @@
 	possible_transfer_amounts = null
 	volume = 10
 	center_of_mass = list("x"=16, "y"=12)
+
 /obj/item/weapon/reagent_containers/food/drinks/sillycup/New()
 	..()
 
@@ -214,6 +215,17 @@
 	else
 		icon_state = "water_cup_e"
 
+/obj/item/weapon/reagent_containers/food/drinks/sillycup/MouseDrop(obj/over_object as obj)
+	if(!reagents.total_volume && istype(over_object, /obj/structure/reagent_dispensers/water_cooler))
+		if(over_object.Adjacent(usr))
+			var/obj/structure/reagent_dispensers/water_cooler/W = over_object
+			if(W.cupholder && W.cups < 10)
+				W.cups++
+				usr << "<span class='notice'>You put the [src] in the cup dispenser.</span>"
+				qdel(src)
+				W.update_icon()
+	else
+		return ..()
 
 //////////////////////////drinkingglass and shaker//
 //Note by Darem: This code handles the mixing of drinks. New drinks go in three places: In Chemistry-Reagents.dm (for the drink

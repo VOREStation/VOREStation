@@ -107,6 +107,8 @@
 	w_class = 3
 	caliber = ".45"
 	silenced = 1
+	fire_delay = 1
+	recoil = 0
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/c45m
@@ -123,6 +125,13 @@
 	fire_sound = 'sound/weapons/deagle.ogg'
 	magazine_type = /obj/item/ammo_magazine/a50
 	allowed_magazines = list(/obj/item/ammo_magazine/a50)
+
+/obj/item/weapon/gun/projectile/deagle/update_icon()
+	..()
+	if(ammo_magazine)
+		icon_state = "[initial(icon_state)]"
+	else
+		icon_state = "[initial(icon_state)]-e"
 
 /obj/item/weapon/gun/projectile/deagle/gold
 	desc = "A gold plated gun folded over a million times by superior martian gunsmiths. Uses .50 AE rounds."

@@ -19,6 +19,7 @@
 /datum/uplink_item/item/badassery/random_one
 	name = "Random Item"
 	desc = "Buys you one random item."
+	blacklisted = 1
 
 /datum/uplink_item/item/badassery/random_one/buy(var/obj/item/device/uplink/U, var/mob/user)
 	var/datum/uplink_item/item = default_uplink_selection.get_random_item(U.uses)
@@ -53,9 +54,24 @@
 ****************/
 /datum/uplink_item/item/badassery/surplus
 	name = "Surplus Crate"
-	item_cost = 40
-	var/item_worth = 60
+	item_cost = DEFAULT_TELECRYSTAL_AMOUNT
+	var/item_worth = 240
 	var/icon
+
+/datum/uplink_item/item/badassery/surplus/merc2
+	name = "Surplus Crate - 240 TC"
+	item_cost = DEFAULT_TELECRYSTAL_AMOUNT * 2
+	item_worth = 540
+
+/datum/uplink_item/item/badassery/surplus/merc4
+	name = "Surplus Crate - 480 TC"
+	item_cost = DEFAULT_TELECRYSTAL_AMOUNT * 4
+	item_worth = 1200
+
+/datum/uplink_item/item/badassery/surplus/merc6
+	name = "Surplus Crate - 720 TC"
+	item_cost = DEFAULT_TELECRYSTAL_AMOUNT * 6
+	item_worth = 1980
 
 /datum/uplink_item/item/badassery/surplus/New()
 	..()
@@ -63,7 +79,7 @@
 
 /datum/uplink_item/item/badassery/surplus/get_goods(var/obj/item/device/uplink/U, var/loc)
 	var/obj/structure/largecrate/C = new(loc)
-	var/random_items = get_random_uplink_items(null, item_worth, C)
+	var/random_items = get_surplus_items(null, item_worth, C)
 	for(var/datum/uplink_item/I in random_items)
 		I.purchase_log(U)
 		I.get_goods(U, C)
