@@ -2,8 +2,9 @@
 * Ammunition *
 *************/
 /datum/uplink_item/item/ammo
-	item_cost = 2
+	item_cost = 20
 	category = /datum/uplink_category/ammunition
+	blacklisted = 1
 
 /datum/uplink_item/item/ammo/a357
 	name = ".357 Speedloader"
@@ -24,11 +25,12 @@
 /datum/uplink_item/item/ammo/tommydrum
 	name = "Tommygun Drum Magazine (.45)"
 	path = /obj/item/ammo_magazine/tommydrum
-	item_cost = 4 // Buy 40 bullets, get 10 free!
+	item_cost = 40 // Buy 40 bullets, get 10 free!
 
 /datum/uplink_item/item/ammo/darts
 	name = "Darts"
 	path = /obj/item/ammo_magazine/chemdart
+	item_cost = 5
 
 /datum/uplink_item/item/ammo/sniperammo
 	name = "Anti-Materiel Rifle ammo box (14.5mm)"
@@ -41,7 +43,7 @@
 /datum/uplink_item/item/ammo/a556/ap
 	name = "10rnd Rifle Magazine (5.56mm AP)"
 	path = /obj/item/ammo_magazine/a556/ap
-
+/*
 /datum/uplink_item/item/ammo/a556m
 	name = "20rnd Rifle Magazine (5.56mm)"
 	path = /obj/item/ammo_magazine/a556m
@@ -51,7 +53,7 @@
 	name = "20rnd Rifle Magazine (5.56mm AP)"
 	path = /obj/item/ammo_magazine/a556m/ap
 	item_cost = 4
-
+*/
 /datum/uplink_item/item/ammo/c762
 	name = "20rnd Rifle Magazine (7.62mm)"
 	path = /obj/item/ammo_magazine/c762
@@ -63,7 +65,7 @@
 /datum/uplink_item/item/ammo/s762
 	name = "10rnd Rifle Magazine (7.62mm)"
 	path = /obj/item/ammo_magazine/s762
-	item_cost = 1 // Half the capacity.
+	item_cost = 10 // Half the capacity.
 
 /datum/uplink_item/item/ammo/s762/ap
 	name = "10rnd Rifle Magazine (7.62mm AP)"
@@ -88,7 +90,7 @@
 /datum/uplink_item/item/ammo/g12/beanbag
 	name = "12g Auto-Shotgun Magazine (Beanbag)"
 	path = /obj/item/ammo_magazine/g12/beanbag
-	item_cost = 1 // Discount due to it being LTL.
+	item_cost = 10 // Discount due to it being LTL.
 
 /datum/uplink_item/item/ammo/g12/pellet
 	name = "12g Auto-Shotgun Magazine (Pellet)"
@@ -97,7 +99,9 @@
 /datum/uplink_item/item/ammo/g12/stun
 	name = "12g Auto-Shotgun Magazine (Stun)"
 	path = /obj/item/weapon/storage/box/stunshells
+	item_cost = 10 // Discount due to it being LTL.
 
 /datum/uplink_item/item/ammo/g12/flash
 	name = "12g Auto-Shotgun Magazine (Flash)"
 	path = /obj/item/weapon/storage/box/flashshells
+	item_cost = 10 // Discount due to it being LTL.

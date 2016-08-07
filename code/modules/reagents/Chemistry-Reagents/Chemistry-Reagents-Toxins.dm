@@ -6,7 +6,7 @@
 	description = "A toxic chemical."
 	reagent_state = LIQUID
 	color = "#CF3600"
-	metabolism = REM * 0.05 // 0.01 by default. They last a while and slowly kill you.
+	metabolism = REM * 0.25 // 0.05 by default. Hopefully enough to get some help, or die horribly, whatever floats your boat
 	var/strength = 4 // How much damage it deals per unit
 
 /datum/reagent/toxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -479,7 +479,7 @@
 		return
 
 	if(M.dna)
-		if(prob(removed * 0.1)) 
+		if(prob(removed * 0.1))
 			randmuti(M)
 			if(prob(98))
 				randmutb(M)
@@ -505,7 +505,7 @@
 		return
 
 	if(M.dna)
-		if(prob(removed * 0.1)) 
+		if(prob(removed * 0.1))
 			randmuti(M)
 			if(prob(98))
 				randmutb(M)

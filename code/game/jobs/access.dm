@@ -125,6 +125,13 @@
 
 	return priv_syndicate_access
 
+/var/list/priv_private_access
+/proc/get_all_private_access()
+	if(!priv_private_access)
+		priv_private_access = get_access_ids(ACCESS_TYPE_PRIVATE)
+
+	return priv_syndicate_access
+
 /var/list/priv_region_access
 /proc/get_region_accesses(var/code)
 	if(code == ACCESS_REGION_ALL)

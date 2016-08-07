@@ -5,6 +5,7 @@ var/global/send_emergency_team = 0 // Used for automagic response teams
                                    // 'admin_emergency_team' for admin-spawned response teams
 var/ert_base_chance = 10 // Default base chance. Will be incremented by increment ERT chance.
 var/can_call_ert
+var/silent_ert
 
 /client/proc/response_team()
 	set name = "Dispatch Emergency Response Team"
@@ -25,6 +26,8 @@ var/can_call_ert
 		return
 	if(alert("Do you want to dispatch an Emergency Response Team?",,"Yes","No") != "Yes")
 		return
+	if(alert("Do you want this Response Team to be announced?",,"Yes","No") != "Yes")
+		silent_ert = 1
 	if(get_security_level() != "red") // Allow admins to reconsider if the alert level isn't Red
 		switch(alert("The station is not in red alert. Do you still want to dispatch a response team?",,"Yes","No"))
 			if("No")
@@ -117,8 +120,8 @@ proc/trigger_armed_response_team(var/force = 0)
 		command_announcement.Announce("It would appear that an emergency response team was requested for [station_name()]. Unfortunately, we were unable to send one at this time.", "[boss_name]")
 		can_call_ert = 0 // Only one call per round, ladies.
 		return
-
-	command_announcement.Announce("It would appear that an emergency response team was requested for [station_name()]. We will prepare and send one as soon as possible.", "[boss_name]")
+	if(silent_ert == 0)
+		command_announcement.Announce("It would appear that an emergency response team was requested for [station_name()]. We will prepare and send one as soon as possible.", "[boss_name]")
 
 	can_call_ert = 0 // Only one call per round, gentleman.
 	send_emergency_team = 1

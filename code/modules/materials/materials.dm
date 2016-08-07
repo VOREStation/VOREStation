@@ -91,6 +91,7 @@ var/list/name_to_material
 	var/melting_point = 1800     // K, walls will take damage if they're next to a fire hotter than this
 	var/integrity = 150          // General-use HP value for products.
 	var/opacity = 1              // Is the material transparent? 0.5< makes transparent walls/doors.
+	var/reflectivity = 0         // How reflective to light is the material?  Currently used for laser defense.
 	var/explosion_resistance = 5 // Only used by walls currently.
 	var/conductive = 1           // Objects with this var add CONDUCTS to flags on spawn.
 	var/list/composite_material  // If set, object matter var will be a list containing these values.
@@ -234,6 +235,7 @@ var/list/name_to_material
 	cut_delay = 60
 	icon_colour = "#00FFE1"
 	opacity = 0.4
+	reflectivity = 0.6
 	shard_type = SHARD_SHARD
 	tableslam_noise = 'sound/effects/Glasshit.ogg'
 	hardness = 100
@@ -356,6 +358,22 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 2)
 	composite_material = list(DEFAULT_WALL_MATERIAL = SHEET_MATERIAL_AMOUNT, "platinum" = SHEET_MATERIAL_AMOUNT) //todo
 
+// Very rare alloy that is reflective, should be used sparingly.
+/material/durasteel
+	name = "durasteel"
+	stack_type = /obj/item/stack/material/durasteel
+	integrity = 600
+	melting_point = 7000
+	icon_base = "metal"
+	icon_reinf = "reinf_metal"
+	icon_colour = "#6EA7BE"
+	explosion_resistance = 75
+	hardness = 100
+	weight = 28
+	reflectivity = 0.7 // Not a perfect mirror, but close.
+	stack_origin_tech = list(TECH_MATERIAL = 8)
+	composite_material = list("plasteel" = SHEET_MATERIAL_AMOUNT, "diamond" = SHEET_MATERIAL_AMOUNT) //shrug
+
 /material/plasteel/titanium
 	name = "titanium"
 	stack_type = null
@@ -377,7 +395,7 @@ var/list/name_to_material
 	weight = 15
 	door_icon_base = "stone"
 	destruction_desc = "shatters"
-	window_options = list("One Direction" = 1, "Full Window" = 4)
+	window_options = list("One Direction" = 1, "Full Window" = 4, "Windoor" = 2)
 	created_window = /obj/structure/window/basic
 	rod_product = /obj/item/stack/material/glass/reinforced
 
@@ -407,6 +425,12 @@ var/list/name_to_material
 	for (var/obj/structure/window/check_window in user.loc)
 		window_count++
 		possible_directions  -= check_window.dir
+	for (var/obj/structure/windoor_assembly/check_assembly in user.loc)
+		window_count++
+		possible_directions -= check_assembly.dir
+	for (var/obj/machinery/door/window/check_windoor in user.loc)
+		window_count++
+		possible_directions -= check_windoor.dir
 
 	// Get the closest available dir to the user's current facing.
 	var/build_dir = SOUTHWEST //Default to southwest for fulltile windows.
@@ -417,18 +441,12 @@ var/list/name_to_material
 	else
 		if(choice in list("One Direction","Windoor"))
 			if(possible_directions.len)
-				for(var/direction in list(user.dir, turn(user.dir,90), turn(user.dir,180), turn(user.dir,270) ))
+				for(var/direction in list(user.dir, turn(user.dir,90), turn(user.dir,270), turn(user.dir,180)))
 					if(direction in possible_directions)
 						build_dir = direction
 						break
 			else
 				failed_to_build = 1
-			if(!failed_to_build && choice == "Windoor")
-				if(!is_reinforced())
-					user << "<span class='warning'>This material is not reinforced enough to use for a door.</span>"
-					return
-				if((locate(/obj/structure/windoor_assembly) in T.contents) || (locate(/obj/machinery/door/window) in T.contents))
-					failed_to_build = 1
 	if(failed_to_build)
 		user << "<span class='warning'>There is no room in this location.</span>"
 		return 1
@@ -436,7 +454,8 @@ var/list/name_to_material
 	var/build_path = /obj/structure/windoor_assembly
 	var/sheets_needed = window_options[choice]
 	if(choice == "Windoor")
-		build_dir = user.dir
+		if(is_reinforced())
+			build_path = /obj/structure/windoor_assembly/secure
 	else
 		build_path = created_window
 
@@ -466,7 +485,7 @@ var/list/name_to_material
 	weight = 30
 	stack_origin_tech = "materials=2"
 	composite_material = list(DEFAULT_WALL_MATERIAL = SHEET_MATERIAL_AMOUNT / 2, "glass" = SHEET_MATERIAL_AMOUNT)
-	window_options = list("One Direction" = 1, "Full Window" = 4, "Windoor" = 5)
+	window_options = list("One Direction" = 1, "Full Window" = 4, "Windoor" = 2)
 	created_window = /obj/structure/window/reinforced
 	wire_product = null
 	rod_product = null
@@ -479,6 +498,7 @@ var/list/name_to_material
 	integrity = 100
 	icon_colour = "#FC2BC5"
 	stack_origin_tech = list(TECH_MATERIAL = 4)
+	window_options = list("One Direction" = 1, "Full Window" = 4)
 	created_window = /obj/structure/window/phoronbasic
 	wire_product = null
 	rod_product = /obj/item/stack/material/glass/phoronrglass
@@ -489,6 +509,7 @@ var/list/name_to_material
 	stack_type = /obj/item/stack/material/glass/phoronrglass
 	stack_origin_tech = list(TECH_MATERIAL = 5)
 	composite_material = list() //todo
+	window_options = list("One Direction" = 1, "Full Window" = 4)
 	created_window = /obj/structure/window/phoronreinforced
 	hardness = 40
 	weight = 30

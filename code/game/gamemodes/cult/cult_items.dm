@@ -2,7 +2,6 @@
 	name = "cult blade"
 	desc = "An arcane weapon wielded by the followers of Nar-Sie."
 	icon_state = "cultblade"
-	item_state = "cultblade"
 	w_class = 4
 	force = 30
 	throwforce = 10
@@ -72,7 +71,6 @@
 	name = "cult robes"
 	desc = "A set of armored robes worn by the followers of Nar-Sie."
 	icon_state = "cultrobes"
-	item_state = "cultrobes"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	allowed = list(/obj/item/weapon/book/tome,/obj/item/weapon/melee/cultblade)
 	armor = list(melee = 50, bullet = 30, laser = 50, energy = 20, bomb = 25, bio = 10, rad = 0)
@@ -84,13 +82,12 @@
 
 /obj/item/clothing/suit/cultrobes/alt
 	icon_state = "cultrobesalt"
-	item_state = "cultrobesalt"
+	item_state = "cultrobes"
 
 /obj/item/clothing/suit/cultrobes/magusred
 	name = "magus robes"
 	desc = "A set of armored robes worn by the followers of Nar-Sie."
 	icon_state = "magusred"
-	item_state = "magusred"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
@@ -107,7 +104,6 @@
 /obj/item/clothing/suit/space/cult
 	name = "cult armour"
 	icon_state = "cult_armour"
-	item_state = "cult_armour"
 	desc = "A bulky suit of armour, bristling with spikes. It looks space-worthy."
 	w_class = 3
 	allowed = list(/obj/item/weapon/book/tome,/obj/item/weapon/melee/cultblade,/obj/item/weapon/tank/emergency_oxygen,/obj/item/device/suit_cooling_unit)

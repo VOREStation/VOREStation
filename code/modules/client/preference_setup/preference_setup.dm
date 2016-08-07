@@ -4,6 +4,10 @@
 #define TOPIC_UPDATE_PREVIEW 4
 #define TOPIC_REFRESH_UPDATE_PREVIEW (TOPIC_REFRESH|TOPIC_UPDATE_PREVIEW)
 
+#define PREF_FBP_CYBORG "cyborg"
+#define PREF_FBP_POSI "posi"
+#define PREF_FBP_SOFTWARE "software"
+
 /datum/category_group/player_setup_category/general_preferences
 	name = "General"
 	sort_order = 1
@@ -125,8 +129,6 @@
 	// Need due to, for example, the 01_basic module relying on species having been loaded to sanitize correctly but that isn't loaded until module 03_body.
 	for(var/datum/category_item/player_setup_item/PI in items)
 		PI.load_character(S)
-	for(var/datum/category_item/player_setup_item/PI in items)
-		PI.sanitize_character()
 
 /datum/category_group/player_setup_category/proc/save_character(var/savefile/S)
 	// Sanitize all data, then save it
@@ -138,8 +140,6 @@
 /datum/category_group/player_setup_category/proc/load_preferences(var/savefile/S)
 	for(var/datum/category_item/player_setup_item/PI in items)
 		PI.load_preferences(S)
-	for(var/datum/category_item/player_setup_item/PI in items)
-		PI.sanitize_preferences()
 
 /datum/category_group/player_setup_category/proc/save_preferences(var/savefile/S)
 	for(var/datum/category_item/player_setup_item/PI in items)
@@ -252,3 +252,50 @@
 
 	if(pref.client)
 		return pref.client.mob
+
+// Checks in a really hacky way if a character's preferences say they are an FBP or not.
+/datum/category_item/player_setup_item/proc/is_FBP()
+	if(pref.organ_data && pref.organ_data[BP_TORSO] != "cyborg")
+		return 0
+	return 1
+
+// Returns what kind of FBP the player's prefs are.  Returns 0 if they're not an FBP.
+/datum/category_item/player_setup_item/proc/get_FBP_type()
+	if(!is_FBP())
+		return 0 // Not a robot.
+	switch(pref.organ_data["brain"])
+		if("assisted")
+			return PREF_FBP_CYBORG
+		if("mechanical")
+			return PREF_FBP_POSI
+		if("digital")
+			return PREF_FBP_SOFTWARE
+	return 0 //Something went wrong!
+
+/datum/category_item/player_setup_item/proc/get_min_age()
+	var/datum/species/S = all_species[pref.species ? pref.species : "Human"]
+	if(!is_FBP())
+		return S.min_age // If they're not a robot, we can just use the species var.
+	var/FBP_type = get_FBP_type()
+	switch(FBP_type)
+		if(PREF_FBP_CYBORG)
+			return S.min_age
+		if(PREF_FBP_POSI)
+			return 1
+		if(PREF_FBP_SOFTWARE)
+			return 1
+	return S.min_age // welp
+
+/datum/category_item/player_setup_item/proc/get_max_age()
+	var/datum/species/S = all_species[pref.species ? pref.species : "Human"]
+	if(!is_FBP())
+		return S.max_age // If they're not a robot, we can just use the species var.
+	var/FBP_type = get_FBP_type()
+	switch(FBP_type)
+		if(PREF_FBP_CYBORG)
+			return S.max_age + 20
+		if(PREF_FBP_POSI)
+			return 220
+		if(PREF_FBP_SOFTWARE)
+			return 150
+	return S.max_age // welp

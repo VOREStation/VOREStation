@@ -255,7 +255,7 @@
 	name = "water-cooler bottle"
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "water_cooler_bottle"
-	matter = list(DEFAULT_WALL_MATERIAL = 200)
+	matter = list("glass" = 2000)
 	w_class = 3.0
 	amount_per_transfer_from_this = 20
 	possible_transfer_amounts = list(10,20,30,60,120)

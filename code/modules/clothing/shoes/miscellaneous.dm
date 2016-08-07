@@ -2,7 +2,6 @@
 	desc = "A pair of brown shoes. They seem to have extra grip."
 	name = "brown shoes"
 	icon_state = "brown"
-	item_state = "brown"
 	permeability_coefficient = 0.05
 	item_flags = NOSLIP
 	origin_tech = list(TECH_ILLEGAL = 3)
@@ -12,12 +11,13 @@
 
 /obj/item/clothing/shoes/mime
 	name = "mime shoes"
-	icon_state = "mime"
+	icon_state = "white"
 
 /obj/item/clothing/shoes/swat
 	name = "\improper SWAT shoes"
 	desc = "When you want to turn up the heat."
 	icon_state = "swat"
+	item_state_slots = list(slot_r_hand_str = "swat", slot_l_hand_str = "swat")
 	force = 3
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = 0)
 	item_flags = NOSLIP
@@ -58,7 +58,7 @@
 	name = "combat boots"
 	desc = "Standard issue combat boots for combat scenarios or combat situations. All combat, all the time.  It can hold a Strategical knife."
 	icon_state = "jackboots"
-	item_state = "jackboots"
+	item_state_slots = list(slot_r_hand_str = "jackboots", slot_l_hand_str = "jackboots")
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = 0)
 	siemens_coefficient = 0.6
 	var/obj/item/weapon/material/hatchet/tacknife
@@ -125,7 +125,6 @@
 	desc = "The prankster's standard-issue clowning shoes. Damn they're huge!"
 	name = "clown shoes"
 	icon_state = "clown"
-	item_state = "clown_shoes"
 	slowdown = SHOES_SLOWDOWN+1
 	force = 0
 	var/footstep = 1	//used for squeeks whilst walking
@@ -145,7 +144,7 @@
 	name = "boots"
 	desc = "A pair of boots worn by the followers of Nar-Sie."
 	icon_state = "cult"
-	item_state = "cult"
+	item_state_slots = list(slot_r_hand_str = "cult", slot_l_hand_str = "cult")
 	force = 2
 	siemens_coefficient = 0.7
 
@@ -167,7 +166,6 @@
 	name = "bunny slippers"
 	desc = "Fluffy!"
 	icon_state = "slippers"
-	item_state = "slippers"
 	force = 0
 	species_restricted = null
 	w_class = 2
@@ -176,7 +174,7 @@
 	name = "worn bunny slippers"
 	desc = "Fluffy..."
 	icon_state = "slippers_worn"
-	item_state = "slippers_worn"
+	item_state_slots = list(slot_r_hand_str = "slippers", slot_l_hand_str = "slippers")
 	force = 0
 	w_class = 2
 
@@ -189,6 +187,7 @@
 	desc = "Help you swim good."
 	name = "swimming fins"
 	icon_state = "flippers"
+	item_state_slots = list(slot_r_hand_str = "galoshes", slot_l_hand_str = "galoshes")
 	item_flags = NOSLIP
 	slowdown = SHOES_SLOWDOWN+1
 	species_restricted = null
@@ -197,7 +196,6 @@
 	name = "winter boots"
 	desc = "Boots lined with 'synthetic' animal fur."
 	icon_state = "winterboots"
-	item_state = "winterboots"
 	cold_protection = FEET|LEGS
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	heat_protection = FEET|LEGS

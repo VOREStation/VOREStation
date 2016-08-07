@@ -1,3 +1,4 @@
+//these need item states -S2-
 /obj/item/clothing/under/pants
 	name = "jeans"
 	desc = "A nondescript pair of tough blue jeans."
@@ -81,8 +82,9 @@
 	desc = "A pair of woodland camouflage pants. Probably not the best choice for a space station."
 	icon_state = "camopants"
 
-//Baggy Pants//
-
+/*
+ * Baggy Pants
+ */
 /obj/item/clothing/under/pants/baggy
 	name = "baggy jeans"
 	desc = "A nondescript pair of tough baggy blue jeans."

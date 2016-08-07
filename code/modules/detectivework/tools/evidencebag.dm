@@ -5,7 +5,7 @@
 	desc = "An empty evidence bag."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "evidenceobj"
-	item_state = ""
+	item_state = null
 	w_class = 2
 	var/obj/item/stored_item = null
 
