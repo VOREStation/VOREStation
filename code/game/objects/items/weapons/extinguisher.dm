@@ -10,7 +10,7 @@
 	w_class = 3.0
 	throw_speed = 2
 	throw_range = 10
-	force = 10.0
+	force = 15
 	matter = list(DEFAULT_WALL_MATERIAL = 90)
 	attack_verb = list("slammed", "whacked", "bashed", "thunked", "battered", "bludgeoned", "thrashed")
 
