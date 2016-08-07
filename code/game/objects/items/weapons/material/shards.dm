@@ -8,7 +8,7 @@
 	sharp = 1
 	edge = 1
 	w_class = 2
-	force_divisor = 0.3 // 9 with hardness 30 (glass)
+	force_divisor = 0.25 // 7.5 with hardness 30 (glass)
 	thrown_force_divisor = 0.5
 	item_state = "shard-glass"
 	attack_verb = list("stabbed", "slashed", "sliced", "cut")

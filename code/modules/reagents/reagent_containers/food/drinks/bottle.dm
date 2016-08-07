@@ -172,7 +172,7 @@
 	desc = "A bottle with a sharp broken bottom."
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = "broken_bottle"
-	force = 13
+	force = 10
 	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
