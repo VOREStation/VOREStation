@@ -54,6 +54,7 @@
 	var/drowsy = 0
 	var/agony = 0
 	var/embed = 0 // whether or not the projectile can embed itself in the mob
+	var/reflected = 0 // This should be set to 1 if reflected by any means, to prevent infinite reflections.
 
 	var/hitscan = 0		// whether the projectile should be hitscan
 	var/step_delay = 1	// the delay between iterations if not a hitscan projectile
@@ -169,7 +170,7 @@
 		return
 
 	//roll to-hit
-	miss_modifier = max(15*(distance-2) - round(15*accuracy) + miss_modifier, 0)
+	miss_modifier = max(15*(distance-2) - round(15*accuracy) + miss_modifier + round(15*target_mob.evasion), 0)
 	var/hit_zone = get_zone_with_miss_chance(def_zone, target_mob, miss_modifier, ranged_attack=(distance > 1 || original != target_mob)) //if the projectile hits a target we weren't originally aiming at then retain the chance to miss
 
 	var/result = PROJECTILE_FORCE_MISS

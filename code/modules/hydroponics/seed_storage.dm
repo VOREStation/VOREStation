@@ -55,6 +55,7 @@
 		/obj/item/seeds/grapeseed = 3,
 		/obj/item/seeds/grassseed = 3,
 		/obj/item/seeds/replicapod = 3,
+		/obj/item/seeds/lavenderseed = 3,
 		/obj/item/seeds/lemonseed = 3,
 		/obj/item/seeds/limeseed = 3,
 		/obj/item/seeds/mtearseed = 2,
@@ -74,8 +75,7 @@
 		/obj/item/seeds/towermycelium = 3,
 		/obj/item/seeds/watermelonseed = 3,
 		/obj/item/seeds/wheatseed = 3,
-		/obj/item/seeds/whitebeetseed = 3,
-		/obj/item/seeds/lavenderseed = 3
+		/obj/item/seeds/whitebeetseed = 3
 		)
 
 /obj/machinery/seed_storage/xenobotany
@@ -99,6 +99,7 @@
 		/obj/item/seeds/glowshroom = 2,
 		/obj/item/seeds/grapeseed = 3,
 		/obj/item/seeds/grassseed = 3,
+		/obj/item/seeds/lavenderseed = 3,
 		/obj/item/seeds/lemonseed = 3,
 		/obj/item/seeds/libertymycelium = 2,
 		/obj/item/seeds/limeseed = 3,
@@ -122,8 +123,7 @@
 		/obj/item/seeds/towermycelium = 3,
 		/obj/item/seeds/watermelonseed = 3,
 		/obj/item/seeds/wheatseed = 3,
-		/obj/item/seeds/whitebeetseed = 3,
-		/obj/item/seeds/lavenderseed = 3
+		/obj/item/seeds/whitebeetseed = 3
 		)
 
 /obj/machinery/seed_storage/attack_hand(mob/user as mob)

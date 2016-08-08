@@ -24,6 +24,8 @@
 	var/state = 0
 	var/locked = 0
 
+	var/integrity = 80
+
 
 /obj/machinery/power/emitter/verb/rotate()
 	set name = "Rotate"
@@ -221,3 +223,12 @@
 		emagged = 1
 		user.visible_message("[user.name] emags [src].","<span class='warning'>You short out the lock.</span>")
 		return 1
+
+/obj/machinery/power/emitter/bullet_act(var/obj/item/projectile/P)
+	if(!P || !P.damage || (!P.damage_type == BRUTE || !P.damage_type == BURN) )
+		return
+
+	integrity = integrity - P.damage
+	if(integrity >= 0)
+		explosion(get_turf(src), 1, 2, 4)
+		qdel(src)

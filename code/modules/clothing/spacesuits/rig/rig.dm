@@ -36,7 +36,7 @@
 	var/chest_type = /obj/item/clothing/suit/space/rig
 	var/helm_type =  /obj/item/clothing/head/helmet/space/rig
 	var/boot_type =  /obj/item/clothing/shoes/magboots/rig
-	var/glove_type = /obj/item/clothing/gloves/rig
+	var/glove_type = /obj/item/clothing/gloves/gauntlets/rig
 	var/cell_type =  /obj/item/weapon/cell/high
 	var/air_type =   /obj/item/weapon/tank/oxygen
 
@@ -45,7 +45,7 @@
 	var/obj/item/clothing/shoes/boots = null                  // Deployable boots, if any.
 	var/obj/item/clothing/suit/space/rig/chest                // Deployable chestpiece, if any.
 	var/obj/item/clothing/head/helmet/space/rig/helmet = null // Deployable helmet, if any.
-	var/obj/item/clothing/gloves/rig/gloves = null            // Deployable gauntlets, if any.
+	var/obj/item/clothing/gloves/gauntlets/rig/gloves = null  // Deployable gauntlets, if any.
 	var/obj/item/weapon/cell/cell                             // Power supply, if any.
 	var/obj/item/rig_module/selected_module = null            // Primary system (used with middle-click)
 	var/obj/item/rig_module/vision/visor                      // Kinda shitty to have a var for a module, but saves time.

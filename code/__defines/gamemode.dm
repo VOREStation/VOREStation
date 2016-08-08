@@ -68,10 +68,12 @@ var/list/be_special_flags = list(
 #define MODE_COMMANDO "commando"
 #define MODE_DEATHSQUAD "deathsquad"
 #define MODE_ERT "ert"
+#define MODE_TRADE "trader"
 #define MODE_MERCENARY "mercenary"
 #define MODE_NINJA "ninja"
 #define MODE_RAIDER "raider"
 #define MODE_WIZARD "wizard"
+#define MODE_TECHNOMANCER "technomancer"
 #define MODE_CHANGELING "changeling"
 #define MODE_CULTIST "cultist"
 #define MODE_HIGHLANDER "highlander"
@@ -83,7 +85,7 @@ var/list/be_special_flags = list(
 #define MODE_TRAITOR "traitor"
 #define MODE_AUTOTRAITOR "autotraitor"
 
-#define DEFAULT_TELECRYSTAL_AMOUNT 12
+#define DEFAULT_TELECRYSTAL_AMOUNT 120
 
 /////////////////
 ////WIZARD //////

@@ -32,6 +32,7 @@
 
 			user.visible_message("<span class='danger'>\The [user] has taped up \the [H]'s eyes!</span>")
 			H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/blindfold/tape(H), slot_glasses)
+			H.update_inv_glasses()
 
 		else if(user.zone_sel.selecting == O_MOUTH || user.zone_sel.selecting == BP_HEAD)
 			if(!H.organs_by_name[BP_HEAD])
@@ -58,6 +59,7 @@
 			user.visible_message("<span class='danger'>\The [user] has taped up \the [H]'s mouth!</span>")
 
 			H.equip_to_slot_or_del(new /obj/item/clothing/mask/muzzle/tape(H), slot_wear_mask)
+			H.update_inv_wear_mask()
 
 		else if(user.zone_sel.selecting == "r_hand" || user.zone_sel.selecting == "l_hand")
 			var/obj/item/weapon/handcuffs/cable/tape/T = new(user)

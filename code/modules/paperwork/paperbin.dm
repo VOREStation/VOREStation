@@ -2,6 +2,10 @@
 	name = "paper bin"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "paper_bin1"
+	item_icons = list(
+			slot_l_hand_str = 'icons/mob/items/lefthand_material.dmi',
+			slot_r_hand_str = 'icons/mob/items/righthand_material.dmi',
+			)
 	item_state = "sheet-metal"
 	throwforce = 1
 	w_class = 3

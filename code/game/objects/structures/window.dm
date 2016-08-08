@@ -161,6 +161,7 @@
 	if(reinf) tforce *= 0.25
 	if(health - tforce <= 7 && !reinf)
 		anchored = 0
+		update_verbs()
 		update_nearby_icons()
 		step(src, get_dir(AM, src))
 	take_damage(tforce)

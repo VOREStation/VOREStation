@@ -19,8 +19,8 @@
 	var/icon_type = "donut"
 
 /obj/item/weapon/storage/fancy/update_icon(var/itemremoved = 0)
-	var/total_contents = src.contents.len - itemremoved
-	src.icon_state = "[src.icon_type]box[total_contents]"
+	var/total_contents = contents.len - itemremoved
+	icon_state = "[icon_type]box[total_contents]"
 	return
 
 /obj/item/weapon/storage/fancy/examine(mob/user)
@@ -28,11 +28,11 @@
 		return
 
 	if(contents.len <= 0)
-		user << "There are no [src.icon_type]s left in the box."
+		user << "There are no [icon_type]s left in the box."
 	else if(contents.len == 1)
-		user << "There is one [src.icon_type] left in the box."
+		user << "There is one [icon_type] left in the box."
 	else
-		user << "There are [src.contents.len] [src.icon_type]s in the box."
+		user << "There are [contents.len] [icon_type]s in the box."
 
 	return
 
@@ -70,7 +70,6 @@
 	item_state = "candlebox5"
 	throwforce = 2
 	slot_flags = SLOT_BELT
-
 
 /obj/item/weapon/storage/fancy/candle_box/New()
 	..()
@@ -128,7 +127,7 @@
 	desc = "A ubiquitous brand of cigarettes, found in every major spacefaring corporation in the universe. As mild and flavorless as it gets."
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "cigpacket"
-	item_state = "cigpacket"
+	item_state_slots = list(slot_r_hand_str = "cigpacket", slot_l_hand_str = "cigpacket")
 	w_class = 1
 	throwforce = 2
 	slot_flags = SLOT_BELT
@@ -187,13 +186,11 @@
 	name = "\improper DromedaryCo packet"
 	desc = "A packet of six imported DromedaryCo cancer sticks. A label on the packaging reads, \"Wouldn't a slow death make a change?\""
 	icon_state = "Dpacket"
-	item_state = "Dpacket"
 
 /obj/item/weapon/storage/fancy/cigarettes/killthroat
 	name = "\improper AcmeCo packet"
 	desc = "A packet of six AcmeCo cigarettes. For those who somehow want to obtain the record for the most amount of cancerous tumors."
 	icon_state = "Bpacket"
-	item_state = "Bpacket" //Doesn't have an inhand state, but neither does dromedary, so, ya know..
 
 	New()
 		..()
@@ -205,37 +202,31 @@
 	name = "\improper pack of Lucky Stars"
 	desc = "A mellow blend made from synthetic, pod-grown tobacco. The commercial jingle is guaranteed to get stuck in your head."
 	icon_state = "LSpacket"
-	item_state = "Dpacket" //I actually don't mind cig packs not showing up in the hand. whotf doesn't just keep them in their pockets/coats //
 
 /obj/item/weapon/storage/fancy/cigarettes/jerichos
 	name = "\improper pack of Jerichos"
 	desc = "Typically seen dangling from the lips of Martian soldiers and border world hustlers. Tastes like hickory smoke, feels like warm liquid death down your lungs."
 	icon_state = "Jpacket"
-	item_state = "Dpacket"
 
 /obj/item/weapon/storage/fancy/cigarettes/menthols
 	name = "\improper pack of Temperamento Menthols"
 	desc = "With a sharp and natural organic menthol flavor, these Temperamentos are a favorite of NDV crews. Hardly anyone knows they make 'em in non-menthol!"
 	icon_state = "TMpacket"
-	item_state = "Dpacket"
 
 /obj/item/weapon/storage/fancy/cigarettes/carcinomas
 	name = "\improper pack of Carcinoma Angels"
 	desc = "This unknown brand was slated for the chopping block, until they were publicly endorsed by an old Earthling gonzo journalist. The rest is history. They sell a variety for cats, too."
 	icon_state = "CApacket"
-	item_state = "Dpacket"
 
 /obj/item/weapon/storage/fancy/cigarettes/professionals
 	name = "\improper pack of Professional 120s"
 	desc = "Let's face it - if you're smoking these, you're either trying to look upper-class or you're 80 years old. That's the only excuse. They taste disgusting, too."
 	icon_state = "P100packet"
-	item_state = "Dpacket"
 
 /obj/item/weapon/storage/fancy/cigar
 	name = "cigar case"
 	desc = "A case for holding your cigars when you are not smoking them."
 	icon_state = "cigarcase"
-	item_state = "cigarcase"
 	icon = 'icons/obj/cigarettes.dmi'
 	w_class = 1
 	throwforce = 2
@@ -273,7 +264,6 @@
 	storage_slots = 6
 	can_hold = list(/obj/item/weapon/reagent_containers/glass/beaker/vial)
 
-
 /obj/item/weapon/storage/fancy/vials/New()
 	..()
 	for(var/i=1 to 6)
@@ -285,7 +275,7 @@
 	desc = "A locked box for keeping things away from children."
 	icon = 'icons/obj/vialbox.dmi'
 	icon_state = "vialbox0"
-	item_state = "syringe_kit"
+	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
 	max_w_class = 2
 	can_hold = list(/obj/item/weapon/reagent_containers/glass/beaker/vial)
 	max_storage_space = 12 //The sum of the w_classes of all the items in this storage item.
@@ -297,9 +287,9 @@
 	update_icon()
 
 /obj/item/weapon/storage/lockbox/vials/update_icon(var/itemremoved = 0)
-	var/total_contents = src.contents.len - itemremoved
-	src.icon_state = "vialbox[total_contents]"
-	src.overlays.Cut()
+	var/total_contents = contents.len - itemremoved
+	icon_state = "vialbox[total_contents]"
+	overlays.Cut()
 	if (!broken)
 		overlays += image(icon, src, "led[locked]")
 		if(locked)

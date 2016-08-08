@@ -131,6 +131,7 @@
 	prefs.last_id = computer_id			//these are gonna be used for banning
 
 	. = ..()	//calls mob.Login()
+	prefs.sanitize_preferences()
 
 	if(custom_event_msg && custom_event_msg != "")
 		src << "<h1 class='alert'>Custom Event</h1>"
@@ -287,6 +288,7 @@
 		'html/panels.css',
 		'html/images/loading.gif',
 		'html/images/ntlogo.png',
+		'html/images/sglogo.png',
 		'html/images/talisman.png',
 		'icons/pda_icons/pda_atmos.png',
 		'icons/pda_icons/pda_back.png',

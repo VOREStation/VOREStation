@@ -14,7 +14,7 @@
 	icon = 'icons/obj/items.dmi'
 	desc = "A camera film cartridge. Insert it into a camera to reload it."
 	icon_state = "film"
-	item_state = "electropack"
+	item_state = "camera"
 	w_class = 1.0
 
 
@@ -120,7 +120,7 @@ var/global/photo_count = 0
 	icon = 'icons/obj/items.dmi'
 	desc = "A polaroid camera. 10 photos left."
 	icon_state = "camera"
-	item_state = "electropack"
+	item_state = "camera"
 	w_class = 2.0
 	flags = CONDUCT
 	slot_flags = SLOT_BELT

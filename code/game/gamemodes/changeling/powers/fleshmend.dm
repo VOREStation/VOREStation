@@ -3,6 +3,7 @@
 	desc = "Begins a slow rengeration of our form.  Does not effect stuns or chemicals."
 	helptext = "Can be used while unconscious."
 	enhancedtext = "Healing is twice as effective."
+	ability_icon_state = "ling_fleshmend"
 	genomecost = 1
 	verbpath = /mob/proc/changeling_fleshmend
 

@@ -16,7 +16,18 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 500, "glass" = 200)
 	var/mode = 1;
 
+
+/obj/item/device/robotanalyzer/do_surgery(mob/living/M, mob/living/user)
+	if(user.a_intent != I_HELP) //in case it is ever used as a surgery tool
+		return ..()
+	do_scan(M, user) //default surgery behaviour is just to scan as usual
+	return 1
+
+
 /obj/item/device/robotanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
+	do_scan(M, user)
+
+/obj/item/device/robotanalyzer/proc/do_scan(mob/living/M as mob, mob/living/user as mob)
 	if((CLUMSY in user.mutations) && prob(50))
 		user << text("\red You try to analyze the floor's vitals!")
 		for(var/mob/O in viewers(M, null))

@@ -106,7 +106,6 @@
 	icon = 'icons/obj/gun.dmi'
 	item_icons = null
 	icon_state = "staffofchange"
-	item_state = "staffofchange"
 	fire_sound = 'sound/weapons/emitter.ogg'
 	flags =  CONDUCT
 	slot_flags = SLOT_BACK
@@ -142,7 +141,6 @@ obj/item/weapon/gun/energy/staff/focus
 	desc = "An artefact that channels the will of the user into destructive bolts of force. If you aren't careful with it, you might poke someone's brain out."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "focus"
-	item_state = "focus"
 	slot_flags = SLOT_BACK
 	projectile_type = /obj/item/projectile/forcebolt
 	/*
