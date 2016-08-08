@@ -24,3 +24,10 @@
 		if(prob(4))
 			spawn owner.emote("me", 1, "gasps for air!")
 			owner.losebreath += 15
+
+
+/obj/item/organ/internal/lungs/proc/rupture()
+	var/obj/item/organ/external/parent = owner.get_organ(parent_organ)
+	if(istype(parent))
+		owner.custom_pain("You feel a stabbing pain in your [parent.name]!", 1)
+	parent.bruise()
