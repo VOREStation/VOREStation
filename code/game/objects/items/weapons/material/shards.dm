@@ -8,8 +8,8 @@
 	sharp = 1
 	edge = 1
 	w_class = 2
-	force_divisor = 0.2 // 6 with hardness 30 (glass)
-	thrown_force_divisor = 0.4 // 4 with weight 15 (glass)
+	force_divisor = 0.25 // 7.5 with hardness 30 (glass)
+	thrown_force_divisor = 0.5
 	item_state = "shard-glass"
 	attack_verb = list("stabbed", "slashed", "sliced", "cut")
 	default_material = "glass"
@@ -87,7 +87,7 @@
 				if(affecting)
 					if(affecting.robotic >= ORGAN_ROBOT)
 						return
-					if(affecting.take_damage(5, 0))
+					if(affecting.take_damage(force, 0))
 						H.UpdateDamageIcon()
 					H.updatehealth()
 					if(affecting.can_feel_pain())

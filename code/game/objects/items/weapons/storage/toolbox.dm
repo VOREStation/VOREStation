@@ -5,7 +5,7 @@
 	icon_state = "red"
 	item_state_slots = list(slot_r_hand_str = "toolbox_red", slot_l_hand_str = "toolbox_red")
 	flags = CONDUCT
-	force = 5
+	force = 10
 	throwforce = 10
 	throw_speed = 1
 	throw_range = 7
@@ -67,7 +67,7 @@
 	icon_state = "syndicate"
 	item_state_slots = list(slot_r_hand_str = "toolbox_syndi", slot_l_hand_str = "toolbox_syndi")
 	origin_tech = list(TECH_COMBAT = 1, TECH_ILLEGAL = 1)
-	force = 7.0
+	force = 14
 
 /obj/item/weapon/storage/toolbox/syndicate/New()
 	..()

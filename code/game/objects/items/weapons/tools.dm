@@ -21,9 +21,9 @@
 	icon_state = "wrench"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	force = 5.0
-	throwforce = 7.0
-	w_class = 2.0
+	force = 6
+	throwforce = 7
+	w_class = 2
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 	matter = list(DEFAULT_WALL_MATERIAL = 150)
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
@@ -39,9 +39,9 @@
 	icon_state = "screwdriver"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT | SLOT_EARS
-	force = 5.0
-	w_class = 1.0
-	throwforce = 5.0
+	force = 6
+	w_class = 1
+	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
 	matter = list(DEFAULT_WALL_MATERIAL = 75)
@@ -100,7 +100,7 @@
 	icon_state = "cutters"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	force = 6.0
+	force = 6
 	throw_speed = 2
 	throw_range = 9
 	w_class = 2.0
@@ -411,11 +411,11 @@
 	icon_state = "crowbar"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	force = 5.0
-	throwforce = 7.0
+	force = 6
+	throwforce = 7
 	pry = 1
 	item_state = "crowbar"
-	w_class = 2.0
+	w_class = 2
 	origin_tech = list(TECH_ENGINEERING = 1)
 	matter = list(DEFAULT_WALL_MATERIAL = 50)
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")

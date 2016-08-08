@@ -250,7 +250,7 @@
 
 					var/obj/item/weapon/paper/P = new(loc)
 					if (mode)
-						P.name = text("crew manifest ([])", worldtime2text())
+						P.name = text("crew manifest ([])", stationtime2text())
 						P.info = {"<h4>Crew Manifest</h4>
 							<br>
 							[data_core ? data_core.get_manifest(0) : ""]

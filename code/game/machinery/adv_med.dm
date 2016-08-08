@@ -410,7 +410,7 @@
 			visible_message("<span class='notice'>\The [src] rattles and prints out a sheet of paper.</span>")
 			var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(loc)
 			P.info = "<CENTER><B>Body Scan - [href_list["name"]]</B></CENTER><BR>"
-			P.info += "<b>Time of scan:</b> [worldtime2text(world.time)]<br><br>"
+			P.info += "<b>Time of scan:</b> [worldtime2stationtime(world.time)]<br><br>"
 			P.info += "[printing_text]"
 			P.info += "<br><br><b>Notes:</b><br>"
 			P.name = "Body Scan - [href_list["name"]]"
