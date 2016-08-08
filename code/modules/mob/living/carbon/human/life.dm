@@ -343,6 +343,9 @@
 		else
 			adjustOxyLoss(HUMAN_CRIT_MAX_OXYLOSS)
 
+		if(prob(5))
+			rupture_lung()
+
 		oxygen_alert = max(oxygen_alert, 1)
 
 		return 0
