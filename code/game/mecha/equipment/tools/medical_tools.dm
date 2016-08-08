@@ -6,7 +6,7 @@
 	origin_tech = list(TECH_DATA = 2, TECH_BIO = 3)
 	energy_drain = 20
 	range = MELEE
-	equip_cooldown = 20
+	equip_cooldown = 50
 	var/mob/living/carbon/occupant = null
 	var/datum/global_iterator/pr_mech_sleeper
 	var/inject_amount = 10

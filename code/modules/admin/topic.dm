@@ -892,9 +892,9 @@
 		if (ticker && ticker.mode)
 			return alert(usr, "The game has already started.", null, null, null, null)
 		master_mode = href_list["c_mode2"]
-		log_admin("[key_name(usr)] set the mode as [master_mode].")
-		message_admins("\blue [key_name_admin(usr)] set the mode as [master_mode].", 1)
-		world << "\blue <b>The mode is now: [master_mode]</b>"
+		log_admin("[key_name(usr)] set the mode as [config.mode_names[master_mode]].")
+		message_admins("\blue [key_name_admin(usr)] set the mode as [config.mode_names[master_mode]].", 1)
+		world << "\blue <b>The mode is now: [config.mode_names[master_mode]]</b>"
 		Game() // updates the main game menu
 		world.save_mode(master_mode)
 		.(href, list("c_mode"=1))

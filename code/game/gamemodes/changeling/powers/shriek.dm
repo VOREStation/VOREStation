@@ -3,6 +3,7 @@
 	desc = "Our lungs and vocal chords shift, allowing us to briefly emit a noise that deafens and confuses the weak-minded biologicals and synthetics."
 	helptext = "Lights are blown, organics are disoriented, and synthetics act as if they were flashed."
 	enhancedtext = "Range is doubled."
+	ability_icon_state = "ling_resonant_shriek"
 	genomecost = 2
 	verbpath = /mob/proc/changeling_resonant_shriek
 
@@ -11,6 +12,7 @@
 	desc = "We shift our vocal cords to release a high-frequency sound that overloads nearby electronics."
 	helptext = "Creates a moderate sized EMP."
 	enhancedtext = "Range is doubled."
+	ability_icon_state = "ling_dissonant_shriek"
 	genomecost = 2
 	verbpath = /mob/proc/changeling_dissonant_shriek
 

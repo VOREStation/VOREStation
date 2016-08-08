@@ -4,7 +4,6 @@
 	desc = "A stainless steel-plated carrycase for all your forensic needs. Feels heavy."
 	icon = 'icons/obj/forensics.dmi'
 	icon_state = "case"
-	item_state = "case"
 	storage_slots = 14
 
 /obj/item/weapon/storage/briefcase/crimekit/New()

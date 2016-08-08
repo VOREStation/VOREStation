@@ -42,6 +42,18 @@
 /datum/reagent/drink/milkshake
 	price_tag = 2
 
+/datum/reagent/drink/roy_rogers
+	price_tag = 2
+
+/datum/reagent/drink/shirley_temple
+	price_tag = 2
+
+/datum/reagent/drink/arnold_palmer
+	price_tag = 2
+
+/datum/reagent/drink/collins_mix
+	price_tag = 2
+
 
 // Beer //
 
@@ -320,6 +332,7 @@
 
 /datum/reagent/ethanol/bananahonk
 	price_tag = 3
+
 
 
 // From the machine //

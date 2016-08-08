@@ -38,3 +38,6 @@
 
 /obj/item/weapon/material/twohanded/fireaxe/foam/New(var/newloc)
 	..(newloc,"foam")
+
+/obj/item/weapon/material/twohanded/fireaxe/foam/afterattack()
+	return

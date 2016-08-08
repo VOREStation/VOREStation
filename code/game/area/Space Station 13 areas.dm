@@ -351,6 +351,14 @@ area/space/atmosalert()
 	name = "\improper Administration Shuttle"
 	icon_state = "shuttlered2"
 
+/area/shuttle/trade/centcom
+	name = "\improper Trade Shuttle Centcom"
+	icon_state = "shuttlered"
+
+/area/shuttle/trade/station
+	name = "\improper Trade Shuttle"
+	icon_state = "shuttlered"
+
 /area/shuttle/thunderdome
 	name = "honk"
 

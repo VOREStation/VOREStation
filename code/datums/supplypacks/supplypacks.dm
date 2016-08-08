@@ -28,7 +28,6 @@ var/list/all_supply_groups = list("Atmospherics",
 	var/name = null
 	var/list/contains = list()
 	var/manifest = ""
-	var/amount = null
 	var/cost = null
 	var/containertype = null
 	var/containername = null

@@ -102,6 +102,8 @@
 
 /obj/item/weapon/rig/eva/equipped
 
+	req_access = list(access_engine)
+
 	initial_modules = list(
 		/obj/item/rig_module/device/plasmacutter,
 		/obj/item/rig_module/maneuvering_jets,
@@ -199,6 +201,8 @@
 	req_one_access = list()
 
 /obj/item/weapon/rig/medical/equipped
+
+	req_access = list(access_medical)
 
 	initial_modules = list(
 		/obj/item/rig_module/chem_dispenser/injector,

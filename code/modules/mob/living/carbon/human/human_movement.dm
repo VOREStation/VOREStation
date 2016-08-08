@@ -10,8 +10,11 @@
 	if(embedded_flag)
 		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.
 
+	if(force_max_speed)
+		return -3 // Returning -1 will actually result in a slowdown for Teshari.
+
 	if(CE_SPEEDBOOST in chem_effects)
-		return -1
+		return -3
 
 	var/health_deficiency = (maxHealth - health)
 	if(health_deficiency >= 40) tally += (health_deficiency / 25)
@@ -31,6 +34,11 @@
 	// This is done seperately to disallow negative numbers.
 	for(var/obj/item/I in list(r_hand, l_hand) )
 		tally += max(I.slowdown, 0)
+
+	// Dragging heavy objects will also slow you down, similar to above.
+	if(pulling && istype(pulling, /obj/item))
+		var/obj/item/pulled = pulling
+		tally += max(pulled.slowdown, 0)
 
 	if(istype(buckled, /obj/structure/bed/chair/wheelchair))
 		for(var/organ_name in list(BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM))

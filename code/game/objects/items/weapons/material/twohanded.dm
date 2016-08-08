@@ -93,6 +93,22 @@
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	applies_material_colour = 0
 
+/obj/item/weapon/material/twohanded/fireaxe/update_held_icon()
+	var/mob/living/M = loc
+	if(istype(M) && !issmall(M) && M.item_is_in_hands(src) && !M.hands_are_full())
+		wielded = 1
+		pry = 1
+		force = force_wielded
+		name = "[base_name] (wielded)"
+		update_icon()
+	else
+		wielded = 0
+		pry = 0
+		force = force_unwielded
+		name = "[base_name]"
+	update_icon()
+	..()
+
 /obj/item/weapon/material/twohanded/fireaxe/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
 	if(!proximity) return
 	..()

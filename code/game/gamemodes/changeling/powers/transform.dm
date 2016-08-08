@@ -1,6 +1,7 @@
 /datum/power/changeling/transform
 	name = "Transform"
 	desc = "We take on the apperance and voice of one we have absorbed."
+	ability_icon_state = "ling_transform"
 	genomecost = 0
 	verbpath = /mob/proc/changeling_transform
 

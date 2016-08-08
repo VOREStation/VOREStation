@@ -18,6 +18,7 @@
 	name = "ablative leg guards"
 	desc = "These will protect your legs and feet from energy weapons."
 	icon_state = "leg_guards_laser"
+	item_state_slots = list(slot_r_hand_str = "jackboots", slot_l_hand_str = "jackboots")
 	siemens_coefficient = 0.1
 	armor = list(melee = 10, bullet = 10, laser = 80, energy = 50, bomb = 0, bio = 0, rad = 0)
 
@@ -25,6 +26,7 @@
 	name = "bullet resistant leg guards"
 	desc = "These will protect your legs and feet from ballistic weapons."
 	icon_state = "leg_guards_bullet"
+	item_state_slots = list(slot_r_hand_str = "jackboots", slot_l_hand_str = "jackboots")
 	siemens_coefficient = 0.7
 	armor = list(melee = 10, bullet = 80, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
 
@@ -32,6 +34,7 @@
 	name = "riot leg guards"
 	desc = "These will protect your legs and feet from close combat weapons."
 	icon_state = "leg_guards_riot"
+	item_state_slots = list(slot_r_hand_str = "jackboots", slot_l_hand_str = "jackboots")
 	siemens_coefficient = 0.5
 	armor = list(melee = 80, bullet = 10, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
 
@@ -39,5 +42,6 @@
 	name = "combat leg guards"
 	desc = "These will protect your legs and feet from a variety of weapons."
 	icon_state = "leg_guards_combat"
+	item_state_slots = list(slot_r_hand_str = "jackboots", slot_l_hand_str = "jackboots")
 	siemens_coefficient = 0.6
 	armor = list(melee = 50, bullet = 50, laser = 50, energy = 30, bomb = 30, bio = 0, rad = 0)

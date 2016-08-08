@@ -31,6 +31,7 @@ var/datum/uplink/uplink = new()
 	var/item_cost = 0
 	var/datum/uplink_category/category		// Item category
 	var/list/datum/antagonist/antag_roles	// Antag roles this item is displayed to. If empty, display to all.
+	var/blacklisted = 0
 
 /datum/uplink_item/item
 	var/path = null
@@ -166,6 +167,18 @@ datum/uplink_item/dd_SortValue()
 	var/list/bought_items = list()
 	while(remaining_TC)
 		var/datum/uplink_item/I = default_uplink_selection.get_random_item(remaining_TC, U, bought_items)
+		if(!I)
+			break
+		bought_items += I
+		remaining_TC -= I.cost(remaining_TC, U)
+
+	return bought_items
+
+/proc/get_surplus_items(var/obj/item/device/uplink/U, var/remaining_TC, var/loc)
+	var/list/bought_items = list()
+	var/override = 1
+	while(remaining_TC)
+		var/datum/uplink_item/I = all_uplink_selection.get_random_item(remaining_TC, U, bought_items, override)
 		if(!I)
 			break
 		bought_items += I

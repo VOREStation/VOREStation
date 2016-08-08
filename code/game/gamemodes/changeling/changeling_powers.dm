@@ -79,6 +79,16 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 			if(lesser_form && !P.allowduringlesserform)	continue
 			if(!(P in src.verbs))
 				src.verbs += P.verbpath
+			if(P.make_hud_button)
+				if(!src.ability_master)
+					src.ability_master = new /obj/screen/movable/ability_master(src)
+				src.ability_master.add_ling_ability(
+					object_given = src,
+					verb_given = P.verbpath,
+					name_given = P.name,
+					ability_icon_given = P.ability_icon_state,
+					arguments = list()
+					)
 
 	for(var/language in languages)
 		mind.changeling.absorbed_languages |= language
@@ -96,6 +106,9 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	for(var/datum/power/changeling/P in mind.changeling.purchased_powers)
 		if(P.isVerb)
 			verbs -= P.verbpath
+			var/obj/screen/ability/verb_based/changeling/C = ability_master.get_ability_by_proc_ref(P.verbpath)
+			if(C)
+				ability_master.remove_ability(C)
 
 
 //Helper proc. Does all the checks and stuff for us to avoid copypasta
