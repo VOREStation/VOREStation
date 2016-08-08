@@ -643,3 +643,66 @@
 	icon_state = "tent_s"
 
 
+/*
+/////////////////////////////////////
+/  =-----------------------------=  /
+/  == Body Markings Definitions ==  /
+/  =-----------------------------=  /
+/////////////////////////////////////
+*/
+
+// uses underwear top layer which has sort order 1 -> It'll be overlapped by undershirts and such. May look odd with a bra tho
+/datum/sprite_accessory/body_markings
+	name = "It's like you're wearing nothing at all!"
+	icon = 'icons/mob/vore/body_markings_vr.dmi'
+	do_colouration = 1
+	var/color_blend_mode = ICON_ADD
+	var/extra_overlay
+
+//Vulpkanin patterns
+
+/datum/sprite_accessory/body_markings/vulp_blaze
+	name = "Blaze"
+	icon_state = "vulp_facial_blaze"
+	species_allowed = list("Vulpkanin")
+
+/datum/sprite_accessory/body_markings/vulp_vulpine
+	name = "Vulpine"
+	icon_state = "vulp_fox"
+	species_allowed = list("Vulpkanin")
+
+/datum/sprite_accessory/body_markings/vulp_earfluff
+	name = "Earfluff"
+	icon_state = "vulp_facial_earfluff"
+	species_allowed = list("Vulpkanin")
+
+/datum/sprite_accessory/body_markings/vulp_mask
+	name = "Mask"
+	icon_state = "vulp_facial_mask"
+	species_allowed = list("Vulpkanin")
+
+/datum/sprite_accessory/body_markings/vulp_patch
+	name = "Patch"
+	icon_state = "vulp_facial_patch"
+	species_allowed = list("Vulpkanin")
+
+/datum/sprite_accessory/body_markings/vulp_ruff
+	name = "Ruff"
+	icon_state = "vulp_facial_ruff"
+	species_allowed = list("Vulpkanin")
+
+/datum/sprite_accessory/body_markings/vulp_kita
+	name = "Kita"
+	icon_state = "vulp_facial_kita"
+	species_allowed = list("Vulpkanin")
+
+/datum/sprite_accessory/body_markings/vulp_swift
+	name = "Swift"
+	icon_state = "vulp_facial_swift"
+	species_allowed = list("Vulpkanin")
+
+/datum/sprite_accessory/body_markings/vulpkanin
+	name = "Default Vulpkanin skin"
+	icon_state = "default"
+	icon = 'icons/mob/human_races/r_vulpkanin.dmi'
+	species_allowed = list("Vulpkanin")

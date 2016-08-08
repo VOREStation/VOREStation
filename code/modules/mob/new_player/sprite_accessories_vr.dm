@@ -245,7 +245,7 @@
 		icon_state = "spike"
 		species_allowed = list("Vulpkanin")
 		gender = NEUTER
-
+/*
 /datum/sprite_accessory/facial_hair
 
 	vulp_blaze
@@ -309,3 +309,4 @@
 		icon_state = "default"
 		icon = 'icons/mob/human_races/r_vulpkanin.dmi'
 		species_allowed = list("Vulpkanin")
+*/

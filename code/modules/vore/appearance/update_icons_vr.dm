@@ -34,3 +34,14 @@
 		else
 			return image(tail_s)
 	return null
+
+/mob/living/carbon/human/proc/get_markings_overlay()
+	if(body_markings)
+		var/icon/markings_s = new/icon("icon" = body_markings.icon, "icon_state" = body_markings.icon_state)
+		if(body_markings.do_colouration)
+			markings_s.Blend(rgb(src.r_markings, src.g_markings, src.b_markings)) //, body_markings.color_blend_mode)
+//		if(body_markings.extra_overlay)
+//			var/icon/overlay = new/icon("icon" = body_markings.icon, "icon_state" = body_markings.extra_overlay)
+//			markings_s.Blend(overlay, ICON_OVERLAY)
+		return markings_s
+	return null

@@ -18,3 +18,8 @@
 
 	// Custom Species Name
 	var/custom_species
+
+	var/datum/sprite_accessory/body_markings = null
+	var/r_markings = 30
+	var/g_markings = 30
+	var/b_markings = 30
