@@ -39,6 +39,8 @@ var/list/technomancer_belongings = list()
 	for(var/mob/living/L in mob_list)
 		if(!is_ally(L) && !can_track_non_allies)
 			continue
+		if(L == user)
+			continue
 		mob_choices += L
 	var/choice = input(user,"Decide what or who to track.","Tracking") as null|anything in object_choices + mob_choices
 	if(choice)
@@ -58,9 +60,9 @@ var/list/technomancer_belongings = list()
 		icon_state = "track_unknown"
 
 	else
-		set_dir(get_dir(src,tracked))
+		set_dir(get_dir(src,get_turf(tracked)))
 
-		switch(get_dist(src,tracked))
+		switch(get_dist(src,get_turf(tracked)))
 			if(0)
 				icon_state = "track_direct"
 			if(1 to 8)

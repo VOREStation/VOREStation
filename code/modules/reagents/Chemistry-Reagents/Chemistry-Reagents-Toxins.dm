@@ -133,7 +133,7 @@
 	M.adjustOxyLoss(3 * removed)
 	M.Weaken(10)
 	M.silent = max(M.silent, 10)
-	M.tod = worldtime2text()
+	M.tod = stationtime2text()
 
 /datum/reagent/toxin/zombiepowder/Destroy()
 	if(holder && holder.my_atom && ismob(holder.my_atom))

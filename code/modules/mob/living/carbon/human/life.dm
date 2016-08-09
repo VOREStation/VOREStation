@@ -4,9 +4,9 @@
 #define HUMAN_MAX_OXYLOSS 1 //Defines how much oxyloss humans can get per tick. A tile with no air at all (such as space) applies this value, otherwise it's a percentage of it.
 #define HUMAN_CRIT_MAX_OXYLOSS ( 2.0 / 6) //The amount of damage you'll get when in critical condition. We want this to be a 5 minute deal = 300s. There are 50HP to get through, so (1/6)*last_tick_duration per second. Breaths however only happen every 4 ticks. last_tick_duration = ~2.0 on average
 
-#define HEAT_DAMAGE_LEVEL_1 2 //Amount of damage applied when your body temperature just passes the 360.15k safety point
-#define HEAT_DAMAGE_LEVEL_2 4 //Amount of damage applied when your body temperature passes the 400K point
-#define HEAT_DAMAGE_LEVEL_3 8 //Amount of damage applied when your body temperature passes the 1000K point
+#define HEAT_DAMAGE_LEVEL_1 5 //Amount of damage applied when your body temperature just passes the 360.15k safety point
+#define HEAT_DAMAGE_LEVEL_2 10 //Amount of damage applied when your body temperature passes the 400K point
+#define HEAT_DAMAGE_LEVEL_3 20 //Amount of damage applied when your body temperature passes the 1000K point
 
 #define COLD_DAMAGE_LEVEL_1 0.5 //Amount of damage applied when your body temperature just passes the 260.15k safety point
 #define COLD_DAMAGE_LEVEL_2 1.5 //Amount of damage applied when your body temperature passes the 200K point
@@ -325,6 +325,11 @@
 
 /mob/living/carbon/human/handle_breath(datum/gas_mixture/breath)
 	if(status_flags & GODMODE)
+		return
+
+	if(does_not_breathe)
+		failed_last_breath = 0
+		adjustOxyLoss(-5)
 		return
 
 	if(!breath || (breath.total_moles == 0) || suiciding)
@@ -1184,10 +1189,10 @@
 //				if(resting || lying || sleeping)		rest.icon_state = "rest1"
 //				else									rest.icon_state = "rest0"
 		if(toxin)
-			if(hal_screwyhud == 4 || phoron_alert)	toxin.icon_state = "tox1"
+			if(hal_screwyhud == 4 || (phoron_alert && !does_not_breathe))	toxin.icon_state = "tox1"
 			else									toxin.icon_state = "tox0"
 		if(oxygen)
-			if(hal_screwyhud == 3 || oxygen_alert)	oxygen.icon_state = "oxy1"
+			if(hal_screwyhud == 3 || (oxygen_alert && !does_not_breathe))	oxygen.icon_state = "oxy1"
 			else									oxygen.icon_state = "oxy0"
 		if(fire)
 			if(fire_alert)							fire.icon_state = "fire[fire_alert]" //fire_alert is either 0 if no alert, 1 for cold and 2 for heat.

@@ -2,7 +2,7 @@
 	name = "Organic Space Suit"
 	desc = "We grow an organic suit to protect ourselves from space exposure."
 	helptext = "To remove the suit, use the ability again."
-	ability_icon_state = "ling_space_suit"
+	ability_icon_state = "lingspacesuit"
 	genomecost = 1
 	verbpath = /mob/proc/changeling_spacesuit
 
@@ -17,7 +17,7 @@
 	name = "Chitinous Spacearmor"
 	desc = "We turn our skin into tough chitin to protect us from damage and space exposure."
 	helptext = "To remove the armor, use the ability again."
-	ability_icon_state = "ling_armor"
+	ability_icon_state = "lingarmor"
 	genomecost = 3
 	verbpath = /mob/proc/changeling_spacearmor
 
@@ -34,7 +34,6 @@
 /obj/item/clothing/suit/space/changeling
 	name = "flesh mass"
 	icon_state = "lingspacesuit"
-	item_state = "lingspacehelmet"
 	desc = "A huge, bulky mass of pressure and temperature-resistant organic tissue, evolved to facilitate space travel."
 	flags = STOPPRESSUREDAMAGE			 //Not THICKMATERIAL because it's organic tissue, so if somebody tries to inject something into it,
 										//it still ends up in your blood. (also balance but muh fluff)
@@ -55,7 +54,6 @@
 /obj/item/clothing/head/helmet/space/changeling
 	name = "flesh mass"
 	icon_state = "lingspacehelmet"
-	item_state = "lingspacehelmet"
 	desc = "A covering of pressure and temperature-resistant organic tissue with a glass-like chitin front."
 	flags = BLOCKHAIR | STOPPRESSUREDAMAGE //Again, no THICKMATERIAL.
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)

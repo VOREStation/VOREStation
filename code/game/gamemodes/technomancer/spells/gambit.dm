@@ -6,11 +6,13 @@
 	obj_path = /obj/item/weapon/spell/gambit
 
 /var/global/list/all_technomancer_gambit_spells = typesof(/obj/item/weapon/spell) - list(
+	/obj/item/weapon/spell,
 	/obj/item/weapon/spell/gambit,
 	/obj/item/weapon/spell/projectile,
 	/obj/item/weapon/spell/aura,
 	/obj/item/weapon/spell/insert,
-	/obj/item/weapon/spell/spawner)
+	/obj/item/weapon/spell/spawner,
+	/obj/item/weapon/spell/summon)
 
 /obj/item/weapon/spell/gambit
 	name = "gambit"

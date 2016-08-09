@@ -27,6 +27,7 @@
 			src << "You can't commit suicide whilst restrained! ((You can type Ghost instead however.))"
 			return
 		suiciding = 1
+		does_not_breathe = 0			//Prevents ling-suicide zombies, or something
 		var/obj/item/held_item = get_active_hand()
 		if(held_item)
 			var/damagetype = held_item.suicide_act(src)

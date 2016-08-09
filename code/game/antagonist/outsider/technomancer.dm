@@ -41,7 +41,9 @@ var/datum/antagonist/technomancer/technomancers
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/weapon/disposable_teleporter/free(technomancer_mob), slot_r_store)
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/weapon/technomancer_catalog(technomancer_mob), slot_l_store)
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/device/radio/headset(technomancer_mob), slot_l_ear)
-	technomancer_mob.equip_to_slot_or_del(new /obj/item/weapon/technomancer_core(technomancer_mob), slot_back)
+	var/obj/item/weapon/technomancer_core/core = new /obj/item/weapon/technomancer_core(technomancer_mob)
+	technomancer_mob.equip_to_slot_or_del(core, slot_back)
+	technomancer_belongings.Add(core) // So it can be Tracked.
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/device/flashlight(technomancer_mob), slot_belt)
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(technomancer_mob), slot_shoes)
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/clothing/head/technomancer/master(technomancer_mob), slot_head)
@@ -59,7 +61,9 @@ var/datum/antagonist/technomancer/technomancers
 	technomancer_mob.equip_to_slot_or_del(catalog, slot_l_store)
 
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/device/radio/headset(technomancer_mob), slot_l_ear)
-	technomancer_mob.equip_to_slot_or_del(new /obj/item/weapon/technomancer_core(technomancer_mob), slot_back)
+	var/obj/item/weapon/technomancer_core/core = new /obj/item/weapon/technomancer_core(technomancer_mob)
+	technomancer_mob.equip_to_slot_or_del(core, slot_back)
+	technomancer_belongings.Add(core) // So it can be Tracked.
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/device/flashlight(technomancer_mob), slot_belt)
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(technomancer_mob), slot_shoes)
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/clothing/head/technomancer/apprentice(technomancer_mob), slot_head)

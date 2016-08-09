@@ -103,11 +103,11 @@
 	min_age = 17
 	max_age = 80
 
-	blurb = "The Tajaran race is a species of feline-like bipeds hailing from the planet of Ahdomai in the \
-	S'randarr system. They have been brought up into the space age by the Humans and Skrell, and have been \
-	influenced heavily by their long history of Slavemaster rule. They have a structured, clan-influenced way \
-	of family and politics. They prefer colder environments, and speak a variety of languages, mostly Siik'Maas, \
-	using unique inflections their mouths form."
+	blurb = "The Tajaran are a mammalian species resembling roughly felines, hailing from Meralar in the Rarkajar system. \
+	While reaching to the stars independently from outside influences, the humans engaged them in peaceful trade contact \
+	and have accelerated the fledgling culture into the interstellar age. Their history is full of war and highly fractious \
+	governments, something that permeates even to today's times. They prefer colder, tundra-like climates, much like their \
+	home worlds and speak a variety of languages, especially Siik and Akhani."
 
 	cold_level_1 = 200 //Default 260
 	cold_level_2 = 140 //Default 200

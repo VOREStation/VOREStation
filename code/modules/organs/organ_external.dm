@@ -474,6 +474,11 @@ This function completely restores a damaged organ to perfect condition.
 		wounds += I
 		owner.custom_pain("You feel something rip in your [name]!", 1)
 
+//Burn damage can cause fluid loss due to blistering and cook-off
+	if((damage > 5 || damage + burn_dam >= 15) && type == BURN && (robotic < ORGAN_ROBOT))
+		var/fluid_loss = (damage/(owner.maxHealth - config.health_threshold_dead)) * owner.species.blood_volume*(1 - BLOOD_VOLUME_SURVIVE/100)
+		owner.remove_blood(fluid_loss)
+
 	// first check whether we can widen an existing wound
 	if(wounds.len > 0 && prob(max(50+(number_wounds-1)*10,90)))
 		if((type == CUT || type == BRUISE) && damage >= 5)
@@ -733,7 +738,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			else
 				brute_dam += W.damage
 
-		if(!(robotic >= ORGAN_ROBOT) && W.bleeding() && (H && !H.should_have_organ(O_HEART)))
+		if(!(robotic >= ORGAN_ROBOT) && W.bleeding() && (H && H.should_have_organ(O_HEART)))
 			W.bleed_timer--
 			status |= ORGAN_BLEEDING
 

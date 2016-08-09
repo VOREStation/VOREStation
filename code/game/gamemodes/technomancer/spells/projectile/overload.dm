@@ -22,6 +22,7 @@
 	icon_state = "bluespace"
 //	nodamage = 1
 	damage_type = BURN
+	armor_penetration = 100
 
 /obj/item/weapon/spell/projectile/overload/on_ranged_cast(atom/hit_atom, mob/living/user)
 	energy_cost_per_shot = round(core.max_energy * 0.15)
