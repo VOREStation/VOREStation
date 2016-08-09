@@ -2,14 +2,12 @@
 /datum/gear/suit/zhan_furs
 	display_name = "Zhan-Khazan furs (Tajara)"
 	path = /obj/item/clothing/suit/tajaran/furs
-	whitelisted = "Tajara"
 	sort_category = "Xenowear"
 
 /datum/gear/suit/unathi_mantle
 	display_name = "hide mantle (Unathi)"
 	path = /obj/item/clothing/suit/unathi/mantle
 	cost = 1
-	whitelisted = "Unathi"
 	sort_category = "Xenowear"
 
 /datum/gear/ears/skrell/chains	//Chains
@@ -25,7 +23,7 @@
 		var/obj/item/clothing/ears/skrell/chain/chain = chain_style
 		chaintypes[initial(chain.name)] = chain
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(chaintypes))
-	
+
 /datum/gear/ears/skrell/bands
 	display_name = "headtail band selection (Skrell)"
 	path = /obj/item/clothing/ears/skrell/band
@@ -39,7 +37,7 @@
 		var/obj/item/clothing/ears/skrell/band/band = band_style
 		bandtypes[initial(band.name)] = band
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(bandtypes))
-	
+
 /datum/gear/ears/skrell/cloth/male
 	display_name = "male headtail cloth selection (Skrell)"
 	path = /obj/item/clothing/ears/skrell/cloth_male
@@ -73,17 +71,17 @@
 	path = /obj/item/clothing/ears/skrell/colored/band
 	sort_category = "Xenowear"
 	whitelisted = "Skrell"
-	
+
 /datum/gear/ears/skrell/colored/band/New()
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)
-	
+
 /datum/gear/ears/skrell/colored/chain
 	display_name = "Colored chain (Skrell)"
 	path = /obj/item/clothing/ears/skrell/colored/chain
 	sort_category = "Xenowear"
 	whitelisted = "Skrell"
-	
+
 /datum/gear/ears/skrell/colored/chain/New()
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)

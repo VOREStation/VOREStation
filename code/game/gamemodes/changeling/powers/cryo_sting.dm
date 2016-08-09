@@ -4,6 +4,7 @@
 	helptext = "Does not provide a warning to the victim, though they will likely realize they are suddenly freezing.  Has \
 	a three minute cooldown between uses."
 	enhancedtext = "Increases the amount of chemicals injected."
+	ability_icon_state = "ling_sting_cryo"
 	genomecost = 1
 	verbpath = /mob/proc/changeling_cryo_sting
 

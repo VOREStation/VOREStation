@@ -4,6 +4,7 @@
 	implicate ourselves."
 	helptext = "The toxin takes effect in about two minutes.  The sting has a three minute cooldown between uses."
 	enhancedtext = "The toxic damage is doubled."
+	ability_icon_state = "ling_sting_del_toxin"
 	genomecost = 1
 	verbpath = /mob/proc/changeling_delayed_toxic_sting
 

@@ -167,7 +167,6 @@
 	desc = "A big bag of flour. Good for baking!"
 	icon = 'icons/obj/food.dmi'
 	icon_state = "flour"
-	item_state = "flour"
 
 /obj/item/weapon/reagent_containers/food/condiment/flour/on_reagent_change()
 	return

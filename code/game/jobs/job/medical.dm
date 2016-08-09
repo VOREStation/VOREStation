@@ -116,6 +116,7 @@
 	minimal_access = list(access_medical, access_medical_equip, access_chemistry)
 	alt_titles = list("Pharmacist")
 
+	minimal_player_age = 3
 
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0

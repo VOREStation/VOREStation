@@ -107,6 +107,8 @@
 	w_class = 3
 	caliber = ".45"
 	silenced = 1
+	fire_delay = 1
+	recoil = 0
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/c45m

@@ -76,7 +76,7 @@
 			stat("Game Mode:", "Secret")
 		else
 			if(ticker.hide_mode == 0)
-				stat("Game Mode:", "[master_mode]") // Old setting for showing the game mode
+				stat("Game Mode:", "[config.mode_names[master_mode]]") // Old setting for showing the game mode
 
 		if(ticker.current_state == GAME_STATE_PREGAME)
 			stat("Time To Start:", "[ticker.pregame_timeleft][round_progressing ? "" : " (DELAYED)"]")
@@ -172,15 +172,14 @@
 			usr << "<span class='danger'>The station is currently exploding. Joining would go poorly.</span>"
 			return
 
-		if(client.prefs.species != "Human")
-			if(!is_alien_whitelisted(src, client.prefs.species) && config.usealienwhitelist)
-				src << alert("You are currently not whitelisted to play [client.prefs.species].")
-				return 0
+		if(!is_alien_whitelisted(src, all_species[client.prefs.species]))
+			src << alert("You are currently not whitelisted to play [client.prefs.species].")
+			return 0
 
-			var/datum/species/S = all_species[client.prefs.species]
-			if(!(S.spawn_flags & SPECIES_CAN_JOIN))
-				src << alert("Your current species, [client.prefs.species], is not available for play on the station.")
-				return 0
+		var/datum/species/S = all_species[client.prefs.species]
+		if(!(S.spawn_flags & SPECIES_CAN_JOIN))
+			src << alert("Your current species, [client.prefs.species], is not available for play on the station.")
+			return 0
 
 		AttemptLateSpawn(href_list["SelectedJob"],client.prefs.spawnpoint)
 		return
@@ -410,20 +409,13 @@
 
 	if(chosen_species && use_species_name)
 		// Have to recheck admin due to no usr at roundstart. Latejoins are fine though.
-		if(is_species_whitelisted(chosen_species) || has_admin_rights())
+		if(is_alien_whitelisted(chosen_species))
 			new_character = new(loc, use_species_name)
 
 	if(!new_character)
 		new_character = new(loc)
 
 	new_character.lastarea = get_area(loc)
-
-	for(var/lang in client.prefs.alternate_languages)
-		var/datum/language/chosen_language = all_languages[lang]
-		if(chosen_language)
-			if(!config.usealienwhitelist || !(chosen_language.flags & WHITELISTED) || is_alien_whitelisted(src, lang) || has_admin_rights() \
-				|| (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
-				new_character.add_language(lang)
 
 	if(ticker.random_players)
 		new_character.gender = pick(MALE, FEMALE)
@@ -451,6 +443,11 @@
 		new_character.dna.SetSEState(GLASSESBLOCK,1,0)
 		new_character.disabilities |= NEARSIGHTED
 
+	for(var/lang in client.prefs.alternate_languages)
+		var/datum/language/chosen_language = all_languages[lang]
+		if(chosen_language)
+			if(is_lang_whitelisted(src,chosen_language) || (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
+				new_character.add_language(lang)
 	// And uncomment this, too.
 	//new_character.dna.UpdateSE()
 
@@ -484,10 +481,6 @@
 /mob/new_player/proc/has_admin_rights()
 	return check_rights(R_ADMIN, 0, src)
 
-/mob/new_player/proc/is_species_whitelisted(datum/species/S)
-	if(!S) return 1
-	return is_alien_whitelisted(src, S.name) || !config.usealienwhitelist || !(S.spawn_flags & SPECIES_IS_WHITELISTED)
-
 /mob/new_player/get_species()
 	var/datum/species/chosen_species
 	if(client.prefs.species)
@@ -496,7 +489,7 @@
 	if(!chosen_species)
 		return "Human"
 
-	if(is_species_whitelisted(chosen_species) || has_admin_rights())
+	if(is_alien_whitelisted(chosen_species))
 		return chosen_species.name
 
 	return "Human"

@@ -3,7 +3,6 @@
 	desc = "A hand-held emergency light."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "flashlight"
-	item_state = "flashlight"
 	w_class = 2
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
@@ -89,7 +88,7 @@
 	name = "penlight"
 	desc = "A pen-sized light, used by medical staff."
 	icon_state = "penlight"
-	item_state = ""
+	item_state = "pen"
 	flags = CONDUCT
 	slot_flags = SLOT_EARS
 	brightness_on = 2
@@ -99,7 +98,6 @@
 	name = "maglight"
 	desc = "A very, very heavy duty flashlight."
 	icon_state = "maglight"
-	item_state = "maglight"
 	force = 10
 	flags = CONDUCT
 	brightness_on = 4
@@ -113,7 +111,7 @@
 	name = "low-power flashlight"
 	desc = "A miniature lamp, that might be used by small robots."
 	icon_state = "penlight"
-	item_state = ""
+	item_state = null
 	flags = CONDUCT
 	brightness_on = 2
 	w_class = 1
@@ -124,7 +122,6 @@
 	name = "desk lamp"
 	desc = "A desk lamp with an adjustable mount."
 	icon_state = "lamp"
-	item_state = "lamp"
 	brightness_on = 5
 	w_class = 4
 	flags = CONDUCT
@@ -136,7 +133,6 @@
 /obj/item/device/flashlight/lamp/green
 	desc = "A classic green-shaded desk lamp."
 	icon_state = "lampgreen"
-	item_state = "lampgreen"
 	brightness_on = 5
 	light_color = "#FFC58F"
 
