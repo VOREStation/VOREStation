@@ -270,12 +270,13 @@
 	min_age = 17
 	max_age = 80
 
-	blurb = "Xenomorphs hybrids are a mixture of xenomorph DNA and some other humanoid species. \
-	Xenomorph hyrids mostly have had had their natural aggression removed due to the gene modification process \
-	although there are some exceptions, such as when they are harmed. Most xenomorph hybrids are female, due to their natural xenomorph genes, \
-	but there are multiple exceptions. All xenomorph hybrids have had their ability to lay eggs containing facehuggers \
-	removed if they had the ability to, although hybrids that previously contained this ability is extremely rare."
-
+	blurb = "Xenomorph hybrids are an extraterrestrial species. The origins of xenomorphs are primarily unknown, although hybrids have been formed through various ways. \
+	One of the most common ways they are created is by genetic experimentation. This is done either by splicing xenomorph DNA into a humanoid, or splicing humanoid DNA into a xenomorph, although the former is much more common.\
+	This process creates a hybrid of the two species with them sharing various traits. \
+	Some of the traits xenomorph hybrids have are: A thick chitinous exoskeleton of varying hardness, much like a lobster, an elongated curved head, a toothed maw which hides a proboscis like inner mouth, a jaw somewhat similar to a moray eel, green blood of varying acidity, a vertebrate-like body, and a long flexible tail.\
+	The aforementioned traits can vary from hybrid to hybrid. \
+	Additionally, most, if not all hybrids do not appear to share the hive-mind that most feral xenomorphs seem to possess, along with their ability to produce resin, and their increased ability to sense prey. \
+	This can also be assumed to be due to the intensive mutation process."
 	//primitive_form = "Sergaling" //No official sprite for them yet.
 
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
