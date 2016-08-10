@@ -46,7 +46,7 @@
 	if(H.absorbed == 1) //If they get nomphed and absorbed.
 		return
 	if(H.feral == 1) //Uh oh, they're starving and have gone feral. Prepare for hallucinations!
-		if(H.hallucination < 100)
+		if(H.hallucination < 100 && H.lying = 0) //If they're lying down they won't ramp up any more hallucinations. This is so it won't interrupt scenes.
 			H.hallucination += 5 //Start hallucinating, up to a point.
 
 	if(H.nutrition > 50 && H.feral == 1) //If they went feral then ate something.
