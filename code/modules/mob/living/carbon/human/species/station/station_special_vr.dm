@@ -45,9 +45,6 @@
 		return
 	if(H.absorbed == 1) //If they get nomphed and absorbed.
 		return
-	if(H.feral == 1) //Uh oh, they're starving and have gone feral. Prepare for hallucinations!
-		if(H.hallucination < 100 && H.lying = 0) //If they're lying down they won't ramp up any more hallucinations. This is so it won't interrupt scenes.
-			H.hallucination += 5 //Start hallucinating, up to a point.
 
 	if(H.nutrition > 50 && H.feral == 1) //If they went feral then ate something.
 		H.feral = 0
@@ -78,12 +75,16 @@
 				H << "<span class='danger'> You feel a stabbing pain in your gut, causing you to twitch in pain.. It would be extremely wise to find some type of food... In fact, [M] looks extremely appetizing...</span>"
 				if(H.stat == CONSCIOUS)
 					H.emote("twitch")
+			if(H.feral = 1) //This should always be the case under 500 nutrition, but just in case.
+				H.hallucination -= 5 //Start to stop hallucinating once you see someone.
 
 		else if(M == H && H.nutrition <= 50) //Hungry and nobody is in view.
 			if(prob(1)) //Constantly nag them to go and find someone or something to eat.
 				H << "<span class='danger'> You feel a sharp jab in your stomach from hunger, causing you to twitch in pain. You need to find something to eat immediately.</span>"
 				if(H.stat == CONSCIOUS)
 					H.emote("twitch")
+			if(H.feral = 1)
+				H.hallucination += 5 //Start hallucinating while alone and hungry.
 
 //////////////////////////////////////////////////////////////////////////////////////////
 ///////////WIP CODE TO MAKE XENOCHIMERAS NOT DIE IN SPACE WHILE REGENNING BELOW///////////
