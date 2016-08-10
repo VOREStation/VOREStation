@@ -24,6 +24,10 @@
 	Widely known for their voracious nature and violent tendencies when left unfed for long periods of time. \
 	Most, if not all chimeras possess the ability to undergo some type of regeneration process, at the cost of energy."
 
+	hazard_low_pressure = -1 //Prevents them from dying normally in space. Special code handled below.
+	cold_level_1 = -5000     // All cold debuffs are handled below in handle_environment_special
+	cold_level_2 = -5000
+	cold_level_3 = -5000
 
 	//primitive_form = "Farwa"
 
@@ -35,53 +39,80 @@
 	base_color 	= "#333333"
 	blood_color = "#14AD8B"
 
-/datum/species/chimera/handle_environment_special(var/mob/living/carbon/human/H)
-	if(H.stat) // If they're dead or unconcious they won't think about being all feral.
+
+/datum/species/xenochimera/handle_environment_special(var/mob/living/carbon/human/H)
+	if(H.stat == 2) // If they're dead they won't think about being all feral and won't need all the code below.
 		return
 	if(H.absorbed == 1) //If they get nomphed and absorbed.
 		return
+	if(H.feral == 1) //Uh oh, they're starving and have gone feral. Prepare for hallucinations!
+		if(H.hallucination < 100)
+			H.hallucination += 5 //Start hallucinating, up to a point.
 
-	if(H.nutrition > 50 && H.species.has_fine_manipulation == 0) //If they went feral then ate something.
-		H.species.has_fine_manipulation = 1
+	if(H.nutrition > 50 && H.feral == 1) //If they went feral then ate something.
+		H.feral = 0
 		H << "<span class='primary'>You feel as if you're no longer feral, the feeling of intense hunger having now passed. You're sated. For the time being, at least.</span>"
-		return
-
-	else if(H.nutrition >= 300)
-		return
+		H.hallucination = 0 //Remove all their hallucinations.
 
 	else if(H.nutrition < 300 && H.nutrition > 200)
 		if(prob(0.5)) //A bit of an issue, not too bad.
 			H << "<span class='info'>You feel extremely hungry. It might be a good idea to find some some food...</span>"
-			return
 
 	else if(H.nutrition <= 200 && H.nutrition > 100)
 		if(prob(0.5)) //Getting closer, should probably eat some food about now...
 			H << "<span class='warning'>You feel like you're going to starve and give into your hunger soon... It might would be for the best to find some [pick("food","prey")] to eat...</span>"
-			return
 
 	else if(H.nutrition <= 100 && H.nutrition > 50)
 		if(prob(1)) //Getting real close here! Eat something!
 			H << "<span class='danger'> You feel a sharp jabbing pain in your abdomen. You feel as if you're beginning to become feral, with food being the only thing on your mind. </span>"
-			return
 
-	else if(H.nutrition <= 50 && H.species.has_fine_manipulation == 1) //Should've eaten sooner!
+	else if(H.nutrition <= 50 && H.feral == 0) //Should've eaten sooner!
 		H << "<span class='danger'><big>You suddenly feel a sharp stabbing pain in your stomach. You feel as if you've became completely feral, food the only thing on your mind.</big></span>"
 		if(H.stat == CONSCIOUS)
 			H.emote("twitch")
-		H.species.has_fine_manipulation = 0 //Unable  to use objects.
+		H.feral = 1 //Begin hallucinating
 
 	for(var/mob/living/M in viewers(H))
-		if(M != H)
+		if(M != H && H.nutrition <= 50)
 			if(prob(0.5))//1 in 200 chance to tell them that person looks like food. This is so irregular so it doesn't pop up 24/7 during ERP.
 				H << "<span class='danger'> You feel a stabbing pain in your gut, causing you to twitch in pain.. It would be extremely wise to find some type of food... In fact, [M] looks extremely appetizing...</span>"
 				if(H.stat == CONSCIOUS)
 					H.emote("twitch")
-				return
 
 		else if(M == H && H.nutrition <= 50) //Hungry and nobody is in view.
 			if(prob(1)) //Constantly nag them to go and find someone or something to eat.
 				H << "<span class='danger'> You feel a sharp jab in your stomach from hunger, causing you to twitch in pain. You need to find something to eat immediately.</span>"
 				if(H.stat == CONSCIOUS)
 					H.emote("twitch")
-				return
-			return
+
+//////////////////////////////////////////////////////////////////////////////////////////
+///////////WIP CODE TO MAKE XENOCHIMERAS NOT DIE IN SPACE WHILE REGENNING BELOW///////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+	var/datum/gas_mixture/environment = H.loc.return_air()
+	var/pressure2 = environment.return_pressure()
+	var/adjusted_pressure2 = H.calculate_affecting_pressure(pressure2)
+
+	if(adjusted_pressure2 <= 20 && H.in_stasis == 1) //If they're in a enviroment with no pressure and are in stasis (See: regenerating), don't kill them.
+		//This is just to prevent them from taking damage if they're in stasis.
+
+	else if(adjusted_pressure2 <= 20) //If they're in an enviroment with no pressure and are NOT in stasis, damage them.
+		H.take_overall_damage(brute=LOW_PRESSURE_DAMAGE, used_weapon = "Low Pressure")
+
+	if(H.bodytemperature <= 260 && H.in_stasis == 1) //If they're in stasis, don't give them them the negative cold effects
+		//This is just here to prevent them from getting cold effects
+
+	else if(H.bodytemperature <= 260) //If they're not in stasis and are cold. Don't really have to add in an exception to cryo cells, as the effects aren't anything /too/ horrible.
+		if(H.bodytemperature <= 260 && H.bodytemperature >= 200) //Chilly
+			if(H.halloss < 100) //100 halloss cap. Harsh punishment for staying in space, and it'll take them a while to fully thaw out when they get retrieved.
+				H.halloss = H.halloss + 1 //This will begin to knock them out over twenty seconds until they run out of oxygen and suffocate or until someone finds them.
+			H.eye_blurry = 5 //Blurry vision in the cold.
+		if(H.bodytemperature <= 199 && H.bodytemperature >= 100) //Extremely cold.
+			if(H.halloss < 100)
+				H.halloss = H.halloss + 2
+			H.eye_blurry = 5
+		if(H.bodytemperature <= 99) //Insanely cold.
+			if(H.halloss < 100)
+				H.halloss = H.halloss + 5
+			H.eye_blurry = 5
+		return
