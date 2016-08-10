@@ -84,7 +84,8 @@
 				if(H.stat == CONSCIOUS)
 					H.emote("twitch")
 			if(H.feral = 1)
-				H.hallucination += 5 //Start hallucinating while alone and hungry.
+				if(H.hallucination < 200) //200 hallucination cap. Let's not be too evil.
+					H.hallucination += 5 //Start hallucinating while alone and hungry.
 
 //////////////////////////////////////////////////////////////////////////////////////////
 ///////////WIP CODE TO MAKE XENOCHIMERAS NOT DIE IN SPACE WHILE REGENNING BELOW///////////
