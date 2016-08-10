@@ -76,7 +76,7 @@
 				if(H.stat == CONSCIOUS)
 					H.emote("twitch")
 			if(H.feral = 1) //This should always be the case under 500 nutrition, but just in case.
-				H.hallucination -= 5 //Start to stop hallucinating once you see someone.
+				H.hallucination -= 25 //Start to stop hallucinating once you see someone.
 
 		else if(M == H && H.nutrition <= 50) //Hungry and nobody is in view.
 			if(prob(1)) //Constantly nag them to go and find someone or something to eat.
