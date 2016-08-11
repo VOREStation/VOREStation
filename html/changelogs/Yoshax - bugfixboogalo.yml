@@ -36,3 +36,4 @@ changes:
   - bugfix: "The ERT camera monitor on the shuttle will now connect to the right network.
   - bugfix: "The 'choose sprite' verb as a ghost will no longer prematurely clear you sprite and will now return your sprite to what it was previous when you press 'no'. However, it will not allow you to get back the sprite of your actual character because those are horrible snowflakes."
   - bugfix: "The Atmos Substation is now a proper substation with a breaker box and all!"
+  - bugfix: "Diona Nymphs now get a popup window on evolution to allow them to input a name."
