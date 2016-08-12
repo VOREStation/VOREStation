@@ -1168,7 +1168,7 @@
 "awx" = (/obj/machinery/conveyor{dir = 4; id = "garbage"},/obj/machinery/light/small{dir = 1},/obj/structure/plasticflaps/mining,/turf/simulated/floor,/area/maintenance/disposal)
 "awy" = (/obj/machinery/conveyor{dir = 2; id = "garbage"},/obj/machinery/alarm{dir = 8; pixel_x = 25; pixel_y = 0},/turf/simulated/floor,/area/maintenance/disposal)
 "awz" = (/obj/effect/floor_decal/industrial/loading,/obj/machinery/door/firedoor/border_only,/obj/structure/plasticflaps{opacity = 1},/obj/machinery/navbeacon{codes_txt = "delivery;dir=2"; freq = 1400; location = "Command"},/turf/simulated/floor/tiled,/area/bridge_hallway)
-"awA" = (/obj/machinery/atmospherics/unary/vent_pump/on,/obj/machinery/camera/network/security{c_tag = "SEC - Interrogation"},/turf/simulated/floor/tiled/dark,/area/security/interrogation)
+"awA" = (/obj/machinery/atmospherics/unary/vent_pump/on,/obj/machinery/camera/network/interrogation{c_tag = "INT - Interrogation"},/turf/simulated/floor/tiled/dark,/area/security/interrogation)
 "awB" = (/obj/structure/bed/chair,/turf/simulated/floor/tiled/dark,/area/security/interrogation)
 "awC" = (/obj/structure/cable/green{d2 = 2; icon_state = "0-2"},/obj/machinery/power/apc{dir = 4; name = "east bump"; pixel_x = 24},/turf/simulated/floor/tiled/dark,/area/security/interrogation)
 "awD" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/effect/floor_decal/corner/red{dir = 1},/turf/simulated/floor/tiled,/area/security/brig)
