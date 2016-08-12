@@ -61,7 +61,7 @@
 	economic_modifier = 5
 	access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory, access_maint_tunnels, access_morgue, access_external_airlocks)
 	minimal_access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory, access_maint_tunnels, access_external_airlocks)
-	alt_titles = list("Brig Officer", "Seargent")
+	alt_titles = list("Brig Officer")
 	minimal_player_age = 5
 
 	equip(var/mob/living/carbon/human/H)
