@@ -15,8 +15,6 @@
 		spawn(3)
 			var/mob/living/carbon/human/H = player.current
 			if(istype(H))
-				for(var/I in valid_species)
-					world << "Species: [I]"
 				H.change_appearance(APPEARANCE_ALL, H.loc, H, species_whitelist = valid_species, state = z_state)
 	return player.current
 

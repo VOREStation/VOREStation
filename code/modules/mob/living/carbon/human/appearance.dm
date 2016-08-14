@@ -152,7 +152,7 @@
 			if((current_species.spawn_flags & SPECIES_IS_WHITELISTED) && !is_alien_whitelisted(src, current_species))
 				continue
 
-		valid_species += current_species
+		valid_species += current_species_name
 
 	return valid_species
 
