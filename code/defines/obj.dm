@@ -190,9 +190,8 @@ var/global/list/PDA_Manifest = list()
 
 /obj/item/weapon/beach_ball
 	icon = 'icons/misc/beach.dmi'
-	icon_state = "ball"
+	icon_state = "beachball"
 	name = "beach ball"
-	item_state = "beachball"
 	density = 0
 	anchored = 0
 	w_class = 4

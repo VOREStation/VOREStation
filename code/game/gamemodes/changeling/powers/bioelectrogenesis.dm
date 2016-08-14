@@ -5,6 +5,7 @@
 	helptext = "We can shock someone by grabbing them and using this ability, or using the ability with an empty hand and touching them.  \
 	Shocking someone costs ten chemicals per use."
 	enhancedtext = "Shocking biologicals without grabbing only requires five chemicals, and has more disabling power."
+	ability_icon_state = "ling_bioelectrogenesis"
 	genomecost = 2
 	verbpath = /mob/living/carbon/human/proc/changeling_bioelectrogenesis
 

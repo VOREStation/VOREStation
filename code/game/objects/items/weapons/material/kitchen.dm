@@ -1,6 +1,6 @@
 /obj/item/weapon/material/kitchen
 	icon = 'icons/obj/kitchen.dmi'
-
+	
 /*
  * Utensils
  */

@@ -12,6 +12,7 @@
 	var/r_tail = 30		// Tail/Taur color
 	var/g_tail = 30		// Tail/Taur color
 	var/b_tail = 30		// Tail/Taur color
+	var/dress_mob = TRUE
 
 // Definition of the stuff for Ears
 /datum/category_item/player_setup_item/vore/ears

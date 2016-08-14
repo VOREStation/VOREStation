@@ -222,6 +222,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 
 /mob/observer/dead
 	var/datum/exonet_protocol/exonet = null
+	var/list/exonet_messages = list()
 
 // Proc: New()
 // Parameters: None
@@ -304,6 +305,10 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	for(var/obj/item/device/communicator/comm in im_contacts)
 		if(comm.exonet)
 			im_contacts_ui[++im_contacts_ui.len] = list("name" = sanitize(comm.name), "address" = comm.exonet.address, "ref" = "\ref[comm]")
+
+	for(var/mob/observer/dead/ghost in im_contacts)
+		if(ghost.exonet)
+			im_contacts_ui[++im_contacts_ui.len] = list("name" = sanitize(ghost.name), "address" = ghost.exonet.address, "ref" = "\ref[ghost]")
 
 	//Actual messages.
 	for(var/I in im_list)
@@ -411,6 +416,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 		if(text)
 			exonet.send_message(their_address, "text", text)
 			im_list += list(list("address" = exonet.address, "to_address" = their_address, "im" = text))
+			log_pda("[usr] (COMM: [src]) sent \"[text]\" to [exonet.get_atom_from_address(their_address)]")
 
 	if(href_list["disconnect"])
 		var/name_to_disconnect = href_list["disconnect"]
@@ -493,7 +499,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Proc: receive_exonet_message()
 // Parameters: 3 (origin atom - the source of the message's holder, origin_address - where the message came from, message - the message received)
 // Description: Handles voice requests and invite messages originating from both real communicators and ghosts.  Also includes a ping response.
-/mob/observer/dead/receive_exonet_message(origin_atom, origin_address, message)
+/mob/observer/dead/receive_exonet_message(origin_atom, origin_address, message, text)
 	if(message == "voice")
 		if(istype(origin_atom, /obj/item/device/communicator))
 			var/obj/item/device/communicator/comm = origin_atom
@@ -508,7 +514,9 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 			var/random = rand(450,700)
 			random = random / 10
 			exonet.send_message(origin_address, "64 bytes received from [exonet.address] ecmp_seq=1 ttl=51 time=[random] ms")
-	if(message == "text") //Ghosts don't get texting yet. Mostly for spam prevention by ghosts but also due to ui requirements not sorted out yet.
+	if(message == "text")
+		src << "<span class='notice'>\icon[origin_atom] Received text message from [origin_atom]: <b>\"[text]\"</b></span>"
+		exonet_messages.Add("<b>From [origin_atom]:</b><br>[text]")
 		return
 
 // Proc: register_device()
@@ -533,7 +541,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	communicating |= comm
 	listening_objects |= src
 	update_icon()
-	
+
 // Proc: del_communicating()
 // Parameters: 1 (comm - the communicator to remove from communicating)
 // Description: Used when this communicator is being asked to stop relaying say/me messages to another
@@ -732,7 +740,9 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 /obj/item/device/communicator/proc/request_im(var/atom/candidate, var/origin_address, var/text)
 	var/who = null
 	if(isobserver(candidate))
-		return
+		var/mob/observer/dead/ghost = candidate
+		who = ghost
+		im_list += list(list("address" = origin_address, "to_address" = exonet.address, "im" = text))
 	else if(istype(candidate, /obj/item/device/communicator))
 		var/obj/item/device/communicator/comm = candidate
 		who = comm.owner
@@ -811,7 +821,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 		if(!T) return
 		var/list/in_range = get_mobs_and_objs_in_view_fast(T,world.view,0) //Range of 3 since it's a tiny video display
 		var/list/mobs_to_relay = in_range["mobs"]
-		
+
 		for(var/mob/mob in mobs_to_relay) //We can't use visible_message(), or else we will get an infinite loop if two communicators hear each other.
 			var/dst = get_dist(get_turf(mob),get_turf(comm))
 			if(dst <= video_range)
@@ -827,7 +837,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Description: Relays the speech to all linked communicators.
 /obj/item/device/communicator/hear_talk(mob/living/M, text, verb, datum/language/speaking)
 	for(var/obj/item/device/communicator/comm in communicating)
-		
+
 		var/turf/T = get_turf(comm)
 		if(!T) return
 		var/list/in_range = get_mobs_and_objs_in_view_fast(T,world.view,0)
@@ -915,6 +925,71 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 
 			src << "A communications request has been sent to [chosen_communicator].  Now you need to wait until someone answers."
 
+// Verb: text_communicator()
+// Parameters: None
+// Description: Allows a ghost to send a text message to a communicator.
+/mob/observer/dead/verb/text_communicator()
+	set category = "Ghost"
+	set name = "Text Communicator"
+	set desc = "If there is a communicator available, send a text message to it."
+
+	if(ticker.current_state < GAME_STATE_PLAYING)
+		src << "<span class='danger'>The game hasn't started yet!</span>"
+		return
+
+	if (!src.stat)
+		return
+
+	if (usr != src)
+		return //something is terribly wrong
+
+	for(var/mob/living/L in mob_list) //Simple check so you don't have dead people calling.
+		if(src.client.prefs.real_name == L.real_name)
+			src << "<span class='danger'>Your identity is already present in the game world.  Please load in a different character first.</span>"
+			return
+
+	var/obj/machinery/exonet_node/E = get_exonet_node()
+	if(!E || !E.on || !E.allow_external_communicators)
+		src << "<span class='danger'>The Exonet node at telecommunications is down at the moment, or is actively blocking you, so your call can't go through.</span>"
+		return
+
+	var/list/choices = list()
+	for(var/obj/item/device/communicator/comm in all_communicators)
+		if(!comm.network_visibility || !comm.exonet || !comm.exonet.address)
+			continue
+		choices.Add(comm)
+
+	if(!choices.len)
+		src << "<span class='danger'>There are no available communicators, sorry.</span>"
+		return
+
+	var/choice = input(src,"Send a text message to whom?") as null|anything in choices
+	if(choice)
+		var/obj/item/device/communicator/chosen_communicator = choice
+		var/mob/observer/dead/O = src
+		var/text_message = sanitize(input(src, "What do you want the message to say?")) as message
+		if(text_message && O.exonet)
+			O.exonet.send_message(chosen_communicator.exonet.address, "text", text_message)
+
+			src << "<span class='notice'>You have sent '[text_message]' to [chosen_communicator].</span>."
+			exonet_messages.Add("<b>To [chosen_communicator]:</b><br>[text_message]")
+			log_pda("[usr] (COMM: [src]) sent \"[text_message]\" to [chosen_communicator]")
+
+
+// Verb: show_text_messages()
+// Parameters: None
+// Description: Lets ghosts review messages they've sent or received.
+/mob/observer/dead/verb/show_text_messages()
+	set category = "Ghost"
+	set name = "Show Text Messages"
+	set desc = "Allows you to see exonet text messages you've sent and received."
+
+	var/HTML = "<html><head><title>Exonet Message Log</title></head><body>"
+	for(var/line in exonet_messages)
+		HTML += line + "<br>"
+	HTML +="</body></html>"
+	usr << browse(HTML, "window=log;size=400x444;border=1;can_resize=1;can_close=1;can_minimize=0")
+
 // Proc: connect_video()
 // Parameters: user - the mob doing the viewing of video, comm - the communicator at the far end
 // Description: Sets up a videocall and puts the first view into it using watch_video, and updates the icon
@@ -963,7 +1038,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Description: Cleans up mob's client when they stop watching a video
 /obj/item/device/communicator/proc/video_cleanup(mob/user)
 	if(!user) return
-	
+
 	user.reset_view(null)
 	user.unset_machine()
 
@@ -972,14 +1047,14 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Description: Ends the video call by clearing video_source
 /obj/item/device/communicator/proc/end_video(var/reason)
 	video_source = null
-	
+
 	. = "<span class='danger'>\icon[src] [reason ? reason : "Video session ended"].</span>"
-	
+
 	visible_message(.)
 	update_icon()
 
 //For synths who have no hands.
-/obj/item/device/communicator/integrated 
+/obj/item/device/communicator/integrated
 	name = "integrated communicator"
 	desc = "A circuit used for long-range communications, able to be integrated into a system."
 

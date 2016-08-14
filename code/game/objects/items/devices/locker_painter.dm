@@ -2,7 +2,6 @@
 	name = "closet painter"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "labeler1"
-	item_state = "flight"
 
 	var/colour =        "plain"
 	var/colour_secure = "plain"

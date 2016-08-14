@@ -3,6 +3,7 @@
 	desc = "We discreetly evolve a finger to be able to send a small electric charge.  \
 	We can open most electrical locks, but it will be obvious when we do so."
 	helptext = "Use the ability, then touch something that utilizes an electrical locking system, to open it.  Each use costs 10 chemicals."
+	ability_icon_state = "ling_electric_lockpick"
 	genomecost = 3
 	verbpath = /mob/proc/changeling_electric_lockpick
 

@@ -23,8 +23,6 @@
 
 /obj/item/clothing/suit/space/skrell/white
 	icon_state = "skrell_suit_white"
-	item_state = "skrell_suit_white"
 
 /obj/item/clothing/suit/space/skrell/black
 	icon_state = "skrell_suit_black"
-	item_state = "skrell_suit_black"

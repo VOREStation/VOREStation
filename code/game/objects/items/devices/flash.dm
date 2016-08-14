@@ -74,13 +74,17 @@
 		if(M.stat!=DEAD)
 			var/safety = M:eyecheck()
 			if(safety <= 0)
-				var/flash_strength = 10
+				var/flash_strength = 5
 				if(ishuman(M))
 					var/mob/living/carbon/human/H = M
 					flash_strength *= H.species.flash_mod
-				if(flash_strength > 0)
-					M.Weaken(flash_strength)
-					M.flash_eyes()
+
+					if(flash_strength > 0)
+						H.confused = max(H.confused, flash_strength)
+						H.eye_blind = max(H.eye_blind, flash_strength)
+						H.eye_blurry = max(H.eye_blurry, flash_strength + 5)
+						H.flash_eyes()
+
 			else
 				flashfail = 1
 

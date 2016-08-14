@@ -29,7 +29,7 @@ Procs for targeting
 		set_light(traitdat.traits[TRAIT_XENO_GLOW_RANGE], traitdat.traits[TRAIT_XENO_GLOW_STRENGTH], traitdat.traits[TRAIT_XENO_BIO_COLOR])
 	else
 		set_light(0, 0, "#000000")	//Should kill any light that shouldn't be there.
-	
+
 	hostile = traitdat.traits[TRAIT_XENO_HOSTILE]
 
 	speed = traitdat.traits[TRAIT_XENO_SPEED]
@@ -144,6 +144,7 @@ Procs for targeting
 
 		// redirect the projectile
 		P.redirect(new_x, new_y, curloc, src)
+		P.reflected = 1
 
 		return -1
 

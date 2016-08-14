@@ -7,10 +7,6 @@
 	icon_state = "space"
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment."
 	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL | AIRTIGHT
-	item_state_slots = list(
-		slot_l_hand_str = "s_helmet",
-		slot_r_hand_str = "s_helmet",
-		)
 	permeability_coefficient = 0.01
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 100, rad = 50)
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
@@ -50,7 +46,6 @@
 	name = "Space suit"
 	desc = "A suit that protects against low pressure environments. \""+station_short+"\" is written in large block letters on the back."
 	icon_state = "space"
-	item_state = "s_suit"
 	w_class = 5 // So you can't fit this in your bag and be prepared at all times.
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02

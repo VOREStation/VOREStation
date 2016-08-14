@@ -105,6 +105,7 @@ PROBABILITY EXTENDED 1
 PROBABILITY MALFUNCTION 1
 PROBABILITY MERCENARY 1
 PROBABILITY WIZARD 1
+PROBABILITY TECHNOMANCER 1
 PROBABILITY CHANGELING 1
 PROBABILITY CULT 1
 PROBABILITY EXTEND-A-TRAITORMONGOUS 6
@@ -204,6 +205,11 @@ GUEST_BAN
 
 ## Wiki address
 # WIKIURL http://example.com
+
+## Wiki search path
+## Set this to whatever path your wiki uses to search for articles
+## Use %s to mark where the search query should be inserted
+# WIKISEARCHURL http://example.com/index.php?title=Special%3ASearch&search=%s
 
 ## GitHub address
 # GITHUBURL https://github.com/example-user/example-repository

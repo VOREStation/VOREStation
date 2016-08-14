@@ -3,6 +3,7 @@
 	desc = "Expels impurifications from our form; curing diseases, removing toxins, chemicals, radiation, and resetting our genetic code completely."
 	helptext = "Can be used while unconscious.  This will also purge any reagents inside ourselves, both harmful and beneficial."
 	enhancedtext = "We heal more toxins."
+	ability_icon_state = "ling_anatomic_panacea"
 	genomecost = 1
 	verbpath = /mob/proc/changeling_panacea
 
@@ -25,6 +26,7 @@
 	C.sdisabilities = 0
 	C.disabilities = 0
 	C.reagents.clear_reagents()
+	C.ingested.clear_reagents()
 
 	var/heal_amount = 5
 	if(src.mind.changeling.recursive_enhancement)

@@ -3,6 +3,7 @@
 	name = "Transformation Sting"
 	desc = "We silently sting a human, injecting a retrovirus that forces them to transform into another."
 	helptext = "Does not provide a warning to others. The victim will transform much like a changeling would."
+	ability_icon_state = "ling_sting_transform"
 	genomecost = 3
 	verbpath = /mob/proc/changeling_transformation_sting
 

@@ -48,7 +48,7 @@
 	organ_tag = "l_arm"
 	name = "left arm"
 	icon_name = "l_arm"
-	max_damage = 50
+	max_damage = 80
 	min_broken_damage = 30
 	w_class = 3
 	body_part = ARM_LEFT
@@ -69,7 +69,7 @@
 	organ_tag = "l_leg"
 	name = "left leg"
 	icon_name = "l_leg"
-	max_damage = 50
+	max_damage = 80
 	min_broken_damage = 30
 	w_class = 3
 	body_part = LEG_LEFT
@@ -92,7 +92,7 @@
 	organ_tag = "l_foot"
 	name = "left foot"
 	icon_name = "l_foot"
-	max_damage = 30
+	max_damage = 50
 	min_broken_damage = 15
 	w_class = 2
 	body_part = FOOT_LEFT
@@ -121,7 +121,7 @@
 	organ_tag = "l_hand"
 	name = "left hand"
 	icon_name = "l_hand"
-	max_damage = 30
+	max_damage = 50
 	min_broken_damage = 15
 	w_class = 2
 	body_part = HAND_LEFT

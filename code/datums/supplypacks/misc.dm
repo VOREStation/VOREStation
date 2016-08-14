@@ -70,28 +70,3 @@
 	cost = 10
 	containertype = "/obj/structure/closet/crate"
 	containername = "Webbing crate"
-
-/datum/supply_packs/atmos/internals
-	name = "Internals crate"
-	contains = list(
-			/obj/item/clothing/mask/gas = 3,
-			/obj/item/weapon/tank/air = 3
-			)
-	cost = 10
-	containertype = /obj/structure/closet/crate/internals
-	containername = "Internals crate"
-
-/datum/supply_packs/atmos/evacuation
-	name = "Emergency equipment"
-	contains = list(
-			/obj/item/weapon/storage/toolbox/emergency = 2,
-			/obj/item/clothing/suit/storage/hazardvest = 2,
-			/obj/item/clothing/suit/storage/vest = 2,
-			/obj/item/weapon/tank/emergency_oxygen/engi = 4,
-			/obj/item/clothing/suit/space/emergency = 4,
-			/obj/item/clothing/head/helmet/space/emergency = 4,
-			/obj/item/clothing/mask/gas = 4
-			)
-	cost = 35
-	containertype = /obj/structure/closet/crate/internals
-	containername = "Emergency crate"

@@ -17,6 +17,7 @@ var/global/list/changeling_fabricated_clothing = list(
 	We cannot be relieved of this clothing by others."
 	helptext = "The disguise we create offers no defensive ability.  Each equipment slot that is empty will be filled with fabricated equipment. \
 	To remove our new fabricated clothing, use this ability again."
+	ability_icon_state = "ling_fabricate_clothing"
 	genomecost = 2
 	verbpath = /mob/proc/changeling_fabricate_clothing
 
@@ -32,6 +33,10 @@ var/global/list/changeling_fabricated_clothing = list(
 /obj/item/clothing/under/chameleon/changeling
 	name = "malformed flesh"
 	icon_state = "lingchameleon"
+	item_icons = list(
+			slot_l_hand_str = 'icons/mob/items/lefthand_uniforms.dmi',
+			slot_r_hand_str = 'icons/mob/items/righthand_uniforms.dmi',
+			)
 	item_state = "lingchameleon"
 	worn_state = "lingchameleon"
 	desc = "The flesh all around us has grown a new layer of cells that can shift appearance and create a biological fabric that cannot be distinguished from \
@@ -78,6 +83,10 @@ var/global/list/changeling_fabricated_clothing = list(
 /obj/item/clothing/suit/chameleon/changeling
 	name = "chitinous chest"
 	icon_state = "lingchameleon"
+	item_icons = list(
+			slot_l_hand_str = 'icons/mob/items/lefthand_suits.dmi',
+			slot_r_hand_str = 'icons/mob/items/righthand_suits.dmi',
+			)
 	item_state = "armor"
 	desc = "The cells in our chest are rapidly shifting, ready to reform into material that can resemble most pieces of clothing."
 	origin_tech = list()
@@ -100,6 +109,10 @@ var/global/list/changeling_fabricated_clothing = list(
 /obj/item/clothing/shoes/chameleon/changeling
 	name = "malformed feet"
 	icon_state = "lingchameleon"
+	item_icons = list(
+			slot_l_hand_str = 'icons/mob/items/lefthand_shoes.dmi',
+			slot_r_hand_str = 'icons/mob/items/righthand_shoes.dmi',
+			)
 	item_state = "black"
 	desc = "Our feet are overlayed with another layer of flesh and bone on top.  We can reform our feet to resemble various boots and shoes."
 	origin_tech = list()
@@ -122,6 +135,10 @@ var/global/list/changeling_fabricated_clothing = list(
 /obj/item/weapon/storage/backpack/chameleon/changeling
 	name = "backpack"
 	icon_state = "backpack"
+	item_icons = list(
+			slot_l_hand_str = 'icons/mob/items/lefthand_storage.dmi',
+			slot_r_hand_str = 'icons/mob/items/righthand_storage.dmi',
+			)
 	item_state = "backpack"
 	desc = "A large pouch imbedded in our back, it can shift form to resemble many common backpacks that other biologicals are fond of using."
 	origin_tech = list()
@@ -146,6 +163,10 @@ var/global/list/changeling_fabricated_clothing = list(
 /obj/item/clothing/gloves/chameleon/changeling
 	name = "malformed hands"
 	icon_state = "lingchameleon"
+	item_icons = list(
+			slot_l_hand_str = 'icons/mob/items/lefthand_gloves.dmi',
+			slot_r_hand_str = 'icons/mob/items/righthand_gloves.dmi',
+			)
 	item_state = "lingchameleon"
 	desc = "Our hands have a second layer of flesh on top.  We can reform our hands to resemble a large variety of fabrics and materials that biologicals \
 	tend to wear on their hands.  Remember that these won't protect your hands from harm."
@@ -170,6 +191,10 @@ var/global/list/changeling_fabricated_clothing = list(
 /obj/item/clothing/mask/chameleon/changeling
 	name = "chitin visor"
 	icon_state = "lingchameleon"
+	item_icons = list(
+			slot_l_hand_str = 'icons/mob/items/lefthand_masks.dmi',
+			slot_r_hand_str = 'icons/mob/items/righthand_masks.dmi',
+			)
 	item_state = "gas_alt"
 	desc = "A transparent visor of brittle chitin covers our face.  We can reform it to resemble various masks that biologicals use.  It can also utilize internal \
 	tanks.."
@@ -216,6 +241,10 @@ var/global/list/changeling_fabricated_clothing = list(
 	name = "waist pouch"
 	desc = "We can store objects in this, as well as shift it's appearance, so that it resembles various common belts."
 	icon_state = "lingchameleon"
+	item_icons = list(
+			slot_l_hand_str = 'icons/mob/items/lefthand_storage.dmi',
+			slot_r_hand_str = 'icons/mob/items/righthand_storage.dmi',
+			)
 	item_state = "utility"
 	origin_tech = list()
 	canremove = 0
