@@ -151,13 +151,13 @@
 		if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
 			usr << "\red The round is either not ready, or has already finished..."
 			return
-
-		if(client.prefs.species != "Human" && !check_rights(R_ADMIN, 0))
+/*
+		if(client.prefs.species != "Human" && !check_rights(R_ADMIN, 0)) //VORESTATION EDITS: THE COMMENTED OUT AREAS FROM LINE 154 TO 178
 			if (config.usealienwhitelist)
 				if(!is_alien_whitelisted(src, client.prefs.species))
 					src << alert("You are currently not whitelisted to Play [client.prefs.species].")
 					return 0
-
+*/
 		LateChoices()
 
 	if(href_list["manifest"])
@@ -171,11 +171,11 @@
 		else if(ticker && ticker.mode && ticker.mode.explosion_in_progress)
 			usr << "<span class='danger'>The station is currently exploding. Joining would go poorly.</span>"
 			return
-
+/*
 		if(!is_alien_whitelisted(src, all_species[client.prefs.species]))
 			src << alert("You are currently not whitelisted to play [client.prefs.species].")
 			return 0
-
+*/
 		var/datum/species/S = all_species[client.prefs.species]
 		if(!(S.spawn_flags & SPECIES_CAN_JOIN))
 			src << alert("Your current species, [client.prefs.species], is not available for play on the station.")
