@@ -25,13 +25,13 @@
 	flags = WHITELISTED
 	space_chance = 40
 	syllables = list(
-		"za", "az", "ze", "ez", "zi", "iz", "zo", "oz", "zu", "uz", "zs", "sz", 
- 		"ha", "ah", "he", "eh", "hi", "ih", "ho", "oh", "hu", "uh", "hs", "sh", 
- 		"la", "al", "le", "el", "li", "il", "lo", "ol", "lu", "ul", "ls", "sl", 
- 		"ka", "ak", "ke", "ek", "ki", "ik", "ko", "ok", "ku", "uk", "ks", "sk", 
- 		"sa", "as", "se", "es", "si", "is", "so", "os", "su", "us", "ss", "ss", 
- 		"ra", "ar", "re", "er", "ri", "ir", "ro", "or", "ru", "ur", "rs", "sr", 
- 		"a",  "a",  "e",  "e",  "i",  "i",  "o",  "o",  "u",  "u",  "s",  "s" 
+		"za", "az", "ze", "ez", "zi", "iz", "zo", "oz", "zu", "uz", "zs", "sz",
+ 		"ha", "ah", "he", "eh", "hi", "ih", "ho", "oh", "hu", "uh", "hs", "sh",
+ 		"la", "al", "le", "el", "li", "il", "lo", "ol", "lu", "ul", "ls", "sl",
+ 		"ka", "ak", "ke", "ek", "ki", "ik", "ko", "ok", "ku", "uk", "ks", "sk",
+ 		"sa", "as", "se", "es", "si", "is", "so", "os", "su", "us", "ss", "ss",
+ 		"ra", "ar", "re", "er", "ri", "ir", "ro", "or", "ru", "ur", "rs", "sr",
+ 		"a",  "a",  "e",  "e",  "i",  "i",  "o",  "o",  "u",  "u",  "s",  "s"
 	)
 
 /datum/language/unathi/get_random_name()
@@ -42,8 +42,8 @@
 	return capitalize(new_name)
 
 /datum/language/tajaran
-	name = "Siik'tajr"
-	desc = "The traditionally employed tongue of Ahdomai, composed of expressive yowls and chirps. Native to the Tajaran."
+	name = "Siik"
+	desc = "The most prevalant language of Meralar, composed of expressive yowls and chirps. Native to the Tajaran."
 	speech_verb = "mrowls"
 	ask_verb = "mrowls"
 	exclaim_verb = "yowls"

@@ -64,7 +64,7 @@
 			if(speaker == src)
 				src << "<span class='warning'>You cannot hear yourself speak!</span>"
 			else
-				src << "<span class='name'>[speaker_name]</span>[alt_name] talks but you cannot hear \him."
+				src << "<span class='name'>[speaker_name]</span>[alt_name] talks but you cannot hear."
 	else
 		if(language)
 			on_hear_say("<span class='game say'><span class='name'>[speaker_name]</span>[alt_name] [track][language.format_message(message, verb)]</span>")
