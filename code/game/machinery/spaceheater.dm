@@ -11,10 +11,11 @@
 	var/set_temperature = T0C + 20	//K
 	var/heating_power = 40000
 
+
 /obj/machinery/space_heater/New()
 	..()
 	if (cell_type)
-		cell = new cell_type(src)
+		src.cell = new cell_type(src)
 	update_icon()
 
 /obj/machinery/space_heater/update_icon()
@@ -78,7 +79,7 @@
 	return
 
 /obj/machinery/space_heater/attack_hand(mob/user as mob)
-	add_fingerprint(user)
+	src.add_fingerprint(user)
 	interact(user)
 
 /obj/machinery/space_heater/interact(mob/user as mob)
@@ -110,6 +111,7 @@
 		update_icon()
 	return
 
+
 /obj/machinery/space_heater/Topic(href, href_list)
 	if (usr.stat)
 		return
@@ -133,6 +135,7 @@
 					cell = null
 					power_change()
 
+
 			if("cellinstall")
 				if(panel_open && !cell)
 					var/obj/item/weapon/cell/C = usr.get_active_hand()
@@ -149,6 +152,8 @@
 		usr << browse(null, "window=spaceheater")
 		usr.unset_machine()
 	return
+
+
 
 /obj/machinery/space_heater/process()
 	if(on)

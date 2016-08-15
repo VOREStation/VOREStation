@@ -1,6 +1,6 @@
 /datum/nano_module
 	var/name
-	var/datum/host
+	var/host
 
 /datum/nano_module/New(var/host)
 	src.host = host

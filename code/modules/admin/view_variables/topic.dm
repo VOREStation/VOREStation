@@ -223,7 +223,7 @@
 			usr << "This can only be done to instances of type /datum"
 			return
 
-		src.holder.marked_datum_weak = weakref(D)
+		src.holder.marked_datum = D
 		href_list["datumrefresh"] = href_list["mark_object"]
 
 	else if(href_list["rotatedatum"])
@@ -476,10 +476,7 @@
 			usr << "This can only be done on mobs with clients"
 			return
 
-		nanomanager.close_uis(H)
-		H.client.cache.Cut()
-		var/datum/asset/assets = get_asset_datum(/datum/asset/nanoui)
-		assets.send(H)
+		nanomanager.send_resources(H.client)
 
 		usr << "Resource files sent"
 		H << "Your NanoUI Resource files have been refreshed"

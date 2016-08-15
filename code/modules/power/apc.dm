@@ -726,22 +726,26 @@
 	if(wiresexposed && !istype(user, /mob/living/silicon/ai))
 		wires.Interact(user)
 
-	return tg_ui_interact(user)
+	return ui_interact(user)
 
 
-/obj/machinery/power/apc/ui_data(mob/user)
-	var/list/data = list()
-	data["locked"] = (locked && !emagged) ? 1 : 0
-	data["isOperating"] = operating
-	data["externalPower"] = main_status
-	data["powerCellStatus"] = cell ? cell.percent() : null
-	data["chargeMode"] = chargemode
-	data["chargingStatus"] = charging
-	data["totalLoad"] = round(lastused_total)
-	data["totalCharging"] = round(lastused_charging)
-	data["coverLocked"] = coverlocked
-	data["siliconUser"] = issilicon(user) || isobserver(user) //I add observer here so admins can have more control, even if it makes 'siliconUser' seem inaccurate.
-	data["powerChannels"] = list(
+/obj/machinery/power/apc/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+	if(!user)
+		return
+
+	var/list/data = list(
+		"locked" = (locked && !emagged) ? 1 : 0,
+		"isOperating" = operating,
+		"externalPower" = main_status,
+		"powerCellStatus" = cell ? cell.percent() : null,
+		"chargeMode" = chargemode,
+		"chargingStatus" = charging,
+		"totalLoad" = round(lastused_total),
+		"totalCharging" = round(lastused_charging),
+		"coverLocked" = coverlocked,
+		"siliconUser" = issilicon(user) || isobserver(user), //I add observer here so admins can have more control, even if it makes 'siliconUser' seem inaccurate.
+
+		"powerChannels" = list(
 			list(
 				"title" = "Equipment",
 				"powerLoad" = lastused_equip,
@@ -773,14 +777,20 @@
 				)
 			)
 		)
+	)
 
-	return data
-
-/obj/machinery/power/apc/tg_ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = default_state)
-	ui = tgui_process.try_update_ui(user, src, ui_key, ui, force_open)
-	if(!ui)
-		ui = new(user, src, ui_key, "apc", "[area.name] - APC" , 520, issilicon(user) ? 535 : 460, master_ui, state)
+	// update the ui if it exists, returns null if no ui is passed/found
+	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if (!ui)
+		// the ui does not exist, so we'll create a new() one
+        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		ui = new(user, src, ui_key, "apc.tmpl", "[area.name] - APC", 520, data["siliconUser"] ? 465 : 440)
+		// when the ui is first opened this is the data it will use
+		ui.set_initial_data(data)
+		// open the new ui window
 		ui.open()
+		// auto update every Master Controller tick
+		ui.set_auto_update(1)
 
 /obj/machinery/power/apc/proc/report()
 	return "[area.name] : [equipment]/[lighting]/[environ] ([lastused_equip+lastused_light+lastused_environ]) : [cell? cell.percent() : "N/C"] ([charging])"
@@ -847,59 +857,66 @@
 		return 0
 	return 1
 
-/obj/machinery/power/apc/ui_act(action, params)
+/obj/machinery/power/apc/Topic(href, href_list)
 	if(..())
-		return TRUE
+		return 1
 
 	if(!can_use(usr, 1))
-		return TRUE
+		return 1
 
 	if(locked && !issilicon(usr) )
 		if(isobserver(usr) )
 			var/mob/observer/dead/O = usr	//Added to allow admin nanoUI interactions.
 			if(!O.can_admin_interact() )	//NanoUI /should/ make this not needed, but better safe than sorry.
 				usr << "Try as you might, your ghostly fingers can't press the buttons."
-				return TRUE
+				return 1
 		else
 			usr << "You must unlock the panel to use this!"
-			return TRUE
+			return 1
 
-	switch(action)
-		if("cover")
-			coverlocked = !coverlocked
+	if (href_list["lock"])
+		coverlocked = !coverlocked
 
-		if("breaker")
-			toggle_breaker()
+	else if (href_list["breaker"])
+		toggle_breaker()
 
-		if("charge")
-			chargemode = !chargemode
-			if(!chargemode)
-				charging = 0
+	else if (href_list["cmode"])
+		chargemode = !chargemode
+		if(!chargemode)
+			charging = 0
+			update_icon()
 
-		if("channel")
-			if(params["eqp"])
-				equipment = setsubsystem(text2num(params["eqp"]))
-				update()
-			else if(params["lgt"])
-				lighting = setsubsystem(text2num(params["lgt"]))
-				update()
-			else if(params["env"])
-				environ = setsubsystem(text2num(params["env"]))
-				update()
+	else if (href_list["eqp"])
+		var/val = text2num(href_list["eqp"])
+		equipment = setsubsystem(val)
+		update_icon()
+		update()
 
-		if("overload")
-			if(istype(usr, /mob/living/silicon))
-				src.overload_lighting()
+	else if (href_list["lgt"])
+		var/val = text2num(href_list["lgt"])
+		lighting = setsubsystem(val)
+		update_icon()
+		update()
 
-		if("lock")
-			if(istype(usr, /mob/living/silicon))
-				if(emagged || (stat & (BROKEN|MAINT)))
-					usr << "The APC does not respond to the command."
-				else
-					locked = !locked
+	else if (href_list["env"])
+		var/val = text2num(href_list["env"])
+		environ = setsubsystem(val)
+		update_icon()
+		update()
 
-	src.update_icon()
-	return TRUE
+	else if (href_list["overload"])
+		if(istype(usr, /mob/living/silicon))
+			src.overload_lighting()
+
+	else if (href_list["toggleaccess"])
+		if(istype(usr, /mob/living/silicon))
+			if(emagged || (stat & (BROKEN|MAINT)))
+				usr << "The APC does not respond to the command."
+			else
+				locked = !locked
+				update_icon()
+
+	return 0
 
 /obj/machinery/power/apc/proc/toggle_breaker()
 	operating = !operating

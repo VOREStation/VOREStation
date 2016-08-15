@@ -1,9 +1,11 @@
-.statusLabel {
+.statusLabel
+{
 	width: 128px;
 	float: left;
 	overflow: hidden;
 }
 
-.statusValue {
+.statusValue
+{
 	float: left;
 }
