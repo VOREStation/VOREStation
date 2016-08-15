@@ -162,7 +162,6 @@ var/list/debug_verbs = list (
         ,/client/proc/setup_supermatter_engine
 		,/client/proc/atmos_toggle_debug
 		,/client/proc/spawn_tanktransferbomb
-		,/client/proc/reload_nanoui_resources
 	)
 
 

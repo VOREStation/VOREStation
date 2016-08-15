@@ -8,9 +8,9 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 		<div class="itemContent" style="width: 100%; text-align: center;">
 			<span class="average">{{:data.time}} | </span>
 			{{if data.connectionStatus == 1}}
-				<i class="fa fa-signal" style='color: green; float: none;'></i>
+				<img class='uiIcon16 icon-signal-green' style='float: none; vertical-align: top'></img>
 			{{else}}
-				<i class="fa fa-times" style='float: none; color: red;'></i>
+				<img class='uiIcon16 icon-alert-red' style='float: none; vertical-align: top'></img>
 			{{/if}}
 			<span class="average"> | {{:data.owner}} | {{:data.occupation}}</span>
 		</div>
@@ -22,7 +22,7 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 	<div class='homeContainer'>
 		<div class='homeScreen'>
 			{{for data.homeScreen}}
-				{{:helper.link("<span class='homeButtonText'>" + value.module + "</span>", value.icon, {'switch_tab' : value.number}, null, "homeButton")}}
+				{{:helper.link(value.module, value.icon, {'switch_tab' : value.number}, null, 'link64')}}
 			{{/for}}
 		</div>
 	</div>
@@ -76,9 +76,9 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 				{{:helper.link('F', null, {'add_hex' : 'f'}, null, 'dialPadKeys')}}
 			</div>
 			<div style="clear: both; padding-top: 1px;">
-				{{:helper.link("<span class='dialPadButtonText'>Dial</span>", 'mobile', {'dial' : data.targetAddress}, null, 'dialPadButtons')}}
-				{{:helper.link("<span class='dialPadButtonText'>Message</span>", 'comment', {'message' : data.targetAddress, 'switch_tab' : 4}, null, 'dialPadButtons')}}
-				{{:helper.link("<span class='dialPadButtonText'>Hang Up</span>", 'close', {'hang_up' : '1'}, null, 'dialPadButtons')}}
+				{{:helper.link('Dial', 'phone64', {'dial' : data.targetAddress}, null, 'dialPadButtons')}}
+				{{:helper.link('Message', 'comment64', {'message' : data.targetAddress, 'switch_tab' : 4}, null, 'dialPadButtons')}}
+				{{:helper.link('Hang Up', 'close64', {'hang_up' : '1'}, null, 'dialPadButtons')}}
 			</div>
 		</div>
 	</div>
@@ -105,9 +105,9 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 				<div class="itemContent">
 					{{:helper.link('Disconnect', 'close', {'disconnect' : value.true_name}, null, 'redButton')}}
 					{{if data.video_comm == null}}
-						{{:helper.link('Start Video', 'signal', {'startvideo' : value.ref})}}
+						{{:helper.link('Start Video', 'signal-diag', {'startvideo' : value.ref})}}
 					{{else data.video_comm == value.ref}}
-						{{:helper.link('End Video', 'signal', {'endvideo' : value.true_name}, null, 'redButton')}}
+						{{:helper.link('End Video', 'signal-diag', {'endvideo' : value.true_name}, null, 'redButton')}}
 					{{/if}}
 				</div>
 			</div>
@@ -119,7 +119,7 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 				{{:value.name}}
 				</div>
 				<div class="itemContent">
-					<div style="float: left; width: 300px;">{{:value.address}}</div> {{:helper.link('Accept', 'signal', {'dial' : value.address})}}{{:helper.link('Decline', 'close', {'decline' : value.ref})}}
+					<div style="float: left; width: 300px;">{{:value.address}}</div> {{:helper.link('Accept', 'signal-diag', {'dial' : value.address})}}{{:helper.link('Decline', 'close', {'decline' : value.ref})}}
 				</div>
 			</div>
 		{{/for}}
@@ -170,7 +170,7 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 		<div class='item' style="margin-top: 5px;">
 			<div class="itemGroup" style="float: left;">
 				<div style="width: 100%;">
-					<span class="itemLabel" style="margin-right: 5px;">{{:value.name}}</span><span class='itemContent' style="margin-right: 5px;">{{:value.address}}</span>{{:helper.link('View', 'envelope', {'copy' : value.address, 'copy_name' : value.name, 'switch_tab' : 40})}}
+					<span class="itemLabel" style="margin-right: 5px;">{{:value.name}}</span><span class='itemContent' style="margin-right: 5px;">{{:value.address}}</span>{{:helper.link('View', 'mail-closed', {'copy' : value.address, 'copy_name' : value.name, 'switch_tab' : 40})}}
 				</div>
 			</div>
 		</div>
@@ -183,7 +183,7 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 	<h3>Conversation With: {{:data.targetAddressName}}</h3>
 
 	<HR>
-	<div class="itemContent" style="width: 100%;">{{:helper.link('Back', 'arrow-circle-o-left', {'switch_tab' : 4})}}</div><BR>
+	<div class="itemContent" style="width: 100%;">{{:helper.link('Back', 'arrowreturnthick-1-w', {'switch_tab' : 4})}}</div><BR>
 	
 	<div class='statusDisplay' style='overflow: auto; float: left; width: 95%;'>
 		<div class='item' style='width: 100%;'>
@@ -279,7 +279,7 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 			<div style="float: left; width: 180px;">{{:data.address}}</div>
 		</div>
 		<div class="itemContent">
-			<div style="float: left; width: 180px;">{{:helper.link('Visible', 'signal', {'toggle_visibility' : 1}, data.visible ? 'selected' : null)}}{{:helper.link('Invisible', 'close', {'toggle_visibility' : 1}, data.visible ? null : 'selected')}}</div>
+			<div style="float: left; width: 180px;">{{:helper.link('Visible', 'signal-diag', {'toggle_visibility' : 1}, data.visible ? 'selected' : null)}}{{:helper.link('Invisible', 'close', {'toggle_visibility' : 1}, data.visible ? null : 'selected')}}</div>
 		</div>
 	</div>
 	
@@ -288,7 +288,7 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 			Ringer:
 		</div>
 		<div class="itemContent">
-			<div style="float: left; width: 180px;">{{:helper.link('On', 'volume-up', {'toggle_ringer' : 1}, data.ring ? 'selected' : null)}}{{:helper.link('Off', 'volume-off', {'toggle_ringer' : 1}, data.ring ? null : 'selected')}}</div>
+			<div style="float: left; width: 180px;">{{:helper.link('On', 'volume-on', {'toggle_ringer' : 1}, data.ring ? 'selected' : null)}}{{:helper.link('Off', 'volume-off', {'toggle_ringer' : 1}, data.ring ? null : 'selected')}}</div>
 		</div>
 	</div>
 

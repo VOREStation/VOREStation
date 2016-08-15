@@ -286,7 +286,6 @@
 			occupantData["name"] = H.name
 			occupantData["stat"] = H.stat
 			occupantData["health"] = H.health
-			occupantData["maxHealth"] = H.maxHealth
 
 			occupantData["hasVirus"] = H.virus2.len
 
@@ -310,7 +309,6 @@
 				var/blood_volume = round(H.vessel.get_reagent_amount("blood"))
 				bloodData["volume"] = blood_volume
 				bloodData["percent"] = round(((blood_volume / 560)*100))
-				bloodData["bloodLevel"] = round(H.vessel.get_reagent_amount("blood"))
 
 			occupantData["blood"] = bloodData
 
@@ -331,10 +329,6 @@
 				organData["germ_level"] = E.germ_level
 				organData["bruteLoss"] = E.brute_dam
 				organData["fireLoss"] = E.burn_dam
-				organData["totalLoss"] = E.brute_dam + E.burn_dam
-				organData["maxHealth"] = E.max_damage
-				organData["bruised"] = E.min_bruised_damage
-				organData["broken"] = E.min_broken_damage
 
 				var/implantData[0]
 				for(var/obj/I in E.implants)
@@ -379,16 +373,13 @@
 				var/organData[0]
 				organData["name"] = I.name
 				if(I.status & ORGAN_ASSISTED)
-					organData["robotic"] = 1
+					organData["desc"] = "Assisted"
 				else if(I.robotic >= ORGAN_ROBOT)
-					organData["robotic"] = 2
+					organData["desc"] = "Mechanical"
 				else
-					organData["robotic"] = null
+					organData["desc"] = null
 				organData["germ_level"] = I.germ_level
 				organData["damage"] = I.damage
-				organData["maxHealth"] = I.max_damage
-				organData["bruised"] = I.min_broken_damage
-				organData["broken"] = I.min_bruised_damage
 
 				intOrganData.Add(list(organData))
 
@@ -425,9 +416,6 @@
 			P.name = "Body Scan - [href_list["name"]]"
 			printing = null
 			printing_text = null
-
-	if (href_list["ejectify"])
-		src.connected.eject()
 
 /obj/machinery/body_scanconsole/proc/generate_printing_text()
 	var/dat = ""

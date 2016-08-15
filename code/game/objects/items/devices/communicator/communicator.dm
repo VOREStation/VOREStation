@@ -33,12 +33,12 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 
 	var/obj/item/weapon/cartridge/cartridge = null //current cartridge
 	var/list/modules = list(
-							list("module" = "Phone", "icon" = "mobile", "number" = 2),
-							list("module" = "Contacts", "icon" = "users", "number" = 3),
-							list("module" = "Messaging", "icon" = "envelope", "number" = 4),
-							list("module" = "Note", "icon" = "file-text", "number" = 5),
-							list("module" = "Settings", "icon" = "gear", "number" = 6)
-							)	//list("module" = "Name of Module", "icon" = "icon name", "number" = "what tab is the module")
+							list("module" = "Phone", "icon" = "phone64", "number" = 2),
+							list("module" = "Contacts", "icon" = "person64", "number" = 3),
+							list("module" = "Messaging", "icon" = "comment64", "number" = 4),
+							list("module" = "Note", "icon" = "note64", "number" = 5),
+							list("module" = "Settings", "icon" = "gear64", "number" = 6)
+							)	//list("module" = "Name of Module", "icon" = "icon name64", "number" = "what tab is the module")
 
 	var/selected_tab = 1
 	var/owner = ""

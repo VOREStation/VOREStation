@@ -90,8 +90,6 @@
 
 /datum/feed_network/proc/insert_message_in_channel(var/datum/feed_channel/FC, var/datum/feed_message/newMsg)
 	FC.messages += newMsg
-	if(newMsg.img)
-		register_asset("newscaster_photo_[sanitize(FC.channel_name)]_[FC.messages.len].png", newMsg.img)
 	newMsg.parent_channel = FC
 	FC.update()
 	alert_readers(FC.announcement)
@@ -379,12 +377,11 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 					else
 						var/i = 0
 						for(var/datum/feed_message/MESSAGE in src.viewing_channel.messages)
-							++i
+							i++
 							dat+="-[MESSAGE.body] <BR>"
 							if(MESSAGE.img)
-								var/resourc_name = "newscaster_photo_[sanitize(viewing_channel.channel_name)]_[i].png"
-								send_asset(usr.client, resourc_name)
-								dat+="<img src='[resourc_name]' width = '180'><BR>"
+								usr << browse_rsc(MESSAGE.img, "tmp_photo[i].png")
+								dat+="<img src='tmp_photo[i].png' width = '180'><BR>"
 								if(MESSAGE.caption)
 									dat+="<FONT SIZE=1><B>[MESSAGE.caption]</B></FONT><BR>"
 								dat+="<BR>"
@@ -877,12 +874,11 @@ obj/item/weapon/newspaper/attack_self(mob/user as mob)
 						dat+="<ul>"
 						var/i = 0
 						for(var/datum/feed_message/MESSAGE in C.messages)
-							++i
+							i++
 							dat+="-[MESSAGE.body] <BR>"
 							if(MESSAGE.img)
-								var/resourc_name = "newscaster_photo_[sanitize(C.channel_name)]_[i].png"
-								send_asset(user.client, resourc_name)
-								dat+="<img src='[resourc_name]' width = '180'><BR>"
+								user << browse_rsc(MESSAGE.img, "tmp_photo[i].png")
+								dat+="<img src='tmp_photo[i].png' width = '180'><BR>"
 							dat+="<FONT SIZE=1>\[[MESSAGE.message_type] by <FONT COLOR='maroon'>[MESSAGE.author]</FONT>\]</FONT><BR><BR>"
 						dat+="</ul>"
 				if(scribble_page==curr_page)

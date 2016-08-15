@@ -101,15 +101,3 @@ var/round_start_time = 0
 /hook/startup/proc/set_roundstart_hour()
 	roundstart_hour = pick(2,7,12,17)
 	return 1
-/*
-	Returns "watch handle" (really just a timestamp)
-*/
-/proc/start_watch()
-	return world.timeofday
-
-/*
-	Returns number of seconds elapsed.
-	@param wh number The "Watch Handle" from start_watch(). (timestamp)
-*/
-/proc/stop_watch(wh)
-	return round(0.1*(world.timeofday-wh),0.1)

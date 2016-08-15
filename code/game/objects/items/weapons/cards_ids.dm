@@ -143,9 +143,6 @@
 	return 0
 
 /obj/item/weapon/card/id/proc/show(mob/user as mob)
-	var/datum/asset/assets = get_asset_datum(/datum/asset/simple/paper)
-	assets.send(user)
-
 	if(front && side)
 		user << browse_rsc(front, "front.png")
 		user << browse_rsc(side, "side.png")

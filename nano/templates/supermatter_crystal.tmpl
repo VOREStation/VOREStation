@@ -7,19 +7,19 @@
 {{else}}
 	<h3>Crystal Integrity</h3>
 	{{:helper.displayBar(data.integrity_percentage, 0, 100, (data.integrity_percentage >= 90) ? 'good' : (data.integrity_percentage >= 25) ? 'average' : 'bad')}}
-	<b>{{:helper.smoothRound(data.integrity_percentage)}} %</b>
+	<b>{{:data.integrity_percentage}} %</b>
 	<h3>Environment</h3>
 	<span class="itemLabel">
 		Temperature:
 	</span>
 	<span class="itemContent">
 		{{:helper.displayBar(data.ambient_temp, 0, 10000, (data.ambient_temp >= 5000) ? 'bad' : (data.ambient_temp >= 4000) ? 'average' : 'good')}}
-		{{:helper.smoothRound(data.ambient_temp)}} K
+		{{:data.ambient_temp}} K
 	</span>
 	<span class="itemLabel">
 		Pressure:
 	</span>
 	<span class="itemContent">
-		{{:helper.smoothRound(data.ambient_pressure)}} kPa
+		{{:data.ambient_pressure}} kPa
 	</span>
 {{/if}}

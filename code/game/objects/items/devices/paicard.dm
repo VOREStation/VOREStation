@@ -198,7 +198,7 @@
 			dat += {"
 				<b><font size='3px'>pAI Request Module</font></b><br><br>
 				<p>Requesting AI personalities from central database... If there are no entries, or if a suitable entry is not listed, check again later as more personalities may be added.</p>
-				Searching for personalities, please wait...<br><br>
+				<img src='loading.gif' /> Searching for personalities<br><br>
 
 				<table>
 					<tr>

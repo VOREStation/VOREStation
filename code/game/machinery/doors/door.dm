@@ -31,6 +31,7 @@
 	var/close_door_at = 0 //When to automatically close the door, if possible
 
 	//Multi-tile doors
+	dir = EAST
 	var/width = 1
 
 	// turf animation
