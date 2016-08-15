@@ -13,20 +13,21 @@
 	var/victim_name = "corpse"
 
 /obj/structure/kitchenspike/attackby(obj/item/weapon/grab/G as obj, mob/user as mob)
-	if(!istype(G, /obj/item/weapon/grab) || !G.affecting)
+	if(!istype(G, /obj/item/weapon/grab) || !ismob(G.affecting))
 		return
 	if(occupied)
 		user << "<span class = 'danger'>The spike already has something on it, finish collecting its meat first!</span>"
 	else
 		if(spike(G.affecting))
 			visible_message("<span class = 'danger'>[user] has forced [G.affecting] onto the spike, killing them instantly!</span>")
-			qdel(G.affecting)
+			var/mob/M = G.affecting
+			M.forceMove(src)
 			qdel(G)
+			qdel(M)
 		else
 			user << "<span class='danger'>They are too big for the spike, try something smaller!</span>"
 
 /obj/structure/kitchenspike/proc/spike(var/mob/living/victim)
-
 	if(!istype(victim))
 		return
 
@@ -52,9 +53,9 @@
 		return
 	meat--
 	new meat_type(get_turf(src))
-	if(src.meat > 1)
+	if(meat > 1)
 		user << "You remove some meat from \the [victim_name]."
-	else if(src.meat == 1)
+	else if(meat == 1)
 		user << "You remove the last piece of meat from \the [victim_name]!"
 		icon_state = "spike"
 		occupied = 0
