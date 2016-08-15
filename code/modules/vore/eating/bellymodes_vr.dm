@@ -98,6 +98,19 @@
 		return
 
 
+
+//////////////////////////// DM_UNABSORB ////////////////////////////
+	if(digest_mode == DM_UNABSORB)
+
+		for (var/mob/living/M in internal_contents)
+			if(M.absorbed && owner.nutrition >= 100)
+				M.absorbed = 0
+				M << "<span class='notice'>You suddenly feel solid again </span>"
+				owner << "<span class='notice'>You feel like a part of you is missing.</span>"
+				owner.nutrition -= 100
+		return
+
+
 //////////////////////////// DM_DRAIN ////////////////////////////
 	if(digest_mode == DM_DRAIN)
 

@@ -13,6 +13,7 @@
 #define DM_TRANSFORM_FEMALE_EGG				"Transform (Female) (EGG)"
 #define DM_EGG 								"Encase In Egg"
 #define DM_DRAIN							"Drain"
+#define DM_UNABSORB							"Unabsorb"
 
 
 // Stance for hostile mobs to be in while devouring someone.
