@@ -88,6 +88,8 @@
 				spanstyle = "color:green;"
 			if(DM_ABSORB)
 				spanstyle = "color:purple;"
+			if(DM_DRAIN)
+				spanstyle = "color:purple;"
 			if(DM_TRANSFORM_MALE)
 				spanstyle = "color:purple;"
 			if(DM_TRANSFORM_FEMALE)

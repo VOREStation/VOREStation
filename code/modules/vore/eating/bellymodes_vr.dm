@@ -97,6 +97,37 @@
 
 		return
 
+
+
+//////////////////////////// DM_UNABSORB ////////////////////////////
+	if(digest_mode == DM_UNABSORB)
+
+		for (var/mob/living/M in internal_contents)
+			if(M.absorbed && owner.nutrition >= 100)
+				M.absorbed = 0
+				M << "<span class='notice'>You suddenly feel solid again </span>"
+				owner << "<span class='notice'>You feel like a part of you is missing.</span>"
+				owner.nutrition -= 100
+		return
+
+
+//////////////////////////// DM_DRAIN ////////////////////////////
+	if(digest_mode == DM_DRAIN)
+
+		for (var/mob/living/M in internal_contents)
+
+			if(prob(10)) //Less often than gurgles. People might leave this on forever.
+				var/drainsound = pick(digestion_sounds)
+				M << sound(drainsound,volume=80)
+				owner << sound(drainsound,volume=80)
+
+			if(M.nutrition >= 100) //Drain them until there's no nutrients left.
+				var/oldnutrition = (M.nutrition * 0.05)
+				M.nutrition = (M.nutrition * 0.95)
+				owner.nutrition += oldnutrition
+				return
+		return
+
 ///////////////////////////// DM_HEAL /////////////////////////////
 	if(digest_mode == DM_HEAL)
 		if(prob(50)) //Wet heals!
@@ -335,13 +366,14 @@
 		for (var/mob/living/carbon/human/P in internal_contents)
 			if(P.stat)
 				continue
-
+			if(P.absorbed) //If they're absorbed, don't egg them
+				return
 			var/mob/living/carbon/human/O = owner
 
 			if (O.custom_species)
 				var/defined_species = O.custom_species
-				P.r_hair 			= O.r_hair //Made all these line up
-				P.r_facial 			= O.r_facial //So you can ea
+				P.r_hair 			= O.r_hair
+				P.r_facial 			= O.r_facial
 				P.g_hair 			= O.g_hair
 				P.g_facial 			= O.g_facial
 				P.b_hair 			= O.b_hair
@@ -360,9 +392,10 @@
 				P.r_eyes 			= O.r_eyes
 				P.g_eyes 			= O.g_eyes
 				P.b_eyes 			= O.b_eyes
+
 				for(var/obj/item/organ/I in P.internal_organs) //This prevents organ rejection
 					I.species = O.species
-					//Z.h_col = //This is required to get their color the same as the preds.
+
 				for(var/obj/item/organ/external/chest/A in O.organs)
 					for(var/obj/item/organ/external/Z in P.organs) //This makes their limb sprites look correct.
 						Z.species = O.species
@@ -541,7 +574,8 @@
 		for (var/mob/living/carbon/human/P in internal_contents)
 			if(P.stat)
 				continue
-
+			if(P.absorbed) //If they're absorbed, don't egg them
+				return
 			var/mob/living/carbon/human/O = owner
 
 			if (O.custom_species)
@@ -716,7 +750,8 @@
 		for (var/mob/living/carbon/human/P in internal_contents)
 			if(P.stat)
 				continue
-
+			if(P.absorbed) //If they're absorbed, don't egg them
+				return
 			var/mob/living/carbon/human/O = owner
 
 			if (O.custom_species)
@@ -890,7 +925,8 @@
 		for (var/mob/living/carbon/human/P in internal_contents)
 			if(P.stat)
 				continue
-
+			if(P.absorbed) //If they're absorbed, don't egg them
+				return
 			var/mob/living/carbon/human/O = owner
 
 
@@ -1064,7 +1100,8 @@
 		for (var/mob/living/carbon/human/P in internal_contents)
 			if(P.stat)
 				continue
-
+			if(P.absorbed) //If they're absorbed, don't egg them
+				return
 			var/mob/living/carbon/human/O = owner
 
 			if (O.custom_species)
