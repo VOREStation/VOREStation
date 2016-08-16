@@ -311,6 +311,9 @@
 /datum/species/shapeshifter/promethean
 	spawn_flags = SPECIES_CAN_JOIN
 
+/datum/species/teshari
+	mob_size = MOB_MEDIUM
+
 /datum/species/human
 	color_mult = 1
 	icobase = 'icons/mob/human_races/r_human_vr.dmi'
