@@ -70,7 +70,7 @@
 		//Organs and blood
 		handle_organs()
 		stabilize_body_temperature() //Body temperature adjusts itself (self-regulation)
-
+		weightgain() //VORESTATION EDIT
 		handle_shock()
 
 		handle_pain()
