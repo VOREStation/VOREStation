@@ -84,7 +84,7 @@
 				[pick("playwright","author","director","actor","TV star")] [random_name(pick(MALE,FEMALE))] comes the latest sensation: '\
 				[pick("Deadly","The last","Lost","Dead")] [pick("Starships","Warriors","outcasts","Tajarans","Unathi","Skrell")] \
 				[pick("of","from","raid","go hunting on","visit","ravage","pillage","destroy")] \
-				[pick("Moghes","Earth","Biesel","Ahdomai","S'randarr","the Void","the Edge of Space")]'.\
+				[pick("Moghes","Earth","Biesel","Meralar","Rarkajar","the Void","the Edge of Space")]'.\
 				. Own it on webcast today, or visit the galactic premier on [affected_dest.name]!"
 
 			if(BIG_GAME_HUNTERS)

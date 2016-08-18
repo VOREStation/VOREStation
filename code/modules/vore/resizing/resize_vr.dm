@@ -82,7 +82,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 	return 1
 
 /**
- * Attempt to scoop up this mob up into M's hands, if the size difference is large enough.
+ * Attempt to scoop up this mob up into H's hands, if the size difference is large enough.
  * @return false if normal code should continue, 1 to prevent normal code.
  */
 /mob/living/proc/attempt_to_scoop(var/mob/living/carbon/human/H)

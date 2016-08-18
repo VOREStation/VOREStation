@@ -7,10 +7,10 @@
 	hitsound = 'sound/weapons/smash.ogg'
 	flags = CONDUCT
 	throwforce = 10
-	w_class = 3.0
+	w_class = 3
 	throw_speed = 2
 	throw_range = 10
-	force = 10.0
+	force = 10
 	matter = list(DEFAULT_WALL_MATERIAL = 90)
 	attack_verb = list("slammed", "whacked", "bashed", "thunked", "battered", "bludgeoned", "thrashed")
 

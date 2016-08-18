@@ -6,12 +6,13 @@
 	amount_per_transfer_from_this = 10
 	volume = 100
 	item_state = "broken_beer" //Generic held-item sprite until unique ones are made.
-	force = 5
+	force = 6
 	var/smash_duration = 5 //Directly relates to the 'weaken' duration. Lowered by armor (i.e. helmets)
 	var/isGlass = 1 //Whether the 'bottle' is made of glass or not so that milk cartons dont shatter when someone gets hit by it
 
 	var/obj/item/weapon/reagent_containers/glass/rag/rag = null
 	var/rag_underlay = "rag"
+	on_reagent_change() return // To suppress price updating. Bottles have their own price tags.
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/New()
 	..()
@@ -172,7 +173,7 @@
 	desc = "A bottle with a sharp broken bottom."
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = "broken_bottle"
-	force = 9
+	force = 10
 	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
