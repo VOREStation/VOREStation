@@ -158,7 +158,7 @@
 		nanoui_data["categories"] = categories
 		nanoui_data["discount_name"] = discount_item ? discount_item.name : ""
 		nanoui_data["discount_amount"] = (1-discount_amount)*100
-		nanoui_data["offer_expiry"] = worldtime2text(next_offer_time)
+		nanoui_data["offer_expiry"] = worldtime2stationtime(next_offer_time)
 	else if(nanoui_menu == 1)
 		var/items[0]
 		for(var/datum/uplink_item/item in category.items)
