@@ -4,6 +4,7 @@
 	cost = 150
 	obj_path = /obj/item/weapon/spell/aura/shock
 	ability_icon_state = "tech_shockaura"
+	category = OFFENSIVE_SPELLS
 
 /obj/item/weapon/spell/aura/shock
 	name = "electric aura"

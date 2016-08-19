@@ -4,6 +4,7 @@
 	far away from the caster.  Failing that, it may inhibit those entities in some form."
 	cost = 40
 	obj_path = /obj/item/weapon/spell/abjuration
+	category = UTILITY_SPELLS
 
 /obj/item/weapon/spell/abjuration
 	name = "abjuration"

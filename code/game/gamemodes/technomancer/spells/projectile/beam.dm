@@ -4,6 +4,7 @@
 	cost = 150
 	ability_icon_state = "tech_beam"
 	obj_path = /obj/item/weapon/spell/projectile/beam
+	category = OFFENSIVE_SPELLS
 
 /obj/item/weapon/spell/projectile/beam
 	name = "beam"
@@ -12,12 +13,13 @@
 	cast_methods = CAST_RANGED
 	aspect = ASPECT_LIGHT
 	spell_projectile = /obj/item/projectile/beam/blue
-	energy_cost_per_shot = 500
+	energy_cost_per_shot = 400
 	instability_per_shot = 3
 	cooldown = 10
+	fire_sound = 'sound/weapons/Laser.ogg'
 
 /obj/item/projectile/beam/blue
-	damage = 20
+	damage = 30
 
 	muzzle_type = /obj/effect/projectile/laser_blue/muzzle
 	tracer_type = /obj/effect/projectile/laser_blue/tracer
