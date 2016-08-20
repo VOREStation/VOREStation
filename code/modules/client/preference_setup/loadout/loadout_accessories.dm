@@ -211,3 +211,11 @@
 	display_name = "webbing, simple"
 	path = /obj/item/clothing/accessory/storage/webbing
 	cost = 2
+
+/datum/gear/accessory/chaps
+	display_name = "chaps, brown"
+	path = /obj/item/clothing/accessory/chaps
+
+/datum/gear/accessory/chaps/black
+	display_name = "chaps, black"
+	path = /obj/item/clothing/accessory/chaps/black

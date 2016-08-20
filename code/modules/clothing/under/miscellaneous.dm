@@ -225,6 +225,7 @@
 	desc = "Includes shoes and plaid"
 	icon_state = "kilt"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|FEET
+	rolled_sleeves = 0
 
 /obj/item/clothing/under/sexymime
 	name = "sexy mime outfit"
