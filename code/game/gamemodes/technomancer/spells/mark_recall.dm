@@ -6,6 +6,7 @@
 	cost = 50
 	obj_path = /obj/item/weapon/spell/mark
 	ability_icon_state = "tech_mark"
+	category = UTILITY_SPELLS
 
 //The object to teleport to when Recall is used.
 /obj/effect/mark_spell
@@ -52,6 +53,7 @@
 	cost = 50
 	obj_path = /obj/item/weapon/spell/recall
 	ability_icon_state = "tech_recall"
+	category = UTILITY_SPELLS
 
 /obj/item/weapon/spell/recall
 	name = "recall"

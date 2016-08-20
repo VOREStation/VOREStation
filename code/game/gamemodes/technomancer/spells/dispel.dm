@@ -6,6 +6,7 @@
 	cost = 25
 	obj_path = /obj/item/weapon/spell/dispel
 	ability_icon_state = "tech_dispel"
+	category = SUPPORT_SPELLS
 
 /obj/item/weapon/spell/dispel
 	name = "dispel"

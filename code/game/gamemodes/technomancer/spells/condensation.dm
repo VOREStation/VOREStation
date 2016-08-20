@@ -5,6 +5,7 @@
 	ability_icon_state = "tech_condensation"
 	cost = 50
 	obj_path = /obj/item/weapon/spell/condensation
+	category = UTILITY_SPELLS
 
 /obj/item/weapon/spell/condensation
 	name = "condensation"

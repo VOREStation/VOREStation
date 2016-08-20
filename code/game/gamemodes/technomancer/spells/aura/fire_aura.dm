@@ -7,6 +7,7 @@
 	cost = 150
 	obj_path = /obj/item/weapon/spell/aura/fire
 	ability_icon_state = "tech_fireaura"
+	category = OFFENSIVE_SPELLS
 
 /obj/item/weapon/spell/aura/fire
 	name = "Fire Storm"
@@ -20,7 +21,6 @@
 		qdel(src)
 	var/list/nearby_things = range(4,owner)
 
-	var/fire_prob = 10
 	var/temp_change = 25
 	var/temp_cap = 500
 	var/fire_power = 2
@@ -28,7 +28,6 @@
 	if(check_for_scepter())
 		temp_change = 50
 		temp_cap = 700
-		fire_prob = 25
 		fire_power = 4
 	for(var/mob/living/carbon/human/H in nearby_things)
 		if(is_ally(H))
@@ -41,16 +40,11 @@
 
 	turf_check:
 		for(var/turf/simulated/T in nearby_things)
-			if(prob(fire_prob))
+			if(prob(30))
 				for(var/mob/living/carbon/human/H in T)
 					if(is_ally(H))
 						continue turf_check
 				T.hotspot_expose(1000, 50, 1)
 				T.create_fire(fire_power)
-
-
-//		//We use hotspot_expose() to allow firesuits to protect from this aura.
-//		var/turf/location = get_turf(H)
-//		location.hotspot_expose(1000, 50, 1)
 
 	owner.adjust_instability(1)
