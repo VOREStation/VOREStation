@@ -459,7 +459,7 @@
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 		..()
 		if(H.ckey != "scree")
-			H << "<span class='warning'>The gloves only have three fingers, not to mention the accomidation for extra limbs.</span>"
+			H << "<span class='warning'>The gloves only have three fingers, not to mention the accommodation for extra limbs.</span>"
 			return 0
 		else
 			return 1
@@ -569,9 +569,9 @@
 	light_overlay = null
 
 	attack_self(mob/user)
-		if(!isturf(user.loc))
-			user << "You cannot turn the light on while in this [user.loc]"
-			return
+		//if(!isturf(user.loc)) -- doesn't seem to cause problems to allow this and it's silly not to
+		//	user << "You cannot turn the light on while in this [user.loc]"
+		//	return
 
 		switch(on)
 			if(0)
@@ -579,18 +579,22 @@
 				user << "You light up your pom-pom."
 				icon_state = "pom-on"
 				item_state = "pom-on_mob"
+
 			if(1)
 				on = 0
 				user << "You dim your pom-pom."
 				icon_state = "pom"
 				item_state = "pom_mob"
 
-		update_light(user)
+		//update_light(user) -- old code
+		update_flashlight(user)
 
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			if(H.head == src)
 				H.update_inv_head()
+
+	action_button_name = "Toggle pom-pom"
 
 // arokha : Aronai Kadigan
 /obj/item/clothing/head/helmet/space/fluff/aronai
