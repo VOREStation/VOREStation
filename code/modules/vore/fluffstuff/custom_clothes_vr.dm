@@ -116,7 +116,7 @@
 	item_state = "solara_dress"
 
 //For general use
-/obj/item/clothing/suit/armor/hos/fluff/brittrenchcoat
+/obj/item/clothing/suit/storage/vest/hoscoat/fluff/brittrenchcoat
 	name = "Britania Trench Coat"
 	desc = "An armored trench coat from the Brittanian Empire. It looks so British."
 
@@ -127,7 +127,7 @@
 	item_state = "brittrenchcoat"
 
 //For general use
-/obj/item/clothing/suit/armor/hos/nazi_greatcoat
+/obj/item/clothing/suit/storage/vest/hoscoat/nazi_greatcoat
 	name = "Greatcoat"
 	desc = "Perfect attire for kicking down the doors of suspected dissidents; this coat gives off an imposing look, while offering a luxuriously plush fur liner."
 
