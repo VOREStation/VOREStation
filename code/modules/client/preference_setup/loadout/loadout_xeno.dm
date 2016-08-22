@@ -123,6 +123,7 @@
 	sort_category = "Xenowear"
 
 /datum/gear/uniform/loincloth
-	display_name = "loincloth"
+	display_name = "loincloth (Tajaran, Unathi)"
 	path = /obj/item/clothing/under/shorts/loincloth
 	sort_category = "Xenowear"
+	whitelisted = list("Tajaran", "Unathi")
