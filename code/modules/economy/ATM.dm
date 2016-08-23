@@ -114,7 +114,7 @@ log transactions
 			T.amount = I:worth
 			T.source_terminal = machine_id
 			T.date = current_date_string
-			T.time = worldtime2text()
+			T.time = stationtime2text()
 			authenticated_account.transaction_log.Add(T)
 
 			user << "<span class='info'>You insert [I] into [src].</span>"
@@ -243,7 +243,7 @@ log transactions
 							T.purpose = transfer_purpose
 							T.source_terminal = machine_id
 							T.date = current_date_string
-							T.time = worldtime2text()
+							T.time = stationtime2text()
 							T.amount = "([transfer_amount])"
 							authenticated_account.transaction_log.Add(T)
 						else
@@ -285,7 +285,7 @@ log transactions
 									T.purpose = "Unauthorised login attempt"
 									T.source_terminal = machine_id
 									T.date = current_date_string
-									T.time = worldtime2text()
+									T.time = stationtime2text()
 									failed_account.transaction_log.Add(T)
 							else
 								usr << "\red \icon[src] Incorrect pin/account combination entered, [max_pin_attempts - number_incorrect_tries] attempts remaining."
@@ -305,7 +305,7 @@ log transactions
 						T.purpose = "Remote terminal access"
 						T.source_terminal = machine_id
 						T.date = current_date_string
-						T.time = worldtime2text()
+						T.time = stationtime2text()
 						authenticated_account.transaction_log.Add(T)
 
 						usr << "\blue \icon[src] Access granted. Welcome user '[authenticated_account.owner_name].'"
@@ -333,7 +333,7 @@ log transactions
 						T.amount = "([amount])"
 						T.source_terminal = machine_id
 						T.date = current_date_string
-						T.time = worldtime2text()
+						T.time = stationtime2text()
 						authenticated_account.transaction_log.Add(T)
 					else
 						usr << "\icon[src]<span class='warning'>You don't have enough funds to do that!</span>"
@@ -358,7 +358,7 @@ log transactions
 						T.amount = "([amount])"
 						T.source_terminal = machine_id
 						T.date = current_date_string
-						T.time = worldtime2text()
+						T.time = stationtime2text()
 						authenticated_account.transaction_log.Add(T)
 					else
 						usr << "\icon[src]<span class='warning'>You don't have enough funds to do that!</span>"
@@ -370,7 +370,7 @@ log transactions
 					R.info += "<i>Account holder:</i> [authenticated_account.owner_name]<br>"
 					R.info += "<i>Account number:</i> [authenticated_account.account_number]<br>"
 					R.info += "<i>Balance:</i> $[authenticated_account.money]<br>"
-					R.info += "<i>Date and time:</i> [worldtime2text()], [current_date_string]<br><br>"
+					R.info += "<i>Date and time:</i> [stationtime2text()], [current_date_string]<br><br>"
 					R.info += "<i>Service terminal ID:</i> [machine_id]<br>"
 
 					//stamp the paper
@@ -393,7 +393,7 @@ log transactions
 					R.info = "<b>Transaction logs</b><br>"
 					R.info += "<i>Account holder:</i> [authenticated_account.owner_name]<br>"
 					R.info += "<i>Account number:</i> [authenticated_account.account_number]<br>"
-					R.info += "<i>Date and time:</i> [worldtime2text()], [current_date_string]<br><br>"
+					R.info += "<i>Date and time:</i> [stationtime2text()], [current_date_string]<br><br>"
 					R.info += "<i>Service terminal ID:</i> [machine_id]<br>"
 					R.info += "<table border=1 style='width:100%'>"
 					R.info += "<tr>"
@@ -469,7 +469,7 @@ log transactions
 					T.purpose = "Remote terminal access"
 					T.source_terminal = machine_id
 					T.date = current_date_string
-					T.time = worldtime2text()
+					T.time = stationtime2text()
 					authenticated_account.transaction_log.Add(T)
 
 					view_screen = NO_SCREEN

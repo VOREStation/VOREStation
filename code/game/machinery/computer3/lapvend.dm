@@ -201,7 +201,7 @@
 			T.amount = "[transaction_amount]"
 		T.source_terminal = src.name
 		T.date = current_date_string
-		T.time = worldtime2text()
+		T.time = stationtime2text()
 		D.transaction_log.Add(T)
 		//
 		T = new()
@@ -210,7 +210,7 @@
 		T.amount = "[transaction_amount]"
 		T.source_terminal = src.name
 		T.date = current_date_string
-		T.time = worldtime2text()
+		T.time = stationtime2text()
 		vendor_account.transaction_log.Add(T)
 
 		newlap = new /obj/machinery/computer3/laptop/vended(src.loc)
@@ -350,7 +350,7 @@
 		T.amount = "[transaction_amount]"
 	T.source_terminal = src.name
 	T.date = current_date_string
-	T.time = worldtime2text()
+	T.time = stationtime2text()
 	D.transaction_log.Add(T)
 	//
 	T = new()
@@ -359,7 +359,7 @@
 	T.amount = "[transaction_amount]"
 	T.source_terminal = src.name
 	T.date = current_date_string
-	T.time = worldtime2text()
+	T.time = stationtime2text()
 	vendor_account.transaction_log.Add(T)
 
 	qdel(relap)

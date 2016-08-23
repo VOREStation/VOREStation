@@ -4,7 +4,7 @@
 #define HUMAN_MAX_OXYLOSS 1 //Defines how much oxyloss humans can get per tick. A tile with no air at all (such as space) applies this value, otherwise it's a percentage of it.
 #define HUMAN_CRIT_MAX_OXYLOSS ( 2.0 / 6) //The amount of damage you'll get when in critical condition. We want this to be a 5 minute deal = 300s. There are 50HP to get through, so (1/6)*last_tick_duration per second. Breaths however only happen every 4 ticks. last_tick_duration = ~2.0 on average
 
-#define HEAT_DAMAGE_LEVEL_1 5 //Amount of damage applied when your body temperature just passes the 360.15k safety point
+#define HEAT_DAMAGE_LEVEL_1 2 //Amount of damage applied when your body temperature just passes the 360.15k safety point
 #define HEAT_DAMAGE_LEVEL_2 10 //Amount of damage applied when your body temperature passes the 400K point
 #define HEAT_DAMAGE_LEVEL_3 20 //Amount of damage applied when your body temperature passes the 1000K point
 
@@ -343,11 +343,21 @@
 		else
 			adjustOxyLoss(HUMAN_CRIT_MAX_OXYLOSS)
 
+		if(should_have_organ(O_LUNGS))
+			var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
+			if(!L.is_bruised() && prob(5))
+				if(breath.total_moles)
+					if(breath.total_moles < BREATH_MOLES / 5 || breath.total_moles > BREATH_MOLES * 5)
+						rupture_lung()
+				else
+					rupture_lung()
+
 		oxygen_alert = max(oxygen_alert, 1)
 
 		return 0
 
 	var/safe_pressure_min = 16 // Minimum safe partial pressure of breathable gas in kPa
+
 
 	// Lung damage increases the minimum safe pressure.
 	if(should_have_organ(O_LUNGS))

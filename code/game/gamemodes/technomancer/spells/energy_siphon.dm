@@ -7,6 +7,7 @@
 	cost = 150
 	obj_path = /obj/item/weapon/spell/energy_siphon
 	ability_icon_state = "tech_energysiphon"
+	category = UTILITY_SPELLS
 
 /obj/item/weapon/spell/energy_siphon
 	name = "energy siphon"

@@ -1,8 +1,13 @@
+#define ALL_SPELLS "All"
+#define OFFENSIVE_SPELLS "Offensive"
+#define DEFENSIVE_SPELLS "Defensive"
+#define UTILITY_SPELLS "Utility"
+#define SUPPORT_SPELLS "Support"
+
 var/list/all_technomancer_spells = typesof(/datum/technomancer/spell) - /datum/technomancer/spell
 var/list/all_technomancer_equipment = typesof(/datum/technomancer/equipment) - /datum/technomancer/equipment
 var/list/all_technomancer_consumables = typesof(/datum/technomancer/consumable) - /datum/technomancer/consumable
 var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) - /datum/technomancer/assistance
-var/list/all_technomancer_presets = typesof(/datum/technomancer/presets) - /datum/technomancer/presets
 
 /datum/technomancer
 	var/name = "technomancer thing"
@@ -12,6 +17,9 @@ var/list/all_technomancer_presets = typesof(/datum/technomancer/presets) - /datu
 	var/hidden = 0
 	var/obj_path = null
 	var/ability_icon_state = null
+
+/datum/technomancer/spell
+	var/category = ALL_SPELLS
 
 /obj/item/weapon/technomancer_catalog
 	name = "catalog"
@@ -27,8 +35,8 @@ var/list/all_technomancer_presets = typesof(/datum/technomancer/presets) - /datu
 	var/list/equipment_instances = list()
 	var/list/consumable_instances = list()
 	var/list/assistance_instances = list()
-	var/list/preset_instances = list()
 	var/tab = 0
+	var/spell_tab = ALL_SPELLS
 	var/show_scepter_text = 0
 
 /obj/item/weapon/technomancer_catalog/apprentice
@@ -72,14 +80,22 @@ var/list/all_technomancer_presets = typesof(/datum/technomancer/presets) - /datu
 	if(!assistance_instances.len)
 		for(var/A in all_technomancer_assistance)
 			assistance_instances += new A()
-	if(!preset_instances.len)
-		for(var/P in all_technomancer_presets)
-			preset_instances += new P()
 
 /obj/item/weapon/technomancer_catalog/apprentice/set_up()
 	..()
 	for(var/datum/technomancer/assistance/apprentice/A in assistance_instances)
 		assistance_instances.Remove(A)
+
+// Proc: show_categories()
+// Parameters: 1 (category - the category link to display)
+// Description: Shows an href link to go to a spell subcategory if the category is not already selected, otherwise is bold, to reduce
+// code duplicating.
+/obj/item/weapon/technomancer_catalog/proc/show_categories(var/category)
+	if(category)
+		if(spell_tab != category)
+			return "<a href='byond://?src=\ref[src];spell_category=[category]'>[category]</a>"
+		else
+			return "<b>[category]</b>"
 
 // Proc: attack_self()
 // Parameters: 1 (user - the mob clicking on the catelog)
@@ -100,12 +116,16 @@ var/list/all_technomancer_presets = typesof(/datum/technomancer/presets) - /datu
 			dat += "<align='center'><b>Functions</b> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=1'>Equipment</a> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=2'>Consumables</a> | "
-			dat += "<a href='byond://?src=\ref[src];tab_choice=3'>Assistance</a> | "
-			dat += "<a href='byond://?src=\ref[src];tab_choice=4'>Presets</a></align><br>"
+			dat += "<a href='byond://?src=\ref[src];tab_choice=3'>Assistance</a></align><br>"
 			dat += "You currently have a budget of <b>[budget]/[max_budget]</b>.<br><br>"
 			dat += "<a href='byond://?src=\ref[src];refund_functions=1'>Refund Functions</a><br><br>"
-			for(var/datum/technomancer/spell in spell_instances)
+
+			dat += "[show_categories(ALL_SPELLS)] | [show_categories(OFFENSIVE_SPELLS)] | [show_categories(DEFENSIVE_SPELLS)] | \
+			[show_categories(UTILITY_SPELLS)] | [show_categories(SUPPORT_SPELLS)]<br>"
+			for(var/datum/technomancer/spell/spell in spell_instances)
 				if(spell.hidden)
+					continue
+				if(spell_tab != ALL_SPELLS && spell.category != spell_tab)
 					continue
 				dat += "<b>[spell.name]</b><br>"
 				dat += "<i>[spell.desc]</i><br>"
@@ -123,8 +143,7 @@ var/list/all_technomancer_presets = typesof(/datum/technomancer/presets) - /datu
 			dat += "<align='center'><a href='byond://?src=\ref[src];tab_choice=0'>Functions</a> | "
 			dat += "<b>Equipment</b> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=2'>Consumables</a> | "
-			dat += "<a href='byond://?src=\ref[src];tab_choice=3'>Assistance</a> | "
-			dat += "<a href='byond://?src=\ref[src];tab_choice=4'>Presets</a></align><br>"
+			dat += "<a href='byond://?src=\ref[src];tab_choice=3'>Assistance</a></align><br>"
 			dat += "You currently have a budget of <b>[budget]/[max_budget]</b>.<br><br>"
 			for(var/datum/technomancer/equipment/E in equipment_instances)
 				dat += "<b>[E.name]</b><br>"
@@ -141,8 +160,7 @@ var/list/all_technomancer_presets = typesof(/datum/technomancer/presets) - /datu
 			dat += "<align='center'><a href='byond://?src=\ref[src];tab_choice=0'>Functions</a> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=1'>Equipment</a> | "
 			dat += "<b>Consumables</b> | "
-			dat += "<a href='byond://?src=\ref[src];tab_choice=3'>Assistance</a> | "
-			dat += "<a href='byond://?src=\ref[src];tab_choice=4'>Presets</a></align><br>"
+			dat += "<a href='byond://?src=\ref[src];tab_choice=3'>Assistance</a></align><br>"
 			dat += "You currently have a budget of <b>[budget]/[max_budget]</b>.<br><br>"
 			for(var/datum/technomancer/consumable/C in consumable_instances)
 				dat += "<b>[C.name]</b><br>"
@@ -159,32 +177,13 @@ var/list/all_technomancer_presets = typesof(/datum/technomancer/presets) - /datu
 			dat += "<align='center'><a href='byond://?src=\ref[src];tab_choice=0'>Functions</a> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=1'>Equipment</a> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=2'>Consumables</a> | "
-			dat += "<b>Assistance</b> | "
-			dat += "<a href='byond://?src=\ref[src];tab_choice=4'>Presets</a></align><br>"
+			dat += "<b>Assistance</b></align><br>"
 			dat += "You currently have a budget of <b>[budget]/[max_budget]</b>.<br><br>"
 			for(var/datum/technomancer/assistance/A in assistance_instances)
 				dat += "<b>[A.name]</b><br>"
 				dat += "<i>[A.desc]</i><br>"
 				if(A.cost <= budget)
 					dat += "<a href='byond://?src=\ref[src];item_choice=[A.name]'>Purchase</a> ([A.cost])<br><br>"
-				else
-					dat += "<font color='red'><b>Cannot afford!</b></font><br><br>"
-			user << browse(dat, "window=radio")
-			onclose(user, "radio")
-		if(4) //Presets
-			var/dat = ""
-			user.set_machine(src)
-			dat += "<align='center'><a href='byond://?src=\ref[src];tab_choice=0'>Functions</a> | "
-			dat += "<a href='byond://?src=\ref[src];tab_choice=1'>Equipment</a> | "
-			dat += "<a href='byond://?src=\ref[src];tab_choice=2'>Consumables</a> | "
-			dat += "<a href='byond://?src=\ref[src];tab_choice=3'>Assistance</a> | "
-			dat += "<b>Presets</b></align><br>"
-			dat += "You currently have a budget of <b>[budget]/[max_budget]</b>.<br><br>"
-			for(var/datum/technomancer/presets/P in preset_instances)
-				dat += "<b>[P.name]</b><br>"
-				dat += "<i>[P.desc]</i><br>"
-				if(P.cost <= budget)
-					dat += "<a href='byond://?src=\ref[src];spell_choice=[P.name]'>Purchase</a> ([P.cost])<br><br>"
 				else
 					dat += "<font color='red'><b>Cannot afford!</b></font><br><br>"
 			user << browse(dat, "window=radio")
@@ -210,6 +209,8 @@ var/list/all_technomancer_presets = typesof(/datum/technomancer/presets) - /datu
 		H.set_machine(src)
 		if(href_list["tab_choice"])
 			tab = text2num(href_list["tab_choice"])
+		if(href_list["spell_category"])
+			spell_tab = href_list["spell_category"]
 		if(href_list["spell_choice"])
 			var/datum/technomancer/new_spell = null
 			//Locate the spell.

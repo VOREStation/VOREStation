@@ -5,6 +5,7 @@
 	strike up to four targets, including yourself if conditions allow it to occur."
 	cost = 150
 	obj_path = /obj/item/weapon/spell/projectile/chain_lightning
+	category = OFFENSIVE_SPELLS
 
 /obj/item/weapon/spell/projectile/chain_lightning
 	name = "chain lightning"
@@ -16,6 +17,7 @@
 	energy_cost_per_shot = 3000
 	instability_per_shot = 10
 	cooldown = 20
+	fire_sound = 'sound/weapons/gauss_shoot.ogg'
 
 /obj/item/projectile/beam/chain_lightning
 	name = "lightning"
