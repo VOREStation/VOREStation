@@ -387,7 +387,7 @@
 
 /obj/item/weapon/storage/box/monkeycubes/farwacubes
 	name = "farwa cube box"
-	desc = "Drymate brand farwa cubes, shipped from Ahdomai. Just add water!"
+	desc = "Drymate brand farwa cubes, shipped from Meralar. Just add water!"
 
 /obj/item/weapon/storage/box/monkeycubes/farwacubes/New()
 	..()

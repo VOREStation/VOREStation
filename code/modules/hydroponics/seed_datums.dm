@@ -1028,8 +1028,8 @@
 
 /datum/seed/shand
 	name = "shand"
-	seed_name = "S'randar's hand"
-	display_name = "S'randar's hand leaves"
+	seed_name = "Selem's hand"
+	display_name = "Selem's hand leaves"
 	chems = list("bicaridine" = list(0,10))
 	kitchen_tag = "shand"
 
@@ -1048,8 +1048,8 @@
 
 /datum/seed/mtear
 	name = "mtear"
-	seed_name = "Messa's tear"
-	display_name = "Messa's tear leaves"
+	seed_name = "Malani's tear"
+	display_name = "Malani's tear leaves"
 	chems = list("honey" = list(1,10), "kelotane" = list(3,5))
 	kitchen_tag = "mtear"
 

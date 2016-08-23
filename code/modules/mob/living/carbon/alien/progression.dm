@@ -28,6 +28,7 @@
 	adult.set_species(new_species)
 	show_evolution_blurb()
 
+	adult.name = input(src,"Choose a name for yourself (please stick to any appropriate naming conventions).") as text|null
 	if(mind)
 		mind.transfer_to(adult)
 	else
@@ -38,6 +39,7 @@
 
 	for(var/datum/language/L in languages)
 		adult.add_language(L.name)
+
 	qdel(src)
 
 /mob/living/carbon/alien/proc/update_progression()

@@ -34,9 +34,6 @@ var/global/list/Holiday = list() //Holidays are lists now, so we can have more t
 			switch(DD)
 				if(1)
 					Holiday["New Years's Day"] = "The day of the new solar year on Sol."
-				if(10)
-					Holiday["Messa's Day"] = "A Tajaran holiday.  It takes place on the shortest day of the year on \
-					Ahdomai, and is named after Messa, the Tajaran deity of Change."
 				if(12)
 					Holiday["Vertalliq-Qerr"] = "Vertalliq-Qerr, translated to mean 'Festival of the Royals', is a \
 					Skrell holiday that celebrates the Qerr-Katish and all they have provided for the rest of Skrell society, \
@@ -79,9 +76,6 @@ var/global/list/Holiday = list() //Holidays are lists now, so we can have more t
 					Holiday["April Fool's Day"] = "An old holiday that endevours one to pull pranks and spread hoaxes on their friends."
 					if(YY == 18)
 						Holiday["Easter"] = ""
-				if(7)
-					Holiday["Tajaran Independence Day"] = "A Tajaran holiday celebrating their independence by winning the \
-					war against the Slavemasters, the former ruling elite that went known as 'The Overseers'."
 				if(8)
 					if(YY == 15)
 						Holiday["Easter"] = ""
@@ -123,9 +117,11 @@ var/global/list/Holiday = list() //Holidays are lists now, so we can have more t
 
 		if(8)	//Aug
 			switch(DD)
-				if(10)
-					Holiday["S'randarr's Day"] = "A Tajaran holiday that occurs on the longest day of the year in summer, \
-					on Ahdomai. It is named after the Tajaran deity of Light, and huge celebrations are common."
+//				if(10)
+//					Holiday["S'randarr's Day"] = "A Tajaran holiday that occurs on the longest day of the year in summer, \
+//					on Ahdomai. It is named after the Tajaran deity of Light, and huge celebrations are common."
+				if(27)
+					Holiday["Forgiveness Day"] = "A time to forgive and be forgiven."
 
 		if(9)	//Sep
 			switch(DD)
