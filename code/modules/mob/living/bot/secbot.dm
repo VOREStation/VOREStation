@@ -4,7 +4,7 @@
 	icon_state = "secbot0"
 	maxHealth = 100
 	health = 100
-	req_one_access = list(access_security, access_forensics_lockers)
+	req_one_access = list(access_robotics, access_security, access_forensics_lockers)
 	botcard_access = list(access_security, access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels)
 	patrol_speed = 2
 	target_speed = 3

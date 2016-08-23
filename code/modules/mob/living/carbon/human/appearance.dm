@@ -27,6 +27,13 @@
 	update_dna()
 	return 1
 
+/mob/living/carbon/human/proc/change_gender_identity(var/identifying_gender)
+	if(src.identifying_gender == identifying_gender)
+		return
+
+	src.identifying_gender = identifying_gender
+	return 1
+
 /mob/living/carbon/human/proc/change_hair(var/hair_style)
 	if(!hair_style)
 		return
@@ -149,7 +156,7 @@
 				continue
 			if(blacklist.len && (current_species_name in blacklist))
 				continue
-			if((current_species.spawn_flags & SPECIES_IS_WHITELISTED) && !is_alien_whitelisted(src, current_species_name))
+			if((current_species.spawn_flags & SPECIES_IS_WHITELISTED) && !is_alien_whitelisted(src, current_species))
 				continue
 
 		valid_species += current_species_name

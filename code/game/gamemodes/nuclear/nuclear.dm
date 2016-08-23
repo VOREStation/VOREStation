@@ -13,7 +13,7 @@ var/list/nuke_disks = list()
 		attempts of robbery, fraud and other malicious actions."
 	config_tag = "mercenary"
 	required_players = 15
-	required_players_secret = 20 // 20 players - 5 players to be the nuke ops = 15 players remaining
+	required_players_secret = 15
 	required_enemies = 1
 	end_on_antag_death = 0
 	var/nuke_off_station = 0 //Used for tracking if the syndies actually haul the nuke to the station

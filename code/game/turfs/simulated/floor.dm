@@ -1,5 +1,6 @@
 /turf/simulated/floor
 	name = "plating"
+	desc = "Unfinished flooring."
 	icon = 'icons/turf/flooring/plating.dmi'
 	icon_state = "plating"
 
