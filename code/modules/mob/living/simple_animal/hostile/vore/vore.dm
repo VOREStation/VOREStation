@@ -26,7 +26,7 @@ Don't use ranged mobs for vore mobs.
 	var/min_size = 0.25 // Min: 0.25
 	var/picky = 1 // Won't eat undigestable prey by default
 	var/fullness = 0
-	swallowTime = 10 // Hungry little bastards.
+	swallowTime = 3 // Hungry little bastards.
 
 	// By default, this is what most vore mobs are capable of.
 	response_help = "pets"
