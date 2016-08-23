@@ -9,7 +9,6 @@
 	var/colour = "red"
 	var/open = 0
 
-
 /obj/item/weapon/lipstick/purple
 	name = "purple lipstick"
 	colour = "purple"
@@ -22,14 +21,12 @@
 	name = "black lipstick"
 	colour = "black"
 
-
 /obj/item/weapon/lipstick/random
 	name = "lipstick"
 
 /obj/item/weapon/lipstick/random/New()
 	colour = pick("red","purple","jade","black")
 	name = "[colour] lipstick"
-
 
 /obj/item/weapon/lipstick/attack_self(mob/user as mob)
 	user << "<span class='notice'>You twist \the [src] [open ? "closed" : "open"].</span>"
@@ -67,7 +64,6 @@
 
 //you can wipe off lipstick with paper! see code/modules/paperwork/paper.dm, paper/attack()
 
-
 /obj/item/weapon/haircomb //sparklysheep's comb
 	name = "purple comb"
 	desc = "A pristine purple comb made from flexible plastic."
@@ -77,4 +73,18 @@
 	icon_state = "purplecomb"
 
 /obj/item/weapon/haircomb/attack_self(mob/living/user)
-	user.visible_message(text("<span class='notice'>[] uses [] to comb their hair with incredible style and sophistication. What a [].</span>", user, src, user.gender == FEMALE ? "lady" : "guy"))
+	var/text = "person"
+	if(ishuman(user))
+		var/mob/living/carbon/human/U = user
+		switch(U.identifying_gender)
+			if(MALE)
+				text = "guy"
+			if(FEMALE)
+				text = "lady"
+	else
+		switch(user.gender)
+			if(MALE)
+				text = "guy"
+			if(FEMALE)
+				text = "lady"
+	user.visible_message("<span class='notice'>[user] uses [src] to comb their hair with incredible style and sophistication. What a [text].</span>")
