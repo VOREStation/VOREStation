@@ -1,7 +1,3 @@
-/area/skipjack_station/docked
-	name = "\improper Skipjack"
-	icon_state = "green"
-
 /area/crew_quarters/sleep/vistor_room_1
 	flags = RAD_SHIELDED
 
@@ -34,6 +30,6 @@
 
 /area/crew_quarters/sleep/vistor_room_11
 	flags = RAD_SHIELDED
-	
+
 /area/crew_quarters/sleep/vistor_room_12
 	flags = RAD_SHIELDED
