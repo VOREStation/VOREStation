@@ -142,6 +142,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	flick("faxreceive", src)
 	playsound(loc, "sound/effects/printer.ogg", 50, 1)
 
+
 	// give the sprite some time to flick
 	sleep(20)
 
@@ -163,11 +164,12 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 	use_power(200)
 
+	//recieved copies should not use toner since it's being used by admins only.
 	var/obj/item/rcvdcopy
 	if (istype(copyitem, /obj/item/weapon/paper))
-		rcvdcopy = copy(copyitem)
+		rcvdcopy = copy(copyitem, 0)
 	else if (istype(copyitem, /obj/item/weapon/photo))
-		rcvdcopy = photocopy(copyitem)
+		rcvdcopy = photocopy(copyitem, 0)
 	else if (istype(copyitem, /obj/item/weapon/paper_bundle))
 		rcvdcopy = bundlecopy(copyitem, 0)
 	else
@@ -178,14 +180,15 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	adminfaxes += rcvdcopy
 
 	//message badmins that a fax has arrived
-	switch(destination)
-		if (boss_name)
-			message_admins(sender, "[uppertext(boss_short)] FAX", rcvdcopy, "CentcommFaxReply", "#006100")
-		if ("Sif Governmental Authority")
-			message_admins(sender, "SIF GOVERNMENT FAX", rcvdcopy, "CentcommFaxReply", "#1F66A0")
-			//message_admins(sender, "SOL GOVERNMENT FAX", rcvdcopy, "SolGovFaxReply", "#1F66A0")
-		if ("Supply")
-			message_admins(sender, "[uppertext(boss_short)] SUPPLY FAX", rcvdcopy, "CentcommFaxReply", "#5F4519")
+	if (destination == boss_name)
+		message_admins(sender, "[uppertext(boss_short)] FAX", rcvdcopy, "CentcommFaxReply", "#006100")
+	else if ("Sif Governmental Authority")
+		message_admins(sender, "SIF GOVERNMENT FAX", rcvdcopy, "CentcommFaxReply", "#1F66A0")
+	else if ("Supply")
+		message_admins(sender, "[uppertext(boss_short)] SUPPLY FAX", rcvdcopy, "CentcommFaxReply", "#5F4519")
+	else
+		message_admins(sender, "[uppertext(destination)] FAX", rcvdcopy, "UNKNOWN")
+
 
 	sendcooldown = 1800
 	sleep(50)
@@ -193,9 +196,11 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 
 /obj/machinery/photocopier/faxmachine/proc/message_admins(var/mob/sender, var/faxname, var/obj/item/sent, var/reply_type, font_colour="#006100")
-	var/msg = "\blue <b><font color='[font_colour]'>[faxname]: </font>[key_name(sender, 1)] (<A HREF='?_src_=holder;adminplayeropts=\ref[sender]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[sender]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=\ref[sender]'>SM</A>) ([admin_jump_link(sender, src)]) (<A HREF='?_src_=holder;secretsadmin=check_antagonist'>CA</A>) (<a href='?_src_=holder;[reply_type]=\ref[sender];originfax=\ref[src]'>REPLY</a>)</b>: Receiving '[sent.name]' via secure connection ... <a href='?_src_=holder;AdminFaxView=\ref[sent]'>view message</a>"
+	var/msg = "<span class='notice'><b><font color='[font_colour]'>[faxname]: </font>[get_options_bar(sender, 2,1,1)]"
+	msg += "(<a href='?_src_=holder;FaxReply=\ref[sender];originfax=\ref[src];replyorigin=[reply_type]'>REPLY</a>)</b>: "
+	msg += "Receiving '[sent.name]' via secure connection ... <a href='?_src_=holder;AdminFaxView=\ref[sent]'>view message</a></span>"
 
 	for(var/client/C in admins)
-		if(R_ADMIN & C.holder.rights)
+		if(check_rights((R_ADMIN|R_MOD),0,C))
 			C << msg
 			C << 'sound/effects/printer.ogg'

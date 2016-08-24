@@ -66,7 +66,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 /obj/item/device/pda/examine(mob/user)
 	if(..(user, 1))
-		user << "The time [worldtime2text()] is displayed in the corner of the screen."
+		user << "The time [stationtime2text()] is displayed in the corner of the screen."
 
 /obj/item/device/pda/medical
 	default_cartridge = /obj/item/weapon/cartridge/medical
@@ -523,7 +523,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			cartdata["charges"] = cartridge.charges ? cartridge.charges : 0
 		data["cartridge"] = cartdata
 
-	data["stationTime"] = worldtime2text()
+	data["stationTime"] = stationtime2text()
 	data["new_Message"] = new_message
 	data["new_News"] = new_news
 
@@ -1054,7 +1054,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 /obj/item/device/pda/proc/create_message(var/mob/living/U = usr, var/obj/item/device/pda/P, var/tap = 1)
 	if(tap)
-		U.visible_message("<span class='notice'>\The [U] taps on \his PDA's screen.</span>")
+		U.visible_message("<span class='notice'>\The [U] taps on their PDA's screen.</span>")
 	var/t = input(U, "Please enter message", P.name, null) as text
 	t = sanitize(t)
 	//t = readd_quotes(t)

@@ -271,7 +271,8 @@
 		/obj/item/weapon/anodevice,
 		/obj/item/clothing/glasses,
 		/obj/item/weapon/wrench,
-		/obj/item/weapon/storage/box/excavation,
+		/obj/item/weapon/storage/excavation,
 		/obj/item/weapon/anobattery,
-		/obj/item/device/ano_scanner
+		/obj/item/device/ano_scanner,
+		/obj/item/weapon/pickaxe/hand
 		)

@@ -26,7 +26,7 @@ Don't use ranged mobs for vore mobs.
 	var/min_size = 0.25 // Min: 0.25
 	var/picky = 1 // Won't eat undigestable prey by default
 	var/fullness = 0
-	swallowTime = 10 // Hungry little bastards.
+	swallowTime = 3 // Hungry little bastards.
 
 	// By default, this is what most vore mobs are capable of.
 	response_help = "pets"
@@ -114,6 +114,15 @@ Don't use ranged mobs for vore mobs.
 	if(picky && !target_mob.digestable) //Don't eat people with nogurgle prefs
 		..()
 		return
+
+	// Is our target edible and standing up?
+	if(!target_mob.lying && target_mob.size_multiplier >= min_size && target_mob.size_multiplier <= max_size && !(target_mob in prey_exclusions))
+		if(prob(10))
+			target_mob.Weaken(5)
+			target_mob.visible_message("<span class='danger'>\the [src] pounces on \the [target_mob]!</span>!")
+			return
+		else
+			..()
 
 	if(target_mob.lying && target_mob.size_multiplier >= min_size && target_mob.size_multiplier <= max_size && !(target_mob in prey_exclusions))
 		if(!capacity || (target_mob.size_multiplier + fullness) <= capacity)

@@ -121,6 +121,12 @@ var/list/mining_overlay_cache = list()
 				if(!mining_overlay_cache["rock_side_[place_dir]"])
 					mining_overlay_cache["rock_side_[place_dir]"] = image('icons/turf/walls.dmi', "rock_side", dir = place_dir)
 				T.overlays += mining_overlay_cache["rock_side_[place_dir]"]
+
+			if(archaeo_overlay)
+				overlays += archaeo_overlay
+
+			if(excav_overlay)
+				overlays += excav_overlay
 	else
 
 		name = "sand"
@@ -320,13 +326,12 @@ var/list/mining_overlay_cache = list()
 		if (istype(W, /obj/item/device/measuring_tape))
 			var/obj/item/device/measuring_tape/P = W
 			user.visible_message("<span class='notice'>\The [user] extends \a [P] towards \the [src].</span>","<span class='notice'>You extend \the [P] towards \the [src].</span>")
-			if(do_after(user,25))
-				user << "<span class='notice'>\icon[P] [src] has been excavated to a depth of [2*excavation_level]cm.</span>"
+			if(do_after(user, 15))
+				user << "<span class='notice'>\The [src] has been excavated to a depth of [excavation_level]cm.</span>"
 			return
 
 		if (istype(W, /obj/item/weapon/pickaxe))
-			var/turf/T = user.loc
-			if (!( istype(T, /turf) ))
+			if(!istype(user.loc, /turf))
 				return
 
 			var/obj/item/weapon/pickaxe/P = W
@@ -335,44 +340,37 @@ var/list/mining_overlay_cache = list()
 			last_act = world.time
 
 			playsound(user, P.drill_sound, 20, 1)
+			var/newDepth = excavation_level + P.excavation_amount // Used commonly below
 
 			//handle any archaeological finds we might uncover
-			var/fail_message
+			var/fail_message = ""
 			if(finds && finds.len)
 				var/datum/find/F = finds[1]
-				if(excavation_level + P.excavation_amount > F.excavation_required)
-					//Chance to destroy / extract any finds here
+				if(newDepth > F.excavation_required) // Digging too deep can break the item. At least you won't summon a Balrog (probably)
 					fail_message = ". <b>[pick("There is a crunching noise","[W] collides with some different rock","Part of the rock face crumbles away","Something breaks under [W]")]</b>"
 
-			user << "<span class='notice'>You start [P.drill_verb][fail_message ? fail_message : ""].</span>"
+			user << "<span class='notice'>You start [P.drill_verb][fail_message].</span>"
 
 			if(fail_message && prob(90))
 				if(prob(25))
-					excavate_find(5, finds[1])
+					excavate_find(prob(5), finds[1])
 				else if(prob(50))
 					finds.Remove(finds[1])
 					if(prob(50))
 						artifact_debris()
 
 			if(do_after(user,P.digspeed))
-				user << "<span class='notice'>You finish [P.drill_verb] \the [src].</span>"
 
 				if(finds && finds.len)
 					var/datum/find/F = finds[1]
-					if(round(excavation_level + P.excavation_amount) == F.excavation_required)
-						//Chance to extract any items here perfectly, otherwise just pull them out along with the rock surrounding them
-						if(excavation_level + P.excavation_amount > F.excavation_required)
-							//if you can get slightly over, perfect extraction
-							excavate_find(100, F)
-						else
-							excavate_find(80, F)
+					if(newDepth == F.excavation_required) // When the pick hits that edge just right, you extract your find perfectly, it's never confined in a rock
+						excavate_find(1, F)
+					else if(newDepth > F.excavation_required - F.clearance_range) // Not quite right but you still extract your find, the closer to the bottom the better, but not above 80%
+						excavate_find(prob(80 * (F.excavation_required - newDepth) / F.clearance_range), F)
 
-					else if(excavation_level + P.excavation_amount > F.excavation_required - F.clearance_range)
-						//just pull the surrounding rock out
-						excavate_find(0, F)
+				user << "<span class='notice'>You finish [P.drill_verb] \the [src].</span>"
 
-				if( excavation_level + P.excavation_amount >= 100 )
-					//if players have been excavating this turf, leave some rocky debris behind
+				if(newDepth >= 200) // This means the rock is mined out fully
 					var/obj/structure/boulder/B
 					if(artifact_find)
 						if( excavation_level > 0 || prob(15) )
@@ -382,7 +380,7 @@ var/list/mining_overlay_cache = list()
 								B.artifact_find = artifact_find
 						else
 							artifact_debris(1)
-					else if(prob(15))
+					else if(prob(5))
 						//empty boulder
 						B = new(src)
 
@@ -393,36 +391,44 @@ var/list/mining_overlay_cache = list()
 					return
 
 				excavation_level += P.excavation_amount
+				var/updateIcon = 0
 
 				//archaeo overlays
 				if(!archaeo_overlay && finds && finds.len)
 					var/datum/find/F = finds[1]
 					if(F.excavation_required <= excavation_level + F.view_range)
 						archaeo_overlay = "overlay_archaeo[rand(1,3)]"
-						overlays += archaeo_overlay
+						updateIcon = 1
+
+				else if(archaeo_overlay && (!finds || !finds.len))
+					archaeo_overlay = null
+					updateIcon = 1
 
 				//there's got to be a better way to do this
 				var/update_excav_overlay = 0
-				if(excavation_level >= 75)
-					if(excavation_level - P.excavation_amount < 75)
+				if(excavation_level >= 150)
+					if(excavation_level - P.excavation_amount < 150)
+						update_excav_overlay = 1
+				else if(excavation_level >= 100)
+					if(excavation_level - P.excavation_amount < 100)
 						update_excav_overlay = 1
 				else if(excavation_level >= 50)
 					if(excavation_level - P.excavation_amount < 50)
-						update_excav_overlay = 1
-				else if(excavation_level >= 25)
-					if(excavation_level - P.excavation_amount < 25)
 						update_excav_overlay = 1
 
 				//update overlays displaying excavation level
 				if( !(excav_overlay && excavation_level > 0) || update_excav_overlay )
 					var/excav_quadrant = round(excavation_level / 25) + 1
 					excav_overlay = "overlay_excv[excav_quadrant]_[rand(1,3)]"
-					overlays += excav_overlay
+					updateIcon = 1
+
+				if(updateIcon)
+					update_icon()
 
 				//drop some rocks
-				next_rock += P.excavation_amount * 10
-				while(next_rock > 100)
-					next_rock -= 100
+				next_rock += P.excavation_amount
+				while(next_rock > 50)
+					next_rock -= 50
 					var/obj/item/weapon/ore/O = new(src)
 					geologic_data.UpdateNearbyArtifactInfo(src)
 					O.geologic_data = geologic_data
@@ -481,11 +487,11 @@ var/list/mining_overlay_cache = list()
 	make_floor()
 	update_icon(1)
 
-/turf/simulated/mineral/proc/excavate_find(var/prob_clean = 0, var/datum/find/F)
+/turf/simulated/mineral/proc/excavate_find(var/is_clean = 0, var/datum/find/F)
 	//with skill and luck, players can cleanly extract finds
 	//otherwise, they come out inside a chunk of rock
 	var/obj/item/weapon/X
-	if(prob_clean)
+	if(is_clean)
 		X = new /obj/item/weapon/archaeological_find(src, new_item_type = F.find_type)
 	else
 		X = new /obj/item/weapon/ore/strangerock(src, inside_item_type = F.find_type)
@@ -503,7 +509,7 @@ var/list/mining_overlay_cache = list()
 	//many finds are ancient and thus very delicate - luckily there is a specialised energy suspension field which protects them when they're being extracted
 	if(prob(F.prob_delicate))
 		var/obj/effect/suspension_field/S = locate() in src
-		if(!S || S.field_type != get_responsive_reagent(F.find_type))
+		if(!S)
 			if(X)
 				visible_message("<span class='danger'>\The [pick("[display_name] crumbles away into dust","[display_name] breaks apart")].</span>")
 				qdel(X)
