@@ -55,6 +55,11 @@
 				update_icon()
 				return 1
 			else
+				icon = 'icons/obj/clothing/suits.dmi'
+				icon_override = null
+				icon_state = "security_rig_sealed"
+				pixel_x = 0
+				update_icon()
 				return 1
 		else if(icon_state == "engineering_rig_sealed")
 			if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
@@ -79,6 +84,11 @@
 				update_icon()
 				return 1
 			else
+				icon = 'icons/obj/clothing/suits.dmi'
+				icon_override = null
+				icon_state = "engineering_rig_sealed"
+				pixel_x = 0
+				update_icon()
 				return 1
 		else if(icon_state == "science_rig_sealed")
 			if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
@@ -103,6 +113,11 @@
 				update_icon()
 				return 1
 			else
+				icon = 'icons/obj/clothing/suits.dmi'
+				icon_override = null
+				icon_state = "science_rig_sealed"
+				pixel_x = 0
+				update_icon()
 				return 1
 		else if(icon_state == "medical_rig_sealed")
 			if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
@@ -124,6 +139,13 @@
 				icon_override = 'icons/mob/taursuits_vr.dmi'
 				icon_state = "medical_rig-naga_sealed"
 				pixel_x = -16
+				update_icon()
+				return 1
+			else
+				icon = 'icons/obj/clothing/suits.dmi'
+				icon_override = null
+				icon_state = "medical_rig_sealed"
+				pixel_x = 0
 				update_icon()
 				return 1
 		else if(icon_state == "security_rig")
@@ -149,6 +171,11 @@
 				update_icon()
 				return 1
 			else
+				icon = 'icons/obj/clothing/suits.dmi'
+				icon_override = null
+				icon_state = "security_rig"
+				pixel_x = 0
+				update_icon()
 				return 1
 		else if(icon_state == "engineering_rig")
 			if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
@@ -173,6 +200,11 @@
 				update_icon()
 				return 1
 			else
+				icon = 'icons/obj/clothing/suits.dmi'
+				icon_override = null
+				icon_state = "engineering_rig"
+				pixel_x = 0
+				update_icon()
 				return 1
 		else if(icon_state == "science_rig")
 			if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
@@ -195,6 +227,11 @@
 				update_icon()
 				return 1
 			else
+				icon = 'icons/obj/clothing/suits.dmi'
+				icon_override = null
+				icon_state = "science_rig"
+				pixel_x = 0
+				update_icon()
 				return 1
 		else if(icon_state == "medical_rig")
 			if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
@@ -218,7 +255,13 @@
 				pixel_x = -16
 				update_icon()
 				return 1
-			else return 1
+			else
+				icon = 'icons/obj/clothing/suits.dmi'
+				icon_override = null
+				icon_state = "medical_rig"
+				pixel_x = 0
+				update_icon()
+				return 1
 		else
 			return 1
 
@@ -245,6 +288,13 @@
 				pixel_x = -16
 				update_icon()
 				return 1
+			else
+				icon = 'icons/obj/clothing/suits.dmi'
+				icon_override = null
+				icon_state = "ce_rig"
+				pixel_x = 0
+				update_icon()
+				return 1
 		else if(icon_state == "ce_rig_sealed")
 			if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
 				icon_override = 'icons/mob/taursuits_vr.dmi'
@@ -262,6 +312,13 @@
 				icon_override = 'icons/mob/taursuits_vr.dmi'
 				icon_state = "ce_rig-naga"
 				pixel_x = -16
+				update_icon()
+				return 1
+			else
+				icon = 'icons/obj/clothing/suits.dmi'
+				icon_override = null
+				icon_state = "ce_rig_sealed"
+				pixel_x = 0
 				update_icon()
 				return 1
 		else
