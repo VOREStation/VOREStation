@@ -76,7 +76,7 @@
 
 
 
-/obj/item/clothing/suit/space/void/merc/horse
+/obj/item/clothing/suit/space/void/merc/taur
 	name = "taur specific blood-red voidsuit"
 	desc = "A high-tech space suit. It says has a sticker saying one size fits all taurs on it."
 	species_restricted = null //Species restricted since all it cares about is a taur half
