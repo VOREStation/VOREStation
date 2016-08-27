@@ -84,14 +84,17 @@
 		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "syndie-horse"
+			pixel_x = -16
 			return 1
 		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "syndie-wolf"
+			pixel_x = -16
 			return 1
 		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "syndie-naga"
+			pixel_x = -16
 			return 1
 		else
 			H << "<span class='warning'>You need to have a taur half to wear this.</span>"
@@ -106,16 +109,19 @@
 			icon = 'icons/mob/taursuits_vr.dmi'
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "medical-horse"
+			pixel_x = -16
 			return 1
 		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
 			icon = 'icons/mob/taursuits_vr.dmi'
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "medical-wolf"
+			pixel_x = -16
 			return 1
 		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
 			icon = 'icons/mob/taursuits_vr.dmi'
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "medical-naga"
+			pixel_x = -16
 			return 1
 		else
 			H << "<span class='warning'>You need to have a taur half to wear this.</span>"
@@ -131,16 +137,19 @@
 			icon = 'icons/mob/taursuits_vr.dmi'
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "engineering-horse"
+			pixel_x = -16
 			return 1
 		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
 			icon = 'icons/mob/taursuits_vr.dmi'
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "engineering-wolf"
+			pixel_x = -16
 			return 1
 		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
 			icon = 'icons/mob/taursuits_vr.dmi'
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "engineering-naga"
+			pixel_x = -16
 			return 1
 		else
 			H << "<span class='warning'>You need to have a taur half to wear this.</span>"
@@ -156,16 +165,22 @@
 			icon = 'icons/mob/taursuits_vr.dmi'
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "security-horse"
+			pixel_x = -16
+			update_icon()
 			return 1
 		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
 			icon = 'icons/mob/taursuits_vr.dmi'
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "security-wolf"
+			pixel_x = -16
+			update_icon()
 			return 1
 		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
 			icon = 'icons/mob/taursuits_vr.dmi'
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "security-naga"
+			pixel_x = -16
+			update_icon()
 			return 1
 		else
 			H << "<span class='warning'>You need to have a taur half to wear this.</span>"
@@ -180,16 +195,22 @@
 			icon = 'icons/mob/taursuits_vr.dmi'
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "atmos-horse"
+			pixel_x = -16
+			update_icon()
 			return 1
 		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
 			icon = 'icons/mob/taursuits_vr.dmi'
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "atmos-wolf"
+			pixel_x = -16
+			update_icon()
 			return 1
 		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
 			icon = 'icons/mob/taursuits_vr.dmi'
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "atmos-naga"
+			pixel_x = -16
+			update_icon()
 			return 1
 		else
 			H << "<span class='warning'>You need to have a taur half to wear this.</span>"
@@ -204,16 +225,22 @@
 			icon = 'icons/mob/taursuits_vr.dmi'
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "mining-horse"
+			pixel_x = -16
+			update_icon()
 			return 1
 		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
 			icon = 'icons/mob/taursuits_vr.dmi'
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "mining-wolf"
+			pixel_x = -16
+			update_icon()
 			return 1
 		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
 			icon = 'icons/mob/taursuits_vr.dmi'
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "mining-naga"
+			pixel_x = -16
+			update_icon()
 			return 1
 		else
 			H << "<span class='warning'>You need to have a taur half to wear this.</span>"

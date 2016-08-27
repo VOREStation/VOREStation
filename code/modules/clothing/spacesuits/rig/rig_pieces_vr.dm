@@ -37,16 +37,22 @@
 				icon = 'icons/mob/taursuits_vr.dmi'
 				icon_override = 'icons/mob/taursuits_vr.dmi'
 				icon_state = "breacher_rig_cheap-horse_sealed" //They have to toggle the chest piece off then on again for this to show up.
+				pixel_x = -16
+				update_icon()
 				return 1
 			else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
 				icon = 'icons/mob/taursuits_vr.dmi'
 				icon_override = 'icons/mob/taursuits_vr.dmi'
 				icon_state = "breacher_rig_cheap-wolf_sealed"
+				pixel_x = -16
+				update_icon()
 				return 1
 			else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
 				icon = 'icons/mob/taursuits_vr.dmi'
 				icon_override = 'icons/mob/taursuits_vr.dmi'
 				icon_state = "breacher_rig_cheap-naga_sealed"
+				pixel_x = -16
+				update_icon()
 				return 1
 			else
 				return 1
@@ -55,16 +61,22 @@
 				icon = 'icons/mob/taursuits_vr.dmi'
 				icon_override = 'icons/mob/taursuits_vr.dmi'
 				icon_state = "industrial_rig-horse_sealed"
+				pixel_x = -16
+				update_icon()
 				return 1
 			else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
 				icon = 'icons/mob/taursuits_vr.dmi'
 				icon_override = 'icons/mob/taursuits_vr.dmi'
 				icon_state = "industrial_rig-wolf_sealed"
+				pixel_x = -16
+				update_icon()
 				return 1
 			else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
 				icon = 'icons/mob/taursuits_vr.dmi'
 				icon_override = 'icons/mob/taursuits_vr.dmi'
 				icon_state = "industrial_rig-naga_sealed"
+				pixel_x = -16
+				update_icon()
 				return 1
 			else
 				return 1
@@ -73,16 +85,22 @@
 				icon = 'icons/mob/taursuits_vr.dmi'
 				icon_override = 'icons/mob/taursuits_vr.dmi'
 				icon_state = "science_rig-horse_sealed"
+				pixel_x = -16
+				update_icon()
 				return 1
 			else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
 				icon = 'icons/mob/taursuits_vr.dmi'
 				icon_override = 'icons/mob/taursuits_vr.dmi'
 				icon_state = "science_rig-wolf_sealed"
+				pixel_x = -16
+				update_icon()
 				return 1
 			else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
 				icon = 'icons/mob/taursuits_vr.dmi'
 				icon_override = 'icons/mob/taursuits_vr.dmi'
 				icon_state = "science_rig-naga_sealed"
+				pixel_x = -16
+				update_icon()
 				return 1
 			else
 				return 1
@@ -91,32 +109,44 @@
 				icon = 'icons/mob/taursuits_vr.dmi'
 				icon_override = 'icons/mob/taursuits_vr.dmi'
 				icon_state = "medical_rig-horse_sealed"
+				pixel_x = -16
+				update_icon()
 				return 1
 			else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
 				icon = 'icons/mob/taursuits_vr.dmi'
 				icon_override = 'icons/mob/taursuits_vr.dmi'
 				icon_state = "medical_rig-wolf_sealed"
+				pixel_x = -16
+				update_icon()
 				return 1
 			else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
 				icon = 'icons/mob/taursuits_vr.dmi'
 				icon_override = 'icons/mob/taursuits_vr.dmi'
 				icon_state = "medical_rig-naga_sealed"
+				pixel_x = -16
+				update_icon()
 				return 1
 		else if(icon_state == "security_rig")
 			if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
 				icon = 'icons/mob/taursuits_vr.dmi'
 				icon_override = 'icons/mob/taursuits_vr.dmi'
 				icon_state = "breacher_rig_cheap-horse_sealed"
+				pixel_x = -16
+				update_icon()
 				return 1
 			else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
 				icon = 'icons/mob/taursuits_vr.dmi'
 				icon_override = 'icons/mob/taursuits_vr.dmi'
 				icon_state = "breacher_rig_cheap-wolf_sealed"
+				pixel_x = -16
+				update_icon()
 				return 1
 			else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
 				icon = 'icons/mob/taursuits_vr.dmi'
 				icon_override = 'icons/mob/taursuits_vr.dmi'
 				icon_state = "breacher_rig_cheap-naga_sealed"
+				pixel_x = -16
+				update_icon()
 				return 1
 			else
 				return 1
@@ -125,16 +155,22 @@
 				icon = 'icons/mob/taursuits_vr.dmi'
 				icon_override = 'icons/mob/taursuits_vr.dmi'
 				icon_state = "industrial_rig-horse_sealed"
+				pixel_x = -16
+				update_icon()
 				return 1
 			else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
 				icon = 'icons/mob/taursuits_vr.dmi'
 				icon_override = 'icons/mob/taursuits_vr.dmi'
 				icon_state = "industrial_rig-wolf_sealed"
+				pixel_x = -16
+				update_icon()
 				return 1
 			else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
 				icon = 'icons/mob/taursuits_vr.dmi'
 				icon_override = 'icons/mob/taursuits_vr.dmi'
 				icon_state = "industrial_rig-naga_sealed"
+				pixel_x = -16
+				update_icon()
 				return 1
 			else
 				return 1
@@ -143,6 +179,8 @@
 				icon = 'icons/mob/taursuits_vr.dmi'
 				icon_override = 'icons/mob/taursuits_vr.dmi'
 				icon_state = "science_rig-horse_sealed"
+				pixel_x = -16
+				update_icon()
 				return 1
 			else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
 				icon = 'icons/mob/taursuits_vr.dmi'
@@ -153,6 +191,8 @@
 				icon = 'icons/mob/taursuits_vr.dmi'
 				icon_override = 'icons/mob/taursuits_vr.dmi'
 				icon_state = "science_rig-naga_sealed"
+				pixel_x = -16
+				update_icon()
 				return 1
 			else
 				return 1
@@ -161,16 +201,22 @@
 				icon = 'icons/mob/taursuits_vr.dmi'
 				icon_override = 'icons/mob/taursuits_vr.dmi'
 				icon_state = "medical_rig-horse_sealed"
+				pixel_x = -16
+				update_icon()
 				return 1
 			else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
 				icon = 'icons/mob/taursuits_vr.dmi'
 				icon_override = 'icons/mob/taursuits_vr.dmi'
 				icon_state = "medical_rig-wolf_sealed"
+				pixel_x = -16
+				update_icon()
 				return 1
 			else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
 				icon = 'icons/mob/taursuits_vr.dmi'
 				icon_override = 'icons/mob/taursuits_vr.dmi'
 				icon_state = "medical_rig-naga_sealed"
+				pixel_x = -16
+				update_icon()
 				return 1
 			else return 1
 		else
@@ -183,28 +229,40 @@
 		if(icon_state == "ce_rig")
 			if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
 				icon_override = 'icons/mob/taursuits_vr.dmi'
-				icon_state = "ce_rig-horse_sealed"
+				icon_state = "ce_rig-horse"
+				pixel_x = -16
+				update_icon()
 				return 1
 			else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
 				icon_override = 'icons/mob/taursuits_vr.dmi'
-				icon_state = "ce_rig-wolf_sealed"
+				icon_state = "ce_rig-wolf"
+				pixel_x = -16
+				update_icon()
 				return 1
 			else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
 				icon_override = 'icons/mob/taursuits_vr.dmi'
-				icon_state = "ce_rig-naga_sealed"
+				icon_state = "ce_rig-naga"
+				pixel_x = -16
+				update_icon()
 				return 1
 		else if(icon_state == "ce_rig_sealed")
 			if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
 				icon_override = 'icons/mob/taursuits_vr.dmi'
-				icon_state = "ce_rig-horse_sealed"
+				icon_state = "ce_rig-horse"
+				pixel_x = -16
+				update_icon()
 				return 1
 			else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
 				icon_override = 'icons/mob/taursuits_vr.dmi'
-				icon_state = "ce_rig-wolf_sealed"
+				icon_state = "ce_rig-wolf"
+				pixel_x = -16
+				update_icon()
 				return 1
 			else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
 				icon_override = 'icons/mob/taursuits_vr.dmi'
-				icon_state = "ce_rig-naga_sealed"
+				icon_state = "ce_rig-naga"
+				pixel_x = -16
+				update_icon()
 				return 1
 		else
 			return 1
