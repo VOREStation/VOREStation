@@ -44,7 +44,7 @@
 	body_parts_covered = 0
 
 /obj/item/clothing/head/collectable/captain
-	name = "collectable captain's hat"
+	name = "collectable station administrator's hat"
 	desc = "A Collectable Hat that'll make you look just like a real comdom!"
 	icon_state = "captain"
 	body_parts_covered = 0
