@@ -68,9 +68,153 @@
 		"Promethean"		= 'icons/obj/clothing/species/skrell/suits.dmi'
 		)
 
-
 	// This is a hack to prevent the item_state variable on the suits from taking effect
 	// when the item is equipped in outer clothing slot.
 	// This variable is normally used to set the icon_override when the suit is refitted,
 	// however the species spritesheet now means we no longer need that anyway!
 	sprite_sheets_refit = list()
+
+
+
+/obj/item/clothing/suit/space/void/merc/horse
+	name = "taur specific blood-red voidsuit"
+	desc = "A high-tech space suit. It says has a sticker saying one size fits all taurs on it."
+	species_restricted = null //Species restricted since all it cares about is a taur half
+	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
+			icon_override = 'icons/mob/taursuits_vr.dmi'
+			icon_state = "syndie-horse"
+			return 1
+		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
+			icon_override = 'icons/mob/taursuits_vr.dmi'
+			icon_state = "syndie-wolf"
+			return 1
+		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
+			icon_override = 'icons/mob/taursuits_vr.dmi'
+			icon_state = "syndie-naga"
+			return 1
+		else
+			H << "<span class='warning'>You need to have a taur half to wear this.</span>"
+			return 0
+
+/obj/item/clothing/suit/space/void/medical/taur
+	name = "taur specific medical voidsuit"
+	desc = "A high-tech space suit. It says has a sticker saying one size fits all taurs on it."
+	species_restricted = null
+	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
+			icon = 'icons/mob/taursuits_vr.dmi'
+			icon_override = 'icons/mob/taursuits_vr.dmi'
+			icon_state = "medical-horse"
+			return 1
+		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
+			icon = 'icons/mob/taursuits_vr.dmi'
+			icon_override = 'icons/mob/taursuits_vr.dmi'
+			icon_state = "medical-wolf"
+			return 1
+		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
+			icon = 'icons/mob/taursuits_vr.dmi'
+			icon_override = 'icons/mob/taursuits_vr.dmi'
+			icon_state = "medical-naga"
+			return 1
+		else
+			H << "<span class='warning'>You need to have a taur half to wear this.</span>"
+			return 0
+
+
+/obj/item/clothing/suit/space/void/engineering/taur
+	name = "taur specific engineering voidsuit"
+	desc = "A high-tech space suit. It says has a sticker saying one size fits all taurs on it."
+	species_restricted = null
+	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
+			icon = 'icons/mob/taursuits_vr.dmi'
+			icon_override = 'icons/mob/taursuits_vr.dmi'
+			icon_state = "engineering-horse"
+			return 1
+		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
+			icon = 'icons/mob/taursuits_vr.dmi'
+			icon_override = 'icons/mob/taursuits_vr.dmi'
+			icon_state = "engineering-wolf"
+			return 1
+		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
+			icon = 'icons/mob/taursuits_vr.dmi'
+			icon_override = 'icons/mob/taursuits_vr.dmi'
+			icon_state = "engineering-naga"
+			return 1
+		else
+			H << "<span class='warning'>You need to have a taur half to wear this.</span>"
+			return 0
+
+
+/obj/item/clothing/suit/space/void/security/taur
+	name = "taur specific security voidsuit"
+	desc = "A high-tech space suit. It says has a sticker saying one size fits all taurs on it."
+	species_restricted = null
+	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
+			icon = 'icons/mob/taursuits_vr.dmi'
+			icon_override = 'icons/mob/taursuits_vr.dmi'
+			icon_state = "security-horse"
+			return 1
+		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
+			icon = 'icons/mob/taursuits_vr.dmi'
+			icon_override = 'icons/mob/taursuits_vr.dmi'
+			icon_state = "security-wolf"
+			return 1
+		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
+			icon = 'icons/mob/taursuits_vr.dmi'
+			icon_override = 'icons/mob/taursuits_vr.dmi'
+			icon_state = "security-naga"
+			return 1
+		else
+			H << "<span class='warning'>You need to have a taur half to wear this.</span>"
+			return 0
+
+/obj/item/clothing/suit/space/void/atmos/taur
+	name = "taur specific atmospherics voidsuit"
+	desc = "A high-tech space suit. It says has a sticker saying one size fits all taurs on it."
+	species_restricted = null
+	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
+			icon = 'icons/mob/taursuits_vr.dmi'
+			icon_override = 'icons/mob/taursuits_vr.dmi'
+			icon_state = "atmos-horse"
+			return 1
+		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
+			icon = 'icons/mob/taursuits_vr.dmi'
+			icon_override = 'icons/mob/taursuits_vr.dmi'
+			icon_state = "atmos-wolf"
+			return 1
+		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
+			icon = 'icons/mob/taursuits_vr.dmi'
+			icon_override = 'icons/mob/taursuits_vr.dmi'
+			icon_state = "atmos-naga"
+			return 1
+		else
+			H << "<span class='warning'>You need to have a taur half to wear this.</span>"
+			return 0
+
+/obj/item/clothing/suit/space/void/mining/taur
+	name = "taur specific mining voidsuit"
+	desc = "A high-tech space suit. It says has a sticker saying one size fits all taurs on it."
+	species_restricted = null
+	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
+			icon = 'icons/mob/taursuits_vr.dmi'
+			icon_override = 'icons/mob/taursuits_vr.dmi'
+			icon_state = "mining-horse"
+			return 1
+		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
+			icon = 'icons/mob/taursuits_vr.dmi'
+			icon_override = 'icons/mob/taursuits_vr.dmi'
+			icon_state = "mining-wolf"
+			return 1
+		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
+			icon = 'icons/mob/taursuits_vr.dmi'
+			icon_override = 'icons/mob/taursuits_vr.dmi'
+			icon_state = "mining-naga"
+			return 1
+		else
+			H << "<span class='warning'>You need to have a taur half to wear this.</span>"
+			return 0
