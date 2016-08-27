@@ -298,19 +298,19 @@
 		else if(icon_state == "ce_rig_sealed")
 			if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
 				icon_override = 'icons/mob/taursuits_vr.dmi'
-				icon_state = "ce_rig-horse"
+				icon_state = "ce_rig-horse_sealed"
 				pixel_x = -16
 				update_icon()
 				return 1
 			else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
 				icon_override = 'icons/mob/taursuits_vr.dmi'
-				icon_state = "ce_rig-wolf"
+				icon_state = "ce_rig-wolf_sealed"
 				pixel_x = -16
 				update_icon()
 				return 1
 			else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
 				icon_override = 'icons/mob/taursuits_vr.dmi'
-				icon_state = "ce_rig-naga"
+				icon_state = "ce_rig-naga_sealed"
 				pixel_x = -16
 				update_icon()
 				return 1

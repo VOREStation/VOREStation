@@ -245,3 +245,34 @@
 		else
 			H << "<span class='warning'>You need to have a taur half to wear this.</span>"
 			return 0
+
+
+/obj/item/clothing/suit/space/void/merc/taur
+	name = "taur specific blood-red voidsuit"
+	desc = "A high-tech space suit. It says has a sticker saying one size fits all taurs on it."
+	species_restricted = null
+	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
+			icon = 'icons/mob/taursuits_vr.dmi'
+			icon_override = 'icons/mob/taursuits_vr.dmi'
+			icon_state = "syndie-horse"
+			pixel_x = -16
+			update_icon()
+			return 1
+		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
+			icon = 'icons/mob/taursuits_vr.dmi'
+			icon_override = 'icons/mob/taursuits_vr.dmi'
+			icon_state = "syndie-wolf"
+			pixel_x = -16
+			update_icon()
+			return 1
+		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
+			icon = 'icons/mob/taursuits_vr.dmi'
+			icon_override = 'icons/mob/taursuits_vr.dmi'
+			icon_state = "syndie-naga"
+			pixel_x = -16
+			update_icon()
+			return 1
+		else
+			H << "<span class='warning'>You need to have a taur half to wear this.</span>"
+			return 0
