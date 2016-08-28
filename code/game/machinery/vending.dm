@@ -776,6 +776,8 @@
 	vend_delay = 34
 	icon_state = "cigs"
 	products = list(/obj/item/weapon/storage/fancy/cigarettes = 5,
+					/obj/item/weapon/storage/fancy/cigarettes/dromedaryco = 5,
+					/obj/item/weapon/storage/fancy/cigarettes/killthroat = 5,
 					/obj/item/weapon/storage/fancy/cigarettes/luckystars = 5,
 					/obj/item/weapon/storage/fancy/cigarettes/jerichos = 5,
 					/obj/item/weapon/storage/fancy/cigarettes/menthols = 5,
@@ -785,7 +787,9 @@
 	premium = list(/obj/item/weapon/storage/fancy/cigar = 5,
 					/obj/item/weapon/storage/fancy/cigarettes/carcinomas = 5,
 					/obj/item/weapon/storage/fancy/cigarettes/professionals = 5)
-	prices = list(/obj/item/weapon/storage/fancy/cigarettes = 15,
+	prices = list(/obj/item/weapon/storage/fancy/cigarettes = 12,
+					/obj/item/weapon/storage/fancy/cigarettes/dromedaryco = 15,
+					/obj/item/weapon/storage/fancy/cigarettes/killthroat = 17,
 					/obj/item/weapon/storage/fancy/cigarettes/luckystars = 17,
 					/obj/item/weapon/storage/fancy/cigarettes/jerichos = 22,
 					/obj/item/weapon/storage/fancy/cigarettes/menthols = 18,
