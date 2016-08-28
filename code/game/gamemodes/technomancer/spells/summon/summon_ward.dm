@@ -5,6 +5,7 @@
 	enhancement_desc = "Wards can detect invisibile entities, and are more specific in relaying information about what it sees."
 	cost = 100
 	obj_path = /obj/item/weapon/spell/summon/summon_ward
+	category = UTILITY_SPELLS
 
 /obj/item/weapon/spell/summon/summon_ward
 	name = "summon ward"
@@ -43,6 +44,8 @@
 /mob/living/simple_animal/ward/death()
 	if(creator)
 		creator << "<span class='danger'>Your ward inside [get_area(src)] was killed!</span>"
+	..()
+	qdel(src)
 
 /mob/living/simple_animal/ward/proc/expire()
 	if(creator && src)

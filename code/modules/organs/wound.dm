@@ -92,7 +92,7 @@
 
 	// checks whether the wound has been appropriately treated
 	proc/is_treated()
-		if(damage_type == BRUISE || damage_type == CUT)
+		if(damage_type == BRUISE || damage_type == CUT || damage_type == PIERCE)
 			return bandaged
 		else if(damage_type == BURN)
 			return salved

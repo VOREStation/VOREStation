@@ -1,10 +1,11 @@
 /datum/technomancer/spell/haste
 	name = "Haste"
-	desc = "Allows the target to run at speeds that should not be possible for an ordinary being.  For three seconds, the target \
+	desc = "Allows the target to run at speeds that should not be possible for an ordinary being.  For five seconds, the target \
 	runs extremly fast, and cannot be slowed by any means."
 	cost = 100
 	obj_path = /obj/item/weapon/spell/insert/haste
 	ability_icon_state = "tech_haste"
+	category = SUPPORT_SPELLS
 
 /obj/item/weapon/spell/insert/haste
 	name = "haste"
@@ -22,7 +23,7 @@
 			L.force_max_speed = 1
 			L << "<span class='notice'>You suddenly find it much easier to move.</span>"
 			L.adjust_instability(10)
-			spawn(3 SECONDS)
+			spawn(5 SECONDS)
 				if(src)
 					on_expire()
 

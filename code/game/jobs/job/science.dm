@@ -7,7 +7,7 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the captain"
+	supervisors = "the station administrator"
 	selection_color = "#AD6BAD"
 	idtype = /obj/item/weapon/card/id/science/head
 	req_admin_notify = 1
@@ -20,6 +20,7 @@
 			            access_tox_storage, access_teleporter, access_sec_doors,
 			            access_research, access_robotics, access_xenobiology, access_ai_upload, access_tech_storage,
 			            access_RC_announce, access_keycard_auth, access_tcomsat, access_gateway, access_xenoarch)
+	alt_titles = list("Research Supervisor")
 
 	minimum_character_age = 25
 	minimal_player_age = 14

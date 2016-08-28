@@ -5,6 +5,11 @@
 	siemens_coefficient = 0.9
 	body_parts_covered = 0
 
+/obj/item/clothing/head/centhat/customs
+	name = "Customs Hat"
+	desc = "A formal hat for SolGov Customs Officers."
+	icon_state = "customshat"
+
 /obj/item/clothing/head/hairflower
 	name = "hair flower pin"
 	icon_state = "hairflower"
@@ -73,13 +78,13 @@
 /obj/item/clothing/head/nursehat
 	name = "nurse's hat"
 	desc = "It allows quick identification of trained medical personnel."
-	item_state_slots = list(slot_r_hand_str = "nursehat", slot_l_hand_str = "nursehat")
+	icon_state = "nursehat"
 	siemens_coefficient = 0.9
 	body_parts_covered = 0
 
 /obj/item/clothing/head/syndicatefake
 	name = "red space-helmet replica"
-	item_state_slots = list(slot_r_hand_str = "syndicate-helm-black-red", slot_l_hand_str = "syndicate-helm-black-red")	
+	item_state_slots = list(slot_r_hand_str = "syndicate-helm-black-red", slot_l_hand_str = "syndicate-helm-black-red")
 	icon_state = "syndicate"
 	desc = "A plastic replica of a bloodthirsty mercenary's space helmet, you'll look just like a real murderous criminal operative in this! This is a toy, it is not made for use in space!"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
@@ -125,7 +130,7 @@
 
 /obj/item/clothing/head/justice/pink
 	icon_state = "justicepink"
-	
+
 /obj/item/clothing/head/rabbitears
 	name = "rabbit ears"
 	desc = "Wearing these makes you looks useless, and only good for your sex appeal."
@@ -202,7 +207,7 @@
 	name = "fez"
 	icon_state = "fez"
 	desc = "You should wear a fez. Fezzes are cool."
-	
+
 /obj/item/clothing/head/cowboy_hat
 	name = "cowboy hat"
 	desc = "For those that have spurs that go jingle jangle jingle."

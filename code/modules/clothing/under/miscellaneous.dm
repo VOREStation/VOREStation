@@ -33,6 +33,14 @@
 	icon_state = "waiter"
 	rolled_sleeves = 0
 
+/obj/item/clothing/under/customs
+	name = "customs uniform"
+	desc = "A standard SolGov customs uniform.  Complete with epaulettes."
+	icon_state = "cu_suit"
+
+/obj/item/clothing/under/customs/khaki
+	icon_state = "cu_suit_kh"
+
 /obj/item/clothing/under/rank/mailman
 	name = "mailman's jumpsuit"
 	desc = "<i>'Special delivery!'</i>"
@@ -145,7 +153,7 @@
 	rolled_sleeves = 0
 
 /obj/item/clothing/under/gimmick/rank/captain/suit
-	name = "captain's suit"
+	name = "station administrator's suit"
 	desc = "A green suit and yellow necktie. Exemplifies authority."
 	icon_state = "green_suit"
 	item_state_slots = list(slot_r_hand_str = "centcom", slot_l_hand_str = "centcom")
@@ -253,7 +261,7 @@
 /obj/item/clothing/under/dress/stripeddress
 	name = "striped dress"
 	desc = "Fashion in space."
-	icon_state = "striped_dress" 
+	icon_state = "striped_dress"
 
 /obj/item/clothing/under/dress/sailordress
 	name = "sailor dress"
@@ -307,8 +315,8 @@
 	item_state_slots = list(slot_r_hand_str = "dress_white", slot_l_hand_str = "dress_white")
 
 /obj/item/clothing/under/dress/dress_cap
-	name = "captain's dress uniform"
-	desc = "Feminine fashion for the style concious captain."
+	name = "station administrator's dress uniform"
+	desc = "Feminine fashion for the style concious Station Administrator."
 	icon_state = "dress_cap"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
@@ -374,8 +382,8 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
 /obj/item/clothing/under/captainformal
-	name = "captain's formal uniform"
-	desc = "A captain's formal-wear, for special occasions."
+	name = "station administrator's formal uniform"
+	desc = "A Station Administrator's formal-wear, for special occasions."
 	icon_state = "captain_formal"
 	item_state_slots = list(slot_r_hand_str = "lawyer_blue", slot_l_hand_str = "lawyer_blue")
 
@@ -529,7 +537,7 @@
 	name = "fancy dark red dress"
 	desc = "A short, red dress with a black belt. Fancy."
 	icon_state = "darkreddress"
-	
+
 /*
  * swimsuit
  */
@@ -566,7 +574,7 @@
 	desc = "An oldfashioned red swimsuit."
 	icon_state = "swim_red"
 	siemens_coefficient = 1
-	
+
 /*
  * pyjamas
  */
@@ -583,7 +591,7 @@
 	icon_state = "red_pyjamas"
 	item_state_slots = list(slot_r_hand_str = "red", slot_l_hand_str = "red")
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	
+
 /obj/item/clothing/under/stripper
 	body_parts_covered = 0
 
@@ -598,7 +606,7 @@
 	desc = "A rather skimpy green swimsuit."
 	icon_state = "stripper_g_under"
 	siemens_coefficient = 1
-	
+
 /obj/item/clothing/under/stripper/mankini
 	name = "mankini"
 	desc = "No honest man would wear this abomination"

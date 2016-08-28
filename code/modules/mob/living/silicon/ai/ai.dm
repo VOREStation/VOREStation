@@ -151,8 +151,7 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 	add_language("Galactic Common", 1)
 	add_language("Sol Common", 0)
 	add_language("Sinta'unathi", 0)
-	add_language("Siik'maas", 0)
-	add_language("Siik'tajr", 0)
+	add_language("Siik", 0)
 	add_language("Skrellian", 0)
 	add_language("Tradeband", 1)
 	add_language("Gutter", 0)
@@ -565,7 +564,21 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 		var/icon_list[] = list(
 		"default",
 		"floating face",
-		"carp"
+		"carp",
+		"ian",
+		"runtime",
+		"poly",
+		"pun pun",
+		"male human",
+		"female human",
+		"male unathi",
+		"female unathi",
+		"male tajara",
+		"female tajara",
+		"male tesharii",
+		"female tesharii",
+		"male skrell",
+		"female skrell"
 		)
 		input = input("Please select a hologram:") as null|anything in icon_list
 		if(input)
@@ -577,6 +590,35 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo2"))
 				if("carp")
 					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo4"))
+				if("ian")
+					holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"corgi"))
+				if("runtime")
+					holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"cat"))
+				if("poly")
+					holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"parrot_fly"))
+				if("pun pun")
+					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"punpun"))
+				if("male human")
+					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holohumm"))
+				if("female human")
+					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holohumf"))
+				if("male unathi")
+					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holounam"))
+				if("female unathi")
+					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holounaf"))
+				if("male tajara")
+					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holotajm"))
+				if("female tajara")
+					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holotajf"))
+				if("male tesharii")
+					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holotesm"))
+				if("female tesharii")
+					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holotesf"))
+				if("male skrell")
+					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holoskrm"))
+				if("female skrell")
+					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holoskrf"))
+
 	return
 
 //Toggles the luminosity and applies it by re-entereing the camera.

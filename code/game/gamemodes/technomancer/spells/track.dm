@@ -3,9 +3,10 @@
 	desc = "Acts as directional guidance towards an object that belongs to you or your team.  It can also point towards your allies.  \
 	Wonderful if you're worried someone will steal your valuables, like a certain shiny Scepter..."
 	enhancement_desc = "You will be able to track most other entities in addition to your belongings and allies."
-	cost = 30
+	cost = 25
 	obj_path = /obj/item/weapon/spell/track
 	ability_icon_state = "tech_track"
+	category = UTILITY_SPELLS
 
 // This stores a ref to all important items that belong to a Technomancer, in case of theft.  Used by the spell below.
 // I feel dirty for adding yet another global list used by one thing, but the only alternative is to loop through world, and yeahhh.
@@ -38,6 +39,8 @@ var/list/technomancer_belongings = list()
 	var/list/mob_choices = list()
 	for(var/mob/living/L in mob_list)
 		if(!is_ally(L) && !can_track_non_allies)
+			continue
+		if(L == user)
 			continue
 		mob_choices += L
 	var/choice = input(user,"Decide what or who to track.","Tracking") as null|anything in object_choices + mob_choices

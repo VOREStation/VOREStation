@@ -97,7 +97,7 @@
 		user << "<span class='warning'>The [initial(name)] is dry!</span>"
 	else
 		user.visible_message("\The [user] starts to wipe down [A] with [src]!")
-		reagents.splash(A, 1) //get a small amount of liquid on the thing we're wiping.
+		//reagents.splash(A, 1) //get a small amount of liquid on the thing we're wiping.
 		update_name()
 		if(do_after(user,30))
 			user.visible_message("\The [user] finishes wiping off the [A]!")

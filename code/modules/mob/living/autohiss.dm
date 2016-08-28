@@ -53,7 +53,7 @@
 	autohiss_basic_map = list(
 			"r" = list("rr", "rrr", "rrrr")
 		)
-	autohiss_exempt = list("Siik'tajr")
+	autohiss_exempt = list("Siik")
 
 
 /datum/species/proc/handle_autohiss(message, datum/language/lang, mode)

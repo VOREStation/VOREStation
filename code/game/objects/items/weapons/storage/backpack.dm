@@ -92,7 +92,7 @@
 	icon_state = "securitypack"
 
 /obj/item/weapon/storage/backpack/captain
-	name = "captain's backpack"
+	name = "station administrator's backpack"
 	desc = "It's a special backpack made exclusively for officers."
 	icon_state = "captainpack"
 
@@ -154,7 +154,7 @@
 	icon_state = "duffle_syndieammo"
 
 /obj/item/weapon/storage/backpack/dufflebag/captain
-	name = "captain's dufflebag"
+	name = "station administrator's dufflebag"
 	desc = "A large dufflebag for holding extra captainly goods."
 	icon_state = "duffle_captain"
 
@@ -214,25 +214,25 @@
 	name = "virologist satchel"
 	desc = "A sterile satchel with virologist colours."
 	icon_state = "satchel-vir"
-	item_state_slots = list(slot_r_hand_str = "medicalpack", slot_l_hand_str = "medicalpack")
+	item_state_slots = list(slot_r_hand_str = "viropack", slot_l_hand_str = "viropack")
 
 /obj/item/weapon/storage/backpack/satchel/chem
 	name = "chemist satchel"
 	desc = "A sterile satchel with chemist colours."
 	icon_state = "satchel-chem"
-	item_state_slots = list(slot_r_hand_str = "medicalpack", slot_l_hand_str = "medicalpack")
+	item_state_slots = list(slot_r_hand_str = "chempack", slot_l_hand_str = "chempack")
 
 /obj/item/weapon/storage/backpack/satchel/gen
 	name = "geneticist satchel"
 	desc = "A sterile satchel with geneticist colours."
 	icon_state = "satchel-gen"
-	item_state_slots = list(slot_r_hand_str = "medicalpack", slot_l_hand_str = "medicalpack")
+	item_state_slots = list(slot_r_hand_str = "genpack", slot_l_hand_str = "genpack")
 
 /obj/item/weapon/storage/backpack/satchel/tox
 	name = "scientist satchel"
 	desc = "Useful for holding research materials."
 	icon_state = "satchel-tox"
-	item_state_slots = list(slot_r_hand_str = "medicalpack", slot_l_hand_str = "medicalpack")
+	item_state_slots = list(slot_r_hand_str = "toxpack", slot_l_hand_str = "toxpack")
 
 /obj/item/weapon/storage/backpack/satchel/sec
 	name = "security satchel"
@@ -246,7 +246,7 @@
 	icon_state = "satchel_hyd"
 
 /obj/item/weapon/storage/backpack/satchel/cap
-	name = "captain's satchel"
+	name = "station administrator's satchel"
 	desc = "An exclusive satchel for officers."
 	icon_state = "satchel-cap"
 	item_state_slots = list(slot_r_hand_str = "captainpack", slot_l_hand_str = "captainpack")

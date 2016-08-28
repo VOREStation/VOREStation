@@ -180,6 +180,31 @@
 	path = /obj/item/clothing/suit/wcoat
 	cost = 1
 
+/datum/gear/suit/wcoat/red
+	display_name = "red waistcoat"
+	path = /obj/item/clothing/suit/wcoat/red
+
+/datum/gear/suit/wcoat/grey
+	display_name = "grey waistcoat"
+	path = /obj/item/clothing/suit/wcoat/grey
+
+/datum/gear/suit/wcoat/brown
+	display_name = "brown waistcoat"
+	path = /obj/item/clothing/suit/wcoat/brown
+
+/datum/gear/suit/swvest
+	display_name = "black sweatervest"
+	path = /obj/item/clothing/suit/wcoat/swvest
+	cost = 1
+
+/datum/gear/suit/swvest/blue
+	display_name = "blue sweatervest"
+	path = /obj/item/clothing/suit/wcoat/swvest/blue
+
+/datum/gear/suit/swvest/red
+	display_name = "red sweatervest"
+	path = /obj/item/clothing/suit/wcoat/swvest/red
+
 /datum/gear/suit/forensics
 	display_name = "forensics long, red"
 	path = /obj/item/clothing/suit/storage/forensics/red/long
@@ -205,9 +230,9 @@
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat
 
 /datum/gear/suit/wintercoat/captain
-	display_name = "winter coat, captain"
+	display_name = "winter coat, station administrator"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/captain
-	allowed_roles = list("Captain")
+	allowed_roles = list("Station Administrator")
 
 /datum/gear/suit/wintercoat/security
 	display_name = "winter coat, security"
