@@ -16,10 +16,9 @@
 	var/occupiedcolor = "#22FF22"
 	var/emptycolor = "#FF2222"
 	var/operatingcolor = "#FFFF22"
-	
+
 /obj/machinery/slime/replicator/New()
 	..()
-	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
@@ -27,23 +26,23 @@
 	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
 	RefreshParts()
 	update_light_color()
-	
-	
+
+
 /obj/machinery/slime/replicator/attackby(var/obj/item/W, var/mob/user)
 	//Let's try to deconstruct first.
 	if(istype(W, /obj/item/weapon/screwdriver) && !inuse)
 		default_deconstruction_screwdriver(user, W)
 		return
-	
+
 	if(istype(W, /obj/item/weapon/crowbar))
 		default_deconstruction_crowbar(user, W)
 		return
 
 	var/obj/item/xenoproduct/slime/core/G = W
-	
+
 	if(!istype(G))
 		return ..()
-		
+
 	if(core)
 		user << "<span class='warning'>[src] is already filled!</span>"
 		return
@@ -53,7 +52,7 @@
 	user.drop_from_inventory(G)
 	G.forceMove(src)
 	update_light_color()
-		
+
 /obj/machinery/slime/replicator/proc/update_light_color()
 	if(src.core && !(inuse))
 		set_light(2, 2, occupiedcolor)
@@ -61,13 +60,13 @@
 		set_light(2, 2, operatingcolor)
 	else
 		set_light(2, 2, emptycolor)
-		
+
 /obj/machinery/slime/replicator/proc/replicate_slime()
 	if(!src.core)
 		src.visible_message("\icon[src] [src] pings unhappily.")
 	else if(inuse)
 		return
-		
+
 	inuse = 1
 	update_light_color()
 	icon_state = "restruct_1"
@@ -86,20 +85,20 @@
 			icon_state = "restruct_0"
 			update_light_color()
 			src.updateUsrDialog()
-			
+
 /obj/machinery/slime/replicator/proc/eject_slime()
 	for(var/mob/thing in contents)
 		thing.forceMove(loc)
 
-/obj/machinery/slime/replicator/proc/eject_core()			
+/obj/machinery/slime/replicator/proc/eject_core()
 	if(core)
 		core.forceMove(loc)
 		core = null
 
 /obj/machinery/slime/replicator/proc/eject_contents()
 	eject_slime()
-	eject_core()	
-		
+	eject_core()
+
 //Here lies the UI
 /obj/machinery/slime/replicator/attack_hand(mob/user as mob)
 	user.set_machine(src)
@@ -135,7 +134,7 @@
 			eject_core()
 	src.updateUsrDialog()
 	return
-	
+
 //Circuit board below,
 /obj/item/weapon/circuitboard/slimereplicator
 	name = T_BOARD("Slime replicator")
@@ -148,4 +147,3 @@
 							/obj/item/weapon/stock_parts/micro_laser = 1
 							)
 
-	

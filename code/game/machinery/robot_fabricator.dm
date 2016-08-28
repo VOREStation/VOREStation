@@ -12,40 +12,40 @@
 	active_power_usage = 10000
 
 /obj/machinery/robotic_fabricator/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if (istype(O, /obj/item/stack/material) && O.get_material_name() == DEFAULT_WALL_MATERIAL)
+	if(istype(O, /obj/item/stack/material) && O.get_material_name() == DEFAULT_WALL_MATERIAL)
 		var/obj/item/stack/M = O
-		if (src.metal_amount < 150000.0)
+		if(metal_amount < 150000.0)
 			var/count = 0
-			src.overlays += "fab-load-metal"
+			overlays += "fab-load-metal"
 			spawn(15)
 				if(M)
 					if(!M.get_amount())
 						return
 					while(metal_amount < 150000 && M.amount)
-						src.metal_amount += O.matter[DEFAULT_WALL_MATERIAL] /*O:height * O:width * O:length * 100000.0*/
+						metal_amount += O.matter[DEFAULT_WALL_MATERIAL] /*O:height * O:width * O:length * 100000.0*/
 						M.use(1)
 						count++
 
 					user << "You insert [count] metal sheet\s into the fabricator."
-					src.overlays -= "fab-load-metal"
+					overlays -= "fab-load-metal"
 					updateDialog()
 		else
 			user << "The robot part maker is full. Please remove metal from the robot part maker in order to insert more."
 
 /obj/machinery/robotic_fabricator/attack_hand(user as mob)
 	var/dat
-	if (..())
+	if(..())
 		return
 
-	if (src.operating)
+	if(operating)
 		dat = {"
-<TT>Building [src.being_built.name].<BR>
+<TT>Building [being_built.name].<BR>
 Please wait until completion...</TT><BR>
 <BR>
 "}
 	else
 		dat = {"
-<B>Metal Amount:</B> [min(150000, src.metal_amount)] cm<sup>3</sup> (MAX: 150,000)<BR><HR>
+<B>Metal Amount:</B> [min(150000, metal_amount)] cm<sup>3</sup> (MAX: 150,000)<BR><HR>
 <BR>
 <A href='?src=\ref[src];make=1'>Left Arm (25,000 cc metal.)<BR>
 <A href='?src=\ref[src];make=2'>Right Arm (25,000 cc metal.)<BR>
@@ -61,14 +61,14 @@ Please wait until completion...</TT><BR>
 	return
 
 /obj/machinery/robotic_fabricator/Topic(href, href_list)
-	if (..())
+	if(..())
 		return
 
 	usr.set_machine(src)
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 
-	if (href_list["make"])
-		if (!src.operating)
+	if(href_list["make"])
+		if(!operating)
 			var/part_type = text2num(href_list["make"])
 
 			var/build_type = ""
@@ -76,63 +76,63 @@ Please wait until completion...</TT><BR>
 			var/build_cost = 25000
 
 			switch (part_type)
-				if (1)
+				if(1)
 					build_type = "/obj/item/robot_parts/l_arm"
 					build_time = 200
 					build_cost = 25000
 
-				if (2)
+				if(2)
 					build_type = "/obj/item/robot_parts/r_arm"
 					build_time = 200
 					build_cost = 25000
 
-				if (3)
+				if(3)
 					build_type = "/obj/item/robot_parts/l_leg"
 					build_time = 200
 					build_cost = 25000
 
-				if (4)
+				if(4)
 					build_type = "/obj/item/robot_parts/r_leg"
 					build_time = 200
 					build_cost = 25000
 
-				if (5)
+				if(5)
 					build_type = "/obj/item/robot_parts/chest"
 					build_time = 350
 					build_cost = 50000
 
-				if (6)
+				if(6)
 					build_type = "/obj/item/robot_parts/head"
 					build_time = 350
 					build_cost = 50000
 
-				if (7)
+				if(7)
 					build_type = "/obj/item/robot_parts/robot_suit"
 					build_time = 600
 					build_cost = 75000
 
 			var/building = text2path(build_type)
-			if (!isnull(building))
-				if (src.metal_amount >= build_cost)
-					src.operating = 1
-					src.update_use_power(2)
+			if(!isnull(building))
+				if(metal_amount >= build_cost)
+					operating = 1
+					update_use_power(2)
 
-					src.metal_amount = max(0, src.metal_amount - build_cost)
+					metal_amount = max(0, metal_amount - build_cost)
 
-					src.being_built = new building(src)
+					being_built = new building(src)
 
-					src.overlays += "fab-active"
-					src.updateUsrDialog()
+					overlays += "fab-active"
+					updateUsrDialog()
 
 					spawn (build_time)
-						if (!isnull(src.being_built))
-							src.being_built.loc = get_turf(src)
-							src.being_built = null
-						src.update_use_power(1)
-						src.operating = 0
-						src.overlays -= "fab-active"
+						if(!isnull(being_built))
+							being_built.loc = get_turf(src)
+							being_built = null
+						update_use_power(1)
+						operating = 0
+						overlays -= "fab-active"
 		return
 
 	for (var/mob/M in viewers(1, src))
-		if (M.client && M.machine == src)
-			src.attack_hand(M)
+		if(M.client && M.machine == src)
+			attack_hand(M)
