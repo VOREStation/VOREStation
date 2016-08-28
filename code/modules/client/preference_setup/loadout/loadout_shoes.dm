@@ -96,3 +96,11 @@
 /datum/gear/shoes/flats/white
 	display_name = "flats, white"
 	path = /obj/item/clothing/shoes/flats/white
+
+/datum/gear/shoes/flipflops
+	display_name = "flip flops"
+	path = /obj/item/clothing/shoes/flipflop
+
+/datum/gear/shoes/flipflops/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
