@@ -315,25 +315,25 @@
 
 /obj/item/weapon/rig/proc/toggle_cooling(var/mob/user)
 	if(cooling_on)
-		turn_cooling_off()
+		turn_cooling_off(user)
 	else
-		turn_cooling_on()
+		turn_cooling_on(user)
 
-/obj/item/weapon/rig/proc/turn_cooling_on()
+/obj/item/weapon/rig/proc/turn_cooling_on(var/mob/user)
 	if(!cell)
 		return
 	if(cell.charge <= 0)
-		usr << "<span class='notice'>\The [src] has no power!.</span>"
+		user << "<span class='notice'>\The [src] has no power!.</span>"
 		return
 	if(!suit_is_deployed())
-		usr << "<span class='notice'>The hardsuit needs to be deployed first!.</span>"
+		user << "<span class='notice'>The hardsuit needs to be deployed first!.</span>"
 		return
 
 	cooling_on = 1
 	usr << "<span class='notice'>You switch \the [src]'s cooling system on.</span>"
 
 
-/obj/item/weapon/rig/proc/turn_cooling_off(var/failed)
+/obj/item/weapon/rig/proc/turn_cooling_off(var/mob/user, var/failed)
 	if(failed) visible_message("\The [src]'s cooling system clicks and whines as it powers down.")
 	else usr << "<span class='notice'>You switch \the [src]'s cooling system off.</span>"
 	cooling_on = 0
@@ -398,7 +398,7 @@
 	cell.use(charge_usage)
 
 	if(cell.charge <= 0)
-		turn_cooling_off(1)
+		turn_cooling_off(H, 1)
 
 /obj/item/weapon/rig/process()
 	// If we've lost any parts, grab them back.
