@@ -1,6 +1,6 @@
 /datum/power/changeling/recursive_enhancement
 	name = "Recursive Enhancement"
-	desc = "We cause our next ability use to have increased or additional effects."
+	desc = "We cause our abilities to have increased or additional effects."
 	helptext = "To check the effects for each ability, check the blue text underneath the ability in the evolution menu."
 	ability_icon_state = "ling_recursive_enhancement"
 	genomecost = 3
