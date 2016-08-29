@@ -15,7 +15,6 @@
 	if(src.mind.changeling.recursive_enhancement)
 		if(changeling_generic_weapon(/obj/item/weapon/melee/arm_blade/greater))
 			src << "<span class='notice'>We prepare an extra sharp blade.</span>"
-			src.mind.changeling.recursive_enhancement = 0
 			return 1
 
 	else

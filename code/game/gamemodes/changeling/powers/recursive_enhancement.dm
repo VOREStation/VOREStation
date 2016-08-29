@@ -9,16 +9,16 @@
 //Increases macimum chemical storage
 /mob/proc/changeling_recursive_enhancement()
 	set category = "Changeling"
-	set name = "Recursive Enhancement (10)"
-	set desc = "Empowers our next ability."
-	var/datum/changeling/changeling = changeling_power(10,0,100,UNCONSCIOUS)
+	set name = "Recursive Enhancement"
+	set desc = "Empowers our abilities."
+	var/datum/changeling/changeling = changeling_power(0,0,100,UNCONSCIOUS)
 	if(!changeling)
 		return 0
 	if(src.mind.changeling.recursive_enhancement)
-		src << "<span class='warning'>We have already prepared to enhance our next ability.</span>"
+		src << "<span class='warning'>We will no longer empower our abilities.</span>"
+		src.mind.changeling.recursive_enhancement = 0
 		return 0
-	src << "<span class='notice'>We empower ourselves.  Our next ability will be extra potent.</span>"
+	src << "<span class='notice'>We empower ourselves. Our abilities will now be extra potent.</span>"
 	src.mind.changeling.recursive_enhancement = 1
-	src.mind.changeling.chem_charges -= 10
 	feedback_add_details("changeling_powers","RE")
 	return 1

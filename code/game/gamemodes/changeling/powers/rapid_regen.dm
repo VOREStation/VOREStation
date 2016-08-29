@@ -25,7 +25,6 @@
 		if(src.mind.changeling.recursive_enhancement)
 			healing_amount = C.maxHealth
 			src << "<span class='notice'>We completely heal ourselves.</span>"
-			src.mind.changeling.recursive_enhancement = 0
 		spawn(0)
 			C.adjustBruteLoss(-healing_amount)
 			C.adjustFireLoss(-healing_amount)
