@@ -638,8 +638,8 @@
 
 	return
 
-/obj/machinery/cryopod/proc/set_occupant(var/occupant)
-	occupant = occupant
+/obj/machinery/cryopod/proc/set_occupant(var/new_occupant)
+	occupant = new_occupant
 	name = initial(name)
 	if(occupant)
 		name = "[name] ([occupant])"
