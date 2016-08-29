@@ -2,7 +2,7 @@
 	name = "leg guards"
 	desc = "These will protect your legs and feet."
 	body_parts_covered = LEGS|FEET
-	slowdown = 0 //Shoes have a slowdown of -1, so this needs to be 0 in order for it to effectively be 1 slowdown.
+	slowdown = SHOES_SLOWDOWN+0.5
 	species_restricted = null	//Unathi and Taj can wear leg armor now
 	w_class = 3
 
