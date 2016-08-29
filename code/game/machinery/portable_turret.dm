@@ -598,9 +598,9 @@ var/list/turret_icons
 	update_icon()
 	timeout = 10
 
-/obj/machinery/porta_turret/proc/set_raised_raising(var/raised, var/raising)
-	raised = raised
-	raising = raising
+/obj/machinery/porta_turret/proc/set_raised_raising(var/incoming_raised, var/incoming_raising)
+	raised = incoming_raised
+	raising = incoming_raising
 	density = raised || raising
 
 /obj/machinery/porta_turret/proc/target(var/mob/living/target)
