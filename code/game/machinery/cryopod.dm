@@ -401,18 +401,11 @@
 	for(var/obj/item/W in items)
 
 		var/preserve = null
-		// Snowflaaaake.
-		if(istype(W, /obj/item/device/mmi))
-			var/obj/item/device/mmi/brain = W
-			if(brain.brainmob && brain.brainmob.client && brain.brainmob.key)
+
+		for(var/T in preserve_items)
+			if(istype(W,T))
 				preserve = 1
-			else
-				continue
-		else
-			for(var/T in preserve_items)
-				if(istype(W,T))
-					preserve = 1
-					break
+				break
 
 		if(!preserve)
 			qdel(W)
