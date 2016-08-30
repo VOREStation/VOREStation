@@ -206,7 +206,7 @@
 	info = {"Very quiet month. Nothing of interest to report. Perhaps the calm before the storm?"}
 
 /obj/item/weapon/paper/listneningpost/year2560/april
-	name = "\improper March 2560 Report"
+	name = "\improper April 2560 Report"
 	info = {"A loud, painfully high pitched SSTV signal came across global comms. It seems to be a distress signal
 			of some kind. To what, I have no idea. Efforts to trace the signal's origin have fallen inconclusive."}
 

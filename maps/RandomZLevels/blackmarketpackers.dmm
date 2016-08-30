@@ -408,17 +408,18 @@
 "hR" = (/obj/machinery/portable_atmospherics/canister/air,/turf/simulated/floor/airless,/area/awaymission)
 "hS" = (/obj/structure/closet/crate,/obj/item/weapon/spacecash/c10,/obj/item/weapon/spacecash/c200,/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
 "hT" = (/obj/structure/closet/crate,/obj/item/weapon/spacecash/c10,/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
-"hU" = (/obj/structure/sink{dir = 2},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
-"hV" = (/turf/simulated/floor/tiled,/turf/simulated/shuttle/wall{icon_state = "swall_c"; dir = 4},/area/awaymission/BMPship1)
-"hW" = (/obj/item/clothing/gloves/fyellow,/turf/simulated/mineral/floor/ignore_mapgen,/area/awaymission)
-"hX" = (/turf/simulated/shuttle/wall{icon_state = "swall_straight"; dir = 4},/area/awaymission)
-"hY" = (/obj/machinery/door/airlock/silver{icon_state = "door_locked"; locked = 1},/turf/simulated/floor,/area/awaymission/BMPship1)
-"hZ" = (/obj/item/weapon/storage/box/matches,/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,/turf/simulated/floor/plating,/area/awaymission/BMPship3)
-"ia" = (/obj/item/weapon/contraband/poster,/turf/simulated/floor/plating,/area/awaymission/BMPship3)
-"ib" = (/turf/simulated/shuttle/wall{icon_state = "swall_s"; dir = 8},/area/awaymission/BMPship3)
-"ic" = (/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,/turf/simulated/floor/plating,/area/awaymission/BMPship3)
-"id" = (/turf/simulated/floor/plating,/turf/simulated/shuttle/wall{dir = 2},/area/awaymission/BMPship3)
-"ie" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced,/obj/structure/grille,/turf/simulated/floor/reinforced,/area/awaymission/BMPship3)
+"hU" = (/obj/item/weapon/spacecash/c1000,/mob/living/simple_animal/hostile/vore/mimic/crate,/turf/simulated/floor/tiled/steel,/area/awaymission/BMPship1)
+"hV" = (/obj/structure/sink{dir = 2},/turf/simulated/floor/tiled,/area/awaymission/BMPship1)
+"hW" = (/turf/simulated/floor/tiled,/turf/simulated/shuttle/wall{icon_state = "swall_c"; dir = 4},/area/awaymission/BMPship1)
+"hX" = (/obj/item/clothing/gloves/fyellow,/turf/simulated/mineral/floor/ignore_mapgen,/area/awaymission)
+"hY" = (/turf/simulated/shuttle/wall{icon_state = "swall_straight"; dir = 4},/area/awaymission)
+"hZ" = (/obj/machinery/door/airlock/silver{icon_state = "door_locked"; locked = 1},/turf/simulated/floor,/area/awaymission/BMPship1)
+"ia" = (/obj/item/weapon/storage/box/matches,/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,/turf/simulated/floor/plating,/area/awaymission/BMPship3)
+"ib" = (/obj/item/weapon/contraband/poster,/turf/simulated/floor/plating,/area/awaymission/BMPship3)
+"ic" = (/turf/simulated/shuttle/wall{icon_state = "swall_s"; dir = 8},/area/awaymission/BMPship3)
+"id" = (/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,/turf/simulated/floor/plating,/area/awaymission/BMPship3)
+"ie" = (/turf/simulated/floor/plating,/turf/simulated/shuttle/wall{dir = 2},/area/awaymission/BMPship3)
+"if" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced,/obj/structure/grille,/turf/simulated/floor/reinforced,/area/awaymission/BMPship3)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaa
@@ -499,12 +500,12 @@ aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadhqaaaaaaaaaahramamhsgpgmgpgYhtgpgYadadadadadadhbaehuhvhdhwhxhyhyhdhdhdhdaNgPgMgMhzgMhAgMhzgMgMgMhBaNaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadaehCaaaaaaaaaahDalambOgagagYfYgYgagYhbadadadhbadadadaehEaehyhyhyhyhdhdhFhGhHhIhIhIhIhIhJgMgMgMgwayayciaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaaaaaaaahKaebOahahahahahadgYhbadadadadadadadadadadadhehuhyhyhwhyhdhuhdhdaNgMgMhLhMgMhzgMhzgMhNhOhPaNaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeadadadadadadadadadadadadadadadadadadadhbaehuhdhdhghQhQhQhRaNhShTgMgMgMgMgMgMgMaNhUhVeZaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahWaeaeaeadadadadadadadadadadadhbadadadadadadadadhXhXhXhXhXhXhXhXhXayayayayaDaAhYaDayayazayeZaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeaeadadadadadadadadadadadadadadadadadadadadadadadadaeaeaaaaaaaaaabhalgVanhZasiabOibaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeaeaeadadadadadadadadadadadadadadadadadadadadadadadadaeaeaaaaaaaaaaaqamamarasicidibaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeaeaeadadadadadadadadadadadadadadadadadadadadadadadadaeaeaaaaaaaaaaiealambOaoidibaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeadadaeaeadadadadadadadadadadadadadadadadadadadadadadadadaeaeaaaaaaaaaabOahahcbahibaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeadadadadadadadadadadadadadadadadadadadhbaehuhdhdhghQhQhQhRaNhShThUgMgMgMgMgMgMaNhVhWeZaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahXaeaeaeadadadadadadadadadadadhbadadadadadadadadhYhYhYhYhYhYhYhYhYayayayayaDaAhZaDayayazayeZaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeaeadadadadadadadadadadadadadadadadadadadadadadadadaeaeaaaaaaaaaabhalgVaniaasibbOicaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeaeaeadadadadadadadadadadadadadadadadadadadadadadadadaeaeaaaaaaaaaaaqamamarasidieicaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeaeaeadadadadadadadadadadadadadadadadadadadadadadadadaeaeaaaaaaaaaaifalambOaoieicaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeadadaeaeadadadadadadadadadadadadadadadadadadadadadadadadaeaeaaaaaaaaaabOahahcbahicaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadaeaeaeadadadadadadadadadadadadadadadadadadadadadadadaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadadaeaeadadadadadadadadadadadadadadadadadadadadadadaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadadaeaeaeadadadadadadadadadadadadadadadadadadadadadaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa
