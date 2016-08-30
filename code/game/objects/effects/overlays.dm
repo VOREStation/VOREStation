@@ -59,6 +59,13 @@
 	icon_state = "snow"
 	anchored = 1
 
+// Thought this might be useful for burying things in snow. Todo: Add a version that gradually reaccumulates over time by means of alpha transparency. -Spades
+/obj/effect/overlay/snow/attackby(obj/item/W as obj, mob/user as mob)
+	if (istype(W, /obj/item/weapon/shovel))
+		visible_message("<span class='notice'>[user] shovels away \the [src].</span>")
+		qdel(src)
+		return
+
 /obj/effect/overlay/snow/floor
 	icon_state = "snowfloor"
 	layer = 2.01 //Just above floor
