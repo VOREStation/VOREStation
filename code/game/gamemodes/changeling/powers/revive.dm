@@ -36,8 +36,9 @@
 		H.update_body(1)
 		for(var/limb in H.organs_by_name)
 			var/obj/item/organ/external/current_limb = H.organs_by_name[limb]
-			current_limb.undislocate()
-			current_limb.open = 0
+			if(current_limb)
+				current_limb.undislocate()
+				current_limb.open = 0
 
 	C.halloss = 0
 	C.shock_stage = 0 //Pain
