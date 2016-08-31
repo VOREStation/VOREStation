@@ -83,6 +83,7 @@
 	var/tmp/lock_time = -100
 
 	var/dna_lock = 0				//whether or not the gun is locked to dna
+	var/attached_lock
 	var/list/stored_dna = list()	//list of the dna stored in the gun, used to allow users to use it or not
 	var/safety_level = 0			//either 0 or 1, at 0 the game buzzes and tells the user they can't use it, at 1 it self destructs after 10 seconds
 	var/controller_dna = null		//The dna of the person who is the primary controller of the gun
@@ -185,6 +186,38 @@
 		Fire(A, user, pointblank=1)
 	else
 		return ..() //Pistolwhippin'
+
+/obj/item/weapon/gun/attackby(var/obj/item/A as obj, mob/user as mob)
+	if(istype(A, /obj/item/dnalockingchip))
+		if(dna_lock)
+			user << "<span class='notice'>\The [src] already has a [attached_lock].</span>"
+			return
+		user << "<span class='notice'>You insert \the [A] into \the [src].</span>"
+		user.drop_item()
+		A.loc = src
+		attached_lock = A
+		dna_lock = 1
+		var/obj/item/dnalockingchip/C = A
+		security_level = C.safety_level
+		verbs += /obj/item/weapon/gun/verb/remove_dna
+		verbs += /obj/item/weapon/gun/verb/give_dna
+		verbs += /obj/item/weapon/gun/verb/allow_dna
+		return
+
+	if(istype(A, /obj/item/weapon/screwdriver))
+		if(dna_lock && attached_lock && !controller_lock)
+			user << "<span class='notice'>You begin removing \the [attached_lock] from \the [src].</span>"
+			if(do_after(user, 25))
+				user << "<span class='notice'>You remove \the [attached_lock] from \the [src].<span>"
+				user.put_in_hands(attached_lock)
+				dna_lock = 0
+				attached_lock = null
+				verbs -= /obj/item/weapon/gun/verb/remove_dna
+				verbs -= /obj/item/weapon/gun/verb/give_dna
+				verbs -= /obj/item/weapon/gun/verb/allow_dna
+		else
+			user << "<span class='warning'>\The [src] is not accepting modifications at this time.</span>"
+
 
 /obj/item/weapon/gun/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
 	if(!user || !target) return
