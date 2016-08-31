@@ -8,13 +8,13 @@
 	description_fluff = "This cola was allegedly made after Vasily Federov, the son of Nikolas Federov and the second CEO of Federov Beverages Inc., went on a climbing expedition to an arctic planet.  He then created this citris flavored soft drink.  Scientists claim that it can eat through styrafoam in a matter of weeks, but people drink it anyway."
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/thirteenloko
-	description_fluff = "A beverage loved by college students and people without problems.  The Thirteen Loko Company created this highly alcoholic beverage as an energy drink.  It is illegal in much of SolGov space and most of Skrell space.  This drink has been regulated more than any other in known space, and doctors strongly advise not to drink it."
+	description_fluff = "A beverage loved by college students.  The Thirteen Loko Company created this highly alcoholic beverage as an energy drink.  It is illegal in much of SolGov space and most of Skrell space.  This drink has been regulated more than any other in known space, and doctors strongly advise not to drink it."
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb
-	description_fluff = "Originally made by a doctor seeking to mix several different flavors into one delicious beverage, this soda has become widely popular in past years.  The drink became so popular, in fact, that Nikolas Beverages bought it.  Ever since then, the drink has never been the same.  People all across known space beg for the old formula, but the suits in charge of Nikolas do not appear to be listening."
+	description_fluff = "Originally made by a doctor seeking to mix several different flavors, this soda has become widely popular in the past decade.  The drink has become so popular, in fact, that Nikolas Beverages bought it.  Ever since then, the drink has never been the same.  As a result, people all across known space beg for the old formula, but Nikolas Beverages does not appear to be listening."
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/starkist
-	description_fluff = "Nikolas Beverages' attempt at an orange-flavored drink.  Advertised as a nice summer beverage.  The company tries to paint it as one of their more 'healthy' beverages due to it's 'orange' and 'vitamins'."
+	description_fluff = "Nikolas Beverages' attempt at an orange-flavored drink.  Advertised as a nice summer beverage.  The company tries to paint it as one of their more 'healthy' beverages due to its 'orange' and 'vitamins'."
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/space_up
 	description_fluff = "This drink is advertised as one of the most carbonated beverages on the market.  It's owned by Federov Beverages, and advertised for its carbonation, not its flavor.  Children will commonly make 'Space-Up Volcanoes' by dropping mints into a can of Space-Up and causing it to create a long stream of fizz upward."
@@ -23,7 +23,7 @@
 	description_fluff = "This is a NanoTrasen branded can of Lemon-Lime juice.  NanoTrasen swears to their 'natural' beverage, but most people think differently."
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea
-	description_fluff = "Vrisk Iced Tea is named after it's creator, Penelope Vrisk.  She was a canner for Federov Beverages who wanted to create an authentic-tasting Southern iced tea.  After proposing it to her boss, the tea became an instant hit when it was produced."
+	description_fluff = "Vrisk Iced Tea is named after it's creator, Penelope Vrisk.  She was a canner for Federov Beverages who wanted to create an authentic-tasting Southern iced tea.  After finishing her formula and managing to get it produced, the tea became an instant hit."
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice
 	description_fluff = "This is a NanoTrasen branded can of grape juice.  NanoTrasen claims that they use the same grapes that this juice is made of to make their wine."
