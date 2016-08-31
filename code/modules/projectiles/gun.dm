@@ -203,7 +203,7 @@
 		if(dna_lock && attached_lock && !attached_lock.controller_lock)
 			user << "<span class='notice'>You begin removing \the [attached_lock] from \the [src].</span>"
 			if(do_after(user, 25))
-				user << "<span class='notice'>You remove \the [attached_lock] from \the [src].<span>"
+				user << "<span class='notice'>You remove \the [attached_lock] from \the [src].</span>"
 				user.put_in_hands(attached_lock)
 				dna_lock = 0
 				attached_lock = null
@@ -215,7 +215,7 @@
 
 /obj/item/weapon/gun/emag_act(var/remaining_charges, var/mob/user)
 	if(dna_lock && attached_lock.controller_lock)
-		user << "<span class='notice'>You short circuit the internal locking mechanisms of \the [src]!<span>"
+		user << "<span class='notice'>You short circuit the internal locking mechanisms of \the [src]!</span>"
 		attached_lock.controller_dna = null
 		attached_lock.controller_lock = 0
 		attached_lock.stored_dna = list()
