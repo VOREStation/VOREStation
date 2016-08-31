@@ -83,7 +83,7 @@
 	var/tmp/lock_time = -100
 
 	var/dna_lock = 0				//whether or not the gun is locked to dna
-	var/attached_lock
+	var/obj/item/dnalockingchip/attached_lock
 	var/list/stored_dna = list()	//list of the dna stored in the gun, used to allow users to use it or not
 	var/safety_level = 0			//either 0 or 1, at 0 the game buzzes and tells the user they can't use it, at 1 it self destructs after 10 seconds
 	var/controller_dna = null		//The dna of the person who is the primary controller of the gun
@@ -98,6 +98,9 @@
 	if(isnull(scoped_accuracy))
 		scoped_accuracy = accuracy
 
+	if(dna_lock)
+		attached_lock = new /obj/item/dnalockingchip(src)
+		safety_level = attached_lock.safety_level
 	if(!dna_lock)
 		verbs -= /obj/item/weapon/gun/verb/remove_dna
 		verbs -= /obj/item/weapon/gun/verb/give_dna
@@ -198,7 +201,7 @@
 		attached_lock = A
 		dna_lock = 1
 		var/obj/item/dnalockingchip/C = A
-		security_level = C.safety_level
+		safety_level = C.safety_level
 		verbs += /obj/item/weapon/gun/verb/remove_dna
 		verbs += /obj/item/weapon/gun/verb/give_dna
 		verbs += /obj/item/weapon/gun/verb/allow_dna
