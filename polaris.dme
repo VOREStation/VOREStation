@@ -1313,6 +1313,7 @@
 #include "code\modules\examine\stat_icons.dm"
 #include "code\modules\examine\descriptions\armor.dm"
 #include "code\modules\examine\descriptions\atmospherics.dm"
+#include "code\modules\examine\descriptions\containers.dm"
 #include "code\modules\examine\descriptions\devices.dm"
 #include "code\modules\examine\descriptions\engineering.dm"
 #include "code\modules\examine\descriptions\machines.dm"
