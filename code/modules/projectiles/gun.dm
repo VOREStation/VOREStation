@@ -84,11 +84,6 @@
 
 	var/dna_lock = 0				//whether or not the gun is locked to dna
 	var/obj/item/dnalockingchip/attached_lock
-	var/list/stored_dna = list()	//list of the dna stored in the gun, used to allow users to use it or not
-	var/safety_level = 0			//either 0 or 1, at 0 the game buzzes and tells the user they can't use it, at 1 it self destructs after 10 seconds
-	var/controller_dna = null		//The dna of the person who is the primary controller of the gun
-	var/controller_lock = 0			//whether or not the gun is locked by the primar controller, 0 or 1, at 1 it is locked and does not allow
-	var/exploding = 0
 
 /obj/item/weapon/gun/New()
 	..()
@@ -100,7 +95,6 @@
 
 	if(dna_lock)
 		attached_lock = new /obj/item/dnalockingchip(src)
-		safety_level = attached_lock.safety_level
 	if(!dna_lock)
 		verbs -= /obj/item/weapon/gun/verb/remove_dna
 		verbs -= /obj/item/weapon/gun/verb/give_dna
@@ -130,18 +124,18 @@
 		return 0
 
 	var/mob/living/M = user
-	if(dna_lock && stored_dna)
+	if(dna_lock && attached_lock.stored_dna)
 		if(!authorized_user(user))
-			if(safety_level == 0)
+			if(attached_lock.safety_level == 0)
 				M << "<span class='danger'>\The [src] buzzes in dissapoint and displays an invalid DNA symbol.</span>"
 				return 0
-			if(!exploding)
-				if(safety_level == 1)
+			if(!attached_lock.exploding)
+				if(attached_lock.safety_level == 1)
 					M << "<span class='danger'>\The [src] hisses in dissapointment.</span>"
 					visible_message("<span class='game say'><span class='name'>\The [src]</span> announces, \"Self-destruct occurring in ten seconds.\"</span>", "<span class='game say'><span class='name'>\The [src]</span> announces, \"Self-destruct occurring in ten seconds.\"</span>")
 					spawn(100)
 						explosion(src, 0, 0, 3, 4)
-						exploding = 1
+						attached_lock.exploding = 1
 						sleep(1)
 						qdel(src)
 					return 0
@@ -200,15 +194,13 @@
 		A.loc = src
 		attached_lock = A
 		dna_lock = 1
-		var/obj/item/dnalockingchip/C = A
-		safety_level = C.safety_level
 		verbs += /obj/item/weapon/gun/verb/remove_dna
 		verbs += /obj/item/weapon/gun/verb/give_dna
 		verbs += /obj/item/weapon/gun/verb/allow_dna
 		return
 
 	if(istype(A, /obj/item/weapon/screwdriver))
-		if(dna_lock && attached_lock && !controller_lock)
+		if(dna_lock && attached_lock && !attached_lock.controller_lock)
 			user << "<span class='notice'>You begin removing \the [attached_lock] from \the [src].</span>"
 			if(do_after(user, 25))
 				user << "<span class='notice'>You remove \the [attached_lock] from \the [src].<span>"
@@ -221,6 +213,13 @@
 		else
 			user << "<span class='warning'>\The [src] is not accepting modifications at this time.</span>"
 
+/obj/item/weapon/gun/emag_act(var/remaining_charges, var/mob/user)
+	if(dna_lock && attached_lock.controller_lock)
+		user << "<span class='notice'>You short circuit the internal locking mechanisms of \the [src]!<span>"
+		attached_lock.controller_dna = null
+		attached_lock.controller_lock = 0
+		attached_lock.stored_dna = list()
+		return 1
 
 /obj/item/weapon/gun/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
 	if(!user || !target) return
@@ -497,77 +496,3 @@
 
 /obj/item/weapon/gun/attack_self(mob/user)
 	switch_firemodes(user)
-
-/obj/item/weapon/gun/proc/get_dna(mob/user)
-	var/mob/living/M = user
-	if(!controller_lock)
-
-		if(!stored_dna && !(M.dna in stored_dna))
-			M << "<span class='warning'>\The [src] buzzes and displays a symbol showing the gun already contains your DNA.</span>"
-			return 0
-		else
-			stored_dna += M.dna
-			M << "<span class='notice'>\The [src] pings and a needle flicks out from the grip, taking a DNA sample from you.</span>"
-			if(!controller_dna)
-				controller_dna = M.dna
-				M << "<span class='notice'>\The [src] processes the dna sample and pings, acknowledging you as the primary controller.</span>"
-			return 1
-	else
-		M << "<span class='warning'>\The [src] buzzes and displays a locked symbol. It is not allowing DNA samples at this time.</span>"
-		return 0
-
-/obj/item/weapon/gun/verb/give_dna()
-	set name = "Give DNA"
-	set category = "Object"
-	set src in usr
-	get_dna(usr)
-
-/obj/item/weapon/gun/proc/clear_dna(mob/user)
-	var/mob/living/M = user
-	if(!controller_lock)
-		if(!authorized_user(M))
-			M << "<span class='warning'>\The [src] buzzes and displays an invalid user symbol.</span>"
-			return 0
-		else
-			stored_dna -= user.dna
-			M << "<span class='notice'>\The [src] beeps and clears the DNA it has stored.</span>"
-			if(M.dna == controller_dna)
-				controller_dna = null
-				M << "<span class='notice'>\The [src] beeps and removes you as the primary controller.</span>"
-				if(controller_lock)
-					controller_lock = 0
-			return 1
-	else
-		M << "<span class='warning'>\The [src] buzzes and displays a locked symbol. It is not allowing DNA modifcation at this time.</span>"
-		return 0
-
-/obj/item/weapon/gun/verb/remove_dna()
-	set name = "Remove DNA"
-	set category = "Object"
-	set src in usr
-	clear_dna(usr)
-
-/obj/item/weapon/gun/proc/toggledna(mob/user)
-	var/mob/living/M = user
-	if(authorized_user(M) && user.dna == controller_dna)
-		if(!controller_lock)
-			controller_lock = 1
-			M << "<span class='notice'>\The [src] beeps and displays a locked symbol, informing you it will no longer allow DNA samples.</span>"
-		else
-			controller_lock = 0
-			M << "<span class='notice'>\The [src] beeps and displays an unlocked symbol, informing you it will now allow DNA samples.</span>"
-	else
-		M << "<span class='warning'>\The [src] buzzes and displays an invalid user symbol.</span>"
-
-/obj/item/weapon/gun/verb/allow_dna()
-	set name = "Toggle DNA Samples Allowance"
-	set category = "Object"
-	set src in usr
-	toggledna(usr)
-
-/obj/item/weapon/gun/proc/authorized_user(mob/user)
-	if(!stored_dna || !stored_dna.len)
-		return 1
-	if(!(user.dna in stored_dna))
-		return 0
-	return 1
