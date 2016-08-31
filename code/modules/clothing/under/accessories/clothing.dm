@@ -54,7 +54,7 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	siemens_coefficient = 0.9
 	w_class = 3
-	slot = "poncho"
+	slot = "over"
 
 	sprite_sheets = list(
 		"Teshari" = 'icons/mob/species/seromi/suit.dmi'
