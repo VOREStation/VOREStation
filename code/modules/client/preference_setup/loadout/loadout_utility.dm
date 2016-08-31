@@ -39,3 +39,4 @@
 /datum/gear/utility/securecase
 	display_name = "secure briefcase"
 	path =/obj/item/weapon/storage/secure/briefcase
+	cost = 2
