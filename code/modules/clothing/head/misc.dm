@@ -282,3 +282,21 @@
 	item_state_slots = list(slot_r_hand_str = "beret_white", slot_l_hand_str = "beret_white")
 	body_parts_covered = 0
 	flags_inv = BLOCKHAIR
+
+/obj/item/clothing/head/beanie
+	name = "beanie"
+	desc = "A head-hugging brimless winter cap. This one is tight."
+	icon_state = "beanie"
+	body_parts_covered = 0
+
+/obj/item/clothing/head/beanie_loose
+	name = "loose beanie"
+	desc = "A head-hugging brimless winter cap. This one is loose."
+	icon_state = "beanie_hang"
+	body_parts_covered = 0
+
+/obj/item/clothing/head/beretg
+	name = "beret"
+	desc = "A beret, an artists favorite headwear."
+	icon_state = "beret_g"
+	body_parts_covered = 0
