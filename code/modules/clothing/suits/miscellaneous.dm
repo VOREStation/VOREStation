@@ -255,59 +255,6 @@
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	siemens_coefficient = 2.0
 
-/*
- * Poncho
- */
-/obj/item/clothing/suit/poncho
-	name = "poncho"
-	desc = "A simple, comfortable poncho."
-	icon_state = "classicponcho"
-
-/obj/item/clothing/suit/poncho/green
-	name = "green poncho"
-	desc = "A simple, comfortable cloak without sleeves. This one is green."
-	icon_state = "greenponcho"
-
-/obj/item/clothing/suit/poncho/red
-	name = "red poncho"
-	desc = "A simple, comfortable cloak without sleeves. This one is red."
-	icon_state = "redponcho"
-
-/obj/item/clothing/suit/poncho/purple
-	name = "purple poncho"
-	desc = "A simple, comfortable cloak without sleeves. This one is purple."
-	icon_state = "purpleponcho"
-
-/obj/item/clothing/suit/poncho/blue
-	name = "blue poncho"
-	desc = "A simple, comfortable cloak without sleeves. This one is blue."
-	icon_state = "blueponcho"
-
-/obj/item/clothing/suit/poncho/roles/security
-	name = "security poncho"
-	desc = "A simple, comfortable cloak without sleeves. This one is black and red, standard NanoTrasen Security colors."
-	icon_state = "secponcho"
-
-/obj/item/clothing/suit/poncho/roles/medical
-	name = "medical poncho"
-	desc = "A simple, comfortable cloak without sleeves. This one is white with green and blue tint, standard Medical colors."
-	icon_state = "medponcho"
-
-/obj/item/clothing/suit/poncho/roles/engineering
-	name = "engineering poncho"
-	desc = "A simple, comfortable cloak without sleeves. This one is yellow and orange, standard Engineering colors."
-	icon_state = "engiponcho"
-
-/obj/item/clothing/suit/poncho/roles/science
-	name = "science poncho"
-	desc = "A simple, comfortable cloak without sleeves. This one is white with purple trim, standard NanoTrasen Science colors."
-	icon_state = "sciponcho"
-
-/obj/item/clothing/suit/poncho/roles/cargo
-	name = "cargo poncho"
-	desc = "A simple, comfortable cloak without sleeves. This one is tan and grey, the colors of Cargo."
-	icon_state = "cargoponcho"
-
 /obj/item/clothing/suit/jacket/puffer
 	name = "puffer jacket"
 	desc = "A thick jacket with a rubbery, water-resistant shell."

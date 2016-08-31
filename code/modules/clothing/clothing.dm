@@ -467,6 +467,8 @@
 		"Teshari" = 'icons/mob/species/seromi/suit.dmi'
 		)
 
+	valid_accessory_slots = list("poncho")
+
 /obj/item/clothing/suit/update_clothing_icon()
 	if (ismob(src.loc))
 		var/mob/M = src.loc
@@ -505,7 +507,7 @@
 	//convenience var for defining the icon state for the overlay used when the clothing is worn.
 	//Also used by rolling/unrolling.
 	var/worn_state = null
-	valid_accessory_slots = list("utility","armband","decor")
+	valid_accessory_slots = list("utility","armband","decor","poncho")
 	restricted_accessory_slots = list("utility", "armband")
 
 
