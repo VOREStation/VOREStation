@@ -539,6 +539,7 @@
 	new /obj/item/clothing/under/pants/khaki(src)
 	new /obj/item/clothing/mask/bandana/blue(src)
 	new /obj/item/clothing/mask/bandana/blue(src)
+	new /obj/item/clothing/accessory/hawaii(src)
 	return
 
 /obj/structure/closet/wardrobe/tactical

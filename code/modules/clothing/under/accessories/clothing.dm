@@ -28,6 +28,7 @@
 	desc = "Lucky suit jacket."
 	icon_state = "checkered_jacket"
 
+
 /obj/item/clothing/accessory/chaps
 	name = "brown chaps"
 	desc = "A pair of loose, brown leather chaps."
@@ -113,3 +114,8 @@
 	desc = "A simple, comfortable cloak without sleeves. This one is tan and grey, the colors of Cargo."
 	icon_state = "cargoponcho"
 	item_state = "cargoponcho"
+
+/obj/item/clothing/accessory/hawaii
+	name = "flower shirt"
+	desc = "You probably need some welder googles to look at this."
+	icon_state = "hawaii"
