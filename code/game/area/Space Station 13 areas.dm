@@ -282,6 +282,7 @@ area/space/atmosalert()
 
 /area/shuttle/cryo/station
 	icon_state = "shuttle2"
+	base_turf = /turf/simulated/mineral/floor/ignore_mapgen
 
 /area/shuttle/cryo/centcom
 	icon_state = "shuttle"
@@ -290,9 +291,10 @@ area/space/atmosalert()
 	icon_state = "shuttle"
 
 /area/shuttle/mining
-	name = "\improper Mining Shuttle"
+	name = "\improper Mining Elevator"
 	music = "music/escape.ogg"
 	lighting_use_dynamic = 0
+	base_turf = /turf/simulated/mineral/floor/ignore_mapgen
 
 /area/shuttle/mining/station
 	icon_state = "shuttle2"
@@ -388,9 +390,10 @@ area/space/atmosalert()
 // === Trying to remove these areas:
 
 /area/shuttle/research
-	name = "\improper Research Shuttle"
+	name = "\improper Research Elevator"
 	music = "music/escape.ogg"
 	lighting_use_dynamic = 0
+	base_turf = /turf/simulated/mineral/floor/ignore_mapgen
 
 /area/shuttle/research/station
 	icon_state = "shuttle2"
@@ -2319,6 +2322,7 @@ area/space/atmosalert()
 	name = "\improper Construction Site Shuttle"
 	icon_state = "yellow"
 	lighting_use_dynamic = 0
+	base_turf = /turf/simulated/mineral/floor/ignore_mapgen
 
 /area/shuttle/constructionsite/station
 	name = "\improper Construction Site Shuttle"
