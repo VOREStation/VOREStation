@@ -67,7 +67,7 @@
 	valid_turfs - T
 	if(istype(T, /turf/simulated/floor) || istype(T, /turf/unsimulated/floor))
 		new M(T)
-		return true
+		return TRUE
 
 /area/awaymission/proc/spawn_flora_on_turf()
 	var/obj/F = pick(valid_flora)
@@ -75,4 +75,4 @@
 	valid_turfs - T
 	if(istype(T, /turf/simulated/floor) || istype(T, /turf/unsimulated/floor))
 		new F(T)
-		return true
+		return TRUE
