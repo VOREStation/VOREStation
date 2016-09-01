@@ -1,5 +1,5 @@
 //This is a generic proc that should be called by other ling armor procs to equip them.
-/mob/proc/changeling_generic_armor(var/armor_type, var/helmet_type)
+/mob/proc/changeling_generic_armor(var/armor_type, var/helmet_type, var/boot_type)
 	var/datum/changeling/changeling = changeling_power(20,1,100,CONSCIOUS)
 	if(!changeling)
 		return
@@ -10,15 +10,20 @@
 	var/mob/living/carbon/human/M = src
 
 	//First, check if we're already wearing the armor, and if so, take it off.
-	if(istype(M.wear_suit, armor_type) || istype(M.head, helmet_type))
+	if(istype(M.wear_suit, armor_type) || istype(M.head, helmet_type) || istype(M.shoes, boot_type))
 		M.visible_message("<span class='warning'>[M] casts off their [M.wear_suit.name]!</span>",
 		"<span class='warning'>We cast off our [M.wear_suit.name]</span>",
 		"<span class='italics'>You hear the organic matter ripping and tearing!</span>")
-		qdel(M.wear_suit)
-		qdel(M.head)
+		if(istype(M.wear_suit, armor_type))
+			qdel(M.wear_suit)
+		if(istype(M.head, helmet_type))
+			qdel(M.head)
+		if(istype(M.shoes, boot_type))
+			qdel(M.shoes)
 		M.update_inv_wear_suit()
 		M.update_inv_head()
 		M.update_hair()
+		M.update_inv_shoes()
 		return 1
 
 	if(M.head || M.wear_suit) //Make sure our slots aren't full
@@ -31,11 +36,15 @@
 	var/obj/item/clothing/suit/H = new helmet_type(src)
 	src.equip_to_slot_or_del(H, slot_head)
 
+	var/obj/item/clothing/shoes/B = new boot_type(src)
+	src.equip_to_slot_or_del(B, slot_shoes)
+
 	src.mind.changeling.chem_charges -= 20
 	playsound(src, 'sound/effects/blobattack.ogg', 30, 1)
 	M.update_inv_wear_suit()
 	M.update_inv_head()
 	M.update_hair()
+	M.update_inv_shoes()
 	return 1
 
 /mob/proc/changeling_generic_equip_all_slots(var/list/stuff_to_equip, var/cost)
