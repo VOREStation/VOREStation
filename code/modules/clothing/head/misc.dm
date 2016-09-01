@@ -300,3 +300,9 @@
 	desc = "A beret, an artists favorite headwear."
 	icon_state = "beret_g"
 	body_parts_covered = 0
+
+/obj/item/clothing/head/sombrero
+	name = "sombrero"
+	desc = "A wide-brimmed hat popularly worn in Mexico."
+	icon_state = "sombrero"
+	body_parts_covered = 0
