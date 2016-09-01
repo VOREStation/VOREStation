@@ -68,6 +68,10 @@
 	creator = null
 	..()
 
+/obj/item/weapon/melee/arm_blade/suicide_act(mob/user)
+	viewers(user) << "<span class='danger'>[user] is impaling \himself the [src.name]! It looks like \he's trying to commit suicide.</span>"
+	return(BRUTELOSS)
+
 /obj/item/weapon/melee/arm_blade/process()  //Stolen from ninja swords.
 	if(!creator || loc != creator || !creator.item_is_in_hands(src))
 		// Tidy up a bit.

@@ -8,6 +8,11 @@
 	icon_state = "undershirt"
 	has_color = TRUE
 
+/datum/category_item/underwear/undershirt/shirt_long
+	name = "Longsleeve Shirt"
+	icon_state = "undershirt_long"
+	has_color = TRUE
+
 /datum/category_item/underwear/undershirt/tank_top
 	name = "Tank top"
 	icon_state = "tanktop"

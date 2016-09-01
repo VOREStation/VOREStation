@@ -510,7 +510,7 @@
 "ajP" = (/obj/machinery/light{dir = 1},/turf/simulated/floor/carpet,/area/shuttle/trade/centcom)
 "ajQ" = (/obj/structure/bed/chair,/turf/simulated/floor/carpet,/area/shuttle/trade/centcom)
 "ajR" = (/obj/structure/flora/pottedplant{icon_state = "plant-22"},/turf/simulated/floor/carpet,/area/shuttle/trade/centcom)
-"ajS" = (/obj/machinery/sleep_console{dir = 4},/turf/simulated/shuttle/floor{icon_state = "floor7"},/area/shuttle/trade/centcom)
+"ajS" = (/obj/machinery/sleep_console{dir = 8},/turf/simulated/shuttle/floor{icon_state = "floor7"},/area/shuttle/trade/centcom)
 "ajT" = (/obj/machinery/sleeper{dir = 4},/turf/simulated/shuttle/floor{icon_state = "floor7"},/area/shuttle/trade/centcom)
 "ajU" = (/obj/structure/shuttle/engine/propulsion{dir = 4},/turf/space,/area/shuttle/trade/centcom)
 "ajV" = (/turf/space/transit/north/shuttlespace_ns8,/area/skipjack_station/transit)
