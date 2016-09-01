@@ -46,7 +46,7 @@
 /area/awaymission/snowfield/boss
 	icon_state = "red"
 
-/obj/effect/derelictandmark
+/obj/effect/landmark/away
 	name = "awaystart"
 
 /obj/effect/floor_decal/derelict/d1
@@ -118,30 +118,31 @@
 	icon_state = "snowbush1"
 
 	New()
-		var/clutter_chance = rand(1,100)
-		if(clutter_chance >= 1 && clutter_chance <= 10)
-			new /obj/structure/flora/tree/pine(get_turf(src))
-		if(clutter_chance >= 11 && clutter_chance <= 20)
-			new /obj/structure/flora/bush(get_turf(src))
-		if(clutter_chance >= 21 && clutter_chance <= 30)
-			new /obj/structure/flora/bush(get_turf(src))
-		if(clutter_chance == 100)
-			var/junk = pick(/mob/living/simple_animal/hostile/samak, /mob/living/simple_animal/hostile/diyaab, /mob/living/simple_animal/hostile/shantak,
-							/mob/living/simple_animal/hostile/vore/bear/polar, /obj/effect/landmark)
-			new junk(get_turf(src))
+		switch(rand(1,100)) // It's written fucky so it's more efficient, trying the most likely options first to cause less lag hopefully.
+			if(31 to 99)
+				qdel(src)
+			if(11 to 30)
+				new /obj/structure/flora/bush(get_turf(src))
+			if(1 to 10)
+				new /obj/structure/flora/tree/pine(get_turf(src))
+			if(100)
+				var/junk = pick(/mob/living/simple_animal/hostile/samak, /mob/living/simple_animal/hostile/diyaab, /mob/living/simple_animal/hostile/shantak,
+							/mob/living/simple_animal/hostile/vore/bear/polar, /obj/effect/landmark/away)
+				new junk(get_turf(src))
 		qdel(src)
 
 /obj/effect/spawner/snowfield_nospawn
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x"
+
 	New()
-		var/clutter_chance = rand(1,100)
-		if(clutter_chance >= 1 && clutter_chance <= 10)
-			new /obj/structure/flora/tree/pine(get_turf(src))
-		if(clutter_chance >= 11 && clutter_chance <= 20)
-			new /obj/structure/flora/bush(get_turf(src))
-		if(clutter_chance >= 21 && clutter_chance <= 30)
-			new /obj/structure/flora/bush(get_turf(src))
+		switch(rand(1,100)) // It's written fucky so it's more efficient, trying the most likely options first to cause less lag hopefully.
+			if(31 to 100)
+				qdel(src)
+			if(11 to 30)
+				new /obj/structure/flora/bush(get_turf(src))
+			if(1 to 10)
+				new /obj/structure/flora/tree/pine(get_turf(src))
 		qdel(src)
 
 /mob/living/simple_animal/hostile/vore/bear/polar
