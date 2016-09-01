@@ -2206,4 +2206,5 @@
 #include "maps\RandomZLevels\carpfarm.dm"
 #include "maps\RandomZLevels\labyrinth.dm"
 #include "maps\RandomZLevels\listeningpost.dm"
+#include "maps\RandomZLevels\snowfield.dm"
 // END_INCLUDE
