@@ -5,16 +5,13 @@
 //	If he accepts there is a random chance he will be accepted, rejected, or rejected and killed
 //	Bringing certain items can help improve the chance to become a traitor
 
-
 /obj/machinery/syndicate_beacon
 	name = "ominous beacon"
 	desc = "This looks suspicious..."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "syndbeacon"
-
 	anchored = 1
 	density = 1
-
 	var/temptext = ""
 	var/selfdestructing = 0
 	var/charges = 1
@@ -43,18 +40,18 @@
 		return
 	if(href_list["betraitor"])
 		if(charges < 1)
-			src.updateUsrDialog()
+			updateUsrDialog()
 			return
 		var/mob/M = locate(href_list["traitormob"])
 		if(M.mind.special_role || jobban_isbanned(M, "Syndicate"))
 			temptext = "<i>We have no need for you at this time. Have a pleasant day.</i><br>"
-			src.updateUsrDialog()
+			updateUsrDialog()
 			return
 		charges -= 1
 		switch(rand(1,2))
 			if(1)
 				temptext = "<font color=red><i><b>Double-crosser. You planned to betray us from the start. Allow us to repay the favor in kind.</b></i></font>"
-				src.updateUsrDialog()
+				updateUsrDialog()
 				spawn(rand(50,200)) selfdestruct()
 				return
 		if(istype(M, /mob/living/carbon/human))
@@ -64,10 +61,8 @@
 			traitors.equip(N)
 			message_admins("[N]/([N.ckey]) has accepted a traitor objective from a syndicate beacon.")
 
-
-	src.updateUsrDialog()
+	updateUsrDialog()
 	return
-
 
 /obj/machinery/syndicate_beacon/proc/selfdestruct()
 	selfdestructing = 1
@@ -90,7 +85,6 @@
 	var/active = 0
 	var/icontype = "beacon"
 
-
 /obj/machinery/power/singularity_beacon/proc/Activate(mob/user = null)
 	if(surplus() < 1500)
 		if(user) user << "<span class='notice'>The connected wire doesn't have enough current.</span>"
@@ -104,7 +98,6 @@
 	if(user)
 		user << "<span class='notice'>You activate the beacon.</span>"
 
-
 /obj/machinery/power/singularity_beacon/proc/Deactivate(mob/user = null)
 	for(var/obj/singularity/singulo in world)
 		if(singulo.target == src)
@@ -114,10 +107,8 @@
 	if(user)
 		user << "<span class='notice'>You deactivate the beacon.</span>"
 
-
 /obj/machinery/power/singularity_beacon/attack_ai(mob/user as mob)
 	return
-
 
 /obj/machinery/power/singularity_beacon/attack_hand(var/mob/user as mob)
 	if(anchored)
@@ -125,7 +116,6 @@
 	else
 		user << "<span class='danger'>You need to screw the beacon to the floor first!</span>"
 		return
-
 
 /obj/machinery/power/singularity_beacon/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/screwdriver))
@@ -148,7 +138,6 @@
 	..()
 	return
 
-
 /obj/machinery/power/singularity_beacon/Destroy()
 	if(active)
 		Deactivate()
@@ -161,7 +150,6 @@
 	else
 		if(draw_power(1500) < 1500)
 			Deactivate()
-
 
 /obj/machinery/power/singularity_beacon/syndicate
 	icontype = "beaconsynd"

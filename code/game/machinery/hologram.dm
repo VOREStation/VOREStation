@@ -19,11 +19,9 @@ Possible to do for anyone motivated enough:
 	Itegrate EMP effect to disable the unit.
 */
 
-
 /*
  * Holopad
  */
-
 #define HOLOPAD_PASSIVE_POWER_USAGE 1
 #define HOLOGRAM_POWER_USAGE 2
 #define RANGE_BASED 4
@@ -37,39 +35,19 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 	icon_state = "holopad0"
 	show_messages = 1
 	circuit = /obj/item/weapon/circuitboard/holopad
-
 	layer = TURF_LAYER+0.1 //Preventing mice and drones from sneaking under them.
-
 	var/power_per_hologram = 500 //per usage per hologram
 	idle_power_usage = 5
 	use_power = 1
-
 	var/list/mob/living/silicon/ai/masters = new() //List of AIs that use the holopad
 	var/last_request = 0 //to prevent request spam. ~Carn
 	var/holo_range = 5 // Change to change how far the AI can move away from the holopad before deactivating.
 
 /obj/machinery/hologram/holopad/attackby(obj/item/I as obj, user as mob)
-	if(istype(I, /obj/item/weapon/screwdriver) && circuit)
-		user << "<span class='notice'>You start removing the glass.</span>"
-		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-		if(do_after(user, 20))
-			var/obj/structure/frame/A = new /obj/structure/frame( src.loc )
-			var/obj/item/weapon/circuitboard/M = new circuit( A )
-			A.circuit = M
-			A.anchored = 1
-			A.density = 1
-			A.frame_type = "holopad"
-			for (var/obj/C in src)
-				C.forceMove(loc)
-			user << "<span class='notice'>You remove the glass.</span>"
-			A.state = 4
-			A.icon_state = "holopad_4"
-			M.deconstruct(src)
-			for (var/mob/living/silicon/ai/master in masters)
-				clear_holo(master)
-			qdel(src)
+	if(computer_deconstruction_screwdriver(user, I))
+		return
 	else
-		src.attack_hand(user)
+		attack_hand(user)
 	return
 
 /obj/machinery/hologram/holopad/attack_hand(var/mob/living/carbon/human/user) //Carn: Hologram requests.
@@ -87,7 +65,7 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 			user << "<span class='notice'>A request for AI presence was already sent recently.</span>"
 
 /obj/machinery/hologram/holopad/attack_ai(mob/living/silicon/ai/user)
-	if (!istype(user))
+	if(!istype(user))
 		return
 	/*There are pretty much only three ways to interact here.
 	I don't need to check for client since they're clicking on an object.
@@ -102,11 +80,11 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 
 /obj/machinery/hologram/holopad/proc/activate_holo(mob/living/silicon/ai/user)
 	if(!(stat & NOPOWER) && user.eyeobj.loc == src.loc)//If the projector has power and client eye is on it
-		if (user.holo)
+		if(user.holo)
 			user << "<span class='danger'>ERROR:</span> Image feed in progress."
 			return
 		create_holo(user)//Create one.
-		src.visible_message("A holographic image of [user] flicks to life right before your eyes!")
+		visible_message("A holographic image of [user] flicks to life right before your eyes!")
 	else
 		user << "<span class='danger'>ERROR:</span> Unable to project hologram."
 	return
@@ -165,7 +143,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 		user.holo = null
 	qdel(masters[user])//Get rid of user's hologram
 	masters -= user //Discard AI from the list of those who use holopad
-	if (!masters.len)//If no users left
+	if(!masters.len)//If no users left
 		set_light(0)			//pad lighting (hologram lighting will be handled automatically since its owner was deleted)
 		icon_state = "holopad0"
 	return 1
@@ -214,10 +192,10 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 		if(1.0)
 			qdel(src)
 		if(2.0)
-			if (prob(50))
+			if(prob(50))
 				qdel(src)
 		if(3.0)
-			if (prob(5))
+			if(prob(5))
 				qdel(src)
 	return
 

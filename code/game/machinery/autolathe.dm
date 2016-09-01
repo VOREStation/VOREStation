@@ -26,7 +26,6 @@
 /obj/machinery/autolathe/New()
 	..()
 	wires = new(src)
-	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
@@ -48,7 +47,6 @@
 		current_category = machine_recipes.categories[1]
 
 /obj/machinery/autolathe/interact(mob/user as mob)
-
 	update_recipe_list()
 
 	if(..() || (disabled && !panel_open))
@@ -119,7 +117,6 @@
 	onclose(user, "autolathe")
 
 /obj/machinery/autolathe/attackby(var/obj/item/O as obj, var/mob/user as mob)
-
 	if(busy)
 		user << "<span class='notice'>\The [src] is busy. Please wait for completion of previous operation.</span>"
 		return
@@ -223,7 +220,6 @@
 	interact(user)
 
 /obj/machinery/autolathe/Topic(href, href_list)
-
 	if(..())
 		return
 
@@ -277,7 +273,7 @@
 		if(!making || !src) return
 
 		//Create the desired item.
-		var/obj/item/I = new making.path(loc)
+		var/obj/item/I = new making.path(src.loc)
 		if(multiplier > 1 && istype(I, /obj/item/stack))
 			var/obj/item/stack/S = I
 			S.amount = multiplier
@@ -303,7 +299,6 @@
 	mat_efficiency = 1.1 - man_rating * 0.1// Normally, price is 1.25 the amount of material, so this shouldn't go higher than 0.8. Maximum rating of parts is 3
 
 /obj/machinery/autolathe/dismantle()
-
 	for(var/mat in stored_material)
 		var/material/M = get_material_by_name(mat)
 		if(!istype(M))

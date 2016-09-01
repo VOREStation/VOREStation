@@ -4,6 +4,7 @@
 	icon = 'icons/mecha/mech_bay.dmi'
 	icon_state = "recharge_floor"
 	density = 0
+	anchored = 1
 	layer = TURF_LAYER + 0.1
 	circuit = /obj/item/weapon/circuitboard/mech_recharger
 
@@ -14,13 +15,11 @@
 /obj/machinery/mech_recharger/New()
 	..()
 	component_parts = list()
-
 	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
 	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
 	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-
 	RefreshParts()
 
 /obj/machinery/mech_recharger/Crossed(var/obj/mecha/M)
@@ -50,7 +49,7 @@
 	..()
 	if(!charging)
 		return
-	if(charging.loc != loc) // Could be qdel or teleport or something
+	if(charging.loc != src.loc) // Could be qdel or teleport or something
 		stop_charging()
 		return
 	var/done = 1

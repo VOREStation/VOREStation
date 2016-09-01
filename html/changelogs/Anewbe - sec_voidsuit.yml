@@ -21,8 +21,8 @@
 #   experiment
 #################################
 
-# Your name.  
-author: Sin4
+# Your name.
+author: Anewbe
 
 # Optional: Remove this file after generating master changelog.  Useful for PR changelogs that won't get used again.
 delete-after: True
@@ -33,10 +33,5 @@ delete-after: True
 # Also, all entries are changed into a single [] after a master changelog generation. Just remove the brackets when you add new entries.
 # Please surround your changes in  double quotes ("), as certain characters otherwise screws up compiling. The quotes will not show up in the changelog.
 changes: 
-  - bugfix: "Camera Console swaps to active camera upon clicking on."
-  - bugfix: "Hugs gender correctly."
-  - bugfix: "Prometheans gender correctly and have a gender identity."
-  - bugfix: "Meatspike no longer takes you prisoner upon placing something on it."
-  - rscadd: "Lighting someone on fire now tells the admins."
-  - bugfix: "Wiping something down with a damp rag no longer wets the floor."
-  - bugfix: "Captains gloves now appear when put on."
+  - tweak: "Tweaks security voidsuit armor values."
+
