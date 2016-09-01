@@ -7,19 +7,16 @@
 	icon_state = "telecrystal"
 	w_class = 1
 	max_amount = 240
-	flags = NOBLUDGEON
 	origin_tech = list(TECH_MATERIAL = 6, TECH_BLUESPACE = 4)
+	force = 1 //Needs a token force to ensure you can attack because for some reason you can't attack with 0 force things
 
-/obj/item/stack/telecrystal/afterattack(var/obj/item/I as obj, mob/user as mob, proximity)
-	if(!proximity)
-		return
-	if(istype(I, /obj/item))
-		if(I.hidden_uplink && I.hidden_uplink.active) //No metagaming by using this on every PDA around just to see if it gets used up.
-			I.hidden_uplink.uses += amount
-			I.hidden_uplink.update_nano_data()
-			nanomanager.update_uis(I.hidden_uplink)
-			use(amount)
-			user << "<span class='notice'>You slot \the [src] into \the [I] and charge its internal uplink.</span>"
+/obj/item/stack/telecrystal/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+	if(amount >= 5)
+		target.visible_message("<span class='warning'>\The [target] has been transported with \the [src] by \the [user].</span>")
+		safe_blink(target, 14)
+		use(5)
+	else
+		user << "<span class='warning'>There are not enough telecrystals to do that.</span>"
 
 /obj/item/stack/telecrystal/attack_self(mob/user as mob)
 	if(user.mind.accept_tcrystals) //Checks to see if antag type allows for tcrystals

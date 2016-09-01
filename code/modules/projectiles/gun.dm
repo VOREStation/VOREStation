@@ -135,10 +135,11 @@
 				if(safety_level == 1)
 					M << "<span class='danger'>\The [src] hisses in dissapointment.</span>"
 					visible_message("<span class='game say'><span class='name'>\The [src]</span> announces, \"Self-destruct occurring in ten seconds.\"</span>", "<span class='game say'><span class='name'>\The [src]</span> announces, \"Self-destruct occurring in ten seconds.\"</span>")
-					sleep(100)
-					explosion(src, -1, 0, 2, 3, 0)
-					exploding = 1
-					qdel(src)
+					spawn(100)
+						explosion(src, 0, 0, 3, 4)
+						exploding = 1
+						sleep(1)
+						qdel(src)
 					return 0
 	if(HULK in M.mutations)
 		M << "<span class='danger'>Your fingers are much too large for the trigger guard!</span>"

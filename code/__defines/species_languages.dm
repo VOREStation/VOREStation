@@ -24,8 +24,7 @@
 // Languages.
 #define LANGUAGE_SOL_COMMON "Sol Common"
 #define LANGUAGE_UNATHI "Sinta'unathi"
-#define LANGUAGE_SIIK_MAAS "Siik'maas"
-#define LANGUAGE_SIIK_TAJR "Siik'tajr"
+#define LANGUAGE_SIIK "Siik"
 #define LANGUAGE_SKRELLIAN "Skrellian"
 #define LANGUAGE_ROOTSPEAK "Rootspeak"
 #define LANGUAGE_TRADEBAND "Tradeband"

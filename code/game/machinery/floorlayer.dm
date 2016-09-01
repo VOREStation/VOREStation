@@ -1,5 +1,4 @@
 /obj/machinery/floorlayer
-
 	name = "automatic floor layer"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pipe_d"
@@ -35,8 +34,7 @@
 	return
 
 /obj/machinery/floorlayer/attackby(var/obj/item/W as obj, var/mob/user as mob)
-
-	if (istype(W, /obj/item/weapon/wrench))
+	if(istype(W, /obj/item/weapon/wrench))
 		var/m = input("Choose work mode", "Mode") as null|anything in mode
 		mode[m] = !mode[m]
 		var/O = mode[m]

@@ -17,7 +17,7 @@ var/global/list/citizenship_choices = list(
 	"Earth",
 	"Mars",
 	"Moghes",
-	"Ahdomai",
+	"Meralar",
 	"Qerrbalak"
 	)
 
@@ -28,7 +28,7 @@ var/global/list/home_system_choices = list(
 	"Tau Ceti",
 	"Qerr'Vallis",
 	"Epsilon Ursae Minoris",
-	"S'randarr"
+	"Rarkajar"
 	)
 
 var/global/list/faction_choices = list(
@@ -44,7 +44,7 @@ var/global/list/faction_choices = list(
 	"Zeng-Hu Pharmaceuticals",
 	"Hesphaistos Industries"
 	)
-	
+
 var/global/list/antag_faction_choices = list()	//Should be populated after brainstorming. Leaving as blank in case brainstorming does not occur.
 
 var/global/list/antag_visiblity_choices = list(

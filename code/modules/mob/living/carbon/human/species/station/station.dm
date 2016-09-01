@@ -96,8 +96,8 @@
 	burn_mod =  1.15
 	gluttonous = 1
 	num_alternate_languages = 2
-	secondary_langs = list("Siik'tajr")
-	name_language = "Siik'tajr"
+	secondary_langs = list("Siik")
+	name_language = "Siik"
 	health_hud_intensity = 2.5
 
 	min_age = 17

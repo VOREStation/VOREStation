@@ -38,7 +38,6 @@
 		operating = 1
 		setmove()
 
-	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/gear(src)
 	component_parts += new /obj/item/weapon/stock_parts/motor(src)

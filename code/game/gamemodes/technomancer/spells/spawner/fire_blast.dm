@@ -4,6 +4,7 @@
 	sure to not be close to the disturbance yourself."
 	cost = 175
 	obj_path = /obj/item/weapon/spell/spawner/fire_blast
+	category = OFFENSIVE_SPELLS
 
 /obj/item/weapon/spell/spawner/fire_blast
 	name = "fire blast"

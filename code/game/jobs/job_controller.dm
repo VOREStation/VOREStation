@@ -343,10 +343,12 @@ var/global/datum/controller/occupations/job_master
 							permitted = 1
 
 						if(G.whitelisted && !is_alien_whitelisted(H, all_species[G.whitelisted]))
+
+						//if(G.whitelisted && (G.whitelisted != H.species.name || !is_alien_whitelisted(H, G.whitelisted)))
 							permitted = 0
 
 						if(!permitted)
-							H << "<span class='warning'>Your current job or whitelist status does not permit you to spawn with [thing]!</span>"
+							H << "<span class='warning'>Your current species, job or whitelist status does not permit you to spawn with [thing]!</span>"
 							continue
 
 						if(G.slot && !(G.slot in custom_equip_slots))
@@ -427,9 +429,9 @@ var/global/datum/controller/occupations/job_master
 					return H.Robotize()
 				if("AI")
 					return H
-				if("Captain")
+				if("Station Administrator")
 					var/sound/announce_sound = (ticker.current_state <= GAME_STATE_SETTING_UP)? null : sound('sound/misc/boatswain.ogg', volume=20)
-					captain_announcement.Announce("All hands, Captain [H.real_name] on deck!", new_sound=announce_sound)
+					captain_announcement.Announce("All hands, [alt_title ? alt_title : "Station Administrator"] [H.real_name] on deck!", new_sound=announce_sound)
 
 			//Deferred item spawning.
 			if(spawn_in_storage && spawn_in_storage.len)

@@ -48,6 +48,7 @@ var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called
 #define NETWORK_ROBOTS "Robots"
 #define NETWORK_PRISON "Prison"
 #define NETWORK_SECURITY "Security"
+#define NETWORK_INTERROGATION "Interrogation"
 #define NETWORK_TELECOM "Tcomsat"
 #define NETWORK_THUNDER "Thunderdome"
 #define NETWORK_COMMUNICATORS "Communicators"

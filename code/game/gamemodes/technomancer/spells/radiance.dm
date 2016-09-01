@@ -3,6 +3,7 @@
 	desc = "Causes you to be very radiant, glowing brightly in visible light, thermal energy, and deadly ionizing radiation."
 	cost = 180
 	obj_path = /obj/item/weapon/spell/radiance
+	category = OFFENSIVE_SPELLS
 
 /obj/item/weapon/spell/radiance
 	name = "radiance"

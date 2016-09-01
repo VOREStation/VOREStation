@@ -75,7 +75,7 @@ var/list/whitelist = list()
 /proc/whitelist_overrides(mob/M)
 	if(!config.usealienwhitelist)
 		return 1
-	if(check_rights(R_ADMIN, 0))
+	if(check_rights(R_ADMIN, 0, M))
 		return 1
 
 	return 0

@@ -18,18 +18,16 @@
 /obj/machinery/light_switch/New()
 	..()
 	spawn(5)
-		src.area = get_area(src)
+		area = get_area(src)
 
 		if(otherarea)
-			src.area = locate(text2path("/area/[otherarea]"))
+			area = locate(text2path("/area/[otherarea]"))
 
 		if(!name)
 			name = "light switch ([area.name])"
 
-		src.on = src.area.lightswitch
+		on = area.lightswitch
 		updateicon()
-
-
 
 /obj/machinery/light_switch/proc/updateicon()
 	if(!overlay)

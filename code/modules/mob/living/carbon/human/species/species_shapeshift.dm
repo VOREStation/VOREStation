@@ -130,8 +130,13 @@ var/list/wrapped_species_by_ref = list()
 	if(!new_gender)
 		return
 
+	var/new_gender_identity = input("Please select a gender Identity.", "Shapeshifter Gender Identity") as null|anything in list(FEMALE, MALE, NEUTER, PLURAL)
+	if(!new_gender_identity)
+		return
+
 	visible_message("<span class='notice'>\The [src]'s form contorts subtly.</span>")
 	change_gender(new_gender)
+	change_gender_identity(new_gender_identity)
 
 /mob/living/carbon/human/proc/shapeshifter_select_shape()
 

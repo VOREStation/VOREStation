@@ -611,7 +611,7 @@
 	return
 
 /obj/structure/closet/wardrobe/captain
-	name = "captain's wardrobe"
+	name = "station administrator's wardrobe"
 	icon_state = "cabinet_closed"
 	icon_closed = "cabinet_closed"
 	icon_opened = "cabinet_open"

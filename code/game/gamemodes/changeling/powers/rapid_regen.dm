@@ -33,6 +33,7 @@
 			C.adjustCloneLoss(-healing_amount)
 			C.adjustBrainLoss(-healing_amount)
 			C.restore_blood()
+			C.species.create_organs(C)
 			C.restore_all_organs()
 			C.blinded = 0
 			C.eye_blind = 0

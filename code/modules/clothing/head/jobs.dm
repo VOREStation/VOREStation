@@ -7,13 +7,13 @@
 
 //Captain
 /obj/item/clothing/head/caphat
-	name = "captain's hat"
+	name = "station administrator's hat"
 	icon_state = "captain"
 	desc = "It's good being the king."
 	body_parts_covered = 0
 
 /obj/item/clothing/head/caphat/cap
-	name = "captain's cap"
+	name = "station administrator's cap"
 	desc = "You fear to wear it for the negligence it brings."
 	icon_state = "capcap"
 
@@ -32,7 +32,8 @@
 /obj/item/clothing/head/chaplain_hood
 	name = "chaplain's hood"
 	desc = "It's hood that covers the head. It keeps you warm during the space winters."
-	icon_state = "beret_black"
+	icon_state = "chaplain_hood"
+	item_state_slots = list(slot_r_hand_str = "beret_black", slot_l_hand_str = "beret_black")
 	flags_inv = BLOCKHAIR
 	body_parts_covered = HEAD
 

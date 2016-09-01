@@ -80,24 +80,7 @@ log transactions
 	return 1
 
 /obj/machinery/atm/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I, /obj/item/weapon/screwdriver) && circuit)
-		user << "<span class='notice'>You start disconnecting the monitor.</span>"
-		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-		if(do_after(user, 20))
-			var/obj/structure/frame/A = new /obj/structure/frame( src.loc )
-			var/obj/item/weapon/circuitboard/M = new circuit( A )
-			A.frame_type = "atm"
-			A.pixel_x = pixel_x
-			A.pixel_y = pixel_y
-			A.circuit = M
-			A.anchored = 1
-			for (var/obj/C in src)
-				C.forceMove(loc)
-			user << "<span class='notice'>You disconnect the monitor.</span>"
-			A.state = 4
-			A.icon_state = "atm_4"
-			M.deconstruct(src)
-			qdel(src)
+	if(computer_deconstruction_screwdriver(user, I))
 		return
 	if(istype(I, /obj/item/weapon/card))
 		if(emagged > 0)
@@ -131,7 +114,7 @@ log transactions
 			T.amount = I:worth
 			T.source_terminal = machine_id
 			T.date = current_date_string
-			T.time = worldtime2text()
+			T.time = stationtime2text()
 			authenticated_account.transaction_log.Add(T)
 
 			user << "<span class='info'>You insert [I] into [src].</span>"
@@ -260,7 +243,7 @@ log transactions
 							T.purpose = transfer_purpose
 							T.source_terminal = machine_id
 							T.date = current_date_string
-							T.time = worldtime2text()
+							T.time = stationtime2text()
 							T.amount = "([transfer_amount])"
 							authenticated_account.transaction_log.Add(T)
 						else
@@ -302,7 +285,7 @@ log transactions
 									T.purpose = "Unauthorised login attempt"
 									T.source_terminal = machine_id
 									T.date = current_date_string
-									T.time = worldtime2text()
+									T.time = stationtime2text()
 									failed_account.transaction_log.Add(T)
 							else
 								usr << "\red \icon[src] Incorrect pin/account combination entered, [max_pin_attempts - number_incorrect_tries] attempts remaining."
@@ -322,7 +305,7 @@ log transactions
 						T.purpose = "Remote terminal access"
 						T.source_terminal = machine_id
 						T.date = current_date_string
-						T.time = worldtime2text()
+						T.time = stationtime2text()
 						authenticated_account.transaction_log.Add(T)
 
 						usr << "\blue \icon[src] Access granted. Welcome user '[authenticated_account.owner_name].'"
@@ -350,7 +333,7 @@ log transactions
 						T.amount = "([amount])"
 						T.source_terminal = machine_id
 						T.date = current_date_string
-						T.time = worldtime2text()
+						T.time = stationtime2text()
 						authenticated_account.transaction_log.Add(T)
 					else
 						usr << "\icon[src]<span class='warning'>You don't have enough funds to do that!</span>"
@@ -375,7 +358,7 @@ log transactions
 						T.amount = "([amount])"
 						T.source_terminal = machine_id
 						T.date = current_date_string
-						T.time = worldtime2text()
+						T.time = stationtime2text()
 						authenticated_account.transaction_log.Add(T)
 					else
 						usr << "\icon[src]<span class='warning'>You don't have enough funds to do that!</span>"
@@ -387,7 +370,7 @@ log transactions
 					R.info += "<i>Account holder:</i> [authenticated_account.owner_name]<br>"
 					R.info += "<i>Account number:</i> [authenticated_account.account_number]<br>"
 					R.info += "<i>Balance:</i> $[authenticated_account.money]<br>"
-					R.info += "<i>Date and time:</i> [worldtime2text()], [current_date_string]<br><br>"
+					R.info += "<i>Date and time:</i> [stationtime2text()], [current_date_string]<br><br>"
 					R.info += "<i>Service terminal ID:</i> [machine_id]<br>"
 
 					//stamp the paper
@@ -410,7 +393,7 @@ log transactions
 					R.info = "<b>Transaction logs</b><br>"
 					R.info += "<i>Account holder:</i> [authenticated_account.owner_name]<br>"
 					R.info += "<i>Account number:</i> [authenticated_account.account_number]<br>"
-					R.info += "<i>Date and time:</i> [worldtime2text()], [current_date_string]<br><br>"
+					R.info += "<i>Date and time:</i> [stationtime2text()], [current_date_string]<br><br>"
 					R.info += "<i>Service terminal ID:</i> [machine_id]<br>"
 					R.info += "<table border=1 style='width:100%'>"
 					R.info += "<tr>"
@@ -486,7 +469,7 @@ log transactions
 					T.purpose = "Remote terminal access"
 					T.source_terminal = machine_id
 					T.date = current_date_string
-					T.time = worldtime2text()
+					T.time = stationtime2text()
 					authenticated_account.transaction_log.Add(T)
 
 					view_screen = NO_SCREEN

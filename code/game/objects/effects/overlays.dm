@@ -59,6 +59,15 @@
 	icon_state = "snow"
 	anchored = 1
 
+// Todo: Add a version that gradually reaccumulates over time by means of alpha transparency. -Spades
+/obj/effect/overlay/snow/attackby(obj/item/W as obj, mob/user as mob)
+	if (istype(W, /obj/item/weapon/shovel))
+		user.visible_message("<span class='notice'>[user] begins to shovel away \the [src].</span>")
+		if(do_after(user, 40))
+			user << "<span class='notice'>You have finished shoveling!</span>"
+			qdel(src)
+		return
+
 /obj/effect/overlay/snow/floor
 	icon_state = "snowfloor"
 	layer = 2.01 //Just above floor

@@ -113,7 +113,7 @@
 
 	var/access = list()
 	var/registered_name = "Unknown" // The name registered_name on the card
-	slot_flags = SLOT_ID
+	slot_flags = SLOT_ID | SLOT_EARS
 
 	var/age = "\[UNSET\]"
 	var/blood_type = "\[UNSET\]"
@@ -233,12 +233,12 @@
 	access = list(access_syndicate, access_external_airlocks)
 
 /obj/item/weapon/card/id/captains_spare
-	name = "captain's spare ID"
+	name = "station administrator's spare ID"
 	desc = "The spare ID of the High Lord himself."
 	icon_state = "gold"
 	item_state = "gold_id"
-	registered_name = "Captain"
-	assignment = "Captain"
+	registered_name = "Station Administrator"
+	assignment = "Station Administrator"
 /obj/item/weapon/card/id/captains_spare/New()
 	access = get_all_station_access()
 	..()
