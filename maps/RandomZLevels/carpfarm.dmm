@@ -66,7 +66,7 @@
 "bn" = (/obj/machinery/light{dir = 8},/turf/unsimulated/floor{icon_state = "plating"; name = "plating"},/area/awaymission/carpfarm/base)
 "bo" = (/obj/structure/closet/crate/freezer,/turf/unsimulated/floor{icon_state = "plating"; name = "plating"},/area/awaymission/carpfarm/base)
 "bp" = (/obj/structure/closet/crate,/turf/unsimulated/floor{icon_state = "plating"; name = "plating"},/area/awaymission/carpfarm/base)
-"bq" = (/obj/machinery/door/airlock/mining,/turf/unsimulated/floor{tag = "icon-floorgrime"; icon_state = "floorgrime"},/area/awaymission/carpfarm/base)
+"bq" = (/obj/machinery/door/airlock/mining,/turf/unsimulated/floor{icon_state = "steel_dirty"},/area/awaymission/carpfarm/base)
 "br" = (/obj/machinery/door/airlock/glass,/turf/unsimulated/floor{icon_state = "steel_dirty"},/area/awaymission/carpfarm/base)
 "bs" = (/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/simulated/floor/airless,/area/awaymission/carpfarm/base)
 "bt" = (/obj/machinery/mech_recharger,/turf/unsimulated/floor{icon_state = "steel_dirty"},/area/awaymission/carpfarm/base)

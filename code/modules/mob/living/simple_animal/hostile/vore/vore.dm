@@ -117,7 +117,7 @@ Don't use ranged mobs for vore mobs.
 
 	// Is our target edible and standing up?
 	if(!target_mob.lying && target_mob.size_multiplier >= min_size && target_mob.size_multiplier <= max_size && !(target_mob in prey_exclusions))
-		if(prob(10))
+		if(prob(50))
 			target_mob.Weaken(5)
 			target_mob.visible_message("<span class='danger'>\the [src] pounces on \the [target_mob]!</span>!")
 			return

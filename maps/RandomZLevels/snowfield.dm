@@ -36,9 +36,9 @@
 /mob/living/simple_animal/hostile/vore/polarbear // More aggressive than normal bears so none of that fancy life() stuff.
 	name = "polar bear"
 	desc = "The real question is, why are you examining it, instead of running away?"
-	icon_state = "spacebear"
-	icon_living = "spacebear"
-	icon_dead = "spacebear-dead"
+	icon_state = "polarbear"
+	icon_living = "polarbear"
+	icon_dead = "polarbear-dead"
 	icon_gib = "bear-gib"
 	speak = list("RAWR!","Rawr!","GRR!","Growl!")
 	speak_emote = list("growls", "roars")
