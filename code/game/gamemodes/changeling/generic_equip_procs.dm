@@ -1,13 +1,18 @@
 //This is a generic proc that should be called by other ling armor procs to equip them.
-/mob/proc/changeling_generic_armor(var/armor_type, var/helmet_type, var/boot_type)
-	var/datum/changeling/changeling = changeling_power(20,1,100,CONSCIOUS)
-	if(!changeling)
-		return
+/mob/proc/changeling_generic_armor(var/armor_type, var/helmet_type, var/boot_type, var/chem_cost)
 
 	if(!ishuman(src))
 		return 0
 
 	var/mob/living/carbon/human/M = src
+
+	if(istype(M.wear_suit, armor_type) || istype(M.head, helmet_type) || istype(M.shoes, boot_type))
+		chem_cost = 0
+
+	var/datum/changeling/changeling = changeling_power(chem_cost, 1, 100, CONSCIOUS)
+
+	if(!changeling)
+		return
 
 	//First, check if we're already wearing the armor, and if so, take it off.
 	if(istype(M.wear_suit, armor_type) || istype(M.head, helmet_type) || istype(M.shoes, boot_type))
@@ -39,7 +44,7 @@
 	var/obj/item/clothing/shoes/B = new boot_type(src)
 	src.equip_to_slot_or_del(B, slot_shoes)
 
-	src.mind.changeling.chem_charges -= 20
+	src.mind.changeling.chem_charges -= chem_cost
 	playsound(src, 'sound/effects/blobattack.ogg', 30, 1)
 	M.update_inv_wear_suit()
 	M.update_inv_head()
