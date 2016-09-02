@@ -36,6 +36,7 @@
 	icon_state = "bow"
 	name = "hair bow"
 	desc = "A ribbon tied into a bow with a clip on the back to attach to hair."
+	item_state_slots = list(slot_r_hand_str = "pill", slot_l_hand_str = "pill")
 
 /obj/item/clothing/head/powdered_wig
 	name = "powdered wig"
