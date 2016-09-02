@@ -33,4 +33,4 @@ delete-after: True
 # Also, all entries are changed into a single [] after a master changelog generation. Just remove the brackets when you add new entries.
 # Please surround your changes in  double quotes ("), as certain characters otherwise screws up compiling. The quotes will not show up in the changelog.
 changes: 
-  - rscadd: "The secure briefcase is now available in the loadout for anyone who wishes to use it."
+  - rscadd: "DNA Lockable guns have been finished. Any gun can be made into a DNA Lockable gun by inserting a DNA Chip Lock. These are not currently available, and are adminspawn only. Please refer to your nearest staffmember/developer to begin discussion for future implementations of this feature."
