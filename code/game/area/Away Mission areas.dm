@@ -9,7 +9,7 @@
 
 /area/awaymission/New()
 	..()
-	sleep(60)
+	sleep(120)
 	//Adds turfs to the valid)turfs list, used for spawning.
 	for(var/turf/simulated/floor/F in src)
 		valid_spawn_turfs |= F
