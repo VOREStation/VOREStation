@@ -1,18 +1,28 @@
+// -- Areas -- //
+
 /area/awaymission/snowfield
 	icon_state = "blank"
 //	requires_power = 0
+	lighting_use_dynamic = 1 // Spooky dark snow world!
+	base_turf = /turf/snow/snow2
+	valid_mobs = list(/mob/living/simple_animal/hostile/samak/polar, /mob/living/simple_animal/hostile/diyaab/polar,
+					/mob/living/simple_animal/hostile/shantak/polar, /mob/living/simple_animal/hostile/vore/bear/polar,
+					/obj/effect/landmark/away) // Random spawns into the map woo!
+	valid_flora = list(/obj/structure/flora/bush, /obj/structure/flora/tree/pine)
 
-/area/awaymission/snowfield/arrival
-	icon_state = "away"
-//	requires_power = 0
+/area/awaymission/snowfield/outside
+	icon_state = "green"
+	mobcountmax = 100
+	floracountmax = 10000
+
+/area/awaymission/snowfield/restricted
+	icon_state = "red"
+	mobcountmax = 0
+	floracountmax = 1000
 
 /area/awaymission/snowfield/base
 	icon_state = "away"
 	ambience = null // Todo: Add better ambience.
-
-/area/awaymission/snowfield/base/entry
-	icon_state = "blue"
-//	ambience = list('sound/music/TheClownChild.ogg')
 
 // These extra areas must break up the large area, or the game crashes when machinery (like an airlock) makes sparks.
 // I have no idea why. It's a nasty bug.
@@ -45,6 +55,62 @@
 
 /area/awaymission/snowfield/boss
 	icon_state = "red"
+
+/*
+/obj/effect/spawner/snowfield // Hacky as all hell and causes slow round loads BUT IT FUCKING WORKS NOW, DOESN'T IT? -Spades
+	icon = 'icons/obj/flora/snowflora.dmi'
+	icon_state = "snowbush1"
+
+	New()
+		switch(rand(1,100)) // It's written fucky so it's more efficient, trying the most likely options first to cause less lag hopefully.
+			if(31 to 99)
+				qdel(src)
+			if(11 to 30)
+				new /obj/structure/flora/bush(get_turf(src))
+			if(1 to 10)
+				new /obj/structure/flora/tree/pine(get_turf(src))
+			if(100)
+				var/junk = pick(/mob/living/simple_animal/hostile/samak, /mob/living/simple_animal/hostile/diyaab, /mob/living/simple_animal/hostile/shantak,
+							/mob/living/simple_animal/hostile/vore/bear/polar, /obj/effect/landmark/away)
+				new junk(get_turf(src))
+		qdel(src)
+
+/obj/effect/spawner/snowfield_nospawn
+	icon = 'icons/mob/screen1.dmi'
+	icon_state = "x"
+
+	New()
+		switch(rand(1,100)) // It's written fucky so it's more efficient, trying the most likely options first to cause less lag hopefully.
+			if(31 to 100)
+				qdel(src)
+			if(11 to 30)
+				new /obj/structure/flora/bush(get_turf(src))
+			if(1 to 10)
+				new /obj/structure/flora/tree/pine(get_turf(src))
+		qdel(src)
+*/
+
+// -- Mobs -- //
+
+/mob/living/simple_animal/hostile/vore/bear/polar
+	name = "space bear"
+	desc = "RawrRawr!!"
+	icon_state = "polarbear"
+	icon_living = "polarbear"
+	icon_dead = "polarbear-dead"
+	icon_gib = "bear-gib"
+	faction = "polar"
+
+/mob/living/simple_animal/hostile/samak/polar
+	faction = "polar"
+
+/mob/living/simple_animal/hostile/diyaab/polar
+	faction = "polar"
+
+/mob/living/simple_animal/hostile/shantak/polar
+	faction = "polar"
+
+// -- Items -- //
 
 /obj/effect/landmark/away
 	name = "awaystart"
@@ -112,44 +178,3 @@
 /obj/effect/floor_decal/derelict/d16
 	name = "derelict16"
 	icon_state = "derelict16"
-
-/obj/effect/spawner/snowfield // Hacky as all hell and causes slow round loads BUT IT FUCKING WORKS NOW, DOESN'T IT? -Spades
-	icon = 'icons/obj/flora/snowflora.dmi'
-	icon_state = "snowbush1"
-
-	New()
-		switch(rand(1,100)) // It's written fucky so it's more efficient, trying the most likely options first to cause less lag hopefully.
-			if(31 to 99)
-				qdel(src)
-			if(11 to 30)
-				new /obj/structure/flora/bush(get_turf(src))
-			if(1 to 10)
-				new /obj/structure/flora/tree/pine(get_turf(src))
-			if(100)
-				var/junk = pick(/mob/living/simple_animal/hostile/samak, /mob/living/simple_animal/hostile/diyaab, /mob/living/simple_animal/hostile/shantak,
-							/mob/living/simple_animal/hostile/vore/bear/polar, /obj/effect/landmark/away)
-				new junk(get_turf(src))
-		qdel(src)
-
-/obj/effect/spawner/snowfield_nospawn
-	icon = 'icons/mob/screen1.dmi'
-	icon_state = "x"
-
-	New()
-		switch(rand(1,100)) // It's written fucky so it's more efficient, trying the most likely options first to cause less lag hopefully.
-			if(31 to 100)
-				qdel(src)
-			if(11 to 30)
-				new /obj/structure/flora/bush(get_turf(src))
-			if(1 to 10)
-				new /obj/structure/flora/tree/pine(get_turf(src))
-		qdel(src)
-
-/mob/living/simple_animal/hostile/vore/bear/polar
-	name = "space bear"
-	desc = "RawrRawr!!"
-	icon_state = "polarbear"
-	icon_living = "polarbear"
-	icon_dead = "polarbear-dead"
-	icon_gib = "bear-gib"
-	faction = "alien"

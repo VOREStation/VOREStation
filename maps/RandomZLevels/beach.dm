@@ -1,4 +1,41 @@
-/obj/effect/spawner/beach // Hacky as all hell and causes slow round loads BUT IT FUCKING WORKS NOW, DOESN'T IT? -Ace
+// -- Turfs -- //
+
+/turf/simulated/floor/beach/coastwater
+	name = "Water"
+	icon_state = "water"
+
+/turf/simulated/floor/beach/coastwater/New()
+	..()
+	overlays += image("icon"='icons/misc/beach.dmi',"icon_state"="water","layer"=MOB_LAYER+0.1)
+
+
+// -- Areas -- //
+
+/area/awaymission/beach
+	base_turf = /turf/simulated/floor/beach/sand
+	valid_mobs = list(/mob/living/simple_animal/crab)
+	valid_flora = list(/obj/effect/overlay/palmtree_r,/obj/effect/overlay/palmtree_l, /obj/effect/overlay/palmtree_r,/obj/effect/overlay/palmtree_l, /obj/effect/overlay/coconut)
+
+/area/awaymission/beachexit // This serves only to stop the sound spam of the beach before leaving.
+	icon_state = "red"
+	base_turf = /turf/simulated/floor/beach/sand
+
+/area/awaymission/beach/coast
+	icon_state = "blue2"
+	base_turf = /turf/simulated/floor/beach/coastline
+
+/area/awaymission/beach/water
+	icon_state = "bluenew"
+	base_turf = /turf/simulated/floor/beach/coastwater
+
+/area/awaymission/beach/jungle
+	icon_state = "green"
+	mobcountmax = 10
+	floracountmax = 5000
+
+// -- Items -- //
+
+/*/obj/effect/spawner/beach // Hacky as all hell and causes slow round loads BUT IT FUCKING WORKS NOW, DOESN'T IT? -Ace
 	icon = 'icons/misc/beach.dmi'
 	icon_state = "coconuts"
 
@@ -18,4 +55,4 @@
 							/obj/item/trash/pistachios, /obj/item/trash/semki, /obj/item/trash/tray, /obj/item/trash/liquidfood,
 							/obj/item/trash/tastybread, /obj/item/trash/snack_bowl, /mob/living/simple_animal/crab)
 				new trash(get_turf(src))
-		qdel(src)
+		qdel(src)*/
