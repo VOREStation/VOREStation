@@ -151,7 +151,7 @@
 
 /obj/item/clothing/head/flatcap/grey
 	icon_state = "flat_capg"
-	list(slot_r_hand_str = "greysoft", slot_l_hand_str = "greysoft")
+	item_state_slots = list(slot_r_hand_str = "greysoft", slot_l_hand_str = "greysoft")
 
 /obj/item/clothing/head/pirate
 	name = "pirate hat"
