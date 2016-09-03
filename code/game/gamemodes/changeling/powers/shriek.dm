@@ -40,7 +40,6 @@
 	if(src.mind.changeling.recursive_enhancement)
 		range = range * 2
 		src << "<span class='notice'>We are extra loud.</span>"
-		src.mind.changeling.recursive_enhancement = 0
 
 	for(var/mob/living/M in range(range, src))
 		if(iscarbon(M))

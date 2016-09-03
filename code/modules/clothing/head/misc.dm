@@ -32,6 +32,12 @@
 /obj/item/clothing/head/hairflower/orange
 	icon_state = "hairflower_orange"
 
+/obj/item/clothing/head/hairflower/bow
+	icon_state = "bow"
+	name = "hair bow"
+	desc = "A ribbon tied into a bow with a clip on the back to attach to hair."
+	item_state_slots = list(slot_r_hand_str = "pill", slot_l_hand_str = "pill")
+
 /obj/item/clothing/head/powdered_wig
 	name = "powdered wig"
 	desc = "A powdered wig."
@@ -143,6 +149,10 @@
 	icon_state = "flat_cap"
 	item_state_slots = list(slot_r_hand_str = "detective", slot_l_hand_str = "detective")
 	siemens_coefficient = 0.9 //...what?
+
+/obj/item/clothing/head/flatcap/grey
+	icon_state = "flat_capg"
+	item_state_slots = list(slot_r_hand_str = "greysoft", slot_l_hand_str = "greysoft")
 
 /obj/item/clothing/head/pirate
 	name = "pirate hat"
