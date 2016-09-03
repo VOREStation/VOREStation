@@ -42,6 +42,7 @@
 	joint = "hip"
 	dislocated = -1
 	gendered_icon = 1
+	cannot_amputate = 1
 	organ_rel_size = 30
 
 /obj/item/organ/external/arm
