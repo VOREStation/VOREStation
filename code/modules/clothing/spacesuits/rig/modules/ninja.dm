@@ -174,7 +174,6 @@
 	active = 1
 	permanent = 1
 	var/datum/effect/effect/system/smoke_spread/bad/smoke
-	var/smoke_color
 	var/smoke_strength = 8
 
 	engage_string = "Detonate"
@@ -214,10 +213,7 @@
 	if(!skip_check && usr && alert(usr, "Are you sure you want to push that button?", "Self-destruct", "No", "Yes") == "No")
 		return
 	if(holder && holder.wearer)
-//		smoke.set_up(10, 0, usr.loc)
-//		for(var/i = 1 to smoke_strength)
-//			src.smoke.start(smoke_color)
-		holder.wearer.drop_from_inventory(src)
+		smoke.set_up(10, 0, holder.loc)
+		for(var/i = 1 to smoke_strength)
+			smoke.start(272727)
 		holder.wearer.ash()
-		qdel(holder)
-	qdel(src)
