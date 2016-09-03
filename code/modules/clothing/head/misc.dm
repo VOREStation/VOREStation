@@ -32,6 +32,12 @@
 /obj/item/clothing/head/hairflower/orange
 	icon_state = "hairflower_orange"
 
+/obj/item/clothing/head/hairflower/bow
+	icon_state = "bow"
+	name = "hair bow"
+	desc = "A ribbon tied into a bow with a clip on the back to attach to hair."
+	item_state_slots = list(slot_r_hand_str = "pill", slot_l_hand_str = "pill")
+
 /obj/item/clothing/head/powdered_wig
 	name = "powdered wig"
 	desc = "A powdered wig."
@@ -143,6 +149,10 @@
 	icon_state = "flat_cap"
 	item_state_slots = list(slot_r_hand_str = "detective", slot_l_hand_str = "detective")
 	siemens_coefficient = 0.9 //...what?
+
+/obj/item/clothing/head/flatcap/grey
+	icon_state = "flat_capg"
+	item_state_slots = list(slot_r_hand_str = "greysoft", slot_l_hand_str = "greysoft")
 
 /obj/item/clothing/head/pirate
 	name = "pirate hat"
@@ -282,3 +292,27 @@
 	item_state_slots = list(slot_r_hand_str = "beret_white", slot_l_hand_str = "beret_white")
 	body_parts_covered = 0
 	flags_inv = BLOCKHAIR
+
+/obj/item/clothing/head/beanie
+	name = "beanie"
+	desc = "A head-hugging brimless winter cap. This one is tight."
+	icon_state = "beanie"
+	body_parts_covered = 0
+
+/obj/item/clothing/head/beanie_loose
+	name = "loose beanie"
+	desc = "A head-hugging brimless winter cap. This one is loose."
+	icon_state = "beanie_hang"
+	body_parts_covered = 0
+
+/obj/item/clothing/head/beretg
+	name = "beret"
+	desc = "A beret, an artists favorite headwear."
+	icon_state = "beret_g"
+	body_parts_covered = 0
+
+/obj/item/clothing/head/sombrero
+	name = "sombrero"
+	desc = "A wide-brimmed hat popularly worn in Mexico."
+	icon_state = "sombrero"
+	body_parts_covered = 0

@@ -1,5 +1,4 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
-
 obj/machinery/recharger
 	name = "recharger"
 	icon = 'icons/obj/stationobjs.dmi'
@@ -16,8 +15,7 @@ obj/machinery/recharger
 	var/portable = 1
 	circuit = /obj/item/weapon/circuitboard/recharger
 
-obj/machinery/recharger/New()
-	circuit = new circuit(src)
+/obj/machinery/recharger/New()
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
 	component_parts += new /obj/item/stack/cable_coil(src, 5)
@@ -25,13 +23,13 @@ obj/machinery/recharger/New()
 	..()
 	return
 
-obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
+/obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 	if(istype(user,/mob/living/silicon))
 		return
 
 	var/allowed = 0
 	for (var/allowed_type in allowed_devices)
-		if (istype(G, allowed_type)) allowed = 1
+		if(istype(G, allowed_type)) allowed = 1
 
 	if(allowed)
 		if(charging)
@@ -41,10 +39,10 @@ obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 		if(!powered())
 			user << "<span class='warning'>The [name] blinks red as you try to insert the item!</span>"
 			return
-		if (istype(G, /obj/item/weapon/gun/energy/gun/nuclear) || istype(G, /obj/item/weapon/gun/energy/crossbow))
+		if(istype(G, /obj/item/weapon/gun/energy/gun/nuclear) || istype(G, /obj/item/weapon/gun/energy/crossbow))
 			user << "<span class='notice'>Your gun's recharge port was removed to make room for a miniaturized reactor.</span>"
 			return
-		if (istype(G, /obj/item/weapon/gun/energy/staff))
+		if(istype(G, /obj/item/weapon/gun/energy/staff))
 			return
 		if(istype(G, /obj/item/device/laptop))
 			var/obj/item/device/laptop/L = G
@@ -67,7 +65,7 @@ obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 	else if(default_deconstruction_crowbar(user, G))
 		return
 
-obj/machinery/recharger/attack_hand(mob/user as mob)
+/obj/machinery/recharger/attack_hand(mob/user as mob)
 	if(istype(user,/mob/living/silicon))
 		return
 
@@ -79,7 +77,7 @@ obj/machinery/recharger/attack_hand(mob/user as mob)
 		charging = null
 		update_icon()
 
-obj/machinery/recharger/process()
+/obj/machinery/recharger/process()
 	if(stat & (NOPOWER|BROKEN) || !anchored)
 		update_use_power(0)
 		icon_state = icon_state_idle
@@ -137,7 +135,7 @@ obj/machinery/recharger/process()
 				update_use_power(1)
 			return
 
-obj/machinery/recharger/emp_act(severity)
+/obj/machinery/recharger/emp_act(severity)
 	if(stat & (NOPOWER|BROKEN) || !anchored)
 		..(severity)
 		return
@@ -153,14 +151,14 @@ obj/machinery/recharger/emp_act(severity)
 			B.bcell.charge = 0
 	..(severity)
 
-obj/machinery/recharger/update_icon()	//we have an update_icon() in addition to the stuff in process to make it feel a tiny bit snappier.
+/obj/machinery/recharger/update_icon()	//we have an update_icon() in addition to the stuff in process to make it feel a tiny bit snappier.
 	if(charging)
 		icon_state = icon_state_charging
 	else
 		icon_state = icon_state_idle
 
 
-obj/machinery/recharger/wallcharger
+/obj/machinery/recharger/wallcharger
 	name = "wall recharger"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "wrecharger0"
@@ -171,4 +169,3 @@ obj/machinery/recharger/wallcharger
 	icon_state_idle = "wrecharger0"
 	portable = 0
 	circuit = /obj/item/weapon/circuitboard/recharger/wrecharger
-	frame_type = "wrecharger"

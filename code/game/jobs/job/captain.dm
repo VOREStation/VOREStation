@@ -69,7 +69,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the captain"
+	supervisors = "the station administrator"
 	selection_color = "#2F2F7F"
 	idtype = /obj/item/weapon/card/id/silver
 	alt_titles = list("Crew Resources Officer")

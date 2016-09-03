@@ -82,6 +82,16 @@
 	desc = "A pair of woodland camouflage pants. Probably not the best choice for a space station."
 	icon_state = "camopants"
 
+/obj/item/clothing/under/pants/chaps
+	name = "sexy brown chaps"
+	desc = "A pair of sexy, tight brown leather chaps."
+	icon_state = "chapsb"
+
+/obj/item/clothing/under/pants/chaps/black
+	name = "sexy black chaps"
+	desc = "A pair of sexy, tight black leather chaps."
+	icon_state = "chapsbl"
+
 /*
  * Baggy Pants
  */
