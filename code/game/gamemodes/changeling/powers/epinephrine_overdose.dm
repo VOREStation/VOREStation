@@ -31,7 +31,6 @@
 
 	if(src.mind.changeling.recursive_enhancement)
 		src << "<span class='notice'>We feel unstoppable.</span>"
-		src.mind.changeling.recursive_enhancement = 0
 		spawn(1)
 			var/i = 30
 			while(i)
