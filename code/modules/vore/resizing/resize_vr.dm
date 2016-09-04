@@ -21,6 +21,8 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 /mob/living/carbon/human
 	holder_type = /obj/item/weapon/holder/micro
 
+/mob/living/carbon/human/var/food_belly_toggle = 0
+
 /**
  * Scale up the size of a mob's icon by the size_multiplier.
  * NOTE: mob/living/carbon/human/update_icons() has a more complicated system and
@@ -192,3 +194,22 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 				src << "You pin [tmob] beneath your foot!"
 				tmob << "[src] pins you beneath their foot!"
 			return 1
+
+//Code to toggle fat-based belly
+/mob/living/carbon/human/proc/toggle_food_based_belly()
+	set name = "Toggle food-based belly size"
+	set category = "Vore"
+
+	if(food_belly_toggle == 1)
+		usr << "Your sprite will no longer reflect your belly size based on how much you've eaten."
+		food_belly_toggle = 0
+		update_icons()
+	else
+		usr << "Your sprite will now get visibly fatter when eating food."
+		food_belly_toggle = 1
+		update_icons()
+
+/** Add the set_size() proc to usable verbs. */
+/hook/living_new/proc/food_belly_setup(mob/living/H)
+	H.verbs += /mob/living/carbon/human/proc/toggle_food_based_belly
+	return 1
