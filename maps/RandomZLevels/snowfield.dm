@@ -4,9 +4,17 @@
 	icon_state = "blank"
 //	requires_power = 0
 	base_turf = /turf/snow/snow2
+	ambience = list('sound/ambience/ambispace.ogg','sound/music/title2.ogg','sound/music/space.ogg','sound/music/main.ogg','sound/music/traitor.ogg')
+	base_turf = /turf/simulated/floor/snow/snow2
 
 /area/awaymission/snowfield/outside
 	icon_state = "green"
+	requires_power = 1
+	always_unpowered = 1
+	lighting_use_dynamic = 1
+	power_light = 0
+	power_equip = 0
+	power_environ = 0
 	mobcountmax = 100
 	floracountmax = 7000
 	valid_mobs = list(/mob/living/simple_animal/hostile/samak/polar, /mob/living/simple_animal/hostile/diyaab/polar,
@@ -17,7 +25,7 @@
 					/obj/structure/flora/ausbushes/sunnybush, /obj/structure/flora/ausbushes/genericbush, /obj/structure/flora/ausbushes/pointybush,
 					/obj/structure/flora/ausbushes/lavendergrass, /obj/structure/flora/ausbushes/sparsegrass, /obj/structure/flora/ausbushes/fullgrass)
 
-/area/awaymission/snowfield/restricted
+/area/awaymission/snowfield/restricted // No mob spawns!
 	icon_state = "red"
 	mobcountmax = 0
 	floracountmax = 500
@@ -61,6 +69,7 @@
 
 /mob/living/simple_animal/hostile/vore/polarbear/death()
 	desc = "This bastard sure isn't drinking Space Cola anymore."
+	..()
 
 /mob/living/simple_animal/hostile/samak/polar
 	faction = "polar"
@@ -72,6 +81,12 @@
 	faction = "polar"
 
 // -- Items -- //
+
+// For fake solar power.
+/obj/machinery/power/fractal_reactor/fluff/smes
+	name = "power storage unit"
+	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit. The controls are locked."
+	icon_state = "smes"
 
 /obj/effect/landmark/away
 	name = "awaystart"

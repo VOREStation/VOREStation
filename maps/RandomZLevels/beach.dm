@@ -16,9 +16,12 @@
 	valid_mobs = list(/mob/living/simple_animal/crab)
 	valid_flora = list(/obj/effect/overlay/palmtree_r,/obj/effect/overlay/palmtree_l, /obj/effect/overlay/palmtree_r,/obj/effect/overlay/palmtree_l, /obj/effect/overlay/coconut)
 
-/area/awaymission/beachexit // This serves only to stop the sound spam of the beach before leaving.
+/area/awaymission/beachexit // This serves only to stop the sound spam of the beach before leaving. Maybe.
 	icon_state = "red"
 	base_turf = /turf/simulated/floor/beach/sand
+	luminosity = 1
+	lighting_use_dynamic = 0
+	requires_power = 0
 
 /area/awaymission/beach/coast
 	icon_state = "blue2"

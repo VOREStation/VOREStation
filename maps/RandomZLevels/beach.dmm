@@ -9,7 +9,7 @@
 "ai" = (/obj/machinery/gateway/centeraway,/turf/simulated/floor/beach/sand,/area/awaymission/beach)
 "aj" = (/obj/machinery/gateway{dir = 4},/turf/simulated/floor/beach/sand,/area/awaymission/beach)
 "ak" = (/obj/machinery/gateway{density = 0; dir = 10},/turf/simulated/floor/tiled/asteroid_steel,/area/awaymission/beach)
-"al" = (/obj/machinery/gateway{density = 0},/turf/simulated/floor/tiled/asteroid_steel,/area/awaymission/beach)
+"al" = (/obj/machinery/gateway{density = 0},/turf/simulated/floor/tiled/asteroid_steel,/area/awaymission/beachexit)
 "am" = (/obj/machinery/gateway{density = 0; dir = 6},/turf/simulated/floor/tiled/asteroid_steel,/area/awaymission/beach)
 "an" = (/turf/simulated/floor/tiled/asteroid_steel,/area/awaymission/beach)
 "ao" = (/obj/structure/signpost,/turf/simulated/floor/beach/sand,/area/awaymission/beach)
