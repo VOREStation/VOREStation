@@ -107,6 +107,9 @@ var/global/datum/global_init/init = new ()
 	// Create robolimbs for chargen.
 	populate_robolimb_list()
 
+	//Must be done now, otherwise ZAS zones and lighting overlays need to be recreated.
+	createRandomZlevel()
+	
 	processScheduler = new
 	master_controller = new /datum/controller/game_controller()
 	spawn(1)
