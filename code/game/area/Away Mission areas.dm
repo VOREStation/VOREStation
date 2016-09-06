@@ -7,41 +7,52 @@
 	var/mobcountmax = 0
 	var/floracountmax = 0
 
-/area/awaymission/New()
-	..()
-	sleep(120)
+/area/awaymission/proc/EvalValidSpawnTurfs()
 	//Adds turfs to the valid)turfs list, used for spawning.
 	for(var/turf/simulated/floor/F in src)
 		valid_spawn_turfs |= F
 	for(var/turf/unsimulated/floor/F in src)
-		valid_spawn_turfs |= F
+		valid_spawn_turfs |= F	
 
+/area/awaymission/initialize()
+	..()
+	sleep(180)
+	EvalValidSpawnTurfs()
+		
 	if(!valid_spawn_turfs.len)
-		world << "Error! [src] does not have any turfs!"
+		world.log << "Error! [src] does not have any turfs!"
 		return TRUE
 
-	//Handles random mob placement for mobcount, as defined/randomized in New of each individual area.
-	for(var/mobscount = 0 to mobcountmax)
-		spawn_mob_on_turf()
+	//Handles random mob placement for mobcountmax, as defined/randomized in initialize of each individual area.
+	spawn_mob_on_turf()
 
-	//Handles random mob placement for mobcount, as defined/randomized in New of each individual area.
-	for(var/floracount = 0 to floracountmax)
-		spawn_flora_on_turf()
+	//Handles random flora placement for floracountmax, as defined/randomized in initialize of each individual area.
+	spawn_flora_on_turf()
+	
+	world << "Away mission spawning done."
 
 /area/awaymission/proc/spawn_mob_on_turf()
 	if(!valid_mobs.len)
-		world << "[src] does not have a set valid mobs list!"
+		world.log << "[src] does not have a set valid mobs list!"
 		return TRUE
-	var/mob/M = pick(valid_mobs)
-	var/turf/Turf = pick(valid_spawn_turfs)
-	valid_spawn_turfs -= Turf
-	new M(Turf)
+		
+	var/mob/M
+	var/turf/Turf
+	for(var/mobscount = 0 to mobcountmax)
+		M = pick(valid_mobs)
+		Turf = pick(valid_spawn_turfs)
+		valid_spawn_turfs -= Turf
+		new M(Turf)
 
 /area/awaymission/proc/spawn_flora_on_turf()
 	if(!valid_flora.len)
-		world << "[src] does not have a set valid flora list!"
+		world.log << "[src] does not have a set valid flora list!"
 		return TRUE
-	var/obj/F = pick(valid_flora)
-	var/turf/Turf = pick(valid_spawn_turfs)
-	valid_spawn_turfs -= Turf
-	new F(Turf)
+		
+	var/obj/F
+	var/turf/Turf
+	for(var/floracount = 0 to floracountmax)
+		F = pick(valid_flora)
+		Turf = pick(valid_spawn_turfs)
+		valid_spawn_turfs -= Turf
+		new F(Turf)
