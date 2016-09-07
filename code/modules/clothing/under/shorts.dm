@@ -91,21 +91,16 @@
 //Argh, skirts be below this line -> ------------------------------
 
 /obj/item/clothing/under/skirt
-	name = "black skirt"
-	desc = "A black skirt, very fancy!"
-	icon_state = "blackskirt"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	name = "short black skirt"
+	desc = "A skirt that is a shiny black."
+	icon_state = "skirt_short_black"
+	body_parts_covered = LOWER_TORSO
 	rolled_sleeves = -1
 
 /obj/item/clothing/under/skirt/khaki
 	name = "khaki skirt"
 	desc = "A skirt that is a khaki color."
 	icon_state = "skirt_khaki"
-
-/obj/item/clothing/under/skirt/black
-	name = "short black skirt"
-	desc = "A skirt that is a shiny black."
-	icon_state = "skirt_short_black"
 
 /obj/item/clothing/under/skirt/blue
 	name = "short blue skirt"
@@ -122,19 +117,25 @@
 	desc = "A skirt that is swept to one side."
 	icon_state = "skirt_swept"
 
-/obj/item/clothing/under/skirt/plaid_blue
+/obj/item/clothing/under/skirt/outfit
+	name = "black skirt"
+	desc = "A black skirt, very fancy!"
+	icon_state = "blackskirt"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+
+/obj/item/clothing/under/skirt/outfit/plaid_blue
 	name = "blue plaid skirt"
 	desc = "A preppy blue skirt with a white blouse."
 	icon_state = "plaid_blue"
 	item_state_slots = list(slot_r_hand_str = "blue", slot_l_hand_str = "blue")
 
-/obj/item/clothing/under/skirt/plaid_red
+/obj/item/clothing/under/skirt/outfit/plaid_red
 	name = "red plaid skirt"
 	desc = "A preppy red skirt with a white blouse."
 	icon_state = "plaid_red"
 	item_state_slots = list(slot_r_hand_str = "red", slot_l_hand_str = "red")
 
-/obj/item/clothing/under/skirt/plaid_purple
+/obj/item/clothing/under/skirt/outfit/plaid_purple
 	name = "blue purple skirt"
 	desc = "A preppy purple skirt with a white blouse."
 	icon_state = "plaid_purple"
