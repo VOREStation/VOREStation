@@ -7,6 +7,11 @@
 	item_state_slots = list(slot_r_hand_str = "eng_helm", slot_l_hand_str = "eng_helm")
 	armor = list(melee = 40, bullet = 5, laser = 20, energy = 5, bomb = 35, bio = 100, rad = 80)
 
+/obj/item/clothing/head/helmet/space/void/engineering/rad
+	name = "HAZMAT voidsuit helmet"
+	icon_state = "rig0-engineering_rad"
+	item_state_slots = list(slot_r_hand_str = "eng_helm_rad", slot_l_hand_str = "eng_helm_rad")
+
 /obj/item/clothing/suit/space/void/engineering
 	name = "engineering voidsuit"
 	desc = "A special suit that protects against hazardous, low pressure environments. Has radiation shielding."
@@ -15,6 +20,11 @@
 	slowdown = 1
 	armor = list(melee = 40, bullet = 5, laser = 20, energy = 5, bomb = 35, bio = 100, rad = 80)
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/storage/bag/ore,/obj/item/device/t_scanner,/obj/item/weapon/pickaxe, /obj/item/weapon/rcd)
+
+/obj/item/clothing/suit/space/void/engineering/rad
+	name = "HAZMAT voidsuit"
+	icon_state = "rig-engineering_rad"
+	item_state_slots = list(slot_r_hand_str = "eng_voidsuit_rad", slot_l_hand_str = "eng_voidsuit_rad")
 
 //Mining
 /obj/item/clothing/head/helmet/space/void/mining
