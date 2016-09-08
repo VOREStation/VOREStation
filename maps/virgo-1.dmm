@@ -6127,7 +6127,7 @@
 "cnQ" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/tiled/dark,/area/security/nuke_storage)
 "cnR" = (/obj/item/weapon/coin/gold,/obj/item/weapon/coin/gold,/obj/item/weapon/coin/gold,/obj/item/weapon/coin/gold,/obj/item/weapon/coin/gold,/obj/item/weapon/coin/gold,/obj/structure/closet/crate/secure{name = "Gold Crate"; req_access = list(19)},/turf/simulated/floor/tiled/dark,/area/security/nuke_storage)
 "cnS" = (/turf/simulated/wall,/area/crew_quarters/visitor_lodging)
-"cnT" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/structure/disposalpipe/segment,/obj/machinery/atmospherics/pipe/manifold/hidden/supply{dir = 4},/turf/simulated/floor/tiled/dark,/area/crew_quarters/visitor_lodging)
+"cnT" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/structure/disposalpipe/segment,/obj/machinery/atmospherics/pipe/manifold/hidden/supply{dir = 4},/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/tiled/dark,/area/crew_quarters/visitor_lodging)
 "cnU" = (/obj/structure/closet/emcloset,/turf/simulated/floor/tiled/dark,/area/crew_quarters/visitor_lodging)
 "cnV" = (/obj/machinery/autolathe,/obj/effect/floor_decal/corner/brown{dir = 9},/turf/simulated/floor/tiled,/area/quartermaster/office)
 "cnW" = (/obj/machinery/hologram/holopad,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/turf/simulated/floor/tiled,/area/quartermaster/office)
