@@ -587,7 +587,7 @@
 	name = "Tea"
 	id = "tea"
 	description = "Tasty black tea, it has antioxidants, it's good for you!"
-	color = "#101000"
+	color = "#832700"
 	adj_dizzy = -2
 	adj_drowsy = -1
 	adj_sleepy = -3
@@ -595,6 +595,10 @@
 
 	glass_name = "cup of tea"
 	glass_desc = "Tasty black tea, it has antioxidants, it's good for you!"
+
+	cup_icon_state = "cup_tea"
+	cup_name = "cup of tea"
+	cup_desc = "Tasty black tea, it has antioxidants, it's good for you!"
 
 /datum/reagent/drink/tea/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -606,12 +610,16 @@
 	name = "Iced Tea"
 	id = "icetea"
 	description = "No relation to a certain rap artist/ actor."
-	color = "#104038" // rgb: 16, 64, 56
+	color = "#AC7F24" // rgb: 16, 64, 56
 	adj_temp = -5
 
 	glass_name = "iced tea"
 	glass_desc = "No relation to a certain rap artist/ actor."
 	glass_special = list(DRINK_ICE)
+
+	cup_icon_state = "cup_tea"
+	cup_name = "cup of iced tea"
+	cup_desc = "No relation to a certain rap artist/ actor."
 
 /datum/reagent/drink/coffee
 	name = "Coffee"

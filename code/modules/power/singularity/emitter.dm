@@ -200,6 +200,25 @@
 					user << "<span class='warning'>You need more welding fuel to complete this task.</span>"
 		return
 
+	if(istype(W, /obj/item/stack/material) && W.get_material_name() == DEFAULT_WALL_MATERIAL)
+		var/amt = Ceiling(( initial(integrity) - integrity)/10)
+		if(!amt)
+			user << "<span class='notice'>\The [src] is already fully repaired.</span>"
+			return
+		var/obj/item/stack/P = W
+		if(P.amount < amt)
+			user << "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>"
+			return
+		user << "<span class='notice'>You begin repairing \the [src]...</span>"
+		if(do_after(user, 30))
+			if(P.use(amt))
+				user << "<span class='notice'>You have repaired \the [src].</span>"
+				integrity = initial(integrity)
+				return
+			else
+				user << "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>"
+				return
+
 	if(istype(W, /obj/item/weapon/card/id) || istype(W, /obj/item/device/pda))
 		if(emagged)
 			user << "<span class='warning'>The lock seems to be broken.</span>"
@@ -225,10 +244,25 @@
 		return 1
 
 /obj/machinery/power/emitter/bullet_act(var/obj/item/projectile/P)
-	if(!P || !P.damage || (!P.damage_type == BRUTE || !P.damage_type == BURN) )
+	if(!P || !P.damage || P.get_structure_damage() <= 0 )
 		return
 
 	integrity = integrity - P.damage
-	if(integrity >= 0)
-		explosion(get_turf(src), 1, 2, 4)
+	if(integrity <= 0)
+		if(powernet && avail(active_power_usage)) // If it's powered, it goes boom if killed.
+			visible_message(src, "<span class='danger'>\The [src] explodes violently!</span>", "<span class='danger'>You hear an explosion!</span>")
+			explosion(get_turf(src), 1, 2, 4)
+		else
+			src.visible_message("<span class='danger'>\The [src] crumples apart!</span>", "<span class='warning'>You hear metal collapsing.</span>")
 		qdel(src)
+
+/obj/machinery/power/emitter/examine(mob/user)
+	..()
+	var/integrity_percentage = round((integrity / initial(integrity)) * 100)
+	switch(integrity_percentage)
+		if(0 to 30)
+			user << "<span class='danger'>\The [src] is close to falling apart!</span>"
+		if(31 to 70)
+			user << "<span class='danger'>\The [src] is damaged.</span>"
+		if(77 to 99)
+			user << "<span class='warning'>\The [src] is slightly damaged.</span>"

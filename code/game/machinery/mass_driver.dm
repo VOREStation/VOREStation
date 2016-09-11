@@ -18,7 +18,6 @@
 
 /obj/machinery/mass_driver/New()
 	..()
-	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/motor(src)
 	component_parts += new /obj/item/weapon/stock_parts/motor(src)
@@ -59,7 +58,7 @@
 					M << "<span class='notice'>The mass driver lets out a screech, it mustn't be able to handle any more items.</span>"
 				break
 			use_power(500)
-			spawn( 0 )
+			spawn(0)
 				O.throw_at(target, drive_range * power, power)
 	flick("mass_driver1", src)
 	return

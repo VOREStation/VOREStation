@@ -232,7 +232,7 @@ var/list/turret_icons
 		data["settings"] = settings
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "turret_control.tmpl", "Turret Controls", 500, 300)
 		ui.set_initial_data(data)
 		ui.open()
@@ -255,7 +255,6 @@ var/list/turret_icons
 		return STATUS_CLOSE
 
 	return ..()
-
 
 /obj/machinery/porta_turret/Topic(href, href_list)
 	if(..())
@@ -324,7 +323,7 @@ var/list/turret_icons
 			user << "<span class='warning'>Cannot secure turrets in space!</span>"
 			return
 
-		user.visible_message( \
+		user.visible_message(\
 				"<span class='warning'>[user] begins [anchored ? "un" : ""]securing the turret.</span>", \
 				"<span class='notice'>You begin [anchored ? "un" : ""]securing the turret.</span>" \
 			)
@@ -386,7 +385,7 @@ var/list/turret_icons
 			return
 
 	health -= force
-	if (force > 5 && prob(45))
+	if(force > 5 && prob(45))
 		spark_system.start()
 	if(health <= 0)
 		die()	//the death process :(
@@ -434,14 +433,14 @@ var/list/turret_icons
 
 /obj/machinery/porta_turret/ex_act(severity)
 	switch (severity)
-		if (1)
+		if(1)
 			qdel(src)
-		if (2)
-			if (prob(25))
+		if(2)
+			if(prob(25))
 				qdel(src)
 			else
 				take_damage(initial(health) * 8) //should instakill most turrets
-		if (3)
+		if(3)
 			take_damage(initial(health) * 8 / 3)
 
 /obj/machinery/porta_turret/proc/die()	//called when the turret dies, ie, health <= 0
@@ -599,9 +598,9 @@ var/list/turret_icons
 	update_icon()
 	timeout = 10
 
-/obj/machinery/porta_turret/proc/set_raised_raising(var/raised, var/raising)
-	src.raised = raised
-	src.raising = raising
+/obj/machinery/porta_turret/proc/set_raised_raising(var/incoming_raised, var/incoming_raising)
+	raised = incoming_raised
+	raising = incoming_raising
 	density = raised || raising
 
 /obj/machinery/porta_turret/proc/target(var/mob/living/target)
@@ -677,9 +676,9 @@ var/list/turret_icons
 /obj/machinery/porta_turret/proc/setState(var/datum/turret_checks/TC)
 	if(controllock)
 		return
-	src.enabled = TC.enabled
-	src.lethal = TC.lethal
-	src.iconholder = TC.lethal
+	enabled = TC.enabled
+	lethal = TC.lethal
+	iconholder = TC.lethal
 
 	check_synth = TC.check_synth
 	check_access = TC.check_access
@@ -689,7 +688,7 @@ var/list/turret_icons
 	check_anomalies = TC.check_anomalies
 	ailock = TC.ailock
 
-	src.power_change()
+	power_change()
 
 /*
 		Portable turret constructions
@@ -707,7 +706,6 @@ var/list/turret_icons
 	var/installation = null		//the gun type installed
 	var/gun_charge = 0			//the gun charge of the gun type installed
 
-
 /obj/machinery/porta_turret_construct/attackby(obj/item/I, mob/user)
 	//this is a bit unwieldy but self-explanatory
 	switch(build_step)
@@ -722,7 +720,7 @@ var/list/turret_icons
 			else if(istype(I, /obj/item/weapon/crowbar) && !anchored)
 				playsound(loc, 'sound/items/Crowbar.ogg', 75, 1)
 				user << "<span class='notice'>You dismantle the turret construction.</span>"
-				new /obj/item/stack/material/steel( loc, 5)
+				new /obj/item/stack/material/steel(loc, 5)
 				qdel(src)
 				return
 
@@ -744,7 +742,6 @@ var/list/turret_icons
 				build_step = 0
 				return
 
-
 		if(2)
 			if(istype(I, /obj/item/weapon/wrench))
 				playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
@@ -765,9 +762,8 @@ var/list/turret_icons
 					if(!src || !WT.remove_fuel(5, user)) return
 					build_step = 1
 					user << "You remove the turret's interior metal armor."
-					new /obj/item/stack/material/steel( loc, 2)
+					new /obj/item/stack/material/steel(loc, 2)
 					return
-
 
 		if(3)
 			if(istype(I, /obj/item/weapon/gun/energy)) //the gun installation part
@@ -873,7 +869,6 @@ var/list/turret_icons
 
 	..()
 
-
 /obj/machinery/porta_turret_construct/attack_hand(mob/user)
 	switch(build_step)
 		if(4)
@@ -898,7 +893,6 @@ var/list/turret_icons
 
 /atom/movable/porta_turret_cover
 	icon = 'icons/obj/turrets.dmi'
-
 
 #undef TURRET_PRIORITY_TARGET
 #undef TURRET_SECONDARY_TARGET

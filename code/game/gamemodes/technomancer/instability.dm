@@ -212,4 +212,4 @@
 			outgoing_instability = outgoing_instability * armor_factor
 			H.adjust_instability(outgoing_instability)
 
-	set_light(distance, distance, l_color = "#C26DDE")
+	set_light(distance, distance * 2, l_color = "#C26DDE")

@@ -19,7 +19,6 @@
 
 /obj/machinery/r_n_d/protolathe/New()
 	..()
-	circuit = new circuit()
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)

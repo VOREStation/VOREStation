@@ -1,7 +1,7 @@
 var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 /datum/job/captain
-	title = "Captain"
+	title = "Station Administrator"
 	flag = CAPTAIN
 	department = "Command"
 	head_position = 1
@@ -11,7 +11,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	spawn_positions = 1
 	supervisors = "company officials and Corporate Regulations"
 	selection_color = "#1D1D4F"
-	alt_titles = list("Station Administrator")
+	alt_titles = list("Site Manager")
 	idtype = /obj/item/weapon/card/id/gold
 	req_admin_notify = 1
 	access = list() 			//See get_access()
@@ -69,7 +69,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the captain"
+	supervisors = "the station administrator"
 	selection_color = "#2F2F7F"
 	idtype = /obj/item/weapon/card/id/silver
 	alt_titles = list("Crew Resources Officer")

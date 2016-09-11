@@ -8,6 +8,7 @@
 	enhancement_desc = "Summoned entities will never harm their summoner."
 	cost = 200
 	obj_path = /obj/item/weapon/spell/summon/summon_creature
+	category = UTILITY_SPELLS
 
 /obj/item/weapon/spell/summon/summon_creature
 	name = "summon creature"

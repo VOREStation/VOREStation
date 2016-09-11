@@ -90,34 +90,37 @@
 // This only works on broken doors or doors without power. Also allows repair with Plasteel.
 /obj/machinery/door/blast/attackby(obj/item/weapon/C as obj, mob/user as mob)
 	src.add_fingerprint(user)
-	if(C.pry == 1)
-		if(istype(C,/obj/item/weapon/material/twohanded/fireaxe))
-			var/obj/item/weapon/material/twohanded/fireaxe/F = C
-			if(!F.wielded)
-				user << "<span class='warning'>You need to be wielding \the [F] to do that.</span>"
-				return
+	if(istype(C, /obj/item/weapon)) // For reasons unknown, sometimes C is actually not what it is advertised as, like a mob.
+		if(C.pry == 1) // Can we pry it open with something, like a crowbar/fireaxe/lingblade?
+			if(istype(C,/obj/item/weapon/material/twohanded/fireaxe)) // Fireaxes need to be in both hands to pry.
+				var/obj/item/weapon/material/twohanded/fireaxe/F = C
+				if(!F.wielded)
+					user << "<span class='warning'>You need to be wielding \the [F] to do that.</span>"
+					return
 
-		if(((stat & NOPOWER) || (stat & BROKEN)) && !( src.operating ))
-			force_toggle()
-		else
-			usr << "<span class='notice'>[src]'s motors resist your effort.</span>"
-		return
-	if(istype(C, /obj/item/stack/material) && C.get_material_name() == "plasteel")
-		var/amt = Ceiling((maxhealth - health)/150)
-		if(!amt)
-			usr << "<span class='notice'>\The [src] is already fully repaired.</span>"
-			return
-		var/obj/item/stack/P = C
-		if(P.amount < amt)
-			usr << "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>"
-			return
-		usr << "<span class='notice'>You begin repairing [src]...</span>"
-		if(do_after(usr, 30))
-			if(P.use(amt))
-				usr << "<span class='notice'>You have repaired \The [src]</span>"
-				src.repair()
+			// If we're at this point, it's a fireaxe in both hands or something else that doesn't care for twohanding.
+			if(((stat & NOPOWER) || (stat & BROKEN)) && !( src.operating ))
+				force_toggle()
 			else
+				usr << "<span class='notice'>[src]'s motors resist your effort.</span>"
+			return
+
+		if(istype(C, /obj/item/stack/material) && C.get_material_name() == "plasteel") // Repairing.
+			var/amt = Ceiling((maxhealth - health)/150)
+			if(!amt)
+				usr << "<span class='notice'>\The [src] is already fully repaired.</span>"
+				return
+			var/obj/item/stack/P = C
+			if(P.amount < amt)
 				usr << "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>"
+				return
+			usr << "<span class='notice'>You begin repairing [src]...</span>"
+			if(do_after(usr, 30))
+				if(P.use(amt))
+					usr << "<span class='notice'>You have repaired \The [src]</span>"
+					src.repair()
+				else
+					usr << "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>"
 
 
 
