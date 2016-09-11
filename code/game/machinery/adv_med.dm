@@ -367,7 +367,7 @@
 
 			occupantData["blind"] = (H.sdisabilities & BLIND)
 			occupantData["nearsighted"] = (H.disabilities & NEARSIGHTED)
-			occupantData = attempt_vr(connected,"get_occupant_data_vr",list(occupantData,H)) //VOREStation Insert
+			occupantData = attempt_vr(scanner,"get_occupant_data_vr",list(occupantData,H)) //VOREStation Insert
 		data["occupant"] = occupantData
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
