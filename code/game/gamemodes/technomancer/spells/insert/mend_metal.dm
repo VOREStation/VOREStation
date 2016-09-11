@@ -4,6 +4,7 @@
 	cost = 50
 	obj_path = /obj/item/weapon/spell/insert/mend_metal
 	ability_icon_state = "tech_mendwounds"
+	category = SUPPORT_SPELLS
 
 /obj/item/weapon/spell/insert/mend_metal
 	name = "mend metal"
@@ -18,14 +19,14 @@
 	spawn(1)
 		if(ishuman(host))
 			var/mob/living/carbon/human/H = host
-			for(var/i = 0, i<25,i++)
+			for(var/i = 0, i<5,i++)
 				if(H)
 					for(var/obj/item/organ/external/O in H.organs)
 						if(O.robotic < ORGAN_ROBOT) // Robot parts only.
 							continue
-						O.heal_damage(1, 0, internal = 1, robo_repair = 1)
+						O.heal_damage(5, 0, internal = 1, robo_repair = 1)
 
-					H.adjust_instability(0.5)
-					origin.adjust_instability(0.5)
-					sleep(10)
+					H.adjust_instability(2.5)
+					origin.adjust_instability(2.5)
+					sleep(1 SECOND)
 		on_expire()

@@ -589,12 +589,15 @@
 		if("swag", "stopsway")
 			src.animate_tail_stop()
 
+		if("vomit")
+			vomit()
+			return
+
 		if ("help")
-			src << {"blink, blink_r, blush, bow-(none)/mob, burp, choke, chuckle, clap, collapse, cough,
-cry, custom, deathgasp, drool, eyebrow, frown, gasp, giggle, groan, grumble, handshake, hug-(none)/mob, glare-(none)/mob,
-grin, laugh, look-(none)/mob, moan, mumble, nod, pale, point-atom, raise, salute, shake, shiver, shrug,
-sigh, signal-#1-10, smile, sneeze, sniff, snore, stare-(none)/mob, tremble, twitch, twitch_s, whimper,
-wink, yawn, swish, sway/wag, fastsway/qwag, stopsway/swag"}
+			src << {"blink, blink_r, blush, bow-(none)/mob, burp, choke, chuckle, clap, collapse, cough, cry, custom, deathgasp, drool, eyebrow, fastsway/qwag,
+frown, gasp, giggle, glare-(none)/mob, grin, groan, grumble, handshake, hug-(none)/mob, laugh, look-(none)/mob, moan, mumble, nod, pale, point-atom,
+raise, salute, shake, shiver, shrug, sigh, signal-#1-10, smile, sneeze, sniff, snore, stare-(none)/mob, stopsway/swag, sway/wag, swish, tremble, twitch,
+twitch_s, vomit, whimper, wink, yawn"}
 
 		else
 			src << "\blue Unusable emote '[act]'. Say *help for a list."

@@ -116,6 +116,23 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		else // else just remove some of the reagents
 			reagents.remove_any(REM)
 
+/obj/item/clothing/mask/smokable/examine(mob/user)
+	..()
+	if(lit == 1)
+		var/smoke_percent = round((smoketime / initial(smoketime)) * 100)
+		switch(smoke_percent)
+			if(90 to INFINITY)
+				user << "[src] has just begun to burn."
+			if(60 to 90)
+				user << "[src] has a good amount of burn time remaining."
+			if(30 to 60)
+				user << "[src] is about half finished."
+			if(10 to 30)
+				user << "[src] is starting to burn low."
+			else
+				user << "[src] is nearly burnt out!"
+
+
 /obj/item/clothing/mask/smokable/proc/light(var/flavor_text = "[usr] lights the [name].")
 	if(!src.lit)
 		src.lit = 1
@@ -321,7 +338,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /////////////////
 /obj/item/clothing/mask/smokable/pipe
 	name = "smoking pipe"
-	desc = "A pipe, for smoking. Probably made of meershaum or something."
+	desc = "A pipe, for smoking. Made of fine, stained cherry wood."
 	icon_state = "pipeoff"
 	item_state = "pipeoff"
 	icon_on = "pipeon"  //Note - these are in masks.dmi

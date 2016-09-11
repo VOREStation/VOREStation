@@ -132,7 +132,7 @@ var/list/floor_light_cache = list()
 		if(1)
 			qdel(src)
 		if(2)
-			if (prob(50))
+			if(prob(50))
 				qdel(src)
 			else if(prob(20))
 				stat |= BROKEN
@@ -140,7 +140,7 @@ var/list/floor_light_cache = list()
 				if(isnull(damaged))
 					damaged = 0
 		if(3)
-			if (prob(5))
+			if(prob(5))
 				qdel(src)
 			else if(isnull(damaged))
 				damaged = 0

@@ -103,6 +103,8 @@ var/global/datum/global_init/init = new ()
 		for(var/turf/simulated/mineral/M in world) // Ugh.
 			M.update_icon()
 
+	// Create frame types.
+	populate_frame_types()
 
 	// Create robolimbs for chargen.
 	populate_robolimb_list()

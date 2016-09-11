@@ -11,11 +11,10 @@
 	var/set_temperature = T0C + 20	//K
 	var/heating_power = 40000
 
-
 /obj/machinery/space_heater/New()
 	..()
-	if (cell_type)
-		src.cell = new cell_type(src)
+	if(cell_type)
+		cell = new cell_type(src)
 	update_icon()
 
 /obj/machinery/space_heater/update_icon()
@@ -79,7 +78,7 @@
 	return
 
 /obj/machinery/space_heater/attack_hand(mob/user as mob)
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	interact(user)
 
 /obj/machinery/space_heater/interact(mob/user as mob)
@@ -113,9 +112,9 @@
 
 
 /obj/machinery/space_heater/Topic(href, href_list)
-	if (usr.stat)
+	if(usr.stat)
 		return
-	if ((in_range(src, usr) && istype(src.loc, /turf)) || (istype(usr, /mob/living/silicon)))
+	if((in_range(src, usr) && istype(src.loc, /turf)) || (istype(usr, /mob/living/silicon)))
 		usr.set_machine(src)
 
 		switch(href_list["op"])
@@ -153,8 +152,6 @@
 		usr.unset_machine()
 	return
 
-
-
 /obj/machinery/space_heater/process()
 	if(on)
 		if(cell && cell.charge)
@@ -166,7 +163,7 @@
 				if(removed)
 					var/heat_transfer = removed.get_thermal_energy_change(set_temperature)
 					if(heat_transfer > 0)	//heating air
-						heat_transfer = min( heat_transfer , heating_power ) //limit by the power rating of the heater
+						heat_transfer = min(heat_transfer , heating_power) //limit by the power rating of the heater
 
 						removed.add_thermal_energy(heat_transfer)
 						cell.use(heat_transfer*CELLRATE)

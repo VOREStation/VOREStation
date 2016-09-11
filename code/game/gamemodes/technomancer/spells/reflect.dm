@@ -4,6 +4,7 @@
 	cost = 120
 	obj_path = /obj/item/weapon/spell/reflect
 	ability_icon_state = "tech_reflect"
+	category = DEFENSIVE_SPELLS
 
 /obj/item/weapon/spell/reflect
 	name = "\proper reflect shield"

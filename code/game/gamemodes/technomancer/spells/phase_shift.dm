@@ -4,6 +4,7 @@
 	draining your powercell."
 	cost = 80
 	obj_path = /obj/item/weapon/spell/phase_shift
+	category = DEFENSIVE_SPELLS
 
 /obj/item/weapon/spell/phase_shift
 	name = "phase shift"
