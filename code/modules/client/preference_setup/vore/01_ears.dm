@@ -83,7 +83,7 @@
 	else if(href_list["custom_species"])
 		var/raw_choice = sanitize(input(user, "Input your character's species:",
 			"Character Preference", pref.custom_species) as null|text, MAX_NAME_LEN)
-		if (raw_choice && CanUseTopic(user))
+		if (CanUseTopic(user))
 			pref.custom_species = raw_choice
 		return TOPIC_REFRESH
 
