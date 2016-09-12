@@ -35,3 +35,8 @@
 /datum/gear/utility/paicard
 	display_name = "personal AI device"
 	path = /obj/item/device/paicard
+
+/datum/gear/utility/securecase
+	display_name = "secure briefcase"
+	path =/obj/item/weapon/storage/secure/briefcase
+	cost = 2

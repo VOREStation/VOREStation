@@ -5,6 +5,7 @@
 	cost = 100
 	obj_path = /obj/item/weapon/spell/illusion
 	ability_icon_state = "tech_illusion"
+	category = UTILITY_SPELLS
 
 /obj/item/weapon/spell/illusion
 	name = "illusion"

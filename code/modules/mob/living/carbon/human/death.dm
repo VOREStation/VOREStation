@@ -23,6 +23,12 @@
 	else
 		..()
 
+/mob/living/carbon/human/ash()
+	if(species)
+		..(species.dusted_anim)
+	else
+		..()
+
 /mob/living/carbon/human/death(gibbed)
 
 	if(stat == DEAD) return

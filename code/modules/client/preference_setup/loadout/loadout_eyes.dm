@@ -50,7 +50,7 @@
 /datum/gear/eyes/shades
 	display_name = "Sunglasses, fat (Security/Command)"
 	path = /obj/item/clothing/glasses/sunglasses/big
-	allowed_roles = list("Security Officer","Head of Security","Warden","Captain","Head of Personnel","Quartermaster","Internal Affairs Agent","Detective")
+	allowed_roles = list("Security Officer","Head of Security","Warden","Station Administrator","Head of Personnel","Quartermaster","Internal Affairs Agent","Detective")
 
 /datum/gear/eyes/glasses/fakesun
 	display_name = "Sunglasses, stylish"

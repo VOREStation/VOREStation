@@ -5,6 +5,7 @@
 	cost = 150
 	obj_path = /obj/item/weapon/spell/aura/unstable
 	ability_icon_state = "tech_unstableaura"
+	category = OFFENSIVE_SPELLS
 
 /obj/item/weapon/spell/aura/unstable
 	name = "degen aura"

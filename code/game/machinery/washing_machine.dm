@@ -26,7 +26,7 @@
 		)
 
 /obj/machinery/washing_machine/New()
-	circuit = new circuit(src)
+	..()
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/motor(src)
 	component_parts += new /obj/item/weapon/stock_parts/gear(src)
@@ -41,11 +41,11 @@
 	if(!istype(usr, /mob/living)) //ew ew ew usr, but it's the only way to check.
 		return
 
-	if( state != 4 )
+	if(state != 4)
 		usr << "The washing machine cannot run in this state."
 		return
 
-	if( locate(/mob,washing) )
+	if(locate(/mob,washing))
 		state = 8
 	else
 		state = 5
@@ -63,7 +63,7 @@
 		WL.amount = HH.amount
 		qdel(HH)
 
-	if( locate(/mob,washing) )
+	if(locate(/mob,washing))
 		state = 7
 		gibs_ready = 1
 	else
@@ -76,9 +76,8 @@
 	set src in usr.loc
 
 	sleep(20)
-	if(state in list(1,3,6) )
+	if(state in list(1,3,6))
 		usr.loc = src.loc
-
 
 /obj/machinery/washing_machine/update_icon()
 	icon_state = "wm_[state][panel_open]"
@@ -93,7 +92,7 @@
 		panel = !panel
 		user << "<span class='notice'>You [panel ? "open" : "close"] the [src]'s maintenance panel</span>"*/
 	if(istype(W,/obj/item/weapon/pen/crayon) || istype(W,/obj/item/weapon/stamp))
-		if( state in list(	1, 3, 6 ) )
+		if(state in list(	1, 3, 6))
 			if(!crayon)
 				user.drop_item()
 				crayon = W
@@ -103,7 +102,7 @@
 		else
 			..()
 	else if(istype(W,/obj/item/weapon/grab))
-		if( (state == 1) && hacked)
+		if((state == 1) && hacked)
 			var/obj/item/weapon/grab/G = W
 			if(ishuman(G.assailant) && iscorgi(G.affecting))
 				G.affecting.loc = src
@@ -118,7 +117,7 @@
 
 	else if(istype(W, /obj/item/clothing))
 		if(washing.len < 5)
-			if ( state in list(1, 3) )
+			if(state in list(1, 3))
 				user.drop_item()
 				W.loc = src
 				washing += W
