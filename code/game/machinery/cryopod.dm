@@ -6,7 +6,6 @@
  * ~ Zuhayr
  */
 
-
 //Main cryopod console.
 
 /obj/machinery/computer/cryopod
@@ -73,18 +72,18 @@
 	allow_items = 1
 
 /obj/machinery/computer/cryopod/attack_ai()
-	src.attack_hand()
+	attack_hand()
 
 /obj/machinery/computer/cryopod/attack_hand(mob/user = usr)
 	if(stat & (NOPOWER|BROKEN))
 		return
 
 	user.set_machine(src)
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 
 	var/dat
 
-	if (!( ticker ))
+	if(!(ticker))
 		return
 
 	dat += "<hr/><br/><b>[storage_name]</b><br/>"
@@ -105,7 +104,7 @@
 
 	var/mob/user = usr
 
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 
 	if(href_list["log"])
 
@@ -159,7 +158,7 @@
 			I.forceMove(get_turf(src))
 			frozen_items -= I
 
-	src.updateUsrDialog()
+	updateUsrDialog()
 	return
 
 /obj/item/weapon/circuitboard/cryopodcontrol
@@ -395,25 +394,18 @@
 				O.forceMove(src)
 
 	//Delete all items not on the preservation list.
-	var/list/items = src.contents.Copy()
+	var/list/items = contents.Copy()
 	items -= occupant // Don't delete the occupant
 	items -= announce // or the autosay radio.
 
 	for(var/obj/item/W in items)
 
 		var/preserve = null
-		// Snowflaaaake.
-		if(istype(W, /obj/item/device/mmi))
-			var/obj/item/device/mmi/brain = W
-			if(brain.brainmob && brain.brainmob.client && brain.brainmob.key)
+
+		for(var/T in preserve_items)
+			if(istype(W,T))
 				preserve = 1
-			else
-				continue
-		else
-			for(var/T in preserve_items)
-				if(istype(W,T))
-					preserve = 1
-					break
+				break
 
 		if(!preserve)
 			qdel(W)
@@ -451,13 +443,13 @@
 	if(PDA_Manifest.len)
 		PDA_Manifest.Cut()
 	for(var/datum/data/record/R in data_core.medical)
-		if ((R.fields["name"] == occupant.real_name))
+		if((R.fields["name"] == occupant.real_name))
 			qdel(R)
 	for(var/datum/data/record/T in data_core.security)
-		if ((T.fields["name"] == occupant.real_name))
+		if((T.fields["name"] == occupant.real_name))
 			qdel(T)
 	for(var/datum/data/record/G in data_core.general)
-		if ((G.fields["name"] == occupant.real_name))
+		if((G.fields["name"] == occupant.real_name))
 			qdel(G)
 
 	icon_state = base_icon_state
@@ -536,7 +528,7 @@
 			message_admins("<span class='notice'>[key_name_admin(M)] has entered a stasis pod.</span>")
 
 			//Despawning occurs when process() is called with an occupant without a client.
-			src.add_fingerprint(M)
+			add_fingerprint(M)
 
 /obj/machinery/cryopod/verb/eject()
 	set name = "Eject Pod"
@@ -548,14 +540,14 @@
 	icon_state = base_icon_state
 
 	//Eject any items that aren't meant to be in the pod.
-	var/list/items = src.contents
+	var/list/items = contents
 	if(occupant) items -= occupant
 	if(announce) items -= announce
 
 	for(var/obj/item/W in items)
 		W.forceMove(get_turf(src))
 
-	src.go_out()
+	go_out()
 	add_fingerprint(usr)
 
 	name = initial(name)
@@ -569,7 +561,7 @@
 	if(usr.stat != 0 || !check_occupant_allowed(usr))
 		return
 
-	if(src.occupant)
+	if(occupant)
 		usr << "<span class='notice'><B>\The [src] is in use.</B></span>"
 		return
 
@@ -585,7 +577,7 @@
 		if(!usr || !usr.client)
 			return
 
-		if(src.occupant)
+		if(occupant)
 			usr << "<span class='notice'><B>\The [src] is in use.</B></span>"
 			return
 
@@ -605,7 +597,7 @@
 
 		time_entered = world.time
 
-		src.add_fingerprint(usr)
+		add_fingerprint(usr)
 
 	return
 
@@ -626,7 +618,7 @@
 		return
 
 	if(occupant.client)
-		occupant.client.eye = src.occupant.client.mob
+		occupant.client.eye = occupant.client.mob
 		occupant.client.perspective = MOB_PERSPECTIVE
 
 	occupant.forceMove(get_turf(src))
@@ -639,8 +631,8 @@
 
 	return
 
-/obj/machinery/cryopod/proc/set_occupant(var/occupant)
-	src.occupant = occupant
+/obj/machinery/cryopod/proc/set_occupant(var/new_occupant)
+	occupant = new_occupant
 	name = initial(name)
 	if(occupant)
 		name = "[name] ([occupant])"

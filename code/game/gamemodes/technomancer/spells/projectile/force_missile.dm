@@ -4,6 +4,7 @@
 	that armor designed to protect from blunt force will mitigate this function as well."
 	cost = 100
 	obj_path = /obj/item/weapon/spell/projectile/force_missile
+	category = OFFENSIVE_SPELLS
 
 /obj/item/weapon/spell/projectile/force_missile
 	name = "force missile"
@@ -12,13 +13,14 @@
 	cast_methods = CAST_RANGED
 	aspect = ASPECT_FORCE
 	spell_projectile = /obj/item/projectile/force_missile
-	energy_cost_per_shot = 400
+	energy_cost_per_shot = 300
 	instability_per_shot = 2
-	cooldown = 10
+	cooldown = 5
+	fire_sound = 'sound/weapons/wave.ogg'
 
 /obj/item/projectile/force_missile
 	name = "force missile"
 	icon_state = "force_missile"
-	damage = 20
+	damage = 25
 	damage_type = BRUTE
 	check_armour = "melee"

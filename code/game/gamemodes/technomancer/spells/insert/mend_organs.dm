@@ -5,6 +5,7 @@
 	cost = 75
 	obj_path = /obj/item/weapon/spell/insert/mend_organs
 	ability_icon_state = "tech_mendwounds"
+	category = SUPPORT_SPELLS
 
 /obj/item/weapon/spell/insert/mend_organs
 	name = "mend organs"
@@ -19,13 +20,13 @@
 	spawn(1)
 		if(ishuman(host))
 			var/mob/living/carbon/human/H = host
-			for(var/i = 0, i<25,i++)
+			for(var/i = 0, i<5,i++)
 				if(H)
 					for(var/obj/item/organ/O in H.internal_organs)
 						if(O.damage > 0)
-							O.damage = max(O.damage - 0.2, 0)
+							O.damage = max(O.damage - 1, 0)
 
-					H.adjust_instability(0.5)
-					origin.adjust_instability(0.5)
-					sleep(10)
+					H.adjust_instability(2.5)
+					origin.adjust_instability(2.5)
+					sleep(1 SECOND)
 		on_expire()

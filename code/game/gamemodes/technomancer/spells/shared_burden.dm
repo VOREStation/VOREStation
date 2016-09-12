@@ -3,6 +3,7 @@
 	desc = "One of the few functions able to adjust instability, this allows you to take someone else's instability."
 	cost = 50
 	obj_path = /obj/item/weapon/spell/shared_burden
+	category = SUPPORT_SPELLS
 
 /obj/item/weapon/spell/shared_burden
 	name = "shared burden"

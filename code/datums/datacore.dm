@@ -361,7 +361,7 @@
 			clothes_s = new /icon('icons/mob/uniform.dmi', "virologywhite_s")
 			clothes_s.Blend(new /icon('icons/mob/feet.dmi', "white"), ICON_UNDERLAY)
 			clothes_s.Blend(new /icon('icons/mob/suit.dmi', "labcoat_vir_open"), ICON_OVERLAY)
-		if("Captain")
+		if("Station Administrator")
 			clothes_s = new /icon('icons/mob/uniform.dmi', "captain_s")
 			clothes_s.Blend(new /icon('icons/mob/feet.dmi', "brown"), ICON_UNDERLAY)
 		if("Head of Security")

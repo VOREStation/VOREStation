@@ -61,7 +61,7 @@
 	if(isxeno(injector.occupant))
 		var/mob/living/simple_animal/xeno/X = injector.occupant
 		data["compatible"] = 1
-		data["instability"] = 100 * (X.mut_level / X.mut_max) 
+		data["instability"] = 100 * (X.mut_level / X.mut_max)
 	else
 		data["compatible"] = null
 
@@ -109,6 +109,5 @@
 
 /obj/item/weapon/circuitboard/xenobio2computer
 	name = T_BOARD("injector control console")
-	build_path = "/obj/item/weapon/circuitboard/xenobio2computer"
-	board_type = "computer"
+	build_path = /obj/item/weapon/circuitboard/xenobio2computer
 	origin_tech = list()	//To be filled,

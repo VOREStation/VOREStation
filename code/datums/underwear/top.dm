@@ -42,6 +42,11 @@
 	icon_state = "halterneck_bra"
 	has_color = TRUE
 
+/datum/category_item/underwear/top/tubetop
+	name = "Tube Top"
+	icon_state = "tubetop"
+	has_color = TRUE
+
 /datum/category_item/underwear/top/fishnet_base
 	name = "Fishnet top"
 	icon_state = "fishnet_body"

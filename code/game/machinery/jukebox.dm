@@ -38,7 +38,6 @@ datum/track/New(var/title_name, var/audio)
 
 /obj/machinery/media/jukebox/New()
 	..()
-	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
 	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)

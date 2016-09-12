@@ -5,6 +5,7 @@
 	enhancement_desc = "Blink distance is increased greatly."
 	cost = 100
 	obj_path = /obj/item/weapon/spell/blink
+	category = UTILITY_SPELLS
 
 /obj/item/weapon/spell/blink
 	name = "blink"

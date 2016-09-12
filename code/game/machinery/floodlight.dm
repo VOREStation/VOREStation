@@ -1,5 +1,3 @@
-//these are probably broken
-
 /obj/machinery/floodlight
 	name = "Emergency Floodlight"
 	icon = 'icons/obj/machines/floodlight.dmi'
@@ -13,7 +11,7 @@
 	var/brightness_on = 8		//can't remember what the maxed out value is
 
 /obj/machinery/floodlight/New()
-	src.cell = new(src)
+	cell = new(src)
 	cell.maxcharge = 1000
 	cell.charge = 1000 // 41minutes @ 200W
 	..()
@@ -71,7 +69,6 @@
 		if(!turn_on(1))
 			user << "You try to turn on \the [src] but it does not work."
 
-
 /obj/machinery/floodlight/attack_hand(mob/user as mob)
 	if(open && cell)
 		if(ishuman(user))
@@ -79,12 +76,12 @@
 				user.put_in_hands(cell)
 				cell.loc = user.loc
 		else
-			cell.loc = loc
+			cell.loc = src.loc
 
 		cell.add_fingerprint(user)
 		cell.update_icon()
 
-		src.cell = null
+		cell = null
 		on = 0
 		set_light(0)
 		user << "You remove the power cell"
@@ -99,10 +96,9 @@
 
 	update_icon()
 
-
 /obj/machinery/floodlight/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/screwdriver))
-		if (!open)
+	if(istype(W, /obj/item/weapon/screwdriver))
+		if(!open)
 			if(unlocked)
 				unlocked = 0
 				user << "You screw the battery panel in place."
@@ -110,7 +106,7 @@
 				unlocked = 1
 				user << "You unscrew the battery panel."
 
-	if (istype(W, /obj/item/weapon/crowbar))
+	if(istype(W, /obj/item/weapon/crowbar))
 		if(unlocked)
 			if(open)
 				open = 0
@@ -121,7 +117,7 @@
 					open = 1
 					user << "You remove the battery panel."
 
-	if (istype(W, /obj/item/weapon/cell))
+	if(istype(W, /obj/item/weapon/cell))
 		if(open)
 			if(cell)
 				user << "There is a power cell already installed."

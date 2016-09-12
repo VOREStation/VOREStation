@@ -73,8 +73,8 @@
 		var/obj/screen/spell/S = spell_objects[i]
 		var/xpos = x_position + (x_position < 8 ? 1 : -1)*(i%7)
 		var/ypos = y_position + (y_position < 8 ? round(i/7) : -round(i/7))
-		S.screen_loc = "[encode_screen_X(xpos)]:[x_pix],[encode_screen_Y(ypos)]:[y_pix]"
 		if(spell_holder && spell_holder.client)
+			S.screen_loc = "[encode_screen_X(xpos)]:[x_pix],[encode_screen_Y(ypos)]:[y_pix]"
 			spell_holder.client.screen += S
 			S.handle_icon_updates = 1
 

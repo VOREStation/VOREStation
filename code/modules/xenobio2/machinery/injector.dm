@@ -25,7 +25,6 @@
 	reagents = R
 	R.my_atom = src
 	beaker = new /obj/item/weapon/reagent_containers/glass/beaker(src)
-	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
@@ -75,7 +74,7 @@
 	if(occupant)
 		occupant.forceMove(loc)
 		occupant = null
-	
+
 /obj/machinery/xenobio2/manualinjector/proc/eject_beaker()
 	if(beaker)
 		var/obj/item/weapon/reagent_containers/glass/beaker/B = beaker
@@ -140,7 +139,7 @@
 
 /obj/item/weapon/circuitboard/xenobioinjectormachine
 	name = T_BOARD("biological injector")
-	build_path = "/obj/machinery/xenobio2/manualinjector"
-	board_type = "machine"
+	build_path = /obj/machinery/xenobio2/manualinjector
+	board_type = /datum/frame/frame_types/machine
 	origin_tech = list()	//To be filled,
 	req_components = list()	//To be filled,
