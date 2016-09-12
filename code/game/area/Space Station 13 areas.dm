@@ -2670,7 +2670,8 @@ area/space/atmosalert()
 	lighting_use_dynamic = 0
 	requires_power = 0
 	ambience = list()
-	var/sound/mysound = null
+// Vorestation Removal - This is very broken. Sounds do not stop when you leave the area.
+/*	var/sound/mysound = null
 
 	New()
 		..()
@@ -2718,7 +2719,7 @@ area/space/atmosalert()
 					spawn(sound_delay)
 						H << S
 
-		spawn(60) .()
+		spawn(60) .()*/
 
 /////////////////////////////////////////////////////////////////////
 /*
