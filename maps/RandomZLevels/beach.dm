@@ -13,8 +13,6 @@
 
 /area/awaymission/beach
 	base_turf = /turf/simulated/floor/beach/sand
-	valid_mobs = list(/mob/living/simple_animal/crab)
-	valid_flora = list(/obj/effect/overlay/palmtree_r,/obj/effect/overlay/palmtree_l, /obj/effect/overlay/palmtree_r,/obj/effect/overlay/palmtree_l, /obj/effect/overlay/coconut)
 
 /area/awaymission/beachexit // This serves only to stop the sound spam of the beach before leaving. Maybe.
 	icon_state = "red"
@@ -33,6 +31,8 @@
 
 /area/awaymission/beach/jungle
 	icon_state = "green"
+	valid_mobs = list(/mob/living/simple_animal/crab)
+	valid_flora = list(/obj/effect/overlay/palmtree_r,/obj/effect/overlay/palmtree_l, /obj/effect/overlay/palmtree_r,/obj/effect/overlay/palmtree_l, /obj/effect/overlay/coconut)
 	mobcountmax = 10
 	floracountmax = 5000
 
