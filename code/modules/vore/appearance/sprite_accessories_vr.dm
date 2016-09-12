@@ -196,6 +196,12 @@
 	icon_state = "aronai"
 	ckeys_allowed = list("arokha")
 
+/datum/sprite_accessory/ears/holly
+	name = "tigress ears (Holly Sharp)"
+	desc = ""
+	icon_state = "tigressears"
+	ckeys_allowed = list("hoodoo")
+
 /*
 ////////////////////////////
 /  =--------------------=  /
@@ -401,7 +407,7 @@
 	name = "deathclaw bits (Molenar)"
 	desc = ""
 	icon_state = "molenar-deathclaw"
-	ckeys_allowed = list("molenar","jertheace")
+	ckeys_allowed = list("molenar","silvertalismen","jertheace")
 
 /datum/sprite_accessory/tail/runac
 	name = "fennecsune tails (Runac)"
@@ -437,6 +443,23 @@
 	name = "feathered wings"
 	desc = ""
 	icon_state = "feathered"
+
+/datum/sprite_accessory/tail/redpanda
+	name = "red panda"
+	desc = ""
+	icon_state = "redpanda"
+
+/datum/sprite_accessory/tail/ringtail
+	name = "ringtail, colorable"
+	desc = ""
+	icon_state = "ringtail"
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/holly
+	name = "tigress tail (Holly)"
+	desc = ""
+	icon_state = "tigresstail"
+	ckeys_allowed = list("hoodoo")
 
 //For all species tails. Includes haircolored tails.
 /datum/sprite_accessory/tail/special

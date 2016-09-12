@@ -15,7 +15,6 @@
 	var/build_eff = 1
 	var/eat_eff = 1
 
-
 /obj/machinery/biogenerator/New()
 	..()
 	var/datum/reagents/R = new/datum/reagents(1000)
@@ -23,11 +22,9 @@
 	R.my_atom = src
 
 	beaker = new /obj/item/weapon/reagent_containers/glass/bottle(src)
-	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-
 	RefreshParts()
 
 /obj/machinery/biogenerator/on_reagent_change()			//When the reagents change, change the icon as well.
@@ -96,13 +93,13 @@
 		return
 	user.set_machine(src)
 	var/dat = "<TITLE>Biogenerator</TITLE>Biogenerator:<BR>"
-	if (processing)
+	if(processing)
 		dat += "<FONT COLOR=red>Biogenerator is processing! Please wait...</FONT>"
 	else
 		dat += "Biomass: [points] points.<HR>"
 		switch(menustat)
 			if("menu")
-				if (beaker)
+				if(beaker)
 					dat += "<A href='?src=\ref[src];action=activate'>Activate Biogenerator!</A><BR>"
 					dat += "<A href='?src=\ref[src];action=detach'>Detach Container</A><BR><BR>"
 					dat += "Food<BR>"
@@ -139,9 +136,9 @@
 	interact(user)
 
 /obj/machinery/biogenerator/proc/activate()
-	if (usr.stat)
+	if(usr.stat)
 		return
-	if (stat) //NOPOWER etc
+	if(stat) //NOPOWER etc
 		return
 	if(processing)
 		usr << "<span class='notice'>The biogenerator is in the process of working.</span>"

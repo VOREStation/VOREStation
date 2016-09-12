@@ -153,7 +153,7 @@
 	rolled_sleeves = 0
 
 /obj/item/clothing/under/gimmick/rank/captain/suit
-	name = "captain's suit"
+	name = "station administrator's suit"
 	desc = "A green suit and yellow necktie. Exemplifies authority."
 	icon_state = "green_suit"
 	item_state_slots = list(slot_r_hand_str = "centcom", slot_l_hand_str = "centcom")
@@ -225,6 +225,7 @@
 	desc = "Includes shoes and plaid"
 	icon_state = "kilt"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|FEET
+	rolled_sleeves = 0
 
 /obj/item/clothing/under/sexymime
 	name = "sexy mime outfit"
@@ -315,8 +316,8 @@
 	item_state_slots = list(slot_r_hand_str = "dress_white", slot_l_hand_str = "dress_white")
 
 /obj/item/clothing/under/dress/dress_cap
-	name = "captain's dress uniform"
-	desc = "Feminine fashion for the style concious captain."
+	name = "station administrator's dress uniform"
+	desc = "Feminine fashion for the style concious Station Administrator."
 	icon_state = "dress_cap"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
@@ -382,8 +383,8 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
 /obj/item/clothing/under/captainformal
-	name = "captain's formal uniform"
-	desc = "A captain's formal-wear, for special occasions."
+	name = "station administrator's formal uniform"
+	desc = "A Station Administrator's formal-wear, for special occasions."
 	icon_state = "captain_formal"
 	item_state_slots = list(slot_r_hand_str = "lawyer_blue", slot_l_hand_str = "lawyer_blue")
 

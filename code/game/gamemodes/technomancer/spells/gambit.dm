@@ -4,6 +4,7 @@
 	ability_icon_state = "tech_gambit"
 	cost = 50
 	obj_path = /obj/item/weapon/spell/gambit
+	category = UTILITY_SPELLS
 
 /var/global/list/all_technomancer_gambit_spells = typesof(/obj/item/weapon/spell) - list(
 	/obj/item/weapon/spell,

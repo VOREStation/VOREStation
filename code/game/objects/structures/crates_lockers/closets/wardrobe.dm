@@ -517,9 +517,9 @@
 	new /obj/item/clothing/under/color/yellow(src)
 	new /obj/item/clothing/under/color/green(src)
 	new /obj/item/clothing/under/color/pink(src)
-	new /obj/item/clothing/under/skirt/plaid_blue(src)
-	new /obj/item/clothing/under/skirt/plaid_red(src)
-	new /obj/item/clothing/under/skirt/plaid_purple(src)
+	new /obj/item/clothing/under/skirt/outfit/plaid_blue(src)
+	new /obj/item/clothing/under/skirt/outfit/plaid_red(src)
+	new /obj/item/clothing/under/skirt/outfit/plaid_purple(src)
 	new /obj/item/clothing/shoes/blue(src)
 	new /obj/item/clothing/shoes/yellow(src)
 	new /obj/item/clothing/shoes/green(src)
@@ -611,7 +611,7 @@
 	return
 
 /obj/structure/closet/wardrobe/captain
-	name = "captain's wardrobe"
+	name = "station administrator's wardrobe"
 	icon_state = "cabinet_closed"
 	icon_closed = "cabinet_closed"
 	icon_opened = "cabinet_open"

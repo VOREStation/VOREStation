@@ -24,7 +24,6 @@
 
 /obj/machinery/recharge_station/New()
 	..()
-	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
@@ -32,7 +31,6 @@
 	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
 	component_parts += new /obj/item/weapon/cell/high(src)
 	component_parts += new /obj/item/stack/cable_coil(src, 5)
-
 	RefreshParts()
 
 	update_icon()
@@ -80,9 +78,9 @@
 
 	if(!has_cell_power())
 		return 0
-	if(src.use_power == 1)
+	if(use_power == 1)
 		cell.use(idle_power_usage * CELLRATE)
-	else if(src.use_power >= 2)
+	else if(use_power >= 2)
 		cell.use(active_power_usage * CELLRATE)
 	return 1
 
@@ -266,7 +264,7 @@
 	if(!occupant)
 		return
 
-	occupant.forceMove(loc)
+	occupant.forceMove(src.loc)
 	occupant.reset_view()
 	occupant = null
 	update_icon()

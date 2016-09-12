@@ -538,8 +538,8 @@
 	icon_state = "botanist"
 
 /obj/item/toy/figure/captain
-	name = "Captain action figure"
-	desc = "A \"Space Life\" brand Captain action figure."
+	name = "Station Administrator action figure"
+	desc = "A \"Space Life\" brand Station Administrator action figure."
 	icon_state = "captain"
 
 /obj/item/toy/figure/cargotech

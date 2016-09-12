@@ -10,7 +10,6 @@
 	item_state = "electronic"
 	board_type = "other"
 
-
 /obj/item/weapon/circuitboard/mecha/ripley
 		origin_tech = list(TECH_DATA = 3)
 
@@ -21,7 +20,6 @@
 /obj/item/weapon/circuitboard/mecha/ripley/main
 		name = T_BOARD_MECHA("Ripley central control")
 		icon_state = "mainboard"
-
 
 /obj/item/weapon/circuitboard/mecha/gygax
 		origin_tech = list(TECH_DATA = 4)
@@ -39,7 +37,6 @@
 		name = T_BOARD_MECHA("Gygax central control")
 		icon_state = "mainboard"
 
-
 /obj/item/weapon/circuitboard/mecha/durand
 		origin_tech = list(TECH_DATA = 4)
 
@@ -55,7 +52,6 @@
 /obj/item/weapon/circuitboard/mecha/durand/main
 		name = T_BOARD_MECHA("Durand central control")
 		icon_state = "mainboard"
-
 
 /obj/item/weapon/circuitboard/mecha/honker
 		origin_tech = list(TECH_DATA = 4)

@@ -4,6 +4,7 @@
 	cost = 100
 	obj_path = /obj/item/weapon/spell/flame_tongue
 	ability_icon_state = "tech_flametongue"
+	category = OFFENSIVE_SPELLS
 
 /obj/item/weapon/spell/flame_tongue
 	name = "flame tongue"

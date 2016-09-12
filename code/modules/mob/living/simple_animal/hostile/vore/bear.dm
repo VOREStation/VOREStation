@@ -38,7 +38,7 @@
 	faction = "russian"
 
 /mob/living/simple_animal/hostile/vore/bear/brown
-	name = "space bear"
+	name = "brown bear"
 	desc = "RawrRawr!!"
 	icon_state = "brownbear"
 	icon_living = "brownbear"

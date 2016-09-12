@@ -4,6 +4,7 @@
 	cost = 200
 	obj_path = /obj/item/weapon/spell/warp_strike
 	ability_icon_state = "tech_warpstrike"
+	category = OFFENSIVE_SPELLS
 
 /obj/item/weapon/spell/warp_strike
 	name = "warp strike"

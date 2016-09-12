@@ -4,6 +4,7 @@
 	will grab them automatically."
 	cost = 50
 	obj_path = /obj/item/weapon/spell/apportation
+	category = UTILITY_SPELLS
 
 /obj/item/weapon/spell/apportation
 	name = "apportation"

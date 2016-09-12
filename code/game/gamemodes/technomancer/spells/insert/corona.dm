@@ -5,6 +5,7 @@
 	cost = 100
 	obj_path = /obj/item/weapon/spell/insert/corona
 	ability_icon_state = "tech_corona"
+	category = SUPPORT_SPELLS
 
 /obj/item/weapon/spell/insert/corona
 	name = "corona"

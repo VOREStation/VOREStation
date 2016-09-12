@@ -35,8 +35,8 @@
 		var jobs_all = ""
 		jobs_all += "<table><tr><td></td><td><b>Command</b></td>"
 
-		jobs_all += "</tr><tr height='20'><td><b>Special</b></td>"//Captain in special because he is head of heads ~Intercross21
-		jobs_all += "<td weight='100'><a href='?src=\ref[src];;assign=Captain'>Captain</a></td>"
+		jobs_all += "</tr><tr height='20'><td><b>Special</b></td>"//Station Administrator in special because he is head of heads ~Intercross21
+		jobs_all += "<td weight='100'><a href='?src=\ref[src];;assign=Station Administrator'>Station Administrator</a></td>"
 		jobs_all += "<td weight='100'><a href='?src=\ref[src];;assign=Custom'>Custom</a></td>"
 
 		counter = 0
@@ -311,11 +311,15 @@
 
 				writer.assignment = t1
 				writer.name = text("[writer.registered_name]'s ID Card ([writer.assignment])")
+				data_core.manifest_modify(writer.registered_name, writer.assignment)
+				callHook("reassign_employee", list(writer))
 
 		if("reg" in href_list)
 			if(auth)
 				writer.registered_name = href_list["reg"]
 				writer.name = text("[writer.registered_name]'s ID Card ([writer.assignment])")
+				data_core.manifest_modify(writer.registered_name, writer.assignment)
+				callHook("reassign_employee", list(writer))
 
 		computer.updateUsrDialog()
 		return

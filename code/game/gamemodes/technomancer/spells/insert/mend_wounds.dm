@@ -5,6 +5,7 @@
 	cost = 50
 	obj_path = /obj/item/weapon/spell/insert/mend_wounds
 	ability_icon_state = "tech_mendwounds"
+	category = SUPPORT_SPELLS
 
 /obj/item/weapon/spell/insert/mend_wounds
 	name = "mend wounds"
@@ -19,10 +20,10 @@
 	spawn(1)
 		if(ishuman(host))
 			var/mob/living/carbon/human/H = host
-			for(var/i = 0, i<25,i++)
+			for(var/i = 0, i<5,i++)
 				if(H)
-					H.adjustBruteLoss(-1)
-					H.adjust_instability(0.5)
-					origin.adjust_instability(0.5)
-					sleep(10)
+					H.adjustBruteLoss(-5)
+					H.adjust_instability(2.5)
+					origin.adjust_instability(2.5)
+					sleep(1 SECOND)
 		on_expire()

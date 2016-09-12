@@ -5,7 +5,7 @@
 	config_tag = "wizard"
 	votable = 0
 	required_players = 1
-	required_players_secret = 1
+	required_players_secret = 3
 	required_enemies = 1
 	end_on_antag_death = 0
 	antag_tags = list(MODE_WIZARD)

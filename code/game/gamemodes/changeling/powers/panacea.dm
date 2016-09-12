@@ -32,7 +32,6 @@
 	if(src.mind.changeling.recursive_enhancement)
 		heal_amount = heal_amount * 2
 		src << "<span class='notice'>We will heal much faster.</span>"
-		src.mind.changeling.recursive_enhancement = 0
 
 	for(var/i = 0, i<10,i++)
 		if(C)

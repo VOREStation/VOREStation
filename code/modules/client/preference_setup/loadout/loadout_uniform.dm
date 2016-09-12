@@ -284,9 +284,9 @@
 	path = /obj/item/clothing/under/dress/dress_fire
 
 /datum/gear/uniform/uniform_captain
-	display_name = "uniform, captain's dress"
+	display_name = "uniform, station administrator's dress"
 	path = /obj/item/clothing/under/dress/dress_cap
-	allowed_roles = list("Captain")
+	allowed_roles = list("Station Administrator")
 
 /datum/gear/uniform/corpdetsuit
 	display_name = "uniform, corporate (Detective)"

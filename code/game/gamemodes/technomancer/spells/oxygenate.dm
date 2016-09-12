@@ -5,6 +5,7 @@
 	cost = 70
 	obj_path = /obj/item/weapon/spell/oxygenate
 	ability_icon_state = "oxygenate"
+	category = SUPPORT_SPELLS
 
 /obj/item/weapon/spell/oxygenate
 	name = "oxygenate"
