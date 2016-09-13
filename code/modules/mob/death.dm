@@ -46,6 +46,25 @@
 		if(animation)	qdel(animation)
 		if(src)			qdel(src)
 
+/mob/proc/ash(anim="dust-m")
+	death(1)
+	var/atom/movable/overlay/animation = null
+	transforming = 1
+	canmove = 0
+	icon = null
+	invisibility = 101
+
+	animation = new(loc)
+	animation.icon_state = "blank"
+	animation.icon = 'icons/mob/mob.dmi'
+	animation.master = src
+
+	flick(anim, animation)
+
+	dead_mob_list -= src
+	spawn(15)
+		if(animation)	qdel(animation)
+		if(src)			qdel(src)
 
 /mob/proc/death(gibbed,deathmessage="seizes up and falls limp...")
 

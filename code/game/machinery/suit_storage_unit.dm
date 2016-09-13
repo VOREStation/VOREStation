@@ -586,7 +586,7 @@
 	var/electrified = 0
 
 	//Departments that the cycler can paint suits to look like.
-	var/list/departments = list("Engineering","Mining","Medical","Security","Atmos")
+	var/list/departments = list("Engineering","Mining","Medical","Security","Atmos","HAZMAT","Construction")
 	//Species that the suits can be configured to fit.
 	var/list/species = list("Human","Skrell","Unathi","Tajara", "Teshari")
 
@@ -616,7 +616,7 @@
 	name = "Engineering suit cycler"
 	model_text = "Engineering"
 	req_access = list(access_construction)
-	departments = list("Engineering","Atmos")
+	departments = list("Engineering","Atmos","HAZMAT","Construction")
 
 /obj/machinery/suit_cycler/mining
 	name = "Mining suit cycler"
@@ -751,7 +751,7 @@
 
 	//Clear the access reqs, disable the safeties, and open up all paintjobs.
 	user << "<span class='danger'>You run the sequencer across the interface, corrupting the operating protocols.</span>"
-	departments = list("Engineering","Mining","Medical","Security","Atmos","^%###^%$")
+	departments = list("Engineering","Mining","Medical","Security","Atmos","HAZMAT","Construction","^%###^%$")
 	species = list("Human","Tajara","Skrell","Unathi", "Teshari")
 
 	emagged = 1
@@ -1018,6 +1018,24 @@
 				suit.name = "atmospherics voidsuit"
 				suit.icon_state = "rig-atmos"
 				suit.item_state = "atmos_voidsuit"
+		if("HAZMAT")
+			if(helmet)
+				helmet.name = "HAZMAT voidsuit helmet"
+				helmet.icon_state = "rig0-engineering_rad"
+				helmet.item_state = "rig0-engineering_rad"
+			if(suit)
+				suit.name = "HAZMAT voidsuit"
+				suit.icon_state = "rig-engineering_rad"
+				suit.item_state = "eng_voidsuit_rad"
+		if("Construction")
+			if(helmet)
+				helmet.name = "Construction voidsuit helmet"
+				helmet.icon_state = "rig0-engineering_con"
+				helmet.item_state = "rig0-engineering_con"
+			if(suit)
+				suit.name = "Construction voidsuit"
+				suit.icon_state = "rig-engineering_con"
+				suit.item_state = "eng_voidsuit_con"
 		if("^%###^%$" || "Mercenary")
 			if(helmet)
 				helmet.name = "blood-red voidsuit helmet"

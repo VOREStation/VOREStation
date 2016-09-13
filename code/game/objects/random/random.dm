@@ -11,10 +11,8 @@
 	..()
 	if (!prob(spawn_nothing_percentage))
 		spawn_item()
-
-/obj/random/initialize()
-	..()
 	qdel(src)
+
 
 // this function should return a specific item to spawn
 /obj/random/proc/item_to_spawn()
