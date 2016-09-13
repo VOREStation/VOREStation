@@ -126,9 +126,7 @@
 		var/removed_splint
 		for(var/obj/item/organ/external/o in organs)
 			if (o && o.status & ORGAN_SPLINTED)
-				var/obj/item/W = new /obj/item/stack/medical/splint(get_turf(src), 1)
 				o.status &= ~ORGAN_SPLINTED
-				W.add_fingerprint(user)
 				removed_splint = 1
 		if(removed_splint)
 			visible_message("<span class='danger'>\The [user] removes \the [src]'s splints!</span>")

@@ -25,14 +25,15 @@
 	for (var/mob/living/carbon/M in viewers(T, flash_range))
 		if(M.eyecheck() < 1)
 			M.flash_eyes()
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			flash_strength *= H.species.flash_mod
 
-			if(flash_strength > 0)
-				H.confused = max(H.confused, flash_strength + 5)
-				H.eye_blind = max(H.eye_blind, flash_strength)
-				H.eye_blurry = max(H.eye_blurry, flash_strength + 5)
+			if(ishuman(M))
+				var/mob/living/carbon/human/H = M
+				flash_strength *= H.species.flash_mod
+
+				if(flash_strength > 0)
+					H.confused = max(H.confused, flash_strength + 5)
+					H.eye_blind = max(H.eye_blind, flash_strength)
+					H.eye_blurry = max(H.eye_blurry, flash_strength + 5)
 
 
 	//snap pop
