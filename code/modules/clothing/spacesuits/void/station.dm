@@ -12,6 +12,11 @@
 	icon_state = "rig0-engineering_rad"
 	item_state_slots = list(slot_r_hand_str = "eng_helm_rad", slot_l_hand_str = "eng_helm_rad")
 
+/obj/item/clothing/head/helmet/space/void/engineering/construction
+	name = "construction voidsuit helmet"
+	icon_state = "rig0-engineering_con"
+	item_state_slots = list(slot_r_hand_str = "eng_helm_con", slot_l_hand_str = "eng_helm_con")
+
 /obj/item/clothing/suit/space/void/engineering
 	name = "engineering voidsuit"
 	desc = "A special suit that protects against hazardous, low pressure environments. Has radiation shielding."
@@ -25,6 +30,11 @@
 	name = "HAZMAT voidsuit"
 	icon_state = "rig-engineering_rad"
 	item_state_slots = list(slot_r_hand_str = "eng_voidsuit_rad", slot_l_hand_str = "eng_voidsuit_rad")
+
+/obj/item/clothing/suit/space/void/engineering/construction
+	name = "contstruction voidsuit"
+	icon_state = "rig-engineering_con"
+	item_state_slots = list(slot_r_hand_str = "eng_voidsuit_con", slot_l_hand_str = "eng_voidsuit_con")
 
 //Mining
 /obj/item/clothing/head/helmet/space/void/mining
