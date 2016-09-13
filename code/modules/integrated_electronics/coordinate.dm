@@ -17,21 +17,21 @@
 	)
 
 /obj/item/integrated_circuit/gps/work()
-	var/turf/T = get_turf(src)
-	var/datum/integrated_io/result_x = outputs[1]
-	var/datum/integrated_io/result_y = outputs[2]
+	if(..())
+		var/turf/T = get_turf(src)
+		var/datum/integrated_io/result_x = outputs[1]
+		var/datum/integrated_io/result_y = outputs[2]
 
-	result_x.data = null
-	result_y.data = null
-	if(!T)
-		return
+		result_x.data = null
+		result_y.data = null
+		if(!T)
+			return
 
-	result_x.data = T.x
-	result_y.data = T.y
+		result_x.data = T.x
+		result_y.data = T.y
 
-	for(var/datum/integrated_io/output/O in outputs)
-		O.push_data()
-	..()
+		for(var/datum/integrated_io/output/O in outputs)
+			O.push_data()
 
 /obj/item/integrated_circuit/abs_to_rel_coords
 	name = "abs to rel coordinate converter"

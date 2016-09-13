@@ -29,16 +29,16 @@
 	icon_state = "addition"
 
 /obj/item/integrated_circuit/arithmetic/addition/work()
-	var/result = 0
-	for(var/datum/integrated_io/input/I in inputs)
-		I.pull_data()
-		if(isnum(I.data))
-			result = result + I.data
+	if(..())
+		var/result = 0
+		for(var/datum/integrated_io/input/I in inputs)
+			I.pull_data()
+			if(isnum(I.data))
+				result = result + I.data
 
-	for(var/datum/integrated_io/output/O in outputs)
-		O.data = result
-		O.push_data()
-	..()
+		for(var/datum/integrated_io/output/O in outputs)
+			O.data = result
+			O.push_data()
 
 // -Subtracting- //
 
@@ -48,16 +48,16 @@
 	icon_state = "subtraction"
 
 /obj/item/integrated_circuit/arithmetic/subtraction/work()
-	var/result = 0
-	for(var/datum/integrated_io/input/I in inputs)
-		I.pull_data()
-		if(isnum(I.data))
-			result = result - I.data
+	if(..())
+		var/result = 0
+		for(var/datum/integrated_io/input/I in inputs)
+			I.pull_data()
+			if(isnum(I.data))
+				result = result - I.data
 
-	for(var/datum/integrated_io/output/O in outputs)
-		O.data = result
-		O.push_data()
-	..()
+		for(var/datum/integrated_io/output/O in outputs)
+			O.data = result
+			O.push_data()
 
 // *Multiply* //
 
@@ -67,16 +67,16 @@
 	icon_state = "multiplication"
 
 /obj/item/integrated_circuit/arithmetic/subtraction/work()
-	var/result = 0
-	for(var/datum/integrated_io/input/I in inputs)
-		I.pull_data()
-		if(isnum(I.data))
-			result = result * I.data
+	if(..())
+		var/result = 0
+		for(var/datum/integrated_io/input/I in inputs)
+			I.pull_data()
+			if(isnum(I.data))
+				result = result * I.data
 
-	for(var/datum/integrated_io/output/O in outputs)
-		O.data = result
-		O.push_data()
-	..()
+		for(var/datum/integrated_io/output/O in outputs)
+			O.data = result
+			O.push_data()
 
 // /Division/  //
 
@@ -86,16 +86,16 @@
 	icon_state = "division"
 
 /obj/item/integrated_circuit/arithmetic/division/work()
-	var/result = 0
-	for(var/datum/integrated_io/input/I in inputs)
-		I.pull_data()
-		if(isnum(I.data) && I.data != 0) //No runtimes here.
-			result = result / I.data
+	if(..())
+		var/result = 0
+		for(var/datum/integrated_io/input/I in inputs)
+			I.pull_data()
+			if(isnum(I.data) && I.data != 0) //No runtimes here.
+				result = result / I.data
 
-	for(var/datum/integrated_io/output/O in outputs)
-		O.data = result
-		O.push_data()
-	..()
+		for(var/datum/integrated_io/output/O in outputs)
+			O.data = result
+			O.push_data()
 
 // Absolute //
 
@@ -107,16 +107,16 @@
 	number_of_outputs = 1
 
 /obj/item/integrated_circuit/arithmetic/absolute/work()
-	var/result = 0
-	for(var/datum/integrated_io/input/I in inputs)
-		I.pull_data()
-		if(isnum(I.data) && I.data != 0)
-			result = abs(result)
+	if(..())
+		var/result = 0
+		for(var/datum/integrated_io/input/I in inputs)
+			I.pull_data()
+			if(isnum(I.data) && I.data != 0)
+				result = abs(result)
 
-	for(var/datum/integrated_io/output/O in outputs)
-		O.data = result
-		O.push_data()
-	..()
+		for(var/datum/integrated_io/output/O in outputs)
+			O.data = result
+			O.push_data()
 
 // Averaging //
 
@@ -126,21 +126,21 @@
 	icon_state = "average"
 
 /obj/item/integrated_circuit/arithmetic/average/work()
-	var/result = 0
-	var/inputs_used = 0
-	for(var/datum/integrated_io/input/I in inputs)
-		I.pull_data()
-		if(isnum(I.data))
-			inputs_used++
-			result = result + I.data
+	if(..())
+		var/result = 0
+		var/inputs_used = 0
+		for(var/datum/integrated_io/input/I in inputs)
+			I.pull_data()
+			if(isnum(I.data))
+				inputs_used++
+				result = result + I.data
 
-	if(inputs_used)
-		result = result / inputs_used
+		if(inputs_used)
+			result = result / inputs_used
 
-	for(var/datum/integrated_io/output/O in outputs)
-		O.data = result
-		O.push_data()
-	..()
+		for(var/datum/integrated_io/output/O in outputs)
+			O.data = result
+			O.push_data()
 
 // Pi, because why the hell not? //
 /obj/item/integrated_circuit/arithmetic/pi
@@ -151,7 +151,7 @@
 	number_of_outputs = 1
 
 /obj/item/integrated_circuit/arithmetic/pi/work()
-	var/datum/integrated_io/output/O = outputs[1]
-	O.data = 3.14159
-	O.push_data()
-	..()
+	if(..())
+		var/datum/integrated_io/output/O = outputs[1]
+		O.data = 3.14159
+		O.push_data()

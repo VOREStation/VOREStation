@@ -1,4 +1,4 @@
-/obj/item/integrated_circuit/weapon_firing
+/obj/item/integrated_circuit/manipulation/weapon_firing
 	name = "weapon firing mechanism"
 	desc = "This somewhat complicated system allows one to slot in a gun, direct it towards a position, and remotely fire it."
 	extended_desc = "The firing mechanism can slot in most ranged weapons, ballistic and energy.  \
@@ -18,11 +18,11 @@
 	)
 	var/obj/item/weapon/gun/installed_gun = null
 
-/obj/item/integrated_circuit/weapon_firing/Destroy()
+/obj/item/integrated_circuit/manipulation/weapon_firing/Destroy()
 	qdel(installed_gun)
 	..()
 
-/obj/item/integrated_circuit/weapon_firing/attackby(var/obj/O, var/mob/user)
+/obj/item/integrated_circuit/manipulation/weapon_firing/attackby(var/obj/O, var/mob/user)
 	if(istype(O, /obj/item/weapon/gun))
 		var/obj/item/weapon/gun/gun = O
 		if(installed_gun)
@@ -36,7 +36,7 @@
 	else
 		..()
 
-/obj/item/integrated_circuit/weapon_firing/attack_self(var/mob/user)
+/obj/item/integrated_circuit/manipulation/weapon_firing/attack_self(var/mob/user)
 	if(installed_gun)
 		installed_gun.forceMove(get_turf(src))
 		user << "<span class='notice'>You slide \the [installed_gun] out of the firing mechanism.</span>"
@@ -45,7 +45,7 @@
 	else
 		user << "<span class='notice'>There's no weapon to remove from the mechanism.</span>"
 
-/obj/item/integrated_circuit/weapon_firing/work()
+/obj/item/integrated_circuit/manipulation/weapon_firing/work()
 	if(!installed_gun)
 		return
 
@@ -85,3 +85,32 @@
 		if(!T)
 			return
 		installed_gun.Fire_userless(T)
+
+/obj/item/integrated_circuit/manipulation/smoke
+	name = "smoke generator"
+	desc = "Unlike most electronics, creating smoke is completely intentional."
+	extended_desc = "This smoke generator creates clouds of smoke on command.  It can also hold liquids inside, which will go \
+	into the smoke clouds when activated."
+	flags = OPENCONTAINER
+	complexity = 20
+	number_of_inputs = 0
+	number_of_outputs = 0
+	number_of_activators = 1
+	input_names = list()
+	activator_names = list(
+		"create smoke"
+	)
+
+/obj/item/integrated_circuit/manipulation/smoke/New()
+	..()
+	create_reagents(100)
+
+/obj/item/integrated_circuit/manipulation/smoke/work()
+	if(..())
+		playsound(src.loc, 'sound/effects/smoke.ogg', 50, 1, -3)
+		var/datum/effect/effect/system/smoke_spread/chem/smoke_system = new()
+		smoke_system.set_up(reagents, 10, 0, get_turf(src))
+		spawn(0)
+			for(var/i = 1 to 8)
+				smoke_system.start()
+			reagents.clear_reagents()

@@ -20,33 +20,31 @@
 	icon_state = "addition"
 
 /obj/item/integrated_circuit/converter/num2text/work()
-	var/result = null
-	var/datum/integrated_io/incoming = inputs[1]
-	var/datum/integrated_io/outgoing = outputs[1]
-	if(incoming.data && isnum(incoming.data))
-		result = num2text(incoming.data)
+	if(..())
+		var/result = null
+		var/datum/integrated_io/incoming = inputs[1]
+		var/datum/integrated_io/outgoing = outputs[1]
+		if(incoming.data && isnum(incoming.data))
+			result = num2text(incoming.data)
 
-	outgoing.data = result
-	outgoing.push_data()
-
-	..()
+		outgoing.data = result
+		outgoing.push_data()
 
 /obj/item/integrated_circuit/converter/text2num
-	name = "number to string"
+	name = "string to number"
 	desc = "This circuit can convert a string variable into a number."
 	icon_state = "addition"
 
 /obj/item/integrated_circuit/converter/text2num/work()
-	var/result = null
-	var/datum/integrated_io/incoming = inputs[1]
-	var/datum/integrated_io/outgoing = outputs[1]
-	if(incoming.data && istext(incoming.data))
-		result = text2num(incoming.data)
+	if(..())
+		var/result = null
+		var/datum/integrated_io/incoming = inputs[1]
+		var/datum/integrated_io/outgoing = outputs[1]
+		if(incoming.data && istext(incoming.data))
+			result = text2num(incoming.data)
 
-	outgoing.data = result
-	outgoing.push_data()
-
-	..()
+		outgoing.data = result
+		outgoing.push_data()
 
 /obj/item/integrated_circuit/converter/ref2text
 	name = "reference to string"
@@ -54,17 +52,16 @@
 	icon_state = "addition"
 
 /obj/item/integrated_circuit/converter/ref2text/work()
-	var/result = null
-	var/datum/integrated_io/incoming = inputs[1]
-	var/datum/integrated_io/outgoing = outputs[1]
-	if(incoming.data && istype(incoming.data, /atom/))
-		var/atom/A = incoming.data
-		result = A.name
+	if(..())
+		var/result = null
+		var/datum/integrated_io/incoming = inputs[1]
+		var/datum/integrated_io/outgoing = outputs[1]
+		if(incoming.data && istype(incoming.data, /atom/))
+			var/atom/A = incoming.data
+			result = A.name
 
-	outgoing.data = result
-	outgoing.push_data()
-
-	..()
+		outgoing.data = result
+		outgoing.push_data()
 
 /obj/item/integrated_circuit/converter/lowercase
 	name = "lowercase string converter"
@@ -72,16 +69,15 @@
 	icon_state = "addition"
 
 /obj/item/integrated_circuit/converter/lowercase/work()
-	var/result = null
-	var/datum/integrated_io/incoming = inputs[1]
-	var/datum/integrated_io/outgoing = outputs[1]
-	if(incoming.data && istext(incoming.data))
-		result = lowertext(incoming.data)
+	if(..())
+		var/result = null
+		var/datum/integrated_io/incoming = inputs[1]
+		var/datum/integrated_io/outgoing = outputs[1]
+		if(incoming.data && istext(incoming.data))
+			result = lowertext(incoming.data)
 
-	outgoing.data = result
-	outgoing.push_data()
-
-	..()
+		outgoing.data = result
+		outgoing.push_data()
 
 /obj/item/integrated_circuit/converter/uppercase
 	name = "uppercase string converter"
@@ -89,13 +85,12 @@
 	icon_state = "addition"
 
 /obj/item/integrated_circuit/converter/uppercase/work()
-	var/result = null
-	var/datum/integrated_io/incoming = inputs[1]
-	var/datum/integrated_io/outgoing = outputs[1]
-	if(incoming.data && istext(incoming.data))
-		result = uppertext(incoming.data)
+	if(..())
+		var/result = null
+		var/datum/integrated_io/incoming = inputs[1]
+		var/datum/integrated_io/outgoing = outputs[1]
+		if(incoming.data && istext(incoming.data))
+			result = uppertext(incoming.data)
 
-	outgoing.data = result
-	outgoing.push_data()
-
-	..()
+		outgoing.data = result
+		outgoing.push_data()

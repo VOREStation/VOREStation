@@ -23,17 +23,17 @@
 	icon_state = "equal"
 
 /obj/item/integrated_circuit/logic/equals/work()
-	..()
-	var/datum/integrated_io/A = inputs[1]
-	var/datum/integrated_io/B = inputs[2]
-	var/datum/integrated_io/O = outputs[1]
-	var/datum/integrated_io/P = activators[2]
-	if(A.data == B.data)
-		O.data = 1
-		O.push_data()
-		P.push_data()
-	else
-		O.data = 0
+	if(..())
+		var/datum/integrated_io/A = inputs[1]
+		var/datum/integrated_io/B = inputs[2]
+		var/datum/integrated_io/O = outputs[1]
+		var/datum/integrated_io/P = activators[2]
+		if(A.data == B.data)
+			O.data = 1
+			O.push_data()
+			P.push_data()
+		else
+			O.data = 0
 
 /obj/item/integrated_circuit/logic/not
 	name = "not gate"
@@ -48,14 +48,14 @@
 
 
 /obj/item/integrated_circuit/logic/not/work()
-	..()
-	var/datum/integrated_io/A = inputs[1]
-	var/datum/integrated_io/O = outputs[1]
-	if(A.data)
-		O.data = !A.data
-		O.push_data()
-	else
-		O.data = 0
+	if(..())
+		var/datum/integrated_io/A = inputs[1]
+		var/datum/integrated_io/O = outputs[1]
+		if(A.data)
+			O.data = !A.data
+			O.push_data()
+		else
+			O.data = 0
 
 /obj/item/integrated_circuit/logic/and
 	name = "and gate"
@@ -63,18 +63,18 @@
 	icon_state = "and"
 
 /obj/item/integrated_circuit/logic/and/work()
-	..()
-	var/datum/integrated_io/A = inputs[1]
-	var/datum/integrated_io/B = inputs[2]
-	var/datum/integrated_io/O = outputs[1]
-	var/datum/integrated_io/P = activators[2]
-	if(A.data && B.data)
-		O.data = 1
-		O.push_data()
-		A.push_data()
-		P.push_data()
-	else
-		O.data = 0
+	if(..())
+		var/datum/integrated_io/A = inputs[1]
+		var/datum/integrated_io/B = inputs[2]
+		var/datum/integrated_io/O = outputs[1]
+		var/datum/integrated_io/P = activators[2]
+		if(A.data && B.data)
+			O.data = 1
+			O.push_data()
+			A.push_data()
+			P.push_data()
+		else
+			O.data = 0
 
 /obj/item/integrated_circuit/logic/or
 	name = "or gate"
@@ -82,18 +82,18 @@
 	icon_state = "or"
 
 /obj/item/integrated_circuit/logic/or/work()
-	..()
-	var/datum/integrated_io/A = inputs[1]
-	var/datum/integrated_io/B = inputs[2]
-	var/datum/integrated_io/O = outputs[1]
-	var/datum/integrated_io/P = activators[2]
-	if(A.data || B.data)
-		O.data = 1
-		O.push_data()
-		A.push_data()
-		P.push_data()
-	else
-		O.data = 0
+	if(..())
+		var/datum/integrated_io/A = inputs[1]
+		var/datum/integrated_io/B = inputs[2]
+		var/datum/integrated_io/O = outputs[1]
+		var/datum/integrated_io/P = activators[2]
+		if(A.data || B.data)
+			O.data = 1
+			O.push_data()
+			A.push_data()
+			P.push_data()
+		else
+			O.data = 0
 
 /obj/item/integrated_circuit/logic/less_than
 	name = "less than gate"
@@ -101,18 +101,18 @@
 	icon_state = "less_than"
 
 /obj/item/integrated_circuit/logic/less_than/work()
-	..()
-	var/datum/integrated_io/A = inputs[1]
-	var/datum/integrated_io/B = inputs[2]
-	var/datum/integrated_io/O = outputs[1]
-	var/datum/integrated_io/P = activators[2]
-	if(A.data < B.data)
-		O.data = 1
-		O.push_data()
-		A.push_data()
-		P.push_data()
-	else
-		O.data = 0
+	if(..())
+		var/datum/integrated_io/A = inputs[1]
+		var/datum/integrated_io/B = inputs[2]
+		var/datum/integrated_io/O = outputs[1]
+		var/datum/integrated_io/P = activators[2]
+		if(A.data < B.data)
+			O.data = 1
+			O.push_data()
+			A.push_data()
+			P.push_data()
+		else
+			O.data = 0
 
 /obj/item/integrated_circuit/logic/less_than_or_equal
 	name = "less than or equal gate"
@@ -120,18 +120,18 @@
 	icon_state = "less_than_or_equal"
 
 /obj/item/integrated_circuit/logic/less_than_or_equal/work()
-	..()
-	var/datum/integrated_io/A = inputs[1]
-	var/datum/integrated_io/B = inputs[2]
-	var/datum/integrated_io/O = outputs[1]
-	var/datum/integrated_io/P = activators[2]
-	if(A.data <= B.data)
-		O.data = 1
-		O.push_data()
-		A.push_data()
-		P.push_data()
-	else
-		O.data = 0
+	if(..())
+		var/datum/integrated_io/A = inputs[1]
+		var/datum/integrated_io/B = inputs[2]
+		var/datum/integrated_io/O = outputs[1]
+		var/datum/integrated_io/P = activators[2]
+		if(A.data <= B.data)
+			O.data = 1
+			O.push_data()
+			A.push_data()
+			P.push_data()
+		else
+			O.data = 0
 
 /obj/item/integrated_circuit/logic/greater_than
 	name = "greater than gate"
@@ -139,18 +139,18 @@
 	icon_state = "greater_than"
 
 /obj/item/integrated_circuit/logic/greater_than/work()
-	..()
-	var/datum/integrated_io/A = inputs[1]
-	var/datum/integrated_io/B = inputs[2]
-	var/datum/integrated_io/O = outputs[1]
-	var/datum/integrated_io/P = activators[2]
-	if(A.data > B.data)
-		O.data = 1
-		O.push_data()
-		A.push_data()
-		P.push_data()
-	else
-		O.data = 0
+	if(..())
+		var/datum/integrated_io/A = inputs[1]
+		var/datum/integrated_io/B = inputs[2]
+		var/datum/integrated_io/O = outputs[1]
+		var/datum/integrated_io/P = activators[2]
+		if(A.data > B.data)
+			O.data = 1
+			O.push_data()
+			A.push_data()
+			P.push_data()
+		else
+			O.data = 0
 
 /obj/item/integrated_circuit/logic/greater_than_or_equal
 	name = "greater_than or equal gate"
@@ -158,15 +158,15 @@
 	icon_state = "greater_than_or_equal"
 
 /obj/item/integrated_circuit/logic/greater_than_or_equal/work()
-	..()
-	var/datum/integrated_io/A = inputs[1]
-	var/datum/integrated_io/B = inputs[2]
-	var/datum/integrated_io/O = outputs[1]
-	var/datum/integrated_io/P = activators[2]
-	if(A.data >= B.data)
-		O.data = 1
-		O.push_data()
-		A.push_data()
-		P.push_data()
-	else
-		O.data = 0
+	if(..())
+		var/datum/integrated_io/A = inputs[1]
+		var/datum/integrated_io/B = inputs[2]
+		var/datum/integrated_io/O = outputs[1]
+		var/datum/integrated_io/P = activators[2]
+		if(A.data >= B.data)
+			O.data = 1
+			O.push_data()
+			A.push_data()
+			P.push_data()
+		else
+			O.data = 0

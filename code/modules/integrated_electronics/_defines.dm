@@ -115,12 +115,15 @@
 	return null
 
 /obj/item/integrated_circuit/interact(mob/user)
-	if(get_dist(src, user) > 1)
+	if(get_dist(get_turf(src), user) > 1)
 		user.unset_machine(src)
 		return
 	var/HTML = "<html><head><title>[src.name]</title></head><body>"
 	HTML += "<div align='center'>"
 	HTML += "<table border='1' style='undefined;table-layout: fixed; width: 424px'>"
+
+	HTML += "<br><a href='?src=\ref[src];user=\ref[user]'>\[Refresh\]</a>  |  "
+	HTML += "<a href='?src=\ref[src];user=\ref[user];rename=1'>\[Rename\]</a><br>"
 
 	HTML += "<colgroup>"
 	HTML += "<col style='width: 121px'>"
@@ -143,15 +146,15 @@
 					io = get_pin_ref("input",i)
 					if(io)
 						if(io.linked.len)
-							words = "<a href=?src=\ref[src];action=wire;user=\ref[user]><b>[io.name] [io.display_data()]</b></a><br>"
+							words = "<a href=?src=\ref[src];wire=1;user=\ref[user];pin=\ref[io]><b>[io.name] [io.display_data()]</b></a><br>"
 							for(var/datum/integrated_io/linked in io.linked)
-								words += "<a href=?src=\ref[src];action=unwire;user=\ref[user];pin=\ref[io]>\[[linked.name]\]</a> \
-								@ <a href=?src[src];action=examine;user=\ref[user]>[linked.holder]</a><br>"
+								words += "<a href=?src=\ref[src];wire=1;user=\ref[user];pin=\ref[io]>\[[linked.name]\]</a> \
+								@ <a href=?src=\ref[linked.holder];examine=1;user=\ref[user]>[linked.holder]</a><br>"
 						else // "Click <a href=?src=\ref[src];action=start>here</a>!"
-							words = "<a href=?src=\ref[src];action=wire;user=\ref[user]>[io.name] [io.display_data()]</a><br>"
+							words = "<a href=?src=\ref[src];wire=1;user=\ref[user];pin=\ref[io]>[io.name] [io.display_data()]</a><br>"
 							for(var/datum/integrated_io/linked in io.linked)
-								words += "<a href=?src=\ref[src];action=unwire;user=\ref[user];pin=\ref[io]>\[[linked.name]\]</a> \
-								@ <a href=?src[src];action=examine;user=\ref[user]>[linked.holder]</a><br>"
+								words += "<a href=?src=\ref[src];wire=1;user=\ref[user];pin=\ref[io]>\[[linked.name]\]</a> \
+								@ <a href=?src=\ref[linked.holder];examine=1;user=\ref[user]>[linked.holder]</a><br>"
 						if(outputs.len > inputs.len)
 							height = Floor(outputs.len / inputs.len)
 						//world << "I wrote [words] at ([i],[j])."
@@ -166,15 +169,15 @@
 					io = get_pin_ref("output",i)
 					if(io)
 						if(io.linked.len)
-							words = "<a href=?src=\ref[src];action=wire;user=\ref[user]><b>[io.name] [io.display_data()]</b></a><br>"
+							words = "<a href=?src=\ref[src];wire=1;user=\ref[user];pin=\ref[io]><b>[io.name] [io.display_data()]</b></a><br>"
 							for(var/datum/integrated_io/linked in io.linked)
-								words += "<a href=?src=\ref[src];action=unwire;user=\ref[user];pin=\ref[io]>\[[linked.name]\]</a> \
-								@ <a href=?src[src];action=examine;user=\ref[user]>[linked.holder]</a><br>"
+								words += "<a href=?src=\ref[src];wire=1;user=\ref[user];pin=\ref[io]>\[[linked.name]\]</a> \
+								@ <a href=?src=\ref[linked.holder];examine=1;user=\ref[user]>[linked.holder]</a><br>"
 						else
-							words = "<a href=?src=\ref[src];action=wire;user=\ref[user]>[io.name] [io.display_data()]</a><br>"
+							words = "<a href=?src=\ref[src];wire=1;user=\ref[user];pin=\ref[io]>[io.name] [io.display_data()]</a><br>"
 							for(var/datum/integrated_io/linked in io.linked)
-								words += "<a href=?src=\ref[src];action=unwire;user=\ref[user];pin=\ref[io]>\[[linked.name]\]</a> \
-								@ <a href=?src[src];action=examine;user=\ref[user]>[linked.holder]</a><br>"
+								words += "<a href=?src=\ref[src];wire=1;user=\ref[user];pin=\ref[io]>\[[linked.name]\]</a> \
+								@ <a href=?src=\ref[linked.holder];examine=1;user=\ref[user]>[linked.holder]</a><br>"
 						if(inputs.len > outputs.len)
 							height = Floor(inputs.len / outputs.len)
 						//world << "I wrote [words] at ([i],[j])."
@@ -190,15 +193,15 @@
 			io = get_pin_ref("activator",i)
 			if(io)
 				if(io.linked.len)
-					words = "<a href=?src=\ref[src];action=wire;user=\ref[user]><font color='FF0000'><b>[io.name]</b></font></a><br>"
+					words = "<a href=?src=\ref[src];wire=1;user=\ref[user];pin=\ref[io]><font color='FF0000'><b>[io.name]</b></font></a><br>"
 					for(var/datum/integrated_io/linked in io.linked)
-						words += "<a href=?src=\ref[src];action=unwire;user=\ref[user];pin=\ref[io]>\[[linked.name]\]</a> \
-						@ <a href=?src[src];action=examine;user=\ref[user]>[linked.holder]</a><br>"
+						words += "<a href=?src=\ref[src];wire=1;user=\ref[user];pin=\ref[io]>\[[linked.name]\]</a> \
+						@ <a href=?src[src];examine=1;user=\ref[user]>[linked.holder]</a><br>"
 				else // "Click <a href=?src=\ref[src];action=start>here</a>!"
-					words = "<a href=?src=\ref[src];action=wire;user=\ref[user]><font color='FF0000'>[io.name]</font></a><br>"
+					words = "<a href=?src=\ref[src];wire=1;user=\ref[user];pin=\ref[io]><font color='FF0000'>[io.name]</font></a><br>"
 					for(var/datum/integrated_io/linked in io.linked)
-						words += "<a href=?src=\ref[src];action=unwire;user=\ref[user];pin=\ref[io]>\[[linked.name]\]</a> \
-						@ <a href=?src[src];action=examine;user=\ref[user]>[linked.holder]</a><br>"
+						words += "<a href=?src=\ref[src];wire=1;user=\ref[user];pin=\ref[io]>\[[linked.name]\]</a> \
+						@ <a href=?src=\ref[linked.holder];examine=1;user=\ref[user]>[linked.holder]</a><br>"
 			HTML += "<tr>"
 			HTML += "<td colspan='3' align='center'>[words]</td>"
 			HTML += "</tr>"
@@ -206,50 +209,47 @@
 	HTML += "</table>"
 	HTML += "</div>"
 
-	HTML += "<br><br><a href='?src=\ref[src]'>Refresh</a>"
 	HTML += "<br><font color='0000FF'>[extended_desc]</font>"
 
 	HTML += "</body></html>"
-	user << browse(HTML, "window=circuit-\ref[src];size=400x440;border=1;can_resize=1;can_close=1;can_minimize=1")
+	user << browse(HTML, "window=circuit-\ref[src];size=600x350;border=1;can_resize=1;can_close=1;can_minimize=1")
 
 	user.set_machine(src)
 	onclose(user, "circuit-\ref[src]")
-	//user << sanitize(HTML, "window=debug;size=400x400;border=1;can_resize=1;can_close=1;can_minimize=1")
-	//world << sanitize(HTML)
 
 /obj/item/integrated_circuit/Topic(href, href_list[])
-	if(..())
+	var/mob/living/user = locate(href_list["user"]) in mob_list
+	var/pin = locate(href_list["pin"]) in inputs + outputs + activators
+
+	if(!user || !user.Adjacent(get_turf(src)) )
 		return 1
-	var/user = locate(href_list["user"]) in mob_list
-	var/pin = locate(href_list["pin"]) in contents
-	switch(href_list["action"])
-		if("examine")
-			examine(user)
 
-		if("wire")
-			if(ishuman(user) && Adjacent(user))
-				var/mob/living/carbon/human/H = user
-				var/obj/item/device/integrated_electronics/wirer/wirer = null
-				if(istype(H.r_hand, /obj/item/device/integrated_electronics/wirer))
-					wirer = H.r_hand
-				else if(istype(H.l_hand, /obj/item/device/integrated_electronics/wirer))
-					wirer = H.l_hand
+	if(href_list["wire"])
+		if(ishuman(user) && Adjacent(user))
+			var/mob/living/carbon/human/H = user
+			var/obj/item/device/integrated_electronics/wirer/wirer = null
+			if(istype(H.r_hand, /obj/item/device/integrated_electronics/wirer))
+				wirer = H.r_hand
+			else if(istype(H.l_hand, /obj/item/device/integrated_electronics/wirer))
+				wirer = H.l_hand
 
-				if(wirer && pin)
-					wirer.wire(pin, user)
-				else
-					user << "<span class='warning'>You can't do a whole lot without tools.</span>"
+			if(wirer && pin)
+				wirer.wire(pin, user)
+			else
+				user << "<span class='warning'>You can't do a whole lot without tools.</span>"
 
-	//updateDialog()
-	world << "[src] received Topic([href], [href_list]) call from [user]."
-	world << "href_list contained [english_list(href_list)]."
-	interact(user)
+	if(href_list["examine"])
+		examine(user)
+
+	if(href_list["rename"])
+		rename_component(user)
+
+	interact(user) // To refresh the UI.
 
 /datum/integrated_io
 	var/name = "input/output"
 	var/obj/item/integrated_circuit/holder = null
 	var/data = null
-//	var/datum/integrated_io/linked = null
 	var/list/linked = list()
 	var/io_type = DATA_CHANNEL
 
@@ -263,45 +263,6 @@
 	disconnect()
 	holder = null
 	..()
-
-/datum/integrated_io/Topic(href, href_list[])
-	if(..())
-		return 1
-	var/user = locate(href_list["user"]) in mob_list
-	switch(href_list["action"])
-	//	if("view")
-	//		var/HTML = "<html><head><title>[src.name]</title></head><body>"
-	//		HTML += "Parent: [holder]"
-	//		HTML += "Pin Type: [io_type]"
-	//		HTML += "Linked Pins:<br>"
-	//		for(var/datum/integrated_io/io in src.linked)
-	//			HTML += "<a href=?src=\ref[io];action=view;user=\ref[user]>[io.name] [io.display_data()] @ [io.holder]</a><br>"
-	//		HTML += "<a href=?src=\ref[src];action=interact;user=\ref[user]>\[Wire This\]</a>"
-	//
-	//		HTML += "</body></html>"
-	//		user << browse(HTML, "window=pin-\ref[src];size=400x400;border=1;can_resize=1;can_close=1;can_minimize=1")
-
-		if("examine_holder")
-			holder.examine(user)
-
-		if("wire")
-			if(ishuman(user))
-				var/mob/living/carbon/human/H = user
-				var/obj/item/device/integrated_electronics/wirer/wirer = null
-				if(istype(H.r_hand, /obj/item/device/integrated_electronics/wirer))
-					wirer = H.r_hand
-				else if(istype(H.l_hand, /obj/item/device/integrated_electronics/wirer))
-					wirer = H.l_hand
-
-				if(wirer)
-					wirer.wire(src, user)
-
-
-
-				else
-					user << "<span class='warning'>You can't do a whole lot without tools.</span>"
-	//updateDialog()
-			//world << "[src] inside [src.holder] was clicked by [user]."
 
 /datum/integrated_io/proc/display_data()
 	if(!data)
@@ -381,8 +342,10 @@
 		I.push_data()
 
 /obj/item/integrated_circuit/proc/work()
+	if(last_used + 2 SECONDS > world.time) // All intergrated circuits have an internal cooldown of two seconds to protect from spam.
+		return 0
 	last_used = world.time
-	return
+	return 1
 
 /obj/item/integrated_circuit/proc/disconnect_all()
 	for(var/datum/integrated_io/input/I in inputs)

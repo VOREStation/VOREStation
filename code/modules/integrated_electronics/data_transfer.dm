@@ -34,9 +34,10 @@
 	number_of_outputs = 8
 
 /obj/item/integrated_circuit/transfer/splitter/work()
-	var/datum/integrated_io/I = inputs[1]
-	for(var/datum/integrated_io/output/O in outputs)
-		O.data = I.data
+	if(..())
+		var/datum/integrated_io/I = inputs[1]
+		for(var/datum/integrated_io/output/O in outputs)
+			O.data = I.data
 
 /obj/item/integrated_circuit/transfer/activator_splitter
 	name = "activator splitter"
@@ -57,12 +58,13 @@
 	)
 
 /obj/item/integrated_circuit/transfer/activator_splitter/work()
-	for(var/datum/integrated_io/activate/A in outputs)
-		if(A == activators[1])
-			continue
-		if(A.linked.len)
-			for(var/datum/integrated_io/activate/target in A.linked)
-				target.holder.work()
+	if(..())
+		for(var/datum/integrated_io/activate/A in outputs)
+			if(A == activators[1])
+				continue
+			if(A.linked.len)
+				for(var/datum/integrated_io/activate/target in A.linked)
+					target.holder.work()
 
 /obj/item/integrated_circuit/transfer/activator_splitter/medium
 	name = "four activator splitter"

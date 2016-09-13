@@ -45,6 +45,31 @@
 		if(A.linked)
 			A.holder.work()
 
+/obj/item/integrated_circuit/input/textpad
+	name = "text pad"
+	desc = "This small text pad allows someone to input a string into the system."
+	icon_state = "numberpad"
+	number_of_inputs = 0
+	number_of_outputs = 1
+	number_of_activators = 1
+	complexity = 2
+	output_names = list(
+		"string entered"
+	)
+	activator_names = list(
+		"on entered"
+	)
+
+/obj/item/integrated_circuit/input/textpad/ask_for_input(mob/user)
+	var/new_input = input(user, "Enter some words, please.","Number pad") as text
+	if(new_input && istext(new_input))
+		var/datum/integrated_io/O = outputs[1]
+		O.data = new_input
+		O.push_data()
+		var/datum/integrated_io/A = activators[1]
+		if(A.linked)
+			A.holder.work()
+
 /obj/item/integrated_circuit/output/screen
 	name = "screen"
 	desc = "This small screen can display a single piece of data, when the machine is examined closely."

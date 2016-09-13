@@ -17,10 +17,10 @@
 		)
 
 /obj/item/integrated_circuit/time/delay/work()
-	..()
-	var/datum/integrated_io/out_pulse = activators[2]
-	sleep(delay)
-	out_pulse.push_data()
+	if(..())
+		var/datum/integrated_io/out_pulse = activators[2]
+		sleep(delay)
+		out_pulse.push_data()
 
 /obj/item/integrated_circuit/time/delay/five_sec
 	name = "five-sec delay circuit"

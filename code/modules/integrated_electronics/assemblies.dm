@@ -9,13 +9,13 @@
 	var/opened = 0
 
 /obj/item/device/electronic_assembly/medium
-	name = "electronic setup"
+	name = "electronic mechanism"
 	w_class = 3
 	max_components = 20
 	max_complexity = 50
 
 /obj/item/device/electronic_assembly/large
-	name = "electronic device"
+	name = "electronic machine"
 	w_class = 4
 	max_components = 30
 	max_complexity = 60
@@ -40,7 +40,7 @@
 	if(!opened)
 		for(var/obj/item/integrated_circuit/output/screen/S in contents)
 			if(S.stuff_to_display)
-				user << "There's a little screen which displays '[S.stuff_to_display]'."
+				user << "There's a little screen labeled '[S.name]', which displays '[S.stuff_to_display]'."
 	else
 		var/obj/item/integrated_circuit/IC = input(user, "Which circuit do you want to examine?", "Examination") as null|anything in contents
 		if(IC)
@@ -86,6 +86,14 @@
 		playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
 		opened = !opened
 		user << "<span class='notice'>You [opened ? "opened" : "closed"] \the [src].</span>"
+	if(istype(I, /obj/item/device/integrated_electronics/wirer))
+		if(opened)
+			var/obj/item/integrated_circuit/IC = input(user, "Which circuit do you want to examine?", "Examination") as null|anything in contents
+			if(IC)
+				IC.examine(user)
+		else
+			user << "<span class='warning'>\The [src] isn't opened, so you can't fiddle with the internal components.  \
+			Try using a crowbar.</span>"
 
 /obj/item/device/electronic_assembly/attack_self(mob/user)
 	var/list/available_inputs = list()
