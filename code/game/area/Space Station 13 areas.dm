@@ -2527,20 +2527,20 @@ area/space/atmosalert()
 	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
 
 /area/tcommsat/entrance
-	name = "\improper Telecoms Teleporter"
+	name = "\improper Telecomms Teleporter"
 	icon_state = "tcomsatentrance"
 
 /area/tcommsat/chamber
-	name = "\improper Telecoms Central Compartment"
+	name = "\improper Telecomms Central Compartment"
 	icon_state = "tcomsatcham"
 
 /area/tcomsat
-	name = "\improper Telecoms Satellite"
+	name = "\improper Telecomms Satellite"
 	icon_state = "tcomsatlob"
 	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
 
 /area/tcomfoyer
-	name = "\improper Telecoms Foyer"
+	name = "\improper Telecomms Foyer"
 	icon_state = "tcomsatentrance"
 	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
 
@@ -2555,7 +2555,7 @@ area/space/atmosalert()
 	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
 
 /area/tcommsat/computer
-	name = "\improper Telecoms Control Room"
+	name = "\improper Telecomms Control Room"
 	icon_state = "tcomsatcomp"
 
 /area/tcommsat/lounge
