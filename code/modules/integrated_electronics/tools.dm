@@ -26,11 +26,11 @@
 		mode = WIRING
 	else if(mode == WIRING)
 		if(io == selected_io)
-			user << "<span class='warning'>Wiring \the [selected_io.holder]'s [selected_io.name] into itself is rather pointless.<span>"
+			user << "<span class='warning'>Wiring \the [selected_io.holder]'s [selected_io.name] into itself is rather pointless.</span>"
 			return
 		if(io.io_type != selected_io.io_type)
 			user << "<span class='warning'>Those two types of channels are incompatable.  The first is a [selected_io.io_type], \
-			while the second is a [io.io_type].<span>"
+			while the second is a [io.io_type].</span>"
 			return
 		selected_io.linked |= io
 		io.linked |= selected_io
@@ -55,7 +55,7 @@
 	else if(mode == UNWIRING)
 		if(io == selected_io)
 			user << "<span class='warning'>You can't wire a pin into each other, so unwiring \the [selected_io.holder] from \
-			the same pin is rather moot.<span>"
+			the same pin is rather moot.</span>"
 			return
 		if(selected_io in io.linked)
 			io.linked.Remove(selected_io)
@@ -69,7 +69,7 @@
 			mode = UNWIRE
 		else
 			user << "<span class='warning'>\The [selected_io.holder]'s [selected_io.name] and \the [io.holder]'s \
-			[io.name] are not connected.<span>"
+			[io.name] are not connected.</span>"
 			return
 	return
 
@@ -89,7 +89,7 @@
 				user << "<span class='notice'>You decide not to disconnect the data channel.</span>"
 			selected_io = null
 			mode = UNWIRE
-	user << "<span class='notice'>You set \the [src] to [mode].<span>"
+	user << "<span class='notice'>You set \the [src] to [mode].</span>"
 
 #undef WIRE
 #undef WIRING
