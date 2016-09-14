@@ -27,17 +27,19 @@
 	C.radiation = 0
 	C.heal_overall_damage(C.getBruteLoss(), C.getFireLoss())
 	C.reagents.clear_reagents()
-	C.restore_all_organs(ignore_prosthetic_prefs=1) //Covers things like fractures and other things not covered by the above.
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = src
+		H.species.create_organs(H)
+		H.restore_all_organs(ignore_prosthetic_prefs=1) //Covers things like fractures and other things not covered by the above.
 		H.restore_blood()
 		H.mutations.Remove(HUSK)
 		H.status_flags -= DISFIGURED
 		H.update_body(1)
 		for(var/limb in H.organs_by_name)
 			var/obj/item/organ/external/current_limb = H.organs_by_name[limb]
-			current_limb.undislocate()
-			current_limb.open = 0
+			if(current_limb)
+				current_limb.undislocate()
+				current_limb.open = 0
 
 	C.halloss = 0
 	C.shock_stage = 0 //Pain

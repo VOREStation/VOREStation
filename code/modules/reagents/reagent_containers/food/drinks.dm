@@ -256,8 +256,8 @@
 	..()
 
 /obj/item/weapon/reagent_containers/food/drinks/flask
-	name = "\improper Captain's flask"
-	desc = "A metal flask belonging to the captain"
+	name = "\improper Station Administrator's flask"
+	desc = "A metal flask belonging to the Station Administrator"
 	icon_state = "flask"
 	volume = 60
 	center_of_mass = list("x"=17, "y"=7)

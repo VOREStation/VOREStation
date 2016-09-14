@@ -238,7 +238,7 @@
 #define FOOTSTEP_SPRITE_AMT 2
 
 /turf/snow/Entered(atom/A)
-    if(ismob(A))
+    if(isliving(A))
         var/mdir = "[A.dir]"
         if(crossed_dirs[mdir])
             crossed_dirs[mdir] = min(crossed_dirs[mdir] + 1, FOOTSTEP_SPRITE_AMT)

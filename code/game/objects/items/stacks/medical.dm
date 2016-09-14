@@ -246,9 +246,12 @@
 /obj/item/stack/medical/splint
 	name = "medical splints"
 	singular_name = "medical splint"
+	desc = "Modular splints capable of supporting and immobilizing bones in both limbs and appendages."
 	icon_state = "splint"
 	amount = 5
 	max_amount = 5
+
+	var/list/splintable_organs = list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG, BP_L_HAND, BP_R_HAND, BP_L_FOOT, BP_R_FOOT)	//List of organs you can splint, natch.
 
 /obj/item/stack/medical/splint/attack(mob/living/carbon/M as mob, mob/living/user as mob)
 	if(..())
@@ -258,8 +261,8 @@
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 		var/limb = affecting.name
-		if(!(affecting.organ_tag in list("l_arm","r_arm","l_leg","r_leg")))
-			user << "<span class='danger'>You can't apply a splint there!</span>"
+		if(!(affecting.organ_tag in splintable_organs))
+			user << "<span class='danger'>You can't use \the [src] to apply a splint there!</span>"
 			return
 		if(affecting.status & ORGAN_SPLINTED)
 			user << "<span class='danger'>[M]'s [limb] is already splinted!</span>"
@@ -267,7 +270,8 @@
 		if (M != user)
 			user.visible_message("<span class='danger'>[user] starts to apply \the [src] to [M]'s [limb].</span>", "<span class='danger'>You start to apply \the [src] to [M]'s [limb].</span>", "<span class='danger'>You hear something being wrapped.</span>")
 		else
-			if((!user.hand && affecting.organ_tag == "r_arm") || (user.hand && affecting.organ_tag == "l_arm"))
+			if(( !user.hand && (affecting.organ_tag in list(BP_R_ARM, BP_R_HAND)) || \
+				user.hand && (affecting.organ_tag in list(BP_L_ARM, BP_L_HAND)) ))
 				user << "<span class='danger'>You can't apply a splint to the arm you're using!</span>"
 				return
 			user.visible_message("<span class='danger'>[user] starts to apply \the [src] to their [limb].</span>", "<span class='danger'>You start to apply \the [src] to your [limb].</span>", "<span class='danger'>You hear something being wrapped.</span>")
@@ -283,3 +287,12 @@
 			affecting.status |= ORGAN_SPLINTED
 			use(1)
 		return
+
+
+/obj/item/stack/medical/splint/ghetto
+	name = "makeshift splints"
+	singular_name = "makeshift splint"
+	desc = "For holding your limbs in place with duct tape and scrap metal."
+	icon_state = "tape-splint"
+	amount = 1
+	splintable_organs = list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG)

@@ -4,6 +4,7 @@
 	cost = 150
 	obj_path = /obj/item/weapon/spell/aura/biomed
 	ability_icon_state = "tech_biomedaura"
+	category = SUPPORT_SPELLS
 
 /obj/item/weapon/spell/aura/biomed
 	name = "restoration aura"

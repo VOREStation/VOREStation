@@ -192,9 +192,9 @@
 	desc = "A packet of six AcmeCo cigarettes. For those who somehow want to obtain the record for the most amount of cancerous tumors."
 	icon_state = "Bpacket"
 
-	New()
-		..()
-		fill_cigarre_package(src,list("fuel" = 15))
+//	New()
+//		..()
+//		fill_cigarre_package(src,list("fuel" = 15))
 
 // New exciting ways to kill your lungs! - Earthcrusher //
 
@@ -220,7 +220,7 @@
 
 /obj/item/weapon/storage/fancy/cigarettes/professionals
 	name = "\improper pack of Professional 120s"
-	desc = "Let's face it - if you're smoking these, you're either trying to look upper-class or you're 80 years old. That's the only excuse. They taste disgusting, too."
+	desc = "Let's face it - if you're smoking these, you're either trying to look upper-class or you're 80 years old. That's the only excuse. They are, however, very good quality."
 	icon_state = "P100packet"
 
 /obj/item/weapon/storage/fancy/cigar

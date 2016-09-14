@@ -8,6 +8,11 @@
 	icon_state = "undershirt"
 	has_color = TRUE
 
+/datum/category_item/underwear/undershirt/shirt_long
+	name = "Longsleeve Shirt"
+	icon_state = "undershirt_long"
+	has_color = TRUE
+
 /datum/category_item/underwear/undershirt/tank_top
 	name = "Tank top"
 	icon_state = "tanktop"
@@ -63,3 +68,19 @@
 /datum/category_item/underwear/undershirt/shirt_blue_striped
 	name = "Shirt, blue stripes"
 	icon_state = "shirt_stripes_s"
+
+/datum/category_item/underwear/undershirt/bowling
+	name = "Bowling Shirt, Red"
+	icon_state = "bowling"
+
+/datum/category_item/underwear/undershirt/bowlingp
+	name = "Bowling Shirt, Pink"
+	icon_state = "bowlingp"
+
+/datum/category_item/underwear/undershirt/bowlinga
+	name = "Bowling Shirt, Aqua"
+	icon_state = "bowlinga"
+
+/datum/category_item/underwear/undershirt/bowlingw
+	name = "Bowling Shirt, White"
+	icon_state = "bowlingw"

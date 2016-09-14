@@ -33,3 +33,8 @@
 
 /area/crew_quarters/sleep/vistor_room_12
 	flags = RAD_SHIELDED
+
+/area/teleporter/departing
+	name = "\improper Long-Range Teleporter"
+	icon_state = "teleporter"
+	music = "signal"

@@ -5,6 +5,7 @@
 	strike."
 	cost = 150
 	obj_path = /obj/item/weapon/spell/projectile/lightning
+	category = OFFENSIVE_SPELLS
 
 /obj/item/weapon/spell/projectile/lightning
 	name = "lightning strike"
@@ -16,7 +17,8 @@
 	energy_cost_per_shot = 2500
 	instability_per_shot = 10
 	cooldown = 20
-	pre_shot_delay = 20
+	pre_shot_delay = 10
+	fire_sound = 'sound/weapons/gauss_shoot.ogg'
 
 /obj/item/projectile/beam/lightning
 	name = "lightning"

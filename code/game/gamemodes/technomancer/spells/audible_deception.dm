@@ -6,6 +6,7 @@
 	cost = 150
 	obj_path = /obj/item/weapon/spell/audible_deception
 	ability_icon_state = "tech_audibledeception"
+	category = UTILITY_SPELLS
 
 /obj/item/weapon/spell/audible_deception
 	name = "audible deception"

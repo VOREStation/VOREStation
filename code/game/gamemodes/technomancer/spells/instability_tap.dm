@@ -5,6 +5,7 @@
 	cost = 120
 	obj_path = /obj/item/weapon/spell/instability_tap
 	ability_icon_state = "tech_instabilitytap"
+	category = UTILITY_SPELLS
 
 /obj/item/weapon/spell/instability_tap
 	name = "instability tap"

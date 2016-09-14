@@ -58,7 +58,6 @@
 		signal.data["sigtype"]="status"
 		radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)
 
-
 /obj/machinery/air_sensor/proc/set_frequency(new_frequency)
 	radio_controller.remove_object(src, frequency)
 	frequency = new_frequency
@@ -76,12 +75,9 @@ obj/machinery/air_sensor/Destroy()
 	icon = 'icons/obj/computer.dmi'
 	icon_keyboard = "atmos_key"
 	icon_screen = "tank"
-
 	name = "Computer"
-
 	var/frequency = 1439
 	var/list/sensors = list()
-
 	var/list/sensor_information = list()
 	var/datum/radio_frequency/radio_connection
 	circuit = /obj/item/weapon/circuitboard/air_management
@@ -121,8 +117,8 @@ obj/machinery/computer/general_air_control/Destroy()
 	data["sensors"] = sensors_ui
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "atmo_control.tmpl", src.name, 525, 600)
+	if(!ui)
+		ui = new(user, src, ui_key, "atmo_control.tmpl", name, 525, 600)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(5)
@@ -137,14 +133,11 @@ obj/machinery/computer/general_air_control/Destroy()
 
 /obj/machinery/computer/general_air_control/large_tank_control
 	icon = 'icons/obj/computer.dmi'
-
 	frequency = 1441
 	var/input_tag
 	var/output_tag
-
 	var/list/input_info
 	var/list/output_info
-
 	var/input_flow_setting = 200
 	var/pressure_setting = ONE_ATMOSPHERE * 45
 	circuit = /obj/item/weapon/circuitboard/air_management/tank_control
@@ -179,8 +172,8 @@ obj/machinery/computer/general_air_control/Destroy()
 	data["pressure_setting"] = pressure_setting
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "atmo_control.tmpl", src.name, 660, 500)
+	if(!ui)
+		ui = new(user, src, ui_key, "atmo_control.tmpl", name, 660, 500)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(5)
@@ -251,14 +244,11 @@ obj/machinery/computer/general_air_control/Destroy()
 
 /obj/machinery/computer/general_air_control/supermatter_core
 	icon = 'icons/obj/computer.dmi'
-
 	frequency = 1438
 	var/input_tag
 	var/output_tag
-
 	var/list/input_info
 	var/list/output_info
-
 	var/input_flow_setting = 700
 	var/pressure_setting = 100
 	circuit = /obj/item/weapon/circuitboard/air_management/supermatter_core
@@ -292,8 +282,8 @@ obj/machinery/computer/general_air_control/Destroy()
 	data["pressure_setting"] = pressure_setting
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "atmo_control.tmpl", src.name, 650, 500)
+	if(!ui)
+		ui = new(user, src, ui_key, "atmo_control.tmpl", name, 650, 500)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(5)
@@ -365,12 +355,9 @@ obj/machinery/computer/general_air_control/Destroy()
 /obj/machinery/computer/general_air_control/fuel_injection
 	icon = 'icons/obj/computer.dmi'
 	icon_screen = "alert:0"
-
 	var/device_tag
 	var/list/device_info
-
 	var/automation = 0
-
 	var/cutoff_temperature = 2000
 	var/on_temperature = 1200
 	circuit = /obj/item/weapon/circuitboard/air_management/injector_control
@@ -427,8 +414,8 @@ obj/machinery/computer/general_air_control/Destroy()
 		data["device_info"] = null
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "atmo_control.tmpl", src.name, 650, 500)
+	if(!ui)
+		ui = new(user, src, ui_key, "atmo_control.tmpl", name, 650, 500)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(5)
@@ -495,7 +482,3 @@ obj/machinery/computer/general_air_control/Destroy()
 		)
 
 		radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)
-
-
-
-

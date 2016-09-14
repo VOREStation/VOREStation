@@ -6,6 +6,7 @@
 	cost = 100
 	obj_path = /obj/item/weapon/spell/resurrect
 	ability_icon_state = "tech_resurrect"
+	category = SUPPORT_SPELLS
 
 /obj/item/weapon/spell/resurrect
 	name = "resurrect"
