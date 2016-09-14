@@ -23,7 +23,6 @@
 		if(src.mind.changeling.recursive_enhancement)
 			effect = effect + 20
 			src << "<span class='notice'>We make them extremely weak.</span>"
-			src.mind.changeling.recursive_enhancement = 0
 		var/health_to_take_away = H.maxHealth * (effect / 100)
 
 		H.maxHealth -= health_to_take_away

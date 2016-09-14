@@ -262,7 +262,7 @@
 			id.icon_state = "gold"
 			id.access = get_all_accesses()
 			id.registered_name = H.real_name
-			id.assignment = "Captain"
+			id.assignment = "Station Administrator"
 			id.name = "[id.registered_name]'s ID Card ([id.assignment])"
 			H.equip_to_slot_or_del(id, slot_wear_id)
 			H.update_inv_wear_id()
@@ -959,3 +959,13 @@
 		log_admin("[key_name(src)] has toggled [M.key]'s [blockname] block [state]!")
 	else
 		alert("Invalid mob")
+
+/datum/admins/proc/view_runtimes()
+	set category = "Debug"
+	set name = "View Runtimes"
+	set desc = "Open the Runtime Viewer"
+
+	if(!check_rights(R_DEBUG))
+		return
+
+	error_cache.showTo(usr)

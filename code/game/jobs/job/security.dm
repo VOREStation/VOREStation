@@ -7,7 +7,7 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the captain"
+	supervisors = "the station administrator"
 	selection_color = "#8E2929"
 	idtype = /obj/item/weapon/card/id/security/head
 	req_admin_notify = 1
@@ -20,6 +20,7 @@
 			            access_forensics_lockers, access_morgue, access_maint_tunnels, access_all_personal_lockers,
 			            access_research, access_engine, access_mining, access_medical, access_construction, access_mailsorting,
 			            access_heads, access_hos, access_RC_announce, access_keycard_auth, access_gateway, access_external_airlocks)
+	alt_titles = list("Commander")
 	minimum_character_age = 25
 	minimal_player_age = 14
 

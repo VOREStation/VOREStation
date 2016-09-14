@@ -23,5 +23,6 @@
 	config_tag = "autotraitor"
 	antag_tags = list(MODE_AUTOTRAITOR)
 	round_autoantag = 1
-	required_players_secret = 1
+	required_players_secret = 0
+	required_enemies = 0
 	antag_scaling_coeff = 5

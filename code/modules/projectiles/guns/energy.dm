@@ -19,6 +19,9 @@
 	var/recharge_time = 4
 	var/charge_tick = 0
 
+/obj/item/weapon/gun/energy/attackby(var/obj/item/A as obj, mob/user as mob)
+	..()
+
 /obj/item/weapon/gun/energy/switch_firemodes(mob/user)
 	if(..())
 		update_icon()

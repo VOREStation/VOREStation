@@ -6,6 +6,7 @@
 	cost = 150
 	obj_path = /obj/item/weapon/spell/aura/frost
 	ability_icon_state = "tech_frostaura"
+	category = DEFENSIVE_SPELLS // Scepter-less frost aura is nonlethal.
 
 /obj/item/weapon/spell/aura/frost
 	name = "chilling aura"
@@ -34,9 +35,5 @@
 		if(protection < 1)
 			var/cold_factor = abs(protection - 1)
 			H.bodytemperature = max( (H.bodytemperature - temp_change) * cold_factor, temp_cap)
-
-//		//We use hotspot_expose() to allow firesuits to protect from this aura.
-//		var/turf/location = get_turf(H)
-//		location.hotspot_expose(1, 50, 1)
 
 	owner.adjust_instability(1)

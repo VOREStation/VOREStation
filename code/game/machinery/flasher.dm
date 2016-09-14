@@ -1,5 +1,4 @@
 // It is a gizmo that flashes a small area
-
 /obj/machinery/flasher
 	name = "Mounted flash"
 	desc = "A wall-mounted flashbulb device."
@@ -27,48 +26,48 @@
 
 /obj/machinery/flasher/power_change()
 	..()
-	if ( !(stat & NOPOWER) )
+	if(!(stat & NOPOWER))
 		icon_state = "[base_state]1"
-//		src.sd_SetLuminosity(2)
+//		sd_SetLuminosity(2)
 	else
 		icon_state = "[base_state]1-p"
-//		src.sd_SetLuminosity(0)
+//		sd_SetLuminosity(0)
 
 //Don't want to render prison breaks impossible
 /obj/machinery/flasher/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/wirecutters))
+	if(istype(W, /obj/item/weapon/wirecutters))
 		add_fingerprint(user)
-		src.disable = !src.disable
-		if (src.disable)
+		disable = !disable
+		if(disable)
 			user.visible_message("<span class='warning'>[user] has disconnected the [src]'s flashbulb!</span>", "<span class='warning'>You disconnect the [src]'s flashbulb!</span>")
-		if (!src.disable)
+		if(!disable)
 			user.visible_message("<span class='warning'>[user] has connected the [src]'s flashbulb!</span>", "<span class='warning'>You connect the [src]'s flashbulb!</span>")
 
 //Let the AI trigger them directly.
 /obj/machinery/flasher/attack_ai()
-	if (src.anchored)
-		return src.flash()
+	if(anchored)
+		return flash()
 	else
 		return
 
 /obj/machinery/flasher/proc/flash()
-	if (!(powered()))
+	if(!(powered()))
 		return
 
-	if ((src.disable) || (src.last_flash && world.time < src.last_flash + 150))
+	if((disable) || (last_flash && world.time < last_flash + 150))
 		return
 
 	playsound(src.loc, 'sound/weapons/flash.ogg', 100, 1)
 	flick("[base_state]_flash", src)
-	src.last_flash = world.time
+	last_flash = world.time
 	use_power(1500)
 
 	for (var/mob/O in viewers(src, null))
-		if (get_dist(src, O) > src.range)
+		if(get_dist(src, O) > range)
 			continue
 
 		var/flash_time = strength
-		if (istype(O, /mob/living/carbon/human))
+		if(istype(O, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = O
 			if(!H.eyecheck() <= 0)
 				continue
@@ -94,26 +93,26 @@
 	..(severity)
 
 /obj/machinery/flasher/portable/HasProximity(atom/movable/AM as mob|obj)
-	if ((src.disable) || (src.last_flash && world.time < src.last_flash + 150))
+	if((disable) || (last_flash && world.time < last_flash + 150))
 		return
 
 	if(istype(AM, /mob/living/carbon))
 		var/mob/living/carbon/M = AM
-		if ((M.m_intent != "walk") && (src.anchored))
-			src.flash()
+		if((M.m_intent != "walk") && (anchored))
+			flash()
 
 /obj/machinery/flasher/portable/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/wrench))
+	if(istype(W, /obj/item/weapon/wrench))
 		add_fingerprint(user)
-		src.anchored = !src.anchored
+		anchored = !anchored
 
-		if (!src.anchored)
+		if(!anchored)
 			user.show_message(text("<span class='warning'>[src] can now be moved.</span>"))
-			src.overlays.Cut()
+			overlays.Cut()
 
-		else if (src.anchored)
+		else if(anchored)
 			user.show_message(text("<span class='warning'>[src] is now secured.</span>"))
-			src.overlays += "[base_state]-s"
+			overlays += "[base_state]-s"
 
 /obj/machinery/button/flasher
 	name = "flasher button"
@@ -130,7 +129,7 @@
 	icon_state = "launcheract"
 
 	for(var/obj/machinery/flasher/M in machines)
-		if(M.id == src.id)
+		if(M.id == id)
 			spawn()
 				M.flash()
 

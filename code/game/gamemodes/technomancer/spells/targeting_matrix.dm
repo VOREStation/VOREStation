@@ -5,6 +5,7 @@
 	cost = 150
 	ability_icon_state = "tech_targetingmatrix"
 	obj_path = /obj/item/weapon/spell/targeting_matrix
+	category = UTILITY_SPELLS
 
 /obj/item/weapon/spell/targeting_matrix
 	name = "targeting matrix"

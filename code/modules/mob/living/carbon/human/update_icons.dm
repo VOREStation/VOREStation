@@ -781,7 +781,11 @@ var/global/list/damage_icon_parts = list()
 
 		standing = image("icon" = t_icon, "icon_state" = t_state) //VOREStation Edit
 		standing.color = wear_suit.color
-
+		//VORESTATION Code Start
+		if(wear_suit.icon_override && wear_suit.icon_override == 'icons/mob/taursuits_vr.dmi')
+			standing.pixel_x = -16
+			standing.layer = 5
+		//VORESTATION Code End
 		if( istype(wear_suit, /obj/item/clothing/suit/straight_jacket) )
 			drop_from_inventory(handcuffed)
 			drop_l_hand()
