@@ -281,9 +281,8 @@ var/list/sacrificed = list()
 						if(I.damage <= 5 && I.organ_tag == O_EYES)
 							H.sdisabilities &= ~BLIND
 					for(var/obj/item/organ/E in H.organs)
-						if((E.damage > 0) && (E.damage < E.min_broken_damage * config.organ_health_multiplier) && (E.status & ORGAN_BROKEN))
-							if(prob(25))
-								E.status = 0
+						if((E.damage < E.min_broken_damage * config.organ_health_multiplier) && (E.status & ORGAN_BROKEN))
+							E.status = 0
 			return
 
 
