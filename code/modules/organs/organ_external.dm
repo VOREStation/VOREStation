@@ -50,6 +50,7 @@
 	var/list/implants = list()         // Currently implanted objects.
 	var/organ_rel_size = 25            // Relative size of the organ.
 	var/base_miss_chance = 20          // Chance of missing.
+	var/atom/movable/splinted
 
 	// Joint/state stuff.
 	var/can_grasp                      // It would be more appropriate if these two were named "affects_grasp" and "affects_stand" at this point
@@ -83,6 +84,10 @@
 	if(internal_organs)
 		for(var/obj/item/organ/O in internal_organs)
 			qdel(O)
+
+	if(splinted && splinted.loc == src)
+		qdel(splinted)
+	splinted = null
 
 	if(owner)
 		owner.organs -= src
@@ -1006,21 +1011,25 @@ Note that amputating the affected organ does in fact remove the infection from t
 	// This is mostly for the ninja suit to stop ninja being so crippled by breaks.
 	// TODO: consider moving this to a suit proc or process() or something during
 	// hardsuit rewrite.
-	if(owner && !(status & ORGAN_SPLINTED) && istype(owner,/mob/living/carbon/human))
+	if(!(status & ORGAN_SPLINTED) && owner && istype(owner.wear_suit, /obj/item/clothing/suit/space))
+		var/obj/item/clothing/suit/space/suit = owner.wear_suit
+		suit.check_limb_support()
 
-		var/mob/living/carbon/human/H = owner
+/obj/item/organ/external/proc/apply_splint(var/atom/movable/splint)
+	if(!splinted)
+		splinted = splint
+		status |= ORGAN_SPLINTED
+		return 1
+	return 0
 
-		if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/space))
-
-			var/obj/item/clothing/suit/space/suit = H.wear_suit
-
-			if(isnull(suit.supporting_limbs))
-				return
-
-			owner << "<span class='notice'>You feel \the [suit] constrict about your [name], supporting it.</span>"
-			status |= ORGAN_SPLINTED
-			suit.supporting_limbs |= src
-	return
+/obj/item/organ/external/proc/remove_splint()
+	if(splinted)
+		if(splinted.loc == src)
+			splinted.dropInto(owner? owner.loc : src.loc)
+		splinted = null
+		status &= ~(ORGAN_SPLINTED)
+		return 1
+	return 0
 
 /obj/item/organ/external/proc/mend_fracture()
 	if(robotic >= ORGAN_ROBOT)
