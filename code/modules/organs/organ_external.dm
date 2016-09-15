@@ -50,6 +50,7 @@
 	var/list/implants = list()         // Currently implanted objects.
 	var/organ_rel_size = 25            // Relative size of the organ.
 	var/base_miss_chance = 20          // Chance of missing.
+	var/atom/movable/splinted
 
 	// Joint/state stuff.
 	var/can_grasp                      // It would be more appropriate if these two were named "affects_grasp" and "affects_stand" at this point
@@ -83,6 +84,10 @@
 	if(internal_organs)
 		for(var/obj/item/organ/O in internal_organs)
 			qdel(O)
+
+	if(splinted && splinted.loc == src)
+		qdel(splinted)
+	splinted = null
 
 	if(owner)
 		owner.organs -= src
@@ -524,11 +529,11 @@ This function completely restores a damaged organ to perfect condition.
 //external organs handle brokenness a bit differently when it comes to damage. Instead brute_dam is checked inside process()
 //this also ensures that an external organ cannot be "broken" without broken_description being set.
 /obj/item/organ/external/is_broken()
-	return ((status & ORGAN_CUT_AWAY) || ((status & ORGAN_BROKEN) && !(status & ORGAN_SPLINTED)))
+	return ((status & ORGAN_CUT_AWAY) || ((status & ORGAN_BROKEN) && !(splinted)))
 
 //Determines if we even need to process this organ.
 /obj/item/organ/external/proc/need_process()
-	if(status & (ORGAN_CUT_AWAY|ORGAN_BLEEDING|ORGAN_BROKEN|ORGAN_DESTROYED|ORGAN_SPLINTED|ORGAN_DEAD|ORGAN_MUTATED))
+	if(status & (ORGAN_CUT_AWAY|ORGAN_BLEEDING|ORGAN_BROKEN|ORGAN_DESTROYED|ORGAN_DEAD|ORGAN_MUTATED))
 		return 1
 	if((brute_dam || burn_dam) && (robotic < ORGAN_ROBOT)) //Robot limbs don't autoheal and thus don't need to process when damaged
 		return 1
@@ -1006,21 +1011,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 	// This is mostly for the ninja suit to stop ninja being so crippled by breaks.
 	// TODO: consider moving this to a suit proc or process() or something during
 	// hardsuit rewrite.
-	if(owner && !(status & ORGAN_SPLINTED) && istype(owner,/mob/living/carbon/human))
 
-		var/mob/living/carbon/human/H = owner
-
-		if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/space))
-
-			var/obj/item/clothing/suit/space/suit = H.wear_suit
-
-			if(isnull(suit.supporting_limbs))
-				return
-
-			owner << "<span class='notice'>You feel \the [suit] constrict about your [name], supporting it.</span>"
-			status |= ORGAN_SPLINTED
-			suit.supporting_limbs |= src
-	return
+	if(!(splinted) && owner && istype(owner.wear_suit, /obj/item/clothing/suit/space))
+		var/obj/item/clothing/suit/space/suit = owner.wear_suit
+		suit.handle_fracture(owner, src)
 
 /obj/item/organ/external/proc/mend_fracture()
 	if(robotic >= ORGAN_ROBOT)
@@ -1030,6 +1024,20 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	status &= ~ORGAN_BROKEN
 	return 1
+
+/obj/item/organ/external/proc/apply_splint(var/atom/movable/splint)
+	if(!splinted)
+		splinted = splint
+		return 1
+	return 0
+
+/obj/item/organ/external/proc/remove_splint()
+	if(splinted)
+		if(splinted.loc == src)
+			splinted.dropInto(owner? owner.loc : src.loc)
+		splinted = null
+		return 1
+	return 0
 
 /obj/item/organ/external/robotize(var/company, var/skip_prosthetics = 0, var/keep_organs = 0)
 
@@ -1054,6 +1062,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	dislocated = -1
 	cannot_break = 1
+	remove_splint()
 	get_icon()
 	unmutate()
 

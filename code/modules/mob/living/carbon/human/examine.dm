@@ -251,8 +251,8 @@
 	//splints
 	for(var/organ in list(BP_L_LEG, BP_R_LEG, BP_L_ARM, BP_R_ARM))
 		var/obj/item/organ/external/o = get_organ(organ)
-		if(o && o.status & ORGAN_SPLINTED)
-			msg += "<span class='warning'>[T.He] [T.has] a splint on [T.his] [o.name]!</span>\n"
+		if(o && o.splinted && o.splinted.loc == o)
+			msg += "<span class='warning'>[T.He] [T.has] \a [o.splinted] on [T.his] [o.name]!</span>\n"
 
 	if(suiciding)
 		msg += "<span class='warning'>[T.He] appears to have commited suicide... there is no hope of recovery.</span>\n"
