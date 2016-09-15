@@ -29,6 +29,7 @@
 	item_state = null	//so the human update icon uses the icon_state instead.
 	fire_sound = 'sound/weapons/Taser.ogg'
 	max_shots = 21	//7 trigger pulls
+	fire_delay = 6	//This one's not a handgun, it should have the same fire delay as everything else
 
 	projectile_type = /obj/item/projectile/beam/stun/weak
 	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 2, TECH_ILLEGAL = 3)
@@ -51,6 +52,8 @@
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 5, TECH_POWER = 3)
 	slot_flags = SLOT_BELT
 	force = 8 //looks heavier than a pistol
+	w_class = 4	//Looks bigger than a pistol, too.
+	fire_delay = 6	//This one's not a handgun, it should have the same fire delay as everything else
 	self_recharge = 1
 	modifystate = null
 
