@@ -226,6 +226,7 @@ var/global/list/damage_icon_parts = list()
 	var/skeleton = (SKELETON in src.mutations)
 
 	robolimb_count = 0
+	robobody_count = 0
 
 	//CACHING: Generate an index key from visible bodyparts.
 	//0 = destroyed, 1 = normal, 2 = robotic, 3 = necrotic.
@@ -257,6 +258,8 @@ var/global/list/damage_icon_parts = list()
 		else if(part.robotic >= ORGAN_ROBOT)
 			icon_key += "2[part.model ? "-[part.model]": ""]"
 			robolimb_count++
+			if(part.organ_tag == BP_HEAD || part.organ_tag == BP_TORSO || part.organ_tag == BP_GROIN)
+				robobody_count ++
 		else if(part.status & ORGAN_DEAD)
 			icon_key += "3"
 		else
