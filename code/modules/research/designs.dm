@@ -1682,6 +1682,23 @@ CIRCUITS BELOW
 	build_path = /obj/item/integrated_circuit/output/screen
 	sort_string = "WAAED"
 
+/datum/design/circuit/integrated_circuit/input_output/med_scanner
+	id = "cc-medscanner"
+	build_path = /obj/item/integrated_circuit/input/med_scanner
+	req_tech = list(TECH_MATERIAL = 2, TECH_MAGNETS = 2, TECH_BIOMED = 2)
+	sort_string = "WAAEE"
+
+/datum/design/circuit/integrated_circuit/input_output/adv_med_scanner
+	id = "cc-advmedscanner"
+	build_path = /obj/item/integrated_circuit/input/adv_med_scanner
+	req_tech = list(TECH_MATERIAL = 2, TECH_MAGNETS = 3, TECH_BIOMED = 4)
+	sort_string = "WAAEF"
+
+/datum/design/circuit/integrated_circuit/input_output/local_locator
+	id = "cc-locallocator"
+	build_path = /obj/item/integrated_circuit/input/local_locator
+	sort_string = "WAAEG"
+
 
 
 /datum/design/circuit/integrated_circuit/logic/AssembleDesignName()
@@ -1740,7 +1757,7 @@ CIRCUITS BELOW
 	sort_string = "WAAGA"
 	req_tech = list(TECH_ENGINEERING = 4, TECH_DATA = 4, TECH_COMBAT = 5)
 
-/datum/design/circuit/integrated_circuit/manipulation/weapon_firing
+/datum/design/circuit/integrated_circuit/manipulation/smoke
 	id = "cc-smoke"
 	build_path = /obj/item/integrated_circuit/manipulation/smoke
 	sort_string = "WAAGB"

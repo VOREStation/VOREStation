@@ -92,6 +92,9 @@
 
 	var/mob/M = usr
 
+	if(!M.canmove || M.stat || M.restrained())
+		return
+
 	var/input = sanitizeSafe(input("What do you want to name the circuit?", ,""), MAX_NAME_LEN)
 
 	if(src && input)
@@ -156,13 +159,14 @@
 								words += "<a href=?src=\ref[src];wire=1;user=\ref[user];pin=\ref[io]>\[[linked.name]\]</a> \
 								@ <a href=?src=\ref[linked.holder];examine=1;user=\ref[user]>[linked.holder]</a><br>"
 						if(outputs.len > inputs.len)
-							height = Floor(outputs.len / inputs.len)
-						//world << "I wrote [words] at ([i],[j])."
+						//	height = Floor(outputs.len / inputs.len)
+							height = 1 // Because of bugs, if there's more outputs than inputs, it causes the output side to be hidden.
+						//world << "I wrote [words] at ([i],[j]).  Height = [height]."
 				if(2)
 					if(i == 1)
 						words = "[src.name]<br><br>[src.desc]"
 						height = row_height
-						//world << "I wrote the center piece because i was equal to 1, at ([i],[j])."
+						//world << "I wrote the center piece because i was equal to 1, at ([i],[j]).  Height = [height]."
 					else
 						continue
 				if(3)
@@ -179,8 +183,9 @@
 								words += "<a href=?src=\ref[src];wire=1;user=\ref[user];pin=\ref[io]>\[[linked.name]\]</a> \
 								@ <a href=?src=\ref[linked.holder];examine=1;user=\ref[user]>[linked.holder]</a><br>"
 						if(inputs.len > outputs.len)
-							height = Floor(inputs.len / outputs.len)
-						//world << "I wrote [words] at ([i],[j])."
+						//	height = Floor(inputs.len / outputs.len)
+							height = 1 // See above.
+						//world << "I wrote [words] at ([i],[j]).  Height = [height]."
 			HTML += "<td align='center' rowspan='[height]'>[words]</td>"
 			//HTML += "<td align='center'>[words]</td>"
 			//world << "Writing to ([i],[j])."
@@ -209,10 +214,14 @@
 	HTML += "</table>"
 	HTML += "</div>"
 
+	HTML += "<br><font color='0000FF'>Complexity: [complexity]</font>"
 	HTML += "<br><font color='0000FF'>[extended_desc]</font>"
 
 	HTML += "</body></html>"
 	user << browse(HTML, "window=circuit-\ref[src];size=600x350;border=1;can_resize=1;can_close=1;can_minimize=1")
+
+	//user << sanitize(HTML, "window=debug;size=400x400;border=1;can_resize=1;can_close=1;can_minimize=1")
+	//world << sanitize(HTML)
 
 	user.set_machine(src)
 	onclose(user, "circuit-\ref[src]")
@@ -223,6 +232,9 @@
 
 	if(!user || !user.Adjacent(get_turf(src)) )
 		return 1
+
+	if(!user.canmove || user.stat || user.restrained())
+		return
 
 	if(href_list["wire"])
 		if(ishuman(user) && Adjacent(user))

@@ -37,14 +37,15 @@
 
 /obj/item/device/electronic_assembly/examine(mob/user)
 	..()
-	if(!opened)
-		for(var/obj/item/integrated_circuit/output/screen/S in contents)
-			if(S.stuff_to_display)
-				user << "There's a little screen labeled '[S.name]', which displays '[S.stuff_to_display]'."
-	else
-		var/obj/item/integrated_circuit/IC = input(user, "Which circuit do you want to examine?", "Examination") as null|anything in contents
-		if(IC)
-			IC.examine(user)
+	if(user.Adjacent(src))
+		if(!opened)
+			for(var/obj/item/integrated_circuit/output/screen/S in contents)
+				if(S.stuff_to_display)
+					user << "There's a little screen labeled '[S.name]', which displays '[S.stuff_to_display]'."
+		else
+			var/obj/item/integrated_circuit/IC = input(user, "Which circuit do you want to examine?", "Examination") as null|anything in contents
+			if(IC)
+				IC.examine(user)
 
 /obj/item/device/electronic_assembly/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I, /obj/item/integrated_circuit))
@@ -98,7 +99,8 @@
 /obj/item/device/electronic_assembly/attack_self(mob/user)
 	var/list/available_inputs = list()
 	for(var/obj/item/integrated_circuit/input/input in contents)
-		available_inputs.Add(input)
+		if(input.can_be_asked_input)
+			available_inputs.Add(input)
 	var/obj/item/integrated_circuit/input/choice = input(user, "What do you want to interact with?", "Interaction") as null|anything in available_inputs
 	if(choice)
 		choice.ask_for_input(user)
