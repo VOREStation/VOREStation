@@ -62,13 +62,13 @@
 		return 1
 
 /*
-	Centcom root authorization certificate
+	CentCom root authorization certificate
 
 	Non-destructive, officially sanctioned.
 	Has the same effect on computers as an emag.
 */
 /datum/file/centcom_auth
-	name = "Centcom Root Access Token"
+	name = "CentCom Root Access Token"
 	extension = "auth"
 	volume = 100
 	copy()

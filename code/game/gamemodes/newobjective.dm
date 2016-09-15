@@ -264,7 +264,7 @@ datum
 				target = targeta
 				job = joba
 				weight = get_points(job)
-				explanation_text = "Frame [target.current.real_name], the [target.assigned_role] for a crime and make sure they are arrested and brought back to the Centcom station alive.  We'll handle the rest from there."
+				explanation_text = "Frame [target.current.real_name], the [target.assigned_role] for a crime and make sure they are arrested and brought back to the CentCom station alive.  We'll handle the rest from there."
 
 			check_completion()
 				if(!emergency_shuttle.returned())
