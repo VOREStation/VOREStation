@@ -6,7 +6,7 @@
 	item_state = "laser"
 	fire_sound = 'sound/weapons/Laser.ogg'
 	slot_flags = SLOT_BELT|SLOT_BACK
-	w_class = 3
+	w_class = 4
 	force = 10
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	matter = list(DEFAULT_WALL_MATERIAL = 2000)
@@ -71,6 +71,7 @@ obj/item/weapon/gun/energy/retro
 	projectile_type = /obj/item/projectile/beam/heavylaser/cannon
 	max_shots = 1
 	fire_delay = 30
+	w_class = 4
 //	requires_two_hands = 1
 	one_handed_penalty = 6 // The thing's heavy and huge.
 	accuracy = 3
