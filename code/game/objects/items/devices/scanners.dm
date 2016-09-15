@@ -143,6 +143,18 @@ REAGENT SCANNER
 		user.show_message("<span class='warning'>Significant brain damage detected. Subject may have had a concussion.</span>")
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
+		for(var/name_i in H.internal_organs_by_name)
+			var/obj/item/organ/internal/i = H.internal_organs_by_name[name_i]
+			if(istype(i, /obj/item/organ/internal/appendix))
+				var/obj/item/organ/internal/appendix/a = H.internal_organs_by_name[name_i]
+				if(a.inflamed > 3)
+					user.show_message(text("<span class='warning'>Severe inflamation detected in subject [a.name].</span>"), 1)
+				else if(a.inflamed > 2)
+					user.show_message(text("<span class='warning'>Moderate inflamation detected in subject [a.name].</span>"), 1)
+				else if(a.inflamed >= 1)
+					user.show_message(text("<span class='warning'>Mild inflamation detected in subject [a.name].</span>"), 1)
+
+
 		for(var/name in H.organs_by_name)
 			var/obj/item/organ/external/e = H.organs_by_name[name]
 			if(!e)
@@ -165,6 +177,7 @@ REAGENT SCANNER
 			for(var/datum/wound/W in e.wounds) if(W.internal)
 				user.show_message(text("<span class='warning'>Internal bleeding detected. Advanced scanner required for location.</span>"), 1)
 				break
+
 		if(M:vessel)
 			var/blood_volume = H.vessel.get_reagent_amount("blood")
 			var/blood_percent =  round((blood_volume / H.species.blood_volume)*100)
