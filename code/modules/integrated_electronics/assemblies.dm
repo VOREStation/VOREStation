@@ -3,19 +3,21 @@
 	desc = "It's a case, for building electronics with."
 	w_class = 2
 	icon = 'icons/obj/electronic_assemblies.dmi'
-	icon_state = "setup"
+	icon_state = "setup_small"
 	var/max_components = 10
 	var/max_complexity = 30
 	var/opened = 0
 
 /obj/item/device/electronic_assembly/medium
 	name = "electronic mechanism"
+	icon_state = "setup_medium"
 	w_class = 3
 	max_components = 20
 	max_complexity = 50
 
 /obj/item/device/electronic_assembly/large
 	name = "electronic machine"
+	icon_state = "setup"
 	w_class = 4
 	max_components = 30
 	max_complexity = 60
@@ -34,6 +36,12 @@
 	for(var/obj/item/integrated_circuit/IC in contents)
 		IC.work()
 */
+
+/obj/item/device/electronic_assembly/update_icon()
+	if(opened)
+		icon_state = initial(icon_state) + "-open"
+	else
+		icon_state = initial(icon_state)
 
 /obj/item/device/electronic_assembly/examine(mob/user)
 	..()
@@ -87,6 +95,7 @@
 		playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
 		opened = !opened
 		user << "<span class='notice'>You [opened ? "opened" : "closed"] \the [src].</span>"
+		update_icon()
 	if(istype(I, /obj/item/device/integrated_electronics/wirer))
 		if(opened)
 			var/obj/item/integrated_circuit/IC = input(user, "Which circuit do you want to examine?", "Examination") as null|anything in contents

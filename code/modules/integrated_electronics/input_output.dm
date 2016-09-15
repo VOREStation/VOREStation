@@ -41,7 +41,7 @@
 	)
 
 /obj/item/integrated_circuit/input/numberpad/ask_for_input(mob/user)
-	var/new_input = input(user, "Enter a number, please.","Number pad") as num
+	var/new_input = input(user, "Enter a number, please.","Number pad") as null|num
 	if(isnum(new_input))
 		var/datum/integrated_io/O = outputs[1]
 		O.data = new_input
@@ -67,7 +67,7 @@
 	)
 
 /obj/item/integrated_circuit/input/textpad/ask_for_input(mob/user)
-	var/new_input = input(user, "Enter some words, please.","Number pad") as text
+	var/new_input = input(user, "Enter some words, please.","Number pad") as null|text
 	if(new_input && istext(new_input))
 		var/datum/integrated_io/O = outputs[1]
 		O.data = new_input
@@ -101,7 +101,7 @@
 			return
 		var/mob/living/carbon/human/H = I.data
 		if(H.Adjacent(get_turf(src))) // Like normal analysers, it can't be used at range.
-			var/total_health = round(H.health/H.maxHealth)*100
+			var/total_health = round(H.health/H.maxHealth, 0.1)*100
 			var/missing_health = H.maxHealth - H.health
 
 			var/datum/integrated_io/total = outputs[1]
@@ -144,7 +144,7 @@
 			return
 		var/mob/living/carbon/human/H = I.data
 		if(H.Adjacent(get_turf(src))) // Like normal analysers, it can't be used at range.
-			var/total_health = round(H.health/H.maxHealth)*100
+			var/total_health = round(H.health/H.maxHealth, 0.1)*100
 			var/missing_health = H.maxHealth - H.health
 
 			var/datum/integrated_io/total = outputs[1]

@@ -58,26 +58,41 @@
 	number_of_outputs = 1
 	number_of_activators = 1
 	activator_names = list(
-		"trigger output"
+		"push data"
 	)
+	var/accepting_refs = 0
 
 /obj/item/integrated_circuit/memory/constant/work()
-	if(..())
-		var/datum/integrated_io/O = outputs[1]
-		O.push_data()
-
-/obj/item/integrated_circuit/memory/constant/attack_hand(mob/user)
 	var/datum/integrated_io/O = outputs[1]
-	var/type_to_use = input("Please choose a type to use.","[src] type setting") as null|anything in list("string","number")
+	O.push_data()
+
+/obj/item/integrated_circuit/memory/constant/attack_self(mob/user)
+	var/datum/integrated_io/O = outputs[1]
+	var/type_to_use = input("Please choose a type to use.","[src] type setting") as null|anything in list("string","number","ref")
 	var/new_data = null
 	switch(type_to_use)
 		if("string")
+			accepting_refs = 0
 			new_data = input("Now type in a string.","[src] string writing") as null|text
 			if(istext(new_data))
 				O.data = new_data
-				user << "<span class='notice'>You set \the [src]'s memory to '[new_data]'.</span>"
+				user << "<span class='notice'>You set \the [src]'s memory to [O.display_data()].</span>"
 		if("number")
+			accepting_refs = 0
 			new_data = input("Now type in a number.","[src] number writing") as null|num
 			if(isnum(new_data))
 				O.data = new_data
-				user << "<span class='notice'>You set \the [src]'s memory to '[new_data]'.</span>"
+				user << "<span class='notice'>You set \the [src]'s memory to [O.display_data()].</span>"
+		if("ref")
+			accepting_refs = 1
+			user << "<span class='notice'>You turn \the [src]'s ref scanner on.  Slide it across \
+			an object for a ref of that object to save it in memory.</span>"
+
+/obj/item/integrated_circuit/memory/constant/afterattack(atom/target, mob/living/user, proximity)
+	if(accepting_refs && proximity)
+		var/datum/integrated_io/O = outputs[1]
+		O.data = target
+		visible_message("<span class='notice'>[user] slides \a [src]'s over \the [target].</span>")
+		user << "<span class='notice'>You set \the [src]'s memory to a reference to [O.display_data()].  The ref scanner is \
+		now off.</span>"
+		accepting_refs = 0

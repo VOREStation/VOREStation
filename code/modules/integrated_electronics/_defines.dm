@@ -277,7 +277,7 @@
 	..()
 
 /datum/integrated_io/proc/display_data()
-	if(!data)
+	if(isnull(data))
 		return "(null)" // Empty data means nothing to show.
 	if(istext(data))
 		return "(\"[data]\")" // Wraps the 'string' in escaped quotes, so that people know it's a 'string'.
