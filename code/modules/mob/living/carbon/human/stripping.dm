@@ -125,11 +125,11 @@
 	if(can_reach_splints)
 		var/removed_splint
 		for(var/obj/item/organ/external/o in organs)
-			if (o && o.status & ORGAN_SPLINTED)
+			if (o && o.splinted)
 				var/obj/item/S = o.splinted
 				if(istype(S) && S.loc == o) //can only remove splints that are actually worn on the organ (deals with hardsuit splints)
 					S.add_fingerprint(user)
-					if(o.remove_splints())
+					if(o.remove_splint())
 						user.put_in_active_hand(S)
 						removed_splint = 1
 		if(removed_splint)

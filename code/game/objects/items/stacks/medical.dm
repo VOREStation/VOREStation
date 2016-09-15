@@ -264,7 +264,7 @@
 		if(!(affecting.organ_tag in splintable_organs))
 			user << "<span class='danger'>You can't use \the [src] to apply a splint there!</span>"
 			return
-		if(affecting.status & ORGAN_SPLINTED)
+		if(affecting.splinted)
 			user << "<span class='danger'>[M]'s [limb] is already splinted!</span>"
 			return
 		if (M != user)
