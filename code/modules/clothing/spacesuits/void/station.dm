@@ -7,6 +7,16 @@
 	item_state_slots = list(slot_r_hand_str = "eng_helm", slot_l_hand_str = "eng_helm")
 	armor = list(melee = 40, bullet = 5, laser = 20, energy = 5, bomb = 35, bio = 100, rad = 80)
 
+/obj/item/clothing/head/helmet/space/void/engineering/hazmat
+	name = "HAZMAT voidsuit helmet"
+	icon_state = "rig0-engineering_rad"
+	item_state_slots = list(slot_r_hand_str = "eng_helm_rad", slot_l_hand_str = "eng_helm_rad")
+
+/obj/item/clothing/head/helmet/space/void/engineering/construction
+	name = "construction voidsuit helmet"
+	icon_state = "rig0-engineering_con"
+	item_state_slots = list(slot_r_hand_str = "eng_helm_con", slot_l_hand_str = "eng_helm_con")
+
 /obj/item/clothing/suit/space/void/engineering
 	name = "engineering voidsuit"
 	desc = "A special suit that protects against hazardous, low pressure environments. Has radiation shielding."
@@ -15,6 +25,16 @@
 	slowdown = 1
 	armor = list(melee = 40, bullet = 5, laser = 20, energy = 5, bomb = 35, bio = 100, rad = 80)
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/storage/bag/ore,/obj/item/device/t_scanner,/obj/item/weapon/pickaxe, /obj/item/weapon/rcd)
+
+/obj/item/clothing/suit/space/void/engineering/hazmat
+	name = "HAZMAT voidsuit"
+	icon_state = "rig-engineering_rad"
+	item_state_slots = list(slot_r_hand_str = "eng_voidsuit_rad", slot_l_hand_str = "eng_voidsuit_rad")
+
+/obj/item/clothing/suit/space/void/engineering/construction
+	name = "contstruction voidsuit"
+	icon_state = "rig-engineering_con"
+	item_state_slots = list(slot_r_hand_str = "eng_voidsuit_con", slot_l_hand_str = "eng_voidsuit_con")
 
 //Mining
 /obj/item/clothing/head/helmet/space/void/mining
@@ -40,6 +60,11 @@
 	item_state_slots = list(slot_r_hand_str = "medical_helm", slot_l_hand_str = "medical_helm")
 	armor = list(melee = 30, bullet = 5, laser = 20, energy = 5, bomb = 25, bio = 100, rad = 50)
 
+/obj/item/clothing/head/helmet/space/void/medical/bio
+	name = "biohazard voidsuit helmet"
+	icon_state = "rig0-medical_bio"
+	item_state_slots = list(slot_r_hand_str = "medical_helm_bio", slot_l_hand_str = "medical_helm_bio")
+
 /obj/item/clothing/suit/space/void/medical
 	name = "medical voidsuit"
 	desc = "A special suit that protects against hazardous, low pressure environments. Has minor radiation shielding."
@@ -47,6 +72,11 @@
 	item_state_slots = list(slot_r_hand_str = "medical_voidsuit", slot_l_hand_str = "medical_voidsuit")
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/storage/firstaid,/obj/item/device/healthanalyzer,/obj/item/stack/medical)
 	armor = list(melee = 30, bullet = 5, laser = 20, energy = 5, bomb = 25, bio = 100, rad = 50)
+
+/obj/item/clothing/suit/space/void/medical/bio
+	name = "biohazard voidsuit"
+	icon_state = "rig-medical_bio"
+	item_state_slots = list(slot_r_hand_str = "medical_voidsuit_bio", slot_l_hand_str = "medical_voidsuit_bio")
 
 //Security
 /obj/item/clothing/head/helmet/space/void/security

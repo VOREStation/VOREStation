@@ -248,3 +248,23 @@
 /datum/gear/head/beretg/New()
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/head/sombrero
+	display_name = "sombrero"
+	path = /obj/item/clothing/head/sombrero
+
+/datum/gear/head/flatcapg
+	display_name = "flat cap"
+	path = /obj/item/clothing/head/flatcap/grey
+
+/datum/gear/head/flatcapg/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/head/bow
+	display_name = "hair bow"
+	path = /obj/item/clothing/head/hairflower/bow
+
+/datum/gear/head/bow/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)

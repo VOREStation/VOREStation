@@ -463,11 +463,11 @@ its easier to just keep the beam vertical.
 			//spawn(0)
 			//if(I) //It's possible that it could be deleted in the meantime.
 			var/obj/O = I
-			O.show_message( message, 1, blind_message, 2)
+			O.show_message(message, 1, blind_message, 2)
 		else if(ismob(I))
 			var/mob/M = I
 			if(M.see_invisible >= invisibility) // Cannot view the invisible
-				M.show_message( message, 1, blind_message, 2)
+				M.show_message(message, 1, blind_message, 2)
 			else if (blind_message)
 				M.show_message(blind_message, 2)
 
@@ -488,7 +488,24 @@ its easier to just keep the beam vertical.
 			spawn(0)
 				if(I) //It's possible that it could be deleted in the meantime.
 					var/obj/O = I
-					O.show_message( message, 2, deaf_message, 1)
+					O.show_message(message, 2, deaf_message, 1)
 		else if(ismob(I))
 			var/mob/M = I
-			M.show_message( message, 2, deaf_message, 1)
+			M.show_message(message, 2, deaf_message, 1)
+
+/atom/movable/proc/dropInto(var/atom/destination)
+	while(istype(destination))
+		var/atom/drop_destination = destination.onDropInto(src)
+		if(!istype(drop_destination) || drop_destination == destination)
+			return forceMove(destination)
+		destination = drop_destination
+	return forceMove(null)
+
+/atom/proc/onDropInto(var/atom/movable/AM)
+	return // If onDropInto returns null, then dropInto will forceMove AM into us.
+
+/atom/movable/onDropInto(var/atom/movable/AM)
+	return loc // If onDropInto returns something, then dropInto will attempt to drop AM there.
+
+/atom/proc/InsertedContents()
+	return contents

@@ -115,6 +115,11 @@ var/last_chew = 0
 
 	last_chew = world.time
 
+/obj/item/weapon/handcuffs/fuzzy
+	name = "fuzzy cuffs"
+	icon_state = "fuzzycuff"
+	desc = "Use this to keep... 'prisoners' in line."
+
 /obj/item/weapon/handcuffs/cable
 	name = "cable restraints"
 	desc = "Looks like some cables tied together. Could be used to tie something up."

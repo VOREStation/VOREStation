@@ -56,6 +56,7 @@
 		/obj/item/weapon/extinguisher/mini,
 		/obj/item/device/flashlight/maglight,
 		/obj/item/weapon/tape_roll,
+		/obj/item/device/integrated_electronics/wirer,
 		)
 
 /obj/item/weapon/storage/belt/utility/full/New()

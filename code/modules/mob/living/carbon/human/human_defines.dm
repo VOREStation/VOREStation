@@ -85,7 +85,8 @@
 	var/list/flavor_texts = list()
 	var/gunshot_residue
 	var/pulling_punches    // Are you trying not to hurt your opponent?
-	var/robolimb_count = 0 // Number of robot limbs.
+	var/robolimb_count = 0 // Total number of external robot parts.
+	var/robobody_count = 0 // Counts torso, groin, and head, if they're robotic
 
 	mob_bump_flag = HUMAN
 	mob_push_flags = ~HEAVY

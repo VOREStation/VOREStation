@@ -9,7 +9,7 @@
 /mob/proc/changeling_spacesuit()
 	set category = "Changeling"
 	set name = "Organic Space Suit (20)"
-	if(changeling_generic_armor(/obj/item/clothing/suit/space/changeling,/obj/item/clothing/head/helmet/space/changeling,/obj/item/clothing/shoes/magboots/changeling))
+	if(changeling_generic_armor(/obj/item/clothing/suit/space/changeling,/obj/item/clothing/head/helmet/space/changeling,/obj/item/clothing/shoes/magboots/changeling, 20))
 		return 1
 	return 0
 
@@ -25,7 +25,7 @@
 	set category = "Changeling"
 	set name = "Organic Spacearmor (20)"
 
-	if(changeling_generic_armor(/obj/item/clothing/suit/space/changeling/armored,/obj/item/clothing/head/helmet/space/changeling/armored,/obj/item/clothing/shoes/magboots/changeling/armored))
+	if(changeling_generic_armor(/obj/item/clothing/suit/space/changeling/armored,/obj/item/clothing/head/helmet/space/changeling/armored,/obj/item/clothing/shoes/magboots/changeling/armored, 20))
 		return 1
 	return 0
 
