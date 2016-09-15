@@ -209,7 +209,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle.docking_controller_tag = "centcom_shuttle"
 	shuttle.dock_target_station = "centcom_shuttle_dock_airlock"
 	shuttle.dock_target_offsite = "centcom_shuttle_bay"
-	shuttles["Centcom"] = shuttle
+	shuttles["CentCom"] = shuttle
 	process_shuttles += shuttle
 
 	shuttle = new()
