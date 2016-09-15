@@ -26,7 +26,7 @@
 	name = "five-sec delay circuit"
 	desc = "This sends a pulse signal out after a delay, critical for ensuring proper control flow in a complex machine.  \
 	This circuit is set to send a pulse after a delay of five seconds."
-	delay = 10
+	delay = 50
 
 /obj/item/integrated_circuit/time/delay/one_sec
 	name = "one-sec delay circuit"
@@ -109,12 +109,26 @@
 	name = "integrated clock"
 	desc = "Tells you what the local time is, specific to your station or planet."
 	number_of_inputs = 0
-	number_of_outputs = 6
+	number_of_outputs = 4
 	number_of_activators = 1
 	output_names = list(
 		"time (string)",
-		"minute (string)",
-		"hour (string)",
-		"minute (number)",
-		"hour (number)",
+		"hours (number)",
+		"minutes (number)",
+		"seconds (number)"
 		)
+
+/obj/item/integrated_circuit/time/clock/work()
+	if(..())
+		var/datum/integrated_io/time = outputs[1]
+		var/datum/integrated_io/hour = outputs[2]
+		var/datum/integrated_io/min = outputs[3]
+		var/datum/integrated_io/sec = outputs[4]
+
+		time.data = time2text(station_time_in_ticks, "hh:mm:ss")
+		hour.data = text2num(time2text(station_time_in_ticks, "hh"))
+		min.data = text2num(time2text(station_time_in_ticks, "mm"))
+		sec.data = text2num(time2text(station_time_in_ticks, "ss"))
+
+		for(var/datum/integrated_io/output/O in outputs)
+			O.push_data()
