@@ -9,5 +9,5 @@
 #maps/RandomZLevels/snowfield.dmm
 #maps/RandomZLevels/carpfarm.dmm
 #maps/RandomZLevels/listeningpost.dmm
-maps/RandomZLevels/blackmarketpackers.dmm
-#maps/RandomZLevels/beach.dmm
+#maps/RandomZLevels/blackmarketpackers.dmm
+maps/RandomZLevels/beach.dmm
