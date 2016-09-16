@@ -148,11 +148,11 @@ REAGENT SCANNER
 			if(istype(i, /obj/item/organ/internal/appendix))
 				var/obj/item/organ/internal/appendix/a = H.internal_organs_by_name[name_i]
 				if(a.inflamed > 3)
-					user.show_message(text("<span class='warning'>Severe inflamation detected in subject [a.name].</span>"), 1)
+					user.show_message(text("<span class='warning'>Severe inflammation detected in subject [a.name].</span>"), 1)
 				else if(a.inflamed > 2)
-					user.show_message(text("<span class='warning'>Moderate inflamation detected in subject [a.name].</span>"), 1)
+					user.show_message(text("<span class='warning'>Moderate inflammation detected in subject [a.name].</span>"), 1)
 				else if(a.inflamed >= 1)
-					user.show_message(text("<span class='warning'>Mild inflamation detected in subject [a.name].</span>"), 1)
+					user.show_message(text("<span class='warning'>Mild inflammation detected in subject [a.name].</span>"), 1)
 
 
 		for(var/name in H.organs_by_name)
