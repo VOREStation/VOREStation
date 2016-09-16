@@ -1778,6 +1778,13 @@ CIRCUITS BELOW
 	sort_string = "WAAGB"
 	req_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3, TECH_BIOMED = 4)
 
+/datum/design/circuit/integrated_circuit/manipulation/locomotion
+	name = "locomotion"
+	id = "cc-locomotion"
+	build_path = /obj/item/integrated_circuit/manipulation/locomotion
+	sort_string = "WAAGB"
+	req_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3)
+
 
 
 /datum/design/circuit/integrated_circuit/memory/AssembleDesignName()
