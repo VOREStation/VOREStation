@@ -586,7 +586,7 @@
 	var/electrified = 0
 
 	//Departments that the cycler can paint suits to look like.
-	var/list/departments = list("Engineering","Mining","Medical","Security","Atmos","HAZMAT","Construction")
+	var/list/departments = list("Engineering","Mining","Medical","Security","Atmos","HAZMAT","Construction","Biohazard")
 	//Species that the suits can be configured to fit.
 	var/list/species = list("Human","Skrell","Unathi","Tajara", "Teshari")
 
@@ -634,7 +634,7 @@
 	name = "Medical suit cycler"
 	model_text = "Medical"
 	req_access = list(access_medical)
-	departments = list("Medical")
+	departments = list("Medical","Biohazard")
 
 /obj/machinery/suit_cycler/syndicate
 	name = "Nonstandard suit cycler"
@@ -751,7 +751,7 @@
 
 	//Clear the access reqs, disable the safeties, and open up all paintjobs.
 	user << "<span class='danger'>You run the sequencer across the interface, corrupting the operating protocols.</span>"
-	departments = list("Engineering","Mining","Medical","Security","Atmos","HAZMAT","Construction","^%###^%$")
+	departments = list("Engineering","Mining","Medical","Security","Atmos","HAZMAT","Construction","Biohazard","^%###^%$")
 	species = list("Human","Tajara","Skrell","Unathi", "Teshari")
 
 	emagged = 1
@@ -1036,6 +1036,15 @@
 				suit.name = "Construction voidsuit"
 				suit.icon_state = "rig-engineering_con"
 				suit.item_state = "eng_voidsuit_con"
+		if("Biohazard")
+			if(helmet)
+				helmet.name = "Biohazard voidsuit helmet"
+				helmet.icon_state = "rig0-medical_bio"
+				helmet.item_state = "rig0-medical_bio"
+			if(suit)
+				suit.name = "Biohazard voidsuit"
+				suit.icon_state = "rig-medical_bio"
+				suit.item_state = "medical_voidsuit_bio"
 		if("^%###^%$" || "Mercenary")
 			if(helmet)
 				helmet.name = "blood-red voidsuit helmet"

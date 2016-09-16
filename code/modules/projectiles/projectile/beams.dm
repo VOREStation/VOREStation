@@ -43,8 +43,8 @@
 	impact_type = /obj/effect/projectile/laser_heavy/impact
 
 /obj/item/projectile/beam/heavylaser/cannon
-	damage = 90
-	armor_penetration = 100
+	damage = 80
+	armor_penetration = 50
 
 /obj/item/projectile/beam/xray
 	name = "xray beam"

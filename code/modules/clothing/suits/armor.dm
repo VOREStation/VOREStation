@@ -323,6 +323,12 @@
 	icon_badge = "detectivevest_badge"
 	icon_nobadge = "detectivevest_nobadge"
 
+/obj/item/clothing/suit/storage/vest/press
+	name = "press vest"
+	desc = "A simple kevlar plate carrier. This one has the word 'Press' embroidered on patches on the back and front."
+	item_state_slots = list(slot_r_hand_str = "armor", slot_l_hand_str = "armor")
+	allowed = list(/obj/item/device/flashlight,/obj/item/device/taperecorder,/obj/item/weapon/pen,/obj/item/device/camera_film,/obj/item/device/camera)
+
 /obj/item/clothing/suit/storage/vest/heavy
 	name = "heavy armor vest"
 	desc = "A heavy kevlar plate carrier with webbing attached."
