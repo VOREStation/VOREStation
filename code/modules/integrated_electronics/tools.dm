@@ -96,104 +96,121 @@
 #undef UNWIRE
 #undef UNWIRING
 
-/obj/item/weapon/storage/bag/circuits
-	name = "circuit satchel"
-	desc = "This bag's essential for any circuitry projects."
-	icon = 'icons/obj/mining.dmi'
-	icon_state = "satchel"
-	slot_flags = SLOT_BELT | SLOT_POCKET
+/obj/item/device/integrated_electronics/debugger
+	name = "circuit debugger"
+	desc = "This small tool allows one working with custom machinery to directly set data to a specific pin, useful for writing \
+	settings to specific circuits, or for debugging purposes.  It can also pulse activation pins."
+	icon = 'icons/obj/hacktool.dmi'
+	icon_state = "hacktool"
+	flags = CONDUCT
 	w_class = 2
+	var/data_to_write = null
+	var/accepting_refs = 0
+
+/obj/item/device/integrated_electronics/debugger/attack_self(mob/user)
+	var/type_to_use = input("Please choose a type to use.","[src] type setting") as null|anything in list("string","number","ref")
+	var/new_data = null
+	switch(type_to_use)
+		if("string")
+			accepting_refs = 0
+			new_data = input("Now type in a string.","[src] string writing") as null|text
+			if(istext(new_data))
+				data_to_write = new_data
+				user << "<span class='notice'>You set \the [src]'s memory to \"[new_data]\".</span>"
+		if("number")
+			accepting_refs = 0
+			new_data = input("Now type in a number.","[src] number writing") as null|num
+			if(isnum(new_data))
+				data_to_write = new_data
+				user << "<span class='notice'>You set \the [src]'s memory to [new_data].</span>"
+		if("ref")
+			accepting_refs = 1
+			user << "<span class='notice'>You turn \the [src]'s ref scanner on.  Slide it across \
+			an object for a ref of that object to save it in memory.</span>"
+
+/obj/item/device/integrated_electronics/debugger/afterattack(atom/target, mob/living/user, proximity)
+	if(accepting_refs && proximity)
+		data_to_write = target
+		visible_message("<span class='notice'>[user] slides \a [src]'s over \the [target].</span>")
+		user << "<span class='notice'>You set \the [src]'s memory to a reference to [target.name] \[Ref\].  The ref scanner is \
+		now off.</span>"
+		accepting_refs = 0
+
+/obj/item/device/integrated_electronics/debugger/proc/write_data(var/datum/integrated_io/io, mob/user)
+	if(io.io_type == DATA_CHANNEL)
+		io.write_data_to_pin(data_to_write)
+		user << "<span class='notice'>You write [data_to_write] to \the [io.holder]'s [io].</span>"
+	else if(io.io_type == PULSE_CHANNEL)
+		io.holder.work()
+		user << "<span class='notice'>You pulse \the [io.holder]'s [io].</span>"
+
+	io.holder.interact(user) // This is to update the UI.
+
+/obj/item/weapon/storage/bag/circuits
+	name = "circuit kit"
+	desc = "This kit's essential for any circuitry projects."
+	icon = 'icons/obj/electronic_assemblies.dmi'
+	icon_state = "circuit_kit"
+	w_class = 3
 	storage_slots = 200
 	max_storage_space = 400
 	max_w_class = 3
 	display_contents_with_number = 1
-	can_hold = list(/obj/item/integrated_circuit)
+	can_hold = list(/obj/item/integrated_circuit, /obj/item/device/integrated_electronics, /obj/item/device/electronic_assembly,
+	/obj/item/weapon/screwdriver, /obj/item/weapon/crowbar)
 
-/obj/item/weapon/storage/bag/circuits/pre_filled/New()
+/obj/item/weapon/storage/bag/circuits/basic/New()
 	..()
-	var/i = 10
-	while(i)
-		new /obj/item/integrated_circuit/arithmetic/addition(src)
-		i--
-	i = 10
-	while(i)
-		new /obj/item/integrated_circuit/arithmetic/subtraction(src)
-		i--
-	i = 10
-	while(i)
-		new /obj/item/integrated_circuit/arithmetic/multiplication(src)
-		i--
-	i = 10
-	while(i)
-		new /obj/item/integrated_circuit/arithmetic/division(src)
-		i--
-	i = 5
-	while(i)
-		new /obj/item/integrated_circuit/arithmetic/absolute(src)
-		i--
-	i = 5
-	while(i)
-		new /obj/item/integrated_circuit/arithmetic/average(src)
-		i--
-	i = 10
-	while(i)
-		new /obj/item/integrated_circuit/logic/equals(src)
-		i--
-	i = 10
-	while(i)
-		new /obj/item/integrated_circuit/logic/less_than(src)
-		i--
-	i = 10
-	while(i)
-		new /obj/item/integrated_circuit/logic/less_than_or_equal(src)
-		i--
-	i = 10
-	while(i)
-		new /obj/item/integrated_circuit/logic/greater_than(src)
-		i--
-	i = 10
-	while(i)
-		new /obj/item/integrated_circuit/logic/greater_than_or_equal(src)
-		i--
-	i = 10
-	while(i)
-		new /obj/item/integrated_circuit/logic/not(src)
-		i--
-	i = 10
-	while(i)
-		new /obj/item/integrated_circuit/memory(src)
-		i--
-	i = 5
-	while(i)
-		new /obj/item/integrated_circuit/memory/medium(src)
-		i--
-	i = 5
-	while(i)
-		new /obj/item/integrated_circuit/memory/large(src)
-		i--
-	i = 5
-	while(i)
-		new /obj/item/integrated_circuit/memory/huge(src)
-		i--
-	i = 5
-	while(i)
-		new /obj/item/integrated_circuit/input/numberpad(src)
-		i--
-	i = 5
-	while(i)
-		new /obj/item/integrated_circuit/input/button(src)
-		i--
-	i = 5
-	while(i)
-		new /obj/item/integrated_circuit/output/screen(src)
-		i--
-	i = 5
-	while(i)
-		new /obj/item/integrated_circuit/transfer/splitter(src)
-		i--
-	i = 5
-	while(i)
-		new /obj/item/integrated_circuit/transfer/activator_splitter(src)
-		i--
+	var/list/types_to_spawn = typesof(/obj/item/integrated_circuit/arithmetic,
+		/obj/item/integrated_circuit/logic,
+		/obj/item/integrated_circuit/memory,
+		) - list(/obj/item/integrated_circuit/arithmetic,
+		/obj/item/integrated_circuit/memory,
+		/obj/item/integrated_circuit/logic,
+		)
+
+	types_to_spawn.Add(/obj/item/integrated_circuit/input/numberpad,
+		/obj/item/integrated_circuit/input/textpad,
+		/obj/item/integrated_circuit/input/button,
+		/obj/item/integrated_circuit/input/signaler,
+		/obj/item/integrated_circuit/input/local_locator,
+		/obj/item/integrated_circuit/output/screen,
+		/obj/item/integrated_circuit/converter/num2text,
+		/obj/item/integrated_circuit/converter/text2num,
+		/obj/item/integrated_circuit/converter/uppercase,
+		/obj/item/integrated_circuit/converter/lowercase,
+		/obj/item/integrated_circuit/time/delay/five_sec,
+		/obj/item/integrated_circuit/time/delay/one_sec,
+		/obj/item/integrated_circuit/time/delay/half_sec,
+		/obj/item/integrated_circuit/time/delay/tenth_sec,
+		/obj/item/integrated_circuit/time/ticker/slow,
+		/obj/item/integrated_circuit/time/clock
+		)
+
+	for(var/thing in types_to_spawn)
+		var/i = 3
+		while(i)
+			new thing(src)
+			i--
+
 	new /obj/item/device/electronic_assembly(src)
 	new /obj/item/device/integrated_electronics/wirer(src)
+	new /obj/item/device/integrated_electronics/debugger(src)
+	new /obj/item/weapon/crowbar(src)
+	new /obj/item/weapon/screwdriver(src)
+
+/obj/item/weapon/storage/bag/circuits/all/New()
+	..()
+	var/list/types_to_spawn = typesof(/obj/item/integrated_circuit)
+
+	for(var/thing in types_to_spawn)
+		var/i = 10
+		while(i)
+			new thing(src)
+			i--
+
+	new /obj/item/device/electronic_assembly(src)
+	new /obj/item/device/integrated_electronics/wirer(src)
+	new /obj/item/device/integrated_electronics/debugger(src)
+	new /obj/item/weapon/crowbar(src)
+	new /obj/item/weapon/screwdriver(src)

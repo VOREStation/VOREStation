@@ -2,6 +2,7 @@
 /obj/item/integrated_circuit/gps
 	name = "global positioning system"
 	desc = "This allows you to easily know the position of a machine containing this device."
+	icon_state = "gps"
 	complexity = 4
 	number_of_inputs = 0
 	number_of_outputs = 2
