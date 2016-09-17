@@ -7600,7 +7600,7 @@
 "cQh" = (/obj/item/weapon/stool/padded,/obj/machinery/status_display{density = 0; layer = 4; pixel_x = 0; pixel_y = -32},/turf/simulated/floor/wood,/area/crew_quarters/bar)
 "cQi" = (/obj/structure/cable/green{d1 = 2; d2 = 8; icon_state = "2-8"},/obj/structure/disposalpipe/segment{dir = 4},/turf/simulated/floor/tiled,/area/crew_quarters/heads/chief)
 "cQj" = (/obj/structure/disposalpipe/segment{dir = 2; icon_state = "pipe-c"},/turf/simulated/floor/tiled,/area/crew_quarters/heads/chief)
-"cQk" = (/obj/structure/table/rack{dir = 8; layer = 2.9},/obj/item/clothing/shoes/magboots,/obj/item/clothing/mask/breath,/obj/item/weapon/rig/ce/equipped,/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/tiled,/area/crew_quarters/heads/chief)
+"cQk" = (/obj/structure/table/rack{dir = 8; layer = 2.9},/obj/item/clothing/mask/breath,/obj/item/weapon/rig/ce/equipped,/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/tiled,/area/crew_quarters/heads/chief)
 "cQl" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/effect/decal/cleanable/dirt,/turf/simulated/floor,/area/maintenance/engineering)
 "cQm" = (/obj/machinery/power/apc{dir = 2; name = "south bump"; pixel_y = -24},/obj/structure/cable,/turf/simulated/floor,/area/maintenance/evahallway)
 "cQn" = (/obj/effect/decal/cleanable/dirt,/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/tiled,/area/vacant/vacant_shop)
