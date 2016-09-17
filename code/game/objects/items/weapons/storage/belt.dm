@@ -129,6 +129,8 @@
 		/obj/item/weapon/reagent_containers/food/snacks/donut/,
 		/obj/item/weapon/melee/baton,
 		/obj/item/weapon/gun/energy/taser,
+		/obj/item/weapon/gun/energy/stunrevolver,
+		/obj/item/weapon/gun/energy/gun,
 		/obj/item/weapon/flame/lighter,
 		/obj/item/device/flashlight,
 		/obj/item/device/pda,
