@@ -9,8 +9,8 @@
 	desc = "It's a small wiring tool, with a wire roll, electric soldering iron, wire cutter, and more in one package. \
 	The wires used are generally useful for small electronics, such as circuitboards and breadboards, as opposed to larger wires \
 	used for power or data transmission."
-	icon = 'icons/obj/hacktool.dmi'
-	icon_state = "hacktool-g"
+	icon = 'icons/obj/electronic_assemblies.dmi'
+	icon_state = "wirer-wire"
 	flags = CONDUCT
 	w_class = 2
 	var/datum/integrated_io/selected_io = null
@@ -19,11 +19,15 @@
 /obj/item/device/integrated_electronics/wirer/New()
 	..()
 
+/obj/item/device/integrated_electronics/wirer/update_icon()
+	icon_state = "wirer-[mode]"
+
 /obj/item/device/integrated_electronics/wirer/proc/wire(var/datum/integrated_io/io, mob/user)
 	if(mode == WIRE)
 		selected_io = io
 		user << "<span class='notice'>You attach a data wire to \the [selected_io.holder]'s [selected_io.name] data channel.</span>"
 		mode = WIRING
+		update_icon()
 	else if(mode == WIRING)
 		if(io == selected_io)
 			user << "<span class='warning'>Wiring \the [selected_io.holder]'s [selected_io.name] into itself is rather pointless.</span>"
@@ -37,6 +41,7 @@
 
 		user << "<span class='notice'>You connect \the [selected_io.holder]'s [selected_io.name] to \the [io.holder]'s [io.name].</span>"
 		mode = WIRE
+		update_icon()
 		//io.updateDialog()
 		//selected_io.updateDialog()
 		selected_io.holder.interact(user) // This is to update the UI.
@@ -50,6 +55,7 @@
 			return
 		user << "<span class='notice'>You prepare to detach a data wire from \the [selected_io.holder]'s [selected_io.name] data channel.</span>"
 		mode = UNWIRING
+		update_icon()
 		return
 
 	else if(mode == UNWIRING)
@@ -67,6 +73,7 @@
 			selected_io.holder.interact(user) // This is to update the UI.
 			selected_io = null
 			mode = UNWIRE
+			update_icon()
 		else
 			user << "<span class='warning'>\The [selected_io.holder]'s [selected_io.name] and \the [io.holder]'s \
 			[io.name] are not connected.</span>"
@@ -89,6 +96,7 @@
 				user << "<span class='notice'>You decide not to disconnect the data channel.</span>"
 			selected_io = null
 			mode = UNWIRE
+	update_icon()
 	user << "<span class='notice'>You set \the [src] to [mode].</span>"
 
 #undef WIRE
@@ -100,8 +108,8 @@
 	name = "circuit debugger"
 	desc = "This small tool allows one working with custom machinery to directly set data to a specific pin, useful for writing \
 	settings to specific circuits, or for debugging purposes.  It can also pulse activation pins."
-	icon = 'icons/obj/hacktool.dmi'
-	icon_state = "hacktool"
+	icon = 'icons/obj/electronic_assemblies.dmi'
+	icon_state = "debugger"
 	flags = CONDUCT
 	w_class = 2
 	var/data_to_write = null

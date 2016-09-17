@@ -308,3 +308,64 @@
 /obj/item/integrated_circuit/output/screen/work()
 	var/datum/integrated_io/I = inputs[1]
 	stuff_to_display = I.data
+
+/obj/item/integrated_circuit/output/light
+	name = "light"
+	desc = "This light can turn on and off on command."
+	icon_state = "light_adv"
+//	icon_state = "light"
+	complexity = 4
+	number_of_inputs = 0
+	number_of_outputs = 0
+	number_of_activators = 1
+	activator_names = list(
+		"toggle light"
+	)
+	var/light_toggled = 0
+	var/light_brightness = 3
+	var/light_rgb = "#FFFFFF"
+
+/obj/item/integrated_circuit/output/light/work()
+	if(..())
+		light_toggled = !light_toggled
+		update_lighting()
+
+/obj/item/integrated_circuit/output/light/proc/update_lighting()
+	if(light_toggled)
+		set_light(l_range = light_brightness, l_power = light_brightness, l_color = light_rgb)
+	else
+		set_light(0)
+
+/obj/item/integrated_circuit/output/light/advanced/update_lighting()
+	var/datum/integrated_io/R = inputs[1]
+	var/datum/integrated_io/G = inputs[2]
+	var/datum/integrated_io/B = inputs[3]
+	var/datum/integrated_io/brightness = inputs[4]
+
+	if(isnum(R.data) && isnum(G.data) && isnum(B.data) && isnum(brightness.data))
+		R.data = Clamp(R.data, 0, 255)
+		G.data = Clamp(G.data, 0, 255)
+		B.data = Clamp(B.data, 0, 255)
+		brightness.data = Clamp(brightness.data, 0, 6)
+		light_rgb = rgb(R.data, G.data, B.data)
+		light_brightness = brightness.data
+
+	..()
+
+/obj/item/integrated_circuit/output/light/advanced
+	name = "advanced light"
+	desc = "This light can turn on and off on command, in any color, and in various brightness levels."
+	icon_state = "light_adv"
+	complexity = 8
+	number_of_inputs = 4
+	number_of_outputs = 0
+	number_of_activators = 1
+	input_names = list(
+		"R",
+		"G",
+		"B",
+		"Brightness"
+	)
+
+/obj/item/integrated_circuit/output/light/advanced/on_data_written()
+	update_lighting()

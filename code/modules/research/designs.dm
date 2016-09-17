@@ -1581,6 +1581,11 @@ CIRCUITS BELOW
 	build_path = /obj/item/integrated_circuit/arithmetic/pi
 	sort_string = "WAAAG"
 
+/datum/design/circuit/integrated_circuit/arithmetic/random
+	id = "cc-random"
+	build_path = /obj/item/integrated_circuit/arithmetic/random
+	sort_string = "WAAAH"
+
 
 
 /datum/design/circuit/integrated_circuit/converter/AssembleDesignName()
@@ -1611,6 +1616,11 @@ CIRCUITS BELOW
 	id = "cc-uppercase"
 	build_path = /obj/item/integrated_circuit/converter/uppercase
 	sort_string = "WAABD"
+
+/datum/design/circuit/integrated_circuit/converter/concatenatior
+	id = "cc-concatenatior"
+	build_path = /obj/item/integrated_circuit/converter/concatenatior
+	sort_string = "WAABC"
 
 
 
@@ -1712,6 +1722,15 @@ CIRCUITS BELOW
 	build_path = /obj/item/integrated_circuit/input/signaler
 	sort_string = "WAAEJ"
 
+/datum/design/circuit/integrated_circuit/input_output/light
+	id = "cc-light"
+	build_path = /obj/item/integrated_circuit/output/light
+	sort_string = "WAAEH"
+
+/datum/design/circuit/integrated_circuit/input_output/adv_light
+	id = "cc-adv_light"
+	build_path = /obj/item/integrated_circuit/output/light/advanced
+	sort_string = "WAAEI"
 
 
 /datum/design/circuit/integrated_circuit/logic/AssembleDesignName()
@@ -1776,7 +1795,7 @@ CIRCUITS BELOW
 	id = "cc-smoke"
 	build_path = /obj/item/integrated_circuit/manipulation/smoke
 	sort_string = "WAAGB"
-	req_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3, TECH_BIOMED = 4)
+	req_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3, TECH_BIO = 4)
 
 /datum/design/circuit/integrated_circuit/manipulation/locomotion
 	name = "locomotion"

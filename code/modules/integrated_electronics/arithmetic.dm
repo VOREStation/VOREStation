@@ -155,3 +155,29 @@
 		var/datum/integrated_io/output/O = outputs[1]
 		O.data = 3.14159
 		O.push_data()
+
+// Random //
+/obj/item/integrated_circuit/arithmetic/random
+	name = "random number generator circuit"
+	desc = "This gives a random (integer) number between values A and B inclusive."
+	icon_state = "random"
+	number_of_inputs = 2
+	number_of_outputs = 1
+	number_of_activators = 1
+	input_names = list(
+		"L",
+		"H"
+		)
+
+/obj/item/integrated_circuit/arithmetic/random/work()
+	if(..())
+		var/result = 0
+		var/datum/integrated_io/L = inputs[1]
+		var/datum/integrated_io/H = inputs[2]
+
+		if(isnum(L.data) && isnum(H.data))
+			result = rand(L.data, H.data)
+
+		for(var/datum/integrated_io/output/O in outputs)
+			O.data = result
+			O.push_data()

@@ -94,3 +94,40 @@
 
 		outgoing.data = result
 		outgoing.push_data()
+
+/obj/item/integrated_circuit/converter/concatenatior
+	name = "concatenatior"
+	desc = "This joins many strings together to get one big string."
+	complexity = 4
+	number_of_inputs = 8
+	number_of_outputs = 1
+	number_of_activators = 1
+	input_names = list(
+		"A",
+		"B",
+		"C",
+		"D",
+		"E",
+		"F",
+		"G",
+		"H"
+		)
+	output_names = list(
+		"result"
+	)
+	activator_names = list(
+		"concatenate"
+	)
+
+
+/obj/item/integrated_circuit/converter/concatenatior/work()
+	if(..())
+		var/result = null
+		for(var/datum/integrated_io/input/I in inputs)
+			I.pull_data()
+			if(istext(I.data))
+				result = result + I.data
+
+		var/datum/integrated_io/outgoing = outputs[1]
+		outgoing.data = result
+		outgoing.push_data()

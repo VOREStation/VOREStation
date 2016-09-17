@@ -98,7 +98,7 @@
 	if(!M.canmove || M.stat || M.restrained())
 		return
 
-	var/input = sanitizeSafe(input("What do you want to name the circuit?", ,""), MAX_NAME_LEN)
+	var/input = sanitizeSafe(input("What do you want to name the circuit?", "Rename", src.name), MAX_NAME_LEN)
 
 	if(src && input)
 		M << "<span class='notice'>The circuit '[src.name]' is now labeled '[input]'.</span>"
@@ -372,7 +372,7 @@
 	for(var/datum/integrated_io/input/I in inputs)
 		I.push_data()
 
-/obj/item/integrated_circuit/proc/work()
+/obj/item/integrated_circuit/proc/work(var/datum/integrated_io/io)
 	if(last_used + cooldown_per_use > world.time) 	// All intergrated circuits have an internal cooldown, to protect from spam.
 		return 0
 	last_used = world.time
