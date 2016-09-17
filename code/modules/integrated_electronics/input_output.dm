@@ -53,7 +53,7 @@
 /obj/item/integrated_circuit/input/textpad
 	name = "text pad"
 	desc = "This small text pad allows someone to input a string into the system."
-	icon_state = "numberpad"
+	icon_state = "textpad"
 	number_of_inputs = 0
 	number_of_outputs = 1
 	number_of_activators = 1
@@ -79,6 +79,7 @@
 /obj/item/integrated_circuit/input/med_scanner
 	name = "integrated medical analyser"
 	desc = "A very small version of the common medical analyser.  This allows the machine to know how healthy someone is."
+	icon_state = "medscan"
 	number_of_inputs = 1
 	number_of_outputs = 2
 	number_of_activators = 1
@@ -117,6 +118,7 @@
 	name = "integrated advanced medical analyser"
 	desc = "A very small version of the common medical analyser.  This allows the machine to know how healthy someone is.  \
 	This type is much more precise, allowing the machine to know much more about the target than a normal analyzer."
+	icon_state = "medscan_adv"
 	number_of_inputs = 1
 	number_of_outputs = 7
 	number_of_activators = 1
@@ -195,6 +197,96 @@
 			O.data = L
 
 		O.push_data()
+
+/obj/item/integrated_circuit/input/signaler
+	name = "integrated signaler"
+	desc = "Signals from a signaler can be received with this, allowing for remote control.  Additionally, it can send signals as well."
+	extended_desc = "When a signal is received from another signaler, the 'on signal received' activator pin will be pulsed.  \
+	The two input pins are to configure the integrated signaler's settings.  Note that the frequency should not have a decimal in it.  \
+	Meaning the default frequency is expressed as 1457, not 145.7.  To send a signal, pulse the 'send signal' activator pin."
+	icon_state = "signal"
+	number_of_inputs = 2
+	number_of_outputs = 0
+	number_of_activators = 2
+	complexity = 4
+	input_names = list(
+		"frequency",
+		"code"
+	)
+	activator_names = list(
+		"send signal",
+		"on signal received"
+	)
+	var/frequency = 1457
+	var/code = 30
+	var/datum/radio_frequency/radio_connection
+
+/obj/item/integrated_circuit/input/signaler/New()
+	..()
+	spawn(4 SECONDS)
+		set_frequency(frequency)
+		var/datum/integrated_io/new_freq = inputs[1]
+		var/datum/integrated_io/new_code = inputs[2]
+		// Set the pins so when someone sees them, they won't show as null
+		new_freq.data = frequency
+		new_code.data = code
+
+/obj/item/integrated_circuit/input/signaler/Destroy()
+	if(radio_controller)
+		radio_controller.remove_object(src,frequency)
+	frequency = 0
+	..()
+
+/obj/item/integrated_circuit/input/signaler/on_data_written()
+	var/datum/integrated_io/new_freq = inputs[1]
+	var/datum/integrated_io/new_code = inputs[2]
+	if(isnum(new_freq.data))
+		set_frequency(new_freq.data)
+	if(isnum(new_code.data))
+		code = new_code.data
+
+
+/obj/item/integrated_circuit/input/signaler/work() // Sends a signal.
+	if(..())
+		if(!radio_connection)
+			return
+
+		var/datum/signal/signal = new()
+		signal.source = src
+		signal.encryption = code
+		signal.data["message"] = "ACTIVATE"
+		radio_connection.post_signal(src, signal)
+
+/obj/item/integrated_circuit/input/signaler/proc/set_frequency(new_frequency)
+	if(!frequency)
+		return
+	if(!radio_controller)
+		sleep(20)
+	if(!radio_controller)
+		return
+	radio_controller.remove_object(src, frequency)
+	frequency = new_frequency
+	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
+
+/obj/item/integrated_circuit/input/signaler/receive_signal(datum/signal/signal)
+	var/datum/integrated_io/new_code = inputs[2]
+	var/code = 0
+
+	if(isnum(new_code.data))
+		code = new_code.data
+	if(!signal)
+		return 0
+	if(signal.encryption != code)
+		return 0
+	if(signal.source == src) // Don't trigger ourselves.
+		return 0
+
+	var/datum/integrated_io/A = activators[2]
+	A.push_data()
+
+	for(var/mob/O in hearers(1, src.loc))
+		O.show_message(text("\icon[] *beep* *beep*", src), 3, "*beep* *beep*", 2)
+
 
 
 /obj/item/integrated_circuit/output/screen
