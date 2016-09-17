@@ -131,6 +131,7 @@
 	new /obj/item/clothing/mask/bandana(src)
 	new /obj/item/clothing/mask/bandana(src)
 	new /obj/item/clothing/mask/bandana(src)
+	new /obj/item/weapon/storage/backpack/messenger/black(src)
 	return
 
 

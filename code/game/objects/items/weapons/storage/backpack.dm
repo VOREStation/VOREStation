@@ -336,3 +336,6 @@
 	desc = "A tactical backpack worn over one shoulder. This one is in Security colors."
 	icon_state = "courierbagsec"
 	item_state_slots = list(slot_r_hand_str = "securitypack", slot_l_hand_str = "securitypack")
+
+/obj/item/weapon/storage/backpack/messenger/black
+	icon_state = "courierbagblk"
