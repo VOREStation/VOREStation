@@ -1496,6 +1496,14 @@ CIRCUITS BELOW
 	build_path = /obj/item/device/integrated_electronics/wirer
 	sort_string = "VBVAA"
 
+/datum/design/item/debugger
+	name = "Custom circuit debugger tool"
+	id = "debugger"
+	req_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 2500)
+	build_path = /obj/item/device/integrated_electronics/debugger
+	sort_string = "VBVAB"
+
 
 
 /datum/design/item/custom_circuit_assembly
@@ -1573,6 +1581,11 @@ CIRCUITS BELOW
 	build_path = /obj/item/integrated_circuit/arithmetic/pi
 	sort_string = "WAAAG"
 
+/datum/design/circuit/integrated_circuit/arithmetic/random
+	id = "cc-random"
+	build_path = /obj/item/integrated_circuit/arithmetic/random
+	sort_string = "WAAAH"
+
 
 
 /datum/design/circuit/integrated_circuit/converter/AssembleDesignName()
@@ -1603,6 +1616,11 @@ CIRCUITS BELOW
 	id = "cc-uppercase"
 	build_path = /obj/item/integrated_circuit/converter/uppercase
 	sort_string = "WAABD"
+
+/datum/design/circuit/integrated_circuit/converter/concatenatior
+	id = "cc-concatenatior"
+	build_path = /obj/item/integrated_circuit/converter/concatenatior
+	sort_string = "WAABC"
 
 
 
@@ -1699,6 +1717,20 @@ CIRCUITS BELOW
 	build_path = /obj/item/integrated_circuit/input/local_locator
 	sort_string = "WAAEG"
 
+/datum/design/circuit/integrated_circuit/input_output/signaler
+	id = "cc-signaler"
+	build_path = /obj/item/integrated_circuit/input/signaler
+	sort_string = "WAAEJ"
+
+/datum/design/circuit/integrated_circuit/input_output/light
+	id = "cc-light"
+	build_path = /obj/item/integrated_circuit/output/light
+	sort_string = "WAAEH"
+
+/datum/design/circuit/integrated_circuit/input_output/adv_light
+	id = "cc-adv_light"
+	build_path = /obj/item/integrated_circuit/output/light/advanced
+	sort_string = "WAAEI"
 
 
 /datum/design/circuit/integrated_circuit/logic/AssembleDesignName()
@@ -1752,16 +1784,25 @@ CIRCUITS BELOW
 	name = "Custom circuitry \[Manipulation\] ([item_name])"
 
 /datum/design/circuit/integrated_circuit/manipulation/weapon_firing
+	name = "weapon firing mechanism"
 	id = "cc-weapon_firing"
 	build_path = /obj/item/integrated_circuit/manipulation/weapon_firing
 	sort_string = "WAAGA"
-	req_tech = list(TECH_ENGINEERING = 4, TECH_DATA = 4, TECH_COMBAT = 5)
+	req_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3, TECH_COMBAT = 4)
 
 /datum/design/circuit/integrated_circuit/manipulation/smoke
+	name = "smoke generator"
 	id = "cc-smoke"
 	build_path = /obj/item/integrated_circuit/manipulation/smoke
 	sort_string = "WAAGB"
-	req_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 4, TECH_BIOMED = 5)
+	req_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3, TECH_BIO = 4)
+
+/datum/design/circuit/integrated_circuit/manipulation/locomotion
+	name = "locomotion"
+	id = "cc-locomotion"
+	build_path = /obj/item/integrated_circuit/manipulation/locomotion
+	sort_string = "WAAGB"
+	req_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3)
 
 
 

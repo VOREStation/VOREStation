@@ -131,6 +131,7 @@
 	new /obj/item/clothing/mask/bandana(src)
 	new /obj/item/clothing/mask/bandana(src)
 	new /obj/item/clothing/mask/bandana(src)
+	new /obj/item/weapon/storage/backpack/messenger/black(src)
 	return
 
 
@@ -539,6 +540,8 @@
 	new /obj/item/clothing/under/pants/khaki(src)
 	new /obj/item/clothing/mask/bandana/blue(src)
 	new /obj/item/clothing/mask/bandana/blue(src)
+	new /obj/item/clothing/accessory/hawaii(src)
+	new /obj/item/clothing/accessory/hawaii/random(src)
 	return
 
 /obj/structure/closet/wardrobe/tactical
