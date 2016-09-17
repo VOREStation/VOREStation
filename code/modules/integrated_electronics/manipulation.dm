@@ -121,6 +121,7 @@
 /obj/item/integrated_circuit/manipulation/locomotion
 	name = "locomotion circuit"
 	desc = "This allows a machine to move in a given direction."
+	icon_state = "locomotion"
 	extended_desc = "The circuit accepts a number as a direction to move towards.<br>  \
 	North/Fore = 1,<br>\
 	South/Aft = 2,<br>\

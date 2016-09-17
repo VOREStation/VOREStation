@@ -38,8 +38,8 @@
 	name = "abs to rel coordinate converter"
 	desc = "Easily convert absolute coordinates to relative coordinates with this."
 	complexity = 4
-	number_of_inputs = 0
-	number_of_outputs = 4
+	number_of_inputs = 4
+	number_of_outputs = 2
 	number_of_activators = 1
 	input_names = list(
 		"X1 (abs)",
