@@ -43,8 +43,8 @@
 /obj/item/projectile/beam/heavylaser
 	name = "heavy laser"
 	icon_state = "heavylaser"
-	damage = 80
-	armor_penetration = 50
+	damage = 60
+	armor_penetration = 30
 	light_range = 3
 	light_power = 1
 	light_color = "#FF0D00"
@@ -54,8 +54,8 @@
 	impact_type = /obj/effect/projectile/laser_heavy/impact
 
 /obj/item/projectile/beam/heavylaser/cannon
-	damage = 90
-	armor_penetration = 100
+	damage = 80
+	armor_penetration = 50
 	light_color = "#FF0D00"
 
 /obj/item/projectile/beam/xray
