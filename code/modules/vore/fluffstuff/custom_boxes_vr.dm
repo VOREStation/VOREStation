@@ -81,6 +81,10 @@
 		new /obj/item/weapon/sword/fluff/joanaria(src)
 		new /obj/item/weapon/flame/lighter/zippo/fluff/joan(src)
 		new /obj/item/clothing/under/rank/internalaffairs/fluff/joan(src)
+		new /obj/item/clothing/head/helmet/space/fluff/joan(src)
+		new /obj/item/clothing/suit/space/fluff/joan(src)
+
+
 
 //joanrisu:Katarina Eine
 /obj/item/weapon/storage/backpack/dufflebag/sec/fluff/Katarina
