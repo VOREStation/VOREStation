@@ -9,6 +9,9 @@
 	var/frequency = 1
 	hitscan = 1
 	invisibility = 101	//beam projectiles are invisible as they are rendered by the effect engine
+	light_range = 2
+	light_power = 0.5
+	light_color = "#FF0D00"
 
 	muzzle_type = /obj/effect/projectile/laser/muzzle
 	tracer_type = /obj/effect/projectile/laser/tracer
@@ -32,6 +35,7 @@
 	damage = 30
 	armor_penetration = 10
 
+
 /obj/item/projectile/beam/midlaser
 	damage = 40
 	armor_penetration = 10
@@ -41,6 +45,9 @@
 	icon_state = "heavylaser"
 	damage = 60
 	armor_penetration = 30
+	light_range = 3
+	light_power = 1
+	light_color = "#FF0D00"
 
 	muzzle_type = /obj/effect/projectile/laser_heavy/muzzle
 	tracer_type = /obj/effect/projectile/laser_heavy/tracer
@@ -49,12 +56,14 @@
 /obj/item/projectile/beam/heavylaser/cannon
 	damage = 80
 	armor_penetration = 50
+	light_color = "#FF0D00"
 
 /obj/item/projectile/beam/xray
 	name = "xray beam"
 	icon_state = "xray"
 	damage = 25
 	armor_penetration = 50
+	light_color = "#00CC33"
 
 	muzzle_type = /obj/effect/projectile/xray/muzzle
 	tracer_type = /obj/effect/projectile/xray/tracer
@@ -65,6 +74,7 @@
 	icon_state = "u_laser"
 	damage = 50
 	armor_penetration = 30
+	light_color = "#0066FF"
 
 	muzzle_type = /obj/effect/projectile/laser_pulse/muzzle
 	tracer_type = /obj/effect/projectile/laser_pulse/tracer
@@ -79,6 +89,7 @@
 	name = "emitter beam"
 	icon_state = "emitter"
 	damage = 0 // The actual damage is computed in /code/modules/power/singularity/emitter.dm
+	light_color = "#00CC33"
 
 	muzzle_type = /obj/effect/projectile/emitter/muzzle
 	tracer_type = /obj/effect/projectile/emitter/tracer
@@ -92,6 +103,7 @@
 	no_attack_log = 1
 	damage_type = BURN
 	check_armour = "laser"
+	light_color = "#0066FF"
 
 	muzzle_type = /obj/effect/projectile/laser_blue/muzzle
 	tracer_type = /obj/effect/projectile/laser_blue/tracer
@@ -112,6 +124,7 @@
 	no_attack_log = 1
 	damage_type = BURN
 	check_armour = "laser"
+	light_color = "#FF0D00"
 
 /obj/item/projectile/beam/lastertag/red/on_hit(var/atom/target, var/blocked = 0)
 	if(istype(target, /mob/living/carbon/human))
@@ -127,6 +140,7 @@
 	damage = 0
 	damage_type = BURN
 	check_armour = "laser"
+	light_color = "#00C6FF"
 
 	muzzle_type = /obj/effect/projectile/laser_omni/muzzle
 	tracer_type = /obj/effect/projectile/laser_omni/tracer
@@ -144,6 +158,7 @@
 	icon_state = "xray"
 	damage = 50
 	armor_penetration = 10
+	light_color = "#00CC33"
 
 	muzzle_type = /obj/effect/projectile/xray/muzzle
 	tracer_type = /obj/effect/projectile/xray/tracer
@@ -156,6 +171,7 @@
 	taser_effect = 1
 	agony = 40
 	damage_type = HALLOSS
+	light_color = "#FFFFFF"
 
 	muzzle_type = /obj/effect/projectile/stun/muzzle
 	tracer_type = /obj/effect/projectile/stun/tracer
