@@ -47,8 +47,7 @@
 		O.data = new_input
 		O.push_data()
 		var/datum/integrated_io/A = activators[1]
-		if(A.linked)
-			A.holder.work()
+		A.push_data()
 
 /obj/item/integrated_circuit/input/textpad
 	name = "text pad"
@@ -73,8 +72,7 @@
 		O.data = new_input
 		O.push_data()
 		var/datum/integrated_io/A = activators[1]
-		if(A.linked)
-			A.holder.work()
+		A.push_data()
 
 /obj/item/integrated_circuit/input/med_scanner
 	name = "integrated medical analyser"
@@ -369,3 +367,70 @@
 
 /obj/item/integrated_circuit/output/light/advanced/on_data_written()
 	update_lighting()
+
+/obj/item/integrated_circuit/output/sound
+	name = "speaker circuit"
+	desc = "A miniature speaker is attached to this component."
+	icon_state = "speaker"
+	complexity = 8
+	cooldown_per_use = 4 SECONDS
+	number_of_inputs = 3
+	number_of_outputs = 0
+	number_of_activators = 1
+	input_names = list(
+		"sound ID",
+		"volume",
+		"frequency"
+	)
+	activator_names = list(
+		"play sound"
+	)
+	var/list/sounds = list()
+
+/obj/item/integrated_circuit/output/sound/work()
+	if(..())
+		var/datum/integrated_io/ID = inputs[1]
+		var/datum/integrated_io/vol = inputs[2]
+		var/datum/integrated_io/frequency = inputs[3]
+		if(istext(ID.data) && isnum(vol.data) && isnum(frequency.data))
+			var/selected_sound = sounds[ID.data]
+			vol.data = Clamp(vol.data, 0, 1)
+			frequency.data = Clamp(frequency.data, 0, 100)
+			playsound(get_turf(src), selected_sound, vol.data, frequency.data, -1)
+
+/obj/item/integrated_circuit/output/sound/beeper
+	name = "beeper circuit"
+	desc = "A miniature speaker is attached to this component.  This is often used in the construction of motherboards, which use \
+	the speaker to tell the user if something goes very wrong when booting up.  It can also do other similar synthetic sounds such \
+	as buzzing, pinging, chiming, and more."
+	extended_desc = "The first input pin determines what sound is used.  The choices are; beep, chime, buzz sigh, buzz twice, ping, \
+	synth yes, synth no, warning buzz.  The second pin determines the volume of sound that is played, and the third determines if \
+	the frequency of the sound will vary with each activation."
+	sounds = list(
+		"beep"			= 'sound/machines/twobeep.ogg',
+		"chime"			= 'sound/machines/chime.ogg',
+		"buzz sigh"		= 'sound/machines/buzz-sigh.ogg',
+		"buzz twice"	= 'sound/machines/buzz-two.ogg',
+		"ping"			= 'sound/machines/ping.ogg',
+		"synth yes"		= 'sound/machines/synth_yes.ogg',
+		"synth no"		= 'sound/machines/synth_no.ogg',
+		"warning buzz"	= 'sound/machines/warning-buzzer.ogg'
+		)
+
+/obj/item/integrated_circuit/output/sound/beepsky
+	name = "securitron sound circuit"
+	desc = "A miniature speaker is attached to this component.  Considered by some to be the essential component for a securitron."
+	extended_desc = "The first input pin determines what sound is used.  The choices are; creep, criminal, freeze, god, \
+	i am the law, insult, radio, secure day.  The second pin determines the volume of sound that is played, and the \
+	third determines if the frequency of the sound will vary with each activation."
+	sounds = list(
+		"creep"			= 'sound/voice/bcreep.ogg',
+		"criminal"		= 'sound/voice/bcriminal.ogg',
+		"freeze"		= 'sound/voice/bfreeze.ogg',
+		"god"			= 'sound/voice/bgod.ogg',
+		"i am the law"	= 'sound/voice/biamthelaw.ogg',
+		"insult"		= 'sound/voice/binsult.ogg',
+		"radio"			= 'sound/voice/bradio.ogg',
+		"secure day"	= 'sound/voice/bsecureday.ogg',
+		)
+

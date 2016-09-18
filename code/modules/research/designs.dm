@@ -1732,6 +1732,17 @@ CIRCUITS BELOW
 	build_path = /obj/item/integrated_circuit/output/light/advanced
 	sort_string = "WAAEI"
 
+/datum/design/circuit/integrated_circuit/input_output/beeper
+	id = "cc-sound_beeper"
+	build_path = /obj/item/integrated_circuit/output/sound/beeper
+	sort_string = "WAAEJ"
+
+/datum/design/circuit/integrated_circuit/input_output/beepsky_sound
+	id = "cc-sound_beepsky"
+	build_path = /obj/item/integrated_circuit/output/sound/beepsky
+	sort_string = "WAAEK"
+	req_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_ILLEGAL = 1)
+
 
 /datum/design/circuit/integrated_circuit/logic/AssembleDesignName()
 	..()
