@@ -286,6 +286,64 @@
 		O.show_message(text("\icon[] *beep* *beep*", src), 3, "*beep* *beep*", 2)
 
 
+/obj/item/integrated_circuit/input/EPv2
+	name = "\improper EPv2 circuit"
+	desc = "Enables the sending and receiving of messages on the Exonet with the EPv2 protocol."
+	extended_desc = "An EPv2 address is a string with the format of XXXX:XXXX:XXXX:XXXX.  Data can be send or received using the \
+	second pin on each side, with additonal data reserved for the third pin.  When a message is received, the second activaiton pin \
+	will pulse whatever's connected to it.  Pulsing the first activation pin will send a message."
+	icon_state = "signal"
+	number_of_inputs = 3
+	number_of_outputs = 3
+	number_of_activators = 2
+	complexity = 4
+	input_names = list(
+		"target EPv2 address",
+		"data to send",
+		"secondary text"
+	)
+	output_names = list(
+		"address received",
+		"data received",
+		"secondary text received"
+	)
+	activator_names = list(
+		"send data",
+		"on data received"
+	)
+	var/datum/exonet_protocol/exonet = null
+
+/obj/item/integrated_circuit/input/EPv2/New()
+	..()
+	exonet = new(src)
+	exonet.make_address("EPv2_circuit-\ref[src]")
+	desc += "This circuit's EPv2 address is: [exonet.address]."
+
+/obj/item/integrated_circuit/input/EPv2/Destroy()
+	if(exonet)
+		exonet.remove_address()
+		qdel(exonet)
+	..()
+
+/obj/item/integrated_circuit/input/EPv2/work()
+	if(..())
+		var/datum/integrated_io/target_address = inputs[1]
+		var/datum/integrated_io/message = inputs[2]
+		var/datum/integrated_io/text = inputs[3]
+		if(istext(target_address.data))
+			exonet.send_message(target_address.data, message.data, text.data)
+
+/obj/item/integrated_circuit/input/receive_exonet_message(var/atom/origin_atom, var/origin_address, var/message, var/text)
+	var/datum/integrated_io/message_received = outputs[1]
+	var/datum/integrated_io/data_received = outputs[2]
+	var/datum/integrated_io/text_received = outputs[3]
+
+	var/datum/integrated_io/A = activators[2]
+	A.push_data()
+
+	message_received.write_data_to_pin(origin_address)
+	data_received.write_data_to_pin(message)
+	text_received.write_data_to_pin(text)
 
 /obj/item/integrated_circuit/output/screen
 	name = "screen"

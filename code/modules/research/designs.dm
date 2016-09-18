@@ -1743,6 +1743,12 @@ CIRCUITS BELOW
 	sort_string = "WAAEK"
 	req_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_ILLEGAL = 1)
 
+/datum/design/circuit/integrated_circuit/input_output/EPv2
+	id = "cc-epv2"
+	build_path = /obj/item/integrated_circuit/input/EPv2
+	sort_string = "WAAEL"
+	req_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_MAGNETS = 2, TECH_BLUESPACE = 2)
+
 
 /datum/design/circuit/integrated_circuit/logic/AssembleDesignName()
 	..()
