@@ -2,7 +2,7 @@
 	name = "Instability Tap"
 	desc = "Creates a large sum of energy, at the cost of a very large amount of instability afflicting you."
 	enhancement_desc = "50% more energy gained, 20% less instability gained."
-	cost = 120
+	cost = 100
 	obj_path = /obj/item/weapon/spell/instability_tap
 	ability_icon_state = "tech_instabilitytap"
 	category = UTILITY_SPELLS

@@ -3,7 +3,7 @@
 	desc = "Lowers the core body temperature of everyone around you (except for your friends), causing them to freeze to death if \
 	they stay within four meters of you."
 	enhancement_desc = "The chill becomes lethal."
-	cost = 150
+	cost = 100
 	obj_path = /obj/item/weapon/spell/aura/frost
 	ability_icon_state = "tech_frostaura"
 	category = DEFENSIVE_SPELLS // Scepter-less frost aura is nonlethal.

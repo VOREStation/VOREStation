@@ -2,7 +2,7 @@
 	name = "Shield"
 	desc = "Emits a protective shield fron your hand in front of you, which will protect you from almost anything able to harm \
 	you, so long as you can power it."
-	cost = 120
+	cost = 100
 	obj_path = /obj/item/weapon/spell/shield
 	ability_icon_state = "tech_shield"
 	category = DEFENSIVE_SPELLS

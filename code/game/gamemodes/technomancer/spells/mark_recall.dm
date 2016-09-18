@@ -3,7 +3,7 @@
 	desc = "This function places a specific 'mark' beacon under you, which is used by the Recall function as a destination.  \
 	Note that using Mark again will move the destination instead of creating a second destination, and only one destination \
 	can exist, regardless of who casted Mark."
-	cost = 50
+	cost = 25
 	obj_path = /obj/item/weapon/spell/mark
 	ability_icon_state = "tech_mark"
 	category = UTILITY_SPELLS
@@ -50,7 +50,7 @@
 	desc = "This function teleports you to where you placed a mark using the Mark function.  Without the Mark function, this \
 	function is useless.  Note that teleporting takes three seconds.  Being incapacitated while teleporting will cancel it."
 	enhancement_desc = "Recall takes two seconds instead of three."
-	cost = 50
+	cost = 25
 	obj_path = /obj/item/weapon/spell/recall
 	ability_icon_state = "tech_recall"
 	category = UTILITY_SPELLS

@@ -6,7 +6,7 @@
 	The creatures take a few moments to be teleported to the targeted tile. Note that the creatures summoned are \
 	not inherently loyal to the technomancer, and that the creatures will be hurt slightly from being teleported to you."
 	enhancement_desc = "Summoned entities will never harm their summoner."
-	cost = 200
+	cost = 100
 	obj_path = /obj/item/weapon/spell/summon/summon_creature
 	category = UTILITY_SPELLS
 
