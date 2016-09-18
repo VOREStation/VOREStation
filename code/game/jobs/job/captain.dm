@@ -112,7 +112,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 		H.implant_loyalty()
 		return 1
 
-/datum/job/bridgebunny
+/datum/job/secretary
 	title = "Command Secretary"
 	flag = BRIDGE
 	department = "Civilian"
@@ -131,18 +131,18 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	access = list(access_heads)
 	minimal_access = list(access_heads)
 
-	equip(var/mob/living/carbon/human/H)
-		if(!H)	return 0
-		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_com(H), slot_l_ear)
-		switch(H.backbag)
-			if(2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(H), slot_back)
-			if(3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel/norm(H), slot_back)
-			if(4) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), slot_shoes)
-		H.equip_to_slot_or_del(new /obj/item/device/pda/heads/hop(H), slot_belt)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/briefcase(H), slot_l_hand)
-		if(H.gender == FEMALE)
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket/female/skirt(H), slot_w_uniform)
-		else
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket/charcoal(H), slot_w_uniform)
-		return 1
+/datum/job/secretary/equip(var/mob/living/carbon/human/H)
+	if(!H)	return 0
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_com(H), slot_l_ear)
+	switch(H.backbag)
+		if(2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(H), slot_back)
+		if(3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel/norm(H), slot_back)
+		if(4) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/device/pda/heads/hop(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/briefcase(H), slot_l_hand)
+	if(H.gender == FEMALE)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket/female/skirt(H), slot_w_uniform)
+	else
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket/charcoal(H), slot_w_uniform)
+	return 1
