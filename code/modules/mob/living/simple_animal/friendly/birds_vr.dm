@@ -2,6 +2,7 @@
 /mob/living/simple_animal/cat/bird
 	name = "bird"
 	desc = "A domesticated bird. Has a tendency to 'adopt' crewmembers."
+	isPredator = 1
 	icon = 'icons/mob/birds.dmi'
 	icon_state = "parrot-flap"
 	item_state = null
@@ -12,6 +13,36 @@
 	emote_hear = list("chirps","caws")
 	emote_see = list("shakes their head", "ruffles their feathers")
 	holder_type = /obj/item/weapon/holder/bird
+
+/mob/living/simple_animal/cat/bird/New()
+	if(!vore_organs.len)
+		var/datum/belly/B = new /datum/belly(src)
+		B.immutable = 1
+		B.name = "Stomach"
+		B.inside_flavor = "Slick birdguts. Cute on the outside, slimy on the inside!"
+		B.human_prey_swallow_time = swallowTime
+		B.nonhuman_prey_swallow_time = swallowTime
+		vore_organs[B.name] = B
+		vore_selected = B.name
+
+		B.emote_lists[DM_HOLD] = list(
+			"The birdguts knead and churn around you harmlessly.",
+			"With a loud glorp, some air shifts inside the belly.",
+			"A thick drop of warm bellyslime drips onto you from above.",
+			"The bird goes into the air suddenly, causing you to be tossed about.",
+			"During a moment of relative silence, you can hear the bird breathing.",
+			"The slimey stomach walls squeeze you lightly, then relax.")
+
+		B.emote_lists[DM_DIGEST] = list(
+			"The guts knead at you, trying to work you into thick soup.",
+			"You're ground on by the slimey walls, treated like a mouse.",
+			"The acrid air is hard to breathe, and stings at your lungs.",
+			"You can feel the acids coating you, ground in by the slick walls.",
+			"The bird's stomach churns hungrily over your form, trying to take you.",
+			"With a loud glorp, the stomach spills more acids onto you.")
+	..()
+
+
 
 /mob/living/simple_animal/cat/bird/Life()
 	//MICE!
@@ -43,17 +74,71 @@
 			else
 				handle_movement_target()
 
-	if(prob(2)) //spooky
-		var/mob/observer/dead/spook = locate() in range(src,5)
-		if(spook)
-			var/turf/T = spook.loc
-			var/list/visible = list()
-			for(var/obj/O in T.contents)
-				if(!O.invisibility && O.name)
-					visible += O
-			if(visible.len)
-				var/atom/A = pick(visible)
-				visible_emote("suddenly stops and stares at something unseen[istype(A) ? " near [A]":""].")
+	if(!stat && !resting && !buckled) //SEE A MICRO AND ARE A PREDATOR, EAT IT!
+		for(var/mob/living/carbon/human/food in oview(src, 5))
+
+			if(food.size_multiplier <= RESIZE_A_SMALLTINY)
+				if(prob(10))
+					custom_emote(1, pick("eyes [food] hungrily!","licks their lips and turns towards [food] a little!","pants as they imagine [food] being in their belly."))
+					break
+				else
+					if(prob(5))
+						movement_target = food
+						break
+
+		for(var/mob/living/carbon/human/bellyfiller in oview(1, src))
+			if(bellyfiller in src.prey_excludes)
+				continue
+
+			if(bellyfiller.size_multiplier <= RESIZE_A_SMALLTINY && isPredator)
+				movement_target = null
+				custom_emote(1, pick("pecks at [bellyfiller] with their beak.","looms over [bellyfiller] with their beak agape.","sniffs at [bellyfiller], their belly grumbling hungrily."))
+				sleep(10)
+				custom_emote(1, "starts to scoop [bellyfiller] into their beak!")
+				if(bellyfiller in oview(1, src))
+					animal_nom(bellyfiller)
+				else
+					bellyfiller << "You just manage to slip away from [src]'s jaws before you can be sent to a fleshy prison!"
+					break
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /mob/living/simple_animal/cat/bird/proc/handle_flee_target_b()
 	//see if we should stop fleeing
