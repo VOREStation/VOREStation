@@ -101,45 +101,6 @@
 					bellyfiller << "You just manage to slip away from [src]'s jaws before you can be sent to a fleshy prison!"
 					break
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /mob/living/simple_animal/cat/bird/proc/handle_flee_target_b()
 	//see if we should stop fleeing
 	if (flee_target && !(flee_target.loc in view(src)))
