@@ -1681,6 +1681,7 @@
 #include "code\modules\mob\living\simple_animal\borer\say.dm"
 #include "code\modules\mob\living\simple_animal\constructs\constructs.dm"
 #include "code\modules\mob\living\simple_animal\constructs\soulstone.dm"
+#include "code\modules\mob\living\simple_animal\friendly\birds_vr.dm"
 #include "code\modules\mob\living\simple_animal\friendly\cat.dm"
 #include "code\modules\mob\living\simple_animal\friendly\corgi.dm"
 #include "code\modules\mob\living\simple_animal\friendly\corgi_vr.dm"
