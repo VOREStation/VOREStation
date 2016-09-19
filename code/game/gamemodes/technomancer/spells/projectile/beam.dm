@@ -1,7 +1,7 @@
 /datum/technomancer/spell/beam
 	name = "Beam"
 	desc = "Fires a laser at your target.  Cheap, reliable, and a bit boring."
-	cost = 150
+	cost = 100
 	ability_icon_state = "tech_beam"
 	obj_path = /obj/item/weapon/spell/projectile/beam
 	category = OFFENSIVE_SPELLS

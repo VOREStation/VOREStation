@@ -1,7 +1,7 @@
 /datum/technomancer/spell/flame_tongue
 	name = "Flame Tongue"
 	desc = "Using a miniturized flamethrower in your gloves, you can emit a flame strong enough to melt both your enemies and walls."
-	cost = 100
+	cost = 50
 	obj_path = /obj/item/weapon/spell/flame_tongue
 	ability_icon_state = "tech_flametongue"
 	category = OFFENSIVE_SPELLS
