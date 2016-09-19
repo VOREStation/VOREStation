@@ -70,6 +70,9 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 			Do not abuse their existence outside of ERP scenes where they apply, \
 			or reverting OOCly unwanted changes like someone lolshooting the crew with a shrink ray. -Ace"
 
+	if (!istype(src,/mob/living/carbon/human))
+		src << "<span class='warning'>Only organic creatures can use this command!</span>"
+		return
 	var/size_name = input(nagmessage, "Pick a Size") in player_sizes_list
 	if (size_name && player_sizes_list[size_name])
 		src.resize(player_sizes_list[size_name])
