@@ -668,9 +668,15 @@
 /obj/item/clothing/suit/space/fluff/joan
 	name = "Joan's Combat Spacesuit"
 	desc = "A customized combat spacesuit made for a certain squirrely Commissioned Officer, tail slot included. \
-	On the right shoulder, the United Federation's Emblem sits proudly. On the left, there are faded indications \
-	that there were different ranks painted on and off. On the collar where the suit is softer is a rectangular \
-	name-tag with the name 'Joan' on it. There are indications that the suit has seen combat."
+	On the right shoulder, the United Federation's Emblem sits proudly with a Rose weaving through it. \
+	On the left, there are faded indications that there were different ranks painted on and off. On the collar \
+	where the suit is softer is a rectangular name-tag with the name 'Joan' on it. There are indications that the \
+	suit has seen combat."
+
+	armor = list(melee = 80, bullet = 50, laser = 35, energy = 15, bomb = 70, bio = 100, rad = 50) //These values were taken from the combat rigs and adjusted to be weaker than said rigs.
+	slowdown = 0
+	allowed = list(/obj/item/weapon/gun,/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/melee/baton)
+	w_class = 3
 
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "joansuit"
