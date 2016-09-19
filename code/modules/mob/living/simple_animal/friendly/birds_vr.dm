@@ -1,6 +1,6 @@
 //Cat
 /mob/living/simple_animal/cat/bird
-	name = "bird"
+	name = "parrot"
 	desc = "A domesticated bird. Has a tendency to 'adopt' crewmembers."
 	isPredator = 1
 	icon = 'icons/mob/birds.dmi'
