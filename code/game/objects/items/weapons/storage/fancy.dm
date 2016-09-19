@@ -134,7 +134,7 @@
 	storage_slots = 6
 	can_hold = list(/obj/item/clothing/mask/smokable/cigarette, /obj/item/weapon/flame/lighter)
 	icon_type = "cigarette"
-
+	var/brand = "Trans-Stellar Duty-free"
 /obj/item/weapon/storage/fancy/cigarettes/New()
 	..()
 	flags |= NOREACT
@@ -142,6 +142,10 @@
 		new /obj/item/clothing/mask/smokable/cigarette(src)
 	create_reagents(15 * storage_slots)//so people can inject cigarettes without opening a packet, now with being able to inject the whole one
 	flags |= OPENCONTAINER
+	if(brand)
+		for(var/obj/item/clothing/mask/smokable/cigarette/C in src)
+			C.brand = brand
+			C.desc += " This one is a [brand]."
 
 /obj/item/weapon/storage/fancy/cigarettes/update_icon()
 	icon_state = "[initial(icon_state)][contents.len]"
@@ -186,11 +190,13 @@
 	name = "\improper DromedaryCo packet"
 	desc = "A packet of six imported DromedaryCo cancer sticks. A label on the packaging reads, \"Wouldn't a slow death make a change?\""
 	icon_state = "Dpacket"
+	brand = "Dromedary Co. cigarette"
 
 /obj/item/weapon/storage/fancy/cigarettes/killthroat
 	name = "\improper AcmeCo packet"
 	desc = "A packet of six AcmeCo cigarettes. For those who somehow want to obtain the record for the most amount of cancerous tumors."
 	icon_state = "Bpacket"
+	brand = "Acme Co. cigarette"
 
 //	New()
 //		..()
@@ -202,26 +208,31 @@
 	name = "\improper pack of Lucky Stars"
 	desc = "A mellow blend made from synthetic, pod-grown tobacco. The commercial jingle is guaranteed to get stuck in your head."
 	icon_state = "LSpacket"
+	brand = "Lucky Star"
 
 /obj/item/weapon/storage/fancy/cigarettes/jerichos
 	name = "\improper pack of Jerichos"
 	desc = "Typically seen dangling from the lips of Martian soldiers and border world hustlers. Tastes like hickory smoke, feels like warm liquid death down your lungs."
 	icon_state = "Jpacket"
+	brand = "Jericho"
 
 /obj/item/weapon/storage/fancy/cigarettes/menthols
 	name = "\improper pack of Temperamento Menthols"
 	desc = "With a sharp and natural organic menthol flavor, these Temperamentos are a favorite of NDV crews. Hardly anyone knows they make 'em in non-menthol!"
 	icon_state = "TMpacket"
+	brand = "Temperamento Menthol"
 
 /obj/item/weapon/storage/fancy/cigarettes/carcinomas
 	name = "\improper pack of Carcinoma Angels"
 	desc = "This unknown brand was slated for the chopping block, until they were publicly endorsed by an old Earthling gonzo journalist. The rest is history. They sell a variety for cats, too."
 	icon_state = "CApacket"
+	brand = "Carcinoma Angel"
 
 /obj/item/weapon/storage/fancy/cigarettes/professionals
 	name = "\improper pack of Professional 120s"
 	desc = "Let's face it - if you're smoking these, you're either trying to look upper-class or you're 80 years old. That's the only excuse. They are, however, very good quality."
 	icon_state = "P100packet"
+	brand = "Professional 120"
 
 /obj/item/weapon/storage/fancy/cigar
 	name = "cigar case"
