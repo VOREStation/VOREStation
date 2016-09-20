@@ -29,8 +29,6 @@ Pipelines + Other Objects -> Pipe network
 	var/pipe_color
 
 	var/global/datum/pipe_icon_manager/icon_manager
-	var/obj/machinery/atmospherics/node1
-	var/obj/machinery/atmospherics/node2
 
 /obj/machinery/atmospherics/New()
 	if(!icon_manager)

@@ -12,6 +12,8 @@
 	var/state = 0 // 0 = go straight, 1 = go to side
 
 	// like a trinary component, node1 is input, node2 is side output, node3 is straight output
+	var/obj/machinery/atmospherics/node1
+	var/obj/machinery/atmospherics/node2
 	var/obj/machinery/atmospherics/node3
 
 	var/datum/pipe_network/network_node1

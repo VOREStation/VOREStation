@@ -153,6 +153,9 @@
 	dir = SOUTH
 	initialize_directions = SOUTH|NORTH
 
+	var/obj/machinery/atmospherics/node1
+	var/obj/machinery/atmospherics/node2
+
 	var/minimum_temperature_difference = 300
 	var/thermal_conductivity = 0 //WALL_HEAT_TRANSFER_COEFFICIENT No
 
@@ -424,6 +427,8 @@
 	dir = SOUTH
 	initialize_directions = EAST|NORTH|WEST
 
+	var/obj/machinery/atmospherics/node1
+	var/obj/machinery/atmospherics/node2
 	var/obj/machinery/atmospherics/node3
 
 	level = 1
@@ -682,6 +687,8 @@
 	dir = SOUTH
 	initialize_directions = NORTH|SOUTH|EAST|WEST
 
+	var/obj/machinery/atmospherics/node1
+	var/obj/machinery/atmospherics/node2
 	var/obj/machinery/atmospherics/node3
 	var/obj/machinery/atmospherics/node4
 
@@ -1067,6 +1074,8 @@
 	initialize_directions = SOUTH
 	density = 1
 
+	var/obj/machinery/atmospherics/node1
+
 /obj/machinery/atmospherics/pipe/tank/New()
 	icon_state = "air"
 	initialize_directions = dir
@@ -1228,6 +1237,8 @@
 	initialize_directions = SOUTH
 
 	var/build_killswitch = 1
+
+	var/obj/machinery/atmospherics/node1
 
 /obj/machinery/atmospherics/pipe/vent/New()
 	initialize_directions = dir
