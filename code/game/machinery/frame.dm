@@ -447,6 +447,31 @@
 					state = 3
 					if(frame_type.frame_class == "machine")
 						user << desc
+		else if(state == 3)
+			if(frame_type.frame_class == "machine")
+				for(var/I in req_components)
+					if(istype(P, I) && (req_components[I] > 0))
+						playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+						if(istype(P, /obj/item/stack/cable_coil))
+							var/obj/item/stack/cable_coil/CP = P
+							if(CP.get_amount() > 1)
+								var/camt = min(CP.amount, req_components[I]) // amount of cable to take, idealy amount required, but limited by amount provided
+								var/obj/item/stack/cable_coil/CC = new /obj/item/stack/cable_coil(src)
+								CC.amount = camt
+								CC.update_icon()
+								CP.use(camt)
+								components += CC
+								req_components[I] -= camt
+								update_desc()
+								break
+
+						user.drop_item()
+						P.forceMove(src)
+						components += P
+						req_components[I]--
+						update_desc()
+						break
+				user << desc
 
 	else if(istype(P, /obj/item/weapon/wirecutters))
 		if(state == 3)
@@ -506,20 +531,7 @@
 				for(var/I in req_components)
 					if(istype(P, I) && (req_components[I] > 0))
 						playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-						if(istype(P, /obj/item/stack/cable_coil))
-							var/obj/item/stack/cable_coil/CP = P
-							if(CP.get_amount() > 1)
-								var/camt = min(CP.amount, req_components[I]) // amount of cable to take, idealy amount required, but limited by amount provided
-								var/obj/item/stack/cable_coil/CC = new /obj/item/stack/cable_coil(src)
-								CC.amount = camt
-								CC.update_icon()
-								CP.use(camt)
-								components += CC
-								req_components[I] -= camt
-								update_desc()
-								break
-
-						else if(istype(P, /obj/item/stack/material/glass/reinforced))
+						if(istype(P, /obj/item/stack/material/glass/reinforced))
 							var/obj/item/stack/material/glass/reinforced/CP = P
 							if(CP.get_amount() > 1)
 								var/camt = min(CP.amount, req_components[I]) // amount of glass to take, idealy amount required, but limited by amount provided
@@ -539,8 +551,65 @@
 						update_desc()
 						break
 				user << desc
-				if(P && P.loc != src && !istype(P, /obj/item/stack/cable_coil) && !istype(P, /obj/item/stack/material))
+				if(P && P.loc != src && !istype(P, /obj/item/stack/material))
 					user << "<span class='warning'>You cannot add that component to the machine!</span>"
 					return
 
 	update_icon()
+
+/obj/structure/frame/verb/rotate()
+	set name = "Rotate Frame Counter-Clockwise"
+	set category = "Object"
+	set src in oview(1)
+
+	if(usr.incapacitated())
+		return 0
+
+	if(anchored)
+		usr << "It is fastened to the floor therefore you can't rotate it!"
+		return 0
+
+	set_dir(turn(dir, 90))
+
+	var/dir_text
+	if(dir == 1)
+		dir_text = "north"
+	else if(dir == 2)
+		dir_text = "south"
+	else if(dir == 4)
+		dir_text = "east"
+	else if(dir == 8)
+		dir_text = "west"
+
+	usr << "<span class='notice'>You rotate the [src] to face [dir_text]!</span>"
+
+	return
+
+
+/obj/structure/frame/verb/revrotate()
+	set name = "Rotate Frame Clockwise"
+	set category = "Object"
+	set src in oview(1)
+
+	if(usr.incapacitated())
+		return 0
+
+	if(anchored)
+		usr << "It is fastened to the floor therefore you can't rotate it!"
+		return 0
+
+	set_dir(turn(dir, 270))
+
+	var/dir_text
+	if(dir == 1)
+		dir_text = "north"
+	else if(dir == 2)
+		dir_text = "south"
+	else if(dir == 4)
+		dir_text = "east"
+	else if(dir == 8)
+		dir_text = "west"
+
+	usr << "<span class='notice'>You rotate the [src] to face [dir_text]!</span>"
+
+	return
