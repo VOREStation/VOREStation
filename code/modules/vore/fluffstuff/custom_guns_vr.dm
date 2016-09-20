@@ -133,15 +133,12 @@
 	desc = "You notice the serial number on the revolver is 667. The word 'Redemption' is engraved on dark rosewood grip. Uses .357 rounds."
 
 // sasoperative : Joseph Skinner
-/obj/item/weapon/gun/projectile/revolver/shotgun/fluff/sasoperative
+/obj/item/weapon/gun/projectile/revolver/judge/fluff/sasoperative
 	name = "\"The Jury\""
 	desc = "A customized variant of the \"The Judge\" revolver sold by Cybersun Industries, built specifically for Joseph Skinner. Uses 12g shells."
-
 	icon = 'icons/vore/custom_guns_vr.dmi'
 	icon_state = "jury"
-
 	item_state = "gun"
-
 	accuracy = 0 // Because I know you're not an idiot who needs to be nerfed. -Ace
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 
@@ -166,10 +163,12 @@
 	item_state = (ammo_magazine)? "arifle" : "arifle-empty"
 	if(!ignore_inhands) update_held_icon()
 
+/*
 // For general use
 /obj/item/weapon/gun/projectile/automatic/m14/fluff/gallian
 	name = "\improper Gallian 4 Rifle"
 	desc = "The ever reliable Gallian 4 Rifle. Produced by the National Armory on the Planet of Gaia located in Gallia, the Gallian 4 Rifle offers high accuracy and is widely used in the United Federation's Military. Uses 7.62mm rounds."
+*/
 
 // For general use
 /obj/item/weapon/gun/projectile/shotgun/pump/rifle/zmkar
@@ -203,7 +202,7 @@
 // For general use
 /obj/item/weapon/gun/projectile/automatic/pdw // Vorestation SMG because the WT550 is ugly and bad.
 	name = "personal defense weapon"
-	desc = "The X-9MM is a select-fire personal defense weapon designed in-house by Xing Private Security. It was made to compete with the WT550 Saber, but hasn't yet caught on in popularity outside of the Virgo-Erigone system. Uses 9mm rounds."
+	desc = "The X-9MM is a select-fire personal defense weapon designed in-house by Xing Private Security. It was made to compete with the WT550 Saber, but hasn't yet caught on with NanoTrasen. Uses 9mm rounds."
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "pdw"
 	item_state = "c20r" // Placeholder
