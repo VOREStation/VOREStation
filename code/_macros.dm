@@ -1,4 +1,5 @@
 #define Clamp(x, y, z) 	(x <= y ? y : (x >= z ? z : x))
+
 #define CLAMP01(x) 		(Clamp(x, 0, 1))
 
 #define get_turf(A) get_step(A,0)
@@ -42,3 +43,5 @@
 #define isxeno(A) istype(A, /mob/living/simple_animal/xeno)
 
 #define RANDOM_BLOOD_TYPE pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
+
+#define to_chat(target, message) target << message
