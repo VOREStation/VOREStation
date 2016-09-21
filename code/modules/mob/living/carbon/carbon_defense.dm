@@ -46,7 +46,6 @@
 					if(hit_zone == BP_TORSO && shank_attack(W, G, user))
 						return 1
 				if(G.state >= GRAB_NECK)
-					world << "9"
 					if(hit_zone == BP_HEAD && attack_throat(W, G, user, hit_zone))
 						return 1
 	return 0
