@@ -2,7 +2,7 @@
 	name = "Apportation"
 	desc = "This allows you to teleport objects into your hand, or to pull people towards you.  If they're close enough, the function \
 	will grab them automatically."
-	cost = 50
+	cost = 25
 	obj_path = /obj/item/weapon/spell/apportation
 	category = UTILITY_SPELLS
 

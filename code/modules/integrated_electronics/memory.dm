@@ -68,7 +68,7 @@
 
 /obj/item/integrated_circuit/memory/constant/attack_self(mob/user)
 	var/datum/integrated_io/O = outputs[1]
-	var/type_to_use = input("Please choose a type to use.","[src] type setting") as null|anything in list("string","number","ref")
+	var/type_to_use = input("Please choose a type to use.","[src] type setting") as null|anything in list("string","number","ref", "null")
 	var/new_data = null
 	switch(type_to_use)
 		if("string")
@@ -87,6 +87,9 @@
 			accepting_refs = 1
 			user << "<span class='notice'>You turn \the [src]'s ref scanner on.  Slide it across \
 			an object for a ref of that object to save it in memory.</span>"
+		if("null")
+			O.data = null
+			user << "<span class='notice'>You set \the [src]'s memory to absolutely nothing.</span>"
 
 /obj/item/integrated_circuit/memory/constant/afterattack(atom/target, mob/living/user, proximity)
 	if(accepting_refs && proximity)

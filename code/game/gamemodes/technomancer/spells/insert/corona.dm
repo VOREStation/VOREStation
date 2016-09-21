@@ -2,7 +2,7 @@
 	name = "Corona"
 	desc = "Causes the victim to glow very brightly, which while harmless in itself, makes it easier for them to be hit.  The \
 	bright glow also makes it very difficult to be stealthy.  The effect lasts for one minute."
-	cost = 100
+	cost = 50
 	obj_path = /obj/item/weapon/spell/insert/corona
 	ability_icon_state = "tech_corona"
 	category = SUPPORT_SPELLS

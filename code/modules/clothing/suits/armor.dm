@@ -44,7 +44,6 @@
 	desc = "A vest with heavy padding to protect against melee attacks."
 	icon_state = "riot"
 	item_state_slots = list(slot_r_hand_str = "swat", slot_l_hand_str = "swat")
-	slowdown = 1
 	armor = list(melee = 80, bullet = 10, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
 	flags_inv = HIDEJUMPSUIT
 	siemens_coefficient = 0.5
