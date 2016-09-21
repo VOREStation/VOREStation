@@ -158,7 +158,7 @@ Proc for attack log creation, because really why not
 	else
 		return pick("chest", "groin")
 
-/proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = 0, progress = 1)
+/proc/do_mob(mob/user , mob/target, time = 30, target_zone = 0, uninterruptible = 0, progress = 1)
 	if(!user || !target)
 		return 0
 	var/user_loc = user.loc
@@ -191,6 +191,10 @@ Proc for attack log creation, because really why not
 			break
 
 		if(user.get_active_hand() != holding)
+			. = 0
+			break
+
+		if(target_zone && user.zone_sel.selecting != target_zone)
 			. = 0
 			break
 
