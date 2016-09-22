@@ -6,7 +6,7 @@
 	item_state = "laser"
 	fire_sound = 'sound/weapons/Laser.ogg'
 	slot_flags = SLOT_BELT|SLOT_BACK
-	w_class = 4
+	w_class = ITEMSIZE_LARGE
 	force = 10
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	matter = list(DEFAULT_WALL_MATERIAL = 2000)
@@ -41,7 +41,7 @@ obj/item/weapon/gun/energy/retro
 	desc = "An older model of the basic lasergun. Nevertheless, it is still quite deadly and easy to maintain, making it a favorite amongst pirates and other outlaws."
 	fire_sound = 'sound/weapons/Laser.ogg'
 	slot_flags = SLOT_BELT
-	w_class = 3
+	w_class = ITEMSIZE_NORMAL
 	projectile_type = /obj/item/projectile/beam
 	fire_delay = 10 //old technology
 
@@ -53,7 +53,7 @@ obj/item/weapon/gun/energy/retro
 	force = 5
 	fire_sound = 'sound/weapons/Laser.ogg'
 	slot_flags = SLOT_BELT
-	w_class = 3
+	w_class = ITEMSIZE_NORMAL
 	projectile_type = /obj/item/projectile/beam
 	origin_tech = null
 	max_shots = 5 //to compensate a bit for self-recharging
@@ -71,7 +71,7 @@ obj/item/weapon/gun/energy/retro
 	projectile_type = /obj/item/projectile/beam/heavylaser/cannon
 	max_shots = 4
 	fire_delay = 20
-	w_class = 4
+	w_class = ITEMSIZE_LARGE
 //	requires_two_hands = 1
 	one_handed_penalty = 6 // The thing's heavy and huge.
 	accuracy = 3
@@ -116,7 +116,7 @@ obj/item/weapon/gun/energy/retro
 	max_shots = 4
 	fire_delay = 35
 	force = 10
-	w_class = 5 // So it can't fit in a backpack.
+	w_class = ITEMSIZE_HUGE // So it can't fit in a backpack.
 	accuracy = -3 //shooting at the hip
 	scoped_accuracy = 0
 //	requires_two_hands = 1

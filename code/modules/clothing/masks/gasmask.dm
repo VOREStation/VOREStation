@@ -5,7 +5,7 @@
 	item_flags = BLOCK_GAS_SMOKE_EFFECT | AIRTIGHT
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE
 	body_parts_covered = FACE|EYES
-	w_class = 3.0
+	w_class = ITEMSIZE_NORMAL
 	item_state_slots = list(slot_r_hand_str = "gas_alt", slot_l_hand_str = "gas_alt")
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01

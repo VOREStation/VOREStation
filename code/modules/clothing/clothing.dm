@@ -111,7 +111,7 @@
 // Ears: headsets, earmuffs and tiny objects
 /obj/item/clothing/ears
 	name = "ears"
-	w_class = 1.0
+	w_class = ITEMSIZE_TINY
 	throwforce = 2
 	slot_flags = SLOT_EARS
 	sprite_sheets = list("Teshari" = 'icons/mob/species/seromi/ears.dmi')
@@ -157,7 +157,7 @@
 
 /obj/item/clothing/ears/offear
 	name = "Other ear"
-	w_class = 5.0
+	w_class = ITEMSIZE_HUGE
 	icon = 'icons/mob/screen1_Midnight.dmi'
 	icon_state = "block"
 	slot_flags = SLOT_EARS | SLOT_TWOEARS
@@ -177,7 +177,7 @@
 		slot_r_hand_str = 'icons/mob/items/righthand_gloves.dmi',
 		)
 	gender = PLURAL //Carn: for grammarically correct text-parsing
-	w_class = 2.0
+	w_class = ITEMSIZE_SMALL
 	icon = 'icons/obj/clothing/gloves.dmi'
 	siemens_coefficient = 0.75
 	var/wired = 0
@@ -237,7 +237,7 @@
 		)
 	body_parts_covered = HEAD
 	slot_flags = SLOT_HEAD
-	w_class = 2.0
+	w_class = ITEMSIZE_SMALL
 
 	var/light_overlay = "helmet_light"
 	var/light_applied
@@ -461,7 +461,7 @@
 	slot_flags = SLOT_OCLOTHING
 	var/blood_overlay_type = "suit"
 	siemens_coefficient = 0.9
-	w_class = 3
+	w_class = ITEMSIZE_NORMAL
 
 	sprite_sheets = list(
 		"Teshari" = 'icons/mob/species/seromi/suit.dmi'
@@ -487,7 +487,7 @@
 	permeability_coefficient = 0.90
 	slot_flags = SLOT_ICLOTHING
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
-	w_class = 3
+	w_class = ITEMSIZE_NORMAL
 	show_messages = 1
 
 	var/has_sensor = 1 //For the crew computer 2 = unable to change mode

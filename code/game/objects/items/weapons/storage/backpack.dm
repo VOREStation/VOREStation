@@ -9,10 +9,10 @@
 	sprite_sheets = list(
 		"Teshari" = 'icons/mob/species/seromi/back.dmi'
 		)
-	w_class = 4
+	w_class = ITEMSIZE_LARGE
 	slot_flags = SLOT_BACK
-	max_w_class = 4
-	max_storage_space = 28
+	max_w_class = ITEMSIZE_LARGE
+	max_storage_space = INVENTORY_STANDARD_SPACE
 
 /obj/item/weapon/storage/backpack/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (src.use_sound)
@@ -40,9 +40,9 @@
 	desc = "A backpack that opens into a localized pocket of Blue Space."
 	origin_tech = list(TECH_BLUESPACE = 4)
 	icon_state = "holdingpack"
-	max_w_class = 4
-	max_storage_space = 56
-	storage_cost = 29
+	max_w_class = ITEMSIZE_LARGE
+	max_storage_space = ITEMSIZE_COST_NORMAL * 14 // 56
+	storage_cost = INVENTORY_STANDARD_SPACE + 1
 
 	New()
 		..()
@@ -66,9 +66,9 @@
 	desc = "Space Santa uses this to deliver toys to all the nice children in space in Christmas! Wow, it's pretty big!"
 	icon_state = "giftbag0"
 	item_state_slots = list(slot_r_hand_str = "giftbag", slot_l_hand_str = "giftbag")
-	w_class = 4.0
-	max_w_class = 3
-	max_storage_space = 400 // can store a ton of shit!
+	w_class = ITEMSIZE_LARGE
+	max_w_class = ITEMSIZE_NORMAL
+	max_storage_space = ITEMSIZE_COST_NORMAL * 100 // can store a ton of shit!
 	item_state_slots = null
 
 /obj/item/weapon/storage/backpack/cultpack
@@ -135,7 +135,7 @@
 	desc = "A large dufflebag for holding extra things."
 	icon_state = "duffle"
 	slowdown = 1
-	max_storage_space = 36
+	max_storage_space = INVENTORY_DUFFLEBAG_SPACE
 
 /obj/item/weapon/storage/backpack/dufflebag/syndie
 	name = "black dufflebag"

@@ -4,7 +4,7 @@
 	desc = "An encryption key for a radio headset. Contains cypherkeys."
 	icon = 'icons/obj/radio.dmi'
 	icon_state = "cypherkey"
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_EARS
 	var/translate_binary = 0
 	var/translate_hive = 0

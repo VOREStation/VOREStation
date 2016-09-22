@@ -14,7 +14,7 @@ var/list/global/tank_gauge_cache = list()
 
 	flags = CONDUCT
 	slot_flags = SLOT_BACK
-	w_class = 3
+	w_class = ITEMSIZE_NORMAL
 
 	pressure_resistance = ONE_ATMOSPHERE*5
 

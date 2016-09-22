@@ -702,7 +702,7 @@
 	icon = 'icons/obj/lighting.dmi'
 	force = 2
 	throwforce = 5
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	var/status = 0		// LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
 	var/base_state
 	var/switchcount = 0	// number of times switched
@@ -723,7 +723,7 @@
 	brightness_power = 3
 
 /obj/item/weapon/light/tube/large
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	name = "large light tube"
 	brightness_range = 15
 	brightness_power = 4
@@ -827,4 +827,4 @@
 	desc = "A lamp shade for a lamp."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "lampshade"
-	w_class = 1
+	w_class = ITEMSIZE_TINY

@@ -11,7 +11,7 @@
 	item_state = "radio"
 	name = "normal-sized package"
 	desc = "A small wrapped package."
-	w_class = 3
+	w_class = ITEMSIZE_NORMAL
 
 	var/power = 1  /*Size of the explosion.*/
 	var/size = "small"  /*Used for the icon, this one will make c-4small_0 for the off state.*/
