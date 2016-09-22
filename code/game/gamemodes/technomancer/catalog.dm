@@ -27,7 +27,7 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 	requisition various things from.. where ever they came from."
 	icon = 'icons/obj/storage.dmi'
 	icon_state ="scientology" //placeholder
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	var/budget = 1000
 	var/max_budget = 1000
 	var/mob/living/carbon/human/owner = null

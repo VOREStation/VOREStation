@@ -5,7 +5,7 @@
 	icon = 'icons/obj/technomancer.dmi'
 	icon_state = "technomancer_core"
 	item_state = "technomancer_core"
-	w_class = 5
+	w_class = ITEMSIZE_HUGE
 	slot_flags = SLOT_BACK
 	unacidable = 1
 	origin_tech = list(

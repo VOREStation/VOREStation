@@ -9,9 +9,9 @@
 	throwforce = 10
 	throw_speed = 1
 	throw_range = 7
-	w_class = 4
-	max_w_class = 3
-	max_storage_space = 14 //enough to hold all starting contents
+	w_class = ITEMSIZE_LARGE
+	max_w_class = ITEMSIZE_NORMAL
+	max_storage_space = ITEMSIZE_COST_SMALL * 7 //enough to hold all starting contents
 	origin_tech = list(TECH_COMBAT = 1)
 	attack_verb = list("robusted")
 
@@ -80,13 +80,13 @@
 	new /obj/item/device/multitool(src)
 
 /obj/item/weapon/storage/toolbox/lunchbox
-	max_storage_space = 8 //slightly smaller than a toolbox
+	max_storage_space = ITEMSIZE_COST_SMALL * 4 //slightly smaller than a toolbox
 	name = "rainbow lunchbox"
 	icon_state = "lunchbox_rainbow"
 	item_state_slots = list(slot_r_hand_str = "toolbox_pink", slot_l_hand_str = "toolbox_pink")
 	desc = "A little lunchbox. This one is the colors of the rainbow!"
-	w_class = 3
-	max_w_class = 2
+	w_class = ITEMSIZE_NORMAL
+	max_w_class = ITEMSIZE_SMALL
 	var/filled = FALSE
 	attack_verb = list("lunched")
 

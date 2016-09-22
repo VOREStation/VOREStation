@@ -10,9 +10,9 @@
 	item_state_slots = list(slot_r_hand_str = "laundry", slot_l_hand_str = "laundry")
 	desc = "The peak of thousands of years of laundry evolution."
 
-	w_class = 5
-	max_w_class = 4
-	max_storage_space = 25 //20 for clothes + a bit of additional space for non-clothing items that were worn on body
+	w_class = ITEMSIZE_HUGE
+	max_w_class = ITEMSIZE_LARGE
+	max_storage_space = ITEMSIZE_COST_NORMAL * 6 //20 for clothes + a bit of additional space for non-clothing items that were worn on body
 	storage_slots = 14
 	use_to_pickup = 1
 	allow_quick_empty = 1

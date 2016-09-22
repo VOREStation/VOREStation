@@ -8,7 +8,7 @@
 			)
 	item_state = "sheet-metal"
 	throwforce = 1
-	w_class = 3
+	w_class = ITEMSIZE_NORMAL
 	throw_speed = 3
 	throw_range = 7
 	pressure_resistance = 10
