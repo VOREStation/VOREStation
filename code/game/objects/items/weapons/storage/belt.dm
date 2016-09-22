@@ -56,6 +56,7 @@
 		/obj/item/weapon/extinguisher/mini,
 		/obj/item/device/flashlight/maglight,
 		/obj/item/weapon/tape_roll,
+		/obj/item/device/integrated_electronics/wirer,
 		)
 
 /obj/item/weapon/storage/belt/utility/full/New()
@@ -128,6 +129,8 @@
 		/obj/item/weapon/reagent_containers/food/snacks/donut/,
 		/obj/item/weapon/melee/baton,
 		/obj/item/weapon/gun/energy/taser,
+		/obj/item/weapon/gun/energy/stunrevolver,
+		/obj/item/weapon/gun/energy/gun,
 		/obj/item/weapon/flame/lighter,
 		/obj/item/device/flashlight,
 		/obj/item/device/pda,

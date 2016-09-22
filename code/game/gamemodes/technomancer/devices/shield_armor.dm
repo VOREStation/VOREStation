@@ -6,7 +6,7 @@
 	of which your Core can provide.  When you are struck by something, the shield will block 75% of the damage, deducting energy \
 	proportional to the amount of force that was inflicted.  Armor penetration has no effect on the shield's ability to protect \
 	you from harm, however the shield will fail if the energy supply cannot meet demand."
-	cost = 300
+	cost = 200
 	obj_path = /obj/item/clothing/suit/armor/shield
 
 /obj/item/clothing/suit/armor/shield

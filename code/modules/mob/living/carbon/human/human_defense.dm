@@ -147,7 +147,7 @@ emp_act
 	..()
 
 /mob/living/carbon/human/resolve_item_attack(obj/item/I, mob/living/user, var/target_zone)
-	if(check_attack_throat(I, user))
+	if(check_neckgrab_attack(I, user, target_zone))
 		return null
 
 	if(user == src) // Attacking yourself can't miss
@@ -464,3 +464,30 @@ emp_act
 
 	return perm
 
+/mob/living/carbon/human/shank_attack(obj/item/W, obj/item/weapon/grab/G, mob/user, hit_zone)
+
+	if(!..())
+		return 0
+
+	var/organ_chance = 50
+	var/damage = shank_armor_helper(W, G, user)
+	var/obj/item/organ/external/chest = get_organ(hit_zone)
+
+	if(W.edge)
+		organ_chance = 75
+	user.next_move = world.time + 20
+	user.visible_message("<span class='danger'>\The [user] begins to twist \the [W] around inside [src]'s [chest]!</span>")
+	if(!do_after(user, 20))
+		return 0
+	if(!(G && G.assailant == user && G.affecting == src)) //check that we still have a grab
+		return 0
+
+	user.visible_message("<span class='danger'>\The [user] twists \the [W] around inside [src]'s [chest]!</span>")
+
+	if(prob(organ_chance))
+		var/obj/item/organ/internal/selected_organ = pick(chest.internal_organs)
+		selected_organ.damage = max(selected_organ.damage, damage * 0.5)
+		G.last_action = world.time
+		flick(G.hud.icon_state, G.hud)
+
+	return 1

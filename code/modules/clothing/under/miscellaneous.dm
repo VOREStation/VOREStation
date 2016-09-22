@@ -182,6 +182,13 @@
 	icon_state = "black_suit_fem"
 	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
 
+/obj/item/clothing/under/suit_jacket/female/skirt
+	name = "executive skirt"
+	desc = "A formal suit skirt  for women, intended for the station's finest."
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	icon_state = "black_suit_fem"
+	item_state = "black_formal_skirt"
+
 /obj/item/clothing/under/suit_jacket/red
 	name = "red suit"
 	desc = "A red suit and blue tie. Somewhat formal."

@@ -222,7 +222,7 @@ mob/living/proc/near_camera()
 
 /mob/living/proc/tracking_status()
 	// Easy checks first.
-	// Don't detect mobs on Centcom. Since the wizard den is on Centcomm, we only need this.
+	// Don't detect mobs on CentCom. Since the wizard den is on CentCom, we only need this.
 	var/obj/item/weapon/card/id/id = GetIdCard()
 	if(id && id.prevent_tracking())
 		return TRACKING_TERMINATE

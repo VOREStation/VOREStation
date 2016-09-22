@@ -173,7 +173,7 @@
 			src.updateDialog()
 
 		// OMG CENTCOMM LETTERHEAD
-		if("MessageCentcomm")
+		if("MessageCentCom")
 			if(src.authenticated==2)
 				if(centcomm_message_cooldown)
 					usr << "\red Arrays recycling.  Please stand by."
@@ -181,7 +181,7 @@
 				var/input = sanitize(input("Please choose a message to transmit to [boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", ""))
 				if(!input || !(usr in view(1,src)))
 					return
-				Centcomm_announce(input, usr)
+				CentCom_announce(input, usr)
 				usr << "\blue Message transmitted."
 				log_say("[key_name(usr)] has made an IA [boss_short] announcement: [input]")
 				centcomm_message_cooldown = 1
@@ -295,7 +295,7 @@
 				if (src.authenticated==2)
 					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=announce'>Make An Announcement</A> \]"
 					if(src.emagged == 0)
-						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=MessageCentcomm'>Send an emergency message to [boss_short]</A> \]"
+						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=MessageCentCom'>Send an emergency message to [boss_short]</A> \]"
 					else
 						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=MessageSyndicate'>Send an emergency message to \[UNKNOWN\]</A> \]"
 						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=RestoreBackup'>Restore Backup Routing Data</A> \]"

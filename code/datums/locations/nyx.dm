@@ -43,15 +43,15 @@
 
 /datum/locations/exodus
 	name = "NSS Exodus"
-	desc = "A highly profitable research, mining, and supply dock for Nanotrasen that serves as one of their many facilities in exploiting the \
+	desc = "A highly profitable research, mining, and supply dock for NanoTrasen that serves as one of their many facilities in exploiting the \
 	wonders of phoron. It is currently orbiting around Erebus and maintains close contact with the NAS Crescent. The station itself has been \
-	a target for a large number of Mercenaries and other companies wishing to steal Nanotrasen's secrets."
+	a target for a large number of Mercenaries and other companies wishing to steal NanoTrasen's secrets."
 
 /datum/locations/crescent
 	name = "NAS Crescent"
-	desc = "The main hub for Nanotrasen in the Nyx system and is commonly referred to it by their workers as central command or \"Centcomm\". \
+	desc = "The main hub for NanoTrasen in the Nyx system and is commonly referred to it by their workers as central command or \"CentCom\". \
 	The Crescent refines and stores much of the products that stations (such as the Exodus) bring in. It is also a large refueling and supply \
-	station of phoron and tritium in the Nyx system due to Nanotrasen being able to outsell almost any other company."
+	station of phoron and tritium in the Nyx system due to NanoTrasen being able to outsell almost any other company."
 
 /datum/locations/emerald_habitation
 	name = "Emerald Habitation"

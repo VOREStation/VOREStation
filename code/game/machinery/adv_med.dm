@@ -329,7 +329,7 @@
 					organStatus["broken"] = E.broken_description
 				if(E.status & ORGAN_ROBOT)
 					organStatus["robotic"] = 1
-				if(E.status & ORGAN_SPLINTED)
+				if(E.splinted)
 					organStatus["splinted"] = 1
 				if(E.status & ORGAN_BLEEDING)
 					organStatus["bleeding"] = 1
@@ -483,7 +483,7 @@
 					break
 				if(istype(e, /obj/item/organ/external/chest) && occupant.is_lung_ruptured())
 					lung_ruptured = "Lung ruptured:"
-				if(e.status & ORGAN_SPLINTED)
+				if(e.splinted)
 					splint = "Splinted:"
 				if(e.status & ORGAN_BLEEDING)
 					bled = "Bleeding:"

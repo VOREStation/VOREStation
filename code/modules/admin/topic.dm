@@ -440,6 +440,27 @@
 				counter = 0
 		jobs += "</tr></table>"
 
+	//Cargo (Yellow)
+		counter = 0
+		jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
+		jobs += "<tr bgcolor='fff5cc'><th colspan='[length(cargo_positions)]'><a href='?src=\ref[src];jobban3=cargodept;jobban4=\ref[M]'>Cargo Positions</a></th></tr><tr align='center'>"
+		for(var/jobPos in cargo_positions)
+			if(!jobPos)	continue
+			var/datum/job/job = job_master.GetJob(jobPos)
+			if(!job) continue
+
+			if(jobban_isbanned(M, job.title))
+				jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=[job.title];jobban4=\ref[M]'><font color=red>[replacetext(job.title, " ", "&nbsp")]</font></a></td>"
+				counter++
+			else
+				jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=[job.title];jobban4=\ref[M]'>[replacetext(job.title, " ", "&nbsp")]</a></td>"
+				counter++
+
+			if(counter >= 5) //So things dont get squiiiiished!
+				jobs += "</tr><tr align='center'>"
+				counter = 0
+		jobs += "</tr></table>"
+
 	//Medical (White)
 		counter = 0
 		jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
@@ -613,6 +634,12 @@
 					joblist += temp.title
 			if("engineeringdept")
 				for(var/jobPos in engineering_positions)
+					if(!jobPos)	continue
+					var/datum/job/temp = job_master.GetJob(jobPos)
+					if(!temp) continue
+					joblist += temp.title
+			if("cargodept")
+				for(var/jobPos in cargo_positions)
 					if(!jobPos)	continue
 					var/datum/job/temp = job_master.GetJob(jobPos)
 					if(!temp) continue
@@ -1323,19 +1350,19 @@
 			M.Weaken(20)
 			M.stuttering = 20
 
-	else if(href_list["CentcommReply"])
-		var/mob/living/L = locate(href_list["CentcommReply"])
+	else if(href_list["CentComReply"])
+		var/mob/living/L = locate(href_list["CentComReply"])
 		if(!istype(L))
 			usr << "This can only be used on instances of type /mob/living/"
 			return
 
 		if(L.can_centcom_reply())
-			var/input = sanitize(input(src.owner, "Please enter a message to reply to [key_name(L)] via their headset.","Outgoing message from Centcomm", ""))
+			var/input = sanitize(input(src.owner, "Please enter a message to reply to [key_name(L)] via their headset.","Outgoing message from CentCom", ""))
 			if(!input)		return
 
 			src.owner << "You sent [input] to [L] via a secure channel."
-			log_admin("[src.owner] replied to [key_name(L)]'s Centcomm message with the message [input].")
-			message_admins("[src.owner] replied to [key_name(L)]'s Centcom message with: \"[input]\"")
+			log_admin("[src.owner] replied to [key_name(L)]'s CentCom message with the message [input].")
+			message_admins("[src.owner] replied to [key_name(L)]'s CentCom message with: \"[input]\"")
 			if(!isAI(L))
 				L << "<span class='info'>You hear something crackle in your headset for a moment before a voice speaks.</span>"
 			L << "<span class='info'>Please stand by for a message from Central Command.</span>"

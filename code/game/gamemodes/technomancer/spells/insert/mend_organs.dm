@@ -2,7 +2,7 @@
 	name = "Mend Organs"
 	desc = "Heals the target's internal organs, both organic and robotic.  Instability is split between the target \
 	and technomancer, if seperate."
-	cost = 75
+	cost = 50
 	obj_path = /obj/item/weapon/spell/insert/mend_organs
 	ability_icon_state = "tech_mendwounds"
 	category = SUPPORT_SPELLS
