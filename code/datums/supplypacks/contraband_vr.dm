@@ -5,3 +5,4 @@
 	containertype = /obj/structure/closet/crate
 	containername = "Stolen crate"
 	contraband = 1
+	group = "Supplies"
