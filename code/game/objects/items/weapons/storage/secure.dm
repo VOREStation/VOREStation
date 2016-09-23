@@ -23,9 +23,9 @@
 	var/l_hacking = 0
 	var/emagged = 0
 	var/open = 0
-	w_class = 3
-	max_w_class = 2
-	max_storage_space = 14
+	w_class = ITEMSIZE_NORMAL
+	max_w_class = ITEMSIZE_SMALL
+	max_storage_space = ITEMSIZE_SMALL * 7
 
 	examine(mob/user)
 		if(..(user, 1))
@@ -149,7 +149,7 @@
 	force = 8.0
 	throw_speed = 1
 	throw_range = 4
-	w_class = 4.0
+	w_class = ITEMSIZE_LARGE
 
 	attack_hand(mob/user as mob)
 		if ((src.loc == user) && (src.locked == 1))
@@ -176,8 +176,8 @@
 	icon_locking = "safeb"
 	icon_sparking = "safespark"
 	force = 8.0
-	w_class = 8.0
-	max_w_class = 8
+	w_class = ITEMSIZE_NO_CONTAINER
+	max_w_class = ITEMSIZE_LARGE // This was 8 previously...
 	anchored = 1.0
 	density = 0
 	cant_hold = list(/obj/item/weapon/storage/secure/briefcase)

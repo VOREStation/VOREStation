@@ -5,7 +5,7 @@
 	desc = "A tank of compressed gas for use as propulsion in zero-gravity areas. Use with caution."
 	icon_state = "jetpack"
 	gauge_icon = null
-	w_class = 4.0
+	w_class = ITEMSIZE_LARGE
 	item_icons = list(
 			slot_l_hand_str = 'icons/mob/items/lefthand_storage.dmi',
 			slot_r_hand_str = 'icons/mob/items/righthand_storage.dmi',

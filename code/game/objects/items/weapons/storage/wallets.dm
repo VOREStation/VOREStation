@@ -4,7 +4,7 @@
 	storage_slots = 10
 	icon = 'icons/obj/wallet.dmi'
 	icon_state = "wallet-orange"
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	can_hold = list(
 		/obj/item/weapon/spacecash,
 		/obj/item/weapon/card,
@@ -87,7 +87,7 @@
 	verbs |= /obj/item/weapon/storage/wallet/poly/proc/change_color
 	color = "#"+get_random_colour()
 	update_icon()
-	
+
 /obj/item/weapon/storage/wallet/poly/proc/change_color()
 	set name = "Change Wallet Color"
 	set category = "Object"
@@ -106,9 +106,8 @@
 	var/original_state = icon_state
 	icon_state = "wallet-emp"
 	update_icon()
-	
+
 	spawn(200)
 		if(src)
 			icon_state = original_state
 			update_icon()
-			

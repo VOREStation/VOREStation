@@ -39,7 +39,7 @@
 			return
 		if(do_after(user, 30))
 			icon_state = "obrez"
-			w_class = 3
+			w_class = ITEMSIZE_NORMAL
 			recoil = 2 // Owch
 			accuracy = -1 // You know damn well why.
 			item_state = "gun"

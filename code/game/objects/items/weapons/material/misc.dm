@@ -13,7 +13,7 @@
 	desc = "A pair of brass knuckles. Generally used to enhance the user's punches."
 	icon_state = "knuckledusters"
 	gender = PLURAL
-	w_class = 2.0
+	w_class = ITEMSIZE_SMALL
 	force_divisor = 0.63
 	attack_verb = list("punched", "beaten", "struck")
 	applies_material_colour = 0
@@ -25,7 +25,7 @@
 	icon_state = "hatchet"
 	force_divisor = 0.2 // 12 with hardness 60 (steel)
 	thrown_force_divisor = 0.75 // 15 with weight 20 (steel)
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	sharp = 1
 	edge = 1
 	origin_tech = "materials=2;combat=1"
@@ -82,7 +82,7 @@
 	icon_state = "hoe"
 	force_divisor = 0.25 // 5 with weight 20 (steel)
 	thrown_force_divisor = 0.25 // as above
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	attack_verb = list("slashed", "sliced", "cut", "clawed")
 
 /obj/item/weapon/material/scythe
@@ -95,7 +95,7 @@
 	edge = 1
 	throw_speed = 1
 	throw_range = 3
-	w_class = 4
+	w_class = ITEMSIZE_LARGE
 	slot_flags = SLOT_BACK
 	origin_tech = "materials=2;combat=2"
 	attack_verb = list("chopped", "sliced", "cut", "reaped")
