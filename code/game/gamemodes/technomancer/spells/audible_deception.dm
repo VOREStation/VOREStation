@@ -3,7 +3,7 @@
 	desc = "Allows you to create a specific sound at a location of your choosing."
 	enhancement_desc = "An extremely loud sound that a large amount of energy and instability becomes available, which will \
 	deafen and stun all who are near the targeted tile, including yourself if unprotected."
-	cost = 150
+	cost = 50
 	obj_path = /obj/item/weapon/spell/audible_deception
 	ability_icon_state = "tech_audibledeception"
 	category = UTILITY_SPELLS

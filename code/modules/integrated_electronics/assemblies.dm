@@ -5,7 +5,7 @@
 	icon = 'icons/obj/electronic_assemblies.dmi'
 	icon_state = "setup_small"
 	var/max_components = 10
-	var/max_complexity = 30
+	var/max_complexity = 40
 	var/opened = 0
 
 /obj/item/device/electronic_assembly/medium
@@ -13,29 +13,76 @@
 	icon_state = "setup_medium"
 	w_class = 3
 	max_components = 20
-	max_complexity = 50
+	max_complexity = 80
 
 /obj/item/device/electronic_assembly/large
 	name = "electronic machine"
-	icon_state = "setup"
+	icon_state = "setup_large"
 	w_class = 4
 	max_components = 30
-	max_complexity = 60
+	max_complexity = 120
 
-/*
+/obj/item/device/electronic_assembly/drone
+	name = "electronic drone"
+	icon_state = "setup_drone"
+	w_class = 3
+	max_components = 25
+	max_complexity = 100
 
-/obj/item/device/electronic_assembly/New()
-	..()
-	processing_objects |= src
+/obj/item/device/electronic_assembly/interact(mob/user)
+	if(get_dist(get_turf(src), user) > 1)
+		user.unset_machine(src)
+		return
+	var/total_parts = 0
+	var/total_complexity = 0
+	for(var/obj/item/integrated_circuit/part in contents)
+		total_parts++
+		total_complexity = total_complexity + part.complexity
+	var/HTML = "<html><head><title>[src.name]</title></head><body>"
 
-/obj/item/device/electronic_assembly/Destroy()
-	processing_objects.Remove(src)
-	..()
+	HTML += "<br><a href='?src=\ref[src];user=\ref[user]'>\[Refresh\]</a>  |  "
+	HTML += "<a href='?src=\ref[src];user=\ref[user];rename=1'>\[Rename\]</a><br>"
+	HTML += "[total_parts]/[max_components] ([round((total_parts / max_components) * 100, 0.1)]%) space taken up in the assembly.<br>"
+	HTML += "[total_complexity]/[max_complexity] ([round((total_complexity / max_complexity) * 100, 0.1)]%) maximum complexity."
+	HTML += "<br><br>"
+	HTML += "Components;<br>"
+	for(var/obj/item/integrated_circuit/circuit in contents)
+		HTML += "<a href=?src=\ref[circuit];examine=1;user=\ref[user]>[circuit.name]</a> | "
+		HTML += "<a href=?src=\ref[circuit];rename=1;user=\ref[user]>\[Rename\]</a>"
+		HTML += "<br>"
 
-/obj/item/device/electronic_assembly/process()
-	for(var/obj/item/integrated_circuit/IC in contents)
-		IC.work()
-*/
+	HTML += "</body></html>"
+	user << browse(HTML, "window=assembly-\ref[src];size=600x350;border=1;can_resize=1;can_close=1;can_minimize=1")
+
+/obj/item/device/electronic_assembly/Topic(href, href_list[])
+	var/mob/living/user = locate(href_list["user"]) in mob_list
+
+	if(..())
+		return 1
+
+	if(!user.canmove || user.stat || user.restrained())
+		return
+
+	if(href_list["rename"])
+		rename(user)
+
+	interact(user) // To refresh the UI.
+
+/obj/item/device/electronic_assembly/verb/rename()
+	set name = "Rename Circuit"
+	set category = "Object"
+	set desc = "Rename your circuit, useful to stay organized."
+
+	var/mob/M = usr
+
+	if(!M.canmove || M.stat || M.restrained())
+		return
+
+	var/input = sanitizeSafe(input("What do you want to name this?", "Rename", src.name), MAX_NAME_LEN)
+
+	if(src && input)
+		M << "<span class='notice'>The machine now has a label reading '[input]'.</span>"
+		name = input
 
 /obj/item/device/electronic_assembly/update_icon()
 	if(opened)
@@ -51,9 +98,10 @@
 				if(S.stuff_to_display)
 					user << "There's a little screen labeled '[S.name]', which displays '[S.stuff_to_display]'."
 		else
-			var/obj/item/integrated_circuit/IC = input(user, "Which circuit do you want to examine?", "Examination") as null|anything in contents
-			if(IC)
-				IC.examine(user)
+			interact(user)
+	//		var/obj/item/integrated_circuit/IC = input(user, "Which circuit do you want to examine?", "Examination") as null|anything in contents
+	//		if(IC)
+	//			IC.examine(user)
 
 /obj/item/device/electronic_assembly/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I, /obj/item/integrated_circuit))
