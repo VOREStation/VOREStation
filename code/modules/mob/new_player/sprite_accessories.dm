@@ -510,6 +510,10 @@
 		name = "Double-Bun"
 		icon_state = "hair_doublebun"
 
+	oxton
+		name = "Oxton"
+		icon_state = "hair_oxton"
+
 
 /*
 ///////////////////////////////////
