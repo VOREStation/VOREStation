@@ -247,6 +247,7 @@ var/list/mechtoys = list(
 			var/i = rand(1,clear_turfs.len)
 			var/turf/pickedloc = clear_turfs[i]
 			clear_turfs.Cut(i,i+1)
+			shoppinglist -= S
 
 			var/datum/supply_order/SO = S
 			var/datum/supply_packs/SP = SO.object
@@ -298,5 +299,4 @@ var/list/mechtoys = list(
 				slip.info += "</ul><br>"
 				slip.info += "CHECK CONTENTS AND STAMP BELOW THE LINE TO CONFIRM RECEIPT OF GOODS<hr>"
 
-		shoppinglist.Cut()
 		return
