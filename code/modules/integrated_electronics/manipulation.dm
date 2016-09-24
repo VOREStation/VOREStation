@@ -6,14 +6,12 @@
 	The 'fire' activator will cause the mechanism to attempt to fire the weapon at the coordinates, if possible.  Note that the \
 	normal limitations to firearms, such as ammunition requirements and firing delays, still hold true if fired by the mechanism."
 	complexity = 20
-	number_of_inputs = 2
-	number_of_outputs = 0
-	number_of_activators = 1
-	input_names = list(
+	inputs = list(
 		"target X rel",
 		"target Y rel"
 		)
-	activator_names = list(
+	outputs = list()
+	activators = list(
 		"fire"
 	)
 	var/obj/item/weapon/gun/installed_gun = null
@@ -45,7 +43,7 @@
 	else
 		user << "<span class='notice'>There's no weapon to remove from the mechanism.</span>"
 
-/obj/item/integrated_circuit/manipulation/weapon_firing/work()
+/obj/item/integrated_circuit/manipulation/weapon_firing/do_work()
 	if(..())
 		if(!installed_gun)
 			return
@@ -95,28 +93,23 @@
 	into the smoke clouds when activated."
 	flags = OPENCONTAINER
 	complexity = 20
-	number_of_inputs = 0
-	number_of_outputs = 0
-	number_of_activators = 1
 	cooldown_per_use = 30 SECONDS
-	input_names = list()
-	activator_names = list(
-		"create smoke"
-	)
+	inputs = list()
+	outputs = list()
+	activators = list("create smoke")
 
 /obj/item/integrated_circuit/manipulation/smoke/New()
 	..()
 	create_reagents(100)
 
-/obj/item/integrated_circuit/manipulation/smoke/work()
-	if(..())
-		playsound(src.loc, 'sound/effects/smoke.ogg', 50, 1, -3)
-		var/datum/effect/effect/system/smoke_spread/chem/smoke_system = new()
-		smoke_system.set_up(reagents, 10, 0, get_turf(src))
-		spawn(0)
-			for(var/i = 1 to 8)
-				smoke_system.start()
-			reagents.clear_reagents()
+/obj/item/integrated_circuit/manipulation/smoke/do_work()
+	playsound(src.loc, 'sound/effects/smoke.ogg', 50, 1, -3)
+	var/datum/effect/effect/system/smoke_spread/chem/smoke_system = new()
+	smoke_system.set_up(reagents, 10, 0, get_turf(src))
+	spawn(0)
+		for(var/i = 1 to 8)
+			smoke_system.start()
+		reagents.clear_reagents()
 
 /obj/item/integrated_circuit/manipulation/locomotion
 	name = "locomotion circuit"
@@ -135,24 +128,18 @@
 	Pulsing the 'step towards dir' activator pin will cause the machine to move a meter in that direction, assuming it is not \
 	being held, or anchored in some way."
 	complexity = 20
-	number_of_inputs = 1
-	number_of_outputs = 0
-	number_of_activators = 1
-	input_names = list(
-		"dir num"
-	)
-	activator_names = list(
-		"step towards dir"
-	)
+	inputs = list("dir num")
+	outputs = list()
+	activators = list("step towards dir")
 
-/obj/item/integrated_circuit/manipulation/locomotion/work()
-	if(..())
-		var/turf/T = get_turf(src)
-		if(istype(loc, /obj/item/device/electronic_assembly))
-			var/obj/item/device/electronic_assembly/machine = loc
-			if(machine.anchored || machine.w_class >= 4)
-				return
-			if(machine.loc && machine.loc == T) // Check if we're held by someone.  If the loc is the floor, we're not held.
-				var/datum/integrated_io/wanted_dir = inputs[1]
-				if(isnum(wanted_dir.data))
-					step(machine, wanted_dir.data)
+/obj/item/integrated_circuit/manipulation/locomotion/do_work()
+	..()
+	var/turf/T = get_turf(src)
+	if(istype(loc, /obj/item/device/electronic_assembly))
+		var/obj/item/device/electronic_assembly/machine = loc
+		if(machine.anchored || machine.w_class >= 4)
+			return
+		if(machine.loc && machine.loc == T) // Check if we're held by someone.  If the loc is the floor, we're not held.
+			var/datum/integrated_io/wanted_dir = inputs[1]
+			if(isnum(wanted_dir.data))
+				step(machine, wanted_dir.data)
