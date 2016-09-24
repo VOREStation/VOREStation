@@ -348,5 +348,5 @@
 	icon_state = "purse"
 	item_state_slots = list(slot_r_hand_str = "lgpurse", slot_l_hand_str = "lgpurse")
 	w_class = ITEMSIZE_LARGE
-	max_w_class = ITEMSIZE_MEDIUM
+	max_w_class = ITEMSIZE_NORMAL
 	max_storage_space = ITEMSIZE_COST_NORMAL * 5
