@@ -5,7 +5,7 @@
 	targets.  This function will have no effect on entities of higher intelligence, such as humans and similar alien species, as it's \
 	not true mind control, but merely pheromone synthesis for living animals, and electronic hacking for simple robots.  The green web \
 	around the entity is merely a hologram used to allow the user to know if the creature is safe or not."
-	cost = 200
+	cost = 100
 	obj_path = /obj/item/weapon/spell/control
 	category = UTILITY_SPELLS
 

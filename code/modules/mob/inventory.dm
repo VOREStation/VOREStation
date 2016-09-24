@@ -126,16 +126,12 @@ var/list/slot_equipment_priority = list( \
 
 // Removes an item from inventory and places it in the target atom.
 // If canremove or other conditions need to be checked then use unEquip instead.
-/mob/proc/drop_from_inventory(var/obj/item/W, var/atom/Target = null)
 
+/mob/proc/drop_from_inventory(var/obj/item/W, var/atom/target = null)
 	if(W)
-		if(!Target)
-			Target = loc
-
-		remove_from_mob(W)
-		if(!(W && W.loc)) return 1 // self destroying objects (tk, grabs)
-
-		W.forceMove(Target)
+		remove_from_mob(W, target)
+		if(!(W && W.loc))
+			return 1 // self destroying objects (tk, grabs)
 		update_icons()
 		return 1
 	return 0
@@ -194,7 +190,9 @@ var/list/slot_equipment_priority = list( \
 
 
 //Attemps to remove an object on a mob.
-/mob/proc/remove_from_mob(var/obj/O)
+/mob/proc/remove_from_mob(var/obj/O, var/atom/target)
+	if(!O) // Nothing to remove, so we succeed.
+		return 1
 	src.u_equip(O)
 	if (src.client)
 		src.client.screen -= O
@@ -202,7 +200,10 @@ var/list/slot_equipment_priority = list( \
 	O.screen_loc = null
 	if(istype(O, /obj/item))
 		var/obj/item/I = O
-		I.forceMove(src.loc)
+		if(target)
+			I.forceMove(target)
+		else
+			I.dropInto(loc)
 		I.dropped(src)
 	return 1
 

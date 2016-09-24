@@ -7,8 +7,8 @@
 	their powers can be used for good or if their arrival foreshadows the destruction of the entire colony, or worse."
 	config_tag = "technomancer"
 	votable = 0
-	required_players = 8
-	required_players_secret = 10
+	required_players = 5
+	required_players_secret = 5
 	required_enemies = 1
 	end_on_antag_death = 0
 	antag_tags = list(MODE_TECHNOMANCER)

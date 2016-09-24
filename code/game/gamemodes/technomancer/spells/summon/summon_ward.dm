@@ -3,7 +3,7 @@
 	desc = "Teleports a prefabricated 'ward' drone to the target location, which will alert you and your allies when it sees entities \
 	moving around it, or when it is attacked.  They can see for up to five meters.  Wards expire in six minutes."
 	enhancement_desc = "Wards can detect invisibile entities, and are more specific in relaying information about what it sees."
-	cost = 100
+	cost = 25
 	obj_path = /obj/item/weapon/spell/summon/summon_ward
 	category = UTILITY_SPELLS
 
@@ -84,6 +84,9 @@
 			if(L.alpha <= 127)
 				continue // Too transparent, as a mercy to camo lings.
 
+		else
+			L.break_cloak()
+
 		// Warn the Technomancer when it sees a new mob.
 		if(!(L in seen_mobs))
 			seen_mobs.Add(L)
@@ -111,3 +114,7 @@
 		overlays.Cut()
 		var/image/I = image('icons/mob/critter.dmi',"ward_truesight")
 		overlays.Add(I)
+
+/mob/living/simple_animal/ward/invisible_detect
+	true_sight = 1
+	see_invisible = SEE_INVISIBLE_LEVEL_TWO

@@ -4,7 +4,7 @@
 	Every second, electricity is stolen until the link is broken by the target moving too far away, or having no more energy left.  \
 	Can drain from powercells, microbatteries, and other Cores.  The beam created by the siphoning is harmful to touch."
 	enhancement_desc = "Rate of siphoning is doubled."
-	cost = 150
+	cost = 100
 	obj_path = /obj/item/weapon/spell/energy_siphon
 	ability_icon_state = "tech_energysiphon"
 	category = UTILITY_SPELLS

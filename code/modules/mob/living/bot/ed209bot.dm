@@ -94,7 +94,7 @@
 
 	switch(build_step)
 		if(0, 1)
-			if(istype(W, /obj/item/robot_parts/l_leg) || istype(W, /obj/item/robot_parts/r_leg))
+			if(istype(W, /obj/item/robot_parts/l_leg) || istype(W, /obj/item/robot_parts/r_leg) || (istype(W, /obj/item/organ/external/leg) && ((W.name == "robotic right leg") || (W.name == "robotic left leg"))))
 				user.drop_item()
 				qdel(W)
 				build_step++
