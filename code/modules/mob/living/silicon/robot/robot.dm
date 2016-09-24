@@ -549,8 +549,8 @@
 			user << "Close the panel first."
 		else if(cell)
 			user << "There is a power cell already installed."
-		else if(W.w_class != 3)
-			user << "\The [W] is too [W.w_class < 3? "small" : "large"] to fit here."
+		else if(W.w_class != ITEMSIZE_NORMAL)
+			user << "\The [W] is too [W.w_class < ITEMSIZE_NORMAL ? "small" : "large"] to fit here."
 		else
 			user.drop_item()
 			W.loc = src

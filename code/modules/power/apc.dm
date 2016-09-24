@@ -461,7 +461,7 @@
 		if (stat & MAINT)
 			user << "<span class='warning'>There is no connector for your power cell.</span>"
 			return
-		if(W.w_class != 3)
+		if(W.w_class != ITEMSIZE_NORMAL)
 			user << "\The [W] is too [W.w_class < 3? "small" : "large"] to fit here."
 			return
 
@@ -631,7 +631,7 @@
 		if (((stat & BROKEN) || hacker) \
 				&& !opened \
 				&& W.force >= 5 \
-				&& W.w_class >= 3.0 \
+				&& W.w_class >= ITEMSIZE_NORMAL \
 				&& prob(20) )
 			opened = 2
 			user.visible_message("<span class='danger'>The APC cover was knocked down with the [W.name] by [user.name]!</span>", \
