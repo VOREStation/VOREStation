@@ -97,6 +97,7 @@ var/list/civilian_cartridges = list(
 	name = "\improper ChemWhiz cartridge"
 	icon_state = "cart-chem"
 	access_reagent_scanner = 1
+	access_medical = 1
 
 /obj/item/weapon/cartridge/security
 	name = "\improper R.O.B.U.S.T. cartridge"

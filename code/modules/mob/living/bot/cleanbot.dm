@@ -180,11 +180,11 @@
 	w_class = 3.0
 	var/created_name = "Cleanbot"
 
-/obj/item/weapon/bucket_sensor/attackby(var/obj/item/O, var/mob/user)
+/obj/item/weapon/bucket_sensor/attackby(var/obj/item/W, var/mob/user)
 	..()
-	if(istype(O, /obj/item/robot_parts/l_arm) || istype(O, /obj/item/robot_parts/r_arm))
+	if(istype(W, /obj/item/robot_parts/l_arm) || istype(W, /obj/item/robot_parts/r_arm) || (istype(W, /obj/item/organ/external/arm) && ((W.name == "robotic left arm") || (W.name == "robotic right arm"))))
 		user.drop_item()
-		qdel(O)
+		qdel(W)
 		var/turf/T = get_turf(loc)
 		var/mob/living/bot/cleanbot/A = new /mob/living/bot/cleanbot(T)
 		A.name = created_name
@@ -192,7 +192,7 @@
 		user.drop_from_inventory(src)
 		qdel(src)
 
-	else if(istype(O, /obj/item/weapon/pen))
+	else if(istype(W, /obj/item/weapon/pen))
 		var/t = sanitizeSafe(input(user, "Enter new robot name", name, created_name), MAX_NAME_LEN)
 		if(!t)
 			return

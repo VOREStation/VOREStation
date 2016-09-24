@@ -1,7 +1,7 @@
 /datum/technomancer/spell/shock_aura
 	name = "Electric Aura"
 	desc = "Repeatively electrocutes enemies within four meters of you, as well as nearby electronics."
-	cost = 150
+	cost = 100
 	obj_path = /obj/item/weapon/spell/aura/shock
 	ability_icon_state = "tech_shockaura"
 	category = OFFENSIVE_SPELLS

@@ -2,7 +2,7 @@
 	name = "Disposable Teleporter"
 	desc = "An ultra-safe teleportation device that can directly teleport you to a number of locations at minimal risk, however \
 	it has a limited amount of charges."
-	cost = 100
+	cost = 50
 	obj_path = /obj/item/weapon/disposable_teleporter
 
 /obj/item/weapon/disposable_teleporter

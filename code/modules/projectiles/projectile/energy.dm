@@ -25,14 +25,14 @@
 	for (var/mob/living/carbon/M in viewers(T, flash_range))
 		if(M.eyecheck() < 1)
 			M.flash_eyes()
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			flash_strength *= H.species.flash_mod
+			if(ishuman(M))
+				var/mob/living/carbon/human/H = M
+				flash_strength *= H.species.flash_mod
 
-			if(flash_strength > 0)
-				H.confused = max(H.confused, flash_strength + 5)
-				H.eye_blind = max(H.eye_blind, flash_strength)
-				H.eye_blurry = max(H.eye_blurry, flash_strength + 5)
+				if(flash_strength > 0)
+					H.confused = max(H.confused, flash_strength + 5)
+					H.eye_blind = max(H.eye_blind, flash_strength)
+					H.eye_blurry = max(H.eye_blurry, flash_strength + 5)
 
 
 	//snap pop
@@ -68,6 +68,9 @@
 	taser_effect = 1
 	agony = 40
 	damage_type = HALLOSS
+	light_range = 2
+	light_power = 0.5
+	light_color = "#FFFFFF"
 	//Damage will be handled on the MOB side, to prevent window shattering.
 
 /obj/item/projectile/energy/electrode/strong
@@ -85,6 +88,9 @@
 	nodamage = 1
 	damage_type = CLONE
 	irradiate = 40
+	light_range = 2
+	light_power = 0.5
+	light_color = "#33CC00"
 
 
 /obj/item/projectile/energy/dart
@@ -124,3 +130,6 @@
 	damage = 20
 	damage_type = TOX
 	irradiate = 20
+	light_range = 2
+	light_power = 0.5
+	light_color = "#33CC00"

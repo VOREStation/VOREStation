@@ -44,7 +44,7 @@
 					return test_result
 
 				if(expectation == UT_NORMAL)
-	
+
 					if(abs(temp - T20C) > 10)
 						test_result["msg"] = "Temperature out of bounds: [temp] | [t_msg]"
 						return test_result
@@ -78,7 +78,7 @@
 	return 1
 
 /datum/unit_test/zas_area_test/supply_centcomm
-	name = "ZAS: Supply Shuttle (CentComm)"
+	name = "ZAS: Supply Shuttle (CentCom)"
 	area_path = /area/supply/dock
 
 /datum/unit_test/zas_area_test/emergency_shuttle
@@ -95,7 +95,7 @@
 
 /datum/unit_test/zas_area_test/cargo_maint
 	name = "ZAS: Cargo Maintenance"
-	area_path = /area/maintenance/cargo 
+	area_path = /area/maintenance/cargo
 
 /datum/unit_test/zas_area_test/eng_shuttle
 	name = "ZAS: Construction Site Shuttle (Station)"

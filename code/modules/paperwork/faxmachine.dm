@@ -181,11 +181,11 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 	//message badmins that a fax has arrived
 	if (destination == boss_name)
-		message_admins(sender, "[uppertext(boss_short)] FAX", rcvdcopy, "CentcommFaxReply", "#006100")
+		message_admins(sender, "[uppertext(boss_short)] FAX", rcvdcopy, "CentComFaxReply", "#006100")
 	else if ("Sif Governmental Authority")
-		message_admins(sender, "SIF GOVERNMENT FAX", rcvdcopy, "CentcommFaxReply", "#1F66A0")
+		message_admins(sender, "SIF GOVERNMENT FAX", rcvdcopy, "CentComFaxReply", "#1F66A0")
 	else if ("Supply")
-		message_admins(sender, "[uppertext(boss_short)] SUPPLY FAX", rcvdcopy, "CentcommFaxReply", "#5F4519")
+		message_admins(sender, "[uppertext(boss_short)] SUPPLY FAX", rcvdcopy, "CentComFaxReply", "#5F4519")
 	else
 		message_admins(sender, "[uppertext(destination)] FAX", rcvdcopy, "UNKNOWN")
 

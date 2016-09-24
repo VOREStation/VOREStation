@@ -258,40 +258,40 @@
 	var/build_step = 0
 	var/created_name = "Securitron"
 
-/obj/item/weapon/secbot_assembly/attackby(var/obj/item/O, var/mob/user)
+/obj/item/weapon/secbot_assembly/attackby(var/obj/item/W, var/mob/user)
 	..()
-	if(istype(O, /obj/item/weapon/weldingtool) && !build_step)
-		var/obj/item/weapon/weldingtool/WT = O
+	if(istype(W, /obj/item/weapon/weldingtool) && !build_step)
+		var/obj/item/weapon/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
 			build_step = 1
 			overlays += image('icons/obj/aibots.dmi', "hs_hole")
 			user << "You weld a hole in \the [src]."
 
-	else if(isprox(O) && (build_step == 1))
+	else if(isprox(W) && (build_step == 1))
 		user.drop_item()
 		build_step = 2
-		user << "You add \the [O] to [src]."
+		user << "You add \the [W] to [src]."
 		overlays += image('icons/obj/aibots.dmi', "hs_eye")
 		name = "helmet/signaler/prox sensor assembly"
-		qdel(O)
+		qdel(W)
 
-	else if((istype(O, /obj/item/robot_parts/l_arm) || istype(O, /obj/item/robot_parts/r_arm)) && build_step == 2)
+	else if((istype(W, /obj/item/robot_parts/l_arm) || istype(W, /obj/item/robot_parts/r_arm) || (istype(W, /obj/item/organ/external/arm) && ((W.name == "robotic right arm") || (W.name == "robotic left arm")))) && build_step == 2)
 		user.drop_item()
 		build_step = 3
-		user << "You add \the [O] to [src]."
+		user << "You add \the [W] to [src]."
 		name = "helmet/signaler/prox sensor/robot arm assembly"
 		overlays += image('icons/obj/aibots.dmi', "hs_arm")
-		qdel(O)
+		qdel(W)
 
-	else if(istype(O, /obj/item/weapon/melee/baton) && build_step == 3)
+	else if(istype(W, /obj/item/weapon/melee/baton) && build_step == 3)
 		user.drop_item()
 		user << "You complete the Securitron! Beep boop."
 		var/mob/living/bot/secbot/S = new /mob/living/bot/secbot(get_turf(src))
 		S.name = created_name
-		qdel(O)
+		qdel(W)
 		qdel(src)
 
-	else if(istype(O, /obj/item/weapon/pen))
+	else if(istype(W, /obj/item/weapon/pen))
 		var/t = sanitizeSafe(input(user, "Enter new robot name", name, created_name), MAX_NAME_LEN)
 		if(!t)
 			return
