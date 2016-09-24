@@ -30,7 +30,7 @@
 
 // Stole hacky terrible code from doublebarrel shotgun. -Spades
 /obj/item/weapon/gun/projectile/shotgun/pump/rifle/mosin/attackby(var/obj/item/A as obj, mob/user as mob)
-	if(istype(A, /obj/item/weapon/circular_saw) || istype(A, /obj/item/weapon/melee/energy) || istype(A, /obj/item/weapon/pickaxe/plasmacutter) && w_class != 3)
+	if(istype(A, /obj/item/weapon/circular_saw) || istype(A, /obj/item/weapon/melee/energy) || istype(A, /obj/item/weapon/pickaxe/plasmacutter) && w_class != ITEMSIZE_NORMAL)
 		user << "<span class='notice'>You begin to shorten the barrel and stock of \the [src].</span>"
 		if(loaded.len)
 			afterattack(user, user)	//will this work? //it will. we call it twice, for twice the FUN
