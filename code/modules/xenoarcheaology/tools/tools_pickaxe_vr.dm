@@ -41,10 +41,10 @@
 	if(depth>30 || depth<1)
 		user << "<span class='notice'>Invalid depth.</span>"
 		return
-	excavation_amount = depth/2
+	excavation_amount = depth
 	user << "<span class='notice'>You set the depth to [depth]cm.</span>"
 
 /obj/item/weapon/pickaxe/excavationdrill/examine(mob/user)
 	..()
-	var/depth = excavation_amount*2
+	var/depth = excavation_amount
 	user << "<span class='info'>It is currently set at [depth]cms.</span>"
