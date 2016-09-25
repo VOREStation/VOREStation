@@ -158,21 +158,18 @@
 //----------------------------
 /obj/effect/projectile/emitter/tracer
 	icon_state = "emitter"
-	icon_state = "impact_xray"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#00CC33"
 
 /obj/effect/projectile/emitter/muzzle
 	icon_state = "muzzle_emitter"
-	icon_state = "impact_xray"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#00CC33"
 
 /obj/effect/projectile/emitter/impact
 	icon_state = "impact_emitter"
-	icon_state = "impact_xray"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#00CC33"
