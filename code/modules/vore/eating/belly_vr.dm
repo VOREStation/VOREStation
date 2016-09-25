@@ -103,6 +103,8 @@
 // If that location is another mob, contents are transferred into whichever of its bellies the owning mob is in.
 // Returns the number of mobs so released.
 /datum/belly/proc/release_all_contents()
+	if (internal_contents.len == 0)
+		return 0
 	for (var/atom/movable/M in internal_contents)
 		if(istype(M,/mob/living))
 			var/mob/living/ML = M
