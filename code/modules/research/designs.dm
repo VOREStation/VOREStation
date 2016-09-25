@@ -1523,6 +1523,14 @@ CIRCUITS BELOW
 	materials = list(DEFAULT_WALL_MATERIAL = 20000)
 	build_path = /obj/item/device/electronic_assembly/medium
 
+/datum/design/item/custom_circuit_assembly/drone
+	name = "Drone custom assembly"
+	desc = "An customizable assembly optimized for autonomous devices."
+	id = "assembly-drone"
+	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 4, TECH_POWER = 4)
+	materials = list(DEFAULT_WALL_MATERIAL = 30000)
+	build_path = /obj/item/device/electronic_assembly/drone
+
 /datum/design/item/custom_circuit_assembly/large
 	name = "Large custom assembly"
 	desc = "An customizable assembly for large machines."
@@ -1717,6 +1725,11 @@ CIRCUITS BELOW
 	build_path = /obj/item/integrated_circuit/input/local_locator
 	sort_string = "WAAEG"
 
+/datum/design/circuit/integrated_circuit/input_output/adjacent_locator
+	id = "cc-adjacentlocator"
+	build_path = /obj/item/integrated_circuit/input/adjacent_locator
+	sort_string = "WAAEH"
+
 /datum/design/circuit/integrated_circuit/input_output/signaler
 	id = "cc-signaler"
 	build_path = /obj/item/integrated_circuit/input/signaler
@@ -1821,7 +1834,33 @@ CIRCUITS BELOW
 	sort_string = "WAAGB"
 	req_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3)
 
+/datum/design/circuit/integrated_circuit/manipulation/injector
+	name = "injector"
+	id = "cc-injector"
+	build_path = /obj/item/integrated_circuit/manipulation/injector
+	sort_string = "WAAGC"
+	req_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 3)
 
+/datum/design/circuit/integrated_circuit/manipulation/reagent_pump
+	name = "reagent pump"
+	id = "cc-reagent_pump"
+	build_path = /obj/item/integrated_circuit/manipulation/reagent_pump
+	sort_string = "WAAGD"
+	req_tech = list(TECH_ENGINEERING = 1, TECH_DATA = 1, TECH_BIO = 2)
+
+/datum/design/circuit/integrated_circuit/manipulation/reagent_storage
+	name = "reagent storage"
+	id = "cc-reagent_storage"
+	build_path = /obj/item/integrated_circuit/manipulation/reagent_storage
+	sort_string = "WAAGE"
+	req_tech = list(TECH_ENGINEERING = 1, TECH_DATA = 1, TECH_BIO = 1)
+
+/datum/design/circuit/integrated_circuit/manipulation/reagent_storage_cryo
+	name = "cryo reagent storage"
+	id = "cc-reagent_storage_cryo"
+	build_path = /obj/item/integrated_circuit/manipulation/reagent_storage/cryo
+	sort_string = "WAAGF"
+	req_tech = list(TECH_MATERIALS = 3, TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 2)
 
 /datum/design/circuit/integrated_circuit/memory/AssembleDesignName()
 	..()
