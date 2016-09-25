@@ -13,6 +13,8 @@
 	slot_flags = SLOT_BACK
 	max_w_class = ITEMSIZE_LARGE
 	max_storage_space = INVENTORY_STANDARD_SPACE
+	var/flippable = 0
+	var/side = 0 //0 = right, 1 = left
 
 /obj/item/weapon/storage/backpack/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (src.use_sound)
@@ -339,3 +341,12 @@
 
 /obj/item/weapon/storage/backpack/messenger/black
 	icon_state = "courierbagblk"
+
+/obj/item/weapon/storage/backpack/purse
+	name = "purse"
+	desc = "A small, fashionable bag typically worn over the shoulder."
+	icon_state = "purse"
+	item_state_slots = list(slot_r_hand_str = "lgpurse", slot_l_hand_str = "lgpurse")
+	w_class = ITEMSIZE_LARGE
+	max_w_class = ITEMSIZE_NORMAL
+	max_storage_space = ITEMSIZE_COST_NORMAL * 5
