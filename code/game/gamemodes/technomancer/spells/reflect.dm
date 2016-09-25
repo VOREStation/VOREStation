@@ -1,7 +1,7 @@
 /datum/technomancer/spell/reflect
 	name = "Reflect"
 	desc = "Emits a protective shield fron your hand in front of you, which will reflect one attack back at the attacker."
-	cost = 120
+	cost = 100
 	obj_path = /obj/item/weapon/spell/reflect
 	ability_icon_state = "tech_reflect"
 	category = DEFENSIVE_SPELLS
@@ -22,7 +22,7 @@
 	spark_system = PoolOrNew(/datum/effect/effect/system/spark_spread)
 	spark_system.set_up(5, 0, src)
 	owner << "<span class='notice'>Your shield will expire in 3 seconds!</span>"
-	spawn(3 SECONDS)
+	spawn(5 SECONDS)
 		if(src)
 			owner << "<span class='danger'>Your shield expires!</span>"
 			qdel(src)
@@ -67,7 +67,7 @@
 
 				if(!reflecting)
 					reflecting = 1
-					spawn(1 SECOND) //To ensure that most or all of a burst fire cycle is reflected.
+					spawn(2 SECONDS) //To ensure that most or all of a burst fire cycle is reflected.
 						owner << "<span class='danger'>Your shield fades due being used up!</span>"
 						qdel(src)
 
@@ -87,7 +87,7 @@
 
 				if(!reflecting)
 					reflecting = 1
-					spawn(1 SECOND) //To ensure that most or all of a burst fire cycle is reflected.
+					spawn(2 SECONDS) //To ensure that most or all of a burst fire cycle is reflected.
 						owner << "<span class='danger'>Your shield fades due being used up!</span>"
 						qdel(src)
 		return 1

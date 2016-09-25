@@ -2,7 +2,7 @@
 	name = "Repel Missiles"
 	desc = "Places a repulsion field around you, which attempts to deflect incoming bullets and lasers, making them 30% less likely \
 	to hit you.  The field lasts for five minutes and can be granted to yourself or an ally."
-	cost = 60
+	cost = 25
 	obj_path = /obj/item/weapon/spell/insert/repel_missiles
 	ability_icon_state = "tech_repelmissiles"
 	category = SUPPORT_SPELLS

@@ -22,8 +22,8 @@
 
 
 /datum/file/program/communications
-	name = "Centcom communications relay"
-	desc = "Used to connect to Centcom."
+	name = "CentCom communications relay"
+	desc = "Used to connect to CentCom."
 	active_state = "comm"
 	req_access = list(access_heads)
 
@@ -185,7 +185,7 @@
 			computer.updateDialog()
 
 		// OMG CENTCOMM LETTERHEAD
-		if("MessageCentcomm" in href_list)
+		if("MessageCentCom" in href_list)
 			if(!computer.radio.subspace)
 				return
 			if(authenticated==2)
@@ -195,7 +195,7 @@
 				var/input = sanitize(input("Please choose a message to transmit to [boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response.", "To abort, send an empty message.", ""))
 				if(!input || !interactable())
 					return
-				Centcomm_announce(input, usr)
+				CentCom_announce(input, usr)
 				usr << "Message transmitted."
 				log_say("[key_name(usr)] has made a [boss_short] announcement: [input]")
 				centcomm_message_cooldown = 1
@@ -288,7 +288,7 @@
 			if (authenticated==2)
 				dat += "<BR>\[ <A HREF='?src=\ref[src];announce'>Make An Announcement</A> \]"
 				if(computer.emagged == 0)
-					dat += "<BR>\[ <A HREF='?src=\ref[src];MessageCentcomm'>Send an emergency message to [boss_short]</A> \]"
+					dat += "<BR>\[ <A HREF='?src=\ref[src];MessageCentCom'>Send an emergency message to [boss_short]</A> \]"
 				else
 					dat += "<BR>\[ <A HREF='?src=\ref[src];MessageSyndicate'>Send an emergency message to \[UNKNOWN\]</A> \]"
 					dat += "<BR>\[ <A HREF='?src=\ref[src];RestoreBackup'>Restore Backup Routing Data</A> \]"

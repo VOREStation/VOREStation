@@ -4,7 +4,7 @@
 	the next attack you suffer, and strike the attacker with a strong bolt of lightning.  This effect requires twenty seconds to \
 	recharge.  If you are attacked while this is recharging, a weaker lightning bolt is sent out, however you won't be protected from \
 	the person beating you."
-	cost = 250
+	cost = 150
 	obj_path = /obj/item/clothing/suit/armor/tesla
 
 /obj/item/clothing/suit/armor/tesla

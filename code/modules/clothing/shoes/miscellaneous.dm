@@ -205,3 +205,15 @@
 	name = "flip flops"
 	desc = "A pair of foam flip flops. For those not afraid to show a little ankle."
 	icon_state = "thongsandal"
+
+/obj/item/clothing/shoes/athletic
+	name = "athletic shoes"
+	desc = "A pair of sleek atheletic shoes. Made by and for the sporty types."
+	icon_state = "sportshoe"
+	item_state_slots = list(slot_r_hand_str = "sportheld", slot_l_hand_str = "sportheld")
+
+/obj/item/clothing/shoes/skater
+	name = "skater shoes"
+	desc = "A pair of wide shoes with thick soles.  Designed for skating."
+	icon_state = "skatershoe"
+	item_state_slots = list(slot_r_hand_str = "skaterheld", slot_l_hand_str = "skaterheld")

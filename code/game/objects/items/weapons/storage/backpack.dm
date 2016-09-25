@@ -280,3 +280,62 @@
 	name = "emergency response team medical backpack"
 	desc = "A spacious backpack with lots of pockets, worn by medical members of an Emergency Response Team."
 	icon_state = "ert_medical"
+
+/*
+ * Courier Bags
+ */
+
+/obj/item/weapon/storage/backpack/messenger
+	name = "messenger bag"
+	desc = "A sturdy backpack worn over one shoulder."
+	icon_state = "courierbag"
+	item_state_slots = list(slot_r_hand_str = "backpack", slot_l_hand_str = "backpack")
+
+/obj/item/weapon/storage/backpack/messenger/chem
+	name = "chemistry messenger bag"
+	desc = "A serile backpack worn over one shoulder.  This one is in Chemsitry colors."
+	icon_state = "courierbagchem"
+	item_state_slots = list(slot_r_hand_str = "chempack", slot_l_hand_str = "chempack")
+
+/obj/item/weapon/storage/backpack/messenger/med
+	name = "medical messenger bag"
+	desc = "A sterile backpack worn over one shoulder used in medical departments."
+	icon_state = "courierbagmed"
+	item_state_slots = list(slot_r_hand_str = "medicalpack", slot_l_hand_str = "medicalpack")
+
+/obj/item/weapon/storage/backpack/messenger/viro
+	name = "virology messenger bag"
+	desc = "A sterile backpack worn over one shoulder.  This one is in Virology colors."
+	icon_state = "courierbagviro"
+	item_state_slots = list(slot_r_hand_str = "viropack", slot_l_hand_str = "viropack")
+
+/obj/item/weapon/storage/backpack/messenger/tox
+	name = "research messenger bag"
+	desc = "A backpack worn over one shoulder.  Useful for holding science materials."
+	icon_state = "courierbagtox"
+	item_state_slots = list(slot_r_hand_str = "toxpack", slot_l_hand_str = "toxpack")
+
+/obj/item/weapon/storage/backpack/messenger/com
+	name = "command messenger bag"
+	desc = "A special backpack worn over one shoulder.  This one is made specifically for officers."
+	icon_state = "courierbagcom"
+	item_state_slots = list(slot_r_hand_str = "captainpack", slot_l_hand_str = "captainpack")
+
+/obj/item/weapon/storage/backpack/messenger/engi
+	name = "engineering messenger bag"
+	icon_state = "courierbagengi"
+	item_state_slots = list(slot_r_hand_str = "engiepack", slot_l_hand_str = "engiepack")
+
+/obj/item/weapon/storage/backpack/messenger/hyd
+	name = "hydroponics messenger bag"
+	desc = "A backpack worn over one shoulder.  This one is designed for plant-related work."
+	icon_state = "courierbaghyd"
+
+/obj/item/weapon/storage/backpack/messenger/sec
+	name = "security messenger bag"
+	desc = "A tactical backpack worn over one shoulder. This one is in Security colors."
+	icon_state = "courierbagsec"
+	item_state_slots = list(slot_r_hand_str = "securitypack", slot_l_hand_str = "securitypack")
+
+/obj/item/weapon/storage/backpack/messenger/black
+	icon_state = "courierbagblk"

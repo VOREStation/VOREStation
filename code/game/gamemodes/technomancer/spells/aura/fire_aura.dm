@@ -4,7 +4,7 @@
 	This does not affect you or your allies.  It also causes a large amount of fire to erupt around you, however the main threat is \
 	still the heating up."
 	enhancement_desc = "Increased heat generation, more fires, and higher temperature cap."
-	cost = 150
+	cost = 100
 	obj_path = /obj/item/weapon/spell/aura/fire
 	ability_icon_state = "tech_fireaura"
 	category = OFFENSIVE_SPELLS
@@ -21,13 +21,13 @@
 		qdel(src)
 	var/list/nearby_things = range(4,owner)
 
-	var/temp_change = 25
-	var/temp_cap = 500
+	var/temp_change = 40
+	var/temp_cap = 600
 	var/fire_power = 2
 
 	if(check_for_scepter())
-		temp_change = 50
-		temp_cap = 700
+		temp_change = 80
+		temp_cap = 1000
 		fire_power = 4
 	for(var/mob/living/carbon/human/H in nearby_things)
 		if(is_ally(H))

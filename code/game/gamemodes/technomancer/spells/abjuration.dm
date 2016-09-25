@@ -2,7 +2,7 @@
 	name = "Abjuration"
 	desc = "This ability attempts to send summoned or teleported entities or anomalies to the place from whence they came, or at least \
 	far away from the caster.  Failing that, it may inhibit those entities in some form."
-	cost = 40
+	cost = 25
 	obj_path = /obj/item/weapon/spell/abjuration
 	category = UTILITY_SPELLS
 
