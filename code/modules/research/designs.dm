@@ -1754,44 +1754,44 @@ CIRCUITS BELOW
 	..()
 	name = "Custom circuitry \[Logic\] ([item_name])"
 
-/datum/design/circuit/integrated_circuit/logic/equals
+/datum/design/circuit/integrated_circuit/logic/binary/equals
 	id = "cc-equals"
-	build_path = /obj/item/integrated_circuit/logic/equals
+	build_path = /obj/item/integrated_circuit/logic/binary/equals
 	sort_string = "WAAFA"
 
-/datum/design/circuit/integrated_circuit/logic/not
+/datum/design/circuit/integrated_circuit/logic/unary/not
 	id = "cc-not"
-	build_path = /obj/item/integrated_circuit/logic/not
+	build_path = /obj/item/integrated_circuit/logic/unary/not
 	sort_string = "WAAFB"
 
-/datum/design/circuit/integrated_circuit/logic/and
+/datum/design/circuit/integrated_circuit/logic/binary/and
 	id = "cc-and"
-	build_path = /obj/item/integrated_circuit/logic/and
+	build_path = /obj/item/integrated_circuit/logic/binary/and
 	sort_string = "WAAFC"
 
-/datum/design/circuit/integrated_circuit/logic/or
+/datum/design/circuit/integrated_circuit/logic/binary/or
 	id = "cc-or"
-	build_path = /obj/item/integrated_circuit/logic/or
+	build_path = /obj/item/integrated_circuit/logic/binary/or
 	sort_string = "WAAFD"
 
-/datum/design/circuit/integrated_circuit/logic/less_than
+/datum/design/circuit/integrated_circuit/logic/binary/less_than
 	id = "cc-less_than"
-	build_path = /obj/item/integrated_circuit/logic/less_than
+	build_path = /obj/item/integrated_circuit/logic/binary/less_than
 	sort_string = "WAAFE"
 
-/datum/design/circuit/integrated_circuit/logic/less_than_or_equal
+/datum/design/circuit/integrated_circuit/logic/binary/less_than_or_equal
 	id = "cc-less_than_or_equal"
-	build_path = /obj/item/integrated_circuit/logic/less_than_or_equal
+	build_path = /obj/item/integrated_circuit/logic/binary/less_than_or_equal
 	sort_string = "WAAFF"
 
-/datum/design/circuit/integrated_circuit/logic/greater_than
+/datum/design/circuit/integrated_circuit/logic/binary/greater_than
 	id = "cc-greater_than"
-	build_path = /obj/item/integrated_circuit/logic/greater_than
+	build_path = /obj/item/integrated_circuit/logic/binary/greater_than
 	sort_string = "WAAFG"
 
-/datum/design/circuit/integrated_circuit/logic/greater_than_or_equal
+/datum/design/circuit/integrated_circuit/logic/binary/greater_than_or_equal
 	id = "cc-greater_than_or_equal"
-	build_path = /obj/item/integrated_circuit/logic/greater_than_or_equal
+	build_path = /obj/item/integrated_circuit/logic/binary/greater_than_or_equal
 	sort_string = "WAAFH"
 
 
