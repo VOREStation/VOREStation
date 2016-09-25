@@ -242,11 +242,12 @@
 	var/list/linked = list()
 	var/io_type = DATA_CHANNEL
 
-/datum/integrated_io/New(var/newloc)
+/datum/integrated_io/New(var/newloc, var/name)
 	..()
+	src.name = name
 	holder = newloc
-	if(!holder)
-		message_admins("ERROR: An integrated_io ([src.name]) spawned without a holder!  This is a bug.")
+	if(!istype(holder))
+		message_admins("ERROR: An integrated_io ([src.name]) spawned without a valid holder!  This is a bug.")
 
 /datum/integrated_io/Destroy()
 	disconnect()
@@ -270,9 +271,10 @@
 		return "(null)" // Empty data means nothing to show.
 	if(istext(data))
 		return "(\"[data]\")" // Wraps the 'string' in escaped quotes, so that people know it's a 'string'.
-	if(istype(data, /atom))
-		var/atom/A = data
-		return "([A.name] \[Ref\])" // For refs, we want just the name displayed.
+	if(isweakref(data))
+		var/weakref/w = data
+		var/atom/A = w.resolve()
+		return A ? "([A.name] \[Ref\])" : "(null)" // For refs, we want just the name displayed.
 	return "([data])" // Nothing special needed for numbers or other stuff.
 
 /datum/integrated_io/activate/display_data()
