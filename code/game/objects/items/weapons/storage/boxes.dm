@@ -199,6 +199,17 @@
 	for(var/i = 1 to 7)
 		new /obj/item/ammo_casing/shotgun/practice(src)
 
+/obj/item/weapon/storage/box/empshells
+	name = "box of emp shells"
+	desc = "It has a picture of a gun and several warning symbols on the front."
+	icon_state = "empshot_box"
+	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
+
+/obj/item/weapon/storage/box/empshells/New()
+	..()
+	for(var/i = 1 to 7)
+		new /obj/item/ammo_casing/shotgun/emp(src)
+
 /obj/item/weapon/storage/box/sniperammo
 	name = "box of 14.5mm shells"
 	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
