@@ -28,6 +28,14 @@
 	display_name = "armband, science"
 	path = /obj/item/clothing/accessory/armband/science
 
+/datum/gear/accessory/colored
+	display_name = "armband"
+	path = /obj/item/clothing/accessory/armband/med/color
+
+/datum/gear/accessory/colored/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
 /datum/gear/accessory/wallet
 	display_name = "wallet, orange"
 	path = /obj/item/weapon/storage/wallet/random
