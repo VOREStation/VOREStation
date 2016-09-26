@@ -233,6 +233,24 @@
 	icon_state = "customs_jacket"
 	item_state_slots = list(slot_r_hand_str = "suit_blue", slot_l_hand_str = "suit_blue")
 
+/obj/item/clothing/suit/storage/greyjacket
+	name = "grey jacket"
+	desc = "A fancy twead grey jacket."
+	icon_state = "gentlecoat"
+	item_state_slots = list(slot_r_hand_str = "leather_jacket", slot_l_hand_str = "leather_jacket")
+
+/obj/item/clothing/suit/storage/trench
+	name = "brown trenchcoat"
+	desc = "A rugged canvas trenchcoat, designed and created by TX Fabrication Corp. The coat appears to have its kevlar lining removed."
+	icon_state = "detective"
+	blood_overlay_type = "coat"
+	allowed = list(/obj/item/weapon/tank/emergency_oxygen, /obj/item/device/flashlight,/obj/item/weapon/gun/energy,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/device/taperecorder,/obj/item/device/uv_light)
+
+/obj/item/clothing/suit/storage/trench/grey
+	name = "grey trenchcoat"
+	icon_state = "detective2"
+	item_state_slots = list(slot_r_hand_str = "leather_jacket", slot_l_hand_str = "leather_jacket")
+
 /*
  * stripper
  */

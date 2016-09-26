@@ -58,6 +58,18 @@
 	display_name = "military jacket, green"
 	path = /obj/item/clothing/suit/storage/miljacket/green
 
+/datum/gear/suit/greyjacket
+	display_name = "grey jacket"
+	path = /obj/item/clothing/suit/storage/greyjacket
+
+/datum/gear/suit/brown_trenchcoat
+	display_name = "trenchcoat, brown"
+	path = /obj/item/clothing/suit/storage/trench
+
+/datum/gear/suit/grey_trenchcoat
+	display_name = "trenchcoat, grey"
+	path = /obj/item/clothing/suit/storage/trench/grey
+
 /datum/gear/suit/hazard_vest
 	display_name = "hazard vest"
 	path = /obj/item/clothing/suit/storage/hazardvest
