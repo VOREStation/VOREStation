@@ -44,7 +44,7 @@
 
 /datum/gear/suit/leather_jacket_nt/sleeveless
 	display_name = "leather vest, corporate, black"
-	path = /obj/item/clothing/suit/storage/toggle/leather_jaciet/nanotrasen/sleeveless
+	path = /obj/item/clothing/suit/storage/toggle/leather_jacket/nanotrasen/sleeveless
 
 /datum/gear/suit/brown_jacket
 	display_name = "leather jacket, brown"
