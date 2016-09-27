@@ -330,7 +330,7 @@
 	min_cold_protection_temperature = T0C - 20
 	siemens_coefficient = 0.7
 
-/obj/item/clothing/suit/storage/leather_jacket
+/obj/item/clothing/suit/storage/toggle/leather_jacket
 	name = "leather jacket"
 	desc = "A black leather coat."
 	icon_state = "leather_jacket"
@@ -338,7 +338,7 @@
 	allowed = list (/obj/item/weapon/pen, /obj/item/weapon/paper, /obj/item/device/flashlight, /obj/item/weapon/tank/emergency_oxygen, /obj/item/weapon/storage/fancy/cigarettes, /obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask)
 	body_parts_covered = UPPER_TORSO|ARMS
 
-/obj/item/clothing/suit/storage/leather_jacket/sleeveless
+/obj/item/clothing/suit/storage/toggle/leather_jacket/sleeveless
 	name = "leather vest"
 	desc = "A black leather vest."
 	icon_state = "leather_jacket_sleeveless"
@@ -348,18 +348,20 @@
 	item_state_slots = list(slot_r_hand_str = "leather_jacket", slot_l_hand_str = "leather_jacket")
 
 /obj/item/clothing/suit/storage/leather_jacket/alt
+	name = "leather vest"
+	desc = "A black leather vest."
 	icon_state = "leather_jacket_alt"
-	icon_open = null
 	item_state_slots = list(slot_r_hand_str = "leather_jacket", slot_l_hand_str = "leather_jacket")
+	body_parts_covered = UPPER_TORSO|ARMS
 
-/obj/item/clothing/suit/storage/leather_jacket/nanotrasen
+/obj/item/clothing/suit/storage/toggle/leather_jacket/nanotrasen
 	desc = "A black leather coat. A corporate logo is proudly displayed on the back."
 	icon_state = "leather_jacket_nt"
 	icon_closed = "leather_jacket_nt"
 	icon_open = "leather_jacket_nt_open"
 	item_state_slots = list(slot_r_hand_str = "leather_jacket", slot_l_hand_str = "leather_jacket")
 
-/obj/item/clothing/suit/storage/leather_jaciet/nanotrasen/sleeveless
+/obj/item/clothing/suit/storage/toggle/leather_jacket/nanotrasen/sleeveless
 	name = "leather vest"
 	desc = "A black leather vest. A corporate logo is proudly displayed on the back."
 	icon_state = "leather_jacket_nt_sleeveless"
