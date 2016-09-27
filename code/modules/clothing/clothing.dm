@@ -467,7 +467,8 @@
 		"Teshari" = 'icons/mob/species/seromi/suit.dmi'
 		)
 
-	valid_accessory_slots = list("over")
+	valid_accessory_slots = list("over", "armband")
+	restricted_accessory_slots = list("armband")
 
 /obj/item/clothing/suit/update_clothing_icon()
 	if (ismob(src.loc))
