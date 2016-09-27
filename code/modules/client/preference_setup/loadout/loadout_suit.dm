@@ -28,23 +28,23 @@
 
 /datum/gear/suit/leather_jacket
 	display_name = "leather jacket, black"
-	path = /obj/item/clothing/suit/storage/leather_jacket
+	path = /obj/item/clothing/suit/storage/toggle/leather_jacket
 
 /datum/gear/suit/leather_jacket_sleeveless
 	display_name = "leather vest, black"
-	path = /obj/item/clothing/suit/storage/leather_jacket/sleeveless
+	path = /obj/item/clothing/suit/storage/toggle/leather_jacket/sleeveless
 
 /datum/gear/suit/leather_jacket_alt
 	display_name = "leather jacket 2, black"
-	path = /obj/item/clothing/suit/storage/leather_jacket/alt
+	path = /obj/item/clothing/suit/storage/leather_jacket_alt
 
 /datum/gear/suit/leather_jacket_nt
 	display_name = "leather jacket, corporate, black"
-	path = /obj/item/clothing/suit/storage/leather_jacket/nanotrasen
+	path = /obj/item/clothing/suit/storage/toggle/leather_jacket/nanotrasen
 
 /datum/gear/suit/leather_jacket_nt/sleeveless
 	display_name = "leather vest, corporate, black"
-	path = /obj/item/clothing/suit/storage/leather_jaciet/nanotrasen/sleeveless
+	path = /obj/item/clothing/suit/storage/toggle/leather_jaciet/nanotrasen/sleeveless
 
 /datum/gear/suit/brown_jacket
 	display_name = "leather jacket, brown"
