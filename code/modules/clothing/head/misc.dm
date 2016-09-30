@@ -207,6 +207,18 @@
 	item_state_slots = list(slot_r_hand_str = "detective", slot_l_hand_str = "detective")
 	desc = "A sharp, stylish hat."
 
+/obj/item/clothing/head/fedora/brown
+	name = "fedora"
+	desc = "A brown fedora - either the cornerstone of a reporter's style or a poor attempt at looking cool, depending on the person wearing it."
+	icon_state = "detective"
+	allowed = list(/obj/item/weapon/reagent_containers/food/snacks/candy_corn, /obj/item/weapon/pen)
+
+/obj/item/clothing/head/fedora/grey
+	icon_state = "detective2"
+	item_state_slots = list(slot_r_hand_str = "detective", slot_l_hand_str = "detective")
+	desc = "A grey fedora - either the cornerstone of a reporter's style or a poor attempt at looking cool, depending on the person wearing it."
+
+
 /obj/item/clothing/head/feathertrilby
 	name = "feather trilby"
 	icon_state = "feather_trilby"

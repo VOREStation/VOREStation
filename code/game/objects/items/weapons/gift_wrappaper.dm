@@ -18,7 +18,7 @@
 	..()
 	pixel_x = rand(-10,10)
 	pixel_y = rand(-10,10)
-	if(w_class > 0 && w_class < 4)
+	if(w_class > 0 && w_class < ITEMSIZE_LARGE)
 		icon_state = "gift[w_class]"
 	else
 		icon_state = "gift[pick(1, 2, 3)]"
@@ -128,7 +128,7 @@
 	..()
 	if (!( locate(/obj/structure/table, src.loc) ))
 		user << "<span class='warning'>You MUST put the paper on a table!</span>"
-	if (W.w_class < 4)
+	if (W.w_class < ITEMSIZE_LARGE)
 		if (user.get_type_in_hands(/obj/item/weapon/wirecutters))
 			var/a_used = 2 ** (src.w_class - 1)
 			if (src.amount < a_used)

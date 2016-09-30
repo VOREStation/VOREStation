@@ -124,3 +124,11 @@
 /datum/gear/shoes/skater/New()
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/shoes/flats/color
+	display_name = "flats"
+	path = /obj/item/clothing/shoes/flats/white/color
+
+/datum/gear/shoes/flats/color/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
