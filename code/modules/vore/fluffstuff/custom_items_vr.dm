@@ -343,3 +343,31 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 /obj/item/clothing/accessory/medal/gold/fluff/lucina
 	name = "Medal of Medical Excellence"
 	desc = "A medal awarded to Lucina Darkarim for excellence in medical service."
+
+//SilencedMP5A5:Serdykov Antoz
+/*
+/obj/item/clothing/suit/armor/vest/wolftaur/serdy //SilencedMP5A5's specialty armor suit. Uncomment if/when they make their custom item app and are accepted.
+	name = "Modified wolf-taur armor vest"
+	desc = "An armored vest that protects against some damage. It appears to be created for a wolf-taur, and seems modified."
+	species_restricted = null //Species restricted since all it cares about is a taur half
+	icon_override = 'icons/mob/taursuits_vr.dmi' //Needs to be this since it's 64*32
+	icon_state = "serdy_armor"
+	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
+			icon_override = 'icons/mob/taursuits_vr.dmi' //Just in case
+			icon_state = "serdy_armor" //Just in case
+			pixel_x = -16
+			return 1
+		else
+			H << "<span class='warning'>You need to have a wolf-taur half to wear this.</span>"
+			return 0
+
+/obj/item/clothing/head/helmet/serdy //SilencedMP5A5's specialty helmet. Uncomment if/when they make their custom item app and are accepted.
+	name = "Modified helmet"
+	desc = "Standard Security gear. Protects the head from impacts. This one appears to be modified."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "serdyhelm"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "serdyhelm_mob"
+*/
