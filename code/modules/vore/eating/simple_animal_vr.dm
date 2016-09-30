@@ -14,6 +14,8 @@
 
 	if (stat != CONSCIOUS)
 		return
+	if (istype(src,/mob/living/simple_animal/mouse) && T.ckey == null)
+		return
 	feed_grabbed_to_self(src,T)
 
 //
