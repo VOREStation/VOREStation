@@ -71,8 +71,8 @@
 			// Deal digestion damage (and feed the pred)
 			// ToDo: Allow players to adjust digestion damage because we can do that now without breaking everything.
 			if(!(M.status_flags & GODMODE))
-				M.adjustBruteLoss(3)
-				M.adjustFireLoss(5)
+				M.adjustBruteLoss(2)
+				M.adjustFireLoss(3)
 
 // Had to remove this. Incompatible with things we want to do. -Spades
 /*				var/offset = (1 + ((M.weight - 137) / 137)) // 130 pounds = .95 140 pounds = 1.02
