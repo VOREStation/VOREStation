@@ -249,13 +249,10 @@
 	if (is_vore_predator(M))
 		for (var/bellytype in M.vore_organs)
 			var/datum/belly/belly = M.vore_organs[bellytype]
-			for (var/obj/thing in belly.internal_contents)
-				thing.forceMove(owner)
-				internal_contents += thing
-			for (var/mob/subprey in belly.internal_contents)
-				subprey.forceMove(owner)
-				internal_contents += subprey
-				subprey << "As [M] melts away around you, you find yourself in [owner]'s [name]"
+			for (var/obj/SubPrey in belly.internal_contents)
+				SubPrey.forceMove(owner)
+				internal_contents += SubPrey
+				SubPrey << "As [M] melts away around you, you find yourself in [owner]'s [name]"
 
 	//Drop all items into the belly.
 	if (config.items_survive_digestion)
