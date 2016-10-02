@@ -1,4 +1,4 @@
-//Cat
+//Why are these a subclass of cat?
 /mob/living/simple_animal/cat/bird
 	name = "parrot"
 	desc = "A domesticated bird. Has a tendency to 'adopt' crewmembers."
