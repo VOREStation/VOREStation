@@ -64,15 +64,17 @@
 					prob(6);/obj/item/weapon/gun/energy/lasercannon,\
 					prob(5);/obj/item/weapon/gun/projectile/automatic/carbine,\
 					prob(5);/obj/item/weapon/gun/energy/pulse_rifle,\
-					prob(4);/obj/item/weapon/gun/projectile/automatic/battlerifle,\
+				/*	prob(4);/obj/item/weapon/gun/projectile/automatic/battlerifle,\ */
 					prob(3);/obj/item/weapon/gun/projectile/deagle/camo,\
 					prob(3);/obj/item/weapon/gun/energy/gun/nuclear,\
 					prob(2);/obj/item/weapon/gun/projectile/deagle/gold,\
 					prob(1);/obj/item/weapon/gun/launcher/rocket,\
+					prob(1);/obj/item/weapon/gun/launcher/grenade,\
 					prob(1);/obj/item/weapon/gun/projectile/gyropistol,\
 					prob(1);/obj/item/weapon/gun/projectile/heavysniper,\
 					prob(1);/obj/item/weapon/plastique,\
 					prob(1);/obj/item/weapon/material/sword,\
+					prob(1);/obj/item/weapon/cane/concealed,\
 					prob(1);/obj/item/weapon/material/sword/katana)
 
 /obj/random/weapon/guarenteed
@@ -117,7 +119,8 @@
 					prob(3);/obj/item/ammo_magazine/s762,\
 					prob(2);/obj/item/ammo_magazine/a50,\
 					prob(2);/obj/item/ammo_magazine/a762,\
-					prob(1);/obj/item/ammo_magazine/battlerifle,\
+					prob(1);/obj/item/weapon/storage/box/frags,\
+				/*	prob(1);/obj/item/ammo_magazine/battlerifle,\ */
 					prob(1);/obj/item/ammo_casing/rocket,\
 					prob(1);/obj/item/weapon/storage/box/sniperammo,\
 					prob(1);/obj/item/ammo_magazine/stg,\
