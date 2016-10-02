@@ -1,7 +1,7 @@
 /datum/technomancer/spell/radiance
 	name = "Radiance"
 	desc = "Causes you to be very radiant, glowing brightly in visible light, thermal energy, and deadly ionizing radiation."
-	cost = 180
+	cost = 100
 	obj_path = /obj/item/weapon/spell/radiance
 	category = OFFENSIVE_SPELLS
 

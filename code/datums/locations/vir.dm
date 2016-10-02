@@ -49,7 +49,7 @@
 
 /datum/locations/northern_star //Inception joke here
 	name = "Northern Star"
-	desc = "The Northern Star is an asteroid colony owned and operated by Nanotrasen, among many other asteroid installations. \
+	desc = "The Northern Star is an asteroid colony owned and operated by NanoTrasen, among many other asteroid installations. \
 	Originally conceived as 'just another pitstop' for weary asteroid miners, it has grown to become a significant installation in the Kara subsystem."
 
 /datum/locations/northern_star/New(var/creator)

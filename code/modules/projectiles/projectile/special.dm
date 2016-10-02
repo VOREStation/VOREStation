@@ -5,6 +5,9 @@
 	damage_type = BURN
 	nodamage = 1
 	check_armour = "energy"
+	light_range = 2
+	light_power = 0.5
+	light_color = "#55AAFF"
 
 
 	on_hit(var/atom/target, var/blocked = 0)
@@ -32,6 +35,9 @@
 	nodamage = 1
 	check_armour = "energy"
 	var/temperature = 300
+	light_range = 2
+	light_power = 0.5
+	light_color = "#55AAFF"
 
 
 	on_hit(var/atom/target, var/blocked = 0)//These two could likely check temp protection on the mob
@@ -77,6 +83,9 @@
 	damage_type = TOX
 	nodamage = 1
 	check_armour = "energy"
+	light_range = 2
+	light_power = 0.5
+	light_color = "#33CC00"
 
 	on_hit(var/atom/target, var/blocked = 0)
 		var/mob/living/M = target
@@ -116,6 +125,9 @@
 	damage_type = TOX
 	nodamage = 1
 	check_armour = "energy"
+	light_range = 2
+	light_power = 0.5
+	light_color = "#FFFFFF"
 
 	on_hit(var/atom/target, var/blocked = 0)
 		var/mob/M = target
@@ -136,6 +148,7 @@
 		if(ishuman(target))
 			var/mob/living/carbon/human/M = target
 			M.confused += rand(5,8)
+
 /obj/item/projectile/chameleon
 	name = "bullet"
 	icon_state = "bullet"

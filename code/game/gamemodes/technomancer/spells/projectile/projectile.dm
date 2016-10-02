@@ -10,10 +10,9 @@
 	var/fire_sound = null
 
 /obj/item/weapon/spell/projectile/on_ranged_cast(atom/hit_atom, mob/living/user)
-	var/turf/T = get_turf(hit_atom)
 	if(set_up(hit_atom, user))
 		var/obj/item/projectile/new_projectile = new spell_projectile(get_turf(user))
-		new_projectile.launch(T)
+		new_projectile.launch(hit_atom)
 		if(fire_sound)
 			playsound(get_turf(src), fire_sound, 75, 1)
 		owner.adjust_instability(instability_per_shot)

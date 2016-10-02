@@ -1,6 +1,6 @@
 /obj/machinery/workout
 	name = "fitness lifter"
-	icon = 'code/modules/vore/weight/fit_vr.dmi'
+	icon = 'icons/obj/machines/fitness_machines_vr.dmi'
 	icon_state = "fitnesslifter" //Sprites ripped from goon.
 	desc = "A utility often used to lose weight."
 	anchored = 1
@@ -49,7 +49,7 @@
 
 /obj/machinery/punching_bag
 	name = "punching bag"
-	icon = 'code/modules/vore/weight/fit_vr.dmi'
+	icon = 'icons/obj/machines/fitness_machines_vr.dmi'
 	icon_state = "punchingbag"
 	desc = "A bag often used to releive stress and burn fat."
 	anchored = 1
@@ -84,7 +84,7 @@
 
 /obj/machinery/punching_clown
 	name = "clown punching bag"
-	icon = 'code/modules/vore/weight/fit_vr.dmi'
+	icon = 'icons/obj/machines/fitness_machines_vr.dmi'
 	icon_state = "bopbag"
 	desc = "A bag often used to releive stress and burn fat. It has a clown on the front of it."
 	anchored = 0
@@ -122,7 +122,7 @@
 
 /obj/machinery/scale
 	name = "scale"
-	icon = 'code/modules/vore/weight/fit_vr.dmi'
+	icon = 'icons/obj/machines/fitness_machines_vr.dmi'
 	icon_state = "scale"
 	desc = "A scale used to measure ones weight relative to their size and species."
 	anchored = 1 // Set to 0 when we can construct or dismantle these.

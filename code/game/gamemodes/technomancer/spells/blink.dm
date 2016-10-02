@@ -3,7 +3,7 @@
 	desc = "Force the target to teleport a short distance away.  This target could be anything from something lying on the ground, to someone trying to \
 	fight you, or even yourself.  Using this on someone next to you makes their potential distance after teleportation greater."
 	enhancement_desc = "Blink distance is increased greatly."
-	cost = 100
+	cost = 50
 	obj_path = /obj/item/weapon/spell/blink
 	category = UTILITY_SPELLS
 

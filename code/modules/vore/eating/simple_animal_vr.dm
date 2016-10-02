@@ -12,6 +12,10 @@
 	set category = "Vore"
 	set desc = "Since you can't grab, you get a verb!"
 
+	if (stat != CONSCIOUS)
+		return
+	if (istype(src,/mob/living/simple_animal/mouse) && T.ckey == null)
+		return
 	feed_grabbed_to_self(src,T)
 
 //
