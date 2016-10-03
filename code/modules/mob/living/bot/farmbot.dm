@@ -337,6 +337,18 @@
 
 	new /obj/item/weapon/farmbot_arm_assembly(loc, src)
 
+/obj/structure/reagent_dispensers/watertank/attackby(var/obj/item/organ/external/S, mob/user as mob)
+	if ((!istype(S, /obj/item/organ/external/arm)) && (!S.robotic == ORGAN_ROBOT))
+		..()
+		return
+
+	user << "You add the robot arm to [src]."
+
+	user.drop_from_inventory(S)
+	qdel(S)
+
+	new /obj/item/weapon/farmbot_arm_assembly(loc, src)
+
 /obj/item/weapon/farmbot_arm_assembly/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 	if((istype(W, /obj/item/device/analyzer/plant_analyzer)) && (build_step == 0))

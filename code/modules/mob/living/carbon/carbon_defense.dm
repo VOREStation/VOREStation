@@ -1,12 +1,11 @@
-
 //Called when the mob is hit with an item in combat.
 /mob/living/carbon/resolve_item_attack(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
-	if(check_attack_throat(I, user))
+	if(check_neckgrab_attack(I, user, hit_zone))
 		return null
 	..()
 
 /mob/living/carbon/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/blocked, var/hit_zone)
-	if(!effective_force || blocked >= 100) 
+	if(!effective_force || blocked >= 100)
 		return 0
 
 	//Hulk modifier
@@ -39,18 +38,23 @@
 	return 1
 
 // Attacking someone with a weapon while they are neck-grabbed
-/mob/living/carbon/proc/check_attack_throat(obj/item/W, mob/user)
+/mob/living/carbon/proc/check_neckgrab_attack(obj/item/W, mob/user, var/hit_zone)
 	if(user.a_intent == I_HURT)
 		for(var/obj/item/weapon/grab/G in src.grabbed_by)
-			if(G.assailant == user && G.state >= GRAB_NECK)
-				if(attack_throat(W, G, user))
-					return 1
+			if(G.assailant == user)
+				if(G.state >= GRAB_AGGRESSIVE)
+					if(hit_zone == BP_TORSO && shank_attack(W, G, user))
+						return 1
+				if(G.state >= GRAB_NECK)
+					if(hit_zone == BP_HEAD && attack_throat(W, G, user, hit_zone))
+						return 1
 	return 0
+
 
 // Knifing
 /mob/living/carbon/proc/attack_throat(obj/item/W, obj/item/weapon/grab/G, mob/user)
 
-	if(!W.edge || !W.force || W.damtype != BRUTE) 
+	if(!W.edge || !W.force || W.damtype != BRUTE)
 		return 0 //unsuitable weapon
 
 	user.visible_message("<span class='danger'>\The [user] begins to slit [src]'s throat with \the [W]!</span>")
@@ -96,3 +100,58 @@
 	src.attack_log += "\[[time_stamp()]\]<font color='orange'> Got knifed by [user.name] ([user.ckey]) with [W.name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(W.damtype)])</font>"
 	msg_admin_attack("[key_name(user)] knifed [key_name(src)] with [W.name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(W.damtype)])" )
 	return 1
+
+/mob/living/carbon/proc/shank_attack(obj/item/W, obj/item/weapon/grab/G, mob/user, hit_zone)
+
+	if(!W.sharp || !W.force || W.damtype != BRUTE)
+		return 0 //unsuitable weapon
+
+	user.visible_message("<span class='danger'>\The [user] plunges \the [W] into \the [src]!</span>")
+
+	var/damage = shank_armor_helper(W, G, user)
+	apply_damage(damage, W.damtype, "torso", 0, sharp=W.sharp, edge=W.edge)
+
+	if(W.hitsound)
+		playsound(loc, W.hitsound, 50, 1, -1)
+
+	user.attack_log += "\[[time_stamp()]\]<font color='red'> Shanked [name] ([ckey]) with [W.name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(W.damtype)])</font>"
+	src.attack_log += "\[[time_stamp()]\]<font color='orange'> Got shanked by [user.name] ([user.ckey]) with [W.name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(W.damtype)])</font>"
+	msg_admin_attack("[key_name(user)] shanked [key_name(src)] with [W.name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(W.damtype)])" )
+
+	return 1
+
+/mob/living/carbon/proc/shank_armor_helper(obj/item/W, obj/item/weapon/grab/G, mob/user)
+	var/damage = W.force
+	var/damage_mod = 1
+	if(W.edge)
+		damage = damage * 1.25 //small damage bonus for having sharp and edge
+
+	var/obj/item/clothing/suit/worn_suit
+	var/obj/item/clothing/under/worn_under
+	var/worn_suit_armor
+	var/worn_under_armor
+
+	//if(slot_wear_suit)
+	if(get_equipped_item(slot_wear_suit))
+		worn_suit = get_equipped_item(slot_wear_suit)
+		//worn_suit = get_equipped_item(slot_wear_suit)
+		worn_suit_armor = worn_suit.armor["melee"]
+	else
+		worn_suit_armor = 0
+
+	//if(slot_w_uniform)
+	if(get_equipped_item(slot_w_uniform))
+		worn_under = get_equipped_item(slot_w_uniform)
+		//worn_under_armor = slot_w_uniform.armor["melee"]
+		worn_under_armor = worn_under.armor["melee"]
+	else
+		worn_under_armor = 0
+
+	if(worn_under_armor > worn_suit_armor)
+		damage_mod = 1 - (worn_under_armor/100)
+	else
+		damage_mod = 1 - (worn_suit_armor/100)
+
+	damage = damage * damage_mod
+
+	return damage

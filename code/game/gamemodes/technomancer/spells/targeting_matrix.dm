@@ -2,7 +2,7 @@
 	name = "Targeting Matrix"
 	desc = "Automatically targets and fires a ranged weapon or function at a non-friendly target near a targeted tile.  \
 	Each target assisted attack costs some energy and instability."
-	cost = 150
+	cost = 50
 	ability_icon_state = "tech_targetingmatrix"
 	obj_path = /obj/item/weapon/spell/targeting_matrix
 	category = UTILITY_SPELLS

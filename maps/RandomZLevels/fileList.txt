@@ -6,7 +6,7 @@
 #maps/RandomZLevels/awaymission.dmm
 
 #maps/RandomZLevels/labyrinth.dmm #Broken still.
-maps/RandomZLevels/snowfield.dmm
+#maps/RandomZLevels/snowfield.dmm #Broken.
 maps/RandomZLevels/carpfarm.dmm
 maps/RandomZLevels/listeningpost.dmm
 maps/RandomZLevels/blackmarketpackers.dmm

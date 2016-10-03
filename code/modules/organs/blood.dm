@@ -128,8 +128,18 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 		for(var/obj/item/organ/external/temp in organs)
 			if(!(temp.status & ORGAN_BLEEDING) || (temp.robotic >= ORGAN_ROBOT))
 				continue
-			for(var/datum/wound/W in temp.wounds) if(W.bleeding())
-				blood_max += W.damage / 30
+			for(var/datum/wound/W in temp.wounds)
+				if(W.bleeding())
+					if(temp.applied_pressure)
+						if(ishuman(temp.applied_pressure))
+							var/mob/living/carbon/human/H = temp.applied_pressure
+							H.bloody_hands(src, 0)
+						//somehow you can apply pressure to every wound on the organ at the same time
+						//you're basically forced to do nothing at all, so let's make it pretty effective
+						var/min_eff_damage = max(0, W.damage - 10) / 6 //still want a little bit to drip out, for effect
+						blood_max += max(min_eff_damage, W.damage - 30) / 30
+					else
+						blood_max += W.damage / 30
 			if (temp.open)
 				blood_max += 2  //Yer stomach is cut open
 		drip(blood_max)
@@ -264,6 +274,12 @@ proc/blood_incompatible(donor,receiver,donor_species,receiver_species)
 	return 0
 
 proc/blood_splatter(var/target,var/datum/reagent/blood/source,var/large)
+
+	//Vorestation Edit - We're not going to splatter at all because we're in something and that's silly.
+	if(istype(source,/atom/movable))
+		var/atom/movable/A = source
+		if(!isturf(A.loc))
+			return
 
 	var/obj/effect/decal/cleanable/blood/B
 	var/decal_type = /obj/effect/decal/cleanable/blood/splatter

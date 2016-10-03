@@ -25,6 +25,10 @@
 	name = "grey athletic shorts"
 	icon_state = "greyshorts"
 
+/obj/item/clothing/under/shorts/white
+	name = "white shorts"
+	icon_state = "whiteshorts"
+
 /obj/item/clothing/under/shorts/jeans
 	name = "jeans shorts"
 	desc = "Some jeans! Just in short form!"

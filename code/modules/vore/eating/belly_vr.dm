@@ -103,6 +103,8 @@
 // If that location is another mob, contents are transferred into whichever of its bellies the owning mob is in.
 // Returns the number of mobs so released.
 /datum/belly/proc/release_all_contents()
+	if (internal_contents.len == 0)
+		return 0
 	for (var/atom/movable/M in internal_contents)
 		if(istype(M,/mob/living))
 			var/mob/living/ML = M
@@ -247,10 +249,13 @@
 	if (is_vore_predator(M))
 		for (var/bellytype in M.vore_organs)
 			var/datum/belly/belly = M.vore_organs[bellytype]
-			for (var/obj/SubPrey in belly.internal_contents)
-				SubPrey.forceMove(owner)
-				internal_contents += SubPrey
-				SubPrey << "As [M] melts away around you, you find yourself in [owner]'s [name]"
+			for (var/obj/thing in belly.internal_contents)
+				thing.forceMove(owner)
+				internal_contents += thing
+			for (var/mob/subprey in belly.internal_contents)
+				subprey.forceMove(owner)
+				internal_contents += subprey
+				subprey << "As [M] melts away around you, you find yourself in [owner]'s [name]"
 
 	//Drop all items into the belly.
 	if (config.items_survive_digestion)

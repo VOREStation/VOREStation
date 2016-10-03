@@ -239,6 +239,11 @@ proc/get_all_job_icons() //For all existing HUD icons
 		if(I.rank in job_icons)
 			return I.rank
 
+		var/centcom = get_all_centcom_jobs()
+		if(I.assignment	in centcom) //Return with the NT logo if it is a CentCom job
+			return "CentCom"
+		if(I.rank in centcom)
+			return "CentCom"
 	else
 		return
 
