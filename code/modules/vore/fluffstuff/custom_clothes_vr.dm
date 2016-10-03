@@ -673,7 +673,7 @@
 	where the suit is softer is a rectangular name-tag with the name 'Joan' on it. There are indications that the \
 	suit has seen combat."
 
-	armor = list(melee = 80, bullet = 50, laser = 35, energy = 15, bomb = 70, bio = 100, rad = 50) //These values were taken from the combat rigs and adjusted to be weaker than said rigs.
+	armor = list(melee = 90, bullet = 50, laser = 45, energy = 25, bomb = 70, bio = 100, rad = 50) //These values were taken from the combat rigs and adjusted to be weaker than said rigs.
 	slowdown = 0
 	allowed = list(/obj/item/weapon/gun,/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/melee/baton)
 	w_class = 3
