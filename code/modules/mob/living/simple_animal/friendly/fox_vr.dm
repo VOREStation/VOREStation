@@ -1,5 +1,5 @@
 /mob/living/simple_animal/fox
-	name = "Fox"
+	name = "fox"
 	desc = "It's a fox. I wonder what it says?"
 	icon = 'icons/mob/fox_vr.dmi'
 	icon_state = "fox"

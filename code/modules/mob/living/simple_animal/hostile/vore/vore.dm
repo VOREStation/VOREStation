@@ -158,3 +158,4 @@ Don't use ranged mobs for vore mobs.
 	pixel_y = -16
 	maxHealth = 200
 	health = 200
+	eat_chance = 60 // Bigger mobs, bigger appetite.

@@ -87,6 +87,7 @@
 	pixel_x = -16
 	pixel_y = 0
 	capacity = 3
+	eat_chance = 80
 
 /obj/item/projectile/neurotox
 	damage = 30
@@ -96,3 +97,4 @@
 	..()
 	visible_message("[src] lets out a waning guttural screech, green blood bubbling from its maw...")
 	playsound(src, 'sound/voice/hiss6.ogg', 100, 1)
+	invisibility = 25 // To reset invisibility to be visible.
