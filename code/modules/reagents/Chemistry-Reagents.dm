@@ -19,6 +19,7 @@
 	var/list/data = null
 	var/volume = 0
 	var/metabolism = REM // This would be 0.2 normally
+	var/mrate_static = FALSE	//If the reagent should always process at the same speed, regardless of species, make this TRUE
 	var/ingest_met = 0
 	var/touch_met = 0
 	var/dose = 0
@@ -60,6 +61,8 @@
 	if(overdose && (volume > overdose) && (location != CHEM_TOUCH))
 		overdose(M, alien)
 	var/removed = metabolism
+	if(!mrate_static == TRUE)
+		removed *= M.species.metabolic_rate
 	if(ingest_met && (location == CHEM_INGEST))
 		removed = ingest_met
 	if(touch_met && (location == CHEM_TOUCH))

@@ -111,6 +111,7 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 	affects_dead = 1 //This can even heal dead people.
+	mrate_static = TRUE //Just in case
 
 	glass_name = "liquid gold"
 	glass_desc = "It's magic. We don't have to explain it."
@@ -182,6 +183,7 @@
 	description = "Adrenaline is a hormone used as a drug to treat cardiac arrest and other cardiac dysrhythmias resulting in diminished or absent cardiac output."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
+	mrate_static = TRUE
 
 /datum/reagent/adrenaline/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -195,6 +197,7 @@
 	id = "holywater"
 	description = "An ashen-obsidian-water mix, this solution will alter certain sections of the brain's rationality."
 	color = "#E0E8EF"
+	mrate_static = TRUE
 
 	glass_name = "holy water"
 	glass_desc = "An ashen-obsidian-water mix, this solution will alter certain sections of the brain's rationality."
