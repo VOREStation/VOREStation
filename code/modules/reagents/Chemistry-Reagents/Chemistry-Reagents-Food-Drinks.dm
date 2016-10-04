@@ -6,6 +6,7 @@
 	description = "All the vitamins, minerals, and carbohydrates the body needs in pure form."
 	reagent_state = SOLID
 	metabolism = REM * 4
+	mrate_static = TRUE
 	var/nutriment_factor = 30 // Per unit
 	var/injectable = 0
 	color = "#664330"

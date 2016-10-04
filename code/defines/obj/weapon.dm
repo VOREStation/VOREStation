@@ -203,6 +203,11 @@
 	name = "warning cone"
 	icon_state = "cone"
 
+/obj/item/weapon/caution/cone/candy
+	desc = "This cone is trying to warn you of something! It has been painted to look like candy corn."
+	name = "candy cone"
+	icon_state = "candycone"
+
 /*/obj/item/weapon/syndicate_uplink
 	name = "station bounced radio"
 	desc = "Remain silent about this..."

@@ -197,7 +197,8 @@ var/list/admin_verbs_debug = list(
 	/client/proc/dsay,
 	/client/proc/toggle_debug_logs,
 	/client/proc/admin_ghost,			//allows us to ghost/reenter body at will,
-	/datum/admins/proc/view_runtimes
+	/datum/admins/proc/view_runtimes,
+	/client/proc/show_gm_status
 	)
 
 var/list/admin_verbs_paranoid_debug = list(

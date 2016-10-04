@@ -8,6 +8,7 @@
 	color = "#00BFFF"
 	overdose = REAGENTS_OVERDOSE * 2
 	metabolism = REM * 0.5
+	mrate_static = TRUE
 	scannable = 1
 
 /datum/reagent/inaprovaline/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -91,6 +92,7 @@
 	description = "Dexalin Plus is used in the treatment of oxygen deprivation. It is highly effective."
 	reagent_state = LIQUID
 	color = "#0040FF"
+	mrate_static = TRUE	//Until it's not crazy strong, at least
 	overdose = REAGENTS_OVERDOSE * 0.5
 	scannable = 1
 
@@ -123,6 +125,7 @@
 	reagent_state = LIQUID
 	color = "#8080FF"
 	metabolism = REM * 0.5
+	mrate_static = TRUE
 	scannable = 1
 
 /datum/reagent/cryoxadone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -139,6 +142,7 @@
 	reagent_state = LIQUID
 	color = "#80BFFF"
 	metabolism = REM * 0.5
+	mrate_static = TRUE
 	scannable = 1
 
 /datum/reagent/clonexadone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -159,6 +163,7 @@
 	overdose = 60
 	scannable = 1
 	metabolism = 0.02
+	mrate_static = TRUE
 
 /datum/reagent/paracetamol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.add_chemical_effect(CE_PAINKILLER, 50)
@@ -176,6 +181,7 @@
 	overdose = 30
 	scannable = 1
 	metabolism = 0.02
+	mrate_static = TRUE
 
 /datum/reagent/tramadol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.add_chemical_effect(CE_PAINKILLER, 80)
@@ -192,6 +198,7 @@
 	color = "#800080"
 	overdose = 20
 	metabolism = 0.02
+	mrate_static = TRUE
 
 /datum/reagent/oxycodone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.add_chemical_effect(CE_PAINKILLER, 200)
@@ -311,6 +318,7 @@
 	reagent_state = LIQUID
 	color = "#FF3300"
 	metabolism = REM * 0.3
+	mrate_static = TRUE
 	overdose = REAGENTS_OVERDOSE * 0.5
 
 /datum/reagent/hyperzine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -376,6 +384,7 @@
 	reagent_state = LIQUID
 	color = "#C1C1C1"
 	metabolism = REM * 0.05
+	mrate_static = TRUE
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
 
@@ -430,6 +439,7 @@
 	reagent_state = LIQUID
 	color = "#BF80BF"
 	metabolism = 0.01
+	mrate_static = TRUE
 	data = 0
 
 /datum/reagent/methylphenidate/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -450,6 +460,7 @@
 	reagent_state = LIQUID
 	color = "#FF80FF"
 	metabolism = 0.01
+	mrate_static = TRUE
 	data = 0
 
 /datum/reagent/citalopram/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -470,6 +481,7 @@
 	reagent_state = LIQUID
 	color = "#FF80BF"
 	metabolism = 0.01
+	mrate_static = TRUE
 	data = 0
 
 /datum/reagent/paroxetine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
