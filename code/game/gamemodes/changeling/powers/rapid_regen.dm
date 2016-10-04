@@ -25,7 +25,6 @@
 		if(src.mind.changeling.recursive_enhancement)
 			healing_amount = C.maxHealth
 			src << "<span class='notice'>We completely heal ourselves.</span>"
-			src.mind.changeling.recursive_enhancement = 0
 		spawn(0)
 			C.adjustBruteLoss(-healing_amount)
 			C.adjustFireLoss(-healing_amount)
@@ -33,6 +32,7 @@
 			C.adjustCloneLoss(-healing_amount)
 			C.adjustBrainLoss(-healing_amount)
 			C.restore_blood()
+			C.species.create_organs(C)
 			C.restore_all_organs()
 			C.blinded = 0
 			C.eye_blind = 0

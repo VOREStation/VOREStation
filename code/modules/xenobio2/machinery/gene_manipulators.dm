@@ -1,12 +1,12 @@
 /*
 	This file contains:
-	
+
 	Xenobiological disk:
 	Holds traits that can be taken from cores and transplanted into slimes.
-	
+
 	Biological Product Destructive Analyzer:
 	Takes certain traits in gene grouping from a core and places them into a disk.
-	
+
 	Biological genetic bombarder:
 	Takes traits from a disk and replaces/adds to the genes in a xenobiological creature.
 */
@@ -15,11 +15,11 @@
 	desc = "A small disk used for carrying data on genetics."
 	icon = 'icons/obj/hydroponics_machines.dmi'
 	icon_state = "disk"
-	w_class = 1.0
-	
+	w_class = ITEMSIZE_TINY
+
 	var/list/genes = list()
 	var/genesource = "unknown"
-	
+
 /obj/item/weapon/disk/xenobio/attack_self(var/mob/user as mob)
 	if(genes.len)
 		var/choice = alert(user, "Are you sure you want to wipe the disk?", "Xenobiological Data", "No", "Yes")
@@ -29,7 +29,7 @@
 			desc = initial(name)
 			genes = list()
 			genesource = "unknown"
-			
+
 /obj/item/weapon/storage/box/xenobiodisk
 	name = "biological disk box"
 	desc = "A box of biological data disks, apparently."
@@ -53,13 +53,13 @@
 	var/eject_disk = 0
 	var/failed_task = 0
 	var/disk_needs_genes = 0
-	
+
 /obj/machinery/xenobio/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
 /obj/machinery/xenobio/attack_hand(mob/user as mob)
 	ui_interact(user)
-	
+
 /obj/machinery/xenobio/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(default_deconstruction_screwdriver(user, W))
 		return
@@ -96,7 +96,7 @@
 
 	if(world.time > last_action + action_time)
 		finished_task()
-		
+
 /obj/machinery/xenobio/proc/finished_task()
 	active = 0
 	in_use = 0
@@ -112,7 +112,7 @@
 			loaded_disk.forceMove(get_turf(src))
 			visible_message("\icon[src] [src] beeps and spits out [loaded_disk].")
 			loaded_disk = null
-	
+
 /obj/machinery/xenobio/extractor
 	name = "biological product destructive analyzer"
 	icon = 'icons/obj/hydroponics_machines.dmi'
@@ -122,10 +122,9 @@
 	var/obj/item/xenoproduct/product
 	var/datum/xeno/traits/genetics // Currently scanned xeno genetic structure.
 	var/degradation = 0     // Increments with each scan, stops allowing gene mods after a certain point.
-	
+
 /obj/machinery/xenobio/extractor/New()
 	..()
-	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
@@ -134,7 +133,7 @@
 	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
 	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
 	RefreshParts()
-	
+
 /obj/machinery/xenobio/extractor/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/xenoproduct))
 		if(product)
@@ -187,7 +186,7 @@
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
-		
+
 /obj/machinery/xenobio/proc/eject_disk()
 	if(!loaded_disk) return
 	loaded_disk.forceMove(loc)
@@ -201,7 +200,7 @@
 
 	if(href_list["eject_product"])
 		if(!product) return
-		
+
 		product.forceMove(get_turf(src))
 		visible_message("\icon[src] [src] beeps and spits out [product].")
 		product = null
@@ -253,22 +252,21 @@
 
 	usr.set_machine(src)
 	src.add_fingerprint(usr)
-	
+
 	src.updateUsrDialog()
 	return
-	
+
 /obj/machinery/xenobio/editor
 	name = "biological genetic bombarder"
 	icon = 'icons/obj/cryogenics.dmi'
 	icon_state = "cellold0"
 	disk_needs_genes = 1
 	circuit = /obj/item/weapon/circuitboard/biobombarder
-	
+
 	var/mob/living/simple_animal/xeno/slime/occupant
-	
+
 /obj/machinery/xenobio/editor/New()
 	..()
-	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
@@ -277,7 +275,7 @@
 	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
 	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
 	RefreshParts()
-	
+
 /obj/machinery/xenobio/editor/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = W
@@ -358,21 +356,21 @@
 			occupant.traitdat.apply_gene(gene)
 			occupant.stability += rand(5,10)
 			occupant.ProcessTraits()
-			
+
 	if(href_list["eject_disk"])
 		eject_disk()
-		
+
 	if(href_list["eject_xeno"])
 		eject_xeno()
-		
+
 	usr.set_machine(src)
 	src.add_fingerprint(usr)
-		
+
 /obj/machinery/xenobio/editor/MouseDrop_T(mob/target, mob/user)
 	if(user.stat || user.restrained())
 		return
 	move_into_editor(user,target)
-	
+
 /obj/machinery/xenobio/editor/proc/move_into_editor(var/mob/user,var/mob/living/victim)
 
 	if(src.occupant)
@@ -396,16 +394,16 @@
 			victim.client.eye = src
 		victim.forceMove(src)
 		occupant = victim
-			
+
 /obj/machinery/xenobio/editor/proc/eject_contents()
 	eject_disk()
 	eject_xeno()
-		
+
 /obj/machinery/xenobio/editor/proc/eject_xeno()
 	if(occupant)
 		occupant.forceMove(loc)
 		occupant = null
-		
+
 /obj/item/weapon/circuitboard/bioproddestanalyzer
 	name = T_BOARD("biological product destructive analyzer")
 	build_path = "/obj/machinery/xenobio/extractor"
@@ -416,7 +414,7 @@
 							/obj/item/weapon/stock_parts/matter_bin = 1,
 							/obj/item/weapon/stock_parts/scanning_module = 3
 							)
-	
+
 /obj/item/weapon/circuitboard/biobombarder
 	name = T_BOARD("biological genetic bombarder")
 	build_path = "/obj/machinery/xenobio/editor"
@@ -427,4 +425,3 @@
 							/obj/item/weapon/stock_parts/matter_bin = 2,
 							/obj/item/weapon/stock_parts/scanning_module = 2
 							)
-	

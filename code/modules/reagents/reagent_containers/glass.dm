@@ -12,7 +12,7 @@
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25,30,60)
 	volume = 60
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	flags = OPENCONTAINER
 	unacidable = 1 //glass doesn't dissolve in acid
 
@@ -218,7 +218,7 @@
 	icon_state = "bucket"
 	item_state = "bucket"
 	matter = list(DEFAULT_WALL_MATERIAL = 200)
-	w_class = 3.0
+	w_class = ITEMSIZE_NORMAL
 	amount_per_transfer_from_this = 20
 	possible_transfer_amounts = list(10,20,30,60,120)
 	volume = 120
@@ -256,7 +256,7 @@
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "water_cooler_bottle"
 	matter = list("glass" = 2000)
-	w_class = 3.0
+	w_class = ITEMSIZE_NORMAL
 	amount_per_transfer_from_this = 20
 	possible_transfer_amounts = list(10,20,30,60,120)
 	volume = 120

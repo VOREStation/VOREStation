@@ -13,7 +13,7 @@ var/datum/antagonist/ert/ert
 		and before taking extreme actions, please try to also contact the administration! \
 		Think through your actions and make the roleplay immersive! <b>Please remember all \
 		rules aside from those without explicit exceptions apply to the ERT.</b>"
-	leader_welcome_text = "As leader of the Emergency Response Team, you answer only to the Company, and have authority to override the Captain where it is necessary to achieve your mission goals. It is recommended that you attempt to cooperate with the captain where possible, however."
+	leader_welcome_text = "As leader of the Emergency Response Team, you answer only to the Company, and have authority to override the Station Administrator where it is necessary to achieve your mission goals. It is recommended that you attempt to cooperate with the Station Administrator where possible, however."
 	landmark_id = "Response Team"
 	id_type = /obj/item/weapon/card/id/centcom/ERT
 

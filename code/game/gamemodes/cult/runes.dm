@@ -273,6 +273,21 @@ var/list/sacrificed = list()
 			for (,drain>0,drain-=5)
 				sleep(2)
 				user.heal_organ_damage(5, 0)
+				if(ishuman(user))
+					var/mob/living/carbon/human/H = user
+					for(var/obj/item/organ/I in H.internal_organs)
+						if(I.damage > 0)
+							I.damage = max(I.damage - 5, 0)		//Heals 5 damage per organ per use
+						if(I.damage <= 5 && I.organ_tag == O_EYES)
+							H.sdisabilities &= ~BLIND
+					for(var/obj/item/organ/E in H.bad_external_organs)
+						var/obj/item/organ/external/affected = E
+						if((affected.damage < affected.min_broken_damage * config.organ_health_multiplier) && (affected.status & ORGAN_BROKEN))
+							affected.status &= ~ORGAN_BROKEN
+						for(var/datum/wound/W in affected.wounds)
+							if(istype(W, /datum/wound/internal_bleeding))
+								affected.wounds -= W
+								affected.update_damages()
 			return
 
 

@@ -10,7 +10,7 @@
 	icon_state = "multitool"
 	flags = CONDUCT
 	force = 5.0
-	w_class = 2.0
+	w_class = ITEMSIZE_SMALL
 	throwforce = 5.0
 	throw_range = 15
 	throw_speed = 3
@@ -21,8 +21,8 @@
 	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
 	var/obj/machinery/telecomms/buffer // simple machine buffer for device linkage
 	var/obj/machinery/clonepod/connecting //same for cryopod linkage
-	var/obj/machinery/connectable	//Used to connect machinery, currently only used by Xenobio2.
-	
+	var/obj/machinery/connectable	//Used to connect machinery.
+
 /obj/item/device/multitool/attack_self(mob/user)
 	var/clear = alert("Do you want to clear the buffers on the [src]?",, "Yes", "No",)
 	if(clear == "Yes")

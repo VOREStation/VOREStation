@@ -1,7 +1,7 @@
 /datum/technomancer/spell/warp_strike
 	name = "Warp Strike"
 	desc = "Teleports you next to your target, and attacks them with whatever is in your off-hand, spell or object."
-	cost = 200
+	cost = 100
 	obj_path = /obj/item/weapon/spell/warp_strike
 	ability_icon_state = "tech_warpstrike"
 	category = OFFENSIVE_SPELLS

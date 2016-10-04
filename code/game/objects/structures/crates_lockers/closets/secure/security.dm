@@ -1,5 +1,5 @@
 /obj/structure/closet/secure_closet/captains
-	name = "captain's locker"
+	name = "station administrator's locker"
 	req_access = list(access_captain)
 	icon_state = "capsecure1"
 	icon_closed = "capsecure"
@@ -11,15 +11,15 @@
 	New()
 		..()
 		new /obj/item/weapon/storage/backpack/dufflebag/captain(src)
+		new /obj/item/clothing/head/helmet(src)
 		new /obj/item/clothing/suit/storage/vest(src)
 		new /obj/item/weapon/cartridge/captain(src)
-		new /obj/item/clothing/head/helmet/swat(src)
 		new /obj/item/weapon/storage/lockbox/medal(src)
 		new /obj/item/device/radio/headset/heads/captain(src)
 		new /obj/item/device/radio/headset/heads/captain/alt(src)
 		new /obj/item/weapon/gun/energy/gun(src)
-		new /obj/item/clothing/suit/armor/captain(src)
 		new /obj/item/weapon/melee/telebaton(src)
+		new /obj/item/device/flash(src)
 		return
 
 

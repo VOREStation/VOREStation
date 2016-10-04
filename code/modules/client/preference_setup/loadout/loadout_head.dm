@@ -122,6 +122,14 @@
 	path = /obj/item/clothing/head/cowboy_hat
 	cost = 3
 
+/datum/gear/head/fedora
+	display_name = "fedora, brown"
+	path = /obj/item/clothing/head/fedora/brown
+
+/datum/gear/head/fedora/grey
+	display_name = "fedora, grey"
+	path = /obj/item/clothing/head/fedora/grey
+
 /datum/gear/head/hairflower
 	display_name = "hair flower pin, red"
 	path = /obj/item/clothing/head/hairflower
@@ -222,5 +230,49 @@
 	path = /obj/item/clothing/head/turban
 
 /datum/gear/head/turban/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/head/beanie
+	display_name = "beanie"
+	path = /obj/item/clothing/head/beanie
+
+/datum/gear/head/beanie/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/head/loose_beanie
+	display_name = "loose beanie"
+	path = /obj/item/clothing/head/beanie_loose
+
+/datum/gear/head/loose_beanie/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/head/beretg
+	display_name = "beret"
+	path = /obj/item/clothing/head/beretg
+
+/datum/gear/head/beretg/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/head/sombrero
+	display_name = "sombrero"
+	path = /obj/item/clothing/head/sombrero
+
+/datum/gear/head/flatcapg
+	display_name = "flat cap"
+	path = /obj/item/clothing/head/flatcap/grey
+
+/datum/gear/head/flatcapg/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/head/bow
+	display_name = "hair bow"
+	path = /obj/item/clothing/head/hairflower/bow
+
+/datum/gear/head/bow/New()
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)

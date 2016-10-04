@@ -87,7 +87,7 @@ var/global/list/PDA_Manifest = list()
 			heads[++heads.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			depthead = 1
-			if(rank=="Captain" && heads.len != 1)
+			if(rank=="Station Administrator" && heads.len != 1)
 				heads.Swap(1,heads.len)
 
 		if(real_rank in security_positions)
@@ -194,7 +194,7 @@ var/global/list/PDA_Manifest = list()
 	name = "beach ball"
 	density = 0
 	anchored = 0
-	w_class = 4
+	w_class = ITEMSIZE_LARGE
 	force = 0.0
 	throwforce = 0.0
 	throw_speed = 1

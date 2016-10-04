@@ -4,7 +4,7 @@
 	singular_name = "metal rod"
 	icon_state = "rods"
 	flags = CONDUCT
-	w_class = 3.0
+	w_class = ITEMSIZE_NORMAL
 	force = 9.0
 	throwforce = 15.0
 	throw_speed = 5
@@ -26,7 +26,6 @@
 	stacktype = /obj/item/stack/rods
 
 /obj/item/stack/rods/attackby(obj/item/W as obj, mob/user as mob)
-	..()
 	if (istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W
 
@@ -46,6 +45,17 @@
 			if (!R && replace)
 				user.put_in_hands(new_item)
 		return
+
+	if (istype(W, /obj/item/weapon/tape_roll))
+		var/obj/item/stack/medical/splint/ghetto/new_splint = new(user.loc)
+		new_splint.loc = src.loc
+		new_splint.add_fingerprint(user)
+
+		user.visible_message("<span class='notice'>\The [user] constructs \a [new_splint] out of a [singular_name].</span>", \
+				"<span class='notice'>You use make \a [new_splint] out of a [singular_name].</span>")
+		src.use(1)
+		return
+
 	..()
 
 

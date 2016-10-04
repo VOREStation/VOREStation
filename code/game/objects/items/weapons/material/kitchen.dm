@@ -1,11 +1,11 @@
 /obj/item/weapon/material/kitchen
 	icon = 'icons/obj/kitchen.dmi'
-	
+
 /*
  * Utensils
  */
 /obj/item/weapon/material/kitchen/utensil
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	thrown_force_divisor = 1
 	origin_tech = "materials=1"
 	attack_verb = list("attacked", "stabbed", "poked")

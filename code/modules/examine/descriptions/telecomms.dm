@@ -30,7 +30,7 @@
 	Exonets at the root node(s), and is typically arranged in a tree structure.  The root node(s) are generally government-owned and are very secure \
 	and resilient to failure.<br>\
 	<br>\
-	This node is privately owned and maintained by Nanotrasen, and allows the colonists of the "+station_orig+" to have access to the Exonet."
+	This node is privately owned and maintained by NanoTrasen, and allows the colonists of the "+station_orig+" to have access to the Exonet."
 
 	description_antag = "An EMP will disable this device for a short period of time.  A longer downage can be achieved by turning it off, or rigging \
 	the APC it uses to turn off remotely, such as with a signaler in the right wire."

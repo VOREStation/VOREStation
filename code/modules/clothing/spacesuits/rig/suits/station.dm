@@ -61,7 +61,7 @@
 	desc = "A heavy, powerful rig used by construction crews and mining corporations."
 	icon_state = "engineering_rig"
 	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 100, rad = 50)
-	slowdown = 3
+	slowdown = 1
 	offline_slowdown = 10
 	offline_vision_restriction = 2
 	emp_protection = -20
@@ -124,15 +124,16 @@
 	offline_vision_restriction = 0
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/ce
+	glove_type = /obj/item/clothing/gloves/gauntlets/rig/ce
 
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/storage/bag/ore,/obj/item/device/t_scanner,/obj/item/weapon/pickaxe, /obj/item/weapon/rcd)
-
 
 	req_access = list()
 	req_one_access = list()
 
-	boot_type =  null
-	glove_type = null
+/obj/item/clothing/gloves/gauntlets/rig/ce
+	name = "insulated gauntlets"
+	siemens_coefficient = 0
 
 /obj/item/weapon/rig/ce/equipped
 
@@ -145,14 +146,6 @@
 		/obj/item/rig_module/device/rcd,
 		/obj/item/rig_module/vision/meson
 		)
-
-	chest_type = /obj/item/clothing/suit/space/rig/ce
-	boot_type =  null
-	glove_type = null
-
-/obj/item/clothing/suit/space/rig/ce
-	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 
 /obj/item/weapon/rig/hazmat
 

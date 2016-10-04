@@ -345,7 +345,7 @@
 
 		if(should_have_organ(O_LUNGS))
 			var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
-			if(!L.is_bruised() && prob(5))
+			if(!L.is_bruised() && prob(8))
 				if(breath.total_moles)
 					if(breath.total_moles < BREATH_MOLES / 5 || breath.total_moles > BREATH_MOLES * 5)
 						rupture_lung()
@@ -694,9 +694,9 @@
 	if (species.body_temperature == null)
 		return //this species doesn't have metabolic thermoregulation
 
-	// Robolimbs cause overheating too.
-	if(robolimb_count)
-		bodytemperature += round(robolimb_count/2)
+	// FBPs will overheat, prosthetic limbs are fine.
+	if(robobody_count)
+		bodytemperature += round(robobody_count*1.75)
 
 	var/body_temperature_difference = species.body_temperature - bodytemperature
 

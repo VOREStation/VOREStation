@@ -50,6 +50,11 @@ var/list/holder_mob_icon_cache = list()
 			continue
 		M.forceMove(get_turf(src))
 
+/obj/item/weapon/holder/onDropInto(var/atom/movable/AM)
+	if(ismob(loc))   // Bypass our holding mob and drop directly to its loc
+		return loc.loc
+	return ..()
+
 /obj/item/weapon/holder/GetID()
 	for(var/mob/M in contents)
 		var/obj/item/I = M.GetIdCard()
@@ -89,7 +94,7 @@ var/list/holder_mob_icon_cache = list()
 	origin_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 5)
 
 /obj/item/weapon/holder/mouse
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 
 /obj/item/weapon/holder/borer
 	origin_tech = list(TECH_BIO = 6)

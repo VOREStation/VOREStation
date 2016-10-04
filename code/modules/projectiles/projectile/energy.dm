@@ -4,6 +4,7 @@
 	damage = 0
 	damage_type = BURN
 	check_armour = "energy"
+	var/flash_strength = 10
 
 
 //releases a burst of light on impact or after travelling a distance
@@ -24,6 +25,15 @@
 	for (var/mob/living/carbon/M in viewers(T, flash_range))
 		if(M.eyecheck() < 1)
 			M.flash_eyes()
+			if(ishuman(M))
+				var/mob/living/carbon/human/H = M
+				flash_strength *= H.species.flash_mod
+
+				if(flash_strength > 0)
+					H.confused = max(H.confused, flash_strength + 5)
+					H.eye_blind = max(H.eye_blind, flash_strength)
+					H.eye_blurry = max(H.eye_blurry, flash_strength + 5)
+
 
 	//snap pop
 	playsound(src, 'sound/effects/snap.ogg', 50, 1)
@@ -35,11 +45,13 @@
 
 	new /obj/effect/decal/cleanable/ash(src.loc) //always use src.loc so that ash doesn't end up inside windows
 	new /obj/effect/effect/smoke/illumination(T, 5, brightness, brightness, light_colour)
+
 //blinds people like the flash round, but can also be used for temporary illumination
 /obj/item/projectile/energy/flash/flare
 	damage = 10
 	flash_range = 1
 	brightness = 15
+	flash_strength = 20
 
 /obj/item/projectile/energy/flash/flare/on_impact(var/atom/A)
 	light_colour = pick("#e58775", "#ffffff", "#90ff90", "#a09030")
@@ -56,6 +68,9 @@
 	taser_effect = 1
 	agony = 40
 	damage_type = HALLOSS
+	light_range = 2
+	light_power = 0.5
+	light_color = "#FFFFFF"
 	//Damage will be handled on the MOB side, to prevent window shattering.
 
 /obj/item/projectile/energy/electrode/strong
@@ -73,6 +88,9 @@
 	nodamage = 1
 	damage_type = CLONE
 	irradiate = 40
+	light_range = 2
+	light_power = 0.5
+	light_color = "#33CC00"
 
 
 /obj/item/projectile/energy/dart
@@ -112,3 +130,6 @@
 	damage = 20
 	damage_type = TOX
 	irradiate = 20
+	light_range = 2
+	light_power = 0.5
+	light_color = "#33CC00"

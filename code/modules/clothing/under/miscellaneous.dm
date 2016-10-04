@@ -102,7 +102,7 @@
 	name = "\improper NASA jumpsuit"
 	desc = "It has a NASA logo on it and is made of space-proofed materials."
 	icon_state = "black"
-	w_class = 4//bulky item
+	w_class = ITEMSIZE_LARGE//bulky item
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
@@ -153,7 +153,7 @@
 	rolled_sleeves = 0
 
 /obj/item/clothing/under/gimmick/rank/captain/suit
-	name = "captain's suit"
+	name = "station administrator's suit"
 	desc = "A green suit and yellow necktie. Exemplifies authority."
 	icon_state = "green_suit"
 	item_state_slots = list(slot_r_hand_str = "centcom", slot_l_hand_str = "centcom")
@@ -181,6 +181,13 @@
 	desc = "A formal trouser suit for women, intended for the station's finest."
 	icon_state = "black_suit_fem"
 	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
+
+/obj/item/clothing/under/suit_jacket/female/skirt
+	name = "executive skirt"
+	desc = "A formal suit skirt  for women, intended for the station's finest."
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	icon_state = "black_suit_fem"
+	item_state = "black_formal_skirt"
 
 /obj/item/clothing/under/suit_jacket/red
 	name = "red suit"
@@ -225,6 +232,7 @@
 	desc = "Includes shoes and plaid"
 	icon_state = "kilt"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|FEET
+	rolled_sleeves = 0
 
 /obj/item/clothing/under/sexymime
 	name = "sexy mime outfit"
@@ -315,8 +323,8 @@
 	item_state_slots = list(slot_r_hand_str = "dress_white", slot_l_hand_str = "dress_white")
 
 /obj/item/clothing/under/dress/dress_cap
-	name = "captain's dress uniform"
-	desc = "Feminine fashion for the style concious captain."
+	name = "station administrator's dress uniform"
+	desc = "Feminine fashion for the style concious Station Administrator."
 	icon_state = "dress_cap"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
@@ -382,8 +390,8 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
 /obj/item/clothing/under/captainformal
-	name = "captain's formal uniform"
-	desc = "A captain's formal-wear, for special occasions."
+	name = "station administrator's formal uniform"
+	desc = "A Station Administrator's formal-wear, for special occasions."
 	icon_state = "captain_formal"
 	item_state_slots = list(slot_r_hand_str = "lawyer_blue", slot_l_hand_str = "lawyer_blue")
 

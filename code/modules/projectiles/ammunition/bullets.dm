@@ -144,6 +144,14 @@
 	projectile_type = /obj/item/projectile/energy/flash/flare
 	matter = list(DEFAULT_WALL_MATERIAL = 90, "glass" = 90)
 
+
+/obj/item/ammo_casing/shotgun/emp
+	name = "ion shell"
+	desc = "An advanced shotgun round that creates a small EMP when it strikes a target."
+	icon_state = "empshell"
+	projectile_type = /obj/item/projectile/bullet/shotgun/ion
+	matter = list(DEFAULT_WALL_MATERIAL = 360, "glass" = 720)
+
 /obj/item/ammo_casing/a762
 	desc = "A 7.62mm bullet casing."
 	caliber = "a762"

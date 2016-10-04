@@ -15,7 +15,6 @@
 	if(src.mind.changeling.recursive_enhancement)
 		if(changeling_generic_weapon(/obj/item/weapon/melee/arm_blade/greater))
 			src << "<span class='notice'>We prepare an extra sharp blade.</span>"
-			src.mind.changeling.recursive_enhancement = 0
 			return 1
 
 	else
@@ -28,7 +27,7 @@
 	desc = "A grotesque blade made out of bone and flesh that cleaves through people as a hot knife through butter."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "arm_blade"
-	w_class = 5.0
+	w_class = ITEMSIZE_HUGE
 	force = 40
 	sharp = 1
 	edge = 1
@@ -67,6 +66,10 @@
 	processing_objects -= src
 	creator = null
 	..()
+
+/obj/item/weapon/melee/arm_blade/suicide_act(mob/user)
+	viewers(user) << "<span class='danger'>[user] is impaling \himself the [src.name]! It looks like \he's trying to commit suicide.</span>"
+	return(BRUTELOSS)
 
 /obj/item/weapon/melee/arm_blade/process()  //Stolen from ninja swords.
 	if(!creator || loc != creator || !creator.item_is_in_hands(src))

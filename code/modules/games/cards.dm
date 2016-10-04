@@ -4,7 +4,7 @@
 	var/back_icon = "card_back"
 
 /obj/item/weapon/deck
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	icon = 'icons/obj/playing_cards.dmi'
 	var/list/cards = list()
 
@@ -146,7 +146,7 @@
 		for(var/datum/playingcard/P in cards)
 			H.cards += P
 		H.concealed = src.concealed
-		user.drop_from_inventory(src,user.loc)
+		user.drop_from_inventory(src)
 		qdel(src)
 		H.update_icon()
 		return
@@ -180,7 +180,7 @@
 
 	icon_state = "card_pack"
 	icon = 'icons/obj/playing_cards.dmi'
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	var/list/cards = list()
 
 
@@ -201,7 +201,7 @@
 	desc = "Some playing cards."
 	icon = 'icons/obj/playing_cards.dmi'
 	icon_state = "empty"
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 
 	var/concealed = 0
 	var/list/cards = list()

@@ -3,7 +3,7 @@
 #endif
 
 /obj/item/weapon/circuitboard/unary_atmos
-	board_type = "machine"
+	board_type = new /datum/frame/frame_types/machine
 
 /obj/item/weapon/circuitboard/unary_atmos/construct(var/obj/machinery/atmospherics/unary/U)
 	//TODO: Move this stuff into the relevant constructor when pipe/construction.dm is cleaned up.
@@ -15,7 +15,7 @@
 
 /obj/item/weapon/circuitboard/unary_atmos/heater
 	name = T_BOARD("gas heating system")
-	build_path = "/obj/machinery/atmospherics/unary/heater"
+	build_path = /obj/machinery/atmospherics/unary/heater
 	origin_tech = list(TECH_POWER = 2, TECH_ENGINEERING = 1)
 	req_components = list(
 							/obj/item/stack/cable_coil = 5,
@@ -24,7 +24,7 @@
 
 /obj/item/weapon/circuitboard/unary_atmos/cooler
 	name = T_BOARD("gas cooling system")
-	build_path = "/obj/machinery/atmospherics/unary/freezer"
+	build_path = /obj/machinery/atmospherics/unary/freezer
 	origin_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2)
 	req_components = list(
 							/obj/item/stack/cable_coil = 2,

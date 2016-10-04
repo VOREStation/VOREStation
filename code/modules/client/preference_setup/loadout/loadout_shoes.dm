@@ -13,6 +13,10 @@
 	display_name = "workboots"
 	path = /obj/item/clothing/shoes/workboots
 
+/datum/gear/shoes/workboots/toeless
+	display_name = "toe-less workboots"
+	path = /obj/item/clothing/shoes/workboots/toeless
+
 /datum/gear/shoes/sandals
 	display_name = "sandals"
 	path = /obj/item/clothing/shoes/sandal
@@ -96,3 +100,35 @@
 /datum/gear/shoes/flats/white
 	display_name = "flats, white"
 	path = /obj/item/clothing/shoes/flats/white
+
+/datum/gear/shoes/flipflops
+	display_name = "flip flops"
+	path = /obj/item/clothing/shoes/flipflop
+
+/datum/gear/shoes/flipflops/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/shoes/athletic
+	display_name = "athletic shoes"
+	path = /obj/item/clothing/shoes/athletic
+
+/datum/gear/shoes/athletic/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/shoes/skater
+	display_name = "skater shoes"
+	path = /obj/item/clothing/shoes/skater
+
+/datum/gear/shoes/skater/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/shoes/flats/color
+	display_name = "flats"
+	path = /obj/item/clothing/shoes/flats/white/color
+
+/datum/gear/shoes/flats/color/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)

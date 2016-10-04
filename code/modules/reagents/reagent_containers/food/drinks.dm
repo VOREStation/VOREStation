@@ -94,7 +94,7 @@
 	name = "golden cup"
 	icon_state = "golden_cup"
 	item_state = "" //nope :(
-	w_class = 4
+	w_class = ITEMSIZE_LARGE
 	force = 14
 	throwforce = 10
 	amount_per_transfer_from_this = 20
@@ -256,8 +256,8 @@
 	..()
 
 /obj/item/weapon/reagent_containers/food/drinks/flask
-	name = "\improper Captain's flask"
-	desc = "A metal flask belonging to the captain"
+	name = "\improper Station Administrator's flask"
+	desc = "A metal flask belonging to the Station Administrator"
 	icon_state = "flask"
 	volume = 60
 	center_of_mass = list("x"=17, "y"=7)

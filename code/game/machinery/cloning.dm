@@ -47,7 +47,6 @@
 
 /obj/machinery/clonepod/New()
 	..()
-	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
@@ -184,7 +183,7 @@
 
 		else if((occupant.health >= heal_level) && (!eject_wait))
 			playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
-			src.audible_message("\The [src] signals that the cloning process is complete.")
+			audible_message("\The [src] signals that the cloning process is complete.")
 			connected_message("Cloning Process Complete.")
 			locked = 0
 			go_out()
@@ -235,7 +234,7 @@
 				connected = null
 			else
 				anchored = 1
-			playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
+			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
 			if(anchored)
 				user.visible_message("[user] secures [src] to the floor.", "You secure [src] to the floor.")
 			else
@@ -298,7 +297,7 @@
 
 	if(mess) //Clean that mess and dump those gibs!
 		mess = 0
-		gibs(loc)
+		gibs(src.loc)
 		update_icon()
 		return
 
@@ -308,7 +307,7 @@
 	if(occupant.client)
 		occupant.client.eye = occupant.client.mob
 		occupant.client.perspective = MOB_PERSPECTIVE
-	occupant.loc = loc
+	occupant.loc = src.loc
 	eject_wait = 0 //If it's still set somehow.
 	domutcheck(occupant) //Waiting until they're out before possible transforming.
 	occupant = null
@@ -342,21 +341,21 @@
 	switch(severity)
 		if(1.0)
 			for(var/atom/movable/A as mob|obj in src)
-				A.loc = loc
+				A.loc = src.loc
 				ex_act(severity)
 			qdel(src)
 			return
 		if(2.0)
 			if(prob(50))
 				for(var/atom/movable/A as mob|obj in src)
-					A.loc = loc
+					A.loc = src.loc
 					ex_act(severity)
 				qdel(src)
 				return
 		if(3.0)
 			if(prob(25))
 				for(var/atom/movable/A as mob|obj in src)
-					A.loc = loc
+					A.loc = src.loc
 					ex_act(severity)
 				qdel(src)
 				return
@@ -366,9 +365,9 @@
 /obj/machinery/clonepod/update_icon()
 	..()
 	icon_state = "pod_0"
-	if (occupant && !(stat & NOPOWER))
+	if(occupant && !(stat & NOPOWER))
 		icon_state = "pod_1"
-	else if (mess)
+	else if(mess)
 		icon_state = "pod_g"
 
 //Health Tracker Implant
@@ -396,7 +395,7 @@
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "datadisk0" //Gosh I hope syndies don't mistake them for the nuke disk.
 	item_state = "card-id"
-	w_class = 2.0
+	w_class = ITEMSIZE_SMALL
 	var/datum/dna2/record/buf = null
 	var/read_only = 0 //Well,it's still a floppy disk
 

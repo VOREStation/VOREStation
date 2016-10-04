@@ -46,7 +46,7 @@
 			var/datum/wound/W = new /datum/wound/internal_bleeding(20)
 			owner.adjustToxLoss(25)
 			groin.wounds += W
-			inflamed = 0
+			inflamed = 1
 
 /obj/item/organ/internal/appendix/removed()
 	if(inflamed)

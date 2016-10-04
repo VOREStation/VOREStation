@@ -8,7 +8,7 @@
 	var/s_time = 10.0
 	throw_speed = 1
 	throw_range = 5
-	w_class = 1.0
+	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_EARS
 	var/uses = 1
 	var/nofail
@@ -160,7 +160,7 @@
 
 /obj/item/weapon/dnainjector/xraymut
 	name = "\improper DNA injector (Xray)"
-	desc = "Finally you can see what the Captain does."
+	desc = "Finally you can see what the Station Administrator does."
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 	//block = 8

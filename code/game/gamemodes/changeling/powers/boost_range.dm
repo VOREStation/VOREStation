@@ -23,7 +23,6 @@
 	if(src.mind.changeling.recursive_enhancement)
 		range = range + 3
 		src << "<span class='notice'>We can fire our next sting from five squares away.</span>"
-		src.mind.changeling.recursive_enhancement = 0
 	changeling.sting_range = range
 	src.verbs -= /mob/proc/changeling_boost_range
 	spawn(5)

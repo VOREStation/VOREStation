@@ -7,7 +7,7 @@
 	desc = "A gun that fires bullets."
 	icon_state = "revolver"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
-	w_class = 3
+	w_class = ITEMSIZE_NORMAL
 	matter = list(DEFAULT_WALL_MATERIAL = 1000)
 	recoil = 1
 
@@ -141,6 +141,24 @@
 		user.visible_message("[user] inserts \a [C] into [src].", "<span class='notice'>You insert \a [C] into [src].</span>")
 		playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
 
+	else if(istype(A, /obj/item/weapon/storage))
+		var/obj/item/weapon/storage/storage = A
+		if(!(load_method & SINGLE_CASING))
+			return //incompatible
+
+		user << "<span class='notice'>You start loading \the [src].</span>"
+		sleep(1 SECOND)
+		for(var/obj/item/ammo_casing/ammo in storage.contents)
+			if(caliber != ammo.caliber)
+				continue
+
+			load_ammo(ammo, user)
+
+			if(loaded.len >= max_shells)
+				user << "<span class='warning'>[src] is full.</span>"
+				break
+			sleep(1 SECOND)
+
 	update_icon()
 
 //attempts to unload src. If allow_dump is set to 0, the speedloader unloading method will be disabled
@@ -174,6 +192,7 @@
 	update_icon()
 
 /obj/item/weapon/gun/projectile/attackby(var/obj/item/A as obj, mob/user as mob)
+	..()
 	load_ammo(A, user)
 
 /obj/item/weapon/gun/projectile/attack_self(mob/user as mob)

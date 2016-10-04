@@ -7,7 +7,7 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	throwforce = 5
-	w_class = 2.0
+	w_class = ITEMSIZE_SMALL
 	throw_speed = 2
 	throw_range = 5
 	origin_tech = list(TECH_MATERIAL = 1)
@@ -114,6 +114,11 @@ var/last_chew = 0
 		H:UpdateDamageIcon()
 
 	last_chew = world.time
+
+/obj/item/weapon/handcuffs/fuzzy
+	name = "fuzzy cuffs"
+	icon_state = "fuzzycuff"
+	desc = "Use this to keep... 'prisoners' in line."
 
 /obj/item/weapon/handcuffs/cable
 	name = "cable restraints"

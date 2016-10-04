@@ -4,7 +4,7 @@
 	icon_state = "flash"
 	item_state = "flashtool"
 	throwforce = 5
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	throw_speed = 4
 	throw_range = 10
 	flags = CONDUCT
@@ -80,7 +80,7 @@
 					flash_strength *= H.species.flash_mod
 
 					if(flash_strength > 0)
-						H.confused = max(H.confused, flash_strength)
+						H.confused = max(H.confused, flash_strength + 5)
 						H.eye_blind = max(H.eye_blind, flash_strength)
 						H.eye_blurry = max(H.eye_blurry, flash_strength + 5)
 						H.flash_eyes()

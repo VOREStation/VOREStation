@@ -3,7 +3,7 @@
 	desc = "A folder."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "folder"
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	pressure_resistance = 2
 
 /obj/item/weapon/folder/blue
@@ -23,7 +23,7 @@
 	icon_state = "folder_white"
 
 /obj/item/weapon/folder/blue_captain
-	desc = "A blue folder with Captain markings."
+	desc = "A blue folder with Station Administrator markings."
 	icon_state = "folder_captain"
 
 /obj/item/weapon/folder/blue_hop

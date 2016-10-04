@@ -17,7 +17,6 @@
 	var/report_num = 0
 
 /obj/machinery/dnaforensics/New()
-	circuit = new circuit(src)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
 	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)

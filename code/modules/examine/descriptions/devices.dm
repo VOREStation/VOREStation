@@ -8,7 +8,7 @@
 	that while in space, across star systems, and that the consumer can afford and use without training, is much more recent, and is thanks to the backbone \
 	that is the Exonet.<br>\
 	<br>\
-	The Exonet is the predominant interstellar telecom system, servicing trillions of devices across a large portion of human-controlled space.  \
+	The Exonet is the predominant interstellar telecomm system, servicing trillions of devices across a large portion of human-controlled space.  \
 	It is distributed by a massive network of telecommunication satellites, some privately owned and others owned by the systems’ local governments, \
 	that utilize FTL technologies to bounce data between satellites at speeds that would not be possible at sub-light technology.  This communicator \
 	uses a protocol called Exonet Protocol Version 2, generally shortened to EPv2.<br>\

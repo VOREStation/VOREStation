@@ -8,6 +8,5 @@
 	required_enemies = 3
 	auto_recall_shuttle = 0 //un-wanted on polaris
 	end_on_antag_death = 0
-	shuttle_delay = 3
 	antag_tags = list(MODE_REVOLUTIONARY, MODE_LOYALIST)
 	require_all_templates = 1

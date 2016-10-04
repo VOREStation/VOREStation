@@ -11,7 +11,7 @@
 	obj_path = /obj/item/weapon/antag_spawner/technomancer_apprentice
 
 /obj/item/weapon/antag_spawner
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	var/used = 0
 
 /obj/item/weapon/antag_spawner/proc/spawn_antag(client/C, turf/T)

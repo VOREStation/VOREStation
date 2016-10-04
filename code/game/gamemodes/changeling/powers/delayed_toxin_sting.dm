@@ -20,7 +20,6 @@
 	if(src.mind.changeling.recursive_enhancement)
 		i = i * 2
 		src << "<span class='notice'>Our toxin will be extra potent, when it strikes.</span>"
-		src.mind.changeling.recursive_enhancement = 0
 	spawn(2 MINUTES)
 		if(T) //We might not exist in two minutes, for whatever reason.
 			T << "<span class='danger'>You feel a burning sensation flowing through your veins!</span>"

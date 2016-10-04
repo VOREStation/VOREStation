@@ -6,7 +6,7 @@
 	name = "implant"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "implant"
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	var/implanted = null
 	var/mob/imp_in = null
 	var/obj/item/organ/external/part = null
@@ -164,12 +164,10 @@ Implant Specifics:<BR>"}
 	if (malfunction == MALFUNCTION_PERMANENT)
 		return
 
-	var/need_gib = null
 	if(istype(imp_in, /mob/))
 		var/mob/T = imp_in
 		message_admins("Explosive implant triggered in [T] ([T.key]). (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>) ")
 		log_game("Explosive implant triggered in [T] ([T.key]).")
-		need_gib = 1
 
 		if(ishuman(imp_in))
 			if (elevel == "Localized Limb")
@@ -180,11 +178,11 @@ Implant Specifics:<BR>"}
 					if (istype(part,/obj/item/organ/external/chest) ||	\
 						istype(part,/obj/item/organ/external/groin) ||	\
 						istype(part,/obj/item/organ/external/head))
-						part.createwound(BRUISE, 60)	//mangle them instead
-						explosion(get_turf(imp_in), -1, -1, 2, 3)
+						part.createwound(BRUISE, 80)	//mangle them instead
+						explosion(get_turf(imp_in), -1, -1, 1, 3)
 						qdel(src)
 					else
-						explosion(get_turf(imp_in), -1, -1, 2, 3)
+						explosion(get_turf(imp_in), -1, -1, 1, 3)
 						part.droplimb(0,DROPLIMB_BLUNT)
 						qdel(src)
 			if (elevel == "Destroy Body")
@@ -196,9 +194,6 @@ Implant Specifics:<BR>"}
 
 		else
 			explosion(get_turf(imp_in), 0, 1, 3, 6)
-
-	if(need_gib)
-		imp_in.gib()
 
 	var/turf/t = get_turf(imp_in)
 
@@ -249,10 +244,10 @@ Implant Specifics:<BR>"}
 				if (istype(part,/obj/item/organ/external/chest) ||	\
 					istype(part,/obj/item/organ/external/groin) ||	\
 					istype(part,/obj/item/organ/external/head))
-					part.createwound(BRUISE, 60)	//mangle them instead
+					part.createwound(BRUISE, 80)	//mangle them instead
 				else
 					part.droplimb(0,DROPLIMB_BLUNT)
-			explosion(get_turf(imp_in), -1, -1, 2, 3)
+			explosion(get_turf(imp_in), -1, -1, 1, 3)
 			qdel(src)
 
 /obj/item/weapon/implant/chem

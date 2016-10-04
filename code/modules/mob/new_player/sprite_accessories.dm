@@ -193,6 +193,10 @@
 	spikyponytail
 		name = "Spiky Ponytail"
 		icon_state = "hair_spikyponytail"
+
+	zieglertail
+		name = "Zieglertail"
+		icon_state = "hair_ziegler"
 	wisp
 		name = "Wisp"
 		icon_state = "hair_wisp"
@@ -435,6 +439,9 @@
 		name = "Poofy"
 		icon_state = "hair_poofy"
 
+	poofy2
+		name = "Poofy2"
+		icon_state = "hair_poofy2"
 	crono
 		name = "Chrono"
 		icon_state = "hair_toriyama"
@@ -506,6 +513,10 @@
 	doublebun
 		name = "Double-Bun"
 		icon_state = "hair_doublebun"
+
+	oxton
+		name = "Oxton"
+		icon_state = "hair_oxton"
 
 
 /*
@@ -614,6 +625,28 @@
 		name = "Dwarf Beard"
 		icon_state = "facial_dwarf"
 
+//unathi horn beards and the like
+
+	una_chinhorn
+		name = "Unathi Chin Horn"
+		icon_state = "facial_chinhorns"
+		species_allowed = list("Unathi")
+
+	una_hornadorns
+		name = "Unathi Horn Adorns"
+		icon_state = "facial_hornadorns"
+		species_allowed = list("Unathi")
+
+	una_spinespikes
+		name = "Unathi Spine Spikes"
+		icon_state = "facial_spikes"
+		species_allowed = list("Unathi")
+
+	una_dorsalfrill
+		name = "Unathi Dorsal Frill"
+		icon_state = "facial_dorsalfrill"
+		species_allowed = list("Unathi")
+
 /*
 ///////////////////////////////////
 /  =---------------------------=  /
@@ -646,6 +679,26 @@
 	una_horns
 		name = "Unathi Horns"
 		icon_state = "soghun_horns"
+		species_allowed = list("Unathi")
+
+	una_bighorns
+		name = "Unathi Big Horns"
+		icon_state = "unathi_bighorn"
+		species_allowed = list("Unathi")
+
+	una_smallhorns
+		name = "Unathi Small Horns"
+		icon_state = "unathi_smallhorn"
+		species_allowed = list("Unathi")
+
+	una_ramhorns
+		name = "Unathi Ram Horns"
+		icon_state = "unathi_ramhorn"
+		species_allowed = list("Unathi")
+
+	una_sidefrills
+		name = "Unathi Side Frills"
+		icon_state = "unathi_sidefrills"
 		species_allowed = list("Unathi")
 
 	skr_tentacle_m

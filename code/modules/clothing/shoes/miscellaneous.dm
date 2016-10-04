@@ -168,7 +168,7 @@
 	icon_state = "slippers"
 	force = 0
 	species_restricted = null
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 
 /obj/item/clothing/shoes/slippers_worn
 	name = "worn bunny slippers"
@@ -176,7 +176,7 @@
 	icon_state = "slippers_worn"
 	item_state_slots = list(slot_r_hand_str = "slippers", slot_l_hand_str = "slippers")
 	force = 0
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 
 /obj/item/clothing/shoes/laceup
 	name = "laceup shoes"
@@ -200,3 +200,20 @@
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	heat_protection = FEET|LEGS
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
+
+/obj/item/clothing/shoes/flipflop
+	name = "flip flops"
+	desc = "A pair of foam flip flops. For those not afraid to show a little ankle."
+	icon_state = "thongsandal"
+
+/obj/item/clothing/shoes/athletic
+	name = "athletic shoes"
+	desc = "A pair of sleek atheletic shoes. Made by and for the sporty types."
+	icon_state = "sportshoe"
+	item_state_slots = list(slot_r_hand_str = "sportheld", slot_l_hand_str = "sportheld")
+
+/obj/item/clothing/shoes/skater
+	name = "skater shoes"
+	desc = "A pair of wide shoes with thick soles.  Designed for skating."
+	icon_state = "skatershoe"
+	item_state_slots = list(slot_r_hand_str = "skaterheld", slot_l_hand_str = "skaterheld")

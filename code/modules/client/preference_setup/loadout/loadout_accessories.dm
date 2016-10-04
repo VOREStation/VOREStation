@@ -28,6 +28,14 @@
 	display_name = "armband, science"
 	path = /obj/item/clothing/accessory/armband/science
 
+/datum/gear/accessory/colored
+	display_name = "armband"
+	path = /obj/item/clothing/accessory/armband/med/color
+
+/datum/gear/accessory/colored/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
 /datum/gear/accessory/wallet
 	display_name = "wallet, orange"
 	path = /obj/item/weapon/storage/wallet/random
@@ -36,10 +44,36 @@
 	display_name = "wallet, polychromic"
 	path = /obj/item/weapon/storage/wallet/poly
 
+/datum/gear/accessory/wallet/womens
+	display_name = "wallet, womens"
+	path = /obj/item/weapon/storage/wallet/womens
+
+/datum/gear/accessory/wallet/womens/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/accessory/clutch
+	display_name = "clutch bag"
+	path = /obj/item/weapon/storage/briefcase/clutch
+	cost = 2
+
+/datum/gear/accessory/clutch/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/accessory/purse
+	display_name = "purse"
+	path = /obj/item/weapon/storage/backpack/purse
+	cost = 3
+
+/datum/gear/accessory/purse/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
 /datum/gear/accessory/holster
 	display_name = "holster, armpit"
 	path = /obj/item/clothing/accessory/holster/armpit
-	allowed_roles = list("Captain", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective")
+	allowed_roles = list("Station Administrator", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective")
 
 /datum/gear/accessory/holster/hip
 	display_name = "holster, hip"
@@ -211,3 +245,23 @@
 	display_name = "webbing, simple"
 	path = /obj/item/clothing/accessory/storage/webbing
 	cost = 2
+
+/datum/gear/accessory/chaps
+	display_name = "chaps, brown"
+	path = /obj/item/clothing/accessory/chaps
+
+/datum/gear/accessory/chaps/black
+	display_name = "chaps, black"
+	path = /obj/item/clothing/accessory/chaps/black
+
+/datum/gear/accessory/hawaii
+	display_name = "hawaii shirt"
+	path = /obj/item/clothing/accessory/hawaii
+
+/datum/gear/accessory/hawaii/New()
+	..()
+	var/list/shirts = list()
+	shirts["blue hawaii shirt"] = /obj/item/clothing/accessory/hawaii
+	shirts["red hawaii shirt"] = /obj/item/clothing/accessory/hawaii/red
+	shirts["random colored hawaii shirt"] = /obj/item/clothing/accessory/hawaii/random
+	gear_tweaks += new/datum/gear_tweak/path(shirts)

@@ -112,7 +112,7 @@
 				rng = rand(0,8)
 				switch(rng)
 					if(0)
-						apply_effect(instability * 0.5, IRRADIATE)
+						apply_effect(instability * 0.3, IRRADIATE)
 					if(1)
 						return
 //						visible_message("<span class='warning'>\The [src] suddenly collapses!</span>",
@@ -120,21 +120,21 @@
 //						Weaken(instability * 0.1)
 					if(2)
 						if(can_feel_pain())
-							apply_effect(instability * 0.5, AGONY)
+							apply_effect(instability * 0.3, AGONY)
 							src << "<span class='danger'>You feel a sharp pain!</span>"
 					if(3)
-						apply_effect(instability * 0.5, EYE_BLUR)
+						apply_effect(instability * 0.3, EYE_BLUR)
 						src << "<span class='danger'>Your eyes start to get cloudy!</span>"
 					if(4)
 						electrocute_act(instability * 0.3, "unstable energies")
 					if(5)
-						adjustFireLoss(instability * 0.2) //10 burn @ 50 instability
+						adjustFireLoss(instability * 0.15) //7.5 burn @ 50 instability
 						src << "<span class='danger'>You feel your skin burn!</span>"
 					if(6)
-						adjustBruteLoss(instability * 0.2) //10 brute @ 50 instability
+						adjustBruteLoss(instability * 0.15) //7.5 brute @ 50 instability
 						src << "<span class='danger'>You feel a sharp pain as an unseen force harms your body!</span>"
 					if(7)
-						adjustToxLoss(instability * 0.2) //10 tox @ 50 instability
+						adjustToxLoss(instability * 0.15) //7.5 tox @ 50 instability
 					if(8)
 						safe_blink(src, range = 6)
 						src << "<span class='warning'>You're teleported against your will!</span>"

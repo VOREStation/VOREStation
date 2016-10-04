@@ -166,7 +166,7 @@ area/space/atmosalert()
 	icon_state = "shuttle2"
 
 /area/shuttle/escape/centcom
-	name = "\improper Emergency Shuttle Centcom"
+	name = "\improper Emergency Shuttle CentCom"
 	icon_state = "shuttle"
 
 /area/shuttle/escape/transit // the area to pass through for 3 minute transit
@@ -282,6 +282,7 @@ area/space/atmosalert()
 
 /area/shuttle/cryo/station
 	icon_state = "shuttle2"
+	base_turf = /turf/simulated/mineral/floor/ignore_mapgen
 
 /area/shuttle/cryo/centcom
 	icon_state = "shuttle"
@@ -290,9 +291,10 @@ area/space/atmosalert()
 	icon_state = "shuttle"
 
 /area/shuttle/mining
-	name = "\improper Mining Shuttle"
+	name = "\improper Mining Elevator"
 	music = "music/escape.ogg"
 	lighting_use_dynamic = 0
+	base_turf = /turf/simulated/mineral/floor/ignore_mapgen
 
 /area/shuttle/mining/station
 	icon_state = "shuttle2"
@@ -302,7 +304,7 @@ area/space/atmosalert()
 
 /area/shuttle/transport1/centcom
 	icon_state = "shuttle"
-	name = "\improper Transport Shuttle Centcom"
+	name = "\improper Transport Shuttle CentCom"
 
 /area/shuttle/transport1/station
 	icon_state = "shuttle"
@@ -344,7 +346,7 @@ area/space/atmosalert()
 	icon_state = "shuttlered2"
 
 /area/shuttle/administration/centcom
-	name = "\improper Administration Shuttle Centcom"
+	name = "\improper Administration Shuttle CentCom"
 	icon_state = "shuttlered"
 
 /area/shuttle/administration/station
@@ -352,7 +354,7 @@ area/space/atmosalert()
 	icon_state = "shuttlered2"
 
 /area/shuttle/trade/centcom
-	name = "\improper Trade Shuttle Centcom"
+	name = "\improper Trade Shuttle CentCom"
 	icon_state = "shuttlered"
 
 /area/shuttle/trade/station
@@ -388,9 +390,10 @@ area/space/atmosalert()
 // === Trying to remove these areas:
 
 /area/shuttle/research
-	name = "\improper Research Shuttle"
+	name = "\improper Research Elevator"
 	music = "music/escape.ogg"
 	lighting_use_dynamic = 0
+	base_turf = /turf/simulated/mineral/floor/ignore_mapgen
 
 /area/shuttle/research/station
 	icon_state = "shuttle2"
@@ -412,34 +415,34 @@ area/space/atmosalert()
 // CENTCOM
 
 /area/centcom
-	name = "\improper Centcom"
+	name = "\improper CentCom"
 	icon_state = "centcom"
 	requires_power = 0
 	lighting_use_dynamic = 0
 
 /area/centcom/control
-	name = "\improper Centcom Control"
+	name = "\improper CentCom Control"
 
 /area/centcom/evac
-	name = "\improper Centcom Emergency Shuttle"
+	name = "\improper CentCom Emergency Shuttle"
 
 /area/centcom/suppy
-	name = "\improper Centcom Supply Shuttle"
+	name = "\improper CentCom Supply Shuttle"
 
 /area/centcom/ferry
-	name = "\improper Centcom Transport Shuttle"
+	name = "\improper CentCom Transport Shuttle"
 
 /area/centcom/shuttle
-	name = "\improper Centcom Administration Shuttle"
+	name = "\improper CentCom Administration Shuttle"
 
 /area/centcom/test
-	name = "\improper Centcom Testing Facility"
+	name = "\improper CentCom Testing Facility"
 
 /area/centcom/living
-	name = "\improper Centcom Living Quarters"
+	name = "\improper CentCom Living Quarters"
 
 /area/centcom/specops
-	name = "\improper Centcom Special Ops"
+	name = "\improper CentCom Special Ops"
 
 /area/centcom/creed
 	name = "Creed's Office"
@@ -455,15 +458,15 @@ area/space/atmosalert()
 	name = "\improper Tram Station"
 
 /area/centcom/security
-	name = "\improper Centcom Security"
+	name = "\improper CentCom Security"
 	icon_state = "centcom_security"
 
 /area/centcom/medical
-	name = "\improper Centcom Medical"
+	name = "\improper CentCom Medical"
 	icon_state = "centcom_medical"
 
 /area/centcom/command
-	name = "\improper Centcom Command" //Central Command Command totally isn't RAS Syndrome in action.
+	name = "\improper CentCom Command" //Central Command Command totally isn't RAS Syndrome in action.
 	icon_state = "centcom_command"
 
 /area/centcom/main_hall
@@ -471,15 +474,15 @@ area/space/atmosalert()
 	icon_state = "centcom_hallway1"
 
 /area/centcom/bar
-	name = "\improper Centcom Bar"
+	name = "\improper CentCom Bar"
 	icon_state = "centcom_crew"
 
 /area/centcom/restaurant
-	name = "\improper Centcom Restaurant"
+	name = "\improper CentCom Restaurant"
 	icon_state = "centcom_crew"
 
 /area/centcom/bathroom
-	name = "\improper Centcom Bathroom"
+	name = "\improper CentCom Bathroom"
 	icon_state = "centcom_crew"
 
 //SYNDICATES
@@ -1137,7 +1140,7 @@ area/space/atmosalert()
 	sound_env = MEDIUM_SOFTFLOOR
 
 /area/crew_quarters/captain
-	name = "\improper Command - Captain's Office"
+	name = "\improper Command - Station Administrator's Office"
 	icon_state = "captain"
 	sound_env = MEDIUM_SOFTFLOOR
 
@@ -2319,6 +2322,7 @@ area/space/atmosalert()
 	name = "\improper Construction Site Shuttle"
 	icon_state = "yellow"
 	lighting_use_dynamic = 0
+	base_turf = /turf/simulated/mineral/floor/ignore_mapgen
 
 /area/shuttle/constructionsite/station
 	name = "\improper Construction Site Shuttle"
@@ -2527,20 +2531,20 @@ area/space/atmosalert()
 	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
 
 /area/tcommsat/entrance
-	name = "\improper Telecoms Teleporter"
+	name = "\improper Telecomms Teleporter"
 	icon_state = "tcomsatentrance"
 
 /area/tcommsat/chamber
-	name = "\improper Telecoms Central Compartment"
+	name = "\improper Telecomms Central Compartment"
 	icon_state = "tcomsatcham"
 
 /area/tcomsat
-	name = "\improper Telecoms Satellite"
+	name = "\improper Telecomms Satellite"
 	icon_state = "tcomsatlob"
 	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
 
 /area/tcomfoyer
-	name = "\improper Telecoms Foyer"
+	name = "\improper Telecomms Foyer"
 	icon_state = "tcomsatentrance"
 	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
 
@@ -2555,7 +2559,7 @@ area/space/atmosalert()
 	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
 
 /area/tcommsat/computer
-	name = "\improper Telecoms Control Room"
+	name = "\improper Telecomms Control Room"
 	icon_state = "tcomsatcomp"
 
 /area/tcommsat/lounge
@@ -2627,7 +2631,7 @@ area/space/atmosalert()
 	requires_power = 0
 
 /area/awaymission/spacebattle/cruiser
-	name = "\improper Nanotrasen Cruiser"
+	name = "\improper NanoTrasen Cruiser"
 
 /area/awaymission/spacebattle/syndicate1
 	name = "\improper Syndicate Assault Ship 1"

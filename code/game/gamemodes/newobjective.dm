@@ -264,7 +264,7 @@ datum
 				target = targeta
 				job = joba
 				weight = get_points(job)
-				explanation_text = "Frame [target.current.real_name], the [target.assigned_role] for a crime and make sure they are arrested and brought back to the Centcom station alive.  We'll handle the rest from there."
+				explanation_text = "Frame [target.current.real_name], the [target.assigned_role] for a crime and make sure they are arrested and brought back to the CentCom station alive.  We'll handle the rest from there."
 
 			check_completion()
 				if(!emergency_shuttle.returned())
@@ -564,7 +564,7 @@ datum
 
 			captainslaser
 				steal_target = /obj/item/weapon/gun/energy/captain
-				explanation_text = "Steal the captain's antique laser gun."
+				explanation_text = "Steal the station administrator's antique laser gun."
 				weight = 20
 
 				get_points(var/job)

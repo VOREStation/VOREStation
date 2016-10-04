@@ -286,6 +286,29 @@
 	user.drop_from_inventory(src)
 	qdel(src)
 
+/obj/item/weapon/storage/firstaid/attackby(var/obj/item/organ/external/S, mob/user as mob)
+	if (!istype(S, /obj/item/organ/external/arm) || !(S.robotic == ORGAN_ROBOT))
+		..()
+		return
+
+	if(contents.len >= 1)
+		user << "<span class='notice'>You need to empty [src] out first.</span>"
+		return
+
+	var/obj/item/weapon/firstaid_arm_assembly/A = new /obj/item/weapon/firstaid_arm_assembly
+	if(istype(src, /obj/item/weapon/storage/firstaid/fire))
+		A.skin = "ointment"
+	else if(istype(src, /obj/item/weapon/storage/firstaid/toxin))
+		A.skin = "tox"
+	else if(istype(src, /obj/item/weapon/storage/firstaid/o2))
+		A.skin = "o2"
+
+	qdel(S)
+	user.put_in_hands(A)
+	user << "<span class='notice'>You add the robot arm to the first aid kit.</span>"
+	user.drop_from_inventory(src)
+	qdel(src)
+
 /obj/item/weapon/firstaid_arm_assembly
 	name = "first aid/robot arm assembly"
 	desc = "A first aid kit with a robot arm permanently grafted to it."
@@ -294,7 +317,7 @@
 	var/build_step = 0
 	var/created_name = "Medibot" //To preserve the name if it's a unique medbot I guess
 	var/skin = null //Same as medbot, set to tox or ointment for the respective kits.
-	w_class = 3.0
+	w_class = ITEMSIZE_NORMAL
 
 /obj/item/weapon/firstaid_arm_assembly/New()
 	..()

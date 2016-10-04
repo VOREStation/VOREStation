@@ -4,7 +4,7 @@
 	icon = 'icons/obj/items.dmi'
 	amount = 10
 	max_amount = 10
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	throw_speed = 4
 	throw_range = 20
 	var/heal_brute = 0
@@ -246,9 +246,12 @@
 /obj/item/stack/medical/splint
 	name = "medical splints"
 	singular_name = "medical splint"
+	desc = "Modular splints capable of supporting and immobilizing bones in both limbs and appendages."
 	icon_state = "splint"
 	amount = 5
 	max_amount = 5
+
+	var/list/splintable_organs = list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG, BP_L_HAND, BP_R_HAND, BP_L_FOOT, BP_R_FOOT)	//List of organs you can splint, natch.
 
 /obj/item/stack/medical/splint/attack(mob/living/carbon/M as mob, mob/living/user as mob)
 	if(..())
@@ -258,28 +261,42 @@
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 		var/limb = affecting.name
-		if(!(affecting.organ_tag in list("l_arm","r_arm","l_leg","r_leg")))
-			user << "<span class='danger'>You can't apply a splint there!</span>"
+		if(!(affecting.organ_tag in splintable_organs))
+			user << "<span class='danger'>You can't use \the [src] to apply a splint there!</span>"
 			return
-		if(affecting.status & ORGAN_SPLINTED)
+		if(affecting.splinted)
 			user << "<span class='danger'>[M]'s [limb] is already splinted!</span>"
 			return
 		if (M != user)
 			user.visible_message("<span class='danger'>[user] starts to apply \the [src] to [M]'s [limb].</span>", "<span class='danger'>You start to apply \the [src] to [M]'s [limb].</span>", "<span class='danger'>You hear something being wrapped.</span>")
 		else
-			if((!user.hand && affecting.organ_tag == "r_arm") || (user.hand && affecting.organ_tag == "l_arm"))
+			if(( !user.hand && (affecting.organ_tag in list(BP_R_ARM, BP_R_HAND)) || \
+				user.hand && (affecting.organ_tag in list(BP_L_ARM, BP_L_HAND)) ))
 				user << "<span class='danger'>You can't apply a splint to the arm you're using!</span>"
 				return
 			user.visible_message("<span class='danger'>[user] starts to apply \the [src] to their [limb].</span>", "<span class='danger'>You start to apply \the [src] to your [limb].</span>", "<span class='danger'>You hear something being wrapped.</span>")
-		if(do_after(user, 50))
-			if (M != user)
-				user.visible_message("<span class='danger'>[user] finishes applying \the [src] to [M]'s [limb].</span>", "<span class='danger'>You finish applying \the [src] to [M]'s [limb].</span>", "<span class='danger'>You hear something being wrapped.</span>")
-			else
-				if(prob(25))
-					user.visible_message("<span class='danger'>[user] successfully applies \the [src] to their [limb].</span>", "<span class='danger'>You successfully apply \the [src] to your [limb].</span>", "<span class='danger'>You hear something being wrapped.</span>")
-				else
-					user.visible_message("<span class='danger'>[user] fumbles \the [src].</span>", "<span class='danger'>You fumble \the [src].</span>", "<span class='danger'>You hear something being wrapped.</span>")
+		if(do_after(user, 50, M))
+			if(M == user && prob(75))
+				user.visible_message("<span class='danger'>\The [user] fumbles [src].</span>", "<span class='danger'>You fumble [src].</span>", "<span class='danger'>You hear something being wrapped.</span>")
+				return
+			var/obj/item/stack/medical/splint/S = split(1)
+			if(S)
+				if(affecting.apply_splint(S))
+					S.forceMove(affecting)
+					if (M != user)
+						user.visible_message("<span class='danger'>\The [user] finishes applying [src] to [M]'s [limb].</span>", "<span class='danger'>You finish applying \the [src] to [M]'s [limb].</span>", "<span class='danger'>You hear something being wrapped.</span>")
+					else
+						user.visible_message("<span class='danger'>\The [user] successfully applies [src] to their [limb].</span>", "<span class='danger'>You successfully apply \the [src] to your [limb].</span>", "<span class='danger'>You hear something being wrapped.</span>")
 					return
-			affecting.status |= ORGAN_SPLINTED
-			use(1)
+				S.dropInto(src.loc) //didn't get applied, so just drop it
+			user.visible_message("<span class='danger'>\The [user] fails to apply [src].</span>", "<span class='danger'>You fail to apply [src].</span>", "<span class='danger'>You hear something being wrapped.</span>")
 		return
+
+
+/obj/item/stack/medical/splint/ghetto
+	name = "makeshift splints"
+	singular_name = "makeshift splint"
+	desc = "For holding your limbs in place with duct tape and scrap metal."
+	icon_state = "tape-splint"
+	amount = 1
+	splintable_organs = list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG)

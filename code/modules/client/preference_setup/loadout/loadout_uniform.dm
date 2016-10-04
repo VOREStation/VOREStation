@@ -284,9 +284,9 @@
 	path = /obj/item/clothing/under/dress/dress_fire
 
 /datum/gear/uniform/uniform_captain
-	display_name = "uniform, captain's dress"
+	display_name = "uniform, station administrator's dress"
 	path = /obj/item/clothing/under/dress/dress_cap
-	allowed_roles = list("Captain")
+	allowed_roles = list("Station Administrator")
 
 /datum/gear/uniform/corpdetsuit
 	display_name = "uniform, corporate (Detective)"
@@ -365,3 +365,19 @@
 /datum/gear/uniform/whitewedding
 	display_name= "white wedding dress"
 	path = /obj/item/clothing/under/dress/white
+
+/datum/gear/uniform/skirts
+	display_name = "executive skirt"
+	path = /obj/item/clothing/under/suit_jacket/female/skirt
+
+/datum/gear/uniform/dresses
+	display_name = "sailor dress"
+	path = /obj/item/clothing/under/dress/sailordress
+
+/datum/gear/uniform/dresses/eveninggown
+	display_name = "red evening gown"
+	path = /obj/item/clothing/under/dress/redeveninggown
+
+/datum/gear/uniform/dresses/janimaid
+	display_name = "maid uniform"
+	path = /obj/item/clothing/under/dress/janimaid
