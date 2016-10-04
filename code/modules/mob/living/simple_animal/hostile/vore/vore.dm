@@ -26,6 +26,7 @@ Don't use ranged mobs for vore mobs.
 	var/min_size = 0.25 // Min: 0.25
 	var/picky = 1 // Won't eat undigestable prey by default
 	var/fullness = 0
+	var/eat_chance = 50
 	swallowTime = 1 // Hungry little bastards.
 
 	// By default, this is what most vore mobs are capable of.
@@ -62,7 +63,7 @@ Don't use ranged mobs for vore mobs.
 			var/datum/belly/B = vore_organs[I]
 			for(var/mob/living/M in B.internal_contents)
 				fullness += M.size_multiplier
-				fullness = round(fullness, 1) // Because intervals of 0.25 are going to make sprite artists cry.
+			fullness = round(fullness, 1) // Because intervals of 0.25 are going to make sprite artists cry.
 		if(fullness)
 			if (fullness > capacity) // Player controlled.
 				icon_state = "[initial(icon_state)]-[capacity]"
@@ -117,7 +118,7 @@ Don't use ranged mobs for vore mobs.
 
 	// Is our target edible and standing up?
 	if(target_mob.canmove && target_mob.size_multiplier >= min_size && target_mob.size_multiplier <= max_size && !(target_mob in prey_exclusions))
-		if(prob(50))
+		if(prob(eat_chance))
 			target_mob.Weaken(5)
 			target_mob.visible_message("<span class='danger'>\the [src] pounces on \the [target_mob]!</span>!")
 			animal_nom(target_mob)
