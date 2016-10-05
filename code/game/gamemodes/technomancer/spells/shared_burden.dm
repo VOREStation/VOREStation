@@ -24,5 +24,5 @@
 		if(pay_energy(500))
 			var/instability_to_drain = min(H.instability, 25)
 			user << "<span class='notice'>You draw instability away from \the [H] and towards you.</span>"
-			owner.adjust_instability(instability_to_drain)
+			adjust_instability(instability_to_drain)
 			H.adjust_instability(-instability_to_drain)

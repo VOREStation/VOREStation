@@ -398,6 +398,9 @@
 /mob/living/simple_animal/adjustBruteLoss(damage)
 	health = Clamp(health - damage, 0, maxHealth)
 
+/mob/living/simple_animal/adjustFireLoss(damage)
+	health = Clamp(health - damage, 0, maxHealth)
+
 /mob/living/simple_animal/proc/SA_attackable(target_mob)
 	if (isliving(target_mob))
 		var/mob/living/L = target_mob
@@ -637,3 +640,15 @@
 		spawn(10)
 			if(!src.stat)
 				horde()
+
+/mob/living/simple_animal/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null)
+	shock_damage *= siemens_coeff
+	if (shock_damage < 1)
+		return 0
+
+	adjustFireLoss(shock_damage)
+	playsound(loc, "sparks", 50, 1, -1)
+
+	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+	s.set_up(5, 1, loc)
+	s.start()

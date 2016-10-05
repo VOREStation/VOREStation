@@ -86,6 +86,8 @@
 	if(wearer && wearer.mind)
 		if(!(technomancers.is_antagonist(wearer.mind))) // In case someone tries to wear a stolen core.
 			wearer.adjust_instability(20)
+	if(!wearer || wearer.stat == DEAD) // Unlock if we're dead or not worn.
+		canremove = TRUE
 
 /obj/item/weapon/technomancer_core/proc/regenerate()
 	energy = min(max(energy + regen_rate, 0), max_energy)
@@ -288,3 +290,11 @@
 /obj/item/weapon/technomancer_core/summoner/pay_dues()
 	if(summoned_mobs.len)
 		pay_energy( round(summoned_mobs.len) )
+
+/obj/item/weapon/technomancer_core/verb/toggle_lock()
+	set name = "Toggle Core Lock"
+	set category = "Object"
+	set desc = "Toggles the locking mechanism on your manipulation core."
+
+	canremove = !canremove
+	to_chat(usr, "<span class='notice'>You [canremove ? "de" : ""]activate the locking mechanism on \the [src].</span>")

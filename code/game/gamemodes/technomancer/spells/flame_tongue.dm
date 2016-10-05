@@ -46,7 +46,7 @@
 			visible_message("<span class='danger'>\The [user] reaches out towards \the [L] with the flaming hand, and they ignite!</span>")
 			L << "<span class='danger'>You ignite!</span>"
 			L.fire_act()
-			owner.adjust_instability(12)
+			adjust_instability(12)
 	else
 		//This is needed in order for the welder to work, and works similarly to grippers.
 		welder.loc = user
@@ -54,7 +54,7 @@
 		if(!resolved && welder && hit_atom)
 			if(pay_energy(500))
 				welder.attack(hit_atom, user, def_zone)
-				owner.adjust_instability(4)
+				adjust_instability(4)
 		if(welder && user && (welder.loc == user))
 			welder.loc = src
 		else

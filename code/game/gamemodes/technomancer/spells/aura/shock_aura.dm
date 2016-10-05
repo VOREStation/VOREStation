@@ -39,4 +39,4 @@
 			L.electrocute_act(power, src, 1.0, BP_TORSO)
 
 
-	owner.adjust_instability(3)
+	adjust_instability(3)
