@@ -31,8 +31,7 @@
 		var/embed_chance = weapon_sharp? damage/I.w_class : damage/(I.w_class*3)
 		var/embed_threshold = weapon_sharp? 5*I.w_class : 15*I.w_class
 
-		//Sharp objects will always embed if they do enough damage.
-		if((weapon_sharp && damage > (10*I.w_class)) || (damage > embed_threshold && prob(embed_chance)))
+		if(damage > embed_threshold && prob(embed_chance))
 			src.embed(I, hit_zone)
 
 	return 1
