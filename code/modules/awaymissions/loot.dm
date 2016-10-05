@@ -22,3 +22,43 @@
 
 			new loot_path(get_turf(src))
 	qdel(src)
+
+/obj/effect/floor_decal/symbol
+	name = "strange symbol"
+	icon = 'icons/obj/decals_vr.dmi'
+
+/obj/effect/floor_decal/symbol/ca
+	desc = "It looks like a skull, or maybe a crown."
+	icon_state = "ca"
+
+/obj/effect/floor_decal/symbol/da
+	desc = "It looks like a lightning bolt."
+	icon_state = "da"
+
+/obj/effect/floor_decal/symbol/em
+	desc = "It looks like the letter 'Y' with an underline."
+	icon_state = "em"
+
+/obj/effect/floor_decal/symbol/es
+	desc = "It looks like two horizontal lines, with a dotted line in the middle, like a highway, or race track."
+	icon_state = "es"
+
+/obj/effect/floor_decal/symbol/fe
+	desc = "It looks like an arrow pointing upward. Maybe even a spade."
+	icon_state = "fe"
+
+/obj/effect/floor_decal/symbol/gu
+	desc = "It looks like an unfolded square box from the top with a cross on it."
+	icon_state = "gu"
+
+/obj/effect/floor_decal/symbol/lo
+	desc = "It looks kind of like a cup. Specifically, a martini glass."
+	icon_state = "lo"
+
+/obj/effect/floor_decal/symbol/pr
+	desc = "It looks like a box with a cross on it."
+	icon_state = "pr"
+
+/obj/effect/floor_decal/symbol/sa
+	desc = "It looks like a right triangle with a dot to the side. It reminds you of a wooden strut between a wall and ceiling."
+	icon_state = "sa"
