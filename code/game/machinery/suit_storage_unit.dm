@@ -586,7 +586,7 @@
 	var/electrified = 0
 
 	//Departments that the cycler can paint suits to look like.
-	var/list/departments = list("Engineering","Mining","Medical","Security","Atmos","HAZMAT","Construction","Biohazard")
+	var/list/departments = list("Engineering","Mining","Medical","Security","Atmos","HAZMAT","Construction","Biohazard","Crowd Control")
 	//Species that the suits can be configured to fit.
 	var/list/species = list("Human","Skrell","Unathi","Tajara", "Teshari")
 
@@ -628,7 +628,7 @@
 	name = "Security suit cycler"
 	model_text = "Security"
 	req_access = list(access_security)
-	departments = list("Security")
+	departments = list("Security","Crowd Control")
 
 /obj/machinery/suit_cycler/medical
 	name = "Medical suit cycler"
@@ -751,7 +751,7 @@
 
 	//Clear the access reqs, disable the safeties, and open up all paintjobs.
 	user << "<span class='danger'>You run the sequencer across the interface, corrupting the operating protocols.</span>"
-	departments = list("Engineering","Mining","Medical","Security","Atmos","HAZMAT","Construction","Biohazard","^%###^%$")
+	departments = list("Engineering","Mining","Medical","Security","Atmos","HAZMAT","Construction","Biohazard","Crowd Control","^%###^%$")
 	species = list("Human","Tajara","Skrell","Unathi", "Teshari")
 
 	emagged = 1
@@ -1009,6 +1009,15 @@
 				suit.name = "security voidsuit"
 				suit.icon_state = "rig-sec"
 				suit.item_state = "sec_voidsuit"
+		if("Crowd Control")
+			if(helmet)
+				helmet.name = "crowd control voidsuit helmet"
+				helmet.icon_state = "rig0-sec_riot"
+				helmet.item_state = "rig0-sec_riot"
+			if(suit)
+				suit.name = "crowd control voidsuit"
+				suit.icon_state = "rig-sec_riot"
+				suit.item_state = "sec_voidsuit_riot"
 		if("Atmos")
 			if(helmet)
 				helmet.name = "atmospherics voidsuit helmet"
