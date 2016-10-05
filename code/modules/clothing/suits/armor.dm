@@ -324,6 +324,7 @@
 
 /obj/item/clothing/suit/storage/vest/press
 	name = "press vest"
+	icon_state = "pvest"
 	desc = "A simple kevlar plate carrier. This one has the word 'Press' embroidered on patches on the back and front."
 	item_state_slots = list(slot_r_hand_str = "armor", slot_l_hand_str = "armor")
 	allowed = list(/obj/item/device/flashlight,/obj/item/device/taperecorder,/obj/item/weapon/pen,/obj/item/device/camera_film,/obj/item/device/camera)
