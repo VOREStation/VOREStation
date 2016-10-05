@@ -310,6 +310,8 @@
 			M.do_attack_animation(src)
 
 		if(I_HURT)
+			if (M.loc == src)
+				return // VOREStation Edit
 			adjustBruteLoss(harm_intent_damage)
 			M.visible_message("\red [M] [response_harm] \the [src]")
 			M.do_attack_animation(src)
