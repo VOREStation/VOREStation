@@ -41,7 +41,7 @@ datum/track/New(var/title_name, var/audio)
 
 	// Only visible if hacked
 	var/list/datum/track/secret_tracks = list(
-		//new/datum/track("Bandit Radio", 'sound/music/bandit_radio.ogg'), // Waiting on email from GSC World about the copyright status of this.
+		new/datum/track("Clown", 'sound/music/clown.ogg'),
 		new/datum/track("Space Asshole", 'sound/music/space_asshole.ogg'),
 		new/datum/track("Thunderdome", 'sound/music/THUNDERDOME.ogg'),
 		new/datum/track("Russkiy rep Diskoteka", 'sound/music/russianrapdisco.ogg')
