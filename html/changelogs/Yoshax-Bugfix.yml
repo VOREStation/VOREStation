@@ -36,3 +36,4 @@ changes:
   - bugfix: "You can now only fit one pizza per box, and pizzas will no longer vanish to pizza gnomes."
   - rscadd: "Energy swords will now produce a small light. The light is determined by the color of the blade."
   - bugfix: "Simple mobs such as slimes, or carp, will now ignore intent requirements for passing applied tape."
+  - bugfix: "Long records will no longer be devoured by long-record-goblins when attempting to edit them using a console in-round."
