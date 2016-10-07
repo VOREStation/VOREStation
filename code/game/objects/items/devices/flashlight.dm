@@ -24,14 +24,15 @@
 /obj/item/device/flashlight/New()
 	if(power_use)
 		processing_objects |= src
+
+		if(cell_type)
+			cell = new cell_type(src)
+			cell.charge = rand(cell.maxcharge*0.25, cell.maxcharge)
+			brightness_levels = list("low" = 5, "medium" = 10, "high" = 20)
+			power_usage = brightness_levels[brightness_level]
+
 	else
 		verbs -= /obj/item/device/flashlight/verb/toggle
-
-	if(cell_type)
-		cell = new cell_type(src)
-		cell.charge = rand(cell.maxcharge*0.25, cell.maxcharge)
-		brightness_levels = list("low" = 5, "medium" = 10, "high" = 20)
-		power_usage = brightness_levels[brightness_level]
 	..()
 
 /obj/item/device/flashlight/Destroy()
@@ -181,6 +182,9 @@
 		else
 			user << "<span class='notice'>\The [src] already has a cell.</span>"
 
+	else
+		..()
+
 /obj/item/device/flashlight/pen
 	name = "penlight"
 	desc = "A pen-sized light, used by medical staff."
@@ -190,6 +194,7 @@
 	slot_flags = SLOT_EARS
 	brightness_on = 2
 	w_class = ITEMSIZE_TINY
+	power_use = 0
 
 /obj/item/device/flashlight/maglight
 	name = "maglight"
