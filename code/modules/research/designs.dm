@@ -1047,6 +1047,14 @@ CIRCUITS BELOW
 	build_path = /obj/item/weapon/circuitboard/smes
 	sort_string = "JBABB"
 
+/datum/design/circuit/grid_checker
+	name = "power grid checker"
+	desc = "Allows for the construction of circuit boards used to build a grid checker."
+	id = "grid_checker"
+	req_tech = list(TECH_POWER = 4, TECH_ENGINEERING = 3)
+	build_path = /obj/item/weapon/circuitboard/grid_checker
+	sort_string = "JBABC"
+
 /datum/design/circuit/gas_heater
 	name = "gas heating system"
 	id = "gasheater"
