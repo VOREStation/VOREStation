@@ -7,6 +7,9 @@
 	edge = 0
 	armor_penetration = 50
 	flags = NOBLOODY
+	var/lrange = 2
+	var/lpower = 2
+	var/lcolor = "#0099FF"
 
 /obj/item/weapon/melee/energy/proc/activate(mob/living/user)
 	anchored = 1
@@ -19,6 +22,7 @@
 	edge = 1
 	w_class = active_w_class
 	playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
+	set_light(lrange, lpower, lcolor)
 
 /obj/item/weapon/melee/energy/proc/deactivate(mob/living/user)
 	anchored = 0
@@ -31,6 +35,7 @@
 	sharp = initial(sharp)
 	edge = initial(edge)
 	w_class = initial(w_class)
+	set_light(0,0)
 
 /obj/item/weapon/melee/energy/attack_self(mob/living/user as mob)
 	if (active)
@@ -124,25 +129,32 @@
 
 /obj/item/weapon/melee/energy/sword/New()
 	blade_color = pick("red","blue","green","purple")
+	lcolor = blade_color
 
 /obj/item/weapon/melee/energy/sword/green/New()
 	blade_color = "green"
+	lcolor = "#008000"
 
 /obj/item/weapon/melee/energy/sword/red/New()
 	blade_color = "red"
+	lcolor = "#FF0000"
 
 /obj/item/weapon/melee/energy/sword/blue/New()
 	blade_color = "blue"
+	lcolor = "#0000FF"
 
 /obj/item/weapon/melee/energy/sword/purple/New()
 	blade_color = "purple"
+	lcolor = "#800080"
 
 /obj/item/weapon/melee/energy/sword/activate(mob/living/user)
 	if(!active)
 		user << "<span class='notice'>\The [src] is now energised.</span>"
+
 	..()
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	icon_state = "sword[blade_color]"
+
 
 /obj/item/weapon/melee/energy/sword/deactivate(mob/living/user)
 	if(active)
@@ -193,6 +205,7 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	var/mob/living/creator
 	var/datum/effect/effect/system/spark_spread/spark_system
+	lcolor = "#00FF00"
 
 /obj/item/weapon/melee/energy/blade/New()
 
@@ -201,6 +214,7 @@
 	spark_system.attach(src)
 
 	processing_objects |= src
+	set_light(lrange, lpower, lcolor)
 
 /obj/item/weapon/melee/energy/blade/Destroy()
 	processing_objects -= src
