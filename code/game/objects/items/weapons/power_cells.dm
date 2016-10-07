@@ -24,18 +24,14 @@
 /obj/item/weapon/cell/device
 	name = "device power cell"
 	desc = "A small power cell designed to power handheld devices."
-	icon_state = "cell" //placeholder
+	icon_state = "dcell"
+	item_state = "egg6"
 	w_class = ITEMSIZE_SMALL
 	force = 0
 	throw_speed = 5
 	throw_range = 7
-	maxcharge = 1000
+	maxcharge = 2400
 	matter = list("metal" = 350, "glass" = 50)
-
-/obj/item/weapon/cell/device/variable/New(newloc, charge_amount)
-	..(newloc)
-	maxcharge = charge_amount
-	charge = maxcharge
 
 /obj/item/weapon/cell/crap
 	name = "\improper rechargable AA battery"
