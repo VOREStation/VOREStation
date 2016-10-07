@@ -95,3 +95,7 @@
 	name = "12g Shotgun Ammo Box (Flash)"
 	path = /obj/item/weapon/storage/box/flashshells
 	item_cost = 10 // Discount due to it being LTL.
+
+/datum/uplink_item/item/ammo/cell
+	name = "weapon cell"
+	path = /obj/item/weapon/cell/device
