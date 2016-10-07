@@ -1,7 +1,6 @@
 /mob/living/simple_animal/hostile/vore/retaliate/bee
 	name = "space bumble bee"
 	desc = "Buzz buzz."
-	icon = 'icons/mob/animal.dmi'
 	icon_state = "bee"
 	icon_living = "bee"
 	icon_dead = "bee-dead"
@@ -35,4 +34,4 @@
 	faction = "bee"
 
 /mob/living/simple_animal/hostile/vore/retaliate/bee/Process_Spacemove(var/check_drift = 0)
-	return 1	//No drifting in space for space carp!
+	return 1	//No drifting in space for space bee!

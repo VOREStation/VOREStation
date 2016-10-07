@@ -1742,6 +1742,7 @@
 #include "code\modules\mob\living\simple_animal\hostile\vore\frog.dm"
 #include "code\modules\mob\living\simple_animal\hostile\vore\horse.dm"
 #include "code\modules\mob\living\simple_animal\hostile\vore\mimic.dm"
+#include "code\modules\mob\living\simple_animal\hostile\vore\panther.dm"
 #include "code\modules\mob\living\simple_animal\hostile\vore\retaliate.dm"
 #include "code\modules\mob\living\simple_animal\hostile\vore\vore.dm"
 #include "code\modules\mob\living\simple_animal\hostile\vore\wolf.dm"
