@@ -60,7 +60,7 @@
 				if(power_usage < cell.charge)
 					cell.charge -= power_usage
 				else
-					visible_message("<span class='warning;>\The [src] flickers before going dull.</span>")
+					visible_message("<span class='warning'>\The [src] flickers before going dull.</span>")
 					set_light(0)
 
 /obj/item/device/flashlight/update_icon()
