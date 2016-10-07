@@ -7,13 +7,13 @@
 
 //Captain
 /obj/item/clothing/head/caphat
-	name = "station administrator's hat"
+	name = "colony director's hat"
 	icon_state = "captain"
 	desc = "It's good being the king."
 	body_parts_covered = 0
 
 /obj/item/clothing/head/caphat/cap
-	name = "station administrator's cap"
+	name = "colony director's cap"
 	desc = "You fear to wear it for the negligence it brings."
 	icon_state = "capcap"
 

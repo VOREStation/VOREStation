@@ -37,7 +37,7 @@
 		else
 			mark_spell_ref.forceMove(get_turf(user))
 			user << "<span class='notice'>Your mark is moved from its old position to \the [get_turf(user)] under you.</span>"
-		owner.adjust_instability(5)
+		adjust_instability(5)
 		return 1
 	else
 		user << "<span class='warning'>You can't afford the energy cost!</span>"
@@ -99,7 +99,7 @@
 
 			playsound(old_turf, 'sound/effects/sparks2.ogg', 50, 1)
 
-			owner.adjust_instability(25)
+			adjust_instability(25)
 			qdel(src)
 			return 1
 	else

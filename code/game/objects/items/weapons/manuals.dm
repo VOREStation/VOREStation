@@ -997,7 +997,7 @@
 
 				Remember the order:<br>
 				<b>Disk, Code, Safety, Timer, Disk, RUN!</b><br><br>
-				Intelligence Analysts believe that normal corporate procedure is for the Station Administrator to secure the nuclear authentication disk.<br><br>
+				Intelligence Analysts believe that normal corporate procedure is for the Colony Director to secure the nuclear authentication disk.<br><br>
 
 				Good luck!
 				</body>

@@ -1,5 +1,5 @@
 /obj/structure/closet/secure_closet/captains
-	name = "station administrator's locker"
+	name = "colony director's locker"
 	req_access = list(access_captain)
 	icon_state = "capsecure1"
 	icon_closed = "capsecure"
@@ -121,6 +121,7 @@
 		new /obj/item/device/flash(src)
 		new /obj/item/weapon/melee/baton/loaded(src)
 		new /obj/item/weapon/gun/energy/gun(src)
+		new /obj/item/weapon/cell/device(src)
 		new /obj/item/clothing/accessory/holster/waist(src)
 		new /obj/item/weapon/melee/telebaton(src)
 		new /obj/item/clothing/head/beret/sec/corporate/hos(src)
@@ -166,6 +167,7 @@
 		new /obj/item/weapon/reagent_containers/spray/pepper(src)
 		new /obj/item/weapon/melee/baton/loaded(src)
 		new /obj/item/weapon/gun/energy/gun(src)
+		new /obj/item/weapon/cell/device(src)
 		new /obj/item/weapon/storage/box/holobadge(src)
 		new /obj/item/clothing/head/beret/sec/corporate/warden(src)
 		new /obj/item/clothing/suit/storage/hooded/wintercoat/security(src)
@@ -212,6 +214,7 @@
 		new /obj/item/clothing/under/rank/security/corp(src)
 		new /obj/item/ammo_magazine/c45m/rubber(src)
 		new /obj/item/weapon/gun/energy/taser(src)
+		new /obj/item/weapon/cell/device(src)
 		new /obj/item/clothing/suit/storage/hooded/wintercoat/security(src)
 		new /obj/item/device/flashlight/maglight(src)
 		return

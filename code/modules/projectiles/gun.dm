@@ -85,6 +85,8 @@
 	var/dna_lock = 0				//whether or not the gun is locked to dna
 	var/obj/item/dnalockingchip/attached_lock
 
+	var/last_shot = 0			//records the last shot fired
+
 /obj/item/weapon/gun/New()
 	..()
 	for(var/i in 1 to firemodes.len)
@@ -274,6 +276,8 @@
 			target = targloc
 			pointblank = 0
 
+		last_shot = world.time
+
 	// We do this down here, so we don't get the message if we fire an empty gun.
 	if(requires_two_hands)
 		if(user.item_is_in_hands(src) && user.hands_are_full())
@@ -321,6 +325,8 @@
 			P.silenced = silenced
 
 			P.launch(target)
+
+			last_shot = world.time
 
 			if(silenced)
 				playsound(src, fire_sound, 10, 1)

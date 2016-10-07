@@ -1,7 +1,6 @@
 /datum/technomancer/spell/mend_burns
 	name = "Mend Burns"
-	desc = "Heals minor burns, such as from exposure to flame, electric shock, or lasers.  \
-	Instability is split between the target and technomancer, if seperate."
+	desc = "Heals minor burns, such as from exposure to flame, electric shock, or lasers."
 	cost = 50
 	obj_path = /obj/item/weapon/spell/insert/mend_burns
 	ability_icon_state = "tech_mendburns"
@@ -20,10 +19,10 @@
 	spawn(1)
 		if(ishuman(host))
 			var/mob/living/carbon/human/H = host
+			var/heal_power = host == origin ? 10 : 30
+			origin.adjust_instability(10)
 			for(var/i = 0, i<5,i++)
 				if(H)
-					H.adjustFireLoss(-5)
-					H.adjust_instability(2.5)
-					origin.adjust_instability(2.5)
-					sleep(10)
+					H.adjustFireLoss(-heal_power / 5)
+					sleep(1 SECOND)
 		on_expire()

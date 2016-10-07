@@ -40,4 +40,4 @@
 				L << "<span class='danger'>You feel almost like you're melting from the inside!</span>"
 
 
-	owner.adjust_instability(2)
+	adjust_instability(2)

@@ -36,7 +36,7 @@
 			P.damage = round(energy_before_firing * 0.004) // 4% of their current energy pool.
 		else
 			P.damage = round(energy_before_firing * 0.003) // 3% of their current energy pool.
-		owner.adjust_instability(instability_per_shot)
+		adjust_instability(instability_per_shot)
 		return 1
 
 

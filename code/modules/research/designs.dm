@@ -260,6 +260,15 @@ other types of metals and chemistry for reagents).
 	category = "Misc"
 	sort_string = "DAAAD"
 
+/datum/design/item/powercell/device
+	name = "device"
+	build_type = PROTOLATHE
+	id = "device"
+	materials = list(DEFAULT_WALL_MATERIAL = 350, "glass" = 25)
+	build_path = /obj/item/weapon/cell/device
+	category = "Misc"
+	sort_string = "DAAAE"
+
 /datum/design/item/hud
 	materials = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
 
@@ -1037,6 +1046,14 @@ CIRCUITS BELOW
 	req_tech = list(TECH_POWER = 7, TECH_ENGINEERING = 5)
 	build_path = /obj/item/weapon/circuitboard/smes
 	sort_string = "JBABB"
+
+/datum/design/circuit/grid_checker
+	name = "power grid checker"
+	desc = "Allows for the construction of circuit boards used to build a grid checker."
+	id = "grid_checker"
+	req_tech = list(TECH_POWER = 4, TECH_ENGINEERING = 3)
+	build_path = /obj/item/weapon/circuitboard/grid_checker
+	sort_string = "JBABC"
 
 /datum/design/circuit/gas_heater
 	name = "gas heating system"

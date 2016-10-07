@@ -16,7 +16,7 @@
 
 /obj/item/weapon/spell/spawner/fire_blast/on_ranged_cast(atom/hit_atom, mob/user)
 	if(pay_energy(2000))
-		owner.adjust_instability(12)
+		adjust_instability(12)
 		..() // Makes the booms happen.
 
 /obj/effect/temporary_effect/fire_blast

@@ -37,7 +37,7 @@
 				dead_mob_list -= SM
 				living_mob_list += SM
 				SM.icon_state = SM.icon_living
-				owner.adjust_instability(30)
+				adjust_instability(30)
 			else if(ishuman(L))
 				var/mob/living/carbon/human/H = L
 
@@ -57,7 +57,7 @@
 					H.timeofdeath = null
 					visible_message("<span class='danger'>\The [H]'s eyes open!</span>")
 					user << "<span class='notice'>It's alive!</span>"
-					owner.adjust_instability(100)
+					adjust_instability(100)
 				else
 					user << "<span class='warning'>The body of \the [H] doesn't seem to respond, perhaps you could try again?</span>"
-					owner.adjust_instability(10)
+					adjust_instability(10)

@@ -20,7 +20,7 @@
 		var/mob/living/carbon/human/H = hit_atom
 		if(pay_energy(1500))
 			H.adjustOxyLoss(-35)
-			owner.adjust_instability(10)
+			adjust_instability(10)
 			return
 	else if(isturf(hit_atom))
 		var/turf/T = hit_atom
@@ -28,4 +28,4 @@
 			T.assume_gas("oxygen", 200)
 			T.assume_gas("nitrogen", 800)
 			playsound(src.loc, 'sound/effects/spray.ogg', 50, 1, -3)
-			owner.adjust_instability(10)
+			adjust_instability(10)
