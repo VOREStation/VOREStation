@@ -22,7 +22,7 @@
 #################################
 
 # Your name.  
-author: N3X15
+author: Yoshax
 
 # Optional: Remove this file after generating master changelog.  Useful for PR changelogs that won't get used again.
 delete-after: True
@@ -37,3 +37,4 @@ changes:
   - rscadd: "Energy swords will now produce a small light. The light is determined by the color of the blade."
   - bugfix: "Simple mobs such as slimes, or carp, will now ignore intent requirements for passing applied tape."
   - bugfix: "Long records will no longer be devoured by long-record-goblins when attempting to edit them using a console in-round."
+  - bugfix: "AIs with special roles will now get access to the fancy law manager."
