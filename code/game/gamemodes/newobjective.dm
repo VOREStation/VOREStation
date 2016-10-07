@@ -564,7 +564,7 @@ datum
 
 			captainslaser
 				steal_target = /obj/item/weapon/gun/energy/captain
-				explanation_text = "Steal the station administrator's antique laser gun."
+				explanation_text = "Steal the Colony Director's antique laser gun."
 				weight = 20
 
 				get_points(var/job)

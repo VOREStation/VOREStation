@@ -423,11 +423,11 @@ datum/objective/steal
 	var/target_name
 
 	var/global/possible_items[] = list(
-		"the station administrator's antique laser gun" = /obj/item/weapon/gun/energy/captain,
+		"the Colony Director's antique laser gun" = /obj/item/weapon/gun/energy/captain,
 		"a hand teleporter" = /obj/item/weapon/hand_tele,
 		"an RCD" = /obj/item/weapon/rcd,
 		"a jetpack" = /obj/item/weapon/tank/jetpack,
-		"a station administrator's jumpsuit" = /obj/item/clothing/under/rank/captain,
+		"a colony director's jumpsuit" = /obj/item/clothing/under/rank/captain,
 		"a functional AI" = /obj/item/device/aicard,
 		"a pair of magboots" = /obj/item/clothing/shoes/magboots,
 		"the station blueprints" = /obj/item/blueprints,
@@ -441,7 +441,7 @@ datum/objective/steal
 		"a head of security's jumpsuit" = /obj/item/clothing/under/rank/head_of_security,
 		"a head of personnel's jumpsuit" = /obj/item/clothing/under/rank/head_of_personnel,
 		"the hypospray" = /obj/item/weapon/reagent_containers/hypospray,
-		"the station administrator's pinpointer" = /obj/item/weapon/pinpointer,
+		"the colony director's pinpointer" = /obj/item/weapon/pinpointer,
 		"an ablative armor vest" = /obj/item/clothing/suit/armor/laserproof,
 	)
 
