@@ -271,7 +271,7 @@ var/list/tape_roll_applications = list()
 		add_fingerprint(M)
 		if (!allowed(M))	//only select few learn art of not crumpling the tape
 			M << "<span class='warning'>You are not supposed to go past [src]...</span>"
-			if(M.a_intent == I_HELP)
+			if(M.a_intent == I_HELP && !(istype(M, /mob/living/simple_animal)))
 				return 0
 			crumple()
 	return ..(mover)
