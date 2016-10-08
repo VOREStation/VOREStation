@@ -167,7 +167,7 @@
 
 //secborg stun baton module
 /obj/item/weapon/melee/baton/robot
-	hitcost = 120
+	hitcost = 500
 
 /obj/item/weapon/melee/baton/robot/attack_self(mob/user)
 	//try to find our power cell
