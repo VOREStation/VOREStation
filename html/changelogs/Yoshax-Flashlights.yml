@@ -35,5 +35,3 @@ delete-after: True
 changes: 
   - rscadd: "Flashlights now take powercells."
   - rscadd: "Flashlights now have multiple brightness levels, including low, medium and high."
-  - tweak: "Flashlights are slightly brighter in general."
-  - rscadd: "The cells that spawn in flashlights will spawn with a random amount of charge between 25% and 100%"

@@ -27,7 +27,6 @@
 
 		if(cell_type)
 			cell = new cell_type(src)
-			cell.charge = rand(cell.maxcharge*0.25, cell.maxcharge)
 			brightness_levels = list("low" = 5, "medium" = 10, "high" = 20)
 			power_usage = brightness_levels[brightness_level]
 
@@ -202,7 +201,6 @@
 	icon_state = "maglight"
 	force = 10
 	flags = CONDUCT
-	brightness_on = 4
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_SMALL
 	attack_verb = list ("smacked", "thwacked", "thunked")
@@ -390,6 +388,7 @@
 	w_class = ITEMSIZE_TINY
 	brightness_on = 6
 	on = 1 //Bio-luminesence has one setting, on.
+	power_use = 0
 
 /obj/item/device/flashlight/slime/New()
 	..()
