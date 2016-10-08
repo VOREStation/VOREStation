@@ -103,8 +103,8 @@
 	if(power_supply)
 		user.put_in_hands(power_supply)
 		power_supply.update_icon()
-		power_supply = null
 		user.visible_message("[user] removes [power_supply] from [src].", "<span class='notice'>You remove [power_supply] from [src].</span>")
+		power_supply = null
 		playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
 		update_icon()
 		update_held_icon()
