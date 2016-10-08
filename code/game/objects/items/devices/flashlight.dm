@@ -6,24 +6,96 @@
 	w_class = ITEMSIZE_SMALL
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-
 	matter = list(DEFAULT_WALL_MATERIAL = 50,"glass" = 20)
-
 	action_button_name = "Toggle Flashlight"
 	var/on = 0
 	var/brightness_on = 4 //luminosity when on
+	var/obj/item/weapon/cell/cell
+	var/cell_type = /obj/item/weapon/cell/high
+	var/list/brightness_levels
+	var/brightness_level = "medium"
+	var/power_usage
+	var/power_use = 1
 
 /obj/item/device/flashlight/initialize()
 	..()
 	update_icon()
 
+/obj/item/device/flashlight/New()
+	if(power_use)
+		processing_objects |= src
+
+		if(cell_type)
+			cell = new cell_type(src)
+			brightness_levels = list("low" = 5, "medium" = 10, "high" = 20)
+			power_usage = brightness_levels[brightness_level]
+
+	else
+		verbs -= /obj/item/device/flashlight/verb/toggle
+	..()
+
+/obj/item/device/flashlight/Destroy()
+	if(power_use)
+		processing_objects -= src
+	..()
+
+/obj/item/device/flashlight/verb/toggle()
+	set name = "Toggle Flashlight Brightness"
+	set category = "Object"
+	set src in usr
+	set_brightness(usr)
+
+/obj/item/device/flashlight/proc/set_brightness(mob/user as mob)
+	var/choice = input("Choose a brightness level.") as null|anything in brightness_levels
+	if(choice)
+		brightness_level = choice
+		power_usage = brightness_levels[choice]
+		user << "<span class='notice'>You set the brightness level on \the [src] to [brightness_level].</span>"
+		update_icon()
+
+/obj/item/device/flashlight/process()
+	if(on)
+		if(cell && cell.charge)
+			if(brightness_level && power_usage)
+				if(power_usage < cell.charge)
+					cell.charge -= power_usage
+				else
+					visible_message("<span class='warning'>\The [src] flickers before going dull.</span>")
+					set_light(0)
+
 /obj/item/device/flashlight/update_icon()
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
-		set_light(brightness_on)
+
+		if(brightness_level == "low")
+			set_light(brightness_on/2)
+		else if(brightness_level == "high")
+			set_light(brightness_on*4)
+		else
+			set_light(brightness_on)
+
 	else
 		icon_state = "[initial(icon_state)]"
 		set_light(0)
+
+/obj/item/device/flashlight/examine(mob/user)
+	..()
+	if(power_use && brightness_level)
+		var/tempdesc
+		tempdesc += "\The [src] is set to [brightness_level]. "
+		if(cell)
+			tempdesc += "\The [src] has a \the [cell] attached. "
+
+			if(cell.charge <= cell.maxcharge*0.25)
+				tempdesc += "It appears to have a low amount of power remaining."
+			else if(cell.charge > cell.maxcharge*0.25 && cell.charge <= cell.maxcharge*0.5)
+				tempdesc += "It appears to have an average amount of power remaining."
+			else if(cell.charge > cell.maxcharge*0.5 && cell.charge <= cell.maxcharge*0.75)
+				tempdesc += "It appears to have an above average amount of power remaining."
+			else if(cell.charge > cell.maxcharge*0.75 && cell.charge <= cell.maxcharge)
+				tempdesc += "It appears to have a high amount of power remaining."
+
+		user << "[tempdesc]"
 
 /obj/item/device/flashlight/attack_self(mob/user)
 	if(!isturf(user.loc))
@@ -84,6 +156,34 @@
 	else
 		return ..()
 
+/obj/item/device/flashlight/attack_hand(mob/user as mob)
+	if(user.get_inactive_hand() == src)
+		if(cell)
+			cell.update_icon()
+			user.put_in_hands(cell)
+			cell = null
+			user << "<span class='notice'>You remove the cell from the [src].</span>"
+			on = !on
+			update_icon()
+			return
+		..()
+	else
+		return ..()
+
+/obj/item/device/flashlight/attackby(obj/item/weapon/W, mob/user as mob)
+	if(istype(W, /obj/item/weapon/cell))
+		if(!cell)
+			user.drop_item()
+			W.loc = src
+			cell = W
+			user << "<span class='notice'>You install a cell in \the [src].</span>"
+			update_icon()
+		else
+			user << "<span class='notice'>\The [src] already has a cell.</span>"
+
+	else
+		..()
+
 /obj/item/device/flashlight/pen
 	name = "penlight"
 	desc = "A pen-sized light, used by medical staff."
@@ -93,6 +193,7 @@
 	slot_flags = SLOT_EARS
 	brightness_on = 2
 	w_class = ITEMSIZE_TINY
+	power_use = 0
 
 /obj/item/device/flashlight/maglight
 	name = "maglight"
@@ -100,7 +201,6 @@
 	icon_state = "maglight"
 	force = 10
 	flags = CONDUCT
-	brightness_on = 4
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_SMALL
 	attack_verb = list ("smacked", "thwacked", "thunked")
@@ -115,7 +215,7 @@
 	flags = CONDUCT
 	brightness_on = 2
 	w_class = ITEMSIZE_TINY
-
+	power_use = 0
 
 // the desk lamps are a bit special
 /obj/item/device/flashlight/lamp
@@ -125,7 +225,7 @@
 	brightness_on = 5
 	w_class = ITEMSIZE_LARGE
 	flags = CONDUCT
-
+	power_use = 0
 	on = 1
 
 
@@ -159,6 +259,7 @@
 	var/fuel = 0
 	var/on_damage = 7
 	var/produce_heat = 1500
+	power_use = 0
 
 /obj/item/device/flashlight/flare/New()
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
@@ -218,6 +319,7 @@
 	icon_state = "glowstick"
 	item_state = "glowstick"
 	var/fuel = 0
+	power_use = 0
 
 /obj/item/device/flashlight/glowstick/New()
 	fuel = rand(1600, 2000)
@@ -286,6 +388,7 @@
 	w_class = ITEMSIZE_TINY
 	brightness_on = 6
 	on = 1 //Bio-luminesence has one setting, on.
+	power_use = 0
 
 /obj/item/device/flashlight/slime/New()
 	..()
