@@ -14,7 +14,6 @@
 		empulse(target, 1, 1)
 		return 1
 
-
 /obj/item/projectile/bullet/gyro
 	name ="explosive bolt"
 	icon_state= "bolter"

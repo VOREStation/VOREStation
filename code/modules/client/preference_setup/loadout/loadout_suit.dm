@@ -28,23 +28,39 @@
 
 /datum/gear/suit/leather_jacket
 	display_name = "leather jacket, black"
-	path = /obj/item/clothing/suit/storage/leather_jacket
+	path = /obj/item/clothing/suit/storage/toggle/leather_jacket
+
+/datum/gear/suit/leather_jacket_sleeveless
+	display_name = "leather vest, black"
+	path = /obj/item/clothing/suit/storage/toggle/leather_jacket/sleeveless
 
 /datum/gear/suit/leather_jacket_alt
 	display_name = "leather jacket 2, black"
-	path = /obj/item/clothing/suit/storage/leather_jacket/alt
+	path = /obj/item/clothing/suit/storage/leather_jacket_alt
 
 /datum/gear/suit/leather_jacket_nt
 	display_name = "leather jacket, corporate, black"
-	path = /obj/item/clothing/suit/storage/leather_jacket/nanotrasen
+	path = /obj/item/clothing/suit/storage/toggle/leather_jacket/nanotrasen
+
+/datum/gear/suit/leather_jacket_nt/sleeveless
+	display_name = "leather vest, corporate, black"
+	path = /obj/item/clothing/suit/storage/toggle/leather_jacket/nanotrasen/sleeveless
 
 /datum/gear/suit/brown_jacket
 	display_name = "leather jacket, brown"
 	path = /obj/item/clothing/suit/storage/toggle/brown_jacket
 
+/datum/gear/suit/brown_jacket_sleeveless
+	display_name = "leather vest, brown"
+	path = /obj/item/clothing/suit/storage/toggle/brown_jacket/sleeveless
+
 /datum/gear/suit/brown_jacket_nt
 	display_name = "leather jacket, corporate, brown"
 	path = /obj/item/clothing/suit/storage/toggle/brown_jacket/nanotrasen
+
+/datum/gear/suit/brown_jacket_nt/sleeveless
+	display_name = "leather vest, corporate, brown"
+	path = /obj/item/clothing/suit/storage/toggle/brown_jacket/nanotrasen/sleeveless
 
 /datum/gear/suit/mil
 	display_name = "military jacket"
@@ -57,6 +73,18 @@
 /datum/gear/suit/mil/green
 	display_name = "military jacket, green"
 	path = /obj/item/clothing/suit/storage/miljacket/green
+
+/datum/gear/suit/greyjacket
+	display_name = "grey jacket"
+	path = /obj/item/clothing/suit/storage/greyjacket
+
+/datum/gear/suit/brown_trenchcoat
+	display_name = "trenchcoat, brown"
+	path = /obj/item/clothing/suit/storage/trench
+
+/datum/gear/suit/grey_trenchcoat
+	display_name = "trenchcoat, grey"
+	path = /obj/item/clothing/suit/storage/trench/grey
 
 /datum/gear/suit/hazard_vest
 	display_name = "hazard vest"
@@ -230,9 +258,9 @@
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat
 
 /datum/gear/suit/wintercoat/captain
-	display_name = "winter coat, station administrator"
+	display_name = "winter coat, colony director"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/captain
-	allowed_roles = list("Station Administrator")
+	allowed_roles = list("Colony Director")
 
 /datum/gear/suit/wintercoat/security
 	display_name = "winter coat, security"
@@ -313,3 +341,19 @@
 /datum/gear/suit/flannel/brown
 	display_name = "brown flannel"
 	path = /obj/item/clothing/suit/storage/flannel/brown
+
+/datum/gear/suit/denim_jacket
+	display_name = "denim jacket"
+	path = /obj/item/clothing/suit/storage/toggle/denim_jacket
+
+/datum/gear/suit/denim_jacket/corporate
+	display_name = "denim jacket, corporate"
+	path = /obj/item/clothing/suit/storage/toggle/denim_jacket/nanotrasen
+
+/datum/gear/suit/denim_vest
+	display_name = "denim vest"
+	path = /obj/item/clothing/suit/storage/toggle/denim_jacket/sleeveless
+
+/datum/gear/suit/denim_vest/corporate
+	display_name = "denim vest, corporate"
+	path = /obj/item/clothing/suit/storage/toggle/denim_jacket/nanotrasen/sleeveless

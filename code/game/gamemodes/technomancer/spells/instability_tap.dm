@@ -20,8 +20,8 @@
 /obj/item/weapon/spell/instability_tap/on_use_cast(mob/user)
 	if(check_for_scepter())
 		core.give_energy(7500)
-		owner.adjust_instability(40)
+		adjust_instability(40)
 	else
 		core.give_energy(5000)
-		owner.adjust_instability(50)
+		adjust_instability(50)
 	qdel(src)

@@ -168,6 +168,19 @@
 	range_step = 1
 	spread_step = 10
 
+//EMP shotgun 'slug', it's basically a beanbag that pops a tiny emp when it hits.
+/obj/item/projectile/bullet/shotgun/ion
+	name = "ion slug"
+	damage = 15
+	embed = 0
+	sharp = 0
+	check_armour = "melee"
+
+/obj/item/projectile/bullet/shotgun/ion/on_hit(var/atom/target, var/blocked = 0)
+	..()
+	empulse(target, 0, 0)	//Only affects what it hits
+	return 1
+
 /* "Rifle" rounds */
 
 /obj/item/projectile/bullet/rifle

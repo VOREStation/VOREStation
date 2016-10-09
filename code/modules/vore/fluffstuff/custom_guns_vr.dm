@@ -321,7 +321,6 @@
 
 	projectile_type = /obj/item/projectile/beam/stun/kin21
 
-	max_shots = 8
 	charge_cost = 125
 	charge_meter = 1
 

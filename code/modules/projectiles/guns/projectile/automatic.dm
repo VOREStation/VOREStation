@@ -2,7 +2,7 @@
 	name = "prototype SMG"
 	desc = "A protoype lightweight, fast firing gun. Uses 9mm rounds."
 	icon_state = "saber"	//ugly
-	w_class = 3
+	w_class = ITEMSIZE_NORMAL
 	load_method = SPEEDLOADER //yup. until someone sprites a magazine for it.
 	max_shells = 22
 	caliber = "9mm"
@@ -26,7 +26,7 @@
 	desc = "The C-20r is a lightweight and rapid firing SMG, for when you REALLY need someone dead. Uses 10mm rounds. Has a 'Scarborough Arms - Per falcis, per pravitas' buttstamp."
 	icon_state = "c20r"
 	item_state = "c20r"
-	w_class = 3
+	w_class = ITEMSIZE_NORMAL
 	force = 10
 	caliber = "10mm"
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
@@ -54,7 +54,7 @@
 	desc = "The rugged STS-35 is a durable automatic weapon of a make popular on the frontier worlds. Uses 7.62mm rounds. This one is unmarked."
 	icon_state = "arifle"
 	item_state = null
-	w_class = 4
+	w_class = ITEMSIZE_LARGE
 	force = 10
 	caliber = "a762"
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 4)
@@ -84,7 +84,7 @@
 	desc = "The WT550 Saber is a cheap self-defense weapon mass-produced by Ward-Takahashi for paramilitary and private use. Uses 9mm rounds."
 	icon_state = "wt550"
 	item_state = "wt550"
-	w_class = 3
+	w_class = ITEMSIZE_NORMAL
 	caliber = "9mm"
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
@@ -107,7 +107,7 @@
 	desc = "The Z8 Bulldog is an older model designated marksman rifle, made by the now defunct Zendai Foundries. Makes you feel like a space marine when you hold it, even though it can only hold 10 round magazines. Uses 5.56mm rounds and has an under barrel grenade launcher."
 	icon_state = "carbine" // This isn't a carbine. :T
 	item_state = "z8carbine"
-	w_class = 4
+	w_class = ITEMSIZE_LARGE
 	force = 10
 	caliber = "a556"
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 3)
@@ -177,7 +177,7 @@
 	desc = "A rather traditionally made L6 SAW with a pleasantly lacquered wooden pistol grip. Has 'Aussec Armoury- 2531' engraved on the reciever"
 	icon_state = "l6closed100"
 	item_state = "l6closed"
-	w_class = 4
+	w_class = ITEMSIZE_LARGE
 	force = 10
 	slot_flags = 0
 	max_shells = 50
@@ -250,7 +250,7 @@
 	desc = "The AS-24 is a durable, rugged looking automatic weapon of a make popular on the frontier worlds. Uses 12 gauge shells. It is unmarked."
 	icon_state = "ashot"
 	item_state = null
-	w_class = 4
+	w_class = ITEMSIZE_LARGE
 	force = 10
 	caliber = "shotgun"
 	fire_sound = 'sound/weapons/shotgun.ogg'
@@ -280,7 +280,7 @@
 	name = "\improper Uzi"
 	desc = "A lightweight, compact, fast firing gun, for when you want someone really dead. Uses .45 rounds."
 	icon_state = "mini-uzi"
-	w_class = 3
+	w_class = ITEMSIZE_NORMAL
 	load_method = MAGAZINE
 	caliber = ".45"
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
@@ -304,7 +304,7 @@
 	desc = "The H90K is a compact, high capacity submachine gun produced by Hephaistos Industries. Despite its fierce reputation, it still manages to feel like a toy. Uses 9mm rounds."
 	icon_state = "p90smg"
 	item_state = "p90"
-	w_class = 3
+	w_class = ITEMSIZE_NORMAL
 	caliber = "9mm"
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT // ToDo: Belt sprite.
@@ -325,7 +325,7 @@
 	name = "\improper Tommygun"
 	desc = "This weapon was made famous by gangsters in the 20th century. Cybersun Industries is currently reproducing these for a target market of historic gun collectors and classy criminals. Uses .45 rounds."
 	icon_state = "tommygun"
-	w_class = 3
+	w_class = ITEMSIZE_NORMAL
 	caliber = ".45"
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
 	slot_flags = SLOT_BELT // ToDo: Belt sprite.
@@ -348,7 +348,7 @@
 	desc = "The bullpup configured GP3000 is a lightweight, compact, military-grade assault rifle produced by Gurov Projectile Weapons LLC. It is sold almost exclusively to standing armies. The serial number on this one has been scratched off. Uses 5.56mm rounds."
 	icon_state = "bullpupm"
 	item_state = "bullpup"
-	w_class = 4
+	w_class = ITEMSIZE_LARGE
 	force = 10
 	caliber = "a556"
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 4)

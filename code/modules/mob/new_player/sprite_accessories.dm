@@ -193,6 +193,10 @@
 	spikyponytail
 		name = "Spiky Ponytail"
 		icon_state = "hair_spikyponytail"
+
+	zieglertail
+		name = "Zieglertail"
+		icon_state = "hair_ziegler"
 	wisp
 		name = "Wisp"
 		icon_state = "hair_wisp"
@@ -509,6 +513,10 @@
 	doublebun
 		name = "Double-Bun"
 		icon_state = "hair_doublebun"
+
+	oxton
+		name = "Oxton"
+		icon_state = "hair_oxton"
 
 
 /*

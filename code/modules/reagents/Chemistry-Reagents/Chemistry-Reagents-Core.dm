@@ -4,6 +4,7 @@
 	id = "blood"
 	reagent_state = LIQUID
 	metabolism = REM * 5
+	mrate_static = TRUE
 	color = "#C80000"
 
 	glass_name = "tomato juice"
@@ -75,6 +76,7 @@
 	id = "antibodies"
 	reagent_state = LIQUID
 	color = "#0050F0"
+	mrate_static = TRUE
 
 /datum/reagent/antibodies/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(src.data)
@@ -89,6 +91,7 @@
 	reagent_state = LIQUID
 	color = "#0064C877"
 	metabolism = REM * 10
+	mrate_static = TRUE
 
 	glass_name = "water"
 	glass_desc = "The father of all refreshments."

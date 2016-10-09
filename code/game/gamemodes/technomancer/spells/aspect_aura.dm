@@ -73,7 +73,7 @@
 		var/turf/location = get_turf(H)
 		location.hotspot_expose(1000, 50, 1)
 
-	owner.adjust_instability(1)
+	adjust_instability(1)
 
 /obj/item/weapon/spell/aura/frost
 	name = "chilling aura"
@@ -95,7 +95,7 @@
 		var/turf/location = get_turf(H)
 		location.hotspot_expose(1, 50, 1)
 
-	owner.adjust_instability(1)
+	adjust_instability(1)
 
 
 
@@ -128,7 +128,7 @@
 		for(var/mob/living/L in mobs_to_heal)
 			L.adjustBruteLoss(-5)
 			L.adjustFireLoss(-5)
-		owner.adjust_instability(2)
+		adjust_instability(2)
 
 /obj/item/weapon/spell/aura/biomed/on_use_cast(mob/living/user)
 	heal_allies_only = !heal_allies_only

@@ -10,7 +10,7 @@
 	name = "red space suit"
 	icon_state = "syndicate"
 	desc = "A crimson spacesuit sporting clean lines and durable plating. Robust, reliable, and slightly suspicious."
-	w_class = 3
+	w_class = ITEMSIZE_NORMAL
 	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/melee/energy/sword,/obj/item/weapon/handcuffs,/obj/item/weapon/tank/emergency_oxygen)
 	slowdown = 1
 	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
@@ -37,7 +37,7 @@
 	name = "dark green space suit"
 	desc = "A dark green spacesuit sporting clean lines and durable plating. Robust, reliable, and slightly suspicious."
 	icon_state = "syndicate-green-dark"
-	
+
 //Orange syndicate space suit
 /obj/item/clothing/head/helmet/space/syndicate/orange
 	name = "orange space helmet"
@@ -119,7 +119,7 @@
 	name = "black and red space helmet"
 	desc = "A black helmet sporting a single red stripe and durable plating. Engineered to look menacing."
 	icon_state = "syndicate-helm-black-red"
-	
+
 /obj/item/clothing/suit/space/syndicate/black/red
 	name = "black and red space suit"
 	desc = "A black spacesuit sporting red stripes and durable plating. Robust, reliable, and slightly suspicious."

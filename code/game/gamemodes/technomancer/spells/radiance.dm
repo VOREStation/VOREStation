@@ -42,4 +42,4 @@
 		var/radius = max(get_dist(L, src), 1)
 		var/rads = (power / 10) * ( 1 / (radius**2) )
 		L.apply_effect(rads, IRRADIATE)
-	owner.adjust_instability(2)
+	adjust_instability(2)

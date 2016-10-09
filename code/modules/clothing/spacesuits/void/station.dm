@@ -97,6 +97,16 @@
 	allowed = list(/obj/item/weapon/gun,/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/melee/baton)
 	siemens_coefficient = 0.7
 
+/obj/item/clothing/head/helmet/space/void/security/riot
+	name = "crowd control voidsuit helmet"
+	icon_state = "rig0-sec_riot"
+	item_state_slots = list(slot_r_hand_str = "sec_helm_riot", slot_l_hand_str = "sec_helm_riot")
+
+/obj/item/clothing/suit/space/void/security/riot
+	name = "crowd control voidsuit"
+	icon_state = "rig-sec_riot"
+	item_state_slots = list(slot_r_hand_str = "sec_voidsuit_riot", slot_l_hand_str = "sec_voidsuit_riot")
+
 //Atmospherics
 /obj/item/clothing/head/helmet/space/void/atmos
 	desc = "A special helmet designed for work in a hazardous, low pressure environments. Has improved thermal protection and minor radiation shielding."

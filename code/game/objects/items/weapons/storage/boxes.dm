@@ -25,7 +25,8 @@
 	icon_state = "box"
 	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
 	var/foldable = /obj/item/stack/material/cardboard	// BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
-	max_w_class = 2
+	max_w_class = ITEMSIZE_SMALL
+	max_storage_space = INVENTORY_BOX_SPACE
 
 // BubbleWrap - A box can be folded up to make card
 /obj/item/weapon/storage/box/attack_self(mob/user as mob)
@@ -129,7 +130,12 @@
 
 /obj/item/weapon/storage/box/blanks/New()
 	..()
-	for(var/i = 1 to 7)
+	for(var/i = 1 to 8)
+		new /obj/item/ammo_casing/shotgun/blank(src)
+
+/obj/item/weapon/storage/box/blanks/large/New()
+	..()
+	for(var/i = 1 to 8)
 		new /obj/item/ammo_casing/shotgun/blank(src)
 
 /obj/item/weapon/storage/box/beanbags
@@ -140,7 +146,12 @@
 
 /obj/item/weapon/storage/box/beanbags/New()
 	..()
-	for(var/i = 1 to 7)
+	for(var/i = 1 to 8)
+		new /obj/item/ammo_casing/shotgun/beanbag(src)
+
+/obj/item/weapon/storage/box/beanbags/large/New()
+	..()
+	for(var/i = 1 to 8)
 		new /obj/item/ammo_casing/shotgun/beanbag(src)
 
 /obj/item/weapon/storage/box/shotgunammo
@@ -151,7 +162,12 @@
 
 /obj/item/weapon/storage/box/shotgunammo/New()
 	..()
-	for(var/i = 1 to 7)
+	for(var/i = 1 to 8)
+		new /obj/item/ammo_casing/shotgun(src)
+
+/obj/item/weapon/storage/box/shotgunammo/large/New()
+	..()
+	for(var/i = 1 to 8)
 		new /obj/item/ammo_casing/shotgun(src)
 
 /obj/item/weapon/storage/box/shotgunshells
@@ -162,7 +178,12 @@
 
 /obj/item/weapon/storage/box/shotgunshells/New()
 	..()
-	for(var/i = 1 to 7)
+	for(var/i = 1 to 8)
+		new /obj/item/ammo_casing/shotgun/pellet(src)
+
+/obj/item/weapon/storage/box/shotgunshells/large/New()
+	..()
+	for(var/i = 1 to 8)
 		new /obj/item/ammo_casing/shotgun/pellet(src)
 
 /obj/item/weapon/storage/box/flashshells
@@ -173,7 +194,12 @@
 
 /obj/item/weapon/storage/box/flashshells/New()
 	..()
-	for(var/i = 1 to 7)
+	for(var/i = 1 to 8)
+		new /obj/item/ammo_casing/shotgun/flash(src)
+
+/obj/item/weapon/storage/box/flashshells/large/New()
+	..()
+	for(var/i = 1 to 8)
 		new /obj/item/ammo_casing/shotgun/flash(src)
 
 /obj/item/weapon/storage/box/stunshells
@@ -184,7 +210,12 @@
 
 /obj/item/weapon/storage/box/stunshells/New()
 	..()
-	for(var/i = 1 to 7)
+	for(var/i = 1 to 8)
+		new /obj/item/ammo_casing/shotgun/stunshell(src)
+
+/obj/item/weapon/storage/box/stunshells/large/New()
+	..()
+	for(var/i = 1 to 8)
 		new /obj/item/ammo_casing/shotgun/stunshell(src)
 
 /obj/item/weapon/storage/box/practiceshells
@@ -195,8 +226,29 @@
 
 /obj/item/weapon/storage/box/practiceshells/New()
 	..()
-	for(var/i = 1 to 7)
+	for(var/i = 1 to 8)
 		new /obj/item/ammo_casing/shotgun/practice(src)
+
+/obj/item/weapon/storage/box/practiceshells/large/New()
+	..()
+	for(var/i = 1 to 8)
+		new /obj/item/ammo_casing/shotgun/practice(src)
+
+/obj/item/weapon/storage/box/empshells
+	name = "box of emp shells"
+	desc = "It has a picture of a gun and several warning symbols on the front."
+	icon_state = "empshot_box"
+	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
+
+/obj/item/weapon/storage/box/empshells/New()
+	..()
+	for(var/i = 1 to 8)
+		new /obj/item/ammo_casing/shotgun/emp(src)
+
+/obj/item/weapon/storage/box/empshells/large/New()
+	..()
+	for(var/i = 1 to 8)
+		new /obj/item/ammo_casing/shotgun/emp(src)
 
 /obj/item/weapon/storage/box/sniperammo
 	name = "box of 14.5mm shells"
@@ -478,7 +530,7 @@
 	desc = "A small box of 'Space-Proof' premium matches."
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "matchbox"
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_BELT
 	can_hold = list(/obj/item/weapon/flame/match)
 
@@ -512,9 +564,9 @@
 	icon_state = "light"
 	desc = "This box is shaped on the inside so that only light tubes and bulbs fit."
 	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
-	storage_slots=21
+	storage_slots = 21
 	can_hold = list(/obj/item/weapon/light/tube, /obj/item/weapon/light/bulb)
-	max_storage_space = 42	//holds 21 items of w_class 2
+	max_storage_space = ITEMSIZE_COST_SMALL * 21 //holds 21 items of w_class 2
 	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
 
 /obj/item/weapon/storage/box/lights/bulbs/New()
@@ -549,9 +601,9 @@
 	icon_state = "portafreezer"
 	item_state_slots = list(slot_r_hand_str = "medicalpack", slot_l_hand_str = "medicalpack")
 	foldable = null
-	max_w_class = 3
+	max_w_class = ITEMSIZE_NORMAL
 	can_hold = list(/obj/item/organ, /obj/item/weapon/reagent_containers/food, /obj/item/weapon/reagent_containers/glass)
-	max_storage_space = 21
+	max_storage_space = ITEMSIZE_COST_NORMAL * 5 // Formally 21.  Odd numbers are bad.
 	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
 
 /obj/item/weapon/storage/box/freezer/Entered(var/atom/movable/AM)

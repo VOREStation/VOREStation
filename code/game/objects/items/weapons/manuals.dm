@@ -110,7 +110,7 @@
 				<br>
 				<h2>SUPERMATTER HANDLING</h2>
 				<li>Do not expose supermatter to oxygen.</li>
-				<li>Do not <del>touch supermatter</del> <del>without gloves</del> <del>without exosuit protection</del> allow supermatter to contact any solid object apart from specially-designed supporting pallet.</li>
+				<li>Do not allow supermatter to contact any solid object apart from specially-designed supporting pallet.</li>
 				<li>Do not directly view supermatter without meson goggles.</li>
 				<li>While handles on pallet allow moving the supermatter via pulling, pushing should not be attempted.</li>
 				<br>
@@ -118,7 +118,7 @@
 				<ol>
 				<li>Fill reactor loop and radiator loop with two (2) standard canisters of nitrogen gas each.</li>
 				<li>Ensure that pumps and filters are on and operating at maximum power.</li>
-				<li>Fire <del>5</del> <del>15</del> <del>2</del> <del>UNKNOWN</del> 8-12 pulses from emitter at supermatter crystal. Reactor blast doors must be open for this procedure.</li>
+				<li>Fire 8-9 pulses from emitter at supermatter crystal. Reactor blast doors must be open for this procedure.</li>
 				</ol>
 				<br>
 				<h2>OPERATION AND MAINTENANCE</h2>
@@ -997,7 +997,7 @@
 
 				Remember the order:<br>
 				<b>Disk, Code, Safety, Timer, Disk, RUN!</b><br><br>
-				Intelligence Analysts believe that normal corporate procedure is for the Station Administrator to secure the nuclear authentication disk.<br><br>
+				Intelligence Analysts believe that normal corporate procedure is for the Colony Director to secure the nuclear authentication disk.<br><br>
 
 				Good luck!
 				</body>

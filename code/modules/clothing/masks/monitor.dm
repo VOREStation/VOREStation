@@ -3,7 +3,6 @@
 
 	name = "display monitor"
 	desc = "A rather clunky old CRT-style display screen, fit for mounting on an optical output."
-	flags_inv = HIDEFACE|HIDEEYES
 	body_parts_covered = FACE
 	dir = SOUTH
 

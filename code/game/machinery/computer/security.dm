@@ -481,7 +481,7 @@ What a mess.*/
 							active2.fields["ma_crim_d"] = t1
 					if("notes")
 						if (istype(active2, /datum/data/record))
-							var/t1 = sanitize(input("Please summarize notes:", "Secure. records", html_decode(active2.fields["notes"]), null)  as message, extra = 0)
+							var/t1 = sanitize(input("Please summarize notes:", "Secure. records", html_decode(active2.fields["notes"]), null)  as message, extra = 0, max_length = MAX_RECORD_LENGTH)
 							if (!t1 || active2 != a2)
 								return
 							active2.fields["notes"] = t1
@@ -496,7 +496,7 @@ What a mess.*/
 							temp += "<li><a href='?src=\ref[src];choice=Change Criminal Status;criminal2=released'>Released</a></li>"
 							temp += "</ul>"
 					if("rank")
-						var/list/L = list( "Head of Personnel", "Station Administrator", "AI" )
+						var/list/L = list( "Head of Personnel", "Colony Director", "AI" )
 						//This was so silly before the change. Now it actually works without beating your head against the keyboard. /N
 						if ((istype(active1, /datum/data/record) && L.Find(rank)))
 							temp = "<h5>Rank:</h5>"

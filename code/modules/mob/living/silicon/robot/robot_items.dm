@@ -152,9 +152,9 @@
 
 			if( I != src && !I.anchored && !istype(I, /obj/item/clothing/under) && !istype(I, /obj/item/clothing/suit) && !istype(I, /obj/item/projectile) )
 				var/add = 0
-				if(I.w_class == 1.0)
+				if(I.w_class == ITEMSIZE_TINY)
 					add = 1
-				else if(I.w_class == 2.0)
+				else if(I.w_class == ITEMSIZE_SMALL)
 					add = 3
 				else
 					add = 5

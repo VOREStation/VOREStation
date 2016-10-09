@@ -5,15 +5,15 @@
 // Proc: adjust_instability()
 // Parameters: 0
 // Description: Does nothing, because inheritence.
-/mob/living/proc/adjust_instability()
-	return
+/mob/living/proc/adjust_instability(var/amount)
+	instability = min(max(instability + amount, 0), 200)
 
 // Proc: adjust_instability()
 // Parameters: 1 (amount - how much instability to give)
 // Description: Adds or subtracks instability to the mob, then updates the hud.
 /mob/living/carbon/human/adjust_instability(var/amount)
-	instability = min(max(instability + amount, 0), 200)
 	instability_update_hud()
+	..()
 
 // Proc: instability_update_hud()
 // Parameters: 0
@@ -35,7 +35,7 @@
 // Proc: Life()
 // Parameters: 0
 // Description: Makes instability tick along with Life().
-/mob/living/carbon/human/Life()
+/mob/living/Life()
 	. = ..()
 	handle_instability()
 
@@ -43,9 +43,8 @@
 // Parameters: 0
 // Description: Makes instability decay.  instability_effects() handles the bad effects for having instability.  It will also hold back
 // from causing bad effects more than one every ten seconds, to prevent sudden death from angry RNG.
-/mob/living/carbon/human/proc/handle_instability()
+/mob/living/proc/handle_instability()
 	instability = round(Clamp(instability, 0, 200))
-	instability_update_hud()
 	//This should cushon against really bad luck.
 	if(instability && last_instability_event < (world.time - 10 SECONDS) && prob(20))
 		instability_effects()
@@ -65,6 +64,10 @@
 			if(101 to 200)
 				adjust_instability(-40)
 
+/mob/living/carbon/human/handle_instability()
+	..()
+	instability_update_hud()
+
 /*
 [16:18:08] <PsiOmegaDelta> Sparks
 [16:18:10] <PsiOmegaDelta> Wormholes
@@ -78,17 +81,85 @@
 // Parameters: 0
 // Description: Does a variety of bad effects to the entity holding onto the instability, with more severe effects occuring if they have
 // a lot of instability.
-/mob/living/carbon/human/proc/instability_effects()
+/mob/living/proc/instability_effects()
+	last_instability_event = world.time
+	spawn(1)
+		var/image/instability_flash = image('icons/obj/spells.dmi',"instability")
+		overlays |= instability_flash
+		sleep(4)
+		overlays.Remove(instability_flash)
+		qdel(instability_flash)
+	radiate_instability()
+
+/mob/living/silicon/instability_effects()
 	if(instability)
 		var/rng = 0
-		last_instability_event = world.time
-		spawn(1)
-			var/image/instability_flash = image('icons/obj/spells.dmi',"instability")
-			overlays |= instability_flash
-			sleep(4)
-			overlays.Remove(instability_flash)
-			qdel(instability_flash)
-		radiate_instability()
+		..()
+		switch(instability)
+			if(1 to 10) //Harmless
+				return
+			if(11 to 30) //Minor
+				rng = rand(0,1)
+				switch(rng)
+					if(0)
+						var/datum/effect/effect/system/spark_spread/sparks = PoolOrNew(/datum/effect/effect/system/spark_spread)
+						sparks.set_up(5, 0, src)
+						sparks.attach(loc)
+						sparks.start()
+						visible_message("<span class='warning'>Electrical sparks manifest from nowhere around \the [src]!</span>")
+						qdel(sparks)
+					if(1)
+						return
+
+			if(31 to 50) //Moderate
+				rng = rand(0,4)
+				switch(rng)
+					if(0)
+						electrocute_act(instability * 0.3, "unstable energies")
+					if(1)
+						adjustFireLoss(instability * 0.15) //7.5 burn @ 50 instability
+						src << "<span class='danger'>Your chassis alerts you to overheating from an unknown external force!</span>"
+					if(2)
+						adjustBruteLoss(instability * 0.15) //7.5 brute @ 50 instability
+						src << "<span class='danger'>Your chassis makes the sound of metal groaning!</span>"
+					if(3)
+						safe_blink(src, range = 6)
+						src << "<span class='warning'>You're teleported against your will!</span>"
+					if(4)
+						emp_act(2)
+
+			if(51 to 100) //Severe
+				rng = rand(0,3)
+				switch(rng)
+					if(0)
+						electrocute_act(instability * 0.5, "extremely unstable energies")
+					if(1)
+						emp_act(2)
+					if(2)
+						adjustFireLoss(instability * 0.3) //30 burn @ 100 instability
+						src << "<span class='danger'>Your chassis alerts you to extreme overheating from an unknown external force!</span>"
+					if(3)
+						adjustBruteLoss(instability * 0.3) //30 brute @ 100 instability
+						src << "<span class='danger'>Your chassis makes the sound of metal groaning and tearing!</span>"
+
+			if(101 to 200) //Lethal
+				rng = rand(0,4)
+				switch(rng)
+					if(0)
+						electrocute_act(instability, "extremely unstable energies")
+					if(1)
+						emp_act(1)
+					if(2)
+						adjustFireLoss(instability * 0.4) //40 burn @ 100 instability
+						src << "<span class='danger'>Your chassis alerts you to extreme overheating from an unknown external force!</span>"
+					if(3)
+						adjustBruteLoss(instability * 0.4) //40 brute @ 100 instability
+						src << "<span class='danger'>Your chassis makes the sound of metal groaning and tearing!</span>"
+
+/mob/living/carbon/human/instability_effects()
+	if(instability)
+		var/rng = 0
+		..()
 		switch(instability)
 			if(1 to 10) //Harmless
 				return
@@ -194,7 +265,7 @@
 					if(7)
 						adjustToxLoss(instability * 0.40) //25 tox @ 100 instability
 
-/mob/living/carbon/human/proc/radiate_instability()
+/mob/living/proc/radiate_instability()
 	var/distance = round(sqrt(instability / 2))
 	if(instability <= 30)
 		distance = 0
@@ -210,6 +281,8 @@
 			var/armor = getarmor(null, "energy")
 			var/armor_factor = abs( (armor - 100) / 100)
 			outgoing_instability = outgoing_instability * armor_factor
+			if(outgoing_instability)
+				to_chat(H, "<span class='warning'>The purple glow makes you feel strange...</span>")
 			H.adjust_instability(outgoing_instability)
 
 	set_light(distance, distance * 2, l_color = "#C26DDE")

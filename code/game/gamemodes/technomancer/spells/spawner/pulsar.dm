@@ -19,7 +19,7 @@
 
 /obj/item/weapon/spell/spawner/pulsar/on_ranged_cast(atom/hit_atom, mob/user)
 	if(pay_energy(4000))
-		owner.adjust_instability(8)
+		adjust_instability(8)
 		..()
 
 /obj/item/weapon/spell/spawner/pulsar/on_throw_cast(atom/hit_atom, mob/user)

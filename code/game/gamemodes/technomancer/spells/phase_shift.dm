@@ -15,6 +15,7 @@
 /obj/item/weapon/spell/phase_shift/New()
 	..()
 	set_light(3, 2, l_color = "#FA58F4")
+	processing_objects |= src
 
 /obj/effect/phase_shift
 	name = "rift"
@@ -32,7 +33,12 @@
 /obj/effect/phase_shift/Destroy()
 	for(var/atom/movable/AM in contents) //Eject everything out.
 		AM.forceMove(get_turf(src))
+	processing_objects -= src
 	..()
+
+/obj/effect/phase_shift/process()
+	for(var/mob/living/L in contents)
+		L.adjust_instability(2)
 
 /obj/effect/phase_shift/relaymove(mob/user as mob)
 	if(user.stat)

@@ -13,9 +13,10 @@
 	if(set_up(hit_atom, user))
 		var/obj/item/projectile/new_projectile = new spell_projectile(get_turf(user))
 		new_projectile.launch(hit_atom)
+		log_and_message_admins("has casted [src] at \the [hit_atom].")
 		if(fire_sound)
 			playsound(get_turf(src), fire_sound, 75, 1)
-		owner.adjust_instability(instability_per_shot)
+		adjust_instability(instability_per_shot)
 		return 1
 	return 0
 
@@ -28,5 +29,8 @@
 				user.Stun(pre_shot_delay / 10)
 				sleep(pre_shot_delay)
 				qdel(target_image)
-			return 1
-	return 0
+				if(owner)
+					return TRUE
+				return FALSE // We got dropped before the firing occured.
+			return TRUE // No delay, no need to check.
+	return FALSE
