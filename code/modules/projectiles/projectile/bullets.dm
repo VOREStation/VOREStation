@@ -5,7 +5,7 @@
 	damage_type = BRUTE
 	nodamage = 0
 	check_armour = "bullet"
-	embed = 1
+	embed_chance = 20	//Modified in the actual embed process, but this should keep embed chance about the same
 	sharp = 1
 	var/mob_passthrough_check = 0
 
@@ -140,7 +140,7 @@
 	name = "rubber bullet"
 	damage = 5
 	agony = 40
-	embed = 0
+	embed_chance = 0
 	sharp = 0
 	check_armour = "melee"
 
@@ -155,7 +155,7 @@
 	name = "beanbag"
 	damage = 20
 	agony = 60
-	embed = 0
+	embed_chance = 0
 	sharp = 0
 	check_armour = "melee"
 
@@ -172,7 +172,7 @@
 /obj/item/projectile/bullet/shotgun/ion
 	name = "ion slug"
 	damage = 15
-	embed = 0
+	embed_chance = 0
 	sharp = 0
 	check_armour = "melee"
 
@@ -224,7 +224,7 @@
 /obj/item/projectile/bullet/burstbullet
 	name = "exploding bullet"
 	damage = 20
-	embed = 0
+	embed_chance = 0
 	edge = 1
 
 /obj/item/projectile/bullet/gyro/on_hit(var/atom/target, var/blocked = 0)
@@ -235,7 +235,7 @@
 /obj/item/projectile/bullet/blank
 	invisibility = 101
 	damage = 1
-	embed = 0
+	embed_chance = 0
 
 /* Practice */
 
@@ -255,7 +255,7 @@
 	damage_type = HALLOSS
 	damage = 0
 	nodamage = 1
-	embed = 0
+	embed_chance = 0
 	sharp = 0
 
 /obj/item/projectile/bullet/pistol/cap/process()

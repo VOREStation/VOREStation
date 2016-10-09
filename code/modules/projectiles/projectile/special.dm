@@ -152,7 +152,7 @@
 	name = "bullet"
 	icon_state = "bullet"
 	damage = 1 // stop trying to murderbone with a fake gun dumbass!!!
-	embed = 0 // nope
+	embed_chance = 0 // nope
 	nodamage = 1
 	damage_type = HALLOSS
 	muzzle_type = /obj/effect/projectile/bullet/muzzle
