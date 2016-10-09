@@ -1739,6 +1739,7 @@
 #include "code\modules\mob\living\simple_animal\hostile\vore\catgirl.dm"
 #include "code\modules\mob\living\simple_animal\hostile\vore\creature.dm"
 #include "code\modules\mob\living\simple_animal\hostile\vore\deathclaw.dm"
+#include "code\modules\mob\living\simple_animal\hostile\vore\dragon.dm"
 #include "code\modules\mob\living\simple_animal\hostile\vore\frog.dm"
 #include "code\modules\mob\living\simple_animal\hostile\vore\horse.dm"
 #include "code\modules\mob\living\simple_animal\hostile\vore\mimic.dm"

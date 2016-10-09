@@ -1,34 +1,22 @@
 // -- Areas -- //
 
 /area/awaymission/zoo
-	icon_state = "blank"
-	requires_power = 0
-	always_unpowered = 0
-	lighting_use_dynamic = 0
-	base_turf = /turf/snow/snow2
-	ambience = list('sound/ambience/ambispace.ogg','sound/music/title2.ogg','sound/music/space.ogg','sound/music/main.ogg','sound/music/traitor.ogg')
-//	base_turf = /turf/simulated/floor/snow/snow2
-
-/*
-/area/awaymission/snowfield/outside
 	icon_state = "green"
-	requires_power = 1
-	always_unpowered = 1
-	lighting_use_dynamic = 1
-	power_light = 0
-	power_equip = 0
-	power_environ = 0
-	mobcountmax = 100
-	floracountmax = 7000
-	valid_mobs = list(/mob/living/simple_animal/hostile/samak/polar, /mob/living/simple_animal/hostile/diyaab/polar,
-					/mob/living/simple_animal/hostile/shantak/polar, /mob/living/simple_animal/hostile/vore/polarbear,
-					/mob/living/simple_animal/hostile/vore/wolf)
-	valid_flora = list(/obj/structure/flora/tree/pine, /obj/structure/flora/tree/pine, /obj/structure/flora/tree/pine,
-					/obj/structure/flora/tree/dead, /obj/structure/flora/grass/brown, /obj/structure/flora/grass/green,
-					/obj/structure/flora/grass/both, /obj/structure/flora/bush, /obj/structure/flora/ausbushes/grassybush,
-					/obj/structure/flora/ausbushes/sunnybush, /obj/structure/flora/ausbushes/genericbush, /obj/structure/flora/ausbushes/pointybush,
-					/obj/structure/flora/ausbushes/lavendergrass, /obj/structure/flora/ausbushes/sparsegrass, /obj/structure/flora/ausbushes/fullgrass)
-*/
+	requires_power = 0
+	lighting_use_dynamic = 0
+	ambience = list('sound/ambience/ambispace.ogg','sound/music/title2.ogg','sound/music/space.ogg','sound/music/main.ogg','sound/music/traitor.ogg')
+
+/area/awaymission/zoo/solars
+	icon_state = "yellow"
+
+/area/awaymission/zoo/tradeship
+	icon_state = "purple"
+
+/area/awaymission/zoo/syndieship
+	icon_state = "red"
+
+/area/awaymission/zoo/pirateship
+	icon_state = "bluenew"
 
 /obj/machinery/vending/food
 	name = "Food-O-Mat"
@@ -62,36 +50,29 @@
 	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/mysterysoup = 10)
 	vend_delay = 15
 
+//info = {""}
 
-/*
+/obj/item/weapon/paper/zoo
+	name = "\improper Quarterly Report"
+	info = {"<i>There's nothing but spreadsheets and budget reports on this document, apparently regarding a zoo owned by NanoTrasen.</i>"}
 
-Sif is a terrestrial planet in the Vir system. It is somewhat earth-like, in that it has oceans, a breathable atmosphere,
-a magnetic field, weather, and similar gravity to Earth. It is currently the capital planet of Vir. Its center of government
-is the equatorial city and site of first settlement, New Reykjavik.
+/obj/item/weapon/paper/zoo/pirate
+	name = "odd note"
 
-Sif has stabilized its local economy and, following through with their original mission plans (if now for themselves rather
-than their original corporate backers), become a self-sufficient and popular snow resort and garden world with a huge ocean
-farming and fishing industry. Modern Sif is a popular world for settlement that enjoys a steady population growth around its
-equatorial warm belt through immigration, and no longer a protectorate but a full member of the confederacy.
+/obj/item/weapon/paper/zoo/pirate/volk
+	info = {"Lady Nebula,<br><br>We can't keep these animals here permanently. We're running out of food and they're getting hungry.
+			Ma'isi went missing last night when we sent her to clean up the petting zoo. This morning, we found Tajaran hair in the
+			horse shit. I can't speak for everyone, but I'm out. If these animals break loose, we're all fucking dead. Please get
+			some extra rations of meat before the carnivores realize the electrified grilles don't work right now.<br><br>-Volk"}
 
-/mob/living/simple_animal/hostile/samak
-	name = "samak"
-	desc = "A fast, armoured predator accustomed to hiding and ambushing in cold terrain."
+/obj/item/weapon/paper/zoo/pirate/nebula
+	info = {"Volk,<br><br>Throw some prisoners into the cages, then. The client took too long to pay up anyway.<br><br>-Lady Nebula"}
 
-/mob/living/simple_animal/hostile/diyaab
-	name = "diyaab"
-	desc = "A small pack animal. Although omnivorous, it will hunt meat on occasion."
+/obj/item/weapon/paper/zoo/pirate/haveyouseen
+	info = {"Has anyone seen Za'med? I sent him to get something out of the tool shed and he hasn't come back.<br><br>-Meesei"}
 
-/mob/living/simple_animal/hostile/shantak
-	name = "shantak"
-	desc = "A piglike creature with a bright iridiscent mane that sparkles as though lit by an inner light. Don't be fooled by its beauty though."
-
-/mob/living/simple_animal/yithian
-	name = "yithian"
-	desc = "A friendly creature vaguely resembling an oversized snail without a shell."
-
-/mob/living/simple_animal/tindalos
-	name = "tindalos"
-	desc = "It looks like a large, flightless grasshopper."
-
-*/
+/obj/item/weapon/paper/zoo/pirate/warning
+	info = {"Attention crew,<br><br>Since apparently you fucking idiots didn't notice, that bulltaur who delivered the bears was
+			Jarome Rognvaldr. I'm sorry, maybe you scabs forgot? Does the name Jarome the Bottomless ring any fucking bells? If he's
+			seen again without a laser bolt hole through his fucking skull, I'm shoving anyone on guard duty up Zed's arse. Are we
+			clear?<br><br>-Lady Nebula"}
