@@ -235,7 +235,7 @@ BLIND     // can't see anything
 /obj/item/clothing/glasses/sunglasses/big
 	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Larger than average enhanced shielding blocks many flashes."
 	icon_state = "bigsunglasses"
-
+	
 /obj/item/clothing/glasses/fakesunglasses //Sunglasses without flash immunity
 	desc = "A pair of designer sunglasses. Doesn't seem like it'll block flashes."
 	name = "stylish sunglasses"
@@ -267,7 +267,6 @@ BLIND     // can't see anything
 	toggleable = 1
 	action_button_name = "Toggle Goggles"
 	vision_flags = SEE_MOBS
-	see_invisible = INVISIBILITY_LEVEL_TWO
 
 	emp_act(severity)
 		if(istype(src.loc, /mob/living/carbon/human))
