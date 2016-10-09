@@ -3,7 +3,7 @@
 	name = "loot spawner"
 	icon_state = "grabbed1"
 	var/live_cargo = 1 // So you can turn off aliens.
-	var/blob_chance = 0 // So you can turn on blobs.
+	var/blobchance = 0 // So you can turn on blobs.
 	var/low_probability = 0
 	var/spawned_faction = "hostile" // Spawned mobs can have their faction changed.
 
@@ -78,8 +78,8 @@
 				new /obj/effect/decal/remains/mouse(src.loc)
 			else
 				new /obj/effect/decal/remains/xeno(src.loc)
-		if("blob" && blob_chance)
-			new /obj/effect/blob/core(src.loc)
+		if("blob")
+			if(blobchance) new /obj/effect/blob/core(src.loc)
 		if("clothes")
 			var/obj/structure/closet/C = new(src.loc)
 			C.icon_state = "blue"
@@ -349,7 +349,7 @@
 			for(var/i=0,i<num,i++)
 				new /mob/living/simple_animal/hostile/viscerator(C)
 
-	del(src)
+	qdel(src)
 
 
 /**********************************/

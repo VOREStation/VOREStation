@@ -50,8 +50,6 @@
 	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/mysterysoup = 10)
 	vend_delay = 15
 
-//info = {""}
-
 /obj/item/weapon/paper/zoo
 	name = "\improper Quarterly Report"
 	info = {"<i>There's nothing but spreadsheets and budget reports on this document, apparently regarding a zoo owned by NanoTrasen.</i>"}
