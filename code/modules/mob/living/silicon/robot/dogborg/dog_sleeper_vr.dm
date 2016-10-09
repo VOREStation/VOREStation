@@ -4,7 +4,7 @@
 	desc = "Equipment for medical hound. A mounted sleeper that stabilizes patients and can inject reagents in the borg's reserves."
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "sleeper"
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	var/mob/living/carbon/patient = null
 	var/mob/living/silicon/robot/hound = null
 	var/inject_amount = 10

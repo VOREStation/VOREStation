@@ -33,7 +33,7 @@
 	drill_sound = 'sound/weapons/thudswoosh.ogg'
 	drill_verb = "drilling"
 	force = 15.0
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	attack_verb = list("drilled")
 
 /obj/item/weapon/pickaxe/excavationdrill/attack_self(mob/user as mob)

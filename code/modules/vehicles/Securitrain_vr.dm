@@ -1,4 +1,4 @@
-//This is the initial set up for the new carts. Feel free to improve and/or rewrite everything here. 
+//This is the initial set up for the new carts. Feel free to improve and/or rewrite everything here.
 //I don't know what the hell I'm doing right now. Please help. Especially with the update_icons stuff. -Joan Risu
 
 /obj/vehicle/train/securiengine
@@ -10,7 +10,7 @@
 	powered = 1
 	locked = 0
 	move_delay = 0.5
-	
+
 	//Health stuff
 	health = 100
 	maxhealth = 100
@@ -24,14 +24,14 @@
 	var/car_limit = 0	//how many cars an engine can pull before performance degrades. This should be 0 to prevent trailers from unhitching.
 	active_engines = 1
 	var/obj/item/weapon/key/securitrain/key
-	var/siren = 0 //This is for eventually getting the siren sprite to work. 
+	var/siren = 0 //This is for eventually getting the siren sprite to work.
 
 /obj/item/weapon/key/securitrain
 	name = "The Security Cart key"
-	desc = "The Security Cart Key used to start it." 
+	desc = "The Security Cart Key used to start it."
 	icon = 'icons/obj/vehicles_vr.dmi'
 	icon_state = "securikey"
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 
 /obj/vehicle/train/securitrolley
 	name = "Train trolley"
@@ -396,7 +396,7 @@
 //-----------------------------------------------------
 //Update layer stuff
 //
-//This is supposed to update the layers and put the mob in the correct spot. 
+//This is supposed to update the layers and put the mob in the correct spot.
 //Pls help squirrel get this to work. ;m;
 //-----------------------------------------------------
 /obj/vehicle/train/securiengine/proc/update_layer()

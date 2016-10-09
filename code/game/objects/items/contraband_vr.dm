@@ -4,7 +4,7 @@
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "deliverycrate5"
 	item_state = "table_parts"
-	w_class = 5
+	w_class = ITEMSIZE_HUGE
 
 	attack_self(mob/user as mob)
 		// Another way of doing this. Commented out because the other method is better for this application.
@@ -87,7 +87,7 @@
 	desc = "Save these for the fancy-pantses at the next CentCom black tie reception. You can't blow the smoke from such majestic stogies in just anyone's face."
 	icon_state = "cigarcase"
 	icon = 'icons/obj/cigarettes.dmi'
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	throwforce = 2
 	slot_flags = SLOT_BELT
 	storage_slots = 7
