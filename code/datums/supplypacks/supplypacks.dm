@@ -34,7 +34,7 @@ var/list/all_supply_groups = list("Atmospherics",
 	var/access = null
 	var/hidden = 0
 	var/contraband = 0
-	var/group = "Operations"
+	var/group = "Miscellaneous"
 
 /datum/supply_packs/New()
 	manifest += "<ul>"

@@ -1,5 +1,5 @@
 /datum/game_mode/lizard
-	name = "Technomancer & Changelings"
+	name = "Technomancers & Changelings"
 	round_description = "A space wizard and changelings have invaded the station!"
 	extended_round_description = "Changelings and a wizard spawn during this round."
 	config_tag = "lizard"
@@ -9,4 +9,4 @@
 	end_on_antag_death = 0
 	antag_tags = list(MODE_TECHNOMANCER, MODE_CHANGELING)
 	require_all_templates = 1
-	votable = 0
+	votable = 1

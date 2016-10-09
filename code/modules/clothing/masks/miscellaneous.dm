@@ -3,7 +3,7 @@
 	desc = "To stop that awful noise."
 	icon_state = "muzzle"
 	body_parts_covered = FACE
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	gas_transfer_coefficient = 0.90
 	voicechange = 1
 
@@ -13,7 +13,7 @@
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "tape_cross"
 	item_state_slots = list(slot_r_hand_str = null, slot_l_hand_str = null)
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 
 /obj/item/clothing/mask/muzzle/New()
     ..()
@@ -31,7 +31,7 @@
 	desc = "A sterile mask designed to help prevent the spread of diseases."
 	icon_state = "sterile"
 	item_state_slots = list(slot_r_hand_str = "sterile", slot_l_hand_str = "sterile")
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	body_parts_covered = FACE
 	item_flags = FLEXIBLEMATERIAL
 	gas_transfer_coefficient = 0.90
@@ -85,7 +85,7 @@
 	icon_state = "blueneckscarf"
 	body_parts_covered = FACE
 	item_flags = FLEXIBLEMATERIAL
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	gas_transfer_coefficient = 0.90
 
 /obj/item/clothing/mask/redscarf
@@ -94,7 +94,7 @@
 	icon_state = "redwhite_scarf"
 	body_parts_covered = FACE
 	item_flags = FLEXIBLEMATERIAL
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	gas_transfer_coefficient = 0.90
 
 /obj/item/clothing/mask/greenscarf
@@ -103,7 +103,7 @@
 	icon_state = "green_scarf"
 	body_parts_covered = FACE
 	item_flags = FLEXIBLEMATERIAL
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	gas_transfer_coefficient = 0.90
 
 /obj/item/clothing/mask/ninjascarf
@@ -112,7 +112,7 @@
 	icon_state = "ninja_scarf"
 	body_parts_covered = FACE
 	item_flags = FLEXIBLEMATERIAL
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	gas_transfer_coefficient = 0.90
 	siemens_coefficient = 0
 
@@ -121,7 +121,7 @@
 	desc = "A rubber pig mask."
 	icon_state = "pig"
 	flags_inv = HIDEFACE|BLOCKHAIR
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	siemens_coefficient = 0.9
 	body_parts_covered = HEAD|FACE|EYES
 
@@ -131,7 +131,7 @@
 	icon_state = "horsehead"
 	flags_inv = HIDEFACE|BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	siemens_coefficient = 0.9
 
 /obj/item/clothing/mask/horsehead/New()
@@ -174,7 +174,7 @@
 /obj/item/clothing/mask/bandana
 	name = "black bandana"
 	desc = "A fine black bandana with nanotech lining."
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	flags_inv = HIDEFACE
 	slot_flags = SLOT_MASK
 	icon_state = "bandblack"

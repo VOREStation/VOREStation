@@ -32,14 +32,23 @@
 	response_help   = "pets the"
 	response_disarm = "swats away"
 	response_harm   = "punches"
+	min_oxy = 0
+	max_oxy = 0
+	min_tox = 0
+	max_tox = 0
+	min_co2 = 0
+	max_co2 = 0
+	min_n2 = 0
+	max_n2 = 0
+	minbodytemp = 0
+	maxbodytemp = 0
+	unsuitable_atoms_damage = 0
+	heat_damage_per_tick = 0
+	cold_damage_per_tick = 0
+
 	var/true_sight = 0 // If true, detects more than what the Technomancer normally can't.
 	var/mob/living/carbon/human/creator = null
 	var/list/seen_mobs = list()
-
-/mob/living/simple_animal/ward/New()
-	..()
-	spawn(6 MINUTES)
-		expire()
 
 /mob/living/simple_animal/ward/death()
 	if(creator)

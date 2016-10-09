@@ -6,7 +6,7 @@
 	item_state = "laser"
 	fire_sound = 'sound/weapons/Laser.ogg'
 	slot_flags = SLOT_BELT|SLOT_BACK
-	w_class = 4
+	w_class = ITEMSIZE_LARGE
 	force = 10
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	matter = list(DEFAULT_WALL_MATERIAL = 2000)
@@ -15,8 +15,8 @@
 	one_handed_penalty = 2
 
 	firemodes = list(
-		list(mode_name="normal", projectile_type=/obj/item/projectile/beam/midlaser, charge_cost = 200),
-		list(mode_name="suppressive", projectile_type=/obj/item/projectile/beam/weaklaser, charge_cost = 50),
+		list(mode_name="normal", projectile_type=/obj/item/projectile/beam/midlaser, charge_cost = 240),
+		list(mode_name="suppressive", projectile_type=/obj/item/projectile/beam/weaklaser, charge_cost = 60),
 		)
 
 /obj/item/weapon/gun/energy/laser/mounted
@@ -30,8 +30,8 @@
 	projectile_type = /obj/item/projectile/beam/practice
 
 	firemodes = list(
-		list(mode_name="normal", projectile_type=/obj/item/projectile/beam/practice, charge_cost = 200),
-		list(mode_name="suppressive", projectile_type=/obj/item/projectile/beam/practice, charge_cost = 50),
+		list(mode_name="normal", projectile_type=/obj/item/projectile/beam/practice, charge_cost = 240),
+		list(mode_name="suppressive", projectile_type=/obj/item/projectile/beam/practice, charge_cost = 60),
 		)
 
 obj/item/weapon/gun/energy/retro
@@ -41,7 +41,7 @@ obj/item/weapon/gun/energy/retro
 	desc = "An older model of the basic lasergun. Nevertheless, it is still quite deadly and easy to maintain, making it a favorite amongst pirates and other outlaws."
 	fire_sound = 'sound/weapons/Laser.ogg'
 	slot_flags = SLOT_BELT
-	w_class = 3
+	w_class = ITEMSIZE_NORMAL
 	projectile_type = /obj/item/projectile/beam
 	fire_delay = 10 //old technology
 
@@ -53,11 +53,14 @@ obj/item/weapon/gun/energy/retro
 	force = 5
 	fire_sound = 'sound/weapons/Laser.ogg'
 	slot_flags = SLOT_BELT
-	w_class = 3
+	w_class = ITEMSIZE_NORMAL
 	projectile_type = /obj/item/projectile/beam
 	origin_tech = null
-	max_shots = 5 //to compensate a bit for self-recharging
+	fire_delay = 10		//Old pistol
+	charge_cost = 480	//to compensate a bit for self-recharging
 	self_recharge = 1
+	recharge_time = 3	//Recharges a bit more quickly...
+	charge_delay = 100	//... but it takes a while to get started
 
 /obj/item/weapon/gun/energy/lasercannon
 	name = "laser cannon"
@@ -69,13 +72,13 @@ obj/item/weapon/gun/energy/retro
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3)
 	slot_flags = SLOT_BELT|SLOT_BACK
 	projectile_type = /obj/item/projectile/beam/heavylaser/cannon
-	max_shots = 4
+	battery_lock = 1
 	fire_delay = 20
-	w_class = 4
+	w_class = ITEMSIZE_LARGE
 //	requires_two_hands = 1
 	one_handed_penalty = 6 // The thing's heavy and huge.
 	accuracy = 3
-	charge_cost = 400
+	charge_cost = 600
 
 
 /obj/item/weapon/gun/energy/lasercannon/mounted
@@ -87,7 +90,6 @@ obj/item/weapon/gun/energy/retro
 	requires_two_hands = 0 // Not sure if two-handing gets checked for mounted weapons, but better safe than sorry.
 	projectile_type = /obj/item/projectile/beam/heavylaser
 	charge_cost = 400
-	max_shots = 6
 	fire_delay = 20
 
 /obj/item/weapon/gun/energy/xray
@@ -99,8 +101,7 @@ obj/item/weapon/gun/energy/retro
 	fire_sound = 'sound/weapons/eluger.ogg'
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 3, TECH_MAGNET = 2)
 	projectile_type = /obj/item/projectile/beam/xray
-	charge_cost = 100
-	max_shots = 12
+	charge_cost = 200
 
 /obj/item/weapon/gun/energy/sniperrifle
 	name = "marksman energy rifle"
@@ -112,11 +113,11 @@ obj/item/weapon/gun/energy/retro
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 5, TECH_POWER = 4)
 	projectile_type = /obj/item/projectile/beam/sniper
 	slot_flags = SLOT_BACK
-	charge_cost = 400
-	max_shots = 4
+	battery_lock = 1
+	charge_cost = 600
 	fire_delay = 35
 	force = 10
-	w_class = 5 // So it can't fit in a backpack.
+	w_class = ITEMSIZE_HUGE // So it can't fit in a backpack.
 	accuracy = -3 //shooting at the hip
 	scoped_accuracy = 0
 //	requires_two_hands = 1

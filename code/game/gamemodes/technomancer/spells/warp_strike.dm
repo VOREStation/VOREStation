@@ -49,7 +49,7 @@
 		var/new_dir = get_dir(user, chosen_target)
 		user.dir = new_dir
 		sparks.start()
-		owner.adjust_instability(12)
+		adjust_instability(12)
 
 		//Finally, we handle striking the victim with whatever's in the user's offhand.
 		var/obj/item/I = user.get_inactive_hand()

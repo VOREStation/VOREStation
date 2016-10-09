@@ -3,7 +3,7 @@
 	desc = "It looks extremely delicate."
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "sliver1"
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	sharp = 1
 	var/datum/geosample/geological_data
 
@@ -86,7 +86,7 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "sampler0"
 	item_state = "screwdriver_brown"
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 
 	var/sampled_turf = ""
 	var/num_stored_bags = 10
@@ -144,7 +144,7 @@
 			var/image/I = image("icon"=R, "layer"=FLOAT_LAYER)
 			filled_bag.overlays += I
 			filled_bag.overlays += "evidence"
-			filled_bag.w_class = 1
+			filled_bag.w_class = ITEMSIZE_TINY
 
 			user << "<span class='notice'>You take a core sample of the [item_to_sample].</span>"
 	else

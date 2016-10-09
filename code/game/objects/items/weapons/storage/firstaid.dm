@@ -14,7 +14,7 @@
 	throw_speed = 2
 	throw_range = 8
 	var/empty = 0
-	max_storage_space = 14
+	max_storage_space = ITEMSIZE_COST_SMALL * 7 // 14
 
 
 /obj/item/weapon/storage/firstaid/fire
@@ -132,8 +132,8 @@
 /obj/item/weapon/storage/firstaid/surgery
 	name = "surgery kit"
 	desc = "Contains tools for surgery."
-	max_storage_space = 21
-	max_w_class = 3
+	max_storage_space = ITEMSIZE_COST_NORMAL * 6 // Formally 21.  Odd numbers should be avoided for a system based on exponents of 2.
+	max_w_class = ITEMSIZE_NORMAL
 
 /obj/item/weapon/storage/firstaid/surgery/New()
 	..()
@@ -159,13 +159,13 @@
 	icon_state = "pill_canister"
 	icon = 'icons/obj/chemical.dmi'
 	item_state_slots = list(slot_r_hand_str = "contsolid", slot_l_hand_str = "contsolid")
-	w_class = 2.0
+	w_class = ITEMSIZE_SMALL
 	can_hold = list(/obj/item/weapon/reagent_containers/pill,/obj/item/weapon/dice,/obj/item/weapon/paper)
 	allow_quick_gather = 1
 	use_to_pickup = 1
 	use_sound = null
-	max_storage_space = 14
-	max_w_class = 1
+	max_storage_space = ITEMSIZE_COST_TINY * 14
+	max_w_class = ITEMSIZE_TINY
 
 /obj/item/weapon/storage/pill_bottle/antitox
 	name = "bottle of Dylovene pills"

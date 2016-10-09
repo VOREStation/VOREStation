@@ -11,7 +11,7 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "hand_tele" //temporary
 	var/uses = 3.0
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	item_state = "paper"
 	origin_tech = list(TECH_BLUESPACE = 4, TECH_POWER = 3)
 

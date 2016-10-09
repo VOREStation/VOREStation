@@ -200,3 +200,9 @@
 /obj/structure/flora/ausbushes/fullgrass/New()
 	..()
 	icon_state = "fullgrass_[rand(1, 3)]"
+
+/obj/structure/flora/skeleton
+	name = "hanging skeleton model"
+	icon = 'icons/obj/plants.dmi'
+	icon_state = "hangskele"
+	desc = "It's an anatomical model of a human skeletal system made of plaster."

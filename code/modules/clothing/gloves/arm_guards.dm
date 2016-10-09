@@ -4,7 +4,7 @@
 	body_parts_covered = HANDS|ARMS
 	slowdown = 0.5
 	overgloves = 1
-	w_class = 3
+	w_class = ITEMSIZE_NORMAL
 
 /obj/item/clothing/gloves/arm_guard/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 	if(..()) //This will only run if no other problems occured when equiping.

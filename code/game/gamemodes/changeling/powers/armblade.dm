@@ -27,7 +27,7 @@
 	desc = "A grotesque blade made out of bone and flesh that cleaves through people as a hot knife through butter."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "arm_blade"
-	w_class = 5.0
+	w_class = ITEMSIZE_HUGE
 	force = 40
 	sharp = 1
 	edge = 1
