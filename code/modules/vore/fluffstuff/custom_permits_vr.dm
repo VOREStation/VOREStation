@@ -9,7 +9,7 @@
 	This license expires on DD/Month/YYYY and must be renewed by CentCom prior to this date."}
 	icon = 'icons/obj/card.dmi'
 	icon_state = "guest"
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 // END - DO NOT EDIT PROTOTYPE
 
 /* TEMPLATE
