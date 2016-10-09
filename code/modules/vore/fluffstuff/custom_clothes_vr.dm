@@ -563,7 +563,7 @@
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "pom_mob"
 
-	w_class = 2.0
+	w_class = ITEMSIZE_SMALL.0
 	on = 0
 	brightness_on = 5
 	light_overlay = null
@@ -632,7 +632,7 @@
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "arosuit_mob"
-	w_class = 4 //Oh but I can.
+	w_class = ITEMSIZE_LARGE //Oh but I can.
 	allowed = list(/obj/item/device/suit_cooling_unit) //Can't fit O2 tanks
 
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
@@ -676,7 +676,7 @@
 	armor = list(melee = 80, bullet = 50, laser = 35, energy = 15, bomb = 70, bio = 100, rad = 50) //These values were taken from the combat rigs and adjusted to be weaker than said rigs.
 	slowdown = 0
 	allowed = list(/obj/item/weapon/gun,/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/melee/baton)
-	w_class = 3
+	w_class = ITEMSIZE_NORMAL
 
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "joansuit"

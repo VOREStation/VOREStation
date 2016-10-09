@@ -8,7 +8,7 @@
 	throwforce = 0
 	hitsound = 'sound/weapons/bite.ogg'
 	attack_verb = list("chomped", "bit", "ripped", "mauled", "enforced")
-	w_class = 3
+	w_class = ITEMSIZE_NORMAL
 
 /obj/item/weapon/dogborg/jaws/small
 	name = "puppy jaws"
@@ -20,7 +20,7 @@
 	throwforce = 0
 	hitsound = 'sound/weapons/bite.ogg'
 	attack_verb = list("nibbled", "bit", "gnawed", "chomped", "nommed")
-	w_class = 3
+	w_class = ITEMSIZE_NORMAL
 	var/emagged = 0
 
 /obj/item/weapon/dogborg/jaws/small/attack_self(mob/user)
@@ -37,7 +37,7 @@
 			throwforce = 0
 			hitsound = 'sound/weapons/bite.ogg'
 			attack_verb = list("chomped", "bit", "ripped", "mauled", "enforced")
-			w_class = 3
+			w_class = ITEMSIZE_NORMAL
 		else
 			name = "puppy jaws"
 			icon = 'icons/mob/dogborg_vr.dmi'
@@ -48,7 +48,7 @@
 			throwforce = 0
 			hitsound = 'sound/weapons/bite.ogg'
 			attack_verb = list("nibbled", "bit", "gnawed", "chomped", "nommed")
-			w_class = 3
+			w_class = ITEMSIZE_NORMAL
 		update_icon()
 
 
@@ -62,7 +62,7 @@
 	force = 0
 	throwforce = 0
 	attack_verb = list("nuzzled", "nosed", "booped")
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 
 /obj/item/device/dogborg/boop_module/New()
 	..()
@@ -122,9 +122,9 @@
 	desc = "Fetch the thing!"
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "dbag"
-	w_class = 5
-	max_w_class = 2
-	max_combined_w_class = 2
+	w_class = ITEMSIZE_HUGE
+	max_w_class = ITEMSIZE_SMALL
+	max_combined_w_class = ITEMSIZE_SMALL
 	storage_slots = 1
 	collection_mode = 0
 	can_hold = list() // any
@@ -141,7 +141,7 @@
 	throwforce = 0
 	hitsound = 'sound/weapons/bite.ogg'
 	attack_verb = list("batted", "pawed", "bopped", "whapped")
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	var/charge = 0
 	var/charge_required = 1000
 	var/charge_per = 100
