@@ -34,7 +34,10 @@
 
 /obj/item/weapon/gun/energy/New()
 	..()
-	power_supply = new /obj/item/weapon/cell/device(src)
+	if(cell_type)
+		power_supply = new cell_type(src)
+	else
+		power_supply = new /obj/item/weapon/cell/device/weapon(src)
 	if(self_recharge)
 		processing_objects.Add(src)
 	update_icon()
@@ -168,7 +171,7 @@
 
 /obj/item/weapon/gun/energy/proc/start_recharge()
 	if(power_supply == null)
-		power_supply = new /obj/item/weapon/cell/device(src)
+		power_supply = new /obj/item/weapon/cell/device/weapon(src)
 	self_recharge = 1
 	processing_objects.Add(src)
 	update_icon()
