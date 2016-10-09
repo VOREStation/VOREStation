@@ -19,16 +19,17 @@
 		E.icon_state = "anom"
 		sleep(5 SECONDS)
 		qdel(E)
-		var/mob/living/L = new summoned_mob_type(T)
-		core.summoned_mobs |= L
-		L.summoned = 1
-		var/image/summon_underlay = image('icons/obj/objects.dmi',"anom")
-		summon_underlay.alpha = 127
-		L.underlays |= summon_underlay
-		on_summon(L)
-		user << "<span class='notice'>You've successfully teleported \a [L] to you!</span>"
-		visible_message("<span class='warning'>\A [L] appears from no-where!</span>")
-		user.adjust_instability(instability_cost)
+		if(owner) // We might've been dropped.
+			var/mob/living/L = new summoned_mob_type(T)
+			core.summoned_mobs |= L
+			L.summoned = 1
+			var/image/summon_underlay = image('icons/obj/objects.dmi',"anom")
+			summon_underlay.alpha = 127
+			L.underlays |= summon_underlay
+			on_summon(L)
+			user << "<span class='notice'>You've successfully teleported \a [L] to you!</span>"
+			visible_message("<span class='warning'>\A [L] appears from no-where!</span>")
+			user.adjust_instability(instability_cost)
 
 /obj/item/weapon/spell/summon/on_use_cast(mob/living/user)
 	if(summon_options.len)

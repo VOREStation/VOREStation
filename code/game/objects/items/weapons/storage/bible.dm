@@ -4,7 +4,7 @@
 	icon_state ="bible"
 	throw_speed = 1
 	throw_range = 5
-	w_class = 3.0
+	w_class = ITEMSIZE_NORMAL
 	var/mob/affecting = null
 	var/deity_name = "Christ"
 
@@ -17,9 +17,9 @@
 	..()
 	new /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer(src)
 	new /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer(src)
-	new /obj/item/weapon/spacecash(src)
-	new /obj/item/weapon/spacecash(src)
-	new /obj/item/weapon/spacecash(src)
+	new /obj/item/weapon/spacecash/c100(src)
+	new /obj/item/weapon/spacecash/c100(src)
+	new /obj/item/weapon/spacecash/c100(src)
 
 /obj/item/weapon/storage/bible/afterattack(atom/A, mob/user as mob, proximity)
 	if(!proximity) return

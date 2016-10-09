@@ -138,9 +138,8 @@ var/list/mechtoys = list(
 /datum/controller/supply
 	//supply points
 	var/points = 50
-	var/points_per_process = 1
+	var/points_per_process = 1.5
 	var/points_per_slip = 2
-	var/points_per_crate = 5
 	var/points_per_platinum = 5 // 5 points per sheet
 	var/points_per_phoron = 5
 	//control
@@ -193,12 +192,13 @@ var/list/mechtoys = list(
 
 			// Must be in a crate!
 			if(istype(MA,/obj/structure/closet/crate))
-				callHook("sell_crate", list(MA, area_shuttle))
+				var/obj/structure/closet/crate/CR = MA
+				callHook("sell_crate", list(CR, area_shuttle))
 
-				points += points_per_crate
+				points += CR.points_per_crate
 				var/find_slip = 1
 
-				for(var/atom in MA)
+				for(var/atom in CR)
 					// Sell manifests
 					var/atom/A = atom
 					if(find_slip && istype(A,/obj/item/weapon/paper/manifest))
@@ -247,6 +247,7 @@ var/list/mechtoys = list(
 			var/i = rand(1,clear_turfs.len)
 			var/turf/pickedloc = clear_turfs[i]
 			clear_turfs.Cut(i,i+1)
+			shoppinglist -= S
 
 			var/datum/supply_order/SO = S
 			var/datum/supply_packs/SP = SO.object
@@ -298,5 +299,4 @@ var/list/mechtoys = list(
 				slip.info += "</ul><br>"
 				slip.info += "CHECK CONTENTS AND STAMP BELOW THE LINE TO CONFIRM RECEIPT OF GOODS<hr>"
 
-		shoppinglist.Cut()
 		return

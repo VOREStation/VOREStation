@@ -31,7 +31,7 @@
 	holder_type = /obj/item/weapon/holder/mouse
 	mob_size = MOB_MINISCULE
 
-	can_pull_size = 1
+	can_pull_size = ITEMSIZE_TINY
 	can_pull_mobs = MOB_PULL_NONE
 
 /mob/living/simple_animal/mouse/Life()

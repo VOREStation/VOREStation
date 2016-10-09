@@ -17,7 +17,7 @@ var/global/list/robot_modules = list(
 	name = "robot module"
 	icon = 'icons/obj/module.dmi'
 	icon_state = "std_module"
-	w_class = 100.0
+	w_class = ITEMSIZE_NO_CONTAINER
 	item_state = "electronic"
 	flags = CONDUCT
 	var/hide_on_manifest = 0
@@ -685,7 +685,7 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/security/combat/New()
 	src.modules += new /obj/item/device/flash(src)
-	src.modules += new /obj/item/borg/sight/thermal(src)
+	//src.modules += new /obj/item/borg/sight/thermal(src) // VOREStation Edit
 	src.modules += new /obj/item/weapon/gun/energy/laser/mounted(src)
 	src.modules += new /obj/item/weapon/pickaxe/plasmacutter(src)
 	src.modules += new /obj/item/borg/combat/shield(src)

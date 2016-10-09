@@ -5,7 +5,7 @@
 	icon_state = "stamp-qm"
 	item_state = "stamp"
 	throwforce = 0
-	w_class = 1.0
+	w_class = ITEMSIZE_TINY
 	throw_speed = 7
 	throw_range = 15
 	matter = list(DEFAULT_WALL_MATERIAL = 60)
@@ -13,7 +13,7 @@
 	attack_verb = list("stamped")
 
 /obj/item/weapon/stamp/captain
-	name = "station administrator's rubber stamp"
+	name = "colony director's rubber stamp"
 	icon_state = "stamp-cap"
 
 /obj/item/weapon/stamp/hop

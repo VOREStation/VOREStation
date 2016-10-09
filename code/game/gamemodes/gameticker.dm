@@ -288,7 +288,7 @@ var/global/datum/controller/gameticker/ticker
 		var/captainless=1
 		for(var/mob/living/carbon/human/player in player_list)
 			if(player && player.mind && player.mind.assigned_role)
-				if(player.mind.assigned_role == "Station Administrator")
+				if(player.mind.assigned_role == "Colony Director")
 					captainless=0
 				if(!player_is_antag(player.mind, only_offstation_roles = 1))
 					job_master.EquipRank(player, player.mind.assigned_role, 0)
@@ -297,7 +297,7 @@ var/global/datum/controller/gameticker/ticker
 		if(captainless)
 			for(var/mob/M in player_list)
 				if(!istype(M,/mob/new_player))
-					M << "Station Administratorship not forced on anyone."
+					M << "Colony Directorship not forced on anyone."
 
 
 	proc/process()

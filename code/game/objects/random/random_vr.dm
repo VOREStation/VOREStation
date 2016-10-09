@@ -86,10 +86,8 @@
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "666"
 	item_to_spawn()
-		return pick(/*prob(5);/obj/item/weapon/storage/fancy/shotgun_ammo/beanbag,\
-					prob(5);/obj/item/weapon/storage/fancy/shotgun_ammo/pellet,\
-					prob(5);/obj/item/weapon/storage/fancy/shotgun_ammo/flash,\
-					prob(5);/obj/item/weapon/storage/fancy/shotgun_ammo/slug,\*/
+		return pick(prob(5);/obj/item/weapon/storage/box/shotgunammo,\
+					prob(5);/obj/item/weapon/storage/box/shotgunshells,\
 					prob(5);/obj/item/ammo_magazine/a357,\
 					prob(5);/obj/item/ammo_magazine/clip/a762,\
 					prob(5);/obj/item/ammo_magazine/c45m,\
@@ -123,6 +121,11 @@
 				/*	prob(1);/obj/item/ammo_magazine/battlerifle,\ */
 					prob(1);/obj/item/ammo_casing/rocket,\
 					prob(1);/obj/item/weapon/storage/box/sniperammo,\
+					prob(1);/obj/item/weapon/storage/box/flashshells,\
+					prob(1);/obj/item/weapon/storage/box/beanbags,\
+					prob(1);/obj/item/weapon/storage/box/practiceshells,\
+					prob(1);/obj/item/weapon/storage/box/stunshells,\
+					prob(1);/obj/item/weapon/storage/box/blanks,\
 					prob(1);/obj/item/ammo_magazine/stg,\
 					prob(1);/obj/item/ammo_magazine/tommydrum,\
 					prob(1);/obj/item/ammo_magazine/tommymag

@@ -44,6 +44,7 @@
 	var/building_terminal = 0 //Suggestions about how to avoid clickspam building several terminals accepted!
 	var/obj/machinery/power/terminal/terminal = null
 	var/should_be_mapped = 0 // If this is set to 0 it will send out warning on New()
+	var/grid_check = FALSE // If true, suspends all I/O.
 
 /obj/machinery/power/smes/drain_power(var/drain_check, var/surge, var/amount = 0)
 
@@ -124,7 +125,7 @@
 	var/last_onln = outputting
 
 	//inputting
-	if(input_attempt && (!input_pulsed && !input_cut))
+	if(input_attempt && (!input_pulsed && !input_cut) && !grid_check)
 		var/target_load = min((capacity-charge)/SMESRATE, input_level)	// charge at set rate, limited to spare capacity
 		var/actual_load = draw_power(target_load)						// add the load to the terminal side network
 		charge += actual_load * SMESRATE								// increase the charge
@@ -137,7 +138,7 @@
 			inputting = 0
 
 	//outputting
-	if(outputting && (!output_pulsed && !output_cut))
+	if(outputting && (!output_pulsed && !output_cut) && !grid_check)
 		output_used = min( charge/SMESRATE, output_level)		//limit output to that stored
 
 		charge -= output_used*SMESRATE		// reduce the storage (may be recovered in /restore() if excessive)
@@ -419,6 +420,11 @@
 		charge = 0
 	update_icon()
 	..()
+
+/obj/machinery/power/smes/overload(var/obj/machinery/power/source) // This propagates the power spike down the powernet.
+	if(istype(source, /obj/machinery/power/smes)) // Prevent infinite loops if two SMESes are hooked up to each other.
+		return
+	power_spike()
 
 
 /obj/machinery/power/smes/magical

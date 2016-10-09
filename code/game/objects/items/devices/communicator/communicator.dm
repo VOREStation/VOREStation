@@ -10,7 +10,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	communications across different stations, planets, or even star systems."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "communicator"
-	w_class = 2.0
+	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_ID | SLOT_BELT
 	show_messages = 1
 

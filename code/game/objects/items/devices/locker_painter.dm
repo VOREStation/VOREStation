@@ -55,7 +55,7 @@
 		"warden" = 				list("open" = "wardensecureopen", "closed" = "wardensecure", "locked" = "wardensecure1", "broken" = "wardensecurebroken", "off" = "wardensecureoff"),
 		"HoS" = 				list("open" = "hossecureopen", "closed" = "hossecure", "locked" = "hossecure1", "broken" = "hossecurebroken", "off" = "hossecureoff"),
 		"HoP" = 				list("open" = "hopsecureopen", "closed" = "hopsecure", "locked" = "hopsecure1", "broken" = "hopsecurebroken", "off" = "hopsecureoff"),
-		"Captain" = 			list("open" = "capsecureopen", "closed" = "capsecure", "locked" = "capsecure1", "broken" = "capsecurebroken", "off" = "capsecureoff")
+		"Administrator" = 			list("open" = "capsecureopen", "closed" = "capsecure", "locked" = "capsecure1", "broken" = "capsecurebroken", "off" = "capsecureoff")
 		)
 
 /obj/item/device/closet_painter/afterattack(atom/A, var/mob/user, proximity)

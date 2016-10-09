@@ -1,6 +1,6 @@
 /datum/technomancer/spell/mend_metal
 	name = "Mend Metal"
-	desc = "Restores integrity to external robotic components.  Instability is split between the target and technomancer, if seperate."
+	desc = "Restores integrity to external robotic components."
 	cost = 50
 	obj_path = /obj/item/weapon/spell/insert/mend_metal
 	ability_icon_state = "tech_mendwounds"
@@ -19,14 +19,13 @@
 	spawn(1)
 		if(ishuman(host))
 			var/mob/living/carbon/human/H = host
+			var/heal_power = host == origin ? 10 : 30
+			origin.adjust_instability(10)
 			for(var/i = 0, i<5,i++)
 				if(H)
 					for(var/obj/item/organ/external/O in H.organs)
 						if(O.robotic < ORGAN_ROBOT) // Robot parts only.
 							continue
-						O.heal_damage(5, 0, internal = 1, robo_repair = 1)
-
-					H.adjust_instability(2.5)
-					origin.adjust_instability(2.5)
+						O.heal_damage(heal_power / 5, 0, internal = 1, robo_repair = 1)
 					sleep(1 SECOND)
 		on_expire()

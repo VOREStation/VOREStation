@@ -128,7 +128,7 @@
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "shredp"
 	throwforce = 0
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	throw_range = 3
 	throw_speed = 1
 

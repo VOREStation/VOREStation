@@ -8,7 +8,7 @@
 	default_language = "Skrellian" //Closest we have.
 
 /datum/species/monkey/sergal
-	name = "Sergaling"
+	name = "Saru"
 	greater_form = "Sergal"
 	icobase = 'icons/mob/human_races/monkeys/r_sergaling_vr.dmi'
 	deform = 'icons/mob/human_races/monkeys/r_sergaling_vr.dmi'
@@ -60,7 +60,7 @@
 	..(new_loc, "Sobaka")
 
 /mob/living/carbon/human/sergallingm/New(var/new_loc)
-	..(new_loc, "Sergaling")
+	..(new_loc, "Saru")
 
 /mob/living/carbon/human/sparram/New(var/new_loc)
 	..(new_loc, "Sparra")

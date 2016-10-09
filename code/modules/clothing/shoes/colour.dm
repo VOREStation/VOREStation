@@ -61,6 +61,10 @@
 	icon_state = "flatswhite"
 	item_state_slots = list(slot_r_hand_str = "white", slot_l_hand_str = "white")
 
+/obj/item/clothing/shoes/flats/white/color
+	name = "flats"
+	desc = "Sleek flats."
+
 /obj/item/clothing/shoes/flats/red
 	name = "red flats"
 	desc = "Ruby red flats."

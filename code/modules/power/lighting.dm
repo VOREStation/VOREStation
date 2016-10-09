@@ -16,7 +16,7 @@
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "tube-construct-stage1"
 	anchored = 1
-	layer = 5
+//	layer = 5 // Vorestation removal.
 	var/stage = 1
 	var/fixture_type = "tube"
 	var/sheets_refunded = 2
@@ -198,6 +198,11 @@
 	light_type = /obj/item/weapon/light/bulb
 	var/lamp_shade = 1
 
+//Vorestation addition, to override the New() proc further below, since this is a lamp.
+/obj/machinery/light/flamp/New()
+	..()
+	layer = OBJ_LAYER
+
 /obj/machinery/light/small/emergency
 	brightness_range = 6
 	brightness_power = 2
@@ -242,6 +247,9 @@
 					broken(1)
 		spawn(1)
 			update(0)
+	//Vorestation addition, so large mobs stop looking stupid in front of lights.
+	if (dir == 2)
+		layer = 5
 
 /obj/machinery/light/Destroy()
 	var/area/A = get_area(src)
@@ -702,7 +710,7 @@
 	icon = 'icons/obj/lighting.dmi'
 	force = 2
 	throwforce = 5
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	var/status = 0		// LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
 	var/base_state
 	var/switchcount = 0	// number of times switched
@@ -723,7 +731,7 @@
 	brightness_power = 3
 
 /obj/item/weapon/light/tube/large
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	name = "large light tube"
 	brightness_range = 15
 	brightness_power = 4
@@ -827,4 +835,4 @@
 	desc = "A lamp shade for a lamp."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "lampshade"
-	w_class = 1
+	w_class = ITEMSIZE_TINY

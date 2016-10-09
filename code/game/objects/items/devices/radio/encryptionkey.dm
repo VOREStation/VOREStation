@@ -4,7 +4,7 @@
 	desc = "An encryption key for a radio headset. Contains cypherkeys."
 	icon = 'icons/obj/radio.dmi'
 	icon_state = "cypherkey"
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_EARS
 	var/translate_binary = 0
 	var/translate_hive = 0
@@ -60,7 +60,7 @@
 	channels = list("Command" = 1)
 
 /obj/item/device/encryptionkey/heads/captain
-	name = "station administrator's encryption key"
+	name = "colony director's encryption key"
 	icon_state = "cap_cypherkey"
 	channels = list("Command" = 1, "Security" = 1, "Engineering" = 0, "Science" = 0, "Medical" = 0, "Supply" = 0, "Service" = 0)
 

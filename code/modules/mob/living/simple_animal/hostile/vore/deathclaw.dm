@@ -5,6 +5,7 @@
 	icon_dead = "deathclaw-dead"
 	icon_living = "deathclaw"
 	icon_state = "deathclaw"
+	attacktext = "mauled"
 	old_x = -16
 	old_y = 0
 	pixel_x = -16

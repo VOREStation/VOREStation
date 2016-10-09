@@ -122,6 +122,14 @@
 	path = /obj/item/clothing/head/cowboy_hat
 	cost = 3
 
+/datum/gear/head/fedora
+	display_name = "fedora, brown"
+	path = /obj/item/clothing/head/fedora/brown
+
+/datum/gear/head/fedora/grey
+	display_name = "fedora, grey"
+	path = /obj/item/clothing/head/fedora/grey
+
 /datum/gear/head/hairflower
 	display_name = "hair flower pin, red"
 	path = /obj/item/clothing/head/hairflower

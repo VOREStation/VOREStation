@@ -60,6 +60,7 @@
 		"Nymph Chirping"		=	'sound/misc/nymphchirp.ogg',
 		"Sad Trombone"			=	'sound/misc/sadtrombone.ogg',
 		"Honk"					=	'sound/items/bikehorn.ogg',
+		"Bone Fracture"			=	"fracture",
 		)
 	var/selected_sound = null
 
@@ -75,10 +76,10 @@
 	var/turf/T = get_turf(hit_atom)
 	if(selected_sound && pay_energy(200))
 		playsound(T, selected_sound, 80, 1, -1)
-		owner.adjust_instability(1)
+		adjust_instability(1)
 		// Air Horn time.
 		if(selected_sound == 'sound/items/AirHorn.ogg' && pay_energy(3800))
-			owner.adjust_instability(49) // Pay for your sins.
+			adjust_instability(49) // Pay for your sins.
 			for(var/mob/living/carbon/M in ohearers(6, T))
 				if(M.get_ear_protection() >= 2)
 					continue

@@ -6,7 +6,7 @@
 	fear and excitement. Ultimately, their purpose is unknown. However, it is up to you and your crew to decide if \
 	their powers can be used for good or if their arrival foreshadows the destruction of the entire colony, or worse."
 	config_tag = "technomancer"
-	votable = 0
+	votable = 1
 	required_players = 5
 	required_players_secret = 5
 	required_enemies = 1

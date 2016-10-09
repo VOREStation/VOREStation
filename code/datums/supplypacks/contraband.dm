@@ -24,8 +24,7 @@
 	name = "Special Ops supplies"
 	contains = list(
 			/obj/item/weapon/storage/box/emps,
-			/obj/item/weapon/grenade/smokebomb = 3,
-			/obj/item/weapon/pen/reagent/paralysis,
+			/obj/item/weapon/grenade/smokebomb = 4,
 			/obj/item/weapon/grenade/chem_grenade/incendiary
 			)
 	cost = 25
