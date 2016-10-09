@@ -563,7 +563,7 @@
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "pom_mob"
 
-	w_class = ITEMSIZE_SMALL.0
+	w_class = ITEMSIZE_SMALL
 	on = 0
 	brightness_on = 5
 	light_overlay = null
