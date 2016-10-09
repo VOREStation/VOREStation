@@ -489,7 +489,7 @@
 "ju" = (/obj/structure/bed/chair/wood{dir = 8},/turf/simulated/floor/wood,/area/space)
 "jv" = (/obj/structure/sink/kitchen{pixel_y = 30},/turf/simulated/floor/tiled/white,/area/space)
 "jw" = (/obj/structure/table/marble,/turf/simulated/floor/tiled/white,/area/space)
-"jx" = (/obj/structure/table/marble,/obj/machinery/microwave{step_y = 6},/turf/simulated/floor/tiled/white,/area/space)
+"jx" = (/obj/structure/table/marble,/obj/machinery/microwave,/turf/simulated/floor/tiled/white,/area/space)
 "jy" = (/obj/machinery/vending/food,/turf/simulated/floor/tiled/white,/area/space)
 "jz" = (/obj/structure/window/reinforced{dir = 8; health = 1e+006},/turf/simulated/floor/holofloor/beach/sand{tag = "icon-dgrass0"; icon_state = "dgrass0"},/area/space)
 "jA" = (/obj/structure/window/reinforced{dir = 4; health = 1e+006},/turf/simulated/floor/holofloor/beach/sand{tag = "icon-dgrass0"; icon_state = "dgrass0"},/area/space)
