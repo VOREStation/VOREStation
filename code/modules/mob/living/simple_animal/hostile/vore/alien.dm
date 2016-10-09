@@ -50,11 +50,11 @@
 	icon_living = "xenosentinel"
 	icon_dead = "xenosentinel-dead"
 	health = 120
-	melee_damage_lower = 15
-	melee_damage_upper = 15
-	ranged = 1
-	projectiletype = /obj/item/projectile/neurotox
-	projectilesound = 'sound/weapons/pierce.ogg'
+	melee_damage_lower = 30 // Buffed from 15 since vore doesn't work for ranged mobs.
+	melee_damage_upper = 30
+//	ranged = 1
+//	projectiletype = /obj/item/projectile/neurotox
+//	projectilesound = 'sound/weapons/pierce.ogg'
 
 
 /mob/living/simple_animal/hostile/vore/alien/queen
@@ -63,13 +63,13 @@
 	icon_living = "xenoqueen"
 	icon_dead = "xenoqueen-dead"
 	maxHealth = 250
-	melee_damage_lower = 15
-	melee_damage_upper = 15
-	ranged = 1
+	melee_damage_lower = 30 // Buffed from 15 since vore doesn't work for ranged mobs.
+	melee_damage_upper = 30
+//	ranged = 1
 	move_to_delay = 3
-	projectiletype = /obj/item/projectile/neurotox
-	projectilesound = 'sound/weapons/pierce.ogg'
-	rapid = 1
+//	projectiletype = /obj/item/projectile/neurotox
+//	projectilesound = 'sound/weapons/pierce.ogg'
+//	rapid = 1
 	status_flags = 0
 
 /mob/living/simple_animal/hostile/vore/alien/queen/large
@@ -87,6 +87,7 @@
 	pixel_x = -16
 	pixel_y = 0
 	capacity = 3
+	eat_chance = 80
 
 /obj/item/projectile/neurotox
 	damage = 30
@@ -96,3 +97,4 @@
 	..()
 	visible_message("[src] lets out a waning guttural screech, green blood bubbling from its maw...")
 	playsound(src, 'sound/voice/hiss6.ogg', 100, 1)
+	invisibility = 25 // To reset invisibility to be visible.

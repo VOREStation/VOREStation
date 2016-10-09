@@ -22,9 +22,6 @@
 	attacktext = "bitten"
 	attack_sound = 'sound/weapons/bite.ogg'
 
-	capacity = 1
-	max_size = 0.5
-
 	//Space carp aren't affected by atmos.
 	min_oxy = 0
 	max_oxy = 0
@@ -41,7 +38,7 @@
 	faction = "carp"
 
 /mob/living/simple_animal/hostile/vore/carp/Process_Spacemove(var/check_drift = 0)
-	return 1	//No drifting in space for space carp!	//original comments do not steal
+	return 1	//No drifting in space for space carp!
 
 /mob/living/simple_animal/hostile/vore/carp/FindTarget()
 	. = ..()
@@ -85,7 +82,7 @@
 	break_stuff_probability = 15
 
 /mob/living/simple_animal/hostile/vore/large/carp/Process_Spacemove(var/check_drift = 0)
-	return 1	//No drifting in space for space carp!	//original comments do not steal
+	return 1	//No drifting in space for space carp!
 
 /mob/living/simple_animal/hostile/vore/large/carp/FindTarget()
 	. = ..()
