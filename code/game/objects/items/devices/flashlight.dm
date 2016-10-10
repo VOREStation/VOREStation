@@ -163,7 +163,7 @@
 			user.put_in_hands(cell)
 			cell = null
 			user << "<span class='notice'>You remove the cell from the [src].</span>"
-			on = !on
+			on = 0
 			update_icon()
 			return
 		..()
