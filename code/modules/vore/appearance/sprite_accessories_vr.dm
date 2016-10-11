@@ -628,6 +628,11 @@
 	icon_state = "seromitail_feathers_hc_s"
 	do_colouration = 1
 
+/datum/sprite_accessory/tail/zenghu_taj
+	name = "Zeng-Hu Tajaran Synth tail"
+	desc = ""
+	icon_state = "zenghu_taj"
+
 /*
 ////////////////////////////
 /  =--------------------=  /
