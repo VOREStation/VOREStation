@@ -213,7 +213,7 @@ var/list/solars_list = list()
 	var/glass_type = null
 
 /obj/item/solar_assembly/attack_hand(var/mob/user)
-	if(!anchored && isturf(loc)) // You can't pick it up
+	if(!anchored || !isturf(loc)) // You can't pick it up
 		..()
 
 // Give back the glass type we were supplied with
@@ -225,8 +225,9 @@ var/list/solars_list = list()
 
 
 /obj/item/solar_assembly/attackby(var/obj/item/weapon/W, var/mob/user)
-
-	if(!anchored && isturf(loc))
+	if (!isturf(loc))
+		return 0
+	if(!anchored)
 		if(istype(W, /obj/item/weapon/wrench))
 			anchored = 1
 			user.visible_message("<span class='notice'>[user] wrenches the solar assembly into place.</span>")
