@@ -25,3 +25,10 @@
 
 /obj/item/weapon/disk/limb/talon
 	company = "Talon LLC"
+
+/datum/robolimb/zenghu_taj
+    company = "Zeng-Hu - Tajaran"
+    desc = "This limb has a rubbery fleshtone covering with visible seams."
+    icon = 'icons/mob/human_races/cyberlimbs/zenghu/zenghu_taj.dmi'
+    unavailable_to_build = 1
+    parts = list(BP_HEAD)
