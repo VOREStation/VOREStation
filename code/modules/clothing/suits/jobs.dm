@@ -14,15 +14,15 @@
 
 //Captain
 /obj/item/clothing/suit/captunic
-	name = "station administrator's parade tunic"
-	desc = "Worn by a Station Administrator to show their class."
+	name = "colony director's parade tunic"
+	desc = "Worn by a Colony Director to show their class."
 	icon_state = "captunic"
 	body_parts_covered = UPPER_TORSO|ARMS
 	flags_inv = HIDEJUMPSUIT
 
 /obj/item/clothing/suit/captunic/capjacket
-	name = "station administrator's uniform jacket"
-	desc = "A less formal jacket for everyday Station Administrator use."
+	name = "colony director's uniform jacket"
+	desc = "A less formal jacket for everyday Colony Director use."
 	icon_state = "capjacket"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	flags_inv = HIDEJUMPSUIT

@@ -68,6 +68,7 @@
 	var/cell_type = /obj/item/weapon/cell/apc
 	var/opened = 0 //0=closed, 1=opened, 2=cover removed
 	var/shorted = 0
+	var/grid_check = FALSE
 	var/lighting = 3
 	var/equipment = 3
 	var/environ = 3
@@ -796,7 +797,7 @@
 	return "[area.name] : [equipment]/[lighting]/[environ] ([lastused_equip+lastused_light+lastused_environ]) : [cell? cell.percent() : "N/C"] ([charging])"
 
 /obj/machinery/power/apc/proc/update()
-	if(operating && !shorted)
+	if(operating && !shorted && !grid_check)
 		area.power_light = (lighting > 1)
 		area.power_equip = (equipment > 1)
 		area.power_environ = (environ > 1)
@@ -1001,7 +1002,7 @@
 	if(debug)
 		log_debug("Status: [main_status] - Excess: [excess] - Last Equip: [lastused_equip] - Last Light: [lastused_light] - Longterm: [longtermpower]")
 
-	if(cell && !shorted)
+	if(cell && !shorted && !grid_check)
 		// draw power from cell as before to power the area
 		var/cellused = min(cell.charge, CELLRATE * lastused_total)	// clamp deduction to a max, amount left in cell
 		cell.use(cellused)
@@ -1196,7 +1197,7 @@ obj/machinery/power/apc/proc/autoset(var/val, var/on)
 // overload the lights in this APC area
 
 /obj/machinery/power/apc/proc/overload_lighting(var/chance = 100)
-	if(/* !get_connection() || */ !operating || shorted)
+	if(/* !get_connection() || */ !operating || shorted || grid_check)
 		return
 	if( cell && cell.charge>=20)
 		cell.use(20);
@@ -1224,5 +1225,35 @@ obj/machinery/power/apc/proc/autoset(var/val, var/on)
 	locked = 1
 	update_icon()
 	return 1
+
+/obj/machinery/power/apc/overload(var/obj/machinery/power/source)
+	if(is_critical)
+		return
+
+	if(prob(30)) // Nothing happens.
+		return
+
+	if(prob(40)) // Lights blow.
+		overload_lighting()
+
+	if(prob(40)) // Spooky flickers.
+		for(var/obj/machinery/light/L in area)
+			L.flicker(20)
+
+	if(prob(25)) // Bluescreens.
+		emagged = 1
+		locked = 0
+		update_icon()
+
+	if(prob(25)) // Cell gets damaged.
+		if(cell)
+			cell.corrupt()
+
+	if(prob(10)) // Computers get broken.
+		for(var/obj/machinery/computer/comp in area)
+			comp.ex_act(3)
+
+	if(prob(5)) // APC completely ruined.
+		set_broken()
 
 #undef APC_UPDATE_ICON_COOLDOWN

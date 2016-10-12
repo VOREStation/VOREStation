@@ -1002,6 +1002,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(!(species.flags & NO_PAIN))
 			owner.emote("scream")
 
+	playsound(src.loc, "fracture", 10, 1, -2)
 	status |= ORGAN_BROKEN
 	broken_description = pick("broken","fracture","hairline fracture")
 

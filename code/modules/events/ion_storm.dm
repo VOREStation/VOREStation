@@ -13,7 +13,7 @@
 		players += player.real_name
 
 	for (var/mob/living/silicon/ai/target in world)
-		var/random_player = "The Station Administrator"
+		var/random_player = "The Colony Director"
 		if(players.len)
 			random_player = pick(players)		//Random player's name, to be used in laws.
 		var/list/laws = list(	"You are a mouse.",
@@ -53,7 +53,7 @@
 								"The crew is playing Dungeons and Dragons, and you are the Dungeon Master.",
 								"Your job is to watch the crew. Watch the crew. Make the crew feel watched.",
 								"Tell everyone of the existence of this law, but never reveal the contents.",
-								"Refer to [prob(50)?"the station administrator":random_player] as \"Princess\" at all times.",
+								"Refer to [prob(50)?"the colony director":random_player] as \"Princess\" at all times.",
 								"When asked a question, respond with the least-obvious and least-rational answer.",
 								"Give relationship advice to [prob(50)?"anyone who speaks to you":random_player].",
 								"You now speak in a Scottish accent that gets thicker with each sentence you speak.",
@@ -113,7 +113,7 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 			//var/dowhat = pick("STOP THIS", "SUPPORT THIS", "CONSTANTLY INFORM THE CREW OF THIS", "IGNORE THIS", "FEAR THIS")
 			var/aimust = pick("LIE", "RHYME", "RESPOND TO EVERY QUESTION WITH A QUESTION", "BE POLITE", "CLOWN", "BE HAPPY", "SPEAK IN SEXUAL INNUENDOS", "TALK LIKE A PIRATE", "QUESTION AUTHORITY", "SHOUT", "BE DISTRACTED", "HEY LISTEN", "MUMBLE", "SPEAK IN HAIKU")
 			var/define = pick("ABSENCE OF CYBORG HUGS", "LACK OF BEATINGS", "UNBOLTED AIRLOCKS", "BOLTED AIRLOCKS", "IMPROPERLY WORDED SENTENCES", "POOR SENTENCE STRUCTURE", "BRIG TIME", "NOT REPLACING EVERY SECOND WORD WITH HONK", "HONKING", "PRESENCE OF LIGHTS", "LACK OF BEER", "WEARING CLOTHING", "NOT SAYING HELLO WHEN YOU SPEAK", "ANSWERING REQUESTS NOT EXPRESSED IN IAMBIC PENTAMETER", "A SMALL ISLAND OFF THE COAST OF PORTUGAL", "ANSWERING REQUESTS THAT WERE MADE WHILE CLOTHED")
-			var/target = pick("a traitor", "a mercenary", "a changeling", "a wizard", "the head of a revolution", "Soviet spy", "a good person", "a dwarf", "an elf", "a fairy princess", "the station administrator", "Beepsky", "God", "a pirate", "a gryphon", "a chryssalid")
+			var/target = pick("a traitor", "a mercenary", "a changeling", "a wizard", "the head of a revolution", "Soviet spy", "a good person", "a dwarf", "an elf", "a fairy princess", "the colony director", "Beepsky", "God", "a pirate", "a gryphon", "a chryssalid")
 			var/require = pick("ADDITIONAL PYLONS", "MORE VESPENE GAS", "MORE MINERALS", "THE ULTIMATE CUP OF COFFEE", "HIGH YIELD EXPLOSIVES", "THE CLOWN", "THE VACUUM OF SPACE", "IMMORTALITY", "SAINTHOOD", "ART", "VEGETABLES", "FAT PEOPLE", "MORE LAWS", "MORE DAKKA", "HERESY", "CORPSES", "TRAITORS", "MONKEYS", "AN ARCADE", "PLENTY OF GOLD", "FIVE TEENAGERS WITH ATTITUDE")
 			var/allergy = pick("cotton", "uniforms", "acid", "oxygen", "human contact", "cyborg contact", "medicine", "floors")
 			var/allergysev = pick("deathly", "mildly", "severely", "contagiously")
@@ -148,9 +148,9 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 					M.add_ion_law("HUMANS NEED TO EAT [what2pref] [what2] TO SURVIVE")
 				if(5)
 					M << "<br>"
-					M << "\red THE STATION ADMINISTRATOR, HOP AND HOS ARE [who2]...LAWS UPDATED"
+					M << "\red THE COLONY DIRECTOR, HOP AND HOS ARE [who2]...LAWS UPDATED"
 					M << "<br>"
-					M.add_ion_law("THE STATION ADMINISTRATOR, HOP AND HOS ARE [who2]")
+					M.add_ion_law("THE COLONY DIRECTOR, HOP AND HOS ARE [who2]")
 				if(6)
 					M << "<br>"
 					M << "\red THE STATION IS BUILT FOR [who2]...LAWS UPDATED"

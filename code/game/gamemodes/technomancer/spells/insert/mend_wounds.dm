@@ -20,10 +20,10 @@
 	spawn(1)
 		if(ishuman(host))
 			var/mob/living/carbon/human/H = host
+			var/heal_power = host == origin ? 10 : 30
+			origin.adjust_instability(10)
 			for(var/i = 0, i<5,i++)
 				if(H)
-					H.adjustBruteLoss(-5)
-					H.adjust_instability(2.5)
-					origin.adjust_instability(2.5)
+					H.adjustBruteLoss(-heal_power / 5)
 					sleep(1 SECOND)
 		on_expire()

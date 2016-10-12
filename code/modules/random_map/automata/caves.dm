@@ -45,7 +45,10 @@
 	var/turf/simulated/mineral/T = locate((origin_x-1)+x,(origin_y-1)+y,origin_z)
 	if(istype(T) && !T.ignore_mapgen)
 		if(map[current_cell] == FLOOR_CHAR)
-			T.make_floor()
+			if(prob(90))
+				T.make_floor()
+			else
+				T.ChangeTurf(/turf/space/cracked_asteroid)
 		else
 			T.make_wall()
 			if(map[current_cell] == DOOR_CHAR)

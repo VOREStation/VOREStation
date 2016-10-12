@@ -127,7 +127,7 @@
 /var/const/access_captain = 20
 /datum/access/captain
 	id = access_captain
-	desc = "Station Administrator"
+	desc = "Colony Director"
 	region = ACCESS_REGION_COMMAND
 
 /var/const/access_all_personal_lockers = 21

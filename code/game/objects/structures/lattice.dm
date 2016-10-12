@@ -57,10 +57,11 @@
 		return
 	if (istype(C, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = C
-		if(WT.remove_fuel(0, user))
-			user << "<span class='notice'>Slicing lattice joints ...</span>"
-		PoolOrNew(/obj/item/stack/rods, src.loc)
-		qdel(src)
+		if(WT.welding == 1)
+			if(WT.remove_fuel(0, user))
+				user << "<span class='notice'>Slicing lattice joints ...</span>"
+			PoolOrNew(/obj/item/stack/rods, src.loc)
+			qdel(src)
 
 	return
 

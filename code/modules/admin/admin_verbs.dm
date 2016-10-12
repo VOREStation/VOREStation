@@ -197,7 +197,8 @@ var/list/admin_verbs_debug = list(
 	/client/proc/dsay,
 	/client/proc/toggle_debug_logs,
 	/client/proc/admin_ghost,			//allows us to ghost/reenter body at will,
-	/datum/admins/proc/view_runtimes
+	/datum/admins/proc/view_runtimes,
+	/client/proc/show_gm_status
 	)
 
 var/list/admin_verbs_paranoid_debug = list(
@@ -308,7 +309,11 @@ var/list/admin_verbs_mod = list(
 	/datum/admins/proc/paralyze_mob,
 	/client/proc/cmd_admin_direct_narrate,
 	/client/proc/allow_character_respawn,   // Allows a ghost to respawn ,
-	/datum/admins/proc/sendFax
+	/datum/admins/proc/sendFax,
+	/client/proc/getserverlog,			//allows us to fetch server logs (diary) for other days,
+	/datum/admins/proc/view_txt_log,	//shows the server log (diary) for today,
+	/datum/admins/proc/view_atk_log		//shows the server combat-log, doesn't do anything presently,
+
 
 )
 

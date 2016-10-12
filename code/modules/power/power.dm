@@ -138,6 +138,29 @@
 		..()
 	return
 
+// Used for power spikes by the engine, has specific effects on different machines.
+/obj/machinery/power/proc/overload(var/obj/machinery/power/source)
+	return
+
+/obj/machinery/power/proc/power_spike()
+	var/obj/machinery/power/grid_checker/G = locate() in powernet.nodes
+	if(G) // If we found a grid checker, then all is well.
+		G.power_failure(prob(30))
+	else // Otherwise lets break some stuff.
+		spawn(1)
+			command_announcement.Announce("Dangerous power spike detected in the power network.  Please check machinery \
+			for electrical damage.",
+			"Critical Power Overload")
+			var/i = 0
+			var/limit = rand(30, 50)
+			for(var/obj/machinery/power/P in powernet.nodes)
+				P.overload(src)
+				i++
+				if(i % 5)
+					sleep(1)
+				if(i >= limit)
+					break
+
 ///////////////////////////////////////////
 // Powernet handling helpers
 //////////////////////////////////////////

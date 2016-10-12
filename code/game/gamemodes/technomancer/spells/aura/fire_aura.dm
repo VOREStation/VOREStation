@@ -47,4 +47,4 @@
 				T.hotspot_expose(1000, 50, 1)
 				T.create_fire(fire_power)
 
-	owner.adjust_instability(1)
+	adjust_instability(1)

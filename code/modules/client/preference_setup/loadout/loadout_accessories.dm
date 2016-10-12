@@ -24,6 +24,10 @@
 	display_name = "armband, medical"
 	path = /obj/item/clothing/accessory/armband/med
 
+/datum/gear/accessory/medical/cross
+	display_name = "armband, medic"
+	path = /obj/item/clothing/accessory/armband/med/cross
+
 /datum/gear/accessory/science
 	display_name = "armband, science"
 	path = /obj/item/clothing/accessory/armband/science
@@ -73,7 +77,7 @@
 /datum/gear/accessory/holster
 	display_name = "holster, armpit"
 	path = /obj/item/clothing/accessory/holster/armpit
-	allowed_roles = list("Station Administrator", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective")
+	allowed_roles = list("Colony Director", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective")
 
 /datum/gear/accessory/holster/hip
 	display_name = "holster, hip"

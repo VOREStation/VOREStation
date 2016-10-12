@@ -1,7 +1,6 @@
 /datum/technomancer/spell/purify
 	name = "Purify"
-	desc = "Clenses the body of harmful impurities, such as toxins, radiation, viruses, genetic damage, and such.  \
-	Instability is split between the target and technomancer, if seperate."
+	desc = "Clenses the body of harmful impurities, such as toxins, radiation, viruses, genetic damage, and such."
 	cost = 25
 	obj_path = /obj/item/weapon/spell/insert/purify
 	ability_icon_state = "tech_purify"
@@ -24,12 +23,12 @@
 			H.disabilities = 0
 //			for(var/datum/disease/D in H.viruses)
 //				D.cure()
+			var/heal_power = host == origin ? 10 : 30
+			origin.adjust_instability(10)
 			for(var/i = 0, i<5,i++)
 				if(H)
-					H.adjustToxLoss(-5)
-					H.adjustCloneLoss(-5)
-					H.radiation = max(host.radiation - 10, 0)
-					H.adjust_instability(2.5)
-					origin.adjust_instability(2.5)
+					H.adjustToxLoss(-heal_power / 5)
+					H.adjustCloneLoss(-heal_power / 5)
+					H.radiation = max(host.radiation - ( (heal_power * 2) / 5), 0)
 					sleep(1 SECOND)
 		on_expire()
