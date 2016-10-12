@@ -152,6 +152,9 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 						blood_max += max(min_eff_damage, W.damage - 30) / 30
 					else
 						blood_max += W.damage / blood_loss_divisor
+
+			if(temp.open)
+				blood_max += 2 //Yer stomach is cut open
 		drip(blood_max)
 
 //Makes a blood drop, leaking amt units of blood from the mob
