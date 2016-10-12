@@ -127,7 +127,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 		var/blood_max = 0
 		var/blood_loss_divisor = 30	//lower factor = more blood loss
 		//This 30 is the "baseline" of a cut in the "vital" regions (head and torso).
-		for(var/obj/item/organ/external/temp in organs)
+		for(var/obj/item/organ/external/temp in bad_external_organs)
 			if(!(temp.status & ORGAN_BLEEDING) || (temp.robotic >= ORGAN_ROBOT))
 				continue
 			for(var/datum/wound/W in temp.wounds)
