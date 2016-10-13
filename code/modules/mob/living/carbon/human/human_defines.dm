@@ -23,6 +23,12 @@
 	var/g_skin = 0
 	var/b_skin = 0
 
+	//**ATMTA port**/
+	//ported from paradise
+	var/underwear = "Nude"	//Which underwear the player wants
+	var/undershirt = "Nude"	//Which undershirt the player wants
+	//end of ATMTA port**/
+
 	// VoreStation (Moved to /mob/living)
 	// var/size_multiplier = 1 //multiplier for the mob's icon size
 

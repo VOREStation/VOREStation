@@ -112,6 +112,12 @@
 	var/hud_type
 	var/health_hud_intensity = 1  // This modifies how intensely the health hud is colored.
 
+//**ATMTA Port**/
+	//ATMTA Port ERP data vars
+	var/genitals = 0
+	var/anus = 0
+//**end of ATMTA Port**/
+
 	// Body/form vars.
 	var/list/inherent_verbs 	  // Species-specific verbs.
 	var/has_fine_manipulation = 1 // Can use small items.

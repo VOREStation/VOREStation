@@ -626,6 +626,271 @@
 								if(istype(usr,/mob/living/silicon/robot))
 									var/mob/living/silicon/robot/U = usr
 									R.fields[text("com_[counter]")] = text("Made by [U.name] ([U.modtype] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [game_year]<BR>[t1]")
+/**INTERACTIONS PORT FROM carbon/human/human.dm of AMTMA**/
+	///////Interactions!!///////
+
+	if(href_list["interaction"])
+
+		if (usr.stat == DEAD || usr.stat == UNCONSCIOUS || usr.restrained())
+			return
+
+		//CONDITIONS
+		var/mob/living/carbon/human/H = usr
+		var/mob/living/carbon/human/P = H.partner
+		if (!(P in view(H.loc)))
+			return
+		var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
+		var/hashands = (temp && temp.is_usable())
+		if (!hashands)
+			temp = H.organs_by_name["l_hand"]
+			hashands = (temp && temp.is_usable())
+		temp = P.organs_by_name["r_hand"]
+		var/hashands_p = (temp && temp.is_usable())
+		if (!hashands_p)
+			temp = P.organs_by_name["l_hand"]
+			hashands = (temp && temp.is_usable())
+		var/mouthfree = !((H.head && (H.head.flags & HEADCOVERSMOUTH)) || (H.wear_mask && (H.wear_mask.flags & MASKCOVERSMOUTH)))
+		var/mouthfree_p = !( (P.head && (P.head.flags & HEADCOVERSMOUTH)) || (P.wear_mask && (P.wear_mask.flags & MASKCOVERSMOUTH)))
+		var/haspenis = ((H.gender == MALE && H.potenzia > -1 && H.species.genitals))
+		var/haspenis_p = ((P.gender == MALE && P.potenzia > -1  && P.species.genitals))
+		var/hasvagina = (H.gender == FEMALE && H.species.genitals && H.species.name != "Unathi" && H.species.name != "Stok")
+		var/hasvagina_p = (P.gender == FEMALE && P.species.genitals && P.species.name != "Unathi" && P.species.name != "Stok")
+		var/hasanus_p = P.species.anus
+		var/isnude = H.is_nude()
+		var/isnude_p = P.is_nude()
+		var/ya = "&#1103;"
+
+
+		if (href_list["interaction"] == "bow")
+			H.visible_message("<B>[H]</B> bows in the prescene of <B>[P]</B>.")
+			if (istype(P.loc, /obj/structure/closet) && P.loc == H.loc)
+				P.visible_message("<B>[H]</B> discretely bows in the prescene of <B>[P]</B>.")
+			H.attack_log += text("\[[time_stamp()]\] <font color='red'>bows [P.name] ([P.ckey])</font>")
+
+		else if (href_list["interaction"] == "pet")
+			if(((!istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && hashands)
+				H.visible_message("<B>[H]</B> [pick("pets the head of", "gently rubs the head of")] <B>[P]</B>.")
+				if (istype(P.loc, /obj/structure/closet))
+					P.visible_message("<B>[H]</B> [pick("tries to pet the head of", "tries to discreetly rub the head of")] <B>[P]</B>.")
+				H.attack_log += text("\[[time_stamp()]\] <font color='red'>peted [P.name] ([P.ckey])</font>")
+				P.attack_log += text("\[[time_stamp()]\] <font color='orange'>was peted by [H.name] ([H.ckey])</font>")
+
+		else if (href_list["interaction"] == "give")
+			if(Adjacent(P))
+				if (((!istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && hashands)
+					H.give(P)
+
+		else if (href_list["interaction"] == "kiss")
+			if( ((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && mouthfree && mouthfree_p  && (H.species.flags & HAS_LIPS) && (P.species.flags & HAS_LIPS))
+				if (H.lust == 0)
+					H.visible_message("<B>[H]</B> kisses <B>[P]</B>.")
+					if (istype(P.loc, /obj/structure/closet))
+						P.visible_message("<B>[H]</B> kisses <B>[P]</B>.")
+					if (H.lust < 5)
+						H.lust = 5
+				else
+					H.visible_message("<B>[H]</B> blows a kiss to <B>[P]</B>.")
+					if (istype(P.loc, /obj/structure/closet))
+						P.visible_message("<B>[H]</B> blows a kiss to <B>[P]</B>.")
+			else if (mouthfree)
+				H.visible_message("<B>[H]</B> blows <B>[P]</B> a kiss.")
+			H.attack_log += text("\[[time_stamp()]\] <font color='red'>kissed [P.name] ([P.ckey])</font>")
+			P.attack_log += text("\[[time_stamp()]\] <font color='orange'>was kissed by [H.name] ([H.ckey])</font>")
+
+		else if (href_list["interaction"] == "lick")
+			if( ((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && mouthfree && mouthfree_p)
+				if (H.lust == 0)
+					H.visible_message("<B>[H]</B> , the [H.gender == FEMALE ? "female cat" : "tigress"], licks <B>[P]</B> on the cheek.")
+					if (istype(P.loc, /obj/structure/closet))
+						P.visible_message("<B>[H]</B> [H.gender == FEMALE ? "female cat" : "tigress"], <B>[P]</B> в щеку.")
+					if (H.lust < 5)
+						H.lust = 5
+				else
+					H.visible_message("<B>[H]</B> carefully licked [H.gender == FEMALE ? "licked" : "licked"] <B>[P]</B>.")
+					if (istype(P.loc, /obj/structure/closet))
+						P.visible_message("<B>[H]</B> carefully [H.gender = FEMALE? "licked": "licked"] <B>[P]</B>.")
+				H.attack_log += text("\[[time_stamp()]\] <font color='red'>licked [P.name] ([P.ckey])</font>")
+				P.attack_log += text("\[[time_stamp()]\] <font color='orange'>was licked by [H.name] ([H.ckey])</font>")
+
+		else if (href_list["interaction"] == "hug")
+			if(((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && hashands)
+				H.visible_message("<B>[H]</B> hugs <B>[P]</B>.")
+				if (istype(P.loc, /obj/structure/closet))
+					P.visible_message("<B>[H]</B> hugs <B>[P]</B>.")
+				playsound(loc, 'sound/interactions/hug.ogg', 50, 1, -1)
+				H.attack_log += text("\[[time_stamp()]\] <font color='red'>huged [P.name] ([P.ckey])</font>")
+				P.attack_log += text("\[[time_stamp()]\] <font color='orange'>was hugged by [H.name] ([H.ckey])</font>")
+
+		else if (href_list["interaction"] == "cheer")
+			if(((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && hashands)
+				H.visible_message("<B>[H]</B> cheers for <B>[P]</B>!")
+				if (istype(P.loc, /obj/structure/closet))
+					P.visible_message("<B>[H]</B> can be heard cheering for <B>[P]</B> по плечу.")
+				H.attack_log += text("\[[time_stamp()]\] <font color='red'>cheered [P.name] ([P.ckey])</font>")
+				P.attack_log += text("\[[time_stamp()]\] <font color='orange'>was cheered by [H.name] ([H.ckey])</font>")
+
+		else if (href_list["interaction"] == "five")
+			if(((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && hashands)
+				H.visible_message("<B>[H]</B> hi-fives <B>[P]</B>.")
+				if (istype(P.loc, /obj/structure/closet))
+					P.visible_message("<B>[H]</B> hi-fives <B>[P]</B>.")
+				playsound(loc, 'sound/interactions/slap.ogg', 50, 1, -1)
+				H.attack_log += text("\[[time_stamp()]\] <font color='red'>gave a five to [P.name] ([P.ckey])</font>")
+				P.attack_log += text("\[[time_stamp()]\] <font color='orange'>got a five from [H.name] ([H.ckey])</font>")
+
+		else if (href_list["interaction"] == "handshake")
+			if(((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && hashands && hashands_p)
+				H.visible_message("<B>[H]</B> shakes the hand of <B>[P]</B>.")
+				if (istype(P.loc, /obj/structure/closet))
+					P.visible_message("<B>[H]</B> shakes the hand of <B>[P]</B>.")
+			else
+				H.visible_message("<B>[H]</B> affably [H.gender = MALE? "nod": "nodded"] aside <B>[P]</B>.")
+				if (istype(P.loc, /obj/structure/closet))
+					P.visible_message("<B>[H]</B> affably [H.gender = MALE? "nod": "nodded"] aside <B>[P]</B>.")
+
+		else if (href_list["interaction"] == "wave")
+			if (!(Adjacent(P)) && hashands)
+				H.visible_message("<B>[H]</B> waves at <B>[P]</B>.")
+			else
+				H.visible_message("<B>[H]</B> affably [H.gender = MALE? "nod": "nodded"] aside <B>[P]</B>.")
+
+
+		else if (href_list["interaction"] == "slap")
+			if(((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && hashands)
+				H.visible_message("<span class='danger'>[H] slaps [P]'s face!</span>")
+				if (istype(P.loc, /obj/structure/closet))
+					P.visible_message("<span class='danger'>[H] slaps [P]'s face!</span>")
+				playsound(loc, 'sound/interactions/slap.ogg', 50, 1, -1)
+				if (P.staminaloss < 5)
+					P.staminaloss += 5
+				H.attack_log += text("\[[time_stamp()]\] <font color='red'>slapped [P.name] ([P.ckey])</font>")
+				P.attack_log += text("\[[time_stamp()]\] <font color='orange'>was slapped by [H.name] ([H.ckey])</font>")
+				H.do_attack_animation(P)
+
+		else if (href_list["interaction"] == "fuckyou")
+			if(hashands)
+				H.visible_message("<span class='danger'>[H] flips off [P] with the bird!</span>")
+				if (istype(P.loc, /obj/structure/closet) && P.loc == H.loc)
+					P.visible_message("<span class='danger'>[H] flips off [P] with the bird!</span>")
+				H.attack_log += text("\[[time_stamp()]\] <font color='red'>abused [P.name] ([P.ckey])</font>")
+				P.attack_log += text("\[[time_stamp()]\] <font color='orange'>was abused by [H.name] ([H.ckey])</font>")
+
+		else if (href_list["interaction"] == "knock")
+			if(((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && hashands)
+				H.visible_message("<span class='danger'>[H] knocks [P]'s head with his fist!</span>")
+				if (istype(P.loc, /obj/structure/closet))
+					P.visible_message("<span class='danger'>[H] knocks [P]'s head with his fist!</span>")
+				playsound(loc, 'sound/weapons/throwtap.ogg', 50, 1, -1)
+				if (P.staminaloss < 5)
+					P.staminaloss += 5
+				H.attack_log += text("\[[time_stamp()]\] <font color='red'>knocked [P.name] ([P.ckey])</font>")
+				P.attack_log += text("\[[time_stamp()]\] <font color='orange'>was knocked by [H.name] ([H.ckey])</font>")
+				H.do_attack_animation(P)
+
+		else if (href_list["interaction"] == "spit")
+			if(((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && mouthfree)
+				H.visible_message("<span class='danger'>[H] spits on [P]'s face!</span>")
+				if (istype(P.loc, /obj/structure/closet))
+					P.visible_message("<span class='danger'>[H] spits on [P]'s face!</span>")
+				H.attack_log += text("\[[time_stamp()]\] <font color='red'>spited [P.name] ([P.ckey])</font>")
+				P.attack_log += text("\[[time_stamp()]\] <font color='orange'>was spited by [H.name] ([H.ckey])</font>")
+
+		else if (href_list["interaction"] == "threaten")
+			if(hashands)
+				H.visible_message("<span class='danger'>[H] has threatened [P] with fist!</span>")
+				if (istype(P.loc, /obj/structure/closet) && H.loc == P.loc)
+					P.visible_message("<span class='danger'>[H] has threatened [P] with fist!</span>")
+				H.attack_log += text("\[[time_stamp()]\] <font color='red'>threatened [P.name] ([P.ckey])</font>")
+				P.attack_log += text("\[[time_stamp()]\] <font color='orange'>was threatened by [H.name] ([H.ckey])</font>")
+
+		else if (href_list["interaction"] == "tongue")
+			if(mouthfree)
+				H.visible_message("<span class='danger'>[H] belligerently sticks tongue at [P]!</span>")
+				if (istype(P.loc, /obj/structure/closet) && H.loc == P.loc)
+					P.visible_message("<span class='danger'>[H] belligerently sticks tongue at [P]!</span>")
+				H.attack_log += text("\[[time_stamp()]\] <font color='red'>abused [P.name] ([P.ckey])</font>")
+				P.attack_log += text("\[[time_stamp()]\] <font color='orange'>was abused by [H.name] ([H.ckey])</font>")
+
+		else if (href_list["interaction"] == "assslap")
+			if(((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && isnude_p && hasanus_p && hashands)
+				H.visible_message("<span class='danger'>[H] slaps the ass of [P]!</span>")
+				if (istype(P.loc, /obj/structure/closet))
+					P.visible_message("<span class='danger'>[H] slaps the ass of [P]!</span>")
+				playsound(loc, 'sound/interactions/slap.ogg', 50, 1, -1)
+				if (P.staminaloss < 10)
+					P.staminaloss += 5
+				H.attack_log += text("\[[time_stamp()]\] <font color='red'>ass-slapped [P.name] ([P.ckey])</font>")
+				P.attack_log += text("\[[time_stamp()]\] <font color='orange'>was ass-slapped by [H.name] ([H.ckey])</font>")
+
+		else if (href_list["interaction"] == "pull")
+			if(((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && hashands && !H.restrained() && P.species.name == "Tajaran")
+				if (prob(30))
+					H.visible_message("<span class='danger'>[H] yanks tail of [P]!</span>")
+					if (istype(P.loc, /obj/structure/closet))
+						P.visible_message("<span class='danger'>[H] yanks tail of [P]!</span>")
+					if (P.staminaloss < 5)
+						P.staminaloss += 5
+				else
+					H.visible_message("<B>[H]</B> tries to yank tail of <B>[P]</B>!")
+					if (istype(P.loc, /obj/structure/closet))
+						P.visible_message("<B>[H]</B> tries to yank tail of <B>[P]</B>!")
+				H.attack_log += text("\[[time_stamp()]\] <font color='red'>abused [P.name] ([P.ckey])</font>")
+				P.attack_log += text("\[[time_stamp()]\] <font color='orange'>was abused by [H.name] ([H.ckey])</font>")
+
+		else if (href_list["interaction"] == "vaglick")
+			if(((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && isnude_p && mouthfree && hasvagina_p)
+				H.fuck(H, P, "vaglick")
+
+		else if (href_list["interaction"] == "asslick")
+			if(((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && isnude_p && mouthfree && hasanus_p)
+				usr.visible_message("<font color=purple>[H] licks the asshole of [P].</font>")
+
+		else if (href_list["interaction"] == "fingering")
+			if(((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && isnude_p && hashands && hasvagina_p)
+				H.fuck(H, P, "fingering")
+
+		else if (href_list["interaction"] == "blowjob")
+			if(((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && isnude_p && mouthfree && haspenis_p)
+				H.fuck(H, P, "blowjob")
+
+		else if (href_list["interaction"] == "anal")
+			if (H.loc == P.loc && isnude_p && isnude && haspenis && hasanus_p)
+				if (H.erpcooldown == 0)
+					if (H.potenzia > 0)
+						H.fuck(H, P, "anal")
+				else
+					var/message = pick("Doesn't wish to have sex with me...", "No, not right now.", "Maybe have sex netxtime...", "Not really hunting for it now...")
+					to_chat(H, message)
+
+		else if (href_list["interaction"] == "vaginal")
+			if (H.loc == P.loc && isnude_p && isnude && haspenis && hasanus_p)
+				if (H.erpcooldown == 0)
+					if (H.potenzia > 0)
+						H.fuck(H, P, "vaginal")
+				else
+					var/message = pick("Doesn't wish to have sex with me...", "No, not right now.", "Maybe have sex netxtime...", "Not really hunting for it now...")
+					to_chat(H, message)
+
+		else if (href_list["interaction"] == "oral")
+			if (H.loc == P.loc && isnude && mouthfree_p && haspenis)
+				if (H.erpcooldown == 0)
+					if (H.potenzia > 0)
+						H.fuck(H, P, "oral")
+				else
+					var/message = pick("Doesn't wish to have sex with me...", "No, not right now.", "Maybe have sex netxtime...", "Not really hunting for it now...")
+					to_chat(H, message)
+
+		else if (href_list["interaction"] == "mount")
+			if (H.loc == P.loc && isnude && isnude_p && haspenis_p && hasvagina)
+				if (P.lust <= 0)
+					var/message = pick("Doesn't feel up for it.", "Lust is at a low level for now...", "Not in the mood for having sex...", "Lust isn't high, maybe next time...")
+					to_chat(H, message)
+				else if (H.erpcooldown == 0)
+					H.fuck(H, P, "mount")
+				else
+					var/message = pick("Doesn't wish to have sex with me...", "No, not right now.", "Maybe have sex netxtime...", "Not really hunting for it now...")
+					to_chat(H, message)
+	/***ERP INTERACTIONS PORT END"*/
 
 	if (href_list["lookitem"])
 		var/obj/item/I = locate(href_list["lookitem"])
@@ -1473,4 +1738,7 @@
 
 /mob/living/carbon/human/is_muzzled()
 	return (wear_mask && (istype(wear_mask, /obj/item/clothing/mask/muzzle) || istype(src.wear_mask, /obj/item/weapon/grenade)))
-
+//**ATMTA port**/
+/mob/living/carbon/human/proc/get_age_pitch()
+	return 1.0 + 0.5*(30 - age)/80
+/*END OF ATMTA port*/
