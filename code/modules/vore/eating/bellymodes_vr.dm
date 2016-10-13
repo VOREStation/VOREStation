@@ -12,6 +12,10 @@
 				M << "<span class='notice'>[pick(EL)]</span>"
 			src.emotePend = 0
 
+	for (var/V in internal_contents)
+		if (isnull(V))
+			internal_contents -= V
+
 //////////////////////// Absorbed Handling ////////////////////////
 	for(var/mob/living/M in internal_contents)
 		if(M.absorbed)

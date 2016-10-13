@@ -290,6 +290,8 @@
 					else
 						var/datum/belly/B = user.vore_organs[choice]
 						for(var/atom/movable/tgt in selected.internal_contents)
+							if (!(tgt in selected.internal_contents))
+								continue
 							selected.internal_contents -= tgt
 							B.internal_contents += tgt
 
@@ -326,6 +328,8 @@
 					return 1
 				else
 					var/datum/belly/B = user.vore_organs[choice]
+					if (!(tgt in selected.internal_contents))
+						return 0
 					selected.internal_contents -= tgt
 					B.internal_contents += tgt
 
