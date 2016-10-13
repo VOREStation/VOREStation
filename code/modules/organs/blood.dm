@@ -134,13 +134,13 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 				if(W.bleeding())
 					if(W.damage_type == PIERCE) //gunshots and spear stabs bleed more
 						blood_loss_divisor -= 5
-					if(W.damage_type == BRUISE) //bruises bleed less
+					else if(W.damage_type == BRUISE) //bruises bleed less
 						blood_loss_divisor += 5
 					//the farther you get from those vital regions, the less you bleed
 					//depending on how dangerous bleeding turns out to be, it might be better to only apply the reduction to hands and feet
 					if((temp.organ_tag == ARM_LEFT) || (temp.organ_tag == ARM_RIGHT) || (temp.organ_tag == LEG_LEFT) || (temp.organ_tag == LEG_RIGHT))
 						blood_loss_divisor += 5
-					if((temp.organ_tag == HAND_LEFT) || (temp.organ_tag == HAND_RIGHT) || (temp.organ_tag == FOOT_LEFT) || (temp.organ_tag == FOOT_RIGHT))
+					else if((temp.organ_tag == HAND_LEFT) || (temp.organ_tag == HAND_RIGHT) || (temp.organ_tag == FOOT_LEFT) || (temp.organ_tag == FOOT_RIGHT))
 						blood_loss_divisor += 10
 					if(temp.applied_pressure)
 						if(ishuman(temp.applied_pressure))
