@@ -55,13 +55,16 @@
 
 /obj/item/device/flashlight/process()
 	if(on)
-		if(cell && cell.charge)
+		if(cell)
 			if(brightness_level && power_usage)
 				if(power_usage < cell.charge)
 					cell.charge -= power_usage
 				else
+					cell.charge = 0
 					visible_message("<span class='warning'>\The [src] flickers before going dull.</span>")
 					set_light(0)
+					on = 0
+					update_icon()
 
 /obj/item/device/flashlight/update_icon()
 	if(on)
@@ -101,11 +104,18 @@
 	if(!isturf(user.loc))
 		user << "You cannot turn the light on while in this [user.loc]." //To prevent some lighting anomalities.
 		return 0
+	if(!cell || cell.charge == 0)
+		user << "You flick the switch on [src], but nothing happens."
+		return 0
 	on = !on
 	update_icon()
 	user.update_action_buttons()
 	return 1
 
+/obj/item/device/flashlight/emp_act(severity)
+	for(var/obj/O in contents)
+		O.emp_act(severity)
+	..()
 
 /obj/item/device/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
 	add_fingerprint(user)
