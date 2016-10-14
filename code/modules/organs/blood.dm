@@ -148,8 +148,8 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 							H.bloody_hands(src, 0)
 						//somehow you can apply pressure to every wound on the organ at the same time
 						//you're basically forced to do nothing at all, so let's make it pretty effective
-						var/min_eff_damage = max(0, W.damage - 10) / 6 //still want a little bit to drip out, for effect
-						blood_max += max(min_eff_damage, W.damage - 30) / 30
+						var/min_eff_damage = max(0, W.damage - 10) / (blood_loss_divisor / 5) //still want a little bit to drip out, for effect
+						blood_max += max(min_eff_damage, W.damage - 30) / blood_loss_divisor
 					else
 						blood_max += W.damage / blood_loss_divisor
 
