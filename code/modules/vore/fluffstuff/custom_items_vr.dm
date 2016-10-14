@@ -403,7 +403,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 
 	process()
 		check_owner()
-		if(state > 1)
+		if((state > 1) || !owner)
 			processing_objects.Remove(src)
 
 	attack_self(mob/user as mob)
@@ -419,7 +419,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 
 	proc/check_owner()
 		//He's dead, jim
-		if(!owner || owner.stat == DEAD)
+		if((state == 1) && owner && (owner.stat == DEAD))
 			update_state(2)
 			audible_message("<span class='warning'>The [name] begins flashing red.</span>")
 			sleep(30)
