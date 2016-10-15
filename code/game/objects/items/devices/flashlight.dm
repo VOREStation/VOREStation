@@ -101,12 +101,13 @@
 		user << "[tempdesc]"
 
 /obj/item/device/flashlight/attack_self(mob/user)
-	if(!isturf(user.loc))
-		user << "You cannot turn the light on while in this [user.loc]." //To prevent some lighting anomalities.
-		return 0
-	if(!cell || cell.charge == 0)
-		user << "You flick the switch on [src], but nothing happens."
-		return 0
+	if(power_use)
+		if(!isturf(user.loc))
+			user << "You cannot turn the light on while in this [user.loc]." //To prevent some lighting anomalities.
+			return 0
+		if(!cell || cell.charge == 0)
+			user << "You flick the switch on [src], but nothing happens."
+			return 0
 	on = !on
 	update_icon()
 	user.update_action_buttons()
@@ -181,15 +182,16 @@
 		return ..()
 
 /obj/item/device/flashlight/attackby(obj/item/weapon/W, mob/user as mob)
-	if(istype(W, /obj/item/weapon/cell))
-		if(!cell)
-			user.drop_item()
-			W.loc = src
-			cell = W
-			user << "<span class='notice'>You install a cell in \the [src].</span>"
-			update_icon()
-		else
-			user << "<span class='notice'>\The [src] already has a cell.</span>"
+	if(power_use)
+		if(istype(W, /obj/item/weapon/cell))
+			if(!cell)
+				user.drop_item()
+				W.loc = src
+				cell = W
+				user << "<span class='notice'>You install a cell in \the [src].</span>"
+				update_icon()
+			else
+				user << "<span class='notice'>\The [src] already has a cell.</span>"
 
 	else
 		..()
