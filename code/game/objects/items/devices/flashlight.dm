@@ -61,7 +61,8 @@
 					cell.charge -= power_usage
 				else
 					visible_message("<span class='warning'>\The [src] flickers before going dull.</span>")
-					set_light(0)
+					on = !on
+					update_icon()
 
 /obj/item/device/flashlight/update_icon()
 	if(on)
@@ -100,6 +101,9 @@
 /obj/item/device/flashlight/attack_self(mob/user)
 	if(!isturf(user.loc))
 		user << "You cannot turn the light on while in this [user.loc]." //To prevent some lighting anomalities.
+		return 0
+	if(!on && cell.charge < power_usage)
+		user << "The [src] does not have enough charge to turn on."
 		return 0
 	on = !on
 	update_icon()
