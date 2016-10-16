@@ -1,7 +1,7 @@
 /****************************************************
 				BLOOD SYSTEM
 ****************************************************/
-//Blood levels. These are percentages based on the species blood_volume far.
+//Blood levels. These are percentages based on the species blood_volume var.
 var/const/BLOOD_VOLUME_SAFE =    85
 var/const/BLOOD_VOLUME_OKAY =    75
 var/const/BLOOD_VOLUME_BAD =     60
@@ -125,23 +125,36 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 
 		//Bleeding out
 		var/blood_max = 0
-		for(var/obj/item/organ/external/temp in organs)
+		var/blood_loss_divisor = 30	//lower factor = more blood loss
+		//This 30 is the "baseline" of a cut in the "vital" regions (head and torso).
+		for(var/obj/item/organ/external/temp in bad_external_organs)
 			if(!(temp.status & ORGAN_BLEEDING) || (temp.robotic >= ORGAN_ROBOT))
 				continue
 			for(var/datum/wound/W in temp.wounds)
 				if(W.bleeding())
+					if(W.damage_type == PIERCE) //gunshots and spear stabs bleed more
+						blood_loss_divisor -= 5
+					else if(W.damage_type == BRUISE) //bruises bleed less
+						blood_loss_divisor += 5
+					//the farther you get from those vital regions, the less you bleed
+					//depending on how dangerous bleeding turns out to be, it might be better to only apply the reduction to hands and feet
+					if((temp.organ_tag == BP_L_ARM) || (temp.organ_tag == BP_R_ARM) || (temp.organ_tag == BP_L_LEG) || (temp.organ_tag == BP_R_LEG))
+						blood_loss_divisor += 5
+					else if((temp.organ_tag == BP_L_HAND) || (temp.organ_tag == BP_R_HAND) || (temp.organ_tag == BP_L_FOOT) || (temp.organ_tag == BP_R_FOOT))
+						blood_loss_divisor += 10
 					if(temp.applied_pressure)
 						if(ishuman(temp.applied_pressure))
 							var/mob/living/carbon/human/H = temp.applied_pressure
 							H.bloody_hands(src, 0)
 						//somehow you can apply pressure to every wound on the organ at the same time
 						//you're basically forced to do nothing at all, so let's make it pretty effective
-						var/min_eff_damage = max(0, W.damage - 10) / 6 //still want a little bit to drip out, for effect
-						blood_max += max(min_eff_damage, W.damage - 30) / 30
+						var/min_eff_damage = max(0, W.damage - 10) / (blood_loss_divisor / 5) //still want a little bit to drip out, for effect
+						blood_max += max(min_eff_damage, W.damage - 30) / blood_loss_divisor
 					else
-						blood_max += W.damage / 30
-			if (temp.open)
-				blood_max += 2  //Yer stomach is cut open
+						blood_max += W.damage / blood_loss_divisor
+
+			if(temp.open)
+				blood_max += 2 //Yer stomach is cut open
 		drip(blood_max)
 
 //Makes a blood drop, leaking amt units of blood from the mob
