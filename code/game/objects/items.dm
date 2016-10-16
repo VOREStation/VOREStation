@@ -49,6 +49,8 @@
 	var/zoomdevicename = null //name used for message when binoculars/scope is used
 	var/zoom = 0 //1 if item is actively being used to zoom. For scoped guns and binoculars.
 
+	var/embed_chance = -1	//-1 makes it calculate embed chance, 0 won't embed, and 100 will always embed
+
 	var/icon_override = null  //Used to override hardcoded clothing dmis in human clothing proc.
 
 	//** These specify item/icon overrides for _slots_
@@ -74,6 +76,14 @@
 	// Species-specific sprite sheets for inventory sprites
 	// Works similarly to worn sprite_sheets, except the alternate sprites are used when the clothing/refit_for_species() proc is called.
 	var/list/sprite_sheets_obj = list()
+
+/obj/item/New()
+	if(embed_chance == -1)
+		if(sharp)
+			embed_chance = force/w_class
+		else
+			embed_chance = force/(w_class*3)
+	..()
 
 /obj/item/equipped()
 	..()
