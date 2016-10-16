@@ -8,12 +8,11 @@
 
 /datum/supply_packs/randomised/munitions
 	group = "Munitions"
-	access = access_security
 
 /datum/supply_packs/munitions/weapons
 	name = "Weapons crate"
 	contains = list(
-			/obj/item/weapon/melee/baton = 2,
+			/obj/item/weapon/melee/baton/loaded = 2,
 			/obj/item/weapon/gun/energy/gun = 2,
 			/obj/item/weapon/gun/energy/taser = 2,
 			/obj/item/weapon/gun/projectile/colt/detective = 2,
@@ -22,6 +21,7 @@
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Weapons crate"
+	access = access_security
 
 /datum/supply_packs/munitions/flareguns
 	name = "Flare guns crate"
@@ -34,6 +34,7 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Flare gun crate"
+	access = access_security
 
 /datum/supply_packs/munitions/eweapons
 	name = "Experimental weapons crate"
@@ -117,6 +118,7 @@
  	cost = 40
  	containertype = /obj/structure/closet/crate/secure/weapon
  	containername = "Weapons crate"
+ 	access = access_security
 
 /datum/supply_packs/munitions/shotgunammo
 	name = "Shotgun ammunition crate"
