@@ -11,7 +11,7 @@
 	var/on = 0
 	var/brightness_on = 4 //luminosity when on
 	var/obj/item/weapon/cell/cell
-	var/cell_type = /obj/item/weapon/cell/high
+	var/cell_type = /obj/item/weapon/cell/device
 	var/list/brightness_levels
 	var/brightness_level = "medium"
 	var/power_usage
@@ -27,7 +27,7 @@
 
 		if(cell_type)
 			cell = new cell_type(src)
-			brightness_levels = list("low" = 5, "medium" = 10, "high" = 20)
+			brightness_levels = list("low" = 0.25, "medium" = 0.5, "high" = 1)
 			power_usage = brightness_levels[brightness_level]
 
 	else
@@ -184,14 +184,17 @@
 /obj/item/device/flashlight/attackby(obj/item/weapon/W, mob/user as mob)
 	if(power_use)
 		if(istype(W, /obj/item/weapon/cell))
-			if(!cell)
-				user.drop_item()
-				W.loc = src
-				cell = W
-				user << "<span class='notice'>You install a cell in \the [src].</span>"
-				update_icon()
+			if(istype(W, /obj/item/weapon/cell/device))
+				if(!cell)
+					user.drop_item()
+					W.loc = src
+					cell = W
+					user << "<span class='notice'>You install a cell in \the [src].</span>"
+					update_icon()
+				else
+					user << "<span class='notice'>\The [src] already has a cell.</span>"
 			else
-				user << "<span class='notice'>\The [src] already has a cell.</span>"
+				user << "<span class='notice'>\The [src] cannot use that type of cell.</span>"
 
 	else
 		..()
