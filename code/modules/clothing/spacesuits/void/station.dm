@@ -60,6 +60,11 @@
 	item_state_slots = list(slot_r_hand_str = "medical_helm", slot_l_hand_str = "medical_helm")
 	armor = list(melee = 30, bullet = 5, laser = 20, energy = 5, bomb = 25, bio = 100, rad = 50)
 
+/obj/item/clothing/head/helmet/space/void/medical/emt
+	name = "emergency medical response voidsuit helmet"
+	icon_state = "rig0-medical_emt"
+	item_state_slots = list(slot_r_hand_str = "medical_helm_emt", slot_l_hand_str = "medical_helm_emt")
+
 /obj/item/clothing/head/helmet/space/void/medical/bio
 	name = "biohazard voidsuit helmet"
 	icon_state = "rig0-medical_bio"
@@ -72,6 +77,11 @@
 	item_state_slots = list(slot_r_hand_str = "medical_voidsuit", slot_l_hand_str = "medical_voidsuit")
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/storage/firstaid,/obj/item/device/healthanalyzer,/obj/item/stack/medical)
 	armor = list(melee = 30, bullet = 5, laser = 20, energy = 5, bomb = 25, bio = 100, rad = 50)
+
+/obj/item/clothing/suit/space/void/medical/emt
+	name = "emergency medical response voidsuit"
+	icon_state = "rig-medical_emt"
+	item_state_slots = list(slot_r_hand_str = "medical_voidsuit_emt", slot_l_hand_str = "medical_voidsuit_emt")
 
 /obj/item/clothing/suit/space/void/medical/bio
 	name = "biohazard voidsuit"
