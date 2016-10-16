@@ -274,6 +274,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	id = "weapon"
 	materials = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 50)
+	build_path = /obj/item/weapon/cell/device/weapon
 	category = "Misc"
 	sort_string = "DAABB"
 
