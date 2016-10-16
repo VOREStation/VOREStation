@@ -343,6 +343,8 @@
 			O.attack(src, user, user.zone_sel.selecting)
 
 /mob/living/simple_animal/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
+	if (user.loc == src)
+		return 1 // VOREStation Edit
 
 	visible_message("<span class='danger'>\The [src] has been attacked with \the [O] by [user].</span>")
 
