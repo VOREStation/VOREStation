@@ -138,9 +138,9 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 						blood_loss_divisor += 5
 					//the farther you get from those vital regions, the less you bleed
 					//depending on how dangerous bleeding turns out to be, it might be better to only apply the reduction to hands and feet
-					if((temp.organ_tag == ARM_LEFT) || (temp.organ_tag == ARM_RIGHT) || (temp.organ_tag == LEG_LEFT) || (temp.organ_tag == LEG_RIGHT))
+					if((temp.organ_tag == BP_L_ARM) || (temp.organ_tag == BP_R_ARM) || (temp.organ_tag == BP_L_LEG) || (temp.organ_tag == BP_R_LEG))
 						blood_loss_divisor += 5
-					else if((temp.organ_tag == HAND_LEFT) || (temp.organ_tag == HAND_RIGHT) || (temp.organ_tag == FOOT_LEFT) || (temp.organ_tag == FOOT_RIGHT))
+					else if((temp.organ_tag == BP_L_HAND) || (temp.organ_tag == BP_R_HAND) || (temp.organ_tag == BP_L_FOOT) || (temp.organ_tag == BP_R_FOOT))
 						blood_loss_divisor += 10
 					if(temp.applied_pressure)
 						if(ishuman(temp.applied_pressure))
