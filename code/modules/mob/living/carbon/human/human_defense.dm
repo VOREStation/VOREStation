@@ -199,13 +199,13 @@ emp_act
 
 	// Handle striking to cripple.
 	if(user.a_intent == I_DISARM)
-		effective_force *= 0.66 //reduced effective force...
+		effective_force *= 0.5 //reduced effective force...
 		if(!..(I, user, effective_force, blocked, hit_zone))
 			return 0
 
 		//set the dislocate mult less than the effective force mult so that
 		//dislocating limbs on disarm is a bit easier than breaking limbs on harm
-		attack_joint(affecting, I, effective_force, 0.5, blocked) //...but can dislocate joints
+		attack_joint(affecting, I, effective_force, 0.75, blocked) //...but can dislocate joints
 	else if(!..())
 		return 0
 
