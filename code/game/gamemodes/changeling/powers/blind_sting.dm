@@ -2,7 +2,7 @@
 	name = "Blind Sting"
 	desc = "We silently sting a human, completely blinding them for a short time."
 	enhancedtext = "Duration is extended."
-	ability_icon_state = " ling_sting_blind"
+	ability_icon_state = "ling_sting_blind"
 	genomecost = 2
 	allowduringlesserform = 1
 	verbpath = /mob/proc/changeling_blind_sting
@@ -15,6 +15,9 @@
 	var/mob/living/carbon/T = changeling_sting(20,/mob/proc/changeling_blind_sting)
 	if(!T)
 		return 0
+	T.attack_log += text("\[[time_stamp()]\] <font color='red'>Was blind stung by [key_name(src)]</font>")
+	src.attack_log += text("\[[time_stamp()]\] <font color='orange'> Used blind sting on [key_name(T)]</font>")
+	msg_admin_attack("[key_name(T)] was blind stung by [key_name(src)]")
 	T << "<span class='danger'>Your eyes burn horrificly!</span>"
 	T.disabilities |= NEARSIGHTED
 	var/duration = 300
