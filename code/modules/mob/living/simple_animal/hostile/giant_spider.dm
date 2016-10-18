@@ -68,7 +68,7 @@
 	..()
 
 /mob/living/simple_animal/hostile/giant_spider/AttackingTarget()
-	var/target = ..()
+	var/. = ..()
 	if(isliving(target))
 		var/mob/living/L = .
 		if(L.reagents)
