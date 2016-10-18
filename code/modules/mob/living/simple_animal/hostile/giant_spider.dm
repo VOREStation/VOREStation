@@ -68,8 +68,8 @@
 	..()
 
 /mob/living/simple_animal/hostile/giant_spider/AttackingTarget()
-	var/. = ..()
-	if(isliving(target))
+	. = ..()
+	if(isliving(.))
 		var/mob/living/L = .
 		if(L.reagents)
 			L.reagents.add_reagent("toxin", poison_per_bite)
