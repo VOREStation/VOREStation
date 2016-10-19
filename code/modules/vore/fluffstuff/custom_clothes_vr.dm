@@ -139,7 +139,7 @@
 
 //For general use
 /obj/item/clothing/suit/storage/fluff/fedcoat
-	name = "Federation Uniform Jacket"
+	name = "Federation Uniform Jacket (Red)"
 	desc = "A uniform jacket from the United Federation. Starfleet still uses this uniform and there are variations of it. Set phasers to awesome."
 
 	icon = 'icons/vore/custom_clothes_vr.dmi'
@@ -188,21 +188,21 @@
 
 	//Variants
 	fedblue
-		name = "Federation Uniform Jacket"
+		name = "Federation Uniform Jacket (Blue)"
 		desc = "A uniform jacket from the United Federation. Starfleet still uses this uniform and there are variations of it. Wearing this may make you feel all scientific."
 		icon_state = "fedblue"
 		item_state = "fedblue"
 		armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 50, rad = 0)
 
 	fedeng
-		name = "Federation Uniform Jacket"
+		name = "Federation Uniform Jacket (Yellow)"
 		desc = "A uniform jacket from the United Federation. Starfleet still uses this uniform and there are variations of it.Wearing it may make you feel like checking a warp core, whatever that is."
 		icon_state = "fedeng"
 		item_state = "fedeng"
 		armor = list(melee = 0, bullet = 0, laser = 0,energy = 10, bomb = 0, bio = 30, rad = 35)
 
 	fedcapt
-		name = "Federation Uniform Jacket"
+		name = "Federation Uniform Jacket (Command)"
 		desc = "A uniform jacket from the United Federation. Starfleet still uses this uniform and there are variations of it. You feel like a commanding officer of Starfleet."
 		icon_state = "fedcapt"
 		item_state = "fedcapt"
@@ -692,3 +692,57 @@
 	worn_state = "internalaffairs"
 	rolled_sleeves = 0
 	starting_accessories = list(/obj/item/clothing/accessory/black)
+
+//Kitsuhana Uniforms
+/obj/item/clothing/under/rank/khi
+	name = "Delete Me"
+	desc = "Why did you spawn this one? Dork."
+	rolled_down = 0
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "khi_uniform_i"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = ""
+
+	cmd //Command version
+		name = "KIN command suit"
+		desc = "Kitsuhana Industrial Navy uniform. An extra-comfortable command one, at that. I guess if you DON'T want anarchy for some reason."
+		icon_state = "khi_uniform_cmd_i"
+		item_state = "khi_uniform_cmd"
+		armor = list(melee = 5, bullet = 10, laser = 10, energy = 0, bomb = 0, bio = 0, rad = 0)
+
+	sec //Security version
+		name = "KIN security suit"
+		desc = "Kitsuhana Industrial Navy uniform. This one has angry red security stripes. Keepin' the peace in style."
+		icon_state = "khi_uniform_sec_i"
+		item_state = "khi_uniform_sec"
+		armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+
+	med //Medical version
+		name = "KIN medical suit"
+		desc = "Kitsuhana Industrial Navy uniform. The medical version. Why not just get a new body, anyway?"
+		icon_state = "khi_uniform_med_i"
+		item_state = "khi_uniform_med"
+		armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 50, rad = 5)
+
+	eng //Engineering version
+		name = "KIN engineering suit"
+		desc = "Kitsuhana Industrial Navy uniform. One fit for an engineer, by the looks of it. Building the future, one disaster at a time."
+		icon_state = "khi_uniform_eng_i"
+		item_state = "khi_uniform_eng"
+		armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 10)
+
+	sci //Science version
+		name = "KIN science suit"
+		desc = "Kitsuhana Industrial Navy uniform. For performing science in, based on the color! Only SCIENCE can save us now."
+		icon_state = "khi_uniform_sci_i"
+		item_state = "khi_uniform_sci"
+		armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 5, bio = 0, rad = 5)
+
+	fluff/aro //Aro fluff version
+		name = "KIN meditech suit"
+		desc = "Kitsuhana Industrial Navy uniform. This one has the colors of a resleeving or mnemonics engineer. It has 'Aronai' written inside the top."
+		icon_state = "khi_uniform_aro_i"
+		item_state = "khi_uniform_aro"
+		armor = list(melee = 5, bullet = 5, laser = 5, energy = 0, bomb = 0, bio = 0, rad = 0)
