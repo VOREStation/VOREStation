@@ -12,6 +12,10 @@
 				M << "<span class='notice'>[pick(EL)]</span>"
 			src.emotePend = 0
 
+	for (var/V in internal_contents)
+		if (isnull(V))
+			internal_contents -= V
+
 //////////////////////// Absorbed Handling ////////////////////////
 	for(var/mob/living/M in internal_contents)
 		if(M.absorbed)
@@ -52,15 +56,7 @@
 				owner << "<span class='notice'>" + digest_alert_owner + "</span>"
 				M << "<span class='notice'>" + digest_alert_prey + "</span>"
 
-//				owner.nutrition += 20 // just so eating dead mobs gives you *something*.
-
-				var/offset = (1 + ((M.weight - 137) / 137)) // 130 pounds = .95 140 pounds = 1.02
-				var/difference = owner.size_multiplier / M.size_multiplier
-				if(offset) // If any different than default weight, multiply the % of offset.
-					owner.nutrition += offset*(1050/difference) // 1050 nutrients per body, modified by body weight and scale.
-				else
-					owner.nutrition += 1050
-
+				owner.nutrition += 20 // so eating dead mobs gives you *something*.
 				var/deathsound = pick(death_sounds)
 				for(var/mob/hearer in range(1,owner))
 					hearer << deathsound
@@ -69,21 +65,18 @@
 				continue
 
 			// Deal digestion damage (and feed the pred)
-			// ToDo: Allow players to adjust digestion damage because we can do that now without breaking everything.
 			if(!(M.status_flags & GODMODE))
 				M.adjustBruteLoss(2)
 				M.adjustFireLoss(3)
 
-// Had to remove this. Incompatible with things we want to do. -Spades
-/*				var/offset = (1 + ((M.weight - 137) / 137)) // 130 pounds = .95 140 pounds = 1.02
+				var/offset = (1 + ((M.weight - 137) / 137)) // 130 pounds = .95 140 pounds = 1.02
 				var/difference = owner.size_multiplier / M.size_multiplier
 				if(offset) // If any different than default weight, multiply the % of offset.
 					owner.nutrition += offset*(10/difference) // 9.5 nutrition per digestion tick if they're 130 pounds and it's same size. 10.2 per digestion tick if they're 140 and it's same size. Etc etc.
 				else
-					owner.nutrition += (10/difference)*/
+					owner.nutrition += (10/difference)
 
 		return
-
 
 //////////////////////////// DM_ABSORB ////////////////////////////
 	if(digest_mode == DM_ABSORB)

@@ -3,7 +3,7 @@
 	desc = "A window."
 	icon = 'icons/obj/structures.dmi'
 	density = 1
-	w_class = 3
+	w_class = ITEMSIZE_NORMAL
 
 	layer = 3.2//Just above doors
 	pressure_resistance = 4*ONE_ATMOSPHERE

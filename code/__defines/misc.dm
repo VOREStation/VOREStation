@@ -167,3 +167,15 @@
 #define ANTAG_HIDDEN	"Hidden"
 #define ANTAG_SHARED	"Shared"
 #define ANTAG_KNOWN		"Known"
+
+// Job groups
+#define ROLE_COMMAND			"command"
+#define ROLE_SECURITY			"security"
+#define ROLE_ENGINEERING		"engineering"
+#define ROLE_MEDICAL			"medical"
+#define ROLE_RESEARCH			"research"
+#define ROLE_CARGO				"cargo"
+#define ROLE_CIVILIAN			"civilian"
+#define ROLE_SYNTHETIC			"synthetic"
+#define ROLE_UNKNOWN			"unknown"
+#define ROLE_EVERYONE			"everyone"

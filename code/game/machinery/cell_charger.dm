@@ -41,6 +41,9 @@
 		return
 
 	if(istype(W, /obj/item/weapon/cell) && anchored)
+		if(istype(W, /obj/item/weapon/cell/device))
+			user << "<span class='warning'> The charger isn't fitted for that type of cell.</span>"
+			return
 		if(charging)
 			user << "<span class='warning'>There is already a cell in the charger.</span>"
 			return

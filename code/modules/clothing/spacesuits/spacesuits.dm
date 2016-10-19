@@ -46,7 +46,7 @@
 	name = "Space suit"
 	desc = "A suit that protects against low pressure environments. \""+station_short+"\" is written in large block letters on the back."
 	icon_state = "space"
-	w_class = 5 // So you can't fit this in your bag and be prepared at all times.
+	w_class = ITEMSIZE_HUGE // So you can't fit this in your bag and be prepared at all times.
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02
 	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL

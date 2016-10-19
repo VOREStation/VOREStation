@@ -7,6 +7,9 @@
 	edge = 0
 	armor_penetration = 50
 	flags = NOBLOODY
+	var/lrange = 2
+	var/lpower = 2
+	var/lcolor = "#0099FF"
 
 /obj/item/weapon/melee/energy/proc/activate(mob/living/user)
 	anchored = 1
@@ -19,6 +22,7 @@
 	edge = 1
 	w_class = active_w_class
 	playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
+	set_light(lrange, lpower, lcolor)
 
 /obj/item/weapon/melee/energy/proc/deactivate(mob/living/user)
 	anchored = 0
@@ -31,6 +35,7 @@
 	sharp = initial(sharp)
 	edge = initial(edge)
 	w_class = initial(w_class)
+	set_light(0,0)
 
 /obj/item/weapon/melee/energy/attack_self(mob/living/user as mob)
 	if (active)
@@ -67,14 +72,14 @@
 	//active_force = 150 //holy...
 	active_force = 60
 	active_throwforce = 35
-	active_w_class = 5
+	active_w_class = ITEMSIZE_HUGE
 	//force = 40
 	//throwforce = 25
 	force = 20
 	throwforce = 10
 	throw_speed = 1
 	throw_range = 5
-	w_class = 3
+	w_class = ITEMSIZE_NORMAL
 	flags = CONDUCT | NOBLOODY
 	origin_tech = list(TECH_MAGNET = 3, TECH_COMBAT = 4)
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
@@ -105,12 +110,12 @@
 	icon_state = "sword0"
 	active_force = 30
 	active_throwforce = 20
-	active_w_class = 4
+	active_w_class = ITEMSIZE_LARGE
 	force = 3
 	throwforce = 5
 	throw_speed = 1
 	throw_range = 5
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	flags = NOBLOODY
 	origin_tech = list(TECH_MAGNET = 3, TECH_ILLEGAL = 4)
 	sharp = 1
@@ -124,25 +129,32 @@
 
 /obj/item/weapon/melee/energy/sword/New()
 	blade_color = pick("red","blue","green","purple")
+	lcolor = blade_color
 
 /obj/item/weapon/melee/energy/sword/green/New()
 	blade_color = "green"
+	lcolor = "#008000"
 
 /obj/item/weapon/melee/energy/sword/red/New()
 	blade_color = "red"
+	lcolor = "#FF0000"
 
 /obj/item/weapon/melee/energy/sword/blue/New()
 	blade_color = "blue"
+	lcolor = "#0000FF"
 
 /obj/item/weapon/melee/energy/sword/purple/New()
 	blade_color = "purple"
+	lcolor = "#800080"
 
 /obj/item/weapon/melee/energy/sword/activate(mob/living/user)
 	if(!active)
 		user << "<span class='notice'>\The [src] is now energised.</span>"
+
 	..()
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	icon_state = "sword[blade_color]"
+
 
 /obj/item/weapon/melee/energy/sword/deactivate(mob/living/user)
 	if(active)
@@ -154,7 +166,7 @@
 /obj/item/weapon/melee/energy/sword/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(active && default_parry_check(user, attacker, damage_source) && prob(50))
 		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
-		
+
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 		spark_system.set_up(5, 0, user.loc)
 		spark_system.start()
@@ -188,11 +200,12 @@
 	throwforce = 1  //Throwing or dropping the item deletes it.
 	throw_speed = 1
 	throw_range = 1
-	w_class = 4.0//So you can't hide it in your pocket or some such.
+	w_class = ITEMSIZE_LARGE//So you can't hide it in your pocket or some such.
 	flags = NOBLOODY
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	var/mob/living/creator
 	var/datum/effect/effect/system/spark_spread/spark_system
+	lcolor = "#00FF00"
 
 /obj/item/weapon/melee/energy/blade/New()
 
@@ -201,6 +214,7 @@
 	spark_system.attach(src)
 
 	processing_objects |= src
+	set_light(lrange, lpower, lcolor)
 
 /obj/item/weapon/melee/energy/blade/Destroy()
 	processing_objects -= src

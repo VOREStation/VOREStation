@@ -424,7 +424,6 @@
 	if(config.allow_Metadata && client)
 		msg += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a>\n"
 	// VOREStation End
-
 	msg += "*---------*</span><br>"
 	msg += applying_pressure
 	if (pose)

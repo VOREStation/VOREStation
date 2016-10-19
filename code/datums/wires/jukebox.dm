@@ -1,6 +1,6 @@
 /datum/wires/jukebox
 	random = 1
-	holder_type = /obj/machinery/media/jukebox/vore
+	holder_type = /obj/machinery/media/jukebox
 	wire_count = 7
 
 var/const/WIRE_POWER = 1
@@ -19,7 +19,7 @@ var/const/WIRE_NOTHING2 = 64
 
 // Show the status of lights as a hint to the current state
 /datum/wires/jukebox/GetInteractWindow()
-	var/obj/machinery/media/jukebox/vore/A = holder
+	var/obj/machinery/media/jukebox/A = holder
 	. += ..()
 	. += "<BR>The power light is [(A.stat & (BROKEN|NOPOWER)) ? "off" : "on"].<BR>"
 	. += "The parental guidance light is [A.hacked ? "off" : "on"].<BR>"
@@ -27,7 +27,7 @@ var/const/WIRE_NOTHING2 = 64
 
 // Give a hint as to what each wire does
 /datum/wires/jukebox/UpdatePulsed(var/index)
-	var/obj/machinery/media/jukebox/vore/A = holder
+	var/obj/machinery/media/jukebox/A = holder
 	switch(index)
 		if(WIRE_POWER)
 			holder.visible_message("<span class='notice'>\icon[holder] The power light flickers.</span>")
@@ -44,7 +44,7 @@ var/const/WIRE_NOTHING2 = 64
 			A.shock(usr, 10) // The nothing wires give a chance to shock just for fun
 
 /datum/wires/jukebox/UpdateCut(var/index, var/mended)
-	var/obj/machinery/media/jukebox/vore/A = holder
+	var/obj/machinery/media/jukebox/A = holder
 
 	switch(index)
 		if(WIRE_POWER)

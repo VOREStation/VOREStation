@@ -1,5 +1,5 @@
 var/list/obj/machinery/photocopier/faxmachine/allfaxes = list()
-var/list/admin_departments = list("[boss_name]", "Sif Governmental Authority", "Supply")
+var/list/admin_departments = list("[boss_name]", "Virgo Prime Governmental Authority", "Supply") // Vorestation edit
 var/list/alldepartments = list()
 
 var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
@@ -182,8 +182,8 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	//message badmins that a fax has arrived
 	if (destination == boss_name)
 		message_admins(sender, "[uppertext(boss_short)] FAX", rcvdcopy, "CentComFaxReply", "#006100")
-	else if ("Sif Governmental Authority")
-		message_admins(sender, "SIF GOVERNMENT FAX", rcvdcopy, "CentComFaxReply", "#1F66A0")
+	else if ("Virgo Prime Governmental Authority") // Vorestation edit
+		message_admins(sender, "VIRGO GOVERNMENT FAX", rcvdcopy, "CentComFaxReply", "#1F66A0") // Vorestation edit
 	else if ("Supply")
 		message_admins(sender, "[uppertext(boss_short)] SUPPLY FAX", rcvdcopy, "CentComFaxReply", "#5F4519")
 	else

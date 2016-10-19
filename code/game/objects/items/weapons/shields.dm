@@ -63,7 +63,7 @@
 	throwforce = 5.0
 	throw_speed = 1
 	throw_range = 4
-	w_class = 4.0
+	w_class = ITEMSIZE_LARGE
 	origin_tech = list(TECH_MATERIAL = 2)
 	matter = list("glass" = 7500, DEFAULT_WALL_MATERIAL = 1000)
 	attack_verb = list("shoved", "bashed")
@@ -119,7 +119,7 @@
 	throwforce = 5.0
 	throw_speed = 1
 	throw_range = 4
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	origin_tech = list(TECH_MATERIAL = 4, TECH_MAGNET = 3, TECH_ILLEGAL = 4)
 	attack_verb = list("shoved", "bashed")
 	var/active = 0
@@ -150,7 +150,7 @@
 	if (active)
 		force = 10
 		update_icon()
-		w_class = 4
+		w_class = ITEMSIZE_LARGE
 		slot_flags = null
 		playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
 		user << "<span class='notice'>\The [src] is now active.</span>"
@@ -158,7 +158,7 @@
 	else
 		force = 3
 		update_icon()
-		w_class = 1
+		w_class = ITEMSIZE_TINY
 		slot_flags = SLOT_EARS
 		playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
 		user << "<span class='notice'>\The [src] can now be concealed.</span>"
@@ -188,7 +188,7 @@
 	throwforce = 3
 	throw_speed = 3
 	throw_range = 4
-	w_class = 3
+	w_class = ITEMSIZE_NORMAL
 	var/active = 0
 /*
 /obj/item/weapon/shield/energy/IsShield()
@@ -206,14 +206,14 @@
 		force = 8
 		throwforce = 5
 		throw_speed = 2
-		w_class = 4
+		w_class = ITEMSIZE_LARGE
 		slot_flags = SLOT_BACK
 		user << "<span class='notice'>You extend \the [src].</span>"
 	else
 		force = 3
 		throwforce = 3
 		throw_speed = 3
-		w_class = 3
+		w_class = ITEMSIZE_NORMAL
 		slot_flags = null
 		user << "<span class='notice'>[src] can now be concealed.</span>"
 

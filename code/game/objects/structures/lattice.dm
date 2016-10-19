@@ -5,7 +5,7 @@
 	icon_state = "latticefull"
 	density = 0
 	anchored = 1.0
-	w_class = 3
+	w_class = ITEMSIZE_NORMAL
 	layer = 2.3 //under pipes
 	//	flags = CONDUCT
 
@@ -57,10 +57,11 @@
 		return
 	if (istype(C, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = C
-		if(WT.remove_fuel(0, user))
-			user << "<span class='notice'>Slicing lattice joints ...</span>"
-		PoolOrNew(/obj/item/stack/rods, src.loc)
-		qdel(src)
+		if(WT.welding == 1)
+			if(WT.remove_fuel(0, user))
+				user << "<span class='notice'>Slicing lattice joints ...</span>"
+			PoolOrNew(/obj/item/stack/rods, src.loc)
+			qdel(src)
 
 	return
 

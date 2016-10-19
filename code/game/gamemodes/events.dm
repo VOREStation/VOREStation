@@ -301,9 +301,9 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 					M.add_ion_law("HUMANS NEED TO EAT [what2pref] [what2] TO SURVIVE")
 				if(5)
 					M << "<br>"
-					M << "<span class='danger'>THE STATION ADMINISTRATOR, HOP AND HOS ARE [who2]...LAWS UPDATED</span>"
+					M << "<span class='danger'>THE COLONY DIRECTOR, HOP AND HOS ARE [who2]...LAWS UPDATED</span>"
 					M << "<br>"
-					M.add_ion_law("THE STATION ADMINISTRATOR, HOP AND HOS ARE [who2]")
+					M.add_ion_law("THE COLONY DIRECTOR, HOP AND HOS ARE [who2]")
 				if(6)
 					M << "<br>"
 					M << "<span class='danger'>THE STATION IS BUILT FOR [who2]...LAWS UPDATED</span>"

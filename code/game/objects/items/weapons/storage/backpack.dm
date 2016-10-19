@@ -9,10 +9,12 @@
 	sprite_sheets = list(
 		"Teshari" = 'icons/mob/species/seromi/back.dmi'
 		)
-	w_class = 4
+	w_class = ITEMSIZE_LARGE
 	slot_flags = SLOT_BACK
-	max_w_class = 4
-	max_storage_space = 28
+	max_w_class = ITEMSIZE_LARGE
+	max_storage_space = INVENTORY_STANDARD_SPACE
+	var/flippable = 0
+	var/side = 0 //0 = right, 1 = left
 
 /obj/item/weapon/storage/backpack/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (src.use_sound)
@@ -40,9 +42,9 @@
 	desc = "A backpack that opens into a localized pocket of Blue Space."
 	origin_tech = list(TECH_BLUESPACE = 4)
 	icon_state = "holdingpack"
-	max_w_class = 4
-	max_storage_space = 56
-	storage_cost = 29
+	max_w_class = ITEMSIZE_LARGE
+	max_storage_space = ITEMSIZE_COST_NORMAL * 14 // 56
+	storage_cost = INVENTORY_STANDARD_SPACE + 1
 
 	New()
 		..()
@@ -66,9 +68,9 @@
 	desc = "Space Santa uses this to deliver toys to all the nice children in space in Christmas! Wow, it's pretty big!"
 	icon_state = "giftbag0"
 	item_state_slots = list(slot_r_hand_str = "giftbag", slot_l_hand_str = "giftbag")
-	w_class = 4.0
-	max_w_class = 3
-	max_storage_space = 400 // can store a ton of shit!
+	w_class = ITEMSIZE_LARGE
+	max_w_class = ITEMSIZE_NORMAL
+	max_storage_space = ITEMSIZE_COST_NORMAL * 100 // can store a ton of shit!
 	item_state_slots = null
 
 /obj/item/weapon/storage/backpack/cultpack
@@ -92,7 +94,7 @@
 	icon_state = "securitypack"
 
 /obj/item/weapon/storage/backpack/captain
-	name = "station administrator's backpack"
+	name = "colony director's backpack"
 	desc = "It's a special backpack made exclusively for officers."
 	icon_state = "captainpack"
 
@@ -135,7 +137,7 @@
 	desc = "A large dufflebag for holding extra things."
 	icon_state = "duffle"
 	slowdown = 1
-	max_storage_space = 36
+	max_storage_space = INVENTORY_DUFFLEBAG_SPACE
 
 /obj/item/weapon/storage/backpack/dufflebag/syndie
 	name = "black dufflebag"
@@ -154,7 +156,7 @@
 	icon_state = "duffle_syndieammo"
 
 /obj/item/weapon/storage/backpack/dufflebag/captain
-	name = "station administrator's dufflebag"
+	name = "colony director's dufflebag"
 	desc = "A large dufflebag for holding extra captainly goods."
 	icon_state = "duffle_captain"
 
@@ -246,7 +248,7 @@
 	icon_state = "satchel_hyd"
 
 /obj/item/weapon/storage/backpack/satchel/cap
-	name = "station administrator's satchel"
+	name = "colony director's satchel"
 	desc = "An exclusive satchel for officers."
 	icon_state = "satchel-cap"
 	item_state_slots = list(slot_r_hand_str = "captainpack", slot_l_hand_str = "captainpack")
@@ -339,3 +341,12 @@
 
 /obj/item/weapon/storage/backpack/messenger/black
 	icon_state = "courierbagblk"
+
+/obj/item/weapon/storage/backpack/purse
+	name = "purse"
+	desc = "A small, fashionable bag typically worn over the shoulder."
+	icon_state = "purse"
+	item_state_slots = list(slot_r_hand_str = "lgpurse", slot_l_hand_str = "lgpurse")
+	w_class = ITEMSIZE_LARGE
+	max_w_class = ITEMSIZE_NORMAL
+	max_storage_space = ITEMSIZE_COST_NORMAL * 5

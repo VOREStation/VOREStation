@@ -5,7 +5,7 @@
 	desc = "Another crewmember, small enough to fit in your hand."
 	icon_state = "micro"
 	slot_flags = SLOT_FEET | SLOT_HEAD | SLOT_ID
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	item_icons = null 	// Override value from parent. We don't have magic sprites.
 	pixel_y = 0			// Override value from parent.
 

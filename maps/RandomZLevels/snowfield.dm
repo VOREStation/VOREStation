@@ -18,7 +18,8 @@
 	mobcountmax = 100
 	floracountmax = 7000
 	valid_mobs = list(/mob/living/simple_animal/hostile/samak/polar, /mob/living/simple_animal/hostile/diyaab/polar,
-					/mob/living/simple_animal/hostile/shantak/polar, /mob/living/simple_animal/hostile/vore/polarbear)
+					/mob/living/simple_animal/hostile/shantak/polar, /mob/living/simple_animal/hostile/vore/polarbear,
+					/mob/living/simple_animal/hostile/vore/wolf)
 	valid_flora = list(/obj/structure/flora/tree/pine, /obj/structure/flora/tree/pine, /obj/structure/flora/tree/pine,
 					/obj/structure/flora/tree/dead, /obj/structure/flora/grass/brown, /obj/structure/flora/grass/green,
 					/obj/structure/flora/grass/both, /obj/structure/flora/bush, /obj/structure/flora/ausbushes/grassybush,
@@ -27,8 +28,9 @@
 
 /area/awaymission/snowfield/restricted // No mob spawns!
 	icon_state = "red"
-	mobcountmax = 0
-	floracountmax = 500
+	mobcountmax = 1 // Hacky fix.
+	floracountmax = 100
+	valid_mobs = list(/obj/structure/flora/tree/pine) // Hacky fix.
 	valid_flora = list(/obj/structure/flora/tree/pine, /obj/structure/flora/tree/pine, /obj/structure/flora/tree/pine,
 					/obj/structure/flora/tree/dead, /obj/structure/flora/grass/brown, /obj/structure/flora/grass/green,
 					/obj/structure/flora/grass/both, /obj/structure/flora/bush, /obj/structure/flora/ausbushes/grassybush,

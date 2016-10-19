@@ -105,6 +105,8 @@
 		"Your chilly flesh stands out in goosebumps."
 		)
 
+	var/metabolic_rate = 1
+
 	// HUD data vars.
 	var/datum/hud_data/hud
 	var/hud_type

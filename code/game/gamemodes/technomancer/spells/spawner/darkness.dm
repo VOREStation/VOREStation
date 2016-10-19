@@ -15,7 +15,7 @@
 
 /obj/item/weapon/spell/spawner/darkness/on_ranged_cast(atom/hit_atom, mob/user)
 	if(pay_energy(500))
-		owner.adjust_instability(4)
+		adjust_instability(4)
 		..()
 
 /obj/item/weapon/spell/spawner/darkness/New()

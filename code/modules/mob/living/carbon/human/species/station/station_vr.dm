@@ -28,7 +28,7 @@
 	lifespan, but due to their lust for violence, only a handful have ever survived beyond the age of 80, such as the infamous and \
 	legendary General Rain Silves who is claimed to have lived to 5000."
 
-	primitive_form = "Sergaling"
+	primitive_form = "Saru"
 
 	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
@@ -263,9 +263,6 @@
 	darksight = 4 //Better hunters in the dark.
 	hunger_factor = 0.1 //In exchange, they get hungry a tad faster.
 	num_alternate_languages = 2
-	//secondary_langs = list("Sagaru") //No special language, yet. And I'm pretty sure this doesn't even work.
-	//name_language = "Sagaru"
-	//color_mult = 1 //Since it's a black sprite, it adds instead of multiplies.
 
 	min_age = 17
 	max_age = 80
@@ -276,7 +273,7 @@
 	but there are multiple exceptions. All xenomorph hybrids have had their ability to lay eggs containing facehuggers \
 	removed if they had the ability to, although hybrids that previously contained this ability is extremely rare."
 
-	//primitive_form = "Sergaling" //No official sprite for them yet.
+	//primitive_form = "" //None for these guys
 
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
@@ -298,6 +295,8 @@
 
 /datum/species/tajaran
 	spawn_flags = SPECIES_CAN_JOIN
+	icobase = 'icons/mob/human_races/r_tajaran_vr.dmi'
+	deform = 'icons/mob/human_races/r_def_tajaran_vr.dmi'
 
 /datum/species/skrell
 	spawn_flags = SPECIES_CAN_JOIN

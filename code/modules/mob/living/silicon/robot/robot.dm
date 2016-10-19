@@ -246,7 +246,7 @@
 		return
 	var/list/modules = list()
 	modules.Add(robot_module_types)
-	if((crisis && security_level == SEC_LEVEL_RED) || crisis_override) //Leaving this in until it's balanced appropriately.
+	if(crisis || security_level == SEC_LEVEL_RED || crisis_override) // VOREStation Edit
 		src << "\red Crisis mode active. Combat module available."
 		modules+="Combat"
 	modtype = input("Please, select a module!", "Robot module", null, null) as null|anything in modules
@@ -549,8 +549,8 @@
 			user << "Close the panel first."
 		else if(cell)
 			user << "There is a power cell already installed."
-		else if(W.w_class != 3)
-			user << "\The [W] is too [W.w_class < 3? "small" : "large"] to fit here."
+		else if(W.w_class != ITEMSIZE_NORMAL)
+			user << "\The [W] is too [W.w_class < ITEMSIZE_NORMAL ? "small" : "large"] to fit here."
 		else
 			user.drop_item()
 			W.loc = src

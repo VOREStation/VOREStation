@@ -1,5 +1,5 @@
 /mob/living/simple_animal/snake
-	name = "Snake"
+	name = "snake"
 	desc = "A big thick snake."
 	icon = 'icons/mob/snake_vr.dmi'
 	icon_state = "snake"

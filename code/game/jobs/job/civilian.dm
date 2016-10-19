@@ -231,7 +231,7 @@
 	idtype = /obj/item/weapon/card/id/civilian
 	access = list(access_library, access_maint_tunnels)
 	minimal_access = list(access_library)
-	alt_titles = list("Journalist", "Professor", "Historian")
+	alt_titles = list("Journalist", "Professor", "Historian", "Writer")
 
 
 	equip(var/mob/living/carbon/human/H)

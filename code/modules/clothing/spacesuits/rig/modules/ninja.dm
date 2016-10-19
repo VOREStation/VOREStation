@@ -168,7 +168,7 @@
 /obj/item/rig_module/self_destruct
 
 	name = "self-destruct module"
-	desc = "Oh my God, Station Administrator. A bomb."
+	desc = "Oh my God, a bomb!"
 	icon_state = "deadman"
 	usable = 1
 	active = 1

@@ -41,7 +41,7 @@
 	icon_override = 'icons/obj/gun_vr.dmi'
 	item_state = "battlerifle"
 	item_icons = null
-	w_class = 4
+	w_class = ITEMSIZE_LARGE
 	recoil = 2 // The battlerifle was known for its nasty recoil.
 	max_shells = 36
 	caliber = "9.5x40mm"
@@ -74,7 +74,7 @@
 /obj/item/weapon/gun/projectile/shotgun/pump/unsc/fluff/ace
 	name = "Ace's M45D Tactical Shotgun" // D-model holds half as many shells as the normal version so as not to be OP as shit. Better than shotgun, worse than combat shotgun.
 	desc = "Owned by the respected (or feared?) veteran Captain of VORE Station. Inscribed on the barrel are the words \"Speak softly, and carry a big stick.\" It has a folding stock so it can fit into bags."
-	w_class = 3 // Because collapsable stock so it fits in backpacks.
+	w_class = ITEMSIZE_NORMAL // Because collapsable stock so it fits in backpacks.
 	ammo_type = /obj/item/ammo_casing/shotgun/stunshell
 	max_shells = 6
 
@@ -149,7 +149,7 @@
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "stg60"
 	item_state = "arifle"
-	w_class = 4
+	w_class = ITEMSIZE_LARGE
 	max_shells = 30
 	caliber = "kurz"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2, TECH_ILLEGAL = 6)
@@ -206,7 +206,7 @@
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "pdw"
 	item_state = "c20r" // Placeholder
-	w_class = 3
+	w_class = ITEMSIZE_NORMAL
 	caliber = "9mm"
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
@@ -238,7 +238,7 @@
 	icon_override = 'icons/vore/custom_guns_vr.dmi'
 	item_state = "crestrose_fold_mob"
 
-	w_class = 4
+	w_class = ITEMSIZE_LARGE
 	origin_tech = list(TECH_COMBAT = 7, TECH_MATERIAL = 4)
 	slot_flags = null
 	fire_sound = 'sound/weapons/Gunshot_light.ogg'
@@ -263,7 +263,7 @@
 		icon_state = "crestrose"
 		icon_override = 'icons/vore/custom_guns_vr.dmi'
 		item_state = "crestrose_mob"
-		w_class = 4
+		w_class = ITEMSIZE_LARGE
 		force = 15//Obscenely robust
 		attack_verb = list("slashed", "cut", "drives")
 		hitsound = 'sound/weapons/bladeslice.ogg'
@@ -275,7 +275,7 @@
 		icon_state = "crestrose_fold"
 		icon_override = 'icons/vore/custom_guns_vr.dmi'
 		item_state = "crestrose_fold_mob"
-		w_class = 3
+		w_class = ITEMSIZE_NORMAL
 		force = 3//Not so obscenely robust
 		attack_verb = list("hit", "melee'd")
 		hitsound = null
@@ -321,7 +321,6 @@
 
 	projectile_type = /obj/item/projectile/beam/stun/kin21
 
-	max_shots = 8
 	charge_cost = 125
 	charge_meter = 1
 

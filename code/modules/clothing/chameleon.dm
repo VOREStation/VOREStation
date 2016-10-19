@@ -11,6 +11,7 @@
 	icon_state = copy.icon_state
 	item_state = copy.item_state
 	body_parts_covered = copy.body_parts_covered
+	flags_inv = copy.flags_inv
 
 	item_icons = copy.item_icons.Copy()
 	if(copy.item_state_slots) //Runtime prevention for backpacks
@@ -363,15 +364,14 @@
 	name = "desert eagle"
 	desc = "A hologram projector in the shape of a gun. There is a dial on the side to change the gun's disguise."
 	icon_state = "deagle"
-	w_class = 3
+	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
 	matter = list()
 
 	fire_sound = 'sound/weapons/Gunshot.ogg'
 	projectile_type = /obj/item/projectile/chameleon
 	charge_meter = 0
-	charge_cost = 20 //uses next to no power, since it's just holograms
-	max_shots = 50
+	charge_cost = 48 //uses next to no power, since it's just holograms
 
 	var/obj/item/projectile/copy_projectile
 	var/global/list/gun_choices

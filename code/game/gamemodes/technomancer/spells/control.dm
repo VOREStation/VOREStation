@@ -150,7 +150,7 @@
 				attack \the [L].</span>"
 				//This is to stop someone from controlling beepsky and getting him to stun someone 5 times a second.
 				user.setClickCooldown(8)
-				owner.adjust_instability(controlled_mobs.len)
+				adjust_instability(controlled_mobs.len)
 
 	else if(isturf(hit_atom))
 		var/turf/T = hit_atom
@@ -159,7 +159,7 @@
 			return 0
 		if(pay_energy(50 * controlled_mobs.len))
 			move_all(T)
-			owner.adjust_instability(controlled_mobs.len)
+			adjust_instability(controlled_mobs.len)
 			user << "<span class='notice'>You command your [controlled_mobs.len > 1 ? "entities" : "[controlled_mobs[1]]"] to move \
 			towards \the [T].</span>"
 

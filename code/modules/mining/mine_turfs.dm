@@ -139,7 +139,7 @@ var/list/mining_overlay_cache = list()
 			overlays += mining_overlay_cache["dug_overlay"]
 
 		for(var/direction in cardinal)
-			if(istype(get_step(src, direction), /turf/space))
+			if(istype(get_step(src, direction), /turf/space) && !istype(get_step(src, direction), /turf/space/cracked_asteroid))
 				if(!mining_overlay_cache["asteroid_edge_[direction]"])
 					mining_overlay_cache["asteroid_edge_[direction]"] = image('icons/turf/flooring/asteroid.dmi', "asteroid_edges", dir = direction)
 				overlays += mining_overlay_cache["asteroid_edge_[direction]"]

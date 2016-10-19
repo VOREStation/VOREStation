@@ -36,3 +36,8 @@
     display_name = "Saddle Bag"
     path = /obj/item/weapon/storage/backpack/saddlebag
     slot = slot_back
+
+/datum/gear/accessory/khcrystal
+	display_name = "KH Life Crystal"
+	path = /obj/item/weapon/storage/box/khcrystal
+	description = "A small necklace device that will notify an offsite cloning facility should you expire after activating it."

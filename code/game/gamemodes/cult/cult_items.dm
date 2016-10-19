@@ -2,7 +2,7 @@
 	name = "cult blade"
 	desc = "An arcane weapon wielded by the followers of Nar-Sie."
 	icon_state = "cultblade"
-	w_class = 4
+	w_class = ITEMSIZE_LARGE
 	force = 30
 	throwforce = 10
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -105,7 +105,7 @@
 	name = "cult armour"
 	icon_state = "cult_armour"
 	desc = "A bulky suit of armour, bristling with spikes. It looks space-worthy."
-	w_class = 3
+	w_class = ITEMSIZE_NORMAL
 	allowed = list(/obj/item/weapon/book/tome,/obj/item/weapon/melee/cultblade,/obj/item/weapon/tank/emergency_oxygen,/obj/item/device/suit_cooling_unit)
 	slowdown = 1
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 30, rad = 30)

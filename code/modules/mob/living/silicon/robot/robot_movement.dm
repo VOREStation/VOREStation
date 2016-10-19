@@ -18,7 +18,7 @@
 	tally = speed
 
 	if(module_active && istype(module_active,/obj/item/borg/combat/mobility))
-		tally-=3
+		tally-=2 // VOREStation Edit
 
 	return tally+config.robot_delay
 

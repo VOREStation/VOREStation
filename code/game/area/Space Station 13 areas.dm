@@ -1140,7 +1140,7 @@ area/space/atmosalert()
 	sound_env = MEDIUM_SOFTFLOOR
 
 /area/crew_quarters/captain
-	name = "\improper Command - Station Administrator's Office"
+	name = "\improper Command - Colony Director's Office"
 	icon_state = "captain"
 	sound_env = MEDIUM_SOFTFLOOR
 

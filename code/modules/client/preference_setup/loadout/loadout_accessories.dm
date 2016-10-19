@@ -24,9 +24,21 @@
 	display_name = "armband, medical"
 	path = /obj/item/clothing/accessory/armband/med
 
+/datum/gear/accessory/medical/cross
+	display_name = "armband, medic"
+	path = /obj/item/clothing/accessory/armband/med/cross
+
 /datum/gear/accessory/science
 	display_name = "armband, science"
 	path = /obj/item/clothing/accessory/armband/science
+
+/datum/gear/accessory/colored
+	display_name = "armband"
+	path = /obj/item/clothing/accessory/armband/med/color
+
+/datum/gear/accessory/colored/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
 
 /datum/gear/accessory/wallet
 	display_name = "wallet, orange"
@@ -36,10 +48,36 @@
 	display_name = "wallet, polychromic"
 	path = /obj/item/weapon/storage/wallet/poly
 
+/datum/gear/accessory/wallet/womens
+	display_name = "wallet, womens"
+	path = /obj/item/weapon/storage/wallet/womens
+
+/datum/gear/accessory/wallet/womens/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/accessory/clutch
+	display_name = "clutch bag"
+	path = /obj/item/weapon/storage/briefcase/clutch
+	cost = 2
+
+/datum/gear/accessory/clutch/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/accessory/purse
+	display_name = "purse"
+	path = /obj/item/weapon/storage/backpack/purse
+	cost = 3
+
+/datum/gear/accessory/purse/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
 /datum/gear/accessory/holster
 	display_name = "holster, armpit"
 	path = /obj/item/clothing/accessory/holster/armpit
-	allowed_roles = list("Station Administrator", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective")
+	allowed_roles = list("Colony Director", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective")
 
 /datum/gear/accessory/holster/hip
 	display_name = "holster, hip"

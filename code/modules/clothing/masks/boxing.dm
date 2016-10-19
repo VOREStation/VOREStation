@@ -5,7 +5,7 @@
 	item_state_slots = list(slot_r_hand_str = "bandblack", slot_l_hand_str = "bandblack")
 	flags_inv = HIDEFACE|BLOCKHAIR
 	body_parts_covered = FACE|HEAD
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	sprite_sheets = list(
 		"Tajara" = 'icons/mob/species/tajaran/mask.dmi',
 		"Unathi" = 'icons/mob/species/unathi/mask.dmi',
@@ -17,7 +17,7 @@
 	icon_state = "swatclava"
 	item_state_slots = list(slot_r_hand_str = "bandgreen", slot_l_hand_str = "bandgreen")
 	flags_inv = HIDEFACE|BLOCKHAIR
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	sprite_sheets = list(
 		"Tajara" = 'icons/mob/species/tajaran/mask.dmi',
 		"Unathi" = 'icons/mob/species/unathi/mask.dmi',
@@ -29,7 +29,7 @@
 	icon_state = "luchag"
 	flags_inv = HIDEFACE|BLOCKHAIR
 	body_parts_covered = HEAD|FACE
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	siemens_coefficient = 3.0
 
 /obj/item/clothing/mask/luchador/tecnicos

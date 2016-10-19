@@ -37,3 +37,7 @@
 // Powernet rebuilds need this to work properly.
 /obj/machinery/power/terminal/process()
 	return 1
+
+/obj/machinery/power/terminal/overload(var/obj/machinery/power/source)
+	if(master)
+		master.overload(source)

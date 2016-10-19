@@ -9,7 +9,7 @@
 //	heat_capacity = 700000 No.
 
 /turf/space/New()
-	if(!istype(src, /turf/space/transit))
+	if(!istype(src, /turf/space/transit) && !istype(src, /turf/space/cracked_asteroid))
 		icon_state = "[((x + y) ^ ~(x * y) + z) % 25]"
 	update_starlight()
 	..()
