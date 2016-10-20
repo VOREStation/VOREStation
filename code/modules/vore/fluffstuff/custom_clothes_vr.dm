@@ -236,11 +236,11 @@
 	name = "Purple MedHUD"
 	desc = "A standard Medical HUD, only this one is colored purple with a violet lens."
 
-	icon = 'icons/vore/custom_clothes_vr.dmi'
-	icon_state = "healthhud"
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "tempesthud"
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	item_state = "healthhud"
+	item_state = "tempesthud"
 
 //For general use
 /obj/item/clothing/accessory/fluff/smilepin
