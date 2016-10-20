@@ -28,7 +28,7 @@
 		/obj/item/clothing/under/thing4)
 */
 
-//POLARISTODO - These fail to compile since not all items are ported yet
+
 // bwoincognito:Tasald Corlethian
 /obj/item/weapon/storage/box/fluff/tasald
 	name = "Tasald's Kit"
@@ -83,11 +83,12 @@
 		new /obj/item/clothing/under/rank/internalaffairs/fluff/joan(src)
 		new /obj/item/clothing/head/helmet/space/fluff/joan(src)
 		new /obj/item/clothing/suit/space/fluff/joan(src)
+		new /obj/item/device/pda/heads/hos/fluff/joanpda(src)
 
 
 
 //joanrisu:Katarina Eine
-/obj/item/weapon/storage/backpack/dufflebag/sec/fluff/Katarina
+/obj/item/weapon/storage/backpack/dufflebag/sec/fluff/katarina
 	name = "Katarina's Workbag"
 	desc = "A duffle bag Katarina uses to carry her tools."
 	slowdown = 0

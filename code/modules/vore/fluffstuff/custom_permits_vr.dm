@@ -23,16 +23,6 @@
 	This license expires on DD/Mon/YYYY and must be renewed by CentCom prior to this date."}
 */
 
-// bwoincognito:Tasald Corlethian
-/obj/item/fluff/permit/tasald_corlethian
-	name = "Tasald Ajax Corlethian's Sidearm Permit"
-	desc = {"
-	<b>NAME:</b> Tasald Ajax Corlethian | <b>RACE:</b> Vulpine | <b>HOMEWORLD:</b> Iscyn, Orta
-	<b>DOB:</b> 09/Sep/2529 | <b>HEIGHT:</b> 187cm | <b>SEX:</b> Male
-
-	The individual named above is licensed by the Nanotrasen Department of Civil Protection to carry one .38 pistol.
-	This license expires on 30/March/2561 and must be renewed by CentCom prior to this date."}
-
 /*
 // jertheace:Jeremiah 'Ace' Acacius
 /obj/item/fluff/permit/jerace

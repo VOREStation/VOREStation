@@ -151,7 +151,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	icon_state = "pda-joan"
 
 //Vorrarkul:Lucina Dakarim
-/obj/item/device/pda/heads/hos/fluff/lucinapda
+/obj/item/device/pda/heads/cmo/fluff/lucinapda
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "pda-lucina"
 
