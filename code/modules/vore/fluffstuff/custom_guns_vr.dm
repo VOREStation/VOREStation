@@ -295,7 +295,7 @@
 	desc = "Brass, copper, and lots of gears. Well lubricated for fluid movement as each round is loaded, locked, and fired. Just like clockwork."
 
 	icon = 'icons/vore/custom_guns_vr.dmi'
-	icon_state = "clockworkrifle"
+	icon_state = "clockworkrifle_icon"
 
 	icon_override = 'icons/vore/custom_guns_vr.dmi'
 	item_state = "clockworkrifle"
@@ -321,7 +321,7 @@
 
 	projectile_type = /obj/item/projectile/beam/stun/kin21
 
-	charge_cost = 125
+	charge_cost = 300
 	charge_meter = 1
 
 	firemodes = list(
@@ -349,8 +349,8 @@
 	modifystate = "dominatorstun"
 
 	firemodes = list(
-	list(mode_name="stun", charge_cost=100,projectile_type=/obj/item/projectile/beam/stun, modifystate="dominatorstun", fire_sound='sound/weapons/Taser.ogg'),
-	list(mode_name="lethal", charge_cost=125,projectile_type=/obj/item/projectile/beam/dominator, modifystate="dominatorkill", fire_sound='sound/weapons/gauss_shoot.ogg'),
+	list(mode_name="stun", charge_cost=240,projectile_type=/obj/item/projectile/beam/stun, modifystate="dominatorstun", fire_sound='sound/weapons/Taser.ogg'),
+	list(mode_name="lethal", charge_cost=480,projectile_type=/obj/item/projectile/beam/dominator, modifystate="dominatorkill", fire_sound='sound/weapons/gauss_shoot.ogg'),
 	)
 
 // ------------ Energy Luger ------------

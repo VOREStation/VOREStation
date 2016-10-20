@@ -551,6 +551,8 @@
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "molenar"
+	var/item_open = "molenar_open"
+	var/item_closed = "molenar"
 
 //scree:Scree
 /obj/item/clothing/head/fluff/pompom
@@ -663,6 +665,14 @@
 
 	light_overlay = "helmet_light"
 
+	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+		..()
+		if(H.ckey != "joanrisu")
+			H << "<span class='warning'>You try to fit on the helmet, but it doesn't fit.</span>"
+			return 0
+		else
+			return 1
+
 
 //JoanRisu:Joan Risu
 /obj/item/clothing/suit/space/fluff/joan
@@ -673,7 +683,7 @@
 	where the suit is softer is a rectangular name-tag with the name 'Joan' on it. There are indications that the \
 	suit has seen combat."
 
-	armor = list(melee = 80, bullet = 50, laser = 35, energy = 15, bomb = 70, bio = 100, rad = 50) //These values were taken from the combat rigs and adjusted to be weaker than said rigs.
+	armor = list(melee = 50, bullet = 40, laser = 45, energy = 25, bomb = 50, bio = 100, rad = 50) //These values were taken from the combat rigs and adjusted to be weaker than said rigs.
 	slowdown = 0
 	allowed = list(/obj/item/weapon/gun,/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/melee/baton)
 	w_class = ITEMSIZE_NORMAL
@@ -683,6 +693,15 @@
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "joansuit_mob"
+
+	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+		..()
+		if(H.ckey != "joanrisu")
+			H << "<span class='warning'>You try to fit into the suit, to no avail.</span>"
+			return 0
+		else
+			return 1
+
 
 /obj/item/clothing/under/rank/internalaffairs/fluff/joan
 	desc = "The plain, professional attire of a Federation Law Enforcement Detective. The collar is <i>immaculately</i> starched."
