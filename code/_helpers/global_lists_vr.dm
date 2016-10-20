@@ -23,11 +23,9 @@ var/global/list/important_items = list(
 		/obj/item/device/paicard,
 		/obj/item/weapon/gun,
 		/obj/item/weapon/pinpointer,
-		///obj/item/clothing/suit,
 		/obj/item/clothing/shoes/magboots,
 		/obj/item/blueprints,
 		/obj/item/clothing/head/helmet/space,
-		///obj/item/weapon/storage/internal, //You can't just preserve magical objects like this...
 		/obj/item/weapon/disk/nuclear)
 
 var/global/list/digestion_sounds = list(
