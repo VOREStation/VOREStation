@@ -60,6 +60,12 @@ character_name: Aronai Kadigan
 item_path: /obj/item/weapon/storage/backpack/dufflebag/emt/fluff/aro
 }
 
+{
+ckey: arokha
+character_name: Aronai Kadigan
+item_path: /obj/item/clothing/under/rank/khi/fluff/aro
+}
+
 # ######## B CKEYS
 {
 ckey: benemuel
@@ -89,7 +95,7 @@ item_desc: This soviet uniform has seen considerable use over the years, it's ra
 {
 ckey: bwoincognito
 character_name: Tasald Corlethian
-item_path: /obj/item/weapon/storage/box/fluff/tasaldkit
+item_path: /obj/item/weapon/storage/box/fluff/tasald
 }
 
 {
@@ -103,7 +109,7 @@ item_path: /obj/item/clothing/shoes/cuffs/octavious
 {
 ckey: dhaeleena
 character_name: Dhaeleena M'iar
-item_path: /obj/item/clothing/accessory/medal/silver/security
+item_path: /obj/item/clothing/accessory/medal/silver/security/fluff/dhael
 }
 
 {
@@ -145,7 +151,7 @@ item_path: /obj/item/clothing/accessory/medal/bronze_heart
 {
 ckey: jemli
 character_name: Cirra Songbreeze
-item_path: /obj/item/weapon/storage/box/fluff/pirate
+item_path: /obj/item/weapon/storage/box/fluff/cirra
 }
 
 {
@@ -170,6 +176,18 @@ item_path: /obj/item/clothing/under/syndicate/combat
 ckey: jertheace
 character_name: Jeremiah 'Ace' Acacius
 item_path: /obj/item/clothing/suit/armor/tactical/officer/fluff/ace
+}
+
+{
+ckey: joanrisu
+character_name: Joan Risu
+item_path: /obj/item/weapon/storage/backpack/dufflebag/sec/fluff/joanrisu
+}
+
+{
+ckey: joanrisu
+character_name: Katarina Eine
+item_path: /obj/item/weapon/storage/backpack/dufflebag/sec/fluff/katarina
 }
 
 {
@@ -270,6 +288,18 @@ item_path: /obj/item/weapon/melee/fluff/holochain
 # ######## P CKEYS
 # ######## Q CKEYS
 # ######## R CKEYS
+{
+ckey: Razerwing
+character_name: Archer Maximus
+item_path: /obj/item/weapon/gun/projectile/colt/fluff/archercolt
+}
+
+{
+ckey: Razerwing
+character_name: Archer Maximus
+item_path: /obj/item/fluff/permit/archermaximus
+}
+
 # ######## S CKEYS
 {
 ckey: sasoperative
@@ -307,6 +337,12 @@ character_name: Scree
 item_path: /obj/item/clothing/head/fluff/pompom
 }
 
+{
+ckey: Swat43
+character_name: Fortune Bloise
+item_path: /obj/item/weapon/storage/backpack/satchel/fluff/swat43bag
+}
+
 # ######## T CKEYS
 {
 ckey: tonyvld
@@ -319,19 +355,25 @@ item_path: /obj/item/clothing/head/fluff/runac
 {
 ckey: vorrarkul
 character_name: Lucina Dakarim
-item_path: /obj/item/device/pda_mod/fluff/vorrarkul
+item_path: /obj/item/device/pda/heads/cmo/fluff/lucinapda
 }
 
 {
 ckey: vorrarkul
 character_name: Lucina Dakarim
-item_path: /obj/item/clothing/accessory/medal/medical
+item_path: /obj/item/clothing/accessory/medal/gold/fluff/lucina
 }
 
 {
 ckey: vorrarkul
 character_name: Lucina Dakarim
-item_path: /obj/item/clothing/under/fluff/solara_light_1
+item_path: /obj/item/clothing/under/dress/fluff/lucinadress
+}
+
+{
+ckey: Viveret
+character_name: Keturah
+item_path: /obj/item/clothing/under/dress/maid/
 }
 
 # ######## W CKEYS
