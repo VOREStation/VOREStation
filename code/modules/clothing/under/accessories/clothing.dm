@@ -130,3 +130,39 @@
 	if(prob(50))
 		icon_state = "hawaii2"
 	color = color_rotation(rand(-11,12)*15)
+
+/obj/item/clothing/accessory/wcoat
+	name = "waistcoat"
+	desc = "For some classy, murderous fun."
+	icon_state = "vest"
+	item_state_slots = list(slot_r_hand_str = "wcoat", slot_l_hand_str = "wcoat")
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+
+/obj/item/clothing/accessory/wcoat/red
+	name = "red waistcoat"
+	icon_state = "red_waistcoat"
+
+/obj/item/clothing/accessory/wcoat/grey
+	name = "grey waistcoat"
+	icon_state = "grey_waistcoat"
+
+/obj/item/clothing/accessory/wcoat/brown
+	name = "brown waistcoat"
+	icon_state = "brown_waistcoat"
+
+/obj/item/clothing/accessory/wcoat/gentleman
+	name = "elegant waistcoat"
+	icon_state = "elegant_waistcoat"
+
+/obj/item/clothing/accessory/wcoat/swvest
+	name = "black sweatervest"
+	desc = "A sleeveless sweater. Wear this if you don't want your arms to be warm, or if you're a nerd."
+	icon_state = "sweatervest"
+
+/obj/item/clothing/accessory/wcoat/swvest/blue
+	name = "blue sweatervest"
+	icon_state = "sweatervest_blue"
+
+/obj/item/clothing/accessory/wcoat/swvest/red
+	name = "red sweatervest"
+	icon_state = "sweatervest_red"

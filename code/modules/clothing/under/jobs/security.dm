@@ -104,12 +104,14 @@
 	desc = "A more modern uniform for corporate investigators."
 
 /obj/item/clothing/under/det/waistcoat
-	icon_state = "detective_waistcoat"
+	icon_state = "detective"
 	desc = "A rumpled white dress shirt paired with well-worn grey slacks, complete with a blue striped tie, faux-gold tie clip, and waistcoat."
+	starting_accessories = list(/obj/item/clothing/accessory/blue_clip, /obj/item/clothing/accessory/wcoat)
 
 /obj/item/clothing/under/det/grey/waistcoat
-	icon_state = "detective2_waistcoat"
+	icon_state = "detective2"
 	desc = "A serious-looking tan dress shirt paired with freshly-pressed black slacks, complete with a red striped tie and waistcoat."
+	starting_accessories = list(/obj/item/clothing/accessory/red_long, /obj/item/clothing/accessory/wcoat)
 
 /*
  * Head of Security

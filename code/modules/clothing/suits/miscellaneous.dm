@@ -84,7 +84,7 @@
 	allowed = list(/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/spacecash)
 	flags_inv = HIDEJUMPSUIT
 
-/obj/item/clothing/suit/wcoat
+/*/obj/item/clothing/suit/wcoat
 	name = "waistcoat"
 	desc = "For some classy, murderous fun."
 	icon_state = "vest"
@@ -117,7 +117,7 @@
 /obj/item/clothing/suit/wcoat/swvest/red
 	name = "red sweatervest"
 	icon_state = "sweatervest_red"
-
+*/
 /obj/item/clothing/suit/apron/overalls
 	name = "coveralls"
 	desc = "A set of denim overalls."
