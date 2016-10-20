@@ -551,8 +551,8 @@
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "molenar"
-	item_open = "molenar_open"
-	item_closed = "molenar"
+	var/item_open = "molenar_open"
+	var/item_closed = "molenar"
 
 //scree:Scree
 /obj/item/clothing/head/fluff/pompom
