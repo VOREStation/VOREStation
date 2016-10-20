@@ -64,7 +64,10 @@
 								continue
 
 					//Anything else
-					dat += "<a href='?src=\ref[src];outsidepick=\ref[O];outsidebelly=\ref[inside_belly]'>[O]</a>"
+					dat += "<a href='?src=\ref[src];outsidepick=\ref[O];outsidebelly=\ref[inside_belly]'>[O]&#8203;</a>"
+
+					//Zero-width space, for wrapping
+					dat += "&#8203;"
 	else
 		dat += "You aren't inside anyone."
 
@@ -135,6 +138,9 @@
 
 				//Anything else
 				dat += "<a href='?src=\ref[src];insidepick=\ref[O]'>[O]</a>"
+
+				//Zero-width space, for wrapping
+				dat += "&#8203;"
 
 			//If there's more than one thing, add an [All] button
 			if(selected.internal_contents.len > 1)

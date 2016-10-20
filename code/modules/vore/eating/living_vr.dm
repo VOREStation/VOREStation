@@ -179,6 +179,7 @@
 	for (var/I in vore_organs)
 		var/datum/belly/B = vore_organs[I]
 		if(B.internal_contents.len)
+			listclearnulls(B.internal_contents)
 			for(var/atom/movable/M in B.internal_contents)
 				if(M.loc != src)
 					B.internal_contents -= M
