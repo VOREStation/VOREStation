@@ -300,7 +300,7 @@
 	spawn_flags = SPECIES_CAN_JOIN
 
 /datum/species/diona
-	spawn_flags = SPECIES_CAN_JOIN
+	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
 
 /datum/species/teshari
 	spawn_flags = SPECIES_CAN_JOIN
