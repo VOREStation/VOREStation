@@ -1,6 +1,6 @@
 /datum/technomancer/spell/overload
 	name = "Overload"
-	desc = "Fires a bolt of highly unstable energy, that does damaged equal to 1.5% of the technomancer's current reserve of energy.  \
+	desc = "Fires a bolt of highly unstable energy, that does damaged equal to 0.3% of the technomancer's current reserve of energy.  \
 	This energy pierces all known armor."
 	cost = 100
 	obj_path = /obj/item/weapon/spell/projectile/overload
@@ -22,7 +22,6 @@
 /obj/item/projectile/overload
 	name = "overloaded bolt"
 	icon_state = "bluespace"
-//	nodamage = 1
 	damage_type = BURN
 	armor_penetration = 100
 
@@ -33,6 +32,7 @@
 		var/obj/item/projectile/overload/P = new spell_projectile(get_turf(user))
 		P.launch(hit_atom)
 		if(check_for_scepter())
+<<<<<<< HEAD
 			P.damage = round(energy_before_firing * 0.004) // 4% of their current energy pool.
 		else
 			P.damage = round(energy_before_firing * 0.003) // 3% of their current energy pool.
@@ -43,3 +43,10 @@
 //	muzzle_type = /obj/effect/projectile/lightning/muzzle
 //	tracer_type = /obj/effect/projectile/lightning/tracer
 //	impact_type = /obj/effect/projectile/lightning/impact
+=======
+			P.damage = round(energy_before_firing * 0.004) // .4% of their current energy pool.
+		else
+			P.damage = round(energy_before_firing * 0.003) // .3% of their current energy pool.
+		adjust_instability(instability_per_shot)
+		return 1
+>>>>>>> 67330d1df626506b796a218c7c261e868060db9c

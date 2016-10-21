@@ -53,8 +53,9 @@
 	var/eyeblur = 0
 	var/drowsy = 0
 	var/agony = 0
-	var/embed = 0 // whether or not the projectile can embed itself in the mob
 	var/reflected = 0 // This should be set to 1 if reflected by any means, to prevent infinite reflections.
+
+	embed_chance = 0	//Base chance for a projectile to embed
 
 	var/hitscan = 0		// whether the projectile should be hitscan
 	var/step_delay = 1	// the delay between iterations if not a hitscan projectile
@@ -86,7 +87,7 @@
 //Checks if the projectile is eligible for embedding. Not that it necessarily will.
 /obj/item/projectile/proc/can_embed()
 	//embed must be enabled and damage type must be brute
-	if(!embed || damage_type != BRUTE)
+	if(embed_chance == 0 || damage_type != BRUTE)
 		return 0
 	return 1
 

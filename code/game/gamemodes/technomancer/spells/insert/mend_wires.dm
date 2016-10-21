@@ -28,4 +28,8 @@
 							continue
 						O.heal_damage(0, heal_power / 5, internal = 1, robo_repair = 1)
 					sleep(1 SECOND)
+<<<<<<< HEAD
 		on_expire()
+=======
+		on_expire()
+>>>>>>> 67330d1df626506b796a218c7c261e868060db9c

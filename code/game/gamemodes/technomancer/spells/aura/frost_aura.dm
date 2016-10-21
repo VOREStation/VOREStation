@@ -36,4 +36,8 @@
 			var/cold_factor = abs(protection - 1)
 			H.bodytemperature = max( (H.bodytemperature - temp_change) * cold_factor, temp_cap)
 
+<<<<<<< HEAD
 	adjust_instability(1)
+=======
+	adjust_instability(1)
+>>>>>>> 67330d1df626506b796a218c7c261e868060db9c

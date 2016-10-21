@@ -40,6 +40,7 @@
 		/obj/item/weapon/wrench,
 		/obj/item/device/multitool,
 		/obj/item/device/flashlight,
+		/obj/item/weapon/cell/device,
 		/obj/item/stack/cable_coil,
 		/obj/item/device/t_scanner,
 		/obj/item/device/analyzer,
@@ -54,7 +55,6 @@
 		/obj/item/weapon/material/hatchet,
 		/obj/item/device/analyzer/plant_analyzer,
 		/obj/item/weapon/extinguisher/mini,
-		/obj/item/device/flashlight/maglight,
 		/obj/item/weapon/tape_roll,
 		/obj/item/device/integrated_electronics/wirer,
 		)
@@ -97,7 +97,6 @@
 		/obj/item/device/pda,
 		/obj/item/taperoll,
 		/obj/item/device/megaphone,
-		/obj/item/device/flashlight/pen,
 		/obj/item/clothing/mask/surgical,
 		/obj/item/clothing/head/surgery,
 		/obj/item/clothing/gloves,
@@ -105,6 +104,7 @@
 		/obj/item/clothing/glasses,
 		/obj/item/weapon/crowbar,
 		/obj/item/device/flashlight,
+		/obj/item/weapon/cell/device,
 		/obj/item/weapon/extinguisher/mini
 		)
 
@@ -156,6 +156,7 @@
 		/obj/item/device/taperecorder,
 		/obj/item/clothing/glasses,
 		/obj/item/device/flashlight,
+		/obj/item/weapon/cell/device,
 		/obj/item/weapon/reagent_containers/spray/luminol,
 		/obj/item/weapon/sample,
 		/obj/item/weapon/forensics/sample_kit/powder,
@@ -236,6 +237,7 @@
 	can_hold = list(
 		/obj/item/clothing/glasses,
 		/obj/item/device/flashlight,
+		/obj/item/weapon/cell/device,
 		/obj/item/weapon/grenade,
 		/obj/item/device/pda,
 		/obj/item/device/radio/headset,
@@ -263,6 +265,7 @@
 		/obj/item/device/gps,
 		/obj/item/device/measuring_tape,
 		/obj/item/device/flashlight,
+		/obj/item/weapon/cell/device,
 		/obj/item/weapon/pickaxe,
 		/obj/item/device/depth_scanner,
 		/obj/item/device/camera,
