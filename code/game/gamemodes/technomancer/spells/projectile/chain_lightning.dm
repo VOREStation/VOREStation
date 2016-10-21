@@ -5,10 +5,7 @@
 	strike up to four targets, including yourself if conditions allow it to occur."
 	cost = 150
 	obj_path = /obj/item/weapon/spell/projectile/chain_lightning
-<<<<<<< HEAD
-=======
 	ability_icon_state = "tech_chain_lightning"
->>>>>>> 67330d1df626506b796a218c7c261e868060db9c
 	category = OFFENSIVE_SPELLS
 
 /obj/item/weapon/spell/projectile/chain_lightning

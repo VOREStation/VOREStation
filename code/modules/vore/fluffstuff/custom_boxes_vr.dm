@@ -121,8 +121,10 @@
 
 	New()
 		..()
-		new /obj/item/clothing/head/helmet/space/fluff/aronai(src)
-		new /obj/item/clothing/suit/space/fluff/aronai(src)
+		//new /obj/item/clothing/head/helmet/space/fluff/aronai(src)
+		//new /obj/item/clothing/suit/space/fluff/aronai(src)
+		new /obj/item/clothing/head/helmet/space/void/medical/emt/fluff/aronai(src)
+		new /obj/item/clothing/suit/space/void/medical/emt/fluff/aronai(src)
 		new /obj/item/device/suit_cooling_unit(src)
 		new /obj/item/weapon/material/hatchet/tacknife/combatknife(src)
 		new /obj/item/weapon/card/id/centcom/fluff/aro(src)

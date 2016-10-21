@@ -25,8 +25,4 @@
 				if(H)
 					H.adjustFireLoss(-heal_power / 5)
 					sleep(1 SECOND)
-<<<<<<< HEAD
 		on_expire()
-=======
-		on_expire()
->>>>>>> 67330d1df626506b796a218c7c261e868060db9c

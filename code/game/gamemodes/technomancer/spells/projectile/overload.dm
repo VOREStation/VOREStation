@@ -32,21 +32,8 @@
 		var/obj/item/projectile/overload/P = new spell_projectile(get_turf(user))
 		P.launch(hit_atom)
 		if(check_for_scepter())
-<<<<<<< HEAD
-			P.damage = round(energy_before_firing * 0.004) // 4% of their current energy pool.
-		else
-			P.damage = round(energy_before_firing * 0.003) // 3% of their current energy pool.
-		adjust_instability(instability_per_shot)
-		return 1
-
-
-//	muzzle_type = /obj/effect/projectile/lightning/muzzle
-//	tracer_type = /obj/effect/projectile/lightning/tracer
-//	impact_type = /obj/effect/projectile/lightning/impact
-=======
 			P.damage = round(energy_before_firing * 0.004) // .4% of their current energy pool.
 		else
 			P.damage = round(energy_before_firing * 0.003) // .3% of their current energy pool.
 		adjust_instability(instability_per_shot)
 		return 1
->>>>>>> 67330d1df626506b796a218c7c261e868060db9c

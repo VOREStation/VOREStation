@@ -1,11 +1,7 @@
 /obj/item/device/electronic_assembly
 	name = "electronic assembly"
 	desc = "It's a case, for building electronics with."
-<<<<<<< HEAD
-	w_class = ITEMSIZE_SMALL
-=======
 	w_class = 2
->>>>>>> 67330d1df626506b796a218c7c261e868060db9c
 	icon = 'icons/obj/electronic_assemblies.dmi'
 	icon_state = "setup_small"
 	var/max_components = 10
@@ -15,33 +11,21 @@
 /obj/item/device/electronic_assembly/medium
 	name = "electronic mechanism"
 	icon_state = "setup_medium"
-<<<<<<< HEAD
-	w_class = ITEMSIZE_NORMAL
-=======
 	w_class = 3
->>>>>>> 67330d1df626506b796a218c7c261e868060db9c
 	max_components = 20
 	max_complexity = 80
 
 /obj/item/device/electronic_assembly/large
 	name = "electronic machine"
 	icon_state = "setup_large"
-<<<<<<< HEAD
-	w_class = ITEMSIZE_LARGE
-=======
 	w_class = 4
->>>>>>> 67330d1df626506b796a218c7c261e868060db9c
 	max_components = 30
 	max_complexity = 120
 
 /obj/item/device/electronic_assembly/drone
 	name = "electronic drone"
 	icon_state = "setup_drone"
-<<<<<<< HEAD
-	w_class = ITEMSIZE_NORMAL
-=======
 	w_class = 3
->>>>>>> 67330d1df626506b796a218c7c261e868060db9c
 	max_components = 25
 	max_complexity = 100
 
