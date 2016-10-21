@@ -27,12 +27,14 @@ emp_act
 	//Shrapnel
 	if(P.can_embed())
 		var/armor = getarmor_organ(organ, "bullet")
-		if(prob(20 + max(P.damage - armor, -10)))
-			var/obj/item/weapon/material/shard/shrapnel/SP = new()
-			SP.name = (P.name != "shrapnel")? "[P.name] shrapnel" : "shrapnel"
-			SP.desc = "[SP.desc] It looks like it was fired from [P.shot_from]."
-			SP.loc = organ
-			organ.embed(SP)
+		if(!prob(armor/2))		//Even if the armor doesn't stop the bullet from hurting you, it might stop it from embedding.
+			var/hit_embed_chance = P.embed_chance + (P.damage - armor)	//More damage equals more chance to embed
+			if(prob(max(hit_embed_chance, 0)))
+				var/obj/item/weapon/material/shard/shrapnel/SP = new()
+				SP.name = (P.name != "shrapnel")? "[P.name] shrapnel" : "shrapnel"
+				SP.desc = "[SP.desc] It looks like it was fired from [P.shot_from]."
+				SP.loc = organ
+				organ.embed(SP)
 
 	return (..(P , def_zone))
 
@@ -197,13 +199,13 @@ emp_act
 
 	// Handle striking to cripple.
 	if(user.a_intent == I_DISARM)
-		effective_force *= 0.66 //reduced effective force...
+		effective_force *= 0.5 //reduced effective force...
 		if(!..(I, user, effective_force, blocked, hit_zone))
 			return 0
 
 		//set the dislocate mult less than the effective force mult so that
 		//dislocating limbs on disarm is a bit easier than breaking limbs on harm
-		attack_joint(affecting, I, effective_force, 0.5, blocked) //...but can dislocate joints
+		attack_joint(affecting, I, effective_force, 0.75, blocked) //...but can dislocate joints
 	else if(!..())
 		return 0
 

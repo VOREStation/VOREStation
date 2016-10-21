@@ -29,9 +29,11 @@
 	desc = "A modified version of the HI G40E, this one fires less concentrated energy bolts designed for target practice."
 	projectile_type = /obj/item/projectile/beam/practice
 
+	cell_type = /obj/item/weapon/cell/device
+
 	firemodes = list(
-		list(mode_name="normal", projectile_type=/obj/item/projectile/beam/practice, charge_cost = 240),
-		list(mode_name="suppressive", projectile_type=/obj/item/projectile/beam/practice, charge_cost = 60),
+		list(mode_name="normal", projectile_type=/obj/item/projectile/beam/practice, charge_cost = 48),
+		list(mode_name="suppressive", projectile_type=/obj/item/projectile/beam/practice, charge_cost = 12),
 		)
 
 obj/item/weapon/gun/energy/retro

@@ -1,7 +1,7 @@
 /obj/item/device/electronic_assembly
 	name = "electronic assembly"
 	desc = "It's a case, for building electronics with."
-	w_class = ITEMSIZE_SMALL
+	w_class = 2
 	icon = 'icons/obj/electronic_assemblies.dmi'
 	icon_state = "setup_small"
 	var/max_components = 10
@@ -11,21 +11,21 @@
 /obj/item/device/electronic_assembly/medium
 	name = "electronic mechanism"
 	icon_state = "setup_medium"
-	w_class = ITEMSIZE_NORMAL
+	w_class = 3
 	max_components = 20
 	max_complexity = 80
 
 /obj/item/device/electronic_assembly/large
 	name = "electronic machine"
 	icon_state = "setup_large"
-	w_class = ITEMSIZE_LARGE
+	w_class = 4
 	max_components = 30
 	max_complexity = 120
 
 /obj/item/device/electronic_assembly/drone
 	name = "electronic drone"
 	icon_state = "setup_drone"
-	w_class = ITEMSIZE_NORMAL
+	w_class = 3
 	max_components = 25
 	max_complexity = 100
 

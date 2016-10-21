@@ -18,6 +18,7 @@
 	origin_tech = list(TECH_COMBAT = 2, TECH_BIO = 4)
 	agonyforce = 10	//It's not supposed to be great at stunning human beings.
 	var/stasisforce = 60	//How much stasis it does to slimes, and 1/3rd to non-slimes.
+	hitcost = 48	//Less zap for less cost
 
 /obj/item/weapon/melee/baton/slime/attack(mob/M, mob/user)
 	if(istype(M, /mob/living/simple_animal/xeno))
