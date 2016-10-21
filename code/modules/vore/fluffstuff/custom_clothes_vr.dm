@@ -600,7 +600,7 @@
 
 // arokha : Aronai Kadigan
 /obj/item/clothing/head/helmet/space/void/medical/emt/fluff/aronai
-	name = "Aronai's Helmet"
+	name = "KIN-313-SM medical spacesuit"
 	desc = "This spacesuit helmet appears to be custom-made for someone with pointed ears and a muzzle. \
 		It is form-fitting enough that it's unlikely to fit anyone but the person it was intended for. \
 		'Aronai' is printed on the back of the helmet."
@@ -623,7 +623,7 @@
 			return 1
 
 /obj/item/clothing/suit/space/void/medical/emt/fluff/aronai
-	name = "Aronai's Spacesuit"
+	name = "KIN-313-SMb medical space helmet"
 	desc = "This spacesuit appears to be custom-made for someone with digitigrade legs and a tail. \
 		It is form-fitting enough that it's unlikely to fit anyone but the person it was intended for. \
 		'Aronai' is printed just above the spine on the back of the neckpiece. It has no space for an O2 tank. \
@@ -646,7 +646,7 @@
 			return 1
 
 //Viveret:Keturah
-/obj/item/clothing/under/dress/maid/
+/obj/item/clothing/under/dress/maid
 	name = "Maid Outfit"
 	desc = "A french maid outfit made ironically in Gaia's version of the far east."
 
