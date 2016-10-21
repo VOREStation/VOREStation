@@ -1,5 +1,7 @@
 # vorestation
 
+*Don't Break Things!*
+
 [Forums](http://forum.vore-station.net/) - [Wiki](http://wiki.vore-station.net/)
 
 VOREStation is a fork of the Polaris code branch, itself a fork of the Baystation12 code branch, for the game Spacestation13.
