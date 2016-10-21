@@ -46,41 +46,41 @@
 	if(H.absorbed == 1) //If they get nomphed and absorbed.
 		return
 
-	if(H.nutrition > 50 && H.feral == 1) //If they went feral then ate something.
+	if(H.nutrition > 100 && H.feral == 1) //If they went feral then ate something.
 		H.feral = 0
-		H << "<span class='primary'>You feel as if you're no longer feral, the feeling of intense hunger having now passed. You're sated. For the time being, at least.</span>"
+		H << "<span class='primary'>Your thoughts start clearing, the feeling of intense hunger having now passed. You're sated. For the time being, at least.</span>"
 		H.hallucination = 0 //Remove all their hallucinations.
 
-	else if(H.nutrition < 300 && H.nutrition > 200)
+	else if(H.nutrition < 200 && H.nutrition > 150)
 		if(prob(0.5)) //A bit of an issue, not too bad.
-			H << "<span class='info'>You feel extremely hungry. It might be a good idea to find some some food...</span>"
+			H << "<span class='info'>You feel rather hungry. It might be a good idea to find some some food...</span>"
 
-	else if(H.nutrition <= 200 && H.nutrition > 100)
+	else if(H.nutrition <= 150 && H.nutrition > 125)
 		if(prob(0.5)) //Getting closer, should probably eat some food about now...
-			H << "<span class='warning'>You feel like you're going to starve and give into your hunger soon... It might would be for the best to find some [pick("food","prey")] to eat...</span>"
+			H << "<span class='warning'>You feel like you're going to snap and give in to your hunger soon... It would be for the best to find some [pick("food","prey")] to eat...</span>"
 
-	else if(H.nutrition <= 100 && H.nutrition > 50)
+	else if(H.nutrition <= 125 && H.nutrition > 100)
 		if(prob(1)) //Getting real close here! Eat something!
-			H << "<span class='danger'> You feel a sharp jabbing pain in your abdomen. You feel as if you're beginning to become feral, with food being the only thing on your mind. </span>"
+			H << "<span class='danger'> Your surroundings seem somehow... wrong, unnatural. Every movement attracting your gaze, each one either a threat or a meal... </span>"
 
-	else if(H.nutrition <= 50 && H.feral == 0) //Should've eaten sooner!
-		H << "<span class='danger'><big>You suddenly feel a sharp stabbing pain in your stomach. You feel as if you've became completely feral, food the only thing on your mind.</big></span>"
+	else if(H.nutrition <= 100 && H.feral == 0) //Should've eaten sooner!
+		H << "<span class='danger'><big>Something in your mind flips, and this place feels.. bad, wrong. Confusing, full of stange, incomprehensible sights and sounds, but the scent of.. food? Prey? hangs in the air - you must feed, survive, there is nothing else. Eat. Hide. Hunt. Repeat.</big></span>"
 		if(H.stat == CONSCIOUS)
 			H.emote("twitch")
 		H.feral = 1 //Begin hallucinating
 
 	for(var/mob/living/M in viewers(H))
-		if(M != H && H.nutrition <= 50)
+		if(M != H && H.nutrition <= 100)
 			if(prob(0.5))//1 in 200 chance to tell them that person looks like food. This is so irregular so it doesn't pop up 24/7 during ERP.
-				H << "<span class='danger'> You feel a stabbing pain in your gut, causing you to twitch in pain.. It would be extremely wise to find some type of food... In fact, [M] looks extremely appetizing...</span>"
+				H << "<span class='danger'> Every movement, every flick, every sight and sound has your full attention, but the direst need right now is food.. you must to find something to eat... In fact, [M] looks extremely appetizing...</span>"
 				if(H.stat == CONSCIOUS)
 					H.emote("twitch")
-			if(H.feral == 1) //This should always be the case under 500 nutrition, but just in case.
+			if(H.feral == 1) //This should always be the case under 100 nutrition, but just in case.
 				H.hallucination -= 25 //Start to stop hallucinating once you see someone.
 
-		else if(M == H && H.nutrition <= 50) //Hungry and nobody is in view.
+		else if(M == H && H.nutrition <= 100) //Hungry and nobody is in view.
 			if(prob(1)) //Constantly nag them to go and find someone or something to eat.
-				H << "<span class='danger'> You feel a sharp jab in your stomach from hunger, causing you to twitch in pain. You need to find something to eat immediately.</span>"
+				H << "<span class='danger'> Confusing sights and sounds and smells surround you, this place is wrong, confusing, frightening, you must run, hide, survive, FEED.</span>"
 				if(H.stat == CONSCIOUS)
 					H.emote("twitch")
 			if(H.feral == 1)
@@ -107,14 +107,14 @@
 	else if(H.bodytemperature <= 260) //If they're not in stasis and are cold. Don't really have to add in an exception to cryo cells, as the effects aren't anything /too/ horrible.
 		if(H.bodytemperature <= 260 && H.bodytemperature >= 200) //Chilly
 			if(H.halloss < 100) //100 halloss cap. Harsh punishment for staying in space, and it'll take them a while to fully thaw out when they get retrieved.
-				H.halloss = H.halloss + 1 //This will begin to knock them out over twenty seconds until they run out of oxygen and suffocate or until someone finds them.
+				H.halloss = H.halloss + 4 //This will begin to knock them out until they run out of oxygen and suffocate or until someone finds them.
 			H.eye_blurry = 5 //Blurry vision in the cold.
-		if(H.bodytemperature <= 199 && H.bodytemperature >= 100) //Extremely cold.
+		if(H.bodytemperature <= 199 && H.bodytemperature >= 100) //Extremely cold. Even in somewhere like the server room it takes a while for bodytemp to drop this low.
 			if(H.halloss < 100)
-				H.halloss = H.halloss + 2
+				H.halloss = H.halloss + 8
 			H.eye_blurry = 5
 		if(H.bodytemperature <= 99) //Insanely cold.
 			if(H.halloss < 100)
-				H.halloss = H.halloss + 5
+				H.halloss = H.halloss + 20
 			H.eye_blurry = 5
 		return
