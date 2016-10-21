@@ -288,6 +288,12 @@ proc/blood_incompatible(donor,receiver,donor_species,receiver_species)
 
 proc/blood_splatter(var/target,var/datum/reagent/blood/source,var/large)
 
+	//Vorestation Edit Start - We're not going to splatter at all because we're in something and that's silly.
+	if(istype(source,/atom/movable))
+		var/atom/movable/A = source
+		if(!isturf(A.loc))
+			return
+	//VOREStation Edit End
 	var/obj/effect/decal/cleanable/blood/B
 	var/decal_type = /obj/effect/decal/cleanable/blood/splatter
 	var/turf/T = get_turf(target)
