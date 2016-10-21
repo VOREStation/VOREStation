@@ -6,7 +6,7 @@
 /obj/item/weapon/storage/internal/New(obj/item/MI)
 	master_item = MI
 	loc = master_item
-	name = master_item.name
+	//name = master_item.name //VOREStation Removal
 	verbs -= /obj/item/verb/verb_pickup	//make sure this is never picked up.
 	..()
 
