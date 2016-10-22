@@ -21,3 +21,19 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 3000, "glass" = 2000, "uranium" = 2000)
 	build_path = /obj/item/weapon/gun/energy/sizegun
 	sort_string = "TAAAB"
+
+/datum/design/item/weapon/sizegun
+	name = "shrink ray"
+	id = "shrinkray"
+	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 3000, "glass" = 2000, "uranium" = 2000)
+	build_path = /obj/item/weapon/gun/energy/sizegun
+	sort_string = "TAAAB"
+
+/datum/design/item/hud/omni
+	name = "AR sunglasses"
+	id = "omnihud"
+	req_tech = list(TECH_MAGNET = 4, TECH_COMBAT = 3, TECH_BIO = 3)
+	materials = list(DEFAULT_WALL_MATERIAL = 1000, "glass" = 1000)
+	build_path = /obj/item/clothing/glasses/sunglasses/omnihud
+	sort_string = "GAAFB"
