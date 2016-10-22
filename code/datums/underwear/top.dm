@@ -58,3 +58,8 @@
 /datum/category_item/underwear/top/fishnet_gloves
 	name = "Fishnet with gloves"
 	icon_state = "fishnet_gloves"
+
+/datum/category_item/underwear/top/striped_bra
+	name = "Striped Bra"
+	icon_state = "striped_bra"
+	has_color = TRUE
