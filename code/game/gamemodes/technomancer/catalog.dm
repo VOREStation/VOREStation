@@ -12,7 +12,6 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 /datum/technomancer
 	var/name = "technomancer thing"
 	var/desc = "If you can see this, something broke."
-	var/enhancement_desc = "No effect."
 	var/cost = 100
 	var/hidden = 0
 	var/obj_path = null
@@ -20,6 +19,8 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 
 /datum/technomancer/spell
 	var/category = ALL_SPELLS
+	var/enhancement_desc = null
+	var/spell_power_desc = null
 
 /obj/item/weapon/technomancer_catalog
 	name = "catalog"
@@ -28,6 +29,7 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 	icon = 'icons/obj/storage.dmi'
 	icon_state ="scientology" //placeholder
 	w_class = ITEMSIZE_SMALL
+	slot_flags = SLOT_BELT
 	var/budget = 1000
 	var/max_budget = 1000
 	var/mob/living/carbon/human/owner = null
@@ -35,7 +37,7 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 	var/list/equipment_instances = list()
 	var/list/consumable_instances = list()
 	var/list/assistance_instances = list()
-	var/tab = 0
+	var/tab = 4 // Info tab, so new players can read it before doing anything.
 	var/spell_tab = ALL_SPELLS
 	var/show_scepter_text = 0
 
@@ -116,7 +118,8 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 			dat += "<align='center'><b>Functions</b> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=1'>Equipment</a> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=2'>Consumables</a> | "
-			dat += "<a href='byond://?src=\ref[src];tab_choice=3'>Assistance</a></align><br>"
+			dat += "<a href='byond://?src=\ref[src];tab_choice=3'>Assistance</a> | "
+			dat += "<a href='byond://?src=\ref[src];tab_choice=4'>Info</a></align><br>"
 			dat += "You currently have a budget of <b>[budget]/[max_budget]</b>.<br><br>"
 			dat += "<a href='byond://?src=\ref[src];refund_functions=1'>Refund Functions</a><br><br>"
 
@@ -129,8 +132,10 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 					continue
 				dat += "<b>[spell.name]</b><br>"
 				dat += "<i>[spell.desc]</i><br>"
-				if(show_scepter_text)
-					dat += "<span class='info'><i>[spell.enhancement_desc]</i></span>"
+				if(spell.spell_power_desc)
+					dat += "<font color='purple'>Spell Power: [spell.spell_power_desc]</font><br>"
+				if(spell.enhancement_desc)
+					dat += "<font color='blue'>Scepter Effect: [spell.enhancement_desc]</font><br>"
 				if(spell.cost <= budget)
 					dat += "<a href='byond://?src=\ref[src];spell_choice=[spell.name]'>Purchase</a> ([spell.cost])<br><br>"
 				else
@@ -143,7 +148,8 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 			dat += "<align='center'><a href='byond://?src=\ref[src];tab_choice=0'>Functions</a> | "
 			dat += "<b>Equipment</b> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=2'>Consumables</a> | "
-			dat += "<a href='byond://?src=\ref[src];tab_choice=3'>Assistance</a></align><br>"
+			dat += "<a href='byond://?src=\ref[src];tab_choice=3'>Assistance</a> | "
+			dat += "<a href='byond://?src=\ref[src];tab_choice=4'>Info</a></align><br>"
 			dat += "You currently have a budget of <b>[budget]/[max_budget]</b>.<br><br>"
 			for(var/datum/technomancer/equipment/E in equipment_instances)
 				dat += "<b>[E.name]</b><br>"
@@ -160,7 +166,8 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 			dat += "<align='center'><a href='byond://?src=\ref[src];tab_choice=0'>Functions</a> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=1'>Equipment</a> | "
 			dat += "<b>Consumables</b> | "
-			dat += "<a href='byond://?src=\ref[src];tab_choice=3'>Assistance</a></align><br>"
+			dat += "<a href='byond://?src=\ref[src];tab_choice=3'>Assistance</a> | "
+			dat += "<a href='byond://?src=\ref[src];tab_choice=4'>Info</a></align><br>"
 			dat += "You currently have a budget of <b>[budget]/[max_budget]</b>.<br><br>"
 			for(var/datum/technomancer/consumable/C in consumable_instances)
 				dat += "<b>[C.name]</b><br>"
@@ -177,7 +184,8 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 			dat += "<align='center'><a href='byond://?src=\ref[src];tab_choice=0'>Functions</a> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=1'>Equipment</a> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=2'>Consumables</a> | "
-			dat += "<b>Assistance</b></align><br>"
+			dat += "<b>Assistance</b> | "
+			dat += "<a href='byond://?src=\ref[src];tab_choice=4'>Info</a></align><br>"
 			dat += "You currently have a budget of <b>[budget]/[max_budget]</b>.<br><br>"
 			for(var/datum/technomancer/assistance/A in assistance_instances)
 				dat += "<b>[A.name]</b><br>"
@@ -186,6 +194,72 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 					dat += "<a href='byond://?src=\ref[src];item_choice=[A.name]'>Purchase</a> ([A.cost])<br><br>"
 				else
 					dat += "<font color='red'><b>Cannot afford!</b></font><br><br>"
+			user << browse(dat, "window=radio")
+			onclose(user, "radio")
+		if(4) //Info
+			var/dat = ""
+			user.set_machine(src)
+			dat += "<align='center'><a href='byond://?src=\ref[src];tab_choice=0'>Functions</a> | "
+			dat += "<a href='byond://?src=\ref[src];tab_choice=1'>Equipment</a> | "
+			dat += "<a href='byond://?src=\ref[src];tab_choice=2'>Consumables</a> | "
+			dat += "<a href='byond://?src=\ref[src];tab_choice=3'>Assistance</a> | "
+			dat += "<b>Info</b></align><br>"
+			dat += "You currently have a budget of <b>[budget]/[max_budget]</b>.<br><br>"
+			dat += "<br>"
+			dat += "<h1>Manipulation Core Owner's Manual</h1><br>"
+			dat += "This brief entry in your catelog will try to explain what everything does.  For starters, the thing you're \
+			probably wearing on your back is known as a <b>Manipulation Core</b>, or just a 'Core'.  It allows you to do amazing \
+			things with almost no effort, depending on what <b>functions</b> you've purchased for it.  Don't lose your core!<br>"
+			dat += "<br>"
+			dat += "There are a few things you need to keep in mind as you use your Core to manipulate the universe.  The core \
+			requires a special type of <b>energy</b>, that is referred to as just 'Energy' in the catelog.  All cores generate \
+			their own energy, some more than others.  Most functions require energy be spent in order to work, so make sure not \
+			to run out in a critical moment.  Besides waiting for your Core to recharge, you can buy certain functions which \
+			do something to generate energy.<br>"
+			dat += "<br>"
+			dat += "The second thing you need to know is that awesome power over the physical world has consquences, in the form \
+			of <b>Instability</b>.  Instability is the result of your Core's energy being used to fuel it, and so little is \
+			understood about it, even among fellow Core owners, however it is almost always a bad thing to have.  Instability will \
+			'cling' to you as you use functions, with powerful functions creating lots of instability.  The effects of holding onto \
+			instability are generally harmless or mildly annoying at low levels, with effects such as sparks in the air or forced \
+			blinking.  Accumulating more and more instability will lead to worse things happening, which can easily be fatal, if not \
+			managed properly.<br>"
+			dat += "<br>"
+			dat += "Fortunately, all Cores come with a meter to tell you how much instability you currently hold.  \
+			Instability will go away on its own as time goes on.  You can tell if you have instability by the characteristic \
+			purple colored lightning that appears around something with instability lingering on it.  High amounts of instability \
+			may cause the object afflicted with it to glow a dark purple, which is often known simply as <b>Glow</b>, which spreads \
+			the instability.  You should stay far away from anyone afflicted by Glow, as they will be a danger to both themselves and \
+			anything nearby.  Multiple sources of Glow can perpetuate the glow for a very long time if they are not seperated.<br>"
+			dat += "<br>"
+			dat += "You should strive to keep you and your apprentices' cores secure.  To help with this, each core comes with a \
+			locking mechanism, which should make attempts at forceful removal by third parties (or you) futile, until it is \
+			unlocked again.  Do note that there is a safety mechanism, which will automatically unlock the core if the wearer \
+			suffers death.  There exists a secondary safety mechanism (safety for the core, not you) that is triggered when \
+			the core detects itself being carried, with the carrier not being authorized.  It will respond by giving a \
+			massive amount of Instability to them, so be careful, or perhaps make use of that.<br>"
+			dat += "<br>"
+			dat += "<b>You can refund functions, equipment items, and assistance items, so long as you are in your base.</b>  \
+			Once you leave, you can't refund anything, however you can still buy things if you still have points remaining.  \
+			To refund functions, just click the 'Refund Functions' button on the top, when in the functions tabs.  \
+			For equipment items, you need to hit it against the catelog.<br>"
+			dat += "<br>"
+			dat += "Your blue robes and hat are both stylish, and somewhat protective against hostile energies, which includes \
+			EXTERNAL instability sources (like Glow), and mundane electricity.  If you're looking for protection against other \
+			things, it's suggested you purchase or otherwise obtain armor.<br>"
+			dat += "<br>"
+			dat += "There are a few terms you may not understand in the catelog, so this will try to explain them.<br>"
+			dat += "A function can be thought of as a 'spell', that you use by holding in your hands and trying to use it on \
+			a target of your choice.<br>"
+			dat += "Some functions can have their abilities enhanced by a special rod called the Scepter of Enhancement.  \
+			If a function is able to be boosted with it, it will be shown underneath the description of the function as \
+			<font color='blue'><i>'Scepter Effect:'</i></font>.  Note that you must hold the scepter for it to work, so try to avoid losing it.<br>"
+			dat += "Functions can also be boosted with the core itself.  A function that is able to benefit \
+			from this will have <font color='purple'><i>'Spell Power:'</i></font> underneath.  Different Cores have different \
+			amounts of spell power.<br>"
+			dat += "When a function refers to 'allies', it means you, your apprentices, currently controlled entities (with the \
+			Control function), and friendly simple-minded entities that you've summoned with the Scepter of Enhancement.<br>"
+			dat += "A meter is equal to one 'tile'.<br>"
 			user << browse(dat, "window=radio")
 			onclose(user, "radio")
 
@@ -266,8 +340,36 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 			if(core)
 				for(var/obj/spellbutton/spell in core.spells)
 					for(var/datum/technomancer/spell/spell_datum in spell_instances)
-						if(spell_datum.obj_path == spell.spellpath && !spell.was_bought_by_preset)
+						if(spell_datum.obj_path == spell.spellpath)
 							budget += spell_datum.cost
 							core.remove_spell(spell)
 							break
 		attack_self(H)
+
+/obj/item/weapon/technomancer_catalog/attackby(var/atom/movable/AM, var/mob/user)
+	if(user.z != 2)
+		to_chat(user, "<span class='danger'>You can only refund at your base, it's too late now!</span>")
+		return
+	for(var/datum/technomancer/equipment/E in equipment_instances + assistance_instances)
+		if(AM.type == E.obj_path) // We got a match.
+			if(budget + E.cost > max_budget)
+				to_chat(user, "<span class='warning'>\The [src] will not allow you to overflow your maximum budget by refunding that.</span>")
+				return
+			else
+				budget = budget + E.cost
+				to_chat(user, "<span class='notice'>You've refunded \the [AM].</span>")
+
+				// We sadly need to do special stuff here or else people who refund cores with spells will lose points permanently.
+				if(istype(AM, /obj/item/weapon/technomancer_core))
+					var/obj/item/weapon/technomancer_core/core = AM
+					for(var/obj/spellbutton/spell in core.spells)
+						for(var/datum/technomancer/spell/spell_datum in spell_instances)
+							if(spell_datum.obj_path == spell.spellpath)
+								budget += spell_datum.cost
+								to_chat(user, "<span class='notice'>[spell.name] was inside \the [core], and was refunded.</span>")
+								core.remove_spell(spell)
+								break
+				qdel(AM)
+				return
+	to_chat(user, "<span class='warn'>\The [src] is unable to refund \the [AM].</span>")
+

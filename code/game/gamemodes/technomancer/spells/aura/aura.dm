@@ -8,11 +8,13 @@
 
 /obj/item/weapon/spell/aura/New()
 	..()
-	set_light(7, 4, l_color = glow_color)
+	set_light(7, calculate_spell_power(4), l_color = glow_color)
 	processing_objects |= src
+	log_and_message_admins("has started casting [src].")
 
 /obj/item/weapon/spell/aura/Destroy()
 	processing_objects -= src
+	log_and_message_admins("has stopped maintaining [src].")
 	..()
 
 /obj/item/weapon/spell/aura/process()

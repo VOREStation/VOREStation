@@ -1,7 +1,9 @@
 /datum/technomancer/spell/unstable_aura
 	name = "Degen Aura"
 	desc = "Destabalizes your enemies, breaking their elements down to their basic levels, slowly killing them from the inside.  \
-	For each person within fourteen meters of you, they suffer 1% of their current health every second.  Your allies are unharmed."
+	For each person within <b>fourteen meters</b> of you, they suffer 1% of their current health every second.  Your allies are \
+	unharmed."
+	spell_power_desc = "Radius is increased."
 	cost = 150
 	obj_path = /obj/item/weapon/spell/aura/unstable
 	ability_icon_state = "tech_unstableaura"
@@ -13,12 +15,12 @@
 	icon_state = "generic"
 	cast_methods = null
 	aspect = ASPECT_UNSTABLE
-	glow_color = "#0000FF" //TODO
+	glow_color = "#CC00CC"
 
 /obj/item/weapon/spell/aura/unstable/process()
 	if(!pay_energy(200))
 		qdel(src)
-	var/list/nearby_mobs = range(14,owner)
+	var/list/nearby_mobs = range(calculate_spell_power(14),owner)
 	for(var/mob/living/L in nearby_mobs)
 		if(is_ally(L))
 			continue

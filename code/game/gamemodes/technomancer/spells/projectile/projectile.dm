@@ -12,6 +12,7 @@
 /obj/item/weapon/spell/projectile/on_ranged_cast(atom/hit_atom, mob/living/user)
 	if(set_up(hit_atom, user))
 		var/obj/item/projectile/new_projectile = new spell_projectile(get_turf(user))
+		new_projectile.damage = calculate_spell_power(new_projectile.damage)
 		new_projectile.launch(hit_atom)
 		log_and_message_admins("has casted [src] at \the [hit_atom].")
 		if(fire_sound)
