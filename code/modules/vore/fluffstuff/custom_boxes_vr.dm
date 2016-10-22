@@ -28,7 +28,7 @@
 		/obj/item/clothing/under/thing4)
 */
 
-//POLARISTODO - These fail to compile since not all items are ported yet
+
 // bwoincognito:Tasald Corlethian
 /obj/item/weapon/storage/box/fluff/tasald
 	name = "Tasald's Kit"
@@ -83,11 +83,12 @@
 		new /obj/item/clothing/under/rank/internalaffairs/fluff/joan(src)
 		new /obj/item/clothing/head/helmet/space/fluff/joan(src)
 		new /obj/item/clothing/suit/space/fluff/joan(src)
+		new /obj/item/device/pda/heads/hos/fluff/joanpda(src)
 
 
 
 //joanrisu:Katarina Eine
-/obj/item/weapon/storage/backpack/dufflebag/sec/fluff/Katarina
+/obj/item/weapon/storage/backpack/dufflebag/sec/fluff/katarina
 	name = "Katarina's Workbag"
 	desc = "A duffle bag Katarina uses to carry her tools."
 	slowdown = 0
@@ -120,8 +121,10 @@
 
 	New()
 		..()
-		new /obj/item/clothing/head/helmet/space/fluff/aronai(src)
-		new /obj/item/clothing/suit/space/fluff/aronai(src)
+		//new /obj/item/clothing/head/helmet/space/fluff/aronai(src)
+		//new /obj/item/clothing/suit/space/fluff/aronai(src)
+		new /obj/item/clothing/head/helmet/space/void/medical/emt/fluff/aronai(src)
+		new /obj/item/clothing/suit/space/void/medical/emt/fluff/aronai(src)
 		new /obj/item/device/suit_cooling_unit(src)
 		new /obj/item/weapon/material/hatchet/tacknife/combatknife(src)
 		new /obj/item/weapon/card/id/centcom/fluff/aro(src)

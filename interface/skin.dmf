@@ -576,6 +576,10 @@ macro "hotkeymode"
 		command = ".me"
 		is-disabled = false
 	elem 
+		name = "6"
+		command = "subtle"
+		is-disabled = false
+	elem 
 		name = "A+REP"
 		command = ".west"
 		is-disabled = false
@@ -677,11 +681,11 @@ macro "hotkeymode"
 		is-disabled = false
 	elem 
 		name = "Y"
-		command = "Activate-Held-Object"
+		command = "whisper"
 		is-disabled = false
 	elem 
 		name = "CTRL+Y"
-		command = "Activate-Held-Object"
+		command = "whisper"
 		is-disabled = false
 	elem 
 		name = "Z"

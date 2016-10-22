@@ -305,6 +305,7 @@
 	if(!IsJobAvailable(rank))
 		src << alert("[rank] is not available. Please try another.")
 		return 0
+	if (!attempt_vr(src,"spawn_checks_vr",list())) return 0 // VOREStation Insert
 
 	spawning = 1
 	close_spawn_windows()
@@ -396,6 +397,7 @@
 
 
 /mob/new_player/proc/create_character()
+	if (!attempt_vr(src,"spawn_checks_vr",list())) return 0 // VOREStation Insert
 	spawning = 1
 	close_spawn_windows()
 

@@ -250,17 +250,17 @@
 		for (var/bellytype in M.vore_organs)
 			var/datum/belly/belly = M.vore_organs[bellytype]
 			for (var/obj/thing in belly.internal_contents)
-				thing.forceMove(owner)
+				thing.loc = owner
 				internal_contents += thing
 			for (var/mob/subprey in belly.internal_contents)
-				subprey.forceMove(owner)
+				subprey.loc = owner
 				internal_contents += subprey
 				subprey << "As [M] melts away around you, you find yourself in [owner]'s [name]"
 
 	//Drop all items into the belly.
 	if (config.items_survive_digestion)
 		for (var/obj/item/W in M)
-			_handle_digested_item(W)
+			_handle_digested_item(W,M)
 
 	//Reagent transfer
 	if(M.reagents && istype(M.reagents,/datum/reagents))
@@ -271,7 +271,11 @@
 	qdel(M)
 
 // Recursive method - To recursively scan thru someone's inventory for digestable/indigestable.
-/datum/belly/proc/_handle_digested_item(var/obj/item/W)
+/datum/belly/proc/_handle_digested_item(var/obj/item/W,var/mob/M)
+	// SOME mob has to use some procs. If somehow they're gone, then the pred can handle it.
+	if(!M)
+		M = owner
+
 	// IDs are handled specially to 'digest' them
 	if(istype(W,/obj/item/weapon/card/id))
 		var/obj/item/weapon/card/id/ID = W
@@ -279,27 +283,28 @@
 		ID.icon = 'icons/obj/card_vr.dmi'
 		ID.icon_state = "digested"
 		ID.access = list() // No access
-		ID.forceMove(owner)
-		internal_contents += W
+		M.remove_from_mob(ID,owner)
+		internal_contents += ID
 
 	// Posibrains have to be pulled 'out' of their organ version.
 	else if(istype(W,/obj/item/organ/internal/mmi_holder))
 		var/obj/item/organ/internal/mmi_holder/MMI = W
 		var/atom/movable/brain = MMI.removed()
 		if(brain)
+			M.remove_from_mob(brain,owner)
 			brain.forceMove(owner)
 			internal_contents += brain
 
 	else
 		if(!_is_digestable(W))
-			W.forceMove(owner)
+			M.remove_from_mob(W,owner)
 			internal_contents += W
 		else
 			for (var/obj/item/SubItem in W)
-				_handle_digested_item(SubItem)
+				_handle_digested_item(SubItem,M)
 
 /datum/belly/proc/_is_digestable(var/obj/item/I)
-	if(I.type in important_items)
+	if(is_type_in_list(I,important_items))
 		return 0
 	return 1
 

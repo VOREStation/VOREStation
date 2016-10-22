@@ -295,6 +295,8 @@
 
 /datum/species/tajaran
 	spawn_flags = SPECIES_CAN_JOIN
+	icobase = 'icons/mob/human_races/r_tajaran_vr.dmi'
+	deform = 'icons/mob/human_races/r_def_tajaran_vr.dmi'
 
 /datum/species/skrell
 	spawn_flags = SPECIES_CAN_JOIN

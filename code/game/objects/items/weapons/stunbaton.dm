@@ -30,7 +30,7 @@
 
 /obj/item/weapon/melee/baton/loaded/New() //this one starts with a cell pre-installed.
 	..()
-	bcell = new/obj/item/weapon/cell/device(src)
+	bcell = new/obj/item/weapon/cell/device/weapon(src)
 	update_icon()
 	return
 
