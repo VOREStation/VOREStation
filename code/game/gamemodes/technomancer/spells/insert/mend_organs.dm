@@ -2,6 +2,7 @@
 	name = "Great Mend Wounds"
 	desc = "Greatly heals the target's wounds, both external and internal.  Restores internal organs to functioning states, even if \
 	robotic, reforms bones, patches internal bleeding, and restores missing blood."
+	spell_power_desc = "Healing amount increased."
 	cost = 100
 	obj_path = /obj/item/weapon/spell/insert/mend_organs
 	ability_icon_state = "tech_mendwounds"
@@ -21,6 +22,7 @@
 		if(ishuman(host))
 			var/mob/living/carbon/human/H = host
 			var/heal_power = host == origin ? 2 : 5
+			heal_power = round(heal_power * spell_power_at_creation, 1)
 			origin.adjust_instability(15)
 
 			for(var/i = 0, i<5,i++)

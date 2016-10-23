@@ -1,7 +1,8 @@
 /datum/technomancer/spell/overload
 	name = "Overload"
 	desc = "Fires a bolt of highly unstable energy, that does damaged equal to 0.3% of the technomancer's current reserve of energy.  \
-	This energy pierces all known armor."
+	This energy pierces all known armor.  Energy cost is equal to 10% of maximum core charge."
+	enhancement_desc = "Will do damage equal to 0.4% of current energy."
 	cost = 100
 	obj_path = /obj/item/weapon/spell/projectile/overload
 	category = OFFENSIVE_SPELLS

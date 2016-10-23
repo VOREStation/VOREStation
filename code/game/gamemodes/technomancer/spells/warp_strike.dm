@@ -23,6 +23,8 @@
 /obj/item/weapon/spell/warp_strike/on_ranged_cast(atom/hit_atom, mob/user)
 	var/turf/T = get_turf(hit_atom)
 	if(T)
+		if(!within_range(T))
+			return
 		//First, we handle who to teleport to.
 		user.setClickCooldown(5)
 		var/mob/living/chosen_target = targeting_assist(T,5)		//The person who's about to get attacked.
@@ -74,4 +76,5 @@
 				I.afterattack(chosen_target, user)
 		else
 			chosen_target.attack_hand(user)
+		log_and_message_admins("has warp striked [chosen_target].")
 

@@ -1,6 +1,7 @@
 /datum/technomancer/spell/mend_metal
 	name = "Mend Metal"
 	desc = "Restores integrity to external robotic components."
+	spell_power_desc = "Healing amount increased."
 	cost = 50
 	obj_path = /obj/item/weapon/spell/insert/mend_metal
 	ability_icon_state = "tech_mendwounds"
@@ -20,6 +21,7 @@
 		if(ishuman(host))
 			var/mob/living/carbon/human/H = host
 			var/heal_power = host == origin ? 10 : 30
+			heal_power = round(heal_power * spell_power_at_creation, 1)
 			origin.adjust_instability(10)
 			for(var/i = 0, i<5,i++)
 				if(H)
