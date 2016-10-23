@@ -9,8 +9,6 @@
 		for(var/obj/screen/movable/spell_master/spell_master in spell_masters)
 			qdel(spell_master)
 		remove_screen_obj_references()
-		for(var/atom/movable/AM in client.screen)
-			qdel(AM)
 		client.screen = list()
 	if(mind && mind.current == src)
 		spellremove(src)
