@@ -135,8 +135,15 @@
 	name = "waistcoat"
 	desc = "For some classy, murderous fun."
 	icon_state = "vest"
+	item_state = "vest"
+	icon_override = 'icons/mob/ties.dmi'
 	item_state_slots = list(slot_r_hand_str = "wcoat", slot_l_hand_str = "wcoat")
+	allowed = list(/obj/item/weapon/pen, /obj/item/weapon/paper, /obj/item/device/flashlight, /obj/item/weapon/tank/emergency_oxygen, /obj/item/weapon/storage/fancy/cigarettes, /obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask)
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	slot_flags = SLOT_OCLOTHING | SLOT_TIE
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	siemens_coefficient = 0.9
+	w_class = ITEMSIZE_NORMAL
 
 /obj/item/clothing/accessory/wcoat/red
 	name = "red waistcoat"
