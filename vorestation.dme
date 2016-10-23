@@ -281,6 +281,7 @@
 #include "code\defines\procs\AStar.dm"
 #include "code\defines\procs\dbcore.dm"
 #include "code\defines\procs\hud.dm"
+#include "code\defines\procs\hud_vr.dm"
 #include "code\defines\procs\radio.dm"
 #include "code\defines\procs\sd_Alert.dm"
 #include "code\defines\procs\statistics.dm"
