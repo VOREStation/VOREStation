@@ -1238,7 +1238,7 @@ obj/machinery/power/apc/proc/autoset(var/val, var/on)
 
 	if(prob(40)) // Spooky flickers.
 		for(var/obj/machinery/light/L in area)
-			L.flicker(20)
+			L.flicker(rand(20,30))
 
 	if(prob(25)) // Bluescreens.
 		emagged = 1
@@ -1255,5 +1255,13 @@ obj/machinery/power/apc/proc/autoset(var/val, var/on)
 
 	if(prob(5)) // APC completely ruined.
 		set_broken()
+
+/obj/machinery/power/apc/do_grid_check()
+	if(is_critical)
+		return
+	grid_check = TRUE
+	spawn(15 MINUTES) // Protection against someone deconning the grid checker after a grid check happens, preventing infinte blackout.
+		if(src && grid_check == TRUE)
+			grid_check = FALSE
 
 #undef APC_UPDATE_ICON_COOLDOWN
