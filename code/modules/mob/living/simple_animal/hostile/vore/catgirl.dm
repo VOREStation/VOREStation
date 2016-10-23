@@ -21,7 +21,7 @@
 	..()
 	if(!body_icon)
 		body_icon = pick(list("default","brown","black","red","brownbikini","brownnude","blackbikini","blacknude","redbikini","rednude","bikini","nude"))
-	if(body_icon != "default"
+	if(body_icon != "default")
 		icon_state = "catgirl[body_icon]"
 		icon_living = "catgirl[body_icon]"
 		icon_dead = "catgirl[body_icon]-dead"
