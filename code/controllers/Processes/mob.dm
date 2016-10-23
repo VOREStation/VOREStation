@@ -12,12 +12,6 @@
 		mob_list = list()
 
 /datum/controller/process/mob/doWork()
-	if(!global_hud || !global_hud.darkMask) // A fix for a problem I can't find yet. ~Aro
-		try
-			global_hud = new()
-			log_debug("Had to recreate global_hud.")
-		catch
-			log_debug("Failed to recreate global_hud.")
 	for(last_object in mob_list)
 		var/mob/M = last_object
 		if(isnull(M.gcDestroyed))
