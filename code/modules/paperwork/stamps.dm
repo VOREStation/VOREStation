@@ -53,7 +53,7 @@
 	icon_state = "stamp-intaff"
 
 /obj/item/weapon/stamp/centcomm
-	name = "centcomm rubber stamp"
+	name = "\improper CentCom rubber stamp"
 	icon_state = "stamp-cent"
 
 /obj/item/weapon/stamp/qm
@@ -65,7 +65,7 @@
 	icon_state = "stamp-cargo"
 
 /obj/item/weapon/stamp/solgov
-	name = "solgov stamp"
+	name = "\improper Sol Government rubber stamp"
 	icon_state = "stamp-sg"
 
 
