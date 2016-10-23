@@ -78,7 +78,7 @@
 
 /obj/item/clothing/suit/space/void/merc/taur
 	name = "taur specific blood-red voidsuit"
-	desc = "A high-tech space suit. It says has a sticker saying one size fits all taurs on it. Below the sticker, it states that it only fits horses, wolves, and naga taurs."
+	desc = "A high-tech space suit. It says has a sticker saying one size fits all taurs on it. Below the sticker, it states that it only fits horses, wolves, and naga taurs, and that it should not under any circumstance be put in a suit cycler."
 	species_restricted = null //Species restricted since all it cares about is a taur half
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
@@ -102,7 +102,7 @@
 
 /obj/item/clothing/suit/space/void/medical/taur
 	name = "taur specific medical voidsuit"
-	desc = "A high-tech space suit. It says has a sticker saying one size fits all taurs on it. Below the sticker, it states that it only fits horses, wolves, and naga taurs."
+	desc = "A high-tech space suit. It says has a sticker saying one size fits all taurs on it. Below the sticker, it states that it only fits horses, wolves, and naga taurs, and that it should not under any circumstance be put in a suit cycler."
 	species_restricted = null
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
@@ -130,7 +130,7 @@
 
 /obj/item/clothing/suit/space/void/engineering/taur
 	name = "taur specific engineering voidsuit"
-	desc = "A high-tech space suit. It says has a sticker saying one size fits all taurs on it. Below the sticker, it states that it only fits horses, wolves, and naga taurs."
+	desc = "A high-tech space suit. It says has a sticker saying one size fits all taurs on it. Below the sticker, it states that it only fits horses, wolves, and naga taurs, and that it should not under any circumstance be put in a suit cycler."
 	species_restricted = null
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
@@ -158,7 +158,7 @@
 
 /obj/item/clothing/suit/space/void/security/taur
 	name = "taur specific security voidsuit"
-	desc = "A high-tech space suit. It says has a sticker saying one size fits all taurs on it. Below the sticker, it states that it only fits horses, wolves, and naga taurs."
+	desc = "A high-tech space suit. It says has a sticker saying one size fits all taurs on it. Below the sticker, it states that it only fits horses, wolves, and naga taurs, and that it should not under any circumstance be put in a suit cycler."
 	species_restricted = null
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
@@ -188,7 +188,7 @@
 
 /obj/item/clothing/suit/space/void/atmos/taur
 	name = "taur specific atmospherics voidsuit"
-	desc = "A high-tech space suit. It says has a sticker saying one size fits all taurs on it. Below the sticker, it states that it only fits horses, wolves, and naga taurs."
+	desc = "A high-tech space suit. It says has a sticker saying one size fits all taurs on it. Below the sticker, it states that it only fits horses, wolves, and naga taurs, and that it should not under any circumstance be put in a suit cycler."
 	species_restricted = null
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
@@ -218,7 +218,7 @@
 
 /obj/item/clothing/suit/space/void/mining/taur
 	name = "taur specific mining voidsuit"
-	desc = "A high-tech space suit. It says has a sticker saying one size fits all taurs on it. Below the sticker, it states that it only fits horses, wolves, and naga taurs."
+	desc = "A high-tech space suit. It says has a sticker saying one size fits all taurs on it. Below the sticker, it states that it only fits horses, wolves, and naga taurs, and that it should not under any circumstance be put in a suit cycler."
 	species_restricted = null
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
@@ -249,7 +249,7 @@
 
 /obj/item/clothing/suit/space/void/merc/taur
 	name = "taur specific blood-red voidsuit"
-	desc = "A high-tech space suit. It says has a sticker saying one size fits all taurs on it. Below the sticker, it states that it only fits horses, wolves, and naga taurs."
+	desc = "A high-tech space suit. It says has a sticker saying one size fits all taurs on it. Below the sticker, it states that it only fits horses, wolves, and naga taurs, and that it should not under any circumstance be put in a suit cycler."
 	species_restricted = null
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
