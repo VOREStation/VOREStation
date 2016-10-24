@@ -294,9 +294,7 @@
 	desc = "A greatcoat enhanced with a special alloy for some protection and style."
 	icon_state = "hos"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	armor = list(melee = 65, bullet = 30, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
 	flags_inv = HIDEJUMPSUIT
-	siemens_coefficient = 0.6
 
 //Jensen cosplay gear
 /obj/item/clothing/suit/storage/vest/hoscoat/jensen
@@ -304,7 +302,6 @@
 	desc = "A trenchcoat augmented with a special alloy for some protection and style."
 	icon_state = "hostrench"
 	flags_inv = 0
-	siemens_coefficient = 0.6
 
 /obj/item/clothing/suit/storage/vest/pcrc
 	name = "PCRC armor vest"
