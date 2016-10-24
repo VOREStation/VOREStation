@@ -82,22 +82,26 @@
 	species_restricted = null //Species restricted since all it cares about is a taur half
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
+			name = "taur specific blood-red voidsuit"
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "syndie-horse"
 			pixel_x = -16
 			return 1
 		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
+			name = "taur specific blood-red voidsuit"
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "syndie-wolf"
 			pixel_x = -16
 			return 1
 		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
+			name = "taur specific blood-red voidsuit"
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "syndie-naga"
 			pixel_x = -16
 			return 1
 		else
 			H << "<span class='warning'>You need to have a horse, wolf, or naga half to wear this.</span>"
+			name = "taur specific blood-red voidsuit"
 			return 0
 
 /obj/item/clothing/suit/space/void/medical/taur
@@ -106,18 +110,21 @@
 	species_restricted = null
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
+			name = "taur specific medical voidsuit"
 			icon = 'icons/mob/taursuits_vr.dmi'
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "medical-horse"
 			pixel_x = -16
 			return 1
 		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
+			name = "taur specific medical voidsuit"
 			icon = 'icons/mob/taursuits_vr.dmi'
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "medical-wolf"
 			pixel_x = -16
 			return 1
 		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
+			name = "taur specific medical voidsuit"
 			icon = 'icons/mob/taursuits_vr.dmi'
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "medical-naga"
@@ -125,6 +132,7 @@
 			return 1
 		else
 			H << "<span class='warning'>You need to have a horse, wolf, or naga half to wear this.</span>"
+			name = "taur specific medical voidsuit"
 			return 0
 
 
@@ -134,18 +142,21 @@
 	species_restricted = null
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
+			name = "taur specific engineering voidsuit"
 			icon = 'icons/mob/taursuits_vr.dmi'
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "engineering-horse"
 			pixel_x = -16
 			return 1
 		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
+			name = "taur specific engineering voidsuit"
 			icon = 'icons/mob/taursuits_vr.dmi'
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "engineering-wolf"
 			pixel_x = -16
 			return 1
 		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
+			name = "taur specific engineering voidsuit"
 			icon = 'icons/mob/taursuits_vr.dmi'
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "engineering-naga"
@@ -153,6 +164,7 @@
 			return 1
 		else
 			H << "<span class='warning'>You need to have a horse, wolf, or naga half to wear this.</span>"
+			name = "taur specific engineering voidsuit"
 			return 0
 
 
@@ -162,6 +174,7 @@
 	species_restricted = null
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
+			name = "taur specific security voidsuit"
 			icon = 'icons/mob/taursuits_vr.dmi'
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "security-horse"
@@ -169,6 +182,7 @@
 			update_icon()
 			return 1
 		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
+			name = "taur specific security voidsuit"
 			icon = 'icons/mob/taursuits_vr.dmi'
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "security-wolf"
@@ -176,6 +190,7 @@
 			update_icon()
 			return 1
 		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
+			name = "taur specific security voidsuit"
 			icon = 'icons/mob/taursuits_vr.dmi'
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "security-naga"
@@ -184,6 +199,7 @@
 			return 1
 		else
 			H << "<span class='warning'>You need to have a horse, wolf, or naga half to wear this.</span>"
+			name = "taur specific security voidsuit"
 			return 0
 
 /obj/item/clothing/suit/space/void/atmos/taur
@@ -192,6 +208,7 @@
 	species_restricted = null
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
+			name = "taur specific atmospherics voidsuit"
 			icon = 'icons/mob/taursuits_vr.dmi'
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "atmos-horse"
@@ -199,6 +216,7 @@
 			update_icon()
 			return 1
 		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
+			name = "taur specific atmospherics voidsuit"
 			icon = 'icons/mob/taursuits_vr.dmi'
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "atmos-wolf"
@@ -206,6 +224,7 @@
 			update_icon()
 			return 1
 		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
+			name = "taur specific atmospherics voidsuit"
 			icon = 'icons/mob/taursuits_vr.dmi'
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "atmos-naga"
@@ -214,6 +233,7 @@
 			return 1
 		else
 			H << "<span class='warning'>You need to have a horse, wolf, or naga half to wear this.</span>"
+			name = "taur specific atmospherics voidsuit"
 			return 0
 
 /obj/item/clothing/suit/space/void/mining/taur
@@ -222,6 +242,7 @@
 	species_restricted = null
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
+			name = "taur specific mining voidsuit"
 			icon = 'icons/mob/taursuits_vr.dmi'
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "mining-horse"
@@ -229,6 +250,7 @@
 			update_icon()
 			return 1
 		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
+			name = "taur specific mining voidsuit"
 			icon = 'icons/mob/taursuits_vr.dmi'
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "mining-wolf"
@@ -236,6 +258,7 @@
 			update_icon()
 			return 1
 		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
+			name = "taur specific mining voidsuit"
 			icon = 'icons/mob/taursuits_vr.dmi'
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "mining-naga"
@@ -244,6 +267,7 @@
 			return 1
 		else
 			H << "<span class='warning'>You need to have a horse, wolf, or naga half to wear this.</span>"
+			name = "taur specific mining voidsuit"
 			return 0
 
 
@@ -253,6 +277,7 @@
 	species_restricted = null
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
+			name = "taur specific blood-red voidsuit"
 			icon = 'icons/mob/taursuits_vr.dmi'
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "syndie-horse"
@@ -260,6 +285,7 @@
 			update_icon()
 			return 1
 		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
+			name = "taur specific blood-red voidsuit"
 			icon = 'icons/mob/taursuits_vr.dmi'
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "syndie-wolf"
@@ -267,6 +293,7 @@
 			update_icon()
 			return 1
 		else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
+			name = "taur specific blood-red voidsuit"
 			icon = 'icons/mob/taursuits_vr.dmi'
 			icon_override = 'icons/mob/taursuits_vr.dmi'
 			icon_state = "syndie-naga"
@@ -275,4 +302,5 @@
 			return 1
 		else
 			H << "<span class='warning'>You need to have a horse, wolf, or naga half to wear this.</span>"
+			name = "taur specific blood-red voidsuit"
 			return 0
