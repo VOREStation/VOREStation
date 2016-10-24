@@ -260,7 +260,12 @@
 						visible_message("<span class='danger'>[src]'s [W] goes off during the struggle!</span>")
 						return W.afterattack(target,src)
 
+			if(last_push_time + 30 > world.time)
+				visible_message("<span class='warning'>[M] has weakly pushed [src]!</span>")
+				return
+
 			var/randn = rand(1, 100)
+			last_push_time = world.time
 			if(!(species.flags & NO_SLIP) && randn <= 25)
 				var/armor_check = run_armor_check(affecting, "melee")
 				apply_effect(3, WEAKEN, armor_check)
