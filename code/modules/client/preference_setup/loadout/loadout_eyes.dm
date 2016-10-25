@@ -40,12 +40,12 @@
 
 /datum/gear/eyes/secaviators
 	display_name = "Security HUD Aviators"
-	path = /obj/item/clothing/glasses/sunglasses/sechud/toggle
+	path = /obj/item/clothing/glasses/sunglasses/sechud/aviator
 	allowed_roles = list("Security Officer","Head of Security","Warden")
 
 /datum/gear/eyes/secaviators/prescription
 	display_name = "Security HUD Aviators, prescription"
-	path = /obj/item/clothing/glasses/sunglasses/sechud/toggle/prescription
+	path = /obj/item/clothing/glasses/sunglasses/sechud/aviator/prescription
 	allowed_roles = list("Security Officer","Head of Security","Warden")
 
 /datum/gear/eyes/medical

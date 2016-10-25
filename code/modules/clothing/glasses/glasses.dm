@@ -186,7 +186,6 @@ BLIND     // can't see anything
 /obj/item/clothing/glasses/welding/attack_self()
 	toggle()
 
-
 /obj/item/clothing/glasses/welding/verb/toggle()
 	set category = "Object"
 	set name = "Adjust welding goggles"
@@ -258,7 +257,7 @@ BLIND     // can't see anything
 	desc = "Flash-resistant goggles with inbuilt combat and security information."
 	icon_state = "swatgoggles"
 
-/obj/item/clothing/glasses/sunglasses/sechud/toggle
+/obj/item/clothing/glasses/sunglasses/sechud/aviator
 	name = "HUD aviators"
 	desc = "Modified aviator glasses that can be switch between HUD and flash protection modes."
 	icon_state = "sec_hud"
@@ -270,17 +269,17 @@ BLIND     // can't see anything
 
 	var/hud_holder
 
-/obj/item/clothing/glasses/sunglasses/sechud/toggle/New()
+/obj/item/clothing/glasses/sunglasses/sechud/aviator/New()
 	..()
 	hud_holder = hud
 
-/obj/item/clothing/glasses/sunglasses/sechud/toggle/Destroy()
+/obj/item/clothing/glasses/sunglasses/sechud/aviator/Destroy()
 	qdel(hud_holder)
 	hud_holder = null
 	hud = null
 	. = ..()
 
-/obj/item/clothing/glasses/sunglasses/sechud/toggle/attack_self(mob/user)
+/obj/item/clothing/glasses/sunglasses/sechud/aviator/attack_self(mob/user)
 	if(toggleable && !user.incapacitated())
 		on = !on
 		if(on)
@@ -294,13 +293,13 @@ BLIND     // can't see anything
 		user.update_inv_glasses()
 		user.update_action_buttons()
 
-/obj/item/clothing/glasses/sunglasses/sechud/toggle/update_icon()
+/obj/item/clothing/glasses/sunglasses/sechud/aviator/update_icon()
 	if(on)
 		icon_state = initial(icon_state)
 	else
 		icon_state = off_state
 
-/obj/item/clothing/glasses/sunglasses/sechud/toggle/prescription
+/obj/item/clothing/glasses/sunglasses/sechud/aviator/prescription
 	name = "Prescription HUD aviators"
 	desc = "Modified aviator glasses that can be switch between HUD and flash protection modes. Comes with bonus prescription lenses."
 	prescription = 6
