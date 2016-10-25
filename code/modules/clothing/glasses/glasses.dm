@@ -284,11 +284,9 @@ BLIND     // can't see anything
 	if(toggleable && !user.incapacitated())
 		on = !on
 		if(on)
-			flash_protection = FLASH_PROTECTION_NONE
 			src.hud = hud_holder
 			to_chat(user, "You switch the [src] to HUD mode.")
 		else
-			flash_protection = initial(flash_protection)
 			src.hud = null
 			to_chat(user, "You switch \the [src] to flash protection mode.")
 		update_icon()
