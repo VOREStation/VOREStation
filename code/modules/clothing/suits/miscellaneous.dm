@@ -729,23 +729,23 @@
 
 /obj/item/clothing/suit/varsity/red
 	name = "red varsity jacket"
-	icon_state = "suit_red"
+	icon_state = "varsity_red"
 
 /obj/item/clothing/suit/varsity/purple
 	name = "purple varsity jacket"
-	icon_state = "suit_purple"
+	icon_state = "varsity_purple"
 
 /obj/item/clothing/suit/varsity/green
 	name = "green varsity jacket"
-	icon_state = "suit_olive"
+	icon_state = "varsity_green"
 
 /obj/item/clothing/suit/varsity/blue
 	name = "blue varsity jacket"
-	icon_state = "suit_blue"
+	icon_state = "varsity_blue"
 
 /obj/item/clothing/suit/varsity/brown
 	name = "brown varsity jacket"
-	icon_state = "brown_jacket"
+	icon_state = "varsity_brown"
 
 /*
  * Track Jackets
