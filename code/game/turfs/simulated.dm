@@ -17,8 +17,6 @@
 // This is not great.
 /turf/simulated/proc/wet_floor(var/wet_val = 1)
 	spawn(0)
-		if(wet_val <= wet)
-			return
 		wet = wet_val
 		if(wet_overlay)
 			overlays -= wet_overlay
