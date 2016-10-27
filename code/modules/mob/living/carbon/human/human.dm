@@ -676,10 +676,11 @@
 	if(istype(src.glasses, /obj/item/clothing/glasses/thermal))
 		number -= 1
 	if(istype(src.glasses, /obj/item/clothing/glasses/sunglasses))
-		number += 1
-	if(istype(src.glasses, /obj/item/clothing/glasses/sunglasses/sechud/aviator))
-		var/obj/item/clothing/glasses/sunglasses/sechud/aviator/S = src.glasses
-		if(!S.on)
+		if(istype(src.glasses, /obj/item/clothing/glasses/sunglasses/sechud/aviator))
+			var/obj/item/clothing/glasses/sunglasses/sechud/aviator/S = src.glasses
+			if(!S.on)
+				number += 1
+		else
 			number += 1
 	if(istype(src.glasses, /obj/item/clothing/glasses/welding))
 		var/obj/item/clothing/glasses/welding/W = src.glasses
