@@ -66,6 +66,10 @@
 	display_name = "Sunglasses, stylish"
 	path = /obj/item/clothing/glasses/fakesunglasses
 
+/datum/gear/eyes/glasses/fakeaviator
+	display_name = "Sunglasses, stylish aviators"
+	path = /obj/item/clothing/glasses/fakesunglasses/aviator
+
 /datum/gear/eyes/shades/prescriptionsun
 	display_name = "sunglasses, presciption (Security/Command)"
 	path = /obj/item/clothing/glasses/sunglasses/prescription
