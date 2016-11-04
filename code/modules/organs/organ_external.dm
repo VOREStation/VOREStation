@@ -675,6 +675,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 		for(var/datum/wound/W in wounds) //Repaired wounds disappear though
 			if(W.damage <= 0)  //and they disappear right away
 				wounds -= W    //TODO: robot wounds for robot limbs
+				src.update_damages()
+				if (update_icon())
+					owner.UpdateDamageIcon(1)
 		return
 
 	for(var/datum/wound/W in wounds)
