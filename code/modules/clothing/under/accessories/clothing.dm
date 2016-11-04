@@ -130,3 +130,46 @@
 	if(prob(50))
 		icon_state = "hawaii2"
 	color = color_rotation(rand(-11,12)*15)
+
+/obj/item/clothing/accessory/wcoat
+	name = "waistcoat"
+	desc = "For some classy, murderous fun."
+	icon_state = "vest"
+	item_state = "vest"
+	icon_override = 'icons/mob/ties.dmi'
+	item_state_slots = list(slot_r_hand_str = "wcoat", slot_l_hand_str = "wcoat")
+	allowed = list(/obj/item/weapon/pen, /obj/item/weapon/paper, /obj/item/device/flashlight, /obj/item/weapon/tank/emergency_oxygen, /obj/item/weapon/storage/fancy/cigarettes, /obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask)
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	slot_flags = SLOT_OCLOTHING | SLOT_TIE
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	siemens_coefficient = 0.9
+	w_class = ITEMSIZE_NORMAL
+
+/obj/item/clothing/accessory/wcoat/red
+	name = "red waistcoat"
+	icon_state = "red_waistcoat"
+
+/obj/item/clothing/accessory/wcoat/grey
+	name = "grey waistcoat"
+	icon_state = "grey_waistcoat"
+
+/obj/item/clothing/accessory/wcoat/brown
+	name = "brown waistcoat"
+	icon_state = "brown_waistcoat"
+
+/obj/item/clothing/accessory/wcoat/gentleman
+	name = "elegant waistcoat"
+	icon_state = "elegant_waistcoat"
+
+/obj/item/clothing/accessory/wcoat/swvest
+	name = "black sweatervest"
+	desc = "A sleeveless sweater. Wear this if you don't want your arms to be warm, or if you're a nerd."
+	icon_state = "sweatervest"
+
+/obj/item/clothing/accessory/wcoat/swvest/blue
+	name = "blue sweatervest"
+	icon_state = "sweatervest_blue"
+
+/obj/item/clothing/accessory/wcoat/swvest/red
+	name = "red sweatervest"
+	icon_state = "sweatervest_red"

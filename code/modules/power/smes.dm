@@ -421,12 +421,6 @@
 	update_icon()
 	..()
 
-/obj/machinery/power/smes/overload(var/obj/machinery/power/source) // This propagates the power spike down the powernet.
-	if(istype(source, /obj/machinery/power/smes)) // Prevent infinite loops if two SMESes are hooked up to each other.
-		return
-	power_spike()
-
-
 /obj/machinery/power/smes/magical
 	name = "magical power storage unit"
 	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit. Magically produces power."

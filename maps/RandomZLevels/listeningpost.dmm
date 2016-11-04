@@ -6,7 +6,7 @@
 "af" = (/obj/machinery/portable_atmospherics/powered/pump/filled,/turf/simulated/floor,/area/awaymission/listeningpost)
 "ag" = (/obj/machinery/portable_atmospherics/powered/scrubber,/turf/simulated/floor,/area/awaymission/listeningpost)
 "ah" = (/obj/machinery/power/apc{dir = 1; name = "north bump-derelict"; operating = 0; pixel_x = 0; pixel_y = 24},/obj/structure/cable{icon_state = "0-4"; d2 = 4},/turf/simulated/floor,/area/awaymission/listeningpost)
-"ai" = (/obj/machinery/power/fractal_reactor/fluff/smes,/obj/structure/cable{d2 = 8; icon_state = "0-8"},/turf/simulated/floor,/area/awaymission/listeningpost)
+"ai" = (/obj/machinery/power/fractal_reactor/fluff/smes{mapped_in = 1},/obj/structure/cable{d2 = 8; icon_state = "0-8"},/turf/simulated/floor,/area/awaymission/listeningpost)
 "aj" = (/obj/effect/floor_decal/industrial/warning/dust{tag = "icon-warning_dust (NORTHEAST)"; icon_state = "warning_dust"; dir = 5},/turf/simulated/floor/tiled/airless,/area/awaymission/listeningpost)
 "ak" = (/turf/simulated/floor,/area/awaymission/listeningpost)
 "al" = (/obj/machinery/atmospherics/portables_connector,/obj/machinery/portable_atmospherics/canister/air/airlock,/turf/simulated/floor,/area/awaymission/listeningpost)

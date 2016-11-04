@@ -129,3 +129,4 @@
 		new /obj/item/weapon/material/hatchet/tacknife/combatknife(src)
 		new /obj/item/weapon/card/id/centcom/fluff/aro(src)
 		new /obj/item/weapon/reagent_containers/hypospray/fluff/aronai(src)
+		new /obj/item/clothing/glasses/sunglasses/omnihud(src)

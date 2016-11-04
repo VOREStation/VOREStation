@@ -146,6 +146,7 @@
 				return 0
 			if(pay_energy(50 * controlled_mobs.len))
 				attack_all(L)
+				log_and_message_admins("has commanded their army of [controlled_mobs.len] to attack [L].")
 				user << "<span class='notice'>You command your [controlled_mobs.len > 1 ? "entities" : "[controlled_mobs[1]]"] to \
 				attack \the [L].</span>"
 				//This is to stop someone from controlling beepsky and getting him to stun someone 5 times a second.

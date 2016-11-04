@@ -25,6 +25,15 @@
 		return 0
 	return 1
 
+/obj/item/weapon/spell/proc/within_range(var/atom/target, var/max_range = 7) // Beyond 7 is off the screen.
+	if(range(get_dist(owner, target) <= max_range))
+		return TRUE
+	return FALSE
+
+/obj/item/weapon/spell/proc/calculate_spell_power(var/amount)
+	if(core)
+		return round(amount * core.spell_power_modifier, 1)
+
 // Returns a 'target' mob from a radius around T.
 /obj/item/weapon/spell/proc/targeting_assist(var/turf/T, radius = 5)
 	var/chosen_target = null

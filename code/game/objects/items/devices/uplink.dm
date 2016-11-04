@@ -218,7 +218,7 @@
 // implant uplink (not the implant tool) and a preset headset uplink.
 
 /obj/item/device/radio/uplink/New()
-	hidden_uplink = new(src)
+	hidden_uplink = new(src, usr.mind, DEFAULT_TELECRYSTAL_AMOUNT)
 	icon_state = "radio"
 
 /obj/item/device/radio/uplink/attack_self(mob/user as mob)

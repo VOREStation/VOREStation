@@ -1,6 +1,7 @@
 /datum/technomancer/spell/beam
 	name = "Beam"
 	desc = "Fires a laser at your target.  Cheap, reliable, and a bit boring."
+	spell_power_desc = "Increases damage dealt."
 	cost = 100
 	ability_icon_state = "tech_beam"
 	obj_path = /obj/item/weapon/spell/projectile/beam

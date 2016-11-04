@@ -111,3 +111,18 @@
 		message += B.get_examine_msg()
 
 	return message
+
+//For OmniHUD records access for appropriate models
+/proc/hasHUD_vr(mob/living/carbon/human/H, hudtype)
+	if(!(istype(H.glasses, /obj/item/clothing/glasses/sunglasses/omnihud)))
+		return 0 //Not wearing omnis, don't care.
+
+	var/obj/item/clothing/glasses/sunglasses/omnihud/omni = H.glasses
+
+	switch(hudtype)
+		if("security")
+			return omni.mode == "sec" || omni.mode == "best"
+		if("medical")
+			return omni.mode == "med" || omni.mode == "best"
+		else
+			return 0
