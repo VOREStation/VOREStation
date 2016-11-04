@@ -104,12 +104,14 @@
 	desc = "A more modern uniform for corporate investigators."
 
 /obj/item/clothing/under/det/waistcoat
-	icon_state = "detective_waistcoat"
+	icon_state = "detective"
 	desc = "A rumpled white dress shirt paired with well-worn grey slacks, complete with a blue striped tie, faux-gold tie clip, and waistcoat."
+	starting_accessories = list(/obj/item/clothing/accessory/blue_clip, /obj/item/clothing/accessory/wcoat)
 
 /obj/item/clothing/under/det/grey/waistcoat
-	icon_state = "detective2_waistcoat"
+	icon_state = "detective2"
 	desc = "A serious-looking tan dress shirt paired with freshly-pressed black slacks, complete with a red striped tie and waistcoat."
+	starting_accessories = list(/obj/item/clothing/accessory/red_long, /obj/item/clothing/accessory/wcoat)
 
 /*
  * Head of Security
@@ -120,7 +122,7 @@
 	icon_state = "hos"
 	item_state_slots = list(slot_r_hand_str = "red", slot_l_hand_str = "red")
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
-	siemens_coefficient = 0.8
+	siemens_coefficient = 0.9
 	rolled_sleeves = 0
 
 /obj/item/clothing/under/rank/head_of_security/corp
@@ -133,7 +135,6 @@
 	desc = "You never asked for anything that stylish."
 	name = "head of security's jumpsuit"
 	icon_state = "jensen"
-	siemens_coefficient = 0.6
 	rolled_sleeves = -1
 
 /*

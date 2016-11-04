@@ -151,6 +151,7 @@
 	icon_state = "gentlesuit"
 	item_state_slots = list(slot_r_hand_str = "grey", slot_l_hand_str = "grey")
 	rolled_sleeves = 0
+	starting_accessories = list(/obj/item/clothing/accessory/white, /obj/item/clothing/accessory/wcoat/gentleman)
 
 /obj/item/clothing/under/gimmick/rank/captain/suit
 	name = "colony director's suit"

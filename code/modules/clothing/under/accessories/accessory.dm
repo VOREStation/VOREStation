@@ -114,6 +114,10 @@
 	name = "navy tie"
 	icon_state = "navytie"
 
+/obj/item/clothing/accessory/white
+	name = "white tie"
+	icon_state = "whitetie"
+
 /obj/item/clothing/accessory/horrible
 	name = "horrible tie"
 	desc = "A neosilk clip-on tie. This one is disgusting."

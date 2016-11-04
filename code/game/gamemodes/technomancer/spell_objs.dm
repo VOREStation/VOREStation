@@ -112,7 +112,7 @@
 /obj/item/weapon/spell/proc/adjust_instability(var/amount)
 	if(!owner || !core)
 		return 0
-	amount = round(amount * core.instability_modifer, 0.1)
+	amount = round(amount * core.instability_modifier, 0.1)
 	owner.adjust_instability(amount)
 
 // Proc: New()

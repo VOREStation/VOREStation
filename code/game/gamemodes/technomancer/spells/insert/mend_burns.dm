@@ -1,6 +1,7 @@
 /datum/technomancer/spell/mend_burns
 	name = "Mend Burns"
 	desc = "Heals minor burns, such as from exposure to flame, electric shock, or lasers."
+	spell_power_desc = "Healing amount increased."
 	cost = 50
 	obj_path = /obj/item/weapon/spell/insert/mend_burns
 	ability_icon_state = "tech_mendburns"
@@ -20,6 +21,7 @@
 		if(ishuman(host))
 			var/mob/living/carbon/human/H = host
 			var/heal_power = host == origin ? 10 : 30
+			heal_power = round(heal_power * spell_power_at_creation, 1)
 			origin.adjust_instability(10)
 			for(var/i = 0, i<5,i++)
 				if(H)

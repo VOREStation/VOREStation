@@ -268,6 +268,10 @@
 		icon_state = "hair_buzzcut"
 		species_allowed = list("Human","Unathi")
 
+	shavehair
+		name = "Shaved Hair"
+		icon_state = "hair_shaved"
+
 	crew
 		name = "Crewcut"
 		icon_state = "hair_crewcut"
@@ -624,6 +628,10 @@
 	dwarf
 		name = "Dwarf Beard"
 		icon_state = "facial_dwarf"
+
+	shadow
+		name = "Five O'Clock Shadow"
+		icon_state = "facial_shadow"
 
 //unathi horn beards and the like
 

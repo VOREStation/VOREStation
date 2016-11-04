@@ -20,7 +20,9 @@
 	var/regen_rate = 50				// 200 seconds to full
 	var/energy_delta = 0			// How much we're gaining (or perhaps losing) every process().
 	var/mob/living/wearer = null	// Reference to the mob wearing the core.
-	var/instability_modifer = 0.8	// Multiplier on how much instability is added.
+	var/instability_modifier = 0.8	// Multiplier on how much instability is added.
+	var/energy_cost_modifier = 1.0	// Multiplier on how much spells will cost.
+	var/spell_power_modifier = 1.0	// Multiplier on how strong spells are.
 	var/list/spells = list()		// This contains the buttons used to make spells in the user's hand.
 	var/list/appearances = list(	// Assoc list containing possible icon_states that the wiz can change the core to.
 		"default"			= "technomancer_core",
@@ -67,6 +69,7 @@
 	return 0
 
 /obj/item/weapon/technomancer_core/proc/pay_energy(amount)
+	amount = round(amount * energy_cost_modifier, 0.1)
 	if(amount <= energy)
 		energy = max(energy - amount, 0)
 		return 1
@@ -131,7 +134,6 @@
 	name = "generic spellbutton"
 	var/spellpath = null
 	var/obj/item/weapon/technomancer_core/core = null
-	var/was_bought_by_preset = 0 // Relevant for refunding via the spellbook.  Presets may be priced differently.
 	var/ability_icon_state = null
 
 /obj/spellbutton/New(loc, var/path, var/new_name, var/new_icon_state)
@@ -222,7 +224,9 @@
 	energy = 13000
 	max_energy = 13000
 	regen_rate = 35 //~371 seconds to full, 118 seconds to full at 50 instability (rate of 110)
-	instability_modifer = 1.2
+	instability_modifier = 1.2
+	energy_cost_modifier = 0.7
+	spell_power_modifier = 1.1
 
 /obj/item/weapon/technomancer_core/unstable/regenerate()
 	var/instability_bonus = 0
@@ -243,19 +247,21 @@
 	max_energy = 7000
 	regen_rate = 70 //100 seconds to full
 	slowdown = -1
-	instability_modifer = 0.9
+	instability_modifier = 0.9
 
 //Big batteries but slow regen, buying energy spells is highly recommended.
 /obj/item/weapon/technomancer_core/bulky
 	name = "bulky core"
 	desc = "A bewilderingly complex 'black box' that allows the wearer to accomplish amazing feats.  This variant is more \
-	cumbersome and bulky, due to the additional energy capacitors installed.  It also comes at a price of a subpar fractal \
+	cumbersome and bulky, due to the additional energy capacitors installed, which allows for a massive energy storage, as well \
+	as stronger function usage.  It also comes at a price of a subpar fractal \
 	reactor."
 	energy = 20000
 	max_energy = 20000
 	regen_rate = 25 //800 seconds to full
 	slowdown = 1
-	instability_modifer = 1.0
+	instability_modifier = 1.0
+	spell_power_modifier = 1.4
 
 // Using this can result in abilities costing less energy.  If you're lucky.
 /obj/item/weapon/technomancer_core/recycling
@@ -265,15 +271,17 @@
 	energy = 12000
 	max_energy = 12000
 	regen_rate = 40 //300 seconds to full
-	instability_modifer = 0.6
+	instability_modifier = 0.6
+	energy_cost_modifier = 0.8
 
 /obj/item/weapon/technomancer_core/recycling/pay_energy(amount)
-	..()
-	if(.)
+	var/success = ..()
+	if(success)
 		if(prob(30))
 			give_energy(round(amount / 2))
-			if(amount >= 100) // Managing to recover less than half of this isn't worth telling the user about.
+			if(amount >= 50) // Managing to recover less than half of this isn't worth telling the user about.
 				wearer << "<span class='notice'>\The [src] has recovered [amount/2 >= 1000 ? "a lot of" : "some"] energy.</span>"
+	return success
 
 // For those dedicated to summoning hoards of things.
 /obj/item/weapon/technomancer_core/summoner
@@ -285,11 +293,36 @@
 	max_energy = 8000
 	regen_rate = 35 //228 seconds to full
 	max_summons = 40
-	instability_modifer = 1.0
+	instability_modifier = 1.2
+	spell_power_modifier = 1.2
 
 /obj/item/weapon/technomancer_core/summoner/pay_dues()
 	if(summoned_mobs.len)
 		pay_energy( round(summoned_mobs.len) )
+
+// For those who hate instability.
+/obj/item/weapon/technomancer_core/safety
+	name = "safety core"
+	desc = "A bewilderingly complex 'black box' that allows the wearer to accomplish amazing feats.  This type is designed to be \
+	the closest thing you can get to 'safe' for a Core.  Instability from this is significantly reduced.  You can even dance if \
+	you want to, and leave your apprentice behind."
+	energy = 7000
+	max_energy = 7000
+	regen_rate = 30 //233 seconds to full
+	instability_modifier = 0.3
+	spell_power_modifier = 0.7
+
+// For those who want to blow everything on a few spells.
+/obj/item/weapon/technomancer_core/overcharged
+	name = "overcharged core"
+	desc = "A bewilderingly complex 'black box' that allows the wearer to accomplish amazing feats.  This type will use as much \
+	energy as it can in order to pump up the strength of functions used to insane levels."
+	energy = 15000
+	max_energy = 15000
+	regen_rate = 40 //375 seconds to full
+	instability_modifier = 1.1
+	spell_power_modifier = 1.75
+	energy_cost_modifier = 2.0
 
 /obj/item/weapon/technomancer_core/verb/toggle_lock()
 	set name = "Toggle Core Lock"
