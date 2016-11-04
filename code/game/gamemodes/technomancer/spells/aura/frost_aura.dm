@@ -1,8 +1,9 @@
 /datum/technomancer/spell/frost_aura
 	name = "Chilling Aura"
-	desc = "Lowers the core body temperature of everyone around you (except for your friends), causing them to freeze to death if \
+	desc = "Lowers the core body temperature of everyone around you (except for your friends), causing them to become very slow if \
 	they stay within four meters of you."
 	enhancement_desc = "The chill becomes lethal."
+	spell_power_desc = "Radius and rate of cooling are scaled."
 	cost = 100
 	obj_path = /obj/item/weapon/spell/aura/frost
 	ability_icon_state = "tech_frostaura"
@@ -19,13 +20,13 @@
 /obj/item/weapon/spell/aura/frost/process()
 	if(!pay_energy(100))
 		qdel(src)
-	var/list/nearby_mobs = range(4,owner)
+	var/list/nearby_mobs = range(calculate_spell_power(4),owner)
 
-	var/temp_change = 25
+	var/temp_change = calculate_spell_power(25)
 	var/temp_cap = 260 // Just above the damage threshold, for humans.  Unathi are less fortunate.
 
 	if(check_for_scepter())
-		temp_change = 50
+		temp_change = calculate_spell_power(50)
 		temp_cap = 200
 	for(var/mob/living/carbon/human/H in nearby_mobs)
 		if(is_ally(H))

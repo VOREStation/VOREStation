@@ -73,26 +73,17 @@
 		new_sound = 'sound/AI/poweroff.ogg')
 	power_failing = TRUE
 	if(powernet)
-		for(var/obj/machinery/power/terminal/T in powernet.nodes) // SMESes that are "downstream" of the powernet.
+		for(var/obj/machinery/power/terminal/T in powernet.nodes) // APCs that are "downstream" of the powernet.
 
 			if(istype(T.master, /obj/machinery/power/apc))
 				var/obj/machinery/power/apc/A = T.master
 				if(A.is_critical)
 					continue
-				A.grid_check = TRUE
+				A.do_grid_check()
 
 		for(var/obj/machinery/power/smes/smes in powernet.nodes) // These are "upstream"
-			smes.grid_check = TRUE
-/*
-			smes.last_charge		 = smes.charge
-			smes.last_output_attempt = smes.output_attempt
-			smes.last_input_attempt	 = smes.input_attempt
-			smes.charge = 0
-			smes.inputting(FALSE)
-			smes.outputting(FALSE)
-			smes.update_icon()
-			smes.power_change()
-*/
+			smes.do_grid_check()
+
 	update_icon()
 
 	spawn(rand(4 MINUTES, 10 MINUTES) )
@@ -116,10 +107,3 @@
 
 	for(var/obj/machinery/power/smes/smes in powernet.nodes) // These are "upstream"
 		smes.grid_check = FALSE
-	/*
-		smes.charge			 = smes.last_charge
-		smes.output_attempt	 = smes.last_output_attempt
-		smes.input_attempt	 = smes.last_input_attempt
-		smes.update_icon()
-		smes.power_change()
-	*/

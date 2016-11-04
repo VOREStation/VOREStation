@@ -25,7 +25,7 @@
 			user << "<span class='warning'>\The [L] isn't dead!</span>"
 			return 0
 		if(pay_energy(5000))
-			if(L.tod > world.time + 10 MINUTES)
+			if(L.tod > world.time + 30 MINUTES)
 				user << "<span class='danger'>\The [L]'s been dead for too long, even this function cannot replace cloning at \
 				this point.</span>"
 				return 0
@@ -57,7 +57,8 @@
 					H.timeofdeath = null
 					visible_message("<span class='danger'>\The [H]'s eyes open!</span>")
 					user << "<span class='notice'>It's alive!</span>"
-					adjust_instability(100)
+					adjust_instability(50)
+					log_and_message_admins("has resurrected [H].")
 				else
 					user << "<span class='warning'>The body of \the [H] doesn't seem to respond, perhaps you could try again?</span>"
 					adjust_instability(10)

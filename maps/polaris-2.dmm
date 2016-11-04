@@ -2037,7 +2037,7 @@
 "aNi" = (/obj/structure/bed/chair/comfy/brown,/obj/effect/floor_decal/carpet{dir = 8},/obj/effect/floor_decal/carpet{dir = 1},/obj/effect/floor_decal/carpet{dir = 9},/turf/unsimulated/floor{dir = 2; icon_state = "carpet"},/area/centcom/bar)
 "aNj" = (/obj/structure/bed/chair/comfy/brown,/obj/effect/floor_decal/carpet{dir = 1},/turf/unsimulated/floor{dir = 2; icon_state = "carpet"},/area/centcom/bar)
 "aNk" = (/obj/structure/bed/chair/comfy/brown,/obj/effect/floor_decal/carpet{dir = 4},/obj/effect/floor_decal/carpet{dir = 1},/obj/effect/floor_decal/carpet{dir = 5},/turf/unsimulated/floor{dir = 2; icon_state = "carpet"},/area/centcom/bar)
-"aNl" = (/obj/structure/table/woodentable{dir = 5},/obj/item/clothing/under/suit_jacket,/obj/item/clothing/suit/wcoat,/obj/item/clothing/head/that{pixel_x = 4; pixel_y = 6},/turf/unsimulated/floor{icon_state = "lino"},/area/centcom/bar)
+"aNl" = (/obj/structure/table/woodentable{dir = 5},/obj/item/clothing/under/suit_jacket,/obj/item/clothing/accessory/wcoat,/obj/item/clothing/head/that{pixel_x = 4; pixel_y = 6},/turf/unsimulated/floor{icon_state = "lino"},/area/centcom/bar)
 "aNm" = (/turf/unsimulated/floor{icon_state = "lino"},/area/centcom/bar)
 "aNn" = (/obj/structure/bed/chair{dir = 4},/turf/unsimulated/floor{icon_state = "vault"; dir = 5},/area/tdome)
 "aNo" = (/obj/structure/table/reinforced,/turf/unsimulated/floor{icon_state = "vault"; dir = 5},/area/tdome)

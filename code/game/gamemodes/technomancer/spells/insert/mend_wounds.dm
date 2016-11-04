@@ -2,6 +2,7 @@
 	name = "Mend Wounds"
 	desc = "Heals minor wounds, such as cuts, bruises, and other non-lifethreatening injuries.  \
 	Instability is split between the target and technomancer, if seperate."
+	spell_power_desc = "Healing amount increased."
 	cost = 50
 	obj_path = /obj/item/weapon/spell/insert/mend_wounds
 	ability_icon_state = "tech_mendwounds"
@@ -21,6 +22,7 @@
 		if(ishuman(host))
 			var/mob/living/carbon/human/H = host
 			var/heal_power = host == origin ? 10 : 30
+			heal_power = round(heal_power * spell_power_at_creation, 1)
 			origin.adjust_instability(10)
 			for(var/i = 0, i<5,i++)
 				if(H)

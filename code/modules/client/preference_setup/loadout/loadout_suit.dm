@@ -203,36 +203,6 @@
 	display_name = "suspenders"
 	path = /obj/item/clothing/suit/suspenders
 
-/datum/gear/suit/wcoat
-	display_name = "waistcoat"
-	path = /obj/item/clothing/suit/wcoat
-	cost = 1
-
-/datum/gear/suit/wcoat/red
-	display_name = "red waistcoat"
-	path = /obj/item/clothing/suit/wcoat/red
-
-/datum/gear/suit/wcoat/grey
-	display_name = "grey waistcoat"
-	path = /obj/item/clothing/suit/wcoat/grey
-
-/datum/gear/suit/wcoat/brown
-	display_name = "brown waistcoat"
-	path = /obj/item/clothing/suit/wcoat/brown
-
-/datum/gear/suit/swvest
-	display_name = "black sweatervest"
-	path = /obj/item/clothing/suit/wcoat/swvest
-	cost = 1
-
-/datum/gear/suit/swvest/blue
-	display_name = "blue sweatervest"
-	path = /obj/item/clothing/suit/wcoat/swvest/blue
-
-/datum/gear/suit/swvest/red
-	display_name = "red sweatervest"
-	path = /obj/item/clothing/suit/wcoat/swvest/red
-
 /datum/gear/suit/forensics
 	display_name = "forensics long, red"
 	path = /obj/item/clothing/suit/storage/forensics/red/long

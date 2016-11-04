@@ -16,9 +16,10 @@
 	aspect = ASPECT_BIOMED
 
 /obj/item/weapon/spell/dispel/on_ranged_cast(atom/hit_atom, mob/living/user)
-	if(isliving(hit_atom) && pay_energy(1000))
+	if(isliving(hit_atom) && within_range(hit_atom) && pay_energy(1000))
 		var/mob/living/target = hit_atom
 		for(var/obj/item/weapon/inserted_spell/I in target)
 			I.on_expire(dispelled = 1)
+			log_and_message_admins("dispelled [I] on [target].")
 	user.adjust_instability(10)
 	qdel(src)

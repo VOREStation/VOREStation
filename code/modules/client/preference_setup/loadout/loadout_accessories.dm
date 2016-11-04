@@ -74,6 +74,37 @@
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)
 
+
+/datum/gear/accessory/wcoat
+	display_name = "waistcoat"
+	path = /obj/item/clothing/accessory/wcoat
+	cost = 1
+
+/datum/gear/accessory/wcoat/red
+	display_name = "waistcoat, red"
+	path = /obj/item/clothing/accessory/wcoat/red
+
+/datum/gear/accessory/wcoat/grey
+	display_name = "waistcoat, grey"
+	path = /obj/item/clothing/accessory/wcoat/grey
+
+/datum/gear/accessory/wcoat/brown
+	display_name = "waistcoat, brown"
+	path = /obj/item/clothing/accessory/wcoat/brown
+
+/datum/gear/accessory/swvest
+	display_name = "sweatervest, black"
+	path = /obj/item/clothing/accessory/wcoat/swvest
+	cost = 1
+
+/datum/gear/accessory/swvest/blue
+	display_name = "sweatervest, blue"
+	path = /obj/item/clothing/accessory/wcoat/swvest/blue
+
+/datum/gear/accessory/swvest/red
+	display_name = "sweatervest, red"
+	path = /obj/item/clothing/accessory/wcoat/swvest/red
+
 /datum/gear/accessory/holster
 	display_name = "holster, armpit"
 	path = /obj/item/clothing/accessory/holster/armpit
@@ -126,6 +157,10 @@
 /datum/gear/accessory/tie/navy
 	display_name = "tie, navy blue"
 	path = /obj/item/clothing/accessory/navy
+
+/datum/gear/accessory/tie/white
+	display_name = "tie, white"
+	path = /obj/item/clothing/accessory/white
 
 /datum/gear/accessory/tie/horrible
 	display_name = "tie, socially disgraceful"
