@@ -83,6 +83,7 @@
 	name = "guy fawkes mask"
 	desc = "A mask stylised to depict Guy Fawkes."
 	icon_state = "guyfawkes"
+	flags_inv = HIDEEARS|HIDEFACE
 	item_state_slots = list(slot_r_hand_str = "mime", slot_l_hand_str = "mime")
 
 /obj/item/clothing/mask/gas/death_commando
