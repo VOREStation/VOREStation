@@ -778,7 +778,6 @@
 	desc = "The suit of Subject 688,509,403. Made of an enviromentally safe elastic. Dry-clean not required."
 	icon_state = "fluffearthenbreath"
 	item_state = "fluffearthenbreath"
-	item_color = "fluffearthenbreath"
 
 //jacobdragon:Earthen Breath
 /obj/item/clothing/head/fluff/hairflowerpin
@@ -818,7 +817,7 @@
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "bowler_mob"
-	
+
 //bwoincognito:Octavious Ward
 /obj/item/clothing/mask/gas/plaguedoctor/fluff/octaviousmask
 	name = "Customized Gas Mask"

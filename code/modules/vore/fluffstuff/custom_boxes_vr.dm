@@ -38,7 +38,7 @@
 		/obj/item/clothing/suit/storage/det_suit/fluff/tas_coat,
 		/obj/item/clothing/under/det/fluff/tasald,
 		/obj/item/fluff/permit/tasald_corlethian,
-		/obj/item/weapon/gun/projectile/revolver/detective/fluff/tasald_corlethian,
+		/obj/item/weapon/gun/projectile/revolver/mateba/fluff/tasald_corlethian,
 		/obj/item/weapon/implanter/loyalty)
 
 //bwoincognito:Octavious Ward
