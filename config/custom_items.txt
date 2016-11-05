@@ -104,6 +104,12 @@ character_name: Octavious Ward
 item_path: /obj/item/clothing/shoes/cuffs/octavious
 }
 
+{
+ckey: bwoincognito
+character_name: Octavious Ward
+item_path: /obj/item/weapon/storage/box/fluff/octavious
+}
+
 # ######## C CKEYS
 # ######## D CKEYS
 {
@@ -138,6 +144,12 @@ item_path: /obj/item/weapon/gun/energy/stunrevolver
 }
 
 {
+ckey: eekasqueak
+character_name: Serkii Miishy
+item_path: /obj/item/clothing/shoes/slippers
+}
+
+{
 ckey: epigraphzero
 character_name: Verd Woodrow
 item_path: /obj/item/clothing/accessory/medal/bronze_heart
@@ -148,6 +160,19 @@ item_path: /obj/item/clothing/accessory/medal/bronze_heart
 # ######## H CKEYS
 # ######## I CKEYS
 # ######## J CKEYS
+
+{
+ckey: jacobdragon
+character_name: Earthen Breath
+item_path: /obj/item/clothing/under/fluff/earthenbreath
+}
+
+{
+ckey: jacobdragon
+character_name: Earthen Breath
+item_path: /obj/item/clothing/head/fluff/hairflowerpin
+}
+
 {
 ckey: jemli
 character_name: Cirra Songbreeze
@@ -237,6 +262,12 @@ item_path: /obj/item/device/modkit_conversion/fluff/harmonyspace
 ckey: kisukegema
 character_name: Kisuke 'The Nerd' Gema
 item_path: /obj/item/clothing/glasses/sunglasses/fluff/nerdglasses
+}  
+
+{
+ckey: Killjaden
+character_name: Lassara Faaira'Nrezi
+item_path: /obj/item/clothing/accessory/storage/knifeharness
 }
 
 {
@@ -338,6 +369,24 @@ item_path: /obj/item/clothing/head/fluff/pompom
 }
 
 {
+ckey: silvertalismen
+character_name: Tasy Ruffles
+item_path: /obj/item/clothing/under/sexyclown
+}
+
+{
+ckey: silvertalismen
+character_name: Tasy Ruffles
+item_path: /obj/item/clothing/mask/gas/sexyclown
+}
+
+{
+ckey: silvertalismen
+character_name: Tasy Ruffles
+item_path: /obj/item/device/pda/clown
+}
+
+{
 ckey: Swat43
 character_name: Fortune Bloise
 item_path: /obj/item/weapon/storage/backpack/satchel/fluff/swat43bag
@@ -374,6 +423,18 @@ item_path: /obj/item/clothing/under/dress/fluff/lucinadress
 ckey: Viveret
 character_name: Keturah
 item_path: /obj/item/clothing/under/dress/maid/
+}
+
+{
+ckey: Viveret
+character_name: Silentio
+item_path: /obj/item/clothing/under/sexymime
+}
+
+{
+ckey: Viveret
+character_name: Silentio
+item_path: /obj/item/clothing/mask/gas/sexymime
 }
 
 # ######## W CKEYS

@@ -41,6 +41,16 @@
 		/obj/item/weapon/gun/projectile/revolver/detective/fluff/tasald_corlethian,
 		/obj/item/weapon/implanter/loyalty)
 
+//bwoincognito:Octavious Ward
+/obj/item/weapon/storage/box/fluff/octavious
+	name = "Octavious's Kit"
+	desc = "A kit containing Octavious's work clothes."
+	has_items = list(
+		/obj/item/clothing/suit/storage/trench/fluff/octaviouscoat,
+		/obj/item/clothing/under/det/fluff/octavious,
+		/obj/item/clothing/mask/gas/plaguedoctor/fluff/octaviousmask,
+		/obj/item/clothing/head/fedora/fluff/bowler)
+
 // jemli:Cirra Mayhem
 /obj/item/weapon/storage/box/fluff/cirra
 	name = "Instant Pirate Kit"
