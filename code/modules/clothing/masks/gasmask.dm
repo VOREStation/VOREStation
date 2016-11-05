@@ -79,6 +79,12 @@
 	icon_state = "sexymime"
 	item_state_slots = list(slot_r_hand_str = "mime", slot_l_hand_str = "mime")
 
+/obj/item/clothing/mask/gas/guy
+	name = "guy fawkes mask"
+	desc = "A mask stylised to depict Guy Fawkes."
+	icon_state = "guyfawkes"
+	item_state_slots = list(slot_r_hand_str = "mime", slot_l_hand_str = "mime")
+
 /obj/item/clothing/mask/gas/death_commando
 	name = "Death Commando Mask"
 	icon_state = "death_commando_mask"
