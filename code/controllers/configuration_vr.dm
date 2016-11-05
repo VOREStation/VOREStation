@@ -27,6 +27,12 @@
 			continue
 
 		switch (name)
+			if ("chat_webhook_url")
+				config.chat_webhook_url = value
+			if ("chat_webhook_key")
+				config.chat_webhook_key = value
+			if ("fax_export_dir")
+				config.fax_export_dir = value
 			if ("items_survive_digestion")
 				config.items_survive_digestion = 1
 	return 1
