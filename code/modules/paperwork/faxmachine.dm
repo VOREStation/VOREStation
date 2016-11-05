@@ -182,9 +182,9 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	//message badmins that a fax has arrived
 	if (destination == boss_name)
 		message_admins(sender, "[uppertext(boss_short)] FAX", rcvdcopy, "CentComFaxReply", "#006100")
-	else if ("Virgo Prime Governmental Authority") // Vorestation edit
+	else if (destination == "Virgo Prime Governmental Authority") // Vorestation edit
 		message_admins(sender, "VIRGO GOVERNMENT FAX", rcvdcopy, "CentComFaxReply", "#1F66A0") // Vorestation edit
-	else if ("Supply")
+	else if (destination == "Supply")
 		message_admins(sender, "[uppertext(boss_short)] SUPPLY FAX", rcvdcopy, "CentComFaxReply", "#5F4519")
 	else
 		message_admins(sender, "[uppertext(destination)] FAX", rcvdcopy, "UNKNOWN")
