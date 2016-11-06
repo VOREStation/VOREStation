@@ -771,3 +771,59 @@
 		item_state = "khi_uniform_aro"
 		worn_state = "khi_uniform_aro"
 		armor = list(melee = 5, bullet = 5, laser = 5, energy = 0, bomb = 0, bio = 0, rad = 0)
+
+//jacobdragon:Earthen Breath
+/obj/item/clothing/under/fluff/earthenbreath
+	name = "Earth Swimsuit"
+	desc = "The suit of Subject 688,509,403. Made of an enviromentally safe elastic. Dry-clean not required."
+	icon_state = "fluffearthenbreath"
+	item_state = "fluffearthenbreath"
+
+//jacobdragon:Earthen Breath
+/obj/item/clothing/head/fluff/hairflowerpin
+	name = "Hair Flower Pin"
+	desc = "It's a flower fashioned into a hair pin. It's very nice."
+	icon_state = "hairflowerpin"
+	item_state = "hairflowerpin_mob"
+	body_parts_covered = 0
+
+//bwoincognito:Octavious Ward
+/obj/item/clothing/suit/storage/trench/fluff/octaviouscoat
+	name = "Thin Leather coat"
+	desc = "A finely made leather coat designed for use in laboratories and doubles for parties. Has the letters O.C.W. embroidered in sliver on the right breast pocket."
+	icon_state = "octavgentlecoat"
+	item_state = "octavgentlecoat_mob"
+	blood_overlay_type = "coat"
+	allowed = list(/obj/item/weapon/tank/emergency_oxygen, /obj/item/device/flashlight,/obj/item/weapon/gun/energy,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/device/taperecorder,/obj/item/device/uv_light)
+
+//bwoincognito:Octavious Ward
+/obj/item/clothing/under/det/fluff/octavious
+	name = "Expensive Suit and vest"
+	desc = "A well made suit and tie, with a thin leather vest, while not as rugged as normal lab suits, it lets the wearer look dashing as he works. The letter's O.C.W. are embroidered on the left breast."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "octavgentlecoat"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "octavgentlecoat_s"
+
+//bwoincognito:Octavious Ward
+/obj/item/clothing/head/fedora/fluff/bowler
+	name = "Expensive Bowler Hat"
+	desc = "A well made bowler hat. Lets the wearer look dashing as he works. The letter's O.C.W. are embroidered on the inside."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "bowler"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "bowler_mob"
+
+//bwoincognito:Octavious Ward
+/obj/item/clothing/mask/gas/plaguedoctor/fluff/octaviousmask
+	name = "Customized Gas Mask"
+	desc = "A customized gas mask to look like an old plague doctors, with a special looking lens in the left eye that turns on when in use."
+	icon_state = "octplaguedoctor"
+	item_state = "octplaguedoctor_mob"
+	armor = list(melee = 0, bullet = 0, laser = 2,energy = 2, bomb = 0, bio = 90, rad = 0)
+	body_parts_covered = HEAD|FACE|EYES
+

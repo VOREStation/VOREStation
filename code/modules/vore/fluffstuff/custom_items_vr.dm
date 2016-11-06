@@ -489,3 +489,16 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	..()
 	new /obj/item/weapon/paper/khcrystal_manual(src)
 	new /obj/item/clothing/accessory/collar/khcrystal(src)
+
+/obj/item/weapon/cane
+	name = "cane"
+	desc = "A cane used by a true gentlemen. Or a clown."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "browncane"
+	item_state = "browncanemob"
+	flags = CONDUCT
+	force = 5.0
+	throwforce = 7.0
+	w_class = ITEMSIZE_SMALL
+	matter = list(DEFAULT_WALL_MATERIAL = 50)
+	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
