@@ -175,8 +175,14 @@ item_path: /obj/item/clothing/head/fluff/hairflowerpin
 
 {
 ckey: jemli
-character_name: Cirra Songbreeze
+character_name: Cirra Mayhem
 item_path: /obj/item/weapon/storage/box/fluff/cirra
+}
+
+{
+ckey: jemli
+character_name: Jemli
+item_path: /obj/item/clothing/head/fedora/fluff/jemli
 }
 
 {

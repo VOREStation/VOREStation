@@ -818,6 +818,18 @@
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "bowler_mob"
 
+//jemli:Jemli
+/obj/item/clothing/head/fedora/fluff/jemli
+	name = "Cavalier Hat"
+	desc = "A smart, wide-brimmed hat with a rather fetching red feather in the brim. All for one, one for all."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "jemli_hat"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "jemli_hat_mob"
+
+
 //bwoincognito:Octavious Ward
 /obj/item/clothing/mask/gas/plaguedoctor/fluff/octaviousmask
 	name = "Customized Gas Mask"
