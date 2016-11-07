@@ -345,7 +345,6 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	desc = "A medal awarded to Lucina Darkarim for excellence in medical service."
 
 //SilencedMP5A5:Serdykov Antoz
-/*
 /obj/item/clothing/suit/armor/vest/wolftaur/serdy //SilencedMP5A5's specialty armor suit. Uncomment if/when they make their custom item app and are accepted.
 	name = "Modified wolf-taur armor vest"
 	desc = "An armored vest that protects against some damage. It appears to be created for a wolf-taur, and seems modified."
@@ -370,7 +369,6 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "serdyhelm_mob"
-*/
 
 //arokha:Aronai Kadigan, but anyone is welcome to use it.
 /obj/item/clothing/accessory/collar/khcrystal
