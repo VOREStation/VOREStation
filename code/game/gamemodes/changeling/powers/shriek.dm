@@ -110,5 +110,5 @@
 	for(var/obj/machinery/light/L in range(5, src))
 		L.on = 1
 		L.broken()
-	empulse(get_turf(src), range_heavy, range_light, 0)
+	empulse(get_turf(src), range_heavy, range_light, 1)
 	return 1
