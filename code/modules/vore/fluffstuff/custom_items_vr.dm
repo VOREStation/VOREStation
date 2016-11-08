@@ -370,6 +370,19 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "serdyhelm_mob"
 
+//SilencedMP5A5:Serdykov Antoz
+/obj/item/device/modkit_conversion/fluff/serdykit
+	name = "Serdykov's hardsuit modification kit"
+	desc = "A kit containing all the needed tools and parts to modify a armor vest and helmet for a specific user. This one looks like it's fitted for a wolf-taur."
+
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "modkit"
+
+	from_helmet = /obj/item/clothing/head/helmet
+	from_suit = /obj/item/clothing/suit/armor/vest
+	to_helmet = /obj/item/clothing/head/helmet/serdy
+	to_suit = /obj/item/clothing/suit/armor/vest/wolftaur/serdy
+
 //arokha:Aronai Kadigan, but anyone is welcome to use it.
 /obj/item/clothing/accessory/collar/khcrystal
 	name = "life crystal"
