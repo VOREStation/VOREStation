@@ -224,6 +224,19 @@ var/world_topic_spam_protect_time = world.timeofday
 					positions["misc"] = list()
 				positions["misc"][name] = rank
 
+		// Synthetics don't have actual records, so we will pull them from here.
+		for(var/mob/living/silicon/ai/ai in mob_list)
+			if(!positions["bot"])
+				positions["bot"] = list()
+			positions["bot"][ai.name] = "Artificial Intelligence"
+		for(var/mob/living/silicon/robot/robot in mob_list)
+			// No combat/syndicate cyborgs, no drones.
+			if(robot.module && robot.module.hide_on_manifest)
+				continue
+			if(!positions["bot"])
+				positions["bot"] = list()
+			positions["bot"][robot.name] = "[robot.modtype] [robot.braintype]"
+
 		for(var/k in positions)
 			positions[k] = list2params(positions[k]) // converts positions["heads"] = list("Bob"="Captain", "Bill"="CMO") into positions["heads"] = "Bob=Captain&Bill=CMO"
 
