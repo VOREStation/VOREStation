@@ -345,7 +345,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	desc = "A medal awarded to Lucina Darkarim for excellence in medical service."
 
 //SilencedMP5A5:Serdykov Antoz
-/obj/item/clothing/suit/armor/vest/wolftaur/serdy //SilencedMP5A5's specialty armor suit. Uncomment if/when they make their custom item app and are accepted.
+/obj/item/clothing/suit/armor/vest/wolftaur/serdy //SilencedMP5A5's specialty armor suit.
 	name = "Modified wolf-taur armor vest"
 	desc = "An armored vest that protects against some damage. It appears to be created for a wolf-taur, and seems modified."
 	species_restricted = null //Species restricted since all it cares about is a taur half
@@ -356,7 +356,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 			icon_override = 'icons/mob/taursuits_vr.dmi' //Just in case
 			icon_state = "serdy_armor" //Just in case
 			pixel_x = -16
-			return 1
+			..()
 		else
 			H << "<span class='warning'>You need to have a wolf-taur half to wear this.</span>"
 			return 0
@@ -372,14 +372,14 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 
 //SilencedMP5A5:Serdykov Antoz
 /obj/item/device/modkit_conversion/fluff/serdykit
-	name = "Serdykov's hardsuit modification kit"
+	name = "Serdykov's armor modification kit"
 	desc = "A kit containing all the needed tools and parts to modify a armor vest and helmet for a specific user. This one looks like it's fitted for a wolf-taur."
 
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "modkit"
 
 	from_helmet = /obj/item/clothing/head/helmet
-	from_suit = /obj/item/clothing/suit/armor/vest
+	from_suit = /obj/item/clothing/suit/armor/vest/wolftaur
 	to_helmet = /obj/item/clothing/head/helmet/serdy
 	to_suit = /obj/item/clothing/suit/armor/vest/wolftaur/serdy
 
