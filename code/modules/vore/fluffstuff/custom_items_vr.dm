@@ -356,7 +356,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 			icon_override = 'icons/mob/taursuits_vr.dmi' //Just in case
 			icon_state = "serdy_armor" //Just in case
 			pixel_x = -16
-			..()
+			return ..()
 		else
 			H << "<span class='warning'>You need to have a wolf-taur half to wear this.</span>"
 			return 0
