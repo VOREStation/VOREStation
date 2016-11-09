@@ -303,7 +303,7 @@
 	icon_state = "turban"
 	item_state_slots = list(slot_r_hand_str = "beret_white", slot_l_hand_str = "beret_white")
 	body_parts_covered = 0
-	flags_inv = BLOCKHAIR
+	flags_inv = BLOCKHEADHAIR
 
 /obj/item/clothing/head/beanie
 	name = "beanie"
