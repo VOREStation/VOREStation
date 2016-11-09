@@ -24,7 +24,7 @@
 			icon_override = 'icons/mob/taursuits_vr.dmi' //Just in case
 			icon_state = "heavy_wolf_armor" //Just in case
 			pixel_x = -16
-			return 1
+			return ..()
 		else
 			H << "<span class='warning'>You need to have a wolf-taur half to wear this.</span>"
 			return 0
