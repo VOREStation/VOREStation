@@ -11,6 +11,9 @@
 
 	var/mob/living/carbon/T = changeling_sting(5,/mob/proc/changeling_unfat_sting)
 	if(!T)	return 0
+	T.attack_log += text("\[[time_stamp()]\] <font color='red'>Was unfat stung by [key_name(src)]</font>")
+	src.attack_log += text("\[[time_stamp()]\] <font color='orange'> Used unfat sting on [key_name(T)]</font>")
+	msg_admin_attack("[key_name(T)] was unfat stung by [key_name(src)]")
 	T << "<span class='danger'>you feel a small prick as stomach churns violently and you become to feel skinnier.</span>"
 	T.overeatduration = 0
 	T.nutrition -= 100
