@@ -436,12 +436,12 @@
 	species_restricted = null
 
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
-		..()
-		if(H.ckey != "scree")
-			H << "<span class='warning'>Your face and whoever is meant for this helmet are too different.</span>"
-			return 0
-		else
-			return 1
+		if(..())
+			if(H.ckey != "scree")
+				H << "<span class='warning'>Your face and whoever is meant for this helmet are too different.</span>"
+				return 0
+			else
+				return 1
 
 //scree:Scree
 /obj/item/clothing/suit/space/void/engineering/fluff/screespess
@@ -457,12 +457,12 @@
 	species_restricted = null
 
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
-		..()
-		if(H.ckey != "scree")
-			H << "<span class='warning'>The gloves only have three fingers, not to mention the accommodation for extra limbs.</span>"
-			return 0
-		else
-			return 1
+		if(..())
+			if(H.ckey != "scree")
+				H << "<span class='warning'>The gloves only have three fingers, not to mention the accommodation for extra limbs.</span>"
+				return 0
+			else
+				return 1
 
 //scree:Scree
 /obj/item/clothing/under/fluff/screesuit
@@ -476,12 +476,12 @@
 	item_state = "screesuit"
 
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
-		..()
-		if(H.ckey != "scree")
-			H << "<span class='warning'>Are you just going to tape them on or what? This isn't gonna work.</span>"
-			return 0
-		else
-			return 1
+		if(..())
+			if(H.ckey != "scree")
+				H << "<span class='warning'>Are you just going to tape them on or what? This isn't gonna work.</span>"
+				return 0
+			else
+				return 1
 
 //HOS Hardsuit
 /obj/item/clothing/suit/space/void/security/fluff/hos // ToDo: Rig version.
@@ -600,7 +600,7 @@
 
 // arokha : Aronai Kadigan
 /obj/item/clothing/head/helmet/space/void/medical/emt/fluff/aronai
-	name = "KIN-313-SM medical spacesuit"
+	name = "KIN-313-SM medical helmet"
 	desc = "This spacesuit helmet appears to be custom-made for someone with pointed ears and a muzzle. \
 		It is form-fitting enough that it's unlikely to fit anyone but the person it was intended for. \
 		'Aronai' is printed on the back of the helmet."
@@ -613,37 +613,41 @@
 
 	light_overlay = "helmet_light_dual"
 	camera_networks = list(NETWORK_MEDICAL)
+	species_restricted = null
 
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
-		..()
-		if(H.ckey != "arokha")
-			H << "<span class='warning'>You try to wear the helmet, but it doesn't fit.</span>"
-			return 0
-		else
-			return 1
+		if(..())
+			if(H.ckey != "arokha")
+				H << "<span class='warning'>You try to wear the helmet, but it doesn't fit.</span>"
+				return 0
+			else
+				return 1
 
 /obj/item/clothing/suit/space/void/medical/emt/fluff/aronai
-	name = "KIN-313-SMb medical space helmet"
+	name = "KIN-313-SMb medical space spacesuit"
 	desc = "This spacesuit appears to be custom-made for someone with digitigrade legs and a tail. \
 		It is form-fitting enough that it's unlikely to fit anyone but the person it was intended for. \
 		'Aronai' is printed just above the spine on the back of the neckpiece. It has no space for an O2 tank. \
-		In fact, it's practically paper-thin. It doesn't seem to retain body heat at all."
+		In fact, it's practically paper-thin."
 
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "arosuit"
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "arosuit_mob"
-	w_class = ITEMSIZE_LARGE //Oh but I can.
-	allowed = list(/obj/item/device/suit_cooling_unit) //Can't fit O2 tanks
+
+	w_class = ITEMSIZE_NORMAL //If Joan can do it! >.>
+	slowdown = 0 //... <.<
+	allowed = list(/obj/item/device/suit_cooling_unit) //No storage space other than that
+	species_restricted = null
 
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
-		..()
-		if(H.ckey != "arokha")
-			H << "<span class='warning'>You try to fit into the suit, to no avail.</span>"
-			return 0
-		else
-			return 1
+		if(..())
+			if(H.ckey != "arokha")
+				H << "<span class='warning'>You try to fit into the suit, to no avail.</span>"
+				return 0
+			else
+				return 1
 
 //Viveret:Keturah
 /obj/item/clothing/under/dress/maid
@@ -666,13 +670,12 @@
 	light_overlay = "helmet_light"
 
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
-		..()
-		if(H.ckey != "joanrisu")
-			H << "<span class='warning'>You try to fit on the helmet, but it doesn't fit.</span>"
-			return 0
-		else
-			return 1
-
+		if(..())
+			if(H.ckey != "joanrisu")
+				H << "<span class='warning'>You try to fit on the helmet, but it doesn't fit.</span>"
+				return 0
+			else
+				return 1
 
 //JoanRisu:Joan Risu
 /obj/item/clothing/suit/space/fluff/joan
@@ -695,13 +698,12 @@
 	item_state = "joansuit_mob"
 
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
-		..()
-		if(H.ckey != "joanrisu")
-			H << "<span class='warning'>You try to fit into the suit, to no avail.</span>"
-			return 0
-		else
-			return 1
-
+		if(..())
+			if(H.ckey != "joanrisu")
+				H << "<span class='warning'>You try to fit into the suit, to no avail.</span>"
+				return 0
+			else
+				return 1
 
 /obj/item/clothing/under/rank/internalaffairs/fluff/joan
 	desc = "The plain, professional attire of a Federation Law Enforcement Detective. The collar is <i>immaculately</i> starched."
