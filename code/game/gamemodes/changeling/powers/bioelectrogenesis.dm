@@ -166,7 +166,7 @@
 			src << "<span class='warning'>We require more chemicals to electrocute [S]!</span>"
 			return 0
 
-		S.electrocute_act(60 * siemens,src,1.0) //If only they had surge protectors.
+		S.electrocute_act(60,src,0.75) //If only they had surge protectors.
 		if(siemens)
 			visible_message("<span class='warning'>Arcs of electricity strike [S]!</span>",
 			"<span class='warning'>Our hand channels raw electricity into [S]</span>",
