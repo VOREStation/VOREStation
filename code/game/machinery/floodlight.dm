@@ -4,7 +4,7 @@
 	icon_state = "flood00"
 	density = 1
 	var/on = 0
-	var/obj/item/weapon/cell/high/cell = null
+	var/obj/item/weapon/cell/cell = null
 	var/use = 200 // 200W light
 	var/unlocked = 0
 	var/open = 0
@@ -12,8 +12,6 @@
 
 /obj/machinery/floodlight/New()
 	cell = new(src)
-	cell.maxcharge = 1000
-	cell.charge = 1000 // 41minutes @ 200W
 	..()
 
 /obj/machinery/floodlight/update_icon()
