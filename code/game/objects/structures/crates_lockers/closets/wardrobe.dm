@@ -50,9 +50,9 @@
 	new /obj/item/clothing/accessory/armband(src)
 	new /obj/item/clothing/accessory/armband(src)
 	new /obj/item/clothing/accessory/armband(src)
-	new /obj/item/clothing/accessory/holster/waist(src)
-	new /obj/item/clothing/accessory/holster/waist(src)
-	new /obj/item/clothing/accessory/holster/waist(src)
+	new /obj/item/clothing/accessory/holster/visible/waist(src)
+	new /obj/item/clothing/accessory/holster/visible/waist(src)
+	new /obj/item/clothing/accessory/holster/visible/waist(src)
 	return
 
 

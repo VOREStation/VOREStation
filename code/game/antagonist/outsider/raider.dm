@@ -100,8 +100,8 @@ var/datum/antagonist/raider/raiders
 
 	var/list/raider_holster = list(
 		/obj/item/clothing/accessory/holster/armpit,
-		/obj/item/clothing/accessory/holster/waist,
-		/obj/item/clothing/accessory/holster/hip
+		/obj/item/clothing/accessory/holster/visible/waist,
+		/obj/item/clothing/accessory/holster/visible/hip
 		)
 
 /datum/antagonist/raider/New()
