@@ -9,7 +9,7 @@
 	var/state	 								//0 off, 1 open, 2 working, 3 dead
 	var/uses = 3								//Calculates initial uses based on starting cell size
 	var/charge_cost								//Set in New() based on uses
-	var/obj/item/weapon/cell/device/cell		//The size is mostly irrelevant, see 'uses'
+	var/obj/item/weapon/cell/cell				//The size is mostly irrelevant, see 'uses'
 	var/obj/item/clothing/under/defib_paddles/paddles	//Reference to connected paddles
 	var/mob/living/carbon/human/patient			//The person the paddles are on
 
@@ -43,7 +43,7 @@
 	if(istype(A,/obj/item/clothing/under/defib_paddles))
 		put_paddles(A, user)
 
-	else if(!cell && istype(A,/obj/item/weapon/cell/device))
+	else if(!cell && istype(A,/obj/item/weapon/cell))
 		if(!user.unEquip(A)) return
 		user << "You jack \the [A] into \the [src]'s battery mount."
 		A.forceMove(src)
