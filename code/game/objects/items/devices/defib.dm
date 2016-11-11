@@ -176,7 +176,7 @@
 			break
 
 		//Failed: The locations aren't right
-		if((o_patient_loc != patient.loc) || !Adjacent(paddles))
+		if((o_patient_loc != patient.loc) || !(get_dist(src,paddles) <= 1))
 			. = 0
 			break
 
