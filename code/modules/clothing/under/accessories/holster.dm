@@ -116,22 +116,22 @@
 	desc = "A worn-out handgun holster. Perfect for concealed carry"
 	icon_state = "holster"
 
-/obj/item/clothing/accessory/holster/visible
-	concealed_holster = 0
-
-/obj/item/clothing/accessory/holster/visible/waist
+/obj/item/clothing/accessory/holster/waist
 	name = "waist holster"
 	desc = "A handgun holster. Made of expensive leather."
 	icon_state = "holster"
 	overlay_state = "holster_low"
+	concealed_holster = 0
 
-/obj/item/clothing/accessory/holster/visible/hip
+/obj/item/clothing/accessory/holster/hip
 	name = "hip holster"
 	desc = "A handgun holster slung low on the hip, draw pardner!"
 	icon_state = "holster_hip"
+	concealed_holster = 0
 
-/obj/item/clothing/accessory/holster/visible/leg
+/obj/item/clothing/accessory/holster/leg
 	name = "leg holster"
 	desc = "A tacticool handgun holster. Worn on the upper leg."
 	icon_state = "holster_hip"
 	overlay_state = "holster_leg"
+	concealed_holster = 0

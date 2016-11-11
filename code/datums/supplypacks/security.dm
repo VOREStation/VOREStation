@@ -147,8 +147,8 @@
 	contains = list(
 			/obj/item/clothing/accessory/holster,
 			/obj/item/clothing/accessory/holster/armpit,
-			/obj/item/clothing/accessory/holster/visible/waist,
-			/obj/item/clothing/accessory/holster/visible/hip
+			/obj/item/clothing/accessory/holster/waist,
+			/obj/item/clothing/accessory/holster/hip
 			)
 	cost = 15
 	containertype = "/obj/structure/closet/crate/secure"
@@ -288,7 +288,7 @@
 			/obj/item/device/flash,
 			/obj/item/device/hailer,
 			/obj/item/clothing/accessory/badge/holo/hos,
-			/obj/item/clothing/accessory/holster/visible/waist,
+			/obj/item/clothing/accessory/holster/waist,
 			/obj/item/weapon/melee/telebaton,
 			/obj/item/weapon/shield/riot/tele,
 			/obj/item/clothing/head/beret/sec/corporate/hos,

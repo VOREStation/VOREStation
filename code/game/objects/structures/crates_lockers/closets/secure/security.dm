@@ -122,7 +122,7 @@
 		new /obj/item/weapon/melee/baton/loaded(src)
 		new /obj/item/weapon/gun/energy/gun(src)
 		new /obj/item/weapon/cell/device/weapon(src)
-		new /obj/item/clothing/accessory/holster/visible/waist(src)
+		new /obj/item/clothing/accessory/holster/waist(src)
 		new /obj/item/weapon/melee/telebaton(src)
 		new /obj/item/clothing/head/beret/sec/corporate/hos(src)
 		new /obj/item/clothing/suit/storage/hooded/wintercoat/security(src)
