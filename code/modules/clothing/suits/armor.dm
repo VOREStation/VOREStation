@@ -109,6 +109,7 @@
 	icon_state = "swatarmor"
 	item_state_slots = list(slot_r_hand_str = "swat", slot_l_hand_str = "swat")
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 	slowdown = 1
 	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 40, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
@@ -126,7 +127,7 @@
 	slowdown = 1
 	w_class = ITEMSIZE_HUGE
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 100, rad = 100)
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.6
@@ -274,6 +275,7 @@
 	desc = "An armoured jacket with silver rank pips and livery."
 	icon_state = "warden_jacket"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 
 /obj/item/clothing/suit/storage/vest/wardencoat/alt
 	name = "Warden's jacket"
@@ -294,14 +296,14 @@
 	desc = "A greatcoat enhanced with a special alloy for some protection and style."
 	icon_state = "hos"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	flags_inv = HIDEJUMPSUIT
+	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 
 //Jensen cosplay gear
 /obj/item/clothing/suit/storage/vest/hoscoat/jensen
 	name = "armored trenchcoat"
 	desc = "A trenchcoat augmented with a special alloy for some protection and style."
 	icon_state = "hostrench"
-	flags_inv = 0
+	flags_inv = HIDEHOLSTER
 
 /obj/item/clothing/suit/storage/vest/pcrc
 	name = "PCRC armor vest"
@@ -385,7 +387,7 @@
 	w_class = ITEMSIZE_LARGE//bulky item
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	allowed = list(/obj/item/weapon/gun/energy,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/tank/emergency_oxygen)
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0
@@ -400,7 +402,7 @@
 	gas_transfer_coefficient = 0.90
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	slowdown = 5 // If you're a tank you're gonna move like a tank.
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 	siemens_coefficient = 0
 
 /obj/item/clothing/suit/armor/tdome

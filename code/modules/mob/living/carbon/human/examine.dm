@@ -27,6 +27,7 @@
 			skiplegs |= 1
 			skipchest |= 1
 			skipgroin |= 1
+			skipjumpsuit |= 1
 			skiptie |= 1
 			skipholster |= 1
 		else if(wear_suit.flags_inv & HIDETIE)
@@ -118,11 +119,12 @@
 			var/obj/item/clothing/under/U = w_uniform
 			if(U.accessories.len)
 				if(skipholster)
-					var/list/accessories_visible
+					var/list/accessories_visible = new/list() //please let this fix the stupid fucking runtimes
 					for(var/obj/item/clothing/accessory/A in U.accessories)
-						if((A.concealed_holster == 0))
+						if(A.concealed_holster == 0)
 							accessories_visible.Add(A)
-					tie_msg += ". Attached to it is [lowertext(english_list(accessories_visible))]"
+					if(accessories_visible.len)
+						tie_msg += ". Attached to it is [lowertext(english_list(accessories_visible))]"
 				else tie_msg += ". Attached to it is [lowertext(english_list(U.accessories))]"
 
 		if(w_uniform.blood_DNA)
