@@ -280,6 +280,10 @@
 		new /obj/item/device/flashlight/maglight(src)
 		new /obj/item/weapon/reagent_containers/food/drinks/flask/detflask(src)
 		new /obj/item/weapon/storage/briefcase/crimekit(src)
+		new /obj/item/device/taperecorder(src)
+		new /obj/item/device/tape/random(src)
+		new /obj/item/device/tape/random(src)
+		new /obj/item/device/tape/random(src)
 		return
 
 /obj/structure/closet/secure_closet/detective/update_icon()
