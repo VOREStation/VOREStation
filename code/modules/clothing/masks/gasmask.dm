@@ -27,6 +27,15 @@
 
 	return filtered
 
+/obj/item/clothing/mask/gas/half
+	name = "face mask"
+	desc = "A compact, durable gas mask that can be connected to an air supply."
+	icon_state = "halfgas"
+	siemens_coefficient = 0.7
+	body_parts_covered = FACE
+	w_class = ITEMSIZE_SMALL
+	armor = list(melee = 10, bullet = 10, laser = 10, energy = 0, bomb = 0, bio = 55, rad = 0)
+
 //Plague Dr suit can be found in clothing/suits/bio.dm
 /obj/item/clothing/mask/gas/plaguedoctor
 	name = "plague doctor mask"
