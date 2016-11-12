@@ -19,14 +19,14 @@
 	desc = "Worn by a Colony Director to show their class."
 	icon_state = "captunic"
 	body_parts_covered = UPPER_TORSO|ARMS
-	flags_inv = HIDEJUMPSUIT
+	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 
 /obj/item/clothing/suit/captunic/capjacket
 	name = "colony director's uniform jacket"
 	desc = "A less formal jacket for everyday Colony Director use."
 	icon_state = "capjacket"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	flags_inv = HIDEJUMPSUIT
+	flags_inv = HIDEHOLSTER
 
 //Chaplain
 /obj/item/clothing/suit/chaplain_hoodie
@@ -35,6 +35,7 @@
 	icon_state = "chaplain_hoodie"
 	item_state_slots = list(slot_r_hand_str = "suit_black", slot_l_hand_str = "suit_black")
 	body_parts_covered = UPPER_TORSO|ARMS
+	flags_inv = HIDEHOLSTER
 	allowed = list (/obj/item/weapon/storage/bible)
 
 //Chaplain
@@ -43,7 +44,7 @@
 	desc = "Maximum piety in this star system."
 	icon_state = "nun"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	flags_inv = HIDESHOES|HIDEJUMPSUIT
+	flags_inv = HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 
 //Chef
 /obj/item/clothing/suit/chef
@@ -53,6 +54,7 @@
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.50
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	flags_inv = HIDETIE|HIDEHOLSTER
 	allowed = list (/obj/item/weapon/material/knife)
 
 //Chef
@@ -62,6 +64,7 @@
 	icon_state = "apronchef"
 	blood_overlay_type = "armor"
 	body_parts_covered = 0
+	flags_inv = 0
 
 //Security
 /obj/item/clothing/suit/security/navyofficer
@@ -70,6 +73,7 @@
 	icon_state = "officerbluejacket"
 	item_state_slots = list(slot_r_hand_str = "suit_navy", slot_l_hand_str = "suit_navy")
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	flags_inv = HIDEHOLSTER
 
 /obj/item/clothing/suit/security/navywarden
 	name = "warden's jacket"
@@ -77,6 +81,7 @@
 	icon_state = "wardenbluejacket"
 	item_state_slots = list(slot_r_hand_str = "suit_navy", slot_l_hand_str = "suit_navy")
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	flags_inv = HIDEHOLSTER
 
 /obj/item/clothing/suit/security/navyhos
 	name = "head of security's jacket"
@@ -84,6 +89,7 @@
 	icon_state = "hosbluejacket"
 	item_state_slots = list(slot_r_hand_str = "suit_navy", slot_l_hand_str = "suit_navy")
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	flags_inv = HIDEHOLSTER
 
 //Detective
 /obj/item/clothing/suit/storage/det_trench
@@ -92,6 +98,7 @@
 	icon_state = "detective"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|ARMS
+	flags_inv = HIDEHOLSTER
 	allowed = list(/obj/item/weapon/tank/emergency_oxygen, /obj/item/device/flashlight, /obj/item/weapon/gun/energy, /obj/item/weapon/gun/projectile, /obj/item/ammo_magazine,
 	/obj/item/ammo_casing, /obj/item/weapon/melee/baton, /obj/item/weapon/handcuffs, /obj/item/weapon/storage/fancy/cigarettes, /obj/item/weapon/flame/lighter,
 	/obj/item/device/taperecorder, /obj/item/device/uv_light)
@@ -101,12 +108,14 @@
 	name = "grey trenchcoat"
 	icon_state = "detective2"
 	item_state_slots = list(slot_r_hand_str = "leather_jacket", slot_l_hand_str = "leather_jacket")
+	flags_inv = HIDEHOLSTER
 
 //Forensics
 /obj/item/clothing/suit/storage/forensics
 	name = "jacket"
 	desc = "A forensics technician jacket."
 	body_parts_covered = UPPER_TORSO|ARMS
+	flags_inv = HIDEHOLSTER
 	allowed = list(/obj/item/weapon/tank/emergency_oxygen, /obj/item/device/flashlight, /obj/item/weapon/gun/energy, /obj/item/weapon/gun/projectile, /obj/item/ammo_magazine,
 	/obj/item/ammo_casing, /obj/item/weapon/melee/baton, /obj/item/weapon/handcuffs, /obj/item/weapon/storage/fancy/cigarettes, /obj/item/weapon/flame/lighter,
 	/obj/item/device/taperecorder, /obj/item/device/uv_light)

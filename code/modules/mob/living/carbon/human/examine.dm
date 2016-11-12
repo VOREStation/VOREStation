@@ -4,6 +4,8 @@
 	var/skipjumpsuit = 0
 	var/skipshoes = 0
 	var/skipmask = 0
+	var/skiptie = 0
+	var/skipholster = 0
 
 	var/skipears = 0
 	var/skipeyes = 0
@@ -25,6 +27,14 @@
 			skiplegs |= 1
 			skipchest |= 1
 			skipgroin |= 1
+			skipjumpsuit |= 1
+			skiptie |= 1
+			skipholster |= 1
+		else if(wear_suit.flags_inv & HIDETIE)
+			skiptie |= 1
+			skipholster |= 1
+		else if(wear_suit.flags_inv & HIDEHOLSTER)
+			skipholster |= 1
 		if(wear_suit.flags_inv & HIDESHOES)
 			skipshoes |= 1
 			skipfeet |= 1
@@ -105,10 +115,17 @@
 	if(w_uniform && !skipjumpsuit)
 		//Ties
 		var/tie_msg
-		if(istype(w_uniform,/obj/item/clothing/under))
+		if(istype(w_uniform,/obj/item/clothing/under) && !skiptie)
 			var/obj/item/clothing/under/U = w_uniform
 			if(U.accessories.len)
-				tie_msg += ". Attached to it is [lowertext(english_list(U.accessories))]"
+				if(skipholster)
+					var/list/accessories_visible = new/list() //please let this fix the stupid fucking runtimes
+					for(var/obj/item/clothing/accessory/A in U.accessories)
+						if(A.concealed_holster == 0)
+							accessories_visible.Add(A)
+					if(accessories_visible.len)
+						tie_msg += ". Attached to it is [lowertext(english_list(accessories_visible))]"
+				else tie_msg += ". Attached to it is [lowertext(english_list(U.accessories))]"
 
 		if(w_uniform.blood_DNA)
 			msg += "<span class='warning'>[T.He] [T.is] wearing \icon[w_uniform] [w_uniform.gender==PLURAL?"some":"a"] [(w_uniform.blood_color != SYNTH_BLOOD_COLOUR) ? "blood" : "oil"]-stained [w_uniform.name][tie_msg]!</span>\n"
