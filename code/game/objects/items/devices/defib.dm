@@ -45,13 +45,13 @@
 
 	if(!cell && istype(A,/obj/item/weapon/cell))
 		if(!user.unEquip(A)) return
-		user << "You jack \the [A] into \the [src]'s battery mount."
+		to_chat(user,"You jack \the [A] into \the [src]'s battery mount.")
 		A.forceMove(src)
 		src.cell = A
 
 	else if(istype(A,/obj/item/weapon/screwdriver))
 		if(cell)
-			user << "<span class='notice'>You remove \the [cell] from \the [src].</span>"
+			to_chat(user,"<span class='notice'>You remove \the [cell] from \the [src].</span>")
 			if(user.r_hand && user.l_hand)
 				cell.forceMove(get_turf(user))
 			else
@@ -59,7 +59,7 @@
 			cell = null
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 		else
-			user << "<span class='warning'>The power source has already been removed!</span>"
+			to_chat(user,"<span class='warning'>The power source has already been removed!</span>")
 
 /obj/item/device/defib_kit/proc/statechange(var/new_state, var/pat)
 	if(state == new_state) return //Let's just save ourselves some time
@@ -115,9 +115,9 @@
 				if(!patient.client && patient.mind) //Don't force the dead person to come back if they don't want to.
 					for(var/mob/observer/dead/ghost in player_list)
 						if(ghost.mind == patient.mind)
-							ghost << "<b><font color = #330033><font size = 3>Someone is trying to \
+							to_chat(ghost, "<b><font color = #330033><font size = 3>Someone is trying to \
 							revive you. Return to your body if you want to be revived!</b> \
-							(Verbs -> Ghost -> Re-enter corpse). You have 15 seconds to do this!</font></font>"
+							(Verbs -> Ghost -> Re-enter corpse). You have 15 seconds to do this!</font></font>")
 							sleep(15 SECONDS)
 							break
 
