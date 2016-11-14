@@ -64,6 +64,10 @@ Procs for targeting
 
 			reagent_response = chemreact[R.id]
 
+			if(!reagent_response)
+				temp_chem_holder.reagents.clear_reagents()
+				return 1
+
 			if(reagent_response["toxic"])
 				adjustToxLoss(reagent_response["toxic"] * reagent_total)
 
