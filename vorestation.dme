@@ -2218,6 +2218,7 @@
 #include "code\modules\xenoarcheaology\tools\geosample_scanner.dm"
 #include "code\modules\xenoarcheaology\tools\suspension_generator.dm"
 #include "code\modules\xenoarcheaology\tools\tools.dm"
+#include "code\modules\xenoarcheaology\tools\tools_vr.dm"
 #include "code\modules\xenoarcheaology\tools\tools_pickaxe.dm"
 #include "code\modules\xenoarcheaology\tools\tools_pickaxe_vr.dm"
 #include "code\modules\xenobio2\_xeno_setup.dm"
