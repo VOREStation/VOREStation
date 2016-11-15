@@ -106,6 +106,15 @@
 		update()
 		return
 
+	if(istype(I, /obj/item/weapon/material/ashtray))
+		var/obj/item/weapon/material/ashtray/A = I
+		user << "\blue You empty the [A.name]."
+		for(var/obj/item/O in A.contents)
+			O.loc = src
+		A.update_icon()
+		update()
+		return
+
 	var/obj/item/weapon/grab/G = I
 	if(istype(G))	// handle grabbed mob
 		if(ismob(G.affecting))
