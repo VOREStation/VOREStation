@@ -101,7 +101,8 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/sugar,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/orange,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/lime,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/watermelon
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/watermelon,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/lemon
 		)
 	cost = 50
 	containertype = /obj/structure/closet/crate
