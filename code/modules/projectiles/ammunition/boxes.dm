@@ -53,6 +53,10 @@
 	name = "magazine (.45 flash)"
 	ammo_type = /obj/item/ammo_casing/c45f
 
+/obj/item/ammo_magazine/c45m/ap
+	name = "magazine (.45 AP)"
+	ammo_type = /obj/item/ammo_casing/c45ap
+
 /obj/item/ammo_magazine/c45uzi
 	name = "stick magazine (.45)"
 	icon_state = "uzi45"
@@ -75,6 +79,10 @@
 	caliber = ".45"
 	max_ammo = 20
 
+/obj/item/ammo_magazine/tommymag/ap
+	name = "tommygun magazine (.45 AP)"
+	ammo_type = /obj/item/ammo_casing/c45ap
+
 /obj/item/ammo_magazine/tommymag/empty
 	initial_ammo = 0
 
@@ -87,6 +95,10 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 3750)
 	caliber = ".45"
 	max_ammo = 50
+
+/obj/item/ammo_magazine/tommydrum/ap
+	name = "tommygun drum magazine (.45 AP)"
+	ammo_type = /obj/item/ammo_casing/c45ap
 
 /obj/item/ammo_magazine/tommydrum/empty
 	initial_ammo = 0
