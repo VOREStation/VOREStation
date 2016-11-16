@@ -422,8 +422,8 @@
 	reagents.add_reagent("orangejuice", 100)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/milk
-	name = "Milk Carton"
-	desc = "It's milk. White and nutritious goodness!"
+	name = "Large Milk Carton"
+	desc = "It's milk. This carton's large enough to serve your biggest milk drinkers."
 	icon_state = "milk"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
