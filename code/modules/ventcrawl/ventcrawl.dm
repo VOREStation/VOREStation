@@ -81,7 +81,7 @@ var/list/ventcrawl_machinery = list(
 	var/atom/pipe
 	var/list/pipes = list()
 	for(var/obj/machinery/atmospherics/unary/U in range(1))
-		if(is_type_in_list(U,ventcrawl_machinery) && Adjacent(U))
+		if(is_type_in_list(U,ventcrawl_machinery) && Adjacent(U) && !U.welded)
 			pipes |= U
 	if(!pipes || !pipes.len)
 		to_chat(src, "There are no pipes that you can ventcrawl into within range!")
