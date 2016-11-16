@@ -108,9 +108,13 @@
 
 	if(istype(I, /obj/item/weapon/material/ashtray))
 		var/obj/item/weapon/material/ashtray/A = I
-		user << "\blue You empty the [A.name]."
-		for(var/obj/item/O in A.contents)
-			O.loc = src
+		if(A.contents.len == 0)
+			user.visible_message("<span class='notice'>\The [user] places \the [A.name] into [src].</span>")
+			I.forceMove(src)
+		else
+			user.visible_message("<span class='notice'>\The [user] empties \the [A.name] into [src].</span>")
+			for(var/obj/item/O in A.contents)
+				O.forceMove(src)
 		A.update_icon()
 		update()
 		return
