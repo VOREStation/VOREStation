@@ -352,6 +352,10 @@
 				else
 					rupture_lung()
 
+		if(should_have_organ("brain"))
+			if(prob(5))
+				adjustBrainLoss(0.02 * oxyloss) //2% of your current oxyloss is applied as brain damage, 50 oxyloss is 1 brain damage
+
 		oxygen_alert = max(oxygen_alert, 1)
 
 		return 0
