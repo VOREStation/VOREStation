@@ -193,7 +193,7 @@
 	if(ishuman(target_mob)) // Otherwise someone else stood in the beam and is going to pay for it.
 		var/mob/living/carbon/human/H = target_mob
 		var/obj/item/organ/external/affected = H.get_organ(check_zone(BP_TORSO))
-		H.electrocute_act(power, src, H.get_siemens_coefficient_organ(affected), affected)
+		H.electrocute_act(power, src, H.get_siemens_coefficient_organ(affected), affected, 0)
 	else
 		target_mob.electrocute_act(power, src, 0.75, BP_TORSO)
 	return 0 // Since this is a continous beam, it needs to keep flying until it hits the Technomancer.
