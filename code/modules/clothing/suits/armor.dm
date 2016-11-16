@@ -58,6 +58,7 @@
 	icon_state = "bulletproof"
 	item_state_slots = list(slot_r_hand_str = "armor", slot_l_hand_str = "armor")
 	blood_overlay_type = "armor"
+	slowdown = 0.5
 	armor = list(melee = 10, bullet = 80, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
 
@@ -71,6 +72,7 @@
 	desc = "A vest that excels in protecting the wearer against energy projectiles."
 	icon_state = "armor_reflec"
 	blood_overlay_type = "armor"
+	slowdown = 0.5
 	armor = list(melee = 10, bullet = 10, laser = 80, energy = 50, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.1
 
@@ -100,6 +102,7 @@
 	desc = "A vest that protects the wearer from several common types of weaponry."
 	icon_state = "combat"
 	blood_overlay_type = "armor"
+	slowdown = 0.5
 	armor = list(melee = 50, bullet = 50, laser = 50, energy = 30, bomb = 30, bio = 0, rad = 0)
 	siemens_coefficient = 0.6
 
@@ -334,7 +337,7 @@
 	icon_state = "webvest"
 	item_state_slots = list(slot_r_hand_str = "swat", slot_l_hand_str = "swat")
 	armor = list(melee = 50, bullet = 40, laser = 40, energy = 25, bomb = 25, bio = 0, rad = 0)
-	slowdown = 1
+	slowdown = 0.5
 
 /obj/item/clothing/suit/storage/vest/heavy/officer
 	name = "officer heavy armor vest"

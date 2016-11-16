@@ -40,3 +40,12 @@
 	display_name = "secure briefcase"
 	path =/obj/item/weapon/storage/secure/briefcase
 	cost = 2
+
+/datum/gear/utility/flashlight
+	display_name = "flashlight"
+	path = /obj/item/device/flashlight
+
+/datum/gear/utility/maglight
+	display_name = "flashlight, maglight"
+	path = /obj/item/device/flashlight/maglight
+	cost = 2
