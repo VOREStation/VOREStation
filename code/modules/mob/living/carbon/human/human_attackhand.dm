@@ -55,7 +55,7 @@
 
 	switch(M.a_intent)
 		if(I_HELP)
-			if(istype(H) && health < config.health_threshold_crit && health > config.health_threshold_dead)
+			if(istype(H) && health < config.health_threshold_crit)
 				if(!H.check_has_mouth())
 					H << "<span class='danger'>You don't have a mouth, you cannot perform CPR!</span>"
 					return
@@ -81,11 +81,13 @@
 				if(!do_after(H, 30))
 					return
 
-				adjustOxyLoss(-(min(getOxyLoss(), 5)))
-				updatehealth()
 				H.visible_message("<span class='danger'>\The [H] performs CPR on \the [src]!</span>")
-				src << "<span class='notice'>You feel a breath of fresh air enter your lungs. It feels good.</span>"
 				H << "<span class='warning'>Repeat at least every 7 seconds.</span>"
+
+				if(istype(H) && health > config.health_threshold_dead)
+					adjustOxyLoss(-(min(getOxyLoss(), 5)))
+					updatehealth()
+					src << "<span class='notice'>You feel a breath of fresh air enter your lungs. It feels good.</span>"
 
 			else if(!(M == src && apply_pressure(M, M.zone_sel.selecting)))
 				help_shake_act(M)
