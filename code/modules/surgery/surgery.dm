@@ -123,10 +123,6 @@
 					var/mob/living/carbon/human/H = M
 					H.update_surgery()
 				return	1	  												//don't want to do weapony things after surgery
-
-	if (user.a_intent == I_HELP)
-		user << "<span class='warning'>You can't see any surgical way to use [src] on [M].</span>"
-		return 1
 	return 0
 
 /proc/sort_surgeries()
