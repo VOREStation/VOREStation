@@ -22,11 +22,11 @@
 		qdel(src)
 	var/list/nearby_mobs = range(calculate_spell_power(4),owner)
 
-	var/temp_change = calculate_spell_power(25)
+	var/temp_change = calculate_spell_power(40)
 	var/temp_cap = 260 // Just above the damage threshold, for humans.  Unathi are less fortunate.
 
 	if(check_for_scepter())
-		temp_change = calculate_spell_power(50)
+		temp_change *= 2
 		temp_cap = 200
 	for(var/mob/living/carbon/human/H in nearby_mobs)
 		if(is_ally(H))

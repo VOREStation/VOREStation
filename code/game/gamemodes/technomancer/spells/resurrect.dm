@@ -37,7 +37,7 @@
 				dead_mob_list -= SM
 				living_mob_list += SM
 				SM.icon_state = SM.icon_living
-				adjust_instability(30)
+				adjust_instability(15)
 			else if(ishuman(L))
 				var/mob/living/carbon/human/H = L
 
@@ -48,6 +48,9 @@
 							revive you. Return to your body if you want to be resurrected!</b> \
 							(Verbs -> Ghost -> Re-enter corpse)</font></font>"
 							break
+
+				H.adjustBruteLoss(-40)
+				H.adjustFireLoss(-40)
 
 				sleep(10 SECONDS)
 				if(H.client)

@@ -23,6 +23,7 @@
 	var/instability_modifier = 0.8	// Multiplier on how much instability is added.
 	var/energy_cost_modifier = 1.0	// Multiplier on how much spells will cost.
 	var/spell_power_modifier = 1.0	// Multiplier on how strong spells are.
+	var/cooldown_modifier 	 = 1.0	// Multiplier on cooldowns for spells.
 	var/list/spells = list()		// This contains the buttons used to make spells in the user's hand.
 	var/list/appearances = list(	// Assoc list containing possible icon_states that the wiz can change the core to.
 		"default"			= "technomancer_core",
@@ -118,7 +119,11 @@
 			var/mob/living/L = A
 			if(L.stat == DEAD)
 				summoned_mobs -= L
-				qdel(L)
+				spawn(1)
+					L.visible_message("<span class='notice'>\The [L] begins to fade away...</span>")
+					animate(L, alpha = 255, alpha = 0, time = 30) // Makes them fade into nothingness.
+					sleep(30)
+					qdel(L)
 
 // Deletes all the summons and wards from the core, so that Destroy() won't have issues.
 /obj/item/weapon/technomancer_core/proc/dismiss_all_summons()
@@ -248,6 +253,7 @@
 	regen_rate = 70 //100 seconds to full
 	slowdown = -1
 	instability_modifier = 0.9
+	cooldown_modifier = 0.9
 
 //Big batteries but slow regen, buying energy spells is highly recommended.
 /obj/item/weapon/technomancer_core/bulky
