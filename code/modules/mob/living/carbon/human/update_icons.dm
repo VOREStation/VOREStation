@@ -470,7 +470,7 @@ var/global/list/damage_icon_parts = list()
 //vvvvvv UPDATE_INV PROCS vvvvvv
 
 /mob/living/carbon/human/update_inv_w_uniform(var/update_icons=1)
-	if(w_uniform && istype(w_uniform, /obj/item/clothing/under) )
+	if( (w_uniform && istype(w_uniform, /obj/item/clothing/under)) && !(wear_suit && istype(wear_suit, /obj/item/clothing/suit/space) && wear_suit.flags_inv & HIDEJUMPSUIT && !istype(wear_suit, /obj/item/clothing/suit/space/rig) ))
 		w_uniform.screen_loc = ui_iclothing
 
 		//determine the icon to use
@@ -793,16 +793,15 @@ var/global/list/damage_icon_parts = list()
 				standing.overlays |= A.get_mob_overlay()
 
 		overlays_standing[SUIT_LAYER]	= standing
-		update_tail_showing(0)
 
 	else
 		overlays_standing[SUIT_LAYER]	= null
-		update_tail_showing(0)
 
+	//Hide/show other layers if necessary
 	update_collar(0)
-
-	//hide/show shoes if necessary
+	update_inv_w_uniform(0)
 	update_inv_shoes(0)
+	update_tail_showing(0)
 
 	if(update_icons)   update_icons()
 
