@@ -4,10 +4,10 @@
 */
 
 /datum/supply_packs/munitions
-	group = "Weapons and Munitions"
+	group = "Munitions"
 
 /datum/supply_packs/randomised/munitions
-	group = "Weapons and Munitions"
+	group = "Munitions"
 
 /datum/supply_packs/munitions/weapons
 	name = "Weapons crate"
