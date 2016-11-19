@@ -5,7 +5,7 @@
     taser_effect = 1
     agony = 60 // Does as much damage as a heavy bullet, but in agony damage.
     damage_type = HALLOSS
-    light_color = "#FFFFFF"
+    light_color = "#00CECE"
 
     muzzle_type = /obj/effect/projectile/laser_omni/muzzle
     tracer_type = /obj/effect/projectile/laser_omni/tracer
