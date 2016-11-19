@@ -249,6 +249,7 @@
 	if(crisis || security_level == SEC_LEVEL_RED || crisis_override) // VOREStation Edit
 		src << "\red Crisis mode active. Combat module available."
 		modules+="Combat"
+		modules+="ERT" //VOREStation Edit
 	modtype = input("Please, select a module!", "Robot module", null, null) as null|anything in modules
 
 	if(module)
