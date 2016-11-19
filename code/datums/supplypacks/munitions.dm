@@ -4,10 +4,10 @@
 */
 
 /datum/supply_packs/munitions
-	group = "Munitions"
+	group = "Weapons and Munitions"
 
 /datum/supply_packs/randomised/munitions
-	group = "Munitions"
+	group = "Weapons and Munitions"
 
 /datum/supply_packs/munitions/weapons
 	name = "Weapons crate"
@@ -47,7 +47,7 @@
 	access = access_armory
 
 /datum/supply_packs/munitions/energyweapons
-	name = "Energy weapons crate"
+	name = "Laser carbine crate"
 	contains = list(/obj/item/weapon/gun/energy/laser = 3)
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure
@@ -98,11 +98,11 @@
 	access = access_armory
 
 /datum/supply_packs/munitions/energy_guns
-	name = "energy guns crate"
+	name = "Energy gun crate"
 	contains = list(/obj/item/weapon/gun/energy/gun = 2)
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure
-	containername = "energy guns crate"
+	containername = "Energy gun crate"
 	access = access_armory
 
 /datum/supply_packs/munitions/bolt_rifles_competitive
