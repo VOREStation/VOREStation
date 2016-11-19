@@ -11,6 +11,7 @@
 /datum/gear/utility/communicator
 	display_name = "personal communicator"
 	path = /obj/item/device/communicator
+	cost = 0
 
 /datum/gear/utility/folder_blue
 	display_name = "folder, blue"
