@@ -42,7 +42,6 @@
 
 	// Seed details/line data.
 	var/datum/seed/seed = null // The currently planted seed
-	var/list/machineryOverlays = list() //Overlays used for your hydrotray. Define how it handles them in handleHUDOverlay()
 
 
 	// Reagent information for process(), consider moving this to a controller along
@@ -606,7 +605,7 @@
 		else if(health <= (seed.get_trait(TRAIT_ENDURANCE)/ 2))
 			usr << "The plant looks <span class='danger'>unhealthy</span>."
 	if(frozen == 1)
-		to_chat(usr, "<span class='notice'>It is cryogenically frozen.")
+		to_chat(usr, "<span class='notice'>It is cryogenically frozen.</span>")
 	if(mechanical)
 		var/turf/T = loc
 		var/datum/gas_mixture/environment
