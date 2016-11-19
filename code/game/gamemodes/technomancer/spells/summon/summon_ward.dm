@@ -1,8 +1,9 @@
 /datum/technomancer/spell/summon_ward
 	name = "Summon Ward"
 	desc = "Teleports a prefabricated 'ward' drone to the target location, which will alert you and your allies when it sees entities \
-	moving around it, or when it is attacked.  They can see for up to five meters.  Wards expire in six minutes."
-	enhancement_desc = "Wards can detect invisibile entities, and are more specific in relaying information about what it sees."
+	moving around it, or when it is attacked.  They can see for up to five meters."
+	enhancement_desc = "Wards can detect invisibile entities, and are more specific in relaying information about what it sees.  \
+	Invisible entities that are spotted by it will be decloaked."
 	cost = 25
 	obj_path = /obj/item/weapon/spell/summon/summon_ward
 	category = UTILITY_SPELLS

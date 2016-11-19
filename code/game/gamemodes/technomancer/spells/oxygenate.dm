@@ -16,6 +16,8 @@
 	cooldown = 30
 
 /obj/item/weapon/spell/oxygenate/on_ranged_cast(atom/hit_atom, mob/user)
+	if(!within_range(hit_atom))
+		return
 	if(ishuman(hit_atom))
 		var/mob/living/carbon/human/H = hit_atom
 		if(pay_energy(1500))

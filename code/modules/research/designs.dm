@@ -267,7 +267,16 @@ other types of metals and chemistry for reagents).
 	materials = list(DEFAULT_WALL_MATERIAL = 350, "glass" = 25)
 	build_path = /obj/item/weapon/cell/device
 	category = "Misc"
-	sort_string = "DAAAE"
+	sort_string = "DAABA"
+
+/datum/design/item/powercell/weapon
+	name = "weapon"
+	build_type = PROTOLATHE
+	id = "weapon"
+	materials = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 50)
+	build_path = /obj/item/weapon/cell/device/weapon
+	category = "Misc"
+	sort_string = "DAABB"
 
 /datum/design/item/hud
 	materials = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)

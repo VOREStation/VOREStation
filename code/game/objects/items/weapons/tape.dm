@@ -7,68 +7,115 @@
 
 /obj/item/weapon/tape_roll/attack(var/mob/living/carbon/human/H, var/mob/user)
 	if(istype(H))
-		if(user.zone_sel.selecting == O_EYES)
-
-			if(!H.organs_by_name[BP_HEAD])
-				user << "<span class='warning'>\The [H] doesn't have a head.</span>"
-				return
-			if(!H.has_eyes())
-				user << "<span class='warning'>\The [H] doesn't have any eyes.</span>"
-				return
-			if(H.glasses)
-				user << "<span class='warning'>\The [H] is already wearing somethign on their eyes.</span>"
-				return
-			if(H.head && (H.head.body_parts_covered & FACE))
-				user << "<span class='warning'>Remove their [H.head] first.</span>"
-				return
-			user.visible_message("<span class='danger'>\The [user] begins taping over \the [H]'s eyes!</span>")
-
-			if(!do_after(user, 30))
-				return
-
-			// Repeat failure checks.
-			if(!H || !src || !H.organs_by_name[BP_HEAD] || !H.has_eyes() || H.glasses || (H.head && (H.head.body_parts_covered & FACE)))
-				return
-
-			user.visible_message("<span class='danger'>\The [user] has taped up \the [H]'s eyes!</span>")
-			H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/blindfold/tape(H), slot_glasses)
-			H.update_inv_glasses()
-
-		else if(user.zone_sel.selecting == O_MOUTH || user.zone_sel.selecting == BP_HEAD)
-			if(!H.organs_by_name[BP_HEAD])
-				user << "<span class='warning'>\The [H] doesn't have a head.</span>"
-				return
-			if(!H.check_has_mouth())
-				user << "<span class='warning'>\The [H] doesn't have a mouth.</span>"
-				return
-			if(H.wear_mask)
-				user << "<span class='warning'>\The [H] is already wearing a mask.</span>"
-				return
-			if(H.head && (H.head.body_parts_covered & FACE))
-				user << "<span class='warning'>Remove their [H.head] first.</span>"
-				return
-			user.visible_message("<span class='danger'>\The [user] begins taping up \the [H]'s mouth!</span>")
-
-			if(!do_after(user, 30))
-				return
-
-			// Repeat failure checks.
-			if(!H || !src || !H.organs_by_name[BP_HEAD] || !H.check_has_mouth() || H.wear_mask || (H.head && (H.head.body_parts_covered & FACE)))
-				return
-
-			user.visible_message("<span class='danger'>\The [user] has taped up \the [H]'s mouth!</span>")
-
-			H.equip_to_slot_or_del(new /obj/item/clothing/mask/muzzle/tape(H), slot_wear_mask)
-			H.update_inv_wear_mask()
-
-		else if(user.zone_sel.selecting == "r_hand" || user.zone_sel.selecting == "l_hand")
-			var/obj/item/weapon/handcuffs/cable/tape/T = new(user)
-			if(!T.place_handcuffs(H, user))
-				user.unEquip(T)
-				qdel(T)
+		var/can_place = 0
+		if(istype(user, /mob/living/silicon/robot))
+			can_place = 1
 		else
-			return ..()
-		return 1
+			for (var/obj/item/weapon/grab/G in H.grabbed_by)
+				if (G.loc == user && G.state >= GRAB_AGGRESSIVE)
+					can_place = 1
+					break
+		if(!can_place)
+			user << "<span class='danger'>You need to have a firm grip on [H] before you can use \the [src]!</span>"
+			return
+		else
+			if(user.zone_sel.selecting == O_EYES)
+
+				if(!H.organs_by_name[BP_HEAD])
+					user << "<span class='warning'>\The [H] doesn't have a head.</span>"
+					return
+				if(!H.has_eyes())
+					user << "<span class='warning'>\The [H] doesn't have any eyes.</span>"
+					return
+				if(H.glasses)
+					user << "<span class='warning'>\The [H] is already wearing somethign on their eyes.</span>"
+					return
+				if(H.head && (H.head.body_parts_covered & FACE))
+					user << "<span class='warning'>Remove their [H.head] first.</span>"
+					return
+				user.visible_message("<span class='danger'>\The [user] begins taping over \the [H]'s eyes!</span>")
+
+				if(!do_after(user, 30))
+					return
+
+				can_place = 0
+
+				if(istype(user, /mob/living/silicon/robot))
+					can_place = 1
+				else
+					for (var/obj/item/weapon/grab/G in H.grabbed_by)
+						if (G.loc == user && G.state >= GRAB_AGGRESSIVE)
+							can_place = 1
+
+				if(!can_place)
+					return
+
+				if(!H || !src || !H.organs_by_name[BP_HEAD] || !H.has_eyes() || H.glasses || (H.head && (H.head.body_parts_covered & FACE)))
+					return
+
+				user.visible_message("<span class='danger'>\The [user] has taped up \the [H]'s eyes!</span>")
+				H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/blindfold/tape(H), slot_glasses)
+				H.update_inv_glasses()
+
+			else if(user.zone_sel.selecting == O_MOUTH || user.zone_sel.selecting == BP_HEAD)
+				if(!H.organs_by_name[BP_HEAD])
+					user << "<span class='warning'>\The [H] doesn't have a head.</span>"
+					return
+				if(!H.check_has_mouth())
+					user << "<span class='warning'>\The [H] doesn't have a mouth.</span>"
+					return
+				if(H.wear_mask)
+					user << "<span class='warning'>\The [H] is already wearing a mask.</span>"
+					return
+				if(H.head && (H.head.body_parts_covered & FACE))
+					user << "<span class='warning'>Remove their [H.head] first.</span>"
+					return
+				user.visible_message("<span class='danger'>\The [user] begins taping up \the [H]'s mouth!</span>")
+
+				if(!do_after(user, 30))
+					return
+
+				can_place = 0
+
+				if(istype(user, /mob/living/silicon/robot))
+					can_place = 1
+				else
+					for (var/obj/item/weapon/grab/G in H.grabbed_by)
+						if (G.loc == user && G.state >= GRAB_AGGRESSIVE)
+							can_place = 1
+
+				if(!can_place)
+					return
+
+				if(!H || !src || !H.organs_by_name[BP_HEAD] || !H.has_eyes() || H.glasses || (H.head && (H.head.body_parts_covered & FACE)))
+					return
+
+				user.visible_message("<span class='danger'>\The [user] has taped up \the [H]'s mouth!</span>")
+
+				H.equip_to_slot_or_del(new /obj/item/clothing/mask/muzzle/tape(H), slot_wear_mask)
+				H.update_inv_wear_mask()
+
+			else if(user.zone_sel.selecting == "r_hand" || user.zone_sel.selecting == "l_hand")
+				can_place = 0
+
+				if(istype(user, /mob/living/silicon/robot))
+					can_place = 1
+				else
+					for (var/obj/item/weapon/grab/G in H.grabbed_by)
+						if (G.loc == user && G.state >= GRAB_AGGRESSIVE)
+							can_place = 1
+
+				if(!can_place)
+					return
+
+				var/obj/item/weapon/handcuffs/cable/tape/T = new(user)
+
+				if(!T.place_handcuffs(H, user))
+					user.unEquip(T)
+					qdel(T)
+			else
+				return ..()
+			return 1
 
 /obj/item/weapon/tape_roll/proc/stick(var/obj/item/weapon/W, mob/user)
 	if(!istype(W, /obj/item/weapon/paper))

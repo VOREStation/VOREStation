@@ -664,6 +664,31 @@ proc/admin_notice(var/message, var/rights)
 		log_admin("Announce: [key_name(usr)] : [message]")
 	feedback_add_details("admin_verb","A") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/datum/admins/proc/intercom()
+	set category = "Fun"
+	set name = "Intercom Msg"
+	set desc = "Send an intercom message, like an arrivals announcement."
+	if(!check_rights(0))	return
+
+	//This is basically how death alarms do it
+	var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset/ert(null)
+
+	var/channel = input("Channel for message:","Channel", null) as null|anything in (list("Common") + a.keyslot1.channels + a.keyslot2.channels)
+
+	if(channel) //They picked a channel
+		var/sender = input("Name of sender (max 75):", "Announcement", "Announcement Computer") as null|text
+
+		if(sender) //They put a sender
+			sender = sanitize(sender, 75, extra = 0)
+			var/message = input("Message content (max 500):", "Contents", "This is a test of the announcement system.") as null|message
+
+			if(message) //They put a message
+				message = sanitize(message, 500, extra = 0)
+				a.autosay("[message]", "[sender]", "[channel == "Common" ? null : channel]") //Common is a weird case, as it's not a "channel", it's just talking into a radio without a channel set.
+				log_admin("Intercom: [key_name(usr)] : [sender]:[message]")
+	qdel(a)
+	feedback_add_details("admin_verb","IN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 /datum/admins/proc/toggleooc()
 	set category = "Server"
 	set desc="Globally Toggles OOC"

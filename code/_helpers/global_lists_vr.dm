@@ -23,16 +23,10 @@ var/global/list/important_items = list(
 		/obj/item/device/paicard,
 		/obj/item/weapon/gun,
 		/obj/item/weapon/pinpointer,
-		/obj/item/clothing/suit,
 		/obj/item/clothing/shoes/magboots,
 		/obj/item/blueprints,
 		/obj/item/clothing/head/helmet/space,
-		/obj/item/weapon/storage/internal,
 		/obj/item/weapon/disk/nuclear)
-
-		/* TODOPOLARIS - Depends on porting object
-		///obj/item/weapon/card/id/digested)
-		*/
 
 var/global/list/digestion_sounds = list(
 		'sound/vore/digest1.ogg',

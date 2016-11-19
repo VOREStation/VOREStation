@@ -901,7 +901,7 @@
 			Paralyse(3)
 
 		if(hallucination)
-			if(hallucination >= 20)
+			if(hallucination >= 20 && !(species.flags & (NO_POISON|IS_PLANT)) )
 				if(prob(3))
 					fake_attack(src)
 				if(!handling_hal)
@@ -1329,6 +1329,11 @@
 		if(istype(G, /obj/item/clothing/glasses/sunglasses/sechud))
 			var/obj/item/clothing/glasses/sunglasses/sechud/S = G
 			O = S.hud
+		//VOREStation Add - Support for omnihud glasses
+		if(istype(G, /obj/item/clothing/glasses/sunglasses/omnihud))
+			var/obj/item/clothing/glasses/sunglasses/omnihud/S = G
+			O = S.hud
+		//VOREStation Add End
 		if(istype(O))
 			O.process_hud(src)
 			if(!druggy && !seer)	see_invisible = SEE_INVISIBLE_LIVING

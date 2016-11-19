@@ -138,6 +138,7 @@
 	new /obj/item/clothing/gloves/chameleon(src)
 	new /obj/item/clothing/mask/chameleon(src)
 	new /obj/item/clothing/glasses/chameleon(src)
+	new /obj/item/clothing/accessory/chameleon(src)
 	new /obj/item/weapon/gun/energy/chameleon(src)
 
 /obj/item/weapon/storage/box/syndie_kit/clerical

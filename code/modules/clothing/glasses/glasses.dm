@@ -186,7 +186,6 @@ BLIND     // can't see anything
 /obj/item/clothing/glasses/welding/attack_self()
 	toggle()
 
-
 /obj/item/clothing/glasses/welding/verb/toggle()
 	set category = "Object"
 	set name = "Adjust welding goggles"
@@ -242,6 +241,11 @@ BLIND     // can't see anything
 	icon_state = "sun"
 	item_state_slots = list(slot_r_hand_str = "sunglasses", slot_l_hand_str = "sunglasses")
 
+/obj/item/clothing/glasses/fakesunglasses/aviator
+	desc = "A pair of designer sunglasses. Doesn't seem like it'll block flashes."
+	name = "stylish aviators"
+	icon_state = "sec_flash"
+
 /obj/item/clothing/glasses/sunglasses/sechud
 	name = "HUDSunglasses"
 	desc = "Sunglasses with a HUD."
@@ -257,6 +261,53 @@ BLIND     // can't see anything
 	name = "tactical HUD"
 	desc = "Flash-resistant goggles with inbuilt combat and security information."
 	icon_state = "swatgoggles"
+
+/obj/item/clothing/glasses/sunglasses/sechud/aviator
+	name = "HUD aviators"
+	desc = "Modified aviator glasses that can be switch between HUD and flash protection modes."
+	icon_state = "sec_hud"
+	off_state = "sec_flash"
+	action_button_name = "Toggle Mode"
+	var/on = 1
+	toggleable = 1
+	activation_sound = 'sound/effects/pop.ogg'
+
+	var/hud_holder
+
+/obj/item/clothing/glasses/sunglasses/sechud/aviator/New()
+	..()
+	hud_holder = hud
+
+/obj/item/clothing/glasses/sunglasses/sechud/aviator/Destroy()
+	qdel(hud_holder)
+	hud_holder = null
+	hud = null
+	. = ..()
+
+/obj/item/clothing/glasses/sunglasses/sechud/aviator/attack_self(mob/user)
+	if(toggleable && !user.incapacitated())
+		on = !on
+		if(on)
+			src.hud = hud_holder
+			to_chat(user, "You switch the [src] to HUD mode.")
+		else
+			src.hud = null
+			to_chat(user, "You switch \the [src] to flash protection mode.")
+		update_icon()
+		user << activation_sound
+		user.update_inv_glasses()
+		user.update_action_buttons()
+
+/obj/item/clothing/glasses/sunglasses/sechud/aviator/update_icon()
+	if(on)
+		icon_state = initial(icon_state)
+	else
+		icon_state = off_state
+
+/obj/item/clothing/glasses/sunglasses/sechud/aviator/prescription
+	name = "Prescription HUD aviators"
+	desc = "Modified aviator glasses that can be switch between HUD and flash protection modes. Comes with bonus prescription lenses."
+	prescription = 6
 
 /obj/item/clothing/glasses/thermal
 	name = "Optical Thermal Scanner"

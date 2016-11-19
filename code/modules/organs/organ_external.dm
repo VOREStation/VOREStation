@@ -263,7 +263,7 @@
 	if(used_weapon)
 		add_autopsy_data("[used_weapon]", brute + burn)
 
-	var/can_cut = (prob(brute*2) || sharp) && (robotic < ORGAN_ROBOT)
+	var/can_cut = (sharp) && (robotic < ORGAN_ROBOT)
 
 	// If the limbs can break, make sure we don't exceed the maximum damage a limb can take before breaking
 	// Non-vital organs are limited to max_damage. You can't kill someone by bludeonging their arm all the way to 200 -- you can
@@ -675,6 +675,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 		for(var/datum/wound/W in wounds) //Repaired wounds disappear though
 			if(W.damage <= 0)  //and they disappear right away
 				wounds -= W    //TODO: robot wounds for robot limbs
+				src.update_damages()
+				if (update_icon())
+					owner.UpdateDamageIcon(1)
 		return
 
 	for(var/datum/wound/W in wounds)

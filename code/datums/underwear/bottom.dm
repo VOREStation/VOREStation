@@ -58,3 +58,8 @@
 /datum/category_item/underwear/bottom/fishnet_lower
 	name = "Fishnets"
 	icon_state = "fishnet_lower"
+
+/datum/category_item/underwear/bottom/striped_panties
+	name = "Striped Panties"
+	icon_state = "striped_panties"
+	has_color = TRUE

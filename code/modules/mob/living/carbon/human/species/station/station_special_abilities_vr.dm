@@ -13,7 +13,7 @@
 		var/nutrition_used = C.nutrition/2
 
 		if(C.species.reviving == 1) //If they're already unable to
-			C << "We are already reconstructing, or our body is currently recovering from the intense process of our previous reconstitution."
+			C << "You are already reconstructing, or your body is currently recovering from the intense process of your previous reconstitution."
 			return
 
 		if(C.stat == DEAD) //Uh oh, you died!
@@ -27,13 +27,13 @@
 
 				spawn(time SECONDS)
 					if(C) //Runtime prevention.
-						C << "<span class='notice'>We have reconstituted our form and are ready to hatch..</span>"
+						C << "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>"
 						C.verbs += /mob/living/carbon/human/proc/hatch
 						return
 					else
 						return //Something went wrong.
 			else //Dead until nutrition injected.
-				C << "You're dead and have no liquid nutriment to use for the regeneration process."
+				C << "Your body is too damaged to regenerate without additional nutrients to feed what few living cells remain."
 				return
 
 		else if(C.stat != DEAD) //If they're alive at the time of reviving.
@@ -46,15 +46,15 @@
 
 			spawn(time SECONDS)
 				if(C.stat != DEAD) //If they're still alive after regenning.
-					C << "<span class='notice'>We have reconstituted our form and are ready to hatch..</span>"
+					C << "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>"
 					C.verbs += /mob/living/carbon/human/proc/hatch
 					return
 				else if(C.stat == DEAD)
 					if(C.reagents.has_reagent("nutriment")) //Let's hope you have nutriment in you.... If not
-						C << "<span class='notice'>We have reconstituted our form and are ready to hatch..</span>"
+						C << "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>"
 						C.verbs += /mob/living/carbon/human/proc/hatch
 					else //Dead until nutrition injected.
-						C << "You're dead and have no liquid nutriment to use for the regeneration process."
+						C << "Your body was unable to regenerate, what few living cells remain require additional nutrients to complete the process."
 						return
 				else
 					return //Something went wrong
@@ -80,8 +80,8 @@
 				if(C) //Runtime prevention.
 					C.nutrition -= C.nutrition/2 //Cut their nutrition in half.
 					var/old_nutrition = C.nutrition //Since the game is being annoying.
-					C << "<span class='notice'>We have reconstituted our form.</span>"
-					viewers(C) << "<span class='danger'><p><font size=4> [C] suddenly bursts into a gorey mess, a copy of theirself laying in the viscera and blood. What the fuck?!</font> </span>" //Bloody hell...
+					C << "<span class='notice'>Your new body awakens, bursting free from your old skin.</span>"
+					viewers(C) << "<span class='danger'><p><font size=4>The lifeless husk of [C] bursts open, revealing a new, intact copy in the pool of viscera.</font></p></span>" //Bloody hell...
 					var/T = get_turf(src)
 					new /obj/effect/gibspawner/human/scree(T)
 					var/braindamage = C.brainloss/2 //If you have 100 brainloss, it gives you 50.
@@ -105,8 +105,8 @@
 		else if(C.stat != DEAD) //If they're alive at the time of reviving.
 			C.nutrition -= C.nutrition/2 //Cut their nutrition in half.
 			var/old_nutrition = C.nutrition //Since the game is being annoying.
-			C << "<span class='notice'>We have reconstituted our form.</span>"
-			viewers(C) << "<span class='danger'><p><font size=4> [C] suddenly bursts into a gorey mess, a copy of theirself laying in the viscera and blood. What the fuck?!</font> </span>" //Bloody hell...
+			C << "<span class='notice'>Your new body awakens, bursting free from your old skin.</span>"
+			viewers(C) << "<span class='danger'><p><font size=4>The dormant husk of [C] bursts open, revealing a new, intact copy in the pool of viscera.</font></p></span>" //Bloody hell...
 			var/T = get_turf(src)
 			new /obj/effect/gibspawner/human/scree(T)
 			var/braindamage = C.brainloss/2 //If you have 100 brainloss, it gives you 50.

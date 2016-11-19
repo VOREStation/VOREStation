@@ -11,7 +11,7 @@
 	var/on = 0
 	var/brightness_on = 4 //luminosity when on
 	var/obj/item/weapon/cell/cell
-	var/cell_type = /obj/item/weapon/cell/high
+	var/cell_type = /obj/item/weapon/cell/device
 	var/list/brightness_levels
 	var/brightness_level = "medium"
 	var/power_usage
@@ -27,7 +27,7 @@
 
 		if(cell_type)
 			cell = new cell_type(src)
-			brightness_levels = list("low" = 5, "medium" = 10, "high" = 20)
+			brightness_levels = list("low" = 0.25, "medium" = 0.5, "high" = 1)
 			power_usage = brightness_levels[brightness_level]
 
 	else
@@ -55,13 +55,16 @@
 
 /obj/item/device/flashlight/process()
 	if(on)
-		if(cell && cell.charge)
+		if(cell)
 			if(brightness_level && power_usage)
 				if(power_usage < cell.charge)
 					cell.charge -= power_usage
 				else
+					cell.charge = 0
 					visible_message("<span class='warning'>\The [src] flickers before going dull.</span>")
 					set_light(0)
+					on = 0
+					update_icon()
 
 /obj/item/device/flashlight/update_icon()
 	if(on)
@@ -98,14 +101,22 @@
 		user << "[tempdesc]"
 
 /obj/item/device/flashlight/attack_self(mob/user)
-	if(!isturf(user.loc))
-		user << "You cannot turn the light on while in this [user.loc]." //To prevent some lighting anomalities.
-		return 0
+	if(power_use)
+		if(!isturf(user.loc))
+			user << "You cannot turn the light on while in this [user.loc]." //To prevent some lighting anomalities.
+			return 0
+		if(!cell || cell.charge == 0)
+			user << "You flick the switch on [src], but nothing happens."
+			return 0
 	on = !on
 	update_icon()
 	user.update_action_buttons()
 	return 1
 
+/obj/item/device/flashlight/emp_act(severity)
+	for(var/obj/O in contents)
+		O.emp_act(severity)
+	..()
 
 /obj/item/device/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
 	add_fingerprint(user)
@@ -163,7 +174,7 @@
 			user.put_in_hands(cell)
 			cell = null
 			user << "<span class='notice'>You remove the cell from the [src].</span>"
-			on = !on
+			on = 0
 			update_icon()
 			return
 		..()
@@ -171,15 +182,19 @@
 		return ..()
 
 /obj/item/device/flashlight/attackby(obj/item/weapon/W, mob/user as mob)
-	if(istype(W, /obj/item/weapon/cell))
-		if(!cell)
-			user.drop_item()
-			W.loc = src
-			cell = W
-			user << "<span class='notice'>You install a cell in \the [src].</span>"
-			update_icon()
-		else
-			user << "<span class='notice'>\The [src] already has a cell.</span>"
+	if(power_use)
+		if(istype(W, /obj/item/weapon/cell))
+			if(istype(W, /obj/item/weapon/cell/device))
+				if(!cell)
+					user.drop_item()
+					W.loc = src
+					cell = W
+					user << "<span class='notice'>You install a cell in \the [src].</span>"
+					update_icon()
+				else
+					user << "<span class='notice'>\The [src] already has a cell.</span>"
+			else
+				user << "<span class='notice'>\The [src] cannot use that type of cell.</span>"
 
 	else
 		..()

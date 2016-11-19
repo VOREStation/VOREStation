@@ -15,7 +15,6 @@
 /obj/item/weapon/spell/phase_shift/New()
 	..()
 	set_light(3, 2, l_color = "#FA58F4")
-	processing_objects |= src
 
 /obj/effect/phase_shift
 	name = "rift"
@@ -29,6 +28,7 @@
 /obj/effect/phase_shift/New()
 	..()
 	set_light(3, 5, l_color = "#FA58F4")
+	processing_objects |= src
 
 /obj/effect/phase_shift/Destroy()
 	for(var/atom/movable/AM in contents) //Eject everything out.

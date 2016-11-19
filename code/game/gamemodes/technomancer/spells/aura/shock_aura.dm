@@ -1,6 +1,8 @@
 /datum/technomancer/spell/shock_aura
 	name = "Electric Aura"
 	desc = "Repeatively electrocutes enemies within four meters of you, as well as nearby electronics."
+	enhancement_desc = "Aura does twice as much damage."
+	spell_power_desc = "Radius and damage scaled up."
 	cost = 100
 	obj_path = /obj/item/weapon/spell/aura/shock
 	ability_icon_state = "tech_shockaura"
@@ -17,11 +19,11 @@
 /obj/item/weapon/spell/aura/shock/process()
 	if(!pay_energy(1000))
 		qdel(src)
-	var/list/nearby_mobs = range(4,owner)
-	var/power = 7
+	var/list/nearby_mobs = range(calculate_spell_power(4),owner)
+	var/power = calculate_spell_power(7)
 	if(check_for_scepter())
-		power = 15
-	for(var/obj/machinery/light/light in range(7, owner))
+		power = calculate_spell_power(15)
+	for(var/obj/machinery/light/light in range(calculate_spell_power(7), owner))
 		light.flicker()
 	for(var/mob/living/L in nearby_mobs)
 		if(is_ally(L))

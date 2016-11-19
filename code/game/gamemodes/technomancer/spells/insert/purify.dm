@@ -1,6 +1,7 @@
 /datum/technomancer/spell/purify
 	name = "Purify"
 	desc = "Clenses the body of harmful impurities, such as toxins, radiation, viruses, genetic damage, and such."
+	spell_power_desc = "Healing amount increased."
 	cost = 25
 	obj_path = /obj/item/weapon/spell/insert/purify
 	ability_icon_state = "tech_purify"
@@ -24,6 +25,7 @@
 //			for(var/datum/disease/D in H.viruses)
 //				D.cure()
 			var/heal_power = host == origin ? 10 : 30
+			heal_power = round(heal_power * spell_power_at_creation, 1)
 			origin.adjust_instability(10)
 			for(var/i = 0, i<5,i++)
 				if(H)

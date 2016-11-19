@@ -12,7 +12,7 @@
 	icon = 'icons/obj/electronic_assemblies.dmi'
 	icon_state = "wirer-wire"
 	flags = CONDUCT
-	w_class = ITEMSIZE_SMALL
+	w_class = 2
 	var/datum/integrated_io/selected_io = null
 	var/mode = WIRE
 
@@ -104,7 +104,7 @@
 	icon = 'icons/obj/electronic_assemblies.dmi'
 	icon_state = "debugger"
 	flags = CONDUCT
-	w_class = ITEMSIZE_SMALL
+	w_class = 2
 	var/data_to_write = null
 	var/accepting_refs = 0
 
@@ -163,7 +163,7 @@
 	desc = "This kit's essential for any circuitry projects."
 	icon = 'icons/obj/electronic_assemblies.dmi'
 	icon_state = "circuit_kit"
-	w_class = ITEMSIZE_NORMAL
+	w_class = 3
 	display_contents_with_number = 1
 
 /obj/item/weapon/storage/bag/circuits/basic/New()

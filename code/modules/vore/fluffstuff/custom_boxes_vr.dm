@@ -28,7 +28,7 @@
 		/obj/item/clothing/under/thing4)
 */
 
-//POLARISTODO - These fail to compile since not all items are ported yet
+
 // bwoincognito:Tasald Corlethian
 /obj/item/weapon/storage/box/fluff/tasald
 	name = "Tasald's Kit"
@@ -38,8 +38,18 @@
 		/obj/item/clothing/suit/storage/det_suit/fluff/tas_coat,
 		/obj/item/clothing/under/det/fluff/tasald,
 		/obj/item/fluff/permit/tasald_corlethian,
-		/obj/item/weapon/gun/projectile/revolver/detective/fluff/tasald_corlethian,
+		/obj/item/weapon/gun/projectile/revolver/mateba/fluff/tasald_corlethian,
 		/obj/item/weapon/implanter/loyalty)
+
+//bwoincognito:Octavious Ward
+/obj/item/weapon/storage/box/fluff/octavious
+	name = "Octavious's Kit"
+	desc = "A kit containing Octavious's work clothes."
+	has_items = list(
+		/obj/item/clothing/suit/storage/trench/fluff/octaviouscoat,
+		/obj/item/clothing/under/det/fluff/octavious,
+		/obj/item/clothing/mask/gas/plaguedoctor/fluff/octaviousmask,
+		/obj/item/clothing/head/fedora/fluff/bowler)
 
 // jemli:Cirra Mayhem
 /obj/item/weapon/storage/box/fluff/cirra
@@ -83,11 +93,12 @@
 		new /obj/item/clothing/under/rank/internalaffairs/fluff/joan(src)
 		new /obj/item/clothing/head/helmet/space/fluff/joan(src)
 		new /obj/item/clothing/suit/space/fluff/joan(src)
+		new /obj/item/device/pda/heads/hos/fluff/joanpda(src)
 
 
 
 //joanrisu:Katarina Eine
-/obj/item/weapon/storage/backpack/dufflebag/sec/fluff/Katarina
+/obj/item/weapon/storage/backpack/dufflebag/sec/fluff/katarina
 	name = "Katarina's Workbag"
 	desc = "A duffle bag Katarina uses to carry her tools."
 	slowdown = 0
@@ -120,9 +131,12 @@
 
 	New()
 		..()
-		new /obj/item/clothing/head/helmet/space/fluff/aronai(src)
-		new /obj/item/clothing/suit/space/fluff/aronai(src)
+		//new /obj/item/clothing/head/helmet/space/fluff/aronai(src)
+		//new /obj/item/clothing/suit/space/fluff/aronai(src)
+		new /obj/item/clothing/head/helmet/space/void/medical/emt/fluff/aronai(src)
+		new /obj/item/clothing/suit/space/void/medical/emt/fluff/aronai(src)
 		new /obj/item/device/suit_cooling_unit(src)
 		new /obj/item/weapon/material/hatchet/tacknife/combatknife(src)
 		new /obj/item/weapon/card/id/centcom/fluff/aro(src)
 		new /obj/item/weapon/reagent_containers/hypospray/fluff/aronai(src)
+		new /obj/item/clothing/glasses/sunglasses/omnihud(src)

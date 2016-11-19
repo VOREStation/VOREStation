@@ -20,11 +20,12 @@
 	icon_override = 'icons/mob/taursuits_vr.dmi'
 	icon_state = "heavy_wolf_armor"
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
-		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
-			icon_override = 'icons/mob/taursuits_vr.dmi' //Just in case
-			icon_state = "heavy_wolf_armor" //Just in case
-			pixel_x = -16
-			return 1
-		else
-			H << "<span class='warning'>You need to have a wolf-taur half to wear this.</span>"
-			return 0
+		if(..())
+			if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
+				icon_override = 'icons/mob/taursuits_vr.dmi' //Just in case
+				icon_state = "heavy_wolf_armor" //Just in case
+				pixel_x = -16
+				return ..()
+			else
+				H << "<span class='warning'>You need to have a wolf-taur half to wear this.</span>"
+				return 0
