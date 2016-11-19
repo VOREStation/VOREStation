@@ -282,3 +282,27 @@
 			del(C)
 			target.clean_blood()
 	return
+
+/obj/item/weapon/gun/energy/taser/mounted/cyborg/ertgun //Not a taser, but it's being used as a base so it takes energy and actually works.
+	name = "disabler"
+	desc = "A small and nonlethal gun produced by NT.."
+	icon = 'icons/mob/dogborg_vr.dmi'
+	icon_state = "projgun"
+	fire_sound = 'sound/weapons/eLuger.ogg'
+	projectile_type = /obj/item/projectile/beam/disable
+	charge_cost = 1000 //High cost.
+	recharge_time = 10 //Takes ten ticks to recharge a laser, so don't waste them all!
+
+/obj/item/weapon/dogborg/swordtail
+	name = "sword tail"
+	icon = 'icons/mob/dogborg_vr.dmi'
+	icon_state = "swordtail"
+	desc = "A glowing pink dagger normally attached to the end of a cyborg's tail. It appears to be extremely sharp."
+	flags = CONDUCT
+	force = 20 //Takes 5 hits to 100-0
+	sharp = 1
+	edge = 1
+	throwforce = 0 //This shouldn't be thrown in the first place.
+	hitsound = 'sound/weapons/blade1.ogg'
+	attack_verb = list("slashed", "stabbed", "jabbed", "mauled", "sliced")
+	w_class = ITEMSIZE_NORMAL
