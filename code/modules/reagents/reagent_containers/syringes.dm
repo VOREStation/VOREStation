@@ -105,8 +105,13 @@
 						if(H.species && !H.should_have_organ(O_HEART))
 							H.reagents.trans_to_obj(src, amount)
 						else
+							if(ismob(H) && H != user)
+								if(!do_mob(user, target, time))
+									return
 							B = T.take_blood(src, amount)
 					else
+						if(!do_mob(user, target, time))
+							return
 						B = T.take_blood(src,amount)
 
 					if (B)

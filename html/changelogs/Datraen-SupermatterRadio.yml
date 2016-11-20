@@ -1,5 +1,0 @@
-author: Datraen
-delete-after: True
-changes: 
-  - tweak: "Global announcer now has access to engineering channel."
-  - tweak: "Supermatter now uses the global announcer."

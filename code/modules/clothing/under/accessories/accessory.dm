@@ -12,6 +12,7 @@
 	var/image/mob_overlay = null
 	var/overlay_state = null
 	var/concealed_holster = 0
+	var/mob/living/carbon/human/wearer = null //To check if the wearer changes, so species spritesheets change properly.
 
 	sprite_sheets = list("Teshari" = 'icons/mob/species/seromi/ties.dmi') //Teshari can into webbing, too!
 
@@ -21,23 +22,27 @@
 
 /obj/item/clothing/accessory/proc/get_inv_overlay()
 	if(!inv_overlay)
-		if(!mob_overlay)
-			get_mob_overlay()
-
 		var/tmp_icon_state = "[overlay_state? "[overlay_state]" : "[icon_state]"]"
 		if(icon_override)
 			if("[tmp_icon_state]_tie" in icon_states(icon_override))
 				tmp_icon_state = "[tmp_icon_state]_tie"
-		inv_overlay = image(icon = mob_overlay.icon, icon_state = tmp_icon_state, dir = SOUTH)
+		inv_overlay = image(icon = INV_ACCESSORIES_DEF_ICON, icon_state = tmp_icon_state, dir = SOUTH)
 	return inv_overlay
 
 /obj/item/clothing/accessory/proc/get_mob_overlay()
-	if(!mob_overlay)
+	if(!mob_overlay || has_suit.loc != wearer)
 		var/tmp_icon_state = "[overlay_state? "[overlay_state]" : "[icon_state]"]"
+		if(ishuman(has_suit.loc))
+			wearer = has_suit.loc
+		else
+			wearer = null
+
 		if(icon_override)
 			if("[tmp_icon_state]_mob" in icon_states(icon_override))
 				tmp_icon_state = "[tmp_icon_state]_mob"
 			mob_overlay = image("icon" = icon_override, "icon_state" = "[tmp_icon_state]")
+		else if(wearer && sprite_sheets[wearer.species.get_bodytype(wearer)]) //Teshari can finally into webbing, too!
+			mob_overlay = image("icon" = sprite_sheets[wearer.species.get_bodytype(wearer)], "icon_state" = "[tmp_icon_state]")
 		else
 			mob_overlay = image("icon" = INV_ACCESSORIES_DEF_ICON, "icon_state" = "[tmp_icon_state]")
 	return mob_overlay
