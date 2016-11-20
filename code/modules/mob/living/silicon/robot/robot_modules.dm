@@ -156,7 +156,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/crowbar(src)
 	src.modules += new /obj/item/weapon/extinguisher(src)
 
-/obj/item/weapon/robot_module/standard
+/obj/item/weapon/robot_module/robot/standard
 	name = "standard robot module"
 	sprites = list(	"Basic" = "robot_old",
 					"Android" = "droid",
@@ -188,7 +188,7 @@ var/global/list/robot_modules = list(
 					"Drone" = "drone-surgery"
 					)
 
-/obj/item/weapon/robot_module/medical/robot/surgeon/New()
+/obj/item/weapon/robot_module/robot/medical/surgeon/New()
 	..()
 	src.modules += new /obj/item/device/healthanalyzer(src)
 	src.modules += new /obj/item/weapon/reagent_containers/borghypo(src)
@@ -237,7 +237,7 @@ var/global/list/robot_modules = list(
 					"Drone - Chemistry" = "drone-chemistry"
 					)
 
-/obj/item/weapon/robot_module/medical/robot/crisis/New()
+/obj/item/weapon/robot_module/robot/medical/crisis/New()
 	..()
 	src.modules += new /obj/item/borg/sight/hud/med(src)
 	src.modules += new /obj/item/device/healthanalyzer(src)
@@ -272,7 +272,7 @@ var/global/list/robot_modules = list(
 	src.modules += B
 	src.modules += S
 
-/obj/item/weapon/robot_module/medical/robot/crisis/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+/obj/item/weapon/robot_module/robot/medical/crisis/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
 
 	var/obj/item/weapon/reagent_containers/syringe/S = locate() in src.modules
 	if(S.mode == 2)
@@ -305,7 +305,7 @@ var/global/list/robot_modules = list(
 	name = "construction robot module"
 	no_slip = 1
 
-/obj/item/weapon/robot_module/engineering/construction/New()
+/obj/item/weapon/robot_module/robot/engineering/construction/New()
 	..()
 	src.modules += new /obj/item/borg/sight/meson(src)
 	src.modules += new /obj/item/weapon/rcd/borg(src)
@@ -415,7 +415,7 @@ var/global/list/robot_modules = list(
 					"Drone" = "drone-sec"
 				)
 
-/obj/item/weapon/robot_module/security/general/New()
+/obj/item/weapon/robot_module/robot/security/general/New()
 	..()
 	src.modules += new /obj/item/borg/sight/hud/sec(src)
 	src.modules += new /obj/item/weapon/handcuffs/cyborg(src)
@@ -537,7 +537,7 @@ var/global/list/robot_modules = list(
 					"Drone" = "drone-service"
 					)
 
-/obj/item/weapon/robot_module/clerical/general/New()
+/obj/item/weapon/robot_module/robot/clerical/general/New()
 	..()
 	src.modules += new /obj/item/weapon/pen/robopen(src)
 	src.modules += new /obj/item/weapon/form_printer(src)
@@ -567,7 +567,7 @@ var/global/list/robot_modules = list(
 				)
 	supported_upgrades = list(/obj/item/borg/upgrade/jetpack)
 
-/obj/item/weapon/robot_module/miner/New()
+/obj/item/weapon/robot_module/robot/miner/New()
 	..()
 	src.modules += new /obj/item/borg/sight/material(src)
 	src.modules += new /obj/item/weapon/wrench(src)
