@@ -55,7 +55,7 @@
 			)
 	cost = 20
 	containertype = /obj/structure/closet/crate
-	containername = "Advanced Welding Supplies crate
+	containername = "Advanced Welding Supplies crate"
 
 /datum/supply_packs/eng/fueltank
 	name = "Fuel tank crate"
