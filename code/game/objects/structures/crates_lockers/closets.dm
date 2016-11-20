@@ -288,8 +288,8 @@
 	src.add_fingerprint(user)
 	return
 
-/obj/structure/closet/attack_ai(mob/user)
-	if(istype(user, /mob/living/silicon/robot) && Adjacent(user)) // Robots can open/close it, but not the AI.
+/obj/structure/closet/attack_robot(mob/user)
+	if(Adjacent(user))
 		attack_hand(user)
 
 /obj/structure/closet/relaymove(mob/user as mob)
