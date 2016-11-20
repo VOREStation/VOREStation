@@ -14,9 +14,9 @@
 			severity_range = 15
 
 	for(var/obj/machinery/power/apc/apc in range(severity_range,A))
-		if(is_valid_apc(apc))
-			apc.emagged = 1
-			apc.update_icon()
+		if(is_valid_apc(apc))	//This event disables interactions on the APC interface and bluescreens the APC while
+			apc.emagged = 1		//leaving the APC locked. To access the APC the player needs to cut wires. To fix the
+			apc.update_icon()	//APC the player needs to open the cover and use a new APC frame on it.
 
 /datum/event/apc_damage/proc/acquire_random_apc()
 	var/list/possibleEpicentres = list()
