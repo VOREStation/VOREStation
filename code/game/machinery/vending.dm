@@ -968,7 +968,7 @@
 					/obj/item/device/flashlight/glowstick = 3, /obj/item/device/flashlight/glowstick/red = 3, /obj/item/device/flashlight/glowstick/blue = 3,
 					/obj/item/device/flashlight/glowstick/orange =3, /obj/item/device/flashlight/glowstick/yellow = 3)
 	contraband = list(/obj/item/weapon/weldingtool/hugetank = 2,/obj/item/clothing/gloves/fyellow = 2,)
-	premium = list(/obj/item/clothing/gloves/yellow = 1)
+	premium = list(/obj/item/clothing/gloves/yellow = 1, /obj/item/weapon/weldingtool/experimental = 2)
 
 /obj/machinery/vending/engivend
 	name = "Engi-Vend"

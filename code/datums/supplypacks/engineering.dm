@@ -45,6 +45,18 @@
 	containertype = /obj/structure/closet/crate
 	containername = "Mechanical maintenance crate"
 
+/datum/supply_packs/eng/adv_welding
+	name = "Advanced Welding Supplies"
+	contains = list(
+			/obj/item/weapon/weldingtool/experimental = 2,
+			/obj/item/clothing/head/welding = 2,
+			/obj/item/weapon/weldpack = 2,
+			/obj/item/clothing/glasses/welding = 2
+			)
+	cost = 20
+	containertype = /obj/structure/closet/crate
+	containername = "Advanced Welding Supplies crate
+
 /datum/supply_packs/eng/fueltank
 	name = "Fuel tank crate"
 	contains = list(/obj/structure/reagent_dispensers/fueltank)
