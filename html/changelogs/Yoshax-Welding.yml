@@ -33,4 +33,4 @@ delete-after: True
 # Also, all entries are changed into a single [] after a master changelog generation. Just remove the brackets when you add new entries.
 # Please surround your changes in  double quotes ("), as certain characters otherwise screws up compiling. The quotes will not show up in the changelog.
 changes: 
-  - rscadd: "There is now an experimental welding tool, it regenerates its fuel on its own! One is given to the Chief Engineer, more can be ordered from cargo in a new crate or acquired from the YouTool as a premium product."
+  - rscadd: "There is now an experimental welding tool, it regenerates its fuel on its own! One is given to the Chief Engineer, produced in Research, or found in Syndicate toolboxes."
