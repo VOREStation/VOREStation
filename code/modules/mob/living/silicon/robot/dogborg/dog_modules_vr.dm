@@ -292,6 +292,7 @@
 	projectile_type = /obj/item/projectile/beam/disable
 	charge_cost = 1000 //High cost.
 	recharge_time = 10 //Takes ten ticks to recharge a laser, so don't waste them all!
+	cell_type = /obj/item/weapon/cell/high
 
 /obj/item/weapon/dogborg/swordtail
 	name = "sword tail"
