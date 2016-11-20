@@ -23,6 +23,8 @@
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 		if(..())
 			if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
+				if(icon_state == "serdy_armor") //This is to prevent Serdy's custom armor from turning into heavy_wolf_armor 
+					return ..()
 				icon_override = 'icons/mob/taursuits_vr.dmi' //Just in case
 				icon_state = "heavy_wolf_armor" //Just in case
 				pixel_x = -16
