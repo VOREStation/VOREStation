@@ -77,8 +77,9 @@ obj/structure/windoor_assembly/Destroy()
 	created_name = t
 	update_state()
 
-/obj/structure/windoor_assembly/attack_robot(mob/living/user)
-	if(Adjacent(user))
+/obj/structure/windoor_assembly/attack_robot(mob/living/silicon/robot/user)
+	if(Adjacent(user) && (user.module && (istype(user.module,/obj/item/weapon/robot_module/engineering/general)) \
+	|| istype(user.module,/obj/item/weapon/robot_module/drone))) //Only dron (and engiborg) needs this.
 		rename_door(user)
 
 /obj/structure/windoor_assembly/attackby(obj/item/W as obj, mob/user as mob)
