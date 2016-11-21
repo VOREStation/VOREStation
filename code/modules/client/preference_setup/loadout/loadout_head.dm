@@ -154,6 +154,14 @@
 	display_name = "hair flower pin, orange"
 	path = /obj/item/clothing/head/hairflower/orange
 
+/datum/gear/head/hairflower/white
+	display_name = "hair flower pin"
+	path = /obj/item/clothing/head/hairflower/white
+
+/datum/gear/head/hairflower/white/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
 /datum/gear/head/hardhat
 	display_name = "hardhat, yellow"
 	path = /obj/item/clothing/head/hardhat
@@ -230,6 +238,14 @@
 	path = /obj/item/clothing/head/turban
 
 /datum/gear/head/turban/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/head/taqiyah
+	display_name = "taqiyah"
+	path = /obj/item/clothing/head/taqiyah
+
+/datum/gear/head/taqiyah/New()
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)
 
