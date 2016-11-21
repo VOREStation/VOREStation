@@ -162,7 +162,7 @@
 
 /datum/reagent/fuel/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(issmall(M)) removed *= 2
-	M.adjustToxLoss(2 * removed)
+	M.adjustToxLoss(4 * removed)
 
 /datum/reagent/fuel/touch_mob(var/mob/living/L, var/amount)
 	if(istype(L))
