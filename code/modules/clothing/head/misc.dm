@@ -32,6 +32,9 @@
 /obj/item/clothing/head/hairflower/orange
 	icon_state = "hairflower_orange"
 
+/obj/item/clothing/head/hairflower/white
+	icon_state = "hairflower_white"
+
 /obj/item/clothing/head/hairflower/bow
 	icon_state = "bow"
 	name = "hair bow"
@@ -304,6 +307,12 @@
 	item_state_slots = list(slot_r_hand_str = "beret_white", slot_l_hand_str = "beret_white")
 	body_parts_covered = 0
 	flags_inv = BLOCKHEADHAIR
+
+/obj/item/clothing/head/taqiyah
+	name = "taqiyah"
+	desc = "A short, rounded skullcap usually worn for religious purposes."
+	icon_state = "taqiyah"
+	item_state_slots = list(slot_r_hand_str = "taq", slot_l_hand_str = "taq")
 
 /obj/item/clothing/head/beanie
 	name = "beanie"
