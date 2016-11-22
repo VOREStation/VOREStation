@@ -134,7 +134,8 @@
 		statechange(1,patient) //Back to ready
 
 /obj/item/device/defib_kit/proc/attempt_shock()
-	if(!patient || cell.charge < charge_cost) return
+	if(!patient || cell.charge < charge_cost)
+		return
 
 	var/zap_time = world.time + (7 SECONDS)
 	var/o_patient_loc = patient.loc
