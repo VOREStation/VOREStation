@@ -14,9 +14,10 @@
 			severity_range = 15
 
 	for(var/obj/machinery/power/apc/apc in range(severity_range,A))
-		if(is_valid_apc(apc))	//This event disables interactions on the APC interface and bluescreens the APC while
-			apc.emagged = 1		//leaving the APC locked. To access the APC the player needs to cut wires. To fix the
-			apc.update_icon()	//APC the player needs to open the cover and use a new APC frame on it.
+		if(is_valid_apc(apc))	//This event "****s up" the "id authenticator" on APCs, emagging and unlocking them.
+			apc.emagged = 1		//It used to just blue screen the APC and make it so it had to be hacked to unlock,
+			apc.locked = 0		//but most people ignored it. Now it has an actual effect on the round and opens
+			apc.update_icon()	//a small possibility for traitors. To fix, remove power cell and apply multitool.
 
 /datum/event/apc_damage/proc/acquire_random_apc()
 	var/list/possibleEpicentres = list()
