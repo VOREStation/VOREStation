@@ -368,7 +368,7 @@
 			safe_pressure_min *= 1.5
 		else if(L.is_bruised())
 			safe_pressure_min *= 1.25
-		else if(breath.total_moles < BREATH_MOLES / 5 || breath.total_moles > BREATH_MOLES * 5)
+		else if(breath.total_moles < safe_pressure_min || breath.total_moles > BREATH_MOLES * 5)
 			if (prob(8))
 				rupture_lung()
 
