@@ -237,10 +237,13 @@ var/list/tape_roll_applications = list()
 
 	if (istype(A, /obj/machinery/door/airlock))
 		var/turf/T = get_turf(A)
-		var/obj/item/tape/P = new tape_type(T)
-		P.update_icon()
-		P.layer = 3.2
-		user << "<span class='notice'>You finish placing \the [src].</span>"
+		if(locate(/obj/item/tape, A.loc))
+			user << "There's already tape over that door!"
+		else
+			var/obj/item/tape/P = new tape_type(T)
+			P.update_icon()
+			P.layer = 3.2
+			user << "<span class='notice'>You finish placing \the [src].</span>"
 
 	if (istype(A, /turf/simulated/floor) ||istype(A, /turf/unsimulated/floor))
 		var/turf/F = A
