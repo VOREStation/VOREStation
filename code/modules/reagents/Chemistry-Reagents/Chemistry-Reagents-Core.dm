@@ -5,6 +5,7 @@
 	reagent_state = LIQUID
 	metabolism = REM * 5
 	mrate_static = TRUE
+	affects_dead = 1 //so you can pump blood into someone before defibbing them
 	color = "#C80000"
 
 	glass_name = "tomato juice"
