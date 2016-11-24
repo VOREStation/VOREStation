@@ -343,11 +343,6 @@
 		else
 			adjustOxyLoss(HUMAN_CRIT_MAX_OXYLOSS)
 
-		if(breath && should_have_organ(O_LUNGS))
-			var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
-			if(!L.is_bruised() && prob(8))
-				rupture_lung()
-
 		if(should_have_organ("brain"))
 			if(prob(5))
 				adjustBrainLoss(0.02 * oxyloss) //2% of your current oxyloss is applied as brain damage, 50 oxyloss is 1 brain damage
@@ -368,9 +363,10 @@
 			safe_pressure_min *= 1.5
 		else if(L.is_bruised())
 			safe_pressure_min *= 1.25
-		else if(breath.total_moles < safe_pressure_min || breath.total_moles > BREATH_MOLES * 5)
-			if (prob(8))
-				rupture_lung()
+		else if(breath)
+			if((breath.total_moles < BREATH_MOLES / 10 || breath.total_moles > BREATH_MOLES * 5) && !L.is_bruised())
+				if (prob(8))
+					rupture_lung()
 
 	var/safe_exhaled_max = 10
 	var/safe_toxins_max = 0.2
