@@ -327,6 +327,9 @@ var/list/sacrificed = list()
 				if(M.stat == DEAD)
 					if(cult && M.mind == cult.sacrifice_target)
 						is_sacrifice_target = 1
+					else
+						corpse_to_raise = M
+						break
 
 			if(!corpse_to_raise)
 				if(is_sacrifice_target)
