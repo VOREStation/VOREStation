@@ -110,29 +110,30 @@ Please contact me on #coderbus IRC. ~Carn x
 #define DAMAGE_LAYER			2
 #define SURGERY_LEVEL			3		//bs12 specific.
 #define UNDERWEAR_LAYER  		4
-#define UNIFORM_LAYER			5
-#define ID_LAYER				6
-#define SHOES_LAYER				7
-#define GLOVES_LAYER			8
-#define BELT_LAYER				9
-#define SUIT_LAYER				10
-#define TAIL_LAYER				11		//bs12 specific. this hack is probably gonna come back to haunt me
-#define GLASSES_LAYER			12
-#define BELT_LAYER_ALT			13
-#define SUIT_STORE_LAYER		14
-#define BACK_LAYER				15
-#define HAIR_LAYER				16		//TODO: make part of head layer?
-#define EARS_LAYER				17
-#define FACEMASK_LAYER			18
-#define HEAD_LAYER				19
-#define COLLAR_LAYER			20
-#define HANDCUFF_LAYER			21
-#define LEGCUFF_LAYER			22
-#define L_HAND_LAYER			23
-#define R_HAND_LAYER			24
-#define FIRE_LAYER				25		//If you're on fire
-#define TARGETED_LAYER			26		//BS12: Layer for the target overlay from weapon targeting system
-#define TOTAL_LAYERS			26
+#define SHOES_LAYER_ALT			5
+#define UNIFORM_LAYER			6
+#define ID_LAYER				7
+#define SHOES_LAYER				8
+#define GLOVES_LAYER			9
+#define BELT_LAYER				10
+#define SUIT_LAYER				11
+#define TAIL_LAYER				12		//bs12 specific.
+#define GLASSES_LAYER			13
+#define BELT_LAYER_ALT			14
+#define SUIT_STORE_LAYER		15
+#define BACK_LAYER				16
+#define HAIR_LAYER				17		//TODO: make part of head layer?
+#define EARS_LAYER				18
+#define FACEMASK_LAYER			19
+#define HEAD_LAYER				20
+#define COLLAR_LAYER			21
+#define HANDCUFF_LAYER			22
+#define LEGCUFF_LAYER			23
+#define L_HAND_LAYER			24
+#define R_HAND_LAYER			25
+#define FIRE_LAYER				26		//If you're on fire
+#define TARGETED_LAYER			27		//BS12: Layer for the target overlay from weapon targeting system
+#define TOTAL_LAYERS			27
 //////////////////////////////////
 
 /mob/living/carbon/human
@@ -514,7 +515,7 @@ var/global/list/damage_icon_parts = list()
 		overlays_standing[UNIFORM_LAYER]	= null
 
 	//hiding/revealing shoes if necessary
-	update_inv_shoes(0)
+	update_inv_shoes(1)
 
 	if(update_icons)
 		update_icons()
@@ -642,12 +643,21 @@ var/global/list/damage_icon_parts = list()
 		else
 			standing = image("icon" = 'icons/mob/feet.dmi', "icon_state" = "[shoes.icon_state]")
 
+		var/shoe_layer = SHOES_LAYER
+		if(istype(shoes, /obj/item/clothing/shoes))
+			var/obj/item/clothing/shoes/ushoes = shoes
+			if(ushoes.show_above_pants)
+				overlays_standing[SHOES_LAYER] = null
+				shoe_layer = SHOES_LAYER_ALT
+			else
+				overlays_standing[SHOES_LAYER_ALT] = null
+
 		if(shoes.blood_DNA)
 			var/image/bloodsies = image("icon" = species.get_blood_mask(src), "icon_state" = "shoeblood")
 			bloodsies.color = shoes.blood_color
 			standing.overlays += bloodsies
 		standing.color = shoes.color
-		overlays_standing[SHOES_LAYER] = standing
+		overlays_standing[shoe_layer] = standing
 	else
 		if(feet_blood_DNA)
 			var/image/bloodsies = image("icon" = species.get_blood_mask(src), "icon_state" = "shoeblood")
@@ -655,6 +665,7 @@ var/global/list/damage_icon_parts = list()
 			overlays_standing[SHOES_LAYER] = bloodsies
 		else
 			overlays_standing[SHOES_LAYER] = null
+			overlays_standing[SHOES_LAYER_ALT] = null
 	if(update_icons)   update_icons()
 
 /mob/living/carbon/human/update_inv_s_store(var/update_icons=1)

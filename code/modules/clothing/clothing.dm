@@ -377,8 +377,10 @@
 	body_parts_covered = FEET
 	slot_flags = SLOT_FEET
 
-	var/can_hold_knife
+	var/can_hold_knife = 0
 	var/obj/item/holding
+
+	var/show_above_pants = 1
 
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
@@ -415,10 +417,10 @@
 
 
 /obj/item/clothing/shoes/attackby(var/obj/item/I, var/mob/user)
-	if(can_hold_knife && istype(I, /obj/item/weapon/material/shard) || \
+	if((can_hold_knife == 1) && (istype(I, /obj/item/weapon/material/shard) || \
 	 istype(I, /obj/item/weapon/material/butterfly) || \
 	 istype(I, /obj/item/weapon/material/kitchen/utensil) || \
-	 istype(I, /obj/item/weapon/material/hatchet/tacknife))
+	 istype(I, /obj/item/weapon/material/hatchet/tacknife)))
 		if(holding)
 			user << "<span class='warning'>\The [src] is already holding \a [holding].</span>"
 			return
@@ -431,10 +433,23 @@
 	else
 		return ..()
 
+/obj/item/clothing/shoes/verb/toggle_layer()
+	set name = "Switch Shoe Layer"
+	set category = "Object"
+
+	if(show_above_pants == -1)
+		usr << "<span class='notice'>\The [src] cannot be worn above your suit!</span>"
+		return
+	show_above_pants = !show_above_pants
+	update_icon()
+
 /obj/item/clothing/shoes/update_icon()
 	overlays.Cut()
 	if(holding)
 		overlays += image(icon, "[icon_state]_knife")
+	if(ismob(usr))
+		var/mob/M = usr
+		M.update_inv_shoes()
 	return ..()
 
 /obj/item/clothing/shoes/proc/handle_movement(var/turf/walking, var/running)
