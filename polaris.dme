@@ -1236,6 +1236,7 @@
 #include "code\modules\clothing\suits\jobs.dm"
 #include "code\modules\clothing\suits\labcoat.dm"
 #include "code\modules\clothing\suits\miscellaneous.dm"
+#include "code\modules\clothing\suits\solgov.dm"
 #include "code\modules\clothing\suits\storage.dm"
 #include "code\modules\clothing\suits\toggles.dm"
 #include "code\modules\clothing\suits\utility.dm"
