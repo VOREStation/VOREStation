@@ -3,6 +3,7 @@
 /obj/item/device/mmi/digital/New()
 	src.brainmob = new(src)
 	src.brainmob.add_language("Robot Talk")
+	src.brainmob.add_language("Encoded Audio Language")
 	src.brainmob.loc = src
 	src.brainmob.container = src
 	src.brainmob.stat = 0
