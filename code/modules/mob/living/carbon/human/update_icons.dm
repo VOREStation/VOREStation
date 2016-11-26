@@ -646,11 +646,12 @@ var/global/list/damage_icon_parts = list()
 		var/shoe_layer = SHOES_LAYER
 		if(istype(shoes, /obj/item/clothing/shoes))
 			var/obj/item/clothing/shoes/ushoes = shoes
-			if(ushoes.show_above_pants)
+			if(ushoes.shoes_under_pants == 1)
 				overlays_standing[SHOES_LAYER] = null
 				shoe_layer = SHOES_LAYER_ALT
 			else
 				overlays_standing[SHOES_LAYER_ALT] = null
+				shoe_layer = SHOES_LAYER
 
 		if(shoes.blood_DNA)
 			var/image/bloodsies = image("icon" = species.get_blood_mask(src), "icon_state" = "shoeblood")

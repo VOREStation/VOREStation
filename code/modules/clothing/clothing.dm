@@ -380,7 +380,7 @@
 	var/can_hold_knife = 0
 	var/obj/item/holding
 
-	var/show_above_pants = 1
+	var/shoes_under_pants = 0
 
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
@@ -437,10 +437,10 @@
 	set name = "Switch Shoe Layer"
 	set category = "Object"
 
-	if(show_above_pants == -1)
+	if(shoes_under_pants == -1)
 		usr << "<span class='notice'>\The [src] cannot be worn above your suit!</span>"
 		return
-	show_above_pants = !show_above_pants
+	shoes_under_pants = !shoes_under_pants
 	update_icon()
 
 /obj/item/clothing/shoes/update_icon()
