@@ -177,7 +177,7 @@ proc/get_radio_key_from_channel(var/channel)
 		return 1
 
 	//Self explanatory.
-	if(is_muzzled())
+	if(is_muzzled() && !(speaking && (speaking.flags & SIGNLANG)))
 		src << "<span class='danger'>You're muzzled and cannot speak!</span>"
 		return
 
@@ -204,7 +204,7 @@ proc/get_radio_key_from_channel(var/channel)
 		w_not_heard = "[speaking.speech_verb] something [w_adverb]"
 
 	//For speech disorders (hulk, slurring, stuttering)
-	if(!(speaking && (speaking.flags & NO_STUTTER)))
+	if(!(speaking && (speaking.flags & NO_STUTTER || speaking.flags & SIGNLANG)))
 		var/list/message_data = list(message, verb, whispering)
 		if(handle_speech_problems(message_data))
 			message = message_data[1]
