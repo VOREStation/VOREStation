@@ -246,9 +246,14 @@
 /datum/reagent/lexorin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
-	M.take_organ_damage(3 * removed, 0)
-	if(M.losebreath < 15)
-		M.losebreath++
+	if(alien == IS_SKRELL)
+		M.take_organ_damage(2.4 * removed, 0)
+		if(M.losebreath < 10)
+			M.losebreath++
+	else
+		M.take_organ_damage(3 * removed, 0)
+		if(M.losebreath < 15)
+			M.losebreath++
 
 /datum/reagent/mutagen
 	name = "Unstable mutagen"
@@ -314,16 +319,20 @@
 	if(alien == IS_DIONA)
 		return
 
+	var/threshold = 1
+	if(alien == IS_SKRELL)
+		threshold = 1.2
+
 	var/effective_dose = dose
 	if(issmall(M))
 		effective_dose *= 2
 
-	if(effective_dose < 1)
+	if(effective_dose < 1 * threshold)
 		if(effective_dose == metabolism * 2 || prob(5))
 			M.emote("yawn")
-	else if(effective_dose < 1.5)
+	else if(effective_dose < 1.5 * threshold)
 		M.eye_blurry = max(M.eye_blurry, 10)
-	else if(effective_dose < 5)
+	else if(effective_dose < 5 * threshold)
 		if(prob(50))
 			M.Weaken(2)
 		M.drowsyness = max(M.drowsyness, 20)
@@ -344,6 +353,10 @@
 	if(alien == IS_DIONA)
 		return
 
+	var/threshold = 1
+	if(alien == IS_SKRELL)
+		threshold = 1.2
+
 	var/effective_dose = dose
 	if(issmall(M))
 		effective_dose *= 2
@@ -351,13 +364,13 @@
 	if(effective_dose == metabolism)
 		M.confused += 2
 		M.drowsyness += 2
-	else if(effective_dose < 2)
+	else if(effective_dose < 2 * threshold)
 		M.Weaken(30)
 		M.eye_blurry = max(M.eye_blurry, 10)
 	else
 		M.sleeping = max(M.sleeping, 30)
 
-	if(effective_dose > 1)
+	if(effective_dose > 1 * threshold)
 		M.adjustToxLoss(removed)
 
 /datum/reagent/chloralhydrate/beer2 //disguised as normal beer for use by emagged brobots
@@ -383,7 +396,12 @@
 /datum/reagent/space_drugs/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
-	M.druggy = max(M.druggy, 15)
+
+	var/drug_strength = 15
+	if(alien == IS_SKRELL)
+		drug_strength = drug_strength * 0.8
+
+	M.druggy = max(M.druggy, drug_strength)
 	if(prob(10) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
 		step(M, pick(cardinal))
 	if(prob(7))
@@ -417,8 +435,11 @@
 /datum/reagent/cryptobiolin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
-	M.make_dizzy(4)
-	M.confused = max(M.confused, 20)
+	var/drug_strength = 4
+	if(alien == IS_SKRELL)
+		drug_strength = drug_strength * 0.8
+	M.make_dizzy(drug_strength)
+	M.confused = max(M.confused, drug_strength * 5)
 
 /datum/reagent/impedrezene
 	name = "Impedrezene"
@@ -451,7 +472,11 @@
 /datum/reagent/mindbreaker/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
-	M.hallucination = max(M.hallucination, 100)
+
+	var/drug_strength = 100
+	if(alien == IS_SKRELL)
+		drug_strength *= 0.8
+	M.hallucination = max(M.hallucination, drug_strength)
 
 /datum/reagent/psilocybin
 	name = "Psilocybin"
@@ -464,16 +489,21 @@
 /datum/reagent/psilocybin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
+
+	var/threshold = 1
+	if(alien == IS_SKRELL)
+		threshold = 1.2
+
 	M.druggy = max(M.druggy, 30)
 
 	var/effective_dose = dose
 	if(issmall(M)) effective_dose *= 2
-	if(effective_dose < 1)
+	if(effective_dose < 1 * threshold)
 		M.apply_effect(3, STUTTER)
 		M.make_dizzy(5)
 		if(prob(5))
 			M.emote(pick("twitch", "giggle"))
-	else if(effective_dose < 2)
+	else if(effective_dose < 2 * threshold)
 		M.apply_effect(3, STUTTER)
 		M.make_jittery(5)
 		M.make_dizzy(5)
