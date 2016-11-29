@@ -381,3 +381,67 @@
 /datum/gear/uniform/dresses/janimaid
 	display_name = "maid uniform"
 	path = /obj/item/clothing/under/dress/janimaid
+
+/datum/gear/uniform/pt
+	display_name = "pt uniform"
+	path = /obj/item/clothing/under/pt
+
+/datum/gear/uniform/pt/expeditionary
+	display_name = "pt uniform, expeditionary"
+	path = /obj/item/clothing/under/pt/expeditionary
+
+/datum/gear/uniform/pt/fleet
+	display_name = "pt uniform, fleet"
+	path = /obj/item/clothing/under/pt/fleet
+
+/datum/gear/uniform/utility
+	display_name = "utility, black"
+	path = /obj/item/clothing/under/utility
+	cost = 2
+
+/datum/gear/uniform/utility/fleet
+	display_name = "utility, navy"
+	path = /obj/item/clothing/under/utility/fleet
+
+/datum/gear/uniform/utility/marine
+	display_name = "utility, grey"
+	path = /obj/item/clothing/under/utility/marine
+
+/datum/gear/uniform/sweater
+	display_name = "sweater, grey"
+	path = /obj/item/clothing/under/rank/psych/turtleneck/sweater
+
+/datum/gear/uniform/jumpsuit/aether
+	display_name = "jumpsuit, aether"
+	path = /obj/item/clothing/under/aether
+
+/datum/gear/uniform/jumpsuit/focal
+	display_name = "jumpsuit, focal"
+	path = /obj/item/clothing/under/focal
+
+/datum/gear/uniform/mbill
+	display_name = "outfit, major bill's (Cargo)"
+	path = /obj/item/clothing/under/mbill
+	allowed_roles = list("Quartermaster","Cargo Technician")
+
+/datum/gear/uniform/pcrc
+	display_name = "uniform, PCRC (Security)"
+	path = /obj/item/clothing/under/pcrc
+	cost = 2
+	allowed_roles = list("Security Officer","Head of Security","Warden")
+
+/datum/gear/uniform/jumpsuit/grayson
+	display_name = "outfit, grayson"
+	path = /obj/item/clothing/under/grayson
+
+/datum/gear/uniform/jumpsuit/wardt
+	display_name = "jumpsuit, ward-takahashi"
+	path = /obj/item/clothing/under/wardt
+
+/datum/gear/uniform/frontier
+	display_name = "outfit, frontier"
+	path = 	/obj/item/clothing/under/frontier
+
+/datum/gear/uniform/jumpsuit/hephaestus
+	display_name = "jumpsuit, hephaestus"
+	path = 	/obj/item/clothing/under/hephaestus
