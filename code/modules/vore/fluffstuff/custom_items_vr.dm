@@ -514,7 +514,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	matter = list(DEFAULT_WALL_MATERIAL = 50)
 	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
 
-/obj/item/weapon/card/id/centcom/fluff/ivyholoid
+/obj/item/weapon/card/id/fluff/ivyholoid
 	name = "Holo-ID"
 	registered_name = "Unconfigured"
 	desc = "A thin screen that seems to show an ID card's information. It keeps flickering between the ID and being blank."
