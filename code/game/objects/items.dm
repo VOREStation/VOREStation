@@ -456,6 +456,15 @@ var/list/global/slot_flags_enumeration = list(
 				user << "<span class='warning'>You're going to need to remove the eye covering first.</span>"
 				return
 
+	//this attack can whiff just like any other
+	var/accuracy_penalty = 0
+	if(user.eye_blind)
+		accuracy_penalty += 75
+	if(user.eye_blurry)
+		accuracy_penalty += 30
+	if(user.confused)
+		accuracy_penalty += 45
+
 	if(!M.has_eyes())
 		user << "<span class='warning'>You cannot locate any eyes on [M]!</span>"
 		return

@@ -116,7 +116,12 @@
 	space_chance = 10
 
 /datum/language/machine/can_speak_special(var/mob/speaker)
-	return speaker.isSynthetic()
+	var/obj/item/I
+	for(I in speaker.contents) //this is ugly but I can't make the pretty way work
+		if(istype(I, /obj/item/weapon/implant/language/eal))
+			return 1
+
+	return (speaker.isSynthetic())
 
 /datum/language/machine/get_random_name()
 	if(prob(70))
