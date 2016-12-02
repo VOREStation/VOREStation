@@ -317,10 +317,10 @@
 	M.absorbed = 1
 	M << "<span class='notice'>[owner]'s [name] absorbs your body, making you part of them.</span>"
 	owner << "<span class='notice'>Your [name] absorbs [M]'s body, making them part of you.</span>"
-	var/OW = owner
+	var/mob/living/OW = owner
 
 	//Reagent sharing for absorbed with pred
-	if(OW.reagents && istype(OW.reagents,/datum/reagents))) //Does the pred have a reagent list?
+	if(OW.reagents && istype(OW.reagents,/datum/reagents)) //Does the pred have a reagent list?
 		if(M.reagents && istype(M.reagents,/datum/reagents)) //Does the prey have a reagent list?
 			var/datum/reagents/OR = owner.reagents
 			var/datum/reagents/PR = M.reagents
