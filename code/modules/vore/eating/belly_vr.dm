@@ -131,8 +131,8 @@
 	M.forceMove(owner.loc)  // Move the belly contents into the same location as belly's owner.
 	src.internal_contents -= M  // Remove from the belly contents
 
-	if(istype(M,/mob/living))
-		var/mob/living/ML = M
+	if(istype(M,/mob/living/carbon/human)) //To prevent giving mobs a reagent list, which caused runtimes
+		var/mob/living/carbon/human/ML = M
 		if(ML.absorbed)
 			ML.absorbed = 0
 			ML.reagents = new/datum/reagents(1000,M) //Human reagent datums hold 1000
@@ -143,6 +143,15 @@
 					absorbed_count++
 
 			OR.trans_to(ML,OR.total_volume / absorbed_count)
+
+	else if(istype(M,/mob/living)) //If they're not human but are a mob
+		var/mob/living/MO = M
+		if(MO.absorbed)
+			MO.absorbed = 0
+			var/absorbed_count = 2
+			for(var/mob/living/P in internal_contents)
+				if(P.absorbed)
+					absorbed_count++
 
 	var/datum/belly/B = check_belly(owner)
 	if(B)
@@ -315,12 +324,12 @@
 	owner << "<span class='notice'>Your [name] absorbs [M]'s body, making them part of you.</span>"
 
 	//Reagent sharing for absorbed with pred
-	var/datum/reagents/OR = owner.reagents
-	var/datum/reagents/PR = M.reagents
-
-	PR.trans_to(owner,PR.total_volume)
-	M.reagents = OR
-	del(PR)
+	if(istype(M,/mob/living/carbon/human))
+		var/datum/reagents/OR = owner.reagents
+		var/datum/reagents/PR = M.reagents
+		PR.trans_to(owner,PR.total_volume)
+		M.reagents = OR
+		del(PR)
 
 	//This is probably already the case, but for sub-prey, it won't be.
 	M.forceMove(owner)
