@@ -87,7 +87,7 @@
 
 	else if (H.jitteriness >= 100) //No stress factors, but there's coffee. Keeps them mildly feral while they're all jittery.
 		if(H.feral == 0)
-			H << "<span class='warning'><big>Suddenly, something flips - everything that moves is.. potential prey. A plaything. This is great! Time to hunt!</big></span>"
+			H << "<span class='warning'><big>Suddenly, something flips - everything that moves is... potential prey. A plaything. This is great! Time to hunt!</big></span>"
 			if(H.stat == CONSCIOUS)
 				H.emote("twitch")
 		H.feral = max(H.feral, H.jitteriness-100) //won't make them VERY feral, but they'll be twitchy and pouncy while they're still under the influence, and feralness won't wear off until they're calm..
