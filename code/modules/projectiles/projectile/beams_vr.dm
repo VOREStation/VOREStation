@@ -3,7 +3,7 @@
     icon_state = "omnilaser"
     nodamage = 1
     taser_effect = 1
-    agony = 60 // Does as much damage as a heavy bullet, but in agony damage.
+    agony = 100 //One shot stuns for the time being until adjustments are fully made.
     damage_type = HALLOSS
     light_color = "#00CECE"
 
