@@ -149,7 +149,7 @@
 	New()
 		..()
 		new /obj/item/clothing/head/beretg(src)
-		new /obj/item/weapon/card/id/centcom/fluff/ivyholoid(src)
+		new /obj/item/weapon/card/id/fluff/ivyholoid(src)
 		new /obj/item/weapon/storage/fancy/cigarettes/dromedaryco(src)
 		new /obj/item/weapon/storage/box/matches(src)
 		new /obj/item/weapon/reagent_containers/food/snacks/sliceable/plaincake(src)
