@@ -655,7 +655,8 @@
 					"tox_scrub",
 					"n2o_scrub",
 					"panic_siphon",
-					"scrubbing")
+					"scrubbing",
+					"direction")
 
 					send_signal(device_id, list(href_list["command"] = text2num(href_list["val"])))
 					return 1
