@@ -15,6 +15,9 @@
 
 	var/mob/living/carbon/T = changeling_sting(5,/mob/proc/changeling_deaf_sting)
 	if(!T)	return 0
+	T.attack_log += text("\[[time_stamp()]\] <font color='red'>Was deaf stung by [key_name(src)]</font>")
+	src.attack_log += text("\[[time_stamp()]\] <font color='orange'> Used deaf sting on [key_name(T)]</font>")
+	msg_admin_attack("[key_name(T)] was deaf stung by [key_name(src)]")
 	var/duration = 300
 	if(src.mind.changeling.recursive_enhancement)
 		duration = duration + 100

@@ -11,6 +11,19 @@
 	item_state = "r_hands"
 	siemens_coefficient = 1.0
 
+/obj/item/clothing/gloves/forensic
+	desc = "Specially made gloves for forensic technicians. The luminescent threads woven into the material stand out under scrutiny."
+	name = "forensic gloves"
+	icon_state = "forensic"
+	item_state = "black"
+	siemens_coefficient = 0.50
+	permeability_coefficient = 0.05
+
+	cold_protection = HANDS
+	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
+	heat_protection = HANDS
+	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
+
 /obj/item/clothing/gloves/swat
 	desc = "These tactical gloves are somewhat fire and impact-resistant."
 	name = "\improper SWAT Gloves"
@@ -51,3 +64,21 @@
 	item_state_slots = list(slot_r_hand_str = "lightbrown", slot_l_hand_str = "lightbrown")
 	permeability_coefficient = 0.05
 	siemens_coefficient = 0.50 //thick work gloves
+
+/obj/item/clothing/gloves/duty
+	desc = "These brown duty gloves are made from a durable synthetic."
+	name = "work gloves"
+	icon_state = "work"
+	item_state = "wgloves"
+	siemens_coefficient = 0.50
+	armor = list(melee = 10, bullet = 10, laser = 10, energy = 5, bomb = 0, bio = 0, rad = 0)
+
+/obj/item/clothing/gloves/tactical
+	desc = "These brown tactical gloves are made from a durable synthetic, and have hardened knuckles."
+	name = "tactical gloves"
+	icon_state = "work"
+	item_state = "wgloves"
+	force = 5
+	siemens_coefficient = 0.50
+	permeability_coefficient = 0.05
+	armor = list(melee = 30, bullet = 10, laser = 10, energy = 15, bomb = 20, bio = 0, rad = 0)

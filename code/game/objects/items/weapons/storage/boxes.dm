@@ -339,6 +339,16 @@
 	for(var/i = 1 to 7)
 		new /obj/item/weapon/grenade/chem_grenade/metalfoam(src)
 
+/obj/item/weapon/storage/box/teargas
+	name = "box of teargas grenades"
+	desc = "A box containing 7 teargas grenades."
+	icon_state = "flashbang"
+
+/obj/item/weapon/storage/box/teargas/New()
+	..()
+	for(var/i = 1 to 7)
+		new /obj/item/weapon/grenade/chem_grenade/teargas(src)
+
 /obj/item/weapon/storage/box/trackimp
 	name = "boxed tracking implant kit"
 	desc = "Box full of scum-bag tracking utensils."

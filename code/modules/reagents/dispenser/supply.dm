@@ -101,7 +101,8 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/sugar,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/orange,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/lime,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/watermelon
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/watermelon,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/lemon
 		)
 	cost = 50
 	containertype = /obj/structure/closet/crate
@@ -222,6 +223,7 @@ PACK(sodawater,  /obj/item/weapon/reagent_containers/chem_disp_cartridge/sodawat
 PACK(lemon_lime, /obj/item/weapon/reagent_containers/chem_disp_cartridge/lemon_lime, "Reagent refill - Lemon-Lime Juice",    "lemon-lime juice reagent cartridge crate",              15)
 PACK(orange,     /obj/item/weapon/reagent_containers/chem_disp_cartridge/orange,     "Reagent refill - Orange Juice",        "orange juice reagent cartridge crate",                  15)
 PACK(lime,       /obj/item/weapon/reagent_containers/chem_disp_cartridge/lime,       "Reagent refill - Lime Juice",          "lime juice reagent cartridge crate",                    15)
+PACK(lemon,      /obj/item/weapon/reagent_containers/chem_disp_cartridge/lemon,      "Reagent refill - Lemon Juice",         "lemon juice reagent cartridge crate",                   15)
 PACK(watermelon, /obj/item/weapon/reagent_containers/chem_disp_cartridge/watermelon, "Reagent refill - Watermelon Juice",    "watermelon juice reagent cartridge crate",              15)
 PACK(coffee,     /obj/item/weapon/reagent_containers/chem_disp_cartridge/coffee,     "Reagent refill - Coffee",              "coffee reagent cartridge crate",                        15)
 PACK(cafe_latte, /obj/item/weapon/reagent_containers/chem_disp_cartridge/cafe_latte, "Reagent refill - Cafe Latte",          "cafe latte reagent cartridge crate",                    15)

@@ -94,7 +94,7 @@
 
 	return
 
-/mob/living/carbon/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null)
+/mob/living/carbon/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null, var/stun = 1)
 	if(status_flags & GODMODE)	return 0	//godmode
 	shock_damage *= siemens_coeff
 	if (shock_damage<1)
@@ -108,8 +108,9 @@
 			"\red <B>You feel a powerful shock course through your body!</B>", \
 			"\red You hear a heavy electrical crack." \
 		)
-		Stun(10)//This should work for now, more is really silly and makes you lay there forever
-		Weaken(10)
+		if(stun)
+			Stun(10)//This should work for now, more is really silly and makes you lay there forever
+			Weaken(10)
 	else
 		src.visible_message(
 			"\red [src] was mildly shocked by \the [source].", \
@@ -445,7 +446,7 @@
 		chem_effects[effect] = magnitude
 
 /mob/living/carbon/get_default_language()
-	if(default_language)
+	if(default_language && can_speak(default_language))
 		return default_language
 
 	if(!species)

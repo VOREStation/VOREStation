@@ -175,6 +175,7 @@
 		/obj/item/weapon/circular_saw = 60,
 		/obj/item/weapon/pickaxe/plasmacutter = 100
 		)
+	req_open = 0
 
 	can_infect = 0
 	blood_level = 0

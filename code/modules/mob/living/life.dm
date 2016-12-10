@@ -17,8 +17,7 @@
 		//Mutations and radiation
 		handle_mutations_and_radiation()
 
-		//Chemicals in the body
-		handle_chemicals_in_body()
+
 
 		//Blood
 		handle_blood()
@@ -29,6 +28,9 @@
 		attempt_vr(src,"handle_internal_contents",args) //VOREStation Code
 
 		. = 1
+
+	//Chemicals in the body, this is moved over here so that blood can be added after death
+	handle_chemicals_in_body()
 
 	//Handle temperature/pressure differences between body and environment
 	if(environment)

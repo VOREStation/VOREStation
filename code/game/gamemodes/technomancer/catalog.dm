@@ -42,33 +42,33 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 	var/show_scepter_text = 0
 
 /obj/item/weapon/technomancer_catalog/apprentice
-	name = "apprentice's catelog"
+	name = "apprentice's catalog"
 	budget = 700
 	max_budget = 700
 
 /obj/item/weapon/technomancer_catalog/master //for badmins, I suppose
-	name = "master's catelog"
+	name = "master's catalog"
 	budget = 2000
 	max_budget = 2000
 
 
 // Proc: bind_to_owner()
 // Parameters: 1 (new_owner - mob that the book is trying to bind to)
-// Description: Links the catelog to hopefully the technomancer, so that only they can access it.
+// Description: Links the catalog to hopefully the technomancer, so that only they can access it.
 /obj/item/weapon/technomancer_catalog/proc/bind_to_owner(var/mob/living/carbon/human/new_owner)
 	if(!owner && technomancers.is_antagonist(new_owner.mind))
 		owner = new_owner
 
 // Proc: New()
 // Parameters: 0
-// Description: Sets up the catelog, as shown below.
+// Description: Sets up the catalog, as shown below.
 /obj/item/weapon/technomancer_catalog/New()
 	..()
 	set_up()
 
 // Proc: set_up()
 // Parameters: 0
-// Description: Instantiates all the catelog datums for everything that can be bought.
+// Description: Instantiates all the catalog datums for everything that can be bought.
 /obj/item/weapon/technomancer_catalog/proc/set_up()
 	if(!spell_instances.len)
 		for(var/S in all_technomancer_spells)
@@ -100,7 +100,7 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 			return "<b>[category]</b>"
 
 // Proc: attack_self()
-// Parameters: 1 (user - the mob clicking on the catelog)
+// Parameters: 1 (user - the mob clicking on the catalog)
 // Description: Shows an HTML window, to buy equipment and spells, if the user is the legitimate owner.  Otherwise it cannot be used.
 /obj/item/weapon/technomancer_catalog/attack_self(mob/user)
 	if(!user)
@@ -207,12 +207,12 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 			dat += "You currently have a budget of <b>[budget]/[max_budget]</b>.<br><br>"
 			dat += "<br>"
 			dat += "<h1>Manipulation Core Owner's Manual</h1><br>"
-			dat += "This brief entry in your catelog will try to explain what everything does.  For starters, the thing you're \
+			dat += "This brief entry in your catalog will try to explain what everything does.  For starters, the thing you're \
 			probably wearing on your back is known as a <b>Manipulation Core</b>, or just a 'Core'.  It allows you to do amazing \
 			things with almost no effort, depending on what <b>functions</b> you've purchased for it.  Don't lose your core!<br>"
 			dat += "<br>"
 			dat += "There are a few things you need to keep in mind as you use your Core to manipulate the universe.  The core \
-			requires a special type of <b>energy</b>, that is referred to as just 'Energy' in the catelog.  All cores generate \
+			requires a special type of <b>energy</b>, that is referred to as just 'Energy' in the catalog.  All cores generate \
 			their own energy, some more than others.  Most functions require energy be spent in order to work, so make sure not \
 			to run out in a critical moment.  Besides waiting for your Core to recharge, you can buy certain functions which \
 			do something to generate energy.<br>"
@@ -242,13 +242,13 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 			dat += "<b>You can refund functions, equipment items, and assistance items, so long as you are in your base.</b>  \
 			Once you leave, you can't refund anything, however you can still buy things if you still have points remaining.  \
 			To refund functions, just click the 'Refund Functions' button on the top, when in the functions tabs.  \
-			For equipment items, you need to hit it against the catelog.<br>"
+			For equipment items, you need to hit it against the catalog.<br>"
 			dat += "<br>"
 			dat += "Your blue robes and hat are both stylish, and somewhat protective against hostile energies, which includes \
 			EXTERNAL instability sources (like Glow), and mundane electricity.  If you're looking for protection against other \
 			things, it's suggested you purchase or otherwise obtain armor.<br>"
 			dat += "<br>"
-			dat += "There are a few terms you may not understand in the catelog, so this will try to explain them.<br>"
+			dat += "There are a few terms you may not understand in the catalog, so this will try to explain them.<br>"
 			dat += "A function can be thought of as a 'spell', that you use by holding in your hands and trying to use it on \
 			a target of your choice.<br>"
 			dat += "Some functions can have their abilities enhanced by a special rod called the Scepter of Enhancement.  \
@@ -265,7 +265,7 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 
 // Proc: Topic()
 // Parameters: 2 (href - don't know, href_list - the choice that the person using the interface above clicked on.)
-// Description: Acts upon clicks on links for the catelog, if they are the rightful owner.
+// Description: Acts upon clicks on links for the catalog, if they are the rightful owner.
 /obj/item/weapon/technomancer_catalog/Topic(href, href_list)
 	..()
 	var/mob/living/carbon/human/H = usr

@@ -5,7 +5,7 @@ var/global/send_emergency_team = 0 // Used for automagic response teams
                                    // 'admin_emergency_team' for admin-spawned response teams
 var/ert_base_chance = 10 // Default base chance. Will be incremented by increment ERT chance.
 var/can_call_ert
-var/silent_ert
+var/silent_ert = 0
 
 /client/proc/response_team()
 	set name = "Dispatch Emergency Response Team"

@@ -11,6 +11,11 @@
 	if(can_buckle && buckled_mob)
 		user_unbuckle_mob(user)
 
+/obj/attack_robot(mob/living/user)
+	if(Adjacent(user) && buckled_mob) //Checks if what we're touching is adjacent to us and has someone buckled to it. This should prevent interacting with anti-robot manual valves among other things.
+		return attack_hand(user) //Process as if we're a normal person touching the object.
+	return ..() //Otherwise, treat this as an AI click like usual.
+
 /obj/MouseDrop_T(mob/living/M, mob/living/user)
 	. = ..()
 	if(can_buckle && istype(M))

@@ -9,6 +9,11 @@
 	siemens_coefficient = 0.8
 	species_restricted = null
 
+/obj/item/clothing/shoes/cowboy
+	name = "cowboy boots"
+	desc = "Lacking a durasteel horse to ride."
+	icon_state = "cowboy"
+
 /obj/item/clothing/shoes/mime
 	name = "mime shoes"
 	icon_state = "white"
@@ -105,6 +110,39 @@
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	heat_protection = FEET
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
+
+/obj/item/clothing/shoes/jungleboots
+	name = "jungle boots"
+	desc = "A pair of durable brown boots. Waterproofed for use planetside."
+	icon_state = "jungle"
+	force = 3
+	armor = list(melee = 30, bullet = 10, laser = 10, energy = 15, bomb = 20, bio = 10, rad = 0)
+	siemens_coefficient = 0.7
+
+/obj/item/clothing/shoes/dutyboots
+	name = "duty boots"
+	desc = "A pair of steel-toed synthleather boots with a mirror shine."
+	icon_state = "duty"
+	armor = list(melee = 40, bullet = 0, laser = 0, energy = 15, bomb = 20, bio = 0, rad = 20)
+	siemens_coefficient = 0.7
+
+/obj/item/clothing/shoes/tactical
+	name = "tactical boots"
+	desc = "Tan boots with extra padding and armor."
+	icon_state = "jungle"
+	force = 3
+	armor = list(melee = 40, bullet = 30, laser = 40,energy = 25, bomb = 50, bio = 0, rad = 0)
+	siemens_coefficient = 0.7
+
+/obj/item/clothing/shoes/dress
+	name = "dress shoes"
+	desc = "Sharp looking low quarters, perfect for a formal uniform."
+	icon_state = "laceups"
+
+/obj/item/clothing/shoes/dress/white
+	name = "white dress shoes"
+	desc = "Brilliantly white low quarters, not a spot on them."
+	icon_state = "whitedress"
 
 /obj/item/clothing/shoes/sandal
 	desc = "A pair of rather plain, wooden sandals."

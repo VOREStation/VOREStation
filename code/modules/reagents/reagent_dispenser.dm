@@ -212,8 +212,8 @@
 	cups = 10
 
 /obj/structure/reagent_dispensers/water_cooler/New()
+	..()
 	if(bottle)
-		..()
 		reagents.add_reagent("water",120)
 	update_icon()
 

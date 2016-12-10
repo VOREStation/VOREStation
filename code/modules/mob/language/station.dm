@@ -116,7 +116,9 @@
 	space_chance = 10
 
 /datum/language/machine/can_speak_special(var/mob/speaker)
-	return speaker.isSynthetic()
+	var/obj/item/weapon/implant/language/eal/beep = locate() in speaker
+	return ((beep && beep.implanted) || speaker.isSynthetic())
+	//thank you sweet zuhayr
 
 /datum/language/machine/get_random_name()
 	if(prob(70))
