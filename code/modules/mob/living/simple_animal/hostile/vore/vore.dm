@@ -26,7 +26,7 @@ Don't use ranged mobs for vore mobs.
 	var/min_size = 0.25 // Min: 0.25
 	var/picky = 1 // Won't eat undigestable prey by default
 	var/fullness = 0
-	var/eat_chance = 5 // Determines how likely a mob is to pounce on you per attack. 5% by default.
+	var/pounce_chance = 5 // Determines how likely a mob is to pounce on you per attack. 5% by default.
 	swallowTime = 1 // Hungry little bastards.
 
 	// By default, this is what most vore mobs are capable of.
@@ -118,7 +118,7 @@ Don't use ranged mobs for vore mobs.
 
 	// Is our target edible and standing up?
 	if(target_mob.canmove && target_mob.size_multiplier >= min_size && target_mob.size_multiplier <= max_size && !(target_mob in prey_exclusions))
-		if(prob(eat_chance))
+		if(prob(pounce_chance))
 			target_mob.Weaken(5)
 			target_mob.visible_message("<span class='danger'>\the [src] pounces on \the [target_mob]!</span>!")
 			animal_nom(target_mob)
@@ -158,4 +158,4 @@ Don't use ranged mobs for vore mobs.
 	pixel_y = -16
 	maxHealth = 200
 	health = 200
-	eat_chance = 50 // Bigger mobs, bigger appetite.
+	pounce_chance = 50 // Bigger mobs, bigger appetite.
