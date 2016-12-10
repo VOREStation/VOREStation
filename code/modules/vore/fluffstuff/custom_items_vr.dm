@@ -513,3 +513,19 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	w_class = ITEMSIZE_SMALL
 	matter = list(DEFAULT_WALL_MATERIAL = 50)
 	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
+
+/obj/item/weapon/card/id/fluff/ivyholoid
+	name = "Holo-ID"
+	registered_name = "Unconfigured"
+	desc = "A thin screen that seems to show an ID card's information. It keeps flickering between the ID and being blank."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "ivyholoid"
+	var/configured = 0
+
+	attack_self(mob/user as mob)
+		if(configured == 1) return ..()
+
+		assignment = user.job
+		user.set_id_info(src)
+		configured = 1
+		user << "<span class='notice'>Card settings set.</span>"

@@ -3,6 +3,8 @@
 /datum/surgery_step
 	var/priority = 0	//steps with higher priority would be attempted first
 
+	var/req_open = 1	//1 means the part must be cut open, 0 means it doesn't
+
 	// type path referencing tools that can be used for this step, and how well are they suited for it
 	var/list/allowed_tools = null
 	// type paths referencing races that this step applies to.
@@ -77,6 +79,20 @@
 
 	E.germ_level = max(germ_level,E.germ_level) //as funny as scrubbing microbes out with clean gloves is - no.
 
+
+/obj/item/proc/can_do_surgery(mob/living/carbon/M, mob/living/user)
+	if(M == user)
+		return 0
+	if(!ishuman(M))
+		return 1
+	var/mob/living/carbon/human/H = M
+	var/obj/item/organ/external/affected = H.get_organ(user.zone_sel.selecting)
+	if(affected)
+		for(var/datum/surgery_step/S in surgery_steps)
+			if(!affected.open && S.req_open)
+				return 0
+	return 0
+
 /obj/item/proc/do_surgery(mob/living/carbon/M, mob/living/user)
 	if(!istype(M))
 		return 0
@@ -107,10 +123,6 @@
 					var/mob/living/carbon/human/H = M
 					H.update_surgery()
 				return	1	  												//don't want to do weapony things after surgery
-
-	if (user.a_intent == I_HELP)
-		user << "<span class='warning'>You can't see any useful way to use [src] on [M].</span>"
-		return 1
 	return 0
 
 /proc/sort_surgeries()

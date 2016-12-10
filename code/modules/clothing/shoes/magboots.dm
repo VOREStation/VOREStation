@@ -6,6 +6,7 @@
 	species_restricted = null
 	force = 3
 	overshoes = 1
+	shoes_under_pants = -1	//These things are huge
 	var/magpulse = 0
 	var/icon_base = "magboots"
 	action_button_name = "Toggle Magboots"

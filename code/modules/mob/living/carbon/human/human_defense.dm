@@ -24,6 +24,9 @@ emp_act
 		else // Otherwise we blocked normally and stopped all the damage.
 			return 0
 
+	if(!P.nodamage)
+		organ.add_autopsy_data("[P.name]", P.damage)
+
 	//Shrapnel
 	if(P.can_embed())
 		var/armor = getarmor_organ(organ, "bullet")

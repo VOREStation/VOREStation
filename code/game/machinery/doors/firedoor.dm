@@ -25,6 +25,7 @@
 	block_air_zones = 0
 
 	var/blocked = 0
+	var/prying = 0
 	var/lockdown = 0 // When the door has detected a problem, it locks.
 	var/pdiff_alert = 0
 	var/pdiff = 0
@@ -189,6 +190,8 @@
 	if(operating)
 		return//Already doing something.
 	if(istype(C, /obj/item/weapon/weldingtool) && !repairing)
+		if(prying)
+			to_chat(user,"<span class='notice'>Someone's busy prying that [density ? "open" : "closed"]!</span>")
 		var/obj/item/weapon/weldingtool/W = C
 		if(W.remove_fuel(0, user))
 			blocked = !blocked
@@ -250,9 +253,16 @@
 			if(!F.wielded)
 				return
 
+		if(prying)
+			to_chat(user,"<span class='notice'>Someone's already prying that [density ? "open" : "closed"].</span>")
+			return
+
 		user.visible_message("<span class='danger'>\The [user] starts to force \the [src] [density ? "open" : "closed"] with \a [C]!</span>",\
 				"You start forcing \the [src] [density ? "open" : "closed"] with \the [C]!",\
 				"You hear metal strain.")
+		prying = 1
+		update_icon()
+		playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
 		if(do_after(user,30))
 			if(istype(C, /obj/item/weapon/crowbar))
 				if(stat & (BROKEN|NOPOWER) || !density)
@@ -269,7 +279,9 @@
 			else
 				spawn(0)
 					close()
-			return
+		prying = 0
+		update_icon()
+		return
 
 	return ..()
 
@@ -365,6 +377,8 @@
 	overlays.Cut()
 	if(density)
 		icon_state = "door_closed"
+		if(prying)
+			icon_state = "prying_closed"
 		if(hatch_open)
 			overlays += "hatch"
 		if(blocked)
@@ -379,6 +393,8 @@
 						overlays += new/icon(icon,"alert_[ALERT_STATES[i]]", dir=cdir)
 	else
 		icon_state = "door_open"
+		if(prying)
+			icon_state = "prying_open"
 		if(blocked)
 			overlays += "welded_open"
 	return

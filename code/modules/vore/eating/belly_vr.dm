@@ -133,16 +133,18 @@
 
 	if(istype(M,/mob/living))
 		var/mob/living/ML = M
+		var/mob/living/OW = owner
 		if(ML.absorbed)
 			ML.absorbed = 0
 			ML.reagents = new/datum/reagents(1000,M) //Human reagent datums hold 1000
-			var/datum/reagents/OR = owner.reagents
-			var/absorbed_count = 2 //Prey that we were, plus the pred gets a portion
-			for(var/mob/living/P in internal_contents)
-				if(P.absorbed)
-					absorbed_count++
+			if(OW.reagents && istype(OW.reagents,/datum/reagents)) //Does the pred have a reagents list?
+				var/datum/reagents/OR = owner.reagents
+				var/absorbed_count = 2 //Prey that we were, plus the pred gets a portion
+				for(var/mob/living/P in internal_contents)
+					if(P.absorbed)
+						absorbed_count++
 
-			OR.trans_to(ML,OR.total_volume / absorbed_count)
+				OR.trans_to(ML,OR.total_volume / absorbed_count)
 
 	var/datum/belly/B = check_belly(owner)
 	if(B)
@@ -264,8 +266,10 @@
 
 	//Reagent transfer
 	if(M.reagents && istype(M.reagents,/datum/reagents))
-		var/datum/reagents/RL = M.reagents
-		RL.trans_to(owner,RL.total_volume*0.5)
+		var/mob/living/OW = owner
+		if(OW.reagents && istype(OW.reagents,/datum/reagents)) //Does the pred have a reagents list to give to?
+			var/datum/reagents/RL = M.reagents
+			RL.trans_to(owner,RL.total_volume*0.5)
 
 	// Delete the digested mob
 	qdel(M)
@@ -313,14 +317,16 @@
 	M.absorbed = 1
 	M << "<span class='notice'>[owner]'s [name] absorbs your body, making you part of them.</span>"
 	owner << "<span class='notice'>Your [name] absorbs [M]'s body, making them part of you.</span>"
+	var/mob/living/OW = owner
 
 	//Reagent sharing for absorbed with pred
-	var/datum/reagents/OR = owner.reagents
-	var/datum/reagents/PR = M.reagents
-
-	PR.trans_to(owner,PR.total_volume)
-	M.reagents = OR
-	del(PR)
+	if(OW.reagents && istype(OW.reagents,/datum/reagents)) //Does the pred have a reagent list?
+		if(M.reagents && istype(M.reagents,/datum/reagents)) //Does the prey have a reagent list?
+			var/datum/reagents/OR = owner.reagents
+			var/datum/reagents/PR = M.reagents
+			PR.trans_to(owner,PR.total_volume)
+			M.reagents = OR
+			del(PR)
 
 	//This is probably already the case, but for sub-prey, it won't be.
 	M.forceMove(owner)

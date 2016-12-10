@@ -38,9 +38,11 @@
 	var/force_update           // Set this to bypass the cycle time check.
 	var/obj/temp_chem_holder   // Something to hold reagents during process_reagents()
 	var/labelled
+	var/frozen = 0				//Is the plant frozen? -1 is used to define trays that can't be frozen. 0 is unfrozen and 1 is frozen.
 
 	// Seed details/line data.
 	var/datum/seed/seed = null // The currently planted seed
+
 
 	// Reagent information for process(), consider moving this to a controller along
 	// with cycle information under 'mechanical concerns' at some point.
@@ -421,7 +423,7 @@
 
 /obj/machinery/portable_atmospherics/hydroponics/attackby(var/obj/item/O as obj, var/mob/user as mob)
 
-	if (O.is_open_container())
+	if(O.is_open_container())
 		return 0
 
 	if(istype(O, /obj/item/weapon/wirecutters) || istype(O, /obj/item/weapon/scalpel))
@@ -494,6 +496,7 @@
 			qdel(O)
 
 			check_health()
+			update_icon()
 
 		else
 			user << "<span class='danger'>\The [src] already has seeds in it!</span>"
@@ -539,12 +542,25 @@
 		anchored = !anchored
 		user << "You [anchored ? "wrench" : "unwrench"] \the [src]."
 
+	else if(istype(O,/obj/item/device/multitool))
+		if(!anchored)
+			to_chat(user, "<span class='warning'>Anchor it first!</span>")
+			return
+		if(frozen == -1)
+			to_chat(user, "<span class='warning'>You see no way to use \the [O] on [src].</span>")
+			return
+		to_chat(user, "<span class='notice'>You [frozen ? "disable" : "enable"] the cryogenic freezing.</span>")
+		frozen = !frozen
+		update_icon()
+		return
+
 	else if(O.force && seed)
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		user.visible_message("<span class='danger'>\The [seed.display_name] has been attacked by [user] with \the [O]!</span>")
 		if(!dead)
 			health -= O.force
 			check_health()
+
 	return
 
 /obj/machinery/portable_atmospherics/hydroponics/attack_tk(mob/user as mob)
@@ -557,7 +573,8 @@
 
 	if(istype(usr,/mob/living/silicon))
 		return
-
+	if(frozen == 1)
+		to_chat(user, "<span class='warning'>Disable the cryogenic freezing first!</span>")
 	if(harvest)
 		harvest(user)
 	else if(dead)
@@ -587,7 +604,8 @@
 			usr << "<span class='danger'>The plant is dead.</span>"
 		else if(health <= (seed.get_trait(TRAIT_ENDURANCE)/ 2))
 			usr << "The plant looks <span class='danger'>unhealthy</span>."
-
+	if(frozen == 1)
+		to_chat(usr, "<span class='notice'>It is cryogenically frozen.</span>")
 	if(mechanical)
 		var/turf/T = loc
 		var/datum/gas_mixture/environment

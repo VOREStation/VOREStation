@@ -288,6 +288,12 @@
 	var/eyes_covered = 0
 	var/mouth_covered = 0
 	var/obj/item/safe_thing = null
+
+	var/effective_strength = 5
+
+	if(alien == IS_SKRELL)	//Larger eyes means bigger targets.
+		effective_strength = 8
+
 	if(istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
 		if(!H.can_feel_pain())
@@ -316,19 +322,19 @@
 		return
 	else if(eyes_covered)
 		M << "<span class='warning'>Your [safe_thing] protect you from most of the pepperspray!</span>"
-		M.eye_blurry = max(M.eye_blurry, 15)
-		M.eye_blind = max(M.eye_blind, 5)
+		M.eye_blurry = max(M.eye_blurry, effective_strength * 3)
+		M.eye_blind = max(M.eye_blind, effective_strength)
 		M.Stun(5)
 		M.Weaken(5)
 		return
 	else if (mouth_covered) // Mouth cover is better than eye cover
 		M << "<span class='warning'>Your [safe_thing] protects your face from the pepperspray!</span>"
-		M.eye_blurry = max(M.eye_blurry, 5)
+		M.eye_blurry = max(M.eye_blurry, effective_strength)
 		return
 	else // Oh dear :D
 		M << "<span class='warning'>You're sprayed directly in the eyes with pepperspray!</span>"
-		M.eye_blurry = max(M.eye_blurry, 25)
-		M.eye_blind = max(M.eye_blind, 10)
+		M.eye_blurry = max(M.eye_blurry, effective_strength * 5)
+		M.eye_blind = max(M.eye_blind, effective_strength * 2)
 		M.Stun(5)
 		M.Weaken(5)
 		return
