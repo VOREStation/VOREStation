@@ -1,7 +1,8 @@
 /datum/technomancer/spell/blink
 	name = "Blink"
-	desc = "Force the target to teleport a short distance away.  This target could be anything from something lying on the ground, to someone trying to \
-	fight you, or even yourself.  Using this on someone next to you makes their potential distance after teleportation greater."
+	desc = "Force the target to teleport a short distance away.  This target could be anything from something lying on the ground, \
+	to someone trying to fight you, or even yourself.  Using this on someone next to you makes their potential distance after \
+	teleportation greater.  Self casting has the greatest potential for distance, as well as the cheapest cost."
 	enhancement_desc = "Blink distance is increased greatly."
 	spell_power_desc = "Blink distance is scaled up with more spell power."
 	cost = 50
@@ -54,25 +55,37 @@
 		if(!within_range(AM))
 			user << "<span class='warning'>\The [AM] is too far away to blink.</span>"
 			return
-		if(check_for_scepter())
-			safe_blink(AM, calculate_spell_power(6))
+		if(pay_energy(400))
+			if(check_for_scepter())
+				safe_blink(AM, calculate_spell_power(6))
+			else
+				safe_blink(AM, calculate_spell_power(3))
+			adjust_instability(3)
+			log_and_message_admins("has blinked [AM] away.")
 		else
-			safe_blink(AM, calculate_spell_power(3))
-		log_and_message_admins("has blinked [AM] away.")
+			to_chat(user, "<span class='warning'>You need more energy to blink [AM] away!</span>")
 
 /obj/item/weapon/spell/blink/on_use_cast(mob/user)
-	if(check_for_scepter())
-		safe_blink(user, calculate_spell_power(10))
+	if(pay_energy(200))
+		if(check_for_scepter())
+			safe_blink(user, calculate_spell_power(10))
+		else
+			safe_blink(user, calculate_spell_power(6))
+		adjust_instability(1)
+		log_and_message_admins("has blinked themselves away.")
 	else
-		safe_blink(user, calculate_spell_power(6))
-	log_and_message_admins("has blinked themselves away.")
+		to_chat(user, "<span class='warning'>You need more energy to blink yourself away!</span>")
 
 /obj/item/weapon/spell/blink/on_melee_cast(atom/hit_atom, mob/living/user, def_zone)
 	if(istype(hit_atom, /atom/movable))
 		var/atom/movable/AM = hit_atom
-		visible_message("<span class='danger'>\The [user] reaches out towards \the [AM] with a glowing hand.</span>")
-		if(check_for_scepter())
-			safe_blink(AM, 10)
+		if(pay_energy(300))
+			visible_message("<span class='danger'>\The [user] reaches out towards \the [AM] with a glowing hand.</span>")
+			if(check_for_scepter())
+				safe_blink(AM, 10)
+			else
+				safe_blink(AM, 6)
+			adjust_instability(2)
+			log_and_message_admins("has blinked [AM] away.")
 		else
-			safe_blink(AM, 6)
-		log_and_message_admins("has blinked [AM] away.")
+			to_chat(user, "<span class='warning'>You need more energy to blink [AM] away!</span>")

@@ -41,6 +41,10 @@
 		range = range * 2
 		src << "<span class='notice'>We are extra loud.</span>"
 
+	src.attack_log += text("\[[time_stamp()]\] <font color='red'>Used Resonant Shriek.</font>")
+	message_admins("[key_name(src)] used Resonant Shriek ([src.x],[src.y],[src.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>).")
+	log_game("[key_name(src)] used Resonant Shriek.")
+
 	for(var/mob/living/M in range(range, src))
 		if(iscarbon(M))
 			if(!M.mind || !M.mind.changeling)
@@ -51,6 +55,7 @@
 				M.adjustEarDamage(0,30)
 				M.confused += 20
 				M << sound('sound/effects/screech.ogg')
+				M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Was affected by [key_name(src)]'s Resonant Shriek.</font>")
 			else
 				if(M != src)
 					M << "<span class='notice'>You hear a familiar screech from nearby.  It has no effect on you.</span>"
@@ -60,6 +65,7 @@
 			M << sound('sound/weapons/flash.ogg')
 			M << "<span class='notice'>Auditory input overloaded.  Reinitializing...</span>"
 			M.Weaken(rand(5,10))
+			M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Was affected by [key_name(src)]'s Resonant Shriek.</font>")
 
 	for(var/obj/machinery/light/L in range(range, src))
 		L.on = 1
@@ -96,6 +102,10 @@
 		range_light = range_light * 2
 		src << "<span class='notice'>We are extra loud.</span>"
 		src.mind.changeling.recursive_enhancement = 0
+
+	src.attack_log += text("\[[time_stamp()]\] <font color='red'>Used Dissonant Shriek.</font>")
+	message_admins("[key_name(src)] used Dissonant Shriek ([src.x],[src.y],[src.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>).")
+	log_game("[key_name(src)] used Dissonant Shriek.")
 
 	for(var/obj/machinery/light/L in range(5, src))
 		L.on = 1

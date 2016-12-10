@@ -349,6 +349,7 @@ other types of metals and chemistry for reagents).
 	materials = list(DEFAULT_WALL_MATERIAL = 3000, "glass" = 1000, "diamond" = 2000)
 	build_path = /obj/item/weapon/pickaxe/diamonddrill
 	sort_string = "KAAAE"
+
 ///////////////////////////////////
 /////////Shield Generators/////////
 ///////////////////////////////////
@@ -731,6 +732,14 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/weapon/storage/box/syndie_kit/chameleon
 	sort_string = "VASBA"
 
+/datum/design/item/experimental_welder
+	name = "Expiermental Welding Tool"
+	desc = "A welding tool that generate fuel for itself."
+	id = "expwelder"
+	req_tech = list(TECH_ENGINEERING = 4, TECH_PHORON = 3, TECH_MATERIAL = 4)
+	materials = list(DEFAULT_WALL_MATERIAL = 70, "glass" = 120, "phoron" = 100)
+	build_path = /obj/item/weapon/weldingtool/experimental
+	sort_string = "VASCA"
 /*
 CIRCUITS BELOW
 */

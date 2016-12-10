@@ -127,3 +127,4 @@
 	path = /obj/item/clothing/under/shorts/loincloth
 	sort_category = "Xenowear"
 	//whitelisted = list("Tajaran", "Unathi") //VORESTATION EDIT
+

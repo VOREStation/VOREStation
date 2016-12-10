@@ -160,7 +160,7 @@
 	P.icon_state = "paper_words"
 
 	if(istype(usr,/mob/living/carbon))
-		usr.put_in_hands(src)
+		usr.put_in_hands(P)
 
 /obj/item/weapon/autopsy_scanner/do_surgery(mob/living/carbon/human/M, mob/living/user)
 	if(!istype(M))

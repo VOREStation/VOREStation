@@ -136,7 +136,13 @@ Class Procs:
 				component_parts -= A
 	if(contents) // The same for contents.
 		for(var/atom/A in contents)
-			qdel(A)
+			if(ishuman(A))
+				var/mob/living/carbon/human/H = A
+				H.client.eye = H.client.mob
+				H.client.perspective = MOB_PERSPECTIVE
+				H.loc = src.loc
+			else
+				qdel(A)
 	return ..()
 
 /obj/machinery/process()//If you dont use process or power why are you here

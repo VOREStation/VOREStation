@@ -82,7 +82,7 @@
 	dissipate()
 	check_energy()
 
-	if (current_size >= STAGE_THREE)
+	if (current_size >= STAGE_TWO)
 		move()
 		pulse()
 
@@ -148,7 +148,7 @@
 			pixel_y = -32
 			grav_pull = 6
 			consume_range = 1
-			dissipate_delay = 5
+			dissipate_delay = 10
 			dissipate_track = 0
 			dissipate_strength = 5
 			overlays = 0
@@ -169,7 +169,7 @@
 				pixel_y = -64
 				grav_pull = 8
 				consume_range = 2
-				dissipate_delay = 4
+				dissipate_delay = 10
 				dissipate_track = 0
 				dissipate_strength = 20
 				overlays = 0
@@ -192,7 +192,7 @@
 				consume_range = 3
 				dissipate_delay = 10
 				dissipate_track = 0
-				dissipate_strength = 10
+				dissipate_strength = 8
 				overlays = 0
 				if(chained)
 					overlays = "chain_s7"

@@ -11,7 +11,7 @@
 	name = "restoration aura"
 	desc = "Allows everyone, or just your allies, to slowly regenerate."
 	icon_state = "generic"
-	cast_methods = null
+	cast_methods = CAST_USE
 	aspect = ASPECT_BIOMED
 	glow_color = "#33CC33"
 	var/regen_tick = 0
@@ -31,8 +31,8 @@
 			else
 				mobs_to_heal |= L // Heal everyone!
 		for(var/mob/living/L in mobs_to_heal)
-			L.adjustBruteLoss(calculate_spell_power(-2))
-			L.adjustFireLoss(calculate_spell_power(-2))
+			L.adjustBruteLoss(calculate_spell_power(-5))
+			L.adjustFireLoss(calculate_spell_power(-5))
 		adjust_instability(2)
 
 /obj/item/weapon/spell/aura/biomed/on_use_cast(mob/living/user)

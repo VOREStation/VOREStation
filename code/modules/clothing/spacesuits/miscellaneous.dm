@@ -76,7 +76,7 @@
 	body_parts_covered = 0
 	siemens_coefficient = 0.9
 
-/obj/item/clothing/suit/space/pirate
+/obj/item/clothing/suit/space/pirate //Whhhhyyyyyyy???
 	name = "pirate coat"
 	desc = "Yarr."
 	icon_state = "pirate"
@@ -85,6 +85,7 @@
 	slowdown = 0
 	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
 	siemens_coefficient = 0.9
+	flags_inv = HIDETAIL|HIDEHOLSTER
 	body_parts_covered = UPPER_TORSO|ARMS
 
 //Orange emergency space suit

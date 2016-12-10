@@ -17,6 +17,7 @@
 	capacity = 0
 	max_size = 2 // Max: 2
 	min_size = 0.25 // Min: 0.25
+	pounce_chance = 0 // Only pounces if you're crit.
 
 /mob/living/simple_animal/hostile/vore/creature/cult
 	faction = "cult"

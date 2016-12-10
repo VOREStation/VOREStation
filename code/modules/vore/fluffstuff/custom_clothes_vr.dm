@@ -436,12 +436,12 @@
 	species_restricted = null
 
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
-		..()
-		if(H.ckey != "scree")
-			H << "<span class='warning'>Your face and whoever is meant for this helmet are too different.</span>"
-			return 0
-		else
-			return 1
+		if(..())
+			if(H.ckey != "scree")
+				H << "<span class='warning'>Your face and whoever is meant for this helmet are too different.</span>"
+				return 0
+			else
+				return 1
 
 //scree:Scree
 /obj/item/clothing/suit/space/void/engineering/fluff/screespess
@@ -457,12 +457,12 @@
 	species_restricted = null
 
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
-		..()
-		if(H.ckey != "scree")
-			H << "<span class='warning'>The gloves only have three fingers, not to mention the accommodation for extra limbs.</span>"
-			return 0
-		else
-			return 1
+		if(..())
+			if(H.ckey != "scree")
+				H << "<span class='warning'>The gloves only have three fingers, not to mention the accommodation for extra limbs.</span>"
+				return 0
+			else
+				return 1
 
 //scree:Scree
 /obj/item/clothing/under/fluff/screesuit
@@ -476,12 +476,12 @@
 	item_state = "screesuit"
 
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
-		..()
-		if(H.ckey != "scree")
-			H << "<span class='warning'>Are you just going to tape them on or what? This isn't gonna work.</span>"
-			return 0
-		else
-			return 1
+		if(..())
+			if(H.ckey != "scree")
+				H << "<span class='warning'>Are you just going to tape them on or what? This isn't gonna work.</span>"
+				return 0
+			else
+				return 1
 
 //HOS Hardsuit
 /obj/item/clothing/suit/space/void/security/fluff/hos // ToDo: Rig version.
@@ -600,7 +600,7 @@
 
 // arokha : Aronai Kadigan
 /obj/item/clothing/head/helmet/space/void/medical/emt/fluff/aronai
-	name = "KIN-313-SM medical spacesuit"
+	name = "KIN-313-SM medical helmet"
 	desc = "This spacesuit helmet appears to be custom-made for someone with pointed ears and a muzzle. \
 		It is form-fitting enough that it's unlikely to fit anyone but the person it was intended for. \
 		'Aronai' is printed on the back of the helmet."
@@ -613,37 +613,41 @@
 
 	light_overlay = "helmet_light_dual"
 	camera_networks = list(NETWORK_MEDICAL)
+	species_restricted = null
 
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
-		..()
-		if(H.ckey != "arokha")
-			H << "<span class='warning'>You try to wear the helmet, but it doesn't fit.</span>"
-			return 0
-		else
-			return 1
+		if(..())
+			if(H.ckey != "arokha")
+				H << "<span class='warning'>You try to wear the helmet, but it doesn't fit.</span>"
+				return 0
+			else
+				return 1
 
 /obj/item/clothing/suit/space/void/medical/emt/fluff/aronai
-	name = "KIN-313-SMb medical space helmet"
+	name = "KIN-313-SMb medical space spacesuit"
 	desc = "This spacesuit appears to be custom-made for someone with digitigrade legs and a tail. \
 		It is form-fitting enough that it's unlikely to fit anyone but the person it was intended for. \
 		'Aronai' is printed just above the spine on the back of the neckpiece. It has no space for an O2 tank. \
-		In fact, it's practically paper-thin. It doesn't seem to retain body heat at all."
+		In fact, it's practically paper-thin."
 
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "arosuit"
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "arosuit_mob"
-	w_class = ITEMSIZE_LARGE //Oh but I can.
-	allowed = list(/obj/item/device/suit_cooling_unit) //Can't fit O2 tanks
+
+	w_class = ITEMSIZE_NORMAL //If Joan can do it! >.>
+	slowdown = 0 //... <.<
+	allowed = list(/obj/item/device/suit_cooling_unit) //No storage space other than that
+	species_restricted = null
 
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
-		..()
-		if(H.ckey != "arokha")
-			H << "<span class='warning'>You try to fit into the suit, to no avail.</span>"
-			return 0
-		else
-			return 1
+		if(..())
+			if(H.ckey != "arokha")
+				H << "<span class='warning'>You try to fit into the suit, to no avail.</span>"
+				return 0
+			else
+				return 1
 
 //Viveret:Keturah
 /obj/item/clothing/under/dress/maid
@@ -666,13 +670,12 @@
 	light_overlay = "helmet_light"
 
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
-		..()
-		if(H.ckey != "joanrisu")
-			H << "<span class='warning'>You try to fit on the helmet, but it doesn't fit.</span>"
-			return 0
-		else
-			return 1
-
+		if(..())
+			if(H.ckey != "joanrisu")
+				H << "<span class='warning'>You try to fit on the helmet, but it doesn't fit.</span>"
+				return 0
+			else
+				return 1
 
 //JoanRisu:Joan Risu
 /obj/item/clothing/suit/space/fluff/joan
@@ -695,13 +698,12 @@
 	item_state = "joansuit_mob"
 
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
-		..()
-		if(H.ckey != "joanrisu")
-			H << "<span class='warning'>You try to fit into the suit, to no avail.</span>"
-			return 0
-		else
-			return 1
-
+		if(..())
+			if(H.ckey != "joanrisu")
+				H << "<span class='warning'>You try to fit into the suit, to no avail.</span>"
+				return 0
+			else
+				return 1
 
 /obj/item/clothing/under/rank/internalaffairs/fluff/joan
 	desc = "The plain, professional attire of a Federation Law Enforcement Detective. The collar is <i>immaculately</i> starched."
@@ -771,3 +773,71 @@
 		item_state = "khi_uniform_aro"
 		worn_state = "khi_uniform_aro"
 		armor = list(melee = 5, bullet = 5, laser = 5, energy = 0, bomb = 0, bio = 0, rad = 0)
+
+//jacobdragon:Earthen Breath
+/obj/item/clothing/under/fluff/earthenbreath
+	name = "Earth Swimsuit"
+	desc = "The suit of Subject 688,509,403. Made of an enviromentally safe elastic. Dry-clean not required."
+	icon_state = "fluffearthenbreath"
+	item_state = "fluffearthenbreath"
+
+//jacobdragon:Earthen Breath
+/obj/item/clothing/head/fluff/hairflowerpin
+	name = "Hair Flower Pin"
+	desc = "It's a flower fashioned into a hair pin. It's very nice."
+	icon_state = "hairflowerpin"
+	item_state = "hairflowerpin_mob"
+	body_parts_covered = 0
+
+//bwoincognito:Octavious Ward
+/obj/item/clothing/suit/storage/trench/fluff/octaviouscoat
+	name = "Thin Leather coat"
+	desc = "A finely made leather coat designed for use in laboratories and doubles for parties. Has the letters O.C.W. embroidered in sliver on the right breast pocket."
+	icon_state = "octavgentlecoat"
+	item_state = "octavgentlecoat_mob"
+	blood_overlay_type = "coat"
+	allowed = list(/obj/item/weapon/tank/emergency_oxygen, /obj/item/device/flashlight,/obj/item/weapon/gun/energy,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/device/taperecorder,/obj/item/device/uv_light)
+
+//bwoincognito:Octavious Ward
+/obj/item/clothing/under/det/fluff/octavious
+	name = "Expensive Suit and vest"
+	desc = "A well made suit and tie, with a thin leather vest, while not as rugged as normal lab suits, it lets the wearer look dashing as he works. The letter's O.C.W. are embroidered on the left breast."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "octavgentlecoat"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "octavgentlecoat_s"
+
+//bwoincognito:Octavious Ward
+/obj/item/clothing/head/fedora/fluff/bowler
+	name = "Expensive Bowler Hat"
+	desc = "A well made bowler hat. Lets the wearer look dashing as he works. The letter's O.C.W. are embroidered on the inside."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "bowler"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "bowler_mob"
+
+//jemli:Jemli
+/obj/item/clothing/head/fedora/fluff/jemli
+	name = "Cavalier Hat"
+	desc = "A smart, wide-brimmed hat with a rather fetching red feather in the brim. All for one, one for all."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "jemli_hat"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "jemli_hat_mob"
+
+
+//bwoincognito:Octavious Ward
+/obj/item/clothing/mask/gas/plaguedoctor/fluff/octaviousmask
+	name = "Customized Gas Mask"
+	desc = "A customized gas mask to look like an old plague doctors, with a special looking lens in the left eye that turns on when in use."
+	icon_state = "octplaguedoctor"
+	item_state = "octplaguedoctor_mob"
+	armor = list(melee = 0, bullet = 0, laser = 2,energy = 2, bomb = 0, bio = 90, rad = 0)
+	body_parts_covered = HEAD|FACE|EYES
+

@@ -38,8 +38,18 @@
 		/obj/item/clothing/suit/storage/det_suit/fluff/tas_coat,
 		/obj/item/clothing/under/det/fluff/tasald,
 		/obj/item/fluff/permit/tasald_corlethian,
-		/obj/item/weapon/gun/projectile/revolver/detective/fluff/tasald_corlethian,
+		/obj/item/weapon/gun/projectile/revolver/mateba/fluff/tasald_corlethian,
 		/obj/item/weapon/implanter/loyalty)
+
+//bwoincognito:Octavious Ward
+/obj/item/weapon/storage/box/fluff/octavious
+	name = "Octavious's Kit"
+	desc = "A kit containing Octavious's work clothes."
+	has_items = list(
+		/obj/item/clothing/suit/storage/trench/fluff/octaviouscoat,
+		/obj/item/clothing/under/det/fluff/octavious,
+		/obj/item/clothing/mask/gas/plaguedoctor/fluff/octaviousmask,
+		/obj/item/clothing/head/fedora/fluff/bowler)
 
 // jemli:Cirra Mayhem
 /obj/item/weapon/storage/box/fluff/cirra
@@ -130,3 +140,16 @@
 		new /obj/item/weapon/card/id/centcom/fluff/aro(src)
 		new /obj/item/weapon/reagent_containers/hypospray/fluff/aronai(src)
 		new /obj/item/clothing/glasses/sunglasses/omnihud(src)
+
+//ivymoomoo:Ivy Baladeva
+/obj/item/weapon/storage/backpack/messenger/sec/fluff/ivymoomoo
+	name = "Ivy's Courier"
+	desc = "A bag resembling something used by college students. Contains items for ''MooMoo''."
+
+	New()
+		..()
+		new /obj/item/clothing/head/beretg(src)
+		new /obj/item/weapon/card/id/fluff/ivyholoid(src)
+		new /obj/item/weapon/storage/fancy/cigarettes/dromedaryco(src)
+		new /obj/item/weapon/storage/box/matches(src)
+		new /obj/item/weapon/reagent_containers/food/snacks/sliceable/plaincake(src)

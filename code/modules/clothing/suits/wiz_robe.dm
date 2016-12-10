@@ -53,7 +53,7 @@
 	permeability_coefficient = 0.01
 	armor = list(melee = 30, bullet = 20, laser = 20,energy = 20, bomb = 20, bio = 20, rad = 20)
 	allowed = list(/obj/item/weapon/teleportation_scroll)
-	flags_inv = HIDEJUMPSUIT
+	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 	siemens_coefficient = 0.8
 	wizard_garb = 1
 
@@ -90,6 +90,7 @@
 	icon_state = "gentlecoat"
 	item_state_slots = list(slot_r_hand_str = "greatcoat", slot_l_hand_str = "greatcoat")
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	flags_inv = HIDETIE|HIDEHOLSTER
 
 /obj/item/clothing/suit/wizrobe/fake
 	name = "wizard robe"

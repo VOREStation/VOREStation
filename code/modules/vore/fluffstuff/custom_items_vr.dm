@@ -345,8 +345,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	desc = "A medal awarded to Lucina Darkarim for excellence in medical service."
 
 //SilencedMP5A5:Serdykov Antoz
-/*
-/obj/item/clothing/suit/armor/vest/wolftaur/serdy //SilencedMP5A5's specialty armor suit. Uncomment if/when they make their custom item app and are accepted.
+/obj/item/clothing/suit/armor/vest/wolftaur/serdy //SilencedMP5A5's specialty armor suit.
 	name = "Modified wolf-taur armor vest"
 	desc = "An armored vest that protects against some damage. It appears to be created for a wolf-taur, and seems modified."
 	species_restricted = null //Species restricted since all it cares about is a taur half
@@ -357,7 +356,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 			icon_override = 'icons/mob/taursuits_vr.dmi' //Just in case
 			icon_state = "serdy_armor" //Just in case
 			pixel_x = -16
-			return 1
+			return ..()
 		else
 			H << "<span class='warning'>You need to have a wolf-taur half to wear this.</span>"
 			return 0
@@ -370,7 +369,19 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "serdyhelm_mob"
-*/
+
+//SilencedMP5A5:Serdykov Antoz
+/obj/item/device/modkit_conversion/fluff/serdykit
+	name = "Serdykov's armor modification kit"
+	desc = "A kit containing all the needed tools and parts to modify a armor vest and helmet for a specific user. This one looks like it's fitted for a wolf-taur."
+
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "modkit"
+
+	from_helmet = /obj/item/clothing/head/helmet
+	from_suit = /obj/item/clothing/suit/armor/vest/wolftaur
+	to_helmet = /obj/item/clothing/head/helmet/serdy
+	to_suit = /obj/item/clothing/suit/armor/vest/wolftaur/serdy
 
 //arokha:Aronai Kadigan, but anyone is welcome to use it.
 /obj/item/clothing/accessory/collar/khcrystal
@@ -489,3 +500,32 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	..()
 	new /obj/item/weapon/paper/khcrystal_manual(src)
 	new /obj/item/clothing/accessory/collar/khcrystal(src)
+
+/obj/item/weapon/cane
+	name = "cane"
+	desc = "A cane used by a true gentlemen. Or a clown."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "browncane"
+	item_state = "browncanemob"
+	flags = CONDUCT
+	force = 5.0
+	throwforce = 7.0
+	w_class = ITEMSIZE_SMALL
+	matter = list(DEFAULT_WALL_MATERIAL = 50)
+	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
+
+/obj/item/weapon/card/id/fluff/ivyholoid
+	name = "Holo-ID"
+	registered_name = "Unconfigured"
+	desc = "A thin screen that seems to show an ID card's information. It keeps flickering between the ID and being blank."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "ivyholoid"
+	var/configured = 0
+
+	attack_self(mob/user as mob)
+		if(configured == 1) return ..()
+
+		assignment = user.job
+		user.set_id_info(src)
+		configured = 1
+		user << "<span class='notice'>Card settings set.</span>"

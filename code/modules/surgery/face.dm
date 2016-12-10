@@ -5,6 +5,7 @@
 
 /datum/surgery_step/face
 	priority = 2
+	req_open = 0
 	can_infect = 0
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if (!hasorgans(target))

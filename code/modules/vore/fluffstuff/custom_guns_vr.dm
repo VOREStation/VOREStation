@@ -79,9 +79,9 @@
 	max_shells = 6
 
 // bwoincognito:Tasald Corlethian
-/obj/item/weapon/gun/projectile/revolver/detective/fluff/tasald_corlethian
+/obj/item/weapon/gun/projectile/revolver/mateba/fluff/tasald_corlethian //Now that it is actually Single-Action and not hacky broken SA, I see no reason to nerf this down to .38. --Joan Risu
 	name = "Big Iron revolver"
-	desc = "A .38 revolver for veteran rangers on the planet Orta. The right side of the handle has a logo for Quarion industries, and the left is the Rangers. The primary ammo for this gun is .38 rubber. According to the CentCom Chief of Security, this revolver was more controversial than it needed to be."
+	desc = "A .357 revolver for veteran rangers on the planet Orta. The right side of the handle has a logo for Quarion industries, and the left is the Rangers. The primary ammo for this gun is .38 rubber. According to the CentCom Chief of Security, this revolver was more controversial than it needed to be."
 
 	icon = 'icons/vore/custom_guns_vr.dmi'
 	icon_state = "tasaldrevolver"
@@ -89,7 +89,7 @@
 	item_state = "revolver"
 
 	fire_sound = 'sound/weapons/pistol.ogg'
-	ammo_type = /obj/item/ammo_casing/c38r
+	ammo_type = /obj/item/ammo_casing/a357/rubber //Like I said, no reason to nerf. --Joan Risu
 	var/recentpump = 0
 	var/cocksound = 'sound/weapons/revolvercock.ogg'
 
@@ -468,3 +468,52 @@
 /obj/item/ammo_magazine/mc9mml/practice
 	name = "\improper SMG magazine (9mm practice)"
 	ammo_type = /obj/item/ammo_casing/c9mmp
+
+//.357 special ammo
+/obj/item/ammo_magazine/a357/stun
+	name = "speedloader (.357 stun)"
+	desc = "A speedloader for .357 revolvers."
+	icon = 'icons/obj/ammo_vr.dmi'
+	icon_state = "s357"
+	caliber = "357"
+	ammo_type = /obj/item/ammo_casing/a357/stun
+
+
+/obj/item/ammo_casing/a357/stun
+	desc = "A .357 stun bullet casing."
+	caliber = "357"
+	icon = 'icons/obj/ammo_vr.dmi'
+	icon_state = "stun357"
+	projectile_type = /obj/item/projectile/energy/electrode/stunshot
+
+/obj/item/ammo_magazine/a357/rubber
+	name = "speedloader (.357 rubber)"
+	desc = "A speedloader for .357 revolvers."
+	icon = 'icons/obj/ammo_vr.dmi'
+	icon_state = "r357"
+	caliber = "357"
+	ammo_type = /obj/item/ammo_casing/a357/rubber
+
+
+/obj/item/ammo_casing/a357/rubber
+	desc = "A .357 rubber bullet casing."
+	caliber = "357"
+	icon = 'icons/obj/ammo_vr.dmi'
+	icon_state = "rubber357"
+	projectile_type = /obj/item/projectile/bullet/pistol/rubber
+
+/obj/item/ammo_magazine/a357/flash
+	name = "speedloader (.357 flash)"
+	desc = "A speedloader for .357 revolvers."
+	icon = 'icons/obj/ammo_vr.dmi'
+	icon_state = "f357"
+	caliber = "357"
+	ammo_type = /obj/item/ammo_casing/a357/flash
+
+
+/obj/item/ammo_casing/a357/flash
+	desc = "A .357 flash bullet casing."
+	caliber = "357"
+	icon = 'icons/obj/ammo_vr.dmi'
+	icon_state = "flash357"
+	projectile_type = /obj/item/projectile/energy/flash
