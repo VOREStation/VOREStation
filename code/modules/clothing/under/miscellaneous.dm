@@ -91,7 +91,7 @@
 	item_state_slots = list(slot_r_hand_str = "black", slot_l_hand_str = "black")
 
 /obj/item/clothing/under/gov
-	desc = "A neat proper uniform of someone on offical business. The plain, professional attire of an Internal Affairs Agent. The collar is <i>immaculately</i> starched."
+	desc = "A neat proper uniform of someone on offical business. The collar is <i>immaculately</i> starched."
 	name = "Green formal uniform"
 	icon_state = "greensuit"
 	item_state_slots = list(slot_r_hand_str = "centcom", slot_l_hand_str = "centcom")
@@ -607,13 +607,13 @@
 /obj/item/clothing/under/stripper/stripper_pink
 	name = "pink swimsuit"
 	desc = "A rather skimpy pink swimsuit."
-	icon_state = "stripper_p_under"
+	icon_state = "stripper_p"
 	siemens_coefficient = 1
 
 /obj/item/clothing/under/stripper/stripper_green
 	name = "green swimsuit"
 	desc = "A rather skimpy green swimsuit."
-	icon_state = "stripper_g_under"
+	icon_state = "stripper_g"
 	siemens_coefficient = 1
 
 /obj/item/clothing/under/stripper/mankini
@@ -621,3 +621,74 @@
 	desc = "No honest man would wear this abomination"
 	icon_state = "mankini"
 	siemens_coefficient = 1
+
+/*
+ *Misc Uniforms
+ */
+
+/obj/item/clothing/under/aether
+	name = "\improper Aether jumpsuit"
+	desc = "A jumpsuit belonging to Aether Atmospherics and Recycling, a Trans-Stellar that supplies recycling and atmospheric systems to colonies."
+	icon_state = "aether"
+	worn_state = "aether"
+
+/obj/item/clothing/under/pcrc
+	name = "\improper PCRC uniform"
+	desc = "A uniform belonging to Proxima Centauri Risk Control, a private security firm."
+	icon_state = "pcrc"
+	item_state = "jensensuit"
+	worn_state = "pcrc"
+
+/obj/item/clothing/under/grayson
+	name = "\improper Grayson overalls"
+	desc = "A set of overalls belonging to Grayson Manufactories, a mining Trans-Stellar."
+	icon_state = "mechanic"
+	worn_state = "mechanic"
+
+/obj/item/clothing/under/wardt
+	name = "\improper Ward-Takahashi jumpsuit"
+	desc = "A jumpsuit belonging to Ward-Takahashi, a Trans-Stellar in the consumer goods market."
+	icon_state = "robotics2"
+	worn_state = "robotics2"
+
+/obj/item/clothing/under/mbill
+	name = "\improper Major Bill's uniform"
+	desc = "A uniform belonging to Major Bill's Transportation, a shipping megacorporation."
+	icon_state = "mbill"
+	worn_state = "mbill"
+
+/obj/item/clothing/under/confederacy
+	name = "\improper Confederacy uniform"
+	desc = "A military uniform belonging to the Confederacy of Man, an independent human government."
+	icon_state = "confed"
+	worn_state = "confed"
+
+/obj/item/clothing/under/saare
+	name = "\improper SAARE uniform"
+	desc = "A dress uniform belonging to Stealth Assault Enterprises, a minor private military corporation."
+	icon_state = "saare"
+	worn_state = "saare"
+
+/obj/item/clothing/under/frontier
+	name = "frontier clothes"
+	desc = "A rugged flannel shirt and denim overalls. A popular style among frontier colonists."
+	icon_state = "frontier"
+	worn_state = "frontier"
+
+/obj/item/clothing/under/focal
+	name = "\improper Focal Point jumpsuit"
+	desc = "A jumpsuit belonging to Focal Point Energistics, an engineering megacorporation."
+	icon_state = "focal"
+	worn_state = "focal"
+
+/obj/item/clothing/under/hephaestus
+	name = "\improper Hephaestus jumpsuit"
+	desc = "A jumpsuit belonging to Hephaestus Industries, a Trans-Stellar best known for its arms production."
+	icon_state = "heph"
+	worn_state = "heph"
+
+/obj/item/clothing/under/rank/psych/turtleneck/sweater
+	desc = "A warm looking sweater and a pair of dark blue slacks."
+	name = "sweater"
+	icon_state = "turtleneck"
+	worn_state = "turtleneck"

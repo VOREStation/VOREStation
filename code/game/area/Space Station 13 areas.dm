@@ -2545,7 +2545,7 @@ area/space/atmosalert()
 
 /area/tcomfoyer
 	name = "\improper Telecomms Foyer"
-	icon_state = "tcomsatentrance"
+	icon_state = "tcomsatfoyer"
 	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
 
 /area/tcomwest

@@ -159,6 +159,8 @@
 	min_age = 19
 	max_age = 80
 
+	darksight = 4
+
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR
 
@@ -167,6 +169,15 @@
 	base_color = "#006666"
 
 	//reagent_tag = IS_SKRELL //VOREStation Removal
+	cold_level_1 = 280 //Default 260 - Lower is better
+	cold_level_2 = 220 //Default 200
+	cold_level_3 = 130 //Default 120
+
+	heat_level_1 = 420 //Default 360 - Higher is better
+	heat_level_2 = 480 //Default 400
+	heat_level_3 = 1100 //Default 1000
+
+	reagent_tag = IS_SKRELL
 
 	has_limbs = list(
 		BP_TORSO =  list("path" = /obj/item/organ/external/chest),

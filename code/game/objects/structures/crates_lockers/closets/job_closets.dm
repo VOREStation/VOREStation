@@ -119,3 +119,5 @@
 	new /obj/item/clothing/glasses/sunglasses/big(src)
 	new /obj/item/clothing/under/lawyer/blue(src)
 	new /obj/item/clothing/under/lawyer/blue(src)
+	new /obj/item/device/tape/random(src)
+	new /obj/item/device/tape/random(src)
