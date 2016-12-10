@@ -13,7 +13,7 @@
 	speak_emote = list("purrs","meows")
 	emote_hear = list("meows","mews")
 	emote_see = list("shakes her head","shivers")
-	eat_chance = 100
+	pounce_chance = 100
 	attacktext = "swatted"
 
 /mob/living/simple_animal/hostile/vore/retaliate/catgirl/nude
