@@ -57,3 +57,13 @@
 /datum/gear/gloves/evening/New()
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/gloves/duty
+	display_name = "gloves, work"
+	path = /obj/item/clothing/gloves/duty
+	cost = 3
+
+/datum/gear/gloves/forensic
+	display_name = "gloves, forensic"
+	path = /obj/item/clothing/gloves/forensic
+	allowed_roles = list("Detective")

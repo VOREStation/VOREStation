@@ -137,7 +137,7 @@
 /obj/item/clothing/head/beret/purple
 	name = "purple beret"
 	desc = "A stylish, if purple, beret."
-	icon_state = "beret_purple"
+	icon_state = "beret_purpleyellow"
 
 /obj/item/clothing/head/beret/centcom/officer
 	name = "officers beret"
