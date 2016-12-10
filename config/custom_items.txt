@@ -159,6 +159,13 @@ item_path: /obj/item/clothing/accessory/medal/bronze_heart
 # ######## G CKEYS
 # ######## H CKEYS
 # ######## I CKEYS
+
+{
+ckey: ivymoomoo
+character_name: Ivy Baladeva
+item_path: /obj/item/weapon/storage/backpack/messenger/sec/fluff/ivymoomoo
+}
+
 # ######## J CKEYS
 
 {
