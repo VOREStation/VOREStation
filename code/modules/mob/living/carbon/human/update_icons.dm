@@ -121,18 +121,19 @@ Please contact me on #coderbus IRC. ~Carn x
 #define BELT_LAYER_ALT			13
 #define SUIT_STORE_LAYER		14
 #define BACK_LAYER				15
-#define HAIR_LAYER				16		//TODO: make part of head layer?
-#define EARS_LAYER				17
-#define FACEMASK_LAYER			18
-#define HEAD_LAYER				19
-#define COLLAR_LAYER			20
-#define HANDCUFF_LAYER			21
-#define LEGCUFF_LAYER			22
-#define L_HAND_LAYER			23
-#define R_HAND_LAYER			24
-#define FIRE_LAYER				25		//If you're on fire
-#define TARGETED_LAYER			26		//BS12: Layer for the target overlay from weapon targeting system
-#define TOTAL_LAYERS			26
+#define BELLY_LAYER				16		//Vorestation edit
+#define HAIR_LAYER				17		//TODO: make part of head layer?
+#define EARS_LAYER				18
+#define FACEMASK_LAYER			19
+#define HEAD_LAYER				20
+#define COLLAR_LAYER			21
+#define HANDCUFF_LAYER			22
+#define LEGCUFF_LAYER			23
+#define L_HAND_LAYER			24
+#define R_HAND_LAYER			25
+#define FIRE_LAYER				26		//If you're on fire
+#define TARGETED_LAYER			27		//BS12: Layer for the target overlay from weapon targeting system
+#define TOTAL_LAYERS			27
 //////////////////////////////////
 
 /mob/living/carbon/human
@@ -167,6 +168,9 @@ Please contact me on #coderbus IRC. ~Carn x
 		M.Scale(size_multiplier)
 		M.Translate(0, 16*(size_multiplier-1))
 		src.transform = M
+
+	//vorestation edit - HACK. Please explain how to fix and I will
+	update_belly(0)
 
 var/global/list/damage_icon_parts = list()
 
@@ -331,6 +335,8 @@ var/global/list/damage_icon_parts = list()
 
 	//tail
 	update_tail_showing(0)
+	//vorestation edit
+	//update_belly(0)
 
 //UNDERWEAR OVERLAY
 /mob/living/carbon/human/proc/update_underwear(var/update_icons=1)
@@ -393,6 +399,36 @@ var/global/list/damage_icon_parts = list()
 	overlays_standing[HAIR_LAYER]	= image(face_standing)
 
 	if(update_icons)   update_icons()
+
+//VOREstation edit
+/mob/living/carbon/human/proc/update_belly(var/update_icons=1)
+	overlays_standing[BELLY_LAYER] = null
+	var/bellysize = 0
+	//Code to determine the size of a food-based belly
+	if (food_belly_toggle == 1)
+		switch(nutrition)
+			if(0 to 499)
+				bellysize += 0 //If they're not fat, don't render a belly
+			if(500 to 1199)
+				bellysize += 0.5 //First level of stuffed
+			if(1200 to 1934)
+				bellysize += 1 //Equal to one person of same size
+			if(1935 to 4074)
+				bellysize += 1.5 //Two or three people
+			if(4075 to INFINITY)
+				bellysize = 2 //The largest size
+
+	//Code for vore stuff will prolly go here
+	//if(bellysize <= 2) //No point in continuing here if the belly is already the largest size
+	//Code to render the belly
+	var/icon/belly_s = null
+	if(bellysize > 0)
+		belly_s = new/icon("icon" = "icons/vore/bellies.dmi", "icon_state" = "[bellysize]")
+		belly_s.Blend(rgb(r_skin, g_skin, b_skin), ICON_MULTIPLY)
+		overlays_standing[BELLY_LAYER]	= image(belly_s)
+
+	if(update_icons)
+		update_icons()
 
 /mob/living/carbon/human/update_mutations(var/update_icons=1)
 	var/fat
@@ -470,6 +506,8 @@ var/global/list/damage_icon_parts = list()
 	update_icons()
 	//Hud Stuff
 	update_hud()
+	//vorestation edit
+	update_belly(0)
 
 /* --------------------------------------- */
 //vvvvvv UPDATE_INV PROCS vvvvvv
