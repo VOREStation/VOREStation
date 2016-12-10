@@ -26,7 +26,7 @@ Don't use ranged mobs for vore mobs.
 	var/min_size = 0.25 // Min: 0.25
 	var/picky = 1 // Won't eat undigestable prey by default
 	var/fullness = 0
-	var/eat_chance = 50
+	var/eat_chance = 5 // Determines how likely a mob is to pounce on you per attack. 5% by default.
 	swallowTime = 1 // Hungry little bastards.
 
 	// By default, this is what most vore mobs are capable of.
@@ -158,4 +158,4 @@ Don't use ranged mobs for vore mobs.
 	pixel_y = -16
 	maxHealth = 200
 	health = 200
-	eat_chance = 60 // Bigger mobs, bigger appetite.
+	eat_chance = 50 // Bigger mobs, bigger appetite.
