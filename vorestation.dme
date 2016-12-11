@@ -243,6 +243,7 @@
 #include "code\datums\underwear\top.dm"
 #include "code\datums\underwear\undershirts.dm"
 #include "code\datums\underwear\underwear.dm"
+#include "code\datums\underwear\underwear_vr.dm"
 #include "code\datums\uplink\ammunition.dm"
 #include "code\datums\uplink\announcements.dm"
 #include "code\datums\uplink\armor.dm"
