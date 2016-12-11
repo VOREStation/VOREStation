@@ -238,6 +238,37 @@
 
 	New()
 		..()
+		new /obj/item/clothing/under/rank/psych(src)
+		new /obj/item/clothing/under/rank/psych/turtleneck(src)
+		new /obj/item/clothing/suit/straight_jacket(src)
+		new /obj/item/weapon/reagent_containers/glass/bottle/stoxin(src)
+		new /obj/item/weapon/reagent_containers/syringe(src)
+		new /obj/item/weapon/storage/pill_bottle/citalopram(src)
+		new /obj/item/weapon/reagent_containers/pill/methylphenidate(src)
+		new /obj/item/weapon/clipboard(src)
+		new /obj/item/weapon/folder/white(src)
+		new /obj/item/device/taperecorder(src)
+		new /obj/item/device/tape/random(src)
+		new /obj/item/device/tape/random(src)
+		new /obj/item/device/tape/random(src)
+		new /obj/item/device/camera(src)
+		new /obj/item/toy/therapy_blue(src)
+		return
+
+/obj/structure/closet/secure_closet/psych
+	name = "psychiatric closet"
+	desc = "Store psychology tools and medicines in here."
+	icon_state = "medical1"
+	icon_closed = "medical"
+	icon_locked = "medical1"
+	icon_opened = "medicalopen"
+	icon_broken = "medicalbroken"
+	icon_off = "medicaloff"
+	req_access = list(access_psychiatrist)
+
+
+	New()
+		..()
 		new /obj/item/weapon/storage/box/pillbottles(src)
 		new /obj/item/weapon/storage/box/pillbottles(src)
 		return

@@ -30,6 +30,7 @@
 
 //Jackets with buttons, used for labcoats, IA jackets, First Responder jackets, and brown jackets.
 /obj/item/clothing/suit/storage/toggle
+	flags_inv = HIDEHOLSTER
 	var/icon_open
 	var/icon_closed
 	verb/toggle()
@@ -41,16 +42,20 @@
 
 		if(icon_state == icon_open) //Will check whether icon state is currently set to the "open" or "closed" state and switch it around with a message to the user
 			icon_state = icon_closed
+			flags_inv = HIDETIE|HIDEHOLSTER
 			usr << "You button up the coat."
 		else if(icon_state == icon_closed)
 			icon_state = icon_open
+			flags_inv = HIDEHOLSTER
 			usr << "You unbutton the coat."
 		else //in case some goofy admin switches icon states around without switching the icon_open or icon_closed
 			usr << "You attempt to button-up the velcro on your [src], before promptly realising how silly you are."
 			return
 		update_clothing_icon()	//so our overlays update
 
+
 /obj/item/clothing/suit/storage/hooded/toggle
+	flags_inv = HIDEHOLSTER
 	var/icon_open
 	var/icon_closed
 	verb/toggle()
@@ -62,9 +67,11 @@
 
 		if(icon_state == icon_open) //Will check whether icon state is currently set to the "open" or "closed" state and switch it around with a message to the user
 			icon_state = icon_closed
+			flags_inv = HIDETIE|HIDEHOLSTER
 			usr << "You button up the coat."
 		else if(icon_state == icon_closed)
 			icon_state = icon_open
+			flags_inv = HIDEHOLSTER
 			usr << "You unbutton the coat."
 		else //in case some goofy admin switches icon states around without switching the icon_open or icon_closed
 			usr << "You attempt to button-up the velcro on your [src], before promptly realising how silly you are."

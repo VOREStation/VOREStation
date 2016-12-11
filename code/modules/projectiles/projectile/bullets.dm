@@ -127,11 +127,15 @@
 	damage = 20
 
 /obj/item/projectile/bullet/pistol/ap
-	damage = 20
+	damage = 15
 	armor_penetration = 30
 
 /obj/item/projectile/bullet/pistol/medium
 	damage = 25
+
+/obj/item/projectile/bullet/pistol/medium/ap
+	damage = 20
+	armor_penetration = 15
 
 /obj/item/projectile/bullet/pistol/strong //revolvers and matebas
 	damage = 60

@@ -159,6 +159,13 @@ item_path: /obj/item/clothing/accessory/medal/bronze_heart
 # ######## G CKEYS
 # ######## H CKEYS
 # ######## I CKEYS
+
+{
+ckey: ivymoomoo
+character_name: Ivy Baladeva
+item_path: /obj/item/weapon/storage/backpack/messenger/sec/fluff/ivymoomoo
+}
+
 # ######## J CKEYS
 
 {
@@ -372,6 +379,12 @@ item_path: /obj/item/device/modkit_conversion/fluff/screekit
 ckey: scree
 character_name: Scree
 item_path: /obj/item/clothing/head/fluff/pompom
+}
+
+{
+ckey: silencedmp5a5
+character_name: Serdykov Antoz
+item_path: /obj/item/device/modkit_conversion/fluff/serdykit
 }
 
 {

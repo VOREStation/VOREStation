@@ -54,26 +54,28 @@
 	icon_state = "death"
 	flags = CONDUCT
 	fire_resist = T0C+5200
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 
 /obj/item/clothing/suit/greatcoat
 	name = "great coat"
 	desc = "A heavy great coat"
 	icon_state = "gentlecoat"
 	item_state_slots = list(slot_r_hand_str = "greatcoat", slot_l_hand_str = "greatcoat")
+	flags_inv = HIDEHOLSTER
 
 /obj/item/clothing/suit/johnny_coat
 	name = "johnny~~ coat"
 	desc = "Johnny~~"
 	icon_state = "gentlecoat"
 	item_state_slots = list(slot_r_hand_str = "johnny_coat", slot_l_hand_str = "johnny_coat")
+	flags_inv = HIDEHOLSTER
 
 /obj/item/clothing/suit/justice
 	name = "justice suit"
 	desc = "This pretty much looks ridiculous."
 	icon_state = "gentle_coat"
 	item_state_slots = list(slot_r_hand_str = "greatcoat", slot_l_hand_str = "greatcoat")
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|HANDS|LEGS|FEET
 
 /obj/item/clothing/suit/judgerobe
@@ -82,7 +84,7 @@
 	icon_state = "judge"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	allowed = list(/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/spacecash)
-	flags_inv = HIDEJUMPSUIT
+	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 
 /*/obj/item/clothing/suit/wcoat
 	name = "waistcoat"
@@ -130,7 +132,7 @@
 	desc = "A plastic replica of the syndicate space suit, you'll look just like a real murderous syndicate agent in this! This is a toy, it is not made for use in space!"
 	w_class = ITEMSIZE_NORMAL
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank/emergency_oxygen,/obj/item/toy)
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL|HIDETIE|HIDEHOLSTER
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|HANDS|LEGS|FEET
 
 /obj/item/clothing/suit/hastur
@@ -139,21 +141,21 @@
 	icon_state = "hastur"
 	item_state_slots = list(slot_r_hand_str = "rad", slot_l_hand_str = "rad")
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 
 /obj/item/clothing/suit/imperium_monk
 	name = "Imperium monk"
 	desc = "Have YOU killed a xenos today?"
 	icon_state = "imperium_monk"
 	body_parts_covered = HEAD|UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
-	flags_inv = HIDESHOES|HIDEJUMPSUIT
+	flags_inv = HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 
 /obj/item/clothing/suit/chickensuit
 	name = "Chicken Suit"
 	desc = "A suit made long ago by the ancient empire KFC."
 	icon_state = "chickensuit"
 	body_parts_covered = UPPER_TORSO|ARMS|LOWER_TORSO|LEGS|FEET
-	flags_inv = HIDESHOES|HIDEJUMPSUIT
+	flags_inv = HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 	siemens_coefficient = 2.0
 
 /obj/item/clothing/suit/monkeysuit
@@ -162,7 +164,7 @@
 	icon_state = "monkeysuit"
 	item_state_slots = list(slot_r_hand_str = "brown_jacket", slot_l_hand_str = "brown_jacket")
 	body_parts_covered = UPPER_TORSO|ARMS|LOWER_TORSO|LEGS|FEET|HANDS
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 	siemens_coefficient = 2.0
 
 /obj/item/clothing/suit/holidaypriest
@@ -171,21 +173,21 @@
 	icon_state = "holidaypriest"
 	item_state_slots = list(slot_r_hand_str = "labcoat", slot_l_hand_str = "labcoat")
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	flags_inv = HIDEJUMPSUIT
+	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 
 /obj/item/clothing/suit/cardborg
 	name = "cardborg suit"
 	desc = "An ordinary cardboard box with holes cut in the sides."
 	icon_state = "cardborg"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	flags_inv = HIDEJUMPSUIT
+	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 
 /obj/item/clothing/suit/skeleton
 	name = "skeleton costume"
 	desc = "A body-tight costume with the human skeleton lined out on it."
 	icon_state = "skelecost"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS|FEET|HANDS|EYES|HEAD|FACE
-	flags_inv = HIDEJUMPSUIT|HIDESHOES|HIDEGLOVES
+	flags_inv = HIDEJUMPSUIT|HIDESHOES|HIDEGLOVES|HIDETIE|HIDEHOLSTER
 	item_state_slots = list(slot_r_hand_str = "judge", slot_l_hand_str = "judge")
 
 /obj/item/clothing/suit/engicost
@@ -193,7 +195,7 @@
 	desc = "It's supposed to look like an engineering voidsuit... It doesn't look like it could protect from much radiation."
 	icon_state = "engicost"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|FEET
-	flags_inv = HIDEJUMPSUIT|HIDESHOES
+	flags_inv = HIDEJUMPSUIT|HIDESHOES|HIDETIE|HIDEHOLSTER
 	item_state_slots = list(slot_r_hand_str = "eng_voidsuit", slot_l_hand_str = "eng_voidsuit")
 
 /obj/item/clothing/suit/maxman
@@ -201,7 +203,7 @@
 	desc = "A costume made to look like Dr. Maxman, the famous male-enhancement salesman. Complete with red do-rag and sleeveless labcoat."
 	icon_state = "maxman"
 	body_parts_covered = LOWER_TORSO|FEET|LEGS|HEAD
-	flags_inv = HIDEJUMPSUIT|HIDESHOES
+	flags_inv = HIDEJUMPSUIT|HIDESHOES|HIDETIE|HIDEHOLSTER
 	item_state_slots = list(slot_r_hand_str = "leather_jacket", slot_l_hand_str = "leather_jacket")
 
 /obj/item/clothing/suit/iasexy
@@ -209,7 +211,7 @@
 	desc = "Now where's your pen?~..."
 	icon_state = "iacost"
 	body_parts_covered = UPPER_TORSO|FEET|LOWER_TORSO|EYES
-	flags_inv = HIDEJUMPSUIT|HIDESHOES
+	flags_inv = HIDEJUMPSUIT|HIDESHOES|HIDETIE|HIDEHOLSTER
 	item_state_slots = list(slot_r_hand_str = "suit_black", slot_l_hand_str = "suit_black")
 
 /obj/item/clothing/suit/sexyminer
@@ -217,7 +219,7 @@
 	desc = "For when you need to get your rocks off."
 	icon_state = "sexyminer"
 	body_parts_covered = FEET|LOWER_TORSO|HEAD
-	flags_inv = HIDEJUMPSUIT|HIDESHOES
+	flags_inv = HIDEJUMPSUIT|HIDESHOES|HIDETIE|HIDEHOLSTER
 	item_state_slots = list(slot_r_hand_str = "miner", slot_l_hand_str = "miner")
 
 /obj/item/clothing/suit/sumo
@@ -225,7 +227,7 @@
 	desc = "An inflated sumo wrestler costume. It's quite hot."
 	icon_state = "sumo"
 	body_parts_covered = FEET|LOWER_TORSO|UPPER_TORSO|LEGS|ARMS
-	flags_inv = HIDESHOES
+	flags_inv = HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 	item_state_slots = list(slot_r_hand_str = "classicponcho", slot_l_hand_str = "classicponcho")
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 
@@ -234,7 +236,7 @@
 	desc = "You would feel insanely cool wearing this."
 	icon_state = "hackercost"
 	body_parts_covered = FEET|LOWER_TORSO|UPPER_TORSO|LEGS|ARMS|EYES
-	flags_inv = HIDESHOES
+	flags_inv = HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 	item_state_slots = list(slot_r_hand_str = "leather_coat", slot_l_hand_str = "leather_coat")
 
 /obj/item/clothing/suit/lumber
@@ -242,7 +244,7 @@
 	desc = "Smells of dusky pine. Includes chest hair and beard."
 	icon_state = "sexylumber"
 	body_parts_covered = FEET|LOWER_TORSO|FEET
-	flags_inv = HIDESHOES|HIDEJUMPSUIT
+	flags_inv = HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 	item_state_slots = list(slot_r_hand_str = "red_labcoat", slot_l_hand_str = "red_labcoat")
 
 /*
@@ -253,7 +255,7 @@
 	desc = "A suit that completely restrains the wearer."
 	icon_state = "straight_jacket"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
+	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL|HIDETIE|HIDEHOLSTER
 
 /obj/item/clothing/suit/ianshirt
 	name = "worn shirt"
@@ -261,6 +263,7 @@
 	icon_state = "ianshirt"
 	item_state_slots = list(slot_r_hand_str = "labcoat", slot_l_hand_str = "labcoat") //placeholder -S2-
 	body_parts_covered = UPPER_TORSO|ARMS
+	flags_inv = HIDETIE|HIDEHOLSTER
 
 /*
  * coats
@@ -271,12 +274,14 @@
 	icon_state = "leathercoat_alt"
 	allowed = list (/obj/item/weapon/pen, /obj/item/weapon/paper, /obj/item/device/flashlight, /obj/item/weapon/tank/emergency_oxygen, /obj/item/weapon/storage/fancy/cigarettes, /obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask)
 	item_state_slots = list(slot_r_hand_str = "leather_jacket", slot_l_hand_str = "leather_jacket")
+	flags_inv = HIDEHOLSTER
 
 /obj/item/clothing/suit/leathercoat/sec
 	name = "leather coat"
 	desc = "A long, thick black leather coat."
 	icon_state = "leathercoat_sec"
 	item_state_slots = list(slot_r_hand_str = "leather_jacket", slot_l_hand_str = "leather_jacket")
+	flags_inv = HIDEHOLSTER
 
 /obj/item/clothing/suit/browncoat
 	name = "brown leather coat"
@@ -284,6 +289,7 @@
 	icon_state = "browncoat"
 	allowed = list (/obj/item/weapon/pen, /obj/item/weapon/paper, /obj/item/device/flashlight,/obj/item/weapon/tank/emergency_oxygen, /obj/item/weapon/storage/fancy/cigarettes, /obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask)
 	item_state_slots = list(slot_r_hand_str = "brown_jacket", slot_l_hand_str = "brown_jacket")
+	flags_inv = HIDEHOLSTER
 
 /obj/item/clothing/suit/neocoat
 	name = "black coat"
@@ -291,18 +297,21 @@
 	icon_state = "neocoat"
 	allowed = list (/obj/item/weapon/pen, /obj/item/weapon/paper, /obj/item/device/flashlight, /obj/item/weapon/tank/emergency_oxygen, /obj/item/weapon/storage/fancy/cigarettes, /obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask)
 	item_state_slots = list(slot_r_hand_str = "leather_jacket", slot_l_hand_str = "leather_jacket")
+	flags_inv = HIDEHOLSTER
 
 /obj/item/clothing/suit/customs
 	name = "customs jacket"
 	desc = "A standard SolGov Customs formal jacket."
 	icon_state = "customs_jacket"
 	item_state_slots = list(slot_r_hand_str = "suit_blue", slot_l_hand_str = "suit_blue")
+	flags_inv = HIDEHOLSTER
 
 /obj/item/clothing/suit/storage/greyjacket
 	name = "grey jacket"
 	desc = "A fancy twead grey jacket."
 	icon_state = "gentlecoat"
 	item_state_slots = list(slot_r_hand_str = "leather_jacket", slot_l_hand_str = "leather_jacket")
+	flags_inv = HIDEHOLSTER
 
 /obj/item/clothing/suit/storage/trench
 	name = "brown trenchcoat"
@@ -310,11 +319,13 @@
 	icon_state = "detective"
 	blood_overlay_type = "coat"
 	allowed = list(/obj/item/weapon/tank/emergency_oxygen, /obj/item/device/flashlight,/obj/item/weapon/gun/energy,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/device/taperecorder,/obj/item/device/uv_light)
+	flags_inv = HIDEHOLSTER
 
 /obj/item/clothing/suit/storage/trench/grey
 	name = "grey trenchcoat"
 	icon_state = "detective2"
 	item_state_slots = list(slot_r_hand_str = "leather_jacket", slot_l_hand_str = "leather_jacket")
+	flags_inv = HIDEHOLSTER
 
 /*
  * stripper
@@ -339,7 +350,7 @@
 	icon_state = "xenos"
 	item_state_slots = list(slot_r_hand_str = "black_suit", slot_l_hand_str = "black_suit")
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 	siemens_coefficient = 2.0
 
 /obj/item/clothing/suit/jacket/puffer
@@ -359,18 +370,21 @@
 	desc = "A canvas jacket styled after classical American military garb. Feels sturdy, yet comfortable."
 	icon_state = "militaryjacket_nobadge"
 	item_state_slots = list(slot_r_hand_str = "suit_olive", slot_l_hand_str = "suit_olive")
+	flags_inv = HIDEHOLSTER
 
 /obj/item/clothing/suit/storage/miljacket/alt
 	name = "military jacket"
 	desc = "A canvas jacket styled after classical American military garb. Feels sturdy, yet comfortable."
 	icon_state = "militaryjacket_badge"
 	item_state_slots = list(slot_r_hand_str = "suit_olive", slot_l_hand_str = "suit_olive")
+	flags_inv = HIDEHOLSTER
 
 /obj/item/clothing/suit/storage/miljacket/green
 	name = "military jacket"
 	desc = "A dark green canvas jacket. Feels sturdy, yet comfortable."
 	icon_state = "militaryjacket_green"
 	item_state_slots = list(slot_r_hand_str = "suit_olive", slot_l_hand_str = "suit_olive")
+	flags_inv = HIDEHOLSTER
 
 /obj/item/clothing/suit/storage/toggle/bomber
 	name = "bomber jacket"
@@ -381,6 +395,7 @@
 	icon_closed = "bomber"
 	allowed = list (/obj/item/weapon/pen, /obj/item/weapon/paper, /obj/item/device/flashlight, /obj/item/weapon/tank/emergency_oxygen, /obj/item/weapon/storage/fancy/cigarettes, /obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask)
 	body_parts_covered = UPPER_TORSO|ARMS
+	flags_inv = HIDEHOLSTER
 	cold_protection = UPPER_TORSO|ARMS
 	min_cold_protection_temperature = T0C - 20
 	siemens_coefficient = 0.7
@@ -391,6 +406,7 @@
 	icon_state = "bomberjacket_new"
 	item_state_slots = list(slot_r_hand_str = "brown_jacket", slot_l_hand_str = "brown_jacket")
 	body_parts_covered = UPPER_TORSO|ARMS
+	flags_inv = HIDEHOLSTER
 	cold_protection = UPPER_TORSO|ARMS
 	min_cold_protection_temperature = T0C - 20
 	siemens_coefficient = 0.7
@@ -402,6 +418,7 @@
 	icon_open = "leather_jacket_open"
 	allowed = list (/obj/item/weapon/pen, /obj/item/weapon/paper, /obj/item/device/flashlight, /obj/item/weapon/tank/emergency_oxygen, /obj/item/weapon/storage/fancy/cigarettes, /obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask)
 	body_parts_covered = UPPER_TORSO|ARMS
+	flags_inv = HIDEHOLSTER
 
 /obj/item/clothing/suit/storage/toggle/leather_jacket/sleeveless
 	name = "leather vest"
@@ -445,6 +462,7 @@
 	icon_closed = "brown_jacket"
 	allowed = list (/obj/item/weapon/pen, /obj/item/weapon/paper, /obj/item/device/flashlight,/obj/item/weapon/tank/emergency_oxygen, /obj/item/weapon/storage/fancy/cigarettes, /obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask)
 	body_parts_covered = UPPER_TORSO|ARMS
+	flags_inv = HIDEHOLSTER
 
 /obj/item/clothing/suit/storage/toggle/brown_jacket/sleeveless
 	name = "brown vest"
@@ -480,6 +498,7 @@
 	icon_closed = "denim_jacket"
 	allowed = list (/obj/item/weapon/pen, /obj/item/weapon/paper, /obj/item/device/flashlight,/obj/item/weapon/tank/emergency_oxygen, /obj/item/weapon/storage/fancy/cigarettes, /obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask)
 	body_parts_covered = UPPER_TORSO|ARMS
+	flags_inv = HIDEHOLSTER
 
 /obj/item/clothing/suit/storage/toggle/denim_jacket/sleeveless
 	name = "denim vest"
@@ -515,6 +534,7 @@
 	icon_closed = "grey_hoodie"
 	min_cold_protection_temperature = T0C - 20
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+	flags_inv = HIDEHOLSTER
 
 /obj/item/clothing/suit/storage/toggle/hoodie/black
 	name = "black hoodie"
@@ -602,7 +622,7 @@
 	icon_state = "white_dress"
 	item_state_slots = list(slot_r_hand_str = "white_dress", slot_l_hand_str = "white_dress")
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
-	flags_inv = HIDEJUMPSUIT
+	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 
 /obj/item/clothing/suit/storage/hooded/carp_costume
 	name = "carp costume"
@@ -610,6 +630,7 @@
 	icon_state = "carp_casual"
 	item_state_slots = list(slot_r_hand_str = "carp_casual", slot_l_hand_str = "carp_casual") //Does not exist -S2-
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE	//Space carp like space, so you should too
 	hooded = 1
@@ -631,6 +652,7 @@
 	icon_state = "ian"
 	item_state_slots = list(slot_r_hand_str = "ian", slot_l_hand_str = "ian") //Does not exist -S2-
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 	//cold_protection = CHEST|GROIN|ARMS
 	//min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 	hooded = 1
@@ -652,6 +674,7 @@
 	icon_state = "coatwinter"
 	item_state_slots = list(slot_r_hand_str = "coatwinter", slot_l_hand_str = "coatwinter")
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	flags_inv = HIDEHOLSTER
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
@@ -726,6 +749,7 @@
 	icon_state = "varsity"
 	allowed = list (/obj/item/weapon/pen, /obj/item/weapon/paper, /obj/item/device/flashlight,/obj/item/weapon/tank/emergency_oxygen, /obj/item/weapon/storage/fancy/cigarettes, /obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask)
 	item_state_slots = list(slot_r_hand_str = "suit_black", slot_l_hand_str = "suit_black")
+	flags_inv = HIDETIE|HIDEHOLSTER
 
 /obj/item/clothing/suit/varsity/red
 	name = "red varsity jacket"
@@ -795,6 +819,7 @@
 	icon_state = "flannel"
 	item_state_slots = list(slot_r_hand_str = "black_labcoat", slot_l_hand_str = "black_labcoat")
 	allowed = list (/obj/item/weapon/pen, /obj/item/weapon/paper, /obj/item/device/flashlight,/obj/item/weapon/tank/emergency_oxygen, /obj/item/weapon/storage/fancy/cigarettes, /obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask)
+	flags_inv = HIDEHOLSTER
 	var/rolled = 0
 	var/tucked = 0
 	var/buttoned = 0
@@ -840,10 +865,12 @@
 
 	if(buttoned == 0)
 		buttoned = 1
-		usr << "<span class='notice'>You unbutton your [src].</span>"
+		flags_inv = HIDETIE|HIDEHOLSTER
+		usr << "<span class='notice'>You button your [src].</span>"
 	else
 		buttoned = 0
-		usr<<"<span class='notice'>You button your [src].</span>"
+		flags_inv = HIDEHOLSTER
+		usr<<"<span class='notice'>You unbutton your [src].</span>"
 	update_icon()
 
 /obj/item/clothing/suit/storage/flannel/update_icon()
@@ -882,3 +909,4 @@
 	icon_closed = "suitjacket_green"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|ARMS
+	flags_inv = HIDEHOLSTER

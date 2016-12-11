@@ -63,6 +63,12 @@
 	caliber = ".45"
 	projectile_type = /obj/item/projectile/bullet/pistol/medium
 
+/obj/item/ammo_casing/c45ap
+	desc = "A .45 Armor-Piercing bullet casing."
+	caliber = ".45"
+	icon_state = "r-casing"
+	projectile_type = /obj/item/projectile/bullet/pistol/medium/ap
+
 /obj/item/ammo_casing/c45p
 	desc = "A .45 practice bullet casing."
 	caliber = ".45"

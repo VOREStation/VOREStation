@@ -22,14 +22,14 @@
 		qdel(src)
 	var/list/nearby_things = range(calculate_spell_power(4),owner)
 
-	var/temp_change = calculate_spell_power(40)
+	var/temp_change = calculate_spell_power(80)
 	var/temp_cap = calculate_spell_power(600)
 	var/fire_power = calculate_spell_power(2)
 
 	if(check_for_scepter())
-		temp_change = calculate_spell_power(80)
-		temp_cap = calculate_spell_power(1000)
-		fire_power = calculate_spell_power(4)
+		temp_change *= 2
+		temp_cap *= 2
+		fire_power *= 2
 
 	for(var/mob/living/carbon/human/H in nearby_things)
 		if(is_ally(H))

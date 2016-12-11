@@ -12,7 +12,7 @@
 		var/mob/living/carbon/human/C = src
 		var/nutrition_used = C.nutrition/2
 
-		if(C.species.reviving == 1) //If they're already unable to
+		if(C.reviving == 1) //If they're already unable to
 			C << "You are already reconstructing, or your body is currently recovering from the intense process of your previous reconstitution."
 			return
 
@@ -20,7 +20,7 @@
 			if(C.reagents.has_reagent("nutriment")) //Let's hope you have nutriment in you.... If not
 				var/time = (500+1/((nutrition_used/100+1)/1300))
 				C.weakened = 10000 //Since it takes 1 tick to lose one weaken. Due to prior rounding errors, you'd sometimes unweaken before regenning. This fixes that.
-				C.species.reviving = 1
+				C.reviving = 1
 				C.canmove = 0 //Make them unable to move. In case they somehow get up before the delay.
 				C << "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds."
 				C.in_stasis = 1
@@ -39,7 +39,7 @@
 		else if(C.stat != DEAD) //If they're alive at the time of reviving.
 			var/time = (500+1/((nutrition_used/100+1)/1300))
 			C.weakened = 10000 //Since it takes 1 tick to lose one weaken. Due to prior rounding errors, you'd sometimes unweaken before regenning. This fixes that.
-			C.species.reviving = 1
+			C.reviving = 1
 			C.canmove = 0 //Make them unable to move. In case they somehow get up before the delay.
 			C << "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds."
 			C.in_stasis = 1
@@ -94,7 +94,7 @@
 					for(var/obj/item/W in C)
 						C.drop_from_inventory(W)
 					spawn(3600 SECONDS) //1 hour wait until you can revive.
-						C.species.reviving = 0
+						C.reviving = 0
 					C.verbs -= /mob/living/carbon/human/proc/hatch
 					return
 				else
@@ -118,7 +118,7 @@
 			for(var/obj/item/W in C)
 				C.drop_from_inventory(W)
 			spawn(3600 SECONDS) //1 hour wait until you can revive again.
-				C.species.reviving = 0
+				C.reviving = 0
 			C.in_stasis = 0
 			C.verbs -= /mob/living/carbon/human/proc/hatch
 			return

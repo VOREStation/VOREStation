@@ -106,6 +106,16 @@
 		update()
 		return
 
+	if(istype(I, /obj/item/weapon/material/ashtray))
+		var/obj/item/weapon/material/ashtray/A = I
+		if(A.contents.len > 0)
+			user.visible_message("<span class='notice'>\The [user] empties \the [A.name] into [src].</span>")
+			for(var/obj/item/O in A.contents)
+				O.forceMove(src)
+			A.update_icon()
+			update()
+			return
+
 	var/obj/item/weapon/grab/G = I
 	if(istype(G))	// handle grabbed mob
 		if(ismob(G.affecting))

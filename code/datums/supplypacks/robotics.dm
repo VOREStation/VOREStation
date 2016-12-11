@@ -24,7 +24,7 @@
 	containername = "Robotics assembly"
 	access = access_robotics
 
-/datum/supply_packs/robotics/robolimbs_basic
+/*/datum/supply_packs/robotics/robolimbs_basic
 	name = "Basic robolimb blueprints"
 	contains = list(
 			/obj/item/weapon/disk/limb/morpheus,
@@ -49,6 +49,55 @@
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "Robolimb blueprints (adv)"
+	access = access_robotics
+*/
+
+/datum/supply_packs/robotics/robolimbs/morpheus
+	name = "Morpheus robolimb blueprints"
+	contains = list(/obj/item/weapon/disk/limb/morpheus)
+	cost = 20
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "Robolimb blueprints (Morpheus)"
+	access = access_robotics
+
+/datum/supply_packs/robotics/robolimbs/xion
+	name = "Xion robolimb blueprints"
+	contains = list(/obj/item/weapon/disk/limb/xion)
+	cost = 20
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "Robolimb blueprints (Xion)"
+	access = access_robotics
+
+/datum/supply_packs/robotics/robolimbs/wardtakahashi
+	name = "Ward-Takahashi robolimb blueprints"
+	contains = list(/obj/item/weapon/disk/limb/wardtakahashi)
+	cost = 35
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "Robolimb blueprints (Ward-Takahashi)"
+	access = access_robotics
+
+/datum/supply_packs/robotics/robolimbs/zenghu
+	name = "Zeng Hu robolimb blueprints"
+	contains = list(/obj/item/weapon/disk/limb/zenghu)
+	cost = 35
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "Robolimb blueprints (Zeng Hu)"
+	access = access_robotics
+
+/datum/supply_packs/robotics/robolimbs/bishop
+	name = "Bishop robolimb blueprints"
+	contains = list(/obj/item/weapon/disk/limb/bishop)
+	cost = 70
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "Robolimb blueprints (Bishop)"
+	access = access_robotics
+
+/datum/supply_packs/robotics/robolimbs/veymed
+	name = "Vey-Med robolimb blueprints"
+	contains = list(/obj/item/weapon/disk/limb/veymed)
+	cost = 70
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "Robolimb blueprints (Vey-Med)"
 	access = access_robotics
 
 /datum/supply_packs/robotics/mecha_ripley

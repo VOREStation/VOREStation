@@ -1,5 +1,6 @@
 //Misc
 #define DEAD_PLANT_COLOUR "#C2A180"
+#define FROZEN_PLANT_COLOUR "#CCFFFF"
 
 // Definitions for genes (trait groupings)
 #define GENE_BIOCHEMISTRY "biochemistry"

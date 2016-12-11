@@ -390,16 +390,21 @@
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_PHORON = 3)
 	matter = list(DEFAULT_WALL_MATERIAL = 70, "glass" = 120)
-	var/last_gen = 0
+	var/nextrefueltick = 0
 
+/obj/item/weapon/weldingtool/experimental/New()
+	processing_objects |= src
+	..()
 
+/obj/item/weapon/weldingtool/experimental/Destroy()
+	processing_objects -= src
+	..()
 
-/obj/item/weapon/weldingtool/experimental/proc/fuel_gen()//Proc to make the experimental welder generate fuel, optimized as fuck -Sieve
-	var/gen_amount = ((world.time-last_gen)/25)
-	reagents += (gen_amount)
-	if(reagents > max_fuel)
-		reagents = max_fuel
-
+/obj/item/weapon/weldingtool/experimental/process()
+	..()
+	if(get_fuel() < max_fuel && nextrefueltick < world.time)
+		nextrefueltick = world.time + 10
+		reagents.add_reagent("fuel", 1)
 /*
  * Crowbar
  */

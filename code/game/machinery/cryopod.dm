@@ -410,6 +410,13 @@
 				preserve = 1
 				break
 
+		if(istype(W,/obj/item/weapon/implant/health))
+			for(var/obj/machinery/computer/cloning/com in world)
+				for(var/datum/dna2/record/R in com.records)
+					if(R.implant == W)
+						qdel(R)
+						qdel(W)
+
 		if(!preserve)
 			qdel(W)
 		else

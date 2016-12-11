@@ -155,6 +155,15 @@
 				update |= temp.take_damage(b_loss * 0.05, f_loss * 0.05, used_weapon = weapon_message)
 	if(update)	UpdateDamageIcon()
 
+/mob/living/carbon/human/proc/implant_loadout(var/datum/gear/G = new/datum/gear/utility/implant)
+	var/obj/item/weapon/implant/I = new G.path(src)
+	I.imp_in = src
+	I.implanted = 1
+	var/obj/item/organ/external/affected = src.organs_by_name[BP_HEAD]
+	affected.implants += I
+	I.part = affected
+	I.implanted(src)
+
 /mob/living/carbon/human/proc/implant_loyalty(override = FALSE) // Won't override by default.
 	if(!config.use_loyalty_implants && !override) return // Nuh-uh.
 

@@ -115,7 +115,7 @@
 				rng = rand(0,4)
 				switch(rng)
 					if(0)
-						electrocute_act(instability * 0.3, "unstable energies")
+						electrocute_act(instability * 0.3, "unstable energies", 0.75)
 					if(1)
 						adjustFireLoss(instability * 0.15) //7.5 burn @ 50 instability
 						src << "<span class='danger'>Your chassis alerts you to overheating from an unknown external force!</span>"
@@ -132,7 +132,7 @@
 				rng = rand(0,3)
 				switch(rng)
 					if(0)
-						electrocute_act(instability * 0.5, "extremely unstable energies")
+						electrocute_act(instability * 0.5, "extremely unstable energies", 0.75)
 					if(1)
 						emp_act(2)
 					if(2)
@@ -146,7 +146,7 @@
 				rng = rand(0,4)
 				switch(rng)
 					if(0)
-						electrocute_act(instability, "extremely unstable energies")
+						electrocute_act(instability, "extremely unstable energies", 0.75)
 					if(1)
 						emp_act(1)
 					if(2)

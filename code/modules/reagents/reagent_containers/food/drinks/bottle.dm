@@ -421,6 +421,18 @@
 	..()
 	reagents.add_reagent("orangejuice", 100)
 
+/obj/item/weapon/reagent_containers/food/drinks/bottle/milk
+	name = "Large Milk Carton"
+	desc = "It's milk. This carton's large enough to serve your biggest milk drinkers."
+	icon_state = "milk"
+	item_state = "carton"
+	center_of_mass = list("x"=16, "y"=9)
+	isGlass = 0
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/milk/New()
+	..()
+	reagents.add_reagent("milk", 100)
+
 /obj/item/weapon/reagent_containers/food/drinks/bottle/cream
 	name = "Milk Cream"
 	desc = "It's cream. Made from milk. What else did you think you'd find in there?"
@@ -456,6 +468,18 @@
 /obj/item/weapon/reagent_containers/food/drinks/bottle/limejuice/New()
 	..()
 	reagents.add_reagent("limejuice", 100)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/lemonjuice
+	name = "Lemon Juice"
+	desc = "Sweet-sour goodness. Minus the sweet."
+	icon_state = "lemonjuice"
+	item_state = "carton"
+	center_of_mass = list("x"=16, "y"=8)
+	isGlass = 0
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/lemonjuice/New()
+	..()
+	reagents.add_reagent("lemonjuice", 100)
 
 //Small bottles
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small

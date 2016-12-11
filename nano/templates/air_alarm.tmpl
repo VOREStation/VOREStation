@@ -128,7 +128,7 @@ Used In File(s): \code\game\machinery\alarm.dm
 					Operation Mode:
 				</div>
 				<div class="itemContent">
-					{{:value.direction == "siphon" ? 'Siphoning' : 'Pressurizing'}}
+					{{:helper.link(value.direction == "siphon" ? 'Siphoning' : 'Pressurizing', null, { 'id_tag' : value.id_tag, 'command' : 'direction', 'val' : value.direction == "siphon" ? 1 : 0}, null, value.direction == "siphon" ? 'redButton' : null)}}
 				</div>
 			</div>
 			<div class="item">

@@ -59,6 +59,7 @@
 	orange		spawn_reagent = "orangejuice"
 	lime		spawn_reagent = "limejuice"
 	watermelon	spawn_reagent = "watermelonjuice"
+	lemon		spawn_reagent = "lemonjuice"
 
 	// Bar, coffee
 	coffee		spawn_reagent = "coffee"

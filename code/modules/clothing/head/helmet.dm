@@ -13,6 +13,46 @@
 	w_class = ITEMSIZE_NORMAL
 	ear_protection = 1
 
+/obj/item/clothing/head/helmet/solgov
+	name = "\improper Solar Confederate Government helmet"
+	desc = "A helmet painted in Peacekeeper blue. Stands out like a sore thumb."
+	icon_state = "helmet_sol"
+	armor = list(melee = 50, bullet = 50, laser = 50,energy = 25, bomb = 30, bio = 0, rad = 0)
+
+/obj/item/clothing/head/helmet/solgov/command
+	name = "command helmet"
+	desc = "A helmet with 'Solar Confederate Government' printed on the back in gold lettering."
+	icon_state = "helmet_command"
+
+/obj/item/clothing/head/helmet/solgov/security
+	name = "security helmet"
+	desc = "A helmet with 'MASTER AT ARMS' printed on the back in silver lettering."
+	icon_state = "helmet_security"
+
+/obj/item/clothing/head/helmet/nt
+	name = "\improper NanoTrasen helmet"
+	desc = "A helmet with 'CORPORATE SECURITY' printed on the back in red lettering."
+	icon_state = "helmet_nt"
+
+/obj/item/clothing/head/helmet/pcrc
+	name = "\improper PCRC helmet"
+	desc = "A helmet with 'PRIVATE SECURITY' printed on the back in cyan lettering."
+	icon_state = "helmet_pcrc"
+
+/obj/item/clothing/head/helmet/tac
+	name = "tactical helmet"
+	desc = "A tan helmet made from advanced ceramic. Comfortable and robust."
+	icon_state = "helmet_tac"
+	armor = list(melee = 50, bullet = 60, laser = 60, energy = 45, bomb = 30, bio = 0, rad = 0)
+	siemens_coefficient = 0.6
+
+/obj/item/clothing/head/helmet/merc
+	name = "combat helmet"
+	desc = "A heavily reinforced helmet painted with red markings. Feels like it could take a lot of punishment."
+	icon_state = "helmet_merc"
+	armor = list(melee = 70, bullet = 70, laser = 70, energy = 35, bomb = 30, bio = 0, rad = 0)
+	siemens_coefficient = 0.5
+
 /obj/item/clothing/head/helmet/riot
 	name = "riot helmet"
 	desc = "It's a helmet specifically designed to protect against close range attacks."

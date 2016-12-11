@@ -50,6 +50,11 @@ Buildable meters
 #define PIPE_SCRUBBERS_CAP			42
 ///// Mirrored T-valve ~ because I couldn't be bothered re-sorting all of the defines
 #define PIPE_MTVALVEM				43
+///// Digital Valves sit here because otherwise we're resorting every define.
+#define PIPE_DVALVE					44
+#define PIPE_DTVALVE				45
+#define PIPE_DTVALVEM				46
+
 
 /obj/item/pipe
 	name = "pipe"
@@ -70,6 +75,10 @@ Buildable meters
 	if (make_from)
 		src.set_dir(make_from.dir)
 		src.pipename = make_from.name
+		if(make_from.req_access)
+			src.req_access = make_from.req_access
+		if(make_from.req_one_access)
+			src.req_one_access = make_from.req_one_access
 		color = make_from.pipe_color
 		var/is_bent
 		if  (make_from.initialize_directions in list(NORTH|SOUTH, WEST|EAST))
@@ -111,6 +120,8 @@ Buildable meters
 			src.pipe_type = PIPE_MANIFOLD
 		else if(istype(make_from, /obj/machinery/atmospherics/unary/vent_pump))
 			src.pipe_type = PIPE_UVENT
+		else if(istype(make_from, /obj/machinery/atmospherics/valve/digital))
+			src.pipe_type = PIPE_DVALVE
 		else if(istype(make_from, /obj/machinery/atmospherics/valve))
 			src.pipe_type = PIPE_MVALVE
 		else if(istype(make_from, /obj/machinery/atmospherics/binary/pump/high_power))
@@ -133,8 +144,12 @@ Buildable meters
 			src.pipe_type = PIPE_PASSIVE_GATE
 		else if(istype(make_from, /obj/machinery/atmospherics/unary/heat_exchanger))
 			src.pipe_type = PIPE_HEAT_EXCHANGE
+		else if(istype(make_from, /obj/machinery/atmospherics/tvalve/mirrored/digital))
+			src.pipe_type = PIPE_DTVALVEM
 		else if(istype(make_from, /obj/machinery/atmospherics/tvalve/mirrored))
 			src.pipe_type = PIPE_MTVALVEM
+		else if(istype(make_from, /obj/machinery/atmospherics/tvalve/digital))
+			src.pipe_type = PIPE_DTVALVE
 		else if(istype(make_from, /obj/machinery/atmospherics/tvalve))
 			src.pipe_type = PIPE_MTVALVE
 		else if(istype(make_from, /obj/machinery/atmospherics/pipe/manifold4w/visible/supply) || istype(make_from, /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply))
@@ -254,6 +269,9 @@ Buildable meters
 		"supply pipe cap", \
 		"scrubbers pipe cap", \
 		"t-valve m", \
+		"dvalve", \
+		"dt-valve", \
+		"dt-valve m", \
 	)
 	name = nlist[pipe_type+1] + " fitting"
 	var/list/islist = list( \
@@ -304,6 +322,9 @@ Buildable meters
 		"cap", \
 		"cap", \
 		"mtvalvem", \
+		"dvalve", \
+		"dtvalve", \
+		"dtvalvem", \
 	)
 	icon_state = islist[pipe_type + 1]
 
@@ -370,6 +391,7 @@ Buildable meters
 			PIPE_SUPPLY_STRAIGHT, \
 			PIPE_SCRUBBERS_STRAIGHT, \
 			PIPE_UNIVERSAL, \
+			PIPE_DVALVE, \
 		)
 			return dir|flip
 		if(PIPE_SIMPLE_BENT, PIPE_INSULATED_BENT, PIPE_HE_BENT, PIPE_SUPPLY_BENT, PIPE_SCRUBBERS_BENT)
@@ -380,9 +402,9 @@ Buildable meters
 			return dir|flip|cw|acw
 		if(PIPE_MANIFOLD, PIPE_SUPPLY_MANIFOLD, PIPE_SCRUBBERS_MANIFOLD)
 			return flip|cw|acw
-		if(PIPE_GAS_FILTER, PIPE_GAS_MIXER, PIPE_MTVALVE)
+		if(PIPE_GAS_FILTER, PIPE_GAS_MIXER, PIPE_MTVALVE, PIPE_DTVALVE)
 			return dir|flip|cw
-		if(PIPE_GAS_FILTER_M, PIPE_GAS_MIXER_M, PIPE_MTVALVEM)
+		if(PIPE_GAS_FILTER_M, PIPE_GAS_MIXER_M, PIPE_MTVALVEM, PIPE_DTVALVEM)
 			return dir|flip|acw
 		if(PIPE_GAS_MIXER_T)
 			return dir|cw|acw
@@ -743,7 +765,6 @@ Buildable meters
 				V.node.initialize()
 				V.node.build_network()
 
-
 		if(PIPE_MVALVE)		//manual valve
 			var/obj/machinery/atmospherics/valve/V = new( src.loc)
 			V.set_dir(dir)
@@ -1029,6 +1050,76 @@ Buildable meters
 			if (C.node)
 				C.node.initialize()
 				C.node.build_network()
+
+		if(PIPE_DVALVE)		//digital valve
+			var/obj/machinery/atmospherics/valve/digital/V = new( src.loc)
+			if(src.req_access)
+				V.req_access = src.req_access
+			if(src.req_one_access)
+				V.req_one_access = src.req_one_access
+			V.set_dir(dir)
+			V.initialize_directions = pipe_dir
+			if (pipename)
+				V.name = pipename
+			var/turf/T = V.loc
+			V.level = !T.is_plating() ? 2 : 1
+			V.initialize()
+			V.build_network()
+			if (V.node1)
+				V.node1.initialize()
+				V.node1.build_network()
+			if (V.node2)
+				V.node2.initialize()
+				V.node2.build_network()
+
+		if(PIPE_DTVALVE)		//digital t-valve
+			var/obj/machinery/atmospherics/tvalve/digital/V = new(src.loc)
+			if(src.req_access)
+				V.req_access = src.req_access
+			if(src.req_one_access)
+				V.req_one_access = src.req_one_access
+			V.set_dir(dir)
+			V.initialize_directions = pipe_dir
+			if (pipename)
+				V.name = pipename
+			var/turf/T = V.loc
+			V.level = !T.is_plating() ? 2 : 1
+			V.initialize()
+			V.build_network()
+			if (V.node1)
+				V.node1.initialize()
+				V.node1.build_network()
+			if (V.node2)
+				V.node2.initialize()
+				V.node2.build_network()
+			if (V.node3)
+				V.node3.initialize()
+				V.node3.build_network()
+
+		if(PIPE_DTVALVEM)		//mirrored digital t-valve
+			var/obj/machinery/atmospherics/tvalve/mirrored/digital/V = new(src.loc)
+			if(src.req_access)
+				V.req_access = src.req_access
+			if(src.req_one_access)
+				V.req_one_access = src.req_one_access
+			V.set_dir(dir)
+			V.initialize_directions = pipe_dir
+			if (pipename)
+				V.name = pipename
+			var/turf/T = V.loc
+			V.level = !T.is_plating() ? 2 : 1
+			V.initialize()
+			V.build_network()
+			if (V.node1)
+				V.node1.initialize()
+				V.node1.build_network()
+			if (V.node2)
+				V.node2.initialize()
+				V.node2.build_network()
+			if (V.node3)
+				V.node3.initialize()
+				V.node3.build_network()
+
 ///// Z-Level stuff
 		if(PIPE_UP)
 			var/obj/machinery/atmospherics/pipe/zpipe/up/P = new(src.loc)

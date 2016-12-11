@@ -29,6 +29,7 @@
 	/obj/item/weapon/melee/energy/sword = 5
 	)
 	priority = 2
+	req_open = 0
 	min_duration = 90
 	max_duration = 110
 
@@ -67,6 +68,7 @@
 	/obj/item/weapon/scalpel/manager = 100
 	)
 	priority = 2
+	req_open = 0
 	min_duration = 80
 	max_duration = 120
 
@@ -108,6 +110,7 @@
 	/obj/item/weapon/material/knife = 75,	\
 	/obj/item/weapon/material/shard = 50, 		\
 	)
+	req_open = 0
 
 	min_duration = 90
 	max_duration = 110
@@ -273,6 +276,7 @@
 	/obj/item/weapon/circular_saw = 100, \
 	/obj/item/weapon/material/hatchet = 75
 	)
+	req_open = 0
 
 	min_duration = 110
 	max_duration = 160

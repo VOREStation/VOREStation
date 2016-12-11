@@ -19,6 +19,11 @@
 	if(ishuman(T))
 		var/mob/living/carbon/human/H = T
 
+		T.attack_log += text("\[[time_stamp()]\] <font color='red'>Was enfeebling stung by [key_name(src)]</font>")
+		src.attack_log += text("\[[time_stamp()]\] <font color='orange'> Used enfeebling sting on [key_name(T)]</font>")
+		msg_admin_attack("[key_name(T)] was enfeebling stung by [key_name(src)]")
+
+
 		var/effect = 30 //percent
 		if(src.mind.changeling.recursive_enhancement)
 			effect = effect + 20

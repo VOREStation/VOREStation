@@ -33,4 +33,4 @@
 		if(istype(E)) E.internal_organs -= src
 	..()
 
-// Brain is defined in brain_item.dm.
+// Brain is defined in brain.dm

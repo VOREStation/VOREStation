@@ -16,6 +16,9 @@
 	var/mob/living/carbon/T = changeling_sting(20,/mob/proc/changeling_cryo_sting)
 	if(!T)
 		return 0
+	T.attack_log += text("\[[time_stamp()]\] <font color='red'>Was cryo stung by [key_name(src)]</font>")
+	src.attack_log += text("\[[time_stamp()]\] <font color='orange'> Used cryo sting on [key_name(T)]</font>")
+	msg_admin_attack("[key_name(T)] was cryo stung by [key_name(src)]")
 	var/inject_amount = 10
 	if(src.mind.changeling.recursive_enhancement)
 		inject_amount = inject_amount * 1.5

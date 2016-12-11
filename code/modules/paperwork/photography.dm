@@ -249,13 +249,11 @@ var/global/photo_count = 0
 		on = 1
 
 /obj/item/device/camera/proc/can_capture_turf(turf/T, mob/user)
-	var/mob/dummy = new(T)	//Go go visibility check dummy
 	var/viewer = user
 	if(user.client)		//To make shooting through security cameras possible
 		viewer = user.client.eye
-	var/can_see = (dummy in viewers(world.view, viewer))
+	var/can_see = (T in view(viewer))
 
-	qdel(dummy)
 	return can_see
 
 /obj/item/device/camera/proc/captureimage(atom/target, mob/user, flag)
@@ -264,8 +262,8 @@ var/global/photo_count = 0
 	var/z_c	= target.z
 	var/list/turfs = list()
 	var/mobs = ""
-	for(var/i = 1; i <= size; i++)
-		for(var/j = 1; j <= size; j++)
+	for(var/i = 1 to size)
+		for(var/j = 1 to size)
 			var/turf/T = locate(x_c, y_c, z_c)
 			if(can_capture_turf(T, user))
 				turfs.Add(T)

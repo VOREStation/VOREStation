@@ -175,32 +175,31 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	icon_state = "datadisk2"
 	var/company = ""
 
-	//I'm normally opposed to relative pathing, but pls.
-	bishop
-		company = "Bishop"
-
-	hesphiastos
-		company = "Hesphiastos"
-
-	morpheus
-		company = "Morpheus"
-
-	veymed
-		company = "Vey-Med"
-
-	wardtakahashi
-		company = "Ward-Takahashi"
-
-	xion
-		company = "Xion"
-
-	zenghu
-		company = "Zeng-Hu"
-
-	nanotrasen
-		company = "NanoTrasen"
-
 /obj/item/weapon/disk/limb/New(var/newloc)
 	..()
 	if(company)
 		name = "[company] [initial(name)]"
+
+/obj/item/weapon/disk/limb/bishop
+	company = "Bishop"
+
+/obj/item/weapon/disk/limb/hesphiastos
+	company = "Hesphiastos"
+
+/obj/item/weapon/disk/limb/morpheus
+	company = "Morpheus"
+
+/obj/item/weapon/disk/limb/veymed
+	company = "Vey-Med"
+
+/obj/item/weapon/disk/limb/wardtakahashi
+	company = "Ward-Takahashi"
+
+/obj/item/weapon/disk/limb/xion
+	company = "Xion"
+
+/obj/item/weapon/disk/limb/zenghu
+	company = "Zeng-Hu"
+
+/obj/item/weapon/disk/limb/nanotrasen
+	company = "NanoTrasen"

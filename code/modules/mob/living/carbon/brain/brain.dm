@@ -57,5 +57,8 @@
 		canmove = 0
 	return canmove
 
-/mob/living/carbon/brain/binarycheck()
+/mob/living/carbon/brain/isSynthetic()
 	return istype(loc, /obj/item/device/mmi/digital)
+
+/mob/living/carbon/brain/binarycheck()
+	return isSynthetic()
