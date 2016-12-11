@@ -411,11 +411,11 @@
 	display_name = "sweater, grey"
 	path = /obj/item/clothing/under/rank/psych/turtleneck/sweater
 
-/datum/gear/uniform/jumpsuit/aether
+/datum/gear/uniform/brandsuit/aether
 	display_name = "jumpsuit, aether"
 	path = /obj/item/clothing/under/aether
 
-/datum/gear/uniform/jumpsuit/focal
+/datum/gear/uniform/brandsuit/focal
 	display_name = "jumpsuit, focal"
 	path = /obj/item/clothing/under/focal
 
@@ -430,11 +430,11 @@
 	cost = 2
 	allowed_roles = list("Security Officer","Head of Security","Warden")
 
-/datum/gear/uniform/jumpsuit/grayson
+/datum/gear/uniform/brandsuit/grayson
 	display_name = "outfit, grayson"
 	path = /obj/item/clothing/under/grayson
 
-/datum/gear/uniform/jumpsuit/wardt
+/datum/gear/uniform/brandsuit/wardt
 	display_name = "jumpsuit, ward-takahashi"
 	path = /obj/item/clothing/under/wardt
 
@@ -442,6 +442,6 @@
 	display_name = "outfit, frontier"
 	path = 	/obj/item/clothing/under/frontier
 
-/datum/gear/uniform/jumpsuit/hephaestus
+/datum/gear/uniform/brandsuit/hephaestus
 	display_name = "jumpsuit, hephaestus"
 	path = 	/obj/item/clothing/under/hephaestus
