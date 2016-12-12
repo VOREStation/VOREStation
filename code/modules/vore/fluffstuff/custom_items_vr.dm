@@ -147,12 +147,12 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 
 //JoanRisu:Joan Risu
 /obj/item/device/pda/heads/hos/fluff/joanpda
-	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_override = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "pda-joan"
 
 //Vorrarkul:Lucina Dakarim
 /obj/item/device/pda/heads/cmo/fluff/lucinapda
-	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_override = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "pda-lucina"
 
 //john.wayne9392:Harmony Prechtl
