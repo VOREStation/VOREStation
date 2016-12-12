@@ -171,7 +171,7 @@
 		//Belly messages
 		dat += "<br><a href='?src=\ref[src];b_msgs=\ref[selected]'>Belly Messages</a>"
 		
-		//Belly sound
+		//Belly escapability
 		dat += "<br><a href='?src=\ref[src];b_escape=\ref[selected]'>Set Belly Escapability</a>"
 		
 		//Delete button
