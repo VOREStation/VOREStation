@@ -93,7 +93,7 @@
 		new /obj/item/clothing/under/rank/internalaffairs/fluff/joan(src)
 		new /obj/item/clothing/head/helmet/space/fluff/joan(src)
 		new /obj/item/clothing/suit/space/fluff/joan(src)
-		new /obj/item/device/pda/heads/hos/fluff/joanpda(src)
+		new /obj/item/device/pda/heads/hos/joanpda(src)
 
 
 
