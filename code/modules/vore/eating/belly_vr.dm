@@ -22,6 +22,9 @@
 	var/immutable = 0						// Prevents this belly from being deleted
 	var/escapable = 0						// Belly can be resisted out of at any time
 	var/escapetime = 600					// Deciseconds, how long to escape this belly
+	var/digestchance = 0					// % Chance of stomach beginning to digest if prey struggles
+	var/absorbchance = 0					// % Chance of stomach beginning to absorb if prey struggles
+	var/escapechance = 0 					// % Chance of prey beginning to escape if prey struggles.
 
 	var/tmp/digest_mode = DM_HOLD				// Whether or not to digest. Default to not digest.
 	var/tmp/list/digest_modes = list(DM_HOLD,DM_DIGEST,DM_HEAL,DM_ABSORB,DM_DRAIN,DM_UNABSORB)	// Possible digest modes
@@ -351,7 +354,7 @@
 
 	R.setClickCooldown(50)
 
-	if(owner.stat || escapable) //If owner is stat (dead, KO) we can actually escape, or if belly is set to escapable (non-default)
+	if(owner.stat) //If owner is stat (dead, KO) we can actually escape
 		R << "<span class='warning'>You attempt to climb out of \the [name]. (This will take around [escapetime/10] seconds.)</span>"
 		owner << "<span class='warning'>Someone is attempting to climb out of your [name]!</span>"
 
@@ -366,7 +369,6 @@
 				owner << "<span class='notice'>The attempt to escape from your [name] has failed!</span>"
 				return
 			return
-
 	var/struggle_outer_message = pick(struggle_messages_outside)
 	var/struggle_user_message = pick(struggle_messages_inside)
 
@@ -388,6 +390,41 @@
 	var/strpick = pick(struggle_sounds)
 	var/strsound = struggle_sounds[strpick]
 	playsound(R.loc, strsound, 50, 1)
+	
+	if(escapable) //If the stomach has escapable enabled.
+		R << "<span class='warning'>You attempt to climb out of \the [name].</span>"
+		owner << "<span class='warning'>Someone is attempting to climb out of your [name]!</span>"
+		if(prob(escapechance)) //Let's have it check to see if the prey escapes first.
+			if(do_after(R, escapetime))
+				if((escapable) && (R in internal_contents)) //Does the owner still have escapable enabled?
+					release_specific_contents(R)
+					R << "<span class='warning'>You climb out of \the [name].</span>"
+					owner << "<span class='warning'>[R] climbs out of your [name]!</span>"
+					for(var/mob/M in hearers(4, owner))
+						M.show_message("<span class='warning'>[R] climbs out of [owner]'s [name]!</span>", 2)
+					return
+				else if(!(R in internal_contents)) //Aren't even in the belly. Quietly fail.
+					return
+			else //Belly became inescapable. 
+				R << "<span class='warning'>Your attempt to escape [name] has failed!</span>"
+				owner << "<span class='notice'>The attempt to escape from your [name] has failed!</span>"
+				return
+
+		else if(prob(absorbchance)) //Next, let's have it run the absorb chance.
+			R << "<span class='warning'>In responce to your struggling, \the [name] begins to get more active...</span>"
+			owner << "<span class='warning'>You feel your [name] beginning to become active!</span>"
+			B.digest_mode = DM_ABSORB
+			return
+
+		else if(prob(digestchance))
+			R << "<span class='warning'>In responce to your struggling, \the [name] begins to get more active...</span>"
+			owner << "<span class='warning'>You feel your [name] beginning to become active!</span>"
+			B.digest_mode = DM_DIGEST
+			return
+		else //Nothing interesting happened.
+			R << "<span class='warning'>But make no progress in escaping [owner]'s [name].</span>"
+			owner << "<span class='warning'>But appears to be unable to make any progress in escaping your [name].</span>"
+			return
 
 // Belly copies and then returns the copy
 // Needs to be updated for any var changes
