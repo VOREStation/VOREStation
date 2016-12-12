@@ -289,6 +289,52 @@
 		return 1
 	return 0
 
+//-----------------------G44----------------------------------
+/obj/item/weapon/gun/projectile/automatic/carbine/fluff/g44
+	name = "G44 Rifle"
+	desc = "The G44 is a lightweight assault rifle manufactured by the National Armory of Gaia and sold almost exclusively to the United Federation's standing army, the Military Assault Command Operations Department (MACOs)."
+	icon = 'icons/vore/custom_guns_vr.dmi'
+	icon_state = "g44"
+	item_state = "bullpup"
+
+/obj/item/weapon/gun/projectile/automatic/carbine/fluff/g44/update_icon(var/ignore_inhands)
+	..()
+	if(istype(ammo_magazine,/obj/item/ammo_magazine/a556m))
+		icon_state = "bullpupm"
+	else
+		icon_state = (ammo_magazine)? "g44" : "g44-empty"
+	item_state = (ammo_magazine)? "bullpup" : "bullpup-empty"
+	if(!ignore_inhands) update_held_icon()
+
+//-----------------------G44 Energy Variant--------------------
+
+/obj/item/weapon/gun/energy/gun/burst
+	name = "G44 Energy Rifle"
+	desc = "The G44 Energy is a laser variant of the G44 lightweight assault rifle manufactured by the National Armory of Gaia. Though almost exclusively to the United Federation's Military Assault Command Operations Department (MACOs) and Starfleet, it is occassionally sold to security departments for their stun capabilities."
+	icon = 'icons/vore/custom_guns_vr.dmi'
+	icon_state = "g44estun100"
+	item_state = "energystun100" //This is temporary.
+	fire_sound = 'sound/weapons/Taser.ogg'
+	charge_cost = 100
+	force = 8
+	w_class = ITEMSIZE_LARGE
+	fire_delay = 6
+
+	projectile_type = /obj/item/projectile/beam/stun/weak
+	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 2, TECH_ILLEGAL = 3)
+	modifystate = "g44estun"
+
+//	requires_two_hands = 1
+	one_handed_penalty = 2
+
+	firemodes = list(
+		list(mode_name="stun", burst=1, projectile_type=/obj/item/projectile/beam/stun/weak, modifystate="g44estun", fire_sound='sound/weapons/Taser.ogg', charge_cost = 100),
+		list(mode_name="stun burst", burst=3, fire_delay=null, move_delay=4, burst_accuracy=list(0,0,0), dispersion=list(0.0, 0.2, 0.5), projectile_type=/obj/item/projectile/beam/stun/weak, modifystate="g44estun", fire_sound='sound/weapons/Taser.ogg'),
+		list(mode_name="lethal", burst=1, projectile_type=/obj/item/projectile/beam/burstlaser, modifystate="g44ekill", fire_sound='sound/weapons/Laser.ogg', charge_cost = 200),
+		list(mode_name="lethal burst", burst=3, fire_delay=null, move_delay=4, burst_accuracy=list(0,0,0), dispersion=list(0.0, 0.2, 0.5), projectile_type=/obj/item/projectile/beam/burstlaser, modifystate="g44ekill", fire_sound='sound/weapons/Laser.ogg'),
+		)
+
+
 // molenar:Kari Akiren
 /obj/item/weapon/gun/projectile/shotgun/pump/rifle/fluff/kari_akiren
 	name = "clockwork rifle"
