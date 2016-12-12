@@ -172,7 +172,15 @@
 		dat += "<br><a href='?src=\ref[src];b_msgs=\ref[selected]'>Belly Messages</a>"
 
 		//Belly escapability
-		dat += "<br><a href='?src=\ref[src];b_escapable=\ref[selected]'>Set Belly Escapability</a>"
+		dat += "<br><a href='?src=\ref[src];b_escapable=\ref[selected]'>Set Belly Interactions (below)</a>"
+
+		dat += "<br><a href='?src=\ref[src];b_escapechance=\ref[selected]'>Set Belly Escape Chance</a>"
+
+		dat += "<br><a href='?src=\ref[src];b_absorbchance=\ref[selected]'>Set Belly Absorb Chance</a>"
+
+		dat += "<br><a href='?src=\ref[src];b_digestchance=\ref[selected]'>Set Belly Digest Chance</a>"
+
+		dat += "<br><a href='?src=\ref[src];b_escapetime=\ref[selected]'>Set Belly Escape Time</a>"
 
 		//Delete button
 		dat += "<br><a style='background:#990000;' href='?src=\ref[src];b_del=\ref[selected]'>Delete Belly</a>"
@@ -479,20 +487,49 @@
 		selected.vore_sound = vore_sounds[choice]
 
 	if(href_list["b_escapable"])
-		if(selected.escapable == 0) //Chance escapable.
+		if(selected.escapable == 0) //Possibly escapable and special interactions.
 			selected.escapable = 1
-			usr << "<span class='warning'>Prey now have a chance to escape your [selected.name].</span>"
-		
-		else if(selected.escapable == 1) //Always escapable
-			selected.escapable = 2
-			usr << "<span class='warning'>Prey will always be able to escape from your [selected.name].</span>"
-		
-		else if(selected.escapable == 2) //Never escapable.
+			usr << "<span class='warning'>Prey now have special interactions with your [selected.name] depending on your settings.</span>"
+		else if(selected.escapable == 1) //Never escapable.
 			selected.escapable = 0
-			usr << "<span class='warning'>Prey will not be able to escape from your [selected.name].</span>"
+			usr << "<span class='warning'>Prey will not be able to have special interactions with your [selected.name].</span>"
 		else
-			usr << "<span class='warning'>Something went wrong. Your stomach is now unescapable. Press the button again to make it escapable.</span>" //If they somehow have a varable that's not 0 or 1
+			usr << "<span class='warning'>Something went wrong. Your stomach will now not have special interactions. Press the button enable them again.</span>" //If they somehow have a varable that's not 0 or 1
 			selected.escapable = 0
+
+	if(href_list["b_escapechance"])
+		var/escape_chance_input = input(user, "Choose the (%) chance that prey that attempt to escape will be able to escape.\
+			Stomach special interactions must be enabled for this to work.\
+			Ranges from 0 to 100.\n\
+			(0-100)", "Prey Escape Chance") as num|null
+		if(escape_chance_input)
+			selected.escapechance = round(text2num(escape_chance_input),4)
+
+	if(href_list["b_absorbchance"])
+		var/absorb_chance_input = input(user, "Choose the (%) chance that prey that attempt to escape will be absorbed into your [selected.name].\
+			Stomach special interactions must be enabled for this to work.\
+			Ranges from 0 to 100.\n\
+			(0-100)", "Prey Absorb Chance") as num|null
+		if(absorb_chance_input)
+			selected.absorbchance = round(text2num(absorb_chance_input),4)
+
+	if(href_list["b_digestchance"])
+		var/digest_chance_input = input(user, "Choose the (%) chance that prey that attempt to escape will begin to digest inside of your [selected.name].\
+			Stomach special interactions must be enabled for this to work.\
+			Ranges from 0 to 100.\n\
+			(0-100)", "Prey Digest Chance") as num|null
+		if(digest_chance_input)
+			selected.digestchance = round(text2num(digest_chance_input),4)
+
+	if(href_list["b_escapetime"])
+		var/escape_time_input = input(user, "Choose the amount of time it will take for prey to be able to escape.\
+			Stomach special interactions must be enabled for this to effect anything, along with the escape chance\
+			Ranges from 10 to 600.(10 = 1 second, 600 = 60 seconds)\n\
+			(10-600)", "Prey Escape Time") as num|null
+		if(escape_time_input)
+			selected.escapetime = round(text2num(escape_time_input),4)
+
+
 
 	if(href_list["b_soundtest"])
 		user << selected.vore_sound
