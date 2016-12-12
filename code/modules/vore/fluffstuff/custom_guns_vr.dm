@@ -300,7 +300,7 @@
 /obj/item/weapon/gun/projectile/automatic/carbine/fluff/g44/update_icon(var/ignore_inhands)
 	..()
 	if(istype(ammo_magazine,/obj/item/ammo_magazine/a556m))
-		icon_state = "bullpupm"
+		icon_state = "g44"
 	else
 		icon_state = (ammo_magazine)? "g44" : "g44-empty"
 	item_state = (ammo_magazine)? "bullpup" : "bullpup-empty"
@@ -308,7 +308,7 @@
 
 //-----------------------G44 Energy Variant--------------------
 
-/obj/item/weapon/gun/energy/gun/burst
+/obj/item/weapon/gun/energy/gun/burst/g44e
 	name = "G44 Energy Rifle"
 	desc = "The G44 Energy is a laser variant of the G44 lightweight assault rifle manufactured by the National Armory of Gaia. Though almost exclusively to the United Federation's Military Assault Command Operations Department (MACOs) and Starfleet, it is occassionally sold to security departments for their stun capabilities."
 	icon = 'icons/vore/custom_guns_vr.dmi'

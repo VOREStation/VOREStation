@@ -87,7 +87,7 @@
 		new /obj/item/weapon/gun/energy/gun/fluff/dominator(src)
 		new /obj/item/clothing/suit/armor/det_suit(src)
 		new /obj/item/fluff/permit/joanrisu(src)
-		new /obj/item/clothing/accessory/storage/black_vest(src)
+		new /obj/item/dnalockingchip(src)
 		new /obj/item/weapon/sword/fluff/joanaria(src)
 		new /obj/item/weapon/flame/lighter/zippo/fluff/joan(src)
 		new /obj/item/clothing/under/rank/internalaffairs/fluff/joan(src)

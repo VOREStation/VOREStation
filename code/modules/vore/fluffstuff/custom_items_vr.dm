@@ -146,13 +146,13 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 			user.visible_message("<span class='warning'>[user] invades [M]'s personal space, thrusting [src] into their face insistently.</span>","<span class='warning'>You invade [M]'s personal space, thrusting [src] into their face insistently.</span>")
 
 //JoanRisu:Joan Risu
-/obj/item/device/pda/heads/hos/fluff/joanpda
-	icon_override = 'icons/vore/custom_items_vr.dmi'
+/obj/item/device/pda/heads/hos/joanpda
+	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "pda-joan"
 
 //Vorrarkul:Lucina Dakarim
-/obj/item/device/pda/heads/cmo/fluff/lucinapda
-	icon_override = 'icons/vore/custom_items_vr.dmi'
+/obj/item/device/pda/heads/cmo/lucinapda
+	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "pda-lucina"
 
 //john.wayne9392:Harmony Prechtl
