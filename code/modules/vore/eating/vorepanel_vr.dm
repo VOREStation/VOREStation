@@ -503,31 +503,35 @@
 			Ranges from 0 to 100.\n\
 			(0-100)", "Prey Escape Chance") as num|null
 		if(escape_chance_input)
-			selected.escapechance = round(text2num(escape_chance_input),4)
+			escape_chance_input = round(text2num(escape_chance_input),4)
+			selected.escapechance = sanitize_integer(escape_chance_input, 0, 100, selected.escapechance)
 
 	if(href_list["b_absorbchance"])
 		var/absorb_chance_input = input(user, "Choose the (%) chance that prey that attempt to escape will be absorbed into your [selected.name].\
-			Stomach special interactions must be enabled for this to work.\
-			Ranges from 0 to 100.\n\
+			 Stomach special interactions must be enabled for this to work.\
+			 Ranges from 0 to 100.\n\
 			(0-100)", "Prey Absorb Chance") as num|null
 		if(absorb_chance_input)
-			selected.absorbchance = round(text2num(absorb_chance_input),4)
+			absorb_chance_input = round(text2num(absorb_chance_input),4)
+			selected.absorbchance = sanitize_integer(absorb_chance_input, 0, 100, selected.absorbchance)
 
 	if(href_list["b_digestchance"])
 		var/digest_chance_input = input(user, "Choose the (%) chance that prey that attempt to escape will begin to digest inside of your [selected.name].\
-			Stomach special interactions must be enabled for this to work.\
-			Ranges from 0 to 100.\n\
+			 Stomach special interactions must be enabled for this to work.\
+			 Ranges from 0 to 100.\n\
 			(0-100)", "Prey Digest Chance") as num|null
 		if(digest_chance_input)
-			selected.digestchance = round(text2num(digest_chance_input),4)
+			digest_chance_input = round(text2num(digest_chance_input),4)
+			selected.digestchance = sanitize_integer(digest_chance_input, 0, 100, selected.digestchance)
 
 	if(href_list["b_escapetime"])
 		var/escape_time_input = input(user, "Choose the amount of time it will take for prey to be able to escape.\
-			Stomach special interactions must be enabled for this to effect anything, along with the escape chance\
-			Ranges from 10 to 600.(10 = 1 second, 600 = 60 seconds)\n\
+			 Stomach special interactions must be enabled for this to effect anything, along with the escape chance\
+			 Ranges from 10 to 600.(10 = 1 second, 600 = 60 seconds)\n\
 			(10-600)", "Prey Escape Time") as num|null
 		if(escape_time_input)
-			selected.escapetime = round(text2num(escape_time_input),4)
+			escape_time_input = round(text2num(escape_time_input),4)
+			selected.digestchance = sanitize_integer(escape_time_input, 10, 600, selected.escapetime)
 
 
 
