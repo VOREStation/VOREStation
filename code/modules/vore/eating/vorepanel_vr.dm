@@ -170,10 +170,10 @@
 
 		//Belly messages
 		dat += "<br><a href='?src=\ref[src];b_msgs=\ref[selected]'>Belly Messages</a>"
-		
+
 		//Belly escapability
-		dat += "<br><a href='?src=\ref[src];b_escape=\ref[selected]'>Set Belly Escapability</a>"
-		
+		dat += "<br><a href='?src=\ref[src];b_escapable=\ref[selected]'>Set Belly Escapability</a>"
+
 		//Delete button
 		dat += "<br><a style='background:#990000;' href='?src=\ref[src];b_del=\ref[selected]'>Delete Belly</a>"
 
