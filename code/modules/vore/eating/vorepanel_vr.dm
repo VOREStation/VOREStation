@@ -170,7 +170,10 @@
 
 		//Belly messages
 		dat += "<br><a href='?src=\ref[src];b_msgs=\ref[selected]'>Belly Messages</a>"
-
+		
+		//Belly sound
+		dat += "<br><a href='?src=\ref[src];b_escape=\ref[selected]'>Set Belly Escapability</a>"
+		
 		//Delete button
 		dat += "<br><a style='background:#990000;' href='?src=\ref[src];b_del=\ref[selected]'>Delete Belly</a>"
 
@@ -474,6 +477,17 @@
 			return 1
 
 		selected.vore_sound = vore_sounds[choice]
+
+	if(href_list["b_escapable"])
+		if(selected.escapable == 0)
+			selected.escapable = 1
+			usr << "<span class='warning'>Your belly is now escapable.</span>"
+		else if(selected.escapable == 1)
+			selected.escapable = 0
+			usr << "<span class='warning'>Your belly is now unescapable.</span>"
+		else
+			selected.escapable = 0
+			usr << "<span class='warning'>Something went wrong. Your stomach is now unescapable. Press the button again to make it escapable.</span>" //If they somehow have a varable that's not 0 or 1
 
 	if(href_list["b_soundtest"])
 		user << selected.vore_sound
