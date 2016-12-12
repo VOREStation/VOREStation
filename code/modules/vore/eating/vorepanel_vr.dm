@@ -479,15 +479,20 @@
 		selected.vore_sound = vore_sounds[choice]
 
 	if(href_list["b_escapable"])
-		if(selected.escapable == 0)
+		if(selected.escapable == 0) //Chance escapable.
 			selected.escapable = 1
-			usr << "<span class='warning'>Your belly is now escapable.</span>"
-		else if(selected.escapable == 1)
+			usr << "<span class='warning'>Prey now have a chance to escape your [B.name].</span>"
+		
+		else if(selected.escapable == 1) //Always escapable
+			selected.escapable = 2
+			usr << "<span class='warning'>Prey will always be able to escape from your [B.name].</span>"
+		
+		else if(selected.escapable == 2) //Never escapable.
 			selected.escapable = 0
-			usr << "<span class='warning'>Your belly is now unescapable.</span>"
+			usr << "<span class='warning'>Prey will not be able to escape from your [B.name].</span>"
 		else
-			selected.escapable = 0
 			usr << "<span class='warning'>Something went wrong. Your stomach is now unescapable. Press the button again to make it escapable.</span>" //If they somehow have a varable that's not 0 or 1
+			selected.escapable = 0
 
 	if(href_list["b_soundtest"])
 		user << selected.vore_sound
