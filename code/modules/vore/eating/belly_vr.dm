@@ -413,12 +413,14 @@
 		else if(prob(absorbchance)) //Next, let's have it run the absorb chance.
 			R << "<span class='warning'>In responce to your struggling, \the [name] begins to get more active...</span>"
 			owner << "<span class='warning'>You feel your [name] beginning to become active!</span>"
+			var/datum/belly/B = check_belly(owner)
 			B.digest_mode = DM_ABSORB
 			return
 
 		else if(prob(digestchance))
 			R << "<span class='warning'>In responce to your struggling, \the [name] begins to get more active...</span>"
 			owner << "<span class='warning'>You feel your [name] beginning to become active!</span>"
+			var/datum/belly/B = check_belly(owner)
 			B.digest_mode = DM_DIGEST
 			return
 		else //Nothing interesting happened.
