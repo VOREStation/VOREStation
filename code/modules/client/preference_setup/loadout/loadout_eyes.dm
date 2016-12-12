@@ -38,6 +38,10 @@
 	display_name = "Security HUD, prescription (Security)"
 	path = /obj/item/clothing/glasses/hud/security/prescription
 
+/datum/gear/eyes/security/sunglasshud
+	display_name = "Security HUD, sunglasses (Security)"
+	path = /obj/item/clothing/glasses/sunglasses/sechud
+
 /datum/gear/eyes/secaviators
 	display_name = "Security HUD Aviators"
 	path = /obj/item/clothing/glasses/sunglasses/sechud/aviator

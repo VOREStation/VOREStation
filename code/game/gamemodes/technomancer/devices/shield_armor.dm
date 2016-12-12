@@ -60,6 +60,10 @@
 		var/obj/item/projectile/P = damage_source
 		P.sharp = 0
 		P.edge = 0
+		P.embed_chance = 0
+		if(P.agony)
+			var/agony_blocked = P.agony * (modified_block_percentage / 100)
+			P.agony -= agony_blocked
 		P.damage = P.damage - damage_blocked
 
 	user.visible_message("<span class='danger'>\The [user]'s [src] absorbs [attack_text]!</span>")

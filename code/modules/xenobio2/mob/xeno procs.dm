@@ -64,6 +64,9 @@ Procs for targeting
 
 			reagent_response = chemreact[R.id]
 
+			if(!reagent_response)
+				continue // just skip this reagent, rather than clearing the whole thing
+
 			if(reagent_response["toxic"])
 				adjustToxLoss(reagent_response["toxic"] * reagent_total)
 

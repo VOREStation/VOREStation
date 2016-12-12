@@ -20,9 +20,10 @@
 		var/obj/machinery/sleeper/sleepernew = null
 		for(dir in list(NORTH, EAST, SOUTH, WEST)) // Loop through every direction
 			sleepernew = locate(/obj/machinery/sleeper, get_step(src, dir)) // Try to find a scanner in that direction
-		if(sleepernew)
-			sleeper = sleepernew
-			sleepernew.console = src
+			if(sleepernew)
+				sleeper = sleepernew
+				sleepernew.console = src
+				return
 		return
 
 /obj/machinery/sleep_console/attack_ai(var/mob/user)

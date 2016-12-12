@@ -2,7 +2,6 @@
 	name = "arm guards"
 	desc = "These arm guards will protect your hands and arms."
 	body_parts_covered = HANDS|ARMS
-	slowdown = 0.5
 	overgloves = 1
 	w_class = ITEMSIZE_NORMAL
 

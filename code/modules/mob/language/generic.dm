@@ -113,3 +113,11 @@
 "le", "me", "nd", "ne", "ng", "nt", "on", "or", "ou", "re", "se", "st", "te", "th", "ti", "to",
 "ve", "wa", "all", "and", "are", "but", "ent", "era", "ere", "eve", "for", "had", "hat", "hen", "her", "hin",
 "his", "ing", "ion", "ith", "not", "ome", "oul", "our", "sho", "ted", "ter", "tha", "the", "thi")
+
+/datum/language/sign
+	name = "Sign Language"
+	desc = "A sign language commonly used for those who are deaf or mute."
+	signlang_verb = list("gestures")
+	colour = "say_quote"
+	key = "s"
+	flags = SIGNLANG|NO_STUTTER|NONVERBAL

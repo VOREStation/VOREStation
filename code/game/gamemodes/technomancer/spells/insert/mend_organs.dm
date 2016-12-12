@@ -50,5 +50,7 @@
 
 					H.restore_blood() // Fix bloodloss
 
+					H.adjustBruteLoss(-heal_power)
+
 					sleep(1 SECOND)
 		on_expire()

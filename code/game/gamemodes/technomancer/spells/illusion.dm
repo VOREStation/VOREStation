@@ -19,7 +19,7 @@
 /obj/item/weapon/spell/illusion/on_ranged_cast(atom/hit_atom, mob/user)
 	if(istype(hit_atom, /atom/movable))
 		var/atom/movable/AM = hit_atom
-		if(pay_energy(500))
+		if(pay_energy(100))
 			copied = AM
 			update_icon()
 			user << "<span class='notice'>You've copied \the [AM]'s appearance.</span>"
@@ -30,7 +30,7 @@
 		if(!illusion)
 			if(!copied)
 				copied = user
-			if(pay_energy(1000)) // 4
+			if(pay_energy(500))
 				illusion = new(T)
 				illusion.copy_appearance(copied)
 				if(ishuman(copied))
@@ -41,7 +41,7 @@
 				user << 'sound/effects/pop.ogg'
 				return 1
 		else
-			if(pay_energy(300))
+			if(pay_energy(100))
 				spawn(1)
 					illusion.walk_loop(T)
 

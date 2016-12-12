@@ -9,6 +9,8 @@
 
 	var/datum/pipe_network/network
 
+	var/welded = 0 //defining this here for ventcrawl stuff
+
 	New()
 		..()
 		initialize_directions = dir

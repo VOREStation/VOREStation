@@ -18,14 +18,26 @@
 	name = "Pistol Magazine (.45)"
 	path = /obj/item/ammo_magazine/c45m
 
+/datum/uplink_item/item/ammo/c45map
+	name = "Pistol Magazine (.45 AP)"
+	path = /obj/item/ammo_magazine/c45m/ap
+
 /datum/uplink_item/item/ammo/tommymag
 	name = "Tommygun Magazine (.45)"
 	path = /obj/item/ammo_magazine/tommymag
 
+/datum/uplink_item/item/ammo/tommymagap
+	name = "Tommygun Magazine (.45 AP)"
+	path = /obj/item/ammo_magazine/tommymag/ap
+
 /datum/uplink_item/item/ammo/tommydrum
 	name = "Tommygun Drum Magazine (.45)"
 	path = /obj/item/ammo_magazine/tommydrum
-	item_cost = 40 // Buy 40 bullets, get 10 free!
+	item_cost = 40
+
+/datum/uplink_item/item/ammo/tommydrumap
+	name = "Tommygun Drum Magazine (.45 AP)"
+	path = /obj/item/ammo_magazine/tommydrum/ap
 
 /datum/uplink_item/item/ammo/darts
 	name = "Darts"

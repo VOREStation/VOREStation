@@ -216,11 +216,12 @@
 
 	// DNA2 - Gene processing.
 	// The HULK stuff that was here is now in the hulk gene.
-	for(var/datum/dna/gene/gene in dna_genes)
-		if(!gene.block)
-			continue
-		if(gene.is_active(src))
-			gene.OnMobLife(src)
+	if(!isSynthetic())
+		for(var/datum/dna/gene/gene in dna_genes)
+			if(!gene.block)
+				continue
+			if(gene.is_active(src))
+				gene.OnMobLife(src)
 
 	radiation = Clamp(radiation,0,100)
 
@@ -343,14 +344,14 @@
 		else
 			adjustOxyLoss(HUMAN_CRIT_MAX_OXYLOSS)
 
-		if(should_have_organ(O_LUNGS))
+		if(breath && should_have_organ(O_LUNGS))
 			var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
 			if(!L.is_bruised() && prob(8))
-				if(breath.total_moles)
-					if(breath.total_moles < BREATH_MOLES / 5 || breath.total_moles > BREATH_MOLES * 5)
-						rupture_lung()
-				else
-					rupture_lung()
+				rupture_lung()
+
+		if(should_have_organ("brain"))
+			if(prob(5))
+				adjustBrainLoss(0.02 * oxyloss) //2% of your current oxyloss is applied as brain damage, 50 oxyloss is 1 brain damage
 
 		oxygen_alert = max(oxygen_alert, 1)
 
@@ -368,6 +369,10 @@
 			safe_pressure_min *= 1.5
 		else if(L.is_bruised())
 			safe_pressure_min *= 1.25
+		else if(breath)
+			if(breath.total_moles < BREATH_MOLES / 10 || breath.total_moles > BREATH_MOLES * 5)
+				if (prob(8))
+					rupture_lung()
 
 	var/safe_exhaled_max = 10
 	var/safe_toxins_max = 0.2

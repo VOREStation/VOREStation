@@ -249,6 +249,7 @@
 	if(crisis || security_level == SEC_LEVEL_RED || crisis_override) // VOREStation Edit
 		src << "\red Crisis mode active. Combat module available."
 		modules+="Combat"
+		modules+="ERT" //VOREStation Edit
 	modtype = input("Please, select a module!", "Robot module", null, null) as null|anything in modules
 
 	if(module)
@@ -826,7 +827,7 @@
 	. = ..()
 
 	if(module)
-		if(module.type == /obj/item/weapon/robot_module/janitor)
+		if(module.type == /obj/item/weapon/robot_module/robot/janitor)
 			var/turf/tile = loc
 			if(isturf(tile))
 				tile.clean_blood()

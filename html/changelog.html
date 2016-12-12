@@ -53,6 +53,178 @@
 		
 		-->
 		<div class="commit sansserif">
+			<h2 class="date">01 December 2016</h2>
+			<h3 class="author">Anewbe updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Adult Diona should be able to name themselves properly now. Tweaked from a Baystation PR by FTangSteve.</li>
+				<li class="rscdel">Lightning spells and bioelectrogenesis will no longer stun outright.</li>
+				<li class="rscadd">FBPs should no longer get mutations from radiation.</li>
+				<li class="bugfix">Observe warning should properly show how long you have before you can join.</li>
+				<li class="rscadd">Adds a Toggle Shoe Layer verb to shoes, that let them be worn over the uniform (ie tucking your pants into your shoes).</li>
+				<li class="bugfix">Shoes now properly check if they can hold knives or not.</li>
+				<li class="bugfix">Sign language can now be used while muzzled.</li>
+			</ul>
+			<h3 class="author">Datraen updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Skrell are now more resistant to various chemicals, more susceptible to pepperspray.</li>
+			</ul>
+			<h3 class="author">ForFoxSake updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Fixed a possible href exploit allowing any living player to speak any language.</li>
+				<li class="bugfix">Organic beings can no longer speak Encoded Audio Language, although they can still understand it just fine.</li>
+				<li class="tweak">Positronic brains can now speak Encoded Audio Language.</li>
+				<li class="tweak">Station manufactured Full Body Prosthetics can now speak Encoded Audio Language.</li>
+			</ul>
+			<h3 class="author">MagmaRam updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Corpses will now process a select few chemicals, meaning you can now add blood into people who bled out before defibbing them.</li>
+				<li class="bugfix">Defibrilators fixed again.</li>
+				<li class="bugfix">R&D machines will now accept stacks of metal and glass from Cargo orders properly.</li>
+			</ul>
+			<h3 class="author">N3X15 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Electrical storms no longer affect only cargo. If you're not cargo, your lights are no longer safe.</li>
+			</ul>
+			<h3 class="author">Nerezza updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">APCs now have a new EMP behavior. Regular APCs shut off for a few minutes, critical APCs (engine and AI) shut off for 30ish seconds. Medbay will now not be permanently disabled by EMPs if no engineers are available to fix their APCs.</li>
+				<li class="rscadd">Bay's timed reboot interface for APCs has been ported for EMPed APCs.</li>
+				<li class="tweak">APCs affected by grid checks say so on their nanoUI now.</li>
+				<li class="tweak">APCs damaged by the apc_damage random event are now effectively emagged APCs. Anyone can operate their interface.</li>
+				<li class="tweak">Emagged APCs can now be repaired by removing their power cell and using a multitool to 'reboot' them manually.</li>
+				<li class="bugfix">Nin and twiz no longer **** up APCs if they drain the battery completely.</li>
+				<li class="tweak">Nin and twiz drain power from the wire an APC is connected to first, then drain from the power cell to fill the drain's 'quota'. Because the amount of power given from the power net is random, this means the battery will still drain but this also means you don't need to crowbar tiles in a room if the APC is empty.</li>
+				<li class="bugfix">Bluescreened APC wire panels now visibly open like they should.</li>
+				<li class="tweak">Bashing APCs open was only effective under certain circumstances, but would spam everyone anyway. This has been changed to only spam the user and to be more indicative of when you can bash the cover off.</li>
+				<li class="spellcheck">Full grammar pass on APCs.</li>
+				<li class="rscadd">Hazard shutters animate slightly and play a sound so players can more readily identify where shutters are being pried.</li>
+				<li class="bugfix">Two people can't pry the same shutter simultaneously anymore.</li>
+				<li class="bugfix">Fixed a bug causing shutters to immediately pry open when people didn't want the shutter open.</li>
+				<li class="rscadd">Inflatables can be deflated using ctrl-click.</li>
+				<li class="rscadd">Inflatables can be deployed on adjacent tiles by clicking them.</li>
+				<li class="bugfix">Bumping into closed inflatable doors will no longer freeze them for a few moments.</li>
+			</ul>
+			<h3 class="author">Yoshax updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="maptweak">All Heads of Staff now get multi-color pens in their office.</li>
+				<li class="tweak">Doors that do not have an access requirement can now be opened when handcuffed.</li>
+			</ul>
+
+			<h2 class="date">21 November 2016</h2>
+			<h3 class="author">Anewbe updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Drawing blood with a syringe now takes a moment.</li>
+				<li class="rscadd">Communicators no longer have a loadout cost.</li>
+				<li class="rscdel">Having more than 50 tox will now cause liver damage, rather than 60.</li>
+				<li class="rscadd">Adds Stimm, a homemade hyperzine made of sugar and welding fuel.</li>
+				<li class="rscdel">Hyperzine is now toxic.</li>
+			</ul>
+			<h3 class="author">Nerezza updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Space suits now hide jumpsuits, so excessively bulky jumpsuits no longer peek through.</li>
+				<li class="bugfix">Teshari wearing webbing now have the correct sprite overlay. More accessories need sprites, however.</li>
+				<li class="wip">Teshari sprites no longer show the majority of suit accessories, anyone who wants to pitch in to fix this are invited to do so!</li>
+				<li class="rscadd">Windoors can now be disassembled. Apply crowbar when open.</li>
+				<li class="rscadd">Engiborgs and drons can name door and windoor assemblines now. Click an adjacent assembly with no modules active.</li>
+				<li class="bugfix">Windoors now know how to name themselves. In addition, unnamed windoors now spawn with their default name instead of null.</li>
+			</ul>
+			<h3 class="author">RedStryker updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Added a colorable hairflower to the loadout.</li>
+				<li class="rscadd">Added a taqiyah to the loadout that can be colored with the color datum.</li>
+				<li class="tweak">Fixed the sprite for the red Security Hat backwards sprite so that the 'N' on it is no longer backwards.</li>
+			</ul>
+			<h3 class="author">Yoshax updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">All robots now get crowbars, flashes and fire extinguishers.</li>
+				<li class="tweak">IV Drips are no longer dense, meaning they can be walked through like chairs.</li>
+				<li class="tweak">Robots can now use the toggle lock verb on crates and lockers.</li>
+				<li class="rscadd">There is now an experimental welding tool, it regenerates its fuel on its own! One is given to the Chief Engineer, produced in Research, or found in Syndicate toolboxes.</li>
+			</ul>
+
+			<h2 class="date">20 November 2016</h2>
+			<h3 class="author">Datraen updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Global announcer now has access to engineering channel.</li>
+				<li class="tweak">Supermatter now uses the global announcer.</li>
+			</ul>
+			<h3 class="author">Nerezza updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Digital FBP/Cyborg brains no longer drop brains.</li>
+				<li class="rscadd">Digital FBP/Cyborg brains are tagged with their designation now.</li>
+				<li class="bugfix">All cyborgs can now unbuckle people from beds/chairs. Just attack the structure with no module selected.</li>
+				<li class="rscadd">Added the current station date to the Status tab. Ported from Baystation.</li>
+			</ul>
+			<h3 class="author">Yoshax updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Adds the ability for Hydroponics Trays to enter cryogenic stasis. You can do this by using a multitool on one. Wheh in stasis the plant will be frozen in time, it will neither grow nor die. Now you can have a life!</li>
+			</ul>
+
+			<h2 class="date">18 November 2016</h2>
+			<h3 class="author">Anewbe updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Added .45 and tommygun AP ammo to the uplink.</li>
+				<li class="tweak">CPR can be performed on corpses, doesn't actually help them.</li>
+			</ul>
+			<h3 class="author">Datraen updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Makes cameras faster, removing a large chunk of bloat relating to taking pictures. Specifically for taking pictures of angry cheetos.</li>
+			</ul>
+			<h3 class="author">MagmaRam updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Slimes will now properly process chems that have zero effect on them (that is, they'll get rid of them instead of clogging up their metabolism forever).</li>
+			</ul>
+			<h3 class="author">Nerezza updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Added Lemon Juice to soda dispensers across the station. Reagent cartridge refills can be ordered via cargo.</li>
+				<li class="rscadd">Added Lemon Juice and Milk Cartons to the bar's Booze-o-Mat. You can now order milkshakes and not get shot (maybe).</li>
+			</ul>
+			<h3 class="author">Yoshax updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="experiment">Being unable to breathe and having oxyloss will now cause brain damage that scales with the amount of oxyloss you have. Without oxygen, the brain takes damage and will EVENTUALLY die (but you would most likely die of actual oxyloss before that point.)</li>
+			</ul>
+
+			<h2 class="date">17 November 2016</h2>
+			<h3 class="author">Anewbe updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Slowdown in armor sets moved to chest and legs, rather than arms and legs.</li>
+				<li class="rscadd">Bullets and lasers will now show up on Autopsy Reports.</li>
+				<li class="bugfix">Fixed all ERT calls being silent, regardless of selected option.</li>
+				<li class="rscadd">Flashlights can now fit in rechargers.</li>
+				<li class="rscadd">Added flashlights, maglights, and the secHUD sunglasses (Sec only) to the loadout.</li>
+			</ul>
+			<h3 class="author">TheGreyWolf updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Added Sign language, which can be selected from character setup.</li>
+			</ul>
+
+			<h2 class="date">13 November 2016</h2>
+			<h3 class="author">Anewbe updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Adds a list to prevent certain jobs from being certain roundstart antags, rather than outright preventing them.</li>
+				<li class="bugfix">Surplus crates won't make more surplus crates.</li>
+				<li class="tweak">Random buys from uplinks will no longer buy anything out of the Badassery tab.</li>
+				<li class="bugfix">Loincloth now has an on-mob sprite.</li>
+				<li class="rscadd">Ported Bay's tape recorders (which actually work).</li>
+			</ul>
+			<h3 class="author">Broseph Stylin updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Added HUD aviators to the loadout. They're restricted to security, and can toggle between HUD and flash protection modes, but won't offer both at once.</li>
+			</ul>
+			<h3 class="author">MagmaRam updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Holsters can be concealed by some suit-slot items, others conceal all accessories.</li>
+				<li class="bugfix">Fixed certain suit-slot items not hiding jumpsuits properly.</li>
+			</ul>
+			<h3 class="author">RedStryker updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Adds a Guy Fawkes mask.</li>
+			</ul>
+			<h3 class="author">Yoshax updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Clipboards can now be made out of wood.</li>
+			</ul>
+
 			<h2 class="date">25 October 2016</h2>
 			<h3 class="author">Anewbe updated:</h3>
 			<ul class="changes bgimages16">
@@ -74,14 +246,11 @@
 				<li class="tweak">Supply department icons are now brown.</li>
 				<li class="tweak">Chemist icon is now white and red, like the rest of medical.</li>
 				<li class="tweak">Using a roll of tape on a person requires the same level of grip as handcuffs.</li>
+				<li class="tweak">The disclocation chance when using disarm intent with a weapon has had its' formula changed, meaning the threshold for always disclocatiing is now higher, and no longer 15 force. Meaning weapons will dislocate limbs less often and will also do less damage.</li>
 			</ul>
 			<h3 class="author">MagmaRam updated:</h3>
 			<ul class="changes bgimages16">
 				<li class="tweak">Rates of blood loss now depend on the type of wound inflicted and where the wound is inflicted, as well as the damage.</li>
-			</ul>
-			<h3 class="author">Anewbe updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="tweak">The disclocation chance when using disarm intent with a weapon has had its' formula changed, meaning the threshold for always disclocatiing is now higher, and no longer 15 force. Meaning weapons will dislocate limbs less often and will also do less damage.</li>
 			</ul>
 			<h3 class="author">Neerti updated:</h3>
 			<ul class="changes bgimages16">

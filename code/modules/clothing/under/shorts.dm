@@ -29,6 +29,10 @@
 	name = "white shorts"
 	icon_state = "whiteshorts"
 
+/obj/item/clothing/under/shorts/white/female
+	name = "white short shorts"
+	icon_state = "whiteshorts_f"
+
 /obj/item/clothing/under/shorts/jeans
 	name = "jeans shorts"
 	desc = "Some jeans! Just in short form!"
@@ -115,6 +119,11 @@
 	name = "short red skirt"
 	desc = "A skirt that is a shiny red."
 	icon_state = "skirt_short_red"
+
+/obj/item/clothing/under/skirt/denim
+	name = "short denim skirt"
+	desc = "A skirt that is made of denim."
+	icon_state = "skirt_short_denim"
 
 /obj/item/clothing/under/skirt/swept
 	name = "swept skirt"

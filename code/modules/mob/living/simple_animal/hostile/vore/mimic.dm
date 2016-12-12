@@ -36,7 +36,7 @@
 
 	faction = "mimic"
 	move_to_delay = 8
-	eat_chance = 90
+	pounce_chance = 90
 
 /mob/living/simple_animal/hostile/vore/mimic/FindTarget()
 	. = ..()

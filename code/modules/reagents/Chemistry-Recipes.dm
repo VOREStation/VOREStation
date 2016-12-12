@@ -356,6 +356,14 @@
 	required_reagents = list("sugar" = 1, "phosphorus" = 1, "sulfur" = 1)
 	result_amount = 3
 
+/datum/chemical_reaction/stimm
+	name = "Stimm"
+	id = "stimm"
+	result = "stimm"
+	required_reagents = list("sugar" = 1, "fuel" = 1)
+	catalysts = list("fuel" = 5)
+	result_amount = 2
+
 /datum/chemical_reaction/ryetalyn
 	name = "Ryetalyn"
 	id = "ryetalyn"

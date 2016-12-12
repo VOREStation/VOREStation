@@ -3,6 +3,7 @@
 	desc = "A handgun holster."
 	icon_state = "holster"
 	slot = "utility"
+	concealed_holster = 1
 	var/obj/item/holstered = null
 
 /obj/item/clothing/accessory/holster/proc/holster(var/obj/item/I, var/mob/living/user)
@@ -120,14 +121,17 @@
 	desc = "A handgun holster. Made of expensive leather."
 	icon_state = "holster"
 	overlay_state = "holster_low"
+	concealed_holster = 0
 
 /obj/item/clothing/accessory/holster/hip
 	name = "hip holster"
 	desc = "A handgun holster slung low on the hip, draw pardner!"
 	icon_state = "holster_hip"
+	concealed_holster = 0
 
 /obj/item/clothing/accessory/holster/leg
 	name = "leg holster"
 	desc = "A tacticool handgun holster. Worn on the upper leg."
 	icon_state = "holster_hip"
 	overlay_state = "holster_leg"
+	concealed_holster = 0

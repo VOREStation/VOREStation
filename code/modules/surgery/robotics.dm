@@ -27,6 +27,7 @@
 		/obj/item/weapon/coin = 50,
 		/obj/item/weapon/material/kitchen/utensil/knife = 50
 	)
+	req_open = 0
 
 	min_duration = 90
 	max_duration = 110

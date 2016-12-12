@@ -17,3 +17,4 @@
 	pixel_y = 0
 	capacity = 2
 	faction = "panther"
+	pounce_chance = 10

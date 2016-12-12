@@ -1,6 +1,7 @@
 /hook/startup/proc/robot_modules_vr()
 	robot_modules["Medihound"] = /obj/item/weapon/robot_module/medihound
 	robot_modules["K9"] = /obj/item/weapon/robot_module/knine
+	robot_modules["ERT"] = /obj/item/weapon/robot_module/ert
 	return 1
 
 
@@ -76,4 +77,31 @@
 	//R.icon_state = "medihound"
 	R.pixel_x 	 = -16
 	R.old_x  	 = -16
+	..()
+
+/obj/item/weapon/robot_module/ert
+	name = "Emergency Responce module"
+	channels = list("Security" = 1)
+	networks = list(NETWORK_SECURITY)
+	can_be_pushed = 0
+	sprites = list(
+					"Standard" = "ert"
+					)
+
+/obj/item/weapon/robot_module/ert/New(var/mob/living/silicon/robot/R)
+	src.modules += new /obj/item/device/flash(src)
+	src.modules += new /obj/item/weapon/handcuffs/cyborg(src)
+	src.modules += new /obj/item/weapon/dogborg/jaws/big(src)
+	src.modules += new /obj/item/weapon/melee/baton/robot(src)
+	src.modules += new /obj/item/device/dogborg/tongue(src)
+	src.modules += new /obj/item/taperoll/police(src)
+	src.modules += new /obj/item/device/dogborg/sleeper/K9(src)
+	src.modules += new /obj/item/borg/sight/hud/sec(src)
+	src.modules += new /obj/item/weapon/gun/energy/taser/mounted/cyborg/ertgun(src)
+	src.modules += new /obj/item/weapon/dogborg/swordtail(src)
+	src.emag     = new /obj/item/weapon/gun/energy/laser/mounted(src)
+	R.icon 		 = 'icons/mob/62x62robot_vr.dmi'
+	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
+	R.pixel_x 	 = -16
+	R.old_x 	 = -16
 	..()

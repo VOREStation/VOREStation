@@ -329,9 +329,8 @@ var/list/sacrificed = list()
 						is_sacrifice_target = 1
 					else
 						corpse_to_raise = M
-						if(M.key)
-							M.ghostize(1)	//kick them out of their body
 						break
+
 			if(!corpse_to_raise)
 				if(is_sacrifice_target)
 					usr << "<span class='warning'>The Geometer of blood wants this mortal for himself.</span>"
@@ -357,38 +356,41 @@ var/list/sacrificed = list()
 					usr << "<span class='warning'>The sacrifical corpse is not dead. You must free it from this world of illusions before it may be used.</span>"
 				return fizzle()
 
-			var/mob/observer/dead/ghost
-			for(var/mob/observer/dead/O in loc)
-				if(!O.client)	continue
-				if(O.mind && O.mind.current && O.mind.current.stat != DEAD)	continue
-				if(!(O.client.prefs.be_special & BE_CULTIST)) continue
-				ghost = O
-				break
-
-			if(!ghost)
-				usr << "<span class='warning'>You require a restless spirit which clings to this world. Beckon their prescence with the sacred chants of Nar-Sie.</span>"
+			if(!cult.can_become_antag(corpse_to_raise.mind) || jobban_isbanned(corpse_to_raise, "cultist"))
+				usr << "<span class='warning'>The Geometer of Blood refuses to touch this one.</span>"
 				return fizzle()
+			else if(!corpse_to_raise.client && corpse_to_raise.mind) //Don't force the dead person to come back if they don't want to.
+				for(var/mob/observer/dead/ghost in player_list)
+					if(ghost.mind == corpse_to_raise.mind)
+						ghost << "<b><font color = #330033><font size = 3>The cultist [usr.real_name] is trying to \
+						revive you. Return to your body if you want to be resurrected into the service of Nar'Sie!</b> \
+						(Verbs -> Ghost -> Re-enter corpse)</font></font>"
+						break
 
-			corpse_to_raise.revive()
+			sleep(10 SECONDS)
 
-			corpse_to_raise.key = ghost.key	//the corpse will keep its old mind! but a new player takes ownership of it (they are essentially possessed)
-											//This means, should that player leave the body, the original may re-enter
-			usr.say("Pasnar val'keriam usinar. Savrae ines amutan. Yam'toth remium il'tarat!")
-			corpse_to_raise.visible_message("<span class='warning'>[corpse_to_raise]'s eyes glow with a faint red as he stands up, slowly starting to breathe again.</span>", \
-			"<span class='warning'>Life... I'm alive again...</span>", \
-			"<span class='warning'>You hear a faint, slightly familiar whisper.</span>")
-			body_to_sacrifice.visible_message("<span class='danger'>[body_to_sacrifice] is torn apart, a black smoke swiftly dissipating from \his remains!</span>", \
-			"<span class='danger'>You feel as your blood boils, tearing you apart.</span>", \
-			"<span class='danger'>You hear a thousand voices, all crying in pain.</span>")
-			body_to_sacrifice.gib()
+			if(corpse_to_raise.client)
+
+				cult.add_antagonist(corpse_to_raise.mind)
+				corpse_to_raise.revive()
+
+				usr.say("Pasnar val'keriam usinar. Savrae ines amutan. Yam'toth remium il'tarat!")
+				corpse_to_raise.visible_message("<span class='warning'>[corpse_to_raise]'s eyes glow with a faint red as he stands up, slowly starting to breathe again.</span>", \
+				"<span class='warning'>Life... I'm alive again...</span>", \
+				"<span class='warning'>You hear a faint, slightly familiar whisper.</span>")
+				body_to_sacrifice.visible_message("<span class='danger'>[body_to_sacrifice] is torn apart, a black smoke swiftly dissipating from \his remains!</span>", \
+				"<span class='danger'>You feel as your blood boils, tearing you apart.</span>", \
+				"<span class='danger'>You hear a thousand voices, all crying in pain.</span>")
+				body_to_sacrifice.gib()
 
 //			if(ticker.mode.name == "cult")
 //				ticker.mode:add_cultist(corpse_to_raise.mind)
 //			else
 //				ticker.mode.cult |= corpse_to_raise.mind
 
-			corpse_to_raise << "<span class='cult'>Your blood pulses. Your head throbs. The world goes red. All at once you are aware of a horrible, horrible truth. The veil of reality has been ripped away and in the festering wound left behind something sinister takes root.</span>"
-			corpse_to_raise << "<span class='cult'>Assist your new compatriots in their dark dealings. Their goal is yours, and yours is theirs. You serve the Dark One above all else. Bring It back.</span>"
+				corpse_to_raise << "<span class='cult'>Your blood pulses. Your head throbs. The world goes red. All at once you are aware of a horrible, horrible truth. The veil of reality has been ripped away and in the festering wound left behind something sinister takes root.</span>"
+				corpse_to_raise << "<span class='cult'>Assist your new compatriots in their dark dealings. Their goal is yours, and yours is theirs. You serve the Dark One above all else. Bring It back.</span>"
+
 			return
 
 
