@@ -5610,7 +5610,7 @@
 "cdT" = (/obj/machinery/atmospherics/pipe/manifold/hidden/supply,/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{dir = 1},/turf/simulated/floor/tiled/neutral,/area/crew_quarters/cafeteria)
 "cdU" = (/obj/structure/bed/chair{dir = 1},/obj/effect/landmark/start{name = "Assistant"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 4},/obj/structure/disposalpipe/segment,/turf/simulated/floor/tiled,/area/crew_quarters/cafeteria)
 "cdV" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 9},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 9; pixel_y = 0},/turf/simulated/floor/tiled/neutral,/area/crew_quarters/cafeteria)
-"cdW" = (/obj/machinery/vending/snack,/turf/simulated/floor/tiled,/area/crew_quarters/cafeteria)
+"cdW" = (/obj/machinery/vending/tray,/turf/simulated/floor/tiled,/area/crew_quarters/cafeteria)
 "cdX" = (/obj/structure/sign/directions/medical{dir = 1; pixel_x = 32; pixel_y = 0},/turf/simulated/floor/tiled/dark,/area/hallway/primary/central_two)
 "cdY" = (/obj/machinery/door/firedoor/glass,/obj/machinery/door/airlock/glass{id_tag = "security_checkpoint_vault"; name = "Security Checkpoint"},/turf/simulated/floor/tiled,/area/security/checkpoint/medical)
 "cdZ" = (/obj/machinery/door/firedoor/glass,/obj/effect/floor_decal/industrial/loading{tag = "icon-loadingarea (NORTH)"; icon_state = "loadingarea"; dir = 1},/turf/simulated/floor/tiled,/area/security/checkpoint/medical)
