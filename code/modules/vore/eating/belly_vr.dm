@@ -423,9 +423,9 @@
 				if(TL != null)
 					B.internal_contents -= R
 					T.internal_contents += R
-			R << "<span class='warning'>Your attempt to escape [name] has failed and your struggles only results in you sliding into [owner]'s [transferlocation]</span>"
-			owner << "<span class='warning'>Someone slid into your [transferlocation] due to their struggling inside your [name]!</span>"
-			return
+					R << "<span class='warning'>Your attempt to escape [name] has failed and your struggles only results in you sliding into [owner]'s [transferlocation]</span>"
+					owner << "<span class='warning'>Someone slid into your [transferlocation] due to their struggling inside your [name]!</span>"
+					return
 
 		else if(prob(absorbchance)) //After that, let's have it run the absorb chance.
 			R << "<span class='warning'>In responce to your struggling, \the [name] begins to get more active...</span>"
