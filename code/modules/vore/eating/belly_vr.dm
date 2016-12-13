@@ -25,6 +25,9 @@
 	var/digestchance = 0					// % Chance of stomach beginning to digest if prey struggles
 	var/absorbchance = 0					// % Chance of stomach beginning to absorb if prey struggles
 	var/escapechance = 0 					// % Chance of prey beginning to escape if prey struggles.
+	var/transferchance = 0 					// % Chance of prey being
+	var/transferlocation = null				// Location that the prey is released if they struggle and get dropped off.
+
 
 	var/tmp/digest_mode = DM_HOLD				// Whether or not to digest. Default to not digest.
 	var/tmp/list/digest_modes = list(DM_HOLD,DM_DIGEST,DM_HEAL,DM_ABSORB,DM_DRAIN,DM_UNABSORB)	// Possible digest modes
@@ -410,7 +413,21 @@
 				owner << "<span class='notice'>The attempt to escape from your [name] has failed!</span>"
 				return
 
-		else if(prob(absorbchance)) //Next, let's have it run the absorb chance.
+		else if(prob(transferchance)) //Next, let's have it see if they end up getting into an even bigger mess then when they started.
+			//if(!(T in owner.vore_organs)) //This section has a bug. If the location that the belly drops someone off at is deleted, then it'll still drop them off at that (now nonexistant) location, resulting in them being trapped. Otherwise, the code works.
+				//return
+			var/datum/belly/T = transferlocation
+			for(var/K in owner.vore_organs)
+				var/datum/belly/B = owner.vore_organs[K]
+				var/datum/belly/TL = B.transferlocation
+				if(TL != null)
+					B.internal_contents -= R
+					T.internal_contents += R
+			R << "<span class='warning'>Your attempt to escape [name] has failed and your struggles only results in you sliding into [owner]'s [transferlocation]</span>"
+			owner << "<span class='warning'>Someone slid into your [transferlocation] due to their struggling inside your [name]!</span>"
+			return
+
+		else if(prob(absorbchance)) //After that, let's have it run the absorb chance.
 			R << "<span class='warning'>In responce to your struggling, \the [name] begins to get more active...</span>"
 			owner << "<span class='warning'>You feel your [name] beginning to become active!</span>"
 			for(var/K in owner.vore_organs)
@@ -418,7 +435,7 @@
 				B.digest_mode = DM_ABSORB
 				return
 
-		else if(prob(digestchance))
+		else if(prob(digestchance)) //Finally, let's see if it should run the digest chance.
 			R << "<span class='warning'>In responce to your struggling, \the [name] begins to get more active...</span>"
 			owner << "<span class='warning'>You feel your [name] beginning to become active!</span>"
 			for(var/K in owner.vore_organs)

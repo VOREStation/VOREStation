@@ -176,6 +176,10 @@
 
 		dat += "<br><a href='?src=\ref[src];b_escapechance=\ref[selected]'>Set Belly Escape Chance</a>"
 
+		dat += "<br><a href='?src=\ref[src];b_transferchance=\ref[selected]'>Set Belly Transfer Chance</a>"
+
+		dat += "<br><a href='?src=\ref[src];b_transferlocation=\ref[selected]'>Set Belly Transfer Location</a>"
+
 		dat += "<br><a href='?src=\ref[src];b_absorbchance=\ref[selected]'>Set Belly Absorb Chance</a>"
 
 		dat += "<br><a href='?src=\ref[src];b_digestchance=\ref[selected]'>Set Belly Digest Chance</a>"
@@ -533,6 +537,24 @@
 			escape_time_input = round(text2num(escape_time_input),4)
 			selected.escapetime = sanitize_integer(escape_time_input, 9, 600, selected.escapetime) //Set to 9 to stop rounding problems.
 
+	if(href_list["b_transferchance"])
+		var/transfer_chance_input = input(user, "Choose the chance that that prey will be dropped off if they attempt to struggle.\
+			 Stomach special interactions must be enabled for this to effect anything, along with a transfer location set\
+			 Ranges from -1(disabled) to 100.\n\
+			(-1-100)", "Prey Escape Time") as num|null
+		if(transfer_chance_input)
+			transfer_chance_input = round(text2num(transfer_chance_input),4)
+			selected.transferchance = sanitize_integer(transfer_chance_input, 9, 600, selected.transferchance) //Set to 9 to stop rounding problems.
+
+	if(href_list["b_transferlocation"])
+		var/choice = input("Where do you want your [selected.name] to lead if prey struggles??","Select Belly") in user.vore_organs + "Cancel - None - Remove"
+
+		if(choice == "Cancel - None - Remove")
+			selected.transferlocation = null
+			return 1
+		else
+			selected.transferlocation = user.vore_organs[choice]
+			usr << "<span class='warning'>Note: Do not delete your [choice] while this is enabled. This will cause your prey to be unable to escape. If you want to delete your [choice], select Cancel - None - Remove and then delete it.</span>" //Currently attempting to fix this bug. Let's warn the user about it until then.
 
 
 	if(href_list["b_soundtest"])
