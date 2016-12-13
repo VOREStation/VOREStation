@@ -390,7 +390,7 @@
 	var/strpick = pick(struggle_sounds)
 	var/strsound = struggle_sounds[strpick]
 	playsound(R.loc, strsound, 50, 1)
-	
+
 	if(escapable) //If the stomach has escapable enabled.
 		R << "<span class='warning'>You attempt to climb out of \the [name].</span>"
 		owner << "<span class='warning'>Someone is attempting to climb out of your [name]!</span>"
@@ -405,7 +405,7 @@
 					return
 				else if(!(R in internal_contents)) //Aren't even in the belly. Quietly fail.
 					return
-			else //Belly became inescapable. 
+			else //Belly became inescapable.
 				R << "<span class='warning'>Your attempt to escape [name] has failed!</span>"
 				owner << "<span class='notice'>The attempt to escape from your [name] has failed!</span>"
 				return
@@ -413,16 +413,18 @@
 		else if(prob(absorbchance)) //Next, let's have it run the absorb chance.
 			R << "<span class='warning'>In responce to your struggling, \the [name] begins to get more active...</span>"
 			owner << "<span class='warning'>You feel your [name] beginning to become active!</span>"
-			var/datum/belly/B = check_belly(owner)
-			B.digest_mode = DM_ABSORB
-			return
+			for(var/K in owner.vore_organs)
+				var/datum/belly/B = owner.vore_organs[K]
+				B.digest_mode = DM_ABSORB
+				return
 
 		else if(prob(digestchance))
 			R << "<span class='warning'>In responce to your struggling, \the [name] begins to get more active...</span>"
 			owner << "<span class='warning'>You feel your [name] beginning to become active!</span>"
-			var/datum/belly/B = check_belly(owner)
-			B.digest_mode = DM_DIGEST
-			return
+			for(var/K in owner.vore_organs)
+				var/datum/belly/B = owner.vore_organs[K]
+				B.digest_mode = DM_DIGEST
+				return
 		else //Nothing interesting happened.
 			R << "<span class='warning'>But make no progress in escaping [owner]'s [name].</span>"
 			owner << "<span class='warning'>But appears to be unable to make any progress in escaping your [name].</span>"
