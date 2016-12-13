@@ -78,3 +78,7 @@
 
 /obj/item/trash/attack(mob/M as mob, mob/living/user as mob)
 	return
+
+/obj/item/trash/foodtray
+	name = "food tray"
+	icon_state = "foodtray"
