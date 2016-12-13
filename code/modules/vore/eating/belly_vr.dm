@@ -28,7 +28,6 @@
 	var/transferchance = 0 					// % Chance of prey being
 	var/transferlocation = null				// Location that the prey is released if they struggle and get dropped off.
 
-
 	var/tmp/digest_mode = DM_HOLD				// Whether or not to digest. Default to not digest.
 	var/tmp/list/digest_modes = list(DM_HOLD,DM_DIGEST,DM_HEAL,DM_ABSORB,DM_DRAIN,DM_UNABSORB)	// Possible digest modes
 	var/tmp/list/transform_modes = list(DM_TRANSFORM_MALE,DM_TRANSFORM_FEMALE,DM_TRANSFORM_KEEP_GENDER,DM_TRANSFORM_CHANGE_SPECIES,DM_TRANSFORM_CHANGE_SPECIES_EGG,DM_TRANSFORM_KEEP_GENDER_EGG,DM_TRANSFORM_MALE_EGG,DM_TRANSFORM_FEMALE_EGG, DM_EGG)
@@ -414,8 +413,6 @@
 				return
 
 		else if(prob(transferchance)) //Next, let's have it see if they end up getting into an even bigger mess then when they started.
-			//if(!(T in owner.vore_organs)) //This section has a bug. If the location that the belly drops someone off at is deleted, then it'll still drop them off at that (now nonexistant) location, resulting in them being trapped. Otherwise, the code works.
-				//return
 			var/datum/belly/T = transferlocation
 			for(var/K in owner.vore_organs)
 				var/datum/belly/B = owner.vore_organs[K]
@@ -466,6 +463,11 @@
 	dupe.immutable = immutable
 	dupe.escapable = escapable
 	dupe.escapetime = escapetime
+	dupe.digestchance = digestchance
+	dupe.absorbchance = absorbchance
+	dupe.escapechance = escapechance
+	dupe.transferchance = transferchance
+	dupe.transferlocation = transferlocation
 
 	//// Object-holding variables
 	//struggle_messages_outside - strings

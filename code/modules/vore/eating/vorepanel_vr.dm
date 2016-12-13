@@ -179,6 +179,7 @@
 		dat += "<br><a href='?src=\ref[src];b_transferchance=\ref[selected]'>Set Belly Transfer Chance</a>"
 
 		dat += "<br><a href='?src=\ref[src];b_transferlocation=\ref[selected]'>Set Belly Transfer Location</a>"
+		dat += " [selected.transferlocation]"
 
 		dat += "<br><a href='?src=\ref[src];b_absorbchance=\ref[selected]'>Set Belly Absorb Chance</a>"
 
@@ -554,8 +555,7 @@
 			return 1
 		else
 			selected.transferlocation = user.vore_organs[choice]
-			usr << "<span class='warning'>Note: Do not delete your [choice] while this is enabled. This will cause your prey to be unable to escape. If you want to delete your [choice], select Cancel - None - Remove and then delete it.</span>" //Currently attempting to fix this bug. Let's warn the user about it until then.
-
+			usr << "<span class='warning'>Note: Do not delete your [choice] while this is enabled. This will cause your prey to be unable to escape. If you want to delete your [choice], select Cancel - None - Remove and then delete it.</span>"
 
 	if(href_list["b_soundtest"])
 		user << selected.vore_sound
@@ -574,6 +574,7 @@
 				user.vore_organs.Remove(selected)
 				selected = user.vore_organs[1]
 				user.vore_selected = user.vore_organs[1]
+				usr << "<span class='warning'>Note: If you had this organ selected as a transfer location, please remove the transfer location by selecting Cancel - None - Remove on this stomach.</span>" //If anyone finds a fix to this bug, please tell me. I, for the life of me, can't find any way to fix it.
 
 	if(href_list["saveprefs"])
 		if(!user.save_vore_prefs())
