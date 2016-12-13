@@ -3339,3 +3339,69 @@
 	..()
 	reagents.add_reagent("nutriment", 10)
 	bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/meal1
+	name = "\improper Cornbread Meal"
+	desc = "A tray of warm food. Cornbread, tomato sauce, and peas fill this tray."
+	icon_state = "foodtray1"
+	trash= /obj/item/trash/foodtray
+
+/obj/item/weapon/reagent_containers/food/snacks/meal1/New()
+		..()
+		reagents.add_reagent("nutriment", 9)
+		bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/meal2
+	name = "\improper Pork Meal"
+	desc = "A tray of warm food. Well-done pork, sweet corn, and fluffy mashed potatos fill this tray."
+	icon_state = "foodtray2"
+	trash= /obj/item/trash/foodtray
+
+/obj/item/weapon/reagent_containers/food/snacks/meal2/New()
+		..()
+		reagents.add_reagent("nutriment", 9)
+		bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/meal3
+	name = "\improper Pasta Meal"
+	desc = "A tray of warm food. Plain spaghetti, steamed carrots, and a few french fries fill this tray."
+	icon_state = "foodtray3"
+	trash= /obj/item/trash/foodtray
+
+/obj/item/weapon/reagent_containers/food/snacks/meal3/New()
+		..()
+		reagents.add_reagent("nutriment", 9)
+		bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/meal4
+	name = "\improper Pizza Meal"
+	desc = "A tray of warm food. Pepperoni pizza, greenbeans, and a hard-boiled egg fill this tray. Get something other than pizza, lardass."
+	icon_state = "foodtray4"
+	trash= /obj/item/trash/foodtray
+
+/obj/item/weapon/reagent_containers/food/snacks/meal4/New()
+		..()
+		reagents.add_reagent("nutriment", 8)
+		bitesize = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/meal5
+	name = "\improper Tendie Snackables"
+	desc = "A tray of warm food. Moist chicken tenders, dry rice and a few pieces of broccoli fill this tray."
+	icon_state = "foodtray5"
+	trash= /obj/item/trash/foodtray
+
+/obj/item/weapon/reagent_containers/food/snacks/meal5/New()
+		..()
+		reagents.add_reagent("nutriment", 10)
+		bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/meal6
+	name = "\improper Cookies"
+	desc = "Delicious cookies and milk. The best of all meals."
+	icon_state = "foodtray6"
+	trash= /obj/item/trash/foodtray
+
+/obj/item/weapon/reagent_containers/food/snacks/meal6/New()
+		..()
+		reagents.add_reagent("nutriment", 2)
+		bitesize = 2
