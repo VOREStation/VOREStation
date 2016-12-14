@@ -171,6 +171,22 @@
 		//Belly messages
 		dat += "<br><a href='?src=\ref[src];b_msgs=\ref[selected]'>Belly Messages</a>"
 
+		//Belly escapability
+		dat += "<br><a href='?src=\ref[src];b_escapable=\ref[selected]'>Set Belly Interactions (below)</a>"
+
+		dat += "<br><a href='?src=\ref[src];b_escapechance=\ref[selected]'>Set Belly Escape Chance</a>"
+
+		dat += "<br><a href='?src=\ref[src];b_transferchance=\ref[selected]'>Set Belly Transfer Chance</a>"
+
+		dat += "<br><a href='?src=\ref[src];b_transferlocation=\ref[selected]'>Set Belly Transfer Location</a>"
+		dat += " [selected.transferlocation]"
+
+		dat += "<br><a href='?src=\ref[src];b_absorbchance=\ref[selected]'>Set Belly Absorb Chance</a>"
+
+		dat += "<br><a href='?src=\ref[src];b_digestchance=\ref[selected]'>Set Belly Digest Chance</a>"
+
+		dat += "<br><a href='?src=\ref[src];b_escapetime=\ref[selected]'>Set Belly Escape Time</a>"
+
 		//Delete button
 		dat += "<br><a style='background:#990000;' href='?src=\ref[src];b_del=\ref[selected]'>Delete Belly</a>"
 
@@ -475,6 +491,72 @@
 
 		selected.vore_sound = vore_sounds[choice]
 
+	if(href_list["b_escapable"])
+		if(selected.escapable == 0) //Possibly escapable and special interactions.
+			selected.escapable = 1
+			usr << "<span class='warning'>Prey now have special interactions with your [selected.name] depending on your settings.</span>"
+		else if(selected.escapable == 1) //Never escapable.
+			selected.escapable = 0
+			usr << "<span class='warning'>Prey will not be able to have special interactions with your [selected.name].</span>"
+		else
+			usr << "<span class='warning'>Something went wrong. Your stomach will now not have special interactions. Press the button enable them again.</span>" //If they somehow have a varable that's not 0 or 1
+			selected.escapable = 0
+
+	if(href_list["b_escapechance"])
+		var/escape_chance_input = input(user, "Choose the (%) chance that prey that attempt to escape will be able to escape.\
+			Stomach special interactions must be enabled for this to work.\
+			Ranges from -1(disabled) to 100.\n\
+			(-1-100)", "Prey Escape Chance") as num|null
+		if(escape_chance_input)
+			escape_chance_input = round(text2num(escape_chance_input),4)
+			selected.escapechance = sanitize_integer(escape_chance_input, 0, 100, selected.escapechance)
+
+	if(href_list["b_absorbchance"])
+		var/absorb_chance_input = input(user, "Choose the (%) chance that prey that attempt to escape will be absorbed into your [selected.name].\
+			 Stomach special interactions must be enabled for this to work.\
+			 Ranges from -1(disabled) to 100.\n\
+			(-1-100)", "Prey Absorb Chance") as num|null
+		if(absorb_chance_input)
+			absorb_chance_input = round(text2num(absorb_chance_input),4)
+			selected.absorbchance = sanitize_integer(absorb_chance_input, 0, 100, selected.absorbchance)
+
+	if(href_list["b_digestchance"])
+		var/digest_chance_input = input(user, "Choose the (%) chance that prey that attempt to escape will begin to digest inside of your [selected.name].\
+			 Stomach special interactions must be enabled for this to work.\
+			 Ranges from -1(disabled) to 100.\n\
+			(-1-100)", "Prey Digest Chance") as num|null
+		if(digest_chance_input)
+			digest_chance_input = round(text2num(digest_chance_input),4)
+			selected.digestchance = sanitize_integer(digest_chance_input, 0, 100, selected.digestchance)
+
+	if(href_list["b_escapetime"])
+		var/escape_time_input = input(user, "Choose the amount of time it will take for prey to be able to escape.\
+			 Stomach special interactions must be enabled for this to effect anything, along with the escape chance\
+			 Ranges from 10 to 600.(10 = 1 second, 600 = 60 seconds)\n\
+			(10-600)", "Prey Escape Time") as num|null
+		if(escape_time_input)
+			escape_time_input = round(text2num(escape_time_input),4)
+			selected.escapetime = sanitize_integer(escape_time_input, 9, 600, selected.escapetime) //Set to 9 to stop rounding problems.
+
+	if(href_list["b_transferchance"])
+		var/transfer_chance_input = input(user, "Choose the chance that that prey will be dropped off if they attempt to struggle.\
+			 Stomach special interactions must be enabled for this to effect anything, along with a transfer location set\
+			 Ranges from -1(disabled) to 100.\n\
+			(-1-100)", "Prey Escape Time") as num|null
+		if(transfer_chance_input)
+			transfer_chance_input = round(text2num(transfer_chance_input),4)
+			selected.transferchance = sanitize_integer(transfer_chance_input, 9, 600, selected.transferchance) //Set to 9 to stop rounding problems.
+
+	if(href_list["b_transferlocation"])
+		var/choice = input("Where do you want your [selected.name] to lead if prey struggles??","Select Belly") in user.vore_organs + "Cancel - None - Remove"
+
+		if(choice == "Cancel - None - Remove")
+			selected.transferlocation = null
+			return 1
+		else
+			selected.transferlocation = user.vore_organs[choice]
+			usr << "<span class='warning'>Note: Do not delete your [choice] while this is enabled. This will cause your prey to be unable to escape. If you want to delete your [choice], select Cancel - None - Remove and then delete it.</span>"
+
 	if(href_list["b_soundtest"])
 		user << selected.vore_sound
 
@@ -492,6 +574,7 @@
 				user.vore_organs.Remove(selected)
 				selected = user.vore_organs[1]
 				user.vore_selected = user.vore_organs[1]
+				usr << "<span class='warning'>Note: If you had this organ selected as a transfer location, please remove the transfer location by selecting Cancel - None - Remove on this stomach.</span>" //If anyone finds a fix to this bug, please tell me. I, for the life of me, can't find any way to fix it.
 
 	if(href_list["saveprefs"])
 		if(!user.save_vore_prefs())
