@@ -26,6 +26,7 @@
 	else if(material.opacity < 0.5 && opacity)
 		set_light(0)
 
+	calc_rad_resistance()
 	update_connections(1)
 	update_icon()
 
