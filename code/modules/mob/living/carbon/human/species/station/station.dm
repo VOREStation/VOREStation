@@ -8,7 +8,7 @@
 	While the central Sol government maintains control of its far-flung people, powerful corporate \
 	interests, rampant cyber and bio-augmentation and secretive factions make life on most human \
 	worlds tumultous at best."
-	num_alternate_languages = 2
+	num_alternate_languages = 3
 	secondary_langs = list("Sol Common")
 	name_language = null // Use the first-name last-name generator rather than a language scrambler
 	min_age = 17
@@ -34,7 +34,7 @@
 	gluttonous = 1
 	slowdown = 0.5
 	brute_mod = 0.8
-	num_alternate_languages = 2
+	num_alternate_languages = 3
 	secondary_langs = list("Sinta'unathi")
 	name_language = "Sinta'unathi"
 	health_hud_intensity = 2.5
@@ -95,7 +95,7 @@
 	brute_mod = 1.15
 	burn_mod =  1.15
 	gluttonous = 1
-	num_alternate_languages = 2
+	num_alternate_languages = 3
 	secondary_langs = list("Siik")
 	name_language = "Siik"
 	health_hud_intensity = 2.5
@@ -151,7 +151,7 @@
 	of the Qerr'Katish, a caste within their society which keeps the empire of the Skrell running smoothly. Skrell are \
 	herbivores on the whole and tend to be co-operative with the other species of the galaxy, although they rarely reveal \
 	the secrets of their empire to their allies."
-	num_alternate_languages = 2
+	num_alternate_languages = 3
 	secondary_langs = list("Skrellian", "Schechi")
 	name_language = "Skrellian"
 	health_hud_intensity = 2
@@ -205,7 +205,7 @@
 	hud_type = /datum/hud_data/diona
 	siemens_coefficient = 0.3
 	show_ssd = "completely quiescent"
-	num_alternate_languages = 1
+	num_alternate_languages = 2
 	name_language = "Rootspeak"
 	health_hud_intensity = 2.5
 
