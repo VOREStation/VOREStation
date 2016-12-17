@@ -132,3 +132,25 @@
 /datum/gear/shoes/flats/color/New()
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/shoes/cowboy
+	display_name = "cowboy boots"
+	path = /obj/item/clothing/shoes/cowboy
+
+/datum/gear/shoes/jungle
+	display_name = "jungle boots"
+	path = /obj/item/clothing/shoes/jungleboots
+	cost = 2
+
+/datum/gear/shoes/duty
+	display_name = "duty boots"
+	path = 	/obj/item/clothing/shoes/dutyboots
+	cost = 2
+
+/datum/gear/shoes/dress
+	display_name = "shoes, dress"
+	path = 	/obj/item/clothing/shoes/dress
+
+/datum/gear/shoes/dress/white
+	display_name = "shoes, dress white"
+	path = 	/obj/item/clothing/shoes/dress/white
