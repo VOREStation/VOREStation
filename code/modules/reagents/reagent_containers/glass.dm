@@ -104,7 +104,7 @@
 		if(length(tmp_label) > 50)
 			user << "<span class='notice'>The label can be at most 50 characters long.</span>"
 		else if(length(tmp_label) > 10)
-			user << "<span class='notice'>You set the label."
+			user << "<span class='notice'>You set the label.</span>"
 			label_text = tmp_label
 			update_name_label()
 		else
