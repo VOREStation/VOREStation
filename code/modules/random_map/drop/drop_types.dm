@@ -266,15 +266,15 @@ datum/supply_drop_loot/riot
 /datum/supply_drop_loot/materials/New()
 	..()
 	contents = list(
-		/obj/item/stack/material/steel/fifty,
-		/obj/item/stack/material/steel/fifty,
-		/obj/item/stack/material/steel/fifty,
-		/obj/item/stack/material/glass/fifty,
-		/obj/item/stack/material/glass/fifty,
-		/obj/item/stack/material/wood/fifty,
-		/obj/item/stack/material/plastic/fifty,
-		/obj/item/stack/material/glass/reinforced/fifty,
-		/obj/item/stack/material/plasteel/fifty)
+		/obj/fiftyspawner/steel,
+		/obj/fiftyspawner/steel,
+		/obj/fiftyspawner/steel,
+		/obj/fiftyspawner/glass,
+		/obj/fiftyspawner/glass,
+		/obj/fiftyspawner/wood,
+		/obj/fiftyspawner/plastic,
+		/obj/fiftyspawner/rglass,
+		/obj/fiftyspawner/plasteel)
 
 /datum/supply_drop_loot/materials_advanced
 	name = "Advanced Materials"
@@ -282,20 +282,20 @@ datum/supply_drop_loot/riot
 /datum/supply_drop_loot/materials_advanced/New()
 	..()
 	contents = list(
-		/obj/item/stack/material/steel/fifty,
-		/obj/item/stack/material/glass/fifty,
-		/obj/item/stack/material/wood/fifty,
-		/obj/item/stack/material/plastic/fifty,
-		/obj/item/stack/material/glass/reinforced/fifty,
-		/obj/item/stack/material/plasteel/fifty,
-		/obj/item/stack/material/diamond/fifty,
-		/obj/item/stack/material/phoron/fifty,
-		/obj/item/stack/material/gold/fifty,
-		/obj/item/stack/material/silver/fifty,
-		/obj/item/stack/material/platinum/fifty,
-		/obj/item/stack/material/mhydrogen/fifty,
-		/obj/item/stack/material/tritium/fifty,
-		/obj/item/stack/material/osmium/fifty,)
+		/obj/fiftyspawner/steel,
+		/obj/fiftyspawner/glass,
+		/obj/fiftyspawner/wood,
+		/obj/fiftyspawner/plastic,
+		/obj/fiftyspawner/rglass,
+		/obj/fiftyspawner/plasteel,
+		/obj/fiftyspawner/diamond,
+		/obj/fiftyspawner/phoron,
+		/obj/fiftyspawner/gold,
+		/obj/fiftyspawner/silver,
+		/obj/fiftyspawner/platinum,
+		/obj/fiftyspawner/mhydrogen,
+		/obj/fiftyspawner/tritium,
+		/obj/fiftyspawner/osmium,)
 
 /datum/supply_drop_loot/supermatter
 	name = "Supermatter"
