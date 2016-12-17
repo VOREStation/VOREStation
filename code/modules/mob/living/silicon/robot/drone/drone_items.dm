@@ -177,12 +177,14 @@
 	wrapped = null
 	//update_icon()
 
-/obj/item/weapon/gripper/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/weapon/gripper/attack(mob/living/M as mob, mob/living/carbon/user as mob)
 	if(wrapped) 	//The force of the wrapped obj gets set to zero during the attack() and afterattack().
+		usr << "\blue Currently holding [wrapped.name]."
 		force_holder = wrapped.force
 		wrapped.force = 0.0
 		wrapped.attack(M,user)
-		if(deleted(wrapped))
+		M.attackby(wrapped, user)	//attackby reportedly gets procced by being clicked on, at least according to Anewbe.
+		if(deleted(wrapped) || wrapped.loc != src.loc)
 			wrapped = null
 		return 1
 	return 0
