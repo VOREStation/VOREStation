@@ -134,7 +134,8 @@
 
 	can_hold = list(
 		/obj/item/mecha_parts/part,
-		/obj/item/mecha_parts/mecha_equipment
+		/obj/item/mecha_parts/mecha_equipment,
+		/obj/item/mecha_parts/mecha_tracking
 		)
 
 /obj/item/weapon/gripper/no_use //Used when you want to hold and put items in other things, but not able to 'use' the item
@@ -177,9 +178,8 @@
 	wrapped = null
 	//update_icon()
 
-/obj/item/weapon/gripper/attack(mob/living/M as mob, mob/living/carbon/user as mob)
+/obj/item/weapon/gripper/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(wrapped) 	//The force of the wrapped obj gets set to zero during the attack() and afterattack().
-		usr << "\blue Currently holding [wrapped.name]."
 		force_holder = wrapped.force
 		wrapped.force = 0.0
 		wrapped.attack(M,user)
