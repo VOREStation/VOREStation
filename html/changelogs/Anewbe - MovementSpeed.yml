@@ -35,3 +35,4 @@ delete-after: True
 changes: 
   - rscadd: "Changed run/walk speed to be based only on a config file."
   - tweak: "Walking should be faster now."
+  - tweak: "Removed shoeless slowdown."
