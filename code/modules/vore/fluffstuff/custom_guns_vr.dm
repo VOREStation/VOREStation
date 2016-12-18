@@ -72,7 +72,7 @@
 	allowed_magazines = list(/obj/item/ammo_magazine/m41a)
 	fire_sound = 'sound/weapons/semiauto.ogg'
 	load_method = MAGAZINE
-	slot_flags = SLOT_BACK
+	slot_flags = null //No back sprite.
 	//requires_two_hands = 1
 	firemodes = list(
 		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
@@ -82,24 +82,29 @@
 /obj/item/weapon/gun/projectile/automatic/m2922
 	name = "\improper M2922 Rifle"
 	desc = "A M2922 Rifle! Uses unique 7.92x33mm Kurz rounds."
-	icon = 'icons/obj/36x32gun_vr.dmi'
+	icon = 'icons/obj/36x32guns_vr.dmi'
 	icon_state = "m2922"
-	icon_override = 'icons/obj/36x32gun_vr.dmi'
+	icon_override = 'icons/obj/gun_vr.dmi' //It refuses to read the icon states in 36x32
 	item_state = "m2922"
 	item_icons = null
 	w_class = ITEMSIZE_LARGE
 	recoil = 2
-	max_shells = 30
+	max_shells = 10
 	accuracy = -1
 	scoped_accuracy = 2
 	caliber = "kurz"
 	ammo_type = /obj/item/ammo_casing/stg
-	magazine_type = /obj/item/ammo_magazine/stg
-	allowed_magazines = list(/obj/item/ammo_magazine/stg)
+	magazine_type = /obj/item/ammo_magazine/stg/small
+	allowed_magazines = list(/obj/item/ammo_magazine/stg/small)
 	fire_sound = 'sound/weapons/rifleshot.ogg'
-	load_method = SINGLE_CASING
-	slot_flags = SLOT_BACK
-	one_handed_penalty = 4 // It's a rifle. What do you expect?
+	load_method = MAGAZINE
+	//slot_flags = SLOT_BACK //Back sprite refused to work.
+	one_handed_penalty = 3 // It's a rifle. What do you expect?
+
+	firemodes = list(
+		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null)
+		)
+
 	verb/scope()
 		set category = "Object"
 		set name = "Use Scope"
@@ -502,6 +507,9 @@
 	max_ammo = 30
 	mag_type = MAGAZINE
 
+/obj/item/ammo_magazine/stg/small
+	max_ammo = 10 //For the m2922
+
 /obj/item/ammo_casing/stg
 	desc = "A 7.92x33mm Kurz casing."
 	icon_state = "rifle-casing"
@@ -548,7 +556,7 @@
 
 /obj/item/ammo_casing/a556mm
 	desc = "A 5.56x45mm bullet casing."
-	icon_state = "rifle-casing-spent"
+	icon_state = "rifle-casing"
 	caliber = "5.56x45mm"
 	projectile_type = /obj/item/projectile/bullet/rifle/a556mm
 
