@@ -6,6 +6,7 @@
 	name = " "
 	var/base_name = " "
 	desc = " "
+	var/base_desc = " "
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "null"
 	item_state = "null"
@@ -48,6 +49,7 @@
 /obj/item/weapon/reagent_containers/glass/New()
 	..()
 	base_name = name
+	base_desc = desc
 
 /obj/item/weapon/reagent_containers/glass/examine(var/mob/user)
 	if(!..(user, 2))
@@ -99,8 +101,12 @@
 /obj/item/weapon/reagent_containers/glass/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/pen) || istype(W, /obj/item/device/flashlight/pen))
 		var/tmp_label = sanitizeSafe(input(user, "Enter a label for [name]", "Label", label_text), MAX_NAME_LEN)
-		if(length(tmp_label) > 10)
-			user << "<span class='notice'>The label can be at most 10 characters long.</span>"
+		if(length(tmp_label) > 50)
+			user << "<span class='notice'>The label can be at most 50 characters long.</span>"
+		else if(length(tmp_label) > 10)
+			user << "<span class='notice'>You set the label.</span>"
+			label_text = tmp_label
+			update_name_label()
 		else
 			user << "<span class='notice'>You set the label to \"[tmp_label]\".</span>"
 			label_text = tmp_label
@@ -109,8 +115,12 @@
 /obj/item/weapon/reagent_containers/glass/proc/update_name_label()
 	if(label_text == "")
 		name = base_name
+	else if(length(label_text) > 10)
+		var/short_label_text = copytext(label_text, 1, 11)
+		name = "[base_name] ([short_label_text]...)"
 	else
 		name = "[base_name] ([label_text])"
+	desc = "[base_desc] It is labeled \"[label_text]\"."
 
 /obj/item/weapon/reagent_containers/glass/beaker
 	name = "beaker"
