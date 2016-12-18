@@ -134,7 +134,8 @@
 
 	can_hold = list(
 		/obj/item/mecha_parts/part,
-		/obj/item/mecha_parts/mecha_equipment
+		/obj/item/mecha_parts/mecha_equipment,
+		/obj/item/mecha_parts/mecha_tracking
 		)
 
 /obj/item/weapon/gripper/no_use //Used when you want to hold and put items in other things, but not able to 'use' the item
@@ -182,7 +183,8 @@
 		force_holder = wrapped.force
 		wrapped.force = 0.0
 		wrapped.attack(M,user)
-		if(deleted(wrapped))
+		M.attackby(wrapped, user)	//attackby reportedly gets procced by being clicked on, at least according to Anewbe.
+		if(deleted(wrapped) || wrapped.loc != src.loc)
 			wrapped = null
 		return 1
 	return 0
