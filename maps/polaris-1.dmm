@@ -2975,7 +2975,7 @@
 "bfk" = (/obj/structure/disposalpipe/segment{dir = 4},/turf/simulated/wall,/area/hydroponics)
 "bfl" = (/obj/machinery/door/airlock/maintenance{name = "Operating Theatre Maintenance Access"; req_access = list(45)},/obj/machinery/door/firedoor/border_only,/turf/simulated/floor/tiled/freezer,/area/medical/surgery_storage)
 "bfm" = (/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor,/area/maintenance/medbay_fore)
-"bfn" = (/obj/structure/table/standard,/obj/effect/floor_decal/corner/brown{dir = 9},/obj/machinery/alarm{dir = 4; pixel_x = -23; pixel_y = 0},/obj/item/stack/material/steel/fifty,/obj/item/stack/material/glass/fifty,/obj/item/device/multitool,/turf/simulated/floor/tiled,/area/quartermaster/office)
+"bfn" = (/obj/structure/table/standard,/obj/effect/floor_decal/corner/brown{dir = 9},/obj/machinery/alarm{dir = 4; pixel_x = -23; pixel_y = 0},/obj/fiftyspawner/steel,/obj/item/device/multitool,/turf/simulated/floor/tiled,/area/quartermaster/office)
 "bfo" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; pixel_y = 0},/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/structure/disposalpipe/segment{dir = 4; icon_state = "pipe-c"},/turf/simulated/floor,/area/maintenance/central)
 "bfp" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/simulated/floor,/area/maintenance/medbay_fore)
 "bfq" = (/obj/machinery/alarm{dir = 4; pixel_x = -23; pixel_y = 0},/turf/simulated/floor,/area/rnd/research_storage)
