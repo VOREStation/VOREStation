@@ -509,6 +509,7 @@
 
 /obj/item/ammo_magazine/stg/small
 	max_ammo = 10 //For the m2922
+	icon_state = "SVD"
 
 /obj/item/ammo_casing/stg
 	desc = "A 7.92x33mm Kurz casing."
