@@ -561,7 +561,7 @@
 	projectile_type = /obj/item/projectile/bullet/rifle/a556mm
 
 /obj/item/projectile/bullet/rifle/a556mm
-	damage = 25
+	damage = 15
 
 /obj/item/ammo_magazine/m41a/empty
 	initial_ammo = 0
