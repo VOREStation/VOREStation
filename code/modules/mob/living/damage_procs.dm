@@ -13,7 +13,7 @@
 		world.log << "## DEBUG: apply_damage() was called on [src], with [damage] damage, and an armor value of [blocked]."
 	if(!damage || (blocked >= 100))
 		return 0
-	blocked = (100-blocked)/100
+	blocked = (100-blocked)/100 * 1/size_multiplier // VOREstation Edit - NW was here - scales damage with recipient's scale
 	switch(damagetype)
 		if(BRUTE)
 			adjustBruteLoss(damage * blocked)
