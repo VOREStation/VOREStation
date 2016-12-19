@@ -25,6 +25,8 @@
 /obj/item/ammo_casing/proc/expend()
 	. = BB
 	BB = null
+	if(caseless) //VORESTATION EDIT
+		del(src) //VORESTATION EDIT
 	set_dir(pick(cardinal)) //spin spent casings
 	update_icon()
 
