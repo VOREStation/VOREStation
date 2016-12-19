@@ -104,7 +104,7 @@
 
 /obj/item/weapon/gun/projectile/automatic/m2922
 	name = "\improper M2922 Rifle"
-	desc = "A M2922 Rifle! Uses  7.62mm rounds."
+	desc = "A M2922 Rifle! Uses 7.62mm rounds."
 	icon = 'icons/obj/36x32guns_vr.dmi'
 	icon_state = "m2922"
 	icon_override = 'icons/obj/gun_vr.dmi'
@@ -112,11 +112,9 @@
 	item_icons = null
 	w_class = ITEMSIZE_LARGE
 	recoil = 2
-	max_shells = 10
 	accuracy = -1
 	scoped_accuracy = 2
 	caliber = "a762"
-	ammo_type = /obj/item/ammo_casing/a762
 	magazine_type = /obj/item/ammo_magazine/s762
 	allowed_magazines = list(/obj/item/ammo_magazine/s762, /obj/item/ammo_magazine/c762)
 	fire_sound = 'sound/weapons/SVD_shot.ogg'
