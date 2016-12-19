@@ -116,7 +116,7 @@
 	scoped_accuracy = 2
 	caliber = "a762"
 	magazine_type = /obj/item/ammo_magazine/s762
-	allowed_magazines = list(/obj/item/ammo_magazine/s762, /obj/item/ammo_magazine/c762)
+	allowed_magazines = /obj/item/ammo_magazine/s762
 	fire_sound = 'sound/weapons/SVD_shot.ogg'
 	load_method = MAGAZINE
 	slot_flags = null //Back sprite refused to work.
