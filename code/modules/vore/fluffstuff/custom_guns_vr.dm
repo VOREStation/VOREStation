@@ -66,7 +66,6 @@
 	w_class = ITEMSIZE_LARGE
 	caliber = "10mmCaseless"
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
-	ammo_type = /obj/item/ammo_casing/a10mmc
 	fire_sound = 'sound/weapons/m41a_vr.ogg'
 	load_method = MAGAZINE
 	slot_flags = null //No back sprites at the moment, and leaving it as nothing causes it to bug when put on a belt.
