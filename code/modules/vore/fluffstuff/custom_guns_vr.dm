@@ -95,6 +95,7 @@
 /obj/item/ammo_magazine/a10mmc
 	name = "magazine (10mm caseless)"
 	icon_state = "M41A_Mag"
+	icon = 'icons/obj/ammo_vr.dmi'
 	ammo_type = /obj/item/ammo_casing/a10mmc
 	mag_type = MAGAZINE
 	multiple_sprites = 1
