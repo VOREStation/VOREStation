@@ -79,7 +79,7 @@
 		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    burst_accuracy=list(0,-1,-2), dispersion=list(0.0, 0.6, 0.6))
 		)
 
-/obj/item/weapon/gun/projectile/automatic/m41a/update_icon()
+/obj/item/weapon/gun/projectile/automatic/m41a/update_icon(var/ignore_inhands)
 	..()
 	icon_state = (ammo_magazine)? "M41A_Olive" : "M41A_Olive_Empty"
 	item_state = (ammo_magazine)? "M41A_Full" : "M41A_Empty"
