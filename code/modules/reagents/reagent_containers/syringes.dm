@@ -57,7 +57,6 @@
 		return 0
 	if(user.a_intent != I_HELP) //in case it is ever used as a surgery tool
 		return ..()
-	afterattack(M, user, 1)
 	return 1
 
 /obj/item/weapon/reagent_containers/syringe/afterattack(obj/target, mob/user, proximity)
@@ -105,8 +104,13 @@
 						if(H.species && !H.should_have_organ(O_HEART))
 							H.reagents.trans_to_obj(src, amount)
 						else
+							if(ismob(H) && H != user)
+								if(!do_mob(user, target, time))
+									return
 							B = T.take_blood(src, amount)
 					else
+						if(!do_mob(user, target, time))
+							return
 						B = T.take_blood(src,amount)
 
 					if (B)

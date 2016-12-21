@@ -1,3 +1,24 @@
+{{if data.gridCheck}}
+<div class='notice'>
+	<b><h3>SYSTEM FAILURE</h3></b>
+	<i>Power surge detected, grid check in effect...</i><br>
+</div>
+{{else data.failTime}}
+<div class='notice'>
+	<b><h3>SYSTEM FAILURE</h3></b>
+	<i>I/O regulators malfunction detected! Waiting for system reboot...</i><br>
+	Automatic reboot in {{:data.failTime}} seconds...<br>
+	{{if !data.siliconUser}}
+		{{if data.locked}}
+			Swipe an ID card for manual reboot.<br><br><br>
+		{{else}}
+			{{:helper.link('Reboot Now', 'refresh', {'reboot' : 1})}}<br><br><br>
+		{{/if}}		
+	{{else}}
+		{{:helper.link('Reboot Now', 'refresh', {'reboot' : 1})}}<br><br><br>
+	{{/if}}
+</div>
+{{else}}
 <div class='notice'>
 	{{if data.siliconUser}}
 		<div class="itemContentSmall">
@@ -8,7 +29,10 @@
 		</div>
 		<div class="clearBoth"></div>
 	{{else}}
-		{{if data.locked}}
+		{{if data.emagged}}
+			<b><h3>Fault in ID authenticator</h3></b>
+			Please contact maintenance for service.
+		{{else data.locked}}
 			Swipe an ID card to unlock this interface
 		{{else}}
 			Swipe an ID card to lock this interface
@@ -178,4 +202,4 @@
 	{{/if}}
 
 </div>
-		
+{{/if}}

@@ -307,3 +307,10 @@
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Virus sample crate"
 	access = access_cmo
+
+/datum/supply_packs/med/defib
+	name = "Defibrilator crate"
+	contains = list(/obj/item/device/defib_kit = 4)
+	cost = 30
+	containertype = /obj/structure/closet/crate/medical
+	containername = "Defibrilator crate"

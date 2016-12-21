@@ -1110,6 +1110,10 @@ area/space/atmosalert()
 	name = "\improper Docking Hallway"
 	icon_state = "docking_hallway"
 
+/area/hallway/secondary/docking_hallway2
+	name = "\improper Secondary Docking Hallway"
+	icon_state = "docking_hallway"
+
 /area/hallway/secondary/engineering_hallway
 	name = "\improper Engineering Primary Hallway"
 	icon_state = "engineering_primary_hallway"
@@ -1377,6 +1381,10 @@ area/space/atmosalert()
 	name = "\improper Fitness Room"
 	icon_state = "fitness"
 
+/area/crew_quarters/longue_area
+	name = "\improper Longue"
+	icon_state = "recreation_area"
+
 /area/crew_quarters/recreation_area
 	name = "\improper Recreation Area"
 	icon_state = "recreation_area"
@@ -1411,7 +1419,7 @@ area/space/atmosalert()
 	sound_env = LARGE_SOFTFLOOR
 
 /area/crew_quarters/barrestroom
-	name = "\improper Bar Restroom"
+	name = "\improper Cafeteria Restroom"
 	icon_state = "bar"
 
 /area/crew_quarters/theatre
@@ -1470,6 +1478,9 @@ area/space/atmosalert()
 	name = "\improper Vacant Site"
 	icon_state = "vacant_site"
 
+/area/vacant/vacant_site2
+	name = "\improper Abandoned Locker Room"
+	icon_state = "vacant_site"
 
 /area/holodeck
 	name = "\improper Holodeck"
@@ -2436,6 +2447,10 @@ area/space/atmosalert()
 	name = "Emergency Storage"
 	icon_state = "storage"
 
+/area/ai_monitored/storage/emergency/eva
+	name = "Emergency EVA"
+	icon_state = "storage"
+
 /area/ai_upload
 	name = "\improper AI Upload Chamber"
 	icon_state = "ai_upload"
@@ -2545,7 +2560,7 @@ area/space/atmosalert()
 
 /area/tcomfoyer
 	name = "\improper Telecomms Foyer"
-	icon_state = "tcomsatentrance"
+	icon_state = "tcomsatfoyer"
 	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
 
 /area/tcomwest

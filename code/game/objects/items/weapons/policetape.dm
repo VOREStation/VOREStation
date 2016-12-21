@@ -237,10 +237,13 @@ var/list/tape_roll_applications = list()
 
 	if (istype(A, /obj/machinery/door/airlock))
 		var/turf/T = get_turf(A)
-		var/obj/item/tape/P = new tape_type(T)
-		P.update_icon()
-		P.layer = 3.2
-		user << "<span class='notice'>You finish placing \the [src].</span>"
+		if(locate(/obj/item/tape, A.loc))
+			user << "There's already tape over that door!"
+		else
+			var/obj/item/tape/P = new tape_type(T)
+			P.update_icon()
+			P.layer = 3.2
+			user << "<span class='notice'>You finish placing \the [src].</span>"
 
 	if (istype(A, /turf/simulated/floor) ||istype(A, /turf/unsimulated/floor))
 		var/turf/F = A
@@ -277,7 +280,7 @@ var/list/tape_roll_applications = list()
 	return ..(mover)
 
 /obj/item/tape/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	breaktape(W, user)
+	breaktape(user)
 
 /obj/item/tape/attack_hand(mob/user as mob)
 	if (user.a_intent == I_HELP && src.allowed(user))
@@ -285,7 +288,7 @@ var/list/tape_roll_applications = list()
 		for(var/obj/item/tape/T in gettapeline())
 			T.lift(100) //~10 seconds
 	else
-		breaktape(null, user)
+		breaktape(user)
 
 /obj/item/tape/proc/lift(time)
 	lifted = 1
@@ -320,14 +323,11 @@ var/list/tape_roll_applications = list()
 			cur = get_step(cur, dir)
 	return tapeline
 
-
-
-
-/obj/item/tape/proc/breaktape(obj/item/weapon/W as obj, mob/user as mob)
-	if(user.a_intent == I_HELP && ((!can_puncture(W) && src.allowed(user))))
-		user << "You can't break \the [src] with that!"
+/obj/item/tape/proc/breaktape(mob/user)
+	if(user.a_intent == I_HELP)
+		to_chat(user, "<span class='warning'>You refrain from breaking \the [src].</span>")
 		return
-	user.show_viewers("<span class='notice'>\The [user] breaks \the [src]!</span>")
+	user.visible_message("<span class='notice'>\The [user] breaks \the [src]!</span>","<span class='notice'>You break \the [src].</span>")
 
 	for (var/obj/item/tape/T in gettapeline())
 		if(T == src)

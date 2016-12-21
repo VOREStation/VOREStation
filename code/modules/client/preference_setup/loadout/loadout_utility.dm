@@ -11,6 +11,7 @@
 /datum/gear/utility/communicator
 	display_name = "personal communicator"
 	path = /obj/item/device/communicator
+	cost = 0
 
 /datum/gear/utility/folder_blue
 	display_name = "folder, blue"
@@ -49,3 +50,14 @@
 	display_name = "flashlight, maglight"
 	path = /obj/item/device/flashlight/maglight
 	cost = 2
+
+/datum/gear/utility/battery
+	display_name = "cell, device"
+	path = /obj/item/weapon/cell/device
+
+/datum/gear/utility/implant //This does nothing if you don't actually know EAL.
+	display_name = "implant, language, EAL"
+	path = /obj/item/weapon/implant/language/eal
+	cost = 2
+	slot = "implant"
+	var/implant_type = "EAL"

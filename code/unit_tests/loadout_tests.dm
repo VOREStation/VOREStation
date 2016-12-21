@@ -9,7 +9,7 @@
 		if(!initial(G.display_name))
 			log_unit_test("[G]: Loadout - Missing display name.")
 			failed = 1
-		else if(!initial(G.cost))
+		else if(isnull(initial(G.cost)))
 			log_unit_test("[G]: Loadout - Missing cost.")
 			failed = 1
 		else if(!initial(G.path))

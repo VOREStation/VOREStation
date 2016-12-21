@@ -67,7 +67,7 @@ datum/category_group/underwear/dd_SortValue()
 	if(!icon_state)
 		return
 
-	var/image/I = image(icon = 'icons/mob/human.dmi', icon_state = icon_state)
+	var/image/I = image(icon = icon, icon_state = icon_state)
 	for(var/datum/gear_tweak/gt in tweaks)
 		gt.tweak_item(I, metadata && metadata["[gt]"] ? metadata["[gt]"] : gt.get_default())
 	return I

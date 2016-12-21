@@ -111,7 +111,7 @@
 			patient.visible_message("<span class='warning'>[patient] convulses!</span>")
 			playsound(src.loc, 'sound/effects/sparks2.ogg', 75, 1)
 			//Actual rezzing code
-			if(prob(chance) && !((world.time - patient.tod) > (10 MINUTES))) //Can only revive within a few minutes
+			if(prob(chance) && ((world.time - patient.timeofdeath) < (10 MINUTES))) //Can only revive within a few minutes
 				if(!patient.client && patient.mind) //Don't force the dead person to come back if they don't want to.
 					for(var/mob/observer/dead/ghost in player_list)
 						if(ghost.mind == patient.mind)
@@ -134,7 +134,8 @@
 		statechange(1,patient) //Back to ready
 
 /obj/item/device/defib_kit/proc/attempt_shock()
-	if(!patient || cell.charge < charge_cost) return
+	if(!patient || cell.charge < charge_cost)
+		return
 
 	var/zap_time = world.time + (7 SECONDS)
 	var/o_patient_loc = patient.loc

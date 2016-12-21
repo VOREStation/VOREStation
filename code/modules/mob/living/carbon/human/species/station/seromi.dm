@@ -6,7 +6,7 @@
 	hunting skills that emphasized taking out their prey without themselves getting hit. They \
 	are only recently becoming known on human stations after reaching space with Skrell assistance."
 
-	num_alternate_languages = 2
+	num_alternate_languages = 3
 	secondary_langs = list("Schechi", "Skrellian")
 	name_language = "Schechi"
 	min_age = 12

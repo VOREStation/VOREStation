@@ -308,7 +308,10 @@
 	data["chargeMode"] = input_attempt
 	data["chargeLevel"] = round(input_level/1000, 0.1)
 	data["chargeMax"] = round(input_level_max/1000)
-	data["chargeLoad"] = round(terminal.powernet.avail/1000, 0.1)
+	if (terminal && terminal.powernet)
+		data["chargeLoad"] = round(terminal.powernet.avail/1000, 0.1)
+	else
+		data["chargeLoad"] = 0
 	data["outputOnline"] = output_attempt
 	data["outputLevel"] = round(output_level/1000, 0.1)
 	data["outputMax"] = round(output_level_max/1000)

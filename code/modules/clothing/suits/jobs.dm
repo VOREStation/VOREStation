@@ -154,6 +154,21 @@
 	/obj/item/clothing/mask/gas, /obj/item/taperoll/engineering)
 	body_parts_covered = UPPER_TORSO
 
+/obj/item/clothing/suit/storage/hazardvest/blue
+	name = "blue hazard vest"
+	desc = "A high-visibility vest used in work zones. This one is blue!"
+	icon_state = "hazard_b"
+
+/obj/item/clothing/suit/storage/hazardvest/green
+	name = "green hazard vest"
+	desc = "A high-visibility vest used by emergency responders. This one is green!"
+	icon_state = "hazard_g"
+
+/obj/item/clothing/suit/storage/hazardvest/white
+	name = "white hazard vest"
+	desc = "A high-visibility vest used in work zones. This one has a red cross!"
+	icon_state = "hazard_w"
+
 //Lawyer
 /obj/item/clothing/suit/storage/toggle/lawyer/bluejacket
 	name = "blue suit jacket"
@@ -206,6 +221,16 @@
 	item_state_slots = list(slot_r_hand_str = "ems_jacket", slot_l_hand_str = "ems_jacket")
 	icon_open = "ems_jacket_open"
 	icon_closed = "ems_jacket_closed"
+
+/obj/item/clothing/suit/surgicalapron
+	name = "surgical apron"
+	desc = "A sterile blue apron for performing surgery."
+	icon_state = "surgical"
+	blood_overlay_type = "armor"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	allowed = list(/obj/item/stack/medical, /obj/item/weapon/reagent_containers/dropper, /obj/item/weapon/reagent_containers/hypospray, /obj/item/weapon/reagent_containers/syringe, \
+	/obj/item/device/healthanalyzer, /obj/item/device/flashlight, /obj/item/device/radio, /obj/item/weapon/tank/emergency_oxygen,/obj/item/weapon/scalpel,/obj/item/weapon/retractor,/obj/item/weapon/hemostat, \
+	/obj/item/weapon/cautery,/obj/item/weapon/bonegel,/obj/item/weapon/FixOVein)
 
 //Mime
 /obj/item/clothing/suit/suspenders

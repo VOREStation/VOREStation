@@ -284,7 +284,10 @@
 			if(one_handed_penalty >= 2)
 				user << "<span class='warning'>You struggle to keep \the [src] pointed at the correct position with just one hand!</span>"
 
-	admin_attack_log(usr, attacker_message="Fired [src]", admin_message="fired a gun ([src]) (MODE: [src.mode_name]) [reflex ? "by reflex" : "manually"].")
+	if(reflex)
+		admin_attack_log(user, target, attacker_message = "fired [src] by reflex.", victim_message = "triggered a reflex shot from [src].", admin_message = "shot [target], who triggered gunfire ([src]) by reflex)")
+	else
+		admin_attack_log(usr, attacker_message="Fired [src]", admin_message="fired a gun ([src]) (MODE: [src.mode_name]) [reflex ? "by reflex" : "manually"].")
 
 	//update timing
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)

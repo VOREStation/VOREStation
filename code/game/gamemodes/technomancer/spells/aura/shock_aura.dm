@@ -17,7 +17,7 @@
 	glow_color = "#0000FF" //TODO
 
 /obj/item/weapon/spell/aura/shock/process()
-	if(!pay_energy(1000))
+	if(!pay_energy(500))
 		qdel(src)
 	var/list/nearby_mobs = range(calculate_spell_power(4),owner)
 	var/power = calculate_spell_power(7)

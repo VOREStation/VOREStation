@@ -50,6 +50,16 @@
 	summoned.health = calculate_spell_power(summoned.health)
 	summoned.melee_damage_lower = calculate_spell_power(summoned.melee_damage_lower)
 	summoned.melee_damage_upper = calculate_spell_power(summoned.melee_damage_upper)
+	// This makes the summon slower, so the crew has a chance to flee from massive monsters.
+	summoned.move_to_delay = calculate_spell_power(round(summoned.move_to_delay))
+
+	var/new_size = calculate_spell_power(1)
+	if(new_size != 1)
+		var/matrix/M = matrix()
+		M.Scale(new_size)
+		M.Translate(0, 16*(new_size-1))
+		summoned.transform = M
+
 
 	// Now we hurt their new pal, because being forcefully abducted by teleportation can't be healthy.
 	summoned.health = round(summoned.maxHealth * 0.7)

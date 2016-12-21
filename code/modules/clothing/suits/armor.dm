@@ -316,6 +316,34 @@
 	icon_badge = "pcrcvest_badge"
 	icon_nobadge = "pcrcvest_nobadge"
 
+/obj/item/clothing/suit/storage/vest/solgov
+	name = "\improper Solar Confederate Government armored vest"
+	desc = "A synthetic armor vest. This one is marked with the crest of the Solar Confederate Government."
+	icon_state = "solvest"
+	armor = list(melee = 40, bullet = 40, laser = 40, energy = 25, bomb = 30, bio = 0, rad = 0)
+
+/obj/item/clothing/suit/storage/vest/solgov/heavy
+	name = "\improper Solar Confederate Government heavy armored vest"
+	desc = "A synthetic armor vest with PEACEKEEPER printed in distinctive blue lettering on the chest. This one has added webbing and ballistic plates."
+	icon_state = "solwebvest"
+
+/obj/item/clothing/suit/storage/vest/solgov/security
+	name = "master at arms heavy armored vest"
+	desc = "A synthetic armor vest with MASTER AT ARMS printed in silver lettering on the chest. This one has added webbing and ballistic plates."
+	icon_state = "secwebvest"
+
+/obj/item/clothing/suit/storage/vest/solgov/command
+	name = "command heavy armored vest"
+	desc = "A synthetic armor vest with Solar Confederate Government printed in detailed gold lettering on the chest. This one has added webbing and ballistic plates."
+	icon_state = "comwebvest"
+
+/obj/item/clothing/suit/storage/vest/tactical //crack at a more balanced mid-range armor, minor improvements over standard vests, with the idea "modern" combat armor would focus on energy weapon protection.
+	name = "tactical armored vest"
+	desc = "A heavy armored vest in a fetching tan. It is surprisingly flexible and light, even with the extra webbing and advanced ceramic plates."
+	icon_state = "tacwebvest"
+	item_state = "tacwebvest"
+	armor = list(melee = 40, bullet = 40, laser = 60, energy = 35, bomb = 30, bio = 0, rad = 0)
+
 /obj/item/clothing/suit/storage/vest/detective
 	name = "detective armor vest"
 	desc = "A simple kevlar plate carrier in a vintage brown, it has a badge clipped to the chest that reads, 'Private investigator'."

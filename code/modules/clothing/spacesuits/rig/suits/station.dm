@@ -94,11 +94,16 @@
 	offline_vision_restriction = 1
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/eva
+	glove_type = /obj/item/clothing/gloves/gauntlets/rig/eva
 
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/storage/toolbox,/obj/item/weapon/storage/briefcase/inflatable,/obj/item/device/t_scanner,/obj/item/weapon/rcd)
 
 	req_access = list()
 	req_one_access = list()
+
+/obj/item/clothing/gloves/gauntlets/rig/eva
+	name = "insulated gauntlets"
+	siemens_coefficient = 0
 
 /obj/item/weapon/rig/eva/equipped
 

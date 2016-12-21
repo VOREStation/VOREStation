@@ -230,8 +230,9 @@
 		else if(cast_methods & CAST_RANGED) //Try to use a ranged method if a melee one doesn't exist.
 			on_ranged_cast(target, user)
 	if(cooldown)
-		user.setClickCooldown(cooldown)
-		flick("cooldown_[cooldown]",src)
+		var/effective_cooldown = round(cooldown * core.cooldown_modifier, 5)
+		user.setClickCooldown(effective_cooldown)
+		flick("cooldown_[effective_cooldown]",src)
 
 // Proc: place_spell_in_hand()
 // Parameters: 1 (path - the type path for the spell that is desired.)
