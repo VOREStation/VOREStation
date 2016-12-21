@@ -1629,6 +1629,21 @@ CIRCUITS BELOW
 	build_path = /obj/item/integrated_circuit/arithmetic/random
 	sort_string = "WAAAH"
 
+/datum/design/circuit/integrated_circuit/arithmetic/round
+	id = "cc-round"
+	build_path = /obj/item/integrated_circuit/arithmetic/round
+	sort_string = "WAAAI"
+
+/datum/design/circuit/integrated_circuit/arithmetic/exponent
+	id = "cc-exponent"
+	build_path = /obj/item/integrated_circuit/arithmetic/exponent
+	sort_string = "WAAAJ"
+
+/datum/design/circuit/integrated_circuit/arithmetic/sign
+	id = "cc-sign"
+	build_path = /obj/item/integrated_circuit/arithmetic/sign
+	sort_string = "WAAAK"
+
 
 
 /datum/design/circuit/integrated_circuit/converter/AssembleDesignName()
