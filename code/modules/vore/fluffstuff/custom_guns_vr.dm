@@ -55,6 +55,83 @@
 	//requires_two_hands = 1
 	one_handed_penalty = 4 // The weapon itself is heavy
 
+/obj/item/weapon/gun/projectile/automatic/m41a
+	name = "\improper M41A Pulse Rifle Mk2"
+	desc = "Mid-ranged assault rifle with an electronic pulse action; the MK2 has a lower ammo capacity than previous models, but offers significantly increased stopping power. Uses caseless 10x24mm ammunition."
+	icon = 'icons/obj/gun_vr.dmi'
+	icon_state = "M41A_Olive"
+	icon_override = 'icons/obj/gun_vr.dmi'
+	item_state = "M41A_Full"
+	item_icons = null
+	w_class = ITEMSIZE_LARGE
+	caliber = "10mmCaseless"
+	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
+	fire_sound = 'sound/weapons/m41a_vr.ogg'
+	load_method = MAGAZINE
+	slot_flags = null //No back sprites at the moment, and leaving it as nothing causes it to bug when put on a belt.
+	magazine_type = /obj/item/ammo_magazine/a10mmc
+	allowed_magazines = list(/obj/item/ammo_magazine/a10mmc)
+	auto_eject = 1
+	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
+	firemodes = list(
+		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    burst_accuracy=list(0,-1,-2), dispersion=list(0.0, 0.6, 0.6))
+		)
+
+/obj/item/weapon/gun/projectile/automatic/m41a/update_icon(var/ignore_inhands)
+	..()
+	icon_state = (ammo_magazine)? "M41A_Olive" : "M41A_Olive_Empty"
+	item_state = (ammo_magazine)? "M41A_Full" : "M41A_Empty"
+	if(!ignore_inhands) update_held_icon()
+	..()
+
+/obj/item/ammo_casing/a10mmc
+	desc = "A 10mm bullet enclosed in a block of solid propellant."
+	caliber = "10mmCaseless"
+	caseless = 1
+	projectile_type = /obj/item/projectile/bullet/pistol/medium
+
+/obj/item/ammo_magazine/a10mmc
+	name = "magazine (10mm caseless)"
+	icon_state = "M41A_Mag"
+	icon = 'icons/obj/ammo_vr.dmi'
+	ammo_type = /obj/item/ammo_casing/a10mmc
+	mag_type = MAGAZINE
+	multiple_sprites = 1
+	max_ammo = 40
+	caliber = "10mmCaseless"
+
+/obj/item/weapon/gun/projectile/automatic/m2922
+	name = "\improper M2922 Rifle"
+	desc = "A M2922 Rifle! Uses 7.62mm rounds."
+	icon = 'icons/obj/36x32guns_vr.dmi'
+	icon_state = "m2922"
+	icon_override = 'icons/obj/gun_vr.dmi'
+	item_state = "m2922"
+	item_icons = null
+	w_class = ITEMSIZE_LARGE
+	recoil = 2
+	accuracy = -1
+	scoped_accuracy = 2
+	caliber = "a762"
+	magazine_type = /obj/item/ammo_magazine/s762
+	allowed_magazines = /obj/item/ammo_magazine/s762
+	fire_sound = 'sound/weapons/SVD_shot.ogg'
+	load_method = MAGAZINE
+	slot_flags = null //Back sprite refused to work.
+	one_handed_penalty = 3 // It's a rifle. What do you expect?
+
+	firemodes = list(
+		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null)
+		)
+
+	verb/scope()
+		set category = "Object"
+		set name = "Use Scope"
+		set popup_menu = 1
+
+		toggle_scope(2.0)
+
 // For general use
 /obj/item/weapon/gun/projectile/shotgun/pump/unsc
 	name = "\improper M45E Tactical Shotgun"
@@ -451,7 +528,7 @@
 	mag_type = MAGAZINE
 
 /obj/item/ammo_casing/stg
-	desc = "A 7.92×33mm Kurz casing."
+	desc = "A 7.92x33mm Kurz casing."
 	icon_state = "rifle-casing"
 	caliber = "kurz"
 	projectile_type = /obj/item/projectile/bullet/rifle/a762
