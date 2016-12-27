@@ -45,7 +45,7 @@
 						/obj/item/seeds/ambrosiadeusseed,
 						/obj/item/seeds/ambrosiavulgarisseed,
 						/obj/item/seeds/libertymycelium,
-						/obj/item/stack/material/platinum/fifty,
+						/obj/fiftyspawner/platinum,
 						/obj/item/toy/nanotrasenballoon,
 						/obj/item/toy/syndicateballoon,
 						/obj/item/weapon/aiModule/syndicate,
