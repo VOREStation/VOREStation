@@ -504,7 +504,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 /obj/item/weapon/cane/fluff
 	name = "cane"
 	desc = "A cane used by a true gentlemen. Or a clown."
-	icon = 'custom_items_vr.dmi'
+	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "browncane"
 	item_state = "browncanemob"
 	flags = CONDUCT
