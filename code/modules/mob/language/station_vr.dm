@@ -40,7 +40,15 @@
 	"bin","ket","jarl","vulf","einech","cresthz","azunein","ghzth")
 
 
-
+/datum/language/squirrel
+	name = "Ecureuilian"
+	desc = "The native tongue of the inhabitants of Gaia. Squirrelkin and other beastkins of Gaia can use their ears and tails in addition to speech to communitcate."
+	speech_verb = "squeaks"
+	whisper_verb = "whispers"
+	exclaim_verb = "chitters"
+	key = "9"
+	flags = RESTRICTED
+	syllables = list("sque","sqah","boo","beh","nweh","boopa","nah","wah","een","sweh")
 
 /datum/language/unathi
 	flags = 0

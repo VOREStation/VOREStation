@@ -212,7 +212,7 @@
 	worn_state = "greenservice_com"
 
 //Dress
-/obj/item/clothing/under/dress
+/obj/item/clothing/under/dress/plain
 	name = "dress uniform"
 	desc = "A dress uniform of some kind."
 	icon_state = "greydress"

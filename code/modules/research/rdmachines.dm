@@ -36,20 +36,19 @@
 
 /obj/machinery/r_n_d/proc/getMaterialName(var/type)
 	switch(type)
-		//50-stacks weren't working despite being a subtype of the others, let's just force it in
-		if(/obj/item/stack/material/steel, /obj/item/stack/material/steel/fifty)
+		if(/obj/item/stack/material/steel)
 			return DEFAULT_WALL_MATERIAL
-		if(/obj/item/stack/material/glass, /obj/item/stack/material/glass/fifty)
+		if(/obj/item/stack/material/glass)
 			return "glass"
-		if(/obj/item/stack/material/gold, /obj/item/stack/material/gold/fifty)
+		if(/obj/item/stack/material/gold)
 			return "gold"
-		if(/obj/item/stack/material/silver, /obj/item/stack/material/silver/fifty)
+		if(/obj/item/stack/material/silver)
 			return "silver"
-		if(/obj/item/stack/material/phoron, /obj/item/stack/material/phoron/fifty)
+		if(/obj/item/stack/material/phoron)
 			return "phoron"
-		if(/obj/item/stack/material/uranium, /obj/item/stack/material/uranium/fifty)
+		if(/obj/item/stack/material/uranium)
 			return "uranium"
-		if(/obj/item/stack/material/diamond, /obj/item/stack/material/diamond/fifty)
+		if(/obj/item/stack/material/diamond)
 			return "diamond"
 
 /obj/machinery/r_n_d/proc/eject(var/material, var/amount)
