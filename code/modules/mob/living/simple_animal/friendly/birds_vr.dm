@@ -167,7 +167,7 @@
 								   "chirps."))
 	else if (friend.health <= 50)
 		if (prob(10))
-			var/verb = pick("meows", "mews", "mrowls")
+			var/verb = pick("chirps", "caws", "squawks")
 			audible_emote("[verb] anxiously.")
 
 /mob/living/simple_animal/cat/bird/fluff/verb/become_friends_b()
