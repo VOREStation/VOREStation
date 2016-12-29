@@ -16,7 +16,7 @@
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "tube-construct-stage1"
 	anchored = 1
-	layer = OBJ_LAYER // Vorestation edit
+	layer = 5
 	var/stage = 1
 	var/fixture_type = "tube"
 	var/sheets_refunded = 2
