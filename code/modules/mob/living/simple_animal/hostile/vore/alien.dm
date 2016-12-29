@@ -87,7 +87,7 @@
 	pixel_x = -16
 	pixel_y = 0
 	capacity = 3
-	pounce_chance = 75
+	pouncechance = 75
 
 /obj/item/projectile/neurotox
 	damage = 30

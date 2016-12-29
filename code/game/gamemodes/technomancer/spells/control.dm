@@ -35,8 +35,8 @@
 		/mob/living/simple_animal/adultslime,
 		/mob/living/simple_animal/tindalos,
 		/mob/living/simple_animal/yithian,
-		/mob/living/simple_animal/hostile/bear,
-		/mob/living/simple_animal/hostile/carp,
+		/mob/living/simple_animal/hostile/vore/bear, // Vorestation edit
+		/mob/living/simple_animal/hostile/vore/carp, // Vorestation edit
 		/mob/living/simple_animal/hostile/scarybat,
 		/mob/living/simple_animal/hostile/viscerator,
 		/mob/living/simple_animal/hostile/retaliate/malf_drone,

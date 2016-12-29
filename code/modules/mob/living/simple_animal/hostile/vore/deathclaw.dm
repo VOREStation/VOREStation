@@ -15,3 +15,4 @@
 	capacity = 2
 	max_size = 2
 	min_size = 0.25
+	escapechance = 5

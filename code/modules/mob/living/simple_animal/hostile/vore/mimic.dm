@@ -34,7 +34,7 @@
 
 	faction = "mimic"
 	move_to_delay = 8
-	pounce_chance = 33
+	pouncechance = 33
 
 /mob/living/simple_animal/hostile/vore/mimic/FindTarget()
 	. = ..()
@@ -124,8 +124,7 @@
 // Copy Mimic
 //
 
-// var/global/list/protected_objects = list(/obj/structure/table, /obj/structure/cable, /obj/structure/window, /obj/item/projectile/animate)
-// List now defined in projectile/animate.dm
+var/global/list/protected_objects = list(/obj/structure/table, /obj/structure/cable, /obj/structure/window, /obj/item/projectile/animate)
 
 /mob/living/simple_animal/hostile/vore/mimic/copy
 

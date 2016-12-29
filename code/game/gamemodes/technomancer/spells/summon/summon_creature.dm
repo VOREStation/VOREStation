@@ -31,8 +31,8 @@
 		"SPIDER"		=	/mob/living/simple_animal/hostile/giant_spider,
 		"SPIDER HUNTER"	=	/mob/living/simple_animal/hostile/giant_spider/hunter,
 		"SPIDER NURSE"	=	/mob/living/simple_animal/hostile/giant_spider/nurse,
-		"CARP"			=	/mob/living/simple_animal/hostile/carp,
-		"BEAR"			=	/mob/living/simple_animal/hostile/bear
+		"CARP"			=	/mob/living/simple_animal/hostile/vore/carp, // Vorestation edit
+		"BEAR"			=	/mob/living/simple_animal/hostile/vore/bear // Vorestation edit
 		)
 	cooldown = 30
 	instability_cost = 10

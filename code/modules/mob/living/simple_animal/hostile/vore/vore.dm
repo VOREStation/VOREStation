@@ -26,7 +26,13 @@ Don't use ranged mobs for vore mobs.
 	var/min_size = 0.25 // Min: 0.25
 	var/picky = 1 // Won't eat undigestable prey by default
 	var/fullness = 0
-	var/pounce_chance = 5 // Determines how likely a mob is to pounce on you per attack. 5% by default.
+	var/endo = 0 // Determines if a mob doesn't digest by default or not. Set to false by default.
+
+	var/pouncechance = 5 // Determines how likely a mob is to pounce on you per attack. 5% by default.
+	var/escapable = 1 // Determines if a mob belly can be escaped without abusing OOC escape. Set true by default.
+	var/escapechance = 25 // Determines how likely struggling will allow you to escape a vore mob. 25% by default.
+	var/digestchance = 0 // Determines how likely struggling will start digestion in a mob defaulted to hold. Set to 0% by default.
+
 	swallowTime = 1 // Hungry little bastards.
 
 	// By default, this is what most vore mobs are capable of.
@@ -75,33 +81,44 @@ Don't use ranged mobs for vore mobs.
 
 /mob/living/simple_animal/hostile/vore/New()
 
+// ToDo: Add support for multiple stomachs.
+
 	if(!vore_organs.len)
 		var/datum/belly/B = new /datum/belly(src)
 		B.immutable = 1
-		B.name = "Stomach"
-		B.inside_flavor = "It appears to be rather warm and wet. Makes sense, considering it's inside \the [name]."
-		if (faction == "neutral")
-			B.digest_mode = "Hold" // Friendly slime-spawned mobs are neutral faction.
+		B.name = "stomach"
+		B.inside_flavor = "Your surroundings are warm, soft, and slimy. Makes sense, considering you're inside \the [name]."
+		if (faction == "neutral" || endo)
+			B.digest_mode = "Hold"
 		else
-			B.digest_mode = "Digest" // Though this usually doesn't happen.
+			B.digest_mode = "Digest"
+		B.escapable = escapable
+		B.escapechance = escapechance
+		B.digestchance = digestchance
 		vore_organs[B.name] = B
-		vore_selected = "Stomach"
+		vore_selected = "stomach"
 		B.vore_verb = "swallow"
-		B.emote_lists[DM_HOLD] = list(
+		B.emote_lists[DM_HOLD] = list( // We need more that aren't repetitive. I suck at endo. -Ace
 			"The insides knead at you gently for a moment.",
 			"The guts glorp wetly around you as some air shifts.",
-			"Your predator takes a deep breath and sighs, shifting you somewhat.",
-			"The stomach squeezes you tight for a moment, then relaxes.",
-			"During a moment of quiet, breathing becomes the most audible thing.",
-			"The warm slickness surrounds and kneads on you.")
+			"The predator takes a deep breath and sighs, shifting you somewhat.",
+			"The stomach squeezes you tight for a moment, then relaxes harmlessly.",
+			"The predator's calm breathing and thumping heartbeat pulses around you.",
+			"The warm walls kneads harmlessly against you.",
+			"The liquids churn around you, though there doesn't seem to be much effect.",
+			"The sound of bodily movements drown out everything for a moment.",
+			"The predator's movements gently force you into a different position.")
 
 		B.emote_lists[DM_DIGEST] = list(
-			"The caustic acids eat away at your form.",
-			"The acrid air burns at your lungs.",
-			"Without a thought for you, the stomach grinds inwards painfully.",
-			"The guts treat you like food, squeezing to press more acids against you.",
+			"The burning acids eat away at your form.",
+			"The muscular stomach flesh grinds harshly against you.",
+			"The caustic air stings your chest when you try to breathe.",
+			"The slimy guts squeeze inward to help the digestive juices soften you up.",
 			"The onslaught against your body doesn't seem to be letting up; you're food now.",
-			"The insides work on you like they would any other food.")
+			"The predator's body ripples and crushes against you as digestive enzymes pull you apart.",
+			"The juices pooling beneath you sizzle against your sore skin.",
+			"The churning walls slowly pulverize you into meaty nutrients.",
+			"The stomach glorps and gurgles as it tries to work you into slop.")
 	..()
 
 /mob/living/simple_animal/hostile/vore/AttackingTarget()
@@ -118,7 +135,7 @@ Don't use ranged mobs for vore mobs.
 
 	// Is our target edible and standing up?
 	if(target_mob.canmove && target_mob.size_multiplier >= min_size && target_mob.size_multiplier <= max_size && !(target_mob in prey_exclusions))
-		if(prob(pounce_chance))
+		if(prob(pouncechance))
 			target_mob.Weaken(5)
 			target_mob.visible_message("<span class='danger'>\the [src] pounces on \the [target_mob]!</span>!")
 			animal_nom(target_mob)
@@ -158,4 +175,4 @@ Don't use ranged mobs for vore mobs.
 	pixel_y = -16
 	maxHealth = 200
 	health = 200
-	pounce_chance = 50 // Bigger mobs, bigger appetite.
+	pouncechance = 50 // Bigger mobs, bigger appetite.
