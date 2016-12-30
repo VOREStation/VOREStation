@@ -13,6 +13,7 @@
 	pixel_y = 0
 	capacity = 2
 	faction = "dragon"
+	escapechance = 5
 
 	//Space dragons aren't affected by atmos.
 	min_oxy = 0

@@ -35,8 +35,8 @@
 		/mob/living/simple_animal/adultslime,
 		/mob/living/simple_animal/tindalos,
 		/mob/living/simple_animal/yithian,
-		/mob/living/simple_animal/hostile/bear,
-		/mob/living/simple_animal/hostile/carp,
+		/mob/living/simple_animal/hostile/vore/bear,
+		/mob/living/simple_animal/hostile/vore/carp,
 		/mob/living/simple_animal/hostile/scarybat,
 		/mob/living/simple_animal/hostile/viscerator,
 		/mob/living/simple_animal/hostile/retaliate/malf_drone,
@@ -45,7 +45,7 @@
 		/mob/living/simple_animal/hostile/diyaab, //Doubt these will get used but might as well,
 		/mob/living/simple_animal/hostile/samak,
 		/mob/living/simple_animal/hostile/shantak
-		)
+		) // Vorestation edits to add vore versions.
 
 //This unfortunately is gonna be rather messy due to the various mobtypes involved.
 /obj/item/weapon/spell/control/proc/select(var/mob/living/L)
