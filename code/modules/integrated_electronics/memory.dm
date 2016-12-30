@@ -6,7 +6,8 @@
 	inputs = list("input pin 1")
 	outputs = list("output pin 1")
 	activators = list("set")
-	category = /obj/item/integrated_circuit/memory
+	category_text = "Memory"
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/memory/examine(mob/user)
 	..()
@@ -35,6 +36,7 @@
 	complexity = 4
 	inputs = list("input pin 1","input pin 2","input pin 3","input pin 4")
 	outputs = list("output pin 1","output pin 2","output pin 3","output pin 4")
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/memory/large
 	name = "large memory circuit"
@@ -59,6 +61,8 @@
 		"output pin 6",
 		"output pin 7",
 		"output pin 8")
+	spawn_flags = IC_SPAWN_RESEARCH
+	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3)
 
 /obj/item/integrated_circuit/memory/huge
 	name = "large memory stick"
@@ -100,6 +104,8 @@
 		"output pin 14",
 		"output pin 15",
 		"output pin 16")
+	spawn_flags = IC_SPAWN_RESEARCH
+	origin_tech = list(TECH_ENGINEERING = 4, TECH_DATA = 4)
 
 /obj/item/integrated_circuit/memory/constant
 	name = "constant chip"
@@ -110,6 +116,7 @@
 	outputs = list("output pin")
 	activators = list("push data")
 	var/accepting_refs = 0
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/memory/constant/do_work()
 	var/datum/integrated_io/O = outputs[1]

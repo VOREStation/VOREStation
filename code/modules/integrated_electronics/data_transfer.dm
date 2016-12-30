@@ -1,3 +1,6 @@
+/obj/item/integrated_circuit/transfer
+	category_text = "Data Transfer"
+
 /obj/item/integrated_circuit/transfer/splitter
 	name = "splitter"
 	desc = "Splits incoming data into all of the output pins."
@@ -5,18 +8,21 @@
 	complexity = 3
 	inputs = list("data to split")
 	outputs = list("A","B")
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/transfer/splitter/medium
 	name = "four splitter"
 	icon_state = "splitter4"
 	complexity = 5
 	outputs = list("A","B","C","D")
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/transfer/splitter/large
 	name = "eight splitter"
 	icon_state = "splitter8"
 	complexity = 9
 	outputs = list("A","B","C","D","E","F","G","H")
+	spawn_flags = IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/transfer/splitter/do_work()
 	var/datum/integrated_io/I = inputs[1]
@@ -33,6 +39,7 @@
 		"outgoing pulse A",
 		"outgoing pulse B"
 	)
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/transfer/activator_splitter/do_work()
 	for(var/datum/integrated_io/activate/A in outputs)
@@ -53,6 +60,7 @@
 		"outgoing pulse C",
 		"outgoing pulse D"
 	)
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/transfer/activator_splitter/large
 	name = "eight activator splitter"
@@ -69,3 +77,4 @@
 		"outgoing pulse G",
 		"outgoing pulse H"
 		)
+	spawn_flags = IC_SPAWN_RESEARCH

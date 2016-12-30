@@ -1397,6 +1397,7 @@
 #include "code\modules\integrated_electronics\logic.dm"
 #include "code\modules\integrated_electronics\manipulation.dm"
 #include "code\modules\integrated_electronics\memory.dm"
+#include "code\modules\integrated_electronics\reagents.dm"
 #include "code\modules\integrated_electronics\time.dm"
 #include "code\modules\integrated_electronics\tools.dm"
 #include "code\modules\integrated_electronics\~defines.dm"

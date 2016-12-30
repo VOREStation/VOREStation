@@ -4,7 +4,7 @@
 	inputs = list("A","B","C","D","E","F","G","H")
 	outputs = list("result")
 	activators = list("compute")
-	category = /obj/item/integrated_circuit/arithmetic
+	category_text = "Arithmetic"
 
 // +Adding+ //
 
@@ -15,6 +15,7 @@
 	result = ((((A + B) + C) + D) ... ) and so on, until all pins have been added.  \
 	Null pins are ignored."
 	icon_state = "addition"
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/arithmetic/addition/do_work()
 	var/result = 0
@@ -36,6 +37,7 @@
 	result = ((((A - B) - C) - D) ... ) and so on, until all pins have been subtracted.  \
 	Null pins are ignored.  Pin A <b>must</b> be a number or the circuit will not function."
 	icon_state = "subtraction"
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/arithmetic/subtraction/do_work()
 	var/datum/integrated_io/A = inputs[1]
@@ -63,6 +65,7 @@
 	result = ((((A * B) * C) * D) ... ) and so on, until all pins have been multiplied.  \
 	Null pins are ignored.  Pin A <b>must</b> be a number or the circuit will not function."
 	icon_state = "multiplication"
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 
 /obj/item/integrated_circuit/arithmetic/multiplication/do_work()
@@ -90,6 +93,7 @@
 	result = ((((A / B) / C) / D) ... ) and so on, until all pins have been divided.  \
 	Null pins, and pins containing 0, are ignored.  Pin A <b>must</b> be a number or the circuit will not function."
 	icon_state = "division"
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/arithmetic/division/do_work()
 	var/datum/integrated_io/A = inputs[1]
@@ -115,6 +119,7 @@
 	desc = "Outputs A to the power of B."
 	icon_state = "exponent"
 	inputs = list("A", "B")
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/arithmetic/exponent/do_work()
 	var/result = 0
@@ -135,6 +140,7 @@
 	extended_desc = "Will output 1, -1, or 0, depending on if A is a postive number, a negative number, or zero, respectively."
 	icon_state = "sign"
 	inputs = list("A")
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/arithmetic/sign/do_work()
 	var/result = 0
@@ -159,6 +165,7 @@
 	extended_desc = "If B is not given a number, it will output the floor of A instead."
 	icon_state = "round"
 	inputs = list("A", "B")
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/arithmetic/round/do_work()
 	var/result = 0
@@ -182,6 +189,7 @@
 	desc = "This outputs a non-negative version of the number you put in.  This may also be thought of as its distance from zero."
 	icon_state = "absolute"
 	inputs = list("A")
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/arithmetic/absolute/do_work()
 	var/result = 0
@@ -201,6 +209,7 @@
 	desc = "This circuit is of average quality, however it will compute the average for numbers you give it."
 	extended_desc = "Note that null pins are ignored, where as a pin containing 0 is included in the averaging calculation."
 	icon_state = "average"
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/arithmetic/average/do_work()
 	var/result = 0
@@ -224,6 +233,7 @@
 	desc = "Not recommended for cooking.  Outputs '3.14159' when it receives a pulse."
 	icon_state = "pi"
 	inputs = list()
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/arithmetic/pi/do_work()
 	var/datum/integrated_io/output/O = outputs[1]
@@ -235,9 +245,10 @@
 	name = "random number generator circuit"
 	desc = "This gives a random (integer) number between values A and B inclusive."
 	extended_desc = "'Inclusive' means that the upper bound is included in the range of numbers, e.g. L = 1 and H = 3 will allow \
-	for outputs of 1, 2, or 3.  L being the higher number is not <i>strictly</i> required."
+	for outputs of 1, 2, or 3.  H being the higher number is not <i>strictly</i> required."
 	icon_state = "random"
 	inputs = list("L","H")
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/arithmetic/random/do_work()
 	var/result = 0

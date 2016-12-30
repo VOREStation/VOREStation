@@ -4,7 +4,7 @@
 	complexity = 2
 	inputs = list()
 	outputs = list()
-	category = /obj/item/integrated_circuit/time
+	category_text = "Time"
 
 /obj/item/integrated_circuit/time/delay
 	name = "two-sec delay circuit"
@@ -13,6 +13,7 @@
 	icon_state = "delay-20"
 	var/delay = 2 SECONDS
 	activators = list("incoming pulse","outgoing pulse")
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/time/delay/do_work()
 	set waitfor = 0  // Don't sleep in a proc that is called by a processor. It'll delay the entire thing
@@ -27,6 +28,7 @@
 	This circuit is set to send a pulse after a delay of five seconds."
 	icon_state = "delay-50"
 	delay = 5 SECONDS
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/time/delay/one_sec
 	name = "one-sec delay circuit"
@@ -34,6 +36,7 @@
 	This circuit is set to send a pulse after a delay of one second."
 	icon_state = "delay-10"
 	delay = 1 SECOND
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/time/delay/half_sec
 	name = "half-sec delay circuit"
@@ -41,6 +44,7 @@
 	This circuit is set to send a pulse after a delay of half a second."
 	icon_state = "delay-5"
 	delay = 5
+	spawn_flags = IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/time/delay/tenth_sec
 	name = "tenth-sec delay circuit"
@@ -48,6 +52,7 @@
 	This circuit is set to send a pulse after a delay of 1/10th of a second."
 	icon_state = "delay-1"
 	delay = 1
+	spawn_flags = IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/time/delay/custom
 	name = "custom delay circuit"
@@ -55,6 +60,7 @@
 	This circuit's delay can be customized, between 1/10th of a second to one hour.  The delay is updated upon receiving a pulse."
 	icon_state = "delay"
 	inputs = list("delay time")
+	spawn_flags = IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/time/delay/custom/do_work()
 	var/datum/integrated_io/delay_input = inputs[1]
@@ -75,6 +81,7 @@
 	var/is_running = FALSE
 	inputs = list("enable ticking")
 	activators = list("outgoing pulse")
+	spawn_flags = IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/time/ticker/Destroy()
 	if(is_running)
@@ -108,6 +115,7 @@
 	icon_state = "tick-f"
 	complexity = 12
 	ticks_to_pulse = 2
+	spawn_flags = IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/time/ticker/slow
 	name = "slow ticker"
@@ -115,6 +123,7 @@
 	icon_state = "tick-s"
 	complexity = 4
 	ticks_to_pulse = 6
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/time/clock
 	name = "integrated clock"
@@ -122,6 +131,7 @@
 	icon_state = "clock"
 	inputs = list()
 	outputs = list("time (string)", "hours (number)", "minutes (number)", "seconds (number)")
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/time/clock/do_work()
 	var/datum/integrated_io/time = outputs[1]

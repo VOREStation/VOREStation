@@ -168,59 +168,29 @@
 
 /obj/item/weapon/storage/bag/circuits/basic/New()
 	..()
-	var/list/types_to_spawn = typesof(/obj/item/integrated_circuit/arithmetic,
-		/obj/item/integrated_circuit/logic,
-		/obj/item/integrated_circuit/memory,
-		) - list(/obj/item/integrated_circuit/arithmetic,
-		/obj/item/integrated_circuit/memory,
-		/obj/item/integrated_circuit/logic,
-		)
+	spawn(2 SECONDS) // So the list has time to initialize.
+		for(var/obj/item/integrated_circuit/IC in all_integrated_circuits)
+			if(IC.spawn_flags & IC_SPAWN_DEFAULT)
+				for(var/i = 1 to 3)
+					new IC.type(src)
 
-	types_to_spawn.Add(/obj/item/integrated_circuit/input/numberpad,
-		/obj/item/integrated_circuit/input/textpad,
-		/obj/item/integrated_circuit/input/button,
-		/obj/item/integrated_circuit/input/signaler,
-		/obj/item/integrated_circuit/input/local_locator,
-		/obj/item/integrated_circuit/output/screen,
-		/obj/item/integrated_circuit/converter/num2text,
-		/obj/item/integrated_circuit/converter/text2num,
-		/obj/item/integrated_circuit/converter/uppercase,
-		/obj/item/integrated_circuit/converter/lowercase,
-		/obj/item/integrated_circuit/time/delay/five_sec,
-		/obj/item/integrated_circuit/time/delay/one_sec,
-		/obj/item/integrated_circuit/time/delay/half_sec,
-		/obj/item/integrated_circuit/time/delay/tenth_sec,
-		/obj/item/integrated_circuit/time/ticker/slow,
-		/obj/item/integrated_circuit/time/clock
-		)
-
-	for(var/thing in types_to_spawn)
-		var/obj/item/integrated_circuit/ic = thing
-		if(initial(ic.category) == thing)
-			continue
-
-		for(var/i = 1 to 4)
-			new thing(src)
-
-	new /obj/item/device/electronic_assembly(src)
-	new /obj/item/device/integrated_electronics/wirer(src)
-	new /obj/item/device/integrated_electronics/debugger(src)
-	new /obj/item/weapon/crowbar(src)
-	new /obj/item/weapon/screwdriver(src)
-	make_exact_fit()
+		new /obj/item/device/electronic_assembly(src)
+		new /obj/item/device/integrated_electronics/wirer(src)
+		new /obj/item/device/integrated_electronics/debugger(src)
+		new /obj/item/weapon/crowbar(src)
+		new /obj/item/weapon/screwdriver(src)
+		make_exact_fit()
 
 /obj/item/weapon/storage/bag/circuits/all/New()
 	..()
-	for(var/thing in subtypesof(/obj/item/integrated_circuit))
-		var/obj/item/integrated_circuit/ic = thing
-		if(initial(ic.category) == thing)
-			continue
-		for(var/i = 1 to 10)
-			new thing(src)
+	spawn(2 SECONDS) // So the list has time to initialize.
+		for(var/obj/item/integrated_circuit/IC in all_integrated_circuits)
+			for(var/i = 1 to 10)
+				new IC.type(src)
 
-	new /obj/item/device/electronic_assembly(src)
-	new /obj/item/device/integrated_electronics/wirer(src)
-	new /obj/item/device/integrated_electronics/debugger(src)
-	new /obj/item/weapon/crowbar(src)
-	new /obj/item/weapon/screwdriver(src)
-	make_exact_fit()
+		new /obj/item/device/electronic_assembly(src)
+		new /obj/item/device/integrated_electronics/wirer(src)
+		new /obj/item/device/integrated_electronics/debugger(src)
+		new /obj/item/weapon/crowbar(src)
+		new /obj/item/weapon/screwdriver(src)
+		make_exact_fit()
