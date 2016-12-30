@@ -9,11 +9,13 @@
 	melee_damage_lower = 5
 	melee_damage_upper = 10
 	picky = 0 // Catgirls just want to eat yoouuu
+	endo = 1 // Chance that catgirls just wanna bellycuddle yoouuuu!
+	digestchance = 25 // But squirming might make them gurgle...
 	speak = list("Meow!","Esp!","Purr!","HSSSSS","Mew?","Nya~")
 	speak_emote = list("purrs","meows")
 	emote_hear = list("meows","mews")
 	emote_see = list("shakes her head","shivers")
-	pounce_chance = 100
+	pouncechance = 100
 	attacktext = "swatted"
 
 /mob/living/simple_animal/hostile/vore/retaliate/catgirl/nude

@@ -26,7 +26,7 @@
 	/obj/item/roller,
 	/obj/structure/closet/crate,
 	/obj/structure/closet/acloset,
-	/mob/living/simple_animal/hostile/mimic,
+	/mob/living/simple_animal/hostile/vore/mimic,
 	/mob/living/simple_animal/hostile/viscerator,
 	/mob/living/simple_animal/hostile/hivebot,
 	/obj/item/device/analyzer,
@@ -63,7 +63,7 @@
 	/obj/item/weapon/wrench,
 	/obj/item/weapon/screwdriver,
 	/obj/item/weapon/grenade/chem_grenade/cleaner,
-	/obj/item/weapon/grenade/chem_grenade/metalfoam)
+	/obj/item/weapon/grenade/chem_grenade/metalfoam) // Vorestation edit for vore mimic.
 
 	var/quantity = rand(5, 15)
 	for(var/i=0, i<quantity, i++)
