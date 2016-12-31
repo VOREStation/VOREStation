@@ -2162,6 +2162,10 @@ area/space/atmosalert()
 	name = "\improper Miscellaneous Research"
 	icon_state = "toxmisc"
 
+/area/rnd/workshop
+	name = "\improper Workshop"
+	icon_state = "sci_workshop"
+
 /area/toxins/server
 	name = "\improper Server Room"
 	icon_state = "server"
