@@ -4,12 +4,13 @@
 	inputs = list("input")
 	outputs = list("output")
 	activators = list("convert")
-	category = /obj/item/integrated_circuit/converter
+	category_text = "Converter"
 
 /obj/item/integrated_circuit/converter/num2text
 	name = "number to string"
 	desc = "This circuit can convert a number variable into a string."
 	icon_state = "num-string"
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/converter/num2text/do_work()
 	var/result = null
@@ -25,6 +26,7 @@
 	name = "string to number"
 	desc = "This circuit can convert a string variable into a number."
 	icon_state = "string-num"
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/converter/text2num/do_work()
 	var/result = null
@@ -40,6 +42,7 @@
 	name = "reference to string"
 	desc = "This circuit can convert a reference to something else to a string, specifically the name of that reference."
 	icon_state = "ref-string"
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/converter/ref2text/do_work()
 	var/result = null
@@ -55,6 +58,7 @@
 	name = "lowercase string converter"
 	desc = "this will cause a string to come out in all lowercase."
 	icon_state = "lowercase"
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/converter/lowercase/do_work()
 	var/result = null
@@ -70,6 +74,7 @@
 	name = "uppercase string converter"
 	desc = "THIS WILL CAUSE A STRING TO COME OUT IN ALL UPPERCASE."
 	icon_state = "uppercase"
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/converter/uppercase/do_work()
 	var/result = null
@@ -88,6 +93,7 @@
 	inputs = list("A","B","C","D","E","F","G","H")
 	outputs = list("result")
 	activators = list("concatenate")
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/converter/concatenatior/do_work()
 	var/result = null

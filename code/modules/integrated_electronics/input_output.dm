@@ -1,5 +1,6 @@
 /obj/item/integrated_circuit/input
 	var/can_be_asked_input = 0
+	category_text = "Input"
 
 /obj/item/integrated_circuit/input/proc/ask_for_input(mob/user)
 	return
@@ -13,6 +14,7 @@
 	inputs = list()
 	outputs = list()
 	activators = list("on pressed")
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/input/button/ask_for_input(mob/user) //Bit misleading name for this specific use.
 	var/datum/integrated_io/A = activators[1]
@@ -30,6 +32,7 @@
 	inputs = list()
 	outputs = list("number entered")
 	activators = list("on entered")
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/input/numberpad/ask_for_input(mob/user)
 	var/new_input = input(user, "Enter a number, please.","Number pad") as null|num
@@ -49,6 +52,7 @@
 	inputs = list()
 	outputs = list("string entered")
 	activators = list("on entered")
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/input/textpad/ask_for_input(mob/user)
 	var/new_input = input(user, "Enter some words, please.","Number pad") as null|text
@@ -67,6 +71,8 @@
 	inputs = list("target ref")
 	outputs = list("total health %", "total missing health")
 	activators = list("scan")
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 2)
 
 /obj/item/integrated_circuit/input/med_scanner/do_work()
 	var/datum/integrated_io/I = inputs[1]
@@ -103,6 +109,8 @@
 		"clone damage"
 	)
 	activators = list("scan")
+	spawn_flags = IC_SPAWN_RESEARCH
+	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3, TECH_BIO = 4)
 
 /obj/item/integrated_circuit/input/adv_med_scanner/do_work()
 	var/datum/integrated_io/I = inputs[1]
@@ -139,6 +147,7 @@
 	inputs = list()
 	outputs = list("located ref")
 	activators = list("locate")
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/input/local_locator/do_work()
 	var/datum/integrated_io/O = outputs[1]
@@ -160,6 +169,7 @@
 	inputs = list("desired type ref")
 	outputs = list("located ref")
 	activators = list("locate")
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/input/adjacent_locator/do_work()
 	var/datum/integrated_io/I = inputs[1]
@@ -194,6 +204,8 @@
 	inputs = list("frequency","code")
 	outputs = list()
 	activators = list("send signal","on signal received")
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_MAGNETS = 2)
 
 	var/frequency = 1457
 	var/code = 30
@@ -274,6 +286,8 @@
 	inputs = list("target EPv2 address", "data to send", "secondary text")
 	outputs = list("address received", "data received", "secondary text received")
 	activators = list("send data", "on data received")
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_MAGNETS = 2, TECH_BLUESPACE = 2)
 	var/datum/exonet_protocol/exonet = null
 
 /obj/item/integrated_circuit/input/EPv2/New()
@@ -307,6 +321,9 @@
 	data_received.write_data_to_pin(message)
 	text_received.write_data_to_pin(text)
 
+/obj/item/integrated_circuit/output
+	category_text = "Output"
+
 /obj/item/integrated_circuit/output/screen
 	name = "screen"
 	desc = "This small screen can display a single piece of data, when the machine is examined closely."
@@ -314,6 +331,7 @@
 	inputs = list("displayed data")
 	outputs = list()
 	activators = list("load data")
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	var/stuff_to_display = null
 
 /obj/item/integrated_circuit/output/screen/do_work()
@@ -328,11 +346,12 @@
 /obj/item/integrated_circuit/output/light
 	name = "light"
 	desc = "This light can turn on and off on command."
-	icon_state = "light_adv"
+	icon_state = "light"
 	complexity = 4
 	inputs = list()
 	outputs = list()
 	activators = list("toggle light")
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	var/light_toggled = 0
 	var/light_brightness = 3
 	var/light_rgb = "#FFFFFF"
@@ -375,6 +394,8 @@
 		"Brightness"
 	)
 	outputs = list()
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3)
 
 /obj/item/integrated_circuit/output/light/advanced/on_data_written()
 	update_lighting()
@@ -393,7 +414,6 @@
 	outputs = list()
 	activators = list("play sound")
 	var/list/sounds = list()
-	category = /obj/item/integrated_circuit/output/sound
 
 /obj/item/integrated_circuit/output/sound/New()
 	..()
@@ -431,6 +451,7 @@
 		"synth no"		= 'sound/machines/synth_no.ogg',
 		"warning buzz"	= 'sound/machines/warning-buzzer.ogg'
 		)
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/output/sound/beepsky
 	name = "securitron sound circuit"
@@ -445,3 +466,5 @@
 		"radio"			= 'sound/voice/bradio.ogg',
 		"secure day"	= 'sound/voice/bsecureday.ogg',
 		)
+	spawn_flags = IC_SPAWN_RESEARCH
+	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_ILLEGAL = 1)

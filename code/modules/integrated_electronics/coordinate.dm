@@ -7,6 +7,8 @@
 	inputs = list()
 	outputs = list("X (abs)", "Y (abs)")
 	activators = list("get coordinates")
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+	category_text = "Coords"
 
 /obj/item/integrated_circuit/gps/do_work()
 	var/turf/T = get_turf(src)
@@ -31,6 +33,8 @@
 	inputs = list("X1 (abs)", "Y1 (abs)", "X2 (abs)", "Y2 (abs)")
 	outputs = list("X (rel)", "Y (rel)")
 	activators = list("compute rel coordinates")
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+	category_text = "Coords"
 
 /obj/item/integrated_circuit/abs_to_rel_coords/do_work()
 	var/datum/integrated_io/x1 = inputs[1]
