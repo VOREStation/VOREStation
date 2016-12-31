@@ -16,7 +16,7 @@
 	set_trait(TRAIT_PRODUCTION,6)
 	set_trait(TRAIT_YIELD,3)
 	set_trait(TRAIT_POTENCY,15)
-	set_trait(TRAIT_PRODUCT_ICON,"mushroom3-product")
+	set_trait(TRAIT_PRODUCT_ICON,"mushroom3")
 	set_trait(TRAIT_PRODUCT_COLOUR,"#DA00DA")
 	set_trait(TRAIT_PLANT_ICON,"tree")
 
@@ -36,6 +36,6 @@
 	set_trait(TRAIT_PRODUCTION,6)
 	set_trait(TRAIT_YIELD,3)
 	set_trait(TRAIT_POTENCY,15)
-	set_trait(TRAIT_PRODUCT_ICON,"mushroom6-product")
+	set_trait(TRAIT_PRODUCT_ICON,"mushroom6")
 	set_trait(TRAIT_PLANT_ICON,"tree")
 	set_trait(TRAIT_PRODUCT_COLOUR,"#DADA00")
