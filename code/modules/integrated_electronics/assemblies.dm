@@ -1,33 +1,59 @@
+#define IC_COMPONENTS_BASE		20
+#define IC_COMPLEXITY_BASE		80
+
 /obj/item/device/electronic_assembly
 	name = "electronic assembly"
 	desc = "It's a case, for building electronics with."
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	icon = 'icons/obj/electronic_assemblies.dmi'
 	icon_state = "setup_small"
-	var/max_components = 10
-	var/max_complexity = 40
+	show_messages = TRUE
+	var/max_components = IC_COMPONENTS_BASE
+	var/max_complexity = IC_COMPLEXITY_BASE
 	var/opened = 0
 
 /obj/item/device/electronic_assembly/medium
 	name = "electronic mechanism"
 	icon_state = "setup_medium"
-	w_class = 3
-	max_components = 20
-	max_complexity = 80
+	w_class = ITEMSIZE_NORMAL
+	max_components = IC_COMPONENTS_BASE * 2
+	max_complexity = IC_COMPLEXITY_BASE * 2
 
 /obj/item/device/electronic_assembly/large
 	name = "electronic machine"
 	icon_state = "setup_large"
-	w_class = 4
-	max_components = 30
-	max_complexity = 120
+	w_class = ITEMSIZE_LARGE
+	max_components = IC_COMPONENTS_BASE * 3
+	max_complexity = IC_COMPLEXITY_BASE * 3
 
 /obj/item/device/electronic_assembly/drone
 	name = "electronic drone"
 	icon_state = "setup_drone"
-	w_class = 3
-	max_components = 25
-	max_complexity = 100
+	w_class = ITEMSIZE_NORMAL
+	max_components = IC_COMPONENTS_BASE * 1.5
+	max_complexity = IC_COMPLEXITY_BASE * 1.5
+
+/obj/item/device/electronic_assembly/implant
+	name = "electronic implant"
+	icon_state = "setup_implant"
+	w_class = ITEMSIZE_TINY
+	max_components = IC_COMPONENTS_BASE / 2
+	max_complexity = IC_COMPLEXITY_BASE / 2
+	var/obj/item/weapon/implant/integrated_circuit/implant = null
+
+/obj/item/device/electronic_assembly/implant/update_icon()
+	..()
+	implant.icon_state = icon_state
+
+
+/obj/item/device/electronic_assembly/implant/nano_host()
+	return implant
+
+/obj/item/device/electronic_assembly/proc/resolve_nano_host()
+	return src
+
+/obj/item/device/electronic_assembly/implant/resolve_nano_host()
+	return implant
 
 /obj/item/device/electronic_assembly/interact(mob/user)
 	if(!CanInteract(user, physical_state))
@@ -78,6 +104,12 @@
 	if(src && input && CanInteract(M, physical_state))
 		to_chat(M, "<span class='notice'>The machine now has a label reading '[input]'.</span>")
 		name = input
+
+/obj/item/device/electronic_assembly/proc/can_move()
+	return FALSE
+
+/obj/item/device/electronic_assembly/drone/can_move()
+	return TRUE
 
 /obj/item/device/electronic_assembly/update_icon()
 	if(opened)

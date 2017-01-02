@@ -6,6 +6,11 @@
 	outputs = list("result")
 	activators = list("compare", "on true result")
 	category_text = "Logic"
+	autopulse = 1
+
+/obj/item/integrated_circuit/logic/on_data_written()
+	if(autopulse == 1)
+		check_then_do_work()
 
 /obj/item/integrated_circuit/logic/do_work()
 	var/datum/integrated_io/O = outputs[1]

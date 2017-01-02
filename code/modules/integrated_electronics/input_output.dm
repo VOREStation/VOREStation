@@ -321,11 +321,74 @@
 	data_received.write_data_to_pin(message)
 	text_received.write_data_to_pin(text)
 
+//This circuit gives information on where the machine is.
+/obj/item/integrated_circuit/input/gps
+	name = "global positioning system"
+	desc = "This allows you to easily know the position of a machine containing this device."
+	icon_state = "gps"
+	complexity = 4
+	inputs = list()
+	outputs = list("X (abs)", "Y (abs)")
+	activators = list("get coordinates")
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
+/obj/item/integrated_circuit/input/gps/do_work()
+	var/turf/T = get_turf(src)
+	var/datum/integrated_io/result_x = outputs[1]
+	var/datum/integrated_io/result_y = outputs[2]
+
+	result_x.data = null
+	result_y.data = null
+	if(!T)
+		return
+
+	result_x.data = T.x
+	result_y.data = T.y
+
+	for(var/datum/integrated_io/output/O in outputs)
+		O.push_data()
+
+
+/obj/item/integrated_circuit/input/microphone
+	name = "microphone"
+	desc = "Useful for spying on people or for voice activated machines."
+	icon_state = "recorder"
+	complexity = 8
+	inputs = list()
+	outputs = list("speaker \<String\>", "message \<String\>")
+	activators = list("on message received")
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
+/obj/item/integrated_circuit/input/microphone/New()
+	..()
+	listening_objects |= src
+
+/obj/item/integrated_circuit/input/microphone/Destroy()
+	listening_objects -= src
+	..()
+
+/obj/item/integrated_circuit/input/microphone/hear_talk(mob/living/M, msg, var/verb="says", datum/language/speaking=null)
+	var/datum/integrated_io/V = outputs[1]
+	var/datum/integrated_io/O = outputs[2]
+	var/datum/integrated_io/A = activators[1]
+	if(M && msg)
+		if(speaking)
+			if(!speaking.machine_understands)
+				msg = speaking.scramble(msg)
+		V.data = M.GetVoice()
+		O.data = msg
+		A.push_data()
+
+
+
+
+
+
 /obj/item/integrated_circuit/output
 	category_text = "Output"
 
 /obj/item/integrated_circuit/output/screen
-	name = "screen"
+	name = "small screen"
 	desc = "This small screen can display a single piece of data, when the machine is examined closely."
 	icon_state = "screen"
 	inputs = list("displayed data")
@@ -342,6 +405,28 @@
 			stuff_to_display = "[d]"
 	else
 		stuff_to_display = I.data
+
+/obj/item/integrated_circuit/output/screen/medium
+	name = "screen"
+	desc = "This screen allows for people holding the device to see a piece of data."
+	icon_state = "screen_medium"
+
+/obj/item/integrated_circuit/output/screen/medium/do_work()
+	..()
+	var/list/nearby_things = range(0, get_turf(src))
+	for(var/mob/M in nearby_things)
+		var/obj/O = istype(loc, /obj/item/device/electronic_assembly) ? loc : src
+		visible_message("<span class='notice'>\icon[O] [stuff_to_display]</span>")
+
+/obj/item/integrated_circuit/output/screen/large
+	name = "large screen"
+	desc = "This screen allows for people able to see the device to see a piece of data."
+	icon_state = "screen_large"
+
+/obj/item/integrated_circuit/output/screen/large/do_work()
+	..()
+	var/obj/O = istype(loc, /obj/item/device/electronic_assembly) ? loc : src
+	O.visible_message("<span class='notice'>\icon[O] [stuff_to_display]</span>")
 
 /obj/item/integrated_circuit/output/light
 	name = "light"
@@ -414,6 +499,24 @@
 	outputs = list()
 	activators = list("play sound")
 	var/list/sounds = list()
+
+/obj/item/integrated_circuit/output/text_to_speech
+	name = "text-to-speech circuit"
+	desc = "A miniature speaker is attached to this component."
+	extended_desc = "This unit is more advanced than the plain speaker circuit, able to transpose any valid text to speech."
+	icon_state = "speaker"
+	complexity = 12
+	cooldown_per_use = 4 SECONDS
+	inputs = list("text")
+	outputs = list()
+	activators = list("to speech")
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
+/obj/item/integrated_circuit/output/text_to_speech/do_work()
+	var/datum/integrated_io/text = inputs[1]
+	if(istext(text.data))
+		var/obj/O = istype(loc, /obj/item/device/electronic_assembly) ? loc : src
+		audible_message("\icon[O] \The [O.name] states, \"[text.data]\"")
 
 /obj/item/integrated_circuit/output/sound/New()
 	..()

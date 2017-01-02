@@ -1557,6 +1557,7 @@ CIRCUITS BELOW
 	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3, TECH_POWER = 3)
 	materials = list(DEFAULT_WALL_MATERIAL = 20000)
 	build_path = /obj/item/device/electronic_assembly/medium
+	sort_string = "VCAAB"
 
 /datum/design/item/custom_circuit_assembly/drone
 	name = "Drone custom assembly"
@@ -1565,6 +1566,7 @@ CIRCUITS BELOW
 	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 4, TECH_POWER = 4)
 	materials = list(DEFAULT_WALL_MATERIAL = 30000)
 	build_path = /obj/item/device/electronic_assembly/drone
+	sort_string = "VCAAC"
 
 /datum/design/item/custom_circuit_assembly/large
 	name = "Large custom assembly"
@@ -1573,6 +1575,16 @@ CIRCUITS BELOW
 	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4, TECH_POWER = 4)
 	materials = list(DEFAULT_WALL_MATERIAL = 40000)
 	build_path = /obj/item/device/electronic_assembly/large
+	sort_string = "VCAAD"
+
+/datum/design/item/custom_circuit_assembly/implant
+	name = "Implant custom assembly"
+	desc = "An customizable assembly for very small devices, implanted into living entities."
+	id = "assembly-implant"
+	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4, TECH_POWER = 3, TECH_BIO = 5)
+	materials = list(DEFAULT_WALL_MATERIAL = 2000)
+	build_path = /obj/item/weapon/implant/integrated_circuit
+	sort_string = "VCAAE"
 
 /* Uncomment if someone makes these buildable
 /datum/design/circuit/general_alert
