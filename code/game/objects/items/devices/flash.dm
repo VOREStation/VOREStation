@@ -96,7 +96,7 @@
 						H.eye_blind = max(H.eye_blind, flash_strength)
 						H.eye_blurry = max(H.eye_blurry, flash_strength + 5)
 						H.flash_eyes()
-						H.adjustHalLoss(halloss_per_flash) // Should take four flashes to stun.
+						H.adjustHalLoss(halloss_per_flash * (flash_strength / 5)) // Should take four flashes to stun.
 
 			else
 				flashfail = 1

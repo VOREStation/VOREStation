@@ -33,7 +33,7 @@
 					H.confused = max(H.confused, flash_strength + 5)
 					H.eye_blind = max(H.eye_blind, flash_strength)
 					H.eye_blurry = max(H.eye_blurry, flash_strength + 5)
-					H.adjustHalLoss(22) // Five flashes to stun.  Bit weaker than melee flashes due to being ranged.
+					H.adjustHalLoss(22 * (flash_strength / 5)) // Five flashes to stun.  Bit weaker than melee flashes due to being ranged.
 
 	//snap pop
 	playsound(src, 'sound/effects/snap.ogg', 50, 1)
