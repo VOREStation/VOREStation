@@ -176,13 +176,13 @@
 	name = "fluffdragon ears (Miria Masters)"
 	desc = ""
 	icon_state = "miria-fluffdragonears"
-	ckeys_allowed = list("miriamasters","scree")
+	ckeys_allowed = list("miriamasters")
 
 /datum/sprite_accessory/ears/miria_kitsune
 	name = "kitsune ears (Miria Masters)"
 	desc = ""
 	icon_state = "miria-kitsuneears"
-	ckeys_allowed = list("miriamasters","scree")
+	ckeys_allowed = list("miriamasters")
 
 /datum/sprite_accessory/ears/runac
 	name = "fennecsune ears (Runac)"
@@ -449,13 +449,13 @@
 	name = "fluffdragon wings+tail (Miria Masters)"
 	desc = ""
 	icon_state = "miria-fluffdragontail"
-	ckeys_allowed = list("miriamasters","scree")
+	ckeys_allowed = list("miriamasters")
 
 /datum/sprite_accessory/tail/miria_kitsune
 	name = "Black kitsune tails (Miria Masters)"
 	desc = ""
 	icon_state = "miria-kitsunetail"
-	ckeys_allowed = list("miriamasters","scree")
+	ckeys_allowed = list("miriamasters")
 
 /datum/sprite_accessory/tail/molenar_deathclaw
 	name = "deathclaw bits (Molenar)"
