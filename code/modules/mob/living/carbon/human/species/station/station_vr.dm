@@ -16,7 +16,7 @@
 	name_language = "Sagaru"
 	color_mult = 1
 
-	min_age = 17
+	min_age = 18
 	max_age = 80
 
 	blurb = "There are two subspecies of Sergal; Southern and Northern. Northern sergals are a highly aggressive race \
@@ -62,7 +62,7 @@
 	name_language = "Skrellian"
 	color_mult = 1
 
-	min_age = 17
+	min_age = 18
 	max_age = 80
 
 	blurb = "The Akula are a species of amphibious humanoids like the Skrell, but have an appearance very similar to that of a shark. \
@@ -101,7 +101,7 @@
 	name_language = "Birdsong"
 	color_mult = 1
 
-	min_age = 17
+	min_age = 18
 	max_age = 80
 
 	blurb = "Nevreans are a race of avian and dinosaur-like creatures living on Tal. They belong to a group of races that hails from Eltus, \
@@ -138,7 +138,7 @@
 	secondary_langs = list("Siik'tajr")
 	name_language = "Siik'tajr"
 
-	min_age = 17
+	min_age = 18
 	max_age = 80
 
 	blurb = "The fox-like Zorren are native to Virgo-Prime, however there are two distinct varieties of Zorren one with large ears and shorter fur, \
@@ -183,7 +183,7 @@
 	secondary_langs = list("Siik'tajr")
 	name_language = "Siik'tajr"
 
-	min_age = 17
+	min_age = 18
 	max_age = 80
 
 	blurb = "The fox-like Zorren are native to Virgo-Prime, however there are two distinct varieties of Zorren one with large ears and shorter fur, \
@@ -249,7 +249,7 @@
 	flesh_color = "#966464"
 	base_color = "#B43214"
 
-	min_age = 17
+	min_age = 18
 	max_age = 80
 
 /datum/species/xenohybrid
@@ -264,7 +264,7 @@
 	hunger_factor = 0.1 //In exchange, they get hungry a tad faster.
 	num_alternate_languages = 2
 
-	min_age = 17
+	min_age = 18
 	max_age = 80
 
 	blurb = "Xenomorphs hybrids are a mixture of xenomorph DNA and some other humanoid species. \

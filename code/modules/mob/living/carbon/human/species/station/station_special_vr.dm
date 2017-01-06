@@ -22,7 +22,7 @@
 	icobase_tail = 1
 	inherent_verbs = list(/mob/living/carbon/human/proc/begin_reconstitute_form)
 
-	min_age = 17
+	min_age = 18
 	max_age = 80
 
 	blurb = "Some amalgamation of different species from across the universe,with extremely unstable DNA, making them unfit for regular cloners. \

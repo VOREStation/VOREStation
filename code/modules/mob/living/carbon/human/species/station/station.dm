@@ -11,7 +11,7 @@
 	num_alternate_languages = 3
 	secondary_langs = list("Sol Common")
 	name_language = null // Use the first-name last-name generator rather than a language scrambler
-	min_age = 17
+	min_age = 18
 	max_age = 110
 	health_hud_intensity = 1.5
 
@@ -101,7 +101,7 @@
 	name_language = "Siik"
 	health_hud_intensity = 2.5
 
-	min_age = 17
+	min_age = 18
 	max_age = 80
 
 	blurb = "The Tajaran are a mammalian species resembling roughly felines, hailing from Meralar in the Rarkajar system. \
