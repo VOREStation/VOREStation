@@ -203,10 +203,6 @@
 	reagent_state = GAS
 	color = "#808080"
 
-/datum/reagent/nitrogen/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_VOX)
-		M.adjustOxyLoss(-removed * 3)
-
 /datum/reagent/oxygen
 	name = "Oxygen"
 	id = "oxygen"

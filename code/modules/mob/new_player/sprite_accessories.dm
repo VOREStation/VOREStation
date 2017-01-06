@@ -540,7 +540,7 @@
 		name = "Shaved"
 		icon_state = "bald"
 		gender = NEUTER
-		species_allowed = list("Human","Unathi","Tajara","Skrell", "Machine","Teshari")
+		species_allowed = list("Human","Unathi","Tajara","Skrell", "Machine","Teshari", "Vox")
 
 	teshari_beard
 		name = "Teshari Beard"
@@ -805,6 +805,21 @@
 		name = "Tajara Finger Curls"
 		icon_state = "hair_fingerwave"
 		species_allowed = list("Tajara")
+
+	vox_quills_short
+		name = "Short Vox Quills"
+		icon_state = "vox_shortquills"
+		species_allowed = list("Vox")
+
+	vox_quills_kingly
+		name = "Kingly Vox Quills"
+		icon_state = "vox_kingly"
+		species_allowed = list("Vox")
+
+	vox_quills_mohawk
+		name = "Quill Mohawk"
+		icon_state = "vox_mohawk"
+		species_allowed = list("Vox")
 
 /datum/sprite_accessory/facial_hair
 

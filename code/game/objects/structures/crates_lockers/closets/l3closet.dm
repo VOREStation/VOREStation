@@ -53,8 +53,8 @@
 	new /obj/item/clothing/head/bio_hood/janitor(src)
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/clothing/mask/gas(src)
-	new /obj/item/weapon/tank/emergency_oxygen/engi(src)
-	new /obj/item/weapon/tank/emergency_oxygen/engi(src)
+	new /obj/item/weapon/tank/emergency/oxygen/engi(src)
+	new /obj/item/weapon/tank/emergency/oxygen/engi(src)
 
 
 /obj/structure/closet/l3closet/scientist

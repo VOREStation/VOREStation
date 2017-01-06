@@ -27,7 +27,8 @@ BLIND     // can't see anything
 	var/obj/screen/overlay = null
 
 	sprite_sheets = list(
-		"Teshari" = 'icons/mob/species/seromi/eyes.dmi'
+		"Teshari" = 'icons/mob/species/seromi/eyes.dmi',
+		"Vox" = 'icons/mob/species/vox/eyes.dmi'
 		)
 
 /obj/item/clothing/glasses/update_clothing_icon()
@@ -91,6 +92,11 @@ BLIND     // can't see anything
 	action_button_name = "Toggle Goggles"
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 	off_state = "denight"
+
+/obj/item/clothing/glasses/night/vox
+	name = "Alien Optics"
+	species_restricted = ("Vox")
+	phoronproof = 1
 
 /obj/item/clothing/glasses/night/New()
 	..()
