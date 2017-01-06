@@ -109,7 +109,7 @@ Please contact me on #coderbus IRC. ~Carn x
 #define MUTATIONS_LAYER			1
 #define DAMAGE_LAYER			2
 #define SURGERY_LEVEL			3		//bs12 specific.
-#define GENITALS_LAYER			4
+#define GENITALS_LAYER			4	 //Vorestation Edit
 #define UNDERWEAR_LAYER  		5
 #define SHOES_LAYER_ALT			6
 #define UNIFORM_LAYER			7
@@ -333,7 +333,7 @@ var/global/list/damage_icon_parts = list()
 
 	//tail
 	update_tail_showing(0)
-	update_genitals_showing(0)
+	update_genitals_showing(0)  //Vorestation Edit
 
 //UNDERWEAR OVERLAY
 /mob/living/carbon/human/proc/update_underwear(var/update_icons=1)
@@ -521,7 +521,7 @@ var/global/list/damage_icon_parts = list()
 	else
 		overlays_standing[UNIFORM_LAYER]	= null
 
-	update_genitals_showing(0)
+	update_genitals_showing(0)  //Vorestation Edit
 	//hiding/revealing shoes if necessary
 	update_inv_shoes(1)
 
@@ -829,7 +829,7 @@ var/global/list/damage_icon_parts = list()
 
 	//Hide/show other layers if necessary
 	update_collar(0)
-	update_genitals_showing(0)
+	update_genitals_showing(0)  //Vorestation Edit
 	update_inv_w_uniform(0)
 	update_inv_shoes(0)
 	update_tail_showing(0)
@@ -1213,7 +1213,7 @@ var/global/list/damage_icon_parts = list()
 #undef MUTATIONS_LAYER
 #undef DAMAGE_LAYER
 #undef SURGERY_LEVEL
-#undef GENITALS_LAYER
+#undef GENITALS_LAYER  //Vorestation Edit
 #undef UNDERWEAR_LAYER
 #undef UNIFORM_LAYER
 #undef ID_LAYER
