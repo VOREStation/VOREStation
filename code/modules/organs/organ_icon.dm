@@ -150,10 +150,11 @@ var/global/list/limb_icon_cache = list()
 			applying.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
 		icon_cache_key += "_tone_[s_tone]"
 	else if(s_col && s_col.len >= 3)
-		if(species && species.color_mult)
+	applying.Blend(rgb(s_col[1], s_col[2], s_col[3]), ICON_MULTIPLY) //Vorestation Edit
+		/*if(species && species.color_mult) //Vorestation Edit
 			applying.Blend(rgb(s_col[1], s_col[2], s_col[3]), ICON_MULTIPLY)
 		else
-			applying.Blend(rgb(s_col[1], s_col[2], s_col[3]), ICON_ADD)
+			applying.Blend(rgb(s_col[1], s_col[2], s_col[3]), ICON_ADD)*/
 
 	// Translucency.
 	if(nonsolid) applying += rgb(,,,180) // SO INTUITIVE TY BYOND
