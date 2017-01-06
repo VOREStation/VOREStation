@@ -42,6 +42,12 @@ datum/preferences
 	var/r_skin = 238					//Skin color // Vorestation edit, so color multi sprites can aren't BLACK AS THE VOID by default.
 	var/g_skin = 206					//Skin color // Vorestation edit, so color multi sprites can aren't BLACK AS THE VOID by default.
 	var/b_skin = 179					//Skin color // Vorestation edit, so color multi sprites can aren't BLACK AS THE VOID by default.
+	var/c_type = "None"					//Breast Type // Vorestation edit
+	var/d_type = "None"					//Dick Type // Vorestation edit
+	var/v_type = "None"					//Vagina Type // Vorestation edit
+	var/r_genital = 238					//Genitals color // Vorestation edit
+	var/g_genital = 206					//Genitals color // Vorestation edit
+	var/b_genital = 179					//Genitals color // Vorestation edit
 	var/r_eyes = 0						//Eye color
 	var/g_eyes = 0						//Eye color
 	var/b_eyes = 0						//Eye color
@@ -271,6 +277,7 @@ datum/preferences
 		character.update_body(0)
 		character.update_underwear(0)
 		character.update_hair(0)
+		character.update_genitals_showing(0) //Vorestation edit
 		character.update_icons()
 
 /datum/preferences/proc/open_load_dialog(mob/user)

@@ -4,6 +4,9 @@
 
 var/global/list/ear_styles_list = list()	// Stores /datum/sprite_accessory/ears indexed by type
 var/global/list/tail_styles_list = list()	// Stores /datum/sprite_accessory/tail indexed by type
+var/global/list/body_breast_list = list()	// Stores /datum/sprite_accessory/breasts indexed by type
+var/global/list/body_dicks_list = list()	// Stores /datum/sprite_accessory/dicks indexed by type
+var/global/list/body_vaginas_list = list()	// Stores /datum/sprite_accessory/vaginas indexed by type
 
 //stores numeric player size options indexed by name
 var/global/list/player_sizes_list = list(
@@ -94,6 +97,26 @@ var/global/list/global_egg_types = list(
 		var/obj/item/clothing/head/instance = new path()
 		ear_styles_list[path] = instance
 
+//Breasts Initialization
+	paths = typesof(/datum/sprite_accessory/breasts) - /datum/sprite_accessory/breasts
+	for(var/path in paths)
+		var/datum/sprite_accessory/breasts/H = new path()
+		body_breast_list[H.name] = H
+		body_breast_list += H.name
+
+	//Dicks Initialization
+	paths = typesof(/datum/sprite_accessory/dicks) - /datum/sprite_accessory/dicks
+	for(var/path in paths)
+		var/datum/sprite_accessory/dicks/H = new path()
+		body_dicks_list[H.name] = H
+		body_dicks_list += H.name
+
+	//Vaginas Initialization
+	paths = typesof(/datum/sprite_accessory/vaginas) - /datum/sprite_accessory/vaginas
+	for(var/path in paths)
+		var/datum/sprite_accessory/vaginas/H = new path()
+		body_vaginas_list[H.name] = H
+		body_vaginas_list += H.name
 	// Custom Tails
 	paths = typesof(/datum/sprite_accessory/tail) - /datum/sprite_accessory/tail - /datum/sprite_accessory/tail/taur
 	for(var/path in paths)

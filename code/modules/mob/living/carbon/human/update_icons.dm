@@ -109,31 +109,32 @@ Please contact me on #coderbus IRC. ~Carn x
 #define MUTATIONS_LAYER			1
 #define DAMAGE_LAYER			2
 #define SURGERY_LEVEL			3		//bs12 specific.
-#define UNDERWEAR_LAYER  		4
-#define SHOES_LAYER_ALT			5
-#define UNIFORM_LAYER			6
-#define ID_LAYER				7
-#define SHOES_LAYER				8
-#define GLOVES_LAYER			9
-#define BELT_LAYER				10
-#define SUIT_LAYER				11
-#define TAIL_LAYER				12		//bs12 specific.
-#define GLASSES_LAYER			13
-#define BELT_LAYER_ALT			14
-#define SUIT_STORE_LAYER		15
-#define BACK_LAYER				16
-#define HAIR_LAYER				17		//TODO: make part of head layer?
-#define EARS_LAYER				18
-#define FACEMASK_LAYER			19
-#define HEAD_LAYER				20
-#define COLLAR_LAYER			21
-#define HANDCUFF_LAYER			22
-#define LEGCUFF_LAYER			23
-#define L_HAND_LAYER			24
-#define R_HAND_LAYER			25
-#define FIRE_LAYER				26		//If you're on fire
-#define TARGETED_LAYER			27		//BS12: Layer for the target overlay from weapon targeting system
-#define TOTAL_LAYERS			27
+#define GENITALS_LAYER			4
+#define UNDERWEAR_LAYER  		5
+#define SHOES_LAYER_ALT			6
+#define UNIFORM_LAYER			7
+#define ID_LAYER				8
+#define SHOES_LAYER				9
+#define GLOVES_LAYER			10
+#define BELT_LAYER				11
+#define SUIT_LAYER				12
+#define TAIL_LAYER				13		//bs12 specific.
+#define GLASSES_LAYER			14
+#define BELT_LAYER_ALT			15
+#define SUIT_STORE_LAYER		16
+#define BACK_LAYER				17
+#define HAIR_LAYER				18		//TODO: make part of head layer?
+#define EARS_LAYER				19
+#define FACEMASK_LAYER			20
+#define HEAD_LAYER				21
+#define COLLAR_LAYER			22
+#define HANDCUFF_LAYER			23
+#define LEGCUFF_LAYER			24
+#define L_HAND_LAYER			25
+#define R_HAND_LAYER			26
+#define FIRE_LAYER				27		//If you're on fire
+#define TARGETED_LAYER			28		//BS12: Layer for the target overlay from weapon targeting system
+#define TOTAL_LAYERS			28
 //////////////////////////////////
 
 /mob/living/carbon/human
@@ -332,6 +333,7 @@ var/global/list/damage_icon_parts = list()
 
 	//tail
 	update_tail_showing(0)
+	update_genitals_showing(0)
 
 //UNDERWEAR OVERLAY
 /mob/living/carbon/human/proc/update_underwear(var/update_icons=1)
@@ -519,6 +521,7 @@ var/global/list/damage_icon_parts = list()
 	else
 		overlays_standing[UNIFORM_LAYER]	= null
 
+	update_genitals_showing(0)
 	//hiding/revealing shoes if necessary
 	update_inv_shoes(1)
 
@@ -826,6 +829,7 @@ var/global/list/damage_icon_parts = list()
 
 	//Hide/show other layers if necessary
 	update_collar(0)
+	update_genitals_showing(0)
 	update_inv_w_uniform(0)
 	update_inv_shoes(0)
 	update_tail_showing(0)
@@ -1154,10 +1158,63 @@ var/global/list/damage_icon_parts = list()
 	overlays_standing[SURGERY_LEVEL] = total
 	if(update_icons)   update_icons()
 
+//Vorestation Edit - START
+/mob/living/carbon/human/proc/update_genitals_showing(var/update_icons=1)
+
+	overlays_standing[GENITALS_LAYER] = null
+	if(species.appearance_flags & HAS_UNDERWEAR)
+		var/datum/sprite_accessory/breasts = body_breast_list[c_type]
+		var/datum/sprite_accessory/vaginas = body_vaginas_list[v_type]
+		var/datum/sprite_accessory/dicks = body_dicks_list[d_type]
+		var/icon/genitals_standing	=new /icon('icons/vore/extras/blank.dmi',"blank") //blank icon by excelency
+		var/draw_boobs = 1
+		var/draw_genitals = 1
+		var/obj/item/clothing/suit/esuit
+		var/obj/item/clothing/under/euniform
+		if(istype(w_uniform, /obj/item/clothing/under))
+			euniform = w_uniform
+		if(istype(wear_suit, /obj/item/clothing/suit))
+			esuit = wear_suit
+		for(var/undies in all_underwear)
+			if(istype(all_underwear[undies], /datum/category_item/underwear))
+				var/datum/category_item/underwear/eunde = all_underwear[undies]
+				if(!hide_underwear[undies])
+					if (!(eunde.show_boobs))
+						draw_boobs = 0
+					if (!(eunde.show_genitals))
+						draw_genitals = 0
+		if (draw_boobs)
+			if(breasts && breasts.species_allowed && (src.species.get_bodytype() in breasts.species_allowed))
+				if(!(w_uniform && !(euniform.show_boobs)) && !(wear_suit && !(esuit.show_boobs)))
+					var/icon/breasts_s = new/icon("icon" = breasts.icon, "icon_state" = breasts.icon_state)
+					if(breasts.do_colouration)
+						breasts_s.Blend(rgb(r_skin, g_skin, b_skin), ICON_MULTIPLY)
+					genitals_standing.Blend(breasts_s, ICON_OVERLAY)
+		if (draw_genitals)
+			if(vaginas && vaginas.species_allowed && (src.species.get_bodytype() in vaginas.species_allowed))
+				if(!(w_uniform && !(euniform.show_genitals)) && !(wear_suit && !(esuit.show_genitals)))
+					var/icon/vaginas_s = new/icon("icon" = vaginas.icon, "icon_state" = vaginas.icon_state)
+					if(vaginas.do_colouration)
+						vaginas_s.Blend(rgb(r_genital, g_genital, b_genital), ICON_MULTIPLY)
+					genitals_standing.Blend(vaginas_s, ICON_OVERLAY)
+			if(dicks && dicks.species_allowed && (src.species.get_bodytype() in dicks.species_allowed))
+				if(!(w_uniform && !(euniform.show_genitals)) && !(wear_suit && !(esuit.show_genitals)))
+					var/icon/dicks_s = new/icon("icon" = dicks.icon, "icon_state" = dicks.icon_state)
+					if(dicks.do_colouration)
+						dicks_s.Blend(rgb(r_genital, g_genital, b_genital), ICON_MULTIPLY)
+					genitals_standing.Blend(dicks_s, ICON_OVERLAY)
+		overlays_standing[GENITALS_LAYER] = image(genitals_standing)
+	if(update_icons)
+		update_icons()
+
+//Vorestation Edit - END
+
 //Human Overlays Indexes/////////
 #undef MUTATIONS_LAYER
 #undef DAMAGE_LAYER
 #undef SURGERY_LEVEL
+#undef GENITALS_LAYER
+#undef UNDERWEAR_LAYER
 #undef UNIFORM_LAYER
 #undef ID_LAYER
 #undef SHOES_LAYER

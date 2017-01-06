@@ -55,6 +55,7 @@
 	item_state_slots = list(slot_r_hand_str = "clown", slot_l_hand_str = "clown")
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	rolled_sleeves = -1 //Please never
+	show_genitals = 1 //Vorestation Edit
 
 /obj/item/clothing/under/rank/vice
 	name = "vice officer's jumpsuit"
@@ -189,6 +190,7 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	icon_state = "black_suit_fem"
 	item_state = "black_formal_skirt"
+	show_genitals = 1 //Vorestation Edit
 
 /obj/item/clothing/under/suit_jacket/red
 	name = "red suit"
@@ -202,6 +204,7 @@
 	icon_state = "schoolgirl"
 	item_state_slots = list(slot_r_hand_str = "blue", slot_l_hand_str = "blue")
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	show_genitals = 1 //Vorestation Edit
 
 /obj/item/clothing/under/overalls
 	name = "laborer's overalls"
@@ -234,6 +237,7 @@
 	icon_state = "kilt"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|FEET
 	rolled_sleeves = 0
+	show_genitals = 1 //Vorestation Edit
 
 /obj/item/clothing/under/sexymime
 	name = "sexy mime outfit"
@@ -242,6 +246,7 @@
 	item_state_slots = list(slot_r_hand_str = "mime", slot_l_hand_str = "mime")
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	rolled_sleeves = -1 //Please never
+	show_genitals = 1 //Vorestation Edit
 
 /obj/item/clothing/under/gladiator
 	name = "gladiator uniform"
@@ -383,12 +388,14 @@
 	desc = "Makes you want to frolic in a field of daisies."
 	icon_state = "sundress"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	show_genitals = 1 //Vorestation Edit
 
 /obj/item/clothing/under/sundress_white
 	name = "white sundress"
 	desc = "A white sundress decorated with purple lilies."
 	icon_state = "sundress_white"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	show_genitals = 1 //Vorestation Edit
 
 /obj/item/clothing/under/captainformal
 	name = "colony director's formal uniform"
@@ -518,6 +525,8 @@
 	desc = "How... minimalist."
 	icon_state = "gear_harness"
 	body_parts_covered = 0
+	show_genitals = 1 //Vorestation Edit
+	show_boobs = 1 //Vorestation Edit
 
 /obj/item/clothing/under/dress/white
 	name = "white wedding dress"
@@ -603,6 +612,8 @@
 
 /obj/item/clothing/under/stripper
 	body_parts_covered = 0
+	show_genitals = 1 //Vorestation Edit
+	show_boobs = 1 //Vorestation Edit
 
 /obj/item/clothing/under/stripper/stripper_pink
 	name = "pink swimsuit"
