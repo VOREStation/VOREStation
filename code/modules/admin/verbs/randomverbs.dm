@@ -158,7 +158,8 @@
 
 proc/cmd_admin_mute(mob/M as mob, mute_type, automute = 0)
 	if(automute)
-		if(!config.automute_on)	return
+		if(!config.automute_on)
+			return
 	else
 		if(!usr || !usr.client)
 			return
@@ -169,8 +170,10 @@ proc/cmd_admin_mute(mob/M as mob, mute_type, automute = 0)
 			usr << "<font color='red'>Error: cmd_admin_mute: This mob doesn't have a client tied to it.</font>"
 		if(M.client.holder)
 			usr << "<font color='red'>Error: cmd_admin_mute: You cannot mute an admin/mod.</font>"
-	if(!M.client)		return
-	if(M.client.holder)	return
+	if(!M.client)
+		return
+	if(M.client.holder)
+		return
 
 	var/muteunmute
 	var/mute_string
