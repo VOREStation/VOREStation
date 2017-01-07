@@ -7,14 +7,12 @@
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "crate"
 	icon_living = "crate"
-
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat
 	response_help = "touches"
 	response_disarm = "pushes"
 	response_harm = "hits"
 	speed = 4
-	maxHealth = 250
-	health = 250
+	maxHealth = 60
+	health = 60
 
 	harm_intent_damage = 5
 	melee_damage_lower = 8
@@ -36,7 +34,7 @@
 
 	faction = "mimic"
 	move_to_delay = 8
-	pounce_chance = 90
+	pouncechance = 33
 
 /mob/living/simple_animal/hostile/vore/mimic/FindTarget()
 	. = ..()
@@ -126,8 +124,7 @@
 // Copy Mimic
 //
 
-// var/global/list/protected_objects = list(/obj/structure/table, /obj/structure/cable, /obj/structure/window, /obj/item/projectile/animate)
-// List now defined in projectile/animate.dm
+var/global/list/protected_objects = list(/obj/structure/table, /obj/structure/cable, /obj/structure/window, /obj/item/projectile/animate)
 
 /mob/living/simple_animal/hostile/vore/mimic/copy
 

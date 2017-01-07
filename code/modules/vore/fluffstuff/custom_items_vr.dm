@@ -146,12 +146,12 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 			user.visible_message("<span class='warning'>[user] invades [M]'s personal space, thrusting [src] into their face insistently.</span>","<span class='warning'>You invade [M]'s personal space, thrusting [src] into their face insistently.</span>")
 
 //JoanRisu:Joan Risu
-/obj/item/device/pda/heads/hos/fluff/joanpda
+/obj/item/device/pda/heads/hos/joanpda
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "pda-joan"
 
 //Vorrarkul:Lucina Dakarim
-/obj/item/device/pda/heads/cmo/fluff/lucinapda
+/obj/item/device/pda/heads/cmo/lucinapda
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "pda-lucina"
 
@@ -501,10 +501,10 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	new /obj/item/weapon/paper/khcrystal_manual(src)
 	new /obj/item/clothing/accessory/collar/khcrystal(src)
 
-/obj/item/weapon/cane
+/obj/item/weapon/cane/fluff
 	name = "cane"
 	desc = "A cane used by a true gentlemen. Or a clown."
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "browncane"
 	item_state = "browncanemob"
 	flags = CONDUCT

@@ -8,7 +8,7 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 10
 	melee_damage_upper = 25
-	pounce_chance = 90
+	pouncechance = 50
 
 // Pepe is love, not hate.
 /mob/living/simple_animal/hostile/vore/frog/New()

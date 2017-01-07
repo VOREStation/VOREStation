@@ -51,6 +51,10 @@
 	path = /obj/item/device/flashlight/maglight
 	cost = 2
 
+/datum/gear/utility/battery
+	display_name = "cell, device"
+	path = /obj/item/weapon/cell/device
+
 /datum/gear/utility/implant //This does nothing if you don't actually know EAL.
 	display_name = "implant, language, EAL"
 	path = /obj/item/weapon/implant/language/eal
