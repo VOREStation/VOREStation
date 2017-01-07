@@ -16,6 +16,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 // Note: Polaris had this on /mob/living/carbon/human We need it higher up for animals and stuff.
 /mob/living
 	var/size_multiplier = 1 //multiplier for the mob's icon size
+	var/holder_default
 
 // Define holder_type on types we want to be scoop-able
 /mob/living/carbon/human
@@ -89,13 +90,18 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
  * @return false if normal code should continue, 1 to prevent normal code.
  */
 /mob/living/proc/attempt_to_scoop(var/mob/living/carbon/human/H)
+	var/size_diff = H.get_effective_size() - src.get_effective_size()
+	if(!src.holder_default && src.holder_type)
+		src.holder_default = src.holder_type
 	if(!istype(H))
 		return 0;
 	if(H.buckled)
 		usr << "<span class='notice'>You have to unbuckle \the [H] before you pick them up.</span>"
 		return 0
-	if(H.get_effective_size() - src.get_effective_size() >= 0.75)
+	if(size_diff >= 0.75)
+		src.holder_type = /obj/item/weapon/holder/micro
 		var/obj/item/weapon/holder/m_holder = get_scooped(H)
+		src.holder_type = src.holder_default
 		if (m_holder)
 			return 1
 		else
