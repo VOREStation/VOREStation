@@ -1736,6 +1736,7 @@
 #include "code\modules\mob\living\simple_animal\friendly\corgi_vr.dm"
 #include "code\modules\mob\living\simple_animal\friendly\crab.dm"
 #include "code\modules\mob\living\simple_animal\friendly\farm_animals.dm"
+#include "code\modules\mob\living\simple_animal\friendly\fluffy.dm"
 #include "code\modules\mob\living\simple_animal\friendly\fox_vr.dm"
 #include "code\modules\mob\living\simple_animal\friendly\lizard.dm"
 #include "code\modules\mob\living\simple_animal\friendly\mouse.dm"

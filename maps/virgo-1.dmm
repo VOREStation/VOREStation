@@ -6838,7 +6838,7 @@
 "cBz" = (/obj/structure/cable/green{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/tiled,/area/quartermaster/storage)
 "cBA" = (/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/grille,/obj/structure/window/reinforced{dir = 1},/obj/machinery/door/firedoor/border_only,/turf/simulated/floor/plating,/area/quartermaster/qm)
 "cBB" = (/obj/machinery/atmospherics/unary/vent_scrubber/on{dir = 4},/turf/simulated/floor/tiled,/area/quartermaster/qm)
-"cBC" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 9},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 5},/turf/simulated/floor/tiled,/area/quartermaster/qm)
+"cBC" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 9},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 5},/mob/living/simple_animal/fluffy,/turf/simulated/floor/tiled,/area/quartermaster/qm)
 "cBD" = (/obj/machinery/atmospherics/unary/vent_pump/on{dir = 8},/turf/simulated/floor/tiled,/area/quartermaster/qm)
 "cBE" = (/obj/machinery/power/apc{dir = 4; name = "east bump"; pixel_x = 24},/obj/structure/cable/green,/obj/machinery/light_switch{dir = 2; name = "light switch "; pixel_x = 36; pixel_y = 0},/turf/simulated/floor/tiled,/area/quartermaster/qm)
 "cBF" = (/obj/structure/disposalpipe/segment{dir = 4; icon_state = "pipe-c"},/turf/simulated/floor,/area/maintenance/apmaint)
