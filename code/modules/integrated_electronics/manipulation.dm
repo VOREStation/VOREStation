@@ -105,7 +105,7 @@
 	Southwest = 10<br>\
 	<br>\
 	Pulsing the 'step towards dir' activator pin will cause the machine to move a meter in that direction, assuming it is not \
-	being held, or anchored in some way.  It should be noted that heavy machines will be unable to move."
+	being held, or anchored in some way.  It should be noted that the ability to move is dependant on the type of assembly that this circuit inhabits."
 	complexity = 20
 	inputs = list("dir num")
 	outputs = list()
@@ -117,7 +117,7 @@
 	var/turf/T = get_turf(src)
 	if(T && istype(loc, /obj/item/device/electronic_assembly))
 		var/obj/item/device/electronic_assembly/machine = loc
-		if(machine.anchored || machine.w_class >= ITEMSIZE_LARGE)
+		if(machine.anchored || !machine.can_move())
 			return
 		if(machine.loc == T) // Check if we're held by someone.  If the loc is the floor, we're not held.
 			var/datum/integrated_io/wanted_dir = inputs[1]

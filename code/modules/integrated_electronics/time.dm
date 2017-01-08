@@ -44,7 +44,7 @@
 	This circuit is set to send a pulse after a delay of half a second."
 	icon_state = "delay-5"
 	delay = 5
-	spawn_flags = IC_SPAWN_RESEARCH
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/time/delay/tenth_sec
 	name = "tenth-sec delay circuit"
@@ -52,7 +52,7 @@
 	This circuit is set to send a pulse after a delay of 1/10th of a second."
 	icon_state = "delay-1"
 	delay = 1
-	spawn_flags = IC_SPAWN_RESEARCH
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/time/delay/custom
 	name = "custom delay circuit"

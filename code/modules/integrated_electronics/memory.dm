@@ -61,7 +61,7 @@
 		"output pin 6",
 		"output pin 7",
 		"output pin 8")
-	spawn_flags = IC_SPAWN_RESEARCH
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3)
 
 /obj/item/integrated_circuit/memory/huge
