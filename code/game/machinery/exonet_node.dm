@@ -15,6 +15,8 @@
 
 	var/opened = 0
 
+	var/list/logs = list() // Gets written to by exonet's send_message() function.
+
 // Proc: New()
 // Parameters: None
 // Description: Adds components to the machine for deconstruction.
@@ -60,6 +62,7 @@
 	else
 		on = 0
 		idle_power_usage = 0
+	update_icon()
 
 // Proc: emp_act()
 // Parameters: 1 (severity - how strong the EMP is, with lower numbers being stronger)
@@ -114,6 +117,7 @@
 	data["allowPDAs"] = allow_external_PDAs
 	data["allowCommunicators"] = allow_external_communicators
 	data["allowNewscasters"] = allow_external_newscasters
+	data["logs"] = logs
 
 
 	// update the ui if it exists, returns null if no ui is passed/found
@@ -171,3 +175,14 @@
 	for(var/obj/machinery/exonet_node/E in machines)
 		if(E.on)
 			return E
+
+// Proc: write_log()
+// Parameters: 4 (origin_address - Where the message is from, target_address - Where the message is going, data_type - Instructions on how to interpet content,
+// 		content - The actual message.
+// Description: This writes to the logs list, so that people can see what people are doing on the Exonet ingame.  Note that this is not an admin logging function.
+// 		Communicators are already logged seperately.
+/obj/machinery/exonet_node/proc/write_log(var/origin_address, var/target_address, var/data_type, var/content)
+	//var/timestamp = time2text(station_time_in_ticks, "hh:mm:ss")
+	var/timestamp = "[stationdate2text()] [stationtime2text()]"
+	var/msg = "[timestamp] | FROM [origin_address] TO [target_address] | TYPE: [data_type] | CONTENT: [content]"
+	logs.Add(msg)
