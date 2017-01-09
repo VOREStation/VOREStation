@@ -11,8 +11,8 @@
 	emote_see = list("puffs its fur out", "shakes its fur", "stares directly at you")
 	speak_chance = 1
 	turns_per_move = 10
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/corgi
-	meat_amount = 3
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_amount = 1
 	response_help  = "scritches"
 	response_disarm = "bops"
 	response_harm   = "kicks"
