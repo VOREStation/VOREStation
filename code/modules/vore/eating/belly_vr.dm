@@ -425,13 +425,13 @@
 					return
 
 		else if(prob(absorbchance)) //After that, let's have it run the absorb chance.
-			R << "<span class='warning'>In responce to your struggling, \the [name] begins to get more active...</span>"
+			R << "<span class='warning'>In response to your struggling, \the [name] begins to get more active...</span>"
 			owner << "<span class='warning'>You feel your [name] beginning to become active!</span>"
 			digest_mode = DM_ABSORB
 			return
 
 		else if(prob(digestchance)) //Finally, let's see if it should run the digest chance.
-			R << "<span class='warning'>In responce to your struggling, \the [name] begins to get more active...</span>"
+			R << "<span class='warning'>In response to your struggling, \the [name] begins to get more active...</span>"
 			owner << "<span class='warning'>You feel your [name] beginning to become active!</span>"
 			digest_mode = DM_DIGEST
 			return
