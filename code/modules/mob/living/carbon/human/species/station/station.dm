@@ -94,6 +94,7 @@
 	slowdown = -0.5
 	brute_mod = 1.15
 	burn_mod =  1.15
+	metabolic_rate = 1.1
 	gluttonous = 1
 	num_alternate_languages = 3
 	secondary_langs = list("Siik")

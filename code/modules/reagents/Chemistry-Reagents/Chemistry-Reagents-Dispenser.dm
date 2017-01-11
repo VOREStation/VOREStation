@@ -87,6 +87,8 @@
 	var/strength_mod = 1
 	if(alien == IS_SKRELL)
 		strength_mod *= 5
+	if(alien == IS_TAJARA)
+		strenth_mod *= 1.75
 	if(alien == IS_DIONA)
 		strength_mod = 0
 

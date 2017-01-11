@@ -89,10 +89,14 @@
 	strength = 2
 
 /datum/reagent/toxin/hyperzine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_TAJARA)
+		strength *= 1.25)
 	..()
 	if(prob(5))
 		M.emote(pick("twitch", "blink_r", "shiver"))
 	M.add_chemical_effect(CE_SPEEDBOOST, 1)
+	if(alien == IS_TAJARA)
+		M.adjustToxLoss(0.5)
 
 /datum/reagent/toxin/stimm	//Homemade Hyperzine
 	name = "Stimm"
@@ -104,6 +108,8 @@
 	strength = 3
 
 /datum/reagent/toxin/stimm/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_TAJARA)
+		strength *= 1.25)
 	..()
 	if(prob(15))
 		M.emote(pick("twitch", "blink_r", "shiver"))
