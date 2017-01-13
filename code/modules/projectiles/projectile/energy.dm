@@ -149,15 +149,7 @@
 	to_chat(M, "<span class='danger'>You hear a loud roar.</span>")
 	playsound(M.loc, 'sound/effects/bang.ogg', 50, 1)
 	var/ear_safety = 0
-	var/mob/living/carbon/human/H = M
-	if(iscarbon(M))
-		if(ishuman(M))
-			if(istype(H.l_ear, /obj/item/clothing/ears/earmuffs) || istype(H.r_ear, /obj/item/clothing/ears/earmuffs))
-				ear_safety += 2
-			if(HULK in M.mutations)
-				ear_safety += 1
-			if(istype(H.head, /obj/item/clothing/head/helmet))
-				ear_safety += 1
+	ear_safety = M.get_ear_protection()
 	if(ear_safety == 1)
 		M.Weaken(2)
 	else if (ear_safety > 1)
