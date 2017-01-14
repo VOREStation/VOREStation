@@ -414,15 +414,15 @@
 
 	if(href_list["b_desc"])
 		var/new_desc = html_encode(input(usr,"Belly Description (1024 char limit):","New Description",selected.inside_flavor) as message|null)
-		new_desc = readd_quotes(new_desc)
 
-		if(length(new_desc) > 1024)
-			usr << "<span class='warning'>Entered belly desc too long. 1024 character limit.</span>"
+		if(new_desc)
+			new_desc = readd_quotes(new_desc)
+			if(length(new_desc) > 1024)
+				usr << "<span class='warning'>Entered belly desc too long. 1024 character limit.</span>"
+				return 0
+			selected.inside_flavor = new_desc
+		else //Returned null
 			return 0
-		if(new_desc == null)
-			return 0 //They clicked cancel
-
-		selected.inside_flavor = new_desc
 
 	if(href_list["b_msgs"])
 		var/list/messages = list(
