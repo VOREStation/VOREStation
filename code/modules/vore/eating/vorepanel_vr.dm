@@ -419,9 +419,8 @@
 		if(length(new_desc) > 1024)
 			usr << "<span class='warning'>Entered belly desc too long. 1024 character limit.</span>"
 			return 0
-
-		if(length(new_desc) < 1) //Prevents current description text from being deleted if they click cancel.
-			return 0
+		if(new_desc == null)
+			return 0 //They clicked cancel
 
 		selected.inside_flavor = new_desc
 
