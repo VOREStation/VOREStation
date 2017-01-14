@@ -420,6 +420,9 @@
 			usr << "<span class='warning'>Entered belly desc too long. 1024 character limit.</span>"
 			return 0
 
+		if(length(new_desc) < 1) //Prevents current description text from being deleted if they click cancel.
+			return 0
+
 		selected.inside_flavor = new_desc
 
 	if(href_list["b_msgs"])
