@@ -379,6 +379,9 @@
 		O.data = msg
 		A.push_data()
 
+	for(var/datum/integrated_io/output/O in outputs)
+		O.push_data()
+
 
 
 
