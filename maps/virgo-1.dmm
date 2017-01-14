@@ -9885,7 +9885,7 @@
 "dIe" = (/obj/machinery/mech_recharger,/turf/simulated/floor/tiled,/area/ai_monitored/storage/eva)
 "dIf" = (/obj/machinery/camera/network/command{c_tag = "COM - Vault"; dir = 9},/turf/simulated/floor/tiled,/area/ai_monitored/storage/eva)
 "dIg" = (/obj/machinery/recharge_station,/obj/effect/floor_decal/industrial/outline/yellow,/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/tiled,/area/ai_monitored/storage/eva)
-"dIh" = (/obj/machinery/door/airlock/multi_tile/glass,/turf/simulated/floor/tiled,/area/ai_monitored/storage/eva)
+"dIh" = (/obj/machinery/door/airlock/multi_tile/glass{req_one_access = list(62)},/turf/simulated/floor/tiled,/area/ai_monitored/storage/eva)
 "dIi" = (/obj/structure/table/reinforced,/obj/machinery/recharger,/obj/machinery/light{dir = 8; icon_state = "tube1"; pixel_y = 0},/turf/simulated/floor/tiled,/area/ai_monitored/storage/eva)
 "dIj" = (/obj/structure/table/reinforced,/obj/machinery/recharger,/obj/machinery/camera/network/command{c_tag = "Gateway Access"; dir = 4},/turf/simulated/floor/tiled,/area/ai_monitored/storage/eva)
 "dIk" = (/obj/structure/table/reinforced,/obj/item/device/communicator,/obj/item/device/communicator,/obj/item/device/communicator,/obj/item/device/communicator,/obj/machinery/light{dir = 8; icon_state = "tube1"; pixel_y = 0},/turf/simulated/floor/tiled,/area/ai_monitored/storage/eva)
