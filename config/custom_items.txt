@@ -421,6 +421,11 @@ item_path: /obj/item/clothing/head/fluff/runac
 # ######## U CKEYS
 # ######## V CKEYS
 {
+ckey: virgo113
+character_name: Verin Raharra
+item_path: /obj/item/clothing/suit/storage/hazardvest/verin
+}
+{
 ckey: vorrarkul
 character_name: Lucina Dakarim
 item_path: /obj/item/device/pda/heads/cmo/fluff/lucinapda
@@ -436,6 +441,12 @@ item_path: /obj/item/clothing/accessory/medal/gold/fluff/lucina
 ckey: vorrarkul
 character_name: Lucina Dakarim
 item_path: /obj/item/clothing/under/dress/fluff/lucinadress
+}
+
+{
+ckey: vorrarkul
+character_name: Nyssa Brennan
+item_path: /obj/item/clothing/suit/storage/hooded/wintercoat/cargo
 }
 
 {

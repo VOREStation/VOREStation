@@ -16,7 +16,7 @@
 	name_language = "Sagaru"
 	color_mult = 1
 
-	min_age = 17
+	min_age = 18
 	max_age = 80
 
 	blurb = "There are two subspecies of Sergal; Southern and Northern. Northern sergals are a highly aggressive race \
@@ -62,7 +62,7 @@
 	name_language = "Skrellian"
 	color_mult = 1
 
-	min_age = 17
+	min_age = 18
 	max_age = 80
 
 	blurb = "The Akula are a species of amphibious humanoids like the Skrell, but have an appearance very similar to that of a shark. \
@@ -101,7 +101,7 @@
 	name_language = "Birdsong"
 	color_mult = 1
 
-	min_age = 17
+	min_age = 18
 	max_age = 80
 
 	blurb = "Nevreans are a race of avian and dinosaur-like creatures living on Tal. They belong to a group of races that hails from Eltus, \
@@ -138,7 +138,7 @@
 	secondary_langs = list("Siik'tajr")
 	name_language = "Siik'tajr"
 
-	min_age = 17
+	min_age = 18
 	max_age = 80
 
 	blurb = "The fox-like Zorren are native to Virgo-Prime, however there are two distinct varieties of Zorren one with large ears and shorter fur, \
@@ -183,7 +183,7 @@
 	secondary_langs = list("Siik'tajr")
 	name_language = "Siik'tajr"
 
-	min_age = 17
+	min_age = 18
 	max_age = 80
 
 	blurb = "The fox-like Zorren are native to Virgo-Prime, however there are two distinct varieties of Zorren one with large ears and shorter fur, \
@@ -249,7 +249,7 @@
 	flesh_color = "#966464"
 	base_color = "#B43214"
 
-	min_age = 17
+	min_age = 18
 	max_age = 80
 
 /datum/species/xenohybrid
@@ -264,7 +264,7 @@
 	hunger_factor = 0.1 //In exchange, they get hungry a tad faster.
 	num_alternate_languages = 2
 
-	min_age = 17
+	min_age = 18
 	max_age = 80
 
 	blurb = "Xenomorphs hybrids are a mixture of xenomorph DNA and some other humanoid species. \
@@ -292,32 +292,40 @@
 
 /datum/species/unathi
 	spawn_flags = SPECIES_CAN_JOIN //Species_can_join is the only spawn flag all the races get, so that none of them will be whitelist only if whitelist is enabled.
+	min_age = 18
 
 /datum/species/tajaran
 	spawn_flags = SPECIES_CAN_JOIN
 	icobase = 'icons/mob/human_races/r_tajaran_vr.dmi'
 	deform = 'icons/mob/human_races/r_def_tajaran_vr.dmi'
+	min_age = 18
 
 /datum/species/skrell
 	spawn_flags = SPECIES_CAN_JOIN
+	min_age = 18
 
 /datum/species/diona
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
+	min_age = 18
 
 /datum/species/teshari
 	spawn_flags = SPECIES_CAN_JOIN
+	min_age = 18
 
 /datum/species/shapeshifter/promethean
 	spawn_flags = SPECIES_CAN_JOIN
 
 /datum/species/teshari
 	mob_size = MOB_MEDIUM
+	min_age = 18
 
 /datum/species/human
 	color_mult = 1
 	icobase = 'icons/mob/human_races/r_human_vr.dmi'
 	deform = 'icons/mob/human_races/r_def_human_vr.dmi'
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
+	min_age = 18
 
 /datum/species
 	holder_type = /obj/item/weapon/holder/micro //This allows you to pick up crew
+	min_age = 18
