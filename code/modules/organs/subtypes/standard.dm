@@ -57,6 +57,8 @@
 	joint = "left elbow"
 	amputation_point = "left shoulder"
 	can_grasp = 1
+	force = 7
+	throwforce = 10
 
 /obj/item/organ/external/arm/right
 	organ_tag = "r_arm"
@@ -79,6 +81,8 @@
 	joint = "left knee"
 	amputation_point = "left hip"
 	can_stand = 1
+	force = 10
+	throwforce = 12
 
 /obj/item/organ/external/leg/right
 	organ_tag = "r_leg"
@@ -102,6 +106,8 @@
 	joint = "left ankle"
 	amputation_point = "left ankle"
 	can_stand = 1
+	force = 3
+	throwforce = 6
 
 /obj/item/organ/external/foot/removed()
 	if(owner)
@@ -132,6 +138,8 @@
 	can_grasp = 1
 	organ_rel_size = 10
 	base_miss_chance = 50
+	force = 3
+	throwforce = 5
 
 /obj/item/organ/external/hand/removed()
 	if(owner)
@@ -166,6 +174,8 @@
 	base_miss_chance = 40
 	var/can_intake_reagents = 1
 	var/eye_icon = "eyes_s"
+	force = 3
+	throwforce = 7
 
 /obj/item/organ/external/head/robotize(var/company, var/skip_prosthetics, var/keep_organs)
 	return ..(company, skip_prosthetics, 1)

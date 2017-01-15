@@ -110,6 +110,8 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 		return
 	if(default_part_replacement(user, O))
 		return
+	if(istype(O, /obj/item/weapon/gripper/no_use/loader))
+		return 0		//Sheet loaders weren't finishing attack(), this prevents the message "You can't stuff that gripper into this" without preventing the rest of the attack sequence from finishing
 	if(panel_open)
 		user << "<span class='notice'>You can't load \the [src] while it's opened.</span>"
 		return 1
@@ -128,29 +130,35 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 		user << "<span class='notice'>\The [src]'s material bin is full. Please remove material before adding more.</span>"
 		return 1
 
-	var/obj/item/stack/stack = O
-
-	var/amount = round(input("How many sheets do you want to add?") as num)
-	if(!O)
+	var/obj/item/stack/material/S = O
+	if(!(S.material.name in materials))
+		user << "<span class='warning'>The [src] doesn't accept [S.material]!</span>"
 		return
-	if(amount <= 0)//No negative numbers
-		return
-	if(amount > stack.get_amount())
-		amount = stack.get_amount()
-	if(max_material_storage - TotalMaterials() < (amount * SHEET_MATERIAL_AMOUNT)) //Can't overfill
-		amount = min(stack.get_amount(), round((max_material_storage - TotalMaterials()) / SHEET_MATERIAL_AMOUNT))
 
 	busy = 1
-	use_power(max(1000, (SHEET_MATERIAL_AMOUNT * amount / 10)))
-	var/stacktype = stack.type
-	var/t = getMaterialName(stacktype)
-	if(t)
-		if(do_after(usr, 16))
-			if(stack.use(amount))
-				user << "<span class='notice'>You add [amount] sheets to \the [src].</span>"
-				materials[t] += amount * SHEET_MATERIAL_AMOUNT
+	var/sname = "[S.name]"
+	var/amnt = S.perunit
+	var/max_res_amount = max_material_storage
+	for(var/mat in materials)
+		max_res_amount -= materials[mat]
+
+	if(materials[S.material.name] + amnt <= max_res_amount)
+		if(S && S.amount >= 1)
+			var/count = 0
+			overlays += "fab-load-metal"
+			spawn(10)
+				overlays -= "fab-load-metal"
+			while(materials[S.material.name] + amnt <= max_res_amount && S.amount >= 1)
+				materials[S.material.name] += amnt
+				S.use(1)
+				count++
+			user << "You insert [count] [sname] into the fabricator."
+	else
+		user << "The fabricator cannot hold more [sname]."
 	busy = 0
+
 	updateUsrDialog()
+	return
 
 /obj/machinery/r_n_d/circuit_imprinter/proc/addToQueue(var/datum/design/D)
 	queue += D
