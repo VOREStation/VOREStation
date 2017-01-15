@@ -387,7 +387,7 @@
 	path = /obj/item/clothing/under/pt
 
 /datum/gear/uniform/pt/expeditionary
-	display_name = "pt uniform, expeditionary"
+	display_name = "pt uniform, sifguard"
 	path = /obj/item/clothing/under/pt/expeditionary
 
 /datum/gear/uniform/pt/fleet
