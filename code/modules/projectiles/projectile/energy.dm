@@ -142,7 +142,7 @@
 	damage = 5
 	agony = 70
 	damage_type = BURN
-//	vacuum_traversal = 0	//Projectile disappears in empty space, TODO: Implement this
+	vacuum_traversal = 0	//Projectile disappears in empty space
 
 /obj/item/projectile/energy/plasmastun/proc/bang(var/mob/living/carbon/M)
 
