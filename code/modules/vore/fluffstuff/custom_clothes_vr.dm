@@ -600,7 +600,7 @@
 
 // arokha : Aronai Kadigan
 /obj/item/clothing/head/helmet/space/void/medical/emt/fluff/aronai
-	name = "KIN-313-SM medical helmet"
+	name = "KHI-313-SM medical helmet"
 	desc = "This spacesuit helmet appears to be custom-made for someone with pointed ears and a muzzle. \
 		It is form-fitting enough that it's unlikely to fit anyone but the person it was intended for. \
 		'Aronai' is printed on the back of the helmet."
@@ -624,7 +624,7 @@
 				return 1
 
 /obj/item/clothing/suit/space/void/medical/emt/fluff/aronai
-	name = "KIN-313-SMb medical space spacesuit"
+	name = "KHI-313-SMb medical space spacesuit"
 	desc = "This spacesuit appears to be custom-made for someone with digitigrade legs and a tail. \
 		It is form-fitting enough that it's unlikely to fit anyone but the person it was intended for. \
 		'Aronai' is printed just above the spine on the back of the neckpiece. It has no space for an O2 tank. \
@@ -648,6 +648,32 @@
 				return 0
 			else
 				return 1
+
+// Something for events. Basically a down-armored ninja suit with no weapons. Consider it an EXTREME paramedic suit.
+/obj/item/weapon/rig/light/ninja/fluff/khi
+	name = "KHI-99-AAR suit module"
+	suit_type = "nano"
+	desc = "A unique suit of nano-enhanced armor designed for special use."
+	icon_state = "ninja_rig"
+	armor = list(melee = 35, bullet = 10, laser = 20, energy = 10, bomb = 20, bio = 100, rad = 30)
+	emp_protection = 40
+	slowdown = 0
+
+	chest_type = /obj/item/clothing/suit/space/rig/light/ninja
+	glove_type = /obj/item/clothing/gloves/gauntlets/rig/light/ninja
+	cell_type =  /obj/item/weapon/cell/hyper
+
+	req_access = list(access_cent_general)
+
+	initial_modules = list(
+		/obj/item/rig_module/maneuvering_jets,
+		/obj/item/rig_module/chem_dispenser/injector,
+		/obj/item/rig_module/teleporter,
+		/obj/item/rig_module/stealth_field,
+		/obj/item/rig_module/fabricator/energy_net
+		)
+
+	..()
 
 //Viveret:Keturah
 /obj/item/clothing/under/dress/maid
