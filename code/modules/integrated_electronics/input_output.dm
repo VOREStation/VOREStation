@@ -321,6 +321,9 @@
 	data_received.write_data_to_pin(message)
 	text_received.write_data_to_pin(text)
 
+	for(var/datum/integrated_io/output/O in outputs)
+		O.push_data()
+
 //This circuit gives information on where the machine is.
 /obj/item/integrated_circuit/input/gps
 	name = "global positioning system"
@@ -378,6 +381,9 @@
 		V.data = M.GetVoice()
 		O.data = msg
 		A.push_data()
+
+	for(var/datum/integrated_io/output/out in outputs)
+		out.push_data()
 
 
 
