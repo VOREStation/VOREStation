@@ -50,13 +50,13 @@
 	if(!client)	return
 
 	if (type)
-		if((type & 1) && ((sdisabilities & BLIND) || blinded || paralysis) )//Vision related
+		if((type & 1) && (is_blind() || paralysis) )//Vision related
 			if (!( alt ))
 				return
 			else
 				msg = alt
 				type = alt_type
-		if ((type & 2) && ((sdisabilities & DEAF) || ear_deaf))//Hearing related
+		if ((type & 2) && is_deaf())//Hearing related
 			if (!( alt ))
 				return
 			else
@@ -153,6 +153,12 @@
 	if(!buckled)
 		return UNBUCKLED
 	return restrained() ? FULLY_BUCKLED : PARTIALLY_BUCKLED
+
+/mob/proc/is_blind()
+	return ((sdisabilities & BLIND) || blinded || incapacitated(INCAPACITATION_KNOCKOUT))
+
+/mob/proc/is_deaf()
+	return ((sdisabilities & DEAF) || ear_deaf || incapacitated(INCAPACITATION_KNOCKOUT))
 
 /mob/proc/is_physically_disabled()
 	return incapacitated(INCAPACITATION_DISABLED)
