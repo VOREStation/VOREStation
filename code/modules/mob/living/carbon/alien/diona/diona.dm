@@ -7,9 +7,11 @@
 	speak_emote = list("chirrups")
 	icon_state = "nymph"
 	item_state = "nymph"
-	language = "Rootspeak"
+	language = LANGUAGE_ROOTLOCAL
+	species_language = LANGUAGE_ROOTLOCAL
+	only_species_language = 1
 	death_msg = "expires with a pitiful chirrup..."
-	universal_understand = 1
+	universal_understand = 0
 	universal_speak = 0      // Dionaea do not need to speak to people other than other dionaea.
 
 	can_pull_size = ITEMSIZE_SMALL
@@ -22,6 +24,8 @@
 
 	..()
 	species = all_species["Diona"]
+	add_language(LANGUAGE_ROOTGLOBAL)
+	add_language(LANGUAGE_GALCOM)
 	verbs += /mob/living/carbon/alien/diona/proc/merge
 
 /mob/living/carbon/alien/diona/put_in_hands(var/obj/item/W) // No hands.
