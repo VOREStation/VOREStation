@@ -216,8 +216,7 @@
 
 			else if(S.can_be_inserted(src))
 				S.handle_item_insertion(src)
-
-	return ..()
+	return
 
 /obj/item/proc/talk_into(mob/M as mob, text)
 	return
