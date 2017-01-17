@@ -868,10 +868,12 @@
 	body_parts_covered = HEAD|FACE|EYES
 
 //virgo113:Verin Raharra
-/obj/item/clothing/suit/storage/hazardvest/verin
+/obj/item/clothing/suit/storage/hazardvest/fluff/verin
 	name = "Green Haz-coat"
 	desc = "A well-worn green, long coat made with lightweight materials, it has a radioactive hazard icon on it's right sleeve. Smells faintly like sergal."
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 20)
 	body_parts_covered = UPPER_TORSO|ARMS
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "verin"
 	item_state = "verin_mob"
