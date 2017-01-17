@@ -80,6 +80,9 @@
 			message = "<B>The [src.name]</B> sulks down sadly."
 			m_type = 1
 		if("twitch")
+			message = "<B>The [src.name]</B> twitches."
+			m_type = 1
+		if("twitch_v")
 			message = "<B>The [src.name]</B> twitches violently."
 			m_type = 1
 		if("dance")
