@@ -843,3 +843,9 @@ mob/observer/dead/MayRespawn(var/feedback = 0)
 
 			if(finalized == "No")
 				icon_state = previous_state
+
+/mob/observer/dead/is_blind()
+	return FALSE
+
+/mob/observer/dead/is_deaf()
+	return FALSE
