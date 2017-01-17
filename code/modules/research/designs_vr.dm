@@ -12,7 +12,7 @@
 	id = "implant_language"
 	req_tech = list(TECH_MATERIAL = 5, TECH_BIO = 5, TECH_DATA = 4, TECH_ENGINEERING = 4) //This is not an easy to make implant.
 	materials = list(DEFAULT_WALL_MATERIAL = 7000, "glass" = 7000, "gold" = 2000, "diamond" = 3000)
-	build_path = /obj/item/weapon/implantcase/language/vrversion
+	build_path = /obj/item/weapon/implantcase/vrlanguage
 
 /datum/design/item/weapon/sizegun
 	name = "shrink ray"
