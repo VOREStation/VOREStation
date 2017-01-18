@@ -387,7 +387,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 /obj/item/clothing/accessory/collar/khcrystal
 	name = "life crystal"
 	desc = "A small crystal with four little dots in it. It feels slightly warm to the touch. \
-	Read manual before use! NOTE: Device contains antimatter."
+	Read manual before use! Can be worn, held, or attached to uniform. NOTE: Device contains antimatter."
 	w_class = ITEMSIZE_SMALL
 
 	icon = 'icons/vore/custom_items_vr.dmi'
@@ -486,7 +486,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	<p>This device contains antimatter. Please consult all local regulations when travelling to ensure compliance with local laws.</p>"}
 
 /obj/item/weapon/storage/box/khcrystal
-	name = "KH-LC91-1 carrying case"
+	name = "life crystal case"
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "khlifebox"
 	desc = "This case can only hold the KH-LC91-1 and a manual."
