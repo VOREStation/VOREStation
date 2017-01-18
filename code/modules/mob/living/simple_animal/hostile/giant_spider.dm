@@ -82,11 +82,12 @@
 	. = ..()
 	if(ishuman(.))
 		var/mob/living/carbon/human/H = .
-		if(prob(poison_chance))
+		if(prob(5))
 			var/obj/item/organ/external/O = pick(H.organs)
 			if(!(O.robotic >= ORGAN_ROBOT))
 				var/eggs = PoolOrNew(/obj/effect/spider/eggcluster/, list(O, src))
 				O.implants += eggs
+				H << "<span class='warning'>The [src] injects something into your [O.name]!</span>"
 
 /mob/living/simple_animal/hostile/giant_spider/Life()
 	..()

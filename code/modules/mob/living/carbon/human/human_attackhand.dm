@@ -22,12 +22,13 @@
 
 	// Should this all be in Touch()?
 	if(istype(H))
-		var/hit_zone = get_zone_with_miss_chance(H.zone_sel.selecting, src, get_accuracy_penalty(H))
-		if(!hit_zone)
-			H.do_attack_animation(src)
-			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-			visible_message("\red <B>[H] attempts to punch [src], but misses!</B>")
-			return 0
+		if(get_accuracy_penalty(H))	//Should only trigger if they're not aiming well
+			var/hit_zone = get_zone_with_miss_chance(H.zone_sel.selecting, src, get_accuracy_penalty(H))
+			if(!hit_zone)
+				H.do_attack_animation(src)
+				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+				visible_message("\red <B>[H] reaches for [src], but misses!</B>")
+				return 0
 
 		if(H != src && check_shields(0, null, H, H.zone_sel.selecting, H.name))
 			H.do_attack_animation(src)

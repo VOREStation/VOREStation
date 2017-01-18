@@ -5,6 +5,11 @@
 	outputs = list("result")
 	activators = list("compute")
 	category_text = "Arithmetic"
+	autopulse = 1
+
+/obj/item/integrated_circuit/arithmetic/on_data_written()
+	if(autopulse == 1)
+		check_then_do_work()
 
 // +Adding+ //
 
@@ -195,8 +200,8 @@
 	var/result = 0
 	for(var/datum/integrated_io/input/I in inputs)
 		I.pull_data()
-		if(isnum(I.data) && I.data != 0)
-			result = abs(result)
+		if(isnum(I.data))
+			result = abs(I.data)
 
 	for(var/datum/integrated_io/output/O in outputs)
 		O.data = result
@@ -261,3 +266,44 @@
 	for(var/datum/integrated_io/output/O in outputs)
 		O.data = result
 		O.push_data()
+
+// Square Root //
+
+/obj/item/integrated_circuit/arithmetic/square_root
+	name = "square root circuit"
+	desc = "This outputs the square root of a number you put in."
+	icon_state = "square_root"
+	inputs = list("A")
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
+/obj/item/integrated_circuit/arithmetic/square_root/do_work()
+	var/result = 0
+	for(var/datum/integrated_io/input/I in inputs)
+		I.pull_data()
+		if(isnum(I.data))
+			result = sqrt(I.data)
+
+	for(var/datum/integrated_io/output/O in outputs)
+		O.data = result
+		O.push_data()
+
+// % Modulo % //
+
+/obj/item/integrated_circuit/arithmetic/modulo
+	name = "modulo circuit"
+	desc = "Gets the remainder of A / B."
+	icon_state = "modulo"
+	inputs = list("A", "B")
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
+/obj/item/integrated_circuit/arithmetic/modulo/do_work()
+	var/result = 0
+	var/datum/integrated_io/input/A = inputs[1]
+	var/datum/integrated_io/input/B = inputs[2]
+	if(isnum(A.data) && isnum(B.data) && B.data != 0)
+		result = A.data % B.data
+
+	for(var/datum/integrated_io/output/O in outputs)
+		O.data = result
+		O.push_data()
+

@@ -408,6 +408,7 @@
 
 	if(usr.put_in_hands(holding))
 		usr.visible_message("<span class='danger'>\The [usr] pulls a knife out of their boot!</span>")
+		playsound(src.loc, 'sound/weapons/flipblade.ogg', 40, 1)
 		holding = null
 	else
 		usr << "<span class='warning'>Your need an empty, unbroken hand to do that.</span>"
@@ -419,6 +420,11 @@
 	update_icon()
 	return
 
+/obj/item/clothing/shoes/attack_hand(var/mob/living/M)
+	if(can_hold_knife == 1 && holding && src.loc == M)
+		draw_knife()
+		return
+	..()
 
 /obj/item/clothing/shoes/attackby(var/obj/item/I, var/mob/user)
 	if((can_hold_knife == 1) && (istype(I, /obj/item/weapon/material/shard) || \

@@ -54,6 +54,18 @@
 		part.implants.Remove(src)
 	..()
 
+/obj/item/weapon/implant/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/weapon/implanter))
+		var/obj/item/weapon/implanter/implanter = I
+		if(implanter.imp)
+			return // It's full.
+		user.drop_from_inventory(src)
+		forceMove(implanter)
+		implanter.imp = src
+		implanter.update()
+	else
+		..()
+
 /obj/item/weapon/implant/tracking
 	name = "tracking implant"
 	desc = "Track with this."

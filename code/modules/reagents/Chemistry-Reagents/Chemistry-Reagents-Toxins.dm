@@ -67,11 +67,11 @@
 		return
 	..()
 
-/datum/reagent/toxin/phoron/touch_turf(var/turf/simulated/T)
+/datum/reagent/toxin/phoron/touch_turf(var/turf/simulated/T, var/amount)
 	if(!istype(T))
 		return
-	T.assume_gas("volatile_fuel", volume, T20C)
-	remove_self(volume)
+	T.assume_gas("volatile_fuel", amount, T20C)
+	remove_self(amount)
 
 /datum/reagent/toxin/cyanide //Fast and Lethal
 	name = "Cyanide"
@@ -97,6 +97,8 @@
 	strength = 2
 
 /datum/reagent/toxin/hyperzine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_TAJARA)
+		removed *= 1.25
 	..()
 	if(prob(5))
 		M.emote(pick("twitch", "blink_r", "shiver"))
@@ -112,6 +114,8 @@
 	strength = 3
 
 /datum/reagent/toxin/stimm/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_TAJARA)
+		removed *= 1.25
 	..()
 	if(prob(15))
 		M.emote(pick("twitch", "blink_r", "shiver"))
@@ -220,17 +224,14 @@
 			W.visible_message("<span class='notice'>The fungi are completely dissolved by the solution!</span>")
 
 /datum/reagent/toxin/plantbgone/touch_obj(var/obj/O, var/volume)
-	..()
 	if(istype(O, /obj/effect/plant))
 		qdel(O)
 
 /datum/reagent/toxin/plantbgone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	..()
 	if(alien == IS_DIONA)
 		M.adjustToxLoss(50 * removed)
 
 /datum/reagent/toxin/plantbgone/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
-	..()
 	if(alien == IS_DIONA)
 		M.adjustToxLoss(50 * removed)
 

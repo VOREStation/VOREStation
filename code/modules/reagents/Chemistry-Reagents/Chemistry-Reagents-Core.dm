@@ -156,9 +156,9 @@
 	glass_name = "welder fuel"
 	glass_desc = "Unless you are an industrial tool, this is probably not safe for consumption."
 
-/datum/reagent/fuel/touch_turf(var/turf/T)
-	new /obj/effect/decal/cleanable/liquid_fuel(T, volume)
-	remove_self(volume)
+/datum/reagent/fuel/touch_turf(var/turf/T, var/amount)
+	new /obj/effect/decal/cleanable/liquid_fuel(T, amount)
+	remove_self(amount)
 	return
 
 /datum/reagent/fuel/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)

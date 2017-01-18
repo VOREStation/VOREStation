@@ -5,6 +5,11 @@
 	outputs = list("output")
 	activators = list("convert")
 	category_text = "Converter"
+	autopulse = 1
+
+/obj/item/integrated_circuit/converter/on_data_written()
+	if(autopulse == 1)
+		check_then_do_work()
 
 /obj/item/integrated_circuit/converter/num2text
 	name = "number to string"
@@ -105,3 +110,66 @@
 	var/datum/integrated_io/outgoing = outputs[1]
 	outgoing.data = result
 	outgoing.push_data()
+
+/obj/item/integrated_circuit/converter/radians2degrees
+	name = "radians to degrees converter"
+	desc = "Converts radians to degrees."
+	inputs = list("radian")
+	outputs = list("degrees")
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
+/obj/item/integrated_circuit/converter/radians2degrees/do_work()
+	var/result = null
+	var/datum/integrated_io/incoming = inputs[1]
+	var/datum/integrated_io/outgoing = outputs[1]
+	incoming.pull_data()
+	if(incoming.data && isnum(incoming.data))
+		result = ToDegrees(incoming.data)
+
+	outgoing.data = result
+	outgoing.push_data()
+
+/obj/item/integrated_circuit/converter/degrees2radians
+	name = "degrees to radians converter"
+	desc = "Converts degrees to radians."
+	inputs = list("degrees")
+	outputs = list("radians")
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
+/obj/item/integrated_circuit/converter/degrees2radians/do_work()
+	var/result = null
+	var/datum/integrated_io/incoming = inputs[1]
+	var/datum/integrated_io/outgoing = outputs[1]
+	incoming.pull_data()
+	if(incoming.data && isnum(incoming.data))
+		result = ToRadians(incoming.data)
+
+	outgoing.data = result
+	outgoing.push_data()
+
+
+/obj/item/integrated_circuit/converter/abs_to_rel_coords
+	name = "abs to rel coordinate converter"
+	desc = "Easily convert absolute coordinates to relative coordinates with this."
+	complexity = 4
+	inputs = list("X1 (abs)", "Y1 (abs)", "X2 (abs)", "Y2 (abs)")
+	outputs = list("X (rel)", "Y (rel)")
+	activators = list("compute rel coordinates")
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
+/obj/item/integrated_circuit/converter/abs_to_rel_coords/do_work()
+	var/datum/integrated_io/x1 = inputs[1]
+	var/datum/integrated_io/y1 = inputs[2]
+
+	var/datum/integrated_io/x2 = inputs[3]
+	var/datum/integrated_io/y2 = inputs[4]
+
+	var/datum/integrated_io/result_x = outputs[1]
+	var/datum/integrated_io/result_y = outputs[2]
+
+	if(x1.data && y1.data && x2.data && y2.data)
+		result_x.data = x1.data - x2.data
+		result_y.data = y1.data - y2.data
+
+	for(var/datum/integrated_io/output/O in outputs)
+		O.push_data()
