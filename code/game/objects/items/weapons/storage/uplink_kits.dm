@@ -22,7 +22,7 @@
 				new /obj/item/clothing/suit/space/syndicate(src)
 				new /obj/item/clothing/head/helmet/space/syndicate(src)
 				new /obj/item/clothing/mask/gas/syndicate(src)
-				new /obj/item/weapon/tank/emergency_oxygen/double(src)
+				new /obj/item/weapon/tank/emergency/oxygen/double(src)
 				return
 
 			if("guns")
@@ -59,7 +59,7 @@
 				new /obj/item/clothing/suit/space/syndicate(src)
 				new /obj/item/clothing/head/helmet/space/syndicate(src)
 				new /obj/item/clothing/mask/gas/syndicate(src)
-				new /obj/item/weapon/tank/emergency_oxygen/double(src)
+				new /obj/item/weapon/tank/emergency/oxygen/double(src)
 				new /obj/item/weapon/card/emag(src)
 				return
 
@@ -121,7 +121,7 @@
 	new /obj/item/clothing/suit/space/syndicate(src)
 	new /obj/item/clothing/head/helmet/space/syndicate(src)
 	new /obj/item/clothing/mask/gas/syndicate(src)
-	new /obj/item/weapon/tank/emergency_oxygen/double(src)
+	new /obj/item/weapon/tank/emergency/oxygen/double(src)
 	return
 
 /obj/item/weapon/storage/box/syndie_kit/chameleon

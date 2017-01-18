@@ -98,7 +98,7 @@
 			/obj/item/weapon/storage/toolbox/emergency = 2,
 			/obj/item/clothing/suit/storage/hazardvest = 2,
 			/obj/item/clothing/suit/storage/vest = 2,
-			/obj/item/weapon/tank/emergency_oxygen/engi = 4,
+			/obj/item/weapon/tank/emergency/oxygen/engi = 4,
 			/obj/item/clothing/suit/space/emergency = 4,
 			/obj/item/clothing/head/helmet/space/emergency = 4,
 			/obj/item/clothing/mask/gas = 4
