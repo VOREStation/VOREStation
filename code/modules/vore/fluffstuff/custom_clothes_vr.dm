@@ -655,7 +655,7 @@
 	suit_type = "nano"
 	desc = "A unique suit of nano-enhanced armor designed for special use."
 	icon_state = "ninja_rig"
-	armor = list(melee = 35, bullet = 10, laser = 20, energy = 10, bomb = 20, bio = 100, rad = 30)
+	armor = list(melee = 25, bullet = 10, laser = 10, energy = 10, bomb = 20, bio = 100, rad = 30)
 	emp_protection = 40
 	slowdown = 0
 
@@ -666,10 +666,9 @@
 	req_access = list(access_cent_general)
 
 	initial_modules = list(
-		/obj/item/rig_module/maneuvering_jets,
 		/obj/item/rig_module/chem_dispenser/injector,
+		/obj/item/rig_module/maneuvering_jets,
 		/obj/item/rig_module/teleporter,
-		/obj/item/rig_module/stealth_field,
 		/obj/item/rig_module/fabricator/energy_net
 		)
 
