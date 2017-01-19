@@ -579,9 +579,9 @@
 	icon_state = "light"
 	desc = "This box is shaped on the inside so that only light tubes and bulbs fit."
 	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
-	storage_slots = 21
+	storage_slots = 24
 	can_hold = list(/obj/item/weapon/light/tube, /obj/item/weapon/light/bulb)
-	max_storage_space = ITEMSIZE_COST_SMALL * 21 //holds 21 items of w_class 2
+	max_storage_space = ITEMSIZE_COST_SMALL * 24 //holds 24 items of w_class 2
 	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
 
 /obj/item/weapon/storage/box/lights/bulbs/New()
