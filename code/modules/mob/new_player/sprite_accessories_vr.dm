@@ -35,7 +35,7 @@
 	braid
 		name = "Floorlength Braid"
 		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "hair_braid_s" //Trust me, it's better this way.
+		icon_state = "hair_braid"
 
 	bald
 		name = "Bald"
