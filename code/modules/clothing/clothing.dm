@@ -651,6 +651,7 @@
 	set_sensors(usr)
 	..()
 
+/* //vorestation edit
 /obj/item/clothing/under/verb/rollsuit()
 	set name = "Roll Down Jumpsuit"
 	set category = "Object"
@@ -676,6 +677,7 @@
 		item_state_slots[slot_w_uniform_str] = "[worn_state]"
 		usr << "<span class='notice'>You roll up your [src].</span>"
 	update_clothing_icon()
+*/ //vorestation edit
 
 /obj/item/clothing/under/verb/rollsleeves()
 	set name = "Roll Up Sleeves"
