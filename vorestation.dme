@@ -1613,6 +1613,7 @@
 #include "code\modules\mob\living\carbon\human\examine_vr.dm"
 #include "code\modules\mob\living\carbon\human\human.dm"
 #include "code\modules\mob\living\carbon\human\human_attackhand.dm"
+#include "code\modules\mob\living\carbon\human\human_attackhand_vr.dm"
 #include "code\modules\mob\living\carbon\human\human_damage.dm"
 #include "code\modules\mob\living\carbon\human\human_defense.dm"
 #include "code\modules\mob\living\carbon\human\human_defines.dm"
