@@ -1,10 +1,11 @@
 //Hoods for winter coats and chaplain hoodie etc
 
 /obj/item/clothing/suit/storage/hooded
-	var/obj/item/clothing/head/winterhood/hood
+	var/obj/item/clothing/head/hood
 	var/hoodtype = null //so the chaplain hoodie or other hoodies can override this
 	var/suittoggled = 0
 	var/hooded = 0
+	action_button_name = "Toggle Hood"
 
 /obj/item/clothing/suit/storage/hooded/New()
 	MakeHood()

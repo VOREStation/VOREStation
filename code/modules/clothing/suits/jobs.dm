@@ -29,13 +29,14 @@
 	flags_inv = HIDEHOLSTER
 
 //Chaplain
-/obj/item/clothing/suit/chaplain_hoodie
+/obj/item/clothing/suit/storage/hooded/chaplain_hoodie
 	name = "chaplain hoodie"
 	desc = "This suit says to you \"Hush\"!"
 	icon_state = "chaplain_hoodie"
 	item_state_slots = list(slot_r_hand_str = "suit_black", slot_l_hand_str = "suit_black")
-	body_parts_covered = UPPER_TORSO|ARMS
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	flags_inv = HIDEHOLSTER
+	hoodtype = /obj/item/clothing/head/chaplain_hood
 	allowed = list (/obj/item/weapon/storage/bible)
 
 //Chaplain
