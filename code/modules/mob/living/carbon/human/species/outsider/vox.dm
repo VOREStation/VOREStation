@@ -3,8 +3,8 @@
 	name_plural = "Vox"
 	icobase = 'icons/mob/human_races/r_vox.dmi'
 	deform = 'icons/mob/human_races/r_def_vox.dmi'
-	default_language = "Vox-pidgin"
-	language = "Galactic Common"
+	default_language = LANGUAGE_VOX
+	language = LANGUAGE_GALCOM
 	num_alternate_languages = 1
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick,  /datum/unarmed_attack/claws/strong, /datum/unarmed_attack/bite/strong)
 	rarity_value = 4
@@ -37,7 +37,7 @@
 	spawn_flags = SPECIES_IS_WHITELISTED
 	appearance_flags = HAS_EYE_COLOR | HAS_HAIR_COLOR
 
-	blood_color = "#2299FC"
+	blood_color = "#9066BD"
 	flesh_color = "#808D11"
 
 	reagent_tag = IS_VOX

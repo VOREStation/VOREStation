@@ -47,6 +47,7 @@
 	icon_state = "vox_rig"
 	armor = list(melee = 60, bullet = 50, laser = 40, energy = 15, bomb = 30, bio = 30, rad = 30)
 	item_flags = THICKMATERIAL
+	siemens_coefficient = 0.2
 	phoronproof = 1
 
 	air_type = /obj/item/weapon/tank/phoron/vox
@@ -58,9 +59,11 @@
 
 /obj/item/clothing/head/helmet/space/rig/vox
 	species_restricted = list("Vox")
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE
 	phoronproof = 1
 
 /obj/item/clothing/shoes/magboots/rig/vox
+	name = "talons"
 	species_restricted = list("Vox")
 	phoronproof = 1
 
@@ -69,7 +72,6 @@
 	phoronproof = 1
 
 /obj/item/clothing/gloves/gauntlets/rig/vox
-	name = "talons"
 	siemens_coefficient = 0
 	species_restricted = list("Vox")
 	phoronproof = 1
