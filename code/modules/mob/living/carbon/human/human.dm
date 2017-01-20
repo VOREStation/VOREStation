@@ -723,6 +723,11 @@
 	return 1
 
 /mob/living/carbon/human/IsAdvancedToolUser(var/silent)
+	// VOREstation start
+	if(feral)
+		src << "<span class='warning'>Your primitive mind can't grasp the concept of that thing.</span>"
+		return 0
+	// VOREstation end
 	if(species.has_fine_manipulation)
 		return 1
 	if(!silent)
