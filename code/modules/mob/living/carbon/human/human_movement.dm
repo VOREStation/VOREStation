@@ -27,7 +27,7 @@
 
 	//VOREstation start
 	if (feral >= 10) //crazy feral animals give less and less of a shit about pain and hunger as they get crazier
-		tally = max(species.slowdown, tally/(feral/10)) // As feral scales to damage, this amounts to an effective +1 slowdown cap
+		tally = max(species.slowdown, species.slowdown+((tally-species.slowdown)/(feral/10))) // As feral scales to damage, this amounts to an effective +1 slowdown cap
 		if(shock_stage >= 10) tally -= 1.5 //this gets a +3 later, feral critters take reduced penalty
 	//VOREstation end
 
