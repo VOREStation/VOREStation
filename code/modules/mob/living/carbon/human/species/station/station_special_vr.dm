@@ -65,16 +65,18 @@
 			else if(H.nutrition <= 100) //Should've eaten sooner!
 				if(H.feral == 0)
 					H << "<span class='danger'><big>Something in your mind flips, your instincts taking over, no longer able to fully comprehend your surroundings as survival becomes your primary concern - you must feed, survive, there is nothing else. Hunt. Eat. Hide. Repeat.</big></span>"
+					log_and_message_admins("has gone feral due to hunger.", H)
 					if(H.stat == CONSCIOUS)
 						H.emote("twitch")
-				H.feral = min(200, H.feral+1) //Feralness increases while this hungry.
+				H.feral = min(150-H.nutrition, H.feral+1) //Feralness increases while this hungry, capped at 50-150 depending on hunger.
 
 		// If they're hurt, chance of snapping. Not if they're straight-up KO'd though.
 		if (H.stat == CONSCIOUS && H.traumatic_shock >=20)
 			if (2.5*H.halloss >= H.traumatic_shock) //If the majority of their shock is due to halloss, greater chance of snapping.
 				if(prob(min(10,(0.2 * H.traumatic_shock))))
 					if(H.feral == 0)
-						H << "<span class='danger'><big>The pain! It stings! Got to get away! Your instincts take over, urging you to flee, to hide, to go to ground, get away from the nasty thing...</big></span>"
+						H << "<span class='danger'><big>The pain! It stings! Got to get away! Your instincts take over, urging you to flee, to hide, to go to ground, get away from here...</big></span>"
+						log_and_message_admins("has gone feral due to halloss.", H)
 					H.feral = max(H.feral, H.halloss) //if already more feral than their halloss justifies, don't increase it.
 					H.emote("twitch")
 			else if(prob(min(10,(0.1 * H.traumatic_shock))))
@@ -82,15 +84,17 @@
 				if(H.feral == 0)
 					H << "<span class='danger'><big>Your fight-or-flight response kicks in, your injuries too much to simply ignore - you need to flee, to hide, survive at all costs - or destroy whatever is threatening you.</big></span>"
 					H.feral = 2*H.traumatic_shock //Make 'em snap.
+					log_and_message_admins("has gone feral due to injury.", H)
 				else
 					H.feral = max(H.feral, H.traumatic_shock * 2) //keep feralness up to match the current injury state.
 
 	else if (H.jitteriness >= 100) //No stress factors, but there's coffee. Keeps them mildly feral while they're all jittery.
 		if(H.feral == 0)
 			H << "<span class='warning'><big>Suddenly, something flips - everything that moves is... potential prey. A plaything. This is great! Time to hunt!</big></span>"
+			log_and_message_admins("has gone feral due to jitteriness.", H)
 			if(H.stat == CONSCIOUS)
 				H.emote("twitch")
-		H.feral = max(H.feral, H.jitteriness-100) //won't make them VERY feral, but they'll be twitchy and pouncy while they're still under the influence, and feralness won't wear off until they're calm.
+		H.feral = max(H.feral, H.jitteriness-100) //they'll be twitchy and pouncy while they're under the influence, and feralness won't wear off until they're calm.
 
 	else
 		if (H.feral > 0) //still feral, but all stress factors are gone. Calm them down.
@@ -98,23 +102,17 @@
 			if (H.feral <=0) //check if they're unferalled
 				H.feral = 0
 				H << "<span class='info'>Your thoughts start clearing, your feral urges having passed - for the time being, at least.</span>"
+				log_and_message_admins("is no longer feral.", H)
 
 // handle what happens while feral
 
 	if(H.feral > 0) //do the following if feral, otherwise no effects.
-		var/light_amount = 0 //how much light there is in the place
-		if(isturf(H.loc)) //else, there's considered to be no light
-			var/turf/T = H.loc
-			var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in T
-			if(L)
-				light_amount = 2 * (min(5,L.lum_r + L.lum_g + L.lum_b) - 2.5)
-			else
-				light_amount =  5
+		var/light_amount = H.getlightlevel() //how much light there is in the place
 
 		for(var/mob/living/M in viewers(H))
 			if(M != H) // someone in view
 				if(prob(0.5)) // 1 in 200 chance of doing something so as not to interrupt scenes
-					if(light_amount <= 1.5) // in the darkness
+					if(light_amount <= 0.5) // in the darkness
 						if(H.nutrition <= 250 || H.jitteriness > 0) //tell them that person looks like food and is good to pounce.
 							H << "<span class='info'> Secure in your hiding place, you still feel the urge to hunt, and [M] looks like an extremely tempting target...</span>"
 					else // in lit area
@@ -126,7 +124,7 @@
 								spawn H.handle_feral()
 
 			else if(M == H) //nobody is in view.
-				if(light_amount <= 1.5) // in the darkness
+				if(light_amount <= 0.5) // in the darkness
 					if(prob(1)) //periodic nagmessages
 						if(H.nutrition <= 100) //If hungry, nag them to go and find someone or something to eat.
 							H << "<span class='info'> Secure in your hiding place, your hunger still gnaws at you. You need to track down some food...</span>"

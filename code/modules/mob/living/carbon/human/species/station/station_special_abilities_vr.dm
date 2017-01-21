@@ -129,27 +129,23 @@
 	fleshcolor = "#14AD8B" //Scree blood.
 	bloodcolor = "#14AD8B"
 
-/mob/living/carbon/human/proc/handle_feral()
-	var/light_amount = 0 //how much light there is in the place
+/mob/living/carbon/human/proc/getlightlevel() //easier than having the same code in like three places
 	if(isturf(src.loc)) //else, there's considered to be no light
 		var/turf/T = src.loc
 		var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in T
 		if(L)
-			light_amount = 2 * (min(5,L.lum_r + L.lum_g + L.lum_b) - 2.5)
+			return (2 * (min(5,L.lum_r + L.lum_g + L.lum_b) - 2.5))
 		else
-			light_amount =  5
+			return 5
+	else return 0
 
+/mob/living/carbon/human/proc/handle_feral()
 	if(handling_hal) return //avoid conflict with actual hallucinations
 	handling_hal = 1
+	var/light_amount = getlightlevel() //how much light there is in the place
 
-	while(client && feral > 10 && light_amount >= 1.5) // largely a copy of handle_hallucinations() without the fake attackers
-		if(isturf(src.loc)) //update light every time so it breaks out if we go into darkness
-			var/turf/T = src.loc
-			var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in T
-			if(L)
-				light_amount = 2 * (min(5,L.lum_r + L.lum_g + L.lum_b) - 2.5)
-			else
-				light_amount =  5
+	while(client && feral > 10 && light_amount >= 0.5) // largely a copy of handle_hallucinations() without the fake attackers
+		light_amount = getlightlevel()
 		sleep(rand(200,500)/(feral/10))
 		var/halpick = rand(1,100)
 		switch(halpick)
