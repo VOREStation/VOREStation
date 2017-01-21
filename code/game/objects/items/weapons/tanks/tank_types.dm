@@ -100,13 +100,20 @@
 		src.loc = F
 	return
 
-/obj/item/weapon/tank/phoron/vox
+/obj/item/weapon/tank/vox	//Can't be a child of phoron or the gas amount gets screwey.
 	name = "phoron tank"
 	desc = "Contains dangerous phoron. Do not inhale. Warning: extremely flammable."
 	icon_state = "oxygen_fr"
 	gauge_icon = null
 	flags = CONDUCT
+	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 	slot_flags = SLOT_BACK	//these ones have straps!
+
+/obj/item/weapon/tank/vox/New()
+	..()
+
+	air_contents.adjust_gas("phoron", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
+	return
 
 /*
  * Emergency Oxygen

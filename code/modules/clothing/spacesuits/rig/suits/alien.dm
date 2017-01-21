@@ -50,7 +50,7 @@
 	siemens_coefficient = 0.2
 	phoronproof = 1
 
-	air_type = /obj/item/weapon/tank/phoron/vox
+	air_type = /obj/item/weapon/tank/vox
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/vox
 	boot_type = /obj/item/clothing/shoes/magboots/rig/vox
