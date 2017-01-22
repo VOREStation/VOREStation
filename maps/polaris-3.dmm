@@ -17,7 +17,7 @@
 "aq" = (/obj/structure/shuttle/engine/heater{icon_state = "heater"; dir = 4},/obj/structure/window/reinforced{dir = 8},/turf/simulated/floor/airless,/area/derelict/ship)
 "ar" = (/obj/structure/shuttle/engine/propulsion{icon_state = "propulsion"; dir = 4},/turf/space,/area/derelict/ship)
 "as" = (/turf/simulated/shuttle/floor{icon_state = "floor3"},/turf/simulated/shuttle/wall{icon_state = "swall_c"; dir = 2},/area/derelict/ship)
-"at" = (/obj/item/weapon/scalpel,/turf/simulated/shuttle/floor{icon_state = "floor3"},/area/derelict/ship)
+"at" = (/obj/item/weapon/surgical/scalpel,/turf/simulated/shuttle/floor{icon_state = "floor3"},/area/derelict/ship)
 "au" = (/turf/simulated/shuttle/wall{icon_state = "swall_t"; dir = 8},/area/derelict/ship)
 "av" = (/turf/simulated/shuttle/plating,/area/derelict/ship)
 "aw" = (/obj/structure/frame/computer,/turf/simulated/shuttle/floor{icon_state = "floor3"},/area/derelict/ship)
