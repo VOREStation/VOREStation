@@ -220,12 +220,6 @@
 	icon_state = "molenar-tentacle"
 	ckeys_allowed = list("molenar")
 
-/datum/sprite_accessory/ears/molenar_inkling
-	name = "colorable mature inkling hair"
-	desc = ""
-	icon_state = "inkling-colorable"
-	do_colouration = 1
-
 /*
 ////////////////////////////
 /  =--------------------=  /
