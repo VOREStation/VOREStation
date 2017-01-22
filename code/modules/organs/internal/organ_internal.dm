@@ -33,4 +33,18 @@
 		if(istype(E)) E.internal_organs -= src
 	..()
 
+/obj/item/organ/internal/robotize()
+	..()
+	name = "prosthetic [initial(name)]"
+	icon_state = "[initial(icon_state)]_prosthetic"
+	if(dead_icon)
+		dead_icon = "[initial(dead_icon)]_prosthetic"
+
+/obj/item/organ/internal/mechassist()
+	..()
+	name = "assisted [initial(name)]"
+	icon_state = "[initial(icon_state)]_assisted"
+	if(dead_icon)
+		dead_icon = "[initial(dead_icon)]_assisted"
+
 // Brain is defined in brain.dm

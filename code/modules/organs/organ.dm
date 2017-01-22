@@ -266,7 +266,7 @@ var/list/organ_cache = list()
 	robotize()
 
 /obj/item/organ/emp_act(severity)
-	if(!(robotic >= ORGAN_ROBOT))
+	if(!(robotic >= ORGAN_ASSISTED))
 		return
 	switch (severity)
 		if (1)
