@@ -307,7 +307,6 @@
 		icon_override = 'icons/vore/custom_clothes_vr.dmi'
 		item_state = "policecover_mob"
 
-
 /*POLARISTODO - Needs rework in update_icons as it doesn't use item_state
 //For general use
 /obj/item/clothing/glasses/welding/fluff/yellow
@@ -698,81 +697,41 @@
 
 	action_button_name = "Toggle pom-pom"
 
-// arokha : Aronai Kadigan
-/obj/item/clothing/head/helmet/space/void/medical/emt/fluff/aronai
-	name = "KHI-313-SM medical helmet"
-	desc = "This spacesuit helmet appears to be custom-made for someone with pointed ears and a muzzle. \
-		It is form-fitting enough that it's unlikely to fit anyone but the person it was intended for. \
-		'Aronai' is printed on the back of the helmet."
-
-	icon = 'icons/vore/custom_clothes_vr.dmi'
-	icon_state = "arohelm"
-
-	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	item_state = "arohelm_mob"
-
-	light_overlay = "helmet_light_dual"
-	camera_networks = list(NETWORK_MEDICAL)
-	species_restricted = null
-
-	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
-		if(..())
-			if(H.ckey != "arokha")
-				H << "<span class='warning'>You try to wear the helmet, but it doesn't fit.</span>"
-				return 0
-			else
-				return 1
-
-/obj/item/clothing/suit/space/void/medical/emt/fluff/aronai
-	name = "KHI-313-SMb medical space spacesuit"
-	desc = "This spacesuit appears to be custom-made for someone with digitigrade legs and a tail. \
-		It is form-fitting enough that it's unlikely to fit anyone but the person it was intended for. \
-		'Aronai' is printed just above the spine on the back of the neckpiece. It has no space for an O2 tank. \
-		In fact, it's practically paper-thin."
-
-	icon = 'icons/vore/custom_clothes_vr.dmi'
-	icon_state = "arosuit"
-
-	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	item_state = "arosuit_mob"
-
-	w_class = ITEMSIZE_NORMAL //If Joan can do it! >.>
-	slowdown = 0 //... <.<
-	allowed = list(/obj/item/device/suit_cooling_unit) //No storage space other than that
-	species_restricted = null
-
-	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
-		if(..())
-			if(H.ckey != "arokha")
-				H << "<span class='warning'>You try to fit into the suit, to no avail.</span>"
-				return 0
-			else
-				return 1
-
-// Something for events. Basically a down-armored ninja suit with no weapons. Consider it an EXTREME paramedic suit.
-/obj/item/weapon/rig/light/ninja/fluff/khi
+/obj/item/weapon/rig/light/hacker/fluff/aronai
 	name = "KHI-99-AAR suit module"
 	suit_type = "nano"
-	desc = "A unique suit of nano-enhanced armor designed for special use."
-	icon_state = "ninja_rig"
-	armor = list(melee = 25, bullet = 10, laser = 10, energy = 10, bomb = 20, bio = 100, rad = 30)
-	emp_protection = 40
-	slowdown = 0
+	desc = "A thin collapsable spacesuit for synths from Kitsuhana Heavy Industries."
+	airtight = 1 //Not because it should be airtight but because suit coolers don't work w/o it.
 
-	chest_type = /obj/item/clothing/suit/space/rig/light/ninja
-	glove_type = /obj/item/clothing/gloves/gauntlets/rig/light/ninja
 	cell_type =  /obj/item/weapon/cell/hyper
-
 	req_access = list(access_cent_general)
 
 	initial_modules = list(
-		/obj/item/rig_module/chem_dispenser/injector,
 		/obj/item/rig_module/maneuvering_jets,
-		/obj/item/rig_module/teleporter,
-		/obj/item/rig_module/fabricator/energy_net
+		/obj/item/rig_module/teleporter
 		)
 
-	..()
+/obj/item/weapon/storage/backpack/fluff/aronai
+	name = "medical pouch"
+	desc = "A medical belt with a small pouch rather than straps and loops for equipment."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "emspouch"
+	item_state = "emspouch_mob"
+
+	slot_flags = SLOT_BELT //You're a belt now. Congrats.
+	max_w_class = ITEMSIZE_SMALL		//fit only pocket sized items
+	max_storage_space = ITEMSIZE_COST_SMALL * 7 //Much smaller than a backpack
+
+	New()
+		new /obj/item/weapon/reagent_containers/hypospray/vr/fluff/aronai(src)
+		new /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/stabilize(src)
+		new /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/bashed(src)
+		new /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/toasted(src)
+		new /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/poisoned(src)
+		new /obj/item/weapon/card/id/centcom/fluff/aronai(src)
+		new /obj/item/clothing/glasses/sunglasses/omnihud(src)
+		..()
 
 //Viveret:Keturah
 /obj/item/clothing/under/dress/maid

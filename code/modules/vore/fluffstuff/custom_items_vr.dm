@@ -299,8 +299,8 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 			user << "<span class='warning'>This isn't even an ID card you idiot.</span>"
 			return
 
-//arokha:Aronai Kadigan
-/obj/item/weapon/card/id/centcom/fluff/aro
+//arokha:Aronai Kadigan - Centcom ID (Medical dept)
+/obj/item/weapon/card/id/centcom/fluff/aronai
 	registered_name = "CONFIGURE ME"
 	assignment = "CC Medical"
 	var/configured = 0
@@ -312,8 +312,8 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 		configured = 1
 		user << "<span class='notice'>Card settings set.</span>"
 
-//arokha:Aronai Kadigan
-/obj/item/weapon/reagent_containers/hypospray/fluff/aronai
+//arokha:Aronai Kadigan - Fluff hypospray
+/obj/item/weapon/reagent_containers/hypospray/vr/fluff/aronai
 	name = "worn hypospray"
 	desc = "This hypospray seems a bit well-used. The blue band indicates it's from the CentCom medical division. There's an 'A' scratched into the bottom."
 	icon = 'icons/vore/custom_items_vr.dmi'
@@ -324,6 +324,37 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 		reagents.add_reagent("inaprovaline", 5)
 		reagents.add_reagent("tricordrazine", 25)
 
+//arokha:Aronai Kadigan - Vials to go with mk2 hypo
+/obj/item/weapon/reagent_containers/glass/beaker/vial/vr
+	stabilize
+		name = "vial (emergency)"
+		New()
+			..()
+			reagents.add_reagent("tramadol", 5)
+			reagents.add_reagent("inaprovaline", 5)
+			reagents.add_reagent("tricordrazine", 10)
+			reagents.add_reagent("dexalinp", 10)
+	bashed
+		name = "vial (bashed)"
+		New()
+			..()
+			reagents.add_reagent("bicaridine", 25)
+			reagents.add_reagent("tricordrazine", 5)
+	toasted
+		name = "vial (toasted)"
+		New()
+			..()
+			reagents.add_reagent("kelotane", 10)
+			reagents.add_reagent("dermaline", 15)
+			reagents.add_reagent("tricordrazine", 5)
+	poisoned
+		name = "vial (poisoned)"
+		New()
+			..()
+			reagents.add_reagent("anti_toxin", 20)
+			reagents.add_reagent("hyronalin", 5)
+			reagents.add_reagent("tricordrazine", 5)
+
 //Swat43:Fortune Bloise
 /obj/item/weapon/storage/backpack/satchel/fluff/swat43bag
 	name = "Coloured Satchel"
@@ -333,7 +364,6 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 
 	icon_override = 'icons/vore/custom_items_vr.dmi'
 	item_state = "swat43-bag_mob"
-
 
 //Dhaeleena:Dhaeleena M'iar
 /obj/item/clothing/accessory/medal/silver/security/fluff/dhael
@@ -383,7 +413,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	to_helmet = /obj/item/clothing/head/helmet/serdy
 	to_suit = /obj/item/clothing/suit/armor/vest/wolftaur/serdy
 
-//arokha:Aronai Kadigan, but anyone is welcome to use it.
+//Lots of people are using this now.
 /obj/item/clothing/accessory/collar/khcrystal
 	name = "life crystal"
 	desc = "A small crystal with four little dots in it. It feels slightly warm to the touch. \
