@@ -57,7 +57,7 @@ item_path: /obj/item/clothing/head/helmet/hos/fluff/lethe
 {
 ckey: arokha
 character_name: Aronai Kadigan
-item_path: /obj/item/weapon/storage/backpack/dufflebag/emt/fluff/aro
+item_path: /obj/item/weapon/storage/backpack/fluff/aronai
 }
 
 {
