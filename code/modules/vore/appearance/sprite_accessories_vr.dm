@@ -214,6 +214,12 @@
 	icon_state = "tigressears"
 	ckeys_allowed = list("hoodoo")
 
+/datum/sprite_accessory/ears/molenar_inkling
+	name = "teal mature inkling hair (Kari Akiren)"
+	desc = ""
+	icon_state = "molenar-tentacle"
+	ckeys_allowed = list("molenar")
+
 /*
 ////////////////////////////
 /  =--------------------=  /
