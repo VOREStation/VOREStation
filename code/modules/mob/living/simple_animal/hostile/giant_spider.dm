@@ -16,7 +16,7 @@
 	speak_chance = 5
 	turns_per_move = 5
 	see_in_dark = 10
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/xenomeat
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/spidermeat
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "punches"
@@ -29,7 +29,7 @@
 	cold_damage_per_tick = 20
 	var/poison_per_bite = 5
 	var/poison_chance = 10
-	var/poison_type = "toxin"
+	var/poison_type = "spidertoxin"
 	faction = "spiders"
 	var/busy = 0
 	pass_flags = PASSTABLE

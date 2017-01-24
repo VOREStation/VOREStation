@@ -126,6 +126,7 @@
 	new /obj/item/weapon/storage/pill_bottle/dylovene(src)
 	new /obj/item/weapon/storage/pill_bottle/tramadol(src)
 	new /obj/item/weapon/storage/pill_bottle/spaceacillin(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/clotting(src)
 	new /obj/item/stack/medical/splint(src)
 	return
 
@@ -148,6 +149,19 @@
 	new /obj/item/weapon/surgical/bonegel(src)
 	new /obj/item/weapon/surgical/FixOVein(src)
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	return
+
+/obj/item/weapon/storage/firstaid/clotting
+	name = "clotting kit"
+	desc = "Contains chemicals to stop bleeding."
+	max_storage_space = ITEMSIZE_COST_SMALL * 7
+
+/obj/item/weapon/storage/firstaid/clotting/New()
+	..()
+	if (empty)
+		return
+	for(var/i = 1 to 8)
+		new /obj/item/weapon/reagent_containers/hypospray/autoinjector/clotting(src)
 	return
 
 /*
