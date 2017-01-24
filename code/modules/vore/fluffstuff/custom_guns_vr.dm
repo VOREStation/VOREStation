@@ -353,30 +353,6 @@
 	desc = "Some serious drywall work, coming up!"
 
 //////////////////// Energy Weapons ////////////////////
-//arokha:Aronai Kadigan
-/obj/item/weapon/gun/energy/gun/fluff/aro
-	name = "\improper KIN-H21"
-	desc = "The Kitsuhana Heavy Industries standard Imperial Navy energy sidearm, commonly called the KIN21. This one appears to have been modified to have additional features at the cost of battery life."
-
-	icon = 'icons/vore/custom_guns_vr.dmi'
-	icon_state = "kinh21stun100"
-
-	item_state = "laser"
-
-	modifystate = "kinh21stun"
-
-	projectile_type = /obj/item/projectile/beam/stun/kin21
-
-	charge_cost = 300
-	charge_meter = 1
-
-	firemodes = list(
-		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun/kin21, modifystate="kinh21stun", fire_sound='sound/weapons/Taser.ogg'),
-		list(mode_name="lethal", projectile_type=/obj/item/projectile/beam, modifystate="kinh21kill", fire_sound='sound/weapons/blaster_pistol.ogg'),
-		list(mode_name="shrink", projectile_type=/obj/item/projectile/beam/shrinklaser, modifystate="kinh21shrink", fire_sound='sound/weapons/wave.ogg'),
-		list(mode_name="grow", projectile_type=/obj/item/projectile/beam/growlaser, modifystate="kinh21grow", fire_sound='sound/weapons/pulse3.ogg'),
-		)
-
 // -------------- Dominator -------------
 /obj/item/weapon/gun/energy/gun/fluff/dominator
 	name = "\improper MWPSB Dominator"

@@ -615,8 +615,10 @@
 /obj/item/weapon/storage/backpack/fluff/aronai
 	name = "medical pouch"
 	desc = "A medical belt with a small pouch rather than straps and loops for equipment."
-	icon = 'icons/obj/clothing/belts.dmi'
-	icon_state = "ems"
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "emspouch"
+	item_state = "emspouch_mob"
 
 	slot_flags = SLOT_BELT //You're a belt now. Congrats.
 	max_w_class = ITEMSIZE_SMALL		//fit only pocket sized items
