@@ -1,0 +1,49 @@
+################################
+# Example Changelog File
+#
+# Note: This file, and files beginning with ".", and files that don't end in ".yml" will not be read. If you change this file, you will look really dumb.
+#
+# Your changelog will be merged with a master changelog. (New stuff added only, and only on the date entry for the day it was merged.)
+# When it is, any changes listed below will disappear.
+#
+# Valid Prefixes: 
+#   bugfix
+#   wip (For works in progress)
+#   tweak
+#   soundadd
+#   sounddel
+#   rscadd (general adding of nice things)
+#   rscdel (general deleting of nice things)
+#   imageadd
+#   imagedel
+#   maptweak
+#   spellcheck (typo fixes)
+#   experiment
+#################################
+
+# Your name.  
+author: Anewbe
+
+# Optional: Remove this file after generating master changelog.  Useful for PR changelogs that won't get used again.
+delete-after: True
+
+# Any changes you've made.  See valid prefix list above.
+# INDENT WITH TWO SPACES.  NOT TABS.  SPACES.
+# SCREW THIS UP AND IT WON'T WORK.
+# Also, all entries are changed into a single [] after a master changelog generation. Just remove the brackets when you add new entries.
+# Please surround your changes in  double quotes ("), as certain characters otherwise screws up compiling. The quotes will not show up in the changelog.
+changes: 
+  - rscadd: "Added a changelog editing system that should cause fewer conflicts and more accurate timestamps."
+  - rscadd: "Added Myelamine, a blood clotting chemical. This is available to antags, and can be ordered from cargo or mixed."
+  - rscadd: "Added Osteodaxon, a bone fixing medicine. This is available to antags, and can be mixed."
+  - rscadd: "Added Carthatoline, a stronger anti-toxin."
+  - rscadd: "Added Spidertoxin, which comes from spiders (duh), and is used in making Myelamine."
+  - rscadd: "Death Alarms can now be ordered from cargo."
+  - rscdel: "Dexalin Plus is half as strong (still pretty strong, though).
+  - rscadd: "Ninja, Merc, and ERT-M Hardsuits can now inject myelamine."
+  - tweak: "Inaprovaline now decreases the effects of bloodloss, and lessens brain damage taken from OxyLoss."
+  - tweak: "Prosthetic organs now take randomised damage when emp'd, this should roughly average out to the old values."
+  - tweak: "The effects of heart damage have been tweaked, should be slightly easier to survive now."
+  - tweak: "Some of the stronger chems have side effects, like confusion or blurry vision. These should be fairly minor, and we may be tweaking them in the future."
+  - tweak: "The suiciding var now wears off, making it possible to save suicide victims if quick action is taken."
+  - tweak: "Death Alarms now announce on General comms again."

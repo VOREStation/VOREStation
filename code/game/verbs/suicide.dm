@@ -51,10 +51,6 @@
 					else //This should not happen, but if it does, everything should still work
 						damage_mod = 1
 
-				if(isSynthetic())
-					var/obj/item/organ/internal/cell/C = internal_organs_by_name["cell"]
-					C.take_damage(10, 1)
-
 				//Do 175 damage divided by the number of damage types applied.
 				if(damagetype & BRUTELOSS)
 					adjustBruteLoss(30/damage_mod)	//hack to prevent gibbing

@@ -73,17 +73,19 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 				blood_volume *= 0.3
 			else if(heart.is_bruised())
 				blood_volume *= 0.7
-			else if(heart.damage > 1)
-				blood_volume *= 0.9
+			else if(heart.damage)
+				blood_volume *= 0.8
 
 		//Effects of bloodloss
 
 		var/dmg_coef = 1				//Lower means less damage taken
-		var/threshold_coef = 1			//Higher means the damage caps off lower
+		var/threshold_coef = 1			//Lower means the damage caps off lower
 
 		if(CE_STABLE in chem_effects)
-			dmg_coef = min(1, 10/chem_effects[CE_STABLE]) //TODO: add effect for increased damage
-			threshold_coef = min(dmg_coef / CE_STABLE_THRESHOLD, 1)
+			dmg_coef = 0.5
+			threshold_coef = 0.75
+//			dmg_coef = min(1, 10/chem_effects[CE_STABLE]) //TODO: add effect for increased damage
+//			threshold_coef = min(dmg_coef / CE_STABLE_THRESHOLD, 1)
 
 		if(blood_volume >= BLOOD_VOLUME_SAFE)
 			if(pale)

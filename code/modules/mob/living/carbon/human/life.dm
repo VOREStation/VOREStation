@@ -329,13 +329,9 @@
 		return
 
 	if(suiciding)
-		if(isSynthetic())
-			var/obj/item/organ/internal/cell/C = internal_organs_by_name["cell"]
-			C.take_damage(6, 1)
-		else
-			failed_last_breath = 1
-			adjustOxyLoss(2)//If you are suiciding, you should die a little bit faster
-			oxygen_alert = max(oxygen_alert, 1)
+		failed_last_breath = 1
+		adjustOxyLoss(2)//If you are suiciding, you should die a little bit faster
+		oxygen_alert = max(oxygen_alert, 1)
 		suiciding --
 		return 0
 

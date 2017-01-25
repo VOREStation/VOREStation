@@ -366,7 +366,7 @@
 	inhibitors = list("sugar" = 1) // Messes up with inaprovaline
 	result_amount = 2
 
-/datum/chemical_reaction/escharamine
+/datum/chemical_reaction/myelamine
 	name = "Myelamine"
 	id = "myelamine"
 	result = "myelamine"

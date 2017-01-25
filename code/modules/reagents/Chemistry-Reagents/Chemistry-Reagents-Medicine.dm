@@ -350,7 +350,7 @@
 	overdose = REAGENTS_OVERDOSE * 0.5
 	scannable = 1
 
-/datum/reagent/plategen/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/myelamine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
 	M.eye_blurry += (3 * removed)
