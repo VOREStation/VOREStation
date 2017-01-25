@@ -231,6 +231,9 @@ default behaviour is:
 /mob/living/proc/getBruteLoss()
 	return bruteloss
 
+/mob/living/proc/getShockBruteLoss()	//Only checks for things that'll actually hurt (not robolimbs)
+	return bruteloss
+
 /mob/living/proc/adjustBruteLoss(var/amount)
 	if(status_flags & GODMODE)	return 0	//godmode
 	bruteloss = min(max(bruteloss + amount, 0),(maxHealth*2))
@@ -258,6 +261,9 @@ default behaviour is:
 	toxloss = amount
 
 /mob/living/proc/getFireLoss()
+	return fireloss
+
+/mob/living/proc/getShockFireLoss()	//Only checks for things that'll actually hurt (not robolimbs)
 	return fireloss
 
 /mob/living/proc/adjustFireLoss(var/amount)

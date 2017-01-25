@@ -81,12 +81,14 @@ REAGENT SCANNER
 		user.show_message("<span class='notice'>Localized Damage, Brute/Burn:</span>",1)
 		if(length(damaged)>0)
 			for(var/obj/item/organ/external/org in damaged)
-				user.show_message(text("<span class='notice'>     [][]: [][] - []</span>",
-				capitalize(org.name),
-				(org.robotic >= ORGAN_ROBOT) ? "(Cybernetic)" : "",
-				(org.brute_dam > 0) ? "<span class='warning'>[org.brute_dam]</span>" : 0,
-				(org.status & ORGAN_BLEEDING)?"<span class='danger'>\[Bleeding\]</span>":"",
-				(org.burn_dam > 0) ? "<font color='#FFA500'>[org.burn_dam]</font>" : 0),1)
+				if(org.robotic >= ORGAN_ROBOT)
+					continue
+				else
+					user.show_message(text("<span class='notice'>     []: [][] - []</span>",
+					capitalize(org.name),
+					(org.brute_dam > 0) ? "<span class='warning'>[org.brute_dam]</span>" : 0,
+					(org.status & ORGAN_BLEEDING)?"<span class='danger'>\[Bleeding\]</span>":"",
+					(org.burn_dam > 0) ? "<font color='#FFA500'>[org.burn_dam]</font>" : 0),1)
 		else
 			user.show_message("<span class='notice'>    Limbs are OK.</span>",1)
 

@@ -214,6 +214,12 @@
 	icon_state = "tigressears"
 	ckeys_allowed = list("hoodoo")
 
+/datum/sprite_accessory/ears/molenar_inkling
+	name = "teal mature inkling hair (Kari Akiren)"
+	desc = ""
+	icon_state = "molenar-tentacle"
+	ckeys_allowed = list("molenar")
+
 /*
 ////////////////////////////
 /  =--------------------=  /
@@ -740,3 +746,9 @@
 /datum/sprite_accessory/tail/taur/feline
 	name = "Feline"
 	icon_state = "feline_s"
+
+///Wickedtemp: Chakat Tempest
+/datum/sprite_accessory/tail/taur/feline/tempest
+	name = "Feline (wickedtemp)"
+	icon_state = "tempest_s"
+	ckeys_allowed = list("wickedtemp")

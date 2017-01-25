@@ -35,7 +35,7 @@
 	braid
 		name = "Floorlength Braid"
 		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "hair_braid_s" //Trust me, it's better this way.
+		icon_state = "hair_braid"
 
 	bald
 		name = "Bald"
@@ -310,3 +310,10 @@
 		icon_state = "default"
 		icon = 'icons/mob/human_races/r_vulpkanin.dmi'
 		species_allowed = list("Vulpkanin")
+
+//Special hairstyles
+/datum/sprite_accessory/ears/inkling
+	name = "colorable mature inkling hair"
+	desc = ""
+	icon = 'icons/mob/human_face_vr.dmi'
+	icon_state = "inkling-colorable"
