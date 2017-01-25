@@ -64,6 +64,10 @@
 	var/obj/item/weapon/coin/coin
 	var/datum/wires/vending/wires = null
 
+	var/list/log = list()
+	var/req_log_access = access_cargo
+
+
 /obj/machinery/vending/New()
 	..()
 	wires = new(src)
@@ -496,6 +500,7 @@
 		flick(icon_vend,src)
 	spawn(vend_delay)
 		R.get_product(get_turf(src))
+		do_logging(R, user, 1)
 		if(prob(1))
 			sleep(3)
 			if(R.get_product(get_turf(src)))
@@ -507,6 +512,44 @@
 		currently_vending = null
 		nanomanager.update_uis(src)
 
+	return 1
+
+/obj/machinery/vending/proc/do_logging(datum/stored_item/vending_product/R, mob/user, var/vending = 0)
+	if(user.GetIdCard())
+		var/obj/item/weapon/card/id/tempid = user.GetIdCard()
+		var/list/list_item = list()
+		if(vending)
+			list_item += "vend"
+		else
+			list_item += "stock"
+		list_item += tempid.registered_name
+		list_item += stationtime2text()
+		list_item += R.item_name
+		log[++log.len] = list_item
+
+/obj/machinery/vending/proc/show_log(mob/user as mob)
+	if(user.GetIdCard())
+		var/obj/item/weapon/card/id/tempid = user.GetIdCard()
+		if(req_log_access in tempid.GetAccess())
+			var/datum/browser/popup = new(user, "vending_log", "Vending Log", 700, 500)
+			var/dat = ""
+			dat += "<center><span style='font-size:24pt'><b>[name] Vending Log</b></span></center>"
+			dat += "<center><span style='font-size:16pt'>Welcome [user.name]!</span></center><br>"
+			dat += "<span style='font-size:8pt'>Below are the recent vending logs for your vending machine.</span><br>"
+			for(var/i in log)
+				dat += json_encode(i)
+				dat += ";<br>"
+			popup.set_content(dat)
+			popup.open()
+	else
+		to_chat(user,"<span class='warning'>You do not have the required access to view the vending logs for this machine.</span>")
+
+/obj/machinery/vending/verb/check_logs()
+	set name = "Check Vending Logs"
+	set category = "Object"
+	set src in oview(1)
+
+	show_log(usr)
 
 /**
  * Add item to the machine
@@ -520,6 +563,7 @@
 
 	user << "<span class='notice'>You insert \the [W] in the product receptor.</span>"
 	R.add_product(W)
+	do_logging(R, user)
 
 	nanomanager.update_uis(src)
 
@@ -677,6 +721,8 @@
 	product_slogans = "I hope nobody asks me for a bloody cup o' tea...;Alcohol is humanity's friend. Would you abandon a friend?;Quite delighted to serve you!;Is nobody thirsty on this station?"
 	product_ads = "Drink up!;Booze is good for you!;Alcohol is humanity's best friend.;Quite delighted to serve you!;Care for a nice, cold beer?;Nothing cures you like booze!;Have a sip!;Have a drink!;Have a beer!;Beer is good for you!;Only the finest alcohol!;Best quality booze since 2053!;Award-winning wine!;Maximum alcohol!;Man loves beer.;A toast for progress!"
 	req_access = list(access_bar)
+	req_log_access = access_bar
+
 
 /obj/machinery/vending/assist
 	products = list(	/obj/item/device/assembly/prox_sensor = 5,/obj/item/device/assembly/igniter = 3,/obj/item/device/assembly/signaler = 4,
@@ -697,9 +743,6 @@
 	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/ice = 10)
 	prices = list(/obj/item/weapon/reagent_containers/food/drinks/coffee = 3, /obj/item/weapon/reagent_containers/food/drinks/tea = 3, /obj/item/weapon/reagent_containers/food/drinks/h_chocolate = 3)
 
-
-
-
 /obj/machinery/vending/snack
 	name = "Getmore Chocolate Corp"
 	desc = "A snack machine courtesy of the Getmore Chocolate Corporation, based out of Mars."
@@ -713,8 +756,6 @@
 	prices = list(/obj/item/weapon/reagent_containers/food/snacks/candy = 1,/obj/item/weapon/reagent_containers/food/drinks/dry_ramen = 5,/obj/item/weapon/reagent_containers/food/snacks/chips = 1,
 					/obj/item/weapon/reagent_containers/food/snacks/sosjerky = 2,/obj/item/weapon/reagent_containers/food/snacks/no_raisin = 1,/obj/item/weapon/reagent_containers/food/snacks/spacetwinkie = 1,
 					/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers = 1, /obj/item/weapon/reagent_containers/food/snacks/tastybread = 2, /obj/item/weapon/reagent_containers/food/snacks/skrellsnacks = 4)
-
-
 
 /obj/machinery/vending/cola
 	name = "Robust Softdrinks"
@@ -768,6 +809,7 @@
 	products = list(/obj/item/weapon/cartridge/medical = 10,/obj/item/weapon/cartridge/engineering = 10,/obj/item/weapon/cartridge/security = 10,
 					/obj/item/weapon/cartridge/janitor = 10,/obj/item/weapon/cartridge/signal/science = 10,/obj/item/device/pda/heads = 10,
 					/obj/item/weapon/cartridge/captain = 3,/obj/item/weapon/cartridge/quartermaster = 10)
+	req_log_access = access_hop
 
 
 /obj/machinery/vending/cigarette
@@ -813,6 +855,7 @@
 					/obj/item/stack/medical/advanced/bruise_pack = 3, /obj/item/stack/medical/advanced/ointment = 3, /obj/item/stack/medical/splint = 2)
 	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 3,/obj/item/weapon/reagent_containers/pill/stox = 4,/obj/item/weapon/reagent_containers/pill/antitox = 6)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+	req_log_access = access_cmo
 
 
 //This one's from bay12
@@ -822,6 +865,7 @@
 	products = list(/obj/item/clothing/under/rank/scientist = 6,/obj/item/clothing/suit/bio_suit = 6,/obj/item/clothing/head/bio_hood = 6,
 					/obj/item/device/transfer_valve = 6,/obj/item/device/assembly/timer = 6,/obj/item/device/assembly/signaler = 6,
 					/obj/item/device/assembly/prox_sensor = 6,/obj/item/device/assembly/igniter = 6)
+	req_log_access = access_rd
 
 /obj/machinery/vending/wallmed1
 	name = "NanoMed"
@@ -832,6 +876,7 @@
 	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
 	products = list(/obj/item/stack/medical/bruise_pack = 2,/obj/item/stack/medical/ointment = 2,/obj/item/weapon/reagent_containers/hypospray/autoinjector = 4,/obj/item/device/healthanalyzer = 1)
 	contraband = list(/obj/item/weapon/reagent_containers/syringe/antitoxin = 4,/obj/item/weapon/reagent_containers/syringe/antiviral = 4,/obj/item/weapon/reagent_containers/pill/tox = 1)
+	req_log_access = access_cmo
 
 /obj/machinery/vending/wallmed2
 	name = "NanoMed"
@@ -842,6 +887,7 @@
 	products = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector = 5,/obj/item/weapon/reagent_containers/syringe/antitoxin = 3,/obj/item/stack/medical/bruise_pack = 3,
 					/obj/item/stack/medical/ointment =3,/obj/item/device/healthanalyzer = 3)
 	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 3)
+	req_log_access = access_cmo
 
 /obj/machinery/vending/security
 	name = "SecTech"
@@ -853,6 +899,7 @@
 	products = list(/obj/item/weapon/handcuffs = 8,/obj/item/weapon/grenade/flashbang = 4,/obj/item/device/flash = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/donut/normal = 12,/obj/item/weapon/storage/box/evidence = 6)
 	contraband = list(/obj/item/clothing/glasses/sunglasses = 2,/obj/item/weapon/storage/box/donut = 2)
+	req_log_access = access_armory
 
 /obj/machinery/vending/hydronutrients
 	name = "NutriMax"
@@ -918,6 +965,7 @@
 	vend_reply = "Have an enchanted evening!"
 	product_ads = "FJKLFJSD;AJKFLBJAKL;1234 LOONIES LOL!;>MFW;Kill them fuckers!;GET DAT FUKKEN DISK;HONK!;EI NATH;Destroy the station!;Admin conspiracies since forever!;Space-time bending hardware!"
 	products = list(/obj/item/clothing/head/wizard = 1,/obj/item/clothing/suit/wizrobe = 1,/obj/item/clothing/head/wizard/red = 1,/obj/item/clothing/suit/wizrobe/red = 1,/obj/item/clothing/shoes/sandal = 1,/obj/item/weapon/staff = 2)
+	req_log_access = null
 
 /obj/machinery/vending/dinnerware
 	name = "Dinnerware"
@@ -969,6 +1017,7 @@
 					/obj/item/device/flashlight/glowstick/orange =3, /obj/item/device/flashlight/glowstick/yellow = 3)
 	contraband = list(/obj/item/weapon/weldingtool/hugetank = 2,/obj/item/clothing/gloves/fyellow = 2,)
 	premium = list(/obj/item/clothing/gloves/yellow = 1)
+	req_log_access = access_ce
 
 /obj/machinery/vending/engivend
 	name = "Engi-Vend"
@@ -990,6 +1039,7 @@
 	contraband = list(/obj/item/weapon/cell/potato = 3)
 	premium = list(/obj/item/weapon/storage/belt/utility = 3)
 	product_records = list()
+	req_log_access = access_ce
 
 //This one's from bay12
 /obj/machinery/vending/engineering
@@ -1007,6 +1057,7 @@
 	// There was an incorrect entry (cablecoil/power).  I improvised to cablecoil/heavyduty.
 	// Another invalid entry, /obj/item/weapon/circuitry.  I don't even know what that would translate to, removed it.
 	// The original products list wasn't finished.  The ones without given quantities became quantity 5.  -Sayu
+	req_log_access = access_ce
 
 //This one's from bay12
 /obj/machinery/vending/robotics
@@ -1020,3 +1071,4 @@
 					/obj/item/weapon/surgical/scalpel = 2,/obj/item/weapon/surgical/circular_saw = 2,/obj/item/weapon/tank/anesthetic = 2,/obj/item/clothing/mask/breath/medical = 5,
 					/obj/item/weapon/screwdriver = 5,/obj/item/weapon/crowbar = 5)
 	//everything after the power cell had no amounts, I improvised.  -Sayu
+	req_log_access = access_rd
