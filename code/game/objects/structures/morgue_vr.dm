@@ -25,7 +25,6 @@
 			if(istype(I, /mob/living))
 				var/mob/living/cremated = I
 				for(var/Z in cremated.contents)
-					world << "[Z]"
 					if(!(Z in allowed_items))
 						to_chat(user, "<span class='notice'>\The [src] cannot cremate while there are items inside!</span>")
 						return
