@@ -23,7 +23,7 @@
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 		if(..())
 			if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
-				if(icon_state == "serdy_armor") //This is to prevent Serdy's custom armor from turning into heavy_wolf_armor 
+				if(icon_state == "serdy_armor") //This is to prevent Serdy's custom armor from turning into heavy_wolf_armor
 					return ..()
 				icon_override = 'icons/mob/taursuits_vr.dmi' //Just in case
 				icon_state = "heavy_wolf_armor" //Just in case
@@ -32,3 +32,26 @@
 			else
 				H << "<span class='warning'>You need to have a wolf-taur half to wear this.</span>"
 				return 0
+
+/obj/item/clothing/suit/storage/vest/hoscoat
+	name = "armored coat"
+	desc = "A greatcoat enhanced with a special alloy for some protection and style."
+	icon_state = "hos"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
+	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 40, bio = 0, rad = 0)
+
+/obj/item/clothing/suit/storage/vest/hos
+	name = "head of security armor vest"
+	desc = "A simple kevlar plate carrier. This one has a gold badge clipped to the chest."
+	icon_state = "hosvest_nobadge"
+	item_state_slots = list(slot_r_hand_str = "armor", slot_l_hand_str = "armor")
+	icon_badge = "hosvest_badge"
+	icon_nobadge = "hosvest_nobadge"
+	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 40, bio = 0, rad = 0)
+
+/obj/item/clothing/suit/storage/vest/hoscoat/jensen
+	name = "armored trenchcoat"
+	desc = "A trenchcoat augmented with a special alloy for some protection and style."
+	icon_state = "hostrench"
+	flags_inv = HIDEHOLSTER

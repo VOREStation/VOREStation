@@ -506,7 +506,7 @@
 		vend_ready = 1
 		currently_vending = null
 		nanomanager.update_uis(src)
-
+	return 1
 
 /**
  * Add item to the machine
