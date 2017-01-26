@@ -65,7 +65,9 @@
 /obj/item/clothing/shoes/magboots/rig/vox
 	name = "talons"
 	species_restricted = list("Vox")
-	icon = 'icons/mob/species/vox/shoes.dmi'
+	sprite_sheets = list(
+		"Vox" = 'icons/mob/species/vox/shoes.dmi'
+		)
 	phoronproof = 1
 
 /obj/item/clothing/suit/space/rig/vox
@@ -75,7 +77,9 @@
 /obj/item/clothing/gloves/gauntlets/rig/vox
 	siemens_coefficient = 0
 	species_restricted = list("Vox")
-	icon = 'icons/mob/species/vox/gloves.dmi'
+	sprite_sheets = list(
+		"Vox" = 'icons/mob/species/vox/gloves.dmi'
+		)
 	phoronproof = 1
 
 /obj/item/weapon/rig/vox/carapace

@@ -52,22 +52,46 @@
  * Vox Darkmatter Cannon
  */
 /obj/item/weapon/gun/energy/darkmatter
-	name = "spike thrower"
+	name = "dark matter gun"
 	desc = "A vicious alien beam weapon. Parts of it quiver gelatinously, as though the thing is insectile and alive."
 	icon_state = "darkcannon"
 	item_state = "darkcannon"
 	fire_sound = 'sound/weapons/eLuger.ogg'
 	charge_cost = 600
-	self_recharge = 1
 	projectile_type = /obj/item/projectile/beam/darkmatter
+	self_recharge = 1
+	accuracy = 2
+
+	firemodes = list(
+		list(mode_name="focused", burst=1, fire_delay=null, move_delay=null, burst_accuracy=list(2), dispersion=null, projectile_type=/obj/item/projectile/beam/darkmatter, charge_cost = 600),
+		list(mode_name="scatter burst", burst=8, fire_delay=null, move_delay=4, burst_accuracy=list(0, 0, 0, 0, 0, 0, 0, 0), dispersion=list(3, 3, 3, 3, 3, 3, 3, 3, 3), projectile_type=/obj/item/projectile/energy/darkmatter, charge_cost = 300),
+		)
 
 /obj/item/projectile/beam/darkmatter
 	name = "dark matter bolt"
-	icon_state = "laser"
-	damage = 45
-	armor_penetration = 10
+	icon_state = "darkb"
+	damage = 60
+	armor_penetration = 35
 	damage_type = BRUTE
 	check_armour = "energy"
+	light_color = "#8837A3"
+
+	embed_chance = 0
+
+	muzzle_type = /obj/effect/projectile/darkmatter/muzzle
+	tracer_type = /obj/effect/projectile/darkmatter/tracer
+	impact_type = /obj/effect/projectile/darkmatter/impact
+
+/obj/item/projectile/energy/darkmatter
+	name = "dark matter pellet"
+	icon_state = "dark_pellet"
+	damage = 20
+	armor_penetration = 35
+	damage_type = BRUTE
+	check_armour = "energy"
+	light_color = "#8837A3"
+
+	embed_chance = 0
 
 /*
  * Vox Darkmatter Cannon
@@ -80,6 +104,8 @@
 	fire_sound = 'sound/effects/basscannon.ogg'
 	self_recharge = 1
 
+	projectile_type=/obj/item/projectile/sonic/strong
+
 	firemodes = list(
 		list(mode_name="normal", projectile_type=/obj/item/projectile/sonic/strong, charge_cost = 600),
 		list(mode_name="suppressive", projectile_type=/obj/item/projectile/sonic/weak, charge_cost = 300),
@@ -89,7 +115,7 @@
 	name = "sonic pulse"
 	icon_state = "sound"
 	damage = 15
-	armor_penetration = 100
+	armor_penetration = 30
 	damage_type = BRUTE
 	check_armour = "melee"
 	embed_chance = 0
@@ -101,7 +127,7 @@
 /obj/item/projectile/sonic/strong
 	damage = 45
 
-//Already have thoughts on how to improve this, will take a day or two
+//Already have thoughts on how to improve this, will take a day or two after initial testing. - Anewbe
 /obj/item/projectile/sonic/strong/on_hit(var/atom/movable/target, var/blocked = 0)
 	if(istype(target))
 		var/throwdir = get_dir(firer,target)
