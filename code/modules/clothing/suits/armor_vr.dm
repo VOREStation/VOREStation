@@ -34,20 +34,9 @@
 				return 0
 
 /obj/item/clothing/suit/storage/vest/hoscoat
-	name = "armored coat"
-	desc = "A greatcoat enhanced with a special alloy for some protection and style."
-	icon_state = "hos"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 40, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/storage/vest/hos
-	name = "head of security armor vest"
-	desc = "A simple kevlar plate carrier. This one has a gold badge clipped to the chest."
-	icon_state = "hosvest_nobadge"
-	item_state_slots = list(slot_r_hand_str = "armor", slot_l_hand_str = "armor")
-	icon_badge = "hosvest_badge"
-	icon_nobadge = "hosvest_nobadge"
 	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 40, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/storage/vest/hoscoat/jensen
