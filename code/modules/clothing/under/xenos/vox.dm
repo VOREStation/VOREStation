@@ -21,8 +21,8 @@
 //Vox Accessories
 /obj/item/clothing/accessory/storage/vox
 	name = ""
-	desc = "An alien mesh. Seems to be made up mostly of pockets"
-//	icon_state = "webbing"
+	desc = "An alien mesh. Seems to be made up mostly of pockets and writhing flesh."
+	icon_state = "vox-webbing"
 	slot = "vox"
 
 	slots = 5

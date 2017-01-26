@@ -33,7 +33,6 @@
 	w_class = ITEMSIZE_NORMAL
 	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL | PHORONGUARD
 	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/melee/energy/sword,/obj/item/weapon/handcuffs,/obj/item/weapon/tank)
-	slowdown = 1
 	phoronproof = 1
 	armor = list(melee = 60, bullet = 50, laser = 40,energy = 15, bomb = 30, bio = 30, rad = 30)
 	siemens_coefficient = 0.2

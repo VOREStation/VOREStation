@@ -151,9 +151,9 @@
 	var/ear_safety = 0
 	ear_safety = M.get_ear_protection()
 	if(ear_safety == 1)
-		M.Weaken(2)
+		M.confused += 150
 	else if (ear_safety > 1)
-		M.Weaken(1)
+		M.confused += 30
 	else if (!ear_safety)
 		M.Stun(10)
 		M.Weaken(3)
@@ -172,50 +172,3 @@
 /obj/item/projectile/energy/plasmastun/on_hit(var/atom/target)
 	bang(target)
 	. = ..()
-
-/obj/item/projectile/energy/sonic
-	name = "sonic pulse"
-	icon_state = "sonic_pulse"
-	armor_penetration = 50
-	kill_count = 8
-	damage_type = BRUTE
-	embed_chance = 0
-	check_armour = "melee"
-	vacuum_traversal = 0
-	var/ear_pain = 10
-
-/obj/item/projectile/energy/sonic/on_hit(var/atom/target)
-	sonicboom(target, ear_pain)
-	. = ..()
-
-/obj/item/projectile/energy/sonic/proc/sonicboom(var/mob/living/carbon/M, var/ear_pain)
-	to_chat(M, "<span class='danger'>You hear a loud roar.</span>")
-	var/ear_safety = 0
-	var/ear_effect = ear_pain
-	ear_safety = M.get_ear_protection()
-	if (ear_safety > 1)
-		ear_effect *= 0.5
-	else if (!ear_safety)
-		ear_effect *= 2
-
-	M.adjustEarDamage(ear_effect, ear_effect*2)
-	M.halloss += ear_effect
-
-	if (M.ear_damage >= 15)
-		to_chat(M, "<span class='danger'>Your ears start to ring badly!</span>")
-		M.confused = max(M.confused, 100)	//Balance thrown off
-		if (prob(M.ear_damage - 5))
-			to_chat(M, "<span class='danger'>You can't hear anything!</span>")
-			M.sdisabilities |= DEAF
-	else
-		if (M.ear_damage >= 5)
-			to_chat(M, "<span class='danger'>Your ears start to ring!</span>")
-	M.update_icons()
-
-/obj/item/projectile/energy/sonic/weak
-	damage = 10
-	ear_pain = 20
-
-/obj/item/projectile/energy/sonic/strong
-	damage = 40
-	ear_pain = 10

@@ -150,19 +150,3 @@ obj/item/weapon/gun/energy/staff/focus
 			user << "<span class='warning'>The [src.name] will now strike only a single person.</span>"
 			projectile_type = "/obj/item/projectile/forcebolt"
 	*/
-
-//Vox toys
-/obj/item/weapon/gun/energy/sonicgun
-	name = "sonic cannon"
-	desc = "A vicious alien sonic weapon. Parts of it quiver gelatinously, as though the thing is insectile and alive."
-	icon_state = "plasma_stun"
-	item_state = "plasma_stun"
-	fire_sound = 'sound/effects/basscannon.ogg'
-	fire_delay = 10
-
-	self_recharge = 1
-
-	firemodes = list(
-		list(mode_name="incapacitate", projectile_type=/obj/item/projectile/energy/sonic/weak, fire_delay=10, charge_cost = 120),
-		list(mode_name="kill", projectile_type=/obj/item/projectile/energy/sonic/strong, fire_delay=20, charge_cost = 240),
-		)

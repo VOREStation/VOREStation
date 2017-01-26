@@ -65,6 +65,7 @@
 /obj/item/clothing/shoes/magboots/rig/vox
 	name = "talons"
 	species_restricted = list("Vox")
+	icon = 'icons/mob/species/vox/shoes.dmi'
 	phoronproof = 1
 
 /obj/item/clothing/suit/space/rig/vox
@@ -74,11 +75,33 @@
 /obj/item/clothing/gloves/gauntlets/rig/vox
 	siemens_coefficient = 0
 	species_restricted = list("Vox")
+	icon = 'icons/mob/species/vox/gloves.dmi'
 	phoronproof = 1
+
+/obj/item/weapon/rig/vox/carapace
+	name = "dense alien control module"
+	suit_type = "dense alien"
+	armor = list(melee = 60, bullet = 50, laser = 40, energy = 15, bomb = 30, bio = 30, rad = 30)
+	emp_protection = 40 //change this to 30 if too high.
+	phoronproof = 1
+
+	req_access = list(access_syndicate)
+
+	cell_type =  /obj/item/weapon/cell/hyper
+
+	initial_modules = list(
+		/obj/item/rig_module/mounted/energy_blade,
+		/obj/item/rig_module/sprinter,
+		/obj/item/rig_module/electrowarfare_suite,
+		/obj/item/rig_module/vision,
+		/obj/item/rig_module/power_sink,
+		/obj/item/rig_module/self_destruct
+		)
 
 /obj/item/weapon/rig/vox/stealth
 	name = "sinister alien control module"
 	suit_type = "sinister alien"
+	icon_state = "voxstealth_rig"
 	armor = list(melee = 40, bullet = 30, laser = 30, energy = 15, bomb = 30, bio = 100, rad = 100)
 	emp_protection = 40 //change this to 30 if too high.
 	slowdown = 0
@@ -90,6 +113,7 @@
 
 	initial_modules = list(
 		/obj/item/rig_module/stealth_field,
+		/obj/item/rig_module/electrowarfare_suite,
 		/obj/item/rig_module/vision,
 		/obj/item/rig_module/power_sink,
 		/obj/item/rig_module/self_destruct
