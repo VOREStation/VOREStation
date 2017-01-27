@@ -42,7 +42,7 @@
 /datum/reagent/toxin/spidertoxin
 	name = "Spidertoxin"
 	id = "spidertoxin"
-	description = "A liquifying toxing produced by giant spiders."
+	description = "A liquifying toxin produced by giant spiders."
 	color = "#2CE893"
 	strength = 5
 
