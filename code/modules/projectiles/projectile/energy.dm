@@ -151,9 +151,9 @@
 	var/ear_safety = 0
 	ear_safety = M.get_ear_protection()
 	if(ear_safety == 1)
-		M.Weaken(2)
+		M.confused += 150
 	else if (ear_safety > 1)
-		M.Weaken(1)
+		M.confused += 30
 	else if (!ear_safety)
 		M.Stun(10)
 		M.Weaken(3)

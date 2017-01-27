@@ -33,17 +33,16 @@
 	w_class = ITEMSIZE_NORMAL
 	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL | PHORONGUARD
 	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/melee/energy/sword,/obj/item/weapon/handcuffs,/obj/item/weapon/tank)
-	slowdown = 1
 	phoronproof = 1
 	armor = list(melee = 60, bullet = 50, laser = 40,energy = 15, bomb = 30, bio = 30, rad = 30)
-	siemens_coefficient = 0.6
+	siemens_coefficient = 0.2
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	species_restricted = list("Vox")
 
 /obj/item/clothing/head/helmet/space/vox
 	armor = list(melee = 60, bullet = 50, laser = 40, energy = 15, bomb = 30, bio = 30, rad = 30)
-	siemens_coefficient = 0.6
+	siemens_coefficient = 0.2
 	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL | AIRTIGHT | PHORONGUARD
 	flags_inv = 0
 	phoronproof = 1

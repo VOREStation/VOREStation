@@ -33,11 +33,14 @@
 #define LANGUAGE_SKRELLIAN "Skrellian"
 #define LANGUAGE_TRADEBAND "Tradeband"
 #define LANGUAGE_GUTTER "Gutter"
+#define LANGUAGE_SIGN "Sign Language"
 #define LANGUAGE_SCHECHI "Schechi"
 #define LANGUAGE_ROOTLOCAL "Local Rootspeak"
 #define LANGUAGE_ROOTGLOBAL "Global Rootspeak"
 #define LANGUAGE_CULT "Cult"
-#define LANGUAGE_SIGN "Sign Language"
+#define LANGUAGE_OCCULT "Occult"
+#define LANGUAGE_CHANGELING "Changeling"
+#define LANGUAGE_VOX "Vox-Pidgin"
 
 // Language flags.
 #define WHITELISTED  1   // Language is available if the speaker is whitelisted.

@@ -156,4 +156,3 @@
 	nodamage = 1
 	damage_type = HALLOSS
 	muzzle_type = /obj/effect/projectile/bullet/muzzle
-
