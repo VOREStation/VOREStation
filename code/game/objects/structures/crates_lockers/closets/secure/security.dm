@@ -127,6 +127,7 @@
 		new /obj/item/clothing/head/beret/sec/corporate/hos(src)
 		new /obj/item/clothing/suit/storage/hooded/wintercoat/security(src)
 		new /obj/item/device/flashlight/maglight(src)
+		new /obj/item/clothing/mask/gas/half(src)
 		return
 
 
@@ -173,6 +174,7 @@
 		new /obj/item/clothing/suit/storage/hooded/wintercoat/security(src)
 		new /obj/item/device/flashlight/maglight(src)
 		new /obj/item/device/megaphone(src)
+		new /obj/item/clothing/mask/gas/half(src)
 		return
 
 

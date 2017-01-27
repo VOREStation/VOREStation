@@ -535,6 +535,7 @@
 	new /obj/item/clothing/under/pants/black(src)
 	new /obj/item/clothing/under/pants/tan(src)
 	new /obj/item/clothing/under/pants/track(src)
+	new /obj/item/clothing/suit/storage/toggle/track(src)
 	new /obj/item/clothing/under/pants(src)
 	new /obj/item/clothing/under/pants/khaki(src)
 	new /obj/item/clothing/mask/bandana/blue(src)
