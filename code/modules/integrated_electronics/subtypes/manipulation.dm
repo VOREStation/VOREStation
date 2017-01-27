@@ -9,6 +9,7 @@
 	The 'fire' activator will cause the mechanism to attempt to fire the weapon at the coordinates, if possible.  Note that the \
 	normal limitations to firearms, such as ammunition requirements and firing delays, still hold true if fired by the mechanism."
 	complexity = 20
+	w_class = ITEMSIZE_NORMAL
 	inputs = list(
 		"target X rel",
 		"target Y rel"
@@ -20,6 +21,7 @@
 	var/obj/item/weapon/gun/installed_gun = null
 	spawn_flags = IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3, TECH_COMBAT = 4)
+	power_draw_per_use = 50 // The targeting mechanism uses this.  The actual gun uses its own cell for firing if it's an energy weapon.
 
 /obj/item/integrated_circuit/manipulation/weapon_firing/Destroy()
 	qdel(installed_gun)
@@ -106,20 +108,21 @@
 	<br>\
 	Pulsing the 'step towards dir' activator pin will cause the machine to move a meter in that direction, assuming it is not \
 	being held, or anchored in some way.  It should be noted that the ability to move is dependant on the type of assembly that this circuit inhabits."
+	w_class = ITEMSIZE_NORMAL
 	complexity = 20
 	inputs = list("dir num")
 	outputs = list()
 	activators = list("step towards dir")
 	spawn_flags = IC_SPAWN_RESEARCH
+	power_draw_per_use = 100
 
 /obj/item/integrated_circuit/manipulation/locomotion/do_work()
 	..()
 	var/turf/T = get_turf(src)
-	if(T && istype(loc, /obj/item/device/electronic_assembly))
-		var/obj/item/device/electronic_assembly/machine = loc
-		if(machine.anchored || !machine.can_move())
+	if(T && assembly)
+		if(assembly.anchored || !assembly.can_move())
 			return
-		if(machine.loc == T) // Check if we're held by someone.  If the loc is the floor, we're not held.
+		if(assembly.loc == T) // Check if we're held by someone.  If the loc is the floor, we're not held.
 			var/datum/integrated_io/wanted_dir = inputs[1]
 			if(isnum(wanted_dir.data))
-				step(machine, wanted_dir.data)
+				step(assembly, wanted_dir.data)

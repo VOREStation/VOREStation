@@ -7,6 +7,7 @@
 	category_text = "Trig"
 	extended_desc = "Input and output are in degrees."
 	autopulse = 1
+	power_draw_per_use = 1 // Still cheap math.
 
 /obj/item/integrated_circuit/trig/on_data_written()
 	if(autopulse == 1)
@@ -118,7 +119,7 @@
 
 /obj/item/integrated_circuit/trig/cotangent
 	name = "cot circuit"
-	desc = "Outputs the cotangent of A.  Has nothing to do with the security department."
+	desc = "Outputs the cotangent of A."
 	icon_state = "cotangent"
 	inputs = list("A")
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH

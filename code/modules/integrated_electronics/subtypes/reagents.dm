@@ -23,6 +23,7 @@
 	spawn_flags = IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3, TECH_BIO = 3)
 	volume = 100
+	power_draw_per_use = 20
 
 /obj/item/integrated_circuit/reagent/smoke/do_work()
 	playsound(src.loc, 'sound/effects/smoke.ogg', 50, 1, -3)
@@ -47,6 +48,7 @@
 	activators = list("inject")
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	volume = 30
+	power_draw_per_use = 15
 
 /obj/item/integrated_circuit/reagent/injector/proc/inject_amount()
 	var/datum/integrated_io/amount = inputs[2]
@@ -92,6 +94,7 @@
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 2)
 	var/transfer_amount = 10
+	power_draw_per_use = 10
 
 /obj/item/integrated_circuit/reagent/pump/on_data_written()
 	var/datum/integrated_io/amount = inputs[3]
