@@ -1335,6 +1335,9 @@
 		if(istype(G, /obj/item/clothing/glasses/sunglasses/sechud))
 			var/obj/item/clothing/glasses/sunglasses/sechud/S = G
 			O = S.hud
+		if(istype(G, /obj/item/clothing/glasses/sunglasses/medhud))
+			var/obj/item/clothing/glasses/sunglasses/medhud/M = G
+			O = M.hud
 		if(istype(O))
 			O.process_hud(src)
 			if(!druggy && !seer)	see_invisible = SEE_INVISIBLE_LIVING

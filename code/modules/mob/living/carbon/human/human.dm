@@ -685,12 +685,20 @@
 	if(istype(src.head, /obj/item/clothing/head/helmet/space/emergency))
 		number -= 2
 	if(istype(src.glasses, /obj/item/clothing/glasses/thermal))
-		number -= 1
+		var/obj/item/clothing/glasses/thermal/T = src.glasses
+		if(T.active)
+			number -= 1
+	if(istype(src.glasses, /obj/item/clothing/glasses/night))
+		var/obj/item/clothing/glasses/night/N = src.glasses
+		if(N.active)
+			number -= 1
 	if(istype(src.glasses, /obj/item/clothing/glasses/sunglasses))
 		if(istype(src.glasses, /obj/item/clothing/glasses/sunglasses/sechud/aviator))
 			var/obj/item/clothing/glasses/sunglasses/sechud/aviator/S = src.glasses
-			if(!S.on)
+			if(!S.active)
 				number += 1
+		else if(istype(src.glasses, /obj/item/clothing/glasses/sunglasses/medhud/aviator))
+			number += 0
 		else
 			number += 1
 	if(istype(src.glasses, /obj/item/clothing/glasses/welding))
