@@ -246,7 +246,8 @@
 		)
 
 	inherent_verbs = list(
-		/mob/living/carbon/human/proc/diona_split_nymph
+		/mob/living/carbon/human/proc/diona_split_nymph,
+		/mob/living/carbon/human/proc/regenerate
 		)
 
 	warning_low_pressure = 50
