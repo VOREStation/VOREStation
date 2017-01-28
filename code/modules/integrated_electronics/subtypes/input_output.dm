@@ -226,7 +226,7 @@
 	outputs = list()
 	activators = list("send signal","on signal received")
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
-	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_MAGNETS = 2)
+	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_MAGNET = 2)
 	power_draw_idle = 5
 	power_draw_per_use = 40
 
@@ -310,7 +310,7 @@
 	outputs = list("address received", "data received", "secondary text received")
 	activators = list("send data", "on data received")
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
-	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_MAGNETS = 2, TECH_BLUESPACE = 2)
+	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_MAGNET = 2, TECH_BLUESPACE = 2)
 	power_draw_per_use = 50
 	var/datum/exonet_protocol/exonet = null
 

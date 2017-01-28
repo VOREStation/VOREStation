@@ -15,7 +15,7 @@
 	outputs = list("target cell charge", "target cell max charge", "target cell percentage")
 	activators = list("transmit")
 	spawn_flags = IC_SPAWN_RESEARCH
-	origin_tech = list(TECH_ENGINEERING = 4, TECH_DATA = 4, TECH_POWER = 4, TECH_MAGNETS = 3)
+	origin_tech = list(TECH_ENGINEERING = 4, TECH_DATA = 4, TECH_POWER = 4, TECH_MAGNET = 3)
 	power_draw_per_use = 500 // Inefficency has to come from somewhere.
 	var/amount_to_move = 5000
 
@@ -28,7 +28,7 @@
 	some power is lost due to ineffiency."
 	w_class = ITEMSIZE_LARGE
 	complexity = 32
-	origin_tech = list(TECH_ENGINEERING = 4, TECH_DATA = 4, TECH_POWER = 6, TECH_MAGNETS = 5)
+	origin_tech = list(TECH_ENGINEERING = 4, TECH_DATA = 4, TECH_POWER = 6, TECH_MAGNET = 5)
 	power_draw_per_use = 2000
 	amount_to_move = 20000
 
