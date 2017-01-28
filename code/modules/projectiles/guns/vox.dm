@@ -103,6 +103,7 @@
 	item_state = "noise"
 	fire_sound = 'sound/effects/basscannon.ogg'
 	self_recharge = 1
+	charge_cost = 600
 
 	projectile_type=/obj/item/projectile/sonic/strong
 
@@ -121,6 +122,8 @@
 	embed_chance = 0
 	vacuum_traversal = 0
 
+//	var/amplitude = 10		//Roughly how loud it is, changes the way damage will work, and such
+
 /obj/item/projectile/sonic/weak
 	agony = 30
 
@@ -128,8 +131,9 @@
 	damage = 45
 
 //Already have thoughts on how to improve this, will take a day or two after initial testing. - Anewbe
+
 /obj/item/projectile/sonic/strong/on_hit(var/atom/movable/target, var/blocked = 0)
-	if(istype(target))
+	if(ismob(target))
 		var/throwdir = get_dir(firer,target)
-		target.throw_at(get_edge_target_turf(target, throwdir),10,10)
+		target.throw_at(get_edge_target_turf(target, throwdir), rand(1,6), 10)
 		return 1
