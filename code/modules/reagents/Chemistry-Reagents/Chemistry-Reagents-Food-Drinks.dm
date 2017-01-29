@@ -57,7 +57,7 @@
 /datum/reagent/nutriment/protein // Bad for Skrell!
 	name = "animal protein"
 	id = "protein"
-	taste_description = "some sort of protein"
+	taste_description = "some sort of meat"
 	color = "#440000"
 
 /datum/reagent/nutriment/protein/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
@@ -1350,7 +1350,7 @@
 	name = "Thirteen Loko"
 	id = "thirteenloko"
 	description = "A potent mixture of caffeine and alcohol."
-	taste_description = "paint thinner"
+	taste_description = "battery acid"
 	color = "#102000"
 	strength = 25
 	nutriment_factor = 1
