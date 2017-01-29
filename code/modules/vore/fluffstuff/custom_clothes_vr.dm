@@ -972,6 +972,6 @@ Departamental Swimsuits, for general use
 //Xsdew:Penelope Allen
 /obj/item/clothing/under/swimsuit/fluff/penelope
 	name = "Penelope's Swimsuit"
-	desc = "It's an orange high visibility swimsuit worn by engineers. It lacks radiation, or any, shielding."
+	desc = "It's made of a special fiber that provides no protection whatsoever, but its elastic. This one was custom made for Penelope."
 	icon_state = "swimsuit_penelope"
 	item_state = "swimsuit_penelope_mob"
