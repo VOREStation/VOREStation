@@ -425,20 +425,16 @@
 					return
 
 		else if(prob(absorbchance)) //After that, let's have it run the absorb chance.
-			R << "<span class='warning'>In responce to your struggling, \the [name] begins to get more active...</span>"
+			R << "<span class='warning'>In response to your struggling, \the [name] begins to get more active...</span>"
 			owner << "<span class='warning'>You feel your [name] beginning to become active!</span>"
-			for(var/K in owner.vore_organs)
-				var/datum/belly/B = owner.vore_organs[K]
-				B.digest_mode = DM_ABSORB
-				return
+			digest_mode = DM_ABSORB
+			return
 
 		else if(prob(digestchance)) //Finally, let's see if it should run the digest chance.
-			R << "<span class='warning'>In responce to your struggling, \the [name] begins to get more active...</span>"
+			R << "<span class='warning'>In response to your struggling, \the [name] begins to get more active...</span>"
 			owner << "<span class='warning'>You feel your [name] beginning to become active!</span>"
-			for(var/K in owner.vore_organs)
-				var/datum/belly/B = owner.vore_organs[K]
-				B.digest_mode = DM_DIGEST
-				return
+			digest_mode = DM_DIGEST
+			return
 		else //Nothing interesting happened.
 			R << "<span class='warning'>But make no progress in escaping [owner]'s [name].</span>"
 			owner << "<span class='warning'>But appears to be unable to make any progress in escaping your [name].</span>"

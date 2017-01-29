@@ -370,7 +370,7 @@
 	matter = list(DEFAULT_WALL_MATERIAL=20, "glass"=5)
 	force = 1
 	throwforce = 0
-	var/max_capacity = 600
+	var/max_capacity = 1800
 	var/used_capacity = 0
 	var/list/storedinfo = new/list()
 	var/list/timestamp = new/list()

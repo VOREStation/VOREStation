@@ -10,6 +10,7 @@
 	if(!msg)	return
 
 	if(usr.client)
+		client.handle_spam_prevention(MUTE_PRAY)
 		if(usr.client.prefs.muted & MUTE_PRAY)
 			usr << "\red You cannot pray (muted)."
 			return

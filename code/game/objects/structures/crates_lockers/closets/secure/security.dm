@@ -212,7 +212,7 @@
 		new /obj/item/clothing/accessory/storage/black_vest(src)
 		new /obj/item/clothing/head/soft/sec/corp(src)
 		new /obj/item/clothing/under/rank/security/corp(src)
-		new /obj/item/ammo_magazine/c45m/rubber(src)
+		//new /obj/item/ammo_magazine/c45m/rubber(src) //VOREStation Edit
 		new /obj/item/weapon/gun/energy/taser(src)
 		new /obj/item/weapon/cell/device/weapon(src)
 		new /obj/item/clothing/suit/storage/hooded/wintercoat/security(src)

@@ -85,3 +85,6 @@
 			lighting_build_overlays()
 		else
 			lighting_clear_overlays()
+	else
+		if(lighting_overlay)
+			lighting_overlay.update_overlay()
