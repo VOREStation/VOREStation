@@ -55,6 +55,63 @@
 	//requires_two_hands = 1
 	one_handed_penalty = 4 // The weapon itself is heavy
 
+/obj/item/weapon/gun/projectile/automatic/m41a
+	name = "\improper M41A Rifle"
+	desc = "A M41A Rifle. Uses unique 5.56x45mm rounds."
+	icon = 'icons/obj/gun_vr.dmi'
+	icon_state = "M41A_Olive"
+	icon_override = 'icons/obj/gun_vr.dmi'
+	item_state = "M41A_Olive"
+	item_icons = null
+	w_class = ITEMSIZE_LARGE
+	caliber = "5.56x45mm"
+	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
+	ammo_type = /obj/item/ammo_casing/a556mm
+	max_shells = 40
+	magazine_type = /obj/item/ammo_magazine/m41a
+	allowed_magazines = list(/obj/item/ammo_magazine/m41a)
+	fire_sound = 'sound/weapons/semiauto.ogg'
+	load_method = MAGAZINE
+	slot_flags = null //No back sprite.
+	//requires_two_hands = 1
+	firemodes = list(
+		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    burst_accuracy=list(0,-1,-2), dispersion=list(0.0, 0.6, 0.6))
+		)
+
+/obj/item/weapon/gun/projectile/automatic/m2922
+	name = "\improper M2922 Rifle"
+	desc = "A M2922 Rifle! Uses unique 7.92x33mm Kurz rounds."
+	icon = 'icons/obj/36x32guns_vr.dmi'
+	icon_state = "m2922"
+	icon_override = 'icons/obj/gun_vr.dmi' //It refuses to read the icon states in 36x32
+	item_state = "m2922"
+	item_icons = null
+	w_class = ITEMSIZE_LARGE
+	recoil = 2
+	max_shells = 10
+	accuracy = -1
+	scoped_accuracy = 2
+	caliber = "kurz"
+	ammo_type = /obj/item/ammo_casing/stg
+	magazine_type = /obj/item/ammo_magazine/stg/small
+	allowed_magazines = list(/obj/item/ammo_magazine/stg/small)
+	fire_sound = 'sound/weapons/rifleshot.ogg'
+	load_method = MAGAZINE
+	//slot_flags = SLOT_BACK //Back sprite refused to work.
+	one_handed_penalty = 3 // It's a rifle. What do you expect?
+
+	firemodes = list(
+		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null)
+		)
+
+	verb/scope()
+		set category = "Object"
+		set name = "Use Scope"
+		set popup_menu = 1
+
+		toggle_scope(2.0)
+
 // For general use
 /obj/item/weapon/gun/projectile/shotgun/pump/unsc
 	name = "\improper M45E Tactical Shotgun"
@@ -426,8 +483,12 @@
 	max_ammo = 30
 	mag_type = MAGAZINE
 
+/obj/item/ammo_magazine/stg/small
+	max_ammo = 10 //For the m2922
+	icon_state = "SVD"
+
 /obj/item/ammo_casing/stg
-	desc = "A 7.92×33mm Kurz casing."
+	desc = "A 7.92x33mm Kurz casing."
 	icon_state = "rifle-casing"
 	caliber = "kurz"
 	projectile_type = /obj/item/projectile/bullet/rifle/a762
@@ -457,6 +518,29 @@
 	penetrating = 2 // Better penetration than the 7.62mm
 
 /obj/item/ammo_magazine/battlerifle/empty
+	initial_ammo = 0
+
+//---------------- M41A -----------------
+/obj/item/ammo_magazine/m41a
+	name = "box mag (5.56x45mm)"
+	icon = 'icons/obj/ammo.dmi'
+	icon_state = "5.56"
+	caliber = "5.56x45mm"
+	ammo_type = /obj/item/ammo_casing/a556mm
+	max_ammo = 40
+	mag_type = MAGAZINE
+	multiple_sprites = 1
+
+/obj/item/ammo_casing/a556mm
+	desc = "A 5.56x45mm bullet casing."
+	icon_state = "rifle-casing"
+	caliber = "5.56x45mm"
+	projectile_type = /obj/item/projectile/bullet/rifle/a556mm
+
+/obj/item/projectile/bullet/rifle/a556mm
+	damage = 15
+
+/obj/item/ammo_magazine/m41a/empty
 	initial_ammo = 0
 
 //---------------- PDW ------------------
@@ -539,3 +623,4 @@
 	icon = 'icons/obj/ammo_vr.dmi'
 	icon_state = "flash357"
 	projectile_type = /obj/item/projectile/energy/flash
+
