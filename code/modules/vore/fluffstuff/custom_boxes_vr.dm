@@ -144,6 +144,7 @@
 	icon_state = "capsule"
 	storage_slots = 1
 	foldable = null
+	w_class = ITEMSIZE_SMALL
 	max_w_class = ITEMSIZE_NORMAL
 	can_hold = list(/obj/item/clothing/under/swimsuit/)
 	has_items = list(/obj/item/clothing/under/swimsuit/fluff/penelope)
@@ -158,6 +159,7 @@ Swimsuits, for general use, to avoid arriving to work with your swimsuit.
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "capsule"
 	foldable = null
+	w_class = ITEMSIZE_SMALL
 	max_w_class = ITEMSIZE_NORMAL
 	can_hold = list(/obj/item/clothing/under/swimsuit/)
 	has_items = list(/obj/item/clothing/under/swimsuit/black)

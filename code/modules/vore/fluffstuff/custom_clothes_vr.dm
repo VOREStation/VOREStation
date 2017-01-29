@@ -935,3 +935,43 @@
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "verin"
 	item_state = "verin_mob"
+
+/*
+Departamental Swimsuits, for general use
+*/
+
+/obj/item/clothing/under/swimsuit/fluff/
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	siemens_coefficient = 1
+
+/obj/item/clothing/under/swimsuit/fluff/engineering
+	name = "Engineering Swimsuit"
+	desc = "It's an orange high visibility swimsuit worn by engineers. It lacks radiation, or any, shielding."
+	icon_state = "swimsuit_engineering"
+	item_state = "swimsuit_engineering_mob"
+
+/obj/item/clothing/under/swimsuit/fluff/science
+	name = "Science Swimsuit"
+	desc = "It's made of a special fiber that provides no protection whatsoever, but its hydrophobic. It has markings that denote the wearer as a scientist."
+	icon_state = "swimsuit_science"
+	item_state = "swimsuit_science_mob"
+
+/obj/item/clothing/under/swimsuit/fluff/security
+	name = "Security Swimsuit"
+	desc = "It's made of a slightly sturdier material than standard swimsuits, to allow for a more robust appearance."
+	icon_state = "swimsuit_security"
+	item_state = "swimsuit_security_mob"
+
+/obj/item/clothing/under/swimsuit/fluff/medical
+	name = "Medical Swimsuit"
+	desc = "It's made of a special fiber that provides no protection whatsoever, but its elastic. It has a cross on the back denoting that the wearer is trained medical personnel."
+	icon_state = "swimsuit_medical"
+	item_state = "swimsuit_medical_mob"
+
+//Xsdew:Penelope Allen
+/obj/item/clothing/under/swimsuit/fluff/penelope
+	name = "Penelope's Swimsuit"
+	desc = "It's an orange high visibility swimsuit worn by engineers. It lacks radiation, or any, shielding."
+	icon_state = "swimsuit_penelope"
+	item_state = "swimsuit_penelope_mob"
