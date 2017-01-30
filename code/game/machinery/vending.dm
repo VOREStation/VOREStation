@@ -65,7 +65,8 @@
 	var/datum/wires/vending/wires = null
 
 	var/list/log = list()
-	var/req_log_access = access_cargo
+	var/req_log_access = access_cargo //default access for checking logs is cargo
+	var/has_logs = 0 //defaults to 0, set to anything else for vendor to have logs
 
 
 /obj/machinery/vending/New()
@@ -500,7 +501,8 @@
 		flick(icon_vend,src)
 	spawn(vend_delay)
 		R.get_product(get_turf(src))
-		do_logging(R, user, 1)
+		if(has_logs)
+			do_logging(R, user, 1)
 		if(prob(1))
 			sleep(3)
 			if(R.get_product(get_turf(src)))
@@ -563,7 +565,8 @@
 
 	user << "<span class='notice'>You insert \the [W] in the product receptor.</span>"
 	R.add_product(W)
-	do_logging(R, user)
+	if(has_logs)
+		do_logging(R, user)
 
 	nanomanager.update_uis(src)
 
@@ -722,7 +725,7 @@
 	product_ads = "Drink up!;Booze is good for you!;Alcohol is humanity's best friend.;Quite delighted to serve you!;Care for a nice, cold beer?;Nothing cures you like booze!;Have a sip!;Have a drink!;Have a beer!;Beer is good for you!;Only the finest alcohol!;Best quality booze since 2053!;Award-winning wine!;Maximum alcohol!;Man loves beer.;A toast for progress!"
 	req_access = list(access_bar)
 	req_log_access = access_bar
-
+	has_logs = 1
 
 /obj/machinery/vending/assist
 	products = list(	/obj/item/device/assembly/prox_sensor = 5,/obj/item/device/assembly/igniter = 3,/obj/item/device/assembly/signaler = 4,
@@ -810,7 +813,7 @@
 					/obj/item/weapon/cartridge/janitor = 10,/obj/item/weapon/cartridge/signal/science = 10,/obj/item/device/pda/heads = 10,
 					/obj/item/weapon/cartridge/captain = 3,/obj/item/weapon/cartridge/quartermaster = 10)
 	req_log_access = access_hop
-
+	has_logs = 1
 
 /obj/machinery/vending/cigarette
 	name = "Cigarette machine" //OCD had to be uppercase to look nice with the new formating
@@ -840,7 +843,6 @@
 					/obj/item/weapon/storage/box/matches = 1,
 					/obj/item/weapon/flame/lighter/random = 2)
 
-
 /obj/machinery/vending/medical
 	name = "NanoMed Plus"
 	desc = "Medical drug dispenser."
@@ -856,7 +858,7 @@
 	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 3,/obj/item/weapon/reagent_containers/pill/stox = 4,/obj/item/weapon/reagent_containers/pill/antitox = 6)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 	req_log_access = access_cmo
-
+	has_logs = 1
 
 //This one's from bay12
 /obj/machinery/vending/phoronresearch
@@ -866,6 +868,7 @@
 					/obj/item/device/transfer_valve = 6,/obj/item/device/assembly/timer = 6,/obj/item/device/assembly/signaler = 6,
 					/obj/item/device/assembly/prox_sensor = 6,/obj/item/device/assembly/igniter = 6)
 	req_log_access = access_rd
+	has_logs = 1
 
 /obj/machinery/vending/wallmed1
 	name = "NanoMed"
@@ -877,6 +880,7 @@
 	products = list(/obj/item/stack/medical/bruise_pack = 2,/obj/item/stack/medical/ointment = 2,/obj/item/weapon/reagent_containers/hypospray/autoinjector = 4,/obj/item/device/healthanalyzer = 1)
 	contraband = list(/obj/item/weapon/reagent_containers/syringe/antitoxin = 4,/obj/item/weapon/reagent_containers/syringe/antiviral = 4,/obj/item/weapon/reagent_containers/pill/tox = 1)
 	req_log_access = access_cmo
+	has_logs = 1
 
 /obj/machinery/vending/wallmed2
 	name = "NanoMed"
@@ -888,6 +892,7 @@
 					/obj/item/stack/medical/ointment =3,/obj/item/device/healthanalyzer = 3)
 	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 3)
 	req_log_access = access_cmo
+	has_logs = 1
 
 /obj/machinery/vending/security
 	name = "SecTech"
@@ -900,6 +905,7 @@
 					/obj/item/weapon/reagent_containers/food/snacks/donut/normal = 12,/obj/item/weapon/storage/box/evidence = 6)
 	contraband = list(/obj/item/clothing/glasses/sunglasses = 2,/obj/item/weapon/storage/box/donut = 2)
 	req_log_access = access_armory
+	has_logs = 1
 
 /obj/machinery/vending/hydronutrients
 	name = "NutriMax"
@@ -965,7 +971,6 @@
 	vend_reply = "Have an enchanted evening!"
 	product_ads = "FJKLFJSD;AJKFLBJAKL;1234 LOONIES LOL!;>MFW;Kill them fuckers!;GET DAT FUKKEN DISK;HONK!;EI NATH;Destroy the station!;Admin conspiracies since forever!;Space-time bending hardware!"
 	products = list(/obj/item/clothing/head/wizard = 1,/obj/item/clothing/suit/wizrobe = 1,/obj/item/clothing/head/wizard/red = 1,/obj/item/clothing/suit/wizrobe/red = 1,/obj/item/clothing/shoes/sandal = 1,/obj/item/weapon/staff = 2)
-	req_log_access = null
 
 /obj/machinery/vending/dinnerware
 	name = "Dinnerware"
@@ -992,8 +997,6 @@
 	/obj/item/weapon/storage/toolbox/lunchbox/cti = 3,
 	/obj/item/weapon/storage/toolbox/lunchbox/nymph = 3,
 	/obj/item/weapon/storage/toolbox/lunchbox/syndicate = 3)
-
-
 	contraband = list(/obj/item/weapon/material/knife/butch = 2)
 
 /obj/machinery/vending/sovietsoda
@@ -1018,6 +1021,7 @@
 	contraband = list(/obj/item/weapon/weldingtool/hugetank = 2,/obj/item/clothing/gloves/fyellow = 2,)
 	premium = list(/obj/item/clothing/gloves/yellow = 1)
 	req_log_access = access_ce
+	has_logs = 1
 
 /obj/machinery/vending/engivend
 	name = "Engi-Vend"
@@ -1040,6 +1044,7 @@
 	premium = list(/obj/item/weapon/storage/belt/utility = 3)
 	product_records = list()
 	req_log_access = access_ce
+	has_logs = 1
 
 //This one's from bay12
 /obj/machinery/vending/engineering
@@ -1058,6 +1063,7 @@
 	// Another invalid entry, /obj/item/weapon/circuitry.  I don't even know what that would translate to, removed it.
 	// The original products list wasn't finished.  The ones without given quantities became quantity 5.  -Sayu
 	req_log_access = access_ce
+	has_logs = 1
 
 //This one's from bay12
 /obj/machinery/vending/robotics
@@ -1072,3 +1078,4 @@
 					/obj/item/weapon/screwdriver = 5,/obj/item/weapon/crowbar = 5)
 	//everything after the power cell had no amounts, I improvised.  -Sayu
 	req_log_access = access_rd
+	has_logs = 1
