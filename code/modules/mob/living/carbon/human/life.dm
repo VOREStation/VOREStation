@@ -82,7 +82,8 @@
 		if(!client)
 			species.handle_npc(src)
 
-
+	else //VOREStation Addition - Stasis bags op pls nerf
+		if(in_stasis) Sleeping(5)
 	if(!handle_some_updates())
 		return											//We go ahead and process them 5 times for HUD images and other stuff though.
 
