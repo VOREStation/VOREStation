@@ -1,0 +1,63 @@
+/obj/structure/crematorium/vr
+	var/list/allowed_items = list(/obj/item/organ,
+			/obj/item/weapon/implant,
+			/obj/item/weapon/material/shard/shrapnel,
+			/mob/living)
+
+
+/obj/structure/crematorium/vr/cremate(atom/A, mob/user as mob)
+	if(cremating)
+		return //don't let you cremate something twice or w/e
+
+	if(contents.len <= 0)
+		for (var/mob/M in viewers(src))
+			M.show_message("<span class='warning'>You hear a hollow crackle.</span>", 1)
+			return
+	else
+		if(!isemptylist(src.search_contents_for(/obj/item/weapon/disk/nuclear)))
+			usr << "You get the feeling that you shouldn't cremate one of the items in the cremator."
+			return
+
+		for(var/I in contents)
+			if(!(I in allowed_items))
+				to_chat(user, "<span class='notice'>\The [src] cannot cremate while there are items inside!</span>")
+				return
+			if(istype(I, /mob/living))
+				var/mob/living/cremated = I
+				for(var/Z in cremated.contents)
+					if(!(Z in allowed_items))
+						to_chat(user, "<span class='notice'>\The [src] cannot cremate while there are items inside!</span>")
+						return
+
+		for (var/mob/M in viewers(src))
+			M.show_message("<span class='warning'>You hear a roar as the crematorium activates.</span>", 1)
+
+		cremating = 1
+		locked = 1
+
+		for(var/mob/living/M in contents)
+			if (M.stat!=2)
+				if (!iscarbon(M))
+					M.emote("scream")
+				else
+					var/mob/living/carbon/C = M
+					if (C.can_feel_pain())
+						C.emote("scream")
+
+			//Logging for this causes runtimes resulting in the cremator locking up. Commenting it out until that's figured out.
+			//M.attack_log += "\[[time_stamp()]\] Has been cremated by <b>[user]/[user.ckey]</b>" //No point in this when the mob's about to be deleted
+			//user.attack_log +="\[[time_stamp()]\] Cremated <b>[M]/[M.ckey]</b>"
+			//log_attack("\[[time_stamp()]\] <b>[user]/[user.ckey]</b> cremated <b>[M]/[M.ckey]</b>")
+			M.death(1)
+			M.ghostize()
+			qdel(M)
+
+		for(var/obj/O in contents) //obj instead of obj/item so that bodybags and ashes get destroyed. We dont want tons and tons of ash piling up
+			qdel(O)
+
+		new /obj/effect/decal/cleanable/ash(src)
+		sleep(30)
+		cremating = 0
+		locked = 0
+		playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
+	return
