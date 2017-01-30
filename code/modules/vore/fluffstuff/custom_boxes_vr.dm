@@ -135,3 +135,63 @@
 		new /obj/item/weapon/storage/fancy/cigarettes/dromedaryco(src)
 		new /obj/item/weapon/storage/box/matches(src)
 		new /obj/item/weapon/reagent_containers/food/snacks/sliceable/plaincake(src)
+
+//Xsdew:Penelope Allen
+/obj/item/weapon/storage/box/fluff/penelope
+	name = "Penelope's capsule"
+	desc = "A little capsule where a designer's swimsuit is stored."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "capsule"
+	storage_slots = 1
+	foldable = null
+	w_class = ITEMSIZE_SMALL
+	max_w_class = ITEMSIZE_NORMAL
+	can_hold = list(/obj/item/clothing/under/swimsuit/)
+	has_items = list(/obj/item/clothing/under/swimsuit/fluff/penelope)
+
+/*
+Swimsuits, for general use, to avoid arriving to work with your swimsuit.
+*/
+/obj/item/weapon/storage/box/fluff/swimsuit
+	name = "Black Swimsuit capsule"
+	desc = "A little capsule where a swimsuit is usually stored."
+	storage_slots = 1
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "capsule"
+	foldable = null
+	w_class = ITEMSIZE_SMALL
+	max_w_class = ITEMSIZE_NORMAL
+	can_hold = list(/obj/item/clothing/under/swimsuit/)
+	has_items = list(/obj/item/clothing/under/swimsuit/black)
+
+/obj/item/weapon/storage/box/fluff/swimsuit/blue
+	name = "Blue Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/blue)
+
+/obj/item/weapon/storage/box/fluff/swimsuit/purple
+	name = "Purple Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/purple)
+
+/obj/item/weapon/storage/box/fluff/swimsuit/green
+	name = "Green Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/green)
+
+/obj/item/weapon/storage/box/fluff/swimsuit/red
+	name = "Red Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/red)
+
+/obj/item/weapon/storage/box/fluff/swimsuit/engineering
+	name = "Engineering Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/fluff/engineering)
+
+/obj/item/weapon/storage/box/fluff/swimsuit/science
+	name = "Science Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/fluff/science)
+
+/obj/item/weapon/storage/box/fluff/swimsuit/security
+	name = "Security Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/fluff/security)
+
+/obj/item/weapon/storage/box/fluff/swimsuit/medical
+	name = "Medical Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/fluff/medical)

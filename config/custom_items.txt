@@ -487,6 +487,13 @@ item_path: /obj/item/clothing/glasses/hud/health/fluff/wickedtemphud
 }
 
 # ######## X CKEYS
+
+{
+ckey: Xsdew
+character_name: Penelope Allen
+item_path: /obj/item/weapon/storage/box/fluff/penelope
+}
+
 # ######## Y CKEYS
 # ######## Z CKEYS
 {
