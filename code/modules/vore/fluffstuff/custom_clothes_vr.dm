@@ -415,6 +415,7 @@
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "tasaldsuit"
+	armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
 // bwoincognito:Tasald Corlethian
 /obj/item/clothing/suit/storage/det_suit/fluff/tasald
@@ -429,6 +430,7 @@
 
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	armor = list(melee = 40, bullet = 30, laser = 30, energy = 10, bomb = 10, bio = 0, rad = 0)
 
 // bwoincognito:Tasald Corlethian
 /obj/item/clothing/suit/storage/det_suit/fluff/tas_coat
@@ -443,6 +445,7 @@
 
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 40, bio = 0, rad = 0)
 
 //Event Costumes Below
 /obj/item/clothing/head/helmet/fluff/freddy
@@ -850,7 +853,7 @@
 		worn_state = "khi_uniform_sci"
 		armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 5, bio = 0, rad = 5)
 
-	fluff/aro //Aro fluff version
+	fluff/aronai //Aro fluff version
 		name = "KIN meditech suit"
 		desc = "Kitsuhana Industrial Navy uniform. This one has the colors of a resleeving or mnemonics engineer. It has 'Aronai' written inside the top."
 		icon_state = "khi_uniform_aro_i"
@@ -935,3 +938,43 @@
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "verin"
 	item_state = "verin_mob"
+
+/*
+Departamental Swimsuits, for general use
+*/
+
+/obj/item/clothing/under/swimsuit/fluff/
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	siemens_coefficient = 1
+
+/obj/item/clothing/under/swimsuit/fluff/engineering
+	name = "Engineering Swimsuit"
+	desc = "It's an orange high visibility swimsuit worn by engineers. It lacks radiation, or any, shielding."
+	icon_state = "swimsuit_engineering"
+	item_state = "swimsuit_engineering_mob"
+
+/obj/item/clothing/under/swimsuit/fluff/science
+	name = "Science Swimsuit"
+	desc = "It's made of a special fiber that provides no protection whatsoever, but its hydrophobic. It has markings that denote the wearer as a scientist."
+	icon_state = "swimsuit_science"
+	item_state = "swimsuit_science_mob"
+
+/obj/item/clothing/under/swimsuit/fluff/security
+	name = "Security Swimsuit"
+	desc = "It's made of a slightly sturdier material than standard swimsuits, to allow for a more robust appearance."
+	icon_state = "swimsuit_security"
+	item_state = "swimsuit_security_mob"
+
+/obj/item/clothing/under/swimsuit/fluff/medical
+	name = "Medical Swimsuit"
+	desc = "It's made of a special fiber that provides no protection whatsoever, but its elastic. It has a cross on the back denoting that the wearer is trained medical personnel."
+	icon_state = "swimsuit_medical"
+	item_state = "swimsuit_medical_mob"
+
+//Xsdew:Penelope Allen
+/obj/item/clothing/under/swimsuit/fluff/penelope
+	name = "Penelope's Swimsuit"
+	desc = "It's made of a special fiber that provides no protection whatsoever, but its elastic. This one was custom made for Penelope."
+	icon_state = "swimsuit_penelope"
+	item_state = "swimsuit_penelope_mob"

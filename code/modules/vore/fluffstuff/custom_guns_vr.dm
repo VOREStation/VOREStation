@@ -118,6 +118,12 @@
 
 		update_icon()
 
+/obj/item/weapon/gun/projectile/revolver/mateba/fluff/tasald_corlethian/attack_hand(mob/user as mob)
+	if(user.get_inactive_hand() == src)
+		unload_ammo(user, allow_dump = 1)
+	else
+		..()
+
 // wankersonofjerkin : Ryan Winz
 /obj/item/weapon/gun/projectile/revolver/fluff/ryan_winz_revolver
 	name = "Ryan's 'Devilgun'"
@@ -506,7 +512,7 @@
 	caliber = "357"
 	icon = 'icons/obj/ammo_vr.dmi'
 	icon_state = "stun357"
-	projectile_type = /obj/item/projectile/energy/electrode/stunshot
+	projectile_type = /obj/item/projectile/energy/electrode/stunshot/strong
 
 /obj/item/ammo_magazine/a357/rubber
 	name = "speedloader (.357 rubber)"
@@ -522,7 +528,7 @@
 	caliber = "357"
 	icon = 'icons/obj/ammo_vr.dmi'
 	icon_state = "rubber357"
-	projectile_type = /obj/item/projectile/bullet/pistol/rubber
+	projectile_type = /obj/item/projectile/bullet/pistol/rubber/strong
 
 /obj/item/ammo_magazine/a357/flash
 	name = "speedloader (.357 flash)"
@@ -538,4 +544,4 @@
 	caliber = "357"
 	icon = 'icons/obj/ammo_vr.dmi'
 	icon_state = "flash357"
-	projectile_type = /obj/item/projectile/energy/flash
+	projectile_type = /obj/item/projectile/energy/flash/strong

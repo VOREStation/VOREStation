@@ -23,7 +23,7 @@
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 		if(..())
 			if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
-				if(icon_state == "serdy_armor") //This is to prevent Serdy's custom armor from turning into heavy_wolf_armor 
+				if(icon_state == "serdy_armor") //This is to prevent Serdy's custom armor from turning into heavy_wolf_armor
 					return ..()
 				icon_override = 'icons/mob/taursuits_vr.dmi' //Just in case
 				icon_state = "heavy_wolf_armor" //Just in case
@@ -32,3 +32,15 @@
 			else
 				H << "<span class='warning'>You need to have a wolf-taur half to wear this.</span>"
 				return 0
+
+/obj/item/clothing/suit/storage/vest/hoscoat
+	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 40, bio = 0, rad = 0)
+
+/obj/item/clothing/suit/storage/vest/hos
+	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 40, bio = 0, rad = 0)
+
+/obj/item/clothing/suit/storage/vest/hoscoat/jensen
+	name = "armored trenchcoat"
+	desc = "A trenchcoat augmented with a special alloy for some protection and style."
+	icon_state = "hostrench"
+	flags_inv = HIDEHOLSTER
