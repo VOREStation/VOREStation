@@ -189,10 +189,10 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "modkit"
 
-	from_helmet = /obj/item/clothing/head/helmet/space/void/engineering
-	from_suit = /obj/item/clothing/suit/space/void/engineering
-	to_helmet = /obj/item/clothing/head/helmet/space/void/engineering/fluff/screehelm
-	to_suit = /obj/item/clothing/suit/space/void/engineering/fluff/screespess
+	from_helmet = /obj/item/clothing/head/helmet/space/void
+	from_suit = /obj/item/clothing/suit/space/void
+	to_helmet = /obj/item/clothing/head/helmet/space/void/engineering/hazmat/fluff/screehelm
+	to_suit = /obj/item/clothing/suit/space/void/engineering/hazmat/fluff/screespess
 
 //General Use
 /obj/item/weapon/flag
