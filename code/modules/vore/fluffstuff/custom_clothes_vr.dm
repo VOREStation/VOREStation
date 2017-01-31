@@ -853,7 +853,7 @@
 		worn_state = "khi_uniform_sci"
 		armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 5, bio = 0, rad = 5)
 
-	fluff/aro //Aro fluff version
+	fluff/aronai //Aro fluff version
 		name = "KIN meditech suit"
 		desc = "Kitsuhana Industrial Navy uniform. This one has the colors of a resleeving or mnemonics engineer. It has 'Aronai' written inside the top."
 		icon_state = "khi_uniform_aro_i"

@@ -149,6 +149,15 @@
 	can_hold = list(/obj/item/clothing/under/swimsuit/)
 	has_items = list(/obj/item/clothing/under/swimsuit/fluff/penelope)
 
+//Arokha:Aronai Kadigan
+/obj/item/weapon/storage/box/fluff/aronai
+	name = "Aronai's Kit"
+	desc = "A kit containing Aronai's equipment."
+	has_items = list(
+		/obj/item/weapon/storage/backpack/fluff/aronai,
+		/obj/item/weapon/rig/light/hacker/fluff/aronai,
+		/obj/item/clothing/under/rank/khi/fluff/aronai)
+
 /*
 Swimsuits, for general use, to avoid arriving to work with your swimsuit.
 */
