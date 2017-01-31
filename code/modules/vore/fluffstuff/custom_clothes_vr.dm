@@ -523,7 +523,7 @@
 //End event costumes
 
 //scree:Scree
-/obj/item/clothing/head/helmet/space/void/engineering/fluff/screehelm
+/obj/item/clothing/head/helmet/space/void/engineering/hazmat/fluff/screehelm
 	name = "Modified Tajara Helmet"
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment. Has radiation shielding. This one doesn't look like it was made for humans. Its been modified to include headlights."
 
@@ -546,7 +546,7 @@
 				return 1
 
 //scree:Scree
-/obj/item/clothing/suit/space/void/engineering/fluff/screespess
+/obj/item/clothing/suit/space/void/engineering/hazmat/fluff/screespess
 	name = "Modified Winged Suit"
 	desc = "A special suit that protects against hazardous, low pressure environments. Has radiation shielding. This one doesn't look like it was made for humans. This one was made with a special personal shielding for someone's wings."
 

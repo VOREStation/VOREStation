@@ -2186,6 +2186,7 @@
 #include "code\modules\vore\fluffstuff\custom_clothes_vr.dm"
 #include "code\modules\vore\fluffstuff\custom_guns_vr.dm"
 #include "code\modules\vore\fluffstuff\custom_items_vr.dm"
+#include "code\modules\vore\fluffstuff\custom_mecha_vr.dm"
 #include "code\modules\vore\fluffstuff\custom_permits_vr.dm"
 #include "code\modules\vore\resizing\grav_pull_vr.dm"
 #include "code\modules\vore\resizing\holder_micro_vr.dm"
