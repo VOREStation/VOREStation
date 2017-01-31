@@ -36,6 +36,8 @@
 	var/blood_volume = 560                               // Initial blood volume.
 	var/hunger_factor = 0.05                             // Multiplier for hunger.
 
+	var/taste_sensitivity = TASTE_NORMAL                 // How sensitive the species is to minute tastes.
+
 	var/min_age = 17
 	var/max_age = 70
 

@@ -1,4 +1,4 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
+#define SAVE_RESET -1
 
 var/list/preferences_datums = list()
 
@@ -199,7 +199,8 @@ datum/preferences
 		dat += "Slot - "
 		dat += "<a href='?src=\ref[src];load=1'>Load slot</a> - "
 		dat += "<a href='?src=\ref[src];save=1'>Save slot</a> - "
-		dat += "<a href='?src=\ref[src];reload=1'>Reload slot</a>"
+		dat += "<a href='?src=\ref[src];reload=1'>Reload slot</a> - "
+		dat += "<a href='?src=\ref[src];resetslot=1'>Reset slot</a>"
 
 	else
 		dat += "Please create an account to save your preferences."
@@ -248,6 +249,11 @@ datum/preferences
 		load_character(text2num(href_list["changeslot"]))
 		sanitize_preferences()
 		close_load_dialog(usr)
+	else if(href_list["resetslot"])
+		if("No" == alert("This will reset the current slot. Continue?", "Reset current slot?", "No", "Yes"))
+			return 0
+		load_character(SAVE_RESET)
+		sanitize_preferences()
 	else
 		return 0
 

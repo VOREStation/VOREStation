@@ -147,8 +147,8 @@
 					slip_stun = 4
 					slip_dist = 2
 
-			if(M.slip("the [floor_type] floor",slip_stun))
-				for(var/i = 0;i<slip_dist;i++)
+			if(M.slip("the [floor_type] floor", slip_stun))
+				for(var/i = 1 to slip_dist)
 					step(M, M.dir)
 					sleep(1)
 			else

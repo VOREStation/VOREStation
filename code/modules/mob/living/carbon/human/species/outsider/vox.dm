@@ -3,8 +3,8 @@
 	name_plural = "Vox"
 	icobase = 'icons/mob/human_races/r_vox.dmi'
 	deform = 'icons/mob/human_races/r_def_vox.dmi'
-	default_language = "Vox-pidgin"
-	language = "Galactic Common"
+	default_language = LANGUAGE_VOX
+	language = LANGUAGE_GALCOM
 	num_alternate_languages = 1
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick,  /datum/unarmed_attack/claws/strong, /datum/unarmed_attack/bite/strong)
 	rarity_value = 4
@@ -16,6 +16,8 @@
 	dealing with their traders and merchants; those that do rarely enjoy the experience."
 
 //	taste_sensitivity = TASTE_DULL
+
+	slowdown = -0.5
 
 	speech_sounds = list('sound/voice/shriek1.ogg')
 	speech_chance = 20
@@ -37,7 +39,7 @@
 	spawn_flags = SPECIES_IS_WHITELISTED
 	appearance_flags = HAS_EYE_COLOR | HAS_HAIR_COLOR
 
-	blood_color = "#2299FC"
+	blood_color = "#9066BD"
 	flesh_color = "#808D11"
 
 	reagent_tag = IS_VOX
@@ -75,11 +77,11 @@
 /datum/species/vox/equip_survival_gear(var/mob/living/carbon/human/H)
 	H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), slot_wear_mask)
 	if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/vox(H), slot_back)
+		H.equip_to_slot_or_del(new /obj/item/weapon/tank/vox(H), slot_back)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/vox(H), slot_r_hand)
 		H.internal = H.back
 	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/vox(H), slot_r_hand)
+		H.equip_to_slot_or_del(new /obj/item/weapon/tank/vox(H), slot_r_hand)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/vox(H.back), slot_in_backpack)
 		H.internal = H.r_hand
 	H.internal = locate(/obj/item/weapon/tank) in H.contents

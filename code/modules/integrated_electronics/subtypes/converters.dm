@@ -6,6 +6,7 @@
 	activators = list("convert")
 	category_text = "Converter"
 	autopulse = 1
+	power_draw_per_use = 10
 
 /obj/item/integrated_circuit/converter/on_data_written()
 	if(autopulse == 1)

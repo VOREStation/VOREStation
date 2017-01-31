@@ -201,6 +201,7 @@
 	req_access = list(access_medical)
 
 	initial_modules = list(
+		/obj/item/rig_module/sprinter,
 		/obj/item/rig_module/chem_dispenser/injector,
 		/obj/item/rig_module/maneuvering_jets,
 		/obj/item/rig_module/device/healthscanner,

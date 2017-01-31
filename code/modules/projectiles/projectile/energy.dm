@@ -140,7 +140,7 @@
 	armor_penetration = 10
 	kill_count = 4
 	damage = 5
-	agony = 70
+	agony = 55
 	damage_type = BURN
 	vacuum_traversal = 0	//Projectile disappears in empty space
 
@@ -151,12 +151,12 @@
 	var/ear_safety = 0
 	ear_safety = M.get_ear_protection()
 	if(ear_safety == 1)
-		M.Weaken(2)
+		M.confused += 150
 	else if (ear_safety > 1)
-		M.Weaken(1)
+		M.confused += 30
 	else if (!ear_safety)
 		M.Stun(10)
-		M.Weaken(3)
+		M.Weaken(2)
 		M.ear_damage += rand(1, 10)
 		M.ear_deaf = max(M.ear_deaf,15)
 	if (M.ear_damage >= 15)
