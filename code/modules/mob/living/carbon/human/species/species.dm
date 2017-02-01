@@ -36,7 +36,7 @@
 	var/blood_volume = 560                               // Initial blood volume.
 	var/hunger_factor = 0.05                             // Multiplier for hunger.
 
-	var/min_age = 17
+	var/min_age = 18
 	var/max_age = 70
 
 	// Language/culture vars.

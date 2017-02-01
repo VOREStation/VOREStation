@@ -9,7 +9,7 @@
 	num_alternate_languages = 3
 	secondary_langs = list("Schechi", "Skrellian")
 	name_language = "Schechi"
-	min_age = 12
+	min_age = 18
 	max_age = 45
 	health_hud_intensity = 3
 
