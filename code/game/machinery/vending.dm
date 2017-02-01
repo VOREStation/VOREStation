@@ -1021,3 +1021,14 @@
 					/obj/item/weapon/scalpel = 2,/obj/item/weapon/circular_saw = 2,/obj/item/weapon/tank/anesthetic = 2,/obj/item/clothing/mask/breath/medical = 5,
 					/obj/item/weapon/screwdriver = 5,/obj/item/weapon/crowbar = 5)
 	//everything after the power cell had no amounts, I improvised.  -Sayu
+
+/obj/machinery/vending/tray
+	name = "Momma's Meals"
+	desc = "A vending machine full of ready cooked meals! For the chefless station!"
+	product_slogans = "The best food for the coolest price!;Where da chef at? Not here!"
+	product_ads = "The healthiest!;Award-winning cookies!;Mmm! So good!;Oh my god it's so juicy!;Have a meal.;Momma's cookin' is good for you!"
+	icon_state = "tray"
+	products = list(/obj/item/weapon/reagent_containers/food/snacks/meal1 = 12,/obj/item/weapon/reagent_containers/food/snacks/meal2 = 12,/obj/item/weapon/reagent_containers/food/snacks/meal3 =12,
+					/obj/item/weapon/reagent_containers/food/snacks/meal4 = 12,/obj/item/weapon/reagent_containers/food/snacks/meal5 = 12)
+	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/meal6 = 6)
+	prices = list()
