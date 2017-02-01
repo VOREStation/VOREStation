@@ -159,8 +159,8 @@ var/list/possible_cable_coil_colours = list(
 		return
 
 	if(istype(W, /obj/item/weapon/wirecutters))
-		if(d1 == 12 || d2 == 12)
-			user << "<span class='warning'>You must cut this cable from above.</span>"
+		if(d1 == UP || d2 == UP)
+			to_chat(user, "<span class='warning'>You must cut this cable from above.</span>")
 			return
 
 		if(breaker_box)
@@ -178,11 +178,11 @@ var/list/possible_cable_coil_colours = list(
 		for(var/mob/O in viewers(src, null))
 			O.show_message("<span class='warning'>[user] cuts the cable.</span>", 1)
 
-		if(d1 == 11 || d2 == 11)
+		if(d1 == DOWN || d2 == DOWN)
 			var/turf/turf = GetBelow(src)
 			if(turf)
 				for(var/obj/structure/cable/c in turf)
-					if(c.d1 == 12 || c.d2 == 12)
+					if(c.d1 == UP || c.d2 == UP)
 						qdel(c)
 
 		investigate_log("was cut by [key_name(usr, usr.client)] in [user.loc.loc]","wires")
@@ -300,12 +300,12 @@ obj/structure/cable/proc/cableColor(var/colorC)
 // merge with the powernets of power objects in the given direction
 /obj/structure/cable/proc/mergeConnectedNetworks(var/direction)
 
-	var/fdir = (!direction)? 0 : turn(direction, 180) //flip the direction, to match with the source position on its turf
+	var/fdir = direction ? reverse_dir[direction] : 0 //flip the direction, to match with the source position on its turf
 
 	if(!(d1 == direction || d2 == direction)) //if the cable is not pointed in this direction, do nothing
 		return
 
-	var/turf/TB  = get_step(src, direction)
+	var/turf/TB  = get_zstep(src, direction)
 
 	for(var/obj/structure/cable/C in TB)
 
