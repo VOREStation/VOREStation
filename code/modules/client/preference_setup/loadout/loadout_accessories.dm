@@ -280,6 +280,18 @@
 	path = /obj/item/clothing/accessory/storage/white_drop_pouches
 	allowed_roles = list("Station Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor")
 
+/datum/gear/accessory/fannypacks
+	display_name = "fannypack selection"
+	path = /obj/item/weapon/storage/belt/fannypack
+
+/datum/gear/accessory/fannypack/New()
+	..()
+	var/list/fannypacks = list()
+	for(var/fanny in typesof(/obj/item/weapon/storage/belt/fannypack))
+		var/obj/item/weapon/storage/belt/fannys = fanny
+		fannypacks[initial(fannys.name)] = fannys
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(fannypacks))
+
 /datum/gear/accessory/webbing
 	display_name = "webbing, simple"
 	path = /obj/item/clothing/accessory/storage/webbing
