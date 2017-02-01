@@ -20,6 +20,9 @@
 	icon_state = "wirer-[mode]"
 
 /obj/item/device/integrated_electronics/wirer/proc/wire(var/datum/integrated_io/io, mob/user)
+	if(!io.holder.assembly)
+		to_chat(user, "<span class='warning'>\The [io.holder] needs to be secured inside an assembly first.</span>")
+		return
 	if(mode == WIRE)
 		selected_io = io
 		to_chat(user, "<span class='notice'>You attach a data wire to \the [selected_io.holder]'s [selected_io.name] data channel.</span>")
@@ -32,6 +35,9 @@
 		if(io.io_type != selected_io.io_type)
 			to_chat(user, "<span class='warning'>Those two types of channels are incompatable.  The first is a [selected_io.io_type], \
 			while the second is a [io.io_type].</span>")
+			return
+		if(io.holder.assembly && io.holder.assembly != selected_io.holder.assembly)
+			to_chat(user, "<span class='warning'>Both \the [io.holder] and \the [selected_io.holder] need to be inside the same assembly.</span>")
 			return
 		selected_io.linked |= io
 		io.linked |= selected_io
@@ -191,6 +197,7 @@
 		new /obj/item/weapon/storage/bag/circuits/mini/reagents(src)
 		new /obj/item/weapon/storage/bag/circuits/mini/transfer(src)
 		new /obj/item/weapon/storage/bag/circuits/mini/converter(src)
+		new /obj/item/weapon/storage/bag/circuits/mini/power(src)
 
 		new /obj/item/device/electronic_assembly(src)
 		new /obj/item/device/integrated_electronics/wirer(src)
@@ -202,11 +209,24 @@
 /obj/item/weapon/storage/bag/circuits/all/New()
 	..()
 	spawn(2 SECONDS) // So the list has time to initialize.
-		for(var/obj/item/integrated_circuit/IC in all_integrated_circuits)
-			for(var/i = 1 to 10)
-				new IC.type(src)
+		new /obj/item/weapon/storage/bag/circuits/mini/arithmetic/all(src)
+		new /obj/item/weapon/storage/bag/circuits/mini/trig/all(src)
+		new /obj/item/weapon/storage/bag/circuits/mini/input/all(src)
+		new /obj/item/weapon/storage/bag/circuits/mini/output/all(src)
+		new /obj/item/weapon/storage/bag/circuits/mini/memory/all(src)
+		new /obj/item/weapon/storage/bag/circuits/mini/logic/all(src)
+		new /obj/item/weapon/storage/bag/circuits/mini/smart/all(src)
+		new /obj/item/weapon/storage/bag/circuits/mini/manipulation/all(src)
+		new /obj/item/weapon/storage/bag/circuits/mini/time/all(src)
+		new /obj/item/weapon/storage/bag/circuits/mini/reagents/all(src)
+		new /obj/item/weapon/storage/bag/circuits/mini/transfer/all(src)
+		new /obj/item/weapon/storage/bag/circuits/mini/converter/all(src)
+		new /obj/item/weapon/storage/bag/circuits/mini/power/all(src)
 
 		new /obj/item/device/electronic_assembly(src)
+		new /obj/item/device/electronic_assembly/medium(src)
+		new /obj/item/device/electronic_assembly/large(src)
+		new /obj/item/device/electronic_assembly/drone(src)
 		new /obj/item/device/integrated_electronics/wirer(src)
 		new /obj/item/device/integrated_electronics/debugger(src)
 		new /obj/item/weapon/crowbar(src)
@@ -219,16 +239,20 @@
 	w_class = 2
 	display_contents_with_number = 1
 	can_hold = list(/obj/item/integrated_circuit)
+	var/spawn_flags_to_use = IC_SPAWN_DEFAULT
 
 /obj/item/weapon/storage/bag/circuits/mini/arithmetic
 	name = "arithmetic circuit box"
 	desc = "Warning: Contains math."
 	icon_state = "box_arithmetic"
 
+/obj/item/weapon/storage/bag/circuits/mini/arithmetic/all // Don't believe this will ever be needed.
+	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
 /obj/item/weapon/storage/bag/circuits/mini/arithmetic/New()
 	..()
 	for(var/obj/item/integrated_circuit/arithmetic/IC in all_integrated_circuits)
-		if(IC.spawn_flags & IC_SPAWN_DEFAULT)
+		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 3)
 				new IC.type(src)
 	make_exact_fit()
@@ -239,10 +263,13 @@
 	desc = "Danger: Contains more math."
 	icon_state = "box_trig"
 
+/obj/item/weapon/storage/bag/circuits/mini/trig/all // Ditto
+	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
 /obj/item/weapon/storage/bag/circuits/mini/trig/New()
 	..()
 	for(var/obj/item/integrated_circuit/trig/IC in all_integrated_circuits)
-		if(IC.spawn_flags & IC_SPAWN_DEFAULT)
+		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 3)
 				new IC.type(src)
 	make_exact_fit()
@@ -253,10 +280,13 @@
 	desc = "Tell these circuits everything you know."
 	icon_state = "box_input"
 
+/obj/item/weapon/storage/bag/circuits/mini/input/all
+	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
 /obj/item/weapon/storage/bag/circuits/mini/input/New()
 	..()
 	for(var/obj/item/integrated_circuit/input/IC in all_integrated_circuits)
-		if(IC.spawn_flags & IC_SPAWN_DEFAULT)
+		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 3)
 				new IC.type(src)
 	make_exact_fit()
@@ -267,10 +297,13 @@
 	desc = "Circuits to interface with the world beyond itself."
 	icon_state = "box_output"
 
+/obj/item/weapon/storage/bag/circuits/mini/output/all
+	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
 /obj/item/weapon/storage/bag/circuits/mini/output/New()
 	..()
 	for(var/obj/item/integrated_circuit/output/IC in all_integrated_circuits)
-		if(IC.spawn_flags & IC_SPAWN_DEFAULT)
+		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 3)
 				new IC.type(src)
 	make_exact_fit()
@@ -281,14 +314,16 @@
 	desc = "Machines can be quite forgetful without these."
 	icon_state = "box_memory"
 
+/obj/item/weapon/storage/bag/circuits/mini/memory/all
+	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
 /obj/item/weapon/storage/bag/circuits/mini/memory/New()
 	..()
 	for(var/obj/item/integrated_circuit/memory/IC in all_integrated_circuits)
-		if(IC.spawn_flags & IC_SPAWN_DEFAULT)
+		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 3)
 				new IC.type(src)
 	make_exact_fit()
-
 
 
 /obj/item/weapon/storage/bag/circuits/mini/logic
@@ -296,10 +331,13 @@
 	desc = "May or may not be Turing complete."
 	icon_state = "box_logic"
 
+/obj/item/weapon/storage/bag/circuits/mini/logic/all
+	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
 /obj/item/weapon/storage/bag/circuits/mini/logic/New()
 	..()
 	for(var/obj/item/integrated_circuit/logic/IC in all_integrated_circuits)
-		if(IC.spawn_flags & IC_SPAWN_DEFAULT)
+		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 3)
 				new IC.type(src)
 	make_exact_fit()
@@ -310,10 +348,13 @@
 	desc = "No time machine parts, sadly."
 	icon_state = "box_time"
 
+/obj/item/weapon/storage/bag/circuits/mini/time/all
+	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
 /obj/item/weapon/storage/bag/circuits/mini/time/New()
 	..()
 	for(var/obj/item/integrated_circuit/time/IC in all_integrated_circuits)
-		if(IC.spawn_flags & IC_SPAWN_DEFAULT)
+		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 3)
 				new IC.type(src)
 	make_exact_fit()
@@ -324,10 +365,13 @@
 	desc = "Unlike most electronics, these circuits are supposed to come in contact with liquids."
 	icon_state = "box_reagents"
 
+/obj/item/weapon/storage/bag/circuits/mini/reagents/all
+	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
 /obj/item/weapon/storage/bag/circuits/mini/reagents/New()
 	..()
 	for(var/obj/item/integrated_circuit/reagent/IC in all_integrated_circuits)
-		if(IC.spawn_flags & IC_SPAWN_DEFAULT)
+		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 3)
 				new IC.type(src)
 	make_exact_fit()
@@ -338,10 +382,13 @@
 	desc = "Useful for moving data representing something arbitrary to another arbitrary virtual place."
 	icon_state = "box_transfer"
 
+/obj/item/weapon/storage/bag/circuits/mini/transfer/all
+	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
 /obj/item/weapon/storage/bag/circuits/mini/transfer/New()
 	..()
 	for(var/obj/item/integrated_circuit/transfer/IC in all_integrated_circuits)
-		if(IC.spawn_flags & IC_SPAWN_DEFAULT)
+		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 3)
 				new IC.type(src)
 	make_exact_fit()
@@ -352,10 +399,66 @@
 	desc = "Transform one piece of data to another type of data with these."
 	icon_state = "box_converter"
 
+/obj/item/weapon/storage/bag/circuits/mini/converter/all
+	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
 /obj/item/weapon/storage/bag/circuits/mini/converter/New()
 	..()
 	for(var/obj/item/integrated_circuit/converter/IC in all_integrated_circuits)
-		if(IC.spawn_flags & IC_SPAWN_DEFAULT)
+		if(IC.spawn_flags & spawn_flags_to_use)
+			for(var/i = 1 to 3)
+				new IC.type(src)
+	make_exact_fit()
+
+/obj/item/weapon/storage/bag/circuits/mini/smart
+	name = "smart box"
+	desc = "Sentience not included."
+	icon_state = "box_ai"
+
+/obj/item/weapon/storage/bag/circuits/mini/smart/all
+	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
+/obj/item/weapon/storage/bag/circuits/mini/smart/New()
+	..()
+	for(var/obj/item/integrated_circuit/smart/IC in all_integrated_circuits)
+		if(IC.spawn_flags & spawn_flags_to_use)
+			for(var/i = 1 to 3)
+				new IC.type(src)
+	make_exact_fit()
+
+/obj/item/weapon/storage/bag/circuits/mini/manipulation
+	name = "manipulation box"
+	desc = "Make your machines actually useful with these."
+	icon_state = "box_manipulation"
+
+/obj/item/weapon/storage/bag/circuits/mini/manipulation/all
+	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
+/obj/item/weapon/storage/bag/circuits/mini/manipulation/New()
+	..()
+	for(var/obj/item/integrated_circuit/manipulation/IC in all_integrated_circuits)
+		if(IC.spawn_flags & spawn_flags_to_use)
+			for(var/i = 1 to 3)
+				new IC.type(src)
+	make_exact_fit()
+
+
+/obj/item/weapon/storage/bag/circuits/mini/power
+	name = "power circuit box"
+	desc = "Electronics generally require electricity."
+	icon_state = "box_power"
+
+/obj/item/weapon/storage/bag/circuits/mini/power/all
+	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
+/obj/item/weapon/storage/bag/circuits/mini/power/New()
+	..()
+	for(var/obj/item/integrated_circuit/passive/power/IC in all_integrated_circuits)
+		if(IC.spawn_flags & spawn_flags_to_use)
+			for(var/i = 1 to 3)
+				new IC.type(src)
+	for(var/obj/item/integrated_circuit/power/IC in all_integrated_circuits)
+		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 3)
 				new IC.type(src)
 	make_exact_fit()

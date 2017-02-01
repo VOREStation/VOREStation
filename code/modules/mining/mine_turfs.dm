@@ -35,7 +35,7 @@ var/list/mining_overlay_cache = list()
 	var/ignore_mapgen
 
 	var/ore_types = list(
-		"iron" = /obj/item/weapon/ore/iron,
+		"hematite" = /obj/item/weapon/ore/iron,
 		"uranium" = /obj/item/weapon/ore/uranium,
 		"gold" = /obj/item/weapon/ore/gold,
 		"silver" = /obj/item/weapon/ore/silver,
@@ -44,7 +44,7 @@ var/list/mining_overlay_cache = list()
 		"osmium" = /obj/item/weapon/ore/osmium,
 		"hydrogen" = /obj/item/weapon/ore/hydrogen,
 		"silicates" = /obj/item/weapon/ore/glass,
-		"carbonaceous rock" = /obj/item/weapon/ore/coal
+		"carbon" = /obj/item/weapon/ore/coal
 	)
 
 	has_resources = 1
@@ -483,6 +483,11 @@ var/list/mining_overlay_cache = list()
 				if(prob(50))
 					M.Stun(5)
 			M.apply_effect(25, IRRADIATE)
+			if(prob(25))
+				excavate_find(prob(5), finds[1])
+	else if(rand(1,500) == 1)
+		visible_message("<span class='notice'>An old dusty crate was buried within!</span>")
+		new /obj/structure/closet/crate/secure/loot(src)
 
 	make_floor()
 	update_icon(1)
@@ -546,10 +551,10 @@ var/list/mining_overlay_cache = list()
 
 	var/mineral_name
 	if(rare_ore)
-		mineral_name = pickweight(list("uranium" = 10, "platinum" = 10, "iron" = 20, "coal" = 20, "diamond" = 2, "gold" = 10, "silver" = 10, "phoron" = 20))
+		mineral_name = pickweight(list("uranium" = 10, "platinum" = 10, "hematite" = 20, "carbon" = 20, "diamond" = 2, "gold" = 10, "silver" = 10, "phoron" = 20))
 
 	else
-		mineral_name = pickweight(list("uranium" = 5, "platinum" = 5, "iron" = 35, "coal" = 35, "diamond" = 1, "gold" = 5, "silver" = 5, "phoron" = 10))
+		mineral_name = pickweight(list("uranium" = 5, "platinum" = 5, "hematite" = 35, "carbon" = 35, "diamond" = 1, "gold" = 5, "silver" = 5, "phoron" = 10))
 
 	if(mineral_name && (mineral_name in ore_data))
 		mineral = ore_data[mineral_name]

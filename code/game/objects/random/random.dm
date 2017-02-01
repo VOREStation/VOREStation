@@ -462,9 +462,9 @@
 				prob(4);/obj/item/weapon/tank/oxygen/yellow,
 				prob(4);/obj/item/weapon/tank/oxygen/red,
 				prob(3);/obj/item/weapon/tank/air,
-				prob(4);/obj/item/weapon/tank/emergency_oxygen,
-				prob(3);/obj/item/weapon/tank/emergency_oxygen/engi,
-				prob(2);/obj/item/weapon/tank/emergency_oxygen/double,
+				prob(4);/obj/item/weapon/tank/emergency/oxygen,
+				prob(3);/obj/item/weapon/tank/emergency/oxygen/engi,
+				prob(2);/obj/item/weapon/tank/emergency/oxygen/double,
 				prob(1);/obj/item/device/suit_cooling_unit)
 
 /obj/random/cigarettes

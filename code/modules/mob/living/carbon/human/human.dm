@@ -28,6 +28,8 @@
 		if(mind)
 			mind.name = real_name
 
+	nutrition = rand(200,400)
+
 	hud_list[HEALTH_HUD]      = new /image/hud_overlay('icons/mob/hud_med.dmi', src, "100")
 	hud_list[STATUS_HUD]      = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudhealthy")
 	hud_list[LIFE_HUD]	      = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudhealthy")
@@ -688,12 +690,20 @@
 	if(istype(src.head, /obj/item/clothing/head/helmet/space/emergency))
 		number -= 2
 	if(istype(src.glasses, /obj/item/clothing/glasses/thermal))
-		number -= 1
+		var/obj/item/clothing/glasses/thermal/T = src.glasses
+		if(T.active)
+			number -= 1
+	if(istype(src.glasses, /obj/item/clothing/glasses/night))
+		var/obj/item/clothing/glasses/night/N = src.glasses
+		if(N.active)
+			number -= 1
 	if(istype(src.glasses, /obj/item/clothing/glasses/sunglasses))
 		if(istype(src.glasses, /obj/item/clothing/glasses/sunglasses/sechud/aviator))
 			var/obj/item/clothing/glasses/sunglasses/sechud/aviator/S = src.glasses
-			if(!S.on)
+			if(!S.active)
 				number += 1
+		else if(istype(src.glasses, /obj/item/clothing/glasses/sunglasses/medhud/aviator))
+			number += 0
 		else
 			number += 1
 	if(istype(src.glasses, /obj/item/clothing/glasses/welding))
@@ -1323,7 +1333,8 @@
 /mob/living/carbon/human/slip(var/slipped_on, stun_duration=8)
 	if((species.flags & NO_SLIP) || (shoes && (shoes.item_flags & NOSLIP)))
 		return 0
-	..(slipped_on,stun_duration)
+	if(..(slipped_on,stun_duration))
+		return 1
 
 /mob/living/carbon/human/proc/undislocate()
 	set category = "Object"

@@ -23,6 +23,7 @@
 	var/image/filling //holds a reference to the current filling overlay
 	var/visible_name = "a syringe"
 	var/time = 30
+	var/drawing = 0
 
 /obj/item/weapon/reagent_containers/syringe/on_reagent_change()
 	update_icon()
@@ -98,7 +99,12 @@
 						user << "<span class='warning'>You are unable to locate any blood.</span>"
 						return
 
+					if(drawing)
+						user << "<span class='warning'>You are already drawing blood from [T.name].</span>"
+						return
+
 					var/datum/reagent/B
+					drawing = 1
 					if(istype(T, /mob/living/carbon/human))
 						var/mob/living/carbon/human/H = T
 						if(H.species && !H.should_have_organ(O_HEART))
@@ -106,12 +112,16 @@
 						else
 							if(ismob(H) && H != user)
 								if(!do_mob(user, target, time))
+									drawing = 0
 									return
 							B = T.take_blood(src, amount)
+							drawing = 0
 					else
 						if(!do_mob(user, target, time))
+							drawing = 0
 							return
 						B = T.take_blood(src,amount)
+						drawing = 0
 
 					if (B)
 						reagents.reagent_list += B
@@ -200,7 +210,10 @@
 				admin_inject_log(user, target, src, contained, trans)
 			else
 				trans = reagents.trans_to(target, amount_per_transfer_from_this)
-			user << "<span class='notice'>You inject [trans] units of the solution. The syringe now contains [src.reagents.total_volume] units.</span>"
+			if(trans)
+				user << "<span class='notice'>You inject [trans] units of the solution. The syringe now contains [src.reagents.total_volume] units.</span>"
+			else
+				user << "<span class='notice'>The syringe is empty.</span>"
 			if (reagents.total_volume <= 0 && mode == SYRINGE_INJECT)
 				mode = SYRINGE_DRAW
 				update_icon()

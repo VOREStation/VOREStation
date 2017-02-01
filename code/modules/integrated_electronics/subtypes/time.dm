@@ -14,6 +14,7 @@
 	var/delay = 2 SECONDS
 	activators = list("incoming pulse","outgoing pulse")
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+	power_draw_per_use = 2
 
 /obj/item/integrated_circuit/time/delay/do_work()
 	set waitfor = 0  // Don't sleep in a proc that is called by a processor. It'll delay the entire thing
@@ -82,6 +83,7 @@
 	inputs = list("enable ticking")
 	activators = list("outgoing pulse")
 	spawn_flags = IC_SPAWN_RESEARCH
+	power_draw_per_use = 4
 
 /obj/item/integrated_circuit/time/ticker/Destroy()
 	if(is_running)
@@ -116,6 +118,7 @@
 	complexity = 12
 	ticks_to_pulse = 2
 	spawn_flags = IC_SPAWN_RESEARCH
+	power_draw_per_use = 8
 
 /obj/item/integrated_circuit/time/ticker/slow
 	name = "slow ticker"
@@ -124,6 +127,7 @@
 	complexity = 4
 	ticks_to_pulse = 6
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+	power_draw_per_use = 2
 
 /obj/item/integrated_circuit/time/clock
 	name = "integrated clock"
@@ -132,6 +136,7 @@
 	inputs = list()
 	outputs = list("time (string)", "hours (number)", "minutes (number)", "seconds (number)")
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+	power_draw_per_use = 4
 
 /obj/item/integrated_circuit/time/clock/do_work()
 	var/datum/integrated_io/time = outputs[1]
