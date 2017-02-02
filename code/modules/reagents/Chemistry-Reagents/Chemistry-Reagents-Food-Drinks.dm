@@ -707,7 +707,7 @@
 	taste_mult = 1.3
 	color = "#482000"
 	adj_dizzy = -5
-	 adj_drowsy = -3
+	adj_drowsy = -3
 	adj_sleepy = -2
 	adj_temp = 25
 	overdose = 45
