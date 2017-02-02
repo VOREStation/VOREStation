@@ -25,7 +25,7 @@
 	icon_state = "webbing-vox"
 	slot = "vox"
 
-	slots = 5
+	slots = 3
 
 /obj/item/clothing/accessory/storage/vox/New()
 	..()

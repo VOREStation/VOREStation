@@ -514,6 +514,7 @@
 		if(H.species.can_shred(user))
 			if(!prob(src.deflect_chance))
 				src.take_damage(15)
+				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 				src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 				playsound(src.loc, 'sound/weapons/slash.ogg', 50, 1, -1)
 				user << "<span class='danger'>You slash at the armored suit!</span>"
