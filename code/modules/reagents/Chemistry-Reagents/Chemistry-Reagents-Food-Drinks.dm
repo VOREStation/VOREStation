@@ -1275,7 +1275,7 @@
 		//M.make_jittery(4) //extra sensitive to caffine
 
 /datum/reagent/ethanol/coffee/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	/if(alien == IS_TAJARA)
+	//if(alien == IS_TAJARA)
 		//M.adjustToxLoss(2 * removed)
 		//M.make_jittery(4)
 		//return
