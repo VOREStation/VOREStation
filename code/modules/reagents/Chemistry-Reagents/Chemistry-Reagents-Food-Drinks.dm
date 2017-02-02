@@ -707,7 +707,7 @@
 	taste_mult = 1.3
 	color = "#482000"
 	adj_dizzy = -5
-	adj_drowsy = -3
+	 adj_drowsy = -3
 	adj_sleepy = -2
 	adj_temp = 25
 	overdose = 45
@@ -726,23 +726,23 @@
 	..()
 	//if(alien == IS_TAJARA) //VOREStation Edit Begin
 		//M.adjustToxLoss(0.5 * removed)
-		//M.make_jittery(4) //extra sensitive to caffine //VOREStation Edit end
+		//M.make_jittery(4) //extra sensitive to caffine
 	if(adj_temp > 0)
 		holder.remove_reagent("frostoil", 10 * removed)
 
 /datum/reagent/nutriment/coffee/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	if(alien == IS_TAJARA)
-		M.adjustToxLoss(2 * removed)
-		M.make_jittery(4)
-		return
+	//if(alien == IS_TAJARA)
+		//M.adjustToxLoss(2 * removed)
+		//M.make_jittery(4)
+		//return
 
 /datum/reagent/drink/coffee/overdose(var/mob/living/carbon/M, var/alien)
 	if(alien == IS_DIONA)
 		return
-	if(alien == IS_TAJARA)
-		M.adjustToxLoss(4 * REM)
-		M.apply_effect(3, STUTTER)
+	//if(alien == IS_TAJARA)
+		//M.adjustToxLoss(4 * REM)
+		//M.apply_effect(3, STUTTER) //VOREStation Edit end
 	M.make_jittery(5)
 
 /datum/reagent/drink/coffee/icecoffee
@@ -1270,23 +1270,23 @@
 	M.sleeping = max(0, M.sleeping - 2)
 	if(M.bodytemperature > 310)
 		M.bodytemperature = max(310, M.bodytemperature - (5 * TEMPERATURE_DAMAGE_COEFFICIENT))
-	if(alien == IS_TAJARA)
-		M.adjustToxLoss(0.5 * removed)
-		M.make_jittery(4) //extra sensitive to caffine
+	//if(alien == IS_TAJARA)
+		//M.adjustToxLoss(0.5 * removed)
+		//M.make_jittery(4) //extra sensitive to caffine
 
 /datum/reagent/ethanol/coffee/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_TAJARA)
-		M.adjustToxLoss(2 * removed)
-		M.make_jittery(4)
-		return
+	/if(alien == IS_TAJARA)
+		//M.adjustToxLoss(2 * removed)
+		//M.make_jittery(4)
+		//return
 	..()
 
 /datum/reagent/ethanol/coffee/overdose(var/mob/living/carbon/M, var/alien)
 	if(alien == IS_DIONA)
 		return
-	if(alien == IS_TAJARA)
-		M.adjustToxLoss(4 * REM)
-		M.apply_effect(3, STUTTER)
+	//if(alien == IS_TAJARA)
+		//M.adjustToxLoss(4 * REM)
+		//M.apply_effect(3, STUTTER) //VOREStation Edit end
 	M.make_jittery(5)
 
 /datum/reagent/ethanol/coffee/kahlua
