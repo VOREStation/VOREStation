@@ -331,8 +331,6 @@
 	gluttonous = 0
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
 	min_age = 18
-	breath_type = "nitrogen"
-	poison_type = "phoron"
 
 /datum/species
 	holder_type = /obj/item/weapon/holder/micro //This allows you to pick up crew
