@@ -808,7 +808,8 @@
 			var/total_phoronloss = 0
 			for(var/obj/item/I in src)
 				if(I.contaminated)
-					total_phoronloss += vsc.plc.CONTAMINATION_LOSS
+					if(src.species && src.species.get_bodytype() != "Vox")
+						total_phoronloss += vsc.plc.CONTAMINATION_LOSS
 			if(!(status_flags & GODMODE)) adjustToxLoss(total_phoronloss)
 
 	if(status_flags & GODMODE)	return 0	//godmode
@@ -1335,11 +1336,9 @@
 		if(istype(G, /obj/item/clothing/glasses/sunglasses/sechud))
 			var/obj/item/clothing/glasses/sunglasses/sechud/S = G
 			O = S.hud
-		//VOREStation Add - Support for omnihud glasses
-		if(istype(G, /obj/item/clothing/glasses/sunglasses/omnihud))
-			var/obj/item/clothing/glasses/sunglasses/omnihud/S = G
-			O = S.hud
-		//VOREStation Add End
+		if(istype(G, /obj/item/clothing/glasses/sunglasses/medhud))
+			var/obj/item/clothing/glasses/sunglasses/medhud/M = G
+			O = M.hud
 		if(istype(O))
 			O.process_hud(src)
 			if(!druggy && !seer)	see_invisible = SEE_INVISIBLE_LIVING

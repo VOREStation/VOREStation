@@ -4,6 +4,8 @@
 	ingested = new/datum/reagents/metabolism(1000, src, CHEM_INGEST)
 	touching = new/datum/reagents/metabolism(1000, src, CHEM_TOUCH)
 	reagents = bloodstr
+	if (!default_language && species_language)
+		default_language = all_languages[species_language]
 	..()
 
 /mob/living/carbon/Life()
@@ -435,7 +437,6 @@
 	stop_pulling()
 	src << "<span class='warning'>You slipped on [slipped_on]!</span>"
 	playsound(src.loc, 'sound/misc/slip.ogg', 50, 1, -3)
-	Stun(stun_duration)
 	Weaken(Floor(stun_duration/2))
 	return 1
 

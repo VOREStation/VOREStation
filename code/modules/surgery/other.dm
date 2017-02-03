@@ -7,7 +7,7 @@
 /datum/surgery_step/fix_vein
 	priority = 2
 	allowed_tools = list(
-	/obj/item/weapon/FixOVein = 100, \
+	/obj/item/weapon/surgical/FixOVein = 100, \
 	/obj/item/stack/cable_coil = 75
 	)
 	can_infect = 1
@@ -55,7 +55,7 @@
 /datum/surgery_step/fix_dead_tissue		//Debridement
 	priority = 2
 	allowed_tools = list(
-		/obj/item/weapon/scalpel = 100,		\
+		/obj/item/weapon/surgical/scalpel = 100,		\
 		/obj/item/weapon/material/knife = 75,	\
 		/obj/item/weapon/material/shard = 50, 		\
 	)
@@ -172,7 +172,7 @@
 /datum/surgery_step/hardsuit
 	allowed_tools = list(
 		/obj/item/weapon/weldingtool = 80,
-		/obj/item/weapon/circular_saw = 60,
+		/obj/item/weapon/surgical/circular_saw = 60,
 		/obj/item/weapon/pickaxe/plasmacutter = 100
 		)
 	req_open = 0

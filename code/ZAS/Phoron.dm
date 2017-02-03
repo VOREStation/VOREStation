@@ -40,18 +40,28 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 
 obj/var/contaminated = 0
 
+obj/var/phoronproof = 0
+
 
 /obj/item/proc/can_contaminate()
 	//Clothing and backpacks can be contaminated.
-	if(flags & PHORONGUARD) return 0
-	else if(istype(src,/obj/item/weapon/storage/backpack)) return 0 //Cannot be washed :(
-	else if(istype(src,/obj/item/clothing)) return 1
+	if(flags & PHORONGUARD)
+		return 0
+	else if(phoronproof == 1)
+		return 0
+	else if(istype(src,/obj/item/weapon/storage/backpack))
+		return 0 //Cannot be washed :(
+	else if(istype(src,/obj/item/clothing))
+		return 1
 
 /obj/item/proc/contaminate()
 	//Do a contamination overlay? Temporary measure to keep contamination less deadly than it was.
-	if(!contaminated)
-		contaminated = 1
-		overlays += contamination_overlay
+	if(!can_contaminate())
+		return
+	else
+		if(!contaminated)
+			contaminated = 1
+			overlays += contamination_overlay
 
 /obj/item/proc/decontaminate()
 	contaminated = 0
@@ -114,6 +124,15 @@ obj/var/contaminated = 0
 			src << "<span class='danger'>High levels of toxins cause you to spontaneously mutate!</span>"
 			domutcheck(src,null)
 
+/mob/living/carbon/human/vox/pl_effects()
+	//Handles all the bad things phoron can do to Vox.
+
+	//Contamination
+	if(vsc.plc.CLOTH_CONTAMINATION) contaminate()
+
+	//Anything else requires them to not be dead.
+	if(stat >= 2)
+		return
 
 /mob/living/carbon/human/proc/burn_eyes()
 	var/obj/item/organ/internal/eyes/E = internal_organs_by_name[O_EYES]

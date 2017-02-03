@@ -99,7 +99,7 @@
 	spark_system.attach(src)
 
 	add_language("Robot Talk", 1)
-	add_language("Encoded Audio Language", 1)
+	add_language(LANGUAGE_EAL, 1)
 
 	wires = new(src)
 
@@ -233,7 +233,7 @@
 		module_sprites = new_sprites.Copy()
 		//Custom_sprite check and entry
 		if (custom_sprite == 1)
-			module_sprites["Custom"] = "[src.ckey]-[modtype]"
+			module_sprites["Custom"] = "[ckey]-[name]-[modtype]" //Made compliant with custom_sprites.dm line 32. (src.) was apparently redundant as it's implied. ~Mech
 			icontype = "Custom"
 		else
 			icontype = module_sprites[1]

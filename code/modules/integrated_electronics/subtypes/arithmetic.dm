@@ -6,6 +6,7 @@
 	activators = list("compute")
 	category_text = "Arithmetic"
 	autopulse = 1
+	power_draw_per_use = 5 // Math is pretty cheap.
 
 /obj/item/integrated_circuit/arithmetic/on_data_written()
 	if(autopulse == 1)

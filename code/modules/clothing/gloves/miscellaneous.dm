@@ -82,3 +82,19 @@
 	siemens_coefficient = 0.50
 	permeability_coefficient = 0.05
 	armor = list(melee = 30, bullet = 10, laser = 10, energy = 15, bomb = 20, bio = 0, rad = 0)
+
+/obj/item/clothing/gloves/vox
+	desc = "These bizarre gauntlets seem to be fitted for... bird claws?"
+	name = "insulated gauntlets"
+	icon_state = "gloves-vox"
+	item_state = "gloves-vox"
+	item_flags = PHORONGUARD
+	siemens_coefficient = 0
+	phoronproof = 1
+	permeability_coefficient = 0.05
+	species_restricted = list("Vox")
+
+	cold_protection = HANDS
+	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
+	heat_protection = HANDS
+	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE

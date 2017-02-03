@@ -32,3 +32,10 @@
 	if(!available_turfs.len)
 		available_turfs = start_turfs
 	return pick(available_turfs)
+
+/proc/is_below_sound_pressure(var/turf/T)
+	var/datum/gas_mixture/environment = T ? T.return_air() : null
+	var/pressure =  environment ? environment.return_pressure() : 0
+	if(pressure < SOUND_MINIMUM_PRESSURE)
+		return TRUE
+	return FALSE
