@@ -705,9 +705,11 @@
 	suit_type = "nano"
 	desc = "A thin collapsable spacesuit for synths from Kitsuhana Heavy Industries."
 	airtight = 1 //Not because it should be airtight but because suit coolers don't work w/o it.
+	armor = list(melee = 25, bullet = 15, laser = 15, energy = 60, bomb = 30, bio = 70, rad = 100)
+	air_type = null //No O2 tank, why would it have one?
 
 	cell_type =  /obj/item/weapon/cell/hyper
-	req_access = list(access_cent_general)
+	req_access = list(access_medical)
 
 	initial_modules = list(
 		/obj/item/rig_module/maneuvering_jets,
