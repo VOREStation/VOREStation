@@ -45,4 +45,5 @@
 		if(!C.stat)
 			var/turf/T = get_turf(C)
 			if(istype(T, /turf/space))
-				qdel(C)
+				if(!prob(25))
+					qdel(C)

@@ -4,9 +4,10 @@
 	extended_desc = "Logic circuits will treat a null, 0, and a \"\" string value as FALSE and anything else as TRUE."
 	complexity = 3
 	outputs = list("result")
-	activators = list("compare", "on true result")
+	activators = list("compare", "on true result", "on false result")
 	category_text = "Logic"
 	autopulse = 1
+	power_draw_per_use = 1
 
 /obj/item/integrated_circuit/logic/on_data_written()
 	if(autopulse == 1)
@@ -14,10 +15,13 @@
 
 /obj/item/integrated_circuit/logic/do_work()
 	var/datum/integrated_io/O = outputs[1]
-	var/datum/integrated_io/P = activators[2]
+	var/datum/integrated_io/T = activators[2]
+	var/datum/integrated_io/F = activators[3]
 	O.push_data()
 	if(O.data)
-		P.push_data()
+		T.push_data()
+	else
+		F.push_data()
 
 /obj/item/integrated_circuit/logic/binary
 	inputs = list("A","B")
@@ -52,6 +56,15 @@
 
 /obj/item/integrated_circuit/logic/binary/equals/do_compare(var/datum/integrated_io/A, var/datum/integrated_io/B)
 	return A.data == B.data
+
+/obj/item/integrated_circuit/logic/binary/not_equals
+	name = "not equal gate"
+	desc = "This gate compares two values, and outputs the number one if both are different."
+	icon_state = "not equal"
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
+/obj/item/integrated_circuit/logic/binary/not_equals/do_compare(var/datum/integrated_io/A, var/datum/integrated_io/B)
+	return A.data != B.data
 
 /obj/item/integrated_circuit/logic/binary/and
 	name = "and gate"

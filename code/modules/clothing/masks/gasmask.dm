@@ -52,6 +52,15 @@
 	siemens_coefficient = 0.7
 	body_parts_covered = FACE|EYES
 
+/obj/item/clothing/mask/gas/swat/vox
+	name = "\improper alien mask"
+	desc = "Clearly not designed for a human face."
+	body_parts_covered = 0 //Hack to allow vox to eat while wearing this mask.
+	item_flags = BLOCK_GAS_SMOKE_EFFECT | AIRTIGHT | PHORONGUARD
+	phoronproof = 1
+	species_restricted = list("Vox")
+	filtered_gases = list("oxygen", "sleeping_agent")
+
 /obj/item/clothing/mask/gas/syndicate
 	name = "tactical mask"
 	desc = "A close-fitting tactical mask that can be connected to an air supply."

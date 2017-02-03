@@ -65,6 +65,32 @@
 
 
 
+/datum/unit_test/integrated_circuits/not_equals_1
+	name = "Logic Circuits: Not Equals - String True"
+	circuit_type = /obj/item/integrated_circuit/logic/binary/not_equals
+	inputs_to_give = list("Test", "Nope")
+	expected_outputs = list(TRUE)
+
+/datum/unit_test/integrated_circuits/not_equals_2
+	name = "Logic Circuits: Not Equals - String False"
+	circuit_type = /obj/item/integrated_circuit/logic/binary/not_equals
+	inputs_to_give = list("Test", "Test")
+	expected_outputs = list(FALSE)
+
+/datum/unit_test/integrated_circuits/not_equals_3
+	name = "Logic Circuits: Not Equals - Number True"
+	circuit_type = /obj/item/integrated_circuit/logic/binary/not_equals
+	inputs_to_give = list(150, 20)
+	expected_outputs = list(TRUE)
+
+/datum/unit_test/integrated_circuits/not_equals_4
+	name = "Logic Circuits: Not Equals - Number False"
+	circuit_type = /obj/item/integrated_circuit/logic/binary/not_equals
+	inputs_to_give = list(100, 100)
+	expected_outputs = list(FALSE)
+
+
+
 /datum/unit_test/integrated_circuits/and_1
 	name = "Logic Circuits: And - True"
 	circuit_type = /obj/item/integrated_circuit/logic/binary/and

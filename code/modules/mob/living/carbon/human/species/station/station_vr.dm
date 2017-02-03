@@ -299,6 +299,7 @@
 	icobase = 'icons/mob/human_races/r_tajaran_vr.dmi'
 	deform = 'icons/mob/human_races/r_def_tajaran_vr.dmi'
 	min_age = 18
+	gluttonous = 0 //Moving this here so I don't have to fix this conflict every time polaris glances at station.dm
 
 /datum/species/skrell
 	spawn_flags = SPECIES_CAN_JOIN
@@ -326,6 +327,12 @@
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
 	min_age = 18
 
+/datum/species/vox
+	gluttonous = 0
+	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
+	min_age = 18
+
 /datum/species
 	holder_type = /obj/item/weapon/holder/micro //This allows you to pick up crew
 	min_age = 18
+

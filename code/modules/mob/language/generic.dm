@@ -20,7 +20,7 @@
 
 // 'basic' language; spoken by default.
 /datum/language/common
-	name = "Galactic Common"
+	name = LANGUAGE_GALCOM
 	desc = "The common galactic tongue."
 	speech_verb = "says"
 	whisper_verb = "whispers"
@@ -39,7 +39,7 @@
 
 // Galactic common languages (systemwide accepted standards).
 /datum/language/trader
-	name = "Tradeband"
+	name = LANGUAGE_TRADEBAND
 	desc = "Maintained by the various trading cartels in major systems, this elegant, structured language is used for bartering and bargaining."
 	speech_verb = "enunciates"
 	colour = "say_quote"
@@ -56,7 +56,7 @@
 
 // Criminal language.
 /datum/language/gutter
-	name = "Gutter"
+	name = LANGUAGE_GUTTER
 	desc = "There is no true language named Gutter. 'Gutter' is a catchall term for a collection of unofficial SolCom dialects that has somehow managed to spread across the stars."
 	speech_verb = "growls"
 	colour = "rough"
@@ -115,7 +115,7 @@
 "his", "ing", "ion", "ith", "not", "ome", "oul", "our", "sho", "ted", "ter", "tha", "the", "thi")
 
 /datum/language/sign
-	name = "Sign Language"
+	name = LANGUAGE_SIGN
 	desc = "A sign language commonly used for those who are deaf or mute."
 	signlang_verb = list("gestures")
 	colour = "say_quote"

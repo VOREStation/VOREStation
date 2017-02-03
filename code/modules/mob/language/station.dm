@@ -1,6 +1,6 @@
-/datum/language/diona
-	name = "Rootspeak"
-	desc = "A creaking, subvocal language spoken instinctively by the Dionaea. Due to the unique makeup of the average Diona, a phrase of Rootspeak can be a combination of anywhere from one to twelve individual voices and notes."
+/datum/language/diona_local
+	name = LANGUAGE_ROOTLOCAL
+	desc = "A complex language known instinctively by Dionaea, 'spoken' by emitting modulated radio waves. This version uses high frequency waves for quick communication at short ranges."
 	speech_verb = "creaks and rustles"
 	ask_verb = "creaks"
 	exclaim_verb = "rustles"
@@ -9,13 +9,19 @@
 	flags = RESTRICTED
 	syllables = list("hs","zt","kr","st","sh")
 
-/datum/language/diona/get_random_name()
+/datum/language/diona_local/get_random_name()
 	var/new_name = "[pick(list("To Sleep Beneath","Wind Over","Embrace of","Dreams of","Witnessing","To Walk Beneath","Approaching the"))]"
 	new_name += " [pick(list("the Void","the Sky","Encroaching Night","Planetsong","Starsong","the Wandering Star","the Empty Day","Daybreak","Nightfall","the Rain"))]"
 	return new_name
 
+/datum/language/diona_global
+	name = LANGUAGE_ROOTGLOBAL
+	desc = "A complex language known instinctively by Dionaea, 'spoken' by emitting modulated radio waves. This version uses low frequency waves for slow communication at long ranges."
+	key = "w"
+	flags = RESTRICTED | HIVEMIND
+
 /datum/language/unathi
-	name = "Sinta'unathi"
+	name = LANGUAGE_UNATHI
 	desc = "The common language of Moghes, composed of sibilant hisses and rattles. Spoken natively by Unathi."
 	speech_verb = "hisses"
 	ask_verb = "hisses"
@@ -42,7 +48,7 @@
 	return capitalize(new_name)
 
 /datum/language/tajaran
-	name = "Siik"
+	name = LANGUAGE_SIIK
 	desc = "The most prevalant language of Meralar, composed of expressive yowls and chirps. Native to the Tajaran."
 	speech_verb = "mrowls"
 	ask_verb = "mrowls"
@@ -65,7 +71,7 @@
 	return new_name
 
 /datum/language/skrell
-	name = "Skrellian"
+	name = LANGUAGE_SKRELLIAN
 	desc = "A melodic and complex language spoken by the Skrell of Qerrbalak. Some of the notes are inaudible to humans."
 	speech_verb = "warbles"
 	ask_verb = "warbles"
@@ -76,7 +82,7 @@
 	syllables = list("qr","qrr","xuq","qil","quum","xuqm","vol","xrim","zaoo","qu-uu","qix","qoo","zix","*","!")
 
 /datum/language/human
-	name = "Sol Common"
+	name = LANGUAGE_SOL_COMMON
 	desc = "A bastardized hybrid of informal English and elements of Mandarin Chinese; the common language of the Sol system."
 	speech_verb = "says"
 	whisper_verb = "whispers"
@@ -104,8 +110,8 @@
 		return ..()
 
 /datum/language/machine
-	name = "Encoded Audio Language"
-	desc = "A efficient language of encoded tones developed by synthetics and cyborgs."
+	name = LANGUAGE_EAL
+	desc = "An efficient language of encoded tones developed by synthetics and cyborgs."
 	speech_verb = "whistles"
 	ask_verb = "chirps"
 	exclaim_verb = "whistles loudly"
@@ -127,7 +133,7 @@
 		return pick(ai_names)
 
 /datum/language/seromi
-	name = "Schechi"
+	name = LANGUAGE_SCHECHI
 	desc = "A trilling language spoken by the diminutive Teshari."
 	speech_verb = "chirps"
 	ask_verb = "chirrups"

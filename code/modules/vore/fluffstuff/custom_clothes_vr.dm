@@ -151,7 +151,7 @@
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	allowed = list(
-				/obj/item/weapon/tank/emergency_oxygen,
+				/obj/item/weapon/tank/emergency/oxygen,
 				/obj/item/device/flashlight,
 				/obj/item/weapon/gun/energy,
 				/obj/item/weapon/gun/projectile,
@@ -221,7 +221,7 @@
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	allowed = list(
-				/obj/item/weapon/tank/emergency_oxygen,
+				/obj/item/weapon/tank/emergency/oxygen,
 				/obj/item/device/flashlight,
 				/obj/item/weapon/gun/energy,
 				/obj/item/weapon/gun/projectile,
@@ -885,7 +885,7 @@
 	icon_state = "octavgentlecoat"
 	item_state = "octavgentlecoat_mob"
 	blood_overlay_type = "coat"
-	allowed = list(/obj/item/weapon/tank/emergency_oxygen, /obj/item/device/flashlight,/obj/item/weapon/gun/energy,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/device/taperecorder,/obj/item/device/uv_light)
+	allowed = list(/obj/item/weapon/tank/emergency/oxygen, /obj/item/device/flashlight,/obj/item/weapon/gun/energy,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/device/taperecorder,/obj/item/device/uv_light)
 
 //bwoincognito:Octavious Ward
 /obj/item/clothing/under/det/fluff/octavious

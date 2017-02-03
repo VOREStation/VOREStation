@@ -297,7 +297,8 @@
 		return
 	var/savefile/F = get_server_news()
 	if(F)
-		client.last_news_hash = md5(F["body"])
+		client.prefs.lastnews = md5(F["body"])
+		client.prefs.save_preferences()
 
 		var/dat = "<html><body><center>"
 		dat += "<h1>[F["title"]]</h1>"
