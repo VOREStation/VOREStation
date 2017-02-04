@@ -1333,6 +1333,11 @@
 /* HUD shit goes here, as long as it doesn't modify sight flags */
 // The purpose of this is to stop xray and w/e from preventing you from using huds -- Love, Doohl
 		var/obj/item/clothing/glasses/hud/O = G
+		//VOREStation Add - Support for omnihud glasses
+		if(istype(G, /obj/item/clothing/glasses/sunglasses/omnihud))
+			var/obj/item/clothing/glasses/sunglasses/omnihud/S = G
+			O = S.hud
+        //VOREStation Add End
 		if(istype(G, /obj/item/clothing/glasses/sunglasses/sechud))
 			var/obj/item/clothing/glasses/sunglasses/sechud/S = G
 			O = S.hud
