@@ -6,6 +6,8 @@
 	siemens_coefficient = 1 //Prevents them from being immune to tasers and stun weapons.
 	death_message = "goes limp, their body becoming softer..."
 	color_mult = 1
+	spawn_flags = SPECIES_CAN_JOIN
+	mob_size = MOB_MEDIUM
 
 /datum/species/shapeshifter/promethean/handle_death(var/mob/living/carbon/human/H)
 	return //This nullifies them gibbing.
