@@ -9596,7 +9596,7 @@
 "dCB" = (/obj/structure/bed/chair/wood{dir = 1},/obj/effect/floor_decal/corner/green{dir = 9},/turf/simulated/floor/tiled,/area/hydroponics/garden)
 "dCC" = (/obj/effect/floor_decal/corner/green/full{dir = 4},/turf/simulated/floor/tiled,/area/hydroponics/garden)
 "dCD" = (/obj/effect/floor_decal/corner/green/full,/turf/simulated/floor/tiled,/area/hydroponics/garden)
-"dCE" = (/obj/structure/closet,/obj/item/clothing/glasses/welding,/obj/item/weapon/weldingtool,/obj/effect/decal/cleanable/dirt,/obj/item/clothing/shoes/workboots,/obj/random/maintenance/engineering,/obj/random/maintenance/cargo,/obj/random/maintenance/engineering,/turf/simulated/floor/plating,/area/maintenance/apmaint)
+"dCE" = (/obj/structure/closet,/obj/item/clothing/glasses/welding,/obj/item/weapon/weldingtool,/obj/effect/decal/cleanable/dirt,/obj/item/clothing/shoes/boots/workboots,/obj/random/maintenance/engineering,/obj/random/maintenance/cargo,/obj/random/maintenance/engineering,/turf/simulated/floor/plating,/area/maintenance/apmaint)
 "dCF" = (/obj/effect/floor_decal/corner/green{dir = 9},/turf/simulated/floor/tiled,/area/hydroponics/garden)
 "dCG" = (/obj/effect/floor_decal/corner/green{dir = 6},/turf/simulated/floor/tiled,/area/hydroponics/garden)
 "dCH" = (/obj/effect/floor_decal/corner/green,/turf/simulated/floor/tiled,/area/hydroponics/garden)
