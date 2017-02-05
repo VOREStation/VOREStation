@@ -101,23 +101,20 @@
 
  	. += "<h2>Hair & Accessories</h2>"
 
-		if(species in list("Unathi", "Vulpkanin", "Tajaran")) //Species that have head accessories.
-			var/headaccessoryname = "Head Accessory: "
-			if(species == "Unathi")
-				headaccessoryname = "Horns: "
-			. += "<b>[headaccessoryname]</b>"
+		if(species.HAS_HEAD_ACCESSORY) //Species that have head accessories.
+			. += "<b>Head Accessories:</b> "
 			. += "<a href='?_src_=prefs;preference=ha_style;task=input'>[pref.ha_style]</a> "
 			. += "<a href='?_src_=prefs;preference=headaccessory;task=input'>Color</a> [color_square(pref.r_headacc, pref.g_headacc, pref.b_headacc)]<br>"
 
-		if(species in list("Tajaran", "Unathi", "Vulpkanin")) //Species with head markings.
+		if(species.HAS_HEAD_MARKINGS) //Species with head markings.
 			. += "<b>Head Markings:</b> "
 			. += "<a href='?_src_=prefs;preference=m_style_head;task=input'>[pref.m_styles["head"]]</a>"
 			. += "<a href='?_src_=prefs;preference=m_head_colour;task=input'>Color</a> [color_square(color2R(m_colours["head"]), color2G(m_colours["head"]), color2B(m_colours["head"]))]<br>"
-		if(species in list("Human", "Unathi", "Vulpkanin", "Tajaran", "Skrell")) //Species with body markings/tattoos.
+		if(species.HAS_BODY_MARKINGS) //Species with body markings/tattoos.
 			. += "<b>Body Markings:</b> "
 			. += "<a href='?_src_=prefs;preference=m_style_body;task=input'>[pref.m_styles["body"]]</a>"
 			. += "<a href='?_src_=prefs;preference=m_body_colour;task=input'>Color</a> [color_square(color2R(m_colours["body"]), color2G(m_colours["body"]), color2B(m_colours["body"]))]<br>"
-		if(species in list("Vulpkanin")) //Species with tail markings.
+		if(species.HAS_TAIL_MARKINGS) //Species with tail markings.
 			. += "<b>Tail Markings:</b> "
 			. += "<a href='?_src_=prefs;preference=m_style_tail;task=input'>[pref.m_styles["tail"]]</a>"
 			. += "<a href='?_src_=prefs;preference=m_tail_colour;task=input'>Color</a> [color_square(color2R(m_colours["tail"]), color2G(m_colours["tail"]), color2B(m_colours["tail"]))]<br>"
@@ -138,75 +135,63 @@
 			. += " <a href='?_src_=prefs;preference=secondary_facial;task=input'>Color #2</a> [color_square(pref.r_facial_sec, pref.g_facial_sec, pref.b_facial_sec)]"
 		. += "<br>"
 
-		if((species in list("Unathi", "Tajaran", "Skrell", "Vulpkanin")) || body_accessory_by_species[pref.species] || check_rights(R_ADMIN, 0, user)) //admins can always fuck with this, because they are admins
+		if((species.HAS_BODY_ACCESSORY) || body_accessory_by_species[pref.species] || check_rights(R_ADMIN, 0, user)) //admins can always fuck with this, because they are admins
 			. += "<b>Body Color:</b> "
 			. += "<a href='?_src_=prefs;preference=skin;task=input'>Color</a> [color_square(r_skin, g_skin, b_skin)]<br>"
 
-		if(body_accessory_by_species[species] || check_rights(R_ADMIN, 0, user))
+/*		if(body_accessory_by_species[species] || check_rights(R_ADMIN, 0, user))
 			. += "<b>Body Accessory:</b> "
 			. += "<a href='?_src_=prefs;preference=body_accessory;task=input'>[body_accessory ? "[body_accessory]" : "None"]</a><br>"
-
+*/
 /datum/category_item/player_setup_item/vore/markings/OnTopic(var/href,var/list/href_list, var/mob/user)
 	var/datum/species/mob_species = all_species[pref.species]
 		if("hair")
-			if(species in list("Human", "Unathi", "Tajaran", "Skrell", "Vulpkanin"))
+			if(species.HAS_HAIR_COLOR)
 				pref.r_hair = rand(0,255)
 				pref.g_hair = rand(0,255)
 				pref.b_hair = rand(0,255)
 		if("secondary_hair")
-			if(species in list("Human", "Unathi", "Tajaran", "Skrell", "Vulpkanin"))
+			if(species.HAS_HAIR_COLOR)
 				pref.r_hair_sec = rand(0,255)
 				pref.g_hair_sec = rand(0,255)
 				pref.b_hair_sec = rand(0,255)
 		if("h_style")
 			h_style = random_hair_style(gender, species)
 		if("facial")
-			if(species in list("Human", "Unathi", "Tajaran", "Skrell", "Vulpkanin"))
+			if(species.HAS_HAIR_COLOR)
 				pref.r_facial = rand(0,255)
 				pref.g_facial = rand(0,255)
 				pref.b_facial = rand(0,255)
 		if("secondary_facial")
-			if(species in list("Human", "Unathi", "Tajaran", "Skrell", "Vulpkanin"))
+			if(species.HAS_HAIR_COLOR)
 				pref.r_facial_sec = rand(0,255)
 				pref.g_facial_sec = rand(0,255)
 				pref.b_facial_sec = rand(0,255)
 		if("f_style")
 			pref.f_style = random_facial_hair_style(gender, species)
 		if("headaccessory")
-			if(species in list("Unathi", "Vulpkanin", "Tajaran")) //Species that have head accessories.
+			if(species.HAS_HEAD_ACCESSORY) //Species that have head accessories.
 				pref.r_headacc = rand(0,255)
 				pref.g_headacc = rand(0,255)
 				pref.b_headacc = rand(0,255)
 		if("ha_style")
-			if(species in list("Unathi", "Vulpkanin", "Tajaran")) //Species that have head accessories.
+			if(species.HAS_HEAD_ACCESSORY) //Species that have head accessories.
 				pref.ha_style = random_head_accessory(species)
 		if("m_style_head")
-			if(species in list("Tajaran", "Unathi", "Vulpkanin")) //Species with head markings.
+			if(species.HAS_HEAD_MARKINGS) //Species with head markings.
 				pref.m_styles["head"] = random_marking_style("head", species, null)
 		if("m_head_colour")
-			if(species in list("Tajaran", "Unathi", "Vulpkanin")) //Species with head markings.
+			if(species.HAS_HEAD_MARKINGS) //Species with head markings.
 				pref.m_colours["head"] = rgb(rand(0,255), rand(0,255), rand(0,255))
 		if("m_style_body")
-			if(species in list("Human", "Unathi", "Vulpkanin", "Tajaran", "Skrell")) //Species with body markings.
+			if(species.HAS_BODY_MARKINGS) //Species with body markings.
 				pref.m_styles["body"] = random_marking_style("body", species)
 		if("m_body_colour")
-			if(species in list("Human", "Unathi", "Vulpkanin", "Tajaran", "Skrell")) //Species with body markings.
+			if(species.HAS_BODY_MARKINGS) //Species with body markings.
 				pref.m_colours["body"] = rgb(rand(0,255), rand(0,255), rand(0,255))
 		if("m_style_tail")
-			if(species in list("Vulpkanin")) //Species with tail markings.
+			if(species.HAS_TAIL_MARKINGS) //Species with tail markings.
 				pref.m_styles["tail"] = random_marking_style("tail", species, null, body_accessory)
 		if("m_tail_colour")
-			if(species in list("Vulpkanin")) //Species with tail markings.
+			if(species.HAS_TAIL_MARKINGS) //Species with tail markings.
 				pref.m_colours["tail"] = rgb(rand(0,255), rand(0,255), rand(0,255))
-
-/datum/category_item/player_setup_item/vore/markings/content(var/mob/user)
-	. += "<h2>VORE Station Settings</h2>"
-	if(!user || !user.client)
-		return
-	update_preview_icon()
-	user << browse_rsc(preview_icon_front, "previewicon.png")
-	user << browse_rsc(preview_icon_side, "previewicon2.png")
-
-	var/. = ""
-	. += "<center>"
-	. += "<a href='?_src_=prefs;preference=tab;tab=[TAB_CHAR]' [current_tab == TAB_CHAR ? "class='linkOn'" : ""]>Character Settings</a>"

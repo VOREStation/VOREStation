@@ -244,7 +244,7 @@
 	primitive_form = "Wolpin"
 
 	spawn_flags = SPECIES_CAN_JOIN
-	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR | HAS_HEAD_ACCESSORY | HAS_BODY_MARKINGS | HAS_HEAD_MARKINGS | HAS_TAIL_MARKINGS
 
 	flesh_color = "#966464"
 	base_color = "#B43214"
@@ -293,6 +293,7 @@
 /datum/species/unathi
 	spawn_flags = SPECIES_CAN_JOIN //Species_can_join is the only spawn flag all the races get, so that none of them will be whitelist only if whitelist is enabled.
 	min_age = 18
+	appearance_flags = HAS_HEAD_ACCESSORY | HAS_BODY_MARKINGS | HAS_HEAD_MARKINGS
 
 /datum/species/tajaran
 	spawn_flags = SPECIES_CAN_JOIN
@@ -300,6 +301,7 @@
 	deform = 'icons/mob/human_races/r_def_tajaran_vr.dmi'
 	min_age = 18
 	gluttonous = 0 //Moving this here so I don't have to fix this conflict every time polaris glances at station.dm
+	appearance_flags = HAS_HEAD_ACCESSORY | HAS_BODY_MARKINGS | HAS_HEAD_MARKINGS
 
 /datum/species/skrell
 	spawn_flags = SPECIES_CAN_JOIN
@@ -324,7 +326,7 @@
 	color_mult = 1
 	icobase = 'icons/mob/human_races/r_human_vr.dmi'
 	deform = 'icons/mob/human_races/r_def_human_vr.dmi'
-	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
+	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR | HAS_BODY_MARKINGS
 	min_age = 18
 
 /datum/species/vox
