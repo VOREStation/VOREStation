@@ -6,8 +6,8 @@
 	species_restricted = list("Monkey")
 
 /mob/living/carbon/human/monkey/punpun/New()
-	..()
 	spawn(1)
+		..()
 		name = "Pun Pun"
 		real_name = name
 		w_uniform = new /obj/item/clothing/under/punpun(src)
