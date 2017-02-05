@@ -313,6 +313,8 @@
 	spawn_flags = SPECIES_CAN_JOIN
 	min_age = 18
 
+/datum/species/shapeshifter/promethean
+	spawn_flags = SPECIES_CAN_JOIN
 
 /datum/species/teshari
 	mob_size = MOB_MEDIUM
