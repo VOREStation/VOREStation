@@ -195,6 +195,24 @@
 		// Technically custom_species is not part of the UI, but this place avoids merge problems.
 		H.custom_species = dna.custom_species
 
+		//Marking Colors
+		H.m_colours["head"] = rgb(dna.GetUIValueRange(DNA_UI_HEAD_MARK_R, 255), dna.GetUIValueRange(DNA_UI_HEAD_MARK_G, 255), dna.GetUIValueRange(DNA_UI_HEAD_MARK_B, 255))
+		H.m_colours["body"] = rgb(dna.GetUIValueRange(DNA_UI_BODY_MARK_R, 255), dna.GetUIValueRange(DNA_UI_BODY_MARK_G, 255), dna.GetUIValueRange(DNA_UI_BODY_MARK_B, 255))
+		H.m_colours["tail"] = rgb(dna.GetUIValueRange(DNA_UI_TAIL_MARK_R, 255), dna.GetUIValueRange(DNA_UI_TAIL_MARK_G, 255), dna.GetUIValueRange(DNA_UI_TAIL_MARK_B, 255))
+
+		//Head Markings
+		var/head_marks = dna.GetUIValueRange(DNA_UI_HEAD_MARK_STYLE, marking_styles_list.len)
+		if((head_marks > 0) && (head_marks <= marking_styles_list.len))
+			H.m_styles["head"] = marking_styles_list[head_marks]
+		//Body Markings
+		var/body_marks = dna.GetUIValueRange(DNA_UI_BODY_MARK_STYLE, marking_styles_list.len)
+		if((body_marks > 0) && (body_marks <= marking_styles_list.len))
+			H.m_styles["body"] = marking_styles_list[body_marks]
+		//Tail Markings
+		var/tail_marks = dna.GetUIValueRange(DNA_UI_TAIL_MARK_STYLE, marking_styles_list.len)
+		if((tail_marks > 0) && (tail_marks <= marking_styles_list.len))
+			H.m_styles["tail"] = marking_styles_list[tail_marks]
+
 		// VOREStation Edit End
 
 		H.force_update_limbs()

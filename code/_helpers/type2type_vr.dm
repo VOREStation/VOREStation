@@ -105,3 +105,24 @@
 		.          += copytext(text, last_found, found)
 		last_found  = found + delim_len
 	while (found)
+
+//Returns an integer value for R of R/G/B given a hex color input.
+/proc/color2R(hex)
+	if(!(istext(hex)))
+		return
+
+	return hex2num(copytext(hex, 2, 4)) //Returning R
+
+//Returns an integer value for G of R/G/B given a hex color input.
+/proc/color2G(hex)
+	if(!(istext(hex)))
+		return
+
+	return hex2num(copytext(hex, 4, 6)) //Returning G
+
+//Returns an integer value for B of R/G/B given a hex color input.
+/proc/color2B(hex)
+	if(!(istext(hex)))
+		return
+
+	return hex2num(copytext(hex, 6, 8)) //Returning B

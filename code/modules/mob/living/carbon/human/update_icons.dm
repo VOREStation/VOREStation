@@ -333,6 +333,15 @@ var/global/list/damage_icon_parts = list()
 	//tail
 	update_tail_showing(0)
 
+	// Markings needed VOREStation
+	//tail
+	update_tail_layer(0)
+	//head accessory
+	update_head_accessory(0)
+	//markings
+	update_markings(0)
+	// Finished Markings
+
 //UNDERWEAR OVERLAY
 /mob/living/carbon/human/proc/update_underwear(var/update_icons=1)
 	overlays_standing[UNDERWEAR_LAYER] = null
