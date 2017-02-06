@@ -3,6 +3,7 @@
 	force = 10 //still a robot
 	anchored = 0 //light enough to push and pull, but you still can't just walk past them. Like people on non-help.
 	opacity = 0 //small enough to see around, like people.
+	step_energy_drain = 2 // They're light and small. A compact is gonna get better MPG than a truck.
 	var/melee_cooldown = 10
 	var/melee_can_hit = 1
 	var/list/destroyable_obj = list(/obj/mecha, /obj/structure/window, /obj/structure/grille, /turf/simulated/wall)
@@ -239,19 +240,6 @@
 		onclose(occupant, "sam", src)
 	return
 */
-/obj/mecha/micro/moved_inside(var/mob/living/carbon/human/H as mob)
-	if(..())
-		if(H.client)
-			H.client.mouse_pointer_icon = file("icons/mecha/mecha_mouse.dmi")
-		return 1
-	else
-		return 0
-
-/obj/mecha/micro/go_out()
-	if(src.occupant && src.occupant.client)
-		src.occupant.client.mouse_pointer_icon = initial(src.occupant.client.mouse_pointer_icon)
-	..()
-	return
 
 /obj/mecha/micro/Topic(href,href_list)
 	..()
@@ -298,5 +286,12 @@
 		playsound(src,'sound/mecha/mechmove04.ogg',40,1)
 	return result
 
+/obj/mecha/micro/mechsteprand()
+	var/result = step_rand(src)
+	if(result)
+		playsound(src,'sound/mecha/mechmove04.ogg',40,1)
+	return result
+
 /obj/effect/decal/mecha_wreckage/micro
 	icon = 'icons/mecha/micro.dmi'
+

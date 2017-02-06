@@ -728,6 +728,7 @@
 #include "code\game\mecha\micro\micro.dm"
 #include "code\game\mecha\micro\micro_equipment.dm"
 #include "code\game\mecha\micro\security.dm"
+#include "code\game\mecha\micro\utility.dm"
 #include "code\game\mecha\working\hoverpod.dm"
 #include "code\game\mecha\working\ripley.dm"
 #include "code\game\mecha\working\working.dm"
