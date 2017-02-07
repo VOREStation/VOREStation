@@ -25,6 +25,8 @@
 
 	var/list/decals
 
+	var/movement_cost = 0       // How much the turf slows down movement, if any.
+
 /turf/New()
 	..()
 	for(var/atom/movable/AM as mob|obj in src)

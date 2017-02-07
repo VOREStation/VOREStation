@@ -55,6 +55,7 @@
 			S.update_starlight()
 
 		W.levelupdate()
+		W.update_icon(1)
 		. = W
 
 	else
@@ -74,6 +75,7 @@
 			S.update_starlight()
 
 		W.levelupdate()
+		W.update_icon(1)
 		. =  W
 
 	lighting_overlay = old_lighting_overlay
