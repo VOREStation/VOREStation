@@ -559,3 +559,10 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 		user.set_id_info(src)
 		configured = 1
 		user << "<span class='notice'>Card settings set.</span>"
+
+//WickedTempest: Chakat Tempest
+/obj/item/weapon/reagent_containers/hypospray/vr/tempest
+	desc = "A custom-made MKII hypospray belonging to Chakat Tempest. There's small print engraved on the handle: A medicine-cat has no time for doubt. Act now, act swiftly."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	item_state = "temphypo"
+	icon_state = "temphypo"
