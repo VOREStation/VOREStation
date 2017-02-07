@@ -1,5 +1,4 @@
 //DO NOT ADD MECHA PARTS TO THE GAME WITH THE DEFAULT "SPRITE ME" SPRITE!
-//I'm annoyed I even have to tell you this! SPRITE FIRST, then commit.
 
 /////////////////////////////
 ////    WEAPONS BELOW    ////

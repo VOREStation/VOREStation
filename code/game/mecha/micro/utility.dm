@@ -1,6 +1,6 @@
 
 
-/obj/mecha/micro/utility/gopher //figured give 'em the names of small predatory critters
+/obj/mecha/micro/utility/gopher //small digging creature, to keep the theme
 	desc = "A tough little utility mech for micro crewmembers, based on a miner borg chassis."
 	name = "Gopher"
 	icon_state = "gopher"
