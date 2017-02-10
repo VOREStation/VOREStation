@@ -32,8 +32,12 @@
 		if(!stat && !resting && !buckled)
 			for(var/mob/living/simple_animal/mouse/M in loc)
 				if(!M.stat)
-					M.splat()
-					visible_emote(pick("bites \the [M]!","toys with \the [M].","chomps on \the [M]!"))
+					//VOREStation Edit - For cats to eat mice.
+					animal_nom(M)
+					sleep(swallowTime)
+					//M.splat()
+					//visible_emote(pick("bites \the [M]!","toys with \the [M].","chomps on \the [M]!"))
+					//VOREStation Edit End.
 					movement_target = null
 					stop_automated_movement = 0
 					break
