@@ -38,3 +38,27 @@
 	name = "\improper Long-Range Teleporter"
 	icon_state = "teleporter"
 	music = "signal"
+
+/area/shuttle/administration/transit
+	name = "Deep Space (AS)"
+	icon_state = "shuttle"
+
+/area/shuttle/administration/away_mission
+	name = "Away Mission (AS)"
+	icon_state = "shuttle"
+
+/area/shuttle/awaymission/home
+	name = "NSS Adephagia (AM)"
+	icon_state = "shuttle2"
+
+/area/shuttle/awaymission/warp
+	name = "Deep Space (AM)"
+	icon_state = "shuttle"
+
+/area/shuttle/awaymission/away
+	name = "Away Mission (AM)"
+	icon_state = "shuttle2"
+
+/area/shuttle/awaymission/oldengbase
+	name = "Old Construction Site (AM)"
+	icon_state = "shuttle2"
