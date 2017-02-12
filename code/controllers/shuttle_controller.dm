@@ -410,7 +410,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle.dock_target_station = "belter_nodocking" //Fake tags to prevent the shuttle from opening doors.
 	shuttle.dock_target_offsite = "belter_nodocking"
 	shuttle.transit_direction = EAST
-	shuttle.move_time = 20 + rand(10,30)
+	shuttle.move_time = 60 + rand(10,40)
 	process_shuttles += shuttle
 	shuttles["Belter"] = shuttle
 	//VOREStation Add End - Belter Shuttle

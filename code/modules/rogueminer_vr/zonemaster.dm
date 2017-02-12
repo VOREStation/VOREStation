@@ -1,0 +1,5 @@
+//////////////////////////////
+// The zonemaster object, spawned to track the zone and
+// update progress as it is made.
+//////////////////////////////
+

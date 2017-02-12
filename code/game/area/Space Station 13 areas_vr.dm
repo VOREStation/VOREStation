@@ -39,6 +39,7 @@
 	icon_state = "teleporter"
 	music = "signal"
 
+// New shuttles
 /area/shuttle/administration/transit
 	name = "Deep Space (AS)"
 	icon_state = "shuttle"
@@ -75,3 +76,20 @@
 /area/shuttle/belter/transit
 	name = "Belter Shuttle Warp"
 	icon_state = "shuttle"
+
+//Rouguelike Mining
+/area/asteroid/rogue/zone1
+	name = "Asteroid Belt Zone 1"
+	icon_state = "red2"
+
+/area/asteroid/rogue/zone2
+	name = "Asteroid Belt Zone 2"
+	icon_state = "blue2"
+
+/area/asteroid/rogue/zone3
+	name = "Asteroid Belt Zone 3"
+	icon_state = "blue2"
+
+/area/asteroid/rogue/zone4
+	name = "Asteroid Belt Zone 4"
+	icon_state = "red2"
