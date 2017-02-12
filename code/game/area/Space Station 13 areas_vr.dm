@@ -62,3 +62,16 @@
 /area/shuttle/awaymission/oldengbase
 	name = "Old Construction Site (AM)"
 	icon_state = "shuttle2"
+
+/area/shuttle/belter/station
+	name = "Belter Shuttle Landed"
+	icon_state = "shuttle2"
+	base_turf = /turf/simulated/floor/tiled/asteroid_steel/airless
+
+/area/shuttle/belter/belt
+	name = "Belter Shuttle Holding Position"
+	icon_state = "shuttle2"
+
+/area/shuttle/belter/transit
+	name = "Belter Shuttle Warp"
+	icon_state = "shuttle"
