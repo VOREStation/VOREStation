@@ -178,7 +178,7 @@ obj/aiming_overlay/proc/update_aiming_deferred()
 	toggle_active(1)
 	locked = 0
 	update_icon()
-	lock_time = world.time + 35
+	lock_time = world.time + 25
 
 /obj/aiming_overlay/update_icon()
 	if(locked)
