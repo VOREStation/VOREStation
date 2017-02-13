@@ -13,6 +13,8 @@ var/datum/controller/rogue/rm_controller = new()
 	//The current mining zone that the shuttle goes to and whatnot
 	var/area/current
 
+	var/debugging = 0
+
 /datum/controller/rogue/New()
 	//How many zones are we working with here
 	for(var/area/asteroid/rogue/A in world)
@@ -24,3 +26,8 @@ var/datum/controller/rogue/rm_controller = new()
 		spawn(RM_DIFF_DECAY_TIME)
 			decay()
 	return difficulty
+
+/datum/controller/rogue/proc/dbg(var/message)
+	ASSERT(message) //I want a stack trace if there's no message
+	if(debugging)
+		world << "<span class='warning'>[message]</span>"

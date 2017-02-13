@@ -10,7 +10,6 @@
 
 	//Dimensions
 	var/coresize 	= 3		//The size of the center square
-	var/armsize 	= 3		//(max)Length of the 'arms' on the sides
 	var/width		= 9
 
 	//Other Attribs
@@ -33,32 +32,34 @@
 	//       ^type1
 	//        type2 //These are items/objects at the coordinate
 	//        type3 //This would be object 3 at x2,y2
-	var/list/map = list()
+	var/list/map
 
 //Builds an empty map
-/datum/rogue/asteroid/New(var/core, var/arm, var/tw, var/tu)
+/datum/rogue/asteroid/New(var/core, var/tw, var/tu)
+	rm_controller.dbg("A(n): New asteroid, with: C:[core], TW:[tw], TU:[tu].")
+
 	if(core)
 		coresize = core
-	if(arm)
-		armsize = arm
 	if(tw)
 		type_wall = tw
 	if(tu)
 		type_under = tu
 
-	width = coresize+(armsize*2)
+	width = coresize*3
+	rm_controller.dbg("A(n): My width is [width].")
 
-	world << "calling xy_lists with [width]"
-	xy_lists(width)
-
+	map = new/list(width,width,0)
+	rm_controller.dbg("A(n): Created empty map lists. Map now has [map.len] X-lists.")
 
 //Adds something to a spot in the asteroid map
 /datum/rogue/asteroid/proc/spot_add(var/x,var/y,var/thing)
 	if(!x || !y || !thing)
 		return
 
+	rm_controller.dbg("A(sa): Adding [thing] at [x],[y] in the map.")
 	var/list/work = map[x][y]
-	work += thing
+	work.Add(thing)
+	rm_controller.dbg("A(n): [x],[y] now contains [work.len] items.")
 
 //Removes something from a spot in the asteroid map
 /datum/rogue/asteroid/proc/spot_remove(var/x,var/y,var/thing)
@@ -66,7 +67,7 @@
 		return
 
 	var/list/work = map[x][y]
-	work -= thing
+	work.Add(thing)
 
 //Just removes everything from a spot in the asteroid map
 /datum/rogue/asteroid/proc/spot_clear(var/x,var/y)
@@ -75,21 +76,3 @@
 
 	var/list/work = map[x][y]
 	work.Cut()
-
-//Given a size it will create the lists if they don't already exist
-/datum/rogue/asteroid/proc/xy_lists(var/gridsize)
-	map = list()
-
-	world << "Now in xy_lists"
-	for(var/Ix=0, Ix < gridsize, Ix++)
-		world << "Making new 'x' list for x=[Ix]"
-		var/list/curr_x = list()
-		for(var/Iy=0, Iy < gridsize, Iy++)
-			world << "Making new 'y' list for y=[Iy]"
-			var/list/curr_y = list()
-			curr_x[++curr_x.len] = curr_y
-			world << "Inserted new 'y', x=[Ix] list now [curr_x.len] long"
-		map[++map.len] = curr_x
-		world << "Inserted new 'x', map now [map.len] long"
-
-	return map
