@@ -78,6 +78,9 @@
 	icon_state = "shuttle"
 
 //Rouguelike Mining
+/area/asteroid/rogue
+	var/asteroid_spawns = list()
+
 /area/asteroid/rogue/zone1
 	name = "Asteroid Belt Zone 1"
 	icon_state = "red2"

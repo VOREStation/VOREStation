@@ -1,0 +1,11 @@
+//Some defines for the rogue miner.
+#define RM_STARTING_DIFF 50
+
+#define RM_DIFF_TIER_TWO 100
+#define RM_DIFF_TIER_THREE 300
+#define RM_DIFF_TIER_FOUR 400
+#define RM_DIFF_TIER_FIVE 500
+#define RM_DIFF_CHAOS_REIGNS 1000
+
+#define RM_DIFF_DECAY_TIME 18000
+#define RM_DIFF_DECAY_AMT 50
