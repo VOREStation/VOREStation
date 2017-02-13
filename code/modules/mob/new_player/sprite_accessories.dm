@@ -366,6 +366,14 @@
 		name = "Hime Cut"
 		icon_state = "hair_himecut"
 
+	shorthime
+		name = "Short Hime Cut"
+		icon_state = "hair_shorthime"
+
+	grandebraid
+		name = "Grande Braid"
+		icon_state = "hair_grande"
+
 	mbraid
 		name = "Medium Braid"
 		icon_state = "hair_shortbraid"
@@ -373,6 +381,10 @@
 	braid2
 		name = "Long Braid"
 		icon_state = "hair_hbraid"
+
+	braid
+		name = "Floorlength Braid"
+		icon_state = "hair_braid"
 
 	odango
 		name = "Odango"
@@ -402,6 +414,10 @@
 	mahdrills
 		name = "Drillruru"
 		icon_state = "hair_drillruru"
+
+	fringetail
+		name = "Fringetail"
+		icon_state = "hair_fringetail"
 
 	dandypomp
 		name = "Dandy Pompadour"
@@ -554,6 +570,9 @@
 		icon_state = "hair_shavedpart"
 		gender = MALE
 
+	hightight
+		name = "High and Tight"
+		icon_state = "hair_hightight"
 
 /*
 ///////////////////////////////////
