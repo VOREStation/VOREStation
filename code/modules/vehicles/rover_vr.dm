@@ -297,9 +297,14 @@
 
 /obj/vehicle/train/rover/engine/unload(var/mob/user, var/direction)
 	var/mob/living/carbon/human/C = load	
+
+
 	if(ismob(load))
 		unbuckle_mob(load)
-		C.alpha = 255	
+		C.alpha = 255
+
+	load = null
+
 
 //Load the object "inside" the trolley and add an overlay of it.
 //This prevents the object from being interacted with until it has
