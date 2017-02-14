@@ -80,6 +80,7 @@
 //Rouguelike Mining
 /area/asteroid/rogue
 	var/asteroid_spawns = list()
+	var/mob_spawns = list()
 
 /area/asteroid/rogue/zone1
 	name = "Asteroid Belt Zone 1"

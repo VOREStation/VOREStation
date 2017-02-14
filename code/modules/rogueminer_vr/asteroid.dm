@@ -76,3 +76,75 @@
 
 	var/list/work = map[x][y]
 	work.Cut()
+
+/////////////////////////////
+// Predefined asteroid maps
+/////////////////////////////
+/datum/rogue/asteroid/predef
+	width = 3 //Small 1-tile room by default.
+
+/datum/rogue/asteroid/predef/New() //Basically just ignore what we're told.
+	rm_controller.dbg("Ap(n): A predefined asteroid is created with width [width].")
+	map = new/list(width,width,0)
+
+//Abandoned 1-tile hollow cargo box (pressurized).
+/datum/rogue/asteroid/predef/cargo
+	type_wall	= /turf/simulated/wall
+	type_under	= /turf/simulated/floor/plating
+
+	New()
+		..()
+		spot_add(1,1,type_wall) //Bottom left corner
+		spot_add(1,2,type_wall)
+		spot_add(1,3,type_wall)
+		spot_add(2,1,type_wall)
+		spot_add(2,2,type_under) //Center floor
+		spot_add(2,2,/obj/random/cargopod) //Loot!
+		spot_add(2,3,type_wall)
+		spot_add(3,1,type_wall)
+		spot_add(3,2,type_wall)
+		spot_add(3,3,type_wall) //Bottom right corner
+
+//Abandoned 1-tile hollow cargo box (ANGRY).
+/datum/rogue/asteroid/predef/cargo/angry
+	type_wall	= /turf/simulated/wall
+	type_under	= /turf/simulated/floor/plating
+
+	New()
+		..()
+		spot_add(2,2,/obj/random/cargopod) //EXTRA loot!
+		spot_add(2,2,/mob/living/simple_animal/hostile/vore/alien) //GRRR
+
+//Longer cargo container for higher difficulties
+/datum/rogue/asteroid/predef/cargo_large
+	width = 5
+	type_wall	= /turf/simulated/wall
+	type_under	= /turf/simulated/floor/plating
+
+	New()
+		..()
+		spot_add(1,2,type_wall) //--
+		spot_add(1,3,type_wall) //Left end of cargo container
+		spot_add(1,4,type_wall) //--
+
+		spot_add(5,2,type_wall) //--
+		spot_add(5,3,type_wall) //Right end of cargo container
+		spot_add(5,4,type_wall) //--
+
+		spot_add(2,4,type_wall) //--
+		spot_add(3,4,type_wall) //Top and
+		spot_add(4,4,type_wall) //bottom of
+		spot_add(2,2,type_wall) //cargo
+		spot_add(3,2,type_wall) //container
+		spot_add(4,2,type_wall) //--
+
+		spot_add(2,3,type_under) //Left floor
+		spot_add(3,3,type_under) //Mid floor
+		spot_add(4,3,type_under) //Right floor
+
+		spot_add(2,3,/obj/random/cargopod) //Left loot
+		spot_add(3,3,/obj/random/cargopod) //Mid loot
+		spot_add(4,3,/obj/random/cargopod) //Right loot
+
+		if(prob(30))
+			spot_add(3,3,/mob/living/simple_animal/hostile/vore/alien) //And maybe a friend.

@@ -15,3 +15,16 @@
 	if(loc && istype(loc,/turf/space) && istype(loc.loc,/area/asteroid/rogue))
 		var/area/asteroid/rogue/A = loc.loc
 		A.asteroid_spawns += src
+
+/obj/rogue_mobspawner
+	name = "mob spawn"
+	icon = 'icons/mob/screen1.dmi'
+	icon_state = "x"
+	invisibility = 101
+	anchored = 1
+	var/mob/mymob
+
+/obj/rogue_mobspawner/New()
+	if(loc && istype(loc,/turf/space) && istype(loc.loc,/area/asteroid/rogue))
+		var/area/asteroid/rogue/A = loc.loc
+		A.mob_spawns += src
