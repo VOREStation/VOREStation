@@ -338,9 +338,13 @@
 	var/tally = bonus
 
 	//Ore-bearing rocks that were mined
-	for(var/I = 1, I <= mineral_rocks.len, I++)
-		if(isnull(mineral_rocks[I]))
-			rm_controller.dbg("ZM(sz): Scoring one mineral gone.")
+	for(var/turf/T in mineral_rocks)
+		var/has_minerals = 0
+		for(var/atom/I in T.contents)
+			if(istype(I,/obj/effect/mineral))
+				has_minerals++
+				break
+		if(has_minerals == 0)
 			tally += RM_DIFF_VALUE_ORE
 
 	mineral_rocks.Cut() //For good measure, to prevent rescoring.
@@ -373,7 +377,6 @@
 	var/ignored = list(
 	/obj/asteroid_spawner,
 	/obj/rogue_mobspawner,
-	/turf/space,
 	/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/onleft,
 	/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/onright,
 	/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/ontop,
@@ -382,7 +385,10 @@
 	var/deleted = 0
 
 	for(var/atom/I in myarea.contents)
-		if(I.type in ignored)
+		if(I.type == /turf/space)
+			I.overlays.Cut()
+			continue
+		else if(I.type in ignored)
 			continue
 		qdel(I)
 		deleted++
