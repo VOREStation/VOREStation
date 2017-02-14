@@ -1915,7 +1915,7 @@
 "KQ" = (/obj/machinery/light/small,/turf/simulated/shuttle/plating/airless,/area/shuttle/belter/station)
 "KR" = (/turf/simulated/shuttle/plating/airless,/area/shuttle/belter/station)
 "KS" = (/turf/simulated/shuttle/wall{tag = "icon-swall (SOUTHEAST)"; icon_state = "swall"; dir = 6},/area/shuttle/belter/station)
-"KT" = (/obj/machinery/door/airlock/external{frequency = 1390; icon_state = "door_closed"; id_tag = "belter_ext"; locked = 0; req_access = list(48)},/turf/simulated/shuttle/plating/airless,/area/shuttle/belter/station)
+"KT" = (/obj/machinery/door/airlock/external{density = 0; explosion_resistance = 0; frequency = 1390; icon_state = "door_open"; id_tag = "belter_ext"; locked = 1; req_access = list(48)},/turf/simulated/shuttle/plating/airless,/area/shuttle/belter/station)
 "KU" = (/turf/simulated/shuttle/wall{tag = "icon-swall_straight (WEST)"; icon_state = "swall_straight"; dir = 8},/area/shuttle/belter/station)
 "KV" = (/turf/simulated/shuttle/wall{icon_state = "swall_t"; dir = 1},/area/shuttle/belter/station)
 "KW" = (/obj/structure/shuttle/window{tag = "icon-9"; icon_state = "9"},/obj/structure/grille,/obj/structure/grille,/turf/simulated/shuttle/plating,/area/shuttle/belter/station)

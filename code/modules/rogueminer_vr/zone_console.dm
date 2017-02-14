@@ -103,6 +103,7 @@
 	if(scanning) return
 
 	//Set some kinda scanning var to pause UI input on console
+	rm_controller.last_scan = world.time
 	scanning = 1
 	sleep(60)
 
@@ -125,8 +126,7 @@
 	//Update rm_current
 	rm_controller.current_zone = ZM_target
 
-	//Update last scan
-	rm_controller.last_scan = world.time
+	//Unset scanning
 	scanning = 0
 
 	return
