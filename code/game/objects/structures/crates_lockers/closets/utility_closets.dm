@@ -137,7 +137,8 @@
 		new /obj/item/clothing/gloves/yellow(src)
 	if(prob(40))
 		new /obj/item/clothing/head/hardhat(src)
-
+	if(prob(30))
+		new /obj/item/weapon/reagent_containers/spray/windowsealant(src) //vorestation addition
 
 /*
  * Radiation Closet
