@@ -1,11 +1,11 @@
 //This is the initial set up for the new carts. Feel free to improve and/or rewrite everything here.
 //I don't know what the hell I'm doing right now. Please help. Especially with the update_icons stuff. -Joan Risu
 
-/obj/vehicle/train/security/engine
+/obj/vehicle/train/rover/engine
 	name = "Security Cart"
 	desc = "A ridable electric car designed for pulling trolleys as well as personal transport."
-	icon = 'icons/obj/vehicles_vr.dmi'
-	icon_state = "paddywagon"
+	icon = 'icons/vore/rover_vr.dmi'
+	icon_state = "rover"
 	on = 0
 	powered = 1
 	locked = 0
@@ -17,56 +17,49 @@
 	fire_dam_coeff = 0.6
 	brute_dam_coeff = 0.5
 
-	load_item_visible = 1
+	load_item_visible = 0
 	load_offset_x = 0
 	mob_offset_y = 7
+	pixel_x = -8
+	pixel_y = -8
+
 
 	var/car_limit = 0	//how many cars an engine can pull before performance degrades. This should be 0 to prevent trailers from unhitching.
 	active_engines = 1
-	var/obj/item/weapon/key/security/key
+	var/obj/item/weapon/key/rover/key
 	var/siren = 0 //This is for eventually getting the siren sprite to work.
 
-/obj/item/weapon/key/security
-	name = "The Security Cart key"
-	desc = "The Security Cart Key used to start it."
+/obj/item/weapon/key/rover
+	name = "The Rover key"
+	desc = "The Rover key used to start it."
 	icon = 'icons/obj/vehicles_vr.dmi'
 	icon_state = "securikey"
 	w_class = ITEMSIZE_TINY
 
-/obj/vehicle/train/security/trolley
-	name = "Train trolley"
-	desc = "A trolly designed to transport security personnel or prisoners."
-	icon = 'icons/obj/vehicles_vr.dmi'
-	icon_state = "paddy_trailer"
-	anchored = 0
-	passenger_allowed = 1
-	locked = 0
-
-	load_item_visible = 1
-	load_offset_x = 0
-	load_offset_y = 4
-	mob_offset_y = 8
-
-/obj/vehicle/train/security/trolley/cargo
+/obj/vehicle/train/rover/trolley
 	name = "Train trolley"
 	desc = "A trolley designed to transport security equipment to a scene."
 	icon = 'icons/obj/vehicles_vr.dmi'
 	icon_state = "secitemcarrierbot"
-	passenger_allowed = 0 //Stick a man inside the box. :v
-	load_item_visible = 0 //The load is supposed to be invisible.
+	anchored = 0
+	passenger_allowed = 0
+	locked = 0
+
+	load_item_visible = 0
+	load_offset_x = 0
+	load_offset_y = 0
+	mob_offset_y = 0
 
 //-------------------------------------------
 // Standard procs
 //-------------------------------------------
-/obj/vehicle/train/security/engine/New()
+/obj/vehicle/train/rover/engine/New()
 	..()
 	cell = new /obj/item/weapon/cell/high(src)
 	key = new(src)
-	var/image/I = new(icon = 'icons/obj/vehicles.dmi', icon_state = "cargo_engine_overlay", layer = src.layer + 0.2) //over mobs
-	overlays += I
 	turn_off()	//so engine verbs are correctly set
 
-/obj/vehicle/train/security/engine/Move(var/turf/destination)
+/obj/vehicle/train/rover/engine/Move(var/turf/destination)
 	if(on && cell.charge < charge_use)
 		turn_off()
 		update_stats()
@@ -82,48 +75,48 @@
 
 	return ..()
 
-/obj/vehicle/train/security/trolley/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/vehicle/train/rover/trolley/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(open && istype(W, /obj/item/weapon/wirecutters))
 		passenger_allowed = !passenger_allowed
 		user.visible_message("<span class='notice'>[user] [passenger_allowed ? "cuts" : "mends"] a cable in [src].</span>","<span class='notice'>You [passenger_allowed ? "cut" : "mend"] the load limiter cable.</span>")
 	else
 		..()
 
-/obj/vehicle/train/security/engine/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/vehicle/train/rover/engine/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/key/cargo_train))
 		if(!key)
 			user.drop_item()
 			W.forceMove(src)
 			key = W
-			verbs += /obj/vehicle/train/security/engine/verb/remove_key
+			verbs += /obj/vehicle/train/rover/engine/verb/remove_key
 		return
 	..()
 
 //cargo trains are open topped, so there is a chance the projectile will hit the mob ridding the train instead
-/obj/vehicle/train/security/bullet_act(var/obj/item/projectile/Proj)
+/obj/vehicle/train/rover/bullet_act(var/obj/item/projectile/Proj)
 	if(buckled_mob && prob(70))
 		buckled_mob.bullet_act(Proj)
 		return
 	..()
 
-/obj/vehicle/train/security/update_icon()
+/obj/vehicle/train/rover/update_icon()
 	if(open)
 		icon_state = initial(icon_state) + "_open"
 	else
 		icon_state = initial(icon_state)
 
-/obj/vehicle/train/security/trolley/insert_cell(var/obj/item/weapon/cell/C, var/mob/living/carbon/human/H)
+/obj/vehicle/train/rover/trolley/insert_cell(var/obj/item/weapon/cell/C, var/mob/living/carbon/human/H)
 	return
 
-/obj/vehicle/train/security/engine/insert_cell(var/obj/item/weapon/cell/C, var/mob/living/carbon/human/H)
+/obj/vehicle/train/rover/engine/insert_cell(var/obj/item/weapon/cell/C, var/mob/living/carbon/human/H)
 	..()
 	update_stats()
 
-/obj/vehicle/train/security/engine/remove_cell(var/mob/living/carbon/human/H)
+/obj/vehicle/train/rover/engine/remove_cell(var/mob/living/carbon/human/H)
 	..()
 	update_stats()
 
-/obj/vehicle/train/security/engine/Bump(atom/Obstacle)
+/obj/vehicle/train/rover/engine/Bump(atom/Obstacle)
 	var/obj/machinery/door/D = Obstacle
 	var/mob/living/carbon/human/H = load
 	if(istype(D) && istype(H))
@@ -131,7 +124,7 @@
 
 	..()
 
-/obj/vehicle/train/security/trolley/Bump(atom/Obstacle)
+/obj/vehicle/train/rover/trolley/Bump(atom/Obstacle)
 	if(!lead)
 		return //so people can't knock others over by pushing a trolley around
 	..()
@@ -139,44 +132,44 @@
 //-------------------------------------------
 // Train procs
 //-------------------------------------------
-/obj/vehicle/train/security/engine/turn_on()
+/obj/vehicle/train/rover/engine/turn_on()
 	if(!key)
 		return
 	else
 		..()
 		update_stats()
 
-		verbs -= /obj/vehicle/train/security/engine/verb/stop_engine
-		verbs -= /obj/vehicle/train/security/engine/verb/start_engine
+		verbs -= /obj/vehicle/train/rover/engine/verb/stop_engine
+		verbs -= /obj/vehicle/train/rover/engine/verb/start_engine
 
 		if(on)
-			verbs += /obj/vehicle/train/security/engine/verb/stop_engine
+			verbs += /obj/vehicle/train/rover/engine/verb/stop_engine
 		else
-			verbs += /obj/vehicle/train/security/engine/verb/start_engine
+			verbs += /obj/vehicle/train/rover/engine/verb/start_engine
 
-/obj/vehicle/train/security/engine/turn_off()
+/obj/vehicle/train/rover/engine/turn_off()
 	..()
 
-	verbs -= /obj/vehicle/train/security/engine/verb/stop_engine
-	verbs -= /obj/vehicle/train/security/engine/verb/start_engine
+	verbs -= /obj/vehicle/train/rover/engine/verb/stop_engine
+	verbs -= /obj/vehicle/train/rover/engine/verb/start_engine
 
 	if(!on)
-		verbs += /obj/vehicle/train/security/engine/verb/start_engine
+		verbs += /obj/vehicle/train/rover/engine/verb/start_engine
 	else
-		verbs += /obj/vehicle/train/security/engine/verb/stop_engine
+		verbs += /obj/vehicle/train/rover/engine/verb/stop_engine
 
-/obj/vehicle/train/security/RunOver(var/mob/living/carbon/human/H)
+/obj/vehicle/train/rover/RunOver(var/mob/living/carbon/human/H)
 	var/list/parts = list(BP_HEAD, BP_TORSO, BP_L_LEG, BP_R_LEG, BP_L_ARM, BP_R_ARM)
 
 	H.apply_effects(5, 5)
 	for(var/i = 0, i < rand(1,3), i++)
 		H.apply_damage(rand(1,5), BRUTE, pick(parts))
 
-/obj/vehicle/train/security/trolley/RunOver(var/mob/living/carbon/human/H)
+/obj/vehicle/train/rover/trolley/RunOver(var/mob/living/carbon/human/H)
 	..()
 	attack_log += text("\[[time_stamp()]\] <font color='red'>ran over [H.name] ([H.ckey])</font>")
 
-/obj/vehicle/train/security/engine/RunOver(var/mob/living/carbon/human/H)
+/obj/vehicle/train/rover/engine/RunOver(var/mob/living/carbon/human/H)
 	..()
 
 	if(is_train_head() && istype(load, /mob/living/carbon/human))
@@ -192,7 +185,7 @@
 //-------------------------------------------
 // Interaction procs
 //-------------------------------------------
-/obj/vehicle/train/security/engine/relaymove(mob/user, direction)
+/obj/vehicle/train/rover/engine/relaymove(mob/user, direction)
 	if(user != load)
 		return 0
 
@@ -205,7 +198,7 @@
 	else
 		return ..()
 
-/obj/vehicle/train/security/engine/examine(mob/user)
+/obj/vehicle/train/rover/engine/examine(mob/user)
 	if(!..(user, 1))
 		return
 
@@ -215,7 +208,7 @@
 	user << "The power light is [on ? "on" : "off"].\nThere are[key ? "" : " no"] keys in the ignition."
 	user << "The charge meter reads [cell? round(cell.percent(), 0.01) : 0]%"
 
-/obj/vehicle/train/security/engine/verb/start_engine()
+/obj/vehicle/train/rover/engine/verb/start_engine()
 	set name = "Start engine"
 	set category = "Vehicle"
 	set src in view(0)
@@ -236,7 +229,7 @@
 		else
 			usr << "[src]'s engine won't start."
 
-/obj/vehicle/train/security/engine/verb/stop_engine()
+/obj/vehicle/train/rover/engine/verb/stop_engine()
 	set name = "Stop engine"
 	set category = "Vehicle"
 	set src in view(0)
@@ -252,7 +245,7 @@
 	if (!on)
 		usr << "You stop [src]'s engine."
 
-/obj/vehicle/train/security/engine/verb/remove_key()
+/obj/vehicle/train/rover/engine/verb/remove_key()
 	set name = "Remove key"
 	set category = "Vehicle"
 	set src in view(0)
@@ -271,12 +264,12 @@
 		usr.put_in_hands(key)
 	key = null
 
-	verbs -= /obj/vehicle/train/security/engine/verb/remove_key
+	verbs -= /obj/vehicle/train/rover/engine/verb/remove_key
 
 //-------------------------------------------
 // Loading/unloading procs
 //-------------------------------------------
-/obj/vehicle/train/security/trolley/load(var/atom/movable/C)
+/obj/vehicle/train/rover/trolley/load(var/atom/movable/C)
 	if(ismob(C) && !passenger_allowed)
 		return 0
 	if(!istype(C,/obj/machinery) && !istype(C,/obj/structure/closet) && !istype(C,/obj/structure/largecrate) && !istype(C,/obj/structure/reagent_dispensers) && !istype(C,/obj/structure/ore_box) && !istype(C, /mob/living/carbon/human))
@@ -292,17 +285,27 @@
 	if(load)
 		return 1
 
-/obj/vehicle/train/security/engine/load(var/atom/movable/C)
+/obj/vehicle/train/rover/engine/load(var/atom/movable/C)
 	if(!istype(C, /mob/living/carbon/human))
 		return 0
 
+	if(ismob(C))
+		buckle_mob(C)
+		C.alpha = 0
+
 	return ..()
+
+/obj/vehicle/train/rover/engine/unload(var/mob/user, var/direction)
+	var/mob/living/carbon/human/C = load	
+	if(ismob(load))
+		unbuckle_mob(load)
+		C.alpha = 255	
 
 //Load the object "inside" the trolley and add an overlay of it.
 //This prevents the object from being interacted with until it has
 // been unloaded. A dummy object is loaded instead so the loading
 // code knows to handle it correctly.
-/obj/vehicle/train/security/trolley/proc/load_object(var/atom/movable/C)
+/obj/vehicle/train/rover/trolley/proc/load_object(var/atom/movable/C)
 	if(!isturf(C.loc)) //To prevent loading things from someone's inventory, which wouldn't get handled properly.
 		return 0
 	if(load || C.anchored)
@@ -328,7 +331,7 @@
 		C.pixel_y = initial(C.pixel_y)
 		C.layer = initial(C.layer)
 
-/obj/vehicle/train/security/trolley/unload(var/mob/user, var/direction)
+/obj/vehicle/train/rover/trolley/unload(var/mob/user, var/direction)
 	if(istype(load, /datum/vehicle_dummy_load))
 		var/datum/vehicle_dummy_load/dummy_load = load
 		load = dummy_load.actual_load
@@ -341,13 +344,13 @@
 // Latching/unlatching procs
 //-------------------------------------------
 
-/obj/vehicle/train/security/engine/latch(obj/vehicle/train/T, mob/user)
+/obj/vehicle/train/rover/engine/latch(obj/vehicle/train/T, mob/user)
 	if(!istype(T) || !Adjacent(T))
 		return 0
 
 	//if we are attaching a trolley to an engine we don't care what direction
 	// it is in and it should probably be attached with the engine in the lead
-	if(istype(T, /obj/vehicle/train/security/trolley))
+	if(istype(T, /obj/vehicle/train/rover/trolley))
 		T.attach_to(src, user)
 	else
 		var/T_dir = get_dir(src, T)	//figure out where T is wrt src
@@ -368,7 +371,7 @@
 // more engines increases this limit by car_limit per
 // engine.
 //-------------------------------------------------------
-/obj/vehicle/train/security/engine/update_car(var/train_length, var/active_engines)
+/obj/vehicle/train/rover/engine/update_car(var/train_length, var/active_engines)
 	src.train_length = train_length
 	src.active_engines = active_engines
 
@@ -381,7 +384,7 @@
 		move_delay += config.run_speed 														//base reference speed
 		move_delay *= 1.1																	//makes cargo trains 10% slower than running when not overweight
 
-/obj/vehicle/train/security/trolley/update_car(var/train_length, var/active_engines)
+/obj/vehicle/train/rover/trolley/update_car(var/train_length, var/active_engines)
 	src.train_length = train_length
 	src.active_engines = active_engines
 
