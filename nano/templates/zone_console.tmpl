@@ -1,0 +1,48 @@
+<div class="item" style="padding-top: 10px">
+	<div class="item">
+		<div class="itemLabel">
+			Scanner Ramestat Core Charge:
+		</div>
+		<div class="itemContent">
+			{{:helper.displayBar(data.timeout_percent, 0, 100, (data.timeout_percent < 75) ? 'bad' : (data.timeout_percent < 100) ? 'average' : 'good')}}
+		</div>
+	</div>
+</div>
+<div class="item">
+	<div class="itemLabel">
+		Difficulty:
+	</div>
+	<div class="itemContent">
+		{{:data.difficulty}}
+	</div>
+</div>
+</div>
+<div class="item">
+	<div class="itemLabel">
+		Shuttle Location:
+	</div>
+	<div class="itemContent">
+		{{:data.shuttle_location}}
+	</div>
+</div>
+{{if data.occupied > 0}}
+	<div class="item">
+		<div class="itemLabel">
+			WARNING:
+		</div>
+		<div class="itemContent">
+			Area Occupied by {{:data.occupied}} personell!
+		</div>
+	</div>
+{{/if}}
+
+
+<h3>Scanner Operation</h3>
+<div class="item">
+	<div class="itemLabel">
+		Scanner Activation:
+	</div>
+	<div class="itemContent">
+		{{:helper.link('Scan For Asteroids', 'power', {'action' : 'scan_for_new'}, data.scan_ready ? null : 'disabled')}}
+	</div>
+</div>
