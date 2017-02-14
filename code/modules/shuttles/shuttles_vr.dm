@@ -11,10 +11,7 @@
 /obj/machinery/computer/shuttle_control/belter
 	name = "belter control console"
 	req_access = list(access_mining)
-
-/obj/machinery/computer/shuttle_control/belter/process()
-	if(!shuttle_tag && rm_controller.last_scan > 0) //Can't use the shuttle until you scan once at least
-		shuttle_tag = "Belter"
+	// shuttle_tag = "Belter" //The scanning console needs to enable/disable this at will.
 
 /obj/machinery/computer/shuttle_control/mining
 	name = "mining elevator control console"

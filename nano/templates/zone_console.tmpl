@@ -46,3 +46,33 @@
 		{{:helper.link('Scan For Asteroids', 'power', {'action' : 'scan_for_new'}, data.scan_ready ? null : 'disabled')}}
 	</div>
 </div>
+{{if data.scanning > 0}}
+<div class="item">
+	<div class="itemLabel">
+		Scanning: 
+	</div>
+	<div class="itemContent">
+		In Progress...
+	</div>
+</div>
+{{/if}}
+{{if data.updated > 0}}
+<div class="item">
+	<div class="itemLabel">
+		Info:
+	</div>
+	<div class="itemContent">
+		Updated shuttle destination!
+	</div>
+</div>
+{{/if}}
+{{if data.debug > 0}}
+<div class="item">
+	<div class="itemLabel">
+		DEBUG: 
+	</div>
+	<div class="itemContent">
+		TP:{{:data.timeout_percent}},DS:{{:data.diffstep}},D:{{:data.difficulty}},O:{{:data.occupied}},DBG:{{:data.debug}},SL:{{:data.shuttle_location}},SAS:{{:data.shuttle_at_station}},SR:{{:data.scan_ready}}
+	</div>
+</div>
+{{/if}}

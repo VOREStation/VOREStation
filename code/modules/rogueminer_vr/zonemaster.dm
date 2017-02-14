@@ -6,6 +6,7 @@
 /datum/rogue/zonemaster
 	//our area
 	var/area/asteroid/rogue/myarea
+	var/area/shuttle/belter/myshuttle
 
 	//world.time
 	var/prepared_at = 0
@@ -17,6 +18,7 @@
 	var/clean = 1
 
 	//scored or not
+
 	var/scored = 0
 
 	//for scoring
@@ -31,6 +33,9 @@
 /datum/rogue/zonemaster/New(var/area/A)
 	ASSERT(A)
 	myarea = A
+	myshuttle = locate(myarea.shuttle_area)
+	spawn(10) //This is called from controller New() and freaks out if this calls back too fast.
+		rm_controller.mark_clean(src)
 
 ///////////////////////////////
 ///// Utility Procs ///////////
@@ -38,8 +43,12 @@
 
 /datum/rogue/zonemaster/proc/is_occupied()
 	var/humans = 0
-	for(var/mob/living/carbon/human/H in myarea)
-		if(H.stat < DEAD) //Bodies don't count, no.
+	for(var/mob/living/carbon/human/H in human_mob_list)
+		if(H.stat < DEAD) //Conditions for exclusion here, like if disconnected people start blocking it.
+			continue
+		var/turf/T = get_turf(H)
+		var/area/A = T.loc
+		if((A == myarea) || (A == myshuttle)) //The loc of a turf is the area it is in.
 			humans++
 	return humans
 
@@ -263,12 +272,9 @@
 
 //Overall 'prepare' proc (marks as ready)
 /datum/rogue/zonemaster/proc/prepare_zone(var/delay = 0)
+	rm_controller.unmark_clean(src)
 	rm_controller.dbg("ZM(p): Preparing zone with difficulty level [rm_controller.diffstep].")
-	if(!clean) //Umm what are you doing
-		rm_controller.dbg("ZM(p): Attempted to prepare an unclean zone!")
-		return
 
-	clean = 0 //Dirty!
 
 	rm_controller.dbg("ZM(p): Randomizing spawns.")
 	randomize_spawns()
@@ -303,8 +309,9 @@
 				sleep(delay)
 
 	rm_controller.dbg("ZM(p): Zone generation done.")
+	world.log << "RM(stats): PREP [myarea] at [world.time] with [spawned_mobs.len] mobs, [mineral_rocks.len] minrocks, total of [rockspawns.len] rockspawns, [mobspawns.len] mobspawns." //DEBUG code for playtest stats gathering.
 	prepared_at = world.time
-	ready = 1
+	rm_controller.mark_ready(src)
 	return myarea
 
 //Randomize the landmarks that are enabled
@@ -364,15 +371,14 @@
 
 	rm_controller.adjust_difficulty(tally)
 	rm_controller.dbg("ZM(sz): Finished scoring and adjusted by [tally].")
+	world.log << "RM(stats): SCORE [myarea] for [tally]." //DEBUG code for playtest stats gathering.
 	return tally
 
 //Overall 'destroy' proc (marks as unready)
 /datum/rogue/zonemaster/proc/clean_zone(var/delay = 1)
-	if(clean)
-		return
-
 	rm_controller.dbg("ZM(cz): Cleaning zone with area [myarea].")
-	ready = 0
+	rm_controller.unmark_ready(src)
+
 
 	var/ignored = list(
 	/obj/asteroid_spawner,
@@ -412,10 +418,13 @@
 	mobspawns.Cut()
 	rm_controller.dbg("ZM(cz): Cleaned up lists.")
 
-	clean = 1
+	world.log << "RM(stats): CLEAN [myarea] at [world.time] prepared at [prepared_at]." //DEBUG code for playtest stats gathering.
+
 	scored = 0
 	original_mobs = 0
+	prepared_at = 0
 	rm_controller.dbg("ZM(cz): Finished cleaning up zone.")
+	rm_controller.mark_clean(src)
 	return myarea
 
 ///////////////////////////////

@@ -14,6 +14,16 @@
 	active_power_usage = 500
 	circuit = /obj/item/weapon/circuitboard/roguezones
 
+	var/debug = 0
+	var/debug_scans = 0
+	var/scanning = 0
+	var/legacy_zone = 0 //Disable scanning and whatnot.
+	var/obj/machinery/computer/shuttle_control/belter/shuttle_control
+
+/obj/machinery/computer/roguezones/initialize()
+	..()
+	shuttle_control = locate(/obj/machinery/computer/shuttle_control/belter)
+
 /obj/machinery/computer/roguezones/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
@@ -40,7 +50,11 @@
 	data["timeout_percent"] = chargePercent
 	data["diffstep"] = rm_controller.diffstep
 	data["difficulty"] = rm_controller.diffstep_strs[rm_controller.diffstep]
-	data["occupied"] = rm_controller.current == null ? 0 : rm_controller.current.is_occupied()
+	data["occupied"] = rm_controller.current_zone ? rm_controller.current_zone.is_occupied() : 0
+	data["scanning"] = scanning
+	data["updated"] = world.time - rm_controller.last_scan < 200 //Very recently scanned (20 seconds)
+	data["debug"] = debug
+
 
 	var/obj/machinery/computer/shuttle_control/belter/belter = locate()
 	if(belter.z == 5)
@@ -53,11 +67,16 @@
 		data["shuttle_location"] = "Belt"
 		data["shuttle_at_station"] = 0
 
-	// Check this stuff
- 	if((data["shuttle_at_station"] == 1) && (data["occupied"] == 0) && (chargePercent >= 100))
- 		data["scan_ready"] = 1
- 	else
- 		data["scan_ready"] = 0
+	var/can_scan = 0
+	if(chargePercent >= 100) //Keep having weird problems with these in one 'if' statement
+		if(belter.z == 5) //Even though I put them all in parens to avoid OoO problems...
+			if(!rm_controller.current_zone || !rm_controller.current_zone.is_occupied()) //Not sure why.
+				if(!scanning)
+					can_scan = 1
+
+	if(debug_scans) can_scan = 1
+
+	data["scan_ready"] = can_scan
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
@@ -81,11 +100,39 @@
 	nanomanager.update_uis(src)
 
 /obj/machinery/computer/roguezones/proc/scan_for_new_zone()
-	// TODO - Actually do something
+	if(scanning) return
+
+	//Set some kinda scanning var to pause UI input on console
+	scanning = 1
+	sleep(60)
+
+	//Break the shuttle temporarily.
+	shuttle_control.shuttle_tag = null
+
+	//Build and get a new zone.
+	var/datum/rogue/zonemaster/ZM_target = rm_controller.prepare_new_zone()
+
+	//Update shuttle destination.
+	var/datum/shuttle/ferry/S = shuttle_controller.shuttles["Belter"]
+	S.area_offsite = ZM_target.myshuttle
+
+	//Re-enable shuttle.
+	shuttle_control.shuttle_tag = "Belter"
+
+	//Update rm_previous
+	rm_controller.previous_zone = rm_controller.current_zone
+
+	//Update rm_current
+	rm_controller.current_zone = ZM_target
+
+	//Update last scan
+	rm_controller.last_scan = world.time
+	scanning = 0
+
 	return
 
 /obj/machinery/computer/roguezones/proc/point_at_old_zone()
-	// TODO - Actually do something
+
 	return
 
 
