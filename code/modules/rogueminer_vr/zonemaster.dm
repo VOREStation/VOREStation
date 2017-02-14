@@ -16,9 +16,13 @@
 	//completely empty
 	var/clean = 1
 
+	//scored or not
+	var/scored = 0
+
 	//for scoring
 	var/mineral_rocks = list()
 	var/spawned_mobs = list()
+	var/original_mobs = 0
 
 	//in-use spawns from the area
 	var/obj/asteroid_spawner/list/rockspawns = list()
@@ -50,7 +54,7 @@
 ///////////////////////////////
 /datum/rogue/zonemaster/proc/generate_asteroid(var/core_min = 2, var/core_max = 5)
 	//Chance for a predefined structure instead, more common later
-	if(prob(rm_controller.rm_controller.diffstep*4))
+	if(prob(rm_controller.diffstep*4))
 		rm_controller.dbg("ZM(ga): Fell into prefab asteroid chance.")
 		var/prefab = pick(rm_controller.prefabs["tier[rm_controller.diffstep]"])
 		rm_controller.dbg("ZM(ga): Picked [prefab] as the prefab.")
@@ -274,6 +278,8 @@
 		var/datum/rogue/asteroid/A = generate_asteroid()
 		rm_controller.dbg("ZM(p): Placing asteroid.")
 		place_asteroid(A,SP)
+		if(delay)
+			sleep(delay)
 
 	for(var/obj/rogue_mobspawner/SP in mobspawns)
 		rm_controller.dbg("ZM(p): Spawning mob at [SP.x],[SP.y],[SP.z].")
@@ -293,9 +299,13 @@
 			rm_controller.dbg("ZM(p): Picked [mobchoice] to spawn.")
 			var/newmob = new mobchoice(get_turf(SP))
 			spawned_mobs += newmob
+			if(delay)
+				sleep(delay)
 
 	rm_controller.dbg("ZM(p): Zone generation done.")
+	prepared_at = world.time
 	ready = 1
+	return myarea
 
 //Randomize the landmarks that are enabled
 /datum/rogue/zonemaster/proc/randomize_spawns(var/chance = 50)
@@ -313,16 +323,94 @@
 	for(var/obj/rogue_mobspawner/SP in myarea.mob_spawns)
 		if(prob(rm_controller.diffstep_nums[rm_controller.diffstep]/10))
 			mobspawns += SP
+			original_mobs++
 	rm_controller.dbg("ZM(rs): Picked [mobspawns.len] new mobspawns with [chance]% chance.")
-
+	return myarea
 
 ///////////////////////////////
 ///// Zone Cleaning ///////////
 ///////////////////////////////
+/datum/rogue/zonemaster/proc/score_zone(var/bonus = 0)
+	if(clean || !ready)
+		return
+
+	rm_controller.dbg("ZM(sz): Scoring zone with area [myarea].")
+	var/tally = bonus
+
+	//Ore-bearing rocks that were mined
+	for(var/I = 1, I <= mineral_rocks.len, I++)
+		if(isnull(mineral_rocks[I]))
+			rm_controller.dbg("ZM(sz): Scoring one mineral gone.")
+			tally += RM_DIFF_VALUE_ORE
+
+	mineral_rocks.Cut() //For good measure, to prevent rescoring.
+
+	for(var/I = 1, I <= spawned_mobs.len, I++)
+		if(isnull(spawned_mobs[I]))
+			tally += RM_DIFF_VALUE_MOB //Mobs so annihilated they were deleted
+			rm_controller.dbg("ZM(sz): Scoring one mob annihilated.")
+		if(istype(spawned_mobs[I],/mob))
+			var/mob/M = spawned_mobs[I]
+			if(M.stat > 0) //Knocked out or dead or anything other than normal
+				tally += RM_DIFF_VALUE_MOB
+				rm_controller.dbg("ZM(sz): Scoring one mob dead.")
+
+	spawned_mobs.Cut()
+	original_mobs = 0
+
+	rm_controller.adjust_difficulty(tally)
+	rm_controller.dbg("ZM(sz): Finished scoring and adjusted by [tally].")
+	return tally
 
 //Overall 'destroy' proc (marks as unready)
-//Lazy mostly-destroy proc aimed at landmarks
-//Faster destroy-everything-else proc
+/datum/rogue/zonemaster/proc/clean_zone(var/delay = 1)
+	if(clean)
+		return
+
+	rm_controller.dbg("ZM(cz): Cleaning zone with area [myarea].")
+	ready = 0
+
+	var/ignored = list(
+	/obj/asteroid_spawner,
+	/obj/rogue_mobspawner,
+	/turf/space,
+	/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/onleft,
+	/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/onright,
+	/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/ontop,
+	/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/onbottom)
+
+	var/deleted = 0
+
+	for(var/atom/I in myarea.contents)
+		if(I.type in ignored)
+			continue
+		qdel(I)
+		deleted++
+		if(delay)
+			sleep(delay)
+
+	//A deletion so nice that I give it twice
+	for(var/atom/I in myarea.contents)
+		if(I.type in ignored)
+			continue
+		qdel(I)
+		deleted++
+		if(delay)
+			sleep(delay)
+
+	rm_controller.dbg("ZM(cz): Deleted [deleted] atoms in [myarea].")
+
+	mineral_rocks.Cut()
+	spawned_mobs.Cut()
+	rockspawns.Cut()
+	mobspawns.Cut()
+	rm_controller.dbg("ZM(cz): Cleaned up lists.")
+
+	clean = 1
+	scored = 0
+	original_mobs = 0
+	rm_controller.dbg("ZM(cz): Finished cleaning up zone.")
+	return myarea
 
 ///////////////////////////////
 ///// Mysterious Mystery //////
