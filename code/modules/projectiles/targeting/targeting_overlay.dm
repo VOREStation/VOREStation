@@ -107,8 +107,10 @@ obj/aiming_overlay/proc/update_aiming_deferred()
 		cancel_aiming()
 		return
 
-	if(!locked && lock_time >= world.time)
+	if(!locked && lock_time <= world.time)
 		locked = 1
+		owner << "<span class ='notice'>You are locked onto your target.</span>"
+		aiming_at << "<span class='danger'>The gun is trained on you!</span>"
 		update_icon()
 
 	var/cancel_aim = 1
@@ -176,7 +178,7 @@ obj/aiming_overlay/proc/update_aiming_deferred()
 	toggle_active(1)
 	locked = 0
 	update_icon()
-	lock_time = world.time + 35
+	lock_time = world.time + 25
 
 /obj/aiming_overlay/update_icon()
 	if(locked)
