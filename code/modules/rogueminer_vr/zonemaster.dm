@@ -20,8 +20,8 @@
 	var/scored = 0
 
 	//for scoring
-	var/mineral_rocks = list()
-	var/spawned_mobs = list()
+	var/list/mineral_rocks = list()
+	var/list/spawned_mobs = list()
 	var/original_mobs = 0
 
 	//in-use spawns from the area
