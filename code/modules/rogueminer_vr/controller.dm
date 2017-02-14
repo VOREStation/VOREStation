@@ -32,7 +32,10 @@ var/datum/controller/rogue/rm_controller = new()
 	var/diffstep = 1
 
 	//The current mining zone that the shuttle goes to and whatnot
-	var/area/current
+	var/datum/rogue/zonemaster/current = null
+
+	// The world.time at which the scanner was last run (for cooldown)
+	var/last_scan = 0
 
 	var/debugging = 0
 
