@@ -2,8 +2,8 @@
 //I don't know what the hell I'm doing right now. Please help. Especially with the update_icons stuff. -Joan Risu
 
 /obj/vehicle/train/rover/engine
-	name = "Security Cart"
-	desc = "A ridable electric car designed for pulling trolleys as well as personal transport."
+	name = "NT Humvee"
+	desc = "The NT version of the UF T-41LV, a Federation recon vehicle used as a personal transport. Can be latched to a trolly to transport equipment. "
 	icon = 'icons/vore/rover_vr.dmi'
 	icon_state = "rover"
 	on = 0
