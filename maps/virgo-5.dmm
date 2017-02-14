@@ -1539,7 +1539,7 @@
 "DE" = (/obj/structure/cable/yellow{d2 = 2; icon_state = "0-2"},/obj/machinery/power/terminal{icon_state = "term"; dir = 1},/obj/structure/cable/yellow{d2 = 8; icon_state = "0-8"},/turf/simulated/floor/plating,/area/outpost/engineering/mining/power)
 "DF" = (/obj/structure/cable/yellow{d1 = 2; d2 = 4; icon_state = "2-4"},/obj/structure/cable/yellow{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/simulated/floor/plating,/area/outpost/engineering/mining/power)
 "DG" = (/obj/machinery/atmospherics/pipe/manifold/visible/yellow{tag = "icon-map (NORTH)"; icon_state = "map"; dir = 1},/obj/effect/landmark{name = "bluespacerift"},/turf/simulated/floor/tiled,/area/outpost/research/anomaly)
-"DH" = (/obj/machinery/computer/shuttle_control/belter,/turf/simulated/floor/tiled/asteroid_steel/airless,/area/mine/explored)
+"DH" = (/obj/machinery/computer/roguezones,/turf/simulated/floor/tiled/asteroid_steel/airless,/area/mine/explored)
 "DI" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/effect/landmark{name = "bluespacerift"},/turf/simulated/floor/tiled,/area/outpost/mining_main/north_hall)
 "DJ" = (/obj/effect/landmark{name = "bluespacerift"},/turf/simulated/floor/tiled,/area/outpost/mining_main/eva)
 "DK" = (/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,/obj/machinery/atmospherics/pipe/manifold/hidden/supply,/obj/effect/landmark{name = "bluespacerift"},/turf/simulated/floor/tiled,/area/outpost/mining_main/south_hall)

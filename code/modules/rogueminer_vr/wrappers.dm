@@ -58,24 +58,28 @@
 
 //These are placed ON the side they are named after.
 /obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/onleft/New()
-	teleport_x = quad_R + margin
-	teleport_x_offset = quad_R + margin
-	teleport_y = quad_U - margin
-	teleport_y_offset = quad_D + margin
+	..()
+	teleport_x = quad_R - margin
+	teleport_x_offset = quad_R - margin
+	teleport_y = quad_D + margin
+	teleport_y_offset = quad_U - margin
 
 /obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/onright/New()
+	..()
 	teleport_x = quad_L + margin
 	teleport_x_offset = quad_L + margin
-	teleport_y = quad_U - margin
-	teleport_y_offset = quad_D + margin
+	teleport_y = quad_D + margin
+	teleport_y_offset = quad_U - margin
 
 /obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/ontop/New()
+	..()
 	teleport_x = quad_L + margin
 	teleport_x_offset = quad_R - margin
-	teleport_y = quad_D - margin
-	teleport_y_offset = quad_D - margin
+	teleport_y = quad_D + margin
+	teleport_y_offset = quad_D + margin
 
 /obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/onbottom/New()
+	..()
 	teleport_x = quad_L + margin
 	teleport_x_offset = quad_R - margin
 	teleport_y = quad_U - margin

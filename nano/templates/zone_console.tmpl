@@ -1,7 +1,7 @@
 <div class="item" style="padding-top: 10px">
 	<div class="item">
 		<div class="itemLabel">
-			Scanner Ramestat Core Charge:
+			Scn. Ramestat Core:
 		</div>
 		<div class="itemContent">
 			{{:helper.displayBar(data.timeout_percent, 0, 100, (data.timeout_percent < 75) ? 'bad' : (data.timeout_percent < 100) ? 'average' : 'good')}}
@@ -10,7 +10,7 @@
 </div>
 <div class="item">
 	<div class="itemLabel">
-		Difficulty:
+		Mineral Content:
 	</div>
 	<div class="itemContent">
 		{{:data.difficulty}}
@@ -31,7 +31,7 @@
 			WARNING:
 		</div>
 		<div class="itemContent">
-			Area Occupied by {{:data.occupied}} personell!
+			Area Occupied by {{:data.occupied}} personnel!
 		</div>
 	</div>
 {{/if}}

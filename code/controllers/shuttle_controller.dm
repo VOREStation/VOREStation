@@ -404,7 +404,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle.location = 0
 	shuttle.warmup_time = 6
 	shuttle.area_station = locate(/area/shuttle/belter/station)
-	shuttle.area_offsite = locate(/area/shuttle/belter/belt)
+	shuttle.area_offsite = locate(/area/shuttle/belter/belt/zone1)
 	shuttle.area_transition = locate(/area/shuttle/belter/transit)
 	shuttle.docking_controller_tag = "belter_docking"
 	shuttle.dock_target_station = "belter_nodocking" //Fake tags to prevent the shuttle from opening doors.
