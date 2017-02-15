@@ -28,6 +28,16 @@
 	return list("title" = title, "message" = message)
 
 /datum/uplink_item/abstract/announcements/fake_centcom/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/user, var/list/args)
+	for (var/obj/machinery/computer/communications/C in machines)
+		if(! (C.stat & (BROKEN|NOPOWER) ) )
+			var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( C.loc )
+			P.name = "'[command_name()] Update.'"
+			P.info = replacetext(args["message"], "\n", "<br/>")
+			P.update_space(P.info)
+			P.update_icon()
+			C.messagetitle.Add(args["title"])
+			C.messagetext.Add(P.info)
+
 	command_announcement.Announce(args["message"], args["title"])
 	return 1
 

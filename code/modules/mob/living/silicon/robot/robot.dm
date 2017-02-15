@@ -708,6 +708,10 @@
 			icon_state = module_sprites[icontype]
 		return
 
+	if(typing)
+		typing = FALSE
+		set_typing_indicator(1)
+
 /mob/living/silicon/robot/proc/installed_modules()
 	if(weapon_lock)
 		src << "\red Weapon lock active, unable to use modules! Count:[weaponlock_time]"

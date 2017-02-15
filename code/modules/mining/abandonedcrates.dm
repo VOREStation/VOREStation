@@ -148,11 +148,19 @@
 		return
 
 	user << "<span class='notice'>The crate is locked with a Deca-code lock.</span>"
-	var/input = input(user, "Enter [codelen] digits.", "Deca-Code Lock", "") as text
+	var/input = input(usr, "Enter [codelen] digits. All digits must be unique.", "Deca-Code Lock", "") as text
 	if(!Adjacent(user))
 		return
+	var/list/sanitised = list()
+	var/sanitycheck = 1
+	for(var/i=1,i<=length(input),i++) //put the guess into a list
+		sanitised += text2num(copytext(input,i,i+1))
+	for(var/i=1,i<=(length(input)-1),i++) //compare each digit in the guess to all those following it
+		for(var/j=(i+1),j<=length(input),j++)
+			if(sanitised[i] == sanitised[j])
+				sanitycheck = null //if a digit is repeated, reject the input
 
-	if(input == null || length(input) != codelen)
+	if(input == null || sanitycheck == null || length(input) != codelen)
 		user << "<span class='notice'>You leave the crate alone.</span>"
 	else if(check_input(input))
 		user << "<span class='notice'>The crate unlocks!</span>"
@@ -203,6 +211,9 @@
 					else if(lastattempt[i] in code_contents)
 						++cows
 					code_contents -= lastattempt[i]
-				user << "<span class='notice'>Last code attempt had [bulls] correct digits at correct positions and [cows] correct digits at incorrect positions.</span>"
+				var/previousattempt = null //convert back to string for readback
+				for(var/i in 1 to codelen)
+					previousattempt = addtext(previousattempt, lastattempt[i])
+				user << "<span class='notice'>Last code attempt, [previousattempt], had [bulls] correct digits at correct positions and [cows] correct digits at incorrect positions.</span>"
 			return
 	..()
