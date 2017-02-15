@@ -29,7 +29,7 @@
 	cold_damage_per_tick = 20
 	var/poison_per_bite = 5
 	var/poison_chance = 10
-	var/poison_type = "toxin"
+	var/poison_type = "spidertoxin"
 	faction = "spiders"
 	var/busy = 0
 	pass_flags = PASSTABLE
@@ -85,9 +85,14 @@
 		if(prob(5))
 			var/obj/item/organ/external/O = pick(H.organs)
 			if(!(O.robotic >= ORGAN_ROBOT))
-				var/eggs = PoolOrNew(/obj/effect/spider/eggcluster/, list(O, src))
-				O.implants += eggs
-				H << "<span class='warning'>The [src] injects something into your [O.name]!</span>"
+				var/eggcount
+				for(var/obj/I in O.implants)
+					if(istype(I, /obj/effect/spider/eggcluster))
+						eggcount ++
+				if(!eggcount)
+					var/eggs = PoolOrNew(/obj/effect/spider/eggcluster/small, list(O, src))
+					O.implants += eggs
+					H << "<span class='warning'>The [src] injects something into your [O.name]!</span>"
 
 /mob/living/simple_animal/hostile/giant_spider/Life()
 	..()

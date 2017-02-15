@@ -326,6 +326,7 @@
 	deform = 'icons/mob/human_races/r_def_human_vr.dmi'
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
 	min_age = 18
+	base_color = "#EECEB3"
 
 /datum/species/vox
 	gluttonous = 0

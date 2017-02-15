@@ -37,6 +37,7 @@
 		new /obj/item/taperoll/engineering(src)
 		new /obj/item/clothing/suit/storage/hooded/wintercoat/engineering(src)
 		new /obj/item/weapon/tank/emergency/oxygen/engi(src)
+		new /obj/item/weapon/reagent_containers/spray/windowsealant(src) //vorestation addition
 		return
 
 
@@ -128,6 +129,7 @@
 		new /obj/item/taperoll/engineering(src)
 		new /obj/item/clothing/suit/storage/hooded/wintercoat/engineering(src)
 		new /obj/item/weapon/tank/emergency/oxygen/engi(src)
+		new /obj/item/weapon/reagent_containers/spray/windowsealant(src) //vorestation addition
 		return
 
 

@@ -533,6 +533,8 @@
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "scree-helm_mob"
 
+	item_state_slots = list(slot_r_hand_str = "engspace_helmet", slot_l_hand_str = "engspace_helmet")
+
 	light_overlay = "helmet_light_dual"
 
 	species_restricted = null
@@ -555,6 +557,8 @@
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "scree-spess_mob"
+
+	item_state_slots = list(slot_r_hand_str = "eng_voidsuit", slot_l_hand_str = "eng_voidsuit")
 
 	species_restricted = null
 

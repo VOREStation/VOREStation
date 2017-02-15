@@ -39,6 +39,6 @@ script:
   - echo "#define UNIT_TEST 1" > code/_unit_tests.dm
   - cp config/example/* config/
   - DreamMaker vorestation.dme
-  - DreamDaemon vorestation.dmb -invisible -trusted -core 2>&1 | tee log.txt
+  - travis_wait DreamDaemon vorestation.dmb -invisible -trusted -core 2>&1 | tee log.txt
   - grep "All Unit Tests Passed" log.txt
 

@@ -10,3 +10,6 @@
     muzzle_type = /obj/effect/projectile/laser_omni/muzzle
     tracer_type = /obj/effect/projectile/laser_omni/tracer
     impact_type = /obj/effect/projectile/laser_omni/impact
+
+/obj/item/projectile/beam/stun
+	agony = 35
