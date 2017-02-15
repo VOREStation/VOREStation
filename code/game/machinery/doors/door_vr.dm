@@ -5,9 +5,6 @@
 /obj/machinery/door
 	var/obj/item/stack/material/plasteel/reinforcing //vorestation addition
 
-/obj/machinery/door/blast/regular
-	heat_proof = 1
-
 /obj/machinery/door/firedoor
 	heat_proof = 1
 
@@ -19,13 +16,15 @@
 
 /obj/machinery/door/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	var/maxtemperature = 1800 //same as a normal steel wall
+	var/destroytime = 20 //effectively gives an airlock 200HP between breaking and completely disintegrating
 	if(heat_proof)
 		maxtemperature = 6000 //same as a plasteel rwall
+		destroytime = 50 //fireproof airlocks need to take 500 damage after breaking before they're destroyed
 
 	if(exposed_temperature > maxtemperature)
 		var/burndamage = log(RAND_F(0.9, 1.1) * (exposed_temperature - maxtemperature))
-		if (burndamage && health <= 0) //once they break, you've not got long before they're just ash
-			destroy_hits -= (burndamage / 20) //effectively gives an airlock 200HP between breaking and completely disintegrating
+		if (burndamage && health <= 0) //once they break, start taking damage to destroy_hits
+			destroy_hits -= (burndamage / destroytime)
 			if (destroy_hits <= 0)
 				visible_message("<span class='danger'>\The [src.name] disintegrates!</span>")
 				new /obj/effect/decal/cleanable/ash(src.loc) // Turn it to ashes!
@@ -84,3 +83,11 @@
 		reinforcing = null
 		return 1
 	return 0
+
+/obj/machinery/door/blast/regular/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+	return // blast doors are immune to fire completely.
+
+/obj/machinery/door/blast/regular/
+	heat_proof = 1 //just so repairing them doesn't try to fireproof something that never takes fire damage
+
+
