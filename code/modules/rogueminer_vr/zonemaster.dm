@@ -18,7 +18,6 @@
 	var/clean = 1
 
 	//scored or not
-
 	var/scored = 0
 
 	//for scoring
@@ -44,19 +43,12 @@
 /datum/rogue/zonemaster/proc/is_occupied()
 	var/humans = 0
 	for(var/mob/living/carbon/human/H in human_mob_list)
-		if(H.stat < DEAD) //Conditions for exclusion here, like if disconnected people start blocking it.
+		if(H.stat >= DEAD) //Conditions for exclusion here, like if disconnected people start blocking it.
 			continue
-		var/turf/T = get_turf(H)
-		var/area/A = T.loc
+		var/area/A = get_area(H)
 		if((A == myarea) || (A == myshuttle)) //The loc of a turf is the area it is in.
 			humans++
 	return humans
-
-/datum/rogue/zonemaster/proc/has_shuttle()
-	var/shuttles = 0 //Shh.
-	for(var/obj/machinery/computer/shuttle_control/C in myarea)
-		shuttles ++
-	return shuttles
 
 ///////////////////////////////
 ///// Asteroid Generation /////
