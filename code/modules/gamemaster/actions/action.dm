@@ -5,11 +5,8 @@
 	var/chaotic = 0						// A number showing how chaotic the action may be.  If danger is high, the GM will avoid it.
 	var/reusable = FALSE				// If true, the event does not become disabled upon being used.  Should be used sparingly.
 	var/observers_used = FALSE			// Determines if the GM should check if ghosts are available before using this.
+	var/length = 0						// Determines how long the event lasts, until end() is called.
 	var/datum/game_master/gm = null
-
-/datum/gm_action/New(var/datum/game_master/new_gm)
-	..()
-	gm = new_gm
 
 /datum/gm_action/proc/set_up()
 	return
