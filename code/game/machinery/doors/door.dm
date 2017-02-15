@@ -208,7 +208,7 @@
 		if(!heat_proof)
 			var/obj/item/stack/stack = I
 			var/transfer
-			var/amount_needed = 5
+			var/amount_needed = 2
 			if (stack.amount >= amount_needed)
 				if(stat & BROKEN)
 					user << "<span class='notice'>It looks like \the [src] is pretty busted. There's not much point reinforcing it.</span>"
