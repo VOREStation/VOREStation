@@ -112,6 +112,8 @@
 	opacity = 1
 	secured_wires = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_highsecurity //Until somebody makes better sprites.
+	heat_proof = 1 // vorestation addition
+
 
 /obj/machinery/door/airlock/vault/bolted
 	icon_state = "door_locked"
@@ -129,6 +131,8 @@
 	explosion_resistance = 20
 	opacity = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_hatch
+	heat_proof = 1 //vorestation addition
+
 
 /obj/machinery/door/airlock/maintenance_hatch
 	name = "Maintenance Hatch"
@@ -749,7 +753,8 @@ About the new airlock wires panel:
 	if(istype(C, /mob/living))
 		..()
 		return
-	if(!repairing && (istype(C, /obj/item/weapon/weldingtool) && !( src.operating > 0 ) && src.density))
+	//if(!repairing && (istype(C, /obj/item/weapon/weldingtool) && !( src.operating > 0 ) && src.density)) vorestation removal
+	if(!repairing && !reinforcing && (istype(C, /obj/item/weapon/weldingtool) && !( src.operating > 0 ) && src.density)) //vorestation replacement
 		var/obj/item/weapon/weldingtool/W = C
 		if(W.remove_fuel(0,user))
 			if(!src.welded)

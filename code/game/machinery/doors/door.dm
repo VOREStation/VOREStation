@@ -27,6 +27,7 @@
 	var/min_force = 10 //minimum amount of force needed to damage the door with a melee weapon
 	var/hitsound = 'sound/weapons/smash.ogg' //sound door makes when hit with a weapon
 	var/obj/item/stack/material/steel/repairing
+	var/obj/item/stack/material/plasteel/reinforcing //vorestation addition
 	var/block_air_zones = 1 //If set, air zones cannot merge across the door even when it is opened.
 	var/close_door_at = 0 //When to automatically close the door, if possible
 
@@ -202,6 +203,32 @@
 /obj/machinery/door/attackby(obj/item/I as obj, mob/user as mob)
 	src.add_fingerprint(user)
 
+// start vorestation addition
+	if(istype(I, /obj/item/stack/material) && I.get_material_name() == "plasteel") // Add heat shielding if it isn't already.
+		if(!heat_proof)
+			var/obj/item/stack/stack = I
+			var/transfer
+			var/amount_needed = 5
+			if (stack.amount >= amount_needed)
+				if(stat & BROKEN)
+					user << "<span class='notice'>It looks like \the [src] is pretty busted. There's not much point reinforcing it.</span>"
+					return
+			if (reinforcing)
+				transfer = stack.transfer_to(reinforcing, amount_needed - reinforcing.amount)
+				if (!transfer)
+					user << "<span class='warning'>You must weld or remove \the [reinforcing] from \the [src] before you can add anything else.</span>"
+			else
+				reinforcing = stack.split(amount_needed)
+				if (reinforcing)
+					reinforcing.loc = src
+					transfer = reinforcing.amount
+
+			if (transfer)
+				user << "<span class='notice'>You fit [transfer] [stack.singular_name]\s to \the [src].</span>"
+
+			return
+// end vorestation addition
+
 	if(istype(I, /obj/item/stack/material) && I.get_material_name() == src.get_material_name())
 		if(stat & BROKEN)
 			user << "<span class='notice'>It looks like \the [src] is pretty busted. It's going to need more than just patching up now.</span>"
@@ -257,6 +284,33 @@
 		repairing.loc = user.loc
 		repairing = null
 		return
+
+// start vorestation addition
+	if(reinforcing && istype(I, /obj/item/weapon/weldingtool))
+		if(!density)
+			user << "<span class='warning'>\The [src] must be closed before you can repair it.</span>"
+			return
+
+		var/obj/item/weapon/weldingtool/welder = I
+		if(welder.remove_fuel(0,user))
+			user << "<span class='notice'>You start to weld \the [reinforcing] into place.</span>"
+			playsound(src, 'sound/items/Welder.ogg', 100, 1)
+			if(do_after(user, 5 * reinforcing.amount) && welder && welder.isOn())
+				user << "<span class='notice'>You finish reinforcing \the [src].</span>"
+				heat_proof = 1
+				update_icon()
+				qdel(reinforcing)
+				reinforcing = null
+		return
+
+	if(reinforcing && istype(I, /obj/item/weapon/crowbar))
+		user << "<span class='notice'>You remove \the [reinforcing].</span>"
+		playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
+		reinforcing.loc = user.loc
+		reinforcing = null
+		return
+// end vorestation addition
+
 
 	//psa to whoever coded this, there are plenty of objects that need to call attack() on doors without bludgeoning them.
 	if(src.density && istype(I, /obj/item/weapon) && user.a_intent == I_HURT && !istype(I, /obj/item/weapon/card))
@@ -353,6 +407,26 @@
 			else
 				take_damage(150)
 	return
+
+//start vorestation addition
+/obj/machinery/door/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+	var/maxtemperature = 1800 //same as a normal steel wall
+	if(heat_proof)
+		maxtemperature = 6000 //same as a plasteel rwall
+
+	if(exposed_temperature > maxtemperature)
+		var/burndamage = log(RAND_F(0.9, 1.1) * (exposed_temperature - maxtemperature))
+		if (burndamage && health <= 0) //once they break, you've not got long before they're just ash
+			destroy_hits -= (burndamage / 20) //effectively gives an airlock 200HP between breaking and completely disintegrating
+			if (destroy_hits <= 0)
+				visible_message("<span class='danger'>\The [src.name] disintegrates!</span>")
+				new /obj/effect/decal/cleanable/ash(src.loc) // Turn it to ashes!
+				qdel(src)
+		take_damage(burndamage)
+
+	return ..()
+
+//end vorestation addition
 
 
 /obj/machinery/door/update_icon()

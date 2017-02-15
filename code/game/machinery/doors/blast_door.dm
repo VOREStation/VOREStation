@@ -169,6 +169,7 @@ obj/machinery/door/blast/regular
 	icon_state_closing = "pdoorc1"
 	icon_state = "pdoor1"
 	maxhealth = 600
+	heat_proof = 1 //vorestation addition
 
 obj/machinery/door/blast/regular/open
 	icon_state = "pdoor0"
