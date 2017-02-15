@@ -147,7 +147,7 @@ var/datum/controller/rogue/rm_controller = new()
 		ZM_target = pick(clean_zones)
 
 	if(ZM_target)
-		world.log << "RM(stats): SCORING [ready_zones.len] zones." //DEBUG code for playtest stats gathering.
+		world.log << "RM(stats): SCORING [ready_zones.len] zones (if unscored)." //DEBUG code for playtest stats gathering.
 		for(var/datum/rogue/zonemaster/ZM_toscore in ready_zones) //Score all the zones first.
 			if(ZM_toscore.scored) continue
 			ZM_toscore.score_zone()
@@ -155,7 +155,7 @@ var/datum/controller/rogue/rm_controller = new()
 	else
 		rm_controller.dbg("RMC(pnz): I was asked for a new zone but there's no space.")
 
-	if(clean_zones.len <= 0) //Need to clean the oldest one, too.
+	if(clean_zones.len <= 1) //Need to clean the oldest one, too.
 		rm_controller.dbg("RMC(pnz): Cleaning up oldest zone.")
 		spawn(0) //Detatch it so we can return the new zone for now.
 			var/datum/rogue/zonemaster/ZM_oldest = get_oldest_zone()

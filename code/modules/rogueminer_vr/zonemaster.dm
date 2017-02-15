@@ -329,11 +329,9 @@
 ///////////////////////////////
 ///// Zone Cleaning ///////////
 ///////////////////////////////
-/datum/rogue/zonemaster/proc/score_zone(var/bonus = 0)
-	if(clean || !ready)
-		return
-
+/datum/rogue/zonemaster/proc/score_zone(var/bonus = 10)
 	rm_controller.dbg("ZM(sz): Scoring zone with area [myarea].")
+	scored = 1
 	var/tally = bonus
 
 	//Ore-bearing rocks that were mined
@@ -369,8 +367,14 @@
 //Overall 'destroy' proc (marks as unready)
 /datum/rogue/zonemaster/proc/clean_zone(var/delay = 1)
 	rm_controller.dbg("ZM(cz): Cleaning zone with area [myarea].")
+	world.log << "RM(stats): CLEAN start [myarea] at [world.time] prepared at [prepared_at]." //DEBUG code for playtest stats gathering.
 	rm_controller.unmark_ready(src)
 
+	//Cut these lists so qdel can dereference the things properly
+	mineral_rocks.Cut()
+	spawned_mobs.Cut()
+	rockspawns.Cut()
+	mobspawns.Cut()
 
 	var/ignored = list(
 	/obj/asteroid_spawner,
@@ -380,8 +384,6 @@
 	/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/ontop,
 	/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/onbottom)
 
-	var/deleted = 0
-
 	for(var/atom/I in myarea.contents)
 		if(I.type == /turf/space)
 			I.overlays.Cut()
@@ -389,33 +391,23 @@
 		else if(I.type in ignored)
 			continue
 		qdel(I)
-		deleted++
-		if(delay)
-			sleep(delay)
+		sleep(delay)
 
 	//A deletion so nice that I give it twice
 	for(var/atom/I in myarea.contents)
 		if(I.type in ignored)
 			continue
 		qdel(I)
-		deleted++
-		if(delay)
-			sleep(delay)
+		sleep(delay)
 
-	rm_controller.dbg("ZM(cz): Deleted [deleted] atoms in [myarea].")
-
-	mineral_rocks.Cut()
-	spawned_mobs.Cut()
-	rockspawns.Cut()
-	mobspawns.Cut()
-	rm_controller.dbg("ZM(cz): Cleaned up lists.")
-
-	world.log << "RM(stats): CLEAN [myarea] at [world.time] prepared at [prepared_at]." //DEBUG code for playtest stats gathering.
-
+	//Clean up vars
 	scored = 0
 	original_mobs = 0
 	prepared_at = 0
-	rm_controller.dbg("ZM(cz): Finished cleaning up zone.")
+
+	world.log << "RM(stats): CLEAN done [myarea] at [world.time]." //DEBUG code for playtest stats gathering.
+
+	rm_controller.dbg("ZM(cz): Finished cleaning up zone area [myarea].")
 	rm_controller.mark_clean(src)
 	return myarea
 
