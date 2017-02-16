@@ -73,11 +73,12 @@
 /obj/item/fluff/permit/aronai_kadigan
 	name = "Aronai Kadigan's Sidearm Permit"
 	desc = {"
-	<b>NAME:</b> Aronai Kadigan | <b>RACE:</b> Cross Fox | <b>HOMEWORLD:</b> New Kitsuhana, KHI1
+	<b>NAME:</b> Aronai Kadigan | <b>RACE:</b> Cross Fox (Synth) | <b>HOMEWORLD:</b> Kitsuhana Prime
 	<b>DOB:</b>  12/Jul/2530 | <b>HEIGHT:</b> 188cm | <b>SEX:</b> Male
 
-	The individual named above is licensed by the Nanotrasen Department of Civil Protection to carry one KIN-H21 (Egun Variant).
-	This license expires on 30/Sep/2560 and must be renewed by CentCom prior to this date."}
+	The individual named above is licensed by the Nanotrasen Department of Civil Protection
+	to carry one KIN (foreign) handgun with flash ammo.
+	This license expires on 16/Feb/2562 and must be renewed by CentCom prior to this date."}
 
 // joanrisu:Joan Risu
 /obj/item/fluff/permit/joanrisu

@@ -313,7 +313,6 @@
 	if(!ignore_inhands) update_held_icon()
 
 //-----------------------G44 Energy Variant--------------------
-
 /obj/item/weapon/gun/energy/gun/burst/g44e
 	name = "G44 Energy Rifle"
 	desc = "The G44 Energy is a laser variant of the G44 lightweight assault rifle manufactured by the National Armory of Gaia. Though almost exclusively to the United Federation's Military Assault Command Operations Department (MACOs) and Starfleet, it is occassionally sold to security departments for their stun capabilities."
@@ -357,6 +356,78 @@
 /obj/item/weapon/gun/projectile/colt/fluff/archercolt
 	name = "\improper MEUSOC .45"
 	desc = "Some serious drywall work, coming up!"
+
+//-----------------------KHI Common----------------------------------
+/obj/item/weapon/gun/projectile/khi/process_chambered()
+	if (!chambered) return
+	qdel(chambered) //Devours ammo rather than fires it.
+
+//-----------------------KHI Pistol----------------------------------
+/obj/item/weapon/gun/projectile/khi/pistol
+	name = "alien pistol"
+	desc = "This KHI handgun doesn't so much 'fire' .45 ammo as 'devour' it and make it's own proprietary ammunition."
+	icon = 'icons/obj/gun_vr.dmi'
+	icon_state = "khipistol"
+	item_state = "gun" // Placeholder
+	magazine_type = /obj/item/ammo_magazine/c45m/flash //Dun wanna KILL all the people.
+	allowed_magazines = list(/obj/item/ammo_magazine/c45m)
+	caliber = ".45"
+	handle_casings = CYCLE_CASINGS
+	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 5)
+	fire_sound = 'sound/weapons/semiauto.ogg'
+	load_method = MAGAZINE
+	dna_lock = 1
+
+//-----------------------KHI PDW----------------------------------
+// For general use
+/obj/item/weapon/gun/projectile/automatic/khi/pdw
+	name = "alien pdw"
+	desc = "The KHI personal defense mainstay. If KHI had any standards whatsoever, that is. Insert 9mm ammo for good times."
+	icon = 'icons/obj/gun_vr.dmi'
+	icon_state = "khipdw"
+	item_state = "c20r" // Placeholder
+	w_class = ITEMSIZE_NORMAL
+	caliber = "9mm"
+	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 5)
+	slot_flags = SLOT_BELT
+	load_method = MAGAZINE
+	handle_casings = CYCLE_CASINGS
+	magazine_type = /obj/item/ammo_magazine/mc9mml
+	allowed_magazines = list(/obj/item/ammo_magazine/mc9mm, /obj/item/ammo_magazine/mc9mml)
+	dna_lock = 1
+
+	firemodes = list(
+		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    burst_accuracy=list(0,-1,-2), dispersion=list(0.0, 0.6, 0.6))
+		)
+
+//-----------------------KHI LIM Rifle----------------------------------
+//Unfinished
+/obj/item/weapon/limrifle //Not even a subtype of gun because it behaves differently.
+	name = "lim rifle"
+	desc = "The KHI-101-R linear induction motor rifle can propel a small 2mm slug at extreme velocity through nearly any solid object. Whether it has the time to impart any force is another question entirely."
+	//icon = 'icons/obj/gun64_vr.dmi'
+	icon_state = "limrifle"
+	item_state = "gun" //Should probably be huge-r
+	//dna_lock = 1
+	//safety_level = 1
+
+	var/charge_time = 5 SECONDS
+	var/charge_percent = 100
+
+/obj/item/weapon/limrifle/New()
+	..()
+	update_icon()
+
+/obj/item/weapon/limrifle/update_icon()
+	..()
+	var/charge_icon = round(charge_percent,20)
+	icon_state = "[initial(icon_state)]_[charge_icon]"
+
+/obj/item/weapon/limrifle/proc/recharge()
+	charge_percent = 0
+	update_icon()
+
 
 //////////////////// Energy Weapons ////////////////////
 // -------------- Dominator -------------
