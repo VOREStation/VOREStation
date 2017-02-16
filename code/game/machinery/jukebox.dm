@@ -78,6 +78,10 @@ datum/track/New(var/title_name, var/audio)
 		return
 	if(default_deconstruction_crowbar(user, W))
 		return
+	if(istype(W, /obj/item/weapon/wirecutters))
+		return wires.Interact(user)
+	if(istype(W, /obj/item/device/multitool))
+		return wires.Interact(user)
 	if(istype(W, /obj/item/weapon/wrench))
 		if(playing)
 			StopPlaying()
