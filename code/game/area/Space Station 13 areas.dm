@@ -346,11 +346,11 @@ area/space/atmosalert()
 	icon_state = "shuttlered2"
 
 /area/shuttle/administration/centcom
-	name = "\improper Administration Shuttle CentCom"
+	name = "Centcom Large Bay (AS)" //VOREStation Edit
 	icon_state = "shuttlered"
 
 /area/shuttle/administration/station
-	name = "\improper Administration Shuttle"
+	name = "NSS Adephagia (AS)" //VOREStation Edit
 	icon_state = "shuttlered2"
 
 /area/shuttle/trade/centcom

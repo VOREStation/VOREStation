@@ -377,5 +377,5 @@
 
 /obj/item/weapon/reagent_containers/syringe/steroid/New()
 	..()
-	reagents.add_reagent("adrenaline",5)
+	//reagents.add_reagent("adrenaline",5) //VOREStation Edit - No thanks.
 	reagents.add_reagent("hyperzine",10)

@@ -77,10 +77,10 @@
 
 		switch(over_object.name)
 			if("r_hand")
-				usr.u_equip(src)
+				usr.unEquip(src)
 				usr.put_in_r_hand(src)
 			if("l_hand")
-				usr.u_equip(src)
+				usr.unEquip(src)
 				usr.put_in_l_hand(src)
 		src.add_fingerprint(usr)
 

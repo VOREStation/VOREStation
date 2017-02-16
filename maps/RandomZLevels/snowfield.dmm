@@ -219,7 +219,7 @@
 "ek" = (/obj/effect/floor_decal/industrial/outline/yellow,/obj/effect/floor_decal/industrial/hatch/yellow,/turf/simulated/floor/tiled/neutral,/area/awaymission/snowfield/base)
 "el" = (/obj/effect/floor_decal/industrial/loading{tag = "icon-loadingarea (NORTH)"; icon_state = "loadingarea"; dir = 1},/turf/simulated/floor/tiled/neutral,/area/awaymission/snowfield/base)
 "em" = (/obj/machinery/conveyor_switch{id = "away_soviet"},/obj/effect/floor_decal/industrial/hatch/yellow,/turf/simulated/floor/tiled/neutral,/area/awaymission/snowfield/base)
-"en" = (/obj/effect/floor_decal/industrial/outline/yellow,/obj/structure/closet/crate/secure/phoron,/obj/item/stack/material/phoron/fifty,/turf/simulated/floor/tiled/neutral,/area/awaymission/snowfield/base)
+"en" = (/obj/effect/floor_decal/industrial/outline/yellow,/obj/structure/closet/crate/secure/phoron,/obj/fiftyspawner/phoron,/turf/simulated/floor/tiled/neutral,/area/awaymission/snowfield/base)
 "eo" = (/obj/effect/floor_decal/industrial/outline/yellow,/obj/structure/closet/toolcloset,/turf/simulated/floor/tiled/neutral,/area/awaymission/snowfield/base)
 "ep" = (/obj/effect/floor_decal/industrial/warning/dust,/obj/machinery/door/airlock/centcom,/turf/simulated/floor/holofloor/wood,/area/awaymission/snowfield/base)
 "eq" = (/obj/structure/plasticflaps/mining,/obj/machinery/conveyor{dir = 2; id = "away_soviet"},/turf/simulated/floor/tiled/neutral,/area/awaymission/snowfield/base)

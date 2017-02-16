@@ -195,6 +195,7 @@ var/list/admin_verbs_debug = list(
 	/client/proc/SDQL_query,
 	/client/proc/SDQL2_query,
 	/client/proc/Jump,
+	/client/proc/debug_rogueminer,
 	/client/proc/jumptomob,
 	/client/proc/jumptocoord,
 	/client/proc/dsay,

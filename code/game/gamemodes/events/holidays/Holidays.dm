@@ -120,6 +120,12 @@ var/global/list/Holiday = list() //Holidays are lists now, so we can have more t
 //				if(10)
 //					Holiday["S'randarr's Day"] = "A Tajaran holiday that occurs on the longest day of the year in summer, \
 //					on Ahdomai. It is named after the Tajaran deity of Light, and huge celebrations are common."
+//VOREStation Add - Of course we need this.
+				if(8)
+					Holiday["Vore Day"] = "A holiday representing the innate desire in all/most/some/a few of us to devour each other or be devoured. \
+					That's probably why you're here, isn't it? Get to it, then!"
+//VOREStation Add End.
+
 				if(27)
 					Holiday["Forgiveness Day"] = "A time to forgive and be forgiven."
 
