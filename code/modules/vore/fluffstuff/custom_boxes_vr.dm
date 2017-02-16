@@ -156,7 +156,10 @@
 	has_items = list(
 		/obj/item/weapon/storage/backpack/fluff/aronai,
 		/obj/item/weapon/rig/light/hacker/fluff/aronai,
-		/obj/item/clothing/under/rank/khi/fluff/aronai)
+		/obj/item/clothing/under/rank/khi/fluff/aronai,
+		/obj/item/fluff/permit/aronai_kadigan,
+		/obj/item/weapon/gun/projectile/khi/pistol,
+		/obj/item/ammo_magazine/c45m/flash)
 
 /*
 Swimsuits, for general use, to avoid arriving to work with your swimsuit.
