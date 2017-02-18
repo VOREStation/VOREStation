@@ -67,7 +67,7 @@ var/datum/controller/rogue/rm_controller = new()
 	//How many zones are we working with here
 	for(var/area/asteroid/rogue/A in world)
 		all_zones += new /datum/rogue/zonemaster(A)
-	decay()
+	//decay() //Decay removed for now, since people aren't getting high scores as it is.
 
 /datum/controller/rogue/proc/decay(var/manual = 0)
 	world.log << "RM(stats): DECAY on controller from [difficulty] to [difficulty+(RM_DIFF_DECAY_AMT)] min 100." //DEBUG code for playtest stats gathering.
