@@ -21,6 +21,8 @@
 		eject_wait = 0
 
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src, R.dna.species)
+	if(current_project.locked)
+		H.resleeve_lock = current_project.ckey
 
 	//Fix the external organs
 	for(var/part in current_project.limb_data)

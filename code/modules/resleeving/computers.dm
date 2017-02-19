@@ -156,7 +156,7 @@
 									"speciesname" = active_br.speciesname, \
 									"gender" = active_br.bodygender, \
 									"synthetic" = active_br.synthetic ? "Yes" : "No", \
-									"locked" = active_br.locked, \
+									"locked" = active_br.locked ? "Low" : "High", \
 									"cando" = can_grow_active)
 	else
 		data["activeRecord"] = null
