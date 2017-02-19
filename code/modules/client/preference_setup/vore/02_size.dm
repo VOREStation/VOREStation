@@ -42,9 +42,6 @@
 	character.weight			= pref.weight_vr
 	character.weight_gain		= pref.weight_gain
 	character.weight_loss		= pref.weight_loss
-	spawn(50)
-		if(character && !istype(character,/mob/living/carbon/human/dummy))
-			new/datum/transhuman/body_record/(character,1) //Clearly related to size.
 
 /datum/category_item/player_setup_item/vore/size/content(var/mob/user)
 	. += "<br>"
