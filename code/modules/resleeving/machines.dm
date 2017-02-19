@@ -46,7 +46,7 @@
 		var/obj/item/organ/I = H.internal_organs_by_name[name]
 		if(!I) continue//Not an organ. Perhaps external conversion changed it already?
 
-		if(part == BP_EYES && status > 0) //But not eyes. The only non-essential internal organ.
+		if(part == O_EYES && status > 0) //But not eyes. The only non-essential internal organ.
 			qdel(I)
 			continue
 
@@ -341,8 +341,8 @@
 
 	//Inform them and make them a little dizzy.
 	occupant << "<span class='warning'>You feel a small pain in your head as you're given a new backup implant. Oh, and a new body. It's disorienting, to say the least.</span>"
-	occupant.confused = max(occupant.confused, 15)
-	occupant.eye_blurry = max(occupant.eye_blurry, 15)
+	occupant.confused = max(occupant.confused, 25)
+	occupant.eye_blurry = max(occupant.eye_blurry, 25)
 
 	return 1
 
