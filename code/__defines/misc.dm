@@ -199,3 +199,13 @@
 #define TSC_MORPH	"Morpheus"
 #define TSC_XION	"Xion" // Not really needed but consistancy I guess.
 #define TSC_GIL 	"Gilthari"
+
+//MultiZ directions for ZAS checks.
+#define NORTHUP (NORTH|UP)
+#define EASTUP (EAST|UP)
+#define SOUTHUP (SOUTH|UP)
+#define WESTUP (WEST|UP)
+#define NORTHDOWN (NORTH|DOWN)
+#define EASTDOWN (EAST|DOWN)
+#define SOUTHDOWN (SOUTH|DOWN)
+#define WESTDOWN (WEST|DOWN)
