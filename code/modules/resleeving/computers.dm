@@ -156,6 +156,7 @@
 									"speciesname" = active_br.speciesname, \
 									"gender" = active_br.bodygender, \
 									"synthetic" = active_br.synthetic ? "Yes" : "No", \
+									"locked" = active_br.locked, \
 									"cando" = can_grow_active)
 	else
 		data["activeRecord"] = null
@@ -289,6 +290,10 @@
 				//No body to sleeve into.
 				if(!sleever.occupant)
 					temp = "Error: Resleeving pod is not occupied."
+
+				//OOC body lock thing.
+				if(sleever.occupant.resleeve_lock && active_mr.ckey != sleever.occupant.resleeve_lock)
+					temp = "Error: Mind incompatible with body."
 
 				//Body to sleeve into, but mind is in another living body.
 				else if(active_mr.mind.current && active_mr.mind.current.stat != DEAD) //Mind is in a body already that's alive

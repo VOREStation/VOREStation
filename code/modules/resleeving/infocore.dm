@@ -3,6 +3,8 @@
 //// for the resleeving tech
 ////////////////////////////////
 
+/mob/living/carbon/human/var/resleeve_lock
+
 var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 
 //Mind-backup database
@@ -113,6 +115,7 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 
 	//These may or may not be set, mostly irrelevant since it's just a body record.
 	var/ckey
+	var/locked
 	var/client/client_ref
 	var/datum/mind/mind_ref
 	var/synthetic
@@ -121,9 +124,13 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 	var/list/limb_data = list(BP_HEAD, BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM, BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_TORSO)
 	var/list/organ_data = list(O_HEART, O_EYES, O_LUNGS, O_BRAIN)
 
-/datum/transhuman/body_record/New(var/mob/living/carbon/human/M,var/add_to_db = 1)
+/datum/transhuman/body_record/New(var/mob/living/carbon/human/M,var/add_to_db = 1,var/ckeylock = 0)
 	ASSERT(M)
 
+	//Person OOCly doesn't want people impersonating them
+	locked = ckeylock
+
+	//General stuff about them
 	synthetic = M.isSynthetic()
 	speciesname = M.custom_species ? M.custom_species : M.dna.species
 	bodygender = M.gender

@@ -206,6 +206,8 @@
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src, current_project.mydna.dna.species)
 	H.name = current_project.mydna.dna.real_name
 	H.real_name = H.name
+	if(current_project.locked)
+		H.resleeve_lock = current_project.ckey
 
 	//First the external organs
 	for(var/part in current_project.limb_data)
