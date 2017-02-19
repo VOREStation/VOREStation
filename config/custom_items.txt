@@ -321,6 +321,12 @@ character_name: Kari Akiren
 item_path: /obj/item/fluff/permit/kari_akiren
 }
 
+{
+ckey: myryan
+character_name: Myryan Karnage-Cunningham
+item_path: /obj/item/weapon/storage/belt/utility/fluff/vulpine
+}
+
 # ######## N CKEYS
 # ######## O CKEYS
 {

@@ -643,7 +643,6 @@
 		new /obj/item/weapon/wirecutters(src)
 		new /obj/item/device/multitool(src)
 		new /obj/item/stack/cable_coil(src, 30, "red")
-		new /obj/item/stack/cable_coil(src, 30, "green")
 
 // molenar:Giliana Gamish
 /obj/item/clothing/suit/storage/toggle/labcoat/fluff/molenar
