@@ -151,6 +151,8 @@
 			can_grow_active = 0
 		else if(!synthetic_capable && !organic_capable) //What have you done??
 			can_grow_active = 0
+		else if(active_br.toocomplex)
+			can_grow_active = 0
 
 		data["activeBodyRecord"] = list("real_name" = active_br.mydna.name, \
 									"speciesname" = active_br.speciesname, \

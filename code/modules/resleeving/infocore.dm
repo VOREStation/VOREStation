@@ -125,12 +125,18 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 	var/body_oocnotes
 	var/list/limb_data = list(BP_HEAD, BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM, BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_TORSO)
 	var/list/organ_data = list(O_HEART, O_EYES, O_LUNGS, O_BRAIN)
+	var/toocomplex
 
 /datum/transhuman/body_record/New(var/mob/living/carbon/human/M,var/add_to_db = 1,var/ckeylock = 0)
 	ASSERT(M)
 
 	//Person OOCly doesn't want people impersonating them
 	locked = ckeylock
+
+	//Prevent people from printing restricted and whitelisted species
+	var/datum/species/S = all_species["[M.dna.species]"]
+	if(S)
+		toocomplex = (S.spawn_flags & SPECIES_IS_WHITELISTED) || (S.spawn_flags & SPECIES_IS_RESTRICTED)
 
 	//General stuff about them
 	synthetic = M.isSynthetic()
