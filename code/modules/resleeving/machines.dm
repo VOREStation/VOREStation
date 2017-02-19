@@ -6,6 +6,7 @@
 /////// Grower Pod ///////
 /obj/machinery/clonepod/transhuman
 	name = "grower pod"
+	circuit = /obj/item/weapon/circuitboard/transhuman_clonepod
 
 /obj/machinery/clonepod/transhuman/growclone(var/datum/transhuman/body_record/current_project)
 	var/datum/dna2/record/R = current_project.mydna
@@ -143,6 +144,7 @@
 	desc = "A rapid fabricator for synthetic bodies."
 	icon = 'icons/obj/machines/synthpod.dmi'
 	icon_state = "pod_0"
+	circuit = /obj/item/weapon/circuitboard/transhuman_synthprinter
 	density = 1
 	anchored = 1
 
@@ -153,6 +155,17 @@
 	var/body_cost = 15000  //Cost of a cloned body (metal and glass ea.)
 	var/datum/transhuman/body_record/current_project
 	var/broken = 0
+
+/obj/machinery/transhuman/synthprinter/New()
+	..()
+	component_parts = list()
+	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
+	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
+	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
+	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
+	component_parts += new /obj/item/stack/cable_coil(src, 2)
+	RefreshParts()
+	update_icon()
 
 /obj/machinery/transhuman/synthprinter/process()
 	if(stat & NOPOWER)
@@ -248,6 +261,16 @@
 	user << "Current print cycle is [busy]% complete."
 	return
 
+/obj/machinery/transhuman/synthprinter/attackby(obj/item/W as obj, mob/user as mob)
+	src.add_fingerprint(user)
+	if(default_deconstruction_screwdriver(user, W))
+		return
+	if(default_deconstruction_crowbar(user, W))
+		return
+	if(default_part_replacement(user, W))
+		return
+	return ..()
+
 /obj/machinery/transhuman/synthprinter/update_icon()
 	..()
 	icon_state = "pod_0"
@@ -262,12 +285,25 @@
 	desc = "Used to combine mind and body into one unit."
 	icon = 'icons/obj/machines/implantchair.dmi'
 	icon_state = "implantchair"
+	circuit = /obj/item/weapon/circuitboard/transhuman_resleever
 	density = 1
 	opacity = 0
 	anchored = 1
 
 	var/mob/living/carbon/human/occupant = null
 	var/connected = null
+
+/obj/machinery/transhuman/resleever/New()
+	..()
+	component_parts = list()
+	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
+	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
+	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
+	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
+	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
+	component_parts += new /obj/item/stack/cable_coil(src, 2)
+	RefreshParts()
+	update_icon()
 
 /obj/machinery/transhuman/resleever/attack_hand(mob/user as mob)
 	user.set_machine(src)
@@ -293,19 +329,27 @@
 	user << browse(dat, "window=resleever")
 	onclose(user, "resleever")
 
-/obj/machinery/transhuman/resleever/attackby(var/obj/item/weapon/G as obj, var/mob/user as mob)
-	if(istype(G, /obj/item/weapon/grab))
-		if(!ismob(G:affecting))
+/obj/machinery/transhuman/resleever/attackby(obj/item/W as obj, mob/user as mob)
+	src.add_fingerprint(user)
+	if(default_deconstruction_screwdriver(user, W))
+		return
+	if(default_deconstruction_crowbar(user, W))
+		return
+	if(default_part_replacement(user, W))
+		return
+	if(istype(W, /obj/item/weapon/grab))
+		var/obj/item/weapon/grab/G = W
+		if(!ismob(G.affecting))
 			return
-		for(var/mob/living/carbon/slime/M in range(1,G:affecting))
-			if(M.Victim == G:affecting)
-				usr << "[G:affecting:name] will not fit into the [src.name] because they have a slime latched onto their head."
+		for(var/mob/living/carbon/slime/M in range(1, G.affecting))
+			if(M.Victim == G.affecting)
+				usr << "[G.affecting:name] will not fit into the [src.name] because they have a slime latched onto their head."
 				return
-		var/mob/M = G:affecting
+		var/mob/M = G.affecting
 		if(put_mob(M))
 			qdel(G)
 	src.updateUsrDialog()
-	return
+	return ..()
 
 /obj/machinery/transhuman/resleever/proc/putmind(var/datum/transhuman/mind_record/MR)
 	if(!occupant || !istype(occupant) || occupant.stat >= DEAD)
