@@ -86,7 +86,7 @@
 
 	H.set_cloned_appearance()
 	update_icon()
-
+	H.ooc_notes = current_project.body_oocnotes
 	H.flavor_texts = R.flavor.Copy()
 	H.suiciding = 0
 	attempting = 0
@@ -209,6 +209,9 @@
 	H.real_name = H.name
 	if(current_project.locked)
 		H.resleeve_lock = current_project.ckey
+
+	H.ooc_notes = current_project.body_oocnotes
+	H.flavor_texts = current_project.mydna.flavor.Copy()
 
 	//First the external organs
 	for(var/part in current_project.limb_data)
@@ -397,6 +400,7 @@
 	occupant.client = MR.client
 	occupant.mind = MR.mind
 	occupant.ckey = MR.ckey
+	occupant.ooc_notes = MR.mind_oocnotes
 
 	//Give them a backup implant
 	var/obj/item/weapon/implant/backup/new_imp = new()

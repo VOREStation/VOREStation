@@ -485,15 +485,17 @@ default behaviour is:
 	set name = "Examine Meta-Info (OOC)"
 	set category = "OOC"
 	set src in view()
-
+	//VOREStation Edit Start - Making it so SSD people have prefs with fallback to original style.
 	if(config.allow_Metadata)
-		if(client)
+		if(ooc_notes)
+			usr << "[src]'s Metainfo:<br>[ooc_notes]"
+		else if(client)
 			usr << "[src]'s Metainfo:<br>[client.prefs.metadata]"
 		else
 			usr << "[src] does not have any stored infomation!"
 	else
 		usr << "OOC Metadata is not supported by this server!"
-
+	//VOREStation Edit End - Making it so SSD people have prefs with fallback to original style.
 	return
 
 /mob/living/Move(a, b, flag)

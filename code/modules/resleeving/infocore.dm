@@ -82,6 +82,7 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 	var/cryo_at
 	var/secretly_dead
 	var/languages
+	var/mind_oocnotes
 
 /datum/transhuman/mind_record/New(var/mob/living/carbon/human/M,var/obj/item/weapon/implant/backup/imp,var/add_to_db = 1)
 	ASSERT(M && imp)
@@ -100,6 +101,7 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 	ckey = M.ckey
 	cryo_at = 0
 	languages = M.languages.Copy()
+	mind_oocnotes = M.ooc_notes
 
 	//If these are gone then it's a problemmmm.
 	client = M.client
@@ -107,7 +109,6 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 
 	if(add_to_db)
 		transcore.add_backup(src)
-
 
 /////// Body Record ///////
 /datum/transhuman/body_record
@@ -121,6 +122,7 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 	var/synthetic
 	var/speciesname
 	var/bodygender
+	var/body_oocnotes
 	var/list/limb_data = list(BP_HEAD, BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM, BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_TORSO)
 	var/list/organ_data = list(O_HEART, O_EYES, O_LUNGS, O_BRAIN)
 
@@ -134,6 +136,7 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 	synthetic = M.isSynthetic()
 	speciesname = M.custom_species ? M.custom_species : M.dna.species
 	bodygender = M.gender
+	body_oocnotes = M.ooc_notes
 
 	//Probably should
 	M.dna.check_integrity()
