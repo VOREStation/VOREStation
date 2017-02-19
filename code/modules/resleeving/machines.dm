@@ -150,8 +150,7 @@
 	density = 1
 	anchored = 1
 
-	var/steel = 30000  //Starting steel
-	var/glass = 30000  //Starting glass
+	var/list/stored_material =  list(DEFAULT_WALL_MATERIAL = 30000, "glass" = 30000)
 	var/connected      //What console it's done up with
 	var/busy = 0       //Busy cloning
 	var/body_cost = 15000  //Cost of a cloned body (metal and glass ea.)
@@ -189,7 +188,7 @@
 	if(!istype(BR) || busy)
 		return 0
 
-	if(steel < body_cost || glass < body_cost)
+	if(stored_material[DEFAULT_WALL_MATERIAL] < body_cost || stored_material["glass"] < body_cost)
 		return 0
 
 	current_project = BR
@@ -249,8 +248,8 @@
 	H.adjustFireLoss(20)
 
 	//Cha-ching.
-	steel -= body_cost
-	glass -= body_cost
+	stored_material[DEFAULT_WALL_MATERIAL] -= body_cost
+	stored_material["glass"] -= body_cost
 
 	//Plonk them here.
 	H.loc = get_turf(src)
@@ -267,13 +266,42 @@
 
 /obj/machinery/transhuman/synthprinter/attackby(obj/item/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
+	if(busy)
+		user << "<span class='notice'>\The [src] is busy. Please wait for completion of previous operation.</span>"
+		return
 	if(default_deconstruction_screwdriver(user, W))
 		return
 	if(default_deconstruction_crowbar(user, W))
 		return
 	if(default_part_replacement(user, W))
 		return
-	return ..()
+	if(panel_open)
+		user << "<span class='notice'>You can't load \the [src] while it's opened.</span>"
+		return
+	if(!istype(W, /obj/item/stack/material))
+		user << "<span class='notice'>You cannot insert this item into \the [src]!</span>"
+		return
+
+	var/obj/item/stack/material/S = W
+	if(!(S.material.name in stored_material))
+		user << "<span class='warning'>\the [src] doesn't accept [S.material]!</span>"
+		return
+
+	var/amnt = S.perunit
+	var/max_res_amount = 30000
+	if(stored_material[S.material.name] + amnt <= max_res_amount)
+		if(S && S.amount >= 1)
+			var/count = 0
+			while(stored_material[S.material.name] + amnt <= max_res_amount && S.amount >= 1)
+				stored_material[S.material.name] += amnt
+				S.use(1)
+				count++
+			user << "You insert [count] [S.name] into \the [src]."
+	else
+		user << "\the [src] cannot hold more [S.name]."
+
+	updateUsrDialog()
+	return
 
 /obj/machinery/transhuman/synthprinter/update_icon()
 	..()
