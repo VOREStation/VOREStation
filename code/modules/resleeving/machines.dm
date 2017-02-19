@@ -7,7 +7,8 @@
 /obj/machinery/clonepod/transhuman
 	name = "grower pod"
 
-/obj/machinery/clonepod/transhuman/growclone(var/datum/dna2/record/R)
+/obj/machinery/clonepod/transhuman/growclone(var/datum/transhuman/body_record/current_project)
+	var/datum/dna2/record/R = current_project.mydna
 	if(mess || attempting)
 		return 0
 
@@ -19,6 +20,45 @@
 		eject_wait = 0
 
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src, R.dna.species)
+
+	//Fix the external organs
+	for(var/part in current_project.limb_data)
+
+		var/status = current_project.limb_data[part]
+		if(status == null) continue //Species doesn't have limb? Child of amputated limb?
+
+		var/obj/item/organ/external/O = H.organs_by_name[part]
+		if(!O) continue //Not an organ. Perhaps another amputation removed it already.
+
+		if(status == 1) //Normal limbs
+			continue
+		else if(status == 0) //Missing limbs
+			O.remove_rejuv()
+		else if(status) //Anything else is a manufacturer
+			O.remove_rejuv() //Don't robotize them, leave them removed so robotics can attach a part.
+
+	//Look, this machine can do this because [reasons] okay?!
+	for(var/part in current_project.organ_data)
+
+		var/status = current_project.organ_data[part]
+		if(status == null) continue //Species doesn't have organ? Child of missing part?
+
+		var/obj/item/organ/I = H.internal_organs_by_name[name]
+		if(!I) continue//Not an organ. Perhaps external conversion changed it already?
+
+		if(part == BP_EYES && status > 0) //But not eyes. The only non-essential internal organ.
+			qdel(I)
+			continue
+
+		if(status == 0) //Normal organ
+			continue
+		else if(status == 1) //Assisted organ
+			I.mechassist()
+		else if(status == 2) //Mechanical organ
+			I.robotize()
+		else if(status == 3) //Digital organ
+			I.digitize()
+
 	occupant = H
 
 	if(!R.dna.real_name)
@@ -64,7 +104,6 @@
 			return
 
 		else if(occupant.health < heal_level && occupant.getCloneLoss() > 0)
-			occupant.Paralyse(4)
 
 			 //Slowly get that clone healed and finished.
 			occupant.adjustCloneLoss(-2 * heal_rate)
@@ -75,7 +114,7 @@
 			//So clones don't die of oxyloss in a running pod.
 			if(occupant.reagents.get_reagent_amount("inaprovaline") < 30)
 				occupant.reagents.add_reagent("inaprovaline", 60)
-			occupant.Sleeping(30)
+
 			//Also heal some oxyloss ourselves because inaprovaline is so bad at preventing it!!
 			occupant.adjustOxyLoss(-4)
 
@@ -98,7 +137,124 @@
 
 	return
 
+//Synthetic version
+/obj/machinery/transhuman/synthprinter
+	name = "SynthFab 3000"
+	desc = "A rapid fabricator for synthetic bodies."
+	icon = 'icons/obj/machines/synthpod.dmi'
+	icon_state = "pod_0"
+	density = 1
+	anchored = 1
 
+	var/steel = 30000  //Starting steel
+	var/glass = 30000  //Starting glass
+	var/connected      //What console it's done up with
+	var/busy = 0       //Busy cloning
+	var/body_cost = 15000  //Cost of a cloned body (metal and glass ea.)
+	var/datum/transhuman/body_record/current_project
+	var/broken = 0
+
+/obj/machinery/transhuman/synthprinter/process()
+	if(stat & NOPOWER)
+		if(busy)
+			busy = 0
+			current_project = null
+		update_icon()
+		return
+
+	if(busy > 0 && busy <= 95)
+		busy += 5
+
+	if(busy >= 100)
+		make_body()
+
+	return
+
+/obj/machinery/transhuman/synthprinter/proc/print(var/datum/transhuman/body_record/BR)
+	if(!istype(BR) || busy)
+		return 0
+
+	if(steel < body_cost || glass < body_cost)
+		return 0
+
+	current_project = BR
+	busy = 5
+	update_icon()
+
+	return 1
+
+/obj/machinery/transhuman/synthprinter/proc/make_body()
+	if(!current_project)
+		busy = 0
+		update_icon()
+		return
+
+	//Blep us a new blank body to robotize (based on their original species choice).
+	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src, current_project.mydna.dna.species)
+	H.name = current_project.mydna.dna.real_name
+	H.real_name = H.name
+
+	//First the external organs
+	for(var/part in current_project.limb_data)
+
+		var/status = current_project.limb_data[part]
+		if(status == null) continue //Species doesn't have limb? Child of amputated limb?
+
+		var/obj/item/organ/external/O = H.organs_by_name[part]
+		if(!O) continue //Not an organ. Perhaps another amputation removed it already.
+
+		if(status == 1) //Normal limbs
+			continue
+		else if(status == 0) //Missing limbs
+			O.remove_rejuv()
+		else if(status) //Anything else is a manufacturer
+			O.robotize(status)
+
+	//Then the internal organs
+	for(var/part in current_project.organ_data)
+
+		var/status = current_project.organ_data[part]
+		if(status == null) continue //Species doesn't have organ? Child of missing part?
+
+		var/obj/item/organ/I = H.internal_organs_by_name[name]
+		if(!I) continue//Not an organ. Perhaps external conversion changed it already?
+
+		if(status == 0) //Normal organ
+			continue
+		else if(status == 1) //Assisted organ
+			I.mechassist()
+		else if(status == 2) //Mechanical organ
+			I.robotize()
+		else if(status == 3) //Digital organ
+			I.digitize()
+
+	H.adjustBruteLoss(20)
+	H.adjustFireLoss(20)
+
+	//Cha-ching.
+	steel -= body_cost
+	glass -= body_cost
+
+	//Plonk them here.
+	H.loc = get_turf(src)
+
+	//Reset stuff.
+	busy = 0
+	update_icon()
+
+/obj/machinery/transhuman/synthprinter/attack_hand(mob/user as mob)
+	if((busy == 0) || (stat & NOPOWER))
+		return
+	user << "Current print cycle is [busy]% complete."
+	return
+
+/obj/machinery/transhuman/synthprinter/update_icon()
+	..()
+	icon_state = "pod_0"
+	if(busy && !(stat & NOPOWER))
+		icon_state = "pod_1"
+	else if(broken)
+		icon_state = "pod_g"
 
 /////// Resleever Pod ///////
 /obj/machinery/transhuman/resleever

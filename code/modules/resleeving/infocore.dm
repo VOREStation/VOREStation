@@ -118,6 +118,8 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 	var/synthetic
 	var/speciesname
 	var/bodygender
+	var/list/limb_data = list(BP_HEAD, BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM, BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_TORSO)
+	var/list/organ_data = list(O_HEART, O_EYES, O_LUNGS, O_BRAIN)
 
 /datum/transhuman/body_record/New(var/mob/living/carbon/human/M,var/add_to_db = 1)
 	ASSERT(M)
@@ -142,6 +144,33 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 	client_ref = M.client
 	ckey = M.ckey
 	mind_ref = M.mind
+
+	//External organ status. 0:gone, 1:normal, "string":manufacturer
+	for(var/limb in limb_data)
+		var/obj/item/organ/external/O = M.organs_by_name[limb]
+
+		//Missing limb.
+		if(!O)
+			limb_data[limb] = 0
+
+		//Has model set, is pros.
+		else if(O.model)
+			limb_data[limb] = O.model
+
+		//Nothing special, present and normal.
+		else
+			limb_data[limb] = 1
+
+	//Internal organ status
+	for(var/org in organ_data)
+		var/obj/item/organ/I = M.internal_organs_by_name[org]
+
+		 //Who knows? Missing lungs maybe on synths, etc.
+		if(!I)
+			continue
+
+		//Just set the data to this. 0:normal, 1:assisted, 2:robotic, 3:crazy
+		organ_data[org] = I.robotic
 
 	if(add_to_db)
 		transcore.add_body(src)

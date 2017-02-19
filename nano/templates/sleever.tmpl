@@ -5,24 +5,34 @@
 	<h3>Resleeving Control</h3>
 	<div class='item'>
 	</div>
+	
 	<div class='item'>
 	{{if data.podsLen > 0}}
 		<span class='good'>{{:data.podsLen}} growing vats found.</span>
-	{{else}}
-		<span class='bad'>No growing vats found.</span>
 	{{/if}}
 	</div>
+	
+	<div class='item'>
+	{{if data.spodsLen > 0}}
+		<span class='good'>{{:data.podsLen}} growing vats found.</span>
+	{{/if}}
+	</div>
+	
 	<div class='item'>
 	{{if data.sleeversLen > 0}}
 		<span class='good'>{{:data.sleeversLen}} resleeving pods found.</span>
-	{{else}}
-		<span class='bad'>No resleeving pods found.</span>
 	{{/if}}
 	</div>
 	
 	{{if data.podsLen}}
 		{{for data.pods}}
 			<div class='item'>{{:value.pod}}, biomass: <i>{{:value.biomass}}</i></div>
+		{{/for}}
+	{{/if}}
+	
+	{{if data.spodsLen}}
+		{{for data.spods}}
+			<div class='item'>{{:value.spod}}, S/G: <i>{{:value.steel}}/{{:value.glass}}</i></div>
 		{{/for}}
 	{{/if}}
 
@@ -84,7 +94,7 @@
 			<div class='itemContent'>{{:data.activeBodyRecord.synthetic}}</div>
 		</div>
 
-		{{:helper.link('Grow', 'play', {'grow' : data.activeBodyRecord.real_name}, data.activeBodyRecord.cando ? null : 'linkOff')}}
+		{{:helper.link('Create', 'play', {'create' : data.activeBodyRecord.real_name}, data.activeBodyRecord.cando ? null : 'linkOff')}}
 		
 	{{else}}
 		<div class='item bad'>ERROR: Record not found.</div>

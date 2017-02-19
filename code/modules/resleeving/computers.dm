@@ -7,6 +7,7 @@
 	circuit = /obj/item/weapon/circuitboard/cloning
 	req_access = list(access_heads) //Only used for record deletion right now.
 	var/list/pods = list() //Linked grower pods.
+	var/list/spods = list()
 	var/list/sleevers = list() //Linked resleeving booths.
 	var/temp = ""
 	var/menu = 1 //Which menu screen to display
@@ -14,7 +15,7 @@
 	var/datum/transhuman/mind_record/active_mr = null
 	var/datum/transhuman/infocore/TC //Easy debugging access
 	var/organic_capable = 1
-	var/synthetic_capable = 0
+	var/synthetic_capable = 1
 
 /obj/machinery/computer/transhuman/resleeving/initialize()
 	..()
@@ -34,6 +35,10 @@
 		P.connected = null
 		P.name = initial(P.name)
 	pods.Cut()
+	for(var/obj/machinery/transhuman/synthprinter/P in spods)
+		P.connected = null
+		P.name = initial(P.name)
+	spods.Cut()
 	for(var/obj/machinery/transhuman/resleever/P in sleevers)
 		P.connected = null
 		P.name = initial(P.name)
@@ -45,6 +50,11 @@
 	for(var/obj/machinery/clonepod/transhuman/P in A.get_contents())
 		if(!P.connected)
 			pods += P
+			P.connected = src
+			P.name = "[initial(P.name)] #[num++]"
+	for(var/obj/machinery/transhuman/synthprinter/P in A.get_contents())
+		if(!P.connected)
+			spods += P
 			P.connected = src
 			P.name = "[initial(P.name)] #[num++]"
 	for(var/obj/machinery/transhuman/resleever/P in A.get_contents())
@@ -99,6 +109,10 @@
 	for(var/obj/machinery/clonepod/transhuman/pod in pods)
 		pods_list_ui[++pods_list_ui.len] = list("pod" = pod, "biomass" = pod.biomass)
 
+	var/spods_list_ui[0]
+	for(var/obj/machinery/transhuman/synthprinter/spod in spods)
+		spods_list_ui[++spods_list_ui.len] = list("spod" = spod, "steel" = spod.steel, "glass" = spod.glass)
+
 	var/sleevers_list_ui[0]
 	for(var/obj/machinery/transhuman/resleever/resleever in sleevers)
 		sleevers_list_ui[++sleevers_list_ui.len] = list("sleever" = resleever, "occupant" = resleever.occupant ? resleever.occupant.real_name : "None")
@@ -107,6 +121,11 @@
 		data["pods"] = pods_list_ui
 	else
 		data["pods"] = null
+
+	if(spods)
+		data["spods"] = spods_list_ui
+	else
+		data["spods"] = null
 
 	if(sleevers)
 		data["sleevers"] = sleevers_list_ui
@@ -126,13 +145,11 @@
 
 	if(active_br)
 		var/can_grow_active = 1
-		if(!synthetic_capable && active_br.synthetic) //Disqualified due to being synthetic in an organic pod.
+		if(!synthetic_capable && active_br.synthetic) //Disqualified due to being synthetic in an organic only.
 			can_grow_active = 0
 		else if(!organic_capable && !active_br.synthetic) //Disqualified for the opposite.
 			can_grow_active = 0
 		else if(!synthetic_capable && !organic_capable) //What have you done??
-			can_grow_active = 0
-		else if(!pods.len)
 			can_grow_active = 0
 
 		data["activeBodyRecord"] = list("real_name" = active_br.mydna.name, \
@@ -156,6 +173,7 @@
 
 	data["menu"] = menu
 	data["podsLen"] = pods.len
+	data["spodsLen"] = spods.len
 	data["sleeversLen"] = sleevers.len
 	data["temp"] = temp
 
@@ -189,27 +207,73 @@
 	else if (href_list["refresh"])
 		updateUsrDialog()
 
-	else if (href_list["grow"])
+	else if (href_list["create"])
 		if(istype(active_br))
-			if(!pods.len)
+			//Tried to grow a synth but no synth pods.
+			if(active_br.synthetic && !spods.len)
+				temp = "Error: No SynthFabs detected."
+			//Tried to grow an organic but no growpods.
+			else if(!active_br.synthetic && !pods.len)
 				temp = "Error: No growpods detected."
+			//We have the machines. We can rebuild them. Probably.
 			else
-				var/obj/machinery/clonepod/transhuman/pod = pods[1]
-				if (pods.len > 1)
-					pod = input(usr,"Select a growing pod to use", "Pod selection") as anything in pods
-				if(pod.occupant)
-					temp = "Error: Growpod is currently occupied."
-				else if(pod.biomass < CLONE_BIOMASS)
-					temp = "Error: Not enough biomass."
-				else if(pod.mess)
-					temp = "Error: Growpod malfunction."
-				else if(!config.revival_cloning)
-					temp = "Error: Unable to initiate growing cycle."
-				else if(pod.growclone(active_br.mydna))
-					temp = "Initiating growing cycle..."
-					menu = 1
+				//We're cloning a synth.
+				if(active_br.synthetic)
+					var/obj/machinery/transhuman/synthprinter/spod = spods[1]
+					if (spods.len > 1)
+						spod = input(usr,"Select a SynthFab to use", "Printer selection") as anything in spods
+
+					//Already doing someone.
+					if(spod.busy)
+						temp = "Error: SynthFab is currently busy."
+
+					//Not enough steel or glass
+					else if(spod.steel < spod.body_cost)
+						temp = "Error: Not enough steel in SynthFab."
+					else if(spod.glass < spod.body_cost)
+						temp = "Error: Not enough glass in SynthFab."
+
+					//Gross pod (broke mid-cloning or something).
+					else if(spod.broken)
+						temp = "Error: SynthFab malfunction."
+
+					//Do the cloning!
+					else if(spod.print(active_br))
+						temp = "Initiating printing cycle..."
+						menu = 1
+					else
+						temp = "Initiating printing cycle...<br>Error: Post-initialisation failed. Printing cycle aborted."
+
+				//We're cloning an organic.
 				else
-					temp = "Initiating growing cycle...<br>Error: Post-initialisation failed. Growing cycle aborted."
+					var/obj/machinery/clonepod/transhuman/pod = pods[1]
+					if (pods.len > 1)
+						pod = input(usr,"Select a growing pod to use", "Pod selection") as anything in pods
+
+					//Already doing someone.
+					if(pod.occupant)
+						temp = "Error: Growpod is currently occupied."
+
+					//Not enough materials.
+					else if(pod.biomass < CLONE_BIOMASS)
+						temp = "Error: Not enough biomass."
+
+					//Gross pod (broke mid-cloning or something).
+					else if(pod.mess)
+						temp = "Error: Growpod malfunction."
+
+					//Disabled in config.
+					else if(!config.revival_cloning)
+						temp = "Error: Unable to initiate growing cycle."
+
+					//Do the cloning!
+					else if(pod.growclone(active_br))
+						temp = "Initiating growing cycle..."
+						menu = 1
+					else
+						temp = "Initiating growing cycle...<br>Error: Post-initialisation failed. Growing cycle aborted."
+
+		//The body record is broken somehow.
 		else
 			temp = "Error: Data corruption."
 
@@ -228,7 +292,7 @@
 
 				//Body to sleeve into, but mind is in another living body.
 				else if(active_mr.mind.current && active_mr.mind.current.stat != DEAD) //Mind is in a body already that's alive
-					var/answer = alert(active_mr.mind.current,"Someone is attempting to restore a CURRENT backup of your mind into another body. Do you want to move to that body? You should suffer no memory loss.","Resleeving","Yes","No")
+					var/answer = alert(active_mr.mind.current,"Someone is attempting to restore a backup of your mind into another body. Do you want to move to that body? You MAY suffer memory loss! (Same rules as CMD apply)","Resleeving","Yes","No")
 
 					//They declined to be moved.
 					if(answer == "No")
