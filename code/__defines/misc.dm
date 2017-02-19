@@ -109,6 +109,9 @@
 
 //Area flags, possibly more to come
 #define RAD_SHIELDED 1 //shielded from radiation, clearly
+// VOREStation Edit Begin
+#define BLUE_SHIELDED 2 // shield from bluespace teleportation (telescience)
+// VOREStation Edit End
 
 // Custom layer definitions, supplementing the default TURF_LAYER, MOB_LAYER, etc.
 #define DOOR_OPEN_LAYER 2.7		//Under all objects if opened. 2.7 due to tables being at 2.6
