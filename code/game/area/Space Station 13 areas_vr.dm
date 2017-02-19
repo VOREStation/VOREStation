@@ -108,3 +108,7 @@
 	name = "Asteroid Belt Zone 4"
 	icon_state = "red2"
 	shuttle_area = /area/shuttle/belter/belt/zone4
+
+/area/medical/resleeving
+	name = "Resleeving Lab"
+	icon_state = "genetics"

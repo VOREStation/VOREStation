@@ -1,0 +1,147 @@
+////////////////////////////////
+//// Mind/body data storage system
+//// for the resleeving tech
+////////////////////////////////
+
+var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
+
+//Mind-backup database
+/datum/transhuman/infocore
+	var/notify_min = 5 MINUTES
+	var/notify_max = 15 MINUTES
+	var/ping_time = 3 MINUTES
+
+	var/datum/transhuman/mind_record/list/backed_up = list()
+	var/datum/transhuman/mind_record/list/has_left = list()
+	var/datum/transhuman/body_record/list/body_scans = list()
+
+	var/in_use = 1 //Whether to use this thing at all
+	var/time_to_ping = 0 //When to do the next backup 'ping', in world.time
+
+/datum/transhuman/infocore/New()
+	process()
+
+/datum/transhuman/infocore/proc/process()
+	if(!in_use)
+		return
+
+	for(var/N in backed_up)
+		var/datum/transhuman/mind_record/curr_MR = backed_up[N]
+		if(!curr_MR)
+			log_debug("Tried to process [N] in transcore w/o a record!")
+		else
+			if(!curr_MR.imp_ref || curr_MR.imp_ref.loc != curr_MR.mob_ref) //Implant gone
+				curr_MR.secretly_dead = DEAD
+				spawn(rand(notify_min,notify_max))
+					curr_MR.obviously_dead = curr_MR.secretly_dead
+
+			else if(!curr_MR.secretly_dead && (!curr_MR.mob_ref || curr_MR.mob_ref.stat >= DEAD)) //Mob appears to be dead
+				curr_MR.secretly_dead = curr_MR.mob_ref.stat
+				spawn(rand(notify_min,notify_max))
+					if(!curr_MR.mob_ref || curr_MR.mob_ref.stat >= DEAD) //Still dead
+						curr_MR.obviously_dead = curr_MR.secretly_dead
+					else
+						curr_MR.secretly_dead = curr_MR.mob_ref.stat //Not dead now, restore status.
+
+	spawn(ping_time)
+		process()
+
+/datum/transhuman/infocore/proc/add_backup(var/datum/transhuman/mind_record/MR)
+	ASSERT(MR)
+	backed_up[MR.charname] = MR
+	log_debug("Added [MR.charname] to transcore DB.")
+
+/datum/transhuman/infocore/proc/stop_backup(var/datum/transhuman/mind_record/MR)
+	ASSERT(MR)
+	has_left[MR.charname] = MR
+	backed_up.Remove("[MR.charname]")
+	log_debug("Put [MR.charname] in transcore suspended DB.")
+
+/datum/transhuman/infocore/proc/add_body(var/datum/transhuman/body_record/BR)
+	ASSERT(BR)
+	body_scans[BR.mydna.name] = BR
+	log_debug("Added [BR.mydna.name] to transcore body DB.")
+
+/////// Mind-backup record ///////
+/datum/transhuman/mind_record
+	//User visible
+	var/charname = "!!ERROR!!"
+	var/implanted_at
+	var/body_type
+	var/obviously_dead
+	var/id_gender
+
+	//Backend
+	var/obj/item/weapon/implant/backup/imp_ref
+	var/ckey = ""
+	var/mob/living/carbon/human/mob_ref
+	var/client/client
+	var/datum/mind/mind
+	var/cryo_at
+	var/secretly_dead
+	var/languages
+
+/datum/transhuman/mind_record/New(var/mob/living/carbon/human/M,var/obj/item/weapon/implant/backup/imp,var/add_to_db = 1)
+	ASSERT(M && imp)
+
+	if(!istype(M))
+		return //Only works with humanoids.
+
+	//Scrape info from mob.
+	mob_ref = M
+	charname = M.name
+	implanted_at = world.time
+	body_type = M.isSynthetic()
+	id_gender = M.identifying_gender
+
+	imp_ref = imp
+	ckey = M.ckey
+	cryo_at = 0
+	languages = M.languages.Copy()
+
+	//If these are gone then it's a problemmmm.
+	client = M.client
+	mind = M.mind
+
+	if(add_to_db)
+		transcore.add_backup(src)
+
+
+/////// Body Record ///////
+/datum/transhuman/body_record
+	var/datum/dna2/record/mydna
+
+	//These may or may not be set, mostly irrelevant since it's just a body record.
+	var/ckey
+	var/client/client_ref
+	var/datum/mind/mind_ref
+	var/synthetic
+	var/speciesname
+	var/bodygender
+
+/datum/transhuman/body_record/New(var/mob/living/carbon/human/M,var/add_to_db = 1)
+	ASSERT(M)
+
+	synthetic = M.isSynthetic()
+	speciesname = M.custom_species ? M.custom_species : M.dna.species
+	bodygender = M.gender
+
+	//Probably should
+	M.dna.check_integrity()
+
+	//The DNA2 stuff
+	mydna = new ()
+	mydna.dna = M.dna.Clone()
+	mydna.ckey = M.ckey
+	mydna.id = copytext(md5(M.real_name), 2, 6)
+	mydna.name = M.dna.real_name
+	mydna.types = DNA2_BUF_UI|DNA2_BUF_UE|DNA2_BUF_SE
+	mydna.flavor = M.flavor_texts.Copy()
+
+	//My stuff
+	client_ref = M.client
+	ckey = M.ckey
+	mind_ref = M.mind
+
+	if(add_to_db)
+		transcore.add_body(src)
