@@ -37,3 +37,33 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 1000, "glass" = 1000)
 	build_path = /obj/item/clothing/glasses/sunglasses/omnihud
 	sort_string = "GAAFB"
+
+// Resleeving Circuitboards
+
+/datum/design/circuit/comm_server
+	name = "grower pod"
+	id = "transhuman_clonepod"
+	req_tech = list(TECH_DATA = 3, TECH_BIO = 3)
+	build_path = /obj/item/weapon/circuitboard/transhuman_clonepod
+	sort_string = "HAADA"
+
+/datum/design/circuit/transhuman_synthprinter
+	name = "SynthFab 3000"
+	id = "transhuman_synthprinter"
+	req_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
+	build_path = /obj/item/weapon/circuitboard/transhuman_synthprinter
+	sort_string = "HAADB"
+
+/datum/design/circuit/transhuman_resleever
+	name = "resleeving pod"
+	id = "transhuman_resleever"
+	req_tech = list(TECH_ENGINEERING = 4, TECH_BIO = 4)
+	build_path = /obj/item/weapon/circuitboard/transhuman_resleever
+	sort_string = "HAADC"
+
+/datum/design/circuit/resleeving_control
+	name = "resleeving control console"
+	id = "resleeving_control"
+	req_tech = list(TECH_DATA = 5)
+	build_path = /obj/item/weapon/circuitboard/resleeving_control
+	sort_string = "HAADE"

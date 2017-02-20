@@ -417,6 +417,16 @@
 						qdel(R)
 						qdel(W)
 
+		//VOREStation Edit - Resleeving.
+		if(istype(W,/obj/item/weapon/implant/backup))
+			for(var/record in transcore.backed_up)
+				var/datum/transhuman/mind_record/MR = transcore.backed_up[record]
+				if(MR.imp_ref == W)
+					MR.cryo_at = world.time
+					MR.imp_ref = null
+					transcore.stop_backup(MR)
+					qdel(W)
+		//VOREStation Edit End - Resleeving.
 		if(!preserve)
 			qdel(W)
 		else
