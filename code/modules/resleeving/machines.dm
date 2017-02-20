@@ -416,7 +416,7 @@
 	//Update the database record
 	MR.mob_ref = occupant
 	MR.imp_ref = new_imp
-	MR.secretly_dead = occupant.stat
+	MR.secretly_dead = 0
 	MR.obviously_dead = 0
 
 	//Inform them and make them a little dizzy.

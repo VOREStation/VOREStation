@@ -32,21 +32,34 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 		if(!curr_MR)
 			log_debug("Tried to process [N] in transcore w/o a record!")
 		else
-			if(!curr_MR.imp_ref || curr_MR.imp_ref.loc != curr_MR.mob_ref) //Implant gone
-				curr_MR.secretly_dead = DEAD
-				spawn(rand(notify_min,notify_max))
-					curr_MR.obviously_dead = curr_MR.secretly_dead
-
-			else if(!curr_MR.secretly_dead && (!curr_MR.mob_ref || curr_MR.mob_ref.stat >= DEAD)) //Mob appears to be dead
-				curr_MR.secretly_dead = curr_MR.mob_ref.stat
-				spawn(rand(notify_min,notify_max))
-					if(!curr_MR.mob_ref || curr_MR.mob_ref.stat >= DEAD) //Still dead
+			if(!curr_MR.secretly_dead) //If we're not already working on it.
+				//Implant is gone or was removed.
+				if(!curr_MR.imp_ref || curr_MR.imp_ref.loc != curr_MR.mob_ref) //Implant gone
+					curr_MR.secretly_dead = DEAD
+					spawn(rand(notify_min,notify_max))
 						curr_MR.obviously_dead = curr_MR.secretly_dead
-					else
-						curr_MR.secretly_dead = curr_MR.mob_ref.stat //Not dead now, restore status.
+						notify(N)
+					continue
+				//Mob is gone or dead.
+				else if(!curr_MR.mob_ref || curr_MR.mob_ref.stat >= DEAD) //Mob appears to be dead
+					curr_MR.secretly_dead = DEAD
+					spawn(rand(notify_min,notify_max))
+						if(!curr_MR.mob_ref || curr_MR.mob_ref.stat >= DEAD) //Still dead
+							curr_MR.obviously_dead = curr_MR.secretly_dead
+							notify(N)
+						else
+							curr_MR.secretly_dead = null //Not dead now, restore status.
+					continue
 
 	spawn(ping_time)
 		process()
+
+
+/datum/transhuman/infocore/proc/notify(var/name)
+	ASSERT(name)
+	var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset/heads/captain(null)
+	a.autosay("[name] is past-due for a mind backup. This will be the only notification.", "Backup Monitor", "Medical")
+	qdel(a)
 
 /datum/transhuman/infocore/proc/add_backup(var/datum/transhuman/mind_record/MR)
 	ASSERT(MR)

@@ -409,14 +409,16 @@
 			if(istype(W,T))
 				preserve = 1
 				break
-
-		if(istype(W,/obj/item/weapon/implant/health))
-			for(var/obj/machinery/computer/cloning/com in world)
-				for(var/datum/dna2/record/R in com.records)
-					if(locate(R.implant) == W)
-						qdel(R)
-						qdel(W)
-
+		//VOREStation Edit - Resleeving.
+		if(istype(W,/obj/item/weapon/implant/backup))
+			for(var/record in transcore.backed_up)
+				var/datum/transhuman/mind_record/MR = transcore.backed_up[record]
+				if(MR.imp_ref == W)
+					MR.cryo_at = world.time
+					MR.imp_ref = null
+					transcore.stop_backup(MR)
+					qdel(W)
+		//VOREStation Edit End - Resleeving.
 		if(!preserve)
 			qdel(W)
 		else
