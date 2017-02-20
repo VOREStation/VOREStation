@@ -457,7 +457,7 @@
 /mob/living/carbon/proc/should_have_organ(var/organ_check)
 	return 0
 
-/mob/living/carbon/proc/can_feel_pain(var/check_organ)
+/mob/living/carbon/can_feel_pain(var/check_organ)
 	if(isSynthetic())
 		return 0
 	return !(species.flags & NO_PAIN)

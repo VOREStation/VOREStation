@@ -146,3 +146,6 @@
 		new/datum/stack_recipe("white folder", /obj/item/weapon/folder/white), \
 		new/datum/stack_recipe("yellow folder", /obj/item/weapon/folder/yellow), \
 		))
+
+/material/snow/generate_recipes()
+	return // Snowmen and snowballs may come here later.

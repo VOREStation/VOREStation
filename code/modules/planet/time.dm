@@ -70,17 +70,7 @@
 	answer = replacetext(answer, "mm", minute_text)
 	answer = replacetext(answer, "ss", second_text)
 	return answer
-/*
-/client/verb/test_time_systems()
-	var/input_seconds = input("Put in a number of seconds.", "Time Test") as num
-	//input_seconds = min(input_seconds, 864000)
-	world << "time2text() result: [time2text(input_seconds, "hh mm ss")]"
-	var/datum/time/time = new (input_seconds)
-	world << "show_time() result: [time.show_time("hh mm ss")]"
-	var/datum/time/sif/sif = new (input_seconds)
-	world << "sif show_time() result: [sif.show_time("hh mm ss")]"
-*/
-// 115,200
+
 // We're gonna pretend there are 32 hours in a Sif day instead of 32.64 for the purposes of not losing sanity.  We lose 38m 24s but the alternative is a path to madness.
 /datum/time/sif
 	seconds_in_day = 60 * 60 * 32 * 10 // 115,200 seconds.  If we did 32.64 hours/day it would be around 117,504 seconds instead.

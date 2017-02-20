@@ -40,6 +40,9 @@
 	else
 		luminosity = 1
 
+	if(movement_cost && pathweight == 1) // This updates pathweight automatically.
+		pathweight = movement_cost
+
 /turf/Destroy()
 	turfs -= src
 	..()
