@@ -409,6 +409,14 @@
 			if(istype(W,T))
 				preserve = 1
 				break
+
+		if(istype(W,/obj/item/weapon/implant/health))
+			for(var/obj/machinery/computer/cloning/com in world)
+				for(var/datum/dna2/record/R in com.records)
+					if(locate(R.implant) == W)
+						qdel(R)
+						qdel(W)
+
 		//VOREStation Edit - Resleeving.
 		if(istype(W,/obj/item/weapon/implant/backup))
 			for(var/record in transcore.backed_up)
