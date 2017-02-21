@@ -48,6 +48,6 @@
 	name = "Artificial Bluespace Crystal"
 	id = "bluespace_crystal"
 	req_tech = list(TECH_BLUESPACE = 3, TECH_PHORON = 4)
-	materials = list(MAT_DIAMOND = 1500, MAT_PLASMA = 1500)
+	materials = list("diamond" = 1500, "phoron" = 1500)
 	build_path = /obj/item/weapon/ore/bluespace_crystal/artificial
 	sort_string = "HAAEC"
