@@ -19,7 +19,6 @@
 
 	load_item_visible = 0
 	load_offset_x = 0
-	mob_offset_y = 7
 	pixel_x = -8
 	pixel_y = -8
 
@@ -83,7 +82,7 @@
 		..()
 
 /obj/vehicle/train/rover/engine/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/key/cargo_train))
+	if(istype(W, /obj/item/weapon/key/rover))
 		if(!key)
 			user.drop_item()
 			W.forceMove(src)
