@@ -28,7 +28,11 @@
 
 /datum/gear/gloves/latex
 	display_name = "gloves, latex"
-	path = /obj/item/clothing/gloves/latex
+	path = /obj/item/clothing/gloves/sterile/latex
+
+/datum/gear/gloves/nitrile
+	display_name = "gloves, nitrile"
+	path = /obj/item/clothing/gloves/sterile/nitrile
 
 /datum/gear/gloves/orange
 	display_name = "gloves, orange"

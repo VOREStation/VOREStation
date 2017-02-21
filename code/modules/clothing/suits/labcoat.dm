@@ -131,3 +131,10 @@
 	icon_open = "labcoat_emt_open"
 	icon_closed = "labcoat_emt"
 	item_state_slots = list(slot_r_hand_str = "emt_labcoat", slot_l_hand_str = "emt_labcoat")
+
+/obj/item/clothing/suit/storage/toggle/labcoat/blue_edge
+	name = "blue-edged labcoat"
+	desc = "A suit that protects against minor chemical spills. This one has blue trim."
+	icon_state = "blue_edge_labcoat_open"
+	icon_open = "blue_edge_labcoat_open"
+	icon_closed = "blue_edge_labcoat"
