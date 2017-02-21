@@ -1,43 +1,53 @@
 /area/crew_quarters/sleep/vistor_room_1
-	flags = RAD_SHIELDED
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 
 /area/crew_quarters/sleep/vistor_room_2
-	flags = RAD_SHIELDED
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 
 /area/crew_quarters/sleep/vistor_room_3
-	flags = RAD_SHIELDED
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 
 /area/crew_quarters/sleep/vistor_room_4
-	flags = RAD_SHIELDED
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 
 /area/crew_quarters/sleep/vistor_room_5
-	flags = RAD_SHIELDED
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 
 /area/crew_quarters/sleep/vistor_room_6
-	flags = RAD_SHIELDED
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 
 /area/crew_quarters/sleep/vistor_room_7
-	flags = RAD_SHIELDED
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 
 /area/crew_quarters/sleep/vistor_room_8
-	flags = RAD_SHIELDED
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 
 /area/crew_quarters/sleep/vistor_room_9
-	flags = RAD_SHIELDED
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 
 /area/crew_quarters/sleep/vistor_room_10
-	flags = RAD_SHIELDED
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 
 /area/crew_quarters/sleep/vistor_room_11
-	flags = RAD_SHIELDED
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 
 /area/crew_quarters/sleep/vistor_room_12
-	flags = RAD_SHIELDED
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 
 /area/teleporter/departing
 	name = "\improper Long-Range Teleporter"
 	icon_state = "teleporter"
 	music = "signal"
+
+// Override telescience shielding on some areas
+/area/security/armoury
+	flags = BLUE_SHIELDED
+
+/area/security/tactical
+	flags = BLUE_SHIELDED
+
+/area/security/nuke_storage
+	flags = BLUE_SHIELDED
 
 // New shuttles
 /area/shuttle/administration/transit
