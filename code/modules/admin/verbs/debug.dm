@@ -1001,7 +1001,6 @@
 		var/new_minute = input(usr, "What minute do you want to change to?", "Change Time", text2num(current_time_datum.show_time("mm")) ) as null|num
 		if(!isnull(new_minute))
 			var/type_needed = current_time_datum.type
-			world << "Type is [type_needed]."
 			var/datum/time/new_time = new type_needed()
 			new_time = new_time.add_hours(new_hour)
 			new_time = new_time.add_minutes(new_minute)
