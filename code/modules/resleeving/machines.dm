@@ -88,6 +88,7 @@
 	update_icon()
 	H.ooc_notes = current_project.body_oocnotes
 	H.flavor_texts = R.flavor.Copy()
+	H.size_multiplier = current_project.sizemult
 	H.suiciding = 0
 	attempting = 0
 	return 1
@@ -249,6 +250,8 @@
 
 	H.adjustBruteLoss(20)
 	H.adjustFireLoss(20)
+
+	H.size_multiplier = current_project.sizemult
 
 	//Cha-ching.
 	stored_material[DEFAULT_WALL_MATERIAL] -= body_cost
