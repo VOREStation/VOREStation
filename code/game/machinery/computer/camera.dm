@@ -253,7 +253,7 @@
 	desc = "Used to access the various cameras on the outpost."
 	icon_keyboard = "mining_key"
 	icon_screen = "mining"
-	network = list("MINE")
+	network = list("Mining Outpost")
 	circuit = /obj/item/weapon/circuitboard/security/mining
 	light_color = "#F9BBFC"
 
