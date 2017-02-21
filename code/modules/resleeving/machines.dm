@@ -401,6 +401,7 @@
 	occupant.mind = MR.mind
 	occupant.ckey = MR.ckey
 	occupant.ooc_notes = MR.mind_oocnotes
+	occupant.apply_vore_prefs() //Cheap hack for now to give them SOME bellies.
 
 	//Give them a backup implant
 	var/obj/item/weapon/implant/backup/new_imp = new()
