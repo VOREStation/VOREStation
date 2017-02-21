@@ -7,7 +7,7 @@
 	if(!istype(M))
 		return
 
-	if(!buckled_mob && !M.buckled && !M.anchored && (issmall(M) || prob(round(seed.get_trait(TRAIT_POTENCY)/6))))
+	if(!buckled_mob && !M.buckled && !M.anchored && (issmall(M) || prob(round(seed.get_trait(TRAIT_POTENCY)/3))))
 		//wait a tick for the Entered() proc that called HasProximity() to finish (and thus the moving animation),
 		//so we don't appear to teleport from two tiles away when moving into a turf adjacent to vines.
 		spawn(1)
@@ -27,7 +27,7 @@
 	if(!is_mature())
 		return
 	var/mob/living/carbon/human/H = victim
-	if(prob(round(seed.get_trait(TRAIT_POTENCY)/4)))
+	if(prob(round(seed.get_trait(TRAIT_POTENCY)/3)))
 		entangle(victim)
 	if(istype(H) && H.shoes)
 		return
@@ -89,13 +89,8 @@
 		if(can_grab)
 			src.visible_message("<span class='danger'>Tendrils lash out from \the [src] and drag \the [victim] in!</span>")
 			victim.forceMove(src.loc)
-
-	//entangling people
-	if(victim.loc == src.loc)
-		buckle_mob(victim)
-		victim.set_dir(pick(cardinal))
-		victim << "<span class='danger'>Tendrils [pick("wind", "tangle", "tighten")] around you!</span>"
-
-/obj/effect/plant/buckle_mob()
-	.=..()
-	if(.) plant_controller.add_plant(src)
+			buckle_mob(victim)
+			victim.set_dir(pick(cardinal))
+			victim << "<span class='danger'>Tendrils [pick("wind", "tangle", "tighten")] around you!</span>"
+			victim.Weaken(0.5)
+			seed.do_thorns(victim,src)

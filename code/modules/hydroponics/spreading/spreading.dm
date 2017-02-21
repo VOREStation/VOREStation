@@ -46,6 +46,7 @@
 /obj/effect/plant
 	name = "plant"
 	anchored = 1
+	can_buckle = 1
 	opacity = 0
 	density = 0
 	icon = 'icons/obj/hydroponics_growing.dmi'
@@ -109,7 +110,7 @@
 		growth_threshold = max_health/VINE_GROWTH_STAGES
 		icon = 'icons/obj/hydroponics_vines.dmi'
 		growth_type = 2 // Vines by default.
-		if(seed.get_trait(TRAIT_CARNIVOROUS) == 2)
+		if(seed.get_trait(TRAIT_CARNIVOROUS) >= 2)
 			growth_type = 1 // WOOOORMS.
 		else if(!(seed.seed_noun in list("seeds","pits")))
 			if(seed.seed_noun == "nodes")
