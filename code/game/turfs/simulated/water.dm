@@ -59,18 +59,12 @@
 /turf/simulated/floor/water/deep
 	name = "deep water"
 	desc = "A body of water.  It seems quite deep."
-//	icon_state = "seadeep" // So it shows up in the map editor as water.
+	icon_state = "seadeep" // So it shows up in the map editor as water.
 	under_state = "abyss"
 	edge_blending_priority = -2
 	movement_cost = 8
 	movement_message = "You swim forwards."
 	depth = 2
-
-/*
-/turf/simulated/floor/water/deep/update_icon()
-	..() // To get the edges.  This also gets rid of other overlays so it needs to go first.
-	icon_state = "abyss"
-*/
 
 /turf/simulated/floor/water/pool
 	name = "pool"

@@ -133,8 +133,8 @@ Please contact me on #coderbus IRC. ~Carn x
 #define R_HAND_LAYER			25
 #define FIRE_LAYER				26		//If you're on fire
 #define WATER_LAYER				27		//If you're submerged in water.
-#define TARGETED_LAYER			27		//BS12: Layer for the target overlay from weapon targeting system
-#define TOTAL_LAYERS			28
+#define TARGETED_LAYER			28		//BS12: Layer for the target overlay from weapon targeting system
+#define TOTAL_LAYERS			29
 //////////////////////////////////
 
 /mob/living/carbon/human
@@ -1124,8 +1124,7 @@ var/global/list/damage_icon_parts = list()
 	if(depth)
 		if(!lying)
 			overlays_standing[WATER_LAYER] = image("icon" = 'icons/mob/submerged.dmi', "icon_state" = "human_swimming_[depth]")
-		else
-		//	overlays_standing[WATER_LAYER] = image("icon" = 'icons/mob/submerged.dmi', "icon_state" = "mob_submerged")
+		// Lying sideways with the overlay looked strange.  Another overlay will be needed in the future.
 
 	if(update_icons)
 		update_icons()
