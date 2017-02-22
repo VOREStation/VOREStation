@@ -14,6 +14,13 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 7000, "glass" = 7000, "gold" = 2000, "diamond" = 3000)
 	build_path = /obj/item/weapon/implantcase/vrlanguage
 
+/datum/design/item/implant/backup
+	name = "backup implant"
+	id = "implant_backup"
+	req_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2, TECH_DATA = 4, TECH_ENGINEERING = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 2000)
+	build_path = /obj/item/weapon/implantcase/backup
+
 /datum/design/item/weapon/sizegun
 	name = "shrink ray"
 	id = "shrinkray"
