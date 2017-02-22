@@ -567,3 +567,20 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	icon = 'icons/vore/custom_items_vr.dmi'
 	item_state = "temphypo"
 	icon_state = "temphypo"
+
+//WickedTempest: Chakat Tempest
+/obj/item/weapon/storage/backpack/saddlebag/tempest
+	name = "Tempest's Saddlebags"
+	desc = "A custom-made set of saddlebags, tailored to Chakat Tempest's exact dimensions, and taste in color! One one side, there's small print stitched in: ...to carry the weight of any responsibility, burden or task."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_override = 'icons/vore/custom_items_vr.dmi'
+	item_state = "tempestsaddlebag"
+	icon_state = "tempestbag"
+	max_storage_space = INVENTORY_DUFFLEBAG_SPACE //Since they play a macro character, no reason to put custom slowdown code on here.
+	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+		if(..())
+			if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/feline/tempest))
+				return 1
+			else
+				H << "<span class='warning'>The harness doesn't fit you, it keeps slipping off!</span>"
+				return 0
