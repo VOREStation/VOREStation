@@ -888,6 +888,7 @@
 #include "code\game\objects\items\weapons\weldbackpack.dm"
 #include "code\game\objects\items\weapons\circuitboards\broken.dm"
 #include "code\game\objects\items\weapons\circuitboards\circuitboard.dm"
+#include "code\game\objects\items\weapons\circuitboards\circuitboards_vr.dm"
 #include "code\game\objects\items\weapons\circuitboards\frame.dm"
 #include "code\game\objects\items\weapons\circuitboards\mecha.dm"
 #include "code\game\objects\items\weapons\circuitboards\other.dm"
