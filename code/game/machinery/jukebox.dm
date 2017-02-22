@@ -55,6 +55,7 @@ datum/track/New(var/title_name, var/audio)
 	component_parts += new /obj/item/stack/cable_coil(src, 5)
 	RefreshParts()
 	wires = new/datum/wires/jukebox(src)
+	update_icon()
 
 /obj/machinery/media/jukebox/Destroy()
 	StopPlaying()
