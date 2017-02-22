@@ -49,11 +49,7 @@ datum/track/New(var/title_name, var/audio)
 
 /obj/machinery/media/jukebox/New()
 	..()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
-	component_parts += new /obj/item/stack/cable_coil(src, 5)
-	RefreshParts()
+	default_apply_parts()
 	wires = new/datum/wires/jukebox(src)
 	update_icon()
 
