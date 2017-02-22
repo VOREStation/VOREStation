@@ -327,33 +327,37 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 //arokha:Aronai Kadigan - Vials to go with mk2 hypo
 /obj/item/weapon/reagent_containers/glass/beaker/vial/vr
 	stabilize
-		name = "vial (1tr1in2tri2dxp)"
+		name = "vial (stabilize)"
+		desc = "10 Tricordrazine, 10 Dexalin Plus, 5 Tramadol, 5 Inaprovaline"
 		New()
 			..()
-			reagents.add_reagent("tramadol", 5)
-			reagents.add_reagent("inaprovaline", 5)
 			reagents.add_reagent("tricordrazine", 10)
 			reagents.add_reagent("dexalinp", 10)
+			reagents.add_reagent("tramadol", 5)
+			reagents.add_reagent("inaprovaline", 5)
 	bashed
-		name = "vial (5bi1tri)"
+		name = "vial (brute)"
+		desc = "25 Bicaridine, 5 Tricordrazine"
 		New()
 			..()
 			reagents.add_reagent("bicaridine", 25)
 			reagents.add_reagent("tricordrazine", 5)
 	toasted
-		name = "vial (3der2kel1tri)"
+		name = "vial (burn)"
+		desc = "10 Kelotane, 15 Dermaline, 5 Tricordrazine"
 		New()
 			..()
 			reagents.add_reagent("kelotane", 10)
 			reagents.add_reagent("dermaline", 15)
 			reagents.add_reagent("tricordrazine", 5)
 	poisoned
-		name = "vial (4dy1hy1tri)"
+		name = "vial (toxins)"
+		desc = "25 Dylovene, 2 Hyronalin, 3 Tricordrazine"
 		New()
 			..()
-			reagents.add_reagent("anti_toxin", 20)
-			reagents.add_reagent("hyronalin", 5)
-			reagents.add_reagent("tricordrazine", 5)
+			reagents.add_reagent("anti_toxin", 25)
+			reagents.add_reagent("hyronalin", 2)
+			reagents.add_reagent("tricordrazine", 3)
 
 //Swat43:Fortune Bloise
 /obj/item/weapon/storage/backpack/satchel/fluff/swat43bag
