@@ -45,8 +45,8 @@ var/list/ventcrawl_machinery = list(
 	if(carried_item == ability_master)
 		return 1
 	for(var/type in can_enter_vent_with)
-		if(istype(carried_item, can_enter_vent_with))
-			return get_inventory_slot(carried_item) == 0
+		if(istype(carried_item, type)) //VOREStation Edit - It was a typo before maybe?
+			return 1 //VOREStation Edit also
 	return 0
 
 /mob/living/carbon/is_allowed_vent_crawl_item(var/obj/item/carried_item)
