@@ -903,6 +903,7 @@
 #include "code\game\objects\items\weapons\circuitboards\machinery\mech_recharger.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\mining_drill.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\pacman.dm"
+#include "code\game\objects\items\weapons\circuitboards\machinery\papershredder.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\power.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\recharge_station.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\research.dm"
