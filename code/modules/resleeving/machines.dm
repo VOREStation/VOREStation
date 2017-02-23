@@ -9,17 +9,17 @@
 	circuit = /obj/item/weapon/circuitboard/transhuman_clonepod
 
 /obj/machinery/clonepod/transhuman/growclone(var/datum/transhuman/body_record/current_project)
-	var/datum/dna2/record/R = current_project.mydna
+	//Manage machine-specific stuff.
 	if(mess || attempting)
 		return 0
-
 	attempting = 1 //One at a time!!
 	locked = 1
-
 	eject_wait = 1
 	spawn(30)
 		eject_wait = 0
 
+	//Get the DNA and generate a new mob
+	var/datum/dna2/record/R = current_project.mydna
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src, R.dna.species)
 	if(current_project.locked)
 		H.resleeve_lock = current_project.ckey
@@ -49,10 +49,6 @@
 		var/obj/item/organ/I = H.internal_organs_by_name[name]
 		if(!I) continue//Not an organ. Perhaps external conversion changed it already?
 
-		if(part == O_EYES && status > 0) //But not eyes. The only non-essential internal organ.
-			qdel(I)
-			continue
-
 		if(status == 0) //Normal organ
 			continue
 		else if(status == 1) //Assisted organ
@@ -64,32 +60,45 @@
 
 	occupant = H
 
+	//Set the name or generate one
 	if(!R.dna.real_name)
 		R.dna.real_name = "clone ([rand(0,999)])"
 	H.real_name = R.dna.real_name
 
+	//Apply DNA
+	H.dna = R.dna.Clone()
+
+	//Apply damage
 	H.adjustCloneLoss(150)
 	H.Paralyse(4)
 	H.updatehealth()
 
-	if(!R.dna)
-		H.dna = new /datum/dna()
-		H.dna.real_name = H.real_name
-	else
-		H.dna = R.dna
-	H.UpdateAppearance()
-	H.sync_organ_dna()
+	//Grower specific mutations
 	if(heal_level < 60)
 		randmutb(H)
 		H.dna.UpdateSE()
 		H.dna.UpdateUI()
 
-	H.set_cloned_appearance()
-	update_icon()
+	//Update appearance, remake icons
+	H.UpdateAppearance()
+	H.sync_organ_dna()
+	H.regenerate_icons()
+
+	//Basically all the VORE stuff
 	H.ooc_notes = current_project.body_oocnotes
-	H.flavor_texts = R.flavor.Copy()
+	H.flavor_texts = current_project.mydna.flavor.Copy()
 	H.size_multiplier = current_project.sizemult
+	if(current_project.speciesname)
+		H.custom_species = current_project.speciesname
+
+	//Suiciding var
 	H.suiciding = 0
+
+	//Making double-sure this is not set
+	H.mind = null
+
+	//Machine specific stuff at the end
+	update_icon()
 	attempting = 0
 	return 1
 
@@ -199,22 +208,19 @@
 	return 1
 
 /obj/machinery/transhuman/synthprinter/proc/make_body()
+	//Manage machine-specific stuff
 	if(!current_project)
 		busy = 0
 		update_icon()
 		return
 
-	//Blep us a new blank body to robotize (based on their original species choice).
-	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src, current_project.mydna.dna.species)
-	H.name = current_project.mydna.dna.real_name
-	H.real_name = H.name
+	//Get the DNA and generate a new mob
+	var/datum/dna2/record/R = current_project.mydna
+	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src, R.dna.species)
 	if(current_project.locked)
 		H.resleeve_lock = current_project.ckey
 
-	H.ooc_notes = current_project.body_oocnotes
-	H.flavor_texts = current_project.mydna.flavor.Copy()
-
-	//First the external organs
+	//Fix the external organs
 	for(var/part in current_project.limb_data)
 
 		var/status = current_project.limb_data[part]
@@ -236,7 +242,7 @@
 		var/status = current_project.organ_data[part]
 		if(status == null) continue //Species doesn't have organ? Child of missing part?
 
-		var/obj/item/organ/I = H.internal_organs_by_name[name]
+		var/obj/item/organ/I = H.internal_organs_by_name[part]
 		if(!I) continue//Not an organ. Perhaps external conversion changed it already?
 
 		if(status == 0) //Normal organ
@@ -248,21 +254,48 @@
 		else if(status == 3) //Digital organ
 			I.digitize()
 
+	//Set the name or generate one
+	if(!R.dna.real_name)
+		R.dna.real_name = "synth ([rand(0,999)])"
+	H.real_name = R.dna.real_name
+
+	//Apply DNA
+	H.dna = R.dna.Clone()
+
+	//Apply damage
 	H.adjustBruteLoss(20)
 	H.adjustFireLoss(20)
+	H.updatehealth()
 
+	//Update appearance, remake icons
+	H.UpdateAppearance()
+	H.sync_organ_dna()
+	H.regenerate_icons()
+
+	//Basically all the VORE stuff
+	H.ooc_notes = current_project.body_oocnotes
+	H.flavor_texts = current_project.mydna.flavor.Copy()
 	H.size_multiplier = current_project.sizemult
+	if(current_project.speciesname)
+		H.custom_species = current_project.speciesname
 
-	//Cha-ching.
-	stored_material[DEFAULT_WALL_MATERIAL] -= body_cost
-	stored_material["glass"] -= body_cost
+	//Suiciding var
+	H.suiciding = 0
+
+	//Making double-sure this is not set
+	H.mind = null
 
 	//Plonk them here.
+	H.regenerate_icons()
 	H.loc = get_turf(src)
 
-	//Reset stuff.
+	//Machine specific stuff at the end
+	stored_material[DEFAULT_WALL_MATERIAL] -= body_cost
+	stored_material["glass"] -= body_cost
 	busy = 0
 	update_icon()
+
+	return 1
 
 /obj/machinery/transhuman/synthprinter/attack_hand(mob/user as mob)
 	if((busy == 0) || (stat & NOPOWER))
@@ -396,6 +429,10 @@
 	//In case they already had a mind!
 	occupant << "<span class='warning'>You feel your mind being overwritten...</span>"
 
+	//Try to briefly find their mind and null it out on their current mob to prevent debraining pulling them back to it.
+	if(MR.mind.current)
+		MR.mind.current.mind = null
+
 	//Attach as much stuff as possible to the mob.
 	for(var/datum/language/L in MR.languages)
 		occupant.add_language(L.name)
@@ -420,8 +457,7 @@
 	//Update the database record
 	MR.mob_ref = occupant
 	MR.imp_ref = new_imp
-	MR.secretly_dead = 0
-	MR.obviously_dead = 0
+	MR.dead_state = MR_NORMAL
 
 	//Inform them and make them a little dizzy.
 	occupant << "<span class='warning'>You feel a small pain in your head as you're given a new backup implant. Oh, and a new body. It's disorienting, to say the least.</span>"
