@@ -155,7 +155,7 @@
 			can_grow_active = 0
 
 		data["activeBodyRecord"] = list("real_name" = active_br.mydna.name, \
-									"speciesname" = active_br.speciesname, \
+									"speciesname" = active_br.speciesname ? active_br.speciesname : active_br.mydna.dna.species, \
 									"gender" = active_br.bodygender, \
 									"synthetic" = active_br.synthetic ? "Yes" : "No", \
 									"locked" = active_br.locked ? "Low" : "High", \
@@ -168,7 +168,7 @@
 		if(!sleevers.len)
 			can_sleeve_current = 0
 		data["activeMindRecord"] = list("charname" = active_mr.charname, \
-										"obviously_dead" = active_mr.obviously_dead ? "Past-due" : "Current", \
+										"obviously_dead" = active_mr.dead_state == MR_DEAD ? "Past-due" : "Current", \
 										"cando" = can_sleeve_current)
 	else
 		data["activeMindRecord"] = null
