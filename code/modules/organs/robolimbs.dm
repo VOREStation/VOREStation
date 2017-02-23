@@ -70,29 +70,29 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	parts = list(BP_HEAD)
 	monitor_styles = standard_monitor_styles
 
-/datum/robolimb/hesphiastos
-	company = "Hesphiastos"
+/datum/robolimb/hephaistos
+	company = "Hephaistos"
 	desc = "This limb has a militaristic black and green casing with gold stripes."
 	icon = 'icons/mob/human_races/cyberlimbs/hesphiastos/hesphiastos_main.dmi'
 	unavailable_to_build = 1
 
-/datum/robolimb/hesphiastos_alt1
-	company = "Hesphiastos - Frontier"
+/datum/robolimb/hephaistos_alt1
+	company = "Hephaistos - Frontier"
 	desc = "A rugged prosthetic head featuring the standard Hesphiastos theme, a visor and an external display."
 	icon = 'icons/mob/human_races/cyberlimbs/hesphiastos/hesphiastos_alt1.dmi'
 	unavailable_to_build = 1
 	parts = list(BP_HEAD)
-	monitor_styles = "blank=hesphiastos_alt_off;\
-		pink=hesphiastos_alt_pink;\
-		orange=hesphiastos_alt_orange;\
-		goggles=hesphiastos_alt_goggles;\
-		scroll=hesphiastos_alt_scroll;\
-		rgb=hesphiastos_alt_rgb;\
-		rainbow=hesphiastos_alt_rainbow"
+	monitor_styles = "blank=hephaistos_alt_off;\
+		pink=hephaistos_alt_pink;\
+		orange=hephaistos_alt_orange;\
+		goggles=hephaistos_alt_goggles;\
+		scroll=hephaistos_alt_scroll;\
+		rgb=hephaistos_alt_rgb;\
+		rainbow=hephaistos_alt_rainbow"
 
-/datum/robolimb/hesphiastos_monitor
-	company = "Hesphiastos Monitor"
-	desc = "Hesphiastos' unique spin on a popular prosthetic head model. It looks rugged and sturdy."
+/datum/robolimb/hephaistos_monitor
+	company = "Hephaistos Monitor"
+	desc = "Hephaistos' unique spin on a popular prosthetic head model. It looks rugged and sturdy."
 	icon = 'icons/mob/human_races/cyberlimbs/hesphiastos/hesphiastos_monitor.dmi'
 	unavailable_to_build = 1
 	parts = list(BP_HEAD)
@@ -183,8 +183,8 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 /obj/item/weapon/disk/limb/bishop
 	company = "Bishop"
 
-/obj/item/weapon/disk/limb/hesphiastos
-	company = "Hesphiastos"
+/obj/item/weapon/disk/limb/hephaistos
+	company = "Hephaistos"
 
 /obj/item/weapon/disk/limb/morpheus
 	company = "Morpheus"
