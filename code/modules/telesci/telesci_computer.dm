@@ -12,20 +12,20 @@
 	var/teles_left	// How many teleports left until it becomes uncalibrated
 	var/datum/projectile_data/last_tele_data = null
 	var/z_co = 1
-	var/power_off
+	var/distance_off
 	var/rotation_off
-	var/last_target
+	var/turf/last_target
 
 	var/rotation = 0
-	var/angle = 45
-	var/power = 5
+	var/distance = 5
 
-	// Based on the power used
-	var/teleport_cooldown = 0 // every index requires a bluespace crystal
-	var/list/power_options = list(5, 10, 20, 25, 30, 40, 50, 80, 100)
+	// Based on the distance used
+	var/teleport_cooldown = 0
 	var/teleporting = 0
 	var/starting_crystals = 2
 	var/max_crystals = 4
+	// Used to adjust OP-ness: (4 crystals * 6 efficiency * 12.5 coefficient) = 300 range.
+	var/powerCoefficient = 12.5
 	var/list/crystals = list()
 	var/obj/item/device/gps/inserted_gps
 
@@ -54,7 +54,7 @@
 		if(crystals.len >= max_crystals)
 			user << "<span class='warning'>There are not enough crystal slots.</span>"
 			return
-		if(!user.drop_item())
+		if(!user.unEquip(W))
 			return
 		crystals += W
 		W.forceMove(src)
@@ -75,6 +75,9 @@
 	else
 		return ..()
 
+/obj/machinery/computer/telescience/proc/get_max_allowed_distance()
+	return Floor(crystals.len * telepad.efficiency * powerCoefficient)
+
 /obj/machinery/computer/telescience/attack_ai(mob/user)
 	src.attack_hand(user)
 
@@ -85,30 +88,32 @@
 
 /obj/machinery/computer/telescience/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	user.set_machine(src)
+	
 	var/data[0]
-
 	if(!telepad)
 		in_use = 0     //Yeah so if you deconstruct teleporter while its in the process of shooting it wont disable the console
 		data["noTelepad"] = 1
 	else
 		data["insertedGps"] = inserted_gps
-		data["tempMsg"] = temp_msg
 		data["rotation"] = rotation
-		data["angle"] = angle
-		data["power"] = power
 		data["currentZ"] = z_co
-		data["lastTeleData"] = list()
+		data["cooldown"] = max(0, min(100, round(teleport_cooldown - world.time) / 10))
+		data["crystalCount"] = crystals.len
+		data["maxCrystals"] = max_crystals
+		data["maxPossibleDistance"] = Floor(max_crystals * powerCoefficient * 6); // max efficiency is 6
+		data["maxAllowedDistance"] = get_max_allowed_distance()
+		data["distance"] = distance
 
-		data["powerOptions"] = new/list(power_options.len)
-		for(var/i = 1; i <= power_options.len; i++)
-			var/enabled = (crystals.len + telepad.efficiency >= i);
-			data["powerOptions"][i] = list("power" = power_options[i], "enabled" = enabled)
+		data["tempMsg"] = temp_msg
+		if(telepad.panel_open)
+			data["tempMsg"] = "Telepad undergoing physical maintenance operations."
 
 		data["sectorOptions"] = list()
 		for(var/z in config.player_levels)
 			data["sectorOptions"] += z
 
 		if(last_tele_data)
+			data["lastTeleData"] = list()
 			data["lastTeleData"]["src_x"] = last_tele_data.src_x
 			data["lastTeleData"]["src_y"] = last_tele_data.src_y
 			data["lastTeleData"]["distance"] = last_tele_data.distance
@@ -130,30 +135,60 @@
 		return
 
 /obj/machinery/computer/telescience/proc/telefail()
-	sparks()
-	visible_message("<span class='warning'>The telepad weakly fizzles.</span>")
-	return
+	switch(rand(99))
+		if(0 to 85)
+			sparks()
+			visible_message("<span class='warning'>The telepad weakly fizzles.</span>")
+			return
+		if(86 to 90)
+			// Irradiate everyone in telescience!
+			for(var/obj/machinery/telepad/E in machines)
+				var/L = get_turf(E)
+				sparks(target = L)
+				for(var/mob/living/carbon/human/M in viewers(L, null))
+					M.apply_effect((rand(10, 20)), IRRADIATE, 0)
+					to_chat(M, "<span class='warning'>You feel strange.</span>")
+			return
+		if(91 to 98)
+			// They did the mash! (They did the monster mash!) The monster mash! (It was a graveyard smash!)
+			sparks()
+			if(telepad)
+				var/L = get_turf(telepad)
+				var/blocked = list(/mob/living/simple_animal/hostile/vore)
+				var/list/hostiles = typesof(/mob/living/simple_animal/hostile/vore) - blocked
+				playsound(L, 'sound/effects/phasein.ogg', 100, 1, extrarange = 3, falloff = 5)
+				for(var/i in 1 to rand(1,4))
+					var/chosen = pick(hostiles)
+					var/mob/living/simple_animal/hostile/H = new chosen
+					H.forceMove(L)
+			return
+		if(99)
+			sparks()
+			visible_message("<span class='warning'>The telepad changes colors rapidly, and opens a portal, and you see what your mind seems to think is the very threads that hold the pattern of the universe together, and a eerie sense of paranoia creeps into you.</span>")
+			spacevine_infestation()
+			return
 
 /obj/machinery/computer/telescience/proc/doteleport(mob/user)
 
 	if(teleport_cooldown > world.time)
-		temp_msg = "Telepad is recharging power.<BR>Please wait [round((teleport_cooldown - world.time) / 10)] seconds."
 		return
-
 	if(teleporting)
-		temp_msg = "Telepad is in use.<BR>Please wait."
 		return
 
 	if(telepad)
-		var/truePower = Clamp(power + power_off, 1, 1000)
+		var/trueDistance = Clamp(distance + distance_off, 1, get_max_allowed_distance())
 		var/trueRotation = rotation + rotation_off
-		var/trueAngle = Clamp(angle, 1, 90)
 
-		var/datum/projectile_data/proj_data = projectile_trajectory(telepad.x, telepad.y, trueRotation, trueAngle, truePower)
+		var/datum/projectile_data/proj_data = simple_projectile_trajectory(telepad.x, telepad.y, trueRotation, trueDistance)
 		last_tele_data = proj_data
 
-		var/trueX = Clamp(round(proj_data.dest_x, 1), 1, world.maxx)
-		var/trueY = Clamp(round(proj_data.dest_y, 1), 1, world.maxy)
+		var/trueX = proj_data.dest_x
+		var/trueY = proj_data.dest_y
+		if(trueX < 1 || trueX > world.maxx || trueY < 1 || trueY > world.maxy)
+			telefail()
+			temp_msg = "ERROR! Target coordinate is outside known time and space!"
+			return
+
 		var/spawn_time = round(proj_data.time) * 10
 
 		var/turf/target = locate(trueX, trueY, z_co)
@@ -162,23 +197,22 @@
 		flick("pad-beam", telepad)
 
 		if(spawn_time > 15) // 1.5 seconds
-			playsound(telepad.loc, 'sound/weapons/flash.ogg', 25, 1)
+			playsound(telepad.loc, 'sound/weapons/flash.ogg', 50, 1)
 			// Wait depending on the time the projectile took to get there
 			teleporting = 1
 			temp_msg = "Powering up bluespace crystals.<BR>Please wait."
 
-
-		spawn(round(proj_data.time) * 10) // in seconds
+		spawn(spawn_time) // in deciseconds
 			if(!telepad)
 				return
-			if(telepad.stat & NOPOWER)
+			if(telepad.inoperable())
 				return
 			teleporting = 0
-			teleport_cooldown = world.time + (power * 2)
+			teleport_cooldown = world.time + (spawn_time * 2)
 			teles_left -= 1
 
 			// use a lot of power
-			use_power(power * 10)
+			use_power(trueDistance * 10000)
 
 			var/datum/effect/effect/system/spark_spread/S = PoolOrNew(/datum/effect/effect/system/spark_spread)
 			S.set_up(5, 1, get_turf(telepad))
@@ -191,9 +225,8 @@
 
 			temp_msg = "Teleport successful.<BR>"
 			if(teles_left < 10)
-				temp_msg += "<BR>Calibration required soon."
-			else
-				temp_msg += "Data printed below."
+				temp_msg += "Calibration required soon.<BR>"
+			temp_msg += "Data printed below."
 
 			var/sparks = get_turf(target)
 			var/datum/effect/effect/system/spark_spread/Y = PoolOrNew(/datum/effect/effect/system/spark_spread)
@@ -253,16 +286,13 @@
 			updateDialog()
 
 /obj/machinery/computer/telescience/proc/teleport(mob/user)
-	if(rotation == null || angle == null || z_co == null)
-		temp_msg = "ERROR!<BR>Set a angle, rotation and sector."
+	distance = Clamp(distance, 0, get_max_allowed_distance())
+	if(rotation == null || distance == null || z_co == null)
+		temp_msg = "ERROR!<BR>Set a distance, rotation and sector."
 		return
-	if(power <= 0)
+	if(distance <= 0)
 		telefail()
-		temp_msg = "ERROR!<BR>No power selected!"
-		return
-	if(angle < 1 || angle > 90)
-		telefail()
-		temp_msg = "ERROR!<BR>Elevation is less than 1 or greater than 90."
+		temp_msg = "ERROR!<BR>No distance selected!"
 		return
 	if(!(z_co in config.player_levels))
 		telefail()
@@ -280,16 +310,14 @@
 	for(var/obj/item/I in crystals)
 		I.forceMove(src.loc)
 		crystals -= I
-	power = 0
+	distance = 0
 
 /obj/machinery/computer/telescience/Topic(href, href_list)
 	if(..())
 		return
-	if(!telepad)
+	if(!telepad || telepad.panel_open)
 		updateDialog()
 		return
-	if(telepad.panel_open)
-		temp_msg = "Telepad undergoing physical maintenance operations."
 
 	if(href_list["setrotation"])
 		var/new_rot = input("Please input desired bearing in degrees.", name, rotation) as num
@@ -298,18 +326,12 @@
 		rotation = Clamp(new_rot, -900, 900)
 		rotation = round(rotation, 0.01)
 
-	if(href_list["setangle"])
-		var/new_angle = input("Please input desired elevation in degrees.", name, angle) as num
-		if(..())
+	if(href_list["setdistance"])
+		var/new_pow = input("Please input desired distance in meters.", name, rotation) as num
+		if(..()) // Check after we input a value, as they could've moved after they entered something
 			return
-		angle = Clamp(round(new_angle, 0.1), 1, 9999)
-
-	if(href_list["setpower"])
-		var/index = href_list["setpower"]
-		index = text2num(index)
-		if(index != null && power_options[index])
-			if(crystals.len + telepad.efficiency >= index)
-				power = power_options[index]
+		distance = Clamp(new_pow, 1, get_max_allowed_distance())
+		distance = Floor(distance)
 
 	if(href_list["setz"])
 		var/new_z = text2num(href_list["setz"])
@@ -350,5 +372,13 @@
 
 /obj/machinery/computer/telescience/proc/recalibrate()
 	teles_left = rand(40, 50)
-	power_off = rand(-4, 4)
+	distance_off = rand(-4, 4)
 	rotation_off = rand(-10, 10)
+
+
+// Procedure that calculates the actual trajectory taken!
+/proc/simple_projectile_trajectory(var/src_x, var/src_y, var/rotation, var/distance)
+	var/time = distance / 10 // 100ms per distance seems fine?
+	var/dest_x = src_x + distance*sin(rotation);
+	var/dest_y = src_y + distance*cos(rotation);
+	return new /datum/projectile_data(src_x, src_y, time, distance, 0, 0, dest_x, dest_y)

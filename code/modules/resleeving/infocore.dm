@@ -9,51 +9,39 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 
 //Mind-backup database
 /datum/transhuman/infocore
-	var/notify_min = 5 MINUTES
-	var/notify_max = 15 MINUTES
-	var/ping_time = 3 MINUTES
+	var/ping_time = 5 MINUTES
 
 	var/datum/transhuman/mind_record/list/backed_up = list()
 	var/datum/transhuman/mind_record/list/has_left = list()
 	var/datum/transhuman/body_record/list/body_scans = list()
 
-	var/in_use = 1 //Whether to use this thing at all
-	var/time_to_ping = 0 //When to do the next backup 'ping', in world.time
-
 /datum/transhuman/infocore/New()
 	process()
 
 /datum/transhuman/infocore/proc/process()
-	if(!in_use)
-		return
 
 	for(var/N in backed_up)
 		var/datum/transhuman/mind_record/curr_MR = backed_up[N]
 		if(!curr_MR)
 			log_debug("Tried to process [N] in transcore w/o a record!")
-		else
-			if(!curr_MR.secretly_dead) //If we're not already working on it.
-				//Implant is gone or was removed.
-				if(!curr_MR.imp_ref || curr_MR.imp_ref.loc != curr_MR.mob_ref) //Implant gone
-					curr_MR.secretly_dead = DEAD
-					spawn(rand(notify_min,notify_max))
-						curr_MR.obviously_dead = curr_MR.secretly_dead
-						notify(N)
-					continue
-				//Mob is gone or dead.
-				else if(!curr_MR.mob_ref || curr_MR.mob_ref.stat >= DEAD) //Mob appears to be dead
-					curr_MR.secretly_dead = DEAD
-					spawn(rand(notify_min,notify_max))
-						if(!curr_MR.mob_ref || curr_MR.mob_ref.stat >= DEAD) //Still dead
-							curr_MR.obviously_dead = curr_MR.secretly_dead
-							notify(N)
-						else
-							curr_MR.secretly_dead = null //Not dead now, restore status.
-					continue
+			continue
+
+		switch(curr_MR.dead_state)
+			if(MR_NORMAL)
+				if(!curr_MR.ping())
+					curr_MR.dead_state = MR_UNSURE
+			if(MR_UNSURE)
+				if(curr_MR.ping())
+					curr_MR.dead_state = MR_NORMAL
+				else
+					curr_MR.dead_state = MR_DEAD
+					notify(N)
+			if(MR_DEAD)
+				if(curr_MR.ping())
+					curr_MR.dead_state = MR_NORMAL
 
 	spawn(ping_time)
 		process()
-
 
 /datum/transhuman/infocore/proc/notify(var/name)
 	ASSERT(name)
@@ -83,8 +71,10 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 	var/charname = "!!ERROR!!"
 	var/implanted_at
 	var/body_type
-	var/obviously_dead
 	var/id_gender
+
+	//0: Normal, 1: Might be dead, 2: Definitely dead, show on console
+	var/dead_state = 0
 
 	//Backend
 	var/obj/item/weapon/implant/backup/imp_ref
@@ -93,7 +83,6 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 	var/client/client
 	var/datum/mind/mind
 	var/cryo_at
-	var/secretly_dead
 	var/languages
 	var/mind_oocnotes
 
@@ -122,6 +111,12 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 
 	if(add_to_db)
 		transcore.add_backup(src)
+
+/datum/transhuman/mind_record/proc/ping()
+	if(!imp_ref || !mob_ref || imp_ref.loc != mob_ref || mob_ref.stat >= DEAD) //Ways you can be considered past-due
+		return 0
+
+	return 1 //Ping replied
 
 /////// Body Record ///////
 /datum/transhuman/body_record
@@ -154,7 +149,7 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 
 	//General stuff about them
 	synthetic = M.isSynthetic()
-	speciesname = M.custom_species ? M.custom_species : M.dna.species
+	speciesname = M.custom_species ? M.custom_species : null
 	bodygender = M.gender
 	body_oocnotes = M.ooc_notes
 	sizemult = M.size_multiplier
@@ -200,7 +195,20 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 		if(!I)
 			continue
 
-		//Just set the data to this. 0:normal, 1:assisted, 2:robotic, 3:crazy
+		//This needs special handling because brains never think they are 'robotic', even posibrains
+		if(org == O_BRAIN)
+			switch(I.type)
+				if(/obj/item/organ/internal/mmi_holder) //Assisted
+					organ_data[org] = 1
+				if(/obj/item/organ/internal/mmi_holder/posibrain) //Mechanical
+					organ_data[org] = 2
+				if(/obj/item/organ/internal/mmi_holder/robot) //Digital
+					organ_data[org] = 3
+				else //Anything else just give a brain to
+					organ_data[org] = 0
+			continue
+
+		//Just set the data to this. 0:normal, 1:assisted, 2:mechanical, 3:digital
 		organ_data[org] = I.robotic
 
 	if(add_to_db)
