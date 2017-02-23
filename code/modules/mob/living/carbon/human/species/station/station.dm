@@ -193,6 +193,9 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
 		)
 
+/datum/species/skrell/can_breathe_water()
+	return TRUE
+
 /datum/species/diona
 	name = "Diona"
 	name_plural = "Dionaea"
