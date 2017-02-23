@@ -92,13 +92,6 @@
 			src.visible_message("\red [src] triggers their deadman's switch!")
 			signaler.signal()
 
-	//Stun Beams
-	if(P.taser_effect)
-		stun_effect_act(0, P.agony, def_zone, P)
-		src <<"\red You have been hit by [P]!"
-		qdel(P)
-		return
-
 	//Armor
 	var/absorb = run_armor_check(def_zone, P.check_armour, P.armor_penetration)
 	var/proj_sharp = is_sharp(P)
@@ -106,6 +99,15 @@
 	if ((proj_sharp || proj_edge) && prob(getarmor(def_zone, P.check_armour)))
 		proj_sharp = 0
 		proj_edge = 0
+
+	//Stun Beams
+	if(P.taser_effect)
+		stun_effect_act(0, P.agony, def_zone, P)
+		src <<"\red You have been hit by [P]!"
+		if(!P.nodamage)
+			apply_damage(P.damage, P.damage_type, def_zone, absorb, 0, P, sharp=proj_sharp, edge=proj_edge)
+		qdel(P)
+		return
 
 	if(!P.nodamage)
 		apply_damage(P.damage, P.damage_type, def_zone, absorb, 0, P, sharp=proj_sharp, edge=proj_edge)
