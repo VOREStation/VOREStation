@@ -6,25 +6,24 @@ Used In File(s): \code\modules\telesci\telesci_computer.dm
 	<div class='statusDisplay'>No telepad located. <BR>Please add telepad data.</div><BR>
 {{else}}
 	<div class='item'>{{:helper.link('Eject GPS', 'eject', {'ejectGPS' : 1}, null, (data.insertedGps ? '' : 'disabled'))}}</div>
-	<div class='item'>{{:helper.link('Set GPS Memory', 'disk', {'setMemory' : 1}, null, (data.insertedGps ? '' : 'disabled'))}}</div>
-	<div class='statusDisplay'>{{:data.tempMsg}}</div>
-	<br>
+
+	{{if data.cooldown}}
+		<div class='statusDisplay'>Telepad is recharging.  Please wait {{:helper.round(data.cooldown)}} seconds.</div>
+	{{else}}
+		<div class='statusDisplay'>{{:data.tempMsg}}</div>
+	{{/if}}
 
 	<div class='item'>
 		<div class='itemLabel'>Bearing:</div>
 		<div class='itemContent'>{{:helper.link(data.rotation + '°', 'pencil', {'setrotation' : 1})}}</div>
 	</div>
 	<div class='item'>
-		<div class='itemLabel'>Elevation:</div>
-		<div class='itemContent'>{{:helper.link(data.angle + '°', 'pencil', {'setangle' : 1})}}</div>
+		<div class='itemLabel'>Distance:</div>
+		<div class='itemContent'>{{:helper.link(data.distance + ' m', 'pencil', {'setdistance' : 1})}}</div>
 	</div>
 	<div class='item'>
-		<div class='itemLabel'>Power:</div>
-		<div class='itemContent'>
-		{{for data.powerOptions}}
-			<span>{{:helper.link(value.power, null, {'setpower' : index+1}, null,
-				value.enabled ? (value.power == data.power ? 'selected' : null) : 'disabled')}}</span>
-		{{/for}}
+		<div class='itemLabel'>Max Distance:</div>
+		<div class='itemContent'>{{:data.maxAllowedDistance}} m</div>
 	</div>
 	<div class='item'>
 		<div class='itemLabel'>Sector:</div>
