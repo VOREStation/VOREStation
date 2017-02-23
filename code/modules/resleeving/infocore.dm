@@ -94,7 +94,7 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 
 	//Scrape info from mob.
 	mob_ref = M
-	charname = M.name
+	charname = M.real_name
 	implanted_at = world.time
 	body_type = M.isSynthetic()
 	id_gender = M.identifying_gender
