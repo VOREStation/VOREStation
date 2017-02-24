@@ -1,10 +1,19 @@
+//
+// Paper Shredder Machine
+//
 /obj/machinery/papershredder
 	name = "paper shredder"
 	desc = "For those documents you don't want seen."
-	icon = 'icons/obj/bureaucracy.dmi'
-	icon_state = "papershredder0"
+	icon = 'icons/obj/papershredder.dmi'
+	icon_state = "shredder-off"
+	var/shred_anim = "shredder-shredding"
 	density = 1
 	anchored = 1
+	use_power = 1
+	idle_power_usage = 10
+	active_power_usage = 200
+	power_channel = EQUIP
+	circuit = /obj/item/weapon/circuitboard/papershredder
 	var/max_paper = 10
 	var/paperamount = 0
 	var/list/shred_amounts = list(
@@ -16,10 +25,31 @@
 		/obj/item/weapon/paper_bundle = 3,
 		)
 
+/obj/machinery/papershredder/New()
+	..()
+	component_parts = list()
+	component_parts += new /obj/item/weapon/stock_parts/motor(src)
+	component_parts += new /obj/item/weapon/stock_parts/gear(src)
+	component_parts += new /obj/item/weapon/stock_parts/gear(src)
+	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
+	RefreshParts()
+	update_icon()
+
 /obj/machinery/papershredder/attackby(var/obj/item/W, var/mob/user)
 
 	if(istype(W, /obj/item/weapon/storage))
 		empty_bin(user, W)
+		return
+	else if(istype(W, /obj/item/weapon/wrench))
+		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
+		anchored = !anchored
+		user << "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>"
+		return
+	else if(default_part_replacement(user, W))
+		return
+	else if(default_deconstruction_screwdriver(user, W))
+		return
+	else if(default_deconstruction_crowbar(user, W))
 		return
 	else
 		var/paper_result
@@ -27,6 +57,8 @@
 			if(istype(W, shred_type))
 				paper_result = shred_amounts[shred_type]
 		if(paper_result)
+			if(inoperable())
+				return // Need powah!
 			if(paperamount == max_paper)
 				user << "<span class='warning'>\The [src] is full; please empty it before you continue.</span>"
 				return
@@ -34,6 +66,7 @@
 			user.drop_from_inventory(W)
 			qdel(W)
 			playsound(src.loc, 'sound/items/pshred.ogg', 75, 1)
+			flick(shred_anim, src)
 			if(paperamount > max_paper)
 				user <<"<span class='danger'>\The [src] was too full, and shredded paper goes everywhere!</span>"
 				for(var/i=(paperamount-max_paper);i>0;i--)
@@ -92,8 +125,40 @@
 	paperamount--
 	return PoolOrNew(/obj/item/weapon/shreddedp, get_turf(src))
 
+/obj/machinery/papershredder/power_change()
+	..()
+	spawn(rand(0,15))
+		update_icon()
+
 /obj/machinery/papershredder/update_icon()
-	icon_state = "papershredder[max(0,min(5,Floor(paperamount/2)))]"
+	overlays.Cut()
+	if(operable())
+		icon_state = "shredder-on"
+	else
+		icon_state = "shredder-off"
+	// Fullness overlay
+	overlays += "shredder-[max(0,min(5,Floor(paperamount/max_paper*5)))]"
+	if (panel_open)
+		overlays += "panel_open"
+
+//
+// Shredded Paper Item
+//
+
+/obj/item/weapon/shreddedp
+	name = "shredded paper"
+	icon = 'icons/obj/bureaucracy.dmi'
+	icon_state = "shredp"
+	throwforce = 0
+	w_class = ITEMSIZE_TINY
+	throw_range = 3
+	throw_speed = 1
+
+/obj/item/weapon/shreddedp/New()
+	..()
+	pixel_x = rand(-5,5)
+	pixel_y = rand(-5,5)
+	if(prob(65)) color = pick("#BABABA","#7F7F7F")
 
 /obj/item/weapon/shreddedp/attackby(var/obj/item/W as obj, var/mob/user)
 	if(istype(W, /obj/item/weapon/flame/lighter))
@@ -122,18 +187,3 @@
 		M.drop_from_inventory(src)
 	PoolOrNew(/obj/effect/decal/cleanable/ash,get_turf(src))
 	qdel(src)
-
-/obj/item/weapon/shreddedp
-	name = "shredded paper"
-	icon = 'icons/obj/bureaucracy.dmi'
-	icon_state = "shredp"
-	throwforce = 0
-	w_class = ITEMSIZE_TINY
-	throw_range = 3
-	throw_speed = 1
-
-/obj/item/weapon/shreddedp/New()
-	..()
-	pixel_x = rand(-5,5)
-	pixel_y = rand(-5,5)
-	if(prob(65)) color = pick("#BABABA","#7F7F7F")

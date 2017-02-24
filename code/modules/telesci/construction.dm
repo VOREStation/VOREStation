@@ -37,7 +37,7 @@
 	sort_string = "HAAEB"
 
 /datum/design/item/telesci_gps
-	name = "AR sunglasses"
+	name = "GPS device"
 	id = "telesci_gps"
 	req_tech = list(TECH_MATERIAL = 2, TECH_BLUESPACE = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 500, "glass" = 1000)

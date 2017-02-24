@@ -581,10 +581,6 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	item_state = "tempestsaddlebag"
 	icon_state = "tempestbag"
 	max_storage_space = INVENTORY_DUFFLEBAG_SPACE //Since they play a macro character, no reason to put custom slowdown code on here.
-	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
-		if(..())
-			if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/feline/tempest))
-				return 1
-			else
-				H << "<span class='warning'>The harness doesn't fit you, it keeps slipping off!</span>"
-				return 0
+	slowdown = 0
+	taurtype = /datum/sprite_accessory/tail/taur/feline/tempest
+	no_message = "These saddlebags seem to be fitted for someone else, and keep slipping off!"
