@@ -60,8 +60,6 @@
 	flags = 0
 /datum/language/seromi
 	flags = 0
-/datum/language/gutter
-	flags = WHITELISTED
 /datum/language/machine
 	flags = NO_STUTTER | WHITELISTED
 
