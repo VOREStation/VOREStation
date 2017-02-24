@@ -417,16 +417,6 @@
 						qdel(R)
 						qdel(W)
 
-		//VOREStation Edit - Resleeving.
-		if(istype(W,/obj/item/weapon/implant/backup))
-			for(var/record in transcore.backed_up)
-				var/datum/transhuman/mind_record/MR = transcore.backed_up[record]
-				if(MR.imp_ref == W)
-					MR.cryo_at = world.time
-					MR.imp_ref = null
-					transcore.stop_backup(MR)
-					qdel(W)
-		//VOREStation Edit End - Resleeving.
 		if(!preserve)
 			qdel(W)
 		else
@@ -445,6 +435,12 @@
 				O.owner.current << "<span class='warning'>You get the feeling your target is no longer within your reach...</span>"
 			qdel(O)
 
+	//VOREStation Edit - Resleeving.
+	if(occupant.mind && (occupant.mind.name in transcore.backed_up))
+		var/datum/transhuman/mind_record/MR = transcore.backed_up[occupant.mind.name]
+		transcore.stop_backup(MR)
+	//VOREStation Edit End - Resleeving.
+
 	//Handle job slot/tater cleanup.
 	var/job = occupant.mind.assigned_role
 
@@ -453,6 +449,7 @@
 	if(occupant.mind.objectives.len)
 		qdel(occupant.mind.objectives)
 		occupant.mind.special_role = null
+
 	//else
 		//if(ticker.mode.name == "AutoTraitor")
 			//var/datum/game_mode/traitor/autotraitor/current_mode = ticker.mode

@@ -1,13 +1,14 @@
 ////////////////////////////////
-//// General resleeving stuff common to
-//// robotics and medical both
+//// Resleeving implant
+//// for both organic and synthetic crew
 ////////////////////////////////
 
 //The backup implant itself
 /obj/item/weapon/implant/backup
 	name = "backup implant"
-	desc = "Do you wanna live forever?"
-	var/datum/transhuman/mind_record/my_record
+	desc = "A mindstate backup implant that occasionally stores a copy of one's mind on a central server for backup purposes."
+	var/last_attempt
+	var/attempt_delay = 5 MINUTES
 
 /obj/item/weapon/implant/backup/get_data()
 	var/dat = {"
@@ -25,8 +26,28 @@
 /obj/item/weapon/implant/backup/implanted(var/mob/living/carbon/human/H)
 	..()
 	if(istype(H))
-		my_record = new(H,src,1)
+		var/obj/item/weapon/implant/backup/other_imp = locate(/obj/item/weapon/implant/backup,H)
+		if(other_imp && other_imp.imp_in == H)
+			qdel(other_imp) //implant fight
+
+		if(H.mind) //One out here just in case they are dead
+			transcore.m_backup(H.mind)
+			last_attempt = world.time
+
+		backup()
+
 		return 1
+
+/obj/item/weapon/implant/backup/proc/backup()
+	last_attempt = world.time
+	var/mob/living/carbon/human/H = loc
+
+	//Okay we're in a human with a mind at least
+	if(istype(H) && H == imp_in && H.mind && H.stat < DEAD)
+		transcore.m_backup(H.mind)
+
+	spawn(attempt_delay)
+		backup()
 
 //The glass case for the implant
 /obj/item/weapon/implantcase/backup
@@ -51,3 +72,8 @@
 	for(var/i = 1 to 7)
 		new /obj/item/weapon/implantcase/backup(src)
 	new /obj/item/weapon/implanter(src)
+
+//Purely for fluff
+/obj/item/weapon/implant/backup/full
+	name = "khi backup implant"
+	desc = "A normal KHI wireless cortical stack with neutrino and QE transmission for constant-stream consciousness upload."

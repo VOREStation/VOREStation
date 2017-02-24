@@ -67,6 +67,7 @@
 
 	//Apply DNA
 	H.dna = R.dna.Clone()
+	H.original_player = current_project.ckey
 
 	//Apply damage
 	H.adjustCloneLoss(150)
@@ -261,6 +262,7 @@
 
 	//Apply DNA
 	H.dna = R.dna.Clone()
+	H.original_player = current_project.ckey
 
 	//Apply damage
 	H.adjustBruteLoss(20)
@@ -388,10 +390,10 @@
 		else
 			health_text = "[round(src.occupant.health,0.1)]"
 
-		if(src.occupant.client)
-			mind_text = "Mind present"
+		if(src.occupant.mind)
+			mind_text = "Mind present: [occupant.mind.name]"
 		else
-			mind_text = "Mind absent"
+			mind_text = "Mind absent."
 
 	var/dat ="<B>Resleever Status</B><BR>"
 	dat +="<B>Current occupant:</B> [src.occupant ? "<BR>Name: [src.occupant]<BR>Health: [health_text]<BR>" : "<FONT color=red>None</FONT>"]<BR>"
@@ -428,18 +430,16 @@
 
 	//In case they already had a mind!
 	occupant << "<span class='warning'>You feel your mind being overwritten...</span>"
-
-	//Try to briefly find their mind and null it out on their current mob to prevent debraining pulling them back to it.
-	if(MR.mind.current)
-		MR.mind.current.mind = null
+	if(occupant.mind)
+		log_and_message_admins("was resleeve-wiped from their body.",occupant.mind)
+		occupant.ghostize()
 
 	//Attach as much stuff as possible to the mob.
 	for(var/datum/language/L in MR.languages)
 		occupant.add_language(L.name)
+	MR.mind_ref.active = 1 //Well, it's about to be.
+	MR.mind_ref.transfer_to(occupant) //Does mind+ckey+client.
 	occupant.identifying_gender = MR.id_gender
-	occupant.client = MR.client
-	occupant.mind = MR.mind
-	occupant.ckey = MR.ckey
 	occupant.ooc_notes = MR.mind_oocnotes
 	occupant.apply_vore_prefs() //Cheap hack for now to give them SOME bellies.
 
@@ -454,15 +454,13 @@
 		affected.implants += new_imp
 		new_imp.part = affected
 
-	//Update the database record
-	MR.mob_ref = occupant
-	MR.imp_ref = new_imp
-	MR.dead_state = MR_NORMAL
-
 	//Inform them and make them a little dizzy.
 	occupant << "<span class='warning'>You feel a small pain in your head as you're given a new backup implant. Oh, and a new body. It's disorienting, to say the least.</span>"
-	occupant.confused = max(occupant.confused, 25)
-	occupant.eye_blurry = max(occupant.eye_blurry, 25)
+	occupant.confused = max(occupant.confused, 30)
+	occupant.eye_blurry = max(occupant.eye_blurry, 30)
+
+	if(occupant.original_player != occupant.ckey)
+		log_and_message_admins("is now a cross-sleeved character. Body originally belonged to [occupant.original_player]. Mind is now [occupant.mind.name].",occupant)
 
 	return 1
 
