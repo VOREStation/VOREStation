@@ -2792,7 +2792,7 @@
 "bbJ" = (/obj/structure/closet/secure_closet/personal,/turf/simulated/shuttle/floor{icon_state = "floor4"},/area/shuttle/administration/centcom)
 "bbK" = (/obj/structure/bed/double/padded,/obj/item/weapon/bedsheet/captaindouble,/turf/simulated/shuttle/floor{icon_state = "floor4"},/area/shuttle/administration/centcom)
 "bbL" = (/obj/structure/window/reinforced{dir = 1},/turf/unsimulated/floor{icon_state = "plating"; name = "plating"},/area/centcom/command)
-"bbM" = (/obj/machinery/door/airlock/centcom{name = "Private"; opacity = 1; req_access = list(105)},/turf/unsimulated/wall,/area/centcom/command)
+"bbM" = (/obj/machinery/door/airlock/centcom{name = "Private"; opacity = 1; req_access = list(105)},/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/command)
 "bbN" = (/obj/structure/bed/roller,/turf/unsimulated/floor{dir = 2; icon_state = "dark"},/area/centcom/command)
 "bbO" = (/obj/structure/bed,/turf/unsimulated/floor{dir = 2; icon_state = "dark"},/area/centcom/command)
 "bbP" = (/obj/item/weapon/gun/energy/sizegun,/turf/unsimulated/floor{dir = 2; icon_state = "dark"},/area/centcom/command)
