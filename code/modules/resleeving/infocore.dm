@@ -12,6 +12,7 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 /datum/transhuman/infocore
 	var/overdue_time = 15 MINUTES
 	var/process_time = 1 MINUTE
+	var/core_dumped = 0
 
 	var/datum/transhuman/mind_record/list/backed_up = list()
 	var/datum/transhuman/mind_record/list/has_left = list()
@@ -21,6 +22,7 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 	process()
 
 /datum/transhuman/infocore/proc/process()
+	if(core_dumped) return
 	for(var/N in backed_up)
 		var/datum/transhuman/mind_record/curr_MR = backed_up[N]
 		if(!curr_MR)
@@ -40,7 +42,7 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 
 /datum/transhuman/infocore/proc/m_backup(var/datum/mind/mind)
 	ASSERT(mind)
-	if(!mind.name) //Name is critical to everything here
+	if(!mind.name || core_dumped)
 		return 0
 
 	var/datum/transhuman/mind_record/MR
@@ -56,7 +58,7 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 /datum/transhuman/infocore/proc/notify(var/name)
 	ASSERT(name)
 	var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset/heads/captain(null)
-	a.autosay("[name] is past-due for a mind backup. This will be the only notification.", "Backup Monitor", "Medical")
+	a.autosay("[name] is past-due for a mind backup. This will be the only notification.", "TransCore Oversight", "Medical")
 	qdel(a)
 
 /datum/transhuman/infocore/proc/add_backup(var/datum/transhuman/mind_record/MR)
@@ -75,6 +77,18 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 	ASSERT(BR)
 	body_scans[BR.mydna.name] = BR
 	log_debug("Added [BR.mydna.name] to transcore body DB.")
+
+/datum/transhuman/infocore/proc/core_dump(var/obj/item/weapon/disk/transcore/disk)
+	ASSERT(disk)
+	var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset/heads/captain(null)
+	a.autosay("An emergency core dump has been initiated!", "TransCore Oversight", "Command")
+	a.autosay("An emergency core dump has been initiated!", "TransCore Oversight", "Medical")
+	qdel(a)
+
+	disk.stored += backed_up
+	backed_up.Cut()
+	core_dumped = 1
+	return disk.stored.len
 
 /////// Mind-backup record ///////
 /datum/transhuman/mind_record
