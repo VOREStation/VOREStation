@@ -102,7 +102,7 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 	//The mind!
 	mind_ref = mind
 	mindname = mind.name
-	ckey = mind.key
+	ckey = ckey(mind.key)
 
 	cryo_at = 0
 
