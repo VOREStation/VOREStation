@@ -4,12 +4,14 @@
 ////////////////////////////////
 
 /mob/living/carbon/human/var/resleeve_lock
+/mob/living/carbon/human/var/original_player
 
 var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 
 //Mind-backup database
 /datum/transhuman/infocore
-	var/ping_time = 5 MINUTES
+	var/overdue_time = 15 MINUTES
+	var/process_time = 1 MINUTE
 
 	var/datum/transhuman/mind_record/list/backed_up = list()
 	var/datum/transhuman/mind_record/list/has_left = list()
@@ -19,29 +21,37 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 	process()
 
 /datum/transhuman/infocore/proc/process()
-
 	for(var/N in backed_up)
 		var/datum/transhuman/mind_record/curr_MR = backed_up[N]
 		if(!curr_MR)
 			log_debug("Tried to process [N] in transcore w/o a record!")
 			continue
 
-		switch(curr_MR.dead_state)
-			if(MR_NORMAL)
-				if(!curr_MR.ping())
-					curr_MR.dead_state = MR_UNSURE
-			if(MR_UNSURE)
-				if(curr_MR.ping())
-					curr_MR.dead_state = MR_NORMAL
-				else
-					curr_MR.dead_state = MR_DEAD
-					notify(N)
-			if(MR_DEAD)
-				if(curr_MR.ping())
-					curr_MR.dead_state = MR_NORMAL
+		var/since_backup = world.time - curr_MR.last_update
+		if(since_backup < overdue_time)
+			curr_MR.dead_state = MR_NORMAL
+		else
+			if(curr_MR.dead_state != MR_DEAD) //First time switching to dead
+				notify(N)
+			curr_MR.dead_state = MR_DEAD
 
-	spawn(ping_time)
+	spawn(process_time)
 		process()
+
+/datum/transhuman/infocore/proc/m_backup(var/datum/mind/mind)
+	ASSERT(mind)
+	if(!mind.name) //Name is critical to everything here
+		return 0
+
+	var/datum/transhuman/mind_record/MR
+
+	if(mind.name in backed_up)
+		MR = backed_up[mind.name]
+		MR.last_update = world.time
+	else
+		MR = new(mind, mind.current, 1)
+
+	return 1
 
 /datum/transhuman/infocore/proc/notify(var/name)
 	ASSERT(name)
@@ -51,14 +61,15 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 
 /datum/transhuman/infocore/proc/add_backup(var/datum/transhuman/mind_record/MR)
 	ASSERT(MR)
-	backed_up[MR.charname] = MR
-	log_debug("Added [MR.charname] to transcore DB.")
+	backed_up[MR.mindname] = MR
+	log_debug("Added [MR.mindname] to transcore DB.")
 
 /datum/transhuman/infocore/proc/stop_backup(var/datum/transhuman/mind_record/MR)
 	ASSERT(MR)
-	has_left[MR.charname] = MR
-	backed_up.Remove("[MR.charname]")
-	log_debug("Put [MR.charname] in transcore suspended DB.")
+	has_left[MR.mindname] = MR
+	backed_up.Remove("[MR.mindname]")
+	MR.cryo_at = world.time
+	log_debug("Put [MR.mindname] in transcore suspended DB.")
 
 /datum/transhuman/infocore/proc/add_body(var/datum/transhuman/body_record/BR)
 	ASSERT(BR)
@@ -68,55 +79,42 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 /////// Mind-backup record ///////
 /datum/transhuman/mind_record
 	//User visible
-	var/charname = "!!ERROR!!"
-	var/implanted_at
-	var/body_type
-	var/id_gender
+	var/mindname = "!!ERROR!!"
 
 	//0: Normal, 1: Might be dead, 2: Definitely dead, show on console
 	var/dead_state = 0
+	var/last_update = 0
 
 	//Backend
-	var/obj/item/weapon/implant/backup/imp_ref
 	var/ckey = ""
-	var/mob/living/carbon/human/mob_ref
-	var/client/client
-	var/datum/mind/mind
+	var/id_gender
+	var/datum/mind/mind_ref
 	var/cryo_at
 	var/languages
 	var/mind_oocnotes
 
-/datum/transhuman/mind_record/New(var/mob/living/carbon/human/M,var/obj/item/weapon/implant/backup/imp,var/add_to_db = 1)
-	ASSERT(M && imp)
+/datum/transhuman/mind_record/New(var/datum/mind/mind,var/mob/living/carbon/human/M,var/obj/item/weapon/implant/backup/imp,var/add_to_db = 1)
+	ASSERT(mind && M && imp)
 
 	if(!istype(M))
 		return //Only works with humanoids.
 
-	//Scrape info from mob.
-	mob_ref = M
-	charname = M.real_name
-	implanted_at = world.time
-	body_type = M.isSynthetic()
-	id_gender = M.identifying_gender
+	//The mind!
+	mind_ref = mind
+	mindname = mind.name
+	ckey = mind.key
 
-	imp_ref = imp
-	ckey = M.ckey
 	cryo_at = 0
+
+	//Mental stuff the game doesn't keep mentally
+	id_gender = M.identifying_gender
 	languages = M.languages.Copy()
 	mind_oocnotes = M.ooc_notes
 
-	//If these are gone then it's a problemmmm.
-	client = M.client
-	mind = M.mind
+	last_update = world.time
 
 	if(add_to_db)
 		transcore.add_backup(src)
-
-/datum/transhuman/mind_record/proc/ping()
-	if(!imp_ref || !mob_ref || imp_ref.loc != mob_ref || mob_ref.stat >= DEAD) //Ways you can be considered past-due
-		return 0
-
-	return 1 //Ping replied
 
 /////// Body Record ///////
 /datum/transhuman/body_record

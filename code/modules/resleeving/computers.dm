@@ -167,7 +167,7 @@
 		var/can_sleeve_current = 1
 		if(!sleevers.len)
 			can_sleeve_current = 0
-		data["activeMindRecord"] = list("charname" = active_mr.charname, \
+		data["activeMindRecord"] = list("charname" = active_mr.mindname, \
 										"obviously_dead" = active_mr.dead_state == MR_DEAD ? "Past-due" : "Current", \
 										"cando" = can_sleeve_current)
 	else
@@ -298,8 +298,8 @@
 					temp = "Error: Mind incompatible with body."
 
 				//Body to sleeve into, but mind is in another living body.
-				else if(active_mr.mind.current && active_mr.mind.current.stat != DEAD) //Mind is in a body already that's alive
-					var/answer = alert(active_mr.mind.current,"Someone is attempting to restore a backup of your mind into another body. Do you want to move to that body? You MAY suffer memory loss! (Same rules as CMD apply)","Resleeving","Yes","No")
+				else if(active_mr.mind_ref.current && active_mr.mind_ref.current.stat < DEAD) //Mind is in a body already that's alive
+					var/answer = alert(active_mr.mind_ref.current,"Someone is attempting to restore a backup of your mind into another body. Do you want to move to that body? You MAY suffer memory loss! (Same rules as CMD apply)","Resleeving","Yes","No")
 
 					//They declined to be moved.
 					if(answer == "No")
