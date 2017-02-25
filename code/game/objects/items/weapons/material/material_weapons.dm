@@ -16,9 +16,12 @@
 			)
 
 	var/applies_material_colour = 1
-	var/unbreakable
+	var/unbreakable = 0		//Doesn't lose health
+	var/fragile = 0			//Shatters when it dies
+	var/dulled = 0			//Has gone dull
 	var/force_divisor = 0.5
 	var/thrown_force_divisor = 0.5
+	var/dulled_divisor = 0.5	//Just drops the damage by half
 	var/default_material = DEFAULT_WALL_MATERIAL
 	var/material/material
 	var/drops_debris = 1
@@ -47,6 +50,8 @@
 	else
 		force = material.get_blunt_damage()
 	force = round(force*force_divisor)
+	if(dulled)
+		force = round(force*dulled_divisor)
 	throwforce = round(material.get_blunt_damage()*thrown_force_divisor)
 	//spawn(1)
 	//	world << "[src] has force [force] and throwforce [throwforce] when made from default material [material.name]"
@@ -79,7 +84,10 @@
 
 /obj/item/weapon/material/proc/check_health(var/consumed)
 	if(health<=0)
-		shatter(consumed)
+		if(fragile)
+			shatter(consumed)
+		else
+			dull()
 
 /obj/item/weapon/material/proc/shatter(var/consumed)
 	var/turf/T = get_turf(src)
@@ -90,6 +98,27 @@
 	playsound(src, "shatter", 70, 1)
 	if(!consumed && drops_debris) material.place_shard(T)
 	qdel(src)
+
+/obj/item/weapon/material/proc/dull()
+	var/turf/T = get_turf(src)
+	T.visible_message("<span class='danger'>\The [src] [material.destruction_desc]!</span>")
+	playsound(src, "shatter", 70, 1)
+	dulled = 1
+	if(is_sharp() || has_edge())
+		sharp = 0
+		edge = 0
+
+/obj/item/weapon/material/proc/sharpen(var/sharpen_amount, mob/living/user)
+	if(!fragile)
+		if(health < initial(health))
+			user.visible_message("[user] begins sharpening [src].", "You begin sharpening the [src].")
+			if(do_after(user, 40))
+				user.visible_message("[user] has finished sharpening [src]", "You finish sharpening the [src].")
+				health = min(health + sharpen_amount, initial(health))
+	else
+		to_chat(user, "<span class='warning'>You can't sharpen the [src].</span>")
+		return
+
 /*
 Commenting this out pending rebalancing of radiation based on small objects.
 /obj/item/weapon/material/process()
