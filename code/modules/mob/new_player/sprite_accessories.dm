@@ -51,7 +51,6 @@
 	bald
 		name = "Bald"
 		icon_state = "bald"
-		gender = MALE
 		species_allowed = list("Human","Unathi")
 		veryshort=1
 
@@ -402,7 +401,6 @@
 	balding
 		name = "Balding Hair"
 		icon_state = "hair_e"
-		gender = MALE // turnoff!
 		veryshort=1
 
 	familyman
@@ -733,15 +731,14 @@
 	skr_tentacle_m
 		name = "Skrell Male Tentacles"
 		icon_state = "skrell_hair_m"
-		species_allowed = list("Skrell")
 		gender = MALE
+		species_allowed = list("Skrell")
 
 	skr_tentacle_f
 		name = "Skrell Female Tentacles"
 		icon_state = "skrell_hair_f"
-		species_allowed = list("Skrell")
 		gender = FEMALE
-
+		species_allowed = list("Skrell")
 //Tajaran hairstyles
 	taj_ears
 		name = "Tajaran Ears"
