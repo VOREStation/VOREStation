@@ -2105,7 +2105,7 @@
 #include "code\modules\resleeving\circuitboards.dm"
 #include "code\modules\resleeving\computers.dm"
 #include "code\modules\resleeving\documents.dm"
-#include "code\modules\resleeving\general.dm"
+#include "code\modules\resleeving\implant.dm"
 #include "code\modules\resleeving\infocore.dm"
 #include "code\modules\resleeving\machines.dm"
 #include "code\modules\rogueminer_vr\asteroid.dm"
