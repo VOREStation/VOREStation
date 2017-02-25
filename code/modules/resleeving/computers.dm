@@ -16,6 +16,7 @@
 	var/datum/transhuman/infocore/TC //Easy debugging access
 	var/organic_capable = 1
 	var/synthetic_capable = 1
+	var/obj/item/weapon/disk/transcore/disk
 
 /obj/machinery/computer/transhuman/resleeving/initialize()
 	..()
@@ -72,6 +73,11 @@
 			P.connected = src
 			P.name = "[initial(P.name)] #[pods.len]"
 			user << "<span class='notice'>You connect [P] to [src].</span>"
+	else if(istype(W, /obj/item/weapon/disk/transcore))
+		user.unEquip(W)
+		disk = W
+		disk.forceMove(src)
+		user << "<span class='notice'>You insert \the [W] into \the [src].</span>"
 	else
 		..()
 	return
@@ -179,6 +185,8 @@
 	data["spodsLen"] = spods.len
 	data["sleeversLen"] = sleevers.len
 	data["temp"] = temp
+	data["coredumped"] = transcore.core_dumped
+	data["emergency"] = disk ? 1 : 0
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
@@ -209,6 +217,16 @@
 
 	else if (href_list["refresh"])
 		updateUsrDialog()
+
+	else if (href_list["coredump"])
+		if(disk)
+			transcore.core_dump(disk)
+			disk.forceMove(get_turf(src))
+			disk = null
+
+	else if (href_list["ejectdisk"])
+		disk.forceMove(get_turf(src))
+		disk = null
 
 	else if (href_list["create"])
 		if(istype(active_br))
@@ -328,3 +346,31 @@
 
 	nanomanager.update_uis(src)
 	add_fingerprint(usr)
+
+// In here because only relevant to computer
+/obj/item/weapon/cmo_disk_holder
+	name = "cmo emergency packet"
+	desc = "A small paper packet with printing on one side. \"Tear open in case of Code Delta or Emergency Evacuation ONLY. Use in any other case is UNLAWFUL.\""
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "cmoemergency"
+	item_state = "card-id"
+
+/obj/item/weapon/cmo_disk_holder/attack_self(var/mob/attacker)
+	playsound(src, 'sound/items/poster_ripped.ogg', 50)
+	attacker << "<span class='warning'>You tear open \the [name].</span>"
+	attacker.unEquip(src)
+	var/obj/item/weapon/disk/transcore/newdisk = new(get_turf(src))
+	attacker.put_in_any_hand_if_possible(newdisk)
+	qdel(src)
+
+/obj/item/weapon/disk/transcore
+	name = "TransCore Dump Disk"
+	desc = "It has a small label. \n\
+	\"1.INSERT DISK INTO RESLEEVING CONSOLE\n\
+	2. BEGIN CORE DUMP PROCEDURE\n\
+	3. ENSURE DISK SAFETY WHEN EJECTED\""
+	icon = 'icons/obj/cloning.dmi'
+	icon_state = "harddisk"
+	item_state = "card-id"
+	w_class = ITEMSIZE_SMALL
+	var/datum/transhuman/mind_record/list/stored = list()
