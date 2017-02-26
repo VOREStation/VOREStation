@@ -63,7 +63,7 @@
 	display_name = "Medical HUD Aviators (Medical)"
 	path = /obj/item/clothing/glasses/sunglasses/medhud/aviator
 
-/datum/gear/eyes/medical/aviator
+/datum/gear/eyes/medical/aviator/prescription
 	display_name = "Medical HUD Aviators, prescription (Medical)"
 	path = /obj/item/clothing/glasses/sunglasses/medhud/aviator/prescription
 
