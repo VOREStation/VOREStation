@@ -51,8 +51,8 @@
 	bald
 		name = "Bald"
 		icon_state = "bald"
-		species_allowed = list("Human","Unathi")
 		gender = MALE
+		species_allowed = list("Human","Unathi")
 		veryshort=1
 
 	short
@@ -544,7 +544,7 @@
 	tightbun
 		name = "Tight Bun"
 		icon_state = "hair_tightbun"
-		gender= FEMALE
+		gender = FEMALE
 
 	coffeehouse
 		name = "Coffee House Cut"
