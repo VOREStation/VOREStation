@@ -52,6 +52,7 @@
 		name = "Bald"
 		icon_state = "bald"
 		species_allowed = list("Human","Unathi")
+		gender = MALE
 		veryshort=1
 
 	short
@@ -401,6 +402,7 @@
 	balding
 		name = "Balding Hair"
 		icon_state = "hair_e"
+		gender = MALE
 		veryshort=1
 
 	familyman
@@ -502,6 +504,7 @@
 	lowfade
 		name = "Low Fade"
 		icon_state = "hair_lowfade"
+		gender = MALE
 		veryshort=1
 
 	medfade
@@ -512,11 +515,13 @@
 	highfade
 		name = "High Fade"
 		icon_state = "hair_highfade"
+		gender = MALE
 		veryshort=1
 
 	baldfade
 		name = "Balding Fade"
 		icon_state = "hair_baldfade"
+		gender = MALE
 		veryshort=1
 
 	nofade
@@ -527,28 +532,34 @@
 	trimflat
 		name = "Trimmed Flat Top"
 		icon_state = "hair_trimflat"
+		gender = MALE
 		veryshort=1
 
 	trimmed
 		name = "Trimmed"
 		icon_state = "hair_trimmed"
+		gender = MALE
 		veryshort=1
 
 	tightbun
 		name = "Tight Bun"
 		icon_state = "hair_tightbun"
+		gender= FEMALE
 
 	coffeehouse
 		name = "Coffee House Cut"
 		icon_state = "hair_coffeehouse"
+		gender = MALE
 
 	undercut
 		name = "Undercut"
 		icon_state = "hair_undercut"
+		gender = MALE
 
 	partfade
 		name = "Parted Fade"
 		icon_state = "hair_shavedpart"
+		gender = MALE
 
 
 /*
@@ -568,6 +579,7 @@
 		name = "Shaved"
 		icon_state = "bald"
 		species_allowed = list("Human","Unathi","Tajara","Skrell", "Machine","Teshari", "Vox")
+		gender = NEUTER
 
 	watson
 		name = "Watson Mustache"
