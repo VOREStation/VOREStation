@@ -60,7 +60,7 @@
 /obj/item/integrated_circuit/logic/binary/not_equals
 	name = "not equal gate"
 	desc = "This gate compares two values, and outputs the number one if both are different."
-	icon_state = "not equal"
+	icon_state = "not_equal"
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/logic/binary/not_equals/do_compare(var/datum/integrated_io/A, var/datum/integrated_io/B)
