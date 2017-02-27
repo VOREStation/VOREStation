@@ -806,6 +806,13 @@
 	rolled_sleeves = 0
 	starting_accessories = list(/obj/item/clothing/accessory/black)
 
+//Kisukegema:Kisuke `the nerd` Gema
+/obj/item/clothing/glasses/sunglasses/omnihud/kamina
+	name = "Kamina glasses"
+	icon_state = "kamina"
+	desc = "ROW ROW, FIGHT THE POWER."
+	see_invisible = SEE_INVISIBLE_LEVEL_TWO //DO THE IMPOSSIBLE, SEE THE INVISIBLE
+
 //Kitsuhana Uniforms
 /obj/item/clothing/under/rank/khi
 	name = "Delete Me"

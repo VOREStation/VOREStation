@@ -274,7 +274,7 @@ item_path: /obj/item/device/modkit_conversion/fluff/harmonyspace
 {
 ckey: kisukegema
 character_name: Kisuke 'The Nerd' Gema
-item_path: /obj/item/clothing/glasses/sunglasses/fluff/nerdglasses
+item_path: /obj/item/clothing/glasses/sunglasses/omnihud/kamina
 }  
 
 {
