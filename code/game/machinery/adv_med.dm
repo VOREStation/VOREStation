@@ -478,6 +478,7 @@
 				var/splint = ""
 				var/internal_bleeding = ""
 				var/lung_ruptured = ""
+				var/o_dead = ""
 				for(var/datum/wound/W in e.wounds) if(W.internal)
 					internal_bleeding = "<br>Internal bleeding"
 					break
@@ -491,6 +492,8 @@
 					AN = "[e.broken_description]:"
 				if(e.status & ORGAN_ROBOT)
 					robot = "Prosthetic:"
+				if(e.status & ORGAN_DEAD)
+					o_dead = "Necrotic:"
 				if(e.open)
 					open = "Open:"
 				switch (e.germ_level)
@@ -507,7 +510,7 @@
 					if (INFECTION_LEVEL_TWO + 300 to INFECTION_LEVEL_TWO + 400)
 						infected = "Acute Infection++:"
 					if (INFECTION_LEVEL_THREE to INFINITY)
-						infected = "Septic:"
+						infected = "Gangrene Detected:"
 
 				var/unknown_body = 0
 				for(var/I in e.implants)
@@ -521,19 +524,22 @@
 				if(!AN && !open && !infected & !imp)
 					AN = "None:"
 				if(!(e.status & ORGAN_DESTROYED))
-					dat += "<td>[e.name]</td><td>[e.burn_dam]</td><td>[e.brute_dam]</td><td>[robot][bled][AN][splint][open][infected][imp][internal_bleeding][lung_ruptured]</td>"
+					dat += "<td>[e.name]</td><td>[e.burn_dam]</td><td>[e.brute_dam]</td><td>[robot][bled][AN][splint][open][infected][imp][internal_bleeding][lung_ruptured][o_dead]</td>"
 				else
 					dat += "<td>[e.name]</td><td>-</td><td>-</td><td>Not Found</td>"
 				dat += "</tr>"
 			for(var/obj/item/organ/i in occupant.internal_organs)
 				var/mech = ""
+				var/i_dead = ""
 				if(i.status & ORGAN_ASSISTED)
 					mech = "Assisted:"
 				if(i.robotic >= ORGAN_ROBOT)
 					mech = "Mechanical:"
+				if(i.status & ORGAN_DEAD)
+					i_dead = "Necrotic:"
 				var/infection = "None"
 				switch (i.germ_level)
-					if (1 to INFECTION_LEVEL_ONE + 200)
+					if (INFECTION_LEVEL_ONE to INFECTION_LEVEL_ONE + 200)
 						infection = "Mild Infection:"
 					if (INFECTION_LEVEL_ONE + 200 to INFECTION_LEVEL_ONE + 300)
 						infection = "Mild Infection+:"
@@ -543,11 +549,13 @@
 						infection = "Acute Infection:"
 					if (INFECTION_LEVEL_TWO + 200 to INFECTION_LEVEL_TWO + 300)
 						infection = "Acute Infection+:"
-					if (INFECTION_LEVEL_TWO + 300 to INFINITY)
+					if (INFECTION_LEVEL_TWO + 300 to INFECTION_LEVEL_TWO + 400)
 						infection = "Acute Infection++:"
+					if (INFECTION_LEVEL_THREE to INFINITY)
+						infection = "Necrosis Detected:"
 
 				dat += "<tr>"
-				dat += "<td>[i.name]</td><td>N/A</td><td>[i.damage]</td><td>[infection]:[mech]</td><td></td>"
+				dat += "<td>[i.name]</td><td>N/A</td><td>[i.damage]</td><td>[infection]:[mech][i_dead]</td><td></td>"
 				dat += "</tr>"
 			dat += "</table>"
 			if(occupant.sdisabilities & BLIND)

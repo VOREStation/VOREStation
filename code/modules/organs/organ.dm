@@ -150,17 +150,22 @@ var/list/organ_cache = list()
 			germ_level++
 
 	if(germ_level >= INFECTION_LEVEL_ONE)
-		var/fever_temperature = (owner.species.heat_level_1 - owner.species.body_temperature - 5)* min(germ_level/INFECTION_LEVEL_TWO, 1) + owner.species.body_temperature
-		owner.bodytemperature += between(0, (fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, fever_temperature - owner.bodytemperature)
+		. = 1 //Organ qualifies for effect-specific processing
+		//var/fever_temperature = (owner.species.heat_level_1 - owner.species.body_temperature - 5)* min(germ_level/INFECTION_LEVEL_TWO, 1) + owner.species.body_temperature
+		//owner.bodytemperature += between(0, (fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, fever_temperature - owner.bodytemperature)
+		var/fever_temperature = owner.species.heat_discomfort_level * 1.10 //Heat discomfort level plus 10%
+		if(owner.bodytemperature < fever_temperature)
+			owner.bodytemperature += (fever_temperature - owner.bodytemperature) / 10 //Tries to climb by 10% of the difference between fever and current
 
 	if (germ_level >= INFECTION_LEVEL_TWO)
-		var/obj/item/organ/external/parent = owner.get_organ(parent_organ)
-		//spread germs
-		if (antibiotics < 5 && parent.germ_level < germ_level && ( parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30) ))
-			parent.germ_level++
+		. = 2 //Organ qualifies for effect-specific processing
+		//No particular effect on the general 'organ' at 3
 
-		if (prob(3))	//about once every 30 seconds
-			take_damage(1,silent=prob(30))
+	if (germ_level >= INFECTION_LEVEL_THREE && antibiotics < 30)
+		. = 3 //Organ qualifies for effect-specific processing
+		germ_level++ //Germ_level increases without overdose of antibiotics
+		var/sepsis_severity = 1 + round((germ_level - INFECTION_LEVEL_THREE)/100,0.25) //1 Tox plus a little for going over INFECTION_LEVEL_THREE
+		owner.adjustToxLoss(sepsis_severity)
 
 /obj/item/organ/proc/handle_rejection()
 	// Process unsuitable transplants. TODO: consider some kind of

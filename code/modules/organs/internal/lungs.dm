@@ -13,10 +13,6 @@
 	if(!owner)
 		return
 
-	if (germ_level > INFECTION_LEVEL_ONE)
-		if(prob(5))
-			owner.emote("cough")		//respitory tract infection
-
 	if(is_bruised())
 		if(prob(4))
 			spawn owner.emote("me", 1, "coughs up blood!")
@@ -30,3 +26,16 @@
 	if(istype(parent))
 		owner.custom_pain("You feel a stabbing pain in your [parent.name]!", 1)
 	bruise()
+
+/obj/item/organ/internal/lungs/handle_germ_effects()
+	. = ..() //Up should return an infection level as an integer
+	if(!.) return
+
+	//Bacterial pneumonia
+	if (. >= 1)
+		if(prob(5))
+			owner.emote("cough")
+	if (. >= 2)
+		if(prob(1))
+			owner.custom_pain("You suddenly feel short of breath and take a sharp, painful breath!",1)
+			owner.adjustOxyLoss(30) //Look it's hard to simulate low O2 perfusion okay
