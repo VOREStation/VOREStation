@@ -62,7 +62,7 @@
 		var/obj/machinery/computer/C = user
 
 		if(world.time <= reset_time)
-			C.visible_message("\blue [boss_name] will not allow the Special Operations shuttle to launch yet.")
+			C.visible_message("\blue [using_map.boss_name] will not allow the Special Operations shuttle to launch yet.")
 			if (((world.time - reset_time)/10) > 60)
 				C.visible_message("\blue [-((world.time - reset_time)/10)/60] minutes remain!")
 			else
@@ -88,18 +88,18 @@
 
 /datum/shuttle/ferry/multidock/specops/move(var/area/origin,var/area/destination)
 	..(origin, destination)
-	
+
 	spawn(20)
 		if (!location)	//just arrived home
 			for(var/turf/T in get_area_turfs(destination))
 				var/mob/M = locate(/mob) in T
-				M << "<span class='danger'>You have arrived at [boss_name]. Operation has ended!</span>"
+				M << "<span class='danger'>You have arrived at [using_map.boss_name]. Operation has ended!</span>"
 		else	//just left for the station
 			launch_mauraders()
 			for(var/turf/T in get_area_turfs(destination))
 				var/mob/M = locate(/mob) in T
-				M << "<span class='danger'>You have arrived at [station_name]. Commence operation!</span>"
-				
+				M << "<span class='danger'>You have arrived at [station_name()]. Commence operation!</span>"
+
 				var/obj/machinery/light/small/readylight/light = locate() in T
 				if(light) light.set_state(1)
 

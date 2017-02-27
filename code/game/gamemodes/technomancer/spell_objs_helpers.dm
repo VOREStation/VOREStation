@@ -21,7 +21,7 @@
 	return 0
 
 /obj/item/weapon/spell/proc/allowed_to_teleport()
-	if(owner && owner.z in config.admin_levels)
+	if(owner && owner.z in using_map.admin_levels)
 		return 0
 	return 1
 
