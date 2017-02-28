@@ -413,7 +413,7 @@
 		if(istype(W,/obj/item/weapon/implant/health))
 			for(var/obj/machinery/computer/cloning/com in world)
 				for(var/datum/dna2/record/R in com.records)
-					if(R.implant == W)
+					if(locate(R.implant) == W)
 						qdel(R)
 						qdel(W)
 
@@ -435,6 +435,12 @@
 				O.owner.current << "<span class='warning'>You get the feeling your target is no longer within your reach...</span>"
 			qdel(O)
 
+	//VOREStation Edit - Resleeving.
+	if(occupant.mind && (occupant.mind.name in transcore.backed_up))
+		var/datum/transhuman/mind_record/MR = transcore.backed_up[occupant.mind.name]
+		transcore.stop_backup(MR)
+	//VOREStation Edit End - Resleeving.
+
 	//Handle job slot/tater cleanup.
 	var/job = occupant.mind.assigned_role
 
@@ -443,6 +449,7 @@
 	if(occupant.mind.objectives.len)
 		qdel(occupant.mind.objectives)
 		occupant.mind.special_role = null
+
 	//else
 		//if(ticker.mode.name == "AutoTraitor")
 			//var/datum/game_mode/traitor/autotraitor/current_mode = ticker.mode

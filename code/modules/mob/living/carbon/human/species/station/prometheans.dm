@@ -125,14 +125,14 @@ var/datum/species/shapeshifter/promethean/prometheans
 			H.gib()
 
 /datum/species/shapeshifter/promethean/handle_environment_special(var/mob/living/carbon/human/H)
-
+/* VOREStation Removal - Too crazy with our uncapped hunger and slowdown stuff.
 	var/turf/T = H.loc
 	if(istype(T))
 		var/obj/effect/decal/cleanable/C = locate() in T
 		if(C)
 			qdel(C)
 			H.nutrition += rand(15, 45)
-
+VOREStation Removal End */
 	// Heal remaining damage.
 	if(H.getBruteLoss() || H.getFireLoss() || H.getOxyLoss() || H.getToxLoss())
 		H.adjustBruteLoss(-heal_rate)

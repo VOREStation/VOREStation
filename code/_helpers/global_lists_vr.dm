@@ -19,7 +19,7 @@ var/global/list/important_items = list(
 		/obj/item/weapon/hand_tele,
 		/obj/item/weapon/card/id/captains_spare,
 		/obj/item/device/aicard,
-		/obj/item/device/mmi,
+		/obj/item/device/mmi/digital/posibrain,
 		/obj/item/device/paicard,
 		/obj/item/weapon/gun,
 		/obj/item/weapon/pinpointer,
@@ -64,7 +64,9 @@ var/global/list/vore_sounds = list(
 		"Squish1" = 'sound/vore/squish1.ogg',
 		"Squish2" = 'sound/vore/squish2.ogg',
 		"Squish3" = 'sound/vore/squish3.ogg',
-		"Squish4" = 'sound/vore/squish4.ogg')
+		"Squish4" = 'sound/vore/squish4.ogg',
+		"Rustle (cloth)" = 'sound/effects/rustle5.ogg',
+		"None" = null)
 
 var/global/list/struggle_sounds = list(
 		"Squish1" = 'sound/vore/squish1.ogg',

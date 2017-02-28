@@ -130,3 +130,29 @@
 					prob(1);/obj/item/ammo_magazine/tommydrum,\
 					prob(1);/obj/item/ammo_magazine/tommymag
 					)
+
+/obj/random/cargopod
+	name = "Random Cargo Item"
+	desc = "Hot Stuff."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "purplecomb"
+	spawn_nothing_percentage = 0
+/obj/random/cargopod/item_to_spawn()
+	return pick(prob(6);/obj/item/weapon/storage/pill_bottle/tramadol,
+				prob(8);/obj/item/weapon/haircomb,
+				prob(4);/obj/item/weapon/storage/pill_bottle/happy,
+				prob(4);/obj/item/weapon/storage/pill_bottle/zoom,
+				prob(10);/obj/item/weapon/contraband/poster,
+				prob(4);/obj/item/weapon/material/butterfly,
+				prob(6);/obj/item/weapon/material/butterflyblade,
+				prob(6);/obj/item/weapon/material/butterflyhandle,
+				prob(6);/obj/item/weapon/material/wirerod,
+				prob(2);/obj/item/weapon/material/butterfly/switchblade,
+				prob(2);/obj/item/weapon/material/knuckledusters,
+				prob(1);/obj/item/weapon/material/hatchet/tacknife,
+				prob(1);/obj/item/clothing/suit/storage/vest/heavy/merc,
+				prob(1);/obj/item/weapon/beartrap,
+				prob(1);/obj/item/weapon/handcuffs,
+				prob(1);/obj/item/weapon/legcuffs,
+				prob(2);/obj/item/weapon/reagent_containers/syringe/drugs,
+				prob(1);/obj/item/weapon/reagent_containers/syringe/steroid)

@@ -75,7 +75,7 @@
 			return
 
 		else
-			trans = reagents.splash(target, amount_per_transfer_from_this, max_spill=30) //sprinkling reagents on generic non-mobs
+			trans = reagents.splash(target, amount_per_transfer_from_this, max_spill=0) //sprinkling reagents on generic non-mobs
 			user << "<span class='notice'>You transfer [trans] units of the solution.</span>"
 
 	else // Taking from something

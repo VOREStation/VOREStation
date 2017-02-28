@@ -175,9 +175,8 @@ var/list/mining_overlay_cache = list()
 
 	if(severity <= 2) // Now to expose the ore lying under the sand.
 		spawn(1) // Otherwise most of the ore is lost to the explosion, which makes this rather moot.
-			var/losses = rand(0.5, 1) // Between 0% to 50% loss due to booms.
 			for(var/ore in resources)
-				var/amount_to_give = Ceiling(resources[ore] * losses) // Should result in at least one piece of ore.
+				var/amount_to_give = rand(Ceiling(resources[ore]/2), resources[ore])  // Should result in at least one piece of ore.
 				for(var/i=1, i <= amount_to_give, i++)
 					var/oretype = ore_types[ore]
 					new oretype(src)

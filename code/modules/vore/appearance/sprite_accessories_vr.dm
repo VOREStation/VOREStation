@@ -506,9 +506,11 @@
 	ckeys_allowed = list("arokha")
 
 /datum/sprite_accessory/tail/feathered
-	name = "feathered wings"
+	name = "feathered wings, colorable"
 	desc = ""
 	icon_state = "feathered"
+	show_species_tail = 1
+	do_colouration = 1
 
 /datum/sprite_accessory/tail/redpanda
 	name = "red panda"

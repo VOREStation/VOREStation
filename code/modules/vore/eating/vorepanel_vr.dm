@@ -114,7 +114,7 @@
 
 		dat += "<span style='[spanstyle]'> ([B.internal_contents.len])</span></a></li>"
 
-	if(user.vore_organs.len < 10)
+	if(user.vore_organs.len < 20)
 		dat += "<li style='float: left'><a href='?src=\ref[src];newbelly=1'>New+</a></li>"
 	dat += "</ol>"
 	dat += "<HR>"
@@ -360,7 +360,7 @@
 						hearer << sound('sound/vore/squish2.ogg',volume=80)
 
 	if(href_list["newbelly"])
-		if(user.vore_organs.len >= 10)
+		if(user.vore_organs.len >= 20)
 			return 1
 
 		var/new_name = html_encode(input(usr,"New belly's name:","New Belly") as text|null)

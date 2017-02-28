@@ -780,8 +780,8 @@
 	name = "SweatMAX"
 	desc = "Fueled by your inner inadequacy!"
 	icon_state = "fitness"
-	products = list(/obj/item/weapon/reagent_containers/food/drinks/milk/smallcarton = 8,
-					/obj/item/weapon/reagent_containers/food/drinks/milk/smallcarton/chocolate = 8,
+	products = list(/obj/item/weapon/reagent_containers/food/drinks/smallmilk = 8,
+					/obj/item/weapon/reagent_containers/food/drinks/smallchocmilk = 8,
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake = 8,
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar = 8,
@@ -789,8 +789,8 @@
 					/obj/item/weapon/reagent_containers/pill/diet = 8,
 					/obj/item/weapon/towel/random = 8)
 
-	prices = list(/obj/item/weapon/reagent_containers/food/drinks/milk/smallcarton = 3,
-					/obj/item/weapon/reagent_containers/food/drinks/milk/smallcarton/chocolate = 3,
+	prices = list(/obj/item/weapon/reagent_containers/food/drinks/smallmilk = 3,
+					/obj/item/weapon/reagent_containers/food/drinks/smallchocmilk = 3,
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake = 20,
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar = 5,
@@ -854,7 +854,8 @@
 					/obj/item/weapon/reagent_containers/syringe/antiviral = 4,/obj/item/weapon/reagent_containers/syringe = 12,
 					/obj/item/device/healthanalyzer = 5,/obj/item/weapon/reagent_containers/glass/beaker = 4, /obj/item/weapon/reagent_containers/dropper = 2,
 					/obj/item/stack/medical/advanced/bruise_pack = 3, /obj/item/stack/medical/advanced/ointment = 3, /obj/item/stack/medical/splint = 2,
-					/obj/item/weapon/storage/box/khcrystal = 4) //VOREStation Add
+					/obj/item/weapon/storage/box/khcrystal = 4,
+					/obj/item/weapon/storage/box/backup_kit = 2) //VOREStation Add - khcrystal and backup_kit
 	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 3,/obj/item/weapon/reagent_containers/pill/stox = 4,/obj/item/weapon/reagent_containers/pill/antitox = 6)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 	req_log_access = access_cmo

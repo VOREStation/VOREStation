@@ -57,6 +57,7 @@
 	icon_state = "darkcannon"
 	item_state = "darkcannon"
 	fire_sound = 'sound/weapons/eLuger.ogg'
+	w_class = ITEMSIZE_HUGE
 	charge_cost = 600
 	projectile_type = /obj/item/projectile/beam/darkmatter
 	self_recharge = 1
@@ -102,6 +103,7 @@
 	icon_state = "noise"
 	item_state = "noise"
 	fire_sound = 'sound/effects/basscannon.ogg'
+	w_class = ITEMSIZE_HUGE
 	self_recharge = 1
 	charge_cost = 600
 

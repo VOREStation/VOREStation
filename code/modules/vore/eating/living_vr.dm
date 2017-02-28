@@ -348,7 +348,8 @@
 
 	// If we got this far, nom successful! Announce it!
 	user.visible_message(success_msg)
-	playsound(user, belly_target.vore_sound, 100, 1)
+	if(belly_target.vore_sound)
+		playsound(user, belly_target.vore_sound, 100, 1)
 
 	// Actually shove prey into the belly.
 	belly_target.nom_mob(prey, user)
