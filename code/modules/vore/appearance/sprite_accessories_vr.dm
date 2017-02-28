@@ -158,6 +158,11 @@
 	icon_state = "bunny"
 	do_colouration = 1
 
+/datum/sprite_accessory/ears/antlers
+	name = "antlers"
+	desc = ""
+	icon_state = "antlers"
+
 // Special snowflake ears go below here.
 
 /datum/sprite_accessory/ears/molenar_kitsune
