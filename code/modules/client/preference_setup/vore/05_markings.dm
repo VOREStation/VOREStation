@@ -1,10 +1,23 @@
-/datum/preferences
-	var/r_hair_sec = 0					//Secondary hair color
-	var/g_hair_sec = 0					//Secondary hair color
-	var/b_hair_sec = 0					//Secondary hair color
-	var/r_facial_sec = 0				//Secondary facial hair color
-	var/g_facial_sec = 0				//Secondary facial hair color
-	var/b_facial_sec = 0				//Secondary facial hair color
+
+var/r_headacc = 0					//Head accessory colour
+var/g_headacc = 0					//Head accessory colour
+var/b_headacc = 0					//Head accessory colour
+var/list/m_styles = list(
+	"head" = "None",
+	"body" = "None",
+	"tail" = "None"
+	)			//Marking styles.
+
+var/list/m_colours = list(
+	"head" = "#000000",
+	"body" = "#000000",
+	"tail" = "#000000"
+	)		//Marking colours.
+
+var/body_accessory = null
+var/speciesprefs = 0
+
+/datum/preferences/
 	var/r_headacc = 0					//Head accessory colour
 	var/g_headacc = 0					//Head accessory colour
 	var/b_headacc = 0					//Head accessory colour
@@ -13,25 +26,20 @@
 		"body" = "None",
 		"tail" = "None"
 		)			//Marking styles.
+
 	var/list/m_colours = list(
 		"head" = "#000000",
 		"body" = "#000000",
 		"tail" = "#000000"
 		)		//Marking colours.
+
 	var/body_accessory = null
-	var/speciesprefs = 0
 
 /datum/category_item/player_setup_item/vore/markings
 	name = "Markings"
-	sort_order = 4
+	sort_order = 5
 
 /datum/category_item/player_setup_item/vore/markings/load_character(var/savefile/S)
-	S["secondary_hair_red"]			>> pref.secondary_hair_red
-	S["secondary_hair_green"]		>> pref.secondary_hair_green
-	S["secondary_hair_blue"]		>> pref.secondary_hair_blue
-	S["secondary_facial_red"]		>> pref.secondary_facial_red
-	S["secondary_facial_green"]		>> pref.secondary_facial_green
-	S["secondary_facial_blue"]		>> pref.secondary_facial_blue
 	S["marking_colours"]			>> pref.marking_colours
 	S["head_accessory_red"]			>> pref.head_accessory_red
 	S["head_accessory_green"]		>> pref.head_accessory_green
@@ -41,12 +49,6 @@
 	S["body_accessory"]				>> pref.body_accessory
 
 /datum/category_item/player_setup_item/vore/markings/save_character(var/savefile/S)
-	S["secondary_hair_red"]			<< pref.secondary_hair_red
-	S["secondary_hair_green"]		<< pref.secondary_hair_green
-	S["secondary_hair_blue"]		<< pref.secondary_hair_blue
-	S["secondary_facial_red"]		<< pref.secondary_facial_red
-	S["secondary_facial_green"]		<< pref.secondary_facial_green
-	S["secondary_facial_blue"]		<< pref.secondary_facial_blue
 	S["marking_colours"]			<< pref.marking_colours
 	S["head_accessory_red"]			<< pref.head_accessory_red
 	S["head_accessory_green"]		<< pref.head_accessory_green
@@ -56,12 +58,6 @@
 	S["body_accessory"]				<< pref.body_accessory
 
 /datum/category_item/player_setup_item/vore/markings/sanitize_character()
-	pref.r_hair_sec		= sanitize_integer(pref.r_hair_sec, 0, 255, initial(pref.r_hair_sec))
-	pref.g_hair_sec		= sanitize_integer(pref.g_hair_sec, 0, 255, initial(pref.g_hair_sec))
-	pref.b_hair_sec		= sanitize_integer(pref.b_hair_sec, 0, 255, initial(pref.b_hair_sec))
-	pref.r_facial_sec	= sanitize_integer(pref.r_facial_sec, 0, 255, initial(pref.r_facial_sec))
-	pref.g_facial_sec	= sanitize_integer(pref.g_facial_sec, 0, 255, initial(pref.g_facial_sec))
-	pref.b_facial_sec	= sanitize_integer(pref.b_facial_sec, 0, 255, initial(pref.b_facial_sec))
 	for(var/marking_location in pref.m_colours)
 		pref.m_colours[marking_location] = sanitize_hexcolor(pref.m_colours[marking_location], DEFAULT_MARKING_COLOURS[pref.marking_location])
 	pref.r_headacc		= sanitize_integer(pref.r_headacc, 0, 255, initial(pref.r_headacc))
@@ -74,12 +70,6 @@
 	pref.body_accessory	= sanitize_text(body_accessory, initial(pref.body_accessory))
 
 /datum/category_item/player_setup_item/vore/markings/copy_to_mob(var/mob/living/carbon/human/character)
-	character.secondary_hair_red			= pref.secondary_hair_red
-	character.secondary_hair_green			= pref.secondary_hair_green
-	character.secondary_hair_blue			= pref.secondary_hair_blue
-	character.secondary_facial_red			= pref.secondary_facial_red
-	character.secondary_facial_green		= pref.secondary_facial_green
-	character.secondary_facial_blue			= pref.secondary_facial_blue
 	character.marking_colours				= pref.marking_colours
 	character.head_accessory_red			= pref.head_accessory_red
 	character.head_accessory_green			= pref.head_accessory_green
@@ -93,9 +83,6 @@
 
 /datum/category_item/player_setup_item/vore/markings/content(var/mob/user)
 	. = list()
-	if(!pref.preview_icon)
-		pref.update_preview_icon()
- 	user << browse_rsc(pref.preview_icon, "previewicon.png")
 
  	var/mob_species = all_species[pref.species]
 
@@ -119,22 +106,6 @@
 			. += "<a href='?_src_=prefs;preference=m_style_tail;task=input'>[pref.m_styles["tail"]]</a>"
 			. += "<a href='?_src_=prefs;preference=m_tail_colour;task=input'>Color</a> [color_square(color2R(m_colours["tail"]), color2G(m_colours["tail"]), color2B(m_colours["tail"]))]<br>"
 
-		. += "<b>Hair:</b> "
-		. += "<a href='?_src_=prefs;preference=h_style;task=input'>[pref.h_style]</a>"
-		. += "<a href='?_src_=prefs;preference=hair;task=input'>Color</a> [color_square(pref.r_hair, pref.g_hair, pref.b_hair)]"
-		var/datum/sprite_accessory/temp_hair_style = hair_styles_list[pref.h_style]
-		if(temp_hair_style && temp_hair_style.secondary_theme && !temp_hair_style.no_sec_colour)
-			. += " <a href='?_src_=prefs;preference=secondary_hair;task=input'>Color #2</a> [color_square(pref.r_hair_sec, pref.g_hair_sec, pref.b_hair_sec)]"
-		. += "<br>"
-
-		. += "<b>Facial Hair:</b> "
-		. += "<a href='?_src_=prefs;preference=f_style;task=input'>[pref.f_style ? "[pref.f_style]" : "Shaved"]</a>"
-		. += "<a href='?_src_=prefs;preference=facial;task=input'>Color</a> [color_square(pref.r_facial, pref.g_facial, pref.b_facial)]"
-		var/datum/sprite_accessory/temp_facial_hair_style = facial_hair_styles_list[pref.f_style]
-		if(temp_facial_hair_style && temp_facial_hair_style.secondary_theme && !temp_facial_hair_style.no_sec_colour)
-			. += " <a href='?_src_=prefs;preference=secondary_facial;task=input'>Color #2</a> [color_square(pref.r_facial_sec, pref.g_facial_sec, pref.b_facial_sec)]"
-		. += "<br>"
-
 		if((mob_species.appearance_flags && HAS_BODY_ACCESSORY) || body_accessory_by_species[pref.species] || check_rights(R_ADMIN, 0, user)) //admins can always fuck with this, because they are admins
 			. += "<b>Body Color:</b> "
 			. += "<a href='?_src_=prefs;preference=skin;task=input'>Color</a> [color_square(r_skin, g_skin, b_skin)]<br>"
@@ -144,31 +115,9 @@
 			. += "<a href='?_src_=prefs;preference=body_accessory;task=input'>[body_accessory ? "[body_accessory]" : "None"]</a><br>"
 */
 /datum/category_item/player_setup_item/vore/markings/OnTopic(var/href,var/list/href_list, var/mob/user)
-	var/datum/species/mob_species = all_species[pref.species]
-		if("hair")
-			if(mob_species.appearance_flags && HAS_HAIR_COLOR)
-				pref.r_hair = rand(0,255)
-				pref.g_hair = rand(0,255)
-				pref.b_hair = rand(0,255)
-		if("secondary_hair")
-			if(mob_species.appearance_flags && HAS_HAIR_COLOR)
-				pref.r_hair_sec = rand(0,255)
-				pref.g_hair_sec = rand(0,255)
-				pref.b_hair_sec = rand(0,255)
-		if("h_style")
-			h_style = random_hair_style(gender, species)
-		if("facial")
-			if(mob_species.appearance_flags && HAS_HAIR_COLOR)
-				pref.r_facial = rand(0,255)
-				pref.g_facial = rand(0,255)
-				pref.b_facial = rand(0,255)
-		if("secondary_facial")
-			if(mob_species.appearance_flags && HAS_HAIR_COLOR)
-				pref.r_facial_sec = rand(0,255)
-				pref.g_facial_sec = rand(0,255)
-				pref.b_facial_sec = rand(0,255)
-		if("f_style")
-			pref.f_style = random_facial_hair_style(gender, species)
+	if(!CanUseTopic(user))
+		return TOPIC_NOACTION
+
 		if("headaccessory")
 			if(mob_species.appearance_flags && HAS_HEAD_ACCESSORY) //Species that have head accessories.
 				pref.r_headacc = rand(0,255)

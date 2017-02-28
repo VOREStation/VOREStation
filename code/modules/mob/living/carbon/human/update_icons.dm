@@ -106,34 +106,40 @@ Please contact me on #coderbus IRC. ~Carn x
 */
 
 //Human Overlays Indexes/////////
-#define MUTATIONS_LAYER			1
-#define DAMAGE_LAYER			2
-#define SURGERY_LEVEL			3		//bs12 specific.
-#define UNDERWEAR_LAYER  		4
-#define SHOES_LAYER_ALT			5
-#define UNIFORM_LAYER			6
-#define ID_LAYER				7
-#define SHOES_LAYER				8
-#define GLOVES_LAYER			9
-#define BELT_LAYER				10
-#define SUIT_LAYER				11
-#define TAIL_LAYER				12		//bs12 specific.
-#define GLASSES_LAYER			13
-#define BELT_LAYER_ALT			14
+#define MUTANTRACE_LAYER		1
+#define TAIL_UNDERLIMBS_LAYER	2	//Tail split-rendering.
+#define LIMBS_LAYER				3
+#define MARKINGS_LAYER			4
+#define UNDERWEAR_LAYER			5
+#define MUTATIONS_LAYER			6
+#define DAMAGE_LAYER			7
+#define UNIFORM_LAYER			8
+#define ID_LAYER				9
+#define SHOES_LAYER				10
+#define GLOVES_LAYER			11
+#define EARS_LAYER				12
+#define SUIT_LAYER				13
+#define BELT_LAYER				14	//Possible make this an overlay of somethign required to wear a belt?
 #define SUIT_STORE_LAYER		15
 #define BACK_LAYER				16
-#define HAIR_LAYER				17		//TODO: make part of head layer?
-#define EARS_LAYER				18
-#define FACEMASK_LAYER			19
-#define HEAD_LAYER				20
-#define COLLAR_LAYER			21
-#define HANDCUFF_LAYER			22
-#define LEGCUFF_LAYER			23
-#define L_HAND_LAYER			24
-#define R_HAND_LAYER			25
-#define FIRE_LAYER				26		//If you're on fire
-#define TARGETED_LAYER			27		//BS12: Layer for the target overlay from weapon targeting system
-#define TOTAL_LAYERS			27
+#define HEAD_ACCESSORY_LAYER	17
+#define FHAIR_LAYER				18
+#define GLASSES_LAYER			19
+#define HAIR_LAYER				20	//TODO: make part of head layer?
+#define HEAD_ACC_OVER_LAYER		21	//Select-layer rendering.
+#define FHAIR_OVER_LAYER		22	//Select-layer rendering.
+#define GLASSES_OVER_LAYER		23	//Select-layer rendering.
+#define TAIL_LAYER				24	//bs12 specific. this hack is probably gonna come back to haunt me
+#define FACEMASK_LAYER			25
+#define HEAD_LAYER				26
+#define COLLAR_LAYER			27
+#define HANDCUFF_LAYER			28
+#define LEGCUFF_LAYER			29
+#define L_HAND_LAYER			30
+#define R_HAND_LAYER			31
+#define TARGETED_LAYER			32	//BS12: Layer for the target overlay from weapon targeting system
+#define FIRE_LAYER				33	//If you're on fire
+#define TOTAL_LAYERS			33
 //////////////////////////////////
 
 /mob/living/carbon/human
