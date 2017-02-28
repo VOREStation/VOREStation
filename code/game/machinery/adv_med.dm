@@ -507,9 +507,9 @@
 						infected = "Acute Infection:"
 					if (INFECTION_LEVEL_TWO + 200 to INFECTION_LEVEL_TWO + 300)
 						infected = "Acute Infection+:"
-					if (INFECTION_LEVEL_TWO + 300 to INFECTION_LEVEL_TWO + 400)
+					if (INFECTION_LEVEL_TWO + 300 to INFECTION_LEVEL_THREE - 50)
 						infected = "Acute Infection++:"
-					if (INFECTION_LEVEL_THREE to INFINITY)
+					if (INFECTION_LEVEL_THREE -49 to INFINITY)
 						infected = "Gangrene Detected:"
 
 				var/unknown_body = 0
@@ -549,9 +549,9 @@
 						infection = "Acute Infection:"
 					if (INFECTION_LEVEL_TWO + 200 to INFECTION_LEVEL_TWO + 300)
 						infection = "Acute Infection+:"
-					if (INFECTION_LEVEL_TWO + 300 to INFECTION_LEVEL_TWO + 400)
+					if (INFECTION_LEVEL_TWO + 300 to INFECTION_LEVEL_THREE - 50)
 						infection = "Acute Infection++:"
-					if (INFECTION_LEVEL_THREE to INFINITY)
+					if (INFECTION_LEVEL_THREE -49 to INFINITY)
 						infection = "Necrosis Detected:"
 
 				dat += "<tr>"

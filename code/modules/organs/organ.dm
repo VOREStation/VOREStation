@@ -139,7 +139,15 @@ var/list/organ_cache = list()
 
 /obj/item/organ/proc/handle_germ_effects()
 	//** Handle the effects of infections
+	if(robotic >= ORGAN_ROBOT) //Just in case!
+		germ_level = 0
+		return 0
+
 	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
+
+	if((status & ORGAN_DEAD) && antibiotics < 30) //Sepsis from 'dead' organs
+		var/sepsis_severity = 1 + round((germ_level - INFECTION_LEVEL_THREE)/200,0.25) //1 Tox plus a little based on germ level
+		owner.adjustToxLoss(sepsis_severity)
 
 	if (germ_level > 0 && germ_level < INFECTION_LEVEL_ONE/2 && prob(30))
 		germ_level--
@@ -155,7 +163,7 @@ var/list/organ_cache = list()
 		//owner.bodytemperature += between(0, (fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, fever_temperature - owner.bodytemperature)
 		var/fever_temperature = owner.species.heat_discomfort_level * 1.10 //Heat discomfort level plus 10%
 		if(owner.bodytemperature < fever_temperature)
-			owner.bodytemperature += (fever_temperature - owner.bodytemperature) / 10 //Tries to climb by 10% of the difference between fever and current
+			owner.bodytemperature += min(0.2,(fever_temperature - owner.bodytemperature) / 10) //Will usually climb by 0.2, else 10% of the difference if less
 
 	if (germ_level >= INFECTION_LEVEL_TWO)
 		. = 2 //Organ qualifies for effect-specific processing
@@ -164,8 +172,6 @@ var/list/organ_cache = list()
 	if (germ_level >= INFECTION_LEVEL_THREE && antibiotics < 30)
 		. = 3 //Organ qualifies for effect-specific processing
 		germ_level++ //Germ_level increases without overdose of antibiotics
-		var/sepsis_severity = 1 + round((germ_level - INFECTION_LEVEL_THREE)/100,0.25) //1 Tox plus a little for going over INFECTION_LEVEL_THREE
-		owner.adjustToxLoss(sepsis_severity)
 
 /obj/item/organ/proc/handle_rejection()
 	// Process unsuitable transplants. TODO: consider some kind of
