@@ -811,7 +811,6 @@
 	name = "Kamina glasses"
 	icon_state = "kamina"
 	desc = "ROW ROW, FIGHT THE POWER."
-	see_invisible = SEE_INVISIBLE_LEVEL_TWO //DO THE IMPOSSIBLE, SEE THE INVISIBLE
 
 //Kitsuhana Uniforms
 /obj/item/clothing/under/rank/khi
