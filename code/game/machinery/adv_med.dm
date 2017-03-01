@@ -333,6 +333,8 @@
 					organStatus["splinted"] = 1
 				if(E.status & ORGAN_BLEEDING)
 					organStatus["bleeding"] = 1
+				if(E.status & ORGAN_DEAD)
+					organStatus["dead"] = 1
 
 				organData["status"] = organStatus
 
