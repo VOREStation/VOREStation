@@ -1644,6 +1644,8 @@
 					holder1.icon_state = "hud_imp_tracking"
 				if(istype(I,/obj/item/weapon/implant/loyalty))
 					holder2.icon_state = "hud_imp_loyal"
+				if(istype(I,/obj/item/weapon/implant/backup))//VOREStation Edit - Commandeering this for backup implants
+					holder2.icon_state = "hud_imp_loyal" //VOREStation Edit
 				if(istype(I,/obj/item/weapon/implant/chem))
 					holder3.icon_state = "hud_imp_chem"
 
