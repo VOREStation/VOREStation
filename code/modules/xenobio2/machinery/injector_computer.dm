@@ -21,7 +21,6 @@
 
 /obj/machinery/computer/xenobio2/Destroy()
 	..()
-	injector.computer = null
 
 /obj/machinery/computer/xenobio2/attack_hand(mob/user)
 	if(..())
@@ -109,5 +108,5 @@
 
 /obj/item/weapon/circuitboard/xenobio2computer
 	name = T_BOARD("injector control console")
-	build_path = /obj/item/weapon/circuitboard/xenobio2computer
-	origin_tech = list()	//To be filled,
+	build_path = /obj/machinery/computer/xenobio2
+	origin_tech = list()	//To be filled
