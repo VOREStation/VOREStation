@@ -389,7 +389,7 @@
 	var/manip_rating = 0
 	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
 		manip_rating += M.rating
-	blur_amount = (48 - scan_rating * 8)
+	blur_amount = (48 - manip_rating * 8)
 
 /obj/machinery/transhuman/resleever/attack_hand(mob/user as mob)
 	user.set_machine(src)
@@ -468,7 +468,7 @@
 		new_imp.part = affected
 
 	//Inform them and make them a little dizzy.
-	if(confuse_amount + blur_amount <= 0)
+	if(confuse_amount + blur_amount <= 16)
 		occupant << "<span class='notice'>You feel a small pain in your head as you're given a new backup implant. Your new body feels comfortable already, however.</span>"
 	else
 		occupant << "<span class='warning'>You feel a small pain in your head as you're given a new backup implant. Oh, and a new body. It's disorienting, to say the least.</span>"
