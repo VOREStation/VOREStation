@@ -11,6 +11,7 @@
 	icon_state = "engspace_helmet"
 	item_state = "engspace_helmet"
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 100, rad = 100)
+	flags_inv = BLOCKHEADHAIR
 
 /obj/item/clothing/suit/space/anomaly
 	name = "Excavation suit"
@@ -27,3 +28,4 @@
 	icon_state = "cespace_helmet"
 	item_state = "cespace_helmet"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 100, rad = 100)
+	flags_inv = BLOCKHEADHAIR
