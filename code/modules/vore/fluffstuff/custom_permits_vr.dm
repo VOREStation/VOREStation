@@ -119,3 +119,14 @@
 
 	The individual named above is licensed by the Nanotrasen Department of Civil Protection to openly carry a MEUSOC 45. CONDITIONS.
 	This license expires on 31/May/2561 and must be renewed by CentCom prior to this date."}
+
+// dhaeleena:Dhaeleena M'iar
+/obj/item/fluff/permit/dhaeleena_miar
+	name = "Dhaeleena M'iar's Sidearm Permit"
+	desc = {"
+	<b>NAME:</b> Dhaeleena M'iar | <b>RACE:</b> Tajara | <b>HOMEWORLD:</b> Slyria
+	<b>DOB:</b>  15/Nov/2535 | <b>HEIGHT:</b> 210,3cm | <b>SEX:</b> Female
+
+	The individual named above is licensed by the Nanotrasen Department of Civil Protection
+	to carry one Mateba Model 6 Unica handgun with stun/rubber/flash ammo.
+	This license expires on 01/Mar/2562 and must be renewed by CentCom prior to this date."}
