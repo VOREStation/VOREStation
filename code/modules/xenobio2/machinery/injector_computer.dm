@@ -20,6 +20,7 @@
 	var/active
 
 /obj/machinery/computer/xenobio2/Destroy()
+	injector.computer = null
 	..()
 
 /obj/machinery/computer/xenobio2/attack_hand(mob/user)
