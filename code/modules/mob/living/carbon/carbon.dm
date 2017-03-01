@@ -166,11 +166,13 @@
 				var/list/status = list()
 				var/brutedamage = org.brute_dam
 				var/burndamage = org.burn_dam
-				if(halloss > 0)
+				/*
+				if(halloss > 0) //Makes halloss show up as actual wounds on self examine.
 					if(prob(30))
 						brutedamage += halloss
 					if(prob(30))
 						burndamage += halloss
+				*/
 				switch(brutedamage)
 					if(1 to 20)
 						status += "bruised"
