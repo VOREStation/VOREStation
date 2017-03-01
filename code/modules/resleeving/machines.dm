@@ -468,7 +468,11 @@
 		new_imp.part = affected
 
 	//Inform them and make them a little dizzy.
-	occupant << "<span class='warning'>You feel a small pain in your head as you're given a new backup implant. Oh, and a new body. It's disorienting, to say the least.</span>"
+	if(confuse_amount + blur_amount <= 0)
+		occupant << "<span class='notice'>You feel a small pain in your head as you're given a new backup implant. Your new body feels comfortable already, however.</span>"
+	else
+		occupant << "<span class='warning'>You feel a small pain in your head as you're given a new backup implant. Oh, and a new body. It's disorienting, to say the least.</span>"
+
 	occupant.confused = max(occupant.confused, confuse_amount)
 	occupant.eye_blurry = max(occupant.eye_blurry, blur_amount)
 
