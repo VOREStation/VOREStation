@@ -991,6 +991,7 @@ Departamental Swimsuits, for general use
 	item_state = "swimsuit_penelope_mob"
 
 //Just some alt-uniforms themed around Star Trek - Pls don't sue, Mr Roddenberry ;_;
+// PS. <3 Nienhaus
 
 
 /obj/item/clothing/under/fluff/trek
@@ -1056,4 +1057,4 @@ Departamental Swimsuits, for general use
 
 /obj/item/clothing/under/fluff/trek/medsci/voy
 	icon_state = "trek_voy_medsci"
-	item_state = "trk_vor_medsci_mob"
+	item_state = "trek_voy_medsci_mob"
