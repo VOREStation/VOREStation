@@ -95,6 +95,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 	shuttle.move_time = SHUTTLE_TRANSIT_DURATION
 
 	priority_announcement.Announce("The regularly scheduled shuttle to the [dock_name] will arrive in in approximately [round(estimate_arrival_time()/60)] minutes. Those leaving should proceed to docks one and two.")
+	atc.shift_ending() //VOREStation Add
 
 //recalls the shuttle
 /datum/emergency_shuttle_controller/proc/recall()
