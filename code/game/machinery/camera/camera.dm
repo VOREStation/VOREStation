@@ -8,7 +8,7 @@
 	active_power_usage = 10
 	layer = 5
 
-	var/list/network = list(NETWORK_EXODUS)
+	var/list/network = list(NETWORK_DEFAULT)
 	var/c_tag = null
 	var/c_tag_order = 999
 	var/status = 1
@@ -149,7 +149,7 @@
 				assembly.loc = src.loc
 				assembly.anchored = 1
 				assembly.camera_name = c_tag
-				assembly.camera_network = english_list(network, NETWORK_EXODUS, ",", ",")
+				assembly.camera_network = english_list(network, NETWORK_DEFAULT, ",", ",")
 				assembly.update_icon()
 				assembly.dir = src.dir
 				if(stat & BROKEN)

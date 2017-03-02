@@ -139,10 +139,8 @@ var/list/gamemode_cache = list()
 	var/use_loyalty_implants = 0
 
 	var/welder_vision = 1
-	var/generate_asteroid = 0
+	var/generate_map = 0
 	var/no_click_cooldown = 0
-
-	var/asteroid_z_levels = list()
 
 	//Used for modifying movement speed for mobs.
 	//Unversal modifiers
@@ -184,12 +182,6 @@ var/list/gamemode_cache = list()
 	var/python_path = "" //Path to the python executable.  Defaults to "python" on windows and "/usr/bin/env python2" on unix
 	var/use_lib_nudge = 0 //Use the C library nudge instead of the python nudge.
 	var/use_overmap = 0
-
-	var/list/station_levels = list(1)				// Defines which Z-levels the station exists on.
-	var/list/admin_levels= list(2)					// Defines which Z-levels which are for admin functionality, for example including such areas as Central Command and the Syndicate Shuttle
-	var/list/contact_levels = list(1, 5)			// Defines which Z-levels which, for example, a Code Red announcement may affect
-	var/list/player_levels = list(1, 3, 4, 5, 6)	// Defines all Z-levels a character can typically reach
-	var/list/sealed_levels = list() 				// Defines levels that do not allow random transit at the edges.
 
 	// Event settings
 	var/expected_round_length = 3 * 60 * 60 * 10 // 3 hours
@@ -342,14 +334,8 @@ var/list/gamemode_cache = list()
 				if ("log_runtime")
 					config.log_runtime = 1
 
-				if ("generate_asteroid")
-					config.generate_asteroid = 1
-
-				if ("asteroid_z_levels")
-					config.asteroid_z_levels = splittext(value, ";")
-					//Numbers get stored as strings, so we'll fix that right now.
-					for(var/z_level in config.asteroid_z_levels)
-						z_level = text2num(z_level)
+				if ("generate_map")
+					config.generate_map = 1
 
 				if ("no_click_cooldown")
 					config.no_click_cooldown = 1
@@ -657,19 +643,19 @@ var/list/gamemode_cache = list()
 
 				if("use_overmap")
 					config.use_overmap = 1
-
+/*
 				if("station_levels")
-					config.station_levels = text2numlist(value, ";")
+					using_map.station_levels = text2numlist(value, ";")
 
 				if("admin_levels")
-					config.admin_levels = text2numlist(value, ";")
+					using_map.admin_levels = text2numlist(value, ";")
 
 				if("contact_levels")
-					config.contact_levels = text2numlist(value, ";")
+					using_map.contact_levels = text2numlist(value, ";")
 
 				if("player_levels")
-					config.player_levels = text2numlist(value, ";")
-
+					using_map.player_levels = text2numlist(value, ";")
+*/
 				if("expected_round_length")
 					config.expected_round_length = MinutesToTicks(text2num(value))
 

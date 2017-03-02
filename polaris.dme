@@ -2172,9 +2172,7 @@
 #include "code\ZAS\Zone.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\polaris-1.dmm"
-#include "maps\polaris-2.dmm"
-#include "maps\polaris-3.dmm"
-#include "maps\polaris-4.dmm"
-#include "maps\polaris-5.dmm"
+#include "maps\northern_star\northern_star.dm"
+#include "maps\northern_star\northern_star_defines.dm"
+#include "maps\~map_system\maps.dm"
 // END_INCLUDE
