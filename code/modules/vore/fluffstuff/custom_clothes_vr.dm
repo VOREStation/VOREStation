@@ -989,3 +989,71 @@ Departamental Swimsuits, for general use
 	desc = "It's made of a special fiber that provides no protection whatsoever, but its elastic. This one was custom made for Penelope."
 	icon_state = "swimsuit_penelope"
 	item_state = "swimsuit_penelope_mob"
+
+//Just some alt-uniforms themed around Star Trek - Pls don't sue, Mr Roddenberry ;_;
+
+
+/obj/item/clothing/under/fluff/trek
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+
+//TOS
+/obj/item/clothing/under/fluff/trek/command
+	name = "command uniform"
+	desc = "The uniform worn by command officers"
+	icon_state = "trek_command"
+	item_state = "trek_command_mob"
+	armor = list(melee = 10, bullet = 10, laser = 10,energy = 0, bomb = 0, bio = 10, rad = 10, fire = 0, acid = 0) // Considering only staff heads get to pick it
+
+/obj/item/clothing/under/fluff/trek/engsec
+	name = "engsec uniform"
+	desc = "The uniform worn by engineering/security officers"
+	icon_state = "trek_engsec"
+	item_state = "trek_engsec_mob"
+	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 10, fire = 0, acid = 0) // since they're shared between jobs and kinda moot.
+
+/obj/item/clothing/under/fluff/trek/medsci
+	name = "medsci uniform"
+	desc = "The uniform worn by medical/science officers"
+	icon_state = "trek_medsci"
+	item_state = "trek_medsci_mob"
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0, fire = 0, acid = 0) // basically a copy of vanilla sci/med
+
+//TNG
+/obj/item/clothing/under/fluff/trek/command/next
+	icon_state = "trek_next_command"
+	item_state = "trek_next_command_mob"
+
+/obj/item/clothing/under/fluff/trek/engsec/next
+	icon_state = "trek_next_engsec"
+	item_state = "trek_next_engsec_mob"
+
+/obj/item/clothing/under/fluff/trek/medsci/next
+	icon_state = "trek_next_medsci"
+	item_state = "trek_next_medsci_mob"
+
+//ENT
+/obj/item/clothing/under/fluff/trek/command/ent
+	icon_state = "trek_ent_command"
+	item_state = "trek_ent_command_mob"
+
+/obj/item/clothing/under/fluff/trek/engsec/ent
+	icon_state = "trek_ent_engsec"
+	item_state = "trek_ent_engsec_mob"
+
+/obj/item/clothing/under/fluff/trek/medsci/ent
+	icon_state = "trek_ent_medsci"
+	item_state = "trek_ent_medsci_mob"
+
+//VOY
+/obj/item/clothing/under/fluff/trek/command/voy
+	icon_state = "trek_voy_command"
+	item_state = "trek_voy_command_mob"
+
+/obj/item/clothing/under/fluff/trek/engsec/voy
+	icon_state = "trek_voy_engsec"
+	item_state = "trek_voy_engsec_mob"
+
+/obj/item/clothing/under/fluff/trek/medsci/voy
+	icon_state = "trek_voy_medsci"
+	item_state = "trk_vor_medsci_mob"
