@@ -1,6 +1,6 @@
 /obj/item/device/assembly/signaler
 	name = "remote signaling device"
-	desc = "Used to remotely activate devices."
+	desc = "Used to remotely activate devices.  Tap against another secured signaler to transfer configuration."
 	icon_state = "signaller"
 	item_state = "signaler"
 	origin_tech = list(TECH_MAGNET = 1)
@@ -98,6 +98,15 @@
 
 		return
 
+	attackby(obj/item/weapon/W, mob/user, params)
+		if(issignaler(W))
+			var/obj/item/device/assembly/signaler/signaler2 = W
+			if(secured && signaler2.secured)
+				code = signaler2.code
+				frequency = signaler2.frequency
+				user << "You transfer the frequency and code of [signaler2] to [src]"
+		else
+			..()
 
 	proc/signal()
 		if(!radio_connection) return

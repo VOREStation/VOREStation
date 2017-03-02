@@ -261,13 +261,13 @@
 			if(!isnull(stored_material[material]))
 				stored_material[material] = max(0, stored_material[material] - round(making.resources[material] * mat_efficiency) * multiplier)
 
-		//Fancy autolathe animation.
-		flick("autolathe_n", src)
-
+		update_icon() // So lid closes
+		
 		sleep(build_time)
 
 		busy = 0
 		update_use_power(1)
+		update_icon() // So lid opens
 
 		//Sanity check.
 		if(!making || !src) return
@@ -281,7 +281,14 @@
 	updateUsrDialog()
 
 /obj/machinery/autolathe/update_icon()
-	icon_state = (panel_open ? "autolathe_t" : "autolathe")
+	if(panel_open)
+		icon_state = "autolathe_t"
+	else if(busy)
+		icon_state = "autolathe_n"
+	else
+		if(icon_state == "autolathe_n")
+			flick("autolathe_u", src) // If lid WAS closed, show opening animation
+		icon_state = "autolathe"
 
 //Updates overall lathe storage size.
 /obj/machinery/autolathe/RefreshParts()

@@ -27,3 +27,5 @@
 	var/obj/item/weapon/gun/G = aiming_with
 	if(istype(G))
 		G.Fire(aiming_at, owner, reflex = 1)
+		locked = 0
+		lock_time = world.time+10

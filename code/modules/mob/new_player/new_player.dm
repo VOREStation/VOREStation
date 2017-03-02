@@ -335,7 +335,6 @@
 	var/mob/living/character = create_character()	//creates the human and transfers vars and mind
 	character = job_master.EquipRank(character, rank, 1)					//equips the human
 	UpdateFactionList(character)
-	equip_custom_items(character)
 
 	// AIs don't need a spawnpoint, they must spawn at an empty core
 	if(character.mind.assigned_role == "AI")
@@ -357,6 +356,8 @@
 
 	//Find our spawning point.
 	var/join_message = job_master.LateSpawn(character, rank)
+	// Equip our custom items only AFTER deploying to spawn points eh?
+	equip_custom_items(character)
 
 	character.lastarea = get_area(loc)
 	// Moving wheelchair if they have one

@@ -187,12 +187,18 @@
 	return sanitizeName(name)
 
 /datum/species/proc/equip_survival_gear(var/mob/living/carbon/human/H,var/extendedtank = 1)
+	var/boxtype = /obj/item/weapon/storage/box/survival //Default survival box
+	if(H.isSynthetic())
+		boxtype = /obj/item/weapon/storage/box //Empty box for synths
+	else if(extendedtank)
+		boxtype = /obj/item/weapon/storage/box/engineer //Special box for engineers
+
 	if(H.backbag == 1)
-		if (extendedtank)	H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/engineer(H), slot_r_hand)
-		else	H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), slot_r_hand)
+		if (extendedtank)	H.equip_to_slot_or_del(new boxtype(H), slot_r_hand)
+		else	H.equip_to_slot_or_del(new boxtype(H), slot_r_hand)
 	else
-		if (extendedtank)	H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/engineer(H.back), slot_in_backpack)
-		else	H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), slot_in_backpack)
+		if (extendedtank)	H.equip_to_slot_or_del(new boxtype(H.back), slot_in_backpack)
+		else	H.equip_to_slot_or_del(new boxtype(H.back), slot_in_backpack)
 
 /datum/species/proc/create_organs(var/mob/living/carbon/human/H) //Handles creation of mob organs.
 
@@ -305,3 +311,7 @@
 // Called in life() when the mob has no client.
 /datum/species/proc/handle_npc(var/mob/living/carbon/human/H)
 	return
+
+// Called when lying down on a water tile.
+/datum/species/proc/can_breathe_water()
+	return FALSE

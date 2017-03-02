@@ -32,6 +32,19 @@
 	..()
 	icon_state = "tree_[rand(1, 6)]"
 
+/obj/structure/flora/tree/sif
+	name = "glowing tree"
+	desc = "It's a tree, except this one seems quite alien.  It glows a deep blue."
+	icon = 'icons/obj/flora/deadtrees.dmi'
+	icon_state = "tree_sif"
+
+/obj/structure/flora/tree/sif/New()
+	update_icon()
+
+/obj/structure/flora/tree/sif/update_icon()
+	set_light(5, 1, "#33ccff")
+	overlays.Cut()
+	overlays.Add(image(icon = 'icons/obj/flora/deadtrees.dmi', icon_state = "[icon_state]_glow", layer = LIGHTING_LAYER + 0.1))
 
 //grass
 /obj/structure/flora/grass
