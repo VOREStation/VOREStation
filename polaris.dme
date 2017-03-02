@@ -205,6 +205,7 @@
 #include "code\datums\observation\moved.dm"
 #include "code\datums\observation\observation.dm"
 #include "code\datums\observation\task_triggered.dm"
+#include "code\datums\observation\turf_changed.dm"
 #include "code\datums\observation\unequipped.dm"
 #include "code\datums\observation\~cleanup.dm"
 #include "code\datums\repositories\cameras.dm"
@@ -2173,6 +2174,5 @@
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
 #include "maps\northern_star\northern_star.dm"
-#include "maps\northern_star\northern_star_defines.dm"
 #include "maps\~map_system\maps.dm"
 // END_INCLUDE

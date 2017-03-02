@@ -392,11 +392,12 @@
 
 			if(holder.buildmode.coordA && holder.buildmode.coordB)
 				user << "<span class='notice'>Ladder locations set, building ladders.</span>"
-				var/obj/structure/ladder/A = new /obj/structure/ladder(holder.buildmode.coordA)
+				var/obj/structure/ladder/A = new /obj/structure/ladder/up(holder.buildmode.coordA)
 				var/obj/structure/ladder/B = new /obj/structure/ladder(holder.buildmode.coordB)
-				A.target = B
-				B.target = A
-				B.icon_state = "ladderup"
+				A.target_up = B
+				B.target_down = A
+				A.update_icon()
+				B.update_icon()
 				holder.buildmode.coordA = null
 				holder.buildmode.coordB = null
 		if(7) // Move into contents
