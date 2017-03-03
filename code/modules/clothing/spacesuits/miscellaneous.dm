@@ -44,7 +44,8 @@
 	icon_state = "beret_badge"
 	item_state_slots = list(slot_r_hand_str = "beret", slot_l_hand_str = "beret")
 	armor = list(melee = 65, bullet = 55, laser = 35,energy = 20, bomb = 30, bio = 30, rad = 30)
-	flags_inv = BLOCKHEADHAIR
+	item_flags = STOPPRESSUREDAMAGE
+	flags_inv = BLOCKHAIR
 	siemens_coefficient = 0.9
 
 //Space santa outfit suit

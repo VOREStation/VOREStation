@@ -46,19 +46,16 @@
 /datum/sprite_accessory/hair
 
 	icon = 'icons/mob/Human_face.dmi'	  // default icon for all hairs
-	var/veryshort
 
 	bald
 		name = "Bald"
 		icon_state = "bald"
 		gender = MALE
 		species_allowed = list("Human","Unathi")
-		veryshort=1
 
 	short
 		name = "Short Hair"	  // try to capatilize the names please~
 		icon_state = "hair_a" // you do not need to define _s or _l sub-states, game automatically does this for you
-		veryshort=1
 
 	short2
 		name = "Short Hair 2"
@@ -99,12 +96,10 @@
 	halfbang
 		name = "Half-banged Hair"
 		icon_state = "hair_halfbang"
-		veryshort=1
 
 	halfbangalt
 		name = "Half-banged Hair Alt"
 		icon_state = "hair_halfbang_alt"
-		veryshort=1
 
 	ponytail1
 		name = "Ponytail 1"
@@ -172,7 +167,6 @@
 	sleeze
 		name = "Sleeze"
 		icon_state = "hair_sleeze"
-		veryshort=1
 
 	quiff
 		name = "Quiff"
@@ -223,38 +217,31 @@
 	bowl
 		name = "Bowl"
 		icon_state = "hair_bowlcut"
-		veryshort=1
 
 	buzz
 		name = "Buzzcut"
 		icon_state = "hair_buzzcut"
 		species_allowed = list("Human","Unathi")
-		veryshort=1
 
 	shavehair
 		name = "Shaved Hair"
 		icon_state = "hair_shaved"
-		veryshort=1
 
 	crew
 		name = "Crewcut"
 		icon_state = "hair_crewcut"
-		veryshort=1
 
 	combover
 		name = "Combover"
 		icon_state = "hair_combover"
-		veryshort=1
 
 	father
 		name = "Father"
 		icon_state = "hair_father"
-		veryshort=1
 
 	reversemohawk
 		name = "Reverse Mohawk"
 		icon_state = "hair_reversemohawk"
-		veryshort=1
 
 	devillock
 		name = "Devil Lock"
@@ -283,17 +270,14 @@
 	rows
 		name = "Rows"
 		icon_state = "hair_rows1"
-		veryshort=1
 
 	rows2
 		name = "Rows 2"
 		icon_state = "hair_rows2"
-		veryshort=1
 
 	sargeant
 		name = "Flat Top"
 		icon_state = "hair_sargeant"
-		veryshort=1
 
 	emo
 		name = "Emo"
@@ -330,7 +314,6 @@
 	fag
 		name = "Flow Hair"
 		icon_state = "hair_f"
-		veryshort=1
 
 	feather
 		name = "Feather"
@@ -397,13 +380,11 @@
 	skinhead
 		name = "Skinhead"
 		icon_state = "hair_skinhead"
-		veryshort=1
 
 	balding
 		name = "Balding Hair"
 		icon_state = "hair_e"
-		gender = MALE
-		veryshort=1
+		gender = MALE // turnoff!
 
 	familyman
 		name = "The Family Man"
@@ -483,7 +464,6 @@
 	shortbangs
 		name = "Short Bangs"
 		icon_state = "hair_shortbangs"
-		veryshort=1
 
 	halfshaved
 		name = "Half-Shaved Emo"
@@ -505,24 +485,20 @@
 		name = "Low Fade"
 		icon_state = "hair_lowfade"
 		gender = MALE
-		veryshort=1
 
 	medfade
 		name = "Medium Fade"
 		icon_state = "hair_medfade"
-		veryshort=1
 
 	highfade
 		name = "High Fade"
 		icon_state = "hair_highfade"
 		gender = MALE
-		veryshort=1
 
 	baldfade
 		name = "Balding Fade"
 		icon_state = "hair_baldfade"
 		gender = MALE
-		veryshort=1
 
 	nofade
 		name = "Regulation Cut"
@@ -533,13 +509,11 @@
 		name = "Trimmed Flat Top"
 		icon_state = "hair_trimflat"
 		gender = MALE
-		veryshort=1
 
 	trimmed
 		name = "Trimmed"
 		icon_state = "hair_trimmed"
 		gender = MALE
-		veryshort=1
 
 	tightbun
 		name = "Tight Bun"
@@ -578,8 +552,8 @@
 	shaved
 		name = "Shaved"
 		icon_state = "bald"
-		species_allowed = list("Human","Unathi","Tajara","Skrell", "Machine","Teshari", "Vox")
 		gender = NEUTER
+		species_allowed = list("Human","Unathi","Tajara","Skrell", "Machine","Teshari", "Vox")
 
 	watson
 		name = "Watson Mustache"
@@ -744,14 +718,15 @@
 	skr_tentacle_m
 		name = "Skrell Male Tentacles"
 		icon_state = "skrell_hair_m"
-		gender = MALE
 		species_allowed = list("Skrell")
+		gender = MALE
 
 	skr_tentacle_f
 		name = "Skrell Female Tentacles"
 		icon_state = "skrell_hair_f"
-		gender = FEMALE
 		species_allowed = list("Skrell")
+		gender = FEMALE
+
 //Tajaran hairstyles
 	taj_ears
 		name = "Tajaran Ears"
