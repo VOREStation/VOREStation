@@ -1,5 +1,5 @@
 "a" = (/turf/space,/area/space)
-"b" = (/obj/effect/landmark/map_data{height = 2; step_x = 0},/turf/space,/area/space)
+"b" = (/obj/effect/landmark/map_data{height = 2},/turf/space,/area/space)
 "c" = (/turf/simulated/wall,/area/aisat_interior)
 "d" = (/obj/structure/lattice,/obj/machinery/atmospherics/pipe/zpipe/down{tag = "icon-down (EAST)"; icon_state = "down"; dir = 4},/obj/structure/disposalpipe/down,/turf/simulated/open,/area/aisat_interior)
 "e" = (/obj/machinery/atmospherics/pipe/simple/visible{dir = 4},/obj/effect/floor_decal/corner/lime/diagonal,/turf/simulated/floor/tiled/dark,/area/aisat_interior)
