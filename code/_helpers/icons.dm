@@ -811,8 +811,8 @@ proc // Creates a single icon from a given /atom or /image.  Only the first argu
 
 /proc/getHologramIcon(icon/A, safety=1)//If safety is on, a new icon is not created.
 	var/icon/flat_icon = safety ? A : new(A)//Has to be a new icon to not constantly change the same icon.
-	flat_icon.ColorTone(rgb(125,180,225))//Let's make it bluish.
-	flat_icon.ChangeOpacity(0.5)//Make it half transparent.
+	//flat_icon.ColorTone(rgb(125,180,225))//Let's make it bluish. //VOREStation Removal for AI Vore effects
+	//flat_icon.ChangeOpacity(0.5)//Make it half transparent. //VOREStation Removal for AI Vore effects
 	var/icon/alpha_mask = new('icons/effects/effects.dmi', "scanline")//Scanline effect.
 	flat_icon.AddAlphaMask(alpha_mask)//Finally, let's mix in a distortion effect.
 	return flat_icon
