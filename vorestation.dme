@@ -1661,6 +1661,7 @@
 #include "code\modules\mob\living\carbon\human\appearance.dm"
 #include "code\modules\mob\living\carbon\human\death.dm"
 #include "code\modules\mob\living\carbon\human\emote.dm"
+#include "code\modules\mob\living\carbon\human\emote_vr.dm"
 #include "code\modules\mob\living\carbon\human\examine.dm"
 #include "code\modules\mob\living\carbon\human\examine_vr.dm"
 #include "code\modules\mob\living\carbon\human\human.dm"

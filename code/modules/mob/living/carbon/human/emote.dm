@@ -18,6 +18,7 @@
 
 	if(src.stat == 2.0 && (act != "deathgasp"))
 		return
+	if(attempt_vr(src,"emote_vr",list(act,m_type,message))) return //VOREStation Add - Custom Emote Handler
 	switch(act)
 
 		if ("airguitar")
