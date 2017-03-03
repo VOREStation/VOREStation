@@ -77,17 +77,20 @@
 /obj/item/weapon/storage/backpack/dufflebag/sec/fluff/joanrisu
 	name = "Joan's Workbag"
 	desc = "A duffle bag Joan uses to carry her work equipment."
+	icon_state = "joanbag"
+	icon = 'icons/vore/custom_items_vr.dmi'
+	item_state = "duffle_med"
 	slowdown = 0
 
 	New()
 		..()
 		new /obj/item/clothing/accessory/holster/hip(src)
-		new /obj/item/clothing/suit/storage/fluff/fedcoat/fedcapt(src)
+		new /obj/item/clothing/suit/storage/fluff/modernfedcoat(src)
+		new /obj/item/clothing/head/caphat/formal/fedcover(src)
 		new /obj/item/weapon/card/id/centcom/fluff/joanbadge(src)
 		new /obj/item/weapon/gun/energy/gun/fluff/dominator(src)
 		new /obj/item/clothing/suit/armor/det_suit(src)
 		new /obj/item/fluff/permit/joanrisu(src)
-		new /obj/item/dnalockingchip(src)
 		new /obj/item/weapon/sword/fluff/joanaria(src)
 		new /obj/item/weapon/flame/lighter/zippo/fluff/joan(src)
 		new /obj/item/clothing/under/rank/internalaffairs/fluff/joan(src)

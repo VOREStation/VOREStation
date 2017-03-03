@@ -119,6 +119,18 @@ item_path: /obj/item/clothing/accessory/medal/silver/security/fluff/dhael
 }
 
 {
+ckey: dhaeleena
+character_name: Dhaeleena M'iar
+item_path: /obj/item/weapon/gun/projectile/revolver/mateba/fluff/dhael
+}
+
+{
+ckey: dhaeleena
+character_name: Dhaeleena M'iar
+item_path: /obj/item/fluff/permit/dhaeleena_miar
+}
+
+{
 ckey: dickfreedomjohnson
 character_name: Elliot Richards
 item_path: /obj/item/clothing/accessory/medal/medical

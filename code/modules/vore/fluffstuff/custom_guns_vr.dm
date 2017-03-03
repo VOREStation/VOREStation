@@ -148,6 +148,16 @@
 	accuracy = 0 // Because I know you're not an idiot who needs to be nerfed. -Ace
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 
+// Dhaeleena : Dhaeleena M'iar
+/obj/item/weapon/gun/projectile/revolver/mateba/fluff/dhael
+	name = "engraved mateba"
+	desc = "This unique looking handgun is engraved with roses along the barrel and the cylinder as well as the initials DM under the grip. Along the middle of the barrel an engraving shows the words 'Mateba Unica 6'. Uses .357 rounds."
+	icon_state = "mateba"
+	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
+
+	ammo_type = /obj/item/ammo_casing/a357/stun
+
+
 // For general use
 /obj/item/weapon/gun/projectile/automatic/stg
 	name = "\improper Sturmgewehr"
@@ -243,6 +253,8 @@
 
 	icon_override = 'icons/vore/custom_guns_vr.dmi'
 	item_state = "crestrose_fold_mob"
+
+	item_icons = null
 
 	w_class = ITEMSIZE_LARGE
 	origin_tech = list(TECH_COMBAT = 7, TECH_MATERIAL = 4)
@@ -447,10 +459,13 @@
 
 	modifystate = "dominatorstun"
 
+	dna_lock = 1
+
 	firemodes = list(
 	list(mode_name="stun", charge_cost=240,projectile_type=/obj/item/projectile/beam/stun, modifystate="dominatorstun", fire_sound='sound/weapons/Taser.ogg'),
 	list(mode_name="lethal", charge_cost=480,projectile_type=/obj/item/projectile/beam/dominator, modifystate="dominatorkill", fire_sound='sound/weapons/gauss_shoot.ogg'),
 	)
+
 
 // ------------ Energy Luger ------------
 /obj/item/weapon/gun/energy/gun/eluger
