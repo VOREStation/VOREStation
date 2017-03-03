@@ -38,6 +38,7 @@ proc/createRandomZlevel()
 		admin_notice("\red \b Loading away mission...", R_DEBUG)
 
 		var/map = pick(potentialRandomZlevels)
+		world.log << "Away mission picked: [map]" //VOREStation Add for debugging
 		var/file = file(map)
 		if(isfile(file))
 			maploader.load_map(file)

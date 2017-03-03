@@ -27,17 +27,20 @@
 	set category = "Vore"
 	set src in oview(1)
 
+	var/mob/living/carbon/human/user = usr
+	if(!istype(user) || user.stat) return
+
 	var/datum/belly/B = vore_organs[vore_selected]
-	if(faction != usr.faction)
-		usr << "<span class='warning'>This predator isn't friendly, and doesn't give a shit about your opinions of it digesting you.</span>"
+	if(faction != user.faction)
+		user << "<span class='warning'>This predator isn't friendly, and doesn't give a shit about your opinions of it digesting you.</span>"
 		return
 	if(B.digest_mode == "Hold")
-		var/confirm = alert(usr, "Enabling digestion on [name] will cause it to digest all stomach contents. Using this to break OOC prefs is against the rules. Digestion will disable itself after 20 minutes.", "Enabling [name]'s Digestion", "Enable", "Cancel")
+		var/confirm = alert(user, "Enabling digestion on [name] will cause it to digest all stomach contents. Using this to break OOC prefs is against the rules. Digestion will disable itself after 20 minutes.", "Enabling [name]'s Digestion", "Enable", "Cancel")
 		if(confirm == "Enable")
 			B.digest_mode = "Digest"
 			spawn(12000) //12000=20 minutes
 				if(src)	B.digest_mode = "Hold"
 	else
-		var/confirm = alert(usr, "This mob is currently set to digest all stomach contents. Do you want to disable this?", "Disabling [name]'s Digestion", "Disable", "Cancel")
+		var/confirm = alert(user, "This mob is currently set to digest all stomach contents. Do you want to disable this?", "Disabling [name]'s Digestion", "Disable", "Cancel")
 		if(confirm == "Disable")
 			B.digest_mode = "Hold"

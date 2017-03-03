@@ -75,7 +75,7 @@ var/list/mob_hat_cache = list()
 /mob/living/silicon/robot/drone/New()
 
 	..()
-
+	verbs += /mob/living/proc/ventcrawl //VOREStation Edit - Rule of fun bruh.
 	verbs += /mob/living/proc/hide
 	remove_language("Robot Talk")
 	add_language("Robot Talk", 0)

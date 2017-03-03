@@ -643,7 +643,6 @@
 		new /obj/item/weapon/wirecutters(src)
 		new /obj/item/device/multitool(src)
 		new /obj/item/stack/cable_coil(src, 30, "red")
-		new /obj/item/stack/cable_coil(src, 30, "green")
 
 // molenar:Giliana Gamish
 /obj/item/clothing/suit/storage/toggle/labcoat/fluff/molenar
@@ -806,6 +805,12 @@
 	worn_state = "internalaffairs"
 	rolled_sleeves = 0
 	starting_accessories = list(/obj/item/clothing/accessory/black)
+
+//Kisukegema:Kisuke `the nerd` Gema
+/obj/item/clothing/glasses/sunglasses/omnihud/kamina
+	name = "Kamina glasses"
+	icon_state = "kamina"
+	desc = "ROW ROW, FIGHT THE POWER."
 
 //Kitsuhana Uniforms
 /obj/item/clothing/under/rank/khi

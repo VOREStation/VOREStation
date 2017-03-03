@@ -39,7 +39,7 @@
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "battlerifle"
 	icon_override = 'icons/obj/gun_vr.dmi'
-	item_state = "battlerifle"
+	item_state = "battlerifle_i"
 	item_icons = null
 	w_class = ITEMSIZE_LARGE
 	recoil = 2 // The battlerifle was known for its nasty recoil.
@@ -64,7 +64,7 @@
 	icon_state = "haloshotgun"
 
 	icon_override = 'icons/obj/gun_vr.dmi'
-	item_state = "haloshotgun"
+	item_state = "haloshotgun_i"
 	item_icons = null
 
 	ammo_type = /obj/item/ammo_casing/shotgun

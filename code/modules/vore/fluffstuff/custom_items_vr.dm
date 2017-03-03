@@ -327,33 +327,37 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 //arokha:Aronai Kadigan - Vials to go with mk2 hypo
 /obj/item/weapon/reagent_containers/glass/beaker/vial/vr
 	stabilize
-		name = "vial (1tr1in2tri2dxp)"
+		name = "vial (stabilize)"
+		desc = "10 Tricordrazine, 10 Dexalin Plus, 5 Tramadol, 5 Inaprovaline"
 		New()
 			..()
-			reagents.add_reagent("tramadol", 5)
-			reagents.add_reagent("inaprovaline", 5)
 			reagents.add_reagent("tricordrazine", 10)
 			reagents.add_reagent("dexalinp", 10)
+			reagents.add_reagent("tramadol", 5)
+			reagents.add_reagent("inaprovaline", 5)
 	bashed
-		name = "vial (5bi1tri)"
+		name = "vial (brute)"
+		desc = "25 Bicaridine, 5 Tricordrazine"
 		New()
 			..()
 			reagents.add_reagent("bicaridine", 25)
 			reagents.add_reagent("tricordrazine", 5)
 	toasted
-		name = "vial (3der2kel1tri)"
+		name = "vial (burn)"
+		desc = "10 Kelotane, 15 Dermaline, 5 Tricordrazine"
 		New()
 			..()
 			reagents.add_reagent("kelotane", 10)
 			reagents.add_reagent("dermaline", 15)
 			reagents.add_reagent("tricordrazine", 5)
 	poisoned
-		name = "vial (4dy1hy1tri)"
+		name = "vial (toxins)"
+		desc = "25 Dylovene, 2 Hyronalin, 3 Tricordrazine"
 		New()
 			..()
-			reagents.add_reagent("anti_toxin", 20)
-			reagents.add_reagent("hyronalin", 5)
-			reagents.add_reagent("tricordrazine", 5)
+			reagents.add_reagent("anti_toxin", 25)
+			reagents.add_reagent("hyronalin", 2)
+			reagents.add_reagent("tricordrazine", 3)
 
 //Swat43:Fortune Bloise
 /obj/item/weapon/storage/backpack/satchel/fluff/swat43bag
@@ -567,3 +571,16 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	icon = 'icons/vore/custom_items_vr.dmi'
 	item_state = "temphypo"
 	icon_state = "temphypo"
+
+//WickedTempest: Chakat Tempest
+/obj/item/weapon/storage/backpack/saddlebag/tempest
+	name = "Tempest's Saddlebags"
+	desc = "A custom-made set of saddlebags, tailored to Chakat Tempest's exact dimensions, and taste in color! One one side, there's small print stitched in: ...to carry the weight of any responsibility, burden or task."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_override = 'icons/vore/custom_items_vr.dmi'
+	item_state = "tempestsaddlebag"
+	icon_state = "tempestbag"
+	max_storage_space = INVENTORY_DUFFLEBAG_SPACE //Since they play a macro character, no reason to put custom slowdown code on here.
+	slowdown = 0
+	taurtype = /datum/sprite_accessory/tail/taur/feline/tempest
+	no_message = "These saddlebags seem to be fitted for someone else, and keep slipping off!"

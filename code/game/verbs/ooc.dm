@@ -126,6 +126,12 @@
 		display_name = holder.fakekey
 	if(mob.stat != DEAD)
 		display_name = mob.name
+	//VOREStation Add - Resleeving shenanigan prevention
+	if(ishuman(mob))
+		var/mob/living/carbon/human/H = mob
+		if(H.original_player && H.original_player != H.ckey) //In a body not their own
+			display_name = "[H.mind.name] (as [H.name])"
+	//VOREStation Add End
 
 	// Everyone in normal viewing range of the LOOC
 	for(var/mob/viewer in m_viewers)
