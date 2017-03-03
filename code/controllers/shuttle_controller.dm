@@ -294,7 +294,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 		"Fore Port Solars" = locate(/area/skipjack_station/northwest_solars),
 		"Aft Starboard Solars" = locate(/area/skipjack_station/southeast_solars),
 		"Aft Port Solars" = locate(/area/skipjack_station/southwest_solars), // Vorestation edit
-		"[station_short] Arrivals Dock" = locate(/area/skipjack_station/southwest_solars),
+		"Station Arrivals Dock" = locate(/area/skipjack_station/southwest_solars),
 		"Mining Station" = locate(/area/skipjack_station/mining)
 		)
 
