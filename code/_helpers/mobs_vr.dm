@@ -1,32 +1,14 @@
-#define ECO_MODIFIER 10
-
-//Mob attribute defaults.
-#define DEFAULT_MARKING_STYLES list("head" = "None", "body" = "None", "tail" = "None") //Marking styles. Use instead of initial() for m_styles.
-#define DEFAULT_MARKING_COLOURS list("head" = "#000000", "body" = "#000000", "tail" = "#000000") //Marking colours. Use instead of initial() for m_colours.
-
-//Species Body Flags
-#define FEET_CLAWS			1
-#define FEET_PADDED			2
-#define FEET_NOSLIP			4
-#define HAS_HEAD_ACCESSORY	8
-#define HAS_TAIL 			16
-#define TAIL_OVERLAPPED		32
-#define HAS_SKIN_TONE 		64
-#define HAS_ICON_SKIN_TONE	128
-#define HAS_SKIN_COLOR		256
-#define HAS_HEAD_MARKINGS	512
-#define HAS_BODY_MARKINGS	1024
-#define HAS_TAIL_MARKINGS	2048
-#define HAS_MARKINGS		HAS_HEAD_MARKINGS|HAS_BODY_MARKINGS|HAS_TAIL_MARKINGS
-#define TAIL_WAGGING    	4096
-#define NO_EYES				8192
-#define HAS_FUR				16384
-#define HAS_ALT_HEADS		32768
-
-	//Head accessory styles
-var/global/list/head_accessory_styles_list = list() //stores /datum/sprite_accessory/head_accessory indexed by name
-	//Marking styles
-var/global/list/marking_styles_list = list() //stores /datum/sprite_accessory/body_markings indexed by name
+proc/GetOppositeDir(var/dir)
+	switch(dir)
+		if(NORTH)     return SOUTH
+		if(SOUTH)     return NORTH
+		if(EAST)      return WEST
+		if(WEST)      return EAST
+		if(SOUTHWEST) return NORTHEAST
+		if(NORTHWEST) return SOUTHEAST
+		if(NORTHEAST) return SOUTHWEST
+		if(SOUTHEAST) return NORTHWEST
+	return 0
 
 
 proc/random_head_accessory(species = "Human")
@@ -44,7 +26,7 @@ proc/random_head_accessory(species = "Human")
 
 	return ha_style
 
-proc/random_marking_style(var/location = "body", species = "Human", var/robot_head, var/body_accessory, var/alt_head)
+proc/random_marking_style(var/location = "body", species = "Human", var/datum/robolimb/robohead, var/body_accessory, var/alt_head)
 	var/m_style = "None"
 	var/list/valid_markings = list()
 	for(var/marking in marking_styles_list)
@@ -66,14 +48,15 @@ proc/random_marking_style(var/location = "body", species = "Human", var/robot_he
 		if(location == "head")
 			var/datum/sprite_accessory/body_markings/head/M = marking_styles_list[S.name]
 			if(species == "Machine")//If the user is a species that can have a robotic head...
-				var/datum/robolimb/robohead = all_robolimbs[robot_head]
+				if(!robohead)
+					robohead = all_robolimbs["Morpheus Cyberkinetics"]
 				if(!(S.models_allowed && (robohead.company in S.models_allowed))) //Make sure they don't get markings incompatible with their head.
 					continue
 			else if(alt_head && alt_head != "None") //If the user's got an alt head, validate markings for that head.
-				if(!(alt_head in M.heads_allowed))
+				if(!("All" in M.heads_allowed) && !(alt_head in M.heads_allowed))
 					continue
 			else
-				if(M.heads_allowed)
+				if(M.heads_allowed && !("All" in M.heads_allowed))
 					continue
 		valid_markings += marking
 
@@ -98,14 +81,3 @@ proc/random_body_accessory(species = "Vulpkanin")
 
 	return body_accessory
 
-proc/GetOppositeDir(var/dir)
-	switch(dir)
-		if(NORTH)     return SOUTH
-		if(SOUTH)     return NORTH
-		if(EAST)      return WEST
-		if(WEST)      return EAST
-		if(SOUTHWEST) return NORTHEAST
-		if(NORTHWEST) return SOUTHEAST
-		if(NORTHEAST) return SOUTHWEST
-		if(SOUTHEAST) return NORTHWEST
-	return 0

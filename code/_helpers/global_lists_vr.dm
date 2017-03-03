@@ -102,3 +102,9 @@ var/global/list/global_egg_types = list(
 		var/datum/sprite_accessory/tail/instance = new path()
 		tail_styles_list[path] = instance
 	return 1 // Hooks must return 1
+
+/proc/makeDatumRefLists()
+	//markings
+	init_sprite_accessory_subtypes(/datum/sprite_accessory/body_markings, marking_styles_list)
+	//head accessory
+	init_sprite_accessory_subtypes(/datum/sprite_accessory/head_accessory, head_accessory_styles_list)

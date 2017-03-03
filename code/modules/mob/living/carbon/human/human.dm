@@ -1141,6 +1141,38 @@
 		g_skin = 0
 		b_skin = 0
 
+	//VOREStation edit
+	if(species.default_hair_colour)
+		//Apply colour.
+		H.r_hair = color2R(species.default_hair_colour)
+		H.g_hair = color2G(species.default_hair_colour)
+		H.b_hair = color2B(species.default_hair_colour)
+	else
+		H.r_hair = 0
+		H.g_hair = 0
+		H.b_hair = 0
+	if(species.default_fhair_colour)
+		H.r_facial = color2R(species.default_fhair_colour)
+		H.g_facial = color2G(species.default_fhair_colour)
+		H.b_facial = color2B(species.default_fhair_colour)
+	else
+		H.r_facial = 0
+		H.g_facial = 0
+		H.b_facial = 0
+	if(species.default_headacc_colour)
+		H.r_headacc = color2R(species.default_headacc_colour)
+		H.g_headacc = color2G(species.default_headacc_colour)
+		H.b_headacc = color2B(species.default_headacc_colour)
+	else
+		H.r_headacc = 0
+		H.g_headacc = 0
+		H.b_headacc = 0
+
+	m_styles = DEFAULT_MARKING_STYLES //Wipes out markings, setting them all to "None".
+	m_colours = DEFAULT_MARKING_COLOURS //Defaults colour to #00000 for all markings.
+	body_accessory = null
+	// Ending of VOREStation edit
+
 	if(species.holder_type)
 		holder_type = species.holder_type
 

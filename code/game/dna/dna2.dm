@@ -16,34 +16,45 @@
 #define DNA_HARDER_BOUNDS  list(1,3049,3050,4095)
 #define DNA_HARD_BOUNDS    list(1,3490,3500,4095)
 
-// UI Indices (can change to mutblock style, if desired)
-#define DNA_UI_HAIR_R      1
-#define DNA_UI_HAIR_G      2
-#define DNA_UI_HAIR_B      3
-#define DNA_UI_BEARD_R     4
-#define DNA_UI_BEARD_G     5
-#define DNA_UI_BEARD_B     6
-#define DNA_UI_SKIN_TONE   7
-#define DNA_UI_SKIN_R      8
-#define DNA_UI_SKIN_G      9
-#define DNA_UI_SKIN_B      10
-#define DNA_UI_EYES_R      11
-#define DNA_UI_EYES_G      12
-#define DNA_UI_EYES_B      13
-#define DNA_UI_GENDER      14
-#define DNA_UI_BEARD_STYLE 15
-#define DNA_UI_HAIR_STYLE  16
-#define DNA_UI_EAR_STYLE   17
-#define DNA_UI_TAIL_STYLE  18
-#define DNA_UI_PLAYERSCALE 19
-#define DNA_UI_TAIL_R      20
-#define DNA_UI_TAIL_G      21
-#define DNA_UI_TAIL_B      22
-#define DNA_UI_LENGTH      22 // Update this when you add something, or you WILL break shit.
+// AAAAAAAA *required* for body markings to work properly -Pooj
 
-#define DNA_SE_LENGTH 27
-// For later:
-//#define DNA_SE_LENGTH 50 // Was STRUCDNASIZE, size 27. 15 new blocks added = 42, plus room to grow.
+// UI Indices (can change to mutblock style, if desired)
+#define DNA_UI_HAIR_R		1
+#define DNA_UI_HAIR_G		2
+#define DNA_UI_HAIR_B		3
+#define DNA_UI_BEARD_R		4
+#define DNA_UI_BEARD_G		5
+#define DNA_UI_BEARD_B		6
+#define DNA_UI_SKIN_TONE	7
+#define DNA_UI_SKIN_R		8
+#define DNA_UI_SKIN_G		9
+#define DNA_UI_SKIN_B		10
+#define DNA_UI_HACC_R		11
+#define DNA_UI_HACC_G		12
+#define DNA_UI_HACC_B		13
+#define DNA_UI_HEAD_MARK_R	14
+#define DNA_UI_HEAD_MARK_G	15
+#define DNA_UI_HEAD_MARK_B	16
+#define DNA_UI_BODY_MARK_R	17
+#define DNA_UI_BODY_MARK_G	18
+#define DNA_UI_BODY_MARK_B	19
+#define DNA_UI_TAIL_MARK_R	20
+#define DNA_UI_TAIL_MARK_G	21
+#define DNA_UI_TAIL_MARK_B	22
+#define DNA_UI_EYES_R		23
+#define DNA_UI_EYES_G		24
+#define DNA_UI_EYES_B		25
+#define DNA_UI_GENDER		26
+#define DNA_UI_BEARD_STYLE	27
+#define DNA_UI_HAIR_STYLE	28
+/*#define DNA_UI_BACC_STYLE	23*/
+#define DNA_UI_HACC_STYLE	29
+#define DNA_UI_HEAD_MARK_STYLE	30
+#define DNA_UI_BODY_MARK_STYLE	31
+#define DNA_UI_TAIL_MARK_STYLE	32
+#define DNA_UI_LENGTH		32 // Update this when you add something, or you WILL break shit.
+
+#define DNA_SE_LENGTH 55 // Was STRUCDNASIZE, size 27. 15 new blocks added = 42, plus room to grow.
 
 
 // Defines which values mean "on" or "off".
@@ -170,6 +181,37 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	SetUIValueRange(DNA_UI_TAIL_R,    character.r_tail,    255,    1)
 	SetUIValueRange(DNA_UI_TAIL_G,    character.g_tail,    255,    1)
 	SetUIValueRange(DNA_UI_TAIL_B,    character.b_tail,    255,    1)
+
+	/*// Body Accessory
+	if(!character.body_accessory)
+		character.body_accessory = null
+	var/bodyacc	= character.body_accessory*/
+
+	// Markings
+	if(!character.m_styles)
+		character.m_styles = DEFAULT_MARKING_STYLES
+
+	var/head_marks	= marking_styles_list.Find(character.m_styles["head"])
+	var/body_marks	= marking_styles_list.Find(character.m_styles["body"])
+	var/tail_marks	= marking_styles_list.Find(character.m_styles["tail"])
+
+	head_traits_to_dna(H)
+
+	SetUIValueRange(DNA_UI_HEAD_MARK_R,	color2R(character.m_colours["head"]),	255,	1)
+	SetUIValueRange(DNA_UI_HEAD_MARK_G,	color2G(character.m_colours["head"]),	255,	1)
+	SetUIValueRange(DNA_UI_HEAD_MARK_B,	color2B(character.m_colours["head"]),	255,	1)
+
+	SetUIValueRange(DNA_UI_BODY_MARK_R,	color2R(character.m_colours["body"]),	255,	1)
+	SetUIValueRange(DNA_UI_BODY_MARK_G,	color2G(character.m_colours["body"]),	255,	1)
+	SetUIValueRange(DNA_UI_BODY_MARK_B,	color2B(character.m_colours["body"]),	255,	1)
+
+	SetUIValueRange(DNA_UI_TAIL_MARK_R,	color2R(character.m_colours["tail"]),	255,	1)
+	SetUIValueRange(DNA_UI_TAIL_MARK_G,	color2G(character.m_colours["tail"]),	255,	1)
+	SetUIValueRange(DNA_UI_TAIL_MARK_B,	color2B(character.m_colours["tail"]),	255,	1)
+
+	SetUIValueRange(DNA_UI_HEAD_MARK_STYLE,	head_marks,		marking_styles_list.len,		1)
+	SetUIValueRange(DNA_UI_BODY_MARK_STYLE,	body_marks,		marking_styles_list.len,		1)
+	SetUIValueRange(DNA_UI_TAIL_MARK_STYLE,	tail_marks,		marking_styles_list.len,		1)
 
 	// VORE Station Edit End
 
