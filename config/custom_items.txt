@@ -487,6 +487,12 @@ item_path: /obj/item/clothing/glasses/threedglasses
 }
 
 {
+ckey: whiskyrose
+character_name: Vinjj
+item_path: /obj/item/clothing/head/welding/fluff/vinjj
+}
+
+{
 ckey: wickedtemp
 character_name: Chakat Tempest
 item_path: /obj/item/clothing/glasses/hud/health/fluff/wickedtemphud
