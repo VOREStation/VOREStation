@@ -82,12 +82,15 @@
 		var/obj/item/pulled = pulling
 		tally += max(pulled.slowdown, 0)
 
+	var/turf/T = get_turf(src)
+	if(T && T.movement_cost)
+		tally += T.movement_cost
+	
 	if(CE_SPEEDBOOST in chem_effects)
 		if (tally >= 0)	// cut any penalties in half
 			tally = tally/2
 		tally -= 1	// give 'em a buff on top.
-
-	return (tally+config.human_delay)
+		return (tally+config.human_delay)
 
 /mob/living/carbon/human/Process_Spacemove(var/check_drift = 0)
 	//Can we act?

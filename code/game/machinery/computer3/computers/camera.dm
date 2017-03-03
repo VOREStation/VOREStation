@@ -79,7 +79,7 @@
 /datum/file/camnet_key/New()
 	for(var/N in networks)
 		if(N == "ALL")
-			networks = station_networks
+			networks = using_map.station_networks
 			break
 	return ..()
 

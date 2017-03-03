@@ -132,8 +132,9 @@ Please contact me on #coderbus IRC. ~Carn x
 #define L_HAND_LAYER			24
 #define R_HAND_LAYER			25
 #define FIRE_LAYER				26		//If you're on fire
-#define TARGETED_LAYER			27		//BS12: Layer for the target overlay from weapon targeting system
-#define TOTAL_LAYERS			27
+#define WATER_LAYER				27		//If you're submerged in water.
+#define TARGETED_LAYER			28		//BS12: Layer for the target overlay from weapon targeting system
+#define TOTAL_LAYERS			29
 //////////////////////////////////
 
 /mob/living/carbon/human
@@ -362,36 +363,7 @@ var/global/list/damage_icon_parts = list()
 		if(update_icons)   update_icons()
 		return
 
-	//base icons
-	var/icon/face_standing	= new /icon('icons/mob/human_face.dmi',"bald_s")
-
-	if(f_style)
-		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[f_style]
-		if(facial_hair_style && facial_hair_style.species_allowed && (src.species.get_bodytype(src) in facial_hair_style.species_allowed))
-			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
-			if(facial_hair_style.do_colouration)
-				facial_s.Blend(rgb(r_facial, g_facial, b_facial), ICON_ADD)
-
-			face_standing.Blend(facial_s, ICON_OVERLAY)
-
-	if(h_style && !(head && (head.flags_inv & BLOCKHEADHAIR)))
-		var/datum/sprite_accessory/hair_style = hair_styles_list[h_style]
-		if(hair_style && (src.species.get_bodytype(src) in hair_style.species_allowed))
-			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
-			if(hair_style.do_colouration)
-				hair_s.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
-
-			face_standing.Blend(hair_s, ICON_OVERLAY)
-
-	// VOREStation Edit - START
-	var/icon/ears_s = get_ears_overlay()
-	if (ears_s)
-		face_standing.Blend(ears_s, ICON_OVERLAY)
-	// VOREStation Edit - END
-	if(head_organ.nonsolid)
-		face_standing += rgb(,,,120)
-
-	overlays_standing[HAIR_LAYER]	= image(face_standing)
+	overlays_standing[HAIR_LAYER]	= head_organ.get_hair_icon()
 
 	if(update_icons)   update_icons()
 
@@ -466,6 +438,7 @@ var/global/list/damage_icon_parts = list()
 	update_inv_legcuffed(0)
 	update_inv_pockets(0)
 	update_fire(0)
+	update_water(0)
 	update_surgery(0)
 	UpdateDamageIcon()
 	update_icons()
@@ -1144,6 +1117,17 @@ var/global/list/damage_icon_parts = list()
 
 	if(update_icons)   update_icons()
 
+/mob/living/carbon/human/update_water(var/update_icons=1)
+	overlays_standing[WATER_LAYER] = null
+	var/depth = check_submerged()
+	if(depth)
+		if(!lying)
+			overlays_standing[WATER_LAYER] = image("icon" = 'icons/mob/submerged.dmi', "icon_state" = "human_swimming_[depth]")
+		// Lying sideways with the overlay looked strange.  Another overlay will be needed in the future.
+
+	if(update_icons)
+		update_icons()
+
 /mob/living/carbon/human/proc/update_surgery(var/update_icons=1)
 	overlays_standing[SURGERY_LEVEL] = null
 	var/image/total = new
@@ -1179,4 +1163,5 @@ var/global/list/damage_icon_parts = list()
 #undef R_HAND_LAYER
 #undef TARGETED_LAYER
 #undef FIRE_LAYER
+#undef WATER_LAYER
 #undef TOTAL_LAYERS

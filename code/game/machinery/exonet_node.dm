@@ -1,7 +1,6 @@
 /obj/machinery/exonet_node
 	name = "exonet node"
-	desc = "This machine is one of many, many nodes inside "+starsys_name+"'s section of the Exonet, connecting the "+station_orig+" to the rest of the system, at least \
-	electronically."
+	desc = null // Gets written in New()
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "exonet_node"
 	idle_power_usage = 2500
@@ -35,6 +34,9 @@
 	component_parts += new /obj/item/weapon/stock_parts/subspace/treatment(src)
 	component_parts += new /obj/item/stack/cable_coil(src, 2)
 	RefreshParts()
+
+	desc = "This machine is one of many, many nodes inside [using_map.starsys_name]'s section of the Exonet, connecting the [using_map.station_short] to the rest of the system, at least \
+	electronically."
 
 // Proc: update_icon()
 // Parameters: None

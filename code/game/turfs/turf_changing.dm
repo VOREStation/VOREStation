@@ -25,6 +25,7 @@
 	var/old_dynamic_lighting = dynamic_lighting
 	var/list/old_affecting_lights = affecting_lights
 	var/old_lighting_overlay = lighting_overlay
+	var/old_weather_overlay = weather_overlay
 
 	//world << "Replacing [src.type] with [N]"
 
@@ -42,6 +43,9 @@
 		if(old_fire)
 			fire = old_fire
 
+		if(old_weather_overlay)
+			W.weather_overlay = old_weather_overlay
+
 		if (istype(W,/turf/simulated/floor))
 			W.RemoveLattice()
 
@@ -55,6 +59,7 @@
 			S.update_starlight()
 
 		W.levelupdate()
+		W.update_icon(1)
 		. = W
 
 	else
@@ -63,6 +68,9 @@
 
 		if(old_fire)
 			old_fire.RemoveFire()
+
+		if(old_weather_overlay)
+			W.weather_overlay = old_weather_overlay
 
 		if(tell_universe)
 			universe.OnTurfChange(W)
@@ -74,6 +82,7 @@
 			S.update_starlight()
 
 		W.levelupdate()
+		W.update_icon(1)
 		. =  W
 
 	lighting_overlay = old_lighting_overlay

@@ -27,6 +27,7 @@
 	vital = 1
 	var/brain_type = /obj/item/device/mmi
 	var/obj/item/device/mmi/stored_mmi
+	robotic = ORGAN_ASSISTED
 
 /obj/item/organ/internal/mmi_holder/Destroy()
 	if(stored_mmi && (stored_mmi.loc == src))
@@ -85,7 +86,7 @@
 /obj/item/organ/internal/mmi_holder/posibrain
 	name = "positronic brain interface"
 	brain_type = /obj/item/device/mmi/digital/posibrain
-
+	robotic = ORGAN_ROBOT
 
 /obj/item/organ/internal/mmi_holder/posibrain/update_from_mmi()
 	..()
@@ -95,6 +96,7 @@
 /obj/item/organ/internal/mmi_holder/robot
 	name = "digital brain interface"
 	brain_type = /obj/item/device/mmi/digital/robot
+	robotic = ORGAN_ROBOT
 
 /obj/item/organ/internal/mmi_holder/robot/update_from_mmi()
 	..()

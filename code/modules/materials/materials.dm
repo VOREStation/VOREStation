@@ -628,6 +628,22 @@ var/list/name_to_material
 	door_icon_base = "wood"
 	destruction_desc = "crumples"
 
+/material/snow
+	name = "snow"
+	stack_type = /obj/item/stack/material/snow
+	flags = MATERIAL_BRITTLE
+	icon_base = "solid"
+	icon_reinf = "reinf_over"
+	icon_colour = "#FFFFFF"
+	integrity = 1
+	hardness = 1
+	weight = 1
+	stack_origin_tech = list(TECH_MATERIAL = 1)
+	melting_point = T0C+1
+	destruction_desc = "crumples"
+	sheet_singular_name = "pile"
+	sheet_plural_name = "piles"
+
 /material/cloth //todo
 	name = "cloth"
 	stack_origin_tech = list(TECH_MATERIAL = 2)

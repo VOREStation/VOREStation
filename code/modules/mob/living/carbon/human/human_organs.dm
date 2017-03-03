@@ -17,6 +17,8 @@
 	var/damage_this_tick = getToxLoss()
 	for(var/obj/item/organ/external/O in organs)
 		damage_this_tick += O.burn_dam + O.brute_dam
+		if(O.germ_level)
+			damage_this_tick += 1 //Just tap it if we have germs so we can process those
 
 	if(damage_this_tick > last_dam)
 		. = TRUE

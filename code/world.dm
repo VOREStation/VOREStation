@@ -83,6 +83,10 @@ var/global/datum/global_init/init = new ()
 	// This is kinda important. Set up details of what the hell things are made of.
 	populate_material_list()
 
+	if(config.generate_map)
+		if(using_map.perform_map_generation())
+			using_map.refresh_mining_turfs()
+/*
 	if(config.generate_asteroid)
 		// These values determine the specific area that the map is applied to.
 		// Because we do not use Bay's default map, we check the config file to see if custom parameters are needed, so we need to avoid hardcoding.
@@ -103,7 +107,7 @@ var/global/datum/global_init/init = new ()
 		// it's brute-forcey, but frankly the alternative is a mine turf rewrite.
 		for(var/turf/simulated/mineral/M in world) // Ugh.
 			M.update_icon()
-
+*/
 	// Create frame types.
 	populate_frame_types()
 

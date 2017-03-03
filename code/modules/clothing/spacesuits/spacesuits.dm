@@ -44,7 +44,7 @@
 
 /obj/item/clothing/suit/space
 	name = "Space suit"
-	desc = "A suit that protects against low pressure environments. \""+station_short+"\" is written in large block letters on the back."
+	desc = "A suit that protects against low pressure environments."
 	icon_state = "space"
 	w_class = ITEMSIZE_HUGE // So you can't fit this in your bag and be prepared at all times.
 	gas_transfer_coefficient = 0.01
@@ -61,6 +61,10 @@
 	species_restricted = list("exclude","Diona")
 
 	var/list/supporting_limbs //If not-null, automatically splints breaks. Checked when removing the suit.
+
+/obj/item/clothing/suit/space/New()
+	..()
+	desc += " \"[using_map.station_short]\" is written in large block letters on the back."
 
 /obj/item/clothing/suit/space/equipped(mob/M)
 	check_limb_support(M)

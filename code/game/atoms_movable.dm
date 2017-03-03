@@ -248,7 +248,7 @@
 	return
 
 /atom/movable/proc/touch_map_edge()
-	if(z in config.sealed_levels)
+	if(z in using_map.sealed_levels)
 		return
 
 	if(config.use_overmap)
@@ -282,12 +282,9 @@
 		spawn(0)
 			if(loc) loc.Entered(src)
 
-//This list contains the z-level numbers which can be accessed via space travel and the percentile chances to get there.
-var/list/accessible_z_levels = list("1" = 5, "3" = 10, "4" = 15, "6" = 60)
-
 //by default, transition randomly to another zlevel
 /atom/movable/proc/get_transit_zlevel()
-	var/list/candidates = accessible_z_levels.Copy()
+	var/list/candidates = using_map.accessible_z_levels.Copy()
 	candidates.Remove("[src.z]")
 
 	if(!candidates.len)

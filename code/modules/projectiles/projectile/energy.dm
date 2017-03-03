@@ -6,7 +6,6 @@
 	check_armour = "energy"
 	var/flash_strength = 10
 
-
 //releases a burst of light on impact or after travelling a distance
 /obj/item/projectile/energy/flash
 	name = "chemical shell"
@@ -64,10 +63,8 @@
 /obj/item/projectile/energy/electrode
 	name = "electrode"
 	icon_state = "spark"
-	nodamage = 1
 	taser_effect = 1
 	agony = 40
-	damage_type = HALLOSS
 	light_range = 2
 	light_power = 0.5
 	light_color = "#FFFFFF"
@@ -79,7 +76,6 @@
 /obj/item/projectile/energy/electrode/stunshot
 	name = "stunshot"
 	damage = 5
-	taser_effect = 1
 	agony = 80
 
 /obj/item/projectile/energy/declone
@@ -107,7 +103,6 @@
 	icon_state = "cbbolt"
 	damage = 10
 	damage_type = TOX
-	nodamage = 0
 	agony = 40
 	stutter = 10
 
