@@ -90,6 +90,10 @@ var/global/list/limb_icon_cache = list()
 			if(hair_style.do_colouration && islist(h_col) && h_col.len >= 3)
 				hair_s.Blend(rgb(h_col[1], h_col[2], h_col[3]), ICON_ADD)
 			res.overlays |= hair_s
+	//VOREStation Add - Adds ear sprites to the head		
+	var/icon/ears_s = owner.get_ears_overlay()
+	if(ears_s) res.overlays |= ears_s
+	//VOREStation Add End
 	return res
 
 
