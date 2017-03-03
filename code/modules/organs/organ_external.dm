@@ -622,13 +622,12 @@ Note that amputating the affected organ does in fact remove the infection from t
 				break	//limit increase to a maximum of one per second
 
 /obj/item/organ/external/handle_germ_effects()
-
-	if(germ_level < INFECTION_LEVEL_TWO)
-		return ..()
+	. = ..() //May be null or an infection level, if null then no specific processing needed here
+	if(!.) return
 
 	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
 
-	if(germ_level >= INFECTION_LEVEL_TWO)
+	if(. >= 2 && antibiotics < 5) //INFECTION_LEVEL_TWO
 		//spread the infection to internal organs
 		var/obj/item/organ/target_organ = null	//make internal organs become infected one at a time instead of all at once
 		for (var/obj/item/organ/I in internal_organs)
@@ -660,14 +659,13 @@ Note that amputating the affected organ does in fact remove the infection from t
 				if (parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30))
 					parent.germ_level++
 
-	if(germ_level >= INFECTION_LEVEL_THREE && antibiotics < 30)	//overdosing is necessary to stop severe infections
+	if(. >= 3 && antibiotics < 30)	//INFECTION_LEVEL_THREE
 		if (!(status & ORGAN_DEAD))
 			status |= ORGAN_DEAD
 			owner << "<span class='notice'>You can't feel your [name] anymore...</span>"
 			owner.update_body(1)
-
-		germ_level++
-		owner.adjustToxLoss(1)
+			for (var/obj/item/organ/external/child in children)
+				child.germ_level += 110 //Burst of infection from a parent organ becoming necrotic
 
 //Updating wounds. Handles wound natural I had some free spachealing, internal bleedings and infections
 /obj/item/organ/external/proc/update_wounds()
