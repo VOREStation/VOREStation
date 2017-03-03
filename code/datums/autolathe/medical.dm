@@ -37,3 +37,7 @@
 /datum/category_item/autolathe/medical/syringe
 	name = "syringe"
 	path =/obj/item/weapon/reagent_containers/syringe
+
+/datum/category_item/autolathe/medical/implanter
+	name = "implanter"
+	path =/obj/item/weapon/implanter

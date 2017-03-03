@@ -271,7 +271,13 @@
 	custom_emote(2, act_desc)
 
 /mob/living/simple_animal/bullet_act(var/obj/item/projectile/Proj)
-	if(!Proj || Proj.nodamage)
+	if(!Proj)
+		return
+
+	if(Proj.taser_effect)
+		stun_effect_act(0, Proj.agony)
+
+	if(Proj.nodamage)
 		return
 
 	adjustBruteLoss(Proj.damage)
@@ -655,3 +661,15 @@
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(5, 1, loc)
 	s.start()
+
+/mob/living/simple_animal/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null)
+	var/stunDam = 0
+	var/agonyDam = 0
+
+	if(stun_amount)
+		stunDam += stun_amount * 0.5
+		adjustFireLoss(stunDam)
+
+	if(agony_amount)
+		agonyDam += agony_amount * 0.5
+		adjustFireLoss(agonyDam)

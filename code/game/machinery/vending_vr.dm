@@ -48,41 +48,36 @@
 	/obj/item/weapon/storage/toolbox/lunchbox/syndicate = 3,
 	/obj/item/trash/bowl = 30)
 	contraband = list(/obj/item/weapon/material/knife/butch = 2)
-/*
-	var/list/log = list()
-	var/req_log_access = access_armory
 
-/obj/machinery/vending/security/vend(datum/stored_item/vending_product/R, mob/user)
-	if (..())
-		if(user.GetIdCard())
-			var/obj/item/weapon/card/id/tempid = user.GetIdCard()
-			var/list/list_item = list()
-			list_item += tempid.registered_name
-			list_item += stationtime2text()
-			list_item += R.item_name
-			log[++log.len] = list_item
-
-/obj/machinery/vending/security/proc/show_log(mob/user as mob)
-	if(user.GetIdCard())
-		var/obj/item/weapon/card/id/tempid = user.GetIdCard()
-		if(req_log_access in tempid.GetAccess())
-			var/datum/browser/popup = new(user, "vending_log", "Vending Log", 700, 500)
-			var/dat = ""
-			dat += "<center><span style='font-size:24pt'><b>SecTech Vending Log</b></span></center>"
-			dat += "<center><span style='font-size:16pt'>Welcome [user.name]!</span></center><br>"
-			dat += "<span style='font-size:8pt'>Below are the recent vending logs for your vending machine.</span><br>"
-			for(var/i in log)
-				dat += json_encode(i)
-				dat += ";<br>"
-			popup.set_content(dat)
-			popup.open()
-	else
-		to_chat(user,"<span class='warning'>You do not have the required access to view the vending logs for this machine.</span>")
-
-/obj/machinery/vending/security/verb/check_logs()
-	set name = "Check Vending Logs"
-	set category = "Object"
-	set src in oview(1)
-
-	show_log(usr)
-*/ //Polaris ported all of this.
+//I want this not just as part of the zoo. ;v
+/obj/machinery/vending/food
+	name = "Food-O-Mat"
+	desc = "A technological marvel, supposedly able to cook or mix a large variety of food or drink."
+	icon_state = "boozeomat"
+	icon_deny = "boozeomat-deny"
+	products = list(/obj/item/weapon/reagent_containers/food/drinks/bottle/orangejuice = 4,
+					/obj/item/weapon/reagent_containers/food/drinks/bottle/tomatojuice = 4,
+					/obj/item/weapon/reagent_containers/food/drinks/bottle/limejuice = 4,
+					/obj/item/weapon/reagent_containers/food/drinks/bottle/cream = 4,
+					/obj/item/weapon/reagent_containers/food/drinks/milk = 4,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/cola = 8,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/sodawater = 15,
+					/obj/item/weapon/reagent_containers/food/drinks/flask/barflask = 2,
+					/obj/item/weapon/reagent_containers/food/drinks/flask/vacuumflask = 2,
+					/obj/item/weapon/reagent_containers/food/drinks/ice = 9,
+					/obj/item/weapon/reagent_containers/food/drinks/tea = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/appletart = 4,
+					/obj/item/weapon/reagent_containers/food/snacks/cheeseburger = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/creamcheesebreadslice = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/grilledcheese = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/hotdog = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/loadedbakedpotato = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/margheritaslice = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/muffin = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/omelette = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/pastatomato = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/tofuburger = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/waffles = 10
+					)
+	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/mysterysoup = 10)
+	vend_delay = 15

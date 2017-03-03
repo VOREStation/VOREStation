@@ -150,12 +150,14 @@
 //misc, formerly from code/defines/weapons.dm
 /obj/item/weapon/surgical/bonegel
 	name = "bone gel"
+	desc = "For fixing bones."
 	icon_state = "bone-gel"
 	force = 0
 	throwforce = 1.0
 
 /obj/item/weapon/surgical/FixOVein
 	name = "FixOVein"
+	desc = "Like bone gel. For veins."
 	icon_state = "fixovein"
 	force = 0
 	throwforce = 1.0
@@ -164,6 +166,7 @@
 
 /obj/item/weapon/surgical/bonesetter
 	name = "bone setter"
+	desc = "Put them in their place."
 	icon_state = "bone setter"
 	force = 8.0
 	throwforce = 9.0
