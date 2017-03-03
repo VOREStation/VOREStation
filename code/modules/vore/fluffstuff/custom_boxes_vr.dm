@@ -77,6 +77,9 @@
 /obj/item/weapon/storage/backpack/dufflebag/sec/fluff/joanrisu
 	name = "Joan's Workbag"
 	desc = "A duffle bag Joan uses to carry her work equipment."
+	icon_state = "joanbag"
+	icon = 'icons/vore/custom_items_vr.dmi'
+	item_state = "duffle_med"
 	slowdown = 0
 
 	New()
