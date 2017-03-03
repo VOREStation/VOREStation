@@ -53,7 +53,7 @@
 
 //handle feral triggers
 
-	if(H.nutrition <= 200||H.traumatic_shock > 10) // Stress factors are in play
+	if(H.nutrition <= 200||H.traumatic_shock > 36) // Stress factors are in play
 		// If they're hungry, give nag messages.
 		if (!istype(H.loc, /mob)) // if they're in a mob, skip the hunger stuff so it doesn't mess with drain/absorption modes.
 			if(H.nutrition < 200 && H.nutrition > 150)
@@ -73,7 +73,7 @@
 				H.feral = min(150-H.nutrition, H.feral+1) //Feralness increases while this hungry, capped at 50-150 depending on hunger.
 
 		// If they're hurt, chance of snapping. Not if they're straight-up KO'd though.
-		if (H.stat == CONSCIOUS && H.traumatic_shock >=20)
+		if (H.stat == CONSCIOUS && H.traumatic_shock >=36 && H.in_stasis == 0) //30 brute/burn, or 18 halloss.
 			if (2.5*H.halloss >= H.traumatic_shock) //If the majority of their shock is due to halloss, greater chance of snapping.
 				if(prob(min(10,(0.2 * H.traumatic_shock))))
 					if(H.feral == 0)
