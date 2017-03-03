@@ -950,6 +950,49 @@
 	icon_state = "verin"
 	item_state = "verin_mob"
 
+//whiskyrose:Vinjj
+/obj/item/clothing/head/welding/fluff/vinjj
+	name = "Vinjj's Stylish Bandana"
+	desc = "A lovely blue and purple bandanna with a refined topaz hanging from its tail end, a pair of goggles are hidden underneath its fabric. Although for some strange reason, wearing this seems to inspire lewd thoughts."
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/vore/custom_clothes_vr.dmi',
+		slot_r_hand_str = 'icons/vore/custom_clothes_vr.dmi',
+		)
+	icon_state = "vinjjdana"
+	item_state = "vinjjdana_mob"
+	item_state_slots = list(slot_r_hand_str = "vinjjdana_mob_r", slot_l_hand_str = "vinjjdana_mob_l")
+	flags_inv = (HIDEEYES)
+	body_parts_covered = HEAD|EYES
+
+/obj/item/clothing/head/welding/fluff/vinjj/toggle() //overriding this 'cause it only conceals the eyes - it's a hat, not a mask
+	set category = "Object"
+	set src in usr
+
+	if(usr.canmove && !usr.stat && !usr.restrained())
+		if(src.up)
+			src.up = !src.up
+			body_parts_covered |= (EYES)
+			flags_inv |= (HIDEEYES)
+			icon_state = "vinjjdana"
+			item_state = "vinjjdana_mob"
+			usr << "You flip the goggles down to protect your eyes."
+		else
+			src.up = !src.up
+			body_parts_covered &= ~(EYES)
+			flags_inv &= ~(HIDEEYES)
+			icon_state = "vinjjdanaup"
+			item_state = "vinjjdanaup_mob"
+
+			usr << "You push the goggles up out of your face."
+		update_clothing_icon()	//so our mob-overlays
+		if (ismob(src.loc)) //should allow masks to update when it is opened/closed
+			var/mob/M = src.loc
+			M.update_inv_wear_mask()
+		usr.update_action_buttons()
+
 /*
 Departamental Swimsuits, for general use
 */
