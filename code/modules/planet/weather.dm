@@ -39,7 +39,7 @@
 	update_temperature()
 	if(old_light_modifier && current_weather.light_modifier != old_light_modifier) // Updating the sun should be done sparingly.
 		our_planet.update_sun()
-	message_admins("[our_planet.name]'s weather is now [new_weather], with a temperature of [temperature]&deg;K ([temperature - T0C]&deg;C | [temperature * 1.8 - 459.67]&deg;F).")
+	//message_admins("[our_planet.name]'s weather is now [new_weather], with a temperature of [temperature]&deg;K ([temperature - T0C]&deg;C | [temperature * 1.8 - 459.67]&deg;F).") //VOREStation Removal - I like weather, I just don't like hearing about it.
 
 /datum/weather_holder/proc/process()
 	if(world.time >= next_weather_shift)
