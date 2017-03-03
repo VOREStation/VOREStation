@@ -44,6 +44,70 @@
 	path = /obj/item/clothing/suit/storage/fluff/fedcoat/fedeng
 	allowed_roles = list("Chief Engineer","Atmospheric Technician","Station Engineer")
 
+// Trekie things
+//TOS
+/datum/gear/uniform/job_trek/cmd/tos
+	display_name = "TOS uniform, cmd"
+	path = /obj/item/clothing/under/rank/trek/command
+	allowed_roles = list("Head of Security","Colony Director","Head of Personnel","Chief Engineer","Research Director","Chief Medical Officer")
+
+/datum/gear/uniform/job_trek/medsci/tos
+	display_name = "TOS uniform, med/sci"
+	path = /obj/item/clothing/under/rank/trek/medsci
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist", "Xenobiologist")
+
+/datum/gear/uniform/job_trek/eng/tos
+	display_name = "TOS uniform, eng/sec"
+	path = /obj/item/clothing/under/rank/trek/engsec
+	allowed_roles = list("Chief Engineer","Atmospheric Technician","Station Engineer","Warden","Detective","Security Officer","Head of Security")
+
+//TNG
+/datum/gear/uniform/job_trek/cmd/tng
+	display_name = "TNG uniform, cmd"
+	path = /obj/item/clothing/under/rank/trek/command/next
+	allowed_roles = list("Head of Security","Colony Director","Head of Personnel","Chief Engineer","Research Director","Chief Medical Officer")
+
+/datum/gear/uniform/job_trek/medsci/tng
+	display_name = "TNG uniform, med/sci"
+	path = /obj/item/clothing/under/rank/trek/medsci/next
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist", "Xenobiologist")
+
+/datum/gear/uniform/job_trek/eng/tng
+	display_name = "TNG uniform, eng/sec"
+	path = /obj/item/clothing/under/rank/trek/engsec/next
+	allowed_roles = list("Chief Engineer","Atmospheric Technician","Station Engineer","Warden","Detective","Security Officer","Head of Security")
+
+//VOY
+/datum/gear/uniform/job_trek/cmd/voy
+	display_name = "VOY uniform, cmd"
+	path = /obj/item/clothing/under/rank/trek/command/voy
+	allowed_roles = list("Head of Security","Colony Director","Head of Personnel","Chief Engineer","Research Director","Chief Medical Officer")
+
+/datum/gear/uniform/job_trek/medsci/voy
+	display_name = "VOY uniform, med/sci"
+	path = /obj/item/clothing/under/rank/trek/medsci/voy
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist", "Xenobiologist")
+
+/datum/gear/uniform/job_trek/eng/voy
+	display_name = "VOY uniform, eng/sec"
+	path = /obj/item/clothing/under/rank/trek/engsec/voy
+	allowed_roles = list("Chief Engineer","Atmospheric Technician","Station Engineer","Warden","Detective","Security Officer","Head of Security")
+
+//ENT
+/datum/gear/uniform/job_trek/cmd/ent
+	display_name = "ENT uniform, cmd"
+	path = /obj/item/clothing/under/rank/trek/command/ent
+	allowed_roles = list("Head of Security","Colony Director","Head of Personnel","Chief Engineer","Research Director","Chief Medical Officer")
+
+/datum/gear/uniform/job_trek/medsci/ent
+	display_name = "ENT uniform, med/sci"
+	path = /obj/item/clothing/under/rank/trek/medsci/ent
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist", "Xenobiologist")
+
+/datum/gear/uniform/job_trek/eng/ent
+	display_name = "ENT uniform, eng/sec"
+	path = /obj/item/clothing/under/rank/trek/engsec/ent
+	allowed_roles = list("Chief Engineer","Atmospheric Technician","Station Engineer","Warden","Detective","Security Officer","Head of Security")
 /*
 Swimsuits
 */

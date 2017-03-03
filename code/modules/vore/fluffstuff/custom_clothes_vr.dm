@@ -989,3 +989,85 @@ Departamental Swimsuits, for general use
 	desc = "It's made of a special fiber that provides no protection whatsoever, but its elastic. This one was custom made for Penelope."
 	icon_state = "swimsuit_penelope"
 	item_state = "swimsuit_penelope_mob"
+
+//Just some alt-uniforms themed around Star Trek - Pls don't sue, Mr Roddenberry ;_;
+// PS. <3 Nienhaus
+
+
+/obj/item/clothing/under/rank/trek
+	name = "Section 31 Uniform"
+	desc = "Oooh... right."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = ""
+
+//TOS
+/obj/item/clothing/under/rank/trek/command
+	name = "Command Uniform"
+	desc = "The uniform worn by command officers in the mid 2260s."
+	icon_state = "trek_command"
+	item_state = "trek_command"
+	armor = list(melee = 10, bullet = 10, laser = 10,energy = 0, bomb = 0, bio = 10, rad = 10, fire = 0, acid = 0) // Considering only staff heads get to pick it
+
+/obj/item/clothing/under/rank/trek/engsec
+	name = "Operations Uniform"
+	desc = "The uniform worn by operations officers of the mid 2260s. You feel strangely vulnerable just seeing this..."
+	icon_state = "trek_engsec"
+	item_state = "trek_engsec"
+	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 10, fire = 0, acid = 0) // since they're shared between jobs and kinda moot.
+
+/obj/item/clothing/under/rank/trek/medsci
+	name = "MedSci Uniform"
+	desc = "The uniform worn by medsci officers in the mid 2260s."
+	icon_state = "trek_medsci"
+	item_state = "trek_medsci"
+	permeability_coefficient = 0.50
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0, fire = 0, acid = 0) // basically a copy of vanilla sci/med
+
+//TNG
+/obj/item/clothing/under/rank/trek/command/next
+	desc = "The uniform worn by command officers. This one's from the mid 2360s."
+	icon_state = "trek_next_command"
+	item_state = "trek_next_command"
+
+/obj/item/clothing/under/rank/trek/engsec/next
+	desc = "The uniform worn by operation officers. This one's from the mid 2360s."
+	icon_state = "trek_next_engsec"
+	item_state = "trek_next_engsec"
+
+/obj/item/clothing/under/rank/trek/medsci/next
+	desc = "The uniform worn by medsci officers. This one's from the mid 2360s."
+	icon_state = "trek_next_medsci"
+	item_state = "trek_next_medsci"
+
+//ENT
+/obj/item/clothing/under/rank/trek/command/ent
+	desc = "The uniform worn by command officers of the 2140s."
+	icon_state = "trek_ent_command"
+	item_state = "trek_ent_command"
+
+/obj/item/clothing/under/rank/trek/engsec/ent
+	desc = "The uniform worn by operations officers of the 2140s."
+	icon_state = "trek_ent_engsec"
+	item_state = "trek_ent_engsec"
+
+/obj/item/clothing/under/rank/trek/medsci/ent
+	desc = "The uniform worn by medsci officers of the 2140s."
+	icon_state = "trek_ent_medsci"
+	item_state = "trek_ent_medsci"
+
+//VOY
+/obj/item/clothing/under/rank/trek/command/voy
+	desc = "The uniform worn by command officers of the 2370s."
+	icon_state = "trek_voy_command"
+	item_state = "trek_voy_command"
+
+/obj/item/clothing/under/rank/trek/engsec/voy
+	desc = "The uniform worn by operations officers of the 2370s."
+	icon_state = "trek_voy_engsec"
+	item_state = "trek_voy_engsec"
+
+/obj/item/clothing/under/rank/trek/medsci/voy
+	desc = "The uniform worn by medsci officers of the 2370s."
+	icon_state = "trek_voy_medsci"
+	item_state = "trek_voy_medsci"
