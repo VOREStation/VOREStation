@@ -18,38 +18,6 @@
 /area/awaymission/zoo/pirateship
 	icon_state = "bluenew"
 
-/obj/machinery/vending/food
-	name = "Food-O-Mat"
-	desc = "A technological marvel, supposedly able to cook or mix a large variety of food or drink."
-	icon_state = "boozeomat"
-	icon_deny = "boozeomat-deny"
-	products = list(/obj/item/weapon/reagent_containers/food/drinks/bottle/orangejuice = 4,
-					/obj/item/weapon/reagent_containers/food/drinks/bottle/tomatojuice = 4,
-					/obj/item/weapon/reagent_containers/food/drinks/bottle/limejuice = 4,
-					/obj/item/weapon/reagent_containers/food/drinks/bottle/cream = 4,
-					/obj/item/weapon/reagent_containers/food/drinks/milk = 4,
-					/obj/item/weapon/reagent_containers/food/drinks/cans/cola = 8,
-					/obj/item/weapon/reagent_containers/food/drinks/cans/sodawater = 15,
-					/obj/item/weapon/reagent_containers/food/drinks/flask/barflask = 2,
-					/obj/item/weapon/reagent_containers/food/drinks/flask/vacuumflask = 2,
-					/obj/item/weapon/reagent_containers/food/drinks/ice = 9,
-					/obj/item/weapon/reagent_containers/food/drinks/tea = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/appletart = 4,
-					/obj/item/weapon/reagent_containers/food/snacks/cheeseburger = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/creamcheesebreadslice = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/grilledcheese = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/hotdog = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/loadedbakedpotato = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/margheritaslice = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/muffin = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/omelette = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/pastatomato = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/tofuburger = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/waffles = 10
-					)
-	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/mysterysoup = 10)
-	vend_delay = 15
-
 /obj/item/weapon/paper/zoo
 	name = "\improper Quarterly Report"
 	info = {"<i>There's nothing but spreadsheets and budget reports on this document, apparently regarding a zoo owned by NanoTrasen.</i>"}
