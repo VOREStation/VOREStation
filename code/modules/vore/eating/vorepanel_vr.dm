@@ -304,6 +304,9 @@
 
 		else if(istype(tgt,/obj/item))
 			var/obj/item/T = tgt
+			if(!(tgt in OB.internal_contents))
+				//Doesn't exist anymore, update.
+				return 1
 			intent = alert("What do you want to do to that?","Query","Examine","Use Hand")
 			switch(intent)
 				if("Examine")
