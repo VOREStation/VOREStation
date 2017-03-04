@@ -109,12 +109,14 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 			if(prob(15))
 				var/word = pick("dizzy","woosey","faint")
 				src << "\red You feel extremely [word]"
-		else
-			// There currently is a strange bug here. If the mob is not below -100 health
-			// when death() is called, apparently they will be just fine, and this way it'll
-			// spam deathgasp. Adjusting toxloss ensures the mob will stay dead.
-			toxloss += 300 // just to be safe!
-			death()
+		else //Not enough blood to survive (usually)
+			if(!pale)
+				pale = 1
+				update_body()
+			eye_blurry = max(eye_blurry,6)
+			Paralyse(3)
+			toxloss += 3
+			oxyloss += 75 // 15 more than dexp fixes (also more than dex+dexp+tricord)
 
 		// Without enough blood you slowly go hungry.
 		if(blood_volume < BLOOD_VOLUME_SAFE)

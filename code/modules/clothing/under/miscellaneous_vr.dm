@@ -3,6 +3,7 @@
 	desc = "This permit entitles the bearer to conduct their duties without a uniform. Normally issued to furred crewmembers or those with nothing to hide."
 	icon = 'icons/obj/card.dmi'
 	icon_state = "guest"
+	body_parts_covered = 0
 
 	sprite_sheets = list()
 

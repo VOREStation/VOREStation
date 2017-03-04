@@ -47,7 +47,7 @@
 	whisper_verb = "whispers"
 	exclaim_verb = "chitters"
 	key = "9"
-	flags = RESTRICTED
+	flags = 0
 	syllables = list("sque","sqah","boo","beh","nweh","boopa","nah","wah","een","sweh")
 
 /datum/language/unathi

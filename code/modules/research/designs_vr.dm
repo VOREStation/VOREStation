@@ -74,3 +74,10 @@
 	req_tech = list(TECH_DATA = 5)
 	build_path = /obj/item/weapon/circuitboard/resleeving_control
 	sort_string = "HAADE"
+
+/datum/design/circuit/partslathe
+	name = "parts lathe"
+	id = "partslathe"
+	req_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 2)
+	build_path = /obj/item/weapon/circuitboard/partslathe
+	sort_string = "HABAD"

@@ -119,6 +119,18 @@ item_path: /obj/item/clothing/accessory/medal/silver/security/fluff/dhael
 }
 
 {
+ckey: dhaeleena
+character_name: Dhaeleena M'iar
+item_path: /obj/item/weapon/gun/projectile/revolver/mateba/fluff/dhael
+}
+
+{
+ckey: dhaeleena
+character_name: Dhaeleena M'iar
+item_path: /obj/item/fluff/permit/dhaeleena_miar
+}
+
+{
 ckey: dickfreedomjohnson
 character_name: Elliot Richards
 item_path: /obj/item/clothing/accessory/medal/medical
@@ -274,7 +286,7 @@ item_path: /obj/item/device/modkit_conversion/fluff/harmonyspace
 {
 ckey: kisukegema
 character_name: Kisuke 'The Nerd' Gema
-item_path: /obj/item/clothing/glasses/sunglasses/fluff/nerdglasses
+item_path: /obj/item/clothing/glasses/sunglasses/omnihud/kamina
 }  
 
 {
@@ -484,6 +496,12 @@ item_path: /obj/item/device/pda_mod/fluff/warbrand2
 ckey: werebear
 character_name: Silas Newton
 item_path: /obj/item/clothing/glasses/threedglasses
+}
+
+{
+ckey: whiskyrose
+character_name: Vinjj
+item_path: /obj/item/clothing/head/welding/fluff/vinjj
 }
 
 {

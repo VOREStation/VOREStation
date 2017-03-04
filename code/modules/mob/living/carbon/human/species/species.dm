@@ -311,3 +311,7 @@
 // Called in life() when the mob has no client.
 /datum/species/proc/handle_npc(var/mob/living/carbon/human/H)
 	return
+
+// Called when lying down on a water tile.
+/datum/species/proc/can_breathe_water()
+	return FALSE

@@ -362,6 +362,8 @@
 	density = 1
 	opacity = 0
 	anchored = 1
+	var/blur_amount
+	var/confuse_amount
 
 	var/mob/living/carbon/human/occupant = null
 	var/connected = null
@@ -377,6 +379,17 @@
 	component_parts += new /obj/item/stack/cable_coil(src, 2)
 	RefreshParts()
 	update_icon()
+
+/obj/machinery/transhuman/resleever/RefreshParts()
+	var/scan_rating = 0
+	for(var/obj/item/weapon/stock_parts/scanning_module/SM in component_parts)
+		scan_rating += SM.rating
+	confuse_amount = (48 - scan_rating * 8)
+
+	var/manip_rating = 0
+	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
+		manip_rating += M.rating
+	blur_amount = (48 - manip_rating * 8)
 
 /obj/machinery/transhuman/resleever/attack_hand(mob/user as mob)
 	user.set_machine(src)
@@ -455,9 +468,13 @@
 		new_imp.part = affected
 
 	//Inform them and make them a little dizzy.
-	occupant << "<span class='warning'>You feel a small pain in your head as you're given a new backup implant. Oh, and a new body. It's disorienting, to say the least.</span>"
-	occupant.confused = max(occupant.confused, 30)
-	occupant.eye_blurry = max(occupant.eye_blurry, 30)
+	if(confuse_amount + blur_amount <= 16)
+		occupant << "<span class='notice'>You feel a small pain in your head as you're given a new backup implant. Your new body feels comfortable already, however.</span>"
+	else
+		occupant << "<span class='warning'>You feel a small pain in your head as you're given a new backup implant. Oh, and a new body. It's disorienting, to say the least.</span>"
+
+	occupant.confused = max(occupant.confused, confuse_amount)
+	occupant.eye_blurry = max(occupant.eye_blurry, blur_amount)
 
 	if(occupant.original_player != occupant.ckey)
 		log_and_message_admins("is now a cross-sleeved character. Body originally belonged to [occupant.original_player]. Mind is now [occupant.mind.name].",occupant)

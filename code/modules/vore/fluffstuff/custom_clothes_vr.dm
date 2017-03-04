@@ -806,6 +806,12 @@
 	rolled_sleeves = 0
 	starting_accessories = list(/obj/item/clothing/accessory/black)
 
+//Kisukegema:Kisuke `the nerd` Gema
+/obj/item/clothing/glasses/sunglasses/omnihud/kamina
+	name = "Kamina glasses"
+	icon_state = "kamina"
+	desc = "ROW ROW, FIGHT THE POWER."
+
 //Kitsuhana Uniforms
 /obj/item/clothing/under/rank/khi
 	name = "Delete Me"
@@ -944,6 +950,49 @@
 	icon_state = "verin"
 	item_state = "verin_mob"
 
+//whiskyrose:Vinjj
+/obj/item/clothing/head/welding/fluff/vinjj
+	name = "Vinjj's Stylish Bandana"
+	desc = "A lovely blue and purple bandanna with a refined topaz hanging from its tail end, a pair of goggles are hidden underneath its fabric. Although for some strange reason, wearing this seems to inspire lewd thoughts."
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/vore/custom_clothes_vr.dmi',
+		slot_r_hand_str = 'icons/vore/custom_clothes_vr.dmi',
+		)
+	icon_state = "vinjjdana"
+	item_state = "vinjjdana_mob"
+	item_state_slots = list(slot_r_hand_str = "vinjjdana_mob_r", slot_l_hand_str = "vinjjdana_mob_l")
+	flags_inv = (HIDEEYES)
+	body_parts_covered = HEAD|EYES
+
+/obj/item/clothing/head/welding/fluff/vinjj/toggle() //overriding this 'cause it only conceals the eyes - it's a hat, not a mask
+	set category = "Object"
+	set src in usr
+
+	if(usr.canmove && !usr.stat && !usr.restrained())
+		if(src.up)
+			src.up = !src.up
+			body_parts_covered |= (EYES)
+			flags_inv |= (HIDEEYES)
+			icon_state = "vinjjdana"
+			item_state = "vinjjdana_mob"
+			usr << "You flip the goggles down to protect your eyes."
+		else
+			src.up = !src.up
+			body_parts_covered &= ~(EYES)
+			flags_inv &= ~(HIDEEYES)
+			icon_state = "vinjjdanaup"
+			item_state = "vinjjdanaup_mob"
+
+			usr << "You push the goggles up out of your face."
+		update_clothing_icon()	//so our mob-overlays
+		if (ismob(src.loc)) //should allow masks to update when it is opened/closed
+			var/mob/M = src.loc
+			M.update_inv_wear_mask()
+		usr.update_action_buttons()
+
 /*
 Departamental Swimsuits, for general use
 */
@@ -983,3 +1032,85 @@ Departamental Swimsuits, for general use
 	desc = "It's made of a special fiber that provides no protection whatsoever, but its elastic. This one was custom made for Penelope."
 	icon_state = "swimsuit_penelope"
 	item_state = "swimsuit_penelope_mob"
+
+//Just some alt-uniforms themed around Star Trek - Pls don't sue, Mr Roddenberry ;_;
+// PS. <3 Nienhaus
+
+
+/obj/item/clothing/under/rank/trek
+	name = "Section 31 Uniform"
+	desc = "Oooh... right."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = ""
+
+//TOS
+/obj/item/clothing/under/rank/trek/command
+	name = "Command Uniform"
+	desc = "The uniform worn by command officers in the mid 2260s."
+	icon_state = "trek_command"
+	item_state = "trek_command"
+	armor = list(melee = 10, bullet = 10, laser = 10,energy = 0, bomb = 0, bio = 10, rad = 10, fire = 0, acid = 0) // Considering only staff heads get to pick it
+
+/obj/item/clothing/under/rank/trek/engsec
+	name = "Operations Uniform"
+	desc = "The uniform worn by operations officers of the mid 2260s. You feel strangely vulnerable just seeing this..."
+	icon_state = "trek_engsec"
+	item_state = "trek_engsec"
+	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 10, fire = 0, acid = 0) // since they're shared between jobs and kinda moot.
+
+/obj/item/clothing/under/rank/trek/medsci
+	name = "MedSci Uniform"
+	desc = "The uniform worn by medsci officers in the mid 2260s."
+	icon_state = "trek_medsci"
+	item_state = "trek_medsci"
+	permeability_coefficient = 0.50
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0, fire = 0, acid = 0) // basically a copy of vanilla sci/med
+
+//TNG
+/obj/item/clothing/under/rank/trek/command/next
+	desc = "The uniform worn by command officers. This one's from the mid 2360s."
+	icon_state = "trek_next_command"
+	item_state = "trek_next_command"
+
+/obj/item/clothing/under/rank/trek/engsec/next
+	desc = "The uniform worn by operation officers. This one's from the mid 2360s."
+	icon_state = "trek_next_engsec"
+	item_state = "trek_next_engsec"
+
+/obj/item/clothing/under/rank/trek/medsci/next
+	desc = "The uniform worn by medsci officers. This one's from the mid 2360s."
+	icon_state = "trek_next_medsci"
+	item_state = "trek_next_medsci"
+
+//ENT
+/obj/item/clothing/under/rank/trek/command/ent
+	desc = "The uniform worn by command officers of the 2140s."
+	icon_state = "trek_ent_command"
+	item_state = "trek_ent_command"
+
+/obj/item/clothing/under/rank/trek/engsec/ent
+	desc = "The uniform worn by operations officers of the 2140s."
+	icon_state = "trek_ent_engsec"
+	item_state = "trek_ent_engsec"
+
+/obj/item/clothing/under/rank/trek/medsci/ent
+	desc = "The uniform worn by medsci officers of the 2140s."
+	icon_state = "trek_ent_medsci"
+	item_state = "trek_ent_medsci"
+
+//VOY
+/obj/item/clothing/under/rank/trek/command/voy
+	desc = "The uniform worn by command officers of the 2370s."
+	icon_state = "trek_voy_command"
+	item_state = "trek_voy_command"
+
+/obj/item/clothing/under/rank/trek/engsec/voy
+	desc = "The uniform worn by operations officers of the 2370s."
+	icon_state = "trek_voy_engsec"
+	item_state = "trek_voy_engsec"
+
+/obj/item/clothing/under/rank/trek/medsci/voy
+	desc = "The uniform worn by medsci officers of the 2370s."
+	icon_state = "trek_voy_medsci"
+	item_state = "trek_voy_medsci"
