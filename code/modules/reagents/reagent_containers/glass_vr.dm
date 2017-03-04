@@ -7,58 +7,57 @@
 /obj/item/weapon/reagent_containers/glass/beaker/vial/vr
 	possible_transfer_amounts = list(5,10,15,30) //Dunno why there was no '30' option before.
 	w_class = ITEMSIZE_SMALL //Why would it be the same size as a beaker?
-	var/starting_reagent //Easy way of doing this.
+	var/comes_with = list() //Easy way of doing this.
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/New()
 	..()
-	if(starting_reagent)
-		reagents.add_reagent(starting_reagent, 30)
-		update_icon()
+	for(var/R in comes_with)
+		reagents.add_reagent(R,comes_with[R])
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/bicaridine
 	name = "vial (bicaridine)"
-	starting_reagent = "bicaridine"
+	comes_with = list("bicaridine" = 30)
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/dylovene
 	name = "vial (dylovene)"
-	starting_reagent = "dylovene"
+	comes_with = list("dylovene" = 30)
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/dermaline
 	name = "vial (dermaline)"
-	starting_reagent = "dermaline"
+	comes_with = list("dermaline" = 30)
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/kelotane
 	name = "vial (kelotane)"
-	starting_reagent = "kelotane"
+	comes_with = list("kelotane" = 30)
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/inaprovaline
 	name = "vial (inaprovaline)"
-	starting_reagent = "inaprovaline"
+	comes_with = list("inaprovaline" = 30)
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/dexalin
 	name = "vial (dexalin)"
-	starting_reagent = "dexalin"
+	comes_with = list("dexalin" = 30)
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/dexalinplus
 	name = "vial (dexalinp)"
-	starting_reagent = "dexalinp"
+	comes_with = list("dexalinp" = 30)
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/tricordrazine
 	name = "vial (tricordrazine)"
-	starting_reagent = "tricordrazine"
+	comes_with = list("tricordrazine" = 30)
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/alkysine
 	name = "vial (alkysine)"
-	starting_reagent = "alkysine"
+	comes_with = list("alkysine" = 30)
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/imidazoline
 	name = "vial (imidazoline)"
-	starting_reagent = "imidazoline"
+	comes_with = list("imidazoline" = 30)
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/peridaxon
 	name = "vial (peridaxon)"
-	starting_reagent = "peridaxon"
+	comes_with = list("peridaxon" = 30)
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/hyronalin
 	name = "vial (hyronalin)"
-	starting_reagent = "hyronalin"
+	comes_with = list("hyronalin" = 30)

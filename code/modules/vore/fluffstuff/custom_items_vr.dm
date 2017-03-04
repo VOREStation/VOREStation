@@ -321,43 +321,28 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 
 	New()
 		..()
-		reagents.add_reagent("inaprovaline", 5)
-		reagents.add_reagent("tricordrazine", 25)
+		loaded_vial.name = "[initial(loaded_vial.name)] (tricord)"
+		loaded_vial.desc = "30 Tricordrazine"
+		reagents.add_reagent("tricordrazine", 30)
 
 //arokha:Aronai Kadigan - Vials to go with mk2 hypo
-/obj/item/weapon/reagent_containers/glass/beaker/vial/vr
-	stabilize
+/obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff
+	aro_st
 		name = "vial (stabilize)"
 		desc = "10 Tricordrazine, 10 Dexalin Plus, 5 Tramadol, 5 Inaprovaline"
-		New()
-			..()
-			reagents.add_reagent("tricordrazine", 10)
-			reagents.add_reagent("dexalinp", 10)
-			reagents.add_reagent("tramadol", 5)
-			reagents.add_reagent("inaprovaline", 5)
-	bashed
+		comes_with = list("tricordrazine"=10,"dexalinp"=10,"tramadol"=5,"inaprovaline"=5)
+	aro_bt
 		name = "vial (brute)"
 		desc = "25 Bicaridine, 5 Tricordrazine"
-		New()
-			..()
-			reagents.add_reagent("bicaridine", 25)
-			reagents.add_reagent("tricordrazine", 5)
-	toasted
+		comes_with = list("bicaridine"=25,"tricordrazine"=5)
+	aro_bu
 		name = "vial (burn)"
 		desc = "10 Kelotane, 15 Dermaline, 5 Tricordrazine"
-		New()
-			..()
-			reagents.add_reagent("kelotane", 10)
-			reagents.add_reagent("dermaline", 15)
-			reagents.add_reagent("tricordrazine", 5)
-	poisoned
+		comes_with = list("kelotane"=10,"dermaline"=15,"tricordrazine"=5)
+	aro_tx
 		name = "vial (toxins)"
 		desc = "25 Dylovene, 2 Hyronalin, 3 Tricordrazine"
-		New()
-			..()
-			reagents.add_reagent("anti_toxin", 25)
-			reagents.add_reagent("hyronalin", 2)
-			reagents.add_reagent("tricordrazine", 3)
+		comes_with = list("anti_toxin"=25,"hyronalin"=2,"tricordrazine"=3)
 
 //Swat43:Fortune Bloise
 /obj/item/weapon/storage/backpack/satchel/fluff/swat43bag
@@ -584,3 +569,17 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	slowdown = 0
 	taurtype = /datum/sprite_accessory/tail/taur/feline/tempest
 	no_message = "These saddlebags seem to be fitted for someone else, and keep slipping off!"
+
+//PontifexMinimus: Lucius/Lucia Null
+/obj/item/weapon/fluff/dragor_dot
+	name = "supplemental battery"
+	desc = "A tiny supplemental battery for powering something or someone synthetic."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "dragor_dot"
+	w_class = ITEMSIZE_SMALL
+
+	attack_self(mob/user as mob)
+		if(user.ckey == "pontifexminimus")
+			user.verbs |= /mob/living/carbon/human/proc/shapeshifter_select_gender
+		else
+			return
