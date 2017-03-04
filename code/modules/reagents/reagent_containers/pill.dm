@@ -311,4 +311,4 @@
 
 /obj/item/weapon/reagent_containers/pill/diet/New()
 	..()
-	reagents.add_reagent("lipozine", 15) //VS Edit
+	reagents.add_reagent("lipozine", 15) //VOREStation Edit
