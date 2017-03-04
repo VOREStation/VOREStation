@@ -312,6 +312,7 @@
 	desc = ""
 	icon_state = "moth"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/moth
 	name = "moth wings"
@@ -516,6 +517,7 @@
 	icon_state = "feathered"
 	show_species_tail = 1
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/redpanda
 	name = "red panda"
