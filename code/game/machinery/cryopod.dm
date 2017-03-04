@@ -440,8 +440,8 @@
 			qdel(O)
 
 	//VOREStation Edit - Resleeving.
-	if(occupant.mind && (occupant.mind.name in transcore.backed_up))
-		var/datum/transhuman/mind_record/MR = transcore.backed_up[occupant.mind.name]
+	if(to_despawn.mind && (to_despawn.mind.name in transcore.backed_up))
+		var/datum/transhuman/mind_record/MR = transcore.backed_up[to_despawn.mind.name]
 		transcore.stop_backup(MR)
 	//VOREStation Edit End - Resleeving.
 
