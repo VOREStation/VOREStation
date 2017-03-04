@@ -16,7 +16,7 @@ var/church_name = null
 	return name
 
 /proc/command_name()
-	if (using_map.boss_name)
+	if(istype(using_map))
 		return using_map.boss_name
 
 /proc/change_command_name(var/name)
