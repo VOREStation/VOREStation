@@ -384,6 +384,11 @@ var/global/list/damage_icon_parts = list()
 
 			face_standing.Blend(hair_s, ICON_OVERLAY)
 
+	// VOREStation Edit - START
+	var/icon/ears_s = get_ears_overlay()
+	if (ears_s)
+		face_standing.Blend(ears_s, ICON_OVERLAY)
+	// VOREStation Edit - END
 	if(head_organ.nonsolid)
 		face_standing += rgb(,,,120)
 
