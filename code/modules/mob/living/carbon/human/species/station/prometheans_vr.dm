@@ -7,6 +7,7 @@
 	death_message = "goes limp, their body becoming softer..."
 	color_mult = 1
 	mob_size = MOB_MEDIUM
+	num_alternate_languages = 1 //Let's at least give them one
 
 /datum/species/shapeshifter/promethean/handle_death(var/mob/living/carbon/human/H)
 	return //This nullifies them gibbing.
