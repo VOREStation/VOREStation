@@ -512,6 +512,10 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 						continue
 					if(tmp_species in M.species_cannot_use)
 						continue
+					//VOREStation Add - Cyberlimb whitelisting.
+					if(M.whitelisted_to && !(user.ckey in M.whitelisted_to))
+						continue
+					//VOREStation Add End
 					usable_manufacturers[company] = M
 				if(!usable_manufacturers.len)
 					return

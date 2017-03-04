@@ -756,8 +756,14 @@
 	name = "Feline"
 	icon_state = "feline_s"
 
-///Wickedtemp: Chakat Tempest
+//wickedtemp: Chakat Tempest
 /datum/sprite_accessory/tail/taur/feline/tempest
 	name = "Feline (wickedtemp)"
 	icon_state = "tempest_s"
 	ckeys_allowed = list("wickedtemp")
+
+//silencedmp5a5: Serdykov Antoz
+/datum/sprite_accessory/tail/taur/wolf/serdy
+	name = "CyberSerdy (silencedmp5a5)"
+	icon_state = "serdy_s"
+	ckeys_allowed = list("silencedmp5a5")
