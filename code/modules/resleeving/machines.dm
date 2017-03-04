@@ -434,7 +434,9 @@
 		var/mob/M = G.affecting
 		if(put_mob(M))
 			qdel(G)
-	src.updateUsrDialog()
+			src.updateUsrDialog()
+			return //Don't call up else we'll get attack messsages
+
 	return ..()
 
 /obj/machinery/transhuman/resleever/proc/putmind(var/datum/transhuman/mind_record/MR)
