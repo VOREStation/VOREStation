@@ -65,37 +65,23 @@ var/global/list/limb_icon_cache = list()
 		overlays |= lip_icon
 		mob_icon.Blend(lip_icon, ICON_OVERLAY)
 
-	overlays |= get_hair_icon()
-
-	return mob_icon
-
-/obj/item/organ/external/head/proc/get_hair_icon()
-	var/image/res = image('icons/mob/human_face.dmi',"bald_s")
 	if(owner.f_style)
 		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[owner.f_style]
-		if(facial_hair_style && facial_hair_style.species_allowed && (species.get_bodytype() in facial_hair_style.species_allowed))
+		if(facial_hair_style && facial_hair_style.species_allowed && (species.get_bodytype(owner) in facial_hair_style.species_allowed))
 			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 			if(facial_hair_style.do_colouration)
 				facial_s.Blend(rgb(owner.r_facial, owner.g_facial, owner.b_facial), ICON_ADD)
-			res.overlays |= facial_s
+			overlays |= facial_s
 
-	if(owner.h_style)
-		var/style = owner.h_style
-		var/datum/sprite_accessory/hair/hair_style = hair_styles_list[style]
-		if(owner.head && (owner.head.flags_inv & BLOCKHEADHAIR))
-			if(!hair_style.veryshort)
-				hair_style = hair_styles_list["Short Hair"]
-		if(hair_style && (species.get_bodytype() in hair_style.species_allowed))
+	if(owner.h_style && !(owner.head && (owner.head.flags_inv & BLOCKHEADHAIR)))
+		var/datum/sprite_accessory/hair_style = hair_styles_list[owner.h_style]
+		if(hair_style && (species.get_bodytype(owner) in hair_style.species_allowed))
 			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 			if(hair_style.do_colouration && islist(h_col) && h_col.len >= 3)
 				hair_s.Blend(rgb(h_col[1], h_col[2], h_col[3]), ICON_ADD)
-			res.overlays |= hair_s
-	//VOREStation Add - Adds ear sprites to the head		
-	var/icon/ears_s = owner.get_ears_overlay()
-	if(ears_s) res.overlays |= ears_s
-	//VOREStation Add End
-	return res
+			overlays |= hair_s
 
+	return mob_icon
 
 /obj/item/organ/external/proc/get_icon(var/skeletal)
 
@@ -164,10 +150,8 @@ var/global/list/limb_icon_cache = list()
 			applying.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
 		icon_cache_key += "_tone_[s_tone]"
 	else if(s_col && s_col.len >= 3)
-		if(species && species.color_mult)
-			applying.Blend(rgb(s_col[1], s_col[2], s_col[3]), ICON_MULTIPLY)
-		else
-			applying.Blend(rgb(s_col[1], s_col[2], s_col[3]), ICON_ADD)
+		applying.Blend(rgb(s_col[1], s_col[2], s_col[3]), ICON_ADD)
+		icon_cache_key += "_color_[s_col[1]]_[s_col[2]]_[s_col[3]]"
 
 	// Translucency.
 	if(nonsolid) applying += rgb(,,,180) // SO INTUITIVE TY BYOND
