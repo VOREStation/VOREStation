@@ -7,8 +7,8 @@
 		if ("awoo")
 			message = "awoos loudly. AwoooOOOOoooo!"
 			m_type = 2
-
 		if ("flip")
+			message = "does a flip!"
 			if(!src.sleeping || !src.resting || !src.buckled || !src.restrained())
 				src.SpinAnimation(7,1)
 			m_type = 1
