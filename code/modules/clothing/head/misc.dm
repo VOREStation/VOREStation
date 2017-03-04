@@ -81,7 +81,7 @@
 	desc = "It's unspeakably stylish"
 	icon_state = "hasturhood"
 	item_state_slots = list(slot_r_hand_str = "enginering_beret", slot_l_hand_str = "enginering_beret")
-	flags_inv = BLOCKHEADHAIR
+	flags_inv = BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES
 
 /obj/item/clothing/head/nursehat
