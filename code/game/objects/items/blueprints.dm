@@ -36,6 +36,9 @@
 		// /area/derelict //commented out, all hail derelict-rebuilders!
 	)
 
+	// For the color overlays
+	var/list/areaColor_turfs = list()
+
 /obj/item/blueprints/attack_self(mob/M as mob)
 	if (!istype(M,/mob/living/carbon/human))
 		M << "This stack of blue paper means nothing to you." //monkeys cannot into projecting
@@ -244,3 +247,64 @@ move an amendment</a> to the drawing.</p>
 					return ROOM_ERR_SPACE
 		found+=T
 	return found
+
+/obj/item/blueprints/verb/seeAreaColors()
+	set src in usr
+	set category = "Blueprints"
+	set name = "Show Area Colors"
+
+	// Remove any existing
+	seeAreaColors_remove()
+
+	usr << "<span class='notice'>\The [src] shows nearby areas in different colors.</span>"
+	var/i = 0
+	for(var/area/A in range(usr))
+		if(get_area_type(A) == AREA_SPACE)
+			continue // Don't overlay all of space!
+		var/icon/areaColor = new('icons/misc/debug_rebuild.dmi', "[++i]")
+		usr << "- [A] as [i]"
+		for(var/turf/T in A.contents)
+			usr << image(areaColor, T, "blueprints", TURF_LAYER)
+			areaColor_turfs += T
+
+/obj/item/blueprints/verb/seeRoomColors()
+	set src in usr
+	set category = "Blueprints"
+	set name = "Show Room Colors"
+
+	var/res = detect_room(get_turf(usr))
+	if(!istype(res, /list))
+		switch(res)
+			if(ROOM_ERR_SPACE)
+				usr << "<span class='warning'>The new area must be completely airtight!</span>"
+				return
+			if(ROOM_ERR_TOOLARGE)
+				usr << "<span class='warning'>The new area too large!</span>"
+				return
+			else
+				usr << "<span class='danger'>Error! Please notify administration!</span>"
+				return
+	// Okay we got a room, lets color it
+	seeAreaColors_remove()
+	var/icon/green = new('icons/misc/debug_group.dmi', "green")
+	for(var/turf/T in res)
+		usr << image(green, T, "blueprints", TURF_LAYER)
+		areaColor_turfs += T
+	usr << "<span class='notice'>The space covered by the new area is highlighted in green.</span>"
+
+/obj/item/blueprints/verb/seeAreaColors_remove()
+	set src in usr
+	set category = "Blueprints"
+	set name = "Remove Area Colors"
+
+	areaColor_turfs.Cut()
+	if(usr.client.images.len)
+		for(var/image/i in usr.client.images)
+			if(i.icon_state == "blueprints")
+				usr.client.images.Remove(i)
+
+// Make sure to turn off the colors when we drop the blueprints.
+/obj/item/blueprints/dropped(mob/user as mob)
+	if(areaColor_turfs.len)
+		seeAreaColors_remove()
+	return ..()
