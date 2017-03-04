@@ -1,4 +1,4 @@
-/mob/living/carbon/human/emote_vr(var/act,var/m_type=1,var/message = null)
+/mob/living/carbon/human/proc/handle_emote_vr(var/act,var/m_type=1,var/message = null)
 
 	switch(act)
 		if ("mlem")
