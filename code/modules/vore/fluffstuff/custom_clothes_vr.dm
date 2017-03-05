@@ -803,48 +803,48 @@
 	item_state = ""
 
 	cmd //Command version
-		name = "KIN command suit"
-		desc = "Kitsuhana Industrial Navy uniform. An extra-comfortable command one, at that. I guess if you DON'T want anarchy for some reason."
+		name = "KHI command suit"
+		desc = "Kitsuhana Heavy Industries uniform. An extra-comfortable command one, at that. I guess if you DON'T want anarchy for some reason."
 		icon_state = "khi_uniform_cmd_i"
 		item_state = "khi_uniform_cmd"
 		worn_state = "khi_uniform_cmd"
 		armor = list(melee = 5, bullet = 10, laser = 10, energy = 0, bomb = 0, bio = 0, rad = 0)
 
 	sec //Security version
-		name = "KIN security suit"
-		desc = "Kitsuhana Industrial Navy uniform. This one has angry red security stripes. Keepin' the peace in style."
+		name = "KHI security suit"
+		desc = "Kitsuhana Heavy Industries uniform. This one has angry red security stripes. Keepin' the peace in style."
 		icon_state = "khi_uniform_sec_i"
 		item_state = "khi_uniform_sec"
 		worn_state = "khi_uniform_sec"
 		armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
 	med //Medical version
-		name = "KIN medical suit"
-		desc = "Kitsuhana Industrial Navy uniform. The medical version. Why not just get a new body, anyway?"
+		name = "KHI medical suit"
+		desc = "Kitsuhana Heavy Industries uniform. The medical version. Why not just get a new body, anyway?"
 		icon_state = "khi_uniform_med_i"
 		item_state = "khi_uniform_med"
 		worn_state = "khi_uniform_med"
 		armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 50, rad = 5)
 
 	eng //Engineering version
-		name = "KIN engineering suit"
-		desc = "Kitsuhana Industrial Navy uniform. One fit for an engineer, by the looks of it. Building the future, one disaster at a time."
+		name = "KHI engineering suit"
+		desc = "Kitsuhana Heavy Industries uniform. One fit for an engineer, by the looks of it. Building the future, one disaster at a time."
 		icon_state = "khi_uniform_eng_i"
 		item_state = "khi_uniform_eng"
 		worn_state = "khi_uniform_eng"
 		armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 10)
 
 	sci //Science version
-		name = "KIN science suit"
-		desc = "Kitsuhana Industrial Navy uniform. For performing science in, based on the color! Only SCIENCE can save us now."
+		name = "KHI science suit"
+		desc = "Kitsuhana Heavy Industries uniform. For performing science in, based on the color! Only SCIENCE can save us now."
 		icon_state = "khi_uniform_sci_i"
 		item_state = "khi_uniform_sci"
 		worn_state = "khi_uniform_sci"
 		armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 5, bio = 0, rad = 5)
 
 	fluff/aronai //Aro fluff version
-		name = "KIN meditech suit"
-		desc = "Kitsuhana Industrial Navy uniform. This one has the colors of a resleeving or mnemonics engineer. It has 'Aronai' written inside the top."
+		name = "KHI meditech suit"
+		desc = "Kitsuhana Heavy Industries uniform. This one has the colors of a resleeving or mnemonics engineer. It has 'Aronai' written inside the top."
 		icon_state = "khi_uniform_aro_i"
 		item_state = "khi_uniform_aro"
 		worn_state = "khi_uniform_aro"

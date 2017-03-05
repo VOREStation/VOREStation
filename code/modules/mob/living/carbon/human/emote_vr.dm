@@ -2,7 +2,7 @@
 
 	switch(act)
 		if ("mlem")
-			message = "mlems their tongue up over their nose. Mlem."
+			message = "mlems [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] tongue up over [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] nose. Mlem."
 			m_type = 1
 		if ("awoo")
 			message = "awoos loudly. AwoooOOOOoooo!"
@@ -14,7 +14,7 @@
 				var/obj/item/organ/external/E = get_organ(organ_name)
 				if(!E || E.is_stump() || E.splinted || (E.status & ORGAN_BROKEN))
 					involved_parts -= organ_name
-					danger += 2
+					danger += 5 //Add 5% to the chance for each problem limb
 
 			//Taurs are harder to flip
 			if(istype(tail_style, /datum/sprite_accessory/tail/taur))
@@ -33,9 +33,16 @@
 					spawn(10) //Stick the landing.
 						var/breaking = pick(involved_parts)
 						var/obj/item/organ/external/E = get_organ(breaking)
-						src.Weaken(5)
-						E.fracture()
-						log_and_message_admins("broke their [breaking] with *flip, ahahah.", src)
+						if(isSynthetic())
+							src.Weaken(5)
+							E.droplimb(1,DROPLIMB_EDGE)
+							message += " <span class='danger'>And loses a limb!</span>"
+							log_and_message_admins("lost their [breaking] with *flip, ahahah.", src)
+						else
+							src.Weaken(5)
+							E.fracture()
+							message += " <span class='danger'>And breaks something!</span>"
+							log_and_message_admins("broke their [breaking] with *flip, ahahah.", src)
 
 	if (message)
 		log_emote("[name]/[key] : [message]")
