@@ -33,6 +33,12 @@
 
 	// For the color overlays
 	var/list/areaColor_turfs = list()
+	// Easy configuring of what we're allowed to do where or whatnot
+	var/can_create_areas_in = AREA_SPACE	// Must be standing in space to create
+	var/can_create_areas_into = AREA_SPACE	// New areas will only overwrite space area turfs.
+	var/can_expand_areas_in = AREA_STATION	// Must be standing in station to expand
+	var/can_expand_areas_into = AREA_SPACE	// Can expand station areas only into space.
+	var/can_rename_areas_in = AREA_STATION	// Only station areas can be reanamed
 
 /obj/item/blueprints/attack_self(mob/M as mob)
 	if (!istype(M,/mob/living/carbon/human))
@@ -49,17 +55,23 @@
 		return
 	switch(href_list["action"])
 		if ("create_area")
-			if (get_area_type()!=AREA_SPACE)
+			if (!(get_area_type() & can_create_areas_in))
 				usr << "<span class='danger'>You can't make a new area here.</span>"
 				interact()
 				return
 			create_area()
 		if ("edit_area")
-			if (get_area_type()!=AREA_STATION)
+			if (!(get_area_type() & can_rename_areas_in))
 				usr << "<span class='danger'>You can't rename this area.</span>"
 				interact()
 				return
 			edit_area()
+		if ("expand_area")
+			if (!(get_area_type() & can_expand_areas_in))
+				usr << "<span class='danger'>You can't expand this area.</span>"
+				interact()
+				return
+			expand_area()
 
 /obj/item/blueprints/interact()
 	var/area/A = get_area()
@@ -80,9 +92,11 @@
 			return // Shouldn ever get here, just sanity check
 
 	// Offer links for what user is allowed to do based on current area
-	if(curAreaType == AREA_SPACE)
+	if(curAreaType & can_create_areas_in)
 		text += "<p>You can <a href='?src=\ref[src];action=create_area'>Mark this place as new area</a>.</p>"
-	if(curAreaType == AREA_STATION)
+	if(curAreaType & can_expand_areas_in)
+		text += "<p>You can <a href='?src=\ref[src];action=expand_area'>expand the area</a>.</p>"
+	if(curAreaType & can_rename_areas_in)
 		text += "<p>You can <a href='?src=\ref[src];action=edit_area'>rename the area</a>.</p>"
 
 	text += "</BODY></HTML>"
@@ -108,7 +122,7 @@
  * Create a new area encompasing the current room.
  */
 /obj/item/blueprints/proc/create_area()
-	var/res = detect_room_ex(get_turf(usr), AREA_SPACE)
+	var/res = detect_room_ex(get_turf(usr), can_create_areas_into)
 	if(!istype(res,/list))
 		switch(res)
 			if(ROOM_ERR_SPACE)
@@ -141,6 +155,37 @@
 		interact()
 	return
 
+/**
+ * Expand the current area to fill the current room.
+ */
+/obj/item/blueprints/proc/expand_area()
+	var/turf/startingTurf = get_turf(usr)
+	var/res = detect_room_ex(startingTurf, can_expand_areas_into)
+	if(!istype(res,/list))
+		switch(res)
+			if(ROOM_ERR_SPACE)
+				usr << "<span class='warning'>The new area must be completely airtight!</span>"
+				return
+			if(ROOM_ERR_TOOLARGE)
+				usr << "<span class='warning'>The new area too large!</span>"
+				return
+			else
+				usr << "<span class='warning'>Error! Please notify administration!</span>"
+				return
+	var/list/turf/turfs = res
+
+	var/area/A = get_area(startingTurf)
+	for(var/turf/T in A.contents)
+		turfs -= T // Don't add turfs already in A to A
+	if(turfs.len == 0)
+		usr << "<span class='warning'>\The [A] already covers the entire room.</span>"
+		return
+
+	move_turfs_to_area(turfs, A)
+	usr << "<span class='notice'>Expanded \the [A] by [turfs.len] turfs</span>"
+	spawn(5)
+		interact()
+	return
 
 /obj/item/blueprints/proc/move_turfs_to_area(var/list/turf/turfs, var/area/A)
 	A.contents.Add(turfs)
@@ -251,7 +296,9 @@
 	set category = "Blueprints"
 	set name = "Show Room Colors"
 
-	var/res = detect_room_ex(get_turf(usr), AREA_SPACE)
+	// If standing somewhere we can expand from, use expand perms, otherwise create
+	var/canOverwrite = (get_area_type() & can_expand_areas_in) ? can_expand_areas_into : can_create_areas_into
+	var/res = detect_room_ex(get_turf(usr), canOverwrite)
 	if(!istype(res, /list))
 		switch(res)
 			if(ROOM_ERR_SPACE)
