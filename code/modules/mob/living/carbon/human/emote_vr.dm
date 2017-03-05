@@ -29,7 +29,6 @@
 				message = "does a flip!"
 				m_type = 1
 
-				world.log << "[src] *flip with danger [danger]%"
 				if(prob(danger))
 					spawn(10) //Stick the landing.
 						var/breaking = pick(involved_parts)
