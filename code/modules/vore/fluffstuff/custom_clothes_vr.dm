@@ -1092,3 +1092,45 @@ Departamental Swimsuits, for general use
 	desc = "The uniform worn by medsci officers of the 2370s."
 	icon_state = "trek_voy_medsci"
 	item_state = "trek_voy_medsci"
+
+//DS9
+
+/obj/item/clothing/suit/storage/trek/ds9
+	name = "Padded Overcoat"
+	desc = "The overcoat worn by all officers of the 2380s."
+	icon_state = "trek_ds9_coat"
+	item_state = "trek_ds9_coat_mob"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	permeability_coefficient = 0.50
+	allowed = list(
+		/obj/item/device/flashlight, /obj/item/device/analyzer,
+		/obj/item/device/radio, /obj/item/weapon/tank/emergency/oxygen,
+		/obj/item/weapon/reagent_containers/hypospray, /obj/item/device/healthanalyzer,
+		/obj/item/weapon/reagent_containers/dropper,/obj/item/weapon/reagent_containers/syringe,
+		/obj/item/weapon/reagent_containers/glass/bottle,/obj/item/weapon/reagent_containers/glass/beaker,
+		/obj/item/weapon/reagent_containers/pill,/obj/item/weapon/storage/pill_bottle
+		)
+	armor = list(melee = 20, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 20, rad = 25)
+
+/obj/item/clothing/suit/storage/trek/ds9/admiral // Only for adminuz
+	name = "Admiral Overcoat"
+	desc = "Admirality specialty coat to keep flag officers fashionable and protected."
+	icon_state = "trek_ds9_coat_adm"
+	item_state = "trek_ds9_coat_adm_mob"
+	armor = list(melee = 45, bullet = 35, laser = 35, energy = 20, bomb = 0, bio = 40, rad = 55)
+
+
+/obj/item/clothing/under/rank/trek/command/ds9
+	desc = "The uniform worn by command officers of the 2380s."
+	icon_state = "trek_command"
+	item_state = "trek_ds9_command"
+
+/obj/item/clothing/under/rank/trek/engsec/ds9
+	desc = "The uniform worn by operations officers of the 2380s."
+	icon_state = "trek_engsec"
+	item_state = "trek_ds9_engsec"
+
+/obj/item/clothing/under/rank/trek/medsci/ds9
+	desc = "The uniform undershit worn by medsci officers of the 2380s."
+	icon_state = "trek_medsci"
+	item_state = "trek_ds9_medsci"
