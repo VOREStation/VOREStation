@@ -307,11 +307,61 @@
 		return 1
 	return 0
 
+//-----------------------Tranq Gun----------------------------------
+/obj/item/weapon/gun/projectile/dartgun/tranq
+	name = "Tranquilizer Gun"
+	desc = "A gas-powered dart gun designed by the National Armory of Gaia. This gun is used primarily by United Federation special forces for Tactical Espionage missions. Don't forget your bandana."
+	icon_state = "tranqgun"
+	item_state = null
+
+	caliber = "dart"
+	fire_sound = 'sound/weapons/empty.ogg'
+	fire_sound_text = "a metallic click"
+	recoil = 0
+	silenced = 1
+	load_method = MAGAZINE
+	magazine_type = /obj/item/ammo_magazine/chemdart
+	allowed_magazines = list(/obj/item/ammo_magazine/chemdart)
+	auto_eject = 0
+
+/obj/item/weapon/gun/projectile/dartgun/tranq/update_icon()
+	if(!ammo_magazine)
+		icon_state = "tranqgun"
+		return 1
+
+	if(!ammo_magazine.stored_ammo || ammo_magazine.stored_ammo.len)
+		icon_state = "tranqgun"
+	else if(ammo_magazine.stored_ammo.len > 5)
+		icon_state = "tranqgun"
+	else
+		icon_state = "tranqgun"
+	return 1
+
+//-----------------------UF-ARC----------------------------------
+/obj/item/weapon/gun/projectile/automatic/carbine/fluff/ufarc
+	name = "UF-ARC"
+	desc = "The UF-ARC is a lightweight assault rifle manufactured by the National Armory of Gaia and sold almost exclusively to the United Federation's standing army, the Military Assault Command Operations Department (MACOs)."
+	icon = 'icons/obj/gun64_vr.dmi'
+	icon_state = "ufarc"
+	icon_override = 'icons/obj/gun_vr.dmi'
+	item_state = "battlerifle_i"
+	item_icons = null
+
+/obj/item/weapon/gun/projectile/automatic/carbine/fluff/ufarc/update_icon(var/ignore_inhands)
+	..()
+	if(istype(ammo_magazine,/obj/item/ammo_magazine/a556m))
+		icon_state = "ufarc"
+	else
+		icon_state = (ammo_magazine)? "ufarc" : "ufarc-empty"
+	item_state = (ammo_magazine)? "bullpup" : "bullpup-empty"
+	if(!ignore_inhands) update_held_icon()
+
+
 //-----------------------G44----------------------------------
 /obj/item/weapon/gun/projectile/automatic/carbine/fluff/g44
 	name = "G44 Rifle"
 	desc = "The G44 is a lightweight assault rifle manufactured by the National Armory of Gaia and sold almost exclusively to the United Federation's standing army, the Military Assault Command Operations Department (MACOs)."
-	icon = 'icons/vore/custom_guns_vr.dmi'
+	icon = 'icons/obj/gun64_vr.dmi'
 	icon_state = "g44"
 	item_state = "bullpup"
 
@@ -328,7 +378,7 @@
 /obj/item/weapon/gun/energy/gun/burst/g44e
 	name = "G44 Energy Rifle"
 	desc = "The G44 Energy is a laser variant of the G44 lightweight assault rifle manufactured by the National Armory of Gaia. Though almost exclusively to the United Federation's Military Assault Command Operations Department (MACOs) and Starfleet, it is occassionally sold to security departments for their stun capabilities."
-	icon = 'icons/vore/custom_guns_vr.dmi'
+	icon = 'icons/obj/gun64_vr.dmi'
 	icon_state = "g44estun100"
 	item_state = "energystun100" //This is temporary.
 	fire_sound = 'sound/weapons/Taser.ogg'
@@ -342,7 +392,7 @@
 	modifystate = "g44estun"
 
 //	requires_two_hands = 1
-	one_handed_penalty = 2
+	one_handed_penalty = 4
 
 	firemodes = list(
 		list(mode_name="stun", burst=1, projectile_type=/obj/item/projectile/beam/stun/weak, modifystate="g44estun", fire_sound='sound/weapons/Taser.ogg', charge_cost = 100),
