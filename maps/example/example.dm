@@ -4,6 +4,8 @@
 	#include "example-2.dmm"
 
 	#include "example_defines.dm"
+	#include "example_elevator.dm"
+	#include "example_areas.dm"
 
 	#define USING_MAP_DATUM /datum/map/example
 

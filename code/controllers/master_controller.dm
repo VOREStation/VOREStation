@@ -76,5 +76,12 @@ datum/controller/game_controller/proc/setup_objects()
 	//Set up spawn points.
 	populate_spawn_points()
 
+	admin_notice("<span class='danger'>Initializing turbolifts</span>", R_DEBUG)
+	for(var/thing in turbolifts)
+		if(!deleted(thing))
+			var/obj/turbolift_map_holder/lift = thing
+			lift.initialize()
+			sleep(-1)
+
 	admin_notice("<span class='danger'>Initializations complete.</span>", R_DEBUG)
 	sleep(-1)
