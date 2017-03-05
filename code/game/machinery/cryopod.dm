@@ -360,7 +360,7 @@
 				if(!find_control_computer(urgent=1))
 					return
 
-			despawn_occupant()
+			despawn_occupant(occupant)
 
 // This function can not be undone; do not call this unless you are sure
 // Also make sure there is a valid control computer
@@ -384,10 +384,14 @@
 
 // This function can not be undone; do not call this unless you are sure
 // Also make sure there is a valid control computer
-/obj/machinery/cryopod/proc/despawn_occupant()
+/obj/machinery/cryopod/proc/despawn_occupant(var/mob/to_despawn)
+	//Recursively despawn mobs
+	for(var/mob/M in to_despawn)
+		despawn_occupant(M)
+
 	//Drop all items into the pod.
-	for(var/obj/item/W in occupant)
-		occupant.drop_from_inventory(W)
+	for(var/obj/item/W in to_despawn)
+		to_despawn.drop_from_inventory(W)
 		W.forceMove(src)
 
 		if(W.contents.len) //Make sure we catch anything not handled by qdel() on the items.
@@ -398,7 +402,7 @@
 
 	//Delete all items not on the preservation list.
 	var/list/items = contents.Copy()
-	items -= occupant // Don't delete the occupant
+	items -= to_despawn // Don't delete the occupant
 	items -= announce // or the autosay radio.
 
 	for(var/obj/item/W in items)
@@ -430,36 +434,37 @@
 	for(var/datum/objective/O in all_objectives)
 		// We don't want revs to get objectives that aren't for heads of staff. Letting
 		// them win or lose based on cryo is silly so we remove the objective.
-		if(O.target == occupant.mind)
+		if(O.target == to_despawn.mind)
 			if(O.owner && O.owner.current)
 				O.owner.current << "<span class='warning'>You get the feeling your target is no longer within your reach...</span>"
 			qdel(O)
 
 	//Handle job slot/tater cleanup.
-	var/job = occupant.mind.assigned_role
+	var/job = to_despawn.mind.assigned_role
 
 	job_master.FreeRole(job)
 
-	if(occupant.mind.objectives.len)
-		qdel(occupant.mind.objectives)
-		occupant.mind.special_role = null
+	if(to_despawn.mind.objectives.len)
+		qdel(to_despawn.mind.objectives)
+		to_despawn.mind.special_role = null
+
 	//else
 		//if(ticker.mode.name == "AutoTraitor")
 			//var/datum/game_mode/traitor/autotraitor/current_mode = ticker.mode
-			//current_mode.possible_traitors.Remove(occupant)
+			//current_mode.possible_traitors.Remove(to_despawn)
 
 	// Delete them from datacore.
 
 	if(PDA_Manifest.len)
 		PDA_Manifest.Cut()
 	for(var/datum/data/record/R in data_core.medical)
-		if((R.fields["name"] == occupant.real_name))
+		if((R.fields["name"] == to_despawn.real_name))
 			qdel(R)
 	for(var/datum/data/record/T in data_core.security)
-		if((T.fields["name"] == occupant.real_name))
+		if((T.fields["name"] == to_despawn.real_name))
 			qdel(T)
 	for(var/datum/data/record/G in data_core.general)
-		if((G.fields["name"] == occupant.real_name))
+		if((G.fields["name"] == to_despawn.real_name))
 			qdel(G)
 
 	icon_state = base_icon_state
@@ -468,21 +473,20 @@
 
 
 	//Make an announcement and log the person entering storage.
-	control_computer.frozen_crew += "[occupant.real_name], [occupant.mind.role_alt_title] - [stationtime2text()]"
-	control_computer._admin_logs += "[key_name(occupant)] ([occupant.mind.role_alt_title]) at [stationtime2text()]"
-	log_and_message_admins("[key_name(occupant)] ([occupant.mind.role_alt_title]) entered cryostorage.")
+	control_computer.frozen_crew += "[to_despawn.real_name], [to_despawn.mind.role_alt_title] - [stationtime2text()]"
+	control_computer._admin_logs += "[key_name(to_despawn)] ([to_despawn.mind.role_alt_title]) at [stationtime2text()]"
+	log_and_message_admins("[key_name(to_despawn)] ([to_despawn.mind.role_alt_title]) entered cryostorage.")
 
-	announce.autosay("[occupant.real_name], [occupant.mind.role_alt_title], [on_store_message]", "[on_store_name]")
-	//visible_message("<span class='notice'>\The [initial(name)] hums and hisses as it moves [occupant.real_name] into storage.</span>", 3)
-	visible_message("<span class='notice'>\The [initial(name)] [on_store_visible_message_1] [occupant.real_name] [on_store_visible_message_2].</span>", 3)
+	announce.autosay("[to_despawn.real_name], [to_despawn.mind.role_alt_title], [on_store_message]", "[on_store_name]")
+	//visible_message("<span class='notice'>\The [initial(name)] hums and hisses as it moves [to_despawn.real_name] into storage.</span>", 3)
+	visible_message("<span class='notice'>\The [initial(name)] [on_store_visible_message_1] [to_despawn.real_name] [on_store_visible_message_2].</span>", 3)
 
 	//This should guarantee that ghosts don't spawn.
-	occupant.ckey = null
+	to_despawn.ckey = null
 
 	// Delete the mob.
-	qdel(occupant)
+	qdel(to_despawn)
 	set_occupant(null)
-
 
 /obj/machinery/cryopod/attackby(var/obj/item/weapon/G as obj, var/mob/user as mob)
 
@@ -504,7 +508,7 @@
 
 		if(M.client)
 			if(alert(M,"Would you like to enter long-term storage?",,"Yes","No") == "Yes")
-				if(!M || !grab || !grab:affecting) return
+				if(!M || !grab || !grab.affecting) return
 				willing = 1
 		else
 			willing = 1
