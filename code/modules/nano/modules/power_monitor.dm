@@ -29,6 +29,10 @@
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "power_monitor.tmpl", "Power Monitoring Console", 800, 500, state = state)
+		// adding a template with the key "mapContent" enables the map ui functionality
+		ui.add_template("mapContent", "power_monitor_map_content.tmpl")
+		// adding a template with the key "mapHeader" replaces the map header content
+		ui.add_template("mapHeader", "power_monitor_map_header.tmpl")
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

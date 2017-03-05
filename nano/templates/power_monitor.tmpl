@@ -2,6 +2,7 @@
 	<div class="notice" style="height: 22px">
 		{{:helper.link('Show List', 'cancel', { 'clear' : 1})}}   Sensor selected: {{:data.focus.name}} 
 	</div>
+	{{:helper.link('Show APCs On Map', 'pin-s', {'showMap' : 1})}}
 	{{if data.focus.error}}
 		{{:data.focus.error}}
 	{{else}}
