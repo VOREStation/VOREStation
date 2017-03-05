@@ -412,9 +412,9 @@
 				owner << "<span class='notice'>The attempt to escape from your [name] has failed!</span>"
 				return
 
-		else if(prob(transferchance) && transferlocation) //Next, let's have it see if they end up getting into an even bigger mess then when they started.
+		else if(prob(transferchance) && istype(transferlocation)) //Next, let's have it see if they end up getting into an even bigger mess then when they started.
 			internal_contents -= R
-			transferlocation.internal_contents += R
+			transferlocation.internal_contents |= R
 			R << "<span class='warning'>Your attempt to escape [name] has failed and your struggles only results in you sliding into [owner]'s [transferlocation]!</span>"
 			owner << "<span class='warning'>Someone slid into your [transferlocation] due to their struggling inside your [name]!</span>"
 			return
