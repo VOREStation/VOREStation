@@ -2,7 +2,7 @@
 
 	switch(act)
 		if ("mlem")
-			message = "mlems their tongue up over their nose. Mlem."
+			message = "mlems [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] tongue up over [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] nose. Mlem."
 			m_type = 1
 		if ("awoo")
 			message = "awoos loudly. AwoooOOOOoooo!"
@@ -36,12 +36,12 @@
 						if(isSynthetic())
 							src.Weaken(5)
 							E.droplimb(1,DROPLIMB_EDGE)
-							visible_message("<span class='warning'>[src]'s [E.name] flies off!</span>","<span class='warning'>Your flipping seems to have cost you, this time.</span>")
+							message += " <span class='danger'>And loses a limb!</span>"
 							log_and_message_admins("lost their [breaking] with *flip, ahahah.", src)
 						else
 							src.Weaken(5)
 							E.fracture()
-							visible_message("<span class='warning'>[src]'s [E.name] emits a sickening crunch as they land!</span>","<span class='warning'>Your flipping seems to have cost you, this time.</span>")
+							message += " <span class='danger'>And breaks something!</span>"
 							log_and_message_admins("broke their [breaking] with *flip, ahahah.", src)
 
 	if (message)
