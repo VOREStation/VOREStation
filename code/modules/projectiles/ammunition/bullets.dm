@@ -24,6 +24,13 @@
 	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/bullet/pistol/rubber
 
+/obj/item/ammo_casing/c38/emp
+	name = ".38 haywire round"
+	desc = "A .38 bullet casing fitted with a single-use ion pulse generator."
+	icon_state = "empcasing"
+	projectile_type = /obj/item/projectile/ion/small
+	matter = list(DEFAULT_WALL_MATERIAL = 130, "uranium" = 100)
+
 /obj/item/ammo_casing/c9mm
 	desc = "A 9mm bullet casing."
 	caliber = "9mm"
@@ -87,11 +94,24 @@
 	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/energy/flash
 
+/obj/item/ammo_casing/c45/emp
+	name = ".45 haywire round"
+	desc = "A .45 bullet casing fitted with a single-use ion pulse generator."
+	projectile_type = /obj/item/projectile/ion/small
+	icon_state = "empcasing"
+	matter = list(DEFAULT_WALL_MATERIAL = 130, "uranium" = 100)
+
 /obj/item/ammo_casing/a10mm
 	desc = "A 10mm bullet casing."
 	caliber = "10mm"
 	projectile_type = /obj/item/projectile/bullet/pistol/medium
 
+/obj/item/ammo_casing/a10mm/emp
+	name = "10mm haywire round"
+	desc = "A 10mm bullet casing fitted with a single-use ion pulse generator."
+	projectile_type = /obj/item/projectile/ion/small
+	icon_state = "empcasing"
+	matter = list(DEFAULT_WALL_MATERIAL = 130, "uranium" = 100)
 
 /obj/item/ammo_casing/shotgun
 	name = "shotgun slug"
@@ -150,13 +170,13 @@
 	projectile_type = /obj/item/projectile/energy/flash/flare
 	matter = list(DEFAULT_WALL_MATERIAL = 90, "glass" = 90)
 
-
 /obj/item/ammo_casing/shotgun/emp
 	name = "ion shell"
 	desc = "An advanced shotgun round that creates a small EMP when it strikes a target."
 	icon_state = "empshell"
-	projectile_type = /obj/item/projectile/bullet/shotgun/ion
-	matter = list(DEFAULT_WALL_MATERIAL = 360, "glass" = 720)
+	projectile_type = /obj/item/projectile/ion
+//	projectile_type = /obj/item/projectile/bullet/shotgun/ion
+	matter = list(DEFAULT_WALL_MATERIAL = 360, "uranium" = 240)
 
 /obj/item/ammo_casing/a762
 	desc = "A 7.62mm bullet casing."

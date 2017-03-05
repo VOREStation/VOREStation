@@ -432,4 +432,4 @@
 /obj/item/weapon/spellbook/oneuse/charge/recoil(mob/user as mob)
 	..()
 	user <<"<span class='warning'>[src] suddenly feels very warm!</span>"
-	empulse(src, 1, 1)
+	empulse(src, 1, 1, 1, 1)
