@@ -327,7 +327,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		usr << "Not when you're not dead!"
 		return
 
-	usr.loc = pick(get_area_turfs(A))
+	usr.forceMove(pick(get_area_turfs(A)))
 	usr.on_mob_jump()
 
 /mob/observer/dead/verb/follow(input in getmobs())
