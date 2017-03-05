@@ -36,6 +36,7 @@
 "J" = (/obj/machinery/light,/obj/effect/floor_decal/corner/white/diagonal,/turf/simulated/floor/tiled/dark,/area/aisat)
 "K" = (/obj/structure/cable/yellow,/obj/structure/cable/yellow{d1 = 16; d2 = 0; icon_state = "16-0"},/turf/simulated/floor/plating,/area/aisat)
 "L" = (/turf/simulated/floor/tiled/red,/area/aisat)
+"M" = (/obj/turbolift_map_holder/example{dir = 1; icon = 'icons/obj/turbolift_preview_5x5.dmi'},/turf/simulated/floor/tiled/red,/area/aisat)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -61,13 +62,13 @@ aaaaaaaabhhFFFhGhhhhhEbaaaaaaaaa
 aaaaaaaabnbFFFhnhhhhhEbaaaaaaaaa
 aaaaaaaabHbhhhhIhhhhhEbaaaaaaaaa
 aaaaaaaabbbhJhhnhhJhhKbaaaaaaaaa
-aaaaaaaabbbbbLLLLLbbbbbaaaaaaaaa
+aaaaaaaabbbbbbnnnbbbbbbaaaaaaaaa
 aaaaaaaaaaaabLLLLLbaaaaaaaaaaaaa
 aaaaaaaaaaaabLLLLLbaaaaaaaaaaaaa
 aaaaaaaaaaaabLLLLLbaaaaaaaaaaaaa
 aaaaaaaaaaaabLLLLLbaaaaaaaaaaaaa
+aaaaaaaaaaaabMLLLLbaaaaaaaaaaaaa
 aaaaaaaaaaaabbbbbbbaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}
