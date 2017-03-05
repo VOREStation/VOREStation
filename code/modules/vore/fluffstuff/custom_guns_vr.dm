@@ -370,9 +370,29 @@
 	desc = "Some serious drywall work, coming up!"
 
 //-----------------------KHI Common----------------------------------
+// // // Pistols
 /obj/item/weapon/gun/projectile/khi/process_chambered()
 	if (!chambered) return
 	qdel(chambered) //Devours ammo rather than fires it.
+
+/obj/item/weapon/gun/projectile/khi/update_icon()
+	..()
+	if(ammo_magazine)
+		icon_state = "[initial(icon_state)]"
+	else
+		icon_state = "[initial(icon_state)]-empty"
+
+// // // Automatics
+/obj/item/weapon/gun/projectile/automatic/khi/process_chambered()
+	if (!chambered) return
+	qdel(chambered) //Devours ammo rather than fires it.
+
+/obj/item/weapon/gun/projectile/automatic/khi/update_icon()
+	..()
+	if(ammo_magazine)
+		icon_state = "[initial(icon_state)]"
+	else
+		icon_state = "[initial(icon_state)]-empty"
 
 //-----------------------KHI Pistol----------------------------------
 /obj/item/weapon/gun/projectile/khi/pistol

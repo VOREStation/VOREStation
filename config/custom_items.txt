@@ -57,7 +57,7 @@ item_path: /obj/item/clothing/head/helmet/hos/fluff/lethe
 {
 ckey: arokha
 character_name: Aronai Kadigan
-item_path: /obj/item/weapon/storage/box/fluff/aronai
+item_path: /obj/item/weapon/storage/backpack/satchel/gen/fluff/aronai
 }
 
 # ######## B CKEYS
@@ -348,6 +348,17 @@ item_path: /obj/item/weapon/melee/fluff/holochain
 }
 
 # ######## P CKEYS
+{
+ckey: pontifexminimus
+character_name: Lucius Null
+item_path: /obj/item/weapon/fluff/dragor_dot
+}
+{
+ckey: pontifexminimus
+character_name: Lucia Null
+item_path: /obj/item/weapon/fluff/dragor_dot
+}
+
 # ######## Q CKEYS
 # ######## R CKEYS
 {

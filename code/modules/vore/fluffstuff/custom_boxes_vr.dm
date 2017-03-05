@@ -153,16 +153,26 @@
 	has_items = list(/obj/item/clothing/under/swimsuit/fluff/penelope)
 
 //Arokha:Aronai Kadigan
-/obj/item/weapon/storage/box/fluff/aronai
-	name = "Aronai's Kit"
-	desc = "A kit containing Aronai's equipment."
-	has_items = list(
-		///obj/item/weapon/storage/backpack/fluff/aronai,
-		///obj/item/weapon/rig/light/hacker/fluff/aronai,
-		/obj/item/clothing/under/rank/khi/fluff/aronai,
-		/obj/item/fluff/permit/aronai_kadigan,
-		/obj/item/weapon/gun/projectile/khi/pistol,
-		/obj/item/ammo_magazine/c45m/flash)
+/obj/item/weapon/storage/backpack/satchel/gen/fluff/aronai
+	name = "blue medical satchel"
+	desc = "A medical satchel done up in blue and white."
+
+	New()
+		..() //Might look like a lot... but all small items.
+		new /obj/item/weapon/reagent_containers/hypospray/vr/fluff/aronai(src)
+		new /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff/aro_st(src)
+		new /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff/aro_bt(src)
+		new /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff/aro_bu(src)
+		new /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff/aro_tx(src)
+		//Centcom stuff and permit
+		new /obj/item/weapon/card/id/centcom/fluff/aronai(src)
+		new /obj/item/fluff/permit/aronai_kadigan(src)
+		new /obj/item/clothing/under/rank/khi/fluff/aronai(src)
+		new /obj/item/clothing/glasses/sunglasses/omnihud(src)
+		//Gun and holster
+		new /obj/item/weapon/gun/projectile/khi/pistol(src)
+		new /obj/item/ammo_magazine/c45m/flash(src)
+		new /obj/item/clothing/accessory/holster/armpit(src)
 
 /*
 Swimsuits, for general use, to avoid arriving to work with your swimsuit.

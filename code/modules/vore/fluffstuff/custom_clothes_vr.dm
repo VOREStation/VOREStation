@@ -719,28 +719,6 @@
 		/obj/item/rig_module/teleporter
 		)
 
-/obj/item/weapon/storage/backpack/fluff/aronai
-	name = "medical pouch"
-	desc = "A medical belt with a small pouch rather than straps and loops for equipment."
-	icon = 'icons/vore/custom_clothes_vr.dmi'
-	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	icon_state = "emspouch"
-	item_state = "emspouch_mob"
-
-	slot_flags = SLOT_BELT //You're a belt now. Congrats.
-	max_w_class = ITEMSIZE_SMALL		//fit only pocket sized items
-	max_storage_space = ITEMSIZE_COST_SMALL * 7 //Much smaller than a backpack
-
-	New()
-		new /obj/item/weapon/reagent_containers/hypospray/vr/fluff/aronai(src)
-		new /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/stabilize(src)
-		new /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/bashed(src)
-		new /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/toasted(src)
-		new /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/poisoned(src)
-		new /obj/item/weapon/card/id/centcom/fluff/aronai(src)
-		new /obj/item/clothing/glasses/sunglasses/omnihud(src)
-		..()
-
 //Viveret:Keturah
 /obj/item/clothing/under/dress/maid
 	name = "Maid Outfit"
