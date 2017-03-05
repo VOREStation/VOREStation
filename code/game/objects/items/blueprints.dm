@@ -4,16 +4,11 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "blueprints"
 	attack_verb = list("attacked", "bapped", "hit")
-	var/const/AREA_ERRNONE = 0
-	var/const/AREA_STATION = 1
-	var/const/AREA_SPACE =   2
-	var/const/AREA_SPECIAL = 3
-
-	var/const/BORDER_ERROR = 0
-	var/const/BORDER_NONE = 1
-	var/const/BORDER_BETWEEN =   2
-	var/const/BORDER_2NDTILE = 3
-	var/const/BORDER_SPACE = 4
+	// Values for area types (Its a bitfield so we can mask allowed areas)
+	var/const/AREA_ERRNONE = 0x0
+	var/const/AREA_STATION = 0x1
+	var/const/AREA_SPACE =   0x2
+	var/const/AREA_SPECIAL = 0x4
 
 	var/const/ROOM_ERR_LOLWAT = 0
 	var/const/ROOM_ERR_SPACE = -1
@@ -55,11 +50,13 @@
 	switch(href_list["action"])
 		if ("create_area")
 			if (get_area_type()!=AREA_SPACE)
+				usr << "<span class='danger'>You can't make a new area here.</span>"
 				interact()
 				return
 			create_area()
 		if ("edit_area")
 			if (get_area_type()!=AREA_STATION)
+				usr << "<span class='danger'>You can't rename this area.</span>"
 				interact()
 				return
 			edit_area()
@@ -70,24 +67,24 @@
 <h2>[station_name()] blueprints</h2>
 <small>Property of [using_map.company_name]. For heads of staff only. Store in high-secure storage.</small><hr>
 "}
-	switch (get_area_type())
+	var/curAreaType = get_area_type()
+	switch (curAreaType)
 		if (AREA_SPACE)
-			text += {"
-<p>According the blueprints, you are now in <b>outer space</b>.  Hold your breath.</p>
-<p><a href='?src=\ref[src];action=create_area'>Mark this place as new area.</a></p>
-"}
+			text += "<p>According the blueprints, you are now in <b>outer space</b>.  Hold your breath.</p>"
 		if (AREA_STATION)
-			text += {"
-<p>According the blueprints, you are now in <b>\"[A.name]\"</b>.</p>
-<p>You may <a href='?src=\ref[src];action=edit_area'>
-move an amendment</a> to the drawing.</p>
-"}
+			text += "<p>According the blueprints, you are now in <b>\"[A.name]\"</b>.</p>"
 		if (AREA_SPECIAL)
-			text += {"
-<p>This place isn't noted on the blueprint.</p>
-"}
+			text += "<p>This place isn't noted on the blueprint.</p>"
 		else
-			return
+			text += "<p class='danger'>There is a coffee stain over this part of the blueprint.</p>"
+			return // Shouldn ever get here, just sanity check
+
+	// Offer links for what user is allowed to do based on current area
+	if(curAreaType == AREA_SPACE)
+		text += "<p>You can <a href='?src=\ref[src];action=create_area'>Mark this place as new area</a>.</p>"
+	if(curAreaType == AREA_STATION)
+		text += "<p>You can <a href='?src=\ref[src];action=edit_area'>rename the area</a>.</p>"
+
 	text += "</BODY></HTML>"
 	usr << browse(text, "window=blueprints")
 	onclose(usr, "blueprints")
@@ -107,9 +104,11 @@ move an amendment</a> to the drawing.</p>
 			return AREA_SPECIAL
 	return AREA_STATION
 
+/**
+ * Create a new area encompasing the current room.
+ */
 /obj/item/blueprints/proc/create_area()
-	//world << "DEBUG: create_area"
-	var/res = detect_room(get_turf(usr))
+	var/res = detect_room_ex(get_turf(usr), AREA_SPACE)
 	if(!istype(res,/list))
 		switch(res)
 			if(ROOM_ERR_SPACE)
@@ -130,9 +129,6 @@ move an amendment</a> to the drawing.</p>
 		return
 	var/area/A = new
 	A.name = str
-	//var/ma
-	//ma = A.master ? "[A.master]" : "(null)"
-	//world << "DEBUG: create_area: <br>A.name=[A.name]<br>A.tag=[A.tag]<br>A.master=[ma]"
 	A.power_equip = 0
 	A.power_light = 0
 	A.power_environ = 0
@@ -142,8 +138,6 @@ move an amendment</a> to the drawing.</p>
 	A.always_unpowered = 0
 
 	spawn(5)
-		//ma = A.master ? "[A.master]" : "(null)"
-		//world << "DEBUG: create_area(5): <br>A.name=[A.name]<br>A.tag=[A.tag]<br>A.master=[ma]"
 		interact()
 	return
 
@@ -156,7 +150,6 @@ move an amendment</a> to the drawing.</p>
 
 /obj/item/blueprints/proc/edit_area()
 	var/area/A = get_area()
-	//world << "DEBUG: edit_area"
 	var/prevname = "[A.name]"
 	var/str = sanitizeSafe(input("New area name:","Blueprint Editing", prevname), MAX_NAME_LEN)
 	if(!str || !length(str) || str==prevname) //cancel
@@ -188,32 +181,19 @@ move an amendment</a> to the drawing.</p>
 		M.name = replacetext(M.name,oldtitle,title)
 	//TODO: much much more. Unnamed airlocks, cameras, etc.
 
-/obj/item/blueprints/proc/check_tile_is_border(var/turf/T2,var/dir)
-	if (istype(T2, /turf/space))
-		return BORDER_SPACE //omg hull breach we all going to die here
-	if (istype(T2, /turf/simulated/shuttle))
-		return BORDER_SPACE
-	if (get_area_type(T2.loc)!=AREA_SPACE)
-		return BORDER_BETWEEN
-	if (istype(T2, /turf/simulated/wall))
-		return BORDER_2NDTILE
-	if (!istype(T2, /turf/simulated))
-		return BORDER_BETWEEN
 
-	for (var/obj/structure/window/W in T2)
-		if(turn(dir,180) == W.dir)
-			return BORDER_BETWEEN
-		if (W.dir in list(NORTHEAST,SOUTHEAST,NORTHWEST,SOUTHWEST))
-			return BORDER_2NDTILE
-	for(var/obj/machinery/door/window/D in T2)
-		if(turn(dir,180) == D.dir)
-			return BORDER_BETWEEN
-	if (locate(/obj/machinery/door) in T2)
-		return BORDER_2NDTILE
 
-	return BORDER_NONE
-
-/obj/item/blueprints/proc/detect_room(var/turf/first)
+/**
+ * This detects an airtight room, following ZAS's rules for airtightness.
+ * @param first The turf to start searching from. Needn't be anything in particular.
+ * @param allowedAreas Bitfield of area types allowed to be included in the room.
+ *	This way you can prevent overwriting special areas or station areas etc.
+ *  Note: The first turf is always allowed, and turfs in its area.
+ * @return On success, a list of turfs included in the room.  On failure will return a ROOM_ERR_* constant.
+*/
+/obj/item/blueprints/proc/detect_room_ex(var/turf/first, var/allowedAreas = AREA_SPACE)
+	if(!istype(first))
+		return ROOM_ERR_LOLWAT
 	var/list/turf/found = new
 	var/list/turf/pending = list(first)
 	while(pending.len)
@@ -222,30 +202,29 @@ move an amendment</a> to the drawing.</p>
 		var/turf/T = pending[1] //why byond havent list::pop()?
 		pending -= T
 		for (var/dir in cardinal)
-			var/skip = 0
-			for (var/obj/structure/window/W in T)
-				if(dir == W.dir || (W.dir in list(NORTHEAST,SOUTHEAST,NORTHWEST,SOUTHWEST)))
-					skip = 1; break
-			if (skip) continue
-			for(var/obj/machinery/door/window/D in T)
-				if(dir == D.dir)
-					skip = 1; break
-			if (skip) continue
-
 			var/turf/NT = get_step(T,dir)
 			if (!isturf(NT) || (NT in found) || (NT in pending))
 				continue
-
-			switch(check_tile_is_border(NT,dir))
-				if(BORDER_NONE)
-					pending+=NT
-				if(BORDER_BETWEEN)
-					//do nothing, may be later i'll add 'rejected' list as optimization
-				if(BORDER_2NDTILE)
-					found+=NT //tile included to new area, but we dont seek more
-				if(BORDER_SPACE)
-					return ROOM_ERR_SPACE
-		found+=T
+			// We ask ZAS to determine if its airtight.  Thats what matters anyway right?
+			if(air_master.air_blocked(T, NT))
+				// Okay thats the edge of the room
+				if(get_area_type(NT.loc) == AREA_SPACE && air_master.air_blocked(NT, NT))
+					found += NT // So we include walls/doors not already in any area
+				continue
+			if (istype(NT, /turf/space))
+				return ROOM_ERR_SPACE //omg hull breach we all going to die here
+			if (istype(NT, /turf/simulated/shuttle))
+				return ROOM_ERR_SPACE // Unsure why this, but was in old code. Trusting for now.
+			if (NT.loc != first.loc && !(get_area_type(NT.loc) & allowedAreas))
+				// Edge of a protected area.  Lets stop here...
+				continue
+			if (!istype(NT, /turf/simulated))
+				// Great, unsimulated... eh, just stop searching here
+				continue
+			// Okay, NT looks promising, lets continue the search there!
+			pending += NT
+		found += T
+	// end while
 	return found
 
 /obj/item/blueprints/verb/seeAreaColors()
@@ -272,7 +251,7 @@ move an amendment</a> to the drawing.</p>
 	set category = "Blueprints"
 	set name = "Show Room Colors"
 
-	var/res = detect_room(get_turf(usr))
+	var/res = detect_room_ex(get_turf(usr), AREA_SPACE)
 	if(!istype(res, /list))
 		switch(res)
 			if(ROOM_ERR_SPACE)
