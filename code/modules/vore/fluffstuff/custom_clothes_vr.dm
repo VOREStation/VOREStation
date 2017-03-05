@@ -332,8 +332,8 @@
 
 //wickedtemp:chakat tempest
 /obj/item/clothing/glasses/hud/health/fluff/wickedtemphud
-	name = "Purple MedHUD"
-	desc = "A standard Medical HUD, only this one is colored purple with a violet lens."
+	name = "Tempest's MedHUD"
+	desc = "A standard Medical HUD, only this one is colored purple with a violet lens with a quote inscribed: \"A doctor sees the weakness in all of humanity\""
 
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "tempesthud"
