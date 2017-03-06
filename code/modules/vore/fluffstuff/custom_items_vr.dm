@@ -312,6 +312,18 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 		configured = 1
 		user << "<span class='notice'>Card settings set.</span>"
 
+//arokha:Aronai Kadigan - Bloo glasses
+/obj/item/clothing/glasses/omnihud/med/fluff/aronai
+	name = "AR-K glasses"
+	desc = "The KHI-63-K AR glasses are KHI's normal AR shades for people who don't want implanted AR. \
+	These seem pretty fully featured in terms of medical software."
+	mode = "med"
+	flash_prot = 2
+
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "omniglasses"
+
 //arokha:Aronai Kadigan - Fluff hypospray
 /obj/item/weapon/reagent_containers/hypospray/vr/fluff/aronai
 	name = "worn hypospray"
