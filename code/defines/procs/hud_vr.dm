@@ -8,12 +8,14 @@ proc/process_omni_hud(var/mob/M, var/mode, var/mob/Alt)
 			continue
 
 		P.Client.images += guy.hud_list[ID_HUD]
-		P.Client.images += guy.hud_list[HEALTH_HUD]
-		P.Client.images += guy.hud_list[IMPLOYAL_HUD]
+		P.Client.images += guy.hud_list[HEALTH_VR_HUD]
 
-		//if(shades.mode == "med") //Medical advanced version
-			//Nothing special to show, really, just records become available.
+		if(mode == "med") //Medical advanced version
+			P.Client.images += guy.hud_list[STATUS_R_HUD]
+			P.Client.images += guy.hud_list[BACKUP_HUD]
 		if(mode == "sec") //Security advanced version
 			P.Client.images += guy.hud_list[WANTED_HUD]
 		if(mode == "best") //Command/omni advanced version
 			P.Client.images += guy.hud_list[WANTED_HUD]
+			P.Client.images += guy.hud_list[STATUS_R_HUD]
+			P.Client.images += guy.hud_list[BACKUP_HUD]

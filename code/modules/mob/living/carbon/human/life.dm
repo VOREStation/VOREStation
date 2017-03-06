@@ -1334,8 +1334,8 @@
 // The purpose of this is to stop xray and w/e from preventing you from using huds -- Love, Doohl
 		var/obj/item/clothing/glasses/hud/O = G
 		//VOREStation Add - Support for omnihud glasses
-		if(istype(G, /obj/item/clothing/glasses/sunglasses/omnihud))
-			var/obj/item/clothing/glasses/sunglasses/omnihud/S = G
+		if(istype(G, /obj/item/clothing/glasses/omnihud))
+			var/obj/item/clothing/glasses/omnihud/S = G
 			O = S.hud
         //VOREStation Add End
 		if(istype(G, /obj/item/clothing/glasses/sunglasses/sechud))
@@ -1662,6 +1662,7 @@
 			else
 				holder.icon_state = "hudsyndicate"
 			hud_list[SPECIALROLE_HUD] = holder
+	attempt_vr(src,"handle_hud_list_vr",list()) //VOREStation Add - Custom HUDs.
 	hud_updateflag = 0
 
 /mob/living/carbon/human/handle_stunned()

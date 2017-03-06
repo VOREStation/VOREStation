@@ -4,27 +4,27 @@
 
 //KHI Uniforms
 /datum/gear/uniform/job_khi/cmd
-	display_name = "kin uniform, cmd"
+	display_name = "khi uniform, cmd"
 	path = /obj/item/clothing/under/rank/khi/cmd
 	allowed_roles = list("Colony Director","Head of Personnel")
 
 /datum/gear/uniform/job_khi/sec
-	display_name = "kin uniform, sec"
+	display_name = "khi uniform, sec"
 	path = /obj/item/clothing/under/rank/khi/sec
 	allowed_roles = list("Head of Security", "Warden", "Detective", "Security Officer")
 
 /datum/gear/uniform/job_khi/med
-	display_name = "kin uniform, med"
+	display_name = "khi uniform, med"
 	path = /obj/item/clothing/under/rank/khi/med
 	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Paramedic","Geneticist")
 
 /datum/gear/uniform/job_khi/eng
-	display_name = "kin uniform, eng"
+	display_name = "khi uniform, eng"
 	path = /obj/item/clothing/under/rank/khi/eng
 	allowed_roles = list("Chief Engineer","Atmospheric Technician","Station Engineer")
 
 /datum/gear/uniform/job_khi/sci
-	display_name = "kin uniform, sci"
+	display_name = "khi uniform, sci"
 	path = /obj/item/clothing/under/rank/khi/sci
 	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist")
 
@@ -92,6 +92,28 @@
 	display_name = "VOY uniform, eng/sec"
 	path = /obj/item/clothing/under/rank/trek/engsec/voy
 	allowed_roles = list("Chief Engineer","Atmospheric Technician","Station Engineer","Warden","Detective","Security Officer","Head of Security")
+
+//DS9
+
+/datum/gear/suit/job_trek/ds9_coat
+	display_name = "DS9 Overcoat (use uniform)"
+	path = /obj/item/clothing/suit/storage/trek/ds9
+
+/datum/gear/uniform/job_trek/cmd/ds9
+	display_name = "DS9 uniform, cmd"
+	path = /obj/item/clothing/under/rank/trek/command/ds9
+	allowed_roles = list("Head of Security","Colony Director","Head of Personnel","Chief Engineer","Research Director","Chief Medical Officer")
+
+/datum/gear/uniform/job_trek/medsci/ds9
+	display_name = "DS9 uniform, med/sci"
+	path = /obj/item/clothing/under/rank/trek/medsci/ds9
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Paramedic","Geneticist","Research Director","Scientist", "Roboticist", "Xenobiologist")
+
+/datum/gear/uniform/job_trek/eng/ds9
+	display_name = "DS9 uniform, eng/sec"
+	path = /obj/item/clothing/under/rank/trek/engsec/ds9
+	allowed_roles = list("Chief Engineer","Atmospheric Technician","Station Engineer","Warden","Detective","Security Officer","Head of Security")
+
 
 //ENT
 /datum/gear/uniform/job_trek/cmd/ent
