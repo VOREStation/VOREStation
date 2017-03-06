@@ -108,6 +108,10 @@
 				<div class='itemLabel'>Synthetic:</div>
 				<div class='itemContent'>{{:data.activeBodyRecord.synthetic}}</div>
 			</div>
+			<div class='item'>
+				<div class='itemLabel'>OOC Notes:</div>
+				<div class='itemContent'>{{:helper.link('View', null, {'boocnotes' : data.activeBodyRecord.booc}, data.activeBodyRecord.booc ? null : 'linkOff')}}</div>
+			</div>
 
 			{{:helper.link('Create', 'play', {'create' : data.activeBodyRecord.real_name}, data.activeBodyRecord.cando ? null : 'linkOff')}}
 			
@@ -126,13 +130,40 @@
 				<div class='itemContent'>{{:data.activeMindRecord.charname}}</div>
 			</div>
 			<div class='item'>
-				<div class='itemLabel'>Backup status:</div>
+				<div class='itemLabel'>Backup Status:</div>
 				<div class='itemContent'>{{:data.activeMindRecord.obviously_dead}}</div>
+			</div>
+			<div class='item'>
+				<div class='itemLabel'>OOC Notes:</div>
+				<div class='itemContent'>{{:helper.link('View', null, {'moocnotes' : data.activeMindRecord.mooc}, data.activeMindRecord.mooc ? null : 'linkOff')}}</div>
 			</div>
 			{{:helper.link('Sleeve', 'play', {'sleeve' : data.activeMindRecord.charname}, data.activeMindRecord.cando ? null : 'linkOff')}}
 			
 		{{else}}
 			<div class='item bad'>ERROR: Record not found.</div>
 		{{/if}}
+	
+	<!-- Menu6: Body OOC Notes -->	
+	{{else data.menu == 6}}
+		<h3>Body OOC Notes (This is OOC!)</h3>
+		<div class='item'>{{:helper.link('Back', 'arrowreturn-1-w', {'menu' : 4})}}</div>
+		{{if data.activeBodyRecord}}
+			<div class='itemLabel'>Notes:</div>
+			<div class='itemContent'>{{:data.activeBodyRecord.booc}}</div>
+		{{else}}
+			<div class='item bad'>ERROR: Record not found.</div>
+		{{/if}}
+		
+	<!-- Menu7: Mind OOC Notes -->	
+	{{else data.menu == 7}}
+		<h3>Mind OOC Notes (This is OOC!)</h3>
+		<div class='item'>{{:helper.link('Back', 'arrowreturn-1-w', {'menu' : 5})}}</div>
+		{{if data.activeMindRecord}}
+			<div class='itemLabel'>Notes:</div>
+			<div class='itemContent'>{{:data.activeMindRecord.mooc}}</div>
+		{{else}}
+			<div class='item bad'>ERROR: Record not found.</div>
+		{{/if}}
+
 	{{/if}}
 {{/if}}

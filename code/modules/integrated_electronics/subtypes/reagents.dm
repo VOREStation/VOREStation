@@ -73,7 +73,7 @@
 				return
 			var/contained = reagents.get_reagents()
 			var/trans = reagents.trans_to_mob(target, inject_amount(), CHEM_BLOOD)
-			message_admins("[src] injected \the [AM] with [trans]u of [contained].")
+			log_debug("[src] injected \the [AM] with [trans]u of [contained].") //VOREStation Edit - I don't care THAT much.
 			to_chat(AM, "<span class='notice'>You feel a tiny prick!</span>")
 			visible_message("<span class='warning'>[src] injects [AM]!</span>")
 		else

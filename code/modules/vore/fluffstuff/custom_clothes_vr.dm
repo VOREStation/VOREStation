@@ -787,6 +787,8 @@
 //Kisukegema:Kisuke `the nerd` Gema
 /obj/item/clothing/glasses/omnihud/kamina
 	name = "Kamina glasses"
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "kamina"
 	desc = "ROW ROW, FIGHT THE POWER."
 	flash_prot = 1 //Why not.
@@ -1100,7 +1102,9 @@ Departamental Swimsuits, for general use
 	name = "Padded Overcoat"
 	desc = "The overcoat worn by all officers of the 2380s."
 	icon_state = "trek_ds9_coat"
+	icon = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "trek_ds9_coat_mob"
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	permeability_coefficient = 0.50
 	allowed = list(
