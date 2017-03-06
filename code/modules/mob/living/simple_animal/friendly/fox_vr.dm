@@ -52,6 +52,12 @@
 			"With a loud glorp, the stomach spills more acids onto you.")
 	..()
 
+//For resting sprites
+/mob/living/simple_animal/fox/lay_down()
+	..()
+	if(icon_rest)
+		icon_state = resting ? icon_rest : icon_living
+
 // All them complicated fox procedures.
 /mob/living/simple_animal/fox/Life()
 	//MICE!
@@ -306,3 +312,11 @@
 			"There's a loud gurgle as the stomach declares the intent to make you a part of Renault.")
 
 	..()
+
+/mob/living/simple_animal/fox/syndicate
+	name = "syndi-fox"
+	desc = "It's a DASTARDLY fox! The horror! Call the shuttle!"
+	icon = 'icons/mob/fox_vr.dmi'
+	icon_state = "syndifox"
+	icon_living = "syndifox"
+	icon_dead = "syndifox_dead"

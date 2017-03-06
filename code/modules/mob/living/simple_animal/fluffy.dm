@@ -5,6 +5,7 @@
 	icon_state = "fluffy"
 	icon_living = "fluffy"
 	icon_dead = "fluffy_dead"
+	icon_rest = "fluffy_sleep"
 	speak = list("Squee","Arf arf","Awoo","Squeak")
 	speak_emote = list("squeaks", "barks")
 	emote_hear = list("howls","squeals")
@@ -39,6 +40,7 @@
 		else if(prob(5))
 			audible_emote("snuffles.")
 
-/mob/living/simple_animal/fluffy/lay_down() // Turns sprite into sleeping and back upon using "Rest".
+/mob/living/simple_animal/fluffy/lay_down()
 	..()
-	icon_state = resting ? "fluffy_sleep" : "fluffy"
+	if(icon_rest)
+		icon_state = resting ? icon_rest : icon_living
