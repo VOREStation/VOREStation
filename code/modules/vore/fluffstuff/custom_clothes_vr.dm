@@ -787,6 +787,7 @@
 //Kisukegema:Kisuke `the nerd` Gema
 /obj/item/clothing/glasses/omnihud/kamina
 	name = "Kamina glasses"
+	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "kamina"
 	desc = "ROW ROW, FIGHT THE POWER."
 	flash_prot = 1 //Why not.
