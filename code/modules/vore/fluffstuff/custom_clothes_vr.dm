@@ -785,10 +785,11 @@
 	starting_accessories = list(/obj/item/clothing/accessory/black)
 
 //Kisukegema:Kisuke `the nerd` Gema
-/obj/item/clothing/glasses/sunglasses/omnihud/kamina
+/obj/item/clothing/glasses/omnihud/kamina
 	name = "Kamina glasses"
 	icon_state = "kamina"
 	desc = "ROW ROW, FIGHT THE POWER."
+	flash_prot = 1 //Why not.
 
 //Kitsuhana Uniforms
 /obj/item/clothing/under/rank/khi

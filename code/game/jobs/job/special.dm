@@ -30,7 +30,7 @@
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(H), slot_shoes)
 		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/white(H), slot_gloves)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/beret/centcom/officer(H), slot_head)
-		H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/omnihud/best(H), slot_l_store)
+		H.equip_to_slot_or_del(new /obj/item/clothing/glasses/omnihud/all(H), slot_l_store)
 
 		H.implant_loyalty()
 
@@ -72,7 +72,7 @@
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(H), slot_shoes)
 		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/white(H), slot_gloves)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/beret/centcom/officer(H), slot_head)
-		H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/omnihud(H), slot_l_store)
+		H.equip_to_slot_or_del(new /obj/item/clothing/glasses/omnihud(H), slot_l_store)
 
 		H.implant_loyalty()
 

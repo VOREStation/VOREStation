@@ -42,9 +42,12 @@
 	last_attempt = world.time
 	var/mob/living/carbon/human/H = loc
 
-	//Okay we're in a human with a mind at least
-	if(istype(H) && H == imp_in && H.mind && H.stat < DEAD)
-		transcore.m_backup(H.mind)
+	//We're in a human, at least.
+	if(istype(H))
+		BITSET(H.hud_updateflag, BACKUP_HUD)
+		//Okay we've got a mind at least
+		if(H == imp_in && H.mind && H.stat < DEAD)
+			transcore.m_backup(H.mind)
 
 	spawn(attempt_delay)
 		backup()
