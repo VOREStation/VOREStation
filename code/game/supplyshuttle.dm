@@ -184,6 +184,8 @@ var/list/mechtoys = list(
 		var/area/area_shuttle = shuttle.get_location_area()
 		if(!area_shuttle)	return
 
+		callHook("sell_shuttle", list(area_shuttle));
+
 		var/phoron_count = 0
 		var/plat_count = 0
 
