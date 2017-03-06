@@ -1,34 +1,72 @@
 /obj/item/clothing/glasses/omnihud
-	name = "a.r. glasses"
+	name = "AR glasses"
 	desc = "The KHI-62 AR Glasses are a design from Kitsuhana Heavy Industries. These are a cheap export version \
 	for Nanotrasen. Probably not as complete as KHI could make them, but more readily available for NT."
 	origin_tech = list(TECH_MAGNET = 3, TECH_BIO = 3)
 	var/obj/item/clothing/glasses/hud/omni/hud = null
 	var/mode = "civ"
 	icon_state = "glasses"
+	var/datum/nano_module/arscreen
+	var/arscreen_path
 	var/flash_prot = 0 //0 for none, 1 for flash weapon protection, 2 for welder protection
 
-	New()
-		..()
-		src.hud = new/obj/item/clothing/glasses/hud/omni(src)
+/obj/item/clothing/glasses/omnihud/New()
+	..()
+	src.hud = new/obj/item/clothing/glasses/hud/omni(src)
+	if(arscreen_path)
+		arscreen = new arscreen_path(src)
+
+/obj/item/clothing/glasses/omnihud/Destroy()
+	if(hud)
+		qdel(hud)
+		hud = null
+	if(arscreen)
+		qdel(arscreen)
+		arscreen = null
+	..()
+
+/obj/item/clothing/glasses/omnihud/dropped()
+	if(arscreen)
+		nanomanager.close_uis(src)
+	..()
+
+/obj/item/clothing/glasses/omnihud/emp_act(var/severity)
+	var/disconnect_hud = hud
+	var/disconnect_ar = arscreen
+	hud = null
+	arscreen = null
+	spawn(20 SECONDS)
+		hud = disconnect_hud
+		arscreen = disconnect_ar
+	..()
+
+/obj/item/clothing/glasses/omnihud/proc/flashed()
+	if(flash_prot && ishuman(loc))
+		loc << "<span class='warning'>Your [src.name] darken to try and protect your eyes!</span>"
+
+/obj/item/clothing/glasses/omnihud/prescribe(var/mob/user)
+	prescription = !prescription
+	playsound(user,'sound/items/screwdriver.ogg', 50, 1)
+	if(prescription)
+		name = "[initial(name)] (pr)"
+		user.visible_message("[user] uploads new prescription data to the [src.name].")
+	else
+		name = "[initial(name)]"
+		user.visible_message("[user] deletes the prescription data on the [src.name].")
+
+/obj/item/clothing/glasses/omnihud/attack_self(mob/user)
+	if(!ishuman(user))
 		return
 
-	proc/flashed()
-		if(flash_prot && ishuman(loc))
-			loc << "<span class='warning'>Your [src.name] darken to try and protect your eyes!</span>"
+	var/mob/living/carbon/human/H = user
+	if(!H.glasses || !(H.glasses == src))
+		user << "<span class='warning'>You must be wearing the [src] to see the display.</span>"
+	else
+		if(!ar_interact(H))
+			user << "<span class='warning'>The [src] does not have any kind of special display.</span>"
 
-	prescribe(var/mob/user)
-		prescription = !prescription
-
-		//Look it's really not that fancy. It's not ACTUALLY unique scrip data.
-		if(prescription)
-			name = "[initial(name)] (pr)"
-			user.visible_message("[user] uploads new prescription data to \the [src.name].")
-		else
-			name = "[initial(name)]"
-			user.visible_message("[user] deletes the prescription data of \the [src.name].")
-
-		playsound(user,'sound/items/screwdriver.ogg', 50, 1)
+/obj/item/clothing/glasses/omnihud/proc/ar_interact(var/mob/living/carbon/human/user)
+	return 0 //The base models do nothing.
 
 /obj/item/clothing/glasses/omnihud/prescription
 	name = "AR glasses (pr)"
@@ -39,6 +77,13 @@
 	desc = "The KHI-62-M AR glasses are a design from Kitsuhana Heavy Industries. \
 	These have been upgraded with medical records access and virus database integration."
 	mode = "med"
+	action_button_name = "AR Console (Crew Monitor)"
+	arscreen_path = /datum/nano_module/crew_monitor
+
+	ar_interact(var/mob/living/carbon/human/user)
+		if(arscreen)
+			arscreen.ui_interact(user,"main",null,1)
+		return 1
 
 /obj/item/clothing/glasses/omnihud/sec
 	name = "AR-S glasses"
@@ -46,6 +91,13 @@
 	These have been upgraded with security records integration and flash protection."
 	mode = "sec"
 	flash_prot = 1 //Flash protection.
+	action_button_name = "AR Console (Security Alerts)"
+	arscreen_path = /datum/nano_module/alarm_monitor/security
+
+	ar_interact(var/mob/living/carbon/human/user)
+		if(arscreen)
+			arscreen.ui_interact(user,"main",null,1)
+		return 1
 
 /obj/item/clothing/glasses/omnihud/eng
 	name = "AR-E glasses"
@@ -53,15 +105,22 @@
 	These have been upgraded with advanced electrochromic lenses to protect your eyes during welding."
 	mode = "civ"
 	flash_prot = 2 //Welding protection.
+	action_button_name = "AR Console (Station Alerts)"
+	arscreen_path = /datum/nano_module/alarm_monitor
+
+	ar_interact(var/mob/living/carbon/human/user)
+		if(arscreen)
+			arscreen.ui_interact(user,"main",null,1)
+		return 1
 
 /obj/item/clothing/glasses/omnihud/rnd
 	name = "AR-R glasses"
 	desc = "The KHI-62-R AR glasses are a design from Kitsuhana Heavy Industries. \
 	These have been ... modified ... to fit into a different frame."
+	mode = "civ"
 	icon = 'icons/obj/clothing/glasses.dmi'
 	icon_override = null
 	icon_state = "purple"
-	mode = "civ"
 
 /obj/item/clothing/glasses/omnihud/all
 	name = "AR-B glasses"
@@ -69,6 +128,7 @@
 	These have been upgraded with every feature the lesser models have. Now we're talkin'."
 	mode = "best"
 	flash_prot = 2 //Welding protection.
+	action_button_name = "AR Console (Communications)"
 
 /obj/item/clothing/glasses/hud/omni
 	name = "internal omni hud"

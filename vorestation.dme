@@ -1868,6 +1868,7 @@
 #include "code\modules\nano\interaction\interactive.dm"
 #include "code\modules\nano\interaction\inventory.dm"
 #include "code\modules\nano\interaction\inventory_deep.dm"
+#include "code\modules\nano\interaction\inventory_vr.dm"
 #include "code\modules\nano\interaction\outside.dm"
 #include "code\modules\nano\interaction\physical.dm"
 #include "code\modules\nano\interaction\remote.dm"
