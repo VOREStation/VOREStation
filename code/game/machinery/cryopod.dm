@@ -440,9 +440,13 @@
 			qdel(O)
 
 	//VOREStation Edit - Resleeving.
-	if(to_despawn.mind && (to_despawn.mind.name in transcore.backed_up))
-		var/datum/transhuman/mind_record/MR = transcore.backed_up[to_despawn.mind.name]
-		transcore.stop_backup(MR)
+	if(to_despawn.mind)
+		if(to_despawn.mind.name in transcore.backed_up)
+			var/datum/transhuman/mind_record/MR = transcore.backed_up[to_despawn.mind.name]
+			transcore.stop_backup(MR)
+		if(to_despawn.mind.name in transcore.body_scans) //This uses mind names to avoid people cryo'ing a printed body to delete body scans.
+			var/datum/transhuman/body_record/BR = transcore.body_scans[to_despawn.mind.name]
+			transcore.remove_body(BR)
 	//VOREStation Edit End - Resleeving.
 
 	//Handle job slot/tater cleanup.
