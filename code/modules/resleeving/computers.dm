@@ -165,7 +165,8 @@
 									"gender" = active_br.bodygender, \
 									"synthetic" = active_br.synthetic ? "Yes" : "No", \
 									"locked" = active_br.locked ? "Low" : "High", \
-									"cando" = can_grow_active)
+									"cando" = can_grow_active,
+									"booc" = active_br.body_oocnotes)
 	else
 		data["activeRecord"] = null
 
@@ -175,7 +176,8 @@
 			can_sleeve_current = 0
 		data["activeMindRecord"] = list("charname" = active_mr.mindname, \
 										"obviously_dead" = active_mr.dead_state == MR_DEAD ? "Past-due" : "Current", \
-										"cando" = can_sleeve_current)
+										"cando" = can_sleeve_current,
+										"mooc" = active_mr.mind_oocnotes)
 	else
 		data["activeMindRecord"] = null
 
@@ -214,6 +216,12 @@
 		else
 			active_mr = null
 			temp = "ERROR: Record missing."
+
+	else if (href_list["boocnotes"])
+		menu = 6
+
+	else if (href_list["moocnotes"])
+		menu = 7
 
 	else if (href_list["refresh"])
 		updateUsrDialog()
