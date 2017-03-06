@@ -339,11 +339,9 @@
 
 	// Now give the prey time to escape... return if they did
 	var/swallow_time = istype(prey, /mob/living/carbon/human) ? belly_target.human_prey_swallow_time : belly_target.nonhuman_prey_swallow_time
-	/* POLARISTODO - Unnecessary?
-	if (!do_mob(user, prey))
-		return 0; // User is not able to act upon prey
-	*/
-	if(!do_after(user, swallow_time))
+
+	//Timer and progress bar
+	if(!do_after(user, swallow_time, prey))
 		return 0 // Prey escpaed (or user disabled) before timer expired.
 
 	// If we got this far, nom successful! Announce it!
