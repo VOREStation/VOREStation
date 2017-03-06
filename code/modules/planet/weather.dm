@@ -8,6 +8,7 @@
 #define WEATHER_HAIL				"hail"
 #define WEATHER_WINDY				"windy"
 #define WEATHER_HOT					"hot"
+#define WEATHER_BLOOD_MOON			"blood moon" // For admin fun or cult later on.
 
 /datum/weather_holder
 	var/datum/planet/our_planet = null
@@ -53,6 +54,8 @@
 		current_weather.process_effects()
 
 /datum/weather_holder/proc/update_icon_effects()
+	set background = 1
+	set waitfor = 0
 	if(current_weather)
 		for(var/turf/simulated/floor/T in outdoor_turfs)
 			if(T.z in our_planet.expected_z_levels)
@@ -86,7 +89,8 @@
 		WEATHER_BLIZZARD	= new /datum/weather/sif/blizzard(),
 		WEATHER_RAIN		= new /datum/weather/sif/rain(),
 		WEATHER_STORM		= new /datum/weather/sif/storm(),
-		WEATHER_HAIL		= new /datum/weather/sif/hail()
+		WEATHER_HAIL		= new /datum/weather/sif/hail(),
+		WEATHER_BLOOD_MOON	= new /datum/weather/sif/blood_moon()
 		)
 	planetary_wall_type = /turf/unsimulated/wall/planetary/sif
 	roundstart_weather_chances = list(
@@ -107,6 +111,7 @@
 	var/temp_high = T20C
 	var/temp_low = T0C
 	var/light_modifier = 1.0 // Lower numbers means more darkness.
+	var/light_color = null // If set, changes how the day/night light looks.
 	var/transition_chances = list() // Assoc list
 	var/datum/weather_holder/holder = null
 
@@ -266,3 +271,11 @@
 
 			L.apply_damage(rand(5, 10), BRUTE, target_zone, amount_blocked, used_weapon = "hail")
 			to_chat(L, "<span class='warning'>The hail raining down on you [L.can_feel_pain() ? "hurts" : "damages you"]!</span>")
+
+/datum/weather/sif/blood_moon
+	name = "blood moon"
+	light_modifier = 0.5
+	light_color = "#FF0000"
+	transition_chances = list(
+		WEATHER_BLOODMOON = 100
+		)
