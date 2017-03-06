@@ -320,3 +320,4 @@
 	icon_state = "syndifox"
 	icon_living = "syndifox"
 	icon_dead = "syndifox_dead"
+	icon_rest = "syndifox_rest"
