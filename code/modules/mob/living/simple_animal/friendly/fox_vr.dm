@@ -23,6 +23,7 @@
 	minbodytemp = 223		//Below -50 Degrees Celcius
 	maxbodytemp = 323		//Above 50 Degrees Celcius
 	mob_size = MOB_TINY
+	isPredator = 1
 
 /mob/living/simple_animal/fox/New()
 	if(!vore_organs.len)
