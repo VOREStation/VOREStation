@@ -128,7 +128,6 @@
 	These have been upgraded with every feature the lesser models have. Now we're talkin'."
 	mode = "best"
 	flash_prot = 2 //Welding protection.
-	action_button_name = "AR Console (Communications)"
 
 /obj/item/clothing/glasses/hud/omni
 	name = "internal omni hud"
