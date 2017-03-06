@@ -331,9 +331,9 @@
 */
 
 //wickedtemp:chakat tempest
-/obj/item/clothing/glasses/hud/health/fluff/wickedtemphud
-	name = "Tempest's MedHUD"
-	desc = "A standard Medical HUD, only this one is colored purple with a violet lens with a quote inscribed: \"A doctor sees the weakness in all of humanity\""
+/obj/item/clothing/glasses/omnihud/med/fluff/wickedtemphud
+	name = "Tempest's Glasses"
+	desc = "A set of AR-M glasses, only these are colored purple with violet lenses in a custom frame, with a quote inscribed: \"A doctor sees the weakness in all of humanity\""
 
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "tempesthud"
@@ -785,10 +785,11 @@
 	starting_accessories = list(/obj/item/clothing/accessory/black)
 
 //Kisukegema:Kisuke `the nerd` Gema
-/obj/item/clothing/glasses/sunglasses/omnihud/kamina
+/obj/item/clothing/glasses/omnihud/kamina
 	name = "Kamina glasses"
 	icon_state = "kamina"
 	desc = "ROW ROW, FIGHT THE POWER."
+	flash_prot = 1 //Why not.
 
 //Kitsuhana Uniforms
 /obj/item/clothing/under/rank/khi
