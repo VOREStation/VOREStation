@@ -5346,7 +5346,7 @@
 "bYP" = (/obj/structure/cable/green{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/disposalpipe/segment,/turf/simulated/floor/tiled,/area/bridge_hallway)
 "bYQ" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8},/obj/structure/cable/green{d2 = 2; icon_state = "0-2"},/obj/structure/cable/green,/obj/structure/cable/green{d2 = 8; icon_state = "0-8"},/obj/machinery/door/firedoor,/obj/machinery/door/blast/shutters{dir = 8; id = "cap_office"; layer = 3.1; name = "Captain's Shutters"},/turf/simulated/floor/plating,/area/bridge_hallway)
 "bYR" = (/obj/structure/bed/chair/comfy/brown{dir = 1},/turf/simulated/floor/carpet,/area/crew_quarters/captain)
-"bYS" = (/obj/machinery/atmospherics/pipe/manifold/hidden/supply{dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/turf/simulated/floor/wood,/area/crew_quarters/captain)
+"bYS" = (/obj/machinery/atmospherics/pipe/manifold/hidden/supply{dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/mob/living/simple_animal/fox/fluff/Renault,/turf/simulated/floor/wood,/area/crew_quarters/captain)
 "bYT" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 4},/turf/simulated/floor/wood,/area/crew_quarters/captain)
 "bYU" = (/obj/machinery/atmospherics/unary/vent_pump/on{dir = 8},/obj/structure/bed/chair{dir = 1},/turf/simulated/floor/wood,/area/crew_quarters/captain)
 "bYV" = (/obj/structure/filingcabinet,/obj/machinery/light{dir = 4},/turf/simulated/floor/wood,/area/crew_quarters/captain)
