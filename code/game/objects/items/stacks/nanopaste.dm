@@ -40,5 +40,6 @@
 					"<span class='notice'>You apply some nanite paste on [user == M ? "your" : "[M]'s"] [S.name].</span>")
 		//VOREStation Add - External robolimb repair with nanopaste
 		else if(S && (S.robotic >= ORGAN_ROBOT))
-			S.robo_repair(5, "omni", "some damage", src, user)
+			if(S.robo_repair(5, "omni", "some damage", src, user))
+				use(1)
 		//VOREStation Add End
