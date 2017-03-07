@@ -78,7 +78,7 @@
 				sleep(11)
 				playsound(loc, "sound/machines/copier.ogg", 100, 1)
 				var/obj/item/weapon/paper_bundle/B = bundlecopy(copyitem)
-				sleep(11*B)
+				sleep(11*B.pages.len)
 			else
 				usr << "<span class='warning'>\The [copyitem] can't be copied by \the [src].</span>"
 				break
