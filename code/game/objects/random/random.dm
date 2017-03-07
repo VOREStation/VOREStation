@@ -684,7 +684,7 @@ something, make sure it's not in one of the other lists.*/
 				prob(3);/obj/item/weapon/storage/box/gloves,
 				prob(2);/obj/item/weapon/storage/belt/medical/emt,
 				prob(2);/obj/item/weapon/storage/belt/medical,
-				prob(1);/obj/item/clothing/shoes/combat,
+				prob(1);/obj/item/clothing/shoes/boots/combat,
 				prob(3);/obj/item/clothing/shoes/white,
 				prob(2);/obj/item/clothing/gloves/latex,
 				prob(5);/obj/item/clothing/gloves/white,
