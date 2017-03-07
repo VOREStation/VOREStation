@@ -68,9 +68,11 @@
 
 			if (istype(copyitem, /obj/item/weapon/paper))
 				copy(copyitem)
+ 				playsound(src.loc, "sound/machines/coper.ogg", 100, 1)
 				sleep(15)
 			else if (istype(copyitem, /obj/item/weapon/photo))
 				photocopy(copyitem)
+ 				playsound(src.loc, "sound/machines/coper.ogg", 100, 1)
 				sleep(15)
 			else if (istype(copyitem, /obj/item/weapon/paper_bundle))
 				var/obj/item/weapon/paper_bundle/B = bundlecopy(copyitem)
