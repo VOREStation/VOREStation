@@ -213,7 +213,7 @@ item_path: /obj/item/weapon/storage/box/fluff/ace
 {
 ckey: jertheace
 character_name: Jeremiah 'Ace' Acacius
-item_path: /obj/item/clothing/shoes/combat
+item_path: /obj/item/clothing/shoes/boots/combat
 }
 
 {

@@ -9,6 +9,13 @@
 	if(L)
 		qdel(L)
 
+// Called after turf replaces old one
+/turf/proc/post_change()
+	levelupdate()
+	var/turf/simulated/open/T = GetAbove(src)
+	if(istype(T))
+		T.update_icon()
+
 //Creates a new turf
 /turf/proc/ChangeTurf(var/turf/N, var/tell_universe=1, var/force_lighting_update = 0)
 	if (!N)
@@ -60,6 +67,7 @@
 
 		W.levelupdate()
 		W.update_icon(1)
+		W.post_change()
 		. = W
 
 	else
@@ -83,6 +91,7 @@
 
 		W.levelupdate()
 		W.update_icon(1)
+		W.post_change()
 		. =  W
 
 	lighting_overlay = old_lighting_overlay
