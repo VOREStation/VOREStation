@@ -117,7 +117,7 @@ Please contact me on #coderbus IRC. ~Carn x
 #define GLOVES_LAYER			9
 #define BELT_LAYER				10
 #define SUIT_LAYER				11
-#define TAIL_LAYER				12		//bs12 specific.
+#define TAIL_LAYER				12		//bs12 specific.	//In a perfect world the parts of the tail that show between legs would be on a new layer. Until then, sprite's been tweaked
 #define GLASSES_LAYER			13
 #define BELT_LAYER_ALT			14
 #define SUIT_STORE_LAYER		15
