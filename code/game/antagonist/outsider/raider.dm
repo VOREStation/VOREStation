@@ -31,8 +31,8 @@ var/datum/antagonist/raider/raiders
 		)
 
 	var/list/raider_shoes = list(
-		/obj/item/clothing/shoes/jackboots,
-		/obj/item/clothing/shoes/workboots,
+		/obj/item/clothing/shoes/boots/jackboots,
+		/obj/item/clothing/shoes/boots/workboots,
 		/obj/item/clothing/shoes/brown,
 		/obj/item/clothing/shoes/laceup
 		)
@@ -216,7 +216,7 @@ var/datum/antagonist/raider/raiders
 		player.equip_to_slot_or_del(new new_shoes(player),slot_shoes)
 		if(!player.shoes)
 			//If equipping shoes failed, fall back to equipping sandals
-			var/fallback_type = pick(/obj/item/clothing/shoes/sandal, /obj/item/clothing/shoes/jackboots/toeless)
+			var/fallback_type = pick(/obj/item/clothing/shoes/sandal, /obj/item/clothing/shoes/boots/jackboots/toeless)
 			player.equip_to_slot_or_del(new fallback_type(player), slot_shoes)
 
 		player.equip_to_slot_or_del(new new_uniform(player),slot_w_uniform)

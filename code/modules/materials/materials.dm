@@ -586,6 +586,12 @@ var/list/name_to_material
 	hardness = 500
 	weight = 500
 
+// Likewise.
+/material/alienalloy/elevatorium
+	name = "elevatorium"
+	display_name = "elevator panelling"
+	icon_colour = "#666666"
+
 /material/wood
 	name = "wood"
 	stack_type = /obj/item/stack/material/wood
