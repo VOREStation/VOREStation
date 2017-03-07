@@ -18,17 +18,29 @@
 
 /datum/event/supply_demand/setup()
 	my_department = "[using_map.company_name] Supply Division" // Can't have company name in initial value (not const)
-	end_time = world.time + 1 HOUR + rand(0, 30) MINUTES
+	end_time = world.time + 1 HOUR + (severity * 30 MINUTES)
 	running_demand_events += src
 	// Decide what items are requried!
-	// TODO - Base this on which roles are active
-	choose_food_items(rand(0, 2))
-	choose_research_items(rand(0, 2))
-	choose_chemistry_items(rand(0, 2))
-	choose_robotics_items(rand(0, 2))
-	if(prob(25)) choose_atmos_items(rand(2, 4))
-	choose_bar_items(rand(0, 4))
-	choose_alloy_items(rand(0, 2))
+	// We base this on what departmets are most active, excluding departments we don't have
+	var/list/notHaveDeptList = metric.departments.Copy()
+	notHaveDeptList.Remove(list(ROLE_ENGINEERING, ROLE_MEDICAL, ROLE_RESEARCH, ROLE_CARGO, ROLE_CIVILIAN))
+	var/deptActivity = metric.assess_all_departments(severity * 2, notHaveDeptList)
+	for(var/dept in deptActivity)
+		switch(dept)
+			if(ROLE_ENGINEERING)
+				choose_atmos_items(severity + 1)
+			if(ROLE_MEDICAL)
+				choose_chemistry_items(roll(severity, 3))
+			if(ROLE_RESEARCH) // Would be nice to differentiate between research diciplines
+				choose_research_items(roll(1, 3))
+				choose_robotics_items(roll(1, 3))
+			if(ROLE_CARGO)
+				choose_alloy_items(rand(1, severity))
+			if(ROLE_CIVILIAN) // Would be nice to separate out chef/gardener/bartender
+				choose_food_items(roll(severity, 2))
+				choose_bar_items(roll(severity, 3))
+	if(required_items.len == 0)
+		choose_bar_items(rand(5, 10)) // Really? Well add drinks. If a crew can't even get the bar open they suck.
 
 /datum/event/supply_demand/announce()
 	var/message = "[using_map.company_short] is comparing accounts and the bean counters found our division is "
@@ -142,6 +154,8 @@
 	..()
 	src.type_path = type_path
 	src.name = initial(type_path.name)
+	if(!name)
+		log_debug("supply_demand event: Order for thing [type_path] has no name.")
 
 /datum/supply_demand_order/thing/match_item(var/atom/I)
 	if(istype(I, type_path))
