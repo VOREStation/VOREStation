@@ -2663,7 +2663,7 @@
 "aZk" = (/obj/machinery/door/airlock/hatch,/turf/unsimulated/floor{dir = 8; icon_state = "wood"},/area/wizard_station)
 "aZl" = (/obj/machinery/door/airlock/hatch,/turf/unsimulated/floor{icon_state = "dark"},/area/wizard_station)
 "aZm" = (/obj/item/weapon/antag_spawner/technomancer_apprentice,/turf/unsimulated/floor{icon_state = "dark"},/area/wizard_station)
-"aZn" = (/obj/structure/table/woodentable,/obj/item/clothing/shoes/workboots,/obj/item/clothing/under/technomancer,/obj/item/clothing/head/technomancer,/obj/item/weapon/storage/box/syndie_kit/chameleon,/obj/item/weapon/storage/box/syndie_kit/chameleon,/turf/unsimulated/floor{icon_state = "dark"},/area/wizard_station)
+"aZn" = (/obj/structure/table/woodentable,/obj/item/clothing/shoes/boots/workboots,/obj/item/clothing/under/technomancer,/obj/item/clothing/head/technomancer,/obj/item/weapon/storage/box/syndie_kit/chameleon,/obj/item/weapon/storage/box/syndie_kit/chameleon,/turf/unsimulated/floor{icon_state = "dark"},/area/wizard_station)
 "aZo" = (/obj/machinery/door/airlock/hatch{frequency = 1331; icon_state = "door_closed"; id_tag = "vox_southwest_lock"; locked = 0; req_access = list(150)},/obj/machinery/atmospherics/pipe/simple/visible,/turf/simulated/shuttle/plating,/area/skipjack_station/start)
 "aZp" = (/obj/structure/table/rack,/obj/item/weapon/rig/industrial,/turf/simulated/shuttle/floor{icon_state = "floor4"},/area/skipjack_station/start)
 "aZq" = (/turf/simulated/shuttle/floor{icon_state = "floor4"},/area/skipjack_station/start)

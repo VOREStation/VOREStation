@@ -177,7 +177,7 @@
 			/obj/item/clothing/under/rank/medical/paramedic,
 			/obj/item/clothing/accessory/stethoscope,
 			/obj/item/weapon/storage/firstaid/adv,
-			/obj/item/clothing/shoes/jackboots,
+			/obj/item/clothing/shoes/boots/jackboots,
 			/obj/item/clothing/gloves/latex,
 			/obj/item/device/healthanalyzer,
 			/obj/item/weapon/cartridge/medical,
