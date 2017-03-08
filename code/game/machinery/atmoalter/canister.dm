@@ -48,8 +48,8 @@
 
 /obj/machinery/portable_atmospherics/canister/phoron
 	name = "Canister \[Phoron\]"
-	icon_state = "purple"
-	canister_color = "purple"
+	icon_state = "orangeps"
+	canister_color = "orangeps"
 	can_label = 0
 
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide
@@ -77,8 +77,8 @@
 	canister_color = "blue"
 /obj/machinery/portable_atmospherics/canister/empty/phoron
 	name = "Canister \[Phoron\]"
-	icon_state = "purple"
-	canister_color = "purple"
+	icon_state = "orangeps"
+	canister_color = "orangeps"
 /obj/machinery/portable_atmospherics/canister/empty/nitrogen
 	name = "Canister \[N2\]"
 	icon_state = "red"
