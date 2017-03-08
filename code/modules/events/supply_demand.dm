@@ -68,13 +68,27 @@
 	// Check if the crew succeeded or failed!
 	if(required_items.len == 0)
 		// Success!
-		supply_controller.points += 200
-		command_announcement.Announce("Congrats! You delivered everything!", my_department)
+		supply_controller.points += 100 * severity
+		var/msg = "Great work! With those items you delivered our inventory levels all match up. "
+		msg += "[capitalize(pick(first_names_female))] from accounting will have nothing to complain about. "
+		msg += "I think you'll find a little something in your supply account."
+		command_announcement.Announce(msg, my_department)
 	else
 		// Fail!
-		supply_controller.points = supply_controller.points / 2
-		command_announcement.Announce("Booo! You failed to deliver some stuff!", my_department)
-
+		var/datum/supply_demand_order/random = pick(required_items)
+		command_announcement.Announce("What happened? Accounting is here right now and they're already asking where that [random.name] is. Damn, I gotta go", my_department)
+		var/message = "The delivery deadline was reached with the following needs outstanding:<hr>"
+		for (var/datum/supply_demand_order/req in required_items)
+			message += req.describe() + "<br>"
+		for (var/obj/machinery/computer/communications/C in machines)
+			if(C.operable())
+				var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( C.loc )
+				P.name = "'[my_department] Mission Summary'"
+				P.info = message
+				P.update_space(P.info)
+				P.update_icon()
+				C.messagetitle.Add("[my_department] Mission Summary")
+				C.messagetext.Add(P.info)
 /**
  * Event Handler for responding to the supply shuttle arriving at centcom.
  */
@@ -93,7 +107,7 @@
 			// Otherwise check it against our list
 			match_found |= match_item(MA)
 
-	if(match_found && required_items.len > 1)
+	if(match_found && required_items.len >= 1)
 		// Okay we delivered SOME.  Lets give an update, but only if not finished.
 		var/message = "Shipment Received.  As a reminder, the following items are still requried:"
 		message += "<hr>"
@@ -182,19 +196,21 @@
 	reagent_id = R.id
 
 /datum/supply_demand_order/reagent/describe()
-	return "[qty_need] units of [name] in glass containers"
+	return "[qty_need] units of [name] in its own container(s)"
 
-// In order to count it must be in a beaker or pill! Whole number units only
+// Any reagent container will do now. Whole number units only.
 /datum/supply_demand_order/reagent/match_item(var/atom/I)
 	if(!I.reagents)
 		return
-	if(!istype(I, /obj/item/weapon/reagent_containers/glass) && !istype(I, /obj/item/weapon/reagent_containers/pill))
+	if(!istype(I, /obj/item/weapon/reagent_containers))
 		return
 	var/amount_to_take = min(I.reagents.get_reagent_amount(reagent_id), qty_need)
 	if(amount_to_take >= 1)
 		I.reagents.remove_reagent(reagent_id, amount_to_take, safety = 1)
-		qty_need -= amount_to_take
+		qty_need = Ceiling(qty_need - amount_to_take)
 		return 1
+	else
+		log_debug("supply_demand event: not taking reagent '[reagent_id]': [amount_to_take]")
 	return
 
 //
@@ -202,7 +218,7 @@
 //	In this case the target is moles!
 //
 /datum/supply_demand_order/gas
-	name = "Gas Mixture"
+	name = "gas mixture"
 	var/datum/gas_mixture/mixture
 
 /datum/supply_demand_order/gas/describe()
@@ -287,7 +303,8 @@
 	return
 
 /datum/event/supply_demand/proc/choose_robotics_items(var/differentTypes)
-	var/list/types = list( // Do not make mechs dynamic, its too silly
+	// Do not make mechs dynamic, its too silly
+	var/list/types = list(
 		/obj/mecha/combat/durand,
 		/obj/mecha/combat/gygax,
 		/obj/mecha/medical/odysseus,
@@ -322,15 +339,3 @@
 		var/chosen_qty = Floor(rand(5, 100) * initial(A.product_mod))
 		required_items += new /datum/supply_demand_order/thing(chosen_qty, chosen_path)
 	return
-
-// Silly item existing for debugging this
-/obj/item/supply_demand_spawner
-	icon = 'icons/obj/module.dmi'
-	icon_state = "id_mod"
-	var/datum/event/supply_demand/event
-/obj/item/supply_demand_spawner/New()
-	var/datum/event_meta/EM = new
-	EM.name = "Supply & Demand"
-	EM.severity = EVENT_LEVEL_MUNDANE
-	EM.event_type = /datum/event/supply_demand
-	event = new EM.event_type(EM)
