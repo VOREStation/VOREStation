@@ -270,6 +270,7 @@
 		return
 
 	friend = usr
+	prey_excludes |= usr
 
 	set_dir(get_dir(src, friend))
 	say("Yap!")
@@ -281,9 +282,9 @@
 //Captain fox
 /mob/living/simple_animal/fox/fluff/Renault
 	name = "Renault"
-	desc = "Renault, the Captain's trustworthy fox. I wonder what it says?"
+	desc = "Renault, the Colony Director's trustworthy fox. I wonder what it says?"
 	isPredator = 1
-	befriend_job = "Captain"
+	befriend_job = "Colony Director"
 
 /mob/living/simple_animal/fox/fluff/Renault/New()
 	if(!vore_organs.len)
