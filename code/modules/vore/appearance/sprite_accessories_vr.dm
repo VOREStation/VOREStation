@@ -543,6 +543,7 @@
 	color_blend_mode = ICON_MULTIPLY
 	do_colouration = 1
 
+
 //For all species tails. Includes haircolored tails.
 /datum/sprite_accessory/tail/special
 	name = "Blank tail. Do not select."
@@ -702,6 +703,13 @@
 	desc = ""
 	icon_state = "seromitail_feathers_hc_s"
 	do_colouration = 1
+
+/datum/sprite_accessory/tail/special/vulpan
+	name = "vulpankin, colorable"
+	desc = ""
+	icon_state = "vulptail_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/zenghu_taj
 	name = "Zeng-Hu Tajaran Synth tail"

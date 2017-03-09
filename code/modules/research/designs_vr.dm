@@ -37,6 +37,15 @@
 	build_path = /obj/item/clothing/glasses/omnihud
 	sort_string = "GAAFB"
 
+/datum/design/item/translocator
+	name = "personal translocator"
+	id = "translocator"
+	req_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_ILLEGAL = 7)
+	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 2000, "uranium" = 4000, "diamond" = 2000)
+	build_path = /obj/item/device/perfect_tele
+	sort_string = "HABAF"
+
+
 // Resleeving Circuitboards
 
 /datum/design/circuit/comm_server

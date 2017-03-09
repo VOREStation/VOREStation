@@ -122,3 +122,72 @@
 /area/medical/resleeving
 	name = "Resleeving Lab"
 	icon_state = "genetics"
+
+/area/bigship
+	name = "Bigship"
+	requires_power = 0
+	flags = RAD_SHIELDED
+	sound_env = SMALL_ENCLOSED
+	base_turf = /turf/space
+	icon_state = "red2"
+
+/area/bigship/teleporter
+	name = "Bigship Teleporter Room"
+
+//////// Houseboat Areas ////////
+/area/houseboat
+	name = "Houseboat"
+	requires_power = 0
+	flags = RAD_SHIELDED
+	base_turf = /turf/space
+	icon_state = "red2"
+	lightswitch = 0
+
+/area/houseboat/bridge
+	name = "Houseboat - Bridge"
+	icon_state = "red"
+/area/houseboat/neck
+	name = "Houseboat - Neck"
+	icon_state = "blue"
+/area/houseboat/cap_room
+	name = "Houseboat - Captain's Room"
+	icon_state = "blue2"
+/area/houseboat/guest_room
+	name = "Houseboat - Guest Room"
+	icon_state = "blue"
+/area/houseboat/office
+	name = "Houseboat - Office"
+	icon_state = "red2"
+/area/houseboat/teleporter
+	name = "Houseboat - Teleporter"
+	icon_state = "blue"
+/area/houseboat/robotics
+	name = "Houseboat - Robotics"
+	icon_state = "red2"
+/area/houseboat/cargo
+	name = "Houseboat - Cargo"
+	icon_state = "blue2"
+/area/houseboat/medical
+	name = "Houseboat - Medical"
+	icon_state = "red"
+/area/houseboat/engineering
+	name = "Houseboat - Engineering"
+	icon_state = "red2"
+/area/houseboat/shower
+	name = "Houseboat - Shower"
+	icon_state = "blue2"
+/area/houseboat/toilet
+	name = "Houseboat - Toilet"
+	icon_state = "red2"
+/area/houseboat/docking
+	name = "Houseboat - Docking"
+	icon_state = "blue2"
+/area/houseboat/airlock
+	name = "Houseboat - Airlock"
+	icon_state = "red"
+/area/houseboat/common_area
+	name = "Houseboat - Common Area"
+	icon_state = "blue2"
+/area/houseboat/dining_area
+	name = "Houseboat - Dining Area"
+	icon_state = "red"
