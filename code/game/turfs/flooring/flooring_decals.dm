@@ -392,3 +392,15 @@ var/list/floor_decals = list()
 
 /obj/effect/floor_decal/sign/p
 	icon_state = "white_p"
+
+/obj/effect/floor_decal/sign/dock
+	icon_state = "white_d"
+
+/obj/effect/floor_decal/sign/dock/one
+	icon_state = "white_d1"
+
+/obj/effect/floor_decal/sign/dock/two
+	icon_state = "white_d2"
+
+/obj/effect/floor_decal/sign/dock/three
+	icon_state = "white_d3"
