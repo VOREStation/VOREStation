@@ -111,7 +111,7 @@
 	//Speech bubbles.
 	if(comm)
 		var/speech_bubble_test = say_test(message)
-		var/image/speech_bubble = image('icons/mob/talk.dmi',comm,"h[speech_bubble_test]")
+		var/image/speech_bubble = image('icons/mob/talk_vr.dmi',comm,"h[speech_bubble_test]") //VOREStation Edit - Right side talk icons
 		spawn(30)
 			qdel(speech_bubble)
 
