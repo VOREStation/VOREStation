@@ -1,7 +1,6 @@
 /obj/item/organ/internal/cell
 	name = "microbattery"
 	desc = "A small, powerful cell for use in fully prosthetic bodies."
-	icon = 'icons/obj/power.dmi'
 	icon_state = "scell"
 	organ_tag = "cell"
 	parent_organ = BP_TORSO
