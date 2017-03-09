@@ -1,5 +1,5 @@
 /obj/item/weapon/gun/energy/particle //base gun, similar stats to an egun
-	name = "Antiparticle projector pistol"
+	name = "Anti-particle projector pistol"
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "ppistol"
 	item_state = "ppistol_item"
@@ -18,27 +18,28 @@
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_NORMAL
 	projectile_type = /obj/item/projectile/bullet/particle
-	origin_tech = null
+	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2, TECH_MATERIAL = 2)
 	fire_delay = 10
-	charge_cost = 240	//same cost as lasers
+	charge_cost = 200	//slightly more shots than lasers
 	var/safetycatch = 0 //if 1, won't let you fire in pressurised environment, rather than malfunctioning
 	var/obj/item/pressurelock/attached_safety
 
 
 /obj/item/weapon/gun/energy/particle/advanced //particle equivalent of AEG
-	name = "Advanced antiparticle rifle"
+	name = "Advanced anti-particle rifle"
 	icon_state = "particle"
 	item_state = "particle_item"
 	desc = "An antiparticle projector gun with an enhanced power-generation unit."
 	slot_flags = SLOT_BELT
 	force = 8 //looks heavier than a pistol
 	w_class = ITEMSIZE_LARGE	//bigger than a pistol, too.
+	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 5, TECH_POWER = 3, TECH_MAGNET = 3)
 	fire_delay = 6	//This one's not a handgun, it should have the same fire delay as everything else
 	self_recharge = 1
 	modifystate = null
 	battery_lock = 1
-	recharge_time = 15 // every 15 ticks, recharge 2 shots. Rather slower than AEG.
-	charge_delay = 20 //Starts recharging faster after firing than an AEG, but much slower recharge rate. Balances out for a full charge.
+	recharge_time = 6 // every 6 ticks, recharge 2 shots. Slightly slower than AEG.
+	charge_delay = 10 //Starts recharging faster after firing than an AEG though.
 
 /obj/item/weapon/gun/energy/particle/cannon //particle version of laser cannon
 	name = "Anti-particle cannon"
@@ -47,17 +48,18 @@
 	item_state = "heavyparticle_item"
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 	slot_flags = SLOT_BACK
+	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 5, TECH_POWER = 4, TECH_MAGNET = 4)
 	projectile_type = /obj/item/projectile/bullet/particle/heavy
 	battery_lock = 1
-	fire_delay = 20
+	fire_delay = 15 // fires faster than a laser cannon. c'mon, it's an awesome-but-impractical endgame gun.
 	w_class = ITEMSIZE_HUGE // So it can't fit in a backpack.
 	force = 10
-	one_handed_penalty = 6 // The thing's heavy and huge.
+	one_handed_penalty = 8 // The thing's heavy and huge.
 	accuracy = 3
-	charge_cost = 480 // 5 shots
+	charge_cost = 400 // 6 shots
 	self_recharge = 1
-	charge_delay = 20 //won't start charging until it's ready to fire again
-	recharge_time = 20 //100 ticks after that to refill the whole thing.
+	charge_delay = 15 //won't start charging until it's ready to fire again
+	recharge_time = 8 //40 ticks after that to refill the whole thing.
 
 //special behaviours for particle guns below
 
@@ -161,7 +163,7 @@
 	icon_state = "pressurelock"
 	desc = "A safety interlock that can be installed in an antiparticle projector. It prevents the weapon from discharging in pressurised environments."
 	w_class = ITEMSIZE_TINY
-
+	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
 
 // projectiles below
 

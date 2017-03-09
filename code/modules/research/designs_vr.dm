@@ -29,6 +29,30 @@
 	build_path = /obj/item/weapon/gun/energy/sizegun
 	sort_string = "TAAAB"
 
+/datum/design/item/item/pressureinterlock
+	name = "APP pressure interlock"
+	id = "pressureinterlock"
+	req_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 1000, "glass" = 250)
+	build_path = /obj/item/pressurelock
+	sort_string = "TAADA"
+
+/datum/design/item/weapon/advparticle
+	name = "Advanced anti-particle rifle"
+	id = "advparticle"
+	req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 5, TECH_POWER = 3, TECH_MAGNET = 3)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 1000, "gold" = 1000, "uranium" = 750)
+	build_path = /obj/item/weapon/gun/energy/particle/advanced
+	sort_string = "TAADB"
+
+/datum/design/item/weapon/particlecannon
+	name = "Anti-particle cannon"
+	id = "particlecannon"
+	req_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 5, TECH_POWER = 4, TECH_MAGNET = 4)
+	materials = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 1500, "gold" = 2000, "uranium" = 1000, "diamond" = 2000)
+	build_path = /obj/item/weapon/gun/energy/particle/cannon
+	sort_string = "TAADC"
+
 /datum/design/item/hud/omni
 	name = "AR glasses"
 	id = "omnihud"
