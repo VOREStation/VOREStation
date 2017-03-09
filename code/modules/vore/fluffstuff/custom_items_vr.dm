@@ -603,6 +603,8 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	icon = 'icons/obj/device_alt.dmi'
 	icon_state = "hand_tele"
 	w_class = ITEMSIZE_SMALL
+	origin_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_ILLEGAL = 7)
+
 
 	var/list/beacons = list()
 	var/ready = 1
@@ -734,7 +736,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	var/atom/real_dest = get_turf(destination)
 
 	//Destination beacon is held/eaten
-	if(isliving(destination.loc) && (user != destination.loc)) //We should definitely get televored
+	if(isliving(destination.loc) && !((user == target.loc) && (user == target))) //We should definitely get televored unless we're teleporting ourselves into ourselves
 		var/mob/living/L = destination.loc
 
 		//Is the beacon IN a belly?
