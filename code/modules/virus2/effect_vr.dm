@@ -47,3 +47,16 @@
 		var/newsize = pick(player_sizes_list)
 		mob.resize(player_sizes_list[newsize])
 		viewers(mob) << "<span class='warning'>[mob.name] suddenly changes size!</span>"
+
+/datum/disease2/effect/flip
+	name = "Flipponov's Disease"
+	stage = 3
+	chance_maxm = 5
+
+	activate(var/mob/living/carbon/mob,var/multiplier) //Remind me why mob is carbon...?
+		if(ishuman(mob))
+			var/mob/living/carbon/human/H = mob
+			H.emote("flip")
+		else
+			viewers(mob) << "<span class='warning'>[mob.name] does a backflip!</span>"
+			mob.SpinAnimation(7,1)
