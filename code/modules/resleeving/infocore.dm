@@ -64,6 +64,7 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 /datum/transhuman/infocore/proc/add_backup(var/datum/transhuman/mind_record/MR)
 	ASSERT(MR)
 	backed_up[MR.mindname] = MR
+	backed_up = sortAssoc(backed_up)
 	log_debug("Added [MR.mindname] to transcore DB.")
 
 /datum/transhuman/infocore/proc/stop_backup(var/datum/transhuman/mind_record/MR)
@@ -76,7 +77,13 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 /datum/transhuman/infocore/proc/add_body(var/datum/transhuman/body_record/BR)
 	ASSERT(BR)
 	body_scans[BR.mydna.name] = BR
+	body_scans = sortAssoc(body_scans)
 	log_debug("Added [BR.mydna.name] to transcore body DB.")
+
+/datum/transhuman/infocore/proc/remove_body(var/datum/transhuman/body_record/BR)
+	ASSERT(BR)
+	body_scans.Remove("[BR.mydna.name]")
+	log_debug("Removed [BR.mydna.name] from transcore body DB.")
 
 /datum/transhuman/infocore/proc/core_dump(var/obj/item/weapon/disk/transcore/disk)
 	ASSERT(disk)

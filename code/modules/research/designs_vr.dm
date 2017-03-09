@@ -30,12 +30,21 @@
 	sort_string = "TAAAB"
 
 /datum/design/item/hud/omni
-	name = "AR sunglasses"
+	name = "AR glasses"
 	id = "omnihud"
 	req_tech = list(TECH_MAGNET = 4, TECH_COMBAT = 3, TECH_BIO = 3)
 	materials = list(DEFAULT_WALL_MATERIAL = 1000, "glass" = 1000)
-	build_path = /obj/item/clothing/glasses/sunglasses/omnihud
+	build_path = /obj/item/clothing/glasses/omnihud
 	sort_string = "GAAFB"
+
+/datum/design/item/translocator
+	name = "personal translocator"
+	id = "translocator"
+	req_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_ILLEGAL = 7)
+	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 2000, "uranium" = 4000, "diamond" = 2000)
+	build_path = /obj/item/device/perfect_tele
+	sort_string = "HABAF"
+
 
 // Resleeving Circuitboards
 

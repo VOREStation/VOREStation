@@ -194,6 +194,7 @@
 		var/mob/living/carbon/human/H = usr
 		if(istype(H) && (!befriend_job || H.job == befriend_job))
 			friend = usr
+			prey_excludes |= usr //VOREStation Add - Friends not food!
 			. = 1
 	else if(usr == friend)
 		. = 1 //already friends, but show success anyways
@@ -217,6 +218,7 @@
 	item_state = "cat"
 	icon_living = "cat"
 	icon_dead = "cat_dead"
+	befriend_job = "Chief Medical Officer" //VOREStation Add
 
 /mob/living/simple_animal/cat/kitten
 	name = "kitten"

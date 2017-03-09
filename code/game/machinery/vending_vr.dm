@@ -1,26 +1,29 @@
-/obj/machinery/vending/hydroseeds
-	products = list(/obj/item/seeds/bananaseed = 3,/obj/item/seeds/berryseed = 3,/obj/item/seeds/carrotseed = 3,/obj/item/seeds/chantermycelium = 3,/obj/item/seeds/chiliseed = 3,
-					/obj/item/seeds/cornseed = 3, /obj/item/seeds/eggplantseed = 3, /obj/item/seeds/potatoseed = 3, /obj/item/seeds/replicapod = 3,/obj/item/seeds/soyaseed = 3,
-					/obj/item/seeds/sunflowerseed = 3,/obj/item/seeds/tomatoseed = 3,/obj/item/seeds/towermycelium = 3,/obj/item/seeds/wheatseed = 3,/obj/item/seeds/appleseed = 3,
-					/obj/item/seeds/poppyseed = 3,/obj/item/seeds/sugarcaneseed = 3,/obj/item/seeds/ambrosiavulgarisseed = 3,/obj/item/seeds/peanutseed = 3,/obj/item/seeds/whitebeetseed = 3,/obj/item/seeds/watermelonseed = 3,/obj/item/seeds/lavenderseed = 3,/obj/item/seeds/limeseed = 3,
-					/obj/item/seeds/lemonseed = 3,/obj/item/seeds/orangeseed = 3,/obj/item/seeds/grassseed = 3,/obj/item/seeds/cocoapodseed = 3,/obj/item/seeds/plumpmycelium = 2,
-					/obj/item/seeds/cabbageseed = 3,/obj/item/seeds/grapeseed = 3,/obj/item/seeds/pumpkinseed = 3,/obj/item/seeds/cherryseed = 3,/obj/item/seeds/plastiseed = 3,/obj/item/seeds/riceseed = 3,/obj/item/seeds/shrinkshroom = 3,/obj/item/seeds/megashroom = 3)
+//Tweaked existing vendors
+/obj/machinery/vending/hydroseeds/New()
+	products += list(/obj/item/seeds/shrinkshroom = 3,/obj/item/seeds/megashroom = 3)
+	..()
 
-/obj/machinery/vending/security
-	req_access = list(access_security)
-	products = list(/obj/item/weapon/handcuffs = 8,/obj/item/weapon/grenade/flashbang = 4,/obj/item/device/flash = 5,
-					/obj/item/weapon/reagent_containers/food/snacks/donut/normal = 12,/obj/item/weapon/storage/box/evidence = 6,
-					/obj/item/weapon/gun/energy/taser = 8,/obj/item/weapon/gun/energy/stunrevolver = 4,
+/obj/machinery/vending/security/New()
+	products += list(/obj/item/weapon/gun/energy/taser = 8,/obj/item/weapon/gun/energy/stunrevolver = 4,
 					/obj/item/weapon/reagent_containers/spray/pepper = 6,/obj/item/taperoll/police = 6,
-					/obj/item/weapon/gun/projectile/sec/flash = 4, /obj/item/ammo_magazine/c45m/flash = 8)
+					/obj/item/weapon/gun/projectile/sec/flash = 4, /obj/item/ammo_magazine/c45m/flash = 8,
+					/obj/item/clothing/glasses/omnihud/sec = 4)
+	..()
 
+/obj/machinery/vending/tool/New()
+	products += list(/obj/item/weapon/reagent_containers/spray/windowsealant = 5)
+	..()
 
-/obj/machinery/vending/tool
-	products = list(/obj/item/stack/cable_coil/random = 10,/obj/item/weapon/crowbar = 5,/obj/item/weapon/weldingtool = 3,/obj/item/weapon/wirecutters = 5,
-					/obj/item/weapon/wrench = 5,/obj/item/device/analyzer = 5,/obj/item/device/t_scanner = 5,/obj/item/weapon/screwdriver = 5,
-					/obj/item/device/flashlight/glowstick = 3, /obj/item/device/flashlight/glowstick/red = 3, /obj/item/device/flashlight/glowstick/blue = 3,
-					/obj/item/device/flashlight/glowstick/orange =3, /obj/item/device/flashlight/glowstick/yellow = 3, /obj/item/weapon/reagent_containers/spray/windowsealant = 5)
+/obj/machinery/vending/engivend/New()
+	products += list(/obj/item/clothing/glasses/omnihud/eng = 4)
+	..()
 
+/obj/machinery/vending/medical/New()
+	products += list(/obj/item/weapon/storage/box/khcrystal = 4,/obj/item/weapon/storage/box/backup_kit = 2,
+					/obj/item/clothing/glasses/omnihud/med = 2, /obj/item/device/glasses_kit = 1)
+	..()
+
+//Custom vendors
 /obj/machinery/vending/dinnerware
 	name = "Dinnerware"
 	desc = "A kitchen and restaurant equipment vendor."
@@ -55,7 +58,11 @@
 	desc = "A technological marvel, supposedly able to cook or mix a large variety of food or drink."
 	icon_state = "boozeomat"
 	icon_deny = "boozeomat-deny"
-	products = list(/obj/item/weapon/reagent_containers/food/drinks/bottle/orangejuice = 4,
+	products = list(/obj/item/weapon/tray = 8,
+					/obj/item/weapon/material/kitchen/utensil/fork = 6,
+					/obj/item/weapon/material/kitchen/utensil/knife = 6,
+					/obj/item/weapon/material/kitchen/utensil/spoon = 6,
+					/obj/item/weapon/reagent_containers/food/drinks/bottle/orangejuice = 4,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/tomatojuice = 4,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/limejuice = 4,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/cream = 4,

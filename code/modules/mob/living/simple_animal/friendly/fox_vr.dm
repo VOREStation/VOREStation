@@ -23,6 +23,7 @@
 	minbodytemp = 223		//Below -50 Degrees Celcius
 	maxbodytemp = 323		//Above 50 Degrees Celcius
 	mob_size = MOB_TINY
+	isPredator = 1
 
 /mob/living/simple_animal/fox/New()
 	if(!vore_organs.len)
@@ -51,6 +52,12 @@
 			"The fox's stomach churns hungrily over your form, trying to take you.",
 			"With a loud glorp, the stomach spills more acids onto you.")
 	..()
+
+//For resting sprites
+/mob/living/simple_animal/fox/lay_down()
+	..()
+	if(icon_rest)
+		icon_state = resting ? icon_rest : icon_living
 
 // All them complicated fox procedures.
 /mob/living/simple_animal/fox/Life()
@@ -263,6 +270,7 @@
 		return
 
 	friend = usr
+	prey_excludes |= usr
 
 	set_dir(get_dir(src, friend))
 	say("Yap!")
@@ -274,9 +282,9 @@
 //Captain fox
 /mob/living/simple_animal/fox/fluff/Renault
 	name = "Renault"
-	desc = "Renault, the Captain's trustworthy fox. I wonder what it says?"
+	desc = "Renault, the Colony Director's trustworthy fox. I wonder what it says?"
 	isPredator = 1
-	befriend_job = "Captain"
+	befriend_job = "Colony Director"
 
 /mob/living/simple_animal/fox/fluff/Renault/New()
 	if(!vore_organs.len)
@@ -306,3 +314,12 @@
 			"There's a loud gurgle as the stomach declares the intent to make you a part of Renault.")
 
 	..()
+
+/mob/living/simple_animal/fox/syndicate
+	name = "syndi-fox"
+	desc = "It's a DASTARDLY fox! The horror! Call the shuttle!"
+	icon = 'icons/mob/fox_vr.dmi'
+	icon_state = "syndifox"
+	icon_living = "syndifox"
+	icon_dead = "syndifox_dead"
+	icon_rest = "syndifox_rest"

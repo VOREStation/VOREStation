@@ -2744,7 +2744,7 @@
 "baO" = (/obj/machinery/computer/teleporter,/turf/unsimulated/floor{icon_state = "dark"},/area/wizard_station)
 "baP" = (/obj/machinery/teleport/station,/turf/unsimulated/floor{icon_state = "dark"},/area/wizard_station)
 "baQ" = (/obj/machinery/teleport/hub,/turf/unsimulated/floor{icon_state = "dark"},/area/wizard_station)
-"baR" = (/obj/structure/table/woodentable,/obj/item/clothing/shoes/workboots,/obj/item/clothing/under/technomancer,/obj/item/clothing/head/technomancer,/obj/item/weapon/storage/box/syndie_kit/chameleon,/obj/item/weapon/storage/box/syndie_kit/chameleon,/turf/unsimulated/floor{icon_state = "dark"},/area/wizard_station)
+"baR" = (/obj/structure/table/woodentable,/obj/item/clothing/shoes/boots/workboots,/obj/item/clothing/under/technomancer,/obj/item/clothing/head/technomancer,/obj/item/weapon/storage/box/syndie_kit/chameleon,/obj/item/weapon/storage/box/syndie_kit/chameleon,/turf/unsimulated/floor{icon_state = "dark"},/area/wizard_station)
 "baS" = (/obj/structure/table/rack,/obj/item/weapon/gun/energy/gun,/obj/item/weapon/gun/energy/gun,/obj/item/weapon/gun/energy/gun,/obj/machinery/recharger/wallcharger{pixel_x = 5; pixel_y = -32},/obj/item/weapon/cell/device/weapon,/obj/item/weapon/cell/device/weapon,/obj/item/weapon/cell/device/weapon,/turf/unsimulated/floor{icon_state = "dark"},/area/syndicate_mothership)
 
 (1,1,1) = {"

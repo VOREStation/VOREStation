@@ -296,7 +296,7 @@
 		internal_contents += ID
 
 	// Posibrains have to be pulled 'out' of their organ version.
-	else if(istype(W,/obj/item/organ/internal/mmi_holder))
+	else if(istype(W,/obj/item/organ/internal/mmi_holder/posibrain))
 		var/obj/item/organ/internal/mmi_holder/MMI = W
 		var/atom/movable/brain = MMI.removed()
 		if(brain)

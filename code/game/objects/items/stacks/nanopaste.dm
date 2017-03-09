@@ -38,3 +38,8 @@
 					use(1)
 					user.visible_message("<span class='notice'>\The [user] applies some nanite paste on [user != M ? "[M]'s [S.name]" : "[S]"] with [src].</span>",\
 					"<span class='notice'>You apply some nanite paste on [user == M ? "your" : "[M]'s"] [S.name].</span>")
+		//VOREStation Add - External robolimb repair with nanopaste
+		else if(S && (S.robotic >= ORGAN_ROBOT))
+			if(S.robo_repair(5, "omni", "some damage", src, user))
+				use(1)
+		//VOREStation Add End

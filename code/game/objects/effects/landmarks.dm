@@ -135,7 +135,7 @@
 	new /obj/item/clothing/under/gimmick/rank/captain/suit(src.loc)
 	new /obj/item/clothing/head/flatcap(src.loc)
 	new /obj/item/clothing/mask/smokable/cigarette/cigar/havana(src.loc)
-	new /obj/item/clothing/shoes/jackboots(src.loc)
+	new /obj/item/clothing/shoes/boots/jackboots(src.loc)
 	delete_me = 1
 
 /obj/effect/landmark/costume/nyangirl/New()
