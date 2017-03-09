@@ -865,3 +865,43 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 				B.internal_contents |= src
 				user.visible_message("<span class='warning'>[user] eats a telebeacon!</span>","You eat the the beacon!")
 				playsound(user, B.vore_sound, 70, 1)
+
+//Universal translator
+/obj/item/device/universal_trans
+	name = "handheld translator"
+	desc = "This handy device appears to translate the languages it hears into onscreen text for a user."
+	icon = 'icons/obj/device_alt.dmi'
+	icon_state = "atmos"
+	w_class = ITEMSIZE_SMALL
+	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
+	var/listening = 0
+
+/obj/item/device/universal_trans/attack_self(mob/user)
+	listening = !listening
+	if(listening)
+		listening_objects |= src
+	else
+		listening_objects -= src
+
+	user << "<span class='notice'>You [listening ? "enable" : "disable"] \the [src].</span>"
+
+/obj/item/device/universal_trans/hear_talk(var/mob/speaker,var/message,var/vrb,var/datum/language/language)
+	if(!listening || !istype(speaker))
+		return
+
+	//Show the "I heard something" animation.
+	flick("atmos2",src)
+
+	//Handheld or pocket only.
+	if(!isliving(loc))
+		return
+
+	var/mob/living/L = loc
+
+	if (language && (language.flags & NONVERBAL))
+		return //Not gonna translate sign language
+
+	//Only translate if they can't understand, otherwise pointlessly spammy
+	//I'll just assume they don't look at the screen in that case
+	if(!L.say_understands(speaker,language))
+		L << "<i><b>[src]</b> displays, </i>\"[message]\""
