@@ -736,7 +736,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	var/atom/real_dest = get_turf(destination)
 
 	//Destination beacon is held/eaten
-	if(isliving(destination.loc) && !((user == target.loc) && (user == target))) //We should definitely get televored unless we're teleporting ourselves into ourselves
+	if(isliving(destination.loc) && (target != destination.loc)) //We should definitely get televored unless we're teleporting ourselves into ourselves
 		var/mob/living/L = destination.loc
 
 		//Is the beacon IN a belly?
@@ -758,7 +758,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 		real_dest = destination.loc
 		target_belly.internal_contents |= target
 		playsound(target_belly.owner, target_belly.vore_sound, 100, 1)
-		user << "<span class='warning'>\The [src] teleports you right into [target_belly.owner]'s [target_belly.name]!</span>"
+		target << "<span class='warning'>\The [src] teleports you right into [target_belly.owner]'s [target_belly.name]!</span>"
 		target_belly.owner << "<span class='warning'>Your [target_belly.name] suddenly has a new occupant!</span>"
 
 	//Phase-out effect
@@ -848,3 +848,20 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 			return
 
 	..()
+
+/obj/item/device/perfect_tele_beacon/attack_self(mob/user)
+	if(!isliving(user))
+		return
+	var/mob/living/L = user
+	var/confirm = alert(user, "You COULD eat the beacon...", "Eat beacon?", "Eat it!", "No, thanks.")
+	if(confirm == "Eat it!")
+		var/bellychoice = input("Which belly?","Select A Belly") in L.vore_organs|null
+		if(bellychoice)
+			var/datum/belly/B = L.vore_organs[bellychoice]
+			user.visible_message("<span class='warning'>[user] is trying to stuff \the [src] into [user.gender == MALE ? "his" : user.gender == FEMALE ? "her" : "their"] [bellychoice]!</span>","<span class='notice'>You begin putting \the [src] into your [bellychoice]!</span>")
+			if(do_after(user,5 SECONDS,src))
+				user.unEquip(src)
+				src.forceMove(user)
+				B.internal_contents |= src
+				user.visible_message("<span class='warning'>[user] eats a telebeacon!</span>","You eat the the beacon!")
+				playsound(user, B.vore_sound, 70, 1)
