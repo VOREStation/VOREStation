@@ -869,9 +869,7 @@
 /obj/item/clothing/suit/storage/trench/fluff/octaviouscoat
 	name = "Thin Leather coat"
 	desc = "A finely made leather coat designed for use in laboratories and doubles for parties. Has the letters O.C.W. embroidered in sliver on the right breast pocket."
-	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "octavgentlecoat"
-	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "octavgentlecoat_mob"
 	blood_overlay_type = "coat"
 	allowed = list(/obj/item/weapon/tank/emergency/oxygen, /obj/item/device/flashlight,/obj/item/weapon/gun/energy,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/device/taperecorder,/obj/item/device/uv_light)
@@ -882,10 +880,10 @@
 	desc = "A well made suit and tie, with a thin leather vest, while not as rugged as normal lab suits, it lets the wearer look dashing as he works. The letter's O.C.W. are embroidered on the left breast."
 
 	icon = 'icons/vore/custom_clothes_vr.dmi'
-	icon_state = "octavgentlesuit"
+	icon_state = "octavgentlecoat"
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	item_state = "octavgentlesuit_mob" //don't forget to rename the sprite.
+	item_state = "octavgentlecoat_s"
 
 //bwoincognito:Octavious Ward
 /obj/item/clothing/head/fedora/fluff/bowler
@@ -914,9 +912,7 @@
 /obj/item/clothing/mask/gas/plaguedoctor/fluff/octaviousmask
 	name = "Customized Gas Mask"
 	desc = "A customized gas mask to look like an old plague doctors, with a special looking lens in the left eye that turns on when in use."
-	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "octplaguedoctor"
-	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "octplaguedoctor_mob"
 	armor = list(melee = 0, bullet = 0, laser = 2,energy = 2, bomb = 0, bio = 90, rad = 0)
 	body_parts_covered = HEAD|FACE|EYES
