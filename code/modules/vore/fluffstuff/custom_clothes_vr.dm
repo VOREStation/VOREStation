@@ -978,8 +978,8 @@
 			M.update_inv_wear_mask()
 		usr.update_action_buttons()
 
-+//Vorrarkul: Theodora Lindt
-+/obj/item/clothing/suit/chococoat
+//Vorrarkul: Theodora Lindt
+/obj/item/clothing/suit/chococoat
 	name = "Chococoat"
 	desc = "A long coat designed to resemble Getmore Chocolate Corp's namesake chocolate bar wrapper." //A walking advertisement?
 	icon = 'icons/vore/custom_clothes_vr.dmi'
