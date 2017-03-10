@@ -875,22 +875,30 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	w_class = ITEMSIZE_SMALL
 	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
 	var/listening = 0
+	var/datum/language/langset
 
 /obj/item/device/universal_trans/attack_self(mob/user)
-	listening = !listening
-	if(listening)
-		listening_objects |= src
-	else
+	if(!listening) //Turning ON
+		langset = input(user,"Translate to which of your languages?","Language Selection") as anything|null in user.languages
+		if(langset)
+			listening = 1
+			listening_objects |= src
+			icon_state = "[initial(icon_state)]1"
+			user << "<span class='notice'>You enable \the [src], translating into [langset.name].</span>"
+	else //Turning OFF
+		listening = 0
 		listening_objects -= src
+		langset = null
+		icon_state = "[initial(icon_state)]"
+		user << "<span class='notice'>You disable \the [src].</span>"
 
-	user << "<span class='notice'>You [listening ? "enable" : "disable"] \the [src].</span>"
 
 /obj/item/device/universal_trans/hear_talk(var/mob/speaker,var/message,var/vrb,var/datum/language/language)
 	if(!listening || !istype(speaker))
 		return
 
 	//Show the "I heard something" animation.
-	flick("atmos2",src)
+	flick("[initial(icon_state)]2",src)
 
 	//Handheld or pocket only.
 	if(!isliving(loc))
@@ -903,5 +911,14 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 
 	//Only translate if they can't understand, otherwise pointlessly spammy
 	//I'll just assume they don't look at the screen in that case
+
+	//They don't understand the spoken language we're translating FROM
 	if(!L.say_understands(speaker,language))
-		L << "<i><b>[src]</b> displays, </i>\"[message]\""
+
+		//They understand the PRINTED language
+		if(L.say_understands(null,langset))
+			L << "<i><b>[src]</b> displays, </i>\"<span class='[langset.colour]'>[message]</span>\""
+
+		//They don't understand the PRINTED language
+		else
+			L << "<i><b>[src]</b> displays, </i>\"<span class='[langset.colour]'>[langset.scramble(message)]</span>\""
