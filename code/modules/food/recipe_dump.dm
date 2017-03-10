@@ -34,7 +34,8 @@
 
 			//So now we add something like "Bread" = 3
 			if(ing.name in working_ing_list)
-				working_ing_list[ing.name] = working_ing_list[ing.name]++
+				var/sofar = working_ing_list[ing.name]
+				working_ing_list[ing.name] = sofar+1
 			else
 				working_ing_list[ing.name] = 1
 
