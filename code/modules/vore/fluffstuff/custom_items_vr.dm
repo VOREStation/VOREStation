@@ -905,3 +905,13 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	//I'll just assume they don't look at the screen in that case
 	if(!L.say_understands(speaker,language))
 		L << "<i><b>[src]</b> displays, </i>\"[message]\""
+
+//Vorrarkul: Theodora Lindt
+/obj/item/clothing/suit/chococoat
+	name = "Chococoat"
+	desc = "A long coat designed to resemble Getmore Chocolate Corp's namesake chocolate bar wrapper." //A walking advertisement?
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "chococoat_on"
+	icon_state = "chococoat"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
