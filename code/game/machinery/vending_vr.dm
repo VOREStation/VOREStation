@@ -19,7 +19,7 @@
 	..()
 
 /obj/machinery/vending/medical/New()
-	products += list(/obj/item/weapon/storage/box/khcrystal = 4,/obj/item/weapon/storage/box/backup_kit = 2,
+	products += list(/obj/item/weapon/storage/box/khcrystal = 4,/obj/item/weapon/backup_implanter = 3,
 					/obj/item/clothing/glasses/omnihud/med = 2, /obj/item/device/glasses_kit = 1)
 	..()
 
