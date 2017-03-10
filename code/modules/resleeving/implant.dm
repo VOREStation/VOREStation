@@ -7,6 +7,8 @@
 /obj/item/weapon/implant/backup
 	name = "backup implant"
 	desc = "A mindstate backup implant that occasionally stores a copy of one's mind on a central server for backup purposes."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "backup_implant"
 	var/last_attempt
 	var/attempt_delay = 5 MINUTES
 
