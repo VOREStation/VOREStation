@@ -978,6 +978,17 @@
 			M.update_inv_wear_mask()
 		usr.update_action_buttons()
 
+//Vorrarkul: Theodora Lindt
+/obj/item/clothing/suit/chococoat
+	name = "Chococoat"
+	desc = "A long coat designed to resemble Getmore Chocolate Corp's namesake chocolate bar wrapper." //A walking advertisement?
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "chococoat_on"
+	icon_state = "chococoat"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	allowed = list (/obj/item/weapon/material/knife)
+
 /*
 Departamental Swimsuits, for general use
 */
