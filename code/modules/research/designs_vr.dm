@@ -8,21 +8,21 @@
 	build_path = /obj/item/weapon/pickaxe/excavationdrill
 
 /datum/design/item/implant/language
-	name = "language implant"
+	name = "Language implant"
 	id = "implant_language"
 	req_tech = list(TECH_MATERIAL = 5, TECH_BIO = 5, TECH_DATA = 4, TECH_ENGINEERING = 4) //This is not an easy to make implant.
 	materials = list(DEFAULT_WALL_MATERIAL = 7000, "glass" = 7000, "gold" = 2000, "diamond" = 3000)
 	build_path = /obj/item/weapon/implantcase/vrlanguage
 
 /datum/design/item/implant/backup
-	name = "backup implant"
+	name = "Backup implant"
 	id = "implant_backup"
 	req_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2, TECH_DATA = 4, TECH_ENGINEERING = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 2000)
 	build_path = /obj/item/weapon/implantcase/backup
 
 /datum/design/item/weapon/sizegun
-	name = "shrink ray"
+	name = "Shrink ray"
 	id = "shrinkray"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 3000, "glass" = 2000, "uranium" = 2000)
@@ -38,7 +38,7 @@
 	sort_string = "GAAFB"
 
 /datum/design/item/translocator
-	name = "personal translocator"
+	name = "Personal translocator"
 	id = "translocator"
 	req_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_ILLEGAL = 7)
 	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 2000, "uranium" = 4000, "diamond" = 2000)
@@ -48,7 +48,7 @@
 
 // Resleeving Circuitboards
 
-/datum/design/circuit/comm_server
+/datum/design/circuit/transhuman_clonepod
 	name = "grower pod"
 	id = "transhuman_clonepod"
 	req_tech = list(TECH_DATA = 3, TECH_BIO = 3)
@@ -63,21 +63,21 @@
 	sort_string = "HAADB"
 
 /datum/design/circuit/transhuman_resleever
-	name = "resleeving pod"
+	name = "Resleeving pod"
 	id = "transhuman_resleever"
 	req_tech = list(TECH_ENGINEERING = 4, TECH_BIO = 4)
 	build_path = /obj/item/weapon/circuitboard/transhuman_resleever
 	sort_string = "HAADC"
 
 /datum/design/circuit/resleeving_control
-	name = "resleeving control console"
+	name = "Resleeving control console"
 	id = "resleeving_control"
 	req_tech = list(TECH_DATA = 5)
 	build_path = /obj/item/weapon/circuitboard/resleeving_control
 	sort_string = "HAADE"
 
 /datum/design/circuit/partslathe
-	name = "parts lathe"
+	name = "Parts lathe"
 	id = "partslathe"
 	req_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 2)
 	build_path = /obj/item/weapon/circuitboard/partslathe

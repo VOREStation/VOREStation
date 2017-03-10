@@ -71,20 +71,25 @@
 /obj/item/weapon/backup_implanter/New()
 	..()
 	for(var/i = 1 to max_implants)
-		imps[i] = new /obj/item/weapon/implant/backup(src)
+		var/obj/item/weapon/implant/backup/imp = new(src)
+		imps |= imp
+		imp.germ_level = 0
 	update()
 
-/obj/item/weapon/backup_implanter/update()
+/obj/item/weapon/backup_implanter/proc/update()
 	icon_state = "[initial(icon_state)][imps.len]"
+	germ_level = 0
 
-/obj/item/weapon/backup_implanter/attack_hand(mob/user as mob)
+/obj/item/weapon/backup_implanter/attack_self(mob/user as mob)
 	if(!istype(user))
 		return
 
 	if(imps.len)
 		user << "<span class='notice'>You eject a backup implant.</span>"
-		imps[imps.len].forceMove(get_turf(user))
-		user.put_in_any_hand_if_possible(imps.len)
+		var/obj/item/weapon/implant/backup/imp = imps[imps.len]
+		imp.forceMove(get_turf(user))
+		imps -= imp
+		user.put_in_any_hand_if_possible(imp)
 		update()
 	else
 		user << "<span class='warning'>\The [src] is empty.</span>"
@@ -94,7 +99,9 @@
 /obj/item/weapon/backup_implanter/attackby(obj/W, mob/user)
 	if(istype(W,/obj/item/weapon/implant/backup))
 		if(imps.len < max_implants)
+			user.unEquip(W)
 			imps |= W
+			W.germ_level = 0
 			W.forceMove(src)
 			update()
 			user << "<span class='notice'>You load \the [W] into \the [src].</span>"
@@ -115,14 +122,13 @@
 			if(user && M && (get_turf(M) == T1) && src && src.imps.len)
 				M.visible_message("<span class='notice'>[M] has been backup implanted by [user].</span>")
 
-				admin_attack_log(user, M, "Implanted using \the [src.name] ([src.imp.name])", "Implanted with \the [src.name] ([src.imp.name])", "used an implanter, [src.name] ([src.imp.name]), on")
-
 				var/obj/item/weapon/implant/backup/imp = imps[imps.len]
 				if(imp.implanted(M))
 					imp.forceMove(M)
 					imps -= imp
 					imp.imp_in = M
 					imp.implanted = 1
+					admin_attack_log(user, M, "Implanted using \the [src.name] ([imp.name])", "Implanted with \the [src.name] ([imp.name])", "used an implanter, [src.name] ([imp.name]), on")
 					if (ishuman(M))
 						var/mob/living/carbon/human/H = M
 						var/obj/item/organ/external/affected = H.get_organ(user.zone_sel.selecting)
