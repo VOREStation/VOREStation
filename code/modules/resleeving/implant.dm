@@ -54,6 +54,90 @@
 	spawn(attempt_delay)
 		backup()
 
+//New, modern implanter instead of old style implanter.
+/obj/item/weapon/backup_implanter
+	name = "backup implanter"
+	desc = "After discovering that Nanotrasen was just re-using the same implanters over and over again on organics, leading to cross-contamination, Kitsuhana Heavy industries designed this self-cleaning model. Holds four backup implants at a time."
+	icon = 'icons/obj/device_alt.dmi'
+	icon_state = "bimplant"
+	item_state = "syringe_0"
+	throw_speed = 1
+	throw_range = 5
+	w_class = ITEMSIZE_SMALL
+	matter = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 2000)
+	var/obj/item/weapon/implant/backup/list/imps = list()
+	var/max_implants = 4 //Iconstates need to exist due to the update proc!
+
+/obj/item/weapon/backup_implanter/New()
+	..()
+	for(var/i = 1 to max_implants)
+		var/obj/item/weapon/implant/backup/imp = new(src)
+		imps |= imp
+		imp.germ_level = 0
+	update()
+
+/obj/item/weapon/backup_implanter/proc/update()
+	icon_state = "[initial(icon_state)][imps.len]"
+	germ_level = 0
+
+/obj/item/weapon/backup_implanter/attack_self(mob/user as mob)
+	if(!istype(user))
+		return
+
+	if(imps.len)
+		user << "<span class='notice'>You eject a backup implant.</span>"
+		var/obj/item/weapon/implant/backup/imp = imps[imps.len]
+		imp.forceMove(get_turf(user))
+		imps -= imp
+		user.put_in_any_hand_if_possible(imp)
+		update()
+	else
+		user << "<span class='warning'>\The [src] is empty.</span>"
+
+	return
+
+/obj/item/weapon/backup_implanter/attackby(obj/W, mob/user)
+	if(istype(W,/obj/item/weapon/implant/backup))
+		if(imps.len < max_implants)
+			user.unEquip(W)
+			imps |= W
+			W.germ_level = 0
+			W.forceMove(src)
+			update()
+			user << "<span class='notice'>You load \the [W] into \the [src].</span>"
+		else
+			user << "<span class='warning'>\The [src] is already full!</span>"
+
+/obj/item/weapon/backup_implanter/attack(mob/M as mob, mob/user as mob)
+	if (!istype(M, /mob/living/carbon))
+		return
+	if (user && imps.len)
+		M.visible_message("<span class='notice'>[user] is injecting a backup implant into [M].</span>")
+
+		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
+		user.do_attack_animation(M)
+
+		var/turf/T1 = get_turf(M)
+		if (T1 && ((M == user) || do_after(user, 5 SECONDS)))
+			if(user && M && (get_turf(M) == T1) && src && src.imps.len)
+				M.visible_message("<span class='notice'>[M] has been backup implanted by [user].</span>")
+
+				var/obj/item/weapon/implant/backup/imp = imps[imps.len]
+				if(imp.implanted(M))
+					imp.forceMove(M)
+					imps -= imp
+					imp.imp_in = M
+					imp.implanted = 1
+					admin_attack_log(user, M, "Implanted using \the [src.name] ([imp.name])", "Implanted with \the [src.name] ([imp.name])", "used an implanter, [src.name] ([imp.name]), on")
+					if (ishuman(M))
+						var/mob/living/carbon/human/H = M
+						var/obj/item/organ/external/affected = H.get_organ(user.zone_sel.selecting)
+						affected.implants += imp
+						imp.part = affected
+						BITSET(H.hud_updateflag, BACKUP_HUD)
+
+				update()
+
 //The glass case for the implant
 /obj/item/weapon/implantcase/backup
 	name = "glass case - 'backup'"
