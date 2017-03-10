@@ -114,7 +114,7 @@
 	if(repairing && istype(I, /obj/item/weapon/weldingtool) && (stat & BROKEN))
 		if(!density)
 			user << "<span class='warning'>\The [src] must be closed before you can shore it up.</span>"
-			return
+			return 1
 
 		var/obj/item/weapon/weldingtool/welder = I
 		if(welder.remove_fuel(0,user))
