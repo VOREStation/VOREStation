@@ -114,7 +114,7 @@
 			M.drowsyness = max(M.drowsyness, 60)
 
 /datum/reagent/nutriment/flour
-	name = "flour"
+	name = "Flour"
 	id = "flour"
 	description = "This is what you rub all over yourself to pretend to be a ghost."
 	taste_description = "chalky wheat"
