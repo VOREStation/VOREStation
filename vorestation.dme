@@ -1824,6 +1824,7 @@
 #include "code\modules\mob\living\simple_animal\hostile\goose_vr.dm"
 #include "code\modules\mob\living\simple_animal\hostile\hivebot.dm"
 #include "code\modules\mob\living\simple_animal\hostile\hostile.dm"
+#include "code\modules\mob\living\simple_animal\hostile\pike_vr.dm"
 #include "code\modules\mob\living\simple_animal\hostile\pirate.dm"
 #include "code\modules\mob\living\simple_animal\hostile\russian.dm"
 #include "code\modules\mob\living\simple_animal\hostile\syndicate.dm"
