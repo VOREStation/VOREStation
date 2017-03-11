@@ -895,6 +895,11 @@ var/global/list/damage_icon_parts = list()
 		if(hud_used)
 			hud_used.hidden_inventory_update() 	//Updates the screenloc of the items on the 'other' inventory bar
 
+//update whether handcuffs appears on our hud.
+/mob/living/carbon/proc/update_hud_handcuffed()
+	if(hud_used && hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
+		hud_used.l_hand_hud_object.update_icon()
+		hud_used.r_hand_hud_object.update_icon()
 
 /mob/living/carbon/human/update_inv_handcuffed(var/update_icons=1)
 	if(handcuffed)
@@ -913,6 +918,8 @@ var/global/list/damage_icon_parts = list()
 
 	else
 		overlays_standing[HANDCUFF_LAYER]	= null
+
+	update_hud_handcuffed()
 	if(update_icons)   update_icons()
 
 /mob/living/carbon/human/update_inv_legcuffed(var/update_icons=1)
