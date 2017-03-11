@@ -70,14 +70,16 @@
 		for(var/rid in food_recipes[Rp]["Reagents"])
 			var/datum/reagent/Rd = chemical_reagents_list[rid]
 			var/R_name = Rd.name
-			food_recipes[Rp]["Reagents"][R_name] += food_recipes[Rp]["Reagents"][rid]
+			var/amt = food_recipes[Rp]["Reagents"][rid]
 			food_recipes[Rp]["Reagents"] -= rid
+			food_recipes[Rp]["Reagents"][R_name] = amt
 	for(var/Rp in drink_recipes)
 		for(var/rid in drink_recipes[Rp]["Reagents"])
 			var/datum/reagent/Rd = chemical_reagents_list[rid]
 			var/R_name = Rd.name
-			drink_recipes[Rp]["Reagents"][R_name] += drink_recipes[Rp]["Reagents"][rid]
+			var/amt = drink_recipes[Rp]["Reagents"][rid]
 			drink_recipes[Rp]["Reagents"] -= rid
+			drink_recipes[Rp]["Reagents"][R_name] = amt
 
 	//////////////////////// SORTING
 	var/list/foods_to_paths = list()
