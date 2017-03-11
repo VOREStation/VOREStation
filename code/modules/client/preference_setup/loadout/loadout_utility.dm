@@ -61,3 +61,8 @@
 	cost = 2
 	slot = "implant"
 	var/implant_type = "EAL"
+
+/datum/gear/utility/translator
+	display_name = "universal translator"
+	path = /obj/item/device/universal_translator
+	cost = 5
