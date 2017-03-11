@@ -879,7 +879,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 
 /obj/item/device/universal_trans/attack_self(mob/user)
 	if(!listening) //Turning ON
-		langset = input(user,"Translate to which of your languages?","Language Selection") as anything|null in user.languages
+		langset = input(user,"Translate to which of your languages?","Language Selection") as null|anything in user.languages
 		if(langset)
 			listening = 1
 			listening_objects |= src
