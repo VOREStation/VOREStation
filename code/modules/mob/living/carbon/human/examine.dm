@@ -82,6 +82,20 @@
 	var/datum/gender/T = gender_datums[get_gender()]
 	if(skipjumpsuit && skipface) //big suits/masks/helmets make it hard to tell their gender
 		T = gender_datums[PLURAL]
+
+	else if(species && species.ambiguous_genders)
+		var/can_detect_gender = FALSE
+		if(isobserver(user)) // Ghosts are all knowing.
+			can_detect_gender = TRUE
+		if(issilicon(user)) // Borgs are too because science.
+			can_detect_gender = TRUE
+		else if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if(H.species && istype(species, H.species))
+				can_detect_gender = TRUE
+
+		if(!can_detect_gender)
+			T = gender_datums[PLURAL] // Species with ambiguous_genders will not show their true gender upon examine if the examiner is not also the same species.
 	else
 		if(icon)
 			msg += "\icon[icon] " //fucking BYOND: this should stop dreamseeker crashing if we -somehow- examine somebody before their icon is generated

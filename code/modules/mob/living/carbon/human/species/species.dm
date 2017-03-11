@@ -156,6 +156,7 @@
 		)
 
 	var/list/genders = list(MALE, FEMALE)
+	var/ambiguous_genders = FALSE // If true, people examining a member of this species whom are not also the same species will see them as gender neutral.  Because aliens.
 
 	// Bump vars
 	var/bump_flag = HUMAN	// What are we considered to be when bumped?
