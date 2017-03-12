@@ -35,12 +35,12 @@
 
 /obj/item/device/radio/intercom/department/medbay
 	name = "station intercom (Medbay)"
-	icon_state = "secintercom"
+	icon_state = "medintercom"
 	frequency = MED_I_FREQ
 
 /obj/item/device/radio/intercom/department/security
 	name = "station intercom (Security)"
-	icon_state = "medintercom"
+	icon_state = "secintercom"
 	frequency = SEC_I_FREQ
 
 /obj/item/device/radio/intercom/entertainment
