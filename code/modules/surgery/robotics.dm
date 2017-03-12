@@ -381,11 +381,11 @@
 
 		if(!istype(M))
 			return 0
-
+		/* VOREStation Edit - Don't worry about it. We can put these in regardless, because resleeving might make it useful after.
 		if(!M.brainmob || !M.brainmob.client || !M.brainmob.ckey || M.brainmob.stat >= DEAD)
 			user << "<span class='danger'>That brain is not usable.</span>"
 			return SURGERY_FAILURE
-
+		*/
 		if(!(affected.robotic >= ORGAN_ROBOT))
 			user << "<span class='danger'>You cannot install a computer brain into a meat skull.</span>"
 			return SURGERY_FAILURE
