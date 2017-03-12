@@ -39,10 +39,8 @@
 			var/obj/item/stack/stack = I
 			var/transfer
 			var/amount_needed = 2
-			if (stack.amount >= amount_needed)
-				if(stat & BROKEN)
-					user << "<span class='notice'>It looks like \the [src] is pretty busted. There's not much point reinforcing it.</span>"
-					return 1
+			if(stat & BROKEN)
+				user << "<span class='notice'>It looks like \the [src] is pretty busted.</span>"
 			if (reinforcing)
 				transfer = stack.transfer_to(reinforcing, amount_needed - reinforcing.amount)
 				if (!transfer)
@@ -57,13 +55,50 @@
 			if (transfer)
 				user << "<span class='notice'>You fit [transfer] [stack.singular_name]\s to \the [src].</span>"
 				return 1
-			return 0
+
+	if(istype(I, /obj/item/stack/material) && I.get_material_name() == src.get_material_name())
+		if(stat & BROKEN)
+			if(health >= maxhealth && destroy_hits >= 10)
+				user << "<span class='notice'>The [src] is about as shored up as it's going to get.</span>"
+				return 1
+			if(!density)
+				user << "<span class='warning'>\The [src] must be closed before you can repair it.</span>"
+				return 1
+
+			//figure out how much metal we need
+			var/amount_needed = (maxhealth - health) / DOOR_REPAIR_AMOUNT
+			if (destroy_hits < 10)
+				amount_needed += (20*(10 - destroy_hits) / DOOR_REPAIR_AMOUNT)
+			amount_needed = (round(amount_needed) == amount_needed)? amount_needed : round(amount_needed) + 1 //Why does BYOND not have a ceiling proc?
+
+			var/obj/item/stack/stack = I
+			var/transfer
+			if (repairing)
+				transfer = stack.transfer_to(repairing, amount_needed - repairing.amount)
+				if (!transfer)
+					user << "<span class='warning'>You must weld or remove \the [repairing] from \the [src] before you can add anything else.</span>"
+			else
+				repairing = stack.split(amount_needed)
+				if (repairing)
+					repairing.loc = src
+					transfer = repairing.amount
+
+			if (transfer)
+				user << "<span class='notice'>\The [src] is completely broken inside, but you manage to fit [transfer] [stack.singular_name]\s to shore it up.</span>"
+
+			return 1
+
+		return 0
+
 
 	if(reinforcing && istype(I, /obj/item/weapon/weldingtool))
+		var/amount_needed = 2
 		if(!density)
 			user << "<span class='warning'>\The [src] must be closed before you can repair it.</span>"
 			return 1
-
+		if (reinforcing.amount < amount_needed)
+			user << "<span class='notice'>You need [amount_needed] [reinforcing.singular_name]\s to reinforce \the [src].</span>"
+			return 1
 		var/obj/item/weapon/weldingtool/welder = I
 		if(welder.remove_fuel(0,user))
 			user << "<span class='notice'>You start to weld \the [reinforcing] into place.</span>"
@@ -74,6 +109,28 @@
 				update_icon()
 				qdel(reinforcing)
 				reinforcing = null
+		return 1
+
+	if(repairing && istype(I, /obj/item/weapon/weldingtool) && (stat & BROKEN))
+		if(!density)
+			user << "<span class='warning'>\The [src] must be closed before you can shore it up.</span>"
+			return 1
+
+		var/obj/item/weapon/weldingtool/welder = I
+		if(welder.remove_fuel(0,user))
+			user << "<span class='notice'>You start to weld \the [repairing] into place.</span>"
+			playsound(src, 'sound/items/Welder.ogg', 100, 1)
+			if(do_after(user, 5 * repairing.amount) && welder && welder.isOn())
+				user << "<span class='notice'>You finish shoring up \the [src]. It'll hold for at least a little while.</span>"
+				var/damagerepaired = repairing.amount*DOOR_REPAIR_AMOUNT
+				if (destroy_hits < 10)
+					var/severedamage = 10 - destroy_hits
+					destroy_hits = between(destroy_hits, destroy_hits + (damagerepaired)/20, 10)
+					damagerepaired -= 20 * severedamage
+				health = between(health, health + damagerepaired, maxhealth)
+				update_icon()
+				qdel(repairing)
+				repairing = null
 		return 1
 
 	if(reinforcing && istype(I, /obj/item/weapon/crowbar))
