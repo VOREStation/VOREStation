@@ -1382,7 +1382,7 @@ area/space/atmosalert()
 	icon_state = "fitness"
 
 /area/crew_quarters/longue_area
-	name = "\improper Longue"
+	name = "\improper Lounge" //VOREStation Edit - Muh speeling.
 	icon_state = "recreation_area"
 
 /area/crew_quarters/recreation_area
