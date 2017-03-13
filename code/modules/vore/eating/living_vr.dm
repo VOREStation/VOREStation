@@ -305,11 +305,12 @@
 	//You're in a PC!
 	else if(istype(src.loc,/mob/living))
 		var/mob/living/carbon/pred = src.loc
-		var/confirm = alert(src, "You're in a player-character. This is for escaping from preference-breaking and if your predator disconnects/AFKs. If you are in more than one pred, use this more than once. If your preferences were being broken, please admin-help as well.", "Confirmation", "Okay", "Cancel")
+		var/confirm = alert(src, "You're in a player-character. This is for escaping from preference-breaking and if your predator disconnects/AFKs. If you are in more than one pred. If your preferences were being broken, please admin-help as well.", "Confirmation", "Okay", "Cancel")
 		if(confirm == "Okay")
 			for(var/O in pred.vore_organs)
 				var/datum/belly/CB = pred.vore_organs[O]
-				CB.release_specific_contents(src)
+				CB.internal_contents -= src //Clean them if we can, otherwise it will get GC'd by the vore code later.
+			src.forceMove(get_turf(loc))
 			message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(pred)] (PC) ([pred ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[pred.x];Y=[pred.y];Z=[pred.z]'>JMP</a>" : "null"])")
 
 	//You're in a dogborg!
