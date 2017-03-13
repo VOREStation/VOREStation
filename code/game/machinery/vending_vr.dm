@@ -86,3 +86,33 @@
 					)
 	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/mysterysoup = 10)
 	vend_delay = 15
+
+/obj/machinery/vending/food/arojoan //Fluff vendor for the lewd houseboat.
+	name = "Custom Food-O-Mat"
+	desc = "Do you think Joan cooks? Of course not. Lazy squirrel!"
+	icon_state = "boozeomat"
+	icon_deny = "boozeomat-deny"
+	products = list(/obj/item/weapon/tray = 6,
+					/obj/item/weapon/material/kitchen/utensil/fork = 6,
+					/obj/item/weapon/material/kitchen/utensil/knife = 6,
+					/obj/item/weapon/material/kitchen/utensil/spoon = 6,
+					/obj/item/weapon/reagent_containers/food/snacks/hotandsoursoup = 3,
+					/obj/item/weapon/reagent_containers/food/snacks/kitsuneudon = 3,
+					/obj/item/weapon/reagent_containers/food/snacks/generalschicken = 3,
+					/obj/item/weapon/reagent_containers/food/snacks/sliceable/sushi = 2,
+					/obj/item/weapon/reagent_containers/food/snacks/jellysandwich = 3,
+					/obj/item/weapon/reagent_containers/food/snacks/grilledcheese = 3,
+					/obj/item/weapon/reagent_containers/food/snacks/hotdog = 3,
+					/obj/item/weapon/storage/box/wings = 2,
+					/obj/item/weapon/reagent_containers/food/snacks/loadedbakedpotato = 3,
+					/obj/item/weapon/reagent_containers/food/snacks/omelette = 3,
+					/obj/item/weapon/reagent_containers/food/snacks/waffles = 3,
+					/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushroompizza = 1,
+					/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza = 1,
+					/obj/item/weapon/reagent_containers/food/snacks/appletart = 2,
+					/obj/item/weapon/reagent_containers/food/snacks/sliceable/applecake = 1,
+					/obj/item/weapon/reagent_containers/food/snacks/sliceable/bananabread = 2,
+					/obj/item/weapon/reagent_containers/food/snacks/sliceable/creamcheesebread = 2
+					)
+	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/mysterysoup = 10)
+	vend_delay = 15
