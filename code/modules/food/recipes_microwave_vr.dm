@@ -22,8 +22,8 @@
 /datum/recipe/lasagna
 	fruit = list("tomato" = 2, "eggplant" = 1)
 	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/meat,
-		/obj/item/weapon/reagent_containers/food/snacks/meat,
+		/obj/item/weapon/reagent_containers/food/snacks/cutlet,
+		/obj/item/weapon/reagent_containers/food/snacks/cutlet,
 		/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough,
 		/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough
 	)
@@ -32,7 +32,7 @@
 /datum/recipe/goulash
 	fruit = list("tomato" = 1)
 	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/meat,
+		/obj/item/weapon/reagent_containers/food/snacks/cutlet,
 		/obj/item/weapon/reagent_containers/food/snacks/spagetti
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/goulash
