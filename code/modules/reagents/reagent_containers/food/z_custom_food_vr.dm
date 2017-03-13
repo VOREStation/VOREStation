@@ -140,7 +140,7 @@ var/global/ingredientLimit = 20
 	addTop = 0
 
 /obj/item/weapon/reagent_containers/food/snacks/customizable/sandwich/attackby(obj/item/I,mob/user)
-	if(istype(I,/obj/item/weapon/reagent_containers/food/snacks/breadslice) && !addTop)
+	if(istype(I,/obj/item/weapon/reagent_containers/food/snacks/slice/bread) && !addTop)
 		I.reagents.trans_to(src,I.reagents.total_volume)
 		qdel(I)
 		addTop = 1
@@ -182,7 +182,7 @@ var/global/ingredientLimit = 20
 
 // Various Snacks //////////////////////////////////////////////
 
-/obj/item/weapon/reagent_containers/food/snacks/breadslice/attackby(obj/item/I,mob/user,params)
+/obj/item/weapon/reagent_containers/food/snacks/slice/bread/attackby(obj/item/I,mob/user,params)
 	if(istype(I,/obj/item/weapon/reagent_containers/food/snacks))
 		if(!recursiveFood && istype(I, /obj/item/weapon/reagent_containers/food/snacks/customizable))
 			to_chat(user, "<span class='warning'>Sorry, no recursive food.</span>")
