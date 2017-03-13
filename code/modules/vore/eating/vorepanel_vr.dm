@@ -6,6 +6,7 @@
 #define BELLIES_NAME_MIN 2
 #define BELLIES_NAME_MAX 12
 #define BELLIES_DESC_MAX 1024
+#define FLAVOR_MAX 40
 
 /mob/living/proc/insidePanel()
 	set name = "Vore Panel"
@@ -177,6 +178,10 @@
 		//Belly messages
 		dat += "<br><a href='?src=\ref[src];b_msgs=\ref[selected]'>Belly Messages</a>"
 
+		//Can belly taste?
+		dat += "<br><a href='?src=\ref[src];b_tastes=\ref[selected]'>Can Taste:</a>"
+		dat += " [selected.can_taste ? "Yes" : "No"]"
+
 		//Belly escapability
 		dat += "<br><a href='?src=\ref[src];b_escapable=\ref[selected]'>Belly Interactions ([selected.escapable ? "On" : "Off"])</a>"
 		if(selected.escapable)
@@ -216,6 +221,7 @@
 	//Under the last HR, save and stuff.
 	dat += "<a href='?src=\ref[src];saveprefs=1'>Save Prefs</a>"
 	dat += "<a href='?src=\ref[src];refresh=1'>Refresh</a>"
+	dat += "<a href='?src=\ref[src];setflavor=1'>Set Flavor</a>"
 
 	switch(user.digestable)
 		if(1)
@@ -537,6 +543,9 @@
 	if(href_list["b_soundtest"])
 		user << selected.vore_sound
 
+	if(href_list["b_tastes"])
+		selected.can_taste = !selected.can_taste
+
 	if(href_list["b_escapable"])
 		if(selected.escapable == 0) //Possibly escapable and special interactions.
 			selected.escapable = 1
@@ -619,6 +628,18 @@
 			alert("ERROR: Virgo-specific preferences failed to save!","Error")
 		else
 			user << "<span class='notice'>Virgo-specific preferences saved!</span>"
+
+	if(href_list["setflavor"])
+		var/new_flavor = html_encode(input(usr,"What your character tastes like (40ch limit). This text will be printed to the pred after 'X tastes of...' so just put something like 'strawberries and cream':","Character Flavor",user.vore_taste) as text|null)
+
+		if(new_flavor)
+			new_flavor = readd_quotes(new_flavor)
+			if(length(new_flavor) > FLAVOR_MAX)
+				alert("Entered flavor/taste text too long. [FLAVOR_MAX] character limit.","Error")
+				return 0
+			user.vore_taste = new_flavor
+		else //Returned null
+			return 0
 
 	if(href_list["toggledg"])
 		var/choice = alert(user, "This button is for those who don't like being digested. It can make you undigestable. Don't abuse this button by toggling it back and forth to extend a scene or whatever, or you'll make the admins cry. Digesting you is currently: [user.digestable ? "Allowed" : "Prevented"]", "", "Allow Digestion", "Cancel", "Prevent Digestion")
