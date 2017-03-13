@@ -26,6 +26,7 @@
 	var/absorbchance = 0					// % Chance of stomach beginning to absorb if prey struggles
 	var/escapechance = 0 					// % Chance of prey beginning to escape if prey struggles.
 	var/transferchance = 0 					// % Chance of prey being
+	var/can_taste = 0						// If this belly prints the flavor of prey when it eats someone.
 	var/datum/belly/transferlocation = null	// Location that the prey is released if they struggle and get dropped off.
 
 	var/tmp/digest_mode = DM_HOLD				// Whether or not to digest. Default to not digest.
@@ -452,6 +453,7 @@
 	dupe.digest_burn = digest_burn
 	dupe.digest_tickrate = digest_tickrate
 	dupe.immutable = immutable
+	dupe.can_taste = can_taste
 	dupe.escapable = escapable
 	dupe.escapetime = escapetime
 	dupe.digestchance = digestchance

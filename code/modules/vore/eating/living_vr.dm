@@ -7,10 +7,11 @@
 	var/weight = 137					// Weight for mobs for weightgain system
 	var/weight_gain = 1 				// How fast you gain weight
 	var/weight_loss = 0.5 				// How fast you lose weight
-	var/egg_type = "egg" 					// Default egg type.
+	var/egg_type = "egg" 				// Default egg type.
 	var/feral = 0 						// How feral the mob is, if at all. Does nothing for non xenochimera at the moment.
 	var/reviving = 0					// Only used for creatures that have the xenochimera regen ability, so far.
 	var/metabolism = 0.0015
+	var/vore_taste = null				// What the character tastes like
 
 //
 // Hook for generic creation of stuff on new creatures
@@ -18,6 +19,7 @@
 /hook/living_new/proc/vore_setup(mob/living/M)
 	M.verbs += /mob/living/proc/insidePanel
 	M.verbs += /mob/living/proc/escapeOOC
+	M.verbs += /mob/living/proc/lick
 
 	//Tries to load prefs if a client is present otherwise gives freebie stomach
 	if(!M.vore_organs || !M.vore_organs.len)
@@ -38,6 +40,7 @@
 				B.immutable = 1
 				B.name = "Stomach"
 				B.inside_flavor = "It appears to be rather warm and wet. Makes sense, considering it's inside \the [M.name]."
+				B.can_taste = 1
 				M.vore_organs[B.name] = B
 				M.vore_selected = B.name
 
@@ -218,6 +221,7 @@
 
 	P.digestable = src.digestable
 	P.belly_prefs = src.vore_organs
+	P.vore_taste = src.vore_taste
 
 	return 1
 
@@ -233,12 +237,45 @@
 
 	src.digestable = P.digestable
 	src.vore_organs = list()
+	src.vore_taste = P.vore_taste
 
 	for(var/I in P.belly_prefs)
 		var/datum/belly/Bp = P.belly_prefs[I]
 		src.vore_organs[Bp.name] = Bp.copy(src)
 
 	return 1
+
+//
+// Clearly super important. Obviously.
+//
+/mob/living/proc/lick(var/mob/living/tasted in oview(1))
+	set name = "Lick Someone"
+	set category = "IC"
+	set desc = "Lick someone nearby!"
+
+	if(!istype(tasted))
+		return
+
+	if(src.sleeping || src.resting || src.weakened || src.stat >= DEAD)
+		return
+
+	var/taste_message = ""
+	if(tasted.vore_taste && (tasted.vore_taste != ""))
+		taste_message += "[tasted.vore_taste]"
+	else
+		if(ishuman(tasted))
+			var/mob/living/carbon/human/H = tasted
+			taste_message += "a normal [H.custom_species ? H.custom_species : H.species.name]"
+		else
+			taste_message += "a plain old normal [tasted]"
+
+	if(ishuman(tasted))
+		var/mob/living/carbon/human/H = tasted
+		if(H.touching.reagent_list.len) //Just the first one otherwise I'll go insane.
+			var/datum/reagent/R = H.touching.reagent_list[1]
+			taste_message += " You also get the flavor of [R.taste_description] from something on them"
+
+	src.visible_message("<span class='warning'>[src] licks [tasted]!</span>","<span class='notice'>You lick [tasted]. They taste rather like [taste_message].</span>","<b>Slurp!</b>")
 
 //
 // OOC Escape code for pref-breaking or AFK preds
@@ -268,11 +305,12 @@
 	//You're in a PC!
 	else if(istype(src.loc,/mob/living))
 		var/mob/living/carbon/pred = src.loc
-		var/confirm = alert(src, "You're in a player-character. This is for escaping from preference-breaking and if your predator disconnects/AFKs. If you are in more than one pred, use this more than once. If your preferences were being broken, please admin-help as well.", "Confirmation", "Okay", "Cancel")
+		var/confirm = alert(src, "You're in a player-character. This is for escaping from preference-breaking and if your predator disconnects/AFKs. If you are in more than one pred. If your preferences were being broken, please admin-help as well.", "Confirmation", "Okay", "Cancel")
 		if(confirm == "Okay")
 			for(var/O in pred.vore_organs)
 				var/datum/belly/CB = pred.vore_organs[O]
-				CB.release_specific_contents(src)
+				CB.internal_contents -= src //Clean them if we can, otherwise it will get GC'd by the vore code later.
+			src.forceMove(get_turf(loc))
 			message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(pred)] (PC) ([pred ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[pred.x];Y=[pred.y];Z=[pred.z]'>JMP</a>" : "null"])")
 
 	//You're in a dogborg!
@@ -352,6 +390,19 @@
 	// Actually shove prey into the belly.
 	belly_target.nom_mob(prey, user)
 	user.update_icons()
+
+	// Flavor handling
+	var/flavor_message = ""
+	if(belly_target.can_taste && prey.vore_taste && (prey.vore_taste != ""))
+		flavor_message += "[prey.vore_taste]."
+	if(ishuman(prey))
+		var/mob/living/carbon/human/H = prey
+		if(H.touching.reagent_list.len) //Just the first one otherwise I'll go insane.
+			var/datum/reagent/R = H.touching.reagent_list[1]
+			flavor_message += " You also get the flavor of [R.taste_description] from something on them"
+
+	if(flavor_message != "")
+		src << "<span class='notice'>[prey] tastes of [flavor_message].</span>"
 
 	// Inform Admins
 	if (pred == user)
