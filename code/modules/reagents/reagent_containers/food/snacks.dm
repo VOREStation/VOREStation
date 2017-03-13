@@ -722,7 +722,7 @@
 	src.bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/xenomeat
-	name = "meat"
+	name = "xenomeat"
 	desc = "A slab of green meat. Smells like acid."
 	icon_state = "xenomeat"
 	filling_color = "#43DE18"

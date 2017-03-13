@@ -1363,6 +1363,7 @@
 #include "code\modules\flufftext\Dreaming.dm"
 #include "code\modules\flufftext\Hallucination.dm"
 #include "code\modules\flufftext\TextFilters.dm"
+#include "code\modules\food\recipe_dump.dm"
 #include "code\modules\food\recipes_microwave.dm"
 #include "code\modules\gamemaster\controller.dm"
 #include "code\modules\gamemaster\defines.dm"
