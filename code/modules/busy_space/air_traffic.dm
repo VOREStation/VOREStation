@@ -34,10 +34,12 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 
 /datum/lore/atc_controller/proc/reroute_traffic(var/yes = 1)
 	if(yes)
-		msg("Rerouting traffic away from [using_map.station_name].")
+		if(!squelched)
+			msg("Rerouting traffic away from [using_map.station_name].")
 		squelched = 1
 	else
-		msg("Resuming normal traffic routing around [using_map.station_name].")
+		if(squelched)
+			msg("Resuming normal traffic routing around [using_map.station_name].")
 		squelched = 0
 
 /datum/lore/atc_controller/proc/shift_ending(var/evac = 0)

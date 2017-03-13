@@ -50,6 +50,11 @@
 			if(FA.z in using_map.contact_levels)
 				FA.set_security_level(newlevel)
 
+		if(level >= SEC_LEVEL_RED)
+			atc.reroute_traffic(yes = 1) // Tell them fuck off we're busy.
+		else
+			atc.reroute_traffic(yes = 0)
+
 
 /proc/get_security_level()
 	switch(security_level)

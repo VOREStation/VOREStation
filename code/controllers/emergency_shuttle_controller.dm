@@ -84,6 +84,8 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 		if(istype(A, /area/hallway))
 			A.readyalert()
 
+	atc.reroute_traffic(yes = 1)
+
 //calls the shuttle for a routine crew transfer
 /datum/emergency_shuttle_controller/proc/call_transfer()
 	if(!can_call()) return
