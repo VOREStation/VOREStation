@@ -101,9 +101,10 @@
 	return
 
 /obj/item/weapon/tank/vox	//Can't be a child of phoron or the gas amount gets screwey.
-	name = "phoron tank" //VOREStation edit
-	desc = "Contains dangerous phoron. Do not inhale. Warning: extremely flammable." //VOREStation Edit
-	icon_state = "oxygen_fr"
+	name = "phoron tank"
+	desc = "Contains dangerous phoron. Do not inhale. Warning: extremely flammable."
+	icon_state = "phoron_vox"
+	item_state = "oxygen_fr"
 	gauge_icon = null
 	flags = CONDUCT
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
@@ -112,7 +113,7 @@
 /obj/item/weapon/tank/vox/New()
 	..()
 
-	air_contents.adjust_gas("phoron", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)) //VOREStation Edit
+	air_contents.adjust_gas("phoron", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
 	return
 
 /*
