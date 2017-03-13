@@ -211,7 +211,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle.dock_target_offsite = "centcom_shuttle_bay"
 	shuttles["CentCom"] = shuttle
 	process_shuttles += shuttle
-
+	/* VOREStation Removal - This is a multishuttle now and is down there with them.
 	shuttle = new()
 	shuttle.location = 1
 	shuttle.warmup_time = 10	//want some warmup time so people can cancel.
@@ -222,7 +222,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle.dock_target_offsite = "admin_shuttle_bay"
 	shuttles["Administration"] = shuttle
 	process_shuttles += shuttle
-
+	VOREStation Removal End */
 	shuttle = new()
 	shuttle.location = 1
 	shuttle.warmup_time = 10	//want some warmup time so people can cancel.
@@ -294,7 +294,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 		"Fore Port Solars" = locate(/area/skipjack_station/northwest_solars),
 		"Aft Starboard Solars" = locate(/area/skipjack_station/southeast_solars),
 		"Aft Port Solars" = locate(/area/skipjack_station/southwest_solars), // Vorestation edit
-		"[station_short] Arrivals Dock" = locate(/area/skipjack_station/southwest_solars),
+		"Station Arrivals Dock" = locate(/area/skipjack_station/southwest_solars),
 		"Mining Station" = locate(/area/skipjack_station/mining)
 		)
 
@@ -337,3 +337,80 @@ var/global/datum/shuttle_controller/shuttle_controller
 	MS.warmup_time = 0
 	shuttles["Mercenary"] = MS
 
+	// VOREStation Add - The admin shuttle is a multishuttle now.
+	//Centcom admin shuttle.
+	var/datum/shuttle/multi_shuttle/CC = new/datum/shuttle/multi_shuttle()
+	CC.legit = 1
+	CC.origin = locate(/area/shuttle/administration/centcom)
+	CC.start_location = "Central Command (AS)"
+
+	CC.destinations = list(
+		"Deep Space (AS)" = locate(/area/shuttle/administration/transit),
+		"NSS Adephagia (AS)" = locate(/area/shuttle/administration/station)
+		)
+
+	CC.docking_controller_tag = "admin_shuttle"
+	CC.destination_dock_targets = list(
+		"Central Command (AS)" = "admin_shuttle_bay",
+		"NSS Adephagia (AS)" = "admin_shuttle_dock_airlock"
+		)
+
+	var/area/ccaway_dest = locate(/area/shuttle/administration/away_mission)
+	if(ccaway_dest.contents.len) //Otherwise this is an empty imaginary area
+		CC.destinations["Unknown Location [rand(1000,9999)]"] = ccaway_dest
+
+	CC.announcer = "Automated Traffic Control"
+	//These seem backwards because they are written from the perspective of the merc and vox ships
+	CC.departure_message = "Attention.  A Centcom vessel is approaching the colony."
+	CC.arrival_message = "Attention.  A Centcom vessel is now leaving from the colony."
+
+	CC.move_time = 0
+	CC.warmup_time = 0
+	shuttles["Administration"] = CC
+	//VOREStation Add End - Admin shuttle.
+	//////////////////////////////////////////////////////////////
+	//VOREStation Add - Away-mission shuttle
+	var/datum/shuttle/multi_shuttle/AM = new/datum/shuttle/multi_shuttle()
+	AM.legit = 1
+	AM.origin = locate(/area/shuttle/awaymission/home)
+	AM.start_location = "NSS Adephagia (AM)"
+
+	AM.destinations = list(
+		"Old Engineering Base (AM)" = locate(/area/shuttle/awaymission/oldengbase)
+		)
+
+	AM.docking_controller_tag = "awaymission_shuttle"
+	AM.destination_dock_targets = list(
+		"NSS Adephagia (AM)" = "d1a2_dock_airlock"
+		)
+
+	var/area/awaym_dest = locate(/area/shuttle/awaymission/away)
+	if(awaym_dest.contents.len) //Otherwise this is an empty imaginary area
+		AM.destinations["Unknown Location [rand(1000,9999)]"] = awaym_dest
+
+	AM.announcer = "Automated Traffic Control"
+	//These seem backwards because they are written from the perspective of the merc and vox ships
+	AM.departure_message = "Attention. The away mission vessel is approaching the colony."
+	AM.arrival_message = "Attention. The away mission vessel is now leaving from the colony."
+	AM.interim = locate(/area/shuttle/awaymission/warp)
+
+	AM.move_time = 60
+	AM.warmup_time = 8
+	shuttles["AwayMission"] = AM
+	//VOREStation Add End - Away-mission shuttle
+	///////////////////////////////////////////////
+	//VOREStation Add - Belter Shuttle
+	shuttle = new/datum/shuttle/ferry()
+	shuttle.location = 0
+	shuttle.warmup_time = 6
+	shuttle.area_station = locate(/area/shuttle/belter/station)
+	shuttle.area_offsite = locate(/area/shuttle/belter/belt/zone1)
+	shuttle.area_transition = locate(/area/shuttle/belter/transit)
+	shuttle.docking_controller_tag = "belter_docking"
+	shuttle.dock_target_station = "belter_nodocking" //Fake tags to prevent the shuttle from opening doors.
+	shuttle.dock_target_offsite = "belter_nodocking"
+	shuttle.transit_direction = EAST
+	shuttle.move_time = 60 + rand(10,40)
+	process_shuttles += shuttle
+	shuttles["Belter"] = shuttle
+	//VOREStation Add End - Belter Shuttle

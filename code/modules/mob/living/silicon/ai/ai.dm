@@ -52,7 +52,7 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 	density = 1
 	status_flags = CANSTUN|CANPARALYSE|CANPUSH
 	shouldnt_see = list(/obj/effect/rune)
-	var/list/network = list(station_short)
+	var/list/network = list(NETWORK_DEFAULT)
 	var/obj/machinery/camera/camera = null
 	var/list/connected_robots = list()
 	var/aiRestorePowerRoutine = 0
@@ -132,7 +132,7 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 		if (istype(L, /datum/ai_laws))
 			laws = L
 	else
-		laws = new base_law_type
+		laws = new using_map.default_law_type
 
 	aiMulti = new(src)
 	aiRadio = new(src)
@@ -148,15 +148,16 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 
 	//Languages
 	add_language("Robot Talk", 1)
-	add_language("Galactic Common", 1)
-	add_language("Sol Common", 0)
-	add_language("Sinta'unathi", 0)
-	add_language("Siik", 0)
-	add_language("Skrellian", 0)
-	add_language("Tradeband", 1)
-	add_language("Gutter", 0)
-	add_language("Encoded Audio Language", 1)
-	add_language("Schechi", 0)
+	add_language(LANGUAGE_GALCOM, 1)
+	add_language(LANGUAGE_SOL_COMMON, 0)
+	add_language(LANGUAGE_UNATHI, 0)
+	add_language(LANGUAGE_SIIK, 0)
+	add_language(LANGUAGE_SKRELLIAN, 0)
+	add_language(LANGUAGE_TRADEBAND, 1)
+	add_language(LANGUAGE_GUTTER, 0)
+	add_language(LANGUAGE_EAL, 1)
+	add_language(LANGUAGE_SCHECHI, 0)
+	add_language(LANGUAGE_SIGN, 0)
 
 	if(!safety)//Only used by AIize() to successfully spawn an AI.
 		if (!B)//If there is no player/brain inside.
@@ -397,12 +398,12 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 	if(emergency_message_cooldown)
 		usr << "<span class='warning'>Arrays recycling. Please stand by.</span>"
 		return
-	var/input = sanitize(input(usr, "Please choose a message to transmit to [boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", ""))
+	var/input = sanitize(input(usr, "Please choose a message to transmit to [using_map.boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", ""))
 	if(!input)
 		return
 	CentCom_announce(input, usr)
 	usr << "<span class='notice'>Message transmitted.</span>"
-	log_say("[key_name(usr)] has made an IA [boss_short] announcement: [input]")
+	log_say("[key_name(usr)] has made an IA [using_map.boss_short] announcement: [input]")
 	emergency_message_cooldown = 1
 	spawn(300)
 		emergency_message_cooldown = 0

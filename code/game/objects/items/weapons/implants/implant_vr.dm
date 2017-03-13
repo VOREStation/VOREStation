@@ -1,4 +1,4 @@
-/obj/item/weapon/implant/language
+/obj/item/weapon/implant/vrlanguage
 	name = "language"
 	desc = "Allows the user to understand and speak almost all known languages.."
 	var/uses = 1

@@ -140,17 +140,17 @@
 /obj/item/organ/external/attackby(obj/item/weapon/W as obj, mob/living/user as mob)
 	switch(stage)
 		if(0)
-			if(istype(W,/obj/item/weapon/scalpel))
+			if(istype(W,/obj/item/weapon/surgical/scalpel))
 				user.visible_message("<span class='danger'><b>[user]</b> cuts [src] open with [W]!</span>")
 				stage++
 				return
 		if(1)
-			if(istype(W,/obj/item/weapon/retractor))
+			if(istype(W,/obj/item/weapon/surgical/retractor))
 				user.visible_message("<span class='danger'><b>[user]</b> cracks [src] open like an egg with [W]!</span>")
 				stage++
 				return
 		if(2)
-			if(istype(W,/obj/item/weapon/hemostat))
+			if(istype(W,/obj/item/weapon/surgical/hemostat))
 				if(contents.len)
 					var/obj/item/removing = pick(contents)
 					removing.loc = get_turf(user.loc)
@@ -257,8 +257,9 @@
 			I.take_damage(brute / 2)
 			brute -= brute / 2
 
-	if(status & ORGAN_BROKEN && prob(40) && brute)
-		if(!((species.flags & NO_PAIN) || (robotic >= ORGAN_ROBOT)))
+	if(status & ORGAN_BROKEN && brute)
+		jostle_bone(brute)
+		if(can_feel_pain() && prob(40))
 			owner.emote("scream")	//getting hit on broken hand hurts
 	if(used_weapon)
 		add_autopsy_data("[used_weapon]", brute + burn)
@@ -621,13 +622,12 @@ Note that amputating the affected organ does in fact remove the infection from t
 				break	//limit increase to a maximum of one per second
 
 /obj/item/organ/external/handle_germ_effects()
-
-	if(germ_level < INFECTION_LEVEL_TWO)
-		return ..()
+	. = ..() //May be null or an infection level, if null then no specific processing needed here
+	if(!.) return
 
 	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
 
-	if(germ_level >= INFECTION_LEVEL_TWO)
+	if(. >= 2 && antibiotics < 5) //INFECTION_LEVEL_TWO
 		//spread the infection to internal organs
 		var/obj/item/organ/target_organ = null	//make internal organs become infected one at a time instead of all at once
 		for (var/obj/item/organ/I in internal_organs)
@@ -659,14 +659,13 @@ Note that amputating the affected organ does in fact remove the infection from t
 				if (parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30))
 					parent.germ_level++
 
-	if(germ_level >= INFECTION_LEVEL_THREE && antibiotics < 30)	//overdosing is necessary to stop severe infections
+	if(. >= 3 && antibiotics < 30)	//INFECTION_LEVEL_THREE
 		if (!(status & ORGAN_DEAD))
 			status |= ORGAN_DEAD
 			owner << "<span class='notice'>You can't feel your [name] anymore...</span>"
 			owner.update_body(1)
-
-		germ_level++
-		owner.adjustToxLoss(1)
+			for (var/obj/item/organ/external/child in children)
+				child.germ_level += 110 //Burst of infection from a parent organ becoming necrotic
 
 //Updating wounds. Handles wound natural I had some free spachealing, internal bleedings and infections
 /obj/item/organ/external/proc/update_wounds()
@@ -1002,7 +1001,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 			"<span class='danger'>You hear a loud cracking sound coming from \the [owner].</span>",\
 			"<span class='danger'>Something feels like it shattered in your [name]!</span>",\
 			"<span class='danger'>You hear a sickening crack.</span>")
-		if(!(species.flags & NO_PAIN))
+		jostle_bone()
+		if(can_feel_pain())
 			owner.emote("scream")
 
 	playsound(src.loc, "fracture", 10, 1, -2)
@@ -1206,6 +1206,16 @@ Note that amputating the affected organ does in fact remove the infection from t
 			"<span class='danger'>Your [name] melts away!</span>",	\
 			"<span class='danger'>You hear a sickening sizzle.</span>")
 	disfigured = 1
+
+/obj/item/organ/external/proc/jostle_bone(force)
+	if(!(status & ORGAN_BROKEN)) //intact bones stay still
+		return
+	if(brute_dam + force < min_broken_damage/5)	//no papercuts moving bones
+		return
+	if(internal_organs.len && prob(brute_dam + force))
+		owner.custom_pain("A piece of bone in your [encased ? encased : name] moves painfully!", 50)
+		var/obj/item/organ/I = pick(internal_organs)
+		I.take_damage(rand(3,5))
 
 /obj/item/organ/external/proc/get_wounds_desc()
 	. = ""

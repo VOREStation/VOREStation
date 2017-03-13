@@ -56,7 +56,7 @@
 
 /datum/surgery_step/robotics/open_hatch
 	allowed_tools = list(
-		/obj/item/weapon/retractor = 100,
+		/obj/item/weapon/surgical/retractor = 100,
 		/obj/item/weapon/crowbar = 100,
 		/obj/item/weapon/material/kitchen/utensil = 50
 	)
@@ -88,7 +88,7 @@
 
 /datum/surgery_step/robotics/close_hatch
 	allowed_tools = list(
-		/obj/item/weapon/retractor = 100,
+		/obj/item/weapon/surgical/retractor = 100,
 		/obj/item/weapon/crowbar = 100,
 		/obj/item/weapon/material/kitchen/utensil = 50
 	)
@@ -196,7 +196,7 @@
 /datum/surgery_step/robotics/fix_organ_robotic //For artificial organs
 	allowed_tools = list(
 	/obj/item/stack/nanopaste = 100,		\
-	/obj/item/weapon/bonegel = 30, 		\
+	/obj/item/weapon/surgical/bonegel = 30, 		\
 	/obj/item/weapon/screwdriver = 70,	\
 	)
 
@@ -381,11 +381,11 @@
 
 		if(!istype(M))
 			return 0
-
+		/* VOREStation Edit - Don't worry about it. We can put these in regardless, because resleeving might make it useful after.
 		if(!M.brainmob || !M.brainmob.client || !M.brainmob.ckey || M.brainmob.stat >= DEAD)
 			user << "<span class='danger'>That brain is not usable.</span>"
 			return SURGERY_FAILURE
-
+		*/
 		if(!(affected.robotic >= ORGAN_ROBOT))
 			user << "<span class='danger'>You cannot install a computer brain into a meat skull.</span>"
 			return SURGERY_FAILURE

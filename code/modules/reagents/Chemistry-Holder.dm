@@ -323,13 +323,13 @@
 // This does not handle transferring reagents to things.
 // For example, splashing someone with water will get them wet and extinguish them if they are on fire,
 // even if they are wearing an impermeable suit that prevents the reagents from contacting the skin.
-/datum/reagents/proc/touch(var/atom/target)
+/datum/reagents/proc/touch(var/atom/target, var/amount)
 	if(ismob(target))
-		touch_mob(target)
+		touch_mob(target, amount)
 	if(isturf(target))
-		touch_turf(target)
+		touch_turf(target, amount)
 	if(isobj(target))
-		touch_obj(target)
+		touch_obj(target, amount)
 	return
 
 /datum/reagents/proc/touch_mob(var/mob/target)
@@ -341,21 +341,21 @@
 
 	update_total()
 
-/datum/reagents/proc/touch_turf(var/turf/target)
+/datum/reagents/proc/touch_turf(var/turf/target, var/amount)
 	if(!target || !istype(target))
 		return
 
 	for(var/datum/reagent/current in reagent_list)
-		current.touch_turf(target, current.volume)
+		current.touch_turf(target, amount)
 
 	update_total()
 
-/datum/reagents/proc/touch_obj(var/obj/target)
+/datum/reagents/proc/touch_obj(var/obj/target, var/amount)
 	if(!target || !istype(target))
 		return
 
 	for(var/datum/reagent/current in reagent_list)
-		current.touch_obj(target, current.volume)
+		current.touch_obj(target, amount)
 
 	update_total()
 
@@ -383,7 +383,7 @@
 			return trans_to_holder(R, amount, multiplier, copy)
 		if(type == CHEM_INGEST)
 			var/datum/reagents/R = C.ingested
-			return trans_to_holder(R, amount, multiplier, copy)
+			return C.ingest(src, R, amount, multiplier, copy)
 		if(type == CHEM_TOUCH)
 			var/datum/reagents/R = C.touching
 			return trans_to_holder(R, amount, multiplier, copy)
@@ -402,7 +402,7 @@
 
 	var/datum/reagents/R = new /datum/reagents(amount * multiplier)
 	. = trans_to_holder(R, amount, multiplier, copy)
-	R.touch_turf(target)
+	R.touch_turf(target, amount)
 	return
 
 /datum/reagents/proc/trans_to_obj(var/obj/target, var/amount = 1, var/multiplier = 1, var/copy = 0) // Objects may or may not; if they do, it's probably a beaker or something and we need to transfer properly; otherwise, just touch.
@@ -412,7 +412,7 @@
 	if(!target.reagents)
 		var/datum/reagents/R = new /datum/reagents(amount * multiplier)
 		. = trans_to_holder(R, amount, multiplier, copy)
-		R.touch_obj(target)
+		R.touch_obj(target, amount)
 		return
 
 	return trans_to_holder(target.reagents, amount, multiplier, copy)

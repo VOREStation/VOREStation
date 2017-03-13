@@ -264,9 +264,9 @@
 	else if (src.locked == 0)
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 		src.connected = new /obj/structure/c_tray( src.loc )
-		step(src.connected, SOUTH)
+		step(src.connected, dir) //Vorestation Edit
 		src.connected.layer = OBJ_LAYER
-		var/turf/T = get_step(src, SOUTH)
+		var/turf/T = get_step(src, dir) //Vorestation Edit
 		if (T.contents.Find(src.connected))
 			src.connected.connected = src
 			src.icon_state = "crema0"

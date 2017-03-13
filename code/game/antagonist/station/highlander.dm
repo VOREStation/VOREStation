@@ -41,7 +41,7 @@ var/datum/antagonist/highlander/highlanders
 	player.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/captain(player), slot_l_ear)
 	player.equip_to_slot_or_del(new /obj/item/clothing/head/beret(player), slot_head)
 	player.equip_to_slot_or_del(new /obj/item/weapon/material/sword(player), slot_l_hand)
-	player.equip_to_slot_or_del(new /obj/item/clothing/shoes/combat(player), slot_shoes)
+	player.equip_to_slot_or_del(new /obj/item/clothing/shoes/boots/combat(player), slot_shoes)
 	player.equip_to_slot_or_del(new /obj/item/weapon/pinpointer(get_turf(player)), slot_l_store)
 
 	var/obj/item/weapon/card/id/W = new(player)

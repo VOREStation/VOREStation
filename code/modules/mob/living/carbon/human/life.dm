@@ -82,7 +82,8 @@
 		if(!client)
 			species.handle_npc(src)
 
-
+	else //VOREStation Addition - Stasis bags op pls nerf
+		if(in_stasis) Sleeping(5)
 	if(!handle_some_updates())
 		return											//We go ahead and process them 5 times for HUD images and other stuff though.
 
@@ -807,7 +808,8 @@
 			var/total_phoronloss = 0
 			for(var/obj/item/I in src)
 				if(I.contaminated)
-					total_phoronloss += vsc.plc.CONTAMINATION_LOSS
+					if(src.species && src.species.get_bodytype() != "Vox")
+						total_phoronloss += vsc.plc.CONTAMINATION_LOSS
 			if(!(status_flags & GODMODE)) adjustToxLoss(total_phoronloss)
 
 	if(status_flags & GODMODE)	return 0	//godmode
@@ -1083,7 +1085,7 @@
 				clear_fullscreen("oxy")
 
 		//Fire and Brute damage overlay (BSSR)
-		var/hurtdamage = src.getBruteLoss() + src.getFireLoss() + damageoverlaytemp
+		var/hurtdamage = src.getShockBruteLoss() + src.getShockFireLoss() + damageoverlaytemp	//Doesn't call the overlay if you can't actually feel it
 		damageoverlaytemp = 0 // We do this so we can detect if someone hits us or not.
 		if(hurtdamage)
 			var/severity = 0
@@ -1331,14 +1333,17 @@
 /* HUD shit goes here, as long as it doesn't modify sight flags */
 // The purpose of this is to stop xray and w/e from preventing you from using huds -- Love, Doohl
 		var/obj/item/clothing/glasses/hud/O = G
+		//VOREStation Add - Support for omnihud glasses
+		if(istype(G, /obj/item/clothing/glasses/omnihud))
+			var/obj/item/clothing/glasses/omnihud/S = G
+			O = S.hud
+        //VOREStation Add End
 		if(istype(G, /obj/item/clothing/glasses/sunglasses/sechud))
 			var/obj/item/clothing/glasses/sunglasses/sechud/S = G
 			O = S.hud
-		//VOREStation Add - Support for omnihud glasses
-		if(istype(G, /obj/item/clothing/glasses/sunglasses/omnihud))
-			var/obj/item/clothing/glasses/sunglasses/omnihud/S = G
-			O = S.hud
-		//VOREStation Add End
+		if(istype(G, /obj/item/clothing/glasses/sunglasses/medhud))
+			var/obj/item/clothing/glasses/sunglasses/medhud/M = G
+			O = M.hud
 		if(istype(O))
 			O.process_hud(src)
 			if(!druggy && !seer)	see_invisible = SEE_INVISIBLE_LIVING
@@ -1639,6 +1644,8 @@
 					holder1.icon_state = "hud_imp_tracking"
 				if(istype(I,/obj/item/weapon/implant/loyalty))
 					holder2.icon_state = "hud_imp_loyal"
+				if(istype(I,/obj/item/weapon/implant/backup))//VOREStation Edit - Commandeering this for backup implants
+					holder2.icon_state = "hud_imp_loyal" //VOREStation Edit
 				if(istype(I,/obj/item/weapon/implant/chem))
 					holder3.icon_state = "hud_imp_chem"
 
@@ -1655,6 +1662,7 @@
 			else
 				holder.icon_state = "hudsyndicate"
 			hud_list[SPECIALROLE_HUD] = holder
+	attempt_vr(src,"handle_hud_list_vr",list()) //VOREStation Add - Custom HUDs.
 	hud_updateflag = 0
 
 /mob/living/carbon/human/handle_stunned()

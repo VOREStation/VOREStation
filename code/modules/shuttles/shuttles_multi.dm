@@ -22,7 +22,7 @@
 	var/list/destination_dock_targets = list()
 	var/area/origin
 	var/return_warning = 0
-
+	var/legit = 0 //VOREStation Add - Whether or not a shuttle is a legit NT shuttle.
 /datum/shuttle/multi_shuttle/New()
 	..()
 
@@ -43,7 +43,10 @@
 	//might as well set this up here.
 	if(origin) last_departed = origin
 	last_location = start_location
-
+	//VOREStation Add - Set up origin dock controller
+	if(!(start_location in destination_dock_controller_tags))
+		destination_dock_controllers[start_location] = docking_controller
+	//VOREStation Add End
 /datum/shuttle/multi_shuttle/current_dock_target()
 	return destination_dock_targets[last_location]
 
@@ -59,14 +62,14 @@
 	if(cloaked || isnull(departure_message))
 		return
 
-	command_announcement.Announce(departure_message,(announcer ? announcer : "[boss_name]"))
+	command_announcement.Announce(departure_message,(announcer ? announcer : "[using_map.boss_name]"))
 
 /datum/shuttle/multi_shuttle/proc/announce_arrival()
 
 	if(cloaked || isnull(arrival_message))
 		return
 
-	command_announcement.Announce(arrival_message,(announcer ? announcer : "[boss_name]"))
+	command_announcement.Announce(arrival_message,(announcer ? announcer : "[using_map.boss_name]"))
 
 
 /obj/machinery/computer/shuttle_control/multi
@@ -97,7 +100,7 @@
 	else
 		dat += "<font color='green'>Engines ready.</font><br>"
 
-	dat += "<br><b><A href='?src=\ref[src];toggle_cloak=[1]'>Toggle cloaking field</A></b><br>"
+	dat += "<br><b><A href='?src=\ref[src];toggle_cloak=[1]'>[MS.legit ? "Inhibit ATC":"Toggle cloak"]</A></b><br>" //VOREStation Edit - Adds legit shuttles.
 	dat += "<b><A href='?src=\ref[src];move_multi=[1]'>Move ship</A></b><br>"
 	dat += "<b><A href='?src=\ref[src];start=[1]'>Return to base</A></b></center>"
 
@@ -189,13 +192,18 @@
 			updateUsrDialog()
 			return
 
-		if(!MS.return_warning)
+		if(!MS.return_warning && !MS.legit) //VOREStation Add - Criminals only!
 			usr << "\red Returning to your home base will end your mission. If you are sure, press the button again."
 			//TODO: Actually end the mission.
 			MS.return_warning = 1
 			return
 
-		MS.long_jump(MS.last_departed,MS.origin,MS.interim,MS.move_time)
+		//VOREStation Add - Only long-jump if that's a thing you do
+		if(MS.interim)
+			MS.long_jump(MS.last_departed, MS.origin, MS.interim, MS.move_time)
+		else
+			MS.short_jump(MS.last_departed, MS.origin)
+		//VOREStation Add End
 		MS.last_departed = MS.origin
 		MS.last_location = MS.start_location
 		MS.at_origin = 1
@@ -203,7 +211,7 @@
 	if(href_list["toggle_cloak"])
 
 		MS.cloaked = !MS.cloaked
-		usr << "\red Ship stealth systems have been [(MS.cloaked ? "activated. The station will not" : "deactivated. The station will")] be warned of our arrival."
+		usr << "\red Ship [MS.legit ? "ATC inhibitor":"stealth"] systems have been [(MS.cloaked ? "activated. The station will not" : "deactivated. The station will")] be [MS.legit ? "notified":"warned"] of our arrival." //VOREStation Edit - Adds legit shuttles.
 
 	if(href_list["move_multi"])
 		if((MS.last_move + MS.cooldown*10) > world.time)
@@ -225,7 +233,12 @@
 			MS.at_origin = 0
 
 
-			MS.long_jump(MS.last_departed, MS.destinations[choice], MS.interim, MS.move_time)
+			//VOREStation Add - Only long-jump if that's a thing you do
+			if(MS.interim)
+				MS.long_jump(MS.last_departed, MS.destinations[choice], MS.interim, MS.move_time)
+			else
+				MS.short_jump(MS.last_departed, MS.destinations[choice])
+			//VOREStation Add End
 			MS.last_departed = MS.destinations[choice]
 			MS.last_location = choice
 			return
@@ -234,7 +247,22 @@
 
 			MS.announce_departure()
 
-		MS.short_jump(MS.last_departed, MS.destinations[choice])
+			//VOREStation Add - Only long-jump if that's a thing you do
+			if(MS.interim)
+				MS.long_jump(MS.last_departed, MS.destinations[choice], MS.interim, MS.move_time)
+			else
+				MS.short_jump(MS.last_departed, MS.destinations[choice])
+			return
+			//VOREStation Add End
+
+		//VOREStation Add - Only long-jump if that's a thing you do
+		if(MS.interim)
+			MS.long_jump(MS.last_departed, MS.destinations[choice], MS.interim, MS.move_time)
+		else
+			MS.short_jump(MS.last_departed, MS.destinations[choice])
+		//VOREStation Add End
+
+		//MS.short_jump(MS.last_departed, MS.destinations[choice]) //VOREStation Removal
 		MS.last_departed = MS.destinations[choice]
 		MS.last_location = choice
 

@@ -102,7 +102,7 @@
 		supply_controller.ordernum++
 		var/obj/item/weapon/paper/reqform = new /obj/item/weapon/paper(loc)
 		reqform.name = "Requisition Form - [P.name]"
-		reqform.info += "<h3>[station_name] Supply Requisition Form</h3><hr>"
+		reqform.info += "<h3>[station_name()] Supply Requisition Form</h3><hr>"
 		reqform.info += "INDEX: #[supply_controller.ordernum]<br>"
 		reqform.info += "REQUESTED BY: [idname]<br>"
 		reqform.info += "RANK: [idrank]<br>"
@@ -295,7 +295,7 @@
 		supply_controller.ordernum++
 		var/obj/item/weapon/paper/reqform = new /obj/item/weapon/paper(loc)
 		reqform.name = "Requisition Form - [P.name]"
-		reqform.info += "<h3>[station_name] Supply Requisition Form</h3><hr>"
+		reqform.info += "<h3>[station_name()] Supply Requisition Form</h3><hr>"
 		reqform.info += "INDEX: #[supply_controller.ordernum]<br>"
 		reqform.info += "REQUESTED BY: [idname]<br>"
 		reqform.info += "RANK: [idrank]<br>"

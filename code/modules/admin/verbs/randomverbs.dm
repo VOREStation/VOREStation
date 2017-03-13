@@ -158,7 +158,8 @@
 
 proc/cmd_admin_mute(mob/M as mob, mute_type, automute = 0)
 	if(automute)
-		if(!config.automute_on)	return
+		if(!config.automute_on)
+			return
 	else
 		if(!usr || !usr.client)
 			return
@@ -169,8 +170,10 @@ proc/cmd_admin_mute(mob/M as mob, mute_type, automute = 0)
 			usr << "<font color='red'>Error: cmd_admin_mute: This mob doesn't have a client tied to it.</font>"
 		if(M.client.holder)
 			usr << "<font color='red'>Error: cmd_admin_mute: You cannot mute an admin/mod.</font>"
-	if(!M.client)		return
-	if(M.client.holder)	return
+	if(!M.client)
+		return
+	if(M.client.holder)
+		return
 
 	var/muteunmute
 	var/mute_string
@@ -550,7 +553,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!input)
 		return
 	if(!customname)
-		customname = "[company_name] Update"
+		customname = "[using_map.company_name] Update"
 	for (var/obj/machinery/computer/communications/C in machines)
 		if(! (C.stat & (BROKEN|NOPOWER) ) )
 			var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( C.loc )
@@ -565,7 +568,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		if("Yes")
 			command_announcement.Announce(input, customname, new_sound = 'sound/AI/commandreport.ogg', msg_sanitized = 1);
 		if("No")
-			world << "\red New [company_name] Update available at all communication consoles."
+			world << "\red New [using_map.company_name] Update available at all communication consoles."
 			world << sound('sound/AI/commandreport.ogg')
 
 	log_admin("[key_name(src)] has created a command report: [input]")

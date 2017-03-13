@@ -41,7 +41,6 @@
 	icon_dead = "piratemelee_dead"
 	projectilesound = 'sound/weapons/laser.ogg'
 	ranged = 1
-	rapid = 1
 	projectiletype = /obj/item/projectile/beam
 	corpse = /obj/effect/landmark/mobcorpse/pirate/ranged
 	weapon1 = /obj/item/weapon/gun/energy/laser

@@ -61,51 +61,6 @@
 		name = "Short Hair 2"
 		icon_state = "hair_shorthair3"
 
-	teshari
-		name = "Teshari Default"
-		icon_state = "seromi_default"
-		species_allowed = list("Teshari")
-
-	teshari_altdefault
-		name = "Teshari Alt. Default"
-		icon_state = "seromi_ears"
-		species_allowed = list("Teshari")
-
-	teshari_tight
-		name = "Teshari Tight"
-		icon_state = "seromi_tight"
-		species_allowed = list("Teshari")
-
-	teshari_excited
-		name = "Teshari Spiky"
-		icon_state = "seromi_spiky"
-		species_allowed = list("Teshari")
-
-	teshari_spike
-		name = "Teshari Spike"
-		icon_state = "seromi_spike"
-		species_allowed = list("Teshari")
-
-	teshari_long
-		name = "Teshari Overgrown"
-		icon_state = "seromi_long"
-		species_allowed = list("Teshari")
-
-	teshari_burst
-		name = "Teshari Starburst"
-		icon_state = "seromi_burst"
-		species_allowed = list("Teshari")
-
-	teshari_shortburst
-		name = "Teshari Short Starburst"
-		icon_state = "seromi_burst_short"
-		species_allowed = list("Teshari")
-
-	teshari_mohawk
-		name = "Teshari Mohawk"
-		icon_state = "seromi_mohawk"
-		species_allowed = list("Teshari")
-
 	cut
 		name = "Cut Hair"
 		icon_state = "hair_c"
@@ -328,6 +283,10 @@
 		name = "Emo"
 		icon_state = "hair_emo"
 
+	emo2
+		name = "Emo Alt"
+		icon_state = "hair_emo2"
+
 	longemo
 		name = "Long Emo"
 		icon_state = "hair_emolong"
@@ -522,6 +481,60 @@
 		name = "Oxton"
 		icon_state = "hair_oxton"
 
+	lowfade
+		name = "Low Fade"
+		icon_state = "hair_lowfade"
+		gender = MALE
+
+	medfade
+		name = "Medium Fade"
+		icon_state = "hair_medfade"
+
+	highfade
+		name = "High Fade"
+		icon_state = "hair_highfade"
+		gender = MALE
+
+	baldfade
+		name = "Balding Fade"
+		icon_state = "hair_baldfade"
+		gender = MALE
+
+	nofade
+		name = "Regulation Cut"
+		icon_state = "hair_nofade"
+		gender = MALE
+
+	trimflat
+		name = "Trimmed Flat Top"
+		icon_state = "hair_trimflat"
+		gender = MALE
+
+	trimmed
+		name = "Trimmed"
+		icon_state = "hair_trimmed"
+		gender = MALE
+
+	tightbun
+		name = "Tight Bun"
+		icon_state = "hair_tightbun"
+		gender = FEMALE
+
+	coffeehouse
+		name = "Coffee House Cut"
+		icon_state = "hair_coffeehouse"
+		gender = MALE
+
+	undercut
+		name = "Undercut"
+		icon_state = "hair_undercut"
+		gender = MALE
+
+	partfade
+		name = "Parted Fade"
+		icon_state = "hair_shavedpart"
+		gender = MALE
+
 
 /*
 ///////////////////////////////////
@@ -540,25 +553,7 @@
 		name = "Shaved"
 		icon_state = "bald"
 		gender = NEUTER
-		species_allowed = list("Human","Unathi","Tajara","Skrell", "Machine","Teshari")
-
-	teshari_beard
-		name = "Teshari Beard"
-		icon_state = "seromi_chin"
-		species_allowed = list("Teshari")
-		gender = NEUTER
-
-	teshari_scraggly
-		name = "Teshari Scraggly"
-		icon_state = "seromi_scraggly"
-		species_allowed = list("Teshari")
-		gender = NEUTER
-
-	teshari_chops
-		name = "Teshari Chops"
-		icon_state = "seromi_gap"
-		species_allowed = list("Teshari")
-		gender = NEUTER
+		species_allowed = list("Human","Unathi","Tajara","Skrell", "Machine","Teshari", "Vox")
 
 	watson
 		name = "Watson Mustache"
@@ -629,31 +624,41 @@
 		name = "Dwarf Beard"
 		icon_state = "facial_dwarf"
 
-	shadow
-		name = "Five O'Clock Shadow"
-		icon_state = "facial_shadow"
+		threeOclock
+		name = "3 O'clock Shadow"
+		icon_state = "facial_3oclock"
 
-//unathi horn beards and the like
+	threeOclockstache
+		name = "3 O'clock Shadow and Moustache"
+		icon_state = "facial_3oclockmoustache"
 
-	una_chinhorn
-		name = "Unathi Chin Horn"
-		icon_state = "facial_chinhorns"
-		species_allowed = list("Unathi")
+	fiveOclock
+		name = "5 O'clock Shadow"
+		icon_state = "facial_5oclock"
 
-	una_hornadorns
-		name = "Unathi Horn Adorns"
-		icon_state = "facial_hornadorns"
-		species_allowed = list("Unathi")
+	fiveOclockstache
+		name = "5 O'clock Shadow and Moustache"
+		icon_state = "facial_5oclockmoustache"
 
-	una_spinespikes
-		name = "Unathi Spine Spikes"
-		icon_state = "facial_spikes"
-		species_allowed = list("Unathi")
+	sevenOclock
+		name = "7 O'clock Shadow"
+		icon_state = "facial_7oclock"
 
-	una_dorsalfrill
-		name = "Unathi Dorsal Frill"
-		icon_state = "facial_dorsalfrill"
-		species_allowed = list("Unathi")
+	sevenOclockstache
+		name = "7 O'clock Shadow and Moustache"
+		icon_state = "facial_7oclockmoustache"
+
+	mutton
+		name = "Mutton Chops"
+		icon_state = "facial_mutton"
+
+	muttonstache
+		name = "Mutton Chops and Moustache"
+		icon_state = "facial_muttonmus"
+
+	walrus
+		name = "Walrus Moustache"
+		icon_state = "facial_walrus"
 
 /*
 ///////////////////////////////////
@@ -709,6 +714,7 @@
 		icon_state = "unathi_sidefrills"
 		species_allowed = list("Unathi")
 
+//Skrell 'hairstyles'
 	skr_tentacle_m
 		name = "Skrell Male Tentacles"
 		icon_state = "skrell_hair_m"
@@ -721,6 +727,7 @@
 		species_allowed = list("Skrell")
 		gender = FEMALE
 
+//Tajaran hairstyles
 	taj_ears
 		name = "Tajaran Ears"
 		icon_state = "ears_plain"
@@ -806,6 +813,92 @@
 		icon_state = "hair_fingerwave"
 		species_allowed = list("Tajara")
 
+//Teshari things
+	teshari
+		name = "Teshari Default"
+		icon_state = "teshari_default"
+		species_allowed = list("Teshari")
+
+	teshari_altdefault
+		name = "Teshari Alt. Default"
+		icon_state = "teshari_ears"
+		species_allowed = list("Teshari")
+
+	teshari_tight
+		name = "Teshari Tight"
+		icon_state = "teshari_tight"
+		species_allowed = list("Teshari")
+
+	teshari_excited
+		name = "Teshari Spiky"
+		icon_state = "teshari_spiky"
+		species_allowed = list("Teshari")
+
+	teshari_spike
+		name = "Teshari Spike"
+		icon_state = "teshari_spike"
+		species_allowed = list("Teshari")
+
+	teshari_long
+		name = "Teshari Overgrown"
+		icon_state = "teshari_long"
+		species_allowed = list("Teshari")
+
+	teshari_burst
+		name = "Teshari Starburst"
+		icon_state = "teshari_burst"
+		species_allowed = list("Teshari")
+
+	teshari_shortburst
+		name = "Teshari Short Starburst"
+		icon_state = "teshari_burst_short"
+		species_allowed = list("Teshari")
+
+	teshari_mohawk
+		name = "Teshari Mohawk"
+		icon_state = "teshari_mohawk"
+		species_allowed = list("Teshari")
+
+	teshari_pointy
+		name = "Teshari Pointy"
+		icon_state = "teshari_pointy"
+		species_allowed = list("Teshari")
+
+	teshari_upright
+		name = "Teshari Upright"
+		icon_state = "teshari_upright"
+		species_allowed = list("Teshari")
+
+	teshari_mane
+		name = "Teshari Mane"
+		icon_state = "teshari_mane"
+		species_allowed = list("Teshari")
+
+	teshari_droopy
+		name = "Teshari Droopy"
+		icon_state = "teshari_droopy"
+		species_allowed = list("Teshari")
+
+	teshari_mushroom
+		name = "Teshari Mushroom"
+		icon_state = "teshari_mushroom"
+		species_allowed = list("Teshari")
+
+	vox_quills_short
+		name = "Short Vox Quills"
+		icon_state = "vox_shortquills"
+		species_allowed = list("Vox")
+
+	vox_quills_kingly
+		name = "Kingly Vox Quills"
+		icon_state = "vox_kingly"
+		species_allowed = list("Vox")
+
+	vox_quills_mohawk
+		name = "Quill Mohawk"
+		icon_state = "vox_mohawk"
+		species_allowed = list("Vox")
+
 /datum/sprite_accessory/facial_hair
 
 	taj_sideburns
@@ -837,6 +930,48 @@
 		name = "Tajara Smallsatche"
 		icon_state = "facial_smallstache"
 		species_allowed = list("Tajara")
+
+//unathi horn beards and the like
+
+	una_chinhorn
+		name = "Unathi Chin Horn"
+		icon_state = "facial_chinhorns"
+		species_allowed = list("Unathi")
+
+	una_hornadorns
+		name = "Unathi Horn Adorns"
+		icon_state = "facial_hornadorns"
+		species_allowed = list("Unathi")
+
+	una_spinespikes
+		name = "Unathi Spine Spikes"
+		icon_state = "facial_spikes"
+		species_allowed = list("Unathi")
+
+	una_dorsalfrill
+		name = "Unathi Dorsal Frill"
+		icon_state = "facial_dorsalfrill"
+		species_allowed = list("Unathi")
+
+
+//Teshari things
+	teshari_beard
+		name = "Teshari Beard"
+		icon_state = "teshari_chin"
+		species_allowed = list("Teshari")
+		gender = NEUTER
+
+	teshari_scraggly
+		name = "Teshari Scraggly"
+		icon_state = "teshari_scraggly"
+		species_allowed = list("Teshari")
+		gender = NEUTER
+
+	teshari_chops
+		name = "Teshari Chops"
+		icon_state = "teshari_gap"
+		species_allowed = list("Teshari")
+		gender = NEUTER
 
 //skin styles - WIP
 //going to have to re-integrate this with surgery

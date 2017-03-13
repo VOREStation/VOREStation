@@ -40,6 +40,8 @@
 
 	log_ooc("[mob.name]/[key] : [msg]")
 
+	handle_spam_prevention(MUTE_OOC)
+
 	var/ooc_style = "everyone"
 	if(holder && !holder.fakekey)
 		ooc_style = "elevated"
@@ -108,6 +110,8 @@
 
 	log_ooc("(LOCAL) [mob.name]/[key] : [msg]")
 
+	handle_spam_prevention(MUTE_OOC)
+
 	var/mob/source = mob.get_looc_source()
 	var/turf/T = get_turf(source)
 	if(!T) return
@@ -122,6 +126,12 @@
 		display_name = holder.fakekey
 	if(mob.stat != DEAD)
 		display_name = mob.name
+	//VOREStation Add - Resleeving shenanigan prevention
+	if(ishuman(mob))
+		var/mob/living/carbon/human/H = mob
+		if(H.original_player && H.original_player != H.ckey) //In a body not their own
+			display_name = "[H.mind.name] (as [H.name])"
+	//VOREStation Add End
 
 	// Everyone in normal viewing range of the LOOC
 	for(var/mob/viewer in m_viewers)
@@ -140,7 +150,7 @@
 	// Send a message
 	for(var/client/target in receivers)
 		var/admin_stuff = ""
-		
+
 		if(target in admins)
 			admin_stuff += "/([key])"
 
@@ -148,7 +158,7 @@
 
 	for(var/client/target in r_receivers)
 		var/admin_stuff = "/([key])([admin_jump_link(mob, target.holder)])"
-		
+
 		target << "<span class='ooc'><span class='looc'>" + create_text_tag("looc", "LOOC:", target) + " <span class='prefix'>(R)</span><EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span></span></span>"
 
 /mob/proc/get_looc_source()

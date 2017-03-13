@@ -1,5 +1,5 @@
 proc/createRandomZlevel()
-	if(awaydestinations.len)	//crude, but it saves another var!
+	if(awaydestinations.len || UNIT_TEST)	//crude, but it saves another var! //VOREStation Edit - No loading away missions during Travis testing
 		return
 
 	var/list/potentialRandomZlevels = list()
@@ -38,6 +38,7 @@ proc/createRandomZlevel()
 		admin_notice("\red \b Loading away mission...", R_DEBUG)
 
 		var/map = pick(potentialRandomZlevels)
+		world.log << "Away mission picked: [map]" //VOREStation Add for debugging
 		var/file = file(map)
 		if(isfile(file))
 			maploader.load_map(file)

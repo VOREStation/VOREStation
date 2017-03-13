@@ -300,6 +300,13 @@
 											else
 												contents.Add(0)
 
+										// And here's for the Vox
+										if ("phoron")
+											if(t.air_contents.gas["phoron"] && !t.air_contents.gas["oxygen"])
+												contents.Add(t.air_contents.gas["phoron"])
+											else
+												contents.Add(0)
+
 
 								else
 									//no tank so we set contents to 0

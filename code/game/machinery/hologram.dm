@@ -124,9 +124,9 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	return
 
 /obj/machinery/hologram/holopad/proc/create_holo(mob/living/silicon/ai/A, turf/T = loc)
-	var/obj/effect/overlay/hologram = new(T)//Spawn a blank effect at the location.
+	var/obj/effect/overlay/aiholo/hologram = new(T)//Spawn a blank effect at the location. //VOREStation Edit to specific type for adding vars
 	hologram.icon = A.holo_icon
-	hologram.mouse_opacity = 0//So you can't click on it.
+	//hologram.mouse_opacity = 0//So you can't click on it. //VOREStation Removal
 	hologram.layer = FLY_LAYER//Above all the other objects/mobs. Or the vast majority of them.
 	hologram.anchored = 1//So space wind cannot drag it.
 	hologram.name = "[A.name] (Hologram)"//If someone decides to right click.
@@ -160,10 +160,22 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 
 /obj/machinery/hologram/holopad/proc/move_hologram(mob/living/silicon/ai/user)
 	if(masters[user])
+		/*VOREStation Removal, using our own code
 		step_to(masters[user], user.eyeobj) // So it turns.
 		var/obj/effect/overlay/H = masters[user]
 		H.loc = get_turf(user.eyeobj)
 		masters[user] = H
+		*/
+		//VOREStation Add - Solid mass holovore tracking stuff
+		var/obj/effect/overlay/aiholo/H = masters[user]
+		if(H.bellied)
+			walk_to(H, user.eyeobj) //Walk-to respects obstacles
+		else
+			walk_towards(H, user.eyeobj) //Walk-towards does not
+		//Hologram left the screen (got stuck on a wall or something)
+		if(get_dist(H, user.eyeobj) > world.view)
+			clear_holo(user)
+		//VOREStation Add End
 		if((HOLOPAD_MODE == RANGE_BASED && (get_dist(H, src) > holo_range)))
 			clear_holo(user)
 

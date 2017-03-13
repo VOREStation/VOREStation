@@ -63,3 +63,8 @@
 	name = "Striped Panties"
 	icon_state = "striped_panties"
 	has_color = TRUE
+
+/datum/category_item/underwear/bottom/longjon
+	name = "Long John Bottoms"
+	icon_state = "ljonb"
+	has_color = TRUE

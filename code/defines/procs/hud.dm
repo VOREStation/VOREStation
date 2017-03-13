@@ -18,6 +18,7 @@ proc/process_med_hud(var/mob/M, var/local_scanner, var/mob/Alt)
 		if(local_scanner)
 			P.Client.images += patient.hud_list[HEALTH_HUD]
 			P.Client.images += patient.hud_list[STATUS_HUD]
+			P.Client.images += patient.hud_list[BACKUP_HUD] //VOREStation Edit - Backup implant indicator
 		else
 			var/sensor_level = getsensorlevel(patient)
 			if(sensor_level >= SUIT_SENSOR_VITAL)

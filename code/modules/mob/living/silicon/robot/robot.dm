@@ -99,7 +99,7 @@
 	spark_system.attach(src)
 
 	add_language("Robot Talk", 1)
-	add_language("Encoded Audio Language", 1)
+	add_language(LANGUAGE_EAL, 1)
 
 	wires = new(src)
 
@@ -120,7 +120,7 @@
 	if(!scrambledcodes && !camera)
 		camera = new /obj/machinery/camera(src)
 		camera.c_tag = real_name
-		camera.replace_networks(list(NETWORK_EXODUS,NETWORK_ROBOTS))
+		camera.replace_networks(list(NETWORK_DEFAULT,NETWORK_ROBOTS))
 		if(wires.IsIndexCut(BORG_WIRE_CAMERA))
 			camera.status = 0
 
@@ -233,7 +233,7 @@
 		module_sprites = new_sprites.Copy()
 		//Custom_sprite check and entry
 		if (custom_sprite == 1)
-			module_sprites["Custom"] = "[src.ckey]-[modtype]"
+			module_sprites["Custom"] = "[ckey]-[name]-[modtype]" //Made compliant with custom_sprites.dm line 32. (src.) was apparently redundant as it's implied. ~Mech
 			icontype = "Custom"
 		else
 			icontype = module_sprites[1]
@@ -690,7 +690,7 @@
 		overlays += "eyes-[module_sprites[icontype]]"
 
 	if(opened)
-		var/panelprefix = custom_sprite ? src.ckey : "ov"
+		var/panelprefix = custom_sprite ? "[src.ckey]-[src.name]" : "ov"
 		if(wiresexposed)
 			overlays += "[panelprefix]-openpanel +w"
 		else if(cell)
@@ -707,6 +707,10 @@
 		else
 			icon_state = module_sprites[icontype]
 		return
+
+	if(typing)
+		typing = FALSE
+		set_typing_indicator(1)
 
 /mob/living/silicon/robot/proc/installed_modules()
 	if(weapon_lock)

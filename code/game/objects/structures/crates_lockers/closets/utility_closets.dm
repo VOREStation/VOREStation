@@ -24,27 +24,27 @@
 
 	switch (pickweight(list("small" = 55, "aid" = 25, "tank" = 10, "both" = 10)))
 		if ("small")
-			new /obj/item/weapon/tank/emergency_oxygen(src)
-			new /obj/item/weapon/tank/emergency_oxygen(src)
+			new /obj/item/weapon/tank/emergency/oxygen(src)
+			new /obj/item/weapon/tank/emergency/oxygen(src)
 			new /obj/item/clothing/mask/breath(src)
 			new /obj/item/clothing/mask/breath(src)
 			new /obj/item/clothing/suit/space/emergency(src)
 			new /obj/item/clothing/head/helmet/space/emergency(src)
 		if ("aid")
-			new /obj/item/weapon/tank/emergency_oxygen(src)
+			new /obj/item/weapon/tank/emergency/oxygen(src)
 			new /obj/item/weapon/storage/toolbox/emergency(src)
 			new /obj/item/clothing/mask/breath(src)
 			new /obj/item/weapon/storage/firstaid/o2(src)
 			new /obj/item/clothing/suit/space/emergency(src)
 			new /obj/item/clothing/head/helmet/space/emergency(src)
 		if ("tank")
-			new /obj/item/weapon/tank/emergency_oxygen/engi(src)
+			new /obj/item/weapon/tank/emergency/oxygen/engi(src)
 			new /obj/item/clothing/mask/breath(src)
-			new /obj/item/weapon/tank/emergency_oxygen/engi(src)
+			new /obj/item/weapon/tank/emergency/oxygen/engi(src)
 			new /obj/item/clothing/mask/breath(src)
 		if ("both")
 			new /obj/item/weapon/storage/toolbox/emergency(src)
-			new /obj/item/weapon/tank/emergency_oxygen/engi(src)
+			new /obj/item/weapon/tank/emergency/oxygen/engi(src)
 			new /obj/item/clothing/mask/breath(src)
 			new /obj/item/weapon/storage/firstaid/o2(src)
 			new /obj/item/clothing/suit/space/emergency(src)
@@ -137,7 +137,8 @@
 		new /obj/item/clothing/gloves/yellow(src)
 	if(prob(40))
 		new /obj/item/clothing/head/hardhat(src)
-
+	if(prob(30))
+		new /obj/item/weapon/reagent_containers/spray/windowsealant(src) //vorestation addition
 
 /*
  * Radiation Closet

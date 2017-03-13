@@ -131,6 +131,7 @@ proc/get_radio_key_from_channel(var/channel)
 /mob/living/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="", var/whispering = 0)
 	//If you're muted for IC chat
 	if(client)
+		client.handle_spam_prevention(MUTE_IC)
 		if((client.prefs.muted & MUTE_IC) || say_disabled)
 			src << "<span class='warning'>You cannot speak in IC (Muted).</span>"
 			return
@@ -294,7 +295,7 @@ proc/get_radio_key_from_channel(var/channel)
 
 	//The 'post-say' static speech bubble
 	var/speech_bubble_test = say_test(message)
-	var/image/speech_bubble = image('icons/mob/talk.dmi',src,"h[speech_bubble_test]")
+	var/image/speech_bubble = image('icons/mob/talk_vr.dmi',src,"h[speech_bubble_test]") //VOREStation Edit - Right-side talk icons
 	spawn(30) qdel(speech_bubble)
 
 	//Main 'say' and 'whisper' message delivery

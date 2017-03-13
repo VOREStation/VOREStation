@@ -54,6 +54,18 @@
 		part.implants.Remove(src)
 	..()
 
+/obj/item/weapon/implant/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/weapon/implanter))
+		var/obj/item/weapon/implanter/implanter = I
+		if(implanter.imp)
+			return // It's full.
+		user.drop_from_inventory(src)
+		forceMove(implanter)
+		implanter.imp = src
+		implanter.update()
+	else
+		..()
+
 /obj/item/weapon/implant/tracking
 	name = "tracking implant"
 	desc = "Track with this."
@@ -321,7 +333,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 /obj/item/weapon/implant/loyalty/get_data()
 	var/dat = {"
 <b>Implant Specifications:</b><BR>
-<b>Name:</b> [company_name] Employee Management Implant<BR>
+<b>Name:</b> [using_map.company_name] Employee Management Implant<BR>
 <b>Life:</b> Ten years.<BR>
 <b>Important Notes:</b> Personnel injected with this device tend to be much more loyal to the company.<BR>
 <HR>
@@ -337,11 +349,11 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	var/mob/living/carbon/human/H = M
 	var/datum/antagonist/antag_data = get_antag_data(H.mind.special_role)
 	if(antag_data && (antag_data.flags & ANTAG_IMPLANT_IMMUNE))
-		H.visible_message("[H] seems to resist the implant!", "You feel the corporate tendrils of [company_name] try to invade your mind!")
+		H.visible_message("[H] seems to resist the implant!", "You feel the corporate tendrils of [using_map.company_name] try to invade your mind!")
 		return 0
 	else
 		clear_antag_roles(H.mind, 1)
-		H << "<span class='notice'>You feel a surge of loyalty towards [company_name].</span>"
+		H << "<span class='notice'>You feel a surge of loyalty towards [using_map.company_name].</span>"
 	return 1
 
 
@@ -391,7 +403,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 /obj/item/weapon/implant/death_alarm/get_data()
 	var/dat = {"
 <b>Implant Specifications:</b><BR>
-<b>Name:</b> [company_name] \"Profit Margin\" Class Employee Lifesign Sensor<BR>
+<b>Name:</b> [using_map.company_name] \"Profit Margin\" Class Employee Lifesign Sensor<BR>
 <b>Life:</b> Activates upon death.<BR>
 <b>Important Notes:</b> Alerts crew to crewmember death.<BR>
 <HR>
@@ -469,7 +481,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 /obj/item/weapon/implant/compressed/get_data()
 	var/dat = {"
 <b>Implant Specifications:</b><BR>
-<b>Name:</b> [company_name] \"Profit Margin\" Class Employee Lifesign Sensor<BR>
+<b>Name:</b> [using_map.company_name] \"Profit Margin\" Class Employee Lifesign Sensor<BR>
 <b>Life:</b> Activates upon death.<BR>
 <b>Important Notes:</b> Alerts crew to crewmember death.<BR>
 <HR>
@@ -496,7 +508,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	qdel(src)
 
 /obj/item/weapon/implant/compressed/implanted(mob/source as mob)
-	src.activation_emote = input("Choose activation emote:") in list("blink", "blink_r", "eyebrow", "chuckle", "twitch_s", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
+	src.activation_emote = input("Choose activation emote:") in list("blink", "blink_r", "eyebrow", "chuckle", "twitch", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
 	if (source.mind)
 		source.mind.store_memory("Compressed matter implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.", 0, 0)
 	source << "The implanted compressed matter implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate."

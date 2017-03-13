@@ -112,7 +112,7 @@ datum/supply_drop_loot/riot
 		/obj/item/weapon/melee/baton,
 		/obj/item/clothing/glasses/sunglasses/sechud/tactical,
 		/obj/item/weapon/storage/belt/security,
-		/obj/item/clothing/shoes/jackboots,
+		/obj/item/clothing/shoes/boots/jackboots,
 		/obj/item/clothing/gloves/black,
 		/obj/item/weapon/gun/projectile/shotgun/pump,
 		/obj/item/weapon/gun/energy/gun,

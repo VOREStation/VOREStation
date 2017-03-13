@@ -80,8 +80,8 @@
 		/obj/item/rig_module/device/plasmacutter,
 		/obj/item/rig_module/device/drill,
 		/obj/item/rig_module/device/orescanner,
-		/obj/item/rig_module/vision/meson
-		)
+		/obj/item/rig_module/vision/meson,
+		/obj/item/rig_module/maneuvering_jets) //VOREStation Edit - Added maneuvering jets
 
 /obj/item/weapon/rig/eva
 	name = "EVA suit control module"
@@ -201,6 +201,7 @@
 	req_access = list(access_medical)
 
 	initial_modules = list(
+		/obj/item/rig_module/sprinter,
 		/obj/item/rig_module/chem_dispenser/injector,
 		/obj/item/rig_module/maneuvering_jets,
 		/obj/item/rig_module/device/healthscanner,

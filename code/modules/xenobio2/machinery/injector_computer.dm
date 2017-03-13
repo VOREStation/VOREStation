@@ -16,12 +16,12 @@
 	active_power_usage = 500
 	circuit = /obj/item/weapon/circuitboard/xenobio2computer
 	var/obj/machinery/xenobio2/manualinjector/injector
-	var/transfer_amount
+	var/transfer_amount = 5 //VOREStation Edit - This is never set anywhere, and 1 is too slow (1 is the default in the transfer proc).
 	var/active
 
 /obj/machinery/computer/xenobio2/Destroy()
-	..()
 	injector.computer = null
+	..()
 
 /obj/machinery/computer/xenobio2/attack_hand(mob/user)
 	if(..())
@@ -109,5 +109,5 @@
 
 /obj/item/weapon/circuitboard/xenobio2computer
 	name = T_BOARD("injector control console")
-	build_path = /obj/item/weapon/circuitboard/xenobio2computer
-	origin_tech = list()	//To be filled,
+	build_path = /obj/machinery/computer/xenobio2
+	origin_tech = list()	//To be filled

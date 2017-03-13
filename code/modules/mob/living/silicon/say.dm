@@ -70,7 +70,7 @@
 
 	var/obj/machinery/hologram/holopad/T = src.holo
 	if(T && T.masters[src])//If there is a hologram and its master is the user.
-
+		var/obj/effect/overlay/aiholo/hologram = T.masters[src] //VOREStation Add for people in the hologram to hear the messages
 		//Human-like, sorta, heard by those who understand humans.
 		var/rendered_a
 		//Speach distorted, heard by those who do not understand AIs.
@@ -85,7 +85,7 @@
 			rendered_a = "<span class='game say'><span class='name'>[name]</span> [verb], <span class='message'>\"[message]\"</span></span>"
 			rendered_b = "<span class='game say'><span class='name'>[voice_name]</span> [verb], <span class='message'>\"[message_stars]\"</span></span>"
 			src << "<i><span class='game say'>Holopad transmitted, <span class='name'>[real_name]</span> [verb], <span class='message'><span class='body'>\"[message]\"</span></span></span></i>"//The AI can "hear" its own message.
-
+		if(hologram.bellied) hologram.bellied.show_message(rendered_a, 2) //VOREStation Add so holobellied people can hear
 		for(var/mob/M in hearers(T.loc))//The location is the object, default distance.
 			if(M.say_understands(src))//If they understand AI speak. Humans and the like will be able to.
 				M.show_message(rendered_a, 2)
@@ -111,7 +111,8 @@
 	if(T && T.masters[src])
 		var/rendered = "<span class='game say'><span class='name'>[name]</span> <span class='message'>[message]</span></span>"
 		src << "<i><span class='game say'>Holopad action relayed, <span class='name'>[real_name]</span> <span class='message'>[message]</span></span></i>"
-
+		var/obj/effect/overlay/aiholo/hologram = T.masters[src] //VOREStation Add for people in the hologram to hear the messages
+		if(hologram.bellied) hologram.bellied.show_message(rendered, 2) //VOREStation Add so holobellied people can hear
 		for(var/mob/M in viewers(T.loc))
 			M.show_message(rendered, 2)
 	else //This shouldn't occur, but better safe then sorry.

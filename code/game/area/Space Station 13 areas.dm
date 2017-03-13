@@ -64,7 +64,7 @@ var/list/teleportlocs = list()
 		if(istype(AR, /area/shuttle) || istype(AR, /area/syndicate_station) || istype(AR, /area/wizard_station)) continue
 		if(teleportlocs.Find(AR.name)) continue
 		var/turf/picked = pick(get_area_turfs(AR.type))
-		if (picked.z in config.station_levels)
+		if (picked.z in using_map.station_levels)
 			teleportlocs += AR.name
 			teleportlocs[AR.name] = AR
 
@@ -81,7 +81,7 @@ var/list/ghostteleportlocs = list()
 			ghostteleportlocs += AR.name
 			ghostteleportlocs[AR.name] = AR
 		var/turf/picked = pick(get_area_turfs(AR.type))
-		if (picked.z in config.player_levels)
+		if (picked.z in using_map.player_levels)
 			ghostteleportlocs += AR.name
 			ghostteleportlocs[AR.name] = AR
 
@@ -346,11 +346,11 @@ area/space/atmosalert()
 	icon_state = "shuttlered2"
 
 /area/shuttle/administration/centcom
-	name = "\improper Administration Shuttle CentCom"
+	name = "Centcom Large Bay (AS)" //VOREStation Edit
 	icon_state = "shuttlered"
 
 /area/shuttle/administration/station
-	name = "\improper Administration Shuttle"
+	name = "NSS Adephagia (AS)" //VOREStation Edit
 	icon_state = "shuttlered2"
 
 /area/shuttle/trade/centcom
@@ -1382,7 +1382,7 @@ area/space/atmosalert()
 	icon_state = "fitness"
 
 /area/crew_quarters/longue_area
-	name = "\improper Longue"
+	name = "\improper Lounge" //VOREStation Edit - Muh speeling.
 	icon_state = "recreation_area"
 
 /area/crew_quarters/recreation_area
@@ -2161,6 +2161,10 @@ area/space/atmosalert()
 /area/rnd/misc_lab
 	name = "\improper Miscellaneous Research"
 	icon_state = "toxmisc"
+
+/area/rnd/workshop
+	name = "\improper Workshop"
+	icon_state = "sci_workshop"
 
 /area/toxins/server
 	name = "\improper Server Room"

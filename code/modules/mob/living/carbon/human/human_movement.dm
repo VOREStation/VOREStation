@@ -13,9 +13,6 @@
 	if(force_max_speed)
 		return -3 // Returning -1 will actually result in a slowdown for Teshari.
 
-	if(CE_SPEEDBOOST in chem_effects)
-		return -3
-
 	var/health_deficiency = (maxHealth - health)
 	if(health_deficiency >= 40) tally += (health_deficiency / 25)
 
@@ -24,6 +21,12 @@
 
 	var/hungry = (500 - nutrition)/5 // So overeat would be 100 and default level would be 80
 	if (hungry >= 70) tally += hungry/50
+
+	//VOREstation start
+	if (feral >= 10) //crazy feral animals give less and less of a shit about pain and hunger as they get crazier
+		tally = max(species.slowdown, species.slowdown+((tally-species.slowdown)/(feral/10))) // As feral scales to damage, this amounts to an effective +1 slowdown cap
+		if(shock_stage >= 10) tally -= 1.5 //this gets a +3 later, feral critters take reduced penalty
+	//VOREstation end
 
 	if(istype(buckled, /obj/structure/bed/chair/wheelchair))
 		for(var/organ_name in list(BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM))
@@ -78,6 +81,15 @@
 	if(pulling && istype(pulling, /obj/item))
 		var/obj/item/pulled = pulling
 		tally += max(pulled.slowdown, 0)
+
+	var/turf/T = get_turf(src)
+	if(T && T.movement_cost)
+		tally += T.movement_cost
+
+	if(CE_SPEEDBOOST in chem_effects)
+		if (tally >= 0)	// cut any penalties in half
+			tally = tally/2
+		tally -= 1	// give 'em a buff on top.
 
 	return (tally+config.human_delay)
 

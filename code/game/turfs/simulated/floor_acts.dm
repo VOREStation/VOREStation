@@ -43,3 +43,5 @@
 	for(var/obj/structure/window/W in src)
 		if(W.dir == dir_to || W.is_fulltile()) //Same direction or diagonal (full tile)
 			W.fire_act(adj_air, adj_temp, adj_volume)
+
+	attempt_vr(src,"adjacent_fire_act_vr",list(adj_turf,adj_air,adj_temp,adj_volume))

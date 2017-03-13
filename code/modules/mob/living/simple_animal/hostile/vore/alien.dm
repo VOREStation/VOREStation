@@ -3,7 +3,7 @@
 	desc = "Hiss!"
 	icon_state = "xenohunter"
 	icon_living = "xenohunter"
-	icon_dead = "xenohunter_dead"
+	icon_dead = "xenohunter-dead"
 	icon_gib = "gibbed-a"
 	response_help = "pokes"
 	response_disarm = "shoves"
@@ -39,7 +39,7 @@
 	name = "alien drone"
 	icon_state = "xenodrone"
 	icon_living = "xenodrone"
-	icon_dead = "xenodrone_dead"
+	icon_dead = "xenodrone-dead"
 	health = 60
 	melee_damage_lower = 15
 	melee_damage_upper = 15
@@ -48,7 +48,7 @@
 	name = "alien sentinel"
 	icon_state = "xenosentinel"
 	icon_living = "xenosentinel"
-	icon_dead = "xenosentinel_dead"
+	icon_dead = "xenosentinel-dead"
 	health = 120
 	melee_damage_lower = 30 // Buffed from 15 since vore doesn't work for ranged mobs.
 	melee_damage_upper = 30
@@ -61,7 +61,7 @@
 	name = "alien queen"
 	icon_state = "xenoqueen"
 	icon_living = "xenoqueen"
-	icon_dead = "xenoqueen_dead"
+	icon_dead = "xenoqueen-dead"
 	maxHealth = 250
 	melee_damage_lower = 30 // Buffed from 15 since vore doesn't work for ranged mobs.
 	melee_damage_upper = 30

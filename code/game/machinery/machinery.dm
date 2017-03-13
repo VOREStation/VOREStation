@@ -283,6 +283,13 @@ Class Procs:
 			return 1
 	return 0
 
+/obj/machinery/proc/default_apply_parts()
+	var/obj/item/weapon/circuitboard/CB = circuit
+	if(!istype(CB))
+		return
+	CB.apply_default_parts(src)
+	RefreshParts()
+
 /obj/machinery/proc/default_part_replacement(var/mob/user, var/obj/item/weapon/storage/part_replacer/R)
 	if(!istype(R))
 		return 0

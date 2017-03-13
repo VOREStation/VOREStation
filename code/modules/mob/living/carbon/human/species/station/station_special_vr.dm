@@ -20,7 +20,9 @@
 	//color_mult = 1 //It seemed to work fine in testing, but I've been informed it's unneeded.
 	tail = "tail" //Scree's tail. Can be disabled in the vore tab by choosing "hide species specific tail sprite"
 	icobase_tail = 1
-	inherent_verbs = list(/mob/living/carbon/human/proc/begin_reconstitute_form)
+	inherent_verbs = list(
+		/mob/living/carbon/human/proc/begin_reconstitute_form,
+		/mob/living/carbon/human/proc/sonar_ping)
 
 	min_age = 17
 	max_age = 80
@@ -51,7 +53,7 @@
 
 //handle feral triggers
 
-	if(H.nutrition <= 200||H.traumatic_shock > 10) // Stress factors are in play
+	if(H.nutrition <= 200||H.traumatic_shock > 36) // Stress factors are in play
 		// If they're hungry, give nag messages.
 		if (!istype(H.loc, /mob)) // if they're in a mob, skip the hunger stuff so it doesn't mess with drain/absorption modes.
 			if(H.nutrition < 200 && H.nutrition > 150)
@@ -65,16 +67,18 @@
 			else if(H.nutrition <= 100) //Should've eaten sooner!
 				if(H.feral == 0)
 					H << "<span class='danger'><big>Something in your mind flips, your instincts taking over, no longer able to fully comprehend your surroundings as survival becomes your primary concern - you must feed, survive, there is nothing else. Hunt. Eat. Hide. Repeat.</big></span>"
+					log_and_message_admins("has gone feral due to hunger.", H)
 					if(H.stat == CONSCIOUS)
 						H.emote("twitch")
-				H.feral = min(200, H.feral+1) //Feralness increases while this hungry.
+				H.feral = min(150-H.nutrition, H.feral+1) //Feralness increases while this hungry, capped at 50-150 depending on hunger.
 
 		// If they're hurt, chance of snapping. Not if they're straight-up KO'd though.
-		if (H.stat == CONSCIOUS && H.traumatic_shock >=20)
+		if (H.stat == CONSCIOUS && H.traumatic_shock >=36 && H.in_stasis == 0) //30 brute/burn, or 18 halloss.
 			if (2.5*H.halloss >= H.traumatic_shock) //If the majority of their shock is due to halloss, greater chance of snapping.
 				if(prob(min(10,(0.2 * H.traumatic_shock))))
 					if(H.feral == 0)
-						H << "<span class='danger'><big>The pain! It stings! Not hurt, but got to get away! Your instincts take over, urging you to flee, to hide, to go to ground, get away from the nasty thing...</big></span>"
+						H << "<span class='danger'><big>The pain! It stings! Got to get away! Your instincts take over, urging you to flee, to hide, to go to ground, get away from here...</big></span>"
+						log_and_message_admins("has gone feral due to halloss.", H)
 					H.feral = max(H.feral, H.halloss) //if already more feral than their halloss justifies, don't increase it.
 					H.emote("twitch")
 			else if(prob(min(10,(0.1 * H.traumatic_shock))))
@@ -82,65 +86,70 @@
 				if(H.feral == 0)
 					H << "<span class='danger'><big>Your fight-or-flight response kicks in, your injuries too much to simply ignore - you need to flee, to hide, survive at all costs - or destroy whatever is threatening you.</big></span>"
 					H.feral = 2*H.traumatic_shock //Make 'em snap.
+					log_and_message_admins("has gone feral due to injury.", H)
 				else
-					H.feral = min(200, H.feral+(H.traumatic_shock * 0.1)) //If already feral, feralness increases at a slower rate
+					H.feral = max(H.feral, H.traumatic_shock * 2) //keep feralness up to match the current injury state.
 
 	else if (H.jitteriness >= 100) //No stress factors, but there's coffee. Keeps them mildly feral while they're all jittery.
 		if(H.feral == 0)
 			H << "<span class='warning'><big>Suddenly, something flips - everything that moves is... potential prey. A plaything. This is great! Time to hunt!</big></span>"
+			log_and_message_admins("has gone feral due to jitteriness.", H)
 			if(H.stat == CONSCIOUS)
 				H.emote("twitch")
-		H.feral = max(H.feral, H.jitteriness-100) //won't make them VERY feral, but they'll be twitchy and pouncy while they're still under the influence, and feralness won't wear off until they're calm..
+		H.feral = max(H.feral, H.jitteriness-100) //they'll be twitchy and pouncy while they're under the influence, and feralness won't wear off until they're calm.
 
 	else
 		if (H.feral > 0) //still feral, but all stress factors are gone. Calm them down.
 			H.feral -= 1
 			if (H.feral <=0) //check if they're unferalled
 				H.feral = 0
-				H << "<span class='primary'>Your thoughts start clearing, your feral urges having passed - for the time being, at least.</span>"
-				H.hallucination = 0 //Remove all their hallucinations.
-
+				H << "<span class='info'>Your thoughts start clearing, your feral urges having passed - for the time being, at least.</span>"
+				log_and_message_admins("is no longer feral.", H)
 
 // handle what happens while feral
 
 	if(H.feral > 0) //do the following if feral, otherwise no effects.
-		var/light_amount = 0 //how much light there is in the place
-		if(isturf(H.loc)) //else, there's considered to be no light
-			var/turf/T = H.loc
-			var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in T
-			if(L)
-				light_amount = 2 * (min(5,L.lum_r + L.lum_g + L.lum_b) - 2.5)
-			else
-				light_amount =  5
-		if(light_amount <= 1.5)
-			H.hallucination = max(0, H.hallucination - 5) //Stop hallucinating if you're in a dark place, all hidden.
-		else
-			for(var/mob/living/M in viewers(H))
-				if(M != H)
-					if(prob(0.5) && (H.nutrition <= 250 || H.jitteriness > 0)) //1 in 200 chance to tell them that person looks like food. This is so irregular so it doesn't pop up 24/7 during ERP. It CAN happen when you're not hungry enough to be feral, especially if coffee is involved.
-						H << "<span class='danger'> Every movement, every flick, every sight and sound has your full attention, your hunting instincts on high alert... In fact, [M] looks extremely appetizing...</span>"
-						if(H.stat == CONSCIOUS)
-							H.emote("twitch")
-					H.hallucination = max(0, H.hallucination - 25) //Stop hallucinating almost immediately once you see someone.
+		var/light_amount = H.getlightlevel() //how much light there is in the place
 
-				else if(M == H) //nobody is in view.
-					if(H.nutrition <= 100) //If hungry, nag them to go and find someone or something to eat.
-						if(prob(1))
+		for(var/mob/living/M in viewers(H))
+			if(M != H) // someone in view
+				if(prob(0.5)) // 1 in 200 chance of doing something so as not to interrupt scenes
+					if(light_amount <= 0.5) // in the darkness
+						if(H.nutrition <= 250 || H.jitteriness > 0) //tell them that person looks like food and is good to pounce.
+							H << "<span class='info'> Secure in your hiding place, you still feel the urge to hunt, and [M] looks like an extremely tempting target...</span>"
+					else // in lit area
+						if(H.nutrition <= 250 || H.jitteriness > 0) //tell them that person looks like food. It CAN happen when you're not hungry enough to be feral, especially if coffee is involved.
+							H << "<span class='danger'> Every movement, every flick, every sight and sound has your full attention, your hunting instincts on high alert... In fact, [M] looks extremely appetizing...</span>"
+							if(H.stat == CONSCIOUS)
+								H.emote("twitch")
+							if(!H.handling_hal)
+								spawn H.handle_feral()
+
+			else if(M == H) //nobody is in view.
+				if(light_amount <= 0.5) // in the darkness
+					if(prob(1)) //periodic nagmessages
+						if(H.nutrition <= 100) //If hungry, nag them to go and find someone or something to eat.
+							H << "<span class='info'> Secure in your hiding place, your hunger still gnaws at you. You need to track down some food...</span>"
+						else if(H.jitteriness >= 100)
+							H << "<span class='info'> sneakysneakyyesyesyescleverhidingfindthingsyessssss</span>"
+						else //otherwise, just tell them to hide.
+							H << "<span class='info'> ...safe...</span>"
+				else // in light
+					if(!H.handling_hal)
+						spawn H.handle_feral()
+					if(prob(1)) //periodic nagmessages
+						if(H.nutrition <= 100) //If hungry, nag them to go and find someone or something to eat.
 							H << "<span class='danger'> Confusing sights and sounds and smells surround you - scary and disorienting it may be, but the drive to hunt, to feed, to survive, compels you.</span>"
 							if(H.stat == CONSCIOUS)
 								H.emote("twitch")
-					else if(H.jitteriness >= 100)
-						if(prob(1)) //hypermonster
+						else if(H.jitteriness >= 100)
 							H << "<span class='danger'> yesyesyesyesyesyesgetthethingGETTHETHINGfindfoodsfindpreypounceyesyesyes</span>"
 							if(H.stat == CONSCIOUS)
 								H.emote("twitch")
-					else //otherwise, just tell them to hide.
-						if(prob(1))
+						else //otherwise, just tell them to hide.
 							H << "<span class='danger'> Confusing sights and sounds and smells surround you, this place is wrong, confusing, frightening. You need to hide, go to ground...</span>"
 							if(H.stat == CONSCIOUS)
 								H.emote("twitch")
-
-					H.hallucination = min(200, H.feral*2, H.hallucination +5) //Start hallucinating while alone and feral. 200 hallucination cap. Let's not be too evil.
 
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -161,16 +170,18 @@
 		//This is just here to prevent them from getting cold effects
 
 	else if(H.bodytemperature <= 260) //If they're not in stasis and are cold. Don't really have to add in an exception to cryo cells, as the effects aren't anything /too/ horrible.
-		if(H.bodytemperature <= 260 && H.bodytemperature >= 200) //Chilly
-			if(H.halloss < 150) //150 halloss cap. Harsh punishment for staying in space, and it'll take them a while to fully thaw out when they get retrieved.
-				H.halloss = H.halloss + 4 //This will begin to knock them out until they run out of oxygen and suffocate or until someone finds them.
+		var/colddamage = 0
+		if(H.bodytemperature <= 260 && H.bodytemperature >= 200) //Chilly.
+			colddamage = 4 //This will begin to knock them out until they run out of oxygen and suffocate or until someone finds them.
 			H.eye_blurry = 5 //Blurry vision in the cold.
 		if(H.bodytemperature <= 199 && H.bodytemperature >= 100) //Extremely cold. Even in somewhere like the server room it takes a while for bodytemp to drop this low.
-			if(H.halloss < 150)
-				H.halloss = H.halloss + 8
+			colddamage = 8
 			H.eye_blurry = 5
 		if(H.bodytemperature <= 99) //Insanely cold.
-			if(H.halloss < 150)
-				H.halloss = H.halloss + 20
+			colddamage = 20
 			H.eye_blurry = 5
+		if(H.paralysis) //stops weaken spam from being repeatedly taken over max halloss when already KO'd.
+			H.halloss = min(H.halloss+colddamage, H.species.total_health - 1) //if already stunned, only take them up to the point of restunning
+		else
+			H.halloss += colddamage //Harsh punishment for staying in space, and it'll take them a while to fully thaw out when they get retrieved.
 		return

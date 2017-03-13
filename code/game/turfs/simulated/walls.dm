@@ -59,6 +59,10 @@
 	//cap the amount of damage, so that things like emitters can't destroy walls in one hit.
 	var/damage = min(proj_damage, 100)
 
+	if(Proj.damage_type == BURN && damage > 0)
+		if(thermite)
+			thermitemelt()
+
 	if(istype(Proj,/obj/item/projectile/beam))
 		if(material && material.reflectivity >= 0.5) // Time to reflect lasers.
 			var/new_damage = damage * material.reflectivity

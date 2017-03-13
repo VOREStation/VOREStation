@@ -17,6 +17,8 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 
 	adminhelped = 1 //Determines if they get the message to reply by clicking the name.
 
+	handle_spam_prevention(MUTE_ADMINHELP)
+
 	//clean the input msg
 	if(!msg)
 		return
@@ -114,5 +116,16 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 	else
 		send2adminirc("Request for Help from [key_name(src)]: [html_decode(original_msg)]")
 	feedback_add_details("admin_verb","AH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	// VoreStation Edit Start
+	if (config.chat_webhook_url)
+		spawn(0)
+			var/query_string = "type=adminhelp"
+			query_string += "&key=[url_encode(config.chat_webhook_key)]"
+			query_string += "&from=[url_encode(key_name(src))]"
+			query_string += "&msg=[url_encode(html_decode(original_msg))]"
+			query_string += "&admin_number=[admins.len]"
+			query_string += "&admin_number_afk=[admin_number_afk]"
+			world.Export("[config.chat_webhook_url]?[query_string]")
+	// VoreStation Edit End
 	return
 

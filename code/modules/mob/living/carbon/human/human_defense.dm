@@ -151,13 +151,7 @@ emp_act
 		O.emp_act(severity)
 	..()
 
-/mob/living/carbon/human/resolve_item_attack(obj/item/I, mob/living/user, var/target_zone)
-	if(check_neckgrab_attack(I, user, target_zone))
-		return null
-
-	if(user == src) // Attacking yourself can't miss
-		return target_zone
-
+/mob/living/carbon/human/proc/get_accuracy_penalty(mob/living/user)
 	// Certain statuses make it harder to score a hit.  These are the same as gun accuracy, however melee doesn't use multiples of 15.
 	var/accuracy_penalty = 0
 	if(user.eye_blind)
@@ -167,9 +161,20 @@ emp_act
 	if(user.confused)
 		accuracy_penalty += 45
 
-	var/hit_zone = get_zone_with_miss_chance(target_zone, src, accuracy_penalty)
+	return accuracy_penalty
+
+/mob/living/carbon/human/resolve_item_attack(obj/item/I, mob/living/user, var/target_zone)
+	if(check_neckgrab_attack(I, user, target_zone))
+		return null
+
+	if(user == src) // Attacking yourself can't miss
+		return target_zone
+
+	var/hit_zone = get_zone_with_miss_chance(target_zone, src, get_accuracy_penalty(user))
 
 	if(!hit_zone)
+		user.do_attack_animation(src)
+		playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 		visible_message("<span class='danger'>\The [user] misses [src] with \the [I]!</span>")
 		return null
 

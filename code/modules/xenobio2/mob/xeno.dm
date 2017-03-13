@@ -95,6 +95,12 @@ Also includes Life and New
 	if(!health)
 		stat = DEAD
 
+/mob/living/simple_animal/xeno/bullet_act(var/obj/item/projectile/Proj)
+	if(istype(Proj, /obj/item/projectile/beam/stun/xeno))
+		var/obj/item/projectile/beam/stun/xeno/hit = Proj
+		stasis += hit.stasisforce
+	..()
+
 /mob/living/simple_animal/xeno/Destroy()
 	traitdat.Destroy()	//Let's clean up after ourselves.
 	traitdat = null

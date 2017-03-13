@@ -32,8 +32,12 @@
 		if(!stat && !resting && !buckled)
 			for(var/mob/living/simple_animal/mouse/M in loc)
 				if(!M.stat)
-					M.splat()
-					visible_emote(pick("bites \the [M]!","toys with \the [M].","chomps on \the [M]!"))
+					//VOREStation Edit - For cats to eat mice.
+					animal_nom(M)
+					sleep(swallowTime)
+					//M.splat()
+					//visible_emote(pick("bites \the [M]!","toys with \the [M].","chomps on \the [M]!"))
+					//VOREStation Edit End.
 					movement_target = null
 					stop_automated_movement = 0
 					break
@@ -190,6 +194,7 @@
 		var/mob/living/carbon/human/H = usr
 		if(istype(H) && (!befriend_job || H.job == befriend_job))
 			friend = usr
+			prey_excludes |= usr //VOREStation Add - Friends not food!
 			. = 1
 	else if(usr == friend)
 		. = 1 //already friends, but show success anyways
@@ -213,6 +218,7 @@
 	item_state = "cat"
 	icon_living = "cat"
 	icon_dead = "cat_dead"
+	befriend_job = "Chief Medical Officer" //VOREStation Add
 
 /mob/living/simple_animal/cat/kitten
 	name = "kitten"

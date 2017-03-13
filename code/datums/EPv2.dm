@@ -112,23 +112,27 @@ var/global/list/all_exonet_connections = list()
 	return null
 
 // Proc: send_message()
-// Parameters: 3 (target_address - the desired address to send the message to, message - the message to send, text - the message text if message is of type "text")
-// Description: Sends the message to target_address, by calling receive_message() on the desired datum.
-/datum/exonet_protocol/proc/send_message(var/target_address, var/message, var/text)
+// Parameters: 3 (target_address - the desired address to send the message to, data_type - text stating what the content is meant to be used for,
+// 		content - the actual 'message' being sent to the address)
+// Description: Sends the message to target_address, by calling receive_message() on the desired datum.  Returns true if the message is recieved.
+/datum/exonet_protocol/proc/send_message(var/target_address, var/data_type, var/content)
 	if(!address)
-		return 0
+		return FALSE
+	var/obj/machinery/exonet_node/node = get_exonet_node()
+	if(!node) // Telecomms went boom, ion storm, etc.
+		return FALSE
 	for(var/datum/exonet_protocol/exonet in all_exonet_connections)
 		if(exonet.address == target_address)
-			exonet.receive_message(holder, address, message, text)
-			break
+			node.write_log(src.address, target_address, data_type, content)
+			return exonet.receive_message(holder, address, data_type, content)
 
 // Proc: receive_message()
-// Parameters: 4 (origin_atom - the origin datum's holder, origin_address - the address the message originated from, message - the message that was sent,
-//				  text - the message text if message is of type "text")
+// Parameters: 4 (origin_atom - the origin datum's holder, origin_address - the address the message originated from,
+// 		data_type - text stating what the content is meant to be used for, content - the actual 'message' being sent from origin_atom)
 // Description: Called when send_message() successfully reaches the intended datum.  By default, calls receive_exonet_message() on the holder atom.
-/datum/exonet_protocol/proc/receive_message(var/atom/origin_atom, var/origin_address, var/message, var/text)
-	holder.receive_exonet_message(origin_atom, origin_address, message, text)
-	return
+/datum/exonet_protocol/proc/receive_message(var/atom/origin_atom, var/origin_address, var/data_type, var/content)
+	holder.receive_exonet_message(origin_atom, origin_address, data_type, content)
+	return TRUE // for send_message()
 
 // Proc: receive_exonet_message()
 // Parameters: 3 (origin_atom - the origin datum's holder, origin_address - the address the message originated from, message - the message that was sent)

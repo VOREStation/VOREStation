@@ -18,8 +18,9 @@
 
 /obj/structure/toilet/attack_hand(mob/living/user as mob)
 	if(swirlie)
+		usr.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		usr.visible_message("<span class='danger'>[user] slams the toilet seat onto [swirlie.name]'s head!</span>", "<span class='notice'>You slam the toilet seat onto [swirlie.name]'s head!</span>", "You hear reverberating porcelain.")
-		swirlie.adjustBruteLoss(8)
+		swirlie.adjustBruteLoss(5)
 		return
 
 	if(cistern && !open)
@@ -53,6 +54,7 @@
 			return
 
 	if(istype(I, /obj/item/weapon/grab))
+		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		var/obj/item/weapon/grab/G = I
 
 		if(isliving(G.affecting))
@@ -65,14 +67,14 @@
 				if(open && !swirlie)
 					user.visible_message("<span class='danger'>[user] starts to give [GM.name] a swirlie!</span>", "<span class='notice'>You start to give [GM.name] a swirlie!</span>")
 					swirlie = GM
-					if(do_after(user, 30, 5, 0))
+					if(do_after(user, 30, GM))
 						user.visible_message("<span class='danger'>[user] gives [GM.name] a swirlie!</span>", "<span class='notice'>You give [GM.name] a swirlie!</span>", "You hear a toilet flushing.")
 						if(!GM.internal)
 							GM.adjustOxyLoss(5)
 					swirlie = null
 				else
 					user.visible_message("<span class='danger'>[user] slams [GM.name] into the [src]!</span>", "<span class='notice'>You slam [GM.name] into the [src]!</span>")
-					GM.adjustBruteLoss(8)
+					GM.adjustBruteLoss(5)
 			else
 				user << "<span class='notice'>You need a tighter grip.</span>"
 

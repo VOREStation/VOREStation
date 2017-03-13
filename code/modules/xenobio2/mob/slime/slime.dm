@@ -18,7 +18,7 @@ Slime definitions, Life and New live here.
 	var/is_child = 1
 	var/cores = 3
 	var/growthcounter = 0
-	var/growthpoint = 50 //At what point they grow up.
+	var/growthpoint = 25 //At what point they grow up.
 	var/shiny = 0
 	move_to_delay = 17 //Slimes shouldn't be able to go faster than humans.
 	default_chems = list("slimejelly" = 5)
@@ -26,11 +26,11 @@ Slime definitions, Life and New live here.
 	response_help = "pats"
 	response_disarm = "tries to stop"
 	response_harm = "hits"
-	
+
 	var/emote_on = null
-	
+
 	maleable = MAX_MALEABLE
-	
+
 	//Slimes can speak all of the languages, oh no!
 	universal_speak = 1
 	speak_chance = 1
@@ -45,7 +45,7 @@ Slime definitions, Life and New live here.
 
 	//Overlay information
 	var/overlay = 1 // 1 = normal lighting, 0 = shiny, 2 = too shiny, -1 = no overlay
-	
+
 	chemreact = list(	"nutriment" = list("nutr" = 0.5),
 						"radium" = list("toxic" = 0.3, "mut" = 1),
 						"mutagen" = list("nutr" = 0.4, "mut" = 2),
@@ -79,7 +79,7 @@ Slime definitions, Life and New live here.
 						"glycerol" = list("nutr" = 0.6),
 						"woodpulp" = list("heal" = 0.1, "nutr" = 0.7),
 						"docilitytoxin" = list("nutr" = 0.3)	)
-	
+
 /mob/living/simple_animal/xeno/slime/New()
 	..()
 	for(var/datum/language/L in (typesof(/datum/language) - /datum/language))
@@ -91,4 +91,3 @@ Slime definitions, Life and New live here.
 	resistances[TOX] = 1.5
 	GenerateChild()
 	return 1
-	
