@@ -185,13 +185,13 @@
 /obj/machinery/transhuman/synthprinter/RefreshParts()
 
 	//Scanning modules reduce burn rating by 15 each
-	var/burn_rating = initial(burn_rating)
+	var/burn_rating = initial(burn_value)
 	for(var/obj/item/weapon/stock_parts/scanning_module/SM in component_parts)
 		burn_rating = burn_rating - (SM.rating*15)
 	burn_value = burn_rating
 
 	//Manipulators reduce brute by 10 each
-	var/brute_rating = initial(burn_rating)
+	var/brute_rating = initial(burn_value)
 	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
 		brute_rating = brute_rating - (M.rating*10)
 	brute_value = brute_rating
