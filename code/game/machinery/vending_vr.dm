@@ -62,29 +62,57 @@
 					/obj/item/weapon/material/kitchen/utensil/fork = 6,
 					/obj/item/weapon/material/kitchen/utensil/knife = 6,
 					/obj/item/weapon/material/kitchen/utensil/spoon = 6,
-					/obj/item/weapon/reagent_containers/food/drinks/bottle/orangejuice = 4,
-					/obj/item/weapon/reagent_containers/food/drinks/bottle/tomatojuice = 4,
-					/obj/item/weapon/reagent_containers/food/drinks/bottle/limejuice = 4,
-					/obj/item/weapon/reagent_containers/food/drinks/bottle/cream = 4,
-					/obj/item/weapon/reagent_containers/food/drinks/milk = 4,
-					/obj/item/weapon/reagent_containers/food/drinks/cans/cola = 8,
-					/obj/item/weapon/reagent_containers/food/drinks/cans/sodawater = 15,
-					/obj/item/weapon/reagent_containers/food/drinks/flask/barflask = 2,
-					/obj/item/weapon/reagent_containers/food/drinks/flask/vacuumflask = 2,
-					/obj/item/weapon/reagent_containers/food/drinks/ice = 9,
-					/obj/item/weapon/reagent_containers/food/drinks/tea = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/tomatosoup = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/mushroomsoup = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/jellysandwich = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/taco = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/cheeseburger = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/grilledcheese = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/hotdog = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/loadedbakedpotato = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/omelette = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/pastatomato = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/tofuburger = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushroompizza = 2,
+					/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza = 2,
+					/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margherita = 2,
+					/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/meatpizza = 2,
+					/obj/item/weapon/reagent_containers/food/snacks/waffles = 4,
+					/obj/item/weapon/reagent_containers/food/snacks/muffin = 4,
 					/obj/item/weapon/reagent_containers/food/snacks/appletart = 4,
-					/obj/item/weapon/reagent_containers/food/snacks/cheeseburger = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/creamcheesebreadslice = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/grilledcheese = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/hotdog = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/loadedbakedpotato = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/margheritaslice = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/muffin = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/omelette = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/pastatomato = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/tofuburger = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/waffles = 10
+					/obj/item/weapon/reagent_containers/food/snacks/sliceable/applecake = 2,
+					/obj/item/weapon/reagent_containers/food/snacks/sliceable/bananabread = 2,
+					/obj/item/weapon/reagent_containers/food/snacks/sliceable/creamcheesebread = 2
+					)
+	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/mysterysoup = 10)
+	vend_delay = 15
+
+/obj/machinery/vending/food/arojoan //Fluff vendor for the lewd houseboat.
+	name = "Custom Food-O-Mat"
+	desc = "Do you think Joan cooks? Of course not. Lazy squirrel!"
+	icon_state = "boozeomat"
+	icon_deny = "boozeomat-deny"
+	products = list(/obj/item/weapon/tray = 6,
+					/obj/item/weapon/material/kitchen/utensil/fork = 6,
+					/obj/item/weapon/material/kitchen/utensil/knife = 6,
+					/obj/item/weapon/material/kitchen/utensil/spoon = 6,
+					/obj/item/weapon/reagent_containers/food/snacks/hotandsoursoup = 3,
+					/obj/item/weapon/reagent_containers/food/snacks/kitsuneudon = 3,
+					/obj/item/weapon/reagent_containers/food/snacks/generalschicken = 3,
+					/obj/item/weapon/reagent_containers/food/snacks/sliceable/sushi = 2,
+					/obj/item/weapon/reagent_containers/food/snacks/jellysandwich = 3,
+					/obj/item/weapon/reagent_containers/food/snacks/grilledcheese = 3,
+					/obj/item/weapon/reagent_containers/food/snacks/hotdog = 3,
+					/obj/item/weapon/storage/box/wings = 2,
+					/obj/item/weapon/reagent_containers/food/snacks/loadedbakedpotato = 3,
+					/obj/item/weapon/reagent_containers/food/snacks/omelette = 3,
+					/obj/item/weapon/reagent_containers/food/snacks/waffles = 3,
+					/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushroompizza = 1,
+					/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza = 1,
+					/obj/item/weapon/reagent_containers/food/snacks/appletart = 2,
+					/obj/item/weapon/reagent_containers/food/snacks/sliceable/applecake = 1,
+					/obj/item/weapon/reagent_containers/food/snacks/sliceable/bananabread = 2,
+					/obj/item/weapon/reagent_containers/food/snacks/sliceable/creamcheesebread = 2
 					)
 	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/mysterysoup = 10)
 	vend_delay = 15

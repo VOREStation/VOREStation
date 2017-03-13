@@ -112,6 +112,13 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	unavailable_to_build = 1
 	parts = list(BP_HEAD)
 
+/datum/robolimb/morpheus_alt2
+	company = "Morpheus - Skeleton Crew"
+	desc = "This limb is simple and functional; it's basically just a case for a brain."
+	icon = 'icons/mob/human_races/cyberlimbs/morpheus/morpheus_alt2.dmi'
+	unavailable_to_build = 1
+	parts = list(BP_HEAD)
+
 /datum/robolimb/veymed
 	company = "Vey-Med"
 	desc = "This high quality limb is nearly indistinguishable from an organic one."
