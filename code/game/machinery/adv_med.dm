@@ -335,16 +335,15 @@
 					organStatus["bleeding"] = 1
 				if(E.status & ORGAN_DEAD)
 					organStatus["dead"] = 1
+				for(var/datum/wound/W in E.wounds)
+					if(W.internal)
+						organStatus["internalBleeding"] = 1
+						break
 
 				organData["status"] = organStatus
 
 				if(istype(E, /obj/item/organ/external/chest) && H.is_lung_ruptured())
 					organData["lungRuptured"] = 1
-
-				for(var/datum/wound/W in E.wounds)
-					if(W.internal)
-						organData["internalBleeding"] = 1
-						break
 
 				extOrganData.Add(list(organData))
 
