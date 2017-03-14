@@ -607,7 +607,7 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 				if("slime")
 					holo_icon = getHologramIcon(icon('icons/mob/slimes.dmi',"cerulean adult slime"))
 				if("ian")
-					holo_icon = getHologramIcon(icon('icons/mob/slimes.dmi',"corgi"))
+					holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"corgi"))
 				if("runtime")
 					holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"cat"))
 				if("poly")
