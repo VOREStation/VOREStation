@@ -565,7 +565,12 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 		var/icon_list[] = list(
 		"default",
 		"floating face",
+		"singularity",
+		"drone",
 		"carp",
+		"spider",
+		"bear",
+		"slime",
 		"ian",
 		"runtime",
 		"poly",
@@ -589,10 +594,20 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo1"))
 				if("floating face")
 					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo2"))
+				if("floating face")
+					holo_icon = getHologramIcon(icon('icons/obj/singularity.dmi',"singularity_s1"))
+				if("drone")
+					holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"drone0"))
 				if("carp")
 					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo4"))
+				if("spider")
+					holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"nurse"))
+				if("bear")
+					holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"brownbear"))
+				if("slime")
+					holo_icon = getHologramIcon(icon('icons/mob/slimes.dmi',"cerulean adult slime"))
 				if("ian")
-					holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"corgi"))
+					holo_icon = getHologramIcon(icon('icons/mob/slimes.dmi',"corgi"))
 				if("runtime")
 					holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"cat"))
 				if("poly")
