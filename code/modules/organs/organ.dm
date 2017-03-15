@@ -281,9 +281,13 @@ var/list/organ_cache = list()
 		return
 	switch (severity)
 		if (1)
-			take_damage(5)
+			take_damage(rand(6,12))
 		if (2)
-			take_damage(2)
+			take_damage(rand(4,8))
+		if (3)
+			take_damage(rand(3,6))
+		if (4)
+			take_damage(rand(1,4))
 
 /obj/item/organ/proc/removed(var/mob/living/user)
 
