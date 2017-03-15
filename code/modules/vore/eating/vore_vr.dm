@@ -43,6 +43,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	//Actual preferences
 	var/digestable = 1
 	var/list/belly_prefs = list()
+	var/vore_taste
 
 	//Mechanically required
 	var/path
@@ -101,6 +102,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 
 	S["digestable"] >> digestable
 	S["belly_prefs"] >> belly_prefs
+	S["vore_taste"] >> vore_taste
 
 	if(isnull(digestable))
 		digestable = 1
@@ -118,5 +120,6 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 
 	S["digestable"] << digestable
 	S["belly_prefs"] << belly_prefs
+	S["vore_taste"] << vore_taste
 
 	return 1

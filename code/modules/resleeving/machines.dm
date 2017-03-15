@@ -135,7 +135,7 @@
 			use_power(7500) //This might need tweaking.
 			return
 
-		else if((occupant.health >= heal_level) && (!eject_wait))
+		else if(((occupant.health >= heal_level) || (occupant.health == occupant.maxHealth)) && (!eject_wait))
 			playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
 			audible_message("\The [src] signals that the growing process is complete.")
 			connected_message("Growing Process Complete.")
@@ -165,8 +165,11 @@
 	var/connected      //What console it's done up with
 	var/busy = 0       //Busy cloning
 	var/body_cost = 15000  //Cost of a cloned body (metal and glass ea.)
+	var/max_res_amount = 30000 //Max the thing can hold
 	var/datum/transhuman/body_record/current_project
 	var/broken = 0
+	var/burn_value = 45
+	var/brute_value = 60
 
 /obj/machinery/transhuman/synthprinter/New()
 	..()
@@ -178,6 +181,26 @@
 	component_parts += new /obj/item/stack/cable_coil(src, 2)
 	RefreshParts()
 	update_icon()
+
+/obj/machinery/transhuman/synthprinter/RefreshParts()
+
+	//Scanning modules reduce burn rating by 15 each
+	var/burn_rating = initial(burn_value)
+	for(var/obj/item/weapon/stock_parts/scanning_module/SM in component_parts)
+		burn_rating = burn_rating - (SM.rating*15)
+	burn_value = burn_rating
+
+	//Manipulators reduce brute by 10 each
+	var/brute_rating = initial(burn_value)
+	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
+		brute_rating = brute_rating - (M.rating*10)
+	brute_value = brute_rating
+
+	//Matter bins multiply the storage amount by their rating.
+	var/store_rating = initial(max_res_amount)
+	for(var/obj/item/weapon/stock_parts/matter_bin/MB in component_parts)
+		store_rating = store_rating * MB.rating
+	max_res_amount = store_rating
 
 /obj/machinery/transhuman/synthprinter/process()
 	if(stat & NOPOWER)
@@ -265,8 +288,8 @@
 	H.original_player = current_project.ckey
 
 	//Apply damage
-	H.adjustBruteLoss(20)
-	H.adjustFireLoss(20)
+	H.adjustBruteLoss(brute_value)
+	H.adjustFireLoss(burn_value)
 	H.updatehealth()
 
 	//Update appearance, remake icons
@@ -329,7 +352,6 @@
 		return
 
 	var/amnt = S.perunit
-	var/max_res_amount = 30000
 	if(stored_material[S.material.name] + amnt <= max_res_amount)
 		if(S && S.amount >= 1)
 			var/count = 0
