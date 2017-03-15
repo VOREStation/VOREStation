@@ -1,0 +1,13 @@
+<!--
+Title: Atmos Control Console (Map Content)
+Used In File(s): \code\modules\nano\modules\atmos_control.dm
+ -->
+{{for data.alarms}}
+	{{if value.z == config.mapZLevel}}
+    	<div class="mapIcon mapIcon16 linkActive {{:value.danger == 2 ? 'dead' : (value.danger == 1 ? 'deadish' : null)}}" style="left: {{:(value.x + 0.2)}}px; bottom: {{:(value.y - 14.75)}}px;" unselectable="on" data-href="{{: NanoUtility.generateHref({'alarm' : value.ref}) }}">
+	        <div class="tooltip hidden">
+	        	<span>{{:value.name}}</span>
+			</div>
+		</div>
+    {{/if}}
+{{/for}}
