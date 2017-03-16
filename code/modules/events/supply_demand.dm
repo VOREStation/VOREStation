@@ -30,28 +30,34 @@
 			if(ROLE_ENGINEERING)
 				choose_atmos_items(severity + 1)
 			if(ROLE_MEDICAL)
-				choose_chemistry_items(roll(severity, 3))
+				choose_chemistry_items(roll(severity, 2))
 			if(ROLE_RESEARCH) // Would be nice to differentiate between research diciplines
-				choose_research_items(roll(1, 3))
-				choose_robotics_items(roll(1, 3))
+				choose_research_items(roll(severity, 2))
+				choose_robotics_items(roll(1, severity))
 			if(ROLE_CARGO)
 				choose_alloy_items(rand(1, severity))
 			if(ROLE_CIVILIAN) // Would be nice to separate out chef/gardener/bartender
 				choose_food_items(roll(severity, 2))
-				choose_bar_items(roll(severity, 3))
+				choose_bar_items(roll(severity, 2))
 	if(required_items.len == 0)
 		choose_bar_items(rand(5, 10)) // Really? Well add drinks. If a crew can't even get the bar open they suck.
 
 /datum/event/supply_demand/announce()
-	var/message = "[using_map.company_short] is comparing accounts and the bean counters found our division is "
-	message += "a few items short.  We have to fill that gap quick before anyone starts asking questions. "
+	var/message = "[using_map.company_short] is comparing accounts and the bean counters found our division "
+	if(severity <= EVENT_LEVEL_MUNDANE)
+		message += "is a few items short. "
+	else if(severity == EVENT_LEVEL_MODERATE)
+		message += "is well... missing some inventory. "
+	else
+		message += "has a warehouse full of empty crates! "
+	message += "We have to fill that gap quick before anyone starts asking questions. "
 	message += "You'd better have this here stuff by [worldtime2stationtime(end_time)]<br>"
 	message += "The requested items are as follows"
 	message += "<hr>"
 	for (var/datum/supply_demand_order/req in required_items)
 		message += req.describe() + "<br>"
 	message += "<hr>"
-	message += "Deliver these items to [command_name()] via the supply shuttle.  Make sure to package them into crates!<br>"
+	message += "Deliver these items to [command_name()] via the supply shuttle.  Please put the ones you can into crates!<br>"
 
 	for(var/dpt in req_console_supplies)
 		send_console_message(message, dpt);
@@ -114,7 +120,7 @@
 		for (var/datum/supply_demand_order/req in required_items)
 			message += req.describe() + "<br>"
 		message += "<hr>"
-		message += "Deliver these items to [command_name()] via the supply shuttle.  Make sure to package them into crates!<br>"
+		message += "Deliver these items to [command_name()] via the supply shuttle.  Please put the ones you can into crates!<br>"
 		send_console_message(message, "Cargo Bay")
 
 /**
