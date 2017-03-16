@@ -82,6 +82,17 @@
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "joanasuna"
 
+//eekasqueak:Serkii Miishy
+/obj/item/clothing/under/skirt/fluff/serkii
+	name = "stylish blue skirt"
+	desc = "A simple black shirt tops this skirt, made of a down soft blue fabric and pleated."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "serkiskirt"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "serkiskirt"
+
 //Unknown. Please check records from the forums.
 /obj/item/clothing/under/suit_jacket/female/fluff/miqote
 	name = "Miqo'te Seperates"

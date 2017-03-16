@@ -122,6 +122,44 @@
 	icon_override = null
 	icon_state = "purple"
 
+/obj/item/clothing/glasses/omnihud/eng/meson
+	name = "Meson scanner HUD"
+	desc = "A headset equipped with a scanning lens and mounted retinal projector. They don't provide any eye protection, but they're less obtrusive than goggles."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "projector"
+	off_state = "projector-off"
+	body_parts_covered = 0
+	flash_prot = 0 //No welding protection for these.
+	toggleable = 1
+	vision_flags = SEE_TURFS //but they can spot breaches. Due to the way HUDs work, they don't provide darkvision up-close the way mesons do.
+
+/obj/item/clothing/glasses/omnihud/eng/meson/attack_self(mob/user)
+	if(!active)
+		toggleprojector()
+	..()
+
+/obj/item/clothing/glasses/omnihud/eng/meson/verb/toggleprojector()
+	set name = "Toggle projector"
+	set category = "Object"
+	set src in usr
+	if(!istype(usr, /mob/living)) return
+	if(usr.stat) return
+	if(toggleable)
+		if(active)
+			active = 0
+			icon_state = off_state
+			item_state = "[initial(item_state)]-off"
+			usr.update_inv_glasses()
+			usr << "You deactivate the retinal projector on the [src]."
+		else
+			active = 1
+			icon_state = initial(icon_state)
+			item_state = initial(item_state)
+			usr.update_inv_glasses()
+			usr << "You activate the retinal projector on the [src]."
+		usr.update_action_buttons()
+
 /obj/item/clothing/glasses/omnihud/all
 	name = "AR-B glasses"
 	desc = "The KHI-62-B AR glasses are a design from Kitsuhana Heavy Industries. \
