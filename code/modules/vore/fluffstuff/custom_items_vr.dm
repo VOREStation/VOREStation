@@ -194,6 +194,20 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	to_helmet = /obj/item/clothing/head/helmet/space/void/engineering/hazmat/fluff/screehelm
 	to_suit = /obj/item/clothing/suit/space/void/engineering/hazmat/fluff/screespess
 
+/obj/item/clothing/glasses/omnihud/eng/meson/fluff/scree
+	name = "OCR headset"
+	desc = "A meson-scanning headset with retinal projector and ultrasonic earpiece. This one is set up to read text to the wearer."
+	description_info = "The device appears to be configured as an aid to reading, with an OCR system that highlights text for the wearer and \
+	reads it out through the earpiece, while rendering the meson scan data as high-frequency sound. It's like a HUD for bats."
+
+	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+		if(..())
+			if(H.ckey != "scree")
+				H << "<span class='warning'>This thing isn't set up for your visual spectrum OR your audio range.</span>"
+				return 0
+			else
+				return 1
+
 //General Use
 /obj/item/weapon/flag
 	name = "Nanotrasen Banner"
