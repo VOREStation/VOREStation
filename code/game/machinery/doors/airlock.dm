@@ -37,7 +37,16 @@
 /obj/machinery/door/airlock/attack_generic(var/mob/user, var/damage)
 	if(stat & (BROKEN|NOPOWER))
 		if(damage >= 10)
-			if(src.density)
+			if(src.locked || src.welded)
+				visible_message("<span class='danger'>\The [user] begins breaking into \the [src] internals!</span>")
+				if(do_after(user,10 SECONDS,src))
+					src.locked = 0
+					src.welded = 0
+					update_icon()
+					open(1)
+					if(prob(25))
+						src.shock(user, 100)
+			else if(src.density)
 				visible_message("<span class='danger'>\The [user] forces \the [src] open!</span>")
 				open(1)
 			else
