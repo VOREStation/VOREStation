@@ -5,26 +5,27 @@
 	icon_state = "shark"
 	icon_living = "shark"
 	icon_dead = "shark_dead"
-	meat_amount = 10
-	turns_per_move = 2
-	move_to_delay = 2
-	speed = 0
-	mob_size = MOB_LARGE
 
-	pixel_x = -16
-
-	health = 150
 	maxHealth = 150
+	health = 150
+	speed = 0
+	move_to_delay = 2
+
+	turns_per_move = 2
+	mob_size = MOB_LARGE
 
 	harm_intent_damage = 5
 	melee_damage_lower = 20
 	melee_damage_upper = 25
 
-	break_stuff_probability = 35
+	meat_amount = 10
+
+	old_x = -16
+	pixel_x = -16
 
 /mob/living/simple_animal/hostile/carp/pike/weak
-	health = 75
 	maxHealth = 75
+	health = 75
 
 /mob/living/simple_animal/hostile/carp/strong
 	maxHealth = 50
