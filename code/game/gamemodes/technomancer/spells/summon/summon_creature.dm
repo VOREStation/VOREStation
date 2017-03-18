@@ -31,8 +31,8 @@
 		"SPIDER"		=	/mob/living/simple_animal/hostile/giant_spider,
 		"SPIDER HUNTER"	=	/mob/living/simple_animal/hostile/giant_spider/hunter,
 		"SPIDER NURSE"	=	/mob/living/simple_animal/hostile/giant_spider/nurse,
-		"CARP"			=	/mob/living/simple_animal/hostile/vore/carp,
-		"BEAR"			=	/mob/living/simple_animal/hostile/vore/bear
+		"CARP"			=	/mob/living/simple_animal/hostile/carp,
+		"BEAR"			=	/mob/living/simple_animal/hostile/bear
 		) // Vorestation edits to add vore versions.
 	cooldown = 30
 	instability_cost = 10
