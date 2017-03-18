@@ -45,7 +45,7 @@
 	)
 
 	station_name  = "NSS Adephagia"
-	station_short = "VORE"
+	station_short = "Virgo"
 	dock_name     = "Virgo-Erigone Central Command"
 	boss_name     = "Central Command"
 	boss_short    = "CentCom"

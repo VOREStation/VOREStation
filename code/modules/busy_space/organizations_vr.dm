@@ -1,72 +1,9 @@
-//Datums for different companies that can be used by busy_space
-/datum/lore/org
-	var/name = ""				//Organization's name
-	var/sname = ""				//Org's shortname (NanoTrasen for "NanoTrasen Incorporated")
-	var/desc = ""				//Long description of org, but only current stuff, see 'history'
-	var/history = ""			//Historical discription of org's origins
-	var/work = ""				//Short description of their work, eg "an arms manufacturer"
-	var/headquarters = ""		//Location of Org's HQ
-	var/motto = ""				//A motto, if they have one
-
-	var/org_flags = 0			//Flags for the org
-
-	var/list/ship_prefixes = list()//Some might have more than one! Like NanoTrasen. Value is the mission they perform.
-	var/list/ship_names = list()//Names of spaceships
-	var/list/holding_names = list()//Names of static holdings (planets, bases)
-
+//Datums for different companies that can be used by busy_space, VR edition
 //////////////////////////////////////////////////////////////////////////////////
 
-/datum/lore/org/nanotrasen
-	name = "NanoTrasen Incorporated"
-	sname = "NanoTrasen"
-	desc = "A megacorporation specializing in genetic and phoron research. The founder, Xavier Trasen, set the company \
-			up to be a powerhouse of buying up smaller companies, and turning a profit on the backs of it's workers. \
-			It's not known to be the most controversy-free company, nor the best to work for, though millions are employed \
-			nonetheless by NanoTrasen."
-	history = "Originally founded on Mars in 23rd Century by a man named Xavier Trasen, NanoTrasen started \
-				out as a small company, whose research was mostly based around gene-therapy. After a controversy over \
-				cloning, and buying many smaller companies, Xavier Trasen aggressively pursued phoron research \
-				as soon as it was discovered, bringing NanoTrasen to the forefront of the field."
-	work = "mega-conglomerate"
-	headquarters = "Mars"
-	motto = ""
-
-	org_flags = ORG_HAS_NAVY|ORG_HAS_TECH|ORG_HAS_HUGENESS
-
-	//Generic ship names!
-	ship_prefixes = list("NSV" = "exploration", "NTV" = "hauling", "NDV" = "patrol", "NRV" = "emergency response")
-	ship_names = list("Profit",
-					"Discovery",
-					"Endeavour",
-					"Desire",
-					"Gains",
-					"Torch II",
-					"Columbia",
-					"Leyte Gulf",
-					"Exeter",
-					"Zhukov",
-					"Xavier",
-					"Liteon",
-					"Fanatic",
-					"Slow Boat",
-					"Listing",
-					"Even Faster",
-					"Likely Story",
-					"Looking Glass",
-					"Witchcraft")
-	holding_names = list("NSS Phi Gamma",
-						"NSB Adelphia",
-						"NSS Vertigo",
-						"NSB Checkmate",
-						"NSS Lampour",
-						"NSB Adelade",
-						"NSS Indiana",
-						"NSB Memory Alpha",
-						"NSS Memory Beta")
-
-/datum/lore/org/federation
+/datum/lore/organization/federation
 	name = "United Federation of Planets"
-	sname = "Federation"
+	short_name = "Federation"
 	desc = "The United Federation is a federation of planets that have agreed to exist semi-autonomously \
 			under a single central hybrid government, sharing the ideals of liberty, equality, and rights \
 			for all. It is one of the larger known interstellar powers in known space and is seen as being \
@@ -83,8 +20,6 @@
 	work = "governing body"
 	headquarters = ""
 	motto = ""
-
-	org_flags = ORG_HAS_NAVY|ORG_HAS_TRADERS|ORG_HAS_TECH|ORG_HAS_DIPLO
 
 	//Star Trek ship names!
 	ship_prefixes = list("SCV" = "military", "STV" = "trading", "SDV" = "diplomatic")
@@ -111,7 +46,7 @@
 						"Tenryu",
 						"Spirit of Koni",
 						"Lady of Onoilph")
-	holding_names = list("Ruins of Chani City on Quarri III",
+	destination_names = list("Ruins of Chani City on Quarri III",
 						"Ruins of Kreely City on Ocan II",
 						"Ruins of Mishi City on Lucida IV",
 						"Ruins of Posloo City on Pi Cephei Prime",
@@ -134,64 +69,15 @@
 						"Mari Industrial Complex on Furlou Prime",
 						"Runni Crystal Mines of Keid V")
 
-/datum/lore/org/solgov
-	name = "Solar Confederate Government"
-	sname = "SolGov"
-	desc = "SolGov is the entity in which many human states are members. Though SolGov has a dedicated miltiary force in the UNSC, \
-			it also claims the use of the forces of the member states when it needs to affect a \
-			military goal. Many if not most human states are members of SolGov, including all entities in Sol."
-	history = "Originally a military/economic pact between Earth and Mars in the early days of human colonization, \
-				the SolGov body of member states has grown over the years to be quite large, and hold a sizable \
-				amount of power compared to similar bodies."
-	work = "government of Sol"
-	headquarters = "Luna"
-	motto = ""
-
-	org_flags = ORG_HAS_TRADERS|ORG_HAS_DIPLO
-
-	//Random ship names!
-	ship_prefixes = list("SOL" = "SolGov") //Don't ask questions!
-	ship_names = list("Torch",
-					"Phoenix",
-					"Majesty",
-					"Duke",
-					"King",
-					"Mandrake",
-					"Foxglove",
-					"Prompt",
-					"Regal",
-					"Lordship",
-					"Highness",
-					"Rapido",
-					"Paperwork",
-					"Arthur",
-					"Durandal",
-					"Roland")
-	holding_names = list("San Francisco on Earth",
-						"SolGov Fleet Academy on Earth",
-						"Gateway One above Luna",
-						"SolGov Command on Luna",
-						"Olympus City on Mars",
-						"Hermes Naval Shipyard above Mars",
-						"a settlement on Titan",
-						"a settlement on Europa",
-						"Aleph Grande on Ganymede",
-						"a new colony in Proxima II",
-						"a new settlement on Ceti IV-B",
-						"a colony ship around Ceti IV-B",
-						"a classified location in SolGov territory")
-
-/datum/lore/org/unsc
+/datum/lore/organization/unsc
 	name = "United Nations Space Command"
-	sname = "Navy" //Otherwise they call the ships UNSC UNSC Name
+	short_name = "Navy" //Otherwise they call the ships UNSC UNSC Name
 	desc = "The dedicated military force of SolGov, formed from the remnants of the United Nations, is the might of SolGov. \
 			While it is greater in military strength than most alien polities, it is not by much."
 	history = ""
 	work = ""
 	headquarters = "Earth"
 	motto = ""
-
-	org_flags = ORG_HAS_NAVY|ORG_HAS_TECH
 
 	//Halo ship names!
 	ship_prefixes = list("UNSC" = "military")
@@ -213,7 +99,7 @@
 						"Ain't No Sunshine",
 						"Dust of Snow",
 						"Finite Hearts")
-	holding_names = list("San Francisco on Earth",
+	destination_names = list("San Francisco on Earth",
 						"SolGov Fleet Academy on Earth",
 						"Gateway One above Luna",
 						"SolGov Command on Luna",
@@ -227,9 +113,9 @@
 						"a colony ship around Ceti IV-B",
 						"a classified location in SolGov territory")
 
-/datum/lore/org/kitsuhana
+/datum/lore/organization/kitsuhana
 	name = "Kitsuhana Heavy Industries"
-	sname = "Kitsuhana"
+	short_name = "Kitsuhana"
 	desc = "A large post-scarcity amalgamation of races, Kitsuhana is no longer a company but rather a loose association of 'members' \
 			who only share the KHI name and their ideals in common. Kitsuhana accepts interviews to join their ranks, and though they have no \
 			formal structure with regards to government or law, the concept of 'consent' drives most of the large decision making. Kitsuhanans \
@@ -244,8 +130,6 @@
 	work = "utopian anarchy"
 	headquarters = "Kitsuhana Prime"
 	motto = "Do what you want. We know we will."
-
-	org_flags = ORG_HAS_TRADERS|ORG_HAS_TECH|ORG_HAS_MERCS|ORG_HAS_ENTERTAIN
 
 	//Culture ship names!
 	ship_prefixes = list("KHI" = "personal") //Everybody's out for themselves, yanno.
@@ -273,7 +157,7 @@
 						"Zero Gravitas",
 						"Gravitas Free Zone",
 						"Absolutely No You-Know-What")
-	holding_names = list("Kitsuhana Prime",
+	destination_names = list("Kitsuhana Prime",
 						"Kitsuhana Beta",
 						"Kitsuhana Gamma",
 						"the Kitsuhana Forge",
@@ -283,9 +167,9 @@
 						"a Kitsuhana ringworld in Dais IX",
 						"a Kitsuhana ringworld in Leibert II-b")
 
-/datum/lore/org/ares
+/datum/lore/organization/ares
     name = "Ares Confederation"
-    sname = "ArCon"
+    short_name = "ArCon"
     desc = "A rebel faction on the fringes of human space that renounced the government of both SolGov and their corporate overlords. \
 			The Confederation has two fleets, a regular United Fleet Host, comprised of professional crewmen and officers and the Free Host of the Confederation, \
 			which are privateers, volunteers and former pirates. The Ares Confederation only holds a \
@@ -296,8 +180,6 @@
     work = "rebel fringe government"
     headquarters = "Paraiso a Àstrea"
     motto = "Liberty to the Stars!"
-
-    org_flags = ORG_HAS_NAVY|ORG_HAS_SHADY
 
     ship_prefixes = list("UFHV" = "military", "FFHV" = "shady")
     ship_names = list("Liberty",
@@ -329,7 +211,7 @@
 					"She Is One Of Ours Sir",
 					"Fuck The Captain",
 					"None Of Your Business")
-    holding_names = list("Drydocks of the Ares Confederation",
+    destination_names = list("Drydocks of the Ares Confederation",
 						"a classified location",
 						"a Homestead on Paraiso a Àstrea",
 						"a contested sector of ArCon space",
@@ -342,19 +224,3 @@
 						"a settlement needing our help",
 						"Forward Base Sigma-Alpha in ArCon space")
 
-/*
-/datum/lore/org
-	name = ""
-	sname = ""
-	desc = ""
-	history = ""
-	work = ""
-	headquarters = ""
-	motto = ""
-
-	org_flags = 0
-
-	ship_prefixes = list()
-	ship_names = list()
-	holding_names = list()
-*/

@@ -254,7 +254,7 @@
 	..()
 	// Best case scenario: Comparable to a low-yield EMP grenade.
 	// Worst case scenario: Comparable to a standard yield EMP grenade.
-	empulse(src, rand(2, 4), rand(4, 10))
+	empulse(src, rand(1, 3), rand(2, 4), rand(3, 7), rand(5, 10))
 
 //Station buster Tunguska
 /obj/effect/meteor/tunguska
