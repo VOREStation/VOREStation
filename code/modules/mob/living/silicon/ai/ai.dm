@@ -594,7 +594,7 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo1"))
 				if("floating face")
 					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo2"))
-				if("floating face")
+				if("singularity")
 					holo_icon = getHologramIcon(icon('icons/obj/singularity.dmi',"singularity_s1"))
 				if("drone")
 					holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"drone0"))
