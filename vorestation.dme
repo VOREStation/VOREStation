@@ -2412,6 +2412,5 @@
 #include "maps\RandomZLevels\snowfield.dm"
 #include "maps\RandomZLevels\zoo.dm"
 #include "maps\virgo\virgo.dm"
-#include "maps\virgo\virgo_defines.dm"
 #include "maps\~map_system\maps.dm"
 // END_INCLUDE
