@@ -46,7 +46,7 @@
 						"Tenryu",
 						"Spirit of Koni",
 						"Lady of Onoilph")
-	holding_names = list("Ruins of Chani City on Quarri III",
+	destination_names = list("Ruins of Chani City on Quarri III",
 						"Ruins of Kreely City on Ocan II",
 						"Ruins of Mishi City on Lucida IV",
 						"Ruins of Posloo City on Pi Cephei Prime",
@@ -99,7 +99,7 @@
 						"Ain't No Sunshine",
 						"Dust of Snow",
 						"Finite Hearts")
-	holding_names = list("San Francisco on Earth",
+	destination_names = list("San Francisco on Earth",
 						"SolGov Fleet Academy on Earth",
 						"Gateway One above Luna",
 						"SolGov Command on Luna",
@@ -157,7 +157,7 @@
 						"Zero Gravitas",
 						"Gravitas Free Zone",
 						"Absolutely No You-Know-What")
-	holding_names = list("Kitsuhana Prime",
+	destination_names = list("Kitsuhana Prime",
 						"Kitsuhana Beta",
 						"Kitsuhana Gamma",
 						"the Kitsuhana Forge",
@@ -211,7 +211,7 @@
 					"She Is One Of Ours Sir",
 					"Fuck The Captain",
 					"None Of Your Business")
-    holding_names = list("Drydocks of the Ares Confederation",
+    destination_names = list("Drydocks of the Ares Confederation",
 						"a classified location",
 						"a Homestead on Paraiso a Àstrea",
 						"a contested sector of ArCon space",
