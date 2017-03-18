@@ -3,12 +3,11 @@
 var/datum/lore/loremaster/loremaster = new/datum/lore/loremaster
 
 /datum/lore/loremaster
-	var/list/orgs = list()
+	var/list/organizations = list()
 
 /datum/lore/loremaster/New()
-	var/paths //Just reuse this a bunch of times.
 
-	paths = typesof(/datum/lore/org) - /datum/lore/org
+	var/list/paths = typesof(/datum/lore/organization) - /datum/lore/organization
 	for(var/path in paths)
-		var/datum/lore/org/instance = new path()
-		orgs[path] = instance
+		var/datum/lore/organization/instance = new path()
+		organizations[path] = instance

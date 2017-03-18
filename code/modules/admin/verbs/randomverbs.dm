@@ -637,14 +637,18 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	var/heavy = input("Range of heavy pulse.", text("Input"))  as num|null
 	if(heavy == null) return
+	var/med = input("Range of medium pulse.", text("Input"))  as num|null
+	if(med == null) return
 	var/light = input("Range of light pulse.", text("Input"))  as num|null
 	if(light == null) return
+	var/long = input("Range of long pulse.", text("Input"))  as num|null
+	if(long == null) return
 
-	if (heavy || light)
+	if (heavy || med || light || long)
 
-		empulse(O, heavy, light)
-		log_admin("[key_name(usr)] created an EM Pulse ([heavy],[light]) at ([O.x],[O.y],[O.z])")
-		message_admins("[key_name_admin(usr)] created an EM PUlse ([heavy],[light]) at ([O.x],[O.y],[O.z])", 1)
+		empulse(O, heavy, med, light, long)
+		log_admin("[key_name(usr)] created an EM Pulse ([heavy],[med],[light],[long]) at ([O.x],[O.y],[O.z])")
+		message_admins("[key_name_admin(usr)] created an EM PUlse ([heavy],[med],[light],[long]) at ([O.x],[O.y],[O.z])", 1)
 		feedback_add_details("admin_verb","EMP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 		return

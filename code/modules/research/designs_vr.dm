@@ -69,13 +69,13 @@
 	build_path = /obj/item/device/perfect_tele
 	sort_string = "HABAF"
 
-/datum/design/item/translator
-	name = "handheld translator"
-	id = "translator"
+/datum/design/item/translator/ear
+	name = "handheld translator (ear)"
+	id = "translator_ear"
 	req_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
 	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 2000)
-	build_path = /obj/item/device/universal_trans
-	sort_string = "HABBA"
+	build_path = /obj/item/device/universal_translator/ear
+	sort_string = "HABBB"
 
 // Resleeving Circuitboards
 
