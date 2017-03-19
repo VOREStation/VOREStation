@@ -341,7 +341,7 @@
 	if ((stat != 2 || !( ticker )))
 		usr << "<span class='notice'><B>You must be dead to use this!</B></span>"
 		return
-	if (ticker.mode.deny_respawn) //BS12 EDIT
+	if (ticker.mode && ticker.mode.deny_respawn) //BS12 EDIT
 		usr << "<span class='notice'>Respawn is disabled for this roundtype.</span>"
 		return
 	else
