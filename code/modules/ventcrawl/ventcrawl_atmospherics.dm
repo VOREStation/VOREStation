@@ -59,7 +59,7 @@
 	if(welded)
 		return 0
 
-	..()
+	. = ..()
 
 /obj/machinery/atmospherics/proc/findConnecting(var/direction)
 	for(var/obj/machinery/atmospherics/target in get_step(src,direction))
