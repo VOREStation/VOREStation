@@ -336,7 +336,26 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	icon_state = "omniglasses"
+	icon_state = "arohud"
+
+/obj/item/clothing/glasses/omnihud/med/fluff/aronai/verb/toggle_on()
+	set name = "Toggle AR-K HUD"
+	set category = "Object"
+	set desc = "Toggle on/off the AR-K HUD projection."
+	set src in usr
+
+	if(!ishuman(usr)) return
+
+	var/mob/living/carbon/human/H = usr
+
+	if(icon_state == initial(icon_state))
+		icon_state = "[initial(icon_state)]_on"
+		H << "<span class='notice'>You ENABLE the AR-K HUD.</span>"
+	else
+		icon_state = initial(icon_state)
+		H << "<span class='notice'>You DISABLE the AR-K HUD.</span>"
+
+	H.update_inv_glasses()
 
 //arokha:Aronai Kadigan - Fluff hypospray
 /obj/item/weapon/reagent_containers/hypospray/vr/fluff/aronai
