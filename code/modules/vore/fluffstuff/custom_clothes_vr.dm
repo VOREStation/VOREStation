@@ -1003,6 +1003,14 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	allowed = list (/obj/item/weapon/material/knife)
 
+//KiwiDaNinja: Chakat Taiga
+/obj/item/clothing/under/fluff/taiga
+	name = "Taiga's F.D Uniform"
+	desc = "This uniform - consisting of only the uniform shirt, and built out of a soft fleece - dons the badge of Amistad Fire and Rescuse on both shoulders. The badges denote the wearer as a FF/Paramedic, and their name is embroidered in a gold thread on their right breast; Chakat Taiga! An 'official' badge is pinned to their left breast." //A walking advertisement?
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "taigaff_on"
+	icon_state = "taigaff" //Went ahead and made the det_corporate sprite fit.
 /*
 Departamental Swimsuits, for general use
 */
