@@ -1,7 +1,6 @@
-// The improved, hackable jukebox for vorestation!
-
-/obj/machinery/media/jukebox/vore
-	circuit = /obj/item/weapon/circuitboard/jukebox/vore
+// Add more nice songs for VOREStation jukeboxes
+/obj/machinery/media/jukebox/New()
+	..()
 	secret_tracks = list(
 		new/datum/track("Bandit Radio", 'sound/music/jukebox/bandit_radio.ogg'),
 		new/datum/track("Ghost Fight (Toby Fox)", 'sound/music/jukebox/TobyFoxGhostFight.mid'),
