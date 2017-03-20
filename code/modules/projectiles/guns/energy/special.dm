@@ -12,14 +12,18 @@
 	projectile_type = /obj/item/projectile/ion
 
 /obj/item/weapon/gun/energy/ionrifle/emp_act(severity)
-	..(max(severity, 2)) //so it doesn't EMP itself, I guess
+	..(max(severity, 4)) //so it doesn't EMP itself, I guess
 
-/obj/item/weapon/gun/energy/ionrifle/update_icon()
-	..()
-	if(power_supply.charge < charge_cost)
-		item_state = "ionrifle0"
-	else
-		item_state = initial(item_state)
+/obj/item/weapon/gun/energy/ionrifle/pistol
+	name = "ion pistol"
+	desc = "The NT Mk63 EW Pan is a man portable anti-armor weapon designed to disable mechanical threats, produced by NT. This model sacrifices capacity for portability.."
+	icon_state = "ionpistol"
+	item_state = null
+	w_class = ITEMSIZE_NORMAL
+	force = 5
+	slot_flags = SLOT_BELT
+	charge_cost = 480
+	projectile_type = /obj/item/projectile/ion
 
 /obj/item/weapon/gun/energy/decloner
 	name = "biological demolecularisor"

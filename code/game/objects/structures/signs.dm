@@ -122,6 +122,108 @@
 	desc = "A warning sign which reads 'NO SMOKING'."
 	icon_state = "nosmoking2"
 
+/obj/structure/sign/warning
+	name = "\improper WARNING"
+	icon_state = "securearea"
+
+/obj/structure/sign/warning/New()
+	..()
+	desc = "A warning sign which reads '[name]'."
+
+/obj/structure/sign/warning/airlock
+	name = "\improper EXTERNAL AIRLOCK"
+	icon_state = "doors"
+
+/obj/structure/sign/warning/biohazard
+	name = "\improper BIOHAZARD"
+	icon_state = "bio"
+
+/obj/structure/sign/warning/bomb_range
+	name = "\improper BOMB RANGE"
+	icon_state = "blast"
+
+/obj/structure/sign/warning/caution
+	name = "\improper CAUTION"
+
+/obj/structure/sign/warning/compressed_gas
+	name = "\improper COMPRESSED GAS"
+	icon_state = "hikpa"
+
+/obj/structure/sign/warning/deathsposal
+	name = "\improper DISPOSAL LEADS TO SPACE"
+	icon_state = "deathsposal"
+
+/obj/structure/sign/warning/docking_area
+	name = "\improper KEEP CLEAR: DOCKING AREA"
+
+/obj/structure/sign/warning/engineering_access
+	name = "\improper ENGINEERING ACCESS"
+
+/obj/structure/sign/warning/fire
+	name = "\improper DANGER: FIRE"
+	icon_state = "fire"
+
+/obj/structure/sign/warning/high_voltage
+	name = "\improper HIGH VOLTAGE"
+	icon_state = "shock"
+
+/obj/structure/sign/warning/hot_exhaust
+	name = "\improper HOT EXHAUST"
+	icon_state = "fire"
+
+/obj/structure/sign/warning/internals_required
+	name = "\improper INTERNALS REQUIRED"
+
+/obj/structure/sign/warning/lethal_turrets
+	name = "\improper LETHAL TURRETS"
+	icon_state = "turrets"
+
+/obj/structure/sign/warning/lethal_turrets/New()
+	..()
+	desc += " Enter at own risk!."
+
+/obj/structure/sign/warning/mail_delivery
+	name = "\improper MAIL DELIVERY"
+
+/obj/structure/sign/warning/moving_parts
+	name = "\improper MOVING PARTS"
+
+/obj/structure/sign/warning/nosmoking_1
+	name = "\improper NO SMOKING"
+	icon_state = "nosmoking"
+
+/obj/structure/sign/warning/nosmoking_2
+	name = "\improper NO SMOKING"
+	icon_state = "nosmoking2"
+
+/obj/structure/sign/warning/pods
+	name = "\improper ESCAPE PODS"
+	icon_state = "pods"
+
+/obj/structure/sign/warning/radioactive
+	name = "\improper RADIOACTIVE AREA"
+	icon_state = "radiation"
+
+/obj/structure/sign/warning/secure_area
+	name = "\improper SECURE AREA"
+
+/obj/structure/sign/warning/secure_area/armory
+	name = "\improper ARMORY"
+
+/obj/structure/sign/warning/server_room
+	name = "\improper SERVER ROOM"
+
+/obj/structure/sign/warning/siphon_valve
+	name = "\improper SIPHON VALVE"
+
+/obj/structure/sign/warning/vacuum
+	name = "\improper HARD VACUUM AHEAD"
+	icon_state = "space"
+
+/obj/structure/sign/warning/vent_port
+	name = "\improper EJECTION/VENTING PORT"
+
+
 /obj/structure/sign/redcross
 	name = "medbay"
 	desc = "The Intergalactic symbol of Medical institutions. You'll probably get help here."

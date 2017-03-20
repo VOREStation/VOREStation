@@ -586,6 +586,12 @@ var/list/name_to_material
 	hardness = 500
 	weight = 500
 
+// Likewise.
+/material/alienalloy/elevatorium
+	name = "elevatorium"
+	display_name = "elevator panelling"
+	icon_colour = "#666666"
+
 /material/wood
 	name = "wood"
 	stack_type = /obj/item/stack/material/wood
@@ -627,6 +633,22 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 1)
 	door_icon_base = "wood"
 	destruction_desc = "crumples"
+
+/material/snow
+	name = "snow"
+	stack_type = /obj/item/stack/material/snow
+	flags = MATERIAL_BRITTLE
+	icon_base = "solid"
+	icon_reinf = "reinf_over"
+	icon_colour = "#FFFFFF"
+	integrity = 1
+	hardness = 1
+	weight = 1
+	stack_origin_tech = list(TECH_MATERIAL = 1)
+	melting_point = T0C+1
+	destruction_desc = "crumples"
+	sheet_singular_name = "pile"
+	sheet_plural_name = "piles"
 
 /material/cloth //todo
 	name = "cloth"

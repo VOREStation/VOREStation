@@ -51,6 +51,18 @@
 	name = "Tank top, fire, feminine"
 	icon_state = "tank_fire_fem_s"
 
+/datum/category_item/underwear/undershirt/tank_top_rainbow
+	name = "Tank top, rainbow"
+	icon_state = "tank_rainbow_s"
+
+/datum/category_item/underwear/undershirt/tank_top_stripes
+	name = "Tank top, striped"
+	icon_state = "tank_stripes_s"
+
+/datum/category_item/underwear/undershirt/tank_top_sun
+	name = "Tank top, sun"
+	icon_state = "tank_sun_s"
+
 /datum/category_item/underwear/undershirt/shirt_heart
 	name = "Shirt, heart"
 	icon_state = "lover_s"
@@ -126,3 +138,16 @@
 /datum/category_item/underwear/undershirt/bowlingw
 	name = "Bowling Shirt, White"
 	icon_state = "bowlingw"
+
+/datum/category_item/underwear/undershirt/longjon
+	name = "Long John Shirt"
+	icon_state = "ljont"
+	has_color = TRUE
+
+/datum/category_item/underwear/undershirt/longstripe_black
+	name = "Longsleeve Striped Shirt, Black"
+	icon_state = "longstripe"
+
+/datum/category_item/underwear/undershirt/longstripe_blue
+	name = "Longsleeve Striped Shirt, Blue"
+	icon_state = "longstripe_blue"

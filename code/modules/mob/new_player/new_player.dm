@@ -60,6 +60,11 @@
 			else
 				output += "<p><a href='byond://?src=\ref[src];showpoll=1'>Show Player Polls</A></p>"
 
+	if(client.check_for_new_server_news())
+		output += "<p><b><a href='byond://?src=\ref[src];shownews=1'>Show News</A> (NEW!)</b></p>"
+	else
+		output += "<p><a href='byond://?src=\ref[src];shownews=1'>Show News</A></p>"
+
 	output += "</div>"
 
 	panel = new(src, "Welcome","Welcome", 210, 280, src)
@@ -277,6 +282,29 @@
 					if(!isnull(href_list["option_[optionid]"]))	//Test if this optionid was selected
 						vote_on_poll(pollid, optionid, 1)
 
+	if(href_list["shownews"])
+		handle_server_news()
+		return
+
+/mob/new_player/proc/handle_server_news()
+	if(!client)
+		return
+	var/savefile/F = get_server_news()
+	if(F)
+		client.prefs.lastnews = md5(F["body"])
+		client.prefs.save_preferences()
+
+		var/dat = "<html><body><center>"
+		dat += "<h1>[F["title"]]</h1>"
+		dat += "<br>"
+		dat += "[F["body"]]"
+		dat += "<br>"
+		dat += "<font size='2'><i>Last written by [F["author"]], on [F["timestamp"]].</i></font>"
+		dat += "</center></body></html>"
+		var/datum/browser/popup = new(src, "Server News", "Server News", 450, 300, src)
+		popup.set_content(dat)
+		popup.open()
+
 /mob/new_player/proc/IsJobAvailable(rank)
 	var/datum/job/job = job_master.GetJob(rank)
 	if(!job)	return 0
@@ -307,7 +335,6 @@
 	var/mob/living/character = create_character()	//creates the human and transfers vars and mind
 	character = job_master.EquipRank(character, rank, 1)					//equips the human
 	UpdateFactionList(character)
-	equip_custom_items(character)
 
 	// AIs don't need a spawnpoint, they must spawn at an empty core
 	if(character.mind.assigned_role == "AI")
@@ -329,6 +356,8 @@
 
 	//Find our spawning point.
 	var/join_message = job_master.LateSpawn(character, rank)
+	// Equip our custom items only AFTER deploying to spawn points eh?
+	equip_custom_items(character)
 
 	character.lastarea = get_area(loc)
 	// Moving wheelchair if they have one

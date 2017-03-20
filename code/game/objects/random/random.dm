@@ -462,9 +462,9 @@
 				prob(4);/obj/item/weapon/tank/oxygen/yellow,
 				prob(4);/obj/item/weapon/tank/oxygen/red,
 				prob(3);/obj/item/weapon/tank/air,
-				prob(4);/obj/item/weapon/tank/emergency_oxygen,
-				prob(3);/obj/item/weapon/tank/emergency_oxygen/engi,
-				prob(2);/obj/item/weapon/tank/emergency_oxygen/double,
+				prob(4);/obj/item/weapon/tank/emergency/oxygen,
+				prob(3);/obj/item/weapon/tank/emergency/oxygen/engi,
+				prob(2);/obj/item/weapon/tank/emergency/oxygen/double,
 				prob(1);/obj/item/device/suit_cooling_unit)
 
 /obj/random/cigarettes
@@ -630,9 +630,9 @@ something, make sure it's not in one of the other lists.*/
 				prob(1);/obj/item/weapon/grenade/flashbang,
 				prob(1);/obj/item/weapon/melee/baton,
 				prob(1);/obj/item/weapon/reagent_containers/spray/pepper,
-				prob(3);/obj/item/clothing/shoes/jackboots,
-				prob(1);/obj/item/clothing/shoes/swat,
-				prob(1);/obj/item/clothing/shoes/combat,
+				prob(3);/obj/item/clothing/shoes/boots/jackboots,
+				prob(1);/obj/item/clothing/shoes/boots/swat,
+				prob(1);/obj/item/clothing/shoes/boots/combat,
 				prob(1);/obj/item/clothing/gloves/swat,
 				prob(1);/obj/item/clothing/gloves/combat,
 				prob(1);/obj/item/clothing/glasses/sunglasses/big,
@@ -684,7 +684,7 @@ something, make sure it's not in one of the other lists.*/
 				prob(3);/obj/item/weapon/storage/box/gloves,
 				prob(2);/obj/item/weapon/storage/belt/medical/emt,
 				prob(2);/obj/item/weapon/storage/belt/medical,
-				prob(1);/obj/item/clothing/shoes/combat,
+				prob(1);/obj/item/clothing/shoes/boots/combat,
 				prob(3);/obj/item/clothing/shoes/white,
 				prob(2);/obj/item/clothing/gloves/latex,
 				prob(5);/obj/item/clothing/gloves/white,
@@ -730,7 +730,7 @@ something, make sure it's not in one of the other lists.*/
 				prob(2);/obj/item/clothing/head/welding,
 				prob(4);/obj/item/clothing/suit/storage/hazardvest,
 				prob(2);/obj/item/clothing/under/overalls,
-				prob(3);/obj/item/clothing/shoes/workboots,
+				prob(3);/obj/item/clothing/shoes/boots/workboots,
 				prob(1);/obj/item/clothing/shoes/magboots,
 				prob(2);/obj/item/clothing/accessory/storage/black_vest,
 				prob(2);/obj/item/clothing/accessory/storage/brown_vest,
@@ -840,3 +840,59 @@ var/list/random_useful_
 		return pick(random_junk_)
 	// Misc. actually useful stuff
 	return get_random_useful_type()
+
+/*
+	Selects one spawn point out of a group of points with the same ID and asks it to generate its items
+*/
+var/list/multi_point_spawns
+
+/obj/random_multi
+	name = "random object spawn point"
+	desc = "This item type is used to spawn random objects at round-start. Only one spawn point for a given group id is selected."
+	icon = 'icons/misc/mark.dmi'
+	icon_state = "x3"
+	invisibility = INVISIBILITY_MAXIMUM
+	var/id     // Group id
+	var/weight // Probability weight for this spawn point
+
+/obj/random_multi/initialize()
+	..()
+	weight = max(1, round(weight))
+
+	if(!multi_point_spawns)
+		multi_point_spawns = list()
+	var/list/spawnpoints = multi_point_spawns[id]
+	if(!spawnpoints)
+		spawnpoints = list()
+		multi_point_spawns[id] = spawnpoints
+	spawnpoints[src] = weight
+
+/obj/random_multi/Destroy()
+	var/list/spawnpoints = multi_point_spawns[id]
+	spawnpoints -= src
+	if(!spawnpoints.len)
+		multi_point_spawns -= id
+	. = ..()
+
+/obj/random_multi/proc/generate_items()
+	return
+
+/obj/random_multi/single_item
+	var/item_path  // Item type to spawn
+
+/obj/random_multi/single_item/generate_items()
+	new item_path(loc)
+
+/hook/roundstart/proc/generate_multi_spawn_items()
+	for(var/id in multi_point_spawns)
+		var/list/spawn_points = multi_point_spawns[id]
+		var/obj/random_multi/rm = pickweight(spawn_points)
+		rm.generate_items()
+		for(var/entry in spawn_points)
+			qdel(entry)
+	return 1
+
+/obj/random_multi/single_item/captains_spare_id
+	name = "Multi Point - Captain's Spare"
+	id = "Captain's spare id"
+	item_path = /obj/item/weapon/card/id/captains_spare

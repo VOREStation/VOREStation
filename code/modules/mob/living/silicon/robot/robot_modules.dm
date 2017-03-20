@@ -23,7 +23,7 @@ var/global/list/robot_modules = list(
 	var/hide_on_manifest = 0
 	var/channels = list()
 	var/networks = list()
-	var/languages = list(LANGUAGE_SOL_COMMON = 1, LANGUAGE_TRADEBAND = 1, LANGUAGE_UNATHI = 0, LANGUAGE_SIIK = 0, LANGUAGE_SKRELLIAN = 0, LANGUAGE_GUTTER = 0, LANGUAGE_SCHECHI = 0)
+	var/languages = list(LANGUAGE_SOL_COMMON = 1, LANGUAGE_TRADEBAND = 1, LANGUAGE_UNATHI = 0, LANGUAGE_SIIK = 0, LANGUAGE_SKRELLIAN = 0, LANGUAGE_GUTTER = 0, LANGUAGE_SCHECHI = 0, LANGUAGE_SIGN = 0)
 	var/sprites = list()
 	var/can_be_pushed = 1
 	var/no_slip = 0
@@ -193,15 +193,15 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/borg/sight/hud/med(src)
 	src.modules += new /obj/item/device/healthanalyzer(src)
 	src.modules += new /obj/item/weapon/reagent_containers/borghypo(src)
-	src.modules += new /obj/item/weapon/scalpel(src)
-	src.modules += new /obj/item/weapon/hemostat(src)
-	src.modules += new /obj/item/weapon/retractor(src)
-	src.modules += new /obj/item/weapon/cautery(src)
-	src.modules += new /obj/item/weapon/bonegel(src)
-	src.modules += new /obj/item/weapon/FixOVein(src)
-	src.modules += new /obj/item/weapon/bonesetter(src)
-	src.modules += new /obj/item/weapon/circular_saw(src)
-	src.modules += new /obj/item/weapon/surgicaldrill(src)
+	src.modules += new /obj/item/weapon/surgical/scalpel(src)
+	src.modules += new /obj/item/weapon/surgical/hemostat(src)
+	src.modules += new /obj/item/weapon/surgical/retractor(src)
+	src.modules += new /obj/item/weapon/surgical/cautery(src)
+	src.modules += new /obj/item/weapon/surgical/bonegel(src)
+	src.modules += new /obj/item/weapon/surgical/FixOVein(src)
+	src.modules += new /obj/item/weapon/surgical/bonesetter(src)
+	src.modules += new /obj/item/weapon/surgical/circular_saw(src)
+	src.modules += new /obj/item/weapon/surgical/surgicaldrill(src)
 	src.modules += new /obj/item/weapon/gripper/no_use/organ(src)
 	src.emag = new /obj/item/weapon/reagent_containers/spray(src)
 	src.emag.reagents.add_reagent("pacid", 250)
@@ -479,10 +479,12 @@ var/global/list/robot_modules = list(
 					LANGUAGE_UNATHI		= 1,
 					LANGUAGE_SIIK		= 1,
 					LANGUAGE_SKRELLIAN	= 1,
-					LANGUAGE_ROOTSPEAK	= 1,
+					LANGUAGE_ROOTLOCAL	= 0,
 					LANGUAGE_TRADEBAND	= 1,
 					LANGUAGE_GUTTER		= 1,
-					LANGUAGE_SCHECHI	= 1
+					LANGUAGE_SCHECHI	= 1,
+					LANGUAGE_EAL		= 1,
+					LANGUAGE_SIGN		= 0
 					)
 
 /obj/item/weapon/robot_module/robot/clerical/butler
@@ -602,8 +604,8 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/wrench(src)
 	src.modules += new /obj/item/weapon/wirecutters(src)
 	src.modules += new /obj/item/device/multitool(src)
-	src.modules += new /obj/item/weapon/scalpel(src)
-	src.modules += new /obj/item/weapon/circular_saw(src)
+	src.modules += new /obj/item/weapon/surgical/scalpel(src)
+	src.modules += new /obj/item/weapon/surgical/circular_saw(src)
 	src.modules += new /obj/item/weapon/reagent_containers/syringe(src)
 	src.modules += new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
 	src.emag = new /obj/item/weapon/hand_tele(src)
@@ -632,9 +634,11 @@ var/global/list/robot_modules = list(
 					LANGUAGE_UNATHI = 0,
 					LANGUAGE_SIIK	= 0,
 					LANGUAGE_SKRELLIAN = 0,
-					LANGUAGE_ROOTSPEAK	= 0,
+					LANGUAGE_ROOTLOCAL = 0,
 					LANGUAGE_GUTTER = 1,
-					LANGUAGE_SCHECHI = 0
+					LANGUAGE_SCHECHI = 0,
+					LANGUAGE_EAL	 = 1,
+					LANGUAGE_SIGN	 = 0
 					)
 	sprites = list(
 					"Dread" = "securityrobot",

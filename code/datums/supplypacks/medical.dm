@@ -49,17 +49,17 @@
 /datum/supply_packs/med/surgery
 	name = "Surgery crate"
 	contains = list(
-			/obj/item/weapon/cautery,
-			/obj/item/weapon/surgicaldrill,
+			/obj/item/weapon/surgical/cautery,
+			/obj/item/weapon/surgical/surgicaldrill,
 			/obj/item/clothing/mask/breath/medical,
 			/obj/item/weapon/tank/anesthetic,
-			/obj/item/weapon/FixOVein,
-			/obj/item/weapon/hemostat,
-			/obj/item/weapon/scalpel,
-			/obj/item/weapon/bonegel,
-			/obj/item/weapon/retractor,
-			/obj/item/weapon/bonesetter,
-			/obj/item/weapon/circular_saw
+			/obj/item/weapon/surgical/FixOVein,
+			/obj/item/weapon/surgical/hemostat,
+			/obj/item/weapon/surgical/scalpel,
+			/obj/item/weapon/surgical/bonegel,
+			/obj/item/weapon/surgical/retractor,
+			/obj/item/weapon/surgical/bonesetter,
+			/obj/item/weapon/surgical/circular_saw
 			)
 	cost = 25
 	containertype = "/obj/structure/closet/crate/secure"
@@ -177,7 +177,7 @@
 			/obj/item/clothing/under/rank/medical/paramedic,
 			/obj/item/clothing/accessory/stethoscope,
 			/obj/item/weapon/storage/firstaid/adv,
-			/obj/item/clothing/shoes/jackboots,
+			/obj/item/clothing/shoes/boots/jackboots,
 			/obj/item/clothing/gloves/latex,
 			/obj/item/device/healthanalyzer,
 			/obj/item/weapon/cartridge/medical,
@@ -237,7 +237,7 @@
 			/obj/item/device/camera,
 			/obj/item/device/camera_film = 2,
 			/obj/item/weapon/autopsy_scanner,
-			/obj/item/weapon/scalpel,
+			/obj/item/weapon/surgical/scalpel,
 			/obj/item/weapon/storage/box/masks,
 			/obj/item/weapon/storage/box/gloves,
 			/obj/item/weapon/pen

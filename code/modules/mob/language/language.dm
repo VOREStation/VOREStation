@@ -160,11 +160,14 @@
 // Can we speak this language, as opposed to just understanding it?
 /mob/proc/can_speak(datum/language/speaking)
 //Prevents someone from speaking a null language.
-	if(speaking)
-		return (speaking.can_speak_special(src) && (universal_speak || (speaking && (speaking.flags & INNATE)) || speaking in src.languages))
-	else
+	if(!speaking)
 		log_debug("[src] attempted to speak a null language.")
 		return 0
+
+	if (only_species_language && speaking != all_languages[species_language])
+		return 0
+
+	return (speaking.can_speak_special(src) && (universal_speak || (speaking && (speaking.flags & INNATE)) || speaking in src.languages))
 
 /mob/proc/get_language_prefix()
 	if(client && client.prefs.language_prefixes && client.prefs.language_prefixes.len)
@@ -213,7 +216,10 @@
 /mob/living/Topic(href, href_list)
 	if(href_list["default_lang"])
 		if(href_list["default_lang"] == "reset")
-			set_default_language(null)
+			if (species_language)
+				set_default_language(all_languages[species_language])
+			else
+				set_default_language(null)
 		else
 			var/datum/language/L = locate(href_list["default_lang"])
 			if(L && (L in languages))
@@ -222,5 +228,11 @@
 		return 1
 	else
 		return ..()
+
+/proc/transfer_languages(var/mob/source, var/mob/target, var/except_flags)
+	for(var/datum/language/L in source.languages)
+		if(L.flags & except_flags)
+			continue
+		target.add_language(L.name)
 
 #undef SCRAMBLE_CACHE_LEN

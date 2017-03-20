@@ -23,7 +23,7 @@
 		..()
 
 /obj/item/weapon/spell/spawner/pulsar/on_throw_cast(atom/hit_atom, mob/user)
-	empulse(hit_atom, 1, 1, log=1)
+	empulse(hit_atom, 1, 1, 1, 1, log=1)
 
 /obj/effect/temporary_effect/pulsar
 	name = "pulsar"
@@ -44,7 +44,7 @@
 /obj/effect/temporary_effect/pulsar/proc/pulse_loop()
 	while(pulses_remaining)
 		sleep(2 SECONDS)
-		empulse(src, heavy_range = 1, light_range = 2, log = 1)
+		empulse(src, 1, 1, 2, 2, log = 1)
 		pulses_remaining--
 	qdel(src)
 

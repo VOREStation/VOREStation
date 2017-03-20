@@ -435,7 +435,7 @@ other types of metals and chemistry for reagents).
 	id = "scalpel_laser1"
 	req_tech = list(TECH_BIO = 2, TECH_MATERIAL = 2, TECH_MAGNET = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 12500, "glass" = 7500)
-	build_path = /obj/item/weapon/scalpel/laser1
+	build_path = /obj/item/weapon/surgical/scalpel/laser1
 	sort_string = "MBBAA"
 
 /datum/design/item/scalpel_laser2
@@ -444,7 +444,7 @@ other types of metals and chemistry for reagents).
 	id = "scalpel_laser2"
 	req_tech = list(TECH_BIO = 3, TECH_MATERIAL = 4, TECH_MAGNET = 4)
 	materials = list(DEFAULT_WALL_MATERIAL = 12500, "glass" = 7500, "silver" = 2500)
-	build_path = /obj/item/weapon/scalpel/laser2
+	build_path = /obj/item/weapon/surgical/scalpel/laser2
 	sort_string = "MBBAB"
 
 /datum/design/item/scalpel_laser3
@@ -453,7 +453,7 @@ other types of metals and chemistry for reagents).
 	id = "scalpel_laser3"
 	req_tech = list(TECH_BIO = 4, TECH_MATERIAL = 6, TECH_MAGNET = 5)
 	materials = list(DEFAULT_WALL_MATERIAL = 12500, "glass" = 7500, "silver" = 2000, "gold" = 1500)
-	build_path = /obj/item/weapon/scalpel/laser3
+	build_path = /obj/item/weapon/surgical/scalpel/laser3
 	sort_string = "MBBAC"
 
 /datum/design/item/scalpel_manager
@@ -462,7 +462,7 @@ other types of metals and chemistry for reagents).
 	id = "scalpel_manager"
 	req_tech = list(TECH_BIO = 4, TECH_MATERIAL = 7, TECH_MAGNET = 5, TECH_DATA = 4)
 	materials = list (DEFAULT_WALL_MATERIAL = 12500, "glass" = 7500, "silver" = 1500, "gold" = 1500, "diamond" = 750)
-	build_path = /obj/item/weapon/scalpel/manager
+	build_path = /obj/item/weapon/surgical/scalpel/manager
 	sort_string = "MBBAD"
 
 /datum/design/item/implant
@@ -1557,6 +1557,7 @@ CIRCUITS BELOW
 	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3, TECH_POWER = 3)
 	materials = list(DEFAULT_WALL_MATERIAL = 20000)
 	build_path = /obj/item/device/electronic_assembly/medium
+	sort_string = "VCAAB"
 
 /datum/design/item/custom_circuit_assembly/drone
 	name = "Drone custom assembly"
@@ -1565,6 +1566,7 @@ CIRCUITS BELOW
 	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 4, TECH_POWER = 4)
 	materials = list(DEFAULT_WALL_MATERIAL = 30000)
 	build_path = /obj/item/device/electronic_assembly/drone
+	sort_string = "VCAAC"
 
 /datum/design/item/custom_circuit_assembly/large
 	name = "Large custom assembly"
@@ -1573,413 +1575,24 @@ CIRCUITS BELOW
 	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4, TECH_POWER = 4)
 	materials = list(DEFAULT_WALL_MATERIAL = 40000)
 	build_path = /obj/item/device/electronic_assembly/large
-
-/datum/design/circuit/integrated_circuit
-	req_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2)
-
-/datum/design/circuit/integrated_circuit/AssembleDesignName()
-	..()
-	name = "Custom circuitry ([item_name])"
-
-/datum/design/circuit/integrated_circuit/AssembleDesignDesc()
-	if(!desc)
-		desc = "Allows for the construction of \a [name] custom circuit."
-
-/datum/design/circuit/integrated_circuit/arithmetic/AssembleDesignName()
-	..()
-	name = "Custom circuitry \[Arithmetic\] ([item_name])"
-
-/datum/design/circuit/integrated_circuit/arithmetic/addition
-	id = "cc-addition"
-	build_path = /obj/item/integrated_circuit/arithmetic/addition
-	sort_string = "WAAAA"
-
-/datum/design/circuit/integrated_circuit/arithmetic/subtraction
-	id = "cc-subtraction"
-	build_path = /obj/item/integrated_circuit/arithmetic/subtraction
-	sort_string = "WAAAB"
-
-/datum/design/circuit/integrated_circuit/arithmetic/multiplication
-	id = "cc-multiplication"
-	build_path = /obj/item/integrated_circuit/arithmetic/multiplication
-	sort_string = "WAAAC"
-
-/datum/design/circuit/integrated_circuit/arithmetic/division
-	id = "cc-division"
-	build_path = /obj/item/integrated_circuit/arithmetic/division
-	sort_string = "WAAAD"
-
-/datum/design/circuit/integrated_circuit/arithmetic/absolute
-	id = "cc-absolute"
-	build_path = /obj/item/integrated_circuit/arithmetic/absolute
-	sort_string = "WAAAE"
-
-/datum/design/circuit/integrated_circuit/arithmetic/average
-	id = "cc-average"
-	build_path = /obj/item/integrated_circuit/arithmetic/average
-	sort_string = "WAAAF"
-
-/datum/design/circuit/integrated_circuit/arithmetic/pi
-	id = "cc-pi"
-	build_path = /obj/item/integrated_circuit/arithmetic/pi
-	sort_string = "WAAAG"
-
-/datum/design/circuit/integrated_circuit/arithmetic/random
-	id = "cc-random"
-	build_path = /obj/item/integrated_circuit/arithmetic/random
-	sort_string = "WAAAH"
-
-
-
-/datum/design/circuit/integrated_circuit/converter/AssembleDesignName()
-	..()
-	name = "Custom circuitry \[Conversion\] ([item_name])"
-
-/datum/design/circuit/integrated_circuit/converter/num2text
-	id = "cc-num2text"
-	build_path = /obj/item/integrated_circuit/converter/num2text
-	sort_string = "WAABA"
-
-/datum/design/circuit/integrated_circuit/converter/text2num
-	id = "cc-text2num"
-	build_path = /obj/item/integrated_circuit/converter/text2num
-	sort_string = "WAABB"
-
-/datum/design/circuit/integrated_circuit/converter/ref2text
-	id = "cc-ref2text"
-	build_path = /obj/item/integrated_circuit/converter/ref2text
-	sort_string = "WAABC"
-
-/datum/design/circuit/integrated_circuit/converter/lowercase
-	id = "cc-lowercase"
-	build_path = /obj/item/integrated_circuit/converter/lowercase
-	sort_string = "WAABD"
-
-/datum/design/circuit/integrated_circuit/converter/uppercase
-	id = "cc-uppercase"
-	build_path = /obj/item/integrated_circuit/converter/uppercase
-	sort_string = "WAABD"
-
-/datum/design/circuit/integrated_circuit/converter/concatenatior
-	id = "cc-concatenatior"
-	build_path = /obj/item/integrated_circuit/converter/concatenatior
-	sort_string = "WAABC"
-
-
-
-/datum/design/circuit/integrated_circuit/coordinate/AssembleDesignName()
-	..()
-	name = "Custom circuitry \[Coordinate\] ([item_name])"
-
-/datum/design/circuit/integrated_circuit/coordinate/gps
-	id = "cc-gps"
-	build_path = /obj/item/integrated_circuit/gps
-	sort_string = "WAACA"
-
-/datum/design/circuit/integrated_circuit/coordinate/abs_to_rel_coords
-	id = "cc-abs_to_rel_coords"
-	build_path = /obj/item/integrated_circuit/abs_to_rel_coords
-	sort_string = "WAACB"
-
-
-
-/datum/design/circuit/integrated_circuit/transfer/AssembleDesignName()
-	..()
-	name = "Custom circuitry \[Transfer\] ([item_name])"
-
-/datum/design/circuit/integrated_circuit/transfer/splitter
-	id = "cc-splitter"
-	build_path = /obj/item/integrated_circuit/transfer/splitter
-	sort_string = "WAADA"
-
-/datum/design/circuit/integrated_circuit/transfer/splitter4
-	id = "cc-splitter4"
-	build_path = /obj/item/integrated_circuit/transfer/splitter/medium
-	sort_string = "WAADB"
-
-/datum/design/circuit/integrated_circuit/transfer/splitter8
-	id = "cc-splitter8"
-	build_path = /obj/item/integrated_circuit/transfer/splitter/large
-	sort_string = "WAADC"
-
-/datum/design/circuit/integrated_circuit/transfer/activator_splitter
-	id = "cc-activator_splitter"
-	build_path = /obj/item/integrated_circuit/transfer/activator_splitter
-	sort_string = "WAADD"
-
-/datum/design/circuit/integrated_circuit/transfer/activator_splitter4
-	id = "cc-activator_splitter4"
-	build_path = /obj/item/integrated_circuit/transfer/activator_splitter/medium
-	sort_string = "WAADE"
-
-/datum/design/circuit/integrated_circuit/transfer/activator_splitter8
-	id = "cc-activator_splitter8"
-	build_path = /obj/item/integrated_circuit/transfer/activator_splitter/large
-	sort_string = "WAADF"
-
-
-
-/datum/design/circuit/integrated_circuit/input_output/AssembleDesignName()
-	..()
-	name = "Custom circuitry \[Input/Output\] ([item_name])"
-
-/datum/design/circuit/integrated_circuit/input_output/button
-	id = "cc-button"
-	build_path = /obj/item/integrated_circuit/input/button
-	sort_string = "WAAEA"
-
-/datum/design/circuit/integrated_circuit/input_output/numberpad
-	id = "cc-numberpad"
-	build_path = /obj/item/integrated_circuit/input/numberpad
-	sort_string = "WAAEB"
-
-/datum/design/circuit/integrated_circuit/input_output/textpad
-	id = "cc-textpad"
-	build_path = /obj/item/integrated_circuit/input/textpad
-	sort_string = "WAAEC"
-
-/datum/design/circuit/integrated_circuit/input_output/screen
-	id = "cc-screen"
-	build_path = /obj/item/integrated_circuit/output/screen
-	sort_string = "WAAED"
-
-/datum/design/circuit/integrated_circuit/input_output/med_scanner
-	id = "cc-medscanner"
-	build_path = /obj/item/integrated_circuit/input/med_scanner
-	req_tech = list(TECH_MATERIAL = 2, TECH_MAGNETS = 2, TECH_BIOMED = 2)
-	sort_string = "WAAEE"
-
-/datum/design/circuit/integrated_circuit/input_output/adv_med_scanner
-	id = "cc-advmedscanner"
-	build_path = /obj/item/integrated_circuit/input/adv_med_scanner
-	req_tech = list(TECH_MATERIAL = 2, TECH_MAGNETS = 3, TECH_BIOMED = 4)
-	sort_string = "WAAEF"
-
-/datum/design/circuit/integrated_circuit/input_output/local_locator
-	id = "cc-locallocator"
-	build_path = /obj/item/integrated_circuit/input/local_locator
-	sort_string = "WAAEG"
-
-/datum/design/circuit/integrated_circuit/input_output/adjacent_locator
-	id = "cc-adjacentlocator"
-	build_path = /obj/item/integrated_circuit/input/adjacent_locator
-	sort_string = "WAAEH"
-
-/datum/design/circuit/integrated_circuit/input_output/signaler
-	id = "cc-signaler"
-	build_path = /obj/item/integrated_circuit/input/signaler
-	sort_string = "WAAEJ"
-
-/datum/design/circuit/integrated_circuit/input_output/light
-	id = "cc-light"
-	build_path = /obj/item/integrated_circuit/output/light
-	sort_string = "WAAEH"
-
-/datum/design/circuit/integrated_circuit/input_output/adv_light
-	id = "cc-adv_light"
-	build_path = /obj/item/integrated_circuit/output/light/advanced
-	sort_string = "WAAEI"
-
-/datum/design/circuit/integrated_circuit/input_output/beeper
-	id = "cc-sound_beeper"
-	build_path = /obj/item/integrated_circuit/output/sound/beeper
-	sort_string = "WAAEJ"
-
-/datum/design/circuit/integrated_circuit/input_output/beepsky_sound
-	id = "cc-sound_beepsky"
-	build_path = /obj/item/integrated_circuit/output/sound/beepsky
-	sort_string = "WAAEK"
-	req_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_ILLEGAL = 1)
-
-/datum/design/circuit/integrated_circuit/input_output/EPv2
-	id = "cc-epv2"
-	build_path = /obj/item/integrated_circuit/input/EPv2
-	sort_string = "WAAEL"
-	req_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_MAGNETS = 2, TECH_BLUESPACE = 2)
-
-
-/datum/design/circuit/integrated_circuit/logic/AssembleDesignName()
-	..()
-	name = "Custom circuitry \[Logic\] ([item_name])"
-
-/datum/design/circuit/integrated_circuit/logic/binary/equals
-	id = "cc-equals"
-	build_path = /obj/item/integrated_circuit/logic/binary/equals
-	sort_string = "WAAFA"
-
-/datum/design/circuit/integrated_circuit/logic/unary/not
-	id = "cc-not"
-	build_path = /obj/item/integrated_circuit/logic/unary/not
-	sort_string = "WAAFB"
-
-/datum/design/circuit/integrated_circuit/logic/binary/and
-	id = "cc-and"
-	build_path = /obj/item/integrated_circuit/logic/binary/and
-	sort_string = "WAAFC"
-
-/datum/design/circuit/integrated_circuit/logic/binary/or
-	id = "cc-or"
-	build_path = /obj/item/integrated_circuit/logic/binary/or
-	sort_string = "WAAFD"
-
-/datum/design/circuit/integrated_circuit/logic/binary/less_than
-	id = "cc-less_than"
-	build_path = /obj/item/integrated_circuit/logic/binary/less_than
-	sort_string = "WAAFE"
-
-/datum/design/circuit/integrated_circuit/logic/binary/less_than_or_equal
-	id = "cc-less_than_or_equal"
-	build_path = /obj/item/integrated_circuit/logic/binary/less_than_or_equal
-	sort_string = "WAAFF"
-
-/datum/design/circuit/integrated_circuit/logic/binary/greater_than
-	id = "cc-greater_than"
-	build_path = /obj/item/integrated_circuit/logic/binary/greater_than
-	sort_string = "WAAFG"
-
-/datum/design/circuit/integrated_circuit/logic/binary/greater_than_or_equal
-	id = "cc-greater_than_or_equal"
-	build_path = /obj/item/integrated_circuit/logic/binary/greater_than_or_equal
-	sort_string = "WAAFH"
-
-
-
-/datum/design/circuit/integrated_circuit/manipulation/AssembleDesignName()
-	..()
-	name = "Custom circuitry \[Manipulation\] ([item_name])"
-
-/datum/design/circuit/integrated_circuit/manipulation/weapon_firing
-	name = "weapon firing mechanism"
-	id = "cc-weapon_firing"
-	build_path = /obj/item/integrated_circuit/manipulation/weapon_firing
-	sort_string = "WAAGA"
-	req_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3, TECH_COMBAT = 4)
-
-/datum/design/circuit/integrated_circuit/manipulation/smoke
-	name = "smoke generator"
-	id = "cc-smoke"
-	build_path = /obj/item/integrated_circuit/manipulation/smoke
-	sort_string = "WAAGB"
-	req_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3, TECH_BIO = 4)
-
-/datum/design/circuit/integrated_circuit/manipulation/locomotion
-	name = "locomotion"
-	id = "cc-locomotion"
-	build_path = /obj/item/integrated_circuit/manipulation/locomotion
-	sort_string = "WAAGB"
-	req_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3)
-
-/datum/design/circuit/integrated_circuit/manipulation/injector
-	name = "injector"
-	id = "cc-injector"
-	build_path = /obj/item/integrated_circuit/manipulation/injector
-	sort_string = "WAAGC"
-	req_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 3)
-
-/datum/design/circuit/integrated_circuit/manipulation/reagent_pump
-	name = "reagent pump"
-	id = "cc-reagent_pump"
-	build_path = /obj/item/integrated_circuit/manipulation/reagent_pump
-	sort_string = "WAAGD"
-	req_tech = list(TECH_ENGINEERING = 1, TECH_DATA = 1, TECH_BIO = 2)
-
-/datum/design/circuit/integrated_circuit/manipulation/reagent_storage
-	name = "reagent storage"
-	id = "cc-reagent_storage"
-	build_path = /obj/item/integrated_circuit/manipulation/reagent_storage
-	sort_string = "WAAGE"
-	req_tech = list(TECH_ENGINEERING = 1, TECH_DATA = 1, TECH_BIO = 1)
-
-/datum/design/circuit/integrated_circuit/manipulation/reagent_storage_cryo
-	name = "cryo reagent storage"
-	id = "cc-reagent_storage_cryo"
-	build_path = /obj/item/integrated_circuit/manipulation/reagent_storage/cryo
-	sort_string = "WAAGF"
-	req_tech = list(TECH_MATERIALS = 3, TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 2)
-
-/datum/design/circuit/integrated_circuit/memory/AssembleDesignName()
-	..()
-	name = "Custom circuitry \[Memory\] ([item_name])"
-
-/datum/design/circuit/integrated_circuit/memory
-	id = "cc-memory"
-	build_path = /obj/item/integrated_circuit/memory
-	sort_string = "WAAHA"
-
-/datum/design/circuit/integrated_circuit/memory/medium
-	id = "cc-memory4"
-	build_path = /obj/item/integrated_circuit/memory/medium
-	sort_string = "WAAHB"
-
-/datum/design/circuit/integrated_circuit/memory/large
-	id = "cc-memory8"
-	build_path = /obj/item/integrated_circuit/memory/large
-	sort_string = "WAAHC"
-
-/datum/design/circuit/integrated_circuit/memory/huge
-	id = "cc-memory16"
-	build_path = /obj/item/integrated_circuit/memory/huge
-	sort_string = "WAAHD"
-
-/datum/design/circuit/integrated_circuit/memory/constant
-	id = "cc-constant"
-	build_path = /obj/item/integrated_circuit/memory/constant
-	sort_string = "WAAHH"
-
-/datum/design/circuit/integrated_circuit/time/AssembleDesignName()
-	..()
-	name = "Custom circuitry \[Time\] ([item_name])"
-
-/datum/design/circuit/integrated_circuit/time/delay
-	id = "cc-delay"
-	build_path = /obj/item/integrated_circuit/time/delay
-	sort_string = "WAAIA"
-
-/datum/design/circuit/integrated_circuit/time/delay/five_sec
-	id = "cc-five_sec_delay"
-	build_path = /obj/item/integrated_circuit/time/delay/five_sec
-	sort_string = "WAAIB"
-
-/datum/design/circuit/integrated_circuit/time/delay/one_sec
-	id = "cc-one_sec_delay"
-	build_path = /obj/item/integrated_circuit/time/delay/one_sec
-	sort_string = "WAAIC"
-
-/datum/design/circuit/integrated_circuit/time/delay/half_sec
-	id = "cc-half_sec_delay"
-	build_path = /obj/item/integrated_circuit/time/delay/half_sec
-	sort_string = "WAAID"
-
-/datum/design/circuit/integrated_circuit/time/delay/tenth_sec
-	id = "cc-tenth_sec_delay"
-	build_path = /obj/item/integrated_circuit/time/delay/tenth_sec
-	sort_string = "WAAIF"
-
-/datum/design/circuit/integrated_circuit/time/delay/custom
-	id = "cc-custom_delay"
-	build_path = /obj/item/integrated_circuit/time/delay/custom
-	sort_string = "WAAIG"
-
-/datum/design/circuit/integrated_circuit/time/ticker
-	id = "cc-ticker"
-	build_path = /obj/item/integrated_circuit/time/ticker
-	sort_string = "WAAIH"
-
-/datum/design/circuit/integrated_circuit/time/ticker/slow
-	id = "cc-ticker_slow"
-	build_path = /obj/item/integrated_circuit/time/ticker/slow
-	sort_string = "WAAII"
-
-/datum/design/circuit/integrated_circuit/time/ticker/fast
-	id = "cc-ticker_fast"
-	build_path = /obj/item/integrated_circuit/time/ticker/fast
-	sort_string = "WAAIJ"
-	req_tech = list(TECH_ENGINEERING = 4, TECH_DATA = 4)
-
-/datum/design/circuit/integrated_circuit/time/clock
-	id = "cc-clock"
-	build_path = /obj/item/integrated_circuit/time/clock
-	sort_string = "WAAIK"
+	sort_string = "VCAAD"
+
+/datum/design/item/custom_circuit_assembly/implant
+	name = "Implant custom assembly"
+	desc = "An customizable assembly for very small devices, implanted into living entities."
+	id = "assembly-implant"
+	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4, TECH_POWER = 3, TECH_BIO = 5)
+	materials = list(DEFAULT_WALL_MATERIAL = 2000)
+	build_path = /obj/item/weapon/implant/integrated_circuit
+	sort_string = "VCAAE"
+
+/datum/design/item/translator
+	name = "handheld translator"
+	id = "translator"
+	req_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
+	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 2000)
+	build_path = /obj/item/device/universal_translator
+	sort_string = "HABBA"
 
 /* Uncomment if someone makes these buildable
 /datum/design/circuit/general_alert

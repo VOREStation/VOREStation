@@ -130,10 +130,7 @@
 
 		if("sethome")
 			var/new_dest
-			var/list/beaconlist = new()
-			for(var/obj/machinery/navbeacon/N in navbeacons)
-				beaconlist.Add(N.location)
-				beaconlist[N.location] = N
+			var/list/beaconlist = GetBeaconList()
 			if(beaconlist.len)
 				new_dest = input("Select new home tag", "Mulebot [suffix ? "([suffix])" : ""]", null) in null|beaconlist
 			else
@@ -168,10 +165,7 @@
 			targetName = "Home"
 		if("SetD")
 			var/new_dest
-			var/list/beaconlist = new()
-			for(var/obj/machinery/navbeacon/N in navbeacons)
-				beaconlist.Add(N.location)
-				beaconlist[N.location] = N
+			var/list/beaconlist = GetBeaconList()
 			if(beaconlist.len)
 				new_dest = input("Select new destination tag", "Mulebot [suffix ? "([suffix])" : ""]") in null|beaconlist
 			else
@@ -285,6 +279,15 @@
 	new /obj/effect/decal/cleanable/blood/oil(Tsec)
 	..()
 
+/mob/living/bot/mulebot/proc/GetBeaconList()
+	var/list/beaconlist = list()
+	for(var/obj/machinery/navbeacon/N in navbeacons)
+		if(!N.codes["delivery"])
+			continue
+		beaconlist.Add(N.location)
+		beaconlist[N.location] = N
+	return beaconlist
+
 /mob/living/bot/mulebot/proc/load(var/atom/movable/C)
 	if(busy || load || get_dist(C, src) > 1 || !isturf(C.loc))
 		return
@@ -304,11 +307,11 @@
 
 	busy = 1
 
-	C.loc = loc
+	C.forceMove(loc)
 	sleep(2)
 	if(C.loc != loc) //To prevent you from going onto more than one bot.
 		return
-	C.loc = src
+	C.forceMove(src)
 	load = C
 
 	C.pixel_y += 9
@@ -325,7 +328,7 @@
 	busy = 1
 	overlays.Cut()
 
-	load.loc = loc
+	load.forceMove(loc)
 	load.pixel_y -= 9
 	load.layer = initial(load.layer)
 
@@ -338,7 +341,7 @@
 		if(AM == botcard || AM == access_scanner)
 			continue
 
-		AM.loc = loc
+		AM.forceMove(loc)
 		AM.layer = initial(AM.layer)
 		AM.pixel_y = initial(AM.pixel_y)
 	busy = 0

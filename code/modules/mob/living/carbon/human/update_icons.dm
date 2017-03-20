@@ -117,7 +117,7 @@ Please contact me on #coderbus IRC. ~Carn x
 #define GLOVES_LAYER			9
 #define BELT_LAYER				10
 #define SUIT_LAYER				11
-#define TAIL_LAYER				12		//bs12 specific.
+#define TAIL_LAYER				12		//bs12 specific.	//In a perfect world the parts of the tail that show between legs would be on a new layer. Until then, sprite's been tweaked
 #define GLASSES_LAYER			13
 #define BELT_LAYER_ALT			14
 #define SUIT_STORE_LAYER		15
@@ -132,8 +132,9 @@ Please contact me on #coderbus IRC. ~Carn x
 #define L_HAND_LAYER			24
 #define R_HAND_LAYER			25
 #define FIRE_LAYER				26		//If you're on fire
-#define TARGETED_LAYER			27		//BS12: Layer for the target overlay from weapon targeting system
-#define TOTAL_LAYERS			27
+#define WATER_LAYER				27		//If you're submerged in water.
+#define TARGETED_LAYER			28		//BS12: Layer for the target overlay from weapon targeting system
+#define TOTAL_LAYERS			29
 //////////////////////////////////
 
 /mob/living/carbon/human
@@ -461,6 +462,7 @@ var/global/list/damage_icon_parts = list()
 	update_inv_legcuffed(0)
 	update_inv_pockets(0)
 	update_fire(0)
+	update_water(0)
 	update_surgery(0)
 	UpdateDamageIcon()
 	update_icons()
@@ -893,6 +895,11 @@ var/global/list/damage_icon_parts = list()
 		if(hud_used)
 			hud_used.hidden_inventory_update() 	//Updates the screenloc of the items on the 'other' inventory bar
 
+//update whether handcuffs appears on our hud.
+/mob/living/carbon/proc/update_hud_handcuffed()
+	if(hud_used && hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
+		hud_used.l_hand_hud_object.update_icon()
+		hud_used.r_hand_hud_object.update_icon()
 
 /mob/living/carbon/human/update_inv_handcuffed(var/update_icons=1)
 	if(handcuffed)
@@ -911,6 +918,8 @@ var/global/list/damage_icon_parts = list()
 
 	else
 		overlays_standing[HANDCUFF_LAYER]	= null
+
+	update_hud_handcuffed()
 	if(update_icons)   update_icons()
 
 /mob/living/carbon/human/update_inv_legcuffed(var/update_icons=1)
@@ -1116,6 +1125,17 @@ var/global/list/damage_icon_parts = list()
 
 	if(update_icons)   update_icons()
 
+/mob/living/carbon/human/update_water(var/update_icons=1)
+	overlays_standing[WATER_LAYER] = null
+	var/depth = check_submerged()
+	if(depth)
+		if(!lying)
+			overlays_standing[WATER_LAYER] = image("icon" = 'icons/mob/submerged.dmi', "icon_state" = "human_swimming_[depth]")
+		// Lying sideways with the overlay looked strange.  Another overlay will be needed in the future.
+
+	if(update_icons)
+		update_icons()
+
 /mob/living/carbon/human/proc/update_surgery(var/update_icons=1)
 	overlays_standing[SURGERY_LEVEL] = null
 	var/image/total = new
@@ -1151,4 +1171,5 @@ var/global/list/damage_icon_parts = list()
 #undef R_HAND_LAYER
 #undef TARGETED_LAYER
 #undef FIRE_LAYER
+#undef WATER_LAYER
 #undef TOTAL_LAYERS

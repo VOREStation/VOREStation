@@ -47,6 +47,7 @@ em						{font-style: normal;font-weight: bold;}
 .syndradio				{color: #6D3F40;}
 .centradio				{color: #5C5C8A;}
 .airadio				{color: #FF00FF;}
+.entradio				{color: #339966;}
 
 .secradio				{color: #A30000;}
 .engradio				{color: #A66300;}
@@ -89,6 +90,7 @@ h1.alert, h2.alert		{color: #000000;}
 .soghun					{color: #228B22;}
 .solcom					{color: #22228B;}
 .changeling				{color: #800080;}
+.vox					{color: #AA00AA;}
 .rough					{font-family: "Trebuchet MS", cursive, sans-serif;}
 .say_quote				{font-family: Georgia, Verdana, sans-serif;}
 

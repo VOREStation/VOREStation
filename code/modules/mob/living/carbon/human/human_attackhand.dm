@@ -22,6 +22,14 @@
 
 	// Should this all be in Touch()?
 	if(istype(H))
+		if(get_accuracy_penalty(H))	//Should only trigger if they're not aiming well
+			var/hit_zone = get_zone_with_miss_chance(H.zone_sel.selecting, src, get_accuracy_penalty(H))
+			if(!hit_zone)
+				H.do_attack_animation(src)
+				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+				visible_message("\red <B>[H] reaches for [src], but misses!</B>")
+				return 0
+
 		if(H != src && check_shields(0, null, H, H.zone_sel.selecting, H.name))
 			H.do_attack_animation(src)
 			return 0
@@ -189,6 +197,11 @@
 						  were made for projectiles.
 					TODO: proc for melee combat miss chances depending on organ?
 				*/
+
+				if(!hit_zone)
+					attack_message = "[H] attempted to strike [src], but missed!"
+					miss_type = 1
+
 				if(prob(80))
 					hit_zone = ran_zone(hit_zone)
 				if(prob(15) && hit_zone != BP_TORSO) // Missed!

@@ -23,6 +23,8 @@
 	if (message)
 		log_emote("[name]/[key] : [message]")
 
+		message = say_emphasis(message)
+
  // Hearing gasp and such every five seconds is not good emotes were not global for a reason.
  // Maybe some people are okay with that.
 
@@ -62,6 +64,8 @@
 		input = sanitize(input(src, "Choose an emote to display.") as text|null)
 	else
 		input = message
+
+	input = say_emphasis(input)
 
 	if(input)
 		log_emote("Ghost/[src.key] : [input]")

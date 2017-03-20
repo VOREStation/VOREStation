@@ -11,8 +11,8 @@
 		)
 
 /obj/item/clothing/head/soft/sol/expedition
-	name = "\improper Expeditionary Corps cap"
-	desc = "It's a black ballcap bearing a Expeditonary Corps crest."
+	name = "\improper SifGuard cap"
+	desc = "It's a black ballcap bearing a Sif Homeguard Corps crest."
 	icon_state = "expeditionsoft"
 	item_state_slots = list(
 		slot_l_hand_str = "blacksoft",
@@ -114,13 +114,13 @@
 	body_parts_covered = 0
 
 /obj/item/clothing/head/dress/expedition
-	name = "expedition dress cap"
-	desc = "A peaked grey dress uniform cap belonging to the SCG Expeditionary Corps."
+	name = "\improper SifGuard dress cap"
+	desc = "A peaked grey dress uniform cap belonging to the Sif Homeguard Corps."
 	icon_state = "greydresscap"
 
 /obj/item/clothing/head/dress/expedition/command
-	name = "expedition command dress cap"
-	desc = "A peaked grey dress uniform cap belonging to the SCG Expeditionary Corps. This one is trimmed in gold."
+	name = "\improper SifGuard command dress cap"
+	desc = "A peaked grey dress uniform cap belonging to the Sif Homeguard Corps. This one is trimmed in gold."
 	icon_state = "greydresscap_com"
 
 /obj/item/clothing/head/dress/fleet
@@ -181,33 +181,33 @@
 	icon_state = "beret_white"
 
 /obj/item/clothing/head/beret/sol/expedition
-	name = "expeditionary beret"
-	desc = "A black beret belonging to the SCG Expeditionary Corps. For personnel that are more inclined towards style than safety."
+	name = "\improper SifGuard beret"
+	desc = "A black beret belonging to the Sif Homeguard Corps. For personnel that are more inclined towards style than safety."
 	icon_state = "beret_black"
 
 /obj/item/clothing/head/beret/sol/expedition/security
-	name = "expeditionary security beret"
-	desc = "An SCG Expeditionary Corps beret with a security crest. For personnel that are more inclined towards style than safety."
+	name = "\improper SifGuard security beret"
+	desc = "An Sif Homeguard Corps beret with a security crest. For personnel that are more inclined towards style than safety."
 	icon_state = "beret_black_security"
 
 /obj/item/clothing/head/beret/sol/expedition/medical
-	name = "expeditionary medical beret"
-	desc = "An SCG Expeditionary Corps beret with a medical crest. For personnel that are more inclined towards style than safety."
+	name = "\improper SifGuard medical beret"
+	desc = "An Sif Homeguard Corps beret with a medical crest. For personnel that are more inclined towards style than safety."
 	icon_state = "beret_black_medical"
 
 /obj/item/clothing/head/beret/sol/expedition/engineering
-	name = "expeditionary engineering beret"
-	desc = "An SCG Expeditionary Corps beret with an engineering crest. For personnel that are more inclined towards style than safety."
+	name = "\improper SifGuard engineering beret"
+	desc = "An Sif Homeguard Corps beret with an engineering crest. For personnel that are more inclined towards style than safety."
 	icon_state = "beret_black_engineering"
 
 /obj/item/clothing/head/beret/sol/expedition/supply
-	name = "expeditionary supply beret"
-	desc = "An SCG Expeditionary Corps beret with a supply crest. For personnel that are more inclined towards style than safety."
+	name = "\improper SifGuard supply beret"
+	desc = "An Sif Homeguard Corps beret with a supply crest. For personnel that are more inclined towards style than safety."
 	icon_state = "beret_black_supply"
 
 /obj/item/clothing/head/beret/sol/expedition/command
-	name = "expeditionary command beret"
-	desc = "An SCG Expeditionary Corps beret with a command crest. For personnel that are more inclined towards style than safety."
+	name = "\improper SifGuard command beret"
+	desc = "An Sif Homeguard Corps beret with a command crest. For personnel that are more inclined towards style than safety."
 	icon_state = "beret_black_command"
 
 /obj/item/clothing/head/beret/sol/fleet

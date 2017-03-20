@@ -52,9 +52,13 @@
 		var/list/reagent_data = seed.chems[rid]
 		if(reagent_data && reagent_data.len)
 			var/rtotal = reagent_data[1]
+			var/list/data = list()
 			if(reagent_data.len > 1 && potency > 0)
 				rtotal += round(potency/reagent_data[2])
-			reagents.add_reagent(rid,max(1,rtotal))
+			if(rid == "nutriment")
+				data[seed.seed_name] = max(1,rtotal)
+
+			reagents.add_reagent(rid,max(1,rtotal),data)
 	update_desc()
 	if(reagents.total_volume > 0)
 		bitesize = 1+round(reagents.total_volume / 2, 1)
@@ -319,8 +323,9 @@
 		if(!reagents || reagents.total_volume <= 0)
 			return
 		reagents.remove_any(rand(1,3)) //Todo, make it actually remove the reagents the seed uses.
-		seed.do_thorns(H,src)
-		seed.do_sting(H,src,pick("r_hand","l_hand"))
+		var/affected = pick("r_hand","l_hand")
+		seed.do_thorns(H,src,affected)
+		seed.do_sting(H,src,affected)
 
 // Predefined types for placing on the map.
 

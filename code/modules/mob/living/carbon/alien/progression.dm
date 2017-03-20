@@ -28,6 +28,8 @@
 	adult.set_species(new_species)
 	show_evolution_blurb()
 
+	transfer_languages(src, adult)
+
 	if(mind)
 		mind.transfer_to(adult)
 		if (can_namepick_as_adult)

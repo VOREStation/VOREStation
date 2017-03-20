@@ -134,6 +134,8 @@
 		/obj/item/weapon/gun/energy/gun,
 		/obj/item/weapon/flame/lighter,
 		/obj/item/device/flashlight,
+		/obj/item/device/taperecorder,
+		/obj/item/device/tape,
 		/obj/item/device/pda,
 		/obj/item/device/radio/headset,
 		/obj/item/clothing/gloves,
@@ -154,6 +156,7 @@
 	max_w_class = ITEMSIZE_NORMAL
 	can_hold = list(
 		/obj/item/device/taperecorder,
+		/obj/item/device/tape,
 		/obj/item/clothing/glasses,
 		/obj/item/device/flashlight,
 		/obj/item/weapon/cell/device,
@@ -283,3 +286,58 @@
 		/obj/item/device/ano_scanner,
 		/obj/item/weapon/pickaxe/hand
 		)
+
+/obj/item/weapon/storage/belt/fannypack
+	name = "leather fannypack"
+	desc = "A dorky fannypack for keeping small items in."
+	icon_state = "fannypack_leather"
+	item_state = "fannypack_leather"
+	max_w_class = ITEMSIZE_SMALL
+	storage_slots = null
+	max_storage_space = ITEMSIZE_COST_NORMAL * 2
+
+/obj/item/weapon/storage/belt/fannypack/black
+ 	name = "black fannypack"
+ 	icon_state = "fannypack_black"
+ 	item_state = "fannypack_black"
+
+/obj/item/weapon/storage/belt/fannypack/blue
+ 	name = "blue fannypack"
+ 	icon_state = "fannypack_blue"
+ 	item_state = "fannypack_blue"
+
+/obj/item/weapon/storage/belt/fannypack/cyan
+ 	name = "cyan fannypack"
+ 	icon_state = "fannypack_cyan"
+ 	item_state = "fannypack_cyan"
+
+/obj/item/weapon/storage/belt/fannypack/green
+ 	name = "green fannypack"
+ 	icon_state = "fannypack_green"
+ 	item_state = "fannypack_green"
+
+/obj/item/weapon/storage/belt/fannypack/orange
+ 	name = "orange fannypack"
+ 	icon_state = "fannypack_orange"
+ 	item_state = "fannypack_orange"
+
+/obj/item/weapon/storage/belt/fannypack/purple
+ 	name = "purple fannypack"
+ 	icon_state = "fannypack_purple"
+ 	item_state = "fannypack_purple"
+
+/obj/item/weapon/storage/belt/fannypack/red
+ 	name = "red fannypack"
+ 	icon_state = "fannypack_red"
+ 	item_state = "fannypack_red"
+
+/obj/item/weapon/storage/belt/fannypack/white
+ 	name = "white fannypack"
+ 	icon_state = "fannypack_white"
+ 	item_state = "fannypack_white"
+
+/obj/item/weapon/storage/belt/fannypack/yellow
+ 	name = "yellow fannypack"
+ 	icon_state = "fannypack_yellow"
+ 	item_state = "fannypack_yellow"
+

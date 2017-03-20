@@ -169,11 +169,19 @@ Used In File(s): \code\game\machinery\adv_med.dm
 							Acute Infection
 						{{else value.germ_level < 800}}
 							Acute Infection+
-						{{else value.germ_level < 900}}
+						{{else value.germ_level < 950}}
 							Acute Infection++
-						{{else value.germ_level >= 900}}
-							Septic
+						{{else value.germ_level >= 950}}
+							Gangrene Detected
 						{{/if}}
+					</div>
+				{{/if}}
+				{{if value.status.dead}}
+					<div class="itemLabelWide">
+						&nbsp;Necrosis
+					</div>
+					<div class="itemContentNarrow">
+						Necrotic Tissue Present
 					</div>
 				{{/if}}
 				{{if value.open}}
@@ -225,10 +233,10 @@ Used In File(s): \code\game\machinery\adv_med.dm
 						Acute Infection
 					{{else value.germ_level < 800}}
 						Acute Infection+
-					{{else value.germ_level < 900}}
+					{{else value.germ_level < 950}}
 						Acute Infection++
-					{{else value.germ_level >= 900}}
-						Septic
+					{{else value.germ_level >= 950}}
+						Necrosis Detected
 					{{/if}}
 				</div>
 			{{/if}}

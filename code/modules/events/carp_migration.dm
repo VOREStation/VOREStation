@@ -32,7 +32,7 @@
 			spawn_locations.Add(C.loc)
 	spawn_locations = shuffle(spawn_locations)
 	num_groups = min(num_groups, spawn_locations.len)
-	
+
 	var/i = 1
 	while (i <= num_groups)
 		var/group_size = rand(group_size_min, group_size_max)
@@ -45,4 +45,5 @@
 		if(!C.stat)
 			var/turf/T = get_turf(C)
 			if(istype(T, /turf/space))
-				qdel(C)
+				if(!prob(25))
+					qdel(C)

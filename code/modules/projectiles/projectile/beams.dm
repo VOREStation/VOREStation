@@ -8,6 +8,7 @@
 	eyeblur = 4
 	var/frequency = 1
 	hitscan = 1
+	embed_chance = 0
 	invisibility = 101	//beam projectiles are invisible as they are rendered by the effect engine
 	light_range = 2
 	light_power = 0.5

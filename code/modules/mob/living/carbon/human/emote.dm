@@ -188,11 +188,11 @@
 					m_type = 2
 
 		if ("twitch")
-			message = "twitches violently."
+			message = "twitches."
 			m_type = 1
 
-		if ("twitch_s")
-			message = "twitches."
+		if ("twitch_v")
+			message = "twitches violently."
 			m_type = 1
 
 		if ("faint")
@@ -590,6 +590,9 @@
 			src.animate_tail_stop()
 
 		if("vomit")
+			if(isSynthetic())
+				src << "<span class='warning'>You are unable to vomit.</span>"
+				return
 			vomit()
 			return
 
@@ -597,7 +600,7 @@
 			src << {"blink, blink_r, blush, bow-(none)/mob, burp, choke, chuckle, clap, collapse, cough, cry, custom, deathgasp, drool, eyebrow, fastsway/qwag,
 frown, gasp, giggle, glare-(none)/mob, grin, groan, grumble, handshake, hug-(none)/mob, laugh, look-(none)/mob, moan, mumble, nod, pale, point-atom,
 raise, salute, shake, shiver, shrug, sigh, signal-#1-10, smile, sneeze, sniff, snore, stare-(none)/mob, stopsway/swag, sway/wag, swish, tremble, twitch,
-twitch_s, vomit, whimper, wink, yawn"}
+twitch_v, vomit, whimper, wink, yawn"}
 
 		else
 			src << "\blue Unusable emote '[act]'. Say *help for a list."

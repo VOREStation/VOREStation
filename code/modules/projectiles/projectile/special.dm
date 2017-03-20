@@ -8,11 +8,15 @@
 	light_range = 2
 	light_power = 0.5
 	light_color = "#55AAFF"
+	var/pulse_range = 1
 
 
 	on_hit(var/atom/target, var/blocked = 0)
-		empulse(target, 1, 1)
+		empulse(target, pulse_range, pulse_range, pulse_range, pulse_range)
 		return 1
+
+/obj/item/projectile/ion/small
+	pulse_range = 0
 
 /obj/item/projectile/bullet/gyro
 	name ="explosive bolt"
@@ -156,4 +160,3 @@
 	nodamage = 1
 	damage_type = HALLOSS
 	muzzle_type = /obj/effect/projectile/bullet/muzzle
-

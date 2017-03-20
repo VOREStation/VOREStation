@@ -52,13 +52,19 @@
 	muzzle_type = /obj/effect/projectile/laser_omni/muzzle
 	tracer_type = /obj/effect/projectile/laser_omni/tracer
 	impact_type = /obj/effect/projectile/laser_omni/impact
-
+/*
 /obj/item/projectile/beam/stun/xeno/on_hit(var/atom/target, var/blocked = 0)
 	if(istype(target, /mob/living/simple_animal/xeno))
+		world << "is xeno"
 		var/mob/living/simple_animal/xeno/X = target
-		if(istype(target, /mob/living/simple_animal/xeno/slime))
+		world << "[target.name]"
+		if(istype(X, /mob/living/simple_animal/xeno/slime))
+			world << "is slime"
 			X.stasis += stasisforce
 		else
+			world << "is not slime"
 			X.stasis += (stasisforce / 8)
 	else
+		world << "is not xeno"
 		..()
+*/

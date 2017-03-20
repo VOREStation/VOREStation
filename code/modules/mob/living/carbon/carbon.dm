@@ -4,6 +4,8 @@
 	ingested = new/datum/reagents/metabolism(1000, src, CHEM_INGEST)
 	touching = new/datum/reagents/metabolism(1000, src, CHEM_TOUCH)
 	reagents = bloodstr
+	if (!default_language && species_language)
+		default_language = all_languages[species_language]
 	..()
 
 /mob/living/carbon/Life()
@@ -164,11 +166,13 @@
 				var/list/status = list()
 				var/brutedamage = org.brute_dam
 				var/burndamage = org.burn_dam
-				if(halloss > 0)
+				/*
+				if(halloss > 0) //Makes halloss show up as actual wounds on self examine.
 					if(prob(30))
 						brutedamage += halloss
 					if(prob(30))
 						burndamage += halloss
+				*/
 				switch(brutedamage)
 					if(1 to 20)
 						status += "bruised"
@@ -435,7 +439,6 @@
 	stop_pulling()
 	src << "<span class='warning'>You slipped on [slipped_on]!</span>"
 	playsound(src.loc, 'sound/misc/slip.ogg', 50, 1, -3)
-	Stun(stun_duration)
 	Weaken(Floor(stun_duration/2))
 	return 1
 
@@ -456,7 +459,7 @@
 /mob/living/carbon/proc/should_have_organ(var/organ_check)
 	return 0
 
-/mob/living/carbon/proc/can_feel_pain(var/check_organ)
+/mob/living/carbon/can_feel_pain(var/check_organ)
 	if(isSynthetic())
 		return 0
 	return !(species.flags & NO_PAIN)

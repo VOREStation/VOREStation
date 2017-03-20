@@ -7,7 +7,7 @@
 /datum/surgery_step/fix_vein
 	priority = 2
 	allowed_tools = list(
-	/obj/item/weapon/FixOVein = 100, \
+	/obj/item/weapon/surgical/FixOVein = 100, \
 	/obj/item/stack/cable_coil = 75
 	)
 	can_infect = 1
@@ -55,7 +55,7 @@
 /datum/surgery_step/fix_dead_tissue		//Debridement
 	priority = 2
 	allowed_tools = list(
-		/obj/item/weapon/scalpel = 100,		\
+		/obj/item/weapon/surgical/scalpel = 100,		\
 		/obj/item/weapon/material/knife = 75,	\
 		/obj/item/weapon/material/shard = 50, 		\
 	)
@@ -146,10 +146,8 @@
 
 		var/trans = container.reagents.trans_to_mob(target, container.amount_per_transfer_from_this, CHEM_BLOOD) //technically it's contact, but the reagents are being applied to internal tissue
 		if (trans > 0)
-
-			if(container.reagents.has_reagent("peridaxon"))
-				affected.status &= ~ORGAN_DEAD
-				affected.owner.update_body(1)
+			affected.status &= ~ORGAN_DEAD
+			affected.owner.update_body(1)
 
 			user.visible_message("\blue [user] applies [trans] units of the solution to affected tissue in [target]'s [affected.name]", \
 				"\blue You apply [trans] units of the solution to affected tissue in [target]'s [affected.name] with \the [tool].")
@@ -172,7 +170,7 @@
 /datum/surgery_step/hardsuit
 	allowed_tools = list(
 		/obj/item/weapon/weldingtool = 80,
-		/obj/item/weapon/circular_saw = 60,
+		/obj/item/weapon/surgical/circular_saw = 60,
 		/obj/item/weapon/pickaxe/plasmacutter = 100
 		)
 	req_open = 0

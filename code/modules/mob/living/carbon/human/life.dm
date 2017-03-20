@@ -808,7 +808,8 @@
 			var/total_phoronloss = 0
 			for(var/obj/item/I in src)
 				if(I.contaminated)
-					total_phoronloss += vsc.plc.CONTAMINATION_LOSS
+					if(src.species && src.species.get_bodytype() != "Vox")
+						total_phoronloss += vsc.plc.CONTAMINATION_LOSS
 			if(!(status_flags & GODMODE)) adjustToxLoss(total_phoronloss)
 
 	if(status_flags & GODMODE)	return 0	//godmode
@@ -1084,7 +1085,7 @@
 				clear_fullscreen("oxy")
 
 		//Fire and Brute damage overlay (BSSR)
-		var/hurtdamage = src.getBruteLoss() + src.getFireLoss() + damageoverlaytemp
+		var/hurtdamage = src.getShockBruteLoss() + src.getShockFireLoss() + damageoverlaytemp	//Doesn't call the overlay if you can't actually feel it
 		damageoverlaytemp = 0 // We do this so we can detect if someone hits us or not.
 		if(hurtdamage)
 			var/severity = 0
@@ -1334,6 +1335,9 @@
 		if(istype(G, /obj/item/clothing/glasses/sunglasses/sechud))
 			var/obj/item/clothing/glasses/sunglasses/sechud/S = G
 			O = S.hud
+		if(istype(G, /obj/item/clothing/glasses/sunglasses/medhud))
+			var/obj/item/clothing/glasses/sunglasses/medhud/M = G
+			O = M.hud
 		if(istype(O))
 			O.process_hud(src)
 			if(!druggy && !seer)	see_invisible = SEE_INVISIBLE_LIVING

@@ -16,7 +16,7 @@
 
 /obj/machinery/computer/security/New()
 	if(!network)
-		network = station_networks.Copy()
+		network = using_map.station_networks.Copy()
 	..()
 	if(network.len)
 		current_network = network[1]
@@ -219,6 +219,25 @@
 	light_range_on = 2
 	network = list(NETWORK_THUNDER)
 	circuit = /obj/item/weapon/circuitboard/security/telescreen/entertainment
+	var/obj/item/device/radio/radio = null
+
+/obj/machinery/computer/security/telescreen/entertainment/initialize()
+	..()
+	radio = new(src)
+	radio.listening = TRUE
+	radio.broadcasting = FALSE
+	radio.set_frequency(ENT_FREQ)
+	radio.canhear_range = 7 // Same as default sight range.
+	power_change()
+
+/obj/machinery/computer/security/telescreen/entertainment/power_change()
+	..()
+	if(radio)
+		if(stat & NOPOWER)
+			radio.on = FALSE
+		else
+			radio.on = TRUE
+
 /obj/machinery/computer/security/wooden_tv
 	name = "security camera monitor"
 	desc = "An old TV hooked into the stations camera network."
@@ -228,14 +247,16 @@
 	circuit = null
 	light_color = "#3848B3"
 	light_power_on = 0.5
+
 /obj/machinery/computer/security/mining
 	name = "outpost camera monitor"
 	desc = "Used to access the various cameras on the outpost."
 	icon_keyboard = "mining_key"
 	icon_screen = "mining"
-	network = list("MINE")
+	network = list("Mining Outpost")
 	circuit = /obj/item/weapon/circuitboard/security/mining
 	light_color = "#F9BBFC"
+
 /obj/machinery/computer/security/engineering
 	name = "engineering camera monitor"
 	desc = "Used to monitor fires and breaches."
@@ -243,16 +264,19 @@
 	icon_screen = "engie_cams"
 	circuit = /obj/item/weapon/circuitboard/security/engineering
 	light_color = "#FAC54B"
+
 /obj/machinery/computer/security/engineering/New()
 	if(!network)
 		network = engineering_networks.Copy()
 	..()
+
 /obj/machinery/computer/security/nuclear
 	name = "head mounted camera monitor"
 	desc = "Used to access the built-in cameras in helmets."
 	icon_state = "syndicam"
 	network = list(NETWORK_MERCENARY)
 	circuit = null
+
 /obj/machinery/computer/security/nuclear/New()
 	..()
 	req_access = list(150)
