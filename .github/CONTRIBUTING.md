@@ -39,9 +39,9 @@ Any code submissions that do not meet our coding standards are likely to be reje
 * If it is something like a bugfix that Polaris would want (the codebase we use), code it in their code and make the PR to them. We regularly update from them. They would want any general gameplay bugfixes, and things that are obviously intended to work one way, but do not. They do not have any of our fluff species (vulp, akula, fenn, etc) so do not make PRs related to that, or any vore content to them.
 * Never edit stock Polaris .DMI files. If you are confused about which .DMI files we have added and which were there originally, refer to their repository and and see if they exist (https://github.com/PolarisSS13/Polaris). All PRs with edits to stock .DMI files will be rejected.
 * When changing any code in any stock Polaris .DM file, you must mark your changes:
-** For single-line changes: //VOREStation Edit - "Explanation" (Edit can also be Add for new lines or Removal if you are commenting the line out)
-** For multi-line additions: //VOREStation Edit - "Explanation" and then at the bottom of your changes, //VOREStation Edit End
-** For multi-like removals: Use a block comment (/* xxx */) to comment out the existing code block (do not modify whitespace more than necessary) and at the start, it should contain /* VOREStation Removal - "Reason"
+    * For single-line changes: //VOREStation Edit - "Explanation" (Edit can also be Add for new lines or Removal if you are commenting the line out)
+    * For multi-line additions: //VOREStation Edit - "Explanation" and then at the bottom of your changes, //VOREStation Edit End
+    * For multi-like removals: Use a block comment (/\* xxx \*/) to comment out the existing code block (do not modify whitespace more than necessary) and at the start, it should contain /\* VOREStation Removal - "Reason"
 * Change whitespace as little as possible. Do not randomly add/remove whitespace.
 * Any new files should have "_vr" at the end. For example, "life_vr.dm". Just make them in the same location as the file they are related to.
 
