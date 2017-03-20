@@ -17,7 +17,7 @@ var/list/floor_decals = list()
 /obj/effect/floor_decal/initialize()
 	if(supplied_dir) set_dir(supplied_dir)
 	var/turf/T = get_turf(src)
-	if(istype(T, /turf/simulated/floor) || istype(T, /turf/unsimulated/floor))
+	if(istype(T, /turf/simulated/floor) || istype(T, /turf/unsimulated/floor) || istype(T, /turf/simulated/shuttle/floor))
 		var/cache_key = "[alpha]-[color]-[dir]-[icon_state]-[layer]"
 		if(!floor_decals[cache_key])
 			var/image/I = image(icon = src.icon, icon_state = src.icon_state, dir = src.dir)
