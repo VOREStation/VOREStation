@@ -26,11 +26,11 @@
 	for(var/obj/machinery/vending/V in machines)
 		if(isNotStationLevel(V.z))	continue
 		vendingMachines.Add(V)
-		
+
 	if(!vendingMachines.len)
 		kill()
 		return
-		
+
 	originMachine = pick(vendingMachines)
 	vendingMachines.Remove(originMachine)
 	originMachine.shut_up = 0
