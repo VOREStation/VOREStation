@@ -304,7 +304,7 @@ item_path: /obj/item/clothing/accessory/storage/knifeharness
 {
 ckey: KiwiDaNinja
 character_name: Chakat Taiga
-item_path: /obj/item/clothing/under/taiga
+item_path: /obj/item/clothing/under/fluff/taiga
 }
 
 {
