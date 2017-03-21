@@ -727,6 +727,11 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 	set desc = "Toggles hologram movement based on moving with your virtual eye."
 
 	hologram_follow = !hologram_follow
+	//VOREStation Add - Required to stop movement because we use walk_to(wards) in hologram.dm
+	if(holo)
+		var/obj/effect/overlay/aiholo/hologram = holo.masters[src]
+		walk(hologram, 0)
+	//VOREStation Add End
 	usr << "Your hologram will [hologram_follow ? "follow" : "no longer follow"] you now."
 
 
