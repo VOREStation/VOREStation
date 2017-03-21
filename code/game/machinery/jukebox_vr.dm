@@ -1,33 +1,45 @@
-// The improved, hackable jukebox for vorestation!
+//
+// VOREStation Custom - Configurable Jukebox!
+//
 
-/obj/machinery/media/jukebox/vore
-	circuit = /obj/item/weapon/circuitboard/jukebox/vore
-	secret_tracks = list(
-		new/datum/track("Bandit Radio", 'sound/music/jukebox/bandit_radio.ogg'),
-		new/datum/track("Ghost Fight (Toby Fox)", 'sound/music/jukebox/TobyFoxGhostFight.mid'),
-		new/datum/track("Space Asshole", 'sound/music/space_asshole.ogg'),
-		new/datum/track("THUNDERDOME", 'sound/music/THUNDERDOME.ogg'),
-	)
-	tracks = list(
-		new/datum/track("A Song About Hares", 'sound/music/jukebox/SongAboutHares.ogg'),
-		new/datum/track("Below The Asteroids", 'sound/music/jukebox/BelowTheAsteroids.ogg'),
-		new/datum/track("Beyond", 'sound/ambience/ambispace.ogg'),
-		new/datum/track("Clouds of Fire", 'sound/music/clouds.s3m'),
-		new/datum/track("D`Bert", 'sound/music/title2.ogg'),
-		new/datum/track("D`Fort", 'sound/ambience/song_game.ogg'),
-		new/datum/track("Duck Tales - Moon", 'sound/music/jukebox/DuckTalesMoon.mid'),
-		new/datum/track("Endless Space", 'sound/music/space.ogg'),
-		new/datum/track("Floating", 'sound/music/main.ogg'),
-		new/datum/track("Fly Me To The Moon", 'sound/music/jukebox/Fly_Me_To_The_Moon.ogg'),
-		new/datum/track("Mad About Me", 'sound/music/jukebox/Cantina.ogg'),
-		new/datum/track("Minor Turbulence", 'sound/music/jukebox/MinorTurbulenceFull.ogg'),
-		new/datum/track("Ode to Greed", 'sound/music/jukebox/OdeToGreed.ogg'),
-		new/datum/track("Part A", 'sound/misc/TestLoop1.ogg'),
-		new/datum/track("Ransacked", 'sound/music/jukebox/Ransacked.ogg'),
-		new/datum/track("Russkiy rep Diskoteka", 'sound/music/jukebox/russianrapdisco.ogg'),
-		new/datum/track("Scratch", 'sound/music/title1.ogg'),
-		new/datum/track("Space Oddity", 'sound/music/space_oddity.ogg'),
-		new/datum/track("Thunderdome", 'sound/music/THUNDERDOME.ogg'),
-		new/datum/track("Trai`Tor", 'sound/music/traitor.ogg'),
-		new/datum/track("Welcome To Jurassic Park", 'sound/music/jukebox/WelcomeToJurassicPark.mid')
-	)
+/datum/track
+	var/secret = 0  // Whether or not this is a SECRET TRACK OOOOOH
+
+// On initialization, copy our tracks from the global list
+/obj/machinery/media/jukebox/initialize()
+	..()
+	if(all_jukebox_tracks.len)
+		tracks.Cut()
+		secret_tracks.Cut()
+		for(var/datum/track/T in all_jukebox_tracks)
+			if(T.secret)
+				secret_tracks += T
+			else
+				tracks += T
+	return
+
+// Global list holding all configured jukebox tracks
+var/global/list/all_jukebox_tracks = list()
+
+// Read the jukebox configuration file on system startup.
+/hook/startup/proc/load_jukebox_tracks()
+	var/jukebox_track_file = "config/jukebox.txt"
+	if(!fexists(jukebox_track_file))
+		warning("File not found: [jukebox_track_file]")
+		return
+	// Helpful regex that ignores comments and parses our file format
+	var/regex/lineSplitter = regex("^(?!#)(.+?)\\|(.+?)\\|(.+)$")
+	var/list/Lines = file2list(jukebox_track_file)
+	for(var/t in Lines)
+		if(!t) continue
+		if(!lineSplitter.Find(t)) continue
+		var/file = trim(lineSplitter.group[1])
+		var/title = trim(lineSplitter.group[2])
+		var/isSecret = text2num(trim(lineSplitter.group[3]))
+		if(!fexists(file))
+			warning("In [jukebox_track_file], sound file file not found: [file]")
+			continue
+		var/datum/track/T = new(title, file(file))
+		T.secret = isSecret ? 1 : 0
+		all_jukebox_tracks += T
+	return 1

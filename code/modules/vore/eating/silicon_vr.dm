@@ -1,8 +1,8 @@
 //Dat AI vore yo
-#define HOLO_ORIGINAL_COLOR null //This seems to work for some reason? And look better?
+#define HOLO_ORIGINAL_COLOR null //Original hologram color: "#7db4e1"
 #define HOLO_HARDLIGHT_COLOR "#d97de0"
-#define HOLO_ORIGINAL_ALPHA 128
-#define HOLO_HARDLIGHT_ALPHA 210
+#define HOLO_ORIGINAL_ALPHA 120
+#define HOLO_HARDLIGHT_ALPHA 200
 
 /obj/effect/overlay/aiholo
 	var/mob/living/bellied //Only belly one person at a time. No huge vore-organs setup for AIs.
@@ -34,8 +34,8 @@
 
 	desc = "[initial(desc)]"
 	pass_flags = initial(pass_flags)
-	color = initial(color)
-	alpha = initial(alpha)
+	color = HOLO_ORIGINAL_COLOR
+	alpha = HOLO_ORIGINAL_ALPHA
 
 /obj/effect/overlay/aiholo/Destroy()
 	drop_prey()

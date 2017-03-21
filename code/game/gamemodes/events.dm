@@ -350,6 +350,11 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 					M << "<br>"
 					M.add_ion_law("THE STATION IS [who2pref] [who2]")
 
+	if(botEmagChance)
+		for(var/mob/living/bot/bot in machines)
+			if(prob(botEmagChance))
+				bot.emag_act(1)
+
 	/*
 
 	var/apcnum = 0

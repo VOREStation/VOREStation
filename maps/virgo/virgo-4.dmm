@@ -456,7 +456,7 @@
 "iN" = (/obj/machinery/computer/arcade/orion_trail,/turf/simulated/shuttle/floor{icon_state = "floor7"},/area/houseboat/common_area)
 "iO" = (/obj/machinery/light,/turf/simulated/shuttle/floor{icon_state = "floor7"},/area/houseboat/common_area)
 "iP" = (/turf/simulated/shuttle/floor{icon_state = "floor7"},/turf/simulated/shuttle/wall{dir = 8; icon_state = "diagonalWall3"},/area/houseboat)
-"iQ" = (/obj/machinery/media/jukebox/vore,/turf/simulated/shuttle/floor{icon_state = "floor7"},/area/houseboat/common_area)
+"iQ" = (/obj/machinery/media/jukebox,/turf/simulated/shuttle/floor{icon_state = "floor7"},/area/houseboat/common_area)
 "iR" = (/obj/machinery/door/airlock/multi_tile/glass,/turf/simulated/shuttle/floor{icon_state = "floor6"},/area/houseboat/airlock)
 "iS" = (/turf/simulated/shuttle/floor{icon_state = "floor7"},/area/houseboat/airlock)
 "iT" = (/obj/machinery/button/remote/blast_door{id = "ls_tport"; name = "Shutters"; pixel_x = 0; pixel_y = -26; req_access = list(101)},/obj/structure/flora/pottedplant{icon_state = "plant-22"},/turf/simulated/shuttle/floor4{icon_state = "floor7"; name = "shuttle floor"},/area/houseboat/teleporter)

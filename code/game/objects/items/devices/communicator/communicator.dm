@@ -213,6 +213,17 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	update_icon()
 	ui_interact(user)
 
+// Proc: MouseDrop()
+//Same thing PDAs do
+/obj/item/device/communicator/MouseDrop(obj/over_object as obj)
+	var/mob/M = usr
+	if (!(src.loc == usr) || (src.loc && src.loc.loc == usr))
+		return
+	if(!istype(over_object, /obj/screen))
+		return attack_self(M)
+	return
+
+
 // Proc: attack_ghost()
 // Parameters: 1 (user - the ghost clicking on the device)
 // Description: Recreates the known_devices list, so that the ghost looking at the device can see themselves, then calls ..() so that NanoUI appears.
