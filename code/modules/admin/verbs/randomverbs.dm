@@ -471,8 +471,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		antag_data.place_mob(new_character)
 
 	//If desired, apply equipment.
-	if(equipment && charjob)
-		job_master.EquipRank(new_character, charjob, 1)
+	if(equipment)
+		if(charjob)
+			job_master.EquipRank(new_character, charjob, 1)
+		equip_custom_items(new_character)
 
 	//If desired, add records.
 	if(records)
