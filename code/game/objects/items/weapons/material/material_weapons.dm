@@ -82,11 +82,17 @@
 			health--
 		check_health()
 
+/obj/item/weapon/material/attackby(obj/item/weapon/W, mob/user as mob)
+	if(istype(W, /obj/item/weapon/whetstone))
+		var/obj/item/weapon/whetstone/whet = W
+		repair(whet.repair_amount, whet.repair_time, user)
+	..()
+
 /obj/item/weapon/material/proc/check_health(var/consumed)
 	if(health<=0)
 		if(fragile)
 			shatter(consumed)
-		else
+		else if(!dulled)
 			dull()
 
 /obj/item/weapon/material/proc/shatter(var/consumed)
@@ -108,16 +114,23 @@
 		sharp = 0
 		edge = 0
 
-/obj/item/weapon/material/proc/sharpen(var/sharpen_amount, mob/living/user)
+/obj/item/weapon/material/proc/repair(var/repair_amount, var/repair_time, mob/living/user)
 	if(!fragile)
 		if(health < initial(health))
-			user.visible_message("[user] begins sharpening [src].", "You begin sharpening the [src].")
-			if(do_after(user, 40))
-				user.visible_message("[user] has finished sharpening [src]", "You finish sharpening the [src].")
-				health = min(health + sharpen_amount, initial(health))
+			user.visible_message("[user] begins repairing \the [src].", "You begin repairing \the [src].")
+			if(do_after(user, repair_time))
+				user.visible_message("[user] has finished repairing \the [src]", "You finish repairing \the [src].")
+				health = min(health + repair_amount, initial(health))
+				dulled = 0
+				sharp = initial(sharp)
+				edge = initial(edge)
+		else
+			to_chat(user, "<span class='notice'>[src] doesn't need repairs.</span>")
 	else
-		to_chat(user, "<span class='warning'>You can't sharpen the [src].</span>")
+		to_chat(user, "<span class='warning'>You can't repair \the [src].</span>")
 		return
+
+
 
 /*
 Commenting this out pending rebalancing of radiation based on small objects.
