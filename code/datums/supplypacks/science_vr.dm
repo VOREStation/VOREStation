@@ -14,7 +14,7 @@
 	name = "Advanced Robolimb Blueprints"
 	contains = list(
 			/obj/item/weapon/disk/limb/bishop,
-			/obj/item/weapon/disk/limb/hesphiastos,
+			/obj/item/weapon/disk/limb/hephaestus,
 			/obj/item/weapon/disk/limb/morpheus,
 			/obj/item/weapon/disk/limb/veymed,
 			/obj/item/weapon/disk/limb/wardtakahashi,

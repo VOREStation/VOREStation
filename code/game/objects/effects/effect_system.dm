@@ -333,7 +333,7 @@ steam.start() -- spawns the effect
 			spawn(0)
 				var/turf/T = get_turf(src.holder)
 				if(T != src.oldposition)
-					if(istype(T, /turf/simulated))
+					if(isturf(T))
 						var/obj/effect/effect/ion_trails/I = PoolOrNew(/obj/effect/effect/ion_trails, src.oldposition)
 						src.oldposition = T
 						I.set_dir(src.holder.dir)
