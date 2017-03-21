@@ -18,7 +18,7 @@
 	name = "Superconducting Magnetic Coil"
 	contains = list(/obj/item/weapon/smes_coil)
 	cost = 75
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/engineering
 	containername = "Superconducting Magnetic Coil crate"
 
 /datum/supply_packs/eng/electrical
@@ -30,7 +30,7 @@
 			/obj/item/weapon/cell/high = 2
 			)
 	cost = 10
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/engineering/electrical
 	containername = "Electrical maintenance crate"
 
 /datum/supply_packs/eng/mechanical
@@ -42,7 +42,7 @@
 			/obj/item/clothing/head/hardhat
 			)
 	cost = 10
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/engineering
 	containername = "Mechanical maintenance crate"
 
 /datum/supply_packs/eng/fueltank
@@ -61,34 +61,35 @@
 			/obj/item/weapon/paper/solar
 			)
 	cost = 20
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/engineering
 	containername = "Solar pack crate"
 
 /datum/supply_packs/eng/engine
 	name = "Emitter crate"
 	contains = list(/obj/machinery/power/emitter = 2)
 	cost = 10
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/engineering
 	containername = "Emitter crate"
 	access = access_ce
 
 /datum/supply_packs/eng/engine/field_gen
 	name = "Field Generator crate"
 	contains = list(/obj/machinery/field_generator = 2)
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/engineering
 	containername = "Field Generator crate"
 	access = access_ce
 
 /datum/supply_packs/eng/engine/sing_gen
 	name = "Singularity Generator crate"
 	contains = list(/obj/machinery/the_singularitygen)
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/engineering
 	containername = "Singularity Generator crate"
 	access = access_ce
 
 /datum/supply_packs/eng/engine/collector
 	name = "Collector crate"
 	contains = list(/obj/machinery/power/rad_collector = 3)
+	containertype = /obj/structure/closet/crate/secure/engineering
 	containername = "Collector crate"
 
 /datum/supply_packs/eng/engine/PA
@@ -103,7 +104,7 @@
 			/obj/structure/particle_accelerator/power_box,
 			/obj/structure/particle_accelerator/end_cap
 			)
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/engineering
 	containername = "Particle Accelerator crate"
 	access = access_ce
 
@@ -111,7 +112,7 @@
 	contains = list(/obj/item/weapon/circuitboard/shield_gen)
 	name = "Bubble shield generator circuitry"
 	cost = 30
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/engineering
 	containername = "bubble shield generator circuitry crate"
 	access = access_ce
 
@@ -119,7 +120,7 @@
 	contains = list(/obj/item/weapon/circuitboard/shield_gen_ex)
 	name = "Hull shield generator circuitry"
 	cost = 30
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/engineering
 	containername = "hull shield generator circuitry crate"
 	access = access_ce
 
@@ -127,7 +128,7 @@
 	contains = list(/obj/item/weapon/circuitboard/shield_cap)
 	name = "Bubble shield capacitor circuitry"
 	cost = 30
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/engineering
 	containername = "shield capacitor circuitry crate"
 	access = access_ce
 
@@ -169,7 +170,7 @@
 	name = "P.A.C.M.A.N. portable generator parts"
 	cost = 25
 	containername = "P.A.C.M.A.N. Portable Generator Construction Kit"
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/engineering
 	access = access_tech_storage
 	contains = list(
 			/obj/item/weapon/stock_parts/micro_laser,
@@ -182,7 +183,7 @@
 	name = "Super P.A.C.M.A.N. portable generator parts"
 	cost = 35
 	containername = "Super P.A.C.M.A.N. portable generator construction kit"
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/engineering
 	access = access_tech_storage
 	contains = list(
 			/obj/item/weapon/stock_parts/micro_laser,
