@@ -681,9 +681,9 @@
 	icon_state = "focal"
 	worn_state = "focal"
 
-/obj/item/clothing/under/hephaistos
-	name = "\improper Hephaistos jumpsuit"
-	desc = "A jumpsuit belonging to Hephaistos Industries, a Trans-Stellar best known for its arms production."
+/obj/item/clothing/under/hephaestus
+	name = "\improper Hephaestus jumpsuit"
+	desc = "A jumpsuit belonging to Hephaestus Industries, a Trans-Stellar best known for its arms production."
 	icon_state = "heph"
 	worn_state = "heph"
 

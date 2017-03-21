@@ -39,7 +39,7 @@
 	name = "All robolimb blueprints"
 	contains = list(
 	/obj/item/weapon/disk/limb/bishop,
-	/obj/item/weapon/disk/limb/hephaistos,
+	/obj/item/weapon/disk/limb/hephaestus,
 	/obj/item/weapon/disk/limb/morpheus,
 	/obj/item/weapon/disk/limb/veymed,
 	/obj/item/weapon/disk/limb/wardtakahashi,
@@ -68,11 +68,11 @@
 	containername = "Robolimb blueprints (Xion)"
 	access = access_robotics
 
-/datum/supply_packs/robotics/robolimbs/
+/datum/supply_packs/robotics/robolimbs/hephaestus
 	name = "Hephaistos robolimb blueprints"
-	contains = list(/obj/item/weapon/disk/limb/hephaistos)
+	contains = list(/obj/item/weapon/disk/limb/hephaestus)
 	containertype = /obj/structure/closet/crate/secure/gear
-	containername = "Robolimb blueprints (Hephaistos)"
+	containername = "Robolimb blueprints (Hephaestus)"
 	access = access_robotics
 
 /datum/supply_packs/robotics/robolimbs/wardtakahashi

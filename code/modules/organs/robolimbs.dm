@@ -70,30 +70,30 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	parts = list(BP_HEAD)
 	monitor_styles = standard_monitor_styles
 
-/datum/robolimb/hephaistos
-	company = "Hephaistos"
+/datum/robolimb/hephaestus
+	company = "Hephaestus"
 	desc = "This limb has a militaristic black and green casing with gold stripes."
-	icon = 'icons/mob/human_races/cyberlimbs/hesphiastos/hesphiastos_main.dmi'
+	icon = 'icons/mob/human_races/cyberlimbs/hephaestus/hephaestus_main.dmi'
 	unavailable_to_build = 1
 
-/datum/robolimb/hephaistos_alt1
+/datum/robolimb/hephaestus_alt1
 	company = "Hephaistos - Frontier"
-	desc = "A rugged prosthetic head featuring the standard Hesphiastos theme, a visor and an external display."
-	icon = 'icons/mob/human_races/cyberlimbs/hesphiastos/hesphiastos_alt1.dmi'
+	desc = "A rugged prosthetic head featuring the standard Hephaestus theme, a visor and an external display."
+	icon = 'icons/mob/human_races/cyberlimbs/hephaestus/hephaestus_alt1.dmi'
 	unavailable_to_build = 1
 	parts = list(BP_HEAD)
-	monitor_styles = "blank=hephaistos_alt_off;\
-		pink=hephaistos_alt_pink;\
-		orange=hephaistos_alt_orange;\
-		goggles=hephaistos_alt_goggles;\
-		scroll=hephaistos_alt_scroll;\
-		rgb=hephaistos_alt_rgb;\
-		rainbow=hephaistos_alt_rainbow"
+	monitor_styles = "blank=hephaestus_alt_off;\
+		pink=hephaestus_alt_pink;\
+		orange=hephaestus_alt_orange;\
+		goggles=hephaestus_alt_goggles;\
+		scroll=hephaestus_alt_scroll;\
+		rgb=hephaestus_alt_rgb;\
+		rainbow=hephaestus_alt_rainbow"
 
 /datum/robolimb/hephaistos_monitor
-	company = "Hephaistos Monitor"
-	desc = "Hephaistos' unique spin on a popular prosthetic head model. It looks rugged and sturdy."
-	icon = 'icons/mob/human_races/cyberlimbs/hesphiastos/hesphiastos_monitor.dmi'
+	company = "Hephaestus Monitor"
+	desc = "Hephaestus' unique spin on a popular prosthetic head model. It looks rugged and sturdy."
+	icon = 'icons/mob/human_races/cyberlimbs/hephaestus/hephaestus_monitor.dmi'
 	unavailable_to_build = 1
 	parts = list(BP_HEAD)
 	monitor_styles = standard_monitor_styles
@@ -183,8 +183,8 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 /obj/item/weapon/disk/limb/bishop
 	company = "Bishop"
 
-/obj/item/weapon/disk/limb/hephaistos
-	company = "Hephaistos"
+/obj/item/weapon/disk/limb/hephaestus
+	company = "Hephaestus"
 
 /obj/item/weapon/disk/limb/morpheus
 	company = "Morpheus"

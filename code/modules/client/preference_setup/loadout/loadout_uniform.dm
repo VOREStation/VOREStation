@@ -442,6 +442,6 @@
 	display_name = "outfit, frontier"
 	path = 	/obj/item/clothing/under/frontier
 
-/datum/gear/uniform/brandsuit/hephaistos
-	display_name = "jumpsuit, hephaistos"
-	path = 	/obj/item/clothing/under/hephaistos
+/datum/gear/uniform/brandsuit/hephaestus
+	display_name = "jumpsuit, hephaestus"
+	path = 	/obj/item/clothing/under/hephaestus
