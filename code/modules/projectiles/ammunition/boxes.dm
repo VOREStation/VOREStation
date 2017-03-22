@@ -26,6 +26,10 @@
 	name = "speedloader (.38 rubber)"
 	ammo_type = /obj/item/ammo_casing/c38r
 
+/obj/item/ammo_magazine/c38/emp
+	name = "ammunition box (.38 haywire)"
+	ammo_type = /obj/item/ammo_casing/c38/emp
+
 ///////// .45 /////////
 
 /obj/item/ammo_magazine/c45m
@@ -56,6 +60,10 @@
 /obj/item/ammo_magazine/c45m/ap
 	name = "magazine (.45 AP)"
 	ammo_type = /obj/item/ammo_casing/c45ap
+
+/obj/item/ammo_magazine/box/emp/c45
+	name = "ammunition box (.45 haywire)"
+	ammo_type = /obj/item/ammo_casing/c45/emp
 
 /obj/item/ammo_magazine/c45uzi
 	name = "stick magazine (.45)"
@@ -271,6 +279,10 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 675) // metal costs are very roughly based around one 10mm casing = 75 metal
 	max_ammo = 9
 	multiple_sprites = 1
+
+/obj/item/ammo_magazine/box/emp/a10mm
+	name = "ammunition box (10mm haywire)"
+	ammo_type = /obj/item/ammo_casing/a10mm/emp
 
 ///////// 5.56mm /////////
 

@@ -27,7 +27,7 @@
 	var/turf/obstacle = null
 
 	var/wait_if_pulled = 0 // Only applies to moving to the target
-	var/will_patrol = 0 // Not a setting - whether or no this type of bots patrols at all
+	var/will_patrol = 0 // If set to 1, will patrol, duh
 	var/patrol_speed = 1 // How many times per tick we move when patrolling
 	var/target_speed = 2 // Ditto for chasing the target
 	var/min_target_dist = 1 // How close we try to get to the target
@@ -49,7 +49,11 @@
 	access_scanner.req_access = req_access.Copy()
 	access_scanner.req_one_access = req_one_access.Copy()
 
-	turn_on()
+// Make sure mapped in units start turned on.
+/mob/living/bot/initialize()
+	..()
+	if(on)
+		turn_on() // Update lights and other stuff
 
 /mob/living/bot/Life()
 	..()
@@ -61,7 +65,8 @@
 	paralysis = 0
 
 	if(on && !client && !busy)
-		handleAI()
+		spawn(0)
+			handleAI()
 
 /mob/living/bot/updatehealth()
 	if(status_flags & GODMODE)
@@ -145,20 +150,18 @@
 			handleRangedTarget()
 		if(!wait_if_pulled || !pulledby)
 			for(var/i = 1 to target_speed)
+				sleep(20 / (target_speed + 1))
 				stepToTarget()
-				if(i < target_speed)
-					sleep(20 / target_speed)
 		if(max_frustration && frustration > max_frustration * target_speed)
 			handleFrustrated(1)
 	else
 		resetTarget()
 		lookForTargets()
 		if(will_patrol && !pulledby && !target)
-			if(patrol_path.len)
+			if(patrol_path && patrol_path.len)
 				for(var/i = 1 to patrol_speed)
+					sleep(20 / (patrol_speed + 1))
 					handlePatrol()
-					if(i < patrol_speed)
-						sleep(20 / patrol_speed)
 				if(max_frustration && frustration > max_frustration * patrol_speed)
 					handleFrustrated(0)
 			else
@@ -219,6 +222,25 @@
 	return
 
 /mob/living/bot/proc/getPatrolTurf()
+	var/minDist = INFINITY
+	var/obj/machinery/navbeacon/targ = locate() in get_turf(src)
+	
+	if(!targ)
+		for(var/obj/machinery/navbeacon/N in navbeacons)
+			if(!N.codes["patrol"])
+				continue
+			if(get_dist(src, N) < minDist)
+				minDist = get_dist(src, N)
+				targ = N
+
+	if(targ && targ.codes["next_patrol"])
+		for(var/obj/machinery/navbeacon/N in navbeacons)
+			if(N.location == targ.codes["next_patrol"])
+				targ = N
+				break
+
+	if(targ)
+		return get_turf(targ)
 	return null
 
 /mob/living/bot/proc/handleIdle()
@@ -255,15 +277,16 @@
 	on = 1
 	set_light(light_strength)
 	update_icons()
+	resetTarget()
+	patrol_path = list()
+	ignore_list = list()
 	return 1
 
 /mob/living/bot/proc/turn_off()
 	on = 0
+	busy = 0 // If ever stuck... reboot!
 	set_light(0)
 	update_icons()
-	resetTarget()
-	patrol_path = list()
-	ignore_list = list()
 
 /mob/living/bot/proc/explode()
 	qdel(src)
@@ -327,6 +350,11 @@
 
 	for(var/obj/machinery/door/D in loc)
 		if(!D.density)			continue
+
+		if(istype(D, /obj/machinery/door/airlock))
+			var/obj/machinery/door/airlock/A = D
+			if(!A.can_open())	return 1
+
 		if(istype(D, /obj/machinery/door/window))
 			if( dir & D.dir )	return !D.check_access(ID)
 
