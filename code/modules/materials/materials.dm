@@ -586,12 +586,18 @@ var/list/name_to_material
 	hardness = 500
 	weight = 500
 
+// Likewise.
+/material/alienalloy/elevatorium
+	name = "elevatorium"
+	display_name = "elevator panelling"
+	icon_colour = "#666666"
+
 /material/wood
 	name = "wood"
 	stack_type = /obj/item/stack/material/wood
 	icon_colour = "#824B28"
 	integrity = 50
-	icon_base = "solid"
+	icon_base = "wood"
 	explosion_resistance = 2
 	shard_type = SHARD_SPLINTER
 	shard_can_repair = 0 // you can't weld splinters back into planks
@@ -612,6 +618,12 @@ var/list/name_to_material
 	stack_type = null
 	shard_type = SHARD_NONE
 
+/material/wood/sif
+	name = "alien wood"
+//	stack_type = /obj/item/stack/material/wood/sif
+	icon_colour = "#0099cc" // Cyan-ish
+	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2) // Alien wood would presumably be more interesting to the analyzer.
+
 /material/cardboard
 	name = "cardboard"
 	stack_type = /obj/item/stack/material/cardboard
@@ -627,6 +639,22 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 1)
 	door_icon_base = "wood"
 	destruction_desc = "crumples"
+
+/material/snow
+	name = "snow"
+	stack_type = /obj/item/stack/material/snow
+	flags = MATERIAL_BRITTLE
+	icon_base = "solid"
+	icon_reinf = "reinf_over"
+	icon_colour = "#FFFFFF"
+	integrity = 1
+	hardness = 1
+	weight = 1
+	stack_origin_tech = list(TECH_MATERIAL = 1)
+	melting_point = T0C+1
+	destruction_desc = "crumples"
+	sheet_singular_name = "pile"
+	sheet_plural_name = "piles"
 
 /material/cloth //todo
 	name = "cloth"

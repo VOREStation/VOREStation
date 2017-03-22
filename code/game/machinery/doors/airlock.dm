@@ -37,7 +37,16 @@
 /obj/machinery/door/airlock/attack_generic(var/mob/user, var/damage)
 	if(stat & (BROKEN|NOPOWER))
 		if(damage >= 10)
-			if(src.density)
+			if(src.locked || src.welded)
+				visible_message("<span class='danger'>\The [user] begins breaking into \the [src] internals!</span>")
+				if(do_after(user,10 SECONDS,src))
+					src.locked = 0
+					src.welded = 0
+					update_icon()
+					open(1)
+					if(prob(25))
+						src.shock(user, 100)
+			else if(src.density)
 				visible_message("<span class='danger'>\The [user] forces \the [src] open!</span>")
 				open(1)
 			else
@@ -328,6 +337,18 @@
 	explosion_resistance = 20
 	secured_wires = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_highsecurity
+
+/obj/machinery/door/airlock/voidcraft
+	name = "voidcraft hatch"
+	desc = "It's an extra resilient airlock intended for spacefaring vessels."
+	icon = 'icons/obj/doors/shuttledoors.dmi'
+	explosion_resistance = 20
+	assembly_type = /obj/structure/door_assembly/door_assembly_voidcraft
+
+// Airlock opens from top-bottom instead of left-right.
+/obj/machinery/door/airlock/voidcraft/vertical
+	icon = 'icons/obj/doors/shuttledoors_vertical.dmi'
+	assembly_type = /obj/structure/door_assembly/door_assembly_voidcraft/vertical
 
 /*
 About the new airlock wires panel:
@@ -1041,7 +1062,7 @@ About the new airlock wires panel:
 
 	//wires
 	var/turf/T = get_turf(newloc)
-	if(T && (T.z in config.admin_levels))
+	if(T && (T.z in using_map.admin_levels))
 		secured_wires = 1
 	if (secured_wires)
 		wires = new/datum/wires/airlock/secure(src)

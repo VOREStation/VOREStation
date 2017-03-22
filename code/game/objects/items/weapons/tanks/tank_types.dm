@@ -103,7 +103,7 @@
 /obj/item/weapon/tank/vox	//Can't be a child of phoron or the gas amount gets screwey.
 	name = "phoron tank"
 	desc = "Contains dangerous phoron. Do not inhale. Warning: extremely flammable."
-	icon_state = "oxygen_fr"
+	icon_state = "phoron_vox"
 	gauge_icon = null
 	flags = CONDUCT
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD

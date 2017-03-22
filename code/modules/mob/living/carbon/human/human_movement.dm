@@ -13,9 +13,6 @@
 	if(force_max_speed)
 		return -3 // Returning -1 will actually result in a slowdown for Teshari.
 
-	if(CE_SPEEDBOOST in chem_effects)
-		return -3
-
 	var/health_deficiency = (maxHealth - health)
 	if(health_deficiency >= 40) tally += (health_deficiency / 25)
 
@@ -78,6 +75,15 @@
 	if(pulling && istype(pulling, /obj/item))
 		var/obj/item/pulled = pulling
 		tally += max(pulled.slowdown, 0)
+
+	var/turf/T = get_turf(src)
+	if(T && T.movement_cost)
+		tally += T.movement_cost
+
+	if(CE_SPEEDBOOST in chem_effects)
+		if (tally >= 0)	// cut any penalties in half
+			tally = tally/2
+		tally -= 1	// give 'em a buff on top.
 
 	return (tally+config.human_delay)
 

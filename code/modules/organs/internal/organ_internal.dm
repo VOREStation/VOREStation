@@ -48,3 +48,15 @@
 		dead_icon = "[initial(dead_icon)]_assisted"
 
 // Brain is defined in brain.dm
+/obj/item/organ/internal/handle_germ_effects()
+	. = ..() //Should be an interger value for infection level
+	if(!.) return
+
+	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
+
+	if(. >= 2 && antibiotics < 5) //INFECTION_LEVEL_TWO
+		if (prob(3))
+			take_damage(1,silent=prob(30))
+
+	//if(. >= 3 && antibiotics < 30)	//INFECTION_LEVEL_THREE, others are handled on each specific organ
+		//Nothing that generic internal organs do for this

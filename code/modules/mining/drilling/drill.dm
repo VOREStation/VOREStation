@@ -17,7 +17,7 @@
 	var/list/resource_field = list()
 
 	var/ore_types = list(
-		"iron" = /obj/item/weapon/ore/iron,
+		"hematite" = /obj/item/weapon/ore/iron,
 		"uranium" = /obj/item/weapon/ore/uranium,
 		"gold" = /obj/item/weapon/ore/gold,
 		"silver" = /obj/item/weapon/ore/silver,
@@ -26,7 +26,7 @@
 		"osmium" = /obj/item/weapon/ore/osmium,
 		"hydrogen" = /obj/item/weapon/ore/hydrogen,
 		"silicates" = /obj/item/weapon/ore/glass,
-		"carbonaceous rock" = /obj/item/weapon/ore/coal
+		"carbon" = /obj/item/weapon/ore/coal
 		)
 
 	//Upgrades

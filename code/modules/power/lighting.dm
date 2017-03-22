@@ -527,6 +527,7 @@
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(H))
+			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			for(var/mob/M in viewers(src))
 				M.show_message("\red [user.name] smashed the light!", 3, "You hear a tinkle of breaking glass", 2)
 			broken()

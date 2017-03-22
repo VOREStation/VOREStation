@@ -28,9 +28,10 @@
 	var/totalFlavor = 0
 	for(var/taste in data)
 		totalFlavor += data[taste]
-	for(var/taste in data)
-		if(data[taste]/totalFlavor < 0.1)
-			data -= taste
+	if(totalFlavor) //Let's not divide by zero for things w/o taste
+		for(var/taste in data)
+			if(data[taste]/totalFlavor < 0.1)
+				data -= taste
 
 /datum/reagent/nutriment/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(!injectable)
@@ -114,7 +115,7 @@
 			M.drowsyness = max(M.drowsyness, 60)
 
 /datum/reagent/nutriment/flour
-	name = "flour"
+	name = "Flour"
 	id = "flour"
 	description = "This is what you rub all over yourself to pretend to be a ghost."
 	taste_description = "chalky wheat"
@@ -698,6 +699,71 @@
 	cup_icon_state = "cup_tea"
 	cup_name = "cup of iced tea"
 	cup_desc = "No relation to a certain rap artist/ actor."
+
+/datum/reagent/drink/tea/minttea
+	name = "Mint Tea"
+	id = "minttea"
+	description = "A tasty mixture of mint and tea. It's apparently good for you!"
+	color = "#A8442C"
+	taste_description = "black tea with tones of mint"
+
+	glass_name = "mint tea"
+	glass_desc = "A tasty mixture of mint and tea. It's apparently good for you!"
+
+	cup_name = "cup of mint tea"
+	cup_desc = "A tasty mixture of mint and tea. It's apparently good for you!"
+
+/datum/reagent/drink/tea/lemontea
+	name = "Lemon Tea"
+	id = "lemontea"
+	description = "A tasty mixture of lemon and tea. It's apparently good for you!"
+	color = "#FC6A00"
+	taste_description = "black tea with tones of lemon"
+
+	glass_name = "lemon tea"
+	glass_desc = "A tasty mixture of lemon and tea. It's apparently good for you!"
+
+	cup_name = "cup of lemon tea"
+	cup_desc = "A tasty mixture of lemon and tea. It's apparently good for you!"
+
+/datum/reagent/drink/tea/limetea
+	name = "Lime Tea"
+	id = "limetea"
+	description = "A tasty mixture of lime and tea. It's apparently good for you!"
+	color = "#DE4300"
+	taste_description = "black tea with tones of lime"
+
+	glass_name = "lime tea"
+	glass_desc = "A tasty mixture of lime and tea. It's apparently good for you!"
+
+	cup_name = "cup of berry tea"
+	cup_desc = "A tasty mixture of lime and tea. It's apparently good for you!"
+
+/datum/reagent/drink/tea/orangetea
+	name = "Orange Tea"
+	id = "orangetea"
+	description = "A tasty mixture of orange and tea. It's apparently good for you!"
+	color = "#FB4F06"
+	taste_description = "black tea with tones of orange"
+
+	glass_name = "orange tea"
+	glass_desc = "A tasty mixture of orange and tea. It's apparently good for you!"
+
+	cup_name = "cup of orange tea"
+	cup_desc = "A tasty mixture of orange and tea. It's apparently good for you!"
+
+/datum/reagent/drink/tea/berrytea
+	name = "Berry Tea"
+	id = "berrytea"
+	description = "A tasty mixture of berries and tea. It's apparently good for you!"
+	color = "#A60735"
+	taste_description = "black tea with tones of berries"
+
+	glass_name = "berry tea"
+	glass_desc = "A tasty mixture of berries and tea. It's apparently good for you!"
+
+	cup_name = "cup of berry tea"
+	cup_desc = "A tasty mixture of berries and tea. It's apparently good for you!"
 
 /datum/reagent/drink/coffee
 	name = "Coffee"
@@ -2165,3 +2231,4 @@
 
 	glass_name = "special blend whiskey"
 	glass_desc = "Just when you thought regular station whiskey was good... This silky, amber goodness has to come along and ruin everything."
+

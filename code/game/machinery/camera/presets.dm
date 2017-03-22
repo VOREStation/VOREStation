@@ -1,4 +1,5 @@
 // PRESETS
+/*
 var/global/list/station_networks = list(
 //										NETWORK_CAFE_DOCK,
 										NETWORK_CARGO,
@@ -9,7 +10,7 @@ var/global/list/station_networks = list(
 										NETWORK_ENGINE,
 										NETWORK_ENGINEERING,
 										NETWORK_ENGINEERING_OUTPOST,
-										NETWORK_EXODUS,
+										NETWORK_DEFAULT,
 										NETWORK_MEDICAL,
 										NETWORK_MINE,
 										NETWORK_NORTHERN_STAR,
@@ -20,6 +21,7 @@ var/global/list/station_networks = list(
 										NETWORK_SECURITY,
 										NETWORK_INTERROGATION
 										)
+*/
 var/global/list/engineering_networks = list(
 										NETWORK_ENGINE,
 										NETWORK_ENGINEERING,
@@ -65,7 +67,7 @@ var/global/list/engineering_networks = list(
 	network = list(NETWORK_ERT)
 
 /obj/machinery/camera/network/exodus
-	network = list(NETWORK_EXODUS)
+	network = list(NETWORK_DEFAULT)
 
 /obj/machinery/camera/network/interrogation
 	network = list(NETWORK_INTERROGATION)

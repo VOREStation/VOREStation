@@ -76,7 +76,6 @@
 
 	switch(mode)
 		if(SYRINGE_DRAW)
-
 			if(!reagents.get_free_space())
 				user << "<span class='warning'>The syringe is full.</span>"
 				mode = SYRINGE_INJECT
@@ -137,7 +136,7 @@
 					user << "<span class='notice'>[target] is empty.</span>"
 					return
 
-				if(!target.is_open_container() && !istype(target, /obj/structure/reagent_dispensers) && !istype(target, /obj/item/slime_extract))
+				if(!target.is_open_container() && !istype(target, /obj/structure/reagent_dispensers) && !istype(target, /obj/item/slime_extract) && !istype(target, /obj/item/weapon/reagent_containers/food))
 					user << "<span class='notice'>You cannot directly remove reagents from this object.</span>"
 					return
 
@@ -209,7 +208,7 @@
 				trans = reagents.trans_to_mob(target, amount_per_transfer_from_this, CHEM_BLOOD)
 				admin_inject_log(user, target, src, contained, trans)
 			else
-				trans = reagents.trans_to(target, amount_per_transfer_from_this)
+				trans = reagents.trans_to_obj(target, amount_per_transfer_from_this)
 			if(trans)
 				user << "<span class='notice'>You inject [trans] units of the solution. The syringe now contains [src.reagents.total_volume] units.</span>"
 			else

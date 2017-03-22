@@ -377,7 +377,7 @@
 
 
 /obj/machinery/power/smes/proc/ion_act()
-	if(src.z in config.station_levels)
+	if(src.z in using_map.station_levels)
 		if(prob(1)) //explosion
 			for(var/mob/M in viewers(src))
 				M.show_message("\red The [src.name] is making strange noises!", 3, "\red You hear sizzling electronics.", 2)
@@ -393,10 +393,14 @@
 			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 			s.set_up(3, 1, src)
 			s.start()
-			if(prob(50))
+			if(prob(25))
 				emp_act(1)
-			else
+			else if(prob(25))
 				emp_act(2)
+			else if(prob(25))
+				emp_act(3)
+			else
+				emp_act(4)
 		if(prob(5)) //smoke only
 			var/datum/effect/effect/system/smoke_spread/smoke = new /datum/effect/effect/system/smoke_spread()
 			smoke.set_up(3, 0, src.loc)

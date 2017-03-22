@@ -162,6 +162,8 @@
 
 	darksight = 4
 
+	ambiguous_genders = TRUE
+
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR
 
@@ -192,6 +194,9 @@
 		BP_L_FOOT = list("path" = /obj/item/organ/external/foot),
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
 		)
+
+/datum/species/skrell/can_breathe_water()
+	return TRUE
 
 /datum/species/diona
 	name = "Diona"

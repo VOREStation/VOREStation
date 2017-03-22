@@ -12,13 +12,6 @@
 	slot_flags = SLOT_EARS
 	volume = 5
 
-
-/obj/item/weapon/reagent_containers/dropper/do_surgery(mob/living/carbon/M, mob/living/user)
-	if(user.a_intent != I_HELP) //in case it is ever used as a surgery tool
-		return ..()
-	afterattack(M, user, 1)
-	return 1
-
 /obj/item/weapon/reagent_containers/dropper/afterattack(var/obj/target, var/mob/user, var/proximity)
 	if(!target.reagents || !proximity) return
 
@@ -75,7 +68,7 @@
 			return
 
 		else
-			trans = reagents.splash(target, amount_per_transfer_from_this, max_spill=30) //sprinkling reagents on generic non-mobs
+			trans = reagents.splash(target, amount_per_transfer_from_this, max_spill=0) //sprinkling reagents on generic non-mobs
 			user << "<span class='notice'>You transfer [trans] units of the solution.</span>"
 
 	else // Taking from something

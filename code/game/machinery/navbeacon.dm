@@ -1,52 +1,45 @@
 // Navigation beacon for AI robots
 // Functions as a transponder: looks for incoming signal matching
 
-var/global/list/navbeacons			// no I don't like putting this in, but it will do for now
+var/global/list/navbeacons = list()	// no I don't like putting this in, but it will do for now
 
 /obj/machinery/navbeacon
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "navbeacon0-f"
 	name = "navigation beacon"
-	desc = "A radio beacon used for bot navigation."
+	desc = "A beacon used for bot navigation."
 	level = 1		// underfloor
 	layer = 2.5
 	anchored = 1
 	var/open = 0		// true if cover is open
 	var/locked = 1		// true if controls are locked
-	var/freq = 1445		// radio frequency
+	var/freq = null		// DEPRECATED we don't use radios anymore!
 	var/location = ""	// location response text
-	var/list/codes		// assoc. list of transponder codes
-	var/codes_txt = ""	// codes as set on map: "tag1;tag2" or "tag1=value;tag2=value"
+	var/codes_txt		// DEPRECATED codes as set on map: "tag1;tag2" or "tag1=value;tag2=value"
+	var/list/codes = list()	// assoc. list of transponder codes
 	req_access = list(access_engine)
 
 /obj/machinery/navbeacon/New()
 	..()
-
-	set_codes()
+	set_codes_from_txt(codes_txt)
+	if(freq)
+		warning("[src] at [x],[y],[z] has deprecated var freq=[freq].  Replace it with proper type.")
 
 	var/turf/T = loc
 	hide(!T.is_plating())
-
-	// add beacon to MULE bot beacon list
-	if(freq == 1400)
-		if(!navbeacons)
-			navbeacons = new()
-		navbeacons += src
-
-
-	spawn(5)	// must wait for map loading to finish
-		if(radio_controller)
-			radio_controller.add_object(src, freq, RADIO_NAVBEACONS)
+	navbeacons += src
 
 // set the transponder codes assoc list from codes_txt
-/obj/machinery/navbeacon/proc/set_codes()
+// DEPRECATED - This is kept only for compatibilty with old map files! Do not use this!
+// Instead, you should replace the map instance with one of the appropriate navbeacon subtypes.
+// See the bottom of this file for a list of subtypes, make your own examples if your map needs more
+/obj/machinery/navbeacon/proc/set_codes_from_txt()
 	if(!codes_txt)
 		return
+	warning("[src] at [x],[y],[z] in [get_area(src)] is using the deprecated 'codes_txt' mapping method.  Replace it with proper type.")
 
-	codes = new()
-
+	codes = list()
 	var/list/entries = splittext(codes_txt, ";")	// entries are separated by semicolons
-
 	for(var/e in entries)
 		var/index = findtext(e, "=")		// format is "key=value"
 		if(index)
@@ -56,6 +49,8 @@ var/global/list/navbeacons			// no I don't like putting this in, but it will do 
 		else
 			codes[e] = "1"
 
+/obj/machinery/navbeacon/hides_under_flooring()
+	return 1
 
 // called when turf state changes
 // hide the object if turf is intact
@@ -73,38 +68,6 @@ var/global/list/navbeacons			// no I don't like putting this in, but it will do 
 	else
 		icon_state = "[state]"
 
-
-// look for a signal of the form "findbeacon=X"
-// where X is any
-// or the location
-// or one of the set transponder keys
-// if found, return a signal
-/obj/machinery/navbeacon/receive_signal(datum/signal/signal)
-
-	var/request = signal.data["findbeacon"]
-	if(request && ((request in codes) || request == "any" || request == location))
-		spawn(1)
-			post_signal()
-
-// return a signal giving location and transponder codes
-
-/obj/machinery/navbeacon/proc/post_signal()
-
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(freq)
-
-	if(!frequency) return
-
-	var/datum/signal/signal = new()
-	signal.source = src
-	signal.transmission_method = 1
-	signal.data["beacon"] = location
-
-	for(var/key in codes)
-		signal.data[key] = codes[key]
-
-	frequency.post_signal(src, signal, filter = RADIO_NAVBEACONS)
-
-
 /obj/machinery/navbeacon/attackby(var/obj/item/I, var/mob/user)
 	var/turf/T = loc
 	if(!T.is_plating())
@@ -117,7 +80,7 @@ var/global/list/navbeacons			// no I don't like putting this in, but it will do 
 
 		updateicon()
 
-	else if(istype(I, /obj/item/weapon/card/id)||istype(I, /obj/item/device/pda))
+	else if(I.GetID())
 		if(open)
 			if(allowed(user))
 				locked = !locked
@@ -153,8 +116,7 @@ var/global/list/navbeacons			// no I don't like putting this in, but it will do 
 
 	if(locked && !ai)
 		t = {"<TT><B>Navigation Beacon</B><HR><BR>
-<i>(swipe card to unlock controls)</i><BR>
-Frequency: [format_frequency(freq)]<BR><HR>
+<i>(swipe card to unlock controls)</i><BR><HR>
 Location: [location ? location : "(none)"]</A><BR>
 Transponder Codes:<UL>"}
 
@@ -165,14 +127,7 @@ Transponder Codes:<UL>"}
 	else
 
 		t = {"<TT><B>Navigation Beacon</B><HR><BR>
-<i>(swipe card to lock controls)</i><BR>
-Frequency:
-<A href='byond://?src=\ref[src];freq=-10'>-</A>
-<A href='byond://?src=\ref[src];freq=-2'>-</A>
-[format_frequency(freq)]
-<A href='byond://?src=\ref[src];freq=2'>+</A>
-<A href='byond://?src=\ref[src];freq=10'>+</A><BR>
-<HR>
+<i>(swipe card to lock controls)</i><BR><HR>
 Location: <A href='byond://?src=\ref[src];locedit=1'>[location ? location : "(none)"]</A><BR>
 Transponder Codes:<UL>"}
 
@@ -195,11 +150,7 @@ Transponder Codes:<UL>"}
 		if(open && !locked)
 			usr.set_machine(src)
 
-			if(href_list["freq"])
-				freq = sanitize_frequency(freq + text2num(href_list["freq"]))
-				updateDialog()
-
-			else if(href_list["locedit"])
+			if(href_list["locedit"])
 				var/newloc = sanitize(input("Enter New Location", "Navigation Beacon", location) as text|null)
 				if(newloc)
 					location = newloc
@@ -248,6 +199,41 @@ Transponder Codes:<UL>"}
 
 /obj/machinery/navbeacon/Destroy()
 	navbeacons.Remove(src)
-	if(radio_controller)
-		radio_controller.remove_object(src, freq)
+	..()
+
+
+//
+// Nav Beacon Mapping
+// These subtypes are what you should actually put into maps! they will make your life much easier.
+//
+// Developer Note: navbeacons do not HAVE to use these subtypes.  They are purely for mapping convenience.
+// You can feel free to construct them in-game as just /obj/machinery/navbeacon and they will work just
+// fine, and you can define your own specific types for every instance on map if you want (BayStation does)
+// This design is a compromise that means you can do mapping without every single one being its own type
+// but with it still being easy to map ~ Leshana
+//
+
+// Mulebot delivery destinations
+
+/obj/machinery/navbeacon/delivery/north
+	codes = list("delivery" = 1, "dir" = NORTH)
+
+/obj/machinery/navbeacon/delivery/south
+	codes = list("delivery" = 1, "dir" = SOUTH)
+
+/obj/machinery/navbeacon/delivery/east
+	codes = list("delivery" = 1, "dir" = EAST)
+
+/obj/machinery/navbeacon/delivery/west
+	codes = list("delivery" = 1, "dir" = WEST)
+
+
+// For part of the patrol route
+// You MUST set "location"
+// You MUST set "next_patrol"
+/obj/machinery/navbeacon/patrol
+	var/next_patrol
+
+/obj/machinery/navbeacon/patrol/New()
+	codes = list("patrol" = 1, "next_patrol" = next_patrol)
 	..()

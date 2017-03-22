@@ -102,11 +102,19 @@
 /obj/item/organ/external/emp_act(severity)
 	if(!(robotic >= ORGAN_ROBOT))
 		return
+	var/burn_damage = 0
 	switch (severity)
 		if (1)
-			take_damage(rand(6, 10))
+			burn_damage += rand(8, 13)
 		if (2)
-			take_damage(rand(2, 6))
+			burn_damage += rand(6, 9)
+		if(3)
+			burn_damage += rand(4, 7)
+		if(4)
+			burn_damage += rand(1, 5)
+
+	if(burn_damage)
+		take_damage(0, burn_damage)
 
 /obj/item/organ/external/attack_self(var/mob/living/user)
 	if(!contents.len)
@@ -243,11 +251,11 @@
 	return (vital || (robotic >= ORGAN_ROBOT) || brute_dam + burn_dam + additional_damage < max_damage)
 
 /obj/item/organ/external/take_damage(brute, burn, sharp, edge, used_weapon = null, list/forbidden_limbs = list())
+	brute = round(brute * brute_mod, 0.1)
+	burn = round(burn * burn_mod, 0.1)
+
 	if((brute <= 0) && (burn <= 0))
 		return 0
-
-	brute *= brute_mod
-	burn *= burn_mod
 
 	// High brute damage or sharp objects may damage internal organs
 	if(internal_organs && (brute_dam >= max_damage || (((sharp && brute >= 5) || brute >= 10) && prob(5))))
@@ -479,7 +487,7 @@ This function completely restores a damaged organ to perfect condition.
 	if((damage > 15) && (type != BURN) && (local_damage > 30) && prob(damage) && (robotic < ORGAN_ROBOT))
 		var/datum/wound/internal_bleeding/I = new (min(damage - 15, 15))
 		wounds += I
-		owner.custom_pain("You feel something rip in your [name]!", 50)
+		owner.custom_pain("You feel something rip in your [name]!", 1)
 
 //Burn damage can cause fluid loss due to blistering and cook-off
 	if((damage > 5 || damage + burn_dam >= 15) && type == BURN && (robotic < ORGAN_ROBOT))
@@ -622,13 +630,12 @@ Note that amputating the affected organ does in fact remove the infection from t
 				break	//limit increase to a maximum of one per second
 
 /obj/item/organ/external/handle_germ_effects()
-
-	if(germ_level < INFECTION_LEVEL_TWO)
-		return ..()
+	. = ..() //May be null or an infection level, if null then no specific processing needed here
+	if(!.) return
 
 	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
 
-	if(germ_level >= INFECTION_LEVEL_TWO)
+	if(. >= 2 && antibiotics < 5) //INFECTION_LEVEL_TWO
 		//spread the infection to internal organs
 		var/obj/item/organ/target_organ = null	//make internal organs become infected one at a time instead of all at once
 		for (var/obj/item/organ/I in internal_organs)
@@ -660,14 +667,13 @@ Note that amputating the affected organ does in fact remove the infection from t
 				if (parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30))
 					parent.germ_level++
 
-	if(germ_level >= INFECTION_LEVEL_THREE && antibiotics < 30)	//overdosing is necessary to stop severe infections
+	if(. >= 3 && antibiotics < 30)	//INFECTION_LEVEL_THREE
 		if (!(status & ORGAN_DEAD))
 			status |= ORGAN_DEAD
 			owner << "<span class='notice'>You can't feel your [name] anymore...</span>"
 			owner.update_body(1)
-
-		germ_level++
-		owner.adjustToxLoss(1)
+			for (var/obj/item/organ/external/child in children)
+				child.germ_level += 110 //Burst of infection from a parent organ becoming necrotic
 
 //Updating wounds. Handles wound natural I had some free spachealing, internal bleedings and infections
 /obj/item/organ/external/proc/update_wounds()
@@ -699,7 +705,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 			owner.vessel.remove_reagent("blood", wound_update_accuracy * W.damage/40) //line should possibly be moved to handle_blood, so all the bleeding stuff is in one place.
 			if(prob(1 * wound_update_accuracy))
-				owner.custom_pain("You feel a stabbing pain in your [name]!", 50)
+				owner.custom_pain("You feel a stabbing pain in your [name]!",1)
 
 		// slow healing
 		var/heal_amt = 0

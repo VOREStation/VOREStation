@@ -212,7 +212,7 @@
 				h_user.adjustFireLoss(rand(10,25))
 				h_user.Paralyse(5)
 			spawn(0)
-				empulse(src.loc, 2, 4)
+				empulse(src.loc, 1, 2, 3, 4)
 			charge = 0
 
 		if (36 to 60)
@@ -229,7 +229,7 @@
 				h_user.adjustFireLoss(rand(35,75))
 				h_user.Paralyse(12)
 			spawn(0)
-				empulse(src.loc, 8, 16)
+				empulse(src.loc, 6, 8, 12, 16)
 			charge = 0
 			apcs_overload(1, 10)
 			src.ping("Caution. Output regulators malfunction. Uncontrolled discharge detected.")
