@@ -350,6 +350,11 @@
 
 	for(var/obj/machinery/door/D in loc)
 		if(!D.density)			continue
+
+		if(istype(D, /obj/machinery/door/airlock))
+			var/obj/machinery/door/airlock/A = D
+			if(!A.can_open())	return 1
+
 		if(istype(D, /obj/machinery/door/window))
 			if( dir & D.dir )	return !D.check_access(ID)
 
