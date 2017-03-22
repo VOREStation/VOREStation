@@ -346,3 +346,16 @@ client/verb/character_setup()
 	set category = "Preferences"
 	if(prefs)
 		prefs.ShowChoices(usr)
+
+client/verb/update_flavors()
+	set name = "Reapply Flavortext"
+	set category = "Preferences"
+	set desc = "Updates the on-mob flavortext with current, as defined in character setup"
+
+	if(prefs && prefs.player_setup && isliving(mob))
+		var/datum/category_group/player_setup_category/general_preferences/gpc = prefs.player_setup.categories_by_name["General"]
+		var/datum/category_item/player_setup_item/general/flavor/flav = gpc.items_by_name["Flavor"]
+		flav.copy_to_mob(mob)
+		src << "<span class='notice'>Flavortext re-applied!</span>"
+	else
+		src << "<span class='warning'>You can't update your flavortext right now!</span>"
