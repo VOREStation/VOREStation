@@ -8,19 +8,16 @@
 	icon_dead = "drone_dead"
 
 	faction = "malf_drone"
-	hostile = 1
-	retaliate = 1
+	maxHealth = 300
+	health = 300
+	speed = 8
+	stop_when_pulled = 0
 
 	turns_per_move = 3
 	response_help = "pokes"
 	response_disarm = "gently pushes aside"
 	response_harm = "hits"
-
-	health = 300
-	maxHealth = 300
-	speed = 8
-	stop_when_pulled = 0
-
+	
 	a_intent = I_HURT
 	ranged = 1
 	rapid = 1

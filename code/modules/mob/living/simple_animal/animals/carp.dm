@@ -7,9 +7,6 @@
 	icon_gib = "carp_gib"
 
 	faction = "carp"
-	hostile = 1
-	retaliate = 1
-
 	maxHealth = 25
 	health = 25
 	speed = 4

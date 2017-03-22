@@ -35,7 +35,16 @@
 	max_n2 = 0
 	minbodytemp = 0
 
-	speak_chance = 0
+	speak_chance = 10
+	speak = list("HONK!")
+	emote_hear = list("honks loudly!")
+	emote_see = list()
+	say_understood = list()
+	say_cannot = list()
+	say_maybe_target = list("Honk?")
+	say_got_target = list("HONK!!!")
+	reactions = list()
+
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
 

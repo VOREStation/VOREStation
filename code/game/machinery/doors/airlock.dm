@@ -338,6 +338,18 @@
 	secured_wires = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_highsecurity
 
+/obj/machinery/door/airlock/voidcraft
+	name = "voidcraft hatch"
+	desc = "It's an extra resilient airlock intended for spacefaring vessels."
+	icon = 'icons/obj/doors/shuttledoors.dmi'
+	explosion_resistance = 20
+	assembly_type = /obj/structure/door_assembly/door_assembly_voidcraft
+
+// Airlock opens from top-bottom instead of left-right.
+/obj/machinery/door/airlock/voidcraft/vertical
+	icon = 'icons/obj/doors/shuttledoors_vertical.dmi'
+	assembly_type = /obj/structure/door_assembly/door_assembly_voidcraft/vertical
+
 /*
 About the new airlock wires panel:
 *	An airlock wire dialog can be accessed by the normal way or by using wirecutters or a multitool on the door while the wire-panel is open. This would show the following wires, which you can either wirecut/mend or send a multitool pulse through. There are 9 wires.

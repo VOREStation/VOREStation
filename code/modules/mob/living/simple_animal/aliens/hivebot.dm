@@ -7,11 +7,8 @@
 	icon_dead = "basic"
 
 	faction = "hivebot"
-	hostile = 1
-	retaliate = 1
-
-	health = 15
 	maxHealth = 15
+	health = 15
 	speed = 4
 
 	melee_damage_lower = 2

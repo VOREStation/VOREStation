@@ -6,18 +6,15 @@
 	icon_dead = "faithless_dead"
 
 	faction = "faithless"
-	hostile = 1
-	retaliate = 1
+	maxHealth = 50
+	health = 50
+	speed = 8
 
 	turns_per_move = 5
 	response_help = "passes through"
 	response_disarm = "shoves"
 	response_harm = "hits"
-
-	maxHealth = 50
-	health = 50
-	speed = 8
-
+	
 	harm_intent_damage = 10
 	melee_damage_lower = 5
 	melee_damage_upper = 5

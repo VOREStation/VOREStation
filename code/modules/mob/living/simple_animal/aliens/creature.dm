@@ -7,9 +7,6 @@
 	icon_dead = "otherthing-dead"
 
 	faction = "creature"
-	hostile = 1
-	retaliate = 1
-
 	maxHealth = 40
 	health = 40
 	speed = 8

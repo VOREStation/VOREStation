@@ -8,9 +8,6 @@
 	faction = "plants"
 	maxHealth = 15
 	health = 15
-
-	hostile = 1
-
 	turns_per_move = 5
 
 	response_help  = "prods"

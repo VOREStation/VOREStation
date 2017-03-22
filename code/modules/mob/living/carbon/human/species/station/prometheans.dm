@@ -28,7 +28,10 @@ var/datum/species/shapeshifter/promethean/prometheans
 	breath_type = null
 	poison_type = null
 
-//	gluttonous =            1 // Vorestation edit. Redundant feature.
+	male_cough_sounds = list('sound/effects/slime_squish.ogg')
+	female_cough_sounds = list('sound/effects/slime_squish.ogg')
+
+	//gluttonous =            1 // VOREStation Edit. Redundant feature.
 	virus_immune =          1
 	blood_volume =          560
 	min_age =               1

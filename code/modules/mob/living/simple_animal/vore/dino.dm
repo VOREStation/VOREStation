@@ -1,4 +1,4 @@
- /mob/living/simple_animal/hostile/dino
+/mob/living/simple_animal/hostile/dino
 	name = "voracious lizard"
 	desc = "These gluttonous little bastards used to be regular lizards that were mutated by long-term exposure to phoron!"
 	icon = 'icons/mob/vore.dmi'
