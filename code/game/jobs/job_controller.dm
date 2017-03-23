@@ -416,13 +416,13 @@ var/global/datum/controller/occupations/job_master
 			if(!S)
 				S = locate("start*[rank]") // use old stype
 			if(istype(S, /obj/effect/landmark/start) && istype(S.loc, /turf))
-				H.loc = S.loc
+				H.forceMove(S.loc)
 			else
 				LateSpawn(H, rank)
 
 			// Moving wheelchair if they have one
 			if(H.buckled && istype(H.buckled, /obj/structure/bed/chair/wheelchair))
-				H.buckled.loc = H.loc
+				H.buckled.forceMove(H.loc)
 				H.buckled.set_dir(H.dir)
 
 		// If they're head, give them the account info for their department
@@ -627,12 +627,12 @@ var/global/datum/controller/occupations/job_master
 
 	if(spawnpos && istype(spawnpos))
 		if(spawnpos.check_job_spawning(rank))
-			H.loc = pick(spawnpos.turfs)
+			H.forceMove(pick(spawnpos.turfs))
 			. = spawnpos.msg
 		else
 			H << "Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Spawning you at the Arrivals shuttle instead."
-			H.loc = pick(latejoin)
+			H.forceMove(pick(latejoin))
 			. = "has arrived on the station"
 	else
-		H.loc = pick(latejoin)
+		H.forceMove(pick(latejoin))
 		. = "has arrived on the station"
