@@ -3,12 +3,12 @@
 	name = "shallow water"
 	desc = "A body of water.  It seems shallow enough to walk through, if needed."
 	icon = 'icons/turf/outdoors.dmi'
-	icon_state = "water_shallow"
+	icon_state = "seashallow" // So it shows up in the map editor as water.
+	var/water_state = "water_shallow"
 	var/under_state = "rock"
 	edge_blending_priority = -1
 	movement_cost = 4
 	outdoors = TRUE
-	var/movement_message = "You are slowed considerably from the water as you move across it." // Displayed to mobs crossing from one water tile to another.
 	var/depth = 1 // Higher numbers indicates deeper water.
 
 /turf/simulated/floor/water/New()
@@ -17,6 +17,7 @@
 
 /turf/simulated/floor/water/update_icon()
 	..() // To get the edges.  This also gets rid of other overlays so it needs to go first.
+	icon_state = water_state
 	var/image/floorbed_sprite = image(icon = 'icons/turf/outdoors.dmi', icon_state = under_state)
 	underlays.Add(floorbed_sprite)
 	update_icon_edge()
@@ -43,8 +44,6 @@
 		L.update_water()
 		if(!istype(oldloc, /turf/simulated/floor/water))
 			to_chat(L, "<span class='warning'>You get drenched in water from entering \the [src]!</span>")
-		else
-			to_chat(L, "<span class='warning'>[movement_message]</span>")
 	AM.water_act(5)
 	..()
 
@@ -63,13 +62,17 @@
 	under_state = "abyss"
 	edge_blending_priority = -2
 	movement_cost = 8
-	movement_message = "You swim forwards."
 	depth = 2
 
 /turf/simulated/floor/water/pool
 	name = "pool"
 	desc = "Don't worry, it's not closed."
 	under_state = "pool"
+	outdoors = FALSE
+
+/turf/simulated/floor/water/deep/pool
+	name = "deep pool"
+	desc = "Don't worry, it's not closed."
 	outdoors = FALSE
 
 /mob/living/proc/can_breathe_water()
@@ -94,3 +97,32 @@
 	adjust_fire_stacks(amount * 5)
 	for(var/atom/movable/AM in contents)
 		AM.water_act(amount)
+
+var/list/shoreline_icon_cache = list()
+
+/turf/simulated/floor/water/shoreline
+	name = "shoreline"
+	desc = "The waves look calm and inviting."
+	icon_state = "shoreline"
+	water_state = "rock" // Water gets generated as an overlay in update_icon()
+	depth = 0
+
+/turf/simulated/floor/water/shoreline/corner
+	icon_state = "shorelinecorner"
+
+// Water sprites are really annoying, so let BYOND sort it out.
+/turf/simulated/floor/water/shoreline/update_icon()
+	underlays.Cut()
+	overlays.Cut()
+	..() // Get the underlay first.
+	var/cache_string = "[initial(icon_state)]_[water_state]_[dir]"
+	if(cache_string in shoreline_icon_cache) // Check to see if an icon already exists.
+		overlays += shoreline_icon_cache[cache_string]
+	else // If not, make one, but only once.
+		var/icon/shoreline_water = icon(src.icon, "shoreline_water", src.dir)
+		var/icon/shoreline_subtract = icon(src.icon, "[initial(icon_state)]_subtract", src.dir)
+		shoreline_water.Blend(shoreline_subtract,ICON_SUBTRACT)
+
+		shoreline_icon_cache[cache_string] = shoreline_water
+		overlays += shoreline_icon_cache[cache_string]
+

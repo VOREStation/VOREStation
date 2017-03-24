@@ -72,7 +72,7 @@
 
 /obj/structure/largecrate/animal/goat
 	name = "goat crate"
-	held_type = /mob/living/simple_animal/hostile/retaliate/goat
+	held_type = /mob/living/simple_animal/retaliate/goat
 
 /obj/structure/largecrate/animal/cat
 	name = "cat carrier"

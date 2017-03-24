@@ -1,7 +1,7 @@
 /turf/simulated/floor/outdoors/snow
 	name = "snow"
 	icon_state = "snow"
-	edge_blending_priority = 5
+	edge_blending_priority = 6
 	movement_cost = 2
 	turf_layers = list(
 		/turf/simulated/floor/outdoors/rocks,

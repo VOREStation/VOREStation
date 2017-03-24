@@ -298,7 +298,7 @@
 	if(target && prob(60))
 		movement_dir = get_dir(src,target) //moves to a singulo beacon, if there is one
 
-	if(current_size >= 9)//The superlarge one does not care about things in its way
+	if(current_size >= STAGE_FIVE)//The superlarge one does not care about things in its way
 		spawn(0)
 			step(src, movement_dir)
 		spawn(1)
@@ -319,17 +319,17 @@
 	var/steps = 0
 	if(!step)
 		switch(current_size)
-			if(1)
+			if(STAGE_ONE)
 				steps = 1
-			if(3)
+			if(STAGE_TWO)
 				steps = 3//Yes this is right
-			if(5)
+			if(STAGE_THREE)
 				steps = 3
-			if(7)
+			if(STAGE_FOUR)
 				steps = 4
-			if(9)
+			if(STAGE_FIVE)
 				steps = 5
-			if(11)
+			if(STAGE_SUPER)
 				steps = 6
 	else
 		steps = step
@@ -397,7 +397,7 @@
 			mezzer()
 		else
 			return 0
-	if(current_size == 11)
+	if(current_size == STAGE_SUPER)
 		smwave()
 	return 1
 
@@ -429,21 +429,21 @@
 		if(M.stat == CONSCIOUS)
 			if (istype(M,/mob/living/carbon/human))
 				var/mob/living/carbon/human/H = M
-				if(istype(H.glasses,/obj/item/clothing/glasses/meson) && current_size != 11)
+				if(istype(H.glasses,/obj/item/clothing/glasses/meson) && current_size != STAGE_SUPER)
 					H << "<span class=\"notice\">You look directly into The [src.name], good thing you had your protective eyewear on!</span>"
 					return
 				else
 					H << "<span class=\"warning\">You look directly into The [src.name], but your eyewear does absolutely nothing to protect you from it!</span>"
-		M << "<span class='danger'>You look directly into The [src.name] and feel [current_size == 11 ? "helpless" : "weak"].</span>"
+		M << "<span class='danger'>You look directly into The [src.name] and feel [current_size == STAGE_SUPER ? "helpless" : "weak"].</span>"
 		M.apply_effect(3, STUN)
 		for(var/mob/O in viewers(M, null))
 			O.show_message(text("<span class='danger'>[] stares blankly at The []!</span>", M, src), 1)
 
 /obj/singularity/proc/emp_area()
-	if(current_size != 11)
-		empulse(src, 8, 10)
+	if(current_size != STAGE_SUPER)
+		empulse(src, 4, 6, 8, 10)
 	else
-		empulse(src, 12, 16)
+		empulse(src, 12, 14, 16, 18)
 
 /obj/singularity/proc/smwave()
 	for(var/mob/living/M in view(10, src.loc))
@@ -467,15 +467,15 @@
 	overlays = 0
 	move_self = 0
 	switch (current_size)
-		if(1)
+		if(STAGE_ONE)
 			overlays += image('icons/obj/singularity.dmi',"chain_s1")
-		if(3)
+		if(STAGE_TWO)
 			overlays += image('icons/effects/96x96.dmi',"chain_s3")
-		if(5)
+		if(STAGE_THREE)
 			overlays += image('icons/effects/160x160.dmi',"chain_s5")
-		if(7)
+		if(STAGE_FOUR)
 			overlays += image('icons/effects/224x224.dmi',"chain_s7")
-		if(9)
+		if(STAGE_FIVE)
 			overlays += image('icons/effects/288x288.dmi',"chain_s9")
 
 /obj/singularity/proc/on_release()

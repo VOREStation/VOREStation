@@ -348,7 +348,7 @@ update_flag
 				"\[N2O\]" = "redws", \
 				"\[N2\]" = "red", \
 				"\[O2\]" = "blue", \
-				"\[Phoron\]" = "purple", \
+				"\[Phoron\]" = "orangeps", \
 				"\[CO2\]" = "black", \
 				"\[Air\]" = "grey", \
 				"\[CAUTION\]" = "yellow", \

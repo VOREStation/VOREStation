@@ -545,82 +545,93 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 		return
 
 	var/input
-	if(alert("Would you like to select a hologram based on a crew member or switch to unique avatar?",,"Crew Member","Unique")=="Crew Member")
+	var/choice = alert("Would you like to select a hologram based on a (visible) crew member, switch to unique avatar, or load your character from your character slot?",,"Crew Member","Unique","My Character")
 
-		var/personnel_list[] = list()
+	switch(choice)
+		if("Crew Member")
+			var/list/targets = trackable_mobs()
+			if(targets.len)
+				input = input("Select a crew member:") as null|anything in targets //The definition of "crew member" is a little loose...
+				//This is torture, I know. If someone knows a better way...
+				if(!input) return
+				var/new_holo = getHologramIcon(getCompoundIcon(targets[input]))
+				qdel(holo_icon)
+				holo_icon = new_holo
 
-		for(var/datum/data/record/t in data_core.locked)//Look in data core locked.
-			personnel_list["[t.fields["name"]]: [t.fields["rank"]]"] = t.fields["image"]//Pull names, rank, and image.
+			else
+				alert("No suitable records found. Aborting.")
 
-		if(personnel_list.len)
-			input = input("Select a crew member:") as null|anything in personnel_list
-			var/icon/character_icon = personnel_list[input]
-			if(character_icon)
-				qdel(holo_icon)//Clear old icon so we're not storing it in memory.
-				holo_icon = getHologramIcon(icon(character_icon))
-		else
-			alert("No suitable records found. Aborting.")
+		if("My Character")
+			if(!client || !client.prefs) return
+			var/mob/living/carbon/human/dummy/dummy = new ()
+			//This doesn't include custom_items because that's ... hard.
+			client.prefs.dress_preview_mob(dummy)
+			sleep(1 SECOND) //Strange bug in preview code? Without this, certain things won't show up. Yay race conditions?
+			dummy.regenerate_icons()
 
-	else
-		var/icon_list[] = list(
-		"default",
-		"floating face",
-		"carp",
-		"ian",
-		"runtime",
-		"poly",
-		"pun pun",
-		"male human",
-		"female human",
-		"male unathi",
-		"female unathi",
-		"male tajara",
-		"female tajara",
-		"male tesharii",
-		"female tesharii",
-		"male skrell",
-		"female skrell"
-		)
-		input = input("Please select a hologram:") as null|anything in icon_list
-		if(input)
+			var/new_holo = getHologramIcon(getCompoundIcon(dummy))
 			qdel(holo_icon)
-			switch(input)
-				if("default")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo1"))
-				if("floating face")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo2"))
-				if("carp")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo4"))
-				if("ian")
-					holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"corgi"))
-				if("runtime")
-					holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"cat"))
-				if("poly")
-					holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"parrot_fly"))
-				if("pun pun")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"punpun"))
-				if("male human")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holohumm"))
-				if("female human")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holohumf"))
-				if("male unathi")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holounam"))
-				if("female unathi")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holounaf"))
-				if("male tajara")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holotajm"))
-				if("female tajara")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holotajf"))
-				if("male tesharii")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holotesm"))
-				if("female tesharii")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holotesf"))
-				if("male skrell")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holoskrm"))
-				if("female skrell")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holoskrf"))
+			qdel(dummy)
+			holo_icon = new_holo
 
-	return
+		else //One from the dmi.
+			var/icon_list[] = list(
+			"default",
+			"floating face",
+			"carp",
+			"ian",
+			"runtime",
+			"poly",
+			"pun pun",
+			"male human",
+			"female human",
+			"male unathi",
+			"female unathi",
+			"male tajara",
+			"female tajara",
+			"male tesharii",
+			"female tesharii",
+			"male skrell",
+			"female skrell"
+			)
+			input = input("Please select a hologram:") as null|anything in icon_list
+			if(input)
+				qdel(holo_icon)
+				switch(input)
+					if("default")
+						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo1"))
+					if("floating face")
+						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo2"))
+					if("carp")
+						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo4"))
+					if("ian")
+						holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"corgi"))
+					if("runtime")
+						holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"cat"))
+					if("poly")
+						holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"parrot_fly"))
+					if("pun pun")
+						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"punpun"))
+					if("male human")
+						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holohumm"))
+					if("female human")
+						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holohumf"))
+					if("male unathi")
+						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holounam"))
+					if("female unathi")
+						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holounaf"))
+					if("male tajara")
+						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holotajm"))
+					if("female tajara")
+						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holotajf"))
+					if("male tesharii")
+						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holotesm"))
+					if("female tesharii")
+						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holotesf"))
+					if("male skrell")
+						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holoskrm"))
+					if("female skrell")
+						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holoskrf"))
 
 //Toggles the luminosity and applies it by re-entereing the camera.
 /mob/living/silicon/ai/proc/toggle_camera_light()

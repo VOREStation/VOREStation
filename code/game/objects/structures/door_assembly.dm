@@ -107,6 +107,16 @@
 	airlock_type = "/highsecurity"
 	glass = -1
 
+/obj/structure/door_assembly/door_assembly_voidcraft
+	base_icon_state = "voidcraft"
+	base_name = "voidcraft hatch"
+	airlock_type = "/voidcraft"
+	glass = -1
+
+/obj/structure/door_assembly/door_assembly_voidcraft/vertical
+	base_icon_state = "voidcraft_vertical"
+	airlock_type = "/voidcraft/vertical"
+
 /obj/structure/door_assembly/multi_tile
 	icon = 'icons/obj/doors/door_assembly2x1.dmi'
 	dir = EAST

@@ -22,6 +22,14 @@
 	speech_sounds = list('sound/voice/shriek1.ogg')
 	speech_chance = 20
 
+	scream_verb = "shrieks"
+	male_scream_sound = 'sound/voice/shriek1.ogg'
+	female_scream_sound = 'sound/voice/shriek1.ogg'
+	male_cough_sounds = list('sound/voice/shriekcough.ogg')
+	female_cough_sounds = list('sound/voice/shriekcough.ogg')
+	male_sneeze_sound = 'sound/voice/shrieksneeze.ogg'
+	female_sneeze_sound = 'sound/voice/shrieksneeze.ogg'
+
 	warning_low_pressure = 50
 	hazard_low_pressure = 0
 
