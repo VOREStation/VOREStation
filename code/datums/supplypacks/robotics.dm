@@ -69,7 +69,7 @@
 	access = access_robotics
 
 /datum/supply_packs/robotics/robolimbs/hephaestus
-	name = "Hephaistos robolimb blueprints"
+	name = "Hephaestus robolimb blueprints"
 	contains = list(/obj/item/weapon/disk/limb/hephaestus)
 	cost = 35
 	containertype = /obj/structure/closet/crate/secure/science
