@@ -20,7 +20,7 @@
 			/obj/item/weapon/cell/high = 2
 			)
 	cost = 10
-	containertype = /obj/structure/closet/crate/secure/gear
+	containertype = /obj/structure/closet/crate/secure/science
 	containername = "Robotics assembly"
 	access = access_robotics
 
@@ -56,7 +56,7 @@
 	name = "Morpheus robolimb blueprints"
 	contains = list(/obj/item/weapon/disk/limb/morpheus)
 	cost = 20
-	containertype = /obj/structure/closet/crate/secure/gear
+	containertype = /obj/structure/closet/crate/secure/science
 	containername = "Robolimb blueprints (Morpheus)"
 	access = access_robotics
 
@@ -64,7 +64,7 @@
 	name = "Xion robolimb blueprints"
 	contains = list(/obj/item/weapon/disk/limb/xion)
 	cost = 20
-	containertype = /obj/structure/closet/crate/secure/gear
+	containertype = /obj/structure/closet/crate/secure/science
 	containername = "Robolimb blueprints (Xion)"
 	access = access_robotics
 
@@ -79,7 +79,7 @@
 	name = "Ward-Takahashi robolimb blueprints"
 	contains = list(/obj/item/weapon/disk/limb/wardtakahashi)
 	cost = 35
-	containertype = /obj/structure/closet/crate/secure/gear
+	containertype = /obj/structure/closet/crate/secure/science
 	containername = "Robolimb blueprints (Ward-Takahashi)"
 	access = access_robotics
 
@@ -87,7 +87,7 @@
 	name = "Zeng Hu robolimb blueprints"
 	contains = list(/obj/item/weapon/disk/limb/zenghu)
 	cost = 35
-	containertype = /obj/structure/closet/crate/secure/gear
+	containertype = /obj/structure/closet/crate/secure/science
 	containername = "Robolimb blueprints (Zeng Hu)"
 	access = access_robotics
 
@@ -95,7 +95,7 @@
 	name = "Bishop robolimb blueprints"
 	contains = list(/obj/item/weapon/disk/limb/bishop)
 	cost = 70
-	containertype = /obj/structure/closet/crate/secure/gear
+	containertype = /obj/structure/closet/crate/secure/science
 	containername = "Robolimb blueprints (Bishop)"
 	access = access_robotics
 
@@ -103,7 +103,7 @@
 	name = "Vey-Med robolimb blueprints"
 	contains = list(/obj/item/weapon/disk/limb/veymed)
 	cost = 70
-	containertype = /obj/structure/closet/crate/secure/gear
+	containertype = /obj/structure/closet/crate/secure/science
 	containername = "Robolimb blueprints (Vey-Med)"
 	access = access_robotics
 
@@ -115,7 +115,7 @@
 			/obj/item/weapon/circuitboard/mecha/ripley/peripherals
 			)
 	cost = 25
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/science
 	containername = "APLU \"Ripley\" Circuit Crate"
 	access = access_robotics
 
@@ -126,7 +126,7 @@
 			/obj/item/weapon/circuitboard/mecha/odysseus/main
 			)
 	cost = 25
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/science
 	containername = "\"Odysseus\" Circuit Crate"
 	access = access_robotics
 
@@ -140,7 +140,7 @@
 			)
 	name = "Random APLU modkit"
 	cost = 200
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/science
 	containername = "heavy crate"
 
 /datum/supply_packs/randomised/robotics/exosuit_mod/durand

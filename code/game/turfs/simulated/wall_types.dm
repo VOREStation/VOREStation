@@ -46,3 +46,9 @@
 
 /turf/simulated/wall/durasteel/New(var/newloc)
 	..(newloc,"durasteel", "durasteel")
+
+/turf/simulated/wall/wood/New(var/newloc)
+	..(newloc,"wood")
+
+/turf/simulated/wall/sifwood/New(var/newloc)
+	..(newloc,"alien wood")

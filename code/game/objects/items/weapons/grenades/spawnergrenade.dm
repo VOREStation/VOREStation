@@ -37,6 +37,6 @@
 
 /obj/item/weapon/grenade/spawnergrenade/spesscarp
 	name = "carp delivery grenade"
-	spawner_type = /mob/living/simple_animal/hostile/vore/carp // Vorestation edit
+	spawner_type = /mob/living/simple_animal/hostile/carp
 	deliveryamt = 5
 	origin_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 4, TECH_ILLEGAL = 4)
