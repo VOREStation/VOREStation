@@ -265,6 +265,11 @@
 	body_parts_covered = UPPER_TORSO|ARMS
 	flags_inv = HIDETIE|HIDEHOLSTER
 
+obj/item/clothing/suit/kimono
+	name = "kimono"
+	desc = "A traditional Japanese kimono."
+	icon_state = "kimono"
+
 /*
  * coats
  */
@@ -616,6 +621,14 @@
 	icon_open = "smw_hoodie_open"
 	icon_closed = "smw_hoodie"
 
+/obj/item/clothing/suit/storage/toggle/redandblackjacket
+    name = "red and black jacket"
+    desc = "A cool red and black jacket to keep you stylish and cozy."
+    icon_state = "redandblackjacket"
+    icon_open = "redandblackjacket_open"
+    icon_closed = "redandblackjacket"
+    flags_inv = HIDEHOLSTER
+
 /obj/item/clothing/suit/whitedress
 	name = "white dress"
 	desc = "A fancy white dress."
@@ -951,3 +964,4 @@
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|ARMS
 	flags_inv = HIDEHOLSTER
+
