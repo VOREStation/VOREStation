@@ -114,7 +114,7 @@
 		return
 
 	var/deathtime = world.time - src.timeofdeath
-	var/deathtimeminutes = round(deathtime / 120)
+	var/deathtimeminutes = round(deathtime / 300)
 	var/pluralcheck = "minute"
 	if(deathtimeminutes == 0)
 		pluralcheck = ""
@@ -122,11 +122,11 @@
 		pluralcheck = " [deathtimeminutes] minute and"
 	else if(deathtimeminutes > 1)
 		pluralcheck = " [deathtimeminutes] minutes and"
-	var/deathtimeseconds = round((deathtime - deathtimeminutes * 120) / 10,1)
+	var/deathtimeseconds = round((deathtime - deathtimeminutes * 300) / 10,1)
 
-	if (deathtime < 1200)
+	if (deathtime < 3000)
 		usr << "You have been dead for[pluralcheck] [deathtimeseconds] seconds."
-		usr << "You must wait 2 minutes to respawn as a drone!"
+		usr << "You must wait 5 minutes to respawn as a drone!"
 		return
 
 	var/list/all_fabricators = list()
