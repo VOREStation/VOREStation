@@ -40,7 +40,6 @@
 				src << "<span class='danger'>Your armor softens the blow!</span>"
 		if(Debug2)
 			world.log << "## DEBUG: Armor when [src] was attacked was [armor]."
-		world << "Armor Check: [armor]"
 	return armor
 
 /*
@@ -84,7 +83,6 @@
 	//5 points of armor pen negate one point of soak
 	if(armour_pen)
 		soaked = max(soaked - (armour_pen/5), 0)
-	world << "Soaked: [soaked]"
 	return soaked
 
 //if null is passed for def_zone, then this should return something appropriate for all zones (e.g. area effect damage)

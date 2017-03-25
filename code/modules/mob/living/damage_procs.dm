@@ -19,7 +19,6 @@
 	switch(damagetype)
 		if(BRUTE)
 			adjustBruteLoss(damage * blocked)
-			world << "Modified damage: [damage*blocked]"
 		if(BURN)
 			if(COLD_RESISTANCE in mutations)
 				damage = 0

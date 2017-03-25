@@ -8,7 +8,6 @@
 	suit_type = "\improper NT breacher"
 	icon_state = "breacher_rig_cheap"
 	armor = list(melee = 60, bullet = 60, laser = 60, energy = 60, bomb = 70, bio = 100, rad = 50)
-	armorsoak = list(melee = 15, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	emp_protection = -20
 	slowdown = 6
 	offline_slowdown = 10
