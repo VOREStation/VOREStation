@@ -2,7 +2,7 @@
 	Global associative list for caching humanoid icons.
 	Index format m or f, followed by a string of 0 and 1 to represent bodyparts followed by husk fat hulk skeleton 1 or 0.
 	TODO: Proper documentation
-	icon_key is [species.race_key][g][husk][fat][hulk][skeleton][s_tone]
+	icon_key is [species.race_key][g][husk][fat][hulk][skeleton][model][s_tone]
 */
 var/global/list/human_icon_cache = list()
 var/global/list/tail_icon_cache = list() //key is [species.race_key][r_skin][g_skin][b_skin]
@@ -242,7 +242,22 @@ var/global/list/damage_icon_parts = list()
 	if(gender == FEMALE)
 		g = "female"
 
-	var/icon_key = "[species.get_race_key(src)][g][s_tone][r_skin][g_skin][b_skin]"
+	var/model = "1"
+	for(var/organ_tag in species.has_limbs)
+		var/obj/item/organ/external/part = organs_by_name[organ_tag]
+		if(isnull(part) || part.is_stump())
+			model = "0"
+			continue
+		if(part)
+			if(part.robotic >= ORGAN_ROBOT)
+				model = "2[part.model ? "-[part.model]": ""]"
+			else if(part.status & ORGAN_DEAD)
+				model = "3"
+			else
+				model = "1"
+
+
+	var/icon_key = "[species.get_race_key(src)][g][model][s_tone][r_skin][g_skin][b_skin]"
 	if(lip_style)
 		icon_key += "[lip_style]"
 	else
@@ -257,15 +272,7 @@ var/global/list/damage_icon_parts = list()
 		var/obj/item/organ/external/part = organs_by_name[organ_tag]
 		if(isnull(part) || part.is_stump())
 			icon_key += "0"
-		else if(part.robotic >= ORGAN_ROBOT)
-			icon_key += "2[part.model ? "-[part.model]": ""]"
-			robolimb_count++
-			if(part.organ_tag == BP_HEAD || part.organ_tag == BP_TORSO || part.organ_tag == BP_GROIN)
-				robobody_count ++
-		else if(part.status & ORGAN_DEAD)
-			icon_key += "3"
-		else
-			icon_key += "1"
+			continue
 		if(part)
 			icon_key += "[part.species.get_race_key(part.owner)]"
 			icon_key += "[part.dna.GetUIState(DNA_UI_GENDER)]"
