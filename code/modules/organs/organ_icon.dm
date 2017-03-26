@@ -69,6 +69,15 @@ var/global/list/limb_icon_cache = list()
 		overlays |= lip_icon
 		mob_icon.Blend(lip_icon, ICON_OVERLAY)
 
+	//Head markings, duplicated (sadly) below.
+	for(var/M in markings)
+		var/datum/sprite_accessory/marking/mark_style = markings[M]["datum"]
+		var/icon/mark_s = new/icon("icon" = mark_style.icon, "icon_state" = "[mark_style.icon_state]-[organ_tag]")
+		mark_s.Blend(markings[M]["color"], ICON_ADD)
+		overlays |= mark_s //So when it's not on your body, it has icons
+		mob_icon.Blend(mark_s, ICON_OVERLAY) //So when it's on your body, it has icons
+		icon_cache_key += "[M][markings[M]["color"]]"
+
 	if(owner.f_style)
 		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[owner.f_style]
 		if(facial_hair_style && facial_hair_style.species_allowed && (species.get_bodytype(owner) in facial_hair_style.species_allowed))
@@ -118,6 +127,15 @@ var/global/list/limb_icon_cache = list()
 			else
 				mob_icon = new /icon(species.get_icobase(owner, (status & ORGAN_MUTATED)), "[icon_name][gender ? "_[gender]" : ""]")
 				apply_colouration(mob_icon)
+
+			//Body markings, does not include head, duplicated (sadly) above.
+			for(var/M in markings)
+				var/datum/sprite_accessory/marking/mark_style = markings[M]["datum"]
+				var/icon/mark_s = new/icon("icon" = mark_style.icon, "icon_state" = "[mark_style.icon_state]-[organ_tag]")
+				mark_s.Blend(markings[M]["color"], ICON_ADD)
+				overlays |= mark_s //So when it's not on your body, it has icons
+				mob_icon.Blend(mark_s, ICON_OVERLAY) //So when it's on your body, it has icons
+				icon_cache_key += "[M][markings[M]["color"]]"
 
 			if(body_hair && islist(h_col) && h_col.len >= 3)
 				var/cache_key = "[body_hair]-[icon_name]-[h_col[1]][h_col[2]][h_col[3]]"
