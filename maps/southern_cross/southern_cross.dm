@@ -2,6 +2,8 @@
 
 #if !defined(USING_MAP_DATUM)
 
+	#include "southern_cross_defines.dm"
+
 	#define USING_MAP_DATUM /datum/map/southern_cross
 
 	// todo: map.dmm-s here

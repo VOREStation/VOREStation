@@ -597,7 +597,7 @@ var/list/name_to_material
 	stack_type = /obj/item/stack/material/wood
 	icon_colour = "#824B28"
 	integrity = 50
-	icon_base = "solid"
+	icon_base = "wood"
 	explosion_resistance = 2
 	shard_type = SHARD_SPLINTER
 	shard_can_repair = 0 // you can't weld splinters back into planks
@@ -617,6 +617,12 @@ var/list/name_to_material
 	display_name = "wood"
 	stack_type = null
 	shard_type = SHARD_NONE
+
+/material/wood/sif
+	name = "alien wood"
+//	stack_type = /obj/item/stack/material/wood/sif
+	icon_colour = "#0099cc" // Cyan-ish
+	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2) // Alien wood would presumably be more interesting to the analyzer.
 
 /material/cardboard
 	name = "cardboard"

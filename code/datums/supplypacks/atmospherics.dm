@@ -11,7 +11,7 @@
 	name = "Inflatable barriers"
 	contains = list(/obj/item/weapon/storage/briefcase/inflatable = 3)
 	cost = 20
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/engineering
 	containername = "Inflatable Barrier Crate"
 
 /datum/supply_packs/atmos/canister_empty

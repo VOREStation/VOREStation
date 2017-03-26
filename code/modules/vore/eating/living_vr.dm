@@ -364,6 +364,13 @@
 	var/attempt_msg = "ERROR: Vore message couldn't be created. Notify a dev. (at)"
 	var/success_msg = "ERROR: Vore message couldn't be created. Notify a dev. (sc)"
 
+	//Final distance check. Time has passed, menus have come and gone. Can't use do_after adjacent because doesn't behave for held micros
+	var/user_to_pred = get_dist(get_turf(user),get_turf(pred))
+	var/user_to_prey = get_dist(get_turf(user),get_turf(prey))
+
+	if(user_to_pred > 1 || user_to_prey > 1)
+		return 0
+
 	// Prepare messages
 	if(user == pred) //Feeding someone to yourself
 		attempt_msg = text("<span class='warning'>[] is attemping to [] [] into their []!</span>",pred,lowertext(belly_target.vore_verb),prey,lowertext(belly_target.name))
