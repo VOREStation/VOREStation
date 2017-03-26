@@ -156,7 +156,7 @@ datum/supply_packs/costumes/witch
 			/obj/item/clothing/under/wedding/bride_blue,
 			/obj/item/clothing/under/wedding/bride_red,
 			/obj/item/clothing/under/wedding/bride_white,
-			/obj/item/clothing/under/sundress,
+			/obj/item/clothing/under/dress/sundress,
 			/obj/item/clothing/under/dress/dress_green,
 			/obj/item/clothing/under/dress/dress_pink,
 			/obj/item/clothing/under/dress/dress_orange,

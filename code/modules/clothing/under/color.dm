@@ -1,3 +1,10 @@
+/obj/item/clothing/under/color
+	sprite_sheets = list(
+		"Human" = 'icons/mob/uniforms/color.dmi',
+		"Skrell" = 'icons/mob/species/skrell/uniforms/color.dmi',
+		"Tajaran" = 'icons/mob/species/tajaran/uniforms/color.dmi',
+		"Unathi" = 'icons/mob/species/unathi/uniforms/color.dmi'
+		)
 /obj/item/clothing/under/color/black
 	name = "black jumpsuit"
 	icon_state = "black"
