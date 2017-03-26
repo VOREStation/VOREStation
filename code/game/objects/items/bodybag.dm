@@ -113,6 +113,7 @@
 	a hostile enviroment."
 	icon = 'icons/obj/cryobag.dmi'
 	icon_state = "bodybag_folded"
+	item_state = "bodybag_cryo_folded"
 	origin_tech = list(TECH_BIO = 4)
 
 /obj/item/bodybag/cryobag/attack_self(mob/user)
