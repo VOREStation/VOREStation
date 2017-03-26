@@ -80,7 +80,7 @@
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/bearmeat
 
 
-/mob/living/simple_animal/hostile/vore/polarbear/death()
+/mob/living/simple_animal/hostile/bear/polar/death()
 	desc = "This bastard sure isn't drinking Space Cola anymore."
 	..()
 
