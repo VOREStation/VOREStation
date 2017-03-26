@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/dragon
+/mob/living/simple_animal/hostile/large/dragon
 	name = "phoron dragon"
 	desc = "Here to pillage stations and kidnap princesses, and there probably aren't any princesses."
 	icon = 'icons/mob/vore64x64.dmi'
