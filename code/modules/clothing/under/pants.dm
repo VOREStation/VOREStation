@@ -5,8 +5,9 @@
 	sprite_sheets = list(
 		"Human" = 'icons/mob/uniforms/pants.dmi',
 		"Skrell" = 'icons/mob/species/skrell/uniforms/pants.dmi',
-		"Tajaran" = 'icons/mob/species/tajaran/uniforms/pants.dmi',
-		"Unathi" = 'icons/mob/species/unathi/uniforms/pants.dmi'
+		"Tajara" = 'icons/mob/species/tajaran/uniforms/pants.dmi',
+		"Unathi" = 'icons/mob/species/unathi/uniforms/pants.dmi',
+		"Diona" = 'icons/mob/species/diona/uniforms/pants.dmi'
 		)
 	icon_state = "jeans"
 	gender = PLURAL

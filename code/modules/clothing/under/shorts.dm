@@ -5,8 +5,9 @@
 	sprite_sheets = list(
 		"Human" = 'icons/mob/uniforms/pants.dmi',
 		"Skrell" = 'icons/mob/species/skrell/uniforms/pants.dmi',
-		"Tajaran" = 'icons/mob/species/tajaran/uniforms/pants.dmi',
-		"Unathi" = 'icons/mob/species/unathi/uniforms/pants.dmi'
+		"Tajara" = 'icons/mob/species/tajaran/uniforms/pants.dmi',
+		"Unathi" = 'icons/mob/species/unathi/uniforms/pants.dmi',
+		"Diona" = 'icons/mob/species/diona/uniforms/pants.dmi'
 		)
 	gender = PLURAL
 	body_parts_covered = LOWER_TORSO
@@ -105,8 +106,9 @@
 	sprite_sheets = list(
 		"Human" = 'icons/mob/uniforms/dresses.dmi',
 		"Skrell" = 'icons/mob/species/skrell/uniforms/dresses.dmi',
-		"Tajaran" = 'icons/mob/species/tajaran/uniforms/dresses.dmi',
-		"Unathi" = 'icons/mob/species/unathi/uniforms/dresses.dmi'
+		"Tajara" = 'icons/mob/species/tajaran/uniforms/dresses.dmi',
+		"Unathi" = 'icons/mob/species/unathi/uniforms/dresses.dmi',
+		"Diona" = 'icons/mob/species/diona/uniforms/dresses.dmi'
 		)
 	icon_state = "skirt_short_black"
 	body_parts_covered = LOWER_TORSO
