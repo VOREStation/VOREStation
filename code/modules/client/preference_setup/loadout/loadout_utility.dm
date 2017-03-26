@@ -65,4 +65,4 @@
 /datum/gear/utility/translator
 	display_name = "universal translator"
 	path = /obj/item/device/universal_translator
-	cost = 5
+	cost = 8
