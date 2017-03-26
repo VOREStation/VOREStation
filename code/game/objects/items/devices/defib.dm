@@ -4,6 +4,7 @@
 	desc = "This KHI-branded defib kit is a semi-automated model. Remove pads, slap on chest, wait."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "defib_kit"
+	item_state = "defib_kit"
 	w_class = ITEMSIZE_LARGE
 
 	var/state	 								//0 off, 1 open, 2 working, 3 dead
