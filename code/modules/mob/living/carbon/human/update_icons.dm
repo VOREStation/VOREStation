@@ -276,6 +276,8 @@ var/global/list/damage_icon_parts = list()
 				icon_key += "[rgb(part.h_col[1],part.h_col[2],part.h_col[3])]"
 			else
 				icon_key += "#000000"
+			for(var/M in part.markings)
+				icon_key += "[M][part.markings[M]["color"]]"
 
 	icon_key = "[icon_key][husk ? 1 : 0][fat ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0]"
 
