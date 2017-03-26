@@ -114,6 +114,7 @@ var/global/list/limb_icon_cache = list()
 				mob_icon = new /icon('icons/mob/human_races/r_skeleton.dmi', "[icon_name][gender ? "_[gender]" : ""]")
 			else if (robotic >= ORGAN_ROBOT)
 				mob_icon = new /icon('icons/mob/human_races/robotic.dmi', "[icon_name][gender ? "_[gender]" : ""]")
+				apply_colouration(mob_icon)
 			else
 				mob_icon = new /icon(species.get_icobase(owner, (status & ORGAN_MUTATED)), "[icon_name][gender ? "_[gender]" : ""]")
 				apply_colouration(mob_icon)
@@ -135,8 +136,6 @@ var/global/list/limb_icon_cache = list()
 	return mob_icon
 
 /obj/item/organ/external/proc/apply_colouration(var/icon/applying)
-	if(robotic == ORGAN_ROBOT)
-		return applying
 
 	if(nonsolid)
 		applying.MapColors("#4D4D4D","#969696","#1C1C1C", "#000000")
@@ -195,7 +194,7 @@ var/list/robot_hud_colours = list("#CFCFCF","#AFAFAF","#8F8F8F","#6F6F6F","#4F4F
 		if(!icon_cache_key || !limb_icon_cache[cache_key])
 			limb_icon_cache[cache_key] = icon(get_icon(), null, SOUTH)
 		var/image/temp = image(limb_icon_cache[cache_key])
-		if((robotic == ORGAN_ROBOT) && species)
+		if((robotic < ORGAN_ROBOT) && species)
 			// Calculate the required colour matrix.
 			var/r = 0.30 * species.health_hud_intensity
 			var/g = 0.59 * species.health_hud_intensity
