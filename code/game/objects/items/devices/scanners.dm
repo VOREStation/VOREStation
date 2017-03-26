@@ -243,7 +243,6 @@ REAGENT SCANNER
 	name = "mass spectrometer"
 	desc = "A hand-held mass spectrometer which identifies trace chemicals in a blood sample."
 	icon_state = "spectrometer"
-	item_state = "analyzer"
 	w_class = ITEMSIZE_SMALL
 	flags = CONDUCT | OPENCONTAINER
 	slot_flags = SLOT_BELT
@@ -266,10 +265,8 @@ REAGENT SCANNER
 /obj/item/device/mass_spectrometer/on_reagent_change()
 	if(reagents.total_volume)
 		icon_state = initial(icon_state) + "_s"
-		item_state = initial(item_state) + "_s"
 	else
 		icon_state = initial(icon_state)
-		item_state = initial(item_state)
 
 /obj/item/device/mass_spectrometer/attack_self(mob/user as mob)
 	if (user.stat)
@@ -300,7 +297,6 @@ REAGENT SCANNER
 /obj/item/device/mass_spectrometer/adv
 	name = "advanced mass spectrometer"
 	icon_state = "adv_spectrometer"
-	item_state = "adv_spectrometer"
 	details = 1
 	origin_tech = list(TECH_MAGNET = 4, TECH_BIO = 2)
 
