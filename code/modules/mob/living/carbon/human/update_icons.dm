@@ -1120,7 +1120,7 @@ var/global/list/damage_icon_parts = list()
 		set_tail_state("[species.get_tail(src)]_idle[rand(0,9)]")
 	else
 		set_tail_state("[species.get_tail(src)]_static")
-	toggle_tail(0) //VOREStation Add - So tails stop when someone dies.
+	toggle_tail_vr(0) //VOREStation Add - So tails stop when someone dies.
 	if(update_icons)
 		update_icons()
 
