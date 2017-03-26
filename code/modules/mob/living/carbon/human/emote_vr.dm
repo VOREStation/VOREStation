@@ -1,6 +1,8 @@
 /mob/living/carbon/human/proc/handle_emote_vr(var/act,var/m_type=1,var/message = null)
 
 	switch(act)
+		if ("vwag")
+			toggle_tail()
 		if ("mlem")
 			message = "mlems [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] tongue up over [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] nose. Mlem."
 			m_type = 1
@@ -51,3 +53,14 @@
 
 	return 0
 
+/mob/living/carbon/human/proc/toggle_tail(var/setting)
+	if(!tail_style || !tail_style.ani_state)
+		src << "<span class='warning'>You don't have a tail that supports this.</span>"
+		return
+
+	if(setting != null)
+		wagging = setting
+	else
+		wagging = !wagging
+
+	update_tail_showing()
