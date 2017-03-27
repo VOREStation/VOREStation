@@ -18,8 +18,8 @@
 	mobcountmax = 100
 	floracountmax = 7000
 	valid_mobs = list(/mob/living/simple_animal/hostile/samak/polar, /mob/living/simple_animal/hostile/diyaab/polar,
-					/mob/living/simple_animal/hostile/shantak/polar, /mob/living/simple_animal/hostile/vore/polarbear,
-					/mob/living/simple_animal/hostile/vore/wolf)
+					/mob/living/simple_animal/hostile/shantak/polar, /mob/living/simple_animal/hostile/bear/polar,
+					/mob/living/simple_animal/hostile/wolf)
 	valid_flora = list(/obj/structure/flora/tree/pine, /obj/structure/flora/tree/pine, /obj/structure/flora/tree/pine,
 					/obj/structure/flora/tree/dead, /obj/structure/flora/grass/brown, /obj/structure/flora/grass/green,
 					/obj/structure/flora/grass/both, /obj/structure/flora/bush, /obj/structure/flora/ausbushes/grassybush,
@@ -43,33 +43,44 @@
 
 // -- Mobs -- //
 
-/mob/living/simple_animal/hostile/vore/polarbear // More aggressive than normal bears so none of that fancy life() stuff.
+/mob/living/simple_animal/hostile/bear/polar // More aggressive than normal bears so none of that fancy life() stuff.
 	name = "polar bear"
 	desc = "The real question is, why are you examining it, instead of running away?"
+	icon = 'icons/mob/vore.dmi'
 	icon_state = "polarbear"
 	icon_living = "polarbear"
 	icon_dead = "polarbear-dead"
 	icon_gib = "bear-gib"
+	vore_icons = SA_ICON_LIVING
+	vore_active = 1
+
+	faction = "polar"
+	maxHealth = 80
+	health = 80 // Polar bear will fuck you up.
+
+	stop_when_pulled = 0
+	turns_per_move = 5
+	see_in_dark = 6
+
+	response_help  = "pets"
+	response_disarm = "gently pushes aside"
+	response_harm   = "desperately attacks"
+
+	melee_damage_lower = 20
+	melee_damage_upper = 50 // srsly u gon get rekt
+
+	minbodytemp = 0
+
+	speak_chance = 1
 	speak = list("RAWR!","Rawr!","GRR!","Growl!")
 	speak_emote = list("growls", "roars")
 	emote_hear = list("rawrs","grumbles","grawls")
 	emote_see = list("stares ferociously", "stomps")
-	speak_chance = 1
-	turns_per_move = 5
-	see_in_dark = 6
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/bearmeat
-	response_help  = "pets"
-	response_disarm = "gently pushes aside"
-	response_harm   = "desperately attacks"
-	stop_automated_movement_when_pulled = 0
-	maxHealth = 80
-	health = 80 // Polar bear will fuck you up.
-	melee_damage_lower = 20
-	melee_damage_upper = 50 // srsly u gon get rekt
-	minbodytemp = 0
-	faction = "polar"
 
-/mob/living/simple_animal/hostile/vore/polarbear/death()
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/bearmeat
+
+
+/mob/living/simple_animal/hostile/bear/polar/death()
 	desc = "This bastard sure isn't drinking Space Cola anymore."
 	..()
 

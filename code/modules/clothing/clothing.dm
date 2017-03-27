@@ -51,10 +51,10 @@
 
 		if(H.species)
 			if(exclusive)
-				if(!(H.species.get_bodytype() in species_restricted))
+				if(!(H.species.get_bodytype(H) in species_restricted))	//Vorestation edit
 					wearable = 1
 			else
-				if(H.species.get_bodytype() in species_restricted)
+				if(H.species.get_bodytype(H) in species_restricted)	//Vorestation edit
 					wearable = 1
 
 			if(!wearable && !(slot in list(slot_l_store, slot_r_store, slot_s_store)))
@@ -525,6 +525,10 @@
 	var/rolled_down = -1 //0 = unrolled, 1 = rolled, -1 = cannot be toggled
 	var/rolled_sleeves = -1 //0 = unrolled, 1 = rolled, -1 = cannot be toggled
 	sprite_sheets = list(
+		"Human" = 'icons/mob/uniforms/uniform.dmi',
+		"Skrell" = 'icons/mob/species/skrell/uniforms/uniform.dmi',
+		"Tajaran" = 'icons/mob/species/tajaran/uniforms/uniform.dmi',
+		"Unathi" = 'icons/mob/species/unathi/uniforms/uniform.dmi',
 		"Teshari" = 'icons/mob/species/seromi/uniform.dmi',
 		"Vox" = 'icons/mob/species/vox/uniform.dmi'
 		)

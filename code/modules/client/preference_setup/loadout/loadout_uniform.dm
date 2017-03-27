@@ -273,11 +273,11 @@
 
 /datum/gear/uniform/sundress
 	display_name = "sundress"
-	path = /obj/item/clothing/under/sundress
+	path = /obj/item/clothing/under/dress/sundress
 
 /datum/gear/uniform/sundress/white
 	display_name = "sundress, white"
-	path = /obj/item/clothing/under/sundress_white
+	path = /obj/item/clothing/under/dress/sundress/white
 
 /datum/gear/uniform/dress_fire
 	display_name = "flame dress"
@@ -445,3 +445,11 @@
 /datum/gear/uniform/brandsuit/hephaestus
 	display_name = "jumpsuit, hephaestus"
 	path = 	/obj/item/clothing/under/hephaestus
+
+/datum/gear/uniform/yoga
+	display_name = "yoga pants"
+	path = /obj/item/clothing/under/pants/yoga
+
+/datum/gear/uniform/yoga/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)

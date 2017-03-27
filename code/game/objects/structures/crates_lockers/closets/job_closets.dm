@@ -45,7 +45,7 @@
 
 /obj/structure/closet/chefcloset/New()
 	..()
-	new /obj/item/clothing/under/sundress(src)
+	new /obj/item/clothing/under/dress/sundress(src)
 	new /obj/item/clothing/under/waiter(src)
 	new /obj/item/clothing/under/waiter(src)
 	new /obj/item/device/radio/headset/headset_service(src)
