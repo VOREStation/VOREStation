@@ -560,7 +560,7 @@
 
 	//autodetect rollability
 	if(rolled_down < 0)
-		if((worn_state) in icon_states(rolled_down_icon))
+		if((worn_state) in icon_states(icon))
 			rolled_down = 0
 
 /obj/item/clothing/under/proc/update_rolldown_status()
