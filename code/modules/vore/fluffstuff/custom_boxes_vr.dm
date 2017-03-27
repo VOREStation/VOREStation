@@ -49,7 +49,11 @@
 		/obj/item/clothing/suit/storage/trench/fluff/octaviouscoat,
 		/obj/item/clothing/under/det/fluff/octavious,
 		/obj/item/clothing/mask/gas/plaguedoctor/fluff/octaviousmask,
-		/obj/item/clothing/head/fedora/fluff/bowler)
+		/obj/item/clothing/head/fedora/fluff/bowler,
+		/obj/item/clothing/shoes/black/cuffs/octavious,
+		/obj/item/weapon/cane/fluff/tasald,
+		/obj/item/clothing/glasses/hud/health/octaviousmonicle
+		)
 
 // jemli:Cirra Mayhem
 /obj/item/weapon/storage/box/fluff/cirra
