@@ -134,3 +134,8 @@
 	desc = "A pair of wide shoes with thick soles.  Designed for skating."
 	icon_state = "skatershoe"
 	item_state_slots = list(slot_r_hand_str = "skaterheld", slot_l_hand_str = "skaterheld")
+
+/obj/item/clothing/shoes/heels
+	name = "high heels"
+	desc = "A pair of high-heeled shoes. Fancy!"
+	icon_state = "heels"

@@ -525,6 +525,10 @@
 	var/rolled_down = -1 //0 = unrolled, 1 = rolled, -1 = cannot be toggled
 	var/rolled_sleeves = -1 //0 = unrolled, 1 = rolled, -1 = cannot be toggled
 	sprite_sheets = list(
+		"Human" = 'icons/mob/uniforms/uniform.dmi',
+		"Skrell" = 'icons/mob/species/skrell/uniforms/uniform.dmi',
+		"Tajaran" = 'icons/mob/species/tajaran/uniforms/uniform.dmi',
+		"Unathi" = 'icons/mob/species/unathi/uniforms/uniform.dmi',
 		"Teshari" = 'icons/mob/species/seromi/uniform.dmi',
 		"Vox" = 'icons/mob/species/vox/uniform.dmi'
 		)
