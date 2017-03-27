@@ -2,7 +2,9 @@
 
 	switch(act)
 		if ("vwag")
-			toggle_tail()
+			toggle_tail_vr()
+			m_type = 1
+			message = "[wagging ? "starts" : "stops"] wagging their tail."
 		if ("mlem")
 			message = "mlems [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] tongue up over [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] nose. Mlem."
 			m_type = 1
@@ -53,7 +55,7 @@
 
 	return 0
 
-/mob/living/carbon/human/proc/toggle_tail(var/setting)
+/mob/living/carbon/human/proc/toggle_tail_vr(var/setting)
 	if(!tail_style || !tail_style.ani_state)
 		src << "<span class='warning'>You don't have a tail that supports this.</span>"
 		return

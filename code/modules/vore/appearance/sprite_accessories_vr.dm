@@ -551,28 +551,28 @@
 	do_colouration = 1
 
 /datum/sprite_accessory/tail/curltail
-	name = "curltail (*vwag)"
+	name = "curltail (vwag)"
 	desc = ""
 	icon_state = "curltail"
 	ani_state = "curltail_w"
 	do_colouration = 1
 
 /datum/sprite_accessory/tail/shorttail
-	name = "shorttail (*vwag)"
+	name = "shorttail (vwag)"
 	desc = ""
 	icon_state = "straighttail"
 	ani_state = "straighttail_w"
 	do_colouration = 1
 
 /datum/sprite_accessory/tail/tiger_new
-	name = "tiger tail (*vwag)"
+	name = "tiger tail (vwag)"
 	desc = ""
 	icon_state = "tigertail"
 	ani_state = "tigertail_w"
 	do_colouration = 1
 
 /datum/sprite_accessory/tail/vulp_new
-	name = "new vulp tail (*vwag)"
+	name = "new vulp tail (vwag)"
 	desc = ""
 	icon_state = "vulptail"
 	ani_state = "vulptail_w"
