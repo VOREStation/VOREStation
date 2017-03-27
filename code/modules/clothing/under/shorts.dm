@@ -2,12 +2,6 @@
 /obj/item/clothing/under/shorts
 	name = "athletic shorts"
 	desc = "95% Polyester, 5% Spandex!"
-	sprite_sheets = list(
-		"Human" = 'icons/mob/uniforms/pants.dmi',
-		"Skrell" = 'icons/mob/species/skrell/uniforms/pants.dmi',
-		"Tajaran" = 'icons/mob/species/tajaran/uniforms/pants.dmi',
-		"Unathi" = 'icons/mob/species/unathi/uniforms/pants.dmi'
-		)
 	gender = PLURAL
 	body_parts_covered = LOWER_TORSO
 
@@ -97,17 +91,16 @@
 	name = "khaki short shorts"
 	icon_state = "khaki_shorts_f"
 
+/obj/item/clothing/under/shorts/loincloth
+	name = "loincloth"
+	desc = "A piece of cloth wrapped around the waist."
+	icon_state = "loincloth"
+
 //Argh, skirts be below this line -> ------------------------------
 
 /obj/item/clothing/under/skirt
 	name = "short black skirt"
 	desc = "A skirt that is a shiny black."
-	sprite_sheets = list(
-		"Human" = 'icons/mob/uniforms/dresses.dmi',
-		"Skrell" = 'icons/mob/species/skrell/uniforms/dresses.dmi',
-		"Tajaran" = 'icons/mob/species/tajaran/uniforms/dresses.dmi',
-		"Unathi" = 'icons/mob/species/unathi/uniforms/dresses.dmi'
-		)
 	icon_state = "skirt_short_black"
 	body_parts_covered = LOWER_TORSO
 	rolled_sleeves = -1
@@ -137,11 +130,6 @@
 	desc = "A skirt that is swept to one side."
 	icon_state = "skirt_swept"
 
-/obj/item/clothing/under/skirt/loincloth
-	name = "loincloth"
-	desc = "A piece of cloth wrapped around the waist."
-	icon_state = "loincloth"
-
 /obj/item/clothing/under/skirt/outfit
 	name = "black skirt"
 	desc = "A black skirt, very fancy!"
@@ -165,8 +153,6 @@
 	desc = "A preppy purple skirt with a white blouse."
 	icon_state = "plaid_purple"
 	item_state_slots = list(slot_r_hand_str = "purple", slot_l_hand_str = "purple")
-
-//Job skirts
 
 /obj/item/clothing/under/rank/cargo/skirt
 	name = "quartermaster's jumpskirt"
