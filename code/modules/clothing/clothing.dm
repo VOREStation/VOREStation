@@ -493,9 +493,6 @@
 	valid_accessory_slots = list("over", "armband")
 	restricted_accessory_slots = list("armband")
 
-	var/icon/rolled_down_icon = 'icons/mob/uniform_rolled_down.dmi'
-	var/icon_roll_down_sleeves_icon = 'icons/mob/uniform_sleeves_rolled.dmi'
-
 /obj/item/clothing/suit/update_clothing_icon()
 	if (ismob(src.loc))
 		var/mob/M = src.loc
@@ -539,7 +536,7 @@
 	restricted_accessory_slots = list("utility", "armband")
 
 	var/icon/rolled_down_icon = 'icons/mob/uniform_rolled_down.dmi'
-	var/rolled_down_sleeves_icon = 'icons/mob/uniform_sleeves_rolled.dmi'
+	var/icon/rolled_down_sleeves_icon = 'icons/mob/uniform_sleeves_rolled.dmi'
 
 
 /obj/item/clothing/under/attack_hand(var/mob/user)
@@ -560,7 +557,7 @@
 
 	//autodetect rollability
 	if(rolled_down < 0)
-		if((worn_state) in icon_states(icon))
+		if(((worn_state) in icon_states(rolled_down_icon)) || (worn_state + "_d_s" in icon_states(icon)))
 			rolled_down = 0
 
 /obj/item/clothing/under/proc/update_rolldown_status()
@@ -575,8 +572,10 @@
 		under_icon = sprite_sheets[H.species.get_bodytype(H)]
 	else if(item_icons && item_icons[slot_w_uniform_str])
 		under_icon = item_icons[slot_w_uniform_str]
-	else
+	else if ("[worn_state]_s" in icon_states(rolled_down_icon))
 		under_icon = rolled_down_icon
+	else
+		under_icon = icon
 
 	// The _s is because the icon update procs append it.
 	if((under_icon == rolled_down_icon && "[worn_state]_s" in icon_states(under_icon)) || ("[worn_state]_d_s" in icon_states(under_icon)))
@@ -598,8 +597,10 @@
 		under_icon = sprite_sheets[H.species.get_bodytype(H)]
 	else if(item_icons && item_icons[slot_w_uniform_str])
 		under_icon = item_icons[slot_w_uniform_str]
-	else
+	else if ("[worn_state]_s" in icon_states(rolled_down_sleeves_icon))
 		under_icon = rolled_down_sleeves_icon
+	else
+		under_icon = icon
 
 	// The _s is because the icon update procs append it.
 	if((under_icon == rolled_down_sleeves_icon && "[worn_state]_s" in icon_states(under_icon)) || ("[worn_state]_r_s" in icon_states(under_icon)))
