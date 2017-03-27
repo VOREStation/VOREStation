@@ -129,8 +129,6 @@
 	desc = "A uniform dress jacket with gold toggles."
 	icon_state = "whitedress"
 	item_state = "labcoat"
-	icon_open = "whitedress_open"
-	icon_closed = "whitedress"
 	blood_overlay_type = "coat"
 
 /obj/item/clothing/suit/storage/toggle/dress/fleet
@@ -142,8 +140,6 @@
 	desc = "A crisp white SCG Fleet dress jacket dripping with gold accents. So bright it's blinding."
 	icon_state = "whitedress_com"
 	item_state = "labcoat"
-	icon_open = "whitedress_com_open"
-	icon_closed = "whitedress_com"
 	blood_overlay_type = "coat"
 
 /obj/item/clothing/suit/dress/marine
@@ -163,6 +159,4 @@
 	desc = "A black synthleather jacket. The word 'MARSHAL' is stenciled onto the back in gold lettering."
 	icon_state = "marshal_jacket"
 	item_state_slots = list(slot_r_hand_str = "suit_black", slot_l_hand_str = "suit_black")
-	icon_open = "marshal_jacket_open"
-	icon_closed = "marshal_jacket"
 	body_parts_covered = UPPER_TORSO|ARMS
