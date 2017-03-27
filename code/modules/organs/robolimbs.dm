@@ -77,7 +77,7 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	unavailable_to_build = 1
 
 /datum/robolimb/hephaestus_alt1
-	company = "Hephaistos - Frontier"
+	company = "Hephaestus - Frontier"
 	desc = "A rugged prosthetic head featuring the standard Hephaestus theme, a visor and an external display."
 	icon = 'icons/mob/human_races/cyberlimbs/hephaestus/hephaestus_alt1.dmi'
 	unavailable_to_build = 1
@@ -90,7 +90,7 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 		rgb=hephaestus_alt_rgb;\
 		rainbow=hephaestus_alt_rainbow"
 
-/datum/robolimb/hephaistos_monitor
+/datum/robolimb/hephaestus_monitor
 	company = "Hephaestus Monitor"
 	desc = "Hephaestus' unique spin on a popular prosthetic head model. It looks rugged and sturdy."
 	icon = 'icons/mob/human_races/cyberlimbs/hephaestus/hephaestus_monitor.dmi'
