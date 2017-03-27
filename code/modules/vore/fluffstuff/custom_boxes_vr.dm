@@ -76,7 +76,7 @@
 //joanrisu:Joan Risu
 /obj/item/weapon/storage/backpack/dufflebag/sec/fluff/joanrisu
 	name = "Joan's Workbag"
-	desc = "A duffle bag Joan uses to carry her work equipment."
+	desc = "A bag Joan uses to carry her work equipment. It has the 82nd Battle Group Insignia on it."
 	icon_state = "joanbag"
 	icon = 'icons/vore/custom_items_vr.dmi'
 	item_state = "duffle_med"
@@ -96,7 +96,6 @@
 		new /obj/item/clothing/under/rank/internalaffairs/fluff/joan(src)
 		new /obj/item/clothing/head/helmet/space/fluff/joan(src)
 		new /obj/item/clothing/suit/space/fluff/joan(src)
-		new /obj/item/device/pda/heads/hos/joanpda(src)
 
 
 

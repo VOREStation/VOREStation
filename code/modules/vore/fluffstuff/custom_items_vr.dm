@@ -578,6 +578,15 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	matter = list(DEFAULT_WALL_MATERIAL = 50)
 	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
 
+	tasald
+		name = "Ornate Walking Cane"
+		desc = "An elaborately made custom walking stick with a dark wooding core, a crimson red gemstone on its head and a steel cover around the bottom. you'd probably hear someone using this down the hall."
+		icon = 'icons/vore/custom_items_vr.dmi'
+		icon_state = "browncane"
+		item_state = "browncanemob"
+
+
+
 /obj/item/weapon/card/id/fluff/ivyholoid
 	name = "Holo-ID"
 	registered_name = "Unconfigured"
