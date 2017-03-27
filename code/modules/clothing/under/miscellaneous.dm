@@ -258,9 +258,8 @@
 	sprite_sheets = list(
 		"Human" = 'icons/mob/uniforms/dresses.dmi',
 		"Skrell" = 'icons/mob/species/skrell/uniforms/dresses.dmi',
-		"Tajara" = 'icons/mob/species/tajaran/uniforms/dresses.dmi',
-		"Unathi" = 'icons/mob/species/unathi/uniforms/dresses.dmi',
-		"Diona" = 'icons/mob/species/diona/uniforms/dresses.dmi'
+		"Tajaran" = 'icons/mob/species/tajaran/uniforms/dresses.dmi',
+		"Unathi" = 'icons/mob/species/unathi/uniforms/dresses.dmi'
 		)
 
 /obj/item/clothing/under/dress/blacktango
@@ -356,9 +355,8 @@
 	sprite_sheets = list(
 		"Human" = 'icons/mob/uniforms/dresses.dmi',
 		"Skrell" = 'icons/mob/species/skrell/uniforms/dresses.dmi',
-		"Tajara" = 'icons/mob/species/tajaran/uniforms/dresses.dmi',
-		"Unathi" = 'icons/mob/species/unathi/uniforms/dresses.dmi',
-		"Diona" = 'icons/mob/species/diona/uniforms/dresses.dmi'
+		"Tajaran" = 'icons/mob/species/tajaran/uniforms/dresses.dmi',
+		"Unathi" = 'icons/mob/species/unathi/uniforms/dresses.dmi'
 		)
 
 
@@ -477,9 +475,8 @@
 	sprite_sheets = list(
 		"Human" = 'icons/mob/uniforms/dresses.dmi',
 		"Skrell" = 'icons/mob/species/skrell/uniforms/dresses.dmi',
-		"Tajara" = 'icons/mob/species/tajaran/uniforms/dresses.dmi',
-		"Unathi" = 'icons/mob/species/unathi/uniforms/dresses.dmi',
-		"Diona" = 'icons/mob/species/diona/uniforms/dresses.dmi'
+		"Tajaran" = 'icons/mob/species/tajaran/uniforms/dresses.dmi',
+		"Unathi" = 'icons/mob/species/unathi/uniforms/dresses.dmi'
 		)
 	icon_state = "mai_yang"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
@@ -511,9 +508,8 @@
 	sprite_sheets = list(
 		"Human" = 'icons/mob/uniforms/dresses.dmi',
 		"Skrell" = 'icons/mob/species/skrell/uniforms/dresses.dmi',
-		"Tajara" = 'icons/mob/species/tajaran/uniforms/dresses.dmi',
-		"Unathi" = 'icons/mob/species/unathi/uniforms/dresses.dmi',
-		"Diona" = 'icons/mob/species/diona/uniforms/dresses.dmi'
+		"Tajaran" = 'icons/mob/species/tajaran/uniforms/dresses.dmi',
+		"Unathi" = 'icons/mob/species/unathi/uniforms/dresses.dmi'
 		)
 	icon_state = "croptop"
 	item_state_slots = list(slot_r_hand_str = "grey", slot_l_hand_str = "grey")

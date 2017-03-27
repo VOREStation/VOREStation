@@ -7,7 +7,7 @@
 	sprite_sheets = list(
 		"Human" = 'icons/mob/uniforms/military.dmi',
 		"Skrell" = 'icons/mob/species/skrell/uniforms/military.dmi',
-		"Tajara" = 'icons/mob/species/tajaran/uniforms/military.dmi',
+		"Tajaran" = 'icons/mob/species/tajaran/uniforms/military.dmi',
 		"Unathi" = 'icons/mob/species/unathi/uniforms/military.dmi'
 		)
 	icon_state = "miami"
@@ -43,9 +43,8 @@
 	sprite_sheets = list(
 		"Human" = 'icons/mob/uniforms/military.dmi',
 		"Skrell" = 'icons/mob/species/skrell/uniforms/military.dmi',
-		"Tajara" = 'icons/mob/species/tajaran/uniforms/military.dmi',
-		"Unathi" = 'icons/mob/species/unathi/uniforms/military.dmi',
-		"Diona" = 'icons/mob/species/diona/uniforms/military.dmi'
+		"Tajaran" = 'icons/mob/species/tajaran/uniforms/military.dmi',
+		"Unathi" = 'icons/mob/species/unathi/uniforms/military.dmi'
 		)
 	icon_state = "blackutility"
 	worn_state = "blackutility"
@@ -202,9 +201,8 @@
 	sprite_sheets = list(
 		"Human" = 'icons/mob/uniforms/military.dmi',
 		"Skrell" = 'icons/mob/species/skrell/uniforms/military.dmi',
-		"Tajara" = 'icons/mob/species/tajaran/uniforms/military.dmi',
-		"Unathi" = 'icons/mob/species/unathi/uniforms/military.dmi',
-		"Diona" = 'icons/mob/species/diona/uniforms/military.dmi'
+		"Tajaran" = 'icons/mob/species/tajaran/uniforms/military.dmi',
+		"Unathi" = 'icons/mob/species/unathi/uniforms/military.dmi'
 		)
 	icon_state = "whiteservice"
 	worn_state = "whiteservice"
@@ -236,9 +234,8 @@
 	sprite_sheets = list(
 		"Human" = 'icons/mob/uniforms/military.dmi',
 		"Skrell" = 'icons/mob/species/skrell/uniforms/military.dmi',
-		"Tajara" = 'icons/mob/species/tajaran/uniforms/military.dmi',
-		"Unathi" = 'icons/mob/species/unathi/uniforms/military.dmi',
-		"Diona" = 'icons/mob/species/diona/uniforms/military.dmi'
+		"Tajaran" = 'icons/mob/species/tajaran/uniforms/military.dmi',
+		"Unathi" = 'icons/mob/species/unathi/uniforms/military.dmi'
 		)
 	icon_state = "greydress"
 	worn_state = "greydress"
