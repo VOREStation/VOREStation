@@ -493,6 +493,9 @@
 	valid_accessory_slots = list("over", "armband")
 	restricted_accessory_slots = list("armband")
 
+	var/icon/rolled_down_icon = 'icons/mob/uniform_rolled_down.dmi'
+	var/icon_roll_down_sleeves_icon = 'icons/mob/uniform_sleeves_rolled.dmi'
+
 /obj/item/clothing/suit/update_clothing_icon()
 	if (ismob(src.loc))
 		var/mob/M = src.loc
@@ -535,6 +538,9 @@
 	valid_accessory_slots = list("utility","armband","decor","over")
 	restricted_accessory_slots = list("utility", "armband")
 
+	var/icon/rolled_down_icon = 'icons/mob/uniform_rolled_down.dmi'
+	var/rolled_down_sleeves_icon = 'icons/mob/uniform_sleeves_rolled.dmi'
+
 
 /obj/item/clothing/under/attack_hand(var/mob/user)
 	if(accessories && accessories.len)
@@ -554,7 +560,7 @@
 
 	//autodetect rollability
 	if(rolled_down < 0)
-		if((worn_state + "_d_s") in icon_states('icons/mob/uniform.dmi'))
+		if((worn_state) in icon_states(rolled_down_icon))
 			rolled_down = 0
 
 /obj/item/clothing/under/proc/update_rolldown_status()
@@ -570,10 +576,10 @@
 	else if(item_icons && item_icons[slot_w_uniform_str])
 		under_icon = item_icons[slot_w_uniform_str]
 	else
-		under_icon = INV_W_UNIFORM_DEF_ICON
+		under_icon = rolled_down_icon
 
 	// The _s is because the icon update procs append it.
-	if(("[worn_state]_d_s") in icon_states(under_icon))
+	if((under_icon == rolled_down_icon && "[worn_state]_s" in icon_states(under_icon)) || ("[worn_state]_d_s" in icon_states(under_icon)))
 		if(rolled_down != 1)
 			rolled_down = 0
 	else
@@ -593,10 +599,10 @@
 	else if(item_icons && item_icons[slot_w_uniform_str])
 		under_icon = item_icons[slot_w_uniform_str]
 	else
-		under_icon = INV_W_UNIFORM_DEF_ICON
+		under_icon = rolled_down_sleeves_icon
 
 	// The _s is because the icon update procs append it.
-	if(("[worn_state]_r_s") in icon_states(under_icon))
+	if((under_icon == rolled_down_sleeves_icon && "[worn_state]_s" in icon_states(under_icon)) || ("[worn_state]_r_s" in icon_states(under_icon)))
 		if(rolled_sleeves != 1)
 			rolled_sleeves = 0
 	else
@@ -678,10 +684,12 @@
 	if(rolled_down)
 		body_parts_covered = initial(body_parts_covered)
 		body_parts_covered &= ~(UPPER_TORSO|ARMS)
-		item_state_slots[slot_w_uniform_str] = "[worn_state]_d"
+		icon_override = rolled_down_icon
+		item_state_slots[slot_w_uniform_str] = "[worn_state]"
 		usr << "<span class='notice'>You roll down your [src].</span>"
 	else
 		body_parts_covered = initial(body_parts_covered)
+		icon_override = initial(icon_override)
 		item_state_slots[slot_w_uniform_str] = "[worn_state]"
 		usr << "<span class='notice'>You roll up your [src].</span>"
 	update_clothing_icon()
@@ -704,10 +712,12 @@
 	rolled_sleeves = !rolled_sleeves
 	if(rolled_sleeves)
 		body_parts_covered &= ~(ARMS)
-		item_state_slots[slot_w_uniform_str] = "[worn_state]_r"
+		icon_override = rolled_down_sleeves_icon
+		item_state_slots[slot_w_uniform_str] = "[worn_state]"
 		usr << "<span class='notice'>You roll up your [src]'s sleeves.</span>"
 	else
 		body_parts_covered = initial(body_parts_covered)
+		icon_override = initial(icon_override)
 		item_state_slots[slot_w_uniform_str] = "[worn_state]"
 		usr << "<span class='notice'>You roll down your [src]'s sleeves.</span>"
 	update_clothing_icon()
