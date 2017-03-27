@@ -70,11 +70,11 @@
 	update_icon(user)
 
 /obj/item/woodcirclet
-    name = "wood circlet"
-    desc = "A small wood circlet for making a flower crown."
-    icon = 'icons/obj/buildingobject.dmi'
-    icon_state = "woodcirclet"
-    w_class = ITEMSIZE_SMALL
+	name = "wood circlet"
+	desc = "A small wood circlet for making a flower crown."
+	icon = 'icons/obj/buildingobject.dmi'
+	icon_state = "woodcirclet"
+	w_class = ITEMSIZE_SMALL
 
 /obj/item/woodcirclet/attackby(obj/item/W as obj, mob/user as mob)
 	var/obj/item/complete
