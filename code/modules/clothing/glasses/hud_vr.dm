@@ -103,7 +103,7 @@
 	name = "AR-E glasses"
 	desc = "The KHI-62-E AR glasses are a design from Kitsuhana Heavy Industries. \
 	These have been upgraded with advanced electrochromic lenses to protect your eyes during welding."
-	mode = "civ"
+	mode = "eng"
 	flash_prot = 2 //Welding protection.
 	action_button_name = "AR Console (Station Alerts)"
 	arscreen_path = /datum/nano_module/alarm_monitor
@@ -117,7 +117,7 @@
 	name = "AR-R glasses"
 	desc = "The KHI-62-R AR glasses are a design from Kitsuhana Heavy Industries. \
 	These have been ... modified ... to fit into a different frame."
-	mode = "civ"
+	mode = "sci"
 	icon = 'icons/obj/clothing/glasses.dmi'
 	icon_override = null
 	icon_state = "purple"
