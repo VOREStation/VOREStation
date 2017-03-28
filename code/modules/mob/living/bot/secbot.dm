@@ -24,7 +24,16 @@
 
 	var/list/threat_found_sounds = list('sound/voice/bcriminal.ogg', 'sound/voice/bjustice.ogg', 'sound/voice/bfreeze.ogg')
 	var/list/preparing_arrest_sounds = list('sound/voice/bgod.ogg', 'sound/voice/biamthelaw.ogg', 'sound/voice/bsecureday.ogg', 'sound/voice/bradio.ogg', 'sound/voice/bcreep.ogg')
-
+//VOREStation Add - They don't like being pulled
+/mob/living/bot/secbot/Life()
+	..()
+	if(health > 0 && on && pulledby)
+		if(isliving(pulledby))
+			var/mob/living/L = pulledby
+			UnarmedAttack(L)
+			say("Do not interfere with active law enforcement routines!")
+			broadcast_security_hud_message("[src] was interfered with in <b>[get_area(src)]</b>, activating defense routines.", src)
+//VOREStation Add End
 /mob/living/bot/secbot/beepsky
 	name = "Officer Beepsky"
 	desc = "It's Officer Beep O'sky! Powered by a potato and a shot of whiskey."
