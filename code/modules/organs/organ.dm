@@ -372,7 +372,7 @@ var/list/organ_cache = list()
 		bitten(user)
 		return
 
-/obj/item/organ/proc/can_feel_pain()
+/obj/item/organ/proc/organ_can_feel_pain()
 	if(species.flags & NO_PAIN)
 		return 0
 	if(status & ORGAN_DESTROYED)

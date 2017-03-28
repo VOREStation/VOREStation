@@ -100,7 +100,7 @@
 		else if (E.is_dislocated())
 			stance_damage += 0.5
 
-		if(E) limb_pain = E.can_feel_pain()
+		if(E) limb_pain = E.organ_can_feel_pain()
 
 	// Canes and crutches help you stand (if the latter is ever added)
 	// One cane mitigates a broken leg+foot, or a missing foot.
@@ -159,7 +159,7 @@
 					drop_from_inventory(r_hand)
 
 			var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
-			emote("me", 1, "[(E.can_feel_pain()) ? "" : emote_scream ]drops what they were holding in their [E.name]!")
+			emote("me", 1, "[(can_feel_pain()) ? "" : emote_scream ]drops what they were holding in their [E.name]!")
 
 		else if(E.is_malfunctioning())
 			switch(E.body_part)
