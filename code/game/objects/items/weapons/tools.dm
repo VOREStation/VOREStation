@@ -242,7 +242,7 @@
 			playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
 			return
 		else if(!welding)
-			user << "<span class='notice>[src] doesn't use fuel.</span>"
+			user << "<span class='notice'>[src] doesn't use fuel.</span>"
 			return
 		else
 			message_admins("[key_name_admin(user)] triggered a fueltank explosion with a welding tool.")
