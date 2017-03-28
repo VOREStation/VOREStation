@@ -95,12 +95,6 @@ item_path: /obj/item/weapon/storage/box/fluff/tasald
 {
 ckey: bwoincognito
 character_name: Octavious Ward
-item_path: /obj/item/clothing/shoes/cuffs/octavious
-}
-
-{
-ckey: bwoincognito
-character_name: Octavious Ward
 item_path: /obj/item/weapon/storage/box/fluff/octavious
 }
 

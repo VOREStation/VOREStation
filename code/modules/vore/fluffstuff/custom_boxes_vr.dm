@@ -49,7 +49,11 @@
 		/obj/item/clothing/suit/storage/trench/fluff/octaviouscoat,
 		/obj/item/clothing/under/det/fluff/octavious,
 		/obj/item/clothing/mask/gas/plaguedoctor/fluff/octaviousmask,
-		/obj/item/clothing/head/fedora/fluff/bowler)
+		/obj/item/clothing/head/fedora/fluff/bowler,
+		/obj/item/clothing/shoes/black/cuffs/octavious,
+		/obj/item/weapon/cane/fluff/tasald,
+		/obj/item/clothing/glasses/hud/health/octaviousmonicle
+		)
 
 // jemli:Cirra Mayhem
 /obj/item/weapon/storage/box/fluff/cirra
@@ -76,7 +80,7 @@
 //joanrisu:Joan Risu
 /obj/item/weapon/storage/backpack/dufflebag/sec/fluff/joanrisu
 	name = "Joan's Workbag"
-	desc = "A duffle bag Joan uses to carry her work equipment."
+	desc = "A bag Joan uses to carry her work equipment. It has the 82nd Battle Group Insignia on it."
 	icon_state = "joanbag"
 	icon = 'icons/vore/custom_items_vr.dmi'
 	item_state = "duffle_med"
@@ -96,7 +100,6 @@
 		new /obj/item/clothing/under/rank/internalaffairs/fluff/joan(src)
 		new /obj/item/clothing/head/helmet/space/fluff/joan(src)
 		new /obj/item/clothing/suit/space/fluff/joan(src)
-		new /obj/item/device/pda/heads/hos/joanpda(src)
 
 
 
