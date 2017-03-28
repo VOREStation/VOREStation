@@ -104,8 +104,6 @@
 		var/turf/D = locate(T.x, throwy - 1, 1)
 		for(var/atom/movable/AM as mob|obj in T)
 			AM.Move(D)
-		if(istype(T, /turf/simulated))
-			qdel(T)
 
 	for(var/mob/living/carbon/bug in destination)
 		bug.gib()
@@ -119,7 +117,7 @@
 		if(M.client)
 			spawn(0)
 				if(M.buckled)
-					M << "\red Sudden acceleration presses you into your chair!"
+					M << "\red Sudden acceleration presses you into \the [M.buckled]!"
 					shake_camera(M, 3, 1)
 				else
 					M << "\red The floor lurches beneath you!"

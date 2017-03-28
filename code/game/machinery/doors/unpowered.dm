@@ -13,12 +13,12 @@
 	if(src.locked)	return
 	..()
 	return
-	
+
 /obj/machinery/door/unpowered/emag_act()
 	return -1
 
 /obj/machinery/door/unpowered/shuttle
-	icon = 'icons/turf/shuttle.dmi'
+	icon = 'icons/turf/shuttle_white.dmi'
 	name = "door"
 	icon_state = "door1"
 	opacity = 1
