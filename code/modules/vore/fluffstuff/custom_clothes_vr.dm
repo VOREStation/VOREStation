@@ -662,8 +662,6 @@
 
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "molenar"
-	icon_open = "molenar_open"
-	icon_closed = "molenar"
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "molenar"
