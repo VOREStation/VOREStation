@@ -81,6 +81,8 @@
 	if(istype(W,/obj/item/seeds/poppyseed))
 		user << "You attach the poppy to the circlet and create a beautiful flower crown."
 		complete = new /obj/item/clothing/head/poppy_crown(get_turf(user))
+		user.drop_from_inventory(W)
+		user.drop_from_inventory(src)
 		qdel(W)
 		qdel(src)
 		user.put_in_hands(complete)
@@ -88,6 +90,8 @@
 	else if(istype(W,/obj/item/seeds/sunflowerseed))
 		user << "You attach the sunflower to the circlet and create a beautiful flower crown."
 		complete = new /obj/item/clothing/head/sunflower_crown(get_turf(user))
+		user.drop_from_inventory(W)
+		user.drop_from_inventory(src)
 		qdel(W)
 		qdel(src)
 		user.put_in_hands(complete)
@@ -95,6 +99,8 @@
 	else if(istype(W,/obj/item/seeds/lavenderseed))
 		user << "You attach the lavender to the circlet and create a beautiful flower crown."
 		complete = new /obj/item/clothing/head/lavender_crown(get_turf(user))
+		user.drop_from_inventory(W)
+		user.drop_from_inventory(src)
 		qdel(W)
 		qdel(src)
 		user.put_in_hands(complete)
