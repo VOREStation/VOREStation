@@ -715,15 +715,25 @@
 		species_allowed = list("Unathi")
 
 //Skrell 'hairstyles'
-	skr_tentacle_m
-		name = "Skrell Male Tentacles"
-		icon_state = "skrell_hair_m"
+	skr_tentacle_veryshort
+		name = "Skrell Very Short Tentacles"
+		icon_state = "skrell_hair_veryshort"
 		species_allowed = list("Skrell")
 		gender = MALE
 
-	skr_tentacle_f
-		name = "Skrell Female Tentacles"
-		icon_state = "skrell_hair_f"
+	skr_tentacle_short
+		name = "Skrell Short Tentacles"
+		icon_state = "skrell_hair_short"
+		species_allowed = list("Skrell")
+
+	skr_tentacle_average
+		name = "Skrell Average Tentacles"
+		icon_state = "skrell_hair_average"
+		species_allowed = list("Skrell")
+
+	skr_tentacle_verylong
+		name = "Skrell Long Tentacles"
+		icon_state = "skrell_hair_verylong"
 		species_allowed = list("Skrell")
 		gender = FEMALE
 
