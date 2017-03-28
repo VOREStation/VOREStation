@@ -1,7 +1,7 @@
 /* TUTORIAL
 	"icon" is the file with the HUD/ground icon for the item
 	"icon_state" is the iconstate in this file for the item
-	"icon_override" is the file with the on-mob icons, can be the same file
+	"icon_override" is the file with the on-mob icons, can be the same file (Except for glasses, shoes, and masks.)
 	"item_state" is the iconstate for the on-mob icons:
 		item_state_s is used for worn uniforms on mobs
 		item_state_r and item_state_l are for being held in each hand
@@ -570,13 +570,21 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	desc = "A cane used by a true gentlemen. Or a clown."
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "browncane"
-	item_state = "browncanemob"
+	item_icons = list (slot_r_hand_str = 'icons/vore/custom_items_vr.dmi', slot_l_hand_str = 'icons/vore/custom_items_vr.dmi')
+	item_state_slots = list(slot_r_hand_str = "browncanemob_r", slot_l_hand_str = "browncanemob_l")
 	flags = CONDUCT
 	force = 5.0
 	throwforce = 7.0
 	w_class = ITEMSIZE_SMALL
 	matter = list(DEFAULT_WALL_MATERIAL = 50)
 	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
+
+	tasald
+		name = "Ornate Walking Cane"
+		desc = "An elaborately made custom walking stick with a dark wooding core, a crimson red gemstone on its head and a steel cover around the bottom. you'd probably hear someone using this down the hall."
+		icon = 'icons/vore/custom_items_vr.dmi'
+
+
 
 /obj/item/weapon/card/id/fluff/ivyholoid
 	name = "Holo-ID"
