@@ -8,3 +8,6 @@
 #define TURF_HAS_CORNERS        128
 #define TURF_IS_FRAGILE         256
 #define TURF_ACID_IMMUNE        512
+
+#define isCardinal(x)			(x == NORTH || x == SOUTH || x == EAST || x == WEST)
+#define isDiagonal(x)			(x == NORTHEAST || x == SOUTHEAST || x == NORTHWEST || x == SOUTHWEST)

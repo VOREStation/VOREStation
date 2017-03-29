@@ -347,3 +347,24 @@
 	desc = "A wide-brimmed hat popularly worn in Mexico."
 	icon_state = "sombrero"
 	body_parts_covered = 0
+
+
+//Flower crowns
+
+/obj/item/clothing/head/sunflower_crown
+	name = "sunflower crown"
+	desc = "A flower crown weaved with sunflowers."
+	icon_state = "sunflower_crown"
+	body_parts_covered = 0
+
+/obj/item/clothing/head/lavender_crown
+	name = "lavender crown"
+	desc = "A flower crown weaved with lavender."
+	icon_state = "lavender_crown"
+	body_parts_covered = 0
+
+/obj/item/clothing/head/poppy_crown
+	name = "poppy crown"
+	desc = "A flower crown weaved with poppies."
+	icon_state = "poppy_crown"
+	body_parts_covered = 0

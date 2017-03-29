@@ -33,11 +33,4 @@ delete-after: True
 # Also, all entries are changed into a single [] after a master changelog generation. Just remove the brackets when you add new entries.
 # Please surround your changes in  double quotes ("), as certain characters otherwise screws up compiling. The quotes will not show up in the changelog.
 changes: 
-  - tweak: "Skrell can now be up to 130 years old."
-  - tweak: "Skrell are more vulnerable to flashes, due to their large eyes."
-  - tweak: "Tajaran no longer have appendicies."
-  - tweak: "Tajaran are more vulnerable to flashes."
-  - tweak: "Unathi have less brute resist, but some burn resist."
-  - tweak: "Unathi gender is now unclear to non-Unathi."
-
-
+  - tweak: "Italics in chat are now trigged with | , rather than / ."

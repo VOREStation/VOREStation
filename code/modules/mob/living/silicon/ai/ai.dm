@@ -548,7 +548,7 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 	var/choice = alert("Would you like to select a hologram based on a (visible) crew member, switch to unique avatar, or load your character from your character slot?",,"Crew Member","Unique","My Character")
 
 	switch(choice)
-		if("Crew Member")
+		if("Crew Member") //A seeable crew member (or a dog)
 			var/list/targets = trackable_mobs()
 			if(targets.len)
 				input = input("Select a crew member:") as null|anything in targets //The definition of "crew member" is a little loose...
@@ -561,7 +561,7 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 			else
 				alert("No suitable records found. Aborting.")
 
-		if("My Character")
+		if("My Character") //Loaded character slot
 			if(!client || !client.prefs) return
 			var/mob/living/carbon/human/dummy/dummy = new ()
 			//This doesn't include custom_items because that's ... hard.
@@ -574,25 +574,30 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 			qdel(dummy)
 			holo_icon = new_holo
 
-		else //One from the dmi.
+		else //A premade from the dmi
 			var/icon_list[] = list(
-			"default",
-			"floating face",
-			"carp",
-			"ian",
-			"runtime",
-			"poly",
-			"pun pun",
-			"male human",
-			"female human",
-			"male unathi",
-			"female unathi",
-			"male tajara",
-			"female tajara",
-			"male tesharii",
-			"female tesharii",
-			"male skrell",
-			"female skrell"
+				"default",
+				"floating face",
+				"singularity",
+				"drone",
+				"carp",
+				"spider",
+				"bear",
+				"slime",
+				"ian",
+				"runtime",
+				"poly",
+				"pun pun",
+				"male human",
+				"female human",
+				"male unathi",
+				"female unathi",
+				"male tajara",
+				"female tajara",
+				"male tesharii",
+				"female tesharii",
+				"male skrell",
+				"female skrell"
 			)
 			input = input("Please select a hologram:") as null|anything in icon_list
 			if(input)
@@ -602,8 +607,18 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo1"))
 					if("floating face")
 						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo2"))
+					if("singularity")
+						holo_icon = getHologramIcon(icon('icons/obj/singularity.dmi',"singularity_s1"))
+					if("drone")
+						holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"drone0"))
 					if("carp")
 						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo4"))
+					if("spider")
+						holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"nurse"))
+					if("bear")
+						holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"brownbear"))
+					if("slime")
+						holo_icon = getHologramIcon(icon('icons/mob/slimes.dmi',"cerulean adult slime"))
 					if("ian")
 						holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"corgi"))
 					if("runtime")
