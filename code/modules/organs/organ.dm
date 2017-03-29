@@ -372,5 +372,11 @@ var/list/organ_cache = list()
 		bitten(user)
 		return
 
-/obj/item/organ/proc/can_feel_pain()
-	return !(robotic >= (ORGAN_ROBOT|ORGAN_DESTROYED)) && !(species.flags & NO_PAIN)
+/obj/item/organ/proc/organ_can_feel_pain()
+	if(species.flags & NO_PAIN)
+		return 0
+	if(status & ORGAN_DESTROYED)
+		return 0
+	if(robotic && robotic < ORGAN_LIFELIKE)	//Super fancy humanlike robotics probably have sensors, or something?
+		return 0
+	return 1

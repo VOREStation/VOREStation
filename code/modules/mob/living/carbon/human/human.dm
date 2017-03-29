@@ -1489,7 +1489,7 @@
 	if(check_organ)
 		if(!istype(check_organ))
 			return 0
-		return check_organ.can_feel_pain()
+		return check_organ.organ_can_feel_pain()
 	return !(species.flags & NO_PAIN)
 
 /mob/living/carbon/human/is_muzzled()
