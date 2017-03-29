@@ -777,30 +777,35 @@ obj/item/clothing/suit/kimono
 	name = "department jacket, security"
 	desc = "A cozy jacket in security's colors. Show your department pride!"
 	icon_state = "sec_dep_jacket"
+	item_state_slots = list(slot_r_hand_str = "sec_dep_jacket", slot_l_hand_str = "sec_dep_jacket")
 	flags_inv = HIDEHOLSTER
 
 /obj/item/clothing/suit/storage/toggle/engi_dep_jacket
 	name = "department jacket, engineering"
 	desc = "A cozy jacket in engineering's colors. Show your department pride!"
 	icon_state = "engi_dep_jacket"
+	item_state_slots = list(slot_r_hand_str = "engi_dep_jacket", slot_l_hand_str = "engi_dep_jacket")
 	flags_inv = HIDEHOLSTER
 
 /obj/item/clothing/suit/storage/toggle/supply_dep_jacket
 	name = "department jacket, supply"
 	desc = "A cozy jacket in supply's colors. Show your department pride!"
 	icon_state = "supply_dep_jacket"
+	item_state_slots = list(slot_r_hand_str = "supply_dep_jacket", slot_l_hand_str = "supply_dep_jacket")
 	flags_inv = HIDEHOLSTER
 
 /obj/item/clothing/suit/storage/toggle/sci_dep_jacket
 	name = "department jacket, science"
 	desc = "A cozy jacket in science's colors. Show your department pride!"
 	icon_state = "sci_dep_jacket"
+	item_state_slots = list(slot_r_hand_str = "sci_dep_jacket", slot_l_hand_str = "sci_dep_jacket")
 	flags_inv = HIDEHOLSTER
 
 /obj/item/clothing/suit/storage/toggle/med_dep_jacket
 	name = "department jacket, medical"
 	desc = "A cozy jacket in medical's colors. Show your department pride!"
 	icon_state = "med_dep_jacket"
+	item_state_slots = list(slot_r_hand_str = "med_dep_jacket", slot_l_hand_str = "med_dep_jacket")
 	flags_inv = HIDEHOLSTER
 
 /*
