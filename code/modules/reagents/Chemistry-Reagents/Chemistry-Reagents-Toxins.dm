@@ -43,6 +43,13 @@
 	color = "#003333"
 	strength = 10
 
+/datum/reagent/toxin/spidertoxin
+	name = "Spidertoxin"
+	id = "spidertoxin"
+	description = "A liquifying toxin produced by giant spiders."
+	color = "#2CE893"
+	strength = 5
+
 /datum/reagent/toxin/phoron
 	name = "Phoron"
 	id = "phoron"

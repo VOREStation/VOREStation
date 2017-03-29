@@ -160,6 +160,14 @@
 	required_reagents = list("silicon" = 1, "potassium" = 1, "nitrogen" = 1)
 	result_amount = 3
 
+/datum/chemical_reaction/carthatoline
+	name = "Carthatoline"
+	id = "carthatoline"
+	result = "carthatoline"
+	required_reagents = list("dylovene" = 1, "carbon" = 2, "phoron" = 0.1)
+	catalysts = list("phoron" = 1)
+	result_amount = 2
+
 /datum/chemical_reaction/tramadol
 	name = "Tramadol"
 	id = "tramadol"
@@ -282,6 +290,15 @@
 	catalysts = list("phoron" = 5)
 	result_amount = 2
 
+/datum/chemical_reaction/osteodaxon
+	name = "Osteodaxon"
+	id = "osteodaxon"
+	result = "osteodaxon"
+	required_reagents = list("bicaridine" = 2, "phoron" = 0.1, "carpotoxin" = 1)
+	catalysts = list("phoron" = 5)
+	inhibitors = list("clonexadone" = 1) // Messes with cryox
+	result_amount = 2
+
 /datum/chemical_reaction/virus_food
 	name = "Virus Food"
 	id = "virusfood"
@@ -347,6 +364,13 @@
 	result = "bicaridine"
 	required_reagents = list("inaprovaline" = 1, "carbon" = 1)
 	inhibitors = list("sugar" = 1) // Messes up with inaprovaline
+	result_amount = 2
+
+/datum/chemical_reaction/myelamine
+	name = "Myelamine"
+	id = "myelamine"
+	result = "myelamine"
+	required_reagents = list("bicaridine" = 1, "iron" = 2, "spidertoxin" = 1)
 	result_amount = 2
 
 /datum/chemical_reaction/hyperzine
