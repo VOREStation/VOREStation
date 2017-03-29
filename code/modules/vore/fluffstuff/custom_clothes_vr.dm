@@ -1210,3 +1210,12 @@ Departamental Swimsuits, for general use
 	desc = "The uniform undershit worn by medsci officers of the 2380s."
 	icon_state = "trek_medsci"
 	item_state = "trek_ds9_medsci"
+
+//For general use maybe
+/obj/item/clothing/under/batter //I guess we're going OFF limits.
+	name = "Worn baseball outfit"
+	desc = "<b>Purification in progress...</b>"
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "batter"
+	item_state = "batter_mob"
