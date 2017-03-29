@@ -83,7 +83,7 @@
 				return
 
 			playsound(src.loc, 'sound/effects/slime_squish.ogg', 50, 0) //Credit to DrMinky (freesound.org) for the sound.
-			message = "blinks."
+			message = "squishes."
 			m_type = 1
 
 
