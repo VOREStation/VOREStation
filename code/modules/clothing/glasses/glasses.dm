@@ -197,7 +197,7 @@ BLIND     // can't see anything
 	name = "welding goggles"
 	desc = "Protects the eyes from welders, approved by the mad scientist association."
 	icon_state = "welding-g"
-	item_state_slots = list(slot_r_hand_str = "g", slot_l_hand_str = "g")
+	item_state_slots = list(slot_r_hand_str = "welding-g", slot_l_hand_str = "welding-g")
 	action_button_name = "Flip Welding Goggles"
 	matter = list(DEFAULT_WALL_MATERIAL = 1500, "glass" = 1000)
 	var/up = 0
