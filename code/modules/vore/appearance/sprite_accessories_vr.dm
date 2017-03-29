@@ -798,6 +798,10 @@
 	name = "Feline"
 	icon_state = "feline_s"
 
+/datum/sprite_accessory/tail/taur/slug
+	name = "Slug"
+	icon_state = "slug_s"
+
 //wickedtemp: Chakat Tempest
 /datum/sprite_accessory/tail/taur/feline/tempest
 	name = "Feline (wickedtemp)"
