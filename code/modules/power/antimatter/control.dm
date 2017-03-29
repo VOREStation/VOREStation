@@ -97,6 +97,12 @@
 		if(2)
 			if(active)	toggle_power()
 			stability -= rand(10,20)
+		if(3)
+			if(active)	toggle_power()
+			stability -= rand(8,15)
+		if(4)
+			if(active)	toggle_power()
+			stability -= rand(5,10)
 	..()
 	return 0
 

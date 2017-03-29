@@ -24,6 +24,19 @@
 /obj/item/organ/internal/brain/digitize()
 	replace_self_with(/obj/item/organ/internal/mmi_holder/robot)
 
+/obj/item/organ/internal/brain/handle_germ_effects()
+	. = ..() //Up should return an infection level as an integer
+	if(!.) return
+
+	//Bacterial meningitis (more of a spine thing but 'brain infection' isn't a common thing)
+	if (. >= 1)
+		if(prob(1))
+			owner.custom_pain("Your neck aches, and feels very stiff!",0)
+	if (. >= 2)
+		if(prob(1))
+			owner.custom_pain("Your feel very dizzy for a moment!",0)
+			owner.confused = max(owner.confused, 2)
+
 /obj/item/organ/internal/brain/proc/replace_self_with(replace_path)
 	var/mob/living/carbon/human/tmp_owner = owner
 	qdel(src)

@@ -15,7 +15,8 @@ var/global/datum/controller/occupations/job_master
 
 	proc/SetupOccupations(var/faction = "Station")
 		occupations = list()
-		var/list/all_jobs = typesof(/datum/job)
+		//var/list/all_jobs = typesof(/datum/job)
+		var/list/all_jobs = list(/datum/job/assistant) | using_map.allowed_jobs
 		if(!all_jobs.len)
 			world << "<span class='warning'>Error setting up jobs, no job datums found!</span>"
 			return 0
@@ -402,13 +403,13 @@ var/global/datum/controller/occupations/job_master
 			if(!S)
 				S = locate("start*[rank]") // use old stype
 			if(istype(S, /obj/effect/landmark/start) && istype(S.loc, /turf))
-				H.loc = S.loc
+				H.forceMove(S.loc)
 			else
 				LateSpawn(H, rank)
 
 			// Moving wheelchair if they have one
 			if(H.buckled && istype(H.buckled, /obj/structure/bed/chair/wheelchair))
-				H.buckled.loc = H.loc
+				H.buckled.forceMove(H.loc)
 				H.buckled.set_dir(H.dir)
 
 		// If they're head, give them the account info for their department
@@ -600,17 +601,25 @@ var/global/datum/controller/occupations/job_master
 
 	var/datum/spawnpoint/spawnpos
 
+//	if(H.client.prefs.spawnpoint)
+//		spawnpos = spawntypes[H.client.prefs.spawnpoint]
+
 	if(H.client.prefs.spawnpoint)
-		spawnpos = spawntypes[H.client.prefs.spawnpoint]
+		if(!(H.client.prefs.spawnpoint in using_map.allowed_spawns))
+			if(H) // This seems redundant...
+				to_chat(H, "<span class='warning'>Your chosen spawnpoint ([H.client.prefs.spawnpoint]) is unavailable for the current map. Spawning you at one of the enabled spawn points instead.</span>")
+			spawnpos = null
+		else
+			spawnpos = spawntypes[H.client.prefs.spawnpoint]
 
 	if(spawnpos && istype(spawnpos))
 		if(spawnpos.check_job_spawning(rank))
-			H.loc = pick(spawnpos.turfs)
+			H.forceMove(pick(spawnpos.turfs))
 			. = spawnpos.msg
 		else
 			H << "Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Spawning you at the Arrivals shuttle instead."
-			H.loc = pick(latejoin)
+			H.forceMove(pick(latejoin))
 			. = "has arrived on the station"
 	else
-		H.loc = pick(latejoin)
+		H.forceMove(pick(latejoin))
 		. = "has arrived on the station"

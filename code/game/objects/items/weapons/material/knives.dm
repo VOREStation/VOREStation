@@ -34,6 +34,13 @@
 	desc = "A classic switchblade with gold engraving. Just holding it makes you feel like a gangster."
 	icon_state = "switchblade"
 
+/obj/item/weapon/material/butterfly/boxcutter
+	name = "box cutter"
+	desc = "A thin, inexpensive razor-blade knife designed to open cardboard boxes."
+	icon_state = "boxcutter"
+	force_divisor = 0.1 // 6 when wielded with hardness 60 (steel)
+	thrown_force_divisor = 0.2 // 4 when thrown with weight 20 (steel)
+
 /obj/item/weapon/material/butterfly/attack_self(mob/user)
 	active = !active
 	if(active)

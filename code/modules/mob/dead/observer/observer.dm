@@ -318,40 +318,17 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		M.antagHUD = 1
 		src << "\blue <B>AntagHUD Enabled</B>"
 
-/mob/observer/dead/proc/dead_tele(A in ghostteleportlocs)
+/mob/observer/dead/proc/dead_tele(var/area/A in return_sorted_areas())
 	set category = "Ghost"
 	set name = "Teleport"
-	set desc= "Teleport to a location"
+	set desc = "Teleport to a location"
+
 	if(!istype(usr, /mob/observer/dead))
 		usr << "Not when you're not dead!"
 		return
-	usr.verbs -= /mob/observer/dead/proc/dead_tele
-	spawn(30)
-		usr.verbs += /mob/observer/dead/proc/dead_tele
-	var/area/thearea = ghostteleportlocs[A]
-	if(!thearea)	return
 
-	var/list/L = list()
-	var/holyblock = 0
-
-	if(usr.invisibility <= SEE_INVISIBLE_LIVING || (usr.mind in cult.current_antagonists))
-		for(var/turf/T in get_area_turfs(thearea.type))
-			if(!T.holy)
-				L+=T
-			else
-				holyblock = 1
-	else
-		for(var/turf/T in get_area_turfs(thearea.type))
-			L+=T
-
-	if(!L || !L.len)
-		if(holyblock)
-			usr << "<span class='warning'>This area has been entirely made into sacred grounds, you cannot enter it while you are in this plane of existence!</span>"
-		else
-			usr << "No area available."
-
-	usr.forceMove(pick(L))
-	following = null
+	usr.forceMove(pick(get_area_turfs(A)))
+	usr.on_mob_jump()
 
 /mob/observer/dead/verb/follow(input in getmobs())
 	set category = "Ghost"
@@ -518,7 +495,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	var/turf/T = get_turf(src)
-	if(!T || (T.z in config.admin_levels))
+	if(!T || (T.z in using_map.admin_levels))
 		src << "<span class='warning'>You may not spawn as a mouse on this Z-level.</span>"
 		return
 

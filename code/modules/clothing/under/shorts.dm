@@ -91,11 +91,6 @@
 	name = "khaki short shorts"
 	icon_state = "khaki_shorts_f"
 
-/obj/item/clothing/under/shorts/loincloth
-	name = "loincloth"
-	desc = "A piece of cloth wrapped around the waist."
-	icon_state = "loincloth"
-
 //Argh, skirts be below this line -> ------------------------------
 
 /obj/item/clothing/under/skirt
@@ -129,6 +124,11 @@
 	name = "swept skirt"
 	desc = "A skirt that is swept to one side."
 	icon_state = "skirt_swept"
+
+/obj/item/clothing/under/skirt/loincloth
+	name = "loincloth"
+	desc = "A piece of cloth wrapped around the waist."
+	icon_state = "loincloth"
 
 /obj/item/clothing/under/skirt/outfit
 	name = "black skirt"

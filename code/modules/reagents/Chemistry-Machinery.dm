@@ -47,27 +47,27 @@
 
 /obj/machinery/chem_master/attackby(var/obj/item/weapon/B as obj, var/mob/user as mob)
 
-	if(istype(B, /obj/item/weapon/reagent_containers/glass))
+	if(istype(B, /obj/item/weapon/reagent_containers/glass) || istype(B, /obj/item/weapon/reagent_containers/food))
 
 		if(src.beaker)
-			user << "A beaker is already loaded into the machine."
+			user << "\A [beaker] is already loaded into the machine."
 			return
 		src.beaker = B
 		user.drop_item()
 		B.loc = src
-		user << "You add the beaker to the machine!"
+		user << "You add \the [B] to the machine!"
 		icon_state = "mixer1"
 
 	else if(istype(B, /obj/item/weapon/storage/pill_bottle))
 
 		if(src.loaded_pill_bottle)
-			user << "A pill bottle is already loaded into the machine."
+			user << "A \the [loaded_pill_bottle] s already loaded into the machine."
 			return
 
 		src.loaded_pill_bottle = B
 		user.drop_item()
 		B.loc = src
-		user << "You add the pill bottle into the dispenser slot!"
+		user << "You add \the [loaded_pill_bottle] into the dispenser slot!"
 	return
 
 /obj/machinery/chem_master/attack_hand(mob/user as mob)
@@ -370,9 +370,6 @@
 	O.loc = src
 	holdingitems += O
 	src.updateUsrDialog()
-	return 0
-
-/obj/machinery/reagentgrinder/attack_ai(mob/user as mob)
 	return 0
 
 /obj/machinery/reagentgrinder/attack_hand(mob/user as mob)

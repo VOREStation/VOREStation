@@ -1,21 +1,21 @@
 // Shoelocker
 /datum/gear/shoes
 	display_name = "jackboots"
-	path = /obj/item/clothing/shoes/jackboots
+	path = /obj/item/clothing/shoes/boots/jackboots
 	slot = slot_shoes
 	sort_category = "Shoes and Footwear"
 
 /datum/gear/shoes/toeless
 	display_name = "toe-less jackboots"
-	path = /obj/item/clothing/shoes/jackboots/toeless
+	path = /obj/item/clothing/shoes/boots/jackboots/toeless
 
 /datum/gear/shoes/workboots
 	display_name = "workboots"
-	path = /obj/item/clothing/shoes/workboots
+	path = /obj/item/clothing/shoes/boots/workboots
 
 /datum/gear/shoes/workboots/toeless
 	display_name = "toe-less workboots"
-	path = /obj/item/clothing/shoes/workboots/toeless
+	path = /obj/item/clothing/shoes/boots/workboots/toeless
 
 /datum/gear/shoes/sandals
 	display_name = "sandals"
@@ -135,16 +135,16 @@
 
 /datum/gear/shoes/cowboy
 	display_name = "cowboy boots"
-	path = /obj/item/clothing/shoes/cowboy
+	path = /obj/item/clothing/shoes/boots/cowboy
 
 /datum/gear/shoes/jungle
 	display_name = "jungle boots"
-	path = /obj/item/clothing/shoes/jungleboots
+	path = /obj/item/clothing/shoes/boots/jungle
 	cost = 2
 
 /datum/gear/shoes/duty
 	display_name = "duty boots"
-	path = 	/obj/item/clothing/shoes/dutyboots
+	path = 	/obj/item/clothing/shoes/boots/duty
 	cost = 2
 
 /datum/gear/shoes/dress
@@ -154,3 +154,11 @@
 /datum/gear/shoes/dress/white
 	display_name = "shoes, dress white"
 	path = 	/obj/item/clothing/shoes/dress/white
+
+/datum/gear/shoes/heels
+	display_name = "high heels"
+	path = /obj/item/clothing/shoes/heels
+
+/datum/gear/shoes/heels/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)

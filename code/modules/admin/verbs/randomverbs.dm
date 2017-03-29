@@ -471,8 +471,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		antag_data.place_mob(new_character)
 
 	//If desired, apply equipment.
-	if(equipment && charjob)
-		job_master.EquipRank(new_character, charjob, 1)
+	if(equipment)
+		if(charjob)
+			job_master.EquipRank(new_character, charjob, 1)
+		equip_custom_items(new_character)
 
 	//If desired, add records.
 	if(records)
@@ -553,7 +555,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!input)
 		return
 	if(!customname)
-		customname = "[company_name] Update"
+		customname = "[using_map.company_name] Update"
 	for (var/obj/machinery/computer/communications/C in machines)
 		if(! (C.stat & (BROKEN|NOPOWER) ) )
 			var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( C.loc )
@@ -568,7 +570,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		if("Yes")
 			command_announcement.Announce(input, customname, new_sound = 'sound/AI/commandreport.ogg', msg_sanitized = 1);
 		if("No")
-			world << "\red New [company_name] Update available at all communication consoles."
+			world << "\red New [using_map.company_name] Update available at all communication consoles."
 			world << sound('sound/AI/commandreport.ogg')
 
 	log_admin("[key_name(src)] has created a command report: [input]")
@@ -637,14 +639,18 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	var/heavy = input("Range of heavy pulse.", text("Input"))  as num|null
 	if(heavy == null) return
+	var/med = input("Range of medium pulse.", text("Input"))  as num|null
+	if(med == null) return
 	var/light = input("Range of light pulse.", text("Input"))  as num|null
 	if(light == null) return
+	var/long = input("Range of long pulse.", text("Input"))  as num|null
+	if(long == null) return
 
-	if (heavy || light)
+	if (heavy || med || light || long)
 
-		empulse(O, heavy, light)
-		log_admin("[key_name(usr)] created an EM Pulse ([heavy],[light]) at ([O.x],[O.y],[O.z])")
-		message_admins("[key_name_admin(usr)] created an EM PUlse ([heavy],[light]) at ([O.x],[O.y],[O.z])", 1)
+		empulse(O, heavy, med, light, long)
+		log_admin("[key_name(usr)] created an EM Pulse ([heavy],[med],[light],[long]) at ([O.x],[O.y],[O.z])")
+		message_admins("[key_name_admin(usr)] created an EM PUlse ([heavy],[med],[light],[long]) at ([O.x],[O.y],[O.z])", 1)
 		feedback_add_details("admin_verb","EMP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 		return

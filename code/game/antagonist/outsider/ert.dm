@@ -36,7 +36,7 @@ var/datum/antagonist/ert/ert
 /datum/antagonist/ert/greet(var/datum/mind/player)
 	if(!..())
 		return
-	player.current << "The Emergency Response Team works for Asset Protection; your job is to protect [company_name]'s ass-ets. There is a code red alert on [station_name()], you are tasked to go and fix the problem."
+	player.current << "The Emergency Response Team works for Asset Protection; your job is to protect [using_map.company_name]'s ass-ets. There is a code red alert on [station_name()], you are tasked to go and fix the problem."
 	player.current << "You should first gear up and discuss a plan with your team. More members may be joining, don't move out before you're ready."
 
 /datum/antagonist/ert/equip(var/mob/living/carbon/human/player)
@@ -44,7 +44,7 @@ var/datum/antagonist/ert/ert
 	//Special radio setup
 	player.equip_to_slot_or_del(new /obj/item/device/radio/headset/ert(src), slot_l_ear)
 	player.equip_to_slot_or_del(new /obj/item/clothing/under/ert(src), slot_w_uniform)
-	player.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(src), slot_shoes)
+	player.equip_to_slot_or_del(new /obj/item/clothing/shoes/boots/swat(src), slot_shoes)
 	player.equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(src), slot_gloves)
 	player.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(src), slot_glasses)
 

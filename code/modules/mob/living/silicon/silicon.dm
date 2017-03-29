@@ -65,7 +65,13 @@
 			src.take_organ_damage(0,20,emp=1)
 			confused = (min(confused + 5, 30))
 		if(2)
+			src.take_organ_damage(0,15,emp=1)
+			confused = (min(confused + 4, 30))
+		if(3)
 			src.take_organ_damage(0,10,emp=1)
+			confused = (min(confused + 3, 30))
+		if(4)
+			src.take_organ_damage(0,5,emp=1)
 			confused = (min(confused + 2, 30))
 	flash_eyes(affect_silicon = 1)
 	src << "<span class='danger'><B>*BZZZT*</B></span>"

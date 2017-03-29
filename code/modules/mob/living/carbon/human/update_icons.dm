@@ -117,7 +117,7 @@ Please contact me on #coderbus IRC. ~Carn x
 #define GLOVES_LAYER			9
 #define BELT_LAYER				10
 #define SUIT_LAYER				11
-#define TAIL_LAYER				12		//bs12 specific.
+#define TAIL_LAYER				12		//bs12 specific.	//In a perfect world the parts of the tail that show between legs would be on a new layer. Until then, sprite's been tweaked
 #define GLASSES_LAYER			13
 #define BELT_LAYER_ALT			14
 #define SUIT_STORE_LAYER		15
@@ -257,25 +257,24 @@ var/global/list/damage_icon_parts = list()
 		var/obj/item/organ/external/part = organs_by_name[organ_tag]
 		if(isnull(part) || part.is_stump())
 			icon_key += "0"
-		else if(part.robotic >= ORGAN_ROBOT)
-			icon_key += "2[part.model ? "-[part.model]": ""]"
-			robolimb_count++
-			if(part.organ_tag == BP_HEAD || part.organ_tag == BP_TORSO || part.organ_tag == BP_GROIN)
-				robobody_count ++
-		else if(part.status & ORGAN_DEAD)
-			icon_key += "3"
-		else
-			icon_key += "1"
+			continue
 		if(part)
 			icon_key += "[part.species.get_race_key(part.owner)]"
 			icon_key += "[part.dna.GetUIState(DNA_UI_GENDER)]"
-			icon_key += "[part.dna.GetUIValue(DNA_UI_SKIN_TONE)]"
+			icon_key += "[part.s_tone]"
 			if(part.s_col && part.s_col.len >= 3)
 				icon_key += "[rgb(part.s_col[1],part.s_col[2],part.s_col[3])]"
 			if(part.body_hair && part.h_col && part.h_col.len >= 3)
 				icon_key += "[rgb(part.h_col[1],part.h_col[2],part.h_col[3])]"
 			else
 				icon_key += "#000000"
+
+			if(part.robotic >= ORGAN_ROBOT)
+				icon_key += "2[part.model ? "-[part.model]": ""]"
+			else if(part.status & ORGAN_DEAD)
+				icon_key += "3"
+			else
+				icon_key += "1"
 
 	icon_key = "[icon_key][husk ? 1 : 0][fat ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0]"
 
@@ -895,6 +894,11 @@ var/global/list/damage_icon_parts = list()
 		if(hud_used)
 			hud_used.hidden_inventory_update() 	//Updates the screenloc of the items on the 'other' inventory bar
 
+//update whether handcuffs appears on our hud.
+/mob/living/carbon/proc/update_hud_handcuffed()
+	if(hud_used && hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
+		hud_used.l_hand_hud_object.update_icon()
+		hud_used.r_hand_hud_object.update_icon()
 
 /mob/living/carbon/human/update_inv_handcuffed(var/update_icons=1)
 	if(handcuffed)
@@ -913,6 +917,8 @@ var/global/list/damage_icon_parts = list()
 
 	else
 		overlays_standing[HANDCUFF_LAYER]	= null
+
+	update_hud_handcuffed()
 	if(update_icons)   update_icons()
 
 /mob/living/carbon/human/update_inv_legcuffed(var/update_icons=1)

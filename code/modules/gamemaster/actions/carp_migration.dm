@@ -10,7 +10,7 @@
 /datum/gm_action/carp_migration/get_weight()
 	var/people_in_space = 0
 	for(var/mob/living/L in player_list)
-		if(!(L.z in config.station_levels))
+		if(!(L.z in using_map.station_levels))
 			continue // Not on the right z-level.
 		var/turf/T = get_turf(L)
 		if(istype(T, /turf/space) && istype(T.loc,/area/space))

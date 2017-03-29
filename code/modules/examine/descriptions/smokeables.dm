@@ -11,7 +11,7 @@
 	description_fluff = "Lucky Stars were created on Venus by a researcher seeking to make a good quality cigarette from pod-based tobacco plants.  The researcher only managed to make these, but made quite a profit off of them when she started her company."
 
 /obj/item/weapon/storage/fancy/cigarettes/jerichos
-	description_fluff = "Hephaistos Industries ex-military employees once decided to make a cigarette that was easy to light and had a waterproof case, specifically tailored for soldiers.  They created Jerichos.  Jerichos are known for their Hickory smoke and warm feeling in your lungs.  They are loved by soldiers and people employed in para-military outfits."
+	description_fluff = "Hephaestus Industries ex-military employees once decided to make a cigarette that was easy to light and had a waterproof case, specifically tailored for soldiers.  They created Jerichos.  Jerichos are known for their Hickory smoke and warm feeling in your lungs.  They are loved by soldiers and people employed in para-military outfits."
 
 /obj/item/weapon/storage/fancy/cigarettes/menthols
 	description_fluff = "The Temperamento Menthol Company is a large cigarette company based in Mars.  They have been around since the very dawn of Human colonization and have remained a favorite for those seeking a more.. numbing cigarette.<br>\

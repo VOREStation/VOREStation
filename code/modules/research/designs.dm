@@ -1586,6 +1586,14 @@ CIRCUITS BELOW
 	build_path = /obj/item/weapon/implant/integrated_circuit
 	sort_string = "VCAAE"
 
+/datum/design/item/translator
+	name = "handheld translator"
+	id = "translator"
+	req_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
+	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 2000)
+	build_path = /obj/item/device/universal_translator
+	sort_string = "HABBA"
+
 /* Uncomment if someone makes these buildable
 /datum/design/circuit/general_alert
 	name = "general alert console"
