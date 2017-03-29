@@ -96,6 +96,7 @@
 	recipes += new/datum/stack_recipe("knife grip", /obj/item/weapon/material/butterflyhandle, 4, time = 20, one_per_turf = 0, on_floor = 1, supplied_material = "[name]")
 	recipes += new/datum/stack_recipe("dark floor tile", /obj/item/stack/tile/floor_dark, 1, 4, 20)
 	recipes += new/datum/stack_recipe("roller bed", /obj/item/roller, 5, time = 30, on_floor = 1)
+	recipes += new/datum/stack_recipe("whetstone", /obj/item/weapon/whetstone, 2, time = 10)
 
 /material/sandstone/generate_recipes()
 	..()
