@@ -264,11 +264,11 @@
 	if(!is_FBP())
 		return 0 // Not a robot.
 	switch(pref.organ_data["brain"])
-		if("assisted")
+		if("cybernetic")
 			return PREF_FBP_CYBORG
-		if("mechanical")
+		if("positronic")
 			return PREF_FBP_POSI
-		if("digital")
+		if("drone")
 			return PREF_FBP_SOFTWARE
 	return 0 //Something went wrong!
 
