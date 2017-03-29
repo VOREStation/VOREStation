@@ -4,13 +4,17 @@
 		return null
 	..()
 
-/mob/living/carbon/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/blocked, var/hit_zone)
+/mob/living/carbon/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/blocked, var/soaked, var/hit_zone)
 	if(!effective_force || blocked >= 100)
 		return 0
 
 	//Hulk modifier
 	if(HULK in user.mutations)
 		effective_force *= 2
+
+	//If the armor soaks all of the damage, it just skips the rest of the checks
+	if(effective_force <= soaked)
+		return 0
 
 	//Apply weapon damage
 	var/weapon_sharp = is_sharp(I)

@@ -265,11 +265,15 @@
 
 			var/target_zone = pick(BP_ALL)
 			var/amount_blocked = L.run_armor_check(target_zone, "melee")
+			var/amount_soaked = L.get_armor_soak(target_zone, "melee")
 
 			if(amount_blocked >= 100)
 				return // No need to apply damage.
 
-			L.apply_damage(rand(5, 10), BRUTE, target_zone, amount_blocked, used_weapon = "hail")
+			if(amount_soaked >= 10)
+				return // No need to apply damage.
+
+			L.apply_damage(rand(5, 10), BRUTE, target_zone, amount_blocked, amount_soaked, used_weapon = "hail")
 			to_chat(L, "<span class='warning'>The hail raining down on you [L.can_feel_pain() ? "hurts" : "damages you"]!</span>")
 
 /datum/weather/sif/blood_moon
