@@ -16,11 +16,6 @@
 #define MP_DEBUG(x)
 #endif
 
-/proc/stop_all_media()
-	for(var/mob/M in mob_list)
-		if(M && M.client)
-			M.stop_all_music()
-
 // Set up player on login to a mob.
 // This means they get a new media manager every time they switch mobs!
 // Is this wasteful?  Granted switching mobs doesn't happen very often so maybe its fine.
@@ -36,7 +31,9 @@
 /hook/roundend/proc/stop_all_media()
 	log_debug("Stopping all playing media...")
 	// Stop all music.
-	stop_all_media()
+	for(var/mob/M in mob_list)
+		if(M && M.client)
+			M.stop_all_music()
 	//  SHITTY HACK TO AVOID RACE CONDITION WITH SERVER REBOOT.
 	sleep(10)  // TODO - Leshana - see if this is needed
 
