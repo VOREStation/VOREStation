@@ -69,84 +69,74 @@
 // Handle being clicked, perhaps with something to devour
 //
 /mob/living/proc/vore_attackby(obj/item/I,mob/user)
-	//Things we can eat with vore code
-	var/list/vore_items = list(
-		/obj/item/weapon/grab,
-		/obj/item/weapon/holder/micro,
-		/obj/item/device/radio/beacon)
+	//Handle case: /obj/item/weapon/grab
+	if(istype(I,/obj/item/weapon/grab))
+		var/obj/item/weapon/grab/G = I
 
-	if(!(I.type in vore_items))
-		return 0
+		//Has to be aggressive grab, has to be living click-er and non-silicon grabbed
+		if((G.state >= GRAB_AGGRESSIVE) && (isliving(user) && !issilicon(G.affecting)))
 
-	switch(I.type)
-	//Handle case: /obj/item/weappn/grab
-		if(/obj/item/weapon/grab)
-			var/obj/item/weapon/grab/G = I
-
-			//Has to be aggressive grab, has to be living click-er and non-silicon grabbed
-			if((G.state >= GRAB_AGGRESSIVE) && (isliving(user) && !issilicon(G.affecting)))
-
-				var/mob/living/attacker = user  // Typecast to living
-
-				// src is the mob clicked on
-
-				///// If grab clicked on grabber
-				if((src == G.assailant) && (is_vore_predator(src)))
-					if (src.feed_grabbed_to_self(src, G.affecting))
-						qdel(G)
-						return 1
-					else
-						log_debug("[attacker] attempted to feed [G.affecting] to [user] ([user.type]) but it failed.")
-
-				///// If grab clicked on grabbed
-				else if((src == G.affecting) && (attacker.a_intent == I_GRAB) && (attacker.zone_sel.selecting == BP_TORSO) && (is_vore_predator(G.affecting)))
-					if (attacker.feed_self_to_grabbed(attacker, G.affecting))
-						qdel(G)
-						return 1
-					else
-						log_debug("[attacker] attempted to feed [user] to [G.affecting] ([G.affecting.type]) but it failed.")
-
-				///// If grab clicked on anyone else
-				else if((src != G.affecting) && (src != G.assailant) && (is_vore_predator(src)))
-					if (attacker.feed_grabbed_to_other(attacker, G.affecting, src))
-						qdel(G)
-						return 1
-					else
-						log_debug("[attacker] attempted to feed [G.affecting] to [src] ([src.type]) but it failed.")
-
-	//Handle case: /obj/item/weapon/holder
-		if(/obj/item/weapon/holder/micro)
-			var/obj/item/weapon/holder/H = I
-
-			if(!isliving(user)) return 0 // Return 0 to continue upper procs
 			var/mob/living/attacker = user  // Typecast to living
 
-			if (is_vore_predator(src))
-				for (var/mob/living/M in H.contents)
-					if (attacker.eat_held_mob(attacker, M, src))
-						H.contents -= M
-						if (H.held_mob == M)
-							H.held_mob = null
-				return 1 //Return 1 to exit upper procs
-			else
-				log_debug("[attacker] attempted to feed [H.contents] to [src] ([src.type]) but it failed.")
+			// src is the mob clicked on
 
-	//Handle case: /obj/item/device/radio/beacon
-		if(/obj/item/device/radio/beacon)
-			var/confirm = alert(user, "[src == user ? "Eat the beacon?" : "Feed the beacon to [src]?"]", "Confirmation", "Yes!", "Cancel")
-			if(confirm == "Yes!")
-				var/bellychoice = input("Which belly?","Select A Belly") in src.vore_organs
-				var/datum/belly/B = src.vore_organs[bellychoice]
-				src.visible_message("<span class='warning'>[user] is trying to stuff a beacon into [src]'s [bellychoice]!</span>","<span class='warning'>[user] is trying to stuff a beacon into you!</span>")
-				if(do_after(user,30,src))
-					user.drop_item()
-					I.loc = src
-					B.internal_contents += I
-					src.visible_message("<span class='warning'>[src] is fed the beacon!</span>","You're fed the beacon!")
-					playsound(src, B.vore_sound, 100, 1)
+			///// If grab clicked on grabber
+			if((src == G.assailant) && (is_vore_predator(src)))
+				if (src.feed_grabbed_to_self(src, G.affecting))
+					qdel(G)
 					return 1
 				else
-					return 1 //You don't get to hit someone 'later'
+					log_debug("[attacker] attempted to feed [G.affecting] to [user] ([user.type]) but it failed.")
+
+			///// If grab clicked on grabbed
+			else if((src == G.affecting) && (attacker.a_intent == I_GRAB) && (attacker.zone_sel.selecting == BP_TORSO) && (is_vore_predator(G.affecting)))
+				if (attacker.feed_self_to_grabbed(attacker, G.affecting))
+					qdel(G)
+					return 1
+				else
+					log_debug("[attacker] attempted to feed [user] to [G.affecting] ([G.affecting.type]) but it failed.")
+
+			///// If grab clicked on anyone else
+			else if((src != G.affecting) && (src != G.assailant) && (is_vore_predator(src)))
+				if (attacker.feed_grabbed_to_other(attacker, G.affecting, src))
+					qdel(G)
+					return 1
+				else
+					log_debug("[attacker] attempted to feed [G.affecting] to [src] ([src.type]) but it failed.")
+
+	//Handle case: /obj/item/weapon/holder
+	else if(istype(I,/obj/item/weapon/holder))
+		var/obj/item/weapon/holder/H = I
+
+		if(!isliving(user)) return 0 // Return 0 to continue upper procs
+		var/mob/living/attacker = user  // Typecast to living
+
+		if (is_vore_predator(src))
+			for (var/mob/living/M in H.contents)
+				if (attacker.eat_held_mob(attacker, M, src))
+					H.contents -= M
+					if (H.held_mob == M)
+						H.held_mob = null
+			return 1 //Return 1 to exit upper procs
+		else
+			log_debug("[attacker] attempted to feed [H.contents] to [src] ([src.type]) but it failed.")
+
+	//Handle case: /obj/item/device/radio/beacon
+	else if(istype(I,/obj/item/device/radio/beacon))
+		var/confirm = alert(user, "[src == user ? "Eat the beacon?" : "Feed the beacon to [src]?"]", "Confirmation", "Yes!", "Cancel")
+		if(confirm == "Yes!")
+			var/bellychoice = input("Which belly?","Select A Belly") in src.vore_organs
+			var/datum/belly/B = src.vore_organs[bellychoice]
+			src.visible_message("<span class='warning'>[user] is trying to stuff a beacon into [src]'s [bellychoice]!</span>","<span class='warning'>[user] is trying to stuff a beacon into you!</span>")
+			if(do_after(user,30,src))
+				user.drop_item()
+				I.loc = src
+				B.internal_contents += I
+				src.visible_message("<span class='warning'>[src] is fed the beacon!</span>","You're fed the beacon!")
+				playsound(src, B.vore_sound, 100, 1)
+				return 1
+			else
+				return 1 //You don't get to hit someone 'later'
 
 	return 0
 
@@ -256,9 +246,10 @@
 	if(!istype(tasted))
 		return
 
-	if(src.sleeping || src.resting || src.weakened || src.stat >= DEAD)
+	if(!src.canClick() || incapacitated(INCAPACITATION_ALL))
 		return
 
+	src.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	var/taste_message = ""
 	if(tasted.vore_taste && (tasted.vore_taste != ""))
 		taste_message += "[tasted.vore_taste]"

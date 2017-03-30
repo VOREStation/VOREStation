@@ -1827,6 +1827,7 @@
 #include "code\modules\mob\living\simple_animal\animals\goose.dm"
 #include "code\modules\mob\living\simple_animal\animals\lizard.dm"
 #include "code\modules\mob\living\simple_animal\animals\mouse.dm"
+#include "code\modules\mob\living\simple_animal\animals\mouse_vr.dm"
 #include "code\modules\mob\living\simple_animal\animals\parrot.dm"
 #include "code\modules\mob\living\simple_animal\animals\penguin.dm"
 #include "code\modules\mob\living\simple_animal\animals\pike_vr.dm"
