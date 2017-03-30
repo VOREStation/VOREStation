@@ -31,11 +31,7 @@
 		qdel(src)
 
 /obj/item/weapon/holder/micro/Destroy()
-	world.log << "Micro DBG: '[src]' handling end. loc=[src.loc] held_mob=[held_mob]"
 	var/turf/here = get_turf(src)
-	world.log << "Micro DBG: '[src]' turf = [here]([here.x],[here.y],[here.z])"
 	for(var/atom/movable/A in src)
-		world.log << "Micro DBG: '[src]' moving [A] to [here]"
 		A.forceMove(here)
-	world.log << "Micro DBG: '[src]' calling up Destroy()"
 	..()
