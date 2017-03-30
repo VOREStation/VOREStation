@@ -51,7 +51,6 @@
 			w_class = ITEMSIZE_NORMAL
 		update_icon()
 
-
 //Boop //New and improved, now a simple reagent sniffer.
 /obj/item/device/dogborg/boop_module
 	name = "boop module"
@@ -77,6 +76,7 @@
 	var/pressure = environment.return_pressure()
 	var/total_moles = environment.total_moles
 
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	user.visible_message("<span class='notice'>[user] sniffs the air.</span>", "<span class='notice'>You sniff the air...</span>")
 
 	user << "<span class='notice'><B>Smells like:</B></span>"
@@ -97,6 +97,7 @@
 	if(!istype(O))
 		return
 
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	user.visible_message("<span class='notice'>[user] sniffs at \the [O.name].</span>", "<span class='notice'>You sniff \the [O.name]...</span>")
 
 	if(!isnull(O.reagents))
@@ -216,8 +217,10 @@
 /obj/item/device/dogborg/tongue/afterattack(atom/target, mob/user, proximity)
 	if(!proximity)
 		return
+
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(user.client && (target in user.client.screen))
-		user << "<span class='warning'>You need to take that [target.name] off before cleaning it!</span>"
+		user << "<span class='warning'>You need to take \the [target.name] off before cleaning it!</span>"
 	else if(istype(target,/obj/effect/decal/cleanable))
 		user.visible_message("[user] begins to lick off \the [target.name].", "<span class='notice'>You begin to lick off \the [target.name]...</span>")
 		if(do_after (user, 50))
