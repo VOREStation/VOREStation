@@ -246,9 +246,10 @@
 	if(!istype(tasted))
 		return
 
-	if(src.sleeping || src.resting || src.weakened || src.stat >= DEAD)
+	if(!src.canClick() || incapacitated(INCAPACITATION_ALL))
 		return
 
+	src.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	var/taste_message = ""
 	if(tasted.vore_taste && (tasted.vore_taste != ""))
 		taste_message += "[tasted.vore_taste]"
