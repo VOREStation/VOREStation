@@ -539,7 +539,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 						pref.organ_data[other_limb] = "cyborg"
 						pref.rlimb_data[other_limb] = choice
 					if(!pref.organ_data[O_BRAIN])
-						pref.organ_data[O_BRAIN] = "cybernetic"
+						pref.organ_data[O_BRAIN] = "assisted"
 					for(var/internal_organ in list(O_HEART,O_EYES))
 						pref.organ_data[internal_organ] = "mechanical"
 
@@ -564,13 +564,15 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 					return
 				organ = "brain"
 
-		var/list/organ_choices = list("Normal","Cybernetic")
+		var/list/organ_choices = list("Normal")
 		if(pref.organ_data[BP_TORSO] == "cyborg")
 			organ_choices -= "Normal"
 			if(organ_name == "Brain")
-				organ_choices += "Drone"
+				organ_choices += "Cybernetic"
 				organ_choices += "Positronic"
+				organ_choices += "Drone"
 			else
+				organ_choices += "Assisted"
 				organ_choices += "Mechanical"
 
 		var/new_state = input(user, "What state do you wish the organ to be in?") as null|anything in organ_choices
@@ -579,14 +581,17 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		switch(new_state)
 			if("Normal")
 				pref.organ_data[organ] = null
+			if("Assisted")
+				pref.organ_data[organ] = "assisted"
 			if("Cybernetic")
-				pref.organ_data[organ] = "cybernetic"
+				pref.organ_data[organ] = "assisted"
 			if ("Mechanical")
 				pref.organ_data[organ] = "mechanical"
 			if("Drone")
-				pref.organ_data[organ] = "drone"
+				pref.organ_data[organ] = "digital"
 			if("Positronic")
 				pref.organ_data[organ] = "mechanical"
+
 		return TOPIC_REFRESH
 
 	else if(href_list["disabilities"])
