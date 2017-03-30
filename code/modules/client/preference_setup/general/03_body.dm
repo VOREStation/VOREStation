@@ -205,12 +205,12 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 					. += "\tPositronic [organ_name]"
 				else
 					. += "\tSynthetic [organ_name]"
-		else if(status == "drone")
+		else if(status == "digital")
 			++ind
 			if(ind > 1)
 				. += ", "
 			. += "\tDigital [organ_name]"
-		else if(status == "cybernetic")
+		else if(status == "assisted")
 			++ind
 			if(ind > 1)
 				. += ", "
