@@ -117,11 +117,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			continue
 		var/obj/item/organ/I = character.internal_organs_by_name[name]
 		if(I)
-			if(status == "cybernetic")
+			if(status == "assisted")
 				I.mechassist()
-			else if(status == "positronic")
+			else if(status == "mechanical")
 				I.robotize()
-			else if(status == "drone")
+			else if(status == "digital")
 				I.digitize()
 	return
 
