@@ -11,7 +11,7 @@
 	var/P_type = 0			// Currently selected pipe type
 	var/P_type_t = ""		// Name of currently selected pipe type
 	var/max_metal = 50		// Max capacity for internal metal storage
-	var/metal = 10			// Current amount in internal metal storage
+	var/metal = 0			// Current amount in internal metal storage
 	var/pipe_cost = 0.25	// Cost in steel for each pipe.
 	var/obj/item/weapon/wrench/W // Internal wrench used for wrenching down the pipes
 	var/list/Pipes = list("regular pipes"=0,"scrubbers pipes"=31,"supply pipes"=29,"heat exchange pipes"=2)
@@ -87,7 +87,10 @@
 		user.visible_message("<span class='notice'>[user] has [!a_dis?"de":""]activated auto-dismantling.</span>", "<span class='notice'>You [!a_dis?"de":""]activate auto-dismantling.</span>")
 		return
 	if(istype(W, /obj/item/pipe))
-		if(metal + pipe_cost > max_metal)
+		// NOTE - We must check for matter, otherwise the (free) pipe dispenser can be used to get infinite steel.
+		if(!W.matter || W.matter[DEFAULT_WALL_MATERIAL] < pipe_cost * SHEET_MATERIAL_AMOUNT)
+			user << "<span class='warning'>\The [W] doesn't contain enough [DEFAULT_WALL_MATERIAL] to recycle.</span>"
+		else if(metal + pipe_cost > max_metal)
 			user << "<span class='notice'>\The [src] is full.</span>"
 		else
 			user.drop_from_inventory(W)
@@ -169,6 +172,8 @@
 		p_dir=M_Dir
 
 	var/obj/item/pipe/P = new (w_turf, pipe_type=p_type, dir=p_dir)
+	// We used metal to make these, so should be reclaimable!
+	P.matter = list(DEFAULT_WALL_MATERIAL = pipe_cost * SHEET_MATERIAL_AMOUNT)
 	P.attackby(W , src)
 
 	return 1
