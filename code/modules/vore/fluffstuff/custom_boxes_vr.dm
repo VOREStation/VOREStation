@@ -170,12 +170,12 @@
 		//Centcom stuff and permit
 		new /obj/item/weapon/card/id/centcom/fluff/aronai(src)
 		new /obj/item/fluff/permit/aronai_kadigan(src)
-		new /obj/item/clothing/under/rank/khi/fluff/aronai(src)
+		//new /obj/item/clothing/under/rank/khi/fluff/aronai(src)
 		new /obj/item/clothing/glasses/omnihud/med/fluff/aronai(src)
 		//Gun and holster
 		new /obj/item/weapon/gun/projectile/khi/pistol(src)
-		new /obj/item/ammo_magazine/c45m/flash(src)
-		new /obj/item/clothing/accessory/holster/armpit(src)
+		//new /obj/item/ammo_magazine/c45m/flash(src)
+		new /obj/item/clothing/accessory/holster/leg(src)
 
 /*
 Swimsuits, for general use, to avoid arriving to work with your swimsuit.
