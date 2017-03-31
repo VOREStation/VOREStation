@@ -1044,17 +1044,17 @@
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND)
 
 	paw_socks_belly
-		name = "Socks+Belly Coloration (Generic)"
+		name = "Socks,Belly Coloration (Generic)"
 		icon_state = "pawsocksbelly"
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
 
 	belly_hands_feet
-		name = "Hands/Feet/Belly Color (Minor)"
+		name = "Hands,Feet,Belly Color (Minor)"
 		icon_state = "bellyhandsfeetsmall"
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
 
 	hands_feet_belly_full
-		name = "Hands/Feet/Belly Color (Major)"
+		name = "Hands,Feet,Belly Color (Major)"
 		icon_state = "bellyhandsfeet"
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
 
