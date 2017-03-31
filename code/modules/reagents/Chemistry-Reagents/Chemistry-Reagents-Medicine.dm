@@ -32,6 +32,23 @@
 	if(alien != IS_DIONA)
 		M.heal_organ_damage(6 * removed, 0)
 
+/datum/reagent/bicaridine/overdose(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	var/wound_heal = 1.5 * removed
+	M.eye_blurry += (wound_heal)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		for(var/obj/item/organ/external/O in H.bad_external_organs)
+			for(var/datum/wound/W in O.wounds)
+				if(W.bleeding())
+					W.damage = max(W.damage - wound_heal, 0)
+					if(W.damage <= 0)
+						O.wounds -= W
+				if(W.internal)
+					W.damage = max(W.damage - wound_heal, 0)
+					if(W.damage <= 0)
+						O.wounds -= W
+
 /datum/reagent/kelotane
 	name = "Kelotane"
 	id = "kelotane"
@@ -368,21 +385,23 @@
 	metabolism = REM * 0.5
 	overdose = REAGENTS_OVERDOSE * 0.5
 	scannable = 1
+	var/repair_strength = 3
 
 /datum/reagent/myelamine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
-	M.eye_blurry += (3 * removed)
+	M.eye_blurry += (repair_strength * removed)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
+		var/wound_heal = removed * repair_strength
 		for(var/obj/item/organ/external/O in H.bad_external_organs)
 			for(var/datum/wound/W in O.wounds)
 				if(W.bleeding())
-					W.damage = max(W.damage - removed, 0)
+					W.damage = max(W.damage - wound_heal, 0)
 					if(W.damage <= 0)
 						O.wounds -= W
 				if(W.internal)
-					W.damage = max(W.damage - removed, 0)
+					W.damage = max(W.damage - wound_heal, 0)
 					if(W.damage <= 0)
 						O.wounds -= W
 

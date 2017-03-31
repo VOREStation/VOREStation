@@ -72,6 +72,7 @@
 	var/toxins_mod =    1                    // Toxloss modifier
 	var/radiation_mod = 1                    // Radiation modifier
 	var/flash_mod =     1                    // Stun from blindness modifier.
+	var/chemOD_mod =	1					 // Damage modifier for overdose
 	var/vision_flags = SEE_SELF              // Same flags as glasses.
 
 	// Death vars.
