@@ -46,6 +46,22 @@
 	display_name = "flashlight"
 	path = /obj/item/device/flashlight
 
+/datum/gear/utility/flashlight_blue
+	display_name = "flashlight, blue"
+	path = /obj/item/device/flashlight/color
+
+/datum/gear/utility/flashlight_orange
+	display_name = "flashlight, orange"
+	path = /obj/item/device/flashlight/color/orange
+
+/datum/gear/utility/flashlight_red
+	display_name = "flashlight, red"
+	path = /obj/item/device/flashlight/color/red
+
+/datum/gear/utility/flashlight_yellow
+	display_name = "flashlight, yellow"
+	path = /obj/item/device/flashlight/color/yellow
+
 /datum/gear/utility/maglight
 	display_name = "flashlight, maglight"
 	path = /obj/item/device/flashlight/maglight
