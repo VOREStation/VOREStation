@@ -356,6 +356,22 @@
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)
 
-/datum/gear/suit/miscellaneous/redandblackjacket
-	display_name = "red and black jacket"
-	path = /obj/item/clothing/suit/storage/toggle/redandblackjacket
+/datum/gear/suit/miscellaneous/sec_dep_jacket
+	display_name = "department jacket, security"
+	path = /obj/item/clothing/suit/storage/toggle/sec_dep_jacket
+
+/datum/gear/suit/miscellaneous/engi_dep_jacket
+	display_name = "department jacket, engineering"
+	path = /obj/item/clothing/suit/storage/toggle/engi_dep_jacket
+
+/datum/gear/suit/miscellaneous/supply_dep_jacket
+	display_name = "department jacket, supply"
+	path = /obj/item/clothing/suit/storage/toggle/supply_dep_jacket
+
+/datum/gear/suit/miscellaneous/sci_dep_jacket
+	display_name = "department jacket, science"
+	path = /obj/item/clothing/suit/storage/toggle/sci_dep_jacket
+
+/datum/gear/suit/miscellaneous/med_dep_jacket
+	display_name = "department jacket, medical"
+	path = /obj/item/clothing/suit/storage/toggle/med_dep_jacket
