@@ -249,6 +249,13 @@
 
 /datum/sprite_accessory/facial_hair
 
+	vulp_none
+		name = "None"
+		icon = 'icons/mob/human_face_vr.dmi'
+		icon_state = "none"
+		species_allowed = list("Vulpkanin")
+		gender = NEUTER
+
 	vulp_blaze
 		name = "Blaze"
 		icon = 'icons/mob/human_face_vr.dmi'
@@ -317,3 +324,44 @@
 	desc = ""
 	icon = 'icons/mob/human_face_vr.dmi'
 	icon_state = "inkling-colorable"
+
+
+//VOREStation Body Markings and Overrides
+//Reminder: BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN,BP_HEAD
+/datum/sprite_accessory/marking/vr
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+
+	vulp_belly
+		name = "belly fur (Vulp)"
+		icon_state = "vulp_belly"
+		body_parts = list(BP_TORSO)
+
+	vulp_fullbelly
+		name = "full belly fur (Vulp)"
+		icon_state = "vulp_fullbelly"
+		body_parts = list(BP_TORSO)
+
+	vulp_crest
+		name = "belly crest (Vulp)"
+		icon_state = "vulp_crest"
+		body_parts = list(BP_TORSO)
+
+	vulp_nose
+		name = "nose (Vulp)"
+		icon_state = "vulp_nose"
+		body_parts = list(BP_HEAD)
+
+	vulp_face
+		name = "face (Vulp)"
+		icon_state = "vulp_face"
+		body_parts = list(BP_HEAD)
+
+	vulp_earsface
+		name = "ears and face (Vulp)"
+		icon_state = "vulp_earsface"
+		body_parts = list(BP_HEAD)
+
+	vulp_all
+		name = "all head highlights (Vulp)"
+		icon_state = "vulp_all"
+		body_parts = list(BP_HEAD)
