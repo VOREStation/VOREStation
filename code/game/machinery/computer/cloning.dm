@@ -305,7 +305,7 @@
 	if(subject.isSynthetic())
 		scantemp = "Error: Majority of subject is non-organic."
 		return
-	if (subject.suiciding == 1)
+	if (subject.suiciding)
 		scantemp = "Error: Subject's brain is not responding to scanning stimuli."
 		return
 	if ((!subject.ckey) || (!subject.client))

@@ -88,6 +88,8 @@ datum/preferences
 	var/list/rlimb_data = list()
 	var/list/player_alt_titles = new()		// the default name of a job like "Medical Doctor"
 
+	var/list/body_markings = list() // "name" = "#rgbcolor"
+
 	var/list/flavor_texts = list()
 	var/list/flavour_texts_robot = list()
 

@@ -14,8 +14,8 @@
 
 /datum/reagent/inaprovaline/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien != IS_DIONA)
-		M.add_chemical_effect(CE_STABLE)
-		M.add_chemical_effect(CE_PAINKILLER, 25)
+		M.add_chemical_effect(CE_STABLE, 15)
+		M.add_chemical_effect(CE_PAINKILLER, 10)
 
 /datum/reagent/bicaridine
 	name = "Bicaridine"
@@ -31,6 +31,23 @@
 /datum/reagent/bicaridine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien != IS_DIONA)
 		M.heal_organ_damage(6 * removed, 0)
+
+/datum/reagent/bicaridine/overdose(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	var/wound_heal = 1.5 * removed
+	M.eye_blurry += (wound_heal)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		for(var/obj/item/organ/external/O in H.bad_external_organs)
+			for(var/datum/wound/W in O.wounds)
+				if(W.bleeding())
+					W.damage = max(W.damage - wound_heal, 0)
+					if(W.damage <= 0)
+						O.wounds -= W
+				if(W.internal)
+					W.damage = max(W.damage - wound_heal, 0)
+					if(W.damage <= 0)
+						O.wounds -= W
 
 /datum/reagent/kelotane
 	name = "Kelotane"
@@ -76,6 +93,29 @@
 		M.hallucination = max(0, M.hallucination - 9 * removed)
 		M.adjustToxLoss(-4 * removed)
 
+/datum/reagent/carthatoline
+	name = "carthatoline"
+	id = "carthatoline"
+	description = "Carthatoline is strong evacuant used to treat severe poisoning."
+	reagent_state = LIQUID
+	color = "#225722"
+	scannable = 1
+
+/datum/reagent/carthatoline/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_DIONA)
+		return
+	if(M.getToxLoss() && prob(10))
+		M.vomit(1)
+	M.adjustToxLoss(-8 * removed)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/obj/item/organ/internal/liver/L = H.internal_organs_by_name[O_LIVER]
+		if(istype(L))
+			if(L.robotic >= ORGAN_ROBOT)
+				return
+			if(L.damage > 0)
+				L.damage = max(L.damage - 2 * removed, 0)
+
 /datum/reagent/dexalin
 	name = "Dexalin"
 	id = "dexalin"
@@ -109,7 +149,7 @@
 	if(alien == IS_VOX)
 		M.adjustToxLoss(removed * 9)
 	else if(alien != IS_DIONA)
-		M.adjustOxyLoss(-300 * removed)
+		M.adjustOxyLoss(-150 * removed)
 
 	holder.remove_reagent("lexorin", 3 * removed)
 
@@ -179,7 +219,7 @@
 	mrate_static = TRUE
 
 /datum/reagent/paracetamol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
+	M.add_chemical_effect(CE_PAINKILLER, 25)
 
 /datum/reagent/paracetamol/overdose(var/mob/living/carbon/M, var/alien)
 	..()
@@ -217,6 +257,8 @@
 
 /datum/reagent/oxycodone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.add_chemical_effect(CE_PAINKILLER, 200)
+	M.eye_blurry += 10
+	M.confused += 5
 
 /datum/reagent/oxycodone/overdose(var/mob/living/carbon/M, var/alien)
 	..()
@@ -246,7 +288,7 @@
 	holder.remove_reagent("mindbreaker", 5)
 	M.hallucination = max(0, M.hallucination - 10)
 	M.adjustToxLoss(5 * removed) // It used to be incredibly deadly due to an oversight. Not anymore!
-	M.add_chemical_effect(CE_PAINKILLER, 40)
+	M.add_chemical_effect(CE_PAINKILLER, 20)
 
 /datum/reagent/alkysine
 	name = "Alkysine"
@@ -307,8 +349,61 @@
 				continue
 			if(I.damage > 0) //Peridaxon heals only non-robotic organs
 				I.damage = max(I.damage - removed, 0)
+				H.confused += 5
 			if(I.damage <= 5 && I.organ_tag == O_EYES)
+				H.eye_blurry += 10	//Eyes need to reset, or something
 				H.sdisabilities &= ~BLIND
+
+/datum/reagent/osteodaxon
+	name = "Osteodaxon"
+	id = "osteodaxon"
+	description = "An experimental drug used to heal bone fractures."
+	reagent_state = LIQUID
+	color = "#C9BCE3"
+	metabolism = REM * 0.5
+	overdose = REAGENTS_OVERDOSE * 0.5
+	scannable = 1
+
+/datum/reagent/osteodaxon/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_DIONA)
+		return
+	M.heal_organ_damage(3 * removed, 0)	//Gives the bones a chance to set properly even without other meds
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		for(var/obj/item/organ/external/O in H.bad_external_organs)
+			if(O.status & ORGAN_BROKEN)
+				O.mend_fracture()		//Only works if the bone won't rebreak, as usual
+				H.custom_pain("You feel a terrible agony tear through your bones!",60)
+				H.AdjustWeakened(1)		//Bones being regrown will knock you over
+
+/datum/reagent/myelamine
+	name = "Myelamine"
+	id = "myelamine"
+	description = "Used to rapidly clot internal hemorrhages by increasing the effectiveness of platelets."
+	reagent_state = LIQUID
+	color = "#4246C7"
+	metabolism = REM * 0.5
+	overdose = REAGENTS_OVERDOSE * 0.5
+	scannable = 1
+	var/repair_strength = 3
+
+/datum/reagent/myelamine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_DIONA)
+		return
+	M.eye_blurry += (repair_strength * removed)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/wound_heal = removed * repair_strength
+		for(var/obj/item/organ/external/O in H.bad_external_organs)
+			for(var/datum/wound/W in O.wounds)
+				if(W.bleeding())
+					W.damage = max(W.damage - wound_heal, 0)
+					if(W.damage <= 0)
+						O.wounds -= W
+				if(W.internal)
+					W.damage = max(W.damage - wound_heal, 0)
+					if(W.damage <= 0)
+						O.wounds -= W
 
 /datum/reagent/ryetalyn
 	name = "Ryetalyn"
@@ -364,6 +459,8 @@
 	scannable = 1
 
 /datum/reagent/hyronalin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_DIONA)
+		return
 	M.radiation = max(M.radiation - 30 * removed, 0)
 
 /datum/reagent/arithrazine
@@ -378,6 +475,8 @@
 	scannable = 1
 
 /datum/reagent/arithrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_DIONA)
+		return
 	M.radiation = max(M.radiation - 70 * removed, 0)
 	M.adjustToxLoss(-10 * removed)
 	if(prob(60))
@@ -432,10 +531,34 @@
 	scannable = 1
 
 /datum/reagent/leporazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_DIONA)
+		return
 	if(M.bodytemperature > 310)
 		M.bodytemperature = max(310, M.bodytemperature - (40 * TEMPERATURE_DAMAGE_COEFFICIENT))
 	else if(M.bodytemperature < 311)
 		M.bodytemperature = min(310, M.bodytemperature + (40 * TEMPERATURE_DAMAGE_COEFFICIENT))
+
+/datum/reagent/rezadone
+	name = "Rezadone"
+	id = "rezadone"
+	description = "A powder with almost magical properties, this substance can effectively treat genetic damage in humanoids, though excessive consumption has side effects."
+	reagent_state = SOLID
+	color = "#669900"
+	overdose = REAGENTS_OVERDOSE
+	scannable = 1
+
+/datum/reagent/rezadone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_DIONA)
+		return
+	M.adjustCloneLoss(-20 * removed)
+	M.adjustOxyLoss(-2 * removed)
+	M.heal_organ_damage(20 * removed, 20 * removed)
+	M.adjustToxLoss(-20 * removed)
+	if(dose > 3)
+		M.status_flags &= ~DISFIGURED
+	if(dose > 10)
+		M.make_dizzy(5)
+		M.make_jittery(5)
 
 /* Antidepressants */
 

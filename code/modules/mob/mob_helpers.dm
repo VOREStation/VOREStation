@@ -535,7 +535,7 @@ proc/is_blind(A)
 	if(. == SAFE_PERP)
 		return SAFE_PERP
 
-	if(!istype(src, /mob/living/simple_animal/hostile/retaliate/goat))
+	if(!istype(src, /mob/living/simple_animal/retaliate/goat))
 		threatcount += 4
 	return threatcount
 

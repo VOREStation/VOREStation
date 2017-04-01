@@ -55,7 +55,7 @@ var/list/outdoor_turfs = list()
 /turf/simulated/floor/outdoors/mud
 	name = "grass"
 	icon_state = "mud_dark"
-	edge_blending_priority = 2
+	edge_blending_priority = 3
 
 /turf/simulated/floor/outdoors/rocks
 	name = "rocks"

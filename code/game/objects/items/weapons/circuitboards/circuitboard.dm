@@ -8,7 +8,6 @@
 	name = "circuit board"
 	icon = 'icons/obj/module.dmi'
 	icon_state = "id_mod"
-	item_state = "electronic"
 	origin_tech = list(TECH_DATA = 2)
 	density = 0
 	anchored = 0
@@ -47,7 +46,7 @@
 		var/comp_amt = req_components[comp_path]
 		if(!comp_amt)
 			continue
-		
+
 		if(ispath(comp_path, /obj/item/stack))
 			M.component_parts += new comp_path(contain_parts ? M : null, comp_amt)
 		else

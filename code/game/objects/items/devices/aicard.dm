@@ -2,7 +2,7 @@
 	name = "inteliCard"
 	icon = 'icons/obj/pda.dmi'
 	icon_state = "aicard" // aicard-full
-	item_state = "electronic"
+	item_state = "aicard"
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_BELT
 	show_messages = 0

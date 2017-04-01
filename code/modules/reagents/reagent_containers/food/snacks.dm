@@ -734,6 +734,19 @@
 	reagents.add_reagent("pacid",6)
 	src.bitesize = 6
 
+/obj/item/weapon/reagent_containers/food/snacks/spidermeat
+	name = "meat"
+	desc = "A slab of green meat."
+	icon_state = "xenomeat"
+	filling_color = "#43DE18"
+	center_of_mass = list("x"=16, "y"=10)
+
+/obj/item/weapon/reagent_containers/food/snacks/spidermeat/New()
+	..()
+	reagents.add_reagent("protein", 6)
+	reagents.add_reagent("spidertoxin",6)
+	src.bitesize = 6
+
 /obj/item/weapon/reagent_containers/food/snacks/meatball
 	name = "meatball"
 	desc = "A great meal all round."

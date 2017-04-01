@@ -348,3 +348,30 @@
 		services[initial(service.name)] = service
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(services))
 
+/datum/gear/suit/miscellaneous/kimono
+	display_name = "kimono"
+	path = /obj/item/clothing/suit/kimono
+
+/datum/gear/suit/miscellaneous/kimono/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/suit/miscellaneous/sec_dep_jacket
+	display_name = "department jacket, security"
+	path = /obj/item/clothing/suit/storage/toggle/sec_dep_jacket
+
+/datum/gear/suit/miscellaneous/engi_dep_jacket
+	display_name = "department jacket, engineering"
+	path = /obj/item/clothing/suit/storage/toggle/engi_dep_jacket
+
+/datum/gear/suit/miscellaneous/supply_dep_jacket
+	display_name = "department jacket, supply"
+	path = /obj/item/clothing/suit/storage/toggle/supply_dep_jacket
+
+/datum/gear/suit/miscellaneous/sci_dep_jacket
+	display_name = "department jacket, science"
+	path = /obj/item/clothing/suit/storage/toggle/sci_dep_jacket
+
+/datum/gear/suit/miscellaneous/med_dep_jacket
+	display_name = "department jacket, medical"
+	path = /obj/item/clothing/suit/storage/toggle/med_dep_jacket

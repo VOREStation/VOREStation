@@ -32,14 +32,10 @@
 
 	if(!(language && (language.flags & INNATE))) // skip understanding checks for INNATE languages
 		if(!say_understands(speaker,language))
-			if(istype(speaker,/mob/living/simple_animal))
-				var/mob/living/simple_animal/S = speaker
-				message = pick(S.speak)
+			if(language)
+				message = language.scramble(message)
 			else
-				if(language)
-					message = language.scramble(message)
-				else
-					message = stars(message)
+				message = stars(message)
 
 	var/speaker_name = speaker.name
 	if(istype(speaker, /mob/living/carbon/human))
@@ -105,9 +101,9 @@
 /mob/living/silicon/ai/special_mentions()
 	return list("AI") // AI door!
 
-// Converts specific characters, like *, /, and _ to formatted output.
+// Converts specific characters, like *, |, and _ to formatted output.
 /mob/proc/say_emphasis(var/message)
-	message = encode_html_emphasis(message, "/", "i")
+	message = encode_html_emphasis(message, "|", "i")
 	message = encode_html_emphasis(message, "+", "b")
 	message = encode_html_emphasis(message, "_", "u")
 	return message
