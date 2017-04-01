@@ -1807,35 +1807,35 @@
 	required_reagents = list("icetea" = 1, "lemonade" = 1)
 	result_amount = 2
 
-/datum/chemical_reaction/minttea
+/datum/chemical_reaction/drinks/minttea
 	name = "Mint Tea"
 	id = "minttea"
 	result = "minttea"
 	required_reagents = list("tea" = 5, "mint" = 1)
 	result_amount = 6
 
-/datum/chemical_reaction/lemontea
+/datum/chemical_reaction/drinks/lemontea
 	name = "Lemon Tea"
 	id = "lemontea"
 	result = "lemontea"
 	required_reagents = list("tea" = 5, "lemonjuice" = 1)
 	result_amount = 6
 
-/datum/chemical_reaction/limetea
+/datum/chemical_reaction/drinks/limetea
 	name = "Lime Tea"
 	id = "limetea"
 	result = "limetea"
 	required_reagents = list("tea" = 5, "limejuice" = 1)
 	result_amount = 6
 
-/datum/chemical_reaction/limetea
+/datum/chemical_reaction/drinks/limetea
 	name = "Orange Tea"
 	id = "orangetea"
 	result = "orangetea"
 	required_reagents = list("tea" = 5, "orangejuice" = 1)
 	result_amount = 6
 
-/datum/chemical_reaction/berrytea
+/datum/chemical_reaction/drinks/berrytea
 	name = "Berry Tea"
 	id = "berrytea"
 	result = "berrytea"
