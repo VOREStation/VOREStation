@@ -43,6 +43,13 @@
 	color = "#003333"
 	strength = 10
 
+/datum/reagent/toxin/spidertoxin
+	name = "Spidertoxin"
+	id = "spidertoxin"
+	description = "A liquifying toxin produced by giant spiders."
+	color = "#2CE893"
+	strength = 5
+
 /datum/reagent/toxin/phoron
 	name = "Phoron"
 	id = "phoron"
@@ -381,6 +388,7 @@
 	color = "#000067"
 	metabolism = REM * 0.5
 	overdose = REAGENTS_OVERDOSE * 0.5
+	overdose_mod = 5	//For that good, lethal feeling
 
 /datum/reagent/chloralhydrate/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -405,6 +413,11 @@
 
 	if(effective_dose > 1 * threshold)
 		M.adjustToxLoss(removed)
+
+/datum/reagent/chloralhydrate/overdose(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	M.losebreath = (min(M.losebreath + 1, 10))
+	M.adjustOxyLoss(removed * overdose_mod)
 
 /datum/reagent/chloralhydrate/beer2 //disguised as normal beer for use by emagged brobots
 	name = "Beer"

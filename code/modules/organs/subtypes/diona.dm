@@ -52,7 +52,7 @@
 	name = "left upper tendril"
 	organ_tag = "l_arm"
 	icon_name = "l_arm"
-	max_damage = 50
+	max_damage = 30
 	min_broken_damage = 20
 	w_class = ITEMSIZE_NORMAL
 	body_part = ARM_LEFT
@@ -69,7 +69,7 @@
 	name = "left lower tendril"
 	organ_tag = "l_leg"
 	icon_name = "l_leg"
-	max_damage = 50
+	max_damage = 30
 	min_broken_damage = 20
 	w_class = ITEMSIZE_NORMAL
 	body_part = LEG_LEFT
@@ -88,7 +88,7 @@
 	name = "left foot"
 	organ_tag = "l_foot"
 	icon_name = "l_foot"
-	max_damage = 35
+	max_damage = 25
 	min_broken_damage = 10
 	w_class = ITEMSIZE_SMALL
 	body_part = FOOT_LEFT
@@ -110,7 +110,7 @@
 	name = "left grasper"
 	organ_tag = "l_hand"
 	icon_name = "l_hand"
-	max_damage = 40
+	max_damage = 25
 	min_broken_damage = 15
 	w_class = ITEMSIZE_SMALL
 	body_part = HAND_LEFT

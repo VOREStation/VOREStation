@@ -77,10 +77,20 @@
 	return 0
 */
 
+//Certain pieces of armor actually absorb flat amounts of damage from income attacks
+/mob/living/proc/get_armor_soak(var/def_zone = null, var/attack_flag = "melee", var/armour_pen = 0)
+	var/soaked = getsoak(def_zone, attack_flag)
+	//5 points of armor pen negate one point of soak
+	if(armour_pen)
+		soaked = max(soaked - (armour_pen/5), 0)
+	return soaked
+
 //if null is passed for def_zone, then this should return something appropriate for all zones (e.g. area effect damage)
 /mob/living/proc/getarmor(var/def_zone, var/type)
 	return 0
 
+/mob/living/proc/getsoak(var/def_zone, var/type)
+	return 0
 
 /mob/living/bullet_act(var/obj/item/projectile/P, var/def_zone)
 
@@ -93,6 +103,7 @@
 			signaler.signal()
 
 	//Armor
+	var/soaked = get_armor_soak(def_zone, P.check_armour, P.armor_penetration)
 	var/absorb = run_armor_check(def_zone, P.check_armour, P.armor_penetration)
 	var/proj_sharp = is_sharp(P)
 	var/proj_edge = has_edge(P)
@@ -105,13 +116,13 @@
 		stun_effect_act(0, P.agony, def_zone, P)
 		src <<"\red You have been hit by [P]!"
 		if(!P.nodamage)
-			apply_damage(P.damage, P.damage_type, def_zone, absorb, 0, P, sharp=proj_sharp, edge=proj_edge)
+			apply_damage(P.damage, P.damage_type, def_zone, absorb, soaked, 0, P, sharp=proj_sharp, edge=proj_edge)
 		qdel(P)
 		return
 
 	if(!P.nodamage)
-		apply_damage(P.damage, P.damage_type, def_zone, absorb, 0, P, sharp=proj_sharp, edge=proj_edge)
-	P.on_hit(src, absorb, def_zone)
+		apply_damage(P.damage, P.damage_type, def_zone, absorb, soaked, 0, P, sharp=proj_sharp, edge=proj_edge)
+	P.on_hit(src, absorb, soaked, def_zone)
 
 	if(absorb == 100)
 		return 2
@@ -153,23 +164,31 @@
 /mob/living/proc/hit_with_weapon(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
 	visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] with [I.name] by [user]!</span>")
 
+	var/soaked = get_armor_soak(hit_zone, "melee")
 	var/blocked = run_armor_check(hit_zone, "melee")
-	standard_weapon_hit_effects(I, user, effective_force, blocked, hit_zone)
 
-	if(I.damtype == BRUTE && prob(33)) // Added blood for whacking non-humans too
-		var/turf/simulated/location = get_turf(src)
-		if(istype(location)) location.add_blood_floor(src)
+	//If the armor absorbs all of the damage, skip the damage calculation and the blood
+	if(!soaked > effective_force)
+		standard_weapon_hit_effects(I, user, effective_force, blocked, soaked, hit_zone)
+
+		if(I.damtype == BRUTE && prob(33)) // Added blood for whacking non-humans too
+			var/turf/simulated/location = get_turf(src)
+			if(istype(location)) location.add_blood_floor(src)
 
 	return blocked
 
 //returns 0 if the effects failed to apply for some reason, 1 otherwise.
-/mob/living/proc/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/blocked, var/hit_zone)
+/mob/living/proc/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/blocked, var/soaked, var/hit_zone)
 	if(!effective_force || blocked >= 100)
 		return 0
 
 	//Hulk modifier
 	if(HULK in user.mutations)
 		effective_force *= 2
+
+	//Armor soak
+	if(soaked >= effective_force)
+		return 0
 
 	//Apply weapon damage
 	var/weapon_sharp = is_sharp(I)
@@ -178,7 +197,7 @@
 		weapon_sharp = 0
 		weapon_edge = 0
 
-	apply_damage(effective_force, I.damtype, hit_zone, blocked, sharp=weapon_sharp, edge=weapon_edge, used_weapon=I)
+	apply_damage(effective_force, I.damtype, hit_zone, blocked, soaked, sharp=weapon_sharp, edge=weapon_edge, used_weapon=I)
 
 	return 1
 
@@ -200,8 +219,10 @@
 
 		src.visible_message("\red [src] has been hit by [O].")
 		var/armor = run_armor_check(null, "melee")
+		var/soaked = get_armor_soak(null, "melee")
 
-		apply_damage(throw_damage, dtype, null, armor, is_sharp(O), has_edge(O), O)
+
+		apply_damage(throw_damage, dtype, null, armor, soaked, is_sharp(O), has_edge(O), O)
 
 		O.throwing = 0		//it hit, so stop moving
 
@@ -230,6 +251,9 @@
 			if(!O || !src) return
 
 			if(O.sharp) //Projectile is suitable for pinning.
+				if(soaked >= throw_damage)	//Don't embed if it didn't actually damage
+					return
+
 				//Handles embedding for non-humans and simple_animals.
 				embed(O)
 

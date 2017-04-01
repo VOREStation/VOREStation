@@ -66,6 +66,27 @@
 	containername = "Surgery crate"
 	access = access_medical
 
+/datum/supply_packs/med/deathalarm
+	name = "Death Alarm crate"
+	contains = list(
+			/obj/item/weapon/storage/box/cdeathalarm_kit,
+			/obj/item/weapon/storage/box/cdeathalarm_kit
+			)
+	cost = 40
+	containertype = "/obj/structure/closet/crate/secure"
+	containername = "Death Alarm crate"
+	access = access_medical
+
+/datum/supply_packs/med/clotting
+	name = "Clotting Medicine crate"
+	contains = list(
+			/obj/item/weapon/storage/firstaid/clotting
+			)
+	cost = 40
+	containertype = "/obj/structure/closet/crate/secure"
+	containername = "Clotting Medicine crate"
+	access = access_medical
+
 /datum/supply_packs/med/sterile
 	name = "Sterile equipment crate"
 	contains = list(

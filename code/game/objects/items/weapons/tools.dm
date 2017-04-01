@@ -172,7 +172,8 @@
 
 /obj/item/weapon/weldingtool/examine(mob/user)
 	if(..(user, 0))
-		user << text("\icon[] [] contains []/[] units of fuel!", src, src.name, get_fuel(),src.max_fuel )
+		if(max_fuel)
+			user << text("\icon[] [] contains []/[] units of fuel!", src, src.name, get_fuel(),src.max_fuel )
 
 
 /obj/item/weapon/weldingtool/attackby(obj/item/W as obj, mob/living/user as mob)
@@ -234,18 +235,22 @@
 
 /obj/item/weapon/weldingtool/afterattack(obj/O as obj, mob/user as mob, proximity)
 	if(!proximity) return
-	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1 && !src.welding)
-		O.reagents.trans_to_obj(src, max_fuel)
-		user << "<span class='notice'>Welder refueled</span>"
-		playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
-		return
-	else if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1 && src.welding)
-		message_admins("[key_name_admin(user)] triggered a fueltank explosion with a welding tool.")
-		log_game("[key_name(user)] triggered a fueltank explosion with a welding tool.")
-		user << "<span class='danger'>You begin welding on the fueltank and with a moment of lucidity you realize, this might not have been the smartest thing you've ever done.</span>"
-		var/obj/structure/reagent_dispensers/fueltank/tank = O
-		tank.explode()
-		return
+	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1 && !welding)
+		if(!welding && max_fuel)
+			O.reagents.trans_to_obj(src, max_fuel)
+			user << "<span class='notice'>Welder refueled</span>"
+			playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
+			return
+		else if(!welding)
+			user << "<span class='notice'>[src] doesn't use fuel.</span>"
+			return
+		else
+			message_admins("[key_name_admin(user)] triggered a fueltank explosion with a welding tool.")
+			log_game("[key_name(user)] triggered a fueltank explosion with a welding tool.")
+			user << "<span class='danger'>You begin welding on the fueltank and with a moment of lucidity you realize, this might not have been the smartest thing you've ever done.</span>"
+			var/obj/structure/reagent_dispensers/fueltank/tank = O
+			tank.explode()
+			return
 	if (src.welding)
 		remove_fuel(1)
 		var/turf/location = get_turf(user)
@@ -286,11 +291,43 @@
 
 /obj/item/weapon/weldingtool/update_icon()
 	..()
-	icon_state = welding ? "welder1" : "welder"
+	icon_state = welding ? "[icon_state]1" : "[initial(icon_state)]"
 	var/mob/M = loc
 	if(istype(M))
 		M.update_inv_l_hand()
 		M.update_inv_r_hand()
+
+/obj/item/weapon/weldingtool/MouseDrop(obj/over_object as obj)
+	if(!canremove)
+		return
+
+	if (ishuman(usr) || issmall(usr)) //so monkeys can take off their backpacks -- Urist
+
+		if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech. why?
+			return
+
+		if (!( istype(over_object, /obj/screen) ))
+			return ..()
+
+		//makes sure that the thing is equipped, so that we can't drag it into our hand from miles away.
+		//there's got to be a better way of doing this.
+		if (!(src.loc == usr) || (src.loc && src.loc.loc == usr))
+			return
+
+		if (( usr.restrained() ) || ( usr.stat ))
+			return
+
+		if ((src.loc == usr) && !(istype(over_object, /obj/screen)) && !usr.unEquip(src))
+			return
+
+		switch(over_object.name)
+			if("r_hand")
+				usr.u_equip(src)
+				usr.put_in_r_hand(src)
+			if("l_hand")
+				usr.u_equip(src)
+				usr.put_in_l_hand(src)
+		src.add_fingerprint(usr)
 
 //Sets the welding state of the welding tool. If you see W.welding = 1 anywhere, please change it to W.setWelding(1)
 //so that the welding tool updates accordingly
@@ -313,7 +350,8 @@
 			processing_objects |= src
 		else
 			if(M)
-				M << "<span class='notice'>You need more welding fuel to complete this task.</span>"
+				var/msg = max_fuel ? "welding fuel" : "charge"
+				M << "<span class='notice'>You need more [msg] to complete this task.</span>"
 			return
 	//Otherwise
 	else if(!set_welding && welding)
@@ -370,7 +408,6 @@
 					user.disabilities &= ~NEARSIGHTED
 	return
 
-
 /obj/item/weapon/weldingtool/largetank
 	name = "industrial welding tool"
 	max_fuel = 40
@@ -405,6 +442,113 @@
 	if(get_fuel() < max_fuel && nextrefueltick < world.time)
 		nextrefueltick = world.time + 10
 		reagents.add_reagent("fuel", 1)
+
+/*
+ * Electric/Arc Welder
+ */
+
+/obj/item/weapon/weldingtool/electric	//AND HIS WELDING WAS ELECTRIC
+	name = "electric welding tool"
+	icon_state = "arcwelder"
+	max_fuel = 0	//We'll handle the consumption later.
+	var/obj/item/weapon/cell/power_supply //What type of power cell this uses
+	var/charge_cost = 24	//The rough equivalent of 1 unit of fuel, based on us wanting 10 welds per battery
+	var/cell_type = /obj/item/weapon/cell/device
+	var/use_external_power = 0	//If in a borg or hardsuit, this needs to = 1
+
+/obj/item/weapon/weldingtool/electric/New()
+	..()
+	if(cell_type == null)
+		update_icon()
+	else if(cell_type)
+		power_supply = new cell_type(src)
+	else
+		power_supply = new /obj/item/weapon/cell/device(src)
+	update_icon()
+
+/obj/item/weapon/weldingtool/electric/unloaded/New()
+	cell_type = null
+
+/obj/item/weapon/weldingtool/electric/examine(mob/user)
+	..()
+	if(power_supply)
+		user << text("\icon[] [] has [] charge left.", src, src.name, get_fuel())
+	else
+		user << text("\icon[] [] has power for no power cell!", src, src.name)
+
+/obj/item/weapon/weldingtool/electric/get_fuel()
+	if(use_external_power)
+		var/obj/item/weapon/cell/external = get_external_power_supply()
+		return external.charge
+	else if(power_supply)
+		return power_supply.charge
+	else
+		return 0
+
+/obj/item/weapon/weldingtool/electric/remove_fuel(var/amount = 1, var/mob/M = null)
+	if(!welding)
+		return 0
+	if(get_fuel() >= amount)
+		power_supply.checked_use(charge_cost)
+		if(use_external_power)
+			var/obj/item/weapon/cell/external = get_external_power_supply()
+			if(!external || !external.use(charge_cost)) //Take power from the borg...
+				power_supply.give(charge_cost)	//Give it back to the cell.
+		if(M)
+			eyecheck(M)
+		return 1
+	else
+		if(M)
+			M << "<span class='notice'>You need more energy to complete this task.</span>"
+		return 0
+
+/obj/item/weapon/weldingtool/electric/attack_hand(mob/user as mob)
+	if(user.get_inactive_hand() == src)
+		if(power_supply)
+			power_supply.update_icon()
+			user.put_in_hands(power_supply)
+			power_supply = null
+			user << "<span class='notice'>You remove the cell from the [src].</span>"
+			setWelding(0)
+			update_icon()
+			return
+		..()
+	else
+		return ..()
+
+/obj/item/weapon/weldingtool/electric/attackby(obj/item/weapon/W, mob/user as mob)
+	if(istype(W, /obj/item/weapon/cell))
+		if(istype(W, /obj/item/weapon/cell/device))
+			if(!power_supply)
+				user.drop_item()
+				W.loc = src
+				power_supply = W
+				user << "<span class='notice'>You install a cell in \the [src].</span>"
+				update_icon()
+			else
+				user << "<span class='notice'>\The [src] already has a cell.</span>"
+		else
+			user << "<span class='notice'>\The [src] cannot use that type of cell.</span>"
+	else
+		..()
+
+/obj/item/weapon/weldingtool/electric/proc/get_external_power_supply()
+	if(isrobot(src.loc))
+		var/mob/living/silicon/robot/R = src.loc
+		return R.cell
+	if(istype(src.loc, /obj/item/rig_module))
+		var/obj/item/rig_module/module = src.loc
+		if(module.holder && module.holder.wearer)
+			var/mob/living/carbon/human/H = module.holder.wearer
+			if(istype(H) && H.back)
+				var/obj/item/weapon/rig/suit = H.back
+				if(istype(suit))
+					return suit.cell
+	return null
+
+/obj/item/weapon/weldingtool/electric/mounted
+	use_external_power = 1
+
 /*
  * Crowbar
  */
