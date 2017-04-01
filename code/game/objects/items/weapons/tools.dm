@@ -453,16 +453,21 @@
 	max_fuel = 0	//We'll handle the consumption later.
 	var/obj/item/weapon/cell/power_supply //What type of power cell this uses
 	var/charge_cost = 24	//The rough equivalent of 1 unit of fuel, based on us wanting 10 welds per battery
-	var/cell_type = null
+	var/cell_type = /obj/item/weapon/cell/device
 	var/use_external_power = 0	//If in a borg or hardsuit, this needs to = 1
 
 /obj/item/weapon/weldingtool/electric/New()
 	..()
-	if(cell_type)
+	if(cell_type == null)
+		update_icon()
+	else if(cell_type)
 		power_supply = new cell_type(src)
 	else
 		power_supply = new /obj/item/weapon/cell/device(src)
 	update_icon()
+
+/obj/item/weapon/weldingtool/electric/unloaded/New()
+	cell_type = null
 
 /obj/item/weapon/weldingtool/electric/examine(mob/user)
 	..()
