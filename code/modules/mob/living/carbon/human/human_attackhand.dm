@@ -22,7 +22,7 @@
 
 	// Should this all be in Touch()?
 	if(istype(H))
-		if(get_accuracy_penalty(H))	//Should only trigger if they're not aiming well
+		if(get_accuracy_penalty(H) && H != src)	//Should only trigger if they're not aiming well
 			var/hit_zone = get_zone_with_miss_chance(H.zone_sel.selecting, src, get_accuracy_penalty(H))
 			if(!hit_zone)
 				H.do_attack_animation(src)
