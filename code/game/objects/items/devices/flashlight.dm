@@ -248,7 +248,7 @@
 	icon_state = "flashlight_blue"
 
 /obj/item/device/flashlight/color/red
-	name = "blue flashlight"
+	name = "red flashlight"
 	desc = "A hand-held emergency light. This one is red."
 	icon_state = "flashlight_red"
 
