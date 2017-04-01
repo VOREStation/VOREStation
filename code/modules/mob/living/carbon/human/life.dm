@@ -356,7 +356,7 @@
 			var/brainOxPercent = 0.02		//Default2% of your current oxyloss is applied as brain damage, 50 oxyloss is 1 brain damage
 			if(CE_STABLE in chem_effects)
 				brainOxPercent = 0.01		//Halved in effect
-			if(prob(5))
+			if(oxyloss >= 20 && prob(5))
 				adjustBrainLoss(brainOxPercent * oxyloss)
 
 		oxygen_alert = max(oxygen_alert, 1)
@@ -377,8 +377,9 @@
 			safe_pressure_min *= 1.25
 		else if(breath)
 			if(breath.total_moles < BREATH_MOLES / 10 || breath.total_moles > BREATH_MOLES * 5)
-				if (prob(8))
-					rupture_lung()
+				if(is_below_sound_pressure(get_turf(src)))	//No more popped lungs from choking/drowning
+					if (prob(8))
+						rupture_lung()
 
 	var/safe_exhaled_max = 10
 	var/safe_toxins_max = 0.2
