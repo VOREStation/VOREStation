@@ -84,7 +84,13 @@
 		if(1)
 			qdel(src)
 		if(2)
+			if(prob(75))
+				qdel(src)
+		if(3)
 			if(prob(50))
+				qdel(src)
+		if(4)
+			if(prob(25))
 				qdel(src)
 
 
@@ -264,7 +270,7 @@
 		else
 			user << "The device must first be secured to the floor."
 	return
-	
+
 /obj/machinery/shieldgen/emag_act(var/remaining_charges, var/mob/user)
 	if(!malfunction)
 		malfunction = 1

@@ -26,11 +26,13 @@
 #define BORGXRAY  0x4
 #define BORGMATERIAL  8
 
-#define STANCE_IDLE      1
-#define STANCE_ALERT     2
-#define STANCE_ATTACK    3
-#define STANCE_ATTACKING 4
-#define STANCE_TIRED     5
+#define STANCE_IDLE      1	// Looking for targets if hostile.  Does idle wandering.
+#define STANCE_ALERT     2	// Bears
+#define STANCE_ATTACK    3	// Attempting to get into attack position
+#define STANCE_ATTACKING 4	// Doing attacks
+#define STANCE_TIRED     5	// Bears
+#define STANCE_FOLLOW    6	// Following somone
+#define STANCE_BUSY      7	// Do nothing on life ticks (Other code is running)
 
 #define LEFT  1
 #define RIGHT 2
@@ -139,7 +141,7 @@
 #define INCAPACITATION_STUNNED 8
 #define INCAPACITATION_FORCELYING 16 //needs a better name - represents being knocked down BUT still conscious.
 #define INCAPACITATION_KNOCKOUT 32
-
+#define INCAPACITATION_NONE 0
 
 #define INCAPACITATION_DEFAULT (INCAPACITATION_RESTRAINED|INCAPACITATION_BUCKLED_FULLY)
 #define INCAPACITATION_KNOCKDOWN (INCAPACITATION_KNOCKOUT|INCAPACITATION_FORCELYING)

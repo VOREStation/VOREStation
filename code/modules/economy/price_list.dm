@@ -705,16 +705,16 @@
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza
 	price_tag = 5
 
-/obj/item/weapon/reagent_containers/food/snacks/margheritaslice
+/obj/item/weapon/reagent_containers/food/snacks/slice/margherita
 	price_tag = 1
 
-/obj/item/weapon/reagent_containers/food/snacks/meatpizzaslice
+/obj/item/weapon/reagent_containers/food/snacks/slice/meatpizza
 	price_tag = 1
 
-/obj/item/weapon/reagent_containers/food/snacks/mushroompizzaslice
+/obj/item/weapon/reagent_containers/food/snacks/slice/mushroompizza
 	price_tag = 1
 
-/obj/item/weapon/reagent_containers/food/snacks/vegetablepizzaslice
+/obj/item/weapon/reagent_containers/food/snacks/slice/vegetablepizza
 	price_tag = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/
@@ -737,37 +737,37 @@
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/meatbread
 	price_tag = 5
 
-/obj/item/weapon/reagent_containers/food/snacks/meatbreadslice
+/obj/item/weapon/reagent_containers/food/snacks/slice/meatbread
 	price_tag = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/xenomeatbread
 	price_tag = 5
 
-/obj/item/weapon/reagent_containers/food/snacks/xenomeatbreadslice
+/obj/item/weapon/reagent_containers/food/snacks/slice/xenomeatbread
 	price_tag = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/bananabread
 	price_tag = 5
 
-/obj/item/weapon/reagent_containers/food/snacks/bananabreadslice
+/obj/item/weapon/reagent_containers/food/snacks/slice/bananabread
 	price_tag = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/tofubread
 	price_tag = 5
 
-/obj/item/weapon/reagent_containers/food/snacks/tofubreadslice
+/obj/item/weapon/reagent_containers/food/snacks/slice/tofubread
 	price_tag = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/bread
 	price_tag = 5
 
-/obj/item/weapon/reagent_containers/food/snacks/breadslice
+/obj/item/weapon/reagent_containers/food/snacks/slice/bread
 	price_tag = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/creamcheesebread
 	price_tag = 5
 
-/obj/item/weapon/reagent_containers/food/snacks/creamcheesebreadslice
+/obj/item/weapon/reagent_containers/food/snacks/slice/creamcheesebread
 	price_tag = 1
 
 
@@ -845,67 +845,67 @@
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/carrotcake
 	price_tag = 5
 
-/obj/item/weapon/reagent_containers/food/snacks/carrotcakeslice
+/obj/item/weapon/reagent_containers/food/snacks/slice/carrotcake
 	price_tag = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/braincake
 	price_tag = 5
 
-/obj/item/weapon/reagent_containers/food/snacks/braincakeslice
+/obj/item/weapon/reagent_containers/food/snacks/slice/braincake
 	price_tag = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/cheesecake
 	price_tag = 5
 
-/obj/item/weapon/reagent_containers/food/snacks/cheesecakeslice
+/obj/item/weapon/reagent_containers/food/snacks/slice/cheesecake
 	price_tag = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/plaincake
 	price_tag = 5
 
-/obj/item/weapon/reagent_containers/food/snacks/plaincakeslice
+/obj/item/weapon/reagent_containers/food/snacks/slice/plaincake
 	price_tag = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/orangecake
 	price_tag = 5
 
-/obj/item/weapon/reagent_containers/food/snacks/orangecakeslice
+/obj/item/weapon/reagent_containers/food/snacks/slice/orangecake
 	price_tag = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/limecake
 	price_tag = 5
 
-/obj/item/weapon/reagent_containers/food/snacks/limecakeslice
+/obj/item/weapon/reagent_containers/food/snacks/slice/limecake
 	price_tag = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/lemoncake
 	price_tag = 5
 
-/obj/item/weapon/reagent_containers/food/snacks/lemoncakeslice
+/obj/item/weapon/reagent_containers/food/snacks/slice/lemoncake
 	price_tag = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/chocolatecake
 	price_tag = 5
 
-/obj/item/weapon/reagent_containers/food/snacks/chocolatecakeslice
+/obj/item/weapon/reagent_containers/food/snacks/slice/chocolatecake
 	price_tag = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/birthdaycake
 	price_tag = 5
 
-/obj/item/weapon/reagent_containers/food/snacks/birthdaycakeslice
+/obj/item/weapon/reagent_containers/food/snacks/slice/birthdaycake
 	price_tag = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/applecake
 	price_tag = 5
 
-/obj/item/weapon/reagent_containers/food/snacks/applecakeslice
+/obj/item/weapon/reagent_containers/food/snacks/slice/applecake
 	price_tag = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/pumpkinpie
 	price_tag = 5
 
-/obj/item/weapon/reagent_containers/food/snacks/pumpkinpieslice
+/obj/item/weapon/reagent_containers/food/snacks/slice/pumpkinpie
 	price_tag = 1
 
 

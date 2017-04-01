@@ -5,7 +5,7 @@
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
 
-	var/list/hud_list[10]
+	var/list/hud_list[TOTAL_HUDS]
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 	var/obj/item/weapon/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_canmove() call.
 	var/last_push_time	//For human_attackhand.dm, keeps track of the last use of disarm
@@ -33,7 +33,7 @@
 	hud_list[HEALTH_HUD]      = new /image/hud_overlay('icons/mob/hud_med.dmi', src, "100")
 	hud_list[STATUS_HUD]      = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudhealthy")
 	hud_list[LIFE_HUD]	      = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudhealthy")
-	hud_list[ID_HUD]          = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudunknown")
+	hud_list[ID_HUD]          = new /image/hud_overlay(using_map.id_hud_icons, src, "hudunknown")
 	hud_list[WANTED_HUD]      = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudblank")
 	hud_list[IMPLOYAL_HUD]    = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudblank")
 	hud_list[IMPCHEM_HUD]     = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudblank")
@@ -1050,7 +1050,7 @@
 						"<span class='warning'>A spike of pain jolts your [organ.name] as you bump [O] inside.</span>", \
 						"<span class='warning'>Your movement jostles [O] in your [organ.name] painfully.</span>", \
 						"<span class='warning'>Your movement jostles [O] in your [organ.name] painfully.</span>")
-					src << msg
+					custom_pain(msg, 40)
 
 				organ.take_damage(rand(1,3), 0, 0)
 				if(!(organ.robotic >= ORGAN_ROBOT) && (should_have_organ(O_HEART))) //There is no blood in protheses.
@@ -1452,6 +1452,7 @@
 
 	if(stat) return
 	var/datum/category_group/underwear/UWC = input(usr, "Choose underwear:", "Show/hide underwear") as null|anything in global_underwear.categories
+	if(!UWC) return
 	var/datum/category_item/underwear/UWI = all_underwear[UWC.name]
 	if(!UWI || UWI.name == "None")
 		src << "<span class='notice'>You do not have [UWC.gender==PLURAL ? "[UWC.display_name]" : "\a [UWC.display_name]"].</span>"
@@ -1489,7 +1490,7 @@
 	if(check_organ)
 		if(!istype(check_organ))
 			return 0
-		return check_organ.can_feel_pain()
+		return check_organ.organ_can_feel_pain()
 	return !(species.flags & NO_PAIN)
 
 /mob/living/carbon/human/is_muzzled()

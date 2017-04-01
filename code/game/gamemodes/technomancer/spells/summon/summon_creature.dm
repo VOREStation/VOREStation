@@ -22,7 +22,7 @@
 		"Chick"			=	/mob/living/simple_animal/chick,
 		"Crab"			=	/mob/living/simple_animal/crab,
 		"Parrot"		=	/mob/living/simple_animal/parrot,
-		"Goat"			=	/mob/living/simple_animal/hostile/retaliate/goat,
+		"Goat"			=	/mob/living/simple_animal/retaliate/goat,
 		"Cat"			=	/mob/living/simple_animal/cat,
 		"Kitten"		=	/mob/living/simple_animal/cat/kitten,
 		"Corgi"			=	/mob/living/simple_animal/corgi,

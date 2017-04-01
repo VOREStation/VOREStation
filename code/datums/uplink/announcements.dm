@@ -11,12 +11,9 @@
 		log_and_message_admins("has triggered a falsified [src]", user)
 
 /datum/uplink_item/abstract/announcements/fake_centcom
-	item_cost = DEFAULT_TELECRYSTAL_AMOUNT / 3
-
-/datum/uplink_item/abstract/announcements/fake_centcom/New()
-	..()
-	name = "[command_name()] Update Announcement"
-	desc = "Causes a falsified [command_name()] Update. Triggers immediately after supplying additional data."
+	name = "Command Update Announcement"
+	desc = "Causes a falsified Command Update. Triggers immediately after supplying additional data."
+	item_cost = 40
 
 /datum/uplink_item/abstract/announcements/fake_centcom/extra_args(var/mob/user)
 	var/title = sanitize(input("Enter your announcement title.", "Announcement Title") as null|text)

@@ -21,12 +21,12 @@
 // 'basic' language; spoken by default.
 /datum/language/common
 	name = LANGUAGE_GALCOM
-	desc = "The common galactic tongue."
+	desc = "The common galactic tongue, engineered for cross-species communication."
 	speech_verb = "says"
 	whisper_verb = "whispers"
 	key = "0"
 	flags = RESTRICTED
-	syllables = list("blah","blah","blah","bleh","meh","neh","nah","wah")
+	syllables = list("vol", "zum", "coo","zoo","bi","do","ooz","ite","og","re","si","ite","ish","ar","at","on","ee","east","ma","da", "rim")
 
 //TODO flag certain languages to use the mob-type specific say_quote and then get rid of these.
 /datum/language/common/get_spoken_verb(var/msg_end)

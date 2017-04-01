@@ -113,7 +113,7 @@
 			/obj/item/clothing/mask/balaclava/tactical,
 			/obj/item/clothing/glasses/sunglasses/sechud/tactical,
 			/obj/item/weapon/storage/belt/security/tactical,
-			/obj/item/clothing/shoes/jackboots,
+			/obj/item/clothing/shoes/boots/jackboots,
 			/obj/item/clothing/gloves/black,
 			/obj/item/clothing/under/tactical,
 			/obj/item/clothing/suit/armor/tactical,
@@ -121,7 +121,7 @@
 			/obj/item/clothing/mask/balaclava/tactical,
 			/obj/item/clothing/glasses/sunglasses/sechud/tactical,
 			/obj/item/weapon/storage/belt/security/tactical,
-			/obj/item/clothing/shoes/jackboots,
+			/obj/item/clothing/shoes/boots/jackboots,
 			/obj/item/clothing/gloves/black
 			)
 

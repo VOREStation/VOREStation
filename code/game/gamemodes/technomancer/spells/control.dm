@@ -39,7 +39,7 @@
 		/mob/living/simple_animal/hostile/carp,
 		/mob/living/simple_animal/hostile/scarybat,
 		/mob/living/simple_animal/hostile/viscerator,
-		/mob/living/simple_animal/hostile/retaliate/malf_drone,
+		/mob/living/simple_animal/hostile/malf_drone,
 		/mob/living/simple_animal/hostile/giant_spider,
 		/mob/living/simple_animal/hostile/hivebot,
 		/mob/living/simple_animal/hostile/diyaab, //Doubt these will get used but might as well,

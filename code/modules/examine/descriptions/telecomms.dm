@@ -5,7 +5,7 @@
 	just your hands, due to the integrated monitor and keyboard.  Synthetic units can interface with it as well, just like most other machines."
 
 	description_fluff = "This is one of many nodes that make up the Exonet, which services trillions of devices across space.  This particular node \
-	is referred to as a terminal node, servicing the "+station_orig+".<br>\
+	is referred to as a terminal node, servicing the station.<br>\
 	<br>\
 	In the beginning of humanity's ascend into space, the Exonet didn't exist.  Instead, the Exonet is the evolution to a network called the Interplanetary \
 	Internet (sometimes referred to as the InterPlaNet), which was conceived and developed due to the limitations of the terrestrial Internet, mainly because \
@@ -30,7 +30,7 @@
 	Exonets at the root node(s), and is typically arranged in a tree structure.  The root node(s) are generally government-owned and are very secure \
 	and resilient to failure.<br>\
 	<br>\
-	This node is privately owned and maintained by NanoTrasen, and allows the colonists of the "+station_orig+" to have access to the Exonet."
+	This node is privately owned and maintained by NanoTrasen, and allows the crew of the station to have access to the Exonet."
 
 	description_antag = "An EMP will disable this device for a short period of time.  A longer downage can be achieved by turning it off, or rigging \
 	the APC it uses to turn off remotely, such as with a signaler in the right wire."

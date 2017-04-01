@@ -35,10 +35,12 @@
 	var/stat_msg1
 	var/stat_msg2
 
+	var/datum/lore/atc_controller/ATC
 	var/datum/announcement/priority/crew_announcement = new
 
 /obj/machinery/computer/communications/New()
 	..()
+	ATC = atc
 	crew_announcement.newscast = 1
 
 /obj/machinery/computer/communications/process()
@@ -130,6 +132,8 @@
 		if("messagelist")
 			src.currmsg = 0
 			src.state = STATE_MESSAGELIST
+		if("toggleatc")
+			src.ATC.squelched = !src.ATC.squelched
 		if("viewmessage")
 			src.state = STATE_VIEWMESSAGE
 			if (!src.currmsg)
@@ -178,12 +182,12 @@
 				if(centcomm_message_cooldown)
 					usr << "\red Arrays recycling.  Please stand by."
 					return
-				var/input = sanitize(input("Please choose a message to transmit to [boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", ""))
+				var/input = sanitize(input("Please choose a message to transmit to [using_map.boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", ""))
 				if(!input || !(usr in view(1,src)))
 					return
 				CentCom_announce(input, usr)
 				usr << "\blue Message transmitted."
-				log_say("[key_name(usr)] has made an IA [boss_short] announcement: [input]")
+				log_say("[key_name(usr)] has made an IA [using_map.boss_short] announcement: [input]")
 				centcomm_message_cooldown = 1
 				spawn(300)//10 minute cooldown
 					centcomm_message_cooldown = 0
@@ -295,7 +299,7 @@
 				if (src.authenticated==2)
 					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=announce'>Make An Announcement</A> \]"
 					if(src.emagged == 0)
-						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=MessageCentCom'>Send an emergency message to [boss_short]</A> \]"
+						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=MessageCentCom'>Send an emergency message to [using_map.boss_short]</A> \]"
 					else
 						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=MessageSyndicate'>Send an emergency message to \[UNKNOWN\]</A> \]"
 						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=RestoreBackup'>Restore Backup Routing Data</A> \]"
@@ -311,6 +315,7 @@
 			else
 				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=login'>Log In</A> \]"
 			dat += "<BR>\[ <A HREF='?src=\ref[src];operation=messagelist'>Message List</A> \]"
+			dat += "<BR>\[ <A HREF='?src=\ref[src];operation=toggleatc'>[ATC.squelched ? "Enable" : "Disable"] ATC Relay</A> \]"
 		if(STATE_CALLSHUTTLE)
 			dat += "Are you sure you want to call the shuttle? \[ <A HREF='?src=\ref[src];operation=callshuttle2'>OK</A> | <A HREF='?src=\ref[src];operation=main'>Cancel</A> \]"
 		if(STATE_CANCELSHUTTLE)
@@ -374,6 +379,7 @@
 				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=ai-callshuttle'>Call Emergency Shuttle</A> \]"
 			dat += "<BR>\[ <A HREF='?src=\ref[src];operation=ai-messagelist'>Message List</A> \]"
 			dat += "<BR>\[ <A HREF='?src=\ref[src];operation=ai-status'>Set Status Display</A> \]"
+			dat += "<BR>\[ <A HREF='?src=\ref[src];operation=toggleatc'>[ATC.squelched ? "Enable" : "Disable"] ATC Relay</A> \]"
 		if(STATE_CALLSHUTTLE)
 			dat += "Are you sure you want to call the shuttle? \[ <A HREF='?src=\ref[src];operation=ai-callshuttle2'>OK</A> | <A HREF='?src=\ref[src];operation=ai-main'>Cancel</A> \]"
 		if(STATE_MESSAGELIST)
@@ -426,7 +432,7 @@
 		return
 
 	if(deathsquad.deployed)
-		user << "[boss_short] will not allow the shuttle to be called. Consider all contracts terminated."
+		user << "[using_map.boss_short] will not allow the shuttle to be called. Consider all contracts terminated."
 		return
 
 	if(emergency_shuttle.deny_shuttle)
@@ -438,7 +444,7 @@
 		return
 
 	if(emergency_shuttle.going_to_centcom())
-		user << "The emergency shuttle may not be called while returning to [boss_short]."
+		user << "The emergency shuttle may not be called while returning to [using_map.boss_short]."
 		return
 
 	if(emergency_shuttle.online())
@@ -461,7 +467,7 @@
 		return
 
 	if(emergency_shuttle.going_to_centcom())
-		user << "The shuttle may not be called while returning to [boss_short]."
+		user << "The shuttle may not be called while returning to [using_map.boss_short]."
 		return
 
 	if(emergency_shuttle.online())
@@ -471,11 +477,11 @@
 	// if force is 0, some things may stop the shuttle call
 	if(!force)
 		if(emergency_shuttle.deny_shuttle)
-			user << "[boss_short] does not currently have a shuttle available in your sector. Please try again later."
+			user << "[using_map.boss_short] does not currently have a shuttle available in your sector. Please try again later."
 			return
 
 		if(deathsquad.deployed == 1)
-			user << "[boss_short] will not allow the shuttle to be called. Consider all contracts terminated."
+			user << "[using_map.boss_short] will not allow the shuttle to be called. Consider all contracts terminated."
 			return
 
 		if(world.time < 54000) // 30 minute grace period to let the game get going

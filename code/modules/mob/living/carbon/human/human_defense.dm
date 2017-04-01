@@ -67,7 +67,7 @@ emp_act
 					emote("me", 1, "drops what they were holding, their [affected.name] malfunctioning!")
 				else
 					var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
-					emote("me", 1, "[affected.can_feel_pain() ? "" : emote_scream]drops what they were holding in their [affected.name]!")
+					emote("me", 1, "[affected.organ_can_feel_pain() ? "" : emote_scream] drops what they were holding in their [affected.name]!")
 
 	..(stun_amount, agony_amount, def_zone)
 
@@ -92,6 +92,29 @@ emp_act
 				armorval += getarmor_organ(organ, type) * weight
 				total += weight
 	return (armorval/max(total, 1))
+
+//Like getarmor, but the value it returns will be numerical damage reduction
+/mob/living/carbon/human/getsoak(var/def_zone, var/type)
+	var/soakval = 0
+	var/total = 0
+
+	if(def_zone)
+		if(isorgan(def_zone))
+			return getsoak_organ(def_zone, type)
+		var/obj/item/organ/external/affecting = get_organ(def_zone)
+		if(affecting)
+			return getsoak_organ(affecting, type)
+		//If a specific bodypart is targetted, check how that bodypart is protected and return the value.
+
+	//If you don't specify a bodypart, it checks ALL your bodyparts for protection, and averages out the values
+	for(var/organ_name in organs_by_name)
+		if (organ_name in organ_rel_size)
+			var/obj/item/organ/external/organ = organs_by_name[organ_name]
+			if(organ)
+				var/weight = organ_rel_size[organ_name]
+				soakval += getsoak_organ(organ, type) * weight
+				total += weight
+	return (soakval/max(total, 1))
 
 //this proc returns the Siemens coefficient of electrical resistivity for a particular external organ.
 /mob/living/carbon/human/proc/get_siemens_coefficient_organ(var/obj/item/organ/external/def_zone)
@@ -118,6 +141,17 @@ emp_act
 			if(istype(C) && C.body_parts_covered & def_zone.body_part)
 				protection += C.armor[type]
 	return protection
+
+/mob/living/carbon/human/proc/getsoak_organ(var/obj/item/organ/external/def_zone, var/type)
+	if(!type || !def_zone) return 0
+	var/soaked = 0
+	var/list/protective_gear = list(head, wear_mask, wear_suit, w_uniform, gloves, shoes)
+	for(var/gear in protective_gear)
+		if(gear && istype(gear ,/obj/item/clothing))
+			var/obj/item/clothing/C = gear
+			if(istype(C) && C.body_parts_covered & def_zone.body_part)
+				soaked += C.armorsoak[type]
+	return soaked
 
 /mob/living/carbon/human/proc/check_head_coverage()
 
@@ -195,25 +229,35 @@ emp_act
 
 	visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] in the [affecting.name] with [I.name] by [user]!</span>")
 
+	var/soaked = get_armor_soak(hit_zone, "melee", I.armor_penetration)
+
+	if(soaked >= effective_force)
+		src << "Your armor absorbs the force of [I.name]!"
+		return
+
 	var/blocked = run_armor_check(hit_zone, "melee", I.armor_penetration, "Your armor has protected your [affecting.name].", "Your armor has softened the blow to your [affecting.name].")
-	standard_weapon_hit_effects(I, user, effective_force, blocked, hit_zone)
+
+	standard_weapon_hit_effects(I, user, effective_force, blocked, soaked, hit_zone)
 
 	return blocked
 
-/mob/living/carbon/human/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/blocked, var/hit_zone)
+/mob/living/carbon/human/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/blocked, var/soaked, var/hit_zone)
 	var/obj/item/organ/external/affecting = get_organ(hit_zone)
 	if(!affecting)
+		return 0
+
+	if(soaked >= effective_force)
 		return 0
 
 	// Handle striking to cripple.
 	if(user.a_intent == I_DISARM)
 		effective_force *= 0.5 //reduced effective force...
-		if(!..(I, user, effective_force, blocked, hit_zone))
+		if(!..(I, user, effective_force, blocked, soaked, hit_zone))
 			return 0
 
 		//set the dislocate mult less than the effective force mult so that
 		//dislocating limbs on disarm is a bit easier than breaking limbs on harm
-		attack_joint(affecting, I, effective_force, 0.75, blocked) //...but can dislocate joints
+		attack_joint(affecting, I, effective_force, 0.75, blocked, soaked) //...but can dislocate joints
 	else if(!..())
 		return 0
 
@@ -243,7 +287,7 @@ emp_act
 			switch(hit_zone)
 				if("head")//Harder to score a stun but if you do it lasts a bit longer
 					if(prob(effective_force))
-						apply_effect(20, PARALYZE, blocked)
+						apply_effect(20, PARALYZE, blocked, soaked)
 						visible_message("<span class='danger'>\The [src] has been knocked unconscious!</span>")
 					if(bloody)//Apply blood
 						if(wear_mask)
@@ -257,15 +301,15 @@ emp_act
 							update_inv_glasses(0)
 				if("chest")//Easier to score a stun but lasts less time
 					if(prob(effective_force + 10))
-						apply_effect(6, WEAKEN, blocked)
+						apply_effect(6, WEAKEN, blocked, soaked)
 						visible_message("<span class='danger'>\The [src] has been knocked down!</span>")
 					if(bloody)
 						bloody_body(src)
 
 	return 1
 
-/mob/living/carbon/human/proc/attack_joint(var/obj/item/organ/external/organ, var/obj/item/W, var/effective_force, var/dislocate_mult, var/blocked)
-	if(!organ || (organ.dislocated == 2) || (organ.dislocated == -1) || blocked >= 100)
+/mob/living/carbon/human/proc/attack_joint(var/obj/item/organ/external/organ, var/obj/item/W, var/effective_force, var/dislocate_mult, var/blocked, var/soaked)
+	if(!organ || (organ.dislocated == 2) || (organ.dislocated == -1) || blocked >= 100 || soaked > effective_force)
 		return 0
 
 	if(W.damtype != BRUTE)
@@ -338,10 +382,6 @@ emp_act
 		var/hit_area = affecting.name
 
 		src.visible_message("\red [src] has been hit in the [hit_area] by [O].")
-		var/armor = run_armor_check(affecting, "melee", O.armor_penetration, "Your armor has protected your [hit_area].", "Your armor has softened hit to your [hit_area].") //I guess "melee" is the best fit here
-
-		if(armor < 100)
-			apply_damage(throw_damage, dtype, zone, armor, is_sharp(O), has_edge(O), O)
 
 		if(ismob(O.thrower))
 			var/mob/M = O.thrower
@@ -352,12 +392,25 @@ emp_act
 				if(!istype(src,/mob/living/simple_animal/mouse))
 					msg_admin_attack("[src.name] ([src.ckey]) was hit by a [O], thrown by [M.name] ([assailant.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>)")
 
+		//If the armor absorbs all of the damage, skip the rest of the calculations
+		var/soaked = get_armor_soak(affecting, "melee", O.armor_penetration)
+		if(soaked >= throw_damage)
+			src << "Your armor absorbs the force of [O.name]!"
+			return
+
+		var/armor = run_armor_check(affecting, "melee", O.armor_penetration, "Your armor has protected your [hit_area].", "Your armor has softened hit to your [hit_area].") //I guess "melee" is the best fit here
+		if(armor < 100)
+			apply_damage(throw_damage, dtype, zone, armor, soaked, is_sharp(O), has_edge(O), O)
+
+
 		//thrown weapon embedded object code.
 		if(dtype == BRUTE && istype(O,/obj/item))
 			var/obj/item/I = O
 			if (!is_robot_module(I))
 				var/sharp = is_sharp(I)
 				var/damage = throw_damage
+				if (soaked)
+					damage -= soaked
 				if (armor)
 					damage /= armor+1
 

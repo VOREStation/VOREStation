@@ -77,11 +77,15 @@
 
 	//armour
 	var/blocked = L.run_armor_check(target_zone, "melee")
+	var/soaked = L.get_armor_soak(target_zone, "melee")
 
 	if(blocked >= 100)
 		return
 
-	if(!L.apply_damage(30, BRUTE, target_zone, blocked, used_weapon=src))
+	if(soaked >= 30)
+		return
+
+	if(!L.apply_damage(30, BRUTE, target_zone, blocked, soaked, used_weapon=src))
 		return 0
 
 	//trap the victim in place

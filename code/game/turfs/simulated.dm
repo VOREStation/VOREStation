@@ -94,10 +94,6 @@
 		if(M.lying)
 			return ..()
 
-		// Ugly hack :( Should never have multiple plants in the same tile.
-		var/obj/effect/plant/plant = locate() in contents
-		if(plant) plant.trodden_on(M)
-
 		// Dirt overlays.
 		update_dirt()
 
@@ -182,3 +178,5 @@
 		this.blood_DNA["UNKNOWN BLOOD"] = "X*"
 	else if( istype(M, /mob/living/silicon/robot ))
 		new /obj/effect/decal/cleanable/blood/oil(src)
+	else if(ishuman(M))
+		add_blood(M)

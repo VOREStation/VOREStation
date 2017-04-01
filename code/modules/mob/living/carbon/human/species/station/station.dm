@@ -31,9 +31,11 @@
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	primitive_form = "Stok"
 	darksight = 3
+	ambiguous_genders = TRUE
 	gluttonous = 1
 	slowdown = 0.5
-	brute_mod = 0.8
+	brute_mod = 0.9
+	burn_mod = 0.9
 	num_alternate_languages = 3
 	secondary_langs = list(LANGUAGE_UNATHI)
 	name_language = LANGUAGE_UNATHI
@@ -94,6 +96,7 @@
 	slowdown = -0.5
 	brute_mod = 1.15
 	burn_mod =  1.15
+	flash_mod = 1.1
 	metabolic_rate = 1.1
 	gluttonous = 1
 	num_alternate_languages = 3
@@ -136,6 +139,15 @@
 		)
 	cold_discomfort_level = 275
 
+	has_organ = list(    //No appendix.
+		O_HEART =    /obj/item/organ/internal/heart,
+		O_LUNGS =    /obj/item/organ/internal/lungs,
+		O_LIVER =    /obj/item/organ/internal/liver,
+		O_KIDNEYS =  /obj/item/organ/internal/kidneys,
+		O_BRAIN =    /obj/item/organ/internal/brain,
+		O_EYES =     /obj/item/organ/internal/eyes
+		)
+
 /datum/species/tajaran/equip_survival_gear(var/mob/living/carbon/human/H)
 	..()
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H),slot_shoes)
@@ -158,9 +170,13 @@
 	health_hud_intensity = 2
 
 	min_age = 19
-	max_age = 80
+	max_age = 130
 
 	darksight = 4
+	flash_mod = 1.2
+	chemOD_mod = 0.9
+
+	ambiguous_genders = TRUE
 
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR
@@ -192,6 +208,9 @@
 		BP_L_FOOT = list("path" = /obj/item/organ/external/foot),
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
 		)
+
+/datum/species/skrell/can_breathe_water()
+	return TRUE
 
 /datum/species/diona
 	name = "Diona"

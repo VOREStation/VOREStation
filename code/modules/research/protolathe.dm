@@ -85,6 +85,8 @@
 	else if(busy)
 		icon_state = "protolathe_n"
 	else
+		if(icon_state == "protolathe_n")
+			flick("protolathe_u", src) // If lid WAS closed, show opening animation
 		icon_state = "protolathe"
 
 /obj/machinery/r_n_d/protolathe/attackby(var/obj/item/O as obj, var/mob/user as mob)

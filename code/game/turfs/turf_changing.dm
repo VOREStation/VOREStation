@@ -9,6 +9,13 @@
 	if(L)
 		qdel(L)
 
+// Called after turf replaces old one
+/turf/proc/post_change()
+	levelupdate()
+	var/turf/simulated/open/T = GetAbove(src)
+	if(istype(T))
+		T.update_icon()
+
 //Creates a new turf
 /turf/proc/ChangeTurf(var/turf/N, var/tell_universe=1, var/force_lighting_update = 0)
 	if (!N)
@@ -25,6 +32,7 @@
 	var/old_dynamic_lighting = dynamic_lighting
 	var/list/old_affecting_lights = affecting_lights
 	var/old_lighting_overlay = lighting_overlay
+	var/old_weather_overlay = weather_overlay
 
 	//world << "Replacing [src.type] with [N]"
 
@@ -42,6 +50,9 @@
 		if(old_fire)
 			fire = old_fire
 
+		if(old_weather_overlay)
+			W.weather_overlay = old_weather_overlay
+
 		if (istype(W,/turf/simulated/floor))
 			W.RemoveLattice()
 
@@ -55,6 +66,8 @@
 			S.update_starlight()
 
 		W.levelupdate()
+		W.update_icon(1)
+		W.post_change()
 		. = W
 
 	else
@@ -63,6 +76,9 @@
 
 		if(old_fire)
 			old_fire.RemoveFire()
+
+		if(old_weather_overlay)
+			W.weather_overlay = old_weather_overlay
 
 		if(tell_universe)
 			universe.OnTurfChange(W)
@@ -74,6 +90,8 @@
 			S.update_starlight()
 
 		W.levelupdate()
+		W.update_icon(1)
+		W.post_change()
 		. =  W
 
 	lighting_overlay = old_lighting_overlay

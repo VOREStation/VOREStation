@@ -133,7 +133,7 @@
 			user  << "<span class='notice'>\The [src] already has someone buckled to it.</span>"
 			return
 		user.visible_message("<span class='notice'>[user] attempts to buckle [affecting] into \the [src]!</span>")
-		if(do_after(user, 20))
+		if(do_after(user, 20, G.affecting))
 			affecting.loc = loc
 			spawn(0)
 				if(buckle_mob(affecting))

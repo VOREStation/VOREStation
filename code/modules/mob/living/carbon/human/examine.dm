@@ -82,6 +82,20 @@
 	var/datum/gender/T = gender_datums[get_gender()]
 	if(skipjumpsuit && skipface) //big suits/masks/helmets make it hard to tell their gender
 		T = gender_datums[PLURAL]
+
+	else if(species && species.ambiguous_genders)
+		var/can_detect_gender = FALSE
+		if(isobserver(user)) // Ghosts are all knowing.
+			can_detect_gender = TRUE
+		if(issilicon(user)) // Borgs are too because science.
+			can_detect_gender = TRUE
+		else if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if(H.species && istype(species, H.species))
+				can_detect_gender = TRUE
+
+		if(!can_detect_gender)
+			T = gender_datums[PLURAL] // Species with ambiguous_genders will not show their true gender upon examine if the examiner is not also the same species.
 	else
 		if(icon)
 			msg += "\icon[icon] " //fucking BYOND: this should stop dreamseeker crashing if we -somehow- examine somebody before their icon is generated
@@ -266,7 +280,7 @@
 			msg += "<span class='warning'>[T.He] [T.is] twitching ever so slightly.</span>\n"
 
 	//splints
-	for(var/organ in list(BP_L_LEG, BP_R_LEG, BP_L_ARM, BP_R_ARM))
+	for(var/organ in BP_ALL)
 		var/obj/item/organ/external/o = get_organ(organ)
 		if(o && o.splinted && o.splinted.loc == o)
 			msg += "<span class='warning'>[T.He] [T.has] \a [o.splinted] on [T.his] [o.name]!</span>\n"
@@ -360,6 +374,11 @@
 				wound_flavor_text["[temp.name]"] += "<span class='warning'>[T.His] [temp.joint] is dislocated!</span><br>"
 			if(((temp.status & ORGAN_BROKEN) && temp.brute_dam > temp.min_broken_damage) || (temp.status & ORGAN_MUTATED))
 				wound_flavor_text["[temp.name]"] += "<span class='warning'>[T.His] [temp.name] is dented and swollen!</span><br>"
+
+			if(temp.germ_level > INFECTION_LEVEL_TWO && !(temp.status & ORGAN_DEAD))
+				wound_flavor_text["[temp.name]"] += "<span class='warning'>[T.His] [temp.name] looks very infected!</span><br>"
+			else if(temp.status & ORGAN_DEAD)
+				wound_flavor_text["[temp.name]"] += "<span class='warning'>[T.His] [temp.name] looks rotten!</span><br>"
 
 			if(!wound_flavor_text["[temp.name]"] && (temp.status & ORGAN_BLEEDING))
 				is_bleeding["[temp.name]"] = "<span class='danger'>[T.His] [temp.name] is bleeding!</span><br>"
