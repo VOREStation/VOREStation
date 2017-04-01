@@ -518,12 +518,6 @@
 	icon_state = "aronai"
 	ckeys_allowed = list("arokha")
 
-/datum/sprite_accessory/tail/sepulchre
-	name = "demon wings (Sepulchre)"
-	desc = ""
-	icon_state = "sepulchre_wings"
-	ckeys_allowed = list("sepulchre")
-
 /datum/sprite_accessory/tail/feathered
 	name = "feathered wings, colorable"
 	desc = ""
