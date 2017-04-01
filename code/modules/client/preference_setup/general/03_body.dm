@@ -574,6 +574,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			else
 				organ_choices += "Assisted"
 				organ_choices += "Mechanical"
+		else
+			organ_choices += "Assisted"
+			organ_choices += "Mechanical"
 
 		var/new_state = input(user, "What state do you wish the organ to be in?") as null|anything in organ_choices
 		if(!new_state) return
