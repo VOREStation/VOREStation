@@ -352,13 +352,6 @@
 			if(!L.is_bruised() && prob(8))
 				rupture_lung()
 
-		if(should_have_organ("brain"))
-			var/brainOxPercent = 0.02		//Default2% of your current oxyloss is applied as brain damage, 50 oxyloss is 1 brain damage
-			if(CE_STABLE in chem_effects)
-				brainOxPercent = 0.01		//Halved in effect
-			if(oxyloss >= 20 && prob(5))
-				adjustBrainLoss(brainOxPercent * oxyloss)
-
 		oxygen_alert = max(oxygen_alert, 1)
 
 		return 0
@@ -925,6 +918,14 @@
 		else
 			for(var/atom/a in hallucinations)
 				qdel(a)
+
+		//Brain damage from Oxyloss
+		if(should_have_organ("brain"))
+			var/brainOxPercent = 0.02		//Default2% of your current oxyloss is applied as brain damage, 50 oxyloss is 1 brain damage
+			if(CE_STABLE in chem_effects)
+				brainOxPercent = 0.01		//Halved in effect
+			if(oxyloss >= 20 && prob(5))
+				adjustBrainLoss(brainOxPercent * oxyloss)
 
 		if(halloss >= species.total_health)
 			src << "<span class='notice'>You're in too much pain to keep going...</span>"
