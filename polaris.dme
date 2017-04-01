@@ -1209,6 +1209,7 @@
 #include "code\modules\clothing\gloves\gauntlets.dm"
 #include "code\modules\clothing\gloves\miscellaneous.dm"
 #include "code\modules\clothing\head\collectable.dm"
+#include "code\modules\clothing\head\flowercrowns.dm"
 #include "code\modules\clothing\head\hardhat.dm"
 #include "code\modules\clothing\head\helmet.dm"
 #include "code\modules\clothing\head\jobs.dm"
