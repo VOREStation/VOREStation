@@ -2,13 +2,6 @@
 /obj/item/clothing/under/pants
 	name = "jeans"
 	desc = "A nondescript pair of tough blue jeans."
-	sprite_sheets = list(
-		"Human" = 'icons/mob/uniforms/pants.dmi',
-		"Skrell" = 'icons/mob/species/skrell/uniforms/pants.dmi',
-		"Tajara" = 'icons/mob/species/tajaran/uniforms/pants.dmi',
-		"Unathi" = 'icons/mob/species/unathi/uniforms/pants.dmi',
-		"Diona" = 'icons/mob/species/diona/uniforms/pants.dmi'
-		)
 	icon_state = "jeans"
 	gender = PLURAL
 	body_parts_covered = LOWER_TORSO|LEGS
@@ -124,10 +117,10 @@
 	desc = "A pair of sexy, tight black leather chaps."
 	icon_state = "chapsbl"
 
-/obj/item/clothing/under/pants/yoga
+/obj/item/clothing/under/pants/yogapants
 	name = "yoga pants"
 	desc = "A pair of tight-fitting yoga pants for those lazy days."
-	icon_state = "yoga"
+	icon_state = "yogapants"
 
 /*
  * Baggy Pants

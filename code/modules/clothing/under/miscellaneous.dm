@@ -255,13 +255,6 @@
  */
 /obj/item/clothing/under/dress
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	sprite_sheets = list(
-		"Human" = 'icons/mob/uniforms/dresses.dmi',
-		"Skrell" = 'icons/mob/species/skrell/uniforms/dresses.dmi',
-		"Tajara" = 'icons/mob/species/tajaran/uniforms/dresses.dmi',
-		"Unathi" = 'icons/mob/species/unathi/uniforms/dresses.dmi',
-		"Diona" = 'icons/mob/species/diona/uniforms/dresses.dmi'
-		)
 
 /obj/item/clothing/under/dress/blacktango
 	name = "black tango dress"
@@ -353,14 +346,6 @@
  */
 /obj/item/clothing/under/wedding
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
-	sprite_sheets = list(
-		"Human" = 'icons/mob/uniforms/dresses.dmi',
-		"Skrell" = 'icons/mob/species/skrell/uniforms/dresses.dmi',
-		"Tajara" = 'icons/mob/species/tajaran/uniforms/dresses.dmi',
-		"Unathi" = 'icons/mob/species/unathi/uniforms/dresses.dmi',
-		"Diona" = 'icons/mob/species/diona/uniforms/dresses.dmi'
-		)
-
 
 /obj/item/clothing/under/wedding/bride_orange
 	name = "orange wedding dress"
@@ -393,13 +378,13 @@
 	flags_inv = HIDESHOES
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
-/obj/item/clothing/under/dress/sundress
+/obj/item/clothing/under/sundress
 	name = "sundress"
 	desc = "Makes you want to frolic in a field of daisies."
 	icon_state = "sundress"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
-/obj/item/clothing/under/dress/sundress/white
+/obj/item/clothing/under/sundress_white
 	name = "white sundress"
 	desc = "A white sundress decorated with purple lilies."
 	icon_state = "sundress_white"
@@ -474,13 +459,6 @@
 /obj/item/clothing/under/cheongsam
 	name = "white cheongsam"
 	desc = "It is a white cheongsam dress."
-	sprite_sheets = list(
-		"Human" = 'icons/mob/uniforms/dresses.dmi',
-		"Skrell" = 'icons/mob/species/skrell/uniforms/dresses.dmi',
-		"Tajara" = 'icons/mob/species/tajaran/uniforms/dresses.dmi',
-		"Unathi" = 'icons/mob/species/unathi/uniforms/dresses.dmi',
-		"Diona" = 'icons/mob/species/diona/uniforms/dresses.dmi'
-		)
 	icon_state = "mai_yang"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
 
@@ -508,13 +486,6 @@
 /obj/item/clothing/under/croptop
 	name = "crop top"
 	desc = "A shirt that has had the top cropped. This one is NT sponsored."
-	sprite_sheets = list(
-		"Human" = 'icons/mob/uniforms/dresses.dmi',
-		"Skrell" = 'icons/mob/species/skrell/uniforms/dresses.dmi',
-		"Tajara" = 'icons/mob/species/tajaran/uniforms/dresses.dmi',
-		"Unathi" = 'icons/mob/species/unathi/uniforms/dresses.dmi',
-		"Diona" = 'icons/mob/species/diona/uniforms/dresses.dmi'
-		)
 	icon_state = "croptop"
 	item_state_slots = list(slot_r_hand_str = "grey", slot_l_hand_str = "grey")
 

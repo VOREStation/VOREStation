@@ -715,15 +715,25 @@
 		species_allowed = list("Unathi")
 
 //Skrell 'hairstyles'
-	skr_tentacle_m
-		name = "Skrell Male Tentacles"
-		icon_state = "skrell_hair_m"
+	skr_tentacle_veryshort
+		name = "Skrell Very Short Tentacles"
+		icon_state = "skrell_hair_veryshort"
 		species_allowed = list("Skrell")
 		gender = MALE
 
-	skr_tentacle_f
-		name = "Skrell Female Tentacles"
-		icon_state = "skrell_hair_f"
+	skr_tentacle_short
+		name = "Skrell Short Tentacles"
+		icon_state = "skrell_hair_short"
+		species_allowed = list("Skrell")
+
+	skr_tentacle_average
+		name = "Skrell Average Tentacles"
+		icon_state = "skrell_hair_average"
+		species_allowed = list("Skrell")
+
+	skr_tentacle_verylong
+		name = "Skrell Long Tentacles"
+		icon_state = "skrell_hair_verylong"
 		species_allowed = list("Skrell")
 		gender = FEMALE
 
@@ -1032,21 +1042,31 @@
 		name = "Socks Coloration (Generic)"
 		icon_state = "pawsocks"
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND)
+		species_allowed = list("Tajara", "Unathi")
 
 	paw_socks_belly
 		name = "Socks,Belly Coloration (Generic)"
 		icon_state = "pawsocksbelly"
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
+		species_allowed = list("Tajara", "Unathi")
 
 	belly_hands_feet
 		name = "Hands,Feet,Belly Color (Minor)"
 		icon_state = "bellyhandsfeetsmall"
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
+		species_allowed = list("Tajara", "Unathi")
 
 	hands_feet_belly_full
 		name = "Hands,Feet,Belly Color (Major)"
 		icon_state = "bellyhandsfeet"
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
+		species_allowed = list("Tajara", "Unathi")
+
+	hands_feet_belly_full_female
+		name = "Hands,Feet,Belly Color (Major, Female)"
+		icon_state = "bellyhandsfeet_female"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
+		species_allowed = list("Tajara")
 
 	patches
 		name = "Color Patches"

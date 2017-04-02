@@ -159,3 +159,13 @@
 			/obj/item/device/kit/paint/gygax/recitence
 			)
 	name = "Random Gygax exosuit modkit"
+
+/datum/supply_packs/robotics/jumper_cables
+	name = "Jumper kit crate"
+	contains = list(
+			/obj/item/device/defib_kit/jumper_kit = 4
+			)
+	cost = 30
+	containertype = /obj/structure/closet/crate/secure/science
+	containername = "Jumper kit crate"
+	access = access_robotics

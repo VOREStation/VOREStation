@@ -114,8 +114,11 @@
 
 	if(!target_limb) target_limb = pick(BP_ALL)
 	var/blocked = target.run_armor_check(target_limb, "melee")
+	var/soaked = target.get_armor_soak(target_limb, "melee")
+
 	if(blocked >= 100)
 		return
+
 	var/obj/item/organ/external/affecting = target.get_organ(target_limb)
 	var/damage = 0
 	var/has_edge = 0
@@ -125,7 +128,7 @@
 
 		if(affecting)
 			to_chat(target, "<span class='danger'>\The [fruit]'s thorns pierce your [affecting.name] greedily!</span>")
-			target.apply_damage(damage, BRUTE, target_limb, blocked, "Thorns", sharp=1, edge=has_edge)
+			target.apply_damage(damage, BRUTE, target_limb, blocked, soaked, "Thorns", sharp=1, edge=has_edge)
 		else
 			to_chat(target, "<span class='danger'>\The [fruit]'s thorns pierce your flesh greedily!</span>")
 			target.adjustBruteLoss(damage)
