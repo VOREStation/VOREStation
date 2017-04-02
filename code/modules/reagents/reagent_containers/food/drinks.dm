@@ -131,22 +131,27 @@
 	..()
 	reagents.add_reagent("soymilk", 50)
 
-/obj/item/weapon/reagent_containers/food/drinks/milk/smallcarton
+/obj/item/weapon/reagent_containers/food/drinks/smallmilk
 	name = "small milk carton"
+	desc = "It's milk. White and nutritious goodness!"
 	volume = 30
 	icon_state = "mini-milk"
-/obj/item/weapon/reagent_containers/food/drinks/milk/smallcarton/New()
+	item_state = "carton"
+	center_of_mass = list("x"=16, "y"=9)
+/obj/item/weapon/reagent_containers/food/drinks/smallmilk/New()
 	..()
 	reagents.add_reagent("milk", 30)
 
-/obj/item/weapon/reagent_containers/food/drinks/milk/smallcarton/chocolate
+/obj/item/weapon/reagent_containers/food/drinks/smallchocmilk
 	name = "small chocolate milk carton"
 	desc = "It's milk! This one is in delicious chocolate flavour."
+	volume = 30
 	icon_state = "mini-milk_choco"
-/obj/item/weapon/reagent_containers/food/drinks/milk/smallcarton/chocolate/New()
+	item_state = "carton"
+	center_of_mass = list("x"=16, "y"=9)
+/obj/item/weapon/reagent_containers/food/drinks/smallchocmilk/New()
 	..()
 	reagents.add_reagent("chocolate_milk", 30)
-
 
 /obj/item/weapon/reagent_containers/food/drinks/coffee
 	name = "\improper Robust Coffee"

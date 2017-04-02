@@ -5,7 +5,7 @@
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
 
-	var/list/hud_list[10]
+	var/list/hud_list[TOTAL_HUDS]
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 	var/obj/item/weapon/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_canmove() call.
 	var/last_push_time	//For human_attackhand.dm, keeps track of the last use of disarm
@@ -28,10 +28,17 @@
 		if(mind)
 			mind.name = real_name
 
+	nutrition = rand(200,400)
+
 	hud_list[HEALTH_HUD]      = new /image/hud_overlay('icons/mob/hud_med.dmi', src, "100")
 	hud_list[STATUS_HUD]      = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudhealthy")
+	//VOREStation Add - Custom HUDs
+	hud_list[HEALTH_VR_HUD]   = new /image/hud_overlay('icons/mob/hud_med_vr.dmi', src, "100")
+	hud_list[STATUS_R_HUD]    = new /image/hud_overlay('icons/mob/hud_vr.dmi', src, "hudhealthy")
+	hud_list[BACKUP_HUD]      = new /image/hud_overlay('icons/mob/hud_vr.dmi', src, "hudblank")
+	//VOREStation Add End
 	hud_list[LIFE_HUD]	      = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudhealthy")
-	hud_list[ID_HUD]          = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudunknown")
+	hud_list[ID_HUD]          = new /image/hud_overlay(using_map.id_hud_icons, src, "hudunknown")
 	hud_list[WANTED_HUD]      = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudblank")
 	hud_list[IMPLOYAL_HUD]    = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudblank")
 	hud_list[IMPCHEM_HUD]     = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudblank")
@@ -688,18 +695,32 @@
 	if(istype(src.head, /obj/item/clothing/head/helmet/space/emergency))
 		number -= 2
 	if(istype(src.glasses, /obj/item/clothing/glasses/thermal))
-		number -= 1
+		var/obj/item/clothing/glasses/thermal/T = src.glasses
+		if(T.active)
+			number -= 1
+	if(istype(src.glasses, /obj/item/clothing/glasses/night))
+		var/obj/item/clothing/glasses/night/N = src.glasses
+		if(N.active)
+			number -= 1
 	if(istype(src.glasses, /obj/item/clothing/glasses/sunglasses))
 		if(istype(src.glasses, /obj/item/clothing/glasses/sunglasses/sechud/aviator))
 			var/obj/item/clothing/glasses/sunglasses/sechud/aviator/S = src.glasses
-			if(!S.on)
+			if(!S.active)
 				number += 1
+		else if(istype(src.glasses, /obj/item/clothing/glasses/sunglasses/medhud/aviator))
+			number += 0
 		else
 			number += 1
 	if(istype(src.glasses, /obj/item/clothing/glasses/welding))
 		var/obj/item/clothing/glasses/welding/W = src.glasses
 		if(!W.up)
 			number += 2
+	//VOREStation Add - Omnihud Handling
+	if(istype(src.glasses, /obj/item/clothing/glasses/omnihud))
+		var/obj/item/clothing/glasses/omnihud/omn = src.glasses
+		number += omn.flash_prot
+		omn.flashed()
+	//VOREStation Add End
 	return number
 
 //Used by various things that knock people out by applying blunt trauma to the head.
@@ -723,6 +744,11 @@
 	return 1
 
 /mob/living/carbon/human/IsAdvancedToolUser(var/silent)
+	// VOREstation start
+	if(feral)
+		src << "<span class='warning'>Your primitive mind can't grasp the concept of that thing.</span>"
+		return 0
+	// VOREstation end
 	if(species.has_fine_manipulation)
 		return 1
 	if(!silent)
@@ -1045,7 +1071,7 @@
 						"<span class='warning'>A spike of pain jolts your [organ.name] as you bump [O] inside.</span>", \
 						"<span class='warning'>Your movement jostles [O] in your [organ.name] painfully.</span>", \
 						"<span class='warning'>Your movement jostles [O] in your [organ.name] painfully.</span>")
-					src << msg
+					custom_pain(msg, 40)
 
 				organ.take_damage(rand(1,3), 0, 0)
 				if(!(organ.robotic >= ORGAN_ROBOT) && (should_have_organ(O_HEART))) //There is no blood in protheses.
@@ -1318,7 +1344,8 @@
 /mob/living/carbon/human/slip(var/slipped_on, stun_duration=8)
 	if((species.flags & NO_SLIP) || (shoes && (shoes.item_flags & NOSLIP)))
 		return 0
-	..(slipped_on,stun_duration)
+	if(..(slipped_on,stun_duration))
+		return 1
 
 /mob/living/carbon/human/proc/undislocate()
 	set category = "Object"
@@ -1446,6 +1473,7 @@
 
 	if(stat) return
 	var/datum/category_group/underwear/UWC = input(usr, "Choose underwear:", "Show/hide underwear") as null|anything in global_underwear.categories
+	if(!UWC) return
 	var/datum/category_item/underwear/UWI = all_underwear[UWC.name]
 	if(!UWI || UWI.name == "None")
 		src << "<span class='notice'>You do not have [UWC.gender==PLURAL ? "[UWC.display_name]" : "\a [UWC.display_name]"].</span>"
@@ -1483,7 +1511,7 @@
 	if(check_organ)
 		if(!istype(check_organ))
 			return 0
-		return check_organ.can_feel_pain()
+		return check_organ.organ_can_feel_pain()
 	return !(species.flags & NO_PAIN)
 
 /mob/living/carbon/human/is_muzzled()

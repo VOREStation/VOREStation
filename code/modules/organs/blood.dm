@@ -6,6 +6,7 @@ var/const/BLOOD_VOLUME_SAFE =    85
 var/const/BLOOD_VOLUME_OKAY =    75
 var/const/BLOOD_VOLUME_BAD =     60
 var/const/BLOOD_VOLUME_SURVIVE = 40
+var/const/CE_STABLE_THRESHOLD = 0.5
 
 /mob/living/carbon/human/var/datum/reagents/vessel // Container for blood and BLOOD ONLY. Do not transfer other chems here.
 /mob/living/carbon/human/var/var/pale = 0          // Should affect how mob sprite is drawn, but currently doesn't.
@@ -68,14 +69,24 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 
 			if(!heart)
 				blood_volume = 0
-			else if(heart.damage > 1 && heart.damage < heart.min_bruised_damage)
-				blood_volume *= 0.8
-			else if(heart.damage >= heart.min_bruised_damage && heart.damage < heart.min_broken_damage)
-				blood_volume *= 0.6
-			else if(heart.damage >= heart.min_broken_damage && heart.damage < INFINITY)
+			else if(heart.is_broken())
 				blood_volume *= 0.3
+			else if(heart.is_bruised())
+				blood_volume *= 0.7
+			else if(heart.damage)
+				blood_volume *= 0.8
 
 		//Effects of bloodloss
+		var/dmg_coef = 1				//Lower means less damage taken
+		var/threshold_coef = 1			//Lower means the damage caps off lower
+
+		if(CE_STABLE in chem_effects)
+			dmg_coef = 0.5
+			threshold_coef = 0.75
+//	These are Bay bits, do some sort of calculation.
+//			dmg_coef = min(1, 10/chem_effects[CE_STABLE]) //TODO: add effect for increased damage
+//			threshold_coef = min(dmg_coef / CE_STABLE_THRESHOLD, 1)
+
 		if(blood_volume >= BLOOD_VOLUME_SAFE)
 			if(pale)
 				pale = 0
@@ -89,32 +100,34 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 			if(prob(1))
 				var/word = pick("dizzy","woosey","faint")
 				src << "\red You feel [word]"
-			if(oxyloss < 20)
-				oxyloss += 3
+			if(getOxyLoss() < 20 * threshold_coef)
+				adjustOxyLoss(3 * dmg_coef)
 		else if(blood_volume >= BLOOD_VOLUME_BAD)
 			if(!pale)
 				pale = 1
 				update_body()
 			eye_blurry = max(eye_blurry,6)
-			if(oxyloss < 50)
-				oxyloss += 10
-			oxyloss += 1
+			if(getOxyLoss() < 50 * threshold_coef)
+				adjustOxyLoss(10 * dmg_coef)
+			adjustOxyLoss(1 * dmg_coef)
 			if(prob(15))
 				Paralyse(rand(1,3))
 				var/word = pick("dizzy","woosey","faint")
 				src << "\red You feel extremely [word]"
 		else if(blood_volume >= BLOOD_VOLUME_SURVIVE)
-			oxyloss += 5
-			toxloss += 3
+			adjustOxyLoss(5 * dmg_coef)
+			adjustToxLoss(3 * dmg_coef)
 			if(prob(15))
 				var/word = pick("dizzy","woosey","faint")
 				src << "\red You feel extremely [word]"
-		else
-			// There currently is a strange bug here. If the mob is not below -100 health
-			// when death() is called, apparently they will be just fine, and this way it'll
-			// spam deathgasp. Adjusting toxloss ensures the mob will stay dead.
-			toxloss += 300 // just to be safe!
-			death()
+		else //Not enough blood to survive (usually)
+			if(!pale)
+				pale = 1
+				update_body()
+			eye_blurry = max(eye_blurry,6)
+			Paralyse(3)
+			adjustToxLoss(3 * dmg_coef)
+			adjustOxyLoss(75 * dmg_coef) // 15 more than dexp fixes (also more than dex+dexp+tricord)
 
 		// Without enough blood you slowly go hungry.
 		if(blood_volume < BLOOD_VOLUME_SAFE)
@@ -141,6 +154,8 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 					if((temp.organ_tag == BP_L_ARM) || (temp.organ_tag == BP_R_ARM) || (temp.organ_tag == BP_L_LEG) || (temp.organ_tag == BP_R_LEG))
 						blood_loss_divisor += 5
 					else if((temp.organ_tag == BP_L_HAND) || (temp.organ_tag == BP_R_HAND) || (temp.organ_tag == BP_L_FOOT) || (temp.organ_tag == BP_R_FOOT))
+						blood_loss_divisor += 10
+					if(CE_STABLE in chem_effects)	//Inaprov slows bloodloss
 						blood_loss_divisor += 10
 					if(temp.applied_pressure)
 						if(ishuman(temp.applied_pressure))

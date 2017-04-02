@@ -16,8 +16,8 @@ var/datum/antagonist/mercenary/mercs
 
 	hard_cap = 4
 	hard_cap_round = 8
-	initial_spawn_req = 4
-	initial_spawn_target = 6
+	initial_spawn_req = 3
+	initial_spawn_target = 4
 
 /datum/antagonist/mercenary/New()
 	..()
@@ -36,7 +36,7 @@ var/datum/antagonist/mercenary/mercs
 		return 0
 
 	player.equip_to_slot_or_del(new /obj/item/clothing/under/syndicate(player), slot_w_uniform)
-	player.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(player), slot_shoes)
+	player.equip_to_slot_or_del(new /obj/item/clothing/shoes/boots/swat(player), slot_shoes)
 	player.equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(player), slot_gloves)
 	if(player.backbag == 2) player.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(player), slot_back)
 	if(player.backbag == 3) player.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel/norm(player), slot_back)

@@ -39,7 +39,7 @@
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "battlerifle"
 	icon_override = 'icons/obj/gun_vr.dmi'
-	item_state = "battlerifle"
+	item_state = "battlerifle_i"
 	item_icons = null
 	w_class = ITEMSIZE_LARGE
 	recoil = 2 // The battlerifle was known for its nasty recoil.
@@ -64,7 +64,7 @@
 	icon_state = "haloshotgun"
 
 	icon_override = 'icons/obj/gun_vr.dmi'
-	item_state = "haloshotgun"
+	item_state = "haloshotgun_i"
 	item_icons = null
 
 	ammo_type = /obj/item/ammo_casing/shotgun
@@ -118,6 +118,12 @@
 
 		update_icon()
 
+/obj/item/weapon/gun/projectile/revolver/mateba/fluff/tasald_corlethian/attack_hand(mob/user as mob)
+	if(user.get_inactive_hand() == src)
+		unload_ammo(user, allow_dump = 1)
+	else
+		..()
+
 // wankersonofjerkin : Ryan Winz
 /obj/item/weapon/gun/projectile/revolver/fluff/ryan_winz_revolver
 	name = "Ryan's 'Devilgun'"
@@ -141,6 +147,16 @@
 	item_state = "gun"
 	accuracy = 0 // Because I know you're not an idiot who needs to be nerfed. -Ace
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
+
+// Dhaeleena : Dhaeleena M'iar
+/obj/item/weapon/gun/projectile/revolver/mateba/fluff/dhael
+	name = "engraved mateba"
+	desc = "This unique looking handgun is engraved with roses along the barrel and the cylinder as well as the initials DM under the grip. Along the middle of the barrel an engraving shows the words 'Mateba Unica 6'. Uses .357 rounds."
+	icon_state = "mateba"
+	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
+
+	ammo_type = /obj/item/ammo_casing/a357/stun
+
 
 // For general use
 /obj/item/weapon/gun/projectile/automatic/stg
@@ -238,6 +254,8 @@
 	icon_override = 'icons/vore/custom_guns_vr.dmi'
 	item_state = "crestrose_fold_mob"
 
+	item_icons = null
+
 	w_class = ITEMSIZE_LARGE
 	origin_tech = list(TECH_COMBAT = 7, TECH_MATERIAL = 4)
 	slot_flags = null
@@ -289,13 +307,66 @@
 		return 1
 	return 0
 
+//-----------------------Tranq Gun----------------------------------
+/obj/item/weapon/gun/projectile/dartgun/tranq
+	name = "Tranquilizer Gun"
+	desc = "A gas-powered dart gun designed by the National Armory of Gaia. This gun is used primarily by United Federation special forces for Tactical Espionage missions. Don't forget your bandana."
+	icon_state = "tranqgun"
+	item_state = null
+
+	caliber = "dart"
+	fire_sound = 'sound/weapons/empty.ogg'
+	fire_sound_text = "a metallic click"
+	recoil = 0
+	silenced = 1
+	load_method = MAGAZINE
+	magazine_type = /obj/item/ammo_magazine/chemdart
+	allowed_magazines = list(/obj/item/ammo_magazine/chemdart)
+	auto_eject = 0
+
+/obj/item/weapon/gun/projectile/dartgun/tranq/update_icon()
+	if(!ammo_magazine)
+		icon_state = "tranqgun"
+		return 1
+
+	if(!ammo_magazine.stored_ammo || ammo_magazine.stored_ammo.len)
+		icon_state = "tranqgun"
+	else if(ammo_magazine.stored_ammo.len > 5)
+		icon_state = "tranqgun"
+	else
+		icon_state = "tranqgun"
+	return 1
+
+//-----------------------UF-ARC----------------------------------
+/obj/item/weapon/gun/projectile/automatic/carbine/fluff/ufarc
+	name = "UF-ARC"
+	desc = "The UF-ARC is a lightweight assault rifle manufactured by the National Armory of Gaia and sold almost exclusively to the United Federation's standing army, the Military Assault Command Operations Department (MACOs)."
+	icon = 'icons/obj/gun64_vr.dmi'
+	icon_state = "ufarc"
+	icon_override = 'icons/obj/gun_vr.dmi'
+	item_state = "battlerifle_i"
+	item_icons = null
+	pixel_x = -16
+
+/obj/item/weapon/gun/projectile/automatic/carbine/fluff/ufarc/update_icon(var/ignore_inhands)
+	..()
+	if(istype(ammo_magazine,/obj/item/ammo_magazine/a556m))
+		icon_state = "ufarc"
+	else
+		icon_state = (ammo_magazine)? "ufarc" : "ufarc-empty"
+	item_state = (ammo_magazine)? "bullpup" : "bullpup-empty"
+	if(!ignore_inhands) update_held_icon()
+
+
+
 //-----------------------G44----------------------------------
 /obj/item/weapon/gun/projectile/automatic/carbine/fluff/g44
 	name = "G44 Rifle"
 	desc = "The G44 is a lightweight assault rifle manufactured by the National Armory of Gaia and sold almost exclusively to the United Federation's standing army, the Military Assault Command Operations Department (MACOs)."
-	icon = 'icons/vore/custom_guns_vr.dmi'
+	icon = 'icons/obj/gun64_vr.dmi'
 	icon_state = "g44"
 	item_state = "bullpup"
+	pixel_x = -16
 
 /obj/item/weapon/gun/projectile/automatic/carbine/fluff/g44/update_icon(var/ignore_inhands)
 	..()
@@ -307,11 +378,10 @@
 	if(!ignore_inhands) update_held_icon()
 
 //-----------------------G44 Energy Variant--------------------
-
 /obj/item/weapon/gun/energy/gun/burst/g44e
 	name = "G44 Energy Rifle"
 	desc = "The G44 Energy is a laser variant of the G44 lightweight assault rifle manufactured by the National Armory of Gaia. Though almost exclusively to the United Federation's Military Assault Command Operations Department (MACOs) and Starfleet, it is occassionally sold to security departments for their stun capabilities."
-	icon = 'icons/vore/custom_guns_vr.dmi'
+	icon = 'icons/obj/gun64_vr.dmi'
 	icon_state = "g44estun100"
 	item_state = "energystun100" //This is temporary.
 	fire_sound = 'sound/weapons/Taser.ogg'
@@ -319,13 +389,14 @@
 	force = 8
 	w_class = ITEMSIZE_LARGE
 	fire_delay = 6
-
+	pixel_x = -16
+	
 	projectile_type = /obj/item/projectile/beam/stun/weak
 	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 2, TECH_ILLEGAL = 3)
 	modifystate = "g44estun"
 
 //	requires_two_hands = 1
-	one_handed_penalty = 2
+	one_handed_penalty = 4
 
 	firemodes = list(
 		list(mode_name="stun", burst=1, projectile_type=/obj/item/projectile/beam/stun/weak, modifystate="g44estun", fire_sound='sound/weapons/Taser.ogg', charge_cost = 100),
@@ -352,31 +423,99 @@
 	name = "\improper MEUSOC .45"
 	desc = "Some serious drywall work, coming up!"
 
-//////////////////// Energy Weapons ////////////////////
-//arokha:Aronai Kadigan
-/obj/item/weapon/gun/energy/gun/fluff/aro
-	name = "\improper KIN-H21"
-	desc = "The Kitsuhana Heavy Industries standard Imperial Navy energy sidearm, commonly called the KIN21. This one appears to have been modified to have additional features at the cost of battery life."
+//-----------------------KHI Common----------------------------------
+// // // Pistols
+/obj/item/weapon/gun/projectile/khi/process_chambered()
+	if (!chambered) return
+	qdel(chambered) //Devours ammo rather than fires it.
 
-	icon = 'icons/vore/custom_guns_vr.dmi'
-	icon_state = "kinh21stun100"
+/obj/item/weapon/gun/projectile/khi/update_icon()
+	..()
+	if(ammo_magazine)
+		icon_state = "[initial(icon_state)]"
+	else
+		icon_state = "[initial(icon_state)]-empty"
 
-	item_state = "laser"
+// // // Automatics
+/obj/item/weapon/gun/projectile/automatic/khi/process_chambered()
+	if (!chambered) return
+	qdel(chambered) //Devours ammo rather than fires it.
 
-	modifystate = "kinh21stun"
+/obj/item/weapon/gun/projectile/automatic/khi/update_icon()
+	..()
+	if(ammo_magazine)
+		icon_state = "[initial(icon_state)]"
+	else
+		icon_state = "[initial(icon_state)]-empty"
 
-	projectile_type = /obj/item/projectile/beam/stun/kin21
+//-----------------------KHI Pistol----------------------------------
+/obj/item/weapon/gun/projectile/khi/pistol
+	name = "alien pistol"
+	desc = "This KHI handgun doesn't so much 'fire' .45 ammo as 'devour' it and make it's own proprietary ammunition."
+	icon = 'icons/obj/gun_vr.dmi'
+	icon_state = "khipistol"
+	item_state = "gun" // Placeholder
+	magazine_type = /obj/item/ammo_magazine/c45m/flash //Dun wanna KILL all the people.
+	allowed_magazines = list(/obj/item/ammo_magazine/c45m)
+	caliber = ".45"
+	handle_casings = CYCLE_CASINGS
+	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 5)
+	fire_sound = 'sound/weapons/semiauto.ogg'
+	load_method = MAGAZINE
+	dna_lock = 1
 
-	charge_cost = 300
-	charge_meter = 1
+//-----------------------KHI PDW----------------------------------
+// For general use
+/obj/item/weapon/gun/projectile/automatic/khi/pdw
+	name = "alien pdw"
+	desc = "The KHI personal defense mainstay. If KHI had any standards whatsoever, that is. Insert 9mm ammo for good times."
+	icon = 'icons/obj/gun_vr.dmi'
+	icon_state = "khipdw"
+	item_state = "c20r" // Placeholder
+	w_class = ITEMSIZE_NORMAL
+	caliber = "9mm"
+	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 5)
+	slot_flags = SLOT_BELT
+	load_method = MAGAZINE
+	handle_casings = CYCLE_CASINGS
+	magazine_type = /obj/item/ammo_magazine/mc9mml
+	allowed_magazines = list(/obj/item/ammo_magazine/mc9mm, /obj/item/ammo_magazine/mc9mml)
+	dna_lock = 1
 
 	firemodes = list(
-		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun/kin21, modifystate="kinh21stun", fire_sound='sound/weapons/Taser.ogg'),
-		list(mode_name="lethal", projectile_type=/obj/item/projectile/beam, modifystate="kinh21kill", fire_sound='sound/weapons/blaster_pistol.ogg'),
-		list(mode_name="shrink", projectile_type=/obj/item/projectile/beam/shrinklaser, modifystate="kinh21shrink", fire_sound='sound/weapons/wave.ogg'),
-		list(mode_name="grow", projectile_type=/obj/item/projectile/beam/growlaser, modifystate="kinh21grow", fire_sound='sound/weapons/pulse3.ogg'),
+		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    burst_accuracy=list(0,-1,-2), dispersion=list(0.0, 0.6, 0.6))
 		)
 
+//-----------------------KHI LIM Rifle----------------------------------
+//Unfinished
+/obj/item/weapon/limrifle //Not even a subtype of gun because it behaves differently.
+	name = "lim rifle"
+	desc = "The KHI-101-R linear induction motor rifle can propel a small 2mm slug at extreme velocity through nearly any solid object. Whether it has the time to impart any force is another question entirely."
+	//icon = 'icons/obj/gun64_vr.dmi'
+	icon_state = "limrifle"
+	item_state = "gun" //Should probably be huge-r
+	//dna_lock = 1
+	//safety_level = 1
+
+	var/charge_time = 5 SECONDS
+	var/charge_percent = 100
+
+/obj/item/weapon/limrifle/New()
+	..()
+	update_icon()
+
+/obj/item/weapon/limrifle/update_icon()
+	..()
+	var/charge_icon = round(charge_percent,20)
+	icon_state = "[initial(icon_state)]_[charge_icon]"
+
+/obj/item/weapon/limrifle/proc/recharge()
+	charge_percent = 0
+	update_icon()
+
+
+//////////////////// Energy Weapons ////////////////////
 // -------------- Dominator -------------
 /obj/item/weapon/gun/energy/gun/fluff/dominator
 	name = "\improper MWPSB Dominator"
@@ -394,10 +533,13 @@
 
 	modifystate = "dominatorstun"
 
+	dna_lock = 1
+
 	firemodes = list(
 	list(mode_name="stun", charge_cost=240,projectile_type=/obj/item/projectile/beam/stun, modifystate="dominatorstun", fire_sound='sound/weapons/Taser.ogg'),
 	list(mode_name="lethal", charge_cost=480,projectile_type=/obj/item/projectile/beam/dominator, modifystate="dominatorkill", fire_sound='sound/weapons/gauss_shoot.ogg'),
 	)
+
 
 // ------------ Energy Luger ------------
 /obj/item/weapon/gun/energy/gun/eluger
@@ -530,7 +672,7 @@
 	caliber = "357"
 	icon = 'icons/obj/ammo_vr.dmi'
 	icon_state = "stun357"
-	projectile_type = /obj/item/projectile/energy/electrode/stunshot
+	projectile_type = /obj/item/projectile/energy/electrode/stunshot/strong
 
 /obj/item/ammo_magazine/a357/rubber
 	name = "speedloader (.357 rubber)"
@@ -546,7 +688,7 @@
 	caliber = "357"
 	icon = 'icons/obj/ammo_vr.dmi'
 	icon_state = "rubber357"
-	projectile_type = /obj/item/projectile/bullet/pistol/rubber
+	projectile_type = /obj/item/projectile/bullet/pistol/rubber/strong
 
 /obj/item/ammo_magazine/a357/flash
 	name = "speedloader (.357 flash)"
@@ -562,4 +704,4 @@
 	caliber = "357"
 	icon = 'icons/obj/ammo_vr.dmi'
 	icon_state = "flash357"
-	projectile_type = /obj/item/projectile/energy/flash
+	projectile_type = /obj/item/projectile/energy/flash/strong

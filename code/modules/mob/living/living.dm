@@ -231,6 +231,9 @@ default behaviour is:
 /mob/living/proc/getBruteLoss()
 	return bruteloss
 
+/mob/living/proc/getShockBruteLoss()	//Only checks for things that'll actually hurt (not robolimbs)
+	return bruteloss
+
 /mob/living/proc/adjustBruteLoss(var/amount)
 	if(status_flags & GODMODE)	return 0	//godmode
 	bruteloss = min(max(bruteloss + amount, 0),(maxHealth*2))
@@ -258,6 +261,9 @@ default behaviour is:
 	toxloss = amount
 
 /mob/living/proc/getFireLoss()
+	return fireloss
+
+/mob/living/proc/getShockFireLoss()	//Only checks for things that'll actually hurt (not robolimbs)
 	return fireloss
 
 /mob/living/proc/adjustFireLoss(var/amount)
@@ -479,15 +485,17 @@ default behaviour is:
 	set name = "Examine Meta-Info (OOC)"
 	set category = "OOC"
 	set src in view()
-
+	//VOREStation Edit Start - Making it so SSD people have prefs with fallback to original style.
 	if(config.allow_Metadata)
-		if(client)
+		if(ooc_notes)
+			usr << "[src]'s Metainfo:<br>[ooc_notes]"
+		else if(client)
 			usr << "[src]'s Metainfo:<br>[client.prefs.metadata]"
 		else
 			usr << "[src] does not have any stored infomation!"
 	else
 		usr << "OOC Metadata is not supported by this server!"
-
+	//VOREStation Edit End - Making it so SSD people have prefs with fallback to original style.
 	return
 
 /mob/living/Move(a, b, flag)
@@ -725,11 +733,20 @@ default behaviour is:
 				src << "<span class='warning'>You feel like you are about to throw up!</span>"
 				sleep(100)	//and you have 10 more for mad dash to the bucket
 
+			//Damaged livers cause you to vomit blood.
+			if(!blood_vomit)
+				if(ishuman(src))
+					var/mob/living/carbon/human/H = src
+					if(!H.isSynthetic())
+						var/obj/item/organ/internal/liver/L = H.internal_organs_by_name["liver"]
+						if(L.is_broken())
+							blood_vomit = 1
+
 			Stun(5)
 			src.visible_message("<span class='warning'>[src] throws up!</span>","<span class='warning'>You throw up!</span>")
 			playsound(loc, 'sound/effects/splat.ogg', 50, 1)
 
-			var/turf/simulated/T = get_turf(src)
+			var/turf/simulated/T = get_turf(src)	//TODO: Make add_blood_floor remove blood from human mobs
 			if(istype(T))
 				if(blood_vomit)
 					T.add_blood_floor(src)
@@ -783,6 +800,7 @@ default behaviour is:
 		density = 0
 		if(l_hand) unEquip(l_hand)
 		if(r_hand) unEquip(r_hand)
+		update_water() // Submerges the mob.
 	else
 		density = initial(density)
 
@@ -801,3 +819,10 @@ default behaviour is:
 		update_icons()
 	return canmove
 
+/mob/living/proc/update_water() // Involves overlays for humans.  Maybe we'll get submerged sprites for borgs in the future?
+	return
+
+/mob/living/proc/can_feel_pain(var/check_organ)
+	if(isSynthetic())
+		return FALSE
+	return TRUE

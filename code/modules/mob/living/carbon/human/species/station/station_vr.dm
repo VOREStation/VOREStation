@@ -58,8 +58,8 @@
 	//burn_mod =  1.15
 	//gluttonous = 1
 	num_alternate_languages = 2
-	secondary_langs = list("Skrellian")
-	name_language = "Skrellian"
+	secondary_langs = list(LANGUAGE_SKRELLIAN)
+	name_language = LANGUAGE_SKRELLIAN
 	color_mult = 1
 
 	min_age = 18
@@ -80,6 +80,7 @@
 
 	flesh_color = "#AFA59E"
 	base_color = "#333333"
+	blood_color = "#1D2CBF"
 
 	reagent_tag = IS_AKULA
 
@@ -299,6 +300,7 @@
 	icobase = 'icons/mob/human_races/r_tajaran_vr.dmi'
 	deform = 'icons/mob/human_races/r_def_tajaran_vr.dmi'
 	min_age = 18
+	gluttonous = 0 //Moving this here so I don't have to fix this conflict every time polaris glances at station.dm
 
 /datum/species/skrell
 	spawn_flags = SPECIES_CAN_JOIN
@@ -325,7 +327,14 @@
 	deform = 'icons/mob/human_races/r_def_human_vr.dmi'
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
 	min_age = 18
+	base_color = "#EECEB3"
+
+/datum/species/vox
+	gluttonous = 0
+	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
+	min_age = 18
 
 /datum/species
 	holder_type = /obj/item/weapon/holder/micro //This allows you to pick up crew
 	min_age = 18
+

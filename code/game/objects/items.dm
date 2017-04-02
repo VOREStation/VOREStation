@@ -44,6 +44,7 @@
 	var/slowdown = 0 // How much clothing is slowing you down. Negative values speeds you up
 	var/canremove = 1 //Mostly for Ninja code at this point but basically will not allow the item to be removed if set to 0. /N
 	var/list/armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	var/list/armorsoak = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	var/list/allowed = null //suit storage stuff.
 	var/obj/item/device/uplink/hidden/hidden_uplink = null // All items can have an uplink hidden inside, just remember to add the triggers.
 	var/zoomdevicename = null //name used for message when binoculars/scope is used
@@ -206,37 +207,16 @@
 		R.activate_module(src)
 		R.hud_used.update_robot_modules_display()
 
-// Due to storage type consolidation this should get used more now.
-// I have cleaned it up a little, but it could probably use more.  -Sayu
 /obj/item/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/storage))
+	if(istype(W, /obj/item/weapon/storage))
 		var/obj/item/weapon/storage/S = W
 		if(S.use_to_pickup)
-			if(S.collection_mode) //Mode is set to collect all items on a tile and we clicked on a valid one.
+			if(S.collection_mode) //Mode is set to collect all items
 				if(isturf(src.loc))
-					var/list/rejections = list()
-					var/success = 0
-					var/failure = 0
-
-					for(var/obj/item/I in src.loc)
-						if(I.type in rejections) // To limit bag spamming: any given type only complains once
-							continue
-						if(!S.can_be_inserted(I))	// Note can_be_inserted still makes noise when the answer is no
-							rejections += I.type	// therefore full bags are still a little spammy
-							failure = 1
-							continue
-						success = 1
-						S.handle_item_insertion(I, 1)	//The 1 stops the "You put the [src] into [S]" insertion message from being displayed.
-					if(success && !failure)
-						user << "<span class='notice'>You put everything in [S].</span>"
-					else if(success)
-						user << "<span class='notice'>You put some things in [S].</span>"
-					else
-						user << "<span class='notice'>You fail to pick anything up with \the [S].</span>"
+					S.gather_all(src.loc, user)
 
 			else if(S.can_be_inserted(src))
 				S.handle_item_insertion(src)
-
 	return
 
 /obj/item/proc/talk_into(mob/M as mob, text)
@@ -449,6 +429,7 @@ var/list/global/slot_flags_enumeration = list(
 /obj/item/proc/eyestab(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 
 	var/mob/living/carbon/human/H = M
+	var/mob/living/carbon/human/U = user
 	if(istype(H))
 		for(var/obj/item/protection in list(H.head, H.wear_mask, H.glasses))
 			if(protection && (protection.body_parts_covered & EYES))
@@ -459,6 +440,14 @@ var/list/global/slot_flags_enumeration = list(
 	if(!M.has_eyes())
 		user << "<span class='warning'>You cannot locate any eyes on [M]!</span>"
 		return
+
+	if(U.get_accuracy_penalty(U))	//Should only trigger if they're not aiming well
+		var/hit_zone = get_zone_with_miss_chance(U.zone_sel.selecting, M, U.get_accuracy_penalty(U))
+		if(!hit_zone)
+			U.do_attack_animation(M)
+			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+			visible_message("\red <B>[U] attempts to stab [M] in the eyes, but misses!</B>")
+			return
 
 	user.attack_log += "\[[time_stamp()]\]<font color='red'> Attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)])</font>"
 	M.attack_log += "\[[time_stamp()]\]<font color='orange'> Attacked by [user.name] ([user.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)])</font>"

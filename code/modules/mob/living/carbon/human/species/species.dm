@@ -36,17 +36,28 @@
 	var/blood_volume = 560                               // Initial blood volume.
 	var/hunger_factor = 0.05                             // Multiplier for hunger.
 
+	var/taste_sensitivity = TASTE_NORMAL                 // How sensitive the species is to minute tastes.
+
 	var/min_age = 17
 	var/max_age = 70
 
 	// Language/culture vars.
-	var/default_language = "Galactic Common" // Default language is used when 'say' is used without modifiers.
-	var/language = "Galactic Common"         // Default racial language, if any.
+	var/default_language = LANGUAGE_GALCOM // Default language is used when 'say' is used without modifiers.
+	var/language = LANGUAGE_GALCOM         // Default racial language, if any.
 	var/list/secondary_langs = list()        // The names of secondary languages that are available to this species.
 	var/list/speech_sounds                   // A list of sounds to potentially play when speaking.
 	var/list/speech_chance                   // The likelihood of a speech sound playing.
 	var/num_alternate_languages = 0          // How many secondary languages are available to select at character creation
-	var/name_language = "Galactic Common"    // The language to use when determining names for this species, or null to use the first name/last name generator
+	var/name_language = LANGUAGE_GALCOM    // The language to use when determining names for this species, or null to use the first name/last name generator
+
+	//Soundy emotey things.
+	var/scream_verb = "screams"
+	var/male_scream_sound //= 'sound/goonstation/voice/male_scream.ogg' Removed due to licensing, replace!
+	var/female_scream_sound //= 'sound/goonstation/voice/female_scream.ogg' Removed due to licensing, replace!
+	var/male_cough_sounds = list('sound/effects/mob_effects/m_cougha.ogg','sound/effects/mob_effects/m_coughb.ogg', 'sound/effects/mob_effects/m_coughc.ogg')
+	var/female_cough_sounds = list('sound/effects/mob_effects/f_cougha.ogg','sound/effects/mob_effects/f_coughb.ogg')
+	var/male_sneeze_sound = 'sound/effects/mob_effects/sneeze.ogg'
+	var/female_sneeze_sound = 'sound/effects/mob_effects/f_sneeze.ogg'
 
 	// Combat vars.
 	var/total_health = 100                   // Point at which the mob will enter crit.
@@ -61,6 +72,7 @@
 	var/toxins_mod =    1                    // Toxloss modifier
 	var/radiation_mod = 1                    // Radiation modifier
 	var/flash_mod =     1                    // Stun from blindness modifier.
+	var/chemOD_mod =	1					 // Damage modifier for overdose
 	var/vision_flags = SEE_SELF              // Same flags as glasses.
 
 	// Death vars.
@@ -154,6 +166,7 @@
 		)
 
 	var/list/genders = list(MALE, FEMALE)
+	var/ambiguous_genders = FALSE // If true, people examining a member of this species whom are not also the same species will see them as gender neutral.  Because aliens.
 
 	// Bump vars
 	var/bump_flag = HUMAN	// What are we considered to be when bumped?
@@ -185,12 +198,18 @@
 	return sanitizeName(name)
 
 /datum/species/proc/equip_survival_gear(var/mob/living/carbon/human/H,var/extendedtank = 1)
+	var/boxtype = /obj/item/weapon/storage/box/survival //Default survival box
+	if(H.isSynthetic())
+		boxtype = /obj/item/weapon/storage/box //Empty box for synths
+	else if(extendedtank)
+		boxtype = /obj/item/weapon/storage/box/engineer //Special box for engineers
+
 	if(H.backbag == 1)
-		if (extendedtank)	H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/engineer(H), slot_r_hand)
-		else	H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), slot_r_hand)
+		if (extendedtank)	H.equip_to_slot_or_del(new boxtype(H), slot_r_hand)
+		else	H.equip_to_slot_or_del(new boxtype(H), slot_r_hand)
 	else
-		if (extendedtank)	H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/engineer(H.back), slot_in_backpack)
-		else	H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), slot_in_backpack)
+		if (extendedtank)	H.equip_to_slot_or_del(new boxtype(H.back), slot_in_backpack)
+		else	H.equip_to_slot_or_del(new boxtype(H.back), slot_in_backpack)
 
 /datum/species/proc/create_organs(var/mob/living/carbon/human/H) //Handles creation of mob organs.
 
@@ -303,3 +322,7 @@
 // Called in life() when the mob has no client.
 /datum/species/proc/handle_npc(var/mob/living/carbon/human/H)
 	return
+
+// Called when lying down on a water tile.
+/datum/species/proc/can_breathe_water()
+	return FALSE

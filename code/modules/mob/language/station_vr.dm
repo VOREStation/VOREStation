@@ -32,13 +32,11 @@
 	ask_verb = "rurs"
 	exclaim_verb = "barks"
 	colour = "vulpkanin"
-	key = "8" //lol, no idea - Poojawa
-	flags = RESTRICTED
+	key = "8"
 	syllables = list("rur","ya","cen","rawr","bar","kuk","tek","qat","uk","wu","vuh","tah","tch","schz","auch", \
 	"ist","ein","entch","zwichs","tut","mir","wo","bis","es","vor","nic","gro","lll","enem","zandt","tzch","noch", \
 	"hel","ischt","far","wa","baram","iereng","tech","lach","sam","mak","lich","gen","or","ag","eck","gec","stag","onn", \
 	"bin","ket","jarl","vulf","einech","cresthz","azunein","ghzth")
-
 
 /datum/language/squirrel
 	name = "Ecureuilian"
@@ -47,8 +45,32 @@
 	whisper_verb = "whispers"
 	exclaim_verb = "chitters"
 	key = "9"
-	flags = RESTRICTED
 	syllables = list("sque","sqah","boo","beh","nweh","boopa","nah","wah","een","sweh")
+
+/datum/language/demon
+	name = "Daemon"
+	desc = "The language spoken by the demons of Infernum, it's composed of deep chanting. It's rarely spoken off of Infernum due to the volume one has to exert."
+	speech_verb = "chants"
+	ask_verb = "croons"
+	exclaim_verb = "incants"
+	colour = "daemon" //So fancy
+	key = "n"
+	flags = WHITELISTED
+	syllables = list("viepn","e","bag","docu","kar","xlaqf","raa","qwos","nen","ty","von","kytaf","xin","ty","ka","baak","hlafaifpyk","znu","agrith","na'ar","uah","plhu","six","fhler","bjel","scee","lleri",
+	"dttm","aggr","uujl","hjjifr","wwuthaav",)
+
+/datum/language/angel
+	name = "Enochian"
+	desc = "The graceful language spoken by angels, composed of quiet hymns. Formally, Angels sing it."
+	speech_verb = "sings"
+	ask_verb = "hums"
+	exclaim_verb = "loudly sings"
+	colour = "enochian" //So fancy
+	key = "a"
+	flags = WHITELISTED
+	syllables = list("salve","sum","loqui","operatur","iusta","et","permittit","facere","effercio","pluribus","enim","hoc",
+	"mihi","wan","six","salve","tartu")
+
 
 /datum/language/unathi
 	flags = 0
@@ -62,6 +84,3 @@
 	flags = 0
 /datum/language/gutter
 	flags = WHITELISTED
-/datum/language/machine
-	flags = NO_STUTTER | WHITELISTED
-

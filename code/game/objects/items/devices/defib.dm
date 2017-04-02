@@ -8,6 +8,8 @@
 
 	var/state	 								//0 off, 1 open, 2 working, 3 dead
 	var/uses = 2								//Calculates initial uses based on starting cell size
+	var/use_on_synthetic = 0					//If 1, this is only useful on FBPs, if 0, this is only useful on fleshies
+	var/pad_name = "defib pads"				//Just the name given for some cosmetic things
 	var/chance = 75								//Percent chance of working
 	var/charge_cost								//Set in New() based on uses
 	var/obj/item/weapon/cell/cell				//The size is mostly irrelevant, see 'uses'
@@ -32,13 +34,31 @@
 	if(istype(onto) && Adjacent(usr) && !usr.restrained() && !usr.stat)
 		var/mob/living/carbon/human/user = usr
 		//<--Feel free to code clothing checks right here
-		user.visible_message("<span class='warning'>[user] begins applying defib pads to [onto].</span>",
-		"<span class='warning'>You begin applying defib pads to [onto].</span>")
+		if(can_defib(onto))
+			user.visible_message("<span class='warning'>[user] begins applying [pad_name] to [onto].</span>",
+			"<span class='warning'>You begin applying [pad_name] to [onto].</span>")
 		if(do_after(user, 100, onto))
 			patient = onto
 			statechange(1,patient)
-			user.visible_message("<span class='warning'>[user] applies defib pads to [onto].</span>",
-			"<span class='warning'>You finish applying defib pads to [onto].</span>")
+			user.visible_message("<span class='warning'>[user] applies [pad_name] to [onto].</span>",
+			"<span class='warning'>You finish applying [pad_name] to [onto].</span>")
+
+
+//can_defib() check is where all of the qualifying conditions should go
+//Could probably toss in checks here for damage, organs, etc, but for now I'll leave it as just this
+/obj/item/device/defib_kit/proc/can_defib(var/mob/living/carbon/human/target)
+	var/mob/living/carbon/human/user = usr
+	if(use_on_synthetic && !target.isSynthetic())
+		to_chat(user, "[src] isn't designed for organics!")
+		return 0
+	else if(!use_on_synthetic && target.isSynthetic())
+		to_chat(user, "[src] isn't designed for synthetics!")
+		return 0
+	else if(!target.isSynthetic() && ((world.time - target.timeofdeath) > (10 MINUTES)))//Can only revive organics within a few minutes
+		to_chat(user, "There is no spark of life in [target.name], they've been dead too long to revive this way.")
+		return 0
+	return 1
+
 
 /obj/item/device/defib_kit/attackby(var/obj/item/A as obj, mob/living/user as mob)
 	..()
@@ -94,7 +114,7 @@
 
 	//Patient moved too far
 	if(patient && !(get_dist(src,patient) <= 1)) //You separated the kit and pads too far
-		audible_message("<span class='warning'>There's a clatter as the defib pads are yanked off of [patient].</span>")
+		audible_message("<span class='warning'>There is a clatter as the [pad_name] are yanked off of [patient].</span>")
 		statechange(0)
 		patient = null
 		return
@@ -111,7 +131,7 @@
 			patient.visible_message("<span class='warning'>[patient] convulses!</span>")
 			playsound(src.loc, 'sound/effects/sparks2.ogg', 75, 1)
 			//Actual rezzing code
-			if(prob(chance) && ((world.time - patient.timeofdeath) < (10 MINUTES))) //Can only revive within a few minutes
+			if(prob(chance))
 				if(!patient.client && patient.mind) //Don't force the dead person to come back if they don't want to.
 					for(var/mob/observer/dead/ghost in player_list)
 						if(ghost.mind == patient.mind)
@@ -155,3 +175,10 @@
 			break
 
 	return
+
+/obj/item/device/defib_kit/jumper_kit
+	name = "jumper cable kit"
+	desc = "This Morpheus-branded FBP defib kit is a semi-automated model. Apply cables, step back, wait."
+	icon_state = "jumper_kit"
+	use_on_synthetic = 1
+	pad_name = "jumper cables"

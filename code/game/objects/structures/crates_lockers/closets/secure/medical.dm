@@ -142,8 +142,9 @@
 		new /obj/item/clothing/suit/storage/toggle/labcoat/emt(src)
 		new /obj/item/device/radio/headset/headset_med/alt(src)
 		new /obj/item/weapon/cartridge/medical(src)
+		new /obj/item/weapon/storage/briefcase/inflatable(src)
 		new /obj/item/device/flashlight(src)
-		new /obj/item/weapon/tank/emergency_oxygen/engi(src)
+		new /obj/item/weapon/tank/emergency/oxygen/engi(src)
 		new /obj/item/clothing/glasses/hud/health(src)
 		new /obj/item/device/healthanalyzer(src)
 		new /obj/item/device/radio/off(src)
@@ -201,7 +202,8 @@
 		new /obj/item/device/radio/headset/heads/cmo(src)
 		new /obj/item/device/radio/headset/heads/cmo/alt(src)
 		new /obj/item/device/flash(src)
-		new /obj/item/weapon/reagent_containers/hypospray(src)
+		new /obj/item/weapon/reagent_containers/hypospray/vr(src) //VOREStation Edit - MKII Hypospray
+		new /obj/item/weapon/reagent_containers/glass/beaker/vial/vr(src) //VOREStation Edit - A vial for hypo
 		new /obj/item/clothing/suit/storage/hooded/wintercoat/medical(src)
 		new /obj/item/weapon/storage/box/freezer(src)
 		new /obj/item/clothing/mask/gas(src)
@@ -253,6 +255,7 @@
 		new /obj/item/device/tape/random(src)
 		new /obj/item/device/camera(src)
 		new /obj/item/toy/therapy_blue(src)
+		new /obj/item/weapon/storage/fancy/vials(src) //VOREStation Edit - adding vials for new hypo
 		return
 
 /obj/structure/closet/secure_closet/psych

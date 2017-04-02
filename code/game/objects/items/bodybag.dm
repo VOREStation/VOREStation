@@ -113,6 +113,7 @@
 	a hostile enviroment."
 	icon = 'icons/obj/cryobag.dmi'
 	icon_state = "bodybag_folded"
+	item_state = "bodybag_cryo_folded"
 	origin_tech = list(TECH_BIO = 4)
 
 /obj/item/bodybag/cryobag/attack_self(mob/user)
@@ -132,7 +133,7 @@
 	var/obj/item/weapon/tank/tank = null
 
 /obj/structure/closet/body_bag/cryobag/New()
-	tank = new /obj/item/weapon/tank/emergency_oxygen(null) //It's in nullspace to prevent ejection when the bag is opened.
+	tank = new /obj/item/weapon/tank/emergency/oxygen(null) //It's in nullspace to prevent ejection when the bag is opened.
 	..()
 
 /obj/structure/closet/body_bag/cryobag/Destroy()

@@ -56,7 +56,7 @@
 					user.visible_message("[user] starts treating damage to [target]'s [I.name] with [tool_name].", \
 					"You start treating damage to [target]'s [I.name] with [tool_name]." )
 
-		target.custom_pain("The pain in your [affected.name] is living hell!",1)
+		target.custom_pain("The pain in your [affected.name] is living hell!", 100)
 		..()
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -106,7 +106,7 @@
 /datum/surgery_step/internal/detatch_organ
 
 	allowed_tools = list(
-	/obj/item/weapon/scalpel = 100,		\
+	/obj/item/weapon/surgical/scalpel = 100,		\
 	/obj/item/weapon/material/knife = 75,	\
 	/obj/item/weapon/material/shard = 50, 		\
 	)
@@ -146,7 +146,7 @@
 
 		user.visible_message("[user] starts to separate [target]'s [target.op_stage.current_organ] with \the [tool].", \
 		"You start to separate [target]'s [target.op_stage.current_organ] with \the [tool]." )
-		target.custom_pain("The pain in your [affected.name] is living hell!",1)
+		target.custom_pain("The pain in your [affected.name] is living hell!", 100)
 		..()
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -166,7 +166,7 @@
 /datum/surgery_step/internal/remove_organ
 
 	allowed_tools = list(
-	/obj/item/weapon/hemostat = 100,	\
+	/obj/item/weapon/surgical/hemostat = 100,	\
 	/obj/item/weapon/wirecutters = 75,	\
 	/obj/item/weapon/material/kitchen/utensil/fork = 20
 	)
@@ -197,7 +197,7 @@
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		user.visible_message("[user] starts removing [target]'s [target.op_stage.current_organ] with \the [tool].", \
 		"You start removing [target]'s [target.op_stage.current_organ] with \the [tool].")
-		target.custom_pain("Someone's ripping out your [target.op_stage.current_organ]!",1)
+		target.custom_pain("Someone's ripping out your [target.op_stage.current_organ]!", 100)
 		..()
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -271,7 +271,7 @@
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		user.visible_message("[user] starts transplanting \the [tool] into [target]'s [affected.name].", \
 		"You start transplanting \the [tool] into [target]'s [affected.name].")
-		target.custom_pain("Someone's rooting around in your [affected.name]!",1)
+		target.custom_pain("Someone's rooting around in your [affected.name]!", 100)
 		..()
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -292,7 +292,7 @@
 
 /datum/surgery_step/internal/attach_organ
 	allowed_tools = list(
-	/obj/item/weapon/FixOVein = 100, \
+	/obj/item/weapon/surgical/FixOVein = 100, \
 	/obj/item/stack/cable_coil = 75
 	)
 
@@ -322,7 +322,7 @@
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		user.visible_message("[user] begins reattaching [target]'s [target.op_stage.current_organ] with \the [tool].", \
 		"You start reattaching [target]'s [target.op_stage.current_organ] with \the [tool].")
-		target.custom_pain("Someone's digging needles into your [target.op_stage.current_organ]!",1)
+		target.custom_pain("Someone's digging needles into your [target.op_stage.current_organ]!", 100)
 		..()
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -345,7 +345,7 @@
 // To be finished after some tests.
 // /datum/surgery_step/ribcage/heart/cut
 //	allowed_tools = list(
-//	/obj/item/weapon/scalpel = 100,		\
+//	/obj/item/weapon/surgical/scalpel = 100,		\
 //	/obj/item/weapon/material/knife = 75,	\
 //	/obj/item/weapon/material/shard = 50, 		\
 //	)

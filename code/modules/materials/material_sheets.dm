@@ -189,6 +189,12 @@
 	icon_state = "sheet-card"
 	default_type = "cardboard"
 
+/obj/item/stack/material/snow
+	name = "snow"
+	desc = "The temptation to build a snowfort rises."
+	icon_state = "sheet-snow"
+	default_type = "snow"
+
 /obj/item/stack/material/leather
 	name = "leather"
 	desc = "The by-product of mob grinding."

@@ -28,6 +28,19 @@
 		// Give them a new cell.
 		owner.internal_organs_by_name["cell"] = new /obj/item/organ/internal/cell(owner,1)
 
+/obj/item/organ/external/chest/handle_germ_effects()
+	. = ..() //Should return an infection level
+	if(!. || (status & ORGAN_DEAD)) return //If it's already above 2, it's become necrotic and we can just not worry about it.
+
+	//Staph infection symptoms for CHEST
+	if (. >= 1)
+		if(prob(.))
+			owner.custom_pain("Your [name] [pick("aches","itches","throbs")]!",0)
+
+	if (. >= 2)
+		if(prob(.))
+			owner.custom_pain("A jolt of pain surges through your [name]!",1)
+
 /obj/item/organ/external/groin
 	name = "lower body"
 	organ_tag = BP_GROIN
@@ -45,6 +58,19 @@
 	cannot_amputate = 1
 	organ_rel_size = 30
 
+/obj/item/organ/external/groin/handle_germ_effects()
+	. = ..() //Should return an infection level
+	if(!. || (status & ORGAN_DEAD)) return //If it's already above 2, it's become necrotic and we can just not worry about it.
+
+	//Staph infection symptoms for GROIN
+	if (. >= 1)
+		if(prob(.))
+			owner.custom_pain("Your [name] [pick("aches","itches","throbs")]!",0)
+
+	if (. >= 2)
+		if(prob(.))
+			owner.custom_pain("A jolt of pain surges through your [name]!",1)
+
 /obj/item/organ/external/arm
 	organ_tag = "l_arm"
 	name = "left arm"
@@ -57,6 +83,25 @@
 	joint = "left elbow"
 	amputation_point = "left shoulder"
 	can_grasp = 1
+	force = 7
+	throwforce = 10
+
+/obj/item/organ/external/arm/handle_germ_effects()
+	. = ..() //Should return an infection level
+	if(!. || (status & ORGAN_DEAD)) return //If it's already above 2, it's become necrotic and we can just not worry about it.
+
+	//Staph infection symptoms for ARM
+	if (. >= 1)
+		if(prob(.))
+			owner.custom_pain("Your [name] [pick("aches","itches","throbs")]!",0)
+
+	if (. >= 2)
+		if(prob(.))
+			owner.custom_pain("A jolt of pain surges through your [name]!",1)
+			if(organ_tag == "l_arm") //Specific level 2 'feature
+				owner.drop_l_hand()
+			else if(organ_tag == "r_arm")
+				owner.drop_r_hand()
 
 /obj/item/organ/external/arm/right
 	organ_tag = "r_arm"
@@ -79,6 +124,22 @@
 	joint = "left knee"
 	amputation_point = "left hip"
 	can_stand = 1
+	force = 10
+	throwforce = 12
+
+/obj/item/organ/external/leg/handle_germ_effects()
+	. = ..() //Should return an infection level
+	if(!. || (status & ORGAN_DEAD)) return //If it's already above 2, it's become necrotic and we can just not worry about it.
+
+	//Staph infection symptoms for LEG
+	if (. >= 1)
+		if(prob(.))
+			owner.custom_pain("Your [name] [pick("aches","itches","throbs")]!",0)
+
+	if (. >= 2)
+		if(prob(.))
+			owner.custom_pain("A jolt of pain surges through your [name]!",1)
+			owner.Weaken(5)
 
 /obj/item/organ/external/leg/right
 	organ_tag = "r_leg"
@@ -102,11 +163,27 @@
 	joint = "left ankle"
 	amputation_point = "left ankle"
 	can_stand = 1
+	force = 3
+	throwforce = 6
 
 /obj/item/organ/external/foot/removed()
 	if(owner)
 		owner.drop_from_inventory(owner.shoes)
 	..()
+
+/obj/item/organ/external/foot/handle_germ_effects()
+	. = ..() //Should return an infection level
+	if(!. || (status & ORGAN_DEAD)) return //If it's already above 2, it's become necrotic and we can just not worry about it.
+
+	//Staph infection symptoms for FOOT
+	if (. >= 1)
+		if(prob(.))
+			owner.custom_pain("Your [name] [pick("aches","itches","throbs")]!",0)
+
+	if (. >= 2)
+		if(prob(.))
+			owner.custom_pain("A jolt of pain surges through your [name]!",1)
+			owner.Weaken(5)
 
 /obj/item/organ/external/foot/right
 	organ_tag = "r_foot"
@@ -132,11 +209,30 @@
 	can_grasp = 1
 	organ_rel_size = 10
 	base_miss_chance = 50
+	force = 3
+	throwforce = 5
 
 /obj/item/organ/external/hand/removed()
 	if(owner)
 		owner.drop_from_inventory(owner.gloves)
 	..()
+
+/obj/item/organ/external/hand/handle_germ_effects()
+	. = ..() //Should return an infection level
+	if(!. || (status & ORGAN_DEAD)) return //If it's already above 2, it's become necrotic and we can just not worry about it.
+
+	//Staph infection symptoms for HAND
+	if (. >= 1)
+		if(prob(.))
+			owner.custom_pain("Your [name] [pick("aches","itches","throbs")]!",0)
+
+	if (. >= 2)
+		if(prob(.))
+			owner.custom_pain("A jolt of pain surges through your [name]!",1)
+			if(organ_tag == "l_hand") //Specific level 2 'feature
+				owner.drop_l_hand()
+			else if(organ_tag == "r_hand")
+				owner.drop_r_hand()
 
 /obj/item/organ/external/hand/right
 	organ_tag = "r_hand"
@@ -166,6 +262,8 @@
 	base_miss_chance = 40
 	var/can_intake_reagents = 1
 	var/eye_icon = "eyes_s"
+	force = 3
+	throwforce = 7
 
 /obj/item/organ/external/head/robotize(var/company, var/skip_prosthetics, var/keep_organs)
 	return ..(company, skip_prosthetics, 1)
@@ -191,6 +289,20 @@
 				disfigure("brute")
 		if (burn_dam > 40)
 			disfigure("burn")
+
+/obj/item/organ/external/head/handle_germ_effects()
+	. = ..() //Should return an infection level
+	if(!. || (status & ORGAN_DEAD)) return //If it's already above 2, it's become necrotic and we can just not worry about it.
+
+	//Staph infection symptoms for HEAD
+	if (. >= 1)
+		if(prob(.))
+			owner.custom_pain("Your [name] [pick("aches","itches","throbs")]!",0)
+
+	if (. >= 2)
+		if(prob(.))
+			owner.custom_pain("A jolt of pain surges through your [name]!",1)
+			owner.eye_blurry += 20 //Specific level 2 'feature
 
 /obj/item/organ/external/head/skrell
 	eye_icon = "skrell_eyes_s"

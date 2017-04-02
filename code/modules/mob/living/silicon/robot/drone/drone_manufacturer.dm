@@ -16,7 +16,7 @@
 	idle_power_usage = 20
 	active_power_usage = 5000
 
-	var/fabricator_tag = station_short+" Upper Level"
+	var/fabricator_tag = "Upper Level"
 	var/drone_progress = 0
 	var/produce_drones = 1
 	var/time_last_drone = 500
@@ -27,7 +27,7 @@
 
 /obj/machinery/drone_fabricator/derelict
 	name = "construction drone fabricator"
-	fabricator_tag = station_short+" Depths"
+	fabricator_tag = "Depths"
 	drone_type = /mob/living/silicon/robot/drone/construction
 
 /obj/machinery/drone_fabricator/New()
@@ -114,7 +114,7 @@
 		return
 
 	var/deathtime = world.time - src.timeofdeath
-	var/deathtimeminutes = round(deathtime / 600)
+	var/deathtimeminutes = round(deathtime / 300)
 	var/pluralcheck = "minute"
 	if(deathtimeminutes == 0)
 		pluralcheck = ""
@@ -122,11 +122,11 @@
 		pluralcheck = " [deathtimeminutes] minute and"
 	else if(deathtimeminutes > 1)
 		pluralcheck = " [deathtimeminutes] minutes and"
-	var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
+	var/deathtimeseconds = round((deathtime - deathtimeminutes * 300) / 10,1)
 
-	if (deathtime < 600)
+	if (deathtime < 3000)
 		usr << "You have been dead for[pluralcheck] [deathtimeseconds] seconds."
-		usr << "You must wait 1 minute to respawn as a drone!"
+		usr << "You must wait 5 minutes to respawn as a drone!"
 		return
 
 	var/list/all_fabricators = list()

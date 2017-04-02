@@ -47,6 +47,7 @@ em						{font-style: normal;font-weight: bold;}
 .syndradio				{color: #6D3F40;}
 .centradio				{color: #5C5C8A;}
 .airadio				{color: #FF00FF;}
+.entradio				{color: #339966;}
 
 .secradio				{color: #A30000;}
 .engradio				{color: #A66300;}
@@ -92,6 +93,9 @@ h1.alert, h2.alert		{color: #000000;}
 .sergal					{color: #0077FF;}
 .birdsongc				{color: #CC9900;}
 .vulpkanin				{color: #B97A57;}
+.enochian				{color: #848A33; letter-spacing:-1pt; word-spacing:4pt; font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;}
+.daemon					{color: #5E339E; letter-spacing:-1pt; word-spacing:0pt; font-family: "Courier New", Courier, monospace;}
+.vox					{color: #AA00AA;}
 .rough					{font-family: "Trebuchet MS", cursive, sans-serif;}
 .say_quote				{font-family: Georgia, Verdana, sans-serif;}
 

@@ -126,6 +126,7 @@
 	new /obj/item/weapon/storage/pill_bottle/dylovene(src)
 	new /obj/item/weapon/storage/pill_bottle/tramadol(src)
 	new /obj/item/weapon/storage/pill_bottle/spaceacillin(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/clotting(src)
 	new /obj/item/stack/medical/splint(src)
 	return
 
@@ -138,16 +139,29 @@
 /obj/item/weapon/storage/firstaid/surgery/New()
 	..()
 	if (empty) return
-	new /obj/item/weapon/bonesetter(src)
-	new /obj/item/weapon/cautery(src)
-	new /obj/item/weapon/circular_saw(src)
-	new /obj/item/weapon/hemostat(src)
-	new /obj/item/weapon/retractor(src)
-	new /obj/item/weapon/scalpel(src)
-	new /obj/item/weapon/surgicaldrill(src)
-	new /obj/item/weapon/bonegel(src)
-	new /obj/item/weapon/FixOVein(src)
+	new /obj/item/weapon/surgical/bonesetter(src)
+	new /obj/item/weapon/surgical/cautery(src)
+	new /obj/item/weapon/surgical/circular_saw(src)
+	new /obj/item/weapon/surgical/hemostat(src)
+	new /obj/item/weapon/surgical/retractor(src)
+	new /obj/item/weapon/surgical/scalpel(src)
+	new /obj/item/weapon/surgical/surgicaldrill(src)
+	new /obj/item/weapon/surgical/bonegel(src)
+	new /obj/item/weapon/surgical/FixOVein(src)
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	return
+
+/obj/item/weapon/storage/firstaid/clotting
+	name = "clotting kit"
+	desc = "Contains chemicals to stop bleeding."
+	max_storage_space = ITEMSIZE_COST_SMALL * 7
+
+/obj/item/weapon/storage/firstaid/clotting/New()
+	..()
+	if (empty)
+		return
+	for(var/i = 1 to 8)
+		new /obj/item/weapon/reagent_containers/hypospray/autoinjector/clotting(src)
 	return
 
 /*

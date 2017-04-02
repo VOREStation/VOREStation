@@ -1,25 +1,15 @@
 /* TUTORIAL
 	"icon" is the file with the HUD/ground icon for the item
 	"icon_state" is the iconstate in this file for the item
-	"icon_override" is the file with the on-mob icons, can be the same file
+	"icon_override" is the file with the on-mob icons, can be the same file (Except for glasses, shoes, and masks.)
 	"item_state" is the iconstate for the on-mob icons:
 		item_state_s is used for worn uniforms on mobs
 		item_state_r and item_state_l are for being held in each hand
-		some do not have a suffix, like gloves. plan accordingly, maybe add _mob?
-	"overlay_state" is the iconstate for ties/accessories, for some reason they don't
-		just use the item_state variable
 
-	If you don't have a special HUD/ground sprite, don't worry about it.
-	Just set both the icon_state and item_state to the same thing,
-	and it will use the top direction sprite (facing the viewer)
-	for your HUD/item sprite. This usually looks fine!
-
-	Advanced:
 	"item_state_slots" can replace "item_state", it is a list:
 		item_state_slots["slotname1"] = "item state for that slot"
 		item_state_slots["slotname2"] = "item state for that slot"
 */
-
 /* TEMPLATE
 //ckey:Character Name
 /obj/item/clothing/type/fluff/charactername
@@ -81,6 +71,17 @@
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "joanasuna"
+
+//eekasqueak:Serkii Miishy
+/obj/item/clothing/under/skirt/fluff/serkii
+	name = "stylish blue skirt"
+	desc = "A simple black shirt tops this skirt, made of a down soft blue fabric and pleated."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "serkiskirt"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "serkiskirt"
 
 //Unknown. Please check records from the forums.
 /obj/item/clothing/under/suit_jacket/female/fluff/miqote
@@ -151,7 +152,7 @@
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	allowed = list(
-				/obj/item/weapon/tank/emergency_oxygen,
+				/obj/item/weapon/tank/emergency/oxygen,
 				/obj/item/device/flashlight,
 				/obj/item/weapon/gun/energy,
 				/obj/item/weapon/gun/projectile,
@@ -208,6 +209,105 @@
 		item_state = "fedcapt"
 		armor = list(melee = 50, bullet = 5, laser = 15,energy = 10, bomb = 0, bio = 0, rad = 0)
 
+/obj/item/clothing/suit/storage/fluff/modernfedcoat
+	name = "Modern Federation Uniform Jacket (Command)"
+	desc = "A modern uniform jacket from the United Federation. Their Starfleet had recently started using these uniforms. Wearing this makes you feel like a competant commander."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "fedmodern"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "fedmodern"
+
+	blood_overlay_type = "coat"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	allowed = list(
+				/obj/item/weapon/tank/emergency/oxygen,
+				/obj/item/device/flashlight,
+				/obj/item/weapon/gun/energy,
+				/obj/item/weapon/gun/projectile,
+				/obj/item/ammo_magazine,
+				/obj/item/ammo_casing,
+//				/obj/item/weapon/storage/fancy/shotgun_ammo,
+				/obj/item/weapon/melee/baton,
+				/obj/item/weapon/handcuffs,
+//				/obj/item/device/detective_scanner,
+				/obj/item/device/taperecorder)
+	armor = list(melee = 50, bullet = 15, laser = 25, energy = 10, bomb = 0, bio = 0, rad = 0)
+
+	//Variants
+	modernfedblue
+		name = "Modern Federation Uniform Jacket (Blue)"
+		desc = "A modern uniform jacket from the United Federation. Their Starfleet had recently started using these uniforms. Wearing this makes you feel like a scientist or a pilot."
+		icon_state = "fedmodernblue"
+		item_state = "fedmodernblue"
+		armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 50, rad = 0)
+
+	modernfedeng
+		name = "Modern Federation Uniform Jacket (Yellow)"
+		desc = "A modern uniform jacket from the United Federation. Their Starfleet had recently started using these uniforms. You feel like you can handle any type of technical engineering problems."
+		icon_state = "fedmoderneng"
+		item_state = "fedmoderneng"
+		armor = list(melee = 0, bullet = 0, laser = 0,energy = 10, bomb = 0, bio = 30, rad = 35)
+
+	modernfedsec
+		name = "Modern Federation Uniform Jacket (Red)"
+		desc = "A modern uniform jacket from the United Federation. Their Starfleet had recently started using these uniforms. This uniform makes you want to protect and serve as an officer."
+		icon_state = "fedmodernsec"
+		item_state = "fedmodernsec"
+		armor = list(melee = 50, bullet = 5, laser = 15,energy = 10, bomb = 0, bio = 0, rad = 0)
+
+/obj/item/clothing/head/caphat/formal/fedcover
+	name = "Federation Officer's Cap"
+	desc = "An officer's cap that demands discipline from the one who wears it."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "fedcapofficer"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "fedcapofficer_mob"
+
+	//Variants
+	fedcoverblue
+		name = "Federation Officer's Cap (Blue)"
+		desc = "An officer's cap that demands discipline from the one who wears it."
+
+		icon = 'icons/vore/custom_clothes_vr.dmi'
+		icon_state = "fedcapsci"
+
+		icon_override = 'icons/vore/custom_clothes_vr.dmi'
+		item_state = "fedcapsci_mob"
+
+	fedcovereng
+		name = "Federation Officer's Cap (Yellow)"
+		desc = "An officer's cap that demands discipline from the one who wears it."
+
+		icon = 'icons/vore/custom_clothes_vr.dmi'
+		icon_state = "fedcapeng"
+
+		icon_override = 'icons/vore/custom_clothes_vr.dmi'
+		item_state = "fedcapeng_mob"
+
+	fedcoversec
+		name = "Federation Officer's Cap (Red)"
+		desc = "An officer's cap that demands discipline from the one who wears it."
+
+		icon = 'icons/vore/custom_clothes_vr.dmi'
+		icon_state = "fedcapsec"
+
+		icon_override = 'icons/vore/custom_clothes_vr.dmi'
+		item_state = "fedcapsec_mob"
+
+	police
+		name = "Police Officer's Cap"
+		desc = "A Police Officer's cap that demands discipline from the one who wears it."
+
+		icon = 'icons/vore/custom_clothes_vr.dmi'
+		icon_state = "policecover"
+
+		icon_override = 'icons/vore/custom_clothes_vr.dmi'
+		item_state = "policecover_mob"
+
 /*POLARISTODO - Needs rework in update_icons as it doesn't use item_state
 //For general use
 /obj/item/clothing/glasses/welding/fluff/yellow
@@ -232,9 +332,9 @@
 */
 
 //wickedtemp:chakat tempest
-/obj/item/clothing/glasses/hud/health/fluff/wickedtemphud
-	name = "Purple MedHUD"
-	desc = "A standard Medical HUD, only this one is colored purple with a violet lens."
+/obj/item/clothing/glasses/omnihud/med/fluff/wickedtemphud
+	name = "Tempest's Glasses"
+	desc = "A set of AR-M glasses, only these are colored purple with violet lenses in a custom frame, with a quote inscribed: \"A doctor sees the weakness in all of humanity\""
 
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "tempesthud"
@@ -316,6 +416,7 @@
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "tasaldsuit"
+	armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
 // bwoincognito:Tasald Corlethian
 /obj/item/clothing/suit/storage/det_suit/fluff/tasald
@@ -330,6 +431,7 @@
 
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	armor = list(melee = 40, bullet = 30, laser = 30, energy = 10, bomb = 10, bio = 0, rad = 0)
 
 // bwoincognito:Tasald Corlethian
 /obj/item/clothing/suit/storage/det_suit/fluff/tas_coat
@@ -344,6 +446,7 @@
 
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 40, bio = 0, rad = 0)
 
 //Event Costumes Below
 /obj/item/clothing/head/helmet/fluff/freddy
@@ -421,7 +524,7 @@
 //End event costumes
 
 //scree:Scree
-/obj/item/clothing/head/helmet/space/void/engineering/fluff/screehelm
+/obj/item/clothing/head/helmet/space/void/engineering/hazmat/fluff/screehelm
 	name = "Modified Tajara Helmet"
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment. Has radiation shielding. This one doesn't look like it was made for humans. Its been modified to include headlights."
 
@@ -430,6 +533,8 @@
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "scree-helm_mob"
+
+	item_state_slots = list(slot_r_hand_str = "engspace_helmet", slot_l_hand_str = "engspace_helmet")
 
 	light_overlay = "helmet_light_dual"
 
@@ -444,7 +549,7 @@
 				return 1
 
 //scree:Scree
-/obj/item/clothing/suit/space/void/engineering/fluff/screespess
+/obj/item/clothing/suit/space/void/engineering/hazmat/fluff/screespess
 	name = "Modified Winged Suit"
 	desc = "A special suit that protects against hazardous, low pressure environments. Has radiation shielding. This one doesn't look like it was made for humans. This one was made with a special personal shielding for someone's wings."
 
@@ -453,6 +558,8 @@
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "scree-spess_mob"
+
+	item_state_slots = list(slot_r_hand_str = "eng_voidsuit", slot_l_hand_str = "eng_voidsuit")
 
 	species_restricted = null
 
@@ -537,7 +644,6 @@
 		new /obj/item/weapon/wirecutters(src)
 		new /obj/item/device/multitool(src)
 		new /obj/item/stack/cable_coil(src, 30, "red")
-		new /obj/item/stack/cable_coil(src, 30, "green")
 
 // molenar:Giliana Gamish
 /obj/item/clothing/suit/storage/toggle/labcoat/fluff/molenar
@@ -546,8 +652,6 @@
 
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "molenar"
-	icon_open = "molenar_open"
-	icon_closed = "molenar"
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "molenar"
@@ -598,56 +702,21 @@
 
 	action_button_name = "Toggle pom-pom"
 
-// arokha : Aronai Kadigan
-/obj/item/clothing/head/helmet/space/void/medical/emt/fluff/aronai
-	name = "KIN-313-SM medical helmet"
-	desc = "This spacesuit helmet appears to be custom-made for someone with pointed ears and a muzzle. \
-		It is form-fitting enough that it's unlikely to fit anyone but the person it was intended for. \
-		'Aronai' is printed on the back of the helmet."
+/obj/item/weapon/rig/light/hacker/fluff/aronai
+	name = "KHI-99-AAR suit module"
+	suit_type = "nano"
+	desc = "A thin collapsable spacesuit for synths from Kitsuhana Heavy Industries."
+	airtight = 1 //Not because it should be airtight but because suit coolers don't work w/o it.
+	armor = list(melee = 25, bullet = 15, laser = 15, energy = 60, bomb = 30, bio = 70, rad = 100)
+	air_type = null //No O2 tank, why would it have one?
 
-	icon = 'icons/vore/custom_clothes_vr.dmi'
-	icon_state = "arohelm"
+	cell_type =  /obj/item/weapon/cell/hyper
+	req_access = list(access_medical)
 
-	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	item_state = "arohelm_mob"
-
-	light_overlay = "helmet_light_dual"
-	camera_networks = list(NETWORK_MEDICAL)
-	species_restricted = null
-
-	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
-		if(..())
-			if(H.ckey != "arokha")
-				H << "<span class='warning'>You try to wear the helmet, but it doesn't fit.</span>"
-				return 0
-			else
-				return 1
-
-/obj/item/clothing/suit/space/void/medical/emt/fluff/aronai
-	name = "KIN-313-SMb medical space spacesuit"
-	desc = "This spacesuit appears to be custom-made for someone with digitigrade legs and a tail. \
-		It is form-fitting enough that it's unlikely to fit anyone but the person it was intended for. \
-		'Aronai' is printed just above the spine on the back of the neckpiece. It has no space for an O2 tank. \
-		In fact, it's practically paper-thin."
-
-	icon = 'icons/vore/custom_clothes_vr.dmi'
-	icon_state = "arosuit"
-
-	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	item_state = "arosuit_mob"
-
-	w_class = ITEMSIZE_NORMAL //If Joan can do it! >.>
-	slowdown = 0 //... <.<
-	allowed = list(/obj/item/device/suit_cooling_unit) //No storage space other than that
-	species_restricted = null
-
-	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
-		if(..())
-			if(H.ckey != "arokha")
-				H << "<span class='warning'>You try to fit into the suit, to no avail.</span>"
-				return 0
-			else
-				return 1
+	initial_modules = list(
+		/obj/item/rig_module/maneuvering_jets,
+		/obj/item/rig_module/teleporter
+		)
 
 //Viveret:Keturah
 /obj/item/clothing/under/dress/maid
@@ -706,13 +775,25 @@
 				return 1
 
 /obj/item/clothing/under/rank/internalaffairs/fluff/joan
-	desc = "The plain, professional attire of a Federation Law Enforcement Detective. The collar is <i>immaculately</i> starched."
+	desc = "The plain, professional attire of a Federation Law Enforcement Detective."
 	name = "Federation Dress Shirt"
-	icon_state = "internalaffairs"
-	item_state = "ba_suit"
-	worn_state = "internalaffairs"
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "joanuniform"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "joanuniform_mob"
+	worn_state = "joanuniform_mob"
 	rolled_sleeves = 0
 	starting_accessories = list(/obj/item/clothing/accessory/black)
+
+//Kisukegema:Kisuke `the nerd` Gema
+/obj/item/clothing/glasses/omnihud/kamina
+	name = "Kamina glasses"
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "kamina"
+	desc = "ROW ROW, FIGHT THE POWER."
+	flash_prot = 1 //Why not.
 
 //Kitsuhana Uniforms
 /obj/item/clothing/under/rank/khi
@@ -727,48 +808,48 @@
 	item_state = ""
 
 	cmd //Command version
-		name = "KIN command suit"
-		desc = "Kitsuhana Industrial Navy uniform. An extra-comfortable command one, at that. I guess if you DON'T want anarchy for some reason."
+		name = "KHI command suit"
+		desc = "Kitsuhana Heavy Industries uniform. An extra-comfortable command one, at that. I guess if you DON'T want anarchy for some reason."
 		icon_state = "khi_uniform_cmd_i"
 		item_state = "khi_uniform_cmd"
 		worn_state = "khi_uniform_cmd"
 		armor = list(melee = 5, bullet = 10, laser = 10, energy = 0, bomb = 0, bio = 0, rad = 0)
 
 	sec //Security version
-		name = "KIN security suit"
-		desc = "Kitsuhana Industrial Navy uniform. This one has angry red security stripes. Keepin' the peace in style."
+		name = "KHI security suit"
+		desc = "Kitsuhana Heavy Industries uniform. This one has angry red security stripes. Keepin' the peace in style."
 		icon_state = "khi_uniform_sec_i"
 		item_state = "khi_uniform_sec"
 		worn_state = "khi_uniform_sec"
 		armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
 	med //Medical version
-		name = "KIN medical suit"
-		desc = "Kitsuhana Industrial Navy uniform. The medical version. Why not just get a new body, anyway?"
+		name = "KHI medical suit"
+		desc = "Kitsuhana Heavy Industries uniform. The medical version. Why not just get a new body, anyway?"
 		icon_state = "khi_uniform_med_i"
 		item_state = "khi_uniform_med"
 		worn_state = "khi_uniform_med"
 		armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 50, rad = 5)
 
 	eng //Engineering version
-		name = "KIN engineering suit"
-		desc = "Kitsuhana Industrial Navy uniform. One fit for an engineer, by the looks of it. Building the future, one disaster at a time."
+		name = "KHI engineering suit"
+		desc = "Kitsuhana Heavy Industries uniform. One fit for an engineer, by the looks of it. Building the future, one disaster at a time."
 		icon_state = "khi_uniform_eng_i"
 		item_state = "khi_uniform_eng"
 		worn_state = "khi_uniform_eng"
 		armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 10)
 
 	sci //Science version
-		name = "KIN science suit"
-		desc = "Kitsuhana Industrial Navy uniform. For performing science in, based on the color! Only SCIENCE can save us now."
+		name = "KHI science suit"
+		desc = "Kitsuhana Heavy Industries uniform. For performing science in, based on the color! Only SCIENCE can save us now."
 		icon_state = "khi_uniform_sci_i"
 		item_state = "khi_uniform_sci"
 		worn_state = "khi_uniform_sci"
 		armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 5, bio = 0, rad = 5)
 
-	fluff/aro //Aro fluff version
-		name = "KIN meditech suit"
-		desc = "Kitsuhana Industrial Navy uniform. This one has the colors of a resleeving or mnemonics engineer. It has 'Aronai' written inside the top."
+	fluff/aronai //Aro fluff version
+		name = "KHI meditech suit"
+		desc = "Kitsuhana Heavy Industries uniform. This one has the colors of a resleeving or mnemonics engineer. It has 'Aronai' written inside the top."
 		icon_state = "khi_uniform_aro_i"
 		item_state = "khi_uniform_aro"
 		worn_state = "khi_uniform_aro"
@@ -793,10 +874,12 @@
 /obj/item/clothing/suit/storage/trench/fluff/octaviouscoat
 	name = "Thin Leather coat"
 	desc = "A finely made leather coat designed for use in laboratories and doubles for parties. Has the letters O.C.W. embroidered in sliver on the right breast pocket."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "octavgentlecoat"
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "octavgentlecoat_mob"
 	blood_overlay_type = "coat"
-	allowed = list(/obj/item/weapon/tank/emergency_oxygen, /obj/item/device/flashlight,/obj/item/weapon/gun/energy,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/device/taperecorder,/obj/item/device/uv_light)
+	allowed = list(/obj/item/weapon/tank/emergency/oxygen, /obj/item/device/flashlight,/obj/item/weapon/gun/energy,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/device/taperecorder,/obj/item/device/uv_light)
 
 //bwoincognito:Octavious Ward
 /obj/item/clothing/under/det/fluff/octavious
@@ -804,10 +887,10 @@
 	desc = "A well made suit and tie, with a thin leather vest, while not as rugged as normal lab suits, it lets the wearer look dashing as he works. The letter's O.C.W. are embroidered on the left breast."
 
 	icon = 'icons/vore/custom_clothes_vr.dmi'
-	icon_state = "octavgentlecoat"
+	icon_state = "octavgentlesuit"
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	item_state = "octavgentlecoat_s"
+	item_state = "octavgentlesuit_mob" //don't forget to rename the sprite.
 
 //bwoincognito:Octavious Ward
 /obj/item/clothing/head/fedora/fluff/bowler
@@ -820,6 +903,64 @@
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "bowler_mob"
 
+//bwoincognito:Octavious Ward
+/obj/item/clothing/mask/gas/plaguedoctor/fluff/octaviousmask
+	name = "Customized Gas Mask"
+	desc = "A customized gas mask to look like an old plague doctors, with a special looking lens in the left eye that turns on when in use."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "octplaguedoctor"
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+	item_state = "octplaguedoctor_mob"
+	item_state_slots = null
+	armor = list(melee = 0, bullet = 0, laser = 2,energy = 2, bomb = 0, bio = 90, rad = 0)
+	body_parts_covered = HEAD|FACE|EYES
+
+//bwoincognito:Octavious Ward
+/obj/item/clothing/glasses/hud/health/octaviousmonicle
+	name = "Gilded monocle"
+	desc = "Avery expensive looking monocle inlaid with small gems around the gold frame. It has a thin leather cord running down to a clasp for attaching to ones coat. Probably not a good idea to steal this."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "clockworkgoggle_l"
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+	item_state = "clockworkgoggle_l_mob"
+	item_state_slots = null
+	body_parts_covered = 0
+
+
+/obj/item/clothing/shoes/black/cuffs
+	name = "Gilded cuffs"
+	desc = "Ankle coverings for digitigrade creatures. Gilded!"
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "gildedcuffs"
+
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+	item_state = "gildedcuffs_mob"
+	item_icons = null
+
+	body_parts_covered = 0
+	species_restricted = null
+
+	red
+		name = "Red Cuffs"
+		desc = "Ankle coverings for digitigrade creatures. Red!"
+		icon_state = "redcuffs"
+		item_state = "redcuffs_mob"
+
+	blue
+		name = "Blue Cuffs"
+		desc = "Ankle coverings for digitigrade creatures. Blue!"
+		icon_state = "bluecuffs"
+		item_state = "bluecuffs_mob"
+
+
+//bwoincognito:Octavious Ward
+	octavious
+		name = "silvered leg wraps"
+		desc = "Dark leather leg wraps with sliver clasps on the sides. Stylish and functional."
+		icon_state = "silvergildedcuffs"
+		item_state = "silvergildedcuffs_mob"
+
+
 //jemli:Jemli
 /obj/item/clothing/head/fedora/fluff/jemli
 	name = "Cavalier Hat"
@@ -831,13 +972,250 @@
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "jemli_hat_mob"
 
+//virgo113:Verin Raharra
+/obj/item/clothing/suit/storage/hazardvest/fluff/verin
+	name = "Green Haz-coat"
+	desc = "A well-worn green, long coat made with lightweight materials, it has a radioactive hazard icon on it's right sleeve. Smells faintly like sergal."
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 20)
+	body_parts_covered = UPPER_TORSO|ARMS
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "verin"
+	item_state = "verin_mob"
 
-//bwoincognito:Octavious Ward
-/obj/item/clothing/mask/gas/plaguedoctor/fluff/octaviousmask
-	name = "Customized Gas Mask"
-	desc = "A customized gas mask to look like an old plague doctors, with a special looking lens in the left eye that turns on when in use."
-	icon_state = "octplaguedoctor"
-	item_state = "octplaguedoctor_mob"
-	armor = list(melee = 0, bullet = 0, laser = 2,energy = 2, bomb = 0, bio = 90, rad = 0)
-	body_parts_covered = HEAD|FACE|EYES
+//whiskyrose:Vinjj
+/obj/item/clothing/head/welding/fluff/vinjj
+	name = "Vinjj's Stylish Bandana"
+	desc = "A lovely blue and purple bandanna with a refined topaz hanging from its tail end, a pair of goggles are hidden underneath its fabric. Although for some strange reason, wearing this seems to inspire lewd thoughts."
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/vore/custom_clothes_vr.dmi',
+		slot_r_hand_str = 'icons/vore/custom_clothes_vr.dmi',
+		)
+	icon_state = "vinjjdana"
+	item_state = "vinjjdana_mob"
+	item_state_slots = list(slot_r_hand_str = "vinjjdana_mob_r", slot_l_hand_str = "vinjjdana_mob_l")
+	flags_inv = (HIDEEYES)
+	body_parts_covered = HEAD|EYES
 
+/obj/item/clothing/head/welding/fluff/vinjj/toggle() //overriding this 'cause it only conceals the eyes - it's a hat, not a mask
+	set category = "Object"
+	set src in usr
+
+	if(usr.canmove && !usr.stat && !usr.restrained())
+		if(src.up)
+			src.up = !src.up
+			body_parts_covered |= (EYES)
+			flags_inv |= (HIDEEYES)
+			icon_state = "vinjjdana"
+			item_state = "vinjjdana_mob"
+			usr << "You flip the goggles down to protect your eyes."
+		else
+			src.up = !src.up
+			body_parts_covered &= ~(EYES)
+			flags_inv &= ~(HIDEEYES)
+			icon_state = "vinjjdanaup"
+			item_state = "vinjjdanaup_mob"
+
+			usr << "You push the goggles up out of your face."
+		update_clothing_icon()	//so our mob-overlays
+		if (ismob(src.loc)) //should allow masks to update when it is opened/closed
+			var/mob/M = src.loc
+			M.update_inv_wear_mask()
+		usr.update_action_buttons()
+
+//Vorrarkul: Theodora Lindt
+/obj/item/clothing/suit/chococoat
+	name = "Chococoat"
+	desc = "A long coat designed to resemble Getmore Chocolate Corp's namesake chocolate bar wrapper." //A walking advertisement?
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "chococoat_on"
+	icon_state = "chococoat"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	allowed = list (/obj/item/weapon/material/knife)
+
+//KiwiDaNinja: Chakat Taiga
+/obj/item/clothing/under/fluff/taiga
+	name = "Taiga's F.D Uniform"
+	desc = "This uniform - consisting of only the uniform shirt, and built out of a soft fleece - dons the badge of Amistad Fire and Rescuse on both shoulders. The badges denote the wearer as a FF/Paramedic, and their name is embroidered in a gold thread on their right breast; Chakat Taiga! An 'official' badge is pinned to their left breast." //A walking advertisement?
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "taigaff_on"
+	icon_state = "taigaff" //Went ahead and made the det_corporate sprite fit.
+/*
+Departamental Swimsuits, for general use
+*/
+
+/obj/item/clothing/under/swimsuit/fluff/
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	siemens_coefficient = 1
+
+/obj/item/clothing/under/swimsuit/fluff/engineering
+	name = "Engineering Swimsuit"
+	desc = "It's an orange high visibility swimsuit worn by engineers. It lacks radiation, or any, shielding."
+	icon_state = "swimsuit_engineering"
+	item_state = "swimsuit_engineering_mob"
+
+/obj/item/clothing/under/swimsuit/fluff/science
+	name = "Science Swimsuit"
+	desc = "It's made of a special fiber that provides no protection whatsoever, but its hydrophobic. It has markings that denote the wearer as a scientist."
+	icon_state = "swimsuit_science"
+	item_state = "swimsuit_science_mob"
+
+/obj/item/clothing/under/swimsuit/fluff/security
+	name = "Security Swimsuit"
+	desc = "It's made of a slightly sturdier material than standard swimsuits, to allow for a more robust appearance."
+	icon_state = "swimsuit_security"
+	item_state = "swimsuit_security_mob"
+
+/obj/item/clothing/under/swimsuit/fluff/medical
+	name = "Medical Swimsuit"
+	desc = "It's made of a special fiber that provides no protection whatsoever, but its elastic. It has a cross on the back denoting that the wearer is trained medical personnel."
+	icon_state = "swimsuit_medical"
+	item_state = "swimsuit_medical_mob"
+
+//Xsdew:Penelope Allen
+/obj/item/clothing/under/swimsuit/fluff/penelope
+	name = "Penelope's Swimsuit"
+	desc = "It's made of a special fiber that provides no protection whatsoever, but its elastic. This one was custom made for Penelope."
+	icon_state = "swimsuit_penelope"
+	item_state = "swimsuit_penelope_mob"
+
+//Just some alt-uniforms themed around Star Trek - Pls don't sue, Mr Roddenberry ;_;
+// PS. <3 Nienhaus
+
+
+/obj/item/clothing/under/rank/trek
+	name = "Section 31 Uniform"
+	desc = "Oooh... right."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = ""
+
+//TOS
+/obj/item/clothing/under/rank/trek/command
+	name = "Command Uniform"
+	desc = "The uniform worn by command officers in the mid 2260s."
+	icon_state = "trek_command"
+	item_state = "trek_command"
+	armor = list(melee = 10, bullet = 10, laser = 10,energy = 0, bomb = 0, bio = 10, rad = 10, fire = 0, acid = 0) // Considering only staff heads get to pick it
+
+/obj/item/clothing/under/rank/trek/engsec
+	name = "Operations Uniform"
+	desc = "The uniform worn by operations officers of the mid 2260s. You feel strangely vulnerable just seeing this..."
+	icon_state = "trek_engsec"
+	item_state = "trek_engsec"
+	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 10, fire = 0, acid = 0) // since they're shared between jobs and kinda moot.
+
+/obj/item/clothing/under/rank/trek/medsci
+	name = "MedSci Uniform"
+	desc = "The uniform worn by medsci officers in the mid 2260s."
+	icon_state = "trek_medsci"
+	item_state = "trek_medsci"
+	permeability_coefficient = 0.50
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0, fire = 0, acid = 0) // basically a copy of vanilla sci/med
+
+//TNG
+/obj/item/clothing/under/rank/trek/command/next
+	desc = "The uniform worn by command officers. This one's from the mid 2360s."
+	icon_state = "trek_next_command"
+	item_state = "trek_next_command"
+
+/obj/item/clothing/under/rank/trek/engsec/next
+	desc = "The uniform worn by operation officers. This one's from the mid 2360s."
+	icon_state = "trek_next_engsec"
+	item_state = "trek_next_engsec"
+
+/obj/item/clothing/under/rank/trek/medsci/next
+	desc = "The uniform worn by medsci officers. This one's from the mid 2360s."
+	icon_state = "trek_next_medsci"
+	item_state = "trek_next_medsci"
+
+//ENT
+/obj/item/clothing/under/rank/trek/command/ent
+	desc = "The uniform worn by command officers of the 2140s."
+	icon_state = "trek_ent_command"
+	item_state = "trek_ent_command"
+
+/obj/item/clothing/under/rank/trek/engsec/ent
+	desc = "The uniform worn by operations officers of the 2140s."
+	icon_state = "trek_ent_engsec"
+	item_state = "trek_ent_engsec"
+
+/obj/item/clothing/under/rank/trek/medsci/ent
+	desc = "The uniform worn by medsci officers of the 2140s."
+	icon_state = "trek_ent_medsci"
+	item_state = "trek_ent_medsci"
+
+//VOY
+/obj/item/clothing/under/rank/trek/command/voy
+	desc = "The uniform worn by command officers of the 2370s."
+	icon_state = "trek_voy_command"
+	item_state = "trek_voy_command"
+
+/obj/item/clothing/under/rank/trek/engsec/voy
+	desc = "The uniform worn by operations officers of the 2370s."
+	icon_state = "trek_voy_engsec"
+	item_state = "trek_voy_engsec"
+
+/obj/item/clothing/under/rank/trek/medsci/voy
+	desc = "The uniform worn by medsci officers of the 2370s."
+	icon_state = "trek_voy_medsci"
+	item_state = "trek_voy_medsci"
+
+//DS9
+
+/obj/item/clothing/suit/storage/trek/ds9
+	name = "Padded Overcoat"
+	desc = "The overcoat worn by all officers of the 2380s."
+	icon_state = "trek_ds9_coat"
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "trek_ds9_coat_mob"
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	permeability_coefficient = 0.50
+	allowed = list(
+		/obj/item/device/flashlight, /obj/item/device/analyzer,
+		/obj/item/device/radio, /obj/item/weapon/tank/emergency/oxygen,
+		/obj/item/weapon/reagent_containers/hypospray, /obj/item/device/healthanalyzer,
+		/obj/item/weapon/reagent_containers/dropper,/obj/item/weapon/reagent_containers/syringe,
+		/obj/item/weapon/reagent_containers/glass/bottle,/obj/item/weapon/reagent_containers/glass/beaker,
+		/obj/item/weapon/reagent_containers/pill,/obj/item/weapon/storage/pill_bottle
+		)
+	armor = list(melee = 20, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 20, rad = 25)
+
+/obj/item/clothing/suit/storage/trek/ds9/admiral // Only for adminuz
+	name = "Admiral Overcoat"
+	desc = "Admirality specialty coat to keep flag officers fashionable and protected."
+	icon_state = "trek_ds9_coat_adm"
+	item_state = "trek_ds9_coat_adm_mob"
+	armor = list(melee = 45, bullet = 35, laser = 35, energy = 20, bomb = 0, bio = 40, rad = 55)
+
+
+/obj/item/clothing/under/rank/trek/command/ds9
+	desc = "The uniform worn by command officers of the 2380s."
+	icon_state = "trek_command"
+	item_state = "trek_ds9_command"
+
+/obj/item/clothing/under/rank/trek/engsec/ds9
+	desc = "The uniform worn by operations officers of the 2380s."
+	icon_state = "trek_engsec"
+	item_state = "trek_ds9_engsec"
+
+/obj/item/clothing/under/rank/trek/medsci/ds9
+	desc = "The uniform undershit worn by medsci officers of the 2380s."
+	icon_state = "trek_medsci"
+	item_state = "trek_ds9_medsci"
+
+//For general use maybe
+/obj/item/clothing/under/batter //I guess we're going OFF limits.
+	name = "Worn baseball outfit"
+	desc = "<b>Purification in progress...</b>"
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "batter"
+	item_state = "batter_mob"

@@ -192,13 +192,16 @@
 		if(!cleaning)
 			var/confirm = alert(usr, "You are about to engage self-cleaning mode. This will fill your [src] with caustic enzymes to remove any objects or biomatter, and convert them into energy. Are you sure?", "Confirmation", "Self-Clean", "Cancel")
 			if(confirm == "Self-Clean")
-				cleaning = 1
-				drain(500)
-				processing_objects.Add(src)
-				sleeperUI(usr)
-				if(patient)
-					patient << "<span class='danger'>[hound.name]'s [src.name] fills with caustic enzymes around you!</span>"
-				return
+				if(cleaning)
+					return
+				else
+					cleaning = 1
+					drain(500)
+					processing_objects.Add(src)
+					sleeperUI(usr)
+					if(patient)
+						patient << "<span class='danger'>[hound.name]'s [src.name] fills with caustic enzymes around you!</span>"
+					return
 		if(cleaning)
 			sleeperUI(usr)
 			return

@@ -1,4 +1,12 @@
 /mob/living/carbon/human/proc/get_unarmed_attack(var/mob/living/carbon/human/target, var/hit_zone)
+	// VOREStation Edit - Begin
+	if(src.default_attack && src.default_attack.is_usable(src, target, hit_zone))
+		if(pulling_punches)
+			var/datum/unarmed_attack/soft_type = src.default_attack.get_sparring_variant()
+			if(soft_type)
+				return soft_type
+		return src.default_attack
+	// VOREStation Edit - End
 	for(var/datum/unarmed_attack/u_attack in species.unarmed_attacks)
 		if(u_attack.is_usable(src, target, hit_zone))
 			if(pulling_punches)
@@ -22,6 +30,14 @@
 
 	// Should this all be in Touch()?
 	if(istype(H))
+		if(get_accuracy_penalty(H) && H != src)	//Should only trigger if they're not aiming well
+			var/hit_zone = get_zone_with_miss_chance(H.zone_sel.selecting, src, get_accuracy_penalty(H))
+			if(!hit_zone)
+				H.do_attack_animation(src)
+				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+				visible_message("\red <B>[H] reaches for [src], but misses!</B>")
+				return 0
+
 		if(H != src && check_shields(0, null, H, H.zone_sel.selecting, H.name))
 			H.do_attack_animation(src)
 			return 0
@@ -35,6 +51,7 @@
 				return 0
 			var/obj/item/organ/external/affecting = get_organ(ran_zone(H.zone_sel.selecting))
 			var/armor_block = run_armor_check(affecting, "melee")
+			var/armor_soak = get_armor_soak(affecting, "melee")
 
 			if(HULK in H.mutations)
 				damage += 5
@@ -43,7 +60,10 @@
 
 			visible_message("\red <B>[H] has punched [src]!</B>")
 
-			apply_damage(damage, HALLOSS, affecting, armor_block)
+			if(armor_soak >= damage)
+				return
+
+			apply_damage(damage, HALLOSS, affecting, armor_block, armor_soak)
 			if(damage >= 9)
 				visible_message("\red <B>[H] has weakened [src]!</B>")
 				apply_effect(4, WEAKEN, armor_block)
@@ -194,6 +214,11 @@
 						  were made for projectiles.
 					TODO: proc for melee combat miss chances depending on organ?
 				*/
+
+				if(!hit_zone)
+					attack_message = "[H] attempted to strike [src], but missed!"
+					miss_type = 1
+
 				if(prob(80))
 					hit_zone = ran_zone(hit_zone)
 				if(prob(15) && hit_zone != BP_TORSO) // Missed!
@@ -237,11 +262,12 @@
 			real_damage = max(1, real_damage)
 
 			var/armour = run_armor_check(affecting, "melee")
+			var/soaked = get_armor_soak(affecting, "melee")
 			// Apply additional unarmed effects.
 			attack.apply_effects(H, src, armour, rand_damage, hit_zone)
 
 			// Finally, apply damage to target
-			apply_damage(real_damage, (attack.deal_halloss ? HALLOSS : BRUTE), affecting, armour, sharp=attack.sharp, edge=attack.edge)
+			apply_damage(real_damage, (attack.deal_halloss ? HALLOSS : BRUTE), affecting, armour, soaked, sharp=attack.sharp, edge=attack.edge)
 
 		if(I_DISARM)
 			M.attack_log += text("\[[time_stamp()]\] <font color='red'>Disarmed [src.name] ([src.ckey])</font>")
@@ -317,7 +343,8 @@
 	var/dam_zone = pick(organs_by_name)
 	var/obj/item/organ/external/affecting = get_organ(ran_zone(dam_zone))
 	var/armor_block = run_armor_check(affecting, "melee")
-	apply_damage(damage, BRUTE, affecting, armor_block)
+	var/armor_soak = get_armor_soak(affecting, "melee")
+	apply_damage(damage, BRUTE, affecting, armor_block, armor_soak)
 	updatehealth()
 	return 1
 

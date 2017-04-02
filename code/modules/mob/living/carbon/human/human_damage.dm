@@ -67,6 +67,14 @@
 /mob/living/carbon/human/getBruteLoss()
 	var/amount = 0
 	for(var/obj/item/organ/external/O in organs)
+		if(O.robotic >= ORGAN_ROBOT && !O.vital)
+			continue //*non-vital*robot limbs don't count towards death, or show up when scanned
+		amount += O.brute_dam
+	return amount
+
+/mob/living/carbon/human/getShockBruteLoss()
+	var/amount = 0
+	for(var/obj/item/organ/external/O in organs)
 		if(O.robotic >= ORGAN_ROBOT)
 			continue //robot limbs don't count towards shock and crit
 		amount += O.brute_dam
@@ -75,11 +83,18 @@
 /mob/living/carbon/human/getFireLoss()
 	var/amount = 0
 	for(var/obj/item/organ/external/O in organs)
+		if(O.robotic >= ORGAN_ROBOT && !O.vital)
+			continue //*non-vital*robot limbs don't count towards death, or show up when scanned
+		amount += O.burn_dam
+	return amount
+
+/mob/living/carbon/human/getShockFireLoss()
+	var/amount = 0
+	for(var/obj/item/organ/external/O in organs)
 		if(O.robotic >= ORGAN_ROBOT)
 			continue //robot limbs don't count towards shock and crit
 		amount += O.burn_dam
 	return amount
-
 
 /mob/living/carbon/human/adjustBruteLoss(var/amount)
 	amount = amount*species.brute_mod
@@ -361,7 +376,7 @@ This function restores all organs.
 	if((damagetype != BRUTE) && (damagetype != BURN))
 		if(damagetype == HALLOSS)
 			if((damage > 25 && prob(20)) || (damage > 50 && prob(60)))
-				if(organ && organ.can_feel_pain())
+				if(organ && organ.organ_can_feel_pain())
 					emote("scream")
 		..(damage, damagetype, def_zone, blocked)
 		return 1

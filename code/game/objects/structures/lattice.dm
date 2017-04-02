@@ -34,6 +34,11 @@
 		if(locate(/obj/structure/lattice, get_step(src, dir)))
 			L = locate(/obj/structure/lattice, get_step(src, dir))
 			L.updateOverlays(src.loc)
+	if(istype(loc, /turf/simulated/open))
+		var/turf/simulated/open/O = loc
+		spawn(1)
+			if(O) // If we built a new floor with the lattice, the open turf won't exist anymore.
+				O.update() // This lattice may be supporting things on top of it.  If it's being deleted, they need to fall down.
 	..()
 
 /obj/structure/lattice/ex_act(severity)

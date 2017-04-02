@@ -51,10 +51,10 @@
 
 		if(H.species)
 			if(exclusive)
-				if(!(H.species.get_bodytype() in species_restricted))
+				if(!(H.species.get_bodytype(H) in species_restricted))	//Vorestation edit
 					wearable = 1
 			else
-				if(H.species.get_bodytype() in species_restricted)
+				if(H.species.get_bodytype(H) in species_restricted)	//Vorestation edit
 					wearable = 1
 
 			if(!wearable && !(slot in list(slot_l_store, slot_r_store, slot_s_store)))
@@ -114,7 +114,8 @@
 	w_class = ITEMSIZE_TINY
 	throwforce = 2
 	slot_flags = SLOT_EARS
-	sprite_sheets = list("Teshari" = 'icons/mob/species/seromi/ears.dmi')
+	sprite_sheets = list(
+		"Teshari" = 'icons/mob/species/seromi/ears.dmi')
 
 /obj/item/clothing/ears/attack_hand(mob/user as mob)
 	if (!user) return
@@ -186,9 +187,9 @@
 	body_parts_covered = HANDS
 	slot_flags = SLOT_GLOVES
 	attack_verb = list("challenged")
-	species_restricted = null
 	sprite_sheets = list(
 		"Teshari" = 'icons/mob/species/seromi/gloves.dmi',
+		"Vox" = 'icons/mob/species/vox/gloves.dmi'
 		)
 
 /obj/item/clothing/gloves/update_clothing_icon()
@@ -198,10 +199,7 @@
 
 /obj/item/clothing/gloves/emp_act(severity)
 	if(cell)
-		//why is this not part of the powercell code?
-		cell.charge -= 1000 / severity
-		if (cell.charge < 0)
-			cell.charge = 0
+		cell.emp_act(severity)
 	..()
 
 // Called just before an attack_hand(), in mob/UnarmedAttack()
@@ -245,7 +243,8 @@
 	var/on = 0
 
 	sprite_sheets = list(
-		"Teshari" = 'icons/mob/species/seromi/head.dmi'
+		"Teshari" = 'icons/mob/species/seromi/head.dmi',
+		"Vox" = 'icons/mob/species/vox/head.dmi'
 		)
 
 /obj/item/clothing/head/attack_self(mob/user)
@@ -348,6 +347,7 @@
 	body_parts_covered = FACE|EYES
 	sprite_sheets = list(
 		"Teshari" = 'icons/mob/species/seromi/masks.dmi',
+		"Vox" = 'icons/mob/species/vox/masks.dmi'
 		)
 
 	var/voicechange = 0
@@ -386,9 +386,10 @@
 	slowdown = SHOES_SLOWDOWN
 	force = 2
 	var/overshoes = 0
-	species_restricted = list("exclude","Teshari")
+	species_restricted = list("exclude","Teshari", "Vox")
 	sprite_sheets = list(
 		"Teshari" = 'icons/mob/species/seromi/shoes.dmi',
+		"Vox" = 'icons/mob/species/vox/shoes.dmi'
 		)
 
 /obj/item/clothing/shoes/proc/draw_knife()
@@ -404,6 +405,7 @@
 
 	if(usr.put_in_hands(holding))
 		usr.visible_message("<span class='danger'>\The [usr] pulls a knife out of their boot!</span>")
+		playsound(src.loc, 'sound/weapons/flipblade.ogg', 40, 1)
 		holding = null
 	else
 		usr << "<span class='warning'>Your need an empty, unbroken hand to do that.</span>"
@@ -415,6 +417,11 @@
 	update_icon()
 	return
 
+/obj/item/clothing/shoes/attack_hand(var/mob/living/M)
+	if(can_hold_knife == 1 && holding && src.loc == M)
+		draw_knife()
+		return
+	..()
 
 /obj/item/clothing/shoes/attackby(var/obj/item/I, var/mob/user)
 	if((can_hold_knife == 1) && (istype(I, /obj/item/weapon/material/shard) || \
@@ -471,7 +478,7 @@
 	name = "suit"
 	var/fire_resist = T0C+100
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	allowed = list(/obj/item/weapon/tank/emergency_oxygen)
+	allowed = list(/obj/item/weapon/tank/emergency/oxygen)
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	slot_flags = SLOT_OCLOTHING
 	var/blood_overlay_type = "suit"
@@ -479,7 +486,8 @@
 	w_class = ITEMSIZE_NORMAL
 
 	sprite_sheets = list(
-		"Teshari" = 'icons/mob/species/seromi/suit.dmi'
+		"Teshari" = 'icons/mob/species/seromi/suit.dmi',
+		"Vox" = 'icons/mob/species/vox/suit.dmi'
 		)
 
 	valid_accessory_slots = list("over", "armband")
@@ -517,7 +525,8 @@
 	var/rolled_down = -1 //0 = unrolled, 1 = rolled, -1 = cannot be toggled
 	var/rolled_sleeves = -1 //0 = unrolled, 1 = rolled, -1 = cannot be toggled
 	sprite_sheets = list(
-		"Teshari" = 'icons/mob/species/seromi/uniform.dmi'
+		"Teshari" = 'icons/mob/species/seromi/uniform.dmi',
+		"Vox" = 'icons/mob/species/vox/uniform.dmi'
 		)
 
 	//convenience var for defining the icon state for the overlay used when the clothing is worn.
@@ -525,6 +534,9 @@
 	var/worn_state = null
 	valid_accessory_slots = list("utility","armband","decor","over")
 	restricted_accessory_slots = list("utility", "armband")
+
+	var/icon/rolled_down_icon = 'icons/mob/uniform_rolled_down.dmi'
+	var/icon/rolled_down_sleeves_icon = 'icons/mob/uniform_sleeves_rolled.dmi'
 
 
 /obj/item/clothing/under/attack_hand(var/mob/user)
@@ -545,7 +557,7 @@
 
 	//autodetect rollability
 	if(rolled_down < 0)
-		if((worn_state + "_d_s") in icon_states('icons/mob/uniform.dmi'))
+		if(("[worn_state]_d_s" in icon_states(INV_W_UNIFORM_DEF_ICON)) || ("[worn_state]_s" in icon_states(rolled_down_icon)) || ("[worn_state]_d_s" in icon_states(icon_override)))
 			rolled_down = 0
 
 /obj/item/clothing/under/proc/update_rolldown_status()
@@ -560,11 +572,13 @@
 		under_icon = sprite_sheets[H.species.get_bodytype(H)]
 	else if(item_icons && item_icons[slot_w_uniform_str])
 		under_icon = item_icons[slot_w_uniform_str]
+	else if ("[worn_state]_s" in icon_states(rolled_down_icon))
+		under_icon = rolled_down_icon
 	else
 		under_icon = INV_W_UNIFORM_DEF_ICON
 
 	// The _s is because the icon update procs append it.
-	if(("[worn_state]_d_s") in icon_states(under_icon))
+	if((under_icon == rolled_down_icon && "[worn_state]_s" in icon_states(under_icon)) || ("[worn_state]_d_s" in icon_states(under_icon)))
 		if(rolled_down != 1)
 			rolled_down = 0
 	else
@@ -583,11 +597,13 @@
 		under_icon = sprite_sheets[H.species.get_bodytype(H)]
 	else if(item_icons && item_icons[slot_w_uniform_str])
 		under_icon = item_icons[slot_w_uniform_str]
+	else if ("[worn_state]_s" in icon_states(rolled_down_sleeves_icon))
+		under_icon = rolled_down_sleeves_icon
 	else
 		under_icon = INV_W_UNIFORM_DEF_ICON
 
 	// The _s is because the icon update procs append it.
-	if(("[worn_state]_r_s") in icon_states(under_icon))
+	if((under_icon == rolled_down_sleeves_icon && "[worn_state]_s" in icon_states(under_icon)) || ("[worn_state]_r_s" in icon_states(under_icon)))
 		if(rolled_sleeves != 1)
 			rolled_sleeves = 0
 	else
@@ -669,10 +685,17 @@
 	if(rolled_down)
 		body_parts_covered = initial(body_parts_covered)
 		body_parts_covered &= ~(UPPER_TORSO|ARMS)
-		item_state_slots[slot_w_uniform_str] = "[worn_state]_d"
+		if("[worn_state]_s" in icon_states(rolled_down_icon))
+			icon_override = rolled_down_icon
+			item_state_slots[slot_w_uniform_str] = "[worn_state]"
+		else
+			item_state_slots[slot_w_uniform_str] = "[worn_state]_d"
+
 		usr << "<span class='notice'>You roll down your [src].</span>"
 	else
 		body_parts_covered = initial(body_parts_covered)
+		if(icon_override == rolled_down_icon)
+			icon_override = initial(icon_override)
 		item_state_slots[slot_w_uniform_str] = "[worn_state]"
 		usr << "<span class='notice'>You roll up your [src].</span>"
 	update_clothing_icon()
@@ -695,10 +718,16 @@
 	rolled_sleeves = !rolled_sleeves
 	if(rolled_sleeves)
 		body_parts_covered &= ~(ARMS)
-		item_state_slots[slot_w_uniform_str] = "[worn_state]_r"
+		if("[worn_state]_s" in icon_states(rolled_down_sleeves_icon))
+			icon_override = rolled_down_sleeves_icon
+			item_state_slots[slot_w_uniform_str] = "[worn_state]"
+		else
+			item_state_slots[slot_w_uniform_str] = "[worn_state]_r"
 		usr << "<span class='notice'>You roll up your [src]'s sleeves.</span>"
 	else
 		body_parts_covered = initial(body_parts_covered)
+		if(icon_override == rolled_down_sleeves_icon)
+			icon_override = initial(icon_override)
 		item_state_slots[slot_w_uniform_str] = "[worn_state]"
 		usr << "<span class='notice'>You roll down your [src]'s sleeves.</span>"
 	update_clothing_icon()

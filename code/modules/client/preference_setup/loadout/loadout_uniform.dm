@@ -387,7 +387,7 @@
 	path = /obj/item/clothing/under/pt
 
 /datum/gear/uniform/pt/expeditionary
-	display_name = "pt uniform, expeditionary"
+	display_name = "pt uniform, sifguard"
 	path = /obj/item/clothing/under/pt/expeditionary
 
 /datum/gear/uniform/pt/fleet
@@ -445,3 +445,11 @@
 /datum/gear/uniform/brandsuit/hephaestus
 	display_name = "jumpsuit, hephaestus"
 	path = 	/obj/item/clothing/under/hephaestus
+
+/datum/gear/uniform/yogapants
+	display_name = "yoga pants"
+	path = /obj/item/clothing/under/pants/yogapants
+
+/datum/gear/uniform/yogapants/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)

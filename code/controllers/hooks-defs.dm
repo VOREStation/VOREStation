@@ -85,3 +85,12 @@
  * Parameters: var/obj/structure/closet/crate/sold, var/area/shuttle
  */
 /hook/sell_crate
+
+/**
+ * Supply Shuttle sold hook.
+ * Called in supplyshuttle.dm when the shuttle contents are sold.
+ * This hook is called _before_ the crates are processed for normal
+ * phoron/metal sale (and before the sell_crate hooks)
+ * Parameters: var/area/area_shuttle
+ */
+/hook/sell_shuttle

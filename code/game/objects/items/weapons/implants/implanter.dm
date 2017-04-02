@@ -6,6 +6,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEMSIZE_SMALL
+	matter = list(DEFAULT_WALL_MATERIAL = 1000, "glass" = 1000)
 	var/obj/item/weapon/implant/imp = null
 
 /obj/item/weapon/implanter/attack_self(var/mob/user)
@@ -53,6 +54,7 @@
 						imp.part = affected
 
 						BITSET(H.hud_updateflag, IMPLOYAL_HUD)
+						BITSET(H.hud_updateflag, BACKUP_HUD) //VOREStation Add - Backup HUD updates
 
 				src.imp = null
 				update()

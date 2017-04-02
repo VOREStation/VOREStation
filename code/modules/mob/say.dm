@@ -44,6 +44,8 @@
 		usr << "<span class='danger'>You have deadchat muted.</span>"
 		return
 
+	message = say_emphasis(message)
+
 	say_dead_direct("[pick("complains","moans","whines","laments","blubbers")], <span class='message'>\"[message]\"</span>", src)
 
 /mob/proc/say_understands(var/mob/other,var/datum/language/speaking = null)

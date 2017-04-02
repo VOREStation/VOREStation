@@ -23,6 +23,7 @@
 	var/image/filling //holds a reference to the current filling overlay
 	var/visible_name = "a syringe"
 	var/time = 30
+	var/drawing = 0
 
 /obj/item/weapon/reagent_containers/syringe/on_reagent_change()
 	update_icon()
@@ -75,7 +76,6 @@
 
 	switch(mode)
 		if(SYRINGE_DRAW)
-
 			if(!reagents.get_free_space())
 				user << "<span class='warning'>The syringe is full.</span>"
 				mode = SYRINGE_INJECT
@@ -98,7 +98,12 @@
 						user << "<span class='warning'>You are unable to locate any blood.</span>"
 						return
 
+					if(drawing)
+						user << "<span class='warning'>You are already drawing blood from [T.name].</span>"
+						return
+
 					var/datum/reagent/B
+					drawing = 1
 					if(istype(T, /mob/living/carbon/human))
 						var/mob/living/carbon/human/H = T
 						if(H.species && !H.should_have_organ(O_HEART))
@@ -106,12 +111,16 @@
 						else
 							if(ismob(H) && H != user)
 								if(!do_mob(user, target, time))
+									drawing = 0
 									return
 							B = T.take_blood(src, amount)
+							drawing = 0
 					else
 						if(!do_mob(user, target, time))
+							drawing = 0
 							return
 						B = T.take_blood(src,amount)
+						drawing = 0
 
 					if (B)
 						reagents.reagent_list += B
@@ -127,7 +136,7 @@
 					user << "<span class='notice'>[target] is empty.</span>"
 					return
 
-				if(!target.is_open_container() && !istype(target, /obj/structure/reagent_dispensers) && !istype(target, /obj/item/slime_extract))
+				if(!target.is_open_container() && !istype(target, /obj/structure/reagent_dispensers) && !istype(target, /obj/item/slime_extract) && !istype(target, /obj/item/weapon/reagent_containers/food))
 					user << "<span class='notice'>You cannot directly remove reagents from this object.</span>"
 					return
 
@@ -199,8 +208,11 @@
 				trans = reagents.trans_to_mob(target, amount_per_transfer_from_this, CHEM_BLOOD)
 				admin_inject_log(user, target, src, contained, trans)
 			else
-				trans = reagents.trans_to(target, amount_per_transfer_from_this)
-			user << "<span class='notice'>You inject [trans] units of the solution. The syringe now contains [src.reagents.total_volume] units.</span>"
+				trans = reagents.trans_to_obj(target, amount_per_transfer_from_this)
+			if(trans)
+				user << "<span class='notice'>You inject [trans] units of the solution. The syringe now contains [src.reagents.total_volume] units.</span>"
+			else
+				user << "<span class='notice'>The syringe is empty.</span>"
 			if (reagents.total_volume <= 0 && mode == SYRINGE_INJECT)
 				mode = SYRINGE_DRAW
 				update_icon()
@@ -364,5 +376,5 @@
 
 /obj/item/weapon/reagent_containers/syringe/steroid/New()
 	..()
-	reagents.add_reagent("adrenaline",5)
+	//reagents.add_reagent("adrenaline",5) //VOREStation Edit - No thanks.
 	reagents.add_reagent("hyperzine",10)

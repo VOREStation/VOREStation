@@ -49,7 +49,11 @@
 		/obj/item/clothing/suit/storage/trench/fluff/octaviouscoat,
 		/obj/item/clothing/under/det/fluff/octavious,
 		/obj/item/clothing/mask/gas/plaguedoctor/fluff/octaviousmask,
-		/obj/item/clothing/head/fedora/fluff/bowler)
+		/obj/item/clothing/head/fedora/fluff/bowler,
+		/obj/item/clothing/shoes/black/cuffs/octavious,
+		/obj/item/weapon/cane/fluff/tasald,
+		/obj/item/clothing/glasses/hud/health/octaviousmonicle
+		)
 
 // jemli:Cirra Mayhem
 /obj/item/weapon/storage/box/fluff/cirra
@@ -76,24 +80,26 @@
 //joanrisu:Joan Risu
 /obj/item/weapon/storage/backpack/dufflebag/sec/fluff/joanrisu
 	name = "Joan's Workbag"
-	desc = "A duffle bag Joan uses to carry her work equipment."
+	desc = "A bag Joan uses to carry her work equipment. It has the 82nd Battle Group Insignia on it."
+	icon_state = "joanbag"
+	icon = 'icons/vore/custom_items_vr.dmi'
+	item_state = "duffle_med"
 	slowdown = 0
 
 	New()
 		..()
 		new /obj/item/clothing/accessory/holster/hip(src)
-		new /obj/item/clothing/suit/storage/fluff/fedcoat/fedcapt(src)
+		new /obj/item/clothing/suit/storage/fluff/modernfedcoat(src)
+		new /obj/item/clothing/head/caphat/formal/fedcover(src)
 		new /obj/item/weapon/card/id/centcom/fluff/joanbadge(src)
 		new /obj/item/weapon/gun/energy/gun/fluff/dominator(src)
 		new /obj/item/clothing/suit/armor/det_suit(src)
 		new /obj/item/fluff/permit/joanrisu(src)
-		new /obj/item/dnalockingchip(src)
 		new /obj/item/weapon/sword/fluff/joanaria(src)
 		new /obj/item/weapon/flame/lighter/zippo/fluff/joan(src)
 		new /obj/item/clothing/under/rank/internalaffairs/fluff/joan(src)
 		new /obj/item/clothing/head/helmet/space/fluff/joan(src)
 		new /obj/item/clothing/suit/space/fluff/joan(src)
-		new /obj/item/device/pda/heads/hos/joanpda(src)
 
 
 
@@ -123,24 +129,6 @@
 		/obj/item/fluff/permit/archermaximus,
 		/obj/item/weapon/gun/projectile/colt/fluff/archercolt)
 
-// arokha:Aronai Kadigan
-/obj/item/weapon/storage/backpack/dufflebag/emt/fluff/aro
-	name = "Aronai's Equipment"
-	desc = "A big dufflebag, containing the stuff Aronai likes to carry with him."
-	slowdown = 0 //HAX!
-
-	New()
-		..()
-		//new /obj/item/clothing/head/helmet/space/fluff/aronai(src)
-		//new /obj/item/clothing/suit/space/fluff/aronai(src)
-		new /obj/item/clothing/head/helmet/space/void/medical/emt/fluff/aronai(src)
-		new /obj/item/clothing/suit/space/void/medical/emt/fluff/aronai(src)
-		new /obj/item/device/suit_cooling_unit(src)
-		new /obj/item/weapon/material/hatchet/tacknife/combatknife(src)
-		new /obj/item/weapon/card/id/centcom/fluff/aro(src)
-		new /obj/item/weapon/reagent_containers/hypospray/fluff/aronai(src)
-		new /obj/item/clothing/glasses/sunglasses/omnihud(src)
-
 //ivymoomoo:Ivy Baladeva
 /obj/item/weapon/storage/backpack/messenger/sec/fluff/ivymoomoo
 	name = "Ivy's Courier"
@@ -153,3 +141,85 @@
 		new /obj/item/weapon/storage/fancy/cigarettes/dromedaryco(src)
 		new /obj/item/weapon/storage/box/matches(src)
 		new /obj/item/weapon/reagent_containers/food/snacks/sliceable/plaincake(src)
+
+//Xsdew:Penelope Allen
+/obj/item/weapon/storage/box/fluff/penelope
+	name = "Penelope's capsule"
+	desc = "A little capsule where a designer's swimsuit is stored."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "capsule"
+	storage_slots = 1
+	foldable = null
+	w_class = ITEMSIZE_SMALL
+	max_w_class = ITEMSIZE_NORMAL
+	can_hold = list(/obj/item/clothing/under/swimsuit/)
+	has_items = list(/obj/item/clothing/under/swimsuit/fluff/penelope)
+
+//Arokha:Aronai Kadigan
+/obj/item/weapon/storage/backpack/satchel/gen/fluff/aronai
+	name = "blue medical satchel"
+	desc = "A medical satchel done up in blue and white."
+
+	New()
+		..() //Might look like a lot... but all small items.
+		new /obj/item/weapon/reagent_containers/hypospray/vr/fluff/aronai(src)
+		new /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff/aro_st(src)
+		new /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff/aro_bt(src)
+		new /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff/aro_bu(src)
+		new /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff/aro_tx(src)
+		//Centcom stuff and permit
+		new /obj/item/weapon/card/id/centcom/fluff/aronai(src)
+		new /obj/item/fluff/permit/aronai_kadigan(src)
+		//new /obj/item/clothing/under/rank/khi/fluff/aronai(src)
+		new /obj/item/clothing/glasses/omnihud/med/fluff/aronai(src)
+		//Gun and holster
+		new /obj/item/weapon/gun/projectile/khi/pistol(src)
+		//new /obj/item/ammo_magazine/c45m/flash(src)
+		new /obj/item/clothing/accessory/holster/leg(src)
+
+/*
+Swimsuits, for general use, to avoid arriving to work with your swimsuit.
+*/
+/obj/item/weapon/storage/box/fluff/swimsuit
+	name = "Black Swimsuit capsule"
+	desc = "A little capsule where a swimsuit is usually stored."
+	storage_slots = 1
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "capsule"
+	foldable = null
+	w_class = ITEMSIZE_SMALL
+	max_w_class = ITEMSIZE_NORMAL
+	can_hold = list(/obj/item/clothing/under/swimsuit/)
+	has_items = list(/obj/item/clothing/under/swimsuit/black)
+
+/obj/item/weapon/storage/box/fluff/swimsuit/blue
+	name = "Blue Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/blue)
+
+/obj/item/weapon/storage/box/fluff/swimsuit/purple
+	name = "Purple Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/purple)
+
+/obj/item/weapon/storage/box/fluff/swimsuit/green
+	name = "Green Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/green)
+
+/obj/item/weapon/storage/box/fluff/swimsuit/red
+	name = "Red Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/red)
+
+/obj/item/weapon/storage/box/fluff/swimsuit/engineering
+	name = "Engineering Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/fluff/engineering)
+
+/obj/item/weapon/storage/box/fluff/swimsuit/science
+	name = "Science Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/fluff/science)
+
+/obj/item/weapon/storage/box/fluff/swimsuit/security
+	name = "Security Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/fluff/security)
+
+/obj/item/weapon/storage/box/fluff/swimsuit/medical
+	name = "Medical Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/fluff/medical)

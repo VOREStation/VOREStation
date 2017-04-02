@@ -9,7 +9,7 @@
 	interests, rampant cyber and bio-augmentation and secretive factions make life on most human \
 	worlds tumultous at best."
 	num_alternate_languages = 3
-	secondary_langs = list("Sol Common")
+	secondary_langs = list(LANGUAGE_SOL_COMMON)
 	name_language = null // Use the first-name last-name generator rather than a language scrambler
 	min_age = 17
 	max_age = 110
@@ -17,7 +17,6 @@
 
 	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_TONE | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
-
 
 /datum/species/human/get_bodytype(var/mob/living/carbon/human/H)
 	return "Human"
@@ -32,12 +31,14 @@
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	primitive_form = "Stok"
 	darksight = 3
-//	gluttonous = 1 // Vorestation edit. Redundant feature.
+	ambiguous_genders = TRUE
+	//gluttonous = 1 //VOREStation Edit - Redundant 
 	slowdown = 0.5
-	brute_mod = 0.8
+	brute_mod = 0.9
+	burn_mod = 0.9
 	num_alternate_languages = 3
-	secondary_langs = list("Sinta'unathi")
-	name_language = "Sinta'unathi"
+	secondary_langs = list(LANGUAGE_UNATHI)
+	name_language = LANGUAGE_UNATHI
 	health_hud_intensity = 2.5
 
 	min_age = 18
@@ -95,10 +96,12 @@
 	slowdown = -0.5
 	brute_mod = 1.15
 	burn_mod =  1.15
-//	gluttonous = 1 // Vorestation edit. Redundant feature.
+	flash_mod = 1.1
+	metabolic_rate = 1.1
+	gluttonous = 1
 	num_alternate_languages = 3
-	secondary_langs = list("Siik")
-	name_language = "Siik"
+	secondary_langs = list(LANGUAGE_SIIK)
+	name_language = LANGUAGE_SIIK
 	health_hud_intensity = 2.5
 
 	min_age = 17
@@ -109,6 +112,7 @@
 	and have accelerated the fledgling culture into the interstellar age. Their history is full of war and highly fractious \
 	governments, something that permeates even to today's times. They prefer colder, tundra-like climates, much like their \
 	home worlds and speak a variety of languages, especially Siik and Akhani."
+
 	cold_level_1 = 200 //Default 260
 	cold_level_2 = 140 //Default 200
 	cold_level_3 = 80  //Default 120
@@ -135,6 +139,15 @@
 		)
 	//cold_discomfort_level = 275 //VOREStation Removal
 
+	has_organ = list(    //No appendix.
+		O_HEART =    /obj/item/organ/internal/heart,
+		O_LUNGS =    /obj/item/organ/internal/lungs,
+		O_LIVER =    /obj/item/organ/internal/liver,
+		O_KIDNEYS =  /obj/item/organ/internal/kidneys,
+		O_BRAIN =    /obj/item/organ/internal/brain,
+		O_EYES =     /obj/item/organ/internal/eyes
+		)
+
 /datum/species/tajaran/equip_survival_gear(var/mob/living/carbon/human/H)
 	..()
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H),slot_shoes)
@@ -152,14 +165,18 @@
 	herbivores on the whole and tend to be co-operative with the other species of the galaxy, although they rarely reveal \
 	the secrets of their empire to their allies."
 	num_alternate_languages = 3
-	secondary_langs = list("Skrellian", "Schechi")
-	name_language = "Skrellian"
+	secondary_langs = list(LANGUAGE_SKRELLIAN, LANGUAGE_SCHECHI)
+	name_language = LANGUAGE_SKRELLIAN
 	health_hud_intensity = 2
 
 	min_age = 19
-	max_age = 80
+	max_age = 130
 
 	darksight = 4
+	flash_mod = 1.2
+	chemOD_mod = 0.9
+
+	ambiguous_genders = TRUE
 
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR
@@ -192,12 +209,15 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
 		)
 
+/datum/species/skrell/can_breathe_water()
+	return TRUE
+
 /datum/species/diona
 	name = "Diona"
 	name_plural = "Dionaea"
 	icobase = 'icons/mob/human_races/r_diona.dmi'
 	deform = 'icons/mob/human_races/r_def_plant.dmi'
-	language = "Rootspeak"
+	language = LANGUAGE_ROOTLOCAL
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/diona)
 	//primitive_form = "Nymph"
 	slowdown = 5
@@ -206,7 +226,8 @@
 	siemens_coefficient = 0.3
 	show_ssd = "completely quiescent"
 	num_alternate_languages = 2
-	name_language = "Rootspeak"
+	secondary_langs = list(LANGUAGE_ROOTGLOBAL)
+	name_language = LANGUAGE_ROOTLOCAL
 	health_hud_intensity = 2.5
 
 	min_age = 1
@@ -244,7 +265,8 @@
 		)
 
 	inherent_verbs = list(
-		/mob/living/carbon/human/proc/diona_split_nymph
+		/mob/living/carbon/human/proc/diona_split_nymph,
+		/mob/living/carbon/human/proc/regenerate
 		)
 
 	warning_low_pressure = 50

@@ -793,6 +793,26 @@ proc // Creates a single icon from a given /atom or /image.  Only the first argu
 			alpha_mask.Blend(image_overlay,ICON_OR)//OR so they are lumped together in a nice overlay.
 		return alpha_mask//And now return the mask.
 
+//getFlatIcon but generates an icon that can face ALL four directions. The only four.
+/proc/getCompoundIcon(atom/A)
+	var/icon/north = getFlatIcon(A,defdir=NORTH,always_use_defdir=1)
+	var/icon/south = getFlatIcon(A,defdir=SOUTH,always_use_defdir=1)
+	var/icon/east = getFlatIcon(A,defdir=EAST,always_use_defdir=1)
+	var/icon/west = getFlatIcon(A,defdir=WEST,always_use_defdir=1)
+
+	//Starts with a blank icon because of byond bugs.
+	var/icon/full = icon('icons/effects/effects.dmi', "icon_state"="nothing")
+
+	full.Insert(north,dir=NORTH)
+	full.Insert(south,dir=SOUTH)
+	full.Insert(east,dir=EAST)
+	full.Insert(west,dir=WEST)
+	qdel(north)
+	qdel(south)
+	qdel(east)
+	qdel(west)
+	return full
+
 /mob/proc/AddCamoOverlay(atom/A)//A is the atom which we are using as the overlay.
 	var/icon/opacity_icon = new(A.icon, A.icon_state)//Don't really care for overlays/underlays.
 	//Now we need to culculate overlays+underlays and add them together to form an image for a mask.
@@ -811,8 +831,8 @@ proc // Creates a single icon from a given /atom or /image.  Only the first argu
 
 /proc/getHologramIcon(icon/A, safety=1)//If safety is on, a new icon is not created.
 	var/icon/flat_icon = safety ? A : new(A)//Has to be a new icon to not constantly change the same icon.
-	flat_icon.ColorTone(rgb(125,180,225))//Let's make it bluish.
-	flat_icon.ChangeOpacity(0.5)//Make it half transparent.
+	//flat_icon.ColorTone(rgb(125,180,225))//Let's make it bluish. //VOREStation Removal for AI Vore effects
+	//flat_icon.ChangeOpacity(0.5)//Make it half transparent. //VOREStation Removal for AI Vore effects
 	var/icon/alpha_mask = new('icons/effects/effects.dmi', "scanline")//Scanline effect.
 	flat_icon.AddAlphaMask(alpha_mask)//Finally, let's mix in a distortion effect.
 	return flat_icon

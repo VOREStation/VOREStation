@@ -72,11 +72,11 @@
 				m_type = 2
 
 		if ("twitch")
-			message = "twitches violently."
+			message = "twitches."
 			m_type = 1
 
-		if ("twitch_s")
-			message = "twitches."
+		if ("twitch_v")
+			message = "twitches violently."
 			m_type = 1
 
 		if ("nod")

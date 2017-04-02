@@ -1,7 +1,7 @@
 /* TUTORIAL
 	"icon" is the file with the HUD/ground icon for the item
 	"icon_state" is the iconstate in this file for the item
-	"icon_override" is the file with the on-mob icons, can be the same file
+	"icon_override" is the file with the on-mob icons, can be the same file (Except for glasses, shoes, and masks.)
 	"item_state" is the iconstate for the on-mob icons:
 		item_state_s is used for worn uniforms on mobs
 		item_state_r and item_state_l are for being held in each hand
@@ -189,10 +189,24 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "modkit"
 
-	from_helmet = /obj/item/clothing/head/helmet/space/void/engineering
-	from_suit = /obj/item/clothing/suit/space/void/engineering
-	to_helmet = /obj/item/clothing/head/helmet/space/void/engineering/fluff/screehelm
-	to_suit = /obj/item/clothing/suit/space/void/engineering/fluff/screespess
+	from_helmet = /obj/item/clothing/head/helmet/space/void
+	from_suit = /obj/item/clothing/suit/space/void
+	to_helmet = /obj/item/clothing/head/helmet/space/void/engineering/hazmat/fluff/screehelm
+	to_suit = /obj/item/clothing/suit/space/void/engineering/hazmat/fluff/screespess
+
+/obj/item/clothing/glasses/omnihud/eng/meson/fluff/scree
+	name = "OCR headset"
+	desc = "A meson-scanning headset with retinal projector and ultrasonic earpiece. This one is set up to read text to the wearer."
+	description_info = "The device appears to be configured as an aid to reading, with an OCR system that highlights text for the wearer and \
+	reads it out through the earpiece, while rendering the meson scan data as high-frequency sound. It's like a HUD for bats."
+
+	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+		if(..())
+			if(H.ckey != "scree")
+				H << "<span class='warning'>This thing isn't set up for your visual spectrum OR your audio range.</span>"
+				return 0
+			else
+				return 1
 
 //General Use
 /obj/item/weapon/flag
@@ -299,8 +313,8 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 			user << "<span class='warning'>This isn't even an ID card you idiot.</span>"
 			return
 
-//arokha:Aronai Kadigan
-/obj/item/weapon/card/id/centcom/fluff/aro
+//arokha:Aronai Kadigan - Centcom ID (Medical dept)
+/obj/item/weapon/card/id/centcom/fluff/aronai
 	registered_name = "CONFIGURE ME"
 	assignment = "CC Medical"
 	var/configured = 0
@@ -312,8 +326,39 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 		configured = 1
 		user << "<span class='notice'>Card settings set.</span>"
 
-//arokha:Aronai Kadigan
-/obj/item/weapon/reagent_containers/hypospray/fluff/aronai
+//arokha:Aronai Kadigan - Bloo glasses
+/obj/item/clothing/glasses/omnihud/med/fluff/aronai
+	name = "AR-K glasses"
+	desc = "The KHI-63-K AR glasses are KHI's normal AR shades for people who don't want implanted AR. \
+	These seem pretty fully featured in terms of medical software."
+	mode = "med"
+	flash_prot = 2
+
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "arohud"
+
+/obj/item/clothing/glasses/omnihud/med/fluff/aronai/verb/toggle_on()
+	set name = "Toggle AR-K HUD"
+	set category = "Object"
+	set desc = "Toggle on/off the AR-K HUD projection."
+	set src in usr
+
+	if(!ishuman(usr)) return
+
+	var/mob/living/carbon/human/H = usr
+
+	if(icon_state == initial(icon_state))
+		icon_state = "[initial(icon_state)]_on"
+		H << "<span class='notice'>You ENABLE the AR-K HUD.</span>"
+	else
+		icon_state = initial(icon_state)
+		H << "<span class='notice'>You DISABLE the AR-K HUD.</span>"
+
+	H.update_inv_glasses()
+
+//arokha:Aronai Kadigan - Fluff hypospray
+/obj/item/weapon/reagent_containers/hypospray/vr/fluff/aronai
 	name = "worn hypospray"
 	desc = "This hypospray seems a bit well-used. The blue band indicates it's from the CentCom medical division. There's an 'A' scratched into the bottom."
 	icon = 'icons/vore/custom_items_vr.dmi'
@@ -321,8 +366,28 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 
 	New()
 		..()
-		reagents.add_reagent("inaprovaline", 5)
-		reagents.add_reagent("tricordrazine", 25)
+		loaded_vial.name = "[initial(loaded_vial.name)] (tricord)"
+		loaded_vial.desc = "30 Tricordrazine"
+		reagents.add_reagent("tricordrazine", 30)
+
+//arokha:Aronai Kadigan - Vials to go with mk2 hypo
+/obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff
+	aro_st
+		name = "vial (stabilize)"
+		desc = "10 Tricordrazine, 10 Dexalin Plus, 5 Tramadol, 5 Inaprovaline"
+		comes_with = list("tricordrazine"=10,"dexalinp"=10,"tramadol"=5,"inaprovaline"=5)
+	aro_bt
+		name = "vial (brute)"
+		desc = "25 Bicaridine, 5 Tricordrazine"
+		comes_with = list("bicaridine"=25,"tricordrazine"=5)
+	aro_bu
+		name = "vial (burn)"
+		desc = "10 Kelotane, 15 Dermaline, 5 Tricordrazine"
+		comes_with = list("kelotane"=10,"dermaline"=15,"tricordrazine"=5)
+	aro_tx
+		name = "vial (toxins)"
+		desc = "25 Dylovene, 2 Hyronalin, 3 Tricordrazine"
+		comes_with = list("anti_toxin"=25,"hyronalin"=2,"tricordrazine"=3)
 
 //Swat43:Fortune Bloise
 /obj/item/weapon/storage/backpack/satchel/fluff/swat43bag
@@ -333,7 +398,6 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 
 	icon_override = 'icons/vore/custom_items_vr.dmi'
 	item_state = "swat43-bag_mob"
-
 
 //Dhaeleena:Dhaeleena M'iar
 /obj/item/clothing/accessory/medal/silver/security/fluff/dhael
@@ -383,11 +447,11 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	to_helmet = /obj/item/clothing/head/helmet/serdy
 	to_suit = /obj/item/clothing/suit/armor/vest/wolftaur/serdy
 
-//arokha:Aronai Kadigan, but anyone is welcome to use it.
+//Lots of people are using this now.
 /obj/item/clothing/accessory/collar/khcrystal
 	name = "life crystal"
 	desc = "A small crystal with four little dots in it. It feels slightly warm to the touch. \
-	Read manual before use! NOTE: Device contains antimatter."
+	Read manual before use! Can be worn, held, or attached to uniform. NOTE: Device contains antimatter."
 	w_class = ITEMSIZE_SMALL
 
 	icon = 'icons/vore/custom_items_vr.dmi'
@@ -486,7 +550,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	<p>This device contains antimatter. Please consult all local regulations when travelling to ensure compliance with local laws.</p>"}
 
 /obj/item/weapon/storage/box/khcrystal
-	name = "KH-LC91-1 carrying case"
+	name = "life crystal case"
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "khlifebox"
 	desc = "This case can only hold the KH-LC91-1 and a manual."
@@ -506,13 +570,21 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	desc = "A cane used by a true gentlemen. Or a clown."
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "browncane"
-	item_state = "browncanemob"
+	item_icons = list (slot_r_hand_str = 'icons/vore/custom_items_vr.dmi', slot_l_hand_str = 'icons/vore/custom_items_vr.dmi')
+	item_state_slots = list(slot_r_hand_str = "browncanemob_r", slot_l_hand_str = "browncanemob_l")
 	flags = CONDUCT
 	force = 5.0
 	throwforce = 7.0
 	w_class = ITEMSIZE_SMALL
 	matter = list(DEFAULT_WALL_MATERIAL = 50)
 	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
+
+	tasald
+		name = "Ornate Walking Cane"
+		desc = "An elaborately made custom walking stick with a dark wooding core, a crimson red gemstone on its head and a steel cover around the bottom. you'd probably hear someone using this down the hall."
+		icon = 'icons/vore/custom_items_vr.dmi'
+
+
 
 /obj/item/weapon/card/id/fluff/ivyholoid
 	name = "Holo-ID"
@@ -529,3 +601,308 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 		user.set_id_info(src)
 		configured = 1
 		user << "<span class='notice'>Card settings set.</span>"
+
+//WickedTempest: Chakat Tempest
+/obj/item/weapon/reagent_containers/hypospray/vr/tempest
+	name = "Tempest's Hypospray"
+	desc = "A custom-made MKII hypospray belonging to Chakat Tempest. There's small print engraved on the handle: A medicine-cat has no time for doubt. Act now, act swiftly."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	item_state = "temphypo"
+	icon_state = "temphypo"
+
+//WickedTempest: Chakat Tempest
+/obj/item/weapon/storage/backpack/saddlebag/tempest
+	name = "Tempest's Saddlebags"
+	desc = "A custom-made set of saddlebags, tailored to Chakat Tempest's exact dimensions, and taste in color! One one side, there's small print stitched in: ...to carry the weight of any responsibility, burden or task."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_override = 'icons/vore/custom_items_vr.dmi'
+	item_state = "tempestsaddlebag"
+	icon_state = "tempestbag"
+	max_storage_space = INVENTORY_DUFFLEBAG_SPACE //Since they play a macro character, no reason to put custom slowdown code on here.
+	slowdown = 0
+	taurtype = /datum/sprite_accessory/tail/taur/feline/tempest
+	no_message = "These saddlebags seem to be fitted for someone else, and keep slipping off!"
+
+//PontifexMinimus: Lucius/Lucia Null
+/obj/item/weapon/fluff/dragor_dot
+	name = "supplemental battery"
+	desc = "A tiny supplemental battery for powering something or someone synthetic."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "dragor_dot"
+	w_class = ITEMSIZE_SMALL
+
+	attack_self(mob/user as mob)
+		if(user.ckey == "pontifexminimus")
+			user.verbs |= /mob/living/carbon/human/proc/shapeshifter_select_gender
+		else
+			return
+
+//The perfect adminboos device?
+/obj/item/device/perfect_tele
+	name = "personal translocator"
+	desc = "Seems absurd, doesn't it? Yet, here we are. Generally considered dangerous contraband unless the user has permission from Central Command."
+	icon = 'icons/obj/device_alt.dmi'
+	icon_state = "hand_tele"
+	w_class = ITEMSIZE_SMALL
+	origin_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_ILLEGAL = 7)
+
+
+	var/list/beacons = list()
+	var/ready = 1
+	var/beacons_left = 3
+	var/obj/item/device/perfect_tele_beacon/destination
+	var/datum/effect/effect/system/spark_spread/spk
+	var/list/warned_users = list()
+	var/list/logged_events = list()
+
+/obj/item/device/perfect_tele/New()
+	..()
+	flags |= NOBLUDGEON
+	spk = new(src)
+	spk.set_up(5, 0, src)
+	spk.attach(src)
+
+/obj/item/device/perfect_tele/Destroy()
+	beacons.Cut()
+	qdel(spk)
+	..()
+
+/obj/item/device/perfect_tele/update_icon()
+	if(ready)
+		icon_state = "[initial(icon_state)]"
+	else
+		icon_state = "[initial(icon_state)]_w"
+
+	..()
+
+/obj/item/device/perfect_tele/attack_self(mob/user)
+	if(!(user.ckey in warned_users))
+		warned_users |= user.ckey
+		alert(user,"This device can be easily used to break ERP preferences due to the nature of teleporting \
+		and tele-vore. Make sure you carefully examine someone's OOC prefs before teleporting them if you are \
+		going to use this device for ERP purposes. This device records all warnings given and teleport events for \
+		admin review in case of pref-breaking, so just don't do it.","OOC WARNING")
+
+	var/choice = alert(user,"What do you want to do?","[src]","Create Beacon","Cancel","Target Beacon")
+	switch(choice)
+		if("Create Beacon")
+			if(beacons_left <= 0)
+				user << "<span class='warning'>\The [src] can't support any more beacons!</span>"
+				return
+
+			var/new_name = html_encode(input(user,"New beacon's name (2-20 char):","[src]") as text|null)
+
+			if(length(new_name) > 20 || length(new_name) < 2)
+				alert("Entered name length invalid (must be longer than 2, no more than than 20).","Error")
+				return
+			if(new_name in beacons)
+				alert("No duplicate names, please. '[new_name]' exists already.","Error")
+				return
+
+			var/obj/item/device/perfect_tele_beacon/nb = new(get_turf(src))
+			nb.tele_name = new_name
+			nb.tele_hand = src
+			nb.creator = user.ckey
+			beacons[new_name] = nb
+			beacons_left--
+			if(isliving(user))
+				var/mob/living/L = user
+				L.put_in_any_hand_if_possible(nb)
+
+		if("Target Beacon")
+			if(!beacons.len)
+				user << "<span class='warning'>\The [src] doesn't have any beacons!</span>"
+			else
+				var/target = input("Which beacon do you target?","[src]") in beacons|null
+				if(target && (target in beacons))
+					destination = beacons[target]
+					user << "<span class='notice'>Destination set to '[target]'.</span>"
+		else
+			return
+
+/obj/item/device/perfect_tele/attackby(obj/W, mob/user)
+	if(istype(W,/obj/item/device/perfect_tele_beacon))
+		var/obj/item/device/perfect_tele_beacon/tb = W
+		if(tb.tele_name in beacons)
+			user << "<span class='notice'>You re-insert \the [tb] into \the [src].</span>"
+			beacons -= tb.tele_name
+			user.unEquip(tb)
+			qdel(tb)
+			beacons_left++
+		else
+			user << "<span class='notice'>\The [tb] doesn't belong to \the [src].</span>"
+			return
+	else
+		..()
+
+/obj/item/device/perfect_tele/afterattack(mob/living/target, mob/living/user, proximity)
+	//No, you can't teleport people from over there.
+	if(!proximity)
+		return
+
+	//Only mob/living need apply.
+	if(!istype(user) || !istype(target))
+		return
+
+	//No, you can't teleport buckled people.
+	if(target.buckled)
+		user << "<span class='warning'>The target appears to be attached to something...</span>"
+		return
+
+	//No, you can't teleport if it's not ready yet.
+	if(!ready)
+		user << "<span class='warning'>\The [src] is still recharging!</span>"
+		return
+
+	//No, you can't teleport if there's no destination.
+	if(!destination)
+		user << "<span class='warning'>\The [src] doesn't have a current valid destination set!</span>"
+		return
+
+	//No, you can't port to or from away missions. Stupidly complicated check.
+	var/turf/uT = get_turf(user)
+	var/turf/dT = get_turf(destination)
+	if(!uT || !dT)
+		return
+
+	if( (uT.z != dT.z) && ( (uT.z > max_default_z_level() ) || (dT.z > max_default_z_level()) ) )
+		user << "<span class='warning'>\The [src] can't teleport you that far!</span>"
+		return
+
+	//Bzzt.
+	ready = 0
+
+	//Destination beacon vore checking
+	var/datum/belly/target_belly
+	var/atom/real_dest = get_turf(destination)
+
+	//Destination beacon is held/eaten
+	if(isliving(destination.loc) && (target != destination.loc)) //We should definitely get televored unless we're teleporting ourselves into ourselves
+		var/mob/living/L = destination.loc
+
+		//Is the beacon IN a belly?
+		target_belly = check_belly(destination)
+
+		//No? Well do they have vore organs at all?
+		if(!target_belly && L.vore_organs.len)
+
+			//If they do, use their picked one.
+			if(L.vore_selected)
+				target_belly = L.vore_organs[L.vore_selected]
+			else
+				//Else just use the first one.
+				var/I = L.vore_organs[1] //We're just going to use 1
+				target_belly = L.vore_organs[I]
+
+	//Televore fluff stuff
+	if(target_belly)
+		real_dest = destination.loc
+		target_belly.internal_contents |= target
+		playsound(target_belly.owner, target_belly.vore_sound, 100, 1)
+		target << "<span class='warning'>\The [src] teleports you right into [target_belly.owner]'s [target_belly.name]!</span>"
+		target_belly.owner << "<span class='warning'>Your [target_belly.name] suddenly has a new occupant!</span>"
+
+	//Phase-out effect
+	phase_out(target,get_turf(target))
+
+	//Move them
+	target.forceMove(real_dest)
+
+	//Phase-in effect
+	phase_in(target,get_turf(target))
+
+	//And any friends!
+	for(var/obj/item/weapon/grab/G in target.contents)
+		if(G.affecting && (G.state >= GRAB_AGGRESSIVE))
+
+			//Phase-out effect for grabbed person
+			phase_out(G.affecting,get_turf(G.affecting))
+
+			//Move them, and televore if necessary
+			G.affecting.forceMove(real_dest)
+			if(target_belly)
+				target_belly.internal_contents |= G.affecting
+				G.affecting << "<span class='warning'>\The [src] teleports you right into [target_belly.owner]'s [target_belly.name]!</span>"
+
+			//Phase-in effect for grabbed person
+			phase_in(G.affecting,get_turf(G.affecting))
+
+	update_icon()
+	spawn(30 SECONDS)
+		if(src) //If we still exist, anyway.
+			ready = 1
+			update_icon()
+
+	logged_events["[world.time]"] = "[user] teleported [target] to [real_dest] [target_belly ? "(Belly: [target_belly.name])" : null]"
+
+/obj/item/device/perfect_tele/proc/phase_out(var/mob/M,var/turf/T)
+
+	if(!M || !T)
+		return
+
+	spk.set_up(5, 0, M)
+	spk.attach(M)
+	playsound(T, "sparks", 50, 1)
+	anim(T,M,'icons/mob/mob.dmi',,"phaseout",,M.dir)
+
+/obj/item/device/perfect_tele/proc/phase_in(var/mob/M,var/turf/T)
+
+	if(!M || !T)
+		return
+
+	spk.start()
+	playsound(T, 'sound/effects/phasein.ogg', 25, 1)
+	playsound(T, 'sound/effects/sparks2.ogg', 50, 1)
+	anim(T,M,'icons/mob/mob.dmi',,"phasein",,M.dir)
+	spk.set_up(5, 0, src)
+	spk.attach(src)
+
+/obj/item/device/perfect_tele_beacon
+	name = "translocator beacon"
+	desc = "That's unusual."
+	icon = 'icons/obj/device_alt.dmi'
+	icon_state = "motion2"
+	w_class = ITEMSIZE_TINY
+
+	var/tele_name
+	var/obj/item/device/perfect_tele/tele_hand
+	var/creator
+	var/warned_users = list()
+
+/obj/item/device/perfect_tele_beacon/New()
+	..()
+	flags |= NOBLUDGEON
+
+/obj/item/device/perfect_tele_beacon/Destroy()
+	tele_name = null
+	tele_hand = null
+	..()
+
+/obj/item/device/perfect_tele_beacon/attack_hand(mob/user)
+	if((user.ckey != creator) && !(user.ckey in warned_users))
+		warned_users |= user.ckey
+		var/choice = alert(user,"This device is a translocator beacon. Having it on your person may mean that anyone \
+		who teleports to this beacon gets teleported into your selected vore-belly. If you are prey-only \
+		or don't wish to potentially have a random person teleported into you, it's suggested that you \
+		not carry this around.","OOC WARNING","Take It","Leave It")
+		if(choice == "Leave It")
+			return
+
+	..()
+
+/obj/item/device/perfect_tele_beacon/attack_self(mob/user)
+	if(!isliving(user))
+		return
+	var/mob/living/L = user
+	var/confirm = alert(user, "You COULD eat the beacon...", "Eat beacon?", "Eat it!", "No, thanks.")
+	if(confirm == "Eat it!")
+		var/bellychoice = input("Which belly?","Select A Belly") in L.vore_organs|null
+		if(bellychoice)
+			var/datum/belly/B = L.vore_organs[bellychoice]
+			user.visible_message("<span class='warning'>[user] is trying to stuff \the [src] into [user.gender == MALE ? "his" : user.gender == FEMALE ? "her" : "their"] [bellychoice]!</span>","<span class='notice'>You begin putting \the [src] into your [bellychoice]!</span>")
+			if(do_after(user,5 SECONDS,src))
+				user.unEquip(src)
+				src.forceMove(user)
+				B.internal_contents |= src
+				user.visible_message("<span class='warning'>[user] eats a telebeacon!</span>","You eat the the beacon!")
+				playsound(user, B.vore_sound, 70, 1)

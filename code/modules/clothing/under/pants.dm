@@ -117,6 +117,11 @@
 	desc = "A pair of sexy, tight black leather chaps."
 	icon_state = "chapsbl"
 
+/obj/item/clothing/under/pants/yogapants
+	name = "yoga pants"
+	desc = "A pair of tight-fitting yoga pants for those lazy days."
+	icon_state = "yogapants"
+
 /*
  * Baggy Pants
  */

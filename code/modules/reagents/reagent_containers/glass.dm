@@ -36,7 +36,7 @@
 		/obj/machinery/disease2/incubator,
 		/obj/machinery/disposal,
 		/mob/living/simple_animal/cow,
-		/mob/living/simple_animal/hostile/retaliate/goat,
+		/mob/living/simple_animal/retaliate/goat,
 		/obj/machinery/computer/centrifuge,
 		/obj/machinery/sleeper,
 		/obj/machinery/smartfridge/,
@@ -93,7 +93,7 @@
 	if(standard_pour_into(user, target))
 		return
 
-	if(reagents.total_volume)
+	if(reagents && reagents.total_volume)
 		user << "<span class='notice'>You splash the solution onto [target].</span>"
 		reagents.splash(target, reagents.total_volume)
 		return

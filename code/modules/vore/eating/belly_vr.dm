@@ -21,12 +21,13 @@
 	var/digest_tickrate = 3					// Modulus this of air controller tick number to iterate gurgles on
 	var/immutable = 0						// Prevents this belly from being deleted
 	var/escapable = 0						// Belly can be resisted out of at any time
-	var/escapetime = 600					// Deciseconds, how long to escape this belly
+	var/escapetime = 60 SECONDS				// Deciseconds, how long to escape this belly
 	var/digestchance = 0					// % Chance of stomach beginning to digest if prey struggles
 	var/absorbchance = 0					// % Chance of stomach beginning to absorb if prey struggles
 	var/escapechance = 0 					// % Chance of prey beginning to escape if prey struggles.
 	var/transferchance = 0 					// % Chance of prey being
-	var/transferlocation = null				// Location that the prey is released if they struggle and get dropped off.
+	var/can_taste = 0						// If this belly prints the flavor of prey when it eats someone.
+	var/datum/belly/transferlocation = null	// Location that the prey is released if they struggle and get dropped off.
 
 	var/tmp/digest_mode = DM_HOLD				// Whether or not to digest. Default to not digest.
 	var/tmp/list/digest_modes = list(DM_HOLD,DM_DIGEST,DM_HEAL,DM_ABSORB,DM_DRAIN,DM_UNABSORB)	// Possible digest modes
@@ -296,7 +297,7 @@
 		internal_contents += ID
 
 	// Posibrains have to be pulled 'out' of their organ version.
-	else if(istype(W,/obj/item/organ/internal/mmi_holder))
+	else if(istype(W,/obj/item/organ/internal/mmi_holder/posibrain))
 		var/obj/item/organ/internal/mmi_holder/MMI = W
 		var/atom/movable/brain = MMI.removed()
 		if(brain)
@@ -412,33 +413,24 @@
 				owner << "<span class='notice'>The attempt to escape from your [name] has failed!</span>"
 				return
 
-		else if(prob(transferchance)) //Next, let's have it see if they end up getting into an even bigger mess then when they started.
-			var/datum/belly/T = transferlocation
-			for(var/K in owner.vore_organs)
-				var/datum/belly/B = owner.vore_organs[K]
-				var/datum/belly/TL = B.transferlocation
-				if(TL != null)
-					B.internal_contents -= R
-					T.internal_contents += R
-					R << "<span class='warning'>Your attempt to escape [name] has failed and your struggles only results in you sliding into [owner]'s [transferlocation]</span>"
-					owner << "<span class='warning'>Someone slid into your [transferlocation] due to their struggling inside your [name]!</span>"
-					return
+		else if(prob(transferchance) && istype(transferlocation)) //Next, let's have it see if they end up getting into an even bigger mess then when they started.
+			internal_contents -= R
+			transferlocation.internal_contents |= R
+			R << "<span class='warning'>Your attempt to escape [name] has failed and your struggles only results in you sliding into [owner]'s [transferlocation]!</span>"
+			owner << "<span class='warning'>Someone slid into your [transferlocation] due to their struggling inside your [name]!</span>"
+			return
 
 		else if(prob(absorbchance)) //After that, let's have it run the absorb chance.
-			R << "<span class='warning'>In responce to your struggling, \the [name] begins to get more active...</span>"
+			R << "<span class='warning'>In response to your struggling, \the [name] begins to get more active...</span>"
 			owner << "<span class='warning'>You feel your [name] beginning to become active!</span>"
-			for(var/K in owner.vore_organs)
-				var/datum/belly/B = owner.vore_organs[K]
-				B.digest_mode = DM_ABSORB
-				return
+			digest_mode = DM_ABSORB
+			return
 
 		else if(prob(digestchance)) //Finally, let's see if it should run the digest chance.
-			R << "<span class='warning'>In responce to your struggling, \the [name] begins to get more active...</span>"
+			R << "<span class='warning'>In response to your struggling, \the [name] begins to get more active...</span>"
 			owner << "<span class='warning'>You feel your [name] beginning to become active!</span>"
-			for(var/K in owner.vore_organs)
-				var/datum/belly/B = owner.vore_organs[K]
-				B.digest_mode = DM_DIGEST
-				return
+			digest_mode = DM_DIGEST
+			return
 		else //Nothing interesting happened.
 			R << "<span class='warning'>But make no progress in escaping [owner]'s [name].</span>"
 			owner << "<span class='warning'>But appears to be unable to make any progress in escaping your [name].</span>"
@@ -461,6 +453,7 @@
 	dupe.digest_burn = digest_burn
 	dupe.digest_tickrate = digest_tickrate
 	dupe.immutable = immutable
+	dupe.can_taste = can_taste
 	dupe.escapable = escapable
 	dupe.escapetime = escapetime
 	dupe.digestchance = digestchance

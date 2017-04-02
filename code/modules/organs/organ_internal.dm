@@ -248,20 +248,23 @@
 
 	if(inflamed == 1)
 		if(prob(5))
-			owner << "<span class='warning'>You feel a stinging pain in your abdomen!</span>"
-			owner.emote("me", 1, "winces slightly.")
+			if(owner.can_feel_pain())
+				owner.custom_pain("You feel a stinging pain in your abdomen!", 25)
 	if(inflamed > 1)
 		if(prob(3))
-			owner << "<span class='warning'>You feel a stabbing pain in your abdomen!</span>"
-			owner.emote("me", 1, "winces painfully.")
+			if(owner.can_feel_pain())
+				owner.custom_pain("You feel a stabbing pain in your abdomen!", 50)
 			owner.adjustToxLoss(1)
 	if(inflamed > 2)
 		if(prob(1))
 			owner.vomit()
+		if(owner.can_feel_pain())
+					owner.custom_pain("You feel a horrible pain in your abdomen!", 70)
 	if(inflamed > 3)
 		if(prob(1))
-			owner << "<span class='danger'>Your abdomen is a world of pain!</span>"
-			owner.Weaken(10)
+			if(owner.can_feel_pain())
+					owner.custom_pain("You feel a stinging pain in your abdomen!", 100)
+					owner.Weaken(10)
 
 			var/obj/item/organ/external/groin = owner.get_organ(BP_GROIN)
 			var/datum/wound/W = new /datum/wound/internal_bleeding(20)

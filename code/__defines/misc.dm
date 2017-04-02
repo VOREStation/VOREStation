@@ -36,6 +36,7 @@
 #define SPECIALROLE_HUD 8 // AntagHUD image.
 #define  STATUS_HUD_OOC 9 // STATUS_HUD without virus DB check for someone being ill.
 #define 	  LIFE_HUD 10 // STATUS_HUD that only reports dead or alive
+#define     TOTAL_HUDS 10 // Total number of HUDs. Like body layers, and other things, it comes up sometimes.
 
 //some colors
 #define COLOR_WHITE   			"#FFFFFF"
@@ -109,6 +110,9 @@
 
 //Area flags, possibly more to come
 #define RAD_SHIELDED 1 //shielded from radiation, clearly
+// VOREStation Edit Begin
+#define BLUE_SHIELDED 2 // shield from bluespace teleportation (telescience)
+// VOREStation Edit End
 
 // Custom layer definitions, supplementing the default TURF_LAYER, MOB_LAYER, etc.
 #define DOOR_OPEN_LAYER 2.7		//Under all objects if opened. 2.7 due to tables being at 2.6

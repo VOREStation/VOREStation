@@ -11,7 +11,7 @@
 	name = "Inflatable barriers"
 	contains = list(/obj/item/weapon/storage/briefcase/inflatable = 3)
 	cost = 20
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/engineering
 	containername = "Inflatable Barrier Crate"
 
 /datum/supply_packs/atmos/canister_empty
@@ -98,7 +98,7 @@
 			/obj/item/weapon/storage/toolbox/emergency = 2,
 			/obj/item/clothing/suit/storage/hazardvest = 2,
 			/obj/item/clothing/suit/storage/vest = 2,
-			/obj/item/weapon/tank/emergency_oxygen/engi = 4,
+			/obj/item/weapon/tank/emergency/oxygen/engi = 4,
 			/obj/item/clothing/suit/space/emergency = 4,
 			/obj/item/clothing/head/helmet/space/emergency = 4,
 			/obj/item/clothing/mask/gas = 4

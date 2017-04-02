@@ -11,6 +11,7 @@ var/list/department_radio_keys = list(
 	  ":s" = "Security",	".s" = "Security",
 	  ":w" = "whisper",		".w" = "whisper",
 	  ":t" = "Mercenary",	".t" = "Mercenary",
+	  ":x" = "Raider",		".x" = "Raider",
 	  ":u" = "Supply",		".u" = "Supply",
 	  ":v" = "Service",		".v" = "Service",
 	  ":p" = "AI Private",	".p" = "AI Private",
@@ -26,6 +27,7 @@ var/list/department_radio_keys = list(
 	  ":S" = "Security",	".S" = "Security",
 	  ":W" = "whisper",		".W" = "whisper",
 	  ":T" = "Mercenary",	".T" = "Mercenary",
+	  ":X" = "Raider",		".X" = "Raider",
 	  ":U" = "Supply",		".U" = "Supply",
 	  ":V" = "Service",		".V" = "Service",
 	  ":P" = "AI Private",	".P" = "AI Private",
@@ -131,6 +133,7 @@ proc/get_radio_key_from_channel(var/channel)
 /mob/living/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="", var/whispering = 0)
 	//If you're muted for IC chat
 	if(client)
+		client.handle_spam_prevention(MUTE_IC)
 		if((client.prefs.muted & MUTE_IC) || say_disabled)
 			src << "<span class='warning'>You cannot speak in IC (Muted).</span>"
 			return
@@ -294,7 +297,7 @@ proc/get_radio_key_from_channel(var/channel)
 
 	//The 'post-say' static speech bubble
 	var/speech_bubble_test = say_test(message)
-	var/image/speech_bubble = image('icons/mob/talk.dmi',src,"h[speech_bubble_test]")
+	var/image/speech_bubble = image('icons/mob/talk_vr.dmi',src,"h[speech_bubble_test]") //VOREStation Edit - Right-side talk icons
 	spawn(30) qdel(speech_bubble)
 
 	//Main 'say' and 'whisper' message delivery

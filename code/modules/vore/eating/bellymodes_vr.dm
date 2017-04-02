@@ -62,8 +62,8 @@
 
 			// Deal digestion damage (and feed the pred)
 			if(!(M.status_flags & GODMODE))
-				M.adjustBruteLoss(2)
-				M.adjustFireLoss(3)
+				M.adjustBruteLoss(digest_brute)
+				M.adjustFireLoss(digest_burn)
 
 				var/offset = (1 + ((M.weight - 137) / 137)) // 130 pounds = .95 140 pounds = 1.02
 				var/difference = owner.size_multiplier / M.size_multiplier

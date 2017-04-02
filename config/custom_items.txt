@@ -57,13 +57,15 @@ item_path: /obj/item/clothing/head/helmet/hos/fluff/lethe
 {
 ckey: arokha
 character_name: Aronai Kadigan
-item_path: /obj/item/weapon/storage/backpack/dufflebag/emt/fluff/aro
+item_path: /obj/item/clothing/under/utility/expeditionary/medical/command
+item_name: centcom medical uniform
+item_desc: A medical uniform straight from Central Command.
 }
 
 {
 ckey: arokha
 character_name: Aronai Kadigan
-item_path: /obj/item/clothing/under/rank/khi/fluff/aro
+item_path: /obj/item/weapon/storage/backpack/satchel/gen/fluff/aronai
 }
 
 # ######## B CKEYS
@@ -101,21 +103,33 @@ item_path: /obj/item/weapon/storage/box/fluff/tasald
 {
 ckey: bwoincognito
 character_name: Octavious Ward
-item_path: /obj/item/clothing/shoes/cuffs/octavious
-}
-
-{
-ckey: bwoincognito
-character_name: Octavious Ward
 item_path: /obj/item/weapon/storage/box/fluff/octavious
 }
 
 # ######## C CKEYS
+{
+ckey: cockatricexl
+character_name: James Holder
+item_path: /obj/item/weapon/disk/data
+}
+
 # ######## D CKEYS
 {
 ckey: dhaeleena
 character_name: Dhaeleena M'iar
 item_path: /obj/item/clothing/accessory/medal/silver/security/fluff/dhael
+}
+
+{
+ckey: dhaeleena
+character_name: Dhaeleena M'iar
+item_path: /obj/item/weapon/gun/projectile/revolver/mateba/fluff/dhael
+}
+
+{
+ckey: dhaeleena
+character_name: Dhaeleena M'iar
+item_path: /obj/item/fluff/permit/dhaeleena_miar
 }
 
 {
@@ -147,6 +161,12 @@ item_path: /obj/item/weapon/gun/energy/stunrevolver
 ckey: eekasqueak
 character_name: Serkii Miishy
 item_path: /obj/item/clothing/shoes/slippers
+}
+
+{
+ckey: eekasqueak
+character_name: Serkii Miishy
+item_path: /obj/item/clothing/under/skirt/fluff/serkii
 }
 
 {
@@ -201,7 +221,7 @@ item_path: /obj/item/weapon/storage/box/fluff/ace
 {
 ckey: jertheace
 character_name: Jeremiah 'Ace' Acacius
-item_path: /obj/item/clothing/shoes/combat
+item_path: /obj/item/clothing/shoes/boots/combat
 }
 
 {
@@ -274,13 +294,19 @@ item_path: /obj/item/device/modkit_conversion/fluff/harmonyspace
 {
 ckey: kisukegema
 character_name: Kisuke 'The Nerd' Gema
-item_path: /obj/item/clothing/glasses/sunglasses/fluff/nerdglasses
+item_path: /obj/item/clothing/glasses/omnihud/kamina
 }  
 
 {
 ckey: Killjaden
 character_name: Lassara Faaira'Nrezi
 item_path: /obj/item/clothing/accessory/storage/knifeharness
+}
+
+{
+ckey: KiwiDaNinja
+character_name: Chakat Taiga
+item_path: /obj/item/clothing/under/fluff/taiga
 }
 
 {
@@ -321,6 +347,12 @@ character_name: Kari Akiren
 item_path: /obj/item/fluff/permit/kari_akiren
 }
 
+{
+ckey: myryan
+character_name: Myryan Karnage-Cunningham
+item_path: /obj/item/weapon/storage/belt/utility/fluff/vulpine
+}
+
 # ######## N CKEYS
 # ######## O CKEYS
 {
@@ -330,6 +362,17 @@ item_path: /obj/item/weapon/melee/fluff/holochain
 }
 
 # ######## P CKEYS
+{
+ckey: pontifexminimus
+character_name: Lucius Null
+item_path: /obj/item/weapon/fluff/dragor_dot
+}
+{
+ckey: pontifexminimus
+character_name: Lucia Null
+item_path: /obj/item/weapon/fluff/dragor_dot
+}
+
 # ######## Q CKEYS
 # ######## R CKEYS
 {
@@ -382,6 +425,12 @@ item_path: /obj/item/clothing/head/fluff/pompom
 }
 
 {
+ckey: scree
+character_name: Scree
+item_path: /obj/item/clothing/glasses/omnihud/eng/meson/fluff/scree
+}
+
+{
 ckey: silencedmp5a5
 character_name: Serdykov Antoz
 item_path: /obj/item/device/modkit_conversion/fluff/serdykit
@@ -421,6 +470,11 @@ item_path: /obj/item/clothing/head/fluff/runac
 # ######## U CKEYS
 # ######## V CKEYS
 {
+ckey: virgo113
+character_name: Verin Raharra
+item_path: /obj/item/clothing/suit/storage/hazardvest/fluff/verin
+}
+{
 ckey: vorrarkul
 character_name: Lucina Dakarim
 item_path: /obj/item/device/pda/heads/cmo/fluff/lucinapda
@@ -442,6 +496,12 @@ item_path: /obj/item/clothing/under/dress/fluff/lucinadress
 ckey: vorrarkul
 character_name: Nyssa Brennan
 item_path: /obj/item/clothing/suit/storage/hooded/wintercoat/cargo
+}
+
+{
+ckey: vorrarkul
+character_name: Theodora Lindt
+item_path: /obj/item/clothing/suit/chococoat
 }
 
 {
@@ -476,12 +536,37 @@ item_path: /obj/item/clothing/glasses/threedglasses
 }
 
 {
+ckey: whiskyrose
+character_name: Vinjj
+item_path: /obj/item/clothing/head/welding/fluff/vinjj
+}
+
+{
 ckey: wickedtemp
 character_name: Chakat Tempest
-item_path: /obj/item/clothing/glasses/hud/health/fluff/wickedtemphud
+item_path: /obj/item/clothing/glasses/omnihud/med/fluff/wickedtemphud
+}
+
+{
+ckey: wickedtemp
+character_name: Chakat Tempest
+item_path: /obj/item/weapon/reagent_containers/hypospray/vr/tempest
+}
+
+{
+ckey: wickedtemp
+character_name: Chakat Tempest
+item_path: /obj/item/weapon/storage/backpack/saddlebag/tempest
 }
 
 # ######## X CKEYS
+
+{
+ckey: Xsdew
+character_name: Penelope Allen
+item_path: /obj/item/weapon/storage/box/fluff/penelope
+}
+
 # ######## Y CKEYS
 # ######## Z CKEYS
 {

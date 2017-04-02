@@ -17,7 +17,7 @@
 
 /datum/surgery_step/open_encased/saw
 	allowed_tools = list(
-	/obj/item/weapon/circular_saw = 100, \
+	/obj/item/weapon/surgical/circular_saw = 100, \
 	/obj/item/weapon/material/hatchet = 75
 	)
 
@@ -38,7 +38,7 @@
 
 		user.visible_message("[user] begins to cut through [target]'s [affected.encased] with \the [tool].", \
 		"You begin to cut through [target]'s [affected.encased] with \the [tool].")
-		target.custom_pain("Something hurts horribly in your [affected.name]!",1)
+		target.custom_pain("Something hurts horribly in your [affected.name]!", 60)
 		..()
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -66,7 +66,7 @@
 
 /datum/surgery_step/open_encased/retract
 	allowed_tools = list(
-	/obj/item/weapon/retractor = 100, 	\
+	/obj/item/weapon/surgical/retractor = 100, 	\
 	/obj/item/weapon/crowbar = 75
 	)
 
@@ -88,7 +88,7 @@
 		var/msg = "[user] starts to force open the [affected.encased] in [target]'s [affected.name] with \the [tool]."
 		var/self_msg = "You start to force open the [affected.encased] in [target]'s [affected.name] with \the [tool]."
 		user.visible_message(msg, self_msg)
-		target.custom_pain("Something hurts horribly in your [affected.name]!",1)
+		target.custom_pain("Something hurts horribly in your [affected.name]!", 40)
 		..()
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -122,7 +122,7 @@
 
 /datum/surgery_step/open_encased/close
 	allowed_tools = list(
-	/obj/item/weapon/retractor = 100, 	\
+	/obj/item/weapon/surgical/retractor = 100, 	\
 	/obj/item/weapon/crowbar = 75
 	)
 
@@ -145,7 +145,7 @@
 		var/msg = "[user] starts bending [target]'s [affected.encased] back into place with \the [tool]."
 		var/self_msg = "You start bending [target]'s [affected.encased] back into place with \the [tool]."
 		user.visible_message(msg, self_msg)
-		target.custom_pain("Something hurts horribly in your [affected.name]!",1)
+		target.custom_pain("Something hurts horribly in your [affected.name]!", 100)
 		..()
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -179,7 +179,7 @@
 
 /datum/surgery_step/open_encased/mend
 	allowed_tools = list(
-	/obj/item/weapon/bonegel = 100,	\
+	/obj/item/weapon/surgical/bonegel = 100,	\
 	/obj/item/weapon/screwdriver = 75
 	)
 
@@ -202,7 +202,7 @@
 		var/msg = "[user] starts applying \the [tool] to [target]'s [affected.encased]."
 		var/self_msg = "You start applying \the [tool] to [target]'s [affected.encased]."
 		user.visible_message(msg, self_msg)
-		target.custom_pain("Something hurts horribly in your [affected.name]!",1)
+		target.custom_pain("Something hurts horribly in your [affected.name]!", 100)
 		..()
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)

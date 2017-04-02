@@ -1,4 +1,4 @@
-/obj/item/weapon/reagent_containers/food/snacks/breadslice/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/weapon/reagent_containers/food/snacks/slice/bread/attackby(obj/item/W as obj, mob/user as mob)
 
 	if(istype(W,/obj/item/weapon/material/shard) || istype(W,/obj/item/weapon/reagent_containers/food/snacks))
 		var/obj/item/weapon/reagent_containers/food/snacks/csandwich/S = new(get_turf(src))
@@ -19,19 +19,19 @@
 
 	var/sandwich_limit = 4
 	for(var/obj/item/O in ingredients)
-		if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/breadslice))
+		if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/slice/bread))
 			sandwich_limit += 4
 
-	if(src.contents.len > sandwich_limit)
-		user << "\red If you put anything else on \the [src] it's going to collapse."
-		return
-	else if(istype(W,/obj/item/weapon/material/shard))
+	if(istype(W,/obj/item/weapon/material/shard))
 		user << "\blue You hide [W] in \the [src]."
 		user.drop_item()
 		W.loc = src
 		update()
 		return
 	else if(istype(W,/obj/item/weapon/reagent_containers/food/snacks))
+		if(src.contents.len > sandwich_limit)
+			user << "\red If you put anything else on \the [src] it's going to collapse."
+			return
 		user << "\blue You layer [W] over \the [src]."
 		var/obj/item/weapon/reagent_containers/F = W
 		F.reagents.trans_to_obj(src, F.reagents.total_volume)

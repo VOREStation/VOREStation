@@ -40,18 +40,28 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 
 obj/var/contaminated = 0
 
+obj/var/phoronproof = 0
+
 
 /obj/item/proc/can_contaminate()
 	//Clothing and backpacks can be contaminated.
-	if(flags & PHORONGUARD) return 0
-	else if(istype(src,/obj/item/weapon/storage/backpack)) return 0 //Cannot be washed :(
-	else if(istype(src,/obj/item/clothing)) return 1
+	if(flags & PHORONGUARD)
+		return 0
+	else if(phoronproof == 1)
+		return 0
+	else if(istype(src,/obj/item/weapon/storage/backpack))
+		return 0 //Cannot be washed :(
+	else if(istype(src,/obj/item/clothing))
+		return 1
 
 /obj/item/proc/contaminate()
 	//Do a contamination overlay? Temporary measure to keep contamination less deadly than it was.
-	if(!contaminated)
-		contaminated = 1
-		overlays += contamination_overlay
+	if(!can_contaminate())
+		return
+	else
+		if(!contaminated)
+			contaminated = 1
+			overlays += contamination_overlay
 
 /obj/item/proc/decontaminate()
 	contaminated = 0
@@ -85,14 +95,14 @@ obj/var/contaminated = 0
 		return
 
 	//Burn skin if exposed.
-	if(vsc.plc.SKIN_BURNS)
+	if(vsc.plc.SKIN_BURNS && (species.breath_type != "phoron"))
 		if(!pl_head_protected() || !pl_suit_protected())
 			burn_skin(0.75)
 			if(prob(20)) src << "<span class='danger'>Your skin burns!</span>"
 			updatehealth()
 
 	//Burn eyes if exposed.
-	if(vsc.plc.EYE_BURNS)
+	if(vsc.plc.EYE_BURNS && (species.breath_type != "phoron"))
 		if(!head)
 			if(!wear_mask)
 				burn_eyes()
@@ -108,12 +118,11 @@ obj/var/contaminated = 0
 						burn_eyes()
 
 	//Genetic Corruption
-	if(vsc.plc.GENETIC_CORRUPTION)
+	if(vsc.plc.GENETIC_CORRUPTION && (species.breath_type != "phoron"))
 		if(rand(1,10000) < vsc.plc.GENETIC_CORRUPTION)
 			randmutb(src)
 			src << "<span class='danger'>High levels of toxins cause you to spontaneously mutate!</span>"
 			domutcheck(src,null)
-
 
 /mob/living/carbon/human/proc/burn_eyes()
 	var/obj/item/organ/internal/eyes/E = internal_organs_by_name[O_EYES]

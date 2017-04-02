@@ -1,16 +1,17 @@
 ///////////////////// Mob Living /////////////////////
 /mob/living
 	var/digestable = 1					// Can the mob be digested inside a belly?
-	var/datum/belly/vore_selected		// Default to no vore capability.
+	var/vore_selected					// Default to no vore capability.
 	var/list/vore_organs = list()		// List of vore containers inside a mob
 	var/absorbed = 0					// If a mob is absorbed into another
 	var/weight = 137					// Weight for mobs for weightgain system
 	var/weight_gain = 1 				// How fast you gain weight
 	var/weight_loss = 0.5 				// How fast you lose weight
-	var/egg_type = "egg" 					// Default egg type.
+	var/egg_type = "egg" 				// Default egg type.
 	var/feral = 0 						// How feral the mob is, if at all. Does nothing for non xenochimera at the moment.
 	var/reviving = 0					// Only used for creatures that have the xenochimera regen ability, so far.
 	var/metabolism = 0.0015
+	var/vore_taste = null				// What the character tastes like
 
 //
 // Hook for generic creation of stuff on new creatures
@@ -18,6 +19,7 @@
 /hook/living_new/proc/vore_setup(mob/living/M)
 	M.verbs += /mob/living/proc/insidePanel
 	M.verbs += /mob/living/proc/escapeOOC
+	M.verbs += /mob/living/proc/lick
 
 	//Tries to load prefs if a client is present otherwise gives freebie stomach
 	if(!M.vore_organs || !M.vore_organs.len)
@@ -38,6 +40,7 @@
 				B.immutable = 1
 				B.name = "Stomach"
 				B.inside_flavor = "It appears to be rather warm and wet. Makes sense, considering it's inside \the [M.name]."
+				B.can_taste = 1
 				M.vore_organs[B.name] = B
 				M.vore_selected = B.name
 
@@ -66,84 +69,74 @@
 // Handle being clicked, perhaps with something to devour
 //
 /mob/living/proc/vore_attackby(obj/item/I,mob/user)
-	//Things we can eat with vore code
-	var/list/vore_items = list(
-		/obj/item/weapon/grab,
-		/obj/item/weapon/holder/micro,
-		/obj/item/device/radio/beacon)
+	//Handle case: /obj/item/weapon/grab
+	if(istype(I,/obj/item/weapon/grab))
+		var/obj/item/weapon/grab/G = I
 
-	if(!(I.type in vore_items))
-		return 0
+		//Has to be aggressive grab, has to be living click-er and non-silicon grabbed
+		if((G.state >= GRAB_AGGRESSIVE) && (isliving(user) && !issilicon(G.affecting)))
 
-	switch(I.type)
-	//Handle case: /obj/item/weappn/grab
-		if(/obj/item/weapon/grab)
-			var/obj/item/weapon/grab/G = I
-
-			//Has to be aggressive grab, has to be living click-er and non-silicon grabbed
-			if((G.state >= GRAB_AGGRESSIVE) && (isliving(user) && !issilicon(G.affecting)))
-
-				var/mob/living/attacker = user  // Typecast to living
-
-				// src is the mob clicked on
-
-				///// If grab clicked on grabber
-				if((src == G.assailant) && (is_vore_predator(src)))
-					if (src.feed_grabbed_to_self(src, G.affecting))
-						qdel(G)
-						return 1
-					else
-						log_debug("[attacker] attempted to feed [G.affecting] to [user] ([user.type]) but it failed.")
-
-				///// If grab clicked on grabbed
-				else if((src == G.affecting) && (attacker.a_intent == I_GRAB) && (attacker.zone_sel.selecting == BP_TORSO) && (is_vore_predator(G.affecting)))
-					if (attacker.feed_self_to_grabbed(attacker, G.affecting))
-						qdel(G)
-						return 1
-					else
-						log_debug("[attacker] attempted to feed [user] to [G.affecting] ([G.affecting.type]) but it failed.")
-
-				///// If grab clicked on anyone else
-				else if((src != G.affecting) && (src != G.assailant) && (is_vore_predator(src)))
-					if (attacker.feed_grabbed_to_other(attacker, G.affecting, src))
-						qdel(G)
-						return 1
-					else
-						log_debug("[attacker] attempted to feed [G.affecting] to [src] ([src.type]) but it failed.")
-
-	//Handle case: /obj/item/weapon/holder
-		if(/obj/item/weapon/holder/micro)
-			var/obj/item/weapon/holder/H = I
-
-			if(!isliving(user)) return 0 // Return 0 to continue upper procs
 			var/mob/living/attacker = user  // Typecast to living
 
-			if (is_vore_predator(src))
-				for (var/mob/living/M in H.contents)
-					if (attacker.eat_held_mob(attacker, M, src))
-						H.contents -= M
-						if (H.held_mob == M)
-							H.held_mob = null
-				return 1 //Return 1 to exit upper procs
-			else
-				log_debug("[attacker] attempted to feed [H.contents] to [src] ([src.type]) but it failed.")
+			// src is the mob clicked on
 
-	//Handle case: /obj/item/device/radio/beacon
-		if(/obj/item/device/radio/beacon)
-			var/confirm = alert(user, "[src == user ? "Eat the beacon?" : "Feed the beacon to [src]?"]", "Confirmation", "Yes!", "Cancel")
-			if(confirm == "Yes!")
-				var/bellychoice = input("Which belly?","Select A Belly") in src.vore_organs
-				var/datum/belly/B = src.vore_organs[bellychoice]
-				src.visible_message("<span class='warning'>[user] is trying to stuff a beacon into [src]'s [bellychoice]!</span>","<span class='warning'>[user] is trying to stuff a beacon into you!</span>")
-				if(do_after(user,30,src))
-					user.drop_item()
-					I.loc = src
-					B.internal_contents += I
-					src.visible_message("<span class='warning'>[src] is fed the beacon!</span>","You're fed the beacon!")
-					playsound(src, B.vore_sound, 100, 1)
+			///// If grab clicked on grabber
+			if((src == G.assailant) && (is_vore_predator(src)))
+				if (src.feed_grabbed_to_self(src, G.affecting))
+					qdel(G)
 					return 1
 				else
-					return 1 //You don't get to hit someone 'later'
+					log_debug("[attacker] attempted to feed [G.affecting] to [user] ([user.type]) but it failed.")
+
+			///// If grab clicked on grabbed
+			else if((src == G.affecting) && (attacker.a_intent == I_GRAB) && (attacker.zone_sel.selecting == BP_TORSO) && (is_vore_predator(G.affecting)))
+				if (attacker.feed_self_to_grabbed(attacker, G.affecting))
+					qdel(G)
+					return 1
+				else
+					log_debug("[attacker] attempted to feed [user] to [G.affecting] ([G.affecting.type]) but it failed.")
+
+			///// If grab clicked on anyone else
+			else if((src != G.affecting) && (src != G.assailant) && (is_vore_predator(src)))
+				if (attacker.feed_grabbed_to_other(attacker, G.affecting, src))
+					qdel(G)
+					return 1
+				else
+					log_debug("[attacker] attempted to feed [G.affecting] to [src] ([src.type]) but it failed.")
+
+	//Handle case: /obj/item/weapon/holder
+	else if(istype(I,/obj/item/weapon/holder))
+		var/obj/item/weapon/holder/H = I
+
+		if(!isliving(user)) return 0 // Return 0 to continue upper procs
+		var/mob/living/attacker = user  // Typecast to living
+
+		if (is_vore_predator(src))
+			for (var/mob/living/M in H.contents)
+				if (attacker.eat_held_mob(attacker, M, src))
+					H.contents -= M
+					if (H.held_mob == M)
+						H.held_mob = null
+			return 1 //Return 1 to exit upper procs
+		else
+			log_debug("[attacker] attempted to feed [H.contents] to [src] ([src.type]) but it failed.")
+
+	//Handle case: /obj/item/device/radio/beacon
+	else if(istype(I,/obj/item/device/radio/beacon))
+		var/confirm = alert(user, "[src == user ? "Eat the beacon?" : "Feed the beacon to [src]?"]", "Confirmation", "Yes!", "Cancel")
+		if(confirm == "Yes!")
+			var/bellychoice = input("Which belly?","Select A Belly") in src.vore_organs
+			var/datum/belly/B = src.vore_organs[bellychoice]
+			src.visible_message("<span class='warning'>[user] is trying to stuff a beacon into [src]'s [bellychoice]!</span>","<span class='warning'>[user] is trying to stuff a beacon into you!</span>")
+			if(do_after(user,30,src))
+				user.drop_item()
+				I.loc = src
+				B.internal_contents += I
+				src.visible_message("<span class='warning'>[src] is fed the beacon!</span>","You're fed the beacon!")
+				playsound(src, B.vore_sound, 100, 1)
+				return 1
+			else
+				return 1 //You don't get to hit someone 'later'
 
 	return 0
 
@@ -218,6 +211,7 @@
 
 	P.digestable = src.digestable
 	P.belly_prefs = src.vore_organs
+	P.vore_taste = src.vore_taste
 
 	return 1
 
@@ -233,12 +227,46 @@
 
 	src.digestable = P.digestable
 	src.vore_organs = list()
+	src.vore_taste = P.vore_taste
 
 	for(var/I in P.belly_prefs)
 		var/datum/belly/Bp = P.belly_prefs[I]
 		src.vore_organs[Bp.name] = Bp.copy(src)
 
 	return 1
+
+//
+// Clearly super important. Obviously.
+//
+/mob/living/proc/lick(var/mob/living/tasted in oview(1))
+	set name = "Lick Someone"
+	set category = "IC"
+	set desc = "Lick someone nearby!"
+
+	if(!istype(tasted))
+		return
+
+	if(!src.canClick() || incapacitated(INCAPACITATION_ALL))
+		return
+
+	src.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	var/taste_message = ""
+	if(tasted.vore_taste && (tasted.vore_taste != ""))
+		taste_message += "[tasted.vore_taste]"
+	else
+		if(ishuman(tasted))
+			var/mob/living/carbon/human/H = tasted
+			taste_message += "a normal [H.custom_species ? H.custom_species : H.species.name]"
+		else
+			taste_message += "a plain old normal [tasted]"
+
+	if(ishuman(tasted))
+		var/mob/living/carbon/human/H = tasted
+		if(H.touching.reagent_list.len) //Just the first one otherwise I'll go insane.
+			var/datum/reagent/R = H.touching.reagent_list[1]
+			taste_message += " You also get the flavor of [R.taste_description] from something on them"
+
+	src.visible_message("<span class='warning'>[src] licks [tasted]!</span>","<span class='notice'>You lick [tasted]. They taste rather like [taste_message].</span>","<b>Slurp!</b>")
 
 //
 // OOC Escape code for pref-breaking or AFK preds
@@ -268,11 +296,12 @@
 	//You're in a PC!
 	else if(istype(src.loc,/mob/living))
 		var/mob/living/carbon/pred = src.loc
-		var/confirm = alert(src, "You're in a player-character. This is for escaping from preference-breaking and if your predator disconnects/AFKs. If you are in more than one pred, use this more than once. If your preferences were being broken, please admin-help as well.", "Confirmation", "Okay", "Cancel")
+		var/confirm = alert(src, "You're in a player-character. This is for escaping from preference-breaking and if your predator disconnects/AFKs. If you are in more than one pred. If your preferences were being broken, please admin-help as well.", "Confirmation", "Okay", "Cancel")
 		if(confirm == "Okay")
 			for(var/O in pred.vore_organs)
 				var/datum/belly/CB = pred.vore_organs[O]
-				CB.release_specific_contents(src)
+				CB.internal_contents -= src //Clean them if we can, otherwise it will get GC'd by the vore code later.
+			src.forceMove(get_turf(loc))
 			message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(pred)] (PC) ([pred ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[pred.x];Y=[pred.y];Z=[pred.z]'>JMP</a>" : "null"])")
 
 	//You're in a dogborg!
@@ -326,6 +355,13 @@
 	var/attempt_msg = "ERROR: Vore message couldn't be created. Notify a dev. (at)"
 	var/success_msg = "ERROR: Vore message couldn't be created. Notify a dev. (sc)"
 
+	//Final distance check. Time has passed, menus have come and gone. Can't use do_after adjacent because doesn't behave for held micros
+	var/user_to_pred = get_dist(get_turf(user),get_turf(pred))
+	var/user_to_prey = get_dist(get_turf(user),get_turf(prey))
+
+	if(user_to_pred > 1 || user_to_prey > 1)
+		return 0
+
 	// Prepare messages
 	if(user == pred) //Feeding someone to yourself
 		attempt_msg = text("<span class='warning'>[] is attemping to [] [] into their []!</span>",pred,lowertext(belly_target.vore_verb),prey,lowertext(belly_target.name))
@@ -339,20 +375,32 @@
 
 	// Now give the prey time to escape... return if they did
 	var/swallow_time = istype(prey, /mob/living/carbon/human) ? belly_target.human_prey_swallow_time : belly_target.nonhuman_prey_swallow_time
-	/* POLARISTODO - Unnecessary?
-	if (!do_mob(user, prey))
-		return 0; // User is not able to act upon prey
-	*/
-	if(!do_after(user, swallow_time))
+
+	//Timer and progress bar
+	if(!do_after(user, swallow_time, prey))
 		return 0 // Prey escpaed (or user disabled) before timer expired.
 
 	// If we got this far, nom successful! Announce it!
 	user.visible_message(success_msg)
-	playsound(user, belly_target.vore_sound, 100, 1)
+	if(belly_target.vore_sound)
+		playsound(user, belly_target.vore_sound, 100, 1)
 
 	// Actually shove prey into the belly.
 	belly_target.nom_mob(prey, user)
 	user.update_icons()
+
+	// Flavor handling
+	var/flavor_message = ""
+	if(belly_target.can_taste && prey.vore_taste && (prey.vore_taste != ""))
+		flavor_message += "[prey.vore_taste]."
+	if(ishuman(prey))
+		var/mob/living/carbon/human/H = prey
+		if(H.touching.reagent_list.len) //Just the first one otherwise I'll go insane.
+			var/datum/reagent/R = H.touching.reagent_list[1]
+			flavor_message += " You also get the flavor of [R.taste_description] from something on them"
+
+	if(flavor_message != "")
+		src << "<span class='notice'>[prey] tastes of [flavor_message].</span>"
 
 	// Inform Admins
 	if (pred == user)

@@ -126,6 +126,12 @@
 	do_colouration = 1
 	extra_overlay = "mouseinner"
 
+/datum/sprite_accessory/ears/mousehcno
+	name = "mouse, colorable, no inner"
+	desc = ""
+	icon_state = "mouse"
+	do_colouration = 1
+
 /datum/sprite_accessory/ears/wolfhc
 	name = "wolf, colorable"
 	desc = ""
@@ -157,6 +163,11 @@
 	desc = ""
 	icon_state = "bunny"
 	do_colouration = 1
+
+/datum/sprite_accessory/ears/antlers
+	name = "antlers"
+	desc = ""
+	icon_state = "antlers"
 
 // Special snowflake ears go below here.
 
@@ -214,6 +225,12 @@
 	icon_state = "tigressears"
 	ckeys_allowed = list("hoodoo")
 
+/datum/sprite_accessory/ears/molenar_inkling
+	name = "teal mature inkling hair (Kari Akiren)"
+	desc = ""
+	icon_state = "molenar-tentacle"
+	ckeys_allowed = list("molenar")
+
 /*
 ////////////////////////////
 /  =--------------------=  /
@@ -231,6 +248,7 @@
 	var/show_species_tail = 0 // If false, do not render species' tail.
 	var/clothing_can_hide = 1 // If true, clothing with HIDETAIL hides it
 	var/desc = "You should not see this..."
+	var/ani_state //State when wagging/animated
 
 /datum/sprite_accessory/tail/invisible
 	name = "hide species-sprite tail"
@@ -301,6 +319,7 @@
 	desc = ""
 	icon_state = "moth"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/moth
 	name = "moth wings"
@@ -351,22 +370,22 @@
 	do_colouration = 1
 	extra_overlay = "wolfinner"
 
-/datum/sprite_accessory/tail/mouse_grey
-	name = "mouse, grey"
+/datum/sprite_accessory/tail/mouse_pink
+	name = "mouse, pink"
 	desc = ""
-	icon_state = "mouse-grey"
-
-/datum/sprite_accessory/tail/crossfox
-	name = "cross fox"
-	desc = ""
-	icon_state = "crossfox"
+	icon_state = "mouse-pink"
 
 /datum/sprite_accessory/tail/mouse
 	name = "mouse, colorable"
 	desc = ""
 	icon_state = "mouse"
 	do_colouration = 1
-	extra_overlay = "mouseinner"
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/crossfox
+	name = "cross fox"
+	desc = ""
+	icon_state = "crossfox"
 
 /datum/sprite_accessory/tail/bee
 	name = "bee thorax (+wings)"
@@ -499,10 +518,19 @@
 	icon_state = "aronai"
 	ckeys_allowed = list("arokha")
 
+/datum/sprite_accessory/tail/sepulchre
+	name = "demon wings (Sepulchre)"
+	desc = ""
+	icon_state = "sepulchre_wings"
+	ckeys_allowed = list("sepulchre")
+
 /datum/sprite_accessory/tail/feathered
-	name = "feathered wings"
+	name = "feathered wings, colorable"
 	desc = ""
 	icon_state = "feathered"
+	show_species_tail = 1
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/redpanda
 	name = "red panda"
@@ -526,6 +554,34 @@
 	desc = ""
 	icon_state = "tailmaw"
 	color_blend_mode = ICON_MULTIPLY
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/curltail
+	name = "curltail (vwag)"
+	desc = ""
+	icon_state = "curltail"
+	ani_state = "curltail_w"
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/shorttail
+	name = "shorttail (vwag)"
+	desc = ""
+	icon_state = "straighttail"
+	ani_state = "straighttail_w"
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/tiger_new
+	name = "tiger tail (vwag)"
+	desc = ""
+	icon_state = "tigertail"
+	ani_state = "tigertail_w"
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/vulp_new
+	name = "new vulp tail (vwag)"
+	desc = ""
+	icon_state = "vulptail"
+	ani_state = "vulptail_w"
 	do_colouration = 1
 
 //For all species tails. Includes haircolored tails.
@@ -688,6 +744,13 @@
 	icon_state = "seromitail_feathers_hc_s"
 	do_colouration = 1
 
+/datum/sprite_accessory/tail/special/vulpan
+	name = "vulpankin, colorable"
+	desc = ""
+	icon_state = "vulptail_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/tail/zenghu_taj
 	name = "Zeng-Hu Tajaran Synth tail"
 	desc = ""
@@ -740,3 +803,19 @@
 /datum/sprite_accessory/tail/taur/feline
 	name = "Feline"
 	icon_state = "feline_s"
+
+/datum/sprite_accessory/tail/taur/slug
+	name = "Slug"
+	icon_state = "slug_s"
+
+//wickedtemp: Chakat Tempest
+/datum/sprite_accessory/tail/taur/feline/tempest
+	name = "Feline (wickedtemp)"
+	icon_state = "tempest_s"
+	ckeys_allowed = list("wickedtemp")
+
+//silencedmp5a5: Serdykov Antoz
+/datum/sprite_accessory/tail/taur/wolf/serdy
+	name = "CyberSerdy (silencedmp5a5)"
+	icon_state = "serdy_s"
+	ckeys_allowed = list("silencedmp5a5")

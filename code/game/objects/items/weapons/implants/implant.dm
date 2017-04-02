@@ -54,6 +54,18 @@
 		part.implants.Remove(src)
 	..()
 
+/obj/item/weapon/implant/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/weapon/implanter))
+		var/obj/item/weapon/implanter/implanter = I
+		if(implanter.imp)
+			return // It's full.
+		user.drop_from_inventory(src)
+		forceMove(implanter)
+		implanter.imp = src
+		implanter.update()
+	else
+		..()
+
 /obj/item/weapon/implant/tracking
 	name = "tracking implant"
 	desc = "Track with this."
@@ -89,6 +101,10 @@ Implant Specifics:<BR>"}
 				meltdown()
 		if(2)
 			delay = rand(5*60*10,15*60*10)	//from 5 to 15 minutes of free time
+		if(3)
+			delay = rand(2*60*10,5*60*10)	//from 2 to 5 minutes of free time
+		if(4)
+			delay = rand(0.5*60*10,1*60*10)	//from .5 to 1 minutes of free time
 
 	spawn(delay)
 		malfunction--
@@ -215,10 +231,22 @@ Implant Specifics:<BR>"}
 		return
 	malfunction = MALFUNCTION_TEMPORARY
 	switch (severity)
-		if (2.0)	//Weak EMP will make implant tear limbs off.
+		if (4)	//Weak EMP will make implant tear limbs off.
+			if (prob(25))
+				small_boom()
+		if (3)	//Weak EMP will make implant tear limbs off.
 			if (prob(50))
 				small_boom()
-		if (1.0)	//strong EMP will melt implant either making it go off, or disarming it
+		if (2)	//strong EMP will melt implant either making it go off, or disarming it
+			if (prob(70))
+				if (prob(75))
+					small_boom()
+				else
+					if (prob(13))
+						activate()		//chance of bye bye
+					else
+						meltdown()		//chance of implant disarming
+		if (1)	//strong EMP will melt implant either making it go off, or disarming it
 			if (prob(70))
 				if (prob(50))
 					small_boom()
@@ -308,7 +336,13 @@ the implant may become unstable and either pre-maturely inject the subject or si
 			if(prob(60))
 				activate(20)
 		if(2)
-			if(prob(30))
+			if(prob(40))
+				activate(20)
+		if(3)
+			if(prob(40))
+				activate(5)
+		if(4)
+			if(prob(20))
 				activate(5)
 
 	spawn(20)
@@ -321,7 +355,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 /obj/item/weapon/implant/loyalty/get_data()
 	var/dat = {"
 <b>Implant Specifications:</b><BR>
-<b>Name:</b> [company_name] Employee Management Implant<BR>
+<b>Name:</b> [using_map.company_name] Employee Management Implant<BR>
 <b>Life:</b> Ten years.<BR>
 <b>Important Notes:</b> Personnel injected with this device tend to be much more loyal to the company.<BR>
 <HR>
@@ -337,11 +371,11 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	var/mob/living/carbon/human/H = M
 	var/datum/antagonist/antag_data = get_antag_data(H.mind.special_role)
 	if(antag_data && (antag_data.flags & ANTAG_IMPLANT_IMMUNE))
-		H.visible_message("[H] seems to resist the implant!", "You feel the corporate tendrils of [company_name] try to invade your mind!")
+		H.visible_message("[H] seems to resist the implant!", "You feel the corporate tendrils of [using_map.company_name] try to invade your mind!")
 		return 0
 	else
 		clear_antag_roles(H.mind, 1)
-		H << "<span class='notice'>You feel a surge of loyalty towards [company_name].</span>"
+		H << "<span class='notice'>You feel a surge of loyalty towards [using_map.company_name].</span>"
 	return 1
 
 
@@ -391,7 +425,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 /obj/item/weapon/implant/death_alarm/get_data()
 	var/dat = {"
 <b>Implant Specifications:</b><BR>
-<b>Name:</b> [company_name] \"Profit Margin\" Class Employee Lifesign Sensor<BR>
+<b>Name:</b> [using_map.company_name] \"Profit Margin\" Class Employee Lifesign Sensor<BR>
 <b>Life:</b> Activates upon death.<BR>
 <b>Important Notes:</b> Alerts crew to crewmember death.<BR>
 <HR>
@@ -418,23 +452,27 @@ the implant may become unstable and either pre-maturely inject the subject or si
 			var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset/heads/captain(null)
 			if(istype(t, /area/syndicate_station) || istype(t, /area/syndicate_mothership) || istype(t, /area/shuttle/syndicate_elite) )
 				//give the syndies a bit of stealth
-				a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm", "Security")
-				a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm", "Medical")
+				a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm", "General")
+//				a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm", "Security")
+//				a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm", "Medical")
 			else
-				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm", "Security")
-				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm", "Medical")
+				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm", "General")
+//				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm", "Security")
+//				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm", "Medical")
 			qdel(a)
 			processing_objects.Remove(src)
 		if ("emp")
 			var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset/heads/captain(null)
 			var/name = prob(50) ? t.name : pick(teleportlocs)
-			a.autosay("[mobname] has died in [name]!", "[mobname]'s Death Alarm", "Security")
-			a.autosay("[mobname] has died in [name]!", "[mobname]'s Death Alarm", "Medical")
+			a.autosay("[mobname] has died in [name]!", "[mobname]'s Death Alarm", "General")
+//			a.autosay("[mobname] has died in [name]!", "[mobname]'s Death Alarm", "Security")
+//			a.autosay("[mobname] has died in [name]!", "[mobname]'s Death Alarm", "Medical")
 			qdel(a)
 		else
 			var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset/heads/captain(null)
-			a.autosay("[mobname] has died-zzzzt in-in-in...", "[mobname]'s Death Alarm", "Security")
-			a.autosay("[mobname] has died-zzzzt in-in-in...", "[mobname]'s Death Alarm", "Medical")
+			a.autosay("[mobname] has died-zzzzt in-in-in...", "[mobname]'s Death Alarm", "General")
+//			a.autosay("[mobname] has died-zzzzt in-in-in...", "[mobname]'s Death Alarm", "Security")
+//			a.autosay("[mobname] has died-zzzzt in-in-in...", "[mobname]'s Death Alarm", "Medical")
 			qdel(a)
 			processing_objects.Remove(src)
 
@@ -469,7 +507,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 /obj/item/weapon/implant/compressed/get_data()
 	var/dat = {"
 <b>Implant Specifications:</b><BR>
-<b>Name:</b> [company_name] \"Profit Margin\" Class Employee Lifesign Sensor<BR>
+<b>Name:</b> [using_map.company_name] \"Profit Margin\" Class Employee Lifesign Sensor<BR>
 <b>Life:</b> Activates upon death.<BR>
 <b>Important Notes:</b> Alerts crew to crewmember death.<BR>
 <HR>
@@ -496,7 +534,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	qdel(src)
 
 /obj/item/weapon/implant/compressed/implanted(mob/source as mob)
-	src.activation_emote = input("Choose activation emote:") in list("blink", "blink_r", "eyebrow", "chuckle", "twitch_s", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
+	src.activation_emote = input("Choose activation emote:") in list("blink", "blink_r", "eyebrow", "chuckle", "twitch", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
 	if (source.mind)
 		source.mind.store_memory("Compressed matter implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.", 0, 0)
 	source << "The implanted compressed matter implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate."

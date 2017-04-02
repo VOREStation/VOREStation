@@ -17,6 +17,8 @@
 	var/damage_this_tick = getToxLoss()
 	for(var/obj/item/organ/external/O in organs)
 		damage_this_tick += O.burn_dam + O.brute_dam
+		if(O.germ_level)
+			damage_this_tick += 1 //Just tap it if we have germs so we can process those
 
 	if(damage_this_tick > last_dam)
 		. = TRUE
@@ -54,10 +56,10 @@
 
 			if (!lying && !buckled && world.time - l_move_time < 15)
 			//Moving around with fractured ribs won't do you any good
-				if (E.is_broken() && E.internal_organs && E.internal_organs.len && prob(15))
-					var/obj/item/organ/I = pick(E.internal_organs)
-					custom_pain("You feel broken bones moving in your [E.name]!", 1)
-					I.take_damage(rand(3,5))
+				if (prob(10) && !stat && can_feel_pain() && chem_effects[CE_PAINKILLER] < 50 && E.is_broken() && E.internal_organs.len)
+					custom_pain("Pain jolts through your broken [E.encased ? E.encased : E.name], staggering you!", 50)
+					drop_item(loc)
+					Stun(2)
 
 				//Moving makes open wounds get infected much faster
 				if (E.wounds.len)
@@ -98,7 +100,7 @@
 		else if (E.is_dislocated())
 			stance_damage += 0.5
 
-		if(E) limb_pain = E.can_feel_pain()
+		if(E) limb_pain = E.organ_can_feel_pain()
 
 	// Canes and crutches help you stand (if the latter is ever added)
 	// One cane mitigates a broken leg+foot, or a missing foot.
@@ -157,7 +159,7 @@
 					drop_from_inventory(r_hand)
 
 			var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
-			emote("me", 1, "[(E.can_feel_pain()) ? "" : emote_scream ]drops what they were holding in their [E.name]!")
+			emote("me", 1, "[(can_feel_pain()) ? "" : emote_scream ]drops what they were holding in their [E.name]!")
 
 		else if(E.is_malfunctioning())
 			switch(E.body_part)

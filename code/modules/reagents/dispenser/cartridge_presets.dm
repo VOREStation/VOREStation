@@ -68,6 +68,8 @@
 	hot_coco	spawn_reagent = "hot_coco"
 	milk		spawn_reagent = "milk"
 	cream		spawn_reagent = "cream"
+	mint		spawn_reagent = "mint"
+	berry		spawn_reagent = "berryjuice"
 
 	// ERT
 	inaprov		spawn_reagent = "inaprovaline"
