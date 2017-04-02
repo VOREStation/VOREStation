@@ -164,7 +164,7 @@
 	name = "Carthatoline"
 	id = "carthatoline"
 	result = "carthatoline"
-	required_reagents = list("dylovene" = 1, "carbon" = 2, "phoron" = 0.1)
+	required_reagents = list("anti_toxin" = 1, "carbon" = 2, "phoron" = 0.1)
 	catalysts = list("phoron" = 1)
 	result_amount = 2
 
