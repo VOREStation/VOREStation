@@ -565,7 +565,7 @@
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/welding(M), slot_head)
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset(M), slot_l_ear)
 			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal/plain/monocle(M), slot_glasses)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/apron(M), slot_wear_suit)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/apron(M), slot_wear_suit)
 			M.equip_to_slot_or_del(new /obj/item/weapon/material/knife(M), slot_l_store)
 			M.equip_to_slot_or_del(new /obj/item/weapon/surgical/scalpel(M), slot_r_store)
 

@@ -1,7 +1,7 @@
 // Suit slot
 /datum/gear/suit
 	display_name = "apron, blue"
-	path = /obj/item/clothing/suit/apron
+	path = /obj/item/clothing/suit/storage/apron
 	slot = slot_wear_suit
 	sort_category = "Suits and Overwear"
 	cost = 2
@@ -149,7 +149,7 @@
 
 /datum/gear/suit/overalls
 	display_name = "overalls"
-	path = /obj/item/clothing/suit/apron/overalls
+	path = /obj/item/clothing/suit/storage/apron/overalls
 	cost = 1
 
 /datum/gear/suit/poncho
