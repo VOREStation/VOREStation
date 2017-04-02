@@ -16,7 +16,7 @@
 	if(!listening) //Turning ON
 		langset = input(user,"Translate to which of your languages?","Language Selection") as null|anything in user.languages
 		if(langset)
-			if(langset && ((langset.flags & NONVERBAL) || (!langset.machine_understands)))
+			if(langset && ((langset.flags & NONVERBAL) || (langset.flags & HIVEMIND) || (!langset.machine_understands)))
 				//Nonverbal means no spoken words to translate, so I didn't see the need to remove it.
 				to_chat(user, "<span class='warning'>\The [src] cannot output that language.</span>")
 				return
