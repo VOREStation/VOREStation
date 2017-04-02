@@ -11,6 +11,7 @@
 	used for power or data transmission."
 	icon = 'icons/obj/electronic_assemblies.dmi'
 	icon_state = "wirer-wire"
+	item_state = "wirer"
 	flags = CONDUCT
 	w_class = 2
 	var/datum/integrated_io/selected_io = null

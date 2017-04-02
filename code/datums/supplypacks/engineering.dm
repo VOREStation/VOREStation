@@ -33,6 +33,15 @@
 	containertype = /obj/structure/closet/crate/engineering/electrical
 	containername = "Electrical maintenance crate"
 
+/datum/supply_packs/eng/e_welders
+	name = "Electric welder crate"
+	contains = list(
+			/obj/item/weapon/weldingtool/electric = 3
+			)
+	cost = 15
+	containertype = /obj/structure/closet/crate/engineering/electrical
+	containername = "Electric welder crate"
+
 /datum/supply_packs/eng/mechanical
 	name = "Mechanical maintenance crate"
 	contains = list(

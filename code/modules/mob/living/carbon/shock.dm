@@ -14,7 +14,7 @@
 	1.2	* src.getShockBruteLoss() + 		\
 	1.7	* src.getCloneLoss() + 		\
 	2	* src.halloss + 			\
-	-1	* src.analgesic
+	-1	* src.chem_effects[CE_PAINKILLER]
 
 	if(src.slurring)
 		src.traumatic_shock -= 20

@@ -174,6 +174,7 @@
 
 	darksight = 4
 	flash_mod = 1.2
+	chemOD_mod = 0.9
 
 	ambiguous_genders = TRUE
 
