@@ -131,4 +131,4 @@
 		T.lighting_overlay = null
 		T.luminosity = 1
 
-	return ..()
+	. = ..()
