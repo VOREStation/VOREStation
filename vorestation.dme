@@ -2015,6 +2015,7 @@
 #include "code\modules\projectiles\guns\projectile.dm"
 #include "code\modules\projectiles\guns\vox.dm"
 #include "code\modules\projectiles\guns\energy\laser.dm"
+#include "code\modules\projectiles\guns\energy\netgun_vr.dm"
 #include "code\modules\projectiles\guns\energy\nuclear.dm"
 #include "code\modules\projectiles\guns\energy\particle.dm"
 #include "code\modules\projectiles\guns\energy\pulse.dm"
