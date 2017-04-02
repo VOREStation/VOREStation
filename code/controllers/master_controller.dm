@@ -49,7 +49,7 @@ datum/controller/game_controller/proc/setup_objects()
 	admin_notice("<span class='danger'>Initializing objects</span>", R_DEBUG)
 	sleep(-1)
 	for(var/atom/movable/object in world)
-		if(isnull(object.gcDestroyed))
+		if(!QDELETED(object))
 			object.initialize()
 
 	admin_notice("<span class='danger'>Initializing areas</span>", R_DEBUG)
@@ -80,8 +80,8 @@ datum/controller/game_controller/proc/setup_objects()
 
 	admin_notice("<span class='danger'>Initializing turbolifts</span>", R_DEBUG)
 	for(var/thing in turbolifts)
-		if(!deleted(thing))
-			var/obj/turbolift_map_holder/lift = thing
+		var/obj/turbolift_map_holder/lift = thing
+		if(!QDELETED(lift))
 			lift.initialize()
 			sleep(-1)
 

@@ -33,13 +33,13 @@ var/datum/controller/failsafe/Failsafe
 /datum/controller/failsafe/Initialize()
 	set waitfor = 0
 	Failsafe.Loop()
-	if(!deleted(src))
+	if(!QDELETED(src))
 		qdel(src) //when Loop() returns, we delete ourselves and let the mc recreate us
 
 /datum/controller/failsafe/Destroy()
 	running = FALSE
 	..()
-	// return QDEL_HINT_HARDDEL_NOW // TODO - Once we port garbage.dm
+	return QDEL_HINT_HARDDEL_NOW
 
 /datum/controller/failsafe/proc/Loop()
 	while(running)

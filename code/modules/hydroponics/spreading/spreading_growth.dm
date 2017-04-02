@@ -116,7 +116,7 @@
 	var/obj/effect/plant/child = new(get_turf(src),seed,parent)
 
 	spawn(1) // This should do a little bit of animation.
-		if(deleted(child))
+		if(QDELETED(child))
 			return
 
 		//move out to the destination

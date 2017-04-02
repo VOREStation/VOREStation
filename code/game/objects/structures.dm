@@ -10,7 +10,7 @@
 /obj/structure/Destroy()
 	if(parts)
 		new parts(loc)
-	..()
+	. = ..()
 
 /obj/structure/attack_hand(mob/user)
 	if(breakable)
