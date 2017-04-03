@@ -113,3 +113,11 @@
 	req_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 2)
 	build_path = /obj/item/weapon/circuitboard/partslathe
 	sort_string = "HABAD"
+
+/datum/design/item/weapon/netgun
+	name = "\'Hunter\' capture gun"
+	id = "netgun"
+	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 5, TECH_MAGNET = 3)
+	materials = list(DEFAULT_WALL_MATERIAL = 6000, "glass" = 3000)
+	build_path = /obj/item/weapon/gun/energy/netgun
+	sort_string = "TAADF"
