@@ -10,10 +10,11 @@
 	if(!msg)	return
 
 	if(usr.client)
-		client.handle_spam_prevention(MUTE_PRAY)
-		if(usr.client.prefs.muted & MUTE_PRAY)
-			usr << "\red You cannot pray (muted)."
-			return
+		if(msg)
+			client.handle_spam_prevention(MUTE_PRAY)
+			if(usr.client.prefs.muted & MUTE_PRAY)
+				usr << "\red You cannot pray (muted)."
+				return
 
 	var/image/cross = image('icons/obj/storage.dmi',"bible")
 	msg = "\blue \icon[cross] <b><font color=purple>PRAY: </font>[key_name(src, 1)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[src]'>?</A>) (<A HREF='?_src_=holder;adminplayeropts=\ref[src]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[src]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=\ref[src]'>SM</A>) ([admin_jump_link(src, src)]) (<A HREF='?_src_=holder;secretsadmin=check_antagonist'>CA</A>) (<A HREF='?_src_=holder;adminspawncookie=\ref[src]'>SC</a>):</b> [msg]"
