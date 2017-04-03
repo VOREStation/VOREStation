@@ -194,8 +194,8 @@
 			inherent_verbs = list()
 		inherent_verbs |= /mob/living/carbon/human/proc/regurgitate
 
-/datum/species/proc/sanitize_name(var/name)
-	return sanitizeName(name)
+/datum/species/proc/sanitize_name(var/name, var/robot = 0)
+	return sanitizeName(name, MAX_NAME_LEN, robot)
 
 /datum/species/proc/equip_survival_gear(var/mob/living/carbon/human/H,var/extendedtank = 1)
 	var/boxtype = /obj/item/weapon/storage/box/survival //Default survival box

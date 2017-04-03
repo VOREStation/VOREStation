@@ -671,6 +671,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	while(null in pref.rlimb_data)
 		pref.rlimb_data -= null
 
+	// Sanitize the name so that there aren't any numbers sticking around.
+	pref.real_name          = sanitize_name(pref.real_name, pref.species)
+	if(!pref.real_name)
+		pref.real_name      = random_name(pref.identifying_gender, pref.species)
+
 /datum/category_item/player_setup_item/general/body/proc/SetSpecies(mob/user)
 	if(!pref.species_preview || !(pref.species_preview in all_species))
 		pref.species_preview = "Human"
