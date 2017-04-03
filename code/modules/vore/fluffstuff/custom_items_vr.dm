@@ -646,10 +646,13 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	w_class = ITEMSIZE_SMALL
 	origin_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_ILLEGAL = 7)
 
+	var/obj/item/weapon/cell/device/weapon/power_source
+	var/charge_cost = 800 // cell/device/weapon has 2400
 
 	var/list/beacons = list()
 	var/ready = 1
 	var/beacons_left = 3
+	var/failure_chance = 5 //Percent
 	var/obj/item/device/perfect_tele_beacon/destination
 	var/datum/effect/effect/system/spark_spread/spk
 	var/list/warned_users = list()
@@ -658,6 +661,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 /obj/item/device/perfect_tele/New()
 	..()
 	flags |= NOBLUDGEON
+	power_source = new (src)
 	spk = new(src)
 	spk.set_up(5, 0, src)
 	spk.attach(src)
@@ -668,12 +672,23 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	..()
 
 /obj/item/device/perfect_tele/update_icon()
-	if(ready)
+	if(!power_source)
+		icon_state = "[initial(icon_state)]_o"
+	else if(ready && power_source.check_charge(charge_cost))
 		icon_state = "[initial(icon_state)]"
 	else
 		icon_state = "[initial(icon_state)]_w"
 
 	..()
+
+/obj/item/device/perfect_tele/attack_hand(mob/user)
+	if(user.get_inactive_hand() == src && power_source)
+		to_chat(user,"<span class='notice'>You eject \the [power_source] from \the [src].</span>")
+		user.put_in_hands(power_source)
+		power_source = null
+		update_icon()
+	else
+		return ..()
 
 /obj/item/device/perfect_tele/attack_self(mob/user)
 	if(!(user.ckey in warned_users))
@@ -687,7 +702,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	switch(choice)
 		if("Create Beacon")
 			if(beacons_left <= 0)
-				user << "<span class='warning'>\The [src] can't support any more beacons!</span>"
+				alert("The translocator can't support any more beacons!","Error")
 				return
 
 			var/new_name = html_encode(input(user,"New beacon's name (2-20 char):","[src]") as text|null)
@@ -711,26 +726,34 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 
 		if("Target Beacon")
 			if(!beacons.len)
-				user << "<span class='warning'>\The [src] doesn't have any beacons!</span>"
+				to_chat(user,"<span class='warning'>\The [src] doesn't have any beacons!</span>")
 			else
 				var/target = input("Which beacon do you target?","[src]") in beacons|null
 				if(target && (target in beacons))
 					destination = beacons[target]
-					user << "<span class='notice'>Destination set to '[target]'.</span>"
+					to_chat(user,"<span class='notice'>Destination set to '[target]'.</span>")
 		else
 			return
 
 /obj/item/device/perfect_tele/attackby(obj/W, mob/user)
-	if(istype(W,/obj/item/device/perfect_tele_beacon))
+	if(istype(W,/obj/item/weapon/cell/device/weapon) && !power_source)
+		power_source = W
+		power_source.update_icon() //Why doesn't a cell do this already? :|
+		user.unEquip(power_source)
+		power_source.forceMove(src)
+		to_chat(user,"<span class='notice'>You insert \the [power_source] into \the [src].</span>")
+		update_icon()
+
+	else if(istype(W,/obj/item/device/perfect_tele_beacon))
 		var/obj/item/device/perfect_tele_beacon/tb = W
 		if(tb.tele_name in beacons)
-			user << "<span class='notice'>You re-insert \the [tb] into \the [src].</span>"
+			to_chat(user,"<span class='notice'>You re-insert \the [tb] into \the [src].</span>")
 			beacons -= tb.tele_name
 			user.unEquip(tb)
 			qdel(tb)
 			beacons_left++
 		else
-			user << "<span class='notice'>\The [tb] doesn't belong to \the [src].</span>"
+			to_chat(user,"<span class='notice'>\The [tb] doesn't belong to \the [src].</span>")
 			return
 	else
 		..()
@@ -740,23 +763,33 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	if(!proximity)
 		return
 
+	//Uhhuh, need that power source
+	if(!power_source)
+		to_chat(user,"<span class='warning'>\The [src] has no power source!</span>")
+		return
+
+	//Check for charge
+	if(!power_source.check_charge(charge_cost))
+		to_chat(user,"<span class='warning'>\The [src] does not have enough power left!</span>")
+		return
+
 	//Only mob/living need apply.
 	if(!istype(user) || !istype(target))
 		return
 
 	//No, you can't teleport buckled people.
 	if(target.buckled)
-		user << "<span class='warning'>The target appears to be attached to something...</span>"
+		to_chat(user,"<span class='warning'>The target appears to be attached to something...</span>")
 		return
 
 	//No, you can't teleport if it's not ready yet.
 	if(!ready)
-		user << "<span class='warning'>\The [src] is still recharging!</span>"
+		to_chat(user,"<span class='warning'>\The [src] is still recharging!</span>")
 		return
 
 	//No, you can't teleport if there's no destination.
 	if(!destination)
-		user << "<span class='warning'>\The [src] doesn't have a current valid destination set!</span>"
+		to_chat(user,"<span class='warning'>\The [src] doesn't have a current valid destination set!</span>")
 		return
 
 	//No, you can't port to or from away missions. Stupidly complicated check.
@@ -766,11 +799,19 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 		return
 
 	if( (uT.z != dT.z) && ( (uT.z > max_default_z_level() ) || (dT.z > max_default_z_level()) ) )
-		user << "<span class='warning'>\The [src] can't teleport you that far!</span>"
+		to_chat(user,"<span class='warning'>\The [src] can't teleport you that far!</span>")
 		return
 
 	//Bzzt.
 	ready = 0
+	power_source.use(charge_cost)
+
+	//Failure chance
+	if(prob(failure_chance) && beacons.len >= 2)
+		var/list/wrong_choices = beacons - destination.tele_name
+		var/wrong_name = pick(wrong_choices)
+		destination = beacons[wrong_name]
+		to_chat(user,"<span class='warning'>\The [src] malfunctions and sends you to the wrong beacon!</span>")
 
 	//Destination beacon vore checking
 	var/datum/belly/target_belly
@@ -799,8 +840,8 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 		real_dest = destination.loc
 		target_belly.internal_contents |= target
 		playsound(target_belly.owner, target_belly.vore_sound, 100, 1)
-		target << "<span class='warning'>\The [src] teleports you right into [target_belly.owner]'s [target_belly.name]!</span>"
-		target_belly.owner << "<span class='warning'>Your [target_belly.name] suddenly has a new occupant!</span>"
+		to_chat(target,"<span class='warning'>\The [src] teleports you right into [target_belly.owner]'s [target_belly.name]!</span>")
+		to_chat(target_belly.owner,"<span class='warning'>Your [target_belly.name] suddenly has a new occupant!</span>")
 
 	//Phase-out effect
 	phase_out(target,get_turf(target))
@@ -822,7 +863,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 			G.affecting.forceMove(real_dest)
 			if(target_belly)
 				target_belly.internal_contents |= G.affecting
-				G.affecting << "<span class='warning'>\The [src] teleports you right into [target_belly.owner]'s [target_belly.name]!</span>"
+				to_chat(G.affecting,"<span class='warning'>\The [src] teleports you right into [target_belly.owner]'s [target_belly.name]!</span>")
 
 			//Phase-in effect for grabbed person
 			phase_in(G.affecting,get_turf(G.affecting))
