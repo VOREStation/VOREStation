@@ -6,6 +6,7 @@
 	exclaim_verb = "rustles"
 	colour = "soghun"
 	key = "q"
+	machine_understands = 0
 	flags = RESTRICTED
 	syllables = list("hs","zt","kr","st","sh")
 
@@ -18,6 +19,7 @@
 	name = LANGUAGE_ROOTGLOBAL
 	desc = "A complex language known instinctively by Dionaea, 'spoken' by emitting modulated radio waves. This version uses low frequency waves for slow communication at long ranges."
 	key = "w"
+	machine_understands = 0
 	flags = RESTRICTED | HIVEMIND
 
 /datum/language/unathi

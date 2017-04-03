@@ -6,6 +6,7 @@
 	ask_verb = "queries"
 	exclaim_verb = "declares"
 	key = "b"
+	machine_understands = 0
 	flags = RESTRICTED | HIVEMIND
 	var/drone_only
 
@@ -64,5 +65,6 @@
 	exclaim_verb = "transmits"
 	colour = "say_quote"
 	key = "d"
+	machine_understands = 0
 	flags = RESTRICTED | HIVEMIND
 	drone_only = 1
