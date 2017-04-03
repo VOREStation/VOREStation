@@ -6,7 +6,7 @@
 	icon_state = "tube"
 	origin_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3)
 	amount = 10
-
+	w_class = ITEMSIZE_SMALL
 
 /obj/item/stack/nanopaste/attack(mob/living/M as mob, mob/user as mob)
 	if (!istype(M) || !istype(user))
