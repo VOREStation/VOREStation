@@ -1,9 +1,9 @@
 /mob/living/carbon/human/proc/weightgain()
 	if (nutrition > 0 && stat != 2)
-		if (nutrition > 450 && weight < 500 && weight_gain)
+		if (nutrition > MIN_NUTRITION_TO_GAIN && weight < MAX_MOB_WEIGHT && weight_gain)
 			weight += metabolism*(0.01*weight_gain)
 
-		else if (nutrition <= 50 && stat != 2 && weight > 70 && weight_loss)
+		else if (nutrition <= MAX_NUTRITION_TO_LOSE && stat != 2 && weight > MIN_MOB_WEIGHT && weight_loss)
 			weight -= metabolism*(0.01*weight_loss) // starvation weight loss
 
 /mob/living/carbon/human/proc/handle_hud_list_vr()

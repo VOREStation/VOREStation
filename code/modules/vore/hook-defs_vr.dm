@@ -16,6 +16,9 @@
 //Hooks for interactions
 /hook/living_attackby
 
+// Hook for when a mob de-spawns!
+/hook/despawn
+
 //
 //Hook helpers to expand hooks to others
 //
