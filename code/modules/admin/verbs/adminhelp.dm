@@ -17,7 +17,8 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 
 	adminhelped = 1 //Determines if they get the message to reply by clicking the name.
 
-	handle_spam_prevention(MUTE_ADMINHELP)
+	if(msg)
+		handle_spam_prevention(MUTE_ADMINHELP)
 
 	//clean the input msg
 	if(!msg)
