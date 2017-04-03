@@ -807,7 +807,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	power_source.use(charge_cost)
 
 	//Failure chance
-	if(prob(failure_chance))
+	if(prob(failure_chance) && beacons.len >= 2)
 		var/list/wrong_choices = beacons - destination.tele_name
 		var/wrong_name = pick(wrong_choices)
 		destination = beacons[wrong_name]
