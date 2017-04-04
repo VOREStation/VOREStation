@@ -17,6 +17,7 @@
 	see_in_dark = 5
 	mob_size = 8
 
+	has_langs = list("Dog")
 	speak_chance = 1
 	speak = list("YAP", "Woof!", "Bark!", "AUUUUUU")
 	speak_emote = list("barks", "woofs")
