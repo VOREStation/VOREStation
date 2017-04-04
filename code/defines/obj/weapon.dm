@@ -290,19 +290,21 @@
 /obj/item/weapon/module
 	icon = 'icons/obj/module.dmi'
 	icon_state = "std_module"
+	item_state = "std_mod"
 	w_class = ITEMSIZE_SMALL
-	item_state = "electronic"
 	flags = CONDUCT
 	var/mtype = 1						// 1=electronic 2=hardware
 
 /obj/item/weapon/module/card_reader
 	name = "card reader module"
 	icon_state = "card_mod"
+	item_state = "std_mod"
 	desc = "An electronic module for reading data and ID cards."
 
 /obj/item/weapon/module/power_control
 	name = "power control module"
 	icon_state = "power_mod"
+	item_state = "std_mod"
 	desc = "Heavy-duty switching circuits for power control."
 	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
 
@@ -321,11 +323,13 @@
 /obj/item/weapon/module/cell_power
 	name = "power cell regulator module"
 	icon_state = "power_mod"
+	item_state = "std_mod"
 	desc = "A converter and regulator allowing the use of power cells."
 
 /obj/item/weapon/module/cell_power
 	name = "power cell charger module"
 	icon_state = "power_mod"
+	item_state = "std_mod"
 	desc = "Charging circuits for power cells."
 
 
