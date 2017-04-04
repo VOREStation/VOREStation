@@ -831,6 +831,7 @@
 #include "code\game\objects\items\weapons\mop_deploy.dm"
 #include "code\game\objects\items\weapons\paint.dm"
 #include "code\game\objects\items\weapons\paiwire.dm"
+#include "code\game\objects\items\weapons\permits.dm"
 #include "code\game\objects\items\weapons\policetape.dm"
 #include "code\game\objects\items\weapons\power_cells.dm"
 #include "code\game\objects\items\weapons\RCD.dm"
