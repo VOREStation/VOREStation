@@ -99,9 +99,9 @@
 	display_name = "DS9 Overcoat (use uniform)"
 	path = /obj/item/clothing/suit/storage/trek/ds9
 	allowed_roles = list("Head of Security","Colony Director","Head of Personnel","Chief Engineer","Research Director",
-						"Chief Medical Officer",,"Medical Doctor","Chemist","Paramedic","Geneticist",
-						"Scientist", "Roboticist", "Xenobiologist","Atmospheric Technician",
-						"Station Engineer","Warden","Detective","Security Officer") //because assistants spawning with this is silly
+						"Chief Medical Officer","Medical Doctor","Chemist","Paramedic","Geneticist",
+						"Scientist","Roboticist","Xenobiologist","Atmospheric Technician",
+						"Station Engineer","Warden","Detective","Security Officer")
 
 
 /datum/gear/uniform/job_trek/cmd/ds9
