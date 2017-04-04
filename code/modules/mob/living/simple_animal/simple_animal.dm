@@ -286,7 +286,7 @@
 			handle_idle_speaking()
 
 		//Resisting out buckles
-		if(incapacitated(INCAPACITATION_BUCKLED_PARTIALLY))
+		if(stance != STANCE_IDLE && incapacitated(INCAPACITATION_BUCKLED_PARTIALLY))
 			resist()
 
 		//Resisting out of closets
