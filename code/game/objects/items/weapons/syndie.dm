@@ -15,6 +15,7 @@
 
 	var/power = 1  /*Size of the explosion.*/
 	var/size = "small"  /*Used for the icon, this one will make c-4small_0 for the off state.*/
+	var/det_time = 15	//How long the thing takes between beeps, will beep three times before it goes off.
 
 /obj/item/weapon/syndie/c4explosive/heavy
 	icon_state = "c-4large_0"
@@ -39,6 +40,10 @@
 
 /obj/item/weapon/syndie/c4explosive/proc/detonate()
 	icon_state = "c-4[size]_1"
+	playsound(loc, 'sound/weapons/armbomb.ogg', 75, 1)
+	for(var/mob/O in hearers(src, null))
+		O.show_message("\icon[src] <span class = 'warning'> The [src.name] beeps! </span>")
+	sleep(50)
 	explosion(get_turf(src), power, power*2, power*3, power*4, power*5)
 	for(var/dirn in cardinal)		//This is to guarantee that C4 at least breaks down all immediately adjacent walls and doors.
 		var/turf/simulated/wall/T = get_step(src,dirn)
