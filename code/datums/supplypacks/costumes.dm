@@ -78,7 +78,7 @@
 			/obj/item/clothing/under/scratch,
 			/obj/item/clothing/under/wedding/bride_white,
 			/obj/item/clothing/suit/chef,
-			/obj/item/clothing/suit/apron/overalls,
+			/obj/item/clothing/suit/storage/apron/overalls,
 			/obj/item/clothing/under/redcoat,
 			/obj/item/clothing/under/kilt
 			)
