@@ -80,7 +80,7 @@
 	if(T && T.movement_cost)
 		tally += T.movement_cost
 
-	if(species.slowdown_adjust)
+	if(species.item_slowdown_halved)
 		if(item_tally > 0)
 			item_tally *= 0.5
 
