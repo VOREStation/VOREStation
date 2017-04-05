@@ -87,9 +87,9 @@
 // Saves mob's current organ state to prefs.
 // This basically needs to be the reverse of /datum/category_item/player_setup_item/general/body/copy_to_mob() ~Leshana
 /proc/apply_organs_to_prefs(var/mob/living/carbon/human/character, var/datum/preferences/prefs)
+	if(!istype(character) || !character.species) return
 	// Checkify the limbs!
-	testing("in apply_organs_to_prefs([character], \ref[prefs])")
-	for(var/name in list(BP_HEAD, BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM, BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_TORSO))
+	for(var/name in character.species.has_limbs)
 		var/obj/item/organ/external/O = character.organs_by_name[name]
 		if(!O)
 			prefs.organ_data[name] = "amputated"
@@ -103,21 +103,22 @@
 			prefs.organ_data.Remove(name) // Misisng organ_data entry means normal
 
 	// Internal organs also
-	for(var/name in list(O_HEART,O_EYES,O_LUNGS,O_BRAIN))
+	for(var/name in character.species.has_organ)
 		var/obj/item/organ/I = character.internal_organs_by_name[name]
 		if(I)
-			if(I.robotic == ORGAN_ASSISTED)
+			if(istype(I, /obj/item/organ/internal/mmi_holder/robot))
+				prefs.organ_data[name] = "digital" // Need a better way to detect this special type
+			else if(I.robotic == ORGAN_ASSISTED)
 				prefs.organ_data[name] = "assisted"
-			else if(I.robotic == ORGAN_ROBOT)
+			else if(I.robotic >= ORGAN_ROBOT)
 				prefs.organ_data[name] = "mechanical"
-			else if(FALSE /* TODO - Need way to detect "digital" brains! */)
-				prefs.organ_data[name] = "digital"
 			else
-				prefs.organ_data.Remove(name) // Misisng organ_data entry means normal
+				prefs.organ_data.Remove(name) // Missing organ_data entry means normal
 
 // Saves mob's current body markings state to prefs.
 // This basically needs to be the reverse of /datum/category_item/player_setup_item/general/body/copy_to_mob() ~Leshana
 /proc/apply_markings_to_prefs(var/mob/living/carbon/human/character, var/datum/preferences/prefs)
+	if(!istype(character)) return
 	var/list/new_body_markings = list()
 	for(var/N in character.organs_by_name)
 		var/obj/item/organ/external/O = character.organs_by_name[N]

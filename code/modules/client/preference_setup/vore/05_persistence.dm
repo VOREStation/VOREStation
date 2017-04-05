@@ -16,6 +16,7 @@
 
 /datum/category_item/player_setup_item/vore/persistence/load_character(var/savefile/S)
 	S["persistence_settings"]		>> pref.persistence_settings
+	sanitize_character() // Don't let new characters start off with nulls
 
 /datum/category_item/player_setup_item/vore/persistence/save_character(var/savefile/S)
 	S["persistence_settings"]		<< pref.persistence_settings
