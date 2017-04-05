@@ -75,6 +75,7 @@ mob/proc/handle_regular_hud_updates() //Used in the life.dm of mobs that can use
 	eng_hud_users -= src
 	sci_hud_users -= src
 	gen_hud_users -= src
+	if(vantag_hud) process_vantag_hud(src) //VOREStation Add - So any mob can have the vantag hud, observer or not.
 	//VOREStation Add End
 mob/proc/in_view(var/turf/T)
 	return view(T)

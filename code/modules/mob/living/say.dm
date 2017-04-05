@@ -133,10 +133,11 @@ proc/get_radio_key_from_channel(var/channel)
 /mob/living/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="", var/whispering = 0)
 	//If you're muted for IC chat
 	if(client)
-		client.handle_spam_prevention(MUTE_IC)
-		if((client.prefs.muted & MUTE_IC) || say_disabled)
-			src << "<span class='warning'>You cannot speak in IC (Muted).</span>"
-			return
+		if(message)
+			client.handle_spam_prevention(MUTE_IC)
+			if((client.prefs.muted & MUTE_IC) || say_disabled)
+				src << "<span class='warning'>You cannot speak in IC (Muted).</span>"
+				return
 
 	//Redirect to say_dead if talker is dead
 	if(stat)

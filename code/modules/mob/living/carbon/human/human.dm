@@ -36,6 +36,7 @@
 	hud_list[HEALTH_VR_HUD]   = new /image/hud_overlay('icons/mob/hud_med_vr.dmi', src, "100")
 	hud_list[STATUS_R_HUD]    = new /image/hud_overlay('icons/mob/hud_vr.dmi', src, "hudhealthy")
 	hud_list[BACKUP_HUD]      = new /image/hud_overlay('icons/mob/hud_vr.dmi', src, "hudblank")
+	hud_list[VANTAG_HUD]      = new /image/hud_overlay('icons/mob/hud_vr.dmi', src, "hudblank")
 	//VOREStation Add End
 	hud_list[LIFE_HUD]	      = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudhealthy")
 	hud_list[ID_HUD]          = new /image/hud_overlay(using_map.id_hud_icons, src, "hudunknown")
