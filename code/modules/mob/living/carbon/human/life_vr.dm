@@ -35,3 +35,11 @@
 						holder.icon_state = "hud_backup_nobody"
 					else
 						holder.icon_state = "hud_backup_norm"
+
+	//VOREStation Antag Hud
+	if (BITTEST(hud_updateflag, VANTAG_HUD))
+		var/image/vantag = hud_list[VANTAG_HUD]
+		if(vantag_pref)
+			vantag.icon_state = vantag_pref
+		else
+			vantag.icon_state = "hudblank"
