@@ -15,7 +15,6 @@
 
 	var/power = 1  /*Size of the explosion.*/
 	var/size = "small"  /*Used for the icon, this one will make c-4small_0 for the off state.*/
-	var/det_time = 15	//How long the thing takes between beeps, will beep three times before it goes off.
 
 /obj/item/weapon/syndie/c4explosive/heavy
 	icon_state = "c-4large_0"
