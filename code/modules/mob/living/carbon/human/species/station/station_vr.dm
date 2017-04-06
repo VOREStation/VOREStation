@@ -291,6 +291,57 @@
 		"Your chitin feels hot."
 		)
 
+//Commenting it out, until I can finish the wah sprites and figure certain things out.
+/*/datum/species/wahailurus
+	name = "Wahailurus"
+	name_plural = "Wahailurus"
+	icobase = 'icons/mob/human_races/r_wahailurus.dmi'
+	deform = 'icons/mob/human_races/r_wahailurus.dmi'
+	secondary_langs = list("Wahailurian")
+	name_language = "Wahailurian"
+	primitive_form = "Wah"
+	tail = "tail"
+	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
+	darksight = 8
+	slowdown = -0.5
+	brute_mod = 1.15
+	burn_mod =  1.15
+	flash_mod = 1.1
+	metabolic_rate = 1.1
+	num_alternate_languages = 3
+	color_mult = 1
+	blood_color = "#F940F9"
+
+	blurb = "Wahailurus are a species of what humans can relate to as anthromorphic Red Pandas, at least by appearance. \
+	They hail from various regions of space controlled by Darkside Incorperated, a practically species owned industry. \
+	They are prominant scientists and inquisitive creatures, finally hailing forth from the depths of space in order to assossiate themselves with others. \
+	Be it to gain knowledge, finally seek alien life, or advance their own scientific careers. Each has their own reasoning, \
+	often stemming from their curious desires and personal persuits. Industrious and eager to work, at least when they aren't lazing about."
+
+	cold_level_1 = 200 //Default 260
+	cold_level_2 = 140 //Default 200
+	cold_level_3 = 80  //Default 120
+
+	primitive_form = "Wah"
+
+	spawn_flags = SPECIES_CAN_JOIN
+	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+
+	flesh_color = "#966464"
+	base_color = "#B43214"
+
+	min_age = 18
+	max_age = 300 //Technology is marvelous
+
+	heat_discomfort_strings = list(
+		"Your fur prickles in the heat.",
+		"You feel uncomfortably warm.",
+		"Your overheated skin itches."
+		)
+
+*/
+
+
 /datum/species/unathi
 	spawn_flags = SPECIES_CAN_JOIN //Species_can_join is the only spawn flag all the races get, so that none of them will be whitelist only if whitelist is enabled.
 	min_age = 18
