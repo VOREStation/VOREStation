@@ -44,3 +44,61 @@
     icon = 'icons/mob/human_races/cyberlimbs/zenghu/zenghu_taj.dmi'
     unavailable_to_build = 1
     parts = list(BP_HEAD)
+
+//Darkside Incorperated synthetic augmentation list! Many current most used fuzzy and notsofuzzy races made into synths here.
+
+/datum/robolimb/dsi_tajaran
+	company = "DSI - Tajaran"
+	desc = "This limb feels soft and fluffy, realistic design and squish. By Darkside Incorperated."
+	icon = 'icons/mob/human_races/cyberlimbs/DSITajaran/dsi_tajaran.dmi'
+	blood_color = "#ffe2ff"
+	lifelike = 1
+	unavailable_to_build = 1
+
+/obj/item/weapon/disk/limb/dsi_tajaran
+	company = "DSI - Tajaran"
+
+/datum/robolimb/dsi_lizard
+	company = "DSI - Lizard"
+	desc = "This limb feels smooth and scalie, realistic design and squish. By Darkside Incorperated."
+	icon = 'icons/mob/human_races/cyberlimbs/DSILizard/dsi_lizard.dmi'
+	blood_color = "#ffe2ff"
+	lifelike = 1
+	unavailable_to_build = 1
+
+/obj/item/weapon/disk/limb/dsi_lizard
+	company = "DSI - Lizard"
+
+/datum/robolimb/dsi_sergal
+	company = "DSI - Sergal"
+	desc = "This limb feels soft and fluffy, realistic design and toned muscle. By Darkside Incorperated."
+	icon = 'icons/mob/human_races/cyberlimbs/DSISergal/dsi_sergal.dmi'
+	blood_color = "#ffe2ff"
+	lifelike = 1
+	unavailable_to_build = 1
+
+/obj/item/weapon/disk/limb/dsi_sergal
+	company = "DSI - Sergal"
+
+/datum/robolimb/dsi_nevrean
+	company = "DSI - Nevrean"
+	desc = "This limb feels soft and feathery, lightweight, realistic design and squish. By Darkside Incorperated."
+	icon = 'icons/mob/human_races/cyberlimbs/DSINevrean/dsi_nevrean.dmi'
+	blood_color = "#ffe2ff"
+	lifelike = 1
+	unavailable_to_build = 1
+
+/obj/item/weapon/disk/limb/dsi_nevrean
+	company = "DSI - Nevrean"
+
+/datum/robolimb/dsi_vulpkanin
+	company = "DSI - Vulpkanin"
+	desc = "This limb feels soft and fluffy, realistic design and squish. Seems a little mischievous. By Darkside Incorperated."
+	icon = 'icons/mob/human_races/cyberlimbs/DSIVulpkanin/dsi_vulpkanin.dmi'
+	blood_color = "#ffe2ff"
+	lifelike = 1
+	unavailable_to_build = 1
+
+/obj/item/weapon/disk/limb/dsi_vulpkanin
+	company = "DSI - Vulpkanin"
+
