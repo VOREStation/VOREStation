@@ -1009,12 +1009,21 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 
 	if(video_source) //Already in a video
 		user << "<span class='danger'>You are already connected to a video call!</span>"
+		return
 
 	if(user.blinded) //User is blinded
 		user << "<span class='danger'>You cannot see well enough to do that!</span>"
+		return
 
 	if(!(src in comm.communicating) || !comm.camera) //You called someone with a broken communicator or one that's fake or yourself or something
 		user << "<span class='danger'>\icon[src]ERROR: Video failed. Either bandwidth is too low, or the other communicator is malfunctioning.</span>"
+		return
+
+	var/turf/t1 = get_turf(src)
+	var/turf/t2 = get_turf(comm)
+	if(!is_on_same_plane_or_station(t1.z, t2.z) || !video_source.can_use())
+		user << "<span class='danger'>Request to establish video timed out!</span>"
+		return
 
 	user << "<span class='notice'>\icon[src] Attempting to start video over existing call.</span>"
 	sleep(30)
@@ -1034,7 +1043,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	user.reset_view(video_source)
 	user << "<span class='notice'>Now viewing video session. To leave camera view: OOC -> Cancel Camera View</span>"
 	spawn(0)
-		while(user.machine == video_source && Adjacent(user))
+		while(user.machine == video_source && (Adjacent(user) || loc == user))
 			var/turf/T = get_turf(video_source)
 			if(!T || !is_on_same_plane_or_station(T.z, user.z) || !video_source.can_use())
 				user << "<span class='warning'>The screen bursts into static, then goes black.</span>"
@@ -1096,6 +1105,21 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 		return
 
 	src.attack_self(usr)
+
+// Verb: activate()
+// Parameters: None
+// Description: Lets synths use their communicators without hands.
+/obj/item/device/communicator/integrated/verb/see_video()
+	set category = "AI IM"
+	set name = "View Comm. Video"
+	set desc = "Utilizes your built-in communicator."
+	set src in usr
+
+	if(usr.stat == 2)
+		usr << "You can't do that because you are dead!"
+		return
+
+	src.watch_video(usr)
 
 // A camera preset for spawning in the communicator
 /obj/machinery/camera/communicator
