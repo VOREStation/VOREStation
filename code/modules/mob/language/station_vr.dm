@@ -71,6 +71,17 @@
 	syllables = list("salve","sum","loqui","operatur","iusta","et","permittit","facere","effercio","pluribus","enim","hoc",
 	"mihi","wan","six","salve","tartu")
 
+//Commented out till I can finish up wahs.
+/*/datum/language/wah
+	name = "Wahailurian"
+	desc = "The chirps, barks and chitters of the wahs. Almost like a mammalian birdsong, the way they speak."
+	speech_verb = "chirps"
+	ask_verb = "chitters"
+	exclaim_verb = "barks loudly"
+	colour = "changeling"
+	key = "x"
+	syllables = list("Zi","vey","ra","chir","chirr","chirp","sri","seva","eri","liva'","a'li","s'va","ri", "ari", "cer", "sova", "chirrip", "brakka", "veip", "zissi", "kova", "sol", "stell", "wa", "wah", "tzch", "tah",
+	"mii","wah","so","sal'","tri", "twe")*/
 
 /datum/language/unathi
 	flags = 0
