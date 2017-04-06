@@ -390,6 +390,8 @@
 	var/mob/living/carbon/human/occupant = null
 	var/connected = null
 
+	var/sleevecards = 2
+
 /obj/machinery/transhuman/resleever/New()
 	..()
 	component_parts = list()
@@ -458,16 +460,30 @@
 			qdel(G)
 			src.updateUsrDialog()
 			return //Don't call up else we'll get attack messsages
+	if(istype(W, /obj/item/device/sleevecard))
+		var/obj/item/device/sleevecard/C = W
+		user.unEquip(C)
+		C.removePersonality()
+		qdel(C)
+		sleevecards++
+		to_chat(user,"<span class='notice'>You store \the [C] in \the [src].</span>")
+		return
 
 	return ..()
 
-/obj/machinery/transhuman/resleever/proc/putmind(var/datum/transhuman/mind_record/MR)
-	if(!occupant || !istype(occupant) || occupant.stat >= DEAD)
+/obj/machinery/transhuman/resleever/proc/putmind(var/datum/transhuman/mind_record/MR, mode = 1)
+	if((!occupant || !istype(occupant) || occupant.stat >= DEAD) && mode == 1)
 		return 0
 
+	if(mode == 2 && sleevecards) //Card sleeving
+		var/obj/item/device/sleevecard/card = new /obj/item/device/sleevecard(get_turf(src))
+		card.sleeveInto(MR)
+		sleevecards--
+		return 1
+
 	//In case they already had a mind!
-	occupant << "<span class='warning'>You feel your mind being overwritten...</span>"
-	if(occupant.mind)
+	if(occupant && occupant.mind)
+		occupant << "<span class='warning'>You feel your mind being overwritten...</span>"
 		log_and_message_admins("was resleeve-wiped from their body.",occupant.mind)
 		occupant.ghostize()
 
@@ -500,8 +516,8 @@
 	occupant.confused = max(occupant.confused, confuse_amount)
 	occupant.eye_blurry = max(occupant.eye_blurry, blur_amount)
 
-	if(occupant.original_player != occupant.ckey)
-		log_and_message_admins("is now a cross-sleeved character. Body originally belonged to [occupant.original_player]. Mind is now [occupant.mind.name].",occupant)
+	if(occupant.mind && occupant.real_name != occupant.mind.name)
+		log_and_message_admins("is now a cross-sleeved character. Body originally belonged to [occupant.real_name]. Mind is now [occupant.mind.name].",occupant)
 
 	return 1
 

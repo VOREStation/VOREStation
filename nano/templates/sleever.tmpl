@@ -137,7 +137,8 @@
 				<div class='itemLabel'>OOC Notes:</div>
 				<div class='itemContent'>{{:helper.link('View', null, {'moocnotes' : data.activeMindRecord.mooc}, data.activeMindRecord.mooc ? null : 'linkOff')}}</div>
 			</div>
-			{{:helper.link('Sleeve', 'play', {'sleeve' : data.activeMindRecord.charname}, data.activeMindRecord.cando ? null : 'linkOff')}}
+			{{:helper.link('Sleeve', 'play', {'sleeve' : 1}, data.activeMindRecord.cando ? null : 'linkOff')}}
+			{{:helper.link('Card', 'play', {'sleeve' : 2}, data.activeMindRecord.cando ? null : 'linkOff')}}
 			
 		{{else}}
 			<div class='item bad'>ERROR: Record not found.</div>
