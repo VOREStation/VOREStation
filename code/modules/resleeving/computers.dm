@@ -311,36 +311,37 @@
 			if(!sleevers.len)
 				temp = "Error: No sleevers detected."
 			else
+				var/mode = text2num(href_list["sleeve"])
 				var/obj/machinery/transhuman/resleever/sleever = sleevers[1]
 				if (sleevers.len > 1)
 					sleever = input(usr,"Select a resleeving pod to use", "Resleever selection") as anything in sleevers
 
-				//No body to sleeve into.
-				if(!sleever.occupant)
-					temp = "Error: Resleeving pod is not occupied."
+				switch(mode)
+					if(1) //Body resleeving
+						//No body to sleeve into.
+						if(!sleever.occupant)
+							temp = "Error: Resleeving pod is not occupied."
 
-				//OOC body lock thing.
-				if(sleever.occupant.resleeve_lock && active_mr.ckey != sleever.occupant.resleeve_lock)
-					temp = "Error: Mind incompatible with body."
+						//OOC body lock thing.
+						if(sleever.occupant.resleeve_lock && active_mr.ckey != sleever.occupant.resleeve_lock)
+							temp = "Error: Mind incompatible with body."
+
+					if(2) //Card resleeving
+						if(sleever.sleevecards <= 0)
+							temp = "Error: No available cards in resleever."
 
 				//Body to sleeve into, but mind is in another living body.
-				else if(active_mr.mind_ref.current && active_mr.mind_ref.current.stat < DEAD) //Mind is in a body already that's alive
-					var/answer = alert(active_mr.mind_ref.current,"Someone is attempting to restore a backup of your mind into another body. Do you want to move to that body? You MAY suffer memory loss! (Same rules as CMD apply)","Resleeving","Yes","No")
+				if(active_mr.mind_ref.current && active_mr.mind_ref.current.stat < DEAD) //Mind is in a body already that's alive
+					var/answer = alert(active_mr.mind_ref.current,"Someone is attempting to restore a backup of your mind. Do you want to abandon this body, and move there? You MAY suffer memory loss! (Same rules as CMD apply)","Resleeving","Yes","No")
 
 					//They declined to be moved.
 					if(answer == "No")
 						temp = "Initiating resleeving...<br>Error: Post-initialisation failed. Resleeving cycle aborted."
 						menu = 1
 
-					//They approved being moved.
-					else
-						sleever.putmind(active_mr)
-						temp = "Initiating current backup & resleeving..."
-						menu = 1
-
 				//They were dead, or otherwise available.
-				else
-					sleever.putmind(active_mr)
+				if(!temp)
+					sleever.putmind(active_mr,mode)
 					temp = "Initiating resleeving..."
 					menu = 1
 

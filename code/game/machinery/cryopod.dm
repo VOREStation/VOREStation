@@ -389,6 +389,10 @@
 	for(var/mob/M in to_despawn)
 		despawn_occupant(M)
 
+	// VOREStation
+	hook_vr("despawn", list(to_despawn, src))
+	// VOREStation
+
 	//Drop all items into the pod.
 	for(var/obj/item/W in to_despawn)
 		to_despawn.drop_from_inventory(W)

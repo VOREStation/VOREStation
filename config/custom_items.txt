@@ -145,17 +145,18 @@ item_path: /obj/item/weapon/storage/belt/champion
 }
 
 # ######## E CKEYS
-{
-ckey: eekasqueak
-character_name: Serkii Miishy
-item_path: /obj/item/fluff/permit/serkiimiishy
-}
+# Needs to renew permit. Uncomment when renewed.
+#{
+#ckey: eekasqueak
+#character_name: Serkii Miishy
+#item_path: /obj/item/fluff/permit/serkiimiishy
+#}
 
-{
-ckey: eekasqueak
-character_name: Serkii Miishy
-item_path: /obj/item/weapon/gun/energy/stunrevolver
-}
+#{
+#ckey: eekasqueak
+#character_name: Serkii Miishy
+#item_path: /obj/item/weapon/gun/energy/stunrevolver
+#}
 
 {
 ckey: eekasqueak
@@ -335,17 +336,18 @@ character_name: Giliana Gamish
 item_path: /obj/item/clothing/head/fluff/molenar2
 }
 
-{
-ckey: molenar
-character_name: Kari Akiren
-item_path: /obj/item/weapon/gun/projectile/shotgun/pump/rifle/fluff/kari_akiren
-}
+#Needs to renew permit
+#{ 
+#ckey: molenar
+#character_name: Kari Akiren
+#item_path: /obj/item/weapon/gun/projectile/shotgun/pump/rifle/fluff/kari_akiren
+#}
 
-{
-ckey: molenar
-character_name: Kari Akiren
-item_path: /obj/item/fluff/permit/kari_akiren
-}
+#{
+#ckey: molenar
+#character_name: Kari Akiren
+#item_path: /obj/item/fluff/permit/kari_akiren
+#}
 
 {
 ckey: myryan
