@@ -35,6 +35,7 @@
 	max_n2 = 0
 	minbodytemp = 0
 
+	has_langs = list("Bird")
 	speak_chance = 10
 	speak = list("HONK!")
 	emote_hear = list("honks loudly!")

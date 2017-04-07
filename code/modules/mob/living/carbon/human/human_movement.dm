@@ -2,6 +2,8 @@
 
 	var/tally = 0
 
+	var/item_tally = 0
+
 	if(species.slowdown)
 		tally = species.slowdown
 
@@ -33,7 +35,7 @@
 				tally += 1.5
 	else
 		if(shoes)
-			tally += shoes.slowdown
+			item_tally += shoes.slowdown
 
 		for(var/organ_name in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT))
 			var/obj/item/organ/external/E = get_organ(organ_name)
@@ -50,35 +52,39 @@
 
 	if(FAT in src.mutations)
 		tally += 1.5
-	if (bodytemperature < 283.222)
-		tally += (283.222 - bodytemperature) / 10 * 1.75
+
+	if (bodytemperature < species.cold_level_1)
+		tally += (species.cold_level_1 - bodytemperature) / 10 * 1.75
 
 	tally += max(2 * stance_damage, 0) //damaged/missing feet or legs is slow
 
 	if(mRun in mutations)
 		tally = 0
 
-	if(species.slowdown_fixed)
-		return (tally+config.human_delay)
-
 	// Loop through some slots, and add up their slowdowns.  Shoes are handled below, unfortunately.
 	// Includes slots which can provide armor, the back slot, and suit storage.
-	for(var/obj/item/I in list(wear_suit, w_uniform, back, gloves, head, s_store) )
-		tally += I.slowdown
+	for(var/obj/item/I in list(wear_suit, w_uniform, back, gloves, head, s_store))
+		item_tally += I.slowdown
 
 	// Hands are also included, to make the 'take off your armor instantly and carry it with you to go faster' trick no longer viable.
 	// This is done seperately to disallow negative numbers.
 	for(var/obj/item/I in list(r_hand, l_hand) )
-		tally += max(I.slowdown, 0)
+		item_tally += max(I.slowdown, 0)
 
 	// Dragging heavy objects will also slow you down, similar to above.
 	if(pulling && istype(pulling, /obj/item))
 		var/obj/item/pulled = pulling
-		tally += max(pulled.slowdown, 0)
+		item_tally += max(pulled.slowdown, 0)
 
 	var/turf/T = get_turf(src)
 	if(T && T.movement_cost)
 		tally += T.movement_cost
+
+	if(species.item_slowdown_halved)
+		if(item_tally > 0)
+			item_tally *= 0.5
+
+	tally += item_tally
 
 	if(CE_SPEEDBOOST in chem_effects)
 		if (tally >= 0)	// cut any penalties in half
