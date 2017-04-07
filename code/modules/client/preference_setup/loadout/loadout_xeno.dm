@@ -4,6 +4,11 @@
 	path = /obj/item/clothing/suit/tajaran/furs
 	sort_category = "Xenowear"
 
+/datum/gear/head/zhan_scarf
+	display_name = "Zhan headscarf"
+	path = /obj/item/clothing/head/tajaran/scarf
+	whitelisted = "Tajara"
+
 /datum/gear/suit/unathi_mantle
 	display_name = "hide mantle (Unathi)"
 	path = /obj/item/clothing/suit/unathi/mantle
@@ -113,3 +118,9 @@
 	display_name = "gear harness (Full Body Prosthetic, Diona)"
 	path = /obj/item/clothing/under/harness
 	sort_category = "Xenowear"
+
+/datum/gear/shoes/footwraps
+	display_name = "cloth footwraps"
+	path = /obj/item/clothing/shoes/footwraps
+	sort_category = "Xenowear"
+	cost = 1
