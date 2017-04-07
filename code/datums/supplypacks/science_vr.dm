@@ -20,7 +20,12 @@
 			/obj/item/weapon/disk/limb/wardtakahashi,
 			/obj/item/weapon/disk/limb/xion,
 			/obj/item/weapon/disk/limb/zenghu,
-			/obj/item/weapon/disk/limb/talon
+			/obj/item/weapon/disk/limb/talon,
+			/obj/item/weapon/disk/limb/dsi_tajaran,
+			/obj/item/weapon/disk/limb/dsi_lizard,
+			/obj/item/weapon/disk/limb/dsi_sergal,
+			/obj/item/weapon/disk/limb/dsi_nevrean,
+			/obj/item/weapon/disk/limb/dsi_vulpkanin
 			)
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure
