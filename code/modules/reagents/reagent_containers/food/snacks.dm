@@ -3429,3 +3429,17 @@
 /obj/item/weapon/reagent_containers/food/snacks/skrellsnacks/New()
 	..()
 	bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/unajerky
+	name = "Moghes Imported Sissalik Jerky"
+	icon_state = "unathitinred"
+	desc = "An incredibly well made jerky, shipped in all the way from Moghes."
+	trash = /obj/item/trash/unajerky
+	filling_color = "#631212"
+	center_of_mass = list("x"=15, "y"=9)
+
+/obj/item/weapon/reagent_containers/food/snacks/unajerky/New()
+		..()
+		reagents.add_reagent("protein", 8)
+		reagents.add_reagent("capsaicin", 2)
+		bitesize = 2
