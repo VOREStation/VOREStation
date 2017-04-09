@@ -8,6 +8,8 @@
 	#include "virgo-6.dmm"
 	#include "virgo-7.dmm"
 
+	#include "virgo_defines.dm"
+
 	#define USING_MAP_DATUM /datum/map/virgo
 
 #elif !defined(MAP_OVERRIDE)

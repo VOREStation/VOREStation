@@ -11,6 +11,7 @@ var/list/department_radio_keys = list(
 	  ":s" = "Security",	".s" = "Security",
 	  ":w" = "whisper",		".w" = "whisper",
 	  ":t" = "Mercenary",	".t" = "Mercenary",
+	  ":x" = "Raider",		".x" = "Raider",
 	  ":u" = "Supply",		".u" = "Supply",
 	  ":v" = "Service",		".v" = "Service",
 	  ":p" = "AI Private",	".p" = "AI Private",
@@ -26,6 +27,7 @@ var/list/department_radio_keys = list(
 	  ":S" = "Security",	".S" = "Security",
 	  ":W" = "whisper",		".W" = "whisper",
 	  ":T" = "Mercenary",	".T" = "Mercenary",
+	  ":X" = "Raider",		".X" = "Raider",
 	  ":U" = "Supply",		".U" = "Supply",
 	  ":V" = "Service",		".V" = "Service",
 	  ":P" = "AI Private",	".P" = "AI Private",
@@ -131,10 +133,11 @@ proc/get_radio_key_from_channel(var/channel)
 /mob/living/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="", var/whispering = 0)
 	//If you're muted for IC chat
 	if(client)
-		client.handle_spam_prevention(MUTE_IC)
-		if((client.prefs.muted & MUTE_IC) || say_disabled)
-			src << "<span class='warning'>You cannot speak in IC (Muted).</span>"
-			return
+		if(message)
+			client.handle_spam_prevention(MUTE_IC)
+			if((client.prefs.muted & MUTE_IC) || say_disabled)
+				src << "<span class='warning'>You cannot speak in IC (Muted).</span>"
+				return
 
 	//Redirect to say_dead if talker is dead
 	if(stat)

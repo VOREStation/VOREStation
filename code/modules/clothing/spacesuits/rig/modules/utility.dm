@@ -157,6 +157,7 @@
 		list("antibiotics",   "spaceacillin",  0, 20),
 		list("antitoxins",    "anti_toxin",    0, 20),
 		list("nutrients",     "glucose",     0, 80),
+		list("clotting agent", "myelamine", 0, 80),
 		list("hyronalin",     "hyronalin",     0, 20),
 		list("radium",        "radium",        0, 20)
 		)
@@ -246,6 +247,7 @@
 		list("hyperzine",     "hyperzine",     0, 30),
 		list("oxycodone",     "oxycodone",     0, 30),
 		list("nutrients",     "glucose",     0, 80),
+		list("clotting agent", "myelamine", 0, 80)
 		)
 
 	interface_name = "combat chem dispenser"
@@ -262,6 +264,20 @@
 
 	interface_name = "mounted chem injector"
 	interface_desc = "Dispenses loaded chemicals via an arm-mounted injector."
+
+/obj/item/rig_module/chem_dispenser/injector/advanced
+
+	charges = list(
+		list("tricordrazine", "tricordrazine", 0, 80),
+		list("tramadol",      "tramadol",      0, 80),
+		list("dexalin plus",  "dexalinp",      0, 80),
+		list("antibiotics",   "spaceacillin",  0, 80),
+		list("antitoxins",    "anti_toxin",    0, 80),
+		list("nutrients",     "glucose",     0, 80),
+		list("hyronalin",     "hyronalin",     0, 80),
+		list("radium",        "radium",        0, 80),
+		list("clotting agent", "myelamine", 0, 80)
+		)
 
 /obj/item/rig_module/voice
 

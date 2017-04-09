@@ -18,7 +18,6 @@
 	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_TONE | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
 
-
 /datum/species/human/get_bodytype(var/mob/living/carbon/human/H)
 	return "Human"
 
@@ -32,9 +31,11 @@
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	primitive_form = "Stok"
 	darksight = 3
-//	gluttonous = 1 // Vorestation edit. Redundant feature.
+	ambiguous_genders = TRUE
+	//gluttonous = 1 //VOREStation Edit - Redundant 
 	slowdown = 0.5
-	brute_mod = 0.8
+	brute_mod = 0.9
+	burn_mod = 0.9
 	num_alternate_languages = 3
 	secondary_langs = list(LANGUAGE_UNATHI)
 	name_language = LANGUAGE_UNATHI
@@ -95,6 +96,7 @@
 	slowdown = -0.5
 	brute_mod = 1.15
 	burn_mod =  1.15
+	flash_mod = 1.1
 	metabolic_rate = 1.1
 	gluttonous = 1
 	num_alternate_languages = 3
@@ -110,6 +112,7 @@
 	and have accelerated the fledgling culture into the interstellar age. Their history is full of war and highly fractious \
 	governments, something that permeates even to today's times. They prefer colder, tundra-like climates, much like their \
 	home worlds and speak a variety of languages, especially Siik and Akhani."
+
 	cold_level_1 = 200 //Default 260
 	cold_level_2 = 140 //Default 200
 	cold_level_3 = 80  //Default 120
@@ -136,6 +139,15 @@
 		)
 	//cold_discomfort_level = 275 //VOREStation Removal
 
+	has_organ = list(    //No appendix.
+		O_HEART =    /obj/item/organ/internal/heart,
+		O_LUNGS =    /obj/item/organ/internal/lungs,
+		O_LIVER =    /obj/item/organ/internal/liver,
+		O_KIDNEYS =  /obj/item/organ/internal/kidneys,
+		O_BRAIN =    /obj/item/organ/internal/brain,
+		O_EYES =     /obj/item/organ/internal/eyes
+		)
+
 /datum/species/tajaran/equip_survival_gear(var/mob/living/carbon/human/H)
 	..()
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H),slot_shoes)
@@ -158,9 +170,11 @@
 	health_hud_intensity = 2
 
 	min_age = 19
-	max_age = 80
+	max_age = 130
 
 	darksight = 4
+	flash_mod = 1.2
+	chemOD_mod = 0.9
 
 	ambiguous_genders = TRUE
 

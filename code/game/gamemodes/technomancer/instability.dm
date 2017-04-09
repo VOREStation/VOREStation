@@ -126,7 +126,7 @@
 						safe_blink(src, range = 6)
 						src << "<span class='warning'>You're teleported against your will!</span>"
 					if(4)
-						emp_act(2)
+						emp_act(3)
 
 			if(51 to 100) //Severe
 				rng = rand(0,3)

@@ -18,7 +18,7 @@ var/global/list/robot_modules = list(
 	icon = 'icons/obj/module.dmi'
 	icon_state = "std_module"
 	w_class = ITEMSIZE_NO_CONTAINER
-	item_state = "electronic"
+	item_state = "std_mod"
 	flags = CONDUCT
 	var/hide_on_manifest = 0
 	var/channels = list()
@@ -158,9 +158,19 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/robot/standard
 	name = "standard robot module"
-	sprites = list(	"Basic" = "robot_old",
+	sprites = list(
+					"M-USE NanoTrasen" = "robot",
+					"Cabeiri" = "eyebot-standard",
+					"CUPCAKE" = "Noble-STD",
+					"Haruka" = "marinaSD",
+					"Usagi" = "tallflower",
+					"Telemachus" = "toiletbot",
+					"WTOperator" = "sleekstandard",
+					"WTOmni" = "omoikane",
+					"XI-GUS" = "spider",
+					"XI-ALP" = "heavyStandard",
+					"Basic" = "robot_old",
 					"Android" = "droid",
-					"Default" = "robot",
 					"Drone" = "drone-standard"
 				  )
 
@@ -181,8 +191,16 @@ var/global/list/robot_modules = list(
 /obj/item/weapon/robot_module/robot/medical/surgeon
 	name = "surgeon robot module"
 	sprites = list(
+					"M-USE NanoTrasen" = "robotMedi",
+					"Cabeiri" = "eyebot-medical",
+					"CUPCAKE" = "Noble-MED",
+					"Haruka" = "marinaMD",
+					"Minako" = "arachne",
+					"Usagi" = "tallwhite",
+					"Telemachus" = "toiletbotsurgeon",
+					"WTOperator" = "sleekcmo",
+					"XI-ALP" = "heavyMed",
 					"Basic" = "Medbot",
-					"Standard" = "surgeon",
 					"Advanced Droid" = "droid-medical",
 					"Needles" = "medicalrobot",
 					"Drone" = "drone-surgery"
@@ -190,6 +208,7 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/robot/medical/surgeon/New()
 	..()
+	src.modules += new /obj/item/borg/sight/hud/med(src)
 	src.modules += new /obj/item/device/healthanalyzer(src)
 	src.modules += new /obj/item/weapon/reagent_containers/borghypo(src)
 	src.modules += new /obj/item/weapon/surgical/scalpel(src)
@@ -229,8 +248,16 @@ var/global/list/robot_modules = list(
 /obj/item/weapon/robot_module/robot/medical/crisis
 	name = "crisis robot module"
 	sprites = list(
+					"M-USE NanoTrasen" = "robotMedi",
+					"Cabeiri" = "eyebot-medical",
+					"CUPCAKE" = "Noble-MED",
+					"Haruka" = "marinaMD",
+					"Minako" = "arachne",
+					"Usagi" = "tallwhite",
+					"Telemachus" = "toiletbotmedical",
+					"WTOperator" = "sleekmedic",
+					"XI-ALP" = "heavyMed",
 					"Basic" = "Medbot",
-					"Standard" = "surgeon",
 					"Advanced Droid" = "droid-medical",
 					"Needles" = "medicalrobot",
 					"Drone - Medical" = "drone-medical",
@@ -294,6 +321,15 @@ var/global/list/robot_modules = list(
 	networks = list(NETWORK_ENGINEERING)
 	subsystems = list(/mob/living/silicon/proc/subsystem_power_monitor)
 	sprites = list(
+					"M-USE NanoTrasen" = "robotEngi",
+					"Cabeiri" = "eyebot-engineering",
+					"CUPCAKE" = "Noble-ENG",
+					"Haruka" = "marinaENG",
+					"Usagi" = "tallyellow",
+					"Telemachus" = "toiletbotengineering",
+					"WTOperator" = "sleekce",
+					"XI-GUS" = "spidereng",
+					"XI-ALP" = "heavyEng",
 					"Basic" = "Engineering",
 					"Antique" = "engineerrobot",
 					"Landmate" = "landmate",
@@ -311,7 +347,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/rcd/borg(src)
 	src.modules += new /obj/item/weapon/screwdriver(src)
 	src.modules += new /obj/item/weapon/wrench(src)
-	src.modules += new /obj/item/weapon/weldingtool/largetank(src)
+	src.modules += new /obj/item/weapon/weldingtool/electric/mounted(src)
 	src.modules += new /obj/item/weapon/pickaxe/plasmacutter(src)
 	src.modules += new /obj/item/device/pipe_painter(src)
 	src.modules += new /obj/item/device/floor_painter(src)
@@ -347,7 +383,7 @@ var/global/list/robot_modules = list(
 /obj/item/weapon/robot_module/robot/engineering/general/New()
 	..()
 	src.modules += new /obj/item/borg/sight/meson(src)
-	src.modules += new /obj/item/weapon/weldingtool/largetank(src)
+	src.modules += new /obj/item/weapon/weldingtool/electric/mounted(src)
 	src.modules += new /obj/item/weapon/screwdriver(src)
 	src.modules += new /obj/item/weapon/wrench(src)
 	src.modules += new /obj/item/weapon/wirecutters(src)
@@ -359,7 +395,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/device/lightreplacer(src)
 	src.modules += new /obj/item/device/pipe_painter(src)
 	src.modules += new /obj/item/device/floor_painter(src)
-	src.emag = new /obj/item/borg/stun(src)
+	src.emag = new /obj/item/weapon/melee/baton/robot/arm(src)
 
 	var/datum/matter_synth/metal = new /datum/matter_synth/metal(40000)
 	var/datum/matter_synth/glass = new /datum/matter_synth/glass(40000)
@@ -407,11 +443,19 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/robot/security/general
 	sprites = list(
+					"M-USE NanoTrasen" = "robotSecy",
+					"Cabeiri" = "eyebot-security",
+					"Cerberus" = "bloodhound",
+					"Cerberus - Treaded" = "treadhound",
+					"CUPCAKE" = "Noble-SEC",
+					"Haruka" = "marinaSC",
+					"Usagi" = "tallred",
+					"Telemachus" = "toiletbotsecurity",
+					"WTOperator" = "sleeksecurity",
+					"XI-GUS" = "spidersec",
+					"XI-ALP" = "heavySec",
 					"Basic" = "secborg",
-					"Red Knight" = "Security",
 					"Black Knight" = "securityrobot",
-					"Bloodhound" = "bloodhound",
-					"Bloodhound - Treaded" = "secborg+tread",
 					"Drone" = "drone-sec"
 				)
 
@@ -447,6 +491,13 @@ var/global/list/robot_modules = list(
 	name = "janitorial robot module"
 	channels = list("Service" = 1)
 	sprites = list(
+					"M-USE NanoTrasen" = "robotJani",
+					"Cabeiri" = "eyebot-janitor",
+					"CUPCAKE" = "Noble-CLN",
+					"Haruka" = "marinaJN",
+					"Telemachus" = "toiletbotjanitor",
+					"WTOperator" = "sleekjanitor",
+					"XI-ALP" = "heavyRes",
 					"Basic" = "JanBot2",
 					"Mopbot"  = "janitorrobot",
 					"Mop Gear Rex" = "mopgearrex",
@@ -487,11 +538,21 @@ var/global/list/robot_modules = list(
 					)
 
 /obj/item/weapon/robot_module/robot/clerical/butler
-	sprites = list(	"Waitress" = "Service",
-					"Kent" = "toiletbot",
+	sprites = list(
+					"M-USE NanoTrasen" = "robotServ",
+					"Cabeiri" = "eyebot-standard",
+					"CUPCAKE" = "Noble-SRV",
+					"Haruka" = "marinaSV",
+					"Usagi" = "tallgreen",
+					"Telemachus" = "toiletbot",
+					"WTOperator" = "sleekservice",
+					"WTOmni" = "omoikane",
+					"XI-GUS" = "spider",
+					"XI-ALP" = "heavyServ",
+					"Standard" = "Service2",
+					"Waitress" = "Service",
 					"Bro" = "Brobot",
 					"Rich" = "maximillion",
-					"Default" = "Service2",
 					"Drone - Service" = "drone-service",
 					"Drone - Hydro" = "drone-hydro"
 				  	)
@@ -531,12 +592,21 @@ var/global/list/robot_modules = list(
 /obj/item/weapon/robot_module/robot/clerical/general
 	name = "clerical robot module"
 	sprites = list(
+					"M-USE NanoTrasen" = "robotCler",
+					"Cabeiri" = "eyebot-standard",
+					"CUPCAKE" = "Noble-SRV",
+					"Haruka" = "marinaSV",
+					"Usagi" = "tallgreen",
+					"Telemachus" = "toiletbot",
+					"WTOperator" = "sleekclerical",
+					"WTOmni" = "omoikane",
+					"XI-GUS" = "spidercom",
+					"XI-ALP" = "heavyServ",
 					"Waitress" = "Service",
-					"Kent" = "toiletbot",
 					"Bro" = "Brobot",
 					"Rich" = "maximillion",
 					"Default" = "Service2",
-					"Drone" = "drone-service"
+					"Drone" = "drone-blu"
 					)
 
 /obj/item/weapon/robot_module/robot/clerical/general/New()
@@ -562,6 +632,14 @@ var/global/list/robot_modules = list(
 	channels = list("Supply" = 1)
 	networks = list(NETWORK_MINE)
 	sprites = list(
+					"NM-USE NanoTrasen" = "robotMine",
+					"Cabeiri" = "eyebot-miner",
+					"CUPCAKE" = "Noble-DIG",
+					"Haruka" = "marinaMN",
+					"Telemachus" = "toiletbotminer",
+					"WTOperator" = "sleekminer",
+					"XI-GUS" = "spidermining",
+					"XI-ALP" = "heavyMiner",
 					"Basic" = "Miner_old",
 					"Advanced Droid" = "droid-miner",
 					"Treadhead" = "Miner",
@@ -585,6 +663,10 @@ var/global/list/robot_modules = list(
 	name = "research module"
 	channels = list("Science" = 1)
 	sprites = list(
+					"L'Ouef" = "peaceborg",
+					"Cabeiri" = "eyebot-science",
+					"Haruka" = "marinaSCI",
+					"WTOperator" = "sleekscience",
 					"Droid" = "droid-science",
 					"Drone" = "drone-science"
 					)
@@ -598,7 +680,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/gripper/no_use/loader(src)
 	src.modules += new /obj/item/device/robotanalyzer(src)
 	src.modules += new /obj/item/weapon/card/robot(src)
-	src.modules += new /obj/item/weapon/weldingtool/largetank(src)
+	src.modules += new /obj/item/weapon/weldingtool/electric/mounted(src)
 	src.modules += new /obj/item/weapon/screwdriver(src)
 	src.modules += new /obj/item/weapon/wrench(src)
 	src.modules += new /obj/item/weapon/wirecutters(src)
@@ -640,7 +722,13 @@ var/global/list/robot_modules = list(
 					LANGUAGE_SIGN	 = 0
 					)
 	sprites = list(
-					"Dread" = "securityrobot",
+					"Cerberus" = "syndie_bloodhound",
+					"Cerberus - Treaded" = "syndie_treadhound",
+					"Ares" = "squats",
+					"Telemachus" = "toiletbotantag",
+					"WTOperator" = "hosborg",
+					"XI-GUS" = "spidersyndi",
+					"XI-ALP" = "syndi-heavy"
 				)
 	var/id
 
@@ -665,7 +753,10 @@ var/global/list/robot_modules = list(
 /obj/item/weapon/robot_module/robot/security/combat
 	name = "combat robot module"
 	hide_on_manifest = 1
-	sprites = list("Combat Android" = "droid-combat")
+	sprites = list(
+					"Haruka" = "marinaCB",
+					"Combat Android" = "droid-combat"
+					)
 
 /obj/item/weapon/robot_module/robot/security/combat/New()
 	..()
@@ -685,7 +776,8 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/drone/New(var/mob/living/silicon/robot/robot)
 	..()
-	src.modules += new /obj/item/weapon/weldingtool(src)
+	src.modules += new /obj/item/borg/sight/meson(src)
+	src.modules += new /obj/item/weapon/weldingtool/electric/mounted(src)
 	src.modules += new /obj/item/weapon/screwdriver(src)
 	src.modules += new /obj/item/weapon/wrench(src)
 	src.modules += new /obj/item/weapon/crowbar(src)

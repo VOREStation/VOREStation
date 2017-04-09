@@ -160,6 +160,14 @@
 	required_reagents = list("silicon" = 1, "potassium" = 1, "nitrogen" = 1)
 	result_amount = 3
 
+/datum/chemical_reaction/carthatoline
+	name = "Carthatoline"
+	id = "carthatoline"
+	result = "carthatoline"
+	required_reagents = list("anti_toxin" = 1, "carbon" = 2, "phoron" = 0.1)
+	catalysts = list("phoron" = 1)
+	result_amount = 2
+
 /datum/chemical_reaction/tramadol
 	name = "Tramadol"
 	id = "tramadol"
@@ -282,6 +290,15 @@
 	catalysts = list("phoron" = 5)
 	result_amount = 2
 
+/datum/chemical_reaction/osteodaxon
+	name = "Osteodaxon"
+	id = "osteodaxon"
+	result = "osteodaxon"
+	required_reagents = list("bicaridine" = 2, "phoron" = 0.1, "carpotoxin" = 1)
+	catalysts = list("phoron" = 5)
+	inhibitors = list("clonexadone" = 1) // Messes with cryox
+	result_amount = 2
+
 /datum/chemical_reaction/virus_food
 	name = "Virus Food"
 	id = "virusfood"
@@ -347,6 +364,13 @@
 	result = "bicaridine"
 	required_reagents = list("inaprovaline" = 1, "carbon" = 1)
 	inhibitors = list("sugar" = 1) // Messes up with inaprovaline
+	result_amount = 2
+
+/datum/chemical_reaction/myelamine
+	name = "Myelamine"
+	id = "myelamine"
+	result = "myelamine"
+	required_reagents = list("bicaridine" = 1, "iron" = 2, "spidertoxin" = 1)
 	result_amount = 2
 
 /datum/chemical_reaction/hyperzine
@@ -665,7 +689,7 @@
 	var/location = get_turf(holder.my_atom)
 	// 100 created volume = 4 heavy range & 7 light range. A few tiles smaller than traitor EMP grandes.
 	// 200 created volume = 8 heavy range & 14 light range. 4 tiles larger than traitor EMP grenades.
-	empulse(location, round(created_volume / 24), round(created_volume / 14), 1)
+	empulse(location, round(created_volume / 24), round(created_volume / 20), round(created_volume / 18), round(created_volume / 14), 1)
 	holder.clear_reagents()
 	return
 
@@ -1783,35 +1807,35 @@
 	required_reagents = list("icetea" = 1, "lemonade" = 1)
 	result_amount = 2
 
-/datum/chemical_reaction/minttea
+/datum/chemical_reaction/drinks/minttea
 	name = "Mint Tea"
 	id = "minttea"
 	result = "minttea"
 	required_reagents = list("tea" = 5, "mint" = 1)
 	result_amount = 6
 
-/datum/chemical_reaction/lemontea
+/datum/chemical_reaction/drinks/lemontea
 	name = "Lemon Tea"
 	id = "lemontea"
 	result = "lemontea"
 	required_reagents = list("tea" = 5, "lemonjuice" = 1)
 	result_amount = 6
 
-/datum/chemical_reaction/limetea
+/datum/chemical_reaction/drinks/limetea
 	name = "Lime Tea"
 	id = "limetea"
 	result = "limetea"
 	required_reagents = list("tea" = 5, "limejuice" = 1)
 	result_amount = 6
 
-/datum/chemical_reaction/limetea
+/datum/chemical_reaction/drinks/limetea
 	name = "Orange Tea"
 	id = "orangetea"
 	result = "orangetea"
 	required_reagents = list("tea" = 5, "orangejuice" = 1)
 	result_amount = 6
 
-/datum/chemical_reaction/berrytea
+/datum/chemical_reaction/drinks/berrytea
 	name = "Berry Tea"
 	id = "berrytea"
 	result = "berrytea"

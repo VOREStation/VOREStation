@@ -142,6 +142,7 @@
 		new /obj/item/clothing/suit/storage/toggle/labcoat/emt(src)
 		new /obj/item/device/radio/headset/headset_med/alt(src)
 		new /obj/item/weapon/cartridge/medical(src)
+		new /obj/item/weapon/storage/briefcase/inflatable(src)
 		new /obj/item/device/flashlight(src)
 		new /obj/item/weapon/tank/emergency/oxygen/engi(src)
 		new /obj/item/clothing/glasses/hud/health(src)

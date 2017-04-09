@@ -1,0 +1,163 @@
+/**
+ * Stuff having to do with inter-round persistence.
+ */
+
+// Minds represent IC characters.
+// Therefore it is the MIND we actually want to track here to find out
+// what "character" a mob is.
+// However right now minds don't keep track of what save file & slot they came from.
+// So that is what we need to add!  Whenever a mind is initialized from a save file slot,
+// we record that so we can save it back when persisting!
+
+/datum/mind
+	var/loaded_from_ckey = null
+	var/loaded_from_slot = null
+
+// Handle people leaving due to round ending.
+/hook/roundend/proc/persist_locations()
+	for(var/mob/Player in player_list)
+		if(!Player.mind || isnewplayer(Player))
+			continue // No mind we can do nothing, new players we care not for
+		else if(Player.stat == DEAD)
+			if(istype(Player,/mob/observer/dead))
+				var/mob/observer/dead/O = Player
+				if(O.started_as_observer)
+					continue // They are just a pure observer, ignore
+			// Died and were not cloned - Respawn at centcomm
+			persist_interround_data(Player, /datum/spawnpoint/arrivals)
+		else
+			var/turf/playerTurf = get_turf(Player)
+			if(isAdminLevel(playerTurf.z))
+				// Evac'd - Next round they arrive on the shuttle.
+				persist_interround_data(Player, /datum/spawnpoint/arrivals)
+			else
+				// Stayed on station, go to dorms
+				persist_interround_data(Player, /datum/spawnpoint/elevator)
+	return 1
+
+/**
+ * Called when mob despawns early (via cryopod)!
+ */
+/hook/despawn/proc/persist_despawned_mob(var/mob/occupant, var/obj/machinery/cryopod/pod)
+	ASSERT(istype(pod))
+	ASSERT(ispath(pod.spawnpoint_type, /datum/spawnpoint))
+	persist_interround_data(occupant, pod.spawnpoint_type)
+	return 1
+
+/proc/persist_interround_data(var/mob/occupant, var/datum/spawnpoint/new_spawn_point_type)
+	ASSERT(istype(occupant))
+
+	// Find out of this mob is a proper mob!
+	if (occupant.mind && occupant.mind.loaded_from_ckey)
+		// Okay this mob has a real loaded-from-savefile mind in it!
+		var/datum/preferences/prefs = preferences_datums[occupant.mind.loaded_from_ckey]
+		if(!prefs)
+			WARNING("mind [occupant.mind] was loaded from ckey [occupant.mind.loaded_from_ckey] but no prefs datum found")
+			return
+
+		// Okay, lets do a few checks to see if we should really save tho!
+		if(!prefs.load_character(occupant.mind.loaded_from_slot))
+			WARNING("mind [occupant.mind] was loaded from slot [occupant.mind.loaded_from_slot] but loading prefs failed.")
+			return // Failed to load character
+
+		// For now as a safety measure we will only save if the name matches.
+		if(prefs.real_name != occupant.real_name)
+			log_debug("Skipping persist for [occupant] becuase [occupant.real_name] != [prefs.real_name]")
+			return
+
+		if(!prefs.persistence_settings)
+			return // Persistence disabled by preference settings
+
+		// Okay we can start saving the data
+		if(new_spawn_point_type && prefs.persistence_settings & PERSIST_SPAWN)
+			prefs.spawnpoint = initial(new_spawn_point_type.display_name)
+		if(ishuman(occupant) && occupant.stat != DEAD)
+			var/mob/living/carbon/human/H = occupant
+			testing("About to try saving stuff from [H] to [prefs] (\ref[prefs])")
+			if(prefs.persistence_settings & PERSIST_ORGANS)
+				apply_organs_to_prefs(H, prefs)
+			if(prefs.persistence_settings & PERSIST_MARKINGS)
+				apply_markings_to_prefs(H, prefs)
+			if(prefs.persistence_settings & PERSIST_WEIGHT)
+				resolve_excess_nutrition(H)
+				prefs.weight_vr = H.weight
+		prefs.save_character()
+	return
+
+// Saves mob's current organ state to prefs.
+// This basically needs to be the reverse of /datum/category_item/player_setup_item/general/body/copy_to_mob() ~Leshana
+/proc/apply_organs_to_prefs(var/mob/living/carbon/human/character, var/datum/preferences/prefs)
+	if(!istype(character) || !character.species) return
+	// Checkify the limbs!
+	for(var/name in character.species.has_limbs)
+		var/obj/item/organ/external/O = character.organs_by_name[name]
+		if(!O)
+			prefs.organ_data[name] = "amputated"
+		else if(O.robotic >= ORGAN_ROBOT)
+			prefs.organ_data[name] = "cyborg"
+			if(O.model)
+				prefs.rlimb_data[name] = O.model
+			else
+				prefs.rlimb_data.Remove(name) // Missing rlimb_data entry means default model
+		else
+			prefs.organ_data.Remove(name) // Misisng organ_data entry means normal
+
+	// Internal organs also
+	for(var/name in character.species.has_organ)
+		var/obj/item/organ/I = character.internal_organs_by_name[name]
+		if(I)
+			if(istype(I, /obj/item/organ/internal/mmi_holder/robot))
+				prefs.organ_data[name] = "digital" // Need a better way to detect this special type
+			else if(I.robotic == ORGAN_ASSISTED)
+				prefs.organ_data[name] = "assisted"
+			else if(I.robotic >= ORGAN_ROBOT)
+				prefs.organ_data[name] = "mechanical"
+			else
+				prefs.organ_data.Remove(name) // Missing organ_data entry means normal
+
+// Saves mob's current body markings state to prefs.
+// This basically needs to be the reverse of /datum/category_item/player_setup_item/general/body/copy_to_mob() ~Leshana
+/proc/apply_markings_to_prefs(var/mob/living/carbon/human/character, var/datum/preferences/prefs)
+	if(!istype(character)) return
+	var/list/new_body_markings = list()
+	for(var/N in character.organs_by_name)
+		var/obj/item/organ/external/O = character.organs_by_name[N]
+		if(!O) continue // Skip missing limbs!
+
+		for(var/name in O.markings)
+			// Expected to be list("color" = mark_color, "datum" = mark_datum). Sanity checks to ensure it.
+			var/list/ML = O.markings[name]
+			var/datum/sprite_accessory/marking/mark_datum = ML["datum"]
+			var/mark_color = ML["color"]
+			if(!istype(mark_datum) || !mark_color)
+				log_debug("[character]'s organ [O] ([O.type]) has marking [list2params(ML)] with invalid/missing color/datum!")
+				continue;
+			if(!(mark_datum.name in body_marking_styles_list))
+				log_debug("[character]'s organ [O] ([O.type]) has marking [mark_datum] which is not in body_marking_styles_list!")
+				continue;
+			// Note: Since datums can cover multiple organs, we may encounter it multiple times, but this is okay
+			// because you're only allowed to have each marking type once! If this assumption changes, obviously update this. ~Leshana
+			new_body_markings[mark_datum.name] = mark_color
+	prefs.body_markings = new_body_markings // Overwrite with new list!
+
+/**
+* Resolve any surplus/deficit in nutrition's effet on weight all at once.
+* Normally this would slowly apply during the round; once we get to the end
+* we need to apply it all at once.
+*/
+/proc/resolve_excess_nutrition(var/mob/living/carbon/C)
+	if(C.stat == DEAD)
+		return // You don't metabolize if dead
+	if(!C.metabolism || !C.species || !C.species.hunger_factor)
+		return // You don't metabolize if you have no metabolism or your species doesn't eat!
+	// Each Life() tick, you gain/lose weight proportional to your metabolism, and lose species.hunger_factor nutrition
+	var/weight_per_nutrition = C.metabolism / C.species.hunger_factor
+
+	if(C.nutrition > MIN_NUTRITION_TO_GAIN && C.weight < MAX_MOB_WEIGHT && C.weight_gain)
+		// Weight Gain!
+		var/gain = (C.nutrition - MIN_NUTRITION_TO_GAIN) * weight_per_nutrition * C.weight_gain/100
+		C.weight = min(MAX_MOB_WEIGHT, C.weight + gain)
+	else if(C.nutrition <= MAX_NUTRITION_TO_LOSE && C.weight > MIN_MOB_WEIGHT && C.weight_loss)
+		// Weight Loss!
+		var/loss = (MAX_NUTRITION_TO_LOSE - C.nutrition) * weight_per_nutrition * C.weight_loss/100
+		C.weight = max(MIN_MOB_WEIGHT, C.weight - loss)

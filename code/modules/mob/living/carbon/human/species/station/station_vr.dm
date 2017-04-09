@@ -80,6 +80,7 @@
 
 	flesh_color = "#AFA59E"
 	base_color = "#333333"
+	blood_color = "#1D2CBF"
 
 	reagent_tag = IS_AKULA
 

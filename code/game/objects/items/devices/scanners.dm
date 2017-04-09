@@ -243,7 +243,6 @@ REAGENT SCANNER
 	name = "mass spectrometer"
 	desc = "A hand-held mass spectrometer which identifies trace chemicals in a blood sample."
 	icon_state = "spectrometer"
-	item_state = "analyzer"
 	w_class = ITEMSIZE_SMALL
 	flags = CONDUCT | OPENCONTAINER
 	slot_flags = SLOT_BELT

@@ -187,7 +187,7 @@
 	var/rn = rand(0, 200)
 	if(getBrainLoss() >= 5)
 		if(0 <= rn && rn <= 3)
-			custom_pain("Your head feels numb and painful.")
+			custom_pain("Your head feels numb and painful.", 10)
 	if(getBrainLoss() >= 15)
 		if(4 <= rn && rn <= 6) if(eye_blurry <= 0)
 			src << "<span class='warning'>It becomes hard to see for some reason.</span>"
@@ -329,17 +329,20 @@
 	if(status_flags & GODMODE)
 		return
 
+	if(suiciding)
+		failed_last_breath = 1
+		adjustOxyLoss(2)//If you are suiciding, you should die a little bit faster
+		oxygen_alert = max(oxygen_alert, 1)
+		suiciding --
+		return 0
+
 	if(does_not_breathe)
 		failed_last_breath = 0
 		adjustOxyLoss(-5)
 		return
 
-	if(!breath || (breath.total_moles == 0) || suiciding)
+	if(!breath || (breath.total_moles == 0))
 		failed_last_breath = 1
-		if(suiciding)
-			adjustOxyLoss(2)//If you are suiciding, you should die a little bit faster
-			oxygen_alert = max(oxygen_alert, 1)
-			return 0
 		if(health > config.health_threshold_crit)
 			adjustOxyLoss(HUMAN_MAX_OXYLOSS)
 		else
@@ -349,10 +352,6 @@
 			var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
 			if(!L.is_bruised() && prob(8))
 				rupture_lung()
-
-		if(should_have_organ("brain"))
-			if(prob(5))
-				adjustBrainLoss(0.02 * oxyloss) //2% of your current oxyloss is applied as brain damage, 50 oxyloss is 1 brain damage
 
 		oxygen_alert = max(oxygen_alert, 1)
 
@@ -372,8 +371,9 @@
 			safe_pressure_min *= 1.25
 		else if(breath)
 			if(breath.total_moles < BREATH_MOLES / 10 || breath.total_moles > BREATH_MOLES * 5)
-				if (prob(8))
-					rupture_lung()
+				if(is_below_sound_pressure(get_turf(src)))	//No more popped lungs from choking/drowning
+					if (prob(8))
+						rupture_lung()
 
 	var/safe_exhaled_max = 10
 	var/safe_toxins_max = 0.2
@@ -580,7 +580,7 @@
 			pl_effects()
 			break
 
-	if(istype(get_turf(src), /turf/space))
+	if(istype(loc, /turf/space)) //VOREStation Edit - No FBPs overheating on space turfs inside mechs or people.
 		//Don't bother if the temperature drop is less than 0.1 anyways. Hopefully BYOND is smart enough to turn this constant expression into a constant
 		if(bodytemperature > (0.1 * HUMAN_HEAT_CAPACITY/(HUMAN_EXPOSED_SURFACE_AREA*STEFAN_BOLTZMANN_CONSTANT))**(1/4) + COSMIC_RADIATION_TEMPERATURE)
 			//Thermal radiation into space
@@ -794,16 +794,12 @@
 
 	if(reagents)
 		chem_effects.Cut()
-		analgesic = 0
 
 		if(!isSynthetic())
 
 			if(touching) touching.metabolize()
 			if(ingested) ingested.metabolize()
 			if(bloodstr) bloodstr.metabolize()
-
-			if(CE_PAINKILLER in chem_effects)
-				analgesic = chem_effects[CE_PAINKILLER]
 
 			var/total_phoronloss = 0
 			for(var/obj/item/I in src)
@@ -922,6 +918,14 @@
 		else
 			for(var/atom/a in hallucinations)
 				qdel(a)
+
+		//Brain damage from Oxyloss
+		if(should_have_organ("brain"))
+			var/brainOxPercent = 0.02		//Default2% of your current oxyloss is applied as brain damage, 50 oxyloss is 1 brain damage
+			if(CE_STABLE in chem_effects)
+				brainOxPercent = 0.01		//Halved in effect
+			if(oxyloss >= 20 && prob(5))
+				adjustBrainLoss(brainOxPercent * oxyloss)
 
 		if(halloss >= species.total_health)
 			src << "<span class='notice'>You're in too much pain to keep going...</span>"
@@ -1155,7 +1159,7 @@
 			see_invisible = SEE_INVISIBLE_LIVING
 
 		if(healths)
-			if (analgesic > 100)
+			if (chem_effects[CE_PAINKILLER] > 100)
 				healths.icon_state = "health_numb"
 			else
 				// Generate a by-limb health display.
@@ -1443,8 +1447,11 @@
 		shock_stage = max(shock_stage-1, 0)
 		return
 
+	if(stat)
+		return 0
+
 	if(shock_stage == 10)
-		src << "<span class='danger'>[pick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!</span>"
+		custom_pain("[pick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!", 40)
 
 	if(shock_stage >= 30)
 		if(shock_stage == 30) emote("me",1,"is having trouble keeping their eyes open.")
@@ -1644,8 +1651,6 @@
 					holder1.icon_state = "hud_imp_tracking"
 				if(istype(I,/obj/item/weapon/implant/loyalty))
 					holder2.icon_state = "hud_imp_loyal"
-				if(istype(I,/obj/item/weapon/implant/backup))//VOREStation Edit - Commandeering this for backup implants
-					holder2.icon_state = "hud_imp_loyal" //VOREStation Edit
 				if(istype(I,/obj/item/weapon/implant/chem))
 					holder3.icon_state = "hud_imp_chem"
 

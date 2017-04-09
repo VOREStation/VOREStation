@@ -22,7 +22,7 @@
 		"Chick"			=	/mob/living/simple_animal/chick,
 		"Crab"			=	/mob/living/simple_animal/crab,
 		"Parrot"		=	/mob/living/simple_animal/parrot,
-		"Goat"			=	/mob/living/simple_animal/hostile/retaliate/goat,
+		"Goat"			=	/mob/living/simple_animal/retaliate/goat,
 		"Cat"			=	/mob/living/simple_animal/cat,
 		"Kitten"		=	/mob/living/simple_animal/cat/kitten,
 		"Corgi"			=	/mob/living/simple_animal/corgi,
@@ -31,8 +31,8 @@
 		"SPIDER"		=	/mob/living/simple_animal/hostile/giant_spider,
 		"SPIDER HUNTER"	=	/mob/living/simple_animal/hostile/giant_spider/hunter,
 		"SPIDER NURSE"	=	/mob/living/simple_animal/hostile/giant_spider/nurse,
-		"CARP"			=	/mob/living/simple_animal/hostile/vore/carp,
-		"BEAR"			=	/mob/living/simple_animal/hostile/vore/bear
+		"CARP"			=	/mob/living/simple_animal/hostile/carp,
+		"BEAR"			=	/mob/living/simple_animal/hostile/bear
 		) // Vorestation edits to add vore versions.
 	cooldown = 30
 	instability_cost = 10

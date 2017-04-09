@@ -24,6 +24,17 @@
 	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/bullet/pistol/rubber
 
+/obj/item/ammo_casing/c38/emp
+	name = ".38 haywire round"
+	desc = "A .38 bullet casing fitted with a single-use ion pulse generator."
+	icon_state = "empcasing"
+	projectile_type = /obj/item/projectile/ion/small
+	matter = list(DEFAULT_WALL_MATERIAL = 130, "uranium" = 100)
+
+/*
+ * 9mm
+ */
+
 /obj/item/ammo_casing/c9mm
 	desc = "A 9mm bullet casing."
 	caliber = "9mm"
@@ -58,6 +69,10 @@
 	projectile_type = /obj/item/projectile/bullet/pistol/ap
 */
 
+/*
+ * 45 ammo
+ */
+
 /obj/item/ammo_casing/c45
 	desc = "A .45 bullet casing."
 	caliber = ".45"
@@ -87,11 +102,37 @@
 	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/energy/flash
 
+/obj/item/ammo_casing/c45/emp
+	name = ".45 haywire round"
+	desc = "A .45 bullet casing fitted with a single-use ion pulse generator."
+	projectile_type = /obj/item/projectile/ion/small
+	icon_state = "empcasing"
+	matter = list(DEFAULT_WALL_MATERIAL = 130, "uranium" = 100)
+
+/obj/item/ammo_casing/c45/hp
+	desc = "A .45 hollow-point bullet casing."
+	projectile_type = /obj/item/projectile/bullet/pistol/medium/hollow
+
+
+/*
+ * 10mm
+ */
+
 /obj/item/ammo_casing/a10mm
 	desc = "A 10mm bullet casing."
 	caliber = "10mm"
 	projectile_type = /obj/item/projectile/bullet/pistol/medium
 
+/obj/item/ammo_casing/a10mm/emp
+	name = "10mm haywire round"
+	desc = "A 10mm bullet casing fitted with a single-use ion pulse generator."
+	projectile_type = /obj/item/projectile/ion/small
+	icon_state = "empcasing"
+	matter = list(DEFAULT_WALL_MATERIAL = 130, "uranium" = 100)
+
+/*
+ * Shotguns
+ */
 
 /obj/item/ammo_casing/shotgun
 	name = "shotgun slug"
@@ -150,13 +191,17 @@
 	projectile_type = /obj/item/projectile/energy/flash/flare
 	matter = list(DEFAULT_WALL_MATERIAL = 90, "glass" = 90)
 
-
 /obj/item/ammo_casing/shotgun/emp
 	name = "ion shell"
 	desc = "An advanced shotgun round that creates a small EMP when it strikes a target."
 	icon_state = "empshell"
-	projectile_type = /obj/item/projectile/bullet/shotgun/ion
-	matter = list(DEFAULT_WALL_MATERIAL = 360, "glass" = 720)
+	projectile_type = /obj/item/projectile/ion
+//	projectile_type = /obj/item/projectile/bullet/shotgun/ion
+	matter = list(DEFAULT_WALL_MATERIAL = 360, "uranium" = 240)
+
+/*
+ * 762mm
+ */
 
 /obj/item/ammo_casing/a762
 	desc = "A 7.62mm bullet casing."
@@ -179,12 +224,22 @@
 	projectile_type = /obj/item/projectile/bullet/blank
 	matter = list(DEFAULT_WALL_MATERIAL = 90)
 
+/obj/item/ammo_casing/a762/hp
+	desc = "A 7.62mm hollow-point bullet casing."
+	projectile_type = /obj/item/projectile/bullet/rifle/a762/hollow
+
+//145mm
+
 /obj/item/ammo_casing/a145
 	desc = "A 14.5mm shell."
 	icon_state = "lcasing"
 	caliber = "14.5mm"
 	projectile_type = /obj/item/projectile/bullet/rifle/a145
 	matter = list(DEFAULT_WALL_MATERIAL = 1250)
+
+/*
+ * 556mm
+ */
 
 /obj/item/ammo_casing/a556
 	desc = "A 5.56mm bullet casing."
@@ -201,6 +256,14 @@
 	caliber = "a556"
 	icon_state = "rifle-casing" // Need to make an icon for these
 	projectile_type = /obj/item/projectile/bullet/rifle/practice
+
+/obj/item/ammo_casing/a556/hp
+	desc = "A 5.56mm hollow-point bullet casing."
+	projectile_type = /obj/item/projectile/bullet/rifle/a556/hollow
+
+/*
+ * Misc
+ */
 
 /obj/item/ammo_casing/rocket
 	name = "rocket shell"

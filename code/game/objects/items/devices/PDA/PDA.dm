@@ -419,6 +419,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		if(1) icon = 'icons/obj/pda.dmi'
 		if(2) icon = 'icons/obj/pda_slim.dmi'
 		if(3) icon = 'icons/obj/pda_old.dmi'
+		if(4) icon = 'icons/obj/pda_rugged.dmi'
 		else
 			icon = 'icons/obj/pda_old.dmi'
 			log_debug("Invalid switch for PDA, defaulting to old PDA icons. [pdachoice] chosen.")
@@ -998,7 +999,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			M.apply_damage( rand(30,60) , BURN)
 		message += "You feel a searing heat! Your [P] is burning!"
 	if(i>=20 && i<=25) //EMP
-		empulse(P.loc, 3, 6, 1)
+		empulse(P.loc, 1, 2, 4, 6, 1)
 		message += "Your [P] emits a wave of electromagnetic energy!"
 	if(i>=25 && i<=40) //Smoke
 		var/datum/effect/effect/system/smoke_spread/chem/S = new /datum/effect/effect/system/smoke_spread/chem

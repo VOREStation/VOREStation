@@ -346,6 +346,7 @@
 	icon_override = 'icons/obj/gun_vr.dmi'
 	item_state = "battlerifle_i"
 	item_icons = null
+	pixel_x = -16
 
 /obj/item/weapon/gun/projectile/automatic/carbine/fluff/ufarc/update_icon(var/ignore_inhands)
 	..()
@@ -357,6 +358,7 @@
 	if(!ignore_inhands) update_held_icon()
 
 
+
 //-----------------------G44----------------------------------
 /obj/item/weapon/gun/projectile/automatic/carbine/fluff/g44
 	name = "G44 Rifle"
@@ -364,6 +366,7 @@
 	icon = 'icons/obj/gun64_vr.dmi'
 	icon_state = "g44"
 	item_state = "bullpup"
+	pixel_x = -16
 
 /obj/item/weapon/gun/projectile/automatic/carbine/fluff/g44/update_icon(var/ignore_inhands)
 	..()
@@ -386,7 +389,8 @@
 	force = 8
 	w_class = ITEMSIZE_LARGE
 	fire_delay = 6
-
+	pixel_x = -16
+	
 	projectile_type = /obj/item/projectile/beam/stun/weak
 	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 2, TECH_ILLEGAL = 3)
 	modifystate = "g44estun"

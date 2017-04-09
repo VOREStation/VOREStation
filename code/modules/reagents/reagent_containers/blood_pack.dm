@@ -18,6 +18,7 @@
 	desc = "Contains blood used for transfusion."
 	icon = 'icons/obj/bloodpack.dmi'
 	icon_state = "empty"
+	item_state = "bloodpack_empty"
 	volume = 200
 
 	var/blood_type = null
@@ -34,10 +35,15 @@
 
 /obj/item/weapon/reagent_containers/blood/update_icon()
 	var/percent = round((reagents.total_volume / volume) * 100)
-	switch(percent)
-		if(0 to 9)			icon_state = "empty"
-		if(10 to 50) 		icon_state = "half"
-		if(51 to INFINITY)	icon_state = "full"
+	if(percent >= 0 && percent <= 9)
+		icon_state = "empty"
+		item_state = "bloodpack_empty"
+	else if(percent >= 10 && percent <= 50)
+		icon_state = "half"
+		item_state = "bloodpack_half"
+	else if(percent >= 51 && percent < INFINITY)
+		icon_state = "full"
+		item_state = "bloodpack_full"
 
 /obj/item/weapon/reagent_containers/blood/APlus
 	blood_type = "A+"
@@ -61,3 +67,4 @@
 	name = "Empty BloodPack"
 	desc = "Seems pretty useless... Maybe if there were a way to fill it?"
 	icon_state = "empty"
+	item_state = "bloodpack_empty"

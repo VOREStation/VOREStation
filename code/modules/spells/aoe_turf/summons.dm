@@ -20,7 +20,7 @@
 	invocation_type = SpI_SHOUT
 	range = 1
 
-	summon_type = list(/mob/living/simple_animal/hostile/vore/carp) // Vorestation Edit
+	summon_type = list(/mob/living/simple_animal/hostile/carp)
 
 	hud_state = "wiz_carp"
 
@@ -36,6 +36,6 @@
 	summon_amt = 10
 	range = 3
 
-	summon_type = list(/mob/living/simple_animal/hostile/vore/creature) // Vorestation Edit
+	summon_type = list(/mob/living/simple_animal/hostile/creature/vore) // Vorestation Edit
 
 	hud_state = "wiz_creature"

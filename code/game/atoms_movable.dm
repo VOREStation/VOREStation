@@ -125,8 +125,17 @@
 				if(A:lying) continue
 				src.throw_impact(A,speed)
 			if(isobj(A))
-				if(A.density && !A.throwpass)	// **TODO: Better behaviour for windows which are dense, but shouldn't always stop movement
-					src.throw_impact(A,speed)
+				if(!A.density || A.throwpass)
+					continue
+				// Special handling of windows, which are dense but block only from some directions
+				if(istype(A, /obj/structure/window))
+					var/obj/structure/window/W = A
+					if (!W.is_full_window() && !(turn(src.last_move, 180) & A.dir))
+						continue
+				// Same thing for (closed) windoors, which have the same problem
+				else if(istype(A, /obj/machinery/door/window) && !(turn(src.last_move, 180) & A.dir))
+					continue
+				src.throw_impact(A,speed)
 
 /atom/movable/proc/throw_at(atom/target, range, speed, thrower)
 	if(!target || !src)	return 0

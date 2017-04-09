@@ -154,3 +154,11 @@
 /datum/gear/shoes/dress/white
 	display_name = "shoes, dress white"
 	path = 	/obj/item/clothing/shoes/dress/white
+
+/datum/gear/shoes/heels
+	display_name = "high heels"
+	path = /obj/item/clothing/shoes/heels
+
+/datum/gear/shoes/heels/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)

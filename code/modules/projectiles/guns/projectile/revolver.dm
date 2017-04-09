@@ -76,6 +76,10 @@
 	fire_sound = 'sound/weapons/Gunshot_light.ogg'
 	ammo_type = /obj/item/ammo_casing/c38
 
+/obj/item/weapon/gun/projectile/revolver/deckard/emp
+	ammo_type = /obj/item/ammo_casing/c38/emp
+
+
 /obj/item/weapon/gun/projectile/revolver/deckard/update_icon()
 	..()
 	if(loaded.len)
