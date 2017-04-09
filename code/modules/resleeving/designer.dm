@@ -4,8 +4,8 @@
 /obj/machinery/computer/transhuman/designer
 	name = "body design console"
 	icon = 'icons/obj/computer_vr.dmi'
-	icon_keyboard = "med_key"
-	icon_screen = "dna"
+	icon_keyboard = "design_key"
+	icon_screen = "design"
 	light_color = "#315ab4"
 	circuit = /obj/item/weapon/circuitboard/body_designer
 	req_access = list(access_medical) // Used for loading people's designs
@@ -161,7 +161,7 @@
 				menu = 4
 			else
 				active_br = null
-				temp = "Access denied: Body records are confidential"
+				temp = "Access denied: Body records are confidential."
 		else
 			active_br = null
 			temp = "ERROR: Record missing."
@@ -360,7 +360,6 @@
 	player_setup = new(src)
 	// Do NOT call ..(), it expects real stuff
 
-
 // Disk for manually moving body records between the designer and sleever console etc.
 /obj/item/weapon/disk/body_record
 	name = "Body Design Disk"
@@ -382,7 +381,7 @@
 	desc = "A box of body record disks, apparently."
 	icon_state = "disk_kit"
 
-/obj/item/weapon/storage/box/disks/New()
+/obj/item/weapon/storage/box/body_record_disk/New()
 	..()
 	for(var/i = 0 to 7)
 		new /obj/item/weapon/disk/body_record(src)
