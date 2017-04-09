@@ -26,7 +26,12 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/bartender(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/device/pda/bar(H), slot_belt)
-	return 1
+	if(has_alt_title(H, alt_title,"Bartender"))
+		if(H.backbag == 1)
+			H.equip_to_slot_or_del(new /obj/item/weapon/permit/gun/bar(H), slot_l_hand)
+		else
+			H.equip_to_slot_or_del(new /obj/item/weapon/permit/gun/bar(H.back), slot_in_backpack)
+		return 1
 
 
 
