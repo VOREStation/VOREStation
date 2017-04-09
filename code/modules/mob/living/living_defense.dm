@@ -168,7 +168,7 @@
 	var/blocked = run_armor_check(hit_zone, "melee")
 
 	//If the armor absorbs all of the damage, skip the damage calculation and the blood
-	if(!soaked > effective_force)
+	if(!(soaked > effective_force))
 		standard_weapon_hit_effects(I, user, effective_force, blocked, soaked, hit_zone)
 
 		if(I.damtype == BRUTE && prob(33)) // Added blood for whacking non-humans too
