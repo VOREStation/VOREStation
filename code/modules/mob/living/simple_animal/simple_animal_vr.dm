@@ -108,7 +108,7 @@
 		set_stance(STANCE_ATTACK)
 	stop_automated_movement = 0
 
-/mob/living/simple_animal/hostile/vore/death()
+/mob/living/simple_animal/death()
 	for(var/I in vore_organs)
 		var/datum/belly/B = vore_organs[I]
 		B.release_all_contents() // When your stomach is empty
