@@ -68,7 +68,7 @@
 	if(istype(W, /obj/item/device/multitool))
 		var/obj/item/device/multitool/M = W
 		var/obj/machinery/clonepod/transhuman/P = M.connecting
-		if(P && !(P in pods))
+		if(istype(P) && !(P in pods))
 			pods += P
 			P.connected = src
 			P.name = "[initial(P.name)] #[pods.len]"
@@ -78,6 +78,17 @@
 		disk = W
 		disk.forceMove(src)
 		user << "<span class='notice'>You insert \the [W] into \the [src].</span>"
+	if(istype(W, /obj/item/weapon/disk/body_record))
+		var/obj/item/weapon/disk/body_record/brDisk = W
+		if(!brDisk.stored)
+			to_chat(user, "<span class='warning'>\The [W] does not contain a stored body record.</span>")
+			return
+		user.unEquip(W)
+		W.forceMove(get_turf(src)) // Drop on top of us
+		active_br = new /datum/transhuman/body_record(brDisk.stored) // Loads a COPY!
+		menu = 4
+		to_chat(user, "<span class='notice'>\The [src] loads the body record from \the [W] before ejecting it.</span>")
+		attack_hand(user)
 	else
 		..()
 	return
@@ -192,7 +203,7 @@
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "sleever.tmpl", src.name, 400, 450)
+		ui = new(user, src, ui_key, "sleever.tmpl", "Resleeving Control Console", 400, 450)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(5)

@@ -22,6 +22,14 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 /mob/living/carbon/human
 	holder_type = /obj/item/weapon/holder/micro
 
+// The reverse lookup of player_sizes_list, number to name.
+/proc/player_size_name(var/size_multiplier)
+	// (This assumes list is sorted big->small)
+	for(var/N in player_sizes_list)
+		. = N // So we return the smallest if we get to the end
+		if(size_multiplier >= player_sizes_list[N])
+			return N
+
 /**
  * Scale up the size of a mob's icon by the size_multiplier.
  * NOTE: mob/living/carbon/human/update_icons() has a more complicated system and

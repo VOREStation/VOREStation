@@ -46,7 +46,7 @@
 		var/status = current_project.organ_data[part]
 		if(status == null) continue //Species doesn't have organ? Child of missing part?
 
-		var/obj/item/organ/I = H.internal_organs_by_name[name]
+		var/obj/item/organ/I = H.internal_organs_by_name[part]
 		if(!I) continue//Not an organ. Perhaps external conversion changed it already?
 
 		if(status == 0) //Normal organ
@@ -496,6 +496,12 @@
 	occupant.ooc_notes = MR.mind_oocnotes
 	occupant.apply_vore_prefs() //Cheap hack for now to give them SOME bellies.
 
+	// If it was a custom sleeve (not owned by anyone), update namification sequences
+	if(!occupant.original_player)
+		occupant.real_name = occupant.mind.name
+		occupant.name = occupant.real_name
+		occupant.dna.real_name = occupant.real_name
+
 	//Give them a backup implant
 	var/obj/item/weapon/implant/backup/new_imp = new()
 	if(new_imp.implanted(occupant))
@@ -516,7 +522,7 @@
 	occupant.confused = max(occupant.confused, confuse_amount)
 	occupant.eye_blurry = max(occupant.eye_blurry, blur_amount)
 
-	if(occupant.mind && occupant.real_name != occupant.mind.name)
+	if(occupant.mind && occupant.original_player && ckey(occupant.mind.key) != occupant.original_player)
 		log_and_message_admins("is now a cross-sleeved character. Body originally belonged to [occupant.real_name]. Mind is now [occupant.mind.name].",occupant)
 
 	return 1
