@@ -196,6 +196,7 @@
 /datum/preferences/proc/dress_preview_mob(var/mob/living/carbon/human/mannequin)
 	var/update_icon = FALSE
 	copy_to(mannequin, TRUE)
+	sleep(1) //VOREStation Add - Not sure why this is required. Some race condition about robo manufacturers with tails.
 
 	var/datum/job/previewJob
 	if(equip_preview_mob)
