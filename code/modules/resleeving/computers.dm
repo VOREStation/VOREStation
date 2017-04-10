@@ -323,6 +323,7 @@
 				temp = "Error: No sleevers detected."
 			else
 				var/mode = text2num(href_list["sleeve"])
+				var/override
 				var/obj/machinery/transhuman/resleever/sleever = sleevers[1]
 				if (sleevers.len > 1)
 					sleever = input(usr,"Select a resleeving pod to use", "Resleever selection") as anything in sleevers
@@ -336,6 +337,17 @@
 						//OOC body lock thing.
 						if(sleever.occupant.resleeve_lock && active_mr.ckey != sleever.occupant.resleeve_lock)
 							temp = "Error: Mind incompatible with body."
+
+						var/list/subtargets = list()
+						for(var/mob/living/carbon/human/H in sleever.occupant)
+							if(H.resleeve_lock && active_mr.ckey != H.resleeve_lock)
+								continue
+							subtargets += H
+						if(subtargets.len)
+							var/oc_sanity = sleever.occupant
+							override = input(usr,"Multiple bodies detected. Select target for resleeving of [active_mr.mindname] manually. Sleeving of primary body is unsafe with sub-contents, and is not listed.", "Resleeving Target") as null|anything in subtargets
+							if(!override || oc_sanity != sleever.occupant || !(override in sleever.occupant))
+								temp = "Error: Target selection aborted."
 
 					if(2) //Card resleeving
 						if(sleever.sleevecards <= 0)
@@ -352,7 +364,7 @@
 
 				//They were dead, or otherwise available.
 				if(!temp)
-					sleever.putmind(active_mr,mode)
+					sleever.putmind(active_mr,mode,override)
 					temp = "Initiating resleeving..."
 					menu = 1
 
