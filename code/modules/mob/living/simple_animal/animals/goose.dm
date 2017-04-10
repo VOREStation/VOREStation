@@ -55,4 +55,4 @@
 		custom_emote(1,"flaps and honks at [.]!")
 
 /mob/living/simple_animal/hostile/goose/Process_Spacemove(var/check_drift = 0)
-	return
+	return 1 // VOREStation Edit No drifting in space!
