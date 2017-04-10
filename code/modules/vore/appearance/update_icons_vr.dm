@@ -14,8 +14,8 @@
 
 
 /mob/living/carbon/human/proc/get_tail_image()
-	//If you are FBP with tail style
-	if(synthetic && synthetic.includes_tail)
+	//If you are FBP with tail style and didn't set a custom one
+	if(synthetic && synthetic.includes_tail && !tail_style)
 		var/icon/tail_s = new/icon("icon" = synthetic.icon, "icon_state" = "tail")
 		return image(tail_s)
 

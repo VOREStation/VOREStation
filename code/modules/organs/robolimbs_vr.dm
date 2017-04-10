@@ -54,6 +54,7 @@
 	blood_color = "#ffe2ff"
 	lifelike = 1
 	unavailable_to_build = 1
+	includes_tail = 1
 
 /obj/item/weapon/disk/limb/dsi_tajaran
 	company = "DSI - Tajaran"
@@ -65,6 +66,7 @@
 	blood_color = "#ffe2ff"
 	lifelike = 1
 	unavailable_to_build = 1
+	includes_tail = 1
 
 /obj/item/weapon/disk/limb/dsi_lizard
 	company = "DSI - Lizard"
@@ -76,6 +78,7 @@
 	blood_color = "#ffe2ff"
 	lifelike = 1
 	unavailable_to_build = 1
+	includes_tail = 1
 
 /obj/item/weapon/disk/limb/dsi_sergal
 	company = "DSI - Sergal"
@@ -87,6 +90,7 @@
 	blood_color = "#ffe2ff"
 	lifelike = 1
 	unavailable_to_build = 1
+	includes_tail = 1
 
 /obj/item/weapon/disk/limb/dsi_nevrean
 	company = "DSI - Nevrean"
@@ -98,6 +102,7 @@
 	blood_color = "#ffe2ff"
 	lifelike = 1
 	unavailable_to_build = 1
+	includes_tail = 1
 
 /obj/item/weapon/disk/limb/dsi_vulpkanin
 	company = "DSI - Vulpkanin"
