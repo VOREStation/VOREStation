@@ -31,7 +31,7 @@
 
 /area/awaymission/beach/jungle
 	icon_state = "green"
-	valid_mobs = list(/mob/living/simple_animal/crab)
+	valid_mobs = list(/mob/living/simple_animal/crab, /mob/living/carbon/human/monkey)
 	valid_flora = list(/obj/effect/overlay/palmtree_r,/obj/effect/overlay/palmtree_l, /obj/effect/overlay/palmtree_r,/obj/effect/overlay/palmtree_l, /obj/effect/overlay/coconut)
 	mobcountmax = 10
 	floracountmax = 5000
