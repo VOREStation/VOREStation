@@ -120,7 +120,7 @@
 	name = "red sweatervest"
 	icon_state = "sweatervest_red"
 */
-/obj/item/clothing/suit/apron/overalls
+/obj/item/clothing/suit/storage/apron/overalls
 	name = "coveralls"
 	desc = "A set of denim overalls."
 	icon_state = "overalls"
@@ -574,12 +574,6 @@ obj/item/clothing/suit/kimono
 	icon_state = "smw_hoodie"
 	item_state_slots = list(slot_r_hand_str = "suit_black", slot_l_hand_str = "suit_black")
 
-/obj/item/clothing/suit/storage/toggle/redandblackjacket
-    name = "red and black jacket"
-    desc = "A cool red and black jacket to keep you stylish and cozy."
-    icon_state = "redandblackjacket"
-    flags_inv = HIDEHOLSTER
-
 /obj/item/clothing/suit/whitedress
 	name = "white dress"
 	desc = "A fancy white dress."
@@ -775,6 +769,44 @@ obj/item/clothing/suit/kimono
 /obj/item/clothing/suit/varsity/brown
 	name = "brown varsity jacket"
 	icon_state = "varsity_brown"
+
+/*
+ * Department Jackets
+ */
+/obj/item/clothing/suit/storage/toggle/sec_dep_jacket
+	name = "department jacket, security"
+	desc = "A cozy jacket in security's colors. Show your department pride!"
+	icon_state = "sec_dep_jacket"
+	item_state_slots = list(slot_r_hand_str = "sec_dep_jacket", slot_l_hand_str = "sec_dep_jacket")
+	flags_inv = HIDEHOLSTER
+
+/obj/item/clothing/suit/storage/toggle/engi_dep_jacket
+	name = "department jacket, engineering"
+	desc = "A cozy jacket in engineering's colors. Show your department pride!"
+	icon_state = "engi_dep_jacket"
+	item_state_slots = list(slot_r_hand_str = "engi_dep_jacket", slot_l_hand_str = "engi_dep_jacket")
+	flags_inv = HIDEHOLSTER
+
+/obj/item/clothing/suit/storage/toggle/supply_dep_jacket
+	name = "department jacket, supply"
+	desc = "A cozy jacket in supply's colors. Show your department pride!"
+	icon_state = "supply_dep_jacket"
+	item_state_slots = list(slot_r_hand_str = "supply_dep_jacket", slot_l_hand_str = "supply_dep_jacket")
+	flags_inv = HIDEHOLSTER
+
+/obj/item/clothing/suit/storage/toggle/sci_dep_jacket
+	name = "department jacket, science"
+	desc = "A cozy jacket in science's colors. Show your department pride!"
+	icon_state = "sci_dep_jacket"
+	item_state_slots = list(slot_r_hand_str = "sci_dep_jacket", slot_l_hand_str = "sci_dep_jacket")
+	flags_inv = HIDEHOLSTER
+
+/obj/item/clothing/suit/storage/toggle/med_dep_jacket
+	name = "department jacket, medical"
+	desc = "A cozy jacket in medical's colors. Show your department pride!"
+	icon_state = "med_dep_jacket"
+	item_state_slots = list(slot_r_hand_str = "med_dep_jacket", slot_l_hand_str = "med_dep_jacket")
+	flags_inv = HIDEHOLSTER
 
 /*
  * Track Jackets

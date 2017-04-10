@@ -75,7 +75,7 @@
 /obj/item/weapon/storage/box/gloves/New()
 	..()
 	for(var/i = 1 to 7)
-		new /obj/item/clothing/gloves/latex(src)
+		new /obj/item/clothing/gloves/sterile/latex(src)
 
 /obj/item/weapon/storage/box/masks
 	name = "box of sterile masks"

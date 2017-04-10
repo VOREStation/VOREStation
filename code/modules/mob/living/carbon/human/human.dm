@@ -1452,6 +1452,7 @@
 
 	if(stat) return
 	var/datum/category_group/underwear/UWC = input(usr, "Choose underwear:", "Show/hide underwear") as null|anything in global_underwear.categories
+	if(!UWC) return
 	var/datum/category_item/underwear/UWI = all_underwear[UWC.name]
 	if(!UWI || UWI.name == "None")
 		src << "<span class='notice'>You do not have [UWC.gender==PLURAL ? "[UWC.display_name]" : "\a [UWC.display_name]"].</span>"

@@ -297,6 +297,38 @@
 		M.update_inv_l_hand()
 		M.update_inv_r_hand()
 
+/obj/item/weapon/weldingtool/MouseDrop(obj/over_object as obj)
+	if(!canremove)
+		return
+
+	if (ishuman(usr) || issmall(usr)) //so monkeys can take off their backpacks -- Urist
+
+		if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech. why?
+			return
+
+		if (!( istype(over_object, /obj/screen) ))
+			return ..()
+
+		//makes sure that the thing is equipped, so that we can't drag it into our hand from miles away.
+		//there's got to be a better way of doing this.
+		if (!(src.loc == usr) || (src.loc && src.loc.loc == usr))
+			return
+
+		if (( usr.restrained() ) || ( usr.stat ))
+			return
+
+		if ((src.loc == usr) && !(istype(over_object, /obj/screen)) && !usr.unEquip(src))
+			return
+
+		switch(over_object.name)
+			if("r_hand")
+				usr.u_equip(src)
+				usr.put_in_r_hand(src)
+			if("l_hand")
+				usr.u_equip(src)
+				usr.put_in_l_hand(src)
+		src.add_fingerprint(usr)
+
 //Sets the welding state of the welding tool. If you see W.welding = 1 anywhere, please change it to W.setWelding(1)
 //so that the welding tool updates accordingly
 /obj/item/weapon/weldingtool/proc/setWelding(var/set_welding, var/mob/M)
@@ -421,16 +453,21 @@
 	max_fuel = 0	//We'll handle the consumption later.
 	var/obj/item/weapon/cell/power_supply //What type of power cell this uses
 	var/charge_cost = 24	//The rough equivalent of 1 unit of fuel, based on us wanting 10 welds per battery
-	var/cell_type = null
+	var/cell_type = /obj/item/weapon/cell/device
 	var/use_external_power = 0	//If in a borg or hardsuit, this needs to = 1
 
 /obj/item/weapon/weldingtool/electric/New()
 	..()
-	if(cell_type)
+	if(cell_type == null)
+		update_icon()
+	else if(cell_type)
 		power_supply = new cell_type(src)
 	else
 		power_supply = new /obj/item/weapon/cell/device(src)
 	update_icon()
+
+/obj/item/weapon/weldingtool/electric/unloaded/New()
+	cell_type = null
 
 /obj/item/weapon/weldingtool/electric/examine(mob/user)
 	..()
