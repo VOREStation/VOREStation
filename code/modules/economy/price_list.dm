@@ -471,6 +471,9 @@
 /obj/item/weapon/reagent_containers/food/snacks/sosjerky
 	price_tag = 2
 
+/obj/item/weapon/reagent_containers/food/snacks/unajerky
+	price_tag = 12
+
 /obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers
 	price_tag = 1
 
