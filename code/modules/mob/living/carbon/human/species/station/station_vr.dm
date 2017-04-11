@@ -84,6 +84,9 @@
 
 	reagent_tag = IS_AKULA
 
+/datum/species/akula/can_breathe_water()
+	return TRUE // Surprise, SHERKS.
+
 /datum/species/nevrean
 	name = "Nevrean"
 	name_plural = "Nevreans"
