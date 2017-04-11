@@ -29,6 +29,7 @@
 				BR.init_from_mob(character, pref.resleeve_scan, pref.resleeve_lock)
 			if(pref.resleeve_lock)
 				character.resleeve_lock = character.ckey
+			character.original_player = character.ckey
 
 /datum/category_item/player_setup_item/vore/resleeve/content(var/mob/user)
 	. += "<br>"
