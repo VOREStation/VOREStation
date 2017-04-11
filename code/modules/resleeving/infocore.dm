@@ -154,6 +154,7 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 	var/list/organ_data = list(O_HEART, O_EYES, O_LUNGS, O_BRAIN)
 	var/toocomplex
 	var/sizemult
+	var/weight
 
 /datum/transhuman/body_record/New(var/copyfrom, var/add_to_db = 0, var/ckeylock = 0)
 	..()
@@ -188,6 +189,7 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 	bodygender = M.gender
 	body_oocnotes = M.ooc_notes
 	sizemult = M.size_multiplier
+	weight = M.weight
 
 	//Probably should
 	M.dna.check_integrity()

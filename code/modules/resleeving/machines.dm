@@ -89,6 +89,7 @@
 	H.ooc_notes = current_project.body_oocnotes
 	H.flavor_texts = current_project.mydna.flavor.Copy()
 	H.size_multiplier = current_project.sizemult
+	H.weight = current_project.weight
 	if(current_project.speciesname)
 		H.custom_species = current_project.speciesname
 
@@ -301,6 +302,7 @@
 	H.ooc_notes = current_project.body_oocnotes
 	H.flavor_texts = current_project.mydna.flavor.Copy()
 	H.size_multiplier = current_project.sizemult
+	H.weight = current_project.weight
 	if(current_project.speciesname)
 		H.custom_species = current_project.speciesname
 
@@ -471,7 +473,7 @@
 
 	return ..()
 
-/obj/machinery/transhuman/resleever/proc/putmind(var/datum/transhuman/mind_record/MR, mode = 1)
+/obj/machinery/transhuman/resleever/proc/putmind(var/datum/transhuman/mind_record/MR, mode = 1, var/mob/living/carbon/human/override = null)
 	if((!occupant || !istype(occupant) || occupant.stat >= DEAD) && mode == 1)
 		return 0
 
@@ -480,6 +482,12 @@
 		card.sleeveInto(MR)
 		sleevecards--
 		return 1
+
+	//If we're sleeving a subtarget, briefly swap them to not need to duplicate tons of code.
+	var/mob/living/carbon/human/original_occupant
+	if(override)
+		original_occupant = occupant
+		occupant = override
 
 	//In case they already had a mind!
 	if(occupant && occupant.mind)
@@ -524,6 +532,9 @@
 
 	if(occupant.mind && occupant.original_player && ckey(occupant.mind.key) != occupant.original_player)
 		log_and_message_admins("is now a cross-sleeved character. Body originally belonged to [occupant.real_name]. Mind is now [occupant.mind.name].",occupant)
+
+	if(original_occupant)
+		occupant = original_occupant
 
 	return 1
 

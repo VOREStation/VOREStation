@@ -25,7 +25,8 @@
 			/obj/item/weapon/disk/limb/dsi_lizard,
 			/obj/item/weapon/disk/limb/dsi_sergal,
 			/obj/item/weapon/disk/limb/dsi_nevrean,
-			/obj/item/weapon/disk/limb/dsi_vulpkanin
+			/obj/item/weapon/disk/limb/dsi_vulpkanin,
+			/obj/item/weapon/disk/limb/dsi_akula
 			)
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure

@@ -34,7 +34,7 @@
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
 	flesh_color = "#AFA59E"
-	base_color = "#333333"
+	base_color = "#777777"
 
 	reagent_tag = IS_SERGAL
 
@@ -79,7 +79,7 @@
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
 	flesh_color = "#AFA59E"
-	base_color = "#333333"
+	base_color = "#777777"
 	blood_color = "#1D2CBF"
 
 	reagent_tag = IS_AKULA
