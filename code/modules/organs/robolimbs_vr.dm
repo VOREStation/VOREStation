@@ -1,6 +1,7 @@
 /datum/robolimb
 	var/includes_tail			//Cyberlimbs dmi includes a tail sprite to wear.
 	var/list/whitelisted_to		//List of ckeys that are allowed to pick this in charsetup.
+	var/suggested_species = "Human"
 
 //////////////// For-specific-character fluff ones /////////////////
 // arokha : Aronai Kadigan
@@ -12,6 +13,7 @@
 	includes_tail = 1
 	lifelike = 1
 	unavailable_to_build = 1
+	suggested_species = "Tajara"
 	whitelisted_to = list("arokha")
 
 /obj/item/weapon/disk/limb/kitsuhana
@@ -54,6 +56,8 @@
 	blood_color = "#ffe2ff"
 	lifelike = 1
 	unavailable_to_build = 1
+	includes_tail = 1
+	suggested_species = "Tajara"
 
 /obj/item/weapon/disk/limb/dsi_tajaran
 	company = "DSI - Tajaran"
@@ -65,6 +69,8 @@
 	blood_color = "#ffe2ff"
 	lifelike = 1
 	unavailable_to_build = 1
+	includes_tail = 1
+	suggested_species = "Unathi"
 
 /obj/item/weapon/disk/limb/dsi_lizard
 	company = "DSI - Lizard"
@@ -76,6 +82,8 @@
 	blood_color = "#ffe2ff"
 	lifelike = 1
 	unavailable_to_build = 1
+	includes_tail = 1
+	suggested_species = "Sergal"
 
 /obj/item/weapon/disk/limb/dsi_sergal
 	company = "DSI - Sergal"
@@ -87,6 +95,8 @@
 	blood_color = "#ffe2ff"
 	lifelike = 1
 	unavailable_to_build = 1
+	includes_tail = 1
+	suggested_species = "Nevrean"
 
 /obj/item/weapon/disk/limb/dsi_nevrean
 	company = "DSI - Nevrean"
@@ -98,7 +108,21 @@
 	blood_color = "#ffe2ff"
 	lifelike = 1
 	unavailable_to_build = 1
+	includes_tail = 1
+	suggested_species = "Vulpkanin"
 
 /obj/item/weapon/disk/limb/dsi_vulpkanin
 	company = "DSI - Vulpkanin"
 
+/datum/robolimb/dsi_akula
+	company = "DSI - Akula"
+	desc = "This limb feels soft and fleshy, realistic design and squish. Seems a little mischievous. By Darkside Incorperated."
+	icon = 'icons/mob/human_races/cyberlimbs/DSIAkula/dsi_akula.dmi'
+	blood_color = "#ffe2ff"
+	lifelike = 1
+	unavailable_to_build = 1
+	includes_tail = 1
+	suggested_species = "Akula"
+
+/obj/item/weapon/disk/limb/dsi_akula
+	company = "DSI - Akula"
