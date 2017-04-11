@@ -68,6 +68,18 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	if(..(user, 1))
 		user << "The time [stationtime2text()] is displayed in the corner of the screen."
 
+
+/obj/item/device/pda/AltClick()
+	if(issilicon(usr))
+		return
+
+	if ( can_use(usr) )
+		if(id)
+			remove_id()
+		else
+			usr << "<span class='notice'>This PDA does not have an ID in it.</span>"
+
+
 /obj/item/device/pda/medical
 	default_cartridge = /obj/item/weapon/cartridge/medical
 	icon_state = "pda-m"
