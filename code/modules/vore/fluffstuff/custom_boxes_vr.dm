@@ -37,8 +37,9 @@
 		/obj/item/clothing/suit/storage/det_suit/fluff/tasald,
 		/obj/item/clothing/suit/storage/det_suit/fluff/tas_coat,
 		/obj/item/clothing/under/det/fluff/tasald,
-		/obj/item/fluff/permit/tasald_corlethian,
-		/obj/item/weapon/gun/projectile/revolver/mateba/fluff/tasald_corlethian,
+		//Commented out since expired. Uncomment if renewed.
+		///obj/item/fluff/permit/tasald_corlethian,
+		///obj/item/weapon/gun/projectile/revolver/mateba/fluff/tasald_corlethian,
 		/obj/item/weapon/implanter/loyalty)
 
 //bwoincognito:Octavious Ward
@@ -49,7 +50,11 @@
 		/obj/item/clothing/suit/storage/trench/fluff/octaviouscoat,
 		/obj/item/clothing/under/det/fluff/octavious,
 		/obj/item/clothing/mask/gas/plaguedoctor/fluff/octaviousmask,
-		/obj/item/clothing/head/fedora/fluff/bowler)
+		/obj/item/clothing/head/fedora/fluff/bowler,
+		/obj/item/clothing/shoes/black/cuffs/octavious,
+		/obj/item/weapon/cane/fluff/tasald,
+		/obj/item/clothing/glasses/hud/health/octaviousmonicle
+		)
 
 // jemli:Cirra Mayhem
 /obj/item/weapon/storage/box/fluff/cirra
@@ -76,7 +81,7 @@
 //joanrisu:Joan Risu
 /obj/item/weapon/storage/backpack/dufflebag/sec/fluff/joanrisu
 	name = "Joan's Workbag"
-	desc = "A duffle bag Joan uses to carry her work equipment."
+	desc = "A bag Joan uses to carry her work equipment. It has the 82nd Battle Group Insignia on it."
 	icon_state = "joanbag"
 	icon = 'icons/vore/custom_items_vr.dmi'
 	item_state = "duffle_med"
@@ -96,7 +101,6 @@
 		new /obj/item/clothing/under/rank/internalaffairs/fluff/joan(src)
 		new /obj/item/clothing/head/helmet/space/fluff/joan(src)
 		new /obj/item/clothing/suit/space/fluff/joan(src)
-		new /obj/item/device/pda/heads/hos/joanpda(src)
 
 
 
@@ -167,12 +171,10 @@
 		//Centcom stuff and permit
 		new /obj/item/weapon/card/id/centcom/fluff/aronai(src)
 		new /obj/item/fluff/permit/aronai_kadigan(src)
-		new /obj/item/clothing/under/rank/khi/fluff/aronai(src)
 		new /obj/item/clothing/glasses/omnihud/med/fluff/aronai(src)
 		//Gun and holster
-		new /obj/item/weapon/gun/projectile/khi/pistol(src)
-		new /obj/item/ammo_magazine/c45m/flash(src)
-		new /obj/item/clothing/accessory/holster/armpit(src)
+		new /obj/item/weapon/gun/energy/netgun(src)
+		new /obj/item/clothing/accessory/holster/leg(src)
 
 /*
 Swimsuits, for general use, to avoid arriving to work with your swimsuit.

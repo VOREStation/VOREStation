@@ -1,25 +1,15 @@
 /* TUTORIAL
 	"icon" is the file with the HUD/ground icon for the item
 	"icon_state" is the iconstate in this file for the item
-	"icon_override" is the file with the on-mob icons, can be the same file
+	"icon_override" is the file with the on-mob icons, can be the same file (Except for glasses, shoes, and masks.)
 	"item_state" is the iconstate for the on-mob icons:
 		item_state_s is used for worn uniforms on mobs
 		item_state_r and item_state_l are for being held in each hand
-		some do not have a suffix, like gloves. plan accordingly, maybe add _mob?
-	"overlay_state" is the iconstate for ties/accessories, for some reason they don't
-		just use the item_state variable
 
-	If you don't have a special HUD/ground sprite, don't worry about it.
-	Just set both the icon_state and item_state to the same thing,
-	and it will use the top direction sprite (facing the viewer)
-	for your HUD/item sprite. This usually looks fine!
-
-	Advanced:
 	"item_state_slots" can replace "item_state", it is a list:
 		item_state_slots["slotname1"] = "item state for that slot"
 		item_state_slots["slotname2"] = "item state for that slot"
 */
-
 /* TEMPLATE
 //ckey:Character Name
 /obj/item/clothing/type/fluff/charactername
@@ -662,8 +652,6 @@
 
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "molenar"
-	icon_open = "molenar_open"
-	icon_closed = "molenar"
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "molenar"
@@ -921,11 +909,57 @@
 	desc = "A customized gas mask to look like an old plague doctors, with a special looking lens in the left eye that turns on when in use."
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "octplaguedoctor"
-	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 	item_state = "octplaguedoctor_mob"
 	item_state_slots = null
 	armor = list(melee = 0, bullet = 0, laser = 2,energy = 2, bomb = 0, bio = 90, rad = 0)
 	body_parts_covered = HEAD|FACE|EYES
+
+//bwoincognito:Octavious Ward
+/obj/item/clothing/glasses/hud/health/octaviousmonicle
+	name = "Gilded monocle"
+	desc = "Avery expensive looking monocle inlaid with small gems around the gold frame. It has a thin leather cord running down to a clasp for attaching to ones coat. Probably not a good idea to steal this."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "clockworkgoggle_l"
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+	item_state = "clockworkgoggle_l_mob"
+	item_state_slots = null
+	body_parts_covered = 0
+
+
+/obj/item/clothing/shoes/black/cuffs
+	name = "Gilded cuffs"
+	desc = "Ankle coverings for digitigrade creatures. Gilded!"
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "gildedcuffs"
+
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+	item_state = "gildedcuffs_mob"
+	item_icons = null
+
+	body_parts_covered = 0
+	species_restricted = null
+
+	red
+		name = "Red Cuffs"
+		desc = "Ankle coverings for digitigrade creatures. Red!"
+		icon_state = "redcuffs"
+		item_state = "redcuffs_mob"
+
+	blue
+		name = "Blue Cuffs"
+		desc = "Ankle coverings for digitigrade creatures. Blue!"
+		icon_state = "bluecuffs"
+		item_state = "bluecuffs_mob"
+
+
+//bwoincognito:Octavious Ward
+	octavious
+		name = "silvered leg wraps"
+		desc = "Dark leather leg wraps with sliver clasps on the sides. Stylish and functional."
+		icon_state = "silvergildedcuffs"
+		item_state = "silvergildedcuffs_mob"
+
 
 //jemli:Jemli
 /obj/item/clothing/head/fedora/fluff/jemli
@@ -1176,3 +1210,12 @@ Departamental Swimsuits, for general use
 	desc = "The uniform undershit worn by medsci officers of the 2380s."
 	icon_state = "trek_medsci"
 	item_state = "trek_ds9_medsci"
+
+//For general use maybe
+/obj/item/clothing/under/batter //I guess we're going OFF limits.
+	name = "Worn baseball outfit"
+	desc = "<b>Purification in progress...</b>"
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "batter"
+	item_state = "batter_mob"

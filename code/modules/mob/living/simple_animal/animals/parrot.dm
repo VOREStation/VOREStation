@@ -46,6 +46,7 @@
 	stop_automated_movement = 1
 	universal_speak = 1
 
+	has_langs = list("Bird")
 	speak_chance = 2
 	speak = list("Hi","Hello!","Cracker?","BAWWWWK george mellons griffing me")
 	speak_emote = list("squawks","says","yells")
@@ -481,7 +482,7 @@
 				var/mob/living/carbon/human/H = parrot_interest
 				var/obj/item/organ/external/affecting = H.get_organ(ran_zone(pick(parrot_dam_zone)))
 
-				H.apply_damage(damage, BRUTE, affecting, H.run_armor_check(affecting, "melee"), sharp=1)
+				H.apply_damage(damage, BRUTE, affecting, H.run_armor_check(affecting, "melee"), H.get_armor_soak(affecting, "melee"), sharp=1)
 				visible_emote(pick("pecks [H]'s [affecting].", "cuts [H]'s [affecting] with its talons."))
 
 			else

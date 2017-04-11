@@ -518,6 +518,12 @@
 	icon_state = "aronai"
 	ckeys_allowed = list("arokha")
 
+/datum/sprite_accessory/tail/sepulchre
+	name = "demon wings (Sepulchre)"
+	desc = ""
+	icon_state = "sepulchre_wings"
+	ckeys_allowed = list("sepulchre")
+
 /datum/sprite_accessory/tail/feathered
 	name = "feathered wings, colorable"
 	desc = ""
@@ -797,6 +803,10 @@
 /datum/sprite_accessory/tail/taur/feline
 	name = "Feline"
 	icon_state = "feline_s"
+
+/datum/sprite_accessory/tail/taur/slug
+	name = "Slug"
+	icon_state = "slug_s"
 
 //wickedtemp: Chakat Tempest
 /datum/sprite_accessory/tail/taur/feline/tempest

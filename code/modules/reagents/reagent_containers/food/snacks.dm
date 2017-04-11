@@ -749,6 +749,19 @@
 	reagents.add_reagent("pacid",6)
 	src.bitesize = 6
 
+/obj/item/weapon/reagent_containers/food/snacks/spidermeat
+	name = "meat"
+	desc = "A slab of green meat."
+	icon_state = "xenomeat"
+	filling_color = "#43DE18"
+	center_of_mass = list("x"=16, "y"=10)
+
+/obj/item/weapon/reagent_containers/food/snacks/spidermeat/New()
+	..()
+	reagents.add_reagent("protein", 6)
+	reagents.add_reagent("spidertoxin",6)
+	src.bitesize = 6
+
 /obj/item/weapon/reagent_containers/food/snacks/meatball
 	name = "meatball"
 	desc = "A great meal all round."
@@ -3431,3 +3444,17 @@
 /obj/item/weapon/reagent_containers/food/snacks/skrellsnacks/New()
 	..()
 	bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/unajerky
+	name = "Moghes Imported Sissalik Jerky"
+	icon_state = "unathitinred"
+	desc = "An incredibly well made jerky, shipped in all the way from Moghes."
+	trash = /obj/item/trash/unajerky
+	filling_color = "#631212"
+	center_of_mass = list("x"=15, "y"=9)
+
+/obj/item/weapon/reagent_containers/food/snacks/unajerky/New()
+		..()
+		reagents.add_reagent("protein", 8)
+		reagents.add_reagent("capsaicin", 2)
+		bitesize = 2

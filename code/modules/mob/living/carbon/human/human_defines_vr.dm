@@ -4,3 +4,4 @@
 	b_skin = 179
 
 	var/wagging = 0 //UGH.
+	var/vantag_pref = VANTAG_NONE //What's my status?

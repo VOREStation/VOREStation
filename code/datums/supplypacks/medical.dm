@@ -66,6 +66,27 @@
 	containername = "Surgery crate"
 	access = access_medical
 
+/datum/supply_packs/med/deathalarm
+	name = "Death Alarm crate"
+	contains = list(
+			/obj/item/weapon/storage/box/cdeathalarm_kit,
+			/obj/item/weapon/storage/box/cdeathalarm_kit
+			)
+	cost = 40
+	containertype = "/obj/structure/closet/crate/secure"
+	containername = "Death Alarm crate"
+	access = access_medical
+
+/datum/supply_packs/med/clotting
+	name = "Clotting Medicine crate"
+	contains = list(
+			/obj/item/weapon/storage/firstaid/clotting
+			)
+	cost = 40
+	containertype = "/obj/structure/closet/crate/secure"
+	containername = "Clotting Medicine crate"
+	access = access_medical
+
 /datum/supply_packs/med/sterile
 	name = "Sterile equipment crate"
 	contains = list(
@@ -106,7 +127,7 @@
 			/obj/item/clothing/mask/surgical,
 			/obj/item/clothing/shoes/white,
 			/obj/item/weapon/cartridge/cmo,
-			/obj/item/clothing/gloves/latex,
+			/obj/item/clothing/gloves/sterile/latex,
 			/obj/item/device/healthanalyzer,
 			/obj/item/device/flashlight/pen,
 			/obj/item/weapon/reagent_containers/syringe
@@ -129,7 +150,7 @@
 			/obj/item/weapon/storage/firstaid/adv,
 			/obj/item/clothing/shoes/white,
 			/obj/item/weapon/cartridge/medical,
-			/obj/item/clothing/gloves/latex,
+			/obj/item/clothing/gloves/sterile/latex,
 			/obj/item/device/healthanalyzer,
 			/obj/item/device/flashlight/pen,
 			/obj/item/weapon/reagent_containers/syringe
@@ -151,7 +172,7 @@
 			/obj/item/clothing/mask/surgical,
 			/obj/item/clothing/shoes/white,
 			/obj/item/weapon/cartridge/chemistry,
-			/obj/item/clothing/gloves/latex,
+			/obj/item/clothing/gloves/sterile/latex,
 			/obj/item/weapon/reagent_containers/dropper,
 			/obj/item/device/healthanalyzer,
 			/obj/item/weapon/storage/box/pillbottles,
@@ -178,7 +199,7 @@
 			/obj/item/clothing/accessory/stethoscope,
 			/obj/item/weapon/storage/firstaid/adv,
 			/obj/item/clothing/shoes/boots/jackboots,
-			/obj/item/clothing/gloves/latex,
+			/obj/item/clothing/gloves/sterile/latex,
 			/obj/item/device/healthanalyzer,
 			/obj/item/weapon/cartridge/medical,
 			/obj/item/device/flashlight/pen,

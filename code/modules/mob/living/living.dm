@@ -733,11 +733,20 @@ default behaviour is:
 				src << "<span class='warning'>You feel like you are about to throw up!</span>"
 				sleep(100)	//and you have 10 more for mad dash to the bucket
 
+			//Damaged livers cause you to vomit blood.
+			if(!blood_vomit)
+				if(ishuman(src))
+					var/mob/living/carbon/human/H = src
+					if(!H.isSynthetic())
+						var/obj/item/organ/internal/liver/L = H.internal_organs_by_name["liver"]
+						if(L.is_broken())
+							blood_vomit = 1
+
 			Stun(5)
 			src.visible_message("<span class='warning'>[src] throws up!</span>","<span class='warning'>You throw up!</span>")
 			playsound(loc, 'sound/effects/splat.ogg', 50, 1)
 
-			var/turf/simulated/T = get_turf(src)
+			var/turf/simulated/T = get_turf(src)	//TODO: Make add_blood_floor remove blood from human mobs
 			if(istype(T))
 				if(blood_vomit)
 					T.add_blood_floor(src)
@@ -778,11 +787,6 @@ default behaviour is:
 				if(buckled.buckle_movable)
 					anchored = 0
 					canmove = 1
-
-		else if(captured)
-			anchored = 1
-			canmove = 0
-			lying = 0
 		else
 			lying = incapacitated(INCAPACITATION_KNOCKDOWN)
 			canmove = !incapacitated(INCAPACITATION_DISABLED)

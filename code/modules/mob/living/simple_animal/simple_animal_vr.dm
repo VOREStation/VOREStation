@@ -29,6 +29,13 @@
 	if(vore_active)
 		init_belly()
 
+// Release belly contents beforey being gc'd!
+/mob/living/simple_animal/Destroy()
+	for(var/I in vore_organs)
+		var/datum/belly/B = vore_organs[I]
+		B.release_all_contents() // When your stomach is empty
+	..()
+
 // Update fullness based on size & quantity of belly contents
 /mob/living/simple_animal/proc/update_fullness()
 	var/new_fullness = 0
@@ -108,7 +115,7 @@
 		set_stance(STANCE_ATTACK)
 	stop_automated_movement = 0
 
-/mob/living/simple_animal/hostile/vore/death()
+/mob/living/simple_animal/death()
 	for(var/I in vore_organs)
 		var/datum/belly/B = vore_organs[I]
 		B.release_all_contents() // When your stomach is empty

@@ -5,9 +5,6 @@
 /obj/item/weapon/cell/New()
 	..()
 	charge = maxcharge
-
-/obj/item/weapon/cell/initialize()
-	..()
 	update_icon()
 
 /obj/item/weapon/cell/drain_power(var/drain_check, var/surge, var/power = 0)

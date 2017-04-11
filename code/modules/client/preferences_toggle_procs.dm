@@ -164,6 +164,21 @@
 
 	feedback_add_details("admin_verb","TBeSpecial") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/client/verb/toggle_jukebox()
+	set name = "Toggle Jukebox"
+	set category = "Preferences"
+	set desc = "Toggles the playing of jukebox music."
+
+	var/pref_path = /datum/client_preference/play_jukebox
+
+	toggle_preference(pref_path)
+
+	src << "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear jukebox music."
+
+	prefs.save_preferences()
+
+	feedback_add_details("admin_verb","TJukebox") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 /client/verb/toggle_be_special(role in be_special_flags)
 	set name = "Toggle SpecialRole Candidacy"
 	set category = "Preferences"

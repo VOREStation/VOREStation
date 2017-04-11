@@ -4,12 +4,6 @@
 /obj/item/clothing/under/pt
 	name = "pt uniform"
 	desc = "Shorts! Shirt! Miami! Sexy!"
-	sprite_sheets = list(
-		"Human" = 'icons/mob/uniforms/military.dmi',
-		"Skrell" = 'icons/mob/species/skrell/uniforms/military.dmi',
-		"Tajara" = 'icons/mob/species/tajaran/uniforms/military.dmi',
-		"Unathi" = 'icons/mob/species/unathi/uniforms/military.dmi'
-		)
 	icon_state = "miami"
 	worn_state = "miami"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
@@ -40,13 +34,6 @@
 /obj/item/clothing/under/utility
 	name = "utility uniform"
 	desc = "A comfortable turtleneck and black utility trousers."
-	sprite_sheets = list(
-		"Human" = 'icons/mob/uniforms/military.dmi',
-		"Skrell" = 'icons/mob/species/skrell/uniforms/military.dmi',
-		"Tajara" = 'icons/mob/species/tajaran/uniforms/military.dmi',
-		"Unathi" = 'icons/mob/species/unathi/uniforms/military.dmi',
-		"Diona" = 'icons/mob/species/diona/uniforms/military.dmi'
-		)
 	icon_state = "blackutility"
 	worn_state = "blackutility"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
@@ -107,6 +94,7 @@
 	icon_state = "blackutility_com"
 	worn_state = "blackutility_com"
 
+
 /obj/item/clothing/under/utility/fleet
 	name = "fleet coveralls"
 	desc = "The utility uniform of the SCG Fleet, made from an insulated material."
@@ -144,6 +132,7 @@
 	desc = "The utility uniform of the SCG Fleet, made from an insulated material. This one has gold cuffs."
 	icon_state = "navyutility_com"
 	worn_state = "navyutility_com"
+
 
 /obj/item/clothing/under/utility/marine
 	name = "marine fatigues"
@@ -199,13 +188,6 @@
 /obj/item/clothing/under/service
 	name = "service uniform"
 	desc = "A service uniform of some kind."
-	sprite_sheets = list(
-		"Human" = 'icons/mob/uniforms/military.dmi',
-		"Skrell" = 'icons/mob/species/skrell/uniforms/military.dmi',
-		"Tajara" = 'icons/mob/species/tajaran/uniforms/military.dmi',
-		"Unathi" = 'icons/mob/species/unathi/uniforms/military.dmi',
-		"Diona" = 'icons/mob/species/diona/uniforms/military.dmi'
-		)
 	icon_state = "whiteservice"
 	worn_state = "whiteservice"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
@@ -233,13 +215,6 @@
 /obj/item/clothing/under/mildress
 	name = "dress uniform"
 	desc = "A dress uniform of some kind."
-	sprite_sheets = list(
-		"Human" = 'icons/mob/uniforms/military.dmi',
-		"Skrell" = 'icons/mob/species/skrell/uniforms/military.dmi',
-		"Tajara" = 'icons/mob/species/tajaran/uniforms/military.dmi',
-		"Unathi" = 'icons/mob/species/unathi/uniforms/military.dmi',
-		"Diona" = 'icons/mob/species/diona/uniforms/military.dmi'
-		)
 	icon_state = "greydress"
 	worn_state = "greydress"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)

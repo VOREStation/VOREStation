@@ -256,7 +256,7 @@ var/list/organ_cache = list()
 		if(owner && parent_organ && amount > 0)
 			var/obj/item/organ/external/parent = owner.get_organ(parent_organ)
 			if(parent && !silent)
-				owner.custom_pain("Something inside your [parent.name] hurts a lot.", 1)
+				owner.custom_pain("Something inside your [parent.name] hurts a lot.", amount)
 
 /obj/item/organ/proc/bruise()
 	damage = max(damage, min_bruised_damage)
@@ -372,5 +372,11 @@ var/list/organ_cache = list()
 		bitten(user)
 		return
 
-/obj/item/organ/proc/can_feel_pain()
-	return !(robotic >= (ORGAN_ROBOT|ORGAN_DESTROYED)) && !(species.flags & NO_PAIN)
+/obj/item/organ/proc/organ_can_feel_pain()
+	if(species.flags & NO_PAIN)
+		return 0
+	if(status & ORGAN_DESTROYED)
+		return 0
+	if(robotic && robotic < ORGAN_LIFELIKE)	//Super fancy humanlike robotics probably have sensors, or something?
+		return 0
+	return 1

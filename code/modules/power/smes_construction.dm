@@ -345,7 +345,10 @@
 
 				usr << "\red You have disassembled the SMES cell!"
 				var/obj/structure/frame/M = new /obj/structure/frame(src.loc)
-				M.frame_type = "machine"
+				M.frame_type = new /datum/frame/frame_types/machine
+				M.anchored = 1
+				var/obj/item/weapon/circuitboard/C = new /obj/item/weapon/circuitboard/smes
+				M.circuit = C
 				M.state = 2
 				M.icon_state = "machine_1"
 				for(var/obj/I in component_parts)

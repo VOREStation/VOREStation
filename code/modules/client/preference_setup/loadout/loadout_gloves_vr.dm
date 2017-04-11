@@ -17,7 +17,7 @@
 
 /datum/gear/gloves/latex/colorable
 	display_name = "gloves, latex, colorable"
-	path = /obj/item/clothing/gloves/latex
+	path = /obj/item/clothing/gloves/sterile/latex
 
 /datum/gear/gloves/latex/colorable/New()
 	..()

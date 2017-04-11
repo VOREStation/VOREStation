@@ -4,6 +4,11 @@
 	path = /obj/item/clothing/suit/tajaran/furs
 	sort_category = "Xenowear"
 
+/datum/gear/head/zhan_scarf
+	display_name = "Zhan headscarf"
+	path = /obj/item/clothing/head/tajaran/scarf
+	whitelisted = "Tajara"
+
 /datum/gear/suit/unathi_mantle
 	display_name = "hide mantle (Unathi)"
 	path = /obj/item/clothing/suit/unathi/mantle
@@ -39,32 +44,24 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(bandtypes))
 
 /datum/gear/ears/skrell/cloth/male
-	display_name = "male headtail cloth selection (Skrell)"
-	path = /obj/item/clothing/ears/skrell/cloth_male
+	display_name = "male headtail cloth (Skrell)"
+	path = /obj/item/clothing/ears/skrell/cloth_male/black
 	sort_category = "Xenowear"
 	whitelisted = "Skrell"
 
 /datum/gear/ears/skrell/cloth/male/New()
 	..()
-	var/list/clothtypes = list()
-	for(var/cloth_style in typesof(/obj/item/clothing/ears/skrell/cloth_male))
-		var/obj/item/clothing/ears/skrell/cloth_male/cloth = cloth_style
-		clothtypes[initial(cloth.name)] = cloth
-	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(clothtypes))
+	gear_tweaks = list(gear_tweak_free_color_choice)
 
 /datum/gear/ears/skrell/cloth/female
-	display_name = "female headtail cloth selection (Skrell)"
-	path = /obj/item/clothing/ears/skrell/cloth_female
+	display_name = "female headtail cloth (Skrell)"
+	path = /obj/item/clothing/ears/skrell/cloth_female/black
 	sort_category = "Xenowear"
 	whitelisted = "Skrell"
 
 /datum/gear/ears/skrell/cloth/female/New()
 	..()
-	var/list/clothtypes = list()
-	for(var/cloth_style in typesof(/obj/item/clothing/ears/skrell/cloth_female))
-		var/obj/item/clothing/ears/skrell/cloth_female/cloth = cloth_style
-		clothtypes[initial(cloth.name)] = cloth
-	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(clothtypes))
+	gear_tweaks = list(gear_tweak_free_color_choice)
 
 /datum/gear/ears/skrell/colored/band
 	display_name = "Colored bands (Skrell)"
@@ -121,3 +118,9 @@
 	display_name = "gear harness (Full Body Prosthetic, Diona)"
 	path = /obj/item/clothing/under/harness
 	sort_category = "Xenowear"
+
+/datum/gear/shoes/footwraps
+	display_name = "cloth footwraps"
+	path = /obj/item/clothing/shoes/footwraps
+	sort_category = "Xenowear"
+	cost = 1

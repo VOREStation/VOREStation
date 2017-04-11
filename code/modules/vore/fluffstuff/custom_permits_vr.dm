@@ -77,7 +77,7 @@
 	<b>DOB:</b>  12/Jul/2530 | <b>HEIGHT:</b> 188cm | <b>SEX:</b> Male
 
 	The individual named above is licensed by the Nanotrasen Department of Civil Protection
-	to carry one KIN (foreign) handgun with flash ammo.
+	to carry one KIN (foreign) personal defense weapon, non-lethal only.
 	This license expires on 16/Feb/2562 and must be renewed by CentCom prior to this date."}
 
 // joanrisu:Joan Risu
@@ -88,7 +88,7 @@
 	<b>DOB:</b> 16/Apr/2536 | <b>HEIGHT:</b> 161cm | <b>SEX:</b> Female
 
 	The individual named above is licensed by the Nanotrasen Department of Civil Protection to carry one MWPSB Dominator.
-	This license expires on 11/Dec/2560 and must be renewed by CentCom prior to this date."}
+	This license expires on 04/Apr/2562 and must be renewed by CentCom prior to this date."}
 
 // molenar:Kari Akiren
 /obj/item/fluff/permit/kari_akiren

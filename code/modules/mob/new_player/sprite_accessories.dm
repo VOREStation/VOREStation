@@ -61,6 +61,10 @@
 		name = "Short Hair 2"
 		icon_state = "hair_shorthair3"
 
+	twintail
+		name = "Twintail"
+		icon_state = "hair_twintail"
+
 	cut
 		name = "Cut Hair"
 		icon_state = "hair_c"
@@ -715,15 +719,25 @@
 		species_allowed = list("Unathi")
 
 //Skrell 'hairstyles'
-	skr_tentacle_m
-		name = "Skrell Male Tentacles"
-		icon_state = "skrell_hair_m"
+	skr_tentacle_veryshort
+		name = "Skrell Very Short Tentacles"
+		icon_state = "skrell_hair_veryshort"
 		species_allowed = list("Skrell")
 		gender = MALE
 
-	skr_tentacle_f
-		name = "Skrell Female Tentacles"
-		icon_state = "skrell_hair_f"
+	skr_tentacle_short
+		name = "Skrell Short Tentacles"
+		icon_state = "skrell_hair_short"
+		species_allowed = list("Skrell")
+
+	skr_tentacle_average
+		name = "Skrell Average Tentacles"
+		icon_state = "skrell_hair_average"
+		species_allowed = list("Skrell")
+
+	skr_tentacle_verylong
+		name = "Skrell Long Tentacles"
+		icon_state = "skrell_hair_verylong"
 		species_allowed = list("Skrell")
 		gender = FEMALE
 
@@ -972,6 +986,211 @@
 		icon_state = "teshari_gap"
 		species_allowed = list("Teshari")
 		gender = NEUTER
+
+/*
+////////////////////////////
+/  =--------------------=  /
+/  ==  Body Markings   ==  /
+/  =--------------------=  /
+////////////////////////////
+*/
+/datum/sprite_accessory/marking
+	icon = 'icons/mob/human_races/markings.dmi'
+	do_colouration = 1 //Almost all of them have it, COLOR_ADD
+
+	//Empty list is unrestricted. Should only restrict the ones that make NO SENSE on other species,
+	//like Tajara inner-ear coloring overlay stuff.
+	species_allowed = list()
+
+	var/body_parts = list() //A list of bodyparts this covers, in organ_tag defines
+	//Reminder: BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN,BP_HEAD
+
+	tat_heart
+		name = "Tattoo (Heart, Torso)"
+		icon_state = "tat_heart"
+		body_parts = list(BP_TORSO)
+
+	tat_hive
+		name = "Tattoo (Hive, Back)"
+		icon_state = "tat_hive"
+		body_parts = list(BP_TORSO)
+
+	tat_nightling
+		name = "Tattoo (Nightling, Back)"
+		icon_state = "tat_nightling"
+		body_parts = list(BP_TORSO)
+
+	tat_campbell
+		name = "Tattoo (Campbell, R.Arm)"
+		icon_state = "tat_campbell"
+		body_parts = list(BP_R_ARM)
+
+		left
+			name = "Tattoo (Campbell, L.Arm)"
+			body_parts = list(BP_L_ARM)
+
+	tat_tiger
+		name = "Tattoo (Tiger Stripes, Body)"
+		icon_state = "tat_tiger"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN)
+
+	taj_paw_socks
+		name = "Socks Coloration (Taj)"
+		icon_state = "taj_pawsocks"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND)
+		species_allowed = list("Tajara")
+
+	una_paw_socks
+		name = "Socks Coloration (Una)"
+		icon_state = "una_pawsocks"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND)
+		species_allowed = list("Unathi")
+
+	paw_socks
+		name = "Socks Coloration (Generic)"
+		icon_state = "pawsocks"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND)
+		species_allowed = list("Tajara", "Unathi")
+
+	paw_socks_belly
+		name = "Socks,Belly Coloration (Generic)"
+		icon_state = "pawsocksbelly"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
+		species_allowed = list("Tajara", "Unathi")
+
+	belly_hands_feet
+		name = "Hands,Feet,Belly Color (Minor)"
+		icon_state = "bellyhandsfeetsmall"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
+		species_allowed = list("Tajara", "Unathi")
+
+	hands_feet_belly_full
+		name = "Hands,Feet,Belly Color (Major)"
+		icon_state = "bellyhandsfeet"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
+		species_allowed = list("Tajara", "Unathi")
+
+	hands_feet_belly_full_female
+		name = "Hands,Feet,Belly Color (Major, Female)"
+		icon_state = "bellyhandsfeet_female"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
+		species_allowed = list("Tajara")
+
+	patches
+		name = "Color Patches"
+		icon_state = "patches"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN)
+
+	patchesface
+		name = "Color Patches (Face)"
+		icon_state = "patchesface"
+		body_parts = list(BP_HEAD)
+
+	bands
+		name = "Color Bands"
+		icon_state = "bands"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN)
+
+	bandsface
+		name = "Color Bands (Face)"
+		icon_state = "bandsface"
+		body_parts = list(BP_HEAD)
+
+	tiger_stripes
+		name = "Tiger Stripes"
+		icon_state = "tiger"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_TORSO,BP_GROIN)
+		species_allowed = list("Tajara") //There's a tattoo for non-cats
+
+	tigerhead
+		name = "Tiger Stripes (Head, Minor)"
+		icon_state = "tigerhead"
+		body_parts = list(BP_HEAD)
+
+	tigerface
+		name = "Tiger Stripes (Head, Major)"
+		icon_state = "tigerface"
+		body_parts = list(BP_HEAD)
+		species_allowed = list("Tajara") //There's a tattoo for non-cats
+
+	backstripe
+		name = "Back Stripe"
+		icon_state = "backstripe"
+		body_parts = list(BP_TORSO)
+
+	//Taj specific stuff
+	taj_belly
+		name = "Belly Fur (Taj)"
+		icon_state = "taj_belly"
+		body_parts = list(BP_TORSO)
+		species_allowed = list("Tajara")
+
+	taj_bellyfull
+		name = "Belly Fur Wide (Taj)"
+		icon_state = "taj_bellyfull"
+		body_parts = list(BP_TORSO)
+		species_allowed = list("Tajara")
+
+	taj_earsout
+		name = "Outer Ear (Taj)"
+		icon_state = "taj_earsout"
+		body_parts = list(BP_HEAD)
+		species_allowed = list("Tajara")
+
+	taj_earsin
+		name = "Inner Ear (Taj)"
+		icon_state = "taj_earsin"
+		body_parts = list(BP_HEAD)
+		species_allowed = list("Tajara")
+
+	taj_nose
+		name = "Nose Color (Taj)"
+		icon_state = "taj_nose"
+		body_parts = list(BP_HEAD)
+		species_allowed = list("Tajara")
+
+	taj_crest
+		name = "Chest Fur Crest (Taj)"
+		icon_state = "taj_crest"
+		body_parts = list(BP_TORSO)
+		species_allowed = list("Tajara")
+
+	taj_muzzle
+		name = "Muzzle Color (Taj)"
+		icon_state = "taj_muzzle"
+		body_parts = list(BP_HEAD)
+		species_allowed = list("Tajara")
+
+	taj_face
+		name = "Cheeks Color (Taj)"
+		icon_state = "taj_face"
+		body_parts = list(BP_HEAD)
+		species_allowed = list("Tajara")
+
+	taj_all
+		name = "All Taj Head (Taj)"
+		icon_state = "taj_all"
+		body_parts = list(BP_HEAD)
+		species_allowed = list("Tajara")
+
+	//Una specific stuff
+	una_face
+		name = "Face Color (Una)"
+		icon_state = "una_face"
+		body_parts = list(BP_HEAD)
+		species_allowed = list("Unathi")
+
+	una_facelow
+		name = "Face Color Low (Una)"
+		icon_state = "una_facelow"
+		body_parts = list(BP_HEAD)
+		species_allowed = list("Unathi")
+
+	una_scutes
+		name = "Scutes (Una)"
+		icon_state = "una_scutes"
+		body_parts = list(BP_TORSO)
+		species_allowed = list("Unathi")
 
 //skin styles - WIP
 //going to have to re-integrate this with surgery

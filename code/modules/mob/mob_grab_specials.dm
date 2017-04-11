@@ -20,7 +20,7 @@
 		user << "<span class='notice'>You must stand still to feel [E] for fractures.</span>"
 	else if(E.status & ORGAN_BROKEN)
 		user << "<span class='warning'>The [E.encased ? E.encased : "bone in the [E.name]"] moves slightly when you poke it!</span>"
-		H.custom_pain("Your [E.name] hurts where it's poked.")
+		H.custom_pain("Your [E.name] hurts where it's poked.", 40)
 	else
 		user << "<span class='notice'>The [E.encased ? E.encased : "bones in the [E.name]"] seem to be fine.</span>"
 
@@ -56,7 +56,8 @@
 		return
 
 	var/armor = target.run_armor_check(target, "melee")
-	if(armor < 60)
+	var/soaked = target.get_armor_soak(target, "melee")
+	if(armor + soaked < 60)
 		target << "<span class='danger'>You feel extreme pain!</span>"
 
 		var/max_halloss = round(target.species.total_health * 0.8) //up to 80% of passing out
@@ -87,7 +88,7 @@
 
 	attack.handle_eye_attack(attacker, target)
 
-/obj/item/weapon/grab/proc/headbut(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
+/obj/item/weapon/grab/proc/headbutt(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
 	if(!istype(attacker))
 		return
 	if(target.lying)
@@ -100,8 +101,9 @@
 		damage += hat.force * 3
 
 	var/armor = target.run_armor_check(BP_HEAD, "melee")
-	target.apply_damage(damage, BRUTE, BP_HEAD, armor)
-	attacker.apply_damage(10, BRUTE, BP_HEAD, attacker.run_armor_check(BP_HEAD, "melee"))
+	var/soaked = target.get_armor_soak(BP_HEAD, "melee")
+	target.apply_damage(damage, BRUTE, BP_HEAD, armor, soaked)
+	attacker.apply_damage(10, BRUTE, BP_HEAD, attacker.run_armor_check(BP_HEAD), attacker.get_armor_soak(BP_HEAD), "melee")
 
 	if(!armor && target.headcheck(BP_HEAD) && prob(damage))
 		target.apply_effect(20, PARALYZE)

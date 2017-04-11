@@ -88,3 +88,33 @@
 		user << "<span class='notice'>It is currently loaded.</span>"
 	else
 		user << "<span class='notice'>It is spent.</span>"
+
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/clotting
+	name = "clotting agent"
+	desc = "A rapid and safe way to administer clotting drugs by untrained or trained personnel."
+	icon_state = "autoinjector"
+	item_state = "autoinjector"
+	amount_per_transfer_from_this = 10
+	volume = 10
+
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/clotting/New()
+	..()
+	reagents.remove_reagent("inaprovaline", 5)
+	reagents.add_reagent("myelamine", 10)
+	update_icon()
+	return
+
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/bonemed
+	name = "bone repair injector"
+	desc = "A rapid and safe way to administer advanced drugs by untrained or trained personnel."
+	icon_state = "autoinjector"
+	item_state = "autoinjector"
+	amount_per_transfer_from_this = 10
+	volume = 10
+
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/bonemed/New()
+	..()
+	reagents.remove_reagent("inaprovaline", 5)
+	reagents.add_reagent("osteodaxon", 10)
+	update_icon()
+	return
