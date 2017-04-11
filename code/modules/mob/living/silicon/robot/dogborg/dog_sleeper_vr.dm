@@ -36,7 +36,7 @@
 		user << "<span class='warning'>Your [src.name] is already occupied.</span>"
 		return
 	user.visible_message("<span class='warning'>[hound.name] is ingesting [target.name] into their [src.name].</span>", "<span class='notice'>You start ingesting [target] into your [src]...</span>")
-	if(!patient && ishuman(target) && !target.buckled && do_after (user, 50))
+	if(!patient && ishuman(target) && !target.buckled && do_after (user, 50, target))
 
 		if(!proximity) return //If they moved away, you can't eat them.
 
