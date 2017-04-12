@@ -107,7 +107,7 @@
 
 /obj/item/weapon/material/proc/dull()
 	var/turf/T = get_turf(src)
-	T.visible_message("<span class='danger'>\The [src] [material.destruction_desc]!</span>")
+	T.visible_message("<span class='danger'>\The [src] goes dull!</span>")
 	playsound(src, "shatter", 70, 1)
 	dulled = 1
 	if(is_sharp() || has_edge())
