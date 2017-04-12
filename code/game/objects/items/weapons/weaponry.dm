@@ -136,7 +136,7 @@
 /obj/effect/energy_net/user_unbuckle_mob(mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	visible_message("<span class='danger'>[user] begins to tear at \the [src]!</span>")
-	if(do_after(usr, escape_time, incapacitation_flags = INCAPACITATION_DEFAULT & ~(INCAPACITATION_RESTRAINED | INCAPACITATION_BUCKLED_FULLY)))
+	if(do_after(usr, escape_time, src, incapacitation_flags = INCAPACITATION_DEFAULT & ~(INCAPACITATION_RESTRAINED | INCAPACITATION_BUCKLED_FULLY)))
 		if(!buckled_mob)
 			return
 		visible_message("<span class='danger'>[user] manages to tear \the [src] apart!</span>")
