@@ -251,6 +251,14 @@
 	var/sql_computerid = sql_sanitize_text(src.computer_id)
 	var/sql_admin_rank = sql_sanitize_text(admin_rank)
 
+	//Panic bunker code
+	if (isnum(player_age) && player_age == 0) //first connection
+		if (config.panic_bunker && !holder && !deadmin_holder)
+			log_access("Failed Login: [key] - New account attempting to connect during panic bunker")
+			message_admins("<span class='adminnotice'>Failed Login: [key] - New account attempting to connect during panic bunker</span>")
+			to_chat(src, "Sorry but the server is currently not accepting connections from never before seen players.")
+			qdel(src)
+			return 0
 
 	if(sql_id)
 		//Player already identified previously, we need to just update the 'lastseen', 'ip' and 'computer_id' variables
@@ -265,7 +273,6 @@
 	var/serverip = "[world.internet_address]:[world.port]"
 	var/DBQuery/query_accesslog = dbcon.NewQuery("INSERT INTO `erro_connection_log`(`id`,`datetime`,`serverip`,`ckey`,`ip`,`computerid`) VALUES(null,Now(),'[serverip]','[sql_ckey]','[sql_ip]','[sql_computerid]');")
 	query_accesslog.Execute()
-
 
 #undef TOPIC_SPAM_DELAY
 #undef UPLOAD_LIMIT
