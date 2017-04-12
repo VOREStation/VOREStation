@@ -94,7 +94,7 @@
 		M.adjustToxLoss(-4 * removed)
 
 /datum/reagent/carthatoline
-	name = "carthatoline"
+	name = "Carthatoline"
 	id = "carthatoline"
 	description = "Carthatoline is strong evacuant used to treat severe poisoning."
 	reagent_state = LIQUID
