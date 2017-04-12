@@ -21,11 +21,8 @@
 	var/max_power = 1
 
 /obj/item/integrated_circuit/passive/power/solar_cell/make_energy()
-	var/atom/movable/lighting_overlay/light = locate(/atom/movable/lighting_overlay) in get_turf(src)
-	var/light_amount = 1 // Unsimulated tiles are pretend-lit, so we need to be pretend too if that somehow happens.
-	if(light)
-		light_amount = (light.lum_r + light.lum_g + light.lum_b) / 3
-
+	var/turf/T = get_turf(src)
+	var/light_amount = T ? T.get_lumcount() : 0
 	var/adjusted_power = max(max_power * light_amount, 0)
 	adjusted_power = round(adjusted_power, 0.1)
 	if(adjusted_power)
