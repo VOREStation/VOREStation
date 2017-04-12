@@ -921,9 +921,9 @@
 
 		//Brain damage from Oxyloss
 		if(should_have_organ("brain"))
-			var/brainOxPercent = 0.02		//Default2% of your current oxyloss is applied as brain damage, 50 oxyloss is 1 brain damage
+			var/brainOxPercent = 0.015		//Default 1.5% of your current oxyloss is applied as brain damage, 50 oxyloss is 1 brain damage
 			if(CE_STABLE in chem_effects)
-				brainOxPercent = 0.01		//Halved in effect
+				brainOxPercent = 0.008		//Halved in effect
 			if(oxyloss >= 20 && prob(5))
 				adjustBrainLoss(brainOxPercent * oxyloss)
 
