@@ -88,7 +88,7 @@
 		icon_state = "transparent"
 		color = null
 	else if(!set_luminosity)
-		icon_state = "dark"
+		icon_state = LIGHTING_ICON_STATE_DARK
 		color = null
 	else
 		icon_state = null
