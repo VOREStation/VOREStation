@@ -19,14 +19,6 @@
 	var/charge_rate = 100000	//100 kW
 	var/obj/machinery/shield_gen/owned_gen
 
-/obj/machinery/shield_capacitor/New()
-	spawn(10)
-		for(var/obj/machinery/shield_gen/possible_gen in range(1, src))
-			if(get_dir(src, possible_gen) == src.dir)
-				possible_gen.owned_capacitor = src
-				break
-	..()
-	
 /obj/machinery/shield_capacitor/emag_act(var/remaining_charges, var/mob/user)
 	if(prob(75))
 		src.locked = !src.locked
@@ -54,13 +46,13 @@
 		if(anchored)
 			spawn(0)
 				for(var/obj/machinery/shield_gen/gen in range(1, src))
-					if(get_dir(src, gen) == src.dir && !gen.owned_capacitor)
+					if(get_dir(src, gen) == src.dir)
 						owned_gen = gen
-						owned_gen.owned_capacitor = src
+						owned_gen.capacitors |= src
 						owned_gen.updateDialog()
 		else
-			if(owned_gen && owned_gen.owned_capacitor == src)
-				owned_gen.owned_capacitor = null
+			if(owned_gen && src in owned_gen.capacitors)
+				owned_gen.capacitors -= src
 			owned_gen = null
 	else
 		..()
@@ -82,16 +74,16 @@
 	else
 		t += "This capacitor is: [active ? "<font color=green>Online</font>" : "<font color=red>Offline</font>" ] <a href='?src=\ref[src];toggle=1'>[active ? "\[Deactivate\]" : "\[Activate\]"]</a><br>"
 		t += "Capacitor Status: [time_since_fail > 2 ? "<font color=green>OK.</font>" : "<font color=red>Discharging!</font>"]<br>"
-		t += "Stored Energy: [round(stored_charge/1000, 0.1)] kJ ([100 * round(stored_charge/max_charge, 0.1)]%)<br>"
+		t += "Stored Energy: [format_SI(stored_charge, "J")] ([100 * round(stored_charge/max_charge, 0.01)]%)<br>"
 		t += "Charge Rate: \
 		<a href='?src=\ref[src];charge_rate=-100000'>\[----\]</a> \
 		<a href='?src=\ref[src];charge_rate=-10000'>\[---\]</a> \
 		<a href='?src=\ref[src];charge_rate=-1000'>\[--\]</a> \
-		<a href='?src=\ref[src];charge_rate=-100'>\[-\]</a>[charge_rate] W \
+		<a href='?src=\ref[src];charge_rate=-100'>\[-\]</a>[format_SI(charge_rate, "W")]\
 		<a href='?src=\ref[src];charge_rate=100'>\[+\]</a> \
 		<a href='?src=\ref[src];charge_rate=1000'>\[++\]</a> \
 		<a href='?src=\ref[src];charge_rate=10000'>\[+++\]</a> \
-		<a href='?src=\ref[src];charge_rate=100000'>\[+++\]</a><br>"
+		<a href='?src=\ref[src];charge_rate=100000'>\[++++\]</a><br>"
 	t += "<hr>"
 	t += "<A href='?src=\ref[src]'>Refresh</A> "
 	t += "<A href='?src=\ref[src];close=1'>Close</A><BR>"

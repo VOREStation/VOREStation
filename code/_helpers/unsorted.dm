@@ -1299,3 +1299,16 @@ var/mob/dview/dview_mob = new
 	tY = max(1, min(world.maxy, origin.y + (text2num(tY) - (world.view + 1))))
 	return locate(tX, tY, tZ)
 
+// Displays something as commonly used (non-submultiples) SI units.
+/proc/format_SI(var/number, var/symbol)
+	switch(round(abs(number)))
+		if(0 to 1000-1)
+			return "[number] [symbol]"
+		if(1e3 to 1e6-1)
+			return "[round(number / 1000, 0.1)] k[symbol]" // kilo
+		if(1e6 to 1e9-1)
+			return "[round(number / 1e6, 0.1)] m[symbol]" // mega
+		if(1e9 to 1e12-1) // Probably not needed but why not be complete?
+			return "[round(number / 1e9, 0.1)] g[symbol]" // giga
+		if(1e12 to 1e15-1)
+			return "[round(number / 1e12, 0.1)] t[symbol]" // tera
