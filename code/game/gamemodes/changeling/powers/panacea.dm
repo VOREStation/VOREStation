@@ -28,6 +28,7 @@
 	C.reagents.clear_reagents()
 	C.ingested.clear_reagents()
 
+
 	var/heal_amount = 5
 	if(src.mind.changeling.recursive_enhancement)
 		heal_amount = heal_amount * 2
@@ -37,6 +38,18 @@
 		if(C)
 			C.adjustToxLoss(-heal_amount)
 			sleep(10)
+
+	for(var/obj/item/organ/external/E in C.organs)
+		var/obj/item/organ/external/G = E
+		if(G.germ_level)
+			var/germ_heal = heal_amount * 100
+			G.germ_level = min(0, G.germ_level - germ_heal)
+
+	for(var/obj/item/organ/internal/I in C.internal_organs)
+		var/obj/item/organ/internal/G = I
+		if(G.germ_level)
+			var/germ_heal = heal_amount * 100
+			G.germ_level = min(0, G.germ_level - germ_heal)
 
 	feedback_add_details("changeling_powers","AP")
 	return 1

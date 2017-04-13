@@ -32,5 +32,18 @@
 					H.adjustToxLoss(-heal_power / 5)
 					H.adjustCloneLoss(-heal_power / 5)
 					H.radiation = max(host.radiation - ( (heal_power * 2) / 5), 0)
+
+					for(var/obj/item/organ/external/E in H.organs)
+						var/obj/item/organ/external/G = E
+						if(G.germ_level)
+							var/germ_heal = heal_power * 10
+							G.germ_level = min(0, G.germ_level - germ_heal)
+
+					for(var/obj/item/organ/internal/I in H.internal_organs)
+						var/obj/item/organ/internal/G = I
+						if(G.germ_level)
+							var/germ_heal = heal_power * 10
+							G.germ_level = min(0, G.germ_level - germ_heal)
+
 					sleep(1 SECOND)
 		on_expire()
