@@ -61,7 +61,7 @@
 					T:UpdateDamageIcon()
 
 		feedback_add_details("changeling_powers","A[stage]")
-		if(!do_mob(src, T, 150))
+		if(!do_mob(src, T, 150) || G.state != GRAB_KILL)
 			src << "<span class='warning'>Our absorption of [T] has been interrupted!</span>"
 			changeling.isabsorbing = 0
 			return

@@ -80,10 +80,8 @@
 	var/turf/T = get_turf(M)
 	if(T)
 		var/obj/effect/energy_net/net = new net_type(T)
-		net.layer = M.layer+1
-		M.captured = 1
-		net.affecting = M
-		T.visible_message("[M] was caught in an energy net!")
+		if(net.buckle_mob(M))
+			T.visible_message("[M] was caught in an energy net!")
 		qdel(src)
 
 	// If we miss or hit an obstacle, we still want to delete the net.
@@ -99,107 +97,56 @@
 	density = 1
 	opacity = 0
 	mouse_opacity = 1
-	anchored = 1
+	anchored = 0
 
-	var/health = 25
-	var/mob/living/affecting = null //Who it is currently affecting, if anyone.
-	var/mob/living/master = null    //Who shot web. Will let this person know if the net was successful.
-	var/countdown = -1
+	can_buckle = 1
+	buckle_movable = 1
+	buckle_lying = 0
+	buckle_dir = SOUTH
 
-/obj/effect/energy_net/teleport
-	countdown = 60
+	var/escape_time = 8 SECONDS
 
 /obj/effect/energy_net/New()
 	..()
 	processing_objects |= src
 
 /obj/effect/energy_net/Destroy()
-
-	if(affecting)
-		var/mob/living/carbon/M = affecting
-		M.anchored = initial(affecting.anchored)
-		M.captured = 0
-		M << "You are free of the net!"
+	if(buckled_mob)
+		to_chat(buckled_mob,"<span class='notice'>You are free of the net!</span>")
+		unbuckle_mob()
 
 	processing_objects -= src
 	..()
 
-/obj/effect/energy_net/proc/healthcheck()
-
-	if(health <=0)
-		density = 0
-		src.visible_message("The energy net is torn apart!")
-		qdel(src)
-	return
-
 /obj/effect/energy_net/process()
-
-	if(isnull(affecting) || affecting.loc != loc)
+	if(isnull(buckled_mob) || buckled_mob.loc != loc)
 		qdel(src)
-		return
 
-	// Countdown begin set to -1 will stop the teleporter from firing.
-	// Clientless mobs can be netted but they will not teleport or decrement the timer.
-	var/mob/living/M = affecting
-	if(countdown == -1 || (istype(M) && !M.client))
-		return
-
-	if(countdown > 0)
-		countdown--
-		return
-
-	// TODO: consider removing or altering this; energy nets are useful on their own
-	// merits and the teleportation was never properly implemented; it's halfassed.
-	density = 0
-	invisibility = 101 //Make the net invisible so all the animations can play out.
-	health = INFINITY  //Make the net invincible so that an explosion/something else won't kill it during anims.
-
-	playsound(affecting.loc, 'sound/effects/sparks4.ogg', 50, 1)
-	anim(affecting.loc,affecting,'icons/mob/mob.dmi',,"phaseout",,affecting.dir)
-
-	affecting.visible_message("[affecting] vanishes in a flare of light!")
-
-	if(holdingfacility.len)
-		affecting.loc = pick(holdingfacility)
-
-	affecting << "You appear in a strange place!"
-
-	playsound(affecting.loc, 'sound/effects/phasein.ogg', 25, 1)
-	playsound(affecting.loc, 'sound/effects/sparks2.ogg', 50, 1)
-	anim(affecting.loc,affecting,'icons/mob/mob.dmi',,"phasein",,affecting.dir)
-
-	qdel(src)
-
-/obj/effect/energy_net/bullet_act(var/obj/item/projectile/Proj)
-	health -= Proj.get_structure_damage()
-	healthcheck()
-	return 0
-
-/obj/effect/energy_net/ex_act()
-	health = 0
-	healthcheck()
-
-/obj/effect/energy_net/attack_hand(var/mob/user)
-
-	var/mob/living/carbon/human/H = user
-	if(istype(H))
-		if(H.species.can_shred(H))
-			playsound(src.loc, 'sound/weapons/slash.ogg', 80, 1)
-			health -= rand(10, 20)
-		else
-			health -= rand(1,3)
-
-	else if (HULK in user.mutations)
-		health = 0
-	else
-		health -= rand(5,8)
-
-	H << "<span class='danger'>You claw at the energy net.</span>"
-
-	healthcheck()
-	return
-
-/obj/effect/energy_net/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	health -= W.force
-	healthcheck()
+/obj/effect/energy_net/Move()
 	..()
+	if(buckled_mob)
+		var/mob/living/occupant = buckled_mob
+		occupant.buckled = null
+		occupant.forceMove(src.loc)
+		occupant.buckled = src
+		if (occupant && (src.loc != occupant.loc))
+			unbuckle_mob()
+			qdel(src)
+
+/obj/effect/energy_net/user_unbuckle_mob(mob/user)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	visible_message("<span class='danger'>[user] begins to tear at \the [src]!</span>")
+	if(do_after(usr, escape_time, src, incapacitation_flags = INCAPACITATION_DEFAULT & ~(INCAPACITATION_RESTRAINED | INCAPACITATION_BUCKLED_FULLY)))
+		if(!buckled_mob)
+			return
+		visible_message("<span class='danger'>[user] manages to tear \the [src] apart!</span>")
+		unbuckle_mob()
+
+/obj/effect/energy_net/post_buckle_mob(mob/living/M)
+	if(buckled_mob) //Just buckled someone
+		..()
+		layer = M.layer+1
+		M.can_pull_size = 0
+	else //Just unbuckled someone
+		M.can_pull_size = initial(M.can_pull_size)
+		qdel(src)

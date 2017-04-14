@@ -1,7 +1,7 @@
 /datum/wires/jukebox
 	random = 1
 	holder_type = /obj/machinery/media/jukebox
-	wire_count = 7
+	wire_count = 11
 
 var/const/WIRE_POWER = 1
 var/const/WIRE_HACK = 2
@@ -10,6 +10,10 @@ var/const/WIRE_SPEEDDOWN = 8
 var/const/WIRE_REVERSE = 16
 var/const/WIRE_NOTHING1 = 32
 var/const/WIRE_NOTHING2 = 64
+var/const/WIRE_START = 128
+var/const/WIRE_STOP = 256
+var/const/WIRE_PREV = 512
+var/const/WIRE_NEXT = 1024
 
 /datum/wires/jukebox/CanUse(var/mob/living/L)
 	var/obj/machinery/media/jukebox/A = holder
@@ -40,6 +44,14 @@ var/const/WIRE_NOTHING2 = 64
 			holder.visible_message("<span class='notice'>\icon[holder] The speakers squeaks.</span>")
 		if(WIRE_SPEEDDOWN)
 			holder.visible_message("<span class='notice'>\icon[holder] The speakers rumble.</span>")
+		if(WIRE_START)
+			A.StartPlaying()
+		if(WIRE_STOP)
+			A.StopPlaying()
+		if(WIRE_PREV)
+			A.PrevTrack()
+		if(WIRE_NEXT)
+			A.NextTrack()
 		else
 			A.shock(usr, 10) // The nothing wires give a chance to shock just for fun
 

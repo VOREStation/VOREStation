@@ -32,14 +32,10 @@
 
 	if(!(language && (language.flags & INNATE))) // skip understanding checks for INNATE languages
 		if(!say_understands(speaker,language))
-			if(istype(speaker,/mob/living/simple_animal))
-				var/mob/living/simple_animal/S = speaker
-				message = pick(S.speak)
+			if(language)
+				message = language.scramble(message)
 			else
-				if(language)
-					message = language.scramble(message)
-				else
-					message = stars(message)
+				message = stars(message)
 
 	var/speaker_name = speaker.name
 	if(istype(speaker, /mob/living/carbon/human))
@@ -94,7 +90,7 @@
 	var/list/valid_names = splittext(real_name, " ") // Should output list("John", "Doe") as an example.
 	valid_names += special_mentions()
 	for(var/name in valid_names)
-		if(findtext(message, name))
+		if(findtext(message, regex("\\b[name]\\b", "i"))) // This is to stop 'ai' from triggering if someone says 'wait'.
 			return TRUE
 	return FALSE
 
@@ -105,10 +101,10 @@
 /mob/living/silicon/ai/special_mentions()
 	return list("AI") // AI door!
 
-// Converts specific characters, like *, /, and _ to formatted output.
+// Converts specific characters, like *, |, and _ to formatted output.
 /mob/proc/say_emphasis(var/message)
-	message = encode_html_emphasis(message, "/", "i")
-	message = encode_html_emphasis(message, "*", "b")
+	message = encode_html_emphasis(message, "|", "i")
+	message = encode_html_emphasis(message, "+", "b")
 	message = encode_html_emphasis(message, "_", "u")
 	return message
 

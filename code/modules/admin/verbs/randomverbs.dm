@@ -461,18 +461,23 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	//Write the appearance and whatnot out to the character
 	picked_client.prefs.copy_to(new_character)
+	if(new_character.dna)
+		new_character.dna.ResetUIFrom(new_character)
+		new_character.sync_organ_dna()
 	if(inhabit)
 		new_character.key = player_key
-
-	//Were they any particular special role? If so, copy.
-	var/datum/antagonist/antag_data = get_antag_data(new_character.mind.special_role)
-	if(antag_data)
-		antag_data.add_antagonist(new_character.mind)
-		antag_data.place_mob(new_character)
+		//Were they any particular special role? If so, copy.
+		if(new_character.mind)
+			var/datum/antagonist/antag_data = get_antag_data(new_character.mind.special_role)
+			if(antag_data)
+				antag_data.add_antagonist(new_character.mind)
+				antag_data.place_mob(new_character)
 
 	//If desired, apply equipment.
-	if(equipment && charjob)
-		job_master.EquipRank(new_character, charjob, 1)
+	if(equipment)
+		if(charjob)
+			job_master.EquipRank(new_character, charjob, 1)
+		equip_custom_items(new_character)
 
 	//If desired, add records.
 	if(records)
@@ -637,14 +642,18 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	var/heavy = input("Range of heavy pulse.", text("Input"))  as num|null
 	if(heavy == null) return
+	var/med = input("Range of medium pulse.", text("Input"))  as num|null
+	if(med == null) return
 	var/light = input("Range of light pulse.", text("Input"))  as num|null
 	if(light == null) return
+	var/long = input("Range of long pulse.", text("Input"))  as num|null
+	if(long == null) return
 
-	if (heavy || light)
+	if (heavy || med || light || long)
 
-		empulse(O, heavy, light)
-		log_admin("[key_name(usr)] created an EM Pulse ([heavy],[light]) at ([O.x],[O.y],[O.z])")
-		message_admins("[key_name_admin(usr)] created an EM PUlse ([heavy],[light]) at ([O.x],[O.y],[O.z])", 1)
+		empulse(O, heavy, med, light, long)
+		log_admin("[key_name(usr)] created an EM Pulse ([heavy],[med],[light],[long]) at ([O.x],[O.y],[O.z])")
+		message_admins("[key_name_admin(usr)] created an EM PUlse ([heavy],[med],[light],[long]) at ([O.x],[O.y],[O.z])", 1)
 		feedback_add_details("admin_verb","EMP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 		return

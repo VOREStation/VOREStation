@@ -101,6 +101,10 @@ Implant Specifics:<BR>"}
 				meltdown()
 		if(2)
 			delay = rand(5*60*10,15*60*10)	//from 5 to 15 minutes of free time
+		if(3)
+			delay = rand(2*60*10,5*60*10)	//from 2 to 5 minutes of free time
+		if(4)
+			delay = rand(0.5*60*10,1*60*10)	//from .5 to 1 minutes of free time
 
 	spawn(delay)
 		malfunction--
@@ -227,10 +231,22 @@ Implant Specifics:<BR>"}
 		return
 	malfunction = MALFUNCTION_TEMPORARY
 	switch (severity)
-		if (2.0)	//Weak EMP will make implant tear limbs off.
+		if (4)	//Weak EMP will make implant tear limbs off.
+			if (prob(25))
+				small_boom()
+		if (3)	//Weak EMP will make implant tear limbs off.
 			if (prob(50))
 				small_boom()
-		if (1.0)	//strong EMP will melt implant either making it go off, or disarming it
+		if (2)	//strong EMP will melt implant either making it go off, or disarming it
+			if (prob(70))
+				if (prob(75))
+					small_boom()
+				else
+					if (prob(13))
+						activate()		//chance of bye bye
+					else
+						meltdown()		//chance of implant disarming
+		if (1)	//strong EMP will melt implant either making it go off, or disarming it
 			if (prob(70))
 				if (prob(50))
 					small_boom()
@@ -320,7 +336,13 @@ the implant may become unstable and either pre-maturely inject the subject or si
 			if(prob(60))
 				activate(20)
 		if(2)
-			if(prob(30))
+			if(prob(40))
+				activate(20)
+		if(3)
+			if(prob(40))
+				activate(5)
+		if(4)
+			if(prob(20))
 				activate(5)
 
 	spawn(20)
@@ -430,23 +452,27 @@ the implant may become unstable and either pre-maturely inject the subject or si
 			var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset/heads/captain(null)
 			if(istype(t, /area/syndicate_station) || istype(t, /area/syndicate_mothership) || istype(t, /area/shuttle/syndicate_elite) )
 				//give the syndies a bit of stealth
-				a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm", "Security")
-				a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm", "Medical")
+				a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm", "General")
+//				a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm", "Security")
+//				a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm", "Medical")
 			else
-				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm", "Security")
-				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm", "Medical")
+				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm", "General")
+//				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm", "Security")
+//				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm", "Medical")
 			qdel(a)
 			processing_objects.Remove(src)
 		if ("emp")
 			var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset/heads/captain(null)
 			var/name = prob(50) ? t.name : pick(teleportlocs)
-			a.autosay("[mobname] has died in [name]!", "[mobname]'s Death Alarm", "Security")
-			a.autosay("[mobname] has died in [name]!", "[mobname]'s Death Alarm", "Medical")
+			a.autosay("[mobname] has died in [name]!", "[mobname]'s Death Alarm", "General")
+//			a.autosay("[mobname] has died in [name]!", "[mobname]'s Death Alarm", "Security")
+//			a.autosay("[mobname] has died in [name]!", "[mobname]'s Death Alarm", "Medical")
 			qdel(a)
 		else
 			var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset/heads/captain(null)
-			a.autosay("[mobname] has died-zzzzt in-in-in...", "[mobname]'s Death Alarm", "Security")
-			a.autosay("[mobname] has died-zzzzt in-in-in...", "[mobname]'s Death Alarm", "Medical")
+			a.autosay("[mobname] has died-zzzzt in-in-in...", "[mobname]'s Death Alarm", "General")
+//			a.autosay("[mobname] has died-zzzzt in-in-in...", "[mobname]'s Death Alarm", "Security")
+//			a.autosay("[mobname] has died-zzzzt in-in-in...", "[mobname]'s Death Alarm", "Medical")
 			qdel(a)
 			processing_objects.Remove(src)
 

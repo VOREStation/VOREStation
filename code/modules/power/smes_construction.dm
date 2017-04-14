@@ -212,7 +212,7 @@
 				h_user.adjustFireLoss(rand(10,25))
 				h_user.Paralyse(5)
 			spawn(0)
-				empulse(src.loc, 2, 4)
+				empulse(src.loc, 1, 2, 3, 4)
 			charge = 0
 
 		if (36 to 60)
@@ -229,7 +229,7 @@
 				h_user.adjustFireLoss(rand(35,75))
 				h_user.Paralyse(12)
 			spawn(0)
-				empulse(src.loc, 8, 16)
+				empulse(src.loc, 6, 8, 12, 16)
 			charge = 0
 			apcs_overload(1, 10)
 			src.ping("Caution. Output regulators malfunction. Uncontrolled discharge detected.")
@@ -345,7 +345,10 @@
 
 				usr << "\red You have disassembled the SMES cell!"
 				var/obj/structure/frame/M = new /obj/structure/frame(src.loc)
-				M.frame_type = "machine"
+				M.frame_type = new /datum/frame/frame_types/machine
+				M.anchored = 1
+				var/obj/item/weapon/circuitboard/C = new /obj/item/weapon/circuitboard/smes
+				M.circuit = C
 				M.state = 2
 				M.icon_state = "machine_1"
 				for(var/obj/I in component_parts)

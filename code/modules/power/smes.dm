@@ -393,10 +393,14 @@
 			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 			s.set_up(3, 1, src)
 			s.start()
-			if(prob(50))
+			if(prob(25))
 				emp_act(1)
-			else
+			else if(prob(25))
 				emp_act(2)
+			else if(prob(25))
+				emp_act(3)
+			else
+				emp_act(4)
 		if(prob(5)) //smoke only
 			var/datum/effect/effect/system/smoke_spread/smoke = new /datum/effect/effect/system/smoke_spread()
 			smoke.set_up(3, 0, src.loc)

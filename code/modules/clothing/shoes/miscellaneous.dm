@@ -22,6 +22,7 @@
 	slowdown = SHOES_SLOWDOWN+1
 	species_restricted = null
 
+
 /obj/item/clothing/shoes/dress
 	name = "dress shoes"
 	desc = "Sharp looking low quarters, perfect for a formal uniform."
@@ -134,3 +135,17 @@
 	desc = "A pair of wide shoes with thick soles.  Designed for skating."
 	icon_state = "skatershoe"
 	item_state_slots = list(slot_r_hand_str = "skaterheld", slot_l_hand_str = "skaterheld")
+
+/obj/item/clothing/shoes/heels
+	name = "high heels"
+	desc = "A pair of high-heeled shoes. Fancy!"
+	icon_state = "heels"
+
+/obj/item/clothing/shoes/footwraps
+	name = "cloth footwraps"
+	desc = "A roll of treated canvas used for wrapping claws or paws"
+	icon_state = "clothwrap"
+	item_state = "clothwrap"
+	force = 0
+	w_class = ITEMSIZE_SMALL
+	species_restricted = null

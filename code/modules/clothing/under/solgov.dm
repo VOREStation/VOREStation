@@ -212,7 +212,7 @@
 	worn_state = "greenservice_com"
 
 //Dress
-/obj/item/clothing/under/dress/plain
+/obj/item/clothing/under/mildress
 	name = "dress uniform"
 	desc = "A dress uniform of some kind."
 	icon_state = "greydress"
@@ -220,25 +220,25 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
 
-/obj/item/clothing/under/dress/expeditionary
+/obj/item/clothing/under/mildress/expeditionary
 	name = "\improper SifGuard dress uniform"
 	desc = "The dress uniform of the Sif Homeguard Corps in silver trim."
 	icon_state = "greydress"
 	worn_state = "greydress"
 
-/obj/item/clothing/under/dress/expeditionary/command
+/obj/item/clothing/under/mildress/expeditionary/command
 	name = "\improper SifGuard command dress uniform"
 	desc = "The dress uniform of the Sif Homeguard Corps in gold trim."
 	icon_state = "greydress_com"
 	worn_state = "greydress_com"
 
-/obj/item/clothing/under/dress/marine
+/obj/item/clothing/under/mildress/marine
 	name = "marine dress uniform"
 	desc = "The dress uniform of the SCG Marine Corps, class given form."
 	icon_state = "blackdress"
 	worn_state = "blackdress"
 
-/obj/item/clothing/under/dress/marine/command
+/obj/item/clothing/under/mildress/marine/command
 	name = "marine command dress uniform"
 	desc = "The dress uniform of the SCG Marine Corps, even classier in gold."
 	icon_state = "blackdress_com"

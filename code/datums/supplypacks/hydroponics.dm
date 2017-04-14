@@ -51,7 +51,7 @@
 			/obj/item/weapon/material/minihoe,
 			/obj/item/device/analyzer/plant_analyzer,
 			/obj/item/clothing/gloves/botanic_leather,
-			/obj/item/clothing/suit/apron,
+			/obj/item/clothing/suit/storage/apron,
 			/obj/item/weapon/material/minihoe,
 			/obj/item/weapon/storage/box/botanydisk
 			)
@@ -141,9 +141,10 @@
 	access = access_hydroponics
 
 /datum/supply_packs/hydro/tray
-	name = "Empty hydroponics tray"
-	cost = 20
+	name = "Empty hydroponics trays"
+	cost = 50
 	containertype = /obj/structure/closet/crate/hydroponics
 	containername = "Hydroponics tray crate"
-	contains = list(/obj/machinery/portable_atmospherics/hydroponics{anchored = 0})
+	contains = list(/obj/machinery/portable_atmospherics/hydroponics{anchored = 0} = 3)
 	access = access_hydroponics
+

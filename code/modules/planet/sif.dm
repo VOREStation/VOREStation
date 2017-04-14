@@ -72,25 +72,35 @@ var/datum/planet/sif/planet_sif = null
 
 	var/new_brightness = (Interpolate(low_brightness, high_brightness, weight = lerp_weight) ) * weather_light_modifier
 
-	var/list/low_color_list = hex2rgb(low_color)
-	var/low_r = low_color_list[1]
-	var/low_g = low_color_list[2]
-	var/low_b = low_color_list[3]
+	var/new_color = null
+	if(weather_holder && weather_holder.current_weather && weather_holder.current_weather.light_color)
+		new_color = weather_holder.current_weather.light_color
+	else
+		var/list/low_color_list = hex2rgb(low_color)
+		var/low_r = low_color_list[1]
+		var/low_g = low_color_list[2]
+		var/low_b = low_color_list[3]
 
-	var/list/high_color_list = hex2rgb(high_color)
-	var/high_r = high_color_list[1]
-	var/high_g = high_color_list[2]
-	var/high_b = high_color_list[3]
+		var/list/high_color_list = hex2rgb(high_color)
+		var/high_r = high_color_list[1]
+		var/high_g = high_color_list[2]
+		var/high_b = high_color_list[3]
 
-	var/new_r = Interpolate(low_r, high_r, weight = lerp_weight)
-	var/new_g = Interpolate(low_g, high_g, weight = lerp_weight)
-	var/new_b = Interpolate(low_b, high_b, weight = lerp_weight)
+		var/new_r = Interpolate(low_r, high_r, weight = lerp_weight)
+		var/new_g = Interpolate(low_g, high_g, weight = lerp_weight)
+		var/new_b = Interpolate(low_b, high_b, weight = lerp_weight)
 
-	var/new_color = rgb(new_r, new_g, new_b)
+		new_color = rgb(new_r, new_g, new_b)
 
+	spawn(1)
+		update_sun_deferred(2, new_brightness, new_color)
+
+/datum/planet/proc/update_sun_deferred(var/new_range, var/new_brightness, var/new_color)
+	set background = 1
+	set waitfor = 0
 	var/i = 0
 	for(var/turf/simulated/floor/T in outdoor_turfs)
-		T.set_light(2, new_brightness, new_color)
+		T.set_light(new_range, new_brightness, new_color)
 		i++
 		if(i % 30 == 0)
 			sleep(1)

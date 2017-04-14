@@ -4,7 +4,6 @@
 	name = "power sink"
 	desc = "A nulling power sink which drains energy from electrical systems."
 	icon_state = "powersink0"
-	item_state = "electronic"
 	w_class = ITEMSIZE_LARGE
 	flags = CONDUCT
 	throwforce = 5

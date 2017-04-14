@@ -35,6 +35,8 @@
 			src << "<span class='danger'>You can't speak!</span>"
 			return 0
 
+	src.break_cloak()	//No more invisible shrieking
+
 	changeling.chem_charges -= 20
 	var/range = 4
 	if(src.mind.changeling.recursive_enhancement)
@@ -71,6 +73,12 @@
 		L.on = 1
 		L.broken()
 
+/*	src.verbs -= /mob/proc/changeling_resonant_shriek
+	spawn(30 SECONDS)
+		src << "<span class='notice'>We are ready to use our resonant shriek once more.</span>"
+		src.verbs |= /mob/proc/changeling_resonant_shriek
+Ability Cooldowns don't work properly right now, need to redo this when they are */
+
 	feedback_add_details("changeling_powers","RS")
 	return 1
 
@@ -93,13 +101,19 @@
 			src << "<span class='danger'>You can't speak!</span>"
 			return 0
 
+	src.break_cloak()	//No more invisible shrieking
+
 	changeling.chem_charges -= 20
 
-	var/range_heavy = 2
-	var/range_light = 5
+	var/range_heavy = 1
+	var/range_med = 2
+	var/range_light = 4
+	var/range_long = 6
 	if(src.mind.changeling.recursive_enhancement)
 		range_heavy = range_heavy * 2
+		range_med = range_med * 2
 		range_light = range_light * 2
+		range_long = range_long * 2
 		src << "<span class='notice'>We are extra loud.</span>"
 		src.mind.changeling.recursive_enhancement = 0
 
@@ -111,4 +125,10 @@
 		L.on = 1
 		L.broken()
 	empulse(get_turf(src), range_heavy, range_light, 1)
+
+/*	src.verbs -= /mob/proc/changeling_dissonant_shriek
+	spawn(30 SECONDS)
+		src << "<span class='notice'>We are ready to use our dissonant shriek once more.</span>"
+		src.verbs |= /mob/proc/changeling_dissonant_shriek
+Ability Cooldowns don't work properly right now, need to redo this when they are */
 	return 1

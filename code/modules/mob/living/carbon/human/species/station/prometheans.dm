@@ -28,6 +28,9 @@ var/datum/species/shapeshifter/promethean/prometheans
 	breath_type = null
 	poison_type = null
 
+	male_cough_sounds = list('sound/effects/slime_squish.ogg')
+	female_cough_sounds = list('sound/effects/slime_squish.ogg')
+
 	gluttonous =            1
 	virus_immune =          1
 	blood_volume =          560

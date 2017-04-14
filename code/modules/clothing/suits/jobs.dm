@@ -3,7 +3,7 @@
  */
 
 //Botanist
-/obj/item/clothing/suit/apron
+/obj/item/clothing/suit/storage/apron
 	name = "apron"
 	desc = "A basic blue apron."
 	icon_state = "apron"
@@ -174,20 +174,16 @@
 /obj/item/clothing/suit/storage/toggle/lawyer/bluejacket
 	name = "blue suit jacket"
 	desc = "A snappy dress jacket."
-	icon_state = "suitjacket_blue_open"
+	icon_state = "suitjacket_blue"
 	item_state_slots = list(slot_r_hand_str = "suit_blue", slot_l_hand_str = "suit_blue")
-	icon_open = "suitjacket_blue_open"
-	icon_closed = "suitjacket_blue"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|ARMS
 
 /obj/item/clothing/suit/storage/toggle/lawyer/purpjacket
 	name = "purple suit jacket"
 	desc = "A snappy dress jacket."
-	icon_state = "suitjacket_purp_open"
+	icon_state = "suitjacket_purp"
 	item_state_slots = list(slot_r_hand_str = "suit_purple", slot_l_hand_str = "suit_purple")
-	icon_open = "suitjacket_purp_open"
-	icon_closed = "suitjacket_purp"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|ARMS
 
@@ -195,10 +191,8 @@
 /obj/item/clothing/suit/storage/toggle/internalaffairs
 	name = "black suit jacket"
 	desc = "A smooth black jacket."
-	icon_state = "ia_jacket_open"
+	icon_state = "ia_jacket"
 	item_state_slots = list(slot_r_hand_str = "suit_black", slot_l_hand_str = "suit_black")
-	icon_open = "ia_jacket_open"
-	icon_closed = "ia_jacket"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|ARMS
 
@@ -206,10 +200,8 @@
 /obj/item/clothing/suit/storage/toggle/fr_jacket
 	name = "first responder jacket"
 	desc = "A high-visibility jacket worn by medical first responders."
-	icon_state = "fr_jacket_open"
+	icon_state = "fr_jacket"
 	item_state_slots = list(slot_r_hand_str = "fr_jacket", slot_l_hand_str = "fr_jacket")
-	icon_open = "fr_jacket_open"
-	icon_closed = "fr_jacket"
 	blood_overlay_type = "armor"
 	allowed = list(/obj/item/stack/medical, /obj/item/weapon/reagent_containers/dropper, /obj/item/weapon/reagent_containers/hypospray, /obj/item/weapon/reagent_containers/syringe,
 	/obj/item/device/healthanalyzer, /obj/item/device/flashlight, /obj/item/device/radio, /obj/item/weapon/tank/emergency/oxygen)
@@ -218,10 +210,8 @@
 /obj/item/clothing/suit/storage/toggle/fr_jacket/ems
 	name = "\improper EMS jacket"
 	desc = "A dark blue, martian-pattern, EMS jacket. It sports high-visibility reflective stripes and a star of life on the back."
-	icon_state = "ems_jacket_closed"
+	icon_state = "ems_jacket"
 	item_state_slots = list(slot_r_hand_str = "ems_jacket", slot_l_hand_str = "ems_jacket")
-	icon_open = "ems_jacket_open"
-	icon_closed = "ems_jacket_closed"
 
 /obj/item/clothing/suit/surgicalapron
 	name = "surgical apron"

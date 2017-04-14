@@ -50,6 +50,15 @@
 	var/num_alternate_languages = 0          // How many secondary languages are available to select at character creation
 	var/name_language = LANGUAGE_GALCOM    // The language to use when determining names for this species, or null to use the first name/last name generator
 
+	//Soundy emotey things.
+	var/scream_verb = "screams"
+	var/male_scream_sound //= 'sound/goonstation/voice/male_scream.ogg' Removed due to licensing, replace!
+	var/female_scream_sound //= 'sound/goonstation/voice/female_scream.ogg' Removed due to licensing, replace!
+	var/male_cough_sounds = list('sound/effects/mob_effects/m_cougha.ogg','sound/effects/mob_effects/m_coughb.ogg', 'sound/effects/mob_effects/m_coughc.ogg')
+	var/female_cough_sounds = list('sound/effects/mob_effects/f_cougha.ogg','sound/effects/mob_effects/f_coughb.ogg')
+	var/male_sneeze_sound = 'sound/effects/mob_effects/sneeze.ogg'
+	var/female_sneeze_sound = 'sound/effects/mob_effects/f_sneeze.ogg'
+
 	// Combat vars.
 	var/total_health = 100                   // Point at which the mob will enter crit.
 	var/list/unarmed_types = list(           // Possible unarmed attacks that the mob will use in combat,
@@ -63,6 +72,7 @@
 	var/toxins_mod =    1                    // Toxloss modifier
 	var/radiation_mod = 1                    // Radiation modifier
 	var/flash_mod =     1                    // Stun from blindness modifier.
+	var/chemOD_mod =	1					 // Damage modifier for overdose
 	var/vision_flags = SEE_SELF              // Same flags as glasses.
 
 	// Death vars.
@@ -123,7 +133,7 @@
 	var/appearance_flags = 0      // Appearance/display related features.
 	var/spawn_flags = 0           // Flags that specify who can spawn as this species
 	var/slowdown = 0              // Passive movement speed malus (or boost, if negative)
-	var/slowdown_fixed = 0		  // If this is on, they're not affected by object related slowdown (positive or negative)
+	var/item_slowdown_halved = 0  // If this is on, they're not as affected by item weights for slowdown
 	var/primitive_form            // Lesser form, if any (ie. monkey for humans)
 	var/greater_form              // Greater form, if any, ie. human for monkeys.
 	var/holder_type
@@ -184,8 +194,8 @@
 			inherent_verbs = list()
 		inherent_verbs |= /mob/living/carbon/human/proc/regurgitate
 
-/datum/species/proc/sanitize_name(var/name)
-	return sanitizeName(name)
+/datum/species/proc/sanitize_name(var/name, var/robot = 0)
+	return sanitizeName(name, MAX_NAME_LEN, robot)
 
 /datum/species/proc/equip_survival_gear(var/mob/living/carbon/human/H,var/extendedtank = 1)
 	var/boxtype = /obj/item/weapon/storage/box/survival //Default survival box

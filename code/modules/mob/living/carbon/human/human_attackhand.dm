@@ -22,7 +22,7 @@
 
 	// Should this all be in Touch()?
 	if(istype(H))
-		if(get_accuracy_penalty(H))	//Should only trigger if they're not aiming well
+		if(get_accuracy_penalty(H) && H != src)	//Should only trigger if they're not aiming well
 			var/hit_zone = get_zone_with_miss_chance(H.zone_sel.selecting, src, get_accuracy_penalty(H))
 			if(!hit_zone)
 				H.do_attack_animation(src)
@@ -43,6 +43,7 @@
 				return 0
 			var/obj/item/organ/external/affecting = get_organ(ran_zone(H.zone_sel.selecting))
 			var/armor_block = run_armor_check(affecting, "melee")
+			var/armor_soak = get_armor_soak(affecting, "melee")
 
 			if(HULK in H.mutations)
 				damage += 5
@@ -51,7 +52,10 @@
 
 			visible_message("\red <B>[H] has punched [src]!</B>")
 
-			apply_damage(damage, HALLOSS, affecting, armor_block)
+			if(armor_soak >= damage)
+				return
+
+			apply_damage(damage, HALLOSS, affecting, armor_block, armor_soak)
 			if(damage >= 9)
 				visible_message("\red <B>[H] has weakened [src]!</B>")
 				apply_effect(4, WEAKEN, armor_block)
@@ -245,11 +249,12 @@
 			real_damage = max(1, real_damage)
 
 			var/armour = run_armor_check(affecting, "melee")
+			var/soaked = get_armor_soak(affecting, "melee")
 			// Apply additional unarmed effects.
 			attack.apply_effects(H, src, armour, rand_damage, hit_zone)
 
 			// Finally, apply damage to target
-			apply_damage(real_damage, (attack.deal_halloss ? HALLOSS : BRUTE), affecting, armour, sharp=attack.sharp, edge=attack.edge)
+			apply_damage(real_damage, (attack.deal_halloss ? HALLOSS : BRUTE), affecting, armour, soaked, sharp=attack.sharp, edge=attack.edge)
 
 		if(I_DISARM)
 			M.attack_log += text("\[[time_stamp()]\] <font color='red'>Disarmed [src.name] ([src.ckey])</font>")
@@ -325,7 +330,8 @@
 	var/dam_zone = pick(organs_by_name)
 	var/obj/item/organ/external/affecting = get_organ(ran_zone(dam_zone))
 	var/armor_block = run_armor_check(affecting, "melee")
-	apply_damage(damage, BRUTE, affecting, armor_block)
+	var/armor_soak = get_armor_soak(affecting, "melee")
+	apply_damage(damage, BRUTE, affecting, armor_block, armor_soak)
 	updatehealth()
 	return 1
 

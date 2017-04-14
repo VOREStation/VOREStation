@@ -12,7 +12,6 @@
 	var/cleaning = 0
 	var/screwloose = 0
 	var/oddbutton = 0
-	var/should_patrol = 0
 	var/blood = 1
 	var/list/target_types = list()
 
@@ -32,9 +31,11 @@
 	if(oddbutton && prob(5)) // Make a big mess
 		visible_message("Something flies out of [src]. He seems to be acting oddly.")
 		var/obj/effect/decal/cleanable/blood/gibs/gib = new /obj/effect/decal/cleanable/blood/gibs(loc)
-		ignore_list += gib
+		// TODO - I have a feeling weakrefs will not work in ignore_list, verify this ~Leshana
+		var/weakref/g = weakref(gib)
+		ignore_list += g
 		spawn(600)
-			ignore_list -= gib
+			ignore_list -= g
 
 /mob/living/bot/cleanbot/lookForTargets()
 	for(var/obj/effect/decal/cleanable/D in view(world.view, src)) // There was some odd code to make it start with nearest decals, it's unnecessary, this works
@@ -110,7 +111,7 @@
 	dat += "Maintenance panel is [open ? "opened" : "closed"]"
 	if(!locked || issilicon(user))
 		dat += "<BR>Cleans Blood: <A href='?src=\ref[src];operation=blood'>[blood ? "Yes" : "No"]</A><BR>"
-		dat += "<BR>Patrol station: <A href='?src=\ref[src];operation=patrol'>[should_patrol ? "Yes" : "No"]</A><BR>"
+		dat += "<BR>Patrol station: <A href='?src=\ref[src];operation=patrol'>[will_patrol ? "Yes" : "No"]</A><BR>"
 	if(open && !locked)
 		dat += "Odd looking screw twiddled: <A href='?src=\ref[src];operation=screw'>[screwloose ? "Yes" : "No"]</A><BR>"
 		dat += "Weird button pressed: <A href='?src=\ref[src];operation=oddbutton'>[oddbutton ? "Yes" : "No"]</A>"
@@ -134,7 +135,7 @@
 			blood = !blood
 			get_targets()
 		if("patrol")
-			should_patrol = !should_patrol
+			will_patrol = !will_patrol
 			patrol_path = null
 		if("screw")
 			screwloose = !screwloose
