@@ -1307,8 +1307,8 @@ var/mob/dview/dview_mob = new
 		if(1e3 to 1e6-1)
 			return "[round(number / 1000, 0.1)] k[symbol]" // kilo
 		if(1e6 to 1e9-1)
-			return "[round(number / 1e6, 0.1)] m[symbol]" // mega
+			return "[round(number / 1e6, 0.1)] M[symbol]" // mega
 		if(1e9 to 1e12-1) // Probably not needed but why not be complete?
-			return "[round(number / 1e9, 0.1)] g[symbol]" // giga
+			return "[round(number / 1e9, 0.1)] G[symbol]" // giga
 		if(1e12 to 1e15-1)
-			return "[round(number / 1e12, 0.1)] t[symbol]" // tera
+			return "[round(number / 1e12, 0.1)] T[symbol]" // tera
