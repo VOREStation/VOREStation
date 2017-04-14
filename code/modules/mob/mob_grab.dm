@@ -75,11 +75,15 @@
 	if(affecting)
 		if(affecting.buckled)
 			return null
+		if(!affecting.Adjacent(affecting.grabbed_by))
+			qdel(src)
+			return null
 		if(state >= GRAB_AGGRESSIVE)
 			animate(affecting, pixel_x = 0, pixel_y = 0, 4, 1)
 			var/mob/living/affected = affecting
 			qdel(src)
 			return affected
+
 	return null
 
 
@@ -296,6 +300,9 @@
 		return
 	if(world.time < (last_action + 20))
 		return
+	if(!M.Adjacent(user))
+		qdel(src)
+		return
 
 	last_action = world.time
 	reset_kill_state() //using special grab moves will interrupt choking them
@@ -341,6 +348,9 @@
 		qdel(src)
 
 /obj/item/weapon/grab/proc/reset_kill_state()
+	if(!assailant)
+		qdel(src)
+		return
 	if(state == GRAB_KILL)
 		assailant.visible_message("<span class='warning'>[assailant] lost \his tight grip on [affecting]'s neck!</span>")
 		hud.icon_state = "kill"
@@ -367,12 +377,20 @@
 				break_strength++
 			break_chance_table = list(3, 18, 45, 100)
 
+
+		if(GRAB_KILL)
+			grab_name = "stranglehold"
+			break_chance_table = list(5, 20, 40, 80, 100)
+
 	//It's easier to break out of a grab by a smaller mob
 	break_strength += max(size_difference(affecting, assailant), 0)
 
 	var/break_chance = break_chance_table[Clamp(break_strength, 1, break_chance_table.len)]
 	if(prob(break_chance))
-		if(grab_name)
+		if(state == GRAB_KILL)
+			reset_kill_state()
+			return
+		else if(grab_name)
 			affecting.visible_message("<span class='warning'>[affecting] has broken free of [assailant]'s [grab_name]!</span>")
 		qdel(src)
 

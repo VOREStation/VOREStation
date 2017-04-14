@@ -695,7 +695,7 @@
 	if(istype(src.glasses, /obj/item/clothing/glasses/sunglasses))
 		if(istype(src.glasses, /obj/item/clothing/glasses/sunglasses/sechud/aviator))
 			var/obj/item/clothing/glasses/sunglasses/sechud/aviator/S = src.glasses
-			if(!S.active)
+			if(!S.on)
 				number += 1
 		else if(istype(src.glasses, /obj/item/clothing/glasses/sunglasses/medhud/aviator))
 			number += 0
