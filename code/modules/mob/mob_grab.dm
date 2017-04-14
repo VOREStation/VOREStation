@@ -80,9 +80,10 @@
 			return null
 		if(state >= GRAB_AGGRESSIVE)
 			animate(affecting, pixel_x = 0, pixel_y = 0, 4, 1)
-			. = affecting
+			var/mob/living/affected = affecting
 			qdel(src)
-			return
+			return affected
+
 	return null
 
 
