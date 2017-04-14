@@ -45,7 +45,7 @@
 	desc = "This metal box writhes and squirms as if it were alive..."
 	suit_type = "alien"
 	icon_state = "vox_rig"
-	armor = list(melee = 60, bullet = 50, laser = 40, energy = 15, bomb = 30, bio = 30, rad = 30)
+	armor = list(melee = 60, bullet = 50, laser = 40, energy = 15, bomb = 30, bio = 100, rad = 50)
 	item_flags = THICKMATERIAL
 	siemens_coefficient = 0.2
 	phoronproof = 1
@@ -88,7 +88,7 @@
 /obj/item/weapon/rig/vox/carapace
 	name = "dense alien control module"
 	suit_type = "dense alien"
-	armor = list(melee = 60, bullet = 50, laser = 40, energy = 15, bomb = 30, bio = 30, rad = 30)
+	armor = list(melee = 60, bullet = 50, laser = 40, energy = 15, bomb = 30, bio = 100, rad = 50)
 	emp_protection = 40 //change this to 30 if too high.
 	phoronproof = 1
 
@@ -109,7 +109,7 @@
 	name = "sinister alien control module"
 	suit_type = "sinister alien"
 	icon_state = "voxstealth_rig"
-	armor = list(melee = 40, bullet = 30, laser = 30, energy = 15, bomb = 30, bio = 100, rad = 100)
+	armor = list(melee = 40, bullet = 30, laser = 30, energy = 15, bomb = 30, bio = 100, rad = 50)
 	emp_protection = 40 //change this to 30 if too high.
 	phoronproof = 1
 
