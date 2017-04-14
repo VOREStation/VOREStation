@@ -36,6 +36,11 @@
 	..()
 	mover.fall()
 
+// Called when thrown object lands on this turf.
+/turf/simulated/open/hitby(var/atom/movable/AM, var/speed)
+	. = ..()
+	AM.fall()
+
 /turf/simulated/open/proc/update()
 	below = GetBelow(src)
 	turf_changed_event.register(below, src, /turf/simulated/open/update_icon)
