@@ -82,7 +82,7 @@ var/list/mining_overlay_cache = list()
 /turf/simulated/mineral/proc/update_general()
 	update_icon(1)
 	if(ticker && ticker.current_state == GAME_STATE_PLAYING)
-		// TODO - Look into this
+		recalc_atom_opacity()
 		reconsider_lights()
 		if(air_master)
 			air_master.mark_for_update(src)
