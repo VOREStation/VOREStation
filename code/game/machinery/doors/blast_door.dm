@@ -146,12 +146,15 @@
 // Parameters: None
 // Description: Opens the door. Does necessary checks. Automatically closes if autoclose is true
 /obj/machinery/door/blast/open(var/forced = 0)
-	if (src.operating || (stat & BROKEN || stat & NOPOWER))
-		return
-	force_open()
-	return 1
+	if(forced)
+		force_open()
+		return 1
+	else
+		if (src.operating || (stat & BROKEN || stat & NOPOWER))
+			return 1
+		force_open()
 
-	if(autoclose)
+	if(autoclose && src.operating || (stat ~& BROKEN && stat ~& NOPOWER))
 		spawn(150)
 			close()
 	return 1
