@@ -78,6 +78,13 @@
 	desc = ""
 	icon_state = "bee"
 
+/datum/sprite_accessory/ears/antennae
+	name = "antennae, colorable"
+	desc = ""
+	icon_state = "antennae"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/ears/oni_h1
 	name = "oni horns"
 	desc = ""
@@ -379,6 +386,34 @@
 	name = "mouse, colorable"
 	desc = ""
 	icon_state = "mouse"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/horse
+	name = "horse tail, colorable"
+	desc = ""
+	icon_state = "horse"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/cow
+	name = "cow tail, colorable"
+	desc = ""
+	icon_state = "cow"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/fantail
+	name = "avian fantail, colorable"
+	desc = ""
+	icon_state = "fantail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/wagtail
+	name = "avian wagtail, colorable"
+	desc = ""
+	icon_state = "wagtail"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
