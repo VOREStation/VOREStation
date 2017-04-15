@@ -130,7 +130,7 @@
 
 		else if(src.density)
 			var/obj/item/weapon/W = C
-			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*2)
+			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			if(W.damtype == BRUTE || W.damtype == BURN)
 				user.do_attack_animation(src)
 				if(W.force < min_force)
@@ -138,7 +138,7 @@
 				else
 					user.visible_message("<span class='danger'>\The [user] forcefully strikes \the [src] with \the [W]!</span>")
 					playsound(src.loc, hitsound, 100, 1)
-					take_damage(W.force*0.75) //it's a blast door, it should take a while. -Luke
+					take_damage(W.force*0.35) //it's a blast door, it should take a while. -Luke
 			return
 
 
@@ -154,7 +154,7 @@
 			return 1
 		force_open()
 
-	if(autoclose && src.operating || (stat ~& BROKEN && stat ~& NOPOWER))
+	if(autoclose && src.operating && !(stat & BROKEN || stat & NOPOWER))
 		spawn(150)
 			close()
 	return 1
