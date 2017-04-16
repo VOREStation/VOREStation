@@ -388,7 +388,7 @@
 	balding
 		name = "Balding Hair"
 		icon_state = "hair_e"
-		gender = MALE // turnoff!
+		gender = MALE
 
 	familyman
 		name = "The Family Man"
@@ -529,9 +529,19 @@
 		icon_state = "hair_coffeehouse"
 		gender = MALE
 
-	undercut
+	undercut1
 		name = "Undercut"
-		icon_state = "hair_undercut"
+		icon_state = "hair_undercut1"
+		gender = MALE
+
+	undercut2
+		name = "Undercut Swept Right"
+		icon_state = "hair_undercut2"
+		gender = MALE
+
+	undercut3
+		name = "Undercut Swept Left"
+		icon_state = "hair_undercut3"
 		gender = MALE
 
 	partfade
@@ -551,7 +561,7 @@
 /datum/sprite_accessory/facial_hair
 
 	icon = 'icons/mob/Human_face.dmi'
-	gender = MALE // barf (unless you're a dorf, dorfs dig chix /w beards :P)
+	gender = MALE
 
 	shaved
 		name = "Shaved"

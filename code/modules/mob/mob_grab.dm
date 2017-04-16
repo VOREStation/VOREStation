@@ -75,14 +75,10 @@
 	if(affecting)
 		if(affecting.buckled)
 			return null
-		if(!affecting.Adjacent(affecting.grabbed_by))
-			qdel(src)
-			return null
 		if(state >= GRAB_AGGRESSIVE)
 			animate(affecting, pixel_x = 0, pixel_y = 0, 4, 1)
-			. = affecting
-			qdel(src)
-			return
+			return affecting
+
 	return null
 
 
@@ -299,9 +295,6 @@
 		return
 	if(world.time < (last_action + 20))
 		return
-	if(!M.Adjacent(user))
-		qdel(src)
-		return
 
 	last_action = world.time
 	reset_kill_state() //using special grab moves will interrupt choking them
@@ -347,9 +340,6 @@
 		qdel(src)
 
 /obj/item/weapon/grab/proc/reset_kill_state()
-	if(!assailant)
-		qdel(src)
-		return
 	if(state == GRAB_KILL)
 		assailant.visible_message("<span class='warning'>[assailant] lost \his tight grip on [affecting]'s neck!</span>")
 		hud.icon_state = "kill"
