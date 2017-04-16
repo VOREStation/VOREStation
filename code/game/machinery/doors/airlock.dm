@@ -91,7 +91,24 @@
 	name = "Maintenance Access"
 	icon = 'icons/obj/doors/Doormaint.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_mai
-
+//VOREStation Add - Specific department maintenance doors
+/obj/machinery/door/airlock/maintenance/cargo
+	icon = 'icons/obj/doors/Doormaint_cargo.dmi'
+/obj/machinery/door/airlock/maintenance/command
+	icon = 'icons/obj/doors/Doormaint_command.dmi'
+/obj/machinery/door/airlock/maintenance/common
+	icon = 'icons/obj/doors/Doormaint_common.dmi'
+/obj/machinery/door/airlock/maintenance/engi
+	icon = 'icons/obj/doors/Doormaint_engi.dmi'
+/obj/machinery/door/airlock/maintenance/int
+	icon = 'icons/obj/doors/Doormaint_int.dmi'
+/obj/machinery/door/airlock/maintenance/medical
+	icon = 'icons/obj/doors/Doormaint_med.dmi'
+/obj/machinery/door/airlock/maintenance/rnd
+	icon = 'icons/obj/doors/Doormaint_rnd.dmi'
+/obj/machinery/door/airlock/maintenance/sec
+	icon = 'icons/obj/doors/Doormaint_sec.dmi'
+//VOREStation Add End
 /obj/machinery/door/airlock/external
 	name = "External Airlock"
 	icon = 'icons/obj/doors/Doorext.dmi'
@@ -147,7 +164,7 @@
 	assembly_type = /obj/structure/door_assembly/door_assembly_mhatch
 
 /obj/machinery/door/airlock/glass_command
-	name = "Maintenance Hatch"
+	//name = "Maintenance Hatch" //VOREStation Removal - Not maintenance...
 	icon = 'icons/obj/doors/Doorcomglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxhealth = 300
@@ -157,7 +174,7 @@
 	glass = 1
 
 /obj/machinery/door/airlock/glass_engineering
-	name = "Maintenance Hatch"
+	//name = "Maintenance Hatch" //VOREStation Removal - Not maintenance...
 	icon = 'icons/obj/doors/Doorengglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxhealth = 300
@@ -167,7 +184,7 @@
 	glass = 1
 
 /obj/machinery/door/airlock/glass_engineeringatmos
-	name = "Maintenance Hatch"
+	//name = "Maintenance Hatch" //VOREStation Removal - Not maintenance...
 	icon = 'icons/obj/doors/Doorengatmoglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxhealth = 300
@@ -177,7 +194,7 @@
 	glass = 1
 
 /obj/machinery/door/airlock/glass_security
-	name = "Maintenance Hatch"
+	//name = "Maintenance Hatch" //VOREStation Removal - Not maintenance...
 	icon = 'icons/obj/doors/Doorsecglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxhealth = 300
@@ -187,7 +204,7 @@
 	glass = 1
 
 /obj/machinery/door/airlock/glass_medical
-	name = "Maintenance Hatch"
+	//name = "Maintenance Hatch" //VOREStation Removal - Not maintenance...
 	icon = 'icons/obj/doors/Doormedglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxhealth = 300
