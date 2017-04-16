@@ -13,6 +13,7 @@ var/datum/planet/sif/planet_sif = null
 
 /datum/planet/sif/New()
 	..()
+	planet_sif = src
 	weather_holder = new /datum/weather_holder/sif(src) // Cold weather is also nice.
 
 // This code is horrible.
@@ -95,12 +96,11 @@ var/datum/planet/sif/planet_sif = null
 	spawn(1)
 		update_sun_deferred(2, new_brightness, new_color)
 
-/datum/planet/proc/update_sun_deferred(var/new_range, var/new_brightness, var/new_color)
-	set background = 1
-	set waitfor = 0
-	var/i = 0
-	for(var/turf/simulated/floor/T in outdoor_turfs)
-		T.set_light(new_range, new_brightness, new_color)
-		i++
-		if(i % 30 == 0)
-			sleep(1)
+// We're gonna pretend there are 32 hours in a Sif day instead of 32.64 for the purposes of not losing sanity.  We lose 38m 24s but the alternative is a path to madness.
+/datum/time/sif
+	seconds_in_day = 60 * 60 * 32 * 10 // 115,200 seconds.  If we did 32.64 hours/day it would be around 117,504 seconds instead.
+
+// Returns the time datum of Sif.
+/proc/get_sif_time()
+	if(planet_sif)
+		return planet_sif.current_time
