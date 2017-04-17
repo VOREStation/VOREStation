@@ -139,6 +139,8 @@
 
 	if(locate(/obj/structure/lattice, loc))
 		return FALSE
+	if(locate(/obj/structure/catwalk, loc))
+		return FALSE
 
 	// See if something prevents us from falling.
 	var/turf/below = GetBelow(src)
