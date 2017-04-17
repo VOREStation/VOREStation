@@ -56,8 +56,12 @@
 		if (danger_level < 1 && atmosalm >= 1)
 			//closing the doors on red and opening on green provides a bit of hysteresis that will hopefully prevent fire doors from opening and closing repeatedly due to noise
 			air_doors_open()
+			for(var/obj/machinery/light/L in src)
+				L.reset_alert()
 		else if (danger_level >= 2 && atmosalm < 2)
 			air_doors_close()
+			for(var/obj/machinery/light/L in src)
+				L.set_alert_atmos()
 
 		atmosalm = danger_level
 		for (var/obj/machinery/alarm/AA in src)
@@ -101,6 +105,8 @@
 				else if(!D.density)
 					spawn()
 						D.close()
+		for(var/obj/machinery/light/L in src)
+			L.set_alert_fire()
 
 /area/proc/fire_reset()
 	if (fire)
@@ -114,6 +120,8 @@
 				else if(D.density)
 					spawn(0)
 					D.open()
+		for(var/obj/machinery/light/L in src)
+			L.reset_alert()
 
 /area/proc/readyalert()
 	if(!eject)
@@ -151,7 +159,7 @@
 /area/proc/updateicon()
 	if ((fire || eject || party) && (!requires_power||power_environ) && !istype(src, /area/space))//If it doesn't require power, can still activate this proc.
 		if(fire && !eject && !party)
-			icon_state = "blue"
+			icon_state = null // Let lights take care of it
 		/*else if(atmosalm && !fire && !eject && !party)
 			icon_state = "bluenew"*/
 		else if(!fire && eject && !party)
