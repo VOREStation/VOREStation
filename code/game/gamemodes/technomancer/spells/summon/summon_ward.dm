@@ -83,11 +83,8 @@
 				continue
 
 		if(!true_sight)
-			var/atom/movable/lighting_overlay/light = locate(/atom/movable/lighting_overlay) in get_turf(L)
-			var/light_amount = 1 // Unsimulated tiles are pretend-lit, so we need to be pretend too if that somehow happens.
-			if(light)
-				light_amount = (light.lum_r + light.lum_g + light.lum_b) / 3
-
+			var/turf/T = get_turf(L)
+			var/light_amount = T.get_lumcount()
 			if(light_amount <= 0.5)
 				continue // Too dark to see.
 
