@@ -235,8 +235,6 @@
 
 	nutrition -= 200
 
-	// Theoretically the only internal organ a slime will have
-	// is the slime core. but we might as well be thorough.
 	for(var/obj/item/organ/I in internal_organs)
 		if(I.damage > 0)
 			I.damage = 0
@@ -245,6 +243,7 @@
 	// Replace completely missing limbs.
 	for(var/limb_type in src.species.has_limbs)
 		var/obj/item/organ/external/E = src.organs_by_name[limb_type]
+		E.disfigured = 0
 		if(E && (E.is_stump() || (E.status & (ORGAN_DESTROYED|ORGAN_DEAD|ORGAN_MUTATED))))
 			E.removed()
 			qdel(E)
