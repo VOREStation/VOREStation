@@ -230,7 +230,12 @@
 	lamp_shade = 0
 	update(0)
 	..()
-
+//VOREStation Add - Shadeless!
+/obj/machinery/light/flamp/noshade/New()
+	lamp_shade = 0
+	update(0)
+	..()
+//VOREStation Add End
 // create a new lighting fixture
 /obj/machinery/light/New()
 	..()
