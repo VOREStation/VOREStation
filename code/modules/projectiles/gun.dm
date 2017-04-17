@@ -429,17 +429,24 @@
 		playsound(user, fire_sound, 50, 1)
 
 		if(reflex)
-			user.visible_message(
-				"<span class='reflex_shoot'><b>\The [user] fires \the [src][pointblank ? " point blank at \the [target]":""] by reflex!</b></span>",
-				"<span class='reflex_shoot'>You fire \the [src] by reflex!</span>",
-				"You hear a [fire_sound_text]!"
-			)
-		else
-			user.visible_message(
-				"<span class='danger'>\The [user] fires \the [src][pointblank ? " point blank at \the [target]":""]!</span>",
-				"<span class='warning'>You fire \the [src]!</span>",
-				"You hear a [fire_sound_text]!"
+			if(silenced)
+				to_chat(user, "<span class='warning'>You fire \the [src] by reflex!</span>")
+			else
+				user.visible_message(
+					"<span class='reflex_shoot'><b>\The [user] fires \the [src][pointblank ? " point blank at \the [target]":""] by reflex!</b></span>",
+					"<span class='reflex_shoot'>You fire \the [src] by reflex!</span>",
+					"You hear a [fire_sound_text]!"
 				)
+
+		else
+			if(silenced)
+				to_chat(user, "<span class='warning'>You fire \the [src]!</span>")
+			else
+				user.visible_message(
+					"<span class='danger'>\The [user] fires \the [src][pointblank ? " point blank at \the [target]":""]!</span>",
+					"<span class='warning'>You fire \the [src]!</span>",
+					"You hear a [fire_sound_text]!"
+					)
 
 		if(muzzle_flash)
 			set_light(muzzle_flash)
