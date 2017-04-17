@@ -31,12 +31,16 @@
 "E" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/effect/floor_decal/corner/white/diagonal,/turf/simulated/floor/tiled/dark,/area/aisat)
 "F" = (/obj/effect/landmark{name = "JoinLate"},/obj/effect/floor_decal/corner/white/diagonal,/turf/simulated/floor/tiled/dark,/area/aisat)
 "G" = (/obj/effect/landmark/start,/turf/simulated/floor/tiled/dark,/area/aisat)
-"H" = (/obj/structure/stairs/south,/turf/simulated/floor/tiled/dark,/area/aisat)
-"I" = (/obj/effect/floor_decal/sign/a,/turf/simulated/floor/tiled/dark,/area/aisat)
-"J" = (/obj/machinery/light,/obj/effect/floor_decal/corner/white/diagonal,/turf/simulated/floor/tiled/dark,/area/aisat)
-"K" = (/obj/structure/cable/yellow,/obj/structure/cable/yellow{d1 = 16; d2 = 0; icon_state = "16-0"},/turf/simulated/floor/plating,/area/aisat)
-"L" = (/turf/simulated/floor/tiled/red,/area/aisat)
-"M" = (/obj/turbolift_map_holder/example{dir = 1; icon = 'icons/obj/turbolift_preview_5x5.dmi'},/turf/simulated/floor/tiled/red,/area/aisat)
+"H" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/effect/floor_decal/corner/white/diagonal,/obj/machinery/shield_gen,/turf/simulated/floor/tiled/dark,/area/aisat)
+"I" = (/obj/structure/stairs/south,/turf/simulated/floor/tiled/dark,/area/aisat)
+"J" = (/obj/effect/floor_decal/sign/a,/turf/simulated/floor/tiled/dark,/area/aisat)
+"K" = (/obj/machinery/light,/obj/effect/floor_decal/corner/white/diagonal,/turf/simulated/floor/tiled/dark,/area/aisat)
+"L" = (/obj/machinery/light,/obj/machinery/shield_capacitor{anchored = 1; dir = 4; icon_state = "capacitor"; tag = "icon-capacitor (EAST)"},/obj/structure/cable/yellow{d2 = 4; icon_state = "0-4"},/turf/simulated/floor/plating,/area/aisat)
+"M" = (/obj/machinery/shield_gen/external{anchored = 1},/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/plating,/area/aisat)
+"N" = (/obj/machinery/shield_capacitor{anchored = 1; dir = 8; icon_state = "capacitor"; tag = "icon-capacitor (WEST)"},/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/structure/cable/yellow{d2 = 8; icon_state = "0-8"},/turf/simulated/floor/plating,/area/aisat)
+"O" = (/obj/structure/cable/yellow,/obj/structure/cable/yellow{d1 = 16; d2 = 0; icon_state = "16-0"},/obj/structure/cable/yellow{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/simulated/floor/plating,/area/aisat)
+"P" = (/turf/simulated/floor/tiled/red,/area/aisat)
+"Q" = (/obj/turbolift_map_holder/example{dir = 1; icon = 'icons/obj/turbolift_preview_5x5.dmi'},/turf/simulated/floor/tiled/red,/area/aisat)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -58,16 +62,16 @@ aaaaaaaabuhhhhhvhhhhhhbaaaaaaaaa
 aaaaaaaabwnnnnxyznnnnAbaaaaaaaaa
 aaaaaaaabhhhhhBCDhhhhEbaaaaaaaaa
 aaaaaaaabhhFFFhnhhhhhEbaaaaaaaaa
-aaaaaaaabhhFFFhGhhhhhEbaaaaaaaaa
+aaaaaaaabhhFFFhGhhhhhHbaaaaaaaaa
 aaaaaaaabnbFFFhnhhhhhEbaaaaaaaaa
-aaaaaaaabHbhhhhIhhhhhEbaaaaaaaaa
-aaaaaaaabbbhJhhnhhJhhKbaaaaaaaaa
+aaaaaaaabIbhhhhJhhhhhEbaaaaaaaaa
+aaaaaaaabbbhKhhnhhLMNObaaaaaaaaa
 aaaaaaaabbbbbbnnnbbbbbbaaaaaaaaa
-aaaaaaaaaaaabLLLLLbaaaaaaaaaaaaa
-aaaaaaaaaaaabLLLLLbaaaaaaaaaaaaa
-aaaaaaaaaaaabLLLLLbaaaaaaaaaaaaa
-aaaaaaaaaaaabLLLLLbaaaaaaaaaaaaa
-aaaaaaaaaaaabMLLLLbaaaaaaaaaaaaa
+aaaaaaaaaaaabPPPPPbaaaaaaaaaaaaa
+aaaaaaaaaaaabPPPPPbaaaaaaaaaaaaa
+aaaaaaaaaaaabPPPPPbaaaaaaaaaaaaa
+aaaaaaaaaaaabPPPPPbaaaaaaaaaaaaa
+aaaaaaaaaaaabQPPPPbaaaaaaaaaaaaa
 aaaaaaaaaaaabbbbbbbaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
