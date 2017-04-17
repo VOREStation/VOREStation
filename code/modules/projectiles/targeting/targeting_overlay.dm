@@ -163,6 +163,7 @@ obj/aiming_overlay/proc/update_aiming_deferred()
 		owner.visible_message("<span class='danger'>\The [owner] turns \the [thing] on \the [target]!</span>")
 	else
 		owner.visible_message("<span class='danger'>\The [owner] aims \the [thing] at \the [target]!</span>")
+	log_and_message_admins("aimed \a [thing] at [key_name(target)].")
 
 	if(owner.client)
 		owner.client.add_gun_icons()

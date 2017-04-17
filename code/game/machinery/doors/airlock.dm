@@ -944,7 +944,7 @@ About the new airlock wires panel:
 	healthcheck()
 
 /obj/effect/energy_field/airlock_crush(var/crush_damage)
-	Stress(crush_damage)
+	adjust_strength(crush_damage)
 
 /obj/structure/closet/airlock_crush(var/crush_damage)
 	..()

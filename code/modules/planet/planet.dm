@@ -36,7 +36,12 @@
 	if(weather_holder)
 		weather_holder.process()
 
-// Returns the time datum of Sif.
-/proc/get_sif_time()
-	if(planet_sif)
-		return planet_sif.current_time
+/datum/planet/proc/update_sun_deferred(var/new_range, var/new_brightness, var/new_color)
+	set background = 1
+	set waitfor = 0
+	var/i = 0
+	for(var/turf/simulated/floor/T in outdoor_turfs)
+		T.set_light(new_range, new_brightness, new_color)
+		i++
+		if(i % 30 == 0)
+			sleep(1)

@@ -16,9 +16,12 @@
 			)
 
 	var/applies_material_colour = 1
-	var/unbreakable
+	var/unbreakable = 0		//Doesn't lose health
+	var/fragile = 0			//Shatters when it dies
+	var/dulled = 0			//Has gone dull
 	var/force_divisor = 0.5
 	var/thrown_force_divisor = 0.5
+	var/dulled_divisor = 0.5	//Just drops the damage by half
 	var/default_material = DEFAULT_WALL_MATERIAL
 	var/material/material
 	var/drops_debris = 1
@@ -47,6 +50,8 @@
 	else
 		force = material.get_blunt_damage()
 	force = round(force*force_divisor)
+	if(dulled)
+		force = round(force*dulled_divisor)
 	throwforce = round(material.get_blunt_damage()*thrown_force_divisor)
 	//spawn(1)
 	//	world << "[src] has force [force] and throwforce [throwforce] when made from default material [material.name]"
@@ -77,9 +82,18 @@
 			health--
 		check_health()
 
+/obj/item/weapon/material/attackby(obj/item/weapon/W, mob/user as mob)
+	if(istype(W, /obj/item/weapon/whetstone))
+		var/obj/item/weapon/whetstone/whet = W
+		repair(whet.repair_amount, whet.repair_time, user)
+	..()
+
 /obj/item/weapon/material/proc/check_health(var/consumed)
 	if(health<=0)
-		shatter(consumed)
+		if(fragile)
+			shatter(consumed)
+		else if(!dulled)
+			dull()
 
 /obj/item/weapon/material/proc/shatter(var/consumed)
 	var/turf/T = get_turf(src)
@@ -90,6 +104,34 @@
 	playsound(src, "shatter", 70, 1)
 	if(!consumed && drops_debris) material.place_shard(T)
 	qdel(src)
+
+/obj/item/weapon/material/proc/dull()
+	var/turf/T = get_turf(src)
+	T.visible_message("<span class='danger'>\The [src] goes dull!</span>")
+	playsound(src, "shatter", 70, 1)
+	dulled = 1
+	if(is_sharp() || has_edge())
+		sharp = 0
+		edge = 0
+
+/obj/item/weapon/material/proc/repair(var/repair_amount, var/repair_time, mob/living/user)
+	if(!fragile)
+		if(health < initial(health))
+			user.visible_message("[user] begins repairing \the [src].", "You begin repairing \the [src].")
+			if(do_after(user, repair_time))
+				user.visible_message("[user] has finished repairing \the [src]", "You finish repairing \the [src].")
+				health = min(health + repair_amount, initial(health))
+				dulled = 0
+				sharp = initial(sharp)
+				edge = initial(edge)
+		else
+			to_chat(user, "<span class='notice'>[src] doesn't need repairs.</span>")
+	else
+		to_chat(user, "<span class='warning'>You can't repair \the [src].</span>")
+		return
+
+
+
 /*
 Commenting this out pending rebalancing of radiation based on small objects.
 /obj/item/weapon/material/process()

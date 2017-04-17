@@ -32,9 +32,9 @@
 	name = "[material.display_name] door"
 	color = material.icon_colour
 	if(material.opacity < 0.5)
-		opacity = 0
+		set_opacity(0)
 	else
-		opacity = 1
+		set_opacity(1)
 	if(material.products_need_process())
 		processing_objects |= src
 	update_nearby_tiles(need_rebuild=1)
@@ -99,7 +99,7 @@
 	flick("[material.door_icon_base]opening",src)
 	sleep(10)
 	density = 0
-	opacity = 0
+	set_opacity(0)
 	state = 1
 	update_icon()
 	isSwitchingStates = 0
@@ -111,7 +111,7 @@
 	flick("[material.door_icon_base]closing",src)
 	sleep(10)
 	density = 1
-	opacity = 1
+	set_opacity(1)
 	state = 0
 	update_icon()
 	isSwitchingStates = 0

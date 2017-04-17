@@ -42,7 +42,8 @@
 
 /obj/item/weapon/handcuffs/proc/can_place(var/mob/target, var/mob/user)
 	if(istype(user, /mob/living/silicon/robot))
-		return 1
+		if(user.Adjacent(target))
+			return 1
 	else
 		for(var/obj/item/weapon/grab/G in target.grabbed_by)
 			if(G.loc == user && G.state >= GRAB_AGGRESSIVE)
