@@ -44,7 +44,7 @@
 		L.update_water()
 		if(!istype(oldloc, /turf/simulated/floor/water))
 			to_chat(L, "<span class='warning'>You get drenched in water from entering \the [src]!</span>")
-	AM.water_act(-5)
+	AM.water_act(5)
 	..()
 
 /turf/simulated/floor/water/Exited(atom/movable/AM, atom/newloc)
@@ -94,7 +94,7 @@
 	return
 
 /mob/living/water_act(amount)
-	adjust_fire_stacks(amount * 5)
+	adjust_fire_stacks(-amount * 5)
 	for(var/atom/movable/AM in contents)
 		AM.water_act(amount)
 
