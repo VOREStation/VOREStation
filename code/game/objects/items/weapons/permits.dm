@@ -12,6 +12,7 @@
 	if(isliving(user))
 		if(!owner)
 			set_name(user.name)
+			to_chat(user, "[src] registers your name.")
 		else
 			to_chat(user, "[src] already has an owner!")
 

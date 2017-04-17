@@ -8,6 +8,8 @@
 	flags_inv = 0
 	siemens_coefficient = 0.9
 	action_button_name = "Toggle Head-light"
+	w_class = ITEMSIZE_NORMAL
+	ear_protection = 1
 
 /obj/item/clothing/head/hardhat/orange
 	icon_state = "hardhat0_orange"

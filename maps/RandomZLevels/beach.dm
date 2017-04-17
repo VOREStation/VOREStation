@@ -18,7 +18,7 @@
 	icon_state = "red"
 	base_turf = /turf/simulated/floor/beach/sand
 	luminosity = 1
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 	requires_power = 0
 
 /area/awaymission/beach/coast

@@ -132,11 +132,7 @@
 /mob/living/carbon/human/proc/getlightlevel() //easier than having the same code in like three places
 	if(isturf(src.loc)) //else, there's considered to be no light
 		var/turf/T = src.loc
-		var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in T
-		if(L)
-			return (2 * (min(5,L.lum_r + L.lum_g + L.lum_b) - 2.5))
-		else
-			return 5
+		return T.get_lumcount() * 5
 	else return 0
 
 /mob/living/carbon/human/proc/handle_feral()
