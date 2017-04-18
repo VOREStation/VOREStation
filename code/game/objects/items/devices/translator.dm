@@ -47,6 +47,9 @@
 
 	var/mob/living/L = loc
 
+	if(!language)
+		return //Borgs were causing runtimes when passing language=null
+
 	if (language && (language.flags & NONVERBAL))
 		return //Not gonna translate sign language
 
