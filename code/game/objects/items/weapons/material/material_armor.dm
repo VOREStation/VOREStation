@@ -1,6 +1,29 @@
-// SEE code/modules/materials/materials.dm FOR DETAILS ON INHERITED DATUM.
-// This class of weapons takes armor and appearance data from a material datum.
-// They are also fragile based on material data and many can break/smash apart when hit.
+#define MATERIAL_ARMOR_COEFFICENT 0.05
+/*
+SEE code/modules/materials/materials.dm FOR DETAILS ON INHERITED DATUM.
+This class of armor takes armor and appearance data from a material "datum".
+They are also fragile based on material data and many can break/smash apart when hit.
+
+Materials has a var called protectiveness which plays a major factor in how good it is for armor.
+With the coefficent being 0.05, this is how strong different levels of protectiveness are (for melee)
+For bullets and lasers, material hardness and reflectivity also play a major role, respectively.
+
+
+Protectiveness | Armor %
+			0  = 0%
+			5  = 20%
+			10 = 33%
+			15 = 42%
+			20 = 50%
+			25 = 55%
+			30 = 60%
+			40 = 66%
+			50 = 71%
+			60 = 75%
+			70 = 77%
+			80 = 80%
+*/
+
 
 // Putting these at /clothing/ level saves a lot of code duplication in armor/helmets/gauntlets/etc
 /obj/item/clothing
@@ -8,6 +31,7 @@
 	var/applies_material_color = TRUE
 	var/unbreakable = FALSE
 	var/default_material = null // Set this to something else if you want material attributes on init.
+	var/material_armor_modifer = 1 // Adjust if you want seperate types of armor made from the same material to have different protectiveness (e.g. makeshift vs real armor)
 
 /obj/item/clothing/New(var/newloc, var/material_key)
 	..(newloc)
@@ -23,51 +47,115 @@
 /obj/item/clothing/get_material()
 	return material
 
-// Debating if this should be made an /atom/movable/ proc.
+// Debating if this should be made an /obj/item/ proc.
 /obj/item/clothing/proc/set_material(var/new_material)
 	material = get_material_by_name(new_material)
 	if(!material)
 		qdel(src)
 	else
 		name = "[material.display_name] [initial(name)]"
+		health = round(material.integrity/10)
 		if(applies_material_color)
 			color = material.icon_colour
 		if(material.products_need_process())
 			processing_objects |= src
 		update_armor()
 
-//f(x) = (x*a) / (x+b) + c
-// a + c essentially* becomes your maximum possible output,
-// c is your minimum, and b controls how quickly the output values scale and its effectiveness is relative to the value of a.
+// This is called when someone wearing the object gets hit in some form (melee, bullet_act(), etc).
+// Note that this cannot change if someone gets hurt, as it merely reacts to being hit.
+/obj/item/clothing/proc/clothing_impact(var/obj/source, var/damage)
+	if(material && damage)
+		material_impact(source, damage)
 
-// Max is the cap, excluding min.
-// Mid is the midpoint on the curve.
-// Min adds a floor to the answer.  Min + Max is the maximum possible output.
-/proc/calculate_curve(var/X, var/max, var/mid, var/min)
-	return (X * max) / (X + mid) + min
+/obj/item/clothing/proc/material_impact(var/obj/source, var/damage)
+	if(!material || unbreakable)
+		return
 
-/client/verb/test_curve(var/X as num, var/A as num, var/B as num, var/C as num)
-	src << "Testing values: X:[X], A:[A], B:[B], C:[C]."
-	src << calculate_curve(X, A, B, C)
+	if(istype(source, /obj/item/projectile))
+		var/obj/item/projectile/P = source
+		if(P.pass_flags & PASSGLASS)
+			if(material.opacity - 0.3 <= 0)
+				return // Lasers ignore 'fully' transparent material.
+
+	if(material.is_brittle())
+		health = 0
+	else if(!prob(material.hardness))
+		health--
+
+	if(health <= 0)
+		shatter()
+
+/obj/item/clothing/proc/shatter()
+	if(!material)
+		return
+	var/turf/T = get_turf(src)
+	T.visible_message("<span class='danger'>\The [src] [material.destruction_desc]!</span>")
+	if(istype(loc, /mob/living))
+		var/mob/living/M = loc
+		M.drop_from_inventory(src)
+		if(material.shard_type == SHARD_SHARD) // Wearing glass armor is a bad idea.
+			var/obj/item/weapon/material/shard/S = material.place_shard(T)
+			M.embed(S)
+
+	playsound(src, "shatter", 70, 1)
+	qdel(src)
+
+// Might be best to make ablative vests a material armor using a new material to cut down on this copypaste.
+/obj/item/clothing/suit/armor/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+	if(!material) // No point checking for reflection.
+		return ..()
+
+	if(material.reflectivity)
+		if(istype(damage_source, /obj/item/projectile/energy) || istype(damage_source, /obj/item/projectile/beam))
+			var/obj/item/projectile/P = damage_source
+
+			if(P.reflected) // Can't reflect twice
+				return ..()
+
+			var/reflectchance = (40 * material.reflectivity) - round(damage/3)
+			reflectchance *= material_armor_modifer
+			if(!(def_zone in list(BP_TORSO, BP_GROIN)))
+				reflectchance /= 2
+			if(P.starting && prob(reflectchance))
+				visible_message("<span class='danger'>\The [user]'s [src.name] reflects [attack_text]!</span>")
+
+				// Find a turf near or on the original location to bounce to
+				var/new_x = P.starting.x + pick(0, 0, 0, 0, 0, -1, 1, -2, 2)
+				var/new_y = P.starting.y + pick(0, 0, 0, 0, 0, -1, 1, -2, 2)
+				var/turf/curloc = get_turf(user)
+
+				// redirect the projectile
+				P.redirect(new_x, new_y, curloc, user)
+				P.reflected = 1
+
+				return PROJECTILE_CONTINUE // complete projectile permutation
+
+/proc/calculate_material_armor(amount)
+	var/result = 1 - MATERIAL_ARMOR_COEFFICENT * amount / (1 + MATERIAL_ARMOR_COEFFICENT * abs(amount))
+	result = result * 100
+	result = abs(result - 100)
+	return round(result)
+
 
 /obj/item/clothing/proc/update_armor()
 	if(material)
 		var/melee_armor = 0, bullet_armor = 0, laser_armor = 0, energy_armor = 0, bomb_armor = 0
 
-		melee_armor = round(Clamp(material.hardness, 0, 90))
+		melee_armor = calculate_material_armor(material.protectiveness * material_armor_modifer)
 
-		bullet_armor = round(Clamp(material.hardness * 0.6, 0, 90))
+		bullet_armor = calculate_material_armor((material.protectiveness * (material.hardness / 100) * material_armor_modifer) * 0.7)
 
-		laser_armor = material.hardness * 0.6
-		if(material.reflectivity)
-			laser_armor *= (material.reflectivity + 1) // Each 0.1th of reflectivity gives 10% more protection.
+		laser_armor = calculate_material_armor((material.protectiveness * (material.reflectivity + 1) * material_armor_modifer) * 0.7)
 		if(material.opacity != 1)
 			laser_armor *= max(material.opacity - 0.3, 0) // Glass and such has an opacity of 0.3, but lasers should go through glass armor entirely.
-		laser_armor = round(Clamp(laser_armor, 0, 90))
 
-		energy_armor = round(Clamp(laser_armor * 0.7, 0, 90))
+		energy_armor = calculate_material_armor((material.protectiveness * material_armor_modifer) * 0.4)
 
-		bomb_armor = round(Clamp(material.explosion_resistance * 2, 0, 90))
+		bomb_armor = calculate_material_armor((material.protectiveness * material_armor_modifer) * 0.5)
+
+		// Makes sure the numbers stay capped.
+		for(var/number in list(melee_armor, bullet_armor, laser_armor, energy_armor, bomb_armor))
+			number = between(0, number, 100)
 
 		armor["melee"] = melee_armor
 		armor["bullet"] = bullet_armor
@@ -76,29 +164,100 @@
 		armor["bomb"] = bomb_armor
 
 		if(!isnull(material.conductivity))
-			siemens_coefficient = Clamp(material.conductivity / 10, 0, 4)
-		slowdown = Clamp(round(material.weight / 10, 0.1), 0, 6)
-//		armor = list(
-//			melee = melee_armor,
-//			bullet = bullet_armor,
-//			laser = laser_armor,
-//			energy = energy_armor,
-//			bomb = bomb_armor,
-//			bio = 0,
-//			rad = 0)
-/*
-/obj/item/weapon/material/proc/update_force()
-	if(edge || sharp)
-		force = material.get_edge_damage()
-	else
-		force = material.get_blunt_damage()
-	force = round(force*force_divisor)
-	throwforce = round(material.get_blunt_damage()*thrown_force_divisor)
-	//spawn(1)
-	//	world << "[src] has force [force] and throwforce [throwforce] when made from default material [material.name]"
-*/
+			siemens_coefficient = between(0, material.conductivity / 10, 10)
+		slowdown = between(0, round(material.weight / 10, 0.1), 6)
+
 /obj/item/clothing/suit/armor/material
-	icon_state = "material_armor_makeshift" // placeholder
+	name = "armor"
 	default_material = DEFAULT_WALL_MATERIAL
 
+/obj/item/clothing/suit/armor/material/makeshift
+	name = "sheet armor"
+	desc = "This appears to be two 'sheets' of a material held together by cable.  If the sheets are strong, this could be rather protective."
+	icon_state = "material_armor_makeshift"
 
+/obj/item/clothing/suit/armor/material/makeshift/durasteel
+	default_material = "durasteel"
+
+/obj/item/clothing/suit/armor/material/makeshift/glass
+	default_material = "glass"
+
+// Used to craft sheet armor, and possibly other things in the Future(tm).
+/obj/item/weapon/material/armor_plating
+	name = "armor plating"
+	desc = "A sheet designed to protect something."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "armor_plate"
+	unbreakable = TRUE
+	force_divisor = 0.05 // Really bad as a weapon.
+	thrown_force_divisor = 0.2
+	var/wired = FALSE
+
+/obj/item/weapon/material/armor_plating/attackby(var/obj/O, mob/user)
+	if(istype(O, /obj/item/stack/cable_coil))
+		var/obj/item/stack/cable_coil/S = O
+		if(wired)
+			to_chat(user, "<span class='warning'>This already has enough wires on it.</span>")
+			return
+		if(S.use(20))
+			to_chat(user, "<span class='notice'>You attach several wires to \the [src].  Now it needs another plate.</span>")
+			wired = TRUE
+			icon_state = "[initial(icon_state)]_wired"
+			return
+		else
+			to_chat(user, "<span class='notice'>You need more wire for that.</span>")
+			return
+	if(istype(O, /obj/item/weapon/material/armor_plating))
+		var/obj/item/weapon/material/armor_plating/second_plate = O
+		if(!wired && !second_plate.wired)
+			to_chat(user, "<span class='warning'>You need something to hold the two pieces of plating together.</span>")
+			return
+		if(second_plate.material != src.material)
+			to_chat(user, "<span class='warning'>Both plates need to be the same type of material.</span>")
+			return
+		user.drop_from_inventory(src)
+		user.drop_from_inventory(second_plate)
+		var/obj/item/clothing/suit/armor/material/makeshift/new_armor = new(null, src.material.name)
+		user.put_in_hands(new_armor)
+		qdel(second_plate)
+		qdel(src)
+	else
+		..()
+
+
+// Used to craft the makeshift helmet
+/obj/item/clothing/head/helmet/bucket
+	name = "bucket"
+	desc = "It's a bucket with a large hole cut into it.  You could wear it on your head and look really stupid."
+	flags_inv = HIDEEARS|HIDEEYES|BLOCKHAIR
+	icon_state = "bucket"
+	armor = list(melee = 5, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+
+/obj/item/clothing/head/helmet/bucket/attackby(var/obj/O, mob/user)
+	if(istype(O, /obj/item/stack/material))
+		var/obj/item/stack/material/S = O
+		if(S.use(2))
+			to_chat(user, "<span class='notice'>You apply some [S.material.use_name] to \the [src].  Hopefully it'll make the makeshift helmet stronger.</span>")
+			var/obj/item/clothing/head/helmet/material/makeshift/helmet = new(null, S.material.name)
+			user.put_in_hands(helmet)
+			user.drop_from_inventory(src)
+			qdel(src)
+			return
+		else
+			to_chat(user, "<span class='warning'>You don't have enough material to build a helmet!</span>")
+	else
+		..()
+
+/obj/item/clothing/head/helmet/material
+	name = "helmet"
+	flags_inv = HIDEEARS|HIDEEYES|BLOCKHAIR
+	default_material = DEFAULT_WALL_MATERIAL
+
+/obj/item/clothing/head/helmet/material/makeshift
+	name = "bucket"
+	desc = "A bucket with plating applied to the outside.  Very crude, but could potentially be rather protective, if \
+	it was plated with something strong."
+	icon_state = "material_armor_makeshift"
+
+/obj/item/clothing/head/helmet/material/makeshift/durasteel
+	default_material = "durasteel"
