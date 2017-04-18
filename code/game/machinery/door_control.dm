@@ -78,6 +78,7 @@
 #define SAFE   0x10
 
 /obj/machinery/button/remote/airlock
+	icon = 'icons/obj/stationobjs_vr.dmi' // VOREStation Edit
 	name = "remote door-control"
 	desc = "It controls doors, remotely."
 
