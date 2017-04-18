@@ -163,8 +163,10 @@
 	if(m_intent == "run" && step_count++ % 2 == 0)
 		return
 
-	// Future Upgrades - Consider quieter noises if you walk or have no shoes
 	var/volume = config.footstep_volume
+	// Reduce volume while walking or barefoot
+	if(!shoes || m_intent != "run")
+		volume *= 0.5
 
 	if(!has_organ(BP_L_FOOT) && !has_organ(BP_R_FOOT))
 		return // no feet = no footsteps
