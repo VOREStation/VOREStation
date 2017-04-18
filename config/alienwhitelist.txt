@@ -12,3 +12,4 @@ natje - Daemon
 zalvine - Daemon
 rikaru19xjenkins - Xenochimera
 rikaru19xjenkins  - Xenomorph Hybrid
+seiga - Vox
