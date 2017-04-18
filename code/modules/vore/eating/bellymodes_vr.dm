@@ -212,8 +212,9 @@
 					P.update_body()
 					P.updateicon()
 
-				if(TFmodify == 3 && P.gender != MALE)
+				if(TFmodify == 3 && P.gender != MALE && P.identifying_gender != MALE)
 					P.gender = MALE
+					P.identifying_gender = MALE
 					P << "<span class='notice'>Your body feels very strange...</span>"
 					owner << "<span class='notice'>You feel strange as you alter your captive's gender.</span>"
 					P.update_body()
@@ -258,9 +259,10 @@
 					P.update_body()
 					P.updateicon()
 
-				if(TFmodify == 3 && P.gender != FEMALE)
+				if(TFmodify == 3 && P.gender != FEMALE && P.identifying_gender != FEMALE)
 					P.f_style = "Shaved"
 					P.gender = FEMALE
+					P.identifying_gender = FEMALE
 					P << "<span class='notice'>Your body feels very strange...</span>"
 					owner << "<span class='notice'>You feel strange as you alter your captive's gender.</span>"
 					P.update_body()
@@ -1084,6 +1086,7 @@
 				P.b_skin 			= O.b_skin
 				P.h_style			= O.h_style
 				P.gender 			= MALE
+				P.identifying_gender		= MALE
 				P.r_eyes 			= O.r_eyes
 				P.g_eyes 			= O.g_eyes
 				P.b_eyes 			= O.b_eyes
@@ -1173,6 +1176,7 @@
 				P.b_skin 			= O.b_skin
 				P.h_style 			= O.h_style
 				P.gender 			= FEMALE
+				P.identifying_gender 		= FEMALE
 				P.r_eyes 			= O.r_eyes
 				P.g_eyes 			= O.g_eyes
 				P.b_eyes 			= O.b_eyes
