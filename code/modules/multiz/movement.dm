@@ -103,6 +103,17 @@
 		if(T.density)
 			return 1
 
+// TODO - Leshana Experimental
+
+//Execution by grand piano!
+/atom/movable/proc/get_fall_damage()
+	return 42
+
+//If atom stands under open space, it can prevent fall, or not
+/atom/proc/can_prevent_fall(var/atom/movable/mover, var/turf/coming_from)
+	return (!CanPass(mover, coming_from))
+
+////////////////////////////
 
 
 
@@ -131,18 +142,22 @@
 
 	if(can_fall())
 		handle_fall(below)
+		// TODO - handle fall on damage!
 
 //For children to override
 /atom/movable/proc/can_fall()
 	if(anchored)
 		return FALSE
 
+	// See if something in current turf prevents us from falling out of it
+	// TODO - Make this more generic
 	if(locate(/obj/structure/lattice, loc))
 		return FALSE
 	if(locate(/obj/structure/catwalk, loc))
 		return FALSE
 
-	// See if something prevents us from falling.
+	// See if something in turf below prevents us from falling into it.
+	// TODO - Investigate - Doesn't this actually check if these atoms would prevent moving up INTO our current location!? Granted thats probably the same thing but still...
 	var/turf/below = GetBelow(src)
 	for(var/atom/A in below)
 		if(!A.CanPass(src, src.loc))
@@ -157,14 +172,12 @@
 	return TRUE
 
 /obj/item/pipe/can_fall()
-	var/turf/simulated/open/below = loc
-	below = below.below
-
 	. = ..()
 
 	if(anchored)
 		return FALSE
 
+	var/turf/below = GetBelow(src)
 	if((locate(/obj/structure/disposalpipe/up) in below) || locate(/obj/machinery/atmospherics/pipe/zpipe/up in below))
 		return FALSE
 
@@ -175,12 +188,22 @@
 	return FALSE
 
 /atom/movable/proc/handle_fall(var/turf/landing)
+	// Say something before it falls!
+	var/turf/oldloc = loc
+	// Now lets move there!
 	Move(landing)
+
+	// Detect if we made a soft landing.
+	// TODO - Do this less snowflaky than hard coding stairs!
 	if(locate(/obj/structure/stairs) in landing)
 		return 1
 
-	if(istype(landing, /turf/simulated/open))
+	if(isopenspace(oldloc))
+		visible_message("\The [src] falls down through \the [landing]!", "You hear something falling through the air.")
+	// TODO - Detect if it will stop here becuase it lands on a catwalk or something
+	if(isopenspace(landing))
 		visible_message("\The [src] falls from the deck above through \the [landing]!", "You hear a whoosh of displaced air.")
+		return 1 // Don't hit the open space - TODO-its not quite this simple ~Leshana
 	else
 		visible_message("\The [src] falls from the deck above and slams into \the [landing]!", "You hear something slam into the deck.")
 
@@ -189,7 +212,7 @@
 		return
 	to_chat(src, "<span class='danger'>You fall off and hit \the [landing]!</span>")
 	playsound(loc, "punch", 25, 1, -1)
-	var/damage = 20 // Because wounds heal rather quickly, 20 should be enough to discourage jumping off but not be enough to ruin you, at least for the first time.
+	var/damage = 15 // Because wounds heal rather quickly, 15 should be enough to discourage jumping off but not be enough to ruin you, at least for the first time.
 	apply_damage(rand(0, damage), BRUTE, BP_HEAD)
 	apply_damage(rand(0, damage), BRUTE, BP_TORSO)
 	apply_damage(rand(0, damage), BRUTE, BP_L_LEG)
@@ -198,3 +221,13 @@
 	apply_damage(rand(0, damage), BRUTE, BP_R_ARM)
 	Weaken(4)
 	updatehealth()
+
+
+// TODO - This is a hack until someone can think of a better way of solving it.
+// Issue is that blood splatter is New()'d already in the turf, so Entered() is never called.
+// Leshana - This should not be required anymore, we are handling items New()'d into turfs in the open space controller now
+// TODO - Test
+// /obj/effect/decal/cleanable/initialize()
+// 	if(isopenspace(loc))
+// 		src.fall()
+// 	return ..()
