@@ -53,7 +53,13 @@
 										/datum/species/teshari	= 9, // Skrell sponsored,
 										/datum/species/tajaran	= 7,
 										/datum/species/unathi	= 7,
-										/datum/species/diona 	= 7
+										/datum/species/diona 	= 7,
+										/datum/species/akula	= 9, // Also tied to Skrell lore-wise
+										/datum/species/shapeshifter/promethean 	= 7,
+										/datum/species/sergal 	= 7,
+										/datum/species/nevrean 	= 7,
+										/datum/species/hi_zoxxen 	= 7,
+										/datum/species/fl_zorren 	= 7,
 											)
 
 //---- The following corporations are friendly with NanoTrasen and loosely enable trade and travel:
