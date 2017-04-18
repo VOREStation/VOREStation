@@ -37,6 +37,7 @@
 #include "code\__defines\misc.dm"
 #include "code\__defines\misc_vr.dm"
 #include "code\__defines\mobs.dm"
+#include "code\__defines\planets.dm"
 #include "code\__defines\process_scheduler.dm"
 #include "code\__defines\research.dm"
 #include "code\__defines\roguemining_vr.dm"
