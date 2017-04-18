@@ -1,0 +1,4 @@
+author: Leshana
+delete-after: True
+changes: 
+  - rscadd: "Implements footstep sound system and adds sounds to various floor types including plating, tiles, wood, and carpet."

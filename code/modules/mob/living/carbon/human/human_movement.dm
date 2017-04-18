@@ -146,3 +146,34 @@
 
 	prob_slip = round(prob_slip)
 	return(prob_slip)
+
+// Handle footstep sounds
+/mob/living/carbon/human/handle_footstep(var/turf/T)
+	if(!config.footstep_volume || !T.footstep_sounds || !T.footstep_sounds.len)
+		return
+	// Future Upgrades - Multi species support
+	var/list/footstep_sounds = T.footstep_sounds["human"]
+	if(!footstep_sounds)
+		return
+
+	var/S = pick(footstep_sounds)
+	if(!S) return
+
+	// Only play every other step while running
+	if(m_intent == "run" && step_count++ % 2 == 0)
+		return
+
+	// Future Upgrades - Consider quieter noises if you walk or have no shoes
+	var/volume = config.footstep_volume
+
+	if(!has_organ(BP_L_FOOT) && !has_organ(BP_R_FOOT))
+		return // no feet = no footsteps
+
+	if(buckled || lying || throwing)
+		return // people flying, lying down or sitting do not step
+
+	if(!has_gravity(src) && prob(75))
+		return // Far less likely to make noise in no gravity
+
+	playsound(T, S, volume, FALSE)
+	return

@@ -26,6 +26,8 @@
 
 	var/movement_cost = 0       // How much the turf slows down movement, if any.
 
+	var/list/footstep_sounds = null
+
 /turf/New()
 	..()
 	for(var/atom/movable/AM as mob|obj in src)
@@ -145,6 +147,9 @@ var/const/enterloopsanity = 100
 		else if(!is_space())
 			M.inertia_dir = 0
 			M.make_floating(0)
+		if(isliving(M))
+			var/mob/living/L = M
+			L.handle_footstep(src)
 	..()
 	var/objects = 0
 	if(A && (A.flags & PROXMOVE))
