@@ -1,6 +1,5 @@
 /obj/machinery/computer/shuttle_control
 	name = "shuttle control console"
-	icon = 'icons/obj/computer.dmi'
 	icon_keyboard = "atmos_key"
 	icon_screen = "shuttle"
 	circuit = null
