@@ -38,16 +38,11 @@
 
 /datum/lore/codex/page/unathi
 	name = "Unathi"
-	data = "The author wishes to apologize to the reader, as they currently lack enough knowledge of the Unathi to write about them, as they are \
-	rather rare inside Vir." // Replace this when Anewbe finishes the lizard rewrite.
-	/*
-	data = "Raging in from Moghes, the Unathi are a race of tall, reptilian humanoids that possess both crocodile-like and serpent-like features. \
-	They are a proud, warlike species that favors honor and strength, their home, Moghes, is a desert planet but was once believed to be full of life. \
-	Of all the currently known sentient species, the Unathi are the most unequal in gender with females tending to be property of the males. Most Unathi \
-	outside of Moghes tend to be exiles however, and with influence of other species the gender difference is not nearly as pronounced. Unathi were \
-	humanity's second contact, and despite their aggressive nature, seem to get along well enough with humanity, though are often considered to be \
-	'second-class' citizens and are rarely seen in jobs other than where muscle is needed." // This probably needs to be updated.
-	*/
+	data = "The Unathi are a race of tall, reptilian humanoids that possess a blend of serpentine features reminiscent of crocodiles. \
+	They are a proud, religious species that favors honor and strength, and originate from the desert planet of Moghes. \
+	The Unathi follow a religious code known as the Unity, and they carry this with them on their travels. \
+	Unathi once fought a serious war against SolGov, and as a result are often considered to be second-class citizens, \
+	rarely seen in jobs that don't require a little muscle."
 
 /datum/lore/codex/page/tajaran
 	name = "Tajaran"

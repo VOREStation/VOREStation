@@ -6,9 +6,14 @@
 	var/datum/changeling/changeling = changeling_power(0,0,100)
 	if(!changeling)
 		return
+	if(src.mind.changeling.readapts <= 0)
+		to_chat(src, "<span class='warning'>We must first absorb another compatable creature!</span>")
+		src.mind.changeling.readapts = 0
+		return
 
 	src.remove_changeling_powers() //First, remove the verbs.
 	var/datum/changeling/ling_datum = src.mind.changeling
+	ling_datum.readapts--
 	ling_datum.purchased_powers = list() //Then wipe all the powers we bought.
 	ling_datum.geneticpoints = ling_datum.max_geneticpoints //Now refund our points to the maximum.
 	ling_datum.chem_recharge_rate = 0.5 //If glands were bought, revert that upgrade.
@@ -26,4 +31,4 @@
 	ling_datum.purchased_powers_history.Add("Re-adapt (Reset to [ling_datum.max_geneticpoints])")
 
 	//Now to lose the verb, so no unlimited resets.
-	src.verbs -= /mob/proc/changeling_respec
+

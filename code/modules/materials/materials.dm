@@ -90,10 +90,12 @@ var/list/name_to_material
 	var/ignition_point           // K, point at which the material catches on fire.
 	var/melting_point = 1800     // K, walls will take damage if they're next to a fire hotter than this
 	var/integrity = 150          // General-use HP value for products.
+	var/protectiveness = 10      // How well this material works as armor.  Higher numbers are better, diminishing returns applies.
 	var/opacity = 1              // Is the material transparent? 0.5< makes transparent walls/doors.
-	var/reflectivity = 0         // How reflective to light is the material?  Currently used for laser defense.
+	var/reflectivity = 0         // How reflective to light is the material?  Currently used for laser reflection and defense.
 	var/explosion_resistance = 5 // Only used by walls currently.
 	var/conductive = 1           // Objects with this var add CONDUCTS to flags on spawn.
+	var/conductivity = null      // How conductive the material is. Iron acts as the baseline, at 10.
 	var/list/composite_material  // If set, object matter var will be a list containing these values.
 
 	// Placeholder vars for the time being, todo properly integrate windows/light tiles/rods.
@@ -103,7 +105,7 @@ var/list/name_to_material
 	var/list/window_options = list()
 
 	// Damage values.
-	var/hardness = 60            // Prob of wall destruction by hulk, used for edge damage in weapons.
+	var/hardness = 60            // Prob of wall destruction by hulk, used for edge damage in weapons.  Also used for bullet protection in armor.
 	var/weight = 20              // Determines blunt damage/throwforce for weapons.
 
 	// Noise when someone is faceplanted onto a table made of this material.
@@ -236,6 +238,7 @@ var/list/name_to_material
 	icon_colour = "#00FFE1"
 	opacity = 0.4
 	reflectivity = 0.6
+	conductivity = 1
 	shard_type = SHARD_SHARD
 	tableslam_noise = 'sound/effects/Glasshit.ogg'
 	hardness = 100
@@ -247,6 +250,7 @@ var/list/name_to_material
 	icon_colour = "#EDD12F"
 	weight = 24
 	hardness = 40
+	conductivity = 41
 	stack_origin_tech = list(TECH_MATERIAL = 4)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
@@ -261,6 +265,7 @@ var/list/name_to_material
 	icon_colour = "#D1E6E3"
 	weight = 22
 	hardness = 50
+	conductivity = 63
 	stack_origin_tech = list(TECH_MATERIAL = 3)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
@@ -304,6 +309,8 @@ var/list/name_to_material
 	shard_type = SHARD_STONE_PIECE
 	weight = 22
 	hardness = 55
+	protectiveness = 5 // 20%
+	conductivity = 5
 	door_icon_base = "stone"
 	sheet_singular_name = "brick"
 	sheet_plural_name = "bricks"
@@ -320,6 +327,8 @@ var/list/name_to_material
 	name = DEFAULT_WALL_MATERIAL
 	stack_type = /obj/item/stack/material/steel
 	integrity = 150
+	conductivity = 11 // Assuming this is carbon steel, it would actually be slightly less conductive than iron, but lets ignore that.
+	protectiveness = 10 // 33%
 	icon_base = "solid"
 	icon_reinf = "reinf_over"
 	icon_colour = "#666666"
@@ -355,6 +364,8 @@ var/list/name_to_material
 	explosion_resistance = 25
 	hardness = 80
 	weight = 23
+	protectiveness = 20 // 50%
+	conductivity = 13 // For the purposes of balance.
 	stack_origin_tech = list(TECH_MATERIAL = 2)
 	composite_material = list(DEFAULT_WALL_MATERIAL = SHEET_MATERIAL_AMOUNT, "platinum" = SHEET_MATERIAL_AMOUNT) //todo
 
@@ -370,6 +381,7 @@ var/list/name_to_material
 	explosion_resistance = 75
 	hardness = 100
 	weight = 28
+	protectiveness = 60 // 75%
 	reflectivity = 0.7 // Not a perfect mirror, but close.
 	stack_origin_tech = list(TECH_MATERIAL = 8)
 	composite_material = list("plasteel" = SHEET_MATERIAL_AMOUNT, "diamond" = SHEET_MATERIAL_AMOUNT) //shrug
@@ -377,6 +389,7 @@ var/list/name_to_material
 /material/plasteel/titanium
 	name = "titanium"
 	stack_type = null
+	conductivity = 2.38
 	icon_base = "metal"
 	door_icon_base = "metal"
 	icon_colour = "#D1E6E3"
@@ -393,6 +406,8 @@ var/list/name_to_material
 	tableslam_noise = 'sound/effects/Glasshit.ogg'
 	hardness = 30
 	weight = 15
+	protectiveness = 0 // 0%
+	conductivity = 1 // Glass shards don't conduct.
 	door_icon_base = "stone"
 	destruction_desc = "shatters"
 	window_options = list("One Direction" = 1, "Full Window" = 4, "Windoor" = 2)
@@ -526,6 +541,8 @@ var/list/name_to_material
 	icon_colour = "#CCCCCC"
 	hardness = 10
 	weight = 12
+	protectiveness = 5 // 20%
+	conductivity = 2 // For the sake of material armor diversity, we're gonna pretend this plastic is a good insulator.
 	melting_point = T0C+371 //assuming heat resistant plastic
 	stack_origin_tech = list(TECH_MATERIAL = 3)
 
@@ -556,12 +573,14 @@ var/list/name_to_material
 	stack_type = /obj/item/stack/material/mhydrogen
 	icon_colour = "#E6C5DE"
 	stack_origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 6, TECH_MAGNET = 5)
+	conductivity = 100
 
 /material/platinum
 	name = "platinum"
 	stack_type = /obj/item/stack/material/platinum
 	icon_colour = "#9999FF"
 	weight = 27
+	conductivity = 9.43
 	stack_origin_tech = list(TECH_MATERIAL = 2)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
@@ -571,6 +590,7 @@ var/list/name_to_material
 	stack_type = /obj/item/stack/material/iron
 	icon_colour = "#5C5454"
 	weight = 22
+	conductivity = 10
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 
@@ -585,6 +605,7 @@ var/list/name_to_material
 	explosion_resistance = 200 // Hull plating.
 	hardness = 500
 	weight = 500
+	protectiveness = 80 // 80%
 
 // Likewise.
 /material/alienalloy/elevatorium
@@ -603,6 +624,8 @@ var/list/name_to_material
 	shard_can_repair = 0 // you can't weld splinters back into planks
 	hardness = 15
 	weight = 18
+	protectiveness = 8 // 28%
+	conductivity = 1
 	melting_point = T0C+300 //okay, not melting in this case, but hot enough to destroy wood
 	ignition_point = T0C+288
 	stack_origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
@@ -634,6 +657,7 @@ var/list/name_to_material
 	icon_colour = "#AAAAAA"
 	hardness = 1
 	weight = 1
+	protectiveness = 0 // 0%
 	ignition_point = T0C+232 //"the temperature at which book-paper catches fire, and burns." close enough
 	melting_point = T0C+232 //temperature at which cardboard walls would be destroyed
 	stack_origin_tech = list(TECH_MATERIAL = 1)
@@ -650,6 +674,7 @@ var/list/name_to_material
 	integrity = 1
 	hardness = 1
 	weight = 1
+	protectiveness = 0 // 0%
 	stack_origin_tech = list(TECH_MATERIAL = 1)
 	melting_point = T0C+1
 	destruction_desc = "crumples"
@@ -662,6 +687,7 @@ var/list/name_to_material
 	door_icon_base = "wood"
 	ignition_point = T0C+232
 	melting_point = T0C+300
+	protectiveness = 1 // 4%
 	flags = MATERIAL_PADDING
 
 /material/cult
@@ -695,6 +721,7 @@ var/list/name_to_material
 	flags = MATERIAL_PADDING
 	ignition_point = T0C+300
 	melting_point = T0C+300
+	protectiveness = 3 // 13%
 
 /material/carpet
 	name = "carpet"
@@ -706,6 +733,7 @@ var/list/name_to_material
 	melting_point = T0C+300
 	sheet_singular_name = "tile"
 	sheet_plural_name = "tiles"
+	protectiveness = 1 // 4%
 
 /material/cotton
 	name = "cotton"
@@ -714,7 +742,9 @@ var/list/name_to_material
 	flags = MATERIAL_PADDING
 	ignition_point = T0C+232
 	melting_point = T0C+300
+	protectiveness = 1 // 4%
 
+// This all needs to be OOP'd and use inheritence if its ever used in the future.
 /material/cloth_teal
 	name = "teal"
 	display_name ="teal"
@@ -723,6 +753,7 @@ var/list/name_to_material
 	flags = MATERIAL_PADDING
 	ignition_point = T0C+232
 	melting_point = T0C+300
+	protectiveness = 1 // 4%
 
 /material/cloth_black
 	name = "black"
@@ -732,6 +763,7 @@ var/list/name_to_material
 	flags = MATERIAL_PADDING
 	ignition_point = T0C+232
 	melting_point = T0C+300
+	protectiveness = 1 // 4%
 
 /material/cloth_green
 	name = "green"
@@ -741,6 +773,7 @@ var/list/name_to_material
 	flags = MATERIAL_PADDING
 	ignition_point = T0C+232
 	melting_point = T0C+300
+	protectiveness = 1 // 4%
 
 /material/cloth_puple
 	name = "purple"
@@ -750,6 +783,7 @@ var/list/name_to_material
 	flags = MATERIAL_PADDING
 	ignition_point = T0C+232
 	melting_point = T0C+300
+	protectiveness = 1 // 4%
 
 /material/cloth_blue
 	name = "blue"
@@ -759,6 +793,7 @@ var/list/name_to_material
 	flags = MATERIAL_PADDING
 	ignition_point = T0C+232
 	melting_point = T0C+300
+	protectiveness = 1 // 4%
 
 /material/cloth_beige
 	name = "beige"
@@ -768,6 +803,7 @@ var/list/name_to_material
 	flags = MATERIAL_PADDING
 	ignition_point = T0C+232
 	melting_point = T0C+300
+	protectiveness = 1 // 4%
 
 /material/cloth_lime
 	name = "lime"
@@ -777,6 +813,7 @@ var/list/name_to_material
 	flags = MATERIAL_PADDING
 	ignition_point = T0C+232
 	melting_point = T0C+300
+	protectiveness = 1 // 4%
 
 /material/toy_foam
 	name = "foam"
@@ -788,3 +825,4 @@ var/list/name_to_material
 	icon_colour = "#ff9900"
 	hardness = 1
 	weight = 1
+	protectiveness = 0 // 0%
