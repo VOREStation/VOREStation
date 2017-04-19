@@ -44,8 +44,8 @@ var/list/ventcrawl_machinery = list(
 /mob/living/proc/is_allowed_vent_crawl_item(var/obj/item/carried_item)
 	if(carried_item == ability_master)
 		return 1
-	var/list/allowed = list()
 
+	var/list/allowed = list()
 	for(var/type in can_enter_vent_with)
 		var/list/types = typesof(type)
 		allowed += types
@@ -54,22 +54,20 @@ var/list/ventcrawl_machinery = list(
 		if(get_inventory_slot(carried_item) == 0)
 			return 1
 
-	if(istype(src, /mob/living/carbon))
-		var/mob/living/carbon/C = src
-		if(carried_item in C.internal_organs)
-			return 1
+/mob/living/carbon/is_allowed_vent_crawl_item(var/obj/item/carried_item)
+	if(carried_item in internal_organs)
+		return 1
+	return ..()
 
-		if(istype(src, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = C
-			if(carried_item in H.organs)
-				return 1
+/mob/living/carbon/human/is_allowed_vent_crawl_item(var/obj/item/carried_item)
+	if(carried_item in organs)
+		return 1
+	return ..()
 
-	else if(istype(src, /mob/living/simple_animal/spiderbot))
-		var/mob/living/simple_animal/spiderbot/S = src
-		if(carried_item == S.held_item)
-			return 1
-
-	return 0
+/mob/living/simple_animal/spiderbot/is_allowed_vent_crawl_item(var/obj/item/carried_item)
+	if(carried_item == held_item)
+		return 1
+	return ..()
 
 /mob/living/proc/ventcrawl_carry()
 	for(var/atom/A in contents)
