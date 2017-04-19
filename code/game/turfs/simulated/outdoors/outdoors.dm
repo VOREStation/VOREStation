@@ -31,7 +31,7 @@ var/list/outdoor_turfs = list()
 
 /turf/simulated/floor/Destroy()
 	if(outdoors)
-		outdoor_turfs.Remove(src)
+		planet_controller.unallocateTurf(src)
 	..()
 
 /turf/simulated/proc/update_icon_edge()

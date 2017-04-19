@@ -2,6 +2,7 @@ var/datum/controller/process/planet/planet_controller = null
 
 /datum/controller/process/planet
 	var/list/planets = list()
+	var/list/z_to_planet = list()
 
 /datum/controller/process/planet/setup()
 	name = "planet controller"
@@ -29,6 +30,12 @@ var/datum/controller/process/planet/planet_controller = null
 				P.planet_walls += PW
 				break
 	planetary_walls.Cut()
+
+/datum/controller/process/planet/proc/unallocateTurf(var/turf/T)
+	for(var/planet in planets)
+		var/datum/planet/P = planet
+		if(T.z in P.expected_z_levels)
+			P.planet_floors -= T
 
 /datum/controller/process/planet/doWork()
 	if(outdoor_turfs.len || planetary_walls.len)
