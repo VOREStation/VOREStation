@@ -17,8 +17,8 @@
 	ling_datum.chem_storage = 50
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
-		H.does_not_breathe = 0 //If self respiration was bought, revert that too.
-		H.maxHealth = initial(H.maxHealth) //Revert endoarmor too.
+	//	H.does_not_breathe = 0 //If self respiration was bought, revert that too.
+		H.remove_modifiers_of_type(/datum/modifier/endoarmor) //Revert endoarmor too.
 	src.make_changeling() //And give back our freebies.
 
 	src << "<span class='notice'>We have removed our evolutions from this form, and are now ready to readapt.</span>"

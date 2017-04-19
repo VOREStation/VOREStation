@@ -492,7 +492,7 @@ This function completely restores a damaged organ to perfect condition.
 
 //Burn damage can cause fluid loss due to blistering and cook-off
 	if((damage > 5 || damage + burn_dam >= 15) && type == BURN && (robotic < ORGAN_ROBOT))
-		var/fluid_loss = 0.75 * (damage/(owner.maxHealth - config.health_threshold_dead)) * owner.species.blood_volume*(1 - BLOOD_VOLUME_SURVIVE/100)
+		var/fluid_loss = 0.75 * (damage/(owner.getMaxHealth() - config.health_threshold_dead)) * owner.species.blood_volume*(1 - BLOOD_VOLUME_SURVIVE/100)
 		owner.remove_blood(fluid_loss)
 
 	// first check whether we can widen an existing wound

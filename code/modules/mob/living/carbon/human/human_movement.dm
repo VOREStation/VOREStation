@@ -15,7 +15,11 @@
 	if(force_max_speed)
 		return -3 // Returning -1 will actually result in a slowdown for Teshari.
 
-	var/health_deficiency = (maxHealth - health)
+	for(var/datum/modifier/M in modifiers)
+		if(!isnull(M.slowdown))
+			tally += M.slowdown
+
+	var/health_deficiency = (getMaxHealth() - health)
 	if(health_deficiency >= 40) tally += (health_deficiency / 25)
 
 	if(can_feel_pain())

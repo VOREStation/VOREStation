@@ -971,18 +971,18 @@
 			vision = internal_organs_by_name[species.vision_organ]
 
 		if(!species.vision_organ) // Presumably if a species has no vision organs, they see via some other means.
-			eye_blind =  0
+			SetBlinded(0)
 			blinded =    0
 			eye_blurry = 0
 		else if(!vision || vision.is_broken())   // Vision organs cut out or broken? Permablind.
-			eye_blind =  1
+			SetBlinded(1)
 			blinded =    1
 			eye_blurry = 1
 		else //You have the requisite organs
 			if(sdisabilities & BLIND) 	// Disabled-blind, doesn't get better on its own
 				blinded =    1
 			else if(eye_blind)		  	// Blindness, heals slowly over time
-				eye_blind =  max(eye_blind-1,0)
+				AdjustBlinded(-1)
 				blinded =    1
 			else if(istype(glasses, /obj/item/clothing/glasses/sunglasses/blindfold))	//resting your eyes with a blindfold heals blurry eyes faster
 				eye_blurry = max(eye_blurry-3, 0)
@@ -1536,7 +1536,7 @@
 		if(stat == DEAD)
 			holder.icon_state = "-100" 	// X_X
 		else
-			holder.icon_state = RoundHealth((health-config.health_threshold_crit)/(maxHealth-config.health_threshold_crit)*100)
+			holder.icon_state = RoundHealth((health-config.health_threshold_crit)/(getMaxHealth()-config.health_threshold_crit)*100)
 		hud_list[HEALTH_HUD] = holder
 
 	if (BITTEST(hud_updateflag, LIFE_HUD))

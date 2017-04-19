@@ -234,8 +234,8 @@
 		density = 1
 
 	//Overhealth
-	else if(health > maxHealth)
-		health = maxHealth
+	else if(health > getMaxHealth())
+		health = getMaxHealth()
 
 /mob/living/simple_animal/update_icon()
 	..()
@@ -534,7 +534,7 @@
 	if(istype(O, /obj/item/stack/medical))
 		if(stat != DEAD)
 			var/obj/item/stack/medical/MED = O
-			if(health < maxHealth)
+			if(health < getMaxHealth())
 				if(MED.amount >= 1)
 					adjustBruteLoss(-MED.heal_brute)
 					MED.amount -= 1
@@ -602,7 +602,7 @@
 	..()
 
 	if(statpanel("Status") && show_stat_health)
-		stat(null, "Health: [round((health / maxHealth) * 100)]%")
+		stat(null, "Health: [round((health / getMaxHealth()) * 100)]%")
 
 /mob/living/simple_animal/lay_down()
 	..()
@@ -645,10 +645,10 @@
 			adjustBruteLoss(30)
 
 /mob/living/simple_animal/adjustBruteLoss(damage)
-	health = Clamp(health - damage, 0, maxHealth)
+	health = Clamp(health - damage, 0, getMaxHealth())
 
 /mob/living/simple_animal/adjustFireLoss(damage)
-	health = Clamp(health - damage, 0, maxHealth)
+	health = Clamp(health - damage, 0, getMaxHealth())
 
 // Check target_mob if worthy of attack (i.e. check if they are dead or empty mecha)
 /mob/living/simple_animal/proc/SA_attackable(target_mob)

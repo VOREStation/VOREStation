@@ -32,7 +32,7 @@
 					warned_victim = predict_crit(pulses, H, 0)
 				sleep(4 SECONDS)
 				H.adjustOxyLoss(5)
-				var/health_lost = H.maxHealth - H.getOxyLoss() + H.getToxLoss() + H.getFireLoss() + H.getBruteLoss() + H.getCloneLoss()
+				var/health_lost = H.getMaxHealth() - H.getOxyLoss() + H.getToxLoss() + H.getFireLoss() + H.getBruteLoss() + H.getCloneLoss()
 				H.adjustOxyLoss(round(abs(health_lost * 0.25)))
 				//world << "Inflicted [round(abs(health_lost * 0.25))] damage!"
 				pulses--
@@ -62,7 +62,7 @@
 		pulses_remaining--
 		return .(pulses_remaining, victim, previous_damage)
 	// Now check if our damage predictions are going to cause the victim to go into crit if no healing occurs.
-	if(previous_damage + health_lost >= victim.maxHealth) // We're probably going to hardcrit
+	if(previous_damage + health_lost >= victim.getMaxHealth()) // We're probably going to hardcrit
 		victim << "<span class='danger'><font size='3'>A feeling of immense dread starts to overcome you as everything starts \
 		to fade to black...</font></span>"
 		//world << "Predicted hardcrit."

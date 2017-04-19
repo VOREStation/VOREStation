@@ -99,8 +99,8 @@
 	if(!istype(H)) //Invalid input
 		return
 	if(H.Adjacent(get_turf(src))) // Like normal analysers, it can't be used at range.
-		var/total_health = round(H.health/H.maxHealth, 0.1)*100
-		var/missing_health = H.maxHealth - H.health
+		var/total_health = round(H.health/H.getMaxHealth(), 0.1)*100
+		var/missing_health = H.getMaxHealth() - H.health
 
 		var/datum/integrated_io/total = outputs[1]
 		var/datum/integrated_io/missing = outputs[2]
@@ -138,8 +138,8 @@
 	if(!istype(H)) //Invalid input
 		return
 	if(H.Adjacent(get_turf(src))) // Like normal analysers, it can't be used at range.
-		var/total_health = round(H.health/H.maxHealth, 0.1)*100
-		var/missing_health = H.maxHealth - H.health
+		var/total_health = round(H.health/H.getMaxHealth(), 0.1)*100
+		var/missing_health = H.getMaxHealth() - H.health
 
 		var/datum/integrated_io/total = outputs[1]
 		var/datum/integrated_io/missing = outputs[2]

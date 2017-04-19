@@ -35,7 +35,7 @@
 			C.species.create_organs(C)
 			C.restore_all_organs()
 			C.blinded = 0
-			C.eye_blind = 0
+			C.SetBlinded(0)
 			C.eye_blurry = 0
 			C.ear_deaf = 0
 			C.ear_damage = 0
