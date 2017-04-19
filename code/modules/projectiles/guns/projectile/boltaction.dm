@@ -50,3 +50,18 @@
 			user << "<span class='warning'>You shorten the barrel and stock of \the [src]!</span>"
 	else
 		..()
+
+
+//Lever actions are the same thing, but bigger.
+/obj/item/weapon/gun/projectile/shotgun/pump/rifle/lever
+	name = "lever-action rifle"
+	desc = "A reproduction of an almost ancient weapon design from the 19th century. This one uses a lever-action to move new rounds into the chamber. Uses 5.56mm rounds."
+	item_state = "leveraction"
+	icon_state = "leveraction"
+	fire_sound = 'sound/weapons/rifleshot.ogg'
+	max_shells = 5
+	caliber = "a556"
+	origin_tech = list(TECH_COMBAT = 1)// Old as shit rifle doesn't have very good tech.
+	ammo_type = /obj/item/ammo_casing/a556
+	load_method = SINGLE_CASING|SPEEDLOADER
+	action_sound = 'sound/weapons/riflebolt.ogg'
