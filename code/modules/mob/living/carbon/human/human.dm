@@ -88,6 +88,7 @@
 			if(mind.changeling)
 				stat("Chemical Storage", mind.changeling.chem_charges)
 				stat("Genetic Damage Time", mind.changeling.geneticdamage)
+				stat("Re-Adaptations", "[mind.changeling.readapts]/[mind.changeling.max_readapts]")
 
 /mob/living/carbon/human/ex_act(severity)
 	if(!blinded)

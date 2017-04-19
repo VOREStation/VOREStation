@@ -2232,3 +2232,26 @@
 	glass_name = "special blend whiskey"
 	glass_desc = "Just when you thought regular station whiskey was good... This silky, amber goodness has to come along and ruin everything."
 
+/datum/reagent/ethanol/unathiliquor	//Needs a better name
+	name = "Unathi Liquor"
+	id = "unathiliquor"
+	description = "This barely qualifies as a drink, and could give jetfuel a run for its money. Also known to cause feelings of euphoria and numbness."
+	taste_description = "spiced numbness"
+	color = "#242424"
+	strength = 5
+
+	glass_name = "unathi liquor"
+	glass_desc = "This barely qualifies as a drink, and may cause euphoria and numbness. Imbimber beware!"
+
+/datum/reagent/ethanol/unathiliquor/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	if(alien == IS_DIONA)
+		return
+
+	var/drug_strength = 10
+	if(alien == IS_SKRELL)
+		drug_strength = drug_strength * 0.8
+
+	M.druggy = max(M.druggy, drug_strength)
+	if(prob(10) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
+		step(M, pick(cardinal))
