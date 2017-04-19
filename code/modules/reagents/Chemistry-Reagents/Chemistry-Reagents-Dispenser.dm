@@ -96,6 +96,8 @@
 		strength_mod *= 5
 	if(alien == IS_TAJARA)
 		strength_mod *= 1.75
+	if(alien == IS_UNATHI)
+		strength_mod *= 0.75
 	if(alien == IS_DIONA)
 		strength_mod = 0
 
