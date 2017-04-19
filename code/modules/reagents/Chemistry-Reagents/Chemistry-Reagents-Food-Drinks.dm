@@ -376,7 +376,7 @@
 	else if(eyes_covered)
 		M << "<span class='warning'>Your [safe_thing] protect you from most of the pepperspray!</span>"
 		M.eye_blurry = max(M.eye_blurry, effective_strength * 3)
-		M.eye_blind = max(M.eye_blind, effective_strength)
+		M.Blind(effective_strength)
 		M.Stun(5)
 		M.Weaken(5)
 		return
@@ -387,7 +387,7 @@
 	else // Oh dear :D
 		M << "<span class='warning'>You're sprayed directly in the eyes with pepperspray!</span>"
 		M.eye_blurry = max(M.eye_blurry, effective_strength * 5)
-		M.eye_blind = max(M.eye_blind, effective_strength * 2)
+		M.Blind(effective_strength * 2)
 		M.Stun(5)
 		M.Weaken(5)
 		return
@@ -1166,7 +1166,7 @@
 	if(M.dizziness)
 		M.dizziness = max(0, M.dizziness - 15)
 	if(M.confused)
-		M.confused = max(0, M.confused - 5)
+		M.Confuse(-5)
 
 /datum/reagent/drink/dry_ramen
 	name = "Dry Ramen"

@@ -170,7 +170,7 @@
 			if(announce)
 				assailant.visible_message("<span class='warning'>[assailant] covers [affecting]'s eyes!</span>")
 			if(affecting.eye_blind < 3)
-				affecting.eye_blind = 3
+				affecting.Blind(3)
 
 /obj/item/weapon/grab/attack_self()
 	return s_click(hud)

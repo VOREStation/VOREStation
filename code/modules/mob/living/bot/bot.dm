@@ -70,10 +70,10 @@
 
 /mob/living/bot/updatehealth()
 	if(status_flags & GODMODE)
-		health = maxHealth
+		health = getMaxHealth()
 		stat = CONSCIOUS
 	else
-		health = maxHealth - getFireLoss() - getBruteLoss()
+		health = getMaxHealth() - getFireLoss() - getBruteLoss()
 	oxyloss = 0
 	toxloss = 0
 	cloneloss = 0
@@ -104,9 +104,9 @@
 			user << "<span class='notice'>You need to unlock the controls first.</span>"
 		return
 	else if(istype(O, /obj/item/weapon/weldingtool))
-		if(health < maxHealth)
+		if(health < getMaxHealth())
 			if(open)
-				health = min(maxHealth, health + 10)
+				health = min(getMaxHealth(), health + 10)
 				user.visible_message("<span class='notice'>[user] repairs [src].</span>","<span class='notice'>You repair [src].</span>")
 			else
 				user << "<span class='notice'>Unable to repair with the maintenance panel closed.</span>"
@@ -224,7 +224,7 @@
 /mob/living/bot/proc/getPatrolTurf()
 	var/minDist = INFINITY
 	var/obj/machinery/navbeacon/targ = locate() in get_turf(src)
-	
+
 	if(!targ)
 		for(var/obj/machinery/navbeacon/N in navbeacons)
 			if(!N.codes["patrol"])

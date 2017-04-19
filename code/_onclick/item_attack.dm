@@ -84,6 +84,9 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		playsound(loc, hitsound, 50, 1, -1)
 
 	var/power = force
+	for(var/datum/modifier/M in user.modifiers)
+		if(!isnull(M.outgoing_melee_damage_percent))
+			power *= M.outgoing_melee_damage_percent
 	if(HULK in user.mutations)
 		power *= 2
 	return target.hit_with_weapon(src, user, power, hit_zone)

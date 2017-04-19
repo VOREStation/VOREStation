@@ -29,8 +29,8 @@
 				flash_strength *= H.species.flash_mod
 
 				if(flash_strength > 0)
-					H.confused = max(H.confused, flash_strength + 5)
-					H.eye_blind = max(H.eye_blind, flash_strength)
+					H.Confuse(flash_strength + 5)
+					H.Blind(flash_strength)
 					H.eye_blurry = max(H.eye_blurry, flash_strength + 5)
 					H.adjustHalLoss(22 * (flash_strength / 5)) // Five flashes to stun.  Bit weaker than melee flashes due to being ranged.
 
@@ -146,9 +146,9 @@
 	var/ear_safety = 0
 	ear_safety = M.get_ear_protection()
 	if(ear_safety == 1)
-		M.confused += 150
+		M.Confuse(150)
 	else if (ear_safety > 1)
-		M.confused += 30
+		M.Confuse(30)
 	else if (!ear_safety)
 		M.Stun(10)
 		M.Weaken(2)

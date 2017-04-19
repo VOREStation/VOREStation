@@ -62,4 +62,4 @@
 
 
 	// Now we hurt their new pal, because being forcefully abducted by teleportation can't be healthy.
-	summoned.health = round(summoned.maxHealth * 0.7)
+	summoned.health = round(summoned.getMaxHealth() * 0.7)
