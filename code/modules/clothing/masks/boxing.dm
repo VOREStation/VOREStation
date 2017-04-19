@@ -31,6 +31,10 @@
 	body_parts_covered = HEAD|FACE
 	w_class = ITEMSIZE_SMALL
 	siemens_coefficient = 3.0
+	sprite_sheets = list(
+		"Tajara" = 'icons/mob/species/tajaran/mask.dmi',
+		"Unathi" = 'icons/mob/species/unathi/mask.dmi',
+		)
 
 /obj/item/clothing/mask/luchador/tecnicos
 	name = "Tecnicos Mask"

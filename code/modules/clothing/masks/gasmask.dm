@@ -13,6 +13,10 @@
 	var/gas_filter_strength = 1			//For gas mask filters
 	var/list/filtered_gases = list("phoron", "sleeping_agent")
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 75, rad = 0)
+	sprite_sheets = list(
+		"Tajara" = 'icons/mob/species/tajaran/mask.dmi',
+		"Unathi" = 'icons/mob/species/unathi/mask.dmi',
+		)
 
 /obj/item/clothing/mask/gas/filter_air(datum/gas_mixture/air)
 	var/datum/gas_mixture/filtered = new

@@ -6,6 +6,10 @@
 	w_class = ITEMSIZE_SMALL
 	gas_transfer_coefficient = 0.90
 	voicechange = 1
+	sprite_sheets = list(
+		"Tajara" = 'icons/mob/species/tajaran/mask.dmi',
+		"Unathi" = 'icons/mob/species/unathi/mask.dmi',
+		)
 
 /obj/item/clothing/mask/muzzle/tape
 	name = "length of tape"
