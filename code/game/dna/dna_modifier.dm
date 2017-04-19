@@ -210,7 +210,6 @@
 /obj/machinery/computer/scan_consolenew
 	name = "DNA Modifier Access Console"
 	desc = "Scan DNA."
-	icon = 'icons/obj/computer.dmi'
 	icon_keyboard = "med_key"
 	icon_screen = "dna"
 	density = 1
