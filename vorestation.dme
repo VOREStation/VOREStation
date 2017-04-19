@@ -604,6 +604,7 @@
 #include "code\game\machinery\washing_machine.dm"
 #include "code\game\machinery\wishgranter.dm"
 #include "code\game\machinery\atmoalter\area_atmos_computer.dm"
+#include "code\game\machinery\atmoalter\area_atmos_computer_vr.dm"
 #include "code\game\machinery\atmoalter\canister.dm"
 #include "code\game\machinery\atmoalter\meter.dm"
 #include "code\game\machinery\atmoalter\portable_atmospherics.dm"
@@ -684,6 +685,7 @@
 #include "code\game\machinery\doors\door_vr.dm"
 #include "code\game\machinery\doors\firedoor.dm"
 #include "code\game\machinery\doors\firedoor_assembly.dm"
+#include "code\game\machinery\doors\firedoor_vr.dm"
 #include "code\game\machinery\doors\multi_tile.dm"
 #include "code\game\machinery\doors\unpowered.dm"
 #include "code\game\machinery\doors\windowdoor.dm"
@@ -2454,6 +2456,6 @@
 #include "maps\RandomZLevels\listeningpost.dm"
 #include "maps\RandomZLevels\snowfield.dm"
 #include "maps\RandomZLevels\zoo.dm"
-#include "maps\virgo\virgo.dm"
+#include "maps\tether\tether.dm"
 #include "maps\~map_system\maps.dm"
 // END_INCLUDE
