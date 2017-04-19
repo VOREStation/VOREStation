@@ -96,10 +96,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/weldermes = "USER lights NAME with FLAME"
 	var/ignitermes = "USER lights NAME with FLAME"
 	var/brand
-	sprite_sheets = list(
-		"Tajara" = 'icons/mob/species/tajaran/mask.dmi',
-		"Unathi" = 'icons/mob/species/unathi/mask.dmi',
-		)
+
 /obj/item/clothing/mask/smokable/New()
 	..()
 	flags |= NOREACT // so it doesn't react until you light it
