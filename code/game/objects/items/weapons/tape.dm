@@ -165,7 +165,7 @@
 
 /obj/item/weapon/ducttape/attackby(var/obj/item/I, var/mob/user)
 	if(!(istype(src, /obj/item/weapon/handcuffs/cable/tape) || istype(src, /obj/item/clothing/mask/muzzle/tape)))
-		return
+		return ..()
 	else
 		user.drop_from_inventory(I)
 		I.loc = src
