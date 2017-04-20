@@ -1,7 +1,6 @@
 //Debug areas
 /area/tether/surfacebase
 	name = "Tether Debug Surface"
-	requires_power = 0
 
 /area/tether/transit
 	name = "Tether Debug Transit"
@@ -10,6 +9,17 @@
 /area/tether/space
 	name = "Tether Debug Space"
 	requires_power = 0
+
+// Teather Areas itself
+/area/tether/surfacebase/tether
+	icon = 'icons/turf/areas_vr.dmi'
+	icon_state = "tether1"
+/area/tether/transit/tether
+	icon = 'icons/turf/areas_vr.dmi'
+	icon_state = "tether1"
+/area/tether/space/tether
+	icon = 'icons/turf/areas_vr.dmi'
+	icon_state = "tether1"
 
 // Elevator areas.
 /area/turbolift/tether/surface
