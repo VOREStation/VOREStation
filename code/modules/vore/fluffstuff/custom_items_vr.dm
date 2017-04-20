@@ -283,13 +283,19 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	item_state = "holochain_mob"
 
 	flags = CONDUCT | NOBLOODY
-	no_attack_log = 1 //if you want to turn on the attack log for this, comment/delete this line. Orbis.
 	slot_flags = SLOT_BELT
 	force = 10
 	throwforce = 3
 	w_class = ITEMSIZE_NORMAL
 	damtype = HALLOSS
 	attack_verb = list("flogged", "whipped", "lashed", "disciplined", "chastised", "flayed")
+
+//General use
+/obj/item/weapon/melee/fluff/holochain/mass
+	desc = "A mass produced version of the original. It has faux leather and an aluminium base, but still stings like the original."
+	force = 8
+	attack_verb = list("flogged", "whipped", "lashed", "flayed")
+
 
 // joey4298:Emoticon
 /obj/item/device/fluff/id_kit_mime
