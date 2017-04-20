@@ -56,7 +56,7 @@
 			return
 		M.forceMove(src)
 		occupant = M
-		icon_state = "body_scanner_1"
+		update_icon() //icon_state = "body_scanner_1" //VOREStation Edit - Health display for consoles with light and such.
 		add_fingerprint(user)
 		qdel(G)
 
@@ -95,7 +95,7 @@
 
 	O.forceMove(src)
 	occupant = O
-	icon_state = "body_scanner_1"
+	update_icon() //icon_state = "body_scanner_1" //VOREStation Edit - Health display for consoles with light and such.
 	add_fingerprint(user)
 
 /obj/machinery/bodyscanner/relaymove(mob/user as mob)
@@ -121,7 +121,7 @@
 		occupant.client.perspective = MOB_PERSPECTIVE
 	occupant.loc = src.loc
 	occupant = null
-	icon_state = "body_scanner_0"
+	update_icon() //icon_state = "body_scanner_1" //VOREStation Edit - Health display for consoles with light and such.
 	return
 
 /obj/machinery/bodyscanner/ex_act(severity)
@@ -194,6 +194,7 @@
 		return attack_hand(user)
 
 /obj/machinery/body_scanconsole/power_change()
+	/* VOREStation Removal
 	if(stat & BROKEN)
 		icon_state = "body_scannerconsole-p"
 	else if(powered() && !panel_open)
@@ -203,6 +204,8 @@
 		spawn(rand(0, 15))
 			icon_state = "body_scannerconsole-p"
 			stat |= NOPOWER
+	*/
+	update_icon() //icon_state = "body_scanner_1" //VOREStation Edit - Health display for consoles with light and such.
 
 /obj/machinery/body_scanconsole/ex_act(severity)
 	switch(severity)
@@ -262,6 +265,7 @@
 
 		var/occupantData[0]
 		if(scanner.occupant && ishuman(scanner.occupant))
+			update_icon() //VOREStation Edit - Health display for consoles with light and such.
 			var/mob/living/carbon/human/H = scanner.occupant
 			occupantData["name"] = H.name
 			occupantData["stat"] = H.stat
