@@ -245,10 +245,6 @@ emp_act
 
 	var/soaked = get_armor_soak(hit_zone, "melee", I.armor_penetration)
 
-	if(soaked >= effective_force)
-		src << "Your armor absorbs the force of [I.name]!"
-		return
-
 	var/blocked = run_armor_check(hit_zone, "melee", I.armor_penetration, "Your armor has protected your [affecting.name].", "Your armor has softened the blow to your [affecting.name].")
 
 	standard_weapon_hit_effects(I, user, effective_force, blocked, soaked, hit_zone)
@@ -266,9 +262,8 @@ emp_act
 	for(var/obj/item/clothing/C in clothing)
 		C.clothing_impact(I, effective_force)
 
-	if(soaked >= effective_force)
-		return 0
-
+	if(soaked >= round(effective_force*0.8))
+		effective_force -= round(effective_force*0.8)
 	// Handle striking to cripple.
 	if(user.a_intent == I_DISARM)
 		effective_force *= 0.5 //reduced effective force...
@@ -329,11 +324,14 @@ emp_act
 	return 1
 
 /mob/living/carbon/human/proc/attack_joint(var/obj/item/organ/external/organ, var/obj/item/W, var/effective_force, var/dislocate_mult, var/blocked, var/soaked)
-	if(!organ || (organ.dislocated == 2) || (organ.dislocated == -1) || blocked >= 100 || soaked > effective_force)
+	if(!organ || (organ.dislocated == 2) || (organ.dislocated == -1) || blocked >= 100)
 		return 0
 
 	if(W.damtype != BRUTE)
 		return 0
+
+	if(soaked >= round(effective_force*0.8))
+		effective_force -= round(effective_force*0.8)
 
 	//want the dislocation chance to be such that the limb is expected to dislocate after dealing a fraction of the damage needed to break the limb
 	var/dislocate_chance = effective_force/(dislocate_mult * organ.min_broken_damage * config.organ_health_multiplier)*100
