@@ -16,10 +16,10 @@
 	icon_state = "tether1"
 /area/tether/transit/tether
 	icon = 'icons/turf/areas_vr.dmi'
-	icon_state = "tether1"
+	icon_state = "tether2"
 /area/tether/space/tether
 	icon = 'icons/turf/areas_vr.dmi'
-	icon_state = "tether1"
+	icon_state = "tether3"
 
 // Elevator areas.
 /area/turbolift/tether/surface

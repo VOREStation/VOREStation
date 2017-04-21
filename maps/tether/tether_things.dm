@@ -40,3 +40,9 @@
 		/area/turbolift/t_station/level2,
 		/area/turbolift/t_station/level3
 		)
+
+
+/obj/machinery/atmospherics/unary/vent_pump/positive
+	use_power = 1
+	icon_state = "map_vent_out"
+	external_pressure_bound = ONE_ATMOSPHERE * 1.1 
