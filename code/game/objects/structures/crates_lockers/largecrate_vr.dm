@@ -44,16 +44,14 @@
 /obj/structure/largecrate/animal/pred/New() //This is nessesary to get a random one each time.
 
 	held_type = pick(/mob/living/simple_animal/hostile/bee,
-						/mob/living/simple_animal/catgirl,
-						/mob/living/simple_animal/catgirl,
-						/mob/living/simple_animal/catgirl,
+						/mob/living/simple_animal/catgirl = 3,
 						/mob/living/simple_animal/hostile/frog,
 						/mob/living/simple_animal/horse,
 						/mob/living/simple_animal/hostile/panther,
 						/mob/living/simple_animal/hostile/snake,
 						/mob/living/simple_animal/hostile/wolf,
-						/mob/living/simple_animal/hostile/bear,
-						/mob/living/simple_animal/hostile/bear/brown,
+						/mob/living/simple_animal/hostile/bear = 0.5,
+						/mob/living/simple_animal/hostile/bear/brown =0.5,
 						/mob/living/simple_animal/hostile/carp,
 						/mob/living/simple_animal/hostile/mimic)
 	..()

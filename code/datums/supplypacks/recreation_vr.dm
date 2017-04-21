@@ -16,6 +16,8 @@
 			/obj/item/weapon/tape_roll,
 			/obj/item/stack/cable_coil/random,
 			/obj/item/clothing/accessory/collar/shock,
+			/obj/item/clothing/suit/straight_jacket,
+			/obj/item/weapon/legcuffs,
 			/obj/item/weapon/melee/fluff/holochain/mass
 			)
 	containertype = /obj/structure/closet/crate
