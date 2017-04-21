@@ -102,7 +102,7 @@
 
 	else if(href_list["ear_style"])
 		// Construct the list of names allowed for this user.
-		var/list/pretty_ear_styles = list("Normal")
+		var/list/pretty_ear_styles = list("Normal" = null)
 		for(var/path in ear_styles_list)
 			var/datum/sprite_accessory/ears/instance = ear_styles_list[path]
 			if((!instance.ckeys_allowed) || (usr.ckey in instance.ckeys_allowed))
@@ -110,13 +110,8 @@
 
 		// Present choice to user
 		var/selection = input(user, "Pick ears", "Character Preference") as null|anything in pretty_ear_styles
-		if(selection && selection != "Normal")
-			pref.ear_style = pretty_ear_styles[selection]
-		else
-			if(pref.ear_style)
-				return TOPIC_REFRESH_UPDATE_PREVIEW
-			else
-				pref.ear_style = null
+		pref.ear_style = pretty_ear_styles[selection]
+
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["tail_style"])
