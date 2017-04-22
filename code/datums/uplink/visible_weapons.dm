@@ -100,6 +100,11 @@
 	item_cost = 40
 	path = /obj/item/weapon/gun/energy/ionrifle
 
+/datum/uplink_item/item/visible_weapons/ionpistol
+	name = "Ion Pistol"
+	item_cost = 25
+	path = /obj/item/weapon/gun/energy/ionrifle/pistol
+
 /datum/uplink_item/item/visible_weapons/xray
 	name = "Xray Gun"
 	item_cost = 85
