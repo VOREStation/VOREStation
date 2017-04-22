@@ -23,3 +23,24 @@
 	use_power = 1
 	icon_state = "map_vent_out"
 	external_pressure_bound = ONE_ATMOSPHERE * 1.1
+
+/turf/simulated/floor/maglev
+	name = "maglev track"
+	desc = "Magnetic levitation tram tracks. Caution! Electrified!"
+	icon = 'icons/turf/flooring/maglevs.dmi'
+	icon_state = "maglevup"
+
+// shock user with probability prb (if all connections & power are working)
+// returns 1 if shocked, 0 otherwise
+// Walking on maglev tracks will shock you! Horray!
+/turf/simulated/floor/maglev/Entered(var/atom/movable/AM, var/atom/old_loc)
+	if(ismob(AM) && prob(50))
+		shock(AM)
+/turf/simulated/floor/maglev/attack_hand(var/mob/user)
+	if(prob(75))
+		shock(user)
+/turf/simulated/floor/maglev/proc/shock(var/mob/user)
+	if (electrocute_mob(user, get_area(src), src))
+		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		s.set_up(5, 1, src)
+		s.start()
