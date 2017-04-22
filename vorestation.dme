@@ -2457,7 +2457,6 @@
 #include "maps\RandomZLevels\listeningpost.dm"
 #include "maps\RandomZLevels\snowfield.dm"
 #include "maps\RandomZLevels\zoo.dm"
-#include "maps\tether\teather_areas2.dm"
 #include "maps\tether\tether.dm"
 #include "maps\~map_system\maps.dm"
 // END_INCLUDE
