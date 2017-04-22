@@ -12,7 +12,7 @@
 
 /obj/item/clothing/under/pt/expeditionary
 	name = "\improper SifGuard pt uniform"
-	desc = "A baggy shirt bearing the seal of the Sif Homeguard Corps and some dorky looking blue shorts."
+	desc = "A baggy shirt bearing the seal of the Sif Defense Force and some dorky looking blue shorts."
 	icon_state = "expeditionpt"
 	worn_state = "expeditionpt"
 
@@ -41,56 +41,56 @@
 
 /obj/item/clothing/under/utility/expeditionary
 	name = "\improper SifGuard uniform"
-	desc = "The utility uniform of the Sif Homeguard Corps, made from biohazard resistant material. This one has silver trim."
+	desc = "The utility uniform of the Sif Defense Force, made from biohazard resistant material. This one has silver trim."
 	icon_state = "blackutility_crew"
 	worn_state = "blackutility_crew"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 10)
 
 /obj/item/clothing/under/utility/expeditionary/medical
 	name = "\improper SifGuard medical uniform"
-	desc = "The utility uniform of the Sif Homeguard Corps, made from biohazard resistant material. This one has silver trim and blue blazes."
+	desc = "The utility uniform of the Sif Defense Force, made from biohazard resistant material. This one has silver trim and blue blazes."
 	icon_state = "blackutility_med"
 	worn_state = "blackutility_med"
 
 /obj/item/clothing/under/utility/expeditionary/medical/command
 	name = "\improper SifGuard medical command uniform"
-	desc = "The utility uniform of the Sif Homeguard Corps, made from biohazard resistant material. This one has gold trim and blue blazes."
+	desc = "The utility uniform of the Sif Defense Force, made from biohazard resistant material. This one has gold trim and blue blazes."
 	icon_state = "blackutility_medcom"
 	worn_state = "blackutility_medcom"
 
 /obj/item/clothing/under/utility/expeditionary/engineering
 	name = "\improper SifGuard engineering uniform"
-	desc = "The utility uniform of the Sif Homeguard Corps, made from biohazard resistant material. This one has silver trim and organge blazes."
+	desc = "The utility uniform of the Sif Defense Force, made from biohazard resistant material. This one has silver trim and organge blazes."
 	icon_state = "blackutility_eng"
 	worn_state = "blackutility_eng"
 
 /obj/item/clothing/under/utility/expeditionary/engineering/command
 	name = "\improper SifGuard engineering command uniform"
-	desc = "The utility uniform of the Sif Homeguard Corps, made from biohazard resistant material. This one has gold trim and organge blazes."
+	desc = "The utility uniform of the Sif Defense Force, made from biohazard resistant material. This one has gold trim and organge blazes."
 	icon_state = "blackutility_engcom"
 	worn_state = "blackutility_engcom"
 
 /obj/item/clothing/under/utility/expeditionary/supply
 	name = "\improper SifGuard supply uniform"
-	desc = "The utility uniform of the Sif Homeguard Corps, made from biohazard resistant material. This one has silver trim and brown blazes."
+	desc = "The utility uniform of the Sif Defense Force, made from biohazard resistant material. This one has silver trim and brown blazes."
 	icon_state = "blackutility_sup"
 	worn_state = "blackutility_sup"
 
 /obj/item/clothing/under/utility/expeditionary/security
 	name = "\improper SifGuard security uniform"
-	desc = "The utility uniform of the Sif Homeguard Corps, made from biohazard resistant material. This one has silver trim and red blazes."
+	desc = "The utility uniform of the Sif Defense Force, made from biohazard resistant material. This one has silver trim and red blazes."
 	icon_state = "blackutility_sec"
 	worn_state = "blackutility_sec"
 
 /obj/item/clothing/under/utility/expeditionary/security/command
 	name = "\improper SifGuard security command uniform"
-	desc = "The utility uniform of the Sif Homeguard Corps, made from biohazard resistant material. This one has gold trim and red blazes."
+	desc = "The utility uniform of the Sif Defense Force, made from biohazard resistant material. This one has gold trim and red blazes."
 	icon_state = "blackutility_seccom"
 	worn_state = "blackutility_seccom"
 
 /obj/item/clothing/under/utility/expeditionary/command
 	name = "\improper SifGuard command uniform"
-	desc = "The utility uniform of the Sif Homeguard Corps, made from biohazard resistant material. This one has gold trim and gold blazes."
+	desc = "The utility uniform of the Sif Defense Force, made from biohazard resistant material. This one has gold trim and gold blazes."
 	icon_state = "blackutility_com"
 	worn_state = "blackutility_com"
 
@@ -222,13 +222,13 @@
 
 /obj/item/clothing/under/mildress/expeditionary
 	name = "\improper SifGuard dress uniform"
-	desc = "The dress uniform of the Sif Homeguard Corps in silver trim."
+	desc = "The dress uniform of the Sif Defense Force in silver trim."
 	icon_state = "greydress"
 	worn_state = "greydress"
 
 /obj/item/clothing/under/mildress/expeditionary/command
 	name = "\improper SifGuard command dress uniform"
-	desc = "The dress uniform of the Sif Homeguard Corps in gold trim."
+	desc = "The dress uniform of the Sif Defense Force in gold trim."
 	icon_state = "greydress_com"
 	worn_state = "greydress_com"
 
