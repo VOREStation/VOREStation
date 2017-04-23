@@ -144,6 +144,7 @@
 //Huge scrubber
 /obj/machinery/portable_atmospherics/powered/scrubber/huge
 	name = "Huge Air Scrubber"
+	icon = 'icons/obj/atmos_vr.dmi' //VOREStation Edit - New Sprite
 	icon_state = "scrubber:0"
 	anchored = 1
 	volume = 50000
