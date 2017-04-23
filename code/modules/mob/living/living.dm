@@ -965,3 +965,7 @@ default behaviour is:
 	if(isSynthetic())
 		return FALSE
 	return TRUE
+
+// Called by job_controller.
+/mob/living/proc/equip_post_job()
+	return
