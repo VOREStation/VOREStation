@@ -12,16 +12,15 @@
 	This circuit is set to send a pulse after a delay of two seconds."
 	icon_state = "delay-20"
 	var/delay = 2 SECONDS
-	activators = list("incoming pulse","outgoing pulse")
+	activators = list("\<PULSE IN\> incoming","\<PULSE OUT\> outgoing")
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 2
 
 /obj/item/integrated_circuit/time/delay/do_work()
 	set waitfor = 0  // Don't sleep in a proc that is called by a processor. It'll delay the entire thing
 
-	var/datum/integrated_io/out_pulse = activators[2]
 	sleep(delay)
-	out_pulse.push_data()
+	activate_pin(2)
 
 /obj/item/integrated_circuit/time/delay/five_sec
 	name = "five-sec delay circuit"
@@ -60,14 +59,13 @@
 	desc = "This sends a pulse signal out after a delay, critical for ensuring proper control flow in a complex machine.  \
 	This circuit's delay can be customized, between 1/10th of a second to one hour.  The delay is updated upon receiving a pulse."
 	icon_state = "delay"
-	inputs = list("delay time")
+	inputs = list("\<NUM\> delay time")
 	spawn_flags = IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/time/delay/custom/do_work()
-	var/datum/integrated_io/delay_input = inputs[1]
-	if(delay_input.data && isnum(delay_input.data) )
-		var/new_delay = min(delay_input.data, 1)
-		new_delay = max(new_delay, 36000) //An hour.
+	var/delay_input = get_pin_data(IC_INPUT, 1)
+	if(delay_input && isnum(delay_input) )
+		var/new_delay = between(1, delay_input, 36000) //An hour.
 		delay = new_delay
 
 	..()
@@ -80,8 +78,8 @@
 	var/ticks_to_pulse = 4
 	var/ticks_completed = 0
 	var/is_running = FALSE
-	inputs = list("enable ticking")
-	activators = list("outgoing pulse")
+	inputs = list("\<NUM\> enable ticking" = 0)
+	activators = list("\<PULSE OUT\> outgoing pulse")
 	spawn_flags = IC_SPAWN_RESEARCH
 	power_draw_per_use = 4
 
@@ -91,8 +89,8 @@
 	. = ..()
 
 /obj/item/integrated_circuit/time/ticker/on_data_written()
-	var/datum/integrated_io/do_tick = inputs[1]
-	if(do_tick.data && !is_running)
+	var/do_tick = get_pin_data(IC_INPUT, 1)
+	if(do_tick && !is_running)
 		is_running = TRUE
 		processing_objects |= src
 	else if(is_running)
@@ -108,8 +106,7 @@
 			ticks_completed -= ticks_to_pulse
 		else
 			ticks_completed = 0
-		var/datum/integrated_io/pulser = activators[1]
-		pulser.push_data()
+		activate_pin(1)
 
 /obj/item/integrated_circuit/time/ticker/fast
 	name = "fast ticker"
@@ -134,20 +131,16 @@
 	desc = "Tells you what the local time is, specific to your station or planet."
 	icon_state = "clock"
 	inputs = list()
-	outputs = list("time (string)", "hours (number)", "minutes (number)", "seconds (number)")
+	outputs = list("\<TEXT\> time", "\<NUM\> hours", "\<NUM\> minutes", "\<NUM\> seconds")
+	activators = list("\<PULSE IN\> get time","\<PULSE OUT\> on time got")
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 4
 
 /obj/item/integrated_circuit/time/clock/do_work()
-	var/datum/integrated_io/time = outputs[1]
-	var/datum/integrated_io/hour = outputs[2]
-	var/datum/integrated_io/min = outputs[3]
-	var/datum/integrated_io/sec = outputs[4]
+	set_pin_data(IC_OUTPUT, 1, time2text(station_time_in_ticks, "hh:mm:ss") )
+	set_pin_data(IC_OUTPUT, 2, text2num(time2text(station_time_in_ticks, "hh") ) )
+	set_pin_data(IC_OUTPUT, 3, text2num(time2text(station_time_in_ticks, "mm") ) )
+	set_pin_data(IC_OUTPUT, 4, text2num(time2text(station_time_in_ticks, "ss") ) )
 
-	time.data = time2text(station_time_in_ticks, "hh:mm:ss")
-	hour.data = text2num(time2text(station_time_in_ticks, "hh"))
-	min.data = text2num(time2text(station_time_in_ticks, "mm"))
-	sec.data = text2num(time2text(station_time_in_ticks, "ss"))
-
-	for(var/datum/integrated_io/output/O in outputs)
-		O.push_data()
+	push_data()
+	activate_pin(2)
