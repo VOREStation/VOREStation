@@ -4,7 +4,7 @@
 
 /obj/machinery/r_n_d
 	name = "R&D Device"
-	icon = 'icons/obj/machines/research.dmi'
+	icon = 'icons/obj/machines/research_vr.dmi' //VOREStation Edit - Replaced with Eris sprites
 	density = 1
 	anchored = 1
 	use_power = 1
