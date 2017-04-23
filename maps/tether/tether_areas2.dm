@@ -91,6 +91,17 @@
 	name = "\improper Mining Lobby"
 
 
+
+/area/maintenance/substation/medsec
+	name = "\improper MedSec Substation"
+/area/maintenance/substation/mining
+	name = "\improper Mining Substation"
+/area/maintenance/substation/bar
+	name = "\improper Bar Substation"
+/area/maintenance/substation/surface_atmos
+	name = "\improper Surface Atmos Substation"
+
+
 /area/tether/surfacebase/medical
 	icon_state = "medical"
 /area/tether/surfacebase/medical/lobby

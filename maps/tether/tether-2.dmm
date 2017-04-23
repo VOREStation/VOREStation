@@ -9,9 +9,14 @@
 "i" = (/obj/structure/catwalk,/turf/simulated/open,/area/tether/transit/tether)
 "j" = (/obj/machinery/atmospherics/pipe/zpipe/up{dir = 1},/obj/machinery/atmospherics/pipe/zpipe/up/scrubbers{dir = 1},/obj/machinery/atmospherics/pipe/zpipe/up/supply{dir = 1},/turf/simulated/open,/area/tether/transit/tether)
 "k" = (/turf/simulated/wall/r_wall,/area/tether/transit)
-"l" = (/turf/simulated/floor/tiled,/area/tether/transit)
+"l" = (/obj/machinery/light/small{dir = 4; pixel_y = 0},/obj/machinery/atmospherics/pipe/zpipe/down,/obj/machinery/atmospherics/pipe/zpipe/down/scrubbers,/obj/machinery/atmospherics/pipe/zpipe/down/supply,/obj/structure/lattice,/obj/structure/cable{tag = "icon-32-2"; icon_state = "32-2"},/turf/simulated/open,/area/space)
 "m" = (/turf/simulated/shuttle/wall/voidcraft/green{hard_corner = 1},/area/space)
-"n" = (/turf/simulated/floor/holofloor/tiled/dark,/area/space)
+"n" = (/obj/machinery/atmospherics/pipe/simple/visible/supply,/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,/obj/machinery/atmospherics/pipe/simple/visible,/obj/structure/cable{tag = "icon-1-2"; icon_state = "1-2"},/turf/simulated/floor/plating,/area/space)
+"o" = (/turf/simulated/floor/holofloor/tiled/dark,/area/space)
+"p" = (/obj/machinery/atmospherics/pipe/zpipe/up/supply{dir = 1},/obj/machinery/atmospherics/pipe/zpipe/up/scrubbers{dir = 1},/obj/machinery/atmospherics/pipe/zpipe/up{dir = 1},/obj/structure/cable{tag = "icon-16-0"; icon_state = "16-0"},/obj/structure/cable{tag = "icon-1-2"; icon_state = "1-2"},/turf/simulated/floor/plating,/area/space)
+"q" = (/obj/structure/cable{tag = "icon-1-2"; icon_state = "1-2"},/turf/simulated/floor/tiled,/area/tether/transit)
+"r" = (/obj/machinery/power/fractal_reactor{mapped_in = 1},/obj/structure/cable,/turf/simulated/floor/tiled,/area/tether/transit)
+"s" = (/turf/simulated/floor/tiled,/area/tether/transit)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -67,11 +72,11 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakkkkkkkkaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaklmmmmmmaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaklmnnnnmaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaklmnnnnnaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaklmnnnnnaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaklmnnnnmaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaklmmmmmmaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaknmoooomaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakpmoooooaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakqmoooooaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakrmoooomaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaksmmmmmmaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakkkkkkkkaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
