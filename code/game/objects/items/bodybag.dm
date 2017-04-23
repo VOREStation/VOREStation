@@ -87,10 +87,8 @@
 		return
 
 /obj/structure/closet/body_bag/relaymove(mob/user,direction)
-	if(user.stat)
-		return
 	if(src.loc != get_turf(src))
-		src.loc.relaymove(usr,direction)
+		src.loc.relaymove(user,direction)
 	else
 		..()
 
