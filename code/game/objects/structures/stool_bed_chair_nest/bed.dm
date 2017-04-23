@@ -10,7 +10,7 @@
 /obj/structure/bed
 	name = "bed"
 	desc = "This is used to lie in, sleep in or strap on."
-	icon = 'icons/obj/furniture.dmi'
+	icon = 'icons/obj/furniture_vr.dmi' //VOREStation Edit - Using Eris furniture
 	icon_state = "bed"
 	pressure_resistance = 15
 	anchored = 1
