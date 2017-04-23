@@ -29,6 +29,3 @@
 	src << "<span class='notice'>We have removed our evolutions from this form, and are now ready to readapt.</span>"
 
 	ling_datum.purchased_powers_history.Add("Re-adapt (Reset to [ling_datum.max_geneticpoints])")
-
-	//Now to lose the verb, so no unlimited resets.
-
