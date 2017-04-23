@@ -1053,7 +1053,7 @@
 
 
 /obj/machinery/atmospherics/pipe/tank
-	icon = 'icons/atmos/tank.dmi'
+	icon = 'icons/atmos/tank_vr.dmi' //VOREStation Edit - New Icons
 	icon_state = "air_map"
 
 	name = "Pressure Tank"
