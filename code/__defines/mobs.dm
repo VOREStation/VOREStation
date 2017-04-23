@@ -207,3 +207,9 @@
 #define TASTE_NORMAL 1 //anything below 15%
 #define TASTE_DULL 0.5 //anything below 30%
 #define TASTE_NUMB 0.1 //anything below 150%
+
+// If they're in an FBP, what braintype.
+#define FBP_NONE	""
+#define FBP_CYBORG	"Cyborg"
+#define FBP_POSI	"Positronic"
+#define FBP_DRONE	"Drone"
