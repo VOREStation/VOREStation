@@ -63,11 +63,24 @@
 	. += "<div class='statusDisplay'><center><img src=previewicon.png width=[pref.preview_icon.Width()] height=[pref.preview_icon.Height()]></center></div>"
 	. += "<br><a href='?src=\ref[src];toggle_clothing=1'>[pref.dress_mob ? "Hide equipment" : "Show equipment"]</a><br>"
 
+	var/ear_display = "Normal"
+	if(pref.ear_style && (pref.ear_style in ear_styles_list))
+		var/datum/sprite_accessory/ears/instance = ear_styles_list[pref.ear_style]
+		ear_display = instance.name
+	else if(pref.ear_style)
+		ear_display = "REQUIRES UPDATE"
 	. += "<b>Ears</b><br>"
-	. += " Style: <a href='?src=\ref[src];ear_style=1'>[pref.ear_style ? "Custom" : "Normal"]</a><br>"
+	. += " Style: <a href='?src=\ref[src];ear_style=1'>[ear_display]</a><br>"
 
+	var/tail_display = "Normal"
+	if(pref.tail_style && (pref.tail_style in tail_styles_list))
+		var/datum/sprite_accessory/ears/instance = tail_styles_list[pref.tail_style]
+		tail_display = instance.name
+	else if(pref.tail_style)
+		tail_display = "REQUIRES UPDATE"
 	. += "<b>Tail</b><br>"
-	. += " Style: <a href='?src=\ref[src];tail_style=1'>[pref.tail_style ? "Custom" : "Normal"]</a><br>"
+	. += " Style: <a href='?src=\ref[src];tail_style=1'>[tail_display]</a><br>"
+
 	if(tail_styles_list[pref.tail_style])
 		var/datum/sprite_accessory/tail/T = tail_styles_list[pref.tail_style]
 		if (T.do_colouration)
@@ -89,7 +102,7 @@
 
 	else if(href_list["ear_style"])
 		// Construct the list of names allowed for this user.
-		var/list/pretty_ear_styles = list("Normal")
+		var/list/pretty_ear_styles = list("Normal" = null)
 		for(var/path in ear_styles_list)
 			var/datum/sprite_accessory/ears/instance = ear_styles_list[path]
 			if((!instance.ckeys_allowed) || (usr.ckey in instance.ckeys_allowed))
@@ -97,10 +110,8 @@
 
 		// Present choice to user
 		var/selection = input(user, "Pick ears", "Character Preference") as null|anything in pretty_ear_styles
-		if(selection && selection != "Normal")
-			pref.ear_style = pretty_ear_styles[selection]
-		else
-			pref.ear_style = null
+		pref.ear_style = pretty_ear_styles[selection]
+
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["tail_style"])
@@ -116,7 +127,10 @@
 		if(selection && selection != "Normal")
 			pref.tail_style = pretty_tail_styles[selection]
 		else
-			pref.tail_style = null
+			if(pref.tail_style)
+				return TOPIC_REFRESH_UPDATE_PREVIEW
+			else
+				pref.tail_style = null
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["tail_color"])
