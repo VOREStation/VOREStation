@@ -41,3 +41,18 @@
 	cost = 100
 	containertype = /obj/structure/largecrate
 	containername = "Exploration Dune Buggy Crate"
+
+/datum/supply_packs/sci/pred
+	name = "Dangerous Predator crate"
+	cost = 40
+	containertype = /obj/structure/largecrate/animal/pred
+	containername = "Dangerous Predator crate"
+	access = access_xenobiology
+
+/datum/supply_packs/sci/pred
+	name = "EXTREMELY Dangerous Predator crate"
+	cost = 200
+	containertype = /obj/structure/largecrate/animal/dangerous
+	containername = "EXTREMELY Dangerous Predator crate"
+	access = access_xenobiology
+	contraband = 1
