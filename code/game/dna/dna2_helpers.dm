@@ -192,7 +192,7 @@
 		// Playerscale
 		var/size = dna.GetUIValueRange(DNA_UI_PLAYERSCALE, player_sizes_list.len)
 		if((0 < size) && (size <= player_sizes_list.len))
-			H.size_multiplier = player_sizes_list[player_sizes_list[size]]
+			H.resize(player_sizes_list[player_sizes_list[size]], FALSE)
 
 		// Tail/Taur Color
 		H.r_tail   = dna.GetUIValueRange(DNA_UI_TAIL_R,    255)
