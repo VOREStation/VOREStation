@@ -1,8 +1,8 @@
 // Inherits from /book/ so it can fit on bookshelves.
 /obj/item/weapon/book/codex
-	name = "The Traveler's Guide to Human Space: Vir Edition"
-	desc = "Contains useful information about the world around you.  It seems to have been written for travelers to Vir, human or not.   It also \
-	has the words 'Don't Panic' in small, friendly letters on the cover."
+	name = "The Traveler's Guide to Human Space: Virgo-Erigone Edition" //VOREStation Edit - Book Name
+	desc = "Contains useful information about the world around you.  It seems to have been written for travelers to Virgo-Erigone, human or not.   It also \
+	has the words 'Don't Panic' in small, friendly letters on the cover." //VOREStation Edit - System Name
 	icon_state = "codex"
 	unique = TRUE
 	var/datum/lore/codex/home = null // Top-most page.
