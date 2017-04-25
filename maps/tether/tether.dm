@@ -10,6 +10,9 @@
 	#include "tether-1.dmm"
 	#include "tether-2.dmm"
 	#include "tether-3.dmm"
+	#include "tether-4-colony.dmm"
+	#include "tether-5-misc.dmm"
+	#include "tether-6-ships.dmm"
 
 	#define USING_MAP_DATUM /datum/map/tether
 
