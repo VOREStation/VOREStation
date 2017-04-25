@@ -746,6 +746,22 @@
 			else
 				return 1
 
+	kate
+		name = "Kat's Navy Engineer Helmet"
+		desc = "A customized combat space helmet made for Kateryna. It uses a navy design as the base before it\
+		was customized to suit the wearer's personality."
+
+		icon_state = "lilithhelmet"
+		item_state = "lilithhelmet"
+
+		mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+			if(..())
+				if(H.ckey != "samanthafyre")
+					H << "<span class='warning'>You try to fit on the helmet, but it doesn't fit.</span>"
+					return 0
+				else
+					return 1
+
 //JoanRisu:Joan Risu
 /obj/item/clothing/suit/space/fluff/joan
 	name = "Joan's Combat Spacesuit"
@@ -773,6 +789,7 @@
 				return 0
 			else
 				return 1
+
 
 /obj/item/clothing/under/rank/internalaffairs/fluff/joan
 	desc = "The plain, professional attire of a Federation Law Enforcement Detective."

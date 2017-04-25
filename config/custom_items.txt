@@ -391,6 +391,24 @@ item_path: /obj/item/fluff/permit/archermaximus
 
 # ######## S CKEYS
 {
+ckey: samanthafyre
+character_name: Kateryna Petrovitch
+item_path: /obj/item/clothing/suit/space/void/engineering/kate
+}
+
+{
+ckey: samanthafyre
+character_name: Kateryna Petrovitch
+item_path: /obj/item/clothing/head/helmet/space/fluff/joan/kate
+}
+
+{
+ckey: samanthafyre
+character_name: Kateryna Petrovitch
+item_path: /obj/item/clothing/suit/armor/vest/wolftaur/kate
+}
+
+{
 ckey: sasoperative
 character_name: Joseph Skinner
 item_path: /obj/item/clothing/accessory/medal/ERTservice

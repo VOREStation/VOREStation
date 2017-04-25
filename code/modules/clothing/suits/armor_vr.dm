@@ -33,6 +33,48 @@
 				H << "<span class='warning'>You need to have a wolf-taur half to wear this.</span>"
 				return 0
 
+	kate
+		name = "Kat's Fox Taur Armor"
+		desc = "A set of security armor, light weight and easy to run in for a Taur, this item protects the \
+		entire body."
+		icon_state = "katesuit"
+		mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+			if(..())
+				if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
+					if(icon_state == "katesuit")
+						return ..()
+					icon_override = 'icons/mob/taursuits_vr.dmi'
+					icon_state = "katesuit"
+					pixel_x = -16
+					return ..()
+				else
+					H << "<span class='warning'>You need to have a wolf-taur half to wear this.</span>"
+					return 0
+
+
+/obj/item/clothing/suit/space/void/engineering/kate
+	name = "Kat's Navy Engineer voidsuit"
+	desc = "Taur engineering voidsuit. Recolored navy blue and white. Slightly tweaked as well to \
+	get close to having security voidsuit protection as possible with a slight reduction in movement \
+	speed to compensate for custom padding and armor Kateryna made herself."
+	icon = 'icons/mob/taursuits_vr.dmi'
+	icon_override = 'icons/mob/taursuits_vr.dmi'
+	icon_state = "lilithsuit"
+	armor = list(melee = 40, bullet = 20, laser = 20,energy = 5, bomb = 35, bio = 100, rad = 20)
+	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+		if(..())
+			if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
+				if(icon_state == "lilithsuit")
+					return ..()
+				icon_override = 'icons/mob/taursuits_vr.dmi'
+				icon_state = "heavy_wolf_armor"
+				pixel_x = -16
+				return ..()
+			else
+				H << "<span class='warning'>You need to have a wolf-taur half to wear this.</span>"
+				return 0
+
+
 /obj/item/clothing/suit/storage/vest/hoscoat
 	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 40, bio = 0, rad = 0)
 
