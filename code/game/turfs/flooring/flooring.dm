@@ -37,6 +37,7 @@ var/list/flooring_types
 	var/descriptor = "tiles"
 	var/flags
 	var/can_paint
+	var/list/footstep_sounds = list() // key=species name, value = list of soundss
 
 /decl/flooring/grass
 	name = "grass"
@@ -90,6 +91,12 @@ var/list/flooring_types
 	build_type = /obj/item/stack/tile/carpet
 	damage_temperature = T0C+200
 	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BURN
+	footstep_sounds = list("human" = list(
+		'sound/effects/footstep/carpet1.ogg',
+		'sound/effects/footstep/carpet2.ogg',
+		'sound/effects/footstep/carpet3.ogg',
+		'sound/effects/footstep/carpet4.ogg',
+		'sound/effects/footstep/carpet5.ogg'))
 
 /decl/flooring/carpet/blue
 	name = "carpet"
@@ -107,6 +114,12 @@ var/list/flooring_types
 	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BREAK | TURF_CAN_BURN
 	build_type = /obj/item/stack/tile/floor
 	can_paint = 1
+	footstep_sounds = list("human" = list(
+		'sound/effects/footstep/floor1.ogg',
+		'sound/effects/footstep/floor2.ogg',
+		'sound/effects/footstep/floor3.ogg',
+		'sound/effects/footstep/floor4.ogg',
+		'sound/effects/footstep/floor5.ogg'))
 
 /decl/flooring/linoleum
 	name = "linoleum"
@@ -193,6 +206,12 @@ var/list/flooring_types
 	descriptor = "planks"
 	build_type = /obj/item/stack/tile/wood
 	flags = TURF_CAN_BREAK | TURF_IS_FRAGILE | TURF_REMOVE_SCREWDRIVER
+	footstep_sounds = list("human" = list(
+		'sound/effects/footstep/wood1.ogg',
+		'sound/effects/footstep/wood2.ogg',
+		'sound/effects/footstep/wood3.ogg',
+		'sound/effects/footstep/wood4.ogg',
+		'sound/effects/footstep/wood5.ogg'))
 
 /decl/flooring/reinforced
 	name = "reinforced floor"

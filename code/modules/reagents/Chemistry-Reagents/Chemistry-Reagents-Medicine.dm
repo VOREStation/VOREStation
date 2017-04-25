@@ -258,7 +258,7 @@
 /datum/reagent/oxycodone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.add_chemical_effect(CE_PAINKILLER, 200)
 	M.eye_blurry += 10
-	M.confused += 5
+	M.Confuse(5)
 
 /datum/reagent/oxycodone/overdose(var/mob/living/carbon/M, var/alien)
 	..()
@@ -319,7 +319,7 @@
 
 /datum/reagent/imidazoline/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.eye_blurry = max(M.eye_blurry - 5, 0)
-	M.eye_blind = max(M.eye_blind - 5, 0)
+	M.AdjustBlinded(-5)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]
@@ -349,7 +349,7 @@
 				continue
 			if(I.damage > 0) //Peridaxon heals only non-robotic organs
 				I.damage = max(I.damage - removed, 0)
-				H.confused += 5
+				H.Confuse(5)
 			if(I.damage <= 5 && I.organ_tag == O_EYES)
 				H.eye_blurry += 10	//Eyes need to reset, or something
 				H.sdisabilities &= ~BLIND
@@ -441,7 +441,7 @@
 	M.dizziness = 0
 	M.drowsyness = 0
 	M.stuttering = 0
-	M.confused = 0
+	M.SetConfused(0)
 	if(M.ingested)
 		for(var/datum/reagent/R in M.ingested.reagent_list)
 			if(istype(R, /datum/reagent/ethanol))

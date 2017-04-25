@@ -127,6 +127,7 @@
 						dat += text("<table><tr><td>	\
 						Name: <A href='?src=\ref[src];choice=Edit Field;field=name'>[active1.fields["name"]]</A><BR> \
 						ID: <A href='?src=\ref[src];choice=Edit Field;field=id'>[active1.fields["id"]]</A><BR>\n \
+						Entity Classification: <A href='?src=\ref[src];field=brain_type'>[active1.fields["brain_type"]]</A><BR>\n	\
 						Sex: <A href='?src=\ref[src];choice=Edit Field;field=sex'>[active1.fields["sex"]]</A><BR>\n	\
 						Age: <A href='?src=\ref[src];choice=Edit Field;field=age'>[active1.fields["age"]]</A><BR>\n	\
 						Rank: <A href='?src=\ref[src];choice=Edit Field;field=rank'>[active1.fields["rank"]]</A><BR>\n	\
@@ -612,5 +613,4 @@ What a mess.*/
 	..(severity)
 
 /obj/machinery/computer/secure_data/detective_computer
-	icon = 'icons/obj/computer.dmi'
 	icon_state = "messyfiles"

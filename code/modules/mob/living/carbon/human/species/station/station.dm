@@ -36,6 +36,8 @@
 	slowdown = 0.5
 	brute_mod = 0.9
 	burn_mod = 0.9
+	metabolic_rate = 0.85
+	item_slowdown_halved = 1
 	num_alternate_languages = 3
 	secondary_langs = list(LANGUAGE_UNATHI)
 	name_language = LANGUAGE_UNATHI
@@ -62,11 +64,36 @@
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
 	flesh_color = "#34AF10"
-
-	//reagent_tag = IS_UNATHI //VOREStation Removal
+	blood_color = "#b3cbc3"
 	base_color = "#066000"
 
-	//heat_discomfort_level = 295 //VOREStation Removal
+	//reagent_tag = IS_UNATHI //VOREStation Edit
+
+	has_limbs = list(
+		BP_TORSO =  list("path" = /obj/item/organ/external/chest/unathi),
+		BP_GROIN =  list("path" = /obj/item/organ/external/groin/unathi),
+		BP_HEAD =   list("path" = /obj/item/organ/external/head/unathi),
+		BP_L_ARM =  list("path" = /obj/item/organ/external/arm),
+		BP_R_ARM =  list("path" = /obj/item/organ/external/arm/right),
+		BP_L_LEG =  list("path" = /obj/item/organ/external/leg),
+		BP_R_LEG =  list("path" = /obj/item/organ/external/leg/right),
+		BP_L_HAND = list("path" = /obj/item/organ/external/hand),
+		BP_R_HAND = list("path" = /obj/item/organ/external/hand/right),
+		BP_L_FOOT = list("path" = /obj/item/organ/external/foot),
+		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
+		)
+
+	//No kidneys or appendix
+	has_organ = list(
+		O_HEART =    /obj/item/organ/internal/heart/unathi,
+		O_LUNGS =    /obj/item/organ/internal/lungs/unathi,
+		O_LIVER =    /obj/item/organ/internal/liver/unathi,
+		O_BRAIN =    /obj/item/organ/internal/brain/unathi,
+		O_EYES =     /obj/item/organ/internal/eyes,
+		)
+
+
+	//heat_discomfort_level = 295 //VOREStation Edit
 	heat_discomfort_strings = list(
 		"You feel soothingly warm.",
 		"You feel the heat sink into your bones.",

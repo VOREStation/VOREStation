@@ -76,7 +76,7 @@
 
 	if(injector.occupant)
 		data["occupantHealth"] = injector.occupant.health
-		data["occupantHealthMax"] = injector.occupant.maxHealth
+		data["occupantHealthMax"] = injector.occupant.getMaxHealth()
 	else
 		data["occupantHealth"] = null
 		data["occupantHealthMax"] = null

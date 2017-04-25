@@ -69,6 +69,11 @@
 #define COLOR_PALE_RED_GRAY		"#CC9090"
 #define COLOR_PALE_PURPLE_GRAY	"#BDA2BA"
 #define COLOR_PURPLE_GRAY 		"#A2819E"
+#define COLOR_RED_LIGHT         "#FF3333"
+#define COLOR_DEEP_SKY_BLUE     "#00e1ff"
+
+
+
 
 //	Shuttles.
 

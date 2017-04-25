@@ -65,10 +65,12 @@ var/global/list/default_medbay_channels = list(
 	..()
 	wires = new(src)
 	internal_channels = default_internal_channels.Copy()
+	listening_objects += src
 
 /obj/item/device/radio/Destroy()
 	qdel(wires)
 	wires = null
+	listening_objects -= src
 	if(radio_controller)
 		radio_controller.remove_object(src, frequency)
 		for (var/ch_name in channels)
@@ -474,7 +476,6 @@ var/global/list/default_medbay_channels = list(
 
 
 /obj/item/device/radio/hear_talk(mob/M as mob, msg, var/verb = "says", var/datum/language/speaking = null)
-
 	if (broadcasting)
 		if(get_dist(src, M) <= canhear_range)
 			talk_into(M, msg,null,verb,speaking)

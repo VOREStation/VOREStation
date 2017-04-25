@@ -55,7 +55,7 @@
 				M << "<span class='danger'>You hear an extremely loud screeching sound!  It \
 				[pick("confuses","confounds","perturbs","befuddles","dazes","unsettles","disorients")] you.</span>"
 				M.adjustEarDamage(0,30)
-				M.confused += 20
+				M.Confuse(20)
 				M << sound('sound/effects/screech.ogg')
 				M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Was affected by [key_name(src)]'s Resonant Shriek.</font>")
 			else
