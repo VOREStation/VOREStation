@@ -43,39 +43,39 @@
 	flags = OPENCONTAINER
 	complexity = 20
 	cooldown_per_use = 6 SECONDS
-	inputs = list("target ref", "injection amount" = 5)
+	inputs = list("\<REF\> target", "\<NUM\> injection amount" = 5)
 	outputs = list()
-	activators = list("inject")
+	activators = list("\<PULSE IN\> inject")
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	volume = 30
 	power_draw_per_use = 15
 
 /obj/item/integrated_circuit/reagent/injector/proc/inject_amount()
-	var/datum/integrated_io/amount = inputs[2]
-	if(isnum(amount.data))
-		return Clamp(amount.data, 0, 30)
+	var/amount = get_pin_data(IC_INPUT, 2)
+	if(isnum(amount))
+		return Clamp(amount, 0, 30)
 
 /obj/item/integrated_circuit/reagent/injector/do_work()
 	set waitfor = 0 // Don't sleep in a proc that is called by a processor without this set, otherwise it'll delay the entire thing
 
-	var/datum/integrated_io/target = inputs[1]
-	var/atom/movable/AM = target.data_as_type(/atom/movable)
+	var/atom/movable/AM = get_pin_data_as_type(IC_INPUT, 1, /atom/movable)
 	if(!istype(AM)) //Invalid input
 		return
 	if(!reagents.total_volume) // Empty
 		return
 	if(AM.can_be_injected_by(src))
 		if(isliving(AM))
+			var/mob/living/L = AM
 			var/turf/T = get_turf(AM)
-			T.visible_message("<span class='warning'>[src] is trying to inject [AM]!</span>")
+			T.visible_message("<span class='warning'>[src] is trying to inject [L]!</span>")
 			sleep(3 SECONDS)
-			if(!AM.can_be_injected_by(src))
+			if(!L.can_be_injected_by(src))
 				return
 			var/contained = reagents.get_reagents()
-			var/trans = reagents.trans_to_mob(target, inject_amount(), CHEM_BLOOD)
-			log_debug("[src] injected \the [AM] with [trans]u of [contained].") //VOREStation Edit - I don't care THAT much.
+			var/trans = reagents.trans_to_mob(L, inject_amount(), CHEM_BLOOD)
+			message_admins("[src] injected \the [L] with [trans]u of [contained].")
 			to_chat(AM, "<span class='notice'>You feel a tiny prick!</span>")
-			visible_message("<span class='warning'>[src] injects [AM]!</span>")
+			visible_message("<span class='warning'>[src] injects [L]!</span>")
 		else
 			reagents.trans_to(AM, inject_amount())
 
@@ -88,9 +88,9 @@
 	outside the machine if it is next to the machine.  Note that this cannot be used on entities."
 	flags = OPENCONTAINER
 	complexity = 8
-	inputs = list("source ref", "target ref", "injection amount" = 10)
+	inputs = list("\<REF\> source", "\<REF\> target", "\<NUM\> injection amount" = 10)
 	outputs = list()
-	activators = list("transfer reagents")
+	activators = list("\<PULSE IN\> transfer reagents", "\<PULSE OUT\> on transfer")
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 2)
 	var/transfer_amount = 10
@@ -103,10 +103,9 @@
 		transfer_amount = amount.data
 
 /obj/item/integrated_circuit/reagent/pump/do_work()
-	var/datum/integrated_io/A = inputs[1]
-	var/datum/integrated_io/B = inputs[2]
-	var/atom/movable/source = A.data_as_type(/atom/movable)
-	var/atom/movable/target = B.data_as_type(/atom/movable)
+	var/atom/movable/source = get_pin_data_as_type(IC_INPUT, 1, /atom/movable)
+	var/atom/movable/target = get_pin_data_as_type(IC_INPUT, 2, /atom/movable)
+
 	if(!istype(source) || !istype(target)) //Invalid input
 		return
 	var/turf/T = get_turf(src)
@@ -117,10 +116,11 @@
 			return
 		if(!source.is_open_container() || !target.is_open_container())
 			return
-		if(!source.reagents.get_free_space() || !target.reagents.get_free_space())
+		if(!target.reagents.get_free_space())
 			return
 
 		source.reagents.trans_to(target, transfer_amount)
+		activate_pin(2)
 
 /obj/item/integrated_circuit/reagent/storage
 	name = "reagent storage"

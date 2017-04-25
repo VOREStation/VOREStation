@@ -376,7 +376,7 @@
 	else if(eyes_covered)
 		M << "<span class='warning'>Your [safe_thing] protect you from most of the pepperspray!</span>"
 		M.eye_blurry = max(M.eye_blurry, effective_strength * 3)
-		M.eye_blind = max(M.eye_blind, effective_strength)
+		M.Blind(effective_strength)
 		M.Stun(5)
 		M.Weaken(5)
 		return
@@ -387,7 +387,7 @@
 	else // Oh dear :D
 		M << "<span class='warning'>You're sprayed directly in the eyes with pepperspray!</span>"
 		M.eye_blurry = max(M.eye_blurry, effective_strength * 5)
-		M.eye_blind = max(M.eye_blind, effective_strength * 2)
+		M.Blind(effective_strength * 2)
 		M.Stun(5)
 		M.Weaken(5)
 		return
@@ -1166,7 +1166,7 @@
 	if(M.dizziness)
 		M.dizziness = max(0, M.dizziness - 15)
 	if(M.confused)
-		M.confused = max(0, M.confused - 5)
+		M.Confuse(-5)
 
 /datum/reagent/drink/dry_ramen
 	name = "Dry Ramen"
@@ -2232,3 +2232,26 @@
 	glass_name = "special blend whiskey"
 	glass_desc = "Just when you thought regular station whiskey was good... This silky, amber goodness has to come along and ruin everything."
 
+/datum/reagent/ethanol/unathiliquor	//Needs a better name
+	name = "Unathi Liquor"
+	id = "unathiliquor"
+	description = "This barely qualifies as a drink, and could give jetfuel a run for its money. Also known to cause feelings of euphoria and numbness."
+	taste_description = "spiced numbness"
+	color = "#242424"
+	strength = 5
+
+	glass_name = "unathi liquor"
+	glass_desc = "This barely qualifies as a drink, and may cause euphoria and numbness. Imbimber beware!"
+
+/datum/reagent/ethanol/unathiliquor/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	if(alien == IS_DIONA)
+		return
+
+	var/drug_strength = 10
+	if(alien == IS_SKRELL)
+		drug_strength = drug_strength * 0.8
+
+	M.druggy = max(M.druggy, drug_strength)
+	if(prob(10) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
+		step(M, pick(cardinal))

@@ -90,6 +90,24 @@
 
 	return 0
 
+// Returns a string based on what kind of brain the FBP has.
+/mob/living/carbon/human/proc/get_FBP_type()
+	if(!isSynthetic())
+		return FBP_NONE
+	var/obj/item/organ/internal/brain/B
+	B = internal_organs_by_name[O_BRAIN]
+	if(B) // Incase we lost our brain for some reason, like if we got decapped.
+		if(istype(B, /obj/item/organ/internal/mmi_holder))
+			var/obj/item/organ/internal/mmi_holder/mmi_holder = B
+			if(istype(mmi_holder.stored_mmi, /obj/item/device/mmi/digital/posibrain))
+				return FBP_POSI
+			else if(istype(mmi_holder.stored_mmi, /obj/item/device/mmi/digital/robot))
+				return FBP_DRONE
+			else if(istype(mmi_holder.stored_mmi, /obj/item/device/mmi)) // This needs to come last because inheritence.
+				return FBP_CYBORG
+
+	return FBP_NONE
+
 #undef HUMAN_EATING_NO_ISSUE
 #undef HUMAN_EATING_NO_MOUTH
 #undef HUMAN_EATING_BLOCKED_MOUTH

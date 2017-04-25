@@ -41,9 +41,11 @@
 		i++
 
 /datum/event/carp_migration/end()
-	for(var/mob/living/simple_animal/hostile/carp/C in spawned_carp)
-		if(!C.stat)
-			var/turf/T = get_turf(C)
-			if(istype(T, /turf/space))
-				if(!prob(25))
-					qdel(C)
+	spawn(0)
+		for(var/mob/living/simple_animal/hostile/C in spawned_carp)
+			if(!C.stat)
+				var/turf/T = get_turf(C)
+				if(istype(T, /turf/space))
+					if(prob(75))
+						qdel(C)
+			sleep(1)
