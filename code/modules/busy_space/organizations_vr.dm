@@ -1,7 +1,7 @@
 //Datums for different companies that can be used by busy_space, VR edition
 //////////////////////////////////////////////////////////////////////////////////
 
-/datum/lore/organization/federation
+/datum/lore/organization/gov/federation
 	name = "United Federation of Planets"
 	short_name = "Federation"
 	desc = "The United Federation is a federation of planets that have agreed to exist semi-autonomously \
@@ -69,7 +69,7 @@
 						"Mari Industrial Complex on Furlou Prime",
 						"Runni Crystal Mines of Keid V")
 
-/datum/lore/organization/unsc
+/datum/lore/organization/mil/unsc
 	name = "United Nations Space Command"
 	short_name = "Navy" //Otherwise they call the ships UNSC UNSC Name
 	desc = "The dedicated military force of SolGov, formed from the remnants of the United Nations, is the might of SolGov. \
@@ -113,17 +113,17 @@
 						"a colony ship around Ceti IV-B",
 						"a classified location in SolGov territory")
 
-/datum/lore/organization/kitsuhana
+/datum/lore/organization/gov/kitsuhana
 	name = "Kitsuhana Heavy Industries"
 	short_name = "Kitsuhana"
 	desc = "A large post-scarcity amalgamation of races, Kitsuhana is no longer a company but rather a loose association of 'members' \
 			who only share the KHI name and their ideals in common. Kitsuhana accepts interviews to join their ranks, and though they have no \
 			formal structure with regards to government or law, the concept of 'consent' drives most of the large decision making. Kitsuhanans \
-			pride themselves on their ability to avoid consequence. Their post-scarcity allows them to rebuild, regrow, and replenish almost any \
-			lost asset or resource nearly instantly. It leads to many of the Kitsuhana 'members' treating everything with frivolity, \
+			pride themselves on their ability to avoid consequence, essentially preferring to live care-free lives. Their post-scarcity allows them to rebuild, \
+			regrow, and replenish almost any lost asset or resource nearly instantly. It leads to many of the Kitsuhana 'members' treating everything with frivolity, \
 			and lends them a care-free demeanor."
 	history = "Originally a heavy industrial equipment and space mining company. During a forced evacuation of their homeworld, \
-			they were they only organization with enough ship capacity to evacuate any of the population, starting with their employees. \
+			they were they only organization with enough ship capacity to relocate any significant portion of the population, starting with their own employees. \
 			After the resulting slowship travel to nearby starsystems, most of the population decided to keep the moniker of the \
 			company name. Over the years, Kitsuhana developed into a post-scarcity anarchy where virtually nothing has consequences \
 			and Kitsuhana 'members' can live their lives as they see fit, often in isolation."
@@ -167,7 +167,7 @@
 						"a Kitsuhana ringworld in Dais IX",
 						"a Kitsuhana ringworld in Leibert II-b")
 
-/datum/lore/organization/ares
+/datum/lore/organization/gov/ares
     name = "Ares Confederation"
     short_name = "ArCon"
     desc = "A rebel faction on the fringes of human space that renounced the government of both SolGov and their corporate overlords. \
