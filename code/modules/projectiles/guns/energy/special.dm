@@ -21,7 +21,7 @@
 	item_state = null
 	w_class = ITEMSIZE_NORMAL
 	force = 5
-	slot_flags = SLOT_BELT
+	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	charge_cost = 480
 	projectile_type = /obj/item/projectile/ion
 

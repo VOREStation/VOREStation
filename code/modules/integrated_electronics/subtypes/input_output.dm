@@ -14,28 +14,27 @@
 	can_be_asked_input = 1
 	inputs = list()
 	outputs = list()
-	activators = list("on pressed")
+	activators = list("\<PULSE OUT\> on pressed")
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/input/button/ask_for_input(mob/user) //Bit misleading name for this specific use.
-	var/datum/integrated_io/A = activators[1]
-	if(A.linked.len)
-		for(var/datum/integrated_io/activate/target in A.linked)
-			target.holder.check_then_do_work()
 	to_chat(user, "<span class='notice'>You press the button labeled '[src.name]'.</span>")
+	activate_pin(1)
 
 /obj/item/integrated_circuit/input/toggle_button
 	name = "toggle button"
 	desc = "It toggles on, off, on, off..."
 	icon_state = "toggle_button"
 	complexity = 1
+	can_be_asked_input = 1
 	inputs = list()
-	outputs = list("on" = 0)
-	activators = list("on toggle")
+	outputs = list("\<NUM\> on" = 0)
+	activators = list("\<PULSE OUT\> on toggle")
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/input/toggle_button/ask_for_input(mob/user) // Ditto.
 	set_pin_data(IC_OUTPUT, 1, !get_pin_data(IC_OUTPUT, 1))
+	push_data()
 	activate_pin(1)
 	to_chat(user, "<span class='notice'>You toggle the button labeled '[src.name]' [get_pin_data(IC_OUTPUT, 1) ? "on" : "off"].</span>")
 
@@ -46,19 +45,17 @@
 	complexity = 2
 	can_be_asked_input = 1
 	inputs = list()
-	outputs = list("number entered")
-	activators = list("on entered")
+	outputs = list("\<NUM\> number entered")
+	activators = list("\<PULSE OUT\> on entered")
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 4
 
 /obj/item/integrated_circuit/input/numberpad/ask_for_input(mob/user)
 	var/new_input = input(user, "Enter a number, please.","Number pad") as null|num
 	if(isnum(new_input) && CanInteract(user, physical_state))
-		var/datum/integrated_io/O = outputs[1]
-		O.data = new_input
-		O.push_data()
-		var/datum/integrated_io/A = activators[1]
-		A.push_data()
+		set_pin_data(IC_OUTPUT, 1, new_input)
+		push_data()
+		activate_pin(1)
 
 /obj/item/integrated_circuit/input/textpad
 	name = "text pad"
@@ -67,49 +64,43 @@
 	complexity = 2
 	can_be_asked_input = 1
 	inputs = list()
-	outputs = list("string entered")
-	activators = list("on entered")
+	outputs = list("\<TEXT\> string entered")
+	activators = list("\<PULSE OUT\> on entered")
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 4
 
 /obj/item/integrated_circuit/input/textpad/ask_for_input(mob/user)
 	var/new_input = input(user, "Enter some words, please.","Number pad") as null|text
 	if(istext(new_input) && CanInteract(user, physical_state))
-		var/datum/integrated_io/O = outputs[1]
-		O.data = new_input
-		O.push_data()
-		var/datum/integrated_io/A = activators[1]
-		A.push_data()
+		set_pin_data(IC_OUTPUT, 1, new_input)
+		push_data()
+		activate_pin(1)
 
 /obj/item/integrated_circuit/input/med_scanner
 	name = "integrated medical analyser"
 	desc = "A very small version of the common medical analyser.  This allows the machine to know how healthy someone is."
 	icon_state = "medscan"
 	complexity = 4
-	inputs = list("target ref")
-	outputs = list("total health %", "total missing health")
-	activators = list("scan")
+	inputs = list("\<REF\> target")
+	outputs = list("\<NUM\> total health %", "\<NUM\> total missing health")
+	activators = list("\<PULSE IN\> scan", "\<PULSE OUT\> on scanned")
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 2)
 	power_draw_per_use = 40
 
 /obj/item/integrated_circuit/input/med_scanner/do_work()
-	var/datum/integrated_io/I = inputs[1]
-	var/mob/living/carbon/human/H = I.data_as_type(/mob/living/carbon/human)
+	var/mob/living/carbon/human/H = get_pin_data_as_type(IC_INPUT, 1, /mob/living/carbon/human)
 	if(!istype(H)) //Invalid input
 		return
 	if(H.Adjacent(get_turf(src))) // Like normal analysers, it can't be used at range.
-		var/total_health = round(H.health/H.maxHealth, 0.1)*100
-		var/missing_health = H.maxHealth - H.health
+		var/total_health = round(H.health/H.getMaxHealth(), 0.1)*100
+		var/missing_health = H.getMaxHealth() - H.health
 
-		var/datum/integrated_io/total = outputs[1]
-		var/datum/integrated_io/missing = outputs[2]
+		set_pin_data(IC_OUTPUT, 1, total_health)
+		set_pin_data(IC_OUTPUT, 2, missing_health)
 
-		total.data = total_health
-		missing.data = missing_health
-
-	for(var/datum/integrated_io/output/O in outputs)
-		O.push_data()
+	push_data()
+	activate_pin(2)
 
 /obj/item/integrated_circuit/input/adv_med_scanner
 	name = "integrated advanced medical analyser"
@@ -117,48 +108,39 @@
 	This type is much more precise, allowing the machine to know much more about the target than a normal analyzer."
 	icon_state = "medscan_adv"
 	complexity = 12
-	inputs = list("target ref")
+	inputs = list("\<REF\> target")
 	outputs = list(
-		"total health %",
-		"total missing health",
-		"brute damage",
-		"burn damage",
-		"tox damage",
-		"oxy damage",
-		"clone damage"
+		"\<NUM\> total health %",
+		"\<NUM\> total missing health",
+		"\<NUM\> brute damage",
+		"\<NUM\> burn damage",
+		"\<NUM\> tox damage",
+		"\<NUM\> oxy damage",
+		"\<NUM\> clone damage"
 	)
-	activators = list("scan")
+	activators = list("\<PULSE IN\> scan", "\<PULSE OUT\> on scanned")
 	spawn_flags = IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3, TECH_BIO = 4)
 	power_draw_per_use = 80
 
 /obj/item/integrated_circuit/input/adv_med_scanner/do_work()
-	var/datum/integrated_io/I = inputs[1]
-	var/mob/living/carbon/human/H = I.data_as_type(/mob/living/carbon/human)
+	var/mob/living/carbon/human/H = get_pin_data_as_type(IC_INPUT, 1, /mob/living/carbon/human)
 	if(!istype(H)) //Invalid input
 		return
 	if(H.Adjacent(get_turf(src))) // Like normal analysers, it can't be used at range.
-		var/total_health = round(H.health/H.maxHealth, 0.1)*100
-		var/missing_health = H.maxHealth - H.health
+		var/total_health = round(H.health/H.getMaxHealth(), 0.1)*100
+		var/missing_health = H.getMaxHealth() - H.health
 
-		var/datum/integrated_io/total = outputs[1]
-		var/datum/integrated_io/missing = outputs[2]
-		var/datum/integrated_io/brute = outputs[3]
-		var/datum/integrated_io/burn = outputs[4]
-		var/datum/integrated_io/tox = outputs[5]
-		var/datum/integrated_io/oxy = outputs[6]
-		var/datum/integrated_io/clone = outputs[7]
+		set_pin_data(IC_OUTPUT, 1, total_health)
+		set_pin_data(IC_OUTPUT, 2, missing_health)
+		set_pin_data(IC_OUTPUT, 3, H.getBruteLoss())
+		set_pin_data(IC_OUTPUT, 4, H.getFireLoss())
+		set_pin_data(IC_OUTPUT, 5, H.getToxLoss())
+		set_pin_data(IC_OUTPUT, 6, H.getOxyLoss())
+		set_pin_data(IC_OUTPUT, 7, H.getCloneLoss())
 
-		total.data = total_health
-		missing.data = missing_health
-		brute.data = H.getBruteLoss()
-		burn.data = H.getFireLoss()
-		tox.data = H.getToxLoss()
-		oxy.data = H.getOxyLoss()
-		clone.data = H.getCloneLoss()
-
-	for(var/datum/integrated_io/output/O in outputs)
-		O.push_data()
+	push_data()
+	activate_pin(2)
 
 /obj/item/integrated_circuit/input/local_locator
 	name = "local locator"
@@ -222,9 +204,9 @@
 	Meaning the default frequency is expressed as 1457, not 145.7.  To send a signal, pulse the 'send signal' activator pin."
 	icon_state = "signal"
 	complexity = 4
-	inputs = list("frequency","code")
+	inputs = list("\<NUM\> frequency","\<NUM\> code")
 	outputs = list()
-	activators = list("send signal","on signal received")
+	activators = list("\<PULSE IN\> send signal","\<PULSE OUT\> on signal sent", "\<PULSE OUT\> on signal received")
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_MAGNET = 2)
 	power_draw_idle = 5
@@ -237,11 +219,9 @@
 /obj/item/integrated_circuit/input/signaler/initialize()
 	..()
 	set_frequency(frequency)
-	var/datum/integrated_io/new_freq = inputs[1]
-	var/datum/integrated_io/new_code = inputs[2]
 	// Set the pins so when someone sees them, they won't show as null
-	new_freq.data = frequency
-	new_code.data = code
+	set_pin_data(IC_INPUT, 1, frequency)
+	set_pin_data(IC_INPUT, 2, code)
 
 /obj/item/integrated_circuit/input/signaler/Destroy()
 	if(radio_controller)
@@ -250,12 +230,12 @@
 	. = ..()
 
 /obj/item/integrated_circuit/input/signaler/on_data_written()
-	var/datum/integrated_io/new_freq = inputs[1]
-	var/datum/integrated_io/new_code = inputs[2]
-	if(isnum(new_freq.data) && new_freq.data > 0)
-		set_frequency(new_freq.data)
-	if(isnum(new_code.data))
-		code = new_code.data
+	var/new_freq = get_pin_data(IC_INPUT, 1)
+	var/new_code = get_pin_data(IC_INPUT, 2)
+	if(isnum(new_freq) && new_freq > 0)
+		set_frequency(new_freq)
+	if(isnum(new_code))
+		code = new_code
 
 
 /obj/item/integrated_circuit/input/signaler/do_work() // Sends a signal.
@@ -267,6 +247,7 @@
 	signal.encryption = code
 	signal.data["message"] = "ACTIVATE"
 	radio_connection.post_signal(src, signal)
+	activate_pin(2)
 
 /obj/item/integrated_circuit/input/signaler/proc/set_frequency(new_frequency)
 	if(!frequency)
@@ -280,11 +261,11 @@
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
 
 /obj/item/integrated_circuit/input/signaler/receive_signal(datum/signal/signal)
-	var/datum/integrated_io/new_code = inputs[2]
+	var/new_code = get_pin_data(IC_INPUT, 2)
 	var/code = 0
 
-	if(isnum(new_code.data))
-		code = new_code.data
+	if(isnum(new_code))
+		code = new_code
 	if(!signal)
 		return 0
 	if(signal.encryption != code)
@@ -292,8 +273,7 @@
 	if(signal.source == src) // Don't trigger ourselves.
 		return 0
 
-	var/datum/integrated_io/A = activators[2]
-	A.push_data()
+	activate_pin(3)
 
 	for(var/mob/O in hearers(1, get_turf(src)))
 		O.show_message(text("\icon[] *beep* *beep*", src), 3, "*beep* *beep*", 2)
@@ -306,9 +286,9 @@
 	will pulse whatever's connected to it.  Pulsing the first activation pin will send a message."
 	icon_state = "signal"
 	complexity = 4
-	inputs = list("target EPv2 address", "data to send", "secondary text")
-	outputs = list("address received", "data received", "secondary text received")
-	activators = list("send data", "on data received")
+	inputs = list("\<TEXT\> target EPv2 address", "\<TEXT\> data to send", "\<TEXT\> secondary text")
+	outputs = list("\<TEXT\> address received", "\<TEXT\> data received", "\<TEXT\> secondary text received")
+	activators = list("\<PULSE IN\> send data", "\<PULSE OUT\> on data received")
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_MAGNET = 2, TECH_BLUESPACE = 2)
 	power_draw_per_use = 50
@@ -318,7 +298,7 @@
 	..()
 	exonet = new(src)
 	exonet.make_address("EPv2_circuit-\ref[src]")
-	desc += "<br>This circuit's EPv2 address is: [exonet.address]."
+	desc += "<br>This circuit's EPv2 address is: [exonet.address]"
 
 /obj/item/integrated_circuit/input/EPv2/Destroy()
 	if(exonet)
@@ -327,64 +307,60 @@
 	..()
 
 /obj/item/integrated_circuit/input/EPv2/do_work()
-	var/datum/integrated_io/target_address = inputs[1]
-	var/datum/integrated_io/message = inputs[2]
-	var/datum/integrated_io/text = inputs[3]
-	if(istext(target_address.data))
-		exonet.send_message(target_address.data, message.data, text.data)
+	var/target_address = get_pin_data(IC_INPUT, 1)
+	var/message = get_pin_data(IC_INPUT, 2)
+	var/text = get_pin_data(IC_INPUT, 3)
+
+	if(target_address && istext(target_address))
+		exonet.send_message(target_address, message, text)
 
 /obj/item/integrated_circuit/input/receive_exonet_message(var/atom/origin_atom, var/origin_address, var/message, var/text)
-	var/datum/integrated_io/message_received = outputs[1]
-	var/datum/integrated_io/data_received = outputs[2]
-	var/datum/integrated_io/text_received = outputs[3]
+	set_pin_data(IC_OUTPUT, 1, origin_address)
+	set_pin_data(IC_OUTPUT, 2, message)
+	set_pin_data(IC_OUTPUT, 3, text)
 
-	var/datum/integrated_io/A = activators[2]
-	A.push_data()
-
-	message_received.write_data_to_pin(origin_address)
-	data_received.write_data_to_pin(message)
-	text_received.write_data_to_pin(text)
-
-	for(var/datum/integrated_io/output/O in outputs)
-		O.push_data()
+	push_data()
+	activate_pin(2)
 
 //This circuit gives information on where the machine is.
 /obj/item/integrated_circuit/input/gps
 	name = "global positioning system"
 	desc = "This allows you to easily know the position of a machine containing this device."
+	extended_desc = "The GPS's coordinates it gives is absolute, not relative."
 	icon_state = "gps"
 	complexity = 4
 	inputs = list()
-	outputs = list("X (abs)", "Y (abs)")
-	activators = list("get coordinates")
+	outputs = list("\<NUM\> X", "\<NUM\> Y")
+	activators = list("\<PULSE IN\> get coordinates", "\<PULSE OUT\> on get coordinates")
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 30
 
 /obj/item/integrated_circuit/input/gps/do_work()
 	var/turf/T = get_turf(src)
-	var/datum/integrated_io/result_x = outputs[1]
-	var/datum/integrated_io/result_y = outputs[2]
 
-	result_x.data = null
-	result_y.data = null
+	set_pin_data(IC_OUTPUT, 1, null)
+	set_pin_data(IC_OUTPUT, 2, null)
 	if(!T)
 		return
 
-	result_x.data = T.x
-	result_y.data = T.y
+	set_pin_data(IC_OUTPUT, 1, T.x)
+	set_pin_data(IC_OUTPUT, 2, T.y)
 
-	for(var/datum/integrated_io/output/O in outputs)
-		O.push_data()
+	push_data()
+	activate_pin(2)
 
 
 /obj/item/integrated_circuit/input/microphone
 	name = "microphone"
 	desc = "Useful for spying on people or for voice activated machines."
+	extended_desc = "This will automatically translate most languages it hears to Galactic Common.  \
+	The first activation pin is always pulsed when the circuit hears someone talk, while the second one \
+	is only triggered if it hears someone speaking a language other than Galactic Common."
 	icon_state = "recorder"
 	complexity = 8
 	inputs = list()
-	outputs = list("speaker \<String\>", "message \<String\>")
-	activators = list("on message received")
+	outputs = list("\<TEXT\> speaker", "\<TEXT\> message")
+	activators = list("\<PULSE OUT\> on message received", "\<PULSE OUT\> on translation")
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 15
 
@@ -397,42 +373,45 @@
 	..()
 
 /obj/item/integrated_circuit/input/microphone/hear_talk(mob/living/M, msg, var/verb="says", datum/language/speaking=null)
-	var/datum/integrated_io/V = outputs[1]
-	var/datum/integrated_io/O = outputs[2]
-	var/datum/integrated_io/A = activators[1]
+	var/translated = FALSE
 	if(M && msg)
 		if(speaking)
 			if(!speaking.machine_understands)
 				msg = speaking.scramble(msg)
-		V.data = M.GetVoice()
-		O.data = msg
-		A.push_data()
+			if(!istype(speaking, /datum/language/common))
+				translated = TRUE
+		set_pin_data(IC_OUTPUT, 1, M.GetVoice())
+		set_pin_data(IC_OUTPUT, 2, msg)
 
-	for(var/datum/integrated_io/output/out in outputs)
-		out.push_data()
-
-	A.push_data()
+	push_data()
+	activate_pin(1)
+	if(translated)
+		activate_pin(2)
 
 
 
 /obj/item/integrated_circuit/input/sensor
 	name = "sensor"
 	desc = "Scans and obtains a reference for any objects or persons near you.  All you need to do is shove the machine in their face."
+	extended_desc = "If 'ignore storage' pin is set to 1, the sensor will disregard scanning various storage containers such as backpacks."
 	icon_state = "recorder"
 	complexity = 12
-	inputs = list()
-	outputs = list("scanned ref \<Ref\>")
-	activators = list("on scanned")
+	inputs = list("\<NUM\> ignore storage" = 1)
+	outputs = list("\<REF\> scanned")
+	activators = list("\<PULSE OUT\> on scanned")
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 120
 
-/obj/item/integrated_circuit/input/sensor/do_work()
-	// Because this gets called by attack(), all this needs to do is pulse the activator.
-	for(var/datum/integrated_io/output/O in outputs)
-		O.push_data()
-	var/datum/integrated_io/activate/A = activators[1]
-	A.push_data()
+/obj/item/integrated_circuit/input/sensor/proc/scan(var/atom/A)
+	var/ignore_bags = get_pin_data(IC_INPUT, 1)
+	if(ignore_bags)
+		if(istype(A, /obj/item/weapon/storage))
+			return FALSE
 
+	set_pin_data(IC_OUTPUT, 1, weakref(A))
+	push_data()
+	activate_pin(1)
+	return TRUE
 
 /obj/item/integrated_circuit/output
 	category_text = "Output"
@@ -441,9 +420,9 @@
 	name = "small screen"
 	desc = "This small screen can display a single piece of data, when the machine is examined closely."
 	icon_state = "screen"
-	inputs = list("displayed data")
+	inputs = list("\<TEXT/NUM\> displayed data")
 	outputs = list()
-	activators = list("load data")
+	activators = list("\<PULSE IN\> load data")
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 10
 	autopulse = 1
@@ -497,7 +476,7 @@
 	complexity = 4
 	inputs = list()
 	outputs = list()
-	activators = list("toggle light")
+	activators = list("\<PULSE IN\> toggle light")
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	var/light_toggled = 0
 	var/light_brightness = 3
@@ -519,18 +498,18 @@
 	power_draw_idle = light_toggled ? light_brightness * 2 : 0
 
 /obj/item/integrated_circuit/output/light/advanced/update_lighting()
-	var/datum/integrated_io/R = inputs[1]
-	var/datum/integrated_io/G = inputs[2]
-	var/datum/integrated_io/B = inputs[3]
-	var/datum/integrated_io/brightness = inputs[4]
+	var/R = get_pin_data(IC_INPUT, 1)
+	var/G = get_pin_data(IC_INPUT, 2)
+	var/B = get_pin_data(IC_INPUT, 3)
+	var/brightness = get_pin_data(IC_INPUT, 4)
 
-	if(isnum(R.data) && isnum(G.data) && isnum(B.data) && isnum(brightness.data))
-		R.data = Clamp(R.data, 0, 255)
-		G.data = Clamp(G.data, 0, 255)
-		B.data = Clamp(B.data, 0, 255)
-		brightness.data = Clamp(brightness.data, 0, 6)
-		light_rgb = rgb(R.data, G.data, B.data)
-		light_brightness = brightness.data
+	if(isnum(R) && isnum(G) && isnum(B) && isnum(brightness))
+		R = Clamp(R, 0, 255)
+		G = Clamp(G, 0, 255)
+		B = Clamp(B, 0, 255)
+		brightness = Clamp(brightness, 0, 6)
+		light_rgb = rgb(R, G, B)
+		light_brightness = brightness
 
 	..()
 
@@ -544,10 +523,10 @@
 	icon_state = "light_adv"
 	complexity = 8
 	inputs = list(
-		"R",
-		"G",
-		"B",
-		"Brightness"
+		"\<NUM\> R",
+		"\<NUM\> G",
+		"\<NUM\> B",
+		"\<NUM\> Brightness"
 	)
 	outputs = list()
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
@@ -563,9 +542,9 @@
 	complexity = 8
 	cooldown_per_use = 4 SECONDS
 	inputs = list(
-		"sound ID",
-		"volume",
-		"frequency"
+		"\<TEXT\> sound ID",
+		"\<NUM\> volume",
+		"\<NUM\> frequency"
 	)
 	outputs = list()
 	activators = list("play sound")

@@ -48,7 +48,7 @@ var/list/possible_cable_coil_colours = list(
 	anchored =1
 	var/datum/powernet/powernet
 	name = "power cable"
-	desc = "A flexible superconducting cable for heavy-duty power transfer"
+	desc = "A flexible superconducting cable for heavy-duty power transfer."
 	icon = 'icons/obj/power_cond_white.dmi'
 	icon_state = "0-1"
 	var/d1 = 0
@@ -116,9 +116,9 @@ var/list/possible_cable_coil_colours = list(
 		user.examinate(src)
 		// following code taken from attackby (multitool)
 		if(powernet && (powernet.avail > 0))
-			user << "<span class='warning'>[powernet.avail]W in power network.</span>"
+			to_chat(user, "<span class='warning'>[powernet.avail]W in power network.</span>")
 		else
-			user << "<span class='warning'>The cable is not powered.</span>"
+			to_chat(user, "<span class='warning'>The cable is not powered.</span>")
 	return
 
 ///////////////////////////////////
@@ -159,12 +159,12 @@ var/list/possible_cable_coil_colours = list(
 		return
 
 	if(istype(W, /obj/item/weapon/wirecutters))
-		if(d1 == 12 || d2 == 12)
-			user << "<span class='warning'>You must cut this cable from above.</span>"
+		if(d1 == UP || d2 == UP)
+			to_chat(user, "<span class='warning'>You must cut this cable from above.</span>")
 			return
 
 		if(breaker_box)
-			user << "\red This cable is connected to nearby breaker box. Use breaker box to interact with it."
+			to_chat(user, "<span class='warning'>This cable is connected to nearby breaker box. Use breaker box to interact with it.</span>")
 			return
 
 		if (shock(user, 50))
@@ -178,11 +178,11 @@ var/list/possible_cable_coil_colours = list(
 		for(var/mob/O in viewers(src, null))
 			O.show_message("<span class='warning'>[user] cuts the cable.</span>", 1)
 
-		if(d1 == 11 || d2 == 11)
+		if(d1 == DOWN || d2 == DOWN)
 			var/turf/turf = GetBelow(src)
 			if(turf)
 				for(var/obj/structure/cable/c in turf)
-					if(c.d1 == 12 || c.d2 == 12)
+					if(c.d1 == UP || c.d2 == UP)
 						qdel(c)
 
 		investigate_log("was cut by [key_name(usr, usr.client)] in [user.loc.loc]","wires")
@@ -194,17 +194,17 @@ var/list/possible_cable_coil_colours = list(
 	else if(istype(W, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/coil = W
 		if (coil.get_amount() < 1)
-			user << "Not enough cable"
+			to_chat(user, "Not enough cable")
 			return
 		coil.cable_join(src, user)
 
 	else if(istype(W, /obj/item/device/multitool))
 
 		if(powernet && (powernet.avail > 0))		// is it powered?
-			user << "<span class='warning'>[powernet.avail]W in power network.</span>"
+			to_chat(user, "<span class='warning'>[powernet.avail]W in power network.</span>")
 
 		else
-			user << "<span class='warning'>The cable is not powered.</span>"
+			to_chat(user, "<span class='warning'>The cable is not powered.</span>")
 
 		shock(user, 5, 0.2)
 
@@ -300,12 +300,12 @@ obj/structure/cable/proc/cableColor(var/colorC)
 // merge with the powernets of power objects in the given direction
 /obj/structure/cable/proc/mergeConnectedNetworks(var/direction)
 
-	var/fdir = (!direction)? 0 : turn(direction, 180) //flip the direction, to match with the source position on its turf
+	var/fdir = direction ? reverse_dir[direction] : 0 //flip the direction, to match with the source position on its turf
 
 	if(!(d1 == direction || d2 == direction)) //if the cable is not pointed in this direction, do nothing
 		return
 
-	var/turf/TB  = get_step(src, direction)
+	var/turf/TB  = get_zstep(src, direction)
 
 	for(var/obj/structure/cable/C in TB)
 
@@ -376,25 +376,15 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	. = list()	// this will be a list of all connected power objects
 	var/turf/T
 
-	// Handle up/down cables
-	if(d1 == 11 || d2 == 11)
-		T = GetBelow(src)
-		if(T)
-			. += power_list(T, src, 12, 1)
-	if(d1 == 12 || d1 == 12)
-		T = GetAbove(src)
-		if(T)
-			. += power_list(T, src, 11, 1)
-
 	// Handle standard cables in adjacent turfs
 	for(var/cable_dir in list(d1, d2))
-		if(cable_dir == 11 || cable_dir == 12 || cable_dir == 0)
+		if(cable_dir == 0)
 			continue
 		var/reverse = reverse_dir[cable_dir]
-		T = get_step(src, cable_dir)
+		T = get_zstep(src, cable_dir)
 		if(T)
 			for(var/obj/structure/cable/C in T)
-				if((C.d1 && C.d1 == reverse) || (C.d2 && C.d2 == reverse))
+				if(C.d1 == reverse || C.d2 == reverse)
 					. += C
 		if(cable_dir & (cable_dir - 1)) // Diagonal, check for /\/\/\ style cables along cardinal directions
 			for(var/pair in list(NORTH|SOUTH, EAST|WEST))
@@ -402,7 +392,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 				if(T)
 					var/req_dir = cable_dir ^ pair
 					for(var/obj/structure/cable/C in T)
-						if((C.d1 && C.d1 == req_dir) || (C.d2 && C.d2 == req_dir))
+						if(C.d1 == req_dir || C.d2 == req_dir)
 							. += C
 
 	// Handle cables on the same turf as us
@@ -566,7 +556,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		final_color = possible_cable_coil_colours["Red"]
 		selected_color = "red"
 	color = final_color
-	user << "<span class='notice'>You change \the [src]'s color to [lowertext(selected_color)].</span>"
+	to_chat(user, "<span class='notice'>You change \the [src]'s color to [lowertext(selected_color)].</span>")
 
 /obj/item/stack/cable_coil/proc/update_wclass()
 	if(amount == 1)
@@ -579,11 +569,11 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		return
 
 	if(get_amount() == 1)
-		user << "A short piece of power cable."
+		to_chat(user, "A short piece of power cable.")
 	else if(get_amount() == 2)
-		user << "A piece of power cable."
+		to_chat(user, "A piece of power cable.")
 	else
-		user << "A coil of power cable. There are [get_amount()] lengths of cable in the coil."
+		to_chat(user, "A coil of power cable. There are [get_amount()] lengths of cable in the coil.")
 
 
 /obj/item/stack/cable_coil/verb/make_restraint()
@@ -594,14 +584,14 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	if(ishuman(M) && !M.restrained() && !M.stat && !M.paralysis && ! M.stunned)
 		if(!istype(usr.loc,/turf)) return
 		if(src.amount <= 14)
-			usr << "\red You need at least 15 lengths to make restraints!"
+			to_chat(usr, "<span class='warning'>You need at least 15 lengths to make restraints!</span>")
 			return
 		var/obj/item/weapon/handcuffs/cable/B = new /obj/item/weapon/handcuffs/cable(usr.loc)
 		B.color = color
-		usr << "<span class='notice'>You wind some cable together to make some restraints.</span>"
+		to_chat(usr, "<span class='notice'>You wind some cable together to make some restraints.</span>")
 		src.use(15)
 	else
-		usr << "\blue You cannot do that."
+		to_chat(usr, "<span class='notice'>You cannot do that.</span>")
 	..()
 
 /obj/item/stack/cable_coil/cyborg/verb/set_colour()

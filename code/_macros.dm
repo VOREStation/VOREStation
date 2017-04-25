@@ -42,6 +42,8 @@
 
 #define isxeno(A) istype(A, /mob/living/simple_animal/xeno)
 
+#define isopenspace(A) istype(A, /turf/simulated/open)
+
 #define isweakref(A) istype(A, /weakref)
 
 #define RANDOM_BLOOD_TYPE pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")

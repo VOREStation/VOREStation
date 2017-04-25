@@ -287,7 +287,7 @@
 	H.dna = R.dna.Clone()
 	H.UpdateAppearance() // Update all appearance stuff from the DNA record
 	H.sync_organ_dna() // Do this because sprites depend on DNA-gender of organs (chest etc)
-	H.size_multiplier = active_br.sizemult
+	H.resize(active_br.sizemult, FALSE)
 
 	// And as for clothing...
 	// We don't actually dress them! This is a medical machine, handle the nakedness DOCTOR!

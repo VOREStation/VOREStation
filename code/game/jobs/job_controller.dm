@@ -388,6 +388,7 @@ var/global/datum/controller/occupations/job_master
 			job.equip_backpack(H)
 			job.equip_survival(H)
 			job.apply_fingerprints(H)
+			H.equip_post_job()
 
 			//If some custom items could not be equipped before, try again now.
 			for(var/thing in custom_equip_leftovers)

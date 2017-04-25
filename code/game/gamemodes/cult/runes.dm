@@ -958,7 +958,7 @@ var/list/sacrificed = list()
 					if(N)
 						continue
 					C.eye_blurry += 50
-					C.eye_blind += 20
+					C.Blind(20)
 					if(prob(5))
 						C.disabilities |= NEARSIGHTED
 						if(prob(10))
@@ -981,7 +981,7 @@ var/list/sacrificed = list()
 					if(N)
 						continue
 					C.eye_blurry += 30
-					C.eye_blind += 10
+					C.Blind(10)
 					//talismans is weaker.
 					affected += C
 					C.show_message("<span class='warning'>You feel a sharp pain in your eyes, and the world disappears into darkness..</span>", 3)

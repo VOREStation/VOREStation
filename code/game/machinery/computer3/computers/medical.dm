@@ -95,6 +95,7 @@
 
 							dat += "<table><tr><td>Name: [active1.fields["name"]] \
 									ID: [active1.fields["id"]]<BR>\n	\
+									Entity Classification: <A href='?src=\ref[src];field=brain_type'>[active1.fields["brain_type"]]</A><BR>\n	\
 									Sex: <A href='?src=\ref[src];field=sex'>[active1.fields["sex"]]</A><BR>\n	\
 									Age: <A href='?src=\ref[src];field=age'>[active1.fields["age"]]</A><BR>\n	\
 									Fingerprint: <A href='?src=\ref[src];field=fingerprint'>[active1.fields["fingerprint"]]</A><BR>\n	\

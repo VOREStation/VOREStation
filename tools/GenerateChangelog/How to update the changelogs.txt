@@ -1,0 +1,15 @@
+Taken mostly from https://tgstation13.org/wiki/Guide_to_Changelogs#Updating_the_Changelog with a few changes.
+
+First, install Python 2.7. Yes, it's outdated, but that's what the script is made to work with.
+Make sure that Python 2.7 and its Scripts/ folder is in PATH
+Upgrade pip, as outlined here https://pip.pypa.io/en/stable/installing/
+Once pip is installed, you will need to run two commands from your terminal or command prompt to install packages
+1. 'pip install PyYaml'
+2. 'pip install beautifulsoup4'
+
+Once all this is done, you should just be able to run ss13_genchangelog.py and sit back.
+
+If you get errors running it, two things are possible.
+1. You installed something wrong.
+2. Someone formatted their changelog wrong.
+Check where the error was, do a bit of troubleshooting, see if it wasn't #2. Fixing the syntax in the yaml files is pretty simple.

@@ -102,13 +102,19 @@
 				spanstyle = "color:purple;"
 			if(DM_TRANSFORM_MALE)
 				spanstyle = "color:purple;"
+			if(DM_TRANSFORM_HAIR_AND_EYES)
+				spanstyle = "color:purple;"
 			if(DM_TRANSFORM_FEMALE)
 				spanstyle = "color:purple;"
 			if(DM_TRANSFORM_KEEP_GENDER)
 				spanstyle = "color:purple;"
-			if(DM_TRANSFORM_CHANGE_SPECIES)
+			if(DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR)
 				spanstyle = "color:purple;"
-			if(DM_TRANSFORM_CHANGE_SPECIES_EGG)
+			if(DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR_EGG)
+				spanstyle = "color:purple;"
+			if(DM_TRANSFORM_REPLICA)
+				spanstyle = "color:purple;"
+			if(DM_TRANSFORM_REPLICA_EGG)
 				spanstyle = "color:purple;"
 			if(DM_TRANSFORM_KEEP_GENDER_EGG)
 				spanstyle = "color:purple;"
