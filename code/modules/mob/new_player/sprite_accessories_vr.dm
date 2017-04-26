@@ -378,3 +378,8 @@
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
 		species_allowed = list("Sergal")
 		gender = FEMALE
+
+	monoeye
+		name = "Monoeye"
+		icon_state = "monoeye"
+		body_parts = list(BP_HEAD)
