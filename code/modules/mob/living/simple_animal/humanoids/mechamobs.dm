@@ -75,7 +75,7 @@
 /mob/living/simple_animal/hostile/mecha/Life()
 	. = ..()
 	if(!.) return
-	if((health < maxHealth*0.3) && prob(10))
+	if((health < getMaxHealth()*0.3) && prob(10))
 		sparks.start()
 
 /mob/living/simple_animal/hostile/mecha/bullet_act()

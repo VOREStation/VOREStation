@@ -96,6 +96,8 @@
 		strength_mod *= 5
 	if(alien == IS_TAJARA)
 		strength_mod *= 1.75
+	if(alien == IS_UNATHI)
+		strength_mod *= 0.75
 	if(alien == IS_DIONA)
 		strength_mod = 0
 
@@ -106,7 +108,7 @@
 	if(dose * strength_mod >= strength * 2) // Slurring
 		M.slurring = max(M.slurring, 30)
 	if(dose * strength_mod >= strength * 3) // Confusion - walking in random directions
-		M.confused = max(M.confused, 20)
+		M.Confuse(20)
 	if(dose * strength_mod >= strength * 4) // Blurry vision
 		M.eye_blurry = max(M.eye_blurry, 10)
 	if(dose * strength_mod >= strength * 5) // Drowsyness - periodically falling asleep

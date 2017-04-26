@@ -150,6 +150,7 @@ var/list/flooring_types
 		'sound/effects/footstep/floor4.ogg',
 		'sound/effects/footstep/floor5.ogg'))
 
+//VOREStation Edit for icons and extra types
 /decl/flooring/tiling/tech
 	desc = "Scuffed from the passage of countless greyshirts."
 	icon = 'icons/turf/flooring/techfloor_vr.dmi'
@@ -171,7 +172,6 @@ var/list/flooring_types
 	icon_base = "cargo_one_full"
 
 /decl/flooring/tiling/new_tile/kafel
-
 	icon_base = "kafel_full"
 
 /decl/flooring/tiling/new_tile/techmaint

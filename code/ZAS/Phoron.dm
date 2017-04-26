@@ -132,7 +132,7 @@ obj/var/phoronproof = 0
 		eye_blurry = min(eye_blurry+1.5,50)
 		if (prob(max(0,E.damage - 15) + 1) &&!eye_blind)
 			src << "<span class='danger'>You are blinded!</span>"
-			eye_blind += 20
+			Blind(20)
 
 /mob/living/carbon/human/proc/pl_head_protected()
 	//Checks if the head is adequately sealed.

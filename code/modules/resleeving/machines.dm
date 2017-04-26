@@ -88,7 +88,7 @@
 	//Basically all the VORE stuff
 	H.ooc_notes = current_project.body_oocnotes
 	H.flavor_texts = current_project.mydna.flavor.Copy()
-	H.size_multiplier = current_project.sizemult
+	H.resize(current_project.sizemult, FALSE)
 	H.weight = current_project.weight
 	if(current_project.speciesname)
 		H.custom_species = current_project.speciesname
@@ -301,7 +301,7 @@
 	//Basically all the VORE stuff
 	H.ooc_notes = current_project.body_oocnotes
 	H.flavor_texts = current_project.mydna.flavor.Copy()
-	H.size_multiplier = current_project.sizemult
+	H.resize(current_project.sizemult)
 	H.weight = current_project.weight
 	if(current_project.speciesname)
 		H.custom_species = current_project.speciesname

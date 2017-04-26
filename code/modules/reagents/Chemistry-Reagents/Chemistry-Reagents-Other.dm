@@ -133,7 +133,7 @@
 	M.disabilities = 0
 	M.sdisabilities = 0
 	M.eye_blurry = 0
-	M.eye_blind = 0
+	M.SetBlinded(0)
 	M.SetWeakened(0)
 	M.SetStunned(0)
 	M.SetParalysis(0)
@@ -141,7 +141,7 @@
 	M.dizziness = 0
 	M.drowsyness = 0
 	M.stuttering = 0
-	M.confused = 0
+	M.SetConfused(0)
 	M.sleeping = 0
 	M.jitteriness = 0
 

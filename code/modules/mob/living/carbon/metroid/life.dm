@@ -80,7 +80,7 @@
 
 	src.blinded = null
 
-	health = maxHealth - (getOxyLoss() + getToxLoss() + getFireLoss() + getBruteLoss() + getCloneLoss())
+	health = getMaxHealth() - (getOxyLoss() + getToxLoss() + getFireLoss() + getBruteLoss() + getCloneLoss())
 
 	if(health < 0 && stat != DEAD)
 		death()
@@ -118,7 +118,7 @@
 	if (src.stuttering) src.stuttering = 0
 
 	if (src.eye_blind)
-		src.eye_blind = 0
+		SetBlinded(0)
 		src.blinded = 1
 
 	if (src.ear_deaf > 0) src.ear_deaf = 0

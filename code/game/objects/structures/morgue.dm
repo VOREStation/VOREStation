@@ -77,33 +77,43 @@
 				return
 	return
 
+
 /obj/structure/morgue/attack_hand(mob/user as mob)
 	if (src.connected)
-		for(var/atom/movable/A as mob|obj in src.connected.loc)
-			if (!( A.anchored ))
-				A.forceMove(src)
-		playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-		qdel(src.connected)
-		src.connected = null
+		close()
 	else
-		playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-		src.connected = new /obj/structure/m_tray( src.loc )
-		step(src.connected, src.dir)
-		src.connected.layer = OBJ_LAYER
-		var/turf/T = get_step(src, src.dir)
-		if (T.contents.Find(src.connected))
-			src.connected.connected = src
-			src.icon_state = "morgue0"
-			for(var/atom/movable/A as mob|obj in src)
-				A.forceMove(src.connected.loc)
-			src.connected.icon_state = "morguet"
-			src.connected.set_dir(src.dir)
-		else
-			qdel(src.connected)
-			src.connected = null
+		open()
 	src.add_fingerprint(user)
 	update()
 	return
+
+
+/obj/structure/morgue/proc/close()
+	for(var/atom/movable/A as mob|obj in src.connected.loc)
+		if (!( A.anchored ))
+			A.forceMove(src)
+	playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+	qdel(src.connected)
+	src.connected = null
+
+
+/obj/structure/morgue/proc/open()
+	playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+	src.connected = new /obj/structure/m_tray( src.loc )
+	step(src.connected, src.dir)
+	src.connected.layer = OBJ_LAYER
+	var/turf/T = get_step(src, src.dir)
+	if (T.contents.Find(src.connected))
+		src.connected.connected = src
+		src.icon_state = "morgue0"
+		for(var/atom/movable/A as mob|obj in src)
+			A.forceMove(src.connected.loc)
+		src.connected.icon_state = "morguet"
+		src.connected.set_dir(src.dir)
+	else
+		qdel(src.connected)
+		src.connected = null
+
 
 /obj/structure/morgue/attackby(P as obj, mob/user as mob)
 	if (istype(P, /obj/item/weapon/pen))
@@ -123,21 +133,8 @@
 /obj/structure/morgue/relaymove(mob/user as mob)
 	if (user.stat)
 		return
-	src.connected = new /obj/structure/m_tray( src.loc )
-	step(src.connected, EAST)
-	src.connected.layer = OBJ_LAYER
-	var/turf/T = get_step(src, EAST)
-	if (T.contents.Find(src.connected))
-		src.connected.connected = src
-		src.icon_state = "morgue0"
-		for(var/atom/movable/A as mob|obj in src)
-			A.forceMove(src.connected.loc)
-		src.connected.icon_state = "morguet"
-	else
-		qdel(src.connected)
-		src.connected = null
-	return
-
+	if (user in src.occupants)
+		open()
 
 /*
  * Morgue tray

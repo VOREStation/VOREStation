@@ -94,6 +94,18 @@ var/global/list/global_egg_types = list(
 		"Xenochimera" 	= XENOCHIMERA_EGG,
 		"Xenomorph"		= XENOMORPH_EGG)
 
+var/global/list/tf_egg_types = list(
+	"Unathi" 		= /obj/structure/closet/secure_closet/egg/unathi,
+	"Tajara" 		= /obj/structure/closet/secure_closet/egg/tajaran,
+	"Akula" 		= /obj/structure/closet/secure_closet/egg/shark,
+	"Skrell" 		= /obj/structure/closet/secure_closet/egg/skrell,
+	"Sergal"		= /obj/structure/closet/secure_closet/egg/sergal,
+	"Human"			= /obj/structure/closet/secure_closet/egg/human,
+	"Slime"			= /obj/structure/closet/secure_closet/egg/slime,
+	"Egg"			= /obj/structure/closet/secure_closet/egg,
+	"Xenochimera"	= /obj/structure/closet/secure_closet/egg/scree,
+	"Xenomorph"		= /obj/structure/closet/secure_closet/egg/xenomorph)
+
 /hook/startup/proc/init_vore_datum_ref_lists()
 	var/paths
 

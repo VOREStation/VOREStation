@@ -5,12 +5,9 @@ var/datum/controller/process/planet/planet_controller = null
 	var/list/z_to_planet = list()
 
 /datum/controller/process/planet/setup()
-	world << "Planet controller starting"
 	name = "planet controller"
 	planet_controller = src
 	schedule_interval = 1 MINUTE
-	sleep_interval = PROCESS_DEFAULT_SLEEP_INTERVAL
-	defer_usage = PROCESS_DEFAULT_DEFER_USAGE
 
 	var/list/planet_datums = typesof(/datum/planet) - /datum/planet
 	for(var/P in planet_datums)

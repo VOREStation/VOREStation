@@ -6,10 +6,6 @@
 	flags_inv = HIDEFACE|BLOCKHAIR
 	body_parts_covered = FACE|HEAD
 	w_class = ITEMSIZE_SMALL
-	sprite_sheets = list(
-		"Tajara" = 'icons/mob/species/tajaran/mask.dmi',
-		"Unathi" = 'icons/mob/species/unathi/mask.dmi',
-		)
 
 /obj/item/clothing/mask/balaclava/tactical
 	name = "green balaclava"
@@ -18,10 +14,6 @@
 	item_state_slots = list(slot_r_hand_str = "bandgreen", slot_l_hand_str = "bandgreen")
 	flags_inv = HIDEFACE|BLOCKHAIR
 	w_class = ITEMSIZE_SMALL
-	sprite_sheets = list(
-		"Tajara" = 'icons/mob/species/tajaran/mask.dmi',
-		"Unathi" = 'icons/mob/species/unathi/mask.dmi',
-		)
 
 /obj/item/clothing/mask/luchador
 	name = "Luchador Mask"
