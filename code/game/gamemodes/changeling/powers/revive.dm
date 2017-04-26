@@ -41,6 +41,10 @@
 				current_limb.undislocate()
 				current_limb.open = 0
 
+		BITSET(H.hud_updateflag, HEALTH_HUD)
+		BITSET(H.hud_updateflag, STATUS_HUD)
+		BITSET(H.hud_updateflag, LIFE_HUD)
+
 	C.halloss = 0
 	C.shock_stage = 0 //Pain
 	C << "<span class='notice'>We have regenerated.</span>"
@@ -53,4 +57,7 @@
 	src.verbs -= /mob/proc/changeling_revive
 	// re-add our changeling powers
 	C.make_changeling()
+
+
+
 	return 1
