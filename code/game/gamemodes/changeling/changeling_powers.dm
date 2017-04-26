@@ -13,12 +13,15 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	var/isabsorbing = 0
 	var/geneticpoints = 5
 	var/max_geneticpoints = 5
+	var/readapts = 1
+	var/max_readapts = 2
 	var/list/purchased_powers = list()
 	var/mimicing = ""
 	var/cloaked = 0
 	var/armor_deployed = 0 //This is only used for changeling_generic_equip_all_slots() at the moment.
 	var/recursive_enhancement = 0 //Used to power up other abilities from the ling power with the same name.
 	var/list/purchased_powers_history = list() //Used for round-end report, includes respec uses too.
+	var/last_shriek = null // world.time when the ling last used a shriek.
 
 /datum/changeling/New(var/gender=FEMALE)
 	..()
@@ -60,6 +63,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	if(!mind.changeling)	mind.changeling = new /datum/changeling(gender)
 
 	verbs += /datum/changeling/proc/EvolutionMenu
+	verbs += /mob/proc/changeling_respec
 	add_language("Changeling")
 
 	var/lesser_form = !ishuman(src)

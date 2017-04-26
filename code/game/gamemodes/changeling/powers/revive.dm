@@ -48,6 +48,7 @@
 	C.mind.changeling.purchased_powers -= C
 	feedback_add_details("changeling_powers","CR")
 	C.stat = CONSCIOUS
+	C.forbid_seeing_deadchat = FALSE
 	C.timeofdeath = null
 	src.verbs -= /mob/proc/changeling_revive
 	// re-add our changeling powers

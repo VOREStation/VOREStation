@@ -29,7 +29,7 @@
 	w_class = ITEMSIZE_SMALL
 	sharp = 1
 	edge = 1
-	origin_tech = "materials=2;combat=1"
+	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 1)
 	attack_verb = list("chopped", "torn", "cut")
 	applies_material_colour = 0
 
@@ -99,5 +99,5 @@
 	throw_range = 3
 	w_class = ITEMSIZE_LARGE
 	slot_flags = SLOT_BACK
-	origin_tech = "materials=2;combat=2"
+	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 2)
 	attack_verb = list("chopped", "sliced", "cut", "reaped")

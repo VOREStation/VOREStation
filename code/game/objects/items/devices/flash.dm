@@ -92,8 +92,8 @@
 					flash_strength *= H.species.flash_mod
 
 					if(flash_strength > 0)
-						H.confused = max(H.confused, flash_strength + 5)
-						H.eye_blind = max(H.eye_blind, flash_strength)
+						H.Confuse(flash_strength + 5)
+						H.Blind(flash_strength)
 						H.eye_blurry = max(H.eye_blurry, flash_strength + 5)
 						H.flash_eyes()
 						H.adjustHalLoss(halloss_per_flash * (flash_strength / 5)) // Should take four flashes to stun.

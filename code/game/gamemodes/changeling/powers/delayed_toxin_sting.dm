@@ -2,11 +2,23 @@
 	name = "Delayed Toxic Sting"
 	desc = "We silently sting a biological, causing a significant amount of toxins after a few minutes, allowing us to not \
 	implicate ourselves."
-	helptext = "The toxin takes effect in about two minutes.  The sting has a three minute cooldown between uses."
+	helptext = "The toxin takes effect in about two minutes.  Multiple applications within the two minutes will not cause increased toxicity."
 	enhancedtext = "The toxic damage is doubled."
 	ability_icon_state = "ling_sting_del_toxin"
 	genomecost = 1
 	verbpath = /mob/proc/changeling_delayed_toxic_sting
+
+/datum/modifier/delayed_toxin_sting
+	name = "delayed toxin injection"
+	hidden = TRUE
+	stacks = MODIFIER_STACK_FORBID
+	on_expired_text = "<span class='danger'>You feel a burning sensation flowing through your veins!</span>"
+
+/datum/modifier/delayed_toxin_sting/on_expire()
+	holder.adjustToxLoss(rand(20, 30))
+
+/datum/modifier/delayed_toxin_sting/strong/on_expire()
+	holder.adjustToxLoss(rand(40, 60))
 
 /mob/proc/changeling_delayed_toxic_sting()
 	set category = "Changeling"
@@ -19,21 +31,13 @@
 	T.attack_log += text("\[[time_stamp()]\] <font color='red'>Was delayed toxic stung by [key_name(src)]</font>")
 	src.attack_log += text("\[[time_stamp()]\] <font color='orange'> Used delayed toxic sting on [key_name(T)]</font>")
 	msg_admin_attack("[key_name(T)] was delayed toxic stung by [key_name(src)]")
-	var/i = rand(20,30)
+
+	var/type_to_give = /datum/modifier/delayed_toxin_sting
 	if(src.mind.changeling.recursive_enhancement)
-		i = i * 2
+		type_to_give = /datum/modifier/delayed_toxin_sting/strong
 		src << "<span class='notice'>Our toxin will be extra potent, when it strikes.</span>"
-	spawn(2 MINUTES)
-		if(T) //We might not exist in two minutes, for whatever reason.
-			T << "<span class='danger'>You feel a burning sensation flowing through your veins!</span>"
-			while(i)
-				T.adjustToxLoss(1)
-				i--
-				sleep(2 SECONDS)
-	src.verbs -= /mob/proc/changeling_delayed_toxic_sting
-	spawn(3 MINUTES)
-		src << "<span class='notice'>We are ready to use our delayed toxic string once more.</span>"
-		src.verbs |= /mob/proc/changeling_delayed_toxic_sting
+
+	T.add_modifier(type_to_give, 2 MINUTES)
 
 
 	feedback_add_details("changeling_powers","DTS")

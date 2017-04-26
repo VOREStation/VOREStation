@@ -15,7 +15,11 @@
 	if(force_max_speed)
 		return -3 // Returning -1 will actually result in a slowdown for Teshari.
 
-	var/health_deficiency = (maxHealth - health)
+	for(var/datum/modifier/M in modifiers)
+		if(!isnull(M.slowdown))
+			tally += M.slowdown
+
+	var/health_deficiency = (getMaxHealth() - health)
 	if(health_deficiency >= 40) tally += (health_deficiency / 25)
 
 	if(can_feel_pain())
@@ -140,3 +144,36 @@
 
 	prob_slip = round(prob_slip)
 	return(prob_slip)
+
+// Handle footstep sounds
+/mob/living/carbon/human/handle_footstep(var/turf/T)
+	if(!config.footstep_volume || !T.footstep_sounds || !T.footstep_sounds.len)
+		return
+	// Future Upgrades - Multi species support
+	var/list/footstep_sounds = T.footstep_sounds["human"]
+	if(!footstep_sounds)
+		return
+
+	var/S = pick(footstep_sounds)
+	if(!S) return
+
+	// Only play every other step while running
+	if(m_intent == "run" && step_count++ % 2 == 0)
+		return
+
+	var/volume = config.footstep_volume
+	// Reduce volume while walking or barefoot
+	if(!shoes || m_intent != "run")
+		volume *= 0.5
+
+	if(!has_organ(BP_L_FOOT) && !has_organ(BP_R_FOOT))
+		return // no feet = no footsteps
+
+	if(buckled || lying || throwing)
+		return // people flying, lying down or sitting do not step
+
+	if(!has_gravity(src) && prob(75))
+		return // Far less likely to make noise in no gravity
+
+	playsound(T, S, volume, FALSE)
+	return

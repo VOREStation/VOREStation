@@ -85,6 +85,7 @@
 					if ((istype(src.active1, /datum/data/record) && data_core.general.Find(src.active1)))
 						dat += "<table><tr><td>Name: [active1.fields["name"]] \
 								ID: [active1.fields["id"]]<BR>\n	\
+								Entity Classification: <A href='?src=\ref[src];field=brain_type'>[active1.fields["brain_type"]]</A><BR>\n	\
 								Sex: <A href='?src=\ref[src];field=sex'>[active1.fields["sex"]]</A><BR>\n"
 						if ((istype(src.active2, /datum/data/record) && data_core.medical.Find(src.active2)))
 							dat += "Gender identity: <A href='?src=\ref[src];field=id_gender'>[active2.fields["id_gender"]]</A><BR>"

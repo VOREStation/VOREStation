@@ -86,6 +86,12 @@
 			qdel(src)
 		return
 
+/obj/structure/closet/body_bag/relaymove(mob/user,direction)
+	if(src.loc != get_turf(src))
+		src.loc.relaymove(user,direction)
+	else
+		..()
+
 /obj/structure/closet/body_bag/proc/get_occupants()
 	var/list/occupants = list()
 	for(var/mob/living/carbon/human/H in contents)

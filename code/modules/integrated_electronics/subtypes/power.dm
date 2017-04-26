@@ -11,9 +11,9 @@
 	some power is lost due to ineffiency."
 	w_class = ITEMSIZE_SMALL
 	complexity = 16
-	inputs = list("target ref")
-	outputs = list("target cell charge", "target cell max charge", "target cell percentage")
-	activators = list("transmit")
+	inputs = list("\<REF\> target")
+	outputs = list("\<NUM\> target cell charge", "\<NUM\> target cell max charge", "\<NUM\> target cell percentage")
+	activators = list("\<PULSE IN\> transmit")
 	spawn_flags = IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_DATA = 4, TECH_POWER = 4, TECH_MAGNET = 3)
 	power_draw_per_use = 500 // Inefficency has to come from somewhere.

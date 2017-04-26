@@ -804,6 +804,30 @@
 	sleeping = max(sleeping + amount,0)
 	return
 
+/mob/proc/Confuse(amount)
+	confused = max(max(confused,amount),0)
+	return
+
+/mob/proc/SetConfused(amount)
+	confused = max(amount,0)
+	return
+
+/mob/proc/AdjustConfused(amount)
+	confused = max(confused + amount,0)
+	return
+
+/mob/proc/Blind(amount)
+	eye_blind = max(max(eye_blind,amount),0)
+	return
+
+/mob/proc/SetBlinded(amount)
+	eye_blind = max(amount,0)
+	return
+
+/mob/proc/AdjustBlinded(amount)
+	eye_blind = max(eye_blind + amount,0)
+	return
+
 /mob/proc/Resting(amount)
 	facing_dir = null
 	resting = max(max(resting,amount),0)

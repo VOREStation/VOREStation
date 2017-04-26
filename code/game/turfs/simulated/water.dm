@@ -35,7 +35,16 @@
 			water_breath.temperature = above_air.temperature
 			return water_breath
 		else
-			return null // Lying down means they're submerged, which means no air.
+			var/gasid = "carbon_dioxide"
+			if(ishuman(L))
+				var/mob/living/carbon/human/H = L
+				if(H.species && H.species.exhale_type)
+					gasid = H.species.exhale_type
+			var/datum/gas_mixture/water_breath = new()
+			var/datum/gas_mixture/above_air = return_air()
+			water_breath.adjust_gas(gasid, BREATH_MOLES) // They have no oxygen, but non-zero moles and temp
+			water_breath.temperature = above_air.temperature
+			return water_breath
 	return return_air() // Otherwise their head is above the water, so get the air from the atmosphere instead.
 
 /turf/simulated/floor/water/Entered(atom/movable/AM, atom/oldloc)
@@ -94,7 +103,7 @@
 	return
 
 /mob/living/water_act(amount)
-	adjust_fire_stacks(amount * 5)
+	adjust_fire_stacks(-amount * 5)
 	for(var/atom/movable/AM in contents)
 		AM.water_act(amount)
 

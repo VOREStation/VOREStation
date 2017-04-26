@@ -80,6 +80,9 @@
 	if(istype(damage_source, /obj/item/projectile/energy) || istype(damage_source, /obj/item/projectile/beam))
 		var/obj/item/projectile/P = damage_source
 
+		if(P.reflected) // Can't reflect twice
+			return ..()
+
 		var/reflectchance = 40 - round(damage/3)
 		if(!(def_zone in list(BP_TORSO, BP_GROIN)))
 			reflectchance /= 2
