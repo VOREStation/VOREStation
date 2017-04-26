@@ -1,6 +1,10 @@
+
+//
+// Surface Base Z Levels
+//
+
 /area/tether/surfacebase
 	icon = 'icons/turf/areas_vr.dmi'
-
 
 
 /area/tether/surfacebase/outside
@@ -199,3 +203,82 @@
 /area/rnd/hallway
 	name = "\improper Research Lower Hallway"
 	icon_state = "research"
+
+
+
+//
+// Station Z Levels
+//
+// Note: Fore is NORTH
+
+/area/tether/station/stairs_one
+	name = "\improper Station Stairwell First Floor"
+	icon_state = "dk_yellow"
+/area/tether/station/stairs_two
+	name = "\improper Station Stairwell Second Floor"
+	icon_state = "dk_yellow"
+/area/tether/station/stairs_three
+	name = "\improper Station Stairwell Third Floor"
+	icon_state = "dk_yellow"
+
+/area/ai/foyer
+	name = "\improper AI Core Access"
+
+/area/medical/virologyisolation
+	name = "\improper Virology Isolation"
+	icon_state = "virology"
+
+/area/security/hallway
+	name = "\improper Security Hallway"
+	icon_state = "security"
+/area/security/forensics
+	name = "\improper Forensics Lab"
+	icon_state = "security"
+/area/security/breakroom
+	name = "\improper Security Breakroom"
+	icon_state = "security"
+/area/security/brig/visitation
+	name = "\improper Visitation"
+	icon_state = "security"
+/area/security/brig/bathroom
+	name = "\improper Brig Bathroom"
+	icon_state = "security"
+
+/area/engineering/atmos/backup
+	name = "\improper Backup Atmospherics"
+/area/engineering/engine_balcony
+	name = "\improper Engine Room Balcony"
+/area/engineering/foyer_mezzenine
+	name = "\improper Engineering Mezzenine"
+
+/area/hallway/station
+	icon_state = "hallC1"
+/area/hallway/station/_01
+	name = "\improper Main Port Hallway"
+/area/hallway/station/_02
+	name = "\improper Main Starboard Hallway"
+/area/hallway/station/_03
+	name = "\improper Main Upper Hallway"
+
+/area/maintenance/station
+	icon_state = "fsmaint"
+/area/maintenance/station/_01
+	name = "\improper Bridge Maintenance"
+/area/maintenance/station/_02
+	name = "\improper Engineering Lower Maintenance"
+/area/maintenance/station/_03
+	name = "\improper Engineering Upper Maintenance"
+/area/maintenance/station/_04
+	name = "\improper Medbay Maintenance"
+/area/maintenance/station/_05
+	name = "\improper Cargo Maintenance"
+/area/maintenance/station/_06
+	name = "\improper Tether Maintenance"
+/area/maintenance/station/_07
+	name = "\improper Security Lower Maintenance"
+/area/maintenance/station/_08
+	name = "\improper Security Upper Maintenance"
+/area/maintenance/station/_09
+	name = "\improper Micro Maintenance"
+/area/maintenance/station/_10
+	name = "\improper Telecoms Maintenance"
