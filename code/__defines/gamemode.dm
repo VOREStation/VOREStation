@@ -124,3 +124,5 @@ var/list/be_special_flags = list(
 #define Sp_RECHARGE	"recharge"
 #define Sp_CHARGES	"charges"
 #define Sp_HOLDVAR	"holdervar"
+
+#define CHANGELING_STASIS_COST 20

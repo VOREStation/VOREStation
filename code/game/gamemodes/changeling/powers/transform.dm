@@ -13,6 +13,10 @@
 	var/datum/changeling/changeling = changeling_power(5,1,0)
 	if(!changeling)	return
 
+	if(!isturf(loc))
+		to_chat(src, "<span class='warning'>Transforming here would be a bad idea.</span>")
+		return 0
+
 	var/list/names = list()
 	for(var/datum/absorbed_dna/DNA in changeling.absorbed_dna)
 		names += "[DNA.name]"
