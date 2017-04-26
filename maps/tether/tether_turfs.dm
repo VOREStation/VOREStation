@@ -29,3 +29,10 @@ VIRGO3B_TURF_CREATE(/turf/simulated/floor/tiled/steel_dirty)
 	desc = "An eight-meter tall carbyne wall. For when the wildlife on your planet is mostly militant megacorps."
 	alpha = 0xFF
 	VIRGO3B_SET_ATMOS
+
+/turf/unsimulated/mineral/virgo3b
+	blocks_air = TRUE
+
+/turf/unsimulated/floor/steel
+	icon = 'icons/turf/flooring/tiles_vr.dmi'
+	icon_state = "steel"
