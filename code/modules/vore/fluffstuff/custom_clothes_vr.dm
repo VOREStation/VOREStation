@@ -746,24 +746,6 @@
 			else
 				return 1
 
-//samanthafyre:Kateryna Petrovitch
-//Variant
-	kate
-		name = "Kat's Navy Engineer Helmet"
-		desc = "A customized combat space helmet made for Kateryna. It uses a navy design as the base before it\
-		was customized to suit the wearer's personality."
-
-		icon_state = "lilithhelmet"
-		item_state = "lilithhelmet"
-
-		mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
-			if(..())
-				if(H.ckey != "samanthafyre")
-					H << "<span class='warning'>You try to fit on the helmet, but it doesn't fit.</span>"
-					return 0
-				else
-					return 1
-
 //JoanRisu:Joan Risu
 /obj/item/clothing/suit/space/fluff/joan
 	name = "Joan's Combat Spacesuit"
@@ -1284,3 +1266,22 @@ Departamental Swimsuits, for general use
 			else
 				H << "<span class='warning'>You need to have a wolf-taur half to wear this.</span>"
 				return 0
+
+//samanthafyre:Kateryna Petrovitch
+/obj/item/clothing/head/helmet/space/fluff/kate
+	name = "Kat's Navy Engineer Helmet"
+	desc = "A customized combat space helmet made for Kateryna. It uses a navy design as the base before it\
+	was customized to suit the wearer's personality."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "lilithhelmet"
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "lilithhelmet"
+	light_overlay = "helmet_light"
+
+	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+		if(..())
+			if(H.ckey != "samanthafyre")
+				H << "<span class='warning'>You try to fit on the helmet, but it doesn't fit.</span>"
+				return 0
+			else
+				return 1

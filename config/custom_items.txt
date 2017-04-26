@@ -399,7 +399,7 @@ item_path: /obj/item/clothing/suit/space/void/engineering/kate
 {
 ckey: samanthafyre
 character_name: Kateryna Petrovitch
-item_path: /obj/item/clothing/head/helmet/space/fluff/joan/kate
+item_path: /obj/item/clothing/head/helmet/space/fluff/kate
 }
 
 {
