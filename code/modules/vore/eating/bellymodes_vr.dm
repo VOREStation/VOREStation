@@ -336,6 +336,8 @@
 						Z.sync_colour_to_human(P)
 					P << "<span class='notice'>You lose sensation of your body, feeling only the warmth of everything around you... </span>"
 					owner << "<span class='notice'>Your body shifts as you make dramatic changes to your captive's body.</span>"
+					if(P.species == Unathi)
+						P.species.create_organs(P) //This is the only way to make it so Unathi TF doesn't result in people dying from organ rejection.
 					P.fixblood()
 					P.update_body()
 					P.update_tail_showing()
@@ -405,6 +407,8 @@
 						Z.sync_colour_to_human(P)
  					P << "<span class='notice'>You lose sensation of your body, feeling only the warmth of everything around you... </span>"
 					owner << "<span class='notice'>Your body shifts as you make dramatic changes to your captive's body.</span>"
+					if(P.species == Unathi)
+						P.species.create_organs(P)
 					P.fixblood()
 					P.update_hair()
 					P.update_body()
@@ -435,6 +439,8 @@
 				Z.sync_colour_to_human(P)
 			P << "<span class='notice'>You lose sensation of your body, feeling only the warmth around you as are you as you're encased in an egg. </span>"
 			owner << "<span class='notice'>You shift as you make dramatic changes to your captive's body as you encase them in an egg.</span>"
+			if(P.species == Unathi)
+				P.species.create_organs(P)
 			P.fixblood()
 			P.update_hair()
 			P.update_body()
@@ -533,6 +539,8 @@
 				Z.sync_colour_to_human(P)
 			P << "<span class='notice'>You lose sensation of your body, feeling only the warmth around you as are you as you're encased in an egg. </span>"
 			owner << "<span class='notice'>You shift as you make dramatic changes to your captive's body as you encase them in an egg.</span>"
+			if(P.species == Unathi)
+				P.species.create_organs(P)
 			P.fixblood()
 			P.update_hair()
 			P.update_body()
