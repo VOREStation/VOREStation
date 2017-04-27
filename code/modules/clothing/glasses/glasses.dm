@@ -132,7 +132,7 @@ BLIND     // can't see anything
 
 	eye = !eye
 	if(eye)
-		icon_state = "[icon_state]_r"
+		icon_state = "[icon_state]_1"
 	else
 		icon_state = initial(icon_state)
 	update_clothing_icon()
