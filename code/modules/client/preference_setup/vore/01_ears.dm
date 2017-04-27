@@ -74,7 +74,7 @@
 
 	var/tail_display = "Normal"
 	if(pref.tail_style && (pref.tail_style in tail_styles_list))
-		var/datum/sprite_accessory/ears/instance = tail_styles_list[pref.tail_style]
+		var/datum/sprite_accessory/tail/instance = tail_styles_list[pref.tail_style]
 		tail_display = instance.name
 	else if(pref.tail_style)
 		tail_display = "REQUIRES UPDATE"
@@ -116,7 +116,7 @@
 
 	else if(href_list["tail_style"])
 		// Construct the list of names allowed for this user.
-		var/list/pretty_tail_styles = list("Normal")
+		var/list/pretty_tail_styles = list("Normal" = null)
 		for(var/path in tail_styles_list)
 			var/datum/sprite_accessory/tail/instance = tail_styles_list[path]
 			if((!instance.ckeys_allowed) || (user.ckey in instance.ckeys_allowed))
@@ -124,13 +124,8 @@
 
 		// Present choice to user
 		var/selection = input(user, "Pick tails", "Character Preference") as null|anything in pretty_tail_styles
-		if(selection && selection != "Normal")
-			pref.tail_style = pretty_tail_styles[selection]
-		else
-			if(pref.tail_style)
-				return TOPIC_REFRESH_UPDATE_PREVIEW
-			else
-				pref.tail_style = null
+		pref.tail_style = pretty_tail_styles[selection]
+
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["tail_color"])
