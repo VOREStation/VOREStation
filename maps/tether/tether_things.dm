@@ -44,3 +44,15 @@
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(5, 1, src)
 		s.start()
+
+/obj/effect/step_trigger/teleporter/to_mining/New()
+	..()
+	teleport_x = src.x
+	teleport_y = 2
+	teleport_z = Z_LEVEL_SURFACE_MINE
+
+/obj/effect/step_trigger/teleporter/from_mining/New()
+	..()
+	teleport_x = src.x
+	teleport_y = world.maxy - 1
+	teleport_z = Z_LEVEL_SURFACE_LOW

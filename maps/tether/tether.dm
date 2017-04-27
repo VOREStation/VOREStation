@@ -10,6 +10,7 @@
 	#include "tether-1-surface.dmm"
 	#include "tether-2-transit.dmm"
 	#include "tether-3-station.dmm"
+	#include "tether-4-mining.dmm"
 	#include "tether-5-colony.dmm"
 	#include "tether-6-misc.dmm"
 	#include "tether-7-ships.dmm"

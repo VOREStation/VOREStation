@@ -97,6 +97,7 @@ obj/machinery/atmospherics/pipe/zpipe/pipeline_expansion()
 	return list(node1, node2)
 
 obj/machinery/atmospherics/pipe/zpipe/update_icon()
+	color = pipe_color
 	return
 
 obj/machinery/atmospherics/pipe/zpipe/disconnect(obj/machinery/atmospherics/reference)
