@@ -133,7 +133,7 @@
 	var/appearance_flags = 0      // Appearance/display related features.
 	var/spawn_flags = 0           // Flags that specify who can spawn as this species
 	var/slowdown = 0              // Passive movement speed malus (or boost, if negative)
-	var/item_slowdown_halved = 0  // If this is on, they're not as affected by item weights for slowdown
+	var/item_slowdown_mod = 1	  // How affected by item slowdown the species is.
 	var/primitive_form            // Lesser form, if any (ie. monkey for humans)
 	var/greater_form              // Greater form, if any, ie. human for monkeys.
 	var/holder_type
