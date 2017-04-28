@@ -21,3 +21,7 @@
 
 /obj/machinery/computer/shuttle_control/research
 	name = "research elevator control console"
+
+/obj/machinery/computer/shuttle_control/tether_backup
+	name = "tether backup shuttle control console"
+	shuttle_tag = "tether_backup"
