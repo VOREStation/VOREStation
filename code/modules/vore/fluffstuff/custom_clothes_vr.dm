@@ -1219,3 +1219,11 @@ Departamental Swimsuits, for general use
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "batter"
 	item_state = "batter_mob"
+
+//Seiga: Alfonso Oak Telanor
+/obj/item/clothing/glasses/sunglasses/fluff/alfonso
+	name = "cyborg visor"
+	desc = "Eyewear worn by a once famous Thunderdome competitor. Fo' shizzle."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "alfonso_visor"
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
