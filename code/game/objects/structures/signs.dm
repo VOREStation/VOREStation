@@ -539,7 +539,7 @@
 	icon_state = "morgue"
 
 /obj/structure/sign/department/operational
-	name = "OPERATIONAL"
+	name = "SURGERY"
 	icon_state = "operational"
 
 /obj/structure/sign/department/sci
