@@ -330,13 +330,13 @@
 					P.ear_style = O.ear_style
 					P.species = O.species
 					P.custom_species = O.custom_species
+					P.species.create_organs(P) //This is the only way to make it so Unathi TF doesn't result in people dying from organ rejection.
 					for(var/obj/item/organ/I in P.organs) //This prevents organ rejection
 						I.species = O.species
 					for(var/obj/item/organ/external/Z in P.organs)//Just in case.
 						Z.sync_colour_to_human(P)
 					P << "<span class='notice'>You lose sensation of your body, feeling only the warmth of everything around you... </span>"
 					owner << "<span class='notice'>Your body shifts as you make dramatic changes to your captive's body.</span>"
-					P.species.create_organs(P)//This is the only way to make it so Unathi TF doesn't result in people dying from organ rejection.
 					P.fixblood()
 					P.update_body()
 					P.update_tail_showing()
@@ -400,13 +400,13 @@
 					P.ear_style = O.ear_style
 					P.species = O.species
 					P.custom_species = O.custom_species
+					P.species.create_organs(P)
 					for(var/obj/item/organ/I in P.organs) //This prevents organ rejection
 						I.species = O.species
 					for(var/obj/item/organ/external/Z in P.organs)
 						Z.sync_colour_to_human(P)
  					P << "<span class='notice'>You lose sensation of your body, feeling only the warmth of everything around you... </span>"
 					owner << "<span class='notice'>Your body shifts as you make dramatic changes to your captive's body.</span>"
-					P.species.create_organs(P)
 					P.fixblood()
 					P.update_hair()
 					P.update_body()
@@ -431,13 +431,13 @@
 			P.tail_style = O.tail_style
 			P.ear_style = O.ear_style
 			P.species = O.species
+			P.species.create_organs(P)
 			for(var/obj/item/organ/I in P.organs) //This prevents organ rejection
 				I.species = O.species
 			for(var/obj/item/organ/external/Z in P.organs)
 				Z.sync_colour_to_human(P)
 			P << "<span class='notice'>You lose sensation of your body, feeling only the warmth around you as are you as you're encased in an egg. </span>"
 			owner << "<span class='notice'>You shift as you make dramatic changes to your captive's body as you encase them in an egg.</span>"
-			P.species.create_organs(P)
 			P.fixblood()
 			P.update_hair()
 			P.update_body()
@@ -530,13 +530,13 @@
 			P.g_eyes 			= O.g_eyes
 			P.b_eyes 			= O.b_eyes
 
+			P.species.create_organs(P)
 			for(var/obj/item/organ/I in P.organs) //This prevents organ rejection
 				I.species = O.species
 			for(var/obj/item/organ/external/Z in P.organs)
 				Z.sync_colour_to_human(P)
 			P << "<span class='notice'>You lose sensation of your body, feeling only the warmth around you as are you as you're encased in an egg. </span>"
 			owner << "<span class='notice'>You shift as you make dramatic changes to your captive's body as you encase them in an egg.</span>"
-			P.species.create_organs(P)
 			P.fixblood()
 			P.update_hair()
 			P.update_body()
