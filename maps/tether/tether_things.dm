@@ -56,3 +56,14 @@
 	teleport_x = src.x
 	teleport_y = world.maxy - 1
 	teleport_z = Z_LEVEL_SURFACE_LOW
+
+
+
+// Tram air scrubbers for keeping arrivals clean - they work even with no area power
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/tram
+	name = "\improper Tram Air Scrubber"
+	icon_state = "scrubber:1"
+	on = TRUE
+
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/tram/powered()
+	return TRUE // Always be powered
