@@ -958,6 +958,11 @@ default behaviour is:
 		update_icons()
 	return canmove
 
+// Adds overlays for specific modifiers.
+// You'll have to add your own implementation for non-humans currently, just override this proc.
+/mob/living/proc/update_modifier_visuals()
+	return
+
 /mob/living/proc/update_water() // Involves overlays for humans.  Maybe we'll get submerged sprites for borgs in the future?
 	return
 

@@ -285,4 +285,4 @@
 				to_chat(H, "<span class='warning'>The purple glow makes you feel strange...</span>")
 			H.adjust_instability(outgoing_instability)
 
-	set_light(distance, distance * 2, l_color = "#C26DDE")
+	set_light(distance, distance * 4, l_color = "#C26DDE")
