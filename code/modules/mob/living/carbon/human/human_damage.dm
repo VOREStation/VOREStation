@@ -153,6 +153,12 @@
 		wearing_rig.notify_ai("<span class='danger'>Warning: user consciousness failure. Mobility control passed to integrated intelligence system.</span>")
 	..()
 
+/mob/living/carbon/human/proc/Stasis(amount)
+	if((species.flags & NO_SCAN) || isSynthetic())
+		in_stasis = 0
+	else
+		in_stasis = amount
+
 /mob/living/carbon/human/getCloneLoss()
 	if((species.flags & NO_SCAN) || isSynthetic())
 		cloneloss = 0

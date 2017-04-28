@@ -68,10 +68,12 @@
 	anchored = 1
 	circuit = /obj/item/weapon/circuitboard/sleeper
 	var/mob/living/carbon/human/occupant = null
-	var/list/available_chemicals = list("inaprovaline" = "Inaprovaline", "stoxin" = "Soporific", "paracetamol" = "Paracetamol", "anti_toxin" = "Dylovene", "dexalin" = "Dexalin")
+	var/list/available_chemicals = list("inaprovaline" = "Inaprovaline", "paracetamol" = "Paracetamol", "anti_toxin" = "Dylovene", "dexalin" = "Dexalin")
 	var/obj/item/weapon/reagent_containers/glass/beaker = null
 	var/filtering = 0
 	var/obj/machinery/sleep_console/console
+	var/stasis_level = 0 //Every 'this' life ticks are applied to the mob (when life_ticks%stasis_level == 1)
+	var/stasis_choices = list("Complete (1%)" = 100, "Deep (10%)" = 10, "Moderate (20%)" = 5, "Light (50%)" = 2, "None (100%)" = 0)
 
 	use_power = 1
 	idle_power_usage = 15
@@ -98,18 +100,23 @@
 /obj/machinery/sleeper/process()
 	if(stat & (NOPOWER|BROKEN))
 		return
+	if(occupant)
+		occupant.Stasis(stasis_level)
+		if(stasis_level >= 100 && occupant.timeofdeath)
+			occupant.timeofdeath += 1 SECOND
 
-	if(filtering > 0)
-		if(beaker)
-			if(beaker.reagents.total_volume < beaker.reagents.maximum_volume)
-				var/pumped = 0
-				for(var/datum/reagent/x in occupant.reagents.reagent_list)
-					occupant.reagents.trans_to_obj(beaker, 3)
-					pumped++
-				if(ishuman(occupant))
-					occupant.vessel.trans_to_obj(beaker, pumped + 1)
-		else
-			toggle_filter()
+		if(filtering > 0)
+			if(beaker)
+				if(beaker.reagents.total_volume < beaker.reagents.maximum_volume)
+					var/pumped = 0
+					for(var/datum/reagent/x in occupant.reagents.reagent_list)
+						occupant.reagents.trans_to_obj(beaker, 3)
+						pumped++
+					if(ishuman(occupant))
+						occupant.vessel.trans_to_obj(beaker, pumped + 1)
+			else
+				toggle_filter()
+
 
 /obj/machinery/sleeper/update_icon()
 	icon_state = "sleeper_[occupant ? "1" : "0"]"
@@ -154,6 +161,13 @@
 		data["beaker"] = -1
 	data["filtering"] = filtering
 
+	var/stasis_level_name = "Error!"
+	for(var/N in stasis_choices)
+		if(stasis_choices[N] == stasis_level)
+			stasis_level_name = N
+			break
+	data["stasis"] = stasis_level_name
+
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "sleeper.tmpl", "Sleeper UI", 600, 600, state = state)
@@ -182,6 +196,10 @@
 		if(occupant && occupant.stat != DEAD)
 			if(href_list["chemical"] in available_chemicals) // Your hacks are bad and you should feel bad
 				inject_chemical(usr, href_list["chemical"], text2num(href_list["amount"]))
+	if(href_list["change_stasis"])
+		var/new_stasis = input("Levels deeper than 50% metabolic rate will render the patient unconscious.","Stasis Level") as null|anything in stasis_choices
+		if(new_stasis && CanUseTopic(usr, default_state) == STATUS_INTERACTIVE)
+			stasis_level = stasis_choices[new_stasis]
 
 	return 1
 
@@ -261,6 +279,7 @@
 	if(occupant.client)
 		occupant.client.eye = occupant.client.mob
 		occupant.client.perspective = MOB_PERSPECTIVE
+	occupant.Stasis(0)
 	occupant.loc = src.loc
 	occupant = null
 	for(var/atom/movable/A in src) // In case an object was dropped inside or something
