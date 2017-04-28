@@ -67,3 +67,32 @@
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/tram/powered()
 	return TRUE // Always be powered
+
+
+
+/obj/machinery/cryopod/robot/door/tram
+	name = "\improper Tram Station"
+	icon = 'icons/obj/doors/Doorext.dmi'
+	icon_state = "door_closed"
+	base_icon_state = "door_closed"
+	occupied_icon_state = "door_locked"
+	desc = "The tram station you might've came in from.  You could leave the base easily using this."
+	on_store_message = "has departed on the tram."
+	on_store_name = "Travel Oversight"
+	on_enter_occupant_message = "The tram arrives at the platform; you step inside and take a seat."
+	on_store_visible_message_1 = "'s speakers chime, anouncing a tram has arrived to take"
+	on_store_visible_message_2 = "to the colony."
+	time_till_despawn = 10 SECONDS
+
+/obj/machinery/cryopod/robot/door/tram/process()
+	if(emergency_shuttle.online() || emergency_shuttle.returned())
+		// Transform into a door!  But first despawn anyone inside
+		time_till_despawn = 0
+		..()
+		var/turf/T = get_turf(src)
+		var/obj/machinery/door/airlock/external/door = new(T)
+		door.req_access = null
+		door.req_one_access = null
+		qdel(src)
+	// Otherwise just operate normally
+	return ..()
