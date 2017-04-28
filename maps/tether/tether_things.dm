@@ -24,26 +24,6 @@
 	icon_state = "map_vent_out"
 	external_pressure_bound = ONE_ATMOSPHERE * 1.1
 
-/turf/simulated/floor/maglev
-	name = "maglev track"
-	desc = "Magnetic levitation tram tracks. Caution! Electrified!"
-	icon = 'icons/turf/flooring/maglevs.dmi'
-	icon_state = "maglevup"
-
-// shock user with probability prb (if all connections & power are working)
-// returns 1 if shocked, 0 otherwise
-// Walking on maglev tracks will shock you! Horray!
-/turf/simulated/floor/maglev/Entered(var/atom/movable/AM, var/atom/old_loc)
-	if(ismob(AM) && prob(50))
-		shock(AM)
-/turf/simulated/floor/maglev/attack_hand(var/mob/user)
-	if(prob(75))
-		shock(user)
-/turf/simulated/floor/maglev/proc/shock(var/mob/user)
-	if (electrocute_mob(user, get_area(src), src))
-		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-		s.set_up(5, 1, src)
-		s.start()
 
 /obj/effect/step_trigger/teleporter/to_mining/New()
 	..()
@@ -58,6 +38,29 @@
 	teleport_z = Z_LEVEL_SURFACE_LOW
 
 
+//
+// TRAM STATION
+//
+
+// The tram's electrified maglev tracks
+/turf/simulated/floor/maglev
+	name = "maglev track"
+	desc = "Magnetic levitation tram tracks. Caution! Electrified!"
+	icon = 'icons/turf/flooring/maglevs.dmi'
+	icon_state = "maglevup"
+
+// Walking on maglev tracks will shock you! Horray!
+/turf/simulated/floor/maglev/Entered(var/atom/movable/AM, var/atom/old_loc)
+	if(ismob(AM) && prob(50))
+		shock(AM)
+/turf/simulated/floor/maglev/attack_hand(var/mob/user)
+	if(prob(75))
+		shock(user)
+/turf/simulated/floor/maglev/proc/shock(var/mob/user)
+	if (electrocute_mob(user, get_area(src), src))
+		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		s.set_up(5, 1, src)
+		s.start()
 
 // Tram air scrubbers for keeping arrivals clean - they work even with no area power
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/tram
@@ -68,8 +71,7 @@
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/tram/powered()
 	return TRUE // Always be powered
 
-
-
+// Tram departure cryo doors that turn into ordinary airlock doors at round end
 /obj/machinery/cryopod/robot/door/tram
 	name = "\improper Tram Station"
 	icon = 'icons/obj/doors/Doorext.dmi'
@@ -83,6 +85,7 @@
 	on_store_visible_message_1 = "'s speakers chime, anouncing a tram has arrived to take"
 	on_store_visible_message_2 = "to the colony."
 	time_till_despawn = 10 SECONDS
+	spawnpoint_type = /datum/spawnpoint/tram
 
 /obj/machinery/cryopod/robot/door/tram/process()
 	if(emergency_shuttle.online() || emergency_shuttle.returned())
@@ -96,3 +99,24 @@
 		qdel(src)
 	// Otherwise just operate normally
 	return ..()
+
+
+
+// Tram arrival point landmarks and datum
+var/global/list/latejoin_tram   = list()
+
+/obj/effect/landmark/tram
+	name = "JoinLateTram"
+	delete_me = 1
+
+/obj/effect/landmark/tram/New()
+	latejoin_tram += loc
+	..()
+
+/datum/spawnpoint/tram
+	display_name = "Tram Station"
+	msg = "has arrived on the tram"
+
+/datum/spawnpoint/tram/New()
+	..()
+	turfs = latejoin_tram

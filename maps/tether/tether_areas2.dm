@@ -70,7 +70,7 @@
 /area/tether/surfacebase/todo/_07
 	name = "\improper Vacant Site"
 
-// Main mining outpost
+// Main mining area
 /area/tether/surfacebase/mining_main
 	icon_state = "outpost_mine_main"
 /area/tether/surfacebase/mining_main/airlock
@@ -94,6 +94,9 @@
 /area/tether/surfacebase/mining_main/lobby
 	name = "\improper Mining Lobby"
 
+// Mining outpost areas
+/area/outpost/mining_main/passage
+	name = "\improper Mining Outpost Passage"
 
 
 /area/maintenance/substation/medsec
