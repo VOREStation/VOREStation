@@ -82,9 +82,9 @@
 	..()
 	if(embed_chance < 0)
 		if(sharp)
-			embed_chance = round(force/w_class)
+			embed_chance = max(5, round(force/w_class))
 		else
-			embed_chance = round(force/(w_class*3))
+			embed_chance = max(5, round(force/(w_class*3)))
 
 /obj/item/equipped()
 	..()
