@@ -182,7 +182,11 @@
 	if (A == user && user.zone_sel.selecting == O_MOUTH && !mouthshoot)
 		handle_suicide(user)
 	else if(user.a_intent == I_HURT) //point blank shooting
-		Fire(A, user, pointblank=1)
+		if(user && user.client && user.aiming && user.aiming.active && user.aiming.aiming_at != A && A != user)
+			PreFire(A,user) //They're using the new gun system, locate what they're aiming at.
+			return
+		else
+			Fire(A, user, pointblank=1)
 	else
 		return ..() //Pistolwhippin'
 
