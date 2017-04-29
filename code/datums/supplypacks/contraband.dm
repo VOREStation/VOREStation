@@ -32,6 +32,17 @@
 	containername = "Special Ops crate"
 	contraband = 1
 
+/datum/supply_packs/supply/moghes
+	name = "Moghes imports"
+	contains = list(
+			/obj/item/weapon/reagent_containers/food/drinks/bottle/redeemersbrew = 2,
+			/obj/item/weapon/reagent_containers/food/snacks/unajerky = 4
+			)
+	cost = 25
+	containertype = /obj/structure/closet/crate
+	containername = "Moghes imports crate"
+	contraband = 1
+
 /datum/supply_packs/security/bolt_rifles_mosin
  	name = "Surplus militia rifles"
  	contains = list(
