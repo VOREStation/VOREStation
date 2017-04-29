@@ -1015,6 +1015,7 @@
 	var/body_parts = list() //A list of bodyparts this covers, in organ_tag defines
 	//Reminder: BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN,BP_HEAD
 
+
 	tat_heart
 		name = "Tattoo (Heart, Torso)"
 		icon_state = "tat_heart"
@@ -1106,6 +1107,11 @@
 	bandsface
 		name = "Color Bands (Face)"
 		icon_state = "bandsface"
+		body_parts = list(BP_HEAD)
+
+	monoeye
+		name = "Monoeye (Face)"
+		icon_state = "monoeye"
 		body_parts = list(BP_HEAD)
 
 	tiger_stripes
