@@ -50,6 +50,7 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	icon = 'icons/mob/human_races/cyberlimbs/unbranded/unbranded_monitor.dmi'
 	parts = list(BP_HEAD)
 	monitor_styles = standard_monitor_styles
+	unavailable_to_build = 1
 
 /datum/robolimb/nanotrasen
 	company = "NanoTrasen"
