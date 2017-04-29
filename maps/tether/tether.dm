@@ -5,6 +5,7 @@
 	#include "tether_things.dm"
 	#include "tether_areas.dm"
 	#include "tether_areas2.dm"
+	#include "tether_telecomms.dm"
 	#include "tether_virgo3b.dm"
 
 	#include "tether-1-surface.dmm"
