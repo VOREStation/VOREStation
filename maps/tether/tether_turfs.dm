@@ -36,3 +36,19 @@ VIRGO3B_TURF_CREATE(/turf/simulated/floor/tiled/steel_dirty)
 /turf/unsimulated/floor/steel
 	icon = 'icons/turf/flooring/tiles_vr.dmi'
 	icon_state = "steel"
+
+
+// Some turfs to make floors look better in centcom tram station.
+
+
+
+/turf/unsimulated/floor/techfloor_grid
+	name = "floor"
+	icon = 'icons/turf/flooring/techfloor_vr.dmi'
+	icon_state = "techfloor_grid"
+
+/turf/unsimulated/floor/maglev
+	name = "maglev track"
+	desc = "Magnetic levitation tram tracks. Caution! Electrified!"
+	icon = 'icons/turf/flooring/maglevs.dmi'
+	icon_state = "maglevup"

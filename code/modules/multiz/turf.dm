@@ -5,7 +5,7 @@
 		if(direction == UP) //on a turf below, trying to enter
 			return 0
 		if(direction == DOWN) //on a turf above, trying to enter
-			return !density
+			return !density && isopenspace(GetAbove(src)) // VOREStation Edit
 
 /turf/simulated/open/CanZPass(atom, direction)
 	return 1
