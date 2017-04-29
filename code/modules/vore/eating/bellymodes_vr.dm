@@ -333,6 +333,8 @@
 					P.species.create_organs(P) //This is the only way to make it so Unathi TF doesn't result in people dying from organ rejection.
 					for(var/obj/item/organ/I in P.organs) //This prevents organ rejection
 						I.species = O.species
+					for(var/obj/item/organ/I in P.internal_organs) //This prevents organ rejection
+						I.species = O.species
 					for(var/obj/item/organ/external/Z in P.organs)//Just in case.
 						Z.sync_colour_to_human(P)
 					P << "<span class='notice'>You lose sensation of your body, feeling only the warmth of everything around you... </span>"
@@ -401,7 +403,9 @@
 					P.species = O.species
 					P.custom_species = O.custom_species
 					P.species.create_organs(P)
-					for(var/obj/item/organ/I in P.organs) //This prevents organ rejection
+					for(var/obj/item/organ/I in P.organs)
+						I.species = O.species
+					for(var/obj/item/organ/I in P.internal_organs)
 						I.species = O.species
 					for(var/obj/item/organ/external/Z in P.organs)
 						Z.sync_colour_to_human(P)
@@ -432,7 +436,9 @@
 			P.ear_style = O.ear_style
 			P.species = O.species
 			P.species.create_organs(P)
-			for(var/obj/item/organ/I in P.organs) //This prevents organ rejection
+			for(var/obj/item/organ/I in P.organs)
+				I.species = O.species
+			for(var/obj/item/organ/I in P.internal_organs)
 				I.species = O.species
 			for(var/obj/item/organ/external/Z in P.organs)
 				Z.sync_colour_to_human(P)
@@ -531,7 +537,9 @@
 			P.b_eyes 			= O.b_eyes
 
 			P.species.create_organs(P)
-			for(var/obj/item/organ/I in P.organs) //This prevents organ rejection
+			for(var/obj/item/organ/I in P.organs)
+				I.species = O.species
+			for(var/obj/item/organ/I in P.internal_organs)
 				I.species = O.species
 			for(var/obj/item/organ/external/Z in P.organs)
 				Z.sync_colour_to_human(P)
