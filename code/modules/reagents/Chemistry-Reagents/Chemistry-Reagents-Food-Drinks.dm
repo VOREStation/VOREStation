@@ -2232,8 +2232,8 @@
 	glass_name = "special blend whiskey"
 	glass_desc = "Just when you thought regular station whiskey was good... This silky, amber goodness has to come along and ruin everything."
 
-/datum/reagent/ethanol/unathiliquor	//Needs a better name
-	name = "Unathi Liquor"
+/datum/reagent/ethanol/unathiliquor
+	name = "Redeemer's Brew"
 	id = "unathiliquor"
 	description = "This barely qualifies as a drink, and could give jetfuel a run for its money. Also known to cause feelings of euphoria and numbness."
 	taste_description = "spiced numbness"
