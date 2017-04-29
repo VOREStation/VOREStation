@@ -74,6 +74,7 @@
 		new /obj/item/clothing/under/rank/head_of_personnel_whimsy(src)
 		new /obj/item/clothing/head/caphat/hop(src)
 		new /obj/item/clothing/under/gimmick/rank/head_of_personnel/suit(src)
+		new /obj/item/clothing/under/gimmick/rank/head_of_personnel/suit/skirt(src)
 		new /obj/item/clothing/glasses/sunglasses(src)
 		return
 

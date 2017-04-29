@@ -82,6 +82,7 @@
 	new /obj/item/clothing/under/det/grey/waistcoat(src)
 	new /obj/item/clothing/under/det/black(src)
 	new /obj/item/clothing/under/det/black(src)
+	new /obj/item/clothing/under/det/skirt(src)
 	new /obj/item/clothing/under/det/corporate(src)
 	new /obj/item/clothing/under/det/corporate(src)
 	new /obj/item/clothing/suit/storage/det_trench(src)
@@ -637,5 +638,6 @@
 	new /obj/item/clothing/suit/storage/hooded/wintercoat/captain(src)
 	new /obj/item/clothing/head/beret/centcom/captain(src)
 	new /obj/item/clothing/under/gimmick/rank/captain/suit(src)
+	new /obj/item/clothing/under/gimmick/rank/captain/suit/skirt(src)
 	new /obj/item/clothing/glasses/sunglasses(src)
 	return
