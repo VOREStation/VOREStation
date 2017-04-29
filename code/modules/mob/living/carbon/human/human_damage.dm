@@ -159,6 +159,20 @@
 	else
 		in_stasis = amount
 
+/mob/living/carbon/human/proc/getStasis()
+	if((species.flags & NO_SCAN) || isSynthetic())
+		return 0
+
+	return in_stasis
+
+//This determines if, RIGHT NOW, the life() tick is being skipped due to stasis
+/mob/living/carbon/human/proc/inStasisNow()
+	var/stasisValue = getStasis()
+	if(stasisValue && (life_tick % stasisValue))
+		return 1
+
+	return 0
+
 /mob/living/carbon/human/getCloneLoss()
 	if((species.flags & NO_SCAN) || isSynthetic())
 		cloneloss = 0

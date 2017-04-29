@@ -197,7 +197,7 @@
 			if(href_list["chemical"] in available_chemicals) // Your hacks are bad and you should feel bad
 				inject_chemical(usr, href_list["chemical"], text2num(href_list["amount"]))
 	if(href_list["change_stasis"])
-		var/new_stasis = input("Levels deeper than 50% metabolic rate will render the patient unconscious.","Stasis Level") as null|anything in stasis_choices
+		var/new_stasis = input("Levels deeper than 50% stasis level will render the patient unconscious.","Stasis Level") as null|anything in stasis_choices
 		if(new_stasis && CanUseTopic(usr, default_state) == STATUS_INTERACTIVE)
 			stasis_level = stasis_choices[new_stasis]
 
@@ -205,7 +205,11 @@
 
 /obj/machinery/sleeper/attackby(var/obj/item/I, var/mob/user)
 	add_fingerprint(user)
-	if(default_deconstruction_screwdriver(user, I))
+	if(istype(I, /obj/item/weapon/grab))
+		var/obj/item/weapon/grab/G = I
+		if(G.affecting)
+			go_in(G.affecting, user)
+	else if(default_deconstruction_screwdriver(user, I))
 		return
 	else if(default_deconstruction_crowbar(user, I))
 		return
@@ -218,6 +222,28 @@
 		else
 			user << "<span class='warning'>\The [src] has a beaker already.</span>"
 		return
+
+/obj/machinery/sleeper/verb/move_eject()
+	set name = "Eject occupant"
+	set category = "Object"
+	set src in oview(1)
+	if(usr == occupant)
+		switch(usr.stat)
+			if(DEAD)
+				return
+			if(UNCONSCIOUS)
+				usr << "<span class='notice'>You struggle through the haze to hit the eject button. This will take a couple of minutes...</span>"
+				sleep(2 MINUTES)
+				if(!src || !usr || !occupant || (occupant != usr)) //Check if someone's released/replaced/bombed him already
+					return
+				go_out()
+			if(CONSCIOUS)
+				go_out()
+	else
+		if(usr.stat != 0)
+			return
+		go_out()
+	add_fingerprint(usr)
 
 /obj/machinery/sleeper/MouseDrop_T(var/mob/target, var/mob/user)
 	if(user.stat || user.lying || !Adjacent(user) || !target.Adjacent(user)|| !ishuman(target))
