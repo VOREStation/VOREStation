@@ -1367,6 +1367,7 @@
 #include "code\modules\clothing\under\color.dm"
 #include "code\modules\clothing\under\miscellaneous.dm"
 #include "code\modules\clothing\under\miscellaneous_vr.dm"
+#include "code\modules\clothing\under\nanotrasen_vr.dm"
 #include "code\modules\clothing\under\pants.dm"
 #include "code\modules\clothing\under\shorts.dm"
 #include "code\modules\clothing\under\solgov.dm"
