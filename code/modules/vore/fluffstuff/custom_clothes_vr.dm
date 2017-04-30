@@ -1286,7 +1286,7 @@ Departamental Swimsuits, for general use
 				return 0
 			else
 				return 1
-=======
+				
 //Seiga: Alfonso Oak Telanor
 /obj/item/clothing/glasses/sunglasses/fluff/alfonso
 	name = "cyborg visor"
@@ -1294,4 +1294,3 @@ Departamental Swimsuits, for general use
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "alfonso_visor"
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
->>>>>>> ae96b83098a2bfbe725aaf546674691f46ed4563
