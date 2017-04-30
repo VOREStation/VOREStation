@@ -5,7 +5,7 @@
 	name = "body design console"
 	icon = 'icons/obj/computer_vr.dmi'
 	icon_keyboard = "design_key"
-	icon_screen = "design"
+	icon_screen = "med_key"
 	light_color = "#315ab4"
 	circuit = /obj/item/weapon/circuitboard/body_designer
 	req_access = list(access_medical) // Used for loading people's designs
