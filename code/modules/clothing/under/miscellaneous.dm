@@ -22,8 +22,7 @@
 	icon_state = "scratch"
 
 /obj/item/clothing/under/scratch/skirt
-	name = "white suit"
-	desc = "A white suit, suitable for a excellent host"
+	name = "white skirt suit"
 	icon_state = "scratch_skirt"
 
 /obj/item/clothing/under/sl_suit
@@ -104,6 +103,7 @@
 	starting_accessories = list(/obj/item/clothing/accessory/darkgreen)
 
 /obj/item/clothing/under/gov/skirt
+	name = "Green formal skirt uniform"
 	desc = "A neat proper uniform of someone on offical business. The top button is sewn shut."
 	icon_state = "greensuit_skirt"
 
@@ -174,6 +174,7 @@
 	item_state_slots = list(slot_r_hand_str = "centcom", slot_l_hand_str = "centcom")
 
 /obj/item/clothing/under/gimmick/rank/captain/suit/skirt
+	name = "colony director's skirt suit"
 	icon_state = "green_suit_skirt"
 
 /obj/item/clothing/under/gimmick/rank/head_of_personnel/suit
@@ -183,6 +184,7 @@
 	item_state_slots = list(slot_r_hand_str = "green", slot_l_hand_str = "green")
 
 /obj/item/clothing/under/gimmick/rank/head_of_personnel/suit/skirt
+	name = "head of personnel's skirt suit"
 	icon_state = "teal_suit_skirt"
 
 /obj/item/clothing/under/suit_jacket
@@ -198,6 +200,7 @@
 	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
 
 /obj/item/clothing/under/suit_jacket/really_black/skirt
+	name = "executive skirt suit"
 	desc = "A formal black suit and red necktie, intended for the station's finest."
 	icon_state = "really_black_suit_skirt"
 
@@ -221,8 +224,9 @@
 	item_state_slots = list(slot_r_hand_str = "lawyer_red", slot_l_hand_str = "lawyer_red")
 
 /obj/item/clothing/under/suit_jacket/red/skirt
-	name = "red suit"
-	desc = "A red suit and blue tie. Somewhat formal."
+	name = "red skirt suit"
+	desc = "A red suit and blue necktie. Somewhat formal."
+	icon_state = "red_suit_skirt"
 
 /obj/item/clothing/under/schoolgirl
 	name = "schoolgirl uniform"
@@ -450,6 +454,7 @@
 	starting_accessories = list(/obj/item/clothing/accessory/navy, /obj/item/clothing/accessory/charcoal_jacket)
 
 /obj/item/clothing/under/suit_jacket/charcoal/skirt
+	name = "charcoal skirt"
 	icon_state = "charcoal_suit_skirt"
 
 /obj/item/clothing/under/suit_jacket/navy
@@ -460,6 +465,7 @@
 	starting_accessories = list(/obj/item/clothing/accessory/red, /obj/item/clothing/accessory/navy_jacket)
 
 /obj/item/clothing/under/suit_jacket/navy/skirt
+	name = "navy skirt"
 	icon_state = "navy_suit_skirt"
 
 /obj/item/clothing/under/suit_jacket/burgundy
@@ -470,6 +476,7 @@
 	starting_accessories = list(/obj/item/clothing/accessory/black, /obj/item/clothing/accessory/burgundy_jacket)
 
 /obj/item/clothing/under/suit_jacket/burgundy/skirt
+	name = "burgundy skirt"
 	icon_state = "burgundy_suit_skirt"
 
 /obj/item/clothing/under/suit_jacket/checkered
@@ -480,6 +487,7 @@
 	starting_accessories = list(/obj/item/clothing/accessory/black, /obj/item/clothing/accessory/checkered_jacket)
 
 /obj/item/clothing/under/suit_jacket/checkered/skirt
+	name = "checkered skirt"
 	icon_state = "checkered_suit_skirt"
 
 /obj/item/clothing/under/suit_jacket/tan
@@ -490,6 +498,7 @@
 	starting_accessories = list(/obj/item/clothing/accessory/yellow, /obj/item/clothing/accessory/tan_jacket)
 
 /obj/item/clothing/under/suit_jacket/tan/skirt
+	name = "tan skirt"
 	icon_state = "tan_suit_skirt"
 
 /obj/item/clothing/under/serviceoveralls
@@ -527,7 +536,7 @@
 	item_state_slots = list(slot_r_hand_str = "lawyer_blue", slot_l_hand_str = "lawyer_blue")
 
 /obj/item/clothing/under/blazer/skirt
-	name = "blue blazer"
+	name = "ladies blue blazer"
 	desc = "A bold but yet conservative outfit, a red pencil skirt and a navy blazer."
 	icon_state = "blue_blazer_skirt"
 

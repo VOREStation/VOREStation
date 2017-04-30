@@ -6,9 +6,9 @@
 	icon_state = "ba_suit"
 	rolled_sleeves = 0
 
-obj/item/clothing/under/rank/bartender/skirt
+/obj/item/clothing/under/rank/bartender/skirt
 	desc = "Short and cute."
-	name = "bartender's uniform"
+	name = "bartender's skirt"
 	icon_state = "ba_suit_skirt"
 
 /obj/item/clothing/under/rank/captain //Alright, technically not a 'civilian' but its better then giving a .dm file for a single define.
@@ -103,8 +103,9 @@ obj/item/clothing/under/rank/bartender/skirt
 	starting_accessories = list(/obj/item/clothing/accessory/black)
 
 /obj/item/clothing/under/rank/internalaffairs/skirt
-	icon_state = "internalaffairs_skirt"
 	desc = "The plain, professional attire of an Internal Affairs Agent. The top button is sewn shut."
+	name = "Internal Affairs skirt"
+	icon_state = "internalaffairs_skirt"
 
 /obj/item/clothing/under/rank/janitor
 	desc = "It's the official uniform of the station's janitor. It has minor protection from biohazards."
@@ -122,6 +123,7 @@ obj/item/clothing/under/rank/bartender/skirt
 	icon_state = "lawyer_black"
 
 /obj/item/clothing/under/lawyer/black/skirt
+	name = "black Lawyer skirt"
 	icon_state = "lawyer_black_skirt"
 
 /obj/item/clothing/under/lawyer/female
@@ -134,7 +136,7 @@ obj/item/clothing/under/rank/bartender/skirt
 	icon_state = "lawyer_red"
 
 /obj/item/clothing/under/lawyer/red/skirt
-	name = "red Lawyer suit"
+	name = "red Lawyer skirt"
 	icon_state = "lawyer_red_skirt"
 
 /obj/item/clothing/under/lawyer/blue
@@ -142,25 +144,27 @@ obj/item/clothing/under/rank/bartender/skirt
 	icon_state = "lawyer_blue"
 
 /obj/item/clothing/under/lawyer/blue/skirt
-	name = "blue Lawyer suit"
+	name = "blue Lawyer skirt"
 	icon_state = "lawyer_blue_skirt"
 
 /obj/item/clothing/under/lawyer/bluesuit
-	name = "Blue Suit"
+	name = "blue suit"
 	desc = "A classy suit."
 	icon_state = "bluesuit"
 	item_state_slots = list(slot_r_hand_str = "lawyer_blue", slot_l_hand_str = "lawyer_blue")
 	starting_accessories = list(/obj/item/clothing/accessory/red)
 
 /obj/item/clothing/under/lawyer/bluesuit/skirt
+	name = "blue skirt suit"
 	icon_state = "bluesuit_skirt"
 
 /obj/item/clothing/under/lawyer/purpsuit
-	name = "Purple Suit"
+	name = "purple Suit"
 	icon_state = "lawyer_purp"
 	item_state_slots = list(slot_r_hand_str = "purple", slot_l_hand_str = "purple")
 
 /obj/item/clothing/under/lawyer/purpsuit/skirt
+	name = "purple skirt suit"
 	icon_state = "lawyer_purp_skirt"
 
 /obj/item/clothing/under/lawyer/oldman

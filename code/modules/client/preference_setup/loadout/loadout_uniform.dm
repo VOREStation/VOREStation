@@ -6,7 +6,7 @@
 	sort_category = "Uniforms and Casual Dress"
 
 /datum/gear/uniform/blazerskirt
-	display_name = "blazer with skirt, blue"
+	display_name = "blazer, blue with skirt"
 	path = /obj/item/clothing/under/blazer/skirt
 
 /datum/gear/uniform/cheongsam
