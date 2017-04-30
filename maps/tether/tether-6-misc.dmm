@@ -14,116 +14,129 @@
 "an" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 6; teleport_z_offset = 6},/turf/space/transit/east/shuttlespace_ew3,/area/space)
 "ao" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 6; teleport_z_offset = 6},/turf/space/transit/east/shuttlespace_ew4,/area/space)
 "ap" = (/turf/space,/area/space)
-"aq" = (/turf/space/transit/east/shuttlespace_ew10,/area/space)
-"ar" = (/turf/space/transit/east/shuttlespace_ew11,/area/space)
-"as" = (/turf/space/transit/east/shuttlespace_ew12,/area/space)
-"at" = (/turf/space/transit/east/shuttlespace_ew13,/area/space)
-"au" = (/turf/space/transit/east/shuttlespace_ew14,/area/space)
-"av" = (/turf/space/transit/east/shuttlespace_ew15,/area/space)
-"aw" = (/turf/space/transit/east/shuttlespace_ew1,/area/space)
-"ax" = (/turf/space/transit/east/shuttlespace_ew2,/area/space)
-"ay" = (/turf/space/transit/east/shuttlespace_ew3,/area/space)
-"az" = (/turf/space/transit/east/shuttlespace_ew4,/area/space)
-"aA" = (/turf/space/transit/east/shuttlespace_ew5,/area/space)
-"aB" = (/turf/space/transit/east/shuttlespace_ew6,/area/space)
-"aC" = (/turf/space/transit/east/shuttlespace_ew7,/area/space)
-"aD" = (/turf/space/transit/east/shuttlespace_ew8,/area/space)
-"aE" = (/turf/space/transit/east/shuttlespace_ew9,/area/space)
-"aF" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; name = "thrower_leftnostop"},/turf/space/transit/east/shuttlespace_ew13,/area/space)
-"aG" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; name = "thrower_leftnostop"},/turf/space/transit/east/shuttlespace_ew14,/area/space)
-"aH" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; name = "thrower_leftnostop"},/turf/space/transit/east/shuttlespace_ew15,/area/space)
-"aI" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; name = "thrower_leftnostop"},/turf/space/transit/east/shuttlespace_ew1,/area/space)
-"aJ" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; name = "thrower_leftnostop"},/turf/space/transit/east/shuttlespace_ew9,/area/space)
-"aK" = (/turf/space/transit/east/shuttlespace_ew1,/area/shuttle/large_escape_pod1/transit)
-"aL" = (/turf/space/transit/east/shuttlespace_ew2,/area/shuttle/large_escape_pod1/transit)
-"aM" = (/turf/space/transit/east/shuttlespace_ew3,/area/shuttle/large_escape_pod1/transit)
-"aN" = (/turf/space/transit/east/shuttlespace_ew4,/area/shuttle/large_escape_pod1/transit)
-"aO" = (/turf/space/transit/east/shuttlespace_ew5,/area/shuttle/large_escape_pod1/transit)
-"aP" = (/turf/space/transit/east/shuttlespace_ew6,/area/shuttle/large_escape_pod1/transit)
-"aQ" = (/turf/space/transit/east/shuttlespace_ew7,/area/shuttle/large_escape_pod1/transit)
-"aR" = (/turf/space/transit/east/shuttlespace_ew8,/area/shuttle/large_escape_pod1/transit)
-"aS" = (/turf/space/transit/east/shuttlespace_ew9,/area/shuttle/large_escape_pod1/transit)
-"aT" = (/obj/effect/step_trigger/thrower{direction = 1; name = "thrower_throwup"; nostop = 0; tiles = 0},/turf/space/transit/east/shuttlespace_ew15,/area/space)
-"aU" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; name = "thrower_leftnostop"},/turf/space/transit/east/shuttlespace_ew4,/area/space)
-"aV" = (/turf/space/transit/east/shuttlespace_ew13,/area/shuttle/large_escape_pod1/transit)
-"aW" = (/turf/space/transit/east/shuttlespace_ew14,/area/shuttle/large_escape_pod1/transit)
-"aX" = (/turf/space/transit/east/shuttlespace_ew15,/area/shuttle/large_escape_pod1/transit)
-"aY" = (/obj/effect/step_trigger/thrower{direction = 1; name = "thrower_throwup"; nostop = 0; tiles = 0},/turf/space/transit/east/shuttlespace_ew9,/area/space)
-"aZ" = (/turf/space/transit/east/shuttlespace_ew11,/area/shuttle/large_escape_pod1/transit)
-"ba" = (/turf/space/transit/east/shuttlespace_ew12,/area/shuttle/large_escape_pod1/transit)
-"bb" = (/obj/effect/step_trigger/thrower{direction = 1; name = "thrower_throwup"; nostop = 0; tiles = 0},/turf/space/transit/east/shuttlespace_ew14,/area/space)
-"bc" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; name = "thrower_leftnostop"},/turf/space/transit/east/shuttlespace_ew11,/area/space)
-"bd" = (/turf/space/transit/east/shuttlespace_ew10,/area/shuttle/large_escape_pod1/transit)
-"be" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; direction = 2; name = "thrower_throwdown"; stopper = 0; tiles = 0},/turf/space/transit/east/shuttlespace_ew1,/area/space)
-"bf" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; name = "thrower_leftnostop"},/turf/space/transit/east/shuttlespace_ew5,/area/space)
-"bg" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; direction = 2; name = "thrower_throwdown"; stopper = 0; tiles = 0},/turf/space/transit/east/shuttlespace_ew15,/area/space)
-"bh" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; direction = 2; name = "thrower_throwdown"; stopper = 0; tiles = 0},/turf/space/transit/east/shuttlespace_ew10,/area/space)
-"bi" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; name = "thrower_leftnostop"},/turf/space/transit/east/shuttlespace_ew10,/area/space)
-"bj" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; name = "thrower_leftnostop"},/turf/space/transit/east/shuttlespace_ew12,/area/space)
-"bk" = (/turf/space/transit/east/shuttlespace_ew1,/area/shuttle/large_escape_pod2/transit)
-"bl" = (/turf/space/transit/east/shuttlespace_ew2,/area/shuttle/large_escape_pod2/transit)
-"bm" = (/turf/space/transit/east/shuttlespace_ew3,/area/shuttle/large_escape_pod2/transit)
-"bn" = (/turf/space/transit/east/shuttlespace_ew4,/area/shuttle/large_escape_pod2/transit)
-"bo" = (/turf/space/transit/east/shuttlespace_ew5,/area/shuttle/large_escape_pod2/transit)
-"bp" = (/turf/space/transit/east/shuttlespace_ew6,/area/shuttle/large_escape_pod2/transit)
-"bq" = (/turf/space/transit/east/shuttlespace_ew7,/area/shuttle/large_escape_pod2/transit)
-"br" = (/turf/space/transit/east/shuttlespace_ew8,/area/shuttle/large_escape_pod2/transit)
-"bs" = (/turf/space/transit/east/shuttlespace_ew9,/area/shuttle/large_escape_pod2/transit)
-"bt" = (/turf/space/transit/east/shuttlespace_ew13,/area/shuttle/large_escape_pod2/transit)
-"bu" = (/turf/space/transit/east/shuttlespace_ew14,/area/shuttle/large_escape_pod2/transit)
-"bv" = (/turf/space/transit/east/shuttlespace_ew15,/area/shuttle/large_escape_pod2/transit)
-"bw" = (/turf/space/transit/east/shuttlespace_ew11,/area/shuttle/large_escape_pod2/transit)
-"bx" = (/turf/space/transit/east/shuttlespace_ew12,/area/shuttle/large_escape_pod2/transit)
-"by" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; direction = 2; name = "thrower_throwdown"; stopper = 0; tiles = 0},/turf/space/transit/east/shuttlespace_ew4,/area/space)
-"bz" = (/turf/space/transit/east/shuttlespace_ew10,/area/shuttle/large_escape_pod2/transit)
-"bA" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; name = "thrower_leftnostop"},/turf/space/transit/east/shuttlespace_ew2,/area/space)
-"bB" = (/obj/effect/step_trigger/teleporter/random,/turf/space,/area/space)
-"bC" = (/turf/space,/area/supply/dock)
+"aq" = (/turf/unsimulated/mineral{icon = 'icons/turf/transit_vr.dmi'; icon_state = "rock"},/area/centcom/ferry)
+"ar" = (/turf/space/transit/east/shuttlespace_ew10,/area/space)
+"as" = (/turf/space/transit/east/shuttlespace_ew11,/area/space)
+"at" = (/turf/space/transit/east/shuttlespace_ew12,/area/space)
+"au" = (/turf/space/transit/east/shuttlespace_ew13,/area/space)
+"av" = (/turf/space/transit/east/shuttlespace_ew14,/area/space)
+"aw" = (/turf/space/transit/east/shuttlespace_ew15,/area/space)
+"ax" = (/turf/space/transit/east/shuttlespace_ew1,/area/space)
+"ay" = (/turf/space/transit/east/shuttlespace_ew2,/area/space)
+"az" = (/turf/space/transit/east/shuttlespace_ew3,/area/space)
+"aA" = (/turf/space/transit/east/shuttlespace_ew4,/area/space)
+"aB" = (/turf/space/transit/east/shuttlespace_ew5,/area/space)
+"aC" = (/turf/space/transit/east/shuttlespace_ew6,/area/space)
+"aD" = (/turf/space/transit/east/shuttlespace_ew7,/area/space)
+"aE" = (/turf/space/transit/east/shuttlespace_ew8,/area/space)
+"aF" = (/turf/space/transit/east/shuttlespace_ew9,/area/space)
+"aG" = (/turf/unsimulated/mineral,/turf/unsimulated/mineral{icon = 'icons/turf/transit_vr.dmi'; icon_state = "rock"},/area/centcom/ferry)
+"aH" = (/turf/unsimulated/wall{icon = 'icons/turf/transit_vr.dmi'},/area/centcom/ferry)
+"aI" = (/obj/effect/floor_decal/transit/orange{dir = 8},/turf/unsimulated/floor/techfloor_grid{icon = 'icons/turf/transit_vr.dmi'},/area/centcom/ferry)
+"aJ" = (/turf/unsimulated/floor/techfloor_grid{icon = 'icons/turf/transit_vr.dmi'},/area/centcom/ferry)
+"aK" = (/turf/unsimulated/floor/maglev{icon = 'icons/turf/transit_vr.dmi'},/area/centcom/ferry)
+"aL" = (/obj/effect/floor_decal/transit/orange{dir = 4},/turf/unsimulated/floor/techfloor_grid{icon = 'icons/turf/transit_vr.dmi'},/area/centcom/ferry)
+"aM" = (/obj/effect/floor_decal/transit/orange{dir = 8},/obj/effect/transit/light{dir = 8},/turf/unsimulated/floor/techfloor_grid{icon = 'icons/turf/transit_vr.dmi'},/area/centcom/ferry)
+"aN" = (/obj/effect/floor_decal/transit/orange{dir = 4},/obj/effect/transit/light{dir = 4},/turf/unsimulated/floor/techfloor_grid{icon = 'icons/turf/transit_vr.dmi'},/area/centcom/ferry)
+"aO" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; name = "thrower_leftnostop"},/turf/space/transit/east/shuttlespace_ew13,/area/space)
+"aP" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; name = "thrower_leftnostop"},/turf/space/transit/east/shuttlespace_ew14,/area/space)
+"aQ" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; name = "thrower_leftnostop"},/turf/space/transit/east/shuttlespace_ew15,/area/space)
+"aR" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; name = "thrower_leftnostop"},/turf/space/transit/east/shuttlespace_ew1,/area/space)
+"aS" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; name = "thrower_leftnostop"},/turf/space/transit/east/shuttlespace_ew9,/area/space)
+"aT" = (/turf/space/transit/east/shuttlespace_ew1,/area/shuttle/large_escape_pod1/transit)
+"aU" = (/turf/space/transit/east/shuttlespace_ew2,/area/shuttle/large_escape_pod1/transit)
+"aV" = (/turf/space/transit/east/shuttlespace_ew3,/area/shuttle/large_escape_pod1/transit)
+"aW" = (/turf/space/transit/east/shuttlespace_ew4,/area/shuttle/large_escape_pod1/transit)
+"aX" = (/turf/space/transit/east/shuttlespace_ew5,/area/shuttle/large_escape_pod1/transit)
+"aY" = (/turf/space/transit/east/shuttlespace_ew6,/area/shuttle/large_escape_pod1/transit)
+"aZ" = (/turf/space/transit/east/shuttlespace_ew7,/area/shuttle/large_escape_pod1/transit)
+"ba" = (/turf/space/transit/east/shuttlespace_ew8,/area/shuttle/large_escape_pod1/transit)
+"bb" = (/turf/space/transit/east/shuttlespace_ew9,/area/shuttle/large_escape_pod1/transit)
+"bc" = (/obj/effect/step_trigger/thrower{direction = 1; name = "thrower_throwup"; nostop = 0; tiles = 0},/turf/space/transit/east/shuttlespace_ew15,/area/space)
+"bd" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; name = "thrower_leftnostop"},/turf/space/transit/east/shuttlespace_ew4,/area/space)
+"be" = (/turf/space/transit/east/shuttlespace_ew13,/area/shuttle/large_escape_pod1/transit)
+"bf" = (/turf/space/transit/east/shuttlespace_ew14,/area/shuttle/large_escape_pod1/transit)
+"bg" = (/turf/space/transit/east/shuttlespace_ew15,/area/shuttle/large_escape_pod1/transit)
+"bh" = (/obj/effect/step_trigger/thrower{direction = 1; name = "thrower_throwup"; nostop = 0; tiles = 0},/turf/space/transit/east/shuttlespace_ew9,/area/space)
+"bi" = (/turf/unsimulated/floor/maglev{icon = 'icons/turf/transit_vr.dmi'},/area/shuttle/escape/transit)
+"bj" = (/turf/unsimulated/floor/techfloor_grid{icon = 'icons/turf/transit_vr.dmi'},/area/shuttle/escape/transit)
+"bk" = (/turf/space/transit/east/shuttlespace_ew11,/area/shuttle/large_escape_pod1/transit)
+"bl" = (/turf/space/transit/east/shuttlespace_ew12,/area/shuttle/large_escape_pod1/transit)
+"bm" = (/obj/effect/step_trigger/thrower{direction = 1; name = "thrower_throwup"; nostop = 0; tiles = 0},/turf/space/transit/east/shuttlespace_ew14,/area/space)
+"bn" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; name = "thrower_leftnostop"},/turf/space/transit/east/shuttlespace_ew11,/area/space)
+"bo" = (/turf/space/transit/east/shuttlespace_ew10,/area/shuttle/large_escape_pod1/transit)
+"bp" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; direction = 2; name = "thrower_throwdown"; stopper = 0; tiles = 0},/turf/space/transit/east/shuttlespace_ew1,/area/space)
+"bq" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; name = "thrower_leftnostop"},/turf/space/transit/east/shuttlespace_ew5,/area/space)
+"br" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; direction = 2; name = "thrower_throwdown"; stopper = 0; tiles = 0},/turf/space/transit/east/shuttlespace_ew15,/area/space)
+"bs" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; direction = 2; name = "thrower_throwdown"; stopper = 0; tiles = 0},/turf/space/transit/east/shuttlespace_ew10,/area/space)
+"bt" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; name = "thrower_leftnostop"},/turf/space/transit/east/shuttlespace_ew10,/area/space)
+"bu" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; name = "thrower_leftnostop"},/turf/space/transit/east/shuttlespace_ew12,/area/space)
+"bv" = (/turf/space/transit/east/shuttlespace_ew1,/area/shuttle/large_escape_pod2/transit)
+"bw" = (/turf/space/transit/east/shuttlespace_ew2,/area/shuttle/large_escape_pod2/transit)
+"bx" = (/turf/space/transit/east/shuttlespace_ew3,/area/shuttle/large_escape_pod2/transit)
+"by" = (/turf/space/transit/east/shuttlespace_ew4,/area/shuttle/large_escape_pod2/transit)
+"bz" = (/turf/space/transit/east/shuttlespace_ew5,/area/shuttle/large_escape_pod2/transit)
+"bA" = (/turf/space/transit/east/shuttlespace_ew6,/area/shuttle/large_escape_pod2/transit)
+"bB" = (/turf/space/transit/east/shuttlespace_ew7,/area/shuttle/large_escape_pod2/transit)
+"bC" = (/turf/space/transit/east/shuttlespace_ew8,/area/shuttle/large_escape_pod2/transit)
+"bD" = (/turf/space/transit/east/shuttlespace_ew9,/area/shuttle/large_escape_pod2/transit)
+"bE" = (/turf/space/transit/east/shuttlespace_ew13,/area/shuttle/large_escape_pod2/transit)
+"bF" = (/turf/space/transit/east/shuttlespace_ew14,/area/shuttle/large_escape_pod2/transit)
+"bG" = (/turf/space/transit/east/shuttlespace_ew15,/area/shuttle/large_escape_pod2/transit)
+"bH" = (/turf/space/transit/east/shuttlespace_ew11,/area/shuttle/large_escape_pod2/transit)
+"bI" = (/turf/space/transit/east/shuttlespace_ew12,/area/shuttle/large_escape_pod2/transit)
+"bJ" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; direction = 2; name = "thrower_throwdown"; stopper = 0; tiles = 0},/turf/space/transit/east/shuttlespace_ew4,/area/space)
+"bK" = (/turf/space/transit/east/shuttlespace_ew10,/area/shuttle/large_escape_pod2/transit)
+"bL" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; name = "thrower_leftnostop"},/turf/space/transit/east/shuttlespace_ew2,/area/space)
+"bM" = (/obj/effect/step_trigger/teleporter/random,/turf/space,/area/space)
+"bN" = (/turf/space,/area/supply/dock)
+"bO" = (/obj/effect/transit/light{dir = 8},/turf/unsimulated/mineral{icon = 'icons/turf/transit_vr.dmi'; icon_state = "rock"},/area/centcom/ferry)
+"bP" = (/obj/effect/transit/light{dir = 4},/turf/space,/area/space)
 
 (1,1,1) = {"
-aaabacadaeafagahaiajakalamanaoaaabacadaeafagahaiajapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-aeaqarasatauavawaxayazaAaBaCaDaEaqarasatauavawaxanapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-abaCaDaEaqarasatauavavawaxayaAaBaCaDaEaqarasatauakapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-ahatauavaxaxayazaAaBazaAaBaCarasawauavawaxayazaAabapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-anazaAaBaCaDaEaqarasawaxayazaxayazaAaBaCaDaEaqarahapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-ahatauavawaxayazaAaBaCaDaEaqarasatauavawaxayazaAabapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-acaDaEaqaraFaGaGaHaIaFaGaHaFaGaHaHaHaqarasatauavalapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-alaxayazaAaJaKaKaLaMaNaOaPaQaRaSaSaTaJaAaBaCaDaEafapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-aoaAaBaCaDaUaVaVaWaXaXaKaLaMaOaPaPaPaYaDaEaqarasaiapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-ajavawaxayaJaNaNaOaPaNaOaPaQaZbabababbayazaAaBaCadapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-adaEaqarasbcbdbdaZbaaKaLaMaNaLaMaMaMbeasatauavawamapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-aiauavawaxbfaNaNaOaPaQaRaSbdaZbababgbhaxayazaAaBacapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-abaCaDaEaqbibcbcbjaFaGaHbcbjaFaGaGaGaEaqarasatauakapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-afarasatauavawaxayavaCaDaEaqaAaqarasatauavawaxayaoapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-akawaxayaEaGaGaGaHaIaFaGaHaFaGaHaHaIayazaAaBaCaDaeapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-amayazaAaEaFbkbkblbmbnbobpbqbrbsbsaYbfaBaCaDaEaqagapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-agasatauazaFbtbtbubvbvbkblbmbobpbpbsbbavawaxayazaaapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-alaxayazaEaUbnbnbobpbnbobpbqbwbxbxbubyaAaBaCaDaEafapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-acaDaEaqarbibzbzbwbxbkblbmbnblbmbmbkbharasatauavalapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-ajavawaxaAbibnbnbobpbqbrbsbzbwbxbxbhbAayazaAaBaCadapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-aeaqarasaEbcbcbcbjaFaGaHbcbjaFaGaGaHasatauavawaxanapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-aoaAaBaCaDaEaqarasatauavawaxayazaAaBaCaDaEaqarasaiapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-amayazaAaBaCaDaEaqarasatauavawaxayazaAaBaCaDaEaqagapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-afarasatauavawaxayazaAaBaCaDaEaqarasatauavawaxayaoapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-aiauavawaxayazaAaBaCaDaEaqarasatauavawaxayazaAaBacapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-adaeafagahaiajakalamanaoaaabacadaeafagahaiajakalamapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-apapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-bBbBbBbBbBbBbBbBbBbBbBapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-bBapapapapapapapapapbBapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-bBapbCbCbCbCbCbCbCapbBapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-bBapbCbCbCbCbCbCbCapbBapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-bBapbCbCbCbCbCbCbCapbBapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-bBapbCbCbCbCbCbCbCapbBapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-bBapbCbCbCbCbCbCbCapbBapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-bBapbCbCbCbCbCbCbCapbBapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-bBapbCbCbCbCbCbCbCapbBapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-bBapbCbCbCbCbCbCbCapbBapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-bBapbCbCbCbCbCbCbCapbBapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-bBapbCbCbCbCbCbCbCapbBapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-bBapbCbCbCbCbCbCbCapbBapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-bBapapbCbCbCbCbCapapbBapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-bBapapapapapapapapapbBapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
-bBbBbBbBbBbBbBbBbBbBbBapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+aaabacadaeafagahaiajakalamanaoaaabacadaeafagahaiajapaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+aearasatauavawaxayazaAaBaCaDaEaFarasatauavawaxayanapaqaqaqaGaHaIaJaKaJaJaJaJaKaJaLaHaqaqaqaqapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+abaDaEaFarasatauavawawaxayazaBaCaDaEaFarasatauavakapaqaqaqaGaHaIaJaKaJaJaJaJaKaJaLaHaqaqaqaqapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+ahauavawayayazaAaBaCaAaBaCaDasataxavawaxayazaAaBabapaqaqaqaGaHaMaJaKaJaJaJaJaKaJaLaHaqaqaqaqapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+anaAaBaCaDaEaFarasataxayazaAayazaAaBaCaDaEaFarasahapaqaqaqaGaHaIaJaKaJaJaJaJaKaJaNaHaqaqaqaqapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+ahauavawaxayazaAaBaCaDaEaFarasatauavawaxayazaAaBabapaqaqaqaGaHaIaJaKaJaJaJaJaKaJaLaHaqaqaqaqapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+acaEaFarasaOaPaPaQaRaOaPaQaOaPaQaQaQarasatauavawalapaqaqaqaGaHaIaJaKaJaJaJaJaKaJaLaHaqaqaqaqapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+alayazaAaBaSaTaTaUaVaWaXaYaZbabbbbbcaSaBaCaDaEaFafapaGaGaGaGaHaMaJaKaJaJaJaJaKaJaLaHaqaqaqaqapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+aoaBaCaDaEbdbebebfbgbgaTaUaVaXaYaYaYbhaEaFarasataiapaGaGaGaGaHaIaJbibjbjbjbjbiaJaNaHaqaqaqaqapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+ajawaxayazaSaWaWaXaYaWaXaYaZbkblblblbmazaAaBaCaDadapaGaGaGaGaHaIbjbibjbjbjbjbibjaLaHaqaqaqaqapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+adaFarasatbnbobobkblaTaUaVaWaUaVaVaVbpatauavawaxamapaGaGaGaGaHaIbjbibjbjbjbjbibjaLaHaqaqaqaqapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+aiavawaxaybqaWaWaXaYaZbabbbobkblblbrbsayazaAaBaCacapaGaGaGaGaHaMbjbibjbjbjbjbibjaLaHaqaqaqaqapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+abaDaEaFarbtbnbnbuaOaPaQbnbuaOaPaPaPaFarasatauavakapaGaGaGaGaHaIbjbibjbjbjbjbibjaNaHaqaqaqaqapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+afasatauavawaxayazawaDaEaFaraBarasatauavawaxayazaoapaGaGaGaGaHaIbjbibjbjbjbjbibjaLaHaqaqaqaqapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+akaxayazaFaPaPaPaQaRaOaPaQaOaPaQaQaRazaAaBaCaDaEaeapaGaGaGaGaHaIbjbibjbjbjbjbibjaLaHaqaqaqaqapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+amazaAaBaFaObvbvbwbxbybzbAbBbCbDbDbhbqaCaDaEaFaragapaGaGaGaGaHaMbjbibjbjbjbjbibjaLaHaqaqaqaqapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+agatauavaAaObEbEbFbGbGbvbwbxbzbAbAbDbmawaxayazaAaaapaGaGaGaGaHaIbjbibjbjbjbjbibjaNaHaqaqaqaqapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+alayazaAaFbdbybybzbAbybzbAbBbHbIbIbFbJaBaCaDaEaFafapaGaGaGaGaHaIbjbibjbjbjbjbibjaLaHaqaqaqaqapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+acaEaFarasbtbKbKbHbIbvbwbxbybwbxbxbvbsasatauavawalapaGaGaGaGaHaIbjbibjbjbjbjbibjaLaHaqaqaqaqapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+ajawaxayaBbtbybybzbAbBbCbDbKbHbIbIbsbLazaAaBaCaDadapaGaGaGaGaHaMbjbibjbjbjbjbibjaLaHaqaqaqaqapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+aearasataFbnbnbnbuaOaPaQbnbuaOaPaPaQatauavawaxayanapaGaGaGaGaHaIbjbibjbjbjbjbibjaNaHaqaqaqaqapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+aoaBaCaDaEaFarasatauavawaxayazaAaBaCaDaEaFarasataiapaGaGaGaGaHaIbjbibjbjbjbjbibjaLaHaqaqaqaqapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+amazaAaBaCaDaEaFarasatauavawaxayazaAaBaCaDaEaFaragapaGaGaGaGaHaIbjbibjbjbjbjbibjaLaHaqaqaqaqapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+afasatauavawaxayazaAaBaCaDaEaFarasatauavawaxayazaoapaGaGaGaGaHaMaJbibjbjbjbjbiaJaLaHaqaqaqaqapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+aiavawaxayazaAaBaCaDaEaFarasatauavawaxayazaAaBaCacapaGaGaGaGaHaIaJaKaJaJaJaJaKaJaNaHaqaqaqaqapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+adaeafagahaiajakalamanaoaaabacadaeafagahaiajakalamapaqaqaqaqaHaIaJaKaJaJaJaJaKaJaLaHaqaqaqaqapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+apapapapapapapapapapapapapapapapapapapapapapapapapapaqaqaqaqaHaIaJaKaJaJaJaJaKaJaLaHaqaqaqaqapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+bMbMbMbMbMbMbMbMbMbMbMapapapapapapapapapapapapapapapaqaqaqaqaHaMaJaKaJaJaJaJaKaJaLaHaqaqaqaqapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+bMapapapapapapapapapbMapapapapapapapapapapapapapapapaqaqaqaqaHaIaJaKaJaJaJaJaKaJaNaHaqaqaqaqapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+bMapbNbNbNbNbNbNbNapbMapapapapapapapapapapapapapapapaqaqaqaqaHaIaJaKaJaJaJaJaKaJaLaHaqaqaqaqapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+bMapbNbNbNbNbNbNbNapbMapapapapapapapapapapapapapapapaqaqaqaqaHaIaJaKaJaJaJaJaKaJaLaHaqaqaqaqapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+bMapbNbNbNbNbNbNbNapbMapapapapapapapapapapapapapapapaqaqaqaqaqbOaqaqaqaqaqaqaqaqaqaqaqaqaqaqapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+bMapbNbNbNbNbNbNbNapbMapapapapapapapapapapapapapapapapapapapapapapapapapapapapapbPapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+bMapbNbNbNbNbNbNbNapbMapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+bMapbNbNbNbNbNbNbNapbMapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+bMapbNbNbNbNbNbNbNapbMapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+bMapbNbNbNbNbNbNbNapbMapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+bMapbNbNbNbNbNbNbNapbMapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+bMapbNbNbNbNbNbNbNapbMapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+bMapbNbNbNbNbNbNbNapbMapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+bMapapbNbNbNbNbNapapbMapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+bMapapapapapapapapapbMapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
+bMbMbMbMbMbMbMbMbMbMbMapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
 apapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
 apapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
 apapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap

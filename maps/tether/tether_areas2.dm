@@ -223,6 +223,12 @@
 /area/tether/station/stairs_three
 	name = "\improper Station Stairwell Third Floor"
 	icon_state = "dk_yellow"
+/area/tether/station/dock_one
+	name = "\improper Dock One"
+	icon_state = "dk_yellow"
+/area/tether/station/dock_two
+	name = "\improper Dock Two"
+	icon_state = "dk_yellow"
 
 /area/ai/foyer
 	name = "\improper AI Core Access"
@@ -262,6 +268,8 @@
 	name = "\improper Main Starboard Hallway"
 /area/hallway/station/_03
 	name = "\improper Main Upper Hallway"
+/area/hallway/station/docks
+	name = "\improper Docks Hallway"
 
 /area/maintenance/station
 	icon_state = "fsmaint"

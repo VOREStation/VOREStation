@@ -52,3 +52,17 @@ VIRGO3B_TURF_CREATE(/turf/simulated/floor/tiled/steel_dirty)
 	desc = "Magnetic levitation tram tracks. Caution! Electrified!"
 	icon = 'icons/turf/flooring/maglevs.dmi'
 	icon_state = "maglevup"
+
+/turf/unsimulated/wall/transit
+	icon = 'icons/turf/transit_vr.dmi'
+
+/turf/unsimulated/floor/transit
+	icon = 'icons/turf/transit_vr.dmi'
+
+/obj/effect/floor_decal/transit/orange
+	icon = 'icons/turf/transit_vr.dmi'
+	icon_state = "transit_techfloororange_edges"
+
+/obj/effect/transit/light
+	icon = 'icons/turf/transit_128.dmi'
+	icon_state = "tube1-2"
