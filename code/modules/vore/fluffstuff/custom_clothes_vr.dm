@@ -1221,7 +1221,7 @@ Departamental Swimsuits, for general use
 	icon_state = "batter"
 	item_state = "batter_mob"
 
-<<<<<<< HEAD
+
 //samanthafyre:Kateryna Petrovitch
 /obj/item/clothing/suit/armor/vest/wolftaur/kate
 	name = "Kat's Fox Taur Armor"
@@ -1286,7 +1286,7 @@ Departamental Swimsuits, for general use
 				return 0
 			else
 				return 1
-				
+
 //Seiga: Alfonso Oak Telanor
 /obj/item/clothing/glasses/sunglasses/fluff/alfonso
 	name = "cyborg visor"
