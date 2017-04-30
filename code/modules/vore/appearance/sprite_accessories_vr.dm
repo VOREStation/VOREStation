@@ -499,6 +499,12 @@
 	icon_state = "molenar-kitsune"
 	ckeys_allowed = list("molenar")
 
+/datum/sprite_accessory/tail/liquidfirefly_gazer
+	name = "gazer eyestalks (Liquidfirefly)"
+	desc = ""
+	icon_state = "liquidfirefly-eyestalks"
+	ckeys_allowed = list("liquidfirefly")
+
 /datum/sprite_accessory/tail/miria_fluffdragon
 	name = "fluffdragon wings+tail (Miria Masters)"
 	desc = ""
