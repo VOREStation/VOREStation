@@ -1221,6 +1221,7 @@ Departamental Swimsuits, for general use
 	icon_state = "batter"
 	item_state = "batter_mob"
 
+<<<<<<< HEAD
 //samanthafyre:Kateryna Petrovitch
 /obj/item/clothing/suit/armor/vest/wolftaur/kate
 	name = "Kat's Fox Taur Armor"
@@ -1285,3 +1286,12 @@ Departamental Swimsuits, for general use
 				return 0
 			else
 				return 1
+=======
+//Seiga: Alfonso Oak Telanor
+/obj/item/clothing/glasses/sunglasses/fluff/alfonso
+	name = "cyborg visor"
+	desc = "Eyewear worn by a once famous Thunderdome competitor. Fo' shizzle."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "alfonso_visor"
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+>>>>>>> ae96b83098a2bfbe725aaf546674691f46ed4563

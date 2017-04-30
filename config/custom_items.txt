@@ -179,6 +179,13 @@ item_path: /obj/item/clothing/accessory/medal/bronze_heart
 # ######## F CKEYS
 # ######## G CKEYS
 # ######## H CKEYS
+
+{
+ckey: hottokeeki
+character_name: Belle Day
+item_path: /obj/item/weapon/gun/energy/sizegun
+}
+
 # ######## I CKEYS
 
 {
@@ -448,6 +455,12 @@ item_path: /obj/item/clothing/head/fluff/pompom
 ckey: scree
 character_name: Scree
 item_path: /obj/item/clothing/glasses/omnihud/eng/meson/fluff/scree
+}
+
+{
+ckey: seiga
+character_name: Alfonso Oak Telanor
+item_path: /obj/item/clothing/glasses/sunglasses/fluff/alfonso
 }
 
 {

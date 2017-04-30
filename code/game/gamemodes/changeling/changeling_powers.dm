@@ -13,6 +13,8 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	var/isabsorbing = 0
 	var/geneticpoints = 5
 	var/max_geneticpoints = 5
+	var/readapts = 1
+	var/max_readapts = 2
 	var/list/purchased_powers = list()
 	var/mimicing = ""
 	var/cloaked = 0
@@ -60,6 +62,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	if(!mind.changeling)	mind.changeling = new /datum/changeling(gender)
 
 	verbs += /datum/changeling/proc/EvolutionMenu
+	verbs += /mob/proc/changeling_respec
 	add_language("Changeling")
 
 	var/lesser_form = !ishuman(src)

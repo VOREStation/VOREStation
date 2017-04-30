@@ -81,7 +81,7 @@
 
 	var/tally = 0
 
-	var/health_deficiency = (maxHealth - health)
+	var/health_deficiency = (getMaxHealth() - health)
 	if(health_deficiency >= 30) tally += (health_deficiency / 25)
 
 	if (bodytemperature < 183.222)
@@ -146,7 +146,7 @@
 	..()
 
 	statpanel("Status")
-	stat(null, "Health: [round((health / maxHealth) * 100)]%")
+	stat(null, "Health: [round((health / getMaxHealth()) * 100)]%")
 	stat(null, "Intent: [a_intent]")
 
 	if (client.statpanel == "Status")

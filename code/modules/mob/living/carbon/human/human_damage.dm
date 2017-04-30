@@ -2,7 +2,7 @@
 /mob/living/carbon/human/updatehealth()
 
 	if(status_flags & GODMODE)
-		health = maxHealth
+		health = getMaxHealth()
 		stat = CONSCIOUS
 		return
 
@@ -14,10 +14,10 @@
 		total_brute += O.brute_dam
 		total_burn  += O.burn_dam
 
-	health = maxHealth - getOxyLoss() - getToxLoss() - getCloneLoss() - total_burn - total_brute
+	health = getMaxHealth() - getOxyLoss() - getToxLoss() - getCloneLoss() - total_burn - total_brute
 
 	//TODO: fix husking
-	if( ((maxHealth - total_burn) < config.health_threshold_dead) && stat == DEAD)
+	if( ((getMaxHealth() - total_burn) < config.health_threshold_dead) && stat == DEAD)
 		ChangeToHusk()
 	return
 
@@ -42,7 +42,7 @@
 	if(should_have_organ("brain"))
 		var/obj/item/organ/internal/brain/sponge = internal_organs_by_name["brain"]
 		if(sponge)
-			sponge.damage = min(max(amount, 0),(maxHealth*2))
+			sponge.damage = min(max(amount, 0),(getMaxHealth()*2))
 			brainloss = sponge.damage
 		else
 			brainloss = 200
@@ -56,7 +56,7 @@
 	if(should_have_organ("brain"))
 		var/obj/item/organ/internal/brain/sponge = internal_organs_by_name["brain"]
 		if(sponge)
-			brainloss = min(sponge.damage,maxHealth*2)
+			brainloss = min(sponge.damage,getMaxHealth()*2)
 		else
 			brainloss = 200
 	else
@@ -99,16 +99,32 @@
 /mob/living/carbon/human/adjustBruteLoss(var/amount)
 	amount = amount*species.brute_mod
 	if(amount > 0)
+		for(var/datum/modifier/M in modifiers)
+			if(!isnull(M.incoming_damage_percent))
+				amount *= M.incoming_damage_percent
+			if(!isnull(M.incoming_brute_damage_percent))
+				amount *= M.incoming_brute_damage_percent
 		take_overall_damage(amount, 0)
 	else
+		for(var/datum/modifier/M in modifiers)
+			if(!isnull(M.incoming_healing_percent))
+				amount *= M.incoming_healing_percent
 		heal_overall_damage(-amount, 0)
 	BITSET(hud_updateflag, HEALTH_HUD)
 
 /mob/living/carbon/human/adjustFireLoss(var/amount)
 	amount = amount*species.burn_mod
 	if(amount > 0)
+		for(var/datum/modifier/M in modifiers)
+			if(!isnull(M.incoming_damage_percent))
+				amount *= M.incoming_damage_percent
+			if(!isnull(M.incoming_fire_damage_percent))
+				amount *= M.incoming_fire_damage_percent
 		take_overall_damage(0, amount)
 	else
+		for(var/datum/modifier/M in modifiers)
+			if(!isnull(M.incoming_healing_percent))
+				amount *= M.incoming_healing_percent
 		heal_overall_damage(0, -amount)
 	BITSET(hud_updateflag, HEALTH_HUD)
 
@@ -118,8 +134,16 @@
 		var/obj/item/organ/external/O = get_organ(organ_name)
 
 		if(amount > 0)
+			for(var/datum/modifier/M in modifiers)
+				if(!isnull(M.incoming_damage_percent))
+					amount *= M.incoming_damage_percent
+				if(!isnull(M.incoming_brute_damage_percent))
+					amount *= M.incoming_brute_damage_percent
 			O.take_damage(amount, 0, sharp=is_sharp(damage_source), edge=has_edge(damage_source), used_weapon=damage_source)
 		else
+			for(var/datum/modifier/M in modifiers)
+				if(!isnull(M.incoming_healing_percent))
+					amount *= M.incoming_healing_percent
 			//if you don't want to heal robot organs, they you will have to check that yourself before using this proc.
 			O.heal_damage(-amount, 0, internal=0, robo_repair=(O.robotic >= ORGAN_ROBOT))
 
@@ -131,8 +155,16 @@
 		var/obj/item/organ/external/O = get_organ(organ_name)
 
 		if(amount > 0)
+			for(var/datum/modifier/M in modifiers)
+				if(!isnull(M.incoming_damage_percent))
+					amount *= M.incoming_damage_percent
+				if(!isnull(M.incoming_fire_damage_percent))
+					amount *= M.incoming_fire_damage_percent
 			O.take_damage(0, amount, sharp=is_sharp(damage_source), edge=has_edge(damage_source), used_weapon=damage_source)
 		else
+			for(var/datum/modifier/M in modifiers)
+				if(!isnull(M.incoming_healing_percent))
+					amount *= M.incoming_healing_percent
 			//if you don't want to heal robot organs, they you will have to check that yourself before using this proc.
 			O.heal_damage(0, -amount, internal=0, robo_repair=(O.robotic >= ORGAN_ROBOT))
 
@@ -400,11 +432,25 @@ This function restores all organs.
 		if(BRUTE)
 			damageoverlaytemp = 20
 			damage = damage*species.brute_mod
+
+			for(var/datum/modifier/M in modifiers)
+				if(!isnull(M.incoming_damage_percent))
+					damage *= M.incoming_damage_percent
+				if(!isnull(M.incoming_brute_damage_percent))
+					damage *= M.incoming_brute_damage_percent
+
 			if(organ.take_damage(damage, 0, sharp, edge, used_weapon))
 				UpdateDamageIcon()
 		if(BURN)
 			damageoverlaytemp = 20
 			damage = damage*species.burn_mod
+
+			for(var/datum/modifier/M in modifiers)
+				if(!isnull(M.incoming_damage_percent))
+					damage *= M.incoming_damage_percent
+				if(!isnull(M.incoming_brute_damage_percent))
+					damage *= M.incoming_fire_damage_percent
+
 			if(organ.take_damage(0, damage, sharp, edge, used_weapon))
 				UpdateDamageIcon()
 

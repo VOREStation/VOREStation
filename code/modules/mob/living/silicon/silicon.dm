@@ -63,16 +63,16 @@
 	switch(severity)
 		if(1)
 			src.take_organ_damage(0,20,emp=1)
-			confused = (min(confused + 5, 30))
+			Confuse(5)
 		if(2)
 			src.take_organ_damage(0,15,emp=1)
-			confused = (min(confused + 4, 30))
+			Confuse(4)
 		if(3)
 			src.take_organ_damage(0,10,emp=1)
-			confused = (min(confused + 3, 30))
+			Confuse(3)
 		if(4)
 			src.take_organ_damage(0,5,emp=1)
-			confused = (min(confused + 2, 30))
+			Confuse(2)
 	flash_eyes(affect_silicon = 1)
 	src << "<span class='danger'><B>*BZZZT*</B></span>"
 	src << "<span class='danger'>Warning: Electromagnetic pulse detected.</span>"
@@ -148,7 +148,7 @@
 // this function shows the health of the AI in the Status panel
 /mob/living/silicon/proc/show_system_integrity()
 	if(!src.stat)
-		stat(null, text("System integrity: [round((health/maxHealth)*100)]%"))
+		stat(null, text("System integrity: [round((health/getMaxHealth())*100)]%"))
 	else
 		stat(null, text("Systems nonfunctional"))
 
