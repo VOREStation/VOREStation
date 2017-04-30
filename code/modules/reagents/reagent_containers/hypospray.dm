@@ -77,6 +77,10 @@
 	filled = 1
 	filled_reagents = list("inaprovaline" = 5)
 
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/on_reagent_change()
+	..()
+	update_icon()
+
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/empty
 	filled = 0
 	filled_reagents = list()
