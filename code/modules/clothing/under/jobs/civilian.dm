@@ -10,6 +10,7 @@
 	desc = "Short and cute."
 	name = "bartender's skirt"
 	icon_state = "ba_suit_skirt"
+	item_state_slots = list(slot_r_hand_str = "ba_suit", slot_l_hand_str = "ba_suit")
 
 /obj/item/clothing/under/rank/captain //Alright, technically not a 'civilian' but its better then giving a .dm file for a single define.
 	desc = "It's a blue jumpsuit with some gold markings denoting the rank of \"Colony Director\"."
@@ -125,6 +126,7 @@
 /obj/item/clothing/under/lawyer/black/skirt
 	name = "black Lawyer skirt"
 	icon_state = "lawyer_black_skirt"
+	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
 
 /obj/item/clothing/under/lawyer/female
 	name = "black Lawyer suit"
@@ -138,6 +140,7 @@
 /obj/item/clothing/under/lawyer/red/skirt
 	name = "red Lawyer skirt"
 	icon_state = "lawyer_red_skirt"
+	item_state_slots = list(slot_r_hand_str = "lawyer_red", slot_l_hand_str = "lawyer_red")
 
 /obj/item/clothing/under/lawyer/blue
 	name = "blue Lawyer suit"
@@ -146,6 +149,7 @@
 /obj/item/clothing/under/lawyer/blue/skirt
 	name = "blue Lawyer skirt"
 	icon_state = "lawyer_blue_skirt"
+	item_state_slots = list(slot_r_hand_str = "lawyer_blue", slot_l_hand_str = "lawyer_blue")
 
 /obj/item/clothing/under/lawyer/bluesuit
 	name = "blue suit"

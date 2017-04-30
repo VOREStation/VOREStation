@@ -117,6 +117,7 @@
 	name = "detective's skirt"
 	icon_state = "detective_skirt"
 	desc = "A serious-looking white blouse paired with a formal black pencil skirt."
+	item_state_slots = list(slot_r_hand_str = "sl_suit", slot_l_hand_str = "sl_suit")
 
 /*
  * Head of Security

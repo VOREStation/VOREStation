@@ -24,6 +24,7 @@
 /obj/item/clothing/under/scratch/skirt
 	name = "white skirt suit"
 	icon_state = "scratch_skirt"
+	item_state_slots = list(slot_r_hand_str = "scratch", slot_l_hand_str = "scratch")
 
 /obj/item/clothing/under/sl_suit
 	desc = "It's a very amish looking suit."
