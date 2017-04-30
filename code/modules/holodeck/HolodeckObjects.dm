@@ -231,7 +231,15 @@
 	if(istype(W, /obj/item/weapon/wrench))
 		user << ("<span class='notice'>It's a holochair, you can't dismantle it!</span>")
 	return
+//VOREStation Add
+/obj/structure/bed/holobed/Destroy()
+	..()
 
+/obj/structure/bed/holobed/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/weapon/wrench))
+		user << ("<span class='notice'>It's a holochair, you can't dismantle it!</span>")
+	return
+//VOREStation Add End
 /obj/item/weapon/holo
 	damtype = HALLOSS
 	no_attack_log = 1
