@@ -210,3 +210,9 @@
 /area/houseboat/holodeck/gaming
 	name = "Houseboat Holo - Gaming Table"
 	icon_state = "blue2"
+/area/houseboat/holodeck/space
+	name = "Houseboat Holo - Space"
+	icon_state = "blue2"
+/area/houseboat/holodeck/bunking
+	name = "Houseboat Holo - Bunking"
+	icon_state = "blue2"
