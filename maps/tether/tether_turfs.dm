@@ -38,6 +38,12 @@ VIRGO3B_TURF_CREATE(/turf/simulated/floor/tiled/steel_dirty)
 	icon_state = "steel"
 
 
+/turf/unsimulated/wall
+	blocks_air = 1
+
+/turf/unsimulated/wall/planetary
+	blocks_air = 0
+
 // Some turfs to make floors look better in centcom tram station.
 
 
