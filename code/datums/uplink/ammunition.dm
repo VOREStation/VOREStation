@@ -48,42 +48,41 @@
 	name = "Anti-Materiel Rifle ammo box (14.5mm)"
 	path = /obj/item/weapon/storage/box/sniperammo
 
-/datum/uplink_item/item/ammo/a556
-	name = "10rnd Rifle Magazine (5.56mm)"
-	path = /obj/item/ammo_magazine/a556
+/datum/uplink_item/item/ammo/c556
+	name = "Rifle Magazine (5.56mm)"
+	path = /obj/item/ammo_magazine/c556
 
-/datum/uplink_item/item/ammo/a556/ap
-	name = "10rnd Rifle Magazine (5.56mm AP)"
-	path = /obj/item/ammo_magazine/a556/ap
+/datum/uplink_item/item/ammo/c556/ext
+	name = "Rifle Magazine (5.56mm Extended)"
+	path = /obj/item/ammo_magazine/c556/ext
+
+/datum/uplink_item/item/ammo/c556/ap
+	name = "Rifle Magazine (5.56mm AP)"
+	path = /obj/item/ammo_magazine/c556/ap
+
+/datum/uplink_item/item/ammo/c556/ap/ext
+	name = "Rifle Magazine (5.56mm AP Extended)"
+	path = /obj/item/ammo_magazine/c556/ap/ext
 
 /datum/uplink_item/item/ammo/c762
-	name = "20rnd Rifle Magazine (7.62mm)"
+	name = "Rifle Magazine (7.62mm)"
 	path = /obj/item/ammo_magazine/c762
 
 /datum/uplink_item/item/ammo/c762/ap
-	name = "20rnd Rifle Magazine (7.62mm AP)"
+	name = "Rifle Magazine (7.62mm AP)"
 	path = /obj/item/ammo_magazine/c762/ap
-
-/datum/uplink_item/item/ammo/s762
-	name = "10rnd Rifle Magazine (7.62mm)"
-	path = /obj/item/ammo_magazine/s762
-	item_cost = 10 // Half the capacity.
-
-/datum/uplink_item/item/ammo/s762/ap
-	name = "10rnd Rifle Magazine (7.62mm AP)"
-	path = /obj/item/ammo_magazine/s762/ap
 
 /datum/uplink_item/item/ammo/a10mm
 	name = "SMG Magazine (10mm)"
 	path = /obj/item/ammo_magazine/a10mm
 
-/datum/uplink_item/item/ammo/a762
-	name = "Machinegun Magazine (7.62mm)"
-	path = /obj/item/ammo_magazine/a762
+/datum/uplink_item/item/ammo/a556
+	name = "Machinegun Magazine (5.56mm)"
+	path = /obj/item/ammo_magazine/a556
 
-/datum/uplink_item/item/ammo/a762/ap
-	name = "Machinegun Magazine (7.62mm AP)"
-	path = /obj/item/ammo_magazine/a762/ap
+/datum/uplink_item/item/ammo/a556/ap
+	name = "Machinegun Magazine (5.56mm AP)"
+	path = /obj/item/ammo_magazine/a556/ap
 
 /datum/uplink_item/item/ammo/g12
 	name = "12g Shotgun Ammo Box (Slug)"

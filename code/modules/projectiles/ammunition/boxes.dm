@@ -286,51 +286,41 @@
 
 ///////// 5.56mm /////////
 
-/obj/item/ammo_magazine/a556
+/obj/item/ammo_magazine/c556
 	name = "magazine (5.56mm)"
-	icon_state = "5.56"
+	icon_state = "c5.56"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	caliber = "a556"
 	matter = list(DEFAULT_WALL_MATERIAL = 1800)
 	ammo_type = /obj/item/ammo_casing/a556
-	max_ammo = 10
-	multiple_sprites = 1
-
-/obj/item/ammo_magazine/a556/empty
-	initial_ammo = 0
-
-/obj/item/ammo_magazine/a556/practice
-	name = "magazine (5.56mm practice)"
-	ammo_type = /obj/item/ammo_casing/a556p
-
-/obj/item/ammo_magazine/a556/ap
-	name = "magazine (5.56mm armor-piercing)"
-	ammo_type = /obj/item/ammo_casing/a556/ap
-
-/obj/item/ammo_magazine/a556m
-	name = "20rnd magazine (5.56mm)"
-	icon_state = "5.56mid"
-	origin_tech = list(TECH_COMBAT = 2)
-	mag_type = MAGAZINE
-	caliber = "a556"
-	matter = list(DEFAULT_WALL_MATERIAL = 3600)
-	ammo_type = /obj/item/ammo_casing/a556
 	max_ammo = 20
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/a556m/empty
+/obj/item/ammo_magazine/c556/ext
+	name = "extended magazine (5.56mm)"
+	max_ammo = 30
+
+/obj/item/ammo_magazine/c556/empty
 	initial_ammo = 0
 
-/obj/item/ammo_magazine/a556m/ap
-	name = "20rnd magazine (5.56mm armor-piercing)"
-	ammo_type = /obj/item/ammo_casing/a556/ap
-
-/obj/item/ammo_magazine/a556m/practice
-	name = "20rnd magazine (5.56mm practice)"
+/obj/item/ammo_magazine/c556/practice
+	name = "magazine (5.56mm practice)"
 	ammo_type = /obj/item/ammo_casing/a556p
 
-/obj/item/ammo_magazine/clip/a556
+/obj/item/ammo_magazine/c556/practice/ext
+	name = "extended magazine (5.56mm practice)"
+	max_ammo = 30
+
+/obj/item/ammo_magazine/c556/ap
+	name = "magazine (5.56mm armor-piercing)"
+	ammo_type = /obj/item/ammo_casing/a556/ap
+
+/obj/item/ammo_magazine/c556/ap/ext
+	name = "exteneded magazine (5.56mm armor-piercing)"
+	max_ammo = 30
+
+/obj/item/ammo_magazine/clip/c556
 	name = "ammo clip (5.56mm)"
 	icon_state = "clip_rifle"
 	caliber = "a556"
@@ -339,13 +329,32 @@
 	max_ammo = 5
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/clip/a556/ap
+/obj/item/ammo_magazine/clip/c556/ap
 	name = "rifle clip (5.56mm armor-piercing)"
 	ammo_type = /obj/item/ammo_casing/a556/ap
 
-/obj/item/ammo_magazine/clip/a556/practice
+/obj/item/ammo_magazine/clip/c556/practice
 	name = "rifle clip (5.56mm practice)"
 	ammo_type = /obj/item/ammo_casing/a556
+
+/obj/item/ammo_magazine/a556
+	name = "magazine box (5.56mm)"
+	icon_state = "a556"
+	origin_tech = list(TECH_COMBAT = 2)
+	mag_type = MAGAZINE
+	caliber = "a556"
+	matter = list(DEFAULT_WALL_MATERIAL = 10000)
+	ammo_type = /obj/item/ammo_casing/a556
+	w_class = ITEMSIZE_NORMAL // This should NOT fit in your pocket!!
+	max_ammo = 50
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/a556/ap
+	name = "magazine box (5.56mm armor-piercing)"
+	ammo_type = /obj/item/ammo_casing/a556/ap
+
+/obj/item/ammo_magazine/a556/empty
+	initial_ammo = 0
 
 ///////// .50 AE /////////
 
@@ -375,33 +384,14 @@
 
 ///////// 7.62mm /////////
 
-/obj/item/ammo_magazine/a762
-	name = "magazine box (7.62mm)"
-	icon_state = "a762"
-	origin_tech = list(TECH_COMBAT = 2)
-	mag_type = MAGAZINE
-	caliber = "a762"
-	matter = list(DEFAULT_WALL_MATERIAL = 10000)
-	ammo_type = /obj/item/ammo_casing/a762
-	w_class = ITEMSIZE_NORMAL // This should NOT fit in your pocket!!
-	max_ammo = 50
-	multiple_sprites = 1
-
-/obj/item/ammo_magazine/a762/ap
-	name = "magazine box (7.62mm armor-piercing)"
-	ammo_type = /obj/item/ammo_casing/a762/ap
-
-/obj/item/ammo_magazine/a762/empty
-	initial_ammo = 0
-
 /obj/item/ammo_magazine/c762
 	name = "magazine (7.62mm)"
-	icon_state = "c762"
+	icon_state = "c7.62"
 	mag_type = MAGAZINE
 	caliber = "a762"
 	matter = list(DEFAULT_WALL_MATERIAL = 4000)
 	ammo_type = /obj/item/ammo_casing/a762
-	max_ammo = 20
+	max_ammo = 10
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/c762/ap

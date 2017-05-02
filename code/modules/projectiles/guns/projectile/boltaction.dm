@@ -2,29 +2,29 @@
 
 /obj/item/weapon/gun/projectile/shotgun/pump/rifle
 	name = "bolt action rifle"
-	desc = "A reproduction of an almost ancient weapon design from the early 20th century. It's still popular among hunters and collectors due to its reliability. Uses 7.62mm rounds."
+	desc = "A reproduction of an almost ancient weapon design from the early 20th century. It's still popular among hunters and collectors due to its reliability. Uses 5.56mm rounds."
 	item_state = "boltaction"
 	icon_state = "boltaction"
 	fire_sound = 'sound/weapons/rifleshot.ogg'
 	max_shells = 5
-	caliber = "a762"
+	caliber = "a556"
 	origin_tech = list(TECH_COMBAT = 1)// Old as shit rifle doesn't have very good tech.
-	ammo_type = /obj/item/ammo_casing/a762
+	ammo_type = /obj/item/ammo_casing/a556
 	load_method = SINGLE_CASING|SPEEDLOADER
 	action_sound = 'sound/weapons/riflebolt.ogg'
 
 /obj/item/weapon/gun/projectile/shotgun/pump/rifle/practice // For target practice
-	desc = "A bolt-action rifle with a lightweight synthetic wood stock, designed for competitive shooting. Comes shipped with practice rounds pre-loaded into the gun. Popular among professional marksmen. Uses 7.62mm rounds."
-	ammo_type = /obj/item/ammo_casing/a762p
+	desc = "A bolt-action rifle with a lightweight synthetic wood stock, designed for competitive shooting. Comes shipped with practice rounds pre-loaded into the gun. Popular among professional marksmen. Uses 5.56mm rounds."
+	ammo_type = /obj/item/ammo_casing/a556p
 
 /obj/item/weapon/gun/projectile/shotgun/pump/rifle/ceremonial
 	name = "ceremonial bolt-action rifle"
-	desc = "A bolt-action rifle with a heavy, high-quality wood stock that has a beautiful finish. Clearly not intended to be used in combat. Uses 7.62mm rounds."
-	ammo_type = /obj/item/ammo_casing/a762/blank
+	desc = "A bolt-action rifle with a heavy, high-quality wood stock that has a beautiful finish. Clearly not intended to be used in combat. Uses 5.56mm rounds."
+	ammo_type = /obj/item/ammo_casing/a556/blank
 
 /obj/item/weapon/gun/projectile/shotgun/pump/rifle/mosin
 	name = "\improper Mosin Nagant"
-	desc = "Despite its age, the Mosin Nagant continues to be a favorite weapon among colonists, conscripts, and militias across the cosmos. Most today are built by Chen-Iltchenko Firearms, but it's hard to say who built this particular gun, considering the design has been ripped off by just about every arms manufacturer in the galaxy. Uses 7.62mm rounds."
+	desc = "Despite its age, the Mosin Nagant continues to be a favorite weapon among colonists, conscripts, and militias across the cosmos. Most today are built by Chen-Iltchenko Firearms, but it's hard to say who built this particular gun, considering the design has been ripped off by just about every arms manufacturer in the galaxy. Uses 5.56mm rounds."
 	icon_state = "mosin"
 	item_state = "mosin"
 
@@ -55,13 +55,13 @@
 //Lever actions are the same thing, but bigger.
 /obj/item/weapon/gun/projectile/shotgun/pump/rifle/lever
 	name = "lever-action rifle"
-	desc = "A reproduction of an almost ancient weapon design from the 19th century. This one uses a lever-action to move new rounds into the chamber. Uses 5.56mm rounds."
+	desc = "A reproduction of an almost ancient weapon design from the 19th century. This one uses a lever-action to move new rounds into the chamber. Uses 7.62mm rounds."
 	item_state = "leveraction"
 	icon_state = "leveraction"
 	fire_sound = 'sound/weapons/rifleshot.ogg'
 	max_shells = 5
-	caliber = "a556"
+	caliber = "a762"
 	origin_tech = list(TECH_COMBAT = 1)// Old as shit rifle doesn't have very good tech.
-	ammo_type = /obj/item/ammo_casing/a556
+	ammo_type = /obj/item/ammo_casing/a762
 	load_method = SINGLE_CASING|SPEEDLOADER
 	action_sound = 'sound/weapons/riflebolt.ogg'
