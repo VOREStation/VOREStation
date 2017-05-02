@@ -534,7 +534,7 @@
 			time_entered = world.time
 			if(ishuman(M) && applies_stasis)
 				var/mob/living/carbon/human/H = M
-				H.in_stasis = 1
+				H.Stasis(1000)
 
 			// Book keeping!
 			var/turf/location = get_turf(src)
@@ -602,7 +602,7 @@
 		set_occupant(usr)
 		if(ishuman(usr) && applies_stasis)
 			var/mob/living/carbon/human/H = occupant
-			H.in_stasis = 1
+			H.Stasis(1000)
 
 		icon_state = occupied_icon_state
 
@@ -638,7 +638,7 @@
 	occupant.forceMove(get_turf(src))
 	if(ishuman(occupant) && applies_stasis)
 		var/mob/living/carbon/human/H = occupant
-		H.in_stasis = 0
+		H.Stasis(0)
 	set_occupant(null)
 
 	icon_state = base_icon_state
