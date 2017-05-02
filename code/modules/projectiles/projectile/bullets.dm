@@ -205,7 +205,7 @@
 	armor_penetration = 50 // At 30 or more armor, this will do more damage than standard rounds.
 
 /obj/item/projectile/bullet/rifle/a762/hollow
-	damage = 4
+	damage = 40
 	armor_penetration = -50
 	penetrating = 0
 
