@@ -57,7 +57,7 @@
 
 /mob/living/simple_animal/construct/attack_generic(var/mob/user)
 	if(istype(user, /mob/living/simple_animal/construct/builder))
-		if(health < maxHealth)
+		if(health < getMaxHealth())
 			adjustBruteLoss(-5)
 			user.visible_message("<span class='notice'>\The [user] mends some of \the [src]'s wounds.</span>")
 		else
@@ -68,9 +68,9 @@
 /mob/living/simple_animal/construct/examine(mob/user)
 	..(user)
 	var/msg = "<span cass='info'>*---------*\nThis is \icon[src] \a <EM>[src]</EM>!\n"
-	if (src.health < src.maxHealth)
+	if (src.health < src.getMaxHealth())
 		msg += "<span class='warning'>"
-		if (src.health >= src.maxHealth/2)
+		if (src.health >= src.getMaxHealth()/2)
 			msg += "It looks slightly dented.\n"
 		else
 			msg += "<B>It looks severely dented!</B>\n"

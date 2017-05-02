@@ -131,10 +131,11 @@ Please contact me on #coderbus IRC. ~Carn x
 #define LEGCUFF_LAYER			23
 #define L_HAND_LAYER			24
 #define R_HAND_LAYER			25
-#define FIRE_LAYER				26		//If you're on fire
-#define WATER_LAYER				27		//If you're submerged in water.
-#define TARGETED_LAYER			28		//BS12: Layer for the target overlay from weapon targeting system
-#define TOTAL_LAYERS			29
+#define MODIFIER_EFFECTS_LAYER	26
+#define FIRE_LAYER				27		//If you're on fire
+#define WATER_LAYER				28		//If you're submerged in water.
+#define TARGETED_LAYER			29		//BS12: Layer for the target overlay from weapon targeting system
+#define TOTAL_LAYERS			30
 //////////////////////////////////
 
 /mob/living/carbon/human
@@ -1118,6 +1119,18 @@ var/global/list/damage_icon_parts = list()
 
 	if(update_icons)   update_icons()
 
+/mob/living/carbon/human/update_modifier_visuals(var/update_icons=1)
+	overlays_standing[MODIFIER_EFFECTS_LAYER] = null
+	var/image/effects = new()
+	for(var/datum/modifier/M in modifiers)
+		if(M.mob_overlay_state)
+			var/image/I = image("icon" = 'icons/mob/modifier_effects.dmi', "icon_state" = M.mob_overlay_state)
+			effects.overlays += I
+
+	overlays_standing[MODIFIER_EFFECTS_LAYER] = effects
+
+	if(update_icons)
+		update_icons()
 
 /mob/living/carbon/human/update_fire(var/update_icons=1)
 	overlays_standing[FIRE_LAYER] = null

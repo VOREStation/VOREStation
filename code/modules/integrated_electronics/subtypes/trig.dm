@@ -1,9 +1,18 @@
 //These circuits do not-so-simple math.
 /obj/item/integrated_circuit/trig
 	complexity = 1
-	inputs = list("A","B","C","D","E","F","G","H")
-	outputs = list("result")
-	activators = list("compute")
+	inputs = list(
+		"\<NUM\> A",
+		"\<NUM\> B",
+		"\<NUM\> C",
+		"\<NUM\> D",
+		"\<NUM\> E",
+		"\<NUM\> F",
+		"\<NUM\> G",
+		"\<NUM\> H"
+		)
+	outputs = list("\<NUM\> result")
+	activators = list("\<PULSE IN\> compute", "\<PULSE OUT\> on computed")
 	category_text = "Trig"
 	extended_desc = "Input and output are in degrees."
 	autopulse = 1
@@ -19,19 +28,19 @@
 	name = "sin circuit"
 	desc = "Has nothing to do with evil, unless you consider trigonometry to be evil.  Outputs the sine of A."
 	icon_state = "sine"
-	inputs = list("A")
+	inputs = list("\<NUM\> A")
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/trig/sine/do_work()
+	pull_data()
 	var/result = null
-	var/datum/integrated_io/input/A = inputs[1]
-	A.pull_data()
-	if(isnum(A.data))
-		result = sin(A.data)
+	var/A = get_pin_data(IC_INPUT, 1)
+	if(isnum(A))
+		result = sin(A)
 
-	var/datum/integrated_io/output/O = outputs[1]
-	O.data = result
-	O.push_data()
+	set_pin_data(IC_OUTPUT, 1, result)
+	push_data()
+	activate_pin(2)
 
 // Cosine //
 
@@ -39,19 +48,19 @@
 	name = "cos circuit"
 	desc = "Outputs the cosine of A."
 	icon_state = "cosine"
-	inputs = list("A")
+	inputs = list("\<NUM\> A")
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/trig/cosine/do_work()
+	pull_data()
 	var/result = null
-	var/datum/integrated_io/input/A = inputs[1]
-	A.pull_data()
-	if(isnum(A.data))
-		result = cos(A.data)
+	var/A = get_pin_data(IC_INPUT, 1)
+	if(isnum(A))
+		result = cos(A)
 
-	var/datum/integrated_io/output/O = outputs[1]
-	O.data = result
-	O.push_data()
+	set_pin_data(IC_OUTPUT, 1, result)
+	push_data()
+	activate_pin(2)
 
 // Tangent //
 
@@ -59,19 +68,19 @@
 	name = "tan circuit"
 	desc = "Outputs the tangent of A.  Guaranteed to not go on a tangent about its existance."
 	icon_state = "tangent"
-	inputs = list("A")
+	inputs = list("\<NUM\> A")
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/trig/tangent/do_work()
+	pull_data()
 	var/result = null
-	var/datum/integrated_io/input/A = inputs[1]
-	A.pull_data()
-	if(isnum(A.data))
-		result = Tan(A.data)
+	var/A = get_pin_data(IC_INPUT, 1)
+	if(isnum(A))
+		result = Tan(A)
 
-	var/datum/integrated_io/output/O = outputs[1]
-	O.data = result
-	O.push_data()
+	set_pin_data(IC_OUTPUT, 1, result)
+	push_data()
+	activate_pin(2)
 
 // Cosecant //
 
@@ -79,19 +88,19 @@
 	name = "csc circuit"
 	desc = "Outputs the cosecant of A."
 	icon_state = "cosecant"
-	inputs = list("A")
+	inputs = list("\<NUM\> A")
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/trig/cosecant/do_work()
+	pull_data()
 	var/result = null
-	var/datum/integrated_io/input/A = inputs[1]
-	A.pull_data()
-	if(isnum(A.data))
-		result = Csc(A.data)
+	var/A = get_pin_data(IC_INPUT, 1)
+	if(isnum(A))
+		result = Csc(A)
 
-	var/datum/integrated_io/output/O = outputs[1]
-	O.data = result
-	O.push_data()
+	set_pin_data(IC_OUTPUT, 1, result)
+	push_data()
+	activate_pin(2)
 
 
 // Secant //
@@ -100,19 +109,19 @@
 	name = "sec circuit"
 	desc = "Outputs the secant of A.  Has nothing to do with the security department."
 	icon_state = "secant"
-	inputs = list("A")
+	inputs = list("\<NUM\> A")
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/trig/secant/do_work()
+	pull_data()
 	var/result = null
-	var/datum/integrated_io/input/A = inputs[1]
-	A.pull_data()
-	if(isnum(A.data))
-		result = Sec(A.data)
+	var/A = get_pin_data(IC_INPUT, 1)
+	if(isnum(A))
+		result = Sec(A)
 
-	var/datum/integrated_io/output/O = outputs[1]
-	O.data = result
-	O.push_data()
+	set_pin_data(IC_OUTPUT, 1, result)
+	push_data()
+	activate_pin(2)
 
 
 // Cotangent //
@@ -121,16 +130,16 @@
 	name = "cot circuit"
 	desc = "Outputs the cotangent of A."
 	icon_state = "cotangent"
-	inputs = list("A")
+	inputs = list("\<NUM\> A")
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/trig/cotangent/do_work()
+	pull_data()
 	var/result = null
-	var/datum/integrated_io/input/A = inputs[1]
-	A.pull_data()
-	if(isnum(A.data))
-		result = Cot(A.data)
+	var/A = get_pin_data(IC_INPUT, 1)
+	if(isnum(A))
+		result = Cot(A)
 
-	var/datum/integrated_io/output/O = outputs[1]
-	O.data = result
-	O.push_data()
+	set_pin_data(IC_OUTPUT, 1, result)
+	push_data()
+	activate_pin(2)

@@ -1,6 +1,5 @@
 /obj/machinery/computer/aifixer
 	name = "\improper AI system integrity restorer"
-	icon = 'icons/obj/computer.dmi'
 	icon_keyboard = "rd_key"
 	icon_screen = "ai-fixer"
 	light_color = "#a97faa"
@@ -102,7 +101,7 @@
 		return 1
 	if (href_list["fix"])
 		src.active = 1
-		src.overlays += image('icons/obj/computer.dmi', "ai-fixer-on")
+		src.overlays += image(icon, "ai-fixer-on")
 		while (src.occupant.health < 100)
 			src.occupant.adjustOxyLoss(-1)
 			src.occupant.adjustFireLoss(-1)
@@ -114,13 +113,13 @@
 				src.occupant.lying = 0
 				dead_mob_list -= src.occupant
 				living_mob_list += src.occupant
-				src.overlays -= image('icons/obj/computer.dmi', "ai-fixer-404")
-				src.overlays += image('icons/obj/computer.dmi', "ai-fixer-full")
+				src.overlays -= image(icon, "ai-fixer-404")
+				src.overlays += image(icon, "ai-fixer-full")
 				src.occupant.add_ai_verbs()
 			src.updateUsrDialog()
 			sleep(10)
 		src.active = 0
-		src.overlays -= image('icons/obj/computer.dmi', "ai-fixer-on")
+		src.overlays -= image(icon, "ai-fixer-on")
 
 
 		src.add_fingerprint(usr)
@@ -135,8 +134,8 @@
 
 	if(occupant)
 		if(occupant.stat)
-			overlays += image('icons/obj/computer.dmi', "ai-fixer-404", overlay_layer)
+			overlays += image(icon, "ai-fixer-404", overlay_layer)
 		else
-			overlays += image('icons/obj/computer.dmi', "ai-fixer-full", overlay_layer)
+			overlays += image(icon, "ai-fixer-full", overlay_layer)
 	else
-		overlays += image('icons/obj/computer.dmi', "ai-fixer-empty", overlay_layer)
+		overlays += image(icon, "ai-fixer-empty", overlay_layer)

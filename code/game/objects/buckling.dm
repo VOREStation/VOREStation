@@ -74,7 +74,12 @@
 	add_fingerprint(user)
 	unbuckle_mob()
 
-	if(buckle_mob(M))
+	//can't buckle unless you share locs so try to move M to the obj.
+	if(M.loc != src.loc)
+		step_towards(M, src)
+
+	. = buckle_mob(M)
+	if(.)
 		if(M == user)
 			M.visible_message(\
 				"<span class='notice'>[M.name] buckles themselves to [src].</span>",\

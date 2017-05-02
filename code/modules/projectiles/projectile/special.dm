@@ -150,7 +150,7 @@
 	on_hit(var/atom/target, var/blocked = 0)
 		if(ishuman(target))
 			var/mob/living/carbon/human/M = target
-			M.confused += rand(5,8)
+			M.Confuse(rand(5,8))
 
 /obj/item/projectile/chameleon
 	name = "bullet"

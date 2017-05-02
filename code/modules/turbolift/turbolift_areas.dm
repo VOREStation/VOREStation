@@ -9,3 +9,4 @@
 	var/lift_floor_name = null
 	var/lift_announce_str = "Ding!"
 	var/arrival_sound = 'sound/machines/ding.ogg'
+	var/delay_time

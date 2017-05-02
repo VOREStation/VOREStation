@@ -20,10 +20,10 @@
 
 /obj/item/weapon/spell/spawner/darkness/New()
 	..()
-	set_light(6, -5, l_color = "#FFFFFF")
+	set_light(6, -20, l_color = "#FFFFFF")
 
 /obj/effect/temporary_effect/darkness
 	name = "darkness"
 	time_to_die = 2 MINUTES
 	new_light_range = 6
-	new_light_power = -5
+	new_light_power = -20

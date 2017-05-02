@@ -72,7 +72,7 @@
 
 	finish(mob/living/carbon/human/H)
 		if(!H.reagents.has_reagent("anti_toxin"))
-			H.confused += 100
+			H.Confuse(100)
 
 proc/trigger_side_effect(mob/living/carbon/human/H)
 	spawn
