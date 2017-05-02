@@ -216,3 +216,18 @@
 /area/houseboat/holodeck/bunking
 	name = "Houseboat Holo - Bunking"
 	icon_state = "blue2"
+
+
+// Tether Map has this shuttle
+/area/shuttle/tether/surface
+	name = "Tether Shuttle Landed"
+	icon_state = "shuttle"
+	base_turf = /turf/simulated/floor/reinforced
+
+/area/shuttle/tether/station
+	name = "Tether Shuttle Dock"
+	icon_state = "shuttle2"
+
+/area/shuttle/tether/transit
+	name = "Tether Shuttle Transit"
+	icon_state = "shuttle2"

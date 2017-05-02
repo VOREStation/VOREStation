@@ -24,4 +24,4 @@
 
 /obj/machinery/computer/shuttle_control/tether_backup
 	name = "tether backup shuttle control console"
-	shuttle_tag = "tether_backup"
+	shuttle_tag = "Backup Shuttle"
