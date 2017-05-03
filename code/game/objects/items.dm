@@ -50,7 +50,7 @@
 	var/zoomdevicename = null //name used for message when binoculars/scope is used
 	var/zoom = 0 //1 if item is actively being used to zoom. For scoped guns and binoculars.
 
-	var/embed_chance = -1	//-1 makes it calculate embed chance, 0 won't embed, and 100 will always embed
+	var/embed_chance = -1	//0 won't embed, and 100 will always embed
 
 	var/icon_override = null  //Used to override hardcoded clothing dmis in human clothing proc.
 
@@ -79,12 +79,12 @@
 	var/list/sprite_sheets_obj = list()
 
 /obj/item/New()
-	if(embed_chance == -1)
-		if(sharp)
-			embed_chance = force/w_class
-		else
-			embed_chance = force/(w_class*3)
 	..()
+	if(embed_chance < 0)
+		if(sharp)
+			embed_chance = max(5, round(force/w_class))
+		else
+			embed_chance = max(5, round(force/(w_class*3)))
 
 /obj/item/equipped()
 	..()
