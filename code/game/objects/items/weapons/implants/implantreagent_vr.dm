@@ -2,7 +2,6 @@
 	name = "reagent generator implant"
 	desc = "This is an implant that has attached storage and generates a reagent."
 	implant_color = "r"
-	var/obj/item/weapon/reagent_containers/glass/beaker/large/internal_storage
 	var/datum/reagent/generated_reagent = null
 	var/gen_amount = 2 //amount of reagent generated per process tick
 	var/gen_cost = 0.5 //amount of nutrient taken from the host per process tick
@@ -18,9 +17,7 @@
 
 /obj/item/weapon/implant/reagent_generator/New()
 	..()
-	internal_storage = new /obj/item/weapon/reagent_containers/glass/beaker/large (src)
-	internal_storage.volume = usable_volume
-	internal_storage.reagents.maximum_volume = usable_volume
+	create_reagents(usable_volume)
 
 /obj/item/weapon/implanter/reagent_generator
 	var/implant_type = /obj/item/weapon/implant/reagent_generator
@@ -40,8 +37,8 @@
 /obj/item/weapon/implant/reagent_generator/process()
 	var/before_gen
 	if(imp_in && generated_reagent)
-		before_gen = internal_storage.reagents.total_volume
-		if(internal_storage.reagents.total_volume < internal_storage.volume)
+		before_gen = reagents.total_volume
+		if(reagents.total_volume < reagents.maximum_volume)
 			if(imp_in.nutrition >= gen_cost)
 				do_generation()
 		else
@@ -50,15 +47,15 @@
 		imp_in.verbs -= assigned_proc
 		return
 
-	if(internal_storage)
-		if(internal_storage.reagents.total_volume == internal_storage.volume * 0.05)
+	if(reagents)
+		if(reagents.total_volume == reagents.maximum_volume * 0.05)
 			to_chat(imp_in, "<span class='notice'>[pick(empty_message)]</span>")
-		else if(internal_storage.reagents.total_volume == internal_storage.volume && before_gen < internal_storage.volume)
+		else if(reagents.total_volume == reagents.maximum_volume && before_gen < reagents.maximum_volume)
 			to_chat(imp_in, "<span class='warning'>[pick(full_message)]</span>")
 
 /obj/item/weapon/implant/reagent_generator/proc/do_generation()
 	imp_in.nutrition -= gen_cost
-	internal_storage.reagents.add_reagent(generated_reagent, gen_amount)
+	reagents.add_reagent(generated_reagent, gen_amount)
 
 /mob/living/carbon/human/proc/use_reagent_implant()
 	set name = "Transfer From Reagent Implant"
@@ -72,7 +69,7 @@
 	if(!isliving(usr) || !usr.canClick())
 		return
 
-	if(usr.stat == 1 || (usr.restrained()))
+	if(usr.incapacitated() || usr.stat > CONSCIOUS)
 		return
 
 	var/mob/S = src
@@ -101,11 +98,11 @@
 	if(rimplant)
 		if(container.reagents.total_volume < container.volume)
 			var/container_name = container.name
-			if(rimplant.internal_storage.reagents.trans_to(container, amount = rimplant.transfer_amount))
+			if(rimplant.reagents.trans_to(container, amount = rimplant.transfer_amount))
 				user.visible_message("<span class='notice'>[usr] [pick(rimplant.emote_descriptor)] into \the [container_name].</span>",
 									"<span class='notice'>You [pick(rimplant.self_emote_descriptor)] some [rimplant.generated_reagent] into \the [container_name].</span>")
 				if(prob(5))
 					src.visible_message("<span class='notice'>[src] [pick(rimplant.random_emote)].</span>") // M-mlem.
-			if(rimplant.internal_storage.reagents.total_volume == rimplant.internal_storage.volume * 0.05)
+			if(rimplant.reagents.total_volume == rimplant.reagents.maximum_volume * 0.05)
 				to_chat(src, "<span class='notice'>[pick(rimplant.empty_message)]</span>")
 
