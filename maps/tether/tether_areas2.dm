@@ -44,31 +44,14 @@
 
 /area/tether/surfacebase/emergency_storage
 	icon_state = "emergencystorage"
-/area/tether/surfacebase/emergency_storage/_01
-	name = "\improper Panic Shelder Emergency Storage"
-/area/tether/surfacebase/emergency_storage/_02
+/area/tether/surfacebase/emergency_storage/panic_shelter
+	name = "\improper Panic Shelter Emergency Storage"
+/area/tether/surfacebase/emergency_storage/rnd
 	name = "\improper RnD Emergency Storage"
-/area/tether/surfacebase/emergency_storage/_03
+/area/tether/surfacebase/emergency_storage/atmos
 	name = "\improper Atmospherics Emergency Storage"
-/area/tether/surfacebase/emergency_storage/_04
+/area/tether/surfacebase/emergency_storage/atrium
 	name = "\improper Atrium Emergency Storage"
-
-/area/tether/surfacebase/todo
-	icon_state = "dk_yellow"
-/area/tether/surfacebase/todo/_01
-	name = "\improper Hallway Third Floor South"
-/area/tether/surfacebase/todo/_02
-	name = "\improper Kitchen Freezer"
-/area/tether/surfacebase/todo/_03
-	name = "\improper Panic Shelter"
-/area/tether/surfacebase/todo/_04
-	name = "\improper Trash Pit"
-/area/tether/surfacebase/todo/_05
-	name = "\improper Teather Shuttle Pad"
-/area/tether/surfacebase/todo/_06
-	name = "\improper Reading Room"
-/area/tether/surfacebase/todo/_07
-	name = "\improper Vacant Site"
 
 // Main mining area
 /area/tether/surfacebase/mining_main
@@ -134,7 +117,7 @@
 
 
 /area/engineering/atmos/processing
-	name = "\improper Atmospherics Processing"
+	name = "Atmospherics Processing"
 	icon_state = "atmos"
 	sound_env = LARGE_ENCLOSED
 
@@ -157,38 +140,32 @@
 /area/maintenance/lower
 	icon_state = "fsmaint"
 
-/area/maintenance/lower/_01
+/area/maintenance/lower/xenoflora
 	name = "\improper Xenoflora Maintenance"
-/area/maintenance/lower/_02
+/area/maintenance/lower/research
 	name = "\improper Research Maintenance"
-/area/maintenance/lower/_03
+/area/maintenance/lower/atmos
 	name = "\improper Atmospherics Maintenance"
-/area/maintenance/lower/_04
+/area/maintenance/lower/locker_room
 	name = "\improper Locker Room Maintenance"
-/area/maintenance/lower/_05
+/area/maintenance/lower/vacant_site
 	name = "\improper Vacant Site Maintenance"
-/area/maintenance/lower/_06
+/area/maintenance/lower/atrium
 	name = "\improper Atrium Maintenance"
-/area/maintenance/lower/_07
-	name = "\improper Research Maintenance"
-/area/maintenance/lower/_08
+/area/maintenance/lower/rnd
+	name = "\improper RnD Maintenance"
+/area/maintenance/lower/north
 	name = "\improper North Maintenance"
-/area/maintenance/lower/_09
+/area/maintenance/lower/bar
 	name = "\improper Bar Maintenance"
-/area/maintenance/lower/_10
+/area/maintenance/lower/mining
 	name = "\improper Mining Maintenance"
-/area/maintenance/lower/_11
+/area/maintenance/lower/south
 	name = "\improper South Maintenance"
+/area/maintenance/lower/trash_pit
+	name = "\improper Trash Pit"
 
-
-/area/hallway/lower
-	icon_state = "hallC1"
-
-/area/hallway/lower/_01
-	name = "\improper Teather Hallway"
-
-
-
+// Research
 /area/rnd/xenobiology/xenoflora/lab_atmos
 	name = "\improper Xenoflora Atmospherics Lab"
 /area/rnd/breakroom
@@ -206,6 +183,22 @@
 /area/rnd/hallway
 	name = "\improper Research Lower Hallway"
 	icon_state = "research"
+
+// Misc
+/area/hallway/lower/third_south
+	name = "\improper Hallway Third Floor South"
+	icon_state = "hallC1"
+
+/area/tether/surfacebase/shuttle_pad
+	name = "\improper Teather Shuttle Pad"
+/area/tether/surfacebase/reading_room
+	name = "\improper Reading Room"
+/area/tether/surfacebase/vacant_site
+	name = "\improper Vacant Site"
+/area/crew_quarters/freezer
+	name = "\improper Kitchen Freezer"
+/area/crew_quarters/panic_shelter
+	name = "\improper Panic Shelter"
 
 
 
@@ -262,34 +255,34 @@
 
 /area/hallway/station
 	icon_state = "hallC1"
-/area/hallway/station/_01
+/area/hallway/station/port
 	name = "\improper Main Port Hallway"
-/area/hallway/station/_02
+/area/hallway/station/starboard
 	name = "\improper Main Starboard Hallway"
-/area/hallway/station/_03
+/area/hallway/station/upper
 	name = "\improper Main Upper Hallway"
 /area/hallway/station/docks
 	name = "\improper Docks Hallway"
 
 /area/maintenance/station
 	icon_state = "fsmaint"
-/area/maintenance/station/_01
+/area/maintenance/station/bridge
 	name = "\improper Bridge Maintenance"
-/area/maintenance/station/_02
+/area/maintenance/station/eng_lower
 	name = "\improper Engineering Lower Maintenance"
-/area/maintenance/station/_03
+/area/maintenance/station/eng_upper
 	name = "\improper Engineering Upper Maintenance"
-/area/maintenance/station/_04
+/area/maintenance/station/medbay
 	name = "\improper Medbay Maintenance"
-/area/maintenance/station/_05
+/area/maintenance/station/cargo
 	name = "\improper Cargo Maintenance"
-/area/maintenance/station/_06
-	name = "\improper Tether Maintenance"
-/area/maintenance/station/_07
+/area/maintenance/station/elevator
+	name = "\improper Elevator Maintenance"
+/area/maintenance/station/sec_lower
 	name = "\improper Security Lower Maintenance"
-/area/maintenance/station/_08
+/area/maintenance/station/sec_upper
 	name = "\improper Security Upper Maintenance"
-/area/maintenance/station/_09
+/area/maintenance/station/micro
 	name = "\improper Micro Maintenance"
-/area/maintenance/station/_10
-	name = "\improper Telecoms Maintenance"
+/area/maintenance/station/virology
+	name = "\improper Virology Maintenance"
