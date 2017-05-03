@@ -128,3 +128,10 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 6000, "glass" = 3000)
 	build_path = /obj/item/weapon/gun/energy/netgun
 	sort_string = "TAADF"
+
+/datum/design/circuit/algae_farm
+	name = "Algae Oxygen Generator"
+	id = "algae_farm"
+	req_tech = list(TECH_ENGINEERING = 3, TECH_BIO = 2)
+	build_path = /obj/item/weapon/circuitboard/algae_farm
+	sort_string = "HABAE"

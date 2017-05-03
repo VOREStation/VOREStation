@@ -112,6 +112,7 @@
 #include "code\ATMOSPHERICS\components\portables_connector.dm"
 #include "code\ATMOSPHERICS\components\tvalve.dm"
 #include "code\ATMOSPHERICS\components\valve.dm"
+#include "code\ATMOSPHERICS\components\binary_devices\algae_generator_vr.dm"
 #include "code\ATMOSPHERICS\components\binary_devices\binary_atmos_base.dm"
 #include "code\ATMOSPHERICS\components\binary_devices\circulator.dm"
 #include "code\ATMOSPHERICS\components\binary_devices\dp_vent_pump.dm"
