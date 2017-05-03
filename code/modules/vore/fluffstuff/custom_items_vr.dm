@@ -650,7 +650,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	set category = "Object"
 	set src in view(1)
 
-	do_reagent_implant()
+	do_reagent_implant(usr)
 
 
 //PontifexMinimus: Lucius/Lucia Null

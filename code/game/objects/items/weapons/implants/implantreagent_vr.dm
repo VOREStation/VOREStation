@@ -63,26 +63,14 @@
 	set category = "Object"
 	set src in view(1)
 
-	do_reagent_implant()
+	do_reagent_implant(usr)
 
-/mob/living/carbon/human/proc/do_reagent_implant()
-	if(!isliving(usr) || !usr.canClick())
+/mob/living/carbon/human/proc/do_reagent_implant(var/mob/living/carbon/human/user = usr)
+	if(!isliving(user) || !user.canClick())
 		return
 
-	if(usr.incapacitated() || usr.stat > CONSCIOUS)
+	if(user.incapacitated() || user.stat > CONSCIOUS)
 		return
-
-	var/mob/S = src
-	var/mob/U = usr
-	var/self
-	if(S == U)
-		self = 1
-
-	var/mob/living/carbon/human/user = null
-	if(self)
-		user = src
-	else
-		user = usr
 
 	var/obj/item/weapon/reagent_containers/container = user.get_active_hand()
 	if(!container)
