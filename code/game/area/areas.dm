@@ -53,22 +53,28 @@
 			danger_level = max(danger_level, AA.danger_level)
 
 	if(danger_level != atmosalm)
-		if (danger_level < 1 && atmosalm >= 1)
-			//closing the doors on red and opening on green provides a bit of hysteresis that will hopefully prevent fire doors from opening and closing repeatedly due to noise
-			air_doors_open()
-		else if (danger_level >= 2 && atmosalm < 2)
-			air_doors_close()
-
 		atmosalm = danger_level
+		//closing the doors on red and opening on green provides a bit of hysteresis that will hopefully prevent fire doors from opening and closing repeatedly due to noise
+		if (danger_level < 1 || danger_level >= 2)
+			firedoors_update()
+		
 		for (var/obj/machinery/alarm/AA in src)
 			AA.update_icon()
 
 		return 1
 	return 0
 
-/area/proc/air_doors_close()
-	if(!air_doors_activated)
-		air_doors_activated = 1
+// Either close or open firedoors depending on current alert statuses
+/area/proc/firedoors_update()
+	if(fire || party || atmosalm)
+		firedoors_close()
+	else
+		firedoors_open()
+
+// Close all firedoors in the area
+/area/proc/firedoors_close()
+	if(!firedoors_closed)
+		firedoors_closed = TRUE
 		for(var/obj/machinery/door/firedoor/E in all_doors)
 			if(!E.blocked)
 				if(E.operating)
@@ -77,9 +83,10 @@
 					spawn(0)
 						E.close()
 
-/area/proc/air_doors_open()
-	if(air_doors_activated)
-		air_doors_activated = 0
+// Open all firedoors in the area
+/area/proc/firedoors_open()
+	if(firedoors_closed)
+		firedoors_closed = FALSE
 		for(var/obj/machinery/door/firedoor/E in all_doors)
 			if(!E.blocked)
 				if(E.operating)
@@ -93,27 +100,13 @@
 	if(!fire)
 		fire = 1	//used for firedoor checks
 		updateicon()
-		mouse_opacity = 0
-		for(var/obj/machinery/door/firedoor/D in all_doors)
-			if(!D.blocked)
-				if(D.operating)
-					D.nextstate = FIREDOOR_CLOSED
-				else if(!D.density)
-					spawn()
-						D.close()
+		firedoors_update()
 
 /area/proc/fire_reset()
 	if (fire)
 		fire = 0	//used for firedoor checks
 		updateicon()
-		mouse_opacity = 0
-		for(var/obj/machinery/door/firedoor/D in all_doors)
-			if(!D.blocked)
-				if(D.operating)
-					D.nextstate = FIREDOOR_OPEN
-				else if(D.density)
-					spawn(0)
-					D.open()
+		firedoors_update()
 
 /area/proc/readyalert()
 	if(!eject)
@@ -131,21 +124,14 @@
 	if (!( party ))
 		party = 1
 		updateicon()
-		mouse_opacity = 0
+		firedoors_update()
 	return
 
 /area/proc/partyreset()
 	if (party)
 		party = 0
-		mouse_opacity = 0
 		updateicon()
-		for(var/obj/machinery/door/firedoor/D in src)
-			if(!D.blocked)
-				if(D.operating)
-					D.nextstate = FIREDOOR_OPEN
-				else if(D.density)
-					spawn(0)
-					D.open()
+		firedoors_update()
 	return
 
 /area/proc/updateicon()
