@@ -603,6 +603,12 @@ character_name: Chakat Tempest
 item_path: /obj/item/weapon/storage/backpack/saddlebag/tempest
 }
 
+{
+ckey: wickedtemp
+character_name: Chakat Tempest
+item_path: /obj/item/weapon/implanter/reagent_generator/tempest
+}
+
 # ######## X CKEYS
 
 {
