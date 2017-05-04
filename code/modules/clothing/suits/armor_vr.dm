@@ -33,6 +33,7 @@
 				H << "<span class='warning'>You need to have a wolf-taur half to wear this.</span>"
 				return 0
 
+
 /obj/item/clothing/suit/storage/vest/hoscoat
 	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 40, bio = 0, rad = 0)
 
