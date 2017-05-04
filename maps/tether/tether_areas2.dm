@@ -81,6 +81,12 @@
 /area/outpost/mining_main/passage
 	name = "\improper Mining Outpost Passage"
 
+// Solars map areas
+/area/tether/outpost/solars_outside
+	name = "\improper Solar Farm"
+/area/tether/outpost/solars_shed
+	name = "\improper Solar Farm Shed"
+
 
 /area/maintenance/substation/medsec
 	name = "\improper MedSec Substation"

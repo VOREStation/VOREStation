@@ -7,6 +7,15 @@ VIRGO3B_TURF_CREATE(/turf/simulated/open)
 	outdoor_turfs.Add(src)
 	return .
 
+VIRGO3B_TURF_CREATE(/turf/simulated/floor)
+
+/turf/simulated/floor/virgo3b_indoors
+	VIRGO3B_SET_ATMOS
+/turf/simulated/floor/virgo3b_indoors/update_graphic(list/graphic_add = null, list/graphic_remove = null)
+	return 0
+
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/dirt)
+
 VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/rocks)
 
 VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/grass/sif)

@@ -24,13 +24,16 @@
 //Normal map defs
 #define Z_LEVEL_SURFACE_LOW				1
 #define Z_LEVEL_SURFACE_MID				2
-#define Z_LEVEL_SURFACE_HIGH				3
+#define Z_LEVEL_SURFACE_HIGH			3
 #define Z_LEVEL_TRANSIT					4
 #define Z_LEVEL_SPACE_LOW				5
 #define Z_LEVEL_SPACE_MID				6
 #define Z_LEVEL_SPACE_HIGH				7
 #define Z_LEVEL_SURFACE_MINE			8
 #define Z_LEVEL_CENTCOM					9
+#define Z_LEVEL_MISC					10
+#define Z_LEVEL_SHIPS					11
+#define Z_LEVEL_SOLARS					12
 
 /datum/map/tether
 	name = "Virgo"
@@ -117,15 +120,12 @@
 	allowed_spawns = list("Arrivals Shuttle","Gateway","Cryogenic Storage","Cyborg Storage","Elevator")
 
 
-/datum/map/virgo/perform_map_generation()
-	/*
-	new /datum/random_map/automata/cave_system(null, 1, 1, Z_LEVEL_MAIN_VIRGO, world.maxx, world.maxy) // Create the mining Z-level.
-	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_MAIN_VIRGO, 64, 64)         // Create the mining ore distribution map.
+/datum/map/tether/perform_map_generation()
 
-	new /datum/random_map/automata/cave_system(null, 1, 1, Z_LEVEL_ABANDONED_ASTEROID_VIRGO, world.maxx, world.maxy) // Create the mining Z-level.
-	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_ABANDONED_ASTEROID_VIRGO, 64, 64)         // Create the mining ore distribution map.
+	new /datum/random_map/automata/cave_system(null, 1, 1, Z_LEVEL_SURFACE_MINE, world.maxx, world.maxy) // Create the mining Z-level.
+	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_SURFACE_MINE, 64, 64)         // Create the mining ore distribution map.
 
-	new /datum/random_map/automata/cave_system(null, 1, 1, Z_LEVEL_MINING_VIRGO, world.maxx, world.maxy) // Create the mining Z-level.
-	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_MINING_VIRGO, 64, 64)         // Create the mining ore distribution map.
-	*/
+	new /datum/random_map/automata/cave_system(null, 1, 1, Z_LEVEL_SOLARS, world.maxx, world.maxy) // Create the mining Z-level.
+	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_SOLARS, 64, 64)         // Create the mining ore distribution map.
+
 	return 1

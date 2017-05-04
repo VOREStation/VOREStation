@@ -47,6 +47,18 @@
 	teleport_y = world.maxy - 1
 	teleport_z = Z_LEVEL_SURFACE_LOW
 
+/obj/effect/step_trigger/teleporter/to_solars/New()
+	..()
+	teleport_x = world.maxx - 1
+	teleport_y = src.y
+	teleport_z = Z_LEVEL_SOLARS
+
+/obj/effect/step_trigger/teleporter/from_solars/New()
+	..()
+	teleport_x = 2
+	teleport_y = src.y
+	teleport_z = Z_LEVEL_SURFACE_LOW
+
 
 //
 // TRAM STATION

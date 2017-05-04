@@ -9,7 +9,13 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 	amounts of both oxygen and nitrogen. Fortunately, the oxygen is not enough to be combustible in any meaningful way, however \
 	the phoron is desirable by many corporations, including Nanotrasen."
 	current_time = new /datum/time/virgo3b()
-	expected_z_levels = list(1,2,3)
+	expected_z_levels = list(
+						Z_LEVEL_SURFACE_LOW,
+						Z_LEVEL_SURFACE_MID,
+						Z_LEVEL_SURFACE_HIGH,
+						Z_LEVEL_SURFACE_MINE,
+						Z_LEVEL_SOLARS
+						)
 	planetary_wall_type = /turf/unsimulated/wall/planetary/virgo3b
 
 /datum/planet/virgo3b/New()
@@ -20,7 +26,7 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 /datum/planet/virgo3b/update_sun()
 	..()
 	var/datum/time/time = current_time
-	var/length_of_day = time.seconds_in_day / 10 / 60 / 60 // 32
+	var/length_of_day = time.seconds_in_day / 10 / 60 / 60
 	var/noon = length_of_day / 2
 	var/distance_from_noon = abs(text2num(time.show_time("hh")) - noon)
 	sun_position = distance_from_noon / noon

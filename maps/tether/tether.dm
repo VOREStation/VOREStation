@@ -17,6 +17,7 @@
 	#include "tether-5-colony.dmm"
 	#include "tether-6-misc.dmm"
 	#include "tether-7-ships.dmm"
+	#include "tether-8-solars.dmm"
 
 	#define USING_MAP_DATUM /datum/map/tether
 
