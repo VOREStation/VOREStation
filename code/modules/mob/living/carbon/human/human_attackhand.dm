@@ -207,7 +207,7 @@
 					miss_type = 1
 
 				if(prob(80))
-					hit_zone = ran_zone(hit_zone)
+					hit_zone = ran_zone(hit_zone, 70) //70% chance to hit what you're aiming at seems fair?
 				if(prob(15) && hit_zone != BP_TORSO) // Missed!
 					if(!src.lying)
 						attack_message = "[H] attempted to strike [src], but missed!"
@@ -248,13 +248,13 @@
 				rand_damage *= 2
 			real_damage = max(1, real_damage)
 
-			var/armour = run_armor_check(affecting, "melee")
-			var/soaked = get_armor_soak(affecting, "melee")
+			var/armour = run_armor_check(hit_zone, "melee")
+			var/soaked = get_armor_soak(hit_zone, "melee")
 			// Apply additional unarmed effects.
 			attack.apply_effects(H, src, armour, rand_damage, hit_zone)
 
 			// Finally, apply damage to target
-			apply_damage(real_damage, (attack.deal_halloss ? HALLOSS : BRUTE), affecting, armour, soaked, sharp=attack.sharp, edge=attack.edge)
+			apply_damage(real_damage, (attack.deal_halloss ? HALLOSS : BRUTE), hit_zone, armour, soaked, sharp=attack.sharp, edge=attack.edge)
 
 		if(I_DISARM)
 			M.attack_log += text("\[[time_stamp()]\] <font color='red'>Disarmed [src.name] ([src.ckey])</font>")
