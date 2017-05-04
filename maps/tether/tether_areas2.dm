@@ -170,6 +170,8 @@
 	name = "\improper South Maintenance"
 /area/maintenance/lower/trash_pit
 	name = "\improper Trash Pit"
+/area/maintenance/lower/solars
+	name = "\improper Solars Maintenance"
 
 // Research
 /area/rnd/xenobiology/xenoflora/lab_atmos
