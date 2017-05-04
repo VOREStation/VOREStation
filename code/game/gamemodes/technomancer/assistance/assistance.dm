@@ -30,7 +30,7 @@
 
 /obj/item/weapon/antag_spawner/technomancer_apprentice/New()
 	..()
-	sparks = PoolOrNew(/datum/effect/effect/system/spark_spread)
+	sparks = new /datum/effect/effect/system/spark_spread()
 	sparks.set_up(5, 0, src)
 	sparks.attach(loc)
 

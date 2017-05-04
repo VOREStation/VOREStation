@@ -103,7 +103,7 @@
 					if(istype(I, /obj/effect/spider/eggcluster))
 						eggcount ++
 				if(!eggcount)
-					var/eggs = PoolOrNew(/obj/effect/spider/eggcluster/small, list(O, src))
+					var/eggs = new /obj/effect/spider/eggcluster/small(O, src)
 					O.implants += eggs
 					H << "<span class='warning'>The [src] injects something into your [O.name]!</span>"
 
@@ -172,7 +172,7 @@
 						if(busy == LAYING_EGGS)
 							E = locate() in get_turf(src)
 							if(!E)
-								PoolOrNew(/obj/effect/spider/eggcluster, list(loc, src))
+								new /obj/effect/spider/eggcluster(loc, src)
 								fed--
 							busy = 0
 							stop_automated_movement = 0

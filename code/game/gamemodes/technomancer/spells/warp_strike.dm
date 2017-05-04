@@ -16,7 +16,7 @@
 
 /obj/item/weapon/spell/warp_strike/New()
 	..()
-	sparks = PoolOrNew(/datum/effect/effect/system/spark_spread)
+	sparks = new /datum/effect/effect/system/spark_spread()
 	sparks.set_up(5, 0, src)
 	sparks.attach(loc)
 
