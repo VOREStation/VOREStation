@@ -7,7 +7,7 @@
 	products += list(/obj/item/weapon/gun/energy/taser = 8,/obj/item/weapon/gun/energy/stunrevolver = 4,
 					/obj/item/weapon/reagent_containers/spray/pepper = 6,/obj/item/taperoll/police = 6,
 					/obj/item/weapon/gun/projectile/sec/flash = 4, /obj/item/ammo_magazine/c45m/flash = 8,
-					/obj/item/clothing/glasses/omnihud/sec = 4)
+					/obj/item/clothing/glasses/omnihud/sec = 6)
 	..()
 
 /obj/machinery/vending/tool/New()
@@ -15,12 +15,12 @@
 	..()
 
 /obj/machinery/vending/engivend/New()
-	products += list(/obj/item/clothing/glasses/omnihud/eng = 4)
+	products += list(/obj/item/clothing/glasses/omnihud/eng = 6)
 	..()
 
 /obj/machinery/vending/medical/New()
 	products += list(/obj/item/weapon/storage/box/khcrystal = 4,/obj/item/weapon/backup_implanter = 3,
-					/obj/item/clothing/glasses/omnihud/med = 2, /obj/item/device/glasses_kit = 1)
+					/obj/item/clothing/glasses/omnihud/med = 4, /obj/item/device/glasses_kit = 1)
 	..()
 
 //Custom vendors
