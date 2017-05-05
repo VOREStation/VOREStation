@@ -26,6 +26,13 @@
 	var/duration = modifier_duration
 	if(duration)
 		duration = round(duration * calculate_spell_power(1.0), 1)
-	L.add_modifier(modifier_type, duration)
+	var/datum/modifier/M = L.add_modifier(modifier_type, duration, owner)
+	if(istype(M, /datum/modifier/technomancer))
+		var/datum/modifier/technomancer/MT = M
+		MT.spell_power = calculate_spell_power(1)
 	log_and_message_admins("has casted [src] on [L].")
 	qdel(src)
+
+// Technomancer specific subtype which keeps track of spell power and gets targeted specificially by Dispel.
+/datum/modifier/technomancer
+	var/spell_power = null // Set by on_add_modifier.
