@@ -23,8 +23,8 @@
 	..()
 	if(filled)
 		if(filled_reagents)
-		for(var/r in filled_reagents)
-			reagents.add_reagent(r, filled_reagents[r])
+			for(var/r in filled_reagents)
+				reagents.add_reagent(r, filled_reagents[r])
 	update_icon()
 	return
 
