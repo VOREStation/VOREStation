@@ -96,6 +96,8 @@
 	name = "\improper Bar Substation"
 /area/maintenance/substation/surface_atmos
 	name = "\improper Surface Atmos Substation"
+/area/maintenance/substation/civ_west
+	name = "\improper Civilian West Substation"
 
 
 /area/tether/surfacebase/medical
@@ -104,6 +106,8 @@
 	name = "\improper Surface Medical Lobby"
 /area/tether/surfacebase/medical/triage
 	name = "\improper Surface Triage"
+/area/tether/surfacebase/medical/first_aid_west
+	name = "\improper First Aid West"
 
 
 /area/tether/surfacebase/security
@@ -171,7 +175,9 @@
 /area/maintenance/lower/trash_pit
 	name = "\improper Trash Pit"
 /area/maintenance/lower/solars
-	name = "\improper Solars Maintenance"
+	name = "\improper Solars maintenanceance"
+/area/maintenance/lower/mining_eva
+	name = "\improper Mining EVA Maintenance"
 
 // Research
 /area/rnd/xenobiology/xenoflora/lab_atmos
@@ -195,6 +201,9 @@
 // Misc
 /area/hallway/lower/third_south
 	name = "\improper Hallway Third Floor South"
+	icon_state = "hallC1"
+/area/hallway/lower/first_west
+	name = "\improper Hallway First Floor West"
 	icon_state = "hallC1"
 
 /area/tether/surfacebase/shuttle_pad
