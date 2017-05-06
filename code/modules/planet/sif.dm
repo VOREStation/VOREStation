@@ -10,6 +10,7 @@ var/datum/planet/sif/planet_sif = null
 	Its center of government is the equatorial city and site of first settlement, New Reykjavik." // Ripped straight from the wiki.
 	current_time = new /datum/time/sif() // 32 hour clocks are nice.
 	expected_z_levels = list(1) // To be changed when real map is finished.
+	planetary_wall_type = /turf/unsimulated/wall/planetary/sif
 
 /datum/planet/sif/New()
 	..()
@@ -104,3 +105,197 @@ var/datum/planet/sif/planet_sif = null
 /proc/get_sif_time()
 	if(planet_sif)
 		return planet_sif.current_time
+
+//Weather definitions
+/datum/weather_holder/sif
+	temperature = T0C
+	allowed_weather_types = list(
+		WEATHER_CLEAR		= new /datum/weather/sif/clear(),
+		WEATHER_OVERCAST	= new /datum/weather/sif/overcast(),
+		WEATHER_LIGHT_SNOW	= new /datum/weather/sif/light_snow(),
+		WEATHER_SNOW		= new /datum/weather/sif/snow(),
+		WEATHER_BLIZZARD	= new /datum/weather/sif/blizzard(),
+		WEATHER_RAIN		= new /datum/weather/sif/rain(),
+		WEATHER_STORM		= new /datum/weather/sif/storm(),
+		WEATHER_HAIL		= new /datum/weather/sif/hail(),
+		WEATHER_BLOOD_MOON	= new /datum/weather/sif/blood_moon()
+		)
+	roundstart_weather_chances = list(
+		WEATHER_CLEAR		= 30,
+		WEATHER_OVERCAST	= 30,
+		WEATHER_LIGHT_SNOW	= 20,
+		WEATHER_SNOW		= 5,
+		WEATHER_BLIZZARD	= 5,
+		WEATHER_RAIN		= 5,
+		WEATHER_STORM		= 2.5,
+		WEATHER_HAIL		= 2.5
+		)
+
+datum/weather/sif
+	name = "sif base"
+	temp_high = 243.15 // -20c
+	temp_low = 233.15  // -30c
+
+/datum/weather/sif/clear
+	name = "clear"
+	transition_chances = list(
+		WEATHER_CLEAR = 60,
+		WEATHER_OVERCAST = 40
+		)
+
+/datum/weather/sif/overcast
+	name = "overcast"
+	light_modifier = 0.8
+	transition_chances = list(
+		WEATHER_CLEAR = 25,
+		WEATHER_OVERCAST = 50,
+		WEATHER_LIGHT_SNOW = 10,
+		WEATHER_SNOW = 5,
+		WEATHER_RAIN = 5,
+		WEATHER_HAIL = 5
+		)
+
+/datum/weather/sif/light_snow
+	name = "light snow"
+	icon_state = "snowfall_light"
+	temp_high = 238.15 // -25c
+	temp_low = 228.15  // -35c
+	light_modifier = 0.7
+	transition_chances = list(
+		WEATHER_OVERCAST = 20,
+		WEATHER_LIGHT_SNOW = 50,
+		WEATHER_SNOW = 25,
+		WEATHER_HAIL = 5
+		)
+
+/datum/weather/sif/snow
+	name = "moderate snow"
+	icon_state = "snowfall_med"
+	temp_high = 233.15 // -30c
+	temp_low = 223.15  // -40c
+	light_modifier = 0.5
+	transition_chances = list(
+		WEATHER_LIGHT_SNOW = 20,
+		WEATHER_SNOW = 50,
+		WEATHER_BLIZZARD = 20,
+		WEATHER_HAIL = 5,
+		WEATHER_OVERCAST = 5
+		)
+
+/datum/weather/sif/snow/process_effects()
+	for(var/turf/simulated/floor/outdoors/snow/S in outdoor_turfs)
+		if(S.z in holder.our_planet.expected_z_levels)
+			for(var/dir_checked in cardinal)
+				var/turf/simulated/floor/T = get_step(S, dir_checked)
+				if(istype(T))
+					if(istype(T, /turf/simulated/floor/outdoors) && prob(33))
+						T.chill()
+
+/datum/weather/sif/blizzard
+	name = "blizzard"
+	icon_state = "snowfall_heavy"
+	temp_high = 223.15 // -40c
+	temp_low = 203.15  // -60c
+	light_modifier = 0.3
+	transition_chances = list(
+		WEATHER_SNOW = 45,
+		WEATHER_BLIZZARD = 40,
+		WEATHER_HAIL = 10,
+		WEATHER_OVERCAST = 5
+		)
+
+/datum/weather/sif/blizzard/process_effects()
+	for(var/turf/simulated/floor/outdoors/snow/S in outdoor_turfs)
+		if(S.z in holder.our_planet.expected_z_levels)
+			for(var/dir_checked in cardinal)
+				var/turf/simulated/floor/T = get_step(S, dir_checked)
+				if(istype(T))
+					if(istype(T, /turf/simulated/floor/outdoors) && prob(50))
+						T.chill()
+
+/datum/weather/sif/rain
+	name = "rain"
+	icon_state = "rain"
+	light_modifier = 0.5
+	transition_chances = list(
+		WEATHER_OVERCAST = 25,
+		WEATHER_LIGHT_SNOW = 10,
+		WEATHER_RAIN = 50,
+		WEATHER_STORM = 10,
+		WEATHER_HAIL = 5
+		)
+
+/datum/weather/sif/rain/process_effects()
+	for(var/mob/living/L in living_mob_list)
+		if(L.z in holder.our_planet.expected_z_levels)
+			var/turf/T = get_turf(L)
+			if(!T.outdoors)
+				return // They're indoors, so no need to rain on them.
+
+			L.adjust_fire_stacks(-5)
+			to_chat(L, "<span class='warning'>Rain falls on you.</span>")
+
+/datum/weather/sif/storm
+	name = "storm"
+	icon_state = "storm"
+	temp_high = 233.15 // -30c
+	temp_low = 213.15  // -50c
+	light_modifier = 0.3
+	transition_chances = list(
+		WEATHER_RAIN = 45,
+		WEATHER_STORM = 40,
+		WEATHER_HAIL = 10,
+		WEATHER_OVERCAST = 5
+		)
+
+/datum/weather/sif/rain/process_effects()
+	for(var/mob/living/L in living_mob_list)
+		if(L.z in holder.our_planet.expected_z_levels)
+			var/turf/T = get_turf(L)
+			if(!T.outdoors)
+				return // They're indoors, so no need to rain on them.
+
+			L.adjust_fire_stacks(-10)
+			to_chat(L, "<span class='warning'>Rain falls on you, drenching you in water.</span>")
+
+/datum/weather/sif/hail
+	name = "hail"
+	icon_state = "hail"
+	temp_high = 233.15 // -30c
+	temp_low = 213.15  // -50c
+	light_modifier = 0.3
+	transition_chances = list(
+		WEATHER_RAIN = 45,
+		WEATHER_STORM = 10,
+		WEATHER_HAIL = 40,
+		WEATHER_OVERCAST = 5
+		)
+
+/datum/weather/sif/hail/process_effects()
+	for(var/mob/living/L in living_mob_list)
+		if(L.z in holder.our_planet.expected_z_levels)
+			var/turf/T = get_turf(L)
+			if(!T.outdoors)
+				return // They're indoors, so no need to pelt them with ice.
+
+			var/target_zone = pick(BP_ALL)
+			var/amount_blocked = L.run_armor_check(target_zone, "melee")
+			var/amount_soaked = L.get_armor_soak(target_zone, "melee")
+
+			if(amount_blocked >= 100)
+				return // No need to apply damage.
+
+			if(amount_soaked >= 10)
+				return // No need to apply damage.
+
+			L.apply_damage(rand(5, 10), BRUTE, target_zone, amount_blocked, amount_soaked, used_weapon = "hail")
+			to_chat(L, "<span class='warning'>The hail raining down on you [L.can_feel_pain() ? "hurts" : "damages you"]!</span>")
+
+/datum/weather/sif/blood_moon
+	name = "blood moon"
+	light_modifier = 0.5
+	light_color = "#FF0000"
+	transition_chances = list(
+		WEATHER_BLOODMOON = 100
+		)
+

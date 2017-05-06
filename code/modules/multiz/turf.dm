@@ -36,6 +36,11 @@
 	..()
 	mover.fall()
 
+// Called when thrown object lands on this turf.
+/turf/simulated/open/hitby(var/atom/movable/AM, var/speed)
+	. = ..()
+	AM.fall()
+
 /turf/simulated/open/proc/update()
 	below = GetBelow(src)
 	turf_changed_event.register(below, src, /turf/simulated/open/update_icon)
@@ -82,7 +87,7 @@
 			return
 		var/obj/item/stack/rods/R = C
 		if (R.use(1))
-			user << "<span class='notice'>Constructing support lattice ...</span>"
+			to_chat(user, "<span class='notice'>Constructing support lattice ...</span>")
 			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
 			ReplaceWithLattice()
 		return
@@ -99,7 +104,7 @@
 			ChangeTurf(/turf/simulated/floor/airless)
 			return
 		else
-			user << "<span class='warning'>The plating is going to need some support.</span>"
+			to_chat(user, "<span class='warning'>The plating is going to need some support.</span>")
 
 	//To lay cable.
 	if(istype(C, /obj/item/stack/cable_coil))

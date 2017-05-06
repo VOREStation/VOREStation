@@ -94,7 +94,7 @@ Used In File(s): \code\game\machinery\adv_med.dm
 			<td class='itemContent' style='width: 10%;'>{{:data.occupant.blood.percent}}%</td>
 		</tr>
 	</table>
-	<h4>Reagents</h4>
+	<h4>Blood Reagents</h4>
 	{{if data.occupant.reagents}}
 		<table class='item'>
 			{{for data.occupant.reagents}}
@@ -105,7 +105,20 @@ Used In File(s): \code\game\machinery\adv_med.dm
 			{{/for}}
 		</table>
 	{{else}}
-		<div class='item'>No reagents detected.</div>
+		<div class='item'>No blood reagents detected.</div>
+	{{/if}}
+	<h4>Stomach Reagents</h4>
+	{{if data.occupant.ingested}}
+		<table class='item'>
+			{{for data.occupant.ingested}}
+				<tr>
+					<td class='itemLabel' style='width: 20%;'>{{:value.name}}:</td>
+					<td class='itemContent' style='width: 10%;'>{{:value.amount}}</td>
+				</tr>
+			{{/for}}
+		</table>
+	{{else}}
+		<div class='item'>No stomach reagents detected.</div>
 	{{/if}}
 	<h4><b>External Organs</b></h4>
 	<div class="itemGroup">

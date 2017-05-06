@@ -31,17 +31,19 @@ var/list/outdoor_turfs = list()
 
 /turf/simulated/floor/Destroy()
 	if(outdoors)
-		outdoor_turfs.Remove(src)
+		planet_controller.unallocateTurf(src)
 	..()
 
-/turf/simulated/floor/proc/update_icon_edge()
+/turf/simulated/proc/update_icon_edge()
 	if(edge_blending_priority)
 		for(var/checkdir in cardinal)
 			var/turf/simulated/T = get_step(src, checkdir)
 			if(istype(T) && T.edge_blending_priority && edge_blending_priority < T.edge_blending_priority && icon_state != T.icon_state)
 				var/cache_key = "[T.get_edge_icon_state()]-[checkdir]"
 				if(!turf_edge_cache[cache_key])
-					turf_edge_cache[cache_key] = image(icon = 'icons/turf/outdoors_edge.dmi', icon_state = "[T.get_edge_icon_state()]-edge", dir = checkdir)
+					var/image/I = image(icon = 'icons/turf/outdoors_edge.dmi', icon_state = "[T.get_edge_icon_state()]-edge", dir = checkdir)
+					I.plane = 0
+					turf_edge_cache[cache_key] = I
 				overlays += turf_edge_cache[cache_key]
 
 /turf/simulated/proc/get_edge_icon_state()

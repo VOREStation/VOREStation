@@ -4,7 +4,7 @@
 	extended_desc = "Logic circuits will treat a null, 0, and a \"\" string value as FALSE and anything else as TRUE."
 	complexity = 3
 	outputs = list("result")
-	activators = list("compare", "on true result", "on false result")
+	activators = list("\<PULSE IN\> compare", "\<PULSE OUT\> on true result", "\<PULSE OUT\> on false result")
 	category_text = "Logic"
 	autopulse = 1
 	power_draw_per_use = 1
@@ -14,19 +14,17 @@
 		check_then_do_work()
 
 /obj/item/integrated_circuit/logic/do_work()
-	var/datum/integrated_io/O = outputs[1]
-	var/datum/integrated_io/T = activators[2]
-	var/datum/integrated_io/F = activators[3]
-	O.push_data()
-	if(O.data)
-		T.push_data()
+	push_data()
+	if(get_pin_data(IC_INPUT, 1))
+		activate_pin(1)
 	else
-		F.push_data()
+		activate_pin(2)
 
 /obj/item/integrated_circuit/logic/binary
-	inputs = list("A","B")
+	inputs = list("\<ANY\> A","\<ANY\> B")
 
 /obj/item/integrated_circuit/logic/binary/do_work()
+	pull_data()
 	var/datum/integrated_io/A = inputs[1]
 	var/datum/integrated_io/B = inputs[2]
 	var/datum/integrated_io/O = outputs[1]
@@ -37,9 +35,10 @@
 	return FALSE
 
 /obj/item/integrated_circuit/logic/unary
-	inputs = list("A")
+	inputs = list("\<ANY\> A")
 
 /obj/item/integrated_circuit/logic/unary/do_work()
+	pull_data()
 	var/datum/integrated_io/A = inputs[1]
 	var/datum/integrated_io/O = outputs[1]
 	O.data = do_check(A) ? TRUE : FALSE

@@ -200,6 +200,7 @@
 			/obj/item/clothing/under/det/black = 2,
 			/obj/item/clothing/under/det/grey = 2,
 			/obj/item/clothing/head/det/grey = 2,
+			/obj/item/clothing/under/det/skirt = 2,
 			/obj/item/clothing/under/det = 2,
 			/obj/item/clothing/head/det = 2,
 			/obj/item/clothing/suit/storage/det_trench,

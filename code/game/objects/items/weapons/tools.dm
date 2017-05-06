@@ -401,7 +401,7 @@
 				user.sdisabilities |= BLIND
 			else if (E.damage >= E.min_bruised_damage)
 				user << "<span class='danger'>You go blind!</span>"
-				user.eye_blind = 5
+				user.Blind(5)
 				user.eye_blurry = 5
 				user.disabilities |= NEARSIGHTED
 				spawn(100)
