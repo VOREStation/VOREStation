@@ -574,6 +574,49 @@
 		name = "High and Tight"
 		icon_state = "hair_hightight"
 
+	rowbun
+		name = "Row Bun"
+		icon_state = "hair_rowbun"
+
+	rowdualbraid
+		name = "Row Dual Braid"
+		icon_state = "hair_rowdualtail"
+
+	rowbraid
+		name = "Row Braid"
+		icon_state = "hair_rowbraid"
+
+	regulationmohawk
+		name = "Regulation Mohawk"
+		icon_state = "hair_shavedmohawk"
+
+	topknot
+		name = "Topknot"
+		icon_state = "hair_topknot"
+
+	ronin
+		name = "Ronin"
+		icon_state = "hair_ronin"
+
+	bowlcut2
+		name = "Bowl2"
+		icon_state = "hair_bowlcut2"
+
+	thinning
+		name = "Thinning"
+		icon_state = "hair_thinning"
+
+	thinningfront
+		name = "Thinning Front"
+		icon_state = "hair_thinningfront"
+
+	thinningback
+		name = "Thinning Back"
+		icon_state = "hair_thinningrear"
+
+	manbun
+		name = "Manbun"
+		icon_state = "hair_manbun"
 /*
 ///////////////////////////////////
 /  =---------------------------=  /
@@ -698,6 +741,13 @@
 		name = "Walrus Moustache"
 		icon_state = "facial_walrus"
 
+	croppedbeard
+		name = "Full Cropped Beard"
+		icon_state = "facial_croppedfullbeard"
+
+	chinless
+		name = "Chinless Beard"
+		icon_state = "facial_chinlessbeard"
 /*
 ///////////////////////////////////
 /  =---------------------------=  /
