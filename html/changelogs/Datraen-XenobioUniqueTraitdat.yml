@@ -1,4 +1,0 @@
-author: Datraen
-delete-after: True
-changes: 
-  - bugfix: "Xenobiological traits are made unique on each mutate, avoiding mutating other mobs with same trait data."

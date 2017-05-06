@@ -1,4 +1,0 @@
-author: Leshana
-delete-after: True
-changes: 
-  - bugfix: "Resetting a fire alert will no longer open firedoors if atmos alert is in effect and vice versa"
