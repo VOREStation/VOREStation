@@ -4,7 +4,7 @@
 	extended_desc = "Logic circuits will treat a null, 0, and a \"\" string value as FALSE and anything else as TRUE."
 	complexity = 3
 	outputs = list("result")
-	activators = list("\<PULSE IN\> compare", "\<PULSE OUT\> on true result", "\<PULSE OUT\> on false result")
+	activators = list("\<PULSE IN\> compare")
 	category_text = "Logic"
 	autopulse = 1
 	power_draw_per_use = 1
@@ -15,13 +15,10 @@
 
 /obj/item/integrated_circuit/logic/do_work()
 	push_data()
-	if(get_pin_data(IC_INPUT, 1))
-		activate_pin(1)
-	else
-		activate_pin(2)
 
 /obj/item/integrated_circuit/logic/binary
 	inputs = list("\<ANY\> A","\<ANY\> B")
+	activators = list("\<PULSE IN\> compare", "\<PULSE OUT\> on true result", "\<PULSE OUT\> on false result")
 
 /obj/item/integrated_circuit/logic/binary/do_work()
 	pull_data()
@@ -29,6 +26,11 @@
 	var/datum/integrated_io/B = inputs[2]
 	var/datum/integrated_io/O = outputs[1]
 	O.data = do_compare(A, B) ? TRUE : FALSE
+
+	if(get_pin_data(IC_OUTPUT, 1))
+		activate_pin(2)
+	else
+		activate_pin(3)
 	..()
 
 /obj/item/integrated_circuit/logic/binary/proc/do_compare(var/datum/integrated_io/A, var/datum/integrated_io/B)
@@ -36,6 +38,7 @@
 
 /obj/item/integrated_circuit/logic/unary
 	inputs = list("\<ANY\> A")
+	activators = list("\<PULSE IN\> compare", "\<PULSE OUT\> on compare")
 
 /obj/item/integrated_circuit/logic/unary/do_work()
 	pull_data()
@@ -43,6 +46,7 @@
 	var/datum/integrated_io/O = outputs[1]
 	O.data = do_check(A) ? TRUE : FALSE
 	..()
+	activate_pin(2)
 
 /obj/item/integrated_circuit/logic/unary/proc/do_check(var/datum/integrated_io/A)
 	return FALSE
@@ -124,6 +128,7 @@
 	desc = "This gate inverts what's fed into it."
 	icon_state = "not"
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+	activators = list("\<PULSE IN\> invert", "\<PULSE OUT\> on inverted")
 
 /obj/item/integrated_circuit/logic/unary/not/do_check(var/datum/integrated_io/A)
 	return !A.data
