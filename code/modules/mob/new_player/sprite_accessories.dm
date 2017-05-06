@@ -209,7 +209,6 @@
 	bobcutalt
 		name = "Chin Length Bob"
 		icon_state = "hair_bobcutalt"
-		species_allowed = list("Human","Unathi")
 
 	bun
 		name = "Bun"
