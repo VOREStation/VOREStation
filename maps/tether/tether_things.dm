@@ -122,7 +122,15 @@
 	// Otherwise just operate normally
 	return ..()
 
+/obj/machinery/cryopod/robot/door/tram/Bumped(var/atom/movable/AM)
+	if(!ishuman(AM))
+		return
 
+	var/mob/living/carbon/human/user = AM
+
+	var/choice = alert("Do you want to depart via the tram? Your character will leave the round.","Departure","Yes","No")
+	if(choice == "Yes")
+		despawn_occupant(user)
 
 // Tram arrival point landmarks and datum
 var/global/list/latejoin_tram   = list()
