@@ -1,3 +1,15 @@
+/obj/machinery/computer/shuttle_control/tether_backup
+	name = "tether backup shuttle control console"
+	shuttle_tag = "Backup Shuttle"
+
+/obj/machinery/computer/shuttle_control/tether_antag_ground
+	name = "land crawler control console"
+	shuttle_tag = "Land Crawler"
+
+/obj/machinery/computer/shuttle_control/tether_antag_space
+	name = "protoshuttle control console"
+	shuttle_tag = "Proto Shuttle"
+
 //
 // "Tram" Emergency Shuttle
 // Becuase the tram only has its own doors and no corresponding station doors, a docking controller is overkill.

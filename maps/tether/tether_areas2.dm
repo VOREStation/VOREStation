@@ -303,3 +303,23 @@
 	name = "\improper Micro Maintenance"
 /area/maintenance/station/virology
 	name = "\improper Virology Maintenance"
+
+/area/antag/antag_base
+	name = "\improper Syndicate Outpost"
+	requires_power = 0
+	dynamic_lighting = 0
+
+/area/shuttle/antag_space/base
+	name = "\improper Syndicate PS - Base"
+/area/shuttle/antag_ground/base
+	name = "\improper Syndicate LC - Base"
+
+/area/shuttle/antag_space/docked
+	name = "\improper Syndicate PS - Docked"
+/area/shuttle/antag_ground/solars
+	name = "\improper Syndicate LC - Solars"
+
+/area/shuttle/antag_space/north
+	name = "\improper Syndicate PS - Nearby"
+/area/shuttle/antag_ground/mining
+	name = "\improper Syndicate LC - Mining"
