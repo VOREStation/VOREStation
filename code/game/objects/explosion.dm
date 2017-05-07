@@ -46,11 +46,13 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 
 		var/close = range(world.view+round(devastation_range,1), epicenter)
 		// to all distanced mobs play a different sound
-		for(var/mob/M in world) if(M.z == epicenter.z) if(!(M in close))
-			// check if the mob can hear
-			if(M.ear_deaf <= 0 || !M.ear_deaf)
-				if(!istype(M.loc,/turf/space))
-					M << 'sound/effects/explosionfar.ogg'
+		for(var/mob/M in world)
+			if(M.z == epicenter.z)
+				if(!(M in close))
+					// check if the mob can hear
+					if(M.ear_deaf <= 0 || !M.ear_deaf)
+						if(!istype(M.loc,/turf/space))
+							M << 'sound/effects/explosionfar.ogg'
 
 		if(adminlog)
 			message_admins("Explosion with [shaped ? "shaped" : "non-shaped"] size ([devastation_range], [heavy_impact_range], [light_impact_range]) in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[epicenter.x];Y=[epicenter.y];Z=[epicenter.z]'>JMP</a>)")
