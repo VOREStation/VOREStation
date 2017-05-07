@@ -1,6 +1,6 @@
 /obj/machinery/computer/shuttle_control/tether_backup
 	name = "tether backup shuttle control console"
-	shuttle_tag = "Backup Shuttle"
+	shuttle_tag = "Tether Backup"
 
 /obj/machinery/computer/shuttle_control/tether_antag_ground
 	name = "land crawler control console"
