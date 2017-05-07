@@ -177,7 +177,7 @@
 	icon_state = "oldman"
 	item_state_slots = list(slot_r_hand_str = "johnny", slot_l_hand_str = "johnny")
 
-/obj/item/clothing/under/lawyer/oldwoman
+/obj/item/clothing/under/oldwoman
 	name = "Old Woman's Attire"
 	desc = "A typical outfit for the older woman, a lovely cardigan and comfortable skirt."
 	icon_state = "oldwoman"
