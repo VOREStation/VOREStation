@@ -166,5 +166,38 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle.docking_controller_tag = "tether_shuttle"
 	shuttle.dock_target_station = "tether_dock_airlock"
 	shuttle.dock_target_offsite = "tether_pad_airlock"
-	shuttles["Backup Shuttle"] = shuttle
+	shuttles["Tether Backup"] = shuttle
 	process_shuttles += shuttle
+
+
+	//////////////////////////////////////////////////////////////
+	// Antag Space "Proto Shuttle" Shuttle
+	AM = new/datum/shuttle/multi_shuttle()
+	AM.docking_controller_tag = "antag_space_shuttle"
+	AM.start_location = "Home Base"
+	AM.origin = locate(/area/shuttle/antag_space/base)
+	AM.interim = locate(/area/shuttle/antag_space/transit)
+	AM.destinations = list(
+		"Nearby" = locate(/area/shuttle/antag_space/north),
+		"Docks" =  locate(/area/shuttle/antag_space/docks)
+	)
+	AM.destination_dock_targets = list("Home Base" = "antag_space_dock")
+	AM.move_time = 60
+	AM.warmup_time = 8
+	shuttles["Proto"] = AM
+
+	//////////////////////////////////////////////////////////////
+	// Antag Surface "Land Crawler" Shuttle
+	AM = new/datum/shuttle/multi_shuttle()
+	AM.docking_controller_tag = "antag_ground_shuttle"
+	AM.start_location = "Home Base"
+	AM.origin = locate(/area/shuttle/antag_ground/base)
+	AM.interim = locate(/area/shuttle/antag_ground/transit)
+	AM.destinations = list(
+		"Solar Array" = locate(/area/shuttle/antag_ground/solars),
+		"Mining Outpost" =  locate(/area/shuttle/antag_ground/mining)
+	)
+	AM.destination_dock_targets = list("Home Base" = "antag_ground_dock")
+	AM.move_time = 60
+	AM.warmup_time = 8
+	shuttles["Land Crawler"] = AM

@@ -322,15 +322,26 @@
 
 /area/shuttle/antag_space/base
 	name = "\improper Syndicate PS - Base"
-/area/shuttle/antag_ground/base
-	name = "\improper Syndicate LC - Base"
-
-/area/shuttle/antag_space/docked
-	name = "\improper Syndicate PS - Docked"
-/area/shuttle/antag_ground/solars
-	name = "\improper Syndicate LC - Solars"
-
+	icon_state = "shuttle2"
+/area/shuttle/antag_space/transit
+	name = "\improper Syndicate PS - Transit"
+	icon_state = "shuttle2"
 /area/shuttle/antag_space/north
 	name = "\improper Syndicate PS - Nearby"
+	icon_state = "shuttle2"
+/area/shuttle/antag_space/docks
+	name = "\improper Syndicate PS - Docks"
+	icon_state = "shuttle2"
+
+/area/shuttle/antag_ground/base
+	name = "\improper Syndicate LC - Base"
+	icon_state = "shuttle2"
+/area/shuttle/antag_ground/transit
+	name = "\improper Syndicate LC - Transit"
+	icon_state = "shuttle2"
+/area/shuttle/antag_ground/solars
+	name = "\improper Syndicate LC - Solars"
+	icon_state = "shuttle2"
 /area/shuttle/antag_ground/mining
 	name = "\improper Syndicate LC - Mining"
+	icon_state = "shuttle2"

@@ -2,13 +2,13 @@
 	name = "tether backup shuttle control console"
 	shuttle_tag = "Tether Backup"
 
-/obj/machinery/computer/shuttle_control/tether_antag_ground
+/obj/machinery/computer/shuttle_control/multi/tether_antag_ground
 	name = "land crawler control console"
 	shuttle_tag = "Land Crawler"
 
-/obj/machinery/computer/shuttle_control/tether_antag_space
+/obj/machinery/computer/shuttle_control/multi/tether_antag_space
 	name = "protoshuttle control console"
-	shuttle_tag = "Proto Shuttle"
+	shuttle_tag = "Proto"
 
 //
 // "Tram" Emergency Shuttle
