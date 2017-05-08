@@ -123,4 +123,5 @@
 
 /obj/item/device/encryptionkey/ert
 	name = "\improper ERT radio encryption key"
+	icon_state = "cent_cypherkey"
 	channels = list("Response Team" = 1, "Science" = 1, "Command" = 1, "Medical" = 1, "Engineering" = 1, "Security" = 1, "Supply" = 1, "Service" = 1)
