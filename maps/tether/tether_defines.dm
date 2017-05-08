@@ -41,7 +41,7 @@
 	path = "tether"
 
 	lobby_icon = 'icons/misc/title_vr.dmi'
-	lobby_screens = list("title")
+	lobby_screens = list("tether")
 
 	station_levels = list(
 		Z_LEVEL_SURFACE_LOW,
