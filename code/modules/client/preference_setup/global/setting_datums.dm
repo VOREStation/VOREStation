@@ -60,10 +60,13 @@ var/list/_client_preferences_by_type
 	key = "SOUND_LOBBY"
 
 /datum/client_preference/play_lobby_music/toggled(var/mob/preference_mob, var/enabled)
+	if(!preference_mob.client || !preference_mob.client.media)
+		return
+
 	if(enabled)
-		preference_mob << sound(ticker.login_music, repeat = 0, wait = 0, volume = 85, channel = 1)
+		preference_mob.client.playtitlemusic()
 	else
-		preference_mob << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1)
+		preference_mob.client.media.stop_music()
 
 /datum/client_preference/play_ambiance
 	description ="Play ambience"
