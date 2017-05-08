@@ -93,6 +93,22 @@
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/tram/powered()
 	return TRUE // Always be powered
 
+//Chemistry 'chemavator'
+/obj/machinery/smartfridge/chemistry/chemvator
+	name = "\improper Smart Chemavator - Upper Level"
+	desc = "A refrigerated storage unit for medicine and chemical storage. Now sporting a fancy system of pulleys to lift bottles up and down."
+
+/obj/machinery/smartfridge/chemistry/chemvator/down
+	name = "\improper Smart Chemavator - Lower Level"
+
+/obj/machinery/smartfridge/chemistry/chemvator/down/New()
+	. = ..()
+	var/obj/machinery/smartfridge/chemistry/chemvator/above = locate(x,y,z+1)
+	if(istype(above))
+		item_records = above.item_records
+
+	return .
+
 // Tram departure cryo doors that turn into ordinary airlock doors at round end
 /obj/machinery/cryopod/robot/door/tram
 	name = "\improper Tram Station"
