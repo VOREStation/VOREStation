@@ -152,19 +152,13 @@ world/loop_checks = 0
 			A.finalize_qdel()
 
 /datum/proc/finalize_qdel()
-	if(IsPooled(src))
-		PlaceInPool(src)
-	else
-		del(src)
+	del(src)
 
 /atom/finalize_qdel()
-	if(IsPooled(src))
-		PlaceInPool(src)
+	if(garbage_collector)
+		garbage_collector.AddTrash(src)
 	else
-		if(garbage_collector)
-			garbage_collector.AddTrash(src)
-		else
-			delayed_garbage |= src
+		delayed_garbage |= src
 
 /icon/finalize_qdel()
 	del(src)
@@ -180,7 +174,7 @@ world/loop_checks = 0
 
 // Default implementation of clean-up code.
 // This should be overridden to remove all references pointing to the object being destroyed.
-// Return true if the the GC controller should allow the object to continue existing. (Useful if pooling objects.)
+// Return true if the the GC controller should allow the object to continue existing.
 /datum/proc/Destroy()
 	nanomanager.close_uis(src)
 	tag = null
