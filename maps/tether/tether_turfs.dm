@@ -8,6 +8,10 @@ VIRGO3B_TURF_CREATE(/turf/simulated/open)
 	return .
 
 VIRGO3B_TURF_CREATE(/turf/simulated/floor)
+/turf/simulated/floor/virgo3b/New()
+	. = ..()
+	outdoor_turfs.Add(src)
+	return .
 
 /turf/simulated/floor/virgo3b_indoors
 	VIRGO3B_SET_ATMOS

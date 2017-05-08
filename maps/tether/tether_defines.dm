@@ -49,7 +49,9 @@
 		Z_LEVEL_SURFACE_HIGH,
 		Z_LEVEL_SPACE_LOW,
 		Z_LEVEL_SPACE_MID,
-		Z_LEVEL_SPACE_HIGH
+		Z_LEVEL_SPACE_HIGH,
+		Z_LEVEL_SURFACE_MINE,
+		Z_LEVEL_SOLARS
 		)
 
 	admin_levels = list(Z_LEVEL_CENTCOM)
@@ -59,7 +61,9 @@
 		Z_LEVEL_SURFACE_HIGH,
 		Z_LEVEL_SPACE_LOW,
 		Z_LEVEL_SPACE_MID,
-		Z_LEVEL_SPACE_HIGH
+		Z_LEVEL_SPACE_HIGH,
+		Z_LEVEL_SURFACE_MINE,
+		Z_LEVEL_SOLARS
 		)
 
 	player_levels = list(
@@ -68,7 +72,9 @@
 		Z_LEVEL_SURFACE_HIGH,
 		Z_LEVEL_SPACE_LOW,
 		Z_LEVEL_SPACE_MID,
-		Z_LEVEL_SPACE_HIGH
+		Z_LEVEL_SPACE_HIGH,
+		Z_LEVEL_SURFACE_MINE,
+		Z_LEVEL_SOLARS
 		)
 
 	sealed_levels = list(Z_LEVEL_TRANSIT)
@@ -77,7 +83,10 @@
 	base_turf_by_z = list(
 		"1" = /turf/simulated/floor/outdoors/rocks/virgo3b,
 		"2" = /turf/simulated/open,
-		"3" = /turf/simulated/open
+		"3" = /turf/simulated/open,
+		"5" = /turf/space,
+		"6" = /turf/simulated/open,
+		"7" = /turf/simulated/open
 		)
 
 	station_name  = "NSS Adephagia"
