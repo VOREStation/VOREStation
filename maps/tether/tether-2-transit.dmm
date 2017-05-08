@@ -5,10 +5,10 @@
 "e" = (/turf/unsimulated/wall,/area/space)
 "f" = (/obj/machinery/atmospherics/pipe/simple/visible/supply,/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,/obj/machinery/atmospherics/pipe/simple/visible,/obj/structure/cable{tag = "icon-1-2"; icon_state = "1-2"},/obj/structure/disposalpipe/segment,/turf/simulated/floor/plating,/area/space)
 "g" = (/turf/simulated/floor/holofloor/tiled/dark,/area/space)
-"h" = (/obj/machinery/atmospherics/pipe/zpipe/up/supply{dir = 1},/obj/machinery/atmospherics/pipe/zpipe/up/scrubbers{dir = 1},/obj/machinery/atmospherics/pipe/zpipe/up{dir = 1},/obj/structure/disposalpipe/up{tag = "icon-pipe-u (NORTH)"; icon_state = "pipe-u"; dir = 1},/obj/structure/cable{tag = "icon-16-0"; icon_state = "16-0"},/obj/structure/cable,/turf/simulated/floor/plating,/area/space)
+"h" = (/obj/machinery/atmospherics/pipe/zpipe/up/supply{dir = 1},/obj/machinery/atmospherics/pipe/zpipe/up/scrubbers{dir = 1},/obj/machinery/atmospherics/pipe/zpipe/up{dir = 1},/obj/structure/disposalpipe/up{dir = 1},/obj/structure/cable{tag = "icon-16-0"; icon_state = "16-0"},/obj/structure/cable,/turf/simulated/floor/plating,/area/space)
 "i" = (/turf/simulated/floor/tiled,/area/tether/transit)
 "j" = (/obj/structure/disposalpipe/up,/turf/simulated/floor/tiled,/area/space)
-"k" = (/obj/structure/disposalpipe/down{tag = "icon-pipe-d (NORTH)"; icon_state = "pipe-d"; dir = 1},/turf/simulated/floor/tiled,/area/space)
+"k" = (/obj/structure/disposalpipe/down{dir = 1},/turf/simulated/floor/tiled,/area/space)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
