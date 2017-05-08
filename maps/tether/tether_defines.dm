@@ -30,10 +30,13 @@
 #define Z_LEVEL_SPACE_MID				6
 #define Z_LEVEL_SPACE_HIGH				7
 #define Z_LEVEL_SURFACE_MINE			8
-#define Z_LEVEL_CENTCOM					9
-#define Z_LEVEL_MISC					10
-#define Z_LEVEL_SHIPS					11
-#define Z_LEVEL_SOLARS					12
+#define Z_LEVEL_SOLARS					9
+#define Z_LEVEL_CENTCOM					10
+#define Z_LEVEL_MISC					11
+#define Z_LEVEL_SHIPS					12
+#define Z_LEVEL_EMPTY_SURFACE			13
+#define Z_LEVEL_EMPTY_SPACE				14
+
 
 /datum/map/tether
 	name = "Virgo"
@@ -79,7 +82,7 @@
 
 	sealed_levels = list(Z_LEVEL_TRANSIT)
 	empty_levels = list()
-	accessible_z_levels = list() // The defines can't be used here sadly.
+	accessible_z_levels = list("5" = 6, "6" = 6, "7" = 6, "14" = 82) // The defines can't be used here sadly.
 	base_turf_by_z = list(
 		"1" = /turf/simulated/floor/outdoors/rocks/virgo3b,
 		"2" = /turf/simulated/open,
