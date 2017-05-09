@@ -43,8 +43,8 @@
 		new /obj/item/device/radio/headset/heads/hop/alt(src)
 		new /obj/item/weapon/storage/box/ids(src)
 		new /obj/item/weapon/storage/box/ids( src )
-		new /obj/item/weapon/gun/energy/gun(src)
-		new /obj/item/weapon/gun/projectile/sec/flash(src)
+		new /obj/item/weapon/gun/energy/gun/martin(src) //VOREStation Edit
+		//new /obj/item/weapon/gun/projectile/sec/flash(src) //VOREStation Edit
 		new /obj/item/device/flash(src)
 		return
 
@@ -110,7 +110,7 @@
 		new /obj/item/device/radio/headset/heads/hos/alt(src)
 		new /obj/item/clothing/glasses/sunglasses/sechud(src)
 		new /obj/item/taperoll/police(src)
-		new /obj/item/weapon/shield/riot(src)
+		//new /obj/item/weapon/shield/riot(src) //VOREStation Edit
 		new /obj/item/weapon/shield/riot/tele(src)
 		new /obj/item/weapon/storage/box/holobadge/hos(src)
 		new /obj/item/clothing/accessory/badge/holo/hos(src)
@@ -120,8 +120,10 @@
 		new /obj/item/weapon/storage/belt/security(src)
 		new /obj/item/device/flash(src)
 		new /obj/item/weapon/melee/baton/loaded(src)
-		new /obj/item/weapon/gun/energy/gun(src)
-		new /obj/item/weapon/cell/device/weapon(src)
+		new /obj/item/weapon/gun/projectile/lamia(src) //VOREStation Edit
+		new /obj/item/ammo_magazine/a44 //VOREStation Edit
+		new /obj/item/ammo_magazine/a44 //VOREStation Edit
+		//new /obj/item/weapon/cell/device/weapon(src) //VOREStation Edit
 		new /obj/item/clothing/accessory/holster/waist(src)
 		new /obj/item/weapon/melee/telebaton(src)
 		new /obj/item/clothing/head/beret/sec/corporate/hos(src)
@@ -274,10 +276,10 @@
 		new /obj/item/device/radio/headset/headset_sec(src)
 		new /obj/item/device/radio/headset/headset_sec/alt(src)
 		new /obj/item/clothing/suit/storage/vest/detective(src)
-		new /obj/item/ammo_magazine/c45m/rubber(src)
-		new /obj/item/ammo_magazine/c45m/rubber(src)
+		new /obj/item/ammo_magazine/a44sl/rubber(src) //VOREStation Edit
+		new /obj/item/ammo_magazine/a44sl/rubber(src) //VOREStation Edit
 		new /obj/item/taperoll/police(src)
-		new /obj/item/weapon/gun/projectile/colt/detective(src)
+		new /obj/item/weapon/gun/projectile/revolver/consul(src) //VOREStation Edit
 		new /obj/item/clothing/accessory/holster/armpit(src)
 		new /obj/item/device/flashlight/maglight(src)
 		new /obj/item/weapon/reagent_containers/food/drinks/flask/detflask(src)

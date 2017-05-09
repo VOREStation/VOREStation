@@ -1,9 +1,9 @@
 /obj/item/weapon/gun/energy/netgun
-	name = "\improper\'Hunter\' capture gun"
+	name = "\improper KHI \"Hunter\" capture gun"
 	desc = "A Kitsuhana-designed 'non-lethal capture device' stunner and energy net launcher, \
 			for when you want criminals to stop acting like they're on a 20th century British comedy sketch show."
 	icon = 'icons/obj/gun_vr.dmi'
-	icon_state = "khinet"
+	icon_state = "hunter"
 	item_state = "gun" // Placeholder
 	mode_name = "stun"
 
