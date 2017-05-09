@@ -7,6 +7,7 @@
 	var/desc = null						// Ditto.
 	var/icon_state = null				// See above.
 	var/mob/living/holder = null		// The mob that this datum is affecting.
+	var/weakref/origin = null			// A weak reference to whatever caused the modifier to appear.  THIS NEEDS TO BE A MOB/LIVING.  It's a weakref to not interfere with qdel().
 	var/expire_at = null				// world.time when holder's Life() will remove the datum.  If null, it lasts forever or until it gets deleted by something else.
 	var/on_created_text = null			// Text to show to holder upon being created.
 	var/on_expired_text = null			// Text to show to holder when it expires.
@@ -37,8 +38,12 @@
 	var/haste							// If set to 1, the mob will be 'hasted', which makes it ignore slowdown and go really fast.
 	var/evasion							// Positive numbers reduce the odds of being hit by 15% each.  Negative numbers increase the odds.
 
-/datum/modifier/New(var/new_holder)
+/datum/modifier/New(var/new_holder, var/new_origin)
 	holder = new_holder
+	if(new_origin)
+		origin = weakref(new_origin)
+	else // We assume the holder caused the modifier if not told otherwise.
+		origin = weakref(holder)
 	..()
 
 // Checks to see if this datum should continue existing.
@@ -82,8 +87,9 @@
 		M.tick()
 
 // Call this to add a modifier to a mob. First argument is the modifier type you want, second is how long it should last, in ticks.
+// Third argument is the 'source' of the modifier, if it's from someone else.  If null, it will default to the mob being applied to.
 // The SECONDS/MINUTES macro is very helpful for this.  E.g. M.add_modifier(/datum/modifier/example, 5 MINUTES)
-/mob/living/proc/add_modifier(var/modifier_type, var/expire_at = null)
+/mob/living/proc/add_modifier(var/modifier_type, var/expire_at = null, var/mob/living/origin = null)
 	// First, check if the mob already has this modifier.
 	for(var/datum/modifier/M in modifiers)
 		if(istype(modifier_type, M))
@@ -99,7 +105,7 @@
 					return
 
 	// If we're at this point, the mob doesn't already have it, or it does but stacking is allowed.
-	var/datum/modifier/mod = new modifier_type(src)
+	var/datum/modifier/mod = new modifier_type(src, origin)
 	if(expire_at)
 		mod.expire_at = world.time + expire_at
 	if(mod.on_created_text)
@@ -107,6 +113,8 @@
 	modifiers.Add(mod)
 	if(mod.mob_overlay_state)
 		update_modifier_visuals()
+
+	return mod
 
 // Removes a specific instance of modifier
 /mob/living/proc/remove_specific_modifier(var/datum/modifier/M, var/silent = FALSE)

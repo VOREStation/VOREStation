@@ -98,8 +98,8 @@
 /datum/technomancer/assistance/golem
 	name = "Friendly GOLEM unit"
 	desc = "Teleports a specially designed synthetic unit to you, which is very durable, has an advanced AI, and can also use \
-	functions.  It knows Shield, Targeted Blink, Beam, Flame Tongue, Mend Wounds, and Mend Burns.  It also has a large storage \
-	capacity for energy, and due to it's synthetic nature, instability is less of an issue for them."
+	functions.  It knows Shield, Targeted Blink, Beam, Mend Life, Mend Synthetic, Lightning, Repel Missiles, Corona, Ionic Bolt, Dispel, and Chain Lightning.  \
+	It also has a large storage capacity for energy, and due to it's synthetic nature, instability is less of an issue for them."
 	cost = 350
 	obj_path = null //TODO
 	one_use_only = 1
