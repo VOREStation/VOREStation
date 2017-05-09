@@ -155,7 +155,7 @@
 		return
 
 /mob/living/simple_animal/technomancer_golem/proc/targeted_blink(var/atom/target)
-	var/datum/effect/effect/system/spark_spread/spark_system = PoolOrNew(/datum/effect/effect/system/spark_spread)
+	var/datum/effect/effect/system/spark_spread/spark_system = new()
 	spark_system.set_up(5, 0, get_turf(src))
 	spark_system.start()
 	src.visible_message("<span class='notice'>\The [src] vanishes!</span>")
