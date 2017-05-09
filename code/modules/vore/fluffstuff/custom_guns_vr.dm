@@ -575,10 +575,12 @@
 	fire_sound = 'sound/weapons/Gunshot.ogg'
 
 	caliber = ".44"
-	ammo_type = /obj/item/ammo_casing/a44
-	magazine_type = /obj/item/ammo_magazine/a44
-	allowed_magazines = list(/obj/item/ammo_magazine/a44)
+	ammo_type = /obj/item/ammo_casing/a44/rubber
+	magazine_type = /obj/item/ammo_magazine/a44/rubber
+	allowed_magazines = list(/obj/item/ammo_magazine/a44,/obj/item/ammo_magazine/a44/rubber)
 	load_method = MAGAZINE
+	auto_eject = 1
+	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
 
@@ -995,20 +997,32 @@
 
 //.44
 /obj/item/ammo_casing/a44
+	icon = 'icons/obj/ammo_vr.dmi'
+	icon_state = "a357"
 	desc = "A .44 bullet casing."
 	caliber = ".44"
 	projectile_type = /obj/item/projectile/bullet/pistol/strong
 
+/obj/item/ammo_casing/a44/rubber
+	icon = 'icons/obj/ammo_vr.dmi'
+	icon_state = "rubber357"
+	desc = "A .44 rubber bullet casing."
+	projectile_type = /obj/item/projectile/bullet/pistol/rubber/strong
+
 /obj/item/ammo_magazine/a44
-	icon_state = "a762"
+	desc = "A magazine for .44 ammo."
+	icon = 'icons/obj/ammo_vr.dmi'
+	icon_state = "44lethal"
 	caliber = ".44"
+	matter = list(DEFAULT_WALL_MATERIAL = 1680)
 	ammo_type = /obj/item/ammo_casing/a44
 	max_ammo = 8
 	mag_type = MAGAZINE
 
-/obj/item/ammo_casing/a44/rubber
-	desc = "A .44 rubber bullet casing."
-	projectile_type = /obj/item/projectile/bullet/pistol/rubber/strong
+/obj/item/ammo_magazine/a44/rubber
+	desc = "A magazine for .44 less-than-lethal ammo."
+	icon_state = "44rubber"
+	ammo_type = /obj/item/ammo_casing/a44/rubber
 
 //.44 speedloaders
 /obj/item/ammo_magazine/a44sl
