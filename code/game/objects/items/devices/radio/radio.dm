@@ -362,6 +362,12 @@ var/global/list/default_medbay_channels = list(
   /* ###### Radio headsets can only broadcast through subspace ###### */
 
 	if(subspace_transmission)
+		var/list/jamming = is_jammed(src)
+		if(jamming)
+			var/distance = jamming["distance"]
+			to_chat(M,"<span class='danger'>\icon[src] You hear the [distance <= 2 ? "loud hiss" : "soft hiss"] of static.</span>")
+			return 0
+
 		// First, we want to generate a new radio signal
 		var/datum/signal/signal = new
 		signal.transmission_method = 2 // 2 would be a subspace transmission.
@@ -502,6 +508,8 @@ var/global/list/default_medbay_channels = list(
 	if (wires.IsIndexCut(WIRE_RECEIVE))
 		return -1
 	if(!listening)
+		return -1
+	if(is_jammed(src))
 		return -1
 	if(!(0 in level))
 		var/turf/position = get_turf(src)
