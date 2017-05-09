@@ -28,7 +28,8 @@ var/list/floor_decals = list()
 		if(!T.decals) T.decals = list()
 		T.decals |= floor_decals[cache_key]
 		T.overlays |= floor_decals[cache_key]
-	qdel(src)
+	spawn(rand(1 SECOND, 60 SECONDS)) //VOREStation cheap hack to stop server crashes until subsystems ported
+		qdel(src)
 	return
 
 /obj/effect/floor_decal/reset
