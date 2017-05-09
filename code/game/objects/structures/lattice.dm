@@ -65,7 +65,7 @@
 		if(WT.welding == 1)
 			if(WT.remove_fuel(0, user))
 				user << "<span class='notice'>Slicing lattice joints ...</span>"
-			PoolOrNew(/obj/item/stack/rods, src.loc)
+			new /obj/item/stack/rods(src.loc)
 			qdel(src)
 
 	return

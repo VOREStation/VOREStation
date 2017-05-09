@@ -126,7 +126,7 @@
 	new /obj/item/weapon/storage/pill_bottle/dylovene(src)
 	new /obj/item/weapon/storage/pill_bottle/tramadol(src)
 	new /obj/item/weapon/storage/pill_bottle/spaceacillin(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/clotting(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/clotting(src)
 	new /obj/item/stack/medical/splint(src)
 	return
 
@@ -161,7 +161,7 @@
 	if (empty)
 		return
 	for(var/i = 1 to 8)
-		new /obj/item/weapon/reagent_containers/hypospray/autoinjector/clotting(src)
+		new /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/clotting(src)
 	return
 
 /*

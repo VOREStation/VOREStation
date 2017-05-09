@@ -301,6 +301,15 @@
 
 			occupantData["reagents"] = reagentData
 
+			var/ingestedData[0]
+			if(H.ingested.reagent_list.len >= 1)
+				for(var/datum/reagent/R in H.ingested.reagent_list)
+					ingestedData[++ingestedData.len] = list("name" = R.name, "amount" = R.volume)
+			else
+				ingestedData = null
+
+			occupantData["ingested"] = ingestedData
+
 			var/extOrganData[0]
 			for(var/obj/item/organ/external/E in H.organs)
 				var/organData[0]
@@ -394,7 +403,7 @@
 			P.info += "<b>Time of scan:</b> [worldtime2stationtime(world.time)]<br><br>"
 			P.info += "[printing_text]"
 			P.info += "<br><br><b>Notes:</b><br>"
-			P.name = "Body Scan - [href_list["name"]]"
+			P.name = "Body Scan - [href_list["name"]] ([worldtime2stationtime(world.time)])"
 			printing = null
 			printing_text = null
 
@@ -457,8 +466,12 @@
 				dat += "[extra_font]\tBlood Level %: [blood_percent] ([blood_volume] units)</font><br>"
 
 			if(occupant.reagents)
-				for(var/datum/reagent/R in occupant.reagents)
+				for(var/datum/reagent/R in occupant.reagents.reagent_list)
 					dat += "Reagent: [R.name], Amount: [R.volume]<br>"
+
+			if(occupant.ingested)
+				for(var/datum/reagent/R in occupant.ingested.reagent_list)
+					dat += "Stomach: [R.name], Amount: [R.volume]<br>"
 
 			dat += "<hr><table border='1'>"
 			dat += "<tr>"

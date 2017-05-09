@@ -191,6 +191,7 @@
 	icon_state = "scepter"
 	force = 15
 	slot_flags = SLOT_BELT
+	attack_verb = list("beaten", "smashed", "struck", "whacked")
 
 /obj/item/weapon/scepter/attack_self(mob/living/carbon/human/user)
 	var/obj/item/item_to_test = user.get_other_hand(src)

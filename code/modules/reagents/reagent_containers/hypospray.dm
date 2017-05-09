@@ -14,11 +14,19 @@
 	possible_transfer_amounts = null
 	flags = OPENCONTAINER
 	slot_flags = SLOT_BELT
+	var/reusable = 1
+	var/used = 0
+	var/filled = 0
+	var/list/filled_reagents = list()
 
-///obj/item/weapon/reagent_containers/hypospray/New() //comment this to make hypos start off empty
-//	..()
-//	reagents.add_reagent("tricordrazine", 30)
-//	return
+/obj/item/weapon/reagent_containers/hypospray/New()
+	..()
+	if(filled)
+		if(filled_reagents)
+			for(var/r in filled_reagents)
+				reagents.add_reagent(r, filled_reagents[r])
+	update_icon()
+	return
 
 /obj/item/weapon/reagent_containers/hypospray/do_surgery(mob/living/carbon/M, mob/living/user)
 	if(user.a_intent != I_HELP) //in case it is ever used as a surgery tool
@@ -53,6 +61,9 @@
 		admin_inject_log(user, M, src, contained, trans)
 		user << "<span class='notice'>[trans] units injected. [reagents.total_volume] units remaining in \the [src].</span>"
 
+	if(!reusable && !used)
+		used = !used
+
 	return
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector
@@ -62,59 +73,52 @@
 	item_state = "autoinjector"
 	amount_per_transfer_from_this = 5
 	volume = 5
+	reusable = 0
+	filled = 1
+	filled_reagents = list("inaprovaline" = 5)
 
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/New()
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/on_reagent_change()
 	..()
-	reagents.add_reagent("inaprovaline", 5)
 	update_icon()
-	return
+
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/empty
+	filled = 0
+	filled_reagents = list()
+
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/used
+	used = 1
+	filled_reagents = list()
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/attack(mob/M as mob, mob/user as mob)
 	..()
-	if(reagents.total_volume <= 0) //Prevents autoinjectors to be refilled.
+	if(used) //Prevents autoinjectors to be refilled.
 		flags &= ~OPENCONTAINER
 	update_icon()
 	return
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/update_icon()
-	if(reagents.total_volume > 0)
+	if(!used && reagents.reagent_list.len)
 		icon_state = "[initial(icon_state)]1"
-	else
+	else if(used)
 		icon_state = "[initial(icon_state)]0"
+	else
+		icon_state = "[initial(icon_state)]2"
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/examine(mob/user)
 	..(user)
 	if(reagents && reagents.reagent_list.len)
 		user << "<span class='notice'>It is currently loaded.</span>"
-	else
+	else if(used)
 		user << "<span class='notice'>It is spent.</span>"
+	else
+		user << "<span class='notice'>It is currently unloaded.</span>"
 
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/clotting
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/clotting
 	name = "clotting agent"
-	desc = "A rapid and safe way to administer clotting drugs by untrained or trained personnel."
-	icon_state = "autoinjector"
-	item_state = "autoinjector"
-	amount_per_transfer_from_this = 10
-	volume = 10
+	desc = "A refined version of the standard autoinjector, allowing greater capacity. This variant excels at treating bleeding wounds and internal bleeding."
+	filled_reagents = list("inaprovaline" = 5, "myelamine" = 10)
 
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/clotting/New()
-	..()
-	reagents.remove_reagent("inaprovaline", 5)
-	reagents.add_reagent("myelamine", 10)
-	update_icon()
-	return
-
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/bonemed
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/bonemed
 	name = "bone repair injector"
-	desc = "A rapid and safe way to administer advanced drugs by untrained or trained personnel."
-	icon_state = "autoinjector"
-	item_state = "autoinjector"
-	amount_per_transfer_from_this = 10
-	volume = 10
-
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/bonemed/New()
-	..()
-	reagents.remove_reagent("inaprovaline", 5)
-	reagents.add_reagent("osteodaxon", 10)
-	update_icon()
-	return
+	desc = "A refined version of the standard autoinjector, allowing greater capacity. This one excels at treating damage to bones."
+	filled_reagents = list("inaprovaline" = 5, "osteodaxon" = 10)
