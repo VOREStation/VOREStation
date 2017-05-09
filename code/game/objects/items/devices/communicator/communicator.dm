@@ -169,9 +169,8 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Parameters: None
 // Description: Simple check to see if the exonet node is active.
 /obj/item/device/communicator/proc/get_connection_to_tcomms()
-	if(node)
-		if(node.on && node.allow_external_communicators)
-			return 1
+	if(node && node.on && node.allow_external_communicators && !is_jammed(src))
+		return 1
 	return 0
 
 // Proc: process()
@@ -182,7 +181,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	if(update_ticks % 5)
 		if(!node)
 			node = get_exonet_node()
-		if(!node || !node.on || !node.allow_external_communicators)
+		if(!get_connection_to_tcomms())
 			close_connection(reason = "Connection timed out")
 
 // Proc: attackby()
