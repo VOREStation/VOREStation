@@ -212,6 +212,10 @@ var/global/list/latejoin_tram   = list()
 	"Turn Off" 			= new/datum/holodeck_program(/area/houseboat/holodeck/off, list())
 	)
 
+// Our map is small, if the supermatter is ejected lets not have it just blow up somewhere else
+/obj/machinery/power/supermatter/touch_map_edge()
+	qdel(src)
+
 //
 // ### Wall Machines On Full Windows ###
 // To make sure wall-mounted machines placed on full-tile windows are clickable they must be above the window
