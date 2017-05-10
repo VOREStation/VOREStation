@@ -13,7 +13,7 @@
 /obj/machinery/computer/operating/New()
 	..()
 	for(var/direction in list(NORTH,EAST,SOUTH,WEST)) //VOREStation Edit - Stop turning
-		table = locate(/obj/machinery/optable, get_step(src, dir))
+		table = locate(/obj/machinery/optable, get_step(src, direction))
 		if (table)
 			table.computer = src
 			break
