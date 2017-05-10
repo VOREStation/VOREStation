@@ -60,6 +60,21 @@
 	teleport_z = Z_LEVEL_SURFACE_LOW
 
 
+// Invisible object that blocks z transfer to/from its turf and the turf above.
+/obj/effect/ceiling
+	invisibility = 101 // nope cant see this
+	anchored = 1
+
+/obj/effect/ceiling/CheckExit(atom/movable/O as mob|obj, turf/target as turf)
+	if(target && target.z > src.z)
+		return FALSE // Block exit from our turf to above
+	return TRUE
+
+/obj/effect/ceiling/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	if(mover && mover.z > src.z)
+		return FALSE // Block entry from above to our turf
+	return TRUE
+
 //
 // TRAM STATION
 //
