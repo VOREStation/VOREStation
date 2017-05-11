@@ -1904,6 +1904,7 @@
 #include "code\modules\mob\new_player\sprite_accessories_vr.dm"
 #include "code\modules\multiz\_stubs.dm"
 #include "code\modules\multiz\basic.dm"
+#include "code\modules\multiz\ladder_assembly_vr.dm"
 #include "code\modules\multiz\movement.dm"
 #include "code\modules\multiz\open_space_controller.dm"
 #include "code\modules\multiz\pipes.dm"
