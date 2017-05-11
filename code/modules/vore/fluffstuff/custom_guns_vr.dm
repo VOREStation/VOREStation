@@ -162,7 +162,7 @@
 	name = "Vintage S&W Model 10"
 	desc = "It's a classic S&W Model 10 revolver. This one in particular is beautifully restored with a chromed black frame and cylinder, and a nice redwood grip. The name 'Serdykov A.' is engraved into the base of the grip."
 	icon = 'icons/vore/custom_guns_vr.dmi'
-	item_state = "model10'
+	item_state = "model10"
 	icon_state = "model10"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	ammo_type = /obj/item/ammo_casing/c38r //Rubber rounds.
