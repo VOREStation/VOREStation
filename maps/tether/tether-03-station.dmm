@@ -1517,7 +1517,7 @@
 "aDi" = (/obj/effect/floor_decal/steeldecal/steel_decals7{dir = 8},/obj/effect/floor_decal/steeldecal/steel_decals7{dir = 1},/obj/effect/floor_decal/steeldecal/steel_decals5,/turf/simulated/floor/tiled,/area/bridge_hallway)
 "aDj" = (/turf/simulated/floor/tiled,/area/bridge_hallway)
 "aDk" = (/obj/structure/stairs/east,/turf/simulated/floor/tiled,/area/bridge_hallway)
-"aDl" = (/obj/machinery/power/apc{cell_type = /obj/item/weapon/cell/super; dir = 8; name = "west bump"; pixel_x = -28},/obj/structure/cable/green{icon_state = "0-4"},/turf/simulated/floor/wood,/area/library)
+"aDl" = (/obj/machinery/power/apc{cell_type = /obj/item/weapon/cell/super; dir = 8; name = "west bump"; pixel_x = -28},/obj/structure/cable/green{icon_state = "0-4"},/obj/machinery/light_switch{dir = 4; pixel_x = -28; pixel_y = 12},/turf/simulated/floor/wood,/area/library)
 "aDm" = (/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/wood,/area/library)
 "aDn" = (/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/atmospherics/unary/vent_scrubber/on{dir = 4},/turf/simulated/floor/wood,/area/library)
 "aDo" = (/obj/structure/table/woodentable,/obj/item/device/flashlight/lamp/green{pixel_x = 1; pixel_y = 5},/obj/structure/cable/green{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/cable/green{d1 = 1; d2 = 8; icon_state = "1-8"},/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{dir = 4},/obj/machinery/atmospherics/pipe/manifold/hidden/supply{dir = 8},/turf/simulated/floor/carpet,/area/library)
