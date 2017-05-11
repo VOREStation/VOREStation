@@ -1443,6 +1443,7 @@ area/space/atmosalert()
  	name = "\improper Library"
  	icon_state = "library"
  	sound_env = LARGE_SOFTFLOOR
+ 	lightswitch = 0 // VOREStation Edit - We like dark libraries
 
 /area/library_conference_room
  	name = "\improper Library Conference Room"
