@@ -19,16 +19,49 @@ var/list/floor_decals = list()
 	var/turf/T = get_turf(src)
 	if(istype(T, /turf/simulated/floor) || istype(T, /turf/unsimulated/floor) || istype(T, /turf/simulated/shuttle/floor))
 		var/cache_key = "[alpha]-[color]-[dir]-[icon_state]-[layer]"
-		if(!floor_decals[cache_key])
-			var/image/I = image(icon = src.icon, icon_state = src.icon_state, dir = src.dir)
+		var/image/I = floor_decals[cache_key]
+		if(!I)
+			I = image(icon = src.icon, icon_state = src.icon_state, dir = src.dir)
 			I.layer = T.layer
 			I.color = src.color
 			I.alpha = src.alpha
 			floor_decals[cache_key] = I
 		if(!T.decals) T.decals = list()
-		T.decals |= floor_decals[cache_key]
-		T.overlays |= floor_decals[cache_key]
-	spawn(rand(1 SECOND, 60 SECONDS)) //VOREStation cheap hack to stop server crashes until subsystems ported
+		T.decals += I
+		var/pre_overlay_count = T.overlays.len
+		T.overlays += I
+		var/post_overlay_count = T.overlays.len
+		if(pre_overlay_count + 1 != post_overlay_count)
+			world.log << "Corrupted turf repair during decal init at: [x],[y],[z]"
+			var/list/tempdecals = T.decals
+			var/old_affecting_lights = T.affecting_lights
+			var/old_lighting_overlay = T.lighting_overlay
+			var/old_corners = T.corners
+			if(T.connections) T.connections.erase_all()
+
+			for(var/obj/machinery/atmospherics/pipe/P in T.contents)
+				P.initialize()
+
+			var/turf/newturf = new T.type(T)
+
+			if(air_master)
+				air_master.mark_for_update(newturf) //handle the addition of the new turf.
+			if(lighting_overlays_initialised)
+				newturf.lighting_overlay = old_lighting_overlay
+				newturf.affecting_lights = old_affecting_lights
+				newturf.corners = old_corners
+				newturf.recalc_atom_opacity()
+			if(tempdecals)
+				newturf.decals = tempdecals
+				for(var/image/old in tempdecals)
+					var/pre_ovr = newturf.overlays.len
+					newturf.overlays += old
+					if(newturf.overlays.len != pre_ovr +1)
+						return
+			var/prenew = newturf.overlays.len
+			newturf.overlays += I
+			if(newturf.overlays.len != prenew +1)
+				return
 		qdel(src)
 	return
 
