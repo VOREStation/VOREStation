@@ -219,6 +219,12 @@
 	name = "\improper Hallway First Floor West"
 	icon_state = "hallC1"
 
+/area/storage/surface_eva
+	icon_state = "storage"
+	name = "\improper Surface EVA"
+/area/storage/surface_eva/external
+	name = "\improper Surface EVA Access"
+
 /area/tether/surfacebase/shuttle_pad
 	name = "\improper Teather Shuttle Pad"
 /area/tether/surfacebase/reading_room
