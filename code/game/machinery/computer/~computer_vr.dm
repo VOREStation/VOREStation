@@ -4,14 +4,13 @@
 	icon_screen = "power_monitor"
 
 /obj/machinery/computer/power_monitor/update_icon()
-	..()
 	if(stat & BROKEN)
 		icon_screen = "broken"
-		return
-	if(alerting)
+	else if(alerting)
 		icon_screen = "power_monitor_warn"
-		return
-	 icon_screen = "power_monitor"
+	else
+		icon_screen = "power_monitor"
+	..()
 
 /obj/machinery/computer/rcon
 	icon_keyboard = "power_key"
