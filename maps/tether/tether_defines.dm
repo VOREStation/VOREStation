@@ -132,7 +132,7 @@
 							NETWORK_INTERROGATION
 							)
 
-	allowed_spawns = list("Arrivals Shuttle","Gateway","Cryogenic Storage","Cyborg Storage","Elevator")
+	allowed_spawns = list("Tram Station","Gateway","Cryogenic Storage","Cyborg Storage")
 
 
 /datum/map/tether/perform_map_generation()
