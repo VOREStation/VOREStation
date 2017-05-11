@@ -144,8 +144,10 @@
 	name = "\improper Enginering Surface Break Room"
 /area/engineering/lower/corridor
 	name = "\improper Teather Lower Service Corridor"
-
-
+/area/gateway/prep_room
+	name = "\improper Gateway Prep Room"
+/area/crew_quarters/locker/laundry_arrival
+	name = "\improper Arrivals Laundry"
 
 /area/maintenance/lower
 	icon_state = "fsmaint"
