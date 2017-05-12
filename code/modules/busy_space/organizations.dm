@@ -331,7 +331,7 @@
 	desc = ""
 	history = ""
 	work = "Sif Governmental Authority's military"
-	headquarters = "New Reykjavik" // Make this more specific later.
+	headquarters = "New Reykjavik, Sif"
 	motto = ""
 	autogenerate_destination_names = FALSE // Kinda weird if SifGuard goes to Nyx.
 
