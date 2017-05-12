@@ -21,7 +21,7 @@
 /obj/item/weapon/spell/shield/New()
 	..()
 	set_light(3, 2, l_color = "#006AFF")
-	spark_system = PoolOrNew(/datum/effect/effect/system/spark_spread)
+	spark_system = new /datum/effect/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)
 
 /obj/item/weapon/spell/shield/Destroy()
@@ -37,8 +37,10 @@
 	if(issmall(user)) // Smaller shields are more efficent.
 		damage_to_energy_cost *= 0.75
 
-	if(istype(owner.get_other_hand(src), src.type)) // Two shields in both hands.
-		damage_to_energy_cost *= 0.75
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		if(istype(H.get_other_hand(src), src.type)) // Two shields in both hands.
+			damage_to_energy_cost *= 0.75
 
 	else if(check_for_scepter())
 		damage_to_energy_cost *= 0.50

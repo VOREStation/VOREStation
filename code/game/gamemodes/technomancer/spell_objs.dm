@@ -31,7 +31,8 @@
 		)
 	throwforce = 0
 	force = 0
-	var/mob/living/carbon/human/owner = null
+//	var/mob/living/carbon/human/owner = null
+	var/mob/living/owner = null
 	var/obj/item/weapon/technomancer_core/core = null
 	var/cast_methods = null			// Controls how the spell is casted.
 	var/aspect = null				// Used for combining spells.
@@ -115,16 +116,33 @@
 	amount = round(amount * core.instability_modifier, 0.1)
 	owner.adjust_instability(amount)
 
+// Proc: get_technomancer_core()
+// Parameters: 0
+// Description: Returns the technomancer's core, assuming it is being worn properly.
+/mob/living/proc/get_technomancer_core()
+	return null
+
+/mob/living/carbon/human/get_technomancer_core()
+	var/obj/item/weapon/technomancer_core/core = back
+	if(istype(core))
+		return core
+	return null
+
 // Proc: New()
 // Parameters: 0
 // Description: Sets owner to equal its loc, links to the owner's core, then applies overlays if needed.
 /obj/item/weapon/spell/New()
 	..()
-	if(ishuman(loc))
+	if(isliving(loc))
 		owner = loc
 	if(owner)
-		if(istype(/obj/item/weapon/technomancer_core, owner.back))
-			core = owner.back
+		core = owner.get_technomancer_core()
+		if(!core)
+			to_chat(owner, "<span class='warning'>You need a Core to do that.</span>")
+			qdel(src)
+			return
+//		if(istype(/obj/item/weapon/technomancer_core, owner.back))
+//			core = owner.back
 	update_icon()
 
 // Proc: Destroy()
@@ -247,7 +265,7 @@
 	if(!path || !ispath(path))
 		return 0
 
-	//var/obj/item/weapon/spell/S = PoolOrNew(path, src)
+	//var/obj/item/weapon/spell/S = new path(src)
 	var/obj/item/weapon/spell/S = new path(src)
 
 	//No hands needed for innate casts.

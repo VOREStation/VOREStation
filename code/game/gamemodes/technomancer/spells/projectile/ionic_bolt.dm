@@ -2,7 +2,7 @@
 	name = "Ionic Bolt"
 	desc = "Shoots a bolt of ion energy at the target.  If it hits something, it will generally drain energy, corrupt electronics, \
 	or otherwise ruin complex machinery."
-	cost = 100
+	cost = 50
 	obj_path = /obj/item/weapon/spell/projectile/ionic_bolt
 	category = OFFENSIVE_SPELLS
 

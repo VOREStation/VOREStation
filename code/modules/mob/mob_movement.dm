@@ -199,7 +199,7 @@
 			if(S.victim == mob)
 				return
 
-	if(mob.stat==DEAD && isliving(mob))
+	if(mob.stat==DEAD && isliving(mob) && !mob.forbid_seeing_deadchat)
 		mob.ghostize()
 		return
 

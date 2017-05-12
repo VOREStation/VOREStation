@@ -221,7 +221,7 @@
 				if(building == 1)
 					I = new /obj/item/stack/tile/floor(src)
 				else
-					I = PoolOrNew(/obj/item/stack/rods, src)
+					I = new /obj/item/stack/rods(src)
 				A.attackby(I, src)
 		target = null
 		busy = 0

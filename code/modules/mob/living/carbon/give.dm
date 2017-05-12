@@ -1,11 +1,11 @@
-/mob/living/carbon/human/verb/give(var/mob/living/target in view(1)-usr)
+/mob/living/carbon/human/verb/give(var/mob/living/carbon/target in view(1)-usr)
 	set category = "IC"
 	set name = "Give"
 
 	// TODO :  Change to incapacitated() on merge.
-	if(src.stat || src.lying || src.resting || src.buckled)
+	if(src.stat || src.lying || src.resting || src.handcuffed)
 		return
-	if(!istype(target) || target.stat || target.lying || target.resting || target.buckled || target.client == null)
+	if(!istype(target) || target.stat || target.lying || target.resting || target.handcuffed || target.client == null)
 		return
 
 	var/obj/item/I = src.get_active_hand()
