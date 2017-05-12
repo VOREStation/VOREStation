@@ -346,7 +346,7 @@
 /obj/item/weapon/gun/projectile/automatic/carbine
 	name = "assault carbine"
 	desc = "The bullpup configured GP3000 is a lightweight, compact, military-grade assault rifle produced by Gurov Projectile Weapons LLC. It is sold almost exclusively to standing armies. The serial number on this one has been scratched off. Uses 5.56mm rounds."
-	icon_state = "bullpupm"
+	icon_state = "bullpup"
 	item_state = "bullpup"
 	w_class = ITEMSIZE_LARGE
 	force = 10
@@ -364,12 +364,11 @@
 		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    burst_accuracy=list(0,-1,-2), dispersion=list(0.0, 0.6, 0.6))
 		)
 
-/*/obj/item/weapon/gun/projectile/automatic/carbine/update_icon(var/ignore_inhands)
+/obj/item/weapon/gun/projectile/automatic/carbine/update_icon(var/ignore_inhands)
 	..()
-	if(istype(ammo_magazine,/obj/item/ammo_magazine/a556m))
-		icon_state = "bullpupm"
+	if(ammo_magazine)
+		icon_state = "bullpup"
 	else
-		icon_state = (ammo_magazine)? "bullpup" : "bullpup-empty"
+		icon_state = "bullpup-empty"
 	item_state = (ammo_magazine)? "bullpup" : "bullpup-empty"
 	if(!ignore_inhands) update_held_icon()
-*/

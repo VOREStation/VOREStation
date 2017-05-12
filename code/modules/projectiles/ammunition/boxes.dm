@@ -299,9 +299,13 @@
 
 /obj/item/ammo_magazine/c556/ext
 	name = "extended magazine (5.56mm)"
+	matter = list(DEFAULT_WALL_MATERIAL = 2700)
 	max_ammo = 30
 
 /obj/item/ammo_magazine/c556/empty
+	initial_ammo = 0
+
+/obj/item/ammo_magazine/c556/ext/empty
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/c556/practice
@@ -317,10 +321,10 @@
 	ammo_type = /obj/item/ammo_casing/a556/ap
 
 /obj/item/ammo_magazine/c556/ap/ext
-	name = "exteneded magazine (5.56mm armor-piercing)"
+	name = "extended magazine (5.56mm armor-piercing)"
 	max_ammo = 30
 
-/obj/item/ammo_magazine/clip/c556
+/obj/item/ammo_magazine/clip/a556
 	name = "ammo clip (5.56mm)"
 	icon_state = "clip_rifle"
 	caliber = "a556"
@@ -329,11 +333,11 @@
 	max_ammo = 5
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/clip/c556/ap
+/obj/item/ammo_magazine/clip/a556/ap
 	name = "rifle clip (5.56mm armor-piercing)"
 	ammo_type = /obj/item/ammo_casing/a556/ap
 
-/obj/item/ammo_magazine/clip/c556/practice
+/obj/item/ammo_magazine/clip/a556/practice
 	name = "rifle clip (5.56mm practice)"
 	ammo_type = /obj/item/ammo_casing/a556
 
@@ -389,7 +393,7 @@
 	icon_state = "c7.62"
 	mag_type = MAGAZINE
 	caliber = "a762"
-	matter = list(DEFAULT_WALL_MATERIAL = 4000)
+	matter = list(DEFAULT_WALL_MATERIAL = 2000)
 	ammo_type = /obj/item/ammo_casing/a762
 	max_ammo = 10
 	multiple_sprites = 1
@@ -406,7 +410,7 @@
 	icon_state = "SVD"
 	mag_type = MAGAZINE
 	caliber = "a762"
-	matter = list(DEFAULT_WALL_MATERIAL = 2000)
+	matter = list(DEFAULT_WALL_MATERIAL = 1000)
 	ammo_type = /obj/item/ammo_casing/a762
 	max_ammo = 10
 	multiple_sprites = 1
