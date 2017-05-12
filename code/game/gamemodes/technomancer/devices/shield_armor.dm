@@ -26,7 +26,7 @@
 
 /obj/item/clothing/suit/armor/shield/New()
 	..()
-	spark_system = PoolOrNew(/datum/effect/effect/system/spark_spread)
+	spark_system = new /datum/effect/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)
 
 /obj/item/clothing/suit/armor/shield/Destroy()

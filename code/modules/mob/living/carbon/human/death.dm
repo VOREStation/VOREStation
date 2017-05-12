@@ -41,6 +41,13 @@
 	species.handle_death(src)
 	animate_tail_stop()
 
+	//Handle snowflake ling stuff.
+	if(mind && mind.changeling)
+		// If the ling is capable of revival, don't allow them to see deadchat.
+		if(mind.changeling.chem_charges >= CHANGELING_STASIS_COST)
+			if(mind.changeling.max_geneticpoints >= 0) // Absorbed lings don't count, as they can't revive.
+				forbid_seeing_deadchat = TRUE
+
 	//Handle brain slugs.
 	var/obj/item/organ/external/Hd = get_organ(BP_HEAD)
 	var/mob/living/simple_animal/borer/B

@@ -21,5 +21,6 @@
 		for(var/obj/item/weapon/inserted_spell/I in target)
 			I.on_expire(dispelled = 1)
 			log_and_message_admins("dispelled [I] on [target].")
+		target.remove_modifiers_of_type(/datum/modifier/technomancer)
 	user.adjust_instability(10)
 	qdel(src)
