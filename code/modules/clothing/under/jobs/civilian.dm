@@ -117,37 +117,37 @@
 
 /obj/item/clothing/under/lawyer
 	desc = "Slick threads."
-	name = "Lawyer suit"
+	name = "lawyer suit"
 
 /obj/item/clothing/under/lawyer/black
-	name = "black Lawyer suit"
+	name = "black lawyer suit"
 	icon_state = "lawyer_black"
 
 /obj/item/clothing/under/lawyer/black/skirt
-	name = "black Lawyer skirt"
+	name = "black lawyer skirt"
 	icon_state = "lawyer_black_skirt"
 	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
 
 /obj/item/clothing/under/lawyer/female
-	name = "black Lawyer suit"
+	name = "black lawyer suit"
 	icon_state = "black_suit_fem"
 	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
 
 /obj/item/clothing/under/lawyer/red
-	name = "red Lawyer suit"
+	name = "red lawyer suit"
 	icon_state = "lawyer_red"
 
 /obj/item/clothing/under/lawyer/red/skirt
-	name = "red Lawyer skirt"
+	name = "red lawyer skirt"
 	icon_state = "lawyer_red_skirt"
 	item_state_slots = list(slot_r_hand_str = "lawyer_red", slot_l_hand_str = "lawyer_red")
 
 /obj/item/clothing/under/lawyer/blue
-	name = "blue Lawyer suit"
+	name = "blue lawyer suit"
 	icon_state = "lawyer_blue"
 
 /obj/item/clothing/under/lawyer/blue/skirt
-	name = "blue Lawyer skirt"
+	name = "blue lawyer skirt"
 	icon_state = "lawyer_blue_skirt"
 	item_state_slots = list(slot_r_hand_str = "lawyer_blue", slot_l_hand_str = "lawyer_blue")
 
@@ -163,7 +163,7 @@
 	icon_state = "bluesuit_skirt"
 
 /obj/item/clothing/under/lawyer/purpsuit
-	name = "purple Suit"
+	name = "purple suit"
 	icon_state = "lawyer_purp"
 	item_state_slots = list(slot_r_hand_str = "purple", slot_l_hand_str = "purple")
 
@@ -177,7 +177,7 @@
 	icon_state = "oldman"
 	item_state_slots = list(slot_r_hand_str = "johnny", slot_l_hand_str = "johnny")
 
-/obj/item/clothing/under/lawyer/oldwoman
+/obj/item/clothing/under/oldwoman
 	name = "Old Woman's Attire"
 	desc = "A typical outfit for the older woman, a lovely cardigan and comfortable skirt."
 	icon_state = "oldwoman"
