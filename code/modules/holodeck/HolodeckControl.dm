@@ -128,8 +128,8 @@
 		if(href_list["program"])
 			var/prog = href_list["program"]
 			if(prog in (supported_programs + restricted_programs))
-				loadProgram(prog)
-				current_program = prog
+				if(loadProgram(prog))
+					current_program = prog
 
 		else if(href_list["AIoverride"])
 			if(!issilicon(usr))
@@ -294,11 +294,11 @@
 	if(check_delay)
 		if(world.time < (last_change + 25))
 			if(world.time < (last_change + 15))//To prevent super-spam clicking, reduced process size and annoyance -Sieve
-				return
+				return 0
 			for(var/mob/M in range(3,src))
 				M.show_message("\b ERROR. Recalibrating projection apparatus.")
 				last_change = world.time
-				return
+				return 0
 
 	last_change = world.time
 	active = 1
@@ -348,6 +348,8 @@
 					holographic_mobs += new /mob/living/simple_animal/hostile/carp/holodeck(L.loc)
 
 		update_projections()
+
+	return 1
 
 
 /obj/machinery/computer/HolodeckControl/proc/toggleGravity(var/area/A)
