@@ -130,7 +130,7 @@
 		break_to_parts()
 		return
 
-	if(istype(W, /obj/item/weapon/melee/arm_blade))
+	if(istype(W, /obj/item/weapon/melee/changeling/arm_blade))
 		user.visible_message("<span class='danger'>\The [src] was sliced apart by [user]!</span>")
 		break_to_parts()
 		return
