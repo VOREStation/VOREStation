@@ -157,7 +157,7 @@
 /obj/machinery/door/airlock/centcom
 	name = "Centcom Airlock"
 	icon = 'icons/obj/doors/Doorele.dmi'
-	opacity = 0
+	//opacity = 0 //VOREStation Edit - Why is this like this??
 	req_one_access = list(access_cent_general)
 
 /obj/machinery/door/airlock/vault
