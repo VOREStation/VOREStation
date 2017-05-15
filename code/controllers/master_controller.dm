@@ -10,8 +10,6 @@ var/global/last_tick_duration = 0
 var/global/air_processing_killed = 0
 var/global/pipe_processing_killed = 0
 
-var/global/initialization_stage = 0
-
 datum/controller/game_controller
 	var/list/shuttle_list	                    // For debugging and VV
 
@@ -40,18 +38,18 @@ datum/controller/game_controller/proc/setup()
 	SetupXenoarch()
 
 	transfer_controller = new
+	admin_notice("<span class='danger'>Initializations complete.</span>", R_DEBUG)
 
-
-#ifdef UNIT_TEST
+#if UNIT_TEST
 #define CHECK_SLEEP_MASTER // For unit tests we don't care about a smooth lobby screen experience. We care about speed.
 #else
-#define CHECK_SLEEP_MASTER if(!(initialization_stage & INITIALIZATION_NOW) && ++initialized_objects > 500) { initialized_objects=0;sleep(world.tick_lag); }
+#define CHECK_SLEEP_MASTER if(++initialized_objects > 500) { initialized_objects=0;sleep(world.tick_lag); }
 #endif
 
 datum/controller/game_controller/proc/setup_objects()
-#ifndef UNIT_TEST
+	#if !UNIT_TEST
 	var/initialized_objects = 0
-#endif
+	#endif
 
 	// Set up antagonists.
 	populate_antag_type_list()
@@ -91,5 +89,3 @@ datum/controller/game_controller/proc/setup_objects()
 			var/obj/turbolift_map_holder/lift = thing
 			lift.initialize()
 			CHECK_SLEEP_MASTER
-
-	admin_notice("<span class='danger'>Initializations complete.</span>", R_DEBUG)
