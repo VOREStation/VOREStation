@@ -148,21 +148,6 @@
 /atom/movable/proc/can_fall()
 	if(anchored)
 		return FALSE
-
-	// See if something in current turf prevents us from falling out of it
-	// TODO - Make this more generic
-	if(locate(/obj/structure/lattice, loc))
-		return FALSE
-	if(locate(/obj/structure/catwalk, loc))
-		return FALSE
-
-	// See if something in turf below prevents us from falling into it.
-	// TODO - Investigate - Doesn't this actually check if these atoms would prevent moving up INTO our current location!? Granted thats probably the same thing but still...
-	var/turf/below = GetBelow(src)
-	for(var/atom/A in below)
-		if(!A.CanPass(src, src.loc))
-			return FALSE
-
 	return TRUE
 
 /obj/effect/can_fall()
@@ -187,30 +172,94 @@
 /mob/living/simple_animal/hostile/carp/can_fall() // So can carp apparently.
 	return FALSE
 
-/atom/movable/proc/handle_fall(var/turf/landing)
-	// Say something before it falls!
-	var/turf/oldloc = loc
-	// Now lets move there!
-	Move(landing)
 
-	// Detect if we made a soft landing.
-	// TODO - Do this less snowflaky than hard coding stairs!
+// Things that prevent objects standing on them from falling into turf below
+/obj/structure/catwalk/CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
+	if(target.z < z)
+		return FALSE // TODO - Technically should be density = 1 and flags |= ON_BORDER
+	else
+		return TRUE
+
+// So you'll slam when falling onto a catwalk
+/obj/structure/catwalk/CheckFall(var/atom/movable/falling_atom)
+	return falling_atom.fall_impact(src)
+
+/obj/structure/lattice/CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
+	if(target.z >= z)
+		return TRUE // We don't block sideways or upward movement.
+	else if(istype(mover) && mover.checkpass(PASSGRILLE))
+		return TRUE // Anything small enough to pass a grille will pass a lattice
+	else
+		return FALSE // TODO - Technically should be density = 1 and flags |= ON_BORDER
+
+// So you'll slam when falling onto a grille
+/obj/structure/lattice/CheckFall(var/atom/movable/falling_atom)
+	if(istype(falling_atom) && falling_atom.checkpass(PASSGRILLE))
+		return FALSE
+	return falling_atom.fall_impact(src)
+
+
+// Actually process the falling movement and impacts.
+/atom/movable/proc/handle_fall(var/turf/landing)
+	var/turf/oldloc = loc
+
+	// Now lets move there!
+	if(!Move(landing))
+		return 1
+
+	// Detect if we made a silent landing.
 	if(locate(/obj/structure/stairs) in landing)
 		return 1
 
 	if(isopenspace(oldloc))
-		visible_message("\The [src] falls down through \the [landing]!", "You hear something falling through the air.")
-	// TODO - Detect if it will stop here becuase it lands on a catwalk or something
-	if(isopenspace(landing))
-		visible_message("\The [src] falls from the deck above through \the [landing]!", "You hear a whoosh of displaced air.")
-		return 1 // Don't hit the open space - TODO-its not quite this simple ~Leshana
-	else
-		visible_message("\The [src] falls from the deck above and slams into \the [landing]!", "You hear something slam into the deck.")
+		oldloc.visible_message("\The [src] falls down through \the [oldloc]!", "You hear something falling through the air.")
 
-/mob/living/carbon/human/handle_fall(var/turf/landing)
-	if(..())
+	// If the turf has density, we give it first dibs
+	if (landing.density && landing.CheckFall(src))
 		return
-	to_chat(src, "<span class='danger'>You fall off and hit \the [landing]!</span>")
+
+	// First hit objects in the turf!
+	for(var/atom/movable/A in landing)
+		if(A != src && A.CheckFall(src))
+			return
+
+	// If none of them stopped us, then hit the turf itself
+	landing.CheckFall(src)
+
+
+// ## THE FALLING PROCS ###
+
+// Called on everything that falling_atom might hit. Return 1 if you're handling it so handle_fall() will stop checking.
+// If you're soft and break the fall gently, just return 1
+// If the falling atom will hit you hard, call fall_impact() and return its result.
+/atom/proc/CheckFall(var/atom/movable/falling_atom)
+	if(density && !(flags & ON_BORDER))
+		return falling_atom.fall_impact(src)
+
+// By default all turfs are gonna let you hit them regardless of density.
+/turf/CheckFall(var/atom/movable/falling_atom)
+	return falling_atom.fall_impact(src)
+
+// Obviously you can't really hit open space.
+/turf/simulated/open/CheckFall(var/atom/movable/falling_atom)
+	// Don't need to print this, the open space it falls into will print it for us!
+	// visible_message("\The [falling_atom] falls from above through \the [src]!", "You hear a whoosh of displaced air.")
+	return 0
+
+// We return 1 without calling fall_impact in order to provide a soft landing. So nice.
+// Note this really should never even get this far
+/obj/structure/stairs/CheckFall(var/atom/movable/falling_atom)
+	return 1
+
+// Called by CheckFall when we actually hit something.  Oof
+/atom/movable/proc/fall_impact(var/atom/hit_atom)
+	visible_message("\The [src] falls from above and slams into \the [hit_atom]!", "You hear something slam into \the [hit_atom].")
+
+// Take damage from falling and hitting the ground
+/mob/living/carbon/human/fall_impact(var/turf/landing)
+	visible_message("<span class='warning'>\The [src] falls from above and slams into \the [landing]!</span>", \
+		"<span class='danger'>You fall off and hit \the [landing]!</span>", \
+		"You hear something slam into \the [landing].")
 	playsound(loc, "punch", 25, 1, -1)
 	var/damage = 15 // Because wounds heal rather quickly, 15 should be enough to discourage jumping off but not be enough to ruin you, at least for the first time.
 	apply_damage(rand(0, damage), BRUTE, BP_HEAD)
@@ -221,13 +270,3 @@
 	apply_damage(rand(0, damage), BRUTE, BP_R_ARM)
 	Weaken(4)
 	updatehealth()
-
-
-// TODO - This is a hack until someone can think of a better way of solving it.
-// Issue is that blood splatter is New()'d already in the turf, so Entered() is never called.
-// Leshana - This should not be required anymore, we are handling items New()'d into turfs in the open space controller now
-// TODO - Test
-// /obj/effect/decal/cleanable/initialize()
-// 	if(isopenspace(loc))
-// 		src.fall()
-// 	return ..()
