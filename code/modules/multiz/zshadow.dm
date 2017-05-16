@@ -59,6 +59,14 @@
 	. = ..()
 	check_shadow()
 
+/mob/living/on_mob_jump()
+	// We're about to be admin-jumped.
+	// Unfortuantely loc isn't set until after this proc is called. So we must spawn() so check_shadow executes with the new loc.
+	. = ..()
+	if(shadow)
+		spawn(0)
+			check_shadow()
+
 /mob/living/proc/check_shadow()
 	var/mob/M = src
 	if(isturf(M.loc))
@@ -74,7 +82,18 @@
 		qdel(M.shadow)
 		M.shadow = null
 
+//
+// Handle cases where the owner mob might have changed its icon or overlays.
+//
+
 /mob/living/update_icons()
+	. = ..()
+	if(shadow)
+		shadow.sync_icon(src)
+
+// WARNING - the true carbon/human/update_icons does not call ..(), therefore we must sideways override this.
+// But be careful, we don't want to screw with that proc.  So lets be cautious about what we do here.
+/mob/living/carbon/human/update_icons()
 	. = ..()
 	if(shadow)
 		shadow.sync_icon(src)

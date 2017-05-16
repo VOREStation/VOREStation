@@ -92,3 +92,11 @@
 		if(isopenspace(T))
 			// log_debug("[T] ([T.x],[T.y],[T.z]) queued for update for [src]New()")
 			OS_controller.add_turf(T, 1)
+
+// Just as New() we probably should hook Destroy() If we can think of something more efficient, lets hear it.
+/obj/Destroy()
+	if(open_space_initialised && !invisibility)
+		var/turf/T = GetAbove(src)
+		if(isopenspace(T))
+			OS_controller.add_turf(T, 1)
+	. = ..() // Important that this be at the bottom, or we will have been moved to nullspace.
