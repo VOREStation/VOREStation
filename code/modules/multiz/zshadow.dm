@@ -83,3 +83,30 @@
 	. = ..()
 	if(shadow)
 		shadow.set_dir(new_dir)
+
+// Transfer messages about what we are doing to upstairs
+/mob/visible_message(var/message, var/self_message, var/blind_message)
+	. = ..()
+	if(shadow)
+		shadow.visible_message(message, self_message, blind_message)
+
+// We should show the typing indicator so people above us can tell we're about to talk.
+/mob/set_typing_indicator(var/state)
+	var/old_typing = src.typing
+	. = ..()
+	if(shadow && old_typing != src.typing)
+		shadow.set_typing_indicator(state) // Okay the real proc changed something! That means we should handle things too
+
+/mob/zshadow/set_typing_indicator(var/state)
+	if(!typing_indicator)
+		typing_indicator = new
+		typing_indicator.icon = 'icons/mob/talk_vr.dmi' //VOREStation Edit - Looks better on the right with job icons.
+		typing_indicator.icon_state = "typing"
+	if(state && !typing)
+		overlays += typing_indicator
+		typing = 1
+	else if(!state && typing)
+		overlays -= typing_indicator
+		typing = 0
+	if(shadow)
+		shadow.set_typing_indicator(state)
