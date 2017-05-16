@@ -71,9 +71,9 @@
 		if(WT.isOn())
 			if(WT.remove_fuel(0, user))
 				to_chat(user, "<span class='notice'>Slicing lattice joints ...</span>")
-				PoolOrNew(/obj/item/stack/rods, src.loc)
-				PoolOrNew(/obj/item/stack/rods, src.loc)
-				PoolOrNew(/obj/structure/lattice, src.loc)
+				new /obj/item/stack/rods(src.loc)
+				new /obj/item/stack/rods(src.loc)
+				new /obj/structure/lattice(src.loc)
 				qdel(src)
 	return ..()
 

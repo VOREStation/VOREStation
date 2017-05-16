@@ -74,7 +74,7 @@
 			user << "<span class='notice'>You start connecting \the [R.name] to \the [src.name] ...</span>"
 			if(do_after(user, 5 SECONDS))
 				src.alpha = 0 // Note: I don't know why this is set, Eris did it, just trusting for now. ~Leshana
-				PoolOrNew(/obj/structure/catwalk, src.loc)
+				new /obj/structure/catwalk(src.loc)
 				qdel(src)
 		return
 	return
