@@ -67,7 +67,7 @@
 	// reset color/alpha, since they're set for nice map previews
 	color = "#ffffff"
 	alpha = 255
-	update_connections(1)
+	update_connections(ticker && ticker.current_state == GAME_STATE_PLAYING)
 	update_icon()
 	update_desc()
 	update_material()
