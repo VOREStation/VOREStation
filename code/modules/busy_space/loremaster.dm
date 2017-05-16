@@ -9,5 +9,8 @@ var/datum/lore/loremaster/loremaster = new/datum/lore/loremaster
 
 	var/list/paths = typesof(/datum/lore/organization) - /datum/lore/organization
 	for(var/path in paths)
-		var/datum/lore/organization/instance = new path()
-		organizations[path] = instance
+		// Some intermediate paths are not real organizations (ex. /datum/lore/organization/mil). Only do ones with names
+		var/datum/lore/organization/instance = path
+		if(initial(instance.name))
+			instance = new path()
+			organizations[path] = instance
