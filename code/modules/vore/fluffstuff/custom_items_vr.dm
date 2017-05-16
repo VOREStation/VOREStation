@@ -629,6 +629,30 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	taurtype = /datum/sprite_accessory/tail/taur/feline/tempest
 	no_message = "These saddlebags seem to be fitted for someone else, and keep slipping off!"
 
+//WickedTempest: Chakat Tempest
+/obj/item/weapon/implant/reagent_generator/tempest
+	generated_reagent = "milk"
+	usable_volume = 1000
+
+	empty_message = list("Your breasts are almost completely drained!")
+	full_message = list("Your teats feel heavy and swollen!")
+	emote_descriptor = list("squeezes milk", "tugs on Tempest's breasts, milking them")
+	self_emote_descriptor = list("squeeze")
+	random_emote = list("moos quietly")
+	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_tempest
+
+/obj/item/weapon/implanter/reagent_generator/tempest
+	implant_type = /obj/item/weapon/implant/reagent_generator/tempest
+
+/mob/living/carbon/human/proc/use_reagent_implant_tempest()
+	set name = "Milk"
+	set desc = "Grab Tempest's nipples and milk them into a container! May cause blushing and groaning."
+	set category = "Object"
+	set src in view(1)
+
+	do_reagent_implant(usr)
+
+
 //PontifexMinimus: Lucius/Lucia Null
 /obj/item/weapon/fluff/dragor_dot
 	name = "supplemental battery"
@@ -642,6 +666,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 			user.verbs |= /mob/living/carbon/human/proc/shapeshifter_select_gender
 		else
 			return
+
 
 //The perfect adminboos device?
 /obj/item/device/perfect_tele

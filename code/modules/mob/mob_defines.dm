@@ -208,3 +208,4 @@
 	var/list/active_genes=list()
 	var/mob_size = MOB_MEDIUM
 	var/disconnect_time = null		//Time of client loss, set by Logout(), for timekeeping
+	var/forbid_seeing_deadchat = FALSE // Used for lings to not see deadchat, and to have ghosting behave as if they were not really dead.

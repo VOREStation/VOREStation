@@ -68,6 +68,11 @@ character_name: Aronai Kadigan
 item_path: /obj/item/weapon/storage/backpack/satchel/gen/fluff/aronai
 }
 
+{
+ckey: aerowing
+character_name: Sebastian Aji
+item_path: /obj/item/weapon/storage/box/fluff/sebastian_aji
+}
 # ######## B CKEYS
 {
 ckey: benemuel
@@ -179,6 +184,13 @@ item_path: /obj/item/clothing/accessory/medal/bronze_heart
 # ######## F CKEYS
 # ######## G CKEYS
 # ######## H CKEYS
+
+{
+ckey: hottokeeki
+character_name: Belle Day
+item_path: /obj/item/weapon/gun/energy/sizegun
+}
+
 # ######## I CKEYS
 
 {
@@ -317,6 +329,12 @@ item_path: /obj/item/device/pda_mod/fluff/kligor
 }
 
 # ######## L CKEYS
+{
+ckey: luminescentring
+character_name: Briana Moore
+item_path: /obj/item/weapon/storage/box/fluff/briana_moore
+}
+
 # ######## M CKEYS
 {
 ckey: molenar
@@ -391,6 +409,24 @@ item_path: /obj/item/fluff/permit/archermaximus
 
 # ######## S CKEYS
 {
+ckey: samanthafyre
+character_name: Kateryna Petrovitch
+item_path: /obj/item/clothing/suit/space/void/engineering/kate
+}
+
+{
+ckey: samanthafyre
+character_name: Kateryna Petrovitch
+item_path: /obj/item/clothing/head/helmet/space/fluff/kate
+}
+
+{
+ckey: samanthafyre
+character_name: Kateryna Petrovitch
+item_path: /obj/item/clothing/suit/armor/vest/wolftaur/kate
+}
+
+{
 ckey: sasoperative
 character_name: Joseph Skinner
 item_path: /obj/item/clothing/accessory/medal/ERTservice
@@ -430,6 +466,12 @@ item_path: /obj/item/clothing/head/fluff/pompom
 ckey: scree
 character_name: Scree
 item_path: /obj/item/clothing/glasses/omnihud/eng/meson/fluff/scree
+}
+
+{
+ckey: seiga
+character_name: Alfonso Oak Telanor
+item_path: /obj/item/clothing/glasses/sunglasses/fluff/alfonso
 }
 
 {
@@ -559,6 +601,12 @@ item_path: /obj/item/weapon/reagent_containers/hypospray/vr/tempest
 ckey: wickedtemp
 character_name: Chakat Tempest
 item_path: /obj/item/weapon/storage/backpack/saddlebag/tempest
+}
+
+{
+ckey: wickedtemp
+character_name: Chakat Tempest
+item_path: /obj/item/weapon/implanter/reagent_generator/tempest
 }
 
 # ######## X CKEYS

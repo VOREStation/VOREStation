@@ -62,8 +62,12 @@
 
 	voice = GetVoice()
 
+	var/stasis = inStasisNow()
+	if(getStasis() > 2)
+		Sleeping(20)
+
 	//No need to update all of these procs if the guy is dead.
-	if(stat != DEAD && !in_stasis)
+	if(stat != DEAD && !stasis)
 		//Updates the number of stored chemicals for powers
 		handle_changeling()
 
@@ -82,8 +86,6 @@
 		if(!client)
 			species.handle_npc(src)
 
-	else //VOREStation Addition - Stasis bags op pls nerf
-		if(in_stasis) Sleeping(5)
 	if(!handle_some_updates())
 		return											//We go ahead and process them 5 times for HUD images and other stuff though.
 
@@ -98,7 +100,7 @@
 	return 1
 
 /mob/living/carbon/human/breathe()
-	if(!in_stasis)
+	if(!inStasisNow())
 		..()
 
 // Calculate how vulnerable the human is to under- and overpressure.
@@ -208,7 +210,7 @@
 
 
 /mob/living/carbon/human/handle_mutations_and_radiation()
-	if(in_stasis)
+	if(inStasisNow())
 		return
 
 	if(getFireLoss())
@@ -789,7 +791,7 @@
 
 /mob/living/carbon/human/handle_chemicals_in_body()
 
-	if(in_stasis)
+	if(inStasisNow())
 		return
 
 	if(reagents)
@@ -1345,7 +1347,7 @@
 			if(!druggy && !seer)	see_invisible = SEE_INVISIBLE_LIVING
 
 /mob/living/carbon/human/handle_random_events()
-	if(in_stasis)
+	if(inStasisNow())
 		return
 
 	// Puke if toxloss is too high

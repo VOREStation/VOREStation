@@ -35,6 +35,14 @@
 			src << "<span class='danger'>You can't speak!</span>"
 			return 0
 
+	if(world.time < (changeling.last_shriek + 10 SECONDS) )
+		to_chat(src, "<span class='warning'>We are still recovering from our last shriek...</span>")
+		return 0
+
+	if(!isturf(loc))
+		to_chat(src, "<span class='warning'>Shrieking here would be a bad idea.</span>")
+		return 0
+
 	src.break_cloak()	//No more invisible shrieking
 
 	changeling.chem_charges -= 20
@@ -46,6 +54,8 @@
 	src.attack_log += text("\[[time_stamp()]\] <font color='red'>Used Resonant Shriek.</font>")
 	message_admins("[key_name(src)] used Resonant Shriek ([src.x],[src.y],[src.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>).")
 	log_game("[key_name(src)] used Resonant Shriek.")
+
+	visible_message("<span class='notice'>[src] appears to shout.</span>")
 
 	for(var/mob/living/M in range(range, src))
 		if(iscarbon(M))
@@ -73,11 +83,7 @@
 		L.on = 1
 		L.broken()
 
-/*	src.verbs -= /mob/proc/changeling_resonant_shriek
-	spawn(30 SECONDS)
-		src << "<span class='notice'>We are ready to use our resonant shriek once more.</span>"
-		src.verbs |= /mob/proc/changeling_resonant_shriek
-Ability Cooldowns don't work properly right now, need to redo this when they are */
+	changeling.last_shriek = world.time
 
 	feedback_add_details("changeling_powers","RS")
 	return 1
@@ -101,6 +107,14 @@ Ability Cooldowns don't work properly right now, need to redo this when they are
 			src << "<span class='danger'>You can't speak!</span>"
 			return 0
 
+	if(world.time < (changeling.last_shriek + 10 SECONDS) )
+		to_chat(src, "<span class='warning'>We are still recovering from our last shriek...</span>")
+		return 0
+
+	if(!isturf(loc))
+		to_chat(src, "<span class='warning'>Shrieking here would be a bad idea.</span>")
+		return 0
+
 	src.break_cloak()	//No more invisible shrieking
 
 	changeling.chem_charges -= 20
@@ -117,6 +131,8 @@ Ability Cooldowns don't work properly right now, need to redo this when they are
 		src << "<span class='notice'>We are extra loud.</span>"
 		src.mind.changeling.recursive_enhancement = 0
 
+	visible_message("<span class='notice'>[src] appears to shout.</span>")
+
 	src.attack_log += text("\[[time_stamp()]\] <font color='red'>Used Dissonant Shriek.</font>")
 	message_admins("[key_name(src)] used Dissonant Shriek ([src.x],[src.y],[src.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>).")
 	log_game("[key_name(src)] used Dissonant Shriek.")
@@ -126,9 +142,6 @@ Ability Cooldowns don't work properly right now, need to redo this when they are
 		L.broken()
 	empulse(get_turf(src), range_heavy, range_light, 1)
 
-/*	src.verbs -= /mob/proc/changeling_dissonant_shriek
-	spawn(30 SECONDS)
-		src << "<span class='notice'>We are ready to use our dissonant shriek once more.</span>"
-		src.verbs |= /mob/proc/changeling_dissonant_shriek
-Ability Cooldowns don't work properly right now, need to redo this when they are */
+	changeling.last_shriek = world.time
+
 	return 1
