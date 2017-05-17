@@ -190,6 +190,19 @@ var/global/list/latejoin_tram   = list()
 	..()
 	turfs = latejoin_tram
 
+// Override crew monitors so that ones on the station see the whole station, and ones on surface the whole surface.
+/datum/nano_module/crew_monitor/get_z_levels(var/turf/T)
+	switch(T.z)
+		if(Z_LEVEL_SURFACE_LOW to Z_LEVEL_SURFACE_HIGH)
+			return list(Z_LEVEL_SURFACE_LOW, Z_LEVEL_SURFACE_MID, Z_LEVEL_SURFACE_HIGH)
+		if(Z_LEVEL_SPACE_LOW to Z_LEVEL_SPACE_HIGH)
+			return list(Z_LEVEL_SPACE_LOW, Z_LEVEL_SPACE_MID, Z_LEVEL_SPACE_HIGH)
+		else
+			return ..()
+
+//
+// Holodorms
+//
 /obj/machinery/computer/HolodeckControl/holodorm
 	name = "Don't use this one!!!"
 	powerdown_program = "Off"
