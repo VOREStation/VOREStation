@@ -156,18 +156,25 @@ var/global/datum/shuttle_controller/shuttle_controller
 
 	//////////////////////////////////////////////////////////////
 	// Tether Shuttle
-	shuttle = new()
-	shuttle.location = 1 // At offsite
-	shuttle.warmup_time = 5
-	shuttle.move_time = 20
-	shuttle.area_offsite = locate(/area/shuttle/tether/surface)
-	shuttle.area_station = locate(/area/shuttle/tether/station)
-	shuttle.area_transition = locate(/area/shuttle/tether/transit)
-	shuttle.docking_controller_tag = "tether_shuttle"
-	shuttle.dock_target_station = "tether_dock_airlock"
-	shuttle.dock_target_offsite = "tether_pad_airlock"
-	shuttles["Tether Backup"] = shuttle
-	process_shuttles += shuttle
+	var/datum/shuttle/ferry/tether_backup/TB = new()
+	TB.location = 1 // At offsite
+	TB.warmup_time = 5
+	TB.move_time = 45
+	TB.area_offsite = locate(/area/shuttle/tether/surface)
+	TB.area_station = locate(/area/shuttle/tether/station)
+	TB.area_transition = locate(/area/shuttle/tether/transit)
+	TB.crash_areas = list(locate(/area/shuttle/tether/crash1), locate(/area/shuttle/tether/crash2))
+	TB.docking_controller_tag = "tether_shuttle"
+	TB.dock_target_station = "tether_dock_airlock"
+	TB.dock_target_offsite = "tether_pad_airlock"
+	shuttles["Tether Backup"] = TB
+	process_shuttles += TB
+
+	for(var/obj/structure/shuttle/engine/propulsion/E in TB.area_offsite)
+		TB.engines += E
+	for(var/obj/machinery/computer/shuttle_control/tether_backup/comp in TB.area_offsite)
+		TB.computer = comp
+		break
 
 
 	//////////////////////////////////////////////////////////////

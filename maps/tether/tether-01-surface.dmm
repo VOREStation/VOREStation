@@ -5192,7 +5192,7 @@
 "bVR" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 5; icon_state = "fwindow"},/obj/machinery/door/firedoor,/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/plating,/area/tether/surfacebase/shuttle_pad)
 "bVS" = (/obj/effect/floor_decal/industrial/warning{dir = 4},/turf/simulated/floor/reinforced,/area/tether/surfacebase/shuttle_pad)
 "bVT" = (/turf/simulated/shuttle/wall,/area/shuttle/tether/surface)
-"bVU" = (/obj/structure/shuttle/window,/obj/structure/grille,/turf/unsimulated/shuttle/plating,/area/shuttle/tether/surface)
+"bVU" = (/obj/structure/shuttle/window,/obj/structure/grille,/turf/simulated/shuttle/plating/airless,/area/shuttle/tether/surface)
 "bVV" = (/obj/effect/floor_decal/industrial/warning{icon_state = "warning"; dir = 8},/turf/simulated/floor/reinforced,/area/tether/surfacebase/shuttle_pad)
 "bVW" = (/obj/effect/floor_decal/industrial/warning{dir = 4},/obj/machinery/camera/network/civilian{dir = 4},/turf/simulated/floor/reinforced,/area/tether/surfacebase/shuttle_pad)
 "bVX" = (/obj/structure/closet/firecloset,/turf/simulated/shuttle/floor/black,/area/shuttle/tether/surface)

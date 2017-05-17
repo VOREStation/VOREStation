@@ -87,6 +87,7 @@
 #define SHUTTLE_IDLE      0
 #define SHUTTLE_WARMUP    1
 #define SHUTTLE_INTRANSIT 2
+#define SHUTTLE_CRASHED   3 // VOREStation Edit - Yup that can happen now
 
 // Ferry shuttle processing status.
 #define IDLE_STATE   0

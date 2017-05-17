@@ -45,6 +45,8 @@
 		moving_status = SHUTTLE_INTRANSIT
 		move(departing, interim, direction)
 
+		if(process_longjump(departing, destination)) //VOREStation Edit - To hook custom shuttle code in
+			return //VOREStation Edit - It handled it for us (shuttle crash or such)
 
 		while (world.time < arrive_time)
 			sleep(5)

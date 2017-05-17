@@ -358,6 +358,15 @@
 /area/maintenance/station/virology
 	name = "\improper Virology Maintenance"
 
+/area/shuttle/tether/crash1
+	name = "\improper Crash Site 1"
+	icon_state = "shuttle2"
+	base_turf = /turf/simulated/floor/outdoors/dirt/virgo3b
+/area/shuttle/tether/crash2
+	name = "\improper Crash Site 2"
+	icon_state = "shuttle2"
+	base_turf = /turf/simulated/floor/outdoors/dirt/virgo3b
+
 /area/antag/antag_base
 	name = "\improper Syndicate Outpost"
 	requires_power = 0
@@ -385,6 +394,8 @@
 /area/shuttle/antag_ground/solars
 	name = "\improper Syndicate LC - Solars"
 	icon_state = "shuttle2"
+	base_turf = /turf/simulated/floor/outdoors/dirt/virgo3b
 /area/shuttle/antag_ground/mining
 	name = "\improper Syndicate LC - Mining"
 	icon_state = "shuttle2"
+	base_turf = /turf/simulated/floor/outdoors/dirt/virgo3b
