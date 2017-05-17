@@ -21,6 +21,12 @@ VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/dirt)
 VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/rocks)
 
 VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/grass/sif)
+/turf/simulated/floor/outdoors/grass/sif
+	turf_layers = list(
+		/turf/simulated/floor/outdoors/rocks/virgo3b,
+		/turf/simulated/floor/outdoors/dirt/virgo3b
+		)
+
 
 VIRGO3B_TURF_CREATE(/turf/simulated/floor/reinforced)
 /turf/simulated/floor/reinforced/virgo3b/New()
@@ -31,6 +37,8 @@ VIRGO3B_TURF_CREATE(/turf/simulated/floor/tiled/steel_dirty)
 /turf/simulated/floor/tiled/steel_dirty/virgo3b/New()
 	..()
 	outdoor_turfs.Add(src)
+
+VIRGO3B_TURF_CREATE(/turf/simulated/mineral)
 
 //Unsimulated
 /turf/unsimulated/wall/planetary/virgo3b

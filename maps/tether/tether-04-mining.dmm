@@ -1,6 +1,6 @@
 "aa" = (/turf/unsimulated/wall/planetary/virgo3b,/area/mine/explored)
 "ab" = (/turf/simulated/floor/outdoors/grass/sif/virgo3b,/area/mine/explored)
-"ac" = (/turf/simulated/mineral,/area/mine/unexplored)
+"ac" = (/turf/simulated/mineral/virgo3b,/area/mine/unexplored)
 "ad" = (/turf/simulated/floor/outdoors/grass/sif/virgo3b,/area/shuttle/tether/crash2)
 "ae" = (/turf/simulated/floor/outdoors/grass/sif/virgo3b,/area/shuttle/antag_ground/mining)
 "af" = (/obj/effect/floor_decal/rust,/turf/simulated/floor/tiled/steel_dirty/virgo3b,/area/mine/explored)
