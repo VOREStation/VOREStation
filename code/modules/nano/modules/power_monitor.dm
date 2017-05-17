@@ -25,6 +25,7 @@
 	data["all_sensors"] = sensors
 	if(focus)
 		data["focus"] = focus.return_reading_data()
+	data["station_levels"] = using_map.station_levels
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
