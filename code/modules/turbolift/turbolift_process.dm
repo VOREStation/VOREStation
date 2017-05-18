@@ -20,16 +20,17 @@ var/datum/controller/process/turbolift/turbolift_controller
 			continue
 		spawn(0)
 			lift.busy = 1
-			if(!lift.do_move())
+			var/floor_delay
+			if(!(floor_delay = lift.do_move()))
 				moving_lifts[liftref] = null
 				moving_lifts -= liftref
 				if(lift.target_floor)
 					lift.target_floor.ext_panel.reset()
 					lift.target_floor = null
 			else
-				lift_is_moving(lift)
+				lift_is_moving(lift,floor_delay)
 			lift.busy = 0
 		SCHECK
 
-/datum/controller/process/turbolift/proc/lift_is_moving(var/datum/turbolift/lift)
-	moving_lifts["\ref[lift]"] = world.time + lift.move_delay
+/datum/controller/process/turbolift/proc/lift_is_moving(var/datum/turbolift/lift,var/floor_delay)
+	moving_lifts["\ref[lift]"] = world.time + floor_delay

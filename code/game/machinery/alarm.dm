@@ -719,9 +719,9 @@
 		if(href_list["atmos_unlock"])
 			switch(href_list["atmos_unlock"])
 				if("0")
-					alarm_area.air_doors_close()
+					alarm_area.firedoors_close()
 				if("1")
-					alarm_area.air_doors_open()
+					alarm_area.firedoors_open()
 			return 1
 
 		if(href_list["atmos_alarm"])

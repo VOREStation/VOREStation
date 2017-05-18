@@ -247,7 +247,7 @@
 	if(!path || !ispath(path))
 		return 0
 
-	//var/obj/item/weapon/spell/S = PoolOrNew(path, src)
+	//var/obj/item/weapon/spell/S = new path(src)
 	var/obj/item/weapon/spell/S = new path(src)
 
 	//No hands needed for innate casts.

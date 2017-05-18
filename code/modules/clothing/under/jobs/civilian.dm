@@ -6,6 +6,12 @@
 	icon_state = "ba_suit"
 	rolled_sleeves = 0
 
+/obj/item/clothing/under/rank/bartender/skirt
+	desc = "Short and cute."
+	name = "bartender's skirt"
+	icon_state = "ba_suit_skirt"
+	item_state_slots = list(slot_r_hand_str = "ba_suit", slot_l_hand_str = "ba_suit")
+
 /obj/item/clothing/under/rank/captain //Alright, technically not a 'civilian' but its better then giving a .dm file for a single define.
 	desc = "It's a blue jumpsuit with some gold markings denoting the rank of \"Colony Director\"."
 	name = "colony director's jumpsuit"
@@ -97,6 +103,11 @@
 	rolled_sleeves = 0
 	starting_accessories = list(/obj/item/clothing/accessory/black)
 
+/obj/item/clothing/under/rank/internalaffairs/skirt
+	desc = "The plain, professional attire of an Internal Affairs Agent. The top button is sewn shut."
+	name = "Internal Affairs skirt"
+	icon_state = "internalaffairs_skirt"
+
 /obj/item/clothing/under/rank/janitor
 	desc = "It's the official uniform of the station's janitor. It has minor protection from biohazards."
 	name = "janitor's jumpsuit"
@@ -112,6 +123,11 @@
 	name = "black Lawyer suit"
 	icon_state = "lawyer_black"
 
+/obj/item/clothing/under/lawyer/black/skirt
+	name = "black Lawyer skirt"
+	icon_state = "lawyer_black_skirt"
+	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
+
 /obj/item/clothing/under/lawyer/female
 	name = "black Lawyer suit"
 	icon_state = "black_suit_fem"
@@ -121,26 +137,50 @@
 	name = "red Lawyer suit"
 	icon_state = "lawyer_red"
 
+/obj/item/clothing/under/lawyer/red/skirt
+	name = "red Lawyer skirt"
+	icon_state = "lawyer_red_skirt"
+	item_state_slots = list(slot_r_hand_str = "lawyer_red", slot_l_hand_str = "lawyer_red")
+
 /obj/item/clothing/under/lawyer/blue
 	name = "blue Lawyer suit"
 	icon_state = "lawyer_blue"
 
+/obj/item/clothing/under/lawyer/blue/skirt
+	name = "blue Lawyer skirt"
+	icon_state = "lawyer_blue_skirt"
+	item_state_slots = list(slot_r_hand_str = "lawyer_blue", slot_l_hand_str = "lawyer_blue")
+
 /obj/item/clothing/under/lawyer/bluesuit
-	name = "Blue Suit"
+	name = "blue suit"
 	desc = "A classy suit."
 	icon_state = "bluesuit"
 	item_state_slots = list(slot_r_hand_str = "lawyer_blue", slot_l_hand_str = "lawyer_blue")
 	starting_accessories = list(/obj/item/clothing/accessory/red)
 
+/obj/item/clothing/under/lawyer/bluesuit/skirt
+	name = "blue skirt suit"
+	icon_state = "bluesuit_skirt"
+
 /obj/item/clothing/under/lawyer/purpsuit
-	name = "Purple Suit"
+	name = "purple Suit"
 	icon_state = "lawyer_purp"
 	item_state_slots = list(slot_r_hand_str = "purple", slot_l_hand_str = "purple")
+
+/obj/item/clothing/under/lawyer/purpsuit/skirt
+	name = "purple skirt suit"
+	icon_state = "lawyer_purp_skirt"
 
 /obj/item/clothing/under/lawyer/oldman
 	name = "Old Man's Suit"
 	desc = "A classic suit for the older gentleman with built in back support."
 	icon_state = "oldman"
+	item_state_slots = list(slot_r_hand_str = "johnny", slot_l_hand_str = "johnny")
+
+/obj/item/clothing/under/lawyer/oldwoman
+	name = "Old Woman's Attire"
+	desc = "A typical outfit for the older woman, a lovely cardigan and comfortable skirt."
+	icon_state = "oldwoman"
 	item_state_slots = list(slot_r_hand_str = "johnny", slot_l_hand_str = "johnny")
 
 /obj/item/clothing/under/librarian

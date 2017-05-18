@@ -417,7 +417,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 //SilencedMP5A5:Serdykov Antoz
 /obj/item/clothing/suit/armor/vest/wolftaur/serdy //SilencedMP5A5's specialty armor suit.
 	name = "Modified wolf-taur armor vest"
-	desc = "An armored vest that protects against some damage. It appears to be created for a wolf-taur, and seems modified."
+	desc = "A set of armor made from pieces of many other armors. There are two orange holobadges on it, one on the chestplate, one on the steel flank plates. The holobadges appear to be russian in origin. 'Kosmicheskaya Stantsiya-8' is printed in faded white letters on one side, along the spine. It smells strongly of dog."
 	species_restricted = null //Species restricted since all it cares about is a taur half
 	icon_override = 'icons/mob/taursuits_vr.dmi' //Needs to be this since it's 64*32
 	icon_state = "serdy_armor"
@@ -433,7 +433,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 
 /obj/item/clothing/head/helmet/serdy //SilencedMP5A5's specialty helmet. Uncomment if/when they make their custom item app and are accepted.
 	name = "Modified helmet"
-	desc = "Standard Security gear. Protects the head from impacts. This one appears to be modified."
+	desc = "An old production model steel-ceramic lined helmet with a white stripe and a custom orange visor. It has ear holes, and smells of dog."
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "serdyhelm"
 
@@ -629,6 +629,30 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	taurtype = /datum/sprite_accessory/tail/taur/feline/tempest
 	no_message = "These saddlebags seem to be fitted for someone else, and keep slipping off!"
 
+//WickedTempest: Chakat Tempest
+/obj/item/weapon/implant/reagent_generator/tempest
+	generated_reagent = "milk"
+	usable_volume = 1000
+
+	empty_message = list("Your breasts are almost completely drained!")
+	full_message = list("Your teats feel heavy and swollen!")
+	emote_descriptor = list("squeezes milk", "tugs on Tempest's breasts, milking them")
+	self_emote_descriptor = list("squeeze")
+	random_emote = list("moos quietly")
+	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_tempest
+
+/obj/item/weapon/implanter/reagent_generator/tempest
+	implant_type = /obj/item/weapon/implant/reagent_generator/tempest
+
+/mob/living/carbon/human/proc/use_reagent_implant_tempest()
+	set name = "Milk"
+	set desc = "Grab Tempest's nipples and milk them into a container! May cause blushing and groaning."
+	set category = "Object"
+	set src in view(1)
+
+	do_reagent_implant(usr)
+
+
 //PontifexMinimus: Lucius/Lucia Null
 /obj/item/weapon/fluff/dragor_dot
 	name = "supplemental battery"
@@ -642,6 +666,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 			user.verbs |= /mob/living/carbon/human/proc/shapeshifter_select_gender
 		else
 			return
+
 
 //The perfect adminboos device?
 /obj/item/device/perfect_tele

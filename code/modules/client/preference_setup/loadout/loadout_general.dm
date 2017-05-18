@@ -10,6 +10,10 @@
 	display_name = "dice pack (gaming)"
 	path = /obj/item/weapon/storage/pill_bottle/dice_nerd
 
+/datum/gear/dice/cup
+	display_name = "dice cup and dice"
+	path = /obj/item/weapon/storage/dicecup/loaded
+
 /datum/gear/cards
 	display_name = "deck of cards"
 	path = /obj/item/weapon/deck/cards

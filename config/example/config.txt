@@ -33,6 +33,9 @@ JOBS_HAVE_MINIMAL_ACCESS
 ## Unhash this to use recursive explosions, keep it hashed to use circle explosions. Recursive explosions react to walls, airlocks and blast doors, making them look a lot cooler than the boring old circular explosions. They require more CPU and are (as of january 2013) experimental
 #USE_RECURSIVE_EXPLOSIONS
 
+Configure how fast explosion strength diminishes when travelling up/down z levels. All explosion distances are multiplied by this each time they go up/down z-levels.
+#MULTI_Z_EXPLOSION_SCALAR 0.5
+
 ## log OOC channel
 LOG_OOC
 

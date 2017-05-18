@@ -3,9 +3,9 @@ language: c
 sudo: false
 
 env:
-  BYOND_MAJOR="510"
-  BYOND_MINOR="1346"
-  MACRO_COUNT=986
+  BYOND_MAJOR="511"
+  BYOND_MINOR="1381"
+  MACRO_COUNT=875
 
 cache:
   directories:

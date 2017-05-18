@@ -132,7 +132,7 @@ BLIND     // can't see anything
 
 	eye = !eye
 	if(eye)
-		icon_state = "[icon_state]_r"
+		icon_state = "[icon_state]_1"
 	else
 		icon_state = initial(icon_state)
 	update_clothing_icon()
@@ -395,7 +395,8 @@ BLIND     // can't see anything
 	toggleable = 1
 	action_button_name = "Toggle Goggles"
 	vision_flags = SEE_MOBS
-	see_invisible = INVISIBILITY_LEVEL_TWO
+	see_invisible = SEE_INVISIBLE_NOLIGHTING
+
 
 	emp_act(severity)
 		if(istype(src.loc, /mob/living/carbon/human))

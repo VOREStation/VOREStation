@@ -1799,6 +1799,7 @@
 	reagent_state = LIQUID
 	color = "#7F00FF"
 	strength = 10
+	druggy = 15
 
 	glass_name = "Pan-Galactic Gargle Blaster"
 	glass_desc = "Does... does this mean that Arthur and Ford are on the station? Oh joy."
@@ -2232,8 +2233,8 @@
 	glass_name = "special blend whiskey"
 	glass_desc = "Just when you thought regular station whiskey was good... This silky, amber goodness has to come along and ruin everything."
 
-/datum/reagent/ethanol/unathiliquor	//Needs a better name
-	name = "Unathi Liquor"
+/datum/reagent/ethanol/unathiliquor
+	name = "Redeemer's Brew"
 	id = "unathiliquor"
 	description = "This barely qualifies as a drink, and could give jetfuel a run for its money. Also known to cause feelings of euphoria and numbness."
 	taste_description = "spiced numbness"

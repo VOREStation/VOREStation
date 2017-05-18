@@ -37,7 +37,7 @@
 	brute_mod = 0.85
 	burn_mod = 0.85
 	metabolic_rate = 0.85
-	item_slowdown_halved = 1
+	item_slowdown_mod = 0.5
 	num_alternate_languages = 3
 	secondary_langs = list(LANGUAGE_UNATHI)
 	name_language = LANGUAGE_UNATHI
@@ -256,6 +256,7 @@
 	secondary_langs = list(LANGUAGE_ROOTGLOBAL)
 	name_language = LANGUAGE_ROOTLOCAL
 	health_hud_intensity = 2.5
+	item_slowdown_mod = 0.25
 
 	min_age = 1
 	max_age = 300

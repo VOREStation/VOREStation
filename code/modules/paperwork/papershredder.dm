@@ -123,7 +123,7 @@
 	if(!paperamount)
 		return
 	paperamount--
-	return PoolOrNew(/obj/item/weapon/shreddedp, get_turf(src))
+	return new /obj/item/weapon/shreddedp(get_turf(src))
 
 /obj/machinery/papershredder/power_change()
 	..()
@@ -185,5 +185,5 @@
 	var/mob/living/M = loc
 	if(istype(M))
 		M.drop_from_inventory(src)
-	PoolOrNew(/obj/effect/decal/cleanable/ash,get_turf(src))
+	new /obj/effect/decal/cleanable/ash(get_turf(src))
 	qdel(src)

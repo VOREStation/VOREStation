@@ -64,11 +64,14 @@
 	required_reagents = list("mutagen" = 3, "lipozine" = 2)
 	result_amount = 5
 
-
-
-
-
-
+///////////////////////////////////////////////////////////////////////////////////
+/// Other Drugs
+/datum/chemical_reaction/adranol
+	name = "Adranol"
+	id = "adranol"
+	result = "adranol"
+	required_reagents = list("milk" = 2, "hydrogen" = 1, "potassium" = 1)
+	result_amount = 3
 
 ///////////////////////////////
 //SLIME CORES BELOW HERE///////

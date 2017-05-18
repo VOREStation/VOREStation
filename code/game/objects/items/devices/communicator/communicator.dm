@@ -169,9 +169,8 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Parameters: None
 // Description: Simple check to see if the exonet node is active.
 /obj/item/device/communicator/proc/get_connection_to_tcomms()
-	if(node)
-		if(node.on && node.allow_external_communicators)
-			return 1
+	if(node && node.on && node.allow_external_communicators && !is_jammed(src))
+		return 1
 	return 0
 
 // Proc: process()
@@ -182,7 +181,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	if(update_ticks % 5)
 		if(!node)
 			node = get_exonet_node()
-		if(!node || !node.on || !node.allow_external_communicators)
+		if(!get_connection_to_tcomms())
 			close_connection(reason = "Connection timed out")
 
 // Proc: attackby()
@@ -212,6 +211,8 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	alert_called = 0
 	update_icon()
 	ui_interact(user)
+	if(video_source)
+		watch_video(user)
 
 // Proc: MouseDrop()
 //Same thing PDAs do
@@ -1041,7 +1042,8 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	if(!Adjacent(user) || !video_source) return
 	user.set_machine(video_source)
 	user.reset_view(video_source)
-	user << "<span class='notice'>Now viewing video session. To leave camera view: OOC -> Cancel Camera View</span>"
+	to_chat(user,"<span class='notice'>Now viewing video session. To leave camera view, close the communicator window OR: OOC -> Cancel Camera View</span>")
+	to_chat(user,"<span class='notice'>To return to an active video session, use the communicator in your hand.</span>")
 	spawn(0)
 		while(user.machine == video_source && (Adjacent(user) || loc == user))
 			var/turf/T = get_turf(video_source)

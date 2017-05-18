@@ -5,6 +5,7 @@
 	var/name
 	var/announce_str
 	var/arrival_sound
+	var/delay_time
 
 	var/list/doors = list()
 	var/obj/structure/lift/button/ext_panel
@@ -20,6 +21,7 @@
 	name = A.lift_floor_name ? A.lift_floor_name : A.name
 	announce_str = A.lift_announce_str
 	arrival_sound = A.arrival_sound
+	delay_time = A.delay_time
 
 //called when a lift has queued this floor as a destination
 /datum/turbolift_floor/proc/pending_move(var/datum/turbolift/lift)

@@ -68,10 +68,12 @@
 	anchored = 1
 	circuit = /obj/item/weapon/circuitboard/sleeper
 	var/mob/living/carbon/human/occupant = null
-	var/list/available_chemicals = list("inaprovaline" = "Inaprovaline", "stoxin" = "Soporific", "paracetamol" = "Paracetamol", "anti_toxin" = "Dylovene", "dexalin" = "Dexalin")
+	var/list/available_chemicals = list("inaprovaline" = "Inaprovaline", "paracetamol" = "Paracetamol", "anti_toxin" = "Dylovene", "dexalin" = "Dexalin")
 	var/obj/item/weapon/reagent_containers/glass/beaker = null
 	var/filtering = 0
 	var/obj/machinery/sleep_console/console
+	var/stasis_level = 0 //Every 'this' life ticks are applied to the mob (when life_ticks%stasis_level == 1)
+	var/stasis_choices = list("Complete (1%)" = 100, "Deep (10%)" = 10, "Moderate (20%)" = 5, "Light (50%)" = 2, "None (100%)" = 0)
 
 	use_power = 1
 	idle_power_usage = 15
@@ -98,18 +100,23 @@
 /obj/machinery/sleeper/process()
 	if(stat & (NOPOWER|BROKEN))
 		return
+	if(occupant)
+		occupant.Stasis(stasis_level)
+		if(stasis_level >= 100 && occupant.timeofdeath)
+			occupant.timeofdeath += 1 SECOND
 
-	if(filtering > 0)
-		if(beaker)
-			if(beaker.reagents.total_volume < beaker.reagents.maximum_volume)
-				var/pumped = 0
-				for(var/datum/reagent/x in occupant.reagents.reagent_list)
-					occupant.reagents.trans_to_obj(beaker, 3)
-					pumped++
-				if(ishuman(occupant))
-					occupant.vessel.trans_to_obj(beaker, pumped + 1)
-		else
-			toggle_filter()
+		if(filtering > 0)
+			if(beaker)
+				if(beaker.reagents.total_volume < beaker.reagents.maximum_volume)
+					var/pumped = 0
+					for(var/datum/reagent/x in occupant.reagents.reagent_list)
+						occupant.reagents.trans_to_obj(beaker, 3)
+						pumped++
+					if(ishuman(occupant))
+						occupant.vessel.trans_to_obj(beaker, pumped + 1)
+			else
+				toggle_filter()
+
 
 /obj/machinery/sleeper/update_icon()
 	icon_state = "sleeper_[occupant ? "1" : "0"]"
@@ -154,6 +161,13 @@
 		data["beaker"] = -1
 	data["filtering"] = filtering
 
+	var/stasis_level_name = "Error!"
+	for(var/N in stasis_choices)
+		if(stasis_choices[N] == stasis_level)
+			stasis_level_name = N
+			break
+	data["stasis"] = stasis_level_name
+
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "sleeper.tmpl", "Sleeper UI", 600, 600, state = state)
@@ -182,12 +196,20 @@
 		if(occupant && occupant.stat != DEAD)
 			if(href_list["chemical"] in available_chemicals) // Your hacks are bad and you should feel bad
 				inject_chemical(usr, href_list["chemical"], text2num(href_list["amount"]))
+	if(href_list["change_stasis"])
+		var/new_stasis = input("Levels deeper than 50% stasis level will render the patient unconscious.","Stasis Level") as null|anything in stasis_choices
+		if(new_stasis && CanUseTopic(usr, default_state) == STATUS_INTERACTIVE)
+			stasis_level = stasis_choices[new_stasis]
 
 	return 1
 
 /obj/machinery/sleeper/attackby(var/obj/item/I, var/mob/user)
 	add_fingerprint(user)
-	if(default_deconstruction_screwdriver(user, I))
+	if(istype(I, /obj/item/weapon/grab))
+		var/obj/item/weapon/grab/G = I
+		if(G.affecting)
+			go_in(G.affecting, user)
+	else if(default_deconstruction_screwdriver(user, I))
 		return
 	else if(default_deconstruction_crowbar(user, I))
 		return
@@ -200,6 +222,28 @@
 		else
 			user << "<span class='warning'>\The [src] has a beaker already.</span>"
 		return
+
+/obj/machinery/sleeper/verb/move_eject()
+	set name = "Eject occupant"
+	set category = "Object"
+	set src in oview(1)
+	if(usr == occupant)
+		switch(usr.stat)
+			if(DEAD)
+				return
+			if(UNCONSCIOUS)
+				usr << "<span class='notice'>You struggle through the haze to hit the eject button. This will take a couple of minutes...</span>"
+				sleep(2 MINUTES)
+				if(!src || !usr || !occupant || (occupant != usr)) //Check if someone's released/replaced/bombed him already
+					return
+				go_out()
+			if(CONSCIOUS)
+				go_out()
+	else
+		if(usr.stat != 0)
+			return
+		go_out()
+	add_fingerprint(usr)
 
 /obj/machinery/sleeper/MouseDrop_T(var/mob/target, var/mob/user)
 	if(user.stat || user.lying || !Adjacent(user) || !target.Adjacent(user)|| !ishuman(target))
@@ -261,6 +305,7 @@
 	if(occupant.client)
 		occupant.client.eye = occupant.client.mob
 		occupant.client.perspective = MOB_PERSPECTIVE
+	occupant.Stasis(0)
 	occupant.loc = src.loc
 	occupant = null
 	for(var/atom/movable/A in src) // In case an object was dropped inside or something

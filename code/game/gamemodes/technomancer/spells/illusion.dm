@@ -93,6 +93,9 @@
 	var/walking = 0
 	var/step_delay = 10
 
+/mob/living/simple_animal/illusion/update_icon() // We don't want the appearance changing AT ALL unless by copy_appearance().
+	return
+
 /mob/living/simple_animal/illusion/proc/copy_appearance(var/atom/movable/thing_to_copy)
 	if(!thing_to_copy)
 		return 0

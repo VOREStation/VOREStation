@@ -68,6 +68,11 @@ character_name: Aronai Kadigan
 item_path: /obj/item/weapon/storage/backpack/satchel/gen/fluff/aronai
 }
 
+{
+ckey: aerowing
+character_name: Sebastian Aji
+item_path: /obj/item/weapon/storage/box/fluff/sebastian_aji
+}
 # ######## B CKEYS
 {
 ckey: benemuel
@@ -324,6 +329,12 @@ item_path: /obj/item/device/pda_mod/fluff/kligor
 }
 
 # ######## L CKEYS
+{
+ckey: luminescentring
+character_name: Briana Moore
+item_path: /obj/item/weapon/storage/box/fluff/briana_moore
+}
+
 # ######## M CKEYS
 {
 ckey: molenar
@@ -398,6 +409,24 @@ item_path: /obj/item/fluff/permit/archermaximus
 
 # ######## S CKEYS
 {
+ckey: samanthafyre
+character_name: Kateryna Petrovitch
+item_path: /obj/item/clothing/suit/space/void/engineering/kate
+}
+
+{
+ckey: samanthafyre
+character_name: Kateryna Petrovitch
+item_path: /obj/item/clothing/head/helmet/space/fluff/kate
+}
+
+{
+ckey: samanthafyre
+character_name: Kateryna Petrovitch
+item_path: /obj/item/clothing/suit/armor/vest/wolftaur/kate
+}
+
+{
 ckey: sasoperative
 character_name: Joseph Skinner
 item_path: /obj/item/clothing/accessory/medal/ERTservice
@@ -413,12 +442,6 @@ item_path: /obj/item/fluff/permit/josephskinner
 ckey: sasoperative
 character_name: Joseph Skinner
 item_path: /obj/item/clothing/under/rank/security/fluff/formalsec
-}
-
-{
-ckey: scree
-character_name: Scree
-item_path: /obj/item/clothing/under/fluff/screesuit
 }
 
 {
@@ -449,6 +472,18 @@ item_path: /obj/item/clothing/glasses/sunglasses/fluff/alfonso
 ckey: silencedmp5a5
 character_name: Serdykov Antoz
 item_path: /obj/item/device/modkit_conversion/fluff/serdykit
+}
+
+{
+ckey: silencedmp5a5
+character_name: Serdykov Antoz
+item_path: obj/item/weapon/gun/projectile/revolver/detective/fluff/serdy
+}
+
+{
+ckey: silencedmp5a5
+character_name: Serdykov Antoz
+item_path: /obj/item/fluff/permit/silencedmp5a5
 }
 
 {
@@ -572,6 +607,12 @@ item_path: /obj/item/weapon/reagent_containers/hypospray/vr/tempest
 ckey: wickedtemp
 character_name: Chakat Tempest
 item_path: /obj/item/weapon/storage/backpack/saddlebag/tempest
+}
+
+{
+ckey: wickedtemp
+character_name: Chakat Tempest
+item_path: /obj/item/weapon/implanter/reagent_generator/tempest
 }
 
 # ######## X CKEYS

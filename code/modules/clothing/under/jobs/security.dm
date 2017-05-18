@@ -113,6 +113,12 @@
 	desc = "A serious-looking tan dress shirt paired with freshly-pressed black slacks, complete with a red striped tie and waistcoat."
 	starting_accessories = list(/obj/item/clothing/accessory/red_long, /obj/item/clothing/accessory/wcoat)
 
+/obj/item/clothing/under/det/skirt
+	name = "detective's skirt"
+	icon_state = "detective_skirt"
+	desc = "A serious-looking white blouse paired with a formal black pencil skirt."
+	item_state_slots = list(slot_r_hand_str = "sl_suit", slot_l_hand_str = "sl_suit")
+
 /*
  * Head of Security
  */

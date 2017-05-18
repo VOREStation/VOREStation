@@ -5,6 +5,10 @@
 	slot = slot_w_uniform
 	sort_category = "Uniforms and Casual Dress"
 
+/datum/gear/uniform/blazerskirt
+	display_name = "blazer, blue with skirt"
+	path = /obj/item/clothing/under/blazer/skirt
+
 /datum/gear/uniform/cheongsam
 	display_name = "cheongsam selection"
 
@@ -190,25 +194,49 @@
 	display_name = "suit, shiny-black"
 	path = /obj/item/clothing/under/lawyer/black
 
+/datum/gear/uniform/suit/shinyblackskirt
+	display_name = "suit, shiny-black skirt"
+	path = /obj/item/clothing/under/lawyer/black/skirt
+
 /datum/gear/uniform/suit/blue
 	display_name = "suit, blue"
 	path = /obj/item/clothing/under/lawyer/blue
+
+/datum/gear/uniform/suit/blueskirt
+	display_name = "suit, blue skirt"
+	path = /obj/item/clothing/under/lawyer/blue/skirt
 
 /datum/gear/uniform/suit/burgundy
 	display_name = "suit, burgundy"
 	path = /obj/item/clothing/under/suit_jacket/burgundy
 
+/datum/gear/uniform/suit/burgundyskirt
+	display_name = "suit, burgundy skirt"
+	path = /obj/item/clothing/under/suit_jacket/burgundy/skirt
+
 /datum/gear/uniform/suit/checkered
 	display_name = "suit, checkered"
 	path = /obj/item/clothing/under/suit_jacket/checkered
+
+/datum/gear/uniform/suit/checkeredskirt
+	display_name = "suit, checkered skirt"
+	path = /obj/item/clothing/under/suit_jacket/checkered/skirt
 
 /datum/gear/uniform/suit/charcoal
 	display_name = "suit, charcoal"
 	path = /obj/item/clothing/under/suit_jacket/charcoal
 
+/datum/gear/uniform/suit/charcoalskirt
+	display_name = "suit, charcoal skirt"
+	path = /obj/item/clothing/under/suit_jacket/charcoal/skirt
+
 /datum/gear/uniform/suit/exec
 	display_name = "suit, executive"
 	path = /obj/item/clothing/under/suit_jacket/really_black
+
+/datum/gear/uniform/suit/execskirt
+	display_name = "suit, executive skirt"
+	path = /obj/item/clothing/under/suit_jacket/really_black/skirt
 
 /datum/gear/uniform/suit/femaleexec
 	display_name = "suit, female-executive"
@@ -218,17 +246,33 @@
 	display_name = "suit, gentlemen"
 	path = /obj/item/clothing/under/gentlesuit
 
+/datum/gear/uniform/suit/gentleskirt
+	display_name = "suit, lady"
+	path = /obj/item/clothing/under/gentlesuit/skirt
+
 /datum/gear/uniform/suit/navy
 	display_name = "suit, navy"
 	path = /obj/item/clothing/under/suit_jacket/navy
+
+/datum/gear/uniform/suit/navyskirt
+	display_name = "suit, navy skirt"
+	path = /obj/item/clothing/under/suit_jacket/navy/skirt
 
 /datum/gear/uniform/suit/red
 	display_name = "suit, red"
 	path = /obj/item/clothing/under/suit_jacket/red
 
+/datum/gear/uniform/suit/redskirt
+	display_name = "suit, red skirt"
+	path = /obj/item/clothing/under/suit_jacket/red/skirt
+
 /datum/gear/uniform/suit/redlawyer
 	display_name = "suit, lawyer-red"
 	path = /obj/item/clothing/under/lawyer/red
+
+/datum/gear/uniform/suit/redlawyerskirt
+	display_name = "suit, lawyer-red skirt"
+	path = /obj/item/clothing/under/lawyer/red/skirt
 
 /datum/gear/uniform/suit/oldman
 	display_name = "suit, old-man"
@@ -238,17 +282,48 @@
 	display_name = "suit, purple"
 	path = /obj/item/clothing/under/lawyer/purpsuit
 
+/datum/gear/uniform/suit/purpleskirt
+	display_name = "suit, purple skirt"
+	path = /obj/item/clothing/under/lawyer/purpsuit/skirt
+
 /datum/gear/uniform/suit/tan
 	display_name = "suit, tan"
 	path = /obj/item/clothing/under/suit_jacket/tan
+
+/datum/gear/uniform/suit/tanskirt
+	display_name = "suit, tan skirt"
+	path = /obj/item/clothing/under/suit_jacket/tan/skirt
 
 /datum/gear/uniform/suit/white
 	display_name = "suit, white"
 	path = /obj/item/clothing/under/scratch
 
+/datum/gear/uniform/suit/whiteskirt
+	display_name = "suit, white skirt"
+	path = /obj/item/clothing/under/scratch/skirt
+
 /datum/gear/uniform/suit/whiteblue
 	display_name = "suit, white-blue"
 	path = /obj/item/clothing/under/lawyer/bluesuit
+
+/datum/gear/uniform/suit/whiteblueskirt
+	display_name = "suit, white-blue skirt"
+	path = /obj/item/clothing/under/lawyer/bluesuit/skirt
+
+/datum/gear/uniform/suit/detectiveskirt
+	display_name = "suit, detective skirt (Detective)"
+	path = /obj/item/clothing/under/det/skirt
+	allowed_roles = list("Detective")
+
+/datum/gear/uniform/suit/iaskirt
+	display_name = "suit, Internal Affairs skirt (Internal Affairs)"
+	path = /obj/item/clothing/under/rank/internalaffairs/skirt
+	allowed_roles = list("Internal Affairs Agent")
+
+/datum/gear/uniform/suit/bartenderskirt
+	display_name = "suit, bartender skirt (Bartender)"
+	path = /obj/item/clothing/under/rank/bartender/skirt
+	allowed_roles = list("Bartender")
 
 /datum/gear/uniform/scrubs
 	display_name = "scrubs, black"
@@ -270,6 +345,10 @@
 /datum/gear/uniform/scrubs/navyblue
 	display_name = "scrubs, navy blue"
 	path = /obj/item/clothing/under/rank/medical/navyblue
+
+/datum/gear/uniform/oldwoman
+	display_name = "old woman attire"
+	path = /obj/item/clothing/under/lawyer/oldwoman
 
 /datum/gear/uniform/sundress
 	display_name = "sundress"

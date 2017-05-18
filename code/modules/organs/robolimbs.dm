@@ -44,6 +44,14 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	var/parts = BP_ALL						 			 //Defines what parts said brand can replace on a body.
 	var/health_hud_intensity = 1						 // Intensity modifier for the health GUI indicator.
 
+/datum/robolimb/unbranded_monitor
+	company = "Unbranded Monitor"
+	desc = "A generic unbranded interpretation of a popular prosthetic head model. It looks rudimentary and cheaply constructed."
+	icon = 'icons/mob/human_races/cyberlimbs/unbranded/unbranded_monitor.dmi'
+	parts = list(BP_HEAD)
+	monitor_styles = standard_monitor_styles
+	unavailable_to_build = 1
+
 /datum/robolimb/nanotrasen
 	company = "NanoTrasen"
 	desc = "A simple but efficient robotic limb, created by NanoTrasen."
