@@ -17,6 +17,10 @@
 	OS_controller = src
 	initialize_open_space()
 
+	// Pre-process open space once once before the round starts. Wait 20 seconds so other stuff has time to finish.
+	spawn(200)
+		doWork(1)
+
 /datum/controller/process/open_space/copyStateFrom(var/datum/controller/process/open_space/other)
 	. = ..()
 	OS_controller = src
