@@ -14,56 +14,16 @@ var/list/floor_decals = list()
 	if(newcolour) color = newcolour
 	..(newloc)
 
+// VOREStation Edit - Hack to workaround byond crash bug
 /obj/effect/floor_decal/initialize()
-	if(supplied_dir) set_dir(supplied_dir)
+	if(!floor_decals_initialized || !loc || deleted(src))
+		return
+	add_to_turf_decals()
 	var/turf/T = get_turf(src)
-	if(istype(T, /turf/simulated/floor) || istype(T, /turf/unsimulated/floor) || istype(T, /turf/simulated/shuttle/floor))
-		var/cache_key = "[alpha]-[color]-[dir]-[icon_state]-[layer]"
-		var/image/I = floor_decals[cache_key]
-		if(!I)
-			I = image(icon = src.icon, icon_state = src.icon_state, dir = src.dir)
-			I.layer = T.layer
-			I.color = src.color
-			I.alpha = src.alpha
-			floor_decals[cache_key] = I
-		if(!T.decals) T.decals = list()
-		T.decals += I
-		var/pre_overlay_count = T.overlays.len
-		T.overlays += I
-		var/post_overlay_count = T.overlays.len
-		if(pre_overlay_count + 1 != post_overlay_count)
-			world.log << "Corrupted turf repair during decal init at: [x],[y],[z]"
-			var/list/tempdecals = T.decals
-			var/old_affecting_lights = T.affecting_lights
-			var/old_lighting_overlay = T.lighting_overlay
-			var/old_corners = T.corners
-			if(T.connections) T.connections.erase_all()
-
-			for(var/obj/machinery/atmospherics/pipe/P in T.contents)
-				P.initialize()
-
-			var/turf/newturf = new T.type(T)
-
-			if(air_master)
-				air_master.mark_for_update(newturf) //handle the addition of the new turf.
-			if(lighting_overlays_initialised)
-				newturf.lighting_overlay = old_lighting_overlay
-				newturf.affecting_lights = old_affecting_lights
-				newturf.corners = old_corners
-				newturf.recalc_atom_opacity()
-			if(tempdecals)
-				newturf.decals = tempdecals
-				for(var/image/old in tempdecals)
-					var/pre_ovr = newturf.overlays.len
-					newturf.overlays += old
-					if(newturf.overlays.len != pre_ovr +1)
-						return
-			var/prenew = newturf.overlays.len
-			newturf.overlays += I
-			if(newturf.overlays.len != prenew +1)
-				return
-		qdel(src)
+	T.apply_decals()
+	qdel(src)
 	return
+// VOREStation Edit End
 
 /obj/effect/floor_decal/reset
 	name = "reset marker"

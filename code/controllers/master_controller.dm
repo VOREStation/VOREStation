@@ -57,16 +57,31 @@ datum/controller/game_controller/proc/setup_objects()
 	//Set up spawn points.
 	populate_spawn_points()
 
+	admin_notice("<span class='danger'>Initializing Floor Decals</span>", R_DEBUG)
+	var/list/turfs_with_decals = list()
+	for(var/obj/effect/floor_decal/D in world)
+		var/T = D.add_to_turf_decals()
+		if(T) turfs_with_decals |= T
+		CHECK_SLEEP_MASTER
+	for(var/item in turfs_with_decals)
+		var/turf/T = item
+		if(T.decals) T.apply_decals()
+		CHECK_SLEEP_MASTER
+	floor_decals_initialized = TRUE
+	sleep(1)
+
 	admin_notice("<span class='danger'>Initializing objects</span>", R_DEBUG)
 	for(var/obj/object in world)
 		if(isnull(object.gcDestroyed))
 			object.initialize()
 			CHECK_SLEEP_MASTER
+	sleep(1)
 
 	admin_notice("<span class='danger'>Initializing areas</span>", R_DEBUG)
 	for(var/area/area in all_areas)
 		area.initialize()
 		CHECK_SLEEP_MASTER
+	sleep(1)
 
 	admin_notice("<span class='danger'>Initializing pipe networks</span>", R_DEBUG)
 	for(var/obj/machinery/atmospherics/machine in machines)

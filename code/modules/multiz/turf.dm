@@ -54,7 +54,7 @@
 	levelupdate()
 	for(var/atom/movable/A in src)
 		A.fall()
-	update_icon()
+	OS_controller.add_turf(src, 1)
 
 // override to make sure nothing is hidden
 /turf/simulated/open/levelupdate()
@@ -85,7 +85,13 @@
 			bottom_turf.plane = src.plane
 			bottom_turf.color = below.color
 			underlays += bottom_turf
-		overlays += below.overlays
+		// VOREStation Edit - Hack workaround to byond crash bug - Include the magic overlay holder object.
+		//overlays += below.overlays
+		if(below.overlay_holder)
+			overlays += (below.overlays + below.overlay_holder.overlays)
+		else
+			overlays += below.overlays
+		// VOREStation Edit End
 
 		// get objects (not mobs, they are handled by /obj/zshadow)
 		var/image/o_img = list()
