@@ -22,12 +22,16 @@
 	icon_state = "tether3"
 
 // Elevator areas.
+/area/turbolift
+	delay_time = 2 SECONDS
+	forced_ambience = list('sound/music/elevator.ogg')
+
 /area/turbolift/tether/transit
 	name = "tether (midway)"
 	lift_floor_label = "Midpoint"
 	lift_floor_name = "Midpoint"
 	lift_announce_str = "Arriving at tether midway point."
-	delay_time = 6 SECONDS
+	delay_time = 5 SECONDS
 
 /area/turbolift/t_surface/level1
 	name = "base (level 1)"
