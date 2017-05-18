@@ -152,3 +152,16 @@
 	The individual named above is licensed by the Nanotrasen Department of Civil Protection
 	to carry one Derringer handgun with lethal ammo.
 	This license expires on 24/Apr/2563 and must be renewed by CentCom prior to this date."}
+
+
+
+// silenedmp5a5:Serdykov Antoz
+/obj/item/fluff/permit/silencedmp5a5
+	name = "Serdykov Antoz's Sidearm Permit"
+	desc = {"
+	<b>NAME:</b> Serdykov Antoz | <b>RACE:</b> German Shepherd | <b>HOMEWORLD:</b> N/A, Sol
+    <b>DOB:</b> 14/6/2516 | <b>HEIGHT:</b> 6'8" | <b>SEX:</b> Male
+
+	The individual named above is licensed by the Nanotrasen Department of Civil Protection
+	to carry one Vintage S&W Model 10 revolver with stun/rubber ammo.
+	This license expires on 24/Apr/2563 and must be renewed by CentCom prior to this date."}
