@@ -447,12 +447,6 @@ item_path: /obj/item/clothing/under/rank/security/fluff/formalsec
 {
 ckey: scree
 character_name: Scree
-item_path: /obj/item/clothing/under/fluff/screesuit
-}
-
-{
-ckey: scree
-character_name: Scree
 item_path: /obj/item/device/modkit_conversion/fluff/screekit
 }
 
