@@ -129,7 +129,7 @@
 //TODO require a multitool to diagnose and open engine panels or something
 
 /obj/structure/shuttle/engine/proc/repair_welder(var/mob/user, var/obj/item/weapon/weldingtool/WT)
-	if(istype(WT))
+	if(!istype(WT))
 		return 0
 	if(wear <= 20)
 		to_chat(user,"<span class='notice'>\The [src] doesn't seem to need repairs right now.</span>")
