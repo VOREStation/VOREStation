@@ -79,18 +79,18 @@
 		var/below_is_open = isopenspace(below)
 
 		if(below_is_open)
-			underlays += below.underlays
+			underlays = below.underlays
 		else
 			var/image/bottom_turf = image(icon = below.icon, icon_state = below.icon_state, dir=below.dir, layer=below.layer)
 			bottom_turf.plane = src.plane
 			bottom_turf.color = below.color
-			underlays += bottom_turf
+			underlays = list(bottom_turf)
 		// VOREStation Edit - Hack workaround to byond crash bug - Include the magic overlay holder object.
-		//overlays += below.overlays
-		if(below.overlay_holder)
-			overlays += (below.overlays + below.overlay_holder.overlays)
-		else
-			overlays += below.overlays
+		overlays += below.overlays
+		// if(below.overlay_holder)
+		// 	overlays += (below.overlays + below.overlay_holder.overlays)
+		// else
+		// 	overlays += below.overlays
 		// VOREStation Edit End
 
 		// get objects (not mobs, they are handled by /obj/zshadow)
@@ -107,9 +107,6 @@
 		overlays += o_img
 
 		if(!below_is_open)
-			var/image/over_OS_darkness = image('icons/turf/open_space.dmi', "black_open")
-			over_OS_darkness.plane = OVER_OPENSPACE_PLANE
-			over_OS_darkness.layer = MOB_LAYER
 			overlays += over_OS_darkness
 
 		return 0

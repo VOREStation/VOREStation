@@ -4,6 +4,7 @@
 
 /var/global/open_space_initialised = FALSE
 /var/global/datum/controller/process/open_space/OS_controller = null
+/var/global/image/over_OS_darkness = image('icons/turf/open_space.dmi', "black_open")
 
 /datum/controller/process/open_space
 	var/list/turfs_to_process = list()		// List of turfs queued for update.
@@ -15,6 +16,8 @@
 	schedule_interval = world.tick_lag // every second
 	start_delay = 30 SECONDS
 	OS_controller = src
+	over_OS_darkness.plane = OVER_OPENSPACE_PLANE
+	over_OS_darkness.layer = MOB_LAYER
 	initialize_open_space()
 
 	// Pre-process open space once once before the round starts. Wait 20 seconds so other stuff has time to finish.
@@ -82,13 +85,14 @@
 
 /obj/update_icon()
 	. = ..()
-	if(open_space_initialised && !invisibility)
+	if(open_space_initialised && !invisibility && isturf(loc))
 		var/turf/T = GetAbove(src)
 		if(isopenspace(T))
 			// log_debug("[T] ([T.x],[T.y],[T.z]) queued for update for [src].update_icon()")
 			OS_controller.add_turf(T, 1)
 
 // Ouch... this is painful. But is there any other way?
+/* - No for now
 /obj/New()
 	. = ..()
 	if(open_space_initialised && !invisibility)
@@ -96,10 +100,11 @@
 		if(isopenspace(T))
 			// log_debug("[T] ([T.x],[T.y],[T.z]) queued for update for [src]New()")
 			OS_controller.add_turf(T, 1)
+*/
 
 // Just as New() we probably should hook Destroy() If we can think of something more efficient, lets hear it.
 /obj/Destroy()
-	if(open_space_initialised && !invisibility)
+	if(open_space_initialised && !invisibility && isturf(loc))
 		var/turf/T = GetAbove(src)
 		if(isopenspace(T))
 			OS_controller.add_turf(T, 1)
