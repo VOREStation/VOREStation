@@ -172,9 +172,12 @@
 /mob/living/simple_animal/hostile/carp/can_fall() // So can carp apparently.
 	return FALSE
 
+// Check if this atom prevents things standing on it from falling. Return TRUE to allow the fall.
+/obj/proc/CanFallThru(atom/movable/mover as mob|obj, turf/target as turf)
+	return TRUE
 
 // Things that prevent objects standing on them from falling into turf below
-/obj/structure/catwalk/CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
+/obj/structure/catwalk/CanFallThru(atom/movable/mover as mob|obj, turf/target as turf)
 	if(target.z < z)
 		return FALSE // TODO - Technically should be density = 1 and flags |= ON_BORDER
 	else
@@ -184,7 +187,7 @@
 /obj/structure/catwalk/CheckFall(var/atom/movable/falling_atom)
 	return falling_atom.fall_impact(src)
 
-/obj/structure/lattice/CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
+/obj/structure/lattice/CanFallThru(atom/movable/mover as mob|obj, turf/target as turf)
 	if(target.z >= z)
 		return TRUE // We don't block sideways or upward movement.
 	else if(istype(mover) && mover.checkpass(PASSGRILLE))
@@ -202,6 +205,16 @@
 // Actually process the falling movement and impacts.
 /atom/movable/proc/handle_fall(var/turf/landing)
 	var/turf/oldloc = loc
+
+	// Check if there is anything in our turf we are standing on to prevent falling.
+	for(var/obj/O in loc)
+		if(!O.CanFallThru(src, landing))
+			return FALSE
+	// See if something in turf below prevents us from falling into it.
+	for(var/atom/A in landing)
+		if(!A.CanPass(src, src.loc, 1, 0))
+			return FALSE
+	// TODO - Stairs should operate thru a different mechanism, not falling, to allow side-bumping.
 
 	// Now lets move there!
 	if(!Move(landing))
