@@ -144,3 +144,27 @@
 	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_SOLARS, 64, 64)         // Create the mining ore distribution map.
 
 	return 1
+
+// TODO - Re-Implement this using the /datum/map_z_level
+/datum/map/tether/New()
+	..()
+	holomap_offset_y[1] = 60
+	holomap_offset_y[2] = 180
+	holomap_offset_y[3] = 300
+
+	holomap_offset_x[1] = 100
+	holomap_offset_x[2] = 100
+	holomap_offset_x[3] = 100
+
+	holomap_offset_x[5] = 260
+	holomap_offset_x[7] = 260
+	holomap_offset_x[6] = 260
+
+	holomap_offset_y[5] = 60
+	holomap_offset_y[6] = 180
+	holomap_offset_y[7] = 300
+
+	for(var/z in list(1,2,3,5,6,7))
+		holomap_legend_x[z] = 220
+		holomap_legend_y[z] = 160
+	holomap_smoosh = list(list(1,2,3,5,6,7))
