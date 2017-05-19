@@ -191,6 +191,12 @@ character_name: Belle Day
 item_path: /obj/item/weapon/gun/energy/sizegun
 }
 
+{
+ckey: hottokeeki
+character_name: Belle Day
+item_path: /obj/item/weapon/gun/energy/netgun
+}
+
 # ######## I CKEYS
 
 {
