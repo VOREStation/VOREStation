@@ -147,8 +147,8 @@
 	icon = 'icons/obj/atmos_vr.dmi' //VOREStation Edit - New Sprite
 	icon_state = "scrubber:0"
 	anchored = 1
-	volume = 50000
-	volume_rate = 5000
+	volume = 500000
+	volume_rate = 7000
 
 	use_power = 1
 	idle_power_usage = 500		//internal circuitry, friction losses and stuff
