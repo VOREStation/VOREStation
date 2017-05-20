@@ -11,9 +11,9 @@
 	//brute_mod = 1.15
 	//burn_mod =  1.15
 	//gluttonous = 1
-	num_alternate_languages = 2
-	secondary_langs = list("Sagaru")
-	name_language = "Sagaru"
+	num_alternate_languages = 3
+	secondary_langs = list(LANGUAGE_SAGARU)
+	name_language = LANGUAGE_SAGARU
 	color_mult = 1
 
 	min_age = 18
@@ -57,7 +57,7 @@
 	//brute_mod = 1.15
 	//burn_mod =  1.15
 	//gluttonous = 1
-	num_alternate_languages = 2
+	num_alternate_languages = 3
 	secondary_langs = list(LANGUAGE_SKRELLIAN)
 	name_language = LANGUAGE_SKRELLIAN
 	color_mult = 1
@@ -100,9 +100,9 @@
 	//brute_mod = 1.15
 	//burn_mod =  1.15
 	//gluttonous = 1
-	num_alternate_languages = 2
-	secondary_langs = list("Birdsong")
-	name_language = "Birdsong"
+	num_alternate_languages = 3
+	secondary_langs = list(LANGUAGE_BIRDSONG)
+	name_language = LANGUAGE_BIRDSONG
 	color_mult = 1
 
 	min_age = 18
@@ -138,9 +138,9 @@
 	tail = "tail"
 	icobase_tail = 1
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
-	num_alternate_languages = 2
-	secondary_langs = list("Siik'tajr")
-	name_language = "Siik'tajr"
+	num_alternate_languages = 3
+	secondary_langs = list(LANGUAGE_SIIK)
+	name_language = LANGUAGE_SIIK
 
 	min_age = 18
 	max_age = 80
@@ -183,9 +183,9 @@
 	tail = "tail"
 	icobase_tail = 1
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
-	num_alternate_languages = 2
-	secondary_langs = list("Siik'tajr")
-	name_language = "Siik'tajr"
+	num_alternate_languages = 3
+	secondary_langs = list(LANGUAGE_SIIK)
+	name_language = LANGUAGE_SIIK
 
 	min_age = 18
 	max_age = 80
@@ -228,15 +228,15 @@
 	deform = 'icons/mob/human_races/r_vulpkanin.dmi'
 //	path = /mob/living/carbon/human/vulpkanin
 //	default_language = "Sol Common"
-	secondary_langs = list("Canilunzt")
-	name_language = "Canilunzt"
+	secondary_langs = list(LANGUAGE_CANILUNZT)
+	name_language = LANGUAGE_CANILUNZT
 	primitive_form = "Wolpin"
 	tail = "vulptail"
 	tail_animation = 'icons/mob/species/vulpkanin/tail.dmi' // probably need more than just one of each, but w/e
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	darksight = 5 //worse than cats, but better than lizards. -- Poojawa
 //	gluttonous = 1
-	num_alternate_languages = 2
+	num_alternate_languages = 3
 	color_mult = 1
 
 	blurb = "Vulpkanin are a species of sharp-witted canine-pideds residing on the planet Altam just barely within the \

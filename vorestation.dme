@@ -41,6 +41,7 @@
 #include "code\__defines\research.dm"
 #include "code\__defines\roguemining_vr.dm"
 #include "code\__defines\species_languages.dm"
+#include "code\__defines\species_languages_vr.dm"
 #include "code\__defines\targeting.dm"
 #include "code\__defines\turfs.dm"
 #include "code\__defines\unit_tests.dm"
