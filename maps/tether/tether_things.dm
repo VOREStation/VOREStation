@@ -303,6 +303,8 @@ var/global/list/latejoin_tram   = list()
 	layer = ABOVE_WINDOW_LAYER
 /obj/machinery/button
 	layer = ABOVE_WINDOW_LAYER
+/obj/machinery/access_button
+	layer = ABOVE_WINDOW_LAYER
 /obj/machinery/computer/guestpass
 	layer = ABOVE_WINDOW_LAYER
 /obj/machinery/computer/security/telescreen
