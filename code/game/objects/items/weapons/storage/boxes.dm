@@ -52,6 +52,10 @@
 	new foldable(get_turf(src))
 	qdel(src)
 
+/obj/item/weapon/storage/box/survival //VOREStation Add for Tether Size boxes
+	max_w_class = ITEMSIZE_NORMAL
+	max_storage_space = 6 //This is just the right number, there's no constant.
+
 /obj/item/weapon/storage/box/survival/New()
 	..()
 	new /obj/item/clothing/mask/gas(src) // VOREStation Edit - Tether
