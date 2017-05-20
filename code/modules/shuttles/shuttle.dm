@@ -45,6 +45,8 @@
 		moving_status = SHUTTLE_INTRANSIT
 		move(departing, interim, direction)
 
+		if(process_longjump(departing, destination)) //VOREStation Edit - To hook custom shuttle code in
+			return //VOREStation Edit - It handled it for us (shuttle crash or such)
 
 		while (world.time < arrive_time)
 			sleep(5)
@@ -101,15 +103,14 @@
 			throwy = T.y
 
 	for(var/turf/T in dstturfs)
-		var/turf/D = locate(T.x, throwy - 1, 1)
-		for(var/atom/movable/AM as mob|obj in T)
-			AM.Move(D)
-
-	for(var/mob/living/carbon/bug in destination)
-		bug.gib()
-
-	for(var/mob/living/simple_animal/pest in destination)
-		pest.gib()
+		var/turf/D = locate(T.x, throwy - 1, T.z)
+		for(var/I in T)
+			if(istype(I,/mob/living))
+				var/mob/living/L = I
+				L.gib()
+			else if(istype(I,/obj))
+				var/obj/O = I
+				O.forceMove(D)
 
 	origin.move_contents_to(destination, direction=direction)
 

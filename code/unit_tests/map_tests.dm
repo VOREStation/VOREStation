@@ -12,7 +12,9 @@
 					/area/holodeck,
 					/area/supply/station,
 					/area/mine,
-					/area/vacant/vacant_shop
+					/area/turbolift, // VOREStation Edit - Its a turbolift,
+					/area/tether/surfacebase/outside, // VOREStation Edit - Outside,
+					/area/vacant // VOREStation Edit - All vacant areas!,
 					)
 
 	var/list/exempt_from_atmos = typesof(/area/maintenance,
@@ -23,6 +25,11 @@
 						/area/server,
 						/area/mine,
 						/area/vacant/vacant_shop,
+						/area/engineering/atmos/intake, // VOREStation Edit - Outside,
+						/area/rnd/external, // VOREStation Edit - Outside,
+						/area/tether/surfacebase/mining_main/external, // VOREStation Edit - Outside,
+						/area/tether/surfacebase/mining_main/airlock, // VOREStation Edit - Its an airlock,
+						/area/tether/surfacebase/emergency_storage, // VOREStation Edit,
 						/area/rnd/research_storage, // This should probably be fixed,
 						/area/security/riot_control // This should probably be fixed,
 						)

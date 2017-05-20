@@ -171,12 +171,12 @@ var/global/list/pipe_colors = list("grey" = PIPE_COLOR_GREY, "red" = PIPE_COLOR_
 	if(!omni_icons)
 		omni_icons = new()
 
-	var/icon/omni = new('icons/atmos/omni_devices.dmi')
+	var/icon/omni = new('icons/atmos/omni_devices_vr.dmi') //VOREStation Edit - New Icons
 
 	for(var/state in omni.IconStates())
 		if(!state || findtext(state, "map"))
 			continue
-		omni_icons[state] = image('icons/atmos/omni_devices.dmi', icon_state = state)
+		omni_icons[state] = image('icons/atmos/omni_devices_vr.dmi', icon_state = state) //VOREStation Edit - New Icons
 
 
 /datum/pipe_icon_manager/proc/gen_underlay_icons()

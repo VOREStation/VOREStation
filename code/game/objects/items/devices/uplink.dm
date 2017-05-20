@@ -21,10 +21,11 @@
 
 /obj/item/device/uplink/New(var/location, var/datum/mind/owner, var/telecrystals = DEFAULT_TELECRYSTAL_AMOUNT)
 	..()
-	src.uplink_owner = owner
+	if(owner) //VOREStation Edit - Owner optional
+		src.uplink_owner = owner
+		uses = owner.tcrystals
 	purchase_log = list()
 	world_uplinks += src
-	uses = owner.tcrystals
 	processing_objects += src
 
 /obj/item/device/uplink/Destroy()

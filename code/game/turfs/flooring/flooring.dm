@@ -18,7 +18,7 @@ var/list/flooring_types
 // [icon_base]_corners: directional overlays for non-edge corners.
 
 /decl/flooring
-	var/name
+	var/name = "floor"
 	var/desc
 	var/icon
 	var/icon_base
@@ -86,7 +86,7 @@ var/list/flooring_types
 /decl/flooring/carpet
 	name = "carpet"
 	desc = "Imported and comfy."
-	icon = 'icons/turf/flooring/carpet.dmi'
+	icon = 'icons/turf/flooring/carpet_vr.dmi'
 	icon_base = "carpet"
 	build_type = /obj/item/stack/tile/carpet
 	damage_temperature = T0C+200
@@ -98,18 +98,49 @@ var/list/flooring_types
 		'sound/effects/footstep/carpet4.ogg',
 		'sound/effects/footstep/carpet5.ogg'))
 
-/decl/flooring/carpet/blue
-	name = "carpet"
+// VOREStation Edit - Eris Carpets
+/decl/flooring/carpet/bcarpet
+	name = "black carpet"
 	icon_base = "bcarpet"
-	build_type = /obj/item/stack/tile/carpet/blue
-	flags = TURF_HAS_EDGES | TURF_REMOVE_CROWBAR
+	build_type = /obj/item/stack/tile/carpet/bcarpet
+
+/decl/flooring/carpet/blucarpet
+	name = "blue carpet"
+	icon_base = "blucarpet"
+	build_type = /obj/item/stack/tile/carpet/blucarpet
+
+/decl/flooring/carpet/turcarpet
+	name = "tur carpet"
+	icon_base = "turcarpet"
+	build_type = /obj/item/stack/tile/carpet/turcarpet
+
+/decl/flooring/carpet/sblucarpet
+	name = "silver blue carpet"
+	icon_base = "sblucarpet"
+	build_type = /obj/item/stack/tile/carpet/sblucarpet
+
+/decl/flooring/carpet/gaycarpet
+	name = "clown carpet"
+	icon_base = "gaycarpet"
+	build_type = /obj/item/stack/tile/carpet/gaycarpet
+
+/decl/flooring/carpet/purcarpet
+	name = "purple carpet"
+	icon_base = "purcarpet"
+	build_type = /obj/item/stack/tile/carpet/purcarpet
+
+/decl/flooring/carpet/oracarpet
+	name = "orange carpet"
+	icon_base = "oracarpet"
+	build_type = /obj/item/stack/tile/carpet/oracarpet
+// VOREStation Edit End
 
 /decl/flooring/tiling
 	name = "floor"
 	desc = "Scuffed from the passage of countless greyshirts."
-	icon = 'icons/turf/flooring/tiles.dmi'
-	icon_base = "steel"
-	has_damage_range = 4
+	icon = 'icons/turf/flooring/tiles_vr.dmi' // VOREStation Edit - Eris floors
+	icon_base = "tiled" // VOREStation Edit - Eris floors
+	has_damage_range = 2 // VOREStation Edit - Eris floors
 	damage_temperature = T0C+1400
 	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BREAK | TURF_CAN_BURN
 	build_type = /obj/item/stack/tile/floor
@@ -120,6 +151,45 @@ var/list/flooring_types
 		'sound/effects/footstep/floor3.ogg',
 		'sound/effects/footstep/floor4.ogg',
 		'sound/effects/footstep/floor5.ogg'))
+
+//VOREStation Edit for icons and extra types
+/decl/flooring/tiling/tech
+	desc = "Scuffed from the passage of countless greyshirts."
+	icon = 'icons/turf/flooring/techfloor_vr.dmi'
+	icon_base = "techfloor_gray"
+	build_type = /obj/item/stack/tile/floor/techgrey
+	can_paint = null
+
+/decl/flooring/tiling/tech/grid
+	icon_base = "techfloor_grid"
+	build_type = /obj/item/stack/tile/floor/techgrid
+
+/decl/flooring/tiling/new_tile
+	name = "floor"
+	icon_base = "tile_full"
+	flags = TURF_CAN_BREAK | TURF_CAN_BURN | TURF_IS_FRAGILE
+	build_type = null
+
+/decl/flooring/tiling/new_tile/cargo_one
+	icon_base = "cargo_one_full"
+
+/decl/flooring/tiling/new_tile/kafel
+	icon_base = "kafel_full"
+
+/decl/flooring/tiling/new_tile/techmaint
+	icon_base = "techmaint"
+
+/decl/flooring/tiling/new_tile/monofloor
+	icon_base = "monofloor"
+
+/decl/flooring/tiling/new_tile/monotile
+	icon_base = "monotile"
+
+/decl/flooring/tiling/new_tile/steel_grid
+	icon_base = "steel_grid"
+
+/decl/flooring/tiling/new_tile/steel_ridged
+	icon_base = "steel_ridged"
 
 /decl/flooring/linoleum
 	name = "linoleum"
@@ -135,36 +205,37 @@ var/list/flooring_types
 	icon_base = "white"
 	has_damage_range = null
 	flags = TURF_REMOVE_CROWBAR
-	build_type = /obj/item/stack/tile/floor_red
+	build_type = /obj/item/stack/tile/floor/red
 
 /decl/flooring/tiling/steel
 	name = "floor"
+	icon_base = "steel"
+	build_type = /obj/item/stack/tile/floor/steel
+
+/decl/flooring/tiling/steel_dirty
+	name = "floor"
 	icon_base = "steel_dirty"
-	has_damage_range = null
-	flags = TURF_REMOVE_CROWBAR
-	build_type = /obj/item/stack/tile/floor_steel
+	build_type = /obj/item/stack/tile/floor/steel_dirty
 
 /decl/flooring/tiling/asteroidfloor
 	name = "floor"
 	icon_base = "asteroidfloor"
 	has_damage_range = null
 	flags = TURF_REMOVE_CROWBAR
-	build_type = /obj/item/stack/tile/floor_steel
+	build_type = /obj/item/stack/tile/floor/steel
 
 /decl/flooring/tiling/white
 	name = "floor"
 	desc = "How sterile."
 	icon_base = "white"
-	has_damage_range = null
-	flags = TURF_REMOVE_CROWBAR
-	build_type = /obj/item/stack/tile/floor_white
+	build_type = /obj/item/stack/tile/floor/white
 
 /decl/flooring/tiling/yellow
 	name = "floor"
 	icon_base = "white"
 	has_damage_range = null
 	flags = TURF_REMOVE_CROWBAR
-	build_type = /obj/item/stack/tile/floor_yellow
+	build_type = /obj/item/stack/tile/floor/yellow
 
 /decl/flooring/tiling/dark
 	name = "floor"
@@ -172,34 +243,28 @@ var/list/flooring_types
 	icon_base = "dark"
 	has_damage_range = null
 	flags = TURF_REMOVE_CROWBAR
-	build_type = /obj/item/stack/tile/floor_dark
+	build_type = /obj/item/stack/tile/floor/dark
 
 /decl/flooring/tiling/hydro
 	name = "floor"
 	icon_base = "hydrofloor"
-	has_damage_range = null
-	flags = TURF_REMOVE_CROWBAR
-	build_type = /obj/item/stack/tile/floor_steel
+	build_type = /obj/item/stack/tile/floor/steel
 
 /decl/flooring/tiling/neutral
 	name = "floor"
 	icon_base = "neutral"
-	has_damage_range = null
-	flags = TURF_REMOVE_CROWBAR
-	build_type = /obj/item/stack/tile/floor_steel
+	build_type = /obj/item/stack/tile/floor/steel
 
 /decl/flooring/tiling/freezer
 	name = "floor"
 	desc = "Don't slip."
 	icon_base = "freezer"
-	has_damage_range = null
-	flags = TURF_REMOVE_CROWBAR
-	build_type = /obj/item/stack/tile/floor_freezer
+	build_type = /obj/item/stack/tile/floor/freezer
 
 /decl/flooring/wood
 	name = "wooden floor"
 	desc = "Polished redwood planks."
-	icon = 'icons/turf/flooring/wood.dmi'
+	icon = 'icons/turf/flooring/wood_vr.dmi'
 	icon_base = "wood"
 	has_damage_range = 6
 	damage_temperature = T0C+200

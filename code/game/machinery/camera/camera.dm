@@ -1,7 +1,7 @@
 /obj/machinery/camera
 	name = "security camera"
 	desc = "It's used to monitor rooms."
-	icon = 'icons/obj/monitors.dmi'
+	icon = 'icons/obj/monitors_vr.dmi' //VOREStation Edit - New Icons
 	icon_state = "camera"
 	use_power = 2
 	idle_power_usage = 5
@@ -56,7 +56,12 @@
 			error("[src.name] in [get_area(src)]has errored. [src.network?"Empty network list":"Null network list"]")
 		ASSERT(src.network)
 		ASSERT(src.network.len > 0)
+	// VOREStation Edit Start - Make mapping with cameras easier
+	if(!c_tag)
+		var/area/A = get_area(src)
+		c_tag = "[A ? A : "Unknown"] #[rand(111,999)]"
 	..()
+	// VOREStation Edit End
 
 /obj/machinery/camera/Destroy()
 	deactivate(null, 0) //kick anyone viewing out

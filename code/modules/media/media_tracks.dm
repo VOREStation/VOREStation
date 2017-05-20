@@ -9,13 +9,15 @@
 	var/artist		// Song's creator
 	var/duration	// Song length in deciseconds
 	var/secret		// Show up in regular playlist or secret playlist?
+	var/lobby		// Be one of the choices for lobby music?
 
-/datum/track/New(var/url, var/title, var/duration, var/artist = "", var/secret = 0)
+/datum/track/New(var/url, var/title, var/duration, var/artist = "", var/secret = 0, var/lobby = 0)
 	src.url = url
 	src.title = title
 	src.artist = artist
 	src.duration = duration
 	src.secret = secret
+	src.lobby = lobby
 
 /datum/track/proc/display()
 	var str = "\"[title]\""
@@ -29,6 +31,7 @@
 
 // Global list holding all configured jukebox tracks
 var/global/list/all_jukebox_tracks = list()
+var/global/list/all_lobby_tracks = list()
 
 // Read the jukebox configuration file on system startup.
 /hook/startup/proc/load_jukebox_tracks()
@@ -53,5 +56,8 @@ var/global/list/all_jukebox_tracks = list()
 		if(istext(entry["artist"]))
 			T.artist = entry["artist"]
 		T.secret = entry["secret"] ? 1 : 0
+		T.lobby = entry["lobby"] ? 1 : 0
 		all_jukebox_tracks += T
+		if(T.lobby)
+			all_lobby_tracks += T
 	return 1

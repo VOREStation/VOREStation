@@ -1,10 +1,10 @@
 /obj/machinery/sleep_console
 	name = "Sleeper Console"
-	icon = 'icons/obj/Cryogenic2.dmi'
+	icon = 'icons/obj/Cryogenic2_vr.dmi' //VOREStation Edit - Better icon.
 	icon_state = "sleeperconsole"
 	var/obj/machinery/sleeper/sleeper
 	anchored = 1 //About time someone fixed this.
-	density = 0
+	density = 1 //VOREStation Edit - Big console
 	dir = 8
 	use_power = 1
 	idle_power_usage = 40
@@ -62,7 +62,7 @@
 /obj/machinery/sleeper
 	name = "sleeper"
 	desc = "A fancy bed with built-in injectors, a dialysis machine, and a limited health scanner."
-	icon = 'icons/obj/Cryogenic2.dmi'
+	icon = 'icons/obj/Cryogenic2_vr.dmi' //VOREStation Edit - Better icons
 	icon_state = "sleeper_0"
 	density = 1
 	anchored = 1

@@ -68,8 +68,20 @@
 /area/proc/firedoors_update()
 	if(fire || party || atmosalm)
 		firedoors_close()
+		// VOREStation Edit - Make the lights colored!
+		if(fire)
+			for(var/obj/machinery/light/L in src)
+				L.set_alert_fire()
+		else if(atmosalm)
+			for(var/obj/machinery/light/L in src)
+				L.set_alert_atmos()
+		// VOREStation Edit End
 	else
 		firedoors_open()
+		// VOREStation Edit - Put the lights back!
+		for(var/obj/machinery/light/L in src)
+			L.reset_alert()
+		// VOREStation Edit End
 
 // Close all firedoors in the area
 /area/proc/firedoors_close()
@@ -137,7 +149,7 @@
 /area/proc/updateicon()
 	if ((fire || eject || party) && (!requires_power||power_environ) && !istype(src, /area/space))//If it doesn't require power, can still activate this proc.
 		if(fire && !eject && !party)
-			icon_state = "blue"
+			icon_state = null // Let lights take care of it
 		/*else if(atmosalm && !fire && !eject && !party)
 			icon_state = "bluenew"*/
 		else if(!fire && eject && !party)

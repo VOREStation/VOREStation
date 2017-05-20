@@ -43,8 +43,8 @@
 		new /obj/item/device/radio/headset/heads/hop/alt(src)
 		new /obj/item/weapon/storage/box/ids(src)
 		new /obj/item/weapon/storage/box/ids( src )
-		new /obj/item/weapon/gun/energy/gun(src)
-		new /obj/item/weapon/gun/projectile/sec/flash(src)
+		new /obj/item/weapon/gun/energy/gun/martin(src) //VOREStation Edit
+		//new /obj/item/weapon/gun/projectile/sec/flash(src) //VOREStation Edit
 		new /obj/item/device/flash(src)
 		return
 
@@ -83,7 +83,7 @@
 
 
 /obj/structure/closet/secure_closet/hos
-	name = "head of security's locker"
+	name = "head of security's attire" //VOREStation Edit
 	req_access = list(access_hos)
 	icon_state = "hossecure1"
 	icon_closed = "hossecure"
@@ -92,7 +92,7 @@
 	icon_broken = "hossecurebroken"
 	icon_off = "hossecureoff"
 	storage_capacity = 2.5 * MOB_MEDIUM
-
+	//VOREStation Edit - This list split into two lockers
 	New()
 		..()
 		if(prob(50))
@@ -108,32 +108,49 @@
 		new /obj/item/clothing/suit/storage/vest/hoscoat/jensen(src)
 		new /obj/item/clothing/suit/storage/vest/hoscoat(src)
 		new /obj/item/clothing/head/helmet/HoS/dermal(src)
-		new /obj/item/weapon/cartridge/hos(src)
 		new /obj/item/device/radio/headset/heads/hos(src)
 		new /obj/item/device/radio/headset/heads/hos/alt(src)
 		new /obj/item/clothing/glasses/sunglasses/sechud(src)
+		new /obj/item/weapon/storage/belt/security(src)
+		new /obj/item/clothing/accessory/holster/waist(src)
+		new /obj/item/clothing/head/beret/sec/corporate/hos(src)
+		new /obj/item/clothing/suit/storage/hooded/wintercoat/security(src)
+		new /obj/item/clothing/mask/gas/half(src)
+		return
+
+//VOREStation Edit - Locker has too much junk in it, splitting it up
+/obj/structure/closet/secure_closet/hos2
+	name = "head of security's gear"
+	req_access = list(access_hos)
+	icon_state = "hossecure1"
+	icon_closed = "hossecure"
+	icon_locked = "hossecure1"
+	icon_opened = "hossecureopen"
+	icon_broken = "hossecurebroken"
+	icon_off = "hossecureoff"
+	storage_capacity = 2.5 * MOB_MEDIUM
+
+	New()
+		..()
+		new /obj/item/weapon/cartridge/hos(src)
 		new /obj/item/taperoll/police(src)
-		new /obj/item/weapon/shield/riot(src)
 		new /obj/item/weapon/shield/riot/tele(src)
 		new /obj/item/weapon/storage/box/holobadge/hos(src)
 		new /obj/item/clothing/accessory/badge/holo/hos(src)
 		new /obj/item/weapon/reagent_containers/spray/pepper(src)
 		new /obj/item/weapon/crowbar/red(src)
 		new /obj/item/weapon/storage/box/flashbangs(src)
-		new /obj/item/weapon/storage/belt/security(src)
 		new /obj/item/device/flash(src)
 		new /obj/item/weapon/melee/baton/loaded(src)
+		new /obj/item/weapon/gun/projectile/lamia(src)
+		new /obj/item/ammo_magazine/a44/rubber(src)
+		new /obj/item/ammo_magazine/a44(src)
+		new /obj/item/ammo_magazine/a44(src)
 		new /obj/item/weapon/gun/energy/gun(src)
 		new /obj/item/weapon/cell/device/weapon(src)
-		new /obj/item/clothing/accessory/holster/waist(src)
 		new /obj/item/weapon/melee/telebaton(src)
-		new /obj/item/clothing/head/beret/sec/corporate/hos(src)
-		new /obj/item/clothing/suit/storage/hooded/wintercoat/security(src)
 		new /obj/item/device/flashlight/maglight(src)
-		new /obj/item/clothing/mask/gas/half(src)
 		return
-
-
 
 /obj/structure/closet/secure_closet/warden
 	name = "warden's locker"
@@ -277,10 +294,10 @@
 		new /obj/item/device/radio/headset/headset_sec(src)
 		new /obj/item/device/radio/headset/headset_sec/alt(src)
 		new /obj/item/clothing/suit/storage/vest/detective(src)
-		new /obj/item/ammo_magazine/c45m/rubber(src)
-		new /obj/item/ammo_magazine/c45m/rubber(src)
+		new /obj/item/ammo_magazine/a44sl/rubber(src) //VOREStation Edit
+		new /obj/item/ammo_magazine/a44sl/rubber(src) //VOREStation Edit
 		new /obj/item/taperoll/police(src)
-		new /obj/item/weapon/gun/projectile/colt/detective(src)
+		new /obj/item/weapon/gun/projectile/revolver/consul(src) //VOREStation Edit
 		new /obj/item/clothing/accessory/holster/armpit(src)
 		new /obj/item/device/flashlight/maglight(src)
 		new /obj/item/weapon/reagent_containers/food/drinks/flask/detflask(src)
