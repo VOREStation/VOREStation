@@ -143,7 +143,7 @@
 	on_store_name = "Travel Oversight"
 	on_enter_occupant_message = "The tram arrives at the platform; you step inside and take a seat."
 	on_store_visible_message_1 = "'s speakers chime, anouncing a tram has arrived to take"
-	on_store_visible_message_2 = "to the colony."
+	on_store_visible_message_2 = "to the colony"
 	time_till_despawn = 10 SECONDS
 	spawnpoint_type = /datum/spawnpoint/tram
 
@@ -168,6 +168,7 @@
 
 	var/choice = alert("Do you want to depart via the tram? Your character will leave the round.","Departure","Yes","No")
 	if(choice == "Yes")
+		user.ghostize()
 		despawn_occupant(user)
 
 // Tram arrival point landmarks and datum
