@@ -11,7 +11,7 @@
 	//brute_mod = 1.15
 	//burn_mod =  1.15
 	//gluttonous = 1
-	num_alternate_languages = 2
+	num_alternate_languages = 3
 	secondary_langs = list("Sagaru")
 	name_language = "Sagaru"
 	color_mult = 1
@@ -57,7 +57,7 @@
 	//brute_mod = 1.15
 	//burn_mod =  1.15
 	//gluttonous = 1
-	num_alternate_languages = 2
+	num_alternate_languages = 3
 	secondary_langs = list(LANGUAGE_SKRELLIAN)
 	name_language = LANGUAGE_SKRELLIAN
 	color_mult = 1
@@ -100,7 +100,7 @@
 	//brute_mod = 1.15
 	//burn_mod =  1.15
 	//gluttonous = 1
-	num_alternate_languages = 2
+	num_alternate_languages = 3
 	secondary_langs = list("Birdsong")
 	name_language = "Birdsong"
 	color_mult = 1
@@ -138,9 +138,9 @@
 	tail = "tail"
 	icobase_tail = 1
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
-	num_alternate_languages = 2
-	secondary_langs = list("Siik'tajr")
-	name_language = "Siik'tajr"
+	num_alternate_languages = 3
+	secondary_langs = list("Siik")
+	name_language = "Siik"
 
 	min_age = 18
 	max_age = 80
@@ -183,9 +183,9 @@
 	tail = "tail"
 	icobase_tail = 1
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
-	num_alternate_languages = 2
-	secondary_langs = list("Siik'tajr")
-	name_language = "Siik'tajr"
+	num_alternate_languages = 3
+	secondary_langs = list("Siik")
+	name_language = "Siik"
 
 	min_age = 18
 	max_age = 80
@@ -236,7 +236,7 @@
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	darksight = 5 //worse than cats, but better than lizards. -- Poojawa
 //	gluttonous = 1
-	num_alternate_languages = 2
+	num_alternate_languages = 3
 	color_mult = 1
 
 	blurb = "Vulpkanin are a species of sharp-witted canine-pideds residing on the planet Altam just barely within the \
