@@ -1,8 +1,7 @@
 /obj/item/clothing/mask/gas
 	name = "gas mask"
 	desc = "A face-covering mask that can be connected to an air supply. Filters harmful gases from the air."
-	icon = 'icons/obj/clothing/masks_vr.dmi'
-	icon_override = 'icons/mob/mask_vr.dmi' //VOREStation Edit - Better gas mask
+	//icon = 'icons/obj/clothing/masks_vr.dmi'
 	icon_state = "gas_alt"
 	item_flags = BLOCK_GAS_SMOKE_EFFECT | AIRTIGHT
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE
