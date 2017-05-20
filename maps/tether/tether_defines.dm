@@ -57,7 +57,12 @@
 		Z_LEVEL_SOLARS
 		)
 
-	admin_levels = list(Z_LEVEL_CENTCOM)
+	admin_levels = list(
+		Z_LEVEL_CENTCOM,
+		Z_LEVEL_MISC,
+		Z_LEVEL_SHIPS
+		)
+
 	contact_levels = list(
 		Z_LEVEL_SURFACE_LOW,
 		Z_LEVEL_SURFACE_MID,
@@ -78,6 +83,7 @@
 		Z_LEVEL_SPACE_HIGH,
 		Z_LEVEL_SURFACE_MINE,
 		Z_LEVEL_SOLARS,
+		Z_LEVEL_EMPTY_SURFACE,
 		Z_LEVEL_EMPTY_SPACE
 		)
 

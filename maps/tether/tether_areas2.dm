@@ -17,6 +17,9 @@
 /area/tether/surfacebase/outside/outside3
 	icon_state = "outside3"
 
+/area/tether/surfacebase/outside/empty
+	name = "Outside - Empty Area"
+
 /area/tether/surfacebase/tram
 	name = "\improper Tram Station"
 	icon_state = "dk_yellow"
