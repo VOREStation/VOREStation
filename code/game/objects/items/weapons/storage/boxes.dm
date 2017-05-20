@@ -54,7 +54,7 @@
 
 /obj/item/weapon/storage/box/survival/New()
 	..()
-	new /obj/item/clothing/mask/breath(src)
+	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/weapon/tank/emergency/oxygen(src)
 
 //VS Edit
