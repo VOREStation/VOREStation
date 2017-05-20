@@ -20,7 +20,12 @@
 	var/turf/T = get_turf(nano_host())
 
 	data["isAI"] = isAI(user)
-	data["crewmembers"] = crew_repository.health_data(T)
+
+	data["station_levels"] = get_z_levels(T)
+	var/list/crewmembers = list()
+	for(var/z in data["station_levels"])
+		crewmembers += crew_repository.health_data(z)
+	data["crewmembers"] = crewmembers
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
@@ -30,12 +35,17 @@
 		ui.add_template("mapContent", "crew_monitor_map_content.tmpl")
 		// adding a template with the key "mapHeader" replaces the map header content
 		ui.add_template("mapHeader", "crew_monitor_map_header.tmpl")
+		if(!(ui.map_z_level in data["station_levels"]))
+			ui.set_map_z_level(data["station_levels"][1])
 
 		ui.set_initial_data(data)
 		ui.open()
 
 		// should make the UI auto-update; doesn't seem to?
 		ui.set_auto_update(1)
+
+/datum/nano_module/crew_monitor/proc/get_z_levels(var/turf/T)
+	return list(T.z)
 
 /*/datum/nano_module/crew_monitor/proc/scan()
 	for(var/mob/living/carbon/human/H in mob_list)

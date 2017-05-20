@@ -7,12 +7,12 @@ var/global/datum/repository/crew/crew_repository = new()
 	cache_data = list()
 	..()
 
-/datum/repository/crew/proc/health_data(var/turf/T)
+/datum/repository/crew/proc/health_data(var/zLevel)
 	var/list/crewmembers = list()
-	if(!T)
+	if(!zLevel)
 		return crewmembers
 
-	var/z_level = "[T.z]"
+	var/z_level = "[zLevel]"
 	var/datum/cache_entry/cache_entry = cache_data[z_level]
 	if(!cache_entry)
 		cache_entry = new/datum/cache_entry
@@ -24,7 +24,7 @@ var/global/datum/repository/crew/crew_repository = new()
 	var/tracked = scan()
 	for(var/obj/item/clothing/under/C in tracked)
 		var/turf/pos = get_turf(C)
-		if((C) && (C.has_sensor) && (pos) && (T && pos.z == T.z) && (C.sensor_mode != SUIT_SENSOR_OFF))
+		if((C) && (C.has_sensor) && (pos) && (pos.z == zLevel) && (C.sensor_mode != SUIT_SENSOR_OFF))
 			if(istype(C.loc, /mob/living/carbon/human))
 				var/mob/living/carbon/human/H = C.loc
 				if(H.w_uniform != C)
@@ -51,6 +51,7 @@ var/global/datum/repository/crew/crew_repository = new()
 					crewmemberData["area"] = sanitize(A.name)
 					crewmemberData["x"] = pos.x
 					crewmemberData["y"] = pos.y
+					crewmemberData["z"] = pos.z
 
 				crewmembers[++crewmembers.len] = crewmemberData
 

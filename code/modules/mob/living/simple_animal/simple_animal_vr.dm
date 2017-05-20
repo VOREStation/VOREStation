@@ -28,6 +28,7 @@
 	..()
 	if(vore_active)
 		init_belly()
+	verbs |= /mob/living/proc/animal_nom
 
 // Release belly contents beforey being gc'd!
 /mob/living/simple_animal/Destroy()
@@ -36,6 +37,11 @@
 		B.release_all_contents() // When your stomach is empty
 	..()
 
+//For all those ID-having mobs
+/mob/living/simple_animal/GetIdCard()
+	if(myid)
+		return myid
+	
 // Update fullness based on size & quantity of belly contents
 /mob/living/simple_animal/proc/update_fullness()
 	var/new_fullness = 0

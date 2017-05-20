@@ -12,3 +12,23 @@
 	name = "speedloader (.357 rubber)"
 	path =/obj/item/ammo_magazine/a357/rubber
 	hidden = 1
+
+/datum/category_item/autolathe/arms/speedloader_44
+	name = "speedloader (.44)"
+	path =/obj/item/ammo_magazine/a44sl
+	hidden = 1
+
+/datum/category_item/autolathe/arms/speedloader_44_rubber
+	name = "speedloader (.44 rubber)"
+	path =/obj/item/ammo_magazine/a44sl/rubber
+	hidden = 1
+
+/datum/category_item/autolathe/arms/mag_44
+	name = "magazine (.44)"
+	path =/obj/item/ammo_magazine/a44
+	hidden = 1
+
+/datum/category_item/autolathe/arms/mag_44_rubber
+	name = "magazine (.44 rubber)"
+	path =/obj/item/ammo_magazine/a44/rubber
+	hidden = 1

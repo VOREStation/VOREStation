@@ -87,6 +87,12 @@ Class Procs:
 
 /datum/controller/air_system/var/next_id = 1 //Used to keep track of zone UIDs.
 
+
+#if UNIT_TEST
+#define CHECK_SLEEP_ZAS_SETUP // For unit tests we don't care about a smooth lobby screen experience. We care about speed.
+#else
+#define CHECK_SLEEP_ZAS_SETUP if(++done_turfs > 10000) { done_turfs=0;sleep(world.tick_lag); }
+#endif
 /datum/controller/air_system/proc/Setup()
 	//Purpose: Call this at the start to setup air groups geometry
 	//    (Warning: Very processor intensive but only must be done once per round)
@@ -94,6 +100,9 @@ Class Procs:
 	//Inputs: None.
 	//Outputs: None.
 
+	#if !UNIT_TEST
+	var/done_turfs = 0
+	#endif
 	#ifndef ZASDBG
 	set background = 1
 	#endif
@@ -108,6 +117,7 @@ Class Procs:
 	for(var/turf/simulated/S in world)
 		simulated_turf_count++
 		S.update_air_properties()
+		CHECK_SLEEP_ZAS_SETUP
 
 	admin_notice({"<span class='danger'>Geometry initialized in [round(0.1*(world.timeofday-start_time),0.1)] seconds.</span>
 <span class='info'>

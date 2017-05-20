@@ -145,49 +145,89 @@
 
 /area/houseboat/bridge
 	name = "Houseboat - Bridge"
-	icon_state = "red"
+	icon_state = "blue2"
 /area/houseboat/neck
 	name = "Houseboat - Neck"
-	icon_state = "blue"
+	icon_state = "blue2"
 /area/houseboat/cap_room
 	name = "Houseboat - Captain's Room"
 	icon_state = "blue2"
-/area/houseboat/guest_room
-	name = "Houseboat - Guest Room"
-	icon_state = "blue"
-/area/houseboat/office
-	name = "Houseboat - Office"
-	icon_state = "red2"
 /area/houseboat/teleporter
 	name = "Houseboat - Teleporter"
-	icon_state = "blue"
+	icon_state = "blue2"
 /area/houseboat/robotics
 	name = "Houseboat - Robotics"
-	icon_state = "red2"
+	icon_state = "blue2"
 /area/houseboat/cargo
 	name = "Houseboat - Cargo"
 	icon_state = "blue2"
 /area/houseboat/medical
 	name = "Houseboat - Medical"
-	icon_state = "red"
+	icon_state = "blue2"
 /area/houseboat/engineering
 	name = "Houseboat - Engineering"
-	icon_state = "red2"
+	icon_state = "blue2"
 /area/houseboat/shower
 	name = "Houseboat - Shower"
 	icon_state = "blue2"
-/area/houseboat/toilet
-	name = "Houseboat - Toilet"
-	icon_state = "red2"
-/area/houseboat/docking
-	name = "Houseboat - Docking"
-	icon_state = "blue2"
-/area/houseboat/airlock
-	name = "Houseboat - Airlock"
-	icon_state = "red"
 /area/houseboat/common_area
 	name = "Houseboat - Common Area"
 	icon_state = "blue2"
 /area/houseboat/dining_area
 	name = "Houseboat - Dining Area"
-	icon_state = "red"
+	icon_state = "blue2"
+/area/houseboat/holodeck_area
+	name = "Houseboat - Holodeck"
+	icon_state = "blue2"
+/area/houseboat/lockers
+	name = "Houseboat - Locker Room"
+	icon_state = "blue2"
+/area/houseboat/fountain
+	name = "Houseboat - Fountain"
+	icon_state = "blue2"
+
+/area/houseboat/holodeck/off
+	name = "Houseboat Holo - Off"
+	icon_state = "blue2"
+/area/houseboat/holodeck/beach
+	name = "Houseboat Holo - Beach"
+	icon_state = "blue2"
+/area/houseboat/holodeck/snow
+	name = "Houseboat Holo - Snow"
+	icon_state = "blue2"
+/area/houseboat/holodeck/desert
+	name = "Houseboat Holo - Desert"
+	icon_state = "blue2"
+/area/houseboat/holodeck/picnic
+	name = "Houseboat Holo - Picnic"
+	icon_state = "blue2"
+/area/houseboat/holodeck/thunderdome
+	name = "Houseboat Holo - Thunderdome"
+	icon_state = "blue2"
+/area/houseboat/holodeck/basketball
+	name = "Houseboat Holo - Basketball"
+	icon_state = "blue2"
+/area/houseboat/holodeck/gaming
+	name = "Houseboat Holo - Gaming Table"
+	icon_state = "blue2"
+/area/houseboat/holodeck/space
+	name = "Houseboat Holo - Space"
+	icon_state = "blue2"
+/area/houseboat/holodeck/bunking
+	name = "Houseboat Holo - Bunking"
+	icon_state = "blue2"
+
+
+// Tether Map has this shuttle
+/area/shuttle/tether/surface
+	name = "Tether Shuttle Landed"
+	icon_state = "shuttle"
+	base_turf = /turf/simulated/floor/reinforced
+
+/area/shuttle/tether/station
+	name = "Tether Shuttle Dock"
+	icon_state = "shuttle2"
+
+/area/shuttle/tether/transit
+	name = "Tether Shuttle Transit"
+	icon_state = "shuttle2"

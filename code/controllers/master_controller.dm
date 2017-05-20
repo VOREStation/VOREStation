@@ -38,34 +38,18 @@ datum/controller/game_controller/proc/setup()
 	SetupXenoarch()
 
 	transfer_controller = new
+	admin_notice("<span class='danger'>Initializations complete.</span>", R_DEBUG)
 
+#if UNIT_TEST
+#define CHECK_SLEEP_MASTER // For unit tests we don't care about a smooth lobby screen experience. We care about speed.
+#else
+#define CHECK_SLEEP_MASTER if(++initialized_objects > 500) { initialized_objects=0;sleep(world.tick_lag); }
+#endif
 
 datum/controller/game_controller/proc/setup_objects()
-	admin_notice("<span class='danger'>Initializing objects</span>", R_DEBUG)
-	sleep(-1)
-	for(var/atom/movable/object in world)
-		if(isnull(object.gcDestroyed))
-			object.initialize()
-
-	admin_notice("<span class='danger'>Initializing areas</span>", R_DEBUG)
-	sleep(-1)
-	for(var/area/area in all_areas)
-		area.initialize()
-
-	admin_notice("<span class='danger'>Initializing pipe networks</span>", R_DEBUG)
-	sleep(-1)
-	for(var/obj/machinery/atmospherics/machine in machines)
-		machine.build_network()
-
-	admin_notice("<span class='danger'>Initializing atmos machinery.</span>", R_DEBUG)
-	sleep(-1)
-	for(var/obj/machinery/atmospherics/unary/U in machines)
-		if(istype(U, /obj/machinery/atmospherics/unary/vent_pump))
-			var/obj/machinery/atmospherics/unary/vent_pump/T = U
-			T.broadcast_status()
-		else if(istype(U, /obj/machinery/atmospherics/unary/vent_scrubber))
-			var/obj/machinery/atmospherics/unary/vent_scrubber/T = U
-			T.broadcast_status()
+	#if !UNIT_TEST
+	var/initialized_objects = 0
+	#endif
 
 	// Set up antagonists.
 	populate_antag_type_list()
@@ -73,12 +57,50 @@ datum/controller/game_controller/proc/setup_objects()
 	//Set up spawn points.
 	populate_spawn_points()
 
+	admin_notice("<span class='danger'>Initializing Floor Decals</span>", R_DEBUG)
+	var/list/turfs_with_decals = list()
+	for(var/obj/effect/floor_decal/D in world)
+		var/T = D.add_to_turf_decals()
+		if(T) turfs_with_decals |= T
+		CHECK_SLEEP_MASTER
+	for(var/item in turfs_with_decals)
+		var/turf/T = item
+		if(T.decals) T.apply_decals()
+		CHECK_SLEEP_MASTER
+	floor_decals_initialized = TRUE
+	sleep(1)
+
+	admin_notice("<span class='danger'>Initializing objects</span>", R_DEBUG)
+	for(var/obj/object in world)
+		if(isnull(object.gcDestroyed))
+			object.initialize()
+			CHECK_SLEEP_MASTER
+	sleep(1)
+
+	admin_notice("<span class='danger'>Initializing areas</span>", R_DEBUG)
+	for(var/area/area in all_areas)
+		area.initialize()
+		CHECK_SLEEP_MASTER
+	sleep(1)
+
+	admin_notice("<span class='danger'>Initializing pipe networks</span>", R_DEBUG)
+	for(var/obj/machinery/atmospherics/machine in machines)
+		machine.build_network()
+		CHECK_SLEEP_MASTER
+
+	admin_notice("<span class='danger'>Initializing atmos machinery.</span>", R_DEBUG)
+	for(var/obj/machinery/atmospherics/unary/U in machines)
+		if(istype(U, /obj/machinery/atmospherics/unary/vent_pump))
+			var/obj/machinery/atmospherics/unary/vent_pump/T = U
+			T.broadcast_status()
+		else if(istype(U, /obj/machinery/atmospherics/unary/vent_scrubber))
+			var/obj/machinery/atmospherics/unary/vent_scrubber/T = U
+			T.broadcast_status()
+		CHECK_SLEEP_MASTER
+
 	admin_notice("<span class='danger'>Initializing turbolifts</span>", R_DEBUG)
 	for(var/thing in turbolifts)
 		if(!deleted(thing))
 			var/obj/turbolift_map_holder/lift = thing
 			lift.initialize()
-			sleep(-1)
-
-	admin_notice("<span class='danger'>Initializations complete.</span>", R_DEBUG)
-	sleep(-1)
+			CHECK_SLEEP_MASTER

@@ -1,7 +1,7 @@
 /obj/item/weapon/camera_assembly
 	name = "camera assembly"
 	desc = "A pre-fabricated security camera kit, ready to be assembled and mounted to a surface."
-	icon = 'icons/obj/monitors.dmi'
+	icon = 'icons/obj/monitors_vr.dmi' //VOREStation Edit - New Icons
 	icon_state = "cameracase"
 	w_class = ITEMSIZE_SMALL
 	anchored = 0

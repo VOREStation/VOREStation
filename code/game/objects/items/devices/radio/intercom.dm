@@ -1,6 +1,7 @@
 /obj/item/device/radio/intercom
 	name = "station intercom (General)"
 	desc = "Talk through this."
+	icon = 'icons/obj/radio_vr.dmi' //VOREStation Edit - New Icon
 	icon_state = "intercom"
 	anchored = 1
 	w_class = ITEMSIZE_LARGE

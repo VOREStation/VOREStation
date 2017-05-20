@@ -38,6 +38,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
  *	re-evaluate.
  */
 /mob/living/update_icons()
+	. = ..()
 	ASSERT(!ishuman(src))
 	var/matrix/M = matrix()
 	M.Scale(size_multiplier)

@@ -1,3 +1,11 @@
+//VOREStation Edit - Redone a lot of airlock things:
+/*
+- Specific department maintenance doors
+- Named doors properly according to type
+- Gave them default access levels with the access constants
+- Improper'd all of the names in the new()
+*/
+
 /obj/machinery/door/airlock
 	name = "Airlock"
 	icon = 'icons/obj/doors/Doorint.dmi'
@@ -63,34 +71,70 @@
 	return get_material_by_name(DEFAULT_WALL_MATERIAL)
 
 /obj/machinery/door/airlock/command
-	name = "Airlock"
+	name = "Command Airlock"
 	icon = 'icons/obj/doors/Doorcom.dmi'
+	req_one_access = list(access_heads)
 	assembly_type = /obj/structure/door_assembly/door_assembly_com
 
 /obj/machinery/door/airlock/security
-	name = "Airlock"
+	name = "Security Airlock"
 	icon = 'icons/obj/doors/Doorsec.dmi'
+	req_one_access = list(access_security)
 	assembly_type = /obj/structure/door_assembly/door_assembly_sec
 
 /obj/machinery/door/airlock/engineering
-	name = "Airlock"
+	name = "Engineering Airlock"
 	icon = 'icons/obj/doors/Dooreng.dmi'
+	req_one_access = list(access_engine)
 	assembly_type = /obj/structure/door_assembly/door_assembly_eng
 
 /obj/machinery/door/airlock/engineeringatmos
-	name = "Airlock"
+	name = "Atmospherics Airlock"
 	icon = 'icons/obj/doors/Doorengatmos.dmi'
+	req_one_access = list(access_atmospherics)
 	assembly_type = /obj/structure/door_assembly/door_assembly_eat
 
 /obj/machinery/door/airlock/medical
-	name = "Airlock"
+	name = "Medical Airlock"
 	icon = 'icons/obj/doors/Doormed.dmi'
+	req_one_access = list(access_medical)
 	assembly_type = /obj/structure/door_assembly/door_assembly_med
 
 /obj/machinery/door/airlock/maintenance
 	name = "Maintenance Access"
 	icon = 'icons/obj/doors/Doormaint.dmi'
+	req_one_access = list(access_maint_tunnels)
 	assembly_type = /obj/structure/door_assembly/door_assembly_mai
+
+/obj/machinery/door/airlock/maintenance/cargo
+	icon = 'icons/obj/doors/Doormaint_cargo.dmi'
+	req_one_access = list(access_cargo)
+
+/obj/machinery/door/airlock/maintenance/command
+	icon = 'icons/obj/doors/Doormaint_command.dmi'
+	req_one_access = list(access_heads)
+
+/obj/machinery/door/airlock/maintenance/common
+	icon = 'icons/obj/doors/Doormaint_common.dmi'
+
+/obj/machinery/door/airlock/maintenance/engi
+	icon = 'icons/obj/doors/Doormaint_engi.dmi'
+	req_one_access = list(access_engine)
+
+/obj/machinery/door/airlock/maintenance/int
+	icon = 'icons/obj/doors/Doormaint_int.dmi'
+
+/obj/machinery/door/airlock/maintenance/medical
+	icon = 'icons/obj/doors/Doormaint_med.dmi'
+	req_one_access = list(access_medical)
+
+/obj/machinery/door/airlock/maintenance/rnd
+	icon = 'icons/obj/doors/Doormaint_rnd.dmi'
+	req_one_access = list(access_research)
+
+/obj/machinery/door/airlock/maintenance/sec
+	icon = 'icons/obj/doors/Doormaint_sec.dmi'
+	req_one_access = list(access_security)
 
 /obj/machinery/door/airlock/external
 	name = "External Airlock"
@@ -98,6 +142,7 @@
 	assembly_type = /obj/structure/door_assembly/door_assembly_ext
 	opacity = 0
 	glass = 1
+	req_one_access = list(access_external_airlocks)
 
 /obj/machinery/door/airlock/glass
 	name = "Glass Airlock"
@@ -110,9 +155,10 @@
 	glass = 1
 
 /obj/machinery/door/airlock/centcom
-	name = "Airlock"
+	name = "Centcom Airlock"
 	icon = 'icons/obj/doors/Doorele.dmi'
-	opacity = 0
+	//opacity = 0 //VOREStation Edit - Why is this like this??
+	req_one_access = list(access_cent_general)
 
 /obj/machinery/door/airlock/vault
 	name = "Vault"
@@ -121,6 +167,7 @@
 	opacity = 1
 	secured_wires = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_highsecurity //Until somebody makes better sprites.
+	req_one_access = list(access_heads_vault)
 
 /obj/machinery/door/airlock/vault/bolted
 	icon_state = "door_locked"
@@ -138,6 +185,7 @@
 	explosion_resistance = 20
 	opacity = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_hatch
+	req_one_access = list(access_maint_tunnels)
 
 /obj/machinery/door/airlock/maintenance_hatch
 	name = "Maintenance Hatch"
@@ -145,9 +193,10 @@
 	explosion_resistance = 20
 	opacity = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_mhatch
+	req_one_access = list(access_maint_tunnels)
 
 /obj/machinery/door/airlock/glass_command
-	name = "Maintenance Hatch"
+	name = "Command Airlock"
 	icon = 'icons/obj/doors/Doorcomglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxhealth = 300
@@ -155,9 +204,10 @@
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_com
 	glass = 1
+	req_one_access = list(access_heads)
 
 /obj/machinery/door/airlock/glass_engineering
-	name = "Maintenance Hatch"
+	name = "Engineering Airlock"
 	icon = 'icons/obj/doors/Doorengglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxhealth = 300
@@ -165,9 +215,10 @@
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_eng
 	glass = 1
+	req_one_access = list(access_engine)
 
 /obj/machinery/door/airlock/glass_engineeringatmos
-	name = "Maintenance Hatch"
+	name = "Atmospherics Airlock"
 	icon = 'icons/obj/doors/Doorengatmoglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxhealth = 300
@@ -175,9 +226,10 @@
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_eat
 	glass = 1
+	req_one_access = list(access_atmospherics)
 
 /obj/machinery/door/airlock/glass_security
-	name = "Maintenance Hatch"
+	name = "Security Airlock"
 	icon = 'icons/obj/doors/Doorsecglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxhealth = 300
@@ -185,9 +237,10 @@
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_sec
 	glass = 1
+	req_one_access = list(access_security)
 
 /obj/machinery/door/airlock/glass_medical
-	name = "Maintenance Hatch"
+	name = "Medical Airlock"
 	icon = 'icons/obj/doors/Doormedglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxhealth = 300
@@ -195,24 +248,27 @@
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_med
 	glass = 1
+	req_one_access = list(access_medical)
 
 /obj/machinery/door/airlock/mining
 	name = "Mining Airlock"
 	icon = 'icons/obj/doors/Doormining.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_min
+	req_one_access = list(access_mining)
 
 /obj/machinery/door/airlock/atmos
 	name = "Atmospherics Airlock"
 	icon = 'icons/obj/doors/Dooratmo.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_atmo
+	req_one_access = list(access_atmospherics)
 
 /obj/machinery/door/airlock/research
-	name = "Airlock"
+	name = "Research Airlock"
 	icon = 'icons/obj/doors/Doorresearch.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_research
 
 /obj/machinery/door/airlock/glass_research
-	name = "Maintenance Hatch"
+	name = "Research Airlock"
 	icon = 'icons/obj/doors/Doorresearchglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxhealth = 300
@@ -220,10 +276,10 @@
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_research
 	glass = 1
-	heat_proof = 1
+	req_one_access = list(access_research)
 
 /obj/machinery/door/airlock/glass_mining
-	name = "Maintenance Hatch"
+	name = "Mining Airlock"
 	icon = 'icons/obj/doors/Doorminingglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxhealth = 300
@@ -231,9 +287,10 @@
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_min
 	glass = 1
+	req_one_access = list(access_mining)
 
 /obj/machinery/door/airlock/glass_atmos
-	name = "Maintenance Hatch"
+	name = "Atmospherics Airlock"
 	icon = 'icons/obj/doors/Dooratmoglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxhealth = 300
@@ -241,6 +298,7 @@
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_atmo
 	glass = 1
+	req_one_access = list(access_atmospherics)
 
 /obj/machinery/door/airlock/gold
 	name = "Gold Airlock"
@@ -320,9 +378,10 @@
 	mineral = "sandstone"
 
 /obj/machinery/door/airlock/science
-	name = "Airlock"
+	name = "Research Airlock"
 	icon = 'icons/obj/doors/Doorsci.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_science
+	req_one_access = list(access_research)
 
 /obj/machinery/door/airlock/glass_science
 	name = "Glass Airlocks"
@@ -330,6 +389,7 @@
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_science
 	glass = 1
+	req_one_access = list(access_research)
 
 /obj/machinery/door/airlock/highsecurity
 	name = "Secure Airlock"
@@ -337,6 +397,7 @@
 	explosion_resistance = 20
 	secured_wires = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_highsecurity
+	req_one_access = list(access_heads_vault)
 
 /obj/machinery/door/airlock/voidcraft
 	name = "voidcraft hatch"
@@ -1076,6 +1137,7 @@ About the new airlock wires panel:
 			if(A.closeOtherId == src.closeOtherId && A != src)
 				src.closeOther = A
 				break
+	name = "\improper [name]"
 
 /obj/machinery/door/airlock/Destroy()
 	qdel(wires)

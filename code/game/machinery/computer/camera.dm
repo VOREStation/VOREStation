@@ -35,7 +35,6 @@
 	return viewflag
 
 /obj/machinery/computer/security/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
-	if(src.z > 6) return
 	if(stat & (NOPOWER|BROKEN)) return
 	if(user.stat) return
 
@@ -48,6 +47,7 @@
 		data["cameras"] = camera_repository.cameras_in_network(current_network)
 	if(current_camera)
 		switch_to_camera(user, current_camera)
+	data["station_levels"] = using_map.station_levels
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
