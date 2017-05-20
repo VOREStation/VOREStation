@@ -43,7 +43,7 @@
 "aQ" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/virgo3b,/area/tether/outpost/solars_outside)
 "aR" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/power/solar_control,/obj/structure/cable/yellow{d2 = 4; icon_state = "0-4"},/obj/structure/cable/yellow{d2 = 4; icon_state = "0-4"},/obj/structure/cable/yellow{d2 = 4; icon_state = "0-4"},/obj/structure/cable/yellow,/turf/simulated/floor/virgo3b_indoors,/area/tether/outpost/solars_shed)
 "aS" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/power/apc{dir = 2; name = "south bump"; pixel_y = -28},/obj/structure/cable/yellow{d2 = 8; icon_state = "0-8"},/turf/simulated/floor/virgo3b_indoors,/area/tether/outpost/solars_shed)
-"aT" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/camera/network/engineering{c_tag = "ENG - Solar Fore Starboard"; dir = 1},/turf/simulated/floor/virgo3b_indoors,/area/tether/outpost/solars_shed)
+"aT" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/camera/network/engineering{dir = 1},/turf/simulated/floor/virgo3b_indoors,/area/tether/outpost/solars_shed)
 "aU" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/power/terminal{icon_state = "term"; dir = 1},/obj/structure/cable/yellow{d2 = 8; icon_state = "0-8"},/obj/structure/cable/yellow{d2 = 4; icon_state = "0-4"},/turf/simulated/floor/virgo3b_indoors,/area/tether/outpost/solars_shed)
 "aV" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/power/terminal{icon_state = "term"; dir = 1},/obj/structure/cable/yellow{d2 = 8; icon_state = "0-8"},/turf/simulated/floor/virgo3b_indoors,/area/tether/outpost/solars_shed)
 "aW" = (/obj/structure/cable/heavyduty{icon_state = "1-2"},/turf/simulated/floor/virgo3b,/area/tether/outpost/solars_outside)
