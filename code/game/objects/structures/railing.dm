@@ -299,7 +299,7 @@
 	if(get_turf(user) == get_turf(src))
 		var/obj/occupied = neighbor_turf_impassable()
 		if(occupied)
-			to_chat(user, "<span class='danger'>You can't climb there, there's \a [occupied] in the way.")
+			to_chat(user, "<span class='danger'>You can't climb there, there's \a [occupied] in the way.</span>")
 			return 0
 	return 1
 

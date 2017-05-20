@@ -95,7 +95,7 @@
 			below = LA
 
 	if(!above && !below)
-		to_chat(user, "<span class='notice'>\The [src] is ready to be connected to from above or below.")
+		to_chat(user, "<span class='notice'>\The [src] is ready to be connected to from above or below.</span>")
 		return
 
 	// Construct them from bottom to top, because they initialize from top to bottom.
