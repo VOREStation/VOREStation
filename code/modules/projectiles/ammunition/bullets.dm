@@ -257,6 +257,11 @@
 	icon_state = "rifle-casing" // Need to make an icon for these
 	projectile_type = /obj/item/projectile/bullet/rifle/practice
 
+/obj/item/ammo_casing/a556/blank
+	desc = "A blank 5.56mm bullet casing."
+	projectile_type = /obj/item/projectile/bullet/blank
+	matter = list(DEFAULT_WALL_MATERIAL = 90)
+
 /obj/item/ammo_casing/a556/hp
 	desc = "A 5.56mm hollow-point bullet casing."
 	projectile_type = /obj/item/projectile/bullet/rifle/a556/hollow
