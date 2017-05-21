@@ -22,7 +22,7 @@
 /obj/machinery/computer/cryopod/gateway
 	name = "teleport oversight console"
 	desc = "An interface between visitors and the teleport oversight systems tasked with keeping track of all visitors who enter or exit from the teleporters."
-
+/* VOREStation Edit
 /obj/machinery/cryopod/robot/door/dorms
 	desc = "A small elevator that goes down to the residential district."
 	on_enter_occupant_message = "The elevator door closes slowly, ready to bring you down to the residential district."
@@ -31,3 +31,4 @@
 /obj/machinery/computer/cryopod/dorms
 	name = "residential oversight console"
 	desc = "An interface between visitors and the residential oversight systems tasked with keeping track of all visitors in the residential district."
+*/

@@ -1,6 +1,7 @@
 /obj/machinery/computer/shuttle_control/tether_backup
 	name = "tether backup shuttle control console"
 	shuttle_tag = "Tether Backup"
+	req_one_access = list(access_heads)
 
 /obj/machinery/computer/shuttle_control/multi/tether_antag_ground
 	name = "land crawler control console"
