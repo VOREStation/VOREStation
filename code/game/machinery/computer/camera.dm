@@ -47,7 +47,7 @@
 		data["cameras"] = camera_repository.cameras_in_network(current_network)
 	if(current_camera)
 		switch_to_camera(user, current_camera)
-	data["station_levels"] = using_map.station_levels
+	data["map_levels"] = using_map.get_map_levels(src.z)
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
