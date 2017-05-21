@@ -164,6 +164,7 @@
 	icon = 'icons/vore/custom_guns_vr.dmi'
 	item_state = "model10"
 	icon_state = "model10"
+	fire_sound = 'sound/weapons/deagle.ogg'
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	ammo_type = /obj/item/ammo_casing/c38r //Rubber rounds.
 
@@ -879,7 +880,7 @@
 	mag_type = MAGAZINE
 
 /obj/item/ammo_casing/stg
-	desc = "A 7.92×33mm Kurz casing."
+	desc = "A 7.92Ã—33mm Kurz casing."
 	icon_state = "rifle-casing"
 	caliber = "kurz"
 	projectile_type = /obj/item/projectile/bullet/rifle/a762
