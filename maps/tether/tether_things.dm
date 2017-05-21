@@ -167,7 +167,7 @@
 	var/mob/living/carbon/human/user = AM
 
 	var/choice = alert("Do you want to depart via the tram? Your character will leave the round.","Departure","Yes","No")
-	if(choice == "Yes")
+	if(user && choice == "Yes")
 		user.ghostize()
 		despawn_occupant(user)
 
