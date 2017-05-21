@@ -200,7 +200,7 @@ item_path: /obj/item/weapon/gun/energy/netgun
 {
 ckey: hottokeeki
 character_name: Belle Day
-item_path: /obj/item/weapon/implant/reagent_generator/belle
+item_path: /obj/item/weapon/implanter/reagent_generator/belle
 }
 
 # ######## I CKEYS
