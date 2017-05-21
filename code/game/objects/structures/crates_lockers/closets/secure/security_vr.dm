@@ -17,7 +17,7 @@
 	icon = 'icons/obj/closet_vr.dmi'
 	icon_state = "secC1"
 	icon_closed = "secC"
-	icon_locked = "sec1C"
+	icon_locked = "secC1"
 	icon_opened = "secCopen"
 	icon_broken = "secCbroken"
 	icon_off = "seCcoff"
@@ -63,7 +63,7 @@
 	icon = 'icons/obj/closet_vr.dmi'
 	icon_state = "secC1"
 	icon_closed = "secC"
-	icon_locked = "sec1C"
+	icon_locked = "secC1"
 	icon_opened = "secCopen"
 	icon_broken = "secCbroken"
 	icon_off = "seCcoff"
@@ -116,7 +116,7 @@
 	icon = 'icons/obj/closet_vr.dmi'
 	icon_state = "secC1"
 	icon_closed = "secC"
-	icon_locked = "sec1C"
+	icon_locked = "secC1"
 	icon_opened = "secCopen"
 	icon_broken = "secCbroken"
 	icon_off = "seCcoff"
