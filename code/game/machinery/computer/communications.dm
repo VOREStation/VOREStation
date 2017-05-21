@@ -274,7 +274,7 @@
 /obj/machinery/computer/communications/attack_hand(var/mob/user as mob)
 	if(..())
 		return
-	if (src.z > 6)
+	if (using_map && !(src.z in using_map.station_levels))
 		user << "\red <b>Unable to establish a connection</b>: \black You're too far away from the station!"
 		return
 
