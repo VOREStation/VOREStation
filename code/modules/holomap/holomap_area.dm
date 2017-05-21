@@ -33,6 +33,8 @@
 
 /area/engineering
 	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
+/area/engineering/atmos/intake
+	holomap_color = null
 /area/maintenance/substation/engineering
 	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
 /area/storage/tech
