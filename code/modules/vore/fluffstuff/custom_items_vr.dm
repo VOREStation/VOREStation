@@ -690,7 +690,16 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 			user.verbs |= /mob/living/carbon/human/proc/shapeshifter_select_gender
 		else
 			return
+//LuminescentRing: Briana Moore
+/obj/item/weapon/storage/backpack/messenger/black/fluff/briana
+	name = "2561 graduation bag"
+	desc = "A black leather bag with names scattered around in red embroidery, it says 'Pride State Academy' on the top. "
 
+//DeepIndigo: Amina Dae-Kouri
+/obj/item/weapon/storage/bible/fluff/amina
+	name = "New Space Pioneer's Bible"
+	desc = "A New Space Pioneer's Bible. This one says it was printed in 2492. The name 'Eric Hayvers' is written on the inside of the cover, crossed out. \
+	Under it is written 'Kouri, Amina, Marine Unit 14, Fifth Echelon. Service number NTN-5528928522372'"
 
 //The perfect adminboos device?
 /obj/item/device/perfect_tele
