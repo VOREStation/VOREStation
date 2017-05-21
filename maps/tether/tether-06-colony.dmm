@@ -739,7 +739,7 @@
 "ok" = (/obj/machinery/door/blast/regular,/turf/unsimulated/floor/techfloor_grid,/area/centcom/terminal)
 "ol" = (/obj/structure/sign/warning{name = "\improper STAND AWAY FROM TRACK EDGE"},/turf/unsimulated/wall,/area/centcom/terminal)
 "om" = (/turf/unsimulated/wall,/area/centcom/terminal)
-"on" = (/obj/machinery/door/airlock/external{name = "Emergency Airlock"; req_one_access = newlist()},/turf/unsimulated/floor/steel,/area/centcom/terminal)
+"on" = (/obj/machinery/door/airlock/external{name = "Emergency Airlock"; req_access = list(101)},/turf/unsimulated/floor/steel,/area/centcom/terminal)
 "oo" = (/obj/machinery/door/airlock/multi_tile/glass{req_access = list(5)},/obj/machinery/door/firedoor/multi_tile,/turf/unsimulated/floor/steel{icon_state = "white"},/area/centcom/medical)
 "op" = (/obj/machinery/door/firedoor,/obj/machinery/door/airlock/multi_tile/metal{name = "NanoTrasen Offices"; req_one_access = list(101)},/turf/unsimulated/floor/steel,/area/centcom/command)
 "oq" = (/obj/machinery/door/firedoor,/turf/unsimulated/floor/steel,/area/centcom/command)
