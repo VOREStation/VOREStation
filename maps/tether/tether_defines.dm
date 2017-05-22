@@ -174,3 +174,21 @@
 		holomap_legend_x[z] = 220
 		holomap_legend_y[z] = 160
 	holomap_smoosh = list(list(1,2,3,5,6,7))
+
+
+// Short range computers see only the six main levels, others can see the surrounding surface levels.
+/datum/map/tether/get_map_levels(var/srcz, var/long_range = TRUE)
+	if (long_range && (srcz in map_levels))
+		return map_levels
+	else if (srcz == Z_LEVEL_TRANSIT)
+		return list() // Nothing on transit!
+	else if (srcz >= Z_LEVEL_SURFACE_LOW && srcz <= Z_LEVEL_SPACE_HIGH)
+		return list(
+			Z_LEVEL_SURFACE_LOW,
+			Z_LEVEL_SURFACE_MID,
+			Z_LEVEL_SURFACE_HIGH,
+			Z_LEVEL_SPACE_LOW,
+			Z_LEVEL_SPACE_MID,
+			Z_LEVEL_SPACE_HIGH)
+	else
+		return ..()

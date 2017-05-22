@@ -197,6 +197,7 @@
 #include "code\datums\autolathe\engineering.dm"
 #include "code\datums\autolathe\general.dm"
 #include "code\datums\autolathe\medical.dm"
+#include "code\datums\autolathe\medical_vr.dm"
 #include "code\datums\autolathe\tools.dm"
 #include "code\datums\helper_datums\construction_datum.dm"
 #include "code\datums\helper_datums\events.dm"

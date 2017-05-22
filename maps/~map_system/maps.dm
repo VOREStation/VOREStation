@@ -112,3 +112,14 @@ var/list/all_maps = list()
 		world.maxz++
 		empty_levels = list(world.maxz)
 	return pick(empty_levels)
+
+// Get the list of zlevels that a computer on srcz can see maps of (for power/crew monitor, cameras, etc)
+// The long_range parameter expands the coverage.  Default is to return map_levels for long range otherwise just srcz.
+// zLevels outside station_levels will return an empty list.
+/datum/map/proc/get_map_levels(var/srcz, var/long_range = TRUE)
+	if (long_range && (srcz in map_levels))
+		return map_levels
+	else if (srcz in station_levels)
+		return list(srcz)
+	else
+		return list()
