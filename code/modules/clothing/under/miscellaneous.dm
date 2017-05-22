@@ -374,6 +374,21 @@
 	icon_state = "huresource"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
+/obj/item/clothing/under/dress/black_corset
+	name = "black corset"
+	desc = "A black corset and skirt for those fancy nights out."
+	icon_state = "black_corset"
+
+/obj/item/clothing/under/dress/flower_dress
+	name = "flower dress"
+	desc = "A beautiful dress with a skirt of flowers."
+	icon_state = "flower_dress"
+
+/obj/item/clothing/under/dress/red_swept_dress
+	name = "red swept dress"
+	desc = "A red dress that sweeps to the side."
+	icon_state = "red_swept_dress"
+
 /*
  * wedding stuff
  */
