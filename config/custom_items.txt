@@ -120,6 +120,12 @@ item_path: /obj/item/weapon/disk/data
 
 # ######## D CKEYS
 {
+ckey: deepindigo
+character_name: Amina Dae-Kouri
+item_path: /obj/item/weapon/storage/bible/fluff/amina
+}
+
+{
 ckey: dhaeleena
 character_name: Dhaeleena M'iar
 item_path: /obj/item/clothing/accessory/medal/silver/security/fluff/dhael
@@ -345,6 +351,11 @@ item_path: /obj/item/device/pda_mod/fluff/kligor
 ckey: luminescentring
 character_name: Briana Moore
 item_path: /obj/item/weapon/storage/box/fluff/briana_moore
+}
+{
+ckey: luminescentring
+character_name: Briana Moore
+item_path: /obj/item/weapon/storage/backpack/messenger/black/fluff/briana
 }
 
 # ######## M CKEYS
