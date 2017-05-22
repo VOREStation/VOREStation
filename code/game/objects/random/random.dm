@@ -886,7 +886,12 @@ var/list/multi_point_spawns
 	var/item_path  // Item type to spawn
 
 /obj/random_multi/single_item/generate_items()
-	new item_path(loc)
+	//VOREStation Edit - Make this proc check for a closet and spawn in that. This happens after closets are init'd so otherwise it spawns on top
+	var/obj/structure/closet/C = locate(/obj/structure/closet) in get_turf(src)
+	if(C)
+		new item_path(C)
+	else
+		new item_path(loc)
 
 /hook/roundstart/proc/generate_multi_spawn_items()
 	for(var/id in multi_point_spawns)
