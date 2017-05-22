@@ -356,7 +356,7 @@ proc/is_blind(A)
 	broadcast_hud_message(message, broadcast_source, med_hud_users, /obj/item/clothing/glasses/hud/health)
 
 /proc/broadcast_hud_message(var/message, var/broadcast_source, var/list/targets, var/icon)
-	var/turf/sourceturf = get_turf(broadcast_source)
+	var/atom/sourceturf = isarea(broadcast_source) ? broadcast_source : get_turf(broadcast_source) // VOREStation Edit - Allow broadcasts from an area
 	for(var/mob/M in targets)
 		var/turf/targetturf = get_turf(M)
 		if((targetturf.z == sourceturf.z))
