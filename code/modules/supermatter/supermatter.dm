@@ -100,9 +100,10 @@
 	grav_pulling = 1
 	exploded = 1
 	var/turf/TS = get_turf(src)		// The turf supermatter is on. SM being in a locker, mecha, or other container shouldn't block it's effects that way.
-	radiation_repository.z_radiate(TS, DETONATION_RADS)
-	radiation_repository.z_radiate(TS, DETONATION_RADS)
-
+	if(!TS)
+		return
+	for(var/z in GetConnectedZlevels(TS.z))
+		radiation_repository.z_radiate(locate(1, 1, z), DETONATION_RADS, 1)
 	for(var/mob/living/mob in living_mob_list)
 		var/turf/T = get_turf(mob)
 		if(T && (loc.z == T.z))
@@ -111,7 +112,7 @@
 				var/mob/living/carbon/human/H = mob
 				H.hallucination += max(50, min(300, DETONATION_HALLUCINATION * sqrt(1 / (get_dist(mob, src) + 1)) ) )
 	spawn(pull_time)
-		explosion(get_turf(src), explosion_power, explosion_power * 2, explosion_power * 3, explosion_power * 4, 1)
+		explosion(TS, explosion_power, explosion_power * 2, explosion_power * 3, explosion_power * 4, 1)
 		qdel(src)
 		return
 
@@ -388,7 +389,6 @@
 			l.show_message("<span class=\"warning\">You hear an uneartly ringing and notice your skin is covered in fresh radiation burns.</span>", 2)
 	var/rads = 500
 	radiation_repository.radiate(src, rads)
-
 
 /obj/machinery/power/supermatter/proc/supermatter_pull()
 	//following is adapted from singulo code
