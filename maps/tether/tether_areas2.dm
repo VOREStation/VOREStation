@@ -303,6 +303,9 @@
 /area/medical/virologyisolation
 	name = "\improper Virology Isolation"
 	icon_state = "virology"
+/area/medical/recoveryrestroom
+	name = "\improper Recovery Room Restroom"
+	icon_state = "virology"
 
 /area/security/hallway
 	name = "\improper Security Hallway"

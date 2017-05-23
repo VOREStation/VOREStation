@@ -24,6 +24,8 @@
 /datum/category_item/player_setup_item/vore/resleeve/copy_to_mob(var/mob/living/carbon/human/character)
 	if(character && !istype(character,/mob/living/carbon/human/dummy))
 		spawn(50)
+			if(deleted(character) || deleted(pref))
+				return // They might have been deleted during the wait
 			if(pref.resleeve_scan)
 				var/datum/transhuman/body_record/BR = new()  //Clearly related to size.
 				BR.init_from_mob(character, pref.resleeve_scan, pref.resleeve_lock)

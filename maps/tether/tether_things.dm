@@ -279,6 +279,28 @@ var/global/list/latejoin_tram   = list()
 /obj/machinery/power/supermatter/touch_map_edge()
 	qdel(src)
 
+//Airlock antitox vendor
+/obj/machinery/vending/wallmed_airlock
+	name = "Airlock NanoMed"
+	desc = "Wall-mounted Medical Equipment dispenser. This limited-use version dispenses antitoxins with mild painkillers for surface EVAs."
+	icon_state = "wallmed"
+	icon_deny = "wallmed-deny"
+	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
+	products = list(/obj/item/weapon/reagent_containers/pill/airlock = 10,/obj/item/device/healthanalyzer = 1)
+	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 2)
+	req_log_access = access_cmo
+	has_logs = 1
+
+/obj/item/weapon/reagent_containers/pill/airlock
+	name = "\'Airlock\' Pill"
+	desc = "Neutralizes toxins and provides a mild alangesic effect."
+	icon_state = "pill2"
+
+/obj/item/weapon/reagent_containers/pill/antitox/New()
+	..()
+	reagents.add_reagent("anti_toxin", 15)
+	reagents.add_reagent("paracetamol", 5)
+
 //
 // ### Wall Machines On Full Windows ###
 // To make sure wall-mounted machines placed on full-tile windows are clickable they must be above the window
