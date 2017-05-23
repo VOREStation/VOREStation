@@ -27,6 +27,8 @@
 	var/storage_name = "Cryogenic Oversight Control"
 	var/allow_items = 1
 
+	req_one_access = list(access_heads) //VOREStation Add
+
 /obj/machinery/computer/cryopod/robot
 	name = "robotic storage console"
 	desc = "An interface between crew and the robotic storage systems"
