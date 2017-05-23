@@ -425,7 +425,7 @@
 	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/wagrailwings
-	name = "avian wagtail, colorable (+wings)
+	name = "avian wagtail, colorable (+wings)"
 	desc = ""
 	icon_state = "wagtailwings"
 	do_colouration = 1
