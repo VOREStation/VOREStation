@@ -1347,6 +1347,7 @@
 #include "code\modules\clothing\spacesuits\rig\modules\modules.dm"
 #include "code\modules\clothing\spacesuits\rig\modules\ninja.dm"
 #include "code\modules\clothing\spacesuits\rig\modules\utility.dm"
+#include "code\modules\clothing\spacesuits\rig\modules\utility_vr.dm"
 #include "code\modules\clothing\spacesuits\rig\modules\vision.dm"
 #include "code\modules\clothing\spacesuits\rig\suits\alien.dm"
 #include "code\modules\clothing\spacesuits\rig\suits\combat.dm"
