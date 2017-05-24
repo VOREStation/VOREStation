@@ -447,3 +447,15 @@
 /datum/gear/uniform/yogapants/New()
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/uniform/black_corset
+	display_name = "black corset"
+	path = /obj/item/clothing/under/dress/black_corset
+
+/datum/gear/uniform/flower_dress
+	display_name = "flower dress"
+	path = /obj/item/clothing/under/dress/flower_dress
+
+/datum/gear/uniform/red_swept_dress
+	display_name = "red swept dress"
+	path = /obj/item/clothing/under/dress/red_swept_dress

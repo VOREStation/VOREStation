@@ -340,6 +340,12 @@ obj/item/clothing/suit/kimono
 	item_state_slots = list(slot_r_hand_str = "leather_jacket", slot_l_hand_str = "leather_jacket")
 	flags_inv = HIDEHOLSTER
 
+obj/item/clothing/suit/storage/toggle/peacoat
+	name = "peacoat"
+	desc = "A well-tailored, stylish peacoat."
+	icon_state = "peacoat"
+	item_state_slots = list(slot_r_hand_str = "peacoat", slot_l_hand_str = "peacoat")
+	flags_inv = HIDEHOLSTER
 /*
  * stripper
  */
