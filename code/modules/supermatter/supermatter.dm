@@ -42,7 +42,6 @@
 	anchored = 0
 	light_range = 4
 
-	rad_power = 1 //So it gets added to the repository
 	var/gasefficency = 0.25
 
 	var/base_icon_state = "darkmatter"
@@ -112,7 +111,7 @@
 				var/mob/living/carbon/human/H = mob
 				H.hallucination += max(50, min(300, DETONATION_HALLUCINATION * sqrt(1 / (get_dist(mob, src) + 1)) ) )
 	spawn(pull_time)
-		explosion(TS, explosion_power, explosion_power * 2, explosion_power * 3, explosion_power * 4, 1)
+		explosion(get_turf(src), explosion_power, explosion_power * 2, explosion_power * 3, explosion_power * 4, 1)
 		qdel(src)
 		return
 
@@ -273,7 +272,7 @@
 		var/rads = (power / 10) * ( 1 / (radius**2) )
 		l.apply_effect(rads, IRRADIATE)
 */
-	rad_power = power * 1.5//Better close those shutters!
+	radiation_repository.radiate(src, power * 1.5) //Better close those shutters!
 
 	power -= (power/DECAY_FACTOR)**3		//energy losses due to radiation
 
@@ -401,7 +400,6 @@
 	if(defer_powernet_rebuild != 2)
 		defer_powernet_rebuild = 0
 	return
-
 
 
 /obj/machinery/power/supermatter/GotoAirflowDest(n) //Supermatter not pushed around by airflow
