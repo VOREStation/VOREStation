@@ -140,12 +140,6 @@ var/const/enterloopsanity = 100
 
 	if(ismob(A))
 		var/mob/M = A
-		var/mob/living/L = A
-		if(istype(L))
-			if(!(L in radiation_repository.irradiated_mobs))
-				if(src in radiation_repository.irradiated_turfs)
-					radiation_repository.irradiated_mobs.Add(L)
-			L.handle_footstep(src)
 		if(!M.lastarea)
 			M.lastarea = get_area(M.loc)
 		if(M.lastarea.has_gravity == 0)
@@ -153,6 +147,9 @@ var/const/enterloopsanity = 100
 		else if(!is_space())
 			M.inertia_dir = 0
 			M.make_floating(0)
+		if(isliving(M))
+			var/mob/living/L = M
+			L.handle_footstep(src)
 	..()
 	var/objects = 0
 	if(A && (A.flags & PROXMOVE))
