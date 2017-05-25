@@ -732,7 +732,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	if(istype(I, /obj/item/weapon/card/id) && !accessset)
 		var/obj/item/weapon/card/id/O = I
 		src.access |= O.access
-		to_chat(user, "<span class='notice'>You copy the access from \the [I] to \the [src].")
+		to_chat(user, "<span class='notice'>You copy the access from \the [I] to \the [src].</span>")
 		user.drop_from_inventory(I)
 		qdel(I)
 		accessset = 1
