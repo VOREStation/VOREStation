@@ -83,6 +83,7 @@
 	var/airtight = 1 //If set, will adjust AIRTIGHT and STOPPRESSUREDAMAGE flags on components. Otherwise it should leave them untouched.
 
 	var/emp_protection = 0
+	item_flags = PHORONGUARD //VOREStation add
 
 	// Wiring! How exciting.
 	var/datum/wires/rig/wires
@@ -198,7 +199,7 @@
 		if(!piece) continue
 		piece.icon_state = "[initial(icon_state)]"
 		if(airtight)
-			piece.item_flags &= ~(STOPPRESSUREDAMAGE|AIRTIGHT)
+			piece.item_flags &= ~(STOPPRESSUREDAMAGE|AIRTIGHT|PHORONGUARD) //VOREStation edit
 	update_icon(1)
 
 /obj/item/weapon/rig/proc/toggle_seals(var/mob/living/carbon/human/M,var/instant)
