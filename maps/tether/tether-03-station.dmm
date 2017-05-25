@@ -3167,7 +3167,7 @@
 "biU" = (/obj/structure/bed/chair/comfy/black{dir = 8},/obj/effect/landmark/start{name = "Command Secretary"},/turf/simulated/floor/carpet/sblucarpet,/area/bridge/meeting_room)
 "biV" = (/obj/machinery/camera/network/command{dir = 9; c_tag = "Gateway Access"},/turf/simulated/floor/wood,/area/bridge/meeting_room)
 "biW" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 5; icon_state = "fwindow"},/obj/machinery/door/firedoor/glass,/obj/machinery/door/blast/shutters{dir = 1; id = "chemistry"; layer = 3.1; name = "Chemistry Shutters"},/turf/simulated/floor/plating,/area/medical/chemistry)
-"biX" = (/obj/machinery/door/airlock/medical{name = "Psych/Surgery Waiting Room"},/obj/machinery/door/firedoor/glass,/turf/simulated/floor/tiled/white,/area/medical/surgery_hallway)
+"biX" = (/obj/machinery/door/airlock/medical{name = "Psych/Surgery Waiting Room"; req_one_access = list()},/obj/machinery/door/firedoor/glass,/turf/simulated/floor/tiled/white,/area/medical/surgery_hallway)
 "biY" = (/obj/machinery/atmospherics/unary/vent_pump/on{dir = 1},/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; pixel_y = 0},/obj/machinery/camera/network/northern_star{dir = 9},/turf/simulated/floor/tiled,/area/tether/station/stairs_three)
 "biZ" = (/obj/machinery/atmospherics/unary/vent_scrubber/on{dir = 1},/turf/simulated/floor/tiled,/area/tether/station/stairs_three)
 "bja" = (/obj/machinery/atmospherics/unary/vent_scrubber/on,/turf/simulated/floor/tiled/white,/area/medical/reception)
