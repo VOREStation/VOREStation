@@ -405,3 +405,15 @@
 	name = "\improper Syndicate LC - Mining"
 	icon_state = "shuttle2"
 	base_turf = /turf/simulated/floor/outdoors/dirt/virgo3b
+
+
+
+// Exclude some more areas from the atmos leak event so people don't get trapped when spawning.
+/datum/event/atmos_leak/setup()
+	excluded |= /area/tether/surfacebase/tram
+	excluded |= /area/tether/surfacebase/atrium_one
+	excluded |= /area/tether/surfacebase/atrium_two
+	excluded |= /area/tether/surfacebase/atrium_three
+	excluded |= /area/teleporter/departing
+	excluded |= /area/hallway/station/upper
+	..()
