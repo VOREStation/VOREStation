@@ -146,7 +146,10 @@
 /area/engineering/lower/breakroom
 	name = "\improper Enginering Surface Break Room"
 /area/engineering/lower/corridor
-	name = "\improper Teather Lower Service Corridor"
+	name = "\improper Tether Lower Service Corridor"
+/area/engineering/lower/atmos_lockers
+	name = "\improper Engineering Atmos Locker Room"
+
 /area/gateway/prep_room
 	name = "\improper Gateway Prep Room"
 /area/crew_quarters/locker/laundry_arrival
