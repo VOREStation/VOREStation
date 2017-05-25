@@ -77,7 +77,7 @@
 		to_chat(H,"<span class='warning'>Unable to comply! Energy too low, or not facing a working airlock!</span>")
 		return 0
 
-	H.visible_message("<span class='warning'>[H] begins overriding the airlock!","<span class='notice'>You begin overriding the airlock!</span>")
+	H.visible_message("<span class='warning'>[H] begins overriding the airlock!</span>","<span class='notice'>You begin overriding the airlock!</span>")
 	if(do_after(H,6 SECONDS,A) && A.density)
 		A.open()
 
