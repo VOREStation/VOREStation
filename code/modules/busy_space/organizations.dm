@@ -326,12 +326,12 @@
 // Military
 
 /datum/lore/organization/mil/sif_guard
-	name = "Sif Homeguard Forces" // Todo: Get better name from lorepeople.
+	name = "Sif Defense Force" // Todo: Get better name from lorepeople.
 	short_name = "SifGuard"
 	desc = ""
 	history = ""
 	work = "Sif Governmental Authority's military"
-	headquarters = "Sif" // Make this more specific later.
+	headquarters = "New Reykjavik, Sif"
 	motto = ""
 	autogenerate_destination_names = FALSE // Kinda weird if SifGuard goes to Nyx.
 

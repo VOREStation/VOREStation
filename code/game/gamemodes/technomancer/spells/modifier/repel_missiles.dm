@@ -1,6 +1,6 @@
 /datum/technomancer/spell/repel_missiles
 	name = "Repel Missiles"
-	desc = "Places a repulsion field around you, which attempts to deflect incoming bullets and lasers, making them 30% less likely \
+	desc = "Places a repulsion field around you, which attempts to deflect incoming bullets and lasers, making them 45% less likely \
 	to hit you.  The field lasts for 10 minutes and can be granted to yourself or an ally."
 	cost = 25
 	obj_path = /obj/item/weapon/spell/modifier/repel_missiles

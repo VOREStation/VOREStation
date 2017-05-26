@@ -1,0 +1,4 @@
+author: Leshana
+delete-after: True
+changes: 
+  - tweak: "During the gravity failure event, you can now buckle yourself to a chair to prevent falling when gravity returns."

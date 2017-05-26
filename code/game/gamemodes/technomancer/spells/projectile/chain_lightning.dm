@@ -32,7 +32,7 @@
 
 	var/bounces = 3				//How many times it 'chains'.  Note that the first hit is not counted as it counts /bounces/.
 	var/list/hit_mobs = list() 	//Mobs which were already hit.
-	var/power = 20				//How hard it will hit for with electrocute_act(), decreases with each bounce.
+	var/power = 35				//How hard it will hit for with electrocute_act(), decreases with each bounce.
 
 /obj/item/projectile/beam/chain_lightning/attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier=0)
 	//First we shock the guy we just hit.

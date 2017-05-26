@@ -20,21 +20,20 @@
 		cheongasms[initial(cheongasm_type.name)] = cheongasm_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(cheongasms))
 
+/datum/gear/uniform/croptop
+	display_name = "croptop selection"
+
+/datum/gear/uniform/croptop/New()
+	..()
+	var/list/croptops = list()
+	for(var/croptop in typesof(/obj/item/clothing/under/croptop))
+		var/obj/item/clothing/under/croptop/croptop_type = croptop
+		croptops[initial(croptop_type.name)] = croptop_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(croptops))
+
 /datum/gear/uniform/kilt
 	display_name = "kilt"
 	path = /obj/item/clothing/under/kilt
-
-/datum/gear/uniform/croptop
-	display_name = "croptop, NT"
-	path = /obj/item/clothing/under/croptop
-
-/datum/gear/uniform/croptop/grey
-	display_name = "croptop, grey"
-	path = /obj/item/clothing/under/croptop/grey
-
-/datum/gear/uniform/croptop/red
-	display_name = "croptop, red"
-	path = /obj/item/clothing/under/croptop/red
 
 /datum/gear/uniform/cuttop
 	display_name = "cut top, grey"
@@ -182,65 +181,33 @@
 	path = /obj/item/clothing/under/rank/cargotech/jeans/female
 	allowed_roles = list("Quartermaster","Cargo Technician")
 
-/datum/gear/uniform/suit  //amish
-	display_name = "suit, amish"
-	path = /obj/item/clothing/under/sl_suit
+/datum/gear/uniform/suit/lawyer
+	display_name = "suit, one-piece selection"
+	path = /obj/item/clothing/under/lawyer
 
-/datum/gear/uniform/suit/black
-	display_name = "suit, black"
+/datum/gear/uniform/suit/lawyer/New()
+	..()
+	var/list/lsuits = list()
+	for(var/lsuit in typesof(/obj/item/clothing/under/lawyer))
+		var/obj/item/clothing/suit/lsuit_type = lsuit
+		lsuits[initial(lsuit_type.name)] = lsuit_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(lsuits))
+
+/datum/gear/uniform/suit/suit_jacket
+	display_name = "suit, modular selection"
 	path = /obj/item/clothing/under/suit_jacket
 
-/datum/gear/uniform/suit/shinyblack
-	display_name = "suit, shiny-black"
-	path = /obj/item/clothing/under/lawyer/black
+/datum/gear/uniform/suit/suit_jacket/New()
+	..()
+	var/list/msuits = list()
+	for(var/msuit in typesof(/obj/item/clothing/under/suit_jacket))
+		var/obj/item/clothing/suit/msuit_type = msuit
+		msuits[initial(msuit_type.name)] = msuit_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(msuits))
 
-/datum/gear/uniform/suit/shinyblackskirt
-	display_name = "suit, shiny-black skirt"
-	path = /obj/item/clothing/under/lawyer/black/skirt
-
-/datum/gear/uniform/suit/blue
-	display_name = "suit, blue"
-	path = /obj/item/clothing/under/lawyer/blue
-
-/datum/gear/uniform/suit/blueskirt
-	display_name = "suit, blue skirt"
-	path = /obj/item/clothing/under/lawyer/blue/skirt
-
-/datum/gear/uniform/suit/burgundy
-	display_name = "suit, burgundy"
-	path = /obj/item/clothing/under/suit_jacket/burgundy
-
-/datum/gear/uniform/suit/burgundyskirt
-	display_name = "suit, burgundy skirt"
-	path = /obj/item/clothing/under/suit_jacket/burgundy/skirt
-
-/datum/gear/uniform/suit/checkered
-	display_name = "suit, checkered"
-	path = /obj/item/clothing/under/suit_jacket/checkered
-
-/datum/gear/uniform/suit/checkeredskirt
-	display_name = "suit, checkered skirt"
-	path = /obj/item/clothing/under/suit_jacket/checkered/skirt
-
-/datum/gear/uniform/suit/charcoal
-	display_name = "suit, charcoal"
-	path = /obj/item/clothing/under/suit_jacket/charcoal
-
-/datum/gear/uniform/suit/charcoalskirt
-	display_name = "suit, charcoal skirt"
-	path = /obj/item/clothing/under/suit_jacket/charcoal/skirt
-
-/datum/gear/uniform/suit/exec
-	display_name = "suit, executive"
-	path = /obj/item/clothing/under/suit_jacket/really_black
-
-/datum/gear/uniform/suit/execskirt
-	display_name = "suit, executive skirt"
-	path = /obj/item/clothing/under/suit_jacket/really_black/skirt
-
-/datum/gear/uniform/suit/femaleexec
-	display_name = "suit, female-executive"
-	path = /obj/item/clothing/under/suit_jacket/female
+/datum/gear/uniform/suit/amish  //amish
+	display_name = "suit, amish"
+	path = /obj/item/clothing/under/sl_suit
 
 /datum/gear/uniform/suit/gentle
 	display_name = "suit, gentlemen"
@@ -250,50 +217,6 @@
 	display_name = "suit, lady"
 	path = /obj/item/clothing/under/gentlesuit/skirt
 
-/datum/gear/uniform/suit/navy
-	display_name = "suit, navy"
-	path = /obj/item/clothing/under/suit_jacket/navy
-
-/datum/gear/uniform/suit/navyskirt
-	display_name = "suit, navy skirt"
-	path = /obj/item/clothing/under/suit_jacket/navy/skirt
-
-/datum/gear/uniform/suit/red
-	display_name = "suit, red"
-	path = /obj/item/clothing/under/suit_jacket/red
-
-/datum/gear/uniform/suit/redskirt
-	display_name = "suit, red skirt"
-	path = /obj/item/clothing/under/suit_jacket/red/skirt
-
-/datum/gear/uniform/suit/redlawyer
-	display_name = "suit, lawyer-red"
-	path = /obj/item/clothing/under/lawyer/red
-
-/datum/gear/uniform/suit/redlawyerskirt
-	display_name = "suit, lawyer-red skirt"
-	path = /obj/item/clothing/under/lawyer/red/skirt
-
-/datum/gear/uniform/suit/oldman
-	display_name = "suit, old-man"
-	path = /obj/item/clothing/under/lawyer/oldman
-
-/datum/gear/uniform/suit/purple
-	display_name = "suit, purple"
-	path = /obj/item/clothing/under/lawyer/purpsuit
-
-/datum/gear/uniform/suit/purpleskirt
-	display_name = "suit, purple skirt"
-	path = /obj/item/clothing/under/lawyer/purpsuit/skirt
-
-/datum/gear/uniform/suit/tan
-	display_name = "suit, tan"
-	path = /obj/item/clothing/under/suit_jacket/tan
-
-/datum/gear/uniform/suit/tanskirt
-	display_name = "suit, tan skirt"
-	path = /obj/item/clothing/under/suit_jacket/tan/skirt
-
 /datum/gear/uniform/suit/white
 	display_name = "suit, white"
 	path = /obj/item/clothing/under/scratch
@@ -301,14 +224,6 @@
 /datum/gear/uniform/suit/whiteskirt
 	display_name = "suit, white skirt"
 	path = /obj/item/clothing/under/scratch/skirt
-
-/datum/gear/uniform/suit/whiteblue
-	display_name = "suit, white-blue"
-	path = /obj/item/clothing/under/lawyer/bluesuit
-
-/datum/gear/uniform/suit/whiteblueskirt
-	display_name = "suit, white-blue skirt"
-	path = /obj/item/clothing/under/lawyer/bluesuit/skirt
 
 /datum/gear/uniform/suit/detectiveskirt
 	display_name = "suit, detective skirt (Detective)"
@@ -348,7 +263,7 @@
 
 /datum/gear/uniform/oldwoman
 	display_name = "old woman attire"
-	path = /obj/item/clothing/under/lawyer/oldwoman
+	path = /obj/item/clothing/under/oldwoman
 
 /datum/gear/uniform/sundress
 	display_name = "sundress"
@@ -532,3 +447,15 @@
 /datum/gear/uniform/yogapants/New()
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/uniform/black_corset
+	display_name = "black corset"
+	path = /obj/item/clothing/under/dress/black_corset
+
+/datum/gear/uniform/flower_dress
+	display_name = "flower dress"
+	path = /obj/item/clothing/under/dress/flower_dress
+
+/datum/gear/uniform/red_swept_dress
+	display_name = "red swept dress"
+	path = /obj/item/clothing/under/dress/red_swept_dress

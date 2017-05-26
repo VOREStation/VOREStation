@@ -943,6 +943,15 @@
 		if("Clients")
 			usr << jointext(clients,",")
 
+/client/proc/cmd_debug_using_map()
+	set category = "Debug"
+	set name = "Debug Map Datum"
+	set desc = "Debug the map metadata about the currently compiled in map."
+
+	if(!check_rights(R_DEBUG))
+		return
+	debug_variables(using_map)
+
 // DNA2 - Admin Hax
 /client/proc/cmd_admin_toggle_block(var/mob/M,var/block)
 	if(!ticker)
