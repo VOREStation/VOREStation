@@ -677,6 +677,29 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	do_reagent_implant(usr)
 
 
+//Vorrarkul: Theodora Lindt
+/obj/item/weapon/implant/reagent_generator/vorrarkul
+	generated_reagent = "chocolate_milk"
+	usable_volume = 1000
+
+	empty_message = list("Your nipples are sore from being milked!")
+	full_message = list("Your breasts are full, their sweet scent emanating from your chest!")
+	emote_descriptor = list("squeezes chocolate milk from Theodora", "tugs on Theodora's nipples, milking them", "kneads Theodora's breasts, milking them")
+	self_emote_descriptor = list("squeeze", "knead")
+	random_emote = list("moans softly", "gives an involuntary squeal")
+	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_vorrarkul
+
+/obj/item/weapon/implanter/reagent_generator/vorrarkul
+	implant_type = /obj/item/weapon/implant/reagent_generator/vorrarkul
+
+/mob/living/carbon/human/proc/use_reagent_implant_vorrarkul()
+	set name = "Milk"
+	set desc = "Grab Theodora's breasts and extract delicious chocolate milk from them!"
+	set category = "Object"
+	set src in view(1)
+
+	do_reagent_implant(usr)
+
 //PontifexMinimus: Lucius/Lucia Null
 /obj/item/weapon/fluff/dragor_dot
 	name = "supplemental battery"
