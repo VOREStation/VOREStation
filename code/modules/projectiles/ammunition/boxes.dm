@@ -395,7 +395,7 @@
 	caliber = "a762"
 	matter = list(DEFAULT_WALL_MATERIAL = 2000)
 	ammo_type = /obj/item/ammo_casing/a762
-	max_ammo = 10
+	max_ammo = 20 // VOREStation Edit - This one is supposed to be bigger than the small one.
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/c762/ap
