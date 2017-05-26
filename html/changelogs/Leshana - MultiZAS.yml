@@ -1,5 +1,0 @@
-author: Leshana
-delete-after: True
-changes: 
-  - tweak: "Optimized (but still not enabled) multi-z ZAS"
-  - rscadd: "Multi-Z explosion transfer coefficient is now configurable"

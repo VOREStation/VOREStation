@@ -584,6 +584,12 @@ item_path: /obj/item/clothing/suit/chococoat
 }
 
 {
+ckey: vorrarkul
+character_name: Theodora Lindt
+item_path: /obj/item/weapon/implanter/reagent_generator/vorrarkul
+}
+
+{
 ckey: Viveret
 character_name: Keturah
 item_path: /obj/item/clothing/under/dress/maid/

@@ -1,0 +1,4 @@
+author: Leshana
+delete-after: True
+changes: 
+- rscadd: "Added an admin verb to debug the map datum."

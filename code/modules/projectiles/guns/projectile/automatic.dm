@@ -51,17 +51,17 @@
 
 /obj/item/weapon/gun/projectile/automatic/sts35
 	name = "assault rifle"
-	desc = "The rugged STS-35 is a durable automatic weapon of a make popular on the frontier worlds. Uses 7.62mm rounds. This one is unmarked."
+	desc = "The rugged STS-35 is a durable automatic weapon of a make popular on the frontier worlds. Uses 5.56mm rounds. This one is unmarked."
 	icon_state = "arifle"
 	item_state = null
 	w_class = ITEMSIZE_LARGE
 	force = 10
-	caliber = "a762"
+	caliber = "a556"
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 4)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/c762
-	allowed_magazines = list(/obj/item/ammo_magazine/c762, /obj/item/ammo_magazine/s762)
+	magazine_type = /obj/item/ammo_magazine/c556
+	allowed_magazines = list(/obj/item/ammo_magazine/c556)
 
 	one_handed_penalty = 4
 
@@ -104,19 +104,19 @@
 
 /obj/item/weapon/gun/projectile/automatic/z8
 	name = "designated marksman rifle"
-	desc = "The Z8 Bulldog is an older model designated marksman rifle, made by the now defunct Zendai Foundries. Makes you feel like a space marine when you hold it, even though it can only hold 10 round magazines. Uses 5.56mm rounds and has an under barrel grenade launcher."
+	desc = "The Z8 Bulldog is an older model designated marksman rifle, made by the now defunct Zendai Foundries. Makes you feel like a space marine when you hold it, even though it can only hold 10 round magazines. Uses 7.62mm rounds and has an under barrel grenade launcher."
 	icon_state = "carbine" // This isn't a carbine. :T
 	item_state = "z8carbine"
 	w_class = ITEMSIZE_LARGE
 	force = 10
-	caliber = "a556"
+	caliber = "a762"
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 3)
 	ammo_type = "/obj/item/ammo_casing/a556" // Is this really needed anymore?
 	fire_sound = 'sound/weapons/Gunshot.ogg'
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/a556
-	allowed_magazines = list(/obj/item/ammo_magazine/a556)
+	magazine_type = /obj/item/ammo_magazine/c762
+	allowed_magazines = list(/obj/item/ammo_magazine/c762)
 	auto_eject = 1
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 
@@ -181,14 +181,14 @@
 	force = 10
 	slot_flags = 0
 	max_shells = 50
-	caliber = "a762"
+	caliber = "a556"
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 2)
 	slot_flags = SLOT_BACK
-	ammo_type = "/obj/item/ammo_casing/a762" // Is this really needed anymore?
+	ammo_type = "/obj/item/ammo_casing/a556" // Is this really needed anymore?
 	fire_sound = 'sound/weapons/machinegun.ogg'
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/a762
-	allowed_magazines = list(/obj/item/ammo_magazine/a762, /obj/item/ammo_magazine/c762)
+	magazine_type = /obj/item/ammo_magazine/a556
+	allowed_magazines = list(/obj/item/ammo_magazine/a556, /obj/item/ammo_magazine/c556)
 
 	one_handed_penalty = 6
 
@@ -346,16 +346,16 @@
 /obj/item/weapon/gun/projectile/automatic/carbine
 	name = "assault carbine"
 	desc = "The bullpup configured GP3000 is a lightweight, compact, military-grade assault rifle produced by Gurov Projectile Weapons LLC. It is sold almost exclusively to standing armies. The serial number on this one has been scratched off. Uses 5.56mm rounds."
-	icon_state = "bullpupm"
+	icon_state = "bullpup"
 	item_state = "bullpup"
 	w_class = ITEMSIZE_LARGE
 	force = 10
-	caliber = "a556"
+	caliber = "a762"
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 4)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/a556m
-	allowed_magazines = list(/obj/item/ammo_magazine/a556, /obj/item/ammo_magazine/a556m)
+	magazine_type = /obj/item/ammo_magazine/c762
+	allowed_magazines = list(/obj/item/ammo_magazine/c762)
 
 	one_handed_penalty = 4
 
@@ -366,9 +366,9 @@
 
 /obj/item/weapon/gun/projectile/automatic/carbine/update_icon(var/ignore_inhands)
 	..()
-	if(istype(ammo_magazine,/obj/item/ammo_magazine/a556m))
-		icon_state = "bullpupm"
+	if(ammo_magazine)
+		icon_state = "bullpup"
 	else
-		icon_state = (ammo_magazine)? "bullpup" : "bullpup-empty"
+		icon_state = "bullpup-empty"
 	item_state = (ammo_magazine)? "bullpup" : "bullpup-empty"
 	if(!ignore_inhands) update_held_icon()

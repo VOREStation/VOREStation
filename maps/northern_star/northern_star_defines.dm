@@ -14,34 +14,7 @@
 	lobby_icon = 'icons/misc/title.dmi'
 	lobby_screens = list("mockingjay00")
 
-	station_levels = list(
-		Z_LEVEL_MAIN_NORTHERN_STAR,
-		Z_LEVEL_MINING_NORTHERN_STAR
-		)
-
-	admin_levels = list(Z_LEVEL_CENTCOM_NORTHERN_STAR)
-	contact_levels = list(
-		Z_LEVEL_MAIN_NORTHERN_STAR,
-		Z_LEVEL_CENTCOM_NORTHERN_STAR,
-		Z_LEVEL_MINING_NORTHERN_STAR
-		)
-
-	player_levels = list(
-		Z_LEVEL_MAIN_NORTHERN_STAR,
-		Z_LEVEL_TELECOMMS_NORTHERN_STAR,
-		Z_LEVEL_ABANDONED_ASTEROID_NORTHERN_STAR,
-		Z_LEVEL_MINING_NORTHERN_STAR,
-		Z_LEVEL_EMPTY_NORTHERN_STAR
-		)
-
-	sealed_levels = list()
-	empty_levels = list()
-	accessible_z_levels = list("1" = 5, "3" = 10, "4" = 15, "5" = 10, "6" = 60) // The defines can't be used here sadly.
-	base_turf_by_z = list(
-		"1" = /turf/simulated/mineral/floor,
-		"4" = /turf/simulated/mineral/floor,
-		"5" = /turf/simulated/mineral/floor
-	)
+	zlevel_datum_type = /datum/map_z_level/northern_star
 
 	station_name  = "NCS Northern Star"
 	station_short = "Northern Star"
@@ -93,3 +66,41 @@
 	new /datum/random_map/automata/cave_system(null, 1, 1, Z_LEVEL_MINING_NORTHERN_STAR, world.maxx, world.maxy) // Create the mining Z-level.
 	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_MINING_NORTHERN_STAR, 64, 64)         // Create the mining ore distribution map.
 	return 1
+
+/datum/map_z_level/northern_star/main
+	z = Z_LEVEL_MAIN_NORTHERN_STAR
+	name = "Main"
+	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
+	transit_chance = 5
+	base_turf = /turf/simulated/mineral/floor
+
+/datum/map_z_level/northern_star/centcomm
+	z = Z_LEVEL_CENTCOM_NORTHERN_STAR
+	name = "Centcomm"
+	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_CONTACT
+
+/datum/map_z_level/northern_star/telecomms
+	z = Z_LEVEL_TELECOMMS_NORTHERN_STAR
+	name = "Telecomms"
+	flags = MAP_LEVEL_PLAYER
+	transit_chance = 10
+
+/datum/map_z_level/northern_star/abandoned_asteroid
+	z = Z_LEVEL_ABANDONED_ASTEROID_NORTHERN_STAR
+	name = "Abandoned Asteroid"
+	flags = MAP_LEVEL_PLAYER
+	transit_chance = 15
+	base_turf = /turf/simulated/mineral/floor
+
+/datum/map_z_level/northern_star/mining
+	z = Z_LEVEL_MINING_NORTHERN_STAR
+	name = "Mining"
+	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
+	transit_chance = 10
+	base_turf = /turf/simulated/mineral/floor
+
+/datum/map_z_level/northern_star/empty
+	z = Z_LEVEL_EMPTY_NORTHERN_STAR
+	name = "Empty"
+	flags = MAP_LEVEL_PLAYER
+	transit_chance = 60

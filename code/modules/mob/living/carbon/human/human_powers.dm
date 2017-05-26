@@ -243,7 +243,8 @@
 	// Replace completely missing limbs.
 	for(var/limb_type in src.species.has_limbs)
 		var/obj/item/organ/external/E = src.organs_by_name[limb_type]
-		E.disfigured = 0
+		if(E && E.disfigured)
+			E.disfigured = 0
 		if(E && (E.is_stump() || (E.status & (ORGAN_DESTROYED|ORGAN_DEAD|ORGAN_MUTATED))))
 			E.removed()
 			qdel(E)
