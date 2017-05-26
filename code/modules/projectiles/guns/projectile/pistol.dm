@@ -2,8 +2,8 @@
 	var/unique_reskin
 	name = ".45 pistol"
 	desc = "A cheap Martian knock-off of a Colt M1911. Uses .45 rounds."
-	magazine_type = /obj/item/ammo_magazine/c45m
-	allowed_magazines = list(/obj/item/ammo_magazine/c45m)
+	magazine_type = /obj/item/ammo_magazine/m45
+	allowed_magazines = list(/obj/item/ammo_magazine/m45)
 	icon_state = "colt"
 	caliber = ".45"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
@@ -12,7 +12,7 @@
 
 /obj/item/weapon/gun/projectile/colt/detective
 	desc = "A Martian recreation of an old Terran pistol. Uses .45 rounds."
-	magazine_type = /obj/item/ammo_magazine/c45m/rubber
+	magazine_type = /obj/item/ammo_magazine/m45/rubber
 
 /obj/item/weapon/gun/projectile/colt/detective/update_icon()
 	if(ammo_magazine)
@@ -71,7 +71,7 @@
 	name = ".45 pistol"
 	desc = "The NT Mk58 is a cheap, ubiquitous sidearm, produced by a NanoTrasen subsidiary. Found pretty much everywhere humans are. Uses .45 rounds."
 	icon_state = "secguncomp"
-	magazine_type = /obj/item/ammo_magazine/c45m/rubber
+	magazine_type = /obj/item/ammo_magazine/m45/rubber
 	caliber = ".45"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	fire_sound = 'sound/weapons/semiauto.ogg'
@@ -86,7 +86,7 @@
 
 /obj/item/weapon/gun/projectile/sec/flash
 	name = ".45 signal pistol"
-	magazine_type = /obj/item/ammo_magazine/c45m/flash
+	magazine_type = /obj/item/ammo_magazine/m45/flash
 
 /obj/item/weapon/gun/projectile/sec/wood
 	desc = "The NT Mk58 is a cheap, ubiquitous sidearm, produced by a NanoTrasen subsidiary. This one has a sweet wooden grip. Uses .45 rounds."
@@ -111,8 +111,8 @@
 	recoil = 0
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/c45m
-	allowed_magazines = list(/obj/item/ammo_magazine/c45m)
+	magazine_type = /obj/item/ammo_magazine/m45
+	allowed_magazines = list(/obj/item/ammo_magazine/m45)
 
 /obj/item/weapon/gun/projectile/deagle
 	name = "desert eagle"
@@ -123,8 +123,8 @@
 	caliber = ".50"
 	load_method = MAGAZINE
 	fire_sound = 'sound/weapons/deagle.ogg'
-	magazine_type = /obj/item/ammo_magazine/a50
-	allowed_magazines = list(/obj/item/ammo_magazine/a50)
+	magazine_type = /obj/item/ammo_magazine/m50
+	allowed_magazines = list(/obj/item/ammo_magazine/m50)
 
 /obj/item/weapon/gun/projectile/deagle/update_icon()
 	..()
@@ -173,8 +173,8 @@
 	origin_tech = list(TECH_COMBAT = 3)
 	ammo_type = "/obj/item/ammo_casing/a75"
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/a75
-	allowed_magazines = list(/obj/item/ammo_magazine/a75)
+	magazine_type = /obj/item/ammo_magazine/m75
+	allowed_magazines = list(/obj/item/ammo_magazine/m75)
 	auto_eject = 1
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 

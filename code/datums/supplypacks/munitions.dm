@@ -27,7 +27,7 @@
 	name = "Flare guns crate"
 	contains = list(
 			/obj/item/weapon/gun/projectile/sec/flash,
-			/obj/item/ammo_magazine/c45m/flash,
+			/obj/item/ammo_magazine/m45/flash,
 			/obj/item/weapon/gun/projectile/shotgun/doublebarrel/flare,
 			/obj/item/weapon/storage/box/flashshells
 			)
@@ -156,7 +156,7 @@
 	contains = list(
 			/obj/item/ammo_magazine/mc9mmt,
 			/obj/item/ammo_magazine/mc9mmt/rubber,
-			/obj/item/ammo_magazine/a556
+			/obj/item/ammo_magazine/m556saw
 			)
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure

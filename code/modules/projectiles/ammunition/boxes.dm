@@ -1,6 +1,6 @@
 ///////// .357 /////////
 
-/obj/item/ammo_magazine/a357
+/obj/item/ammo_magazine/s357
 	name = "speedloader (.357)"
 	desc = "A speedloader for .357 revolvers."
 	icon_state = "38"
@@ -12,7 +12,7 @@
 
 ///////// .38 /////////
 
-/obj/item/ammo_magazine/c38
+/obj/item/ammo_magazine/s38
 	name = "speedloader (.38)"
 	desc = "A speedloader for .38 revolvers."
 	icon_state = "38"
@@ -22,17 +22,17 @@
 	max_ammo = 6
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/c38/rubber
+/obj/item/ammo_magazine/s38/rubber
 	name = "speedloader (.38 rubber)"
 	ammo_type = /obj/item/ammo_casing/c38r
 
-/obj/item/ammo_magazine/c38/emp
+/obj/item/ammo_magazine/s38/emp
 	name = "ammunition box (.38 haywire)"
 	ammo_type = /obj/item/ammo_casing/c38/emp
 
 ///////// .45 /////////
 
-/obj/item/ammo_magazine/c45m
+/obj/item/ammo_magazine/m45
 	name = "pistol magazine (.45)"
 	icon_state = "45"
 	mag_type = MAGAZINE
@@ -42,30 +42,30 @@
 	max_ammo = 7
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/c45m/empty
+/obj/item/ammo_magazine/m45/empty
 	initial_ammo = 0
 
-/obj/item/ammo_magazine/c45m/rubber
+/obj/item/ammo_magazine/m45/rubber
 	name = "magazine (.45 rubber)"
 	ammo_type = /obj/item/ammo_casing/c45r
 
-/obj/item/ammo_magazine/c45m/practice
+/obj/item/ammo_magazine/m45/practice
 	name = "magazine (.45 practice)"
 	ammo_type = /obj/item/ammo_casing/c45p
 
-/obj/item/ammo_magazine/c45m/flash
+/obj/item/ammo_magazine/m45/flash
 	name = "magazine (.45 flash)"
 	ammo_type = /obj/item/ammo_casing/c45f
 
-/obj/item/ammo_magazine/c45m/ap
+/obj/item/ammo_magazine/m45/ap
 	name = "magazine (.45 AP)"
 	ammo_type = /obj/item/ammo_casing/c45ap
 
-/obj/item/ammo_magazine/box/emp/c45
+/obj/item/ammo_magazine/box/emp/b45
 	name = "ammunition box (.45 haywire)"
 	ammo_type = /obj/item/ammo_casing/c45/emp
 
-/obj/item/ammo_magazine/c45uzi
+/obj/item/ammo_magazine/m45uzi
 	name = "stick magazine (.45)"
 	icon_state = "uzi45"
 	mag_type = MAGAZINE
@@ -75,10 +75,10 @@
 	max_ammo = 16
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/c45uzi/empty
+/obj/item/ammo_magazine/m45uzi/empty
 	initial_ammo = 0
 
-/obj/item/ammo_magazine/tommymag
+/obj/item/ammo_magazine/m45tommy
 	name = "tommygun magazine (.45)"
 	icon_state = "tommy-mag"
 	mag_type = MAGAZINE
@@ -87,14 +87,14 @@
 	caliber = ".45"
 	max_ammo = 20
 
-/obj/item/ammo_magazine/tommymag/ap
+/obj/item/ammo_magazine/m45tommy/ap
 	name = "tommygun magazine (.45 AP)"
 	ammo_type = /obj/item/ammo_casing/c45ap
 
-/obj/item/ammo_magazine/tommymag/empty
+/obj/item/ammo_magazine/m45tommy/empty
 	initial_ammo = 0
 
-/obj/item/ammo_magazine/tommydrum
+/obj/item/ammo_magazine/m45tommydrum
 	name = "tommygun drum magazine (.45)"
 	icon_state = "tommy-drum"
 	w_class = ITEMSIZE_NORMAL // Bulky ammo doesn't fit in your pockets!
@@ -104,11 +104,11 @@
 	caliber = ".45"
 	max_ammo = 50
 
-/obj/item/ammo_magazine/tommydrum/ap
+/obj/item/ammo_magazine/m45tommydrum/ap
 	name = "tommygun drum magazine (.45 AP)"
 	ammo_type = /obj/item/ammo_casing/c45ap
 
-/obj/item/ammo_magazine/tommydrum/empty
+/obj/item/ammo_magazine/m45tommydrum/empty
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/clip/c45
@@ -256,7 +256,7 @@
 */
 ///////// 10mm /////////
 
-/obj/item/ammo_magazine/a10mm
+/obj/item/ammo_magazine/m10mm
 	name = "magazine (10mm)"
 	icon_state = "10mm"
 	origin_tech = list(TECH_COMBAT = 2)
@@ -267,7 +267,7 @@
 	max_ammo = 20
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/a10mm/empty
+/obj/item/ammo_magazine/m10mm/empty
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/clip/a10mm
@@ -280,13 +280,13 @@
 	max_ammo = 9
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/box/emp/a10mm
+/obj/item/ammo_magazine/box/emp/b10
 	name = "ammunition box (10mm haywire)"
 	ammo_type = /obj/item/ammo_casing/a10mm/emp
 
 ///////// 5.56mm /////////
 
-/obj/item/ammo_magazine/c556
+/obj/item/ammo_magazine/m556
 	name = "magazine (5.56mm)"
 	icon_state = "c5.56"
 	origin_tech = list(TECH_COMBAT = 2)
@@ -297,30 +297,30 @@
 	max_ammo = 20
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/c556/ext
+/obj/item/ammo_magazine/m556/ext
 	name = "extended magazine (5.56mm)"
 	matter = list(DEFAULT_WALL_MATERIAL = 2700)
 	max_ammo = 30
 
-/obj/item/ammo_magazine/c556/empty
+/obj/item/ammo_magazine/m556/empty
 	initial_ammo = 0
 
-/obj/item/ammo_magazine/c556/ext/empty
+/obj/item/ammo_magazine/m556/ext/empty
 	initial_ammo = 0
 
-/obj/item/ammo_magazine/c556/practice
+/obj/item/ammo_magazine/m556/practice
 	name = "magazine (5.56mm practice)"
 	ammo_type = /obj/item/ammo_casing/a556p
 
-/obj/item/ammo_magazine/c556/practice/ext
+/obj/item/ammo_magazine/m556/practice/ext
 	name = "extended magazine (5.56mm practice)"
 	max_ammo = 30
 
-/obj/item/ammo_magazine/c556/ap
+/obj/item/ammo_magazine/m556/ap
 	name = "magazine (5.56mm armor-piercing)"
 	ammo_type = /obj/item/ammo_casing/a556/ap
 
-/obj/item/ammo_magazine/c556/ap/ext
+/obj/item/ammo_magazine/m556/ap/ext
 	name = "extended magazine (5.56mm armor-piercing)"
 	max_ammo = 30
 
@@ -341,7 +341,7 @@
 	name = "rifle clip (5.56mm practice)"
 	ammo_type = /obj/item/ammo_casing/a556
 
-/obj/item/ammo_magazine/a556
+/obj/item/ammo_magazine/m556saw
 	name = "magazine box (5.56mm)"
 	icon_state = "a556"
 	origin_tech = list(TECH_COMBAT = 2)
@@ -353,16 +353,16 @@
 	max_ammo = 50
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/a556/ap
+/obj/item/ammo_magazine/m556saw/ap
 	name = "magazine box (5.56mm armor-piercing)"
 	ammo_type = /obj/item/ammo_casing/a556/ap
 
-/obj/item/ammo_magazine/a556/empty
+/obj/item/ammo_magazine/m556saw/empty
 	initial_ammo = 0
 
 ///////// .50 AE /////////
 
-/obj/item/ammo_magazine/a50
+/obj/item/ammo_magazine/m50
 	name = "magazine (.50 AE)"
 	icon_state = "50ae"
 	origin_tech = list(TECH_COMBAT = 2)
@@ -373,7 +373,7 @@
 	max_ammo = 7
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/a50/empty
+/obj/item/ammo_magazine/m50/empty
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/clip/a50
@@ -388,7 +388,7 @@
 
 ///////// 7.62mm /////////
 
-/obj/item/ammo_magazine/c762
+/obj/item/ammo_magazine/m762
 	name = "magazine (7.62mm)"
 	icon_state = "c7.62"
 	mag_type = MAGAZINE
@@ -398,11 +398,11 @@
 	max_ammo = 10
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/c762/ap
+/obj/item/ammo_magazine/m762/ap
 	name = "magazine (7.62mm armor-piercing)"
 	ammo_type = /obj/item/ammo_casing/a762/ap
 
-/obj/item/ammo_magazine/c762/empty
+/obj/item/ammo_magazine/m762/empty
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/s762 // 's' for small!
@@ -468,7 +468,7 @@
 
 ///////// .75 Gyrojet /////////
 
-/obj/item/ammo_magazine/a75
+/obj/item/ammo_magazine/m75
 	name = "ammo magazine (.75 Gyrojet)"
 	icon_state = "75"
 	mag_type = MAGAZINE
@@ -477,7 +477,7 @@
 	multiple_sprites = 1
 	max_ammo = 4
 
-/obj/item/ammo_magazine/a75/empty
+/obj/item/ammo_magazine/m75/empty
 	initial_ammo = 0
 
 ///////// Misc. /////////

@@ -49,34 +49,34 @@
 /////// .45
 /datum/category_item/autolathe/arms/pistol_45
 	name = "pistol magazine (.45)"
-	path =/obj/item/ammo_magazine/c45m
+	path =/obj/item/ammo_magazine/m45
 	hidden = 1
 
 /datum/category_item/autolathe/arms/pistol_45p
 	name = "pistol magazine (.45 practice)"
-	path =/obj/item/ammo_magazine/c45m/practice
+	path =/obj/item/ammo_magazine/m45/practice
 
 /datum/category_item/autolathe/arms/pistol_45r
 	name = "pistol magazine (.45 rubber)"
-	path =/obj/item/ammo_magazine/c45m/rubber
+	path =/obj/item/ammo_magazine/m45/rubber
 
 /datum/category_item/autolathe/arms/pistol_45f
 	name = "pistol magazine (.45 flash)"
-	path =/obj/item/ammo_magazine/c45m/flash
+	path =/obj/item/ammo_magazine/m45/flash
 
 /datum/category_item/autolathe/arms/pistol_45uzi
 	name = "uzi magazine (.45)"
-	path =/obj/item/ammo_magazine/c45uzi
+	path =/obj/item/ammo_magazine/m45uzi
 	hidden = 1
 
 /datum/category_item/autolathe/arms/tommymag
 	name = "Tommygun magazine (.45)"
-	path =/obj/item/ammo_magazine/tommymag
+	path =/obj/item/ammo_magazine/m45tommy
 	hidden = 1
 
 /datum/category_item/autolathe/arms/tommydrum
 	name = "Tommygun drum magazine (.45)"
-	path =/obj/item/ammo_magazine/tommydrum
+	path =/obj/item/ammo_magazine/m45tommydrum
 	hidden = 1
 
 /////// 9mm
@@ -129,34 +129,34 @@
 /////// 10mm
 /datum/category_item/autolathe/arms/smg_10mm
 	name = "SMG magazine (10mm)"
-	path =/obj/item/ammo_magazine/a10mm
+	path =/obj/item/ammo_magazine/m10mm
 	hidden = 1
 
 /datum/category_item/autolathe/arms/pistol_50
 	name = "pistol magazine (.50AE)"
-	path =/obj/item/ammo_magazine/a50
+	path =/obj/item/ammo_magazine/m50
 	hidden = 1
 
 /////// 5.56mm
 /datum/category_item/autolathe/arms/rifle_556
 	name = "rifle magazine (5.56mm)"
-	path =/obj/item/ammo_magazine/c556
+	path =/obj/item/ammo_magazine/m556
 	hidden = 1
 
 /datum/category_item/autolathe/arms/rifle_556p
 	name = "rifle magazine (5.56mm practice)"
-	path =/obj/item/ammo_magazine/c556/practice
+	path =/obj/item/ammo_magazine/m556/practice
 
 /datum/category_item/autolathe/arms/machinegun_556
 	name = "machinegun box magazine (5.56)"
-	path =/obj/item/ammo_magazine/a556
+	path =/obj/item/ammo_magazine/m556saw
 	hidden = 1
 /////// 7.62
 
 
 /datum/category_item/autolathe/arms/rifle_762
 	name = "rifle magazine (7.62mm)"
-	path =/obj/item/ammo_magazine/c762
+	path =/obj/item/ammo_magazine/m762
 	hidden = 1
 
 /datum/category_item/autolathe/arms/shotgun_magazine
@@ -188,24 +188,24 @@
 
 /datum/category_item/autolathe/arms/pistol_45
 	name = "pistol magazine (.45)"
-	path =/obj/item/ammo_magazine/c45m/empty
+	path =/obj/item/ammo_magazine/m45/empty
 	category = "Arms and Ammunition"
 
 /datum/category_item/autolathe/arms/pistol_45uzi
 	name = "uzi magazine (.45)"
-	path =/obj/item/ammo_magazine/c45uzi/empty
+	path =/obj/item/ammo_magazine/m45uzi/empty
 	category = "Arms and Ammunition"
 	hidden = 1
 
 /datum/category_item/autolathe/arms/tommymag
 	name = "Tommygun magazine (.45)"
-	path =/obj/item/ammo_magazine/tommymag/empty
+	path =/obj/item/ammo_magazine/m45tommy/empty
 	category = "Arms and Ammunition"
 	hidden = 1
 
 /datum/category_item/autolathe/arms/tommydrum
 	name = "Tommygun drum magazine (.45)"
-	path =/obj/item/ammo_magazine/tommydrum/empty
+	path =/obj/item/ammo_magazine/m45tommydrum/empty
 	category = "Arms and Ammunition"
 	hidden = 1
 
@@ -221,24 +221,24 @@
 
 /datum/category_item/autolathe/arms/smg_10mm
 	name = "SMG magazine (10mm)"
-	path =/obj/item/ammo_magazine/a10mm/empty
+	path =/obj/item/ammo_magazine/m10mm/empty
 	category = "Arms and Ammunition"
 	hidden = 1
 
 /datum/category_item/autolathe/arms/pistol_50
 	name = "pistol magazine (.50AE)"
-	path =/obj/item/ammo_magazine/a50/empty
+	path =/obj/item/ammo_magazine/m50/empty
 	category = "Arms and Ammunition"
 	hidden = 1
 
 /datum/category_item/autolathe/arms/rifle_556
 	name = "10rnd rifle magazine (5.56mm)"
-	path =/obj/item/ammo_magazine/a556/empty
+	path =/obj/item/ammo_magazine/m556saw/empty
 	category = "Arms and Ammunition"
 
 /datum/category_item/autolathe/arms/rifle_556m
 	name = "20rnd rifle magazine (5.56mm)"
-	path =/obj/item/ammo_magazine/a556m/empty
+	path =/obj/item/ammo_magazine/m556sawm/empty
 	category = "Arms and Ammunition"
 	hidden = 1
 
@@ -250,7 +250,7 @@
 
 /datum/category_item/autolathe/arms/rifle_762
 	name = "20rnd rifle magazine (7.62mm)"
-	path =/obj/item/ammo_magazine/c762/empty
+	path =/obj/item/ammo_magazine/m762/empty
 	category = "Arms and Ammunition"
 	hidden = 1
 
@@ -272,17 +272,17 @@
 
 /datum/category_item/autolathe/arms/speedloader_357
 	name = "speedloader (.357)"
-	path =/obj/item/ammo_magazine/a357
+	path =/obj/item/ammo_magazine/s357
 	hidden = 1
 
 /datum/category_item/autolathe/arms/speedloader_38
 	name = "speedloader (.38)"
-	path =/obj/item/ammo_magazine/c38
+	path =/obj/item/ammo_magazine/s38
 	hidden = 1
 
 /datum/category_item/autolathe/arms/speedloader_38r
 	name = "speedloader (.38 rubber)"
-	path =/obj/item/ammo_magazine/c38/rubber
+	path =/obj/item/ammo_magazine/s38/rubber
 
 // Commented out until metal exploits with autolathe is fixed.
 /*/datum/category_item/autolathe/arms/pistol_clip_45

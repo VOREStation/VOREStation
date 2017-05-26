@@ -33,8 +33,8 @@
 	slot_flags = SLOT_BELT|SLOT_BACK
 	fire_sound = 'sound/weapons/Gunshot_light.ogg'
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/a10mm
-	allowed_magazines = list(/obj/item/ammo_magazine/a10mm)
+	magazine_type = /obj/item/ammo_magazine/m10mm
+	allowed_magazines = list(/obj/item/ammo_magazine/m10mm)
 	auto_eject = 1
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 
@@ -60,8 +60,8 @@
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 4)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/c556
-	allowed_magazines = list(/obj/item/ammo_magazine/c556)
+	magazine_type = /obj/item/ammo_magazine/m556
+	allowed_magazines = list(/obj/item/ammo_magazine/m556)
 
 	one_handed_penalty = 4
 
@@ -115,8 +115,8 @@
 	fire_sound = 'sound/weapons/Gunshot.ogg'
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/c762
-	allowed_magazines = list(/obj/item/ammo_magazine/c762)
+	magazine_type = /obj/item/ammo_magazine/m762
+	allowed_magazines = list(/obj/item/ammo_magazine/m762)
 	auto_eject = 1
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 
@@ -187,8 +187,8 @@
 	ammo_type = "/obj/item/ammo_casing/a556" // Is this really needed anymore?
 	fire_sound = 'sound/weapons/machinegun.ogg'
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/a556
-	allowed_magazines = list(/obj/item/ammo_magazine/a556, /obj/item/ammo_magazine/c556)
+	magazine_type = /obj/item/ammo_magazine/m556saw
+	allowed_magazines = list(/obj/item/ammo_magazine/m556saw, /obj/item/ammo_magazine/m556)
 
 	one_handed_penalty = 6
 
@@ -225,7 +225,7 @@
 		return ..() //once open, behave like normal
 
 /obj/item/weapon/gun/projectile/automatic/l6_saw/update_icon()
-	if(istype(ammo_magazine,/obj/item/ammo_magazine/c762))
+	if(istype(ammo_magazine,/obj/item/ammo_magazine/m762))
 		icon_state = "l6[cover_open ? "open" : "closed"]mag"
 		item_state = icon_state
 	else
@@ -284,8 +284,8 @@
 	load_method = MAGAZINE
 	caliber = ".45"
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
-	magazine_type = /obj/item/ammo_magazine/c45uzi
-	allowed_magazines = list(/obj/item/ammo_magazine/c45uzi)
+	magazine_type = /obj/item/ammo_magazine/m45uzi
+	allowed_magazines = list(/obj/item/ammo_magazine/m45uzi)
 
 	firemodes = list(
 		list(mode_name="semiauto", burst=1, fire_delay=0),
@@ -330,8 +330,8 @@
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
 	slot_flags = SLOT_BELT // ToDo: Belt sprite.
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/tommymag
-	allowed_magazines = list(/obj/item/ammo_magazine/tommymag, /obj/item/ammo_magazine/tommydrum)
+	magazine_type = /obj/item/ammo_magazine/m45tommy
+	allowed_magazines = list(/obj/item/ammo_magazine/m45tommy, /obj/item/ammo_magazine/m45tommydrum)
 
 	firemodes = list(
 		list(mode_name="semiauto", burst=1, fire_delay=0),
@@ -354,8 +354,8 @@
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 4)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/c762
-	allowed_magazines = list(/obj/item/ammo_magazine/c762)
+	magazine_type = /obj/item/ammo_magazine/m762
+	allowed_magazines = list(/obj/item/ammo_magazine/m762)
 
 	one_handed_penalty = 4
 
