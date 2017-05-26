@@ -1,8 +1,8 @@
 /datum/technomancer/spell/instability_tap
 	name = "Instability Tap"
-	desc = "Creates a large sum of energy, at the cost of a very large amount of instability afflicting you."
+	desc = "Creates a large sum of energy (5,000 at normal spell power), at the cost of a very large amount of instability afflicting you."
 	enhancement_desc = "50% more energy gained, 20% less instability gained."
-	spell_power_desc = "Amount of energy gained scaled up with spell power."
+	spell_power_desc = "Amount of energy gained scaled with spell power."
 	cost = 100
 	obj_path = /obj/item/weapon/spell/instability_tap
 	ability_icon_state = "tech_instabilitytap"
@@ -26,4 +26,5 @@
 	else
 		core.give_energy(amount)
 		adjust_instability(50)
+	playsound(get_turf(src), 'sound/effects/supermatter.ogg', 75, 1)
 	qdel(src)

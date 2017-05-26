@@ -44,25 +44,25 @@
 // Description: Makes instability decay.  instability_effects() handles the bad effects for having instability.  It will also hold back
 // from causing bad effects more than one every ten seconds, to prevent sudden death from angry RNG.
 /mob/living/proc/handle_instability()
-	instability = round(Clamp(instability, 0, 200))
+	instability = Ceiling(Clamp(instability, 0, 200))
 	//This should cushon against really bad luck.
 	if(instability && last_instability_event < (world.time - 10 SECONDS) && prob(20))
 		instability_effects()
 		switch(instability)
 			if(1 to 10)
-				adjust_instability(-2)
+				adjust_instability(-1)
 			if(11 to 20)
-				adjust_instability(-4)
+				adjust_instability(-2)
 			if(21 to 30)
-				adjust_instability(-6)
+				adjust_instability(-3)
 			if(31 to 40)
-				adjust_instability(-8)
+				adjust_instability(-4)
 			if(41 to 50)
-				adjust_instability(-10)
+				adjust_instability(-5)
 			if(51 to 100)
-				adjust_instability(-20)
+				adjust_instability(-10)
 			if(101 to 200)
-				adjust_instability(-40)
+				adjust_instability(-20)
 
 /mob/living/carbon/human/handle_instability()
 	..()
@@ -277,12 +277,17 @@
 			// People next to the source take a third of the instability.  Further distance decreases the amount absorbed.
 			var/outgoing_instability = (instability / 3) * ( 1 / (radius**2) )
 
-			// Energy armor like from the AMI RIG can protect from this.
-			var/armor = getarmor(null, "energy")
-			var/armor_factor = abs( (armor - 100) / 100)
-			outgoing_instability = outgoing_instability * armor_factor
-			if(outgoing_instability)
-				to_chat(H, "<span class='warning'>The purple glow makes you feel strange...</span>")
-			H.adjust_instability(outgoing_instability)
+
+			H.receive_radiated_instability(outgoing_instability)
 
 	set_light(distance, distance * 4, l_color = "#C26DDE")
+
+// This should only be used for EXTERNAL sources of instability, such as from someone or something glowing.
+/mob/living/proc/receive_radiated_instability(amount)
+	// Energy armor like from the AMI RIG can protect from this.
+	var/armor = getarmor(null, "energy")
+	var/armor_factor = abs( (armor - 100) / 100)
+	amount = amount * armor_factor
+	if(amount && prob(10))
+		to_chat(src, "<span class='warning'>The purple glow makes you feel strange...</span>")
+	adjust_instability(amount)

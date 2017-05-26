@@ -9,26 +9,7 @@
 	lobby_icon = 'icons/misc/title.dmi'
 	lobby_screens = list("mockingjay00")
 
-	station_levels = list(
-		Z_LEVEL_FIRST_EXAMPLE,
-		Z_LEVEL_SECOND_EXAMPLE
-		)
-
-	admin_levels = list()
-	contact_levels = list(
-		Z_LEVEL_FIRST_EXAMPLE,
-		Z_LEVEL_SECOND_EXAMPLE
-		)
-
-	player_levels = list(
-		Z_LEVEL_FIRST_EXAMPLE,
-		Z_LEVEL_SECOND_EXAMPLE
-		)
-
-	sealed_levels = list()
-	empty_levels = list()
-	accessible_z_levels = list("1" = 50, "2" = 50) // The defines can't be used here sadly.
-	base_turf_by_z = list("2" = /turf/simulated/open)
+	zlevel_datum_type = /datum/map_z_level/example
 
 	station_name  = "The Funhouse"
 	station_short = "Funhouse"
@@ -47,3 +28,16 @@
 	emergency_shuttle_leaving_dock = "The Emergency Shuttle has left the station. Estimate %ETA% until the shuttle docks at %dock_name%."
 	emergency_shuttle_called_message = "An emergency evacuation shuttle has been called. It will arrive at docks one and two in approximately %ETA%"
 	emergency_shuttle_recall_message = "The emergency shuttle has been recalled."
+
+/datum/map_z_level/example/first
+	z = Z_LEVEL_FIRST_EXAMPLE
+	name = "First Floor"
+	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
+	transit_chance = 50
+
+/datum/map_z_level/example/second
+	z = Z_LEVEL_SECOND_EXAMPLE
+	name = "Second Floor"
+	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
+	transit_chance = 50
+	base_turf = /turf/simulated/open
