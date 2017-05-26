@@ -43,63 +43,18 @@
 	full_name = "NSB Adephagia"
 	path = "tether"
 
+	zlevel_datum_type = /datum/map_z_level/tether
+
 	lobby_icon = 'icons/misc/title_vr.dmi'
 	lobby_screens = list("tether")
 
-	station_levels = list(
+	holomap_smoosh = list(list(
 		Z_LEVEL_SURFACE_LOW,
 		Z_LEVEL_SURFACE_MID,
 		Z_LEVEL_SURFACE_HIGH,
 		Z_LEVEL_SPACE_LOW,
 		Z_LEVEL_SPACE_MID,
-		Z_LEVEL_SPACE_HIGH,
-		Z_LEVEL_SURFACE_MINE,
-		Z_LEVEL_SOLARS
-		)
-
-	admin_levels = list(
-		Z_LEVEL_CENTCOM,
-		Z_LEVEL_MISC,
-		Z_LEVEL_SHIPS
-		)
-
-	contact_levels = list(
-		Z_LEVEL_SURFACE_LOW,
-		Z_LEVEL_SURFACE_MID,
-		Z_LEVEL_SURFACE_HIGH,
-		Z_LEVEL_SPACE_LOW,
-		Z_LEVEL_SPACE_MID,
-		Z_LEVEL_SPACE_HIGH,
-		Z_LEVEL_SURFACE_MINE,
-		Z_LEVEL_SOLARS
-		)
-
-	player_levels = list(
-		Z_LEVEL_SURFACE_LOW,
-		Z_LEVEL_SURFACE_MID,
-		Z_LEVEL_SURFACE_HIGH,
-		Z_LEVEL_SPACE_LOW,
-		Z_LEVEL_SPACE_MID,
-		Z_LEVEL_SPACE_HIGH,
-		Z_LEVEL_SURFACE_MINE,
-		Z_LEVEL_SOLARS,
-		Z_LEVEL_EMPTY_SURFACE,
-		Z_LEVEL_EMPTY_SPACE
-		)
-
-	sealed_levels = list(Z_LEVEL_TRANSIT)
-	empty_levels = list()
-	accessible_z_levels = list("5" = 6, "6" = 6, "7" = 6, "14" = 82) // The defines can't be used here sadly.
-	base_turf_by_z = list(
-		"1" = /turf/simulated/floor/outdoors/rocks/virgo3b,
-		"2" = /turf/simulated/open,
-		"3" = /turf/simulated/open,
-		"5" = /turf/space,
-		"6" = /turf/simulated/open,
-		"7" = /turf/simulated/open,
-		"8" = /turf/simulated/floor/outdoors/rocks/virgo3b,
-		"9" = /turf/simulated/floor/outdoors/rocks/virgo3b
-		)
+		Z_LEVEL_SPACE_HIGH))
 
 	station_name  = "NSB Tether"
 	station_short = "Tether"
@@ -151,31 +106,6 @@
 
 	return 1
 
-// TODO - Re-Implement this using the /datum/map_z_level
-/datum/map/tether/New()
-	..()
-	holomap_offset_y[1] = 60
-	holomap_offset_y[2] = 180
-	holomap_offset_y[3] = 300
-
-	holomap_offset_x[1] = 100
-	holomap_offset_x[2] = 100
-	holomap_offset_x[3] = 100
-
-	holomap_offset_x[5] = 260
-	holomap_offset_x[7] = 260
-	holomap_offset_x[6] = 260
-
-	holomap_offset_y[5] = 60
-	holomap_offset_y[6] = 180
-	holomap_offset_y[7] = 300
-
-	for(var/z in list(1,2,3,5,6,7))
-		holomap_legend_x[z] = 220
-		holomap_legend_y[z] = 160
-	holomap_smoosh = list(list(1,2,3,5,6,7))
-
-
 // Short range computers see only the six main levels, others can see the surrounding surface levels.
 /datum/map/tether/get_map_levels(var/srcz, var/long_range = TRUE)
 	if (long_range && (srcz in map_levels))
@@ -192,3 +122,104 @@
 			Z_LEVEL_SPACE_HIGH)
 	else
 		return ..()
+
+// For making the 6-in-1 holomap, we calculate some offsets
+#define TETHER_MAP_SIZE 120 // Width and height of compiled in tether z levels.
+#define TETHER_HOLOMAP_CENTER_GUTTER 40 // 40px central gutter between columns
+#define TETHER_HOLOMAP_MARGIN_X ((HOLOMAP_ICON_SIZE - (2*TETHER_MAP_SIZE) - TETHER_HOLOMAP_CENTER_GUTTER) / 2) // 100
+#define TETHER_HOLOMAP_MARGIN_Y ((HOLOMAP_ICON_SIZE - (3*TETHER_MAP_SIZE)) / 2) // 60
+
+// We have a bunch of stuff common to the station z levels
+/datum/map_z_level/tether/station
+	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES
+	holomap_legend_x = 220
+	holomap_legend_y = 160
+
+/datum/map_z_level/tether/station/surface_low
+	z = Z_LEVEL_SURFACE_LOW
+	name = "Surface 1"
+	base_turf = /turf/simulated/floor/outdoors/rocks/virgo3b
+	holomap_offset_x = TETHER_HOLOMAP_MARGIN_X
+	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE*0
+
+/datum/map_z_level/tether/station/surface_mid
+	z = Z_LEVEL_SURFACE_MID
+	name = "Surface 2"
+	base_turf = /turf/simulated/open
+	holomap_offset_x = TETHER_HOLOMAP_MARGIN_X
+	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE*1
+
+/datum/map_z_level/tether/station/surface_high
+	z = Z_LEVEL_SURFACE_HIGH
+	name = "Surface 3"
+	base_turf = /turf/simulated/open
+	holomap_offset_x = TETHER_HOLOMAP_MARGIN_X
+	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE*2
+
+/datum/map_z_level/tether/transit
+	z = Z_LEVEL_TRANSIT
+	name = "Transit"
+	flags = MAP_LEVEL_SEALED|MAP_LEVEL_PLAYER|MAP_LEVEL_CONTACT
+
+/datum/map_z_level/tether/station/space_low
+	z = Z_LEVEL_SPACE_LOW
+	name = "Asteroid 1"
+	base_turf = /turf/space
+	transit_chance = 6
+	holomap_offset_x = HOLOMAP_ICON_SIZE - TETHER_HOLOMAP_MARGIN_X - TETHER_MAP_SIZE
+	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE*0
+
+/datum/map_z_level/tether/station/space_mid
+	z = Z_LEVEL_SPACE_MID
+	name = "Asteroid 2"
+	base_turf = /turf/simulated/open
+	transit_chance = 6
+	holomap_offset_x = HOLOMAP_ICON_SIZE - TETHER_HOLOMAP_MARGIN_X - TETHER_MAP_SIZE
+	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE*1
+
+/datum/map_z_level/tether/station/space_high
+	z = Z_LEVEL_SPACE_HIGH
+	name = "Asteroid 3"
+	base_turf = /turf/simulated/open
+	transit_chance = 6
+	holomap_offset_x = HOLOMAP_ICON_SIZE - TETHER_HOLOMAP_MARGIN_X - TETHER_MAP_SIZE
+	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE*2
+
+/datum/map_z_level/tether/mine
+	z = Z_LEVEL_SURFACE_MINE
+	name = "Mining Outpost"
+	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
+	base_turf = /turf/simulated/floor/outdoors/rocks/virgo3b
+
+/datum/map_z_level/tether/solars
+	z = Z_LEVEL_SOLARS
+	name = "Solar Field"
+	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
+	base_turf = /turf/simulated/floor/outdoors/rocks/virgo3b
+
+/datum/map_z_level/tether/colony
+	z = Z_LEVEL_CENTCOM
+	name = "Colony"
+	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_CONTACT
+
+/datum/map_z_level/tether/misc
+	z = Z_LEVEL_MISC
+	name = "Misc"
+	flags = MAP_LEVEL_ADMIN
+
+/datum/map_z_level/tether/ships
+	z = Z_LEVEL_SHIPS
+	name = "Ships"
+	flags = 0
+
+/datum/map_z_level/tether/empty_surface
+	z = Z_LEVEL_EMPTY_SURFACE
+	name = "Empty"
+	flags = MAP_LEVEL_PLAYER
+	base_turf = /turf/simulated/floor/outdoors/rocks/virgo3b
+
+/datum/map_z_level/tether/empty_space
+	z = Z_LEVEL_EMPTY_SPACE
+	name = "Empty"
+	flags = MAP_LEVEL_PLAYER
+	transit_chance = 82
