@@ -56,7 +56,7 @@
 /obj/machinery/computer/secure_data/attack_hand(mob/user as mob)
 	if(..())
 		return
-	if (src.z > 6)
+	if (using_map && !(src.z in using_map.contact_levels))
 		user << "<span class='warning'>Unable to establish a connection:</span> You're too far away from the station!"
 		return
 	var/dat

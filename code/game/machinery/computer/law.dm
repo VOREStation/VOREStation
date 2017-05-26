@@ -26,7 +26,7 @@
 
 
 	attackby(obj/item/weapon/O as obj, mob/user as mob)
-		if (user.z > 6)
+		if (using_map && !(user.z in using_map.contact_levels))
 			user << "<span class='danger'>Unable to establish a connection:</span> You're too far away from the station!"
 			return
 		if(istype(O, /obj/item/weapon/aiModule))
