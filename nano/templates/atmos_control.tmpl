@@ -1,3 +1,8 @@
+{{if data.map_levels.length}}
+<div class="notice" style="height: 22px">
+	{{:helper.link('Show Air Alrms On Map', 'pin-s', {'showMap' : 1})}}
+</div>
+{{/if}}
 <div class='item'>
     {{for data.alarms}}
         {{:helper.link(value.name, null, {'alarm' : value.ref}, null, value.danger == 2 ? 'redButton' : (value.danger == 1 ? 'yellowButton' : null))}}
