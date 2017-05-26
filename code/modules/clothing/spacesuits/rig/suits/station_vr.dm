@@ -1,5 +1,5 @@
 /obj/item/weapon/rig/hazmat/equipped
-
+	req_access = list(access_xenoarch)
 	initial_modules = list(
 		/obj/item/rig_module/ai_container,
 		/obj/item/rig_module/maneuvering_jets,
