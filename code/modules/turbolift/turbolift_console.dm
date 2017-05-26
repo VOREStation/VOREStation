@@ -123,6 +123,7 @@
 	dat += "<a href='?src=\ref[src];emergency_stop=1'>Emergency Stop</a>"
 	dat += "<hr></body></html>"
 
+	user.set_machine(src)
 	var/datum/browser/popup = new(user, "turbolift_panel", "Lift Panel", 350, 320) //VOREStation Edit - Wider!
 	popup.set_content(jointext(dat, null))
 	popup.open()
@@ -149,6 +150,7 @@
 
 	if(panel_interact)
 		pressed(usr)
+		updateDialog()
 
 	return 0
 

@@ -17,6 +17,7 @@
 	queued_floors.Cut()
 	target_floor = null
 	open_doors()
+	control_panel_interior.updateDialog()
 
 /datum/turbolift/proc/doors_are_open(var/datum/turbolift_floor/use_floor = current_floor)
 	for(var/obj/machinery/door/airlock/door in (use_floor ? (doors + use_floor.doors) : doors))
@@ -51,6 +52,7 @@
 			moving_upwards = 1
 		else
 			moving_upwards = 0
+		control_panel_interior.updateDialog()
 
 	if(doors_are_open())
 		if(!doors_closing)
