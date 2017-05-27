@@ -252,7 +252,7 @@
 	item_state = null
 	w_class = ITEMSIZE_LARGE
 	force = 10
-	caliber = "shotgun"
+	caliber = "12g"
 	fire_sound = 'sound/weapons/shotgun.ogg'
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 4)
 	slot_flags = SLOT_BACK
