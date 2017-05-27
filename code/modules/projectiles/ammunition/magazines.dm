@@ -15,7 +15,10 @@
 #    Likewise, when creating new rounds, the caliber variable should match whatever
 #    the name says.
 #
-#    This comment is copied in magazines.dm as well.
+#    This comment is copied in rounds.dm as well.
+#
+#    Also, if a magazine is only meant for a specific gun, include the name
+#    of the specific gun in the path. Example: m45uzi is only for the Uzi.
 */
 /************************************************************************/
 
