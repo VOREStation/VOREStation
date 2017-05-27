@@ -232,28 +232,6 @@
 /obj/item/ammo_magazine/box/c9mm/empty
 	initial_ammo = 0
 
-///////// 5mm /////////
-/*
-/obj/item/ammo_magazine/c5mm
-	name = "magazine (5mm)"
-	icon_state = "fiveseven"
-	mag_type = MAGAZINE
-	ammo_type = /obj/item/ammo_casing/c5mm
-	matter = list(DEFAULT_WALL_MATERIAL = 1200)
-	caliber = "5mm"
-	max_ammo = 20
-	//multiple_sprites = 1
-
-/obj/item/ammo_magazine/clip/c5mm
-	name = "ammo clip (5mm)"
-	icon_state = "clip_pistol"
-	desc = "A stripper clip for reloading 5mm rounds into magazines."
-	caliber = "5mm"
-	ammo_type = /obj/item/ammo_casing/c5mm
-	matter = list(DEFAULT_WALL_MATERIAL = 540) // metal costs are very roughly based around one 5mm casing = 60 metal
-	max_ammo = 9
-	multiple_sprites = 1
-*/
 ///////// 10mm /////////
 
 /obj/item/ammo_magazine/m10mm
