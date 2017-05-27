@@ -258,7 +258,9 @@
 	desc = "A 7.62mm hollow-point bullet casing."
 	projectile_type = /obj/item/projectile/bullet/rifle/a762/hollow
 
-//145mm
+/*
+ * 14.5mm (anti-materiel rifle round)
+ */
 
 /obj/item/ammo_casing/a145
 	desc = "A 14.5mm shell."

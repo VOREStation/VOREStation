@@ -56,7 +56,7 @@
 	item_state = null
 	w_class = ITEMSIZE_LARGE
 	force = 10
-	caliber = "a556"
+	caliber = "5.56mm"
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 4)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
@@ -109,7 +109,7 @@
 	item_state = "z8carbine"
 	w_class = ITEMSIZE_LARGE
 	force = 10
-	caliber = "a762"
+	caliber = "7.62mm"
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 3)
 	ammo_type = "/obj/item/ammo_casing/a556" // Is this really needed anymore?
 	fire_sound = 'sound/weapons/Gunshot.ogg'
@@ -181,7 +181,7 @@
 	force = 10
 	slot_flags = 0
 	max_shells = 50
-	caliber = "a556"
+	caliber = "5.56mm"
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 2)
 	slot_flags = SLOT_BACK
 	ammo_type = "/obj/item/ammo_casing/a556" // Is this really needed anymore?
@@ -350,7 +350,7 @@
 	item_state = "bullpup"
 	w_class = ITEMSIZE_LARGE
 	force = 10
-	caliber = "a762"
+	caliber = "7.62mm"
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 4)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE

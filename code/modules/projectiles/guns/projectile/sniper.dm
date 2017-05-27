@@ -80,7 +80,7 @@
 	slot_flags = SLOT_BACK // Needs a sprite.
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
 	recoil = 2 //extra kickback
-	caliber = "a762"
+	caliber = "7.62mm"
 	load_method = MAGAZINE
 	accuracy = -3 //shooting at the hip
 	scoped_accuracy = 0

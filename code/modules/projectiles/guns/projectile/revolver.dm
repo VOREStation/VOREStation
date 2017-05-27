@@ -43,7 +43,7 @@
 	name = "revolver"
 	desc = "A cheap Martian knock-off of a Smith & Wesson Model 10. Uses .38-Special rounds."
 	icon_state = "detective"
-	caliber = "38"
+	caliber = ".38"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	fire_sound = 'sound/weapons/Gunshot_light.ogg'
 	ammo_type = /obj/item/ammo_casing/a38
@@ -71,7 +71,7 @@
 	name = "Deckard .38"
 	desc = "A custom-built revolver, based off the semi-popular Detective Special model."
 	icon_state = "deckard-empty"
-	caliber = "38"
+	caliber = ".38"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	fire_sound = 'sound/weapons/Gunshot_light.ogg'
 	ammo_type = /obj/item/ammo_casing/a38
@@ -124,7 +124,7 @@
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	handle_casings = CYCLE_CASINGS
 	max_shells = 9
-	caliber = "38"
+	caliber = ".38"
 	ammo_type = /obj/item/ammo_casing/a38
 	var/secondary_max_shells = 1
 	var/secondary_caliber = "12g"

@@ -120,7 +120,7 @@
 	icon_state = "deagle"
 	item_state = "deagle"
 	force = 14.0
-	caliber = ".50"
+	caliber = ".50AE"
 	load_method = MAGAZINE
 	fire_sound = 'sound/weapons/deagle.ogg'
 	magazine_type = /obj/item/ammo_magazine/m50
@@ -168,7 +168,7 @@
 	desc = "Speak softly, and carry a big gun. Fires rare .75 caliber self-propelled exploding bolts--because fuck you and everything around you."
 	icon_state = "gyropistol"
 	max_shells = 8
-	caliber = "75"
+	caliber = ".75"
 	fire_sound = 'sound/weapons/rpg.ogg'
 	origin_tech = list(TECH_COMBAT = 3)
 	ammo_type = "/obj/item/ammo_casing/a75"
