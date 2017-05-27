@@ -329,6 +329,7 @@
 	max_ammo = 30
 
 /obj/item/ammo_magazine/m556/small
+	name = "reduced magazine (5.56mm)"
 	icon_state = "m556-small"
 	matter = list(DEFAULT_WALL_MATERIAL = 900)
 	max_ammo = 10
