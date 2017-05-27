@@ -5,6 +5,7 @@
 #define WORLD_ICON_SIZE 32	// Size of a standard tile in pixels (world.icon_size)
 #define PIXEL_MULTIPLIER WORLD_ICON_SIZE/32	// Convert from normal icon size of 32 to whatever insane thing this server is using.
 #define HOLOMAP_ICON 'icons/480x480_vr.dmi' // Icon file to start with when drawing holomaps (to get a 480x480 canvas).
+#define HOLOMAP_ICON_SIZE 480 // Pixel width & height of the holomap icon.  Used for auto-centering etc.
 #define ui_holomap "CENTER-7, CENTER-7" // Screen location of the holomap "hud"
 
 // Holomap colors
@@ -23,6 +24,8 @@
 #define HOLOMAP_AREACOLOR_ARRIVALS		"#0000FFCC"
 #define HOLOMAP_AREACOLOR_ESCAPE		"#FF0000CC"
 #define HOLOMAP_AREACOLOR_DORMS			"#CCCC0099"
+
+#define LIST_NUMERIC_SET(L, I, V) if(!L) { L = list(); } if (L.len < I) { L.len = I; } L[I] = V
 
 // Handy defines to lookup the pixel offsets for this Z-level.  Cache these if you use them in a loop tho.
 #define HOLOMAP_PIXEL_OFFSET_X(zLevel) ((using_map.holomap_offset_x.len >= zLevel) ? using_map.holomap_offset_x[zLevel] : 0)

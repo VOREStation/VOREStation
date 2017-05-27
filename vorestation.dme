@@ -1520,7 +1520,6 @@
 #include "code\modules\holomap\generate_holomap.dm"
 #include "code\modules\holomap\holomap_area.dm"
 #include "code\modules\holomap\holomap_datum.dm"
-#include "code\modules\holomap\holomap_zlevel.dm"
 #include "code\modules\holomap\station_holomap.dm"
 #include "code\modules\hydroponics\_hydro_setup.dm"
 #include "code\modules\hydroponics\grown.dm"
