@@ -288,7 +288,7 @@
 
 /obj/item/ammo_magazine/m556
 	name = "magazine (5.56mm)"
-	icon_state = "c5.56mid"
+	icon_state = "m556"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	caliber = "a556"
@@ -325,14 +325,9 @@
 	max_ammo = 30
 
 /obj/item/ammo_magazine/m556/small
-	name = "magazine (5.56)"
-	icon_state = "c5.56" // This icon is named wrongly. Change later.
-	mag_type = MAGAZINE
-	caliber = "a762"
+	icon_state = "m556-small"
 	matter = list(DEFAULT_WALL_MATERIAL = 900)
-	ammo_type = /obj/item/ammo_casing/a762
 	max_ammo = 10
-	multiple_sprites = 1
 
 /obj/item/ammo_magazine/m556/small/empty
 	initial_ammo = 0
@@ -342,7 +337,7 @@
 	ammo_type = /obj/item/ammo_casing/a556p
 
 /obj/item/ammo_magazine/m556/small/ap
-	name = "magazine (7.62mm armor-piercing)"
+	name = "magazine (5.56mm armor-piercing)"
 	ammo_type = /obj/item/ammo_casing/a556/ap
 
 /obj/item/ammo_magazine/clip/c556
@@ -411,7 +406,7 @@
 
 /obj/item/ammo_magazine/m762
 	name = "magazine (7.62mm)"
-	icon_state = "c7.62"
+	icon_state = "m762-small"
 	mag_type = MAGAZINE
 	caliber = "a762"
 	matter = list(DEFAULT_WALL_MATERIAL = 2000)
@@ -424,6 +419,23 @@
 	ammo_type = /obj/item/ammo_casing/a762/ap
 
 /obj/item/ammo_magazine/m762/empty
+	initial_ammo = 0
+
+/obj/item/ammo_magazine/m762m // Intentionally not a subtype of m762 because it's supposed to be incompatible with the Z8 Bulldog rifle.
+	name = "magazine (7.62mm)"
+	icon_state = "m762"
+	mag_type = MAGAZINE
+	caliber = "a762"
+	matter = list(DEFAULT_WALL_MATERIAL = 4000)
+	ammo_type = /obj/item/ammo_casing/a762
+	max_ammo = 20
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/m762m/ap
+	name = "magazine (7.62mm armor-piercing)"
+	ammo_type = /obj/item/ammo_casing/a762/ap
+
+/obj/item/ammo_magazine/m762m/empty
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/clip/c762

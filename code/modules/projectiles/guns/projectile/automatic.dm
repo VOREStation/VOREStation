@@ -73,8 +73,8 @@
 
 /obj/item/weapon/gun/projectile/automatic/sts35/update_icon(var/ignore_inhands)
 	..()
-	if(istype(ammo_magazine,/obj/item/ammo_magazine/s762))
-		icon_state = "arifle-small"
+	if(istype(ammo_magazine,/obj/item/ammo_magazine/m556/small))
+		icon_state = "arifle-small" // If using the small magazines, use the small magazine sprite.
 	else
 		icon_state = (ammo_magazine)? "arifle" : "arifle-empty"
 	if(!ignore_inhands) update_held_icon()
@@ -343,7 +343,7 @@
 	icon_state = (ammo_magazine)? "tommygun" : "tommygun-empty"
 //	update_held_icon()
 
-/obj/item/weapon/gun/projectile/automatic/carbine
+/obj/item/weapon/gun/projectile/automatic/carbine // Admin abuse assault rifle. ToDo: Make this less shit. Maybe remove its autofire, and make it spawn with only 10 rounds at start.
 	name = "assault carbine"
 	desc = "The bullpup configured GP3000 is a lightweight, compact, military-grade assault rifle produced by Gurov Projectile Weapons LLC. It is sold almost exclusively to standing armies. The serial number on this one has been scratched off. Uses 5.56mm rounds."
 	icon_state = "bullpup"
@@ -354,8 +354,8 @@
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 4)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/m762
-	allowed_magazines = list(/obj/item/ammo_magazine/m762)
+	magazine_type = /obj/item/ammo_magazine/m762m
+	allowed_magazines = list(/obj/item/ammo_magazine/m762, /obj/item/ammo_magazine/m762m)
 
 	one_handed_penalty = 4
 
@@ -366,8 +366,8 @@
 
 /obj/item/weapon/gun/projectile/automatic/carbine/update_icon(var/ignore_inhands)
 	..()
-	if(ammo_magazine)
-		icon_state = "bullpup"
+	if(istype(ammo_magazine,/obj/item/ammo_magazine/m762))
+		icon_state = "bullpup-small" // If using the smaller magazines, use the small mag sprite.
 	else
 		icon_state = "bullpup-empty"
 	item_state = (ammo_magazine)? "bullpup" : "bullpup-empty"
