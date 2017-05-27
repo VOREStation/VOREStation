@@ -288,8 +288,8 @@
 				prob(2);/obj/item/ammo_magazine/m45,
 				prob(4);/obj/item/ammo_magazine/m45/rubber,
 				prob(4);/obj/item/ammo_magazine/m45/flash,
-				prob(2);/obj/item/ammo_magazine/mc9mmt,
-				prob(6);/obj/item/ammo_magazine/mc9mmt/rubber)
+				prob(2);/obj/item/ammo_magazine/m9mmt,
+				prob(6);/obj/item/ammo_magazine/m9mmt/rubber)
 
 
 /obj/random/action_figure

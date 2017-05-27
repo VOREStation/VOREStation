@@ -13,18 +13,18 @@
 	caliber = "75"
 	projectile_type = /obj/item/projectile/bullet/gyro
 
-/obj/item/ammo_casing/c38
+/obj/item/ammo_casing/a38
 	desc = "A .38 bullet casing."
 	caliber = "38"
 	projectile_type = /obj/item/projectile/bullet/pistol
 
-/obj/item/ammo_casing/c38r
+/obj/item/ammo_casing/a38r
 	desc = "A .38 rubber bullet casing."
 	caliber = "38"
 	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/bullet/pistol/rubber
 
-/obj/item/ammo_casing/c38/emp
+/obj/item/ammo_casing/a38/emp
 	name = ".38 haywire round"
 	desc = "A .38 bullet casing fitted with a single-use ion pulse generator."
 	icon_state = "empcasing"
@@ -35,28 +35,28 @@
  * 9mm
  */
 
-/obj/item/ammo_casing/c9mm
+/obj/item/ammo_casing/a9mm
 	desc = "A 9mm bullet casing."
 	caliber = "9mm"
 	projectile_type = /obj/item/projectile/bullet/pistol
 
-/obj/item/ammo_casing/c9mm/ap
+/obj/item/ammo_casing/a9mm/ap
 	desc = "A 9mm armor-piercing bullet casing."
 	projectile_type = /obj/item/projectile/bullet/pistol/ap
 
-/obj/item/ammo_casing/c9mmf
+/obj/item/ammo_casing/a9mmf
 	desc = "A 9mm flash shell casing."
 	caliber = "9mm"
 	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/energy/flash
 
-/obj/item/ammo_casing/c9mmr
+/obj/item/ammo_casing/a9mmr
 	desc = "A 9mm rubber bullet casing."
 	caliber = "9mm"
 	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/bullet/pistol/rubber
 
-/obj/item/ammo_casing/c9mmp
+/obj/item/ammo_casing/a9mmp
 	desc = "A 9mm practice bullet casing."
 	caliber = "9mm"
 	icon_state = "r-casing"
@@ -73,43 +73,43 @@
  * 45 ammo
  */
 
-/obj/item/ammo_casing/c45
+/obj/item/ammo_casing/a45
 	desc = "A .45 bullet casing."
 	caliber = ".45"
 	projectile_type = /obj/item/projectile/bullet/pistol/medium
 
-/obj/item/ammo_casing/c45ap
+/obj/item/ammo_casing/a45ap
 	desc = "A .45 Armor-Piercing bullet casing."
 	caliber = ".45"
 	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/bullet/pistol/medium/ap
 
-/obj/item/ammo_casing/c45p
+/obj/item/ammo_casing/a45p
 	desc = "A .45 practice bullet casing."
 	caliber = ".45"
 	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/bullet/pistol/practice
 
-/obj/item/ammo_casing/c45r
+/obj/item/ammo_casing/a45r
 	desc = "A .45 rubber bullet casing."
 	caliber = ".45"
 	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/bullet/pistol/rubber
 
-/obj/item/ammo_casing/c45f
+/obj/item/ammo_casing/a45f
 	desc = "A .45 flash shell casing."
 	caliber = ".45"
 	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/energy/flash
 
-/obj/item/ammo_casing/c45/emp
+/obj/item/ammo_casing/a45/emp
 	name = ".45 haywire round"
 	desc = "A .45 bullet casing fitted with a single-use ion pulse generator."
 	projectile_type = /obj/item/projectile/ion/small
 	icon_state = "empcasing"
 	matter = list(DEFAULT_WALL_MATERIAL = 130, "uranium" = 100)
 
-/obj/item/ammo_casing/c45/hp
+/obj/item/ammo_casing/a45/hp
 	desc = "A .45 hollow-point bullet casing."
 	projectile_type = /obj/item/projectile/bullet/pistol/medium/hollow
 
@@ -134,7 +134,7 @@
  * Shotguns
  */
 
-/obj/item/ammo_casing/shotgun
+/obj/item/ammo_casing/a12g
 	name = "shotgun slug"
 	desc = "A 12 gauge slug."
 	icon_state = "slshell"
@@ -142,28 +142,28 @@
 	projectile_type = /obj/item/projectile/bullet/shotgun
 	matter = list(DEFAULT_WALL_MATERIAL = 360)
 
-/obj/item/ammo_casing/shotgun/pellet
+/obj/item/ammo_casing/a12g/pellet
 	name = "shotgun shell"
 	desc = "A 12 gauge shell."
 	icon_state = "gshell"
 	projectile_type = /obj/item/projectile/bullet/pellet/shotgun
 	matter = list(DEFAULT_WALL_MATERIAL = 360)
 
-/obj/item/ammo_casing/shotgun/blank
+/obj/item/ammo_casing/a12g/blank
 	name = "shotgun shell"
 	desc = "A blank shell."
 	icon_state = "blshell"
 	projectile_type = /obj/item/projectile/bullet/blank
 	matter = list(DEFAULT_WALL_MATERIAL = 90)
 
-/obj/item/ammo_casing/shotgun/practice
+/obj/item/ammo_casing/a12g/practice
 	name = "shotgun shell"
 	desc = "A practice shell."
 	icon_state = "pshell"
 	projectile_type = /obj/item/projectile/bullet/shotgun/practice
 	matter = list("metal" = 90)
 
-/obj/item/ammo_casing/shotgun/beanbag
+/obj/item/ammo_casing/a12g/beanbag
 	name = "beanbag shell"
 	desc = "A beanbag shell."
 	icon_state = "bshell"
@@ -172,26 +172,26 @@
 
 //Can stun in one hit if aimed at the head, but
 //is blocked by clothing that stops tasers and is vulnerable to EMP
-/obj/item/ammo_casing/shotgun/stunshell
+/obj/item/ammo_casing/a12g/stunshell
 	name = "stun shell"
 	desc = "A 12 gauge taser cartridge."
 	icon_state = "stunshell"
 	projectile_type = /obj/item/projectile/energy/electrode/stunshot
 	matter = list(DEFAULT_WALL_MATERIAL = 360, "glass" = 720)
 
-/obj/item/ammo_casing/shotgun/stunshell/emp_act(severity)
+/obj/item/ammo_casing/a12g/stunshell/emp_act(severity)
 	if(prob(100/severity)) BB = null
 	update_icon()
 
 //Does not stun, only blinds, but has area of effect.
-/obj/item/ammo_casing/shotgun/flash
+/obj/item/ammo_casing/a12g/flash
 	name = "flash shell"
 	desc = "A chemical shell used to signal distress or provide illumination."
 	icon_state = "fshell"
 	projectile_type = /obj/item/projectile/energy/flash/flare
 	matter = list(DEFAULT_WALL_MATERIAL = 90, "glass" = 90)
 
-/obj/item/ammo_casing/shotgun/emp
+/obj/item/ammo_casing/a12g/emp
 	name = "ion shell"
 	desc = "An advanced shotgun round that creates a small EMP when it strikes a target."
 	icon_state = "empshell"

@@ -12,7 +12,7 @@
 
 /datum/uplink_item/item/ammo/mc9mm
 	name = "Pistol Magazine (9mm)"
-	path = /obj/item/ammo_magazine/mc9mm
+	path = /obj/item/ammo_magazine/m9mm
 
 /datum/uplink_item/item/ammo/c45m
 	name = "Pistol Magazine (.45)"

@@ -8,7 +8,7 @@
 	caliber = "9mm"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
-	ammo_type = /obj/item/ammo_casing/c9mm
+	ammo_type = /obj/item/ammo_casing/a9mm
 	multi_aim = 1
 	burst_delay = 2
 
@@ -88,11 +88,11 @@
 	caliber = "9mm"
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
-	ammo_type = "/obj/item/ammo_casing/c9mmr"
+	ammo_type = "/obj/item/ammo_casing/a9mmr"
 	fire_sound = 'sound/weapons/Gunshot_light.ogg'
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/mc9mmt/rubber
-	allowed_magazines = list(/obj/item/ammo_magazine/mc9mmt)
+	magazine_type = /obj/item/ammo_magazine/m9mmt/rubber
+	allowed_magazines = list(/obj/item/ammo_magazine/m9mmt)
 
 /obj/item/weapon/gun/projectile/automatic/wt550/update_icon()
 	..()
@@ -257,8 +257,8 @@
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 4)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/g12
-	allowed_magazines = list(/obj/item/ammo_magazine/g12)
+	magazine_type = /obj/item/ammo_magazine/m12gdrum
+	allowed_magazines = list(/obj/item/ammo_magazine/m12gdrum)
 
 	one_handed_penalty = 4
 
@@ -310,8 +310,8 @@
 	slot_flags = SLOT_BELT // ToDo: Belt sprite.
 	fire_sound = 'sound/weapons/Gunshot_light.ogg'
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/p90
-	allowed_magazines = list(/obj/item/ammo_magazine/p90, /obj/item/ammo_magazine/mc9mmt) // ToDo: New sprite for the different mag.
+	magazine_type = /obj/item/ammo_magazine/m9mmp90
+	allowed_magazines = list(/obj/item/ammo_magazine/m9mmp90, /obj/item/ammo_magazine/m9mmt) // ToDo: New sprite for the different mag.
 
 	firemodes = list(
 		list(mode_name="semiauto", burst=1, fire_delay=0),

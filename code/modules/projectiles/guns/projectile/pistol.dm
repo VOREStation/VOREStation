@@ -196,12 +196,12 @@
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 2)
 	fire_sound = 'sound/weapons/semiauto.ogg'
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/mc9mm
-	allowed_magazines = list(/obj/item/ammo_magazine/mc9mm)
+	magazine_type = /obj/item/ammo_magazine/m9mm
+	allowed_magazines = list(/obj/item/ammo_magazine/m9mm)
 
 /obj/item/weapon/gun/projectile/pistol/flash
 	name = "holdout signal pistol"
-	magazine_type = /obj/item/ammo_magazine/mc9mm/flash
+	magazine_type = /obj/item/ammo_magazine/m9mm/flash
 
 /obj/item/weapon/gun/projectile/pistol/attack_hand(mob/living/user as mob)
 	if(user.get_inactive_hand() == src)
@@ -256,17 +256,17 @@
 
 	var/global/list/ammo_types = list(
 		/obj/item/ammo_casing/a357              = ".357",
-		/obj/item/ammo_casing/c9mmf             = "9mm",
-		/obj/item/ammo_casing/c45f              = ".45",
+		/obj/item/ammo_casing/a9mmf             = "9mm",
+		/obj/item/ammo_casing/a45f              = ".45",
 		/obj/item/ammo_casing/a10mm             = "10mm",
-		/obj/item/ammo_casing/shotgun           = "12 gauge",
-		/obj/item/ammo_casing/shotgun           = "12 gauge",
-		/obj/item/ammo_casing/shotgun/pellet    = "12 gauge",
-		/obj/item/ammo_casing/shotgun/pellet    = "12 gauge",
-		/obj/item/ammo_casing/shotgun/pellet    = "12 gauge",
-		/obj/item/ammo_casing/shotgun/beanbag   = "12 gauge",
-		/obj/item/ammo_casing/shotgun/stunshell = "12 gauge",
-		/obj/item/ammo_casing/shotgun/flash     = "12 gauge",
+		/obj/item/ammo_casing/a12g           = "12 gauge",
+		/obj/item/ammo_casing/a12g           = "12 gauge",
+		/obj/item/ammo_casing/a12g/pellet    = "12 gauge",
+		/obj/item/ammo_casing/a12g/pellet    = "12 gauge",
+		/obj/item/ammo_casing/a12g/pellet    = "12 gauge",
+		/obj/item/ammo_casing/a12g/beanbag   = "12 gauge",
+		/obj/item/ammo_casing/a12g/stunshell = "12 gauge",
+		/obj/item/ammo_casing/a12g/flash     = "12 gauge",
 		/obj/item/ammo_casing/a762              = "7.62mm",
 		/obj/item/ammo_casing/a556              = "5.56mm"
 		)
@@ -299,8 +299,8 @@
 	caliber = "9mm"
 	load_method = MAGAZINE
 	fire_sound = 'sound/weapons/semiauto.ogg'
-	magazine_type = /obj/item/ammo_magazine/mc9mm
-	allowed_magazines = list(/obj/item/ammo_magazine/mc9mm)
+	magazine_type = /obj/item/ammo_magazine/m9mm
+	allowed_magazines = list(/obj/item/ammo_magazine/m9mm)
 
 /obj/item/weapon/gun/projectile/luger/update_icon()
 	..()

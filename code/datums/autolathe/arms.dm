@@ -8,29 +8,29 @@
 
 /datum/category_item/autolathe/arms/shotgun_blanks
 	name = "ammunition (12g, blank)"
-	path =/obj/item/ammo_casing/shotgun/blank
+	path =/obj/item/ammo_casing/a12g/blank
 
 /datum/category_item/autolathe/arms/shotgun_beanbag
 	name = "ammunition (12g, beanbag)"
-	path =/obj/item/ammo_casing/shotgun/beanbag
+	path =/obj/item/ammo_casing/a12g/beanbag
 
 /datum/category_item/autolathe/arms/shotgun_flash
 	name = "ammunition (12g, flash)"
-	path =/obj/item/ammo_casing/shotgun/flash
+	path =/obj/item/ammo_casing/a12g/flash
 
 /datum/category_item/autolathe/arms/shotgun
 	name = "ammunition (12g, slug)"
-	path =/obj/item/ammo_casing/shotgun
+	path =/obj/item/ammo_casing/a12g
 	hidden = 1
 
 /datum/category_item/autolathe/arms/shotgun_pellet
 	name = "ammunition (12g, pellet)"
-	path =/obj/item/ammo_casing/shotgun/pellet
+	path =/obj/item/ammo_casing/a12g/pellet
 	hidden = 1
 
 /datum/category_item/autolathe/arms/stunshell
 	name = "ammunition (stun cartridge, shotgun)"
-	path =/obj/item/ammo_casing/shotgun/stunshell
+	path =/obj/item/ammo_casing/a12g/stunshell
 	hidden = 1
 
 //////////////////
@@ -81,50 +81,50 @@
 
 /////// 9mm
 
-/obj/item/ammo_magazine/mc9mm/flash
-	ammo_type =/obj/item/ammo_casing/c9mmf
+/obj/item/ammo_magazine/m9mm/flash
+	ammo_type =/obj/item/ammo_casing/a9mmf
 
-/obj/item/ammo_magazine/mc9mm/rubber
+/obj/item/ammo_magazine/m9mm/rubber
 	name = "magazine (9mm rubber)"
-	ammo_type =/obj/item/ammo_casing/c9mmr
+	ammo_type =/obj/item/ammo_casing/a9mmr
 
-/obj/item/ammo_magazine/mc9mm/practice
+/obj/item/ammo_magazine/m9mm/practice
 	name = "magazine (9mm practice)"
-	ammo_type =/obj/item/ammo_casing/c9mmp
+	ammo_type =/obj/item/ammo_casing/a9mmp
 
 /datum/category_item/autolathe/arms/pistol_9mm
 	name = "pistol magazine (9mm)"
-	path =/obj/item/ammo_magazine/mc9mm
+	path =/obj/item/ammo_magazine/m9mm
 	hidden = 1
 
 /datum/category_item/autolathe/arms/pistol_9mmr
 	name = "pistol magazine (9mm rubber)"
-	path =/obj/item/ammo_magazine/mc9mm/rubber
+	path =/obj/item/ammo_magazine/m9mm/rubber
 
 /datum/category_item/autolathe/arms/pistol_9mmp
 	name = "pistol magazine (9mm practice)"
-	path =/obj/item/ammo_magazine/mc9mm/practice
+	path =/obj/item/ammo_magazine/m9mm/practice
 
 /datum/category_item/autolathe/arms/pistol_9mmf
 	name = "pistol magazine (9mm flash)"
-	path =/obj/item/ammo_magazine/mc9mm/flash
+	path =/obj/item/ammo_magazine/m9mm/flash
 
 /datum/category_item/autolathe/arms/smg_9mm
 	name = "top-mounted SMG magazine (9mm)"
-	path =/obj/item/ammo_magazine/mc9mmt
+	path =/obj/item/ammo_magazine/m9mmt
 	hidden = 1
 
 /datum/category_item/autolathe/arms/smg_9mmr
 	name = "top-mounted SMG magazine (9mm rubber)"
-	path =/obj/item/ammo_magazine/mc9mmt/rubber
+	path =/obj/item/ammo_magazine/m9mmt/rubber
 
 /datum/category_item/autolathe/arms/smg_9mmp
 	name = "top-mounted SMG magazine (9mm practice)"
-	path =/obj/item/ammo_magazine/mc9mmt/practice
+	path =/obj/item/ammo_magazine/m9mmt/practice
 
 /datum/category_item/autolathe/arms/smg_9mmf
 	name = "top-mounted SMG magazine (9mm flash)"
-	path =/obj/item/ammo_magazine/mc9mmt/flash
+	path =/obj/item/ammo_magazine/m9mmt/flash
 
 /////// 10mm
 /datum/category_item/autolathe/arms/smg_10mm
@@ -161,7 +161,7 @@
 
 /datum/category_item/autolathe/arms/shotgun_magazine
 	name = "24rnd shotgun magazine (12g)"
-	path =/obj/item/ammo_magazine/g12
+	path =/obj/item/ammo_magazine/m12gdrum
 	hidden = 1
 
 /*
@@ -211,12 +211,12 @@
 
 /datum/category_item/autolathe/arms/pistol_9mm
 	name = "pistol magazine (9mm)"
-	path =/obj/item/ammo_magazine/mc9mm/empty
+	path =/obj/item/ammo_magazine/m9mm/empty
 	category = "Arms and Ammunition"
 
 /datum/category_item/autolathe/arms/smg_9mm
 	name = "top-mounted SMG magazine (9mm)"
-	path =/obj/item/ammo_magazine/mc9mmt/empty
+	path =/obj/item/ammo_magazine/m9mmt/empty
 	category = "Arms and Ammunition"
 
 /datum/category_item/autolathe/arms/smg_10mm
@@ -262,7 +262,7 @@
 
 /datum/category_item/autolathe/arms/shotgun_magazine
 	name = "24rnd shotgun magazine (12g)"
-	path =/obj/item/ammo_magazine/g12/empty
+	path =/obj/item/ammo_magazine/m12gdrum/empty
 	category = "Arms and Ammunition"
 	hidden = 1*/
 
@@ -335,35 +335,35 @@
 
 /datum/category_item/autolathe/arms/pistol_clip_10mm
 	name = "ammo clip (10mm)"
-	path =/obj/item/ammo_magazine/clip/a10mm
+	path =/obj/item/ammo_magazine/clip/c10mm
 	category = "Arms and Ammunition"
 	hidden = 1
 
 /datum/category_item/autolathe/arms/pistol_clip_50
 	name = "ammo clip (.50AE)"
-	path =/obj/item/ammo_magazine/clip/a50
+	path =/obj/item/ammo_magazine/clip/c50
 	category = "Arms and Ammunition"
 	hidden = 1
 */
 /datum/category_item/autolathe/arms/rifle_clip_556
 	name = "ammo clip (5.56mm)"
-	path =/obj/item/ammo_magazine/clip/a556
+	path =/obj/item/ammo_magazine/clip/c556
 	category = "Arms and Ammunition"
 	hidden = 1
 
 /datum/category_item/autolathe/arms/rifle_clip_556_practice
 	name = "ammo clip (5.56mm practice)"
-	path =/obj/item/ammo_magazine/clip/a556/practice
+	path =/obj/item/ammo_magazine/clip/c556/practice
 	category = "Arms and Ammunition"
 
 /datum/category_item/autolathe/arms/rifle_clip_762
 	name = "ammo clip (7.62mm)"
-	path =/obj/item/ammo_magazine/clip/a762
+	path =/obj/item/ammo_magazine/clip/c762
 	hidden = 1
 
 /datum/category_item/autolathe/arms/rifle_clip_762_practice
 	name = "ammo clip (7.62mm practice)"
-	path =/obj/item/ammo_magazine/clip/a762/practice
+	path =/obj/item/ammo_magazine/clip/c762/practice
 
 /datum/category_item/autolathe/arms/knuckledusters
 	name = "knuckle dusters"
