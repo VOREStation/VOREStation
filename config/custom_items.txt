@@ -323,6 +323,12 @@ item_path: /obj/item/device/modkit_conversion/fluff/harmonyspace
 
 # ######## K CKEYS
 {
+ckey: kiraalitruss
+character_name: Amaya Rahl
+item_path: /obj/item/weapon/card/id/fluff/amaya
+}
+
+{
 ckey: kisukegema
 character_name: Kisuke 'The Nerd' Gema
 item_path: /obj/item/clothing/glasses/omnihud/kamina
@@ -575,6 +581,12 @@ item_path: /obj/item/clothing/suit/storage/hooded/wintercoat/cargo
 ckey: vorrarkul
 character_name: Theodora Lindt
 item_path: /obj/item/clothing/suit/chococoat
+}
+
+{
+ckey: vorrarkul
+character_name: Theodora Lindt
+item_path: /obj/item/weapon/implanter/reagent_generator/vorrarkul
 }
 
 {

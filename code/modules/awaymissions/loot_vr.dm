@@ -192,12 +192,12 @@
 					prob(5);/obj/item/ammo_magazine/c38,\
 					prob(5);/obj/item/ammo_magazine/c38/rubber,\
 					prob(5);/obj/item/weapon/storage/box/flashbangs,\
-					prob(5);/obj/item/ammo_magazine/s762,\
+					prob(5);/obj/item/ammo_magazine/c556,\
 					prob(4);/obj/item/ammo_magazine/clip/a556,\
 					prob(4);/obj/item/ammo_magazine/clip/c45,\
 					prob(4);/obj/item/ammo_magazine/clip/c9mm,\
 					prob(4);/obj/item/ammo_magazine/c45uzi,\
-					prob(4);/obj/item/ammo_magazine/c762,\
+					prob(4);/obj/item/ammo_magazine/c556/ext,\
 					prob(4);/obj/item/ammo_magazine/mc9mm,\
 					prob(4);/obj/item/ammo_magazine/mc9mml,\
 					prob(4);/obj/item/ammo_magazine/mc9mmt,\
@@ -206,14 +206,14 @@
 					prob(4);/obj/item/ammo_magazine/p90,\
 				/*	prob(4);/obj/item/ammo_magazine/m14,\
 					prob(4);/obj/item/ammo_magazine/m14/large,\ */
-					prob(4);/obj/item/ammo_magazine/c762,\
-					prob(4);/obj/item/ammo_magazine/a556,\
-					prob(4);/obj/item/ammo_magazine/a556m,\
+					prob(4);/obj/item/ammo_magazine/c556/ext,\
+					prob(4);/obj/item/ammo_magazine/s762,\
+					prob(4);/obj/item/ammo_magazine/c556/ext,\
 					prob(3);/obj/item/ammo_magazine/clip/a10mm,\
 					prob(3);/obj/item/ammo_magazine/clip/a50,\
-					prob(3);/obj/item/ammo_magazine/s762,\
+					prob(3);/obj/item/ammo_magazine/c556,\
 					prob(2);/obj/item/ammo_magazine/a50,\
-					prob(2);/obj/item/ammo_magazine/a762,\
+					prob(2);/obj/item/ammo_magazine/a556,\
 					prob(1);/obj/item/weapon/storage/box/frags,\
 				/*	prob(1);/obj/item/ammo_magazine/battlerifle,\ */
 					prob(1);/obj/item/ammo_casing/rocket,\

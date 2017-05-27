@@ -330,6 +330,18 @@
 	spell_power_modifier = 1.75
 	energy_cost_modifier = 2.0
 
+// For use only for the GOLEM.
+/obj/item/weapon/technomancer_core/golem
+	name = "integrated core"
+	desc = "A bewilderingly complex 'black box' that allows the wearer to accomplish amazing feats.  This type is not meant \
+	to be worn on the back like other cores.  Instead it is meant to be installed inside a synthetic shell.  As a result, it's \
+	a lot more robust."
+	energy = 25000
+	max_energy = 25000
+	regen_rate = 100 //250 seconds to full
+	instability_modifier = 0.75
+
+
 /obj/item/weapon/technomancer_core/verb/toggle_lock()
 	set name = "Toggle Core Lock"
 	set category = "Object"

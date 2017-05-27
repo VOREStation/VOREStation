@@ -184,7 +184,7 @@
 //	Verb for saving vore preferences to save file
 //
 /mob/living/proc/save_vore_prefs()
-	if(!(client || client.prefs_vr))
+	if(!client || !client.prefs_vr)
 		return 0
 	if(!copy_to_prefs_vr())
 		return 0
@@ -194,7 +194,7 @@
 	return 1
 
 /mob/living/proc/apply_vore_prefs()
-	if(!(client || client.prefs_vr))
+	if(!client || !client.prefs_vr)
 		return 0
 	if(!client.prefs_vr.load_vore())
 		return 0

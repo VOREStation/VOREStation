@@ -258,7 +258,7 @@
 //Currently, the only problem I have now is that this weapon's item_state isn't working.
 /obj/item/weapon/gun/projectile/automatic/fluff/crestrose
 	name = "Crescent Rose"
-	desc = "Can you match my resolve? If so then you will succeed. I believe that the human spirit is indomitable. Keep Moving Forward. Uses 5.56mm rounds."
+	desc = "Can you match my resolve? If so then you will succeed. I believe that the human spirit is indomitable. Keep Moving Forward. Uses 7.62mm rounds."
 	icon = 'icons/vore/custom_guns_vr.dmi'
 	icon_state = "crestrose_fold"
 
@@ -278,9 +278,9 @@
 	auto_eject = 1
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	hitsound = null
-	caliber = "a556"
-	magazine_type = /obj/item/ammo_magazine/a556
-	allowed_magazines = list(/obj/item/ammo_magazine/a556)
+	caliber = "s762"
+	magazine_type = /obj/item/ammo_magazine/s762
+	allowed_magazines = list(/obj/item/ammo_magazine/s762)
 
 /obj/item/weapon/gun/projectile/automatic/fluff/crestrose/attack_self(mob/user as mob)
 	on = !on
@@ -361,10 +361,8 @@
 
 /obj/item/weapon/gun/projectile/automatic/carbine/fluff/ufarc/update_icon(var/ignore_inhands)
 	..()
-	if(istype(ammo_magazine,/obj/item/ammo_magazine/a556m))
-		icon_state = "ufarc"
-	else
-		icon_state = (ammo_magazine)? "ufarc" : "ufarc-empty"
+	// TODO - Fix this for spriting different size magazines
+	icon_state = (ammo_magazine)? "ufarc" : "ufarc-empty"
 	item_state = (ammo_magazine)? "bullpup" : "bullpup-empty"
 	if(!ignore_inhands) update_held_icon()
 
@@ -381,10 +379,8 @@
 
 /obj/item/weapon/gun/projectile/automatic/carbine/fluff/g44/update_icon(var/ignore_inhands)
 	..()
-	if(istype(ammo_magazine,/obj/item/ammo_magazine/a556m))
-		icon_state = "g44"
-	else
-		icon_state = (ammo_magazine)? "g44" : "g44-empty"
+	// TODO - Fix this for spriting different size magazines	
+	icon_state = (ammo_magazine)? "g44" : "g44-empty"
 	item_state = (ammo_magazine)? "bullpup" : "bullpup-empty"
 	if(!ignore_inhands) update_held_icon()
 

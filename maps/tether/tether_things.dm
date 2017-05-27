@@ -18,6 +18,7 @@
 	lift_size_x = 3
 	lift_size_y = 3
 	icon = 'icons/obj/turbolift_preview_3x3.dmi'
+	wall_type = null // Don't make walls
 
 	areas_to_use = list(
 		/area/turbolift/t_surface/level1,
@@ -28,6 +29,9 @@
 		/area/turbolift/t_station/level2,
 		/area/turbolift/t_station/level3
 		)
+
+/datum/turbolift
+	music = list('sound/music/elevator.ogg')  // Woo elevator music!
 
 /obj/machinery/atmospherics/unary/vent_pump/positive
 	use_power = 1
@@ -86,15 +90,22 @@
 	icon = 'icons/turf/flooring/maglevs.dmi'
 	icon_state = "maglevup"
 
+	var/area/shock_area = /area/tether/surfacebase/tram
+
+/turf/simulated/floor/maglev/initialize()
+	..()
+	shock_area = locate(shock_area)
+
 // Walking on maglev tracks will shock you! Horray!
 /turf/simulated/floor/maglev/Entered(var/atom/movable/AM, var/atom/old_loc)
 	if(isliving(AM) && prob(50))
-		shock(AM)
+		track_zap(AM)
 /turf/simulated/floor/maglev/attack_hand(var/mob/user)
 	if(prob(75))
-		shock(user)
-/turf/simulated/floor/maglev/proc/shock(var/mob/user)
-	if (electrocute_mob(user, get_area(src), src))
+		track_zap(user)
+/turf/simulated/floor/maglev/proc/track_zap(var/mob/living/user)
+	if (!istype(user)) return
+	if (electrocute_mob(user, shock_area, src))
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(5, 1, src)
 		s.start()

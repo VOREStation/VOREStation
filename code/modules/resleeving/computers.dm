@@ -72,7 +72,7 @@
 			P.connected = src
 			P.name = "[initial(P.name)] #[pods.len]"
 			user << "<span class='notice'>You connect [P] to [src].</span>"
-	else if(istype(W, /obj/item/weapon/disk/transcore))
+	else if(istype(W, /obj/item/weapon/disk/transcore) && TC && !TC.core_dumped)
 		user.unEquip(W)
 		disk = W
 		disk.forceMove(src)
@@ -239,6 +239,8 @@
 	else if (href_list["coredump"])
 		if(disk)
 			transcore.core_dump(disk)
+			sleep(5)
+			visible_message("<span class='warning'>\The [src] spits out \the [disk].</span>")
 			disk.forceMove(get_turf(src))
 			disk = null
 

@@ -30,6 +30,7 @@
 
 //called when a lift arrives at this floor
 /datum/turbolift_floor/proc/arrived(var/datum/turbolift/lift)
-	lift.open_doors(src)
+	if(!lift.fire_mode)
+		lift.open_doors(src)
 	if(ext_panel)
 		ext_panel.reset()

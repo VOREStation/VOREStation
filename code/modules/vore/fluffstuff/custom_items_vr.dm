@@ -677,6 +677,29 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	do_reagent_implant(usr)
 
 
+//Vorrarkul: Theodora Lindt
+/obj/item/weapon/implant/reagent_generator/vorrarkul
+	generated_reagent = "chocolate_milk"
+	usable_volume = 1000
+
+	empty_message = list("Your nipples are sore from being milked!")
+	full_message = list("Your breasts are full, their sweet scent emanating from your chest!")
+	emote_descriptor = list("squeezes chocolate milk from Theodora", "tugs on Theodora's nipples, milking them", "kneads Theodora's breasts, milking them")
+	self_emote_descriptor = list("squeeze", "knead")
+	random_emote = list("moans softly", "gives an involuntary squeal")
+	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_vorrarkul
+
+/obj/item/weapon/implanter/reagent_generator/vorrarkul
+	implant_type = /obj/item/weapon/implant/reagent_generator/vorrarkul
+
+/mob/living/carbon/human/proc/use_reagent_implant_vorrarkul()
+	set name = "Milk"
+	set desc = "Grab Theodora's breasts and extract delicious chocolate milk from them!"
+	set category = "Object"
+	set src in view(1)
+
+	do_reagent_implant(usr)
+
 //PontifexMinimus: Lucius/Lucia Null
 /obj/item/weapon/fluff/dragor_dot
 	name = "supplemental battery"
@@ -700,6 +723,43 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	name = "New Space Pioneer's Bible"
 	desc = "A New Space Pioneer's Bible. This one says it was printed in 2492. The name 'Eric Hayvers' is written on the inside of the cover, crossed out. \
 	Under it is written 'Kouri, Amina, Marine Unit 14, Fifth Echelon. Service number NTN-5528928522372'"
+
+//arokha:Amaya Rahl - Custom ID (Medical dept)
+/obj/item/weapon/card/id/fluff/amaya
+	registered_name = "CONFIGURE ME"
+	assignment = "CONFIGURE ME"
+	var/configured = 0
+	var/accessset = 0
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "amayarahlwahID"
+	desc = "A primarily blue ID with a holographic 'WAH' etched onto its back. The letters do not obscure anything important on the card. It is shiny and it feels very bumpy."
+	var/title_strings = list("Amaya Rahl's Wah-identification card", "Amaya Rahl's Wah-ID card")
+
+/obj/item/weapon/card/id/fluff/amaya/attack_self(mob/user as mob)
+	if(configured == 1)
+		return ..()
+
+	var/title
+	if(user.client.prefs.player_alt_titles[user.job])
+		title = user.client.prefs.player_alt_titles[user.job]
+	else
+		title = user.job
+	assignment = title
+	user.set_id_info(src)
+	var/tempname = pick(title_strings)
+	name = tempname + " ([title])"
+	configured = 1
+	user << "<span class='notice'>Card settings set.</span>"
+
+/obj/item/weapon/card/id/fluff/amaya/attackby(obj/item/I as obj, mob/user as mob)
+	if(istype(I, /obj/item/weapon/card/id) && !accessset)
+		var/obj/item/weapon/card/id/O = I
+		src.access |= O.access
+		to_chat(user, "<span class='notice'>You copy the access from \the [I] to \the [src].</span>")
+		user.drop_from_inventory(I)
+		qdel(I)
+		accessset = 1
+	..()
 
 //The perfect adminboos device?
 /obj/item/device/perfect_tele
