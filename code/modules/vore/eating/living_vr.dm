@@ -12,14 +12,19 @@
 	var/reviving = 0					// Only used for creatures that have the xenochimera regen ability, so far.
 	var/metabolism = 0.0015
 	var/vore_taste = null				// What the character tastes like
+	var/no_vore = 0 					// If the character/mob can vore.
 
 //
 // Hook for generic creation of stuff on new creatures
 //
 /hook/living_new/proc/vore_setup(mob/living/M)
-	M.verbs += /mob/living/proc/insidePanel
 	M.verbs += /mob/living/proc/escapeOOC
 	M.verbs += /mob/living/proc/lick
+	if(no_vore) //If the mob isn's supposed to have a stomach, let's not give it an insidepanel so it can make one for itself, or a stomach.
+		M << "<span class='warning'>The creature that you are can not eat others.</span>"
+		return
+	M.verbs += /mob/living/proc/insidePanel
+
 	M.appearance_flags |= PIXEL_SCALE
 
 	//Tries to load prefs if a client is present otherwise gives freebie stomach
