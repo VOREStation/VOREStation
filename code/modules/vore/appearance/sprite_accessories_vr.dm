@@ -881,7 +881,7 @@
 	ckeys_allowed = list("silencedmp5a5")
 
 //liquidfirefly: Ariana Scol
-/datum/sprite_accesory/tail/taur/centipede
+/datum/sprite_accessory/tail/taur/centipede
 	name = "Centipede (liquidfirefly)"
 	icon_state = "centipede_s"
 	ckeys_allowed = list("liquidfirefly")
