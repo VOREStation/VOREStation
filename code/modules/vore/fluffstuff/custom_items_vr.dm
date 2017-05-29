@@ -259,6 +259,16 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 		item_state = "flag_advent_mob"
 
 
+//Vorrakul: Kaitlyn Fiasco
+/obj/item/toy/plushie/mouse/fluff
+	name = "Mouse Plushie"
+	desc = "A plushie of a delightful mouse! What was once considered a vile rodent is now your very best friend."
+	slot_flags = SLOT_HEAD
+	icon_state = "mouse_brown"
+	item_state = "mouse_brown_head"
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_override = 'icons/vore/custom_items_vr.dmi'
+
 //zodiacshadow: ?
 /obj/item/device/radio/headset/fluff/zodiacshadow
 	name = "Nehi's 'phones"
