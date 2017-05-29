@@ -51,7 +51,6 @@
 		pref.max_traits = MAX_SPECIES_TRAITS
 
 	if(pref.species != "Custom Species")
-		pref.custom_species = null
 		pref.pos_traits.Cut()
 		pref.neu_traits.Cut()
 		pref.neg_traits.Cut()

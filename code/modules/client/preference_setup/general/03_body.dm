@@ -317,7 +317,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		if(prev_species != pref.species)
 			if(!(pref.biological_gender in mob_species.genders))
 				pref.set_biological_gender(mob_species.genders[1])
-
+			pref.custom_species = null //VOREStation Edit - This is cleared on species changes
 			//grab one of the valid hair styles for the newly chosen species
 			var/list/valid_hairstyles = list()
 			for(var/hairstyle in hair_styles_list)
