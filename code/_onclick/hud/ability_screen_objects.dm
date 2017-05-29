@@ -32,11 +32,6 @@
 			my_mob.client.screen -= src
 		my_mob = null
 
-/obj/screen/movable/ability_master/ResetVars()
-	..("ability_objects", args)
-	remove_all_abilities()
-//	ability_objects = list()
-
 /obj/screen/movable/ability_master/MouseDrop()
 	if(showing)
 		return

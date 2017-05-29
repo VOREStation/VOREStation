@@ -21,6 +21,6 @@
 //VOREStation Add - Alarm for AR glasses
 /datum/alarm_handler/atmosphere/on_alarm_change(var/datum/alarm/alarm, var/was_raised)
 	..()
-	var/atom/source = alarm.sources_assoc[1]
-	broadcast_engineering_hud_message("Alarm in [alarm.origin]!", source)
+	var/atom/source = length(alarm.sources_assoc) ? alarm.sources_assoc[1] : alarm.alarm_area()
+	broadcast_engineering_hud_message("Alarm in [alarm.origin] [was_raised ? "raised!" : "cleared."]", source)
 //VOREStation Add End

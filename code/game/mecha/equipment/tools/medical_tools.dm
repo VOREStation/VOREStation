@@ -7,7 +7,7 @@
 	energy_drain = 20
 	range = MELEE
 	equip_cooldown = 50
-	var/mob/living/carbon/occupant = null
+	var/mob/living/carbon/human/occupant = null
 	var/datum/global_iterator/pr_mech_sleeper
 	var/inject_amount = 10
 	required_type = /obj/mecha/medical
@@ -28,7 +28,7 @@
 	Exit(atom/movable/O)
 		return 0
 
-	action(var/mob/living/carbon/target)
+	action(var/mob/living/carbon/human/target)
 		if(!action_checks(target))
 			return
 		if(!istype(target))
@@ -56,6 +56,7 @@
 			target.forceMove(src)
 			occupant = target
 			target.reset_view(src)
+			occupant.Stasis(3)
 			/*
 			if(target.client)
 				target.client.perspective = EYE_PERSPECTIVE
@@ -80,6 +81,7 @@
 			occupant.client.eye = occupant.client.mob
 			occupant.client.perspective = MOB_PERSPECTIVE
 		*/
+		occupant.Stasis(0)
 		occupant = null
 		pr_mech_sleeper.stop()
 		set_ready_state(1)

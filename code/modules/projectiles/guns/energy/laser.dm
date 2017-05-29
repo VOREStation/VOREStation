@@ -28,6 +28,7 @@
 	name = "practice laser carbine"
 	desc = "A modified version of the HI G40E, this one fires less concentrated energy bolts designed for target practice."
 	projectile_type = /obj/item/projectile/beam/practice
+	charge_cost = 48
 
 	cell_type = /obj/item/weapon/cell/device
 

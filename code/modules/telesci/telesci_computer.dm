@@ -128,7 +128,7 @@
 
 /obj/machinery/computer/telescience/proc/sparks()
 	if(telepad)
-		var/datum/effect/effect/system/spark_spread/s = PoolOrNew(/datum/effect/effect/system/spark_spread)
+		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
 		s.set_up(5, 1, get_turf(telepad))
 		s.start()
 	else
@@ -214,7 +214,7 @@
 			// use a lot of power
 			use_power(trueDistance * 10000)
 
-			var/datum/effect/effect/system/spark_spread/S = PoolOrNew(/datum/effect/effect/system/spark_spread)
+			var/datum/effect/effect/system/spark_spread/S = new /datum/effect/effect/system/spark_spread()
 			S.set_up(5, 1, get_turf(telepad))
 			S.start()
 
@@ -229,7 +229,7 @@
 			temp_msg += "Data printed below."
 
 			var/sparks = get_turf(target)
-			var/datum/effect/effect/system/spark_spread/Y = PoolOrNew(/datum/effect/effect/system/spark_spread)
+			var/datum/effect/effect/system/spark_spread/Y = new /datum/effect/effect/system/spark_spread()
 			Y.set_up(5, 1, sparks)
 			Y.start()
 

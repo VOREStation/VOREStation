@@ -101,7 +101,7 @@
 /mob/living/silicon/ai/special_mentions()
 	return list("AI") // AI door!
 
-// Converts specific characters, like *, |, and _ to formatted output.
+// Converts specific characters, like +, |, and _ to formatted output.
 /mob/proc/say_emphasis(var/message)
 	message = encode_html_emphasis(message, "|", "i")
 	message = encode_html_emphasis(message, "+", "b")

@@ -183,7 +183,7 @@
 
 /obj/item/rig_module/self_destruct/New()
 	..()
-	src.smoke = PoolOrNew(/datum/effect/effect/system/smoke_spread/bad)
+	src.smoke = new /datum/effect/effect/system/smoke_spread/bad()
 	src.smoke.attach(src)
 
 /obj/item/rig_module/self_destruct/Destroy()

@@ -12,7 +12,7 @@
 
 /obj/item/clothing/head/soft/sol/expedition
 	name = "\improper SifGuard cap"
-	desc = "It's a black ballcap bearing a Sif Homeguard Corps crest."
+	desc = "It's a black ballcap bearing a Sif Defense Force crest."
 	icon_state = "expeditionsoft"
 	item_state_slots = list(
 		slot_l_hand_str = "blacksoft",
@@ -115,12 +115,12 @@
 
 /obj/item/clothing/head/dress/expedition
 	name = "\improper SifGuard dress cap"
-	desc = "A peaked grey dress uniform cap belonging to the Sif Homeguard Corps."
+	desc = "A peaked grey dress uniform cap belonging to the Sif Defense Force."
 	icon_state = "greydresscap"
 
 /obj/item/clothing/head/dress/expedition/command
 	name = "\improper SifGuard command dress cap"
-	desc = "A peaked grey dress uniform cap belonging to the Sif Homeguard Corps. This one is trimmed in gold."
+	desc = "A peaked grey dress uniform cap belonging to the Sif Defense Force. This one is trimmed in gold."
 	icon_state = "greydresscap_com"
 
 /obj/item/clothing/head/dress/fleet
@@ -150,11 +150,6 @@
 	desc = "A beret in Solar Confederate Government colors. For peacekeepers that are more inclined towards style than safety."
 	icon_state = "beret_lightblue"
 
-/obj/item/clothing/head/beret/sol/homeguard
-	name = "home guard beret"
-	desc = "A red beret denoting service in the Sol Home Guard. For personnel that are more inclined towards style than safety."
-	icon_state = "beret_red"
-
 /obj/item/clothing/head/beret/sol/gateway
 	name = "gateway administration beret"
 	desc = "An orange beret denoting service in the Gateway Administration. For personnel that are more inclined towards style than safety."
@@ -182,32 +177,32 @@
 
 /obj/item/clothing/head/beret/sol/expedition
 	name = "\improper SifGuard beret"
-	desc = "A black beret belonging to the Sif Homeguard Corps. For personnel that are more inclined towards style than safety."
+	desc = "A black beret belonging to the Sif Defense Force. For personnel that are more inclined towards style than safety."
 	icon_state = "beret_black"
 
 /obj/item/clothing/head/beret/sol/expedition/security
 	name = "\improper SifGuard security beret"
-	desc = "An Sif Homeguard Corps beret with a security crest. For personnel that are more inclined towards style than safety."
+	desc = "A Sif Defense Force beret with a security crest. For personnel that are more inclined towards style than safety."
 	icon_state = "beret_black_security"
 
 /obj/item/clothing/head/beret/sol/expedition/medical
 	name = "\improper SifGuard medical beret"
-	desc = "An Sif Homeguard Corps beret with a medical crest. For personnel that are more inclined towards style than safety."
+	desc = "A Sif Defense Force beret with a medical crest. For personnel that are more inclined towards style than safety."
 	icon_state = "beret_black_medical"
 
 /obj/item/clothing/head/beret/sol/expedition/engineering
 	name = "\improper SifGuard engineering beret"
-	desc = "An Sif Homeguard Corps beret with an engineering crest. For personnel that are more inclined towards style than safety."
+	desc = "A Sif Defense Force beret with an engineering crest. For personnel that are more inclined towards style than safety."
 	icon_state = "beret_black_engineering"
 
 /obj/item/clothing/head/beret/sol/expedition/supply
 	name = "\improper SifGuard supply beret"
-	desc = "An Sif Homeguard Corps beret with a supply crest. For personnel that are more inclined towards style than safety."
+	desc = "A Sif Defense Force beret with a supply crest. For personnel that are more inclined towards style than safety."
 	icon_state = "beret_black_supply"
 
 /obj/item/clothing/head/beret/sol/expedition/command
 	name = "\improper SifGuard command beret"
-	desc = "An Sif Homeguard Corps beret with a command crest. For personnel that are more inclined towards style than safety."
+	desc = "A Sif Defense Force beret with a command crest. For personnel that are more inclined towards style than safety."
 	icon_state = "beret_black_command"
 
 /obj/item/clothing/head/beret/sol/fleet

@@ -1,3 +1,5 @@
+var/list/table_icon_cache = list()
+
 /obj/structure/table
 	name = "table frame"
 	icon = 'icons/obj/tables.dmi'
@@ -67,7 +69,7 @@
 	// reset color/alpha, since they're set for nice map previews
 	color = "#ffffff"
 	alpha = 255
-	update_connections(1)
+	update_connections(ticker && ticker.current_state == GAME_STATE_PLAYING)
 	update_icon()
 	update_desc()
 	update_material()
@@ -292,37 +294,44 @@
 	qdel(src)
 	return shards
 
+/proc/get_table_image(var/icon/ticon,var/ticonstate,var/tdir,var/tcolor,var/talpha)
+	var/icon_cache_key = "\ref[ticon]-[ticonstate]-[tdir]-[tcolor]-[talpha]"
+	var/image/I = table_icon_cache[icon_cache_key]
+	if(!I)
+		I = image(icon = ticon, icon_state = ticonstate, dir = tdir)
+		if(tcolor)
+			I.color = tcolor
+		if(talpha)
+			I.alpha = talpha
+		table_icon_cache[icon_cache_key] = I
+
+	return I
+
 /obj/structure/table/update_icon()
 	if(flipped != 1)
 		icon_state = "blank"
 		overlays.Cut()
 
-		var/image/I
-
 		// Base frame shape. Mostly done for glass/diamond tables, where this is visible.
 		for(var/i = 1 to 4)
-			I = image(icon, dir = 1<<(i-1), icon_state = connections[i])
+			var/image/I = get_table_image(icon, connections[i], 1<<(i-1))
 			overlays += I
 
 		// Standard table image
 		if(material)
 			for(var/i = 1 to 4)
-				I = image(icon, "[material.icon_base]_[connections[i]]", dir = 1<<(i-1))
-				if(material.icon_colour) I.color = material.icon_colour
-				I.alpha = 255 * material.opacity
+				var/image/I = get_table_image(icon, "[material.icon_base]_[connections[i]]", 1<<(i-1), material.icon_colour, 255 * material.opacity)
 				overlays += I
 
 		// Reinforcements
 		if(reinforced)
 			for(var/i = 1 to 4)
-				I = image(icon, "[reinforced.icon_reinf]_[connections[i]]", dir = 1<<(i-1))
-				I.color = reinforced.icon_colour
-				I.alpha = 255 * reinforced.opacity
+				var/image/I = get_table_image(icon, "[reinforced.icon_reinf]_[connections[i]]", 1<<(i-1), reinforced.icon_colour, 255 * reinforced.opacity)
 				overlays += I
 
 		if(carpeted)
 			for(var/i = 1 to 4)
-				I = image(icon, "carpet_[connections[i]]", dir = 1<<(i-1))
+				var/image/I = get_table_image(icon, "carpet_[connections[i]]", 1<<(i-1))
 				overlays += I
 	else
 		overlays.Cut()

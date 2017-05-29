@@ -7,7 +7,7 @@
 	products += list(/obj/item/weapon/gun/energy/taser = 8,/obj/item/weapon/gun/energy/stunrevolver = 4,
 					/obj/item/weapon/reagent_containers/spray/pepper = 6,/obj/item/taperoll/police = 6,
 					/obj/item/weapon/gun/projectile/sec/flash = 4, /obj/item/ammo_magazine/c45m/flash = 8,
-					/obj/item/clothing/glasses/omnihud/sec = 4)
+					/obj/item/clothing/glasses/omnihud/sec = 6)
 	..()
 
 /obj/machinery/vending/tool/New()
@@ -15,12 +15,12 @@
 	..()
 
 /obj/machinery/vending/engivend/New()
-	products += list(/obj/item/clothing/glasses/omnihud/eng = 4)
+	products += list(/obj/item/clothing/glasses/omnihud/eng = 6)
 	..()
 
 /obj/machinery/vending/medical/New()
 	products += list(/obj/item/weapon/storage/box/khcrystal = 4,/obj/item/weapon/backup_implanter = 3,
-					/obj/item/clothing/glasses/omnihud/med = 2, /obj/item/device/glasses_kit = 1)
+					/obj/item/clothing/glasses/omnihud/med = 4, /obj/item/device/glasses_kit = 1)
 	..()
 
 //Custom vendors
@@ -116,3 +116,14 @@
 					)
 	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/mysterysoup = 10)
 	vend_delay = 15
+/* For later, then
+/obj/machinery/vending/weapon_machine
+	name = "Frozen Star Guns&Ammo"
+	desc = "A self-defense equipment vending machine. When you need to take care of that clown."
+	product_slogans = "The best defense is good offense!;Buy for your whole family today!;Nobody can outsmart bullet!;God created man - Frozen Star made them EQUAL!;Nobody can outsmart bullet!;Stupidity can be cured! By LEAD.;Dead kids can't bully your children!"
+	product_ads = "Stunning!;Take justice in your own hands!;LEADearship!"
+	icon_state = "weapon"
+	products = list(/obj/item/device/flash = 6,/obj/item/weapon/reagent_containers/spray/pepper = 6, /obj/item/weapon/gun/projectile/olivaw = 5, /obj/item/weapon/gun/projectile/giskard = 5, /obj/item/ammo_magazine/mg/cl32/rubber = 20)
+	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/syndicake = 6)
+	prices = list(/obj/item/device/flash = 600,/obj/item/weapon/reagent_containers/spray/pepper = 800,  /obj/item/weapon/gun/projectile/olivaw = 1600, /obj/item/weapon/gun/projectile/giskard = 1200, /obj/item/ammo_magazine/mg/cl32/rubber = 200)
+*/

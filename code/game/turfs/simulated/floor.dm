@@ -1,7 +1,7 @@
 /turf/simulated/floor
 	name = "plating"
 	desc = "Unfinished flooring."
-	icon = 'icons/turf/flooring/plating.dmi'
+	icon = 'icons/turf/flooring/plating_vr.dmi'
 	icon_state = "plating"
 
 	// Damage to flooring.
@@ -11,7 +11,7 @@
 	// Plating data.
 	var/base_name = "plating"
 	var/base_desc = "The naked hull."
-	var/base_icon = 'icons/turf/flooring/plating.dmi'
+	var/base_icon = 'icons/turf/flooring/plating_vr.dmi'
 	var/base_icon_state = "plating"
 	var/static/list/base_footstep_sounds = list("human" = list(
 		'sound/effects/footstep/plating1.ogg',
@@ -19,6 +19,8 @@
 		'sound/effects/footstep/plating3.ogg',
 		'sound/effects/footstep/plating4.ogg',
 		'sound/effects/footstep/plating5.ogg'))
+
+	var/list/old_decals = null // VOREStation Edit - Remember what decals we had between being pried up and replaced.
 
 	// Flooring data.
 	var/flooring_override
@@ -46,6 +48,11 @@
 	make_plating(defer_icon_update = 1)
 	flooring = newflooring
 	footstep_sounds = newflooring.footstep_sounds
+	// VOREStation Edit - Remember decals from before we were pried up
+	if(islist(old_decals))
+		decals = old_decals
+		old_decals = null
+	// VOREStation Edit End
 	update_icon(1)
 	levelupdate()
 
@@ -55,7 +62,10 @@
 
 	overlays.Cut()
 	if(islist(decals))
-		decals.Cut()
+		// VOREStation Edit - Don't forget decals when pried up
+		if(flooring)
+			old_decals = decals
+		// VOREStation Edit End
 		decals = null
 
 	name = base_name

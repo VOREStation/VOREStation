@@ -417,7 +417,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 //SilencedMP5A5:Serdykov Antoz
 /obj/item/clothing/suit/armor/vest/wolftaur/serdy //SilencedMP5A5's specialty armor suit.
 	name = "Modified wolf-taur armor vest"
-	desc = "An armored vest that protects against some damage. It appears to be created for a wolf-taur, and seems modified."
+	desc = "A set of armor made from pieces of many other armors. There are two orange holobadges on it, one on the chestplate, one on the steel flank plates. The holobadges appear to be russian in origin. 'Kosmicheskaya Stantsiya-8' is printed in faded white letters on one side, along the spine. It smells strongly of dog."
 	species_restricted = null //Species restricted since all it cares about is a taur half
 	icon_override = 'icons/mob/taursuits_vr.dmi' //Needs to be this since it's 64*32
 	icon_state = "serdy_armor"
@@ -433,7 +433,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 
 /obj/item/clothing/head/helmet/serdy //SilencedMP5A5's specialty helmet. Uncomment if/when they make their custom item app and are accepted.
 	name = "Modified helmet"
-	desc = "Standard Security gear. Protects the head from impacts. This one appears to be modified."
+	desc = "An old production model steel-ceramic lined helmet with a white stripe and a custom orange visor. It has ear holes, and smells of dog."
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "serdyhelm"
 
@@ -629,6 +629,77 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	taurtype = /datum/sprite_accessory/tail/taur/feline/tempest
 	no_message = "These saddlebags seem to be fitted for someone else, and keep slipping off!"
 
+//WickedTempest: Chakat Tempest
+/obj/item/weapon/implant/reagent_generator/tempest
+	generated_reagent = "milk"
+	usable_volume = 1000
+
+	empty_message = list("Your breasts are almost completely drained!")
+	full_message = list("Your teats feel heavy and swollen!")
+	emote_descriptor = list("squeezes milk", "tugs on Tempest's breasts, milking them")
+	self_emote_descriptor = list("squeeze")
+	random_emote = list("moos quietly")
+	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_tempest
+
+/obj/item/weapon/implanter/reagent_generator/tempest
+	implant_type = /obj/item/weapon/implant/reagent_generator/tempest
+
+/mob/living/carbon/human/proc/use_reagent_implant_tempest()
+	set name = "Milk"
+	set desc = "Grab Tempest's nipples and milk them into a container! May cause blushing and groaning."
+	set category = "Object"
+	set src in view(1)
+
+	do_reagent_implant(usr)
+
+
+//Hottokeeki: Belle Day
+/obj/item/weapon/implant/reagent_generator/belle
+	generated_reagent = "milk"
+	usable_volume = 5000
+
+	empty_message = list("Your breasts and or udder feel almost completely drained!", "You're feeling a liittle on the empty side...")
+	full_message = list("You're due for a milking; your breasts and or udder feel heavy and swollen!", "Looks like you've got some full tanks!")
+	emote_descriptor = list("squeezes milk", "tugs on Belle's breasts/udders, milking them", "extracts milk")
+	self_emote_descriptor = list("squeeze", "extract")
+	random_emote = list("moos", "mrours", "groans softly")
+	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_belle
+
+/obj/item/weapon/implanter/reagent_generator/belle
+	implant_type = /obj/item/weapon/implant/reagent_generator/belle
+
+/mob/living/carbon/human/proc/use_reagent_implant_belle()
+	set name = "Milk"
+	set desc = "Obtain Belle's milk and put it into a container! May cause blushing and groaning, or arousal."
+	set category = "Object"
+	set src in view(1)
+
+	do_reagent_implant(usr)
+
+
+//Vorrarkul: Theodora Lindt
+/obj/item/weapon/implant/reagent_generator/vorrarkul
+	generated_reagent = "chocolate_milk"
+	usable_volume = 1000
+
+	empty_message = list("Your nipples are sore from being milked!")
+	full_message = list("Your breasts are full, their sweet scent emanating from your chest!")
+	emote_descriptor = list("squeezes chocolate milk from Theodora", "tugs on Theodora's nipples, milking them", "kneads Theodora's breasts, milking them")
+	self_emote_descriptor = list("squeeze", "knead")
+	random_emote = list("moans softly", "gives an involuntary squeal")
+	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_vorrarkul
+
+/obj/item/weapon/implanter/reagent_generator/vorrarkul
+	implant_type = /obj/item/weapon/implant/reagent_generator/vorrarkul
+
+/mob/living/carbon/human/proc/use_reagent_implant_vorrarkul()
+	set name = "Milk"
+	set desc = "Grab Theodora's breasts and extract delicious chocolate milk from them!"
+	set category = "Object"
+	set src in view(1)
+
+	do_reagent_implant(usr)
+
 //PontifexMinimus: Lucius/Lucia Null
 /obj/item/weapon/fluff/dragor_dot
 	name = "supplemental battery"
@@ -642,6 +713,53 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 			user.verbs |= /mob/living/carbon/human/proc/shapeshifter_select_gender
 		else
 			return
+//LuminescentRing: Briana Moore
+/obj/item/weapon/storage/backpack/messenger/black/fluff/briana
+	name = "2561 graduation bag"
+	desc = "A black leather bag with names scattered around in red embroidery, it says 'Pride State Academy' on the top. "
+
+//DeepIndigo: Amina Dae-Kouri
+/obj/item/weapon/storage/bible/fluff/amina
+	name = "New Space Pioneer's Bible"
+	desc = "A New Space Pioneer's Bible. This one says it was printed in 2492. The name 'Eric Hayvers' is written on the inside of the cover, crossed out. \
+	Under it is written 'Kouri, Amina, Marine Unit 14, Fifth Echelon. Service number NTN-5528928522372'"
+
+//arokha:Amaya Rahl - Custom ID (Medical dept)
+/obj/item/weapon/card/id/fluff/amaya
+	registered_name = "CONFIGURE ME"
+	assignment = "CONFIGURE ME"
+	var/configured = 0
+	var/accessset = 0
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "amayarahlwahID"
+	desc = "A primarily blue ID with a holographic 'WAH' etched onto its back. The letters do not obscure anything important on the card. It is shiny and it feels very bumpy."
+	var/title_strings = list("Amaya Rahl's Wah-identification card", "Amaya Rahl's Wah-ID card")
+
+/obj/item/weapon/card/id/fluff/amaya/attack_self(mob/user as mob)
+	if(configured == 1)
+		return ..()
+
+	var/title
+	if(user.client.prefs.player_alt_titles[user.job])
+		title = user.client.prefs.player_alt_titles[user.job]
+	else
+		title = user.job
+	assignment = title
+	user.set_id_info(src)
+	var/tempname = pick(title_strings)
+	name = tempname + " ([title])"
+	configured = 1
+	user << "<span class='notice'>Card settings set.</span>"
+
+/obj/item/weapon/card/id/fluff/amaya/attackby(obj/item/I as obj, mob/user as mob)
+	if(istype(I, /obj/item/weapon/card/id) && !accessset)
+		var/obj/item/weapon/card/id/O = I
+		src.access |= O.access
+		to_chat(user, "<span class='notice'>You copy the access from \the [I] to \the [src].</span>")
+		user.drop_from_inventory(I)
+		qdel(I)
+		accessset = 1
+	..()
 
 //The perfect adminboos device?
 /obj/item/device/perfect_tele

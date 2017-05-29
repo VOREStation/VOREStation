@@ -1,5 +1,5 @@
 /obj/machinery/pros_fabricator
-	icon = 'icons/obj/robotics.dmi'
+	icon = 'icons/obj/robotics_vr.dmi' //VOREStation Edit - New icon
 	icon_state = "fab-idle"
 	name = "Prosthetics Fabricator"
 	desc = "A machine used for construction of prosthetics."

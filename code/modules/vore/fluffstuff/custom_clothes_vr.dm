@@ -1254,7 +1254,13 @@ Departamental Swimsuits, for general use
 	icon = 'icons/mob/taursuits_vr.dmi'
 	icon_override = 'icons/mob/taursuits_vr.dmi'
 	icon_state = "lilithsuit"
+<<<<<<< HEAD
 	armor = list(melee = 40, bullet = 20, laser = 20,energy = 5, bomb = 35, bio = 100, rad = 20)
+=======
+	species_restricted = null
+	armor = list(melee = 40, bullet = 20, laser = 20,energy = 5, bomb = 35, bio = 100, rad = 20)
+
+>>>>>>> 1e2fec9782dcb227e740b7467772655e55bfe315
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 		if(..())
 			if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
@@ -1278,6 +1284,10 @@ Departamental Swimsuits, for general use
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "lilithhelmet"
 	light_overlay = "helmet_light"
+<<<<<<< HEAD
+=======
+	species_restricted = null
+>>>>>>> 1e2fec9782dcb227e740b7467772655e55bfe315
 
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 		if(..())

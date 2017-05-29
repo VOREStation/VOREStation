@@ -19,7 +19,7 @@
 /obj/item/weapon/spell/reflect/New()
 	..()
 	set_light(3, 2, l_color = "#006AFF")
-	spark_system = PoolOrNew(/datum/effect/effect/system/spark_spread)
+	spark_system = new /datum/effect/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)
 	owner << "<span class='notice'>Your shield will expire in 3 seconds!</span>"
 	spawn(5 SECONDS)

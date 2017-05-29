@@ -112,6 +112,15 @@
 /atom/movable/lighting_overlay/singularity_pull()
 	return
 
+/atom/movable/lighting_overlay/forceMove()
+	return 0 //should never move
+
+/atom/movable/lighting_overlay/Move()
+	return 0
+
+/atom/movable/lighting_overlay/throw_at()
+	return 0
+
 /atom/movable/lighting_overlay/Destroy()
 	total_lighting_overlays--
 	global.lighting_update_overlays     -= src

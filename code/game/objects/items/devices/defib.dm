@@ -75,7 +75,7 @@
 			if(user.r_hand && user.l_hand)
 				cell.forceMove(get_turf(user))
 			else
-				cell.forceMove(user.put_in_hands(cell))
+				user.put_in_hands(cell)
 			cell = null
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 		else
@@ -141,14 +141,15 @@
 							sleep(15 SECONDS)
 							break
 
-				if(patient.client)
-					patient.adjustOxyLoss(-20) //Look, blood stays oxygenated for quite some time, but I'm not recoding the entire oxy system
-					patient.stat = CONSCIOUS //Note that if whatever killed them in the first place wasn't fixed, they're likely to die again.
-					dead_mob_list -= patient
-					living_mob_list += patient
-					patient.timeofdeath = null
-					patient.visible_message("<span class='notice'>[patient]'s eyes open!</span>")
-					log_and_message_admins("[patient] was revived.")
+				if(!(HUSK in patient.mutations)) // Husked people can't come back with a Defib.
+					if(patient.client)
+						patient.adjustOxyLoss(-20) //Look, blood stays oxygenated for quite some time, but I'm not recoding the entire oxy system
+						patient.stat = CONSCIOUS //Note that if whatever killed them in the first place wasn't fixed, they're likely to die again.
+						dead_mob_list -= patient
+						living_mob_list += patient
+						patient.timeofdeath = null
+						patient.visible_message("<span class='notice'>[patient]'s eyes open!</span>")
+						log_and_message_admins("[patient] was revived by a defib.")
 			cell.charge -= charge_cost //Always charge the cost after any attempt, failed or not
 		sleep(20) //Wait 2 seconds before next attempt
 		statechange(1,patient) //Back to ready

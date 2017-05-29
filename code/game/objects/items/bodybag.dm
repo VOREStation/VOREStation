@@ -77,14 +77,14 @@
 /obj/structure/closet/body_bag/MouseDrop(over_object, src_location, over_location)
 	..()
 	if((over_object == usr && (in_range(src, usr) || usr.contents.Find(src))))
-		if(!ishuman(usr))	return
+		if(!ishuman(usr))	return 0
 		if(opened)	return 0
 		if(contents.len)	return 0
 		visible_message("[usr] folds up the [src.name]")
-		new item_path(get_turf(src))
+		var/folded = new item_path(get_turf(src))
 		spawn(0)
 			qdel(src)
-		return
+		return folded
 
 /obj/structure/closet/body_bag/relaymove(mob/user,direction)
 	if(src.loc != get_turf(src))
@@ -115,34 +115,43 @@
 
 /obj/item/bodybag/cryobag
 	name = "stasis bag"
-	desc = "A folded, non-reusable bag designed to prevent additional damage to an occupant, especially useful if short on time or in \
-	a hostile enviroment."
+	desc = "A non-reusable plastic bag designed to slow down bodily functions such as circulation and breathing, \
+	especially useful if short on time or in a hostile enviroment."
 	icon = 'icons/obj/cryobag.dmi'
 	icon_state = "bodybag_folded"
 	item_state = "bodybag_cryo_folded"
 	origin_tech = list(TECH_BIO = 4)
+	var/obj/item/weapon/reagent_containers/syringe/syringe
 
 /obj/item/bodybag/cryobag/attack_self(mob/user)
 	var/obj/structure/closet/body_bag/cryobag/R = new /obj/structure/closet/body_bag/cryobag(user.loc)
 	R.add_fingerprint(user)
+	if(syringe)
+		R.syringe = syringe
+		syringe = null
 	qdel(src)
 
 /obj/structure/closet/body_bag/cryobag
 	name = "stasis bag"
-	desc = "A non-reusable plastic bag designed to prevent additional damage to an occupant, especially useful if short on time or in \
-	a hostile enviroment."
+	desc = "A non-reusable plastic bag designed to slow down bodily functions such as circulation and breathing, \
+	especially useful if short on time or in a hostile enviroment."
 	icon = 'icons/obj/cryobag.dmi'
 	item_path = /obj/item/bodybag/cryobag
 	store_misc = 0
 	store_items = 0
 	var/used = 0
 	var/obj/item/weapon/tank/tank = null
+	var/stasis_level = 3 //Every 'this' life ticks are applied to the mob (when life_ticks%stasis_level == 1)
+	var/obj/item/weapon/reagent_containers/syringe/syringe
 
 /obj/structure/closet/body_bag/cryobag/New()
 	tank = new /obj/item/weapon/tank/emergency/oxygen(null) //It's in nullspace to prevent ejection when the bag is opened.
 	..()
 
 /obj/structure/closet/body_bag/cryobag/Destroy()
+	if(syringe)
+		qdel(syringe)
+		syringe = null
 	qdel(tank)
 	tank = null
 	..()
@@ -157,11 +166,19 @@
 		O.desc = "Pretty useless now.."
 		qdel(src)
 
+/obj/structure/closet/body_bag/cryobag/MouseDrop(over_object, src_location, over_location)
+	. = ..()
+	if(. && syringe)
+		var/obj/item/bodybag/cryobag/folded = .
+		folded.syringe = syringe
+		syringe = null
+
 /obj/structure/closet/body_bag/cryobag/Entered(atom/movable/AM)
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
-		H.in_stasis = 1
+		H.Stasis(stasis_level)
 		src.used = 1
+		inject_occupant(H)
 
 	if(istype(AM, /obj/item/organ))
 		var/obj/item/organ/O = AM
@@ -173,7 +190,7 @@
 /obj/structure/closet/body_bag/cryobag/Exited(atom/movable/AM)
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
-		H.in_stasis = 0
+		H.Stasis(0)
 
 	if(istype(AM, /obj/item/organ))
 		var/obj/item/organ/O = AM
@@ -187,10 +204,19 @@
 		return tank.air_contents
 	..()
 
+/obj/structure/closet/body_bag/cryobag/proc/inject_occupant(var/mob/living/carbon/human/H)
+	if(!syringe)
+		return
+
+	if(H.reagents)
+		syringe.reagents.trans_to_mob(H, 30, CHEM_BLOOD)
+
 /obj/structure/closet/body_bag/cryobag/examine(mob/user)
 	..()
 	if(Adjacent(user)) //The bag's rather thick and opaque from a distance.
 		user << "<span class='info'>You peer into \the [src].</span>"
+		if(syringe)
+			user << "<span class='info'>It has a syringe added to it.</span>"
 		for(var/mob/living/L in contents)
 			L.examine(user)
 
@@ -202,5 +228,28 @@
 			var/obj/item/device/healthanalyzer/analyzer = W
 			for(var/mob/living/L in contents)
 				analyzer.attack(L,user)
+
+		else if(istype(W,/obj/item/weapon/reagent_containers/syringe))
+			if(syringe)
+				to_chat(user,"<span class='warning'>\The [src] already has an injector! Remove it first.</span>")
+			else
+				var/obj/item/weapon/reagent_containers/syringe/syringe = W
+				to_chat(user,"<span class='info'>You insert \the [syringe] into \the [src], and it locks into place.</span>")
+				user.unEquip(syringe)
+				src.syringe = syringe
+				syringe.loc = null
+				for(var/mob/living/carbon/human/H in contents)
+					inject_occupant(H)
+					break
+
+		else if(istype(W,/obj/item/weapon/screwdriver))
+			if(syringe)
+				if(used)
+					to_chat(user,"<span class='warning'>The injector cannot be removed now that the stasis bag has been used!</span>")
+				else
+					syringe.forceMove(src.loc)
+					to_chat(user,"<span class='info'>You pry \the [syringe] out of \the [src].</span>")
+					syringe = null
+
 		else
 			..()

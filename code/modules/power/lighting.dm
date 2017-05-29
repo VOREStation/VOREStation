@@ -151,7 +151,7 @@
 // the standard tube light fixture
 /obj/machinery/light
 	name = "light fixture"
-	icon = 'icons/obj/lighting.dmi'
+	icon = 'icons/obj/lighting_vr.dmi'
 	var/base_state = "tube"		// base description and icon_state
 	icon_state = "tube1"
 	desc = "A lighting fixture."
@@ -173,6 +173,9 @@
 								// this is used to calc the probability the light burns out
 
 	var/rigged = 0				// true if rigged to explode
+	var/needsound = FALSE		// Flag to prevent playing turn-on sound multiple times, and from playing at roundstart
+	var/shows_alerts = TRUE		// Flag for if this fixture should show alerts.  Make sure icon states exist!
+	var/current_alert = null	// Which alert are we showing right now?
 
 // the smaller bulb light fixture
 
@@ -185,8 +188,10 @@
 	brightness_color = "#FFF4E5"
 	desc = "A small lighting fixture."
 	light_type = /obj/item/weapon/light/bulb
+	shows_alerts = FALSE
 
 /obj/machinery/light/flamp
+	icon = 'icons/obj/lighting.dmi'
 	icon_state = "flamp1"
 	base_state = "flamp"
 	fitting = "bulb"
@@ -196,6 +201,7 @@
 	brightness_color = "#FFF4E5"
 	desc = "A floor lamp."
 	light_type = /obj/item/weapon/light/bulb
+	shows_alerts = FALSE
 	var/lamp_shade = 1
 
 //Vorestation addition, to override the New() proc further below, since this is a lamp.
@@ -212,6 +218,7 @@
 	name = "spotlight"
 	fitting = "large tube"
 	light_type = /obj/item/weapon/light/tube/large
+	shows_alerts = FALSE
 	brightness_range = 12
 	brightness_power = 4
 
@@ -230,7 +237,12 @@
 	lamp_shade = 0
 	update(0)
 	..()
-
+//VOREStation Add - Shadeless!
+/obj/machinery/light/flamp/noshade/New()
+	lamp_shade = 0
+	update(0)
+	..()
+//VOREStation Add End
 // create a new lighting fixture
 /obj/machinery/light/New()
 	..()
@@ -262,7 +274,10 @@
 
 	switch(status)		// set icon_states
 		if(LIGHT_OK)
-			icon_state = "[base_state][on]"
+			if(shows_alerts && current_alert && on)
+				icon_state = "[base_state]-alert-[current_alert]"
+			else
+				icon_state = "[base_state][on]"
 		if(LIGHT_EMPTY)
 			icon_state = "[base_state]-empty"
 			on = 0
@@ -294,10 +309,36 @@
 		base_state = "flamp"
 		..()
 
+/obj/machinery/light/proc/set_alert_atmos()
+	if(shows_alerts)
+		current_alert = "atmos"
+		brightness_color = "#6D6DFC"
+		if(on)
+			update()
+
+/obj/machinery/light/proc/set_alert_fire()
+	if(shows_alerts)
+		current_alert = "fire"
+		brightness_color = "#FF3030"
+		if(on)
+			update()
+
+/obj/machinery/light/proc/reset_alert()
+	if(shows_alerts)
+		current_alert = null
+		brightness_color = initial(brightness_color) || "" // Workaround for BYOND stupidity. Can't set it to null or it won't clear.
+		if(on)
+			update()
 
 // update the icon_state and luminosity of the light depending on its state
 /obj/machinery/light/proc/update(var/trigger = 1)
 	update_icon()
+	if(!on)
+		needsound = TRUE // Play sound next time we turn on
+	else if(needsound)
+		playsound(src.loc, 'sound/effects/lighton.ogg', 65, 1)
+		needsound = FALSE // Don't play sound again until we've been turned off
+
 	if(on)
 		if(light_range != brightness_range || light_power != brightness_power || light_color != brightness_color)
 			switchcount++

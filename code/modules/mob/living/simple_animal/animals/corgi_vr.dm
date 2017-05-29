@@ -55,7 +55,7 @@
 					inventory_head = null
 					regenerate_icons()
 				else
-					usr << "\red There is nothing to remove from its [remove_from]."
+					to_chat(usr, "<span class='warning'>There is nothing to remove from its [remove_from].</span>")
 					return
 			if("back")
 				if(inventory_back)
@@ -63,7 +63,7 @@
 					inventory_back = null
 					regenerate_icons()
 				else
-					usr << "\red There is nothing to remove from its [remove_from]."
+					to_chat(usr, "<span class='warning'>There is nothing to remove from its [remove_from].</span>")
 					return
 
 	//Adding things to inventory

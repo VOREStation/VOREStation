@@ -4,7 +4,7 @@
 /obj/machinery/vending
 	name = "Vendomat"
 	desc = "A generic vending machine."
-	icon = 'icons/obj/vending.dmi'
+	icon = 'icons/obj/vending_vr.dmi' //VOREStation Edit - Eris vending machine sprites
 	icon_state = "generic"
 	layer = 2.9
 	anchored = 1

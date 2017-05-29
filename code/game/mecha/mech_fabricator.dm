@@ -1,5 +1,5 @@
 /obj/machinery/mecha_part_fabricator
-	icon = 'icons/obj/robotics.dmi'
+	icon = 'icons/obj/robotics_vr.dmi' //VOREStation Edit - New icon
 	icon_state = "fab-idle"
 	name = "Exosuit Fabricator"
 	desc = "A machine used for construction of mechas."

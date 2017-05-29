@@ -284,7 +284,7 @@
 		if(M.loc && M.locs[1] in hearturfs)
 			mobs |= M
 
-		else if(M.stat == DEAD)
+		else if(M.stat == DEAD && !M.forbid_seeing_deadchat)
 			switch(type)
 				if(1) //Audio messages use ghost_ears
 					if(M.is_preference_enabled(/datum/client_preference/ghost_ears))

@@ -192,25 +192,30 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "purplecomb"
 	spawn_nothing_percentage = 50
+
+//VOREStation Edit - Changed items in this list drastically.
 /obj/random/contraband/item_to_spawn()
 	return pick(prob(6);/obj/item/weapon/storage/pill_bottle/tramadol,
-				prob(8);/obj/item/weapon/haircomb,
+				//prob(8);/obj/item/weapon/haircomb,
 				prob(4);/obj/item/weapon/storage/pill_bottle/happy,
 				prob(4);/obj/item/weapon/storage/pill_bottle/zoom,
-				prob(10);/obj/item/weapon/contraband/poster,
+				//prob(10);/obj/item/weapon/contraband/poster,
 				prob(4);/obj/item/weapon/material/butterfly,
-				prob(6);/obj/item/weapon/material/butterflyblade,
-				prob(6);/obj/item/weapon/material/butterflyhandle,
-				prob(6);/obj/item/weapon/material/wirerod,
+				//prob(6);/obj/item/weapon/material/butterflyblade,
+				//prob(6);/obj/item/weapon/material/butterflyhandle,
+				//prob(6);/obj/item/weapon/material/wirerod,
 				prob(2);/obj/item/weapon/material/butterfly/switchblade,
 				prob(2);/obj/item/weapon/material/knuckledusters,
 				prob(1);/obj/item/weapon/material/hatchet/tacknife,
 				prob(1);/obj/item/clothing/suit/storage/vest/heavy/merc,
 				prob(1);/obj/item/weapon/beartrap,
-				prob(1);/obj/item/weapon/handcuffs,
+				prob(1);/obj/item/weapon/handcuffs/fuzzy,
 				prob(1);/obj/item/weapon/legcuffs,
 				prob(2);/obj/item/weapon/reagent_containers/syringe/drugs,
-				prob(1);/obj/item/weapon/reagent_containers/syringe/steroid)
+				prob(1);/obj/item/weapon/reagent_containers/syringe/steroid,
+				prob(4);/obj/item/device/radio_jammer,
+				prob(2);/obj/item/weapon/storage/box/syndie_kit/spy,
+				prob(2);/obj/item/weapon/grenade/anti_photon)
 
 /obj/random/soap
 	name = "Random Soap"
@@ -881,7 +886,12 @@ var/list/multi_point_spawns
 	var/item_path  // Item type to spawn
 
 /obj/random_multi/single_item/generate_items()
-	new item_path(loc)
+	//VOREStation Edit - Make this proc check for a closet and spawn in that. This happens after closets are init'd so otherwise it spawns on top
+	var/obj/structure/closet/C = locate(/obj/structure/closet) in get_turf(src)
+	if(C)
+		new item_path(C)
+	else
+		new item_path(loc)
 
 /hook/roundstart/proc/generate_multi_spawn_items()
 	for(var/id in multi_point_spawns)

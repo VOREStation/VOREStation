@@ -262,6 +262,7 @@
 
 	if(environment_pressure <= pressure_levels[1])		//low pressures
 		if(!(mode == AALARM_MODE_PANIC || mode == AALARM_MODE_CYCLE))
+			playsound(src.loc, 'sound/machines/airalarm.ogg', 25, 0, 4)
 			return 1
 
 	return 0
@@ -719,9 +720,9 @@
 		if(href_list["atmos_unlock"])
 			switch(href_list["atmos_unlock"])
 				if("0")
-					alarm_area.air_doors_close()
+					alarm_area.firedoors_close()
 				if("1")
-					alarm_area.air_doors_open()
+					alarm_area.firedoors_open()
 			return 1
 
 		if(href_list["atmos_alarm"])
@@ -972,7 +973,7 @@ FIRE ALARM
 	for(var/obj/machinery/firealarm/FA in area)
 		fire_alarm.triggerAlarm(loc, FA, duration)
 	update_icon()
-	//playsound(src.loc, 'sound/ambience/signal.ogg', 75, 0)
+	playsound(src.loc, 'sound/machines/airalarm.ogg', 25, 0, 4)
 	return
 
 /obj/machinery/firealarm/proc/set_security_level(var/newlevel)

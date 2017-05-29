@@ -20,7 +20,7 @@
 /obj/machinery/seed_storage
 	name = "Seed storage"
 	desc = "It stores, sorts, and dispenses seeds."
-	icon = 'icons/obj/vending.dmi'
+	icon = 'icons/obj/vending_vr.dmi' //VOREStation Edit - Dunno why this isn't a vending subtype
 	icon_state = "seeds"
 	density = 1
 	anchored = 1

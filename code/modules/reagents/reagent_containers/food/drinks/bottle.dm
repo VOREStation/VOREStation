@@ -407,6 +407,16 @@
 	..()
 	reagents.add_reagent("pwine", 100)
 
+/obj/item/weapon/reagent_containers/food/drinks/bottle/redeemersbrew
+	name = "Redeemer's Brew"
+	desc = "Just opening the top of this bottle makes you feel a bit tipsy. Not for the faint of heart."
+	icon_state = "redeemersbrew"
+	center_of_mass = list("x"=16, "y"=3)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/redeemersbrew/New()
+	..()
+	reagents.add_reagent("unathiliquor", 100)
+
 //////////////////////////JUICES AND STUFF ///////////////////////
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/orangejuice

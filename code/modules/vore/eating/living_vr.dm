@@ -20,6 +20,7 @@
 	M.verbs += /mob/living/proc/insidePanel
 	M.verbs += /mob/living/proc/escapeOOC
 	M.verbs += /mob/living/proc/lick
+	M.appearance_flags |= PIXEL_SCALE
 
 	//Tries to load prefs if a client is present otherwise gives freebie stomach
 	if(!M.vore_organs || !M.vore_organs.len)
@@ -183,7 +184,7 @@
 //	Verb for saving vore preferences to save file
 //
 /mob/living/proc/save_vore_prefs()
-	if(!(client || client.prefs_vr))
+	if(!client || !client.prefs_vr)
 		return 0
 	if(!copy_to_prefs_vr())
 		return 0
@@ -193,7 +194,7 @@
 	return 1
 
 /mob/living/proc/apply_vore_prefs()
-	if(!(client || client.prefs_vr))
+	if(!client || !client.prefs_vr)
 		return 0
 	if(!client.prefs_vr.load_vore())
 		return 0
