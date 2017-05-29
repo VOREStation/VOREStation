@@ -410,10 +410,24 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/tail/faintailwings
+	name = "avian fantail, colorable (+wings)"
+	desc = ""
+	icon_state= "fantailwings"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/tail/wagtail
 	name = "avian wagtail, colorable"
 	desc = ""
 	icon_state = "wagtail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/wagtailwings
+	name = "avian wagtail, colorable (+wings)"
+	desc = ""
+	icon_state = "wagtailwings"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
@@ -426,6 +440,11 @@
 	name = "bee thorax (+wings)"
 	desc = ""
 	icon_state = "bee"
+
+/datum/sprite_accessory/tail/beethorax
+	name = "bee thorax"
+	desc = ""
+	icon_state = "beethorax"
 
 /datum/sprite_accessory/tail/beewings
 	name = "bee wings"
@@ -501,7 +520,7 @@
 
 /datum/sprite_accessory/tail/liquidfirefly_gazer
 	name = "gazer eyestalks (Liquidfirefly)"
-	desc - ""
+	desc = ""
 	icon_state = "liquidfirefly-eyestalks"
 	ckeys_allowed = list("liquidfirefly")
 
@@ -860,7 +879,6 @@
 	name = "CyberSerdy (silencedmp5a5)"
 	icon_state = "serdy_s"
 	ckeys_allowed = list("silencedmp5a5")
-
 
 //liquidfirefly: Ariana Scol
 /datum/sprite_accesory/tail/taur/centipede
