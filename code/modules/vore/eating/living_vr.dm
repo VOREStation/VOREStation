@@ -20,9 +20,9 @@
 /hook/living_new/proc/vore_setup(mob/living/M)
 	M.verbs += /mob/living/proc/escapeOOC
 	M.verbs += /mob/living/proc/lick
-	if(no_vore) //If the mob isn's supposed to have a stomach, let's not give it an insidepanel so it can make one for itself, or a stomach.
+	if(M.no_vore) //If the mob isn's supposed to have a stomach, let's not give it an insidepanel so it can make one for itself, or a stomach.
 		M << "<span class='warning'>The creature that you are can not eat others.</span>"
-		return
+		return 1
 	M.verbs += /mob/living/proc/insidePanel
 
 	M.appearance_flags |= PIXEL_SCALE
