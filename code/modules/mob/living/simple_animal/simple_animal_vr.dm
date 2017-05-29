@@ -41,7 +41,7 @@
 /mob/living/simple_animal/GetIdCard()
 	if(myid)
 		return myid
-	
+
 // Update fullness based on size & quantity of belly contents
 /mob/living/simple_animal/proc/update_fullness()
 	var/new_fullness = 0
@@ -130,6 +130,8 @@
 // Simple animals have only one belly.  This creates it (if it isn't already set up)
 /mob/living/simple_animal/proc/init_belly()
 	if(vore_organs.len)
+		return
+	if(no_vore) //If it can't vore, let's not give it a stomach.
 		return
 
 	var/datum/belly/B = new /datum/belly(src)
