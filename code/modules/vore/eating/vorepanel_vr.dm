@@ -451,6 +451,9 @@
 	if(href_list["b_mode"])
 		var/list/menu_list = selected.digest_modes
 		if(istype(usr,/mob/living/carbon/human))
+			var/mob/living/carbon/human/H = usr
+			if(H.species.vore_numbing)
+				menu_list += DM_DIGEST_NUMB
 			menu_list += selected.transform_modes
 
 		if(selected.digest_modes.len == 1) // Don't do anything
