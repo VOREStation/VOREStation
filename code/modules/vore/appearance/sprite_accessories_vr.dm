@@ -1,385 +1,869 @@
-////////////////////////
-// For sergals and stuff
-////////////////////////
-// Note: Creating a sub-datum to group all vore stuff together
-// would require us to exclude that datum from the global list.
+/*
+	Hello and welcome to VOREStation sprite_accessories: For a more general overview
+	please read sprite_accessories.dm. This file is for ears, tails, and taur bodies!
 
-/datum/sprite_accessory/hair
+	This is intended to be friendly for people with little to no actual coding experience.
 
-	species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Xenochimera", "Xenomorph Hybrid") //This lets all races use the default hairstyles.
+	!!WARNING!!: changing existing accessory information can be VERY hazardous to savefiles,
+	to the point where you may completely corrupt a server's savefiles. Please refrain
+	from doing this unless you absolutely know what you are doing, and have defined a
+	conversion in savefile.dm
+*/
 
-	sergal_plain
-		name = "Sergal Plain"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "serg_plain"
-		species_allowed = list("Sergal")
+// Add Additional variable onto sprite_accessory
+/datum/sprite_accessory
+	// Ckey of person allowed to use this, if defined.
+	var/list/ckeys_allowed = null
 
-	sergal_medicore
-		name = "Sergal Medicore"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "serg_medicore"
-		species_allowed = list("Sergal")
+/*
+////////////////////////////
+/  =--------------------=  /
+/  == Ear Definitions  ==  /
+/  =--------------------=  /
+////////////////////////////
+*/
+/datum/sprite_accessory/ears
+	name = "You should not see this..."
+	icon = 'icons/mob/vore/ears_vr.dmi'
+	do_colouration = 0 // Set to 1 to blend (ICON_ADD) hair color
 
-	sergal_tapered
-		name = "Sergal Tapered"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "serg_tapered"
-		species_allowed = list("Sergal")
+	var/color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
+	var/extra_overlay // Icon state of an additional overlay to blend in.
+	var/desc = "You should not see this..."
 
-	sergal_fairytail
-		name = "Sergal Fairytail"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "serg_fairytail"
-		species_allowed = list("Sergal")
+// Ears avaliable to anyone
 
-	braid
-		name = "Floorlength Braid"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "hair_braid"
-
-	bald
-		name = "Bald"
-		icon_state = "bald"
-		gender = MALE
-		species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Xenochimera", "Xenomorph Hybrid") //Lets all the races be bald if they want.
-
-
-	una_hood
-		name = "Cobra Hood"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "soghun_hood"
-
-	una_spines_long
-		name = "Long Unathi Spines"
-		icon_state = "soghun_longspines"
-		species_allowed = list("Unathi", "Xenochimera") //Xenochimera get most hairstyles since they're abominations.
-
-	una_spines_short
-		name = "Short Unathi Spines"
-		icon_state = "soghun_shortspines"
-		species_allowed = list("Unathi", "Xenochimera")
-
-
-	una_frills_long
-		name = "Long Unathi Frills"
-		icon_state = "soghun_longfrills"
-		species_allowed = list("Unathi", "Xenochimera")
-
-	una_frills_short
-		name = "Short Unathi Frills"
-		icon_state = "soghun_shortfrills"
-		species_allowed = list("Unathi", "Xenochimera")
-
-	una_horns
-		name = "Unathi Horns"
-		icon_state = "soghun_horns"
-		species_allowed = list("Unathi", "Xenochimera")
-
-	una_doublehorns
-		name = "Double Unathi Horns"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "soghun_dubhorns"
-		species_allowed = list("Unathi", "Xenochimera")
-
-	taj_ears
-		name = "Tajaran Ears"
-		icon_state = "ears_plain"
-		species_allowed = list("Tajara", "Xenochimera")
-
-
-	taj_ears_clean
-		name = "Tajara Clean"
-		icon_state = "hair_clean"
-		species_allowed = list("Tajara", "Xenochimera")
-
-	taj_ears_bangs
-		name = "Tajara Bangs"
-		icon_state = "hair_bangs"
-		species_allowed = list("Tajara", "Xenochimera")
-
-	taj_ears_braid
-		name = "Tajara Braid"
-		icon_state = "hair_tbraid"
-		species_allowed = list("Tajara", "Xenochimera")
-
-	taj_ears_shaggy
-		name = "Tajara Shaggy"
-		icon_state = "hair_shaggy"
-		species_allowed = list("Tajara", "Xenochimera")
-
-	taj_ears_mohawk
-		name = "Tajaran Mohawk"
-		icon_state = "hair_mohawk"
-		species_allowed = list("Tajara", "Xenochimera")
-
-	taj_ears_plait
-		name = "Tajara Plait"
-		icon_state = "hair_plait"
-		species_allowed = list("Tajara", "Xenochimera")
-
-	taj_ears_straight
-		name = "Tajara Straight"
-		icon_state = "hair_straight"
-		species_allowed = list("Tajara", "Xenochimera")
-
-	taj_ears_long
-		name = "Tajara Long"
-		icon_state = "hair_long"
-		species_allowed = list("Tajara", "Xenochimera")
-
-	taj_ears_rattail
-		name = "Tajara Rat Tail"
-		icon_state = "hair_rattail"
-		species_allowed = list("Tajara", "Xenochimera")
-
-	taj_ears_spiky
-		name = "Tajara Spiky"
-		icon_state = "hair_tajspiky"
-		species_allowed = list("Tajara", "Xenochimera")
-
-	taj_ears_messy
-		name = "Tajara Messy"
-		icon_state = "hair_messy"
-		species_allowed = list("Tajara", "Xenochimera")
-// Vulpa stuffs
-
-	vulp_hair_none
-		name = "None"
-		icon_state = "bald"
-		species_allowed = list("Vulpkanin")
-		gender = NEUTER
-
-	vulp_hair_kajam
-		name = "Kajam"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "kajam"
-		species_allowed = list("Vulpkanin")
-		gender = NEUTER
-
-	vulp_hair_keid
-		name = "Keid"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "keid"
-		species_allowed = list("Vulpkanin")
-		gender = NEUTER
-
-	vulp_hair_adhara
-		name = "Adhara"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "adhara"
-		species_allowed = list("Vulpkanin")
-		gender = NEUTER
-
-	vulp_hair_kleeia
-		name = "Kleeia"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "kleeia"
-		species_allowed = list("Vulpkanin")
-		gender = NEUTER
-
-	vulp_hair_mizar
-		name = "Mizar"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "mizar"
-		species_allowed = list("Vulpkanin")
-		gender = NEUTER
-
-	vulp_hair_apollo
-		name = "Apollo"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "apollo"
-		species_allowed = list("Vulpkanin")
-		gender = NEUTER
-
-	vulp_hair_belle
-		name = "Belle"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "belle"
-		species_allowed = list("Vulpkanin")
-		gender = NEUTER
-
-	vulp_hair_bun
-		name = "Bun"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "bun"
-		species_allowed = list("Vulpkanin")
-		gender = NEUTER
-
-	vulp_hair_jagged
-		name = "Jagged"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "jagged"
-		species_allowed = list("Vulpkanin")
-		gender = NEUTER
-
-	vulp_hair_curl
-		name = "Curl"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "curl"
-		species_allowed = list("Vulpkanin")
-		gender = NEUTER
-
-	vulp_hair_hawk
-		name = "Hawk"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "hawk"
-		species_allowed = list("Vulpkanin")
-		gender = NEUTER
-
-	vulp_hair_anita
-		name = "Anita"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "anita"
-		species_allowed = list("Vulpkanin")
-		gender = NEUTER
-
-	vulp_hair_short
-		name = "Short"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "short"
-		species_allowed = list("Vulpkanin")
-		gender = NEUTER
-
-	vulp_hair_spike
-		name = "Spike"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "spike"
-		species_allowed = list("Vulpkanin")
-		gender = NEUTER
-
-/datum/sprite_accessory/facial_hair
-
-	vulp_none
-		name = "None"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "none"
-		species_allowed = list("Vulpkanin")
-		gender = NEUTER
-
-	vulp_blaze
-		name = "Blaze"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "vulp_facial_blaze"
-		species_allowed = list("Vulpkanin")
-		gender = NEUTER
-
-	vulp_vulpine
-		name = "Vulpine"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "vulp_facial_vulpine"
-		species_allowed = list("Vulpkanin")
-		gender = NEUTER
-
-	vulp_earfluff
-		name = "Earfluff"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "vulp_facial_earfluff"
-		species_allowed = list("Vulpkanin")
-		gender = NEUTER
-
-	vulp_mask
-		name = "Mask"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "vulp_facial_mask"
-		species_allowed = list("Vulpkanin")
-		gender = NEUTER
-
-	vulp_patch
-		name = "Patch"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "vulp_facial_patch"
-		species_allowed = list("Vulpkanin")
-		gender = NEUTER
-
-	vulp_ruff
-		name = "Ruff"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "vulp_facial_ruff"
-		species_allowed = list("Vulpkanin")
-		gender = NEUTER
-
-	vulp_kita
-		name = "Kita"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "vulp_facial_kita"
-		species_allowed = list("Vulpkanin")
-		gender = NEUTER
-
-	vulp_swift
-		name = "Swift"
-		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "vulp_facial_swift"
-		species_allowed = list("Vulpkanin")
-		gender = NEUTER
-
-	vulpkanin
-		name = "Default Vulpkanin skin"
-		icon_state = "default"
-		icon = 'icons/mob/human_races/r_vulpkanin.dmi'
-		species_allowed = list("Vulpkanin")
-
-//Special hairstyles
-/datum/sprite_accessory/ears/inkling
-	name = "colorable mature inkling hair"
+/datum/sprite_accessory/ears/squirrel_orange
+	name = "squirel, orange"
 	desc = ""
-	icon = 'icons/mob/human_face_vr.dmi'
-	icon_state = "inkling-colorable"
+	icon_state = "squirrel-orange"
+
+/datum/sprite_accessory/ears/squirrel_red
+	name = "squirrel, red"
+	desc = ""
+	icon_state = "squirrel-red"
+
+/datum/sprite_accessory/ears/bunny_white
+	name = "bunny, white"
+	desc = ""
+	icon_state = "bunny"
+
+/datum/sprite_accessory/ears/bear_brown
+	name = "bear, brown"
+	desc = ""
+	icon_state = "bear-brown"
+
+/datum/sprite_accessory/ears/wolf_grey
+	name = "wolf, grey"
+	desc = ""
+	icon_state = "wolf-grey"
+
+/datum/sprite_accessory/ears/wolf_green
+	name = "wolf, green"
+	desc = ""
+	icon_state = "wolf-green"
+
+/datum/sprite_accessory/ears/wisewolf
+	name = "wolf, wise"
+	desc = ""
+	icon_state = "wolf-wise"
+
+/datum/sprite_accessory/ears/mouse_grey
+	name = "mouse, grey"
+	desc = ""
+	icon_state = "mouse-grey"
+
+/datum/sprite_accessory/ears/bee
+	name = "bee antennae"
+	desc = ""
+	icon_state = "bee"
+
+/datum/sprite_accessory/ears/antennae
+	name = "antennae, colorable"
+	desc = ""
+	icon_state = "antennae"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/oni_h1
+	name = "oni horns"
+	desc = ""
+	icon_state = "oni-h1"
+
+/datum/sprite_accessory/ears/demon_horns1
+	name = "demon horns"
+	desc = ""
+	icon_state = "demon-horns1"
+
+/datum/sprite_accessory/ears/foxears
+	name = "highlander zorren ears"
+	desc = ""
+	icon_state = "foxears"
+
+/datum/sprite_accessory/ears/fenears
+	name = "flatland zorren ears"
+	desc = ""
+	icon_state = "fenears"
+
+/datum/sprite_accessory/ears/sergal
+	name = "Sergal ears"
+	icon_state = "serg_plain_s"
+
+/datum/sprite_accessory/ears/foxearshc
+	name = "highlander zorren ears, colorable"
+	desc = ""
+	icon_state = "foxearshc"
+	do_colouration = 1
+
+/datum/sprite_accessory/ears/fenearshc
+	name = "flatland zorren ears, colorable"
+	desc = ""
+	icon_state = "fenearshc"
+	do_colouration = 1
+
+/datum/sprite_accessory/ears/sergalhc
+	name = "Sergal ears, colorable"
+	icon_state = "serg_plain_s"
+	do_colouration = 1
+
+/datum/sprite_accessory/ears/mousehc
+	name = "mouse, colorable"
+	desc = ""
+	icon_state = "mouse"
+	do_colouration = 1
+	extra_overlay = "mouseinner"
+
+/datum/sprite_accessory/ears/mousehcno
+	name = "mouse, colorable, no inner"
+	desc = ""
+	icon_state = "mouse"
+	do_colouration = 1
+
+/datum/sprite_accessory/ears/wolfhc
+	name = "wolf, colorable"
+	desc = ""
+	icon_state = "wolf"
+	do_colouration = 1
+	extra_overlay = "wolfinner"
+
+/datum/sprite_accessory/ears/bearhc
+	name = "bear, colorable"
+	desc = ""
+	icon_state = "bear"
+	do_colouration = 1
+
+/datum/sprite_accessory/ears/squirrelhc
+	name = "squirrel, colorable"
+	desc = ""
+	icon_state = "squirrel"
+	do_colouration = 1
+
+/datum/sprite_accessory/ears/kittyhc
+	name = "kitty, colorable"
+	desc = ""
+	icon_state = "kitty"
+	do_colouration = 1
+	extra_overlay = "kittyinner"
+
+/datum/sprite_accessory/ears/bunnyhc
+	name = "bunny, colorable"
+	desc = ""
+	icon_state = "bunny"
+	do_colouration = 1
+
+/datum/sprite_accessory/ears/antlers
+	name = "antlers"
+	desc = ""
+	icon_state = "antlers"
+
+// Special snowflake ears go below here.
+
+/datum/sprite_accessory/ears/molenar_kitsune
+	name = "quintail kitsune ears (Molenar)"
+	desc = ""
+	icon_state = "molenar-kitsune"
+	ckeys_allowed = list("molenar")
+
+/datum/sprite_accessory/ears/molenar_deathclaw
+	name = "deathclaw ears (Molenar)"
+	desc = ""
+	icon_state = "molenar-deathclaw"
+	ckeys_allowed = list("molenar")
+
+/datum/sprite_accessory/ears/miria_fluffdragon
+	name = "fluffdragon ears (Miria Masters)"
+	desc = ""
+	icon_state = "miria-fluffdragonears"
+	ckeys_allowed = list("miriamasters")
+
+/datum/sprite_accessory/ears/miria_kitsune
+	name = "kitsune ears (Miria Masters)"
+	desc = ""
+	icon_state = "miria-kitsuneears"
+	ckeys_allowed = list("miriamasters")
+
+/datum/sprite_accessory/ears/runac
+	name = "fennecsune ears (Runac)"
+	desc = ""
+	icon_state = "runac"
+	ckeys_allowed = list("rebcom1807")
+
+/datum/sprite_accessory/ears/kerena
+	name = "wingwolf ears (Kerena)"
+	desc = ""
+	icon_state = "kerena"
+	ckeys_allowed = list("somekindofpony")
+
+/datum/sprite_accessory/ears/rosey
+	name = "tritail kitsune ears (Rosey)"
+	desc = ""
+	icon_state = "rosey"
+	ckeys_allowed = list("joey4298")
+
+/datum/sprite_accessory/ears/aronai
+	name = "aronai ears/head (Aronai)"
+	desc = ""
+	icon_state = "aronai"
+	ckeys_allowed = list("arokha")
+
+/datum/sprite_accessory/ears/holly
+	name = "tigress ears (Holly Sharp)"
+	desc = ""
+	icon_state = "tigressears"
+	ckeys_allowed = list("hoodoo")
+
+/datum/sprite_accessory/ears/molenar_inkling
+	name = "teal mature inkling hair (Kari Akiren)"
+	desc = ""
+	icon_state = "molenar-tentacle"
+	ckeys_allowed = list("molenar")
+
+/*
+////////////////////////////
+/  =--------------------=  /
+/  == Tail Definitions ==  /
+/  =--------------------=  /
+////////////////////////////
+*/
+/datum/sprite_accessory/tail
+	name = "You should not see this..."
+	icon = 'icons/mob/vore/tails_vr.dmi'
+	do_colouration = 0 //Set to 1 to enable coloration using the tail color.
+
+	var/color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
+	var/extra_overlay // Icon state of an additional overlay to blend in.
+	var/show_species_tail = 0 // If false, do not render species' tail.
+	var/clothing_can_hide = 1 // If true, clothing with HIDETAIL hides it
+	var/desc = "You should not see this..."
+	var/ani_state //State when wagging/animated
+
+/datum/sprite_accessory/tail/invisible
+	name = "hide species-sprite tail"
+	icon = null
+	icon_state = null
+
+/datum/sprite_accessory/tail/squirrel_orange
+	name = "squirel, orange"
+	desc = ""
+	icon_state = "squirrel-orange"
+
+/datum/sprite_accessory/tail/squirrel_red
+	name = "squirrel, red"
+	desc = ""
+	icon_state = "squirrel-red"
+
+/datum/sprite_accessory/tail/squirrel
+	name = "squirrel, colorable"
+	desc = ""
+	icon_state = "squirrel"
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/kitty
+	name = "kitty, colorable, downwards"
+	desc = ""
+	icon_state = "kittydown"
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/kittyup
+	name = "kitty, colorable, upwards"
+	desc = ""
+	icon_state = "kittyup"
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/tiger_white
+	name = "tiger, colorable, white stripes"
+	desc = ""
+	icon_state = "tiger"
+	do_colouration = 1
+	extra_overlay = "tigerinnerwhite"
+
+/datum/sprite_accessory/tail/tiger_black
+	name = "tiger, colorable, black stripes"
+	desc = ""
+	icon_state = "tiger"
+	do_colouration = 1
+	extra_overlay = "tigerinnerblack"
+
+/datum/sprite_accessory/tail/stripey
+	name = "stripey taj, colorable"
+	desc = ""
+	icon_state = "stripeytail"
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/stripeytail_brown
+	name = "stripey taj, brown"
+	desc = ""
+	icon_state = "stripeytail-brown"
+
+/datum/sprite_accessory/tail/bunny
+	name = "bunny, colorable"
+	desc = ""
+	icon_state = "bunny"
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/mothc
+	name = "moth wings, colorable"
+	desc = ""
+	icon_state = "moth"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/moth
+	name = "moth wings"
+	desc = ""
+	icon_state = "moth"
+
+/datum/sprite_accessory/tail/bear_brown
+	name = "bear, brown"
+	desc = ""
+	icon_state = "bear-brown"
+
+/datum/sprite_accessory/tail/bear
+	name = "bear, colorable"
+	desc = ""
+	icon_state = "bear"
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/dragon
+	name = "dragon, colorable"
+	desc = ""
+	icon_state = "dragon"
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/wolf_grey
+	name = "wolf, grey"
+	desc = ""
+	icon_state = "wolf-grey"
+
+/datum/sprite_accessory/tail/wolf_green
+	name = "wolf, green"
+	desc = ""
+	icon_state = "wolf-green"
+
+/datum/sprite_accessory/tail/wisewolf
+	name = "wolf, wise"
+	desc = ""
+	icon_state = "wolf-wise"
+
+/datum/sprite_accessory/tail/blackwolf
+	name = "wolf, black"
+	desc = ""
+	icon_state = "wolf"
+
+/datum/sprite_accessory/tail/wolf
+	name = "wolf, colorable"
+	desc = ""
+	icon_state = "wolf"
+	do_colouration = 1
+	extra_overlay = "wolfinner"
+
+/datum/sprite_accessory/tail/mouse_pink
+	name = "mouse, pink"
+	desc = ""
+	icon_state = "mouse-pink"
+
+/datum/sprite_accessory/tail/mouse
+	name = "mouse, colorable"
+	desc = ""
+	icon_state = "mouse"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/horse
+	name = "horse tail, colorable"
+	desc = ""
+	icon_state = "horse"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/cow
+	name = "cow tail, colorable"
+	desc = ""
+	icon_state = "cow"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/fantail
+	name = "avian fantail, colorable"
+	desc = ""
+	icon_state = "fantail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/wagtail
+	name = "avian wagtail, colorable"
+	desc = ""
+	icon_state = "wagtail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/crossfox
+	name = "cross fox"
+	desc = ""
+	icon_state = "crossfox"
+
+/datum/sprite_accessory/tail/bee
+	name = "bee thorax (+wings)"
+	desc = ""
+	icon_state = "bee"
+
+/datum/sprite_accessory/tail/beewings
+	name = "bee wings"
+	desc = ""
+	icon_state = "beewings"
+
+/datum/sprite_accessory/tail/moth_full
+	name = "moth antenna and wings"
+	desc = ""
+	icon_state = "moth_full"
+
+/datum/sprite_accessory/tail/succubus_purple
+	name = "succubus, purple (+wings)"
+	desc = ""
+	icon_state = "succubus-purple"
+
+/datum/sprite_accessory/tail/succubus_red
+	name = "succubus, red (+wings)"
+	desc = ""
+	icon_state = "succubus-red"
+
+/datum/sprite_accessory/tail/succubus_black
+	name = "succubus, black (+wings)"
+	desc = ""
+	icon_state = "succubus-black"
+
+/datum/sprite_accessory/tail/succubus_color
+	name = "succubus, colorable (+wings)"
+	desc = ""
+	icon_state = "succubus-black"
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/spade_color
+	name = "spade-tail (colorable)"
+	desc = ""
+	icon_state = "spadetail-black"
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/bat_black
+	name = "bat wings, black"
+	desc = ""
+	icon_state = "bat-black"
+	show_species_tail = 1
+
+/datum/sprite_accessory/tail/bat_color
+	name = "bat wings, colorable"
+	desc = ""
+	icon_state = "bat-black"
+	show_species_tail = 1
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/bat_red
+	name = "bat wings, red"
+	desc = ""
+	icon_state = "bat-red"
+	show_species_tail = 1
+
+/datum/sprite_accessory/tail/snag
+	name = "xenomorph tail w/ backplate"
+	desc = ""
+	icon_state = "snag"
+
+/datum/sprite_accessory/tail/xenotail
+	name = "xenomorph tail"
+	desc = ""
+	icon_state = "xenotail"
+
+/datum/sprite_accessory/tail/molenar_kitsune
+	name = "quintail kitsune tails (Molenar)"
+	desc = ""
+	icon_state = "molenar-kitsune"
+	ckeys_allowed = list("molenar")
+
+/datum/sprite_accessory/tail/liquidfirefly_gazer
+	name = "gazer eyestalks (Liquidfirefly)"
+	desc - ""
+	icon_state = "liquidfirefly-eyestalks"
+	ckeys_allowed = list("liquidfirefly")
+
+/datum/sprite_accessory/tail/miria_fluffdragon
+	name = "fluffdragon wings+tail (Miria Masters)"
+	desc = ""
+	icon_state = "miria-fluffdragontail"
+	ckeys_allowed = list("miriamasters")
+
+/datum/sprite_accessory/tail/miria_kitsune
+	name = "Black kitsune tails (Miria Masters)"
+	desc = ""
+	icon_state = "miria-kitsunetail"
+	ckeys_allowed = list("miriamasters")
+
+/datum/sprite_accessory/tail/molenar_deathclaw
+	name = "deathclaw bits (Molenar)"
+	desc = ""
+	icon_state = "molenar-deathclaw"
+	ckeys_allowed = list("molenar","silvertalismen","jertheace")
+
+/datum/sprite_accessory/tail/runac
+	name = "fennecsune tails (Runac)"
+	desc = ""
+	icon_state = "runac"
+	ckeys_allowed = list("rebcom1807")
+
+/datum/sprite_accessory/tail/kerena
+	name = "wingwolf tail (+wings) (Kerena)"
+	desc = ""
+	icon_state = "kerena"
+	ckeys_allowed = list("somekindofpony")
+
+/datum/sprite_accessory/tail/reika
+	name = "fox tail (+ beewings) (Reika)"
+	desc = ""
+	icon_state = "reika"
+	ckeys_allowed = list("rikaru19xjenkins")
+
+/datum/sprite_accessory/tail/rosey
+	name = "tritail kitsune tails (Rosey)"
+	desc = ""
+	icon_state = "rosey"
+	ckeys_allowed = list("joey4298")
+
+/datum/sprite_accessory/tail/scree
+	name = "green taj tail (+wings) (Scree)"
+	desc = ""
+	icon_state = "scree"
+	ckeys_allowed = list("scree")
+
+/datum/sprite_accessory/tail/aronai
+	name = "aronai tail (Aronai)"
+	desc = ""
+	icon_state = "aronai"
+	ckeys_allowed = list("arokha")
+
+/datum/sprite_accessory/tail/sepulchre
+	name = "demon wings (Sepulchre)"
+	desc = ""
+	icon_state = "sepulchre_wings"
+	ckeys_allowed = list("sepulchre")
+
+/datum/sprite_accessory/tail/feathered
+	name = "feathered wings, colorable"
+	desc = ""
+	icon_state = "feathered"
+	show_species_tail = 1
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/redpanda
+	name = "red panda"
+	desc = ""
+	icon_state = "redpanda"
+
+/datum/sprite_accessory/tail/ringtail
+	name = "ringtail, colorable"
+	desc = ""
+	icon_state = "ringtail"
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/holly
+	name = "tigress tail (Holly)"
+	desc = ""
+	icon_state = "tigresstail"
+	ckeys_allowed = list("hoodoo")
+
+/datum/sprite_accessory/tail/tailmaw
+	name = "tailmaw, colorable"
+	desc = ""
+	icon_state = "tailmaw"
+	color_blend_mode = ICON_MULTIPLY
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/curltail
+	name = "curltail (vwag)"
+	desc = ""
+	icon_state = "curltail"
+	ani_state = "curltail_w"
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/shorttail
+	name = "shorttail (vwag)"
+	desc = ""
+	icon_state = "straighttail"
+	ani_state = "straighttail_w"
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/tiger_new
+	name = "tiger tail (vwag)"
+	desc = ""
+	icon_state = "tigertail"
+	ani_state = "tigertail_w"
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/vulp_new
+	name = "new vulp tail (vwag)"
+	desc = ""
+	icon_state = "vulptail"
+	ani_state = "vulptail_w"
+	do_colouration = 1
+
+//For all species tails. Includes haircolored tails.
+/datum/sprite_accessory/tail/special
+	name = "Blank tail. Do not select."
+	icon = 'icons/effects/species_tails_vr.dmi'
+
+/datum/sprite_accessory/tail/special/unathi
+	name = "unathi tail"
+	desc = ""
+	icon_state = "sogtail_s"
+
+/datum/sprite_accessory/tail/special/tajaran
+	name = "tajaran tail"
+	desc = ""
+	icon_state = "tajtail_s"
+
+/datum/sprite_accessory/tail/special/sergal
+	name = "sergal tail"
+	desc = ""
+	icon_state = "sergtail_s"
+
+/datum/sprite_accessory/tail/special/akula
+	name = "akula tail"
+	desc = ""
+	icon_state = "sharktail_s"
+
+/datum/sprite_accessory/tail/special/nevrean
+	name = "nevrean tail"
+	desc = ""
+	icon_state = "nevreantail_s"
+
+/datum/sprite_accessory/tail/special/armalis
+	name = "armalis tail"
+	desc = ""
+	icon_state = "armalis_tail_humanoid_s"
+
+/datum/sprite_accessory/tail/special/xenodrone
+	name = "xenomorph drone tail"
+	desc = ""
+	icon_state = "xenos_drone_tail_s"
+
+/datum/sprite_accessory/tail/special/xenosentinel
+	name = "xenomorph sentinel tail"
+	desc = ""
+	icon_state = "xenos_sentinel_tail_s"
+
+/datum/sprite_accessory/tail/special/xenohunter
+	name = "xenomorph hunter tail"
+	desc = ""
+	icon_state = "xenos_hunter_tail_s"
+
+/datum/sprite_accessory/tail/special/xenoqueen
+	name = "xenomorph queen tail"
+	desc = ""
+	icon_state = "xenos_queen_tail_s"
+
+/datum/sprite_accessory/tail/special/monkey
+	name = "monkey tail"
+	desc = ""
+	icon_state = "chimptail_s"
+
+/datum/sprite_accessory/tail/special/seromitail
+	name = "seromi tail"
+	desc = ""
+	icon_state = "seromitail_s"
+
+/datum/sprite_accessory/tail/special/seromitailfeathered
+	name = "seromi tail w/ feathers"
+	desc = ""
+	icon_state = "seromitail_feathers_s"
+
+/datum/sprite_accessory/tail/special/unathihc
+	name = "unathi tail, colorable"
+	desc = ""
+	icon_state = "sogtail_hc_s"
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/special/tajaranhc
+	name = "tajaran tail, colorable"
+	desc = ""
+	icon_state = "tajtail_hc_s"
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/special/sergalhc
+	name = "sergal tail, colorable"
+	desc = ""
+	icon_state = "sergtail_hc_s"
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/special/akulahc
+	name = "akula tail, colorable"
+	desc = ""
+	icon_state = "sharktail_hc_s"
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/special/nevreanhc
+	name = "nevrean tail, colorable"
+	desc = ""
+	icon_state = "nevreantail_hc_s"
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/special/foxhc
+	name = "highlander zorren tail, colorable"
+	desc = ""
+	icon_state = "foxtail_hc_s"
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/special/fennechc
+	name = "flatland zorren tail, colorable"
+	desc = ""
+	icon_state = "fentail_hc_s"
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/special/armalishc
+	name = "armalis tail, colorable"
+	desc = ""
+	icon_state = "armalis_tail_humanoid_hc_s"
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/special/xenodronehc
+	name = "xenomorph drone tail, colorable"
+	desc = ""
+	icon_state = "xenos_drone_tail_hc_s"
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/special/xenosentinelhc
+	name = "xenomorph sentinel tail, colorable"
+	desc = ""
+	icon_state = "xenos_sentinel_tail_hc_s"
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/special/xenohunterhc
+	name = "xenomorph hunter tail, colorable"
+	desc = ""
+	icon_state = "xenos_hunter_tail_hc_s"
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/special/xenoqueenhc
+	name = "xenomorph queen tail, colorable"
+	desc = ""
+	icon_state = "xenos_queen_tail_hc_s"
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/special/monkeyhc
+	name = "monkey tail, colorable, colorable"
+	desc = ""
+	icon_state = "chimptail_hc_s"
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/special/seromitailhc
+	name = "seromi tail, colorable"
+	desc = ""
+	icon_state = "seromitail_hc_s"
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/special/seromitailfeatheredhc
+	name = "seromi tail w/ feathers, colorable"
+	desc = ""
+	icon_state = "seromitail_feathers_hc_s"
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/special/vulpan
+	name = "vulpankin, colorable"
+	desc = ""
+	icon_state = "vulptail_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/zenghu_taj
+	name = "Zeng-Hu Tajaran Synth tail"
+	desc = ""
+	icon_state = "zenghu_taj"
+
+/*
+////////////////////////////
+/  =--------------------=  /
+/  == Taur Definitions ==  /
+/  =--------------------=  /
+////////////////////////////
+*/
+
+// Taur sprites are now a subtype of tail since they are mutually exclusive anyway.
+
+/datum/sprite_accessory/tail/taur
+	name = "You should not see this..."
+	icon = 'icons/mob/vore/taurs_vr.dmi'
+	do_colouration = 1 // Yes color, using tail color
+	color_blend_mode = ICON_MULTIPLY  // The sprites for taurs are designed for ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/taur/wolf
+	name = "Wolf"
+	icon_state = "wolf_s"
+
+/datum/sprite_accessory/tail/taur/naga
+	name = "Naga"
+	icon_state = "naga_s"
+
+/datum/sprite_accessory/tail/taur/horse
+	name = "Horse"
+	icon_state = "horse_s"
+
+/datum/sprite_accessory/tail/taur/cow
+	name = "Cow"
+	icon_state = "cow_s"
+
+/datum/sprite_accessory/tail/taur/lizard
+	name = "Lizard"
+	icon_state = "lizard_s"
+
+/datum/sprite_accessory/tail/taur/spider
+	name = "Spider"
+	icon_state = "spider_s"
+
+/datum/sprite_accessory/tail/taur/tents
+	name = "Tentacles"
+	icon_state = "tent_s"
+
+/datum/sprite_accessory/tail/taur/feline
+	name = "Feline"
+	icon_state = "feline_s"
+
+/datum/sprite_accessory/tail/taur/slug
+	name = "Slug"
+	icon_state = "slug_s"
+
+//wickedtemp: Chakat Tempest
+/datum/sprite_accessory/tail/taur/feline/tempest
+	name = "Feline (wickedtemp)"
+	icon_state = "tempest_s"
+	ckeys_allowed = list("wickedtemp")
+
+//silencedmp5a5: Serdykov Antoz
+/datum/sprite_accessory/tail/taur/wolf/serdy
+	name = "CyberSerdy (silencedmp5a5)"
+	icon_state = "serdy_s"
+	ckeys_allowed = list("silencedmp5a5")
 
 
-//VOREStation Body Markings and Overrides
-//Reminder: BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN,BP_HEAD
-/datum/sprite_accessory/marking/vr
-	icon = 'icons/mob/human_races/markings_vr.dmi'
-
-	vulp_belly
-		name = "belly fur (Vulp)"
-		icon_state = "vulp_belly"
-		body_parts = list(BP_TORSO)
-
-	vulp_fullbelly
-		name = "full belly fur (Vulp)"
-		icon_state = "vulp_fullbelly"
-		body_parts = list(BP_TORSO)
-
-	vulp_crest
-		name = "belly crest (Vulp)"
-		icon_state = "vulp_crest"
-		body_parts = list(BP_TORSO)
-
-	vulp_nose
-		name = "nose (Vulp)"
-		icon_state = "vulp_nose"
-		body_parts = list(BP_HEAD)
-
-	vulp_face
-		name = "face (Vulp)"
-		icon_state = "vulp_face"
-		body_parts = list(BP_HEAD)
-
-	vulp_earsface
-		name = "ears and face (Vulp)"
-		icon_state = "vulp_earsface"
-		body_parts = list(BP_HEAD)
-
-	vulp_all
-		name = "all head highlights (Vulp)"
-		icon_state = "vulp_all"
-		body_parts = list(BP_HEAD)
-
-	sergal_full
-		name = "Sergal Markings"
-		icon_state = "sergal_full"
-		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
-		species_allowed = list("Sergal")
-
-	sergal_full_female
-		name = "Sergal Markings (Female)"
-		icon_state = "sergal_full_female"
-		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
-		species_allowed = list("Sergal")
-		gender = FEMALE
-
-	monoeye
-		name = "Monoeye"
-		icon_state = "monoeye"
-		body_parts = list(BP_HEAD)
+//liquidfirefly: Ariana Scol
+/datum/sprite_accesory/tail/taur/centipede
+	name = "Centipede (liquidfirefly)"
+	icon_state = "centipede_s"
+	ckeys_allowed = list("liquidfirefly")
