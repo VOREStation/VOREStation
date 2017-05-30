@@ -203,7 +203,8 @@
 		H.custom_species = dna.custom_species
 		if(istype(H.species,/datum/species/custom))
 			var/datum/species/custom/CS = H.species
-			CS.produceCopy(dna.base_species,dna.species_traits,src)
+			var/datum/species/custom/new_CS = CS.produceCopy(dna.base_species,dna.species_traits,src)
+			new_CS.blood_color = dna.blood_color
 
 		// VOREStation Edit End
 
