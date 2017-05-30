@@ -5,6 +5,7 @@
 /datum/preferences
 	var/custom_species	// Custom species name, can't be changed due to it having been used in savefiles already.
 	var/custom_base		// What to base the custom species on
+	var/blood_color = "#A10808"
 
 	var/list/pos_traits	= list()	// What traits they've selected for their custom species
 	var/list/neu_traits = list()
@@ -25,6 +26,7 @@
 	S["pos_traits"]		>> pref.pos_traits
 	S["neu_traits"]		>> pref.neu_traits
 	S["neg_traits"]		>> pref.neg_traits
+	S["blood_color"]	>> pref.blood_color
 
 	S["traits_cheating"]>> pref.traits_cheating
 	S["max_traits"]		>> pref.max_traits
@@ -36,6 +38,7 @@
 	S["pos_traits"]		<< pref.pos_traits
 	S["neu_traits"]		<< pref.neu_traits
 	S["neg_traits"]		<< pref.neg_traits
+	S["blood_color"]	<< pref.blood_color
 
 	S["traits_cheating"]<< pref.traits_cheating
 	S["max_traits"]		<< pref.max_traits
@@ -45,6 +48,8 @@
 	if(!pref.pos_traits) pref.pos_traits = list()
 	if(!pref.neu_traits) pref.neu_traits = list()
 	if(!pref.neg_traits) pref.neg_traits = list()
+
+	pref.blood_color = sanitize_hexcolor(pref.blood_color, default="#A10808")
 
 	if(!pref.traits_cheating)
 		pref.starting_trait_points = STARTING_SPECIES_POINTS
@@ -76,7 +81,10 @@
 	if(pref.species == "Custom Species")
 		var/datum/species/custom/CS = character.species
 		var/S = pref.custom_base ? pref.custom_base : "Human"
-		CS.produceCopy(S, pref.pos_traits + pref.neu_traits + pref.neg_traits, character)
+		var/datum/species/custom/new_CS = CS.produceCopy(S, pref.pos_traits + pref.neu_traits + pref.neg_traits, character)
+
+		//Any additional non-trait settings can be applied here
+		new_CS.blood_color = pref.blood_color
 
 /datum/category_item/player_setup_item/vore/traits/content(var/mob/user)
 	if(pref.species == "Custom Species" || pref.custom_species)
@@ -86,6 +94,10 @@
 	if(pref.species == "Custom Species")
 		. += "<b>Icon Base: </b> "
 		. += "<a href='?src=\ref[src];custom_base=1'>[pref.custom_base ? pref.custom_base : "Human"]</a><br>"
+
+		. += "<b>Blood Color: </b> "
+		. += "<a href='?src=\ref[src];blood_color=1'>Set Color</a>"
+		. += "<a href='?src=\ref[src];blood_reset=1'>R</a><br>"
 
 		var/points_left = pref.starting_trait_points
 		var/traits_left = pref.max_traits
@@ -102,21 +114,21 @@
 		. += "<ul>"
 		for(var/T in pref.pos_traits)
 			var/datum/trait/trait = positive_traits[T]
-			. += "<li><a href='?src=\ref[src];clicked_pos_trait=[T]'>[trait.name] ([trait.cost])</a></li>"
+			. += "<li>- <a href='?src=\ref[src];clicked_pos_trait=[T]'>[trait.name] ([trait.cost])</a></li>"
 		. += "</ul>"
 
 		. += "<a href='?src=\ref[src];add_trait=[NEUTRAL_MODE]'>Neutral Trait +</a><br>"
 		. += "<ul>"
 		for(var/T in pref.neu_traits)
 			var/datum/trait/trait = neutral_traits[T]
-			. += "<li><a href='?src=\ref[src];clicked_neu_trait=[T]'>- [trait.name] ([trait.cost])</a></li>"
+			. += "<li>- <a href='?src=\ref[src];clicked_neu_trait=[T]'>[trait.name] ([trait.cost])</a></li>"
 		. += "</ul>"
 
 		. += "<a href='?src=\ref[src];add_trait=[NEGATIVE_MODE]'>Negative Trait +</a><br>"
 		. += "<ul>"
 		for(var/T in pref.neg_traits)
 			var/datum/trait/trait = negative_traits[T]
-			. += "<li><a href='?src=\ref[src];clicked_neg_trait=[T]'>- [trait.name] ([trait.cost])</a></li>"
+			. += "<li>- <a href='?src=\ref[src];clicked_neg_trait=[T]'>[trait.name] ([trait.cost])</a></li>"
 		. += "</ul>"
 
 /datum/category_item/player_setup_item/vore/traits/OnTopic(var/href,var/list/href_list, var/mob/user)
@@ -137,10 +149,22 @@
 		return TOPIC_REFRESH
 
 	else if(href_list["custom_base"])
-		var/text_choice = input("Pick an icon set for your species:","Icon Base") in playable_species - whitelisted_species - "Custom Species"
+		var/text_choice = input("Pick an icon set for your species:","Icon Base") in playable_species - whitelisted_species - "Custom Species" - "Promethean"
 		if(text_choice in playable_species)
 			pref.custom_base = text_choice
 		return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["blood_color"])
+		var/color_choice = input("Pick a blood color (does not apply to synths)","Blood Color",pref.blood_color) as color
+		if(color_choice)
+			pref.blood_color = sanitize_hexcolor(color_choice, default="#A10808")
+		return TOPIC_REFRESH
+
+	else if(href_list["blood_reset"])
+		var/choice = alert("Reset blood color to human default (#A10808)?","Reset Blood Color","Reset","Cancel")
+		if(choice == "Reset")
+			pref.blood_color = "#A10808"
+		return TOPIC_REFRESH
 
 	else if(href_list["clicked_pos_trait"])
 		var/datum/trait/trait = text2path(href_list["clicked_pos_trait"])

@@ -92,6 +92,7 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	var/custom_species
 	var/base_species = "Human"
 	var/list/species_traits = list()
+	var/blood_color = "#A10808"
 	// VOREStation
 
 	// New stuff
@@ -171,6 +172,7 @@ var/global/list/datum/dna/gene/dna_genes[0]
 		var/datum/species/custom/CS = character.species
 		src.species_traits = CS.traits.Copy()
 		src.base_species = CS.base_species
+		src.blood_color = CS.blood_color
 
 	// +1 to account for the none-of-the-above possibility
 	SetUIValueRange(DNA_UI_EAR_STYLE,	ear_style + 1,     ear_styles_list.len  + 1,  1)

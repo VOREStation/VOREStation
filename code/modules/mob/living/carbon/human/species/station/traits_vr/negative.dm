@@ -2,13 +2,13 @@
 	name = "Slowdown"
 	desc = "Allows you to move slower on average than baseline."
 	cost = -1
-	var_changes = list("slowdown" = 0.3)
+	var_changes = list("slowdown" = 0.5)
 
 /datum/trait/speed_slow_plus
 	name = "Slowdown (Plus)"
 	desc = "Allows you to move MUCH slower on average than baseline."
 	cost = -2
-	var_changes = list("slowdown" = 0.5)
+	var_changes = list("slowdown" = 1.0)
 
 /datum/trait/weakling
 	name = "Weakling"

@@ -2,13 +2,13 @@
 	name = "Haste"
 	desc = "Allows you to move faster on average than baseline."
 	cost = 2
-	var_changes = list("slowdown" = -0.3)
+	var_changes = list("slowdown" = -0.5)
 
 /datum/trait/speed_fast_plus
 	name = "Haste (Plus)"
 	desc = "Allows you to move MUCH faster on average than baseline."
-	cost = 3
-	var_changes = list("slowdown" = -0.5)
+	cost = 4
+	var_changes = list("slowdown" = -1.0)
 
 /datum/trait/hardy
 	name = "Hardy"
@@ -73,3 +73,9 @@
 	desc = "Adds some resistance to burn damage sources."
 	cost = 2
 	var_changes = list("burn_mod" = 0.70)
+
+/datum/trait/photoresistant
+	name = "Photoresistant"
+	desc = "Decreases stun duration from flashes and other light-based stuns."
+	cost = 1
+	var_changes = list("flash_mod" = 0.5)
