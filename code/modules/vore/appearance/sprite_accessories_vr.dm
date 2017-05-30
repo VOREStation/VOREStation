@@ -883,5 +883,6 @@
 //liquidfirefly: Ariana Scol
 /datum/sprite_accessory/tail/taur/centipede
 	name = "Centipede (liquidfirefly)"
-	icon_state = "centipede_s"
+	icon_state = "ariana_s"
 	ckeys_allowed = list("liquidfirefly")
+	do_colouration = 0
