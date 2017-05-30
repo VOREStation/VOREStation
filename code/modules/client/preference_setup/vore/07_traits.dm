@@ -196,10 +196,10 @@
 				picklist = positive_traits.Copy() - pref.pos_traits
 				mylist = pref.pos_traits
 			if(NEUTRAL_MODE)
-				picklist = neutral_traits.Copy() - pref.pos_traits
+				picklist = neutral_traits.Copy() - pref.neu_traits
 				mylist = pref.neu_traits
 			if(NEGATIVE_MODE)
-				picklist = negative_traits.Copy() - pref.pos_traits
+				picklist = negative_traits.Copy() - pref.neg_traits
 				mylist = pref.neg_traits
 			else
 
@@ -224,7 +224,7 @@
 		var/done = FALSE
 		while(!done)
 			var/message = "\[Remaining: [points_left] points, [traits_left] traits\] Select a trait to read the description and see the cost."
-			trait_choice = input(message,"Positive Traits") in nicelist
+			trait_choice = input(message,"Trait List") as null|anything in nicelist
 			if(trait_choice in nicelist)
 				var/datum/trait/path = nicelist[trait_choice]
 				var/choice = alert("\[Cost:[initial(path.cost)]\] [initial(path.desc)]",initial(path.name),"Take Trait","Cancel","Go Back")
@@ -240,6 +240,9 @@
 			var/datum/trait/instance = all_traits[path]
 
 			var/conflict = FALSE
+
+			if(trait_choice in pref.pos_traits + pref.neu_traits + pref.neg_traits)
+				conflict = instance.name
 
 			varconflict:
 				for(var/P in pref.pos_traits + pref.neu_traits + pref.neg_traits)
