@@ -387,6 +387,7 @@ default behaviour is:
 	return result
 
 /mob/living/proc/setMaxHealth(var/newMaxHealth)
+	health = (health/maxHealth) * (newMaxHealth) //VOREStation Add - Adjust existing health
 	maxHealth = newMaxHealth
 
 /mob/living/Stun(amount)

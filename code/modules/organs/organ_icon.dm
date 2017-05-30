@@ -102,7 +102,7 @@ var/global/list/limb_icon_cache = list()
 	if(owner && owner.gender == MALE)
 		gender = "m"
 
-	icon_cache_key = "[icon_name]_[species ? species.name : "Human"]"
+	icon_cache_key = "[icon_name]_[species ? species.get_bodytype() : "Human"]" //VOREStation Edit
 
 	if(force_icon)
 		mob_icon = new /icon(force_icon, "[icon_name][gendered_icon ? "_[gender]" : ""]")
