@@ -174,7 +174,7 @@
 		new /obj/item/clothing/glasses/omnihud/med/fluff/aronai(src)
 		//Gun and holster
 		new /obj/item/weapon/gun/energy/netgun(src)
-		new /obj/item/clothing/accessory/holster/leg(src)
+		new /obj/item/clothing/accessory/holster(src)
 
 //Aerowing:Sebastian Aji
 /obj/item/weapon/storage/box/fluff/sebastian_aji

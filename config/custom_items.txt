@@ -65,6 +65,14 @@ item_desc: A medical uniform straight from Central Command.
 {
 ckey: arokha
 character_name: Aronai Kadigan
+item_path: /obj/item/clothing/suit/storage/service/expeditionary/medical/command
+item_name: centcom medical jacket
+item_desc: A medical jacket straight from Central Command.
+}
+
+{
+ckey: arokha
+character_name: Aronai Kadigan
 item_path: /obj/item/weapon/storage/backpack/satchel/gen/fluff/aronai
 }
 
