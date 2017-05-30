@@ -720,6 +720,9 @@ var/list/gamemode_cache = list()
 					if(values.len > 0)
 						language_prefixes = values
 
+				if("radiation_lower_limit")
+					radiation_lower_limit = text2num(value)
+
 				else
 					log_misc("Unknown setting in configuration: '[name]'")
 
