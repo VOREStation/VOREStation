@@ -95,7 +95,7 @@
 		. += "<b>Icon Base: </b> "
 		. += "<a href='?src=\ref[src];custom_base=1'>[pref.custom_base ? pref.custom_base : "Human"]</a><br>"
 
-		. += "<b>Blood Color: </b> "
+		. += "<b>Blood Color: </b>"
 		. += "<a href='?src=\ref[src];blood_color=1'>Set Color</a>"
 		. += "<a href='?src=\ref[src];blood_reset=1'>R</a><br>"
 
