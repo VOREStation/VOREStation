@@ -225,6 +225,8 @@
 		while(!done)
 			var/message = "\[Remaining: [points_left] points, [traits_left] traits\] Select a trait to read the description and see the cost."
 			trait_choice = input(message,"Trait List") as null|anything in nicelist
+			if(!trait_choice)
+				done = TRUE
 			if(trait_choice in nicelist)
 				var/datum/trait/path = nicelist[trait_choice]
 				var/choice = alert("\[Cost:[initial(path.cost)]\] [initial(path.desc)]",initial(path.name),"Take Trait","Cancel","Go Back")
