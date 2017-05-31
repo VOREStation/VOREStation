@@ -71,7 +71,7 @@ var/global/list/datum/supply_drop_loot/supply_drop
 /datum/supply_drop_loot/heavy_warfare
 	name = "Heavy Warfare"
 	container = /obj/structure/largecrate
-/datum/supply_drop_loot/armour/New()
+/datum/supply_drop_loot/heavy_warfare/New()
 	..()
 	contents = list(
 		/obj/item/clothing/head/helmet/combat,
@@ -99,7 +99,7 @@ var/global/list/datum/supply_drop_loot/supply_drop
 datum/supply_drop_loot/riot
 	name = "Riot Gear"
 	container = /obj/structure/largecrate
-/datum/supply_drop_loot/armour/New()
+/datum/supply_drop_loot/riot/New()
 	..()
 	contents = list(
 		/obj/item/clothing/head/helmet/riot,
