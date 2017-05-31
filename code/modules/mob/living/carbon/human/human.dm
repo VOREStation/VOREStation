@@ -1015,7 +1015,8 @@
 	gunshot_residue = null
 	if(clean_feet && !shoes && istype(feet_blood_DNA, /list) && feet_blood_DNA.len)
 		feet_blood_color = null
-		qdel(feet_blood_DNA)
+		feet_blood_DNA.Cut()
+		feet_blood_DNA = null
 		update_inv_shoes(1)
 		return 1
 
