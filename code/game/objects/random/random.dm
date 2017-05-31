@@ -285,11 +285,11 @@
 				prob(2);/obj/item/weapon/storage/box/shotgunammo,
 				prob(4);/obj/item/weapon/storage/box/shotgunshells,
 				prob(1);/obj/item/weapon/storage/box/stunshells,
-				prob(2);/obj/item/ammo_magazine/c45m,
-				prob(4);/obj/item/ammo_magazine/c45m/rubber,
-				prob(4);/obj/item/ammo_magazine/c45m/flash,
-				prob(2);/obj/item/ammo_magazine/mc9mmt,
-				prob(6);/obj/item/ammo_magazine/mc9mmt/rubber)
+				prob(2);/obj/item/ammo_magazine/m45,
+				prob(4);/obj/item/ammo_magazine/m45/rubber,
+				prob(4);/obj/item/ammo_magazine/m45/flash,
+				prob(2);/obj/item/ammo_magazine/m9mmt,
+				prob(6);/obj/item/ammo_magazine/m9mmt/rubber)
 
 
 /obj/random/action_figure

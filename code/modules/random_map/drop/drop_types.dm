@@ -62,10 +62,10 @@ var/global/list/datum/supply_drop_loot/supply_drop
 		/obj/item/weapon/storage/box/emps,
 		/obj/item/weapon/storage/box/flashbangs,
 		/obj/item/weapon/gun/projectile/automatic/sts35,
-		/obj/item/ammo_magazine/c762/ap,
-		/obj/item/ammo_magazine/c762/ap,
+		/obj/item/ammo_magazine/m762/ap,
+		/obj/item/ammo_magazine/m762/ap,
 		/obj/item/weapon/gun/projectile/colt,
-		/obj/item/ammo_magazine/c45m,
+		/obj/item/ammo_magazine/m45,
 		/obj/item/weapon/material/hatchet/tacknife/combatknife)
 
 /datum/supply_drop_loot/heavy_warfare
@@ -83,8 +83,8 @@ var/global/list/datum/supply_drop_loot/supply_drop
 		/obj/item/clothing/accessory/storage/black_drop_pouches,
 		/obj/item/weapon/storage/backpack/dufflebag/sec,
 		/obj/item/weapon/gun/projectile/automatic/carbine,
-		/obj/item/ammo_magazine/c762/ap,
-		/obj/item/ammo_magazine/c762,
+		/obj/item/ammo_magazine/m762/ap,
+		/obj/item/ammo_magazine/m762,
 		/obj/item/weapon/shield/energy,
 		/obj/item/weapon/grenade/frag,
 		/obj/item/weapon/grenade/frag,
