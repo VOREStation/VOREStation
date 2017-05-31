@@ -263,6 +263,7 @@
 	icon = 'icons/obj/doors/Dooruranium.dmi'
 	mineral = "uranium"
 	var/last_event = 0
+	var/rad_power = 7.5
 
 /obj/machinery/door/airlock/process()
 	// Deliberate no call to parent.
@@ -280,14 +281,9 @@
 /obj/machinery/door/airlock/uranium/process()
 	if(world.time > last_event+20)
 		if(prob(50))
-			radiate()
+			radiation_repository.radiate(src, rad_power)
 		last_event = world.time
 	..()
-
-/obj/machinery/door/airlock/uranium/proc/radiate()
-	for(var/mob/living/L in range (3,src))
-		L.apply_effect(15,IRRADIATE,0)
-	return
 
 /obj/machinery/door/airlock/phoron
 	name = "Phoron Airlock"

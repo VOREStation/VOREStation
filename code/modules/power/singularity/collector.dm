@@ -31,6 +31,11 @@ var/global/list/rad_collectors = list()
 	last_power_new = 0
 
 
+	if(P && active)
+		var/rads = radiation_repository.get_rads_at_turf(get_turf(src))
+		if(rads)
+			receive_pulse(rads * 5) //Maths is hard
+
 	if(P)
 		if(P.air_contents.gas["phoron"] == 0)
 			investigate_log("<font color='red'>out of fuel</font>.","singulo")
