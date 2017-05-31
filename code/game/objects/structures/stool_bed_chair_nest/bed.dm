@@ -203,6 +203,7 @@
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "down"
 	anchored = 0
+	surgery_odds = 75
 
 /obj/structure/bed/roller/update_icon()
 	return // Doesn't care about material or anything else.
