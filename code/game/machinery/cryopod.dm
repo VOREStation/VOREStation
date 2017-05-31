@@ -432,7 +432,7 @@
 		else
 			if(control_computer && control_computer.allow_items)
 				control_computer.frozen_items += W
-				W.loc = null
+				W.loc = control_computer //VOREStation Edit
 			else
 				W.forceMove(src.loc)
 
