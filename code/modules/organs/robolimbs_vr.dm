@@ -39,7 +39,6 @@
 	blood_color = "#5e280d"
 	includes_tail = 1
 	unavailable_to_build = 1
-	whitelisted_to = list("verkister")
 
 /obj/item/weapon/disk/limb/eggnerdltd
 	company = "Eggnerd Prototyping Ltd."
