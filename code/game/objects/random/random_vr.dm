@@ -157,16 +157,12 @@
 				prob(2);/obj/item/weapon/reagent_containers/syringe/drugs,
 				prob(1);/obj/item/weapon/reagent_containers/syringe/steroid)
 
-/obj/random_multi/single_item/teleport
-	name = "Multi Point - Random Teleport Item"
-	id = "Single Teleporter"
-	item_path = null
-
-	New()
-		item_path = pick(list(/obj/item/device/perfect_tele,/obj/item/weapon/bluespace_harpoon))
-		..()
-
-/obj/random_multi/single_item/netgun
-	name = "Multi Point - Random Hunter Netgun"
-	id = "Single Netgun"
-	item_path = /obj/item/weapon/gun/energy/netgun
+//A random thing so that the spawn_nothing_percentage can be used w/o duplicating code.
+/obj/random/trash_pile
+	name = "Random Trash Pile"
+	desc = "Hot Garbage."
+	icon = 'icons/obj/trash_piles.dmi'
+	icon_state = "randompile"
+	spawn_nothing_percentage = 0
+/obj/random/trash_pile/item_to_spawn()
+	return	/obj/structure/trash_pile
