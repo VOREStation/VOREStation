@@ -196,3 +196,5 @@
 #define TSC_MORPH	"Morpheus"
 #define TSC_XION	"Xion" // Not really needed but consistancy I guess.
 #define TSC_GIL 	"Gilthari"
+
+#define MIDNIGHT_ROLLOVER		864000	//number of deciseconds in a day
