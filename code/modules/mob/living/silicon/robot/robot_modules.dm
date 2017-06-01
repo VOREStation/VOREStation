@@ -334,7 +334,8 @@ var/global/list/robot_modules = list(
 					"Antique" = "engineerrobot",
 					"Landmate" = "landmate",
 					"Landmate - Treaded" = "engiborg+tread",
-					"Drone" = "drone-engineer"
+					"Drone" = "drone-engineer",
+					"Treadwell" = "treadwell"
 					)
 
 /obj/item/weapon/robot_module/robot/engineering/construction
