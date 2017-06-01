@@ -80,7 +80,7 @@
 	slot_flags = SLOT_BACK // Needs a sprite.
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
 	recoil = 2 //extra kickback
-	caliber = "a762"
+	caliber = "7.62mm"
 	load_method = MAGAZINE
 	accuracy = -3 //shooting at the hip
 	scoped_accuracy = 0
@@ -88,11 +88,11 @@
 	one_handed_penalty = 4 // The weapon itself is heavy, and the long barrel makes it hard to hold steady with just one hand.
 	fire_sound = 'sound/weapons/SVD_shot.ogg'
 	magazine_type = /obj/item/ammo_magazine/SVD
-	allowed_magazines = list(/obj/item/ammo_magazine/SVD, /obj/item/ammo_magazine/c762)
+	allowed_magazines = list(/obj/item/ammo_magazine/SVD, /obj/item/ammo_magazine/m762)
 
 /obj/item/weapon/gun/projectile/SVD/update_icon()
 	..()
-//	if(istype(ammo_magazine,/obj/item/ammo_magazine/c762)
+//	if(istype(ammo_magazine,/obj/item/ammo_magazine/m762)
 //		icon_state = "SVD-bigmag" //No icon for this exists yet.
 	if(ammo_magazine)
 		icon_state = "SVD"

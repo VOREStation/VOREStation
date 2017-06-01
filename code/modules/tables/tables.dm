@@ -10,6 +10,7 @@ var/list/table_icon_cache = list()
 	climbable = 1
 	layer = 2.8
 	throwpass = 1
+	surgery_odds = 66
 	var/flipped = 0
 	var/maxhealth = 10
 	var/health = 10
