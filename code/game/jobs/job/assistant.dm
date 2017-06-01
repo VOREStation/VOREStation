@@ -11,7 +11,7 @@
 	economic_modifier = 1
 	access = list()			//See /datum/job/assistant/get_access()
 	minimal_access = list()	//See /datum/job/assistant/get_access()
-	alt_titles = list("Technical Assistant","Medical Intern","Research Assistant","Visitor", "Resident")
+	alt_titles = list("Technical Assistant","Test Subject","Medical Intern","Research Assistant","Visitor", "Resident")
 
 /datum/job/assistant/equip(var/mob/living/carbon/human/H, var/alt_title)
 	if(!H)	return 0
