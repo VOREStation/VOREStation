@@ -32,6 +32,18 @@
 		..(S,H)
 		H.setMaxHealth(S.total_health)
 
+/datum/trait/nonconductive
+	name = "Non-Conductive (Minor)"
+	desc = "Decreases your susceptibility to electric shocks by a small amount."
+	cost = 1
+	var_changes = list("siemens_coefficient" = 0.85)
+
+/datum/trait/nonconductiveplus
+	name = "Non-Conductive (Major)"
+	desc = "Decreases your susceptibility to electric shocks by a moderate amount."
+	cost = 2
+	var_changes = list("siemens_coefficient" = 0.7)
+
 /datum/trait/darksight
 	name = "Darksight"
 	desc = "Allows you to see a short distance in the dark."
