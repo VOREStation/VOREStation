@@ -649,13 +649,13 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	emote_descriptor = list("squeezes milk", "tugs on Tempest's breasts, milking them")
 	self_emote_descriptor = list("squeeze")
 	random_emote = list("moos quietly")
-	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_tempest
+	assigned_proc = /obj/item/weapon/implant/reagent_generator/proc/use_reagent_implant_tempest
 
 /obj/item/weapon/implanter/reagent_generator/tempest
 	implant_type = /obj/item/weapon/implant/reagent_generator/tempest
 
-/mob/living/carbon/human/proc/use_reagent_implant_tempest()
-	set name = "Milk"
+/obj/item/weapon/implant/reagent_generator/proc/use_reagent_implant_tempest()
+	set name = "Milk Tempest"
 	set desc = "Grab Tempest's nipples and milk them into a container! May cause blushing and groaning."
 	set category = "Object"
 	set src in view(1)
@@ -673,13 +673,13 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	emote_descriptor = list("squeezes milk", "tugs on Belle's breasts/udders, milking them", "extracts milk")
 	self_emote_descriptor = list("squeeze", "extract")
 	random_emote = list("moos", "mrours", "groans softly")
-	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_belle
+	assigned_proc = /obj/item/weapon/implant/reagent_generator/proc/use_reagent_implant_belle
 
 /obj/item/weapon/implanter/reagent_generator/belle
 	implant_type = /obj/item/weapon/implant/reagent_generator/belle
 
-/mob/living/carbon/human/proc/use_reagent_implant_belle()
-	set name = "Milk"
+/obj/item/weapon/implant/reagent_generator/proc/use_reagent_implant_belle()
+	set name = "Milk Belle"
 	set desc = "Obtain Belle's milk and put it into a container! May cause blushing and groaning, or arousal."
 	set category = "Object"
 	set src in view(1)
@@ -697,13 +697,13 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	emote_descriptor = list("squeezes chocolate milk from Theodora", "tugs on Theodora's nipples, milking them", "kneads Theodora's breasts, milking them")
 	self_emote_descriptor = list("squeeze", "knead")
 	random_emote = list("moans softly", "gives an involuntary squeal")
-	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_vorrarkul
+	assigned_proc = /obj/item/weapon/implant/reagent_generator/proc/use_reagent_implant_vorrarkul
 
 /obj/item/weapon/implanter/reagent_generator/vorrarkul
 	implant_type = /obj/item/weapon/implant/reagent_generator/vorrarkul
 
-/mob/living/carbon/human/proc/use_reagent_implant_vorrarkul()
-	set name = "Milk"
+/obj/item/weapon/implant/reagent_generator/proc/use_reagent_implant_vorrarkul()
+	set name = "Milk Theodora"
 	set desc = "Grab Theodora's breasts and extract delicious chocolate milk from them!"
 	set category = "Object"
 	set src in view(1)
