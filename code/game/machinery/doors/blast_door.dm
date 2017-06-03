@@ -13,7 +13,7 @@
 	icon = 'icons/obj/doors/rapid_pdoor.dmi'
 	icon_state = null
 	min_force = 20 //minimum amount of force needed to damage the door with a melee weapon
-
+	var/material/implicit_material
 	// Icon states for different shutter types. Simply change this instead of rewriting the update_icon proc.
 	var/icon_state_open = null
 	var/icon_state_opening = null
@@ -28,6 +28,13 @@
 	//Most blast doors are infrequently toggled and sometimes used with regular doors anyways,
 	//turning this off prevents awkward zone geometry in places like medbay lobby, for example.
 	block_air_zones = 0
+
+/obj/machinery/door/blast/initialize()
+	..()
+	implicit_material = get_material_by_name("plasteel")
+
+/obj/machinery/door/blast/get_material()
+	return implicit_material
 
 // Proc: Bumped()
 // Parameters: 1 (AM - Atom that tried to walk through this object)
@@ -46,6 +53,7 @@
 		icon_state = icon_state_closed
 	else
 		icon_state = icon_state_open
+	radiation_repository.resistance_cache.Remove(get_turf(src))
 	return
 
 // Proc: force_open()

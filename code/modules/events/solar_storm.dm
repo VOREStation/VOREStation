@@ -27,6 +27,7 @@
 		radiate()
 
 /datum/event/solar_storm/proc/radiate()
+	// Note: Too complicated to be worth trying to use the radiation system for this.  Its only in space anyway, so we make an exception in this case.
 	for(var/mob/living/L in living_mob_list)
 		var/turf/T = get_turf(L)
 		if(!T)
@@ -36,8 +37,7 @@
 			continue
 
 		//Todo: Apply some burn damage from the heat of the sun. Until then, enjoy some moderate radiation.
-		L.apply_effect((rand(15,30)),IRRADIATE,blocked = L.getarmor(null, "rad"))
-
+		L.rad_act(rand(15, 30))
 
 /datum/event/solar_storm/end()
 	command_announcement.Announce("The solar storm has passed the station. It is now safe to resume EVA activities. Please report to medbay if you experience any unusual symptoms. ", "Anomaly Alert")

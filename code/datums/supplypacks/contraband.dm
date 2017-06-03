@@ -47,7 +47,7 @@
  	name = "Surplus militia rifles"
  	contains = list(
  			/obj/item/weapon/gun/projectile/shotgun/pump/rifle/mosin = 3,
- 			/obj/item/ammo_magazine/clip/a762 = 6
+ 			/obj/item/ammo_magazine/clip/c762 = 6
  			)
  	cost = 50
  	contraband = 1

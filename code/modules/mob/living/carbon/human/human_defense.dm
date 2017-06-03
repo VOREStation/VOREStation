@@ -94,7 +94,7 @@ emp_act
 			var/obj/item/organ/external/organ = organs_by_name[organ_name]
 			if(organ)
 				var/weight = organ_rel_size[organ_name]
-				armorval += getarmor_organ(organ, type) * weight
+				armorval += (getarmor_organ(organ, type) * weight)
 				total += weight
 	return (armorval/max(total, 1))
 
