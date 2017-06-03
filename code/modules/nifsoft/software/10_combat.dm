@@ -1,0 +1,7 @@
+/*
+#define NIF_BRUTEARMOR			18
+#define NIF_BURNARMOR			19
+#define NIF_PAINKILLERS			20
+#define NIF_HARDCLAWS			21
+#define NIF_HIDDENLASER			22
+*/
