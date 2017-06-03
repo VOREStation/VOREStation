@@ -13,22 +13,22 @@
 		return affected && affected.open == (affected.encased ? 3 : 2) && !(affected.status & ORGAN_BLEEDING)
 
 	proc/get_max_wclass(var/obj/item/organ/external/affected)
-		switch (affected.name)
-			if ("head")
-				return 1
-			if ("upper body")
-				return 3
-			if ("lower body")
-				return 2
+		switch (affected.organ_tag)
+			if (BP_HEAD)
+				return ITEMSIZE_TINY
+			if (BP_TORSO)
+				return ITEMSIZE_NORMAL
+			if (BP_GROIN)
+				return ITEMSIZE_SMALL
 		return 0
 
 	proc/get_cavity(var/obj/item/organ/external/affected)
-		switch (affected.name)
-			if ("head")
+		switch (affected.organ_tag)
+			if (BP_HEAD)
 				return "cranial"
-			if ("upper body")
+			if (BP_TORSO)
 				return "thoracic"
-			if ("lower body")
+			if (BP_GROIN)
 				return "abdominal"
 		return ""
 
