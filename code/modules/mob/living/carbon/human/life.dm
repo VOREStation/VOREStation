@@ -82,7 +82,7 @@
 		handle_medical_side_effects()
 
 		handle_heartbeat()
-
+		handle_nif() //VOREStation Add
 		if(!client)
 			species.handle_npc(src)
 
@@ -1336,10 +1336,10 @@
 			var/obj/item/clothing/glasses/omnihud/S = G
 			O = S.hud
         //VOREStation Add End
-		if(istype(G, /obj/item/clothing/glasses/sunglasses/sechud))
+		else if(istype(G, /obj/item/clothing/glasses/sunglasses/sechud)) //VOREStation Edit - Added else
 			var/obj/item/clothing/glasses/sunglasses/sechud/S = G
 			O = S.hud
-		if(istype(G, /obj/item/clothing/glasses/sunglasses/medhud))
+		else if(istype(G, /obj/item/clothing/glasses/sunglasses/medhud)) //VOREStation Edit - Added else
 			var/obj/item/clothing/glasses/sunglasses/medhud/M = G
 			O = M.hud
 		if(istype(O))

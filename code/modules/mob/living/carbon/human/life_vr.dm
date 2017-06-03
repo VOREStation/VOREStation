@@ -43,3 +43,9 @@
 			vantag.icon_state = vantag_pref
 		else
 			vantag.icon_state = "hudblank"
+
+/mob/living/carbon/human/proc/handle_nif()
+	if(!nif) return
+
+	//Process regular life stuff
+	nif.life()

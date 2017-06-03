@@ -36,6 +36,32 @@
 	return 1
 
 /**
+ * Prep for save: returns a preferences object if we're ready and allowed to save this mob.
+ */
+/proc/prep_for_persist(var/mob/persister)
+	ASSERT(istype(persister))
+
+	// Find out of this mob is a proper mob!
+	if (persister.mind && persister.mind.loaded_from_ckey)
+		// Okay this mob has a real loaded-from-savefile mind in it!
+		var/datum/preferences/prefs = preferences_datums[persister.mind.loaded_from_ckey]
+		if(!prefs)
+			WARNING("mind [persister.mind] was loaded from ckey [persister.mind.loaded_from_ckey] but no prefs datum found")
+			return
+
+		// Okay, lets do a few checks to see if we should really save tho!
+		if(!prefs.load_character(persister.mind.loaded_from_slot))
+			WARNING("mind [persister.mind] was loaded from slot [persister.mind.loaded_from_slot] but loading prefs failed.")
+			return // Failed to load character
+
+		// For now as a safety measure we will only save if the name matches.
+		if(prefs.real_name != persister.real_name)
+			log_debug("Skipping persist for [persister] becuase [persister.real_name] != [prefs.real_name]")
+			return
+
+		return prefs
+
+/**
  * Called when mob despawns early (via cryopod)!
  */
 /hook/despawn/proc/persist_despawned_mob(var/mob/occupant, var/obj/machinery/cryopod/pod)
@@ -47,42 +73,28 @@
 /proc/persist_interround_data(var/mob/occupant, var/datum/spawnpoint/new_spawn_point_type)
 	ASSERT(istype(occupant))
 
-	// Find out of this mob is a proper mob!
-	if (occupant.mind && occupant.mind.loaded_from_ckey)
-		// Okay this mob has a real loaded-from-savefile mind in it!
-		var/datum/preferences/prefs = preferences_datums[occupant.mind.loaded_from_ckey]
-		if(!prefs)
-			WARNING("mind [occupant.mind] was loaded from ckey [occupant.mind.loaded_from_ckey] but no prefs datum found")
-			return
+	var/datum/preferences/prefs = prep_for_persist(occupant)
+	if(!prefs)
+		WARNING("persist_interround_data failed to prep [occupant] for persisting")
+		return
 
-		// Okay, lets do a few checks to see if we should really save tho!
-		if(!prefs.load_character(occupant.mind.loaded_from_slot))
-			WARNING("mind [occupant.mind] was loaded from slot [occupant.mind.loaded_from_slot] but loading prefs failed.")
-			return // Failed to load character
+	if(!prefs.persistence_settings)
+		return // Persistence disabled by preference settings
 
-		// For now as a safety measure we will only save if the name matches.
-		if(prefs.real_name != occupant.real_name)
-			log_debug("Skipping persist for [occupant] becuase [occupant.real_name] != [prefs.real_name]")
-			return
-
-		if(!prefs.persistence_settings)
-			return // Persistence disabled by preference settings
-
-		// Okay we can start saving the data
-		if(new_spawn_point_type && prefs.persistence_settings & PERSIST_SPAWN)
-			prefs.spawnpoint = initial(new_spawn_point_type.display_name)
-		if(ishuman(occupant) && occupant.stat != DEAD)
-			var/mob/living/carbon/human/H = occupant
-			testing("About to try saving stuff from [H] to [prefs] (\ref[prefs])")
-			if(prefs.persistence_settings & PERSIST_ORGANS)
-				apply_organs_to_prefs(H, prefs)
-			if(prefs.persistence_settings & PERSIST_MARKINGS)
-				apply_markings_to_prefs(H, prefs)
-			if(prefs.persistence_settings & PERSIST_WEIGHT)
-				resolve_excess_nutrition(H)
-				prefs.weight_vr = H.weight
-		prefs.save_character()
-	return
+	// Okay we can start saving the data
+	if(new_spawn_point_type && prefs.persistence_settings & PERSIST_SPAWN)
+		prefs.spawnpoint = initial(new_spawn_point_type.display_name)
+	if(ishuman(occupant) && occupant.stat != DEAD)
+		var/mob/living/carbon/human/H = occupant
+		testing("About to try saving stuff from [H] to [prefs] (\ref[prefs])")
+		if(prefs.persistence_settings & PERSIST_ORGANS)
+			apply_organs_to_prefs(H, prefs)
+		if(prefs.persistence_settings & PERSIST_MARKINGS)
+			apply_markings_to_prefs(H, prefs)
+		if(prefs.persistence_settings & PERSIST_WEIGHT)
+			resolve_excess_nutrition(H)
+			prefs.weight_vr = H.weight
+	prefs.save_character()
 
 // Saves mob's current coloration state to prefs
 // This basically needs to be the reverse of /datum/category_item/player_setup_item/general/body/copy_to_mob() ~Leshana
@@ -194,3 +206,13 @@
 		// Weight Loss!
 		var/loss = (MAX_NUTRITION_TO_LOSE - C.nutrition) * weight_per_nutrition * C.weight_loss/100
 		C.weight = max(MIN_MOB_WEIGHT, C.weight - loss)
+
+/**
+* Persist any NIF data that needs to be persisted. It's stored in a list to make it more malleable
+* towards future shenanigans such as upgradable NIFs or different types or things of that nature,
+* without invoking the need for a bunch of different save file variables.
+*/
+/proc/persist_nif_data(var/mob/living/carbon/human/H)
+	if(!istype(H))
+		CRASH("persist_nif_data given a nonhuman: [H]")
+
