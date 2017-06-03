@@ -261,7 +261,7 @@
 	var/obj/item/device/pda/pda = wear_id
 	if (istype(pda))
 		if (pda.id)
-			return pda.id.rank
+			return pda.id.rank ? pda.id.rank : if_no_job
 		else
 			return pda.ownrank
 	else
