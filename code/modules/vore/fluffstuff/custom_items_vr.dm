@@ -1081,3 +1081,61 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 				B.internal_contents |= src
 				user.visible_message("<span class='warning'>[user] eats a telebeacon!</span>","You eat the the beacon!")
 				playsound(user, B.vore_sound, 70, 1)
+
+//Pear120:  Ada Lovelace
+/obj/item/weapon/implanter/subjugation/New()
+	src.imp = new /obj/item/weapon/implant/subjugation( src )
+	..()
+	update()
+	return
+
+/obj/item/weapon/implant/subjugation
+	name = "subjugation implant"
+	desc = "Turns you into a servile slave."
+	
+/obj/item/weapon/implant/subjugation/verb/verb_obey()
+	set category = "Object"
+	set name = "Implant: Obey"
+	set src in usr
+
+	if(ishuman(imp_in))
+		var/mob/living/carbon/human/H = imp_in
+		H.stun_effect_act(0, 30)
+		H.apply_effect(20, STUTTER)
+		H.custom_pain("A wave of pain pulses through your head in response to your resistance!",20,1)
+
+/obj/item/weapon/implant/subjugation/verb/verb_obey_extreme()
+	set category = "Object"
+	set name = "Implant: OBEY!!!"
+	set src in usr
+
+	if(ishuman(imp_in))
+		var/mob/living/carbon/human/H = imp_in
+		H.adjustBrainLoss(2) //triggering Extreme twice will cause visual brain damage and effects
+		H.stun_effect_act(0, 90)
+		H.apply_effect(90, STUTTER)
+		H.custom_pain("A wave of immense pain washes through your head in response to your resistance!",90,1)
+	
+/obj/item/weapon/implant/subjugation/trigger(emote, source as mob)
+	if(emote == "twitch")
+		src.activate()
+
+/obj/item/weapon/implant/subjugation/implanted(mob/M)
+	if(!istype(M, /mob/living/carbon/human))	return 0
+	var/mob/living/carbon/human/H = M
+	H << "<span class='notice'><font color='red'><b> You feel an overwelming urge to obey any order given to you. You are less than a person now. You exist only to serve.</b></font></span>"
+	H << "<span class='notice'>((Trigger the implant using the two new verbs in the Object tab when your character resists it.))</span>"
+	return 1
+
+/obj/item/weapon/implant/subjugation/get_data()
+	var/dat = {"
+<b>Implant Specifications:</b><BR>
+<b>Name:</b>XV-21 Asset Subjugation Implant<BR>
+<b>Life:</b> Until Subject Expires.<BR>
+<b>Important Notes:</b> Personnel injected with this device will become unwaveringly loyal to anyone who commands them. They will be unable to refuse any order given to them. Any attempts to resist will be met with a powerful surge of pain in their head. May cause unintentional brain damage from extended resistance.<BR>
+<HR>
+<b>Implant Details:</b><BR>
+<b>Function:</b> Contains a small pod of nanobots that monitor and adjust the subject's mental functions.<BR>
+<b>Special Features:</b> Subject obeys any order given to them.<BR>
+<b>Integrity:</b> Implant will last so long as the subject remains alive."}
+	return dat
