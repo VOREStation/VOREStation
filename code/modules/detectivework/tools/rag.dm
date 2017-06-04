@@ -102,6 +102,10 @@
 		if(do_after(user,30))
 			user.visible_message("\The [user] finishes wiping off the [A]!")
 			A.clean_blood()
+			if(istype(A, /turf) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay) || istype(A, /obj/effect/rune))
+				var/turf/T = get_turf(A)
+				if(T)
+					T.clean(src, user)
 
 /obj/item/weapon/reagent_containers/glass/rag/attack(atom/target as obj|turf|area, mob/user as mob , flag)
 	if(isliving(target))
@@ -132,7 +136,7 @@
 	if(!proximity)
 		return
 
-	if(istype(A, /obj/structure/reagent_dispensers))
+	if(istype(A, /obj/structure/reagent_dispensers) || istype(A, /obj/item/weapon/reagent_containers/glass/bucket) || istype(A, /obj/structure/mopbucket))
 		if(!reagents.get_free_space())
 			user << "<span class='warning'>\The [src] is already soaked.</span>"
 			return
