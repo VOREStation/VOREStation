@@ -168,6 +168,12 @@
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	ammo_type = /obj/item/ammo_casing/a38r //Rubber rounds.
 
+// LuminescentRing : Briana Moore
+/obj/item/weapon/gun/projectile/derringer/fluff/briana
+	name = "second-hand derringer"
+	desc = "It's a palm sized gun. One of the few things that won't break an angel's wrists."
+	caliber = "10mm"
+	ammo_type = /obj/item/ammo_casing/a10mm
 
 // For general use
 /obj/item/weapon/gun/projectile/automatic/stg
