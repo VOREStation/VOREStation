@@ -1111,7 +1111,8 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 
 	if(ishuman(imp_in))
 		var/mob/living/carbon/human/H = imp_in
-		H.adjustBrainLoss(2) //triggering Extreme twice will cause visual brain damage and effects
+		if(H.brainloss<58) //prevent the implant from killing you accidentally
+			H.adjustBrainLoss(2) //triggering Extreme twice will cause visual brain damage and effects
 		H.stun_effect_act(0, 90)
 		H.apply_effect(90, STUTTER)
 		H.custom_pain("A wave of immense pain washes through your head in response to your resistance!",90,1)
