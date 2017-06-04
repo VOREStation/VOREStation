@@ -70,8 +70,6 @@ var/global/datum/global_init/init = new ()
 #if UNIT_TEST
 	log_unit_test("Unit Tests Enabled.  This will destroy the world when testing is complete.")
 	log_unit_test("If you did not intend to enable this please check code/__defines/unit_testing.dm")
-#else
-	sleep_offline = 1
 #endif
 
 	// Set up roundstart seed list.
@@ -116,6 +114,7 @@ var/global/datum/global_init/init = new ()
 
 	processScheduler = new
 	master_controller = new /datum/controller/game_controller()
+	Master.Initialize(10, FALSE)
 	spawn(1)
 		processScheduler.deferSetupFor(/datum/controller/process/ticker)
 		processScheduler.setup()
