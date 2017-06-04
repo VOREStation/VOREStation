@@ -784,32 +784,18 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	icon_state = "egg_roiz"
 	filling_color = "#FDFFD1"
 	volume = 12
-	center_of_mass = list("x"=16, "y"=13)
 
 /obj/item/weapon/reagent_containers/food/snacks/egg/roiz/New()
 	..()
 	reagents.add_reagent("egg", 9)
 	bitesize = 4
 
-/obj/item/weapon/reagent_containers/food/snacks/egg/roiz/afterattack(obj/O as obj, mob/user as mob, proximity)
-	if(istype(O,/obj/machinery/microwave))
-		return ..()
-	if(!(proximity && O.is_open_container()))
-		return
-	user << "You crack \the [src] into \the [O]."
-	reagents.trans_to(O, reagents.total_volume)
-	user.drop_from_inventory(src)
-	qdel(src)
-
-/obj/item/weapon/reagent_containers/food/snacks/egg/roiz/throw_impact(atom/hit_atom)
-	..()
-
 /obj/item/weapon/reagent_containers/food/snacks/friedegg/roiz
 	name = "fried lizard egg"
 	desc = "A large, fried lizard egg, with a touch of salt and pepper. It looks rather chewy."
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "friedegg"
-	center_of_mass = list("x"=16, "y"=14)
+	volume = 12
 
 /obj/item/weapon/reagent_containers/food/snacks/friedegg/roiz/New()
 	..()
@@ -821,6 +807,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	desc = "A hard boiled lizard egg. Be careful, a lizard detective may hatch!"
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "egg_roiz"
+	volume = 12
 
 /obj/item/weapon/reagent_containers/food/snacks/boiledegg/roiz/New()
 	..()
@@ -833,9 +820,9 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "chocolateegg_roiz"
 	filling_color = "#7D5F46"
-	center_of_mass = list("x"=16, "y"=13)
 	nutriment_amt = 3
 	nutriment_desc = list("chocolate" = 5)
+	volume = 18
 
 /obj/item/weapon/reagent_containers/food/snacks/chocolateegg/roiz/New()
 	..()
