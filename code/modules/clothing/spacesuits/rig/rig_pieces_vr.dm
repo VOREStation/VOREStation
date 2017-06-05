@@ -323,3 +323,13 @@
 				return 1
 		else
 			return 1
+
+//Makes rigsuits phoronproof since they kept getting contaminated and killing people even if they weren't wearing them.
+/obj/item/clothing/head/helmet/space/rig
+	phoronproof = 1
+/obj/item/clothing/gloves/gauntlets/rig
+	phoronproof = 1
+/obj/item/clothing/shoes/magboots/rig
+	phoronproof = 1
+/obj/item/clothing/suit/space/rig
+	phoronproof = 1
