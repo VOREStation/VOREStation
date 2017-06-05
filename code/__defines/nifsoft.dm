@@ -16,27 +16,29 @@
 #define NIF_UVFILTER			12
 #define NIF_FLASHPROT			13
 //Health-related
-#define NIF_ORGANIC_HEAL		14
-#define NIF_SYNTH_HEAL			15
-#define NIF_AUTOSTASIS			16 //These two are just part of
-#define NIF_MED_ALARM			17 //medichines right now
-#define NIF_TOXHEAL				18
-#define NIF_SPAREBREATH			19
+#define NIF_CREWMONITOR			14
+#define NIF_ORGANIC_HEAL		15
+#define NIF_SYNTH_HEAL			16
+#define NIF_AUTOSTASIS			17 //These two are just part of
+#define NIF_MED_ALARM			18 //medichines right now
+#define NIF_TOXHEAL				19 //And this, for organics
+#define NIF_SPAREBREATH			20
 //Combat Related
-#define NIF_BRUTEARMOR			20
-#define NIF_BURNARMOR			21
-#define NIF_PAINKILLERS			22
-#define NIF_HARDCLAWS			23
-#define NIF_HIDDENLASER			24
+#define NIF_BRUTEARMOR			21
+#define NIF_BURNARMOR			22
+#define NIF_PAINKILLERS			23
+#define NIF_HARDCLAWS			24
+#define NIF_HIDDENLASER			25
 //Other
-#define NIF_COMMLINK			25
-#define NIF_SUITSENSORS			26
+#define NIF_COMMLINK			26
 #define NIF_APCCHARGE			27
 #define NIF_PRESSURE			28
 #define NIF_HEATSINK			29
+#define NIF_COMPLIANCE			30
+#define NIF_SIZECHANGE			31
 
 // Must be equal to the highest number above
-#define TOTAL_NIF_SOFTWARE		29
+#define TOTAL_NIF_SOFTWARE		31
 
 //////////////////////
 // NIF flag list hints
@@ -78,10 +80,9 @@
 
 //Other
 #define NIF_O_COMMLINK			0x1
-#define NIF_O_SENSORS			0x2
-#define NIF_O_APCCHARGE			0x4
-#define NIF_O_PRESSURESEAL		0x8
-#define NIF_O_HEATSINKS			0x10
+#define NIF_O_APCCHARGE			0x2
+#define NIF_O_PRESSURESEAL		0x4
+#define NIF_O_HEATSINKS			0x8
 
 ///////////////////
 // applies_to flags

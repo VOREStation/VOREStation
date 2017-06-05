@@ -9,9 +9,9 @@
 
 	var/cost = 1000				// Cost in cash of buying this software from a terminal
 	//TODO - While coding
-	var/initial = TRUE			// This is available in NIFSoft Shops at the start of the game
+	var/vended = TRUE			// This is available in NIFSoft Shops at the start of the game
 	var/wear = 1				// The wear (+/- 10% when applied) that this causes to the NIF
-	var/list/req_one_access		// What access they need to buy it
+	var/access					// What access they need to buy it, can only set one for ~reasons~
 	var/illegal = FALSE			// If this is a black-market nifsoft (emag option)
 
 	var/active = FALSE			// Whether the active mode of this implant is on
@@ -63,6 +63,7 @@
 		deactivate()
 	if(nif)
 		. = nif.uninstall(src)
+		nif = null
 	qdel(src)
 
 //Called every life() tick on a mob on active implants
@@ -88,6 +89,17 @@
 	uninstall()
 	return
 
+//Called when installed from a disk
+/datum/nifsoft/proc/disk_install(var/mob/living/carbon/human/target,var/mob/living/carbon/human/user)
+	return TRUE
+
+//Stat-line clickable text
+/datum/nifsoft/proc/stat_text()
+	if(activates)
+		return "[active ? "Active" : "Disabled"]"
+
+	return "Always On"
+
 //////////////////////
 //A package of NIF software
 /datum/nifsoft/package
@@ -108,3 +120,62 @@
 	software.Cut()
 	software = null
 	..()
+
+/////////////////
+// A NIFSoft Disk
+/obj/item/weapon/disk/nifsoft
+	name = "NIFSoft Disk"
+	desc = "It has a small label: \n\
+	\"Portable NIFSoft Disk. \n\
+	Insert directly into brain.\""
+	icon = 'icons/obj/cloning.dmi'
+	icon_state = "datadisk2"
+	item_state = "card-id"
+	w_class = ITEMSIZE_SMALL
+	var/datum/nifsoft/stored = null
+	var/laws = ""
+
+/obj/item/weapon/disk/nifsoft/afterattack(var/A, mob/user, flag, params)
+	if(!in_range(user, A))
+		return
+
+	if(!ishuman(user) || !ishuman(A))
+		return
+
+	var/mob/living/carbon/human/Ht = A
+	var/mob/living/carbon/human/Hu = user
+
+	if(!Ht.nif || Ht.nif.stat != NIF_WORKING)
+		to_chat(user,"<span class='warning'>Either they don't have a NIF, or the disk can't connect.</span>")
+		return
+
+	Ht.visible_message("<span class='warning'>[Hu] begins uploading new NIFSoft into [Ht]!</span>","<span class='danger'>[Hu] is uploading new NIFSoft into you!</span>")
+	if(do_after(Ht,10 SECONDS,Hu))
+		var/extra = extra_params()
+		new stored(Ht.nif,extra)
+		qdel(src)
+
+//So disks can pass fancier stuff.
+/obj/item/weapon/disk/nifsoft/proc/extra_params()
+	return null
+
+/obj/item/weapon/disk/nifsoft/compliance
+	name = "NIFSoft Disk (Compliance)"
+	desc = "Wow, adding laws to people? That seems illegal. It probably is. Okay, it really is."
+	stored = /datum/nifsoft/compliance
+
+/obj/item/weapon/disk/nifsoft/compliance/afterattack(var/A, mob/user, flag, params)
+	if(!laws)
+		to_chat(user,"<span class='warning'>You haven't set any laws yet. Use the disk in-hand first.</span>")
+		return
+	..(A,user,flag,params)
+
+/obj/item/weapon/disk/nifsoft/compliance/attack_self(mob/user)
+	var/newlaws = input(user,"Please Input Laws","Compliance Laws",laws) as message
+	newlaws = sanitize(newlaws,2048)
+	if(newlaws)
+		to_chat(user,"You set the laws to: <br><span class='notice'>[newlaws]</span>")
+		laws = newlaws
+
+/obj/item/weapon/disk/nifsoft/compliance/extra_params()
+	return laws

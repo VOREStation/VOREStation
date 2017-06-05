@@ -225,7 +225,8 @@
 			prob(4);/obj/item/device/radio_jammer,
 			prob(2);/obj/item/weapon/storage/box/syndie_kit/spy,
 			prob(2);/obj/item/weapon/grenade/anti_photon,
-			prob(1);/obj/item/weapon/cell/hyper/empty)
+			prob(1);/obj/item/weapon/cell/hyper/empty,
+			prob(1);/obj/item/weapon/disk/nifsoft/compliance)
 
 	var/obj/item/I = new path()
 	return I

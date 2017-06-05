@@ -20,7 +20,7 @@
 		starting_illegal_nifsoft = list()
 		for(var/P in subtypesof(/datum/nifsoft) - /datum/nifsoft/package)
 			var/datum/nifsoft/NS = P
-			if(initial(NS.initial))
+			if(initial(NS.vended))
 				switch(initial(NS.illegal))
 					if(TRUE)
 						starting_illegal_nifsoft += NS
@@ -40,7 +40,13 @@
 
 		for(var/entry in current_list[1])
 			var/datum/nifsoft/NS = entry
-			var/name = initial(NS.name)
+			var/applies_to = initial(NS.applies_to)
+			var/context = ""
+			if(!(applies_to & NIF_SYNTHETIC))
+				context = " (Org Only)"
+			else if(!(applies_to & NIF_ORGANIC))
+				context = " (Syn Only)"
+			var/name = "[initial(NS.name)][context]"
 			var/datum/stored_item/vending_product/product = new/datum/stored_item/vending_product(src, entry, name)
 
 			product.price = initial(NS.cost)
@@ -60,6 +66,104 @@
 		return FALSE
 
 	return ..()
+
+/*
+/obj/proc/allowed(mob/M)
+	//check if it doesn't require any access at all
+	if(src.check_access(null))
+		return 1
+
+	var/id = M.GetIdCard()
+	if(id)
+		return check_access(id)
+	return 0
+
+///obj/item/proc/GetAccess()
+//	return list()
+
+/atom/movable/proc/GetAccess()
+	var/obj/item/weapon/card/id/id = GetIdCard()
+	return id ? id.GetAccess() : list()
+
+/obj/proc/GetID()
+	return null
+
+/obj/proc/check_access(obj/item/I)
+	return check_access_list(I ? I.GetAccess() : list())
+
+/obj/proc/check_access_list(var/list/L)
+	if(!req_access)		req_access = list()
+	if(!req_one_access)	req_one_access = list()
+	if(!L)	return 0
+	if(!istype(L, /list))	return 0
+	return has_access(req_access, req_one_access, L)
+*/
+
+//Had to override this too
+/obj/machinery/vending/nifsoft_shop/Topic(href, href_list)
+	if(stat & (BROKEN|NOPOWER))
+		return
+	if(usr.stat || usr.restrained())
+		return
+
+	if(href_list["remove_coin"] && !istype(usr,/mob/living/silicon))
+		if(!coin)
+			usr << "There is no coin in this machine."
+			return
+
+		coin.forceMove(src.loc)
+		if(!usr.get_active_hand())
+			usr.put_in_hands(coin)
+		usr << "<span class='notice'>You remove \the [coin] from \the [src]</span>"
+		coin = null
+		categories &= ~CAT_COIN
+
+	if((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))
+		if((href_list["vend"]) && (vend_ready) && (!currently_vending))
+			if((!allowed(usr)) && !emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
+				usr << "<span class='warning'>Access denied.</span>"	//Unless emagged of course
+				flick(icon_deny,src)
+				return
+
+			var/key = text2num(href_list["vend"])
+			var/datum/stored_item/vending_product/R = product_records[key]
+
+			// This should not happen unless the request from NanoUI was bad
+			if(!(R.category & categories))
+				return
+
+			//Specific soft access checking
+			var/datum/nifsoft/path = R.item_path
+			if(initial(path.access))
+				var/list/soft_access = list(initial(path.access))
+				var/list/usr_access = usr.GetAccess()
+				if(!has_access(soft_access, list(), usr_access) && !emagged)
+					usr << "<span class='warning'>You aren't authorized to buy [initial(path.name)].</span>"
+					flick(icon_deny,src)
+					return
+
+			if(R.price <= 0)
+				vend(R, usr)
+			else if(istype(usr,/mob/living/silicon)) //If the item is not free, provide feedback if a synth is trying to buy something.
+				usr << "<span class='danger'>Artificial unit recognized.  Artificial units cannot complete this transaction.  Purchase canceled.</span>"
+				return
+			else
+				currently_vending = R
+				if(!vendor_account || vendor_account.suspended)
+					status_message = "This machine is currently unable to process payments due to problems with the associated account."
+					status_error = 1
+				else
+					status_message = "[initial(path.desc)]<br><br><b>Please swipe a card or insert cash to pay for the item.</b>"
+					status_error = 0
+
+		else if(href_list["cancelpurchase"])
+			currently_vending = null
+
+		else if((href_list["togglevoice"]) && (panel_open))
+			shut_up = !shut_up
+
+		add_fingerprint(usr)
+		nanomanager.update_uis(src)
 
 // Also special treatment!
 /obj/machinery/vending/nifsoft_shop/vend(datum/stored_item/vending_product/R, mob/user)

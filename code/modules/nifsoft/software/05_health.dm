@@ -1,14 +1,41 @@
-/*
-#define NIF_SPAREBREATH			17
-*/
+// #define NIF_CREWMONITOR			14
+/datum/nifsoft/crewmonitor
+	name = "Crew Monitor"
+	desc = "A link to the local crew monitor sensors. Useful for finding people in trouble."
+	list_pos = NIF_CREWMONITOR
+	access = access_medical
+	cost = 1250
+	p_drain = 0.025
+	var/datum/nano_module/crew_monitor/arscreen
+
+	New()
+		..()
+		arscreen = new(nif)
+
+	Destroy()
+		qdel(arscreen)
+		..()
+
+	activate()
+		if((. = ..()))
+			arscreen.ui_interact(nif.human,"main",null,1,nif_state)
+			return TRUE
+
+	deactivate()
+		if((. = ..()))
+			return TRUE
+
+	stat_text()
+		return "Show Monitor"
 
 /datum/nifsoft/medichines_org
-	name = "Medichines (Org)"
+	name = "Medichines"
 	desc = "An internal swarm of nanites to make sure you stay in good shape and to promote healing, or to preserve you if you are critically injured."
 	list_pos = NIF_ORGANIC_HEAL
 	cost = 2500
 	p_drain = 0.05
 	a_drain = 0.1 //This is messed with manually below.
+	wear = 2
 	activates = FALSE //It is automatic in emergencies, not manually controllable.
 	tick_flags = NIF_ALWAYSTICK
 	applies_to = NIF_ORGANIC
@@ -16,19 +43,19 @@
 
 	//These self-activate on their own, these aren't user-settable to on/off.
 	activate()
-		if(..())
+		if((. = ..()))
 			nif.set_flag(NIF_H_ORGREPAIR,NIF_FLAGS_HEALTH)
 			mode = 1
 
 	deactivate()
-		if(..())
+		if((. = ..()))
 			nif.clear_flag(NIF_H_ORGREPAIR,NIF_FLAGS_HEALTH)
 			a_drain = initial(a_drain)
 			mode = initial(mode)
-			nif.human.in_stasis = 0
+			nif.human.Stasis(0)
 
 	life()
-		if(..())
+		if((. = ..()))
 			var/mob/living/carbon/human/H = nif.human
 			var/HP_percent = H.health/H.getMaxHealth()
 
@@ -67,21 +94,22 @@
 				//Patient critical - emergency stasis
 				if(mode >= 3)
 					if(HP_percent <= 0)
-						H.in_stasis = 3
+						H.Stasis(3)
 					if(HP_percent > 0.2)
-						H.in_stasis = 0
+						H.Stasis(0)
 						nif.notify("Ending emergency stasis.",TRUE)
 						mode = 2
 
 			return TRUE
 
 /datum/nifsoft/medichines_syn
-	name = "Medichines (Syn)"
+	name = "Medichines"
 	desc = "A swarm of mechanical repair nanites, able to repair relatively minor damage to synthetic bodies. Large repairs must still be performed manually."
 	list_pos = NIF_SYNTH_HEAL
 	cost = 2500
 	p_drain = 0.05
 	a_drain = 0.00 //This is manually drained below.
+	wear = 2
 	activates = FALSE //It is automatic in emergencies, not manually controllable.
 	tick_flags = NIF_ALWAYSTICK
 	applies_to = NIF_SYNTHETIC
@@ -89,17 +117,17 @@
 
 	//These self-activate on their own, these aren't user-settable to on/off.
 	activate()
-		if(..())
+		if((. = ..()))
 			nif.set_flag(NIF_H_SYNTHREPAIR,NIF_FLAGS_HEALTH)
 			mode = 1
 
 	deactivate()
-		if(..())
+		if((. = ..()))
 			nif.clear_flag(NIF_H_SYNTHREPAIR,NIF_FLAGS_HEALTH)
 			mode = 0
 
 	life()
-		if(..())
+		if((. = ..()))
 			//We're good!
 			if(!nif.human.bad_external_organs.len)
 				if(mode || active)
@@ -135,6 +163,7 @@
 	cost = 650
 	p_drain = 0.05
 	a_drain = 0.1
+	wear = 2
 	tick_flags = NIF_ALWAYSTICK
 	applies_to = NIF_ORGANIC
 	var/filled = 100 //Tracks the internal tank 'refilling', which still uses power
@@ -143,17 +172,17 @@
 		if(!(filled > 50))
 			nif.notify("Respirocytes not saturated!",TRUE)
 			return FALSE
-		if(..())
+		if((. = ..()))
 			nif.set_flag(NIF_H_SPAREBREATH,NIF_FLAGS_HEALTH)
 			nif.notify("Now taking air from reserves.")
 
 	deactivate()
-		if(..())
+		if((. = ..()))
 			nif.clear_flag(NIF_H_SPAREBREATH,NIF_FLAGS_HEALTH)
 			nif.notify("Now taking air from environment and refilling reserves.")
 
 	life()
-		if(..())
+		if((. = ..()))
 			if(active) //Supplying air, not recharging it
 				switch(filled) //Text warnings
 					if(75)

@@ -3,8 +3,8 @@
 
 //Nanotech Implant Foundation
 /obj/item/device/nif
-	name = "nanotech implant foundation"
-	desc = "A somewhat degraded copy of a Kitsuhana working surface, in a box. Can print new \
+	name = "nanite implant framework"
+	desc = "A somewhat diminished knockoff of a Kitsuhana nano working surface, in a box. Can print new \
 	implants inside living hosts on the fly based on software uploads. Must be surgically \
 	implanted in the head to work. May eventually wear out and break."
 
@@ -14,7 +14,7 @@
 	w_class = ITEMSIZE_TINY
 
 	var/durability = 100					// Durability remaining
-	var/burn_factor = 100					// Divisor for power charge from nutrition (efficiency basically)
+	var/bioadap = FALSE						// If it'll work in fancy species
 
 	var/tmp/power_usage = 0						// Nifsoft adds to this
 	var/tmp/mob/living/carbon/human/human		// Our owner!
@@ -31,31 +31,51 @@
 	var/tmp/install_done				// Time when install will finish
 	var/tmp/open = FALSE				// If it's open for maintenance (1-3)
 
-	var/obj/item/clothing/glasses/hud/nif_hud/nif_hud
+	var/obj/item/clothing/glasses/hud/nif_hud/nif_hud	// The AR ones require this
+	var/obj/item/device/communicator/commlink/comm		// The commlink requires this
 
 	var/global/icon/big_icon
-	var/global/click_sound = 'sound/effects/pop.ogg'
+	var/global/click_sound = 'sound/items/nif_click.ogg'
+	var/global/bad_sound = 'sound/items/nif_tone_bad.ogg'
+	var/global/good_sound = 'sound/items/nif_tone_good.ogg'
+	var/global/list/look_messages = list(
+			"flicks their eyes around",
+			"looks at something unseen",
+			"reads some invisible text",
+			"seems to be daydreaming",
+			"focuses elsewhere for a moment")
 
 //Constructor comes with a free AR HUD
 /obj/item/device/nif/New(var/newloc,var/wear)
 	..(newloc)
-	new /datum/nifsoft/ar_civ(src)
+
+	//Required for AR stuff.
 	nif_hud = new(src)
 
+	//First one to spawn in the game, make a big icon
 	if(!big_icon)
 		big_icon = new(icon,icon_state = "nif_full")
 
-	//Probably loading from a save
+	//If given a human on spawn (probably from persistence)
 	if(ishuman(newloc))
 		var/mob/living/carbon/human/H = newloc
-		implant(H)
-		owner = H.mind.name
-		name = initial(name) + " ([owner])"
-		stat = NIF_WORKING
+		if(!quick_implant(H))
+			WARNING("NIF spawned in [H] failed to implant")
+			spawn(0)
+				qdel(src)
+		else
+			//Free commlink for return customers
+			new /datum/nifsoft/commlink(src)
 
+	//Free civilian AR included
+	new /datum/nifsoft/ar_civ(src)
+
+	//If given wear (like when spawned) then done
 	if(wear)
 		durability = wear
+		wear(0) //Just make it update.
 
+	//Draw me yo.
 	update_icon()
 
 //Destructor cleans up references
@@ -66,12 +86,20 @@
 	for(var/S in nifsofts)
 		if(S)
 			qdel(S)
+	if(nif_hud)
+		qdel(nif_hud)
+	if(comm)
+		qdel(comm)
+
 	nifsofts.Cut()
 	..()
 
 //Being implanted in some mob
 /obj/item/device/nif/proc/implant(var/mob/living/carbon/human/H)
-	if(istype(H) && !H.nif && H.species && !(H.species.flags & NO_SCAN) && (loc == H.get_organ(BP_HEAD))) //NO_SCAN is the default 'too complicated' flag.
+	if(istype(H) && !H.nif && H.species && (loc == H.get_organ(BP_HEAD)))
+		if(!bioadap && (H.species.flags & NO_SCAN)) //NO_SCAN is the default 'too complicated' flag
+			return FALSE
+
 		human = H
 		human.nif = src
 		stat = NIF_INSTALLING
@@ -87,8 +115,10 @@
 			return FALSE
 		src.forceMove(head)
 		head.implants += src
-		owner = H.real_name
-		return implant(H)
+		spawn(0) //Let the character finish spawning yo.
+			owner = H.mind.name
+			implant(H)
+		return TRUE
 
 	return FALSE
 
@@ -121,20 +151,20 @@
 
 //Wear update/check proc
 /obj/item/device/nif/proc/wear(var/wear = 0)
-	if(wear)
-		durability -= wear * rand(0.85,1.15) // Also +/- 15%
+	wear *= (rand(85,115) / 100) //Apparently rand() only takes integers.
+	durability -= wear
 
 	if(durability <= 0)
-		stat = NIF_TEMPFAIL
-		update_icon()
 		notify("Danger! General system insta#^!($",TRUE)
 		to_chat(human,"<span class='danger'>Your NIF vision overlays disappear and your head suddenly seems very quiet...</span>")
+		stat = NIF_TEMPFAIL
+		update_icon()
 
 //Attackby proc, for maintenance
 /obj/item/device/nif/attackby(obj/item/weapon/W, mob/user as mob)
 	if(open == 0 && istype(W,/obj/item/weapon/screwdriver))
 		if(do_after(user, 4 SECONDS, src) && open == 0)
-			user.visible_message("[user] unscrews and pries open \the [src].","<span class='notice'>You unscrew and pry open \the [src].")
+			user.visible_message("[user] unscrews and pries open \the [src].","<span class='notice'>You unscrew and pry open \the [src].</span>")
 			playsound(user, 'sound/items/Screwdriver.ogg', 50, 1)
 			open = 1
 			update_icon()
@@ -144,25 +174,25 @@
 			to_chat(user,"<span class='warning'>You need at least three coils of wire to add them to \the [src].</span>")
 			return
 		if(do_after(user, 6 SECONDS, src) && open == 1 && C.use(3))
-			user.visible_message("[user] replaces some wiring in \the [src].","<span class='notice'>You replace any burned out wiring in \the [src].")
+			user.visible_message("[user] replaces some wiring in \the [src].","<span class='notice'>You replace any burned out wiring in \the [src].</span>")
 			playsound(user, 'sound/items/Deconstruct.ogg', 50, 1)
 			open = 2
 			update_icon()
 	else if(open == 2 && istype(W,/obj/item/device/multitool))
 		if(do_after(user, 8 SECONDS, src) && open == 2)
-			user.visible_message("[user] resets several circuits in \the [src].","<span class='notice'>You find and repair any faulty circuits in \the [src].")
+			user.visible_message("[user] resets several circuits in \the [src].","<span class='notice'>You find and repair any faulty circuits in \the [src].</span>")
 			open = 3
 			update_icon()
 	else if(open == 3 && istype(W,/obj/item/weapon/screwdriver))
 		if(do_after(user, 3 SECONDS, src) && open == 3)
-			user.visible_message("[user] closes up \the [src].","<span class='notice'>You re-seal \the [src] for use once more.")
+			user.visible_message("[user] closes up \the [src].","<span class='notice'>You re-seal \the [src] for use once more.</span>")
 			playsound(user, 'sound/items/Screwdriver.ogg', 50, 1)
 			open = FALSE
 			durability = initial(durability)
 			stat = NIF_PREINSTALL
 			update_icon()
 
-//Wear update/check proc
+//Icon updating
 /obj/item/device/nif/update_icon()
 	if(open)
 		icon_state = "nif_open[open]"
@@ -181,19 +211,24 @@
 
 //The (dramatic) install process
 /obj/item/device/nif/proc/handle_install()
-	if(human.stat) //No stuff while KO. Sleeping it off is viable, and doesn't start until you wake up from surgery
+	if(human.stat || !human.mind) //No stuff while KO or not sleeved
 		return FALSE
 
 	//Firsties
 	if(!install_done)
-		if(human.real_name == owner)
+		if(human.mind.name == owner)
 			install_done = world.time + 1 MINUTE
 			notify("Welcome back, [owner]! Performing quick-calibration...")
-		else
+		else if(!owner)
 			install_done = world.time + 30 MINUTES
 			notify("Adapting to new user...")
 			sleep(5 SECONDS)
 			notify("Adjoining optic [human.isSynthetic() ? "interface" : "nerve"], please be patient.",TRUE)
+		else
+			notify("You are not an authorized user for this device. Please contact [owner].",TRUE)
+			unimplant()
+			stat = NIF_TEMPFAIL
+			return FALSE
 
 	var/percent_done = (world.time - (install_done - (30 MINUTES))) / (30 MINUTES)
 
@@ -229,7 +264,7 @@
 		//Finishing up
 		if(1.0 to INFINITY)
 			stat = NIF_WORKING
-			owner = human.real_name
+			owner = human.mind.name
 			name = initial(name) + " ([owner])"
 			notify("Calibration complete! User data stored!")
 
@@ -272,12 +307,19 @@
 
 //Prints 'AR' messages to the user
 /obj/item/device/nif/proc/notify(var/message,var/alert = 0)
-	if(!human) return
+	if(!human || stat == NIF_TEMPFAIL) return
 
 	to_chat(human,"<b>\[\icon[src.big_icon]NIF\]</b> displays, \"<span class='[alert ? "danger" : "notice"]'>[message]</span>\"")
+	if(prob(1)) human.visible_message("<span class='notice'>\The [human] [pick(look_messages)].</span>")
+	if(alert)
+		human << bad_sound
+	else
+		human << good_sound
 
 //Called to spend nutrition, returns 1 if it was able to
 /obj/item/device/nif/proc/use_charge(var/use_charge)
+	if(stat != NIF_WORKING) return FALSE
+
 	//You don't want us to take any? Well okay.
 	if(!use_charge)
 		return TRUE
@@ -292,6 +334,8 @@
 
 //Install a piece of software
 /obj/item/device/nif/proc/install(var/datum/nifsoft/new_soft)
+	if(stat == NIF_TEMPFAIL) return FALSE
+
 	if(nifsofts[new_soft.list_pos])
 		return FALSE
 
@@ -305,6 +349,7 @@
 			notify("The software \"[new_soft]\" is not supported in organic life.",TRUE)
 			return FALSE
 
+	wear(new_soft.wear)
 	nifsofts[new_soft.list_pos] = new_soft
 	power_usage += new_soft.p_drain
 
@@ -320,7 +365,6 @@
 	if(new_soft.other_flags)
 		other_flags |= new_soft.other_flags
 
-	wear(new_soft.wear)
 	return TRUE
 
 //Uninstall a piece of software
@@ -353,7 +397,10 @@
 
 //Activate a nifsoft
 /obj/item/device/nif/proc/activate(var/datum/nifsoft/soft)
+	if(stat != NIF_WORKING) return FALSE
+
 	if(human)
+		if(prob(5)) human.visible_message("<span class='notice'>\The [human] [pick(look_messages)].</span>")
 		var/applies_to = soft.applies_to
 		var/synth = human.isSynthetic()
 		if(synth && !(applies_to & NIF_SYNTHETIC))
@@ -366,6 +413,7 @@
 			return FALSE
 
 	if(!use_charge(soft.a_drain))
+		notify("Not enough power to activate \"[soft]\" NIFsoft!",TRUE)
 		return FALSE
 
 	if(soft.tick_flags == NIF_ACTIVETICK)
@@ -378,6 +426,9 @@
 
 //Deactivate a nifsoft
 /obj/item/device/nif/proc/deactivate(var/datum/nifsoft/soft)
+	if(human)
+		if(prob(5)) human.visible_message("<span class='notice'>\The [human] [pick(look_messages)].</span>")
+
 	if(soft.tick_flags == NIF_ACTIVETICK)
 		nifsofts_life -= soft
 
@@ -427,7 +478,7 @@
 
 //Check for an installed implant
 /obj/item/device/nif/proc/imp_check(var/soft)
-	if(!stat == NIF_WORKING) return FALSE
+	if(stat != NIF_WORKING) return FALSE
 	ASSERT(soft)
 
 	if(ispath(soft))
@@ -439,7 +490,8 @@
 
 //Check for a set flag
 /obj/item/device/nif/proc/flag_check(var/flag,var/hint)
-	if(!stat == NIF_WORKING) return FALSE
+	if(stat != NIF_WORKING) return FALSE
+
 	ASSERT(flag && hint)
 
 	var/result = FALSE
@@ -457,12 +509,19 @@
 
 	return result
 
+///////////////////////////////////////////////////////////////////////////////////////
 //NIF HUD object becasue HUD handling is trash and should be rewritten
 /obj/item/clothing/glasses/hud/nif_hud/var/obj/item/device/nif/nif
 
 /obj/item/clothing/glasses/hud/nif_hud/New(var/newloc)
 	..(newloc)
 	nif = newloc
+
+/obj/item/clothing/glasses/hud/nif_hud/Destroy()
+	if(nif)
+		nif.nif_hud = null
+		nif = null
+	..()
 
 /obj/item/clothing/glasses/hud/nif_hud/process_hud(M,var/thing)
 	//Faster checking with local var, and this is called often so I want fast.
@@ -479,3 +538,22 @@
 		process_omni_hud(nif.human, "sci")
 	else if(NIF_V_AR_CIVILIAN & visflags)
 		process_omni_hud(nif.human, "civ")
+
+// Alternate NIFs
+/obj/item/device/nif/bad
+	name = "second-hand NIF"
+	desc = "A copy of a copy of a copy of a copy of... this can't be any good, right? Surely?"
+	durability = 10
+
+/obj/item/device/nif/authentic
+	name = "\improper Kitsuhana NIF"
+	desc = "An actual Kitsuhana working surface, in a box. From a society slightly less afraid \
+	of self-replicating nanotechnology. Basically just a high-endurance NIF."
+	durability = 1000
+
+/obj/item/device/nif/bioadap
+	name = "bioadaptive NIF"
+	desc = "A NIF that goes out of it's way to accomidate strange body types. \
+	Will function in species where it normally wouldn't."
+	durability = 25
+	bioadap = TRUE

@@ -98,6 +98,8 @@
 		while(null in owner.organs)
 			owner.organs -= null
 
+	implants.Cut() //VOREStation Add - Remove these too!
+
 	return ..()
 
 /obj/item/organ/external/emp_act(severity)

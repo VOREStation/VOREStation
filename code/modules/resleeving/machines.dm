@@ -504,6 +504,12 @@
 	occupant.ooc_notes = MR.mind_oocnotes
 	occupant.apply_vore_prefs() //Cheap hack for now to give them SOME bellies.
 
+	//Re-supply a NIF if one was backed up with them.
+	if(MR.nif_path)
+		var/obj/item/device/nif/nif = new MR.nif_path(occupant,MR.nif_durability)
+		for(var/path in MR.nif_software)
+			new path(nif)
+
 	// If it was a custom sleeve (not owned by anyone), update namification sequences
 	if(!occupant.original_player)
 		occupant.real_name = occupant.mind.name

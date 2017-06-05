@@ -4,7 +4,7 @@
 		SetupNifStat()
 
 /mob/living/carbon/human/proc/SetupNifStat()
-	var/nif_status
+	var/nif_status = ""
 	switch(nif.stat)
 		if(NIF_WORKING)
 			nif_status = "Operating Normally"
@@ -16,6 +16,7 @@
 			nif_status = "Adapting To User"
 		else
 			nif_status = "Unknown - Error"
+	nif_status += " ([round((nif.durability/initial(nif.durability))*100)]%)"
 	stat("NIF Status", nif_status)
 
 	if(!nif.stat)
@@ -39,17 +40,13 @@
 	nifsoft = new_soft
 	nifsoft_name = new_soft.name
 	name = new_soft.name
-	toggleable = new_soft.activates
 
 /obj/effect/nif_stat/Destroy()
 	nifsoft = null
 	..()
 
 /obj/effect/nif_stat/proc/atom_button_text()
-	if(!toggleable)
-		name = "Always On"
-	else
-		name = "[nifsoft.active ? "Active" : "Disabled"]"
+	name = nifsoft.stat_text()
 	return src
 
 /obj/effect/nif_stat/Click(var/location, var/control, var/params)

@@ -78,6 +78,10 @@
 		WARNING("persist_interround_data failed to prep [occupant] for persisting")
 		return
 
+	//This one doesn't rely on persistence prefs
+	if(ishuman(occupant) && occupant.stat != DEAD)
+		persist_nif_data(occupant, prefs)
+
 	if(!prefs.persistence_settings)
 		return // Persistence disabled by preference settings
 
@@ -94,6 +98,7 @@
 		if(prefs.persistence_settings & PERSIST_WEIGHT)
 			resolve_excess_nutrition(H)
 			prefs.weight_vr = H.weight
+
 	prefs.save_character()
 
 // Saves mob's current coloration state to prefs
@@ -212,7 +217,30 @@
 * towards future shenanigans such as upgradable NIFs or different types or things of that nature,
 * without invoking the need for a bunch of different save file variables.
 */
-/proc/persist_nif_data(var/mob/living/carbon/human/H)
+/proc/persist_nif_data(var/mob/living/carbon/human/H,var/datum/preferences/prefs)
 	if(!istype(H))
 		CRASH("persist_nif_data given a nonhuman: [H]")
 
+	if(!prefs)
+		prefs = prep_for_persist(H)
+
+	if(!prefs)
+		WARNING("persist_nif_data failed to prep [H] for persisting")
+		return
+
+	var/obj/item/device/nif/nif = H.nif
+
+	if(nif)
+		prefs.nif_path = nif.type
+		prefs.nif_durability = nif.durability
+	else
+		prefs.nif_path = null
+		prefs.nif_durability = null
+
+	var/datum/category_group/player_setup_category/vore_cat = prefs.player_setup.categories_by_name["VORE"]
+	var/datum/category_item/player_setup_item/vore/nif/nif_prefs = vore_cat.items_by_name["NIF Data"]
+
+	var/savefile/S = new /savefile(prefs.path)
+	if(!S) WARNING ("Couldn't load NIF save savefile? [prefs.real_name]")
+	S.cd = "/character[prefs.default_slot]"
+	nif_prefs.save_character(S)

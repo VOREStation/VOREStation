@@ -5,16 +5,15 @@
 	desc = "Provides a general identification and health status overlay on your vision with no frills."
 	list_pos = NIF_CIVILIAN_AR
 	cost = 500
-	initial = TRUE
 	a_drain = 0.05
 
 	activate()
-		if(..())
+		if((. = ..()))
 			nif.deactivate_these(NIF_MEDICAL_AR,NIF_SECURITY_AR,NIF_ENGINE_AR,NIF_SCIENCE_AR,NIF_OMNI_AR)
 			nif.set_flag(NIF_V_AR_CIVILIAN,NIF_FLAGS_VISION)
 
 	deactivate()
-		if(..())
+		if((. = ..()))
 			nif.clear_flag(NIF_V_AR_CIVILIAN,NIF_FLAGS_VISION)
 
 /datum/nifsoft/ar_med
@@ -22,17 +21,16 @@
 	desc = "Like the civilian model, but provides medical records access and virus database lookup."
 	list_pos = NIF_MEDICAL_AR
 	cost = 750
-	initial = TRUE
-	req_one_access = list(access_medical)
+	access = access_medical
 	a_drain = 0.05
 
 	activate()
-		if(..())
+		if((. = ..()))
 			nif.deactivate_these(NIF_CIVILIAN_AR,NIF_SECURITY_AR,NIF_ENGINE_AR,NIF_SCIENCE_AR,NIF_OMNI_AR)
 			nif.set_flag(NIF_V_AR_MEDICAL,NIF_FLAGS_VISION)
 
 	deactivate()
-		if(..())
+		if((. = ..()))
 			nif.clear_flag(NIF_V_AR_MEDICAL,NIF_FLAGS_VISION)
 
 /datum/nifsoft/ar_sec
@@ -40,17 +38,16 @@
 	desc = "Like the civilian model, but provides access to arrest status and security records."
 	list_pos = NIF_SECURITY_AR
 	cost = 750
-	initial = TRUE
-	req_one_access = list(access_security)
+	access = access_security
 	a_drain = 0.05
 
 	activate()
-		if(..())
+		if((. = ..()))
 			nif.deactivate_these(NIF_CIVILIAN_AR,NIF_MEDICAL_AR,NIF_ENGINE_AR,NIF_SCIENCE_AR,NIF_OMNI_AR)
 			nif.set_flag(NIF_V_AR_SECURITY,NIF_FLAGS_VISION)
 
 	deactivate()
-		if(..())
+		if((. = ..()))
 			nif.clear_flag(NIF_V_AR_SECURITY,NIF_FLAGS_VISION)
 
 /datum/nifsoft/ar_eng
@@ -58,17 +55,16 @@
 	desc = "Like the civilian model, but provides station alert notices."
 	list_pos = NIF_ENGINE_AR
 	cost = 750
-	initial = TRUE
-	req_one_access = list(access_engine)
+	access = access_engine
 	a_drain = 0.05
 
 	activate()
-		if(..())
+		if((. = ..()))
 			nif.deactivate_these(NIF_CIVILIAN_AR,NIF_MEDICAL_AR,NIF_SECURITY_AR,NIF_SCIENCE_AR,NIF_OMNI_AR)
 			nif.set_flag(NIF_V_AR_ENGINE,NIF_FLAGS_VISION)
 
 	deactivate()
-		if(..())
+		if((. = ..()))
 			nif.clear_flag(NIF_V_AR_ENGINE,NIF_FLAGS_VISION)
 
 /datum/nifsoft/ar_science
@@ -76,17 +72,16 @@
 	desc = "Like the civilian model, but provides ... well, nothing. For now."
 	list_pos = NIF_SCIENCE_AR
 	cost = 750
-	initial = TRUE
-	req_one_access = list(access_research)
+	access = access_research
 	a_drain = 0.05
 
 	activate()
-		if(..())
+		if((. = ..()))
 			nif.deactivate_these(NIF_CIVILIAN_AR,NIF_MEDICAL_AR,NIF_SECURITY_AR,NIF_ENGINE_AR,NIF_OMNI_AR)
 			nif.set_flag(NIF_V_AR_SCIENCE,NIF_FLAGS_VISION)
 
 	deactivate()
-		if(..())
+		if((. = ..()))
 			nif.clear_flag(NIF_V_AR_SCIENCE,NIF_FLAGS_VISION)
 
 /datum/nifsoft/ar_omni
@@ -94,17 +89,16 @@
 	desc = "Like the civilian model, but provides most of the features of the medical and security overlays as well."
 	list_pos = NIF_OMNI_AR
 	cost = 750
-	initial = TRUE
-	req_one_access = list(access_captain)
+	access = access_captain
 	a_drain = 0.05
 
 	activate()
-		if(..())
+		if((. = ..()))
 			nif.deactivate_these(NIF_CIVILIAN_AR,NIF_MEDICAL_AR,NIF_SECURITY_AR,NIF_ENGINE_AR,NIF_SCIENCE_AR)
 			nif.set_flag(NIF_V_AR_OMNI,NIF_FLAGS_VISION)
 
 	deactivate()
-		if(..())
+		if((. = ..()))
 			nif.clear_flag(NIF_V_AR_OMNI,NIF_FLAGS_VISION)
 
 //////////////
@@ -117,11 +111,11 @@
 	a_drain = 0.025
 
 	activate()
-		if(..())
+		if((. = ..()))
 			nif.set_flag(NIF_V_CORRECTIVE,NIF_FLAGS_VISION)
 
 	deactivate()
-		if(..())
+		if((. = ..()))
 			nif.clear_flag(NIF_V_CORRECTIVE,NIF_FLAGS_VISION)
 
 /datum/nifsoft/uvblocker
@@ -132,11 +126,11 @@
 	a_drain = 0.2
 
 	activate()
-		if(..())
+		if((. = ..()))
 			nif.set_flag(NIF_V_UVFILTER,NIF_FLAGS_VISION)
 
 	deactivate()
-		if(..())
+		if((. = ..()))
 			nif.clear_flag(NIF_V_UVFILTER,NIF_FLAGS_VISION)
 
 /datum/nifsoft/flashprot
@@ -144,15 +138,15 @@
 	desc = "Enables a high-speed shielding response to intense light, such as flashes, to block them."
 	list_pos = NIF_FLASHPROT
 	cost = 600
-	req_one_access = list(access_security)
+	access = access_security
 	a_drain = 0.05
 
 	activate()
-		if(..())
+		if((. = ..()))
 			nif.set_flag(NIF_V_FLASHPROT,NIF_FLAGS_VISION)
 
 	deactivate()
-		if(..())
+		if((. = ..()))
 			nif.clear_flag(NIF_V_FLASHPROT,NIF_FLAGS_VISION)
 
 ////////////////
@@ -163,19 +157,20 @@
 	list_pos = NIF_MESONS
 	cost = 1000
 	a_drain = 0.1
+	access = access_engine
 	tick_flags = NIF_ACTIVETICK
 
 	activate()
-		if(..())
+		if((. = ..()))
 			nif.deactivate_these(NIF_MATERIAL,NIF_THERMALS,NIF_NIGHTVIS)
 			nif.set_flag(NIF_V_MESONS,NIF_FLAGS_VISION)
 
 	deactivate()
-		if(..())
+		if((. = ..()))
 			nif.clear_flag(NIF_V_MESONS,NIF_FLAGS_VISION)
 
 	life()
-		if(..())
+		if((. = ..()))
 			var/mob/living/carbon/human/H = nif.human
 			H.client.screen |= global_hud.meson
 			H.sight |= SEE_TURFS
@@ -186,19 +181,20 @@
 	list_pos = NIF_MATERIAL
 	cost = 1000
 	a_drain = 0.1
+	access = access_research
 	tick_flags = NIF_ACTIVETICK
 
 	activate()
-		if(..())
+		if((. = ..()))
 			nif.deactivate_these(NIF_MESONS,NIF_THERMALS,NIF_NIGHTVIS)
 			nif.set_flag(NIF_V_MATERIAL,NIF_FLAGS_VISION)
 
 	deactivate()
-		if(..())
+		if((. = ..()))
 			nif.clear_flag(NIF_V_MATERIAL,NIF_FLAGS_VISION)
 
 	life()
-		if(..())
+		if((. = ..()))
 			nif.human.sight |= SEE_OBJS
 
 /datum/nifsoft/thermals
@@ -206,21 +202,21 @@
 	desc = "Similar to the worn Thermal Goggles, these allow you to see heat-emitting creatures through walls."
 	list_pos = NIF_THERMALS
 	cost = 1000
-	req_one_access = list(access_security)
 	a_drain = 0.1
+	access = access_captain
 	tick_flags = NIF_ACTIVETICK
 
 	activate()
-		if(..())
+		if((. = ..()))
 			nif.deactivate_these(NIF_MESONS,NIF_MATERIAL,NIF_NIGHTVIS)
 			nif.set_flag(NIF_V_THERMALS,NIF_FLAGS_VISION)
 
 	deactivate()
-		if(..())
+		if((. = ..()))
 			nif.clear_flag(NIF_V_THERMALS,NIF_FLAGS_VISION)
 
 	life()
-		if(..())
+		if((. = ..()))
 			var/mob/living/carbon/human/H = nif.human
 			H.sight |= SEE_MOBS
 			H.client.screen |= global_hud.thermal
@@ -231,21 +227,21 @@
 	desc = "Similar to the worn Night Vision Goggles, these allow you to see in complete darkness."
 	list_pos = NIF_NIGHTVIS
 	cost = 1000
-	req_one_access = list(access_security)
 	a_drain = 0.1
+	access = access_security
 	tick_flags = NIF_ACTIVETICK
 
 	activate()
-		if(..())
+		if((. = ..()))
 			nif.deactivate_these(NIF_MESONS,NIF_MATERIAL,NIF_THERMALS)
 			nif.set_flag(NIF_V_NIGHTVIS,NIF_FLAGS_VISION)
 
 	deactivate()
-		if(..())
+		if((. = ..()))
 			nif.clear_flag(NIF_V_NIGHTVIS,NIF_FLAGS_VISION)
 
 	life()
-		if(..())
+		if((. = ..()))
 			var/mob/living/carbon/human/H = nif.human
 			H.see_in_dark += 7
 			H.client.screen |= global_hud.nvg
