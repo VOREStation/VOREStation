@@ -21,7 +21,7 @@
 
 	var/cloaked = 0 // 0 for normal, 1 for cloaked close
 
-	if(mind.changeling && mind.changeling.cloaked && !istype(user, /mob/observer))
+	if(mind && mind.changeling && mind.changeling.cloaked && !istype(user, /mob/observer))
 		var/distance = get_dist(user, src)
 		if(distance > 2)
 			src.loc.examine(user)
@@ -472,7 +472,7 @@
 
 
 /mob/living/carbon/human/get_description_fluff()
-	if(mind.changeling && mind.changeling.cloaked)
+	if(mind && mind.changeling && mind.changeling.cloaked)
 		return ""
 	else
 		return ..()
