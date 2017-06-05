@@ -1081,3 +1081,29 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 				B.internal_contents |= src
 				user.visible_message("<span class='warning'>[user] eats a telebeacon!</span>","You eat the the beacon!")
 				playsound(user, B.vore_sound, 70, 1)
+
+//InterroLouis: Ruda Lizden
+/obj/item/clothing/accessory/badge/holo/detective/ruda
+    name = "Hisstective's Badge"
+    desc = "This is Ruda Lizden's personal Detective's badge. The polish is dull, as if it's simply been huffed upon and wiped against a coat. Labeled 'Hisstective.'"
+    icon_state = "hisstective_badge"
+    //slot_flags = SLOT_TIE | SLOT_BELT
+
+/obj/item/clothing/accessory/badge/holo/detective/ruda/attack(mob/living/carbon/human/M, mob/living/user)
+    if(isliving(user))
+        user.visible_message("<span class='danger'>[user] invades [M]'s personal space, thrusting [src] into their face with an insistent huff.</span>","<span class='danger'>You invade [M]'s personal space, thrusting [src] into their face with an insistent huff.</span>")
+        user.do_attack_animation(M)
+        user.setClickCooldown(DEFAULT_QUICK_COOLDOWN) //to prevent spam
+
+/obj/item/clothing/accessory/badge/holo/detective/ruda/attack_self(mob/user as mob)
+
+    if(!stored_name)
+        user << "You huff along the front of your badge, then rub your sleeve on it to polish it up."
+        set_name(user.real_name)
+        return
+
+    if(isliving(user))
+        if(stored_name)
+            user.visible_message("<span class='notice'>[user] displays their [src.name].\nIt reads: [stored_name], [badge_string].</span>","<span class='notice'>You display your [src.name].\nIt reads: [stored_name], [badge_string].</span>")
+        else
+            user.visible_message("<span class='notice'>[user] displays their [src.name].\nIt reads: [badge_string].</span>","<span class='notice'>You display your [src.name]. It reads: [badge_string].</span>")
