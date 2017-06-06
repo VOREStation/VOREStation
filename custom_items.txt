@@ -1,0 +1,699 @@
+##
+# Custom items go here. They are modifications of existing paths; look at the example for details.
+# Item will spawn if the target has one of the req_titles and if their on-spawn ID has the required access level.
+# req_access is going to be a shit to maintain since the config file can't grab constants and has to use integers, use it minimally.
+# Separate titles with a single comma and a space (', ') or they'll bork.
+#
+# EX:
+# {
+# ckey: zuhayr
+# character_name: Jane Doe
+# item_path: /obj/item/toy/plushie
+# item_name: ugly plush toy
+# item_icon: flagmask     
+# item_desc: It's truly hideous.
+# req_titles: Assistant, Security Officer
+# req_access: 1
+# }
+#
+# {
+# ckey: zuhayr
+# character_name: Jane Doe
+# item_path: /obj/item/device/kit/paint
+# item_name: APLU customisation kit
+# item_desc: A customisation kit with all the parts needed to turn an APLU into a "Titan's Fist" model.
+# kit_name: APLU "Titan's Fist"
+# kit_desc: Looks like an overworked, under-maintained Ripley with some horrific damage.
+# kit_icon: titan
+# additional_data: ripley, firefighter
+# }
+#
+# {
+# ckey: zuhayr
+# character_name: Jane Doe
+# item_path: /obj/item/device/kit/suit
+# item_name: salvage suit customisation kit
+# item_desc: A customisation kit with all the parts needed to convert a suit.
+# kit_name: salvage
+# kit_desc: An orange voidsuit. Reinforced!
+# kit_icon: salvage
+# }
+##
+
+# ######## 0-9 CKEYS
+{
+ckey: 1r1s
+character_name: Zippy Shanks
+item_path: /obj/item/weapon/melee/fluff/holochain/Zippy
+}
+
+# ######## A CKEYS
+{
+ckey: adk09
+character_name: Lethe
+item_path: /obj/item/clothing/head/helmet/hos/fluff/lethe
+}
+
+{
+ckey: arokha
+character_name: Aronai Kadigan
+item_path: /obj/item/clothing/under/utility/expeditionary/medical/command
+item_name: centcom medical uniform
+item_desc: A medical uniform straight from Central Command.
+}
+
+{
+ckey: arokha
+character_name: Aronai Kadigan
+item_path: /obj/item/clothing/suit/storage/service/expeditionary/medical/command
+item_name: centcom medical jacket
+item_desc: A medical jacket straight from Central Command.
+}
+
+{
+ckey: arokha
+character_name: Aronai Kadigan
+item_path: /obj/item/weapon/storage/backpack/satchel/gen/fluff/aronai
+}
+
+{
+ckey: aerowing
+character_name: Sebastian Aji
+item_path: /obj/item/weapon/storage/box/fluff/sebastian_aji
+}
+# ######## B CKEYS
+{
+ckey: benemuel
+character_name: Yuuko Shimmerpond
+item_path: /obj/item/clothing/under/fluff/sakura_hokkaido_kimono
+}
+
+{
+ckey: beyondmylife
+character_name: Kilano Soryu
+item_path: /obj/item/clothing/under/dress/fluff/kilano
+}
+
+{
+ckey: beyondmylife
+character_name: Kilano Soryu
+item_path: /obj/item/clothing/gloves/fluff/kilano
+}
+
+{
+ckey: britishrabbit
+character_name: Xin Xiao
+item_path: /obj/item/clothing/under/soviet
+item_desc: This soviet uniform has seen considerable use over the years, it's rather worn in some places, frayed in others and the stomach region has signs of being stretched out repeatedly.
+}
+
+{
+ckey: bwoincognito
+character_name: Tasald Corlethian
+item_path: /obj/item/weapon/storage/box/fluff/tasald
+}
+
+{
+ckey: bwoincognito
+character_name: Octavious Ward
+item_path: /obj/item/weapon/storage/box/fluff/octavious
+}
+
+# ######## C CKEYS
+{
+ckey: cockatricexl
+character_name: James Holder
+item_path: /obj/item/weapon/disk/data
+}
+
+# ######## D CKEYS
+{
+ckey: deepindigo
+character_name: Amina Dae-Kouri
+item_path: /obj/item/weapon/storage/bible/fluff/amina
+}
+
+{
+ckey: dhaeleena
+character_name: Dhaeleena M'iar
+item_path: /obj/item/clothing/accessory/medal/silver/security/fluff/dhael
+}
+
+{
+ckey: dhaeleena
+character_name: Dhaeleena M'iar
+item_path: /obj/item/weapon/gun/projectile/revolver/mateba/fluff/dhael
+}
+
+{
+ckey: dhaeleena
+character_name: Dhaeleena M'iar
+item_path: /obj/item/fluff/permit/dhaeleena_miar
+}
+
+{
+ckey: dickfreedomjohnson
+character_name: Elliot Richards
+item_path: /obj/item/clothing/accessory/medal/medical
+}
+
+{
+ckey: dickfreedomjohnson
+character_name: Elliot Richards
+item_path: /obj/item/weapon/storage/belt/champion
+}
+
+# ######## E CKEYS
+# Needs to renew permit. Uncomment when renewed.
+#{
+#ckey: eekasqueak
+#character_name: Serkii Miishy
+#item_path: /obj/item/fluff/permit/serkiimiishy
+#}
+
+#{
+#ckey: eekasqueak
+#character_name: Serkii Miishy
+#item_path: /obj/item/weapon/gun/energy/stunrevolver
+#}
+
+{
+ckey: eekasqueak
+character_name: Serkii Miishy
+item_path: /obj/item/clothing/shoes/slippers
+}
+
+{
+ckey: eekasqueak
+character_name: Serkii Miishy
+item_path: /obj/item/clothing/under/skirt/fluff/serkii
+}
+
+{
+ckey: epigraphzero
+character_name: Verd Woodrow
+item_path: /obj/item/clothing/accessory/medal/bronze_heart
+}
+
+# ######## F CKEYS
+# ######## G CKEYS
+# ######## H CKEYS
+
+{
+ckey: hottokeeki
+character_name: Belle Day
+item_path: /obj/item/weapon/gun/energy/sizegun
+}
+
+{
+ckey: hottokeeki
+character_name: Belle Day
+item_path: /obj/item/weapon/gun/energy/netgun
+}
+
+{
+ckey: hottokeeki
+character_name: Belle Day
+item_path: /obj/item/weapon/implanter/reagent_generator/belle
+}
+
+# ######## I CKEYS
+
+{ckey: interrolouischaracter_name: Ruda Lizdenitem_path: /obj/item/clothing/accessory/badge/holo/detective/ruda}{
+ckey: ivymoomoo
+character_name: Ivy Baladeva
+item_path: /obj/item/weapon/storage/backpack/messenger/sec/fluff/ivymoomoo
+}
+
+# ######## J CKEYS
+
+{
+ckey: jacobdragon
+character_name: Earthen Breath
+item_path: /obj/item/clothing/under/fluff/earthenbreath
+}
+
+{
+ckey: jacobdragon
+character_name: Earthen Breath
+item_path: /obj/item/clothing/head/fluff/hairflowerpin
+}
+
+{
+ckey: jemli
+character_name: Cirra Mayhem
+item_path: /obj/item/weapon/storage/box/fluff/cirra
+}
+
+{
+ckey: jemli
+character_name: Jemli
+item_path: /obj/item/clothing/head/fedora/fluff/jemli
+}
+
+{
+ckey: jertheace
+character_name: Jeremiah 'Ace' Acacius
+item_path: /obj/item/weapon/storage/box/fluff/ace
+}
+
+{
+ckey: jertheace
+character_name: Jeremiah 'Ace' Acacius
+item_path: /obj/item/clothing/shoes/boots/combat
+}
+
+{
+ckey: jertheace
+character_name: Jeremiah 'Ace' Acacius
+item_path: /obj/item/clothing/under/syndicate/combat
+}
+
+{
+ckey: jertheace
+character_name: Jeremiah 'Ace' Acacius
+item_path: /obj/item/clothing/suit/armor/tactical/officer/fluff/ace
+}
+
+{
+ckey: joanrisu
+character_name: Joan Risu
+item_path: /obj/item/weapon/storage/backpack/dufflebag/sec/fluff/joanrisu
+}
+
+{
+ckey: joanrisu
+character_name: Katarina Eine
+item_path: /obj/item/weapon/storage/backpack/dufflebag/sec/fluff/katarina
+}
+
+{
+ckey: joey4298
+character_name: Rosey Tasimaro Maximus
+item_path: /obj/item/clothing/head/fluff/threetail
+}
+
+{
+ckey: joey4298
+character_name: Emoticon
+item_path: /obj/item/weapon/storage/box/fluff/emoticon
+}
+
+{
+ckey: joey4298
+character_name: Emoticon
+item_path: /obj/item/clothing/under/sexymime
+}
+
+{
+ckey: joey4298
+character_name: Emoticon
+item_path: /obj/item/clothing/mask/gas/sexymime
+}
+
+{
+ckey: john.wayne9392
+character_name: Harmony Pretchl
+item_path: /obj/item/clothing/accessory/medal/heroism
+}
+
+{
+ckey: john.wayne9392
+character_name: Harmony Pretchl
+item_path: /obj/item/device/modkit_conversion/fluff/harmonysuit
+}
+
+{
+ckey: john.wayne9392
+character_name: Harmony Pretchl
+item_path: /obj/item/device/modkit_conversion/fluff/harmonyspace
+}
+
+# ######## K CKEYS
+{
+ckey: kiraalitruss
+character_name: Amaya Rahl
+item_path: /obj/item/weapon/card/id/fluff/amaya
+}
+
+{
+ckey: kisukegema
+character_name: Kisuke 'The Nerd' Gema
+item_path: /obj/item/clothing/glasses/omnihud/kamina
+}  
+
+{
+ckey: Killjaden
+character_name: Lassara Faaira'Nrezi
+item_path: /obj/item/clothing/accessory/storage/knifeharness
+}
+
+{
+ckey: KiwiDaNinja
+character_name: Chakat Taiga
+item_path: /obj/item/clothing/under/fluff/taiga
+}
+
+{
+ckey: kligor
+character_name: Andy Gettemy
+item_path: /obj/item/device/pda_mod/fluff/kligor
+}
+
+# ######## L CKEYS
+{
+ckey: luminescentring
+character_name: Briana Moore
+item_path: /obj/item/weapon/storage/box/fluff/briana_moore
+}
+{
+ckey: luminescentring
+character_name: Briana Moore
+item_path: /obj/item/weapon/storage/backpack/messenger/black/fluff/briana
+}
+
+# ######## M CKEYS
+{
+ckey: molenar
+character_name: Uya Kohakuren
+item_path: /obj/item/clothing/head/fluff/molenar
+}
+
+{
+ckey: molenar
+character_name: Giliana Gamish
+item_path: /obj/item/clothing/suit/storage/toggle/labcoat/fluff/molenar
+}
+
+{
+ckey: molenar
+character_name: Giliana Gamish
+item_path: /obj/item/clothing/head/fluff/molenar2
+}
+
+#Needs to renew permit
+#{ 
+#ckey: molenar
+#character_name: Kari Akiren
+#item_path: /obj/item/weapon/gun/projectile/shotgun/pump/rifle/fluff/kari_akiren
+#}
+
+#{
+#ckey: molenar
+#character_name: Kari Akiren
+#item_path: /obj/item/fluff/permit/kari_akiren
+#}
+
+{
+ckey: myryan
+character_name: Myryan Karnage-Cunningham
+item_path: /obj/item/weapon/storage/belt/utility/fluff/vulpine
+}
+
+# ######## N CKEYS
+# ######## O CKEYS
+{
+ckey: orbisa
+character_name: Richard D'angelo
+item_path: /obj/item/weapon/melee/fluff/holochain
+}
+
+# ######## P CKEYS
+{
+ckey: pontifexminimus
+character_name: Lucius Null
+item_path: /obj/item/weapon/fluff/dragor_dot
+}
+{
+ckey: pontifexminimus
+character_name: Lucia Null
+item_path: /obj/item/weapon/fluff/dragor_dot
+}
+
+# ######## Q CKEYS
+# ######## R CKEYS
+{
+ckey: Razerwing
+character_name: Archer Maximus
+item_path: /obj/item/weapon/gun/projectile/colt/fluff/archercolt
+}
+
+{
+ckey: Razerwing
+character_name: Archer Maximus
+item_path: /obj/item/fluff/permit/archermaximus
+}
+
+# ######## S CKEYS
+{
+ckey: samanthafyre
+character_name: Kateryna Petrovitch
+item_path: /obj/item/clothing/suit/space/void/engineering/kate
+}
+
+{
+ckey: samanthafyre
+character_name: Kateryna Petrovitch
+item_path: /obj/item/clothing/head/helmet/space/fluff/kate
+}
+
+{
+ckey: samanthafyre
+character_name: Kateryna Petrovitch
+item_path: /obj/item/clothing/suit/armor/vest/wolftaur/kate
+}
+
+{
+ckey: sasoperative
+character_name: Joseph Skinner
+item_path: /obj/item/clothing/accessory/medal/ERTservice
+}
+
+{
+ckey: sasoperative
+character_name: Joseph Skinner
+item_path: /obj/item/fluff/permit/josephskinner
+}
+
+{
+ckey: sasoperative
+character_name: Joseph Skinner
+item_path: /obj/item/clothing/under/rank/security/fluff/formalsec
+}
+
+{
+ckey: scree
+character_name: Scree
+item_path: /obj/item/device/modkit_conversion/fluff/screekit
+}
+
+{
+ckey: scree
+character_name: Scree
+item_path: /obj/item/clothing/head/fluff/pompom
+}
+
+{
+ckey: scree
+character_name: Scree
+item_path: /obj/item/clothing/glasses/omnihud/eng/meson/fluff/scree
+}
+
+{
+ckey: seiga
+character_name: Alfonso Oak Telanor
+item_path: /obj/item/clothing/glasses/sunglasses/fluff/alfonso
+}
+
+{
+ckey: silencedmp5a5
+character_name: Serdykov Antoz
+item_path: /obj/item/device/modkit_conversion/fluff/serdykit
+}
+
+{
+ckey: silencedmp5a5
+character_name: Serdykov Antoz
+item_path: /obj/item/weapon/gun/projectile/revolver/detective/fluff/serdy
+}
+
+{
+ckey: silencedmp5a5
+character_name: Serdykov Antoz
+item_path: /obj/item/fluff/permit/silencedmp5a5
+}
+
+{
+ckey: silvertalismen
+character_name: Tasy Ruffles
+item_path: /obj/item/clothing/under/sexyclown
+}
+
+{
+ckey: silvertalismen
+character_name: Tasy Ruffles
+item_path: /obj/item/clothing/mask/gas/sexyclown
+}
+
+{
+ckey: silvertalismen
+character_name: Tasy Ruffles
+item_path: /obj/item/device/pda/clown
+}
+
+{
+ckey: Swat43
+character_name: Fortune Bloise
+item_path: /obj/item/weapon/storage/backpack/satchel/fluff/swat43bag
+}
+
+{
+ckey: SpoopyLizz
+character_name: Roiz Lizden
+item_path: /obj/item/weapon/implanter/reagent_generator/roiz
+}
+
+# ######## T CKEYS
+{
+ckey: tonyvld
+character_name: Tony Bingham
+item_path: /obj/item/clothing/head/fluff/runac
+}
+
+# ######## U CKEYS
+# ######## V CKEYS
+{
+ckey: virgo113
+character_name: Verin Raharra
+item_path: /obj/item/clothing/suit/storage/hazardvest/fluff/verin
+}
+{
+ckey: vorrarkul
+character_name: Lucina Dakarim
+item_path: /obj/item/device/pda/heads/cmo/fluff/lucinapda
+}
+
+{
+ckey: vorrarkul
+character_name: Lucina Dakarim
+item_path: /obj/item/clothing/accessory/medal/gold/fluff/lucina
+}
+
+{
+ckey: vorrarkul
+character_name: Lucina Dakarim
+item_path: /obj/item/clothing/under/dress/fluff/lucinadress
+}
+
+{
+ckey: vorrarkul
+character_name: Nyssa Brennan
+item_path: /obj/item/clothing/suit/storage/hooded/wintercoat/cargo
+}
+
+{
+ckey: vorrarkul
+character_name: Theodora Lindt
+item_path: /obj/item/clothing/suit/chococoat
+}
+
+{
+ckey: vorrarkul
+character_name: Theodora Lindt
+item_path: /obj/item/weapon/implanter/reagent_generator/vorrarkul
+}
+
+{
+ckey: vorrarkul
+character_name: Kaitlyn Fiasco
+item_path: /obj/item/toy/plushie/mouse/fluff
+}
+
+{
+ckey: Viveret
+character_name: Keturah
+item_path: /obj/item/clothing/under/dress/maid/
+}
+
+{
+ckey: Viveret
+character_name: Silentio
+item_path: /obj/item/clothing/under/sexymime
+}
+
+{
+ckey: Viveret
+character_name: Silentio
+item_path: /obj/item/clothing/mask/gas/sexymime
+}
+
+# ######## W CKEYS
+{
+ckey: warbrand2
+character_name: Brandy draca
+item_path: /obj/item/device/pda_mod/fluff/warbrand2
+}
+
+{
+ckey: werebear
+character_name: Silas Newton
+item_path: /obj/item/clothing/glasses/threedglasses
+}
+
+{
+ckey: whiskyrose
+character_name: Vinjj
+item_path: /obj/item/clothing/head/welding/fluff/vinjj
+}
+
+{
+ckey: wickedtemp
+character_name: Chakat Tempest
+item_path: /obj/item/clothing/glasses/omnihud/med/fluff/wickedtemphud
+}
+
+{
+ckey: wickedtemp
+character_name: Chakat Tempest
+item_path: /obj/item/weapon/reagent_containers/hypospray/vr/tempest
+}
+
+{
+ckey: wickedtemp
+character_name: Chakat Tempest
+item_path: /obj/item/weapon/storage/backpack/saddlebag/tempest
+}
+
+{
+ckey: wickedtemp
+character_name: Chakat Tempest
+item_path: /obj/item/weapon/implanter/reagent_generator/tempest
+}
+
+# ######## X CKEYS
+
+{
+ckey: Xsdew
+character_name: Penelope Allen
+item_path: /obj/item/weapon/storage/box/fluff/penelope
+}
+
+# ######## Y CKEYS
+# ######## Z CKEYS
+{
+ckey: zekesturm
+character_name: Sarah Arachi Lacecraft
+item_path: /obj/item/device/modkit_single/fluff/zekechimera
+}
+
+{
+ckey: zekesturm
+character_name: Zeke Arachi
+item_path: /obj/item/clothing/head/fluff/xeno
+}
+
+{
+ckey: zodiacshadow
+character_name: Nehi Maximus
+item_path: /obj/item/device/radio/headset/fluff/zodiacshadow
+}
