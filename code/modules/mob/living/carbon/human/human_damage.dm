@@ -186,15 +186,13 @@
 	..()
 
 /mob/living/carbon/human/proc/Stasis(amount)
-	//if((species.flags & NO_SCAN) || isSynthetic()) vorestation removal
-	if(((species.flags & NO_SCAN) && !istype(species, /datum/species/xenochimera)) || isSynthetic()) //vorestation addition
+	if((species.flags & NO_SCAN) || isSynthetic())
 		in_stasis = 0
 	else
 		in_stasis = amount
 
 /mob/living/carbon/human/proc/getStasis()
-	//if((species.flags & NO_SCAN) || isSynthetic()) vorestation removal
-	if(((species.flags & NO_SCAN) && !istype(species, /datum/species/xenochimera)) || isSynthetic()) //vorestation addition
+	if((species.flags & NO_SCAN) || isSynthetic())
 		return 0
 
 	return in_stasis

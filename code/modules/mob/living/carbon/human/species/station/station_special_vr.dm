@@ -73,7 +73,7 @@
 				H.feral = min(150-H.nutrition, H.feral+1) //Feralness increases while this hungry, capped at 50-150 depending on hunger.
 
 		// If they're hurt, chance of snapping. Not if they're straight-up KO'd though.
-		if (H.stat == CONSCIOUS && H.traumatic_shock >=36 && !H.inStasisNow()) //30 brute/burn, or 18 halloss.
+		if (H.stat == CONSCIOUS && H.traumatic_shock >=36) //30 brute/burn, or 18 halloss.
 			if (2.5*H.halloss >= H.traumatic_shock) //If the majority of their shock is due to halloss, greater chance of snapping.
 				if(prob(min(10,(0.2 * H.traumatic_shock))))
 					if(H.feral == 0)
@@ -162,13 +162,13 @@
 	var/pressure2 = environment.return_pressure()
 	var/adjusted_pressure2 = H.calculate_affecting_pressure(pressure2)
 
-	if(adjusted_pressure2 <= 20 && H.inStasisNow()) //If they're in a enviroment with no pressure and are in stasis (See: regenerating), don't kill them.
+	if(adjusted_pressure2 <= 20 && H.does_not_breathe) //If they're in a enviroment with no pressure and are not breathing (See: regenerating), don't kill them.
 		//This is just to prevent them from taking damage if they're in stasis.
 
 	else if(adjusted_pressure2 <= 20) //If they're in an enviroment with no pressure and are NOT in stasis, damage them.
 		H.take_overall_damage(brute=LOW_PRESSURE_DAMAGE, used_weapon = "Low Pressure")
 
-	if(H.bodytemperature <= 260 && H.inStasisNow()) //If they're in stasis, don't give them them the negative cold effects
+	if(H.bodytemperature <= 260 && H.does_not_breathe) //If they're regenerating, don't give them them the negative cold effects
 		//This is just here to prevent them from getting cold effects
 
 	else if(H.bodytemperature <= 260) //If they're not in stasis and are cold. Don't really have to add in an exception to cryo cells, as the effects aren't anything /too/ horrible.

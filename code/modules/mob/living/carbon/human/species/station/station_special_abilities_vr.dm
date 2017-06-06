@@ -23,7 +23,7 @@
 				C.reviving = 1
 				C.canmove = 0 //Make them unable to move. In case they somehow get up before the delay.
 				C << "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds."
-				C.Stasis(10000) //ensure complete stasis. This will put them to sleep as well.
+				C.does_not_breathe = 1 //effectively makes them spaceworthy while regenning
 
 				spawn(time SECONDS)
 					if(C) //Runtime prevention.
@@ -42,7 +42,7 @@
 			C.reviving = 1
 			C.canmove = 0 //Make them unable to move. In case they somehow get up before the delay.
 			C << "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds."
-			C.Stasis(10000)
+			C.does_not_breathe = 1 //effectively makes them spaceworthy while regenning
 
 			spawn(time SECONDS)
 				if(C.stat != DEAD) //If they're still alive after regenning.
@@ -94,7 +94,7 @@
 					var/T = get_turf(src)
 					new /obj/effect/gibspawner/human/scree(T)
 					var/braindamage = C.brainloss/2 //If you have 100 brainloss, it gives you 50.
-					C.Stasis(0)
+					C.does_not_breathe = 0 //start breathing again
 					C.revive() // I did have special snowflake code, but this is easier.
 					C.weakened = 2 //Not going to let you get up immediately. 2 ticks before you get up. Overrides the above 10000 weaken.
 					C.nutrition = old_nutrition
@@ -128,7 +128,7 @@
 				C.drop_from_inventory(W)
 			spawn(3600 SECONDS) //1 hour wait until you can revive again.
 				C.reviving = 0
-			C.Stasis(0)
+			C.does_not_breathe = 0 //start breathing again
 			C.verbs -= /mob/living/carbon/human/proc/hatch
 			return
 		else
