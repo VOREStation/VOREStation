@@ -104,7 +104,12 @@
 			temp2.overlays += O.overlays
 			// TODO Is pixelx/y needed?
 			o_img += temp2
+		var/overlay_count = overlays.len
 		overlays += o_img
+		if(overlays.len != overlay_count + 1) //Here we go!
+			world.log << "Corrupted openspace turf at [x],[y],[z] being replaced."
+			new /turf/simulated/open(src)
+			return //Let's get out of here.
 
 		if(!below_is_open)
 			overlays += over_OS_darkness
