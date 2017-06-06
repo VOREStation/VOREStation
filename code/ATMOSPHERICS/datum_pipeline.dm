@@ -14,6 +14,8 @@ datum/pipeline
 
 		if(air && air.volume)
 			temporarily_store_air()
+		for(var/obj/machinery/atmospherics/pipe/P in members)
+			P.parent = null
 
 		. = ..()
 
