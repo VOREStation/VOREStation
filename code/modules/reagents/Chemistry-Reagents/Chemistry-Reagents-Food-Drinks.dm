@@ -77,6 +77,9 @@
 	if(alien && alien == IS_SKRELL)
 		M.adjustToxLoss(2 * removed)
 		return
+	else if(istype(M.species, /datum/species/xenochimera)) //vorestation addition
+		affect_ingest(M, alien, removed) //like hell are chimera of all things going to be poisoned by injecting them with meat
+		return
 	..()
 
 /datum/reagent/nutriment/protein/egg // Also bad for skrell.
