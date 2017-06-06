@@ -72,7 +72,7 @@
 	return null
 
 /obj/machinery/atmospherics/valve/Destroy()
-	loc = null
+	. = ..()
 
 	if(node1)
 		node1.disconnect(src)
@@ -83,8 +83,6 @@
 
 	node1 = null
 	node2 = null
-
-	..()
 
 /obj/machinery/atmospherics/valve/proc/open()
 	if(open) return 0
