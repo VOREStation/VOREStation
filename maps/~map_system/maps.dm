@@ -187,5 +187,10 @@ var/list/all_maps = list()
 	LIST_NUMERIC_SET(map.holomap_legend_y, z, holomap_legend_y)
 	// VOREStation Edit End
 
-/datum/map_z_level/Destroy()
-	return TRUE // No.
+/datum/map_z_level/Destroy(var/force)
+	crash_with("Attempt to delete a map_z_level instance [log_info_line(src)]")
+	if(!force)
+		return QDEL_HINT_LETMELIVE // No.
+	if (using_map.zlevels["[z]"] == src)
+		using_map.zlevels -= "[z]"
+	return ..()

@@ -215,20 +215,15 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 /mob/living/silicon/ai/Destroy()
 	ai_list -= src
 
-	qdel(eyeobj)
-	eyeobj = null
-
-	qdel(psupply)
-	psupply = null
-
-	qdel(aiMulti)
-	aiMulti = null
-
-	qdel(aiRadio)
-	aiRadio = null
-
-	qdel(aiCamera)
-	aiCamera = null
+	qdel_null(announcement)
+	qdel_null(eyeobj)
+	qdel_null(psupply)
+	qdel_null(aiPDA)
+	qdel_null(aiCommunicator)
+	qdel_null(aiMulti)
+	qdel_null(aiRadio)
+	qdel_null(aiCamera)
+	hack = null
 
 	return ..()
 

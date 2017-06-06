@@ -23,9 +23,8 @@
 	update_icon()
 
 /obj/machinery/pipelayer/Destroy()
-	qdel(W)
-	W = null
-	..()
+	qdel_null(W)
+	. = ..()
 
 /obj/machinery/pipelayer/RefreshParts()
 	var/mb_rating = 0
