@@ -23,8 +23,14 @@ var/global/list/round_voters = list() // Keeps track of the individuals voting f
 /datum/controller/vote/New()
 	if(vote != src)
 		if(istype(vote))
-			del(vote)
+			Recover()
+			qdel(vote)
 		vote = src
+
+/datum/controller/vote/Destroy()
+	..()
+	// Tell qdel() to Del() this object.
+	return QDEL_HINT_HARDDEL_NOW
 
 /datum/controller/vote/proc/process()	//called by master_controller
 	if(mode)

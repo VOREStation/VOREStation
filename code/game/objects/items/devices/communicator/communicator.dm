@@ -803,7 +803,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	if(exonet)
 		exonet.remove_address()
 		exonet = null
-	..()
+	return ..()
 
 // Proc: update_icon()
 // Parameters: None

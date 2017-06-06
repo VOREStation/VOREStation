@@ -355,12 +355,9 @@
 	density = 0
 	update_nearby_tiles()
 	var/turf/location = loc
-	loc = null
+	. = ..()
 	for(var/obj/structure/window/W in orange(location, 1))
 		W.update_icon()
-	loc = location
-	..()
-
 
 /obj/structure/window/Move()
 	var/ini_dir = dir

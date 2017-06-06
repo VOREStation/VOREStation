@@ -393,9 +393,6 @@
 /obj/item/weapon/grab/proc/size_difference(mob/A, mob/B)
 	return mob_size_difference(A.mob_size, B.mob_size)
 
-/obj/item/weapon/grab
-	var/destroying = 0
-
 /obj/item/weapon/grab/Destroy()
 	animate(affecting, pixel_x = 0, pixel_y = 0, 4, 1, LINEAR_EASING)
 	affecting.layer = 4
@@ -408,5 +405,4 @@
 		assailant = null
 	qdel(hud)
 	hud = null
-	destroying = 1 // stops us calling qdel(src) on dropped()
-	..()
+	return ..()
