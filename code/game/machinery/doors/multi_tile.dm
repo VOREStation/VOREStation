@@ -82,4 +82,4 @@
 
 /obj/machinery/door/airlock/multi_tile/metal/mait
 	icon = 'icons/obj/doors/Door2x1_Maint.dmi'
-	req_one_access = list(access_maint_tunnels)
+	//req_one_access = list(access_maint_tunnels) //VOREStaiton Edit - Maintenance is open access
