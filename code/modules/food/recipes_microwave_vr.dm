@@ -93,3 +93,24 @@
 		/obj/item/weapon/reagent_containers/food/snacks/meat
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/generalschicken
+
+/datum/recipe/chocroizegg
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/chocolatebar,
+		/obj/item/weapon/reagent_containers/food/snacks/egg/roiz
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/chocolateegg/roiz
+
+/datum/recipe/friedroizegg
+	reagents = list("sodiumchloride" = 1, "blackpepper" = 1)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/egg/roiz
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/friedegg/roiz
+
+/datum/recipe/boiledroizegg
+	reagents = list("water" = 5)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/egg/roiz
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/boiledegg/roiz
