@@ -220,7 +220,11 @@ item_path: /obj/item/weapon/implanter/reagent_generator/belle
 # ######## I CKEYS
 
 {
-ckey: interrolouischaracter_name: Ruda Lizdenitem_path: /obj/item/clothing/accessory/badge/holo/detective/ruda}{
+ckey: interrolouis
+character_name:  Ruda Lizden
+item_path:/obj/item/clothing/accessory/badge/holo/detective/ruda
+}
+{
 ckey: ivymoomoo
 character_name: Ivy Baladeva
 item_path: /obj/item/weapon/storage/backpack/messenger/sec/fluff/ivymoomoo
