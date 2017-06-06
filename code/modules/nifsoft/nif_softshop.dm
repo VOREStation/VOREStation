@@ -67,38 +67,6 @@
 
 	return ..()
 
-/*
-/obj/proc/allowed(mob/M)
-	//check if it doesn't require any access at all
-	if(src.check_access(null))
-		return 1
-
-	var/id = M.GetIdCard()
-	if(id)
-		return check_access(id)
-	return 0
-
-///obj/item/proc/GetAccess()
-//	return list()
-
-/atom/movable/proc/GetAccess()
-	var/obj/item/weapon/card/id/id = GetIdCard()
-	return id ? id.GetAccess() : list()
-
-/obj/proc/GetID()
-	return null
-
-/obj/proc/check_access(obj/item/I)
-	return check_access_list(I ? I.GetAccess() : list())
-
-/obj/proc/check_access_list(var/list/L)
-	if(!req_access)		req_access = list()
-	if(!req_one_access)	req_one_access = list()
-	if(!L)	return 0
-	if(!istype(L, /list))	return 0
-	return has_access(req_access, req_one_access, L)
-*/
-
 //Had to override this too
 /obj/machinery/vending/nifsoft_shop/Topic(href, href_list)
 	if(stat & (BROKEN|NOPOWER))
