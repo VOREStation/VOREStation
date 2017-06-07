@@ -49,7 +49,7 @@
 	containername = "Dangerous Predator crate"
 	access = access_xenobiology
 
-/datum/supply_packs/sci/pred
+/datum/supply_packs/sci/pred_doom
 	name = "EXTREMELY Dangerous Predator crate"
 	cost = 200
 	containertype = /obj/structure/largecrate/animal/dangerous

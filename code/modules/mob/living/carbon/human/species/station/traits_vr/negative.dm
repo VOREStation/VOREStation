@@ -56,6 +56,18 @@
 	cost = -2
 	var_changes = list("burn_mod" = 1.30)
 
+/datum/trait/conductive
+	name = "Conductive"
+	desc = "Increases your susceptibility to electric shocks by a small amount."
+	cost = -1
+	var_changes = list("siemens_coefficient" = 1.15)
+
+/datum/trait/conductive_plus
+	name = "Conductive (Plus)"
+	desc = "Increases your susceptibility to electric shocks by a moderate amount."
+	cost = -2
+	var_changes = list("siemens_coefficient" = 1.3)
+
 /datum/trait/photosensitive
 	name = "Photosensitive"
 	desc = "Increases stun duration from flashes and other light-based stuns."

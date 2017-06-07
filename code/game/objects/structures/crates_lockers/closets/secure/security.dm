@@ -143,14 +143,15 @@
 		new /obj/item/device/flash(src)
 		new /obj/item/weapon/melee/baton/loaded(src)
 		new /obj/item/weapon/gun/projectile/lamia(src)
-		new /obj/item/ammo_magazine/a44/rubber(src)
-		new /obj/item/ammo_magazine/a44(src)
-		new /obj/item/ammo_magazine/a44(src)
+		new /obj/item/ammo_magazine/m44/rubber(src)
+		new /obj/item/ammo_magazine/m44(src)
+		new /obj/item/ammo_magazine/m44(src)
 		new /obj/item/weapon/gun/energy/gun(src)
 		new /obj/item/weapon/cell/device/weapon(src)
 		new /obj/item/weapon/melee/telebaton(src)
 		new /obj/item/device/flashlight/maglight(src)
 		return
+//VOREStation Edit End
 
 /obj/structure/closet/secure_closet/warden
 	name = "warden's locker"
@@ -234,7 +235,7 @@
 		new /obj/item/clothing/accessory/storage/black_vest(src)
 		new /obj/item/clothing/head/soft/sec/corp(src)
 		new /obj/item/clothing/under/rank/security/corp(src)
-		//new /obj/item/ammo_magazine/c45m/rubber(src) //VOREStation Edit
+		//new /obj/item/ammo_magazine/m45/rubber(src) //VOREStation Edit
 		new /obj/item/weapon/gun/energy/taser(src)
 		new /obj/item/weapon/cell/device/weapon(src)
 		new /obj/item/clothing/suit/storage/hooded/wintercoat/security(src)
@@ -294,8 +295,8 @@
 		new /obj/item/device/radio/headset/headset_sec(src)
 		new /obj/item/device/radio/headset/headset_sec/alt(src)
 		new /obj/item/clothing/suit/storage/vest/detective(src)
-		new /obj/item/ammo_magazine/a44sl/rubber(src) //VOREStation Edit
-		new /obj/item/ammo_magazine/a44sl/rubber(src) //VOREStation Edit
+		new /obj/item/ammo_casing/a44/rubber(src)
+		new /obj/item/ammo_casing/a44/rubber(src)
 		new /obj/item/taperoll/police(src)
 		new /obj/item/weapon/gun/projectile/revolver/consul(src) //VOREStation Edit
 		new /obj/item/clothing/accessory/holster/armpit(src)
