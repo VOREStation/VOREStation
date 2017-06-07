@@ -7,14 +7,6 @@
   *
  **/
 var/datum/controller/master/Master = new()
-var/MC_restart_clear = 0
-var/MC_restart_timeout = 0
-var/MC_restart_count = 0
-
-
-//current tick limit, assigned by the queue controller before running a subsystem.
-//used by check_tick as well so that the procs subsystems call can obey that SS's tick limits
-var/CURRENT_TICKLIMIT = TICK_LIMIT_RUNNING
 
 /datum/controller/master
 	name = "Master"
@@ -52,6 +44,14 @@ var/CURRENT_TICKLIMIT = TICK_LIMIT_RUNNING
 
 	var/current_runlevel	//for scheduling different subsystems for different stages of the round
 
+	var/static/restart_clear = 0
+	var/static/restart_timeout = 0
+	var/static/restart_count = 0
+	
+	//current tick limit, assigned before running a subsystem.
+	//used by CHECK_TICK as well so that the procs subsystems call can obey that SS's tick limits
+	var/static/current_ticklimit = TICK_LIMIT_RUNNING
+
 /datum/controller/master/New()
 	// Highlander-style: there can only be one! Kill off the old and replace it with the new.
 	subsystems = list()
@@ -79,14 +79,14 @@ var/CURRENT_TICKLIMIT = TICK_LIMIT_RUNNING
 //	-1 if we encountered a runtime trying to recreate it
 /proc/Recreate_MC()
 	. = -1 //so if we runtime, things know we failed
-	if (world.time < MC_restart_timeout)
+	if (world.time < Master.restart_timeout)
 		return 0
-	if (world.time < MC_restart_clear)
-		MC_restart_count *= 0.5
+	if (world.time < Master.restart_clear)
+		Master.restart_count *= 0.5
 
-	var/delay = 50 * ++MC_restart_count
-	MC_restart_timeout = world.time + delay
-	MC_restart_clear = world.time + (delay * 2)
+	var/delay = 50 * ++Master.restart_count
+	Master.restart_timeout = world.time + delay
+	Master.restart_clear = world.time + (delay * 2)
 	Master.processing = 0 //stop ticking this one
 	try
 		new/datum/controller/master()
@@ -155,13 +155,13 @@ var/CURRENT_TICKLIMIT = TICK_LIMIT_RUNNING
 
 	var/start_timeofday = REALTIMEOFDAY
 	// Initialize subsystems.
-	CURRENT_TICKLIMIT = config.tick_limit_mc_init
+	current_ticklimit = config.tick_limit_mc_init
 	for (var/datum/controller/subsystem/SS in subsystems)
 		if (SS.flags & SS_NO_INIT)
 			continue
 		SS.Initialize(REALTIMEOFDAY)
 		CHECK_TICK
-	CURRENT_TICKLIMIT = TICK_LIMIT_RUNNING
+	current_ticklimit = TICK_LIMIT_RUNNING
 	var/time = (REALTIMEOFDAY - start_timeofday) / 10
 
 	var/msg = "Initializations complete within [time] second[time == 1 ? "" : "s"]!"
@@ -268,7 +268,7 @@ var/CURRENT_TICKLIMIT = TICK_LIMIT_RUNNING
 	while (1)
 		tickdrift = max(0, MC_AVERAGE_FAST(tickdrift, (((REALTIMEOFDAY - init_timeofday) - (world.time - init_time)) / world.tick_lag)))
 		if (processing <= 0)
-			CURRENT_TICKLIMIT = TICK_LIMIT_RUNNING
+			current_ticklimit = TICK_LIMIT_RUNNING
 			sleep(10)
 			continue
 
@@ -276,7 +276,7 @@ var/CURRENT_TICKLIMIT = TICK_LIMIT_RUNNING
 		//	because sleeps are processed in the order received, so longer sleeps are more likely to run first
 		if (world.tick_usage > TICK_LIMIT_MC)
 			sleep_delta += 2
-			CURRENT_TICKLIMIT = TICK_LIMIT_RUNNING - (TICK_LIMIT_RUNNING * 0.5)
+			current_ticklimit = TICK_LIMIT_RUNNING * 0.5
 			sleep(world.tick_lag * (processing + sleep_delta))
 			continue
 
@@ -314,7 +314,7 @@ var/CURRENT_TICKLIMIT = TICK_LIMIT_RUNNING
 			if (!error_level)
 				iteration++
 			error_level++
-			CURRENT_TICKLIMIT = TICK_LIMIT_RUNNING
+			current_ticklimit = TICK_LIMIT_RUNNING
 			sleep(10)
 			continue
 
@@ -326,7 +326,7 @@ var/CURRENT_TICKLIMIT = TICK_LIMIT_RUNNING
 				if (!error_level)
 					iteration++
 				error_level++
-				CURRENT_TICKLIMIT = TICK_LIMIT_RUNNING
+				current_ticklimit = TICK_LIMIT_RUNNING
 				sleep(10)
 				continue
 		error_level--
@@ -337,7 +337,7 @@ var/CURRENT_TICKLIMIT = TICK_LIMIT_RUNNING
 		iteration++
 		last_run = world.time
 		src.sleep_delta = MC_AVERAGE_FAST(src.sleep_delta, sleep_delta)
-		CURRENT_TICKLIMIT = TICK_LIMIT_RUNNING - (TICK_LIMIT_RUNNING * 0.25) //reserve the tail 1/4 of the next tick for the mc.
+		current_ticklimit = TICK_LIMIT_RUNNING - (TICK_LIMIT_RUNNING * 0.25) //reserve the tail 1/4 of the next tick for the mc.
 		sleep(world.tick_lag * (processing + sleep_delta))
 
 
@@ -426,7 +426,7 @@ var/CURRENT_TICKLIMIT = TICK_LIMIT_RUNNING
 			else
 				tick_precentage = tick_remaining
 
-			CURRENT_TICKLIMIT = world.tick_usage + tick_precentage
+			current_ticklimit = world.tick_usage + tick_precentage
 
 			if (!(queue_node_flags & SS_TICKER))
 				ran_non_ticker = TRUE

@@ -1,13 +1,13 @@
-#define MC_TICK_CHECK ( ( world.tick_usage > CURRENT_TICKLIMIT || src.state != SS_RUNNING ) ? pause() : 0 )
+#define MC_TICK_CHECK ( ( world.tick_usage > Master.current_ticklimit || src.state != SS_RUNNING ) ? pause() : 0 )
 
 // Used for splitting up your remaining time into phases, if you want to evenly divide it.
-#define MC_SPLIT_TICK_INIT(phase_count) var/original_tick_limit = CURRENT_TICKLIMIT; var/split_tick_phases = ##phase_count
+#define MC_SPLIT_TICK_INIT(phase_count) var/original_tick_limit = Master.current_ticklimit; var/split_tick_phases = ##phase_count
 #define MC_SPLIT_TICK \
     if(split_tick_phases > 1){\
-        CURRENT_TICKLIMIT = ((original_tick_limit - world.tick_usage) / split_tick_phases) + world.tick_usage;\
+        Master.current_ticklimit = ((original_tick_limit - world.tick_usage) / split_tick_phases) + world.tick_usage;\
         --split_tick_phases;\
     } else {\
-        CURRENT_TICKLIMIT = original_tick_limit;\
+        Master.current_ticklimit = original_tick_limit;\
     }
 
 // Used to smooth out costs to try and avoid oscillation.
