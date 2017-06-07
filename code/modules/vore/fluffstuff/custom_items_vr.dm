@@ -757,7 +757,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 			to_chat(src, "<span class='notice'>[pick(rimplant.empty_message)]</span>")
 			return
 
-		var/obj/item/weapon/reagent_containers/food/snacks/egg/roiz/egg = new(get_turf(src))
+		new /obj/item/weapon/reagent_containers/food/snacks/egg/roiz(get_turf(src))
 
 		var/index = rand(0,3)
 
