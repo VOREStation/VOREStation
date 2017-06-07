@@ -51,3 +51,11 @@
 #define SS_PAUSED 3		//paused by mc_tick_check
 #define SS_SLEEPING 4	//fire() slept.
 #define SS_PAUSING 5 	//in the middle of pausing
+
+// Standard way to define a global subsystem, keep boilerplate organized here!
+#define SUBSYSTEM_DEF(X) var/datum/controller/subsystem/##X/SS##X;\
+/datum/controller/subsystem/##X/New(){\
+    NEW_SS_GLOBAL(SS##X);\
+    PreInit();\
+}\
+/datum/controller/subsystem/##X
