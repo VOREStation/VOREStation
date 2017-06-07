@@ -1,7 +1,3 @@
-/*
-#define NIF_HIDDENLASER			22
-*/
-
 /datum/nifsoft/brute_armor
 	name = "Bullhide Mod"
 	desc = "A difficult-to-produce thickening of the dermis and skeletal structure, allowing a user to absorb more external trauma from physical sources."

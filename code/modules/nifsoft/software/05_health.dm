@@ -1,4 +1,3 @@
-// #define NIF_CREWMONITOR			14
 /datum/nifsoft/crewmonitor
 	name = "Crew Monitor"
 	desc = "A link to the local crew monitor sensors. Useful for finding people in trouble."

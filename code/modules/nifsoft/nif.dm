@@ -63,6 +63,7 @@
 			WARNING("NIF spawned in [H] failed to implant")
 			spawn(0)
 				qdel(src)
+			return FALSE
 		else
 			//Free commlink for return customers
 			new /datum/nifsoft/commlink(src)
@@ -122,7 +123,7 @@
 
 	return FALSE
 
-//Being implanted in some mob
+//Being removed from some mob
 /obj/item/device/nif/proc/unimplant(var/mob/living/carbon/human/H)
 	human = null
 	stat = NIF_PREINSTALL
@@ -232,7 +233,7 @@
 
 	var/percent_done = (world.time - (install_done - (30 MINUTES))) / (30 MINUTES)
 
-	human.client.screen.Add(global_hud.whitense)
+	human.client.screen.Add(global_hud.whitense) //This is the camera static
 
 	switch(percent_done) //This is 0.0 to 1.0 kinda percent.
 		//Connecting to optical nerves
@@ -369,7 +370,7 @@
 
 //Uninstall a piece of software
 /obj/item/device/nif/proc/uninstall(var/datum/nifsoft/old_soft)
-	var/datum/nifsoft/NS = old_soft.list_pos
+	var/datum/nifsoft/NS = nifsofts[old_soft.list_pos]
 	if(!NS || NS != old_soft)
 		return FALSE //what??
 

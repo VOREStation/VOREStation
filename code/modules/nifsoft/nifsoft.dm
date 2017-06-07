@@ -8,7 +8,7 @@
 	var/list_pos				// List position in the nifsoft list
 
 	var/cost = 1000				// Cost in cash of buying this software from a terminal
-	//TODO - While coding
+
 	var/vended = TRUE			// This is available in NIFSoft Shops at the start of the game
 	var/wear = 1				// The wear (+/- 10% when applied) that this causes to the NIF
 	var/access					// What access they need to buy it, can only set one for ~reasons~
@@ -72,6 +72,8 @@
 
 //Called when attempting to activate an implant (could be a 'pulse' activation or toggling it on)
 /datum/nifsoft/proc/activate()
+	if(active)
+		return
 	var/nif_result = nif.activate(src)
 	if(nif_result)
 		active = TRUE
@@ -79,6 +81,8 @@
 
 //Called when attempting to deactivate an implant
 /datum/nifsoft/proc/deactivate()
+	if(!active)
+		return
 	var/nif_result = nif.deactivate(src)
 	if(nif_result)
 		active = FALSE
@@ -150,7 +154,7 @@
 		return
 
 	Ht.visible_message("<span class='warning'>[Hu] begins uploading new NIFSoft into [Ht]!</span>","<span class='danger'>[Hu] is uploading new NIFSoft into you!</span>")
-	if(do_after(Ht,10 SECONDS,Hu))
+	if(do_after(Hu,10 SECONDS,Ht))
 		var/extra = extra_params()
 		new stored(Ht.nif,extra)
 		qdel(src)

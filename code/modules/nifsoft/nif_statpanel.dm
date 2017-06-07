@@ -19,7 +19,7 @@
 	nif_status += " ([round((nif.durability/initial(nif.durability))*100)]%)"
 	stat("NIF Status", nif_status)
 
-	if(!nif.stat)
+	if(nif.stat == NIF_WORKING)
 		stat("- Modules -", "LMB: Toggle, Shift+LMB: Info/Uninstall")
 		for(var/nifsoft in nif.nifsofts)
 			if(!nifsoft) continue
