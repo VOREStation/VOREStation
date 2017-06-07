@@ -114,15 +114,23 @@
 
 //For OmniHUD records access for appropriate models
 /proc/hasHUD_vr(mob/living/carbon/human/H, hudtype)
-	if(!(istype(H.glasses, /obj/item/clothing/glasses/omnihud)))
-		return 0 //Not wearing omnis, don't care.
+	if(H.nif)
+		switch(hudtype)
+			if("security")
+				if(H.nif.flag_check(NIF_V_AR_SECURITY,NIF_FLAGS_VISION))
+					return TRUE
+			if("medical")
+				if(H.nif.flag_check(NIF_V_AR_MEDICAL,NIF_FLAGS_VISION))
+					return TRUE
 
-	var/obj/item/clothing/glasses/omnihud/omni = H.glasses
+	if(istype(H.glasses, /obj/item/clothing/glasses/omnihud))
+		var/obj/item/clothing/glasses/omnihud/omni = H.glasses
+		switch(hudtype)
+			if("security")
+				if(omni.mode == "sec" || omni.mode == "best")
+					return TRUE
+			if("medical")
+				if(omni.mode == "med" || omni.mode == "best")
+					return TRUE
 
-	switch(hudtype)
-		if("security")
-			return omni.mode == "sec" || omni.mode == "best"
-		if("medical")
-			return omni.mode == "med" || omni.mode == "best"
-		else
-			return 0
+	return FALSE

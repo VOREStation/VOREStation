@@ -627,7 +627,6 @@
 /datum/sprite_accessory/facial_hair
 
 	icon = 'icons/mob/Human_face.dmi'
-	gender = MALE
 
 	shaved
 		name = "Shaved"

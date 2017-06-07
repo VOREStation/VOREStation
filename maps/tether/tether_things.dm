@@ -307,7 +307,7 @@ var/global/list/latejoin_tram   = list()
 	desc = "Neutralizes toxins and provides a mild alangesic effect."
 	icon_state = "pill2"
 
-/obj/item/weapon/reagent_containers/pill/antitox/New()
+/obj/item/weapon/reagent_containers/pill/airlock/New()
 	..()
 	reagents.add_reagent("anti_toxin", 15)
 	reagents.add_reagent("paracetamol", 5)

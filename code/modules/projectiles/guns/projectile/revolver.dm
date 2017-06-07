@@ -43,10 +43,10 @@
 	name = "revolver"
 	desc = "A cheap Martian knock-off of a Smith & Wesson Model 10. Uses .38-Special rounds."
 	icon_state = "detective"
-	caliber = "38"
+	caliber = ".38"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	fire_sound = 'sound/weapons/Gunshot_light.ogg'
-	ammo_type = /obj/item/ammo_casing/c38
+	ammo_type = /obj/item/ammo_casing/a38
 
 /obj/item/weapon/gun/projectile/revolver/detective/verb/rename_gun()
 	set name = "Name Gun"
@@ -71,13 +71,13 @@
 	name = "Deckard .38"
 	desc = "A custom-built revolver, based off the semi-popular Detective Special model."
 	icon_state = "deckard-empty"
-	caliber = "38"
+	caliber = ".38"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	fire_sound = 'sound/weapons/Gunshot_light.ogg'
-	ammo_type = /obj/item/ammo_casing/c38
+	ammo_type = /obj/item/ammo_casing/a38
 
 /obj/item/weapon/gun/projectile/revolver/deckard/emp
-	ammo_type = /obj/item/ammo_casing/c38/emp
+	ammo_type = /obj/item/ammo_casing/a38/emp
 
 
 /obj/item/weapon/gun/projectile/revolver/deckard/update_icon()
@@ -107,13 +107,13 @@
 	name = "\"The Judge\""
 	desc = "A revolving hand-shotgun by Cybersun Industries that packs the power of a 12 guage in the palm of your hand (if you don't break your wrist). Uses 12 shotgun rounds."
 	icon_state = "judge"
-	caliber = "shotgun"
+	caliber = "12g"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 4)
 	max_shells = 5
 	fire_sound = 'sound/weapons/shotgun.ogg'
 	recoil = 2 // ow my fucking hand
 	accuracy = -1 // smooth bore + short barrel = shit accuracy
-	ammo_type = /obj/item/ammo_casing/shotgun
+	ammo_type = /obj/item/ammo_casing/a12g
 	// ToDo: Remove accuracy debuf in exchange for slightly injuring your hand every time you fire it.
 
 /obj/item/weapon/gun/projectile/revolver/lemat
@@ -124,11 +124,11 @@
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	handle_casings = CYCLE_CASINGS
 	max_shells = 9
-	caliber = "38"
-	ammo_type = /obj/item/ammo_casing/c38
+	caliber = ".38"
+	ammo_type = /obj/item/ammo_casing/a38
 	var/secondary_max_shells = 1
-	var/secondary_caliber = "shotgun"
-	var/secondary_ammo_type = /obj/item/ammo_casing/shotgun
+	var/secondary_caliber = "12g"
+	var/secondary_ammo_type = /obj/item/ammo_casing/a12g
 	var/flipped_firing = 0
 	var/list/secondary_loaded = list()
 	var/list/tertiary_loaded = list()
