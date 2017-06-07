@@ -32,7 +32,7 @@
 	if(force_process)
 		bad_external_organs.Cut()
 		for(var/obj/item/organ/external/Ex in organs)
-			bad_external_organs |= Ex
+			bad_external_organs += Ex //VOREStation Edit - Silly and slow to |= this
 
 	//processing internal organs is pretty cheap, do that first.
 	for(var/obj/item/organ/I in internal_organs)
@@ -44,6 +44,7 @@
 	if(!force_process && !bad_external_organs.len)
 		return
 
+	number_wounds = 0 //VOREStation Add - You have to reduce this at some point...
 	for(var/obj/item/organ/external/E in bad_external_organs)
 		if(!E)
 			continue
