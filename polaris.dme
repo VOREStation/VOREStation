@@ -40,6 +40,7 @@
 #include "code\__defines\qdel.dm"
 #include "code\__defines\research.dm"
 #include "code\__defines\species_languages.dm"
+#include "code\__defines\subsystems.dm"
 #include "code\__defines\targeting.dm"
 #include "code\__defines\tick.dm"
 #include "code\__defines\turfs.dm"
