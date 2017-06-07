@@ -1202,3 +1202,27 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 				B.internal_contents |= src
 				user.visible_message("<span class='warning'>[user] eats a telebeacon!</span>","You eat the the beacon!")
 				playsound(user, B.vore_sound, 70, 1)
+
+//Pear120:  Ada Lovelace
+/obj/item/weapon/implanter/subjugation/New()
+	src.imp = new /obj/item/weapon/implant/subjugation( src )
+	..()
+	update()
+	return
+
+/obj/item/weapon/implant/subjugation
+	name = "subjugation implant"
+	desc = "Turns you into a servile slave."
+
+/obj/item/weapon/implant/subjugation/get_data()
+	var/dat = {"
+<b>Implant Specifications:</b><BR>
+<b>Name:</b>XV-21 Asset Subjugation Implant<BR>
+<b>Life:</b> Until Subject Expires.<BR>
+<b>Important Notes:</b> Personnel injected with this device will become unwaveringly loyal to anyone who commands them. They will be unable to refuse any order given to them.<BR>
+<HR>
+<b>Implant Details:</b><BR>
+<b>Function:</b> Contains a small pod of nanobots that monitor and adjust the subject's mental functions.<BR>
+<b>Special Features:</b> Subject obeys any order given to them.<BR>
+<b>Integrity:</b> Implant will last so long as the subject remains alive."}
+	return dat
