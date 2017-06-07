@@ -94,7 +94,7 @@
 		// VOREStation Edit End
 
 		// get objects (not mobs, they are handled by /obj/zshadow)
-		var/image/o_img = list()
+		var/list/o_img = list()
 		for(var/obj/O in below)
 			if(O.invisibility) continue // Ignore objects that have any form of invisibility
 			if(O.loc != below) continue // Ignore multi-turf objects not directly below
@@ -104,10 +104,11 @@
 			temp2.overlays += O.overlays
 			// TODO Is pixelx/y needed?
 			o_img += temp2
-		var/overlay_count = overlays.len
+		var/overlays_pre = overlays.len
 		overlays += o_img
-		if(overlays.len != overlay_count + 1) //Here we go!
-			world.log << "Corrupted openspace turf at [x],[y],[z] being replaced."
+		var/overlays_post = overlays.len
+		if(overlays_post != (overlays_pre + o_img.len)) //Here we go!
+			world.log << "Corrupted openspace turf at [x],[y],[z] being replaced. Pre: [overlays_pre], Post: [overlays_post]"
 			new /turf/simulated/open(src)
 			return //Let's get out of here.
 
