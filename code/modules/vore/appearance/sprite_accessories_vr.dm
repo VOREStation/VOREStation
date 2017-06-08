@@ -471,6 +471,12 @@
 	desc = ""
 	icon_state = "succubus-black"
 
+/datum/sprite_accessory/tail/doublekitsune
+	name = "double kitsune tail, colorable"
+	desc = ""
+	icon_state = "doublekitsune"
+	do_colouration = 1
+
 /datum/sprite_accessory/tail/succubus_color
 	name = "succubus, colorable (+wings)"
 	desc = ""
