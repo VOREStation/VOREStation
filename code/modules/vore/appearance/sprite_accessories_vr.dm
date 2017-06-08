@@ -535,7 +535,7 @@
 	name = "gazer eyestalks (Liquidfirefly)"
 	desc = ""
 	icon_state = "liquidfirefly-eyestalks"
-	ckeys_allowed = list("liquidfirefly")
+	ckeys_allowed = list("liquidfirefly","seiga")
 
 /datum/sprite_accessory/tail/miria_fluffdragon
 	name = "fluffdragon wings+tail (Miria Masters)"
