@@ -85,7 +85,7 @@
 
 /obj/item/clothing/shoes/boots/winter/supply
 	name = "supply winter boots"
-	desc = "A pair of winter boots.These ones are lined with the galactic cargoria colors!"
+	desc = "A pair of winter boots. These ones are lined with the galactic cargonia colors!"
 	icon_state = "winterboots_sup"
 
 /obj/item/clothing/shoes/boots/winter/hydro
