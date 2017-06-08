@@ -2129,6 +2129,7 @@
 #include "code\modules\virus2\helpers.dm"
 #include "code\modules\virus2\isolator.dm"
 #include "code\modules\virus2\items_devices.dm"
+#include "code\modules\xenoarcheaology\anomaly_container.dm"
 #include "code\modules\xenoarcheaology\boulder.dm"
 #include "code\modules\xenoarcheaology\effect.dm"
 #include "code\modules\xenoarcheaology\manuals.dm"
