@@ -518,6 +518,13 @@
 	icon_state = "molenar-kitsune"
 	ckeys_allowed = list("molenar")
 
+/datum/sprite_accessory/tail/harpywings
+	name = "harpy wings, colorable"
+	desc = ""
+	icon_state = "harpywings"
+	do_colouration = 1
+	show_species_tail = 1
+
 /datum/sprite_accessory/tail/liquidfirefly_gazer
 	name = "gazer eyestalks (Liquidfirefly)"
 	desc = ""
