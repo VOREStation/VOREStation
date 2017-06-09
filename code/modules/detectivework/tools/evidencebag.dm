@@ -12,6 +12,8 @@
 /obj/item/weapon/evidencebag/MouseDrop(var/obj/item/I as obj)
 	if (!ishuman(usr))
 		return
+	if(!istype(I) || I.anchored)
+		return  ..()
 
 	var/mob/living/carbon/human/user = usr
 
@@ -35,9 +37,6 @@
 			user.drop_from_inventory(I)
 		else
 			return
-
-	if(!istype(I) || I.anchored)
-		return
 
 	if(istype(I, /obj/item/weapon/evidencebag))
 		user << "<span class='notice'>You find putting an evidence bag in another evidence bag to be slightly absurd.</span>"
