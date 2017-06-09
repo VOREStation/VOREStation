@@ -24,7 +24,7 @@
 			if(!SC.brainmob.mind)
 				to_chat(src,"<span class='warning'>You need a loaded mind to use *nme.</span>")
 				return 1
-			var/nifmessage = sanitize(input("Type a message to say.") as text|null)
+			var/nifmessage = sanitize(input("Type a message to say.","Speak into NIF") as text|null)
 			if(nifmessage)
 				nifmessage = "<b>\[\icon[nif.big_icon]NIF\]</b> <b>[src]</b> speaks, \"[nifmessage]\""
 				to_chat(SC.brainmob,nifmessage)
@@ -42,7 +42,7 @@
 			if(!SC.brainmob.mind)
 				to_chat(src,"<span class='warning'>You need a loaded mind to use *nme.</span>")
 				return 1
-			var/nifmessage = sanitize(input("Type an action to perform.") as text|null)
+			var/nifmessage = sanitize(input("Type an action to perform.","Emote into NIF") as text|null)
 			if(nifmessage)
 				nifmessage = "<b>\[\icon[nif.big_icon]NIF\]</b> <b>[src]</b> [nifmessage]"
 				to_chat(SC.brainmob,nifmessage)

@@ -39,7 +39,9 @@
  * Prep for save: returns a preferences object if we're ready and allowed to save this mob.
  */
 /proc/prep_for_persist(var/mob/persister)
-	ASSERT(istype(persister))
+	if(!istype(persister))
+		crash_with("prep_for_persist given non-mob [persister]")
+		return
 
 	// Find out of this mob is a proper mob!
 	if (persister.mind && persister.mind.loaded_from_ckey)
@@ -71,7 +73,9 @@
 	return 1
 
 /proc/persist_interround_data(var/mob/occupant, var/datum/spawnpoint/new_spawn_point_type)
-	ASSERT(istype(occupant))
+	if(!istype(occupant))
+		crash_with("persist_interround_data given non-mob [occupant]")
+		return
 
 	var/datum/preferences/prefs = prep_for_persist(occupant)
 	if(!prefs)
@@ -219,7 +223,8 @@
 */
 /proc/persist_nif_data(var/mob/living/carbon/human/H,var/datum/preferences/prefs)
 	if(!istype(H))
-		CRASH("persist_nif_data given a nonhuman: [H]")
+		crash_with("persist_nif_data given a nonhuman: [H]")
+		return
 
 	if(!prefs)
 		prefs = prep_for_persist(H)

@@ -27,6 +27,7 @@
 		brainmob.stat = 0
 		brainmob.silent = FALSE
 		dead_mob_list -= src.brainmob
+		brainmob.add_language(LANGUAGE_GALCOM)
 		load_settings()
 
 	Destroy()
