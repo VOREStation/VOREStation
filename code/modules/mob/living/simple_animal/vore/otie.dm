@@ -6,7 +6,6 @@
 	icon_living = "otie"
 	icon_dead = "otie-dead"
 	icon_rest = "otie_rest"
-
 	faction = "otie"
 	recruitable = 1
 	maxHealth = 120
@@ -21,7 +20,6 @@
 	specific_targets = 1
 	run_at_them = 0
 	attack_same = 0
-
 	speak_chance = 4
 	speak = list("Boof.","Waaf!","Prurrrr.","Growl!","Bork!","Rurrr..","Aruur!","Awoo!")
 	speak_emote = list("growls", "roars", "yaps", "Awoos")
@@ -29,17 +27,14 @@
 	emote_see = list("stares ferociously", "snarls", "licks their chops", "stretches", "yawns")
 	say_maybe_target = list("Ruh?", "Waf?")
 	say_got_target = list("Rurrr!", "ROAR!", "MINE!", "RAHH!", "Slurp.. RAH!")
-
 	melee_damage_lower = 5
 	melee_damage_upper = 20
-
 	response_help = "pets the"
 	response_disarm = "bops the"
 	response_harm = "hits the"
 	attacktext = "mauled"
 	friendly = list("nuzzles", "slobberlicks", "noses softly at", "noseboops")
 	meat_amount = 5
-
 	old_x = -16
 	old_y = 0
 	pixel_x = -16
@@ -73,11 +68,12 @@
 	icon_dead = "sotie-dead"
 	faction = "neutral"
 	tamed = 1
+	maxHealth = 150
+	health = 150
+	loot_list = list(/obj/item/clothing/glasses/sunglasses/sechud,/obj/item/clothing/suit/armor/vest/alt)
 
 	var/check_records = 1 // If true, arrests people without a record.
 	var/check_arrest = 1 // If true, arrests people who are set to arrest.
-
-//Holy shit oh god how do I make it not destroy and devour everything indiscriminately!
 
 /mob/living/simple_animal/otie/PunchTarget()
 	if(istype(target_mob,/mob/living/simple_animal/mouse))
