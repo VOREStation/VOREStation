@@ -87,6 +87,8 @@
 /area/proc/firedoors_close()
 	if(!firedoors_closed)
 		firedoors_closed = TRUE
+		if(!all_doors)
+			return
 		for(var/obj/machinery/door/firedoor/E in all_doors)
 			if(!E.blocked)
 				if(E.operating)
@@ -99,6 +101,8 @@
 /area/proc/firedoors_open()
 	if(firedoors_closed)
 		firedoors_closed = FALSE
+		if(!all_doors)
+			return
 		for(var/obj/machinery/door/firedoor/E in all_doors)
 			if(!E.blocked)
 				if(E.operating)
