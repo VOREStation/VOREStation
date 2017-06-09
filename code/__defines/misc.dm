@@ -69,6 +69,11 @@
 #define COLOR_PALE_RED_GRAY		"#CC9090"
 #define COLOR_PALE_PURPLE_GRAY	"#BDA2BA"
 #define COLOR_PURPLE_GRAY 		"#A2819E"
+#define COLOR_RED_LIGHT         "#FF3333"
+#define COLOR_DEEP_SKY_BLUE     "#00e1ff"
+
+
+
 
 //	Shuttles.
 
@@ -82,6 +87,7 @@
 #define SHUTTLE_IDLE      0
 #define SHUTTLE_WARMUP    1
 #define SHUTTLE_INTRANSIT 2
+#define SHUTTLE_CRASHED   3 // VOREStation Edit - Yup that can happen now
 
 // Ferry shuttle processing status.
 #define IDLE_STATE   0
@@ -121,6 +127,7 @@
 #define HUD_LAYER 20			//Above lighting, but below obfuscation. For in-game HUD effects (whereas SCREEN_LAYER is for abstract/OOC things like inventory slots)
 #define OBFUSCATION_LAYER 21	//Where images covering the view for eyes are put
 #define SCREEN_LAYER 22			//Mob HUD/effects layer
+#define ABOVE_WINDOW_LAYER 3.25	//Above full tile windows so wall items are clickable // VOREStation Edit
 
 // Convoluted setup so defines can be supplied by Bay12 main server compile script.
 // Should still work fine for people jamming the icons into their repo.
@@ -183,3 +190,14 @@
 #define ROLE_SYNTHETIC			"synthetic"
 #define ROLE_UNKNOWN			"unknown"
 #define ROLE_EVERYONE			"everyone"
+
+// Canonical spellings of TSCs, so typos never have to happen again due to human error.
+#define TSC_NT		"NanoTrasen"
+#define TSC_HEPH	"Hephaestus" // Because everyone misspells it
+#define TSC_VM		"Vey Med"
+#define TSC_ZH		"Zeng-Hu"
+#define TSC_WT		"Ward-Takahashi"
+#define TSC_BC		"Bishop Cybernetics"
+#define TSC_MORPH	"Morpheus"
+#define TSC_XION	"Xion" // Not really needed but consistancy I guess.
+#define TSC_GIL 	"Gilthari"

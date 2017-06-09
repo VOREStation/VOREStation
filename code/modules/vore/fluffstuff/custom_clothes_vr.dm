@@ -774,6 +774,7 @@
 			else
 				return 1
 
+
 /obj/item/clothing/under/rank/internalaffairs/fluff/joan
 	desc = "The plain, professional attire of a Federation Law Enforcement Detective."
 	name = "Federation Dress Shirt"
@@ -1219,3 +1220,80 @@ Departamental Swimsuits, for general use
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "batter"
 	item_state = "batter_mob"
+
+
+//samanthafyre:Kateryna Petrovitch
+/obj/item/clothing/suit/armor/vest/wolftaur/kate
+	name = "Kat's Fox Taur Armor"
+	desc = "A set of security armor, light weight and easy to run in for a Taur, this item protects the \
+	entire body."
+	icon = 'icons/mob/taursuits_vr.dmi'
+	icon_override = 'icons/mob/taursuits_vr.dmi'
+	icon_state = "katesuit"
+	item_state_slots = null
+
+	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+		if(..())
+			if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
+				if(icon_state == "katesuit")
+					return ..()
+				icon_override = 'icons/mob/taursuits_vr.dmi'
+				icon_state = "katesuit"
+				pixel_x = -16
+				return ..()
+			else
+				H << "<span class='warning'>You need to have a wolf-taur half to wear this.</span>"
+				return 0
+
+//samanthafyre:Kateryna Petrovitch
+/obj/item/clothing/suit/space/void/engineering/kate
+	name = "Kat's Navy Engineer voidsuit"
+	desc = "Taur engineering voidsuit. Recolored navy blue and white. Slightly tweaked as well to \
+	get close to having security voidsuit protection as possible with a slight reduction in movement \
+	speed to compensate for custom padding and armor Kateryna made herself."
+	icon = 'icons/mob/taursuits_vr.dmi'
+	icon_override = 'icons/mob/taursuits_vr.dmi'
+	icon_state = "lilithsuit"
+	species_restricted = null
+	armor = list(melee = 40, bullet = 20, laser = 20,energy = 5, bomb = 35, bio = 100, rad = 20)
+
+	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+		if(..())
+			if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
+				if(icon_state == "lilithsuit")
+					return ..()
+				icon_override = 'icons/mob/taursuits_vr.dmi'
+				icon_state = "lilithsuit"
+				pixel_x = -16
+				return ..()
+			else
+				H << "<span class='warning'>You need to have a wolf-taur half to wear this.</span>"
+				return 0
+
+//samanthafyre:Kateryna Petrovitch
+/obj/item/clothing/head/helmet/space/fluff/kate
+	name = "Kat's Navy Engineer Helmet"
+	desc = "A customized combat space helmet made for Kateryna. It uses a navy design as the base before it\
+	was customized to suit the wearer's personality."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "lilithhelmet"
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "lilithhelmet"
+	light_overlay = "helmet_light"
+	species_restricted = null
+
+	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+		if(..())
+			if(H.ckey != "samanthafyre")
+				H << "<span class='warning'>You try to fit on the helmet, but it doesn't fit.</span>"
+				return 0
+			else
+				return 1
+
+//Seiga: Alfonso Oak Telanor
+/obj/item/clothing/glasses/sunglasses/fluff/alfonso
+	name = "cyborg visor"
+	desc = "Eyewear worn by a once famous Thunderdome competitor. Fo' shizzle."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "alfonso_visor"
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'

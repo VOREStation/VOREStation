@@ -107,6 +107,7 @@
 	for(var/obj/item/integrated_circuit/circuit in contents)
 		HTML += "<a href=?src=\ref[circuit];examine=1>[circuit.name]</a> | "
 		HTML += "<a href=?src=\ref[circuit];rename=1>\[Rename\]</a> | "
+		HTML += "<a href=?src=\ref[circuit];scan=1>\[Scan with Debugger\]</a> | "
 		if(circuit.removable)
 			HTML += "<a href=?src=\ref[circuit];remove=1>\[Remove\]</a>"
 		HTML += "<br>"
@@ -223,9 +224,10 @@
 	if(proximity)
 		var/scanned = FALSE
 		for(var/obj/item/integrated_circuit/input/sensor/S in contents)
-			S.set_pin_data(IC_OUTPUT, 1, weakref(target))
-			S.check_then_do_work()
-			scanned = TRUE
+//			S.set_pin_data(IC_OUTPUT, 1, weakref(target))
+//			S.check_then_do_work()
+			if(S.scan(target))
+				scanned = TRUE
 		if(scanned)
 			visible_message("<span class='notice'>\The [user] waves \the [src] around [target].</span>")
 

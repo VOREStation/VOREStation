@@ -118,8 +118,8 @@
 			var/mob/observer/dead/observer = new()
 
 			spawning = 1
-			src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // MAD JAMS cant last forever yo
-
+			if(client.media)
+				client.media.stop_music() // MAD JAMS cant last forever yo
 
 			observer.started_as_observer = 1
 			close_spawn_windows()
@@ -455,7 +455,8 @@
 	else
 		client.prefs.copy_to(new_character)
 
-	src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // MAD JAMS cant last forever yo
+	if(client && client.media)
+		client.media.stop_music() // MAD JAMS cant last forever yo
 
 	if(mind)
 		mind.active = 0					//we wish to transfer the key manually
@@ -487,7 +488,7 @@
 	//new_character.dna.UpdateSE()
 
 	// Do the initial caching of the player's body icons.
-	new_character.force_update_limbs()
+	//new_character.force_update_limbs() //VOREStation Removal - This is done in copy_to, don't waste time.
 	new_character.update_eyes()
 	new_character.regenerate_icons()
 

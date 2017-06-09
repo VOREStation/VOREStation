@@ -4,6 +4,7 @@ the HUD updates properly! */
 
 // hud overlay image type, used for clearing client.images precisely
 /image/hud_overlay
+	appearance_flags = APPEARANCE_UI // Don't get scaled with macro/micros.  VOREStation edit
 
 //Medical HUD outputs. Called by the Life() proc of the mob using it, usually.
 proc/process_med_hud(var/mob/M, var/local_scanner, var/mob/Alt)

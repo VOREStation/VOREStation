@@ -1,6 +1,5 @@
 /obj/machinery/computer/transhuman/resleeving
 	name = "resleeving control console"
-	icon = 'icons/obj/computer.dmi'
 	icon_keyboard = "med_key"
 	icon_screen = "dna"
 	light_color = "#315ab4"
@@ -68,16 +67,27 @@
 	if(istype(W, /obj/item/device/multitool))
 		var/obj/item/device/multitool/M = W
 		var/obj/machinery/clonepod/transhuman/P = M.connecting
-		if(P && !(P in pods))
+		if(istype(P) && !(P in pods))
 			pods += P
 			P.connected = src
 			P.name = "[initial(P.name)] #[pods.len]"
 			user << "<span class='notice'>You connect [P] to [src].</span>"
-	else if(istype(W, /obj/item/weapon/disk/transcore))
+	else if(istype(W, /obj/item/weapon/disk/transcore) && TC && !TC.core_dumped)
 		user.unEquip(W)
 		disk = W
 		disk.forceMove(src)
 		user << "<span class='notice'>You insert \the [W] into \the [src].</span>"
+	if(istype(W, /obj/item/weapon/disk/body_record))
+		var/obj/item/weapon/disk/body_record/brDisk = W
+		if(!brDisk.stored)
+			to_chat(user, "<span class='warning'>\The [W] does not contain a stored body record.</span>")
+			return
+		user.unEquip(W)
+		W.forceMove(get_turf(src)) // Drop on top of us
+		active_br = new /datum/transhuman/body_record(brDisk.stored) // Loads a COPY!
+		menu = 4
+		to_chat(user, "<span class='notice'>\The [src] loads the body record from \the [W] before ejecting it.</span>")
+		attack_hand(user)
 	else
 		..()
 	return
@@ -192,7 +202,7 @@
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "sleever.tmpl", src.name, 400, 450)
+		ui = new(user, src, ui_key, "sleever.tmpl", "Resleeving Control Console", 400, 450)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(5)
@@ -229,6 +239,8 @@
 	else if (href_list["coredump"])
 		if(disk)
 			transcore.core_dump(disk)
+			sleep(5)
+			visible_message("<span class='warning'>\The [src] spits out \the [disk].</span>")
 			disk.forceMove(get_turf(src))
 			disk = null
 
@@ -312,6 +324,7 @@
 				temp = "Error: No sleevers detected."
 			else
 				var/mode = text2num(href_list["sleeve"])
+				var/override
 				var/obj/machinery/transhuman/resleever/sleever = sleevers[1]
 				if (sleevers.len > 1)
 					sleever = input(usr,"Select a resleeving pod to use", "Resleever selection") as anything in sleevers
@@ -325,6 +338,17 @@
 						//OOC body lock thing.
 						if(sleever.occupant.resleeve_lock && active_mr.ckey != sleever.occupant.resleeve_lock)
 							temp = "Error: Mind incompatible with body."
+
+						var/list/subtargets = list()
+						for(var/mob/living/carbon/human/H in sleever.occupant)
+							if(H.resleeve_lock && active_mr.ckey != H.resleeve_lock)
+								continue
+							subtargets += H
+						if(subtargets.len)
+							var/oc_sanity = sleever.occupant
+							override = input(usr,"Multiple bodies detected. Select target for resleeving of [active_mr.mindname] manually. Sleeving of primary body is unsafe with sub-contents, and is not listed.", "Resleeving Target") as null|anything in subtargets
+							if(!override || oc_sanity != sleever.occupant || !(override in sleever.occupant))
+								temp = "Error: Target selection aborted."
 
 					if(2) //Card resleeving
 						if(sleever.sleevecards <= 0)
@@ -341,7 +365,7 @@
 
 				//They were dead, or otherwise available.
 				if(!temp)
-					sleever.putmind(active_mr,mode)
+					sleever.putmind(active_mr,mode,override)
 					temp = "Initiating resleeving..."
 					menu = 1
 

@@ -1,61 +1,100 @@
 
 //---------- actual energy field
 
+// Each field object has a strength var (mensured in "Renwicks").
+// Melee weapons do 5% of their normal (force var) damage, so a harmbaton would do 0.75 Renwick.
+// Projectiles do 5% of their structural damage, so a normal laser would do 2 Renwick damage.
+// For meteors, one Renwick is about equal to one layer of r-wall.
+// Meteors will be completely halted by the shield if the shield survives the impact.
+// Explosions do 4 Renwick of damage per severity, at a max of 12.
+
 /obj/effect/energy_field
-	name = "energy field"
+	name = "energy shield field"
 	desc = "Impenetrable field of energy, capable of blocking anything as long as it's active."
 	icon = 'icons/obj/machines/shielding.dmi'
-	icon_state = "shieldsparkles"
+	icon_state = "shield"
+	alpha = 100
 	anchored = 1
 	layer = 4.1		//just above mobs
 	density = 0
-	invisibility = 101
-	var/strength = 0
+	var/obj/machinery/shield_gen/my_gen = null
+	var/strength = 0 // in Renwicks
 	var/ticks_recovering = 10
+	var/max_strength = 10
 
-/obj/effect/energy_field/New()
-	..()
+/obj/effect/energy_field/New(var/newloc, var/new_gen)
+	..(newloc)
+	my_gen = new_gen
 	update_nearby_tiles()
 
 /obj/effect/energy_field/Destroy()
 	update_nearby_tiles()
+	my_gen.field.Remove(src)
+	my_gen = null
+	var/turf/current_loc = get_turf(src)
+	spawn(1) // Updates neightbors after we're gone.
+		for(var/direction in cardinal)
+			var/turf/T = get_step(current_loc, direction)
+			if(T)
+				for(var/obj/effect/energy_field/F in T)
+					F.update_icon()
 	..()
 
 /obj/effect/energy_field/ex_act(var/severity)
-	Stress(0.5 + severity)
+	adjust_strength(-(4 - severity) * 4)
 
 /obj/effect/energy_field/bullet_act(var/obj/item/projectile/Proj)
-	Stress(Proj.get_structure_damage() / 10)
+	adjust_strength(-Proj.get_structure_damage() / 10)
 
-/obj/effect/energy_field/proc/Stress(var/severity)
-	strength -= severity
+/obj/effect/energy_field/attackby(obj/item/W, mob/user)
+	if(W.force)
+		adjust_strength(-W.force / 20)
+		user.do_attack_animation(src)
+		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	..()
 
-	//if we take too much damage, drop out - the generator will bring us back up if we have enough power
-	ticks_recovering = min(ticks_recovering + 2, 10)
-	if(strength < 1)
-		invisibility = 101
-		density = 0
-		ticks_recovering = 10
-		strength = 0
-	else if(strength >= 1)
-		invisibility = 0
-		density = 1
+/obj/effect/energy_field/attack_hand(var/mob/living/user)
+	impact_effect(3) // Harmless, but still produces the 'impact' effect.
+	..()
 
-/obj/effect/energy_field/proc/Strengthen(var/severity)
-	strength += severity
-	if (strength < 0)
-		strength = 0
+/obj/effect/energy_field/Bumped(atom/A)
+	..(A)
+	impact_effect(2)
 
-	//if we take too much damage, drop out - the generator will bring us back up if we have enough power
+/obj/effect/energy_field/handle_meteor_impact(var/obj/effect/meteor/meteor)
+	var/penetrated = TRUE
+	adjust_strength(-max((meteor.wall_power * meteor.hits) / 800, 0)) // One renwick (strength var) equals one r-wall for the purposes of meteor-stopping.
+	sleep(1)
+	if(density) // Check if we're still up.
+		penetrated = FALSE
+		explosion(meteor.loc, 0, 0, 0, 0, 0, 0, 0) // For the sound effect.
+
+	// Returning FALSE will kill the meteor.
+	return penetrated // If the shield's still around, the meteor was successfully stopped, otherwise keep going and plow into the station.
+
+/obj/effect/energy_field/proc/adjust_strength(amount, impact = 1)
 	var/old_density = density
-	if(strength >= 1)
-		invisibility = 0
-		density = 1
-	else if(strength < 1)
-		invisibility = 101
-		density = 0
-	
-	if (density != old_density)
+	strength = between(0, strength + amount, max_strength)
+
+	//maptext = "[round(strength, 0.1)]/[max_strength]"
+
+	//if we take too much damage, drop out - the generator will bring us back up if we have enough power
+	if(amount < 0) // Taking damage.
+		if(impact)
+			impact_effect(round(abs(amount * 2)))
+
+		ticks_recovering = min(ticks_recovering + 2, 10)
+		if(strength < 1) // We broke
+			density = 0
+			ticks_recovering = 10
+			strength = 0
+
+	else if(amount > 0) // Healing damage.
+		if(strength >= 1)
+			density = 1
+
+	if(density != old_density)
+		update_icon()
 		update_nearby_tiles()
 
 /obj/effect/energy_field/CanPass(atom/movable/mover, turf/target, height=1.5, air_group = 0)
@@ -66,3 +105,44 @@
 
 	//return (!density || !height || air_group)
 	return !density
+
+/obj/effect/energy_field/update_icon(var/update_neightbors = 0)
+	overlays.Cut()
+	var/list/adjacent_shields_dir = list()
+	for(var/direction in cardinal)
+		var/turf/T = get_step(src, direction)
+		if(T) // Incase we somehow stepped off the map.
+			for(var/obj/effect/energy_field/F in T)
+				if(update_neightbors)
+					F.update_icon(0)
+				adjacent_shields_dir |= direction
+				break
+	// Icon_state and Glow
+	if(density)
+		icon_state = "shield"
+		set_light(3, 3, "#66FFFF")
+	else
+		icon_state = "shield_broken"
+		set_light(3, 5, "#FF9900")
+
+	// Edge overlays
+	for(var/found_dir in adjacent_shields_dir)
+		overlays += image(src.icon, src, icon_state = "shield_edge", dir = found_dir)
+
+
+// Small visual effect, makes the shield tiles brighten up by becoming more opaque for a moment, and spreads to nearby shields.
+/obj/effect/energy_field/proc/impact_effect(var/i, var/list/affected_shields = list())
+	i = between(1, i, 10)
+	alpha = 200
+	animate(src, alpha = initial(alpha), time = 1 SECOND)
+	affected_shields |= src
+	i--
+	if(i)
+		spawn(2)
+			for(var/direction in cardinal)
+				var/turf/T = get_step(src, direction)
+				if(T) // Incase we somehow stepped off the map.
+					for(var/obj/effect/energy_field/F in T)
+						if(!(F in affected_shields))
+							F.impact_effect(i, affected_shields) // Spread the effect to them.
+

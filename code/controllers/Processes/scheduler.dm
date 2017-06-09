@@ -25,6 +25,21 @@
 			catchException(e, last_object)
 		SCHECK
 
+// We've been restarted, probably due to having a massive list of tasks.
+// Lets copy over the task list as safely as we can and try to chug thru it...
+// Note: We won't be informed about tasks being destroyed, but this is the best we can do.
+/datum/controller/process/scheduler/copyStateFrom(var/datum/controller/process/scheduler/target)
+	scheduled_tasks = list()
+	for(var/st in target.scheduled_tasks)
+		if(!deleted(st) && istype(st, /datum/scheduled_task))
+			schedule(st)
+	scheduler = src
+
+// We are being killed. Least we can do is deregister all those events we registered
+/datum/controller/process/scheduler/onKill()
+	for(var/st in scheduled_tasks)
+		destroyed_event.unregister(st, src)
+
 /datum/controller/process/scheduler/statProcess()
 	..()
 	stat(null, "[scheduled_tasks.len] task\s")

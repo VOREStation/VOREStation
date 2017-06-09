@@ -94,6 +94,7 @@
 			if(mind.changeling)
 				stat("Chemical Storage", mind.changeling.chem_charges)
 				stat("Genetic Damage Time", mind.changeling.geneticdamage)
+				stat("Re-Adaptations", "[mind.changeling.readapts]/[mind.changeling.max_readapts]")
 
 /mob/living/carbon/human/ex_act(severity)
 	if(!blinded)
@@ -706,7 +707,7 @@
 	if(istype(src.glasses, /obj/item/clothing/glasses/sunglasses))
 		if(istype(src.glasses, /obj/item/clothing/glasses/sunglasses/sechud/aviator))
 			var/obj/item/clothing/glasses/sunglasses/sechud/aviator/S = src.glasses
-			if(!S.active)
+			if(!S.on)
 				number += 1
 		else if(istype(src.glasses, /obj/item/clothing/glasses/sunglasses/medhud/aviator))
 			number += 0
@@ -1036,7 +1037,8 @@
 	gunshot_residue = null
 	if(clean_feet && !shoes && istype(feet_blood_DNA, /list) && feet_blood_DNA.len)
 		feet_blood_color = null
-		qdel(feet_blood_DNA)
+		feet_blood_DNA.Cut()
+		feet_blood_DNA = null
 		update_inv_shoes(1)
 		return 1
 
@@ -1143,7 +1145,7 @@
 	if(species.default_language)
 		add_language(species.default_language)
 
-	if(species.base_color && default_colour)
+	if(species.base_color) //VOREStation Edit - Always give them a basse color
 		//Apply colour.
 		r_skin = hex2num(copytext(species.base_color,2,4))
 		g_skin = hex2num(copytext(species.base_color,4,6))
@@ -1518,3 +1520,11 @@
 /mob/living/carbon/human/is_muzzled()
 	return (wear_mask && (istype(wear_mask, /obj/item/clothing/mask/muzzle) || istype(src.wear_mask, /obj/item/weapon/grenade)))
 
+// Called by job_controller.  Makes drones start with a permit, might be useful for other people later too.
+/mob/living/carbon/human/equip_post_job()
+	var/braintype = get_FBP_type()
+	if(braintype == FBP_DRONE)
+		var/turf/T = get_turf(src)
+		var/obj/item/weapon/permit/drone/permit = new(T)
+		permit.set_name(real_name)
+		equip_to_appropriate_slot(permit) // If for some reason it can't find room, it'll still be on the floor.

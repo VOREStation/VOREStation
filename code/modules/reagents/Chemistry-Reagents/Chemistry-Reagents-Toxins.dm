@@ -403,7 +403,7 @@
 		effective_dose *= 2
 
 	if(effective_dose == metabolism)
-		M.confused += 2
+		M.Confuse(2)
 		M.drowsyness += 2
 	else if(effective_dose < 2 * threshold)
 		M.Weaken(30)
@@ -429,6 +429,7 @@
 
 	glass_name = "beer"
 	glass_desc = "A freezing pint of beer"
+
 /* Drugs */
 
 /datum/reagent/space_drugs
@@ -490,7 +491,7 @@
 	if(alien == IS_SKRELL)
 		drug_strength = drug_strength * 0.8
 	M.make_dizzy(drug_strength)
-	M.confused = max(M.confused, drug_strength * 5)
+	M.Confuse(drug_strength * 5)
 
 /datum/reagent/impedrezene
 	name = "Impedrezene"

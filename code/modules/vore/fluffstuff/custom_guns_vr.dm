@@ -67,7 +67,7 @@
 	item_state = "haloshotgun_i"
 	item_icons = null
 
-	ammo_type = /obj/item/ammo_casing/shotgun
+	ammo_type = /obj/item/ammo_casing/a12g
 	max_shells = 12
 
 // jertheace : Jeremiah 'Ace' Acacius
@@ -75,7 +75,7 @@
 	name = "Ace's M45D Tactical Shotgun" // D-model holds half as many shells as the normal version so as not to be OP as shit. Better than shotgun, worse than combat shotgun.
 	desc = "Owned by the respected (or feared?) veteran Captain of VORE Station. Inscribed on the barrel are the words \"Speak softly, and carry a big stick.\" It has a folding stock so it can fit into bags."
 	w_class = ITEMSIZE_NORMAL // Because collapsable stock so it fits in backpacks.
-	ammo_type = /obj/item/ammo_casing/shotgun/stunshell
+	ammo_type = /obj/item/ammo_casing/a12g/stunshell
 	max_shells = 6
 
 // bwoincognito:Tasald Corlethian
@@ -146,7 +146,7 @@
 	icon_state = "jury"
 	item_state = "gun"
 	accuracy = 0 // Because I know you're not an idiot who needs to be nerfed. -Ace
-	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
+	ammo_type = /obj/item/ammo_casing/a12g/beanbag
 
 // Dhaeleena : Dhaeleena M'iar
 /obj/item/weapon/gun/projectile/revolver/mateba/fluff/dhael
@@ -157,6 +157,23 @@
 
 	ammo_type = /obj/item/ammo_casing/a357/stun
 
+// SilencedMP5A5 : Serdykov Antoz
+/obj/item/weapon/gun/projectile/revolver/detective/fluff/serdy //This forces it to be .38 bullets only
+	name = "Vintage S&W Model 10"
+	desc = "It's a classic S&W Model 10 revolver. This one in particular is beautifully restored with a chromed black frame and cylinder, and a nice redwood grip. The name 'Serdykov A.' is engraved into the base of the grip."
+	icon = 'icons/vore/custom_guns_vr.dmi'
+	item_state = "model10"
+	icon_state = "model10"
+	fire_sound = 'sound/weapons/deagle.ogg'
+	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
+	ammo_type = /obj/item/ammo_casing/a38r //Rubber rounds.
+
+// LuminescentRing : Briana Moore
+/obj/item/weapon/gun/projectile/derringer/fluff/briana
+	name = "second-hand derringer"
+	desc = "It's a palm sized gun. One of the few things that won't break an angel's wrists."
+	caliber = "10mm"
+	ammo_type = /obj/item/ammo_casing/a10mm
 
 // For general use
 /obj/item/weapon/gun/projectile/automatic/stg
@@ -169,8 +186,8 @@
 	max_shells = 30
 	caliber = "kurz"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2, TECH_ILLEGAL = 6)
-	magazine_type = /obj/item/ammo_magazine/stg
-	allowed_magazines = list(/obj/item/ammo_magazine/stg)
+	magazine_type = /obj/item/ammo_magazine/mtg
+	allowed_magazines = list(/obj/item/ammo_magazine/mtg)
 	load_method = MAGAZINE
 
 /obj/item/weapon/gun/projectile/automatic/stg/update_icon(var/ignore_inhands)
@@ -227,8 +244,8 @@
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/mc9mml
-	allowed_magazines = list(/obj/item/ammo_magazine/mc9mm, /obj/item/ammo_magazine/mc9mml)
+	magazine_type = /obj/item/ammo_magazine/m9mml
+	allowed_magazines = list(/obj/item/ammo_magazine/m9mm, /obj/item/ammo_magazine/m9mml)
 
 	firemodes = list(
 		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
@@ -237,7 +254,7 @@
 
 /obj/item/weapon/gun/projectile/automatic/pdw/update_icon(var/ignore_inhands)
 	..()
-	if(istype(ammo_magazine,/obj/item/ammo_magazine/mc9mm))
+	if(istype(ammo_magazine,/obj/item/ammo_magazine/m9mm))
 		icon_state = "pdw-short"
 	else
 		icon_state = (ammo_magazine)? "pdw" : "pdw-empty"
@@ -247,7 +264,7 @@
 //Currently, the only problem I have now is that this weapon's item_state isn't working.
 /obj/item/weapon/gun/projectile/automatic/fluff/crestrose
 	name = "Crescent Rose"
-	desc = "Can you match my resolve? If so then you will succeed. I believe that the human spirit is indomitable. Keep Moving Forward. Uses 5.56mm rounds."
+	desc = "Can you match my resolve? If so then you will succeed. I believe that the human spirit is indomitable. Keep Moving Forward. Uses 7.62mm rounds."
 	icon = 'icons/vore/custom_guns_vr.dmi'
 	icon_state = "crestrose_fold"
 
@@ -267,9 +284,9 @@
 	auto_eject = 1
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	hitsound = null
-	caliber = "a556"
-	magazine_type = /obj/item/ammo_magazine/a556
-	allowed_magazines = list(/obj/item/ammo_magazine/a556)
+	caliber = "s762"
+	magazine_type = /obj/item/ammo_magazine/m762
+	allowed_magazines = list(/obj/item/ammo_magazine/m762)
 
 /obj/item/weapon/gun/projectile/automatic/fluff/crestrose/attack_self(mob/user as mob)
 	on = !on
@@ -350,10 +367,8 @@
 
 /obj/item/weapon/gun/projectile/automatic/carbine/fluff/ufarc/update_icon(var/ignore_inhands)
 	..()
-	if(istype(ammo_magazine,/obj/item/ammo_magazine/a556m))
-		icon_state = "ufarc"
-	else
-		icon_state = (ammo_magazine)? "ufarc" : "ufarc-empty"
+	// TODO - Fix this for spriting different size magazines
+	icon_state = (ammo_magazine)? "ufarc" : "ufarc-empty"
 	item_state = (ammo_magazine)? "bullpup" : "bullpup-empty"
 	if(!ignore_inhands) update_held_icon()
 
@@ -370,10 +385,8 @@
 
 /obj/item/weapon/gun/projectile/automatic/carbine/fluff/g44/update_icon(var/ignore_inhands)
 	..()
-	if(istype(ammo_magazine,/obj/item/ammo_magazine/a556m))
-		icon_state = "g44"
-	else
-		icon_state = (ammo_magazine)? "g44" : "g44-empty"
+	// TODO - Fix this for spriting different size magazines
+	icon_state = (ammo_magazine)? "g44" : "g44-empty"
 	item_state = (ammo_magazine)? "bullpup" : "bullpup-empty"
 	if(!ignore_inhands) update_held_icon()
 
@@ -390,7 +403,7 @@
 	w_class = ITEMSIZE_LARGE
 	fire_delay = 6
 	pixel_x = -16
-	
+
 	projectile_type = /obj/item/projectile/beam/stun/weak
 	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 2, TECH_ILLEGAL = 3)
 	modifystate = "g44estun"
@@ -455,8 +468,8 @@
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "khipistol"
 	item_state = "gun" // Placeholder
-	magazine_type = /obj/item/ammo_magazine/c45m/flash //Dun wanna KILL all the people.
-	allowed_magazines = list(/obj/item/ammo_magazine/c45m)
+	magazine_type = /obj/item/ammo_magazine/m45/flash //Dun wanna KILL all the people.
+	allowed_magazines = list(/obj/item/ammo_magazine/m45)
 	caliber = ".45"
 	handle_casings = CYCLE_CASINGS
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 5)
@@ -478,8 +491,8 @@
 	slot_flags = SLOT_BELT
 	load_method = MAGAZINE
 	handle_casings = CYCLE_CASINGS
-	magazine_type = /obj/item/ammo_magazine/mc9mml
-	allowed_magazines = list(/obj/item/ammo_magazine/mc9mm, /obj/item/ammo_magazine/mc9mml)
+	magazine_type = /obj/item/ammo_magazine/m9mml
+	allowed_magazines = list(/obj/item/ammo_magazine/m9mm, /obj/item/ammo_magazine/m9mml)
 	dna_lock = 1
 
 	firemodes = list(
@@ -562,6 +575,287 @@
 	list(mode_name="lethal", charge_cost=200,projectile_type=/obj/item/projectile/beam/eluger, modifystate="elugerkill", fire_sound='sound/weapons/eluger.ogg'),
 	)
 
+//////////////////// Eris Ported Guns ////////////////////
+//HoS Gun
+/obj/item/weapon/gun/projectile/lamia
+	name = "FS HG .44 \"Lamia\""
+	desc = "Uses .44 rounds."
+
+	icon = 'icons/obj/gun_vr.dmi'
+	icon_state = "Headdeagle"
+	item_state = "revolver"
+
+	fire_sound = 'sound/weapons/Gunshot.ogg'
+
+	caliber = ".44"
+	ammo_type = /obj/item/ammo_casing/a44/rubber
+	magazine_type = /obj/item/ammo_magazine/m44/rubber
+	allowed_magazines = list(/obj/item/ammo_magazine/m44,/obj/item/ammo_magazine/m44/rubber)
+	load_method = MAGAZINE
+	auto_eject = 1
+	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
+
+	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
+
+/obj/item/weapon/gun/projectile/lamia/update_icon()
+	overlays.Cut()
+	if(!ammo_magazine)
+		return
+	var/ratio = ammo_magazine.stored_ammo.len * 100 / ammo_magazine.max_ammo
+	ratio = round(ratio, 33)
+	overlays += "deagle_[ratio]"
+
+
+//Civilian gun
+/obj/item/weapon/gun/projectile/giskard
+	name = "FS HG .32 \"Giskard\""
+	desc = "Can even fit into the pocket! Uses .32 rounds."
+
+	icon = 'icons/obj/gun_vr.dmi'
+	icon_state = "giskardcivil"
+
+	caliber = ".32"
+	ammo_type = /obj/item/ammo_casing/a32
+	magazine_type = /obj/item/ammo_magazine/m32
+	allowed_magazines = list(/obj/item/ammo_magazine/m32)
+	load_method = MAGAZINE
+	fire_delay = 0.6
+	accuracy = 1
+
+	w_class = ITEMSIZE_SMALL
+
+	fire_sound = 'sound/weapons/Gunshot_light.ogg'
+
+	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 3)
+
+/obj/item/weapon/gun/projectile/giskard/update_icon()
+	..()
+	if(ammo_magazine && ammo_magazine.stored_ammo.len)
+		icon_state = "giskardcivil"
+	else
+		icon_state = "giskardcivil_empty"
+
+//Better civilian gun
+/obj/item/weapon/gun/projectile/olivaw
+	name = "FS HG .32 \"Olivaw\""
+	desc = "A more advanced version of the \"Giskard\". This one seems to have a two-round burst-fire mode. Uses .32 rounds."
+
+	icon = 'icons/obj/gun_vr.dmi'
+	icon_state = "olivawcivil"
+
+	caliber = ".32"
+	ammo_type = /obj/item/ammo_casing/a32
+	magazine_type = /obj/item/ammo_magazine/m32
+	allowed_magazines = list(/obj/item/ammo_magazine/m32)
+	fire_delay = 1.2
+	load_method = MAGAZINE
+	accuracy = 2
+
+	fire_sound = 'sound/weapons/Gunshot_light.ogg'
+
+	firemodes = list(
+		list(mode_name="semiauto",       burst=1, fire_delay=1.2,    move_delay=null, burst_accuracy=null, dispersion=null),
+		list(mode_name="2-round bursts", burst=2, fire_delay=0.2, move_delay=4,    burst_accuracy=list(0,-1),       dispersion=list(1.2, 1.8)),
+		)
+
+	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
+
+/obj/item/weapon/gun/projectile/olivaw/update_icon()
+	..()
+	if(ammo_magazine && ammo_magazine.stored_ammo.len)
+		icon_state = "olivawcivil"
+	else
+		icon_state = "olivawcivil_empty"
+
+//Detective gun
+/obj/item/weapon/gun/projectile/revolver/consul
+	name = "FS REV .44 \"Consul\""
+	desc = "A choice revolver for when you absolutely, positively need to put a hole in the other guy. Uses .44 ammo."
+
+	icon = 'icons/obj/gun_vr.dmi'
+	icon_state = "inspector"
+	item_state = "revolver"
+
+	caliber = ".44"
+	ammo_type = /obj/item/ammo_casing/a44/rubber
+	handle_casings = CYCLE_CASINGS
+
+	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
+
+/obj/item/weapon/gun/projectile/revolver/consul/proc/update_charge()
+	if(loaded.len==0)
+		overlays += "inspector_off"
+	else
+		overlays += "inspector_on"
+
+/obj/item/weapon/gun/projectile/revolver/consul/update_icon()
+	overlays.Cut()
+	update_charge()
+
+//Warden gun
+/obj/item/weapon/gun/projectile/automatic/SMG_sol
+	name = "FS SMG 9x19 \"Sol\""
+	desc = "A standard-issued weapon used by Ironhammer operatives. Compact and reliable. Uses 9mm rounds."
+
+	icon = 'icons/obj/gun_vr.dmi'
+	icon_state = "SMG-IS"
+	item_state = "wt550"
+
+	w_class = ITEMSIZE_LARGE
+	slot_flags = SLOT_BELT
+
+	caliber = "9mm"
+	ammo_type = /obj/item/ammo_casing/a9mm
+	magazine_type = /obj/item/ammo_magazine/m9mm
+	allowed_magazines = list(/obj/item/ammo_magazine/m9mm)
+	load_method = MAGAZINE
+	multi_aim = 1
+	burst_delay = 2
+
+	firemodes = list(
+		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-1,-1),       dispersion=list(0.0, 0.6, 1.0)),
+		)
+
+	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
+
+/obj/item/weapon/gun/projectile/automatic/SMG_sol/proc/update_charge()
+	if(!ammo_magazine)
+		return
+	var/ratio = ammo_magazine.stored_ammo.len / ammo_magazine.max_ammo
+	if(ratio < 0.25 && ratio != 0)
+		ratio = 0.25
+	ratio = round(ratio, 0.25) * 100
+	overlays += "smg_[ratio]"
+
+/obj/item/weapon/gun/projectile/automatic/SMG_sol/update_icon()
+	icon_state = (ammo_magazine)? "SMG-IS" : "SMG-IS-empty"
+	overlays.Cut()
+	update_charge()
+
+//HoP gun
+/obj/item/weapon/gun/energy/gun/martin
+	name = "FS PDW E \"Martin\""
+	desc = "A small holdout e-gun. Don't miss!"
+
+	icon = 'icons/obj/gun_vr.dmi'
+	icon_state = "PDW"
+	item_state = "gun"
+
+	w_class = ITEMSIZE_SMALL
+
+	projectile_type = /obj/item/projectile/beam/stun
+	charge_cost = 1200
+	charge_meter = 0
+	modifystate = null
+	battery_lock = 1
+
+	fire_sound = 'sound/weapons/Taser.ogg'
+
+	firemodes = list(
+		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun, fire_sound='sound/weapons/Taser.ogg'),
+		list(mode_name="lethal", projectile_type=/obj/item/projectile/beam, fire_sound='sound/weapons/Laser.ogg'),
+		)
+
+	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
+
+/obj/item/weapon/gun/energy/gun/martin/proc/update_mode()
+	var/datum/firemode/current_mode = firemodes[sel_mode]
+	switch(current_mode.name)
+		if("stun") overlays += "taser_pdw"
+		if("lethal") overlays += "lazer_pdw"
+
+/obj/item/weapon/gun/energy/gun/martin/update_icon()
+	overlays.Cut()
+	update_mode()
+
+//RD 'gun'
+/obj/item/weapon/bluespace_harpoon
+	name = "bluespace harpoon"
+	desc = "For climbing on bluespace mountains!"
+
+	icon = 'icons/obj/gun_vr.dmi'
+	icon_state = "harpoon-2"
+
+	w_class = ITEMSIZE_NORMAL
+
+	throw_speed = 4
+	throw_range = 20
+
+	origin_tech = list(TECH_BLUESPACE = 5)
+
+	var/mode = 1  // 1 mode - teleport you to turf  0 mode teleport turf to you
+	var/last_fire = 0
+	var/transforming = 0
+
+/obj/item/weapon/bluespace_harpoon/afterattack(atom/A, mob/user as mob)
+	var/current_fire = world.time
+	if(!user || !A)
+		return
+	if(transforming)
+		to_chat(user,"<span class = 'warning'>You can't fire while \the [src] transforming!</span>")
+		return
+	if(!(current_fire - last_fire >= 20 SECONDS))
+		to_chat(user,"<span class = 'warning'>\The [src] is recharging...</span>")
+		return
+	if(is_jammed(A) || is_jammed(user))
+		to_chat(user,"<span class = 'warning'>\The [src] shot fizzles due to interference!</span>")
+		last_fire = current_fire
+		playsound(user, 'sound/weapons/wave.ogg', 60, 1)
+		return
+
+	last_fire = current_fire
+	playsound(user, 'sound/weapons/wave.ogg', 60, 1)
+
+	user.visible_message("<span class='warning'>[user] fires \the [src]!</span>","<span class='warning'>You fire \the [src]!</span>")
+
+	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+	s.set_up(4, 1, A)
+	s.start()
+	s = new /datum/effect/effect/system/spark_spread
+	s.set_up(4, 1, user)
+	s.start()
+
+	var/turf/FromTurf = mode ? get_turf(user) : get_turf(A)
+	var/turf/ToTurf = mode ? get_turf(A) : get_turf(user)
+
+	for(var/obj/O in FromTurf)
+		if(O.anchored) continue
+		if(prob(5))
+			O.forceMove(pick(trange(24,user)))
+		else
+			O.forceMove(ToTurf)
+
+	for(var/mob/living/M in FromTurf)
+		if(prob(5))
+			M.forceMove(pick(trange(24,user)))
+		else
+			M.forceMove(ToTurf)
+
+/obj/item/weapon/bluespace_harpoon/attack_self(mob/living/user as mob)
+	return chande_fire_mode(user)
+
+/obj/item/weapon/bluespace_harpoon/verb/chande_fire_mode(mob/user as mob)
+	set name = "Change fire mode"
+	set category = "Object"
+	set src in oview(1)
+	if(transforming) return
+	mode = !mode
+	transforming = 1
+	to_chat(user,"<span class = 'info'>You change \the [src]'s mode to [mode ? "transmiting" : "receiving"].</span>")
+	update_icon()
+
+/obj/item/weapon/bluespace_harpoon/update_icon()
+	if(transforming)
+		switch(mode)
+			if(0)
+				flick("harpoon-2-change", src)
+				icon_state = "harpoon-1"
+			if(1)
+				flick("harpoon-1-change",src)
+				icon_state = "harpoon-2"
+		transforming = 0
+
 //////////////////// Custom Ammo ////////////////////
 //---------------- Beams ----------------
 /obj/item/projectile/beam/eluger
@@ -583,7 +877,7 @@
 	impact_type = /obj/effect/projectile/laser_omni/impact
 
 //--------------- StG-60 ----------------
-/obj/item/ammo_magazine/stg
+/obj/item/ammo_magazine/mtg
 	name = "box mag (7.92x33mm Kurz)"
 	icon = 'icons/obj/ammo_vr.dmi'
 	icon_state = "stg_30rnd"
@@ -593,12 +887,12 @@
 	mag_type = MAGAZINE
 
 /obj/item/ammo_casing/stg
-	desc = "A 7.92×33mm Kurz casing."
+	desc = "A 7.92Ã—33mm Kurz casing."
 	icon_state = "rifle-casing"
 	caliber = "kurz"
 	projectile_type = /obj/item/projectile/bullet/rifle/a762
 
-/obj/item/ammo_magazine/stg/empty
+/obj/item/ammo_magazine/mtg/empty
 	initial_ammo = 0
 
 //------------- Battlerifle -------------
@@ -626,7 +920,7 @@
 	initial_ammo = 0
 
 //---------------- PDW ------------------
-/obj/item/ammo_magazine/mc9mml
+/obj/item/ammo_magazine/m9mml
 	name = "\improper SMG magazine (9mm)"
 	icon = 'icons/obj/ammo_vr.dmi'
 	icon_state = "smg"
@@ -634,31 +928,31 @@
 	mag_type = MAGAZINE
 	matter = list(DEFAULT_WALL_MATERIAL = 1800)
 	caliber = "9mm"
-	ammo_type = /obj/item/ammo_casing/c9mm
+	ammo_type = /obj/item/ammo_casing/a9mm
 	max_ammo = 30
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/mc9mml/empty
+/obj/item/ammo_magazine/m9mml/empty
 	initial_ammo = 0
 
-/obj/item/ammo_magazine/mc9mml/ap
+/obj/item/ammo_magazine/m9mml/ap
 	name = "\improper SMG magazine (9mm armor-piercing)"
-	ammo_type = /obj/item/ammo_casing/c9mm/ap
+	ammo_type = /obj/item/ammo_casing/a9mm/ap
 
-/obj/item/ammo_magazine/mc9mml/flash
+/obj/item/ammo_magazine/m9mml/flash
 	name = "\improper SMG magazine (9mm flash)"
-	ammo_type = /obj/item/ammo_casing/c9mmf
+	ammo_type = /obj/item/ammo_casing/a9mmf
 
-/obj/item/ammo_magazine/mc9mml/rubber
+/obj/item/ammo_magazine/m9mml/rubber
 	name = "\improper SMG magazine (9mm rubber)"
-	ammo_type = /obj/item/ammo_casing/c9mmr
+	ammo_type = /obj/item/ammo_casing/a9mmr
 
-/obj/item/ammo_magazine/mc9mml/practice
+/obj/item/ammo_magazine/m9mml/practice
 	name = "\improper SMG magazine (9mm practice)"
-	ammo_type = /obj/item/ammo_casing/c9mmp
+	ammo_type = /obj/item/ammo_casing/a9mmp
 
 //.357 special ammo
-/obj/item/ammo_magazine/a357/stun
+/obj/item/ammo_magazine/m357/stun
 	name = "speedloader (.357 stun)"
 	desc = "A speedloader for .357 revolvers."
 	icon = 'icons/obj/ammo_vr.dmi'
@@ -674,7 +968,7 @@
 	icon_state = "stun357"
 	projectile_type = /obj/item/projectile/energy/electrode/stunshot/strong
 
-/obj/item/ammo_magazine/a357/rubber
+/obj/item/ammo_magazine/m357/rubber
 	name = "speedloader (.357 rubber)"
 	desc = "A speedloader for .357 revolvers."
 	icon = 'icons/obj/ammo_vr.dmi'
@@ -690,7 +984,7 @@
 	icon_state = "rubber357"
 	projectile_type = /obj/item/projectile/bullet/pistol/rubber/strong
 
-/obj/item/ammo_magazine/a357/flash
+/obj/item/ammo_magazine/m357/flash
 	name = "speedloader (.357 flash)"
 	desc = "A speedloader for .357 revolvers."
 	icon = 'icons/obj/ammo_vr.dmi'
@@ -705,3 +999,63 @@
 	icon = 'icons/obj/ammo_vr.dmi'
 	icon_state = "flash357"
 	projectile_type = /obj/item/projectile/energy/flash/strong
+
+//.32
+/obj/item/ammo_casing/a32
+	desc = "A .32 bullet casing."
+	caliber = ".32"
+	projectile_type = /obj/item/projectile/bullet/pistol
+
+/obj/item/ammo_magazine/m32
+	icon_state = "a762"
+	caliber = ".32"
+	ammo_type = /obj/item/ammo_casing/a32
+	max_ammo = 6
+	mag_type = MAGAZINE
+
+//.44
+/obj/item/ammo_casing/a44
+	icon = 'icons/obj/ammo_vr.dmi'
+	icon_state = "a357"
+	desc = "A .44 bullet casing."
+	caliber = ".44"
+	projectile_type = /obj/item/projectile/bullet/pistol/strong
+
+/obj/item/ammo_casing/a44/rubber
+	icon = 'icons/obj/ammo_vr.dmi'
+	icon_state = "rubber357"
+	desc = "A .44 rubber bullet casing."
+	projectile_type = /obj/item/projectile/bullet/pistol/rubber/strong
+
+/obj/item/ammo_magazine/m44
+	desc = "A magazine for .44 ammo."
+	icon = 'icons/obj/ammo_vr.dmi'
+	icon_state = "44lethal"
+	caliber = ".44"
+	matter = list(DEFAULT_WALL_MATERIAL = 1680)
+	ammo_type = /obj/item/ammo_casing/a44
+	max_ammo = 8
+	mag_type = MAGAZINE
+
+/obj/item/ammo_magazine/m44/rubber
+	desc = "A magazine for .44 less-than-lethal ammo."
+	icon_state = "44rubber"
+	ammo_type = /obj/item/ammo_casing/a44/rubber
+
+//.44 speedloaders
+/obj/item/ammo_magazine/m44sl
+	name = "speedloader (.44)"
+	desc = "A speedloader for .44 revolvers."
+	icon = 'icons/obj/ammo_vr.dmi'
+	icon_state = "357"
+	caliber = ".44"
+	matter = list(DEFAULT_WALL_MATERIAL = 1260)
+	ammo_type = /obj/item/ammo_casing/a44
+	max_ammo = 6
+	multiple_sprites = 1
+	mag_type = SPEEDLOADER
+
+/obj/item/ammo_magazine/m44sl/rubber
+	name = "speedloader (.44 rubber)"
+	icon_state = "r357"
+	ammo_type = /obj/item/ammo_casing/a44/rubber

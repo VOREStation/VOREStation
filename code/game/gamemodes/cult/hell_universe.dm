@@ -62,7 +62,7 @@ In short:
 
 /datum/universal_state/hell/OverlayAndAmbientSet()
 	spawn(0)
-		for(var/atom/movable/lighting_overlay/L in world)
+		for(var/datum/lighting_corner/L in world)
 			L.update_lumcount(1, 0, 0)
 
 		for(var/turf/space/T in turfs)

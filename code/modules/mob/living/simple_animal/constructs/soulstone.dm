@@ -170,7 +170,7 @@
 	T.forceMove(src) //put shade in stone
 	T.status_flags |= GODMODE
 	T.canmove = 0
-	T.health = T.maxHealth
+	T.health = T.getMaxHealth()
 	src.icon_state = "soulstone2"
 
 	T << "Your soul has been recaptured by the soul stone, its arcane energies are reknitting your ethereal form"

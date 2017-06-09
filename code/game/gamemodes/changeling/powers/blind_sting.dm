@@ -26,7 +26,7 @@
 		src << "<span class='notice'>They will be deprived of sight for longer.</span>"
 	spawn(duration)
 		T.disabilities &= ~NEARSIGHTED
-	T.eye_blind = 10
+	T.Blind(10)
 	T.eye_blurry = 20
 	feedback_add_details("changeling_powers","BS")
 	return 1

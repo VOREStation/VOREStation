@@ -40,7 +40,7 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 	spawn(process_time)
 		process()
 
-/datum/transhuman/infocore/proc/m_backup(var/datum/mind/mind)
+/datum/transhuman/infocore/proc/m_backup(var/datum/mind/mind,var/obj/item/device/nif/nif)
 	ASSERT(mind)
 	if(!mind.name || core_dumped)
 		return 0
@@ -50,6 +50,20 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 	if(mind.name in backed_up)
 		MR = backed_up[mind.name]
 		MR.last_update = world.time
+		if(nif)
+			MR.nif_path = nif.type
+			MR.nif_durability = nif.durability
+			var/list/nifsofts = list()
+			for(var/N in nif.nifsofts)
+				if(N)
+					var/datum/nifsoft/nifsoft = N
+					nifsofts += nifsoft.type
+			MR.nif_software = nifsofts
+		else
+			MR.nif_path = null
+			MR.nif_durability = null
+			MR.nif_software = null
+
 	else
 		MR = new(mind, mind.current, 1)
 
@@ -114,6 +128,10 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 	var/languages
 	var/mind_oocnotes
 
+	var/nif_path
+	var/nif_durability
+	var/list/nif_software
+
 /datum/transhuman/mind_record/New(var/datum/mind/mind,var/mob/living/carbon/human/M,var/obj/item/weapon/implant/backup/imp,var/add_to_db = 1)
 	ASSERT(mind && M && imp)
 
@@ -154,9 +172,26 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 	var/list/organ_data = list(O_HEART, O_EYES, O_LUNGS, O_BRAIN)
 	var/toocomplex
 	var/sizemult
+	var/weight
 
-/datum/transhuman/body_record/New(var/mob/living/carbon/human/M,var/add_to_db = 1,var/ckeylock = 0)
-	ASSERT(M)
+/datum/transhuman/body_record/New(var/copyfrom, var/add_to_db = 0, var/ckeylock = 0)
+	..()
+	if(istype(copyfrom, /datum/transhuman/body_record))
+		init_from_br(copyfrom)
+	else if(ishuman(copyfrom))
+		init_from_mob(copyfrom, add_to_db, ckeylock)
+
+/datum/transhuman/body_record/Destroy()
+	mydna = null
+	client_ref = null
+	mind_ref = null
+	limb_data.Cut()
+	organ_data.Cut()
+	..()
+
+/datum/transhuman/body_record/proc/init_from_mob(var/mob/living/carbon/human/M, var/add_to_db = 0, var/ckeylock = 0)
+	ASSERT(!deleted(M))
+	ASSERT(istype(M))
 
 	//Person OOCly doesn't want people impersonating them
 	locked = ckeylock
@@ -172,6 +207,7 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 	bodygender = M.gender
 	body_oocnotes = M.ooc_notes
 	sizemult = M.size_multiplier
+	weight = M.weight
 
 	//Probably should
 	M.dna.check_integrity()
@@ -232,3 +268,33 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 
 	if(add_to_db)
 		transcore.add_body(src)
+
+
+/**
+ * Make a deep copy of this record so it can be saved on a disk without mofidications
+ * to the original affecting the copy.
+ * Just to be clear, this has nothing to do do with acutal biological cloning, body printing, resleeving,
+ * or anything like that! This is the computer science concept of "cloning" a data structure!
+ */
+/datum/transhuman/body_record/proc/init_from_br(var/datum/transhuman/body_record/orig)
+	ASSERT(!deleted(orig))
+	ASSERT(istype(orig))
+	src.mydna = new ()
+	src.mydna.dna = orig.mydna.dna.Clone()
+	src.mydna.ckey = orig.mydna.ckey
+	src.mydna.id = orig.mydna.id
+	src.mydna.name = orig.mydna.name
+	src.mydna.types = orig.mydna.types
+	src.mydna.flavor = orig.mydna.flavor.Copy()
+	src.ckey = orig.ckey
+	src.locked = orig.locked
+	src.client_ref = orig.client_ref
+	src.mind_ref = orig.mind_ref
+	src.synthetic = orig.synthetic
+	src.speciesname = orig.speciesname
+	src.bodygender = orig.bodygender
+	src.body_oocnotes = orig.body_oocnotes
+	src.limb_data = orig.limb_data.Copy()
+	src.organ_data = orig.organ_data.Copy()
+	src.toocomplex = orig.toocomplex
+	src.sizemult = orig.sizemult

@@ -196,6 +196,7 @@
 /datum/preferences/proc/dress_preview_mob(var/mob/living/carbon/human/mannequin)
 	var/update_icon = FALSE
 	copy_to(mannequin, TRUE)
+	sleep(1) //VOREStation Add - Not sure why this is required. Some race condition about robo manufacturers with tails.
 
 	var/datum/job/previewJob
 	if(equip_preview_mob)
@@ -224,12 +225,14 @@
 			var/datum/gear/G = gear_datums[thing]
 			if(G)
 				var/permitted = 0
-				if(G.allowed_roles)
+				if(!G.allowed_roles)
+					permitted = 1
+				else if(!previewJob)
+					permitted = 0
+				else
 					for(var/job_name in G.allowed_roles)
 						if(previewJob.title == job_name)
 							permitted = 1
-				else
-					permitted = 1
 
 				if(G.whitelisted && (G.whitelisted != mannequin.species.name))
 					permitted = 0

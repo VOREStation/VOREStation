@@ -5,7 +5,7 @@
 
 <h3>Current Loaded Programs:</h3>
 {{for data.supportedPrograms}}
-	<div class='item'>{{:helper.link(value.name, data.currentProgram == value.program ? 'check' : 'close', {'program' : value.program}, null, data.currentProgram == value.program ? 'linkOn' : null)}}</div>
+	<div class='item'>{{:helper.link(value, data.currentProgram == value ? 'check' : 'close', {'program' : value}, null, data.currentProgram == value ? 'linkOn' : null)}}</div>
 {{/for}}
 <div class='item'>Please ensure that only holographic weapons are used in the holodeck if a combat simulation has been loaded.</div>
 {{if data.isSilicon}}
@@ -22,7 +22,7 @@
 
 {{if data.safetyDisabled}}
 	{{for data.restrictedPrograms}}
-		<div class='item'>{{:helper.link('Begin ' + value.name, data.currentProgram == value.program ? 'check' : 'close', {'program' : value.program}, null, data.currentProgram == value.program ? 'linkOn' : null)}}</div>
+		<div class='item'>{{:helper.link('Begin ' + value, data.currentProgram == value ? 'check' : 'close', {'program' : value.program}, null, data.currentProgram == value ? 'linkOn' : null)}}</div>
 	{{/for}}
 	<div class='item average'>Ensure the holodeck is empty before testing.</div>
 	<div class='item'>Safety Protocols are <span class='bad'>DISABLED</span></div>

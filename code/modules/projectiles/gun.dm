@@ -182,7 +182,11 @@
 	if (A == user && user.zone_sel.selecting == O_MOUTH && !mouthshoot)
 		handle_suicide(user)
 	else if(user.a_intent == I_HURT) //point blank shooting
-		Fire(A, user, pointblank=1)
+		if(user && user.client && user.aiming && user.aiming.active && user.aiming.aiming_at != A && A != user)
+			PreFire(A,user) //They're using the new gun system, locate what they're aiming at.
+			return
+		else
+			Fire(A, user, pointblank=1)
 	else
 		return ..() //Pistolwhippin'
 
@@ -326,6 +330,8 @@
 	user.setMoveCooldown(move_delay)
 	next_fire_time = world.time + fire_delay
 
+	accuracy = initial(accuracy)	//Reset the gun's accuracy
+
 	if(muzzle_flash)
 		set_light(0)
 
@@ -396,6 +402,8 @@
 	//update timing
 	next_fire_time = world.time + fire_delay
 
+	accuracy = initial(accuracy)	//Reset the gun's accuracy
+
 	if(muzzle_flash)
 		set_light(0)
 
@@ -425,21 +433,21 @@
 /obj/item/weapon/gun/proc/handle_post_fire(mob/user, atom/target, var/pointblank=0, var/reflex=0)
 	if(silenced)
 		playsound(user, fire_sound, 10, 1)
+		to_chat(user, "<span class='warning'>You fire \the [src][pointblank ? " point blank at \the [target]":""][reflex ? " by reflex!":""]</span>")
+		for(var/mob/living/L in oview(2,user))
+			if(L.stat)
+				continue
+			if(L.blinded)
+				to_chat(L, "You hear a [fire_sound_text]!")
+				continue
+			to_chat(L, "<span class='warning'>[user] fires \the [src][pointblank ? " point blank at \the [target]":""][reflex ? " by reflex!":""]</span>")
 	else
 		playsound(user, fire_sound, 50, 1)
-
-		if(reflex)
-			user.visible_message(
-				"<span class='reflex_shoot'><b>\The [user] fires \the [src][pointblank ? " point blank at \the [target]":""] by reflex!</b></span>",
-				"<span class='reflex_shoot'>You fire \the [src] by reflex!</span>",
-				"You hear a [fire_sound_text]!"
-			)
-		else
-			user.visible_message(
-				"<span class='danger'>\The [user] fires \the [src][pointblank ? " point blank at \the [target]":""]!</span>",
-				"<span class='warning'>You fire \the [src]!</span>",
-				"You hear a [fire_sound_text]!"
-				)
+		user.visible_message(
+			"<span class='warning'>[user] fires \the [src][pointblank ? " point blank at \the [target]":""][reflex ? " by reflex!":""]</span>",
+			"<span class='warning'>You fire \the [src][pointblank ? " point blank at \the [target]":""][reflex ? " by reflex!":""]</span>",
+			"You hear a [fire_sound_text]!"
+		)
 
 		if(muzzle_flash)
 			set_light(muzzle_flash)
@@ -482,11 +490,11 @@
 
 	// Certain statuses make it harder to aim, blindness especially.  Same chances as melee, however guns accuracy uses multiples of 15.
 	if(user.eye_blind)
-		accuracy -= 5
+		P.accuracy -= 5
 	if(user.eye_blurry)
-		accuracy -= 2
+		P.accuracy -= 2
 	if(user.confused)
-		accuracy -= 3
+		P.accuracy -= 3
 
 	//accuracy bonus from aiming
 	if (aim_targets && (target in aim_targets))

@@ -102,13 +102,19 @@
 				spanstyle = "color:purple;"
 			if(DM_TRANSFORM_MALE)
 				spanstyle = "color:purple;"
+			if(DM_TRANSFORM_HAIR_AND_EYES)
+				spanstyle = "color:purple;"
 			if(DM_TRANSFORM_FEMALE)
 				spanstyle = "color:purple;"
 			if(DM_TRANSFORM_KEEP_GENDER)
 				spanstyle = "color:purple;"
-			if(DM_TRANSFORM_CHANGE_SPECIES)
+			if(DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR)
 				spanstyle = "color:purple;"
-			if(DM_TRANSFORM_CHANGE_SPECIES_EGG)
+			if(DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR_EGG)
+				spanstyle = "color:purple;"
+			if(DM_TRANSFORM_REPLICA)
+				spanstyle = "color:purple;"
+			if(DM_TRANSFORM_REPLICA_EGG)
 				spanstyle = "color:purple;"
 			if(DM_TRANSFORM_KEEP_GENDER_EGG)
 				spanstyle = "color:purple;"
@@ -445,6 +451,9 @@
 	if(href_list["b_mode"])
 		var/list/menu_list = selected.digest_modes
 		if(istype(usr,/mob/living/carbon/human))
+			var/mob/living/carbon/human/H = usr
+			if(H.species.vore_numbing)
+				menu_list += DM_DIGEST_NUMB
 			menu_list += selected.transform_modes
 
 		if(selected.digest_modes.len == 1) // Don't do anything

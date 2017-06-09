@@ -107,6 +107,11 @@
 	var/absorb = run_armor_check(def_zone, P.check_armour, P.armor_penetration)
 	var/proj_sharp = is_sharp(P)
 	var/proj_edge = has_edge(P)
+
+	if ((proj_sharp || proj_edge) && (soaked >= round(P.damage*0.8)))
+		proj_sharp = 0
+		proj_edge = 0
+
 	if ((proj_sharp || proj_edge) && prob(getarmor(def_zone, P.check_armour)))
 		proj_sharp = 0
 		proj_edge = 0
@@ -167,13 +172,11 @@
 	var/soaked = get_armor_soak(hit_zone, "melee")
 	var/blocked = run_armor_check(hit_zone, "melee")
 
-	//If the armor absorbs all of the damage, skip the damage calculation and the blood
-	if(!soaked > effective_force)
-		standard_weapon_hit_effects(I, user, effective_force, blocked, soaked, hit_zone)
+	standard_weapon_hit_effects(I, user, effective_force, blocked, soaked, hit_zone)
 
-		if(I.damtype == BRUTE && prob(33)) // Added blood for whacking non-humans too
-			var/turf/simulated/location = get_turf(src)
-			if(istype(location)) location.add_blood_floor(src)
+	if(I.damtype == BRUTE && prob(33)) // Added blood for whacking non-humans too
+		var/turf/simulated/location = get_turf(src)
+		if(istype(location)) location.add_blood_floor(src)
 
 	return blocked
 
@@ -186,13 +189,14 @@
 	if(HULK in user.mutations)
 		effective_force *= 2
 
-	//Armor soak
-	if(soaked >= effective_force)
-		return 0
-
 	//Apply weapon damage
 	var/weapon_sharp = is_sharp(I)
 	var/weapon_edge = has_edge(I)
+
+	if(getsoak(hit_zone, "melee",) - (I.armor_penetration/5) > round(effective_force*0.8)) //soaking a hit turns sharp attacks into blunt ones
+		weapon_sharp = 0
+		weapon_edge = 0
+
 	if(prob(max(getarmor(hit_zone, "melee") - I.armor_penetration, 0))) //melee armour provides a chance to turn sharp/edge weapon attacks into blunt ones
 		weapon_sharp = 0
 		weapon_edge = 0
@@ -251,7 +255,7 @@
 			if(!O || !src) return
 
 			if(O.sharp) //Projectile is suitable for pinning.
-				if(soaked >= throw_damage)	//Don't embed if it didn't actually damage
+				if(soaked >= round(throw_damage*0.8))
 					return
 
 				//Handles embedding for non-humans and simple_animals.
@@ -435,3 +439,11 @@
 			hud_used.hide_actions_toggle.screen_loc = hud_used.ButtonNumberToScreenCoords(button_number+1)
 			//hud_used.SetButtonCoords(hud_used.hide_actions_toggle,button_number+1)
 		client.screen += hud_used.hide_actions_toggle
+
+// Returns a number to determine if something is harder or easier to hit than normal.
+/mob/living/proc/get_evasion()
+	var/result = evasion // First we get the 'base' evasion.  Generally this is zero.
+	for(var/datum/modifier/M in modifiers)
+		if(!isnull(M.evasion))
+			result += M.evasion
+	return result

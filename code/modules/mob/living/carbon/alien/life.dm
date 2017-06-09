@@ -73,11 +73,11 @@
 
 		// Eyes and blindness.
 		if(!has_eyes())
-			eye_blind =  1
+			SetBlinded(1)
 			blinded =    1
 			eye_blurry = 1
 		else if(eye_blind)
-			eye_blind =  max(eye_blind-1,0)
+			AdjustBlinded(-1)
 			blinded =    1
 		else if(eye_blurry)
 			eye_blurry = max(eye_blurry-1, 0)

@@ -347,7 +347,9 @@
 	body_parts_covered = FACE|EYES
 	sprite_sheets = list(
 		"Teshari" = 'icons/mob/species/seromi/masks.dmi',
-		"Vox" = 'icons/mob/species/vox/masks.dmi'
+		"Vox" = 'icons/mob/species/vox/masks.dmi',
+		"Tajara" = 'icons/mob/species/tajaran/mask.dmi',
+		"Unathi" = 'icons/mob/species/unathi/mask.dmi'
 		)
 
 	var/voicechange = 0
@@ -405,7 +407,6 @@
 
 	if(usr.put_in_hands(holding))
 		usr.visible_message("<span class='danger'>\The [usr] pulls a knife out of their boot!</span>")
-		playsound(src.loc, 'sound/weapons/flipblade.ogg', 40, 1)
 		holding = null
 	else
 		usr << "<span class='warning'>Your need an empty, unbroken hand to do that.</span>"
@@ -559,6 +560,11 @@
 	if(rolled_down < 0)
 		if(("[worn_state]_d_s" in icon_states(INV_W_UNIFORM_DEF_ICON)) || ("[worn_state]_s" in icon_states(rolled_down_icon)) || ("[worn_state]_d_s" in icon_states(icon_override)))
 			rolled_down = 0
+
+	if(rolled_down == -1)
+		verbs -= /obj/item/clothing/under/verb/rollsuit
+	if(rolled_sleeves == -1)
+		verbs -= /obj/item/clothing/under/verb/rollsleeves
 
 /obj/item/clothing/under/proc/update_rolldown_status()
 	var/mob/living/carbon/human/H

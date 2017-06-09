@@ -3,7 +3,7 @@
 /area/awaymission/zoo
 	icon_state = "green"
 	requires_power = 0
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 	ambience = list('sound/ambience/ambispace.ogg','sound/music/title2.ogg','sound/music/space.ogg','sound/music/main.ogg','sound/music/traitor.ogg')
 
 /area/awaymission/zoo/solars

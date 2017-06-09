@@ -12,6 +12,7 @@
 	if(isliving(user))
 		if(!owner)
 			set_name(user.name)
+			to_chat(user, "[src] registers your name.")
 		else
 			to_chat(user, "[src] already has an owner!")
 
@@ -32,3 +33,8 @@
 /obj/item/weapon/permit/gun/bar
 	name = "bar shotgun permit"
 	desc = "A card indicating that the owner is allowed to carry a shotgun in the bar."
+
+/obj/item/weapon/permit/drone
+	name = "drone identification card"
+	desc = "A card issued by the EIO, indicating that the owner is a Drone Intelligence. Drones are mandated to carry this card within SolGov space, by law."
+	icon_state = "drone"

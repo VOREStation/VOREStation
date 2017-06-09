@@ -13,3 +13,9 @@
 #define VANTAG_VORE    "vantag_vore"
 #define VANTAG_KIDNAP  "vantag_kidnap"
 #define VANTAG_KILL    "vantag_kill"
+
+#define ANNOUNCER_NAME "Facility PA"
+
+//For custom species
+#define STARTING_SPECIES_POINTS 1
+#define MAX_SPECIES_TRAITS 5

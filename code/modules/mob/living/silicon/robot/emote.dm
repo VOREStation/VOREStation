@@ -230,7 +230,7 @@
 
 		if("halt")
 			if (istype(module,/obj/item/weapon/robot_module/robot/security))
-				message = "<B>[src]</B>'s speakers skreech, \"Halt! Security!\"."
+				message = "<B>'s</B> speakers skreech, \"Halt! Security!\"."
 
 				playsound(src.loc, 'sound/voice/halt.ogg', 50, 0)
 				m_type = 2

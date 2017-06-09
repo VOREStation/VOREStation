@@ -150,7 +150,7 @@
 		<div class='item'>{{:helper.link('Back', 'arrowreturn-1-w', {'menu' : 4})}}</div>
 		{{if data.activeBodyRecord}}
 			<div class='itemLabel'>Notes:</div>
-			<div class='itemContent'>{{:data.activeBodyRecord.booc}}</div>
+			<div class='itemContent multiLine'>{{:data.activeBodyRecord.booc}}</div>
 		{{else}}
 			<div class='item bad'>ERROR: Record not found.</div>
 		{{/if}}
@@ -161,7 +161,7 @@
 		<div class='item'>{{:helper.link('Back', 'arrowreturn-1-w', {'menu' : 5})}}</div>
 		{{if data.activeMindRecord}}
 			<div class='itemLabel'>Notes:</div>
-			<div class='itemContent'>{{:data.activeMindRecord.mooc}}</div>
+			<div class='itemContent multiLine'>{{:data.activeMindRecord.mooc}}</div>
 		{{else}}
 			<div class='item bad'>ERROR: Record not found.</div>
 		{{/if}}

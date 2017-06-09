@@ -98,7 +98,7 @@
 		else	//Not stunned.
 			src.stat = 0
 
-		confused = max(0, confused - 1)
+		AdjustConfused(-1)
 
 	else //Dead.
 		src.blinded = 1
@@ -107,7 +107,7 @@
 	if (src.stuttering) src.stuttering--
 
 	if (src.eye_blind)
-		src.eye_blind--
+		src.AdjustBlinded(-1)
 		src.blinded = 1
 
 	if (src.ear_deaf > 0) src.ear_deaf--

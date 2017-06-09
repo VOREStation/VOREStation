@@ -122,10 +122,6 @@
 	allowed_directions = UP|DOWN
 	icon_state = "ladder11"
 
-
-
-
-
 /obj/structure/stairs
 	name = "Stairs"
 	desc = "Stairs leading to another deck.  Not too useful if the gravity goes out."
@@ -133,6 +129,7 @@
 	density = 0
 	opacity = 0
 	anchored = 1
+	layer = 2.4 // Above turf, but they're sort of the floor, so below objects.
 
 /obj/structure/stairs/initialize()
 	for(var/turf/turf in locs)
@@ -144,19 +141,21 @@
 			above.ChangeTurf(/turf/simulated/open)
 
 /obj/structure/stairs/Uncross(atom/movable/A)
-	if(A.dir == dir)
+	if(A.dir == dir && upperStep(A.loc))
 		// This is hackish but whatever.
 		var/turf/target = get_step(GetAbove(A), dir)
 		var/turf/source = A.loc
 		if(target.Enter(A, source))
-			A.loc = target
-			target.Entered(A, source)
+			A.forceMove(target)
 			if(isliving(A))
 				var/mob/living/L = A
 				if(L.pulling)
 					L.pulling.forceMove(target)
 		return 0
 	return 1
+
+/obj/structure/stairs/proc/upperStep(var/turf/T)
+	return (T == loc)
 
 /obj/structure/stairs/CanPass(obj/mover, turf/source, height, airflow)
 	return airflow || !density

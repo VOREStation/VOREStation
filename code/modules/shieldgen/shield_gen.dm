@@ -1,10 +1,3 @@
-//renwicks: fictional unit to describe shield strength
-//a small meteor hit will deduct 1 renwick of strength from that shield tile
-//light explosion range will do 1 renwick's damage
-//medium explosion range will do 2 renwick's damage
-//heavy explosion range will do 3 renwick's damage
-//explosion damage is cumulative. if a tile is in range of light, medium and heavy damage, it will take a hit from all three
-
 /obj/machinery/shield_gen
 	name = "bubble shield generator"
 	desc = "Machine that generates an impenetrable field of energy when activated."
@@ -13,7 +6,7 @@
 	var/active = 0
 	var/field_radius = 3
 	var/max_field_radius = 100
-	var/list/field
+	var/list/field = list()
 	density = 1
 	var/locked = 0
 	var/average_field_strength = 0
@@ -23,20 +16,25 @@
 	var/min_dissipation = 0.01		//will dissipate by at least this rate in renwicks per field tile (otherwise field would never dissipate completely as dissipation is a percentage)
 	var/powered = 0
 	var/check_powered = 1
-	var/obj/machinery/shield_capacitor/owned_capacitor
+	var/list/capacitors = list()
 	var/target_field_strength = 10
 	var/max_field_strength = 10
 	var/time_since_fail = 100
 	var/energy_conversion_rate = 0.0002	//how many renwicks per watt?
+	var/z_range = 0 // How far 'up and or down' to extend the shield to, in z-levels.  Only works on MultiZ supported z-levels.
 	use_power = 0	//doesn't use APC power
 
 /obj/machinery/shield_gen/New()
-	spawn(10)
-		for(var/obj/machinery/shield_capacitor/possible_cap in range(1, src))
-			if(get_dir(possible_cap, src) == possible_cap.dir)
-				owned_capacitor = possible_cap
-				break
-	field = new/list()
+	spawn(1 SECOND)
+		if(anchored)
+			for(var/obj/machinery/shield_capacitor/cap in range(1, src))
+				if(!cap.anchored)
+					continue
+				if(cap.owned_gen)
+					continue
+				if(get_dir(cap, src) == cap.dir)
+					capacitors |= cap
+					cap.owned_gen = src
 	..()
 
 /obj/machinery/shield_gen/Destroy()
@@ -44,7 +42,7 @@
 		field.Remove(D)
 		D.loc = null
 	..()
-	
+
 /obj/machinery/shield_gen/emag_act(var/remaining_charges, var/mob/user)
 	if(prob(75))
 		src.locked = !src.locked
@@ -76,14 +74,14 @@
 					if(cap.owned_gen)
 						continue
 					if(get_dir(cap, src) == cap.dir && src.anchored)
-						owned_capacitor = cap
-						owned_capacitor.owned_gen = src
+					//	owned_capacitor = cap
+						capacitors |= cap
+						cap.owned_gen = src
 						updateDialog()
-						break
+					//	break
 		else
-			if(owned_capacitor && owned_capacitor.owned_gen == src)
-				owned_capacitor.owned_gen = null
-			owned_capacitor = null
+			for(var/obj/machinery/shield_capacitor/capacitor in capacitors)
+				capacitor.owned_gen = null
 	else
 		..()
 
@@ -105,7 +103,13 @@
 	if(locked)
 		t += "<i>Swipe your ID card to begin.</i>"
 	else
-		t += "[owned_capacitor ? "<font color=green>Charge capacitor connected.</font>" : "<font color=red>Unable to locate charge capacitor!</font>"]<br>"
+		t += "[capacitors.len ? "<font color=green>Charge capacitor(s) connected.</font>" : "<font color=red>Unable to locate charge capacitor!</font>"]<br>"
+		var/i = 0
+		for(var/obj/machinery/shield_capacitor/capacitor in capacitors)
+			i++
+			t += "Capacitor #[i]: [capacitor.active ? "<font color=green>Online.</font>" : "<font color=red>Offline.</font>"] \
+			Charge: [round(capacitor.stored_charge/1000, 0.1)] kJ ([100 * round(capacitor.stored_charge/capacitor.max_charge, 0.01)]%) \
+			Status: [capacitor.time_since_fail > 2 ? "<font color=green>OK.</font>" : "<font color=red>Discharging!</font>"]<br>"
 		t += "This generator is: [active ? "<font color=green>Online</font>" : "<font color=red>Offline</font>" ] <a href='?src=\ref[src];toggle=1'>[active ? "\[Deactivate\]" : "\[Activate\]"]</a><br>"
 		t += "Field Status: [time_since_fail > 2 ? "<font color=green>Stable</font>" : "<font color=red>Unstable</font>"]<br>"
 		t += "Coverage Radius (restart required): \
@@ -116,12 +120,17 @@
 		<a href='?src=\ref[src];change_radius=1'>+</a> \
 		<a href='?src=\ref[src];change_radius=5'>++</a> \
 		<a href='?src=\ref[src];change_radius=50'>+++</a><br>"
+		if(HasAbove(src.z) || HasBelow(src.z)) // Won't show up on maps lacking MultiZ support.
+			t += "Vertical Shielding (restart required): \
+			<a href='?src=\ref[src];z_range=-1'>-</a> \
+			[z_range] Vertical Range \
+			<a href='?src=\ref[src];z_range=1'>+</a><br>"
 		t += "Overall Field Strength: [round(average_field_strength, 0.01)] Renwick ([target_field_strength ? round(100 * average_field_strength / target_field_strength, 0.1) : "NA"]%)<br>"
-		t += "Upkeep Power: [round(field.len * max(average_field_strength * dissipation_rate, min_dissipation) / energy_conversion_rate)] W<br>"
+		t += "Upkeep Power: [format_SI(round(field.len * max(average_field_strength * dissipation_rate, min_dissipation) / energy_conversion_rate), "W")]<br>"
 		t += "Charge Rate: <a href='?src=\ref[src];strengthen_rate=-0.1'>--</a> \
 		[strengthen_rate] Renwick/s \
 		<a href='?src=\ref[src];strengthen_rate=0.1'>++</a><br>"
-		t += "Shield Generation Power: [round(field.len * min(strengthen_rate, target_field_strength - average_field_strength) / energy_conversion_rate)] W<br>"
+		t += "Shield Generation Power: [format_SI(round(field.len * min(strengthen_rate, target_field_strength - average_field_strength) / energy_conversion_rate), "W")]<br>"
 		t += "Maximum Field Strength: \
 		<a href='?src=\ref[src];target_field_strength=-10'>\[min\]</a> \
 		<a href='?src=\ref[src];target_field_strength=-5'>--</a> \
@@ -148,13 +157,28 @@
 		var/renwick_upkeep_per_field = max(average_field_strength * dissipation_rate, min_dissipation)
 
 		//figure out how much energy we need to draw from the capacitor
-		if(active && owned_capacitor && owned_capacitor.active)
+		if(active && capacitors.len)
+			// Get a list of active capacitors to drain from.
+			var/list/active_capacitors = list()
+			for(var/obj/machinery/shield_capacitor/capacitor in capacitors) // Some capacitors might be off.  Exclude them.
+				if(capacitor.active && capacitor.stored_charge > 0)
+					active_capacitors |= capacitor
+
 			var/target_renwick_increase = min(target_field_strength - average_field_strength, strengthen_rate) + renwick_upkeep_per_field //per field tile
 
 			var/required_energy = field.len * target_renwick_increase / energy_conversion_rate
-			var/assumed_charge = min(owned_capacitor.stored_charge, required_energy)
+
+			// Gets the charge for all capacitors
+			var/sum_charge = 0
+			for(var/obj/machinery/shield_capacitor/capacitor in active_capacitors)
+				sum_charge += capacitor.stored_charge
+
+			var/assumed_charge = min(sum_charge, required_energy)
 			total_renwick_increase = assumed_charge * energy_conversion_rate
-			owned_capacitor.stored_charge -= assumed_charge
+
+			for(var/obj/machinery/shield_capacitor/capacitor in active_capacitors)
+				capacitor.stored_charge -= max(assumed_charge / active_capacitors.len, 0) // Drain from all active capacitors evenly.
+
 		else
 			renwick_upkeep_per_field = max(renwick_upkeep_per_field, 0.5)
 
@@ -162,12 +186,13 @@
 
 		average_field_strength = 0 //recalculate the average field strength
 		for(var/obj/effect/energy_field/E in field)
+			E.max_strength = target_field_strength
 			var/amount_to_strengthen = renwick_increase_per_field - renwick_upkeep_per_field
 			if(E.ticks_recovering > 0 && amount_to_strengthen > 0)
-				E.Strengthen( min(amount_to_strengthen / 10, 0.1) )
+				E.adjust_strength( min(amount_to_strengthen / 10, 0.1), 0 )
 				E.ticks_recovering -= 1
 			else
-				E.Strengthen(amount_to_strengthen)
+				E.adjust_strength(amount_to_strengthen, 0)
 
 			average_field_strength += E.strength
 
@@ -194,6 +219,8 @@
 		strengthen_rate = between(0,  strengthen_rate + text2num(href_list["strengthen_rate"]), max_strengthen_rate)
 	else if( href_list["target_field_strength"] )
 		target_field_strength = between(1, target_field_strength + text2num(href_list["target_field_strength"]), max_field_strength)
+	else if( href_list["z_range"] )
+		z_range = between(0, z_range + text2num(href_list["z_range"]), 10) // Max is extending ten z-levels up and down.  Probably too big of a number but it shouldn't matter.
 
 	updateDialog()
 
@@ -213,16 +240,19 @@
 		if(T in covered_turfs)
 			covered_turfs.Remove(T)
 		for(var/turf/O in covered_turfs)
-			var/obj/effect/energy_field/E = new(O)
+			var/obj/effect/energy_field/E = new(O, src)
 			field.Add(E)
 		covered_turfs = null
 
 		for(var/mob/M in view(5,src))
 			M << "\icon[src] You hear heavy droning start up."
+		for(var/obj/effect/energy_field/E in field) // Update the icons here to ensure all the shields have been made already.
+			E.update_icon()
 	else
 		for(var/obj/effect/energy_field/D in field)
 			field.Remove(D)
-			D.loc = null
+			//D.loc = null
+			qdel(D)
 
 		for(var/mob/M in view(5,src))
 			M << "\icon[src] You hear heavy droning fade out."
@@ -236,12 +266,38 @@
 		else
 			icon_state = "generator0"
 
-//TODO MAKE THIS MULTIZ COMPATIBLE
 //grab the border tiles in a circle around this machine
 /obj/machinery/shield_gen/proc/get_shielded_turfs()
 	var/list/out = list()
 
-	var/turf/gen_turf = get_turf(src)
+	var/turf/T = get_turf(src)
+	if (!T)
+		return
+
+	out += get_shielded_turfs_on_z_level(T)
+
+	if(z_range)
+		var/i = z_range
+		while(HasAbove(T.z) && i)
+			T = GetAbove(T)
+			i--
+			if(istype(T))
+				out += get_shielded_turfs_on_z_level(T)
+
+		T = get_turf(src)
+		i = z_range
+
+		while(HasBelow(T.z) && i)
+			T = GetBelow(T)
+			i--
+			if(istype(T))
+				out += get_shielded_turfs_on_z_level(T)
+
+	return out
+
+/obj/machinery/shield_gen/proc/get_shielded_turfs_on_z_level(var/turf/gen_turf)
+	var/list/out = list()
+
 	if (!gen_turf)
 		return
 

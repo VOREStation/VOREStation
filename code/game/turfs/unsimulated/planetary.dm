@@ -27,6 +27,15 @@ var/list/planetary_walls = list()
 	planetary_walls.Remove(src)
 	..()
 
+/turf/unsimulated/wall/planetary/proc/set_temperature(var/new_temperature)
+	if(new_temperature == temperature)
+		return
+	temperature = new_temperature
+	// Force ZAS to reconsider our connections because our temperature has changed
+	if(connections)
+		connections.erase_all()
+	air_master.mark_for_update(src)
+
 // Normal station/earth air.
 /turf/unsimulated/wall/planetary/normal
 	oxygen = MOLES_O2STANDARD
@@ -55,3 +64,4 @@ var/list/planetary_walls = list()
 	oxygen = MOLES_O2STANDARD
 	nitrogen = MOLES_N2STANDARD
 	temperature = 310.92 // About 37.7C / 100F
+

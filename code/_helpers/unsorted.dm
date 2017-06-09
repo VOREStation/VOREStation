@@ -952,7 +952,7 @@ proc/DuplicateObject(obj/original, var/perfectcopy = 0 , var/sameloc = 0)
 
 //					var/area/AR = X.loc
 
-//					if(AR.lighting_use_dynamic)
+//					if(AR.dynamic_lighting)
 //						X.opacity = !X.opacity
 //						X.sd_SetOpacity(!X.opacity)			//TODO: rewrite this code so it's not messed by lighting ~Carn
 
@@ -1157,12 +1157,22 @@ proc/is_hot(obj/item/W as obj)
 	istype(W, /obj/item/weapon/surgical/bonesetter)
 	)
 
-//check if mob is lying down on something we can operate him on.
+// check if mob is lying down on something we can operate him on.
+// The RNG with table/rollerbeds comes into play in do_surgery() so that fail_step() can be used instead.
 /proc/can_operate(mob/living/carbon/M)
-	return (M.lying && \
-	locate(/obj/machinery/optable, M.loc) || \
-	(locate(/obj/structure/bed/roller, M.loc) && prob(75)) || \
-	(locate(/obj/structure/table/, M.loc) && prob(66)))
+	return M.lying
+
+// Returns an instance of a valid surgery surface.
+/mob/living/proc/get_surgery_surface()
+	if(!lying)
+		return null // Not lying down means no surface.
+	var/obj/surface = null
+	for(var/obj/O in loc) // Looks for the best surface.
+		if(O.surgery_odds)
+			if(!surface || surface.surgery_odds < O)
+				surface = O
+	if(surface)
+		return surface
 
 /proc/reverse_direction(var/dir)
 	switch(dir)
@@ -1254,6 +1264,10 @@ var/mob/dview/dview_mob = new
 	if(!center)
 		return
 
+	if(!dview_mob) //VOREStation Add - Emergency Backup
+		dview_mob = new()
+		WARNING("dview mob was lost, and had to be recreated!")
+
 	dview_mob.loc = center
 
 	dview_mob.see_invisible = invis_flags
@@ -1299,3 +1313,16 @@ var/mob/dview/dview_mob = new
 	tY = max(1, min(world.maxy, origin.y + (text2num(tY) - (world.view + 1))))
 	return locate(tX, tY, tZ)
 
+// Displays something as commonly used (non-submultiples) SI units.
+/proc/format_SI(var/number, var/symbol)
+	switch(round(abs(number)))
+		if(0 to 1000-1)
+			return "[number] [symbol]"
+		if(1e3 to 1e6-1)
+			return "[round(number / 1000, 0.1)] k[symbol]" // kilo
+		if(1e6 to 1e9-1)
+			return "[round(number / 1e6, 0.1)] M[symbol]" // mega
+		if(1e9 to 1e12-1) // Probably not needed but why not be complete?
+			return "[round(number / 1e9, 0.1)] G[symbol]" // giga
+		if(1e12 to 1e15-1)
+			return "[round(number / 1e12, 0.1)] T[symbol]" // tera

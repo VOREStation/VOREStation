@@ -95,10 +95,10 @@
 	if (istype(O, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = O
 		if (WT.remove_fuel(0))
-			if(health < maxHealth)
+			if(health < getMaxHealth())
 				health += pick(1,1,1,2,2,3)
-				if(health > maxHealth)
-					health = maxHealth
+				if(health > getMaxHealth())
+					health = getMaxHealth()
 				add_fingerprint(user)
 				src.visible_message("<span class='notice'>\The [user] has spot-welded some of the damage to \the [src]!</span>")
 			else

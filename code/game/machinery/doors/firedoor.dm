@@ -60,18 +60,18 @@
 	var/area/A = get_area(src)
 	ASSERT(istype(A))
 
-	A.all_doors.Add(src)
+	LAZYADD(A.all_doors, src)
 	areas_added = list(A)
 
 	for(var/direction in cardinal)
 		A = get_area(get_step(src,direction))
 		if(istype(A) && !(A in areas_added))
-			A.all_doors.Add(src)
+			LAZYADD(A.all_doors, src)
 			areas_added += A
 
 /obj/machinery/door/firedoor/Destroy()
 	for(var/area/A in areas_added)
-		A.all_doors.Remove(src)
+		LAZYREMOVE(A.all_doors, src)
 	. = ..()
 
 /obj/machinery/door/firedoor/get_material()
@@ -141,7 +141,7 @@
 
 	var/alarmed = lockdown
 	for(var/area/A in areas_added)		//Checks if there are fire alarms in any areas associated with that firedoor
-		if(A.fire || A.air_doors_activated)
+		if(A.firedoors_closed)
 			alarmed = 1
 
 	var/answer = alert(user, "Would you like to [density ? "open" : "close"] this [src.name]?[ alarmed && density ? "\nNote that by doing so, you acknowledge any damages from opening this\n[src.name] as being your own fault, and you will be held accountable under the law." : ""]",\
@@ -179,7 +179,7 @@
 		spawn(50)
 			alarmed = 0
 			for(var/area/A in areas_added)		//Just in case a fire alarm is turned off while the firedoor is going through an autoclose cycle
-				if(A.fire || A.air_doors_activated)
+				if(A.firedoors_closed)
 					alarmed = 1
 			if(alarmed)
 				nextstate = FIREDOOR_CLOSED

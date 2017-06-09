@@ -121,6 +121,15 @@
 		else
 			return 1
 
+/obj/item/projectile/energy/floramut/gene
+	name = "gamma somatoray"
+	icon_state = "energy2"
+	damage = 0
+	damage_type = TOX
+	nodamage = 1
+	check_armour = "energy"
+	var/decl/plantgene/gene = null
+
 /obj/item/projectile/energy/florayield
 	name = "beta somatoray"
 	icon_state = "energy2"
@@ -150,7 +159,7 @@
 	on_hit(var/atom/target, var/blocked = 0)
 		if(ishuman(target))
 			var/mob/living/carbon/human/M = target
-			M.confused += rand(5,8)
+			M.Confuse(rand(5,8))
 
 /obj/item/projectile/chameleon
 	name = "bullet"

@@ -37,7 +37,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 
 // Takes care blood loss and regeneration
 /mob/living/carbon/human/handle_blood()
-	if(in_stasis)
+	if(inStasisNow())
 		return
 
 	if(!should_have_organ(O_HEART))

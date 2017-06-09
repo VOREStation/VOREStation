@@ -133,7 +133,7 @@
 	var/appearance_flags = 0      // Appearance/display related features.
 	var/spawn_flags = 0           // Flags that specify who can spawn as this species
 	var/slowdown = 0              // Passive movement speed malus (or boost, if negative)
-	var/slowdown_fixed = 0		  // If this is on, they're not affected by object related slowdown (positive or negative)
+	var/item_slowdown_mod = 1	  // How affected by item slowdown the species is.
 	var/primitive_form            // Lesser form, if any (ie. monkey for humans)
 	var/greater_form              // Greater form, if any, ie. human for monkeys.
 	var/holder_type
@@ -200,7 +200,7 @@
 /datum/species/proc/equip_survival_gear(var/mob/living/carbon/human/H,var/extendedtank = 1)
 	var/boxtype = /obj/item/weapon/storage/box/survival //Default survival box
 	if(H.isSynthetic())
-		boxtype = /obj/item/weapon/storage/box //Empty box for synths
+		boxtype = /obj/item/weapon/storage/box/synth //VOREStation Edit - Synth survival box on Tether
 	else if(extendedtank)
 		boxtype = /obj/item/weapon/storage/box/engineer //Special box for engineers
 

@@ -25,7 +25,7 @@
 		if(is_ally(L))
 			continue
 
-		var/damage_to_inflict = max(L.health / L.maxHealth, 0) // Otherwise, those in crit would actually be healed.
+		var/damage_to_inflict = max(L.health / L.getMaxHealth(), 0) // Otherwise, those in crit would actually be healed.
 
 		var/armor_factor = abs(L.getarmor(null, "energy") - 100)
 		armor_factor = armor_factor / 100

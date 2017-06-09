@@ -257,6 +257,14 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL|HIDETIE|HIDEHOLSTER
 
+/obj/item/clothing/suit/straight_jacket/attack_hand(mob/living/user as mob)
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(src == H.wear_suit)
+			to_chat(H, "<span class='notice'>You need help taking this off!</span>")
+			return
+	..()
+
 /obj/item/clothing/suit/ianshirt
 	name = "worn shirt"
 	desc = "A worn out, curiously comfortable t-shirt with a picture of Ian. You wouldn't go so far as to say it feels like being hugged when you wear it but it's pretty close. Good for sleeping in."
@@ -332,6 +340,12 @@ obj/item/clothing/suit/kimono
 	item_state_slots = list(slot_r_hand_str = "leather_jacket", slot_l_hand_str = "leather_jacket")
 	flags_inv = HIDEHOLSTER
 
+obj/item/clothing/suit/storage/toggle/peacoat
+	name = "peacoat"
+	desc = "A well-tailored, stylish peacoat."
+	icon_state = "peacoat"
+	item_state_slots = list(slot_r_hand_str = "peacoat", slot_l_hand_str = "peacoat")
+	flags_inv = HIDEHOLSTER
 /*
  * stripper
  */

@@ -61,7 +61,7 @@
 					T:UpdateDamageIcon()
 
 		feedback_add_details("changeling_powers","A[stage]")
-		if(!do_mob(src, T, 150))
+		if(!do_mob(src, T, 150) || G.state != GRAB_KILL)
 			src << "<span class='warning'>Our absorption of [T] has been interrupted!</span>"
 			changeling.isabsorbing = 0
 			return
@@ -72,7 +72,12 @@
 	if(src.nutrition < 400)
 		src.nutrition = min((src.nutrition + T.nutrition), 400)
 	changeling.chem_charges += 10
-	src.verbs += /mob/proc/changeling_respec
+	if(changeling.readapts <= 0)
+		changeling.readapts = 0 //SANITYYYYYY
+	changeling.readapts++
+	if(changeling.readapts > changeling.max_readapts)
+		changeling.readapts = changeling.max_readapts
+
 	src << "<span class='notice'>We can now re-adapt, reverting our evolution so that we may start anew, if needed.</span>"
 
 	var/datum/absorbed_dna/newDNA = new(T.real_name, T.dna, T.species.name, T.languages, T.identifying_gender, T.flavor_texts)

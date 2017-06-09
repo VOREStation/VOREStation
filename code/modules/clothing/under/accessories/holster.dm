@@ -76,10 +76,12 @@
 
 /obj/item/clothing/accessory/holster/on_attached(obj/item/clothing/under/S, mob/user as mob)
 	..()
-	has_suit.verbs += /obj/item/clothing/accessory/holster/verb/holster_verb
+	if(has_suit)
+		has_suit.verbs += /obj/item/clothing/accessory/holster/verb/holster_verb
 
 /obj/item/clothing/accessory/holster/on_removed(mob/user as mob)
-	has_suit.verbs -= /obj/item/clothing/accessory/holster/verb/holster_verb
+	if(has_suit)
+		has_suit.verbs -= /obj/item/clothing/accessory/holster/verb/holster_verb
 	..()
 
 //For the holster hotkey
@@ -105,7 +107,7 @@
 	if(!H.holstered)
 		var/obj/item/W = usr.get_active_hand()
 		if(!istype(W, /obj/item))
-			usr << "<span class='warning'>You need your gun equiped to holster it.</span>"
+			usr << "<span class='warning'>You need your gun equipped to holster it.</span>"
 			return
 		H.holster(W, usr)
 	else

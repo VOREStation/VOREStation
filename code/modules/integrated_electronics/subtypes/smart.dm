@@ -8,17 +8,16 @@
 	cannot see the target, it will not be able to calculate the correct direction."
 	icon_state = "numberpad"
 	complexity = 25
-	inputs = list("target ref")
-	outputs = list("dir")
-	activators = list("calculate dir")
+	inputs = list("\<REF\> target")
+	outputs = list("\<NUM\> dir")
+	activators = list("\<PULSE IN\> calculate dir", "\<PULSE OUT\> on calculated")
 	spawn_flags = IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_DATA = 5)
 	power_draw_per_use = 40
 
 /obj/item/integrated_circuit/smart/basic_pathfinder/do_work()
 	var/datum/integrated_io/I = inputs[1]
-	var/datum/integrated_io/O = outputs[1]
-	O.data = null
+	set_pin_data(IC_OUTPUT, 1, null)
 
 	if(!isweakref(I.data))
 		return
@@ -28,6 +27,6 @@
 	if(!(A in view(get_turf(src))))
 		return // Can't see the target.
 	var/desired_dir = get_dir(get_turf(src), A)
-	if(desired_dir)
-		O.data = desired_dir
-		O.push_data()
+
+	set_pin_data(IC_OUTPUT, 1, desired_dir)
+	push_data()

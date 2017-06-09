@@ -384,7 +384,7 @@
 	name = "Stimm"
 	id = "stimm"
 	result = "stimm"
-	required_reagents = list("sugar" = 1, "fuel" = 1)
+	required_reagents = list("left4zed" = 1, "fuel" = 1)
 	catalysts = list("fuel" = 5)
 	result_amount = 2
 

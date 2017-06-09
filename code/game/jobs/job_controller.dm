@@ -388,6 +388,7 @@ var/global/datum/controller/occupations/job_master
 			job.equip_backpack(H)
 			job.equip_survival(H)
 			job.apply_fingerprints(H)
+			H.equip_post_job()
 
 			//If some custom items could not be equipped before, try again now.
 			for(var/thing in custom_equip_leftovers)
@@ -625,7 +626,7 @@ var/global/datum/controller/occupations/job_master
 		else
 			spawnpos = spawntypes[H.client.prefs.spawnpoint]
 
-	if(spawnpos && istype(spawnpos))
+	if(spawnpos && istype(spawnpos) && spawnpos.turfs.len)  // VOREStation Edit - Fix runtime if no landmarks exist for a spawntype
 		if(spawnpos.check_job_spawning(rank))
 			H.forceMove(pick(spawnpos.turfs))
 			. = spawnpos.msg

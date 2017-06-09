@@ -378,3 +378,50 @@
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
 		species_allowed = list("Sergal")
 		gender = FEMALE
+
+	monoeye
+		name = "Monoeye"
+		icon_state = "monoeye"
+		body_parts = list(BP_HEAD)
+
+	nevrean_female
+		name = "Female Nevrean beak"
+		icon_state = "nevrean_f"
+		body_parts = list(BP_HEAD)
+		gender = FEMALE
+
+	nevrean_male
+		name = "Male Nevrean beak"
+		icon_state = "nevrean_m"
+		body_parts = list(BP_HEAD)
+		gender = MALE
+
+	spots
+		name = "Spots"
+		icon_state = "spots"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
+
+	shaggy_mane
+		name = "Shaggy mane/feathers"
+		icon_state = "shaggy"
+		body_parts = list(BP_TORSO)
+
+	jagged_teeth
+		name = "Jagged teeth"
+		icon_state = "jagged"
+		body_parts = list(BP_HEAD)
+
+	saber_teeth
+		name = "Saber teeth"
+		icon_state = "saber"
+		body_parts = list(BP_HEAD)
+
+	fangs
+		name = "Fangs"
+		icon_state = "fangs"
+		body_parts = list(BP_HEAD)
+
+	tusks
+		name = "Tusks"
+		icon_state = "tusks"
+		body_parts = list(BP_HEAD)

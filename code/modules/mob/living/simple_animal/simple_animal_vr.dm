@@ -28,6 +28,19 @@
 	..()
 	if(vore_active)
 		init_belly()
+	verbs |= /mob/living/proc/animal_nom
+
+// Release belly contents beforey being gc'd!
+/mob/living/simple_animal/Destroy()
+	for(var/I in vore_organs)
+		var/datum/belly/B = vore_organs[I]
+		B.release_all_contents() // When your stomach is empty
+	..()
+
+//For all those ID-having mobs
+/mob/living/simple_animal/GetIdCard()
+	if(myid)
+		return myid
 
 // Update fullness based on size & quantity of belly contents
 /mob/living/simple_animal/proc/update_fullness()
@@ -108,7 +121,7 @@
 		set_stance(STANCE_ATTACK)
 	stop_automated_movement = 0
 
-/mob/living/simple_animal/hostile/vore/death()
+/mob/living/simple_animal/death()
 	for(var/I in vore_organs)
 		var/datum/belly/B = vore_organs[I]
 		B.release_all_contents() // When your stomach is empty
@@ -117,6 +130,8 @@
 // Simple animals have only one belly.  This creates it (if it isn't already set up)
 /mob/living/simple_animal/proc/init_belly()
 	if(vore_organs.len)
+		return
+	if(no_vore) //If it can't vore, let's not give it a stomach.
 		return
 
 	var/datum/belly/B = new /datum/belly(src)

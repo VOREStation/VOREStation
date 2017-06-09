@@ -186,3 +186,14 @@
 /mob/living/simple_animal/hostile/carp/pike
 	vore_active = 1
 	// NO VORE SPRITES
+
+/mob/living/simple_animal/hostile/carp/holodeck
+	vore_icons = 0 // NO VORE SPRITES
+// Override stuff for holodeck carp to make them not digest when set to safe!
+/mob/living/simple_animal/hostile/carp/holodeck/set_safety(var/safe)
+	. = ..()
+	for(var/I in vore_organs)
+		var/datum/belly/B = vore_organs[I]
+		B.digest_mode = safe ? DM_HOLD : vore_default_mode
+		B.digestchance = safe ? 0 : vore_digest_chance
+		B.absorbchance = safe ? 0 : vore_absorb_chance

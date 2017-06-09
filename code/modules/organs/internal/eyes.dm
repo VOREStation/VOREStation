@@ -72,7 +72,7 @@
 	if(is_bruised())
 		owner.eye_blurry = 20
 	if(is_broken())
-		owner.eye_blind = 20
+		owner.Blind(20)
 
 /obj/item/organ/internal/eyes/handle_germ_effects()
 	. = ..() //Up should return an infection level as an integer

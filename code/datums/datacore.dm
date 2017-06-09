@@ -184,6 +184,10 @@
 		G.fields["real_rank"]	= H.mind.assigned_role
 		G.fields["rank"]		= assignment
 		G.fields["age"]			= H.age
+		if(H.get_FBP_type())
+			G.fields["brain_type"] = H.get_FBP_type()
+		else
+			G.fields["brain_type"] = "Organic"
 		G.fields["fingerprint"]	= md5(H.dna.uni_identity)
 		G.fields["p_stat"]		= "Active"
 		G.fields["m_stat"]		= "Stable"
@@ -201,11 +205,19 @@
 		M.fields["b_type"]		= H.b_type
 		M.fields["b_dna"]		= H.dna.unique_enzymes
 		M.fields["id_gender"]	= gender2text(H.identifying_gender)
+		if(H.get_FBP_type())
+			M.fields["brain_type"] = H.get_FBP_type()
+		else
+			M.fields["brain_type"] = "Organic"
 		if(H.med_record && !jobban_isbanned(H, "Records"))
 			M.fields["notes"] = H.med_record
 
 		//Security Record
 		var/datum/data/record/S = CreateSecurityRecord(H.real_name, id)
+		if(H.get_FBP_type())
+			S.fields["brain_type"] = H.get_FBP_type()
+		else
+			S.fields["brain_type"] = "Organic"
 		if(H.sec_record && !jobban_isbanned(H, "Records"))
 			S.fields["notes"] = H.sec_record
 
@@ -218,6 +230,10 @@
 		L.fields["fingerprint"]	= md5(H.dna.uni_identity)
 		L.fields["sex"]			= gender2text(H.gender)
 		L.fields["id_gender"]	= gender2text(H.identifying_gender)
+		if(H.get_FBP_type())
+			L.fields["brain_type"] = H.get_FBP_type()
+		else
+			L.fields["brain_type"] = "Organic"
 		L.fields["b_type"]		= H.b_type
 		L.fields["b_dna"]		= H.dna.unique_enzymes
 		L.fields["enzymes"]		= H.dna.SE // Used in respawning
@@ -426,6 +442,7 @@
 	G.fields["real_rank"] = "Unassigned"
 	G.fields["sex"] = "Unknown"
 	G.fields["age"] = "Unknown"
+	G.fields["brain_type"] = "Unknown"
 	G.fields["fingerprint"] = "Unknown"
 	G.fields["p_stat"] = "Active"
 	G.fields["m_stat"] = "Stable"
@@ -447,6 +464,7 @@
 	R.name = "Security Record #[id]"
 	R.fields["name"] = name
 	R.fields["id"] = id
+	R.fields["brain_type"] = "Unknown"
 	R.fields["criminal"]	= "None"
 	R.fields["mi_crim"]		= "None"
 	R.fields["mi_crim_d"]	= "No minor crime convictions."
@@ -467,6 +485,7 @@
 	M.fields["b_type"]		= "AB+"
 	M.fields["b_dna"]		= md5(name)
 	M.fields["id_gender"]	= "Unknown"
+	M.fields["brain_type"]	= "Unknown"
 	M.fields["mi_dis"]		= "None"
 	M.fields["mi_dis_d"]	= "No minor disabilities have been declared."
 	M.fields["ma_dis"]		= "None"

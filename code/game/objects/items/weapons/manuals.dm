@@ -1113,10 +1113,10 @@
 			"}
 
 /obj/item/weapon/book/manual/evaguide
-	name = "EVA Gear and You: Not Spending All Day Inside"
+	name = "EVA Gear and You: Not Spending All Day Inside, 2nd Edition"
 	icon_state = "evabook"
 	author = "Maria Crash, Senior Atmospherics Technician"
-	title = "EVA Gear and You: Not Spending All Day Inside"
+	title = "EVA Gear and You: Not Spending All Day Inside, 2nd Edition"
 	dat = {"<html>
 				<head>
 				<style>
@@ -1130,27 +1130,32 @@
 				</head>
 				<body>
 
-				<h1><a name="Foreword">EVA Gear and You: Not Spending All Day Inside</a></h1>
+				<h1><a name="Foreword">EVA Gear and You: Not Spending All Day Inside, 2nd Edition</a></h1>
 				<I>Or: How not to suffocate because there's a hole in your shoes</I><BR>
 
 				<h2><a name="Contents">Contents</a></h2>
 				<ol>
 					<li><a href="#Foreword">A foreword on using EVA gear</a></li>
-					<li><a href="#Civilian">Donning a Civilian Suit</a></li>
-					<li><a href="#Hardsuit">Putting on a Hardsuit</a></li>
+					<li><a href="#Softsuits">Use of Softsuits</a></li>
+					<li><a href="#Voidsuits">Putting on a Voidsuit</a></li>
+					<li><a href="#Hardsuits">Operation of Hardsuits</a></li>
 					<li><a href="#Equipment">Cyclers and Other Modification Equipment</a></li>
+					<li><a href="#Advice">Miscellaneous Advice</a></li>
 					<li><a href="#Final">Final Checks</a></li>
 				</ol>
 				<br>
 
 				EVA gear. Wonderful to use. It's useful for mining, engineering, and occasionally just surviving, if things are that bad. Most people have EVA training,
-				but apparently there are some on a space station who don't. This guide should give you a basic idea of how to use this gear, safely. It's split into two sections:
-				 Civilian suits and hardsuits.<BR><BR>
+				but apparently there are some on a space station who don't. This guide should give you a basic idea of how to use this gear, safely. It's split into three main sections:
+				softsuits, voidsuits, and hardsuits. General advice and instructions for modification are present as well.<BR><BR>
 
-				<h2><a name="Civilian">Civilian Suits</a></h2>
+				One important point for synthetics and people using full-body prosthetics: You obviously don't need oxygen, but you do run the risk of overheating in vacuum.
+				Rather than oxygen, use a suit cooling unit. Many emergency equipment stores don't hold them, unfortunately, but dedicated EVA stores will. Be aware of your heat tolerances.<BR><BR>
+
+				<h2><a name="Softsuits">Softsuits and Emergency Equipment</a></h2>
 				<I>The bulkiest things this side of Alpha Centauri</I><BR>
-				These suits are the grey ones that are stored in EVA. They're the more simple to get on, but are also a lot bulkier, and provide less protection from environmental hazards such as radiation or physical impact.
-				As Medical, Engineering, Security, and Mining all have hardsuits of their own, these don't see much use, but knowing how to put them on is quite useful anyways.<BR><BR>
+				These suits are the both grey ones that are stored in EVA and orange emergency suits in emergency lockers. They're the more simple to get on, but are also a lot bulkier, and provide less protection from environmental hazards such as radiation or physical impact.
+				As Medical, Engineering, Security, and Mining all have voidsuits of their own, these don't see much use outside of emergencies. In an emergency, knowing how to put one on can save your life.<BR><BR>
 
 				First, take the suit. It should be in three pieces: A top, a bottom, and a helmet. Put the bottom on first, shoes and the like will fit in it. If you have magnetic boots, however,
 				put them on on top of the suit's feet. Next, get the top on, as you would a shirt. It can be somewhat awkward putting these pieces on, due to the makeup of the suit,
@@ -1160,35 +1165,68 @@
 				There is a small slot on the side of the suit where an emergency oxygen tank or extended emergency oxygen tank will fit,
 				but it is recommended to have a full-sized tank on your back for EVA.<BR><BR>
 
+				Important note: When using these, especially in emergencies, be aware of your surroundings! These suits can tear or breach more easily than any other type, especially in an environment with broken glass and metal everywhere.
+				If your suit is breached, you will be in deep trouble. Pressure issues can inhibit breathing even with internals.<BR><BR>
+
 				These suits tend to be wearable by most species. They're large and flexible. They might be pretty uncomfortable for some, though, so keep that in mind.<BR><BR>
 
-				<h2><a name="Hardsuit">Hardsuits</a></h2>
+				<h2><a name="Voidsuits">Voidsuits</a></h2>
 				<I>Heavy, uncomfortable, still the best option.</I><BR>
-				These suits come in Engineering, Mining, and the Armory. There's also a couple Medical Hardsuits in EVA. These provide a lot more protection than the standard suits.<BR><BR>
+				These suits come in many specialized varieties. The most common are engineering, atmospherics, security, medical, and mining varieties.
+				These provide a lot more protection than the standard suits, and depending on the specialization, can offer different protections.
+				For example, security suits have armor plating, engineering suits have radiation protection, and atmospherics suits are rated for extremely high temperatures.<BR><BR>
 
-				Similarly to the other suits, these are split into three parts. Fastening the pant and top are mostly the same as the other spacesuits, with the exception that these are a bit heavier,
+				Similarly to the softsuits, these are split into three parts. Fastening the pant and top are mostly the same as the softsuits, with the exception that these are a bit heavier,
 				though not as bulky. The helmet goes on differently, with the air tube feeding into the suit and out a hole near the left shoulder, while the helmet goes on turned ninety degrees counter-clockwise,
-				and then is screwed in for one and a quarter full rotations clockwise, leaving the faceplate directly in front of you. There is a small button on the right side of the helmet that activates the helmet light.
+				and then is turned to face the front and sealed. There is a small button on the right side of the helmet that activates the helmet light.
 				The tanks that fasten onto the side slot are emergency tanks, as well as full-sized oxygen tanks, leaving your back free for a backpack or satchel.<BR><BR>
 
 				These suits generally only fit one species. NanoTrasen's are usually human-fitting by default, but there's equipment that can make modifications to the hardsuits to fit them to other species.<BR><BR>
 
+				Later-model voidsuits can have magboots and helmets installed into the suit and deployed when needed. Check the operator's manual for individual suits to see how the helmets are installed.
+				If a helmet is installed, you can skip it while putting the suit on, obviously. When deployed, it will deploy from the back of your neck, covering the head and sealing at the front.<BR><BR>
+
+				<h2><a name="Hardsuits">Hardsuits/Rigs</a></h2>
+				<I>The fancy stuff.</I><BR>
+				Proper hardsuits are the most complex sort of EVA equipment available, and blur the line between spacesuits and smaller exosuits. They're sometimes known as 'rigs' or 'powered armor'.
+				These are the suits with the widest variety of uses, owing to the wide variety of equipment that can be installed on them. Like voidsuits, they come in different, specialized varieties, each one offering different protections and different equipment.
+				Equipment that can be installed includes weapons, power tools, mining equipment, medical equipment, AI assistants, and more.<BR><BR>
+
+				Putting these on is relatively simple. They come as compact packs, worn like a backpack and secured with a harness. Activating them, though, is a more complex process. The suit deploys from the module similarly to helmets deploying from voidsuits.
+				After it covers the whole body, the suit can be started. The startup sequence takes some time. The suit will automatically fit itself to your body, sealing each section individually - boots, gloves, pants, torso, and helmet - then connecting them.<BR><BR>
+
+				Operating a hardsuit is a much more complicated proposal than operating other EVA equipment. While putting them on is relatively simple, and operating basic functions like oxygen and magboots is the same as other suits, the rest is far more complex.
+				Consult the operator's manual for invidual pieces of equipment that you plan to use. Use of these for heavy work is only reccomended for people who have specialized training and extensive EVA experience.
+				The potential of a suit breach is always there, and the use of powered equipment raises it significantly.<BR><BR>
+
+				<h2><a name="Advice">Miscellaneous Advice</a></h2>
+				<I>Pro tip: Safety first.</I><BR>
+				There's a lot of general advice that can be helpful for people who haven't taken a long-form instruction course. Much of this is going to be fairly obvious safety advice, but it's never bad to remind yourself of that.<BR><BR>
+
+				<ul>
+					<li>Magboots are important. They can be the difference between keeping your footing and needing a rescue team. A tie-off or a jetpack can substitute if necessary.</li>
+					<li>Be aware of breach hazards, especially in softsuits. Loss of suit pressure can be a fatal disaster.</li>
+					<li>Keep an eye on your internals. Having to make two trips outside is better than running out of air.</li>
+					<li>Similarly, keep an eye on the battery status of cooling units and other equipment.</li>
+					<li>In vacuum, sound doesn't carry. Use a radio or sign language for communication.</li><BR><BR>
+				</ul>
+
 				<h2><a name="Equipment">Modification Equipment</a></h2>
-				<I>How to actually make hardsuits fit you.</I><BR>
+				<I>How to actually make voidsuits fit you.</I><BR>
 				There's a variety of equipment that can modify hardsuits to fit species that can't fit into them, making life quite a bit easier.<BR><BR>
 
 				The first piece of equipment is a suit cycler. This is a large machine resembling the storage pods that are in place in some places. These are machines that will automatically tailor a suit to certain specifications.
-				The largest uses of them are for their cleaning functions and their ability to tailor suits for a species. Do not enter them physically. You will die from any of the functions being activated, and it will be painful.
+				The largest uses of them are for their cleaning functions and their ability to tailor suits for a species. Do not enter them physically. You will die from any of the functions being activated, and it will hurt the whole time you're dying.
 				These machines can both tailor a suit between species, and between types. This means you can convert engineering hardsuits to atmospherics, or the other way. This is useful. Use it if you can.<BR><BR>
 
-				There's also modification kits that let you modify suits yourself. These are extremely difficult to use unless you understand the actual construction of the suit. I do not reccomend using them unless no other option is available.
+				There's also modification kits that let you modify suits yourself. These are extremely difficult to use unless you understand the actual construction of the suit. I do not reccomend using them unless no other option is available.<BR><BR>
 
 				<h2><a name="Final">Final Checks</a></h2>
 				<ul>
 					<li>Are all seals fastened correctly?</li>
 					<li>If you have modified it manually, is absolutely everything sealed perfectly?</li>
 					<li>Do you either have shoes on under the suit, or magnetic boots on over it?</li>
-					<li>Do you have a mask on and internals on the suit or your back?</li>
+					<li>Do you have internals connected and activated?</li>
 					<li>Do you have a way to communicate with the station in case something goes wrong?</li>
 					<li>Do you have a second person watching if this is a training session?</li><BR>
 				</ul>

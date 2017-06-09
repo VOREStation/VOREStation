@@ -152,7 +152,7 @@
 	if(passed_smoke)
 		smoke = passed_smoke
 	else
-		smoke = PoolOrNew(/obj/effect/effect/smoke/chem, location)
+		smoke = new /obj/effect/effect/smoke/chem(location)
 
 	if(chemholder.reagents.reagent_list.len)
 		chemholder.reagents.trans_to_obj(smoke, chemholder.reagents.total_volume / dist, copy = 1) //copy reagents to the smoke so mob/breathe() can handle inhaling the reagents
@@ -162,14 +162,14 @@
 	smoke.pixel_x = -32 + rand(-8, 8)
 	smoke.pixel_y = -32 + rand(-8, 8)
 	walk_to(smoke, T)
-	smoke.opacity = 1		//switching opacity on after the smoke has spawned, and then
+	smoke.set_opacity(1)		//switching opacity on after the smoke has spawned, and then
 	sleep(150+rand(0,20))	// turning it off before it is deleted results in cleaner
-	smoke.opacity = 0		// lighting and view range updates
+	smoke.set_opacity(0)		// lighting and view range updates
 	fadeOut(smoke)
 	qdel(src)
 
 /datum/effect/effect/system/smoke_spread/chem/spores/spawnSmoke(var/turf/T, var/icon/I, var/dist = 1)
-	var/obj/effect/effect/smoke/chem/spores = PoolOrNew(/obj/effect/effect/smoke/chem, location)
+	var/obj/effect/effect/smoke/chem/spores = new /obj/effect/effect/smoke/chem(location)
 	spores.name = "cloud of [seed.seed_name] [seed.seed_noun]"
 	..(T, I, dist, spores)
 

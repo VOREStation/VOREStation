@@ -1,6 +1,7 @@
 /datum/robolimb
 	var/includes_tail			//Cyberlimbs dmi includes a tail sprite to wear.
 	var/list/whitelisted_to		//List of ckeys that are allowed to pick this in charsetup.
+	var/suggested_species = "Human"
 
 //////////////// For-specific-character fluff ones /////////////////
 // arokha : Aronai Kadigan
@@ -12,6 +13,7 @@
 	includes_tail = 1
 	lifelike = 1
 	unavailable_to_build = 1
+	suggested_species = "Tajara"
 	whitelisted_to = list("arokha")
 
 /obj/item/weapon/disk/limb/kitsuhana
@@ -28,6 +30,18 @@
 
 /obj/item/weapon/disk/limb/white_kryten
 	company = "White Kryten Cybernetics"
+
+// verkister : Rahwoof Boop
+/datum/robolimb/eggnerdltd
+	company = "Eggnerd Prototyping Ltd."
+	desc = "This limb has a slight salvaged handicraft vibe to it. The CE-marking on it is definitely not the standardized one, it looks more like a hand-written sharpie monogram."
+	icon = 'icons/mob/human_races/cyberlimbs/_fluff_vr/rahboop.dmi'
+	blood_color = "#5e280d"
+	includes_tail = 1
+	unavailable_to_build = 1
+
+/obj/item/weapon/disk/limb/eggnerdltd
+	company = "Eggnerd Prototyping Ltd."
 
 //////////////// General VS-only ones /////////////////
 /datum/robolimb/talon //They're buildable by default due to being extremely basic.
@@ -54,6 +68,8 @@
 	blood_color = "#ffe2ff"
 	lifelike = 1
 	unavailable_to_build = 1
+	includes_tail = 1
+	suggested_species = "Tajara"
 
 /obj/item/weapon/disk/limb/dsi_tajaran
 	company = "DSI - Tajaran"
@@ -65,6 +81,8 @@
 	blood_color = "#ffe2ff"
 	lifelike = 1
 	unavailable_to_build = 1
+	includes_tail = 1
+	suggested_species = "Unathi"
 
 /obj/item/weapon/disk/limb/dsi_lizard
 	company = "DSI - Lizard"
@@ -76,6 +94,8 @@
 	blood_color = "#ffe2ff"
 	lifelike = 1
 	unavailable_to_build = 1
+	includes_tail = 1
+	suggested_species = "Sergal"
 
 /obj/item/weapon/disk/limb/dsi_sergal
 	company = "DSI - Sergal"
@@ -87,6 +107,8 @@
 	blood_color = "#ffe2ff"
 	lifelike = 1
 	unavailable_to_build = 1
+	includes_tail = 1
+	suggested_species = "Nevrean"
 
 /obj/item/weapon/disk/limb/dsi_nevrean
 	company = "DSI - Nevrean"
@@ -98,7 +120,21 @@
 	blood_color = "#ffe2ff"
 	lifelike = 1
 	unavailable_to_build = 1
+	includes_tail = 1
+	suggested_species = "Vulpkanin"
 
 /obj/item/weapon/disk/limb/dsi_vulpkanin
 	company = "DSI - Vulpkanin"
 
+/datum/robolimb/dsi_akula
+	company = "DSI - Akula"
+	desc = "This limb feels soft and fleshy, realistic design and squish. Seems a little mischievous. By Darkside Incorperated."
+	icon = 'icons/mob/human_races/cyberlimbs/DSIAkula/dsi_akula.dmi'
+	blood_color = "#ffe2ff"
+	lifelike = 1
+	unavailable_to_build = 1
+	includes_tail = 1
+	suggested_species = "Akula"
+
+/obj/item/weapon/disk/limb/dsi_akula
+	company = "DSI - Akula"

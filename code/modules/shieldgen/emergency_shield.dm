@@ -54,8 +54,8 @@
 	playsound(src.loc, 'sound/effects/EMPulse.ogg', 75, 1)
 
 	check_failure()
-	opacity = 1
-	spawn(20) if(src) opacity = 0
+	set_opacity(1)
+	spawn(20) if(!deleted(src)) set_opacity(0)
 
 	..()
 
@@ -63,8 +63,8 @@
 	health -= Proj.get_structure_damage()
 	..()
 	check_failure()
-	opacity = 1
-	spawn(20) if(src) opacity = 0
+	set_opacity(1)
+	spawn(20) if(!deleted(src)) set_opacity(0)
 
 /obj/machinery/shield/ex_act(severity)
 	switch(severity)
@@ -113,8 +113,8 @@
 	check_failure()
 
 	//The shield becomes dense to absorb the blow.. purely asthetic.
-	opacity = 1
-	spawn(20) if(src) opacity = 0
+	set_opacity(1)
+	spawn(20) if(!deleted(src)) set_opacity(0)
 
 	..()
 	return
@@ -290,7 +290,7 @@
 	else if(istype(W, /obj/item/stack/cable_coil) && malfunction && is_open)
 		var/obj/item/stack/cable_coil/coil = W
 		user << "<span class='notice'>You begin to replace the wires.</span>"
-		//if(do_after(user, min(60, round( ((maxhealth/health)*10)+(malfunction*10) ))) //Take longer to repair heavier damage
+		//if(do_after(user, min(60, round( ((getMaxHealth()/health)*10)+(malfunction*10) ))) //Take longer to repair heavier damage
 		if(do_after(user, 30))
 			if (coil.use(1))
 				health = max_health

@@ -11,7 +11,7 @@
 /obj/machinery/computer/cryopod
 	name = "cryogenic oversight console"
 	desc = "An interface between crew and the cryogenic storage oversight systems."
-	icon = 'icons/obj/Cryogenic2.dmi'
+	icon = 'icons/obj/Cryogenic2_vr.dmi' //VOREStation Edit - New Icon
 	icon_state = "cellconsole"
 	circuit = /obj/item/weapon/circuitboard/cryopodcontrol
 	density = 0
@@ -26,6 +26,8 @@
 	var/storage_type = "crewmembers"
 	var/storage_name = "Cryogenic Oversight Control"
 	var/allow_items = 1
+
+	req_one_access = list(access_heads) //VOREStation Add
 
 /obj/machinery/computer/cryopod/robot
 	name = "robotic storage console"
@@ -191,7 +193,7 @@
 
 	name = "cryogenic feed"
 	desc = "A bewildering tangle of machinery and pipes."
-	icon = 'icons/obj/Cryogenic2.dmi'
+	icon = 'icons/obj/Cryogenic2_vr.dmi' //VOREStation Edit - New Icon
 	icon_state = "cryo_rear"
 	anchored = 1
 	dir = WEST
@@ -200,14 +202,14 @@
 /obj/machinery/cryopod
 	name = "cryogenic freezer"
 	desc = "A man-sized pod for entering suspended animation."
-	icon = 'icons/obj/Cryogenic2.dmi'
-	icon_state = "body_scanner_0"
+	icon = 'icons/obj/Cryogenic2_vr.dmi' //VOREStation Edit - New Icon
+	icon_state = "cryopod_0" //VOREStation Edit - New Icon
 	density = 1
 	anchored = 1
 	dir = WEST
 
-	var/base_icon_state = "body_scanner_0"
-	var/occupied_icon_state = "body_scanner_1"
+	var/base_icon_state = "cryopod_0" //VOREStation Edit - New Icon
+	var/occupied_icon_state = "cryopod_1" //VOREStation Edit - New Icon
 	var/on_store_message = "has entered long-term storage."
 	var/on_store_name = "Cryogenic Oversight"
 	var/on_enter_visible_message = "starts climbing into the"
@@ -430,7 +432,7 @@
 		else
 			if(control_computer && control_computer.allow_items)
 				control_computer.frozen_items += W
-				W.loc = null
+				W.loc = control_computer //VOREStation Edit
 			else
 				W.forceMove(src.loc)
 
@@ -548,7 +550,7 @@
 			time_entered = world.time
 			if(ishuman(M) && applies_stasis)
 				var/mob/living/carbon/human/H = M
-				H.in_stasis = 1
+				H.Stasis(1000)
 
 			// Book keeping!
 			var/turf/location = get_turf(src)
@@ -616,7 +618,7 @@
 		set_occupant(usr)
 		if(ishuman(usr) && applies_stasis)
 			var/mob/living/carbon/human/H = occupant
-			H.in_stasis = 1
+			H.Stasis(1000)
 
 		icon_state = occupied_icon_state
 
@@ -652,7 +654,7 @@
 	occupant.forceMove(get_turf(src))
 	if(ishuman(occupant) && applies_stasis)
 		var/mob/living/carbon/human/H = occupant
-		H.in_stasis = 0
+		H.Stasis(0)
 	set_occupant(null)
 
 	icon_state = base_icon_state

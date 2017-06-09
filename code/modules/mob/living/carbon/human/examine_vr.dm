@@ -1,4 +1,6 @@
 /mob/living/carbon/human/proc/examine_weight()
+	if(!show_pudge()) //Some clothing or equipment can hide this.
+		return ""
 	var/message = ""
 	var/weight_examine = round(weight)
 	var/t_He 	= "It" //capitalised for use at the start of each line.
@@ -58,6 +60,8 @@
 	return message //Credit to Aronai for helping me actually get this working!
 
 /mob/living/carbon/human/proc/examine_nutrition()
+	if(!show_pudge()) //Some clothing or equipment can hide this.
+		return ""
 	var/message = ""
 	var/nutrition_examine = round(nutrition)
 	var/t_He 	= "It" //capitalised for use at the start of each line.
@@ -104,6 +108,9 @@
 	return message
 
 /mob/living/carbon/human/proc/examine_bellies()
+	if(!show_pudge()) //Some clothing or equipment can hide this.
+		return ""
+
 	var/message = ""
 
 	for (var/I in src.vore_organs)
@@ -114,15 +121,23 @@
 
 //For OmniHUD records access for appropriate models
 /proc/hasHUD_vr(mob/living/carbon/human/H, hudtype)
-	if(!(istype(H.glasses, /obj/item/clothing/glasses/omnihud)))
-		return 0 //Not wearing omnis, don't care.
+	if(H.nif)
+		switch(hudtype)
+			if("security")
+				if(H.nif.flag_check(NIF_V_AR_SECURITY,NIF_FLAGS_VISION))
+					return TRUE
+			if("medical")
+				if(H.nif.flag_check(NIF_V_AR_MEDICAL,NIF_FLAGS_VISION))
+					return TRUE
 
-	var/obj/item/clothing/glasses/omnihud/omni = H.glasses
+	if(istype(H.glasses, /obj/item/clothing/glasses/omnihud))
+		var/obj/item/clothing/glasses/omnihud/omni = H.glasses
+		switch(hudtype)
+			if("security")
+				if(omni.mode == "sec" || omni.mode == "best")
+					return TRUE
+			if("medical")
+				if(omni.mode == "med" || omni.mode == "best")
+					return TRUE
 
-	switch(hudtype)
-		if("security")
-			return omni.mode == "sec" || omni.mode == "best"
-		if("medical")
-			return omni.mode == "med" || omni.mode == "best"
-		else
-			return 0
+	return FALSE

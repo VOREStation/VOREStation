@@ -42,6 +42,7 @@
 	M.facing_dir = null
 	M.set_dir(buckle_dir ? buckle_dir : dir)
 	M.update_canmove()
+	M.update_floating( M.Check_Dense_Object() )
 	buckled_mob = M
 
 	post_buckle_mob(M)
@@ -53,6 +54,7 @@
 		buckled_mob.buckled = null
 		buckled_mob.anchored = initial(buckled_mob.anchored)
 		buckled_mob.update_canmove()
+		buckled_mob.update_floating( buckled_mob.Check_Dense_Object() )
 		buckled_mob = null
 
 		post_buckle_mob(.)
@@ -74,7 +76,12 @@
 	add_fingerprint(user)
 	unbuckle_mob()
 
-	if(buckle_mob(M))
+	//can't buckle unless you share locs so try to move M to the obj.
+	if(M.loc != src.loc)
+		step_towards(M, src)
+
+	. = buckle_mob(M)
+	if(.)
 		if(M == user)
 			M.visible_message(\
 				"<span class='notice'>[M.name] buckles themselves to [src].</span>",\

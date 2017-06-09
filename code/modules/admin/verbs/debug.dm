@@ -316,37 +316,37 @@
 
 	for(var/obj/machinery/power/apc/APC in world)
 		var/area/A = get_area(APC)
-		if(!(A.type in areas_with_APC))
+		if(A && !(A.type in areas_with_APC))
 			areas_with_APC.Add(A.type)
 
 	for(var/obj/machinery/alarm/alarm in world)
 		var/area/A = get_area(alarm)
-		if(!(A.type in areas_with_air_alarm))
+		if(A && !(A.type in areas_with_air_alarm))
 			areas_with_air_alarm.Add(A.type)
 
 	for(var/obj/machinery/requests_console/RC in world)
 		var/area/A = get_area(RC)
-		if(!(A.type in areas_with_RC))
+		if(A && !(A.type in areas_with_RC))
 			areas_with_RC.Add(A.type)
 
 	for(var/obj/machinery/light/L in world)
 		var/area/A = get_area(L)
-		if(!(A.type in areas_with_light))
+		if(A && !(A.type in areas_with_light))
 			areas_with_light.Add(A.type)
 
 	for(var/obj/machinery/light_switch/LS in world)
 		var/area/A = get_area(LS)
-		if(!(A.type in areas_with_LS))
+		if(A && !(A.type in areas_with_LS))
 			areas_with_LS.Add(A.type)
 
 	for(var/obj/item/device/radio/intercom/I in world)
 		var/area/A = get_area(I)
-		if(!(A.type in areas_with_intercom))
+		if(A && !(A.type in areas_with_intercom))
 			areas_with_intercom.Add(A.type)
 
 	for(var/obj/machinery/camera/C in world)
 		var/area/A = get_area(C)
-		if(!(A.type in areas_with_camera))
+		if(A && !(A.type in areas_with_camera))
 			areas_with_camera.Add(A.type)
 
 	var/list/areas_without_APC = areas_all - areas_with_APC
@@ -480,7 +480,7 @@
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/det(M), slot_head)
 
 			M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/revolver(M), slot_r_hand)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a357(M), slot_l_store)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/s357(M), slot_l_store)
 
 		if ("tournament chef") //Steven Seagal FTW
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chef(M), slot_w_uniform)
@@ -560,7 +560,7 @@
 		if("masked killer")
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/overalls(M), slot_w_uniform)
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/latex(M), slot_gloves)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/sterile/latex(M), slot_gloves)
 			M.equip_to_slot_or_del(new /obj/item/clothing/mask/surgical(M), slot_wear_mask)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/welding(M), slot_head)
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset(M), slot_l_ear)
@@ -592,7 +592,7 @@
 				sec_briefcase.contents += new /obj/item/weapon/spacecash/c1000
 			sec_briefcase.contents += new /obj/item/weapon/gun/energy/crossbow
 			sec_briefcase.contents += new /obj/item/weapon/gun/projectile/revolver/mateba
-			sec_briefcase.contents += new /obj/item/ammo_magazine/a357
+			sec_briefcase.contents += new /obj/item/ammo_magazine/s357
 			sec_briefcase.contents += new /obj/item/weapon/plastique
 			M.equip_to_slot_or_del(sec_briefcase, slot_l_hand)
 
@@ -943,6 +943,15 @@
 		if("Clients")
 			usr << jointext(clients,",")
 
+/client/proc/cmd_debug_using_map()
+	set category = "Debug"
+	set name = "Debug Map Datum"
+	set desc = "Debug the map metadata about the currently compiled in map."
+
+	if(!check_rights(R_DEBUG))
+		return
+	debug_variables(using_map)
+
 // DNA2 - Admin Hax
 /client/proc/cmd_admin_toggle_block(var/mob/M,var/block)
 	if(!ticker)
@@ -977,7 +986,7 @@
 	if(!check_rights(R_DEBUG))
 		return
 
-	var/datum/planet/planet = input(usr, "Which planet do you want to modify the weather on?", "Change Weather") in list(planet_sif)
+	var/datum/planet/planet = input(usr, "Which planet do you want to modify the weather on?", "Change Weather") in planet_controller.planets
 	var/datum/weather/new_weather = input(usr, "What weather do you want to change to?", "Change Weather") as null|anything in planet.weather_holder.allowed_weather_types
 	if(new_weather)
 		planet.weather_holder.change_weather(new_weather)
@@ -993,7 +1002,7 @@
 	if(!check_rights(R_DEBUG))
 		return
 
-	var/datum/planet/planet = input(usr, "Which planet do you want to modify time on?", "Change Time") in list(planet_sif)
+	var/datum/planet/planet = input(usr, "Which planet do you want to modify time on?", "Change Time") in planet_controller.planets
 
 	var/datum/time/current_time_datum = planet.current_time
 	var/new_hour = input(usr, "What hour do you want to change to?", "Change Time", text2num(current_time_datum.show_time("hh"))) as null|num

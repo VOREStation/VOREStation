@@ -40,7 +40,13 @@
 		reagents = null
 	for(var/atom/movable/AM in contents)
 		qdel(AM)
+	var/turf/un_opaque
+	if(opacity && isturf(loc))
+		un_opaque = loc
+
 	loc = null
+	if(un_opaque)
+		un_opaque.recalc_atom_opacity()
 	if (pulledby)
 		if (pulledby.pulling == src)
 			pulledby.pulling = null
@@ -109,12 +115,7 @@
 	else if(isturf(hit_atom))
 		src.throwing = 0
 		var/turf/T = hit_atom
-		if(T.density)
-			spawn(2)
-				step(src, turn(src.last_move, 180))
-			if(istype(src,/mob/living))
-				var/mob/living/M = src
-				M.turf_collision(T, speed)
+		T.hitby(src,speed)
 
 //decided whether a movable atom being thrown can pass through the turf it is in.
 /atom/movable/proc/hit_check(var/speed)

@@ -164,7 +164,7 @@
 			switch (Proj.damage_type)
 				if(BRUTE)
 					new /obj/item/stack/material/steel(src.loc, 2)
-					PoolOrNew(/obj/item/stack/rods, list(src.loc, 3))
+					new /obj/item/stack/rods(src.loc, 3)
 				if(BURN)
 					new /obj/effect/decal/cleanable/ash(src.loc) // Turn it to ashes!
 			qdel(src)
@@ -314,6 +314,8 @@
 
 /obj/machinery/door/examine(mob/user)
 	. = ..()
+	if(src.health <= 0)
+		user << "\The [src] is broken!"
 	if(src.health < src.maxhealth / 4)
 		user << "\The [src] looks like it's about to break!"
 	else if(src.health < src.maxhealth / 2)
@@ -362,6 +364,7 @@
 		icon_state = "door1"
 	else
 		icon_state = "door0"
+	radiation_repository.resistance_cache.Remove(get_turf(src))
 	return
 
 
@@ -435,7 +438,8 @@
 	var/obj/fire/fire = locate() in loc
 	if(fire)
 		qdel(fire)
-	return
+
+	return 1
 
 /obj/machinery/door/proc/requiresID()
 	return 1

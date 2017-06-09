@@ -11,7 +11,13 @@
 	if(istype(fabricator, /obj/machinery/pros_fabricator))
 		var/obj/machinery/pros_fabricator/prosfab = fabricator
 		var/obj/item/organ/O = new build_path(newloc)
-		O.species = all_species["Human"]
+		//VOREStation Edit - Suggesting a species
+		if(prosfab.manufacturer)
+			var/datum/robolimb/manf = all_robolimbs[prosfab.manufacturer]
+			O.species = all_species["[manf.suggested_species]"]
+		else
+			O.species = all_species["Human"]
+		//VOREStation Edit End
 		O.robotize(prosfab.manufacturer)
 		O.dna = new/datum/dna() //Uuughhhh... why do I have to do this?
 		O.dna.ResetUI()
@@ -25,7 +31,13 @@
 /datum/design/item/prosfab/pros/torso/Fabricate(var/newloc, var/fabricator)
 	if(istype(fabricator, /obj/machinery/pros_fabricator))
 		var/obj/machinery/pros_fabricator/prosfab = fabricator
-		var/mob/living/carbon/human/H = new(newloc,"Human")
+		//VOREStation Edit - Suggesting a species
+		var/newspecies = "Human"
+		if(prosfab.manufacturer)
+			var/datum/robolimb/manf = all_robolimbs[prosfab.manufacturer]
+			newspecies = manf.suggested_species
+		var/mob/living/carbon/human/H = new(newloc,newspecies)
+		//VOREStation Edit End
 		H.stat = DEAD
 		H.gender = gender
 		for(var/obj/item/organ/external/EO in H.organs)
@@ -35,7 +47,7 @@
 				EO.remove_rejuv()
 
 		for(var/obj/item/organ/external/O in H.organs)
-			O.species = all_species["Human"]
+			O.species = all_species[newspecies] //VOREStation Edit with species suggestion above
 			O.robotize(prosfab.manufacturer)
 			O.dna = new/datum/dna()
 			O.dna.ResetUI()

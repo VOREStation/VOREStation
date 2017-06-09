@@ -25,7 +25,7 @@
 		usr.client.debug_variables(antag)
 		message_admins("Admin [key_name_admin(usr)] is debugging the [antag.role_text] template.")
 
-/client/proc/debug_controller(controller in list("Master","Ticker","Ticker Process","Air","Jobs","Sun","Radio","Supply","Shuttles","Emergency Shuttle","Configuration","pAI", "Cameras", "Transfer Controller", "Gas Data","Event","Plants","Alarm","Nano","Chemistry","Vote","Xenobio"))
+/client/proc/debug_controller(controller in list("Master","Ticker","Ticker Process","Air","Jobs","Sun","Radio","Supply","Shuttles","Emergency Shuttle","Configuration","pAI", "Cameras", "Transfer Controller", "Gas Data","Event","Plants","Alarm","Nano","Chemistry","Vote","Xenobio","Planets"))
 	set category = "Debug"
 	set name = "Debug Controller"
 	set desc = "Debug the various periodic loop controllers for the game (be careful!)"
@@ -98,5 +98,31 @@
 		if("Xenobio")
 			debug_variables(xenobio_controller)
 			feedback_add_details("admin_verb", "DXenobio")
+		if("Planets")
+			debug_variables(planet_controller)
+			feedback_add_details("admin_verb", "DPlanets")
 	message_admins("Admin [key_name_admin(usr)] is debugging the [controller] controller.")
 	return
+
+/client/proc/debug_process_scheduler()
+	set category = "Debug"
+	set name = "Debug Process Scheduler"
+	set desc = "Debug the process scheduler itself. For vulpine use only."
+
+	if(!check_rights(R_DEBUG)) return
+	if(config.debugparanoid && !check_rights(R_ADMIN)) return
+	debug_variables(processScheduler)
+	feedback_add_details("admin_verb", "DProcSchd")
+	message_admins("Admin [key_name_admin(usr)] is debugging the process scheduler.")
+
+/client/proc/debug_process(controller in processScheduler.nameToProcessMap)
+	set category = "Debug"
+	set name = "Debug Process Controller"
+	set desc = "Debug one of the periodic loop background task controllers for the game (be careful!)"
+
+	if(!check_rights(R_DEBUG)) return
+	if(config.debugparanoid && !check_rights(R_ADMIN)) return
+	var/datum/controller/process/P = processScheduler.nameToProcessMap[controller]
+	debug_variables(P)
+	feedback_add_details("admin_verb", "DProcCtrl")
+	message_admins("Admin [key_name_admin(usr)] is debugging the [controller] controller.")
