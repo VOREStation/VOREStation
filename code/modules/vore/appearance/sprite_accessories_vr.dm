@@ -476,6 +476,7 @@
 	desc = ""
 	icon_state = "doublekitsune"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/succubus_color
 	name = "succubus, colorable (+wings)"
@@ -530,6 +531,7 @@
 	icon_state = "harpywings"
 	do_colouration = 1
 	show_species_tail = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/liquidfirefly_gazer
 	name = "gazer eyestalks (Liquidfirefly)"
