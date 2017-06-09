@@ -1,3 +1,6 @@
+//Please see the comment above the main NIF definition before
+//trying to call any of these procs directly.
+
 //A single piece of NIF software
 /datum/nifsoft
 	var/name = "Prototype"
