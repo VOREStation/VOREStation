@@ -230,7 +230,11 @@
 
 	var/obj/item/device/nif/nif = H.nif
 
-	if(nif)
+	//If they have one, and if it's not installing without an owner, because
+	//Someone who joins and immediately leaves again (wrong job choice, maybe)
+	//should keep it even though it was probably doing the quick-calibrate, and their
+	//owner will have been pre-set during the constructor.
+	if(nif && !(nif.stat == NIF_INSTALLING && !nif.owner))
 		prefs.nif_path = nif.type
 		prefs.nif_durability = nif.durability
 		prefs.nif_savedata = nif.save_data.Copy()
