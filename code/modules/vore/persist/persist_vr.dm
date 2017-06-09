@@ -15,7 +15,7 @@
 
 // Handle people leaving due to round ending.
 /hook/roundend/proc/persist_locations()
-	for(var/mob/Player in player_list)
+	for(var/mob/Player in human_mob_list)
 		if(!Player.mind || isnewplayer(Player))
 			continue // No mind we can do nothing, new players we care not for
 		else if(Player.stat == DEAD)
@@ -233,9 +233,11 @@
 	if(nif)
 		prefs.nif_path = nif.type
 		prefs.nif_durability = nif.durability
+		prefs.nif_savedata = nif.save_data.Copy()
 	else
 		prefs.nif_path = null
 		prefs.nif_durability = null
+		prefs.nif_savedata = null
 
 	var/datum/category_group/player_setup_category/vore_cat = prefs.player_setup.categories_by_name["VORE"]
 	var/datum/category_item/player_setup_item/vore/nif/nif_prefs = vore_cat.items_by_name["NIF Data"]
