@@ -13,6 +13,42 @@
 		if ("awoo")
 			message = "awoos loudly. AwoooOOOOoooo!"
 			m_type = 2
+		if ("nsay")
+			if(!nif)
+				to_chat(src,"<span class='warning'>You can't use *nsay without a NIF.</span>")
+				return 1
+			var/datum/nifsoft/soulcatcher/SC = nif.imp_check(NIF_SOULCATCHER)
+			if(!SC)
+				to_chat(src,"<span class='warning'>You need the Soulcatcher software to use *nme.</span>")
+				return 1
+			if(!SC.brainmob.mind)
+				to_chat(src,"<span class='warning'>You need a loaded mind to use *nme.</span>")
+				return 1
+			var/nifmessage = sanitize(input("Type a message to say.") as text|null)
+			if(nifmessage)
+				nifmessage = "<b>\[\icon[nif.big_icon]NIF\]</b> <b>[src]</b> speaks, \"[nifmessage]\""
+				to_chat(SC.brainmob,nifmessage)
+				to_chat(src,nifmessage)
+			return 1
+
+		if ("nme")
+			if(!nif)
+				to_chat(src,"<span class='warning'>You can't use *nme without a NIF.</span>")
+				return 1
+			var/datum/nifsoft/soulcatcher/SC = nif.imp_check(NIF_SOULCATCHER)
+			if(!SC)
+				to_chat(src,"<span class='warning'>You need the Soulcatcher software to use *nme.</span>")
+				return 1
+			if(!SC.brainmob.mind)
+				to_chat(src,"<span class='warning'>You need a loaded mind to use *nme.</span>")
+				return 1
+			var/nifmessage = sanitize(input("Type an action to perform.") as text|null)
+			if(nifmessage)
+				nifmessage = "<b>\[\icon[nif.big_icon]NIF\]</b> <b>[src]</b> [nifmessage]"
+				to_chat(SC.brainmob,nifmessage)
+				to_chat(src,nifmessage)
+			return 1
+
 		if ("flip")
 			var/danger = 1 //Base 1% chance to break something.
 			var/list/involved_parts = list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT)

@@ -72,7 +72,7 @@
 * Update icon and overlays of open space to be that of the turf below, plus any visible objects on that turf.
 */
 /turf/simulated/open/update_icon()
-	overlays.Cut()
+	overlays = list() //VOREStation Edit - Overlays are being crashy when modified.
 	update_icon_edge() //VOREStation Add - Get grass into open spaces and whatnot.
 	var/turf/below = GetBelow(src)
 	if(below)

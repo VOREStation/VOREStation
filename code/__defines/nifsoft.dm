@@ -36,9 +36,10 @@
 #define NIF_HEATSINK			29
 #define NIF_COMPLIANCE			30
 #define NIF_SIZECHANGE			31
+#define NIF_SOULCATCHER			32
 
 // Must be equal to the highest number above
-#define TOTAL_NIF_SOFTWARE		31
+#define TOTAL_NIF_SOFTWARE		32
 
 //////////////////////
 // NIF flag list hints
@@ -83,6 +84,8 @@
 #define NIF_O_APCCHARGE			0x2
 #define NIF_O_PRESSURESEAL		0x4
 #define NIF_O_HEATSINKS			0x8
+#define NIF_O_SCMYSELF			0x10 //Soulcatcher stuff
+#define NIF_O_SCOTHERS			0x20
 
 ///////////////////
 // applies_to flags
