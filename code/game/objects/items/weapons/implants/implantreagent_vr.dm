@@ -14,6 +14,8 @@
 	var/list/self_emote_descriptor = list("transfer") //In format of You [self_emote_descriptor] some [generated_reagent] into [container]
 	var/list/random_emote = list() //An emote the person with the implant may be forced to perform after a prob check, such as [X] meows.
 	var/assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant
+	var/verb_name = "Transfer From Reagent Implant"
+	var/verb_desc = "Remove reagents from am internal reagent into a container"
 
 /obj/item/weapon/implant/reagent_generator/New()
 	..()
@@ -31,7 +33,7 @@
 /obj/item/weapon/implant/reagent_generator/implanted(mob/living/carbon/source)
 	processing_objects += src
 	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
-	source.verbs |= assigned_proc
+	assigned_proc = new assigned_proc(source, verb_name, verb_desc)
 	return 1
 
 /obj/item/weapon/implant/reagent_generator/process()
