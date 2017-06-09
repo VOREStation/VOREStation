@@ -1031,6 +1031,11 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 		to_chat(user,"<span class='warning'>\The [src] doesn't have a current valid destination set!</span>")
 		return
 
+	//No, you can't teleport if there's a jammer.
+	if(is_jammed(src) || is_jammed(destination))
+		to_chat(user,"<span class='warning'>\The [src] refuses to teleport you, due to strong interference!</span>")
+		return
+
 	//No, you can't port to or from away missions. Stupidly complicated check.
 	var/turf/uT = get_turf(user)
 	var/turf/dT = get_turf(destination)
