@@ -1264,6 +1264,10 @@ var/mob/dview/dview_mob = new
 	if(!center)
 		return
 
+	if(!dview_mob) //VOREStation Add - Emergency Backup
+		dview_mob = new()
+		WARNING("dview mob was lost, and had to be recreated!")
+
 	dview_mob.loc = center
 
 	dview_mob.see_invisible = invis_flags
