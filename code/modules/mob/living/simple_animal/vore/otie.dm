@@ -9,8 +9,8 @@
 
 	faction = "otie"
 	recruitable = 1
-	maxHealth = 160
-	health = 160
+	maxHealth = 120
+	health = 120
 	minbodytemp = 200
 	move_to_delay = 4
 	hostile = 1
@@ -47,7 +47,6 @@
 
 	var/mob/living/carbon/human/friend
 	var/tamed = 0
-	var/threat = null
 
 /mob/living/simple_animal/otie/fluff
 	name = "otie"
@@ -130,99 +129,33 @@
 		return 0
 	return M.assess_perp(0, 0, 0, check_records, check_arrest)
 
-/mob/living/simple_animal/otie/FindTarget()
-	var/atom/T = null
-	for(var/atom/A in ListTargets(view_range))
+/mob/living/simple_animal/otie/fluff/security/set_target(var/mob/M)
+	ai_log("SetTarget([M])",2)
+	if(!M || (world.time - last_target_time < 5 SECONDS) && target_mob)
+		ai_log("SetTarget() can't set it again so soon",3)
+		return 0
 
-		if(A == src)
-			continue
+	var/turf/seen = get_turf(M)
 
-		var/atom/F = Found(A)
-		if(F)
-			T = F
-			break
-		else if(specific_targets)
-			return 0
+	if(investigates && (annoyed < 10))
+		try_say_list(say_maybe_target)
+		face_atom(seen)
+		annoyed += 14
+		sleep(1 SECOND) //For realism
 
-		if(isliving(A))
-			var/mob/living/L = A
-			if(L.faction == src.faction && !attack_same)
-				continue
-			else if(L in friends)
-				continue
-			else if(!SA_attackable(L))
-				continue
-			else if(tamed == 1 && ishuman(L))
-				continue
-			else if(tamed == 1 && isrobot(L))
-				continue
-			else
-				T = L
-				break
+	if(M in ListTargets(view_range))
+		try_say_list(say_got_target)
+		target_mob = M
+		last_target_time = world.time
+		return M
+		if(check_threat(M) >= 4)
+			broadcast_security_hud_message("[src] is attempting to 'detain' suspect <b>[target_name(M)]</b> in <b>[get_area(src)]</b>.", src)
+	else if(investigates)
+		spawn(1)
+			WanderTowards(seen)
 
-		else if(istype(A, /obj/mecha)) // Our line of sight stuff was already done in ListTargets().
-			var/obj/mecha/M = A
-			if(!SA_attackable(M))
-				continue
-			if((M.occupant.faction != src.faction) || attack_same)
-				T = M
-				break
+	return 0
 
-	if(T) //Permission to fuck up and vore GET!
-		ai_log("FindTarget() found [T]!",1)
-		if(set_target(T))
-			handle_stance(STANCE_ATTACK)
-
-	return T
-
-/mob/living/simple_animal/otie/fluff/security/FindTarget()
-	var/atom/T = null
-	for(var/atom/A in ListTargets(view_range))
-
-		if(A == src)
-			continue
-
-		var/atom/F = Found(A)
-		if(F)
-			T = F
-			break
-		else if(specific_targets)
-			return 0
-
-		if(isliving(A))
-			var/mob/living/L = A
-			if(L.faction == src.faction && !attack_same)
-				continue
-			else if(L in friends)
-				continue
-			else if(!SA_attackable(L))
-				continue
-			else if(tamed == 1 && ishuman(L))
-				continue
-			else if(tamed == 1 && isrobot(L))
-				continue
-			else
-				T = L
-				break
-
-		else if(istype(A, /obj/mecha)) // Our line of sight stuff was already done in ListTargets().
-			var/obj/mecha/M = A
-			if(!SA_attackable(M))
-				continue
-			if((M.occupant.faction != src.faction) || attack_same)
-				T = M
-				break
-
-	if(T) //Permission to fuck up and vore GET!
-		ai_log("FindTarget() found [T]!",1)
-		if(set_target(T))
-			if(check_threat(T) >= 4)
-				broadcast_security_hud_message("[src] is attempting to 'detain' suspect <b>[target_name(T)]</b> in <b>[get_area(src)]</b>.", src)
-				handle_stance(STANCE_ATTACK)
-			else
-				handle_stance(STANCE_ATTACK)
-
-	return T
 
 /mob/living/simple_animal/otie/fluff/security/proc/target_name(mob/living/T)
 	if(ishuman(T))
@@ -274,18 +207,17 @@
 
 /mob/living/simple_animal/otie/attack_hand(mob/living/carbon/human/M as mob)
 	..()
-	switch(M.a_intent)
-
-		if(I_HELP)
-			if (health > 0)
-				LoseTarget()
-				handle_stance(STANCE_IDLE)
-				if(prob(50)) //It's a fiddy-fiddy you may get a buddy pal or you may get mauled and ate. Win-win!
-					friend = M
-					if(tamed != 1)
-						tamed = 1
-				return
-				..()
+	if(M.a_intent == I_HELP)
+		if (health > 0)
+			LoseTarget()
+			handle_stance(STANCE_IDLE)
+			if(prob(50)) //It's a fiddy-fiddy you may get a buddy pal or you may get mauled and ate. Win-win!
+				friend = M
+				if(tamed != 1)
+					tamed = 1
+			sleep(1 SECOND)
+			return
+			..()
 
 // Activate Noms!
 
@@ -293,5 +225,5 @@
 	vore_active = 1
 	vore_capacity = 1
 	vore_escape_chance = 8
-	vore_pounce_chance = 19
+	vore_pounce_chance = 16
 	vore_icons = SA_ICON_LIVING
