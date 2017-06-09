@@ -28,12 +28,6 @@
 	update_icon()
 	return
 
-/obj/item/weapon/reagent_containers/hypospray/do_surgery(mob/living/carbon/M, mob/living/user)
-	if(user.a_intent != I_HELP) //in case it is ever used as a surgery tool
-		return ..()
-	attack(M, user)
-	return 1
-
 /obj/item/weapon/reagent_containers/hypospray/attack(mob/living/M as mob, mob/user as mob)
 	if(!reagents.total_volume)
 		user << "<span class='warning'>[src] is empty.</span>"
