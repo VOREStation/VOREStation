@@ -24,8 +24,5 @@
 	else
 		new /obj/item/device/nif(H)
 
-	to_chat(usr,"<span class='notice'>Implanted NIF in [H].</span>")
-
-	log_admin("[key_name(src)] Quick NIF'd [H.real_name].")
-	message_admins("[key_name_admin(src)] Quick NIF'd [H.real_name].")
+	log_and_message_admins("[key_name(src)] Quick NIF'd [H.real_name].")
 	feedback_add_details("admin_verb","QNIF") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
