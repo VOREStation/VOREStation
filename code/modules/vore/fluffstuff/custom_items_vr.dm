@@ -876,6 +876,14 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 		accessset = 1
 	..()
 
+//verkister: Cameron Eggbert - Science goggles that ACTUALLY do nothing.
+/obj/item/clothing/glasses/science_proper
+	name = "Aesthetic Science Goggles"
+	desc = "The goggles really do nothing this time!"
+	icon_state = "purple"
+	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
+	item_flags = AIRTIGHT
+
 //The perfect adminboos device?
 /obj/item/device/perfect_tele
 	name = "personal translocator"
