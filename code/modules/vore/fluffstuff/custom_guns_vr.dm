@@ -795,13 +795,17 @@
 	if(transforming)
 		to_chat(user,"<span class = 'warning'>You can't fire while \the [src] transforming!</span>")
 		return
-	if(!(current_fire - last_fire >= 20 SECONDS))
+	if(!(current_fire - last_fire >= 30 SECONDS))
 		to_chat(user,"<span class = 'warning'>\The [src] is recharging...</span>")
 		return
 	if(is_jammed(A) || is_jammed(user))
 		to_chat(user,"<span class = 'warning'>\The [src] shot fizzles due to interference!</span>")
 		last_fire = current_fire
 		playsound(user, 'sound/weapons/wave.ogg', 60, 1)
+		return
+	var/turf/T = get_turf(A)
+	if(!T || T.check_density())
+		to_chat(user,"<span class = 'warning'>That's a little too solid to harpoon into!</span>")
 		return
 
 	last_fire = current_fire
