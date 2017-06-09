@@ -271,20 +271,22 @@
 	var/list/hear = dview(range,T,INVISIBILITY_MAXIMUM)
 	var/list/hearturfs = list()
 
-	for(var/atom/movable/AM in hear)
-		if(ismob(AM))
-			mobs += AM
-			hearturfs += AM.locs[1]
-		else if(isobj(AM))
-			objs += AM
-			hearturfs += AM.locs[1]
+	for(var/thing in hear)
+		if(istype(thing,/obj))
+			objs += thing
+			hearturfs += get_turf(thing)
+		else if(istype(thing,/mob))
+			mobs += thing
+			hearturfs += get_turf(thing)
 
 	//A list of every mob with a client
-	for(var/mob/M in player_list)
-		if(M.loc && M.locs[1] in hearturfs)
-			mobs |= M
+	for(var/mob in player_list)
+		if(get_turf(mob) in hearturfs)
+			mobs |= mob
+			continue
 
-		else if(M.stat == DEAD && !M.forbid_seeing_deadchat)
+		var/mob/M = mob
+		if(M.stat == DEAD && !M.forbid_seeing_deadchat)
 			switch(type)
 				if(1) //Audio messages use ghost_ears
 					if(M.is_preference_enabled(/datum/client_preference/ghost_ears))
@@ -294,9 +296,9 @@
 						mobs |= M
 
 	//For objects below the top level who still want to hear
-	for(var/obj/O in listening_objects)
-		if(O.loc && O.locs[1] in hearturfs)
-			objs |= O
+	for(var/obj in listening_objects)
+		if(get_turf(obj) in hearturfs)
+			objs |= obj
 
 	return list("mobs" = mobs, "objs" = objs)
 
