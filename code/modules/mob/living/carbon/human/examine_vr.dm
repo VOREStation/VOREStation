@@ -1,4 +1,6 @@
 /mob/living/carbon/human/proc/examine_weight()
+	if(!show_pudge()) //Some clothing or equipment can hide this.
+		return ""
 	var/message = ""
 	var/weight_examine = round(weight)
 	var/t_He 	= "It" //capitalised for use at the start of each line.
@@ -58,6 +60,8 @@
 	return message //Credit to Aronai for helping me actually get this working!
 
 /mob/living/carbon/human/proc/examine_nutrition()
+	if(!show_pudge()) //Some clothing or equipment can hide this.
+		return ""
 	var/message = ""
 	var/nutrition_examine = round(nutrition)
 	var/t_He 	= "It" //capitalised for use at the start of each line.
@@ -104,6 +108,9 @@
 	return message
 
 /mob/living/carbon/human/proc/examine_bellies()
+	if(!show_pudge()) //Some clothing or equipment can hide this.
+		return ""
+
 	var/message = ""
 
 	for (var/I in src.vore_organs)
