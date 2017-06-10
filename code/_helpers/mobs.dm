@@ -228,7 +228,7 @@ Proc for attack log creation, because really why not
 			. = 0
 			break
 
-		if(target_loc && (!target || target_loc != target.loc))
+		if(target_loc && (QDELETED(target) || target_loc != target.loc))
 			. = 0
 			break
 

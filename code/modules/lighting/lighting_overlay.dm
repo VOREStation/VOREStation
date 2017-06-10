@@ -39,7 +39,7 @@
 			log_debug("A lighting overlay realised its loc was NOT a turf (actual loc: [loc][loc ? ", " + loc.type : "null"]) in update_overlay() and got qdel'ed!")
 		else
 			log_debug("A lighting overlay realised it was in nullspace in update_overlay() and got pooled!")
-		qdel(src)
+		qdel(src, force=TRUE)
 		return
 
 	// To the future coder who sees this and thinks
@@ -121,14 +121,17 @@
 /atom/movable/lighting_overlay/throw_at()
 	return 0
 
-/atom/movable/lighting_overlay/Destroy()
-	total_lighting_overlays--
-	global.lighting_update_overlays     -= src
-	global.lighting_update_overlays_old -= src
+/atom/movable/lighting_overlay/Destroy(var/force)
+	if (force)
+		total_lighting_overlays--
+		global.lighting_update_overlays     -= src
+		global.lighting_update_overlays_old -= src
 
-	var/turf/T = loc
-	if(istype(T))
-		T.lighting_overlay = null
-		T.luminosity = 1
+		var/turf/T = loc
+		if(istype(T))
+			T.lighting_overlay = null
+			T.luminosity = 1
 
-	return ..()
+		return ..()
+	else
+		return QDEL_HINT_LETMELIVE

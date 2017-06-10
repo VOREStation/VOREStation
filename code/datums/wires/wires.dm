@@ -48,6 +48,7 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 
 /datum/wires/Destroy()
 	holder = null
+	signallers.Cut()
 	return ..()
 
 /datum/wires/proc/GenerateWires()

@@ -28,7 +28,7 @@
 /obj/machinery/power/grid_checker/Destroy()
 	qdel(wires)
 	wires = null
-	..()
+	return ..()
 
 /obj/machinery/power/grid_checker/update_icon()
 	if(power_failing)

@@ -161,5 +161,10 @@ var/list/all_maps = list()
 	if(transit_chance)
 		map.accessible_z_levels["[z]"] = transit_chance
 
-/datum/map_z_level/Destroy()
-	return TRUE // No.
+/datum/map_z_level/Destroy(var/force)
+	crash_with("Attempt to delete a map_z_level instance [log_info_line(src)]")
+	if(!force)
+		return QDEL_HINT_LETMELIVE // No.
+	if (using_map.zlevels["[z]"] == src)
+		using_map.zlevels -= "[z]"
+	return ..()
