@@ -64,17 +64,34 @@
 			inside_flavor = load
 		return TRUE
 
-	proc/say_into(var/message, var/sender)
-		to_chat(nif.human,"<b>\[\icon[nif.big_icon]NIF\]</b> <b>[sender]</b> speaks, \"[message]\"")
-		for(var/brainmob in brainmobs)
-			var/mob/living/carbon/brain/caught_soul/CS = brainmob
-			to_chat(CS,"<b>\[\icon[nif.big_icon]NIF\]</b> <b>[sender]</b> speaks, \"[message]\"")
+	proc/notify_into(var/message)
+		var/sound = nif.good_sound
 
-	proc/emote_into(var/message, var/sender)
-		to_chat(nif.human,"<b>\[\icon[nif.big_icon]NIF\]</b> <b>[sender]</b> [message]")
+		to_chat(nif.human,"<b>\[\icon[nif.big_icon]NIF\]</b> <b>Soulcatcher</b> displays, \"<span class='notice'>[message]</span>\"")
+		nif.human << sound
+
 		for(var/brainmob in brainmobs)
 			var/mob/living/carbon/brain/caught_soul/CS = brainmob
-			to_chat(CS,"<b>\[\icon[nif.big_icon]NIF\]</b> <b>[sender]</b> [message]")
+			to_chat(CS,"<b>\[\icon[nif.big_icon]NIF\]</b> <b>Soulcatcher</b> displays, \"<span class='notice'>[message]</span>\"")
+			brainmob << sound
+
+	proc/say_into(var/message, var/mob/living/sender)
+		var/sender_name = sender.name
+		log_nsay("[sender_name]/[sender.key] : [message]",nif.human)
+
+		to_chat(nif.human,"<b>\[\icon[nif.big_icon]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\"")
+		for(var/brainmob in brainmobs)
+			var/mob/living/carbon/brain/caught_soul/CS = brainmob
+			to_chat(CS,"<b>\[\icon[nif.big_icon]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\"")
+
+	proc/emote_into(var/message, var/mob/living/sender)
+		var/sender_name = sender.name
+		log_nme("[sender_name]/[sender.key] : [message]",nif.human)
+
+		to_chat(nif.human,"<b>\[\icon[nif.big_icon]NIF\]</b> <b>[sender_name]</b> [message]")
+		for(var/brainmob in brainmobs)
+			var/mob/living/carbon/brain/caught_soul/CS = brainmob
+			to_chat(CS,"<b>\[\icon[nif.big_icon]NIF\]</b> <b>[sender_name]</b> [message]")
 
 	proc/show_settings(var/mob/living/carbon/human/H)
 		set waitfor = FALSE
@@ -121,13 +138,14 @@
 	proc/toggle_setting(var/flag)
 		setting_flags ^= flag
 
+		var/notify_message
 		//Special treatment
 		switch(flag)
 			if(NIF_SC_BACKUPS)
 				if(setting_flags & NIF_SC_BACKUPS)
-					emote_into(" - Mind backup system enabled.","SOULCATCHER")
+					notify_message = "Mind backup system enabled."
 				else
-					emote_into(" - Mind backup system disabled.","SOULCATCHER")
+					notify_message = "Mind backup system disabled."
 
 			if(NIF_SC_CATCHING_ME)
 				if(setting_flags & NIF_SC_CATCHING_ME)
@@ -144,23 +162,26 @@
 					for(var/brain in brainmobs)
 						var/mob/living/carbon/brain/caught_soul/brainmob = brain
 						brainmob.ext_deaf = FALSE
-					emote_into(" - External audio input enabled.","SOULCATCHER")
+					notify_message = "External audio input enabled."
 				else
 					for(var/brain in brainmobs)
 						var/mob/living/carbon/brain/caught_soul/brainmob = brain
 						brainmob.ext_deaf = TRUE
-					emote_into(" - External audio input disabled.","SOULCATCHER")
+					notify_message = "External audio input disabled."
 			if(NIF_SC_ALLOW_EYES)
 				if(setting_flags & NIF_SC_ALLOW_EYES)
 					for(var/brain in brainmobs)
 						var/mob/living/carbon/brain/caught_soul/brainmob = brain
 						brainmob.ext_blind = FALSE
-					emote_into(" - External video input enabled.","SOULCATCHER")
+					notify_message = "External video input enabled."
 				else
 					for(var/brain in brainmobs)
 						var/mob/living/carbon/brain/caught_soul/brainmob = brain
 						brainmob.ext_blind = TRUE
-					emote_into(" - External video input disabled.","SOULCATCHER")
+					notify_message = "External video input disabled."
+
+		if(notify_message)
+			notify_into(notify_message)
 
 		return TRUE
 
@@ -207,7 +228,7 @@
 			send messages that only they can hear/see by 'say'ing either '*nsay' or '*nme'.</span>")
 
 		//Announce to host and other minds
-		emote_into(" - New mind loaded: [brainmob.name]","SOULCATCHER")
+		notify_into("New mind loaded: [brainmob.name]")
 		return TRUE
 
 ////////////////
@@ -274,10 +295,20 @@
 		return FALSE
 	..()
 
+/mob/living/carbon/brain/caught_soul/me_verb_subtle()
+	set hidden = TRUE
+
+	return FALSE
+
+/mob/living/carbon/brain/caught_soul/whisper()
+	set hidden = TRUE
+
+	return FALSE
+
 /mob/living/carbon/brain/caught_soul/say(var/message)
 	if(parent_mob) return ..()
 	if(silent) return FALSE
-	soulcatcher.say_into(message,src.name)
+	soulcatcher.say_into(message,src)
 
 /mob/living/carbon/brain/caught_soul/emote(var/act,var/m_type=1,var/message = null)
 	if(parent_mob) return ..()
@@ -299,7 +330,7 @@
 
 /mob/living/carbon/brain/caught_soul/custom_emote(var/m_type, var/message)
 	if(silent) return FALSE
-	soulcatcher.emote_into(message,src.name)
+	soulcatcher.emote_into(message,src)
 
 /mob/living/carbon/brain/caught_soul/resist()
 	set name = "Resist"
