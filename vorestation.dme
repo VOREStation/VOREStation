@@ -68,6 +68,7 @@
 #include "code\_helpers\icons_vr.dm"
 #include "code\_helpers\lists.dm"
 #include "code\_helpers\logging.dm"
+#include "code\_helpers\logging_vr.dm"
 #include "code\_helpers\maths.dm"
 #include "code\_helpers\matrices.dm"
 #include "code\_helpers\mobs.dm"
