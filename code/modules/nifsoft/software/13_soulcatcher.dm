@@ -245,7 +245,7 @@
 
 /mob/living/carbon/brain/caught_soul/Destroy()
 	if(soulcatcher)
-		soulcatcher.emote_into(" - Mind unloaded: [name]","SOULCATCHER")
+		soulcatcher.notify_into("Mind unloaded: [name]")
 		soulcatcher.brainmobs -= src
 		soulcatcher = null
 	if(nif)
