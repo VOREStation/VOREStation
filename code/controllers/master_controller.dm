@@ -2,6 +2,10 @@
 //It ensures master_controller.process() is never doubled up by killing the MC (hence terminating any of its sleeping procs)
 //WIP, needs lots of work still
 
+//
+// TODO - This will be completely replaced by master.dm in time.
+//
+
 var/global/datum/controller/game_controller/master_controller //Set in world.New()
 
 var/global/controller_iteration = 0
@@ -31,7 +35,6 @@ datum/controller/game_controller/New()
 	if(!syndicate_code_response)	syndicate_code_response	= generate_code_phrase()
 
 datum/controller/game_controller/proc/setup()
-	world.tick_lag = config.Ticklag
 
 	setup_objects()
 	setupgenetics()
