@@ -6,9 +6,13 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/mob/living/carbon/human/H = input("Pick a humanoid","Quick NIF") as null|anything in human_mob_list
+	var/mob/living/carbon/human/H = input("Pick a mob with a player","Quick NIF") as null|anything in player_list
 
 	if(!H)
+		return
+
+	if(!istype(H))
+		to_chat(usr,"<span class='warning'>That mob type ([H.type]) doesn't support NIFs, sorry.</span>")
 		return
 
 	if(!H.get_organ(BP_HEAD))

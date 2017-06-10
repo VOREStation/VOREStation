@@ -26,7 +26,7 @@
 				return 1
 			var/nifmessage = sanitize(input("Type a message to say.","Speak into NIF") as text|null)
 			if(nifmessage)
-				SC.say_into(nifmessage,src.real_name)
+				SC.say_into(nifmessage,src)
 			return 1
 
 		if ("nme")
@@ -42,7 +42,7 @@
 				return 1
 			var/nifmessage = sanitize(input("Type an action to perform.","Emote into NIF") as text|null)
 			if(nifmessage)
-				SC.emote_into(nifmessage,src.real_name)
+				SC.emote_into(nifmessage,src)
 			return 1
 
 		if ("flip")

@@ -7,3 +7,6 @@
 	name = "mask"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rockvault"
+
+/turf/unsimulated/floor/shuttle_ceiling
+	icon_state = "reinforced"

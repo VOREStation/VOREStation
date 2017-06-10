@@ -472,6 +472,11 @@
 	if (constructed)
 		state = 0
 
+/obj/structure/window/reinforced/full
+	dir = 5
+	icon_state = "fwindow"
+	maxhealth = 60
+
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
 	desc = "It looks rather strong and opaque. Might take a few good hits to shatter it."

@@ -281,6 +281,9 @@
 
 	//A list of every mob with a client
 	for(var/mob in player_list)
+		if(isnull(mob)) //VOREStation Add - Fix for a weird bug with nulls in this list
+			player_list -= mob //VOREStation Add
+			continue //VOREStation Add
 		if(get_turf(mob) in hearturfs)
 			mobs |= mob
 			continue
