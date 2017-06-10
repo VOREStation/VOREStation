@@ -40,7 +40,7 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 	spawn(process_time)
 		process()
 
-/datum/transhuman/infocore/proc/m_backup(var/datum/mind/mind)
+/datum/transhuman/infocore/proc/m_backup(var/datum/mind/mind,var/obj/item/device/nif/nif)
 	ASSERT(mind)
 	if(!mind.name || core_dumped)
 		return 0
@@ -50,6 +50,22 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 	if(mind.name in backed_up)
 		MR = backed_up[mind.name]
 		MR.last_update = world.time
+
+		//Pass a 0 to not change NIF status (because the elseif is checking for null)
+		if(nif)
+			MR.nif_path = nif.type
+			MR.nif_durability = nif.durability
+			var/list/nifsofts = list()
+			for(var/N in nif.nifsofts)
+				if(N)
+					var/datum/nifsoft/nifsoft = N
+					nifsofts += nifsoft.type
+			MR.nif_software = nifsofts
+		else if(isnull(nif)) //Didn't pass anything, so no NIF
+			MR.nif_path = null
+			MR.nif_durability = null
+			MR.nif_software = null
+
 	else
 		MR = new(mind, mind.current, 1)
 
@@ -108,17 +124,18 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 
 	//Backend
 	var/ckey = ""
-	var/id_gender
+	var/id_gender = MALE
 	var/datum/mind/mind_ref
-	var/cryo_at
-	var/languages
-	var/mind_oocnotes
+	var/cryo_at = 0
+	var/languages = list()
+	var/mind_oocnotes = ""
+
+	var/nif_path
+	var/nif_durability
+	var/list/nif_software
 
 /datum/transhuman/mind_record/New(var/datum/mind/mind,var/mob/living/carbon/human/M,var/obj/item/weapon/implant/backup/imp,var/add_to_db = 1)
-	ASSERT(mind && M && imp)
-
-	if(!istype(M))
-		return //Only works with humanoids.
+	ASSERT(mind)
 
 	//The mind!
 	mind_ref = mind
@@ -128,9 +145,10 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 	cryo_at = 0
 
 	//Mental stuff the game doesn't keep mentally
-	id_gender = M.identifying_gender
-	languages = M.languages.Copy()
-	mind_oocnotes = M.ooc_notes
+	if(istype(M))
+		id_gender = M.identifying_gender
+		languages = M.languages.Copy()
+		mind_oocnotes = M.ooc_notes
 
 	last_update = world.time
 

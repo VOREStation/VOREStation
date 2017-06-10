@@ -13,22 +13,22 @@
 		return affected && affected.open == (affected.encased ? 3 : 2) && !(affected.status & ORGAN_BLEEDING)
 
 	proc/get_max_wclass(var/obj/item/organ/external/affected)
-		switch (affected.name)
-			if ("head")
-				return 1
-			if ("upper body")
-				return 3
-			if ("lower body")
-				return 2
+		switch (affected.organ_tag)
+			if (BP_HEAD)
+				return ITEMSIZE_TINY
+			if (BP_TORSO)
+				return ITEMSIZE_NORMAL
+			if (BP_GROIN)
+				return ITEMSIZE_SMALL
 		return 0
 
 	proc/get_cavity(var/obj/item/organ/external/affected)
-		switch (affected.name)
-			if ("head")
+		switch (affected.organ_tag)
+			if (BP_HEAD)
 				return "cranial"
-			if ("upper body")
+			if (BP_TORSO)
 				return "thoracic"
-			if ("lower body")
+			if (BP_GROIN)
 				return "abdominal"
 		return ""
 
@@ -136,6 +136,7 @@
 		user.drop_item()
 		affected.implants += tool
 		tool.loc = affected
+		if(istype(tool,/obj/item/device/nif)){var/obj/item/device/nif/N = tool;N.implant(target)} //VOREStation Add - NIF support
 		affected.cavity = 0
 
 //////////////////////////////////////////////////////////////////
@@ -207,6 +208,7 @@
 						var/obj/item/weapon/implant/imp = obj
 						imp.imp_in = null
 						imp.implanted = 0
+					else if(istype(tool,/obj/item/device/nif)){var/obj/item/device/nif/N = tool;N.unimplant(target)} //VOREStation Add - NIF support
 			else
 				user.visible_message("\blue [user] removes \the [tool] from [target]'s [affected.name].", \
 				"\blue There's something inside [target]'s [affected.name], but you just missed it this time." )

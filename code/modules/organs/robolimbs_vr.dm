@@ -31,6 +31,18 @@
 /obj/item/weapon/disk/limb/white_kryten
 	company = "White Kryten Cybernetics"
 
+// verkister : Rahwoof Boop
+/datum/robolimb/eggnerdltd
+	company = "Eggnerd Prototyping Ltd."
+	desc = "This limb has a slight salvaged handicraft vibe to it. The CE-marking on it is definitely not the standardized one, it looks more like a hand-written sharpie monogram."
+	icon = 'icons/mob/human_races/cyberlimbs/_fluff_vr/rahboop.dmi'
+	blood_color = "#5e280d"
+	includes_tail = 1
+	unavailable_to_build = 1
+
+/obj/item/weapon/disk/limb/eggnerdltd
+	company = "Eggnerd Prototyping Ltd."
+
 //////////////// General VS-only ones /////////////////
 /datum/robolimb/talon //They're buildable by default due to being extremely basic.
 	company = "Talon LLC"

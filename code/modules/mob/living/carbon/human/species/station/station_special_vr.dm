@@ -73,7 +73,7 @@
 				H.feral = min(150-H.nutrition, H.feral+1) //Feralness increases while this hungry, capped at 50-150 depending on hunger.
 
 		// If they're hurt, chance of snapping. Not if they're straight-up KO'd though.
-		if (H.stat == CONSCIOUS && H.traumatic_shock >=36 && H.in_stasis == 0) //30 brute/burn, or 18 halloss.
+		if (H.stat == CONSCIOUS && H.traumatic_shock >=36) //30 brute/burn, or 18 halloss.
 			if (2.5*H.halloss >= H.traumatic_shock) //If the majority of their shock is due to halloss, greater chance of snapping.
 				if(prob(min(10,(0.2 * H.traumatic_shock))))
 					if(H.feral == 0)
@@ -110,6 +110,8 @@
 
 	if(H.feral > 0) //do the following if feral, otherwise no effects.
 		var/light_amount = H.getlightlevel() //how much light there is in the place
+
+		H.shock_stage = max(H.shock_stage-(H.feral/20), 0) //if they lose enough health to hit softcrit, handle_shock() will keep resetting this. Otherwise, pissed off critters will lose shock faster than they gain it.
 
 		for(var/mob/living/M in viewers(H))
 			if(M != H) // someone in view
@@ -160,28 +162,25 @@
 	var/pressure2 = environment.return_pressure()
 	var/adjusted_pressure2 = H.calculate_affecting_pressure(pressure2)
 
-	if(adjusted_pressure2 <= 20 && H.in_stasis == 1) //If they're in a enviroment with no pressure and are in stasis (See: regenerating), don't kill them.
+	if(adjusted_pressure2 <= 20 && H.does_not_breathe) //If they're in a enviroment with no pressure and are not breathing (See: regenerating), don't kill them.
 		//This is just to prevent them from taking damage if they're in stasis.
 
 	else if(adjusted_pressure2 <= 20) //If they're in an enviroment with no pressure and are NOT in stasis, damage them.
 		H.take_overall_damage(brute=LOW_PRESSURE_DAMAGE, used_weapon = "Low Pressure")
 
-	if(H.bodytemperature <= 260 && H.in_stasis == 1) //If they're in stasis, don't give them them the negative cold effects
+	if(H.bodytemperature <= 260 && H.does_not_breathe) //If they're regenerating, don't give them them the negative cold effects
 		//This is just here to prevent them from getting cold effects
 
 	else if(H.bodytemperature <= 260) //If they're not in stasis and are cold. Don't really have to add in an exception to cryo cells, as the effects aren't anything /too/ horrible.
-		var/colddamage = 0
+		var/coldshock = 0
 		if(H.bodytemperature <= 260 && H.bodytemperature >= 200) //Chilly.
-			colddamage = 4 //This will begin to knock them out until they run out of oxygen and suffocate or until someone finds them.
+			coldshock = 4 //This will begin to knock them out until they run out of oxygen and suffocate or until someone finds them.
 			H.eye_blurry = 5 //Blurry vision in the cold.
 		if(H.bodytemperature <= 199 && H.bodytemperature >= 100) //Extremely cold. Even in somewhere like the server room it takes a while for bodytemp to drop this low.
-			colddamage = 8
+			coldshock = 8
 			H.eye_blurry = 5
 		if(H.bodytemperature <= 99) //Insanely cold.
-			colddamage = 20
+			coldshock = 16
 			H.eye_blurry = 5
-		if(H.paralysis) //stops weaken spam from being repeatedly taken over max halloss when already KO'd.
-			H.halloss = min(H.halloss+colddamage, H.species.total_health - 1) //if already stunned, only take them up to the point of restunning
-		else
-			H.halloss += colddamage //Harsh punishment for staying in space, and it'll take them a while to fully thaw out when they get retrieved.
+		H.shock_stage = min(H.shock_stage + coldshock, 160) //cold hurts and gives them pain messages, eventually weakening and paralysing, but doesn't damage or trigger feral.
 		return

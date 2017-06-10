@@ -90,6 +90,9 @@ var/global/list/datum/dna/gene/dna_genes[0]
 
 	// VOREStation
 	var/custom_species
+	var/base_species = "Human"
+	var/list/species_traits = list()
+	var/blood_color = "#A10808"
 	// VOREStation
 
 	// New stuff
@@ -105,6 +108,9 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	new_dna.real_name=real_name
 	new_dna.species=species
 	new_dna.body_markings=body_markings.Copy()
+	new_dna.base_species=base_species //VOREStation Edit
+	new_dna.species_traits=species_traits.Copy() //VOREStation Edit
+	new_dna.blood_color=blood_color //VOREStation Edit
 	for(var/b=1;b<=DNA_SE_LENGTH;b++)
 		new_dna.SE[b]=SE[b]
 		if(b<=DNA_UI_LENGTH)
@@ -163,6 +169,11 @@ var/global/list/datum/dna/gene/dna_genes[0]
 
 	// Technically custom_species is not part of the UI, but this place avoids merge problems.
 	src.custom_species = character.custom_species
+	if(istype(character.species,/datum/species/custom))
+		var/datum/species/custom/CS = character.species
+		src.species_traits = CS.traits.Copy()
+		src.base_species = CS.base_species
+		src.blood_color = CS.blood_color
 
 	// +1 to account for the none-of-the-above possibility
 	SetUIValueRange(DNA_UI_EAR_STYLE,	ear_style + 1,     ear_styles_list.len  + 1,  1)

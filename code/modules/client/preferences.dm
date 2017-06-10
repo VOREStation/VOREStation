@@ -274,7 +274,10 @@ datum/preferences
 
 	// Ask the preferences datums to apply their own settings to the new mob
 	player_setup.copy_to_mob(character)
-
+	
+	// VOREStation Edit - Sync up all their organs and species one final time
+	character.force_update_organs()
+	
 	if(icon_updates)
 		character.force_update_limbs()
 		character.update_mutations(0)

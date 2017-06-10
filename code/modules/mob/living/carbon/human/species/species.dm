@@ -200,7 +200,7 @@
 /datum/species/proc/equip_survival_gear(var/mob/living/carbon/human/H,var/extendedtank = 1)
 	var/boxtype = /obj/item/weapon/storage/box/survival //Default survival box
 	if(H.isSynthetic())
-		boxtype = /obj/item/weapon/storage/box //Empty box for synths
+		boxtype = /obj/item/weapon/storage/box/synth //VOREStation Edit - Synth survival box on Tether
 	else if(extendedtank)
 		boxtype = /obj/item/weapon/storage/box/engineer //Special box for engineers
 

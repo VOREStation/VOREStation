@@ -488,7 +488,7 @@
 	//new_character.dna.UpdateSE()
 
 	// Do the initial caching of the player's body icons.
-	new_character.force_update_limbs()
+	//new_character.force_update_limbs() //VOREStation Removal - This is done in copy_to, don't waste time.
 	new_character.update_eyes()
 	new_character.regenerate_icons()
 

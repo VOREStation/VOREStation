@@ -49,7 +49,8 @@
 		BITSET(H.hud_updateflag, BACKUP_HUD)
 		//Okay we've got a mind at least
 		if(H == imp_in && H.mind && H.stat < DEAD)
-			transcore.m_backup(H.mind)
+			transcore.m_backup(H.mind,H.nif)
+			persist_nif_data(H)
 
 	spawn(attempt_delay)
 		backup()
