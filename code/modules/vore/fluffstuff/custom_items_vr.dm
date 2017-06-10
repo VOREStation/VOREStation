@@ -876,6 +876,14 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 		accessset = 1
 	..()
 
+//verkister: Cameron Eggbert - Science goggles that ACTUALLY do nothing.
+/obj/item/clothing/glasses/science_proper
+	name = "Aesthetic Science Goggles"
+	desc = "The goggles really do nothing this time!"
+	icon_state = "purple"
+	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
+	item_flags = AIRTIGHT
+
 //The perfect adminboos device?
 /obj/item/device/perfect_tele
 	name = "personal translocator"
@@ -1029,6 +1037,11 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	//No, you can't teleport if there's no destination.
 	if(!destination)
 		to_chat(user,"<span class='warning'>\The [src] doesn't have a current valid destination set!</span>")
+		return
+
+	//No, you can't teleport if there's a jammer.
+	if(is_jammed(src) || is_jammed(destination))
+		to_chat(user,"<span class='warning'>\The [src] refuses to teleport you, due to strong interference!</span>")
 		return
 
 	//No, you can't port to or from away missions. Stupidly complicated check.

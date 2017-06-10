@@ -133,7 +133,8 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 		src.forceMove(head)
 		head.implants += src
 		spawn(0) //Let the character finish spawning yo.
-			owner = H.mind.name
+			if(H.mind)
+				owner = H.mind.name
 			implant(H)
 		return TRUE
 

@@ -1191,6 +1191,7 @@
 #include "code\modules\admin\verbs\custom_event.dm"
 #include "code\modules\admin\verbs\deadsay.dm"
 #include "code\modules\admin\verbs\debug.dm"
+#include "code\modules\admin\verbs\debug_vr.dm"
 #include "code\modules\admin\verbs\diagnostics.dm"
 #include "code\modules\admin\verbs\dice.dm"
 #include "code\modules\admin\verbs\getlogs.dm"
