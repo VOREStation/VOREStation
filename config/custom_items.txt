@@ -190,6 +190,12 @@ item_path: /obj/item/clothing/under/skirt/fluff/serkii
 }
 
 {
+ckey: epiccharger
+character_name: Jessie Mare
+item_path: /obj/item/clothing/suit/storage/hooded/wintercoat/jessie
+}
+
+{
 ckey: epigraphzero
 character_name: Verd Woodrow
 item_path: /obj/item/clothing/accessory/medal/bronze_heart
