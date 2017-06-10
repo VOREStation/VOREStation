@@ -1221,6 +1221,25 @@ Departamental Swimsuits, for general use
 	icon_state = "batter"
 	item_state = "batter_mob"
 
+/obj/item/clothing/suit/storage/hooded/wintercoat/jessie
+	name = "Handmade Winter Suit"
+	desc = "A durable, but somewhat ragged lower portion of a snow suit fitted for a wolftaur."
+	icon = 'icons/mob/taursuits_vr.dmi'
+	icon_override = 'icons/mob/taursuits_vr.dmi'
+	icon_state = "jessiecoat"
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/jessie/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+	if(..())
+		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
+			if(icon_state == "jessiecoat")
+				return ..()
+			icon_override = 'icons/mob/taursuits_vr.dmi'
+			icon_state = "jessiecoat"
+			pixel_x = -16
+			return ..()
+		else
+			to_chat(H, "<span class='warning'>You need to have a wolf-taur half to wear this.</span>")
+			return 0
 
 //samanthafyre:Kateryna Petrovitch
 /obj/item/clothing/suit/armor/vest/wolftaur/kate
