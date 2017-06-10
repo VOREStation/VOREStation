@@ -21,14 +21,12 @@
 			if(!SC)
 				to_chat(src,"<span class='warning'>You need the Soulcatcher software to use *nme.</span>")
 				return 1
-			if(!SC.brainmob.mind)
+			if(!SC.brainmobs.len)
 				to_chat(src,"<span class='warning'>You need a loaded mind to use *nme.</span>")
 				return 1
 			var/nifmessage = sanitize(input("Type a message to say.","Speak into NIF") as text|null)
 			if(nifmessage)
-				nifmessage = "<b>\[\icon[nif.big_icon]NIF\]</b> <b>[src]</b> speaks, \"[nifmessage]\""
-				to_chat(SC.brainmob,nifmessage)
-				to_chat(src,nifmessage)
+				SC.say_into(nifmessage,src.real_name)
 			return 1
 
 		if ("nme")
@@ -39,14 +37,12 @@
 			if(!SC)
 				to_chat(src,"<span class='warning'>You need the Soulcatcher software to use *nme.</span>")
 				return 1
-			if(!SC.brainmob.mind)
+			if(!SC.brainmobs.len)
 				to_chat(src,"<span class='warning'>You need a loaded mind to use *nme.</span>")
 				return 1
 			var/nifmessage = sanitize(input("Type an action to perform.","Emote into NIF") as text|null)
 			if(nifmessage)
-				nifmessage = "<b>\[\icon[nif.big_icon]NIF\]</b> <b>[src]</b> [nifmessage]"
-				to_chat(SC.brainmob,nifmessage)
-				to_chat(src,nifmessage)
+				SC.emote_into(nifmessage,src.real_name)
 			return 1
 
 		if ("flip")
