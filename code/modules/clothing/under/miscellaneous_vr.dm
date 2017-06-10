@@ -59,49 +59,61 @@
 		return
 
 	if (src != H.w_uniform)
-		to_chat(H,"<span class='warning'>You must be WEARING the uniform to use it for that...</span>")
+		to_chat(H,"<span class='warning'>You must be WEARING the uniform to change your size.</span>")
 		return
 
 	var/choice = alert(H,"Change which way?","Mass Alteration","Size Up","Cancel","Size Down")
 	if(choice == "Cancel")
 		return FALSE
 
-	if(choice == "Size Up")
+	//Check AGAIN because we accepted user input which is blocking.
+	if (src != H.w_uniform)
+		to_chat(H,"<span class='warning'>You must be WEARING the uniform to change your size.</span>")
+		return
+
+	if (isnull(H.size_multiplier))
+		to_chat(H,"<span class='warning'>The uniform panics and corrects your apparently microscopic size.</span>")
+		H.resize(RESIZE_NORMAL)
+		H.update_icons()
+		return
+
+	var/new_size
+	if (choice == "Size Up")
 		switch(H.size_multiplier)
 			if(RESIZE_BIG to RESIZE_HUGE)
-				H.resize(RESIZE_HUGE)
+				new_size = RESIZE_HUGE
 			if(RESIZE_NORMAL to RESIZE_BIG)
-				H.resize(RESIZE_BIG)
+				new_size = RESIZE_BIG
 			if(RESIZE_SMALL to RESIZE_NORMAL)
-				H.resize(RESIZE_NORMAL)
+				new_size = RESIZE_NORMAL
 			if((0 - INFINITY) to RESIZE_TINY)
-				H.resize(RESIZE_SMALL)
+				new_size = RESIZE_SMALL
 
-	else if(choice == "Size Down")
+	else if (choice == "Size Down")
 		switch(H.size_multiplier)
 			if(RESIZE_HUGE to INFINITY)
-				H.resize(RESIZE_BIG)
+				new_size = RESIZE_BIG
 			if(RESIZE_BIG to RESIZE_HUGE)
-				H.resize(RESIZE_NORMAL)
+				new_size = RESIZE_NORMAL
 			if(RESIZE_NORMAL to RESIZE_BIG)
-				H.resize(RESIZE_SMALL)
+				new_size = RESIZE_SMALL
 			if((0 - INFINITY) to RESIZE_NORMAL)
-				H.resize(RESIZE_TINY)
+				new_size = RESIZE_TINY
 
-	H.visible_message("<span class='warning'>The space around [H] distorts as they change size!</span>","<span class='notice'>The space around you distorts as you change size!</span>")
-	H.update_icons()
-
-/obj/item/clothing/under/bluespace/mob_can_equip(M as mob, slot, disable_warning = 0)
-	. = ..()
-	if(. && ishuman(M)) //Looks like we're being put on after all.
-		var/mob/living/carbon/human/H = M
-		original_size = H.size_multiplier
+	if(new_size)
+		if(new_size != H.size_multiplier)
+			if(!original_size)
+				original_size = H.size_multiplier
+			H.resize(new_size)
+			H.visible_message("<span class='warning'>The space around [H] distorts as they change size!</span>","<span class='notice'>The space around you distorts as you change size!</span>")
+		else
+			to_chat(H,"<span class='warning'>That's as far as you can resize in that direction!</span>")
+			return
 
 /obj/item/clothing/under/bluespace/mob_can_unequip(mob/M, slot, disable_warning = 0)
 	. = ..()
-	if(. && ishuman(M))
+	if(. && ishuman(M) && original_size)
 		var/mob/living/carbon/human/H = M
 		H.resize(original_size)
-		H.update_icons()
 		original_size = null
 		H.visible_message("<span class='warning'>The space around [H] distorts as they return to their original size!</span>","<span class='notice'>The space around you distorts as you return to your original size!</span>")
