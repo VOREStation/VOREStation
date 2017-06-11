@@ -27,7 +27,7 @@
 			if(deleted(character) || deleted(pref))
 				return // They might have been deleted during the wait
 			if(pref.resleeve_scan)
-				var/datum/transhuman/body_record/BR = new()  //Clearly related to size.
+				var/datum/transhuman/body_record/BR = new()
 				BR.init_from_mob(character, pref.resleeve_scan, pref.resleeve_lock)
 			if(pref.resleeve_lock)
 				character.resleeve_lock = character.ckey
