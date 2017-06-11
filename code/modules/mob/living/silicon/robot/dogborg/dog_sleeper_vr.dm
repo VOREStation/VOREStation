@@ -385,7 +385,7 @@
 					if (PDA.id)
 						PDA.id.loc = src
 						PDA.id = null
-					T.Del()
+					qdel(T) //Runtime detected! Changed to qdel.
 
 				//Special case for IDs to make them digested
 			//else if (istype(T, /obj/item/weapon/card/id))
@@ -397,7 +397,7 @@
 					//Spill(T) //Needs the spill proc to be added
 					qdel(T)
 					src.update_patient()
-					src.hound.cell.charge += 10
+					src.hound.cell.charge += 100 //10 charge? that was such a practically nonexistent number it hardly gave any purpose for this bit :v *cranks up*
 		return
 
 /obj/item/device/dogborg/sleeper/process()
@@ -431,7 +431,36 @@
 	name = "Brig-Belly"
 	desc = "Equipment for a K9 unit. A mounted portable-brig that holds criminals."
 	icon = 'icons/mob/dogborg_vr.dmi'
-	icon_state = "sleeper"
+	icon_state = "sleeperb"
 	inject_amount = 10
 	min_health = -100
 	injection_chems = null //So they don't have all the same chems as the medihound!
+
+/obj/item/device/dogborg/sleeper/compactor //Janihound gut.
+	name = "garbage processor"
+	desc = "A mounted garbage compactor unit with fuel processor."
+	icon = 'icons/mob/dogborg_vr.dmi'
+	icon_state = "compactor"
+	inject_amount = 10
+	min_health = -100
+	injection_chems = null //So they don't have all the same chems as the medihound!
+
+/obj/item/device/dogborg/sleeper/compactor/afterattack(var/obj/item/target, mob/living/silicon/user, proximity)
+	hound = loc
+	if(!proximity)
+		return
+	if(!isobj(target))
+		return
+	if(target.anchored)
+		return
+	if(target.w_class > ITEMSIZE_LARGE)
+		user << "<span class='warning'>This object is too large to fit into your [src.name]</span>"
+		return
+	user.visible_message("<span class='warning'>[hound.name] is ingesting [target.name] into their [src.name].</span>", "<span class='notice'>You start ingesting [target] into your [src.name]...</span>")
+	if(!ishuman(target) && do_after (user, 30, target))
+		if(!proximity) return //If they moved away, you can't eat them.
+
+		else
+			target.forceMove(src)
+			user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [target.name] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [target] slips inside.</span>")
+			playsound(hound, 'sound/vore/gulp.ogg', 50, 1)
