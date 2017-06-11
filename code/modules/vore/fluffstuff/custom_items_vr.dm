@@ -796,10 +796,10 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 		var/clr = C.colourName
 
 		if(!(clr in list("blue","green","mime","orange","purple","rainbow","red","yellow")))
-			usr << "\blue The egg refuses to take on this color!"
+			to_chat(user,"<span class='warning'>The egg refuses to take on this color!</span>")
 			return
 
-		usr << "\blue You color \the [src] [clr]"
+		to_chat(user,"<span class='notice'>You color \the [src] [clr]</span>")
 		icon_state = "egg_roiz_[clr]"
 		desc = "It's a large lizard egg. It has been colored [clr]!"
 		if (clr == "rainbow")
