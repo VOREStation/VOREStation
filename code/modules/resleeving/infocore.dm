@@ -69,7 +69,7 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 			MR.nif_software = null
 
 	else
-		MR = new(mind, mind.current, TRUE, one_time)
+		MR = new(mind, mind.current, add_to_db = TRUE, one_time = one_time)
 
 	return 1
 
@@ -138,7 +138,7 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 
 	var/one_time = FALSE
 
-/datum/transhuman/mind_record/New(var/datum/mind/mind,var/mob/living/carbon/human/M,var/obj/item/weapon/implant/backup/imp,var/add_to_db = 1,var/one_time = FALSE)
+/datum/transhuman/mind_record/New(var/datum/mind/mind, var/mob/living/carbon/human/M, var/add_to_db = TRUE, var/one_time = FALSE)
 	ASSERT(mind)
 
 	src.one_time = one_time
