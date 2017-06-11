@@ -75,13 +75,14 @@
 	..()
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/weapon/tank/emergency/phoron_double(src)
-//End Edit
+	new /obj/item/clothing/glasses/goggles(src)
 
 /obj/item/weapon/storage/box/engineer/New()
 	..()
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/weapon/tank/emergency/oxygen/engi(src)
-
+	new /obj/item/clothing/glasses/goggles(src)
+//VOREStation Edit End
 /obj/item/weapon/storage/box/gloves
 	name = "box of latex gloves"
 	desc = "Contains white gloves."
