@@ -503,6 +503,10 @@
 	occupant.identifying_gender = MR.id_gender
 	occupant.ooc_notes = MR.mind_oocnotes
 	occupant.apply_vore_prefs() //Cheap hack for now to give them SOME bellies.
+	if(MR.one_time)
+		var/how_long = round((world.time - MR.last_update)/10/60)
+		to_chat(occupant,"<span class='danger'>Your mind backup was a 'one-time' backup. \
+		You will not be able to remember anything since the backup, [how_long] minutes ago.</span>")
 
 	//Re-supply a NIF if one was backed up with them.
 	if(MR.nif_path)
