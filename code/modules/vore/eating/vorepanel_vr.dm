@@ -31,6 +31,11 @@
 	var/datum/browser/popup
 	var/loop = null;  // Magic self-reference to stop the handler from being GC'd before user takes action.
 
+/datum/vore_look/Destroy()
+	loop = null
+	selected = null
+	return QDEL_HINT_HARDDEL // TODO - Until I can better analyze how this weird thing works, lets be safe
+
 /datum/vore_look/Topic(href,href_list[])
 	if (vp_interact(href, href_list))
 		popup.set_content(gen_ui(usr))
@@ -243,7 +248,7 @@
 	for(var/H in href_list)
 
 	if(href_list["close"])
-		del(src)  // Cleanup
+		qdel(src)  // Cleanup
 		return
 
 	if(href_list["show_int"])

@@ -321,7 +321,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 			O.icon_state = new_icon // Changes the icon without changing the access.
 			playsound(user.loc, 'sound/items/polaroid2.ogg', 100, 1)
 			user.visible_message("<span class='warning'> [user] reprints their ID.</span>")
-			del(src)
+			qdel(src)
 		else if(O.icon_state == new_icon)
 			user << "<span class='notice'>[O] already has been reprinted.</span>"
 			return
@@ -490,7 +490,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	Destroy() //Waitwaitwait
 		if(state == 1)
 			process() //Nownownow
-		..() //Okfine
+		return ..() //Okfine
 
 	process()
 		check_owner()
@@ -914,9 +914,13 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	spk.attach(src)
 
 /obj/item/device/perfect_tele/Destroy()
+	// Must clear the beacon's backpointer or we won't GC. Someday maybe do something nicer even.
+	for(var/obj/item/device/perfect_tele_beacon/B in beacons)
+		B.tele_hand = null
 	beacons.Cut()
-	qdel(spk)
-	..()
+	qdel_null(power_source)
+	qdel_null(spk)
+	return ..()
 
 /obj/item/device/perfect_tele/update_icon()
 	if(!power_source)
@@ -1169,7 +1173,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 /obj/item/device/perfect_tele_beacon/Destroy()
 	tele_name = null
 	tele_hand = null
-	..()
+	return ..()
 
 /obj/item/device/perfect_tele_beacon/attack_hand(mob/user)
 	if((user.ckey != creator) && !(user.ckey in warned_users))

@@ -383,9 +383,9 @@
 				if (istype(T, /obj/item/device/pda))
 					var/obj/item/device/pda/PDA = T
 					if (PDA.id)
-						PDA.id.loc = src
+						PDA.id.forceMove(src)
 						PDA.id = null
-					T.Del()
+					qdel(T)
 
 				//Special case for IDs to make them digested
 			//else if (istype(T, /obj/item/weapon/card/id))

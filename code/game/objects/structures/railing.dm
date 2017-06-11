@@ -29,9 +29,10 @@
 		update_icon(0)
 
 /obj/structure/railing/Destroy()
-	for(var/obj/structure/railing/R in oview(src, 1))
+	var/turf/location = loc
+	. = ..()
+	for(var/obj/structure/railing/R in orange(location, 1))
 		R.update_icon()
-	..()
 
 /obj/structure/railing/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(!mover)

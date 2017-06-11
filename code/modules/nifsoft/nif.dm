@@ -100,16 +100,11 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	if(human)
 		human.nif = null
 		human = null
-	for(var/S in nifsofts)
-		if(S)
-			qdel(S)
-	if(nif_hud)
-		qdel(nif_hud)
-	if(comm)
-		qdel(comm)
-
-	nifsofts.Cut()
-	..()
+	qdel_null_list(nifsofts)
+	qdel_null(nif_hud)
+	qdel_null(comm)
+	nifsofts_life.Cut()
+	return ..()
 
 //Being implanted in some mob
 /obj/item/device/nif/proc/implant(var/mob/living/carbon/human/H)
@@ -541,7 +536,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	if(nif)
 		nif.nif_hud = null
 		nif = null
-	..()
+	return ..()
 
 /obj/item/clothing/glasses/hud/nif_hud/process_hud(M,var/thing)
 	//Faster checking with local var, and this is called often so I want fast.

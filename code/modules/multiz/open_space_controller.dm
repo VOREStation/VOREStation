@@ -36,7 +36,7 @@
 
 	for(last_object in turfs_to_process_old)
 		var/turf/T = last_object
-		if(T && !T.gcDestroyed)
+		if(!QDELETED(T))
 			update_turf(T)
 		SCHECK
 

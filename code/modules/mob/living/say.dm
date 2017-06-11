@@ -304,7 +304,7 @@ proc/get_radio_key_from_channel(var/channel)
 
 	// VOREStation Edit - Attempt Multi-Z Talking
 	var/mob/above = src.shadow
-	while(!deleted(above))
+	while(!QDELETED(above))
 		var/turf/ST = get_turf(above)
 		if(ST)
 			var/list/results = get_mobs_and_objs_in_view_fast(ST, world.view)
