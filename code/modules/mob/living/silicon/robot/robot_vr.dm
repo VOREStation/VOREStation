@@ -66,6 +66,6 @@
 								cleaned_human.shoes.clean_blood()
 								cleaned_human.update_inv_shoes(0)
 							cleaned_human.clean_blood(1)
-							cleaned_human << "<span class='warning'>[src] cleans your face!</span>"
+							cleaned_human << "<span class='warning'>[src] cleans your face!</span>"//Oh come on travis this tiny-ass message change has nothing to do with random open space bugs.
 		return
 	return
