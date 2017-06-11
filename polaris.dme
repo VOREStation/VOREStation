@@ -2039,6 +2039,7 @@
 #include "code\modules\shieldgen\shield_diffuser.dm"
 #include "code\modules\shieldgen\shield_gen.dm"
 #include "code\modules\shieldgen\shield_gen_external.dm"
+#include "code\modules\shuttles\_defines.dm"
 #include "code\modules\shuttles\antagonist.dm"
 #include "code\modules\shuttles\departmental.dm"
 #include "code\modules\shuttles\escape_pods.dm"

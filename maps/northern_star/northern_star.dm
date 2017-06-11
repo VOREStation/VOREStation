@@ -7,6 +7,7 @@
 	#include "polaris-5.dmm"
 
 	#include "northern_star_defines.dm"
+	#include "northern_star_shuttles.dm"
 
 	#define USING_MAP_DATUM /datum/map/northern_star
 
