@@ -772,7 +772,25 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 /obj/item/weapon/reagent_containers/food/snacks/egg/roiz/New()
 	..()
 	reagents.add_reagent("egg", 9)
-	bitesize = 4
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/egg/roiz/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype( W, /obj/item/weapon/pen/crayon ))
+		var/obj/item/weapon/pen/crayon/C = W
+		var/clr = C.colourName
+
+		if(!(clr in list("blue","green","mime","orange","purple","rainbow","red","yellow")))
+			to_chat(user,"<span class='warning'>The egg refuses to take on this color!</span>")
+			return
+
+		to_chat(user,"<span class='notice'>You color \the [src] [clr]</span>")
+		icon_state = "egg_roiz_[clr]"
+		desc = "It's a large lizard egg. It has been colored [clr]!"
+		if (clr == "rainbow")
+			var/number = rand(1,4)
+			icon_state = icon_state + num2text(number, 0)
+	else
+		..()
 
 /obj/item/weapon/reagent_containers/food/snacks/friedegg/roiz
 	name = "fried lizard egg"
@@ -784,7 +802,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 /obj/item/weapon/reagent_containers/food/snacks/friedegg/roiz/New()
 	..()
 	reagents.add_reagent("protein", 9)
-	bitesize = 4
+	bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/boiledegg/roiz
 	name = "boiled lizard egg"
@@ -796,11 +814,11 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 /obj/item/weapon/reagent_containers/food/snacks/boiledegg/roiz/New()
 	..()
 	reagents.add_reagent("protein", 6)
-	bitesize = 4
+	bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/chocolateegg/roiz
 	name = "chocolate lizard egg"
-	desc = "Such huge, sweet, fattening food."
+	desc = "Such huge, sweet, fattening food. You feel gluttonous just looking at it."
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "chocolateegg_roiz"
 	filling_color = "#7D5F46"
@@ -813,7 +831,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	reagents.add_reagent("sugar", 6)
 	reagents.add_reagent("coco", 6)
 	reagents.add_reagent("milk", 2)
-	bitesize = 6
+	bitesize = 2
 
 //PontifexMinimus: Lucius/Lucia Null
 /obj/item/weapon/fluff/dragor_dot
