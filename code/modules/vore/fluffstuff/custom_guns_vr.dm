@@ -70,6 +70,15 @@
 	ammo_type = /obj/item/ammo_casing/a12g
 	max_shells = 12
 
+//interrolouis : Ruda Lizden
+/obj/item/weapon/gun/projectile/deagle/fluff/interrolouis
+    name = "InvestiGator"
+    desc = "A Desert Eagle, refitted to load .44 magazines. The slide and barrel have been repainted green, and the word InvestiGator is etched on the side."
+    icon_state = "InvestiGator"
+    caliber = ".44"
+    magazine_type = /obj/item/ammo_magazine/m44
+    allowed_magazines = list(/obj/item/ammo_magazine/m44/rubber,/obj/item/ammo_magazine/m44)
+
 // jertheace : Jeremiah 'Ace' Acacius
 /obj/item/weapon/gun/projectile/shotgun/pump/unsc/fluff/ace
 	name = "Ace's M45D Tactical Shotgun" // D-model holds half as many shells as the normal version so as not to be OP as shit. Better than shotgun, worse than combat shotgun.
@@ -1051,7 +1060,7 @@
 	name = "speedloader (.44)"
 	desc = "A speedloader for .44 revolvers."
 	icon = 'icons/obj/ammo_vr.dmi'
-	icon_state = "357"
+	icon_state = "s357"
 	caliber = ".44"
 	matter = list(DEFAULT_WALL_MATERIAL = 1260)
 	ammo_type = /obj/item/ammo_casing/a44
