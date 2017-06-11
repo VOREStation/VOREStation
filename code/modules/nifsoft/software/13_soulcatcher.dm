@@ -188,7 +188,6 @@
 	proc/catch_mob(var/mob/living/carbon/human/H)
 		//Create a new brain mob
 		var/mob/living/carbon/brain/caught_soul/brainmob = new(nif)
-		brainmob = new(nif)
 		brainmob.nif = nif
 		brainmob.soulcatcher = src
 		brainmob.container = src
