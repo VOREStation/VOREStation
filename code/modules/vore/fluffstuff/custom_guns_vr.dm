@@ -1051,7 +1051,7 @@
 	name = "speedloader (.44)"
 	desc = "A speedloader for .44 revolvers."
 	icon = 'icons/obj/ammo_vr.dmi'
-	icon_state = "357"
+	icon_state = "s357"
 	caliber = ".44"
 	matter = list(DEFAULT_WALL_MATERIAL = 1260)
 	ammo_type = /obj/item/ammo_casing/a44
