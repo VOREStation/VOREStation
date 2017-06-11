@@ -131,3 +131,9 @@
 
 /datum/lighting_corner/dummy/New()
 	return
+
+/datum/lighting_corner/Destroy(var/force)
+	if (!force)
+		return QDEL_HINT_LETMELIVE
+	crash_with("Who decided to force qdel() a lighting corner? Why did you do this?")
+	return ..()

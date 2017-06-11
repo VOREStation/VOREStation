@@ -16,7 +16,7 @@ var/list/floor_decals = list()
 
 // VOREStation Edit - Hack to workaround byond crash bug
 /obj/effect/floor_decal/initialize()
-	if(!floor_decals_initialized || !loc || deleted(src))
+	if(!floor_decals_initialized || !loc || QDELETED(src))
 		return
 	add_to_turf_decals()
 	var/turf/T = get_turf(src)

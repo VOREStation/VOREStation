@@ -42,7 +42,7 @@ obj/machinery/atmospherics/binary
 		return null
 
 	Destroy()
-		loc = null
+		. = ..()
 
 		if(node1)
 			node1.disconnect(src)
@@ -53,8 +53,6 @@ obj/machinery/atmospherics/binary
 
 		node1 = null
 		node2 = null
-
-		..()
 
 	initialize()
 		if(node1 && node2) return

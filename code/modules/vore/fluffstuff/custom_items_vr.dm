@@ -321,7 +321,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 			O.icon_state = new_icon // Changes the icon without changing the access.
 			playsound(user.loc, 'sound/items/polaroid2.ogg', 100, 1)
 			user.visible_message("<span class='warning'> [user] reprints their ID.</span>")
-			del(src)
+			qdel(src)
 		else if(O.icon_state == new_icon)
 			user << "<span class='notice'>[O] already has been reprinted.</span>"
 			return
@@ -490,7 +490,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	Destroy() //Waitwaitwait
 		if(state == 1)
 			process() //Nownownow
-		..() //Okfine
+		return ..() //Okfine
 
 	process()
 		check_owner()
@@ -772,7 +772,25 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 /obj/item/weapon/reagent_containers/food/snacks/egg/roiz/New()
 	..()
 	reagents.add_reagent("egg", 9)
-	bitesize = 4
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/egg/roiz/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype( W, /obj/item/weapon/pen/crayon ))
+		var/obj/item/weapon/pen/crayon/C = W
+		var/clr = C.colourName
+
+		if(!(clr in list("blue","green","mime","orange","purple","rainbow","red","yellow")))
+			to_chat(user,"<span class='warning'>The egg refuses to take on this color!</span>")
+			return
+
+		to_chat(user,"<span class='notice'>You color \the [src] [clr]</span>")
+		icon_state = "egg_roiz_[clr]"
+		desc = "It's a large lizard egg. It has been colored [clr]!"
+		if (clr == "rainbow")
+			var/number = rand(1,4)
+			icon_state = icon_state + num2text(number, 0)
+	else
+		..()
 
 /obj/item/weapon/reagent_containers/food/snacks/friedegg/roiz
 	name = "fried lizard egg"
@@ -784,7 +802,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 /obj/item/weapon/reagent_containers/food/snacks/friedegg/roiz/New()
 	..()
 	reagents.add_reagent("protein", 9)
-	bitesize = 4
+	bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/boiledegg/roiz
 	name = "boiled lizard egg"
@@ -796,11 +814,11 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 /obj/item/weapon/reagent_containers/food/snacks/boiledegg/roiz/New()
 	..()
 	reagents.add_reagent("protein", 6)
-	bitesize = 4
+	bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/chocolateegg/roiz
 	name = "chocolate lizard egg"
-	desc = "Such huge, sweet, fattening food."
+	desc = "Such huge, sweet, fattening food. You feel gluttonous just looking at it."
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "chocolateegg_roiz"
 	filling_color = "#7D5F46"
@@ -813,7 +831,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	reagents.add_reagent("sugar", 6)
 	reagents.add_reagent("coco", 6)
 	reagents.add_reagent("milk", 2)
-	bitesize = 6
+	bitesize = 2
 
 //PontifexMinimus: Lucius/Lucia Null
 /obj/item/weapon/fluff/dragor_dot
@@ -914,9 +932,13 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	spk.attach(src)
 
 /obj/item/device/perfect_tele/Destroy()
+	// Must clear the beacon's backpointer or we won't GC. Someday maybe do something nicer even.
+	for(var/obj/item/device/perfect_tele_beacon/B in beacons)
+		B.tele_hand = null
 	beacons.Cut()
-	qdel(spk)
-	..()
+	qdel_null(power_source)
+	qdel_null(spk)
+	return ..()
 
 /obj/item/device/perfect_tele/update_icon()
 	if(!power_source)
@@ -1169,7 +1191,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 /obj/item/device/perfect_tele_beacon/Destroy()
 	tele_name = null
 	tele_hand = null
-	..()
+	return ..()
 
 /obj/item/device/perfect_tele_beacon/attack_hand(mob/user)
 	if((user.ckey != creator) && !(user.ckey in warned_users))

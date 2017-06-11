@@ -16,7 +16,7 @@
 /obj/structure/closet/secure_closet/egg/attackby(obj/item/weapon/W, mob/user as mob) //This also prevents crew from welding the eggs and making them unable to be opened.
 	if(istype(W, /obj/item/weapon/weldingtool))
 		src.dump_contents()
-		del(src)
+		qdel(src)
 
 
 

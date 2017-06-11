@@ -477,7 +477,7 @@
 
 	for(var/obj/item/weapon/mop_deploy/blade in M.contents)
 		M.drop_from_inventory(blade)
-		del(blade)
+		qdel(blade)
 
 
 	//Space Cleaner Launcher
@@ -520,7 +520,7 @@
 
 	user << "<font color='blue'><b>You slot \the [input_device] into the suit module.</b></font>"
 	user.drop_from_inventory(input_device)
-	del(input_device)
+	qdel(input_device)
 	accepted_item.charges++
 	return 1
 

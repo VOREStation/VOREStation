@@ -35,7 +35,8 @@
 	for(var/I in vore_organs)
 		var/datum/belly/B = vore_organs[I]
 		B.release_all_contents() // When your stomach is empty
-	..()
+	prey_excludes.Cut()
+	. = ..()
 
 //For all those ID-having mobs
 /mob/living/simple_animal/GetIdCard()

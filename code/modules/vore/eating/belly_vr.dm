@@ -142,15 +142,19 @@
 		var/mob/living/OW = owner
 		if(ML.absorbed)
 			ML.absorbed = 0
-			ML.reagents = new/datum/reagents(1000,M) //Human reagent datums hold 1000
-			if(OW.reagents && istype(OW.reagents,/datum/reagents)) //Does the pred have a reagents list?
-				var/datum/reagents/OR = owner.reagents
+			if(ishuman(M) && ishuman(OW))
+				var/mob/living/carbon/human/Prey = M
+				var/mob/living/carbon/human/Pred = OW
+				Prey.bloodstr = Prey.reagents = new(1000,Prey,CHEM_BLOOD) //Human reagent datums hold 1000, bloodstr and reagents are the same object on humans
+				Prey.touching = new(1000,Prey,CHEM_TOUCH)
+				Prey.ingested = new(1000,Prey,CHEM_INGEST)
+
 				var/absorbed_count = 2 //Prey that we were, plus the pred gets a portion
 				for(var/mob/living/P in internal_contents)
 					if(P.absorbed)
 						absorbed_count++
 
-				OR.trans_to(ML,OR.total_volume / absorbed_count)
+				Pred.reagents.trans_to(Prey,Pred.reagents.total_volume / absorbed_count)
 
 	var/datum/belly/B = check_belly(owner)
 	if(B)
@@ -271,11 +275,12 @@
 			_handle_digested_item(W,M)
 
 	//Reagent transfer
-	if(M.reagents && istype(M.reagents,/datum/reagents))
-		var/mob/living/OW = owner
-		if(OW.reagents && istype(OW.reagents,/datum/reagents)) //Does the pred have a reagents list to give to?
-			var/datum/reagents/RL = M.reagents
-			RL.trans_to(owner,RL.total_volume*0.5)
+	if(ishuman(M) && ishuman(owner))
+		var/mob/living/carbon/human/Pred = owner
+		var/mob/living/carbon/human/Prey = M
+		Prey.reagents.trans_to(Pred.reagents,Prey.reagents.total_volume*0.5)
+		Prey.ingested.trans_to(Pred.reagents,Prey.ingested.total_volume*0.5)
+		Prey.touching.trans_to(Pred.reagents,Prey.touching.total_volume*0.5)
 
 	// Delete the digested mob
 	qdel(M)
@@ -323,16 +328,20 @@
 	M.absorbed = 1
 	M << "<span class='notice'>[owner]'s [name] absorbs your body, making you part of them.</span>"
 	owner << "<span class='notice'>Your [name] absorbs [M]'s body, making them part of you.</span>"
-	var/mob/living/OW = owner
 
-	//Reagent sharing for absorbed with pred
-	if(OW.reagents && istype(OW.reagents,/datum/reagents)) //Does the pred have a reagent list?
-		if(M.reagents && istype(M.reagents,/datum/reagents)) //Does the prey have a reagent list?
-			var/datum/reagents/OR = owner.reagents
-			var/datum/reagents/PR = M.reagents
-			PR.trans_to(owner,PR.total_volume)
-			M.reagents = OR
-			del(PR)
+	if(ishuman(M) && ishuman(owner))
+		var/mob/living/carbon/human/Prey = M
+		var/mob/living/carbon/human/Pred = owner
+		//Reagent sharing for absorbed with pred
+		Prey.reagents.trans_to(owner,Pred.reagents.total_volume)
+
+		//Pair up all their reagent containers
+		qdel(Prey.reagents) //Reagents is the same object as bloodstr on humans; both variables are the same object
+		Prey.reagents = Prey.bloodstr = Pred.reagents
+		qdel(Prey.ingested)
+		Prey.ingested = Pred.ingested
+		qdel(Prey.touching)
+		Prey.touching = Pred.touching
 
 	//This is probably already the case, but for sub-prey, it won't be.
 	M.forceMove(owner)

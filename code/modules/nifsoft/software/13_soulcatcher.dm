@@ -25,11 +25,8 @@
 		load_settings()
 
 	Destroy()
-		for(var/brain in brainmobs)
-			var/mob/living/carbon/brain/caught_soul/CS = brain
-			qdel(CS)
-		brainmobs.Cut()
-		..()
+		qdel_null_list(brainmobs)
+		return ..()
 
 	install()
 		if((. = ..()))
@@ -249,10 +246,8 @@
 		soulcatcher = null
 	if(nif)
 		nif = null
-	if(mind && ckey)
-		src.ghostize()
 	container = null
-	..()
+	return ..()
 
 /mob/living/carbon/brain/caught_soul/Life()
 	if(!mind)

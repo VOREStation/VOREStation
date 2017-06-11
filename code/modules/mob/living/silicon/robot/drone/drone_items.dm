@@ -184,7 +184,7 @@
 		wrapped.force = 0.0
 		wrapped.attack(M,user)
 		M.attackby(wrapped, user)	//attackby reportedly gets procced by being clicked on, at least according to Anewbe.
-		if(deleted(wrapped) || wrapped.loc != src.loc)
+		if(QDELETED(wrapped) || wrapped.loc != src.loc)
 			wrapped = null
 		return 1
 	return 0

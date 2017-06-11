@@ -66,7 +66,7 @@ var/CURRENT_TICKLIMIT = TICK_LIMIT_RUNNING
 /datum/controller/master/Destroy()
 	..()
 	// Tell qdel() to Del() this object.
-	// return QDEL_HINT_HARDDEL_NOW  // TODO - Once we port garbage.dm
+	return QDEL_HINT_HARDDEL_NOW
 
 /datum/controller/master/Shutdown()
 	processing = FALSE

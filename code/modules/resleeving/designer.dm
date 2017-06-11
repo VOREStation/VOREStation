@@ -27,7 +27,7 @@
 	preview_icon = null
 	mannequin = null
 	disk = null
-	..()
+	return ..()
 
 /obj/machinery/computer/transhuman/designer/dismantle()
 	if(disk)
@@ -241,8 +241,8 @@
 	return preview_icon
 
 /obj/machinery/computer/transhuman/designer/proc/update_preview_mob(var/mob/living/carbon/human/H)
-	ASSERT(!deleted(H))
-	ASSERT(!deleted(active_br))
+	ASSERT(!QDELETED(H))
+	ASSERT(!QDELETED(active_br))
 	//log_debug("designer.update_preview_mob([H]) active_br = \ref[active_br]")
 	//Get the DNA and generate a new mob
 	var/datum/dna2/record/R = active_br.mydna

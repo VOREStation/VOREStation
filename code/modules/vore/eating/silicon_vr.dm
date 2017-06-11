@@ -39,7 +39,7 @@
 
 /obj/effect/overlay/aiholo/Destroy()
 	drop_prey()
-	..()
+	return ..()
 
 /mob/living/silicon/ai/verb/holo_nom()
 	set name = "Hardlight Nom"

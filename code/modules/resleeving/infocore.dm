@@ -28,7 +28,8 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 		if(!curr_MR)
 			log_debug("Tried to process [N] in transcore w/o a record!")
 			continue
-
+		if(curr_MR.one_time)
+			continue
 		var/since_backup = world.time - curr_MR.last_update
 		if(since_backup < overdue_time)
 			curr_MR.dead_state = MR_NORMAL
@@ -40,7 +41,7 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 	spawn(process_time)
 		process()
 
-/datum/transhuman/infocore/proc/m_backup(var/datum/mind/mind,var/obj/item/device/nif/nif)
+/datum/transhuman/infocore/proc/m_backup(var/datum/mind/mind,var/obj/item/device/nif/nif,var/one_time = FALSE)
 	ASSERT(mind)
 	if(!mind.name || core_dumped)
 		return 0
@@ -50,6 +51,7 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 	if(mind.name in backed_up)
 		MR = backed_up[mind.name]
 		MR.last_update = world.time
+		MR.one_time = one_time
 
 		//Pass a 0 to not change NIF status (because the elseif is checking for null)
 		if(nif)
@@ -67,7 +69,7 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 			MR.nif_software = null
 
 	else
-		MR = new(mind, mind.current, 1)
+		MR = new(mind, mind.current, TRUE, one_time)
 
 	return 1
 
@@ -134,8 +136,12 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 	var/nif_durability
 	var/list/nif_software
 
-/datum/transhuman/mind_record/New(var/datum/mind/mind,var/mob/living/carbon/human/M,var/obj/item/weapon/implant/backup/imp,var/add_to_db = 1)
+	var/one_time = FALSE
+
+/datum/transhuman/mind_record/New(var/datum/mind/mind,var/mob/living/carbon/human/M,var/obj/item/weapon/implant/backup/imp,var/add_to_db = 1,var/one_time = FALSE)
 	ASSERT(mind)
+
+	src.one_time = one_time
 
 	//The mind!
 	mind_ref = mind
@@ -187,10 +193,10 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 	mind_ref = null
 	limb_data.Cut()
 	organ_data.Cut()
-	..()
+	return QDEL_HINT_HARDDEL // For now at least there is no easy way to clear references to this in machines etc.
 
 /datum/transhuman/body_record/proc/init_from_mob(var/mob/living/carbon/human/M, var/add_to_db = 0, var/ckeylock = 0)
-	ASSERT(!deleted(M))
+	ASSERT(!QDELETED(M))
 	ASSERT(istype(M))
 
 	//Person OOCly doesn't want people impersonating them
@@ -277,7 +283,7 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
  * or anything like that! This is the computer science concept of "cloning" a data structure!
  */
 /datum/transhuman/body_record/proc/init_from_br(var/datum/transhuman/body_record/orig)
-	ASSERT(!deleted(orig))
+	ASSERT(!QDELETED(orig))
 	ASSERT(istype(orig))
 	src.mydna = new ()
 	src.mydna.dna = orig.mydna.dna.Clone()
