@@ -100,7 +100,7 @@
 	return null
 
 /obj/machinery/atmospherics/tvalve/Destroy()
-	loc = null
+	. = ..()
 
 	if(node1)
 		node1.disconnect(src)
@@ -115,8 +115,6 @@
 	node1 = null
 	node2 = null
 	node3 = null
-
-	..()
 
 /obj/machinery/atmospherics/tvalve/proc/go_to_side()
 

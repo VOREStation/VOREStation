@@ -187,10 +187,10 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 	mind_ref = null
 	limb_data.Cut()
 	organ_data.Cut()
-	..()
+	return QDEL_HINT_HARDDEL // For now at least there is no easy way to clear references to this in machines etc.
 
 /datum/transhuman/body_record/proc/init_from_mob(var/mob/living/carbon/human/M, var/add_to_db = 0, var/ckeylock = 0)
-	ASSERT(!deleted(M))
+	ASSERT(!QDELETED(M))
 	ASSERT(istype(M))
 
 	//Person OOCly doesn't want people impersonating them
@@ -277,7 +277,7 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
  * or anything like that! This is the computer science concept of "cloning" a data structure!
  */
 /datum/transhuman/body_record/proc/init_from_br(var/datum/transhuman/body_record/orig)
-	ASSERT(!deleted(orig))
+	ASSERT(!QDELETED(orig))
 	ASSERT(istype(orig))
 	src.mydna = new ()
 	src.mydna.dna = orig.mydna.dna.Clone()

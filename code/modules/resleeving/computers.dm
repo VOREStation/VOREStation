@@ -24,7 +24,7 @@
 
 /obj/machinery/computer/transhuman/resleeving/Destroy()
 	releasepods()
-	..()
+	return ..()
 
 /obj/machinery/computer/transhuman/resleeving/proc/updatemodules()
 	releasepods()

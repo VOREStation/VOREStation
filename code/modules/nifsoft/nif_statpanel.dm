@@ -47,7 +47,7 @@
 
 /obj/effect/nif_stat/Destroy()
 	nifsoft = null
-	..()
+	return ..()
 
 /obj/effect/nif_stat/proc/atom_button_text()
 	name = nifsoft.stat_text()

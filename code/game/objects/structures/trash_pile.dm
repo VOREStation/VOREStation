@@ -237,7 +237,7 @@
 	if(!path) //Tapped out, reallocate?
 		for(var/P in allocated_gamma)
 			var/obj/item/I = allocated_gamma[P]
-			if(!I || istype(I.loc,/obj/machinery/computer/cryopod) || I.gcDestroyed)
+			if(QDELETED(I) || istype(I.loc,/obj/machinery/computer/cryopod))
 				allocated_gamma -= P
 				path = P
 				break

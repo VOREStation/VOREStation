@@ -27,7 +27,7 @@ var/list/holder_mob_icon_cache = list()
 
 /obj/item/weapon/holder/Destroy()
 	processing_objects.Remove(src)
-	..()
+	return ..()
 
 /obj/item/weapon/holder/process()
 	update_state()

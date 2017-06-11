@@ -22,14 +22,6 @@ var/global/repository/radiation/radiation_repository = new()
 	src.source_turf = null
 	. = ..()
 
-// TEMPORARY HACK - hard del()'ing sources is too expensive!  Until we implement qdel() hints we need to override behavior here
-/datum/radiation_source/finalize_qdel()
-	if(garbage_collector)
-		garbage_collector.AddTrash(src)
-	else
-		delayed_garbage |= src
-// TEMPORARY HACK END
-
 /datum/radiation_source/proc/update_rad_power(var/new_power = null)
 	if(new_power != null && new_power != rad_power)
 		rad_power = new_power
