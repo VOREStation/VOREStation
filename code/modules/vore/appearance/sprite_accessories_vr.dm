@@ -532,6 +532,18 @@
 	do_colouration = 1
 	show_species_tail = 1
 	color_blend_mode = ICON_MULTIPLY
+	
+/datum/sprite_accessory/tail/brianatail
+	name = "Brianatail (luminescentring)"
+	desc = ""
+	icon_state = "brianatail"
+	ckeys_allowed = list("luminescentring")
+
+/datum/sprite_accessory/tail/reikabriana
+	name = "R-Brianatail (rikaru19xjenkins)"
+	desc = ""
+	icon_state = "reikabriana"
+	ckeys_allowed = list("rikaru19xjenkins")
 
 /datum/sprite_accessory/tail/liquidfirefly_gazer
 	name = "gazer eyestalks (Liquidfirefly)"
