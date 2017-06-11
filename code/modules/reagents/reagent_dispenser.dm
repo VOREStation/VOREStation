@@ -227,7 +227,7 @@
 		src.add_fingerprint(user)
 		if(bottle)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-			if(do_after(user, 20))
+			if(do_after(user, 20) && bottle)
 				user << "<span class='notice'>You unfasten the jug.</span>"
 				var/obj/item/weapon/reagent_containers/glass/cooler_bottle/G = new /obj/item/weapon/reagent_containers/glass/cooler_bottle( src.loc )
 				for(var/datum/reagent/R in reagents.reagent_list)
@@ -262,7 +262,7 @@
 		if(!bottle && !cupholder)
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 			user << "<span class='notice'>You start taking the water-cooler apart.</span>"
-			if(do_after(user, 20))
+			if(do_after(user, 20) && !bottle && !cupholder)
 				user << "<span class='notice'>You take the water-cooler apart.</span>"
 				new /obj/item/stack/material/plastic( src.loc, 4 )
 				qdel(src)
@@ -274,7 +274,7 @@
 			if(anchored)
 				var/obj/item/weapon/reagent_containers/glass/cooler_bottle/G = I
 				user << "<span class='notice'>You start to screw the bottle onto the water-cooler.</span>"
-				if(do_after(user, 20))
+				if(do_after(user, 20) && !bottle && anchored)
 					bottle = 1
 					update_icon()
 					user << "<span class='notice'>You screw the bottle onto the water-cooler!</span>"
@@ -286,7 +286,7 @@
 				user << "<span class='warning'>You need to wrench down the cooler first.</span>"
 		else
 			user << "<span class='warning'>There is already a bottle there!</span>"
-		return
+		return 1
 
 	if(istype(I, /obj/item/stack/material/plastic))
 		if(!cupholder)
@@ -295,7 +295,7 @@
 				src.add_fingerprint(user)
 				user << "<span class='notice'>You start to attach a cup dispenser onto the water-cooler.</span>"
 				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-				if(do_after(user, 20))
+				if(do_after(user, 20) && !cupholder && anchored)
 					if (P.use(1))
 						user << "<span class='notice'>You attach a cup dispenser onto the water-cooler.</span>"
 						cupholder = 1

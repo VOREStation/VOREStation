@@ -16,7 +16,6 @@
 
 	var/obj/item/device/radio/sleevecard/radio
 	var/mob/living/silicon/infomorph/infomorph
-	var/datum/mind/sleeved
 	var/current_emotion = 1
 
 	matter = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 4000)
@@ -36,7 +35,9 @@
 /obj/item/device/sleevecard/Destroy()
 	if(!isnull(infomorph))
 		infomorph.death(0)
-	..()
+		infomorph = null
+	qdel_null(radio)
+	return ..()
 
 /obj/item/device/sleevecard/attack_self(mob/user)
 	add_fingerprint(user)

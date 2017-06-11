@@ -46,7 +46,7 @@
 	overlays += I
 
 /obj/machinery/atmospherics/binary/algae_farm/Destroy()
-	..()
+	. = ..()
 	internal = null
 
 /obj/machinery/atmospherics/binary/algae_farm/process()

@@ -12,14 +12,14 @@
 		return
 
 	message = sanitize(message)
+	if(!message)
+		return
 
 	set_typing_indicator(0)
 	if(use_me)
 		usr.emote_vr("me",4,message)
 	else
 		usr.emote_vr(message)
-
-
 
 /mob/proc/custom_emote_vr(var/m_type=1,var/message = null) //This would normally go in emote.dm
 	if(stat || !use_me && usr == src)
@@ -40,31 +40,22 @@
 	else
 		return
 
-
 	if (message)
-		log_emote("[name]/[key] : [message]")
+		log_subtle("[name]/[key] : [message]")
 
-		for(var/mob/M in player_list)
-			if (!M.client)
-				continue //skip monkeys and leavers
-			if (istype(M, /mob/new_player))
-				continue
-			if(findtext(message," snores.")) //Because we have so many sleeping people.
-				break
-			if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_sight) && !(M in viewers(src,null)))
-				M.show_message(message, m_type)
-		var/list/subtle = get_mobs_or_objects_in_view(1,src)
-		for(var/I in subtle)
-			if(isobj(I))
-				spawn(0)
-					if(I) //It's possible that it could be deleted in the meantime.
-						var/obj/O = I
-						O.see_emote(src, message, 2)
-			else if(ismob(I))
-				var/mob/M = I
+		var/list/vis = get_mobs_and_objs_in_view_fast(get_turf(src),1,2) //Turf, Range, and type 2 is emote
+		var/list/vis_mobs = vis["mobs"]
+		var/list/vis_objs = vis["objs"]
+
+		for(var/vismob in vis_mobs)
+			var/mob/M = vismob
+			spawn(0)
 				M.show_message(message, 2)
 
-
+		for(var/visobj in vis_objs)
+			var/obj/O = visobj
+			spawn(0)
+				O.see_emote(src, message, 2)
 
 /mob/proc/emote_vr(var/act, var/type, var/message) //This would normally go in say.dm
 	if(act == "me")

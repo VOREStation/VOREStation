@@ -51,7 +51,7 @@ obj/machinery/atmospherics/trinary
 		return null
 
 	Destroy()
-		loc = null
+		. = ..()
 
 		if(node1)
 			node1.disconnect(src)
@@ -66,8 +66,6 @@ obj/machinery/atmospherics/trinary
 		node1 = null
 		node2 = null
 		node3 = null
-
-		..()
 
 	initialize()
 		if(node1 && node2 && node3) return

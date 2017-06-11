@@ -10,14 +10,14 @@ datum/pipeline
 	var/alert_pressure = 0
 
 	Destroy()
-		if(network)
-			qdel(network)
+		qdel_null(network)
 
 		if(air && air.volume)
 			temporarily_store_air()
-			qdel(air)
+		for(var/obj/machinery/atmospherics/pipe/P in members)
+			P.parent = null
 
-		..()
+		. = ..()
 
 	proc/process()//This use to be called called from the pipe networks
 

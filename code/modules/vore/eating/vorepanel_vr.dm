@@ -10,7 +10,7 @@
 
 /mob/living/proc/insidePanel()
 	set name = "Vore Panel"
-	set category = "Vore"
+	set category = "IC"
 
 	var/datum/vore_look/picker_holder = new()
 	picker_holder.loop = picker_holder
@@ -30,6 +30,11 @@
 	var/show_interacts = 0
 	var/datum/browser/popup
 	var/loop = null;  // Magic self-reference to stop the handler from being GC'd before user takes action.
+
+/datum/vore_look/Destroy()
+	loop = null
+	selected = null
+	return QDEL_HINT_HARDDEL // TODO - Until I can better analyze how this weird thing works, lets be safe
 
 /datum/vore_look/Topic(href,href_list[])
 	if (vp_interact(href, href_list))
@@ -243,7 +248,7 @@
 	for(var/H in href_list)
 
 	if(href_list["close"])
-		del(src)  // Cleanup
+		qdel(src)  // Cleanup
 		return
 
 	if(href_list["show_int"])

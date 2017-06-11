@@ -321,7 +321,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 			O.icon_state = new_icon // Changes the icon without changing the access.
 			playsound(user.loc, 'sound/items/polaroid2.ogg', 100, 1)
 			user.visible_message("<span class='warning'> [user] reprints their ID.</span>")
-			del(src)
+			qdel(src)
 		else if(O.icon_state == new_icon)
 			user << "<span class='notice'>[O] already has been reprinted.</span>"
 			return
@@ -490,7 +490,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	Destroy() //Waitwaitwait
 		if(state == 1)
 			process() //Nownownow
-		..() //Okfine
+		return ..() //Okfine
 
 	process()
 		check_owner()
@@ -649,18 +649,11 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	emote_descriptor = list("squeezes milk", "tugs on Tempest's breasts, milking them")
 	self_emote_descriptor = list("squeeze")
 	random_emote = list("moos quietly")
-	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_tempest
+	verb_name = "Milk"
+	verb_desc = "Grab Tempest's nipples and milk them into a container! May cause blushing and groaning."
 
 /obj/item/weapon/implanter/reagent_generator/tempest
 	implant_type = /obj/item/weapon/implant/reagent_generator/tempest
-
-/mob/living/carbon/human/proc/use_reagent_implant_tempest()
-	set name = "Milk"
-	set desc = "Grab Tempest's nipples and milk them into a container! May cause blushing and groaning."
-	set category = "Object"
-	set src in view(1)
-
-	do_reagent_implant(usr)
 
 
 //Hottokeeki: Belle Day
@@ -673,19 +666,11 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	emote_descriptor = list("squeezes milk", "tugs on Belle's breasts/udders, milking them", "extracts milk")
 	self_emote_descriptor = list("squeeze", "extract")
 	random_emote = list("moos", "mrours", "groans softly")
-	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_belle
+	verb_name = "Milk"
+	verb_desc = "Obtain Belle's milk and put it into a container! May cause blushing and groaning, or arousal."
 
 /obj/item/weapon/implanter/reagent_generator/belle
 	implant_type = /obj/item/weapon/implant/reagent_generator/belle
-
-/mob/living/carbon/human/proc/use_reagent_implant_belle()
-	set name = "Milk"
-	set desc = "Obtain Belle's milk and put it into a container! May cause blushing and groaning, or arousal."
-	set category = "Object"
-	set src in view(1)
-
-	do_reagent_implant(usr)
-
 
 //Vorrarkul: Theodora Lindt
 /obj/item/weapon/implant/reagent_generator/vorrarkul
@@ -697,18 +682,11 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	emote_descriptor = list("squeezes chocolate milk from Theodora", "tugs on Theodora's nipples, milking them", "kneads Theodora's breasts, milking them")
 	self_emote_descriptor = list("squeeze", "knead")
 	random_emote = list("moans softly", "gives an involuntary squeal")
-	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_vorrarkul
+	verb_name = "Milk"
+	verb_desc = "Grab Theodora's breasts and extract delicious chocolate milk from them!"
 
 /obj/item/weapon/implanter/reagent_generator/vorrarkul
 	implant_type = /obj/item/weapon/implant/reagent_generator/vorrarkul
-
-/mob/living/carbon/human/proc/use_reagent_implant_vorrarkul()
-	set name = "Milk"
-	set desc = "Grab Theodora's breasts and extract delicious chocolate milk from them!"
-	set category = "Object"
-	set src in view(1)
-
-	do_reagent_implant(usr)
 
 //SpoopyLizz: Roiz Lizden
 //I made this! Woo!
@@ -730,6 +708,12 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	self_emote_descriptor = list("lay", "force out", "push out")
 	random_emote = list("hisses softly with a blush on his face", "yelps in embarrassment", "grunts a little")
 	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_roiz
+
+/obj/item/weapon/implant/reagent_generator/roiz/implanted(mob/living/carbon/source)
+	processing_objects += src
+	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
+	source.verbs |= assigned_proc
+	return 1
 
 /obj/item/weapon/implanter/reagent_generator/roiz
 	implant_type = /obj/item/weapon/implant/reagent_generator/roiz
@@ -788,7 +772,25 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 /obj/item/weapon/reagent_containers/food/snacks/egg/roiz/New()
 	..()
 	reagents.add_reagent("egg", 9)
-	bitesize = 4
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/egg/roiz/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype( W, /obj/item/weapon/pen/crayon ))
+		var/obj/item/weapon/pen/crayon/C = W
+		var/clr = C.colourName
+
+		if(!(clr in list("blue","green","mime","orange","purple","rainbow","red","yellow")))
+			to_chat(user,"<span class='warning'>The egg refuses to take on this color!</span>")
+			return
+
+		to_chat(user,"<span class='notice'>You color \the [src] [clr]</span>")
+		icon_state = "egg_roiz_[clr]"
+		desc = "It's a large lizard egg. It has been colored [clr]!"
+		if (clr == "rainbow")
+			var/number = rand(1,4)
+			icon_state = icon_state + num2text(number, 0)
+	else
+		..()
 
 /obj/item/weapon/reagent_containers/food/snacks/friedegg/roiz
 	name = "fried lizard egg"
@@ -800,7 +802,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 /obj/item/weapon/reagent_containers/food/snacks/friedegg/roiz/New()
 	..()
 	reagents.add_reagent("protein", 9)
-	bitesize = 4
+	bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/boiledegg/roiz
 	name = "boiled lizard egg"
@@ -812,11 +814,11 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 /obj/item/weapon/reagent_containers/food/snacks/boiledegg/roiz/New()
 	..()
 	reagents.add_reagent("protein", 6)
-	bitesize = 4
+	bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/chocolateegg/roiz
 	name = "chocolate lizard egg"
-	desc = "Such huge, sweet, fattening food."
+	desc = "Such huge, sweet, fattening food. You feel gluttonous just looking at it."
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "chocolateegg_roiz"
 	filling_color = "#7D5F46"
@@ -829,7 +831,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	reagents.add_reagent("sugar", 6)
 	reagents.add_reagent("coco", 6)
 	reagents.add_reagent("milk", 2)
-	bitesize = 6
+	bitesize = 2
 
 //PontifexMinimus: Lucius/Lucia Null
 /obj/item/weapon/fluff/dragor_dot
@@ -930,9 +932,13 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	spk.attach(src)
 
 /obj/item/device/perfect_tele/Destroy()
+	// Must clear the beacon's backpointer or we won't GC. Someday maybe do something nicer even.
+	for(var/obj/item/device/perfect_tele_beacon/B in beacons)
+		B.tele_hand = null
 	beacons.Cut()
-	qdel(spk)
-	..()
+	qdel_null(power_source)
+	qdel_null(spk)
+	return ..()
 
 /obj/item/device/perfect_tele/update_icon()
 	if(!power_source)
@@ -1053,6 +1059,11 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	//No, you can't teleport if there's no destination.
 	if(!destination)
 		to_chat(user,"<span class='warning'>\The [src] doesn't have a current valid destination set!</span>")
+		return
+
+	//No, you can't teleport if there's a jammer.
+	if(is_jammed(src) || is_jammed(destination))
+		to_chat(user,"<span class='warning'>\The [src] refuses to teleport you, due to strong interference!</span>")
 		return
 
 	//No, you can't port to or from away missions. Stupidly complicated check.
@@ -1180,7 +1191,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 /obj/item/device/perfect_tele_beacon/Destroy()
 	tele_name = null
 	tele_hand = null
-	..()
+	return ..()
 
 /obj/item/device/perfect_tele_beacon/attack_hand(mob/user)
 	if((user.ckey != creator) && !(user.ckey in warned_users))

@@ -21,9 +21,9 @@
 	return 1
 
 /obj/machinery/portable_atmospherics/Destroy()
-	qdel(air_contents)
-	qdel(holding)
-	..()
+	qdel_null(air_contents)
+	qdel_null(holding)
+	. = ..()
 
 /obj/machinery/portable_atmospherics/initialize()
 	. = ..()
@@ -39,11 +39,6 @@
 		air_contents.react()
 	else
 		update_icon()
-
-/obj/machinery/portable_atmospherics/Destroy()
-	qdel(air_contents)
-
-	..()
 
 /obj/machinery/portable_atmospherics/proc/StandardAirMix()
 	return list(

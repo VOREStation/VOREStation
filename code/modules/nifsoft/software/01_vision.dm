@@ -172,8 +172,9 @@
 	life()
 		if((. = ..()))
 			var/mob/living/carbon/human/H = nif.human
-			H.client.screen |= global_hud.meson
 			H.sight |= SEE_TURFS
+			if(H.client)
+				H.client.screen |= global_hud.meson
 
 /datum/nifsoft/material
 	name = "Material Scanner"
@@ -219,8 +220,9 @@
 		if((. = ..()))
 			var/mob/living/carbon/human/H = nif.human
 			H.sight |= SEE_MOBS
-			H.client.screen |= global_hud.thermal
 			H.see_invisible = SEE_INVISIBLE_NOLIGHTING
+			if(H.client)
+				H.client.screen |= global_hud.thermal
 
 /datum/nifsoft/nightvis
 	name = "Low-Light Amp"
@@ -244,6 +246,7 @@
 		if((. = ..()))
 			var/mob/living/carbon/human/H = nif.human
 			H.see_in_dark += 7
-			H.client.screen |= global_hud.nvg
 			H.see_invisible = SEE_INVISIBLE_NOLIGHTING
+			if(H.client)
+				H.client.screen |= global_hud.nvg
 

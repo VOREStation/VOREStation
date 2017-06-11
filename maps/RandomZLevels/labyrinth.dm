@@ -90,7 +90,7 @@
 /obj/machinery/door/airlock/vault/temple/New()
 	if(prob(33))
 		new /obj/structure/falsewall/cultspecial(src.loc)
-		del(src)
+		qdel(src)
 	if(prob(33))
 		safe = 0
 	if(prob(33))

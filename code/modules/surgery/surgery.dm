@@ -129,7 +129,6 @@
 				if(success)
 					if(!do_mob(user, M, rand(S.min_duration, S.max_duration)))
 						success = FALSE
-					else
 						to_chat(user, "<span class='warning'>You must remain close to your patient to conduct surgery.</span>")
 
 				if(success)
