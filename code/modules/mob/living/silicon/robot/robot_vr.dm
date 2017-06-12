@@ -40,16 +40,12 @@
 			var/turf/tile = loc
 			if(isturf(tile))
 				tile.clean_blood()
-				if (istype(tile, /turf/simulated))
-					var/turf/simulated/S = tile
-					S.dirt = 0
+				if(istype(tile, /turf/simulated))
+					var/turf/simulated/T = tile
+					T.dirt = 0
 				for(var/A in tile)
-					if(istype(A, /obj/effect))
-						if(istype(A, /obj/effect/rune) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay))
-							qdel(A)
-					else if(istype(A, /obj/item))
-						var/obj/item/cleaned_item = A
-						cleaned_item.clean_blood()
+					if(istype(A,/obj/effect/rune) || istype(A,/obj/effect/decal/cleanable) || istype(A,/obj/effect/overlay))
+						qdel(A)
 					else if(istype(A, /mob/living/carbon/human))
 						var/mob/living/carbon/human/cleaned_human = A
 						if(cleaned_human.lying)
@@ -66,6 +62,6 @@
 								cleaned_human.shoes.clean_blood()
 								cleaned_human.update_inv_shoes(0)
 							cleaned_human.clean_blood(1)
-							cleaned_human << "<span class='warning'>[src] cleans your face!</span>"//Oh come on travis this tiny-ass message change has nothing to do with random open space bugs.
+							cleaned_human << "<span class='warning'>[src] cleans your face!</span>"
 		return
 	return

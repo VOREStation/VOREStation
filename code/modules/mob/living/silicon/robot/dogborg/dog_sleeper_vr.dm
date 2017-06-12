@@ -449,6 +449,22 @@
 	hound = loc
 	if(!proximity)
 		return
+	if(istype(target, /mob/living/carbon/human))
+		var/mob/living/carbon/human/trashman = target
+		if(patient)
+			user << "<span class='warning'>Your [src.name] is already occupied.</span>"
+			return
+		if(trashman.buckled)
+			user << "<span class='warning'>The user is buckled and can not be put into your [src.name].</span>"
+			return
+		user.visible_message("<span class='warning'>[hound.name] is ingesting [trashman] into their [src.name].</span>", "<span class='notice'>You start ingesting [trashman] into your [src.name]...</span>")
+		if(ishuman(trashman) && !trashman.buckled && do_after (user, 30, trashman))
+			trashman.forceMove(src)
+			trashman.reset_view(src)
+			update_patient()
+			processing_objects.Add(src)
+			user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [trashman] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [trashman] slips inside.</span>")
+			playsound(hound, 'sound/vore/gulp.ogg', 80, 1)
 	if(!isobj(target))
 		return
 	if(target.anchored)
@@ -458,9 +474,12 @@
 		return
 	user.visible_message("<span class='warning'>[hound.name] is ingesting [target.name] into their [src.name].</span>", "<span class='notice'>You start ingesting [target] into your [src.name]...</span>")
 	if(!ishuman(target) && do_after (user, 30, target))
-		if(!proximity) return //If they moved away, you can't eat them.
+		if(!proximity) return
 
 		else
 			target.forceMove(src)
 			user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [target.name] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [target] slips inside.</span>")
 			playsound(hound, 'sound/vore/gulp.ogg', 50, 1)
+
+/obj/item/device/dogborg/sleeper/compactor/afterattack(mob/living/carbon/target, mob/living/silicon/user, proximity)
+	..()
