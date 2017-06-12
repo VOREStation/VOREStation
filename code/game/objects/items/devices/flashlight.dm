@@ -37,7 +37,7 @@
 /obj/item/device/flashlight/Destroy()
 	if(power_use)
 		processing_objects -= src
-	..()
+	return ..()
 
 /obj/item/device/flashlight/verb/toggle()
 	set name = "Toggle Flashlight Brightness"
