@@ -62,6 +62,6 @@
 								cleaned_human.shoes.clean_blood()
 								cleaned_human.update_inv_shoes(0)
 							cleaned_human.clean_blood(1)
-							cleaned_human << "<span class='warning'>[src] cleans your face!</span>"
+							cleaned_human << "<span class='warning'>[src] cleans your face!</span>"//Again travis what the fuck? You and your random unrelated bugs.
 		return
 	return
