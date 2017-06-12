@@ -46,12 +46,9 @@
 
 /datum/controller/process/scheduler/proc/schedule(var/datum/scheduled_task/st)
 	scheduled_tasks += st
-	destroyed_event.register(st, src, /datum/controller/process/scheduler/proc/unschedule)
 
 /datum/controller/process/scheduler/proc/unschedule(var/datum/scheduled_task/st)
-	if(st in scheduled_tasks)
-		scheduled_tasks -= st
-		destroyed_event.unregister(st, src)
+	scheduled_tasks -= st
 
 /**********
 * Helpers *
@@ -102,6 +99,7 @@
 	task_after_process_args += src
 
 /datum/scheduled_task/Destroy()
+	scheduler.unschedule(src)
 	procedure = null
 	arguments.Cut()
 	task_after_process = null
