@@ -165,14 +165,17 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 			to_chat(usr,"<span class='warning'>Target seems totally braindead.</span>")
 			return
 
-		usr.visible_message("<span class='warning'>[usr] begins downloading [target]'s mind!</span>","<span class='notice'>You begin downloading [target]'s mind!</span>")
-		if(do_after(usr,35 SECONDS,target)) //This is powerful, yo.
-			if(!stored_mind && target.mind)
-				stored_mind = target.mind
-				target.ghostize()
-				stored_mind.current = null
-				update_icon()
-				to_chat(usr,"<span class='notice'>Mind downloaded!</span>")
+		var/choice = alert(usr,"This will remove the target's mind from their body. The only way to put it back is via a resleeving pod. Continue?","Confirmation","Continue","Cancel")
+		if(choice == "Continue" && usr.get_active_hand() == src && usr.Adjacent(target))
+
+			usr.visible_message("<span class='warning'>[usr] begins downloading [target]'s mind!</span>","<span class='notice'>You begin downloading [target]'s mind!</span>")
+			if(do_after(usr,35 SECONDS,target)) //This is powerful, yo.
+				if(!stored_mind && target.mind)
+					stored_mind = target.mind
+					target.ghostize()
+					stored_mind.current = null
+					update_icon()
+					to_chat(usr,"<span class='notice'>Mind downloaded!</span>")
 
 		return
 
