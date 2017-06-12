@@ -132,7 +132,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 		qdel(ghostimage)
 		ghostimage = null
 		updateallghostimages()
-	..()
+	return ..()
 
 /mob/observer/dead/Topic(href, href_list)
 	if (href_list["track"])
