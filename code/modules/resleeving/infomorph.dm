@@ -403,9 +403,9 @@ var/list/infomorph_emotions = list(
 	close_up()
 
 	//Resleeving 'cryo'
-	if(mind && (mind.name in transcore.backed_up))
-		var/datum/transhuman/mind_record/MR = transcore.backed_up[mind.name]
-		transcore.stop_backup(MR)
+	if(mind && (mind.name in SStranscore.backed_up))
+		var/datum/transhuman/mind_record/MR = SStranscore.backed_up[mind.name]
+		SStranscore.stop_backup(MR)
 
 	card.removePersonality()
 	clear_client()
@@ -603,7 +603,7 @@ var/global/list/default_infomorph_software = list()
 
 	//Only every so often
 	if(air_master.current_cycle%30 == 1)
-		transcore.m_backup(mind)
+		SStranscore.m_backup(mind)
 
 	if(health <= 0)
 		death(null,"gives one shrill beep before falling lifeless.")

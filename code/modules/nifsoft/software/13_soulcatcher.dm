@@ -199,7 +199,7 @@
 			brainmob.ext_deaf = FALSE
 			brainmob.ext_blind = FALSE
 			brainmob.parent_mob = TRUE
-			transcore.m_backup(H.mind,H) //ONE backup. Won't be called in life due to avoidance of parent_mob backups.
+			SStranscore.m_backup(H.mind,H) //ONE backup. Won't be called in life due to avoidance of parent_mob backups.
 
 		//Set some basics on the mob.
 		brainmob.dna = H.dna
@@ -209,7 +209,7 @@
 		//Put the mind and player into the mob
 		H.mind.transfer_to(brainmob)
 		brainmob.name = brainmob.mind.name
-		transcore.m_backup(brainmob.mind,0) //It does ONE, so medical will hear about it.
+		SStranscore.m_backup(brainmob.mind,0) //It does ONE, so medical will hear about it.
 
 		//Give them a flavortext message
 		var/message = "<span class='notice'>Your vision fades in a haze of static, before returning.</span>\n\
@@ -257,7 +257,7 @@
 	. = ..()
 
 	if(!parent_mob && (life_tick % 150 == 0) && soulcatcher.setting_flags & NIF_SC_BACKUPS)
-		transcore.m_backup(mind,0) //Passed 0 means "Don't touch the nif fields on the mind record"
+		SStranscore.m_backup(mind,0) //Passed 0 means "Don't touch the nif fields on the mind record"
 
 	life_tick++
 

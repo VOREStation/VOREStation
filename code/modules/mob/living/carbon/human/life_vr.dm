@@ -31,7 +31,7 @@
 				if(istype(I,/obj/item/weapon/implant/backup))
 					if(!mind)
 						holder.icon_state = "hud_backup_nomind"
-					else if(!(mind.name in transcore.body_scans))
+					else if(!(mind.name in SStranscore.body_scans))
 						holder.icon_state = "hud_backup_nobody"
 					else
 						holder.icon_state = "hud_backup_norm"

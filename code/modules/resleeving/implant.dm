@@ -33,7 +33,7 @@
 			qdel(other_imp) //implant fight
 
 		if(H.mind && H.stat < DEAD) //One right now, on implanting.
-			transcore.m_backup(H.mind)
+			SStranscore.m_backup(H.mind)
 			last_attempt = world.time
 
 		backup()
@@ -49,7 +49,7 @@
 		BITSET(H.hud_updateflag, BACKUP_HUD)
 		//Okay we've got a mind at least
 		if(H == imp_in && H.mind && H.stat < DEAD)
-			transcore.m_backup(H.mind,H.nif)
+			SStranscore.m_backup(H.mind,H.nif)
 			persist_nif_data(H)
 
 	spawn(attempt_delay)

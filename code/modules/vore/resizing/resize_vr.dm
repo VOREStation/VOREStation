@@ -88,7 +88,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
  */
 /mob/living/proc/set_size()
 	set name = "Set Character Size"
-	set category = "Vore"
+	set category = "OOC"
 	var/nagmessage = "DO NOT ABUSE THESE COMMANDS. They are not here for you to play with. \
 			We were originally going to remove them but kept them for popular demand. \
 			Do not abuse their existence outside of ERP scenes where they apply, \
