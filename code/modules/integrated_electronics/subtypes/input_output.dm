@@ -304,7 +304,8 @@
 	if(exonet)
 		exonet.remove_address()
 		qdel(exonet)
-	..()
+		exonet = null
+	return ..()
 
 /obj/item/integrated_circuit/input/EPv2/do_work()
 	var/target_address = get_pin_data(IC_INPUT, 1)
@@ -370,7 +371,7 @@
 
 /obj/item/integrated_circuit/input/microphone/Destroy()
 	listening_objects -= src
-	..()
+	return ..()
 
 /obj/item/integrated_circuit/input/microphone/hear_talk(mob/living/M, msg, var/verb="says", datum/language/speaking=null)
 	var/translated = FALSE
@@ -482,9 +483,6 @@
 	var/light_brightness = 3
 	var/light_rgb = "#FFFFFF"
 	power_draw_idle = 0 // Adjusted based on brightness.
-
-/obj/item/integrated_circuit/output/light/Destroy()
-	..()
 
 /obj/item/integrated_circuit/output/light/do_work()
 	light_toggled = !light_toggled
@@ -644,8 +642,8 @@
 	on_data_written()
 
 /obj/item/integrated_circuit/output/video_camera/Destroy()
-	qdel(camera)
-	..()
+	qdel_null(camera)
+	return ..()
 
 /obj/item/integrated_circuit/output/video_camera/proc/set_camera_status(var/status)
 	if(camera)
