@@ -1,3 +1,6 @@
+//Please see the comment above the main NIF definition before
+//trying to call any of these procs directly.
+
 //A single piece of NIF software
 /datum/nifsoft
 	var/name = "Prototype"
@@ -47,11 +50,10 @@
 //Destructor cleans up the software and nif reference
 /datum/nifsoft/Destroy()
 	if(nif)
-		uninstall(nif)
+		uninstall()
 		nif = null
-	qdel(stat_line)
-	stat_line = null
-	..()
+	qdel_null(stat_line)
+	return ..()
 
 //Called when the software is installed in the NIF
 /datum/nifsoft/proc/install()
@@ -64,7 +66,8 @@
 	if(nif)
 		. = nif.uninstall(src)
 		nif = null
-	qdel(src)
+	if(!QDESTROYING(src))
+		qdel(src)
 
 //Called every life() tick on a mob on active implants
 /datum/nifsoft/proc/life(var/mob/living/carbon/human/human)
@@ -123,7 +126,7 @@
 /datum/nifsoft/package/Destroy()
 	software.Cut()
 	software = null
-	..()
+	return ..()
 
 /////////////////
 // A NIFSoft Disk

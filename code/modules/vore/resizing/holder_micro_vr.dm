@@ -34,4 +34,4 @@
 	var/turf/here = get_turf(src)
 	for(var/atom/movable/A in src)
 		A.forceMove(here)
-	..()
+	return ..()

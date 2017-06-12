@@ -12,8 +12,8 @@
 		arscreen = new(nif)
 
 	Destroy()
-		qdel(arscreen)
-		..()
+		qdel_null(arscreen)
+		return ..()
 
 	activate()
 		if((. = ..()))

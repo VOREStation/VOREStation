@@ -278,8 +278,8 @@
 // OOC Escape code for pref-breaking or AFK preds
 //
 /mob/living/proc/escapeOOC()
-	set name = "OOC escape"
-	set category = "Vore"
+	set name = "OOC Escape"
+	set category = "OOC"
 
 	//You're in an animal!
 	if(istype(src.loc,/mob/living/simple_animal))

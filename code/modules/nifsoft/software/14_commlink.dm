@@ -43,13 +43,14 @@
 		nif = newloc
 		nifsoft = soft
 		register_device(nif.human)
-		qdel(camera) //Not supported on internal one.
+		qdel_null(camera) //Not supported on internal one.
 
 	Destroy()
 		if(nif)
 			nif.comm = null
 			nif = null
-		..()
+		nifsoft = null
+		return ..()
 
 //So that only the owner's chat is relayed to others.
 /obj/item/device/communicator/commlink/hear_talk(mob/living/M, text, verb, datum/language/speaking)

@@ -20,7 +20,7 @@
 		message_admins("ERROR: ability_master's New() was not given an owner argument.  This is a bug.")
 
 /obj/screen/movable/ability_master/Destroy()
-	..()
+	. = ..()
 	//Get rid of the ability objects.
 	remove_all_abilities()
 	ability_objects.Cut()

@@ -49,9 +49,10 @@
 	description_holders["icon"] = "\icon[A]"
 	description_holders["desc"] = A.desc
 
-/client/Stat()
+/mob/Stat()
 	. = ..()
-	if(usr && statpanel("Examine"))
+	if(client && statpanel("Examine"))
+		var/description_holders = client.description_holders
 		stat(null,"[description_holders["icon"]]    <font size='5'>[description_holders["name"]]</font>") //The name, written in big letters.
 		stat(null,"[description_holders["desc"]]") //the default examine text.
 		if(description_holders["info"])

@@ -1,3 +1,14 @@
+/* //////////////////////////////
+The NIF has a proc API shared with NIFSofts, and you should not really ever
+directly interact with this API. Procs like install(), uninstall(), etc should
+not be directly called. If you want to install a new NIFSoft, pass the NIF in
+the constructor for a new instance of the NIFSoft. If you want to force a NIFSoft
+to be uninstalled, use imp_check to get a reference to it, and call
+uninstall() only on the return value of that.
+
+You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable it.
+*/ //////////////////////////////
+
 //Holder on humans to prevent having to 'find' it every time
 /mob/living/carbon/human/var/obj/item/device/nif/nif
 
@@ -45,16 +56,21 @@
 			"seems to be daydreaming",
 			"focuses elsewhere for a moment")
 
-//Constructor comes with a free AR HUD
-/obj/item/device/nif/New(var/newloc,var/wear)
-	..(newloc)
+	var/list/save_data
 
-	//Required for AR stuff.
-	nif_hud = new(src)
+//Constructor comes with a free AR HUD
+/obj/item/device/nif/New(var/newloc,var/wear,var/list/load_data)
+	..(newloc)
 
 	//First one to spawn in the game, make a big icon
 	if(!big_icon)
 		big_icon = new(icon,icon_state = "nif_full")
+
+	//Required for AR stuff.
+	nif_hud = new(src)
+
+	//Put loaded data here if we loaded any
+	save_data = islist(load_data) ? load_data.Copy() : list()
 
 	//If given a human on spawn (probably from persistence)
 	if(ishuman(newloc))
@@ -84,16 +100,11 @@
 	if(human)
 		human.nif = null
 		human = null
-	for(var/S in nifsofts)
-		if(S)
-			qdel(S)
-	if(nif_hud)
-		qdel(nif_hud)
-	if(comm)
-		qdel(comm)
-
-	nifsofts.Cut()
-	..()
+	qdel_null_list(nifsofts)
+	qdel_null(nif_hud)
+	qdel_null(comm)
+	nifsofts_life.Cut()
+	return ..()
 
 //Being implanted in some mob
 /obj/item/device/nif/proc/implant(var/mob/living/carbon/human/H)
@@ -117,7 +128,8 @@
 		src.forceMove(head)
 		head.implants += src
 		spawn(0) //Let the character finish spawning yo.
-			owner = H.mind.name
+			if(H.mind)
+				owner = H.mind.name
 			implant(H)
 		return TRUE
 
@@ -233,7 +245,8 @@
 
 	var/percent_done = (world.time - (install_done - (30 MINUTES))) / (30 MINUTES)
 
-	human.client.screen.Add(global_hud.whitense) //This is the camera static
+	if(human.client)
+		human.client.screen.Add(global_hud.whitense) //This is the camera static
 
 	switch(percent_done) //This is 0.0 to 1.0 kinda percent.
 		//Connecting to optical nerves
@@ -242,19 +255,20 @@
 
 		//Mapping brain
 		if(0.2 to 0.9)
-			if(prob(99)) return TRUE
+			if(prob(98)) return TRUE
 			var/incident = rand(1,3)
 			switch(incident)
 				if(1)
 					var/message = pick(list(
-								"Your head throbs around your new implant.",
-								"The skin around your recent surgery itches.",
-								"A wave of nausea overtakes you as the world seems to spin.",
-								"The floor suddenly seems to come up at you.",
-								"There's a throbbing lump of ice behind your eyes.",
-								"A wave of pain shoots down your neck."
+								"Your head throbs around your new implant!",
+								"The skin around your recent surgery itches!",
+								"A wave of nausea overtakes you as the world seems to spin!",
+								"The floor suddenly seems to come up at you!",
+								"There's a throbbing lump of ice behind your eyes!",
+								"A wave of pain shoots down your neck!"
 								))
-					to_chat(human,"<span class='danger'>[message]</span>")
+					human.adjustHalLoss(35)
+					human.custom_pain(message,35)
 				if(2)
 					human.Weaken(5)
 					to_chat(human,"<span class='danger'>A wave of weakness rolls over you.</span>")
@@ -522,7 +536,7 @@
 	if(nif)
 		nif.nif_hud = null
 		nif = null
-	..()
+	return ..()
 
 /obj/item/clothing/glasses/hud/nif_hud/process_hud(M,var/thing)
 	//Faster checking with local var, and this is called often so I want fast.

@@ -31,7 +31,7 @@
 	life()
 		if((. = ..()))
 			var/mob/living/carbon/human/H = nif.human
-			if(apc && (get_dist(H,apc) <= 1) && H.nutrition < 450)
+			if(apc && (get_dist(H,apc) <= 1) && H.nutrition < 440) // 440 vs 450, life() happens before we get here so it'll never be EXACTLY 450
 				H.nutrition = min(H.nutrition+10, 450)
 				apc.drain_power(7000/450*10) //This is from the large rechargers. No idea what the math is.
 				return TRUE

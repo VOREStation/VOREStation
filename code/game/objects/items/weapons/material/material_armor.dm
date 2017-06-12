@@ -42,7 +42,7 @@ Protectiveness | Armor %
 
 /obj/item/clothing/Destroy()
 	processing_objects -= src
-	..()
+	return ..()
 
 /obj/item/clothing/get_material()
 	return material

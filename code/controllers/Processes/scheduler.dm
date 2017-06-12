@@ -30,8 +30,8 @@
 // Note: We won't be informed about tasks being destroyed, but this is the best we can do.
 /datum/controller/process/scheduler/copyStateFrom(var/datum/controller/process/scheduler/target)
 	scheduled_tasks = list()
-	for(var/st in target.scheduled_tasks)
-		if(!deleted(st) && istype(st, /datum/scheduled_task))
+	for(var/datum/scheduled_task/st in target.scheduled_tasks)
+		if(!QDELETED(st) && istype(st))
 			schedule(st)
 	scheduler = src
 

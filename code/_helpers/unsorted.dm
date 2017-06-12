@@ -1264,6 +1264,10 @@ var/mob/dview/dview_mob = new
 	if(!center)
 		return
 
+	if(!dview_mob) //VOREStation Add - Emergency Backup
+		dview_mob = new()
+		WARNING("dview mob was lost, and had to be recreated!")
+
 	dview_mob.loc = center
 
 	dview_mob.see_invisible = invis_flags
@@ -1293,6 +1297,13 @@ var/mob/dview/dview_mob = new
 		dead_mob_list -= src
 	else
 		living_mob_list -= src
+
+/mob/dview/Destroy(var/force)
+	crash_with("Attempt to delete the dview_mob: [log_info_line(src)]")
+	if (!force)
+		return QDEL_HINT_LETMELIVE
+	global.dview_mob = new
+	return ..()
 
 // call to generate a stack trace and print to runtime logs
 /proc/crash_with(msg)

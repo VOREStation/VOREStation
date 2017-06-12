@@ -127,7 +127,7 @@
 
 /obj/machinery/smartfridge/chemistry/chemvator/down/Destroy()
 	attached = null
-	..()
+	return ..()
 
 /obj/machinery/smartfridge/chemistry/chemvator/down
 	name = "\improper Smart Chemavator - Lower"

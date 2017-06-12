@@ -5,18 +5,22 @@
 
 /mob/living/carbon/human/proc/SetupNifStat()
 	var/nif_status = ""
+	var/nif_percent = round((nif.durability/initial(nif.durability))*100)
 	switch(nif.stat)
 		if(NIF_WORKING)
-			nif_status = "Operating Normally"
+			if(nif_percent < 20)
+				nif_status = "Service Needed Soon"
+			else
+				nif_status = "Operating Normally"
 		if(NIF_POWFAIL)
 			nif_status = "Insufficient Energy!"
 		if(NIF_TEMPFAIL)
-			nif_status = "Needs Maintenance!"
+			nif_status = "System Failure!"
 		if(NIF_INSTALLING)
 			nif_status = "Adapting To User"
 		else
 			nif_status = "Unknown - Error"
-	nif_status += " ([round((nif.durability/initial(nif.durability))*100)]%)"
+	nif_status += " (Condition: [nif_percent]%)"
 	stat("NIF Status", nif_status)
 
 	if(nif.stat == NIF_WORKING)
@@ -43,7 +47,7 @@
 
 /obj/effect/nif_stat/Destroy()
 	nifsoft = null
-	..()
+	return ..()
 
 /obj/effect/nif_stat/proc/atom_button_text()
 	name = nifsoft.stat_text()

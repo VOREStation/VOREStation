@@ -227,7 +227,8 @@
 			prob(2);/obj/item/weapon/grenade/anti_photon,
 			prob(1);/obj/item/weapon/cell/hyper/empty,
 			prob(1);/obj/item/weapon/disk/nifsoft/compliance,
-			prob(1);/obj/item/device/nif/bad)
+			prob(1);/obj/item/device/nif/bad,
+			prob(1);/obj/item/device/sleevemate)
 
 	var/obj/item/I = new path()
 	return I
@@ -237,7 +238,7 @@
 	if(!path) //Tapped out, reallocate?
 		for(var/P in allocated_gamma)
 			var/obj/item/I = allocated_gamma[P]
-			if(!I || istype(I.loc,/obj/machinery/computer/cryopod) || I.gcDestroyed)
+			if(QDELETED(I) || istype(I.loc,/obj/machinery/computer/cryopod))
 				allocated_gamma -= P
 				path = P
 				break
