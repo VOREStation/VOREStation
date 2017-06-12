@@ -336,9 +336,12 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	var/configured = 0
 
 	attack_self(mob/user as mob)
-		if(configured == 1) return ..()
+		if(configured)
+			return ..()
 
 		user.set_id_info(src)
+		if(user.mind && user.mind.initial_account)
+			associated_account_number = user.mind.initial_account.account_number
 		configured = 1
 		user << "<span class='notice'>Card settings set.</span>"
 
@@ -611,10 +614,13 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	var/configured = 0
 
 	attack_self(mob/user as mob)
-		if(configured == 1) return ..()
+		if(configured)
+			return ..()
 
 		assignment = user.job
 		user.set_id_info(src)
+		if(user.mind && user.mind.initial_account)
+			associated_account_number = user.mind.initial_account.account_number
 		configured = 1
 		user << "<span class='notice'>Card settings set.</span>"
 
@@ -879,6 +885,8 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 		title = user.job
 	assignment = title
 	user.set_id_info(src)
+	if(user.mind && user.mind.initial_account)
+		associated_account_number = user.mind.initial_account.account_number
 	var/tempname = pick(title_strings)
 	name = tempname + " ([title])"
 	configured = 1
