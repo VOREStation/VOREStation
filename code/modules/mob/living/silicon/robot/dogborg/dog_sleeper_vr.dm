@@ -472,7 +472,7 @@
 	if(target.anchored)
 		return
 	if(target.w_class > ITEMSIZE_LARGE)
-		user << "<span class='warning'>This object is too large to fit into your [src.name]</span>"
+		user << "<span class='warning'>This object is too large to fit into your [src.name]</span>"//"The" just doesn't go between "your" and "something" and you know it. [.name] stays :v
 		return
 	user.visible_message("<span class='warning'>[hound.name] is ingesting [target.name] into their [src.name].</span>", "<span class='notice'>You start ingesting [target] into your [src.name]...</span>")
 	if(!ishuman(target) && do_after (user, 30, target))
