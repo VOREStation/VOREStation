@@ -51,7 +51,7 @@
 // Description: Removes reference to the communicator, so it can qdel() successfully.
 /mob/living/voice/Destroy()
 	comm = null
-	..()
+	return ..()
 
 // Proc: ghostize()
 // Parameters: None
