@@ -447,7 +447,7 @@
 	min_health = -100
 	injection_chems = null //So they don't have all the same chems as the medihound!
 
-/obj/item/device/dogborg/sleeper/compactor/afterattack(var/obj/item/target, mob/living/silicon/user, proximity)
+/obj/item/device/dogborg/sleeper/compactor/afterattack(var/obj/item/target, mob/living/silicon/user, proximity)//GARBO NOMS
 	hound = loc
 	if(!proximity)
 		return
