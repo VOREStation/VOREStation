@@ -8,7 +8,7 @@ SUBSYSTEM_DEF(transcore)
 	priority = 20
 	wait = 1 MINUTE
 	flags = SS_BACKGROUND|SS_NO_TICK_CHECK|SS_NO_INIT
-//	runlevels = RUNLEVEL_GAME
+	runlevels = RUNLEVEL_GAME
 
 	// THINGS
 	var/overdue_time = 15 MINUTES

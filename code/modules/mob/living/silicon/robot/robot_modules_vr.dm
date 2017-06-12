@@ -71,7 +71,9 @@
 	src.modules += new /obj/item/device/dogborg/sleeper(src) //So they can nom people and heal them
 	src.modules += new /obj/item/borg/sight/hud/med(src) //See who's hurt generally.
 	src.modules += new /obj/item/weapon/extinguisher/mini(src) //So they can put burning patients out.
+	src.modules += new /obj/item/weapon/reagent_containers/borghypo(src)//So medi-hounds aren't nearly useless
 	src.modules += new /obj/item/weapon/reagent_containers/syringe(src) //In case the chemist is nice!
+	src.modules += new /obj/item/weapon/reagent_containers/glass/beaker(src)//For holding the chemicals when the chemist is nice
 	R.icon = 'icons/mob/widerobot_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	//R.icon_state = "medihound"

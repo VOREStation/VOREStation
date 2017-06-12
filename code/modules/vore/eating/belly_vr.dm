@@ -145,7 +145,7 @@
 			if(ishuman(M) && ishuman(OW))
 				var/mob/living/carbon/human/Prey = M
 				var/mob/living/carbon/human/Pred = OW
-				Prey.bloodstr = Prey.reagents = new(1000,Prey,CHEM_BLOOD) //Human reagent datums hold 1000, bloodstr and reagents are the same object on humans
+				Prey.reagents = Prey.bloodstr = new(1000,Prey,CHEM_BLOOD) //Human reagent datums hold 1000, bloodstr and reagents are the same object on humans
 				Prey.touching = new(1000,Prey,CHEM_TOUCH)
 				Prey.ingested = new(1000,Prey,CHEM_INGEST)
 
