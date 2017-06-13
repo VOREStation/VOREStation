@@ -103,7 +103,7 @@
 	else
 		return ..()
 
-/obj/item/device/defib_kit/emag_act(mob/user)
+/obj/item/device/defib_kit/emag_act(var/remaining_charges, var/mob/user)
 	if(paddles)
 		. = paddles.emag_act(user)
 		update_icon()
