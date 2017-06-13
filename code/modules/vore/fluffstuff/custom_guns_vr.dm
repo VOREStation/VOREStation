@@ -436,123 +436,7 @@
 	name = "\improper MEUSOC .45"
 	desc = "Some serious drywall work, coming up!"
 
-//-----------------------KHI Common----------------------------------
-// // // Pistols
-/obj/item/weapon/gun/projectile/khi/process_chambered()
-	if (!chambered) return
-	qdel(chambered) //Devours ammo rather than fires it.
-
-/obj/item/weapon/gun/projectile/khi/update_icon()
-	..()
-	if(ammo_magazine)
-		icon_state = "[initial(icon_state)]"
-	else
-		icon_state = "[initial(icon_state)]-empty"
-
-// // // Automatics
-/obj/item/weapon/gun/projectile/automatic/khi/process_chambered()
-	if (!chambered) return
-	qdel(chambered) //Devours ammo rather than fires it.
-
-/obj/item/weapon/gun/projectile/automatic/khi/update_icon()
-	..()
-	if(ammo_magazine)
-		icon_state = "[initial(icon_state)]"
-	else
-		icon_state = "[initial(icon_state)]-empty"
-
-//-----------------------KHI Pistol----------------------------------
-/obj/item/weapon/gun/projectile/khi/pistol
-	name = "alien pistol"
-	desc = "This KHI handgun doesn't so much 'fire' .45 ammo as 'devour' it and make it's own proprietary ammunition."
-	icon = 'icons/obj/gun_vr.dmi'
-	icon_state = "khipistol"
-	item_state = "gun" // Placeholder
-	magazine_type = /obj/item/ammo_magazine/m45/flash //Dun wanna KILL all the people.
-	allowed_magazines = list(/obj/item/ammo_magazine/m45)
-	caliber = ".45"
-	handle_casings = CYCLE_CASINGS
-	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 5)
-	fire_sound = 'sound/weapons/semiauto.ogg'
-	load_method = MAGAZINE
-	dna_lock = 1
-
-//-----------------------KHI PDW----------------------------------
-// For general use
-/obj/item/weapon/gun/projectile/automatic/khi/pdw
-	name = "alien pdw"
-	desc = "The KHI personal defense mainstay. If KHI had any standards whatsoever, that is. Insert 9mm ammo for good times."
-	icon = 'icons/obj/gun_vr.dmi'
-	icon_state = "khipdw"
-	item_state = "c20r" // Placeholder
-	w_class = ITEMSIZE_NORMAL
-	caliber = "9mm"
-	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 5)
-	slot_flags = SLOT_BELT
-	load_method = MAGAZINE
-	handle_casings = CYCLE_CASINGS
-	magazine_type = /obj/item/ammo_magazine/m9mml
-	allowed_magazines = list(/obj/item/ammo_magazine/m9mm, /obj/item/ammo_magazine/m9mml)
-	dna_lock = 1
-
-	firemodes = list(
-		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    burst_accuracy=list(0,-1,-2), dispersion=list(0.0, 0.6, 0.6))
-		)
-
-//-----------------------KHI LIM Rifle----------------------------------
-//Unfinished
-/obj/item/weapon/limrifle //Not even a subtype of gun because it behaves differently.
-	name = "lim rifle"
-	desc = "The KHI-101-R linear induction motor rifle can propel a small 2mm slug at extreme velocity through nearly any solid object. Whether it has the time to impart any force is another question entirely."
-	//icon = 'icons/obj/gun64_vr.dmi'
-	icon_state = "limrifle"
-	item_state = "gun" //Should probably be huge-r
-	//dna_lock = 1
-	//safety_level = 1
-
-	var/charge_time = 5 SECONDS
-	var/charge_percent = 100
-
-/obj/item/weapon/limrifle/New()
-	..()
-	update_icon()
-
-/obj/item/weapon/limrifle/update_icon()
-	..()
-	var/charge_icon = round(charge_percent,20)
-	icon_state = "[initial(icon_state)]_[charge_icon]"
-
-/obj/item/weapon/limrifle/proc/recharge()
-	charge_percent = 0
-	update_icon()
-
-
 //////////////////// Energy Weapons ////////////////////
-// -------------- Dominator -------------
-/obj/item/weapon/gun/energy/gun/fluff/dominator
-	name = "\improper MWPSB Dominator"
-	desc = "A MWPSB's Dominator from the Federation. Like the basic Energy Gun, this gun has two settings. It is used by the United Federation Public Safety Bureau's Criminal Investigation Division."
-
-	icon = 'icons/vore/custom_guns_vr.dmi'
-	icon_state = "dominatorstun100"
-
-	icon_override = 'icons/vore/custom_guns_vr.dmi'
-	item_state = null
-	item_icons = null
-
-	fire_sound = 'sound/weapons/Taser.ogg'
-	projectile_type = /obj/item/projectile/beam/stun
-
-	modifystate = "dominatorstun"
-
-	dna_lock = 1
-
-	firemodes = list(
-	list(mode_name="stun", charge_cost=240,projectile_type=/obj/item/projectile/beam/stun, modifystate="dominatorstun", fire_sound='sound/weapons/Taser.ogg'),
-	list(mode_name="lethal", charge_cost=480,projectile_type=/obj/item/projectile/beam/dominator, modifystate="dominatorkill", fire_sound='sound/weapons/gauss_shoot.ogg'),
-	)
-
 
 // ------------ Energy Luger ------------
 /obj/item/weapon/gun/energy/gun/eluger
@@ -769,109 +653,11 @@
 	overlays.Cut()
 	update_mode()
 
-//RD 'gun'
-/obj/item/weapon/bluespace_harpoon
-	name = "bluespace harpoon"
-	desc = "For climbing on bluespace mountains!"
-
-	icon = 'icons/obj/gun_vr.dmi'
-	icon_state = "harpoon-2"
-
-	w_class = ITEMSIZE_NORMAL
-
-	throw_speed = 4
-	throw_range = 20
-
-	origin_tech = list(TECH_BLUESPACE = 5)
-
-	var/mode = 1  // 1 mode - teleport you to turf  0 mode teleport turf to you
-	var/last_fire = 0
-	var/transforming = 0
-
-/obj/item/weapon/bluespace_harpoon/afterattack(atom/A, mob/user as mob)
-	var/current_fire = world.time
-	if(!user || !A)
-		return
-	if(transforming)
-		to_chat(user,"<span class = 'warning'>You can't fire while \the [src] transforming!</span>")
-		return
-	if(!(current_fire - last_fire >= 30 SECONDS))
-		to_chat(user,"<span class = 'warning'>\The [src] is recharging...</span>")
-		return
-	if(is_jammed(A) || is_jammed(user))
-		to_chat(user,"<span class = 'warning'>\The [src] shot fizzles due to interference!</span>")
-		last_fire = current_fire
-		playsound(user, 'sound/weapons/wave.ogg', 60, 1)
-		return
-	var/turf/T = get_turf(A)
-	if(!T || T.check_density())
-		to_chat(user,"<span class = 'warning'>That's a little too solid to harpoon into!</span>")
-		return
-
-	last_fire = current_fire
-	playsound(user, 'sound/weapons/wave.ogg', 60, 1)
-
-	user.visible_message("<span class='warning'>[user] fires \the [src]!</span>","<span class='warning'>You fire \the [src]!</span>")
-
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-	s.set_up(4, 1, A)
-	s.start()
-	s = new /datum/effect/effect/system/spark_spread
-	s.set_up(4, 1, user)
-	s.start()
-
-	var/turf/FromTurf = mode ? get_turf(user) : get_turf(A)
-	var/turf/ToTurf = mode ? get_turf(A) : get_turf(user)
-
-	for(var/obj/O in FromTurf)
-		if(O.anchored) continue
-		if(prob(5))
-			O.forceMove(pick(trange(24,user)))
-		else
-			O.forceMove(ToTurf)
-
-	for(var/mob/living/M in FromTurf)
-		if(prob(5))
-			M.forceMove(pick(trange(24,user)))
-		else
-			M.forceMove(ToTurf)
-
-/obj/item/weapon/bluespace_harpoon/attack_self(mob/living/user as mob)
-	return chande_fire_mode(user)
-
-/obj/item/weapon/bluespace_harpoon/verb/chande_fire_mode(mob/user as mob)
-	set name = "Change fire mode"
-	set category = "Object"
-	set src in oview(1)
-	if(transforming) return
-	mode = !mode
-	transforming = 1
-	to_chat(user,"<span class = 'info'>You change \the [src]'s mode to [mode ? "transmiting" : "receiving"].</span>")
-	update_icon()
-
-/obj/item/weapon/bluespace_harpoon/update_icon()
-	if(transforming)
-		switch(mode)
-			if(0)
-				flick("harpoon-2-change", src)
-				icon_state = "harpoon-1"
-			if(1)
-				flick("harpoon-1-change",src)
-				icon_state = "harpoon-2"
-		transforming = 0
-
 //////////////////// Custom Ammo ////////////////////
 //---------------- Beams ----------------
 /obj/item/projectile/beam/eluger
 	name = "laser beam"
 	icon_state = "emitter"
-
-/obj/item/projectile/beam/dominator
-	name = "dominator lethal beam"
-	icon_state = "xray"
-	muzzle_type = /obj/effect/projectile/xray/muzzle
-	tracer_type = /obj/effect/projectile/xray/tracer
-	impact_type = /obj/effect/projectile/xray/impact
 
 /obj/item/projectile/beam/stun/kin21
 	name = "kinh21 stun beam"
@@ -891,7 +677,7 @@
 	mag_type = MAGAZINE
 
 /obj/item/ammo_casing/stg
-	desc = "A 7.92×33mm Kurz casing."
+	desc = "A 7.92 33mm Kurz casing."
 	icon_state = "rifle-casing"
 	caliber = "kurz"
 	projectile_type = /obj/item/projectile/bullet/rifle/a762
