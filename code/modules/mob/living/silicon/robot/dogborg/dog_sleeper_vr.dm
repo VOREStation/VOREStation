@@ -446,58 +446,51 @@
 	inject_amount = 10
 	min_health = -100
 	injection_chems = null //So they don't have all the same chems as the medihound!
+	var/max_item_count = 32
 
-/obj/item/device/dogborg/sleeper/compactor/afterattack(var/obj/item/target, mob/living/silicon/user, proximity)//GARBO NOMS
+/obj/item/device/dogborg/sleeper/compactor/afterattack(var/atom/movable/target, mob/living/silicon/user, proximity)//GARBO NOMS
 	hound = loc
+
+	if(!istype(target))
+		return
+	if(!proximity)
+		return
+	if(target.anchored)
+		return
+	if(length(contents) > (max_item_count - 1))
+		user << "<span class='warning'>Your [src.name] is full. Eject or process contents to continue.</span>"
+		return
+
 	if(isobj(target))
-		if(length(contents) > 11)//grow that tum after a certain junk amount
-			hound.sleeper_r = 1
-			hound.updateicon()
-		if(!proximity)
-			return
-		if(target.anchored)
-			return
-		if(length(contents) > 31)
-			user << "<span class='warning'>Your [src.name] is full. Eject or process contents to continue.</span>"
-			return
-		if(target.w_class > ITEMSIZE_LARGE)
-			user << "<span class='warning'>This object is too large to fit into your [src.name]</span>"
+		var/obj/target_obj = target
+		if(target_obj.w_class > ITEMSIZE_LARGE)
+			user << "<span class='warning'>\The [target] is too large to fit into your [src.name]</span>"
 			return
 		user.visible_message("<span class='warning'>[hound.name] is ingesting [target.name] into their [src.name].</span>", "<span class='notice'>You start ingesting [target] into your [src.name]...</span>")
-		if(!ishuman(target) && do_after (user, 30, target))
-			if(!proximity)
-				return
-			else
-				target.forceMove(src)
-				user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [target.name] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [target] slips inside.</span>")
-				playsound(hound, 'sound/vore/gulp.ogg', 50, 1)
+		if(do_after(user, 30, target) && length(contents) < max_item_count)
+			target.forceMove(src)
+			user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [target.name] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [target] slips inside.</span>")
+			playsound(hound, 'sound/vore/gulp.ogg', 50, 1)
+			if(length(contents) > 11) //grow that tum after a certain junk amount
+				hound.sleeper_r = 1
+				hound.updateicon()
 		return
+
 	else if(ishuman(target))
 		var/mob/living/carbon/human/trashman = target
-		if(!proximity)
-			return
 		if(patient)
 			user << "<span class='warning'>Your [src.name] is already occupied.</span>"
 			return
-		if(length(contents) > 31)
-			user << "<span class='warning'>Your [src.name] is full. Eject or process contents to continue.</span>"
-			return
 		if(trashman.buckled)
-			user << "<span class='warning'>The user is buckled and can not be put into your [src.name].</span>"
+			user << "<span class='warning'>[trashman] is buckled and can not be put into your [src.name].</span>"
 			return
 		user.visible_message("<span class='warning'>[hound.name] is ingesting [trashman] into their [src.name].</span>", "<span class='notice'>You start ingesting [trashman] into your [src.name]...</span>")
-		if(ishuman(trashman) && !trashman.buckled && do_after (user, 30, trashman))
-			if(!proximity)
-				return
-			else
-				trashman.forceMove(src)
-				trashman.reset_view(src)
-				update_patient()
-				processing_objects.Add(src)
-				user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [trashman] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [trashman] slips inside.</span>")
-				playsound(hound, 'sound/vore/gulp.ogg', 80, 1)
+		if(do_after(user, 30, trashman) && !patient && !trashman.buckled && length(contents) < max_item_count)
+			trashman.forceMove(src)
+			trashman.reset_view(src)
+			update_patient()
+			processing_objects.Add(src)
+			user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [trashman] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [trashman] slips inside.</span>")
+			playsound(hound, 'sound/vore/gulp.ogg', 80, 1)
 		return
 	return
-
-/obj/item/device/dogborg/sleeper/compactor/afterattack(mob/living/carbon/target, mob/living/silicon/user, proximity)
-	..()
