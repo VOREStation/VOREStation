@@ -1,4 +1,4 @@
-#define DEFIB_TIME_LIMIT (8 MINUTES) //past this many seconds, defib is useless.
+#define DEFIB_TIME_LIMIT (10 MINUTES) //past this many seconds, defib is useless.
 #define DEFIB_TIME_LOSS  (2 MINUTES) //past this many seconds, brain damage occurs.
 
 //backpack item
@@ -209,7 +209,7 @@
 	var/cooldowntime = (6 SECONDS) // How long in deciseconds until the defib is ready again after use.
 	var/chargetime = (2 SECONDS)
 	var/chargecost = 1000 //units of charge
-	var/burn_damage_amt = 15
+	var/burn_damage_amt = 5
 
 	var/wielded = 0
 	var/cooldown = 0
