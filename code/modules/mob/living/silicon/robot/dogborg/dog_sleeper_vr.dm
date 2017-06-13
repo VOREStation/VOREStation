@@ -307,7 +307,7 @@
 		update_patient()
 		return
 
-	if(prob(10))
+	if(prob(20))
 		var/churnsound = pick(
 			'sound/vore/digest1.ogg',
 			'sound/vore/digest2.ogg',
@@ -399,7 +399,7 @@
 					//Spill(T) //Needs the spill proc to be added
 					qdel(T)
 					src.update_patient()
-					src.hound.cell.charge += 100 //10 charge? that was such a practically nonexistent number it hardly gave any purpose for this bit :v *cranks up*
+					src.hound.cell.charge += 120 //10 charge? that was such a practically nonexistent number it hardly gave any purpose for this bit :v *cranks up*
 		return
 
 /obj/item/device/dogborg/sleeper/process()
@@ -451,6 +451,11 @@
 	hound = loc
 	if(!proximity)
 		return
+	if(target.anchored)
+		return
+	if(length(contents) > 32)
+		user << "<span class='warning'>Your [src.name] is full. Eject or process contents to continue.</span>"
+		return
 	if(istype(target, /mob/living/carbon/human))
 		var/mob/living/carbon/human/trashman = target
 		if(patient)
@@ -468,8 +473,6 @@
 			user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [trashman] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [trashman] slips inside.</span>")
 			playsound(hound, 'sound/vore/gulp.ogg', 80, 1)
 	if(!isobj(target))
-		return
-	if(target.anchored)
 		return
 	if(target.w_class > ITEMSIZE_LARGE)
 		user << "<span class='warning'>This object is too large to fit into your [src.name]</span>"//"The" just doesn't go between "your" and "something" and you know it. [.name] stays :v
