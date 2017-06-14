@@ -6,6 +6,7 @@
 	#include "tether_phoronlock.dm"
 	#include "tether_areas.dm"
 	#include "tether_areas2.dm"
+	#include "tether_shuttle_defs.dm"
 	#include "tether_shuttles.dm"
 	#include "tether_telecomms.dm"
 	#include "tether_virgo3b.dm"
