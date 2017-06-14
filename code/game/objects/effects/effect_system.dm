@@ -179,8 +179,10 @@ steam.start() -- spawns the effect
 
 /obj/effect/effect/smoke/New()
 	..()
-	spawn (time_to_live)
-		qdel(src)
+	if(time_to_live)
+		spawn (time_to_live)
+			if(!QDELETED(src))
+				qdel(src)
 
 /obj/effect/effect/smoke/Crossed(mob/living/carbon/M as mob )
 	..()
