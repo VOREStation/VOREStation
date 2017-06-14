@@ -461,7 +461,7 @@
 		user << "<span class='warning'>Your [src.name] is full. Eject or process contents to continue.</span>"
 		return
 
-	if(isobj(target))
+	if(istype(target, /obj/item))
 		var/obj/target_obj = target
 		if(target_obj.w_class > ITEMSIZE_LARGE)
 			user << "<span class='warning'>\The [target] is too large to fit into your [src.name]</span>"
