@@ -8,14 +8,7 @@
 	wear = 3
 	access = 999 //Prevents anyone from buying it without an emag.
 	activates = FALSE //It's armor.
-
-	install()
-		if((. = ..()))
-			nif.set_flag(NIF_C_BRUTEARMOR,NIF_FLAGS_COMBAT)
-
-	uninstall()
-		. = ..()
-		nif.clear_flag(NIF_C_BRUTEARMOR,NIF_FLAGS_COMBAT)
+	combat_flags = NIF_C_BRUTEARMOR // Default on when installed, clear when uninstalled
 
 /datum/nifsoft/burn_armor
 	name = "Dragon's Skin"
@@ -27,14 +20,7 @@
 	wear = 3
 	access = 999 //Prevents anyone from buying it without an emag.
 	activates = FALSE //It's armor.
-
-	install()
-		if((. = ..()))
-			nif.set_flag(NIF_C_BURNARMOR,NIF_FLAGS_COMBAT)
-
-	uninstall()
-		. = ..()
-		nif.clear_flag(NIF_C_BURNARMOR,NIF_FLAGS_COMBAT)
+	combat_flags = NIF_C_BURNARMOR // Default on when installed, clear when uninstalled
 
 /datum/nifsoft/painkillers
 	name = "Nova Shock"
