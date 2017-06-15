@@ -180,6 +180,8 @@
 	return "[..()] ([ckey])"
 
 /proc/log_info_line(var/datum/d)
+	if(!d)
+		return "*null*"
 	if(!istype(d))
-		return
+		return json_encode(d)
 	return d.log_info_line()
