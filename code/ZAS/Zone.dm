@@ -77,7 +77,8 @@ Class Procs:
 		fire_tiles.Add(T)
 		air_master.active_fire_zones |= src
 		if(fuel) fuel_objs += fuel
-	T.update_graphic(air.graphic)
+	if(air.graphic)
+		T.update_graphic(air.graphic)
 
 /zone/proc/remove(turf/simulated/T)
 #ifdef ZASDBG
@@ -92,7 +93,8 @@ Class Procs:
 		var/obj/effect/decal/cleanable/liquid_fuel/fuel = locate() in T
 		fuel_objs -= fuel
 	T.zone = null
-	T.update_graphic(graphic_remove = air.graphic)
+	if(air.graphic)
+		T.update_graphic(graphic_remove = air.graphic)
 	if(contents.len)
 		air.group_multiplier = contents.len
 	else
@@ -106,9 +108,11 @@ Class Procs:
 	ASSERT(!into.invalid)
 #endif
 	c_invalidate()
+	var/list/air_graphic = air.graphic // Cache for sanic speed
 	for(var/turf/simulated/T in contents)
 		into.add(T)
-		T.update_graphic(graphic_remove = air.graphic)
+		if(air_graphic)
+			T.update_graphic(graphic_remove = air_graphic)
 		#ifdef ZASDBG
 		T.dbg(merged)
 		#endif
@@ -131,8 +135,10 @@ Class Procs:
 /zone/proc/rebuild()
 	if(invalid) return //Short circuit for explosions where rebuild is called many times over.
 	c_invalidate()
+	var/list/air_graphic = air.graphic // Cache for sanic speed
 	for(var/turf/simulated/T in contents)
-		T.update_graphic(graphic_remove = air.graphic) //we need to remove the overlays so they're not doubled when the zone is rebuilt
+		if(air_graphic)
+			T.update_graphic(graphic_remove = air_graphic) //we need to remove the overlays so they're not doubled when the zone is rebuilt
 		//T.dbg(invalid_zone)
 		T.needs_air_update = 0 //Reset the marker so that it will be added to the list.
 		air_master.mark_for_update(T)
