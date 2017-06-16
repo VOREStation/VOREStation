@@ -60,7 +60,7 @@
 
 /datum/supply_packs/sci/guardbeast
 	name = "V.A.R.M.A.corp autoNOMous security solution"
-	cost = 200
+	cost = 199
 	containertype = /obj/structure/largecrate/animal/guardbeast
 	containername = "V.A.R.M.A.corp autoNOMous security solution crate"
 	access = list(
