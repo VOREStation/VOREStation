@@ -166,6 +166,8 @@
 /obj/item/weapon/disk/nifsoft/proc/extra_params()
 	return null
 
+
+// Compliance Disk //
 /obj/item/weapon/disk/nifsoft/compliance
 	name = "NIFSoft Disk (Compliance)"
 	desc = "Wow, adding laws to people? That seems illegal. It probably is. Okay, it really is."
@@ -186,3 +188,95 @@
 
 /obj/item/weapon/disk/nifsoft/compliance/extra_params()
 	return laws
+
+// Security Disk //
+/obj/item/weapon/disk/nifsoft/security
+	name = "NIFSoft Disk - Security"
+	desc = "Contains free NIFSofts useful for security members.\n\
+	It has a small label: \n\
+	\"Portable NIFSoft Disk. \n\
+	Insert directly into brain.\""
+
+	stored = /datum/nifsoft/package/security
+
+/datum/nifsoft/package/security
+	software = list(/datum/nifsoft/ar_sec,/datum/nifsoft/flashprot)
+
+/obj/item/weapon/storage/box/nifsofts_security
+	name = "security nifsoft disks"
+	desc = "A box of free nifsofts for security employees."
+	icon_state = "disk_kit"
+
+/obj/item/weapon/storage/box/nifsofts_security/New()
+	..()
+	for(var/i = 0 to 7)
+		new /obj/item/weapon/disk/nifsoft/security(src)
+
+// Engineering Disk //
+/obj/item/weapon/disk/nifsoft/engineering
+	name = "NIFSoft Disk - Engineering"
+	desc = "Contains free NIFSofts useful for engineering members.\n\
+	It has a small label: \n\
+	\"Portable NIFSoft Disk. \n\
+	Insert directly into brain.\""
+
+	stored = /datum/nifsoft/package/engineering
+
+/datum/nifsoft/package/engineering
+	software = list(/datum/nifsoft/ar_eng,/datum/nifsoft/uvblocker)
+
+/obj/item/weapon/storage/box/nifsofts_engineering
+	name = "engineering nifsoft disks"
+	desc = "A box of free nifsofts for engineering employees."
+	icon_state = "disk_kit"
+
+/obj/item/weapon/storage/box/nifsofts_engineering/New()
+	..()
+	for(var/i = 0 to 7)
+		new /obj/item/weapon/disk/nifsoft/engineering(src)
+
+// Medical Disk //
+/obj/item/weapon/disk/nifsoft/medical
+	name = "NIFSoft Disk - Medical"
+	desc = "Contains free NIFSofts useful for medical members.\n\
+	It has a small label: \n\
+	\"Portable NIFSoft Disk. \n\
+	Insert directly into brain.\""
+
+	stored = /datum/nifsoft/package/medical
+
+/datum/nifsoft/package/medical
+	software = list(/datum/nifsoft/ar_med,/datum/nifsoft/crewmonitor)
+
+/obj/item/weapon/storage/box/nifsofts_medical
+	name = "medical nifsoft disks"
+	desc = "A box of free nifsofts for medical employees."
+	icon_state = "disk_kit"
+
+/obj/item/weapon/storage/box/nifsofts_medical/New()
+	..()
+	for(var/i = 0 to 7)
+		new /obj/item/weapon/disk/nifsoft/medical(src)
+
+// Mining Disk //
+/obj/item/weapon/disk/nifsoft/mining
+	name = "NIFSoft Disk - Mining"
+	desc = "Contains free NIFSofts useful for mining members.\n\
+	It has a small label: \n\
+	\"Portable NIFSoft Disk. \n\
+	Insert directly into brain.\""
+
+	stored = /datum/nifsoft/package/mining
+
+/datum/nifsoft/package/mining
+	software = list(/datum/nifsoft/material,/datum/nifsoft/spare_breath)
+
+/obj/item/weapon/storage/box/nifsofts_mining
+	name = "mining nifsoft disks"
+	desc = "A box of free nifsofts for mining employees."
+	icon_state = "disk_kit"
+
+/obj/item/weapon/storage/box/nifsofts_mining/New()
+	..()
+	for(var/i = 0 to 7)
+		new /obj/item/weapon/disk/nifsoft/mining(src)
