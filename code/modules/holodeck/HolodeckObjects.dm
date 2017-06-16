@@ -127,9 +127,6 @@
 			)
 	item_state = "boxing"
 
-/obj/structure/window/reinforced/holowindow/Destroy()
-	..()
-
 /obj/structure/window/reinforced/holowindow/attackby(obj/item/W as obj, mob/user as mob)
 	if(!istype(W)) return//I really wish I did not need this
 	if (istype(W, /obj/item/weapon/grab) && get_dist(src,user)<2)
@@ -183,12 +180,6 @@
 	qdel(src)
 	return
 
-/obj/structure/window/reinforced/holowindow/disappearing/Destroy()
-	..()
-
-/obj/machinery/door/window/holowindoor/Destroy()
-	..()
-
 /obj/machinery/door/window/holowindoor/attackby(obj/item/weapon/I as obj, mob/user as mob)
 
 	if (src.operating == 1)
@@ -223,9 +214,6 @@
 	if(display_message)
 		visible_message("[src] fades away as it shatters!")
 	qdel(src)
-
-/obj/structure/bed/chair/holochair/Destroy()
-	..()
 
 /obj/structure/bed/chair/holochair/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/wrench))
@@ -418,6 +406,10 @@
 
 	for(var/mob/M in currentarea)
 		M << "FIGHT!"
+
+// A window that disappears when the ready button is pressed
+/obj/structure/window/reinforced/holowindow/disappearing
+	name = "Event Window"
 
 //Holocarp
 
