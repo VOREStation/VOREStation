@@ -145,16 +145,12 @@
 			if(ishuman(M) && ishuman(OW))
 				var/mob/living/carbon/human/Prey = M
 				var/mob/living/carbon/human/Pred = OW
-				Prey.reagents = Prey.bloodstr = new(1000,Prey,CHEM_BLOOD) //Human reagent datums hold 1000, bloodstr and reagents are the same object on humans
-				Prey.touching = new(1000,Prey,CHEM_TOUCH)
-				Prey.ingested = new(1000,Prey,CHEM_INGEST)
-
+				// TODO - If we ever find a way to share reagent containers, un-share them here
 				var/absorbed_count = 2 //Prey that we were, plus the pred gets a portion
 				for(var/mob/living/P in internal_contents)
 					if(P.absorbed)
 						absorbed_count++
-
-				Pred.reagents.trans_to(Prey,Pred.reagents.total_volume / absorbed_count)
+				Pred.bloodstr.trans_to(Prey, Pred.reagents.total_volume / absorbed_count)
 
 	var/datum/belly/B = check_belly(owner)
 	if(B)
@@ -278,9 +274,9 @@
 	if(ishuman(M) && ishuman(owner))
 		var/mob/living/carbon/human/Pred = owner
 		var/mob/living/carbon/human/Prey = M
-		Prey.reagents.trans_to(Pred.reagents,Prey.reagents.total_volume*0.5)
-		Prey.ingested.trans_to(Pred.reagents,Prey.ingested.total_volume*0.5)
-		Prey.touching.trans_to(Pred.reagents,Prey.touching.total_volume*0.5)
+		Prey.bloodstr.trans_to_holder(Pred.bloodstr, Prey.bloodstr.total_volume, 0.5, TRUE) // Copy=TRUE because we're deleted anyway
+		Prey.ingested.trans_to_holder(Pred.bloodstr, Prey.ingested.total_volume, 0.5, TRUE) // Therefore don't bother spending cpu
+		Prey.touching.trans_to_holder(Pred.bloodstr, Prey.touching.total_volume, 0.5, TRUE) // On updating the prey's reagents
 
 	// Delete the digested mob
 	qdel(M)
@@ -332,16 +328,13 @@
 	if(ishuman(M) && ishuman(owner))
 		var/mob/living/carbon/human/Prey = M
 		var/mob/living/carbon/human/Pred = owner
-		//Reagent sharing for absorbed with pred
-		Prey.reagents.trans_to(owner,Pred.reagents.total_volume)
-
-		//Pair up all their reagent containers
-		qdel(Prey.reagents) //Reagents is the same object as bloodstr on humans; both variables are the same object
-		Prey.reagents = Prey.bloodstr = Pred.reagents
-		qdel(Prey.ingested)
-		Prey.ingested = Pred.ingested
-		qdel(Prey.touching)
-		Prey.touching = Pred.touching
+		//Reagent sharing for absorbed with pred - Copy so both pred and prey have these reagents.
+		Prey.bloodstr.trans_to_holder(Pred.bloodstr, Prey.bloodstr.total_volume, copy = TRUE)
+		Prey.ingested.trans_to_holder(Pred.bloodstr, Prey.ingested.total_volume, copy = TRUE)
+		Prey.touching.trans_to_holder(Pred.bloodstr, Prey.touching.total_volume, copy = TRUE)
+		// TODO - Find a way to make the absorbed prey share the effects with the pred.
+		// Currently this is infeasible because reagent containers are designed to have a single my_atom, and we get
+		// problems when A absorbs B, and then C absorbs A,  resulting in B holding onto an invalid reagent container.
 
 	//This is probably already the case, but for sub-prey, it won't be.
 	M.forceMove(owner)

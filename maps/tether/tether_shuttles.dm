@@ -1,3 +1,7 @@
+////////////////////////////////////////
+// Tether custom shuttle implemnetations
+////////////////////////////////////////
+
 /obj/machinery/computer/shuttle_control/tether_backup
 	name = "tether backup shuttle control console"
 	shuttle_tag = "Tether Backup"
@@ -56,8 +60,17 @@
 //
 /datum/shuttle/ferry/tether_backup
 	crash_message = "Tether shuttle distress signal received. Shuttle location is approximately 200 meters from tether base."
+	category = /datum/shuttle/ferry/tether_backup // So shuttle_controller.dm doesn't try and instantiate this type as an acutal mapped in shuttle.
 	var/list/engines = list()
 	var/obj/machinery/computer/shuttle_control/tether_backup/computer
+
+/datum/shuttle/ferry/tether_backup/New()
+	..()
+	var/area/current_area = get_location_area(location)
+	for(var/obj/structure/shuttle/engine/propulsion/E in current_area)
+		engines += E
+	for(var/obj/machinery/computer/shuttle_control/tether_backup/comp in current_area)
+		computer = comp
 
 /datum/shuttle/ferry/tether_backup/process_longjump(var/area/origin, var/area/intended_destination)
 	var/failures = engines.len

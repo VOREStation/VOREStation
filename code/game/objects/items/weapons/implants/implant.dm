@@ -52,7 +52,7 @@
 /obj/item/weapon/implant/Destroy()
 	if(part)
 		part.implants.Remove(src)
-	..()
+	return ..()
 
 /obj/item/weapon/implant/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/implanter))

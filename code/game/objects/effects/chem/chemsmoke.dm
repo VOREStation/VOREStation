@@ -12,6 +12,10 @@
 	create_reagents(500)
 	return
 
+/obj/effect/effect/smoke/chem/Destroy()
+	walk(src, 0) // Because we might have called walk_to, we must stop the walk loop or BYOND keeps an internal reference to us forever.
+	return ..()
+
 /datum/effect/effect/system/smoke_spread/chem
 	smoke_type = /obj/effect/effect/smoke/chem
 	var/obj/chemholder
@@ -166,7 +170,7 @@
 	sleep(150+rand(0,20))	// turning it off before it is deleted results in cleaner
 	smoke.set_opacity(0)		// lighting and view range updates
 	fadeOut(smoke)
-	qdel(src)
+	qdel(smoke)
 
 /datum/effect/effect/system/smoke_spread/chem/spores/spawnSmoke(var/turf/T, var/icon/I, var/dist = 1)
 	var/obj/effect/effect/smoke/chem/spores = new /obj/effect/effect/smoke/chem(location)

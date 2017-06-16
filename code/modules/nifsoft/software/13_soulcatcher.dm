@@ -15,6 +15,7 @@
 	cost = 1265
 	wear = 1
 	p_drain = 0.01
+	other_flags = (NIF_O_SCMYSELF|NIF_O_SCOTHERS) // Default on when installed, clear when uninstalled
 
 	var/setting_flags = (NIF_SC_CATCHING_ME|NIF_SC_CATCHING_OTHERS|NIF_SC_ALLOW_EARS|NIF_SC_ALLOW_EYES|NIF_SC_BACKUPS)
 	var/list/brainmobs = list()
@@ -27,16 +28,6 @@
 	Destroy()
 		qdel_null_list(brainmobs)
 		return ..()
-
-	install()
-		if((. = ..()))
-			nif.set_flag(NIF_O_SCMYSELF,NIF_FLAGS_OTHER)
-			nif.set_flag(NIF_O_SCOTHERS,NIF_FLAGS_OTHER)
-
-	uninstall()
-		if((. = ..()))
-			nif.clear_flag(NIF_O_SCMYSELF,NIF_FLAGS_OTHER)
-			nif.clear_flag(NIF_O_SCOTHERS,NIF_FLAGS_OTHER)
 
 	activate()
 		if((. = ..()))

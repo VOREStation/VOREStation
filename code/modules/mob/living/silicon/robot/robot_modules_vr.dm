@@ -2,6 +2,7 @@
 	robot_modules["Medihound"] = /obj/item/weapon/robot_module/medihound
 	robot_modules["K9"] = /obj/item/weapon/robot_module/knine
 	robot_modules["ERT"] = /obj/item/weapon/robot_module/ert
+	robot_modules["Janihound"] = /obj/item/weapon/robot_module/scrubpup
 	return 1
 
 
@@ -107,3 +108,28 @@
 	R.pixel_x 	 = -16
 	R.old_x 	 = -16
 	..()
+
+/obj/item/weapon/robot_module/scrubpup
+	name = "Custodial Hound module"
+	sprites = list(
+					"Custodial Hound" = "scrubpup",
+					)
+	channels = list("Service" = 1)
+	can_be_pushed = 0
+
+/obj/item/weapon/robot_module/scrubpup/New(var/mob/living/silicon/robot/R)
+	src.modules += new /obj/item/device/lightreplacer(src)
+	src.modules += new /obj/item/weapon/dogborg/jaws/small(src)
+	src.modules += new /obj/item/device/dogborg/boop_module(src)
+	src.modules += new /obj/item/device/dogborg/tongue(src)
+	src.modules += new /obj/item/device/dogborg/sleeper/compactor(src)
+	R.icon 		 = 'icons/mob/widerobot_vr.dmi'
+	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
+	//R.icon_state = "scrubpup"
+	R.pixel_x 	 = -16
+	R.old_x 	 = -16
+	..()
+
+/obj/item/weapon/robot_module/scrubpup/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+	var/obj/item/device/lightreplacer/LR = locate() in src.modules
+	LR.Charge(R, amount)

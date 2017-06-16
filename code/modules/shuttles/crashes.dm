@@ -6,6 +6,12 @@
 	var/list/crash_areas = null
 	var/crash_message = "Oops. The shuttle blew up."	// Announcement made when shuttle crashes
 
+/datum/shuttle/New()
+	if(crash_areas)
+		for(var/i in 1 to crash_areas.len)
+			crash_areas[i] = locate(crash_areas[i])
+	..()
+
 // Return 0 to let the jump continue, 1 to abort the jump.
 // Default implementation checks if the shuttle should crash and if so crashes it.
 /datum/shuttle/proc/process_longjump(var/area/origin, var/area/intended_destination, var/direction)

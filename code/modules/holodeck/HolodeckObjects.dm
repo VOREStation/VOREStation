@@ -127,9 +127,6 @@
 			)
 	item_state = "boxing"
 
-/obj/structure/window/reinforced/holowindow/Destroy()
-	..()
-
 /obj/structure/window/reinforced/holowindow/attackby(obj/item/W as obj, mob/user as mob)
 	if(!istype(W)) return//I really wish I did not need this
 	if (istype(W, /obj/item/weapon/grab) && get_dist(src,user)<2)
@@ -183,12 +180,6 @@
 	qdel(src)
 	return
 
-/obj/structure/window/reinforced/holowindow/disappearing/Destroy()
-	..()
-
-/obj/machinery/door/window/holowindoor/Destroy()
-	..()
-
 /obj/machinery/door/window/holowindoor/attackby(obj/item/weapon/I as obj, mob/user as mob)
 
 	if (src.operating == 1)
@@ -224,17 +215,11 @@
 		visible_message("[src] fades away as it shatters!")
 	qdel(src)
 
-/obj/structure/bed/chair/holochair/Destroy()
-	..()
-
 /obj/structure/bed/chair/holochair/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/wrench))
 		user << ("<span class='notice'>It's a holochair, you can't dismantle it!</span>")
 	return
 //VOREStation Add
-/obj/structure/bed/holobed/Destroy()
-	..()
-
 /obj/structure/bed/holobed/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/wrench))
 		user << ("<span class='notice'>It's a holochair, you can't dismantle it!</span>")
@@ -426,6 +411,10 @@
 
 	for(var/mob/M in currentarea)
 		M << "FIGHT!"
+
+// A window that disappears when the ready button is pressed
+/obj/structure/window/reinforced/holowindow/disappearing
+	name = "Event Window"
 
 //Holocarp
 
