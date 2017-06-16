@@ -2496,6 +2496,8 @@
 #include "code\unit_tests\mob_tests.dm"
 #include "code\unit_tests\research_tests.dm"
 #include "code\unit_tests\unit_test.dm"
+#include "code\unit_tests\unit_test_vr.dm"
+#include "code\unit_tests\vore_tests_vr.dm"
 #include "code\unit_tests\zas_tests.dm"
 #include "code\unit_tests\integrated_circuits\arithmetic.dm"
 #include "code\unit_tests\integrated_circuits\circuits.dm"
