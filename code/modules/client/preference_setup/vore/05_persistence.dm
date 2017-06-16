@@ -2,8 +2,9 @@
 #define PERSIST_WEIGHT		0x02	// Persist mob weight
 #define PERSIST_ORGANS		0x04	// Persist the status (normal/amputated/robotic/etc) and model (for robotic) status of organs
 #define PERSIST_MARKINGS	0x08	// Persist markings
-#define PERSIST_COUNT		4		// Number of valid bits in this bitflag.  Keep this updated!
-#define PERSIST_DEFAULT		PERSIST_SPAWN|PERSIST_ORGANS|PERSIST_MARKINGS // Default setting for new folks
+#define PERSIST_SIZE		0x10	// Persist size
+#define PERSIST_COUNT		5		// Number of valid bits in this bitflag.  Keep this updated!
+#define PERSIST_DEFAULT		PERSIST_SPAWN|PERSIST_ORGANS|PERSIST_MARKINGS|PERSIST_SIZE // Default setting for new folks
 
 // Define a place to save in character setup
 /datum/preferences
@@ -43,6 +44,10 @@
 
 	. += "<tr><td title=\"Update marking preferences (type and color) based on what you have at round end.\">Save Markings: </td>"
 	. += make_yesno(PERSIST_MARKINGS)
+	. += "</tr>"
+
+	. += "<tr><td title=\"Update character scale based on what you were at round end.\">Save Scale: </td>"
+	. += make_yesno(PERSIST_SIZE)
 	. += "</tr>"
 
 	. += "</table>"

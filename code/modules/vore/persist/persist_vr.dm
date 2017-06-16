@@ -102,6 +102,8 @@
 		if(prefs.persistence_settings & PERSIST_WEIGHT)
 			resolve_excess_nutrition(H)
 			prefs.weight_vr = H.weight
+		if(prefs.persistence_settings & PERSIST_SIZE)
+			prefs.size_multiplier = H.size_multiplier
 
 	prefs.save_character()
 
