@@ -59,7 +59,7 @@
 	// VOREStation Edit Start - Make mapping with cameras easier
 	if(!c_tag)
 		var/area/A = get_area(src)
-		c_tag = "[A ? A : "Unknown"] #[rand(111,999)]"
+		c_tag = "[A ? A.name : "Unknown"] #[rand(111,999)]"
 	..()
 	// VOREStation Edit End
 

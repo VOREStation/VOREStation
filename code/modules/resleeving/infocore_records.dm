@@ -6,115 +6,6 @@
 /mob/living/carbon/human/var/resleeve_lock
 /mob/living/carbon/human/var/original_player
 
-var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
-
-//Mind-backup database
-/datum/transhuman/infocore
-	var/overdue_time = 15 MINUTES
-	var/process_time = 1 MINUTE
-	var/core_dumped = 0
-
-	var/datum/transhuman/mind_record/list/backed_up = list()
-	var/datum/transhuman/mind_record/list/has_left = list()
-	var/datum/transhuman/body_record/list/body_scans = list()
-
-/datum/transhuman/infocore/New()
-	process()
-
-/datum/transhuman/infocore/proc/process()
-	if(core_dumped) return
-	for(var/N in backed_up)
-		var/datum/transhuman/mind_record/curr_MR = backed_up[N]
-		if(!curr_MR)
-			log_debug("Tried to process [N] in transcore w/o a record!")
-			continue
-		if(curr_MR.one_time)
-			continue
-		var/since_backup = world.time - curr_MR.last_update
-		if(since_backup < overdue_time)
-			curr_MR.dead_state = MR_NORMAL
-		else
-			if(curr_MR.dead_state != MR_DEAD) //First time switching to dead
-				notify(N)
-			curr_MR.dead_state = MR_DEAD
-
-	spawn(process_time)
-		process()
-
-/datum/transhuman/infocore/proc/m_backup(var/datum/mind/mind,var/obj/item/device/nif/nif,var/one_time = FALSE)
-	ASSERT(mind)
-	if(!mind.name || core_dumped)
-		return 0
-
-	var/datum/transhuman/mind_record/MR
-
-	if(mind.name in backed_up)
-		MR = backed_up[mind.name]
-		MR.last_update = world.time
-		MR.one_time = one_time
-
-		//Pass a 0 to not change NIF status (because the elseif is checking for null)
-		if(nif)
-			MR.nif_path = nif.type
-			MR.nif_durability = nif.durability
-			var/list/nifsofts = list()
-			for(var/N in nif.nifsofts)
-				if(N)
-					var/datum/nifsoft/nifsoft = N
-					nifsofts += nifsoft.type
-			MR.nif_software = nifsofts
-		else if(isnull(nif)) //Didn't pass anything, so no NIF
-			MR.nif_path = null
-			MR.nif_durability = null
-			MR.nif_software = null
-
-	else
-		MR = new(mind, mind.current, TRUE, one_time)
-
-	return 1
-
-/datum/transhuman/infocore/proc/notify(var/name)
-	ASSERT(name)
-	var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset/heads/captain(null)
-	a.autosay("[name] is past-due for a mind backup. This will be the only notification.", "TransCore Oversight", "Medical")
-	qdel(a)
-
-/datum/transhuman/infocore/proc/add_backup(var/datum/transhuman/mind_record/MR)
-	ASSERT(MR)
-	backed_up[MR.mindname] = MR
-	backed_up = sortAssoc(backed_up)
-	log_debug("Added [MR.mindname] to transcore DB.")
-
-/datum/transhuman/infocore/proc/stop_backup(var/datum/transhuman/mind_record/MR)
-	ASSERT(MR)
-	has_left[MR.mindname] = MR
-	backed_up.Remove("[MR.mindname]")
-	MR.cryo_at = world.time
-	log_debug("Put [MR.mindname] in transcore suspended DB.")
-
-/datum/transhuman/infocore/proc/add_body(var/datum/transhuman/body_record/BR)
-	ASSERT(BR)
-	body_scans[BR.mydna.name] = BR
-	body_scans = sortAssoc(body_scans)
-	log_debug("Added [BR.mydna.name] to transcore body DB.")
-
-/datum/transhuman/infocore/proc/remove_body(var/datum/transhuman/body_record/BR)
-	ASSERT(BR)
-	body_scans.Remove("[BR.mydna.name]")
-	log_debug("Removed [BR.mydna.name] from transcore body DB.")
-
-/datum/transhuman/infocore/proc/core_dump(var/obj/item/weapon/disk/transcore/disk)
-	ASSERT(disk)
-	var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset/heads/captain(null)
-	a.autosay("An emergency core dump has been initiated!", "TransCore Oversight", "Command")
-	a.autosay("An emergency core dump has been initiated!", "TransCore Oversight", "Medical")
-	qdel(a)
-
-	disk.stored += backed_up
-	backed_up.Cut()
-	core_dumped = 1
-	return disk.stored.len
-
 /////// Mind-backup record ///////
 /datum/transhuman/mind_record
 	//User visible
@@ -138,7 +29,7 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 
 	var/one_time = FALSE
 
-/datum/transhuman/mind_record/New(var/datum/mind/mind,var/mob/living/carbon/human/M,var/obj/item/weapon/implant/backup/imp,var/add_to_db = 1,var/one_time = FALSE)
+/datum/transhuman/mind_record/New(var/datum/mind/mind, var/mob/living/carbon/human/M, var/add_to_db = TRUE, var/one_time = FALSE)
 	ASSERT(mind)
 
 	src.one_time = one_time
@@ -159,7 +50,7 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 	last_update = world.time
 
 	if(add_to_db)
-		transcore.add_backup(src)
+		SStranscore.add_backup(src)
 
 /////// Body Record ///////
 /datum/transhuman/body_record
@@ -273,7 +164,7 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 		organ_data[org] = I.robotic
 
 	if(add_to_db)
-		transcore.add_body(src)
+		SStranscore.add_body(src)
 
 
 /**

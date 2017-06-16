@@ -73,7 +73,7 @@
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Energy marksman crate"
 	access = access_armory
-
+/* VOREStation edit -- This is a bad idea.
 /datum/supply_packs/munitions/burstlaser
 	name = "Burst laser crate"
 	contains = list(/obj/item/weapon/gun/energy/gun/burst = 2)
@@ -81,7 +81,7 @@
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Burst laser crate"
 	access = access_armory
-
+*/
 /datum/supply_packs/munitions/ionweapons
 	name = "Electromagnetic weapons crate"
 	contains = list(

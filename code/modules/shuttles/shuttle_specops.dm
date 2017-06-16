@@ -13,16 +13,17 @@
 	var/docking_controller_tag_offsite
 	var/datum/computer/file/embedded_program/docking/docking_controller_station
 	var/datum/computer/file/embedded_program/docking/docking_controller_offsite
+	category = /datum/shuttle/ferry/multidock
 
 /datum/shuttle/ferry/multidock/init_docking_controllers()
 	if(docking_controller_tag_station)
 		docking_controller_station = locate(docking_controller_tag_station)
 		if(!istype(docking_controller_station))
-			world << "<span class='danger'>warning: shuttle with docking tag [docking_controller_station] could not find it's controller!</span>"
+			warning("warning: shuttle with docking tag [docking_controller_station] could not find it's controller!")
 	if(docking_controller_tag_offsite)
 		docking_controller_offsite = locate(docking_controller_tag_offsite)
 		if(!istype(docking_controller_offsite))
-			world << "<span class='danger'>warning: shuttle with docking tag [docking_controller_offsite] could not find it's controller!</span>"
+			warning("warning: shuttle with docking tag [docking_controller_offsite] could not find it's controller!")
 	if (!location)
 		docking_controller = docking_controller_station
 	else
@@ -43,6 +44,7 @@
 	var/reset_time = 0	//the world.time at which the shuttle will be ready to move again.
 	var/launch_prep = 0
 	var/cancel_countdown = 0
+	category = /datum/shuttle/ferry/multidock/specops
 
 /datum/shuttle/ferry/multidock/specops/New()
 	..()

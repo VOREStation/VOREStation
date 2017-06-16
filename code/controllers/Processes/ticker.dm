@@ -34,5 +34,9 @@ var/global/datum/controller/process/ticker/tickerProcess
 /datum/controller/process/ticker/proc/getLastTickerTimeDuration()
 	return lastTickerTimeDuration
 
-/world/proc/has_round_started()
+// Use these preferentially to directly examining ticker.current_state to help prepare for transition to ticker as subsystem!
+/datum/controller/process/ticker/proc/HasRoundStarted()
 	return (ticker && ticker.current_state >= GAME_STATE_PLAYING)
+
+/datum/controller/process/ticker/proc/IsRoundInProgress()
+	return (ticker && ticker.current_state == GAME_STATE_PLAYING)

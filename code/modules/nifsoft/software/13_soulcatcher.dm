@@ -15,6 +15,7 @@
 	cost = 1265
 	wear = 1
 	p_drain = 0.01
+	other_flags = (NIF_O_SCMYSELF|NIF_O_SCOTHERS) // Default on when installed, clear when uninstalled
 
 	var/setting_flags = (NIF_SC_CATCHING_ME|NIF_SC_CATCHING_OTHERS|NIF_SC_ALLOW_EARS|NIF_SC_ALLOW_EYES|NIF_SC_BACKUPS)
 	var/list/brainmobs = list()
@@ -27,16 +28,6 @@
 	Destroy()
 		qdel_null_list(brainmobs)
 		return ..()
-
-	install()
-		if((. = ..()))
-			nif.set_flag(NIF_O_SCMYSELF,NIF_FLAGS_OTHER)
-			nif.set_flag(NIF_O_SCOTHERS,NIF_FLAGS_OTHER)
-
-	uninstall()
-		if((. = ..()))
-			nif.clear_flag(NIF_O_SCMYSELF,NIF_FLAGS_OTHER)
-			nif.clear_flag(NIF_O_SCOTHERS,NIF_FLAGS_OTHER)
 
 	activate()
 		if((. = ..()))
@@ -120,10 +111,10 @@
 
 				if("Erase Contents")
 					var/mob/living/carbon/brain/caught_soul/brainpick = input(nif.human,"Select a mind to delete:","Erase Mind") as null|anything in brainmobs
-					if(!brainpick) return
 
-					var/warning = alert(nif.human,"Are you SURE you want to erase [brainpick.name]?","Erase Mind","CANCEL","DELETE","CANCEL")
+					var/warning = alert(nif.human,"Are you SURE you want to erase \"[brainpick]\"?","Erase Mind","CANCEL","DELETE","CANCEL")
 					if(warning == "DELETE")
+						brainmobs -= brainpick
 						qdel(brainpick)
 					return TRUE
 
@@ -199,7 +190,7 @@
 			brainmob.ext_deaf = FALSE
 			brainmob.ext_blind = FALSE
 			brainmob.parent_mob = TRUE
-			transcore.m_backup(H.mind,H) //ONE backup. Won't be called in life due to avoidance of parent_mob backups.
+			SStranscore.m_backup(H.mind,H) //ONE backup. Won't be called in life due to avoidance of parent_mob backups.
 
 		//Set some basics on the mob.
 		brainmob.dna = H.dna
@@ -209,7 +200,7 @@
 		//Put the mind and player into the mob
 		H.mind.transfer_to(brainmob)
 		brainmob.name = brainmob.mind.name
-		transcore.m_backup(brainmob.mind,0) //It does ONE, so medical will hear about it.
+		SStranscore.m_backup(brainmob.mind,0) //It does ONE, so medical will hear about it.
 
 		//Give them a flavortext message
 		var/message = "<span class='notice'>Your vision fades in a haze of static, before returning.</span>\n\
@@ -257,7 +248,7 @@
 	. = ..()
 
 	if(!parent_mob && (life_tick % 150 == 0) && soulcatcher.setting_flags & NIF_SC_BACKUPS)
-		transcore.m_backup(mind,0) //Passed 0 means "Don't touch the nif fields on the mind record"
+		SStranscore.m_backup(mind,0) //Passed 0 means "Don't touch the nif fields on the mind record"
 
 	life_tick++
 
