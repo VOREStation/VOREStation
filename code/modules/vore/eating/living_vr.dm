@@ -429,9 +429,12 @@
 
 // This is about 0.896m^3 of atmosphere
 /datum/gas_mixture/belly_air
-	volume = 1000
-	gas = list(
-		"oxygen" = 21,
-		"nitrogen" = 79)
-	temperature = 293.150
-	total_moles = 40
+    volume = 1000
+    temperature = 293.150
+    total_moles = 40
+
+/datum/gas_mixture/belly_air/New()
+    . = ..()
+    gas = list(
+        "oxygen" = 21,
+        "nitrogen" = 79)
