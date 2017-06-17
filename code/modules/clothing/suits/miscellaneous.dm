@@ -967,23 +967,22 @@ obj/item/clothing/suit/storage/toggle/peacoat
 	name = "command snowsuit"
 	icon_state = "snowsuit_command"
 
-	/obj/item/clothing/suit/storage/snowsuit/security
+/obj/item/clothing/suit/storage/snowsuit/security
 	name = "security snowsuit"
 	icon_state = "snowsuit_security"
 
-
-	/obj/item/clothing/suit/storage/snowsuit/medical
+/obj/item/clothing/suit/storage/snowsuit/medical
 	name = "medical snowsuit"
 	icon_state = "snowsuit_medical"
 
-	/obj/item/clothing/suit/storage/snowsuit/engineering
+/obj/item/clothing/suit/storage/snowsuit/engineering
 	name = "engineering snowsuit"
 	icon_state = "snowsuit_engineering"
 
-	/obj/item/clothing/suit/storage/snowsuit/cargo
+/obj/item/clothing/suit/storage/snowsuit/cargo
 	name = "cargo snowsuit"
 	icon_state = "snowsuit_cargo"
 
-	/obj/item/clothing/suit/storage/snowsuit/science
+/obj/item/clothing/suit/storage/snowsuit/science
 	name = "science snowsuit"
 	icon_state = "snowsuit_science"

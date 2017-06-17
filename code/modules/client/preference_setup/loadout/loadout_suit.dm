@@ -368,27 +368,22 @@
 /datum/gear/suit/miscellaneous/sec_dep_jacket
 	display_name = "department jacket, security"
 	path = /obj/item/clothing/suit/storage/toggle/sec_dep_jacket
-	allowed_roles = list("Security Officer", "Head of Security", "Warden", "Detective")
 
 /datum/gear/suit/miscellaneous/engi_dep_jacket
 	display_name = "department jacket, engineering"
 	path = /obj/item/clothing/suit/storage/toggle/engi_dep_jacket
-	allowed_roles = list("Chief Engineer","Atmospheric Technician", "Station Engineer")
 
 /datum/gear/suit/miscellaneous/supply_dep_jacket
 	display_name = "department jacket, supply"
 	path = /obj/item/clothing/suit/storage/toggle/supply_dep_jacket
-	allowed_roles = list("Quartermaster","shaft Miner","Cargo Technician","Head of Personnel")
 
 /datum/gear/suit/miscellaneous/sci_dep_jacket
 	display_name = "department jacket, science"
 	path = /obj/item/clothing/suit/storage/toggle/sci_dep_jacket
-	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist")
 
 /datum/gear/suit/miscellaneous/med_dep_jacket
 	display_name = "department jacket, medical"
 	path = /obj/item/clothing/suit/storage/toggle/med_dep_jacket
-	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist")
 
 /datum/gear/suit/miscellaneous/peacoat
 	display_name = "peacoat"
