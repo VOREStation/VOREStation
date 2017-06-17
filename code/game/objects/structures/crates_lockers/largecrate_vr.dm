@@ -53,6 +53,8 @@
 						/mob/living/simple_animal/hostile/bear;0.5,
 						/mob/living/simple_animal/hostile/bear/brown;0.5,
 						/mob/living/simple_animal/hostile/carp,
+						/mob/living/simple_animal/otie/fluff,
+						/mob/living/simple_animal/otie/fluff/cotie,
 						/mob/living/simple_animal/hostile/mimic)
 	..()
 
@@ -71,3 +73,10 @@
 						/mob/living/simple_animal/hostile/alien/sentinel,
 						/mob/living/simple_animal/hostile/alien/queen)
 	..()
+
+/obj/structure/largecrate/animal/guardbeast
+	name = "V.A.R.M.A.corp autoNOMous security solution"
+	desc = "The V.A.R.M.A.corp bioengineering division flagship product on trained optimal snowflake guard dogs."
+	icon = 'icons/obj/storage_vr.dmi'
+	icon_state = "sotiecrate"
+	held_type = /mob/living/simple_animal/otie/fluff/security
