@@ -492,6 +492,8 @@
 			processing_objects.Add(src)
 			user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [trashman] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [trashman] slips inside.</span>")
 			playsound(hound, 'sound/vore/gulp.ogg', 80, 1)
+			hound.sleeper_r = 1
+			hound.updateicon()
 		return
 	return
 //Marking shit changed again because the random travis bug is having its shenanigans again \o/
