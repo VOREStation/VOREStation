@@ -575,6 +575,16 @@ item_path: /obj/item/clothing/head/fluff/runac
 # ######## U CKEYS
 # ######## V CKEYS
 {
+ckey: verkister
+character_name: Cameron Eggbert
+item_path: /obj/item/clothing/glasses/science_proper
+}
+{
+ckey: verkister
+character_name: Cameron Eggbert
+item_path: /obj/item/weapon/disk/limb/eggnerdltd
+}
+{
 ckey: virgo113
 character_name: Verin Raharra
 item_path: /obj/item/clothing/suit/storage/hazardvest/fluff/verin
