@@ -704,6 +704,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/surgical/circular_saw(src)
 	src.modules += new /obj/item/weapon/reagent_containers/syringe(src)
 	src.modules += new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
+	src.modules += new /obj/item/weapon/storage/part_replacer(src)
 	src.emag = new /obj/item/weapon/hand_tele(src)
 
 	var/datum/matter_synth/nanite = new /datum/matter_synth/nanite(10000)
