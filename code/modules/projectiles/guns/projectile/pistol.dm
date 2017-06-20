@@ -120,7 +120,7 @@
 	icon_state = "deagle"
 	item_state = "deagle"
 	force = 14.0
-	caliber = ".50AE"
+	caliber = ".44"
 	load_method = MAGAZINE
 	fire_sound = 'sound/weapons/deagle.ogg'
 	magazine_type = /obj/item/ammo_magazine/m50
@@ -259,14 +259,14 @@
 		/obj/item/ammo_casing/a9mmf             = "9mm",
 		/obj/item/ammo_casing/a45f              = ".45",
 		/obj/item/ammo_casing/a10mm             = "10mm",
-		/obj/item/ammo_casing/a12g           = "12 gauge",
-		/obj/item/ammo_casing/a12g           = "12 gauge",
-		/obj/item/ammo_casing/a12g/pellet    = "12 gauge",
-		/obj/item/ammo_casing/a12g/pellet    = "12 gauge",
-		/obj/item/ammo_casing/a12g/pellet    = "12 gauge",
-		/obj/item/ammo_casing/a12g/beanbag   = "12 gauge",
-		/obj/item/ammo_casing/a12g/stunshell = "12 gauge",
-		/obj/item/ammo_casing/a12g/flash     = "12 gauge",
+		/obj/item/ammo_casing/a12g              = "12g",
+		/obj/item/ammo_casing/a12g              = "12g",
+		/obj/item/ammo_casing/a12g/pellet       = "12g",
+		/obj/item/ammo_casing/a12g/pellet       = "12g",
+		/obj/item/ammo_casing/a12g/pellet       = "12g",
+		/obj/item/ammo_casing/a12g/beanbag      = "12g",
+		/obj/item/ammo_casing/a12g/stunshell    = "12g",
+		/obj/item/ammo_casing/a12g/flash        = "12g",
 		/obj/item/ammo_casing/a762              = "7.62mm",
 		/obj/item/ammo_casing/a556              = "5.56mm"
 		)

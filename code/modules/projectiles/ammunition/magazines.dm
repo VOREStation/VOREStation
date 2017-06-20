@@ -30,7 +30,7 @@
 	name = "speedloader (.357)"
 	desc = "A speedloader for .357 revolvers."
 	icon_state = "38"
-	caliber = "357"
+	caliber = ".357"
 	ammo_type = /obj/item/ammo_casing/a357
 	matter = list(DEFAULT_WALL_MATERIAL = 1260)
 	max_ammo = 6
@@ -383,14 +383,14 @@
 
 ///////// .50 AE /////////
 
-/obj/item/ammo_magazine/m50
-	name = "magazine (.50 AE)"
-	icon_state = "50ae"
+/obj/item/ammo_magazine/m44
+	name = "magazine (.44)"
+	icon_state = ".44"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
-	caliber = ".50AE"
+	caliber = ".44"
 	matter = list(DEFAULT_WALL_MATERIAL = 1260)
-	ammo_type = /obj/item/ammo_casing/a50ae
+	ammo_type = /obj/item/ammo_casing/a44
 	max_ammo = 7
 	multiple_sprites = 1
 
@@ -401,8 +401,8 @@
 	name = "ammo clip (.50 AE)"
 	icon_state = "clip_pistol"
 	desc = "A stripper clip for reloading .50 Action Express rounds into magazines."
-	caliber = ".50AE"
-	ammo_type = /obj/item/ammo_casing/a50ae
+	caliber = ".44"
+	ammo_type = /obj/item/ammo_casing/a44
 	matter = list(DEFAULT_WALL_MATERIAL = 1620) // metal costs are very roughly based around one .50 casing = 180 metal
 	max_ammo = 9
 	multiple_sprites = 1

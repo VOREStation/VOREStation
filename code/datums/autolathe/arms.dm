@@ -133,7 +133,7 @@
 	hidden = 1
 
 /datum/category_item/autolathe/arms/pistol_50
-	name = "pistol magazine (.50AE)"
+	name = "pistol magazine (.44)"
 	path =/obj/item/ammo_magazine/m50
 	hidden = 1
 
@@ -226,7 +226,7 @@
 	hidden = 1
 
 /datum/category_item/autolathe/arms/pistol_50
-	name = "pistol magazine (.50AE)"
+	name = "pistol magazine (.44)"
 	path =/obj/item/ammo_magazine/m50/empty
 	category = "Arms and Ammunition"
 	hidden = 1
@@ -340,7 +340,7 @@
 	hidden = 1
 
 /datum/category_item/autolathe/arms/pistol_clip_50
-	name = "ammo clip (.50AE)"
+	name = "ammo clip (.44)"
 	path =/obj/item/ammo_magazine/clip/c50
 	category = "Arms and Ammunition"
 	hidden = 1
