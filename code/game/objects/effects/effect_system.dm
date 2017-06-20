@@ -13,11 +13,6 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	unacidable = 1//So effect are not targeted by alien acid.
 	pass_flags = PASSTABLE | PASSGRILLE
 
-/obj/effect/Destroy()
-	if(reagents)
-		reagents.delete()
-	return ..()
-
 /datum/effect/effect/system
 	var/number = 3
 	var/cardinals = 0
@@ -184,8 +179,10 @@ steam.start() -- spawns the effect
 
 /obj/effect/effect/smoke/New()
 	..()
-	spawn (time_to_live)
-		qdel(src)
+	if(time_to_live)
+		spawn (time_to_live)
+			if(!QDELETED(src))
+				qdel(src)
 
 /obj/effect/effect/smoke/Crossed(mob/living/carbon/M as mob )
 	..()

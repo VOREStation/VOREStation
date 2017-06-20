@@ -181,6 +181,9 @@
 	clients -= src
 	return ..()
 
+/client/Destroy()
+	..()
+	return QDEL_HINT_HARDDEL_NOW
 
 // here because it's similar to below
 
@@ -283,6 +286,18 @@
 /client/proc/is_afk(duration=3000)
 	if(inactivity > duration)	return inactivity
 	return 0
+
+// Byond seemingly calls stat, each tick.
+// Calling things each tick can get expensive real quick.
+// So we slow this down a little.
+// See: http://www.byond.com/docs/ref/info.html#/client/proc/Stat
+/client/Stat()
+	. = ..()
+	if (holder)
+		sleep(1)
+	else
+		sleep(5)
+		stoplag()
 
 /client/proc/last_activity_seconds()
 	return inactivity / 10

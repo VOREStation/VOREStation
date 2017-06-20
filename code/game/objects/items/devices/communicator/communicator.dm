@@ -256,12 +256,12 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	if(exonet)
 		exonet.remove_address()
 		exonet = null
-	..()
+	return ..()
 
 // Proc: ui_interact()
 // Parameters: 4 (standard NanoUI arguments)
 // Description: Uses a bunch of for loops to turn lists into lists of lists, so they can be displayed in nanoUI, then displays various buttons to the user.
-/obj/item/device/communicator/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/item/device/communicator/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/key_state = null)
 	// this is the data which will be sent to the ui
 	var/data[0]						//General nanoUI information
 	var/communicators[0]			//List of communicators
@@ -356,7 +356,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	if(!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "communicator.tmpl", "Communicator", 475, 700)
+		ui = new(user, src, ui_key, "communicator.tmpl", "Communicator", 475, 700, state = key_state)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window
@@ -803,7 +803,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	if(exonet)
 		exonet.remove_address()
 		exonet = null
-	..()
+	return ..()
 
 // Proc: update_icon()
 // Parameters: None

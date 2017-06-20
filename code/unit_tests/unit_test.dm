@@ -45,6 +45,7 @@ var/total_unit_tests = 0
 	sleep(1)
 
 	ticker.current_state = GAME_STATE_SETTING_UP
+	Master.SetRunLevel(RUNLEVEL_SETUP)
 
 	log_unit_test("Round has been started.  Waiting 10 seconds to start tests.")
 	sleep(100)

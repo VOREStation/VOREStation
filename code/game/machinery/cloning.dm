@@ -181,7 +181,7 @@
 			use_power(7500) //This might need tweaking.
 			return
 
-		else if((occupant.health >= heal_level) && (!eject_wait))
+		else if((occupant.health >= heal_level || occupant.health == occupant.maxHealth) && (!eject_wait))
 			playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
 			audible_message("\The [src] signals that the cloning process is complete.")
 			connected_message("Cloning Process Complete.")

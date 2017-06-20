@@ -263,6 +263,7 @@
 	icon = 'icons/obj/doors/Dooruranium.dmi'
 	mineral = "uranium"
 	var/last_event = 0
+	var/rad_power = 7.5
 
 /obj/machinery/door/airlock/process()
 	// Deliberate no call to parent.
@@ -280,14 +281,9 @@
 /obj/machinery/door/airlock/uranium/process()
 	if(world.time > last_event+20)
 		if(prob(50))
-			radiate()
+			radiation_repository.radiate(src, rad_power)
 		last_event = world.time
 	..()
-
-/obj/machinery/door/airlock/uranium/proc/radiate()
-	for(var/mob/living/L in range (3,src))
-		L.apply_effect(15,IRRADIATE,0)
-	return
 
 /obj/machinery/door/airlock/phoron
 	name = "Phoron Airlock"
@@ -757,6 +753,9 @@ About the new airlock wires panel:
 	update_icon()
 	return 1
 
+/obj/machinery/door/airlock/proc/can_remove_electronics()
+	return src.p_open && (operating < 0 || (!operating && welded && !src.arePowerSystemsOn() && density && (!src.locked || (stat & BROKEN))))
+
 /obj/machinery/door/airlock/attackby(C as obj, mob/user as mob)
 	//world << text("airlock attackby src [] obj [] mob []", src, C, user)
 	if(!istype(usr, /mob/living/silicon))
@@ -801,7 +800,7 @@ About the new airlock wires panel:
 		var/obj/item/weapon/pai_cable/cable = C
 		cable.plugin(src, user)
 	else if(!repairing && istype(C, /obj/item/weapon/crowbar))
-		if(src.p_open && (operating < 0 || (!operating && welded && !src.arePowerSystemsOn() && density && (!src.locked || (stat & BROKEN)))) )
+		if(can_remove_electronics())
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 75, 1)
 			user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to remove electronics from the airlock assembly.")
 			if(do_after(user,40))

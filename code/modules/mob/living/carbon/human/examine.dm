@@ -1,4 +1,5 @@
 /mob/living/carbon/human/examine(mob/user)
+
 	var/skipgloves = 0
 	var/skipsuitstorage = 0
 	var/skipjumpsuit = 0
@@ -16,6 +17,18 @@
 	var/skiplegs = 0
 	var/skiparms = 0
 	var/skipfeet = 0
+
+
+	var/cloaked = 0 // 0 for normal, 1 for cloaked close
+
+	if(mind && mind.changeling && mind.changeling.cloaked && !istype(user, /mob/observer))
+		var/distance = get_dist(user, src)
+		if(distance > 2)
+			src.loc.examine(user)
+			return
+		else
+			cloaked = 1
+
 
 	var/looks_synth = looksSynthetic()
 
@@ -79,9 +92,13 @@
 
 	var/list/msg = list("<span class='info'>*---------*\nThis is ")
 
+
 	var/datum/gender/T = gender_datums[get_gender()]
+
 	if(skipjumpsuit && skipface) //big suits/masks/helmets make it hard to tell their gender
 		T = gender_datums[PLURAL]
+	if(cloaked)
+		T = gender_datums[NEUTER]
 
 	else if(species && species.ambiguous_genders)
 		var/can_detect_gender = FALSE
@@ -441,16 +458,24 @@
 		msg += "<span class = 'deptradio'>Medical records:</span> <a href='?src=\ref[src];medrecord=`'>\[View\]</a> <a href='?src=\ref[src];medrecordadd=`'>\[Add comment\]</a>\n"
 
 
-	if(print_flavor_text()) msg += "[print_flavor_text()]\n"
+	if(print_flavor_text() && !cloaked)
+		msg += "[print_flavor_text()]\n"
 
 	msg += "*---------*</span><br>"
 	msg += applying_pressure
-	if (pose)
+	if (pose && !cloaked)
 		if( findtext(pose,".",lentext(pose)) == 0 && findtext(pose,"!",lentext(pose)) == 0 && findtext(pose,"?",lentext(pose)) == 0 )
 			pose = addtext(pose,".") //Makes sure all emotes end with a period.
 		msg += "[T.He] [pose]"
 
 	user << jointext(msg, null)
+
+
+/mob/living/carbon/human/get_description_fluff()
+	if(mind && mind.changeling && mind.changeling.cloaked)
+		return ""
+	else
+		return ..()
 
 //Helper procedure. Called by /mob/living/carbon/human/examine() and /mob/living/carbon/human/Topic() to determine HUD access to security and medical records.
 /proc/hasHUD(mob/M as mob, hudtype)

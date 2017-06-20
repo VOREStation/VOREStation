@@ -23,8 +23,11 @@
 #define DAMAGE_RATE_LIMIT 3			//damage rate cap at power = 300, scales linearly with power
 
 
-//These would be what you would get at point blank, decreases with distance
-#define DETONATION_RADS 200
+// Base variants are applied to everyone on the same Z level
+// Range variants are applied on per-range basis: numbers here are on point blank, it scales with the map size (assumes square shaped Z levels)
+#define DETONATION_RADS 20
+#define DETONATION_HALLUCINATION_BASE 300
+#define DETONATION_HALLUCINATION_RANGE 300
 #define DETONATION_HALLUCINATION 600
 
 
@@ -95,6 +98,11 @@
 	anchored = 1
 	grav_pulling = 1
 	exploded = 1
+	var/turf/TS = get_turf(src)		// The turf supermatter is on. SM being in a locker, mecha, or other container shouldn't block it's effects that way.
+	if(!TS)
+		return
+	for(var/z in GetConnectedZlevels(TS.z))
+		radiation_repository.z_radiate(locate(1, 1, z), DETONATION_RADS, 1)
 	for(var/mob/living/mob in living_mob_list)
 		var/turf/T = get_turf(mob)
 		if(T && (loc.z == T.z))
@@ -102,8 +110,6 @@
 				//Hilariously enough, running into a closet should make you get hit the hardest.
 				var/mob/living/carbon/human/H = mob
 				H.hallucination += max(50, min(300, DETONATION_HALLUCINATION * sqrt(1 / (get_dist(mob, src) + 1)) ) )
-			var/rads = DETONATION_RADS * sqrt( 1 / (get_dist(mob, src) + 1) )
-			mob.apply_effect(rads, IRRADIATE)
 	spawn(pull_time)
 		explosion(get_turf(src), explosion_power, explosion_power * 2, explosion_power * 3, explosion_power * 4, 1)
 		qdel(src)
@@ -258,12 +264,15 @@
 		if(eye_shield < 1)
 			l.hallucination = max(0, min(200, l.hallucination + power * config_hallucination_power * sqrt( 1 / max(1,get_dist(l, src)) ) ) )
 
+/*
 	//adjusted range so that a power of 170 (pretty high) results in 9 tiles, roughly the distance from the core to the engine monitoring room.
 	//note that the rads given at the maximum range is a constant 0.2 - as power increases the maximum range merely increases.
 	for(var/mob/living/l in range(src, round(sqrt(power / 2))))
 		var/radius = max(get_dist(l, src), 1)
 		var/rads = (power / 10) * ( 1 / (radius**2) )
 		l.apply_effect(rads, IRRADIATE)
+*/
+	radiation_repository.radiate(src, power * 1.5) //Better close those shutters!
 
 	power -= (power/DECAY_FACTOR)**3		//energy losses due to radiation
 
@@ -377,9 +386,8 @@
 				"<span class=\"warning\">The unearthly ringing subsides and you notice you have new radiation burns.</span>", 2)
 		else
 			l.show_message("<span class=\"warning\">You hear an uneartly ringing and notice your skin is covered in fresh radiation burns.</span>", 2)
-		var/rads = 500 * sqrt( 1 / (get_dist(l, src) + 1) )
-		l.apply_effect(rads, IRRADIATE)
-
+	var/rads = 500
+	radiation_repository.radiate(src, rads)
 
 /obj/machinery/power/supermatter/proc/supermatter_pull()
 	//following is adapted from singulo code

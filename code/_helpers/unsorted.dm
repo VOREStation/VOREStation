@@ -1157,12 +1157,22 @@ proc/is_hot(obj/item/W as obj)
 	istype(W, /obj/item/weapon/surgical/bonesetter)
 	)
 
-//check if mob is lying down on something we can operate him on.
+// check if mob is lying down on something we can operate him on.
+// The RNG with table/rollerbeds comes into play in do_surgery() so that fail_step() can be used instead.
 /proc/can_operate(mob/living/carbon/M)
-	return (M.lying && \
-	locate(/obj/machinery/optable, M.loc) || \
-	(locate(/obj/structure/bed/roller, M.loc) && prob(75)) || \
-	(locate(/obj/structure/table/, M.loc) && prob(66)))
+	return M.lying
+
+// Returns an instance of a valid surgery surface.
+/mob/living/proc/get_surgery_surface()
+	if(!lying)
+		return null // Not lying down means no surface.
+	var/obj/surface = null
+	for(var/obj/O in loc) // Looks for the best surface.
+		if(O.surgery_odds)
+			if(!surface || surface.surgery_odds < O)
+				surface = O
+	if(surface)
+		return surface
 
 /proc/reverse_direction(var/dir)
 	switch(dir)
@@ -1283,6 +1293,13 @@ var/mob/dview/dview_mob = new
 		dead_mob_list -= src
 	else
 		living_mob_list -= src
+
+/mob/dview/Destroy(var/force)
+	crash_with("Attempt to delete the dview_mob: [log_info_line(src)]")
+	if (!force)
+		return QDEL_HINT_LETMELIVE
+	global.dview_mob = new
+	return ..()
 
 // call to generate a stack trace and print to runtime logs
 /proc/crash_with(msg)

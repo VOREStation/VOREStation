@@ -7,6 +7,8 @@
 	if(can_open == WALL_OPENING)
 		return
 
+	radiation_repository.resistance_cache.Remove(src)
+
 	if(density)
 		can_open = WALL_OPENING
 		//flick("[material.icon_base]fwall_opening", src)
@@ -188,6 +190,7 @@
 		else
 			user << "<span class='notice'>You need more welding fuel to complete this task.</span>"
 			return
+		user.update_examine_panel(src)
 		return
 
 	// Basic dismantling.
@@ -241,6 +244,7 @@
 				if (istype(W, /obj/item/weapon/wirecutters))
 					playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
 					construction_stage = 5
+					user.update_examine_panel(src)
 					user << "<span class='notice'>You cut through the outer grille.</span>"
 					update_icon()
 					return
@@ -251,11 +255,13 @@
 					if(!do_after(user,40) || !istype(src, /turf/simulated/wall) || construction_stage != 5)
 						return
 					construction_stage = 4
+					user.update_examine_panel(src)
 					update_icon()
 					user << "<span class='notice'>You unscrew the support lines.</span>"
 					return
 				else if (istype(W, /obj/item/weapon/wirecutters))
 					construction_stage = 6
+					user.update_examine_panel(src)
 					user << "<span class='notice'>You mend the outer grille.</span>"
 					update_icon()
 					return
@@ -278,6 +284,7 @@
 					if(!do_after(user, 60) || !istype(src, /turf/simulated/wall) || construction_stage != 4)
 						return
 					construction_stage = 3
+					user.update_examine_panel(src)
 					update_icon()
 					user << "<span class='notice'>You press firmly on the cover, dislodging it.</span>"
 					return
@@ -287,6 +294,7 @@
 					if(!do_after(user,40) || !istype(src, /turf/simulated/wall) || construction_stage != 4)
 						return
 					construction_stage = 5
+					user.update_examine_panel(src)
 					update_icon()
 					user << "<span class='notice'>You screw down the support lines.</span>"
 					return
@@ -297,6 +305,7 @@
 					if(!do_after(user,100) || !istype(src, /turf/simulated/wall) || construction_stage != 3)
 						return
 					construction_stage = 2
+					user.update_examine_panel(src)
 					update_icon()
 					user << "<span class='notice'>You pry off the cover.</span>"
 					return
@@ -307,6 +316,7 @@
 					if(!do_after(user,40) || !istype(src, /turf/simulated/wall) || construction_stage != 2)
 						return
 					construction_stage = 1
+					user.update_examine_panel(src)
 					update_icon()
 					user << "<span class='notice'>You remove the bolts anchoring the support rods.</span>"
 					return
@@ -327,6 +337,7 @@
 					if(!do_after(user,70) || !istype(src, /turf/simulated/wall) || construction_stage != 1)
 						return
 					construction_stage = 0
+					user.update_examine_panel(src)
 					update_icon()
 					user << "<span class='notice'>The slice through the support rods.</span>"
 					return

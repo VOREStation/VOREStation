@@ -52,7 +52,7 @@
 /obj/item/weapon/implant/Destroy()
 	if(part)
 		part.implants.Remove(src)
-	..()
+	return ..()
 
 /obj/item/weapon/implant/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/implanter))
@@ -452,11 +452,11 @@ the implant may become unstable and either pre-maturely inject the subject or si
 			var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset/heads/captain(null)
 			if(istype(t, /area/syndicate_station) || istype(t, /area/syndicate_mothership) || istype(t, /area/shuttle/syndicate_elite) )
 				//give the syndies a bit of stealth
-				a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm", "General")
+				a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm")
 //				a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm", "Security")
 //				a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm", "Medical")
 			else
-				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm", "General")
+				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm")
 //				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm", "Security")
 //				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm", "Medical")
 			qdel(a)
@@ -464,13 +464,13 @@ the implant may become unstable and either pre-maturely inject the subject or si
 		if ("emp")
 			var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset/heads/captain(null)
 			var/name = prob(50) ? t.name : pick(teleportlocs)
-			a.autosay("[mobname] has died in [name]!", "[mobname]'s Death Alarm", "General")
+			a.autosay("[mobname] has died in [name]!", "[mobname]'s Death Alarm")
 //			a.autosay("[mobname] has died in [name]!", "[mobname]'s Death Alarm", "Security")
 //			a.autosay("[mobname] has died in [name]!", "[mobname]'s Death Alarm", "Medical")
 			qdel(a)
 		else
 			var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset/heads/captain(null)
-			a.autosay("[mobname] has died-zzzzt in-in-in...", "[mobname]'s Death Alarm", "General")
+			a.autosay("[mobname] has died-zzzzt in-in-in...", "[mobname]'s Death Alarm")
 //			a.autosay("[mobname] has died-zzzzt in-in-in...", "[mobname]'s Death Alarm", "Security")
 //			a.autosay("[mobname] has died-zzzzt in-in-in...", "[mobname]'s Death Alarm", "Medical")
 			qdel(a)

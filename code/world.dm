@@ -26,7 +26,8 @@ var/global/datum/global_init/init = new ()
 	qdel(src) //we're done
 
 /datum/global_init/Destroy()
-	return 1
+	global.init = null
+	return 2 // QDEL_HINT_IWILLGC
 
 /world
 	mob = /mob/new_player
@@ -70,8 +71,6 @@ var/global/datum/global_init/init = new ()
 #if UNIT_TEST
 	log_unit_test("Unit Tests Enabled.  This will destroy the world when testing is complete.")
 	log_unit_test("If you did not intend to enable this please check code/__defines/unit_testing.dm")
-#else
-	sleep_offline = 1
 #endif
 
 	// Set up roundstart seed list.
@@ -116,6 +115,7 @@ var/global/datum/global_init/init = new ()
 
 	processScheduler = new
 	master_controller = new /datum/controller/game_controller()
+	Master.Initialize(10, FALSE)
 	spawn(1)
 		processScheduler.deferSetupFor(/datum/controller/process/ticker)
 		processScheduler.setup()
@@ -433,6 +433,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		*/
 
 	processScheduler.stop()
+	Master.Shutdown()	//run SS shutdowns
 
 	for(var/client/C in clients)
 		if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite

@@ -334,7 +334,8 @@ var/global/list/robot_modules = list(
 					"Antique" = "engineerrobot",
 					"Landmate" = "landmate",
 					"Landmate - Treaded" = "engiborg+tread",
-					"Drone" = "drone-engineer"
+					"Drone" = "drone-engineer",
+					"Treadwell" = "treadwell"
 					)
 
 /obj/item/weapon/robot_module/robot/engineering/construction
@@ -352,6 +353,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/device/pipe_painter(src)
 	src.modules += new /obj/item/device/floor_painter(src)
 	src.modules += new /obj/item/weapon/gripper/no_use/loader(src)
+	src.modules += new /obj/item/device/geiger(src)
 
 	var/datum/matter_synth/metal = new /datum/matter_synth/metal()
 	var/datum/matter_synth/plasteel = new /datum/matter_synth/plasteel()
@@ -396,6 +398,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/device/pipe_painter(src)
 	src.modules += new /obj/item/device/floor_painter(src)
 	src.emag = new /obj/item/weapon/melee/baton/robot/arm(src)
+	src.modules += new /obj/item/device/geiger(src)
 
 	var/datum/matter_synth/metal = new /datum/matter_synth/metal(40000)
 	var/datum/matter_synth/glass = new /datum/matter_synth/glass(40000)

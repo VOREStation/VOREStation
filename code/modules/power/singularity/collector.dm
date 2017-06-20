@@ -23,13 +23,18 @@ var/global/list/rad_collectors = list()
 
 /obj/machinery/power/rad_collector/Destroy()
 	rad_collectors -= src
-	..()
+	return ..()
 
 /obj/machinery/power/rad_collector/process()
 	//so that we don't zero out the meter if the SM is processed first.
 	last_power = last_power_new
 	last_power_new = 0
 
+
+	if(P && active)
+		var/rads = radiation_repository.get_rads_at_turf(get_turf(src))
+		if(rads)
+			receive_pulse(rads * 5) //Maths is hard
 
 	if(P)
 		if(P.air_contents.gas["phoron"] == 0)

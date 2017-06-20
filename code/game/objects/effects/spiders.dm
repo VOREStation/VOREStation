@@ -94,7 +94,7 @@
 		var/obj/item/organ/external/O = loc
 		O.implants -= src
 
-	..()
+	return ..()
 
 /obj/effect/spider/eggcluster/process()
 	amount_grown += rand(0,2)
@@ -138,7 +138,8 @@
 
 /obj/effect/spider/spiderling/Destroy()
 	processing_objects -= src
-	..()
+	walk(src, 0) // Because we might have called walk_to, we must stop the walk loop or BYOND keeps an internal reference to us forever.
+	return ..()
 
 /obj/effect/spider/spiderling/Bump(atom/user)
 	if(istype(user, /obj/structure/table))

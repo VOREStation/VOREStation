@@ -168,8 +168,7 @@
 /obj/structure/simple_door/process()
 	if(!material.radioactivity)
 		return
-	for(var/mob/living/L in range(1,src))
-		L.apply_effect(round(material.radioactivity/3),IRRADIATE,0)
+	radiation_repository.radiate(src, round(material.radioactivity/3))
 
 /obj/structure/simple_door/iron/New(var/newloc,var/material_name)
 	..(newloc, "iron")

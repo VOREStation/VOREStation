@@ -73,8 +73,7 @@
 /obj/machinery/door/Destroy()
 	density = 0
 	update_nearby_tiles()
-	..()
-	return
+	. = ..()
 
 /obj/machinery/door/process()
 	if(close_door_at && world.time >= close_door_at)
@@ -362,6 +361,7 @@
 		icon_state = "door1"
 	else
 		icon_state = "door0"
+	radiation_repository.resistance_cache.Remove(get_turf(src))
 	return
 
 

@@ -116,7 +116,7 @@
 		unbuckle_mob()
 
 	processing_objects -= src
-	..()
+	return ..()
 
 /obj/effect/energy_net/process()
 	if(isnull(buckled_mob) || buckled_mob.loc != loc)
