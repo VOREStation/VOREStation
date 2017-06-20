@@ -1,10 +1,10 @@
 /obj/item/weapon/gun/projectile/contender
 	name = "Thompson Contender"
-	desc = "A perfect, pristine replica of an ancient one-shot hand-cannon. For when you really want to make a hole. This one has been modified to work almost like a bolt-action."
+	desc = "A perfect, pristine replica of an ancient one-shot hand-cannon. For when you really want to make a hole. This one has been modified to work almost like a bolt-action. Uses .357 rounds."
 	icon_state = "pockrifle"
 	var/icon_retracted = "pockrifle-empty"
 	item_state = "revolver"
-	caliber = "357"
+	caliber = ".357"
 	handle_casings = HOLD_CASINGS
 	max_shells = 1
 	ammo_type = /obj/item/ammo_casing/a357
@@ -37,6 +37,6 @@
 	..()
 
 /obj/item/weapon/gun/projectile/contender/tacticool
-	desc = "A modified replica of an ancient one-shot hand-cannon, reinvented with a tactical look. For when you really want to make a hole. This one has been modified to work almost like a bolt-action."
+	desc = "A modified replica of an ancient one-shot hand-cannon, reinvented with a tactical look. For when you really want to make a hole. This one has been modified to work almost like a bolt-action. Uses .357 rounds."
 	icon_state = "pockrifle_b"
 	icon_retracted = "pockrifle_b-empty"
