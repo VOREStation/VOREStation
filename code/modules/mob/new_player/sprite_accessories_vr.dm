@@ -75,6 +75,26 @@
 		icon_state = "soghun_horns"
 		species_allowed = list("Unathi", "Xenochimera")
 
+	una_bighorns
+		name = "Unathi Big Horns"
+		icon_state = "unathi_bighorn"
+		species_allowed = list("Unathi", "Xenochimera")
+
+	una_smallhorns
+		name = "Unathi Small Horns"
+		icon_state = "unathi_smallhorn"
+		species_allowed = list("Unathi", "Xenochimera")
+
+	una_ramhorns
+		name = "Unathi Ram Horns"
+		icon_state = "unathi_ramhorn"
+		species_allowed = list("Unathi", "Xenochimera")
+
+	una_sidefrills
+		name = "Unathi Side Frills"
+		icon_state = "unathi_sidefrills"
+		species_allowed = list("Unathi", "Xenochimera")
+
 	una_doublehorns
 		name = "Double Unathi Horns"
 		icon = 'icons/mob/human_face_vr.dmi'
@@ -141,6 +161,30 @@
 		name = "Tajara Messy"
 		icon_state = "hair_messy"
 		species_allowed = list("Tajara", "Xenochimera")
+
+//Skrell 'hairstyles' - these were requested for a chimera and screw it, if one wants to eat seafood, go nuts
+	skr_tentacle_veryshort
+		name = "Skrell Very Short Tentacles"
+		icon_state = "skrell_hair_veryshort"
+		species_allowed = list("Tajara", "Xenochimera")
+		gender = MALE
+
+	skr_tentacle_short
+		name = "Skrell Short Tentacles"
+		icon_state = "skrell_hair_short"
+		species_allowed = list("Tajara", "Xenochimera")
+
+	skr_tentacle_average
+		name = "Skrell Average Tentacles"
+		icon_state = "skrell_hair_average"
+		species_allowed = list("Tajara", "Xenochimera")
+
+	skr_tentacle_verylong
+		name = "Skrell Long Tentacles"
+		icon_state = "skrell_hair_verylong"
+		species_allowed = list("Tajara", "Xenochimera")
+		gender = FEMALE
+
 // Vulpa stuffs
 
 	vulp_hair_none
