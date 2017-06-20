@@ -2405,6 +2405,7 @@
 #include "code\modules\vore\fluffstuff\custom_permits_vr.dm"
 #include "code\modules\vore\fluffstuff\guns\bsharpoon.dm"
 #include "code\modules\vore\fluffstuff\guns\dominator.dm"
+#include "code\modules\vore\fluffstuff\guns\nsfw.dm"
 #include "code\modules\vore\fluffstuff\guns\protector.dm"
 #include "code\modules\vore\fluffstuff\guns\pummeler.dm"
 #include "code\modules\vore\fluffstuff\guns\sickshot.dm"

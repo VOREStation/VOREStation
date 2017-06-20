@@ -163,19 +163,15 @@
 
 	New()
 		..() //Might look like a lot... but all small items.
-		/*
-		new /obj/item/weapon/reagent_containers/hypospray/vr/fluff/aronai(src)
-		new /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff/aro_st(src)
-		new /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff/aro_bt(src)
-		new /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff/aro_bu(src)
-		new /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff/aro_tx(src)
-		*/
 		//Centcom stuff and permit
 		new /obj/item/weapon/card/id/centcom/fluff/aronai(src)
 		new /obj/item/fluff/permit/aronai_kadigan(src)
-		//new /obj/item/clothing/glasses/omnihud/med/fluff/aronai(src)
 		//Gun and holster
-		new /obj/item/weapon/gun/energy/netgun(src)
+		new /obj/item/weapon/gun/projectile/nsfw(src)
+		new /obj/item/ammo_magazine/nsfw_mag(src)
+		new /obj/item/ammo_casing/nsfw_batt/stun(src)
+		new /obj/item/ammo_casing/nsfw_batt/stun(src)
+		new /obj/item/ammo_casing/nsfw_batt/net(src)
 		new /obj/item/clothing/accessory/holster(src)
 
 //Aerowing:Sebastian Aji
