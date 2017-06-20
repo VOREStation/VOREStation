@@ -123,8 +123,8 @@
 	caliber = ".44"
 	load_method = MAGAZINE
 	fire_sound = 'sound/weapons/deagle.ogg'
-	magazine_type = /obj/item/ammo_magazine/m50
-	allowed_magazines = list(/obj/item/ammo_magazine/m50)
+	magazine_type = /obj/item/ammo_magazine/m44
+	allowed_magazines = list(/obj/item/ammo_magazine/m44)
 
 /obj/item/weapon/gun/projectile/deagle/update_icon()
 	..()

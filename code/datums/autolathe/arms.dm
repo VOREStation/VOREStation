@@ -132,9 +132,9 @@
 	path =/obj/item/ammo_magazine/m10mm
 	hidden = 1
 
-/datum/category_item/autolathe/arms/pistol_50
+/datum/category_item/autolathe/arms/pistol_44
 	name = "pistol magazine (.44)"
-	path =/obj/item/ammo_magazine/m50
+	path =/obj/item/ammo_magazine/m44
 	hidden = 1
 
 /////// 5.56mm
@@ -225,9 +225,9 @@
 	category = "Arms and Ammunition"
 	hidden = 1
 
-/datum/category_item/autolathe/arms/pistol_50
+/datum/category_item/autolathe/arms/pistol_44
 	name = "pistol magazine (.44)"
-	path =/obj/item/ammo_magazine/m50/empty
+	path =/obj/item/ammo_magazine/m44/empty
 	category = "Arms and Ammunition"
 	hidden = 1
 
