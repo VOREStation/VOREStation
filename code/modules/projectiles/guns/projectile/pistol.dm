@@ -116,7 +116,7 @@
 
 /obj/item/weapon/gun/projectile/deagle
 	name = "desert eagle"
-	desc = "A robust handgun that uses .50 AE rounds."
+	desc = "The perfect handgun for shooters with a need to hit targets through a wall and behind a fridge in your neighbor's house. Uses .44 rounds."
 	icon_state = "deagle"
 	item_state = "deagle"
 	force = 14.0
@@ -134,12 +134,12 @@
 		icon_state = "[initial(icon_state)]-e"
 
 /obj/item/weapon/gun/projectile/deagle/gold
-	desc = "A gold plated gun folded over a million times by superior martian gunsmiths. Uses .50 AE rounds."
+	desc = "A gold plated gun folded over a million times by superior martian gunsmiths. Uses .44 rounds."
 	icon_state = "deagleg"
 	item_state = "deagleg"
 
 /obj/item/weapon/gun/projectile/deagle/camo
-	desc = "A Deagle brand Deagle for operators operating operationally. Uses .50 AE rounds."
+	desc = "A Deagle brand Deagle for operators operating operationally. Uses .44 rounds."
 	icon_state = "deaglecamo"
 	item_state = "deagleg"
 
