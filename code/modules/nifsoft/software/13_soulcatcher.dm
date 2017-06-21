@@ -72,6 +72,11 @@
 			var/mob/living/carbon/brain/caught_soul/CS = brainmob
 			to_chat(CS,"<b>\[\icon[nif.big_icon]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\"")
 
+		for(var/mob in player_list)
+			var/mob/M = mob
+			if(M.stat == DEAD && !M.forbid_seeing_deadchat && M.is_preference_enabled(/datum/client_preference/ghost_ears))
+				to_chat(M,"<b>\[\icon[nif.big_icon]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\"")
+
 	proc/emote_into(var/message, var/mob/living/sender)
 		var/sender_name = sender.name
 		log_nme("[sender_name]/[sender.key] : [message]",nif.human)
@@ -80,6 +85,11 @@
 		for(var/brainmob in brainmobs)
 			var/mob/living/carbon/brain/caught_soul/CS = brainmob
 			to_chat(CS,"<b>\[\icon[nif.big_icon]NIF\]</b> <b>[sender_name]</b> [message]")
+
+		for(var/mob in player_list)
+			var/mob/M = mob
+			if(M.stat == DEAD && !M.forbid_seeing_deadchat && M.is_preference_enabled(/datum/client_preference/ghost_sight))
+				to_chat(M,"<b>\[\icon[nif.big_icon]NIF\]</b> <b>[sender_name]</b> [message]")
 
 	proc/show_settings(var/mob/living/carbon/human/H)
 		set waitfor = FALSE
