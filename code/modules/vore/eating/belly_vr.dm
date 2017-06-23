@@ -183,6 +183,8 @@
 		var/raw_message = pick(examine_messages)
 
 		formatted_message = replacetext(raw_message,"%belly",lowertext(name))
+		formatted_message = replacetext(formatted_message,"%pred",owner)
+		formatted_message = replacetext(formatted_message,"%prey",english_list(internal_contents))
 
 		return("<span class='warning'>[formatted_message]</span><BR>")
 
