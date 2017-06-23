@@ -43,15 +43,12 @@
 	var/mob/living/carbon/human/friend
 	var/tamed = 0
 
-/mob/living/simple_animal/otie/fluff //gets the pet2tame feature. starts out hostile tho so get gamblin'
+/mob/living/simple_animal/otie/frond //gets the pet2tame feature. starts out hostile tho so get gamblin'
 	name = "otie"
 	desc = "The classic bioengineered longdog. This one might even tolerate you!"
-	icon_state = "otie"
-	icon_living = "otie"
-	icon_rest = "otie_rest"
 	faction = "neutral"
 
-/mob/living/simple_animal/otie/fluff/cotie //same as above but has a little collar :v
+/mob/living/simple_animal/otie/frond/cotie //same as above but has a little collar :v
 	name = "tamed otie"
 	desc = "The classic bioengineered longdog. This one has a nice little collar on its neck. However a proper domesticated otie is an oxymoron and the collar is likely just a decoration."
 	icon_state = "cotie"
@@ -59,7 +56,7 @@
 	icon_rest = "cotie_rest"
 	faction = "neutral"
 
-/mob/living/simple_animal/otie/fluff/security //tame by default unless you're a marked crimester. can be befriended to follow with pets tho.
+/mob/living/simple_animal/otie/frond/security //tame by default unless you're a marked crimester. can be befriended to follow with pets tho.
 	name = "guard otie"
 	desc = "The V.A.R.M.A.corp bioengineering division flagship product on trained optimal snowflake guard dogs."
 	icon_state = "sotie"
@@ -99,7 +96,7 @@
 		else
 			return found_atom
 
-/mob/living/simple_animal/otie/fluff/security/Found(var/atom/found_atom)
+/mob/living/simple_animal/otie/frond/security/Found(var/atom/found_atom)
 	if(!SA_attackable(found_atom))
 		return null
 	if(istype(found_atom,/mob/living/simple_animal/mouse))
@@ -120,12 +117,12 @@
 		else
 			return found_atom
 
-/mob/living/simple_animal/otie/fluff/security/proc/check_threat(var/mob/living/M)
+/mob/living/simple_animal/otie/frond/security/proc/check_threat(var/mob/living/M)
 	if(!M || !ishuman(M) || M.stat == DEAD || src == M)
 		return 0
 	return M.assess_perp(0, 0, 0, check_records, check_arrest)
 
-/mob/living/simple_animal/otie/fluff/security/set_target(var/mob/M)
+/mob/living/simple_animal/otie/frond/security/set_target(var/mob/M)
 	ai_log("SetTarget([M])",2)
 	if(!M || (world.time - last_target_time < 5 SECONDS) && target_mob)
 		ai_log("SetTarget() can't set it again so soon",3)
@@ -153,7 +150,7 @@
 	return 0
 
 
-/mob/living/simple_animal/otie/fluff/security/proc/target_name(mob/living/T)
+/mob/living/simple_animal/otie/frond/security/proc/target_name(mob/living/T)
 	if(ishuman(T))
 		var/mob/living/carbon/human/H = T
 		return H.get_id_name("unidentified person")
@@ -161,7 +158,7 @@
 
 //Basic friend AI
 
-/mob/living/simple_animal/otie/fluff/Life()
+/mob/living/simple_animal/otie/frond/Life()
 	. = ..()
 	if(!. || ai_inactive || !friend) return
 

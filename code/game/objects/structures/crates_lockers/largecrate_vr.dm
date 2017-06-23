@@ -53,8 +53,8 @@
 						/mob/living/simple_animal/hostile/bear;0.5,
 						/mob/living/simple_animal/hostile/bear/brown;0.5,
 						/mob/living/simple_animal/hostile/carp,
-						/mob/living/simple_animal/otie/fluff;0.5,
-						/mob/living/simple_animal/otie/fluff/cotie;0.5,
+						/mob/living/simple_animal/otie/frond;0.5,
+						/mob/living/simple_animal/otie/frond/cotie;0.5,
 						/mob/living/simple_animal/hostile/mimic)
 	..()
 
@@ -79,4 +79,4 @@
 	desc = "The V.A.R.M.A.corp bioengineering division flagship product on trained optimal snowflake guard dogs."
 	icon = 'icons/obj/storage_vr.dmi'
 	icon_state = "sotiecrate"
-	held_type = /mob/living/simple_animal/otie/fluff/security
+	held_type = /mob/living/simple_animal/otie/frond/security
