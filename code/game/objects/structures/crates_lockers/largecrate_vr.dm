@@ -53,8 +53,8 @@
 						/mob/living/simple_animal/hostile/bear;0.5,
 						/mob/living/simple_animal/hostile/bear/brown;0.5,
 						/mob/living/simple_animal/hostile/carp,
-						/mob/living/simple_animal/otie/fluff,
-						/mob/living/simple_animal/otie/fluff/cotie,
+						/mob/living/simple_animal/otie/fluff;0.5,
+						/mob/living/simple_animal/otie/fluff/cotie;0.5,
 						/mob/living/simple_animal/hostile/mimic)
 	..()
 

@@ -1,4 +1,4 @@
-/mob/living/simple_animal/otie //Spawn this one only if you're looking for a bad time.
+/mob/living/simple_animal/otie //Spawn this one only if you're looking for a bad time. Not friendly.
 	name = "otie"
 	desc = "The classic bioengineered longdog."
 	icon = 'icons/mob/vore64x32.dmi'
@@ -8,8 +8,8 @@
 	icon_rest = "otie_rest"
 	faction = "otie"
 	recruitable = 1
-	maxHealth = 120
-	health = 120
+	maxHealth = 100
+	health = 100
 	minbodytemp = 200
 	move_to_delay = 4
 	hostile = 1
@@ -43,7 +43,7 @@
 	var/mob/living/carbon/human/friend
 	var/tamed = 0
 
-/mob/living/simple_animal/otie/fluff
+/mob/living/simple_animal/otie/fluff //gets the pet2tame feature. starts out hostile tho so get gamblin'
 	name = "otie"
 	desc = "The classic bioengineered longdog. This one might even tolerate you!"
 	icon_state = "otie"
@@ -51,7 +51,7 @@
 	icon_rest = "otie_rest"
 	faction = "neutral"
 
-/mob/living/simple_animal/otie/fluff/cotie
+/mob/living/simple_animal/otie/fluff/cotie //same as above but has a little collar :v
 	name = "tamed otie"
 	desc = "The classic bioengineered longdog. This one has a nice little collar on its neck. However a proper domesticated otie is an oxymoron and the collar is likely just a decoration."
 	icon_state = "cotie"
@@ -59,7 +59,7 @@
 	icon_rest = "cotie_rest"
 	faction = "neutral"
 
-/mob/living/simple_animal/otie/fluff/security
+/mob/living/simple_animal/otie/fluff/security //tame by default unless you're a marked crimester. can be befriended to follow with pets tho.
 	name = "guard otie"
 	desc = "The V.A.R.M.A.corp bioengineering division flagship product on trained optimal snowflake guard dogs."
 	icon_state = "sotie"
@@ -68,7 +68,7 @@
 	icon_dead = "sotie-dead"
 	faction = "neutral"
 	tamed = 1
-	maxHealth = 150
+	maxHealth = 150 //armored or something
 	health = 150
 	loot_list = list(/obj/item/clothing/glasses/sunglasses/sechud,/obj/item/clothing/suit/armor/vest/alt)
 
