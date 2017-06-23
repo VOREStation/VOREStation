@@ -178,7 +178,7 @@
     			the Ares Confederation was quickly established under the leadership of \
 	 			retired UNSC Colonel Rodrick Gellaume, who is now Prime Minister."
     work = "rebel fringe government"
-    headquarters = "Paraiso a Àstrea"
+    headquarters = "Paraiso a Ã€strea"
     motto = "Liberty to the Stars!"
 
     ship_prefixes = list("UFHV" = "military", "FFHV" = "shady")
@@ -195,7 +195,7 @@
 					"Star of Tiamat",
 					"Mostly Harmless",
 					"Hero of the Revolution",
-					"Dawnstar",
+					"Dawnstar",D
 					"Freedom",
 					"Fiery Justice",
 					"Bulwark of the Free",
@@ -213,7 +213,7 @@
 					"None Of Your Business")
     destination_names = list("Drydocks of the Ares Confederation",
 						"a classified location",
-						"a Homestead on Paraiso a Àstrea",
+						"a Homestead on Paraiso a Ã€strea",
 						"a contested sector of ArCon space",
 						"one of our free colonies",
 						"the Gateway 98-C at Arest",
@@ -224,3 +224,29 @@
 						"a settlement needing our help",
 						"Forward Base Sigma-Alpha in ArCon space")
 
+/datum/lore/organization/gov/Scion
+    name = "Scion Imperium"
+    short_name = "Scion"
+    desc = "A Imperium of Desert Elves, slowly expanding and exploring the galaxy on there own terms instead of those of others./
+		The group is rather small, with only three cruisers and two frigates, and two worlds, one that is a colony./
+		There ships are crewed mostly by a clan dedicated to the running of them and space stations, with small amounts of troops of the infantry clan./
+		Despite there lack of ships, there ground forces are somewhat formidable, carrying heavy weaponry and powered armour."
+    history = "Hailing from the desert world of Scion, the Imperium is somewhat old, originally founded in its modern form in \
+    			the year of 1600CE on the calander of Earth, or 0 on the Scion calander, \
+	 			but in its current state is a small nation on a galactic scale, led by Imperatrix Limath (Li-Math)."
+    work = "Micro Isolationist Imperium"
+    headquarters = "Lathwin, Scion B0L"
+    motto = "For the Imperium!"
+
+    ship_prefixes = list("SDFS" = "military")
+    ship_names = list("Imperator",
+					"Desert Heat",
+					"Motionless",
+					"Long God",
+					"Water Messenger")
+    destination_names = list("Scion Orbital Drydocks",
+				"A diplomatic mission to The Ares Confederation",
+				"A diplomatic mission to The Federation",
+				"A diplomatic mission to SolGov",
+				"Multiple systems to survey",
+				"the colony of Xilmuth")
