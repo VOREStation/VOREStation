@@ -245,8 +245,11 @@
 					"Long God",
 					"Water Messenger")
     destination_names = list("Scion Orbital Drydocks",
-				"A diplomatic mission to The Ares Confederation",
-				"A diplomatic mission to The Federation",
-				"A diplomatic mission to SolGov",
+				"a diplomatic mission to The Ares Confederation",
+				"a diplomatic mission to The Federation",
+				"a diplomatic mission to SolGov",
 				"Multiple systems to survey",
-				"the colony of Xilmuth")
+				"the colony of Xilmuth",
+				"a standard anti-pirate patrol")
+
+
