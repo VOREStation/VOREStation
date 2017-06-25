@@ -79,6 +79,8 @@
 		Think through your actions and make the roleplay immersive! <b>Please remember all \
 		rules aside from those without explicit exceptions apply to antagonists.</b>"
 
+	var/can_use_aooc = TRUE                // If true, will be given the AOOC verb, along with the ability to use it.
+
 /datum/antagonist/New()
 	..()
 	cur_max = hard_cap
