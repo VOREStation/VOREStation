@@ -6,7 +6,7 @@
 	if(config.kick_inactive)
 		for(last_object in clients)
 			var/client/C = last_object
-			if(!C.holder && C.is_afk(config.kick_inactive MINUTES))
+			if(C.is_afk(config.kick_inactive MINUTES))
 				if(!istype(C.mob, /mob/observer/dead))
 					log_access("AFK: [key_name(C)]")
 					C << "<SPAN CLASS='warning'>You have been inactive for more than [config.kick_inactive] minute\s and have been disconnected.</SPAN>"
