@@ -159,7 +159,7 @@
 			/obj/item/device/kit/paint/gygax/recitence
 			)
 	name = "Random Gygax exosuit modkit"
-
+/*
 /datum/supply_packs/robotics/jumper_cables
 	name = "Jumper kit crate"
 	contains = list(
@@ -169,3 +169,4 @@
 	containertype = /obj/structure/closet/crate/secure/science
 	containername = "Jumper kit crate"
 	access = access_robotics
+*/
