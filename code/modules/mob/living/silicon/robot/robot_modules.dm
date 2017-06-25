@@ -400,6 +400,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/device/lightreplacer(src)
 	src.modules += new /obj/item/device/pipe_painter(src)
 	src.modules += new /obj/item/device/floor_painter(src)
+	src.modules += new /obj/item/weapon/inflatable_dispenser/robot(src)
 	src.emag = new /obj/item/weapon/melee/baton/robot/arm(src)
 	src.modules += new /obj/item/device/geiger(src)
 	src.modules += new /obj/item/weapon/rcd/borg(src)
@@ -408,7 +409,8 @@ var/global/list/robot_modules = list(
 
 	var/datum/matter_synth/metal = new /datum/matter_synth/metal(40000)
 	var/datum/matter_synth/glass = new /datum/matter_synth/glass(40000)
-	var/datum/matter_synth/plasteel = new /datum/matter_synth/plasteel()
+	var/datum/matter_synth/plasteel = new /datum/matter_synth/plasteel(20000)
+
 	var/datum/matter_synth/wire = new /datum/matter_synth/wire()
 	synths += metal
 	synths += glass
@@ -436,12 +438,12 @@ var/global/list/robot_modules = list(
 	C.synths = list(wire)
 	src.modules += C
 
-	var/obj/item/stack/tile/floor/cyborg/F = new /obj/item/stack/tile/floor/cyborg(src)
-	F.synths = list(metal)
-	src.modules += F
+	var/obj/item/stack/material/cyborg/plasteel/P = new (src)
+	P.synths = list(plasteel)
+	src.modules += P
 
-	var/obj/item/stack/material/cyborg/plasteel/S = new (src)
-	S.synths = list(plasteel)
+	var/obj/item/stack/tile/floor/cyborg/S = new /obj/item/stack/tile/floor/cyborg(src)
+	S.synths = list(metal)
 	src.modules += S
 
 	var/obj/item/stack/material/cyborg/glass/reinforced/RG = new (src)
