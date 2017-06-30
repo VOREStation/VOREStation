@@ -163,6 +163,10 @@ BLIND     // can't see anything
 	action_button_name = "Toggle Goggles"
 	vision_flags = SEE_OBJS
 
+/obj/item/clothing/glasses/material/prescription
+	name = "Prescription Optical Material Scanner"
+	prescription = 1
+
 /obj/item/clothing/glasses/regular
 	name = "Prescription Glasses"
 	desc = "Made by Nerd. Co."
