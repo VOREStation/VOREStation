@@ -5358,7 +5358,7 @@
 "bZc" = (/obj/structure/railing{dir = 4},/obj/structure/railing{dir = 1},/turf/simulated/floor/water/pool,/area/tether/surfacebase/atrium_one)
 "bZd" = (/obj/structure/railing{dir = 8},/turf/simulated/floor/water/pool,/area/tether/surfacebase/atrium_one)
 "bZe" = (/obj/structure/railing{dir = 4},/turf/simulated/floor/water/pool,/area/tether/surfacebase/atrium_one)
-"bZf" = (/mob/living/simple_animal/fish/koi,/turf/simulated/floor/water/pool,/area/tether/surfacebase/atrium_one)
+"bZf" = (/mob/living/simple_animal/fish/koi/poisonous,/turf/simulated/floor/water/pool,/area/tether/surfacebase/atrium_one)
 "bZg" = (/obj/structure/railing,/turf/simulated/floor/water/pool,/area/tether/surfacebase/atrium_one)
 "bZh" = (/obj/structure/railing{dir = 8},/obj/structure/railing,/turf/simulated/floor/water/pool,/area/tether/surfacebase/atrium_one)
 "bZi" = (/obj/structure/railing,/obj/structure/railing{dir = 4},/turf/simulated/floor/water/pool,/area/tether/surfacebase/atrium_one)

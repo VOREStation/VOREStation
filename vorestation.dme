@@ -1894,6 +1894,7 @@
 #include "code\modules\mob\living\simple_animal\animals\crab.dm"
 #include "code\modules\mob\living\simple_animal\animals\farm_animals.dm"
 #include "code\modules\mob\living\simple_animal\animals\fish.dm"
+#include "code\modules\mob\living\simple_animal\animals\fish_vr.dm"
 #include "code\modules\mob\living\simple_animal\animals\fluffy_vr.dm"
 #include "code\modules\mob\living\simple_animal\animals\fox_vr.dm"
 #include "code\modules\mob\living\simple_animal\animals\giant_spider.dm"
