@@ -19,6 +19,11 @@
 	New()
 		create_reagents(1000)
 
+	Destroy()
+		qdel_null(detonator)
+		qdel_null_list(beakers)
+		return ..()
+
 	attack_self(mob/user as mob)
 		if(!stage || stage==1)
 			if(detonator)

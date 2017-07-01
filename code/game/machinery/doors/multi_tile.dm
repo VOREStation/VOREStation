@@ -12,11 +12,9 @@
 		create_fillers()
 
 /obj/machinery/door/airlock/multi_tile/Destroy()
-	if(filler1)
-		qdel(filler1)
-	if(filler2)
-		qdel(filler2)
-	..()
+	qdel_null(filler1)
+	qdel_null(filler2)
+	return ..()
 
 /obj/machinery/door/airlock/multi_tile/Move()
 	. = ..()
@@ -82,4 +80,4 @@
 
 /obj/machinery/door/airlock/multi_tile/metal/mait
 	icon = 'icons/obj/doors/Door2x1_Maint.dmi'
-	req_one_access = list(access_maint_tunnels)
+	//req_one_access = list(access_maint_tunnels) //VOREStaiton Edit - Maintenance is open access

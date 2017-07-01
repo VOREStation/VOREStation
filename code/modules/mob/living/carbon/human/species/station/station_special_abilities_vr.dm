@@ -17,13 +17,13 @@
 			return
 
 		if(C.stat == DEAD) //Uh oh, you died!
-			if(C.reagents.has_reagent("nutriment")) //Let's hope you have nutriment in you.... If not
+			if(C.hasnutriment()) //Let's hope you have nutriment in you.... If not
 				var/time = (500+1/((nutrition_used/100+1)/1300))
 				C.weakened = 10000 //Since it takes 1 tick to lose one weaken. Due to prior rounding errors, you'd sometimes unweaken before regenning. This fixes that.
 				C.reviving = 1
 				C.canmove = 0 //Make them unable to move. In case they somehow get up before the delay.
 				C << "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds."
-				C.in_stasis = 1
+				C.does_not_breathe = 1 //effectively makes them spaceworthy while regenning
 
 				spawn(time SECONDS)
 					if(C) //Runtime prevention.
@@ -42,7 +42,7 @@
 			C.reviving = 1
 			C.canmove = 0 //Make them unable to move. In case they somehow get up before the delay.
 			C << "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds."
-			C.in_stasis = 1
+			C.does_not_breathe = 1 //effectively makes them spaceworthy while regenning
 
 			spawn(time SECONDS)
 				if(C.stat != DEAD) //If they're still alive after regenning.
@@ -50,17 +50,26 @@
 					C.verbs += /mob/living/carbon/human/proc/hatch
 					return
 				else if(C.stat == DEAD)
-					if(C.reagents.has_reagent("nutriment")) //Let's hope you have nutriment in you.... If not
+					if(C.hasnutriment()) //Let's hope you have nutriment in you.... If not
 						C << "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>"
 						C.verbs += /mob/living/carbon/human/proc/hatch
 					else //Dead until nutrition injected.
 						C << "Your body was unable to regenerate, what few living cells remain require additional nutrients to complete the process."
+						C.reviving = 0 // so they can try again when they're given a kickstart
 						return
 				else
 					return //Something went wrong
 		else
 			return //Something went wrong
 
+
+
+/mob/living/carbon/human/proc/hasnutriment()
+	if (src.bloodstr.has_reagent("nutriment", 30) || src.bloodstr.has_reagent("protein", 15)) //protein needs half as much. For reference, a steak contains 9u protein.
+		return 1
+	else if (src.ingested.has_reagent("nutriment", 60) || src.ingested.has_reagent("protein", 30)) //try forcefeeding them, why not. Less effective.
+		return 1
+	else return 0
 
 
 /mob/living/carbon/human/proc/hatch()
@@ -85,7 +94,7 @@
 					var/T = get_turf(src)
 					new /obj/effect/gibspawner/human/scree(T)
 					var/braindamage = C.brainloss/2 //If you have 100 brainloss, it gives you 50.
-					C.in_stasis = 0
+					C.does_not_breathe = 0 //start breathing again
 					C.revive() // I did have special snowflake code, but this is easier.
 					C.weakened = 2 //Not going to let you get up immediately. 2 ticks before you get up. Overrides the above 10000 weaken.
 					C.nutrition = old_nutrition
@@ -119,7 +128,7 @@
 				C.drop_from_inventory(W)
 			spawn(3600 SECONDS) //1 hour wait until you can revive again.
 				C.reviving = 0
-			C.in_stasis = 0
+			C.does_not_breathe = 0 //start breathing again
 			C.verbs -= /mob/living/carbon/human/proc/hatch
 			return
 		else

@@ -323,3 +323,12 @@
 				return 1
 		else
 			return 1
+
+/obj/item/clothing/head/helmet/space/rig
+	phoronproof = 1
+/obj/item/clothing/gloves/gauntlets/rig
+	phoronproof = 1
+/obj/item/clothing/shoes/magboots/rig
+	phoronproof = 1
+/obj/item/clothing/suit/space/rig
+	phoronproof = 1

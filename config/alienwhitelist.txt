@@ -3,8 +3,10 @@ zekesturm - Xenomorph Hybrid
 bothnevarbackwards - Diona
 jemli - Gutterband
 xioen - Xenomorph Hybrid
+xioen - Diona
 sepulchre - Vox
 sepulchre - Daemon
+sepulchre - Xenomorph Hybrid
 zammyman215 - Vox
 hawkerthegreat - Vox
 1r1s - Daemon
@@ -13,6 +15,7 @@ natje - Xenochimera
 zalvine - Enochian
 rikaru19xjenkins - Xenochimera
 rikaru19xjenkins  - Xenomorph Hybrid
+rixunie - Diona
 seiga - Vox
 benemuel - Enochian
 benemuel - Daemon
@@ -21,3 +24,5 @@ vorrarkul - Daemon
 pontifexminimus - Enochian
 pontifexminimus - Daemon
 silvertalismen - Xenochimera
+silverTalismen - Diona
+cameron653 - Xenomorph Hybrid

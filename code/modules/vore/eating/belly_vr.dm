@@ -142,15 +142,15 @@
 		var/mob/living/OW = owner
 		if(ML.absorbed)
 			ML.absorbed = 0
-			ML.reagents = new/datum/reagents(1000,M) //Human reagent datums hold 1000
-			if(OW.reagents && istype(OW.reagents,/datum/reagents)) //Does the pred have a reagents list?
-				var/datum/reagents/OR = owner.reagents
+			if(ishuman(M) && ishuman(OW))
+				var/mob/living/carbon/human/Prey = M
+				var/mob/living/carbon/human/Pred = OW
+				// TODO - If we ever find a way to share reagent containers, un-share them here
 				var/absorbed_count = 2 //Prey that we were, plus the pred gets a portion
 				for(var/mob/living/P in internal_contents)
 					if(P.absorbed)
 						absorbed_count++
-
-				OR.trans_to(ML,OR.total_volume / absorbed_count)
+				Pred.bloodstr.trans_to(Prey, Pred.reagents.total_volume / absorbed_count)
 
 	var/datum/belly/B = check_belly(owner)
 	if(B)
@@ -183,6 +183,8 @@
 		var/raw_message = pick(examine_messages)
 
 		formatted_message = replacetext(raw_message,"%belly",lowertext(name))
+		formatted_message = replacetext(formatted_message,"%pred",owner)
+		formatted_message = replacetext(formatted_message,"%prey",english_list(internal_contents))
 
 		return("<span class='warning'>[formatted_message]</span><BR>")
 
@@ -271,11 +273,12 @@
 			_handle_digested_item(W,M)
 
 	//Reagent transfer
-	if(M.reagents && istype(M.reagents,/datum/reagents))
-		var/mob/living/OW = owner
-		if(OW.reagents && istype(OW.reagents,/datum/reagents)) //Does the pred have a reagents list to give to?
-			var/datum/reagents/RL = M.reagents
-			RL.trans_to(owner,RL.total_volume*0.5)
+	if(ishuman(M) && ishuman(owner))
+		var/mob/living/carbon/human/Pred = owner
+		var/mob/living/carbon/human/Prey = M
+		Prey.bloodstr.trans_to_holder(Pred.bloodstr, Prey.bloodstr.total_volume, 0.5, TRUE) // Copy=TRUE because we're deleted anyway
+		Prey.ingested.trans_to_holder(Pred.bloodstr, Prey.ingested.total_volume, 0.5, TRUE) // Therefore don't bother spending cpu
+		Prey.touching.trans_to_holder(Pred.bloodstr, Prey.touching.total_volume, 0.5, TRUE) // On updating the prey's reagents
 
 	// Delete the digested mob
 	qdel(M)
@@ -323,16 +326,17 @@
 	M.absorbed = 1
 	M << "<span class='notice'>[owner]'s [name] absorbs your body, making you part of them.</span>"
 	owner << "<span class='notice'>Your [name] absorbs [M]'s body, making them part of you.</span>"
-	var/mob/living/OW = owner
 
-	//Reagent sharing for absorbed with pred
-	if(OW.reagents && istype(OW.reagents,/datum/reagents)) //Does the pred have a reagent list?
-		if(M.reagents && istype(M.reagents,/datum/reagents)) //Does the prey have a reagent list?
-			var/datum/reagents/OR = owner.reagents
-			var/datum/reagents/PR = M.reagents
-			PR.trans_to(owner,PR.total_volume)
-			M.reagents = OR
-			del(PR)
+	if(ishuman(M) && ishuman(owner))
+		var/mob/living/carbon/human/Prey = M
+		var/mob/living/carbon/human/Pred = owner
+		//Reagent sharing for absorbed with pred - Copy so both pred and prey have these reagents.
+		Prey.bloodstr.trans_to_holder(Pred.bloodstr, Prey.bloodstr.total_volume, copy = TRUE)
+		Prey.ingested.trans_to_holder(Pred.bloodstr, Prey.ingested.total_volume, copy = TRUE)
+		Prey.touching.trans_to_holder(Pred.bloodstr, Prey.touching.total_volume, copy = TRUE)
+		// TODO - Find a way to make the absorbed prey share the effects with the pred.
+		// Currently this is infeasible because reagent containers are designed to have a single my_atom, and we get
+		// problems when A absorbs B, and then C absorbs A,  resulting in B holding onto an invalid reagent container.
 
 	//This is probably already the case, but for sub-prey, it won't be.
 	M.forceMove(owner)

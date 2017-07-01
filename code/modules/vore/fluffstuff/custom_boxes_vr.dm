@@ -163,32 +163,30 @@
 
 	New()
 		..() //Might look like a lot... but all small items.
-		new /obj/item/weapon/reagent_containers/hypospray/vr/fluff/aronai(src)
-		new /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff/aro_st(src)
-		new /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff/aro_bt(src)
-		new /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff/aro_bu(src)
-		new /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff/aro_tx(src)
 		//Centcom stuff and permit
 		new /obj/item/weapon/card/id/centcom/fluff/aronai(src)
 		new /obj/item/fluff/permit/aronai_kadigan(src)
-		new /obj/item/clothing/glasses/omnihud/med/fluff/aronai(src)
 		//Gun and holster
-		new /obj/item/weapon/gun/energy/netgun(src)
-		new /obj/item/clothing/accessory/holster/leg(src)
+		new /obj/item/weapon/gun/projectile/nsfw(src)
+		new /obj/item/ammo_magazine/nsfw_mag(src)
+		new /obj/item/ammo_casing/nsfw_batt/stun(src)
+		new /obj/item/ammo_casing/nsfw_batt/stun(src)
+		new /obj/item/ammo_casing/nsfw_batt/net(src)
+		new /obj/item/clothing/accessory/holster(src)
 
 //Aerowing:Sebastian Aji
 /obj/item/weapon/storage/box/fluff/sebastian_aji
 	name = "Sebastian's Lumoco Arms P3 Box"
 	has_items = list(
 		/obj/item/weapon/gun/projectile/pistol,
-		/obj/item/ammo_magazine/mc9mm/flash,
-		/obj/item/ammo_magazine/mc9mm/flash,
+		/obj/item/ammo_magazine/m9mm/flash,
+		/obj/item/ammo_magazine/m9mm/flash,
 		/obj/item/fluff/permit/sebastian_aji)
 
 /obj/item/weapon/storage/box/fluff/briana_moore
 	name = "Briana's Derringer Box"
 	has_items = list(
-		/obj/item/weapon/gun/projectile/derringer,
+		/obj/item/weapon/gun/projectile/derringer/fluff/briana,
 		/obj/item/fluff/permit/briana_moore)
 
 

@@ -225,7 +225,7 @@
 		user.visible_message("[user] begins to lick off \the [target.name].", "<span class='notice'>You begin to lick off \the [target.name]...</span>")
 		if(do_after (user, 50))
 			user << "<span class='notice'>You finish licking off \the [target.name].</span>"
-			del(target)
+			qdel(target)
 			var/mob/living/silicon/robot.R = user
 			R.cell.charge = R.cell.charge + 50
 	else if(istype(target,/obj/item))
@@ -234,7 +234,7 @@
 			if(do_after (user, 50))
 				user.visible_message("[user] finishes eating \the [target.name].", "<span class='notice'>You finish eating \the [target.name].</span>")
 				user << "<span class='notice'>You finish off \the [target.name].</span>"
-				del(target)
+				qdel(target)
 				var/mob/living/silicon/robot.R = user
 				R.cell.charge = R.cell.charge + 250
 			return
@@ -246,13 +246,13 @@
 				var/mob/living/silicon/robot.R = user
 				var/obj/item/weapon/cell.C = target
 				R.cell.charge = R.cell.charge + (C.maxcharge / 3)
-				del(target)
+				qdel(target)
 			return
 		user.visible_message("[user] begins to lick \the [target.name] clean...", "<span class='notice'>You begin to lick \the [target.name] clean...</span>")
 		if(do_after (user, 50))
 			user << "<span class='notice'>You clean \the [target.name].</span>"
 			var/obj/effect/decal/cleanable/C = locate() in target
-			del(C)
+			qdel(C)
 			target.clean_blood()
 	else if(ishuman(target))
 		if(src.emagged)
@@ -282,7 +282,7 @@
 		if(do_after (user, 50))
 			user << "<span class='notice'>You clean \the [target.name].</span>"
 			var/obj/effect/decal/cleanable/C = locate() in target
-			del(C)
+			qdel(C)
 			target.clean_blood()
 	return
 

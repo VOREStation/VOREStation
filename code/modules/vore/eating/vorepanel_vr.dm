@@ -10,7 +10,7 @@
 
 /mob/living/proc/insidePanel()
 	set name = "Vore Panel"
-	set category = "Vore"
+	set category = "IC"
 
 	var/datum/vore_look/picker_holder = new()
 	picker_holder.loop = picker_holder
@@ -30,6 +30,11 @@
 	var/show_interacts = 0
 	var/datum/browser/popup
 	var/loop = null;  // Magic self-reference to stop the handler from being GC'd before user takes action.
+
+/datum/vore_look/Destroy()
+	loop = null
+	selected = null
+	return QDEL_HINT_HARDDEL // TODO - Until I can better analyze how this weird thing works, lets be safe
 
 /datum/vore_look/Topic(href,href_list[])
 	if (vp_interact(href, href_list))
@@ -243,7 +248,7 @@
 	for(var/H in href_list)
 
 	if(href_list["close"])
-		del(src)  // Cleanup
+		qdel(src)  // Cleanup
 		return
 
 	if(href_list["show_int"])
@@ -451,6 +456,9 @@
 	if(href_list["b_mode"])
 		var/list/menu_list = selected.digest_modes
 		if(istype(usr,/mob/living/carbon/human))
+			var/mob/living/carbon/human/H = usr
+			if(H.species.vore_numbing)
+				menu_list += DM_DIGEST_NUMB
 			menu_list += selected.transform_modes
 
 		if(selected.digest_modes.len == 1) // Don't do anything
@@ -514,7 +522,7 @@
 					selected.set_messages(new_message,"smi")
 
 			if("Examine Message (when full)")
-				var/new_message = input(user,"These are sent to people who examine you when this belly has contents. Write them in 3rd person ('Their %belly is bulging'). Do not use %pred or %prey in this type."+help,"Examine Message (when full)",selected.get_messages("em")) as message
+				var/new_message = input(user,"These are sent to people who examine you when this belly has contents. Write them in 3rd person ('Their %belly is bulging')."+help,"Examine Message (when full)",selected.get_messages("em")) as message
 				if(new_message)
 					selected.set_messages(new_message,"em")
 

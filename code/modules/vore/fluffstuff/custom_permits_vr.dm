@@ -77,7 +77,7 @@
 	<b>DOB:</b>  12/Jul/2530 | <b>HEIGHT:</b> 188cm | <b>SEX:</b> Male
 
 	The individual named above is licensed by the Nanotrasen Department of Civil Protection
-	to carry one KIN (foreign) personal defense weapon, non-lethal only.
+	to carry one KHI (foreign) personal defense weapon, non-lethal only.
 	This license expires on 16/Feb/2562 and must be renewed by CentCom prior to this date."}
 
 // joanrisu:Joan Risu

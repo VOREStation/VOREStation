@@ -17,13 +17,9 @@
 		arscreen = new arscreen_path(src)
 
 /obj/item/clothing/glasses/omnihud/Destroy()
-	if(hud)
-		qdel(hud)
-		hud = null
-	if(arscreen)
-		qdel(arscreen)
-		arscreen = null
-	..()
+	qdel_null(hud)
+	qdel_null(arscreen)
+	. = ..()
 
 /obj/item/clothing/glasses/omnihud/dropped()
 	if(arscreen)

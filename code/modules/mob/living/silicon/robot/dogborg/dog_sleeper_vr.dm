@@ -307,7 +307,7 @@
 		update_patient()
 		return
 
-	if(prob(10))
+	if(prob(20))
 		var/churnsound = pick(
 			'sound/vore/digest1.ogg',
 			'sound/vore/digest2.ogg',
@@ -383,9 +383,11 @@
 				if (istype(T, /obj/item/device/pda))
 					var/obj/item/device/pda/PDA = T
 					if (PDA.id)
-						PDA.id.loc = src
+						PDA.id.forceMove(src)
 						PDA.id = null
-					T.Del()
+
+					qdel(T)
+
 
 				//Special case for IDs to make them digested
 			//else if (istype(T, /obj/item/weapon/card/id))
@@ -397,7 +399,7 @@
 					//Spill(T) //Needs the spill proc to be added
 					qdel(T)
 					src.update_patient()
-					src.hound.cell.charge += 10
+					src.hound.cell.charge += 120 //10 charge? that was such a practically nonexistent number it hardly gave any purpose for this bit :v *cranks up*
 		return
 
 /obj/item/device/dogborg/sleeper/process()
@@ -431,7 +433,65 @@
 	name = "Brig-Belly"
 	desc = "Equipment for a K9 unit. A mounted portable-brig that holds criminals."
 	icon = 'icons/mob/dogborg_vr.dmi'
-	icon_state = "sleeper"
+	icon_state = "sleeperb"
 	inject_amount = 10
 	min_health = -100
 	injection_chems = null //So they don't have all the same chems as the medihound!
+
+/obj/item/device/dogborg/sleeper/compactor //Janihound gut.
+	name = "garbage processor"
+	desc = "A mounted garbage compactor unit with fuel processor."
+	icon = 'icons/mob/dogborg_vr.dmi'
+	icon_state = "compactor"
+	inject_amount = 10
+	min_health = -100
+	injection_chems = null //So they don't have all the same chems as the medihound!
+	var/max_item_count = 32
+
+/obj/item/device/dogborg/sleeper/compactor/afterattack(var/atom/movable/target, mob/living/silicon/user, proximity)//GARBO NOMS
+	hound = loc
+
+	if(!istype(target))
+		return
+	if(!proximity)
+		return
+	if(target.anchored)
+		return
+	if(length(contents) > (max_item_count - 1))
+		user << "<span class='warning'>Your [src.name] is full. Eject or process contents to continue.</span>"
+		return
+
+	if(istype(target, /obj/item))
+		var/obj/target_obj = target
+		if(target_obj.w_class > ITEMSIZE_LARGE)
+			user << "<span class='warning'>\The [target] is too large to fit into your [src.name]</span>"
+			return
+		user.visible_message("<span class='warning'>[hound.name] is ingesting [target.name] into their [src.name].</span>", "<span class='notice'>You start ingesting [target] into your [src.name]...</span>")
+		if(do_after(user, 30, target) && length(contents) < max_item_count)
+			target.forceMove(src)
+			user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [target.name] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [target] slips inside.</span>")
+			playsound(hound, 'sound/vore/gulp.ogg', 50, 1)
+			if(length(contents) > 11) //grow that tum after a certain junk amount
+				hound.sleeper_r = 1
+				hound.updateicon()
+		return
+
+	else if(ishuman(target))
+		var/mob/living/carbon/human/trashman = target
+		if(patient)
+			user << "<span class='warning'>Your [src.name] is already occupied.</span>"
+			return
+		if(trashman.buckled)
+			user << "<span class='warning'>[trashman] is buckled and can not be put into your [src.name].</span>"
+			return
+		user.visible_message("<span class='warning'>[hound.name] is ingesting [trashman] into their [src.name].</span>", "<span class='notice'>You start ingesting [trashman] into your [src.name]...</span>")
+		if(do_after(user, 30, trashman) && !patient && !trashman.buckled && length(contents) < max_item_count)
+			trashman.forceMove(src)
+			trashman.reset_view(src)
+			update_patient()
+			processing_objects.Add(src)
+			user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [trashman] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [trashman] slips inside.</span>")
+			playsound(hound, 'sound/vore/gulp.ogg', 80, 1)
+		return
+	return
+//Marking shit changed again because the random travis bug is having its shenanigans again \o/

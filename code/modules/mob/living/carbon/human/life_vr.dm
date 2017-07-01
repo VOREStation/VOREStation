@@ -31,7 +31,7 @@
 				if(istype(I,/obj/item/weapon/implant/backup))
 					if(!mind)
 						holder.icon_state = "hud_backup_nomind"
-					else if(!(mind.name in transcore.body_scans))
+					else if(!(mind.name in SStranscore.body_scans))
 						holder.icon_state = "hud_backup_nobody"
 					else
 						holder.icon_state = "hud_backup_norm"
@@ -43,3 +43,10 @@
 			vantag.icon_state = vantag_pref
 		else
 			vantag.icon_state = "hudblank"
+
+//Our call for the NIF to do whatever
+/mob/living/carbon/human/proc/handle_nif()
+	if(!nif) return
+
+	//Process regular life stuff
+	nif.life()

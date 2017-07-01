@@ -73,7 +73,7 @@
 
 /mob/living/Destroy()
 	remove_all_modifiers(TRUE)
-	..()
+	return ..()
 
 // Called by Life().
 /mob/living/proc/handle_modifiers()

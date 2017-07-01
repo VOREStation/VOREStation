@@ -12,7 +12,6 @@
 	var/menu = 1 //Which menu screen to display
 	var/datum/transhuman/body_record/active_br = null
 	var/datum/transhuman/mind_record/active_mr = null
-	var/datum/transhuman/infocore/TC //Easy debugging access
 	var/organic_capable = 1
 	var/synthetic_capable = 1
 	var/obj/item/weapon/disk/transcore/disk
@@ -20,11 +19,10 @@
 /obj/machinery/computer/transhuman/resleeving/initialize()
 	..()
 	updatemodules()
-	TC = transcore
 
 /obj/machinery/computer/transhuman/resleeving/Destroy()
 	releasepods()
-	..()
+	return ..()
 
 /obj/machinery/computer/transhuman/resleeving/proc/updatemodules()
 	releasepods()
@@ -72,7 +70,7 @@
 			P.connected = src
 			P.name = "[initial(P.name)] #[pods.len]"
 			user << "<span class='notice'>You connect [P] to [src].</span>"
-	else if(istype(W, /obj/item/weapon/disk/transcore) && TC && !TC.core_dumped)
+	else if(istype(W, /obj/item/weapon/disk/transcore) && SStranscore && !SStranscore.core_dumped)
 		user.unEquip(W)
 		disk = W
 		disk.forceMove(src)
@@ -112,13 +110,13 @@
 	var/data[0]
 
 	var/bodyrecords_list_ui[0]
-	for(var/N in TC.body_scans)
-		var/datum/transhuman/body_record/BR = TC.body_scans[N]
+	for(var/N in SStranscore.body_scans)
+		var/datum/transhuman/body_record/BR = SStranscore.body_scans[N]
 		bodyrecords_list_ui[++bodyrecords_list_ui.len] = list("name" = N, "recref" = "\ref[BR]")
 
 	var/mindrecords_list_ui[0]
-	for(var/N in TC.backed_up)
-		var/datum/transhuman/mind_record/MR = TC.backed_up[N]
+	for(var/N in SStranscore.backed_up)
+		var/datum/transhuman/mind_record/MR = SStranscore.backed_up[N]
 		mindrecords_list_ui[++mindrecords_list_ui.len] = list("name" = N, "recref" = "\ref[MR]")
 
 	var/pods_list_ui[0]
@@ -197,7 +195,7 @@
 	data["spodsLen"] = spods.len
 	data["sleeversLen"] = sleevers.len
 	data["temp"] = temp
-	data["coredumped"] = transcore.core_dumped
+	data["coredumped"] = SStranscore.core_dumped
 	data["emergency"] = disk ? 1 : 0
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
@@ -238,7 +236,7 @@
 
 	else if (href_list["coredump"])
 		if(disk)
-			transcore.core_dump(disk)
+			SStranscore.core_dump(disk)
 			sleep(5)
 			visible_message("<span class='warning'>\The [src] spits out \the [disk].</span>")
 			disk.forceMove(get_turf(src))

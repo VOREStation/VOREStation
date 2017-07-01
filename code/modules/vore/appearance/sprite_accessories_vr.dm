@@ -471,6 +471,13 @@
 	desc = ""
 	icon_state = "succubus-black"
 
+/datum/sprite_accessory/tail/doublekitsune
+	name = "double kitsune tail, colorable"
+	desc = ""
+	icon_state = "doublekitsune"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/tail/succubus_color
 	name = "succubus, colorable (+wings)"
 	desc = ""
@@ -518,11 +525,19 @@
 	icon_state = "molenar-kitsune"
 	ckeys_allowed = list("molenar")
 
+/datum/sprite_accessory/tail/harpywings
+	name = "harpy wings, colorable"
+	desc = ""
+	icon_state = "harpywings"
+	do_colouration = 1
+	show_species_tail = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/tail/liquidfirefly_gazer
 	name = "gazer eyestalks (Liquidfirefly)"
 	desc = ""
 	icon_state = "liquidfirefly-eyestalks"
-	ckeys_allowed = list("liquidfirefly")
+	ckeys_allowed = list("liquidfirefly","seiga")
 
 /datum/sprite_accessory/tail/miria_fluffdragon
 	name = "fluffdragon wings+tail (Miria Masters)"
@@ -563,7 +578,13 @@
 /datum/sprite_accessory/tail/rosey
 	name = "tritail kitsune tails (Rosey)"
 	desc = ""
-	icon_state = "rosey"
+	icon_state = "rosey_three"
+	ckeys_allowed = list("joey4298")
+
+/datum/sprite_accessory/tail/rosey2
+	name = "pentatail kitsune tails (Rosey)" //I predict seven tails next. ~CK
+	desc = ""
+	icon_state = "rosey_five"
 	ckeys_allowed = list("joey4298")
 
 /datum/sprite_accessory/tail/scree
@@ -879,3 +900,10 @@
 	name = "CyberSerdy (silencedmp5a5)"
 	icon_state = "serdy_s"
 	ckeys_allowed = list("silencedmp5a5")
+
+//liquidfirefly: Ariana Scol
+/datum/sprite_accessory/tail/taur/centipede
+	name = "Centipede (liquidfirefly)"
+	icon_state = "ariana_s"
+	ckeys_allowed = list("liquidfirefly")
+	do_colouration = 0

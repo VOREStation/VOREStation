@@ -15,19 +15,17 @@
 	var/icon/preview_icon = null
 	// Mannequins are somewhat expensive to create, so cache it
 	var/mob/living/carbon/human/dummy/mannequin/mannequin = null
-	var/datum/transhuman/infocore/TC //Easy debugging access
 	var/obj/item/weapon/disk/body_record/disk = null
 
 /obj/machinery/computer/transhuman/designer/initialize()
 	..()
-	TC = transcore
 
 /obj/machinery/computer/transhuman/designer/Destroy()
 	active_br = null
 	preview_icon = null
 	mannequin = null
 	disk = null
-	..()
+	return ..()
 
 /obj/machinery/computer/transhuman/designer/dismantle()
 	if(disk)
@@ -63,8 +61,8 @@
 
 	if(menu == "2")
 		var/bodyrecords_list_ui[0]
-		for(var/N in TC.body_scans)
-			var/datum/transhuman/body_record/BR = TC.body_scans[N]
+		for(var/N in SStranscore.body_scans)
+			var/datum/transhuman/body_record/BR = SStranscore.body_scans[N]
 			bodyrecords_list_ui[++bodyrecords_list_ui.len] = list("name" = N, "recref" = "\ref[BR]")
 		if(bodyrecords_list_ui.len)
 			data["bodyrecords"] = bodyrecords_list_ui
@@ -241,8 +239,8 @@
 	return preview_icon
 
 /obj/machinery/computer/transhuman/designer/proc/update_preview_mob(var/mob/living/carbon/human/H)
-	ASSERT(!deleted(H))
-	ASSERT(!deleted(active_br))
+	ASSERT(!QDELETED(H))
+	ASSERT(!QDELETED(active_br))
 	//log_debug("designer.update_preview_mob([H]) active_br = \ref[active_br]")
 	//Get the DNA and generate a new mob
 	var/datum/dna2/record/R = active_br.mydna

@@ -164,6 +164,14 @@
 /obj/effect/decal/cleanable/can_fall()
 	return TRUE
 
+// These didn't fall anyways but better to nip this now just incase.
+/atom/movable/lighting_overlay/can_fall()
+	return FALSE
+
+// Mechas are anchored, so we need to override.
+/obj/mecha/can_fall()
+	return TRUE
+
 /obj/item/pipe/can_fall()
 	. = ..()
 
@@ -291,3 +299,33 @@
 	apply_damage(rand(0, damage), BRUTE, BP_R_ARM)
 	Weaken(4)
 	updatehealth()
+
+/obj/mecha/handle_fall(var/turf/landing)
+	// First things first, break any lattice
+	var/obj/structure/lattice/lattice = locate(/obj/structure/lattice, loc)
+	if(lattice)
+		// Lattices seem a bit too flimsy to hold up a massive exosuit.
+		lattice.visible_message("<span class='danger'>\The [lattice] collapses under the weight of \the [src]!</span>")
+		qdel(lattice)
+
+	// Then call parent to have us actually fall
+	return ..()
+
+/obj/mecha/fall_impact(var/atom/hit_atom)
+	// Tell the pilot that they just dropped down with a superheavy mecha.
+	if(occupant)
+		to_chat(occupant, "<span class='warning'>\The [src] crashed down onto \the [hit_atom]!</span>")
+
+	// Anything on the same tile as the landing tile is gonna have a bad day.
+	for(var/mob/living/L in hit_atom.contents)
+		L.visible_message("<span class='danger'>\The [src] crushes \the [L] as it lands on them!</span>")
+		L.adjustBruteLoss(rand(70, 100))
+		L.Weaken(8)
+
+	// Now to hurt the mech.
+	take_damage(rand(15, 30))
+
+	// And hurt the floor.
+	if(istype(hit_atom, /turf/simulated/floor))
+		var/turf/simulated/floor/ground = hit_atom
+		ground.break_tile()

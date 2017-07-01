@@ -12,14 +12,19 @@
 	var/reviving = 0					// Only used for creatures that have the xenochimera regen ability, so far.
 	var/metabolism = 0.0015
 	var/vore_taste = null				// What the character tastes like
+	var/no_vore = 0 					// If the character/mob can vore.
 
 //
 // Hook for generic creation of stuff on new creatures
 //
 /hook/living_new/proc/vore_setup(mob/living/M)
-	M.verbs += /mob/living/proc/insidePanel
 	M.verbs += /mob/living/proc/escapeOOC
 	M.verbs += /mob/living/proc/lick
+	if(M.no_vore) //If the mob isn's supposed to have a stomach, let's not give it an insidepanel so it can make one for itself, or a stomach.
+		M << "<span class='warning'>The creature that you are can not eat others.</span>"
+		return 1
+	M.verbs += /mob/living/proc/insidePanel
+
 	M.appearance_flags |= PIXEL_SCALE
 
 	//Tries to load prefs if a client is present otherwise gives freebie stomach
@@ -273,8 +278,8 @@
 // OOC Escape code for pref-breaking or AFK preds
 //
 /mob/living/proc/escapeOOC()
-	set name = "OOC escape"
-	set category = "Vore"
+	set name = "OOC Escape"
+	set category = "OOC"
 
 	//You're in an animal!
 	if(istype(src.loc,/mob/living/simple_animal))
@@ -424,9 +429,12 @@
 
 // This is about 0.896m^3 of atmosphere
 /datum/gas_mixture/belly_air
-	volume = 1000
-	gas = list(
-		"oxygen" = 21,
-		"nitrogen" = 79)
-	temperature = 293.150
-	total_moles = 40
+    volume = 1000
+    temperature = 293.150
+    total_moles = 40
+
+/datum/gas_mixture/belly_air/New()
+    . = ..()
+    gas = list(
+        "oxygen" = 21,
+        "nitrogen" = 79)

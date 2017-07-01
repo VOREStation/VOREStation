@@ -6,97 +6,6 @@
 /mob/living/carbon/human/var/resleeve_lock
 /mob/living/carbon/human/var/original_player
 
-var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
-
-//Mind-backup database
-/datum/transhuman/infocore
-	var/overdue_time = 15 MINUTES
-	var/process_time = 1 MINUTE
-	var/core_dumped = 0
-
-	var/datum/transhuman/mind_record/list/backed_up = list()
-	var/datum/transhuman/mind_record/list/has_left = list()
-	var/datum/transhuman/body_record/list/body_scans = list()
-
-/datum/transhuman/infocore/New()
-	process()
-
-/datum/transhuman/infocore/proc/process()
-	if(core_dumped) return
-	for(var/N in backed_up)
-		var/datum/transhuman/mind_record/curr_MR = backed_up[N]
-		if(!curr_MR)
-			log_debug("Tried to process [N] in transcore w/o a record!")
-			continue
-
-		var/since_backup = world.time - curr_MR.last_update
-		if(since_backup < overdue_time)
-			curr_MR.dead_state = MR_NORMAL
-		else
-			if(curr_MR.dead_state != MR_DEAD) //First time switching to dead
-				notify(N)
-			curr_MR.dead_state = MR_DEAD
-
-	spawn(process_time)
-		process()
-
-/datum/transhuman/infocore/proc/m_backup(var/datum/mind/mind)
-	ASSERT(mind)
-	if(!mind.name || core_dumped)
-		return 0
-
-	var/datum/transhuman/mind_record/MR
-
-	if(mind.name in backed_up)
-		MR = backed_up[mind.name]
-		MR.last_update = world.time
-	else
-		MR = new(mind, mind.current, 1)
-
-	return 1
-
-/datum/transhuman/infocore/proc/notify(var/name)
-	ASSERT(name)
-	var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset/heads/captain(null)
-	a.autosay("[name] is past-due for a mind backup. This will be the only notification.", "TransCore Oversight", "Medical")
-	qdel(a)
-
-/datum/transhuman/infocore/proc/add_backup(var/datum/transhuman/mind_record/MR)
-	ASSERT(MR)
-	backed_up[MR.mindname] = MR
-	backed_up = sortAssoc(backed_up)
-	log_debug("Added [MR.mindname] to transcore DB.")
-
-/datum/transhuman/infocore/proc/stop_backup(var/datum/transhuman/mind_record/MR)
-	ASSERT(MR)
-	has_left[MR.mindname] = MR
-	backed_up.Remove("[MR.mindname]")
-	MR.cryo_at = world.time
-	log_debug("Put [MR.mindname] in transcore suspended DB.")
-
-/datum/transhuman/infocore/proc/add_body(var/datum/transhuman/body_record/BR)
-	ASSERT(BR)
-	body_scans[BR.mydna.name] = BR
-	body_scans = sortAssoc(body_scans)
-	log_debug("Added [BR.mydna.name] to transcore body DB.")
-
-/datum/transhuman/infocore/proc/remove_body(var/datum/transhuman/body_record/BR)
-	ASSERT(BR)
-	body_scans.Remove("[BR.mydna.name]")
-	log_debug("Removed [BR.mydna.name] from transcore body DB.")
-
-/datum/transhuman/infocore/proc/core_dump(var/obj/item/weapon/disk/transcore/disk)
-	ASSERT(disk)
-	var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset/heads/captain(null)
-	a.autosay("An emergency core dump has been initiated!", "TransCore Oversight", "Command")
-	a.autosay("An emergency core dump has been initiated!", "TransCore Oversight", "Medical")
-	qdel(a)
-
-	disk.stored += backed_up
-	backed_up.Cut()
-	core_dumped = 1
-	return disk.stored.len
-
 /////// Mind-backup record ///////
 /datum/transhuman/mind_record
 	//User visible
@@ -108,17 +17,22 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 
 	//Backend
 	var/ckey = ""
-	var/id_gender
+	var/id_gender = MALE
 	var/datum/mind/mind_ref
-	var/cryo_at
-	var/languages
-	var/mind_oocnotes
+	var/cryo_at = 0
+	var/languages = list()
+	var/mind_oocnotes = ""
 
-/datum/transhuman/mind_record/New(var/datum/mind/mind,var/mob/living/carbon/human/M,var/obj/item/weapon/implant/backup/imp,var/add_to_db = 1)
-	ASSERT(mind && M && imp)
+	var/nif_path
+	var/nif_durability
+	var/list/nif_software
 
-	if(!istype(M))
-		return //Only works with humanoids.
+	var/one_time = FALSE
+
+/datum/transhuman/mind_record/New(var/datum/mind/mind, var/mob/living/carbon/human/M, var/add_to_db = TRUE, var/one_time = FALSE)
+	ASSERT(mind)
+
+	src.one_time = one_time
 
 	//The mind!
 	mind_ref = mind
@@ -128,14 +42,15 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 	cryo_at = 0
 
 	//Mental stuff the game doesn't keep mentally
-	id_gender = M.identifying_gender
-	languages = M.languages.Copy()
-	mind_oocnotes = M.ooc_notes
+	if(istype(M))
+		id_gender = M.identifying_gender
+		languages = M.languages.Copy()
+		mind_oocnotes = M.ooc_notes
 
 	last_update = world.time
 
 	if(add_to_db)
-		transcore.add_backup(src)
+		SStranscore.add_backup(src)
 
 /////// Body Record ///////
 /datum/transhuman/body_record
@@ -169,10 +84,10 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 	mind_ref = null
 	limb_data.Cut()
 	organ_data.Cut()
-	..()
+	return QDEL_HINT_HARDDEL // For now at least there is no easy way to clear references to this in machines etc.
 
 /datum/transhuman/body_record/proc/init_from_mob(var/mob/living/carbon/human/M, var/add_to_db = 0, var/ckeylock = 0)
-	ASSERT(!deleted(M))
+	ASSERT(!QDELETED(M))
 	ASSERT(istype(M))
 
 	//Person OOCly doesn't want people impersonating them
@@ -249,7 +164,7 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
 		organ_data[org] = I.robotic
 
 	if(add_to_db)
-		transcore.add_body(src)
+		SStranscore.add_body(src)
 
 
 /**
@@ -259,7 +174,7 @@ var/datum/transhuman/infocore/transcore = new/datum/transhuman/infocore
  * or anything like that! This is the computer science concept of "cloning" a data structure!
  */
 /datum/transhuman/body_record/proc/init_from_br(var/datum/transhuman/body_record/orig)
-	ASSERT(!deleted(orig))
+	ASSERT(!QDELETED(orig))
 	ASSERT(istype(orig))
 	src.mydna = new ()
 	src.mydna.dna = orig.mydna.dna.Clone()

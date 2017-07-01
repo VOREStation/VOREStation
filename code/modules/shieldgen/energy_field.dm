@@ -32,13 +32,12 @@
 	my_gen.field.Remove(src)
 	my_gen = null
 	var/turf/current_loc = get_turf(src)
-	spawn(1) // Updates neightbors after we're gone.
-		for(var/direction in cardinal)
-			var/turf/T = get_step(current_loc, direction)
-			if(T)
-				for(var/obj/effect/energy_field/F in T)
-					F.update_icon()
-	..()
+	. = ..()
+	for(var/direction in cardinal)
+		var/turf/T = get_step(current_loc, direction)
+		if(T)
+			for(var/obj/effect/energy_field/F in T)
+				F.update_icon()
 
 /obj/effect/energy_field/ex_act(var/severity)
 	adjust_strength(-(4 - severity) * 4)

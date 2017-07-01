@@ -29,6 +29,22 @@
 	build_path = /obj/item/weapon/gun/energy/sizegun
 	sort_string = "TAAAB"
 
+/datum/design/item/bluespace_jumpsuit
+	name = "Bluespace jumpsuit"
+	id = "bsjumpsuit"
+	req_tech = list(TECH_BLUESPACE = 2, TECH_MATERIAL = 3, TECH_POWER = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 4000)
+	build_path = /obj/item/clothing/under/bluespace
+	sort_string = "TAAAC"
+
+/datum/design/item/sleevemate
+	name = "SleeveMate 3200"
+	id = "sleevemate"
+	req_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 2, TECH_BIO = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 4000)
+	build_path = /obj/item/device/sleevemate
+	sort_string = "TAAAD"
+
 /datum/design/item/item/pressureinterlock
 	name = "APP pressure interlock"
 	id = "pressureinterlock"
@@ -76,6 +92,14 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 2000)
 	build_path = /obj/item/device/universal_translator/ear
 	sort_string = "HABBB"
+
+/datum/design/item/nif
+	name = "nanite implant framework"
+	id = "nif"
+	req_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_MATERIAL = 5, TECH_ENGINEERING = 5, TECH_DATA = 5)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 8000, "uranium" = 6000, "diamond" = 6000)
+	build_path = /obj/item/device/nif
+	sort_string = "HABBC"
 
 // Resleeving Circuitboards
 

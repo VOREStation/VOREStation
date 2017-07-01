@@ -316,7 +316,7 @@
 	if(occupant)
 		occupant.forceMove(loc)
 		occupant.resting = 1
-	..()
+	return ..()
 
 /obj/machinery/cryopod/initialize()
 	..()
@@ -432,7 +432,7 @@
 		else
 			if(control_computer && control_computer.allow_items)
 				control_computer.frozen_items += W
-				W.loc = null
+				W.loc = control_computer //VOREStation Edit
 			else
 				W.forceMove(src.loc)
 
@@ -447,12 +447,12 @@
 
 	//VOREStation Edit - Resleeving.
 	if(to_despawn.mind)
-		if(to_despawn.mind.name in transcore.backed_up)
-			var/datum/transhuman/mind_record/MR = transcore.backed_up[to_despawn.mind.name]
-			transcore.stop_backup(MR)
-		if(to_despawn.mind.name in transcore.body_scans) //This uses mind names to avoid people cryo'ing a printed body to delete body scans.
-			var/datum/transhuman/body_record/BR = transcore.body_scans[to_despawn.mind.name]
-			transcore.remove_body(BR)
+		if(to_despawn.mind.name in SStranscore.backed_up)
+			var/datum/transhuman/mind_record/MR = SStranscore.backed_up[to_despawn.mind.name]
+			SStranscore.stop_backup(MR)
+		if(to_despawn.mind.name in SStranscore.body_scans) //This uses mind names to avoid people cryo'ing a printed body to delete body scans.
+			var/datum/transhuman/body_record/BR = SStranscore.body_scans[to_despawn.mind.name]
+			SStranscore.remove_body(BR)
 	//VOREStation Edit End - Resleeving.
 
 	//Handle job slot/tater cleanup.

@@ -75,13 +75,14 @@
 	..()
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/weapon/tank/emergency/phoron_double(src)
-//End Edit
+	new /obj/item/clothing/glasses/goggles(src)
 
 /obj/item/weapon/storage/box/engineer/New()
 	..()
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/weapon/tank/emergency/oxygen/engi(src)
-
+	new /obj/item/clothing/glasses/goggles(src)
+//VOREStation Edit End
 /obj/item/weapon/storage/box/gloves
 	name = "box of latex gloves"
 	desc = "Contains white gloves."
@@ -151,12 +152,12 @@
 /obj/item/weapon/storage/box/blanks/New()
 	..()
 	for(var/i = 1 to 8)
-		new /obj/item/ammo_casing/shotgun/blank(src)
+		new /obj/item/ammo_casing/a12g/blank(src)
 
 /obj/item/weapon/storage/box/blanks/large/New()
 	..()
 	for(var/i = 1 to 8)
-		new /obj/item/ammo_casing/shotgun/blank(src)
+		new /obj/item/ammo_casing/a12g/blank(src)
 
 /obj/item/weapon/storage/box/beanbags
 	name = "box of beanbag shells"
@@ -167,12 +168,12 @@
 /obj/item/weapon/storage/box/beanbags/New()
 	..()
 	for(var/i = 1 to 8)
-		new /obj/item/ammo_casing/shotgun/beanbag(src)
+		new /obj/item/ammo_casing/a12g/beanbag(src)
 
 /obj/item/weapon/storage/box/beanbags/large/New()
 	..()
 	for(var/i = 1 to 8)
-		new /obj/item/ammo_casing/shotgun/beanbag(src)
+		new /obj/item/ammo_casing/a12g/beanbag(src)
 
 /obj/item/weapon/storage/box/shotgunammo
 	name = "box of shotgun slugs"
@@ -183,12 +184,12 @@
 /obj/item/weapon/storage/box/shotgunammo/New()
 	..()
 	for(var/i = 1 to 8)
-		new /obj/item/ammo_casing/shotgun(src)
+		new /obj/item/ammo_casing/a12g(src)
 
 /obj/item/weapon/storage/box/shotgunammo/large/New()
 	..()
 	for(var/i = 1 to 8)
-		new /obj/item/ammo_casing/shotgun(src)
+		new /obj/item/ammo_casing/a12g(src)
 
 /obj/item/weapon/storage/box/shotgunshells
 	name = "box of shotgun shells"
@@ -199,12 +200,12 @@
 /obj/item/weapon/storage/box/shotgunshells/New()
 	..()
 	for(var/i = 1 to 8)
-		new /obj/item/ammo_casing/shotgun/pellet(src)
+		new /obj/item/ammo_casing/a12g/pellet(src)
 
 /obj/item/weapon/storage/box/shotgunshells/large/New()
 	..()
 	for(var/i = 1 to 8)
-		new /obj/item/ammo_casing/shotgun/pellet(src)
+		new /obj/item/ammo_casing/a12g/pellet(src)
 
 /obj/item/weapon/storage/box/flashshells
 	name = "box of illumination shells"
@@ -215,12 +216,12 @@
 /obj/item/weapon/storage/box/flashshells/New()
 	..()
 	for(var/i = 1 to 8)
-		new /obj/item/ammo_casing/shotgun/flash(src)
+		new /obj/item/ammo_casing/a12g/flash(src)
 
 /obj/item/weapon/storage/box/flashshells/large/New()
 	..()
 	for(var/i = 1 to 8)
-		new /obj/item/ammo_casing/shotgun/flash(src)
+		new /obj/item/ammo_casing/a12g/flash(src)
 
 /obj/item/weapon/storage/box/stunshells
 	name = "box of stun shells"
@@ -231,12 +232,12 @@
 /obj/item/weapon/storage/box/stunshells/New()
 	..()
 	for(var/i = 1 to 8)
-		new /obj/item/ammo_casing/shotgun/stunshell(src)
+		new /obj/item/ammo_casing/a12g/stunshell(src)
 
 /obj/item/weapon/storage/box/stunshells/large/New()
 	..()
 	for(var/i = 1 to 8)
-		new /obj/item/ammo_casing/shotgun/stunshell(src)
+		new /obj/item/ammo_casing/a12g/stunshell(src)
 
 /obj/item/weapon/storage/box/practiceshells
 	name = "box of practice shells"
@@ -247,12 +248,12 @@
 /obj/item/weapon/storage/box/practiceshells/New()
 	..()
 	for(var/i = 1 to 8)
-		new /obj/item/ammo_casing/shotgun/practice(src)
+		new /obj/item/ammo_casing/a12g/practice(src)
 
 /obj/item/weapon/storage/box/practiceshells/large/New()
 	..()
 	for(var/i = 1 to 8)
-		new /obj/item/ammo_casing/shotgun/practice(src)
+		new /obj/item/ammo_casing/a12g/practice(src)
 
 /obj/item/weapon/storage/box/empshells
 	name = "box of emp shells"
@@ -263,12 +264,12 @@
 /obj/item/weapon/storage/box/empshells/New()
 	..()
 	for(var/i = 1 to 8)
-		new /obj/item/ammo_casing/shotgun/emp(src)
+		new /obj/item/ammo_casing/a12g/emp(src)
 
 /obj/item/weapon/storage/box/empshells/large/New()
 	..()
 	for(var/i = 1 to 8)
-		new /obj/item/ammo_casing/shotgun/emp(src)
+		new /obj/item/ammo_casing/a12g/emp(src)
 
 /obj/item/weapon/storage/box/sniperammo
 	name = "box of 14.5mm shells"

@@ -195,7 +195,7 @@
 	friends.Cut() //This one is not
 	walk_list.Cut()
 	languages.Cut()
-	..()
+	return ..()
 
 //Client attached
 /mob/living/simple_animal/Login()

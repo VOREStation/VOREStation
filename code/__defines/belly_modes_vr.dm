@@ -1,6 +1,7 @@
 // Belly Mode Constants
 #define DM_HOLD									"Hold"
 #define DM_DIGEST									"Digest"
+#define DM_DIGEST_NUMB							"Digest (Numbing)"
 #define DM_HEAL									"Heal"
 #define DM_ABSORB									"Absorb"
 #define DM_TRANSFORM_HAIR_AND_EYES					"Transform (Hair and eyes)"
@@ -17,7 +18,6 @@
 #define DM_EGG 									"Encase In Egg"
 #define DM_DRAIN									"Drain"
 #define DM_UNABSORB								"Unabsorb"
-
 
 // Stance for hostile mobs to be in while devouring someone.
 #define HOSTILE_STANCE_EATING	99

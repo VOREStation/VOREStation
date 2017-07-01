@@ -53,7 +53,7 @@
 						"You start to weld \the [src] to the floor.", \
 						"You hear welding")
 					if(do_after(user, 2 SECONDS))
-						if(deleted(src) || !WT.isOn()) return
+						if(QDELETED(src) || !WT.isOn()) return
 						state = CONSTRUCTION_WELDED
 						to_chat(user, "You weld \the [src] to the floor.")
 						try_construct(user)
@@ -66,7 +66,7 @@
 						"You start to cut \the [src] free from the floor.", \
 						"You hear welding")
 					if(do_after(user, 2 SECONDS))
-						if(deleted(src) || !WT.isOn()) return
+						if(QDELETED(src) || !WT.isOn()) return
 						state = CONSTRUCTION_WRENCHED
 						to_chat(user, "You cut \the [src] free from the floor.")
 				else

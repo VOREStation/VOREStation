@@ -15,7 +15,7 @@
 
 // Handle people leaving due to round ending.
 /hook/roundend/proc/persist_locations()
-	for(var/mob/Player in player_list)
+	for(var/mob/Player in human_mob_list)
 		if(!Player.mind || isnewplayer(Player))
 			continue // No mind we can do nothing, new players we care not for
 		else if(Player.stat == DEAD)
@@ -36,6 +36,34 @@
 	return 1
 
 /**
+ * Prep for save: returns a preferences object if we're ready and allowed to save this mob.
+ */
+/proc/prep_for_persist(var/mob/persister)
+	if(!istype(persister))
+		crash_with("prep_for_persist given non-mob [persister]")
+		return
+
+	// Find out of this mob is a proper mob!
+	if (persister.mind && persister.mind.loaded_from_ckey)
+		// Okay this mob has a real loaded-from-savefile mind in it!
+		var/datum/preferences/prefs = preferences_datums[persister.mind.loaded_from_ckey]
+		if(!prefs)
+			WARNING("mind [persister.mind] was loaded from ckey [persister.mind.loaded_from_ckey] but no prefs datum found")
+			return
+
+		// Okay, lets do a few checks to see if we should really save tho!
+		if(!prefs.load_character(persister.mind.loaded_from_slot))
+			WARNING("mind [persister.mind] was loaded from slot [persister.mind.loaded_from_slot] but loading prefs failed.")
+			return // Failed to load character
+
+		// For now as a safety measure we will only save if the name matches.
+		if(prefs.real_name != persister.real_name)
+			log_debug("Skipping persist for [persister] becuase [persister.real_name] != [prefs.real_name]")
+			return
+
+		return prefs
+
+/**
  * Called when mob despawns early (via cryopod)!
  */
 /hook/despawn/proc/persist_despawned_mob(var/mob/occupant, var/obj/machinery/cryopod/pod)
@@ -45,44 +73,39 @@
 	return 1
 
 /proc/persist_interround_data(var/mob/occupant, var/datum/spawnpoint/new_spawn_point_type)
-	ASSERT(istype(occupant))
+	if(!istype(occupant))
+		crash_with("persist_interround_data given non-mob [occupant]")
+		return
 
-	// Find out of this mob is a proper mob!
-	if (occupant.mind && occupant.mind.loaded_from_ckey)
-		// Okay this mob has a real loaded-from-savefile mind in it!
-		var/datum/preferences/prefs = preferences_datums[occupant.mind.loaded_from_ckey]
-		if(!prefs)
-			WARNING("mind [occupant.mind] was loaded from ckey [occupant.mind.loaded_from_ckey] but no prefs datum found")
-			return
+	var/datum/preferences/prefs = prep_for_persist(occupant)
+	if(!prefs)
+		WARNING("persist_interround_data failed to prep [occupant] for persisting")
+		return
 
-		// Okay, lets do a few checks to see if we should really save tho!
-		if(!prefs.load_character(occupant.mind.loaded_from_slot))
-			WARNING("mind [occupant.mind] was loaded from slot [occupant.mind.loaded_from_slot] but loading prefs failed.")
-			return // Failed to load character
+	//This one doesn't rely on persistence prefs
+	if(ishuman(occupant) && occupant.stat != DEAD)
+		persist_nif_data(occupant, prefs)
 
-		// For now as a safety measure we will only save if the name matches.
-		if(prefs.real_name != occupant.real_name)
-			log_debug("Skipping persist for [occupant] becuase [occupant.real_name] != [prefs.real_name]")
-			return
+	if(!prefs.persistence_settings)
+		return // Persistence disabled by preference settings
 
-		if(!prefs.persistence_settings)
-			return // Persistence disabled by preference settings
+	// Okay we can start saving the data
+	if(new_spawn_point_type && prefs.persistence_settings & PERSIST_SPAWN)
+		prefs.spawnpoint = initial(new_spawn_point_type.display_name)
+	if(ishuman(occupant) && occupant.stat != DEAD)
+		var/mob/living/carbon/human/H = occupant
+		testing("About to try saving stuff from [H] to [prefs] (\ref[prefs])")
+		if(prefs.persistence_settings & PERSIST_ORGANS)
+			apply_organs_to_prefs(H, prefs)
+		if(prefs.persistence_settings & PERSIST_MARKINGS)
+			apply_markings_to_prefs(H, prefs)
+		if(prefs.persistence_settings & PERSIST_WEIGHT)
+			resolve_excess_nutrition(H)
+			prefs.weight_vr = H.weight
+		if(prefs.persistence_settings & PERSIST_SIZE)
+			prefs.size_multiplier = H.size_multiplier
 
-		// Okay we can start saving the data
-		if(new_spawn_point_type && prefs.persistence_settings & PERSIST_SPAWN)
-			prefs.spawnpoint = initial(new_spawn_point_type.display_name)
-		if(ishuman(occupant) && occupant.stat != DEAD)
-			var/mob/living/carbon/human/H = occupant
-			testing("About to try saving stuff from [H] to [prefs] (\ref[prefs])")
-			if(prefs.persistence_settings & PERSIST_ORGANS)
-				apply_organs_to_prefs(H, prefs)
-			if(prefs.persistence_settings & PERSIST_MARKINGS)
-				apply_markings_to_prefs(H, prefs)
-			if(prefs.persistence_settings & PERSIST_WEIGHT)
-				resolve_excess_nutrition(H)
-				prefs.weight_vr = H.weight
-		prefs.save_character()
-	return
+	prefs.save_character()
 
 // Saves mob's current coloration state to prefs
 // This basically needs to be the reverse of /datum/category_item/player_setup_item/general/body/copy_to_mob() ~Leshana
@@ -194,3 +217,43 @@
 		// Weight Loss!
 		var/loss = (MAX_NUTRITION_TO_LOSE - C.nutrition) * weight_per_nutrition * C.weight_loss/100
 		C.weight = max(MIN_MOB_WEIGHT, C.weight - loss)
+
+/**
+* Persist any NIF data that needs to be persisted. It's stored in a list to make it more malleable
+* towards future shenanigans such as upgradable NIFs or different types or things of that nature,
+* without invoking the need for a bunch of different save file variables.
+*/
+/proc/persist_nif_data(var/mob/living/carbon/human/H,var/datum/preferences/prefs)
+	if(!istype(H))
+		crash_with("persist_nif_data given a nonhuman: [H]")
+		return
+
+	if(!prefs)
+		prefs = prep_for_persist(H)
+
+	if(!prefs)
+		WARNING("persist_nif_data failed to prep [H] for persisting")
+		return
+
+	var/obj/item/device/nif/nif = H.nif
+
+	//If they have one, and if it's not installing without an owner, because
+	//Someone who joins and immediately leaves again (wrong job choice, maybe)
+	//should keep it even though it was probably doing the quick-calibrate, and their
+	//owner will have been pre-set during the constructor.
+	if(nif && !(nif.stat == NIF_INSTALLING && !nif.owner))
+		prefs.nif_path = nif.type
+		prefs.nif_durability = nif.durability
+		prefs.nif_savedata = nif.save_data.Copy()
+	else
+		prefs.nif_path = null
+		prefs.nif_durability = null
+		prefs.nif_savedata = null
+
+	var/datum/category_group/player_setup_category/vore_cat = prefs.player_setup.categories_by_name["VORE"]
+	var/datum/category_item/player_setup_item/vore/nif/nif_prefs = vore_cat.items_by_name["NIF Data"]
+
+	var/savefile/S = new /savefile(prefs.path)
+	if(!S) WARNING ("Couldn't load NIF save savefile? [prefs.real_name]")
+	S.cd = "/character[prefs.default_slot]"
+	nif_prefs.save_character(S)
