@@ -522,7 +522,7 @@
 					selected.set_messages(new_message,"smi")
 
 			if("Examine Message (when full)")
-				var/new_message = input(user,"These are sent to people who examine you when this belly has contents. Write them in 3rd person ('Their %belly is bulging'). Do not use %pred or %prey in this type."+help,"Examine Message (when full)",selected.get_messages("em")) as message
+				var/new_message = input(user,"These are sent to people who examine you when this belly has contents. Write them in 3rd person ('Their %belly is bulging')."+help,"Examine Message (when full)",selected.get_messages("em")) as message
 				if(new_message)
 					selected.set_messages(new_message,"em")
 
