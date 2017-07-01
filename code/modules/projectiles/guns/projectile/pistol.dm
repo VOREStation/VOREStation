@@ -116,15 +116,15 @@
 
 /obj/item/weapon/gun/projectile/deagle
 	name = "desert eagle"
-	desc = "A robust handgun that uses .50 AE rounds."
+	desc = "The perfect handgun for shooters with a need to hit targets through a wall and behind a fridge in your neighbor's house. Uses .44 rounds."
 	icon_state = "deagle"
 	item_state = "deagle"
 	force = 14.0
-	caliber = ".50AE"
+	caliber = ".44"
 	load_method = MAGAZINE
 	fire_sound = 'sound/weapons/deagle.ogg'
-	magazine_type = /obj/item/ammo_magazine/m50
-	allowed_magazines = list(/obj/item/ammo_magazine/m50)
+	magazine_type = /obj/item/ammo_magazine/m44
+	allowed_magazines = list(/obj/item/ammo_magazine/m44)
 
 /obj/item/weapon/gun/projectile/deagle/update_icon()
 	..()
@@ -134,12 +134,12 @@
 		icon_state = "[initial(icon_state)]-e"
 
 /obj/item/weapon/gun/projectile/deagle/gold
-	desc = "A gold plated gun folded over a million times by superior martian gunsmiths. Uses .50 AE rounds."
+	desc = "A gold plated gun folded over a million times by superior martian gunsmiths. Uses .44 rounds."
 	icon_state = "deagleg"
 	item_state = "deagleg"
 
 /obj/item/weapon/gun/projectile/deagle/camo
-	desc = "A Deagle brand Deagle for operators operating operationally. Uses .50 AE rounds."
+	desc = "A Deagle brand Deagle for operators operating operationally. Uses .44 rounds."
 	icon_state = "deaglecamo"
 	item_state = "deagleg"
 
@@ -259,14 +259,14 @@
 		/obj/item/ammo_casing/a9mmf             = "9mm",
 		/obj/item/ammo_casing/a45f              = ".45",
 		/obj/item/ammo_casing/a10mm             = "10mm",
-		/obj/item/ammo_casing/a12g           = "12 gauge",
-		/obj/item/ammo_casing/a12g           = "12 gauge",
-		/obj/item/ammo_casing/a12g/pellet    = "12 gauge",
-		/obj/item/ammo_casing/a12g/pellet    = "12 gauge",
-		/obj/item/ammo_casing/a12g/pellet    = "12 gauge",
-		/obj/item/ammo_casing/a12g/beanbag   = "12 gauge",
-		/obj/item/ammo_casing/a12g/stunshell = "12 gauge",
-		/obj/item/ammo_casing/a12g/flash     = "12 gauge",
+		/obj/item/ammo_casing/a12g              = "12g",
+		/obj/item/ammo_casing/a12g              = "12g",
+		/obj/item/ammo_casing/a12g/pellet       = "12g",
+		/obj/item/ammo_casing/a12g/pellet       = "12g",
+		/obj/item/ammo_casing/a12g/pellet       = "12g",
+		/obj/item/ammo_casing/a12g/beanbag      = "12g",
+		/obj/item/ammo_casing/a12g/stunshell    = "12g",
+		/obj/item/ammo_casing/a12g/flash        = "12g",
 		/obj/item/ammo_casing/a762              = "7.62mm",
 		/obj/item/ammo_casing/a556              = "5.56mm"
 		)

@@ -11,6 +11,7 @@
 	helm_type = /obj/item/clothing/head/helmet/space/rig/ert
 
 	req_access = list(access_cent_specops)
+	siemens_coefficient= 0.5
 
 	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 100, rad = 100)
 	allowed = list(/obj/item/device/flashlight, /obj/item/weapon/tank, /obj/item/device/t_scanner, /obj/item/weapon/rcd, /obj/item/weapon/crowbar, \
@@ -30,7 +31,7 @@
 	suit_type = "ERT engineer"
 	icon_state = "ert_engineer_rig"
 	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 100, rad = 100)
-	siemens_coefficient = 0
+	glove_type = /obj/item/clothing/gloves/gauntlets/rig/eva
 
 	initial_modules = list(
 		/obj/item/rig_module/ai_container,
@@ -71,6 +72,8 @@
 	suit_type = "heavy asset protection"
 	icon_state = "asset_protection_rig"
 	armor = list(melee = 60, bullet = 50, laser = 50,energy = 40, bomb = 40, bio = 100, rad = 100)
+	siemens_coefficient= 0.3
+	glove_type = /obj/item/clothing/gloves/gauntlets/rig/eva
 
 	initial_modules = list(
 		/obj/item/rig_module/ai_container,
