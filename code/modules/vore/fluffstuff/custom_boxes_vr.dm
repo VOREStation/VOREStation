@@ -189,6 +189,15 @@
 		/obj/item/weapon/gun/projectile/derringer/fluff/briana,
 		/obj/item/fluff/permit/briana_moore)
 
+//SilencedMP5A5:Serdykov Antoz
+/obj/item/weapon/storage/box/fluff/serdykov_antoz
+	name = "Serdy's Gear Box"
+	has_items = list(
+		/obj/item/clothing/suit/armor/vest/wolftaur/serdy,
+		/obj/item/clothing/head/helmet/serdy,
+		/obj/item/fluff/permit/silencedmp5a5,
+		/obj/item/weapon/gun/projectile/revolver/detective/fluff/serdy)
+
 
 /*
 Swimsuits, for general use, to avoid arriving to work with your swimsuit.
