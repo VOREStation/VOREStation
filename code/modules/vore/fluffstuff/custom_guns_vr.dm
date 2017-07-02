@@ -554,7 +554,7 @@
 //Detective gun
 /obj/item/weapon/gun/projectile/revolver/consul
 	name = "FS REV .44 \"Consul\""
-	desc = "A choice revolver for when you absolutely, positively need to put a hole in the other guy. Uses .44 ammo."
+	desc = "Are you feeling lucky, punk? Uses .44 ammo."
 
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "inspector"
@@ -742,50 +742,50 @@
 	ammo_type = /obj/item/ammo_casing/a9mmp
 
 //.357 special ammo
-/obj/item/ammo_magazine/m357/stun
+/obj/item/ammo_magazine/s357/stun
 	name = "speedloader (.357 stun)"
 	desc = "A speedloader for .357 revolvers."
 	icon = 'icons/obj/ammo_vr.dmi'
 	icon_state = "s357"
-	caliber = "357"
+	caliber = ".357"
 	ammo_type = /obj/item/ammo_casing/a357/stun
 
 
 /obj/item/ammo_casing/a357/stun
 	desc = "A .357 stun bullet casing."
-	caliber = "357"
+	caliber = ".357"
 	icon = 'icons/obj/ammo_vr.dmi'
 	icon_state = "stun357"
 	projectile_type = /obj/item/projectile/energy/electrode/stunshot/strong
 
-/obj/item/ammo_magazine/m357/rubber
+/obj/item/ammo_magazine/s357/rubber
 	name = "speedloader (.357 rubber)"
 	desc = "A speedloader for .357 revolvers."
 	icon = 'icons/obj/ammo_vr.dmi'
 	icon_state = "r357"
-	caliber = "357"
+	caliber = ".357"
 	ammo_type = /obj/item/ammo_casing/a357/rubber
 
 
 /obj/item/ammo_casing/a357/rubber
 	desc = "A .357 rubber bullet casing."
-	caliber = "357"
+	caliber = ".357"
 	icon = 'icons/obj/ammo_vr.dmi'
 	icon_state = "rubber357"
 	projectile_type = /obj/item/projectile/bullet/pistol/rubber/strong
 
-/obj/item/ammo_magazine/m357/flash
+/obj/item/ammo_magazine/s357/flash
 	name = "speedloader (.357 flash)"
 	desc = "A speedloader for .357 revolvers."
 	icon = 'icons/obj/ammo_vr.dmi'
 	icon_state = "f357"
-	caliber = "357"
+	caliber = ".357"
 	ammo_type = /obj/item/ammo_casing/a357/flash
 
 
 /obj/item/ammo_casing/a357/flash
 	desc = "A .357 flash bullet casing."
-	caliber = "357"
+	caliber = ".357"
 	icon = 'icons/obj/ammo_vr.dmi'
 	icon_state = "flash357"
 	projectile_type = /obj/item/projectile/energy/flash/strong
@@ -804,36 +804,17 @@
 	mag_type = MAGAZINE
 
 //.44
-/obj/item/ammo_casing/a44
-	icon = 'icons/obj/ammo_vr.dmi'
-	icon_state = "a357"
-	desc = "A .44 bullet casing."
-	caliber = ".44"
-	projectile_type = /obj/item/projectile/bullet/pistol/strong
-
 /obj/item/ammo_casing/a44/rubber
-	icon = 'icons/obj/ammo_vr.dmi'
-	icon_state = "rubber357"
+	icon_state = "r-casing"
 	desc = "A .44 rubber bullet casing."
 	projectile_type = /obj/item/projectile/bullet/pistol/rubber/strong
 
-/obj/item/ammo_magazine/m44
-	desc = "A magazine for .44 ammo."
-	icon = 'icons/obj/ammo_vr.dmi'
-	icon_state = "44lethal"
-	caliber = ".44"
-	matter = list(DEFAULT_WALL_MATERIAL = 1680)
-	ammo_type = /obj/item/ammo_casing/a44
-	max_ammo = 8
-	mag_type = MAGAZINE
-
 /obj/item/ammo_magazine/m44/rubber
 	desc = "A magazine for .44 less-than-lethal ammo."
-	icon_state = "44rubber"
 	ammo_type = /obj/item/ammo_casing/a44/rubber
 
 //.44 speedloaders
-/obj/item/ammo_magazine/m44sl
+/obj/item/ammo_magazine/s44
 	name = "speedloader (.44)"
 	desc = "A speedloader for .44 revolvers."
 	icon = 'icons/obj/ammo_vr.dmi'
@@ -845,7 +826,7 @@
 	multiple_sprites = 1
 	mag_type = SPEEDLOADER
 
-/obj/item/ammo_magazine/m44sl/rubber
+/obj/item/ammo_magazine/s44/rubber
 	name = "speedloader (.44 rubber)"
 	icon_state = "r357"
 	ammo_type = /obj/item/ammo_casing/a44/rubber

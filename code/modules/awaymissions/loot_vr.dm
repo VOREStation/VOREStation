@@ -185,7 +185,7 @@
 				var/new_ammo = pick( // Copied from Random.dm
 					prob(5);/obj/item/weapon/storage/box/shotgunammo,\
 					prob(5);/obj/item/weapon/storage/box/shotgunshells,\
-					prob(5);/obj/item/ammo_magazine/m357,\
+					prob(5);/obj/item/ammo_magazine/s357,\
 					prob(5);/obj/item/ammo_magazine/clip/c762,\
 					prob(5);/obj/item/ammo_magazine/m45,\
 					prob(5);/obj/item/ammo_magazine/m45/rubber,\
