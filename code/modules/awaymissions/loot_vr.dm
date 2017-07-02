@@ -210,9 +210,9 @@
 					prob(4);/obj/item/ammo_magazine/m762,\
 					prob(4);/obj/item/ammo_magazine/m556/ext,\
 					prob(3);/obj/item/ammo_magazine/clip/c10mm,\
-					prob(3);/obj/item/ammo_magazine/clip/c50,\
+					prob(3);/obj/item/ammo_magazine/clip/c44,\
 					prob(3);/obj/item/ammo_magazine/m556,\
-					prob(2);/obj/item/ammo_magazine/m50,\
+					prob(2);/obj/item/ammo_magazine/m44,\
 					prob(2);/obj/item/ammo_magazine/m556,\
 					prob(1);/obj/item/weapon/storage/box/frags,\
 				/*	prob(1);/obj/item/ammo_magazine/battlerifle,\ */

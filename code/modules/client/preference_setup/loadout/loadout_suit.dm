@@ -392,3 +392,37 @@
 /datum/gear/suit/miscellaneous/peacoat/New()
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/suit/snowsuit
+	display_name = "snowsuit"
+	path = /obj/item/clothing/suit/storage/snowsuit
+
+/datum/gear/suit/snowsuit/command
+	display_name = "snowsuit, command"
+	path = /obj/item/clothing/suit/storage/snowsuit/command
+	allowed_roles = list("Colony Director","Research Director","Head of Personnel","Head of Security","Chief Engineer","Command Secretary")
+
+/datum/gear/suit/snowsuit/security
+	display_name = "snowsuit, security"
+	path = /obj/item/clothing/suit/storage/snowsuit/security
+	allowed_roles = list("Security Officer", "Head of Security", "Warden", "Detective")
+
+/datum/gear/suit/snowsuit/medical
+	display_name = "snowsuit, medical"
+	path = /obj/item/clothing/suit/storage/snowsuit/medical
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist")
+
+/datum/gear/suit/snowsuit/science
+	display_name = "snowsuit, science"
+	path = /obj/item/clothing/suit/storage/snowsuit/science
+	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist")
+
+/datum/gear/suit/snowsuit/engineering
+	display_name = "snowsuit, engineering"
+	path = /obj/item/clothing/suit/storage/snowsuit/engineering
+	allowed_roles = list("Chief Engineer","Atmospheric Technician", "Station Engineer")
+
+/datum/gear/suit/snowsuit/cargo
+	display_name = "snowsuit, supply"
+	path = /obj/item/clothing/suit/storage/snowsuit/cargo
+	allowed_roles = list("Quartermaster","shaft Miner","Cargo Technician","Head of Personnel")
