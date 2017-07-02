@@ -36,6 +36,9 @@
 			and it otherwise has no bearing on your round.</span>"
 	player.current.verbs |= /mob/living/proc/write_ambition
 
+	if(can_use_aooc)
+		player.current.client.verbs += /client/proc/aooc
+
 	// Handle only adding a mind and not bothering with gear etc.
 	if(nonstandard_role_type)
 		faction_members |= player
@@ -58,6 +61,7 @@
 		BITSET(player.current.hud_updateflag, SPECIALROLE_HUD)
 		if(!is_special_character(player))
 			player.current.verbs -= /mob/living/proc/write_ambition
+			player.current.client.verbs -= /client/proc/aooc
 			player.ambitions = ""
 		return 1
 	return 0

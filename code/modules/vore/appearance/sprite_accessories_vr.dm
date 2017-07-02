@@ -238,6 +238,12 @@
 	icon_state = "molenar-tentacle"
 	ckeys_allowed = list("molenar")
 
+/datum/sprite_accessory/ears/shock
+	name = "pharoah hound ears (Shock Diamond)"
+	desc = ""
+	icon_state = "shock"
+	ckeys_allowed = list("icowom")
+
 /*
 ////////////////////////////
 /  =--------------------=  /
@@ -664,6 +670,12 @@
 	icon_state = "vulptail"
 	ani_state = "vulptail_w"
 	do_colouration = 1
+
+/datum/sprite_accessory/tail/shock
+	name = "pharoah hound tail (Shock Diamond)"
+	desc = ""
+	icon_state = "shock"
+	ckeys_allowed = list("icowom")
 
 //For all species tails. Includes haircolored tails.
 /datum/sprite_accessory/tail/special

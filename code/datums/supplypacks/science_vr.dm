@@ -26,7 +26,8 @@
 			/obj/item/weapon/disk/limb/dsi_sergal,
 			/obj/item/weapon/disk/limb/dsi_nevrean,
 			/obj/item/weapon/disk/limb/dsi_vulpkanin,
-			/obj/item/weapon/disk/limb/dsi_akula
+			/obj/item/weapon/disk/limb/dsi_akula,
+			/obj/item/weapon/disk/limb/eggnerdltd
 			)
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure
@@ -56,3 +57,12 @@
 	containername = "EXTREMELY Dangerous Predator crate"
 	access = access_xenobiology
 	contraband = 1
+
+/datum/supply_packs/sci/guardbeast
+	name = "V.A.R.M.A.corp autoNOMous security solution"
+	cost = 199
+	containertype = /obj/structure/largecrate/animal/guardbeast
+	containername = "V.A.R.M.A.corp autoNOMous security solution crate"
+	access = list(
+			access_security,
+			access_xenobiology)

@@ -65,6 +65,7 @@
 	offline_slowdown = 10
 	offline_vision_restriction = 2
 	emp_protection = -20
+	siemens_coefficient= 0.75
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/industrial
 
@@ -92,6 +93,7 @@
 	slowdown = 0
 	offline_slowdown = 1
 	offline_vision_restriction = 1
+	siemens_coefficient= 0.75
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/eva
 	glove_type = /obj/item/clothing/gloves/gauntlets/rig/eva
@@ -100,6 +102,7 @@
 
 	req_access = list()
 	req_one_access = list()
+	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/gloves/gauntlets/rig/eva
 	name = "insulated gauntlets"
@@ -127,6 +130,7 @@
 	slowdown = 0
 	offline_slowdown = 0
 	offline_vision_restriction = 0
+	siemens_coefficient= 0.75
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/ce
 	glove_type = /obj/item/clothing/gloves/gauntlets/rig/ce
@@ -135,6 +139,7 @@
 
 	req_access = list()
 	req_one_access = list()
+	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/gloves/gauntlets/rig/ce
 	name = "insulated gauntlets"
@@ -161,6 +166,7 @@
 	armor = list(melee = 45, bullet = 5, laser = 45, energy = 80, bomb = 60, bio = 100, rad = 100)
 	slowdown = 1
 	offline_vision_restriction = 1
+	siemens_coefficient= 0.75
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/hazmat
 
@@ -188,6 +194,7 @@
 	armor = list(melee = 30, bullet = 15, laser = 20, energy = 60, bomb = 30, bio = 100, rad = 100)
 	slowdown = 1
 	offline_vision_restriction = 1
+	siemens_coefficient= 0.75
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/medical
 
@@ -217,6 +224,7 @@
 	slowdown = 1
 	offline_slowdown = 3
 	offline_vision_restriction = 1
+	siemens_coefficient= 0.7
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/hazard
 

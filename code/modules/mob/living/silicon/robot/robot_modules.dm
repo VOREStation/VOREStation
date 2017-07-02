@@ -9,7 +9,7 @@ var/global/list/robot_modules = list(
 	"Security" 		= /obj/item/weapon/robot_module/robot/security/general,
 	"Combat" 		= /obj/item/weapon/robot_module/robot/security/combat,
 	"Engineering"	= /obj/item/weapon/robot_module/robot/engineering/general,
-	"Construction"	= /obj/item/weapon/robot_module/robot/engineering/construction,
+//	"Construction"	= /obj/item/weapon/robot_module/robot/engineering/construction,
 	"Janitor" 		= /obj/item/weapon/robot_module/robot/janitor
 	)
 
@@ -342,6 +342,8 @@ var/global/list/robot_modules = list(
 	name = "construction robot module"
 	no_slip = 1
 
+/* Merged back into engineering (Hell, it's about time.)
+
 /obj/item/weapon/robot_module/robot/engineering/construction/New()
 	..()
 	src.modules += new /obj/item/borg/sight/meson(src)
@@ -381,6 +383,7 @@ var/global/list/robot_modules = list(
 	var/obj/item/stack/material/cyborg/glass/reinforced/RG = new (src)
 	RG.synths = list(metal, glass)
 	src.modules += RG
+*/
 
 /obj/item/weapon/robot_module/robot/engineering/general/New()
 	..()
@@ -397,14 +400,21 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/device/lightreplacer(src)
 	src.modules += new /obj/item/device/pipe_painter(src)
 	src.modules += new /obj/item/device/floor_painter(src)
+	src.modules += new /obj/item/weapon/inflatable_dispenser/robot(src)
 	src.emag = new /obj/item/weapon/melee/baton/robot/arm(src)
 	src.modules += new /obj/item/device/geiger(src)
+	src.modules += new /obj/item/weapon/rcd/borg(src)
+	src.modules += new /obj/item/weapon/pickaxe/plasmacutter(src)
+	src.modules += new /obj/item/weapon/gripper/no_use/loader(src)
 
 	var/datum/matter_synth/metal = new /datum/matter_synth/metal(40000)
 	var/datum/matter_synth/glass = new /datum/matter_synth/glass(40000)
+	var/datum/matter_synth/plasteel = new /datum/matter_synth/plasteel(20000)
+
 	var/datum/matter_synth/wire = new /datum/matter_synth/wire()
 	synths += metal
 	synths += glass
+	synths += plasteel
 	synths += wire
 
 	var/obj/item/weapon/matter_decompiler/MD = new /obj/item/weapon/matter_decompiler(src)
@@ -427,6 +437,10 @@ var/global/list/robot_modules = list(
 	var/obj/item/stack/cable_coil/cyborg/C = new /obj/item/stack/cable_coil/cyborg(src)
 	C.synths = list(wire)
 	src.modules += C
+
+	var/obj/item/stack/material/cyborg/plasteel/P = new (src)
+	P.synths = list(plasteel)
+	src.modules += P
 
 	var/obj/item/stack/tile/floor/cyborg/S = new /obj/item/stack/tile/floor/cyborg(src)
 	S.synths = list(metal)
@@ -692,6 +706,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/surgical/circular_saw(src)
 	src.modules += new /obj/item/weapon/reagent_containers/syringe(src)
 	src.modules += new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
+	src.modules += new /obj/item/weapon/storage/part_replacer(src)
 	src.emag = new /obj/item/weapon/hand_tele(src)
 
 	var/datum/matter_synth/nanite = new /datum/matter_synth/nanite(10000)

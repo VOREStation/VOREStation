@@ -375,6 +375,10 @@
 /datum/gear/uniform/dresses/janimaid
 	display_name = "maid uniform"
 	path = /obj/item/clothing/under/dress/janimaid
+	
+/datum/gear/uniform/dresses/sexymaid
+	display_name = "sexy maid uniform"
+	path = /obj/item/clothing/under/dress/sexymaid
 
 /datum/gear/uniform/pt
 	display_name = "pt uniform"
