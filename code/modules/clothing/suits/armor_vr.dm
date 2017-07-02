@@ -35,10 +35,10 @@
 
 
 /obj/item/clothing/suit/storage/vest/hoscoat
-	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 40, bio = 0, rad = 0)
+	armor = list(melee = 50, bullet = 40, laser = 40, energy = 25, bomb = 25, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/storage/vest/hos
-	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 40, bio = 0, rad = 0)
+	armor = list(melee = 50, bullet = 40, laser = 40, energy = 25, bomb = 25, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/storage/vest/hoscoat/jensen
 	name = "armored trenchcoat"

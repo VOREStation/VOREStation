@@ -25,7 +25,7 @@
 
 /obj/item/ammo_casing/a357
 	desc = "A .357 bullet casing."
-	caliber = "357"
+	caliber = ".357"
 	projectile_type = /obj/item/projectile/bullet/pistol/strong
 
 /*
@@ -54,9 +54,9 @@
  * .50 Action Express
  */
 
-/obj/item/ammo_casing/a50ae
-	desc = "A .50AE bullet casing."
-	caliber = ".50AE"
+/obj/item/ammo_casing/a44
+	desc = "A .44 bullet casing."
+	caliber = ".44"
 	projectile_type = /obj/item/projectile/bullet/pistol/strong
 
 /*

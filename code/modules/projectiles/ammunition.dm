@@ -65,7 +65,7 @@
 /obj/item/ammo_magazine
 	name = "magazine"
 	desc = "A magazine for some kind of gun."
-	icon_state = "357"
+	icon_state = ".357"
 	icon = 'icons/obj/ammo.dmi'
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
@@ -78,7 +78,7 @@
 
 	var/list/stored_ammo = list()
 	var/mag_type = SPEEDLOADER //ammo_magazines can only be used with compatible guns. This is not a bitflag, the load_method var on guns is.
-	var/caliber = "357"
+	var/caliber = ".357"
 	var/max_ammo = 7
 
 	var/ammo_type = /obj/item/ammo_casing //ammo type that is initially loaded

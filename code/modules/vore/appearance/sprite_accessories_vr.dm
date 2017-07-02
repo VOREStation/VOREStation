@@ -238,6 +238,12 @@
 	icon_state = "molenar-tentacle"
 	ckeys_allowed = list("molenar")
 
+/datum/sprite_accessory/ears/shock
+	name = "pharoah hound ears (Shock Diamond)"
+	desc = ""
+	icon_state = "shock"
+	ckeys_allowed = list("icowom")
+
 /*
 ////////////////////////////
 /  =--------------------=  /
@@ -578,7 +584,13 @@
 /datum/sprite_accessory/tail/rosey
 	name = "tritail kitsune tails (Rosey)"
 	desc = ""
-	icon_state = "rosey"
+	icon_state = "rosey_three"
+	ckeys_allowed = list("joey4298")
+
+/datum/sprite_accessory/tail/rosey2
+	name = "pentatail kitsune tails (Rosey)" //I predict seven tails next. ~CK
+	desc = ""
+	icon_state = "rosey_five"
 	ckeys_allowed = list("joey4298")
 
 /datum/sprite_accessory/tail/scree
@@ -658,6 +670,12 @@
 	icon_state = "vulptail"
 	ani_state = "vulptail_w"
 	do_colouration = 1
+
+/datum/sprite_accessory/tail/shock
+	name = "pharoah hound tail (Shock Diamond)"
+	desc = ""
+	icon_state = "shock"
+	ckeys_allowed = list("icowom")
 
 //For all species tails. Includes haircolored tails.
 /datum/sprite_accessory/tail/special

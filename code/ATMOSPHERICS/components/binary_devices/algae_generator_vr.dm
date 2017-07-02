@@ -101,7 +101,7 @@
 	if(inoperable() || !anchored)
 		icon_state = "algae-off"
 	else if(recent_moles_transferred >= moles_per_tick)
-		icon_state = "aglae-full"
+		icon_state = "algae-full"
 	else if(recent_moles_transferred > 0)
 		icon_state = "algae-full"
 	else

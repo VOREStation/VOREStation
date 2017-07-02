@@ -331,7 +331,7 @@
 
 /datum/supply_packs/med/defib
 	name = "Defibrilator crate"
-	contains = list(/obj/item/device/defib_kit = 4)
+	contains = list(/obj/item/device/defib_kit = 2)
 	cost = 30
 	containertype = /obj/structure/closet/crate/medical
 	containername = "Defibrilator crate"

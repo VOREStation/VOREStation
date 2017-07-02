@@ -183,6 +183,8 @@
 		var/raw_message = pick(examine_messages)
 
 		formatted_message = replacetext(raw_message,"%belly",lowertext(name))
+		formatted_message = replacetext(formatted_message,"%pred",owner)
+		formatted_message = replacetext(formatted_message,"%prey",english_list(internal_contents))
 
 		return("<span class='warning'>[formatted_message]</span><BR>")
 
@@ -271,12 +273,15 @@
 			_handle_digested_item(W,M)
 
 	//Reagent transfer
-	if(ishuman(M) && ishuman(owner))
+	if(ishuman(owner))
 		var/mob/living/carbon/human/Pred = owner
-		var/mob/living/carbon/human/Prey = M
-		Prey.bloodstr.trans_to_holder(Pred.bloodstr, Prey.bloodstr.total_volume, 0.5, TRUE) // Copy=TRUE because we're deleted anyway
-		Prey.ingested.trans_to_holder(Pred.bloodstr, Prey.ingested.total_volume, 0.5, TRUE) // Therefore don't bother spending cpu
-		Prey.touching.trans_to_holder(Pred.bloodstr, Prey.touching.total_volume, 0.5, TRUE) // On updating the prey's reagents
+		if(ishuman(M))
+			var/mob/living/carbon/human/Prey = M
+			Prey.bloodstr.trans_to_holder(Pred.bloodstr, Prey.bloodstr.total_volume, 0.5, TRUE) // Copy=TRUE because we're deleted anyway
+			Prey.ingested.trans_to_holder(Pred.bloodstr, Prey.ingested.total_volume, 0.5, TRUE) // Therefore don't bother spending cpu
+			Prey.touching.trans_to_holder(Pred.bloodstr, Prey.touching.total_volume, 0.5, TRUE) // On updating the prey's reagents
+		else if(M.reagents)
+			M.reagents.trans_to_holder(Pred.bloodstr, M.reagents.total_volume, 0.5, TRUE)
 
 	// Delete the digested mob
 	qdel(M)
@@ -416,10 +421,9 @@
 				return
 
 		else if(prob(transferchance) && istype(transferlocation)) //Next, let's have it see if they end up getting into an even bigger mess then when they started.
-			internal_contents -= R
-			transferlocation.internal_contents |= R
 			R << "<span class='warning'>Your attempt to escape [name] has failed and your struggles only results in you sliding into [owner]'s [transferlocation]!</span>"
 			owner << "<span class='warning'>Someone slid into your [transferlocation] due to their struggling inside your [name]!</span>"
+			transfer_contents(R, transferlocation)
 			return
 
 		else if(prob(absorbchance)) //After that, let's have it run the absorb chance.
@@ -437,6 +441,22 @@
 			R << "<span class='warning'>But make no progress in escaping [owner]'s [name].</span>"
 			owner << "<span class='warning'>But appears to be unable to make any progress in escaping your [name].</span>"
 			return
+
+//Transfers contents from one belly to another
+/datum/belly/proc/transfer_contents(var/atom/movable/content, var/datum/belly/target, silent = 0)
+	if(!(content in internal_contents))
+		return
+	internal_contents -= content
+	target.internal_contents |= content
+	if(isliving(content))
+		var/mob/living/M = content
+		if(target.inside_flavor)
+			to_chat(M, "<span class='notice'><B>[target.inside_flavor]</B></span>")
+		if(target.can_taste && M.get_taste_message(0))
+			to_chat(owner, "<span class='notice'>[M] tastes of [M.get_taste_message(0)].</span>")
+	if(!silent)
+		for(var/mob/hearer in range(1,owner))
+			hearer << sound('sound/vore/squish2.ogg',volume=80)
 
 // Belly copies and then returns the copy
 // Needs to be updated for any var changes

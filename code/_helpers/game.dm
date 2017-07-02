@@ -281,15 +281,15 @@
 
 	//A list of every mob with a client
 	for(var/mob in player_list)
-		if(isnull(mob)) //VOREStation Add - Fix for a weird bug with nulls in this list
-			player_list -= mob //VOREStation Add
-			continue //VOREStation Add
+		if(!istype(mob, /mob))
+			crash_with("There is a null or non-mob reference inside player_list.")
+			continue
 		if(get_turf(mob) in hearturfs)
 			mobs |= mob
 			continue
 
 		var/mob/M = mob
-		if(M.stat == DEAD && !M.forbid_seeing_deadchat)
+		if(M && M.stat == DEAD && !M.forbid_seeing_deadchat)
 			switch(type)
 				if(1) //Audio messages use ghost_ears
 					if(M.is_preference_enabled(/datum/client_preference/ghost_ears))
