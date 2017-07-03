@@ -71,16 +71,16 @@
 	glass_type = "/glass_medical"
 	airlock_type = "/medical"
 
+/obj/structure/door_assembly/door_assembly_ext
+	base_icon_state = "ext"
+	base_name = "External airlock"
+	glass_type = "/glass_external"
+	airlock_type = "/external"
+
 /obj/structure/door_assembly/door_assembly_mai
 	base_icon_state = "mai"
 	base_name = "Maintenance airlock"
 	airlock_type = "/maintenance"
-	glass = -1
-
-/obj/structure/door_assembly/door_assembly_ext
-	base_icon_state = "ext"
-	base_name = "External airlock"
-	airlock_type = "/external"
 	glass = -1
 
 /obj/structure/door_assembly/door_assembly_fre

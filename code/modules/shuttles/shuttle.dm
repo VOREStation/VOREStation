@@ -12,9 +12,10 @@
 	var/datum/computer/file/embedded_program/docking/docking_controller	//the controller itself. (micro-controller, not game controller)
 
 	var/arrive_time = 0	//the time at which the shuttle arrives when long jumping
-
 	var/flags = SHUTTLE_FLAGS_PROCESS
 	var/category = /datum/shuttle
+
+	var/ceiling_type = /turf/unsimulated/floor/shuttle_ceiling
 
 /datum/shuttle/New()
 	..()

@@ -96,6 +96,11 @@
 	name = "External Airlock"
 	icon = 'icons/obj/doors/Doorext.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_ext
+
+/obj/machinery/door/airlock/glass_external
+	name = "External Airlock"
+	icon = 'icons/obj/doors/Doorextglass.dmi'
+	assembly_type = /obj/structure/door_assembly/door_assembly_ext
 	opacity = 0
 	glass = 1
 

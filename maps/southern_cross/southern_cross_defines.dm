@@ -8,16 +8,16 @@
 	lobby_icon = 'icons/misc/title.dmi'
 	lobby_screens = list("mockingjay00") // New lobby screen if possible.
 
-	station_levels = list()
+	station_levels = list(1,2,3)
 
-	admin_levels = list()
-	contact_levels = list()
+	admin_levels = list(8,9)
+	contact_levels = list(1,2,3)
 
-	player_levels = list()
+	player_levels = list(1,2,3,4,5,6,7)
 
 	sealed_levels = list()
-	empty_levels = list()
-	accessible_z_levels = list()
+	empty_levels = list(4)
+	accessible_z_levels = list("1"=1,"2"=1,"3"=1,"4"=30,"6"=10,"7"=10)
 	base_turf_by_z = list()
 
 	station_name  = "Southern Cross"
