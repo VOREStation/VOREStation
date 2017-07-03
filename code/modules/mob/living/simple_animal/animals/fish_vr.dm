@@ -7,22 +7,25 @@
 /mob/living/simple_animal/fish/koi/poisonous/New()
 	..()
 	create_reagents(60)
-	reagents.add_reagent("carpotoxin", 60)
+	reagents.add_reagent("koipotoxin", 45)
+	reagents.add_reagent("impedrezene", 15)
 
 /mob/living/simple_animal/fish/koi/poisonous/Life()
 	..()
 	var/datum/belly/why = check_belly(src)
-	if(why && prob(20))
+	if(why && prob(10))
 		sting(why.owner)
 
 /mob/living/simple_animal/fish/koi/poisonous/react_to_attack(var/atom/A)
 	if(isliving(A) && Adjacent(A))
 		var/mob/living/M = A
-		visible_message("<span class='warning'>\The [src] flails at [M]!</span>")
+		visible_message("<span class='warning'>\The [src][is_dead()?"'s corpse":""] flails at [M]!</span>")
 		SpinAnimation(7,1)
 		if(prob(75))
 			if(sting(M))
 				to_chat(M, "<span class='warning'>You feel a tiny prick.</span>")
+		if(is_dead())
+			return
 		for(var/i = 1 to 3)
 			var/turf/T = get_step_away(src, M)
 			if(T && is_type_in_list(T, suitable_turf_types))
@@ -34,9 +37,24 @@
 /mob/living/simple_animal/fish/koi/poisonous/proc/sting(var/mob/living/M)
 	if(!M.reagents)
 		return 0
-	M.reagents.add_reagent("carpotoxin", 3)
+	M.reagents.add_reagent("koipotoxin", 2)
+	M.reagents.add_reagent("impedrezene", 1)
 	return 1
 
+/datum/reagent/toxin/koipotoxin
+	name = "Koipotoxin"
+	id = "koipotoxin"
+	description = "A deadly neurotoxin legally distinct from carpotoxin."
+	taste_description = "fish"
+	reagent_state = LIQUID
+	color = "#003333"
+	strength = 10
+
 /obj/item/weapon/reagent_containers/food/snacks/carpmeat/koi
-	name = "koi fillet"
+	name = "fillet"
 	desc = "A fillet of genetically modified koi meat."
+
+/obj/item/weapon/reagent_containers/food/snacks/carpmeat/koi/New()
+	..()
+	reagents.remove_reagent("carpotoxin", 3)
+	reagents.add_reagent("koipotoxin", 3)
