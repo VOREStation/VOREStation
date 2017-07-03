@@ -119,6 +119,10 @@
 
 	dat += "<div class='statusDisplay'>"
 
+	if(istype(src, /obj/item/device/dogborg/sleeper/compactor))//garbage counter for trashpup
+		if(length(contents) > 0)
+			dat += "<font color='red'><B>Current load</B> [length(contents)] / 25.</font><BR>"
+
 	//Cleaning and there are still un-preserved items
 	if(cleaning && length(contents - items_preserved))
 		dat += "<font color='red'><B>Self-cleaning mode.</B> [length(contents - items_preserved)] object(s) remaining.</font><BR>"
@@ -446,7 +450,7 @@
 	inject_amount = 10
 	min_health = -100
 	injection_chems = null //So they don't have all the same chems as the medihound!
-	var/max_item_count = 32
+	var/max_item_count = 25
 
 /obj/item/device/dogborg/sleeper/compactor/afterattack(var/atom/movable/target, mob/living/silicon/user, proximity)//GARBO NOMS
 	hound = loc
@@ -476,6 +480,19 @@
 				hound.updateicon()
 		return
 
+	if(istype(target, /mob/living/simple_animal/mouse)) //Edible mice, dead or alive whatever. Mostly for carcass picking you cruel bastard :v
+		var/mob/living/simple_animal/trashmouse = target
+		user.visible_message("<span class='warning'>[hound.name] is ingesting [trashmouse] into their [src.name].</span>", "<span class='notice'>You start ingesting [trashmouse] into your [src.name]...</span>")
+		if(do_after(user, 30, trashmouse) && length(contents) < max_item_count)
+			trashmouse.forceMove(src)
+			trashmouse.reset_view(src)
+			user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [trashmouse] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [trashmouse] slips inside.</span>")
+			playsound(hound, 'sound/vore/gulp.ogg', 50, 1)
+			if(length(contents) > 11) //grow that tum after a certain junk amount
+				hound.sleeper_r = 1
+				hound.updateicon()
+		return
+
 	else if(ishuman(target))
 		var/mob/living/carbon/human/trashman = target
 		if(patient)
@@ -496,4 +513,12 @@
 			hound.updateicon()
 		return
 	return
-//Marking shit changed again because the random travis bug is having its shenanigans again \o/
+
+/mob/living/silicon/robot/attackby(obj/item/target as obj, mob/user as mob)
+	if(module_active && istype(module_active,/obj/item/device/dogborg/sleeper/compactor)) //Feeding?
+		if(user.a_intent == I_HELP)
+			var/obj/item/device/dogborg/sleeper/compactor = src.module_active
+			compactor.afterattack(target)
+			return
+		return
+	..()
