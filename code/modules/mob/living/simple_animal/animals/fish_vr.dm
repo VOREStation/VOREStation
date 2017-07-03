@@ -2,12 +2,11 @@
 	desc = "A genetic marvel, combining the docility and aesthetics of the koi with some of the resiliency and cunning of the noble space carp."
 	health = 50
 	maxHealth = 50
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/koi
 
 /mob/living/simple_animal/fish/koi/poisonous/New()
 	..()
 	create_reagents(60)
-	reagents.add_reagent("koipotoxin", 45)
+	reagents.add_reagent("toxin", 45)
 	reagents.add_reagent("impedrezene", 15)
 
 /mob/living/simple_animal/fish/koi/poisonous/Life()
@@ -37,24 +36,6 @@
 /mob/living/simple_animal/fish/koi/poisonous/proc/sting(var/mob/living/M)
 	if(!M.reagents)
 		return 0
-	M.reagents.add_reagent("koipotoxin", 2)
+	M.reagents.add_reagent("toxin", 2)
 	M.reagents.add_reagent("impedrezene", 1)
 	return 1
-
-/datum/reagent/toxin/koipotoxin
-	name = "Koipotoxin"
-	id = "koipotoxin"
-	description = "A deadly neurotoxin legally distinct from carpotoxin."
-	taste_description = "fish"
-	reagent_state = LIQUID
-	color = "#003333"
-	strength = 10
-
-/obj/item/weapon/reagent_containers/food/snacks/carpmeat/koi
-	name = "fillet"
-	desc = "A fillet of genetically modified koi meat."
-
-/obj/item/weapon/reagent_containers/food/snacks/carpmeat/koi/New()
-	..()
-	reagents.remove_reagent("carpotoxin", 3)
-	reagents.add_reagent("koipotoxin", 3)
