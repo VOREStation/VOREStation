@@ -219,4 +219,4 @@
 	vore_capacity = 1
 	vore_escape_chance = 8
 	vore_pounce_chance = 16
-vore_icons = SA_ICON_LIVING
+	vore_icons = SA_ICON_LIVING
