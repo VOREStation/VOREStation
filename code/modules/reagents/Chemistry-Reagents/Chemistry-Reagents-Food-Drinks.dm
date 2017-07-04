@@ -1014,7 +1014,7 @@
 	glass_desc = "Don't cry, Don't raise your eye, It's only nuclear wasteland"
 	glass_special = list(DRINK_FIZZ)
 
-/datum/reagent/drink/nuka_cola/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drink/soda/nuka_cola/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	M.add_chemical_effect(CE_SPEEDBOOST, 1)
 	M.make_jittery(20)
