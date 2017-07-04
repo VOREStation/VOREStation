@@ -51,6 +51,7 @@
 		/mob/living/simple_animal/parrot/Poly,
 		/mob/living/simple_animal/fox/fluff,
 		/mob/living/simple_animal/fluffy,
+		/mob/living/simple_animal/slime/science,
 		/mob/living/bot)//Good boys don't attack pets and bots.
 
 /mob/living/simple_animal/otie/frond //gets the pet2tame feature. starts out hostile tho so get gamblin'
