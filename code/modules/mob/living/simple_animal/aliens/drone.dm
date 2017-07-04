@@ -57,7 +57,7 @@
 	ion_trail.set_up(src)
 	ion_trail.start()
 
-/mob/living/simple_animal/malf_drone/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple_animal/hostile/malf_drone/Process_Spacemove(var/check_drift = 0)
 	return 1
 
 //self repair systems have a chance to bring the drone back to life
