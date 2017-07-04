@@ -429,11 +429,12 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 
 //SilencedMP5A5:Serdykov Antoz
 /obj/item/clothing/suit/armor/vest/wolftaur/serdy //SilencedMP5A5's specialty armor suit.
-	name = "Modified wolf-taur armor vest"
+	name = "KSS-8 security armor"
 	desc = "A set of armor made from pieces of many other armors. There are two orange holobadges on it, one on the chestplate, one on the steel flank plates. The holobadges appear to be russian in origin. 'Kosmicheskaya Stantsiya-8' is printed in faded white letters on one side, along the spine. It smells strongly of dog."
 	species_restricted = null //Species restricted since all it cares about is a taur half
 	icon_override = 'icons/mob/taursuits_vr.dmi' //Needs to be this since it's 64*32
 	icon_state = "serdy_armor"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS //It's a full body suit, minus hands and feet. Arms and legs should be protected, not just the torso. Retains normal security armor values still.
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
 			icon_override = 'icons/mob/taursuits_vr.dmi' //Just in case
@@ -444,15 +445,16 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 			H << "<span class='warning'>You need to have a wolf-taur half to wear this.</span>"
 			return 0
 
-/obj/item/clothing/head/helmet/serdy //SilencedMP5A5's specialty helmet. Uncomment if/when they make their custom item app and are accepted.
-	name = "Modified helmet"
-	desc = "An old production model steel-ceramic lined helmet with a white stripe and a custom orange visor. It has ear holes, and smells of dog."
+/obj/item/clothing/head/helmet/serdy //SilencedMP5A5's specialty helmet.
+	name = "KSS-8 security helmet"
+	desc = "An old production model steel-ceramic lined helmet with a white stripe and a custom orange holographic visor. It has ear holes, and smells of dog. It's been heavily modified, and fitted with a metal mask to protect the jaw."
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "serdyhelm"
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "serdyhelm_mob"
 
+/*
 //SilencedMP5A5:Serdykov Antoz
 /obj/item/device/modkit_conversion/fluff/serdykit
 	name = "Serdykov's armor modification kit"
@@ -465,6 +467,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	from_suit = /obj/item/clothing/suit/armor/vest/wolftaur
 	to_helmet = /obj/item/clothing/head/helmet/serdy
 	to_suit = /obj/item/clothing/suit/armor/vest/wolftaur/serdy
+*/
 
 //Lots of people are using this now.
 /obj/item/clothing/accessory/collar/khcrystal
