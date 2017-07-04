@@ -166,3 +166,16 @@
 	spawn_nothing_percentage = 0
 /obj/random/trash_pile/item_to_spawn()
 	return	/obj/structure/trash_pile
+
+/obj/random/mob
+	name = "Random Mob"
+	desc = "Eek!"
+	icon = 'icons/obj/animal.dmi'
+	icon_state = "mushroom"
+	spawn_nothing_percentage = 10
+/obj/random/cargopod/item_to_spawn()
+	return pick(prob(20);/mob/living/simple_animal/hostile/scarybat,
+				prob(10);/mob/living/simple_animal/hostile/dino,
+				prob(5);/mob/living/simple_animal/otie/feral,
+				prob(5);/mob/living/simple_animal/hostile/bear,
+				prob(1);/mob/living/simple_animal/hostile/dragon)

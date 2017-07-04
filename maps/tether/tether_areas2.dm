@@ -20,6 +20,10 @@
 /area/tether/surfacebase/outside/empty
 	name = "Outside - Empty Area"
 
+/area/tether/surfacebase/outside/wilderness
+	name = "Outside - Wilderness"
+	icon_state = "invi"
+
 /area/tether/surfacebase/tram
 	name = "\improper Tram Station"
 	icon_state = "dk_yellow"

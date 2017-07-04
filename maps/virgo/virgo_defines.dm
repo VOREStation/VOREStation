@@ -9,7 +9,7 @@
 
 /datum/map/virgo
 	name = "Virgo"
-	full_name = "NSS Adephagia"
+	full_name = "NSB Adephagia"
 	path = "virgo"
 
 	lobby_icon = 'icons/misc/title_vr.dmi'
@@ -44,7 +44,7 @@
 		"5" = /turf/simulated/mineral/floor
 	)
 
-	station_name  = "NSS Adephagia"
+	station_name  = "NSB Adephagia"
 	station_short = "Virgo"
 	dock_name     = "Virgo-Erigone Central Command"
 	boss_name     = "Central Command"
