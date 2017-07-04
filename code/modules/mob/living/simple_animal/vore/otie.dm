@@ -26,15 +26,15 @@
 	emote_hear = list("rurrs", "rumbles", "rowls", "groans softly", "murrs", "sounds hungry", "yawns")
 	emote_see = list("stares ferociously", "snarls", "licks their chops", "stretches", "yawns")
 	say_maybe_target = list("Ruh?", "Waf?")
-	say_got_target = list("Rurrr!", "ROAR!", "RERR!", "NOM!", "MINE!", "RAHH!", "RAH!", "WARF!")
+	say_got_target = list("Rurrr!", "ROAR!", "MINE!", "RAHH!", "Slurp.. RAH!")
 	melee_damage_lower = 5
 	melee_damage_upper = 20
 	response_help = "pets the"
 	response_disarm = "bops the"
 	response_harm = "hits the"
 	attacktext = "mauled"
-	friendly = list("nuzzles", "slobberlicks", "noses softly at", "noseboops", "headbumps against", "leans on", "nibbles affectionately on")
-	meat_amount = 6
+	friendly = list("nuzzles", "slobberlicks", "noses softly at", "noseboops")
+	meat_amount = 5
 	old_x = -16
 	old_y = 0
 	pixel_x = -16
@@ -42,17 +42,6 @@
 
 	var/mob/living/carbon/human/friend
 	var/tamed = 0
-	var/list/friendmobs = list(
-		/mob/living/simple_animal/cat/fluff,
-		/mob/living/simple_animal/corgi/Ian,
-		/mob/living/simple_animal/corgi/Lisa,
-		/mob/living/simple_animal/corgi/tamaskan/spice,
-		/mob/living/simple_animal/fish/koi,
-		/mob/living/simple_animal/parrot/Poly,
-		/mob/living/simple_animal/fox/fluff,
-		/mob/living/simple_animal/fluffy,
-		/mob/living/simple_animal/slime/science,
-		/mob/living/bot)//Good boys don't attack pets and bots.
 
 /mob/living/simple_animal/otie/frond //gets the pet2tame feature. starts out hostile tho so get gamblin'
 	name = "otie"
@@ -104,8 +93,6 @@
 			return null
 		else if(tamed == 1 && isrobot(found_atom))
 			return null
-		else if(tamed == 1 && is_type_in_list(found_atom, friendmobs))
-			return null
 		else
 			return found_atom
 
@@ -126,8 +113,6 @@
 		else if(tamed == 1 && ishuman(found_atom))
 			return null
 		else if(tamed == 1 && isrobot(found_atom))
-			return null
-		else if(tamed == 1 && is_type_in_list(found_atom, friendmobs))
 			return null
 		else
 			return found_atom
@@ -234,4 +219,4 @@
 	vore_capacity = 1
 	vore_escape_chance = 8
 	vore_pounce_chance = 16
-	vore_icons = SA_ICON_LIVING
+vore_icons = SA_ICON_LIVING
