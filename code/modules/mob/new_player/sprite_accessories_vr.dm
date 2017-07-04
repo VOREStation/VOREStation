@@ -166,23 +166,23 @@
 	skr_tentacle_veryshort
 		name = "Skrell Very Short Tentacles"
 		icon_state = "skrell_hair_veryshort"
-		species_allowed = list("Tajara", "Xenochimera")
+		species_allowed = list("Skrell", "Xenochimera")
 		gender = MALE
 
 	skr_tentacle_short
 		name = "Skrell Short Tentacles"
 		icon_state = "skrell_hair_short"
-		species_allowed = list("Tajara", "Xenochimera")
+		species_allowed = list("Skrell", "Xenochimera")
 
 	skr_tentacle_average
 		name = "Skrell Average Tentacles"
 		icon_state = "skrell_hair_average"
-		species_allowed = list("Tajara", "Xenochimera")
+		species_allowed = list("Skrell", "Xenochimera")
 
 	skr_tentacle_verylong
 		name = "Skrell Long Tentacles"
 		icon_state = "skrell_hair_verylong"
-		species_allowed = list("Tajara", "Xenochimera")
+		species_allowed = list("Skrell", "Xenochimera")
 		gender = FEMALE
 
 // Vulpa stuffs
