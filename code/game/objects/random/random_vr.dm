@@ -179,7 +179,7 @@
 	icon_state = "x"
 	spawn_nothing_percentage = 10
 
-/obj/random/cargopod/item_to_spawn()
+/obj/random/outside_mob/item_to_spawn()
 	return pick(prob(20);/mob/living/simple_animal/hostile/scarybat,
 				prob(10);/mob/living/simple_animal/hostile/dino,
 				prob(5);/mob/living/simple_animal/otie/feral,
