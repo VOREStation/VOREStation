@@ -27,14 +27,15 @@
 	emote_see = list("stares ferociously", "snarls", "licks their chops", "stretches", "yawns")
 	say_maybe_target = list("Ruh?", "Waf?")
 	say_got_target = list("Rurrr!", "ROAR!", "MARR!", "RAHH!", "Slurp.. RAH!")
+	say_got_target = list("Rurrr!", "ROAR!", "RERR!", "NOM!", "MINE!", "RAHH!", "RAH!", "WARF!")
 	melee_damage_lower = 5
 	melee_damage_upper = 20
 	response_help = "pets the"
 	response_disarm = "bops the"
 	response_harm = "hits the"
 	attacktext = "mauls"
-	friendly = list("nuzzles", "slobberlicks", "noses softly at", "noseboops")
-	meat_amount = 5
+	friendly = list("nuzzles", "slobberlicks", "noses softly at", "noseboops", "headbumps against", "leans on", "nibbles affectionately on")
+	meat_amount = 6
 	old_x = -16
 	old_y = 0
 	pixel_x = -16

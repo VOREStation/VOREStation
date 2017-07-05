@@ -33,8 +33,18 @@
 	allowed_roles = list("Paramedic","Chief Medical Officer","Medical Doctor","Chemist")
 
 /datum/gear/accessory/saddlebag
-    display_name = "Saddle Bag"
+    display_name = "Saddle Bag, Horse"
     path = /obj/item/weapon/storage/backpack/saddlebag
+    slot = slot_back
+
+/datum/gear/accessory/saddlebag_common
+    display_name = "Saddle Bag, Common"
+    path = /obj/item/weapon/storage/backpack/saddlebag_common
+    slot = slot_back
+
+/datum/gear/accessory/saddlebag_common/robust
+    display_name = "Saddle Bag, Robust"
+    path = /obj/item/weapon/storage/backpack/saddlebag_common/robust
     slot = slot_back
 
 /datum/gear/accessory/khcrystal
