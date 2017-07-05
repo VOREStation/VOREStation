@@ -13,7 +13,7 @@
 	minbodytemp = 200
 	move_to_delay = 4
 	hostile = 1
-	cooperative = 1
+	//cooperative = 1 // Neutral mobs should not be set like this.
 	investigates = 1
 	reacts = 1
 	retaliate = 1
@@ -26,15 +26,16 @@
 	emote_hear = list("rurrs", "rumbles", "rowls", "groans softly", "murrs", "sounds hungry", "yawns")
 	emote_see = list("stares ferociously", "snarls", "licks their chops", "stretches", "yawns")
 	say_maybe_target = list("Ruh?", "Waf?")
-	say_got_target = list("Rurrr!", "ROAR!", "MINE!", "RAHH!", "Slurp.. RAH!")
+	say_got_target = list("Rurrr!", "ROAR!", "MARR!", "RAHH!", "Slurp.. RAH!")
+	say_got_target = list("Rurrr!", "ROAR!", "RERR!", "NOM!", "MINE!", "RAHH!", "RAH!", "WARF!")
 	melee_damage_lower = 5
 	melee_damage_upper = 20
 	response_help = "pets the"
 	response_disarm = "bops the"
 	response_harm = "hits the"
-	attacktext = "mauled"
-	friendly = list("nuzzles", "slobberlicks", "noses softly at", "noseboops")
-	meat_amount = 5
+	attacktext = "mauls"
+	friendly = list("nuzzles", "slobberlicks", "noses softly at", "noseboops", "headbumps against", "leans on", "nibbles affectionately on")
+	meat_amount = 6
 	old_x = -16
 	old_y = 0
 	pixel_x = -16
@@ -42,13 +43,31 @@
 
 	var/mob/living/carbon/human/friend
 	var/tamed = 0
+	var/tame_chance = 50 //It's a fiddy-fiddy default you may get a buddy pal or you may get mauled and ate. Win-win!
 
-/mob/living/simple_animal/otie/frond //gets the pet2tame feature. starts out hostile tho so get gamblin'
+/mob/living/simple_animal/otie/feral //gets the pet2tame feature. starts out hostile tho so get gamblin'
+	name = "feral otie"
+	desc = "The classic bioengineered longdog. No pets. Only bite. This one has mutated from too much time out on the surface of Virgo-3B."
+	icon_state = "siftusian"
+	icon_dead = "siftusian-dead"
+	icon_rest = "siftusian_rest"
+	tame_chance = 5 // Only a 1 in 20 chance of success. It's feral. What do you expect?
+	// Lazy way of making sure this otie survives outside.
+	min_oxy = 0.5
+	max_oxy = 0
+	min_tox = 0
+	max_tox = 0
+	min_co2 = 0
+	max_co2 = 0
+	min_n2 = 0
+	max_n2 = 0
+
+/mob/living/simple_animal/otie/friendly //gets the pet2tame feature and doesn't kill you right away
 	name = "otie"
 	desc = "The classic bioengineered longdog. This one might even tolerate you!"
 	faction = "neutral"
 
-/mob/living/simple_animal/otie/frond/cotie //same as above but has a little collar :v
+/mob/living/simple_animal/otie/friendly/cotie //same as above but has a little collar :v
 	name = "tamed otie"
 	desc = "The classic bioengineered longdog. This one has a nice little collar on its neck. However a proper domesticated otie is an oxymoron and the collar is likely just a decoration."
 	icon_state = "cotie"
@@ -56,7 +75,7 @@
 	icon_rest = "cotie_rest"
 	faction = "neutral"
 
-/mob/living/simple_animal/otie/frond/security //tame by default unless you're a marked crimester. can be befriended to follow with pets tho.
+/mob/living/simple_animal/otie/friendly/security //tame by default unless you're a marked crimester. can be befriended to follow with pets tho.
 	name = "guard otie"
 	desc = "The V.A.R.M.A.corp bioengineering division flagship product on trained optimal snowflake guard dogs."
 	icon_state = "sotie"
@@ -82,47 +101,49 @@
 		return null
 	if(istype(found_atom,/mob/living/simple_animal/mouse))
 		return found_atom
-	if(will_eat(found_atom))
-		if(found_atom in friends)
+	if(found_atom in friends)
+		return null
+	else if(ismob(found_atom))
+		var/mob/found_mob = found_atom
+		if(found_mob.faction == faction)
 			return null
-		else if(found_atom in faction_friends)
-			return null
-		else if (friend == found_atom)
-			return null
-		else if(tamed == 1 && ishuman(found_atom))
-			return null
-		else if(tamed == 1 && isrobot(found_atom))
-			return null
-		else
-			return found_atom
+	else if (friend == found_atom)
+		return null
+	else if(tamed == 1 && ishuman(found_atom))
+		return null
+	else if(tamed == 1 && isrobot(found_atom))
+		return null
+	else
+		return found_atom
 
-/mob/living/simple_animal/otie/frond/security/Found(var/atom/found_atom)
+/mob/living/simple_animal/otie/friendly/security/Found(var/atom/found_atom)
 	if(!SA_attackable(found_atom))
 		return null
 	if(istype(found_atom,/mob/living/simple_animal/mouse))
 		return found_atom
 	if(check_threat(found_atom) >= 4)
 		return found_atom
-	if(will_eat(found_atom))
-		if(found_atom in friends)
+	if(found_atom in friends)
+		return null
+	else if(ismob(found_atom))
+		var/mob/found_mob = found_atom
+		if(found_mob.faction == faction)
 			return null
-		else if(found_atom in faction_friends)
-			return null
-		else if (friend == found_atom)
-			return null
-		else if(tamed == 1 && ishuman(found_atom))
-			return null
-		else if(tamed == 1 && isrobot(found_atom))
-			return null
-		else
-			return found_atom
+	else if (friend == found_atom)
+		return null
+	else if(tamed == 1 && ishuman(found_atom))
+		return null
+	else if(tamed == 1 && isrobot(found_atom))
+		return null
+	else
+		return found_atom
 
-/mob/living/simple_animal/otie/frond/security/proc/check_threat(var/mob/living/M)
+/mob/living/simple_animal/otie/friendly/security/proc/check_threat(var/mob/living/M)
 	if(!M || !ishuman(M) || M.stat == DEAD || src == M)
 		return 0
 	return M.assess_perp(0, 0, 0, check_records, check_arrest)
 
-/mob/living/simple_animal/otie/frond/security/set_target(var/mob/M)
+/mob/living/simple_animal/otie/friendly/security/set_target(var/mob/M)
 	ai_log("SetTarget([M])",2)
 	if(!M || (world.time - last_target_time < 5 SECONDS) && target_mob)
 		ai_log("SetTarget() can't set it again so soon",3)
@@ -150,7 +171,7 @@
 	return 0
 
 
-/mob/living/simple_animal/otie/frond/security/proc/target_name(mob/living/T)
+/mob/living/simple_animal/otie/friendly/security/proc/target_name(mob/living/T)
 	if(ishuman(T))
 		var/mob/living/carbon/human/H = T
 		return H.get_id_name("unidentified person")
@@ -158,7 +179,7 @@
 
 //Basic friend AI
 
-/mob/living/simple_animal/otie/frond/Life()
+/mob/living/simple_animal/otie/friendly/Life()
 	. = ..()
 	if(!. || ai_inactive || !friend) return
 
@@ -196,7 +217,7 @@
 	if(prob(5))
 		lay_down()
 
-//Pet 4 frond
+//Pet 4 friendly
 
 /mob/living/simple_animal/otie/attack_hand(mob/living/carbon/human/M as mob)
 	..()
@@ -204,10 +225,11 @@
 		if (health > 0)
 			LoseTarget()
 			handle_stance(STANCE_IDLE)
-			if(prob(50)) //It's a fiddy-fiddy you may get a buddy pal or you may get mauled and ate. Win-win!
+			if(prob(tame_chance))
 				friend = M
 				if(tamed != 1)
 					tamed = 1
+					faction = M.faction
 			sleep(1 SECOND)
 			return
 			..()

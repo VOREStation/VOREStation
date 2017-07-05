@@ -43,7 +43,7 @@
 
 /obj/structure/largecrate/animal/pred/New() //This is nessesary to get a random one each time.
 
-	held_type = pick(/mob/living/simple_animal/hostile/bee,
+	held_type = pick(/mob/living/simple_animal/retaliate/bee,
 						/mob/living/simple_animal/catgirl;3,
 						/mob/living/simple_animal/hostile/frog,
 						/mob/living/simple_animal/horse,
@@ -53,8 +53,8 @@
 						/mob/living/simple_animal/hostile/bear;0.5,
 						/mob/living/simple_animal/hostile/bear/brown;0.5,
 						/mob/living/simple_animal/hostile/carp,
-						/mob/living/simple_animal/otie/frond;0.5,
-						/mob/living/simple_animal/otie/frond/cotie;0.5,
+						/mob/living/simple_animal/otie/friendly;0.5,
+						/mob/living/simple_animal/otie/friendly/cotie;0.5,
 						/mob/living/simple_animal/hostile/mimic)
 	..()
 
@@ -79,4 +79,4 @@
 	desc = "The V.A.R.M.A.corp bioengineering division flagship product on trained optimal snowflake guard dogs."
 	icon = 'icons/obj/storage_vr.dmi'
 	icon_state = "sotiecrate"
-	held_type = /mob/living/simple_animal/otie/frond/security
+	held_type = /mob/living/simple_animal/otie/friendly/security

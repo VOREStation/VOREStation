@@ -59,7 +59,7 @@
 	icon_state = "shuttle"
 
 /area/shuttle/awaymission/home
-	name = "NSS Adephagia (AM)"
+	name = "NSB Adephagia (AM)"
 	icon_state = "shuttle2"
 
 /area/shuttle/awaymission/warp
