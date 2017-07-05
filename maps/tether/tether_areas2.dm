@@ -23,6 +23,7 @@
 /area/tether/surfacebase/outside/wilderness
 	name = "Outside - Wilderness"
 	icon_state = "invi"
+	forced_ambience = list('sound/music/Sacred_Grove.ogg')
 
 /area/tether/surfacebase/temple
 	name = "Outside - Wilderness" // ToDo: Make a way to hide spoiler areas off the list of areas ghosts can jump to.
