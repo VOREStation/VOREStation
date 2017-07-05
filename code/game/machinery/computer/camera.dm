@@ -169,6 +169,7 @@
 
 	src.current_camera = C
 	if(current_camera)
+		current_camera.camera_computers_using_this.Add(src)
 		use_power = 2
 		var/mob/living/L = current_camera.loc
 		if(istype(L))
@@ -176,6 +177,7 @@
 
 /obj/machinery/computer/security/proc/reset_current()
 	if(current_camera)
+		current_camera.camera_computers_using_this.Remove(src)
 		var/mob/living/L = current_camera.loc
 		if(istype(L))
 			L.tracking_cancelled()
