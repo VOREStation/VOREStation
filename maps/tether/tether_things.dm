@@ -63,6 +63,60 @@
 	teleport_y = src.y
 	teleport_z = Z_LEVEL_SURFACE_LOW
 
+/obj/effect/step_trigger/teleporter/wild/New()
+	..()
+
+	//If starting on east/west edges.
+	if (src.x == 1)
+		teleport_x = world.maxx - 1
+	else if (src.x == world.maxx)
+		teleport_x = 2
+	else
+		teleport_x = src.x
+	//If starting on north/south edges.
+	if (src.y == 1)
+		teleport_y = world.maxy - 1
+	else if (src.y == world.maxy)
+		teleport_y = 2
+	else
+		teleport_y = src.y
+
+/obj/effect/step_trigger/teleporter/wild/from_wild
+	..()
+	teleport_z = Z_LEVEL_SURFACE_LOW
+
+/obj/effect/step_trigger/teleporter/wild/to_wild_1
+	..()
+	teleport_z = Z_LEVEL_SURFACE_WILDERNESS_1
+
+/obj/effect/step_trigger/teleporter/wild/to_wild_2/New()
+	..()
+	teleport_z = Z_LEVEL_SURFACE_WILDERNESS_2
+
+/obj/effect/step_trigger/teleporter/wild/to_wild_3/New()
+	..()
+	teleport_z = Z_LEVEL_SURFACE_WILDERNESS_3
+
+/obj/effect/step_trigger/teleporter/wild/to_wild_4/New()
+	..()
+	teleport_z = Z_LEVEL_SURFACE_WILDERNESS_4
+
+/obj/effect/step_trigger/teleporter/wild/to_wild_5/New()
+	..()
+	teleport_z = Z_LEVEL_SURFACE_WILDERNESS_5
+
+/obj/effect/step_trigger/teleporter/wild/to_wild_6/New()
+	..()
+	teleport_z = Z_LEVEL_SURFACE_WILDERNESS_6
+
+/obj/effect/step_trigger/teleporter/wild/to_wild_crash/New()
+	..()
+	teleport_z = Z_LEVEL_SURFACE_WILDERNESS_CRASH
+
+/obj/effect/step_trigger/teleporter/wild/to_wild_ruins/New()
+	..()
+	teleport_z = Z_LEVEL_SURFACE_WILDERNESS_RUINS
+
 
 // Invisible object that blocks z transfer to/from its turf and the turf above.
 /obj/effect/ceiling

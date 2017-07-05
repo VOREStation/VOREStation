@@ -22,6 +22,16 @@
 	cold_damage_per_tick = 10
 	unsuitable_atoms_damage = 10
 
+	//Phoron dragons aren't affected by atmos.
+	min_oxy = 0
+	max_oxy = 0
+	min_tox = 0
+	max_tox = 0
+	min_co2 = 0
+	max_co2 = 0
+	min_n2 = 0
+	max_n2 = 0
+
 // Activate Noms!
 /mob/living/simple_animal/hostile/dino
 	vore_active = 1

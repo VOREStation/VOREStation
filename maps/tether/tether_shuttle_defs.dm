@@ -71,13 +71,13 @@
 	move_time = 60
 	origin = /area/shuttle/awaymission/home
 	interim = /area/shuttle/awaymission/warp
-	start_location = "NSS Adephagia (AM)"
+	start_location = "NSB Adephagia (AM)"
 	destinations = list(
 		"Old Engineering Base (AM)" = /area/shuttle/awaymission/oldengbase
 	)
 	docking_controller_tag = "awaymission_shuttle"
 	destination_dock_targets = list(
-		"NSS Adephagia (AM)" = "d1a2_dock_airlock"
+		"NSB Adephagia (AM)" = "d1a2_dock_airlock"
 	)
 	announcer = "Automated Traffic Control"
 	//These seem backwards because they are written from the perspective of the merc and vox ships
