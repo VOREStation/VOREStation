@@ -20,6 +20,18 @@
 /area/tether/surfacebase/outside/empty
 	name = "Outside - Empty Area"
 
+/area/tether/surfacebase/outside/wilderness
+	name = "Outside - Wilderness"
+	icon_state = "invi"
+
+/area/tether/surfacebase/temple
+	name = "Outside - Wilderness" // ToDo: Make a way to hide spoiler areas off the list of areas ghosts can jump to.
+	icon_state = "red"
+
+/area/tether/surfacebase/crash
+	name = "Outside - Wilderness" // ToDo: Make a way to hide spoiler areas off the list of areas ghosts can jump to.
+	icon_state = "yellow"
+
 /area/tether/surfacebase/tram
 	name = "\improper Tram Station"
 	icon_state = "dk_yellow"

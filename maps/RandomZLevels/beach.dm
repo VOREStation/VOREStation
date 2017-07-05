@@ -13,8 +13,9 @@
 
 /area/awaymission/beach
 	base_turf = /turf/simulated/floor/beach/sand
+//	forced_ambience = list('') // Need beach ambience sound loop.
 
-/area/awaymission/beachexit // This serves only to stop the sound spam of the beach before leaving. Maybe.
+/area/awaymission/beachexit // This serves only to stop the sound spam of the beach before leaving.
 	icon_state = "red"
 	base_turf = /turf/simulated/floor/beach/sand
 	luminosity = 1

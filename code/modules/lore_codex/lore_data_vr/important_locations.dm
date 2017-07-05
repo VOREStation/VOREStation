@@ -8,7 +8,7 @@
 		/datum/lore/codex/page/virgo_two,
 		/datum/lore/codex/page/virgo_three,
 		/datum/lore/codex/page/virgo_three_bee,
-		/datum/lore/codex/page/nss_adephagia,
+		/datum/lore/codex/page/nsb_adephagia,
 		/datum/lore/codex/page/virgo_central_command,
 		/datum/lore/codex/page/virgo_four,
 		/datum/lore/codex/page/virgo_five
@@ -18,7 +18,7 @@
 	name = "Virgo-Erigone (Star System)"
 	keywords += list("Virgo-Erigone")
 	data = "Virgo-Erigone is an A-type main sequence star with 81% more mass than Sol (the humans' home star), and almost nine times as bright.  It \
-	has a white glow, and a diameter that is about 34% larger than Sol. It has six major planets in its orbit.\
+	has a white glow, and a diameter that is about 34% larger than Sol. It has five major planets in its orbit.\
 	<br><br>\
 	'Virgo' is most notable for the presence of one of only two known [quick_link("Phoron")] gas giants, designated [quick_link("Virgo 3")]. This makes the \
 	system a popular location for Phoron research and refining.\
@@ -41,9 +41,15 @@
 /datum/lore/codex/page/virgo_prime/add_content()
 	name = "Virgo Prime (Terrestrial Planet)"
 	keywords += list("Virgo Prime")
-	data = "Virgo Prime is the first planet of Virgo-Eirgone. Primarily desert, temperatures can reach up to 330 kelvin \
-	kelvin (57°C). The most interesting fact about this planet is that it is the home planet of the [quick_link("Zorren")] race, who \
-	could be seen as having been uplifted by the various [quick_link("TSC", "TSCs")] that inhabit the system."
+	data = "Virgo Prime is the first planet of Virgo-Eirgone. Primarily desert, temperatures can reach up to a blistering 330 \
+	kelvin (57°C).  Despite being about the size of Earth, it is home to only about 750,000 known residents, most of whom live \
+	in the spaceport colony of Anur. \
+	<br><br> \
+	One of the most interesting facts about this planet is that it is the native [quick_link("Zorren")] race, who until recently \
+	were a primitive and nomadic species.  Due to the arrival of various [quick_link("TSC", "TSCs")] over the last two decades, \
+	the Zorren have benefitted greatly from the introduction of advanced technology into their culture. It is not known how many \
+	Zorren occupy the planet, but it is believed that at least two million live scattered across the deserts and mountains, where \
+	they subsist off of underground water sources, and hunt for prey."
 
 /datum/lore/codex/page/virgo_two/add_content()
 	name = "Virgo 2 (Terrestrial Planet)"
@@ -67,23 +73,23 @@
 	name = "Virgo 3 (Gas Giant)"
 	keywords += list("Virgo 3")
 	data = "Virgo 3 is one of only two known gas giants composed primarily of [quick_link("Phoron")] in the known universe. This fact has attracted several [quick_link("TSC", "TSCs")] into \
-	the system to exploit the resources available here for mining and research. Virgo 3 itself has several moons, though the only noteworthy moon is [quick_link("Virgo 3b")] which has native life. \
+	the system to exploit the resources available here for mining and research. Virgo 3 itself has several moons, though the only noteworthy moon is [quick_link("Virgo-3B")] which has native life. \
 	<br><br>\
 	The largest TSC to exploit this planet is none other than Phoron research giant [quick_link("NanoTrasen")], having built several stations orbiting the planet \
 	for both research and phoron refining purposes."
 
 /datum/lore/codex/page/virgo_three_bee/add_content()
-	name = "Virgo 3b (Terrestrial Moon)"
-	keywords += list("Virgo 3b")
-	data = "Virgo 3b is the only moon of [quick_link("Virgo 3")] with any atmosphere to speak of, composed primarily of [quick_link("Phoron")] and carbon dioxide with trace amounts of nitrogen. \
+	name = "Virgo-3B (Terrestrial Moon)"
+	keywords += list("Virgo-3B")
+	data = "Virgo-3B is the only moon of [quick_link("Virgo 3")] with any atmosphere to speak of, composed primarily of [quick_link("Phoron")] and carbon dioxide with trace amounts of nitrogen. \
 	The atmosphere appears to have given rise to native life, though originally nothing bigger than small insects in terms of fauna. The flora of the planet is rather sizable, though typically blue in hue \
 	due to the atmospheric composition.\
 	<br><br>\
-	Virgo 3b is tidally locked to Virgo 3, and is currently in the 'cold phase' of Virgo 3's orbit. The 'day' consists of reflected light from the surface of Virgo 3, while the 'night' consists of a total eclipse of \
+	Virgo-3B is tidally locked to Virgo 3, and is currently in the 'cold phase' of Virgo 3's orbit. The 'day' consists of reflected light from the surface of Virgo 3, while the 'night' consists of a total eclipse of \
 	Virgo-Erigone by Virgo 3, leaving the planet fairly cold for a terrestrial world.\
 	<br><br>\
 	The presence of several [quick_link("TSC", "TSCs")] on the surface has introduced new life forms to the planet via bioengineering, and now several 'new' species are commonly sighted per year. \
-	Currently, [quick_link("NanoTrasen")] is constructing a 'space elevator' for commercial purposes, as the atmosphere of Virgo 3b is inimical to shuttles, and engines in particular."
+	Currently, [quick_link("NanoTrasen")] is constructing a 'space elevator' for commercial purposes, as the atmosphere of Virgo-3B is inimical to shuttles, and engines in particular."
 
 /datum/lore/codex/page/virgo_central_command/add_content()
 	name = "Virgo Central Command (Artificial Satellite)"
@@ -100,14 +106,15 @@
 	the facility and the planet's stations via shuttle extremely cost-efficient."
 
 /datum/lore/codex/page/virgo_four/add_content()
-	name = "Virgo 4 (Terrestrial Planet)"
+	name = "Virgo 4 (Ice Planet)"
 	keywords += list("Virgo 4")
-	data = "Outside of the habitable zone, the barren world Magni is generally at 202 kelvin (-71°C)."
+	data = "Although outside of the habitable zone, and with a surface temperature averaging only 202 kelvin (-71°C), somehow this barren world still manages to \
+	sustain a niche biome of largely undiscovered alien life."
 
-/datum/lore/codex/page/nss_adephagia/add_content()
+/datum/lore/codex/page/nsb_adephagia/add_content()
 	name = "NSB Adephagia (Artificial Satellite)"
 	keywords += list("NSB Adephagia")
-	data = "One of the most prominent installations in the [quick_link("Virgo 3")] subsystem, the NSS Adephagia is owned \
+	data = "One of the most prominent installations in the [quick_link("Virgo 3")] subsystem, the NSB Adephagia is owned \
 	and operated by [quick_link("NanoTrasen")].  It was originally built to service the various mining operations \
 	occurring within the Virgo 3 system, however it has grown into what it is today due to what was discovered inside \
 	the interior of the rock.  Both phoron and alien artifacts were found inside, catapulting the asteroid outpost \

@@ -350,7 +350,7 @@ area/space/atmosalert()
 	icon_state = "shuttlered"
 
 /area/shuttle/administration/station
-	name = "NSS Adephagia (AS)" //VOREStation Edit
+	name = "NSB Adephagia (AS)" //VOREStation Edit
 	icon_state = "shuttlered2"
 
 /area/shuttle/trade/centcom
