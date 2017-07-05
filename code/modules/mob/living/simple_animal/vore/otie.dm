@@ -46,7 +46,10 @@
 
 /mob/living/simple_animal/otie/feral //gets the pet2tame feature. starts out hostile tho so get gamblin'
 	name = "feral otie"
-	desc = "The classic bioengineered longdog. No pets. Only bite. This one has spent too much time out on the surface of Virgo-3B."
+	desc = "The classic bioengineered longdog. No pets. Only bite. This one has mutated from too much time out on the surface of Virgo-3B."
+	icon_state = "siftusian"
+	icon_dead = "siftusian-dead"
+	icon_rest = "siftusian_rest"
 	tame_chance = 5 // Only a 1 in 20 chance of success. It's feral. What do you expect?
 	// Lazy way of making sure this otie survives outside.
 	min_oxy = 0.5
