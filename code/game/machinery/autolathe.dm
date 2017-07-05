@@ -145,7 +145,7 @@
 	if(is_robot_module(O))
 		return 0
 
-	if(istype(O,/obj/item/ammo_magazine/clip) || istype(O,/obj/item/ammo_magazine/s357) || istype(O,/obj/item/ammo_magazine/s38)) // Prevents ammo recycling exploit with speedloaders.
+	if(istype(O,/obj/item/ammo_magazine/clip) || istype(O,/obj/item/ammo_magazine/s357) || istype(O,/obj/item/ammo_magazine/s38) || istype (O,/obj/item/ammo_magazine/s44)/* VOREstation Edit*/) // Prevents ammo recycling exploit with speedloaders.
 		user << "\The [O] is too hazardous to recycle with the autolathe!"
 		return
 		/*  ToDo: Make this actually check for ammo and change the value of the magazine if it's empty. -Spades

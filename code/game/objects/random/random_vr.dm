@@ -33,7 +33,7 @@
 					prob(10);/obj/item/weapon/melee/energy/sword,\
 					prob(9);/obj/item/weapon/gun/projectile/automatic/wt550/lethal,\
 					prob(9);/obj/item/weapon/gun/projectile/automatic/pdw,\
-					prob(9);/obj/item/weapon/gun/projectile/derringer,\
+					prob(9);/obj/item/weapon/gun/projectile/automatic/SMG_sol, \
 					prob(9);/obj/item/weapon/gun/energy/crossbow/largecrossbow,\
 					prob(9);/obj/item/weapon/gun/projectile/automatic/mini_uzi,\
 					prob(9);/obj/item/weapon/gun/projectile/pistol,\
@@ -41,13 +41,14 @@
 					prob(9);/obj/item/weapon/twohanded/fireaxe,\
 					prob(9);/obj/item/weapon/cane/concealed,\
 					prob(9);/obj/item/weapon/gun/energy/gun,\
-					prob(8);/obj/item/weapon/gun/energy/ionrifle,\
 					prob(8);/obj/item/weapon/gun/energy/retro,\
 					prob(8);/obj/item/weapon/gun/energy/gun/eluger,\
 					prob(8);/obj/item/weapon/gun/energy/xray,\
 					prob(8);/obj/item/weapon/gun/projectile/automatic/c20r,\
 					prob(8);/obj/item/weapon/gun/projectile/automatic/stg,\
 					prob(8);/obj/item/weapon/melee/energy/sword,\
+					prob(8);/obj/item/weapon/gun/projectile/derringer,\
+					prob(8);/obj/item/weapon/gun/projectile/revolver/lemat,\
 				/*	prob(8);/obj/item/weapon/gun/projectile/automatic/m41a,\ */
 					prob(7);/obj/item/weapon/gun/energy/captain,\
 					prob(7);/obj/item/weapon/gun/energy/sniperrifle,\
@@ -58,10 +59,12 @@
 					prob(7);/obj/item/weapon/gun/energy/gun/burst,\
 					prob(7);/obj/item/weapon/gun/projectile/shotgun/pump/unsc,\
 					prob(7);/obj/item/weapon/gun/projectile/deagle,\
+					prob(7);/obj/item/weapon/gun/projectile/revolver/consul,\
 					prob(7);/obj/item/weapon/gun/launcher/grenade,\
 					prob(6);/obj/item/weapon/gun/projectile/SVD,\
 					prob(6);/obj/item/weapon/gun/projectile/automatic/l6_saw,\
 					prob(6);/obj/item/weapon/gun/energy/lasercannon,\
+					prob(5);/obj/item/weapon/gun/projectile/shotgun/pump/rifle/lever,\
 					prob(5);/obj/item/weapon/gun/projectile/automatic/carbine,\
 					prob(5);/obj/item/weapon/gun/energy/pulse_rifle,\
 				/*	prob(4);/obj/item/weapon/gun/projectile/automatic/battlerifle,\ */
@@ -73,6 +76,7 @@
 					prob(1);/obj/item/weapon/gun/projectile/gyropistol,\
 					prob(1);/obj/item/weapon/gun/projectile/heavysniper,\
 					prob(1);/obj/item/weapon/plastique,\
+					prob(1);/obj/item/weapon/gun/energy/ionrifle,\
 					prob(1);/obj/item/weapon/material/sword,\
 					prob(1);/obj/item/weapon/cane/concealed,\
 					prob(1);/obj/item/weapon/material/sword/katana)
@@ -114,6 +118,7 @@
 					prob(4);/obj/item/ammo_magazine/m762,\
 					prob(3);/obj/item/ammo_magazine/clip/c10mm,\
 					prob(3);/obj/item/ammo_magazine/clip/c44,\
+					prob(3);/obj/item/ammo_magazine/s44,\
 					prob(3);/obj/item/ammo_magazine/m556,\
 					prob(2);/obj/item/ammo_magazine/m44,\
 					prob(2);/obj/item/ammo_magazine/m556,\
@@ -167,12 +172,13 @@
 /obj/random/trash_pile/item_to_spawn()
 	return	/obj/structure/trash_pile
 
-/obj/random/mob
+/obj/random/outside_mob
 	name = "Random Mob"
 	desc = "Eek!"
-	icon = 'icons/obj/animal.dmi'
-	icon_state = "mushroom"
+	icon = 'icons/mob/screen1.dmi'
+	icon_state = "x"
 	spawn_nothing_percentage = 10
+
 /obj/random/cargopod/item_to_spawn()
 	return pick(prob(20);/mob/living/simple_animal/hostile/scarybat,
 				prob(10);/mob/living/simple_animal/hostile/dino,
