@@ -520,19 +520,21 @@ item_path: /obj/item/clothing/glasses/sunglasses/fluff/alfonso
 {
 ckey: silencedmp5a5
 character_name: Serdykov Antoz
-item_path: /obj/item/device/modkit_conversion/fluff/serdykit
+item_path: /obj/item/weapon/storage/box/fluff/serdykov_antoz
 }
 
 {
 ckey: silencedmp5a5
 character_name: Serdykov Antoz
-item_path: /obj/item/weapon/gun/projectile/revolver/detective/fluff/serdy
+item_path: /obj/item/clothing/head/helmet/serdy
+req_access = 1
 }
 
 {
 ckey: silencedmp5a5
 character_name: Serdykov Antoz
-item_path: /obj/item/fluff/permit/silencedmp5a5
+item_path: /obj/item/clothing/suit/armor/vest/wolftaur/serdy
+req_access = 1
 }
 
 {
