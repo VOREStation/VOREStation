@@ -626,10 +626,8 @@ var/list/sacrificed = list()
 
 			if(istype(src,/obj/effect/rune))
 				usr.say("O bidai nabora se[pick("'","`")]sma!")
-				usr.say("[input]")
 			else
 				usr.whisper("O bidai nabora se[pick("'","`")]sma!")
-				usr.whisper("[input]")
 
 			input = sanitize(input)
 			log_and_message_admins("used a communicate rune to say '[input]'")
