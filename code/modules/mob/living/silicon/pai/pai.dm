@@ -283,6 +283,7 @@
 
 	var/turf/T = get_turf(src)
 	if(istype(T)) T.visible_message("<b>[src]</b> folds outwards, expanding into a mobile form.")
+	verbs += /mob/living/silicon/pai/proc/pai_nom //VOREStation edit
 
 /mob/living/silicon/pai/verb/fold_up()
 	set category = "pAI Commands"
@@ -344,6 +345,7 @@
 	else
 		resting = !resting
 		icon_state = resting ? "[chassis]_rest" : "[chassis]"
+		update_icon() //VOREStation edit
 		src << "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>"
 
 	canmove = !resting
@@ -372,6 +374,10 @@
 	if(src.loc == card)
 		return
 
+	for(var/I in vore_organs) //VOREStation edit. Release all their stomach contents. Don't want them to be in the PAI when they fold or weird things might happen.
+		var/datum/belly/B = vore_organs[I] //VOREStation edit
+		B.release_all_contents() //VOREStation edit
+
 	var/turf/T = get_turf(src)
 	if(istype(T)) T.visible_message("<b>[src]</b> neatly folds inwards, compacting down to a rectangular card.")
 
@@ -399,6 +405,7 @@
 	canmove = 1
 	resting = 0
 	icon_state = "[chassis]"
+	verbs -= /mob/living/silicon/pai/proc/pai_nom //VOREStation edit. Let's remove their nom verb
 
 // No binary for pAIs.
 /mob/living/silicon/pai/binarycheck()
