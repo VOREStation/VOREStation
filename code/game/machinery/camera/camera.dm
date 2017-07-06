@@ -37,6 +37,8 @@
 
 	var/client_huds = list()
 
+	var/list/camera_computers_using_this = list()
+
 /obj/machinery/camera/New()
 	wires = new(src)
 	assembly = new(src)

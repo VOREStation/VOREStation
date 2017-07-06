@@ -66,6 +66,14 @@
 			When in hacking mode this device will grant full access to any standard airlock within 20 to 40 seconds. \
 			This device will also be able to immediately access the last 6 to 8 hacked airlocks."
 
+/datum/uplink_item/item/tools/ai_detector
+	name = "Anti-Surveillance Tool"
+	item_cost = 20
+	path = /obj/item/device/multitool/ai_detector
+	desc = "This functions like a normal multitool, but includes an integrated camera network sensor that will warn the holder if they are being \
+	watched, by changing color and beeping.  It is able to detect both AI visual surveillance and security camera utilization from terminals, and \
+	will give different warnings by beeping and changing colors based on what it detects.  Only the holder can hear the warnings."
+
 /datum/uplink_item/item/tools/emag
 	name = "Cryptographic Sequencer"
 	item_cost = 30
