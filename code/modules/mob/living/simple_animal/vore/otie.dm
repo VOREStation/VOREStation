@@ -108,16 +108,16 @@
 		var/mob/found_mob = found_atom
 		if(found_mob.faction == faction)
 			return null
+		else if(friend == found_atom)
+			return null
+		else if(tamed == 1 && ishuman(found_atom))
+			return null
+		else if(tamed == 1 && isrobot(found_atom))
+			return null
 		else
 			return found_atom
-	else if(friend == found_atom)
-		return null
-	else if(tamed == 1 && ishuman(found_atom))
-		return null
-	else if(tamed == 1 && isrobot(found_atom))
-		return null
 	else
-		return found_atom
+		return null
 
 /mob/living/simple_animal/otie/friendly/security/Found(var/atom/found_atom)
 	if(!SA_attackable(found_atom))
@@ -132,16 +132,16 @@
 		var/mob/found_mob = found_atom
 		if(found_mob.faction == faction)
 			return null
+		else if(friend == found_atom)
+			return null
+		else if(tamed == 1 && ishuman(found_atom))
+			return null
+		else if(tamed == 1 && isrobot(found_atom))
+			return null
 		else
 			return found_atom
-	else if(friend == found_atom)
-		return null
-	else if(tamed == 1 && ishuman(found_atom))
-		return null
-	else if(tamed == 1 && isrobot(found_atom))
-		return null
 	else
-		return found_atom
+		return null
 
 /mob/living/simple_animal/otie/friendly/security/proc/check_threat(var/mob/living/M)
 	if(!M || !ishuman(M) || M.stat == DEAD || src == M)
