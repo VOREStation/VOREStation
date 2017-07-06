@@ -53,6 +53,8 @@
 	icon_dead = "siftusian-dead"
 	icon_rest = "siftusian_rest"
 	tame_chance = 5 // Only a 1 in 20 chance of success. It's feral. What do you expect?
+	melee_damage_lower = 10
+	melee_damage_upper = 25
 	// Lazy way of making sure this otie survives outside.
 	min_oxy = 0.5
 	max_oxy = 0
