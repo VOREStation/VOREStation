@@ -108,7 +108,7 @@
 		var/mob/found_mob = found_atom
 		if(found_mob.faction == faction)
 			return null
-	else if (friend == found_atom)
+	else if(friend == found_atom)
 		return null
 	else if(tamed == 1 && ishuman(found_atom))
 		return null
@@ -130,7 +130,7 @@
 		var/mob/found_mob = found_atom
 		if(found_mob.faction == faction)
 			return null
-	else if (friend == found_atom)
+	else if(friend == found_atom)
 		return null
 	else if(tamed == 1 && ishuman(found_atom))
 		return null
@@ -205,7 +205,9 @@
 								   "rubs against [friend].",
 								   "noses softly at [friend].",
 								   "slobberlicks [friend].",
-								   "murrs."))
+								   "murrs.",
+								   "leans on [friend].",
+								   "nibbles affectionately on [friend]."))
 	else if (friend.health <= 50)
 		if (prob(10))
 			var/verb = pick("whines", "yelps", "whimpers")
