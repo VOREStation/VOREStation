@@ -30,24 +30,24 @@
 			usr.visible_message("<span class='warning'>[usr] pushes the device up his forehead and [M]'s head, the device beginning to let out a series of light beeps!</span>","<span class='notice'>You begin swap minds with [M]!</span>")
 			if(do_after(usr,35 SECONDS,M))
 				if(usr.mind && M.mind && M.stat != DEAD && usr.stat != DEAD)
-					//Most of this could be done with a ghostize and simple M.ckey = usr.ckey, but then it has a chance of giving admins the wrong CID and IP, thus, the code below.
-					var/taget_cid = M.computer_id
-					var/taget_ip = M.lastKnownIP
-					var/target_ckey = M.ckey
+					var/user_mind = usr.mind
+					var/target_mind = M.mind
 					var/target_ooc_notes = M.ooc_notes
-					var/user_cid = usr.computer_id
-					var/user_ip = usr.lastKnownIP
-					var/user_ckey = usr.ckey
 					var/user_ooc_notes = user.ooc_notes
-					admin_attack_log("[usr.ckey] used a Bodysnatcher to swap bodies with [M.ckey]")
+					var/user_ckey = user.ckey
+					var/target_ckey = M.ckey
+					log_and_message_admins("[usr.ckey] used a Bodysnatcher to swap bodies with [M.ckey]")
 					to_chat(usr,"<span class='notice'>Your minds have been swapped! Have a nice day.</span>")
 					M.ghostize() //If this doesn't happen, it boots them from the server.
+					usr.ghostize()
+					M.mind = null //Let's make them null for a second, just a precaution
+					usr.mind = null
+					M.mind = user_mind //Now, let's swap their minds. Would use transfer_to, but the issue with that is you can't move X's mind to Y, then Y's mind to X, as Y's mind would be overwritten by X's mind at that point.
+					usr.mind = target_mind
+					usr.ckey = target_ckey //Can't see an
 					M.ckey = user_ckey
-					usr.ckey = target_ckey
-					M.computer_id = user_cid
-					usr.computer_id = taget_cid
-					M.lastKnownIP = user_ip
-					usr.lastKnownIP = taget_ip
+					user.apply_vore_prefs()
+					M.apply_vore_prefs()
 					M.ooc_notes = user_ooc_notes //Let's keep their OOC notes over to their new body.
 					user.ooc_notes = target_ooc_notes
 					usr.sleeping = 10 //Device knocks out both the user and the target.
@@ -59,7 +59,7 @@
 						M.slurring = 50
 
 	else
-		to_chat(user,"<span class='warning'> A warning pops up on the LED display on the side of the gun, informing you that the target is not able to have their mind swapped with!</span>")
+		to_chat(user,"<span class='warning'> A warning pops up on the LED display on the side of the device, informing you that the target is not able to have their mind swapped with!</span>")
 
 /obj/item/device/bodysnatcher/attack_self(mob/living/user)
 		to_chat(user,"<span class='warning'> A message pops up on the LED display, informing you that you that the mind transfer to yourself was successful... Wait, did that even do anything?</span>")
