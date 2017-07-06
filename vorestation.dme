@@ -1893,6 +1893,7 @@
 #include "code\modules\mob\living\simple_animal\animals\birds_vr.dm"
 #include "code\modules\mob\living\simple_animal\animals\carp.dm"
 #include "code\modules\mob\living\simple_animal\animals\cat.dm"
+#include "code\modules\mob\living\simple_animal\animals\cat_vr.dm"
 #include "code\modules\mob\living\simple_animal\animals\corgi.dm"
 #include "code\modules\mob\living\simple_animal\animals\corgi_vr.dm"
 #include "code\modules\mob\living\simple_animal\animals\crab.dm"
