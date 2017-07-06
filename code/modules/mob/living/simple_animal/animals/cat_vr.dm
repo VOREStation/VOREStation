@@ -34,5 +34,5 @@
 			"Runtime's belly lets off a soft groan as your body finally gives out, the cat's eyes growing heavy as it settles down to enjoy it's good meal.",
 			"Runtime purrs happily as you slowly slip away inside of her gut, your body's nutrients are then used to put a layer of padding on the now pudgy cat.",
 			"The acids inside of Runtime's stomach, aided by the constant motions of the smooth walls surrounding you finally manage to melt you away into nothing more mush. She curls up on the floor, slowly kneading the air as her stomach moves its contents — including you — deeper into her digestive system.",
-			"Your form begins to slowly soften and break apart, rounding out Runtime's swollen belly. The carnivorous cat rumbles and purrs happily at the feeling of such a filling meal."
+			"Your form begins to slowly soften and break apart, rounding out Runtime's swollen belly. The carnivorous cat rumbles and purrs happily at the feeling of such a filling meal.")
 	..()
