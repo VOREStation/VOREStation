@@ -179,9 +179,15 @@
 	icon_state = "x"
 	spawn_nothing_percentage = 10
 
-/obj/random/outside_mob/item_to_spawn()
-	return pick(prob(20);/mob/living/simple_animal/hostile/scarybat,
+/obj/random/outside_mob/item_to_spawn() // Special version for mobs to have the same faction.
+	var/mob = pick(prob(20);/mob/living/simple_animal/hostile/scarybat,
 				prob(10);/mob/living/simple_animal/hostile/dino,
 				prob(5);/mob/living/simple_animal/otie/feral,
 				prob(5);/mob/living/simple_animal/hostile/bear,
 				prob(1);/mob/living/simple_animal/hostile/dragon)
+	if (istype(mob, /mob/living)) // This is just to prevent runtime errors in case some dev is a dumbass and puts invalid items into this.
+		var/mob/living/simple_animal/this_mob = mob
+		this_mob.faction = "wild animal"
+		return this_mob
+	else
+		return mob
