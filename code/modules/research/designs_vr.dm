@@ -45,6 +45,13 @@
 	build_path = /obj/item/device/sleevemate
 	sort_string = "TAAAD"
 
+/datum/design/item/sleevemate
+	name = "Body Snatcher"
+	id = "bodysnatcher"
+	req_tech = list(TECH_MAGNET = 3, TECH_BIO = 3, TECH_ILLEGAL = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 4000)
+	build_path = /obj/item/device/bodysnatcher
+
 /datum/design/item/item/pressureinterlock
 	name = "APP pressure interlock"
 	id = "pressureinterlock"

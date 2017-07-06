@@ -228,7 +228,8 @@
 			prob(1);/obj/item/weapon/cell/hyper/empty,
 			prob(1);/obj/item/weapon/disk/nifsoft/compliance,
 			prob(1);/obj/item/device/nif/bad,
-			prob(1);/obj/item/device/sleevemate)
+			prob(1);/obj/item/device/sleevemate,
+			prob(1);/obj/item/device/bodysnatcher)
 
 	var/obj/item/I = new path()
 	return I
