@@ -49,6 +49,7 @@
 	name = "feral otie"
 	desc = "The classic bioengineered longdog. No pets. Only bite. This one has mutated from too much time out on the surface of Virgo-3B."
 	icon_state = "siftusian"
+	icon_living = "siftusian"
 	icon_dead = "siftusian-dead"
 	icon_rest = "siftusian_rest"
 	tame_chance = 5 // Only a 1 in 20 chance of success. It's feral. What do you expect?
