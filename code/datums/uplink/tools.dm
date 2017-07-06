@@ -66,7 +66,7 @@
 			When in hacking mode this device will grant full access to any standard airlock within 20 to 40 seconds. \
 			This device will also be able to immediately access the last 6 to 8 hacked airlocks."
 
-/datum/uplink_item/item/tools/hacking_tool
+/datum/uplink_item/item/tools/ai_detector
 	name = "Anti-Surveillance Tool"
 	item_cost = 20
 	path = /obj/item/device/multitool/ai_detector
