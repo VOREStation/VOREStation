@@ -274,6 +274,25 @@
 	desc = "A warning sign which reads 'HYDROPONICS'."
 	icon_state = "hydro1"
 
+/obj/structure/sign/hydro
+	name = "\improper HYDROPONICS"
+	desc = "A sign labelling an area as a place where plants are grown."
+	icon_state = "hydro1"
+
+/obj/structure/sign/hydrostorage
+	name = "\improper HYDROPONICS STORAGE"
+	desc = "A sign labelling an area as a place where plant growing supplies are kept."
+	icon_state = "hydro3"
+
+/obj/structure/sign/directions
+	name = "direction sign"
+	desc = "A direction sign, claiming to know the way."
+	icon_state = "direction"
+
+/obj/structure/sign/directions/New()
+	..()
+	desc = "A direction sign, pointing out which way \the [src] is."
+
 /obj/structure/sign/directions/science
 	name = "\improper Science department"
 	desc = "A direction sign, pointing out which way the Science department is."
@@ -295,9 +314,13 @@
 	icon_state = "direction_med"
 
 /obj/structure/sign/directions/evac
-	name = "\improper Escape Arm"
+	name = "\improper Evacuation"
 	desc = "A direction sign, pointing out which way the Escape Shuttle dock is."
 	icon_state = "direction_evac"
+
+/obj/structure/sign/directions/bridge
+	name = "\improper Bridge"
+	icon_state = "direction_bridge"
 
 /obj/structure/sign/directions/cargo
 	name = "\improper Cargo department"
@@ -315,3 +338,31 @@
 	desc = "Prickly and festive."
 	icon = 'icons/obj/christmas.dmi'
 	icon_state = "doorwreath"
+
+/obj/structure/sign/deck/first
+	name = "\improper First Deck"
+	icon_state = "deck-1"
+
+/obj/structure/sign/deck/second
+	name = "\improper Second Deck"
+	icon_state = "deck-2"
+
+/obj/structure/sign/deck/third
+	name = "\improper Third Deck"
+	icon_state = "deck-3"
+
+/obj/structure/sign/deck/fourth
+	name = "\improper Fourth Deck"
+	icon_state = "deck-4"
+
+/obj/structure/sign/hangar/one
+	name = "\improper Hangar One"
+	icon_state = "hangar-1"
+
+/obj/structure/sign/hangar/two
+	name = "\improper Hangar Two"
+	icon_state = "hangar-2"
+
+/obj/structure/sign/hangar/three
+	name = "\improper Hangar Three"
+	icon_state = "hangar-3"
