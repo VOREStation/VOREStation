@@ -246,7 +246,7 @@
 		M.visible_message("<span class='warning'>[M] has grabbed [src] passively!</span>")
 		M.do_attack_animation(src)
 		ai_log("attack_hand() I was grabbed by: [M]",2)
-		pixel_x = -16
+		pixel_x = old_x
 		react_to_attack(M)
 	if(M.a_intent == I_HELP)
 		if (health > 0)
