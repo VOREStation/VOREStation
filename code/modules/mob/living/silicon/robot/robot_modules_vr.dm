@@ -118,7 +118,7 @@
 	can_be_pushed = 0
 
 /obj/item/weapon/robot_module/scrubpup/New(var/mob/living/silicon/robot/R)
-	src.modules += new /obj/item/device/lightreplacer(src)
+	src.modules += new /obj/item/device/lightreplacer/dogborg(src)
 	src.modules += new /obj/item/weapon/dogborg/jaws/small(src)
 	src.modules += new /obj/item/device/dogborg/boop_module(src)
 	src.modules += new /obj/item/device/dogborg/tongue(src)

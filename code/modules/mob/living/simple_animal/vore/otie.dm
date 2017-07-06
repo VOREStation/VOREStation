@@ -8,8 +8,8 @@
 	icon_rest = "otie_rest"
 	faction = "otie"
 	recruitable = 1
-	maxHealth = 100
-	health = 100
+	maxHealth = 150
+	health = 150
 	minbodytemp = 200
 	move_to_delay = 4
 	hostile = 1
@@ -85,8 +85,8 @@
 	icon_dead = "sotie-dead"
 	faction = "neutral"
 	tamed = 1
-	maxHealth = 150 //armored or something
-	health = 150
+	maxHealth = 200 //armored or something
+	health = 200
 	loot_list = list(/obj/item/clothing/glasses/sunglasses/sechud,/obj/item/clothing/suit/armor/vest/alt)
 
 	var/check_records = 1 // If true, arrests people without a record.
@@ -108,6 +108,8 @@
 		var/mob/found_mob = found_atom
 		if(found_mob.faction == faction)
 			return null
+		else
+			return found_atom
 	else if(friend == found_atom)
 		return null
 	else if(tamed == 1 && ishuman(found_atom))
@@ -130,6 +132,8 @@
 		var/mob/found_mob = found_atom
 		if(found_mob.faction == faction)
 			return null
+		else
+			return found_atom
 	else if(friend == found_atom)
 		return null
 	else if(tamed == 1 && ishuman(found_atom))
@@ -224,6 +228,24 @@
 
 /mob/living/simple_animal/otie/attack_hand(mob/living/carbon/human/M as mob)
 	..()
+	if(M.a_intent == I_GRAB)
+		if (M == src)
+			return
+		if (!(status_flags & CANPUSH))
+			return
+		if(!incapacitated(INCAPACITATION_ALL) && (stance != STANCE_IDLE) && prob(grab_resist))
+			M.visible_message("<span class='warning'>[M] tries to grab [src] but fails!</span>")
+			return
+		var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src)
+		M.put_in_active_hand(G)
+		G.synch()
+		G.affecting = src
+		LAssailant = M
+		M.visible_message("<span class='warning'>[M] has grabbed [src] passively!</span>")
+		M.do_attack_animation(src)
+		ai_log("attack_hand() I was grabbed by: [M]",2)
+		pixel_x = -16
+		react_to_attack(M)
 	if(M.a_intent == I_HELP)
 		if (health > 0)
 			LoseTarget()
@@ -242,6 +264,6 @@
 /mob/living/simple_animal/otie
 	vore_active = 1
 	vore_capacity = 1
-	vore_escape_chance = 8
-	vore_pounce_chance = 16
+	vore_escape_chance = 15
+	vore_pounce_chance = 20
 	vore_icons = SA_ICON_LIVING

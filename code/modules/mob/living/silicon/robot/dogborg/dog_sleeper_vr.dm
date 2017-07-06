@@ -514,11 +514,12 @@
 		return
 	return
 
-/mob/living/silicon/robot/attackby(obj/item/target as obj, mob/user as mob)
+/mob/living/silicon/robot/attackby(obj/item/W as obj, mob/user as mob)
 	if(module_active && istype(module_active,/obj/item/device/dogborg/sleeper/compactor)) //Feeding?
-		if(user.a_intent == I_HELP)
-			var/obj/item/device/dogborg/sleeper/compactor = src.module_active
-			compactor.afterattack(target)
+		if(src == user)
 			return
-		return
-	..()
+		if(user.a_intent == I_HELP)
+			var/obj/item/device/dogborg/sleeper/compactor/CR = module_active
+			user << "You attempt to feed [W] to [src]."
+			W.attackby(CR,src)
+			return ..()
