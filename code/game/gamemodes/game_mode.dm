@@ -405,6 +405,8 @@ var/global/list/additional_antag_types = list()
 				candidates += player.mind
 				players -= player
 
+		// Below is commented out as an attempt to solve an issue of too little people wanting to join the round due to wanting to have cake and eat it too.
+		/*
 		// If we don't have enough antags, draft people who voted for the round.
 		if(candidates.len < required_enemies)
 			for(var/mob/new_player/player in players)
@@ -413,6 +415,7 @@ var/global/list/additional_antag_types = list()
 					candidates += player.mind
 					players -= player
 					break
+		*/
 
 	return candidates		// Returns: The number of people who had the antagonist role set to yes, regardless of recomended_enemies, if that number is greater than required_enemies
 							//			required_enemies if the number of people with that role set to yes is less than recomended_enemies,
