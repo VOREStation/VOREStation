@@ -24,14 +24,22 @@
 	..()
 	update_fullness_pai()
 	if(!people_eaten && !resting)
-		icon_state = "[chassis]"
-	else
-		icon_state = "[icon_state]_full"
+		icon_state = "[chassis]" //Using icon_state here resulted in quite a few bugs. Chassis is much less buggy.
+	else if(!people_eaten && resting)
+		icon_state = "[chassis]_rest"
+	else if(people_eaten && !resting)
+		icon_state = "[chassis]_full"
+	else if(people_eaten && resting)
+		icon_state = "[chassis]_rest_full"
 
 /mob/living/silicon/pai/update_icons() //And other functions cause this to occur, such as digesting someone.
 	..()
 	update_fullness_pai()
 	if(!people_eaten && !resting)
 		icon_state = "[chassis]"
-	else
-		icon_state = "[icon_state]_full"
+	else if(!people_eaten && resting)
+		icon_state = "[chassis]_rest"
+	else if(people_eaten && !resting)
+		icon_state = "[chassis]_full"
+	else if(people_eaten && resting)
+		icon_state = "[chassis]_rest_full"
