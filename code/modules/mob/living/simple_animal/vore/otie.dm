@@ -8,8 +8,8 @@
 	icon_rest = "otie_rest"
 	faction = "otie"
 	recruitable = 1
-	maxHealth = 100
-	health = 100
+	maxHealth = 150
+	health = 150
 	minbodytemp = 200
 	move_to_delay = 4
 	hostile = 1
@@ -29,7 +29,7 @@
 	say_got_target = list("Rurrr!", "ROAR!", "MARR!", "RAHH!", "Slurp.. RAH!")
 	say_got_target = list("Rurrr!", "ROAR!", "RERR!", "NOM!", "MINE!", "RAHH!", "RAH!", "WARF!")
 	melee_damage_lower = 5
-	melee_damage_upper = 20
+	melee_damage_upper = 15 //Don't break my bones bro
 	response_help = "pets the"
 	response_disarm = "bops the"
 	response_harm = "hits the"
@@ -53,6 +53,8 @@
 	icon_dead = "siftusian-dead"
 	icon_rest = "siftusian_rest"
 	tame_chance = 5 // Only a 1 in 20 chance of success. It's feral. What do you expect?
+	melee_damage_lower = 10
+	melee_damage_upper = 25
 	// Lazy way of making sure this otie survives outside.
 	min_oxy = 0.5
 	max_oxy = 0
@@ -85,8 +87,8 @@
 	icon_dead = "sotie-dead"
 	faction = "neutral"
 	tamed = 1
-	maxHealth = 150 //armored or something
-	health = 150
+	maxHealth = 200 //armored or something
+	health = 200
 	loot_list = list(/obj/item/clothing/glasses/sunglasses/sechud,/obj/item/clothing/suit/armor/vest/alt)
 
 	var/check_records = 1 // If true, arrests people without a record.
@@ -108,14 +110,16 @@
 		var/mob/found_mob = found_atom
 		if(found_mob.faction == faction)
 			return null
-	else if (friend == found_atom)
-		return null
-	else if(tamed == 1 && ishuman(found_atom))
-		return null
-	else if(tamed == 1 && isrobot(found_atom))
-		return null
+		else if(friend == found_atom)
+			return null
+		else if(tamed == 1 && ishuman(found_atom))
+			return null
+		else if(tamed == 1 && isrobot(found_atom))
+			return null
+		else
+			return found_atom
 	else
-		return found_atom
+		return null
 
 /mob/living/simple_animal/otie/friendly/security/Found(var/atom/found_atom)
 	if(!SA_attackable(found_atom))
@@ -130,14 +134,16 @@
 		var/mob/found_mob = found_atom
 		if(found_mob.faction == faction)
 			return null
-	else if (friend == found_atom)
-		return null
-	else if(tamed == 1 && ishuman(found_atom))
-		return null
-	else if(tamed == 1 && isrobot(found_atom))
-		return null
+		else if(friend == found_atom)
+			return null
+		else if(tamed == 1 && ishuman(found_atom))
+			return null
+		else if(tamed == 1 && isrobot(found_atom))
+			return null
+		else
+			return found_atom
 	else
-		return found_atom
+		return null
 
 /mob/living/simple_animal/otie/friendly/security/proc/check_threat(var/mob/living/M)
 	if(!M || !ishuman(M) || M.stat == DEAD || src == M)
@@ -205,7 +211,9 @@
 								   "rubs against [friend].",
 								   "noses softly at [friend].",
 								   "slobberlicks [friend].",
-								   "murrs."))
+								   "murrs.",
+								   "leans on [friend].",
+								   "nibbles affectionately on [friend]."))
 	else if (friend.health <= 50)
 		if (prob(10))
 			var/verb = pick("whines", "yelps", "whimpers")
@@ -222,6 +230,24 @@
 
 /mob/living/simple_animal/otie/attack_hand(mob/living/carbon/human/M as mob)
 	..()
+	if(M.a_intent == I_GRAB)
+		if (M == src)
+			return
+		if (!(status_flags & CANPUSH))
+			return
+		if(!incapacitated(INCAPACITATION_ALL) && (stance != STANCE_IDLE) && prob(grab_resist))
+			M.visible_message("<span class='warning'>[M] tries to grab [src] but fails!</span>")
+			return
+		var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src)
+		M.put_in_active_hand(G)
+		G.synch()
+		G.affecting = src
+		LAssailant = M
+		M.visible_message("<span class='warning'>[M] has grabbed [src] passively!</span>")
+		M.do_attack_animation(src)
+		ai_log("attack_hand() I was grabbed by: [M]",2)
+		pixel_x = old_x
+		react_to_attack(M)
 	if(M.a_intent == I_HELP)
 		if (health > 0)
 			LoseTarget()
@@ -240,6 +266,6 @@
 /mob/living/simple_animal/otie
 	vore_active = 1
 	vore_capacity = 1
-	vore_escape_chance = 8
-	vore_pounce_chance = 16
+	vore_escape_chance = 15
+	vore_pounce_chance = 20
 	vore_icons = SA_ICON_LIVING
