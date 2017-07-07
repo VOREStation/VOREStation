@@ -227,7 +227,7 @@
 			prob(1);/obj/item/weapon/disk/nifsoft/compliance,
 			prob(1);/obj/item/device/nif/bad,
 			prob(1);/obj/item/device/sleevemate,
-			prob(1);/obj/item/device/bodysnatcher)
+			prob(1);/obj/item/device/bodysnatcher,
 			prob(1);/obj/item/weapon/handcuffs/fuzzy,
 			prob(1);/obj/item/weapon/legcuffs,
 			prob(1);/obj/item/weapon/material/hatchet/tacknife,
