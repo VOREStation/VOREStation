@@ -302,4 +302,3 @@ datum/weather/virgo3b
 	transition_chances = list(
 		WEATHER_BLOODMOON = 100
 		)
-
