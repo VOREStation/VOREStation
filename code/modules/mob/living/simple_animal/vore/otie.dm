@@ -261,6 +261,31 @@
 			return
 			..()
 
+/mob/living/simple_animal/otie/death()
+	resting = 0
+	icon_state = icon_dead
+	..()
+
+/mob/living/simple_animal/otie/death(gibbed, deathmessage = "dies!")
+	density = 0 //We don't block even if we did before
+	walk(src, 0) //We stop any background-processing walks
+	resting = 0
+	icon_state = icon_dead
+
+	if(faction_friends.len)
+		faction_friends -= src
+
+	if(loot_list.len) //Drop any loot
+		for(var/path in loot_list)
+			if(prob(loot_list[path]))
+				new path(get_turf(src))
+
+	spawn(3) //We'll update our icon in a sec
+		icon_state = icon_dead //Goddamn triple check. If this ain't working Imma be PISSED!
+		update_icon()
+
+	return ..(gibbed,deathmessage)
+
 // Activate Noms!
 
 /mob/living/simple_animal/otie
