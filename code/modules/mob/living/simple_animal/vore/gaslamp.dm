@@ -20,8 +20,8 @@
 
 	melee_damage_lower = 10
 	melee_damage_upper = 30
-	attacktext = "whipped"
-	friendly = "caressed"
+	attacktext = "whips"
+	friendly = "caresses"
 
 	old_x = 0
 	old_y = 0
@@ -30,8 +30,8 @@
 	layer = 9
 
 	response_help   = "tries to help"	// If clicked on help intent
-	response_disarm = "swats at" // If clicked on disarm intent
-	response_harm   = "aggresses"	// If clicked on harm intent
+	response_disarm = "pushes" // If clicked on disarm intent
+	response_harm   = "swats"	// If clicked on harm intent
 
 	//Mob environment settings
 	minbodytemp = 0			// Minimum "okay" temperature in kelvin
