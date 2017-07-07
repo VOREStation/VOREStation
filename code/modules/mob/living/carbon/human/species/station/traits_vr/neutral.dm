@@ -10,6 +10,12 @@
 	cost = 0
 	var_changes = list("metabolic_rate" = 0.8)
 
+/datum/trait/metabolism_predtier
+	name = "Pred-tier Metabolism"
+	desc = "Finally a proper excuse for your predatory actions. Also makes you process reagents faster but that's totally irrelevant. May cause excessive immersions with large/taur characters. Not recommended for efficient law-abiding workers or eco-aware NIF users."
+	cost = 0
+	var_changes = list("metabolic_rate" = 2)
+
 /datum/trait/vore_numbing
 	name = "Prey Numbing"
 	desc = "Adds a 'Digest (Numbing)' belly mode, to douse prey in numbing enzymes during digestion."
