@@ -16,6 +16,7 @@
 	new /obj/item/clothing/under/swimsuit/blue(src)
 	new /obj/item/clothing/under/swimsuit/green(src)
 	new /obj/item/clothing/under/swimsuit/purple(src)
+	new /obj/item/clothing/under/swimsuit/striped(src)
 	new /obj/item/clothing/mask/snorkel(src)
 	new /obj/item/clothing/mask/snorkel(src)
 	new /obj/item/clothing/shoes/swimmingfins(src)
