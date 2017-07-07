@@ -19,16 +19,18 @@ var/global/list/active_radio_jammers = list()
 	icon = 'icons/obj/device.dmi'
 	icon_state = "jammer0"
 	var/active_state = "jammer1"
+	var/last_overlay_percent = null // Stores overlay icon_state to avoid excessive recreation of overlays.
 
 	var/on = 0
 	var/jam_range = 7
 	var/obj/item/weapon/cell/device/weapon/power_source
-	var/tick_cost = 80
+	var/tick_cost = 80 // Will last for roughly one minute, as process() ticks every 2 seconds.
 
 	origin_tech = list(TECH_ILLEGAL = 7, TECH_BLUESPACE = 5) //Such technology! Subspace jamming!
 
 /obj/item/device/radio_jammer/New()
 	power_source = new(src)
+	update_icon() // So it starts with the full overlay.
 
 /obj/item/device/radio_jammer/Destroy()
 	if(on)
@@ -42,7 +44,7 @@ var/global/list/active_radio_jammers = list()
 	processing_objects.Remove(src)
 	active_radio_jammers -= src
 	on = FALSE
-	icon_state = initial(icon_state)
+	update_icon()
 
 /obj/item/device/radio_jammer/proc/turn_on(mob/user)
 	if(user)
@@ -50,7 +52,7 @@ var/global/list/active_radio_jammers = list()
 	processing_objects.Add(src)
 	active_radio_jammers += src
 	on = TRUE
-	icon_state = active_state
+	update_icon()
 
 /obj/item/device/radio_jammer/process()
 	if(!power_source || !power_source.check_charge(tick_cost))
@@ -60,6 +62,7 @@ var/global/list/active_radio_jammers = list()
 		turn_off(notify)
 	else
 		power_source.use(tick_cost)
+		update_icon()
 
 
 /obj/item/device/radio_jammer/attack_hand(mob/user)
@@ -86,4 +89,25 @@ var/global/list/active_radio_jammers = list()
 		power_source.update_icon() //Why doesn't a cell do this already? :|
 		user.unEquip(power_source)
 		power_source.forceMove(src)
+		update_icon()
 		to_chat(user,"<span class='notice'>You insert \the [power_source] into \the [src].</span>")
+
+/obj/item/device/radio_jammer/update_icon()
+	if(on)
+		icon_state = active_state
+	else
+		icon_state = initial(icon_state)
+
+	var/overlay_percent = 0
+	if(power_source)
+		overlay_percent = between(0, round( power_source.percent() , 25), 100)
+	else
+		overlay_percent = 0
+
+	// Only Cut() if we need to.
+	if(overlay_percent != last_overlay_percent)
+		overlays.Cut()
+		var/image/I = image(src.icon, src, "jammer_overlay_[overlay_percent]")
+		overlays += I
+		last_overlay_percent = overlay_percent
+
