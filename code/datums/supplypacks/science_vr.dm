@@ -58,11 +58,9 @@
 	access = access_xenobiology
 	contraband = 1
 
-/datum/supply_packs/sci/guardbeast
-	name = "V.A.R.M.A.corp autoNOMous security solution"
-	cost = 199
-	containertype = /obj/structure/largecrate/animal/guardbeast
-	containername = "V.A.R.M.A.corp autoNOMous security solution crate"
-	access = list(
-			access_security,
-			access_xenobiology)
+/datum/supply_packs/sci/otie
+	name = "V.A.R.M.A.corp adoptable reject (Dangerous!)"
+	cost = 100
+	containertype = /obj/structure/largecrate/animal/otie
+	containername = "V.A.R.M.A.corp adoptable reject (Dangerous!)"
+	access = access_xenobiology

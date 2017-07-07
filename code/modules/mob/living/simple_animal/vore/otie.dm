@@ -56,7 +56,7 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 25
 	// Lazy way of making sure this otie survives outside.
-	min_oxy = 0.5
+	min_oxy = 0
 	max_oxy = 0
 	min_tox = 0
 	max_tox = 0
