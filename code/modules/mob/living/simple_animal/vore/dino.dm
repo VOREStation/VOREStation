@@ -37,3 +37,6 @@
 	vore_active = 1
 	swallowTime = 1 SECOND // Hungry little bastards.
 	vore_icons = SA_ICON_LIVING
+
+/mob/living/simple_animal/hostile/dino/virgo3b
+	faction = "virgo3b"

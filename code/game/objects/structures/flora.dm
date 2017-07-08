@@ -4,7 +4,7 @@
 	anchored = 1
 	density = 1
 	pixel_x = -16
-	layer = 9
+	layer = 5 // Vorestation Edit
 
 /obj/structure/flora/tree/pine
 	name = "pine tree"

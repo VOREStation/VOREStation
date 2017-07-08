@@ -18,7 +18,7 @@ TODO: Make them light up and heat the air when exposed to oxygen.
 	icon_living = "gaslamp"
 	icon_dead = "gaslamp-dead"
 
-	faction = "gaslamp"
+	faction = "virgo3b"
 	maxHealth = 100
 	health = 100
 	move_to_delay = 4
@@ -56,6 +56,5 @@ TODO: Make them light up and heat the air when exposed to oxygen.
 	vore_active = 1
 	vore_capacity = 2
 	vore_default_mode = DM_ABSORB
-	vore_escape_chance = 10
 	vore_pounce_chance = 0 // Beat them into crit before eating.
 	vore_icons = SA_ICON_LIVING
