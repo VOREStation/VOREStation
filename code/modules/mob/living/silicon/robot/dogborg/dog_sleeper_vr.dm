@@ -136,7 +136,7 @@
 		dat += "<font color='red'>[length(items_preserved)] uncleanable object(s).</font><BR>"
 
 	if(!patient)
-		dat += "Sleeper Unoccupied"
+		dat += "[src.name] Unoccupied"
 	else
 		dat += "[patient.name] => "
 
@@ -285,7 +285,7 @@
 		hound.sleeper_g = 0
 
 	//Couldn't find anyone, and not cleaning
-	else if(!cleaning && !patient)
+	else if((!cleaning && !patient) || (length(contents) > 11))
 		hound.sleeper_r = 0
 		hound.sleeper_g = 0
 
