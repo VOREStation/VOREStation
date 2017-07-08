@@ -153,7 +153,7 @@
 					prob(3);/obj/item/clothing/suit/storage/toggle/hoodie/yellow,
 					prob(3);/obj/item/clothing/suit/storage/toggle/leather_jacket,
 					prob(3);/obj/item/device/pda,
-					prob(3);/obj/item/device/radio/headset
+					prob(3);/obj/item/device/radio/headset,
 					prob(3);/obj/item/weapon/camera_assembly,
 					prob(3);/obj/item/weapon/caution/cone,
 					prob(3);/obj/item/weapon/cell/high,
@@ -202,7 +202,7 @@
 					prob(1);/obj/item/weapon/spacecash/c100,
 					prob(1);/obj/item/weapon/spacecash/c50,
 					prob(1);/obj/item/weapon/storage/backpack/dufflebag/syndie,
-					prob(1);/obj/item/weapon/storage/box/cups,)
+					prob(1);/obj/item/weapon/storage/box/cups)
 
 	var/obj/item/I = new path()
 	return I
