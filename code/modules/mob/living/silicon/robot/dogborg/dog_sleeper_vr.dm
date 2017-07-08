@@ -280,12 +280,12 @@
 			return(C)
 
 	//Cleaning looks better with red on, even with nobody in it
-	if(cleaning && !patient)
+	if((cleaning && !patient) || (length(contents) > 11))
 		hound.sleeper_r = 1
 		hound.sleeper_g = 0
 
 	//Couldn't find anyone, and not cleaning
-	else if((!cleaning && !patient) || (length(contents) > 11))
+	else if(!cleaning && !patient)
 		hound.sleeper_r = 0
 		hound.sleeper_g = 0
 
