@@ -16,7 +16,7 @@
 	melee_damage_upper = 25
 	attacktext = "bitten"
 	attack_sound = 'sound/weapons/bite.ogg'
-	minbodytemp = 270
+	minbodytemp = 200
 	maxbodytemp = 370
 	heat_damage_per_tick = 15
 	cold_damage_per_tick = 10

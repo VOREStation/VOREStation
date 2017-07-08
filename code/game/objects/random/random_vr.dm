@@ -184,9 +184,9 @@
 	var/mob = pick(
 				prob(10);/mob/living/simple_animal/retaliate/gaslamp,
 				prob(10);/mob/living/simple_animal/otie/feral,
-				prob(5);/mob/living/simple_animal/hostile/dino,
+				prob(5);/mob/living/simple_animal/hostile/dino/virgo3b,
 				prob(1);/mob/living/simple_animal/hostile/bear,
-				prob(1);/mob/living/simple_animal/hostile/dragon)
+				prob(1);/mob/living/simple_animal/hostile/dragon/virgo3b)
 	if (istype(mob, /mob/living)) // This is just to prevent runtime errors in case some dev is a dumbass and puts invalid items into this.
 		var/mob/living/simple_animal/this_mob = mob
 		this_mob.faction = src.faction
