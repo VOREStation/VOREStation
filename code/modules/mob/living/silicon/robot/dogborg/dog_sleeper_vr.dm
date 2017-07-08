@@ -681,7 +681,7 @@
 				user << "You [ locked ? "lock" : "unlock"] [src]'s interface."
 				updateicon()
 			else
-				user << "<span class='warning'>\Access denied</span>"
+				user << "<span class='warning'>Access denied.</span>"
 
 	else if(istype(W, /obj/item/borg/upgrade/))
 		var/obj/item/borg/upgrade/U = W
