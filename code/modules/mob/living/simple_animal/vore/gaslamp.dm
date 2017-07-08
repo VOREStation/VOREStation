@@ -28,8 +28,6 @@ TODO: Make them light up and heat the air when exposed to oxygen.
 
 	speed = 2
 
-	layer = 5 // Tall mob needs this layer.
-
 	melee_damage_lower = 30 // Because fuck anyone who hurts this sweet, innocent creature.
 	melee_damage_upper = 30
 	attacktext = "thrashes"
