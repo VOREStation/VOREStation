@@ -154,6 +154,7 @@
 	var/follow_until_time = 0		// Give up following when we reach this time (0 = never)
 	var/annoyed = 0					// Do people keep distract-kiting us?
 	////// ////// //////
+	var/life_disabled = 0           // For performance reasons
 
 /mob/living/simple_animal/New()
 	..()
@@ -256,6 +257,9 @@
 		icon_state = initial(icon_state)
 
 /mob/living/simple_animal/Life()
+	if(life_disabled)
+		return 0
+
 	..()
 
 	//Health
