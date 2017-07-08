@@ -324,7 +324,7 @@
 	name = "maid uniform"
 	desc = "A simple maid uniform for housekeeping."
 	icon_state = "janimaid"
-	
+
 /obj/item/clothing/under/dress/sexymaid
 	name = "sexy maid uniform"
 	desc = "You must be a bit risque teasing all of them in a maid uniform!"
@@ -636,32 +636,31 @@
 	name = "black swimsuit"
 	desc = "An oldfashioned black swimsuit."
 	icon_state = "swim_black"
-	siemens_coefficient = 1
 
 /obj/item/clothing/under/swimsuit/blue
 	name = "blue swimsuit"
 	desc = "An oldfashioned blue swimsuit."
 	icon_state = "swim_blue"
-	siemens_coefficient = 1
 
 /obj/item/clothing/under/swimsuit/purple
 	name = "purple swimsuit"
 	desc = "An oldfashioned purple swimsuit."
 	icon_state = "swim_purp"
-	siemens_coefficient = 1
 
 /obj/item/clothing/under/swimsuit/green
 	name = "green swimsuit"
 	desc = "An oldfashioned green swimsuit."
 	icon_state = "swim_green"
-	siemens_coefficient = 1
 
 /obj/item/clothing/under/swimsuit/red
 	name = "red swimsuit"
 	desc = "An oldfashioned red swimsuit."
 	icon_state = "swim_red"
-	siemens_coefficient = 1
 
+/obj/item/clothing/under/swimsuit/striped
+	name = "striped swimsuit"
+	desc = "A more revealing striped swimsuit."
+	icon_state = "swim_striped"
 /*
  * pyjamas
  */
