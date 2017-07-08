@@ -215,20 +215,20 @@
 			prob(4);/obj/item/weapon/material/butterfly,
 			prob(2);/obj/item/weapon/material/butterfly/switchblade,
 			prob(2);/obj/item/weapon/material/knuckledusters,
-			prob(1);/obj/item/weapon/material/hatchet/tacknife,
-			prob(1);/obj/item/clothing/suit/storage/vest/heavy/merc,
-			prob(1);/obj/item/weapon/beartrap,
-			prob(1);/obj/item/weapon/handcuffs/fuzzy,
-			prob(1);/obj/item/weapon/legcuffs,
 			prob(2);/obj/item/weapon/reagent_containers/syringe/drugs,
-			prob(1);/obj/item/weapon/reagent_containers/syringe/steroid,
-			prob(4);/obj/item/device/radio_jammer,
 			prob(2);/obj/item/weapon/storage/box/syndie_kit/spy,
 			prob(2);/obj/item/weapon/grenade/anti_photon,
+			prob(1);/obj/item/clothing/suit/storage/vest/heavy/merc,
+			prob(1);/obj/item/device/nif/bad,
+			prob(1);/obj/item/device/radio_jammer,
+			prob(1);/obj/item/device/sleevemate,
+			prob(1);/obj/item/weapon/beartrap,
 			prob(1);/obj/item/weapon/cell/hyper/empty,
 			prob(1);/obj/item/weapon/disk/nifsoft/compliance,
-			prob(1);/obj/item/device/nif/bad,
-			prob(1);/obj/item/device/sleevemate)
+			prob(1);/obj/item/weapon/handcuffs/fuzzy,
+			prob(1);/obj/item/weapon/legcuffs,
+			prob(1);/obj/item/weapon/material/hatchet/tacknife,
+			prob(1);/obj/item/weapon/reagent_containers/syringe/steroid)
 
 	var/obj/item/I = new path()
 	return I
