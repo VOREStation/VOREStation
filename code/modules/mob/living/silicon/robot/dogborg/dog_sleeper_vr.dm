@@ -136,7 +136,7 @@
 		dat += "<font color='red'>[length(items_preserved)] uncleanable object(s).</font><BR>"
 
 	if(!patient)
-		dat += "[src.name] Unoccupied"
+		dat += "[src.name] unoccupied"
 	else
 		dat += "[patient.name] => "
 
