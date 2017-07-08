@@ -181,15 +181,14 @@
 	var/faction = "wild animal"
 
 /obj/random/outside_mob/item_to_spawn() // Special version for mobs to have the same faction.
-	var/mob = pick(prob(10);/mob/living/simple_animal/hostile/scarybat,
-				prob(10);/mob/living/simple_animal/retaliate/gaslamp,
-				prob(10);/mob/living/simple_animal/otie/feral,
-				prob(5);/mob/living/simple_animal/hostile/dino,
-				prob(1);/mob/living/simple_animal/hostile/bear,
-				prob(1);/mob/living/simple_animal/hostile/dragon)
+	var/mob = pick(
+				prob(50);/mob/living/simple_animal/retaliate/gaslamp,
+				prob(50);/mob/living/simple_animal/otie/feral,
+				prob(20);/mob/living/simple_animal/hostile/dino/virgo3b,
+				prob(1);/mob/living/simple_animal/hostile/dragon/virgo3b)
 	if (istype(mob, /mob/living)) // This is just to prevent runtime errors in case some dev is a dumbass and puts invalid items into this.
 		var/mob/living/simple_animal/this_mob = mob
-		this_mob.faction = faction
+		this_mob.faction = src.faction
 		if (this_mob.minbodytemp > 200) // Temporary hotfix. Eventually I'll add code to change all mob vars to fit the environment they are spawned in.
 			this_mob.minbodytemp = 200
 		return this_mob
