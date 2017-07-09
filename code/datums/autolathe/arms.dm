@@ -151,17 +151,30 @@
 	name = "machinegun box magazine (5.56)"
 	path =/obj/item/ammo_magazine/m556saw
 	hidden = 1
-/////// 7.62
 
+/////// 7.62
 
 /datum/category_item/autolathe/arms/rifle_762
 	name = "rifle magazine (7.62mm)"
 	path =/obj/item/ammo_magazine/m762
 	hidden = 1
+/*
+/datum/category_item/autolathe/arms/rifle_small_762
+	name = "rifle magazine (7.62mm)"
+	path =/obj/item/ammo_magazine/s762
+	hidden = 1
+*/
+
+/////// Shotgun
+
+/datum/category_item/autolathe/arms/shotgun_clip_beanbag
+	name = "4-round 12g shell clip (beanbag)"
+	path =/obj/item/ammo_magazine/clip/c12g/beanbag
 
 /datum/category_item/autolathe/arms/shotgun_clip_slug
 	name = "4-round 12g shell clip (slug)"
 	path =/obj/item/ammo_magazine/clip/c12g
+	hidden = 1
 
 /datum/category_item/autolathe/arms/shotgun_clip_pellet
 	name = "4-round 12g shell clip (buckshot)"
@@ -171,14 +184,6 @@
 /datum/category_item/autolathe/arms/shotgun_clip_beanbag
 	name = "4-round 12g shell clip (beanbag)"
 	path =/obj/item/ammo_magazine/clip/c12g/beanbag
-	hidden = 1
-
-/*
-/datum/category_item/autolathe/arms/rifle_small_762
-	name = "rifle magazine (7.62mm)"
-	path =/obj/item/ammo_magazine/s762
-	hidden = 1
-*/
 
 /* Commented out until autolathe stuff is decided/fixed. Will probably remove these entirely. -Spades
 // These should always be/empty! The idea is to fill them up manually with ammo clips.
