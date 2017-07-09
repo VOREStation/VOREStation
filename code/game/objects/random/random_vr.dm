@@ -204,6 +204,8 @@
 	if(!istype(spawned_thing, /mob/living/simple_animal))
 		return
 	var/datum/map_z_level/tether/wilderness/wilderness = z_level
+	if(wilderness.activated)
+		return
 	var/mob/living/simple_animal/M = spawned_thing
 	wilderness.frozen_mobs += M
 	M.life_disabled = 1

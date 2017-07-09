@@ -106,6 +106,8 @@
 	if(!istype(z_level, /datum/map_z_level/tether/wilderness))
 		return
 	var/datum/map_z_level/tether/wilderness/wilderness = z_level
+	if(wilderness.activated)
+		return
 	life_disabled = 1
 	wilderness.frozen_mobs += src
 	for(var/i = 1 to 20)
