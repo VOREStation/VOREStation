@@ -489,6 +489,20 @@
 	return
 
 
+/obj/structure/closet/wardrobe/medic_gown
+	name = "cloning wardrobe"
+	icon_state = "white"
+	icon_closed = "white"
+
+/obj/structure/closet/wardrobe/medic_gown/New()
+	..()
+	new /obj/item/clothing/under/medigown(src)
+	new /obj/item/clothing/under/medigown(src)
+	new /obj/item/clothing/under/medigown(src)
+	new /obj/item/clothing/under/medigown(src)
+	return
+
+
 /obj/structure/closet/wardrobe/grey
 	name = "grey wardrobe"
 	icon_state = "grey"
