@@ -45,6 +45,14 @@
 	var/tamed = 0
 	var/tame_chance = 50 //It's a fiddy-fiddy default you may get a buddy pal or you may get mauled and ate. Win-win!
 
+// Activate Noms!
+
+/mob/living/simple_animal/otie
+	vore_active = 1
+	vore_capacity = 1
+	vore_pounce_chance = 20
+	vore_icons = SA_ICON_LIVING
+
 /mob/living/simple_animal/otie/feral //gets the pet2tame feature. starts out hostile tho so get gamblin'
 	name = "feral otie"
 	desc = "The classic bioengineered longdog. No pets. Only bite. This one has mutated from too much time out on the surface of Virgo-3B."
@@ -52,6 +60,7 @@
 	icon_living = "siftusian"
 	icon_dead = "siftusian-dead"
 	icon_rest = "siftusian_rest"
+	faction = "virgo3b"
 	tame_chance = 5 // Only a 1 in 20 chance of success. It's feral. What do you expect?
 	melee_damage_lower = 10
 	melee_damage_upper = 25
@@ -285,12 +294,3 @@
 		update_icon()
 
 	return ..(gibbed,deathmessage)
-
-// Activate Noms!
-
-/mob/living/simple_animal/otie
-	vore_active = 1
-	vore_capacity = 1
-	vore_escape_chance = 15
-	vore_pounce_chance = 20
-	vore_icons = SA_ICON_LIVING

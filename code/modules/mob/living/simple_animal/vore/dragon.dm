@@ -24,8 +24,6 @@
 	max_n2 = 0
 	minbodytemp = 0
 
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat
-
 	old_x = -16
 	old_y = 0
 	pixel_x = -16
@@ -43,6 +41,10 @@
 /mob/living/simple_animal/hostile/dragon
 	vore_active = 1
 	vore_capacity = 2
-	vore_escape_chance = 5
-	vore_pounce_chance = 50
+	vore_pounce_chance = 0 // Beat them into crit before eating.
 	vore_icons = SA_ICON_LIVING
+
+/mob/living/simple_animal/hostile/dragon/virgo3b
+	maxHealth = 200
+	health = 200
+	faction = "virgo3b"
