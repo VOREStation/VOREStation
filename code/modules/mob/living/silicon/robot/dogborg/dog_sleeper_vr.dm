@@ -136,7 +136,7 @@
 		dat += "<font color='red'>[length(items_preserved)] uncleanable object(s).</font><BR>"
 
 	if(!patient)
-		dat += "Sleeper Unoccupied"
+		dat += "[src.name] unoccupied"
 	else
 		dat += "[patient.name] => "
 
@@ -280,7 +280,7 @@
 			return(C)
 
 	//Cleaning looks better with red on, even with nobody in it
-	if(cleaning && !patient)
+	if((cleaning && !patient) || (length(contents) > 11))
 		hound.sleeper_r = 1
 		hound.sleeper_g = 0
 
@@ -368,7 +368,8 @@
 				for(var/mob/hearer in range(1,src.hound))
 					hearer << deathsound
 				T << deathsound
-				//Spill(T) //TODOPOLARIS
+				for(var/obj/item/I in T.contents)//Placeholder for proper spill proc
+					T.drop_from_inventory(I, src)
 				qdel(T)
 				src.update_patient()
 
@@ -384,26 +385,39 @@
 			//If the object is not one to preserve
 			else
 				//Special case for PDAs as they are dumb. TODO fix Del on PDAs to be less dumb.
-				if (istype(T, /obj/item/device/pda))
+				if(istype(T, /obj/item/device/pda))
 					var/obj/item/device/pda/PDA = T
 					if (PDA.id)
 						PDA.id.forceMove(src)
 						PDA.id = null
-
 					qdel(T)
-
 
 				//Special case for IDs to make them digested
-			//else if (istype(T, /obj/item/weapon/card/id))
-				//var/obj/item/weapon/card/id/ID = T
-				//ID.digest() //Need the digest proc, first.
+				if(istype(T, /obj/item/weapon/card/id))
+					var/obj/item/weapon/card/id/ID = T
+					ID.desc = "A partially digested card that has seen better days.  Much of it's data has been destroyed."
+					ID.icon = 'icons/obj/card_vr.dmi'
+					ID.icon_state = "digested"
+					ID.access = list() // No access
+					src.items_preserved += ID
 
 				//Anything not perserved, PDA, or ID
+				else if(istype(T, /obj/item))
+					if(istype(T, /obj/item/weapon/storage))
+						var/obj/item/weapon/storage/S = T
+						for(var/obj/item/I in S.contents)//Placeholder for proper spill proc
+							S.remove_from_storage(I, src)
+						src.hound.cell.charge += (50 * S.w_class)
+						qdel(S)
+						src.update_patient()
+					else
+						src.hound.cell.charge += (50 * T.w_class)
+						qdel(T)
+						src.update_patient()
 				else
-					//Spill(T) //Needs the spill proc to be added
+					src.hound.cell.charge += 120
 					qdel(T)
 					src.update_patient()
-					src.hound.cell.charge += 120 //10 charge? that was such a practically nonexistent number it hardly gave any purpose for this bit :v *cranks up*
 		return
 
 /obj/item/device/dogborg/sleeper/process()
