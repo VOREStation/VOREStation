@@ -90,7 +90,7 @@
 
 /obj/item/clothing/shoes/boots/winter/hydro
 	name = "hydroponics winter boots"
-	desc = "A pair of winter boots.These ones are lined with brown fur, and their trim is ambrosia green"
+	desc = "A pair of winter boots. These ones are lined with brown fur, and their trim is ambrosia green"
 	icon_state = "winterboots_hydro"
 
 /obj/item/clothing/shoes/boots/tactical
