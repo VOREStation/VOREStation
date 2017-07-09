@@ -74,6 +74,13 @@
 	watched, by changing color and beeping.  It is able to detect both AI visual surveillance and security camera utilization from terminals, and \
 	will give different warnings by beeping and changing colors based on what it detects.  Only the holder can hear the warnings."
 
+/datum/uplink_item/item/tools/radio_jammer
+	name = "Subspace Jammer"
+	item_cost = 25
+	path = /obj/item/device/radio_jammer
+	desc = "A device which is capable of disrupting subspace communications, preventing the use of headsets, PDAs, and communicators within \
+	a radius of seven meters.  It runs off weapon cells, which can be replaced as needed.  One cell will last for approximately a minute."
+
 /datum/uplink_item/item/tools/emag
 	name = "Cryptographic Sequencer"
 	item_cost = 30
