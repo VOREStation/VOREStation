@@ -27,6 +27,8 @@
 	new /obj/item/weapon/shovel(src)
 	new /obj/item/weapon/pickaxe(src)
 	new /obj/item/clothing/glasses/material(src)
+	new /obj/item/clothing/suit/storage/hooded/wintercoat/miner(src)
+	new /obj/item/clothing/shoes/boots/winter/mining(src)
 
 /******************************Lantern*******************************/
 
