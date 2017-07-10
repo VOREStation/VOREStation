@@ -89,5 +89,5 @@
 	cost = 8
 
 /datum/gear/utility/pen
-	display_name = "Gilded Pen"
-	path = /obj/item/weapon/pen/gilded
+	display_name = "Fountain Pen"
+	path = /obj/item/weapon/pen/fountain
