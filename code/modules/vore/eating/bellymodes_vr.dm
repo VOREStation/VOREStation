@@ -77,6 +77,16 @@
 				else
 					owner.nutrition += (10/difference)
 
+		// Handle leftovers.
+		var/obj/item/T = pick(internal_contents)
+		if(istype(T, /obj/item))
+			if(istype(T, /obj/item) && _is_digestable(T) && !(T in items_preserved))
+				owner.nutrition += (1 * T.w_class)
+				internal_contents -= T
+				qdel(T)
+			else
+				return
+
 		return
 
 //////////////////////////// DM_ABSORB ////////////////////////////

@@ -36,6 +36,8 @@
 	var/tmp/list/internal_contents = list()		// People/Things you've eaten into this belly!
 	var/tmp/is_full								// Flag for if digested remeans are present. (for disposal messages)
 	var/tmp/emotePend = 0						// If there's already a spawned thing counting for the next emote
+	var/tmp/list/items_preserved = list()		// Stuff that wont digest.
+
 
 	// Don't forget to watch your commas at the end of each line if you change these.
 	var/list/struggle_messages_outside = list(
@@ -293,31 +295,34 @@
 		M = owner
 
 	// IDs are handled specially to 'digest' them
-	if(istype(W,/obj/item/weapon/card/id))
+	if(istype(W,/obj/item/weapon/card/id)) // Moved to bellymodes part.
 		var/obj/item/weapon/card/id/ID = W
 		ID.desc = "A partially digested card that has seen better days.  Much of it's data has been destroyed."
 		ID.icon = 'icons/obj/card_vr.dmi'
 		ID.icon_state = "digested"
 		ID.access = list() // No access
 		M.remove_from_mob(ID,owner)
-		internal_contents += ID
+		items_preserved += ID
 
 	// Posibrains have to be pulled 'out' of their organ version.
-	else if(istype(W,/obj/item/organ/internal/mmi_holder/posibrain))
+
+	if(istype(W,/obj/item/organ/internal/mmi_holder/posibrain))
 		var/obj/item/organ/internal/mmi_holder/MMI = W
 		var/atom/movable/brain = MMI.removed()
 		if(brain)
 			M.remove_from_mob(brain,owner)
 			brain.forceMove(owner)
-			internal_contents += brain
+			items_preserved += brain
+
+	if(!_is_digestable(W))
+		items_preserved += W
 
 	else
-		if(!_is_digestable(W))
+		for (var/obj/item/SubItem in W)
+			_handle_digested_item(SubItem,M)
+		if(!istype(W,/obj/item/organ))
 			M.remove_from_mob(W,owner)
 			internal_contents += W
-		else
-			for (var/obj/item/SubItem in W)
-				_handle_digested_item(SubItem,M)
 
 /datum/belly/proc/_is_digestable(var/obj/item/I)
 	if(is_type_in_list(I,important_items))
