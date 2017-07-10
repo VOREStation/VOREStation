@@ -63,18 +63,3 @@
 		var/obj/item/clothing/suit/storage/seromi/cloak/tsuit_type = tsuit
 		teshsuits[initial(tsuit_type.name)] = tsuit_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(teshsuits))
-
-
-/*
-/datum/gear/suit/tesh_cloak
-	display_name = "teshari coat selection"
-	path = /obj/item/clothing/under/seromi/undercoat/
-
-/datum/gear/suit/tesh_cloak/New()
-	..()
-	var/list/hazards = list()
-	for(var/hazard_style in typesof(/obj/item/clothing/suit/seromi/cloak))
-		var/obj/item/clothing/suit/seromi/cloak/hazardvest = hazard_style
-		hazards[initial(hazardvest.name)] = hazardvest
-	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(hazards))
-*/
