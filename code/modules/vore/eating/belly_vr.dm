@@ -295,7 +295,7 @@
 		M = owner
 
 	// IDs are handled specially to 'digest' them
-	if(istype(W,/obj/item/weapon/card/id)) // Moved to bellymodes part.
+	if(istype(W,/obj/item/weapon/card/id))
 		var/obj/item/weapon/card/id/ID = W
 		ID.desc = "A partially digested card that has seen better days.  Much of it's data has been destroyed."
 		ID.icon = 'icons/obj/card_vr.dmi'
