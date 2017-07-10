@@ -174,7 +174,7 @@
 	name = "red sweatervest"
 	icon_state = "sweatervest_red"
 
-/obj/item/clothing/accessory/sweater //This is just for the sake of loadout categorization. If you get this item, please stop.
+/obj/item/clothing/accessory/sweater
 	name = "sweater"
 	desc = "A warm knit sweater."
 	icon_override = 'icons/mob/ties.dmi'
