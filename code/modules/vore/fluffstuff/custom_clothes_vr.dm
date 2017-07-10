@@ -1320,6 +1320,7 @@ Departamental Swimsuits, for general use
 //For general use if general means teshari players only
 
 /obj/item/clothing/under/seromi/undercoat/
+	desc =  "A Teshari traditional garb, with a  modern twist! Made of micro and nanofibres to make it light and billowy, perfect for goin fast and stylishly!"
 	icon = 'icons/mob/species/seromi/tesh_uniform_vr.dmi'
 	icon_override = 'icons/mob/species/seromi/tesh_uniform_vr.dmi'
 	icon_state = "tesh_uniform_bo"
@@ -1457,7 +1458,7 @@ Departamental Swimsuits, for general use
 
 /obj/item/clothing/suit/storage/seromi/cloak
 	name = "Black and orange cloak "
-	desc = "it drapes over a teshari’s shoulders and closes at the neck with pockets convienently placed inside."
+	desc = "it drapes over a teshariÂ’s shoulders and closes at the neck with pockets convienently placed inside."
 	icon = 'icons/mob/species/seromi/tesh_cloak_vr.dmi'
 	icon_override = 'icons/mob/species/seromi/tesh_cloak_vr.dmi'
 	icon_state = "tesh_cloak_bo"
