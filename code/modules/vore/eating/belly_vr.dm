@@ -313,6 +313,7 @@
 			M.remove_from_mob(brain,owner)
 			brain.forceMove(owner)
 			items_preserved += brain
+			internal_contents += brain
 
 	if(!_is_digestable(W))
 		items_preserved += W
