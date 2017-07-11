@@ -26,6 +26,7 @@
 		new /obj/item/device/radio/headset/headset_cargo(src)
 		new /obj/item/device/radio/headset/headset_cargo/alt(src)
 		new /obj/item/clothing/gloves/black(src)
+		new /obj/item/clothing/gloves/fingerless(src)
 		new /obj/item/clothing/head/soft(src)
 //		new /obj/item/weapon/cartridge/quartermaster(src)
 		return
@@ -56,6 +57,7 @@
 		new /obj/item/device/radio/headset/headset_cargo(src)
 		new /obj/item/device/radio/headset/headset_cargo/alt(src)
 		new /obj/item/clothing/gloves/black(src)
+		new /obj/item/clothing/gloves/fingerless(src)
 //		new /obj/item/weapon/cartridge/quartermaster(src)
 		new /obj/item/clothing/suit/fire/firefighter(src)
 		new /obj/item/weapon/tank/emergency/oxygen(src)
