@@ -87,4 +87,3 @@ obj/item/clothing/gloves/fingerless
 	desc = "A pair of gloves that don't actually cover the fingers."
 	name = "fingerless gloves"
 	icon_state = "fingerlessgloves"
-	clipped = 1
