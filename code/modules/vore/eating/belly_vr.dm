@@ -317,6 +317,8 @@
 
 	if(!_is_digestable(W))
 		items_preserved += W
+		M.remove_from_mob(W,owner)
+		internal_contents += W
 
 	else
 		for (var/obj/item/SubItem in W)
