@@ -43,6 +43,11 @@
 		gender = MALE
 		species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Xenochimera", "Xenomorph Hybrid") //Lets all the races be bald if they want.
 
+	ponytail6_fixed //Eggnerd's done with waiting for upstream fixes lmao.
+		name = "Ponytail 6 but fixed"
+		icon = 'icons/mob/human_face_vr.dmi'
+		icon_state = "hair_ponytail6"
+		species_allowed = list("Human","Skrell","Unathi","Tajara", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Xenochimera", "Xenomorph Hybrid")
 
 	una_hood
 		name = "Cobra Hood"
@@ -468,4 +473,54 @@
 	tusks
 		name = "Tusks"
 		icon_state = "tusks"
+		body_parts = list(BP_HEAD)
+
+	otie_face
+		name = "Otie face"
+		icon_state = "otieface"
+		body_parts = list(BP_HEAD)
+
+	otie_nose
+		name = "Otie nose"
+		icon_state = "otie_nose"
+		body_parts = list(BP_HEAD)
+
+	backstripes
+		name = "Back stripes"
+		icon_state = "otiestripes"
+		body_parts = list(BP_TORSO,BP_HEAD)
+
+	belly_butt
+		name = "Belly and butt"
+		icon_state = "bellyandbutt"
+		body_parts = list(BP_GROIN,BP_TORSO)
+
+	fingers_toes
+		name = "Fingers and toes"
+		icon_state = "fingerstoes"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_HAND,BP_R_HAND)
+
+	otie_socks
+		name = "Fingerless socks"
+		icon_state = "otiesocks"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND)
+
+	corvid_beak
+		name = "Corvid beak"
+		icon_state = "corvidbeak"
+		body_parts = list(BP_HEAD)
+
+	corvid_belly
+		name = "Corvid belly"
+		icon_state = "corvidbelly"
+		body_parts = list(BP_GROIN,BP_TORSO,BP_HEAD)
+
+	cow_body
+		name = "Cow markings"
+		icon_state = "cowbody"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
+
+	cow_nose
+		name = "Cow nose"
+		icon_state = "cownose"
 		body_parts = list(BP_HEAD)
