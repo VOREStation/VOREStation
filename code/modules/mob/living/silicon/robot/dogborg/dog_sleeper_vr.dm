@@ -475,14 +475,14 @@
 		return
 	if(target.anchored)
 		return
+	if(target in hound.module.modules)
+		return
 	if(length(contents) > (max_item_count - 1))
 		user << "<span class='warning'>Your [src.name] is full. Eject or process contents to continue.</span>"
 		return
 
 	if(istype(target, /obj/item) || istype(target, /obj/effect/decal/remains))
 		var/obj/target_obj = target
-		if(target_obj in hound.modules)
-			return
 		if(target_obj.w_class > ITEMSIZE_LARGE)
 			user << "<span class='warning'>\The [target] is too large to fit into your [src.name]</span>"
 			return
