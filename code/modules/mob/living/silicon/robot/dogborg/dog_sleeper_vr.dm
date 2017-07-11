@@ -481,6 +481,8 @@
 
 	if(istype(target, /obj/item) || istype(target, /obj/effect/decal/remains))
 		var/obj/target_obj = target
+		if(target_obj in hound.modules)
+			return
 		if(target_obj.w_class > ITEMSIZE_LARGE)
 			user << "<span class='warning'>\The [target] is too large to fit into your [src.name]</span>"
 			return
@@ -549,7 +551,7 @@
 				usr << "<font color='blue'>You install the [W.name].</font>"
 
 				return
-	
+
 
 	if (istype(W, /obj/item/weapon/weldingtool))
 		if (src == user)
@@ -638,7 +640,7 @@
 				user << "You open the cover."
 				opened = 1
 				updateicon()
-	
+
 	else if (istype(W, /obj/item/weapon/cell) && opened)	// trying to put a cell inside
 		var/datum/robot_component/C = components["power cell"]
 		if(wiresexposed)
@@ -659,7 +661,7 @@
 			//This will mean that removing and replacing a power cell will repair the mount, but I don't care at this point. ~Z
 			C.brute_damage = 0
 			C.electronics_damage = 0
-	
+
 	else if (istype(W, /obj/item/weapon/wirecutters) || istype(W, /obj/item/device/multitool))
 		if (wiresexposed)
 			wires.Interact(user)
@@ -722,7 +724,7 @@
 			W.attackby(CR,src)
 
 
-	else 
+	else
 		if( !(istype(W, /obj/item/device/robotanalyzer) || istype(W, /obj/item/device/healthanalyzer)) )
 			spark_system.start()
 		return ..()
