@@ -910,6 +910,11 @@
 	name = "Wolf"
 	icon_state = "wolf_s"
 
+/datum/sprite_accessory/tail/taur/wolf_2c
+	name = "Wolf dual-color"
+	icon_state = "wolf_s"
+	extra_overlay = "wolfmarkings"
+
 /datum/sprite_accessory/tail/taur/naga
 	name = "Naga"
 	icon_state = "naga_s"
@@ -942,13 +947,13 @@
 	name = "Slug"
 	icon_state = "slug_s"
 
-/datum/sprite_accessory/tail/taur/drake
+/*/datum/sprite_accessory/tail/taur/drake //Yeah hold that thought for a bit. These got no suit compatibility yet.
 	name = "Drake"
 	icon_state = "drake_s"
 
 /datum/sprite_accessory/tail/taur/otie
 	name = "Otie"
-	icon_state = "otie_s"
+	icon_state = "otie_s"*/
 
 //wickedtemp: Chakat Tempest
 /datum/sprite_accessory/tail/taur/feline/tempest
