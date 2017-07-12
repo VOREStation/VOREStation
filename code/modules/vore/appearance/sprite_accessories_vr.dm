@@ -910,7 +910,7 @@
 	name = "Wolf"
 	icon_state = "wolf_s"
 
-/datum/sprite_accessory/tail/taur/wolf_2c
+/datum/sprite_accessory/tail/taur/wolf/wolf_2c
 	name = "Wolf dual-color"
 	icon_state = "wolf_s"
 	extra_overlay = "wolfmarkings"
