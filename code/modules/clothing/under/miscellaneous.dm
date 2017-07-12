@@ -769,3 +769,10 @@
 	name = "sweater"
 	icon_state = "turtleneck"
 	worn_state = "turtleneck"
+
+/obj/item/clothing/under/medigown
+	name = "medical gown"
+	desc = "A flimsy examination gown, the back ties never close."
+	icon_state = "medicalgown"
+	worn_state = "medicalgown"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
