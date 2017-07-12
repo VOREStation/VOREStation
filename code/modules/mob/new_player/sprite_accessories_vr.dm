@@ -524,3 +524,18 @@
 		name = "Cow nose"
 		icon_state = "cownose"
 		body_parts = list(BP_HEAD)
+
+	zmask
+		name = "Eye mask"
+		icon_state = "zmask"
+		body_parts = list(BP_HEAD)
+
+	zbody
+		name = "Thick jagged stripes"
+		icon_state = "zbody"
+		body_parts = list(BP_L_LEG,BP_R_LEG,BP_GROIN,BP_TORSO)
+
+	znose
+		name = "Jagged snout"
+		icon_state = "znose"
+		body_parts = list(BP_HEAD)

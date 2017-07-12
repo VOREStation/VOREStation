@@ -198,6 +198,12 @@
 	icon_state = "cow-c"
 	do_colouration = 1
 
+/datum/sprite_accessory/ears/zears
+	name = "jagged ears"
+	desc = ""
+	icon_state = "zears"
+	do_colouration = 1
+
 // Special snowflake ears go below here.
 
 /datum/sprite_accessory/ears/molenar_kitsune
@@ -700,6 +706,12 @@
 	ani_state = "otie_w"
 	do_colouration = 1
 
+/datum/sprite_accessory/tail/ztail
+	name = "jagged flufftail"
+	desc = ""
+	icon_state = "ztail"
+	do_colouration = 1
+
 /datum/sprite_accessory/tail/shock
 	name = "pharoah hound tail (Shock Diamond)"
 	desc = ""
@@ -933,6 +945,10 @@
 /datum/sprite_accessory/tail/taur/drake
 	name = "Drake"
 	icon_state = "drake_s"
+
+/datum/sprite_accessory/tail/taur/otie
+	name = "Otie"
+	icon_state = "otie_s"
 
 //wickedtemp: Chakat Tempest
 /datum/sprite_accessory/tail/taur/feline/tempest
