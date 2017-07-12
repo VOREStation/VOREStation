@@ -1458,7 +1458,7 @@ Departamental Swimsuits, for general use
 
 /obj/item/clothing/suit/storage/seromi/cloak
 	name = "black and orange cloak "
-	desc = "It drapes over a Tesharis shoulders and closes at the neck with pockets convienently placed inside."
+	desc = "It drapes over a Teshari's shoulders and closes at the neck with pockets convienently placed inside."
 	icon = 'icons/mob/species/seromi/tesh_cloak_vr.dmi'
 	icon_override = 'icons/mob/species/seromi/tesh_cloak_vr.dmi'
 	icon_state = "tesh_cloak_bo"
