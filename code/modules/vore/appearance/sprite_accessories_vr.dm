@@ -928,7 +928,7 @@
 	name = "Naga"
 	icon_state = "naga_s"
 
-/datum/sprite_accessory/tail/taur/naga/naga/2c
+/datum/sprite_accessory/tail/taur/naga/naga_2c
 	name = "Naga dual-color"
 	icon_state = "naga_s"
 	extra_overlay = "naga_markings"
