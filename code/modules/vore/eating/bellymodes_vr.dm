@@ -81,6 +81,8 @@
 		var/obj/item/T = pick(internal_contents)
 		if(istype(T, /obj/item))
 			if(istype(T, /obj/item) && _is_digestable(T) && !(T in items_preserved))
+				for(var/obj/item/SubItem in T.contents)
+					SubItem.forceMove(internal_contents)
 				owner.nutrition += (1 * T.w_class)
 				internal_contents -= T
 				qdel(T)
