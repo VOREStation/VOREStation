@@ -410,6 +410,20 @@
 						src.hound.cell.charge += (50 * S.w_class)
 						qdel(S)
 						src.update_patient()
+					else if(istype(T, /obj/item/clothing/suit/storage)) // Jackets etc.
+						var/obj/item/clothing/suit/storage/S_S = T
+						for(var/obj/item/I in S_S.pockets.contents)
+							S_S.pockets.remove_from_storage(I, src)
+						src.hound.cell.charge += (50 * S_S.w_class)
+						qdel(S_S)
+						src.update_patient()
+					else if(istype(T, /obj/item/clothing/accessory/storage)) // Webbings and such.
+						var/obj/item/clothing/accessory/storage/A_S = T
+						for(var/obj/item/I in A_S.hold.contents)
+							A_S.hold.remove_from_storage(I, src)
+						src.hound.cell.charge += (50 * A_S.w_class)
+						qdel(A_S)
+						src.update_patient()
 					else
 						src.hound.cell.charge += (50 * T.w_class)
 						qdel(T)
