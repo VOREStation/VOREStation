@@ -347,7 +347,7 @@
 
 		character.loc = C.loc
 
-		AnnounceCyborg(character, rank, "has been downloaded to the empty core in \the [character.loc.loc]")
+		AnnounceCyborg(character, rank, "has been transferred to the empty core in \the [character.loc.loc]")
 		ticker.mode.latespawn(character)
 
 		qdel(C)

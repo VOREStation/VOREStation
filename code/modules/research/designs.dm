@@ -659,9 +659,9 @@ other types of metals and chemistry for reagents).
 	sort_string = "VABAI"
 
 /datum/design/item/intellicard
-	name = "'intelliCard', AI preservation and transportation system"
-	desc = "Allows for the construction of an intelliCard."
-	id = "intellicard"
+	name = "'intelliCore', AI preservation and transportation system"
+	desc = "Allows for the construction of an intelliCore."
+	id = "intellicore"
 	req_tech = list(TECH_DATA = 4, TECH_MATERIAL = 4)
 	materials = list("glass" = 1000, "gold" = 200)
 	build_path = /obj/item/device/aicard
