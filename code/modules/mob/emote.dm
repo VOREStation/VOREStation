@@ -41,7 +41,7 @@
 					//VOREStation edit
 					if(istype(M, /mob/observer/dead/))
 						var/mob/observer/dead/D = M
-						if((ckey && D.is_preference_enabled(/datum/client_preference/ghost_sight)) || src in view(D))
+						if(ckey || (src in view(D)))
 							M.show_message(message, m_type)
 					else
 						M.show_message(message, m_type)
