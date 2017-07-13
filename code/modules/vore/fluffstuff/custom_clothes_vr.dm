@@ -1590,3 +1590,57 @@ Departamental Swimsuits, for general use
 	name = "purple and grey cloak"
 	icon_state = "tesh_cloak_brg"
 	item_state = "tesh_cloak_brg"
+
+//Jackets For General Use. Sprited by Joji.
+/obj/item/clothing/suit/storage/toggle/fluff/jacket
+	name = "Field Jacket"
+	desc = "A standard Earth military field jacket made of comfortable cotton."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "fjacket"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "fjacket_mob"
+
+/obj/item/clothing/suit/storage/toggle/fluff/jacket/field //Just here so it can be seen and easily recognized under /spawn.
+	name = "Field Jacket"
+
+/obj/item/clothing/suit/storage/toggle/fluff/jacket/air_cavalry
+	name = "Air Cavalry Jacket"
+	desc = "A jacket worn by the 1st Cavalry Division on Earth."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "acjacket"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "acjacket_mob"
+
+/obj/item/clothing/suit/storage/toggle/fluff/jacket/air_force
+	name = "Air Force Jacket"
+	desc = "A jacket worn by the Earth Air Force."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "afjacket"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "afjacket_mob"
+
+/obj/item/clothing/suit/storage/toggle/fluff/jacket/navy
+	name = "Navy Jacket"
+	desc = "A jacket worn by the Earth's Navy. It's adorned with reflective straps."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "navyjacket"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "navyjacket_mob"
+
+/obj/item/clothing/suit/storage/toggle/fluff/jacket/special_forces
+	name = "Special Forces Jacket"
+	desc = "A durable jacket worn by the Earth's special forces."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "sfjacket"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "sfjacket_mob"
