@@ -252,6 +252,7 @@
 	reagent_state = LIQUID
 	color = "#800080"
 	overdose = 20
+	scannable = 1
 	metabolism = 0.02
 	mrate_static = TRUE
 

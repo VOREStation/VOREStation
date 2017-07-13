@@ -50,13 +50,15 @@
 		/obj/item/weapon/newspaper
 		)
 
-/obj/item/weapon/gripper/chemistry
-	name = "chemistry gripper"
-	desc = "A simple grasping tool for chemical work."
+/obj/item/weapon/gripper/medical
+	name = "medical gripper"
+	desc = "A simple grasping tool for medical work."
 
 	can_hold = list(
 		/obj/item/weapon/reagent_containers/glass,
-		/obj/item/weapon/storage/pill_bottle
+		/obj/item/weapon/storage/pill_bottle,
+		/obj/item/weapon/reagent_containers/pill,
+		/obj/item/weapon/reagent_containers/blood
 		)
 
 /obj/item/weapon/gripper/research //A general usage gripper, used for toxins/robotics/xenobio/etc
@@ -71,13 +73,13 @@
 		/obj/item/robot_parts,
 		/obj/item/borg/upgrade,
 		/obj/item/device/flash, //to build borgs,
-		/obj/item/organ/internal/brain, //to insert into MMIs,
 		/obj/item/weapon/disk,
 		/obj/item/weapon/circuitboard,
 		/obj/item/weapon/reagent_containers/glass,
 		/obj/item/weapon/reagent_containers/food/snacks/monkeycube,
 		/obj/item/xenoproduct/slime/core,
-		/obj/item/device/assembly/prox_sensor
+		/obj/item/device/assembly/prox_sensor,
+		/obj/item/device/healthanalyzer //to build medibots
 //		/obj/item/slime_extract,		### Outdated
 
 		)
@@ -120,13 +122,15 @@
 	..()
 
 /obj/item/weapon/gripper/no_use/organ/robotics
-	name = "external organ gripper"
+	name = "robotics organ gripper"
 	icon_state = "gripper-flesh"
 	desc = "A specialized grasping tool used in robotics work."
 
 	can_hold = list(
 		/obj/item/organ/external,
-		/obj/item/organ/internal/cell
+		/obj/item/organ/internal/brain, //to insert into MMIs,
+		/obj/item/organ/internal/cell,
+		/obj/item/organ/internal/eyes/robot
 		)
 
 /obj/item/weapon/gripper/no_use/mech
