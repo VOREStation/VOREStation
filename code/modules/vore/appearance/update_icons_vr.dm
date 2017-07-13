@@ -27,9 +27,15 @@
 			tail_s.Blend(rgb(src.r_tail, src.g_tail, src.b_tail), tail_style.color_blend_mode)
 		if(tail_style.extra_overlay)
 			var/icon/overlay = new/icon("icon" = tail_style.icon, "icon_state" = tail_style.extra_overlay)
-			overlay.Blend(rgb(src.r_tail2, src.g_tail2, src.b_tail2), tail_style.color_blend_mode)
-			tail_s.Blend(overlay, ICON_OVERLAY)
-			qdel(overlay)
+			if(wagging && tail_style.ani_state)
+				overlay = new/icon("icon" = tail_style.icon, "icon_state" = tail_style.extra_overlay_w)
+				overlay.Blend(rgb(src.r_tail2, src.g_tail2, src.b_tail2), tail_style.color_blend_mode)
+				tail_s.Blend(overlay, ICON_OVERLAY)
+				qdel(overlay)
+			else
+				overlay.Blend(rgb(src.r_tail2, src.g_tail2, src.b_tail2), tail_style.color_blend_mode)
+				tail_s.Blend(overlay, ICON_OVERLAY)
+				qdel(overlay)
 
 		if(isTaurTail(tail_style))
 			return image(tail_s, "pixel_x" = -16)
