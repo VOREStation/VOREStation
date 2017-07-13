@@ -368,8 +368,9 @@
 				for(var/mob/hearer in range(1,src.hound))
 					hearer << deathsound
 				T << deathsound
-				for(var/obj/item/I in T.contents)//Placeholder for proper spill proc
-					T.drop_from_inventory(I, src)
+				for(var/obj/item/I in T.contents)
+					if(!istype(I,/obj/item/organ))
+						T.drop_from_inventory(I, src)
 				qdel(T)
 				src.update_patient()
 
@@ -384,14 +385,6 @@
 
 			//If the object is not one to preserve
 			else
-				//Special case for PDAs as they are dumb. TODO fix Del on PDAs to be less dumb.
-				if(istype(T, /obj/item/device/pda))
-					var/obj/item/device/pda/PDA = T
-					if (PDA.id)
-						PDA.id.forceMove(src)
-						PDA.id = null
-					qdel(T)
-
 				//Special case for IDs to make them digested
 				if(istype(T, /obj/item/weapon/card/id))
 					var/obj/item/weapon/card/id/ID = T
@@ -401,33 +394,13 @@
 					ID.access = list() // No access
 					src.items_preserved += ID
 
-				//Anything not perserved, PDA, or ID
+				//Anything not perserved, or ID
 				else if(istype(T, /obj/item))
-					if(istype(T, /obj/item/weapon/storage))
-						var/obj/item/weapon/storage/S = T
-						for(var/obj/item/I in S.contents)//Placeholder for proper spill proc
-							S.remove_from_storage(I, src)
-						src.hound.cell.charge += (50 * S.w_class)
-						qdel(S)
-						src.update_patient()
-					else if(istype(T, /obj/item/clothing/suit/storage)) // Jackets etc.
-						var/obj/item/clothing/suit/storage/S_S = T
-						for(var/obj/item/I in S_S.pockets.contents)
-							S_S.pockets.remove_from_storage(I, src)
-						src.hound.cell.charge += (50 * S_S.w_class)
-						qdel(S_S)
-						src.update_patient()
-					else if(istype(T, /obj/item/clothing/accessory/storage)) // Webbings and such.
-						var/obj/item/clothing/accessory/storage/A_S = T
-						for(var/obj/item/I in A_S.hold.contents)
-							A_S.hold.remove_from_storage(I, src)
-						src.hound.cell.charge += (50 * A_S.w_class)
-						qdel(A_S)
-						src.update_patient()
-					else
-						src.hound.cell.charge += (50 * T.w_class)
-						qdel(T)
-						src.update_patient()
+					for(var/obj/item/SubItem in T.contents)
+						SubItem.forceMove(src)
+					src.hound.cell.charge += (50 * T.w_class)
+					qdel(T)
+					src.update_patient()
 				else
 					src.hound.cell.charge += 120
 					qdel(T)
