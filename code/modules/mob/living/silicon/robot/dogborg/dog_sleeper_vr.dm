@@ -396,8 +396,13 @@
 
 				//Anything not perserved, or ID
 				else if(istype(T, /obj/item))
-					for(var/obj/item/SubItem in T.contents)
-						SubItem.forceMove(src)
+					for(var/obj/item/SubItem in T)
+						if(istype(SubItem, /obj/item/weapon/storage/internal))
+							for(var/obj/item/SubSubItem in SubItem)
+								SubSubItem.forceMove(src)
+							qdel(SubItem)
+						else
+							SubItem.forceMove(src)
 					src.hound.cell.charge += (50 * T.w_class)
 					qdel(T)
 					src.update_patient()
