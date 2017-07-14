@@ -1629,6 +1629,10 @@ area/space/atmosalert()
 	name = "\improper Engine EVA"
 	icon_state = "engine_eva"
 
+/area/engineering/engineering_airlock
+	name = "\improper Engineering Airlock"
+	icon_state = "engine_eva"
+
 /area/engineering/locker_room
 	name = "\improper Engineering Locker Room"
 	icon_state = "engineering_locker"
