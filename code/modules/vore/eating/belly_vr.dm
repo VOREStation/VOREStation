@@ -321,6 +321,10 @@
 		internal_contents += W
 
 	else
+		if(istype(W, /obj/item/weapon/storage/internal))
+			for (var/obj/item/SubItem in W)
+				_handle_digested_item(SubItem,M)
+			qdel(W)
 		for (var/obj/item/SubItem in W)
 			_handle_digested_item(SubItem,M)
 		if(!istype(W,/obj/item/organ))
