@@ -121,11 +121,10 @@
 
 		M.forceMove(owner.loc)  // Move the belly contents into the same location as belly's owner.
 		internal_contents -= M  // Remove from the belly contents
-
 		var/datum/belly/B = check_belly(owner) // This makes sure that the mob behaves properly if released into another mob
 		if(B)
 			B.internal_contents += M
-
+	items_preserved.Cut()
 	owner.visible_message("<font color='green'><b>[owner] expels everything from their [lowertext(name)]!</b></font>")
 	return 1
 
@@ -138,6 +137,8 @@
 
 	M.forceMove(owner.loc)  // Move the belly contents into the same location as belly's owner.
 	src.internal_contents -= M  // Remove from the belly contents
+	if(M in items_preserved)
+		src.items_preserved -= M
 
 	if(istype(M,/mob/living))
 		var/mob/living/ML = M
@@ -321,15 +322,12 @@
 		internal_contents += W
 
 	else
-		if(istype(W, /obj/item/weapon/storage/internal))
-			for (var/obj/item/SubItem in W)
-				_handle_digested_item(SubItem,M)
-			qdel(W)
-		for (var/obj/item/SubItem in W)
+		for(var/obj/item/SubItem in W)
 			_handle_digested_item(SubItem,M)
-		if(!istype(W,/obj/item/organ))
-			M.remove_from_mob(W,owner)
-			internal_contents += W
+		if(!istype(W,/obj/item/organ))// Don't drop organs or pocket spaces.
+			if(!istype(W,/obj/item/weapon/storage/internal))
+				M.remove_from_mob(W,owner)
+				internal_contents += W
 
 /datum/belly/proc/_is_digestable(var/obj/item/I)
 	if(is_type_in_list(I,important_items))
@@ -459,7 +457,10 @@
 	if(!(content in internal_contents))
 		return
 	internal_contents -= content
-	target.internal_contents |= content
+	target.internal_contents += content
+	if(content in items_preserved)
+		items_preserved -= content
+		target.items_preserved += content
 	if(isliving(content))
 		var/mob/living/M = content
 		if(target.inside_flavor)

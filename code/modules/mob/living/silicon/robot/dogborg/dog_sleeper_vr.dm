@@ -368,23 +368,40 @@
 				for(var/mob/hearer in range(1,src.hound))
 					hearer << deathsound
 				T << deathsound
-				for(var/obj/item/I in T.contents)
-					if(!istype(I,/obj/item/organ))
-						T.drop_from_inventory(I, src)
+				if(is_vore_predator(T))
+					for (var/bellytype in T.vore_organs)
+						var/datum/belly/belly = T.vore_organs[bellytype]
+						for (var/obj/thing in belly.internal_contents)
+							thing.loc = src
+							belly.internal_contents -= thing
+						for (var/mob/subprey in belly.internal_contents)
+							subprey.loc = src
+							belly.internal_contents -= subprey
+							subprey << "As [T] melts away around you, you find yourself in [hound]'s [name]"
+				for(var/obj/item/I in T)
+					T.drop_from_inventory(I, src)
 				qdel(T)
 				src.update_patient()
 
 		//Handle the target being anything but a /mob/living/carbon/human
 		else
 			var/obj/T = target
-
-			//If the object is in the items_preserved global list //POLARISTODO
-
-			if(T.type in important_items)
-				src.items_preserved += T
-
-			//If the object is not one to preserve
-			else
+			if(!(T in items_preserved))
+				if(T.type in important_items)
+					src.items_preserved += T
+					return
+				if(T in items_preserved)
+					return
+				//If the object is not one to preserve
+				if(istype(T, /obj/item/device/pda))
+					var/obj/item/device/pda/PDA = T
+					if (PDA.id)
+						PDA.id.forceMove(src)
+						PDA.id = null
+					src.hound.cell.charge += (50 * T.w_class)
+					contents -= T
+					qdel(T)
+					src.update_patient()
 				//Special case for IDs to make them digested
 				if(istype(T, /obj/item/weapon/card/id))
 					var/obj/item/weapon/card/id/ID = T
@@ -393,21 +410,24 @@
 					ID.icon_state = "digested"
 					ID.access = list() // No access
 					src.items_preserved += ID
-
-				//Anything not perserved, or ID
+					return
+				//Anything not preserved, PDA, or ID
 				else if(istype(T, /obj/item))
 					for(var/obj/item/SubItem in T)
-						if(istype(SubItem, /obj/item/weapon/storage/internal))
-							for(var/obj/item/SubSubItem in SubItem)
+						if(istype(SubItem,/obj/item/weapon/storage/internal))
+							var/obj/item/weapon/storage/internal/SI = SubItem
+							for(var/obj/item/SubSubItem in SI)
 								SubSubItem.forceMove(src)
-							qdel(SubItem)
+							qdel(SI)
 						else
 							SubItem.forceMove(src)
 					src.hound.cell.charge += (50 * T.w_class)
+					contents -= T
 					qdel(T)
 					src.update_patient()
 				else
 					src.hound.cell.charge += 120
+					contents -= T
 					qdel(T)
 					src.update_patient()
 		return

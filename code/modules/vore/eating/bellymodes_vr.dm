@@ -77,18 +77,28 @@
 				else
 					owner.nutrition += (10/difference)
 
+		//if(owner.weakgurgles < 1) // An example for possible trait modifier. (Not existing currently)
+			//The "Handle leftovers" spaghetti below should be moved here if above gets done.
+
 		// Handle leftovers.
 		var/obj/item/T = pick(internal_contents)
 		if(istype(T, /obj/item))
 			if(istype(T, /obj/item) && _is_digestable(T) && !(T in items_preserved))
-				for(var/obj/item/SubItem in T.contents)
-					SubItem.forceMove(internal_contents)
+				if(T in items_preserved)// Doublecheck just in case.
+					return
+				for(var/obj/item/SubItem in T)
+					if(istype(SubItem,/obj/item/weapon/storage/internal))
+						var/obj/item/weapon/storage/internal/SI = SubItem
+						for(var/obj/item/SubSubItem in SI)
+							SubSubItem.forceMove(internal_contents)
+						qdel(SI)
+					else
+						SubItem.forceMove(internal_contents)
 				owner.nutrition += (1 * T.w_class)
 				internal_contents -= T
 				qdel(T)
 			else
 				return
-
 		return
 
 //////////////////////////// DM_ABSORB ////////////////////////////
