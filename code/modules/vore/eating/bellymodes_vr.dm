@@ -77,8 +77,23 @@
 				else
 					owner.nutrition += (10/difference)
 
-		//if(owner.weakgurgles < 1) // An example for possible trait modifier. (Not existing currently)
-			//The "Handle leftovers" spaghetti below should be moved here if above gets done.
+		/*if(owner.weakgurgles < 1) // An example for possible trait or gurglemode modifier. (Not existing currently)
+			var/obj/item/T = pick(internal_contents)
+			if(istype(T, /obj/item))
+				if(istype(T, /obj/item) && _is_digestable(T) && !(T in items_preserved))
+					if(T in items_preserved)// Doublecheck just in case.
+						return
+					if(istype(T, /obj/item/weapon/reagent_containers/food)) // Weakgurgles still act on foodstuff. Hopefully your prey didn't load their bag with donk boxes.
+						var/obj/item/weapon/reagent_containers/food/F = T
+						F.reagents.trans_to_mob(owner, F.reagents.total_volume, CHEM_INGEST)
+						qdel(F)
+					else
+						items_preserved += T
+						T.contaminate() // Someone got gurgled in this crap. You wouldn't wear/use it unwashed. :v
+				else
+					return
+			return
+		else -do the tab crap to the paragraph below- */
 
 		// Handle leftovers.
 		var/obj/item/T = pick(internal_contents)
@@ -99,6 +114,7 @@
 				qdel(T)
 			else
 				return
+
 		return
 
 //////////////////////////// DM_ABSORB ////////////////////////////
