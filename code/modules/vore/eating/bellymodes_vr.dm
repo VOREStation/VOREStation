@@ -85,7 +85,9 @@
 						return
 					if(istype(T, /obj/item/weapon/reagent_containers/food)) // Weakgurgles still act on foodstuff. Hopefully your prey didn't load their bag with donk boxes.
 						var/obj/item/weapon/reagent_containers/food/F = T
-						F.reagents.trans_to_mob(owner, F.reagents.total_volume, CHEM_INGEST)
+						F.reagents.trans_to_mob(owner, (F.reagents.total_volume * 0.3), CHEM_INGEST)
+						if(F.nutriment_amt)
+							owner.reagents.add_reagent("nutriment", (F.nutriment_amt * 0.3))
 						qdel(F)
 					else
 						items_preserved += T
