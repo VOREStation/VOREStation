@@ -1,5 +1,5 @@
 <!--
-Title: inteliCard interface
+Title: inteliCore interface
 Used In File(s): \code\game\objects\items\devices\aicard.dm
  -->
  
@@ -89,11 +89,11 @@ Used In File(s): \code\game\objects\items\devices\aicard.dm
                 <td>{{:helper.link("Disabled", null, {'wireless' : 1}, data.wireless ? null : 'redButton' )}}</td>
             </tr>
             {{if data.flushing}}
-                <tr><td><span class='notice'>AI wipe in progress...</span></td></tr>
+                <tr><td><span class='notice'>AI shutdown in progress...</span></td></tr>
             {{else}}
                 <tr>
-                    <td><span class='itemLabelWidest'>Wipe AI</span></td>
-                    <td>{{:helper.link("Wipe", 'radiation', {'wipe' : 1}, null, 'redButton')}}</td>
+                    <td><span class='itemLabelWidest'>AI Power</span></td>
+                    <td>{{:helper.link("Shutdown", 'radiation', {'wipe' : 1}, null, 'redButton')}}</td>
                 </tr>
             {{/if}}
         </table>
