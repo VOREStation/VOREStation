@@ -177,11 +177,6 @@
 	icon_state = "antlers"
 
 /datum/sprite_accessory/ears/otie
-	name = "otie"
-	desc = ""
-	icon_state = "otie"
-
-/datum/sprite_accessory/ears/otiec
 	name = "otie, colorable"
 	desc = ""
 	icon_state = "otie"
