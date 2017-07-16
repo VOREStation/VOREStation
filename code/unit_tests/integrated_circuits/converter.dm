@@ -37,7 +37,6 @@
 	expected_outputs = list("Lorem ipsum...")
 
 
-
 /datum/unit_test/integrated_circuits/floor/radians2degrees
 	name = "Converter Circuits: Radians2Degrees"
 	circuit_type = /obj/item/integrated_circuit/converter/radians2degrees

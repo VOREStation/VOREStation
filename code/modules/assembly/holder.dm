@@ -242,11 +242,11 @@
 
 		loc.verbs += /obj/item/device/assembly_holder/timer_igniter/verb/configure
 
-/obj/item/device/assembly_holder/timer_igniterdetached()
+/obj/item/device/assembly_holder/timer_igniter/detached()
 	loc.verbs -= /obj/item/device/assembly_holder/timer_igniter/verb/configure
 	..()
 
-/obj/item/device/assembly_holder/timer_igniterverb/configure()
+/obj/item/device/assembly_holder/timer_igniter/verb/configure()
 	set name = "Set Timer"
 	set category = "Object"
 	set src in usr

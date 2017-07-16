@@ -1589,10 +1589,10 @@ CIRCUITS BELOW
 /datum/design/item/custom_circuit_assembly/device
 	name = "Device custom assembly"
 	desc = "An customizable assembly designed to interface with other devices."
-	id = "assembly-implant"
+	id = "assembly-device"
 	req_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2, TECH_POWER = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 5000)
-	build_path = /obj/item/weapon/implant/integrated_circuit
+	build_path = /obj/item/device/assembly/electronic_assembly
 	sort_string = "VCAAF"
 
 /datum/design/item/translator
