@@ -1,0 +1,50 @@
+################################
+# Example Changelog File
+#
+# Note: This file, and files beginning with ".", and files that don't end in ".yml" will not be read. If you change this file, you will look really dumb.
+#
+# Your changelog will be merged with a master changelog. (New stuff added only, and only on the date entry for the day it was merged.)
+# When it is, any changes listed below will disappear.
+#
+# Valid Prefixes: 
+#   bugfix
+#   wip (For works in progress)
+#   tweak
+#   soundadd
+#   sounddel
+#   rscadd (general adding of nice things)
+#   rscdel (general deleting of nice things)
+#   imageadd
+#   imagedel
+#   maptweak
+#   spellcheck (typo fixes)
+#   experiment
+#################################
+
+# Your name.  
+author: LorenLuke
+
+# Optional: Remove this file after generating master changelog.  Useful for PR changelogs that won't get used again.
+delete-after: True
+
+# Any changes you've made.  See valid prefix list above.
+# INDENT WITH TWO SPACES.  NOT TABS.  SPACES.
+# SCREW THIS UP AND IT WON'T WORK.
+# Also, all entries are changed into a single [] after a master changelog generation. Just remove the brackets when you add new entries.
+# Please surround your changes in  double quotes ("), as certain characters otherwise screws up compiling. The quotes will not show up in the changelog.
+changes: 
+  - experiment: "Gives IECs some TLC (see below)."
+  - rscadd: "Adds 'Separator' circuit, allowing the player to now divide strings."
+  - rscadd: "Adds 'grenade' circuit, allowing the player to detonate a stored grenade in an assembly."
+  - rscadd: "Adds 'device' electronic assembly, allowing an 'assembly'-type (signaler/igniter) circuit to be used to interact with others."
+  - tweak: "Modifies some storage and complexity constants."
+  - tweak: "Adds 'size' variable for manual setting."
+  - tweak: "No longer requires screwdriver to remove components."
+  - tweak: "Enables multitool to wire/debug circuits with lesser functionality (can disable via variable)."
+  - tweak: "IECs no longer drown the player in windows, each assembly always uses only one window."
+  - tweak: "Added functionality to UI to help with user experience of above point."
+  - rscadd: "Adds 'on set' output pulses to multiplexer and memory circuits."
+  - bugfix: "Fixes multiplexer and memory circuits not pushing data to attached circuits."
+  - bugfix: "Number to string converts null inputs as '0' due to engine limitations (at least they work)."
+  - bugfix: "Gun manipulator circuit now functions properly (and can read '0' value inputs)."
+  - wip: "Phase 1/2 for wiring rework."

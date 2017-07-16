@@ -10,7 +10,7 @@
 	complexity = 25
 	inputs = list("\<REF\> target")
 	outputs = list("\<NUM\> dir")
-	activators = list("\<PULSE IN\> calculate dir", "\<PULSE OUT\> on calculated")
+	activators = list("calculate dir" = 1, "on calculated" = 0)
 	spawn_flags = IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_DATA = 5)
 	power_draw_per_use = 40

@@ -4,7 +4,7 @@
 	extended_desc = "Logic circuits will treat a null, 0, and a \"\" string value as FALSE and anything else as TRUE."
 	complexity = 3
 	outputs = list("result")
-	activators = list("\<PULSE IN\> compare")
+	activators = list("compare" = 1)
 	category_text = "Logic"
 	autopulse = 1
 	power_draw_per_use = 1
@@ -18,7 +18,7 @@
 
 /obj/item/integrated_circuit/logic/binary
 	inputs = list("\<ANY\> A","\<ANY\> B")
-	activators = list("\<PULSE IN\> compare", "\<PULSE OUT\> on true result", "\<PULSE OUT\> on false result")
+	activators = list("compare" = 1, "on true result" = 0, "on false result" = 0)
 
 /obj/item/integrated_circuit/logic/binary/do_work()
 	pull_data()
@@ -38,7 +38,7 @@
 
 /obj/item/integrated_circuit/logic/unary
 	inputs = list("\<ANY\> A")
-	activators = list("\<PULSE IN\> compare", "\<PULSE OUT\> on compare")
+	activators = list("compare" = 1, "on compare" = 0)
 
 /obj/item/integrated_circuit/logic/unary/do_work()
 	pull_data()
@@ -128,7 +128,7 @@
 	desc = "This gate inverts what's fed into it."
 	icon_state = "not"
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
-	activators = list("\<PULSE IN\> invert", "\<PULSE OUT\> on inverted")
+	activators = list("invert" = 1, "on inverted" = 0)
 
 /obj/item/integrated_circuit/logic/unary/not/do_check(var/datum/integrated_io/A)
 	return !A.data

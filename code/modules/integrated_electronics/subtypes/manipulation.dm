@@ -10,13 +10,14 @@
 	normal limitations to firearms, such as ammunition requirements and firing delays, still hold true if fired by the mechanism."
 	complexity = 20
 	w_class = ITEMSIZE_NORMAL
+	size = 3
 	inputs = list(
 		"\<NUM\> target X rel",
 		"\<NUM\> target Y rel"
 		)
 	outputs = list()
 	activators = list(
-		"\<PULSE IN\> fire"
+		"fire" = 1
 	)
 	var/obj/item/weapon/gun/installed_gun = null
 	spawn_flags = IC_SPAWN_RESEARCH
@@ -35,6 +36,7 @@
 			return
 		user.drop_from_inventory(gun)
 		installed_gun = gun
+		size += gun.w_class
 		gun.forceMove(src)
 		user << "<span class='notice'>You slide \the [gun] into the firing mechanism.</span>"
 		playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
@@ -45,52 +47,58 @@
 	if(installed_gun)
 		installed_gun.forceMove(get_turf(src))
 		user << "<span class='notice'>You slide \the [installed_gun] out of the firing mechanism.</span>"
+		size = initial(size)
 		playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
 		installed_gun = null
 	else
 		user << "<span class='notice'>There's no weapon to remove from the mechanism.</span>"
 
 /obj/item/integrated_circuit/manipulation/weapon_firing/do_work()
-	if(..())
-		if(!installed_gun)
+	if(!installed_gun)
+		return
+
+	var/datum/integrated_io/target_x = inputs[1]
+	var/datum/integrated_io/target_y = inputs[2]
+
+	if(src.assembly)
+		if(isnum(target_x.data))
+			target_x.data = round(target_x.data)
+		if(isnum(target_y.data))
+			target_y.data = round(target_y.data)
+
+		var/turf/T = get_turf(src.assembly)
+
+		if(target_x.data == 0 && target_y.data == 0) // Don't shoot ourselves.
 			return
 
-		var/datum/integrated_io/target_x = inputs[1]
-		var/datum/integrated_io/target_y = inputs[2]
+		// We need to do this in order to enable relative coordinates, as locate() only works for absolute coordinates.
+		var/i
+		if(target_x.data > 0)
+			i = abs(target_x.data)
+			while(i > 0)
+				T = get_step(T, EAST)
+				i--
+		else
+			i = abs(target_x.data)
+			while(i > 0)
+				T = get_step(T, WEST)
+				i--
 
-		if(target_x.data && target_y.data && isnum(target_x.data) && isnum(target_y.data))
-			var/turf/T = get_turf(src)
+		i = 0
+		if(target_y.data > 0)
+			i = abs(target_y.data)
+			while(i > 0)
+				T = get_step(T, NORTH)
+				i--
+		else if(target_y.data < 0)
+			i = abs(target_y.data)
+			while(i > 0)
+				T = get_step(T, SOUTH)
+				i--
 
-			if(target_x.data == 0 && target_y.data == 0) // Don't shoot ourselves.
-				return
-
-			// We need to do this in order to enable relative coordinates, as locate() only works for absolute coordinates.
-			var/i
-			if(target_x.data > 0)
-				i = abs(target_x.data)
-				while(i)
-					T = get_step(T, EAST)
-					i--
-			else if(target_x.data < 0)
-				i = abs(target_x.data)
-				while(i)
-					T = get_step(T, WEST)
-					i--
-
-			if(target_y.data > 0)
-				i = abs(target_y.data)
-				while(i)
-					T = get_step(T, NORTH)
-					i--
-			else if(target_y.data < 0)
-				i = abs(target_y.data)
-				while(i)
-					T = get_step(T, SOUTH)
-					i--
-
-			if(!T)
-				return
-			installed_gun.Fire_userless(T)
+		if(!T)
+			return
+		installed_gun.Fire_userless(T)
 
 /obj/item/integrated_circuit/manipulation/locomotion
 	name = "locomotion circuit"
@@ -110,9 +118,10 @@
 	being held, or anchored in some way.  It should be noted that the ability to move is dependant on the type of assembly that this circuit inhabits."
 	w_class = ITEMSIZE_NORMAL
 	complexity = 20
+//	size = 5
 	inputs = list("dir num")
 	outputs = list()
-	activators = list("step towards dir")
+	activators = list("step towards dir" = 1)
 	spawn_flags = IC_SPAWN_RESEARCH
 	power_draw_per_use = 100
 
@@ -126,3 +135,81 @@
 			var/datum/integrated_io/wanted_dir = inputs[1]
 			if(isnum(wanted_dir.data))
 				step(assembly, wanted_dir.data)
+
+
+/obj/item/integrated_circuit/manipulation/grenade
+	name = "grenade primer"
+	desc = "This circuit comes with the ability to attach most types of grenades at prime them at will."
+	extended_desc = "Time between priming and detonation is limited to between 1 to 12 seconds but is optional. \
+					If unset, not a number, or a number less than 1 then the grenade's built-in timing will be used. \
+					Beware: Once primed there is no aborting the process!"
+	icon_state = "grenade"
+	complexity = 30
+	size = 2
+	inputs = list("\<NUM\> detonation time")
+	outputs = list()
+	activators = list("prime grenade" = 1)
+	spawn_flags = IC_SPAWN_RESEARCH
+	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3, TECH_COMBAT = 4)
+	var/obj/item/weapon/grenade/attached_grenade
+	var/pre_attached_grenade_type
+
+/obj/item/integrated_circuit/manipulation/grenade/New()
+	..()
+	if(pre_attached_grenade_type)
+		var/grenade = new pre_attached_grenade_type(src)
+		attach_grenade(grenade)
+
+/obj/item/integrated_circuit/manipulation/grenade/Destroy()
+	if(attached_grenade && !attached_grenade.active)
+		attached_grenade.dropInto(loc)
+	detach_grenade()
+	. =..()
+
+/obj/item/integrated_circuit/manipulation/grenade/attackby(var/obj/item/weapon/grenade/G, var/mob/user)
+	if(istype(G))
+		if(attached_grenade)
+			to_chat(user, "<span class='warning'>There is already a grenade attached!</span>")
+		else if(user.unEquip(G, force=1))
+			user.visible_message("<span class='warning'>\The [user] attaches \a [G] to \the [src]!</span>", "<span class='notice'>You attach \the [G] to \the [src].</span>")
+			attach_grenade(G)
+			G.forceMove(src)
+	else
+		..()
+
+/obj/item/integrated_circuit/manipulation/grenade/attack_self(var/mob/user)
+	if(attached_grenade)
+		user.visible_message("<span class='warning'>\The [user] removes \an [attached_grenade] from \the [src]!</span>", "<span class='notice'>You remove \the [attached_grenade] from \the [src].</span>")
+		user.put_in_any_hand_if_possible(attached_grenade) || attached_grenade.dropInto(loc)
+		detach_grenade()
+	else
+		..()
+
+/obj/item/integrated_circuit/manipulation/grenade/do_work()
+	if(attached_grenade && !attached_grenade.active)
+		var/datum/integrated_io/detonation_time = inputs[1]
+		if(isnum(detonation_time.data) && detonation_time.data > 0)
+			attached_grenade.det_time = between(1, detonation_time.data, 12) SECONDS
+		attached_grenade.activate()
+		var/atom/holder = loc
+		log_and_message_admins("activated a grenade assembly. Last touches: Assembly: [holder.fingerprintslast] Circuit: [fingerprintslast] Grenade: [attached_grenade.fingerprintslast]")
+
+// These procs do not relocate the grenade, that's the callers responsibility
+/obj/item/integrated_circuit/manipulation/grenade/proc/attach_grenade(var/obj/item/weapon/grenade/G)
+	attached_grenade = G
+	destroyed_event.register(attached_grenade, src, /obj/item/integrated_circuit/manipulation/grenade/proc/detach_grenade)
+	size += G.w_class
+	desc += " \An [attached_grenade] is attached to it!"
+
+/obj/item/integrated_circuit/manipulation/grenade/proc/detach_grenade()
+	if(!attached_grenade)
+		return
+	destroyed_event.unregister(attached_grenade, src, /obj/item/integrated_circuit/manipulation/grenade/proc/detach_grenade)
+	attached_grenade = null
+	size = initial(size)
+	desc = initial(desc)
+
+/obj/item/integrated_circuit/manipulation/grenade/frag
+	pre_attached_grenade_type = /obj/item/weapon/grenade/explosive
+	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3, TECH_COMBAT = 10)
+	spawn_flags = null			// Used for world initializing, see the #defines above.

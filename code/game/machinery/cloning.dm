@@ -243,6 +243,7 @@
 		var/obj/item/device/multitool/M = W
 		M.connecting = src
 		user << "<span class='notice'>You load connection data from [src] to [M].</span>"
+		M.update_icon()
 		return
 	else
 		..()
