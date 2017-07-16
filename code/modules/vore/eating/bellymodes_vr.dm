@@ -83,11 +83,12 @@
 				if(istype(T, /obj/item) && _is_digestable(T) && !(T in items_preserved))
 					if(T in items_preserved)// Doublecheck just in case.
 						return
-					if(istype(T, /obj/item/weapon/reagent_containers/food)) // Weakgurgles still act on foodstuff. Hopefully your prey didn't load their bag with donk boxes.
-						var/obj/item/weapon/reagent_containers/food/F = T
+					if(istype(T, /obj/item/weapon/reagent_containers/food/snacks)) // Weakgurgles still act on foodstuff. Hopefully your prey didn't load their bag with donk boxes.
+						var/obj/item/weapon/reagent_containers/food/snacks/F = T
 						F.reagents.trans_to_mob(owner, (F.reagents.total_volume * 0.3), CHEM_INGEST)
 						if(F.nutriment_amt)
 							owner.reagents.add_reagent("nutriment", (F.nutriment_amt * 0.3))
+						internal_contents -= F
 						qdel(F)
 					else
 						items_preserved += T
@@ -111,9 +112,17 @@
 						qdel(SI)
 					else
 						SubItem.forceMove(internal_contents)
-				owner.nutrition += (1 * T.w_class)
-				internal_contents -= T
-				qdel(T)
+				if(istype(T, /obj/item/weapon/reagent_containers/food/snacks)) // Food gets its own treatment now. Hopefully your prey didn't load their bag with donk boxes.
+					var/obj/item/weapon/reagent_containers/food/snacks/F = T
+					F.reagents.trans_to_mob(owner, (F.reagents.total_volume * 0.3), CHEM_INGEST)
+					if(F.nutriment_amt)
+						owner.reagents.add_reagent("nutriment", (F.nutriment_amt * 0.3))
+					internal_contents -= F
+					qdel(F)
+				else
+					owner.nutrition += (1 * T.w_class)
+					internal_contents -= T
+					qdel(T)
 			else
 				return
 
