@@ -379,7 +379,15 @@
 							belly.internal_contents -= subprey
 							subprey << "As [T] melts away around you, you find yourself in [hound]'s [name]"
 				for(var/obj/item/I in T)
-					T.drop_from_inventory(I, src)
+					if(istype(I,/obj/item/organ/internal/mmi_holder/posibrain))
+						var/obj/item/organ/internal/mmi_holder/MMI = I
+						var/atom/movable/brain = MMI.removed()
+						if(brain)
+							hound.remove_from_mob(brain,src)
+							brain.forceMove(src)
+							items_preserved += brain
+					else
+						T.drop_from_inventory(I, src)
 				qdel(T)
 				src.update_patient()
 
