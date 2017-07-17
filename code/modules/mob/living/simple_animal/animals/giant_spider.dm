@@ -36,7 +36,7 @@
 	speak_emote = list("chitters")
 	emote_hear = list("chitters")
 
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/spidermeat
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat
 
 	var/busy = 0
 	var/poison_per_bite = 5
