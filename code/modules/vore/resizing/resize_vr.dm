@@ -223,7 +223,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 				var/mob/living/carbon/human/H = src
 				if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
 					src << "Your heavy tail slowly and methodically slides down upon [tmob], crushing against the floor below!"
-					tmob << "[src]'s thick, heavy tail slowly and methodically slides down upon your body, mercilessly crushing you into the floor below.
+					tmob << "[src]'s thick, heavy tail slowly and methodically slides down upon your body, mercilessly crushing you into the floor below."
 					tmob.drip(10)
 				else
 					src << "You methodically place your foot down upon [tmob]'s body, slowly applying pressure, crushing them against the floor below!"
