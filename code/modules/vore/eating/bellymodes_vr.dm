@@ -22,7 +22,7 @@
 		return //Pretty boring, huh
 
 //////////////////////////// DM_DIGEST ////////////////////////////
-	if(digest_mode == DM_DIGEST || digest_mode == DM_DIGEST_NUMB)
+	if(digest_mode == DM_DIGEST || digest_mode == DM_DIGEST_NUMB || digest_mode == DM_ITEMWEAK)
 
 		if(prob(50)) //Was SO OFTEN. AAAA.
 			var/churnsound = pick(digestion_sounds)
@@ -77,7 +77,7 @@
 				else
 					owner.nutrition += (10/difference)
 
-		/*if(owner.weakgurgles < 1) // An example for possible trait or gurglemode modifier. (Not existing currently)
+		if(digest_mode == DM_ITEMWEAK)
 			var/obj/item/T = pick(internal_contents)
 			if(istype(T, /obj/item))
 				if(istype(T, /obj/item) && _is_digestable(T) && !(T in items_preserved))
@@ -96,35 +96,34 @@
 				else
 					return
 			return
-		else -do the tab crap to the paragraph below- */
-
+		else
 		// Handle leftovers.
-		var/obj/item/T = pick(internal_contents)
-		if(istype(T, /obj/item))
-			if(istype(T, /obj/item) && _is_digestable(T) && !(T in items_preserved))
-				if(T in items_preserved)// Doublecheck just in case.
-					return
-				for(var/obj/item/SubItem in T)
-					if(istype(SubItem,/obj/item/weapon/storage/internal))
-						var/obj/item/weapon/storage/internal/SI = SubItem
-						for(var/obj/item/SubSubItem in SI)
-							SubSubItem.forceMove(internal_contents)
-						qdel(SI)
+			var/obj/item/T = pick(internal_contents)
+			if(istype(T, /obj/item))
+				if(istype(T, /obj/item) && _is_digestable(T) && !(T in items_preserved))
+					if(T in items_preserved)// Doublecheck just in case.
+						return
+					for(var/obj/item/SubItem in T)
+						if(istype(SubItem,/obj/item/weapon/storage/internal))
+							var/obj/item/weapon/storage/internal/SI = SubItem
+							for(var/obj/item/SubSubItem in SI)
+								SubSubItem.forceMove(internal_contents)
+							qdel(SI)
+						else
+							SubItem.forceMove(internal_contents)
+					if(istype(T, /obj/item/weapon/reagent_containers/food/snacks)) // Food gets its own treatment now. Hopefully your prey didn't load their bag with donk boxes.
+						var/obj/item/weapon/reagent_containers/food/snacks/F = T
+						F.reagents.trans_to_mob(owner, (F.reagents.total_volume * 0.3), CHEM_INGEST)
+						if(F.nutriment_amt)
+							owner.reagents.add_reagent("nutriment", (F.nutriment_amt * 0.3))
+						internal_contents -= F
+						qdel(F)
 					else
-						SubItem.forceMove(internal_contents)
-				if(istype(T, /obj/item/weapon/reagent_containers/food/snacks)) // Food gets its own treatment now. Hopefully your prey didn't load their bag with donk boxes.
-					var/obj/item/weapon/reagent_containers/food/snacks/F = T
-					F.reagents.trans_to_mob(owner, (F.reagents.total_volume * 0.3), CHEM_INGEST)
-					if(F.nutriment_amt)
-						owner.reagents.add_reagent("nutriment", (F.nutriment_amt * 0.3))
-					internal_contents -= F
-					qdel(F)
+						owner.nutrition += (1 * T.w_class)
+						internal_contents -= T
+						qdel(T)
 				else
-					owner.nutrition += (1 * T.w_class)
-					internal_contents -= T
-					qdel(T)
-			else
-				return
+					return
 
 		return
 

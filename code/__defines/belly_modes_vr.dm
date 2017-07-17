@@ -1,6 +1,7 @@
 // Belly Mode Constants
 #define DM_HOLD									"Hold"
 #define DM_DIGEST									"Digest"
+#define DM_ITEMWEAK									"Digest (Item friendly)"
 #define DM_DIGEST_NUMB							"Digest (Numbing)"
 #define DM_HEAL									"Heal"
 #define DM_ABSORB									"Absorb"

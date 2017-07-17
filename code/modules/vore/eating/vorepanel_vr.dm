@@ -99,6 +99,8 @@
 				spanstyle = ""
 			if(DM_DIGEST)
 				spanstyle = "color:red;"
+			if(DM_ITEMWEAK)
+				spanstyle = "color:red;"
 			if(DM_HEAL)
 				spanstyle = "color:green;"
 			if(DM_ABSORB)

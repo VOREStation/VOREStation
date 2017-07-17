@@ -510,7 +510,7 @@
 		if(do_after(user, 30, target) && length(contents) < max_item_count)
 			target.forceMove(src)
 			user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [target.name] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [target] slips inside.</span>")
-			playsound(hound, 'sound/vore/gulp.ogg', 50, 1)
+			playsound(hound, 'sound/vore/gulp.ogg', 30, 1)
 			if(length(contents) > 11) //grow that tum after a certain junk amount
 				hound.sleeper_r = 1
 				hound.updateicon()
@@ -523,7 +523,7 @@
 			trashmouse.forceMove(src)
 			trashmouse.reset_view(src)
 			user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [trashmouse] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [trashmouse] slips inside.</span>")
-			playsound(hound, 'sound/vore/gulp.ogg', 50, 1)
+			playsound(hound, 'sound/vore/gulp.ogg', 30, 1)
 			if(length(contents) > 11) //grow that tum after a certain junk amount
 				hound.sleeper_r = 1
 				hound.updateicon()
