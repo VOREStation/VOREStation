@@ -11,8 +11,16 @@
 	path = /obj/item/weapon/storage/box/matches
 
 /datum/gear/zippo
-	display_name = "zippo"
+	display_name = "Zippo Selection"
 	path = /obj/item/weapon/flame/lighter/zippo
+
+/datum/gear/zippo/New()
+	..()
+	var/list/zippos = list()
+	for(var/zippo in typesof(/obj/item/weapon/flame/lighter/zippo))
+		var/obj/item/weapon/flame/lighter/zippo/zippo_type = zippo
+		zippos[initial(zippo_type.name)] = zippo_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(zippos))
 
 /datum/gear/ashtray
 	display_name = "ashtray, plastic"
