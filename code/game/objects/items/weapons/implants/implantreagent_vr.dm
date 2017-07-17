@@ -171,7 +171,7 @@
 			to_chat(user,"<span class='notice'>The container must have one single, pure, liquid reagent inside of it to scan.</span>")
 			return
 		var/datum/reagent/R = container.reagents.get_master_reagent()
-		if(R.reagent_state != 2)
+		if(R.reagent_state != LIQUID)
 			to_chat(user,"<span class='notice'>The reagent inside the beaker must be a liquid.</span>")
 			return
 		var/datum/reagent/R_ID = container.reagents.get_master_reagent_id()
