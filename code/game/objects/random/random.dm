@@ -4,7 +4,8 @@
 	icon = 'icons/misc/mark.dmi'
 	icon_state = "rup"
 	var/spawn_nothing_percentage = 0 // this variable determines the likelyhood that this random object will not spawn anything
-	var/spawned_thing
+
+	var/spawned_thing //VOREStation Edit
 
 
 // creates a new object and deletes itself
@@ -29,11 +30,13 @@
 		A.pixel_x = pixel_x
 		A.pixel_y = pixel_y
 
+//VOREStation Edit
 	spawned_thing = A
 
 /obj/random/Destroy()
 	spawned_thing = null
 	return ..()
+//VOREStation Edit End
 
 /obj/random/single
 	name = "randomly spawned object"
