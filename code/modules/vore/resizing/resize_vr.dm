@@ -178,22 +178,58 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 		if((src.get_effective_size() - tmob.get_effective_size()) >= 0.75)
 			now_pushing = 0
 			src.forceMove(tmob.loc)
-			tmob.Stun(4)
+			if(src.m_intent == run) //Running down the hallway with disarm intent?
+				tmob.resting = 1 //Force them down to the ground.
+				var/mob/living/carbon/human/H = src
+				if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
+					src << "Your tail slides over [tmob], pushing them down to the ground!"
+					tmob << "[src]'s tail slides over you, forcing you down to the ground!"
+				else
+					src << "You quickly push [tmob] to the ground with your foot!"
+					tmob << "[src] pushes you down to the ground with their foot!"
+				return 1
+			if(src.m_intent == walk) //Most likely intentionally stepping on them.
+				tmob.resting = 1
+				tmob.Stun(15)
+				var/mob/living/carbon/human/H = src
+				if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
+					src << "You  squish [tmob] under your tail, pinning them down!"
+					tmob << "[src] squishes you with their tail, pinning you down!"
+				else
+					src << "You pin [tmob] beneath your foot!"
+					tmob << "[src] pins you beneath their foot!"
 
-			var/mob/living/carbon/human/H = src
-			if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
-				src << "You carefully squish [tmob] under your tail!"
-				tmob << "[src] pins you under their tail!"
-			else
-				src << "You pin [tmob] beneath your foot!"
-				tmob << "[src] pins you beneath their foot!"
-			return 1
 
 	if(src.a_intent == I_HURT && src.canmove && !src.buckled)
 		if((src.get_effective_size() - tmob.get_effective_size()) >= 0.75)
 			now_pushing = 0
 			src.forceMove(tmob.loc)
-			tmob.apply_damage(10, HALLOSS)
+			var/damage = (rand(1,3)*(src.get_effective_size-tmob.get_effective_size)) //Rand 1-3 multiplied by 1 min or 1.75 max. 1 min 5.25 max damage.
+			
+			if(src.m_intent == run)
+				tmob.apply_damage(damage, BRUTE)
+				var/mob/living/carbon/human/H = src
+				if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
+					src << "Your heavy tail carelessly slides past [tmob],  crushing them!"
+					tmob << "[src] quickly goes over your body, carelessly crushing you with their heavy tail!"
+				else
+					src << "You carlessly step down onto [tmob], crushing them!!"
+					tmob << "[src] steps carelessly on your body, crushing you!"
+				return 1
+
+			if(src.m_intent == walk) //Oh my.
+				damage = damage * 5 //Multiplies the above damage by 5. This means a min of 5 damage, or a max of 26.25 damage, depending on size and RNG.
+				tmob.apply_damage(damage, BRUTE)
+				var/mob/living/carbon/human/H = src
+				if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
+					src << "Your heavy tail slowly and methodically slides down upon [tmob], crushing against the floor below!"
+					tmob << "[src]'s thick, heavy tail slowly and methodically slides down upon your body, mercilessly crushing you into the floor below.
+					tmob.drip(10)
+				else
+					src << "You methodically place your foot down upon [tmob]'s body, slowly applying pressure, crushing them against the floor below!"
+					tmob << "[src] methodically places their foot upon your body, slowly applying pressure, crushing you against the floor below!"
+					tmob.drip(10)
+				return 1
 
 			var/mob/living/carbon/human/H = src
 			if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
