@@ -722,6 +722,12 @@
 	icon_state = "shock"
 	ckeys_allowed = list("icowom")
 
+/datum/sprite_accessory/tail/snaketail
+	name = "snake tail, colorable"
+	desc = ""
+	icon_state = "snaketail"
+	do_colouration = 1
+
 //For all species tails. Includes haircolored tails.
 /datum/sprite_accessory/tail/special
 	name = "Blank tail. Do not select."
