@@ -92,6 +92,12 @@
 						ID.access = list() // No access
 						items_preserved += ID
 						return
+					for(var/obj/item/SubItem in T)
+						if(istype(SubItem, /obj/item/weapon/reagent_containers/food/snacks))
+							var/obj/item/weapon/reagent_containers/food/snacks/SF = SubItem
+							SF.reagents.trans_to_mob(owner, (SF.reagents.total_volume * 0.3), CHEM_INGEST)
+							internal_contents -= SF
+							qdel(SF)
 					if(istype(T, /obj/item/weapon/reagent_containers/food/snacks)) // Weakgurgles still act on foodstuff. Hopefully your prey didn't load their bag with donk boxes.
 						var/obj/item/weapon/reagent_containers/food/snacks/F = T
 						F.reagents.trans_to_mob(owner, (F.reagents.total_volume * 0.3), CHEM_INGEST)
