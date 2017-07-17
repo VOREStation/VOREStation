@@ -101,6 +101,8 @@
 				spanstyle = "color:red;"
 			if(DM_ITEMWEAK)
 				spanstyle = "color:red;"
+			if(DM_STRIPDIGEST)
+				spanstyle = "color:red;"
 			if(DM_HEAL)
 				spanstyle = "color:green;"
 			if(DM_ABSORB)

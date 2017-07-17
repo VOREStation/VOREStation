@@ -23,6 +23,7 @@
 
 //////////////////////////// DM_DIGEST ////////////////////////////
 	if(digest_mode == DM_DIGEST || digest_mode == DM_DIGEST_NUMB || digest_mode == DM_ITEMWEAK)
+		var/list/touchable_items = internal_contents - items_preserved
 
 		if(prob(50)) //Was SO OFTEN. AAAA.
 			var/churnsound = pick(digestion_sounds)
@@ -78,16 +79,22 @@
 					owner.nutrition += (10/difference)
 
 		if(digest_mode == DM_ITEMWEAK)
-			var/obj/item/T = pick(internal_contents)
+			var/obj/item/T = pick(touchable_items)
 			if(istype(T, /obj/item))
 				if(istype(T, /obj/item) && _is_digestable(T) && !(T in items_preserved))
 					if(T in items_preserved)// Doublecheck just in case.
 						return
+					if(istype(T,/obj/item/weapon/card/id))// Mess up unprotected IDs
+						var/obj/item/weapon/card/id/ID = T
+						ID.desc = "A partially digested card that has seen better days.  Much of it's data has been destroyed."
+						ID.icon = 'icons/obj/card_vr.dmi'
+						ID.icon_state = "digested"
+						ID.access = list() // No access
+						items_preserved += ID
+						return
 					if(istype(T, /obj/item/weapon/reagent_containers/food/snacks)) // Weakgurgles still act on foodstuff. Hopefully your prey didn't load their bag with donk boxes.
 						var/obj/item/weapon/reagent_containers/food/snacks/F = T
 						F.reagents.trans_to_mob(owner, (F.reagents.total_volume * 0.3), CHEM_INGEST)
-						if(F.nutriment_amt)
-							owner.reagents.add_reagent("nutriment", (F.nutriment_amt * 0.3))
 						internal_contents -= F
 						qdel(F)
 					else
@@ -98,7 +105,7 @@
 			return
 		else
 		// Handle leftovers.
-			var/obj/item/T = pick(internal_contents)
+			var/obj/item/T = pick(touchable_items)
 			if(istype(T, /obj/item))
 				if(istype(T, /obj/item) && _is_digestable(T) && !(T in items_preserved))
 					if(T in items_preserved)// Doublecheck just in case.
@@ -107,15 +114,32 @@
 						if(istype(SubItem,/obj/item/weapon/storage/internal))
 							var/obj/item/weapon/storage/internal/SI = SubItem
 							for(var/obj/item/SubSubItem in SI)
-								SubSubItem.forceMove(internal_contents)
+								SubSubItem.forceMove(owner)
+								internal_contents += SubSubItem
 							qdel(SI)
 						else
-							SubItem.forceMove(internal_contents)
+							SubItem.forceMove(owner)
+							internal_contents += SubItem
+					if(istype(T, /obj/item/device/pda))
+						var/obj/item/device/pda/PDA = T
+						if(PDA.id)
+							PDA.id.forceMove(owner)
+							internal_contents += PDA.id
+							PDA.id = null
+						owner.nutrition += (1 * PDA.w_class)
+						internal_contents -= PDA
+						qdel(PDA)
+					if(istype(T,/obj/item/weapon/card/id))// In case the ID didn't come from gurgle drop.
+						var/obj/item/weapon/card/id/ID = T
+						ID.desc = "A partially digested card that has seen better days.  Much of it's data has been destroyed."
+						ID.icon = 'icons/obj/card_vr.dmi'
+						ID.icon_state = "digested"
+						ID.access = list() // No access
+						items_preserved += ID
+						return
 					if(istype(T, /obj/item/weapon/reagent_containers/food/snacks)) // Food gets its own treatment now. Hopefully your prey didn't load their bag with donk boxes.
 						var/obj/item/weapon/reagent_containers/food/snacks/F = T
 						F.reagents.trans_to_mob(owner, (F.reagents.total_volume * 0.3), CHEM_INGEST)
-						if(F.nutriment_amt)
-							owner.reagents.add_reagent("nutriment", (F.nutriment_amt * 0.3))
 						internal_contents -= F
 						qdel(F)
 					else
@@ -124,6 +148,104 @@
 						qdel(T)
 				else
 					return
+
+		return
+
+//////////////////////////// DM_STRIPDIGEST ////////////////////////////
+	if(digest_mode == DM_STRIPDIGEST) // Only gurgle the gear off your prey.
+		var/list/touchable_items = internal_contents - items_preserved
+
+		if(prob(50))
+			var/churnsound = pick(digestion_sounds)
+			for(var/mob/hearer in range(1,owner))
+				hearer << sound(churnsound,volume=80)
+
+		// Handle loose items first.
+		var/obj/item/T = pick(touchable_items)
+		if(istype(T, /obj/item))
+			if(istype(T, /obj/item) && _is_digestable(T) && !(T in items_preserved))
+				if(T in items_preserved)// Doublecheck just in case.
+					return
+				if(istype(T, /obj/item/device/pda))
+					var/obj/item/device/pda/PDA = T
+					if(PDA.id)
+						PDA.id.forceMove(owner)
+						internal_contents += PDA.id
+						PDA.id = null
+					owner.nutrition += (1 * PDA.w_class)
+					internal_contents -= PDA
+					qdel(PDA)
+
+				if(istype(T,/obj/item/weapon/card/id))
+					var/obj/item/weapon/card/id/ID = T
+					ID.desc = "A partially digested card that has seen better days.  Much of it's data has been destroyed."
+					ID.icon = 'icons/obj/card_vr.dmi'
+					ID.icon_state = "digested"
+					ID.access = list() // No access
+					items_preserved += ID
+					return
+				for(var/obj/item/SubItem in T)
+					if(istype(SubItem,/obj/item/weapon/storage/internal))
+						var/obj/item/weapon/storage/internal/SI = SubItem
+						for(var/obj/item/SubSubItem in SI)
+							SubSubItem.forceMove(owner)
+							internal_contents += SubSubItem
+						qdel(SI)
+					else
+						SubItem.forceMove(owner)
+						internal_contents += SubItem
+				if(istype(T, /obj/item/weapon/reagent_containers/food/snacks)) // Food gets its own treatment now. Hopefully your prey didn't load their bag with donk boxes.
+					var/obj/item/weapon/reagent_containers/food/snacks/F = T
+					F.reagents.trans_to_mob(owner, (F.reagents.total_volume * 0.3), CHEM_INGEST)
+					internal_contents -= F
+					qdel(F)
+				else
+					owner.nutrition += (1 * T.w_class)
+					internal_contents -= T
+					qdel(T)
+
+		for(var/mob/living/carbon/human/M in internal_contents)
+			if(!M)
+				M = owner
+			//Pref protection!
+			if (!M.digestable || M.absorbed)
+				continue
+			if(length(slots - checked_slots) < 1)
+				checked_slots.Cut()
+			var/validslot = pick(slots - checked_slots)
+			checked_slots += validslot // Avoid wasting cycles on already checked slots.
+			var/obj/item/I = M.get_equipped_item(validslot)
+			if(!I)
+				return
+			if(istype(I,/obj/item/weapon/card/id))
+				var/obj/item/weapon/card/id/ID = I
+				ID.desc = "A partially digested card that has seen better days.  Much of it's data has been destroyed."
+				ID.icon = 'icons/obj/card_vr.dmi'
+				ID.icon_state = "digested"
+				ID.access = list() // No access
+				M.remove_from_mob(ID,owner)
+				internal_contents += ID
+				items_preserved += ID
+				return
+			if(!_is_digestable(I))
+				M.remove_from_mob(I,owner)
+				items_preserved += I
+				internal_contents += I
+				return
+			if(I == M.get_equipped_item(slot_w_uniform))
+				var/list/stash = list(slot_r_store,slot_l_store,slot_wear_id,slot_belt)
+				for(var/stashslot in stash)
+					var/obj/item/SL = M.get_equipped_item(stashslot)
+					if(SL)
+						SL.forceMove(owner)
+						internal_contents += SL
+				M.remove_from_mob(I,owner)
+				internal_contents += I
+				return
+			else
+				if(!(istype(I,/obj/item/organ) || istype(I,/obj/item/weapon/storage/internal) || istype(I,/obj/screen)))
+					M.remove_from_mob(I,owner)
+					internal_contents += I
 
 		return
 
