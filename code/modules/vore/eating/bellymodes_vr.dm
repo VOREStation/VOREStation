@@ -129,6 +129,15 @@
 				if(istype(T, /obj/item) && _is_digestable(T) && !(T in items_preserved))
 					if(T in items_preserved)// Doublecheck just in case.
 						return
+					if(istype(T, /obj/item/device/pda))
+						var/obj/item/device/pda/PDA = T
+						if(PDA.id)
+							PDA.id.forceMove(owner)
+							internal_contents += PDA.id
+							PDA.id = null
+						owner.nutrition += (1 * PDA.w_class)
+						internal_contents -= PDA
+						qdel(PDA)
 					for(var/obj/item/SubItem in T)
 						if(istype(SubItem,/obj/item/weapon/storage/internal))
 							var/obj/item/weapon/storage/internal/SI = SubItem
@@ -139,15 +148,6 @@
 						else
 							SubItem.forceMove(owner)
 							internal_contents += SubItem
-					if(istype(T, /obj/item/device/pda))
-						var/obj/item/device/pda/PDA = T
-						if(PDA.id)
-							PDA.id.forceMove(owner)
-							internal_contents += PDA.id
-							PDA.id = null
-						owner.nutrition += (1 * PDA.w_class)
-						internal_contents -= PDA
-						qdel(PDA)
 					if(istype(T,/obj/item/weapon/card/id))// In case the ID didn't come from gurgle drop.
 						var/obj/item/weapon/card/id/ID = T
 						ID.desc = "A partially digested card that has seen better days.  Much of it's data has been destroyed."
