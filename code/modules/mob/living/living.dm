@@ -147,7 +147,7 @@ default behaviour is:
 					visible_message("<span class='warning'>[src] [pick("ran", "slammed")] into \the [AM]!</span>")
 					src.apply_damage(5, BRUTE)
 					src << ("<span class='warning'>You just [pick("ran", "slammed")] into \the [AM]!</span>")
-				*/ VOREStation Remove End
+				*// VOREStation Removal End
 				return
 			if (!now_pushing)
 				now_pushing = 1
