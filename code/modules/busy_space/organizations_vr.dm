@@ -232,7 +232,7 @@
 		Their ships are crewed mostly by a clan dedicated to the running of them and space stations, with small amounts of troops of the infantry clan./
 		Despite their lack of ships, their ground forces are somewhat formidable, carrying heavy weaponry and powered armour."
     history = "Hailing from the desert world of Scion, the Imperium is somewhat old, originally founded in its modern form in \
-    			the year of 1600CE on the calander of Earth, or 0 on the Scion calander, \
+    			the year of 1600CE on the calendar of Earth, or 0 on the Scion calander, \
 	 			but in its current state is a small nation on a galactic scale, led by Imperatrix Limath (Li-Math)."
     work = "Micro Isolationist Imperium"
     headquarters = "Lathwin, Scion B0L"
