@@ -3,12 +3,21 @@
 	desc = "You process ingested and injected reagents faster, but get hungry faster."
 	cost = 0
 	var_changes = list("metabolic_rate" = 1.2)
+	excludes = list(/datum/trait/metabolism_down, /datum/trait/metabolism_apex)
 
 /datum/trait/metabolism_down
 	name = "Slow Metabolism"
 	desc = "You process ingested and injected reagents slower, but get hungry slower."
 	cost = 0
 	var_changes = list("metabolic_rate" = 0.8)
+	excludes = list(/datum/trait/metabolism_up, /datum/trait/metabolism_apex)
+
+/datum/trait/metabolism_apex
+	name = "Apex Metabolism"
+	desc = "Finally a proper excuse for your predatory actions. Also makes you process reagents faster but that's totally irrelevant. May cause excessive immersions with large/taur characters. Not recommended for efficient law-abiding workers or eco-aware NIF users."
+	cost = 0
+	var_changes = list("metabolic_rate" = 2)
+	excludes = list(/datum/trait/metabolism_up, /datum/trait/metabolism_down)
 
 /datum/trait/vore_numbing
 	name = "Prey Numbing"

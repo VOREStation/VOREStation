@@ -323,13 +323,13 @@
 		return
 	if(uses < max_uses && cooldown == 0)
 		var/mob/living/silicon/robot.R = user
-		if(R.cell.charge <= 800)
+		if(R.cell.charge <= 1000)
 			user << "<span class='warning'>Insufficient power reserves. Please recharge.</span>"
 			return
 		usr << "It has [uses] lights remaining. Attempting to fabricate a replacement. Please stand still."
 		cooldown = 1
 		if(do_after(user, 50))
-			R.cell.charge = R.cell.charge - 400
+			R.cell.charge = R.cell.charge - 800
 			AddUses(1)
 			cooldown = 0
 		else

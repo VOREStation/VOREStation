@@ -18,7 +18,7 @@ TODO: Make them light up and heat the air when exposed to oxygen.
 	icon_living = "gaslamp"
 	icon_dead = "gaslamp-dead"
 
-	faction = "gaslamp"
+	faction = "virgo3b"
 	maxHealth = 100
 	health = 100
 	move_to_delay = 4
@@ -28,12 +28,10 @@ TODO: Make them light up and heat the air when exposed to oxygen.
 
 	speed = 2
 
-	layer = 5 // Tall mob needs this layer.
-
 	melee_damage_lower = 30 // Because fuck anyone who hurts this sweet, innocent creature.
 	melee_damage_upper = 30
-	attacktext = "thrashes"
-	friendly = "caresses"
+	attacktext = "thrashed"
+	friendly = "caressed"
 
 	response_help   = "brushes"	// If clicked on help intent
 	response_disarm = "pushes" // If clicked on disarm intent
@@ -55,7 +53,11 @@ TODO: Make them light up and heat the air when exposed to oxygen.
 /mob/living/simple_animal/retaliate/gaslamp
 	vore_active = 1
 	vore_capacity = 2
-	vore_default_mode = DM_ABSORB
-	vore_escape_chance = 10
-	vore_pounce_chance = 0 // Beat them into crit before eating.
+	vore_standing_too = 1 // Defaults to trying to give you that big tentacle hug.
+	vore_default_mode = DM_HOLD
+	vore_digest_chance = 0			// Chance to switch to digest mode if resisted
+	vore_absorb_chance = 20			// BECOME A PART OF ME.
+	vore_pounce_chance = 5 // Small chance to punish people who abuse their nomming behaviour to try and kite them forever with repeated melee attacks.
+	vore_stomach_name = "internal chamber"
+	vore_stomach_flavor	= "You are squeezed into the tight embrace of the alien creature's warm and cozy insides."
 	vore_icons = SA_ICON_LIVING
