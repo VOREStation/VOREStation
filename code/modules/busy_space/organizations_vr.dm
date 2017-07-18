@@ -195,7 +195,7 @@
 					"Star of Tiamat",
 					"Mostly Harmless",
 					"Hero of the Revolution",
-					"Dawnstar",D
+					"Dawnstar",
 					"Freedom",
 					"Fiery Justice",
 					"Bulwark of the Free",
