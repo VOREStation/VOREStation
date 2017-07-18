@@ -57,6 +57,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 		"Black Cat" = "blackcat",
 		"Lizard" = "lizard",
 		"Goat" = "goat",
+		"Space Bear" = "bear",
 		"Bats" = "bat",
 		"Chicken" = "chicken_white",
 		"Parrot"= "parrot_fly",
@@ -67,7 +68,8 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 		"Trout" = "trout-swim",
 		"Salmon" = "salmon-swim",
 		"Pike" = "pike-swim",
-		"Koi" = "koi-swim"
+		"Koi" = "koi-swim",
+		"Carp" = "carp",
 		"Red Robes" = "robe_red",
 		"Faithless" = "faithless",
 		"Shadowform" = "forgotten",
@@ -82,11 +84,9 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 		"Guard Spider" = "guard",
 		"Hunter Spider" = "hunter",
 		"Nurse Spider" = "nurse",
-		"Carp" = "carp",
-		"Space Bear" = "bear",
 		"Rogue Drone" = "drone",
 		"ED-209" = "ed209",
-		"Beepsky" = "secbot",
+		"Beepsky" = "secbot"
 		)
 
 /mob/observer/dead/New(mob/body)
