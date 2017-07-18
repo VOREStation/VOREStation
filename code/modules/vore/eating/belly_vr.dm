@@ -288,6 +288,9 @@
 					brain.forceMove(owner)
 					items_preserved += brain
 					internal_contents += brain
+			if(W == H.get_equipped_item(slot_wear_id))
+				H.remove_from_mob(W,owner)
+				internal_contents += W
 			if(W == H.get_equipped_item(slot_w_uniform))
 				var/list/stash = list(slot_r_store,slot_l_store,slot_wear_id,slot_belt)
 				for(var/stashslot in stash)
