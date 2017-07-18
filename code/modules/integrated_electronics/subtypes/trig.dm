@@ -12,7 +12,7 @@
 		"\<NUM\> H"
 		)
 	outputs = list("\<NUM\> result")
-	activators = list("\<PULSE IN\> compute", "\<PULSE OUT\> on computed")
+	activators = list("compute" = 1, "on computed" = 0)
 	category_text = "Trig"
 	extended_desc = "Input and output are in degrees."
 	autopulse = 1

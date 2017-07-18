@@ -14,7 +14,7 @@
 	can_be_asked_input = 1
 	inputs = list()
 	outputs = list()
-	activators = list("\<PULSE OUT\> on pressed")
+	activators = list("on pressed" = 0)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/input/button/ask_for_input(mob/user) //Bit misleading name for this specific use.
@@ -29,7 +29,7 @@
 	can_be_asked_input = 1
 	inputs = list()
 	outputs = list("\<NUM\> on" = 0)
-	activators = list("\<PULSE OUT\> on toggle")
+	activators = list("on toggle" = 0)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/input/toggle_button/ask_for_input(mob/user) // Ditto.
@@ -46,7 +46,7 @@
 	can_be_asked_input = 1
 	inputs = list()
 	outputs = list("\<NUM\> number entered")
-	activators = list("\<PULSE OUT\> on entered")
+	activators = list("on entered" = 0)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 4
 
@@ -65,7 +65,7 @@
 	can_be_asked_input = 1
 	inputs = list()
 	outputs = list("\<TEXT\> string entered")
-	activators = list("\<PULSE OUT\> on entered")
+	activators = list("on entered" = 0)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 4
 
@@ -83,7 +83,7 @@
 	complexity = 4
 	inputs = list("\<REF\> target")
 	outputs = list("\<NUM\> total health %", "\<NUM\> total missing health")
-	activators = list("\<PULSE IN\> scan", "\<PULSE OUT\> on scanned")
+	activators = list("scan" = 1, "on scanned" = 0)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 2)
 	power_draw_per_use = 40
@@ -118,7 +118,7 @@
 		"\<NUM\> oxy damage",
 		"\<NUM\> clone damage"
 	)
-	activators = list("\<PULSE IN\> scan", "\<PULSE OUT\> on scanned")
+	activators = list("scan" = 1, "on scanned" = 0)
 	spawn_flags = IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3, TECH_BIO = 4)
 	power_draw_per_use = 80
@@ -148,7 +148,7 @@
 	that is holding the machine containing it."
 	inputs = list()
 	outputs = list("located ref")
-	activators = list("locate")
+	activators = list("locate" = 1)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 20
 
@@ -170,7 +170,7 @@
 	random."
 	inputs = list("desired type ref")
 	outputs = list("located ref")
-	activators = list("locate")
+	activators = list("locate" = 1)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 30
 
@@ -206,7 +206,7 @@
 	complexity = 4
 	inputs = list("\<NUM\> frequency","\<NUM\> code")
 	outputs = list()
-	activators = list("\<PULSE IN\> send signal","\<PULSE OUT\> on signal sent", "\<PULSE OUT\> on signal received")
+	activators = list("send signal" = 1,"on signal sent" = 0, "on signal received" = 0)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_MAGNET = 2)
 	power_draw_idle = 5
@@ -288,7 +288,7 @@
 	complexity = 4
 	inputs = list("\<TEXT\> target EPv2 address", "\<TEXT\> data to send", "\<TEXT\> secondary text")
 	outputs = list("\<TEXT\> address received", "\<TEXT\> data received", "\<TEXT\> secondary text received")
-	activators = list("\<PULSE IN\> send data", "\<PULSE OUT\> on data received")
+	activators = list("send data" = 1, "on data received" = 0)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_MAGNET = 2, TECH_BLUESPACE = 2)
 	power_draw_per_use = 50
@@ -332,7 +332,7 @@
 	complexity = 4
 	inputs = list()
 	outputs = list("\<NUM\> X", "\<NUM\> Y")
-	activators = list("\<PULSE IN\> get coordinates", "\<PULSE OUT\> on get coordinates")
+	activators = list("get coordinates" = 1, "on get coordinates" = 0)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 30
 
@@ -361,7 +361,7 @@
 	complexity = 8
 	inputs = list()
 	outputs = list("\<TEXT\> speaker", "\<TEXT\> message")
-	activators = list("\<PULSE OUT\> on message received", "\<PULSE OUT\> on translation")
+	activators = list("on message received" = 1, "on translation" = 0)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 15
 
@@ -399,7 +399,7 @@
 	complexity = 12
 	inputs = list("\<NUM\> ignore storage" = 1)
 	outputs = list("\<REF\> scanned")
-	activators = list("\<PULSE OUT\> on scanned")
+	activators = list("on scanned" = 0)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 120
 
@@ -423,7 +423,7 @@
 	icon_state = "screen"
 	inputs = list("\<TEXT/NUM\> displayed data")
 	outputs = list()
-	activators = list("\<PULSE IN\> load data")
+	activators = list("load data" = 1)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 10
 	autopulse = 1
@@ -477,7 +477,7 @@
 	complexity = 4
 	inputs = list()
 	outputs = list()
-	activators = list("\<PULSE IN\> toggle light")
+	activators = list("toggle light" = 1)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	var/light_toggled = 0
 	var/light_brightness = 3
@@ -545,7 +545,7 @@
 		"\<NUM\> frequency"
 	)
 	outputs = list()
-	activators = list("play sound")
+	activators = list("play sound" = 1)
 	power_draw_per_use = 20
 	var/list/sounds = list()
 
@@ -558,7 +558,7 @@
 	cooldown_per_use = 4 SECONDS
 	inputs = list("text")
 	outputs = list()
-	activators = list("to speech")
+	activators = list("to speech" = 1)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 60
 

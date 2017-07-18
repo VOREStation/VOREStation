@@ -31,9 +31,10 @@ var/list/all_integrated_circuits = list()
 	var/extended_desc = null
 	var/list/inputs = list()
 	var/list/outputs = list()
-	var/list/activators = list()
+	var/list/activators = list() //associated_list, = 1 for inbound, = 0 for outbound
 	var/next_use = 0 //Uses world.time
 	var/complexity = 1 				//This acts as a limitation on building machines, more resource-intensive components cost more 'space'.
+	var/size = null					//This acts as a limitation on building machines, bigger components cost more 'space'. -1 for size 0
 	var/cooldown_per_use = 1 SECOND // Circuits are limited in how many times they can be work()'d by this variable.
 	var/power_draw_per_use = 0 		// How much power is drawn when work()'d.
 	var/power_draw_idle = 0			// How much power is drawn when doing nothing.
@@ -41,5 +42,6 @@ var/list/all_integrated_circuits = list()
 	var/category_text = "NO CATEGORY THIS IS A BUG"	// To show up on circuit printer, and perhaps other places.
 	var/autopulse = -1 				// When input is received, the circuit will pulse itself if set to 1.  0 means it won't. -1 means it is permanently off.
 	var/removable = TRUE 			// Determines if a circuit is removable from the assembly.
-
-
+	var/displayed_name = ""
+	var/allow_multitool = 1			// Allows additional multitool functionality
+									// Used as a global var, (Do not set manually in children).

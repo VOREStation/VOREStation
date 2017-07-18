@@ -3,7 +3,7 @@
 	complexity = 2
 	inputs = list("input")
 	outputs = list("output")
-	activators = list("\<PULSE IN\> convert", "\<PULSE OUT\> on convert")
+	activators = list("convert" = 1, "on convert" = 0)
 	category_text = "Converter"
 	autopulse = 1
 	power_draw_per_use = 10
@@ -15,6 +15,7 @@
 /obj/item/integrated_circuit/converter/num2text
 	name = "number to string"
 	desc = "This circuit can convert a number variable into a string."
+	extended_desc = "Because of game limitations null/false variables will output a '0' string."
 	icon_state = "num-string"
 	inputs = list("\<NUM\> input")
 	outputs = list("\<TEXT\> output")
@@ -26,6 +27,8 @@
 	var/incoming = get_pin_data(IC_INPUT, 1)
 	if(incoming && isnum(incoming))
 		result = num2text(incoming)
+	else if(!incoming)
+		result = "0"
 
 	set_pin_data(IC_OUTPUT, 1, result)
 	push_data()
@@ -107,8 +110,8 @@
 	push_data()
 	activate_pin(2)
 
-/obj/item/integrated_circuit/converter/concatenatior
-	name = "concatenatior"
+/obj/item/integrated_circuit/converter/concatenator
+	name = "concatenator"
 	desc = "This joins many strings or numbers together to get one big string."
 	complexity = 4
 	inputs = list(
@@ -122,10 +125,10 @@
 		"\<TEXT/NUM\> H"
 		)
 	outputs = list("\<TEXT\> result")
-	activators = list("\<PULSE IN\> concatenate", "\<PULSE OUT\> on concatenated")
+	activators = list("concatenate" = 1, "on concatenated" = 0)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/integrated_circuit/converter/concatenatior/do_work()
+/obj/item/integrated_circuit/converter/concatenator/do_work()
 	var/result = null
 	for(var/datum/integrated_io/input/I in inputs)
 		I.pull_data()
@@ -138,6 +141,44 @@
 	outgoing.data = result
 	outgoing.push_data()
 	activate_pin(2)
+
+/obj/item/integrated_circuit/converter/separator
+	name = "separator"
+	desc = "This splits as single string into two at the relative split point."
+	extended_desc = "This circuits splits a given string into two, based on the string, and the index value. \
+	The index splits the string <b>after</b> the given index, including spaces. So 'a person' with an index of '3' \
+	will split into 'a p' and 'erson'."
+	complexity = 4
+	inputs = list(
+		"\<TEXT\> string",
+		"\<NUM\> index",
+		)
+	outputs = list(
+		"\<TEXT\> before split",
+		"\<TEXT\> after split"
+		)
+	activators = list("separate" = 1, "on separated" = 0)
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
+
+/obj/item/integrated_circuit/converter/separator/do_work()
+	var/text = get_pin_data(IC_INPUT, 1)
+	var/index = get_pin_data(IC_INPUT, 2)
+
+	var/split = min(index+1, length(text))
+
+	var/before_text = copytext(text, 1, split)
+	var/after_text = copytext(text, split, 0)
+
+	var/datum/integrated_io/outgoing1 = outputs[1]
+	var/datum/integrated_io/outgoing2 = outputs[2]
+	outgoing1.data = before_text
+	outgoing2.data = after_text
+	outgoing1.push_data()
+	outgoing2.push_data()
+
+	activate_pin(2)
+
 
 /obj/item/integrated_circuit/converter/radians2degrees
 	name = "radians to degrees converter"
@@ -182,7 +223,7 @@
 	complexity = 4
 	inputs = list("\<NUM\> X1", "\<NUM\> Y1", "\<NUM\> X2", "\<NUM\> Y2")
 	outputs = list("\<NUM\> X", "\<NUM\> Y")
-	activators = list("\<PULSE IN\> compute rel coordinates", "\<PULSE OUT\> on convert")
+	activators = list("compute rel coordinates" = 1, "on convert" = 0)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/converter/abs_to_rel_coords/do_work()

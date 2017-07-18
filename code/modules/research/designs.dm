@@ -1543,7 +1543,7 @@ CIRCUITS BELOW
 
 /datum/design/item/custom_circuit_assembly
 	name = "Small custom assembly"
-	desc = "An customizable assembly for simple, small devices."
+	desc = "A customizable assembly for simple, small devices."
 	id = "assembly-small"
 	req_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 2, TECH_POWER = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 10000)
@@ -1552,7 +1552,7 @@ CIRCUITS BELOW
 
 /datum/design/item/custom_circuit_assembly/medium
 	name = "Medium custom assembly"
-	desc = "An customizable assembly suited for more ambitious mechanisms."
+	desc = "A customizable assembly suited for more ambitious mechanisms."
 	id = "assembly-medium"
 	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3, TECH_POWER = 3)
 	materials = list(DEFAULT_WALL_MATERIAL = 20000)
@@ -1561,7 +1561,7 @@ CIRCUITS BELOW
 
 /datum/design/item/custom_circuit_assembly/drone
 	name = "Drone custom assembly"
-	desc = "An customizable assembly optimized for autonomous devices."
+	desc = "A customizable assembly optimized for autonomous devices."
 	id = "assembly-drone"
 	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 4, TECH_POWER = 4)
 	materials = list(DEFAULT_WALL_MATERIAL = 30000)
@@ -1570,7 +1570,7 @@ CIRCUITS BELOW
 
 /datum/design/item/custom_circuit_assembly/large
 	name = "Large custom assembly"
-	desc = "An customizable assembly for large machines."
+	desc = "A customizable assembly for large machines."
 	id = "assembly-large"
 	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4, TECH_POWER = 4)
 	materials = list(DEFAULT_WALL_MATERIAL = 40000)
@@ -1585,6 +1585,15 @@ CIRCUITS BELOW
 	materials = list(DEFAULT_WALL_MATERIAL = 2000)
 	build_path = /obj/item/weapon/implant/integrated_circuit
 	sort_string = "VCAAE"
+
+/datum/design/item/custom_circuit_assembly/device
+	name = "Device custom assembly"
+	desc = "An customizable assembly designed to interface with other devices."
+	id = "assembly-device"
+	req_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2, TECH_POWER = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000)
+	build_path = /obj/item/device/assembly/electronic_assembly
+	sort_string = "VCAAF"
 
 /datum/design/item/translator
 	name = "handheld translator"

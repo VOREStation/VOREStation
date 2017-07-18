@@ -12,7 +12,7 @@
 		"\<NUM\> H"
 		)
 	outputs = list("\<NUM\> result")
-	activators = list("\<PULSE IN\> compute", "\<PULSE OUT\> on computed")
+	activators = list("compute" = 1, "on computed" = 0)
 	category_text = "Arithmetic"
 	autopulse = 1
 	power_draw_per_use = 5 // Math is pretty cheap.

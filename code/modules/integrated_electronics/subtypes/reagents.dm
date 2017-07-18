@@ -19,7 +19,7 @@
 	cooldown_per_use = 30 SECONDS
 	inputs = list()
 	outputs = list()
-	activators = list("create smoke")
+	activators = list("create smoke" = 1)
 	spawn_flags = IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3, TECH_BIO = 3)
 	volume = 100
@@ -45,7 +45,7 @@
 	cooldown_per_use = 6 SECONDS
 	inputs = list("\<REF\> target", "\<NUM\> injection amount" = 5)
 	outputs = list()
-	activators = list("\<PULSE IN\> inject")
+	activators = list("inject" = 1)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	volume = 30
 	power_draw_per_use = 15
@@ -90,7 +90,7 @@
 	complexity = 8
 	inputs = list("\<REF\> source", "\<REF\> target", "\<NUM\> injection amount" = 10)
 	outputs = list()
-	activators = list("\<PULSE IN\> transfer reagents", "\<PULSE OUT\> on transfer")
+	activators = list("transfer reagents" = 1, "on transfer" = 0)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 2)
 	var/transfer_amount = 10

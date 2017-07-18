@@ -12,7 +12,7 @@
 	This circuit is set to send a pulse after a delay of two seconds."
 	icon_state = "delay-20"
 	var/delay = 2 SECONDS
-	activators = list("\<PULSE IN\> incoming","\<PULSE OUT\> outgoing")
+	activators = list("incoming"= 1,"outgoing" = 0)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 2
 
@@ -79,7 +79,7 @@
 	var/ticks_completed = 0
 	var/is_running = FALSE
 	inputs = list("\<NUM\> enable ticking" = 0)
-	activators = list("\<PULSE OUT\> outgoing pulse")
+	activators = list("outgoing pulse" = 0)
 	spawn_flags = IC_SPAWN_RESEARCH
 	power_draw_per_use = 4
 
@@ -132,7 +132,7 @@
 	icon_state = "clock"
 	inputs = list()
 	outputs = list("\<TEXT\> time", "\<NUM\> hours", "\<NUM\> minutes", "\<NUM\> seconds")
-	activators = list("\<PULSE IN\> get time","\<PULSE OUT\> on time got")
+	activators = list("get time" = 1,"on time got" = 0)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 4
 
