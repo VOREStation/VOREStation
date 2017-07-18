@@ -199,6 +199,12 @@
 	icon_state = "zears"
 	do_colouration = 1
 
+/datum/sprite_accessory/ears/elfs
+	name = "elven ears"
+	desc = ""
+	icon_state = "elfs"
+	do_colouration = 1
+
 // Special snowflake ears go below here.
 
 /datum/sprite_accessory/ears/molenar_kitsune

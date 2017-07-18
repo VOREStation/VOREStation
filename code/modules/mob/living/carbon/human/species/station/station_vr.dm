@@ -133,7 +133,7 @@
 /datum/species/hi_zoxxen
 	name = "Highlander Zorren"
 	name_plural = "Zorren"
-	icobase = 'icons/mob/human_races/r_fox.dmi'
+	icobase = 'icons/mob/human_races/r_fox_vr.dmi'
 	deform = 'icons/mob/human_races/r_def_fox.dmi'
 	tail = "tail"
 	icobase_tail = 1
@@ -170,7 +170,7 @@
 /datum/species/fl_zorren
 	name = "Flatland Zorren"
 	name_plural = "Zorren"
-	icobase = 'icons/mob/human_races/r_fennec.dmi'
+	icobase = 'icons/mob/human_races/r_fennec_vr.dmi'
 	deform = 'icons/mob/human_races/r_def_fennec.dmi'
 	tail = "tail"
 	icobase_tail = 1
