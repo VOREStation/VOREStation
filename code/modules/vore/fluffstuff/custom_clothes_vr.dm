@@ -25,7 +25,7 @@
 */
 
 //ketrai:Ketrai
-/obj/item/clothing/under/fluff/ketrai
+/obj/item/clothing/head/fluff/ketrai
 	name = "Pink Bear Hat"
 	desc = "A pink space bear hat, the origins are unknown"
 
