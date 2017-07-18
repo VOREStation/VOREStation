@@ -227,10 +227,10 @@
 /datum/lore/organization/gov/Scion
     name = "Scion Imperium"
     short_name = "Scion"
-    desc = "A Imperium of Desert Elves, slowly expanding and exploring the galaxy on there own terms instead of those of others./
+    desc = "A Imperium of Desert Elves, slowly expanding and exploring the galaxy on their own terms instead of those of others./
 		The group is rather small, with only three cruisers and two frigates, and two worlds, one that is a colony./
-		There ships are crewed mostly by a clan dedicated to the running of them and space stations, with small amounts of troops of the infantry clan./
-		Despite there lack of ships, there ground forces are somewhat formidable, carrying heavy weaponry and powered armour."
+		Their ships are crewed mostly by a clan dedicated to the running of them and space stations, with small amounts of troops of the infantry clan./
+		Despite their lack of ships, their ground forces are somewhat formidable, carrying heavy weaponry and powered armour."
     history = "Hailing from the desert world of Scion, the Imperium is somewhat old, originally founded in its modern form in \
     			the year of 1600CE on the calander of Earth, or 0 on the Scion calander, \
 	 			but in its current state is a small nation on a galactic scale, led by Imperatrix Limath (Li-Math)."
