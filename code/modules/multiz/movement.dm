@@ -196,6 +196,8 @@
 /obj/structure/catwalk/CanFallThru(atom/movable/mover as mob|obj, turf/target as turf)
 	if(target.z < z)
 		return FALSE // TODO - Technically should be density = 1 and flags |= ON_BORDER
+	if(!isturf(mover.loc)) // VORESTATION EDIT. Feel free to do an upstream suggestion as well.
+		return FALSE // Only let loose floor items fall. No more snatching things off people's hands.
 	else
 		return TRUE
 
