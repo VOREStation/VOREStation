@@ -1480,15 +1480,7 @@ area/space/atmosalert()
 	icon_state = "vacant_site"
 
 /area/vacant/vacant_site2
-	name = "\improper Vacant Site"
-	icon_state = "vacant_site"
-
-/area/vacant/vacant_restaurant_lower
-	name = "\improper Vacant Restaurant"
-	icon_state = "vacant_site"
-
-/area/vacant/vacant_restaurant_upper
-	name = "\improper Vacant Restaurant"
+	name = "\improper Abandoned Locker Room"
 	icon_state = "vacant_site"
 
 /area/holodeck
@@ -1604,8 +1596,8 @@ area/space/atmosalert()
 	name = "\improper Engine Monitoring Room"
 	icon_state = "engine_monitoring"
 
-/area/engineering/engine_gas
-	name = "\improper Engine Gas Storage"
+/area/engineering/engine_waste
+	name = "\improper Engine Waste Handling"
 	icon_state = "engine_waste"
 
 /area/engineering/engineering_monitoring
@@ -1629,10 +1621,6 @@ area/space/atmosalert()
 	name = "\improper Engine EVA"
 	icon_state = "engine_eva"
 
-/area/engineering/engineering_airlock
-	name = "\improper Engineering Airlock"
-	icon_state = "engine_eva"
-
 /area/engineering/locker_room
 	name = "\improper Engineering Locker Room"
 	icon_state = "engineering_locker"
@@ -1645,9 +1633,6 @@ area/space/atmosalert()
 	name = "\improper Engineering Aft Hallway"
 	icon_state = "engineering_aft_hallway"
 
-/area/engineering/hallway
-	name = "\improper Engineering Hallway"
-	icon_state = "engineering"
 
 //Solars
 
