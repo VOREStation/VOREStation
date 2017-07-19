@@ -150,6 +150,8 @@
 	name = "blob core"
 	icon = 'icons/mob/blob.dmi'
 	icon_state = "blob_core"
+	light_range = 3
+	light_color = "#ffc880"
 	maxHealth = 200
 	brute_resist = 2
 	fire_resist = 2
@@ -177,6 +179,7 @@
 	name = "strong blob"
 	icon = 'icons/mob/blob.dmi'
 	icon_state = "blob_idle"
+	light_range = 3
 	desc = "Some blob creature thingy"
 	maxHealth = 60
 	brute_resist = 1
