@@ -52,7 +52,7 @@
 
 	examine(mob/user)
 		..(user)
-		user << "\blue The generator has [P.air_contents.phoron] units of fuel left, producing [power_gen] per cycle."
+		user << "<font color='blue'>The generator has [P.air_contents.phoron] units of fuel left, producing [power_gen] per cycle.</font>"
 
 	handleInactive()
 		heat -= 2
@@ -70,28 +70,28 @@
 	attackby(var/obj/item/O as obj, var/mob/user as mob)
 		if(istype(O, /obj/item/weapon/tank/phoron))
 			if(P)
-				user << "\red The generator already has a phoron tank loaded!"
+				user << "<font color='red'>The generator already has a phoron tank loaded!</font>"
 				return
 			P = O
 			user.drop_item()
 			O.loc = src
-			user << "\blue You add the phoron tank to the generator."
+			user << "<font color='blue'>You add the phoron tank to the generator.</font>"
 		else if(!active)
 			if(istype(O, /obj/item/weapon/wrench))
 				anchored = !anchored
 				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 				if(anchored)
-					user << "\blue You secure the generator to the floor."
+					user << "<font color='blue'>You secure the generator to the floor.</font>"
 				else
-					user << "\blue You unsecure the generator from the floor."
+					user << "<font color='blue'>You unsecure the generator from the floor.</font>"
 				makepowernets()
 			else if(istype(O, /obj/item/weapon/screwdriver))
 				open = !open
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				if(open)
-					user << "\blue You open the access panel."
+					user << "<font color='blue'>You open the access panel.</font>"
 				else
-					user << "\blue You close the access panel."
+					user << "<font color='blue'>You close the access panel.</font>"
 			else if(istype(O, /obj/item/weapon/crowbar) && !open)
 				var/obj/machinery/constructable_frame/machine_frame/new_frame = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 				for(var/obj/item/I in component_parts)
@@ -165,7 +165,7 @@
 				usr << browse(null, "window=port_gen")
 				usr.machine = null
 
-/obj/machinery/power/port_gen/pacman2/emag_act(var/remaining_uses, var/mob/user)				
+/obj/machinery/power/port_gen/pacman2/emag_act(var/remaining_uses, var/mob/user)
 	emagged = 1
 	emp_act(1)
 	return 1

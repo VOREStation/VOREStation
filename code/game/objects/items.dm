@@ -446,7 +446,7 @@ var/list/global/slot_flags_enumeration = list(
 		if(!hit_zone)
 			U.do_attack_animation(M)
 			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-			visible_message("\red <B>[U] attempts to stab [M] in the eyes, but misses!</B>")
+			visible_message("<font color='red'><B>[U] attempts to stab [M] in the eyes, but misses!</B></font>")
 			return
 
 	user.attack_log += "\[[time_stamp()]\]<font color='red'> Attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)])</font>"

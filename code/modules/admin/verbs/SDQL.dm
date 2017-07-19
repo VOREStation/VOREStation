@@ -6,18 +6,18 @@
 /client/proc/SDQL_query(query_text as message)
 	set category = "Admin"
 	if(!check_rights(R_DEBUG))  //Shouldn't happen... but just to be safe.
-		message_admins("\red ERROR: Non-admin [usr.key] attempted to execute a SDQL query!")
+		message_admins("<font color='red'>ERROR: Non-admin [usr.key] attempted to execute a SDQL query!</font>")
 		log_admin("Non-admin [usr.key] attempted to execute a SDQL query!")
 
 	var/list/query_list = SDQL_tokenize(query_text)
 
 	if(query_list.len < 2)
 		if(query_list.len > 0)
-			usr << "\red SDQL: Too few discrete tokens in query \"[query_text]\". Please check your syntax and try again."
+			usr << "<font color='red'>SDQL: Too few discrete tokens in query \"[query_text]\". Please check your syntax and try again.</font>"
 		return
 
 	if(!(lowertext(query_list[1]) in list("select", "delete", "update")))
-		usr << "\red SDQL: Unknown query type: \"[query_list[1]]\" in query \"[query_text]\". Please check your syntax and try again."
+		usr << "<font color='red'>SDQL: Unknown query type: \"[query_list[1]]\" in query \"[query_text]\". Please check your syntax and try again.</font>"
 		return
 
 	var/list/types = list()
@@ -56,7 +56,7 @@
 					set_vars[query_list[i]] = query_list[i + 2]
 
 				else
-					usr << "\red SDQL: Invalid set parameter in query \"[query_text]\". Please check your syntax and try again."
+					usr << "<font color='red'>SDQL: Invalid set parameter in query \"[query_text]\". Please check your syntax and try again.</font>"
 					return
 
 				i += 3
@@ -65,7 +65,7 @@
 					break
 
 		if(set_vars.len < 1)
-			usr << "\red SDQL: Invalid or missing set in query \"[query_text]\". Please check your syntax and try again."
+			usr << "<font color='red'>SDQL: Invalid or missing set in query \"[query_text]\". Please check your syntax and try again.</font>"
 			return
 
 	var/list/where = list()
@@ -215,7 +215,7 @@
 			var/v = where[i++]
 			var/compare_op = where[i++]
 			if(!(compare_op in list("==", "=", "<>", "<", ">", "<=", ">=", "!=")))
-				usr << "\red SDQL: Unknown comparison operator [compare_op] in where clause following [v] in query \"[query_text]\". Please check your syntax and try again."
+				usr << "<font color='red'>SDQL: Unknown comparison operator [compare_op] in where clause following [v] in query \"[query_text]\". Please check your syntax and try again.</font>"
 				return
 
 			var/j
@@ -262,7 +262,7 @@
 
 
 
-	usr << "\blue SQDL Query: [query_text]"
+	usr << "<font color='blue'>SQDL Query: [query_text]</font>"
 	message_admins("[usr] executed SDQL query: \"[query_text]\".")
 /*
 	for(var/t in types)
@@ -349,7 +349,7 @@
 
 
 	else
-		usr << "\red SDQL: Sorry, equations not yet supported :("
+		usr << "<font color='red'>SDQL: Sorry, equations not yet supported :(</font>"
 		return null
 
 
@@ -434,7 +434,7 @@
 
 		else if(char == "'")
 			if(word != "")
-				usr << "\red SDQL: You have an error in your SDQL syntax, unexpected ' in query: \"<font color=gray>[query_text]</font>\" following \"<font color=gray>[word]</font>\". Please check your syntax, and try again."
+				usr << "<font color='red'>SDQL: You have an error in your SDQL syntax, unexpected ' in query:</font> \"<font color=gray>[query_text]</font>\" following \"<font color=gray>[word]</font>\". Please check your syntax, and try again."
 				return null
 
 			word = "'"
@@ -454,7 +454,7 @@
 					word += char
 
 			if(i > len)
-				usr << "\red SDQL: You have an error in your SDQL syntax, unmatched ' in query: \"<font color=gray>[query_text]</font>\". Please check your syntax, and try again."
+				usr << "<font color='red'>SDQL: You have an error in your SDQL syntax, unmatched ' in query: </font>\"<font color=gray>[query_text]</font>\". Please check your syntax, and try again."
 				return null
 
 			query_list += "[word]'"
@@ -462,7 +462,7 @@
 
 		else if(char == "\"")
 			if(word != "")
-				usr << "\red SDQL: You have an error in your SDQL syntax, unexpected \" in query: \"<font color=gray>[query_text]</font>\" following \"<font color=gray>[word]</font>\". Please check your syntax, and try again."
+				usr << "<font color='red'>SDQL: You have an error in your SDQL syntax, unexpected \" in query: </font>\"<font color=gray>[query_text]</font>\" following \"<font color=gray>[word]</font>\". Please check your syntax, and try again."
 				return null
 
 			word = "\""
@@ -482,7 +482,7 @@
 					word += char
 
 			if(i > len)
-				usr << "\red SDQL: You have an error in your SDQL syntax, unmatched \" in query: \"<font color=gray>[query_text]</font>\". Please check your syntax, and try again."
+				usr << "<font color='red'>SDQL: You have an error in your SDQL syntax, unmatched \" in query: </font>\"<font color=gray>[query_text]</font>\". Please check your syntax, and try again."
 				return null
 
 			query_list += "[word]\""

@@ -78,7 +78,7 @@
 
 	//repair a bit of damage
 	if(prob(1))
-		src.visible_message("\red \icon[src] [src] shudders and shakes as some of it's damaged systems come back online.")
+		src.visible_message("<font color='red'>\icon[src] [src] shudders and shakes as some of it's damaged systems come back online.</font>")
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(3, 1, src)
 		s.start()
@@ -93,10 +93,10 @@
 	//sometimes our targetting sensors malfunction, and we attack anyone nearby
 	if(prob(disabled ? 0 : 1))
 		if(hostile)
-			src.visible_message("\blue \icon[src] [src] retracts several targetting vanes, and dulls it's running lights.")
+			src.visible_message("<font color='blue'>\icon[src] [src] retracts several targetting vanes, and dulls it's running lights.</font>")
 			hostile = 0
 		else
-			src.visible_message("\red \icon[src] [src] suddenly lights up, and additional targetting vanes slide into place.")
+			src.visible_message("<font color='red'>\icon[src] [src] suddenly lights up, and additional targetting vanes slide into place.</font>")
 			hostile = 1
 
 	if(health / getMaxHealth() > 0.9)
@@ -117,17 +117,17 @@
 		exploding = 0
 		if(!disabled)
 			if(prob(50))
-				src.visible_message("\blue \icon[src] [src] suddenly shuts down!")
+				src.visible_message("<font color='blue'>\icon[src] [src] suddenly shuts down!</font>")
 			else
-				src.visible_message("\blue \icon[src] [src] suddenly lies still and quiet.")
+				src.visible_message("<font color='blue'>\icon[src] [src] suddenly lies still and quiet.</font>")
 			disabled = rand(150, 600)
 			walk(src,0)
 
 	if(exploding && prob(20))
 		if(prob(50))
-			src.visible_message("\red \icon[src] [src] begins to spark and shake violenty!")
+			src.visible_message("<font color='red'>\icon[src] [src] begins to spark and shake violenty!</font>")
 		else
-			src.visible_message("\red \icon[src] [src] sparks and shakes like it's about to explode!")
+			src.visible_message("<font color='red'>\icon[src] [src] sparks and shakes like it's about to explode!</font>")
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(3, 1, src)
 		s.start()

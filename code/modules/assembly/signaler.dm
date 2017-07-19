@@ -156,6 +156,7 @@ Code:
 		sleep(20)
 	if(!radio_controller)
 		return
+
 	radio_controller.remove_object(src, frequency)
 	frequency = new_frequency
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
@@ -181,7 +182,7 @@ Code:
 	deadman = 1
 	processing_objects.Add(src)
 	log_and_message_admins("is threatening to trigger a signaler deadman's switch")
-	usr.visible_message("\red [usr] moves their finger over [src]'s signal button...")
+	usr.visible_message("<font color='red'>[usr] moves their finger over [src]'s signal button...</font>")
 
 /obj/item/device/assembly/signaler/Destroy()
 	if(radio_controller)

@@ -96,10 +96,10 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 				pale = 1
 				update_body()
 				var/word = pick("dizzy","woosey","faint")
-				src << "\red You feel [word]"
+				src << "<font color='red'>You feel [word]</font>"
 			if(prob(1))
 				var/word = pick("dizzy","woosey","faint")
-				src << "\red You feel [word]"
+				src << "<font color='red'>You feel [word]</font>"
 			if(getOxyLoss() < 20 * threshold_coef)
 				adjustOxyLoss(3 * dmg_coef)
 		else if(blood_volume >= BLOOD_VOLUME_BAD)
@@ -113,13 +113,13 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 			if(prob(15))
 				Paralyse(rand(1,3))
 				var/word = pick("dizzy","woosey","faint")
-				src << "\red You feel extremely [word]"
+				src << "<font color='red'>You feel extremely [word]</font>"
 		else if(blood_volume >= BLOOD_VOLUME_SURVIVE)
 			adjustOxyLoss(5 * dmg_coef)
 			adjustToxLoss(3 * dmg_coef)
 			if(prob(15))
 				var/word = pick("dizzy","woosey","faint")
-				src << "\red You feel extremely [word]"
+				src << "<font color='red'>You feel extremely [word]</font>"
 		else //Not enough blood to survive (usually)
 			if(!pale)
 				pale = 1

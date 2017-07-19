@@ -154,7 +154,7 @@
 	if(href_list["late_join"])
 
 		if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
-			usr << "\red The round is either not ready, or has already finished..."
+			usr << "<font color='red'>The round is either not ready, or has already finished...</font>"
 			return
 
 		LateChoices()
@@ -318,7 +318,7 @@
 	if (src != usr)
 		return 0
 	if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
-		usr << "\red The round is either not ready, or has already finished..."
+		usr << "<font color='red'>The round is either not ready, or has already finished...</font>"
 		return 0
 	if(!config.enter_allowed)
 		usr << "<span class='notice'>There is an administrative lock on entering the game!</span>"
