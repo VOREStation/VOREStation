@@ -20,7 +20,7 @@
 		message_admins("ERROR: ability_master's New() was not given an owner argument.  This is a bug.")
 
 /obj/screen/movable/ability_master/Destroy()
-	..()
+	. = ..()
 	//Get rid of the ability objects.
 	remove_all_abilities()
 	ability_objects.Cut()
@@ -31,11 +31,6 @@
 		if(my_mob.client && my_mob.client.screen)
 			my_mob.client.screen -= src
 		my_mob = null
-
-/obj/screen/movable/ability_master/ResetVars()
-	..("ability_objects", args)
-	remove_all_abilities()
-//	ability_objects = list()
 
 /obj/screen/movable/ability_master/MouseDrop()
 	if(showing)

@@ -6,9 +6,9 @@
 		if (radiation > 100)
 			radiation = 100
 			if(!container)//If it's not in an MMI
-				src << "\red You feel weak."
+				src << "<font color='red'>You feel weak.</font>"
 			else//Fluff-wise, since the brain can't detect anything itself, the MMI handles thing like that
-				src << "\red STATUS: CRITICAL AMOUNTS OF RADIATION DETECTED."
+				src << "<font color='red'>STATUS: CRITICAL AMOUNTS OF RADIATION DETECTED.</font>"
 
 		switch(radiation)
 			if(1 to 49)
@@ -23,9 +23,9 @@
 				if(prob(5))
 					radiation -= 5
 					if(!container)
-						src << "\red You feel weak."
+						src << "<font color='red'>You feel weak.</font>"
 					else
-						src << "\red STATUS: DANGEROUS LEVELS OF RADIATION DETECTED."
+						src << "<font color='red'>STATUS: DANGEROUS LEVELS OF RADIATION DETECTED.</font>"
 				updatehealth()
 
 			if(75 to 100)
@@ -76,7 +76,7 @@
 	if(ingested) ingested.metabolize()
 	if(bloodstr) bloodstr.metabolize()
 
-	confused = max(0, confused - 1)
+	AdjustConfused(-1)
 	// decrement dizziness counter, clamped to 0
 	if(resting)
 		dizziness = max(0, dizziness - 5)
@@ -110,20 +110,20 @@
 				if(31 to INFINITY)
 					emp_damage = 30//Let's not overdo it
 				if(21 to 30)//High level of EMP damage, unable to see, hear, or speak
-					eye_blind = 1
+					SetBlinded(1)
 					blinded = 1
 					ear_deaf = 1
 					silent = 1
 					if(!alert)//Sounds an alarm, but only once per 'level'
 						emote("alarm")
-						src << "\red Major electrical distruption detected: System rebooting."
+						src << "<font color='red'>Major electrical distruption detected: System rebooting.</font>"
 						alert = 1
 					if(prob(75))
 						emp_damage -= 1
 				if(20)
 					alert = 0
 					blinded = 0
-					eye_blind = 0
+					SetBlinded(0)
 					ear_deaf = 0
 					silent = 0
 					emp_damage -= 1
@@ -132,7 +132,7 @@
 					ear_damage = 1
 					if(!alert)
 						emote("alert")
-						src << "\red Primary systems are now online."
+						src << "<font color='red'>Primary systems are now online.</font>"
 						alert = 1
 					if(prob(50))
 						emp_damage -= 1
@@ -144,13 +144,13 @@
 				if(2 to 9)//Low level of EMP damage, has few effects(handled elsewhere)
 					if(!alert)
 						emote("notice")
-						src << "\red System reboot nearly complete."
+						src << "<font color='red'>System reboot nearly complete.</font>"
 						alert = 1
 					if(prob(25))
 						emp_damage -= 1
 				if(1)
 					alert = 0
-					src << "\red All systems restored."
+					src << "<font color='red'>All systems restored.</font>"
 					emp_damage -= 1
 
 	return 1

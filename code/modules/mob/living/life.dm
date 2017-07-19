@@ -10,6 +10,8 @@
 		return
 	var/datum/gas_mixture/environment = loc.return_air()
 
+	handle_modifiers() // Do this early since it might affect other things later.
+
 	if(stat != DEAD)
 		//Breathing, if applicable
 		handle_breathing()
@@ -148,9 +150,9 @@
 /mob/living/proc/handle_disabilities()
 	//Eyes
 	if(sdisabilities & BLIND || stat)	//blindness from disability or unconsciousness doesn't get better on its own
-		eye_blind = max(eye_blind, 1)
+		SetBlinded(1)
 	else if(eye_blind)			//blindness, heals slowly over time
-		eye_blind = max(eye_blind-1,0)
+		AdjustBlinded(-1)
 	else if(eye_blurry)			//blurry eyes heal slowly
 		eye_blurry = max(eye_blurry-1, 0)
 

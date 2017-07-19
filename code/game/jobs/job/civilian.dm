@@ -26,6 +26,13 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/bartender(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/device/pda/bar(H), slot_belt)
+	if(has_alt_title(H, alt_title,"Bartender"))
+		var/obj/item/weapon/permit/gun/bar/permit = new(H)
+		if(H.backbag == 1)
+			H.equip_to_slot_or_del(permit, slot_l_hand)
+		else
+			H.equip_to_slot_or_del(permit, slot_in_backpack)
+		permit.set_name(H.real_name)
 	return 1
 
 
@@ -259,6 +266,7 @@
 	economic_modifier = 7
 	access = list(access_lawyer, access_sec_doors, access_maint_tunnels, access_heads)
 	minimal_access = list(access_lawyer, access_sec_doors, access_heads)
+	minimal_player_age = 7
 
 
 /datum/job/lawyer/equip(var/mob/living/carbon/human/H, var/alt_title)

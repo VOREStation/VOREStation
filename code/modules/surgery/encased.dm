@@ -47,8 +47,8 @@
 			return
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-		user.visible_message("\blue [user] has cut [target]'s [affected.encased] open with \the [tool].",		\
-		"\blue You have cut [target]'s [affected.encased] open with \the [tool].")
+		user.visible_message("<font color='blue'>[user] has cut [target]'s [affected.encased] open with \the [tool].</font>", \
+		"<font color='blue'>You have cut [target]'s [affected.encased] open with \the [tool].</font>")
 		affected.open = 2.5
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -57,8 +57,8 @@
 			return
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-		user.visible_message("\red [user]'s hand slips, cracking [target]'s [affected.encased] with \the [tool]!" , \
-		"\red Your hand slips, cracking [target]'s [affected.encased] with \the [tool]!" )
+		user.visible_message("<font color='red'>[user]'s hand slips, cracking [target]'s [affected.encased] with \the [tool]!</font>" , \
+		"<font color='red'>Your hand slips, cracking [target]'s [affected.encased] with \the [tool]!</font>" )
 
 		affected.createwound(CUT, 20)
 		affected.fracture()
@@ -97,8 +97,8 @@
 			return
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-		var/msg = "\blue [user] forces open [target]'s [affected.encased] with \the [tool]."
-		var/self_msg = "\blue You force open [target]'s [affected.encased] with \the [tool]."
+		var/msg = "<font color='blue'>[user] forces open [target]'s [affected.encased] with \the [tool].</font>"
+		var/self_msg = "<font color='blue'>You force open [target]'s [affected.encased] with \the [tool].</font>"
 		user.visible_message(msg, self_msg)
 
 		affected.open = 3
@@ -113,8 +113,8 @@
 			return
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-		var/msg = "\red [user]'s hand slips, cracking [target]'s [affected.encased]!"
-		var/self_msg = "\red Your hand slips, cracking [target]'s  [affected.encased]!"
+		var/msg = "<font color='red'>[user]'s hand slips, cracking [target]'s [affected.encased]!</font>"
+		var/self_msg = "<font color='red'>Your hand slips, cracking [target]'s  [affected.encased]!</font>"
 		user.visible_message(msg, self_msg)
 
 		affected.createwound(BRUISE, 20)
@@ -154,8 +154,8 @@
 			return
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-		var/msg = "\blue [user] bends [target]'s [affected.encased] back into place with \the [tool]."
-		var/self_msg = "\blue You bend [target]'s [affected.encased] back into place with \the [tool]."
+		var/msg = "<font color='blue'>[user] bends [target]'s [affected.encased] back into place with \the [tool].</font>"
+		var/self_msg = "<font color='blue'>You bend [target]'s [affected.encased] back into place with \the [tool].</font>"
 		user.visible_message(msg, self_msg)
 
 		affected.open = 2.5
@@ -166,15 +166,15 @@
 			return
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-		var/msg = "\red [user]'s hand slips, bending [target]'s [affected.encased] the wrong way!"
-		var/self_msg = "\red Your hand slips, bending [target]'s [affected.encased] the wrong way!"
+		var/msg = "<font color='red'>[user]'s hand slips, bending [target]'s [affected.encased] the wrong way!</font>"
+		var/self_msg = "<font color='red'>Your hand slips, bending [target]'s [affected.encased] the wrong way!</font>"
 		user.visible_message(msg, self_msg)
 
 		affected.createwound(BRUISE, 20)
 		affected.fracture()
 
 		/*if (prob(40)) //TODO: ORGAN REMOVAL UPDATE.
-			user.visible_message("\red A rib pierces the lung!")
+			user.visible_message("<font color='red'> A rib pierces the lung!</font>")
 			target.rupture_lung()*/
 
 /datum/surgery_step/open_encased/mend
@@ -211,8 +211,8 @@
 			return
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-		var/msg = "\blue [user] applied \the [tool] to [target]'s [affected.encased]."
-		var/self_msg = "\blue You applied \the [tool] to [target]'s [affected.encased]."
+		var/msg = "<font color='blue'>[user] applied \the [tool] to [target]'s [affected.encased].</font>"
+		var/self_msg = "<font color='blue'>You applied \the [tool] to [target]'s [affected.encased].</font>"
 		user.visible_message(msg, self_msg)
 
 		affected.open = 2

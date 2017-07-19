@@ -33,7 +33,6 @@
 	name = "switchblade"
 	desc = "A classic switchblade with gold engraving. Just holding it makes you feel like a gangster."
 	icon_state = "switchblade"
-	unbreakable = 1
 
 /obj/item/weapon/material/butterfly/boxcutter
 	name = "box cutter"
@@ -65,9 +64,8 @@
 	edge = 1
 	force_divisor = 0.15 // 9 when wielded with hardness 60 (steel)
 	matter = list(DEFAULT_WALL_MATERIAL = 12000)
-	origin_tech = "materials=1"
+	origin_tech = list(TECH_MATERIAL = 1)
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	unbreakable = 1
 
 /obj/item/weapon/material/knife/suicide_act(mob/user)
 	viewers(user) << pick("<span class='danger'>\The [user] is slitting \his wrists with \the [src]! It looks like \he's trying to commit suicide.</span>", \

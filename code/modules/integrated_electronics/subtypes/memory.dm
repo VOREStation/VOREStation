@@ -5,7 +5,7 @@
 	complexity = 1
 	inputs = list("input pin 1")
 	outputs = list("output pin 1")
-	activators = list("set")
+	activators = list("set" = 1, "on set")
 	category_text = "Memory"
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 1
@@ -29,12 +29,13 @@
 		var/datum/integrated_io/I = inputs[i]
 		var/datum/integrated_io/O = outputs[i]
 		O.data = I.data
+		O.push_data()
+	activate_pin(2)
 
 /obj/item/integrated_circuit/memory/medium
 	name = "memory circuit"
 	desc = "This circuit can store four pieces of data."
 	icon_state = "memory4"
-	w_class = ITEMSIZE_SMALL
 	complexity = 4
 	inputs = list("input pin 1","input pin 2","input pin 3","input pin 4")
 	outputs = list("output pin 1","output pin 2","output pin 3","output pin 4")
@@ -45,7 +46,6 @@
 	name = "large memory circuit"
 	desc = "This big circuit can hold eight pieces of data."
 	icon_state = "memory8"
-	w_class = ITEMSIZE_SMALL
 	complexity = 8
 	inputs = list(
 		"input pin 1",
@@ -121,7 +121,7 @@
 	complexity = 1
 	inputs = list()
 	outputs = list("output pin")
-	activators = list("push data")
+	activators = list("push data" = 0)
 	var/accepting_refs = 0
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 

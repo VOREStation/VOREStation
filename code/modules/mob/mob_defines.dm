@@ -207,3 +207,4 @@
 
 	var/list/active_genes=list()
 	var/mob_size = MOB_MEDIUM
+	var/forbid_seeing_deadchat = FALSE // Used for lings to not see deadchat, and to have ghosting behave as if they were not really dead.

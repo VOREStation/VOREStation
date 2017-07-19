@@ -54,8 +54,8 @@
 	playsound(src.loc, 'sound/effects/EMPulse.ogg', 75, 1)
 
 	check_failure()
-	opacity = 1
-	spawn(20) if(src) opacity = 0
+	set_opacity(1)
+	spawn(20) if(!QDELETED(src)) set_opacity(0)
 
 	..()
 
@@ -63,8 +63,8 @@
 	health -= Proj.get_structure_damage()
 	..()
 	check_failure()
-	opacity = 1
-	spawn(20) if(src) opacity = 0
+	set_opacity(1)
+	spawn(20) if(!QDELETED(src)) set_opacity(0)
 
 /obj/machinery/shield/ex_act(severity)
 	switch(severity)
@@ -113,8 +113,8 @@
 	check_failure()
 
 	//The shield becomes dense to absorb the blow.. purely asthetic.
-	opacity = 1
-	spawn(20) if(src) opacity = 0
+	set_opacity(1)
+	spawn(20) if(!QDELETED(src)) set_opacity(0)
 
 	..()
 	return
@@ -257,14 +257,14 @@
 		return
 
 	if (src.active)
-		user.visible_message("\blue \icon[src] [user] deactivated the shield generator.", \
-			"\blue \icon[src] You deactivate the shield generator.", \
+		user.visible_message("<font color='blue'>\icon[src] [user] deactivated the shield generator.</font>", \
+			"<font color='blue'>\icon[src] You deactivate the shield generator.</font>", \
 			"You hear heavy droning fade out.")
 		src.shields_down()
 	else
 		if(anchored)
-			user.visible_message("\blue \icon[src] [user] activated the shield generator.", \
-				"\blue \icon[src] You activate the shield generator.", \
+			user.visible_message("<font color='blue'>\icon[src] [user] activated the shield generator.</font>", \
+				"<font color='blue'>\icon[src] You activate the shield generator.</font>", \
 				"You hear heavy droning.")
 			src.shields_up()
 		else
@@ -281,16 +281,16 @@
 	if(istype(W, /obj/item/weapon/screwdriver))
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)
 		if(is_open)
-			user << "\blue You close the panel."
+			user << "<font color='blue'>You close the panel.</font>"
 			is_open = 0
 		else
-			user << "\blue You open the panel and expose the wiring."
+			user << "<font color='blue'>You open the panel and expose the wiring.</font>"
 			is_open = 1
 
 	else if(istype(W, /obj/item/stack/cable_coil) && malfunction && is_open)
 		var/obj/item/stack/cable_coil/coil = W
 		user << "<span class='notice'>You begin to replace the wires.</span>"
-		//if(do_after(user, min(60, round( ((maxhealth/health)*10)+(malfunction*10) ))) //Take longer to repair heavier damage
+		//if(do_after(user, min(60, round( ((getMaxHealth()/health)*10)+(malfunction*10) ))) //Take longer to repair heavier damage
 		if(do_after(user, 30))
 			if (coil.use(1))
 				health = max_health
@@ -304,15 +304,15 @@
 			return
 		if(anchored)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
-			user << "\blue You unsecure the [src] from the floor!"
+			user << "<font color='blue'>You unsecure the [src] from the floor!</font>"
 			if(active)
-				user << "\blue The [src] shuts off!"
+				user << "<font color='blue'>The [src] shuts off!</font>"
 				src.shields_down()
 			anchored = 0
 		else
 			if(istype(get_turf(src), /turf/space)) return //No wrenching these in space!
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
-			user << "\blue You secure the [src] to the floor!"
+			user << "<font color='blue'>You secure the [src] to the floor!</font>"
 			anchored = 1
 
 
@@ -321,7 +321,7 @@
 			src.locked = !src.locked
 			user << "The controls are now [src.locked ? "locked." : "unlocked."]"
 		else
-			user << "\red Access denied."
+			user << "<font color='red'>Access denied.</font>"
 
 	else
 		..()

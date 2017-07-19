@@ -35,7 +35,7 @@
 	if (. >= 2)
 		if(prob(1))
 			owner.custom_pain("Your feel very dizzy for a moment!",0)
-			owner.confused = max(owner.confused, 2)
+			owner.Confuse(2)
 
 /obj/item/organ/internal/brain/proc/replace_self_with(replace_path)
 	var/mob/living/carbon/human/tmp_owner = owner
@@ -67,10 +67,8 @@
 			brainmob.client.screen.len = null //clear the hud
 
 /obj/item/organ/internal/brain/Destroy()
-	if(brainmob)
-		qdel(brainmob)
-		brainmob = null
-	..()
+	qdel_null(brainmob)
+	. = ..()
 
 /obj/item/organ/internal/brain/proc/transfer_identity(var/mob/living/carbon/H)
 

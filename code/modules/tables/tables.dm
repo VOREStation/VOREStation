@@ -8,6 +8,7 @@
 	climbable = 1
 	layer = 2.8
 	throwpass = 1
+	surgery_odds = 66
 	var/flipped = 0
 	var/maxhealth = 10
 	var/health = 10
@@ -78,7 +79,7 @@
 	update_connections(1) // Update tables around us to ignore us (material=null forces no connections)
 	for(var/obj/structure/table/T in oview(src, 1))
 		T.update_icon()
-	..()
+	. = ..()
 
 /obj/structure/table/examine(mob/user)
 	. = ..()

@@ -181,6 +181,9 @@
 	clients -= src
 	return ..()
 
+/client/Destroy()
+	..()
+	return QDEL_HINT_HARDDEL_NOW
 
 // here because it's similar to below
 
@@ -251,6 +254,14 @@
 	var/sql_computerid = sql_sanitize_text(src.computer_id)
 	var/sql_admin_rank = sql_sanitize_text(admin_rank)
 
+	//Panic bunker code
+	if (isnum(player_age) && player_age == 0) //first connection
+		if (config.panic_bunker && !holder && !deadmin_holder)
+			log_access("Failed Login: [key] - New account attempting to connect during panic bunker")
+			message_admins("<span class='adminnotice'>Failed Login: [key] - New account attempting to connect during panic bunker</span>")
+			to_chat(src, "Sorry but the server is currently not accepting connections from never before seen players.")
+			qdel(src)
+			return 0
 
 	if(sql_id)
 		//Player already identified previously, we need to just update the 'lastseen', 'ip' and 'computer_id' variables
@@ -266,7 +277,6 @@
 	var/DBQuery/query_accesslog = dbcon.NewQuery("INSERT INTO `erro_connection_log`(`id`,`datetime`,`serverip`,`ckey`,`ip`,`computerid`) VALUES(null,Now(),'[serverip]','[sql_ckey]','[sql_ip]','[sql_computerid]');")
 	query_accesslog.Execute()
 
-
 #undef TOPIC_SPAM_DELAY
 #undef UPLOAD_LIMIT
 #undef MIN_CLIENT_VERSION
@@ -276,6 +286,18 @@
 /client/proc/is_afk(duration=3000)
 	if(inactivity > duration)	return inactivity
 	return 0
+
+// Byond seemingly calls stat, each tick.
+// Calling things each tick can get expensive real quick.
+// So we slow this down a little.
+// See: http://www.byond.com/docs/ref/info.html#/client/proc/Stat
+/client/Stat()
+	. = ..()
+	if (holder)
+		sleep(1)
+	else
+		sleep(5)
+		stoplag()
 
 /client/proc/last_activity_seconds()
 	return inactivity / 10

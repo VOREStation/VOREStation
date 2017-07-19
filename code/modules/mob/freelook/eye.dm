@@ -38,7 +38,11 @@ mob/observer/eye/Destroy()
 		qdel(ghostimage)
 		ghostimage = null
 		updateallghostimages()
-	..()
+	if(owner)
+		if(owner.eyeobj == src)
+			owner.eyeobj = null
+		owner = null
+	. = ..()
 
 /mob/observer/eye/Move(n, direct)
 	if(owner == src)

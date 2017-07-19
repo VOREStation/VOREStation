@@ -343,7 +343,7 @@
 					total_system_failure(failure_probability, user)
 					return
 
-				usr << "\red You have disassembled the SMES cell!"
+				usr << "<font color='red'>You have disassembled the SMES cell!</font>"
 				var/obj/structure/frame/M = new /obj/structure/frame(src.loc)
 				M.frame_type = new /datum/frame/frame_types/machine
 				M.anchored = 1
@@ -372,7 +372,7 @@
 				W.loc = src
 				recalc_coils()
 			else
-				usr << "\red You can't insert more coils to this SMES unit!"
+				usr << "<font color='red'>You can't insert more coils to this SMES unit!</font>"
 
 // Proc: toggle_input()
 // Parameters: None

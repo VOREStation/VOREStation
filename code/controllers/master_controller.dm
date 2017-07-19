@@ -2,6 +2,10 @@
 //It ensures master_controller.process() is never doubled up by killing the MC (hence terminating any of its sleeping procs)
 //WIP, needs lots of work still
 
+//
+// TODO - This will be completely replaced by master.dm in time.
+//
+
 var/global/datum/controller/game_controller/master_controller //Set in world.New()
 
 var/global/controller_iteration = 0
@@ -31,8 +35,6 @@ datum/controller/game_controller/New()
 	if(!syndicate_code_response)	syndicate_code_response	= generate_code_phrase()
 
 datum/controller/game_controller/proc/setup()
-	world.tick_lag = config.Ticklag
-
 	spawn(20)
 		createRandomZlevel()
 
@@ -47,7 +49,7 @@ datum/controller/game_controller/proc/setup_objects()
 	admin_notice("<span class='danger'>Initializing objects</span>", R_DEBUG)
 	sleep(-1)
 	for(var/atom/movable/object in world)
-		if(isnull(object.gcDestroyed))
+		if(!QDELETED(object))
 			object.initialize()
 
 	admin_notice("<span class='danger'>Initializing areas</span>", R_DEBUG)
@@ -78,8 +80,8 @@ datum/controller/game_controller/proc/setup_objects()
 
 	admin_notice("<span class='danger'>Initializing turbolifts</span>", R_DEBUG)
 	for(var/thing in turbolifts)
-		if(!deleted(thing))
-			var/obj/turbolift_map_holder/lift = thing
+		var/obj/turbolift_map_holder/lift = thing
+		if(!QDELETED(lift))
 			lift.initialize()
 			sleep(-1)
 

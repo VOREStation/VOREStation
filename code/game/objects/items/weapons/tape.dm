@@ -163,6 +163,15 @@
 	overlays = null
 	qdel(src)
 
+/obj/item/weapon/ducttape/attackby(var/obj/item/I, var/mob/user)
+	if(!(istype(src, /obj/item/weapon/handcuffs/cable/tape) || istype(src, /obj/item/clothing/mask/muzzle/tape)))
+		return ..()
+	else
+		user.drop_from_inventory(I)
+		I.loc = src
+		qdel(I)
+		to_chat(user, "<span-class='notice'>You place \the [I] back into \the [src].</span>")
+
 /obj/item/weapon/ducttape/afterattack(var/A, mob/user, flag, params)
 
 	if(!in_range(user, A) || istype(A, /obj/machinery/door) || !stuck)

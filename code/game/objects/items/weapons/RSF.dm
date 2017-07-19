@@ -39,7 +39,7 @@ RSF
 	playsound(src.loc, 'sound/effects/pop.ogg', 50, 0)
 	if (mode == 1)
 		mode = 2
-		user << "Changed dispensing mode to 'Drinking Glass'"
+		user << "Changed dispensing mode to 'Drinking Glass:Pint'"
 		return
 	if (mode == 2)
 		mode = 3
@@ -82,7 +82,7 @@ RSF
 			product = new /obj/item/clothing/mask/smokable/cigarette()
 			used_energy = 10
 		if(2)
-			product = new /obj/item/weapon/reagent_containers/food/drinks/glass2()
+			product = new /obj/item/weapon/reagent_containers/food/drinks/glass2/pint()
 			used_energy = 50
 		if(3)
 			product = new /obj/item/weapon/paper()

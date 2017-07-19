@@ -31,18 +31,18 @@
 /obj/item/ammo_casing/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/screwdriver))
 		if(!BB)
-			user << "\blue There is no bullet in the casing to inscribe anything into."
+			user << "<font color='blue'>There is no bullet in the casing to inscribe anything into.</font>"
 			return
 
 		var/tmp_label = ""
 		var/label_text = sanitizeSafe(input(user, "Inscribe some text into \the [initial(BB.name)]","Inscription",tmp_label), MAX_NAME_LEN)
 		if(length(label_text) > 20)
-			user << "\red The inscription can be at most 20 characters long."
+			user << "<font color='red'>The inscription can be at most 20 characters long.</font>"
 		else if(!label_text)
-			user << "\blue You scratch the inscription off of [initial(BB)]."
+			user << "<font color='blue'>You scratch the inscription off of [initial(BB)].</font>"
 			BB.name = initial(BB.name)
 		else
-			user << "\blue You inscribe \"[label_text]\" into \the [initial(BB.name)]."
+			user << "<font color='blue'>You inscribe \"[label_text]\" into \the [initial(BB.name)].</font>"
 			BB.name = "[initial(BB.name)] (\"[label_text]\")"
 
 /obj/item/ammo_casing/update_icon()
@@ -65,7 +65,7 @@
 /obj/item/ammo_magazine
 	name = "magazine"
 	desc = "A magazine for some kind of gun."
-	icon_state = "357"
+	icon_state = ".357"
 	icon = 'icons/obj/ammo.dmi'
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
@@ -78,7 +78,7 @@
 
 	var/list/stored_ammo = list()
 	var/mag_type = SPEEDLOADER //ammo_magazines can only be used with compatible guns. This is not a bitflag, the load_method var on guns is.
-	var/caliber = "357"
+	var/caliber = ".357"
 	var/max_ammo = 7
 
 	var/ammo_type = /obj/item/ammo_casing //ammo type that is initially loaded

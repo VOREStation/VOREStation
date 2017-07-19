@@ -48,8 +48,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	var/obj/machinery/power/apc/apc = null
 	var/no_air = null
 //	var/list/lights				// list of all lights on this area
-	var/list/all_doors = list()		//Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area
-	var/air_doors_activated = 0
+	var/list/all_doors = null		//Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area
+	var/firedoors_closed = 0
 	var/list/ambience = list('sound/ambience/ambigen1.ogg','sound/ambience/ambigen3.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambigen5.ogg','sound/ambience/ambigen6.ogg','sound/ambience/ambigen7.ogg','sound/ambience/ambigen8.ogg','sound/ambience/ambigen9.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen11.ogg','sound/ambience/ambigen12.ogg','sound/ambience/ambigen14.ogg')
 	var/list/forced_ambience = null
 	var/sound_env = STANDARD_STATION
@@ -100,7 +100,7 @@ var/list/ghostteleportlocs = list()
 	icon_state = "space"
 	requires_power = 1
 	always_unpowered = 1
-	lighting_use_dynamic = 1
+	dynamic_lighting = 1
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
@@ -293,7 +293,7 @@ area/space/atmosalert()
 /area/shuttle/mining
 	name = "\improper Mining Elevator"
 	music = "music/escape.ogg"
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 	base_turf = /turf/simulated/mineral/floor/ignore_mapgen
 
 /area/shuttle/mining/station
@@ -392,7 +392,7 @@ area/space/atmosalert()
 /area/shuttle/research
 	name = "\improper Research Elevator"
 	music = "music/escape.ogg"
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 	base_turf = /turf/simulated/mineral/floor/ignore_mapgen
 
 /area/shuttle/research/station
@@ -418,7 +418,7 @@ area/space/atmosalert()
 	name = "\improper CentCom"
 	icon_state = "centcom"
 	requires_power = 0
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 /area/centcom/control
 	name = "\improper CentCom Control"
@@ -491,7 +491,7 @@ area/space/atmosalert()
 	name = "\improper Mercenary Base"
 	icon_state = "syndie-ship"
 	requires_power = 0
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 /area/syndicate_mothership/control
 	name = "\improper Mercenary Control Room"
@@ -543,7 +543,7 @@ area/space/atmosalert()
 	name = "\improper Thunderdome"
 	icon_state = "thunder"
 	requires_power = 0
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 	sound_env = ARENA
 
 /area/tdome/tdome1
@@ -624,7 +624,7 @@ area/space/atmosalert()
 	name = "\improper Wizard's Den"
 	icon_state = "yellow"
 	requires_power = 0
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 /area/skipjack_station
 	name = "\improper Skipjack"
@@ -1431,8 +1431,8 @@ area/space/atmosalert()
  	name = "\improper Visitor Lodging"
  	icon_state = "visitor_lodging"
 
-/area/crew_quarters/visitor_dinning
- 	name = "\improper Visitor Dinning"
+/area/crew_quarters/visitor_dining
+ 	name = "\improper Visitor Dining"
  	icon_state = "visitor_dinning"
 
 /area/crew_quarters/visitor_laundry
@@ -1485,7 +1485,7 @@ area/space/atmosalert()
 /area/holodeck
 	name = "\improper Holodeck"
 	icon_state = "Holodeck"
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 	sound_env = LARGE_ENCLOSED
 
 /area/holodeck/alphadeck
@@ -1638,7 +1638,7 @@ area/space/atmosalert()
 /area/solar
 	requires_power = 1
 	always_unpowered = 1
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 	base_turf = /turf/space
 
 	auxport
@@ -2336,7 +2336,7 @@ area/space/atmosalert()
 /area/shuttle/constructionsite
 	name = "\improper Construction Site Shuttle"
 	icon_state = "yellow"
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 	base_turf = /turf/simulated/mineral/floor/ignore_mapgen
 
 /area/shuttle/constructionsite/station
@@ -2493,25 +2493,25 @@ area/space/atmosalert()
 	name = "\improper AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 /area/AIsatextFS
 	name = "\improper AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 /area/AIsatextAS
 	name = "\improper AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 /area/AIsatextAP
 	name = "\improper AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 /area/NewAIMain
 	name = "\improper AI Main New"
@@ -2685,7 +2685,7 @@ area/space/atmosalert()
 	name = "Beach"
 	icon_state = "null"
 	luminosity = 1
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 	requires_power = 0
 	ambience = list()
 	var/sound/mysound = null
@@ -2807,7 +2807,7 @@ var/list/the_station_areas = list (
 	name = "Keelin's private beach"
 	icon_state = "null"
 	luminosity = 1
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 	requires_power = 0
 	var/sound/mysound = null
 /*

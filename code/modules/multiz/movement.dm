@@ -3,34 +3,38 @@
 	set category = "IC"
 
 	if(zMove(UP))
-		to_chat(usr, "<span class='notice'>You move upwards.</span>")
+		to_chat(src, "<span class='notice'>You move upwards.</span>")
 
 /mob/verb/down()
 	set name = "Move Down"
 	set category = "IC"
 
 	if(zMove(DOWN))
-		to_chat(usr, "<span class='notice'>You move down.</span>")
+		to_chat(src, "<span class='notice'>You move down.</span>")
 
 /mob/proc/zMove(direction)
 	if(eyeobj)
 		return eyeobj.zMove(direction)
 	if(!can_ztravel())
-		to_chat(usr, "<span class='warning'>You lack means of travel in that direction.</span>")
+		to_chat(src, "<span class='warning'>You lack means of travel in that direction.</span>")
 		return
 
+	var/turf/start = loc
+	if(!istype(start))
+		to_chat(src, "<span class='notice'>You are unable to move from here.</span>")
+		return 0
+
 	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
-
 	if(!destination)
-		to_chat(usr, "<span class='notice'>There is nothing of interest in this direction.</span>")
+		to_chat(src, "<span class='notice'>There is nothing of interest in this direction.</span>")
 		return 0
 
-	var/turf/start = get_turf(src)
 	if(!start.CanZPass(src, direction))
-		to_chat(usr, "<span class='warning'>\The [start] is in the way.</span>")
+		to_chat(src, "<span class='warning'>\The [start] is in the way.</span>")
 		return 0
+
 	if(!destination.CanZPass(src, direction))
-		to_chat(usr, "<span class='warning'>\The [destination] blocks your way.</span>")
+		to_chat(src, "<span class='warning'>\The [destination] blocks your way.</span>")
 		return 0
 
 	var/area/area = get_area(src)
@@ -46,12 +50,12 @@
 				to_chat(src, "<span class='warning'>You gave up on pulling yourself up.</span>")
 				return 0
 		else
-			to_chat(usr, "<span class='warning'>Gravity stops you from moving upward.</span>")
+			to_chat(src, "<span class='warning'>Gravity stops you from moving upward.</span>")
 			return 0
 
 	for(var/atom/A in destination)
 		if(!A.CanPass(src, start, 1.5, 0))
-			to_chat(usr, "<span class='warning'>\The [A] blocks you.</span>")
+			to_chat(src, "<span class='warning'>\The [A] blocks you.</span>")
 			return 0
 	Move(destination)
 	return 1
@@ -61,14 +65,14 @@
 	if(destination)
 		forceMove(destination)
 	else
-		to_chat(usr, "<span class='notice'>There is nothing of interest in this direction.</span>")
+		to_chat(src, "<span class='notice'>There is nothing of interest in this direction.</span>")
 
 /mob/observer/eye/zMove(direction)
 	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
 	if(destination)
 		setLoc(destination)
 	else
-		to_chat(usr, "<span class='notice'>There is nothing of interest in this direction.</span>")
+		to_chat(src, "<span class='notice'>There is nothing of interest in this direction.</span>")
 
 /mob/proc/can_ztravel()
 	return 0
@@ -150,6 +154,28 @@
 /obj/effect/decal/cleanable/can_fall()
 	return TRUE
 
+// These didn't fall anyways but better to nip this now just incase.
+/atom/movable/lighting_overlay/can_fall()
+	return FALSE
+
+// Mechas are anchored, so we need to override.
+/obj/mecha/can_fall()
+	var/obj/structure/lattice/lattice = locate(/obj/structure/lattice, loc)
+	if(lattice)
+		var/area/area = get_area(src)
+		if(area.has_gravity())
+			// Lattices seem a bit too flimsy to hold up a massive exosuit.
+			lattice.visible_message("<span class='danger'>\The [lattice] collapses under the weight of \the [src]!</span>")
+			qdel(lattice)
+
+	// See if something prevents us from falling.
+	var/turf/below = GetBelow(src)
+	for(var/atom/A in below)
+		if(!A.CanPass(src, src.loc))
+			return FALSE
+
+	return TRUE
+
 /obj/item/pipe/can_fall()
 	var/turf/simulated/open/below = loc
 	below = below.below
@@ -192,3 +218,25 @@
 	apply_damage(rand(0, damage), BRUTE, BP_R_ARM)
 	Weaken(4)
 	updatehealth()
+
+/obj/mecha/handle_fall(var/turf/landing)
+	if(..())
+		return
+
+	// Tell the pilot that they just dropped down with a superheavy mecha.
+	if(occupant)
+		to_chat(occupant, "<span class='warning'>\The [src] crashed down onto \the [landing]!</span>")
+
+	// Anything on the same tile as the landing tile is gonna have a bad day.
+	for(var/mob/living/L in landing.contents)
+		L.visible_message("<span class='danger'>\The [src] crushes \the [L] as it lands on them!</span>")
+		L.adjustBruteLoss(rand(70, 100))
+		L.Weaken(8)
+
+	// Now to hurt the mech.
+	take_damage(rand(15, 30))
+
+	// And hurt the floor.
+	if(istype(landing, /turf/simulated/floor))
+		var/turf/simulated/floor/ground = landing
+		ground.break_tile()

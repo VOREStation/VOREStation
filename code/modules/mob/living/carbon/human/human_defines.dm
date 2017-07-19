@@ -93,3 +93,5 @@
 	mob_swap_flags = ~HEAVY
 
 	var/identifying_gender // In case the human identifies as another gender than it's biological
+
+	var/step_count = 0 // Track how many footsteps have been taken to know when to play footstep sounds

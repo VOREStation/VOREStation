@@ -138,8 +138,8 @@ Targeted spells have two useful flags: INCLUDEUSER and SELECTABLE. These are exp
 	if(amt_weakened || amt_paralysis || amt_stunned)
 		if(target.buckled)
 			target.buckled = null
-	target.eye_blind += amt_eye_blind
+	target.Blind(amt_eye_blind)
 	target.eye_blurry += amt_eye_blurry
 	target.dizziness += amt_dizziness
-	target.confused += amt_confused
+	target.Confuse(amt_confused)
 	target.stuttering += amt_stuttering

@@ -8,11 +8,6 @@
 	icon_state = "undershirt"
 	has_color = TRUE
 
-/datum/category_item/underwear/undershirt/shirt_long
-	name = "Long Shirt"
-	icon_state = "undershirt_long"
-	has_color = TRUE
-
 /datum/category_item/underwear/undershirt/shirt_fem
 	name = "Babydoll shirt"
 	icon_state = "undershirt_fem"
@@ -23,10 +18,21 @@
 	icon_state = "undershirt_long"
 	has_color = TRUE
 
+/datum/category_item/underwear/undershirt/shirt_long_s
+	name = "Shirt, button-down"
+	icon_state = "shirt_long_s"
+	has_color = TRUE
+
 /datum/category_item/underwear/undershirt/shirt_long_fem
 	name = "Longsleeve Shirt, feminine"
 	icon_state = "undershirt_long_fem"
 	has_color = TRUE
+
+/datum/category_item/underwear/undershirt/shirt_long_female_s
+	name = "Button-down Shirt, feminine"
+	icon_state = "shirt_long_female_s"
+	has_color = TRUE
+
 
 /datum/category_item/underwear/undershirt/tank_top
 	name = "Tank top"

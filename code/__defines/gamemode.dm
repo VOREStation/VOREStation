@@ -84,6 +84,7 @@ var/list/be_special_flags = list(
 #define MODE_MALFUNCTION "malf"
 #define MODE_TRAITOR "traitor"
 #define MODE_AUTOTRAITOR "autotraitor"
+#define MODE_INFILTRATOR "infiltrator"
 
 #define DEFAULT_TELECRYSTAL_AMOUNT 120
 
@@ -124,3 +125,5 @@ var/list/be_special_flags = list(
 #define Sp_RECHARGE	"recharge"
 #define Sp_CHARGES	"charges"
 #define Sp_HOLDVAR	"holdervar"
+
+#define CHANGELING_STASIS_COST 20

@@ -123,7 +123,7 @@
 	activate(var/mob/living/carbon/mob,var/multiplier)
 		mob.suiciding = 30
 		//instead of killing them instantly, just put them at -175 health and let 'em gasp for a while
-		viewers(mob) << "\red <b>[mob.name] is holding \his breath. It looks like \he's trying to commit suicide.</b>"
+		viewers(mob) << "<font color='red'><b>[mob.name] is holding \his breath. It looks like \he's trying to commit suicide.</b></font>"
 		mob.adjustOxyLoss(175 - mob.getToxLoss() - mob.getFireLoss() - mob.getBruteLoss() - mob.getOxyLoss())
 		mob.updatehealth()
 
@@ -264,7 +264,7 @@
 	stage = 3
 	activate(var/mob/living/carbon/mob,var/multiplier)
 		mob << "<span class='notice'>You have trouble telling right and left apart all of a sudden.</span>"
-		mob.confused += 10
+		mob.Confuse(10)
 
 /datum/disease2/effect/mutation
 	name = "DNA Degradation"

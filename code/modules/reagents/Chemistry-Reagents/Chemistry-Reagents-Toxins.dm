@@ -205,7 +205,7 @@
 	if(holder && holder.my_atom && ismob(holder.my_atom))
 		var/mob/M = holder.my_atom
 		M.status_flags &= ~FAKEDEATH
-	..()
+	return ..()
 
 /datum/reagent/toxin/fertilizer //Reagents used for plant fertilizers.
 	name = "fertilizer"
@@ -315,8 +315,12 @@
 	if(istype(H) && (H.species.flags & NO_SCAN))
 		return
 
+//The original coder comment here wanted it to be "Approx. one mutation per 10 injected/20 ingested/30 touching units" 
+//The issue was, it was removed (.2) multiplied by .1, which resulted in a .02% chance per tick to have a mutation occur. Or more accurately, 5000 injected for a single mutation.
+//To honor their original idea, let's keep it as 10/20/30 as they wanted... For the most part.
+
 	if(M.dna)
-		if(prob(removed * 0.1)) // Approx. one mutation per 10 injected/20 ingested/30 touching units
+		if(prob(removed * 10)) // Removed is .2 per tick. Multiplying it by 10 makes it a 2% chance per tick. 10 units has 50 ticks, so 10 units injected should give a single good/bad mutation.
 			randmuti(M)
 			if(prob(98))
 				randmutb(M)
@@ -324,6 +328,9 @@
 				randmutg(M)
 			domutcheck(M, null)
 			M.UpdateAppearance()
+		if(prob(removed * 40)) //Additionally, let's make it so there's an 8% chance per tick for a random cosmetic/not guranteed good/bad mutation.
+			randmuti(M)//This should equate to 4 random cosmetic mutations per 10 injected/20 ingested/30 touching units
+			M << "<span class='warning'>You feel odd!</span>"
 	M.apply_effect(10 * removed, IRRADIATE, 0)
 
 /datum/reagent/slimejelly
@@ -403,7 +410,7 @@
 		effective_dose *= 2
 
 	if(effective_dose == metabolism)
-		M.confused += 2
+		M.Confuse(2)
 		M.drowsyness += 2
 	else if(effective_dose < 2 * threshold)
 		M.Weaken(30)
@@ -429,6 +436,7 @@
 
 	glass_name = "beer"
 	glass_desc = "A freezing pint of beer"
+
 /* Drugs */
 
 /datum/reagent/space_drugs
@@ -490,7 +498,7 @@
 	if(alien == IS_SKRELL)
 		drug_strength = drug_strength * 0.8
 	M.make_dizzy(drug_strength)
-	M.confused = max(M.confused, drug_strength * 5)
+	M.Confuse(drug_strength * 5)
 
 /datum/reagent/impedrezene
 	name = "Impedrezene"
@@ -599,7 +607,7 @@
 		return
 
 	if(M.dna)
-		if(prob(removed * 0.1))
+		if(prob(removed * 10))
 			randmuti(M)
 			if(prob(98))
 				randmutb(M)
@@ -607,6 +615,9 @@
 				randmutg(M)
 			domutcheck(M, null)
 			M.UpdateAppearance()
+		if(prob(removed * 40))
+			randmuti(M)
+			M << "<span class='warning'>You feel odd!</span>"
 	M.apply_effect(16 * removed, IRRADIATE, 0)
 
 /datum/reagent/aslimetoxin
@@ -626,7 +637,7 @@
 		return
 
 	if(M.dna)
-		if(prob(removed * 0.1))
+		if(prob(removed * 10))
 			randmuti(M)
 			if(prob(98))
 				randmutb(M)
@@ -634,4 +645,7 @@
 				randmutg(M)
 			domutcheck(M, null)
 			M.UpdateAppearance()
+		if(prob(removed * 40))
+			randmuti(M)
+			M << "<span class='warning'>You feel odd!</span>"
 	M.apply_effect(6 * removed, IRRADIATE, 0)

@@ -85,7 +85,7 @@ log transactions
 	if(istype(I, /obj/item/weapon/card))
 		if(emagged > 0)
 			//prevent inserting id into an emagged ATM
-			user << "\red \icon[src] CARD READER ERROR. This system has been compromised!"
+			user << "<font color='red'>\icon[src] CARD READER ERROR. This system has been compromised!</font>"
 			return
 		else if(istype(I,/obj/item/weapon/card/emag))
 			I.resolve_attackby(src, user)
@@ -125,7 +125,7 @@ log transactions
 
 /obj/machinery/atm/attack_hand(mob/user as mob)
 	if(istype(user, /mob/living/silicon))
-		user << "\red \icon[src] Artificial unit recognized. Artificial units do not currently receive monetary compensation, as per system banking regulation #1005."
+		user << "<font color='red'>\icon[src] Artificial unit recognized. Artificial units do not currently receive monetary compensation, as per system banking regulation #1005.</font>"
 		return
 	if(get_dist(src,user) <= 1)
 
@@ -143,7 +143,7 @@ log transactions
 				dat += "<span class='alert'>Maximum number of pin attempts exceeded! Access to this ATM has been temporarily disabled.</span>"
 			else if(authenticated_account)
 				if(authenticated_account.suspended)
-					dat += "\red<b>Access to this account has been suspended, and the funds within frozen.</b>"
+					dat += "<font color='red'><b>Access to this account has been suspended, and the funds within frozen.</b></font>"
 				else
 					switch(view_screen)
 						if(CHANGE_SECURITY_LEVEL)
@@ -288,11 +288,11 @@ log transactions
 									T.time = stationtime2text()
 									failed_account.transaction_log.Add(T)
 							else
-								usr << "\red \icon[src] Incorrect pin/account combination entered, [max_pin_attempts - number_incorrect_tries] attempts remaining."
+								usr << "<font color='red'>\icon[src] Incorrect pin/account combination entered, [max_pin_attempts - number_incorrect_tries] attempts remaining.</font>"
 								previous_account_number = tried_account_num
 								playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 1)
 						else
-							usr << "\red \icon[src] incorrect pin/account combination entered."
+							usr << "<font color='red'>\icon[src] incorrect pin/account combination entered.</font>"
 							number_incorrect_tries = 0
 					else
 						playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
@@ -308,7 +308,7 @@ log transactions
 						T.time = stationtime2text()
 						authenticated_account.transaction_log.Add(T)
 
-						usr << "\blue \icon[src] Access granted. Welcome user '[authenticated_account.owner_name].'"
+						usr << "<font color='blue'>\icon[src] Access granted. Welcome user '[authenticated_account.owner_name].</font>'"
 
 					previous_account_number = tried_account_num
 			if("e_withdrawal")
@@ -433,7 +433,7 @@ log transactions
 				if(!held_card)
 					//this might happen if the user had the browser window open when somebody emagged it
 					if(emagged > 0)
-						usr << "\red \icon[src] The ATM card reader rejected your ID because this machine has been sabotaged!"
+						usr << "<font color='red'>\icon[src] The ATM card reader rejected your ID because this machine has been sabotaged!</font>"
 					else
 						var/obj/item/I = usr.get_active_hand()
 						if (istype(I, /obj/item/weapon/card/id))
@@ -461,7 +461,7 @@ log transactions
 			if(I)
 				authenticated_account = attempt_account_access(I.associated_account_number)
 				if(authenticated_account)
-					human_user << "\blue \icon[src] Access granted. Welcome user '[authenticated_account.owner_name].'"
+					human_user << "<font color='blue'>\icon[src] Access granted. Welcome user '[authenticated_account.owner_name].</font>'"
 
 					//create a transaction log entry
 					var/datum/transaction/T = new()

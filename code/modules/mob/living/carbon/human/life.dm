@@ -62,8 +62,12 @@
 
 	voice = GetVoice()
 
+	var/stasis = inStasisNow()
+	if(getStasis() > 2)
+		Sleeping(20)
+
 	//No need to update all of these procs if the guy is dead.
-	if(stat != DEAD && !in_stasis)
+	if(stat != DEAD && !stasis)
 		//Updates the number of stored chemicals for powers
 		handle_changeling()
 
@@ -82,7 +86,6 @@
 		if(!client)
 			species.handle_npc(src)
 
-
 	if(!handle_some_updates())
 		return											//We go ahead and process them 5 times for HUD images and other stuff though.
 
@@ -97,7 +100,7 @@
 	return 1
 
 /mob/living/carbon/human/breathe()
-	if(!in_stasis)
+	if(!inStasisNow())
 		..()
 
 // Calculate how vulnerable the human is to under- and overpressure.
@@ -155,7 +158,7 @@
 
 	if (disabilities & EPILEPSY)
 		if ((prob(1) && paralysis < 1))
-			src << "\red You have a seizure!"
+			src << "<font color='red'>You have a seizure!</font>"
 			for(var/mob/O in viewers(src, null))
 				if(O == src)
 					continue
@@ -207,7 +210,7 @@
 
 
 /mob/living/carbon/human/handle_mutations_and_radiation()
-	if(in_stasis)
+	if(inStasisNow())
 		return
 
 	if(getFireLoss())
@@ -789,7 +792,7 @@
 
 /mob/living/carbon/human/handle_chemicals_in_body()
 
-	if(in_stasis)
+	if(inStasisNow())
 		return
 
 	if(reagents)
@@ -817,11 +820,7 @@
 			var/light_amount = 0 //how much light there is in the place, affects receiving nutrition and healing
 			if(isturf(loc)) //else, there's considered to be no light
 				var/turf/T = loc
-				var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in T
-				if(L)
-					light_amount = min(10,L.lum_r + L.lum_g + L.lum_b) - 2 //hardcapped so it's not abused by having a ton of flashlights
-				else
-					light_amount =  10
+				light_amount = T.get_lumcount() * 10
 			nutrition += light_amount
 			traumatic_shock -= light_amount
 
@@ -840,11 +839,7 @@
 		var/light_amount = 0
 		if(isturf(loc))
 			var/turf/T = loc
-			var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in T
-			if(L)
-				light_amount = L.lum_r + L.lum_g + L.lum_b //hardcapped so it's not abused by having a ton of flashlights
-			else
-				light_amount =  10
+			light_amount = T.get_lumcount() * 10
 		if(light_amount > species.light_dam) //if there's enough light, start dying
 			take_overall_damage(1,1)
 		else //heal in the dark
@@ -921,9 +916,9 @@
 
 		//Brain damage from Oxyloss
 		if(should_have_organ("brain"))
-			var/brainOxPercent = 0.02		//Default2% of your current oxyloss is applied as brain damage, 50 oxyloss is 1 brain damage
+			var/brainOxPercent = 0.015		//Default 1.5% of your current oxyloss is applied as brain damage, 50 oxyloss is 1 brain damage
 			if(CE_STABLE in chem_effects)
-				brainOxPercent = 0.01		//Halved in effect
+				brainOxPercent = 0.008		//Halved in effect
 			if(oxyloss >= 20 && prob(5))
 				adjustBrainLoss(brainOxPercent * oxyloss)
 
@@ -979,18 +974,18 @@
 			vision = internal_organs_by_name[species.vision_organ]
 
 		if(!species.vision_organ) // Presumably if a species has no vision organs, they see via some other means.
-			eye_blind =  0
+			SetBlinded(0)
 			blinded =    0
 			eye_blurry = 0
 		else if(!vision || vision.is_broken())   // Vision organs cut out or broken? Permablind.
-			eye_blind =  1
+			SetBlinded(1)
 			blinded =    1
 			eye_blurry = 1
 		else //You have the requisite organs
 			if(sdisabilities & BLIND) 	// Disabled-blind, doesn't get better on its own
 				blinded =    1
 			else if(eye_blind)		  	// Blindness, heals slowly over time
-				eye_blind =  max(eye_blind-1,0)
+				AdjustBlinded(-1)
 				blinded =    1
 			else if(istype(glasses, /obj/item/clothing/glasses/sunglasses/blindfold))	//resting your eyes with a blindfold heals blurry eyes faster
 				eye_blurry = max(eye_blurry-3, 0)
@@ -1347,7 +1342,7 @@
 			if(!druggy && !seer)	see_invisible = SEE_INVISIBLE_LIVING
 
 /mob/living/carbon/human/handle_random_events()
-	if(in_stasis)
+	if(inStasisNow())
 		return
 
 	// Puke if toxloss is too high
@@ -1358,8 +1353,7 @@
 	//0.1% chance of playing a scary sound to someone who's in complete darkness
 	if(isturf(loc) && rand(1,1000) == 1)
 		var/turf/T = loc
-		var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in T
-		if(L && L.lum_r + L.lum_g + L.lum_b == 0)
+		if(T.get_lumcount() <= LIGHTING_SOFT_THRESHOLD)
 			playsound_local(src,pick(scarySounds),50, 1, -1)
 
 /mob/living/carbon/human/handle_stomach()
@@ -1545,7 +1539,7 @@
 		if(stat == DEAD)
 			holder.icon_state = "-100" 	// X_X
 		else
-			holder.icon_state = RoundHealth((health-config.health_threshold_crit)/(maxHealth-config.health_threshold_crit)*100)
+			holder.icon_state = RoundHealth((health-config.health_threshold_crit)/(getMaxHealth()-config.health_threshold_crit)*100)
 		hud_list[HEALTH_HUD] = holder
 
 	if (BITTEST(hud_updateflag, LIFE_HUD))

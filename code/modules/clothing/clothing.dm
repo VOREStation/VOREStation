@@ -347,7 +347,9 @@
 	body_parts_covered = FACE|EYES
 	sprite_sheets = list(
 		"Teshari" = 'icons/mob/species/seromi/masks.dmi',
-		"Vox" = 'icons/mob/species/vox/masks.dmi'
+		"Vox" = 'icons/mob/species/vox/masks.dmi',
+		"Tajara" = 'icons/mob/species/tajaran/mask.dmi',
+		"Unathi" = 'icons/mob/species/unathi/mask.dmi'
 		)
 
 	var/voicechange = 0

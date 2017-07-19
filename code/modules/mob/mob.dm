@@ -14,6 +14,7 @@
 		spellremove(src)
 	ghostize()
 	..()
+	return QDEL_HINT_HARDDEL_NOW
 
 /mob/proc/remove_screen_obj_references()
 	hands = null
@@ -320,9 +321,9 @@
 	if (flavor_text && flavor_text != "")
 		var/msg = replacetext(flavor_text, "\n", " ")
 		if(lentext(msg) <= 40)
-			return "\blue [msg]"
+			return "<font color='blue'>[msg]</font>"
 		else
-			return "\blue [copytext_preserve_html(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a>"
+			return "<font color='blue'>[copytext_preserve_html(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</font></a>"
 
 /*
 /mob/verb/help()
@@ -349,7 +350,7 @@
 		if(istype(src,/mob/observer/dead))
 			var/mob/observer/dead/G = src
 			if(G.has_enabled_antagHUD == 1 && config.antag_hud_restricted)
-				usr << "\blue <B>Upon using the antagHUD you forfeighted the ability to join the round.</B>"
+				usr << "<font color='blue'><B>Upon using the antagHUD you forfeighted the ability to join the round.</B></font>"
 				return
 		var/deathtimeminutes = round(deathtime / 600)
 		var/pluralcheck = "minute"
@@ -370,7 +371,7 @@
 
 	log_game("[usr.name]/[usr.key] used abandon mob.")
 
-	usr << "\blue <B>Make sure to play a different character, and please roleplay correctly!</B>"
+	usr << "<font color='blue'><B>Make sure to play a different character, and please roleplay correctly!</B></font>"
 
 	if(!client)
 		log_game("[usr.key] AM failed due to disconnect.")
@@ -431,7 +432,7 @@
 	if(client.holder && (client.holder.rights & R_ADMIN))
 		is_admin = 1
 	else if(stat != DEAD || istype(src, /mob/new_player))
-		usr << "\blue You must be observing to use this!"
+		usr << "<font color='blue'>You must be observing to use this!</font>"
 		return
 
 	if(is_admin && stat == DEAD)
@@ -615,7 +616,7 @@
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		if(H.pull_damage())
-			src << "\red <B>Pulling \the [H] in their current condition would probably be a bad idea.</B>"
+			src << "<font color='red'><B>Pulling \the [H] in their current condition would probably be a bad idea.</B></font>"
 
 	//Attempted fix for people flying away through space when cuffed and dragged.
 	if(ismob(AM))
@@ -671,6 +672,23 @@
 			if(statpanel("Processes"))
 				if(processScheduler)
 					processScheduler.statProcesses()
+
+			if(statpanel("MC"))
+				stat("CPU:","[world.cpu]")
+				stat("Instances:","[world.contents.len]")
+				stat(null)
+				if(Master)
+					Master.stat_entry()
+				else
+					stat("Master Controller:", "ERROR")
+				if(Failsafe)
+					Failsafe.stat_entry()
+				else
+					stat("Failsafe Controller:", "ERROR")
+				if(Master)
+					stat(null)
+					for(var/datum/controller/subsystem/SS in Master.subsystems)
+						SS.stat_entry()
 
 		if(listed_turf && client)
 			if(!TurfAdjacent(listed_turf))
@@ -802,6 +820,30 @@
 
 /mob/proc/AdjustSleeping(amount)
 	sleeping = max(sleeping + amount,0)
+	return
+
+/mob/proc/Confuse(amount)
+	confused = max(max(confused,amount),0)
+	return
+
+/mob/proc/SetConfused(amount)
+	confused = max(amount,0)
+	return
+
+/mob/proc/AdjustConfused(amount)
+	confused = max(confused + amount,0)
+	return
+
+/mob/proc/Blind(amount)
+	eye_blind = max(max(eye_blind,amount),0)
+	return
+
+/mob/proc/SetBlinded(amount)
+	eye_blind = max(amount,0)
+	return
+
+/mob/proc/AdjustBlinded(amount)
+	eye_blind = max(eye_blind + amount,0)
 	return
 
 /mob/proc/Resting(amount)
@@ -1017,3 +1059,47 @@ mob/proc/yank_out_object()
 /mob/proc/is_muzzled()
 	return 0
 
+
+/client/proc/check_has_body_select()
+	return mob && mob.hud_used && istype(mob.zone_sel, /obj/screen/zone_sel)
+
+/client/verb/body_toggle_head()
+	set name = "body-toggle-head"
+	set hidden = 1
+	toggle_zone_sel(list(BP_HEAD, O_EYES, O_MOUTH))
+
+/client/verb/body_r_arm()
+	set name = "body-r-arm"
+	set hidden = 1
+	toggle_zone_sel(list(BP_R_ARM,BP_R_HAND))
+
+/client/verb/body_l_arm()
+	set name = "body-l-arm"
+	set hidden = 1
+	toggle_zone_sel(list(BP_L_ARM,BP_L_HAND))
+
+/client/verb/body_chest()
+	set name = "body-chest"
+	set hidden = 1
+	toggle_zone_sel(list(BP_TORSO))
+
+/client/verb/body_groin()
+	set name = "body-groin"
+	set hidden = 1
+	toggle_zone_sel(list(BP_GROIN))
+
+/client/verb/body_r_leg()
+	set name = "body-r-leg"
+	set hidden = 1
+	toggle_zone_sel(list(BP_R_LEG,BP_R_FOOT))
+
+/client/verb/body_l_leg()
+	set name = "body-l-leg"
+	set hidden = 1
+	toggle_zone_sel(list(BP_L_LEG,BP_L_FOOT))
+
+/client/proc/toggle_zone_sel(list/zones)
+	if(!check_has_body_select())
+		return
+	var/obj/screen/zone_sel/selector = mob.zone_sel
+	selector.set_selected_zone(next_in_list(mob.zone_sel.selecting,zones))

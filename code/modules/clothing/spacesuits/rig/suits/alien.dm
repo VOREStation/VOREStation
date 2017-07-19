@@ -13,7 +13,7 @@
 	offline_slowdown = 10
 	vision_restriction = 1
 	offline_vision_restriction = 2
-
+	siemens_coefficient = 0.75
 	chest_type = /obj/item/clothing/suit/space/rig/breacher
 	helm_type = /obj/item/clothing/head/helmet/space/rig/breacher
 	boot_type = /obj/item/clothing/shoes/magboots/rig/breacher
@@ -25,6 +25,7 @@
 	icon_state = "breacher_rig"
 	armor = list(melee = 90, bullet = 90, laser = 90, energy = 90, bomb = 90, bio = 100, rad = 80) //Takes TEN TIMES as much damage to stop someone in a breacher. In exchange, it's slow.
 	vision_restriction = 0
+	siemens_coefficient = 0.2
 
 /obj/item/clothing/head/helmet/space/rig/breacher
 	species_restricted = list("Unathi")
@@ -45,7 +46,7 @@
 	desc = "This metal box writhes and squirms as if it were alive..."
 	suit_type = "alien"
 	icon_state = "vox_rig"
-	armor = list(melee = 60, bullet = 50, laser = 40, energy = 15, bomb = 30, bio = 30, rad = 30)
+	armor = list(melee = 60, bullet = 50, laser = 40, energy = 15, bomb = 30, bio = 100, rad = 50)
 	item_flags = THICKMATERIAL
 	siemens_coefficient = 0.2
 	phoronproof = 1
@@ -88,7 +89,7 @@
 /obj/item/weapon/rig/vox/carapace
 	name = "dense alien control module"
 	suit_type = "dense alien"
-	armor = list(melee = 60, bullet = 50, laser = 40, energy = 15, bomb = 30, bio = 30, rad = 30)
+	armor = list(melee = 60, bullet = 50, laser = 40, energy = 15, bomb = 30, bio = 100, rad = 50)
 	emp_protection = 40 //change this to 30 if too high.
 	phoronproof = 1
 
@@ -109,7 +110,7 @@
 	name = "sinister alien control module"
 	suit_type = "sinister alien"
 	icon_state = "voxstealth_rig"
-	armor = list(melee = 40, bullet = 30, laser = 30, energy = 15, bomb = 30, bio = 100, rad = 100)
+	armor = list(melee = 40, bullet = 30, laser = 30, energy = 15, bomb = 30, bio = 100, rad = 50)
 	emp_protection = 40 //change this to 30 if too high.
 	phoronproof = 1
 

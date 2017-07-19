@@ -141,7 +141,7 @@ proc/get_radio_key_from_channel(var/channel)
 
 	//Redirect to say_dead if talker is dead
 	if(stat)
-		if(stat == DEAD)
+		if(stat == DEAD && !forbid_seeing_deadchat)
 			return say_dead(message)
 		return
 
@@ -308,7 +308,7 @@ proc/get_radio_key_from_channel(var/channel)
 			if(M && src) //If we still exist, when the spawn processes
 				var/dst = get_dist(get_turf(M),get_turf(src))
 
-				if(dst <= message_range || M.stat == DEAD) //Inside normal message range, or dead with ears (handled in the view proc)
+				if(dst <= message_range || (M.stat == DEAD && !forbid_seeing_deadchat)) //Inside normal message range, or dead with ears (handled in the view proc)
 					M << speech_bubble
 					M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol)
 

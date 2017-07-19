@@ -70,7 +70,3 @@
 	answer = replacetext(answer, "mm", minute_text)
 	answer = replacetext(answer, "ss", second_text)
 	return answer
-
-// We're gonna pretend there are 32 hours in a Sif day instead of 32.64 for the purposes of not losing sanity.  We lose 38m 24s but the alternative is a path to madness.
-/datum/time/sif
-	seconds_in_day = 60 * 60 * 32 * 10 // 115,200 seconds.  If we did 32.64 hours/day it would be around 117,504 seconds instead.

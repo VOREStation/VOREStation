@@ -69,7 +69,7 @@ REAGENT SCANNER
 		user.show_message("<span class='notice'>Analyzing Results for [M]:</span>")
 		user.show_message("<span class='notice'>Overall Status: dead</span>")
 	else
-		user.show_message("<span class='notice'>Analyzing Results for [M]:\n\t Overall Status: [M.stat > 1 ? "dead" : "[round((M.health/M.maxHealth)*100) ]% healthy"]</span>")
+		user.show_message("<span class='notice'>Analyzing Results for [M]:\n\t Overall Status: [M.stat > 1 ? "dead" : "[round((M.health/M.getMaxHealth())*100) ]% healthy"]</span>")
 	user.show_message("<span class='notice'>    Key: <font color='cyan'>Suffocation</font>/<font color='green'>Toxin</font>/<font color='#FFA500'>Burns</font>/<font color='red'>Brute</font></span>", 1)
 	user.show_message("<span class='notice'>    Damage Specifics: <font color='cyan'>[OX]</font> - <font color='green'>[TX]</font> - <font color='#FFA500'>[BU]</font> - <font color='red'>[BR]</font></span>")
 	user.show_message("<span class='notice'>Body Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)</span>", 1)
@@ -99,6 +99,8 @@ REAGENT SCANNER
 	if(M.status_flags & FAKEDEATH)
 		OX = fake_oxy > 50 ? 		"<span class='warning'>Severe oxygen deprivation detected</span>" 	: 	"Subject bloodstream oxygen level normal"
 	user.show_message("[OX] | [TX] | [BU] | [BR]")
+	if(M.radiation)
+		user.show_message("<span class='warning'>Radiation detected.</span>")
 	if(istype(M, /mob/living/carbon))
 		var/mob/living/carbon/C = M
 		if(C.reagents.total_volume)

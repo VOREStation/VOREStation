@@ -62,6 +62,7 @@ var/global/datum/controller/gameticker/ticker
 							vote.process()
 			if(pregame_timeleft <= 0)
 				current_state = GAME_STATE_SETTING_UP
+				Master.SetRunLevel(RUNLEVEL_SETUP)
 	while (!setup())
 
 
@@ -74,6 +75,7 @@ var/global/datum/controller/gameticker/ticker
 	if((master_mode=="random") || (master_mode=="secret"))
 		if(!runnable_modes.len)
 			current_state = GAME_STATE_PREGAME
+			Master.SetRunLevel(RUNLEVEL_LOBBY)
 			world << "<B>Unable to choose playable game mode.</B> Reverting to pre-game lobby."
 			return 0
 		if(secret_force_mode != "secret")
@@ -88,6 +90,7 @@ var/global/datum/controller/gameticker/ticker
 
 	if(!src.mode)
 		current_state = GAME_STATE_PREGAME
+		Master.SetRunLevel(RUNLEVEL_LOBBY)
 		world << "<span class='danger'>Serious error in mode setup!</span> Reverting to pre-game lobby."
 		return 0
 
@@ -99,6 +102,7 @@ var/global/datum/controller/gameticker/ticker
 	if(!src.mode.can_start())
 		world << "<B>Unable to start [mode.name].</B> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby."
 		current_state = GAME_STATE_PREGAME
+		Master.SetRunLevel(RUNLEVEL_LOBBY)
 		mode.fail_setup()
 		mode = null
 		job_master.ResetOccupations()
@@ -127,6 +131,7 @@ var/global/datum/controller/gameticker/ticker
 
 	shuttle_controller.setup_shuttle_docks()
 
+	// TODO - Leshana - Dear God Fix This.  Fix all of this. Not just this line, this entire proc. This entire file!
 	spawn(0)//Forking here so we dont have to wait for this to finish
 		mode.post_setup()
 		//Cleanup some stuff
@@ -155,6 +160,7 @@ var/global/datum/controller/gameticker/ticker
 	*/
 
 	processScheduler.start()
+	Master.SetRunLevel(RUNLEVEL_GAME)
 
 	if(config.sql_enabled)
 		statistic_cycle() // Polls population totals regularly and stores them in an SQL DB -- TLE
@@ -319,6 +325,7 @@ var/global/datum/controller/gameticker/ticker
 
 		if(!mode.explosion_in_progress && game_finished && (mode_finished || post_game))
 			current_state = GAME_STATE_FINISHED
+			Master.SetRunLevel(RUNLEVEL_POSTGAME)
 
 			spawn
 				declare_completion()

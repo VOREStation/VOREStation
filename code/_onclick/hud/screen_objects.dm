@@ -46,7 +46,7 @@
 	var/obj/item/owner
 
 /obj/screen/item_action/Destroy()
-	..()
+	. = ..()
 	owner = null
 
 /obj/screen/item_action/Click()
@@ -161,6 +161,12 @@
 	if(old_selecting != selecting)
 		update_icon()
 	return 1
+
+/obj/screen/zone_sel/proc/set_selected_zone(bodypart)
+	var/old_selecting = selecting
+	selecting = bodypart
+	if(old_selecting != selecting)
+		update_icon()
 
 /obj/screen/zone_sel/update_icon()
 	overlays.Cut()

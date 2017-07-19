@@ -103,7 +103,7 @@
 		if(!stat)
 			for(var/mob/M in viewers(user, null))
 				if ((M.client && !( M.blinded )))
-					M.show_message("\blue [user] baps [name] on the nose with the rolled up [O]")
+					M.show_message("<font color='blue'>[user] baps [name] on the nose with the rolled up [O]</font>")
 			spawn(0)
 				for(var/i in list(1,2,4,8,4,2,1,2))
 					set_dir(i)
@@ -146,7 +146,7 @@
 //pupplies cannot wear anything.
 /mob/living/simple_animal/corgi/puppy/Topic(href, href_list)
 	if(href_list["remove_inv"] || href_list["add_inv"])
-		usr << "\red You can't fit this on [src]"
+		usr << "<font color='red'>You can't fit this on [src]</font>"
 		return
 	..()
 
@@ -169,7 +169,7 @@
 //Lisa already has a cute bow!
 /mob/living/simple_animal/corgi/Lisa/Topic(href, href_list)
 	if(href_list["remove_inv"] || href_list["add_inv"])
-		usr << "\red [src] already has a cute bow!"
+		usr << "<font color='red'>[src] already has a cute bow!</font>"
 		return
 	..()
 

@@ -18,7 +18,7 @@
 
 	var/fabricator_tag = "Upper Level"
 	var/drone_progress = 0
-	var/produce_drones = 1
+	var/produce_drones = 2
 	var/time_last_drone = 500
 	var/drone_type = /mob/living/silicon/robot/drone
 
@@ -27,7 +27,7 @@
 
 /obj/machinery/drone_fabricator/derelict
 	name = "construction drone fabricator"
-	fabricator_tag = "Depths"
+	fabricator_tag = "Upper Level Construction"
 	drone_type = /mob/living/silicon/robot/drone/construction
 
 /obj/machinery/drone_fabricator/New()
@@ -80,7 +80,7 @@
 
 	time_last_drone = world.time
 	if(player.mob && player.mob.mind) player.mob.mind.reset()
-	var/mob/living/silicon/robot/drone/new_drone = PoolOrNew(drone_type, get_turf(src))
+	var/mob/living/silicon/robot/drone/new_drone = new drone_type(get_turf(src))
 	new_drone.transfer_personality(player)
 	new_drone.master_fabricator = src
 

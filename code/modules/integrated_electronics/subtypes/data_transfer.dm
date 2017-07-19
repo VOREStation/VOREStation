@@ -44,9 +44,9 @@
 	icon_state = "splitter"
 	complexity = 3
 	activators = list(
-		"incoming pulse",
-		"outgoing pulse A",
-		"outgoing pulse B"
+		"pulse" = 1,
+		"pulse A" = 0,
+		"pulse B" = 0
 	)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 2
@@ -64,11 +64,11 @@
 	icon_state = "splitter4"
 	complexity = 5
 	activators = list(
-		"incoming pulse",
-		"outgoing pulse A",
-		"outgoing pulse B",
-		"outgoing pulse C",
-		"outgoing pulse D"
+		"pulse" = 1,
+		"pulse A" = 0,
+		"pulse B" = 0,
+		"pulse C" = 0,
+		"pulse D" = 0
 	)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 4
@@ -79,15 +79,15 @@
 	w_class = ITEMSIZE_SMALL
 	complexity = 9
 	activators = list(
-		"incoming pulse",
-		"outgoing pulse A",
-		"outgoing pulse B",
-		"outgoing pulse C",
-		"outgoing pulse D",
-		"outgoing pulse E",
-		"outgoing pulse F",
-		"outgoing pulse G",
-		"outgoing pulse H"
+		"incoming pulse" = 1,
+		"outgoing pulse A" = 0,
+		"outgoing pulse B" = 0,
+		"outgoing pulse C" = 0,
+		"outgoing pulse D" = 0,
+		"outgoing pulse E" = 0,
+		"outgoing pulse F" = 0,
+		"outgoing pulse G" = 0,
+		"outgoing pulse H" = 0
 		)
 	spawn_flags = IC_SPAWN_RESEARCH
 	power_draw_per_use = 8
@@ -101,7 +101,7 @@
 	icon_state = "mux2"
 	inputs = list("input selection")
 	outputs = list("output")
-	activators = list("select")
+	activators = list("select" = 1, "on select" = 0)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 4
 	var/number_of_inputs = 2
@@ -120,7 +120,10 @@
 
 	if(isnum(input_index) && (input_index >= 1 && input_index < inputs.len))
 		output = get_pin_data(IC_INPUT, input_index + 1)
+
 	set_pin_data(IC_OUTPUT, 1, output)
+	push_data()
+	activate_pin(2)
 
 /obj/item/integrated_circuit/transfer/multiplexer/medium
 	name = "four multiplexer"
@@ -147,7 +150,7 @@
 	icon_state = "dmux2"
 	inputs = list("output selection","input")
 	outputs = list()
-	activators = list("select")
+	activators = list("select" = 1)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 4
 	var/number_of_outputs = 2

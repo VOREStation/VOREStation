@@ -6,6 +6,7 @@ Proc for metabolism
 Proc for mutating
 Procs for copying speech, if applicable
 Procs for targeting
+Divergence proc, used in mutation to make unique datums.
 */
 /mob/living/simple_animal/xeno/proc/ProcessTraits()
 	if(maleable >= MAX_MALEABLE)
@@ -84,8 +85,14 @@ Procs for targeting
 		return 1 //Everything worked out okay.
 
 	return 0
+	
+/mob/living/simple_animal/xeno/proc/diverge()
+	var/datum/xeno/traits/newtraits = new()
+	newtraits.copy_traits(traitdat)
+	return newtraits
 
 /mob/living/simple_animal/xeno/proc/Mutate()
+	traitdat = diverge()
 	nameVar = "mutated"
 	if((COLORMUT & mutable))
 		traitdat.traits[TRAIT_XENO_COLOR] = "#"

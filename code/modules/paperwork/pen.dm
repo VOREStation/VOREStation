@@ -35,6 +35,10 @@
 	icon_state = "pen_red"
 	colour = "red"
 
+/obj/item/weapon/pen/fountain
+	desc = "A well made fountain pen."
+	icon_state = "pen_fountain"
+
 /obj/item/weapon/pen/multi
 	desc = "It's a pen with multiple colors of ink!"
 	var/selectedColor = 1

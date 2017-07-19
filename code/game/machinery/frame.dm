@@ -17,13 +17,20 @@
 	construction_frame_floor += cancel
 
 /datum/frame/frame_types
-	var/name
-	var/frame_size = 5
-	var/frame_class
-	var/circuit
-	var/frame_style = "floor"
-	var/x_offset
-	var/y_offset
+	var/icon/icon_override		// Icon to set on frame object when building. If null icon is unchanged.
+	var/name					// Name assigned to the frame object.
+	var/frame_size = 5			// Sheets of metal required to build.
+	var/frame_class				// Determines construction method.  "machine", "computer", "alarm", or "display"
+	var/circuit					// Type path of the circuit board that comes built in with this frame. Null to require adding a circuit.
+	var/frame_style = "floor"	// "floor" or "wall"
+	var/x_offset				// For wall frames: pixel_x
+	var/y_offset				// For wall frames: pixel_y
+
+// Get the icon state to use at a given state.  Default implementation is based on the frame's name
+/datum/frame/frame_types/proc/get_icon_state(var/state)
+	var/type = lowertext(name)
+	type = replacetext(type, " ", "_")
+	return "[type]_[state]"
 
 /datum/frame/frame_types/computer
 	name = "Computer"
@@ -203,9 +210,9 @@
 
 /obj/structure/frame/update_icon()
 	..()
-	var/type = lowertext(frame_type.name)
-	type = replacetext(type, " ", "_")
-	icon_state = "[type]_[state]"
+	if(frame_type.icon_override)
+		icon = frame_type.icon_override
+	icon_state = frame_type.get_icon_state(state)
 
 /obj/structure/frame/proc/check_components(mob/user as mob)
 	components = list()

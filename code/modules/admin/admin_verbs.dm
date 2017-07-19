@@ -162,7 +162,8 @@ var/list/admin_verbs_server = list(
 	/client/proc/check_customitem_activity,
 	/client/proc/nanomapgen_DumpImage,
 	/client/proc/modify_server_news,
-	/client/proc/recipe_dump
+	/client/proc/recipe_dump,
+	/client/proc/panicbunker
 	)
 var/list/admin_verbs_debug = list(
 	/client/proc/getruntimelog,                     //allows us to access runtime logs to somebody,
@@ -175,6 +176,7 @@ var/list/admin_verbs_debug = list(
 	/client/proc/debug_controller,
 	/client/proc/debug_antagonist_template,
 	/client/proc/cmd_debug_mob_lists,
+	/client/proc/cmd_debug_using_map,
 	/client/proc/cmd_admin_delete,
 	/client/proc/cmd_debug_del_all,
 	/client/proc/cmd_debug_tog_aliens,
@@ -285,6 +287,7 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/debug_controller,
 	/client/proc/startSinglo,
 	/client/proc/cmd_debug_mob_lists,
+	/client/proc/cmd_debug_using_map,
 	/client/proc/cmd_debug_del_all,
 	/client/proc/cmd_debug_tog_aliens,
 	/client/proc/air_report,

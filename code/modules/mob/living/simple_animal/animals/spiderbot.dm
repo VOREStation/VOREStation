@@ -95,10 +95,10 @@
 	if (istype(O, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = O
 		if (WT.remove_fuel(0))
-			if(health < maxHealth)
+			if(health < getMaxHealth())
 				health += pick(1,1,1,2,2,3)
-				if(health > maxHealth)
-					health = maxHealth
+				if(health > getMaxHealth())
+					health = getMaxHealth()
 				add_fingerprint(user)
 				src.visible_message("<span class='notice'>\The [user] has spot-welded some of the damage to \the [src]!</span>")
 			else
@@ -219,7 +219,7 @@
 		return
 
 	if(!held_item)
-		usr << "\red You have nothing to drop!"
+		usr << "<font color='red'>You have nothing to drop!</font>"
 		return 0
 
 	if(istype(held_item, /obj/item/weapon/grenade))
