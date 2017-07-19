@@ -1230,7 +1230,7 @@
 	result_amount = 3
 
 /datum/chemical_reaction/drinks/nuka_cola
-	name = "Nuka Cola"
+	name = "Nuclear Cola"
 	id = "nuka_cola"
 	result = "nuka_cola"
 	required_reagents = list("uranium" = 1, "cola" = 5)
@@ -1783,15 +1783,15 @@
 	name = "Shirley Temple"
 	id = "shirley_temple"
 	result = "shirley_temple"
-	required_reagents = list("lemon_lime" = 4, "grenadine" = 1)
+	required_reagents = list("gingerale" = 4, "grenadine" = 1)
 	result_amount = 5
 
 /datum/chemical_reaction/drinks/royrogers
 	name = "Roy Rogers"
 	id = "roy_rogers"
 	result = "roy_rogers"
-	required_reagents = list("cola" = 4, "grenadine" = 1)
-	result_amount = 5
+	required_reagents = list("gingerale" = 4, "lemon_lime" = 2, "grenadine" = 1)
+	result_amount = 7
 
 /datum/chemical_reaction/drinks/collinsmix
 	name = "Collins Mix"
@@ -1841,3 +1841,108 @@
 	result = "berrytea"
 	required_reagents = list("tea" = 5, "berryjuice" = 1)
 	result_amount = 6
+
+/datum/chemical_reaction/drinks/sakebomb
+	name = "Sake Bomb"
+	id = "sakebomb"
+	result = "sakebomb"
+	required_reagents = list("beer" = 2, "sake" = 1)
+	result_amount = 3
+
+/datum/chemical_reaction/drinks/tamagozake
+	name = "Tamagozake"
+	id = "tamagozake"
+	result = "tamagozake"
+	required_reagents = list("sake" = 10, "sugar" = 5, "egg" = 3)
+	result_amount = 15
+
+/datum/chemical_reaction/drinks/ginzamary
+	name = "Ginza Mary"
+	id = "ginzamary"
+	result = "ginzamary"
+	required_reagents = list("sake" = 2, "vodka" = 2, "tomatojuice" = 1)
+	result_amount = 5
+
+/datum/chemical_reaction/drinks/tokyorose
+	name = "Tokyo Rose"
+	id = "tokyorose"
+	result = "tokyorose"
+	required_reagents = list("sake" = 1, "berryjuice" = 1)
+	result_amount = 2
+
+/datum/chemical_reaction/drinks/saketini
+	name = "Saketini"
+	id = "saketini"
+	result = "saketini"
+	required_reagents = list("sake" = 1, "gin" = 1)
+	result_amount = 2
+
+/datum/chemical_reaction/drinks/elysiumfacepunch
+	name = "Elysium Facepunch"
+	id = "elysiumfacepunch"
+	result = "elysiumfacepunch"
+	required_reagents = list("kahlua" = 1, "lemonjuice" = 1)
+	result_amount = 2
+
+/datum/chemical_reaction/drinks/erebusmoonrise
+	name = "Erebus Moonrise"
+	id = "erebusmoonrise"
+	result = "erebusmoonrise"
+	required_reagents = list("whiskey" = 1, "vodka" = 1, "tequilla" = 1)
+	result_amount = 3
+
+/datum/chemical_reaction/drinks/balloon
+	name = "Balloon"
+	id = "balloon"
+	result = "balloon"
+	required_reagents = list("cream" = 1, "curacao" = 1)
+	result_amount = 2
+
+/datum/chemical_reaction/drinks/natunabrandy
+	name = "Natuna Brandy"
+	id = "natunabrandy"
+	result = "natunabrandy"
+	required_reagents = list("beer" = 1, "sodawater" = 2)
+	result_amount = 3
+
+/datum/chemical_reaction/drinks/euphoria
+	name = "Euphoria"
+	id = "euphoria"
+	result = "euphoria"
+	required_reagents = list("specialwhiskey" = 1, "cognac" = 2)
+	result_amount = 3
+
+/datum/chemical_reaction/drinks/xanaducannon
+	name = "Xanadu Cannon"
+	id = "xanaducannon"
+	result = "xanaducannon"
+	required_reagents = list("ale" = 1, "dr_gibb" = 1)
+	result_amount = 2
+
+/datum/chemical_reaction/drinks/debugger
+	name = "Debugger"
+	id = "debugger"
+	result = "debugger"
+	required_reagents = list("fuel" = 1, "sugar" = 2, "cornoil" = 2)
+	result_amount = 5
+
+/datum/chemical_reaction/drinks/spacersbrew
+	name = "Spacer's Brew"
+	id = "spacersbrew"
+	result = "spacersbrew"
+	required_reagents = list("brownstar" = 4, "ethanol" = 1)
+	result_amount = 5
+
+/datum/chemical_reaction/drinks/binmanbliss
+	name = "Binman Bliss"
+	id = "binmanbliss"
+	result = "binmanbliss"
+	required_reagents = list("sake" = 1, "tequilla" = 1)
+	result_amount = 2
+
+/datum/chemical_reaction/drinks/chrysanthemum
+	name = "Chrysanthemum"
+	id = "chrysanthemum"
+	result = "chrysanthemum"
+	required_reagents = list("sake" = 1, "melonliquor" = 1)
+	result_amount = 2
