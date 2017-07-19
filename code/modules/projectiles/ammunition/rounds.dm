@@ -270,33 +270,33 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 1250)
 
 /*
- * 5.56mm
+ * 5.45mm
  */
 
-/obj/item/ammo_casing/a556
-	desc = "A 5.56mm bullet casing."
-	caliber = "5.56mm"
+/obj/item/ammo_casing/a545
+	desc = "A 5.45mm bullet casing."
+	caliber = "5.45mm"
 	icon_state = "rifle-casing"
-	projectile_type = /obj/item/projectile/bullet/rifle/a556
+	projectile_type = /obj/item/projectile/bullet/rifle/a545
 
-/obj/item/ammo_casing/a556/ap
-	desc = "A 5.56mm armor-piercing bullet casing."
-	projectile_type = /obj/item/projectile/bullet/rifle/a556/ap
+/obj/item/ammo_casing/a545/ap
+	desc = "A 5.45mm armor-piercing bullet casing."
+	projectile_type = /obj/item/projectile/bullet/rifle/a545/ap
 
-/obj/item/ammo_casing/a556p
-	desc = "A 5.56mm practice bullet casing."
-	caliber = "5.56mm"
+/obj/item/ammo_casing/a545p
+	desc = "A 5.45mm practice bullet casing."
+	caliber = "5.45mm"
 	icon_state = "rifle-casing" // Need to make an icon for these
 	projectile_type = /obj/item/projectile/bullet/rifle/practice
 
-/obj/item/ammo_casing/a556/blank
-	desc = "A blank 5.56mm bullet casing."
+/obj/item/ammo_casing/a545/blank
+	desc = "A blank 5.45mm bullet casing."
 	projectile_type = /obj/item/projectile/bullet/blank
 	matter = list(DEFAULT_WALL_MATERIAL = 90)
 
-/obj/item/ammo_casing/a556/hp
-	desc = "A 5.56mm hollow-point bullet casing."
-	projectile_type = /obj/item/projectile/bullet/rifle/a556/hollow
+/obj/item/ammo_casing/a545/hp
+	desc = "A 5.45mm hollow-point bullet casing."
+	projectile_type = /obj/item/projectile/bullet/rifle/a545/hollow
 
 /*
  * Misc

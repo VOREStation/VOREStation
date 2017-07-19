@@ -137,19 +137,19 @@
 	path =/obj/item/ammo_magazine/m44
 	hidden = 1
 
-/////// 5.56mm
-/datum/category_item/autolathe/arms/rifle_556
-	name = "rifle magazine (5.56mm)"
-	path =/obj/item/ammo_magazine/m556
+/////// 5.45mm
+/datum/category_item/autolathe/arms/rifle_545
+	name = "rifle magazine (5.45mm)"
+	path =/obj/item/ammo_magazine/m545
 	hidden = 1
 
-/datum/category_item/autolathe/arms/rifle_556p
-	name = "rifle magazine (5.56mm practice)"
-	path =/obj/item/ammo_magazine/m556/practice
+/datum/category_item/autolathe/arms/rifle_545p
+	name = "rifle magazine (5.45mm practice)"
+	path =/obj/item/ammo_magazine/m545/practice
 
-/datum/category_item/autolathe/arms/machinegun_556
+/datum/category_item/autolathe/arms/machinegun_545
 	name = "machinegun box magazine (5.56)"
-	path =/obj/item/ammo_magazine/m556saw
+	path =/obj/item/ammo_magazine/m545saw
 	hidden = 1
 
 /////// 7.62
@@ -245,14 +245,14 @@
 	category = "Arms and Ammunition"
 	hidden = 1
 
-/datum/category_item/autolathe/arms/rifle_556
-	name = "10rnd rifle magazine (5.56mm)"
-	path =/obj/item/ammo_magazine/m556saw/empty
+/datum/category_item/autolathe/arms/rifle_545
+	name = "10rnd rifle magazine (5.45mm)"
+	path =/obj/item/ammo_magazine/m545saw/empty
 	category = "Arms and Ammunition"
 
-/datum/category_item/autolathe/arms/rifle_556m
-	name = "20rnd rifle magazine (5.56mm)"
-	path =/obj/item/ammo_magazine/m556sawm/empty
+/datum/category_item/autolathe/arms/rifle_545m
+	name = "20rnd rifle magazine (5.45mm)"
+	path =/obj/item/ammo_magazine/m545sawm/empty
 	category = "Arms and Ammunition"
 	hidden = 1
 
@@ -359,15 +359,15 @@
 	category = "Arms and Ammunition"
 	hidden = 1
 */
-/datum/category_item/autolathe/arms/rifle_clip_556
-	name = "ammo clip (5.56mm)"
-	path =/obj/item/ammo_magazine/clip/c556
+/datum/category_item/autolathe/arms/rifle_clip_545
+	name = "ammo clip (5.45mm)"
+	path =/obj/item/ammo_magazine/clip/c545
 	category = "Arms and Ammunition"
 	hidden = 1
 
-/datum/category_item/autolathe/arms/rifle_clip_556_practice
-	name = "ammo clip (5.56mm practice)"
-	path =/obj/item/ammo_magazine/clip/c556/practice
+/datum/category_item/autolathe/arms/rifle_clip_545_practice
+	name = "ammo clip (5.45mm practice)"
+	path =/obj/item/ammo_magazine/clip/c545/practice
 	category = "Arms and Ammunition"
 
 /datum/category_item/autolathe/arms/rifle_clip_762
