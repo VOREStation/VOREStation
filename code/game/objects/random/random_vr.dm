@@ -194,3 +194,20 @@
 		return this_mob
 	else
 		return mob
+
+/obj/random/outside_mob/spawn_item()
+	..()
+	var/datum/map_z_level/z_level = get_z_level_datum(spawned_thing)
+	if(!istype(z_level, /datum/map_z_level/tether/wilderness))
+		return
+	if(!istype(spawned_thing, /mob/living/simple_animal))
+		return
+	var/datum/map_z_level/tether/wilderness/wilderness = z_level
+	if(wilderness.activated)
+		return
+	var/mob/living/simple_animal/M = spawned_thing
+	wilderness.frozen_mobs += M
+	M.life_disabled = 1
+	for(var/i = 1 to 20) //wander the mobs around so they aren't always in the same spots
+		step_rand(M)
+		sleep(2)
