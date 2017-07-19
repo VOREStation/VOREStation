@@ -2400,6 +2400,7 @@
 #include "code\modules\vore\eating\belly_vr.dm"
 #include "code\modules\vore\eating\bellymodes_vr.dm"
 #include "code\modules\vore\eating\living_vr.dm"
+#include "code\modules\vore\eating\object_vr.dm"
 #include "code\modules\vore\eating\silicon_vr.dm"
 #include "code\modules\vore\eating\simple_animal_vr.dm"
 #include "code\modules\vore\eating\vore_vr.dm"

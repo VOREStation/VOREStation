@@ -91,3 +91,9 @@
 	desc = "Decreases stun duration from flashes and other light-based stuns."
 	cost = 1
 	var_changes = list("flash_mod" = 0.5)
+
+/datum/trait/omnivorous
+	name = "Omnivorous Trash Can Mode"
+	desc = "Gives you the ability to eat items."
+	cost = 2
+	var_changes = list("omnivorous" = 1)
