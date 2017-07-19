@@ -3,7 +3,7 @@
  */
 
 //Botanist
-/obj/item/clothing/suit/apron
+/obj/item/clothing/suit/storage/apron
 	name = "apron"
 	desc = "A basic blue apron."
 	icon_state = "apron"

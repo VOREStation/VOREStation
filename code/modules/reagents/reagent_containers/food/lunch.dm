@@ -16,6 +16,7 @@ var/list/lunchables_snacks_ = list(/obj/item/weapon/reagent_containers/food/snac
                                    /obj/item/weapon/reagent_containers/food/snacks/muffin,
                                    /obj/item/weapon/reagent_containers/food/snacks/popcorn,
                                    /obj/item/weapon/reagent_containers/food/snacks/sosjerky,
+                                   /obj/item/weapon/reagent_containers/food/snacks/unajerky,
                                    /obj/item/weapon/reagent_containers/food/snacks/no_raisin,
                                    /obj/item/weapon/reagent_containers/food/snacks/spacetwinkie,
                                    /obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers,

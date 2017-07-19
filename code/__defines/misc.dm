@@ -180,3 +180,14 @@
 #define ROLE_SYNTHETIC			"synthetic"
 #define ROLE_UNKNOWN			"unknown"
 #define ROLE_EVERYONE			"everyone"
+
+// Canonical spellings of TSCs, so typos never have to happen again due to human error.
+#define TSC_NT		"NanoTrasen"
+#define TSC_HEPH	"Hephaestus" // Because everyone misspells it
+#define TSC_VM		"Vey Med"
+#define TSC_ZH		"Zeng-Hu"
+#define TSC_WT		"Ward-Takahashi"
+#define TSC_BC		"Bishop Cybernetics"
+#define TSC_MORPH	"Morpheus"
+#define TSC_XION	"Xion" // Not really needed but consistancy I guess.
+#define TSC_GIL 	"Gilthari"

@@ -271,21 +271,31 @@
 	update_icon()
 
 	ai_log("Life() - stance=[stance] ai_inactive=[ai_inactive]", 4)
-	//Movement
-	if(!ai_inactive && !stop_automated_movement && wander && !anchored) //Allowed to move?
-		handle_wander_movement()
 
-	//Speaking
-	if(!ai_inactive && speak_chance && stance == STANCE_IDLE) // Allowed to chatter?
-		handle_idle_speaking()
-
-	//Stanceyness
+	//AI Actions
 	if(!ai_inactive)
+		//Stanceyness
 		handle_stance()
 
-	//Resisting out of things
-	if(!ai_inactive && incapacitated(INCAPACITATION_DEFAULT) && stance != STANCE_IDLE)
-		resist()
+		//Movement
+		if(!stop_automated_movement && wander && !anchored) //Allowed to move?
+			handle_wander_movement()
+
+		//Speaking
+		if(speak_chance && stance == STANCE_IDLE) // Allowed to chatter?
+			handle_idle_speaking()
+
+		//Resisting out buckles
+		if(stance != STANCE_IDLE && incapacitated(INCAPACITATION_BUCKLED_PARTIALLY))
+			resist()
+
+		//Resisting out of closets
+		if(istype(loc,/obj/structure/closet))
+			var/obj/structure/closet/C = loc
+			if(C.welded)
+				resist()
+			else
+				C.open()
 
 	return 1
 
@@ -807,12 +817,17 @@
 
 //Someone wants help?
 /mob/living/simple_animal/proc/HelpRequested(var/mob/living/simple_animal/F)
-	if(!(stance == STANCE_IDLE) || stat)
+	if(target_mob || stat)
 		ai_log("HelpRequested() by [F] but we're busy/dead",2)
 		return
 	if(get_dist(src,F) <= follow_dist)
 		ai_log("HelpRequested() by [F] but we're already here",2)
 		return
+	if(get_dist(src,F) <= view_range)
+		ai_log("HelpRequested() by [F] and within targetshare range",2)
+		if(F.target_mob && set_target(F.target_mob))
+			handle_stance(STANCE_ATTACK)
+			return
 
 	if(set_follow(F, 10 SECONDS))
 		handle_stance(STANCE_FOLLOW)

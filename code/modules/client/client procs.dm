@@ -290,6 +290,7 @@
 		'html/images/ntlogo.png',
 		'html/images/sglogo.png',
 		'html/images/talisman.png',
+		'html/images/paper_bg.png',
 		'icons/pda_icons/pda_atmos.png',
 		'icons/pda_icons/pda_back.png',
 		'icons/pda_icons/pda_bell.png',

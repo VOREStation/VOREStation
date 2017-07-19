@@ -137,6 +137,10 @@
 	damage = 20
 	armor_penetration = 15
 
+/obj/item/projectile/bullet/pistol/medium/hollow
+	damage = 30
+	armor_penetration = -50
+
 /obj/item/projectile/bullet/pistol/strong //revolvers and matebas
 	damage = 60
 
@@ -200,12 +204,22 @@
 	damage = 20
 	armor_penetration = 50 // At 40 or more armor, this will do more damage than standard rounds.
 
+/obj/item/projectile/bullet/rifle/a762/hollow
+	damage = 35
+	armor_penetration = -50
+	penetrating = 0
+
 /obj/item/projectile/bullet/rifle/a556
 	damage = 35
 
 /obj/item/projectile/bullet/rifle/a556/ap
 	damage = 30
 	armor_penetration = 50 // At 30 or more armor, this will do more damage than standard rounds.
+
+/obj/item/projectile/bullet/rifle/a556/hollow
+	damage = 40
+	armor_penetration = -50
+	penetrating = 0
 
 /obj/item/projectile/bullet/rifle/a145
 	damage = 80

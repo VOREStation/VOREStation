@@ -367,7 +367,7 @@
 			/obj/item/clothing/shoes/white = 3,
 			/obj/item/clothing/mask/gas = 3,
 			/obj/item/weapon/tank/oxygen = 3,
-			/obj/item/clothing/gloves/latex,
+			/obj/item/clothing/gloves/sterile/latex,
 			/obj/item/weapon/storage/box/gloves
 			)
 	cost = 50

@@ -1,4 +1,0 @@
-author: Leshana
-delete-after: True
-changes: 
-  - rscadd: "Upgrades the automatic pipe layer to modernize its code and make it constructable! Constructs and deconstruts like other machines now. Circuits are buildable in the autolathe.  Uses steel to make pipes."

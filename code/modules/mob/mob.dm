@@ -362,7 +362,7 @@
 		var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
 		usr << "You have been dead for[pluralcheck] [deathtimeseconds] seconds."
 
-		if (deathtime < (5 * 600))
+		if ((deathtime < (5 * 600)) && (ticker && ticker.current_state > GAME_STATE_PREGAME))
 			usr << "You must wait 5 minutes to respawn!"
 			return
 		else

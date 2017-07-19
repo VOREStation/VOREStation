@@ -61,6 +61,10 @@
 		name = "Short Hair 2"
 		icon_state = "hair_shorthair3"
 
+	twintail
+		name = "Twintail"
+		icon_state = "hair_twintail"
+
 	cut
 		name = "Cut Hair"
 		icon_state = "hair_c"
@@ -1021,9 +1025,13 @@
 		icon_state = "tat_campbell"
 		body_parts = list(BP_R_ARM)
 
+		left
+			name = "Tattoo (Campbell, L.Arm)"
+			body_parts = list(BP_L_ARM)
+
 	tat_tiger
 		name = "Tattoo (Tiger Stripes, Body)"
-		icon_state = "tat_campbell"
+		icon_state = "tat_tiger"
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN)
 
 	taj_paw_socks

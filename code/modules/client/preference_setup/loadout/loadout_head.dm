@@ -236,11 +236,6 @@
 	display_name = "santa hat, green (holiday)"
 	path = /obj/item/clothing/head/santa/green
 
-/datum/gear/head/zhan_scarf
-	display_name = "Zhan headscarf"
-	path = /obj/item/clothing/head/tajaran/scarf
-	whitelisted = "Tajara"
-
 /datum/gear/head/hijab
 	display_name = "hijab"
 	path = /obj/item/clothing/head/hijab

@@ -63,12 +63,12 @@ proc/random_facial_hair_style(gender, species = "Human")
 
 		return f_style
 
-proc/sanitize_name(name, species = "Human")
+proc/sanitize_name(name, species = "Human", robot = 0)
 	var/datum/species/current_species
 	if(species)
 		current_species = all_species[species]
 
-	return current_species ? current_species.sanitize_name(name) : sanitizeName(name)
+	return current_species ? current_species.sanitize_name(name, robot) : sanitizeName(name, MAX_NAME_LEN, robot)
 
 proc/random_name(gender, species = "Human")
 
