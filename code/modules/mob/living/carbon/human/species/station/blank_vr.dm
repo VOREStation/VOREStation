@@ -1,5 +1,6 @@
 /datum/species
 	var/vore_numbing = 0
+	var/omnivorous = 0
 
 /datum/species/custom
 	name = "Custom Species"
