@@ -24,6 +24,17 @@
 
 */
 
+//ketrai:Ketrai
+/obj/item/clothing/head/fluff/ketrai
+	name = "Pink Bear Hat"
+	desc = "A pink space bear hat, the origins are unknown"
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "bearpelt"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "ketraibearpelt"
+
 //benemuel:Yuuko Shimmerpond
 /obj/item/clothing/under/fluff/sakura_hokkaido_kimono
 	name = "Sakura Kimono"
@@ -1590,3 +1601,79 @@ Departamental Swimsuits, for general use
 	name = "purple and grey cloak"
 	icon_state = "tesh_cloak_brg"
 	item_state = "tesh_cloak_brg"
+
+//Jackets For General Use. Sprited by Joji.
+/obj/item/clothing/suit/storage/fluff/jacket //Not the toggle version since it uses custom toggle code to update the on-mob icon.
+	name = "Field Jacket"
+	desc = "A standard Earth military field jacket made of comfortable cotton."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "fjacket"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "fjacket_mob"
+	var/unbuttoned = 0
+
+	verb/toggle()
+		set name = "Toggle coat buttons"
+		set category = "Object"
+		set src in usr
+
+		if(!usr.canmove || usr.stat || usr.restrained())
+			return 0
+
+		switch(unbuttoned)
+			if(0)
+				icon_state = "[initial(icon_state)]_open"
+				item_state = "[initial(item_state)]_open"
+				unbuttoned = 1
+				usr << "You unbutton the coat."
+			if(1)
+				icon_state = "[initial(icon_state)]"
+				item_state = "[initial(item_state)]"
+				unbuttoned = 0
+				usr << "You button up the coat."
+		usr.update_inv_wear_suit()
+
+/obj/item/clothing/suit/storage/fluff/jacket/field //Just here so it can be seen and easily recognized under /spawn.
+	name = "Field Jacket"
+
+/obj/item/clothing/suit/storage/fluff/jacket/air_cavalry
+	name = "Air Cavalry Jacket"
+	desc = "A jacket worn by the 1st Cavalry Division on Earth."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "acjacket"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "acjacket_mob"
+
+/obj/item/clothing/suit/storage/fluff/jacket/air_force
+	name = "Air Force Jacket"
+	desc = "A jacket worn by the Earth Air Force."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "afjacket"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "afjacket_mob"
+
+/obj/item/clothing/suit/storage/fluff/jacket/navy
+	name = "Navy Jacket"
+	desc = "A jacket worn by the Earth's Navy. It's adorned with reflective straps."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "navyjacket"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "navyjacket_mob"
+
+/obj/item/clothing/suit/storage/fluff/jacket/special_forces
+	name = "Special Forces Jacket"
+	desc = "A durable jacket worn by the Earth's special forces."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "sfjacket"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "sfjacket_mob"

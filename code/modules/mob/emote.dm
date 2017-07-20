@@ -38,7 +38,14 @@
 			var/mob/M = mob
 			spawn(0) // It's possible that it could be deleted in the meantime, or that it runtimes.
 				if(M)
-					M.show_message(message, m_type)
+					//VOREStation edit
+					if(istype(M, /mob/observer/dead/))
+						var/mob/observer/dead/D = M
+						if(ckey || (src in view(D)))
+							M.show_message(message, m_type)
+					else
+						M.show_message(message, m_type)
+					//End VOREStation edit
 
 		for(var/obj in o_viewers)
 			var/obj/O = obj

@@ -137,12 +137,17 @@ default behaviour is:
 		spawn(0)
 			..()
 			if (!istype(AM, /atom/movable) || AM.anchored)
-				if(confused && prob(50) && m_intent=="run")
+				//VOREStation Edit - object-specific proc for running into things
+				if((confused || is_blind()) && prob(50) && m_intent=="run")
+					AM.stumble_into(src)
+				//VOREStation Edit End
+				/* VOREStation Removal - See above
 					Weaken(2)
 					playsound(loc, "punch", 25, 1, -1)
 					visible_message("<span class='warning'>[src] [pick("ran", "slammed")] into \the [AM]!</span>")
 					src.apply_damage(5, BRUTE)
 					src << ("<span class='warning'>You just [pick("ran", "slammed")] into \the [AM]!</span>")
+				*/ // VOREStation Removal End
 				return
 			if (!now_pushing)
 				now_pushing = 1
