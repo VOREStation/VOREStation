@@ -926,3 +926,11 @@
 	icon_state = "ariana_s"
 	ckeys_allowed = list("liquidfirefly")
 	do_colouration = 0
+
+//liquidfirefly: Ariana Scol
+/datum/sprite_accessory/tail/taur/centipede
+	name = "Alraune (natje)"
+	icon_state = "alraune_s"
+	ani_state = "alraune_closed_s"
+	ckeys_allowed = list("natje")
+	do_colouration = 0
