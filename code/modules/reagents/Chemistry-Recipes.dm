@@ -1842,6 +1842,7 @@
 	required_reagents = list("tea" = 5, "berryjuice" = 1)
 	result_amount = 6
 
+/datum/chemical_reaction/drinks/sakebomb
 	name = "Sake Bomb"
 	id = "sakebomb"
 	result = "sakebomb"
@@ -1862,6 +1863,7 @@
 	required_reagents = list("sake" = 2, "vodka" = 2, "tomatojuice" = 1)
 	result_amount = 5
 
+/datum/chemical_reaction/drinks/tokyorose
 	name = "Tokyo Rose"
 	id = "tokyorose"
 	result = "tokyorose"
@@ -1904,6 +1906,9 @@
 	result_amount = 3
 
 /datum/chemical_reaction/drinks/euphoria
+	name = "Euphoria"
+	id = "euphoria"
+	result = "euphoria"
 	required_reagents = list("specialwhiskey" = 1, "cognac" = 2)
 	result_amount = 3
 
@@ -1911,6 +1916,7 @@
 	name = "Xanadu Cannon"
 	id = "xanaducannon"
 	result = "xanaducannon"
+	required_reagents = list("ale" = 1, "dr_gibb" = 1)
 	result_amount = 2
 
 /datum/chemical_reaction/drinks/debugger
@@ -1941,6 +1947,7 @@
 	required_reagents = list("sake" = 1, "melonliquor" = 1)
 	result_amount = 2
 
+//R-UST Port
 /datum/chemical_reaction/oxyphoron
 	name = "Oxyphoron"
 	id = "oxyphoron"
