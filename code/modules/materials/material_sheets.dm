@@ -166,9 +166,6 @@
 	default_type = "deuterium"
 	apply_colour = 1
 
-/obj/item/stack/material/deuterium/fifty
-	amount = 50
-
 /obj/item/stack/material/steel
 	name = DEFAULT_WALL_MATERIAL
 	icon_state = "sheet-metal"

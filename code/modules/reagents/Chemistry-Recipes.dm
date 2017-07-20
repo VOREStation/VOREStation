@@ -1941,6 +1941,13 @@
 	required_reagents = list("sake" = 1, "melonliquor" = 1)
 	result_amount = 2
 
+/datum/chemical_reaction/oxyphoron
+	name = "Oxyphoron"
+	id = "oxyphoron"
+	result = "oxyphoron"
+	required_reagents = list("water" = 1, "phoron" = 1)
+	result_amount = 2
+
 /datum/chemical_reaction/deuterium
 	name = "Deuterium"
 	id = "deuterium"
