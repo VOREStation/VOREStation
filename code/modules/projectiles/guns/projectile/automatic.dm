@@ -51,17 +51,17 @@
 
 /obj/item/weapon/gun/projectile/automatic/sts35
 	name = "assault rifle"
-	desc = "The rugged STS-35 is a durable automatic weapon of a make popular on the frontier worlds. Uses 5.56mm rounds. This one is unmarked."
+	desc = "The rugged STS-35 is a durable automatic weapon of a make popular on the frontier worlds. Uses 5.45mm rounds. This one is unmarked."
 	icon_state = "arifle"
 	item_state = null
 	w_class = ITEMSIZE_LARGE
 	force = 10
-	caliber = "5.56mm"
+	caliber = "5.45mm"
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 4)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/m556
-	allowed_magazines = list(/obj/item/ammo_magazine/m556)
+	magazine_type = /obj/item/ammo_magazine/m545
+	allowed_magazines = list(/obj/item/ammo_magazine/m545)
 
 	one_handed_penalty = 4
 
@@ -73,7 +73,7 @@
 
 /obj/item/weapon/gun/projectile/automatic/sts35/update_icon(var/ignore_inhands)
 	..()
-	if(istype(ammo_magazine,/obj/item/ammo_magazine/m556/small))
+	if(istype(ammo_magazine,/obj/item/ammo_magazine/m545/small))
 		icon_state = "arifle-small" // If using the small magazines, use the small magazine sprite.
 	else
 		icon_state = (ammo_magazine)? "arifle" : "arifle-empty"
@@ -111,7 +111,6 @@
 	force = 10
 	caliber = "7.62mm"
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 3)
-	ammo_type = "/obj/item/ammo_casing/a556" // Is this really needed anymore?
 	fire_sound = 'sound/weapons/Gunshot.ogg'
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
@@ -181,14 +180,13 @@
 	force = 10
 	slot_flags = 0
 	max_shells = 50
-	caliber = "5.56mm"
+	caliber = "5.45mm"
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 2)
 	slot_flags = SLOT_BACK
-	ammo_type = "/obj/item/ammo_casing/a556" // Is this really needed anymore?
 	fire_sound = 'sound/weapons/machinegun.ogg'
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/m556saw
-	allowed_magazines = list(/obj/item/ammo_magazine/m556saw, /obj/item/ammo_magazine/m556)
+	magazine_type = /obj/item/ammo_magazine/m545saw
+	allowed_magazines = list(/obj/item/ammo_magazine/m545saw, /obj/item/ammo_magazine/m545)
 
 	one_handed_penalty = 6
 
@@ -345,7 +343,7 @@
 
 /obj/item/weapon/gun/projectile/automatic/carbine // Admin abuse assault rifle. ToDo: Make this less shit. Maybe remove its autofire, and make it spawn with only 10 rounds at start.
 	name = "assault carbine"
-	desc = "The bullpup configured GP3000 is a lightweight, compact, military-grade assault rifle produced by Gurov Projectile Weapons LLC. It is sold almost exclusively to standing armies. The serial number on this one has been scratched off. Uses 5.56mm rounds."
+	desc = "The bullpup configured GP3000 is a lightweight, compact, military-grade assault rifle produced by Gurov Projectile Weapons LLC. It is sold almost exclusively to standing armies. The serial number on this one has been scratched off. Uses 5.45mm rounds."
 	icon_state = "bullpup"
 	item_state = "bullpup"
 	w_class = ITEMSIZE_LARGE
