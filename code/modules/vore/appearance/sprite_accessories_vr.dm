@@ -934,7 +934,7 @@
 	do_colouration = 0
 
 //liquidfirefly: Ariana Scol
-/datum/sprite_accessory/tail/taur/centipede
+/datum/sprite_accessory/tail/taur/alraune
 	name = "Alraune (natje)"
 	icon_state = "alraune_s"
 	ani_state = "alraune_closed_s"
