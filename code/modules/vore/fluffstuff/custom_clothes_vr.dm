@@ -591,7 +591,7 @@
 	icon_state = "alurane-vines"
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	item_state = "alurane-vines"
+	item_state = "alurane-vines_mob"
 
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 		if(..())
