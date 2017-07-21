@@ -582,7 +582,25 @@
 			else
 				return 1
 
-//scree:Scree
+//natje:Pumila
+/obj/item/clothing/under/fluff/aluranevines
+	name = "Pumila's vines"
+	desc = "A wrap of green vines and colourful flowers."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "alurane-vines"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "alurane-vines"
+
+	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+		if(..())
+			if(H.ckey != "natje")
+				H << "<span class='warning'>Wrapping vines around yourself is a quite an... Odd idea. You decide otherwise.</span>"
+				return 0
+			else
+				return 1
+
 /obj/item/clothing/under/fluff/screesuit
 	name = "Scree's feathers"
 	desc = "A mop of fluffy blue feathers, the honkmother only knows what kind of bird they originally came from."

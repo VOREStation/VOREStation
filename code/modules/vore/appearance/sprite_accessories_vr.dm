@@ -244,6 +244,12 @@
 	icon_state = "shock"
 	ckeys_allowed = list("icowom")
 
+/datum/sprite_accessory/ears/alurane
+	name = "alurane ears/hair (Pumila)"
+	desc = ""
+	icon_state = "alurane-ears"
+	ckeys_allowed = list("natje")
+
 /*
 ////////////////////////////
 /  =--------------------=  /
