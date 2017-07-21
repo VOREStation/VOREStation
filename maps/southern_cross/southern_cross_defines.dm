@@ -24,7 +24,7 @@
 	station_short = "Southern Cross"
 	dock_name     = "NCS Northern Star" // Now we're the centcom!
 	boss_name     = "Central Command"
-	boss_short    = "Centcomm"
+	boss_short    = "CentCom"
 	company_name  = "NanoTrasen"
 	company_short = "NT"
 	starsys_name  = "Vir"

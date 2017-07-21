@@ -184,7 +184,7 @@
 			stat_msg2 = reject_bad_text(sanitize(input("Line 2", "Enter Message Text", stat_msg2) as text|null, 40), 40)
 			computer.updateDialog()
 
-		// OMG CENTCOMM LETTERHEAD
+		// OMG CENTCOM LETTERHEAD
 		if("MessageCentCom" in href_list)
 			if(!computer.radio.subspace)
 				return

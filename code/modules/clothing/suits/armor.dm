@@ -414,7 +414,7 @@
 //All of the armor below is mostly unused
 
 /obj/item/clothing/suit/armor/centcomm
-	name = "Cent. Com. armor"
+	name = "CentCom armor"
 	desc = "A suit that protects against some damage."
 	icon_state = "centcom"
 	item_state_slots = list(slot_r_hand_str = "armor", slot_l_hand_str = "armor")
