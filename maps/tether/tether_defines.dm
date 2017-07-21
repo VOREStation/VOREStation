@@ -231,3 +231,48 @@
 	name = "Empty"
 	flags = MAP_LEVEL_PLAYER
 	transit_chance = 82
+
+/datum/map_z_level/tether/wilderness
+	name = "Wilderness"
+	flags = MAP_LEVEL_PLAYER
+	var/activated = 0
+	var/list/frozen_mobs = list()
+
+/datum/map_z_level/tether/wilderness/proc/activate_mobs()
+	if(activated && isemptylist(frozen_mobs))
+		return
+	activated = 1
+	for(var/mob/living/simple_animal/M in frozen_mobs)
+		M.life_disabled = 0
+		frozen_mobs -= M
+	frozen_mobs.Cut()
+
+/datum/map_z_level/tether/wilderness/wild_1
+	z = Z_LEVEL_SURFACE_WILDERNESS_1
+
+/datum/map_z_level/tether/wilderness/wild_2
+	z = Z_LEVEL_SURFACE_WILDERNESS_2
+
+/datum/map_z_level/tether/wilderness/wild_3
+	z = Z_LEVEL_SURFACE_WILDERNESS_3
+
+/datum/map_z_level/tether/wilderness/wild_4
+	z = Z_LEVEL_SURFACE_WILDERNESS_4
+
+/datum/map_z_level/tether/wilderness/wild_5
+	z = Z_LEVEL_SURFACE_WILDERNESS_5
+
+/datum/map_z_level/tether/wilderness/wild_6
+	z = Z_LEVEL_SURFACE_WILDERNESS_6
+
+/datum/map_z_level/tether/wilderness/wild_crash
+	z = Z_LEVEL_SURFACE_WILDERNESS_CRASH
+
+/datum/map_z_level/tether/wilderness/wild_ruins
+	z = Z_LEVEL_SURFACE_WILDERNESS_RUINS
+
+/proc/get_z_level_datum(atom/A)
+	var/turf/T = get_turf(A)
+	var/datum/map_z_level/z_level = using_map.zlevels["[T.z]"]
+	if(z_level)
+		return z_level

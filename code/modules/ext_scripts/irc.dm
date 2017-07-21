@@ -1,4 +1,5 @@
 /proc/send2irc(var/channel, var/msg)
+	return  // VOREStation Edit - Can't exploit shell if we never call shell!
 	if (config.use_irc_bot)
 		if (config.use_node_bot)
 			shell("node bridge.js -h \"[config.irc_bot_host]\" -p \"[config.irc_bot_port]\" -c \"[channel]\" -m \"[msg]\"")
