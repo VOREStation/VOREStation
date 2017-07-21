@@ -8,9 +8,8 @@
 	pockets.max_storage_space = ITEMSIZE_COST_SMALL * 2
 
 /obj/item/clothing/suit/storage/Destroy()
-	qdel(pockets)
-	pockets = null
-	..()
+	qdel_null(pockets)
+	return ..()
 
 /obj/item/clothing/suit/storage/attack_hand(mob/user as mob)
 	if (pockets.handle_attack_hand(user))
@@ -30,8 +29,8 @@
 
 //Jackets with buttons, used for labcoats, IA jackets, First Responder jackets, and brown jackets.
 /obj/item/clothing/suit/storage/toggle
-	var/icon_open
-	var/icon_closed
+	flags_inv = HIDEHOLSTER
+	var/open = 0	//0 is closed, 1 is open, -1 means it won't be able to toggle
 	verb/toggle()
 		set name = "Toggle Coat Buttons"
 		set category = "Object"
@@ -39,20 +38,25 @@
 		if(!usr.canmove || usr.stat || usr.restrained())
 			return 0
 
-		if(icon_state == icon_open) //Will check whether icon state is currently set to the "open" or "closed" state and switch it around with a message to the user
-			icon_state = icon_closed
+		if(open == 1) //Will check whether icon state is currently set to the "open" or "closed" state and switch it around with a message to the user
+			open = 0
+			icon_state = initial(icon_state)
+			flags_inv = HIDETIE|HIDEHOLSTER
 			usr << "You button up the coat."
-		else if(icon_state == icon_closed)
-			icon_state = icon_open
+		else if(open == 0)
+			open = 1
+			icon_state = "[icon_state]_open"
+			flags_inv = HIDEHOLSTER
 			usr << "You unbutton the coat."
 		else //in case some goofy admin switches icon states around without switching the icon_open or icon_closed
 			usr << "You attempt to button-up the velcro on your [src], before promptly realising how silly you are."
 			return
 		update_clothing_icon()	//so our overlays update
 
+
 /obj/item/clothing/suit/storage/hooded/toggle
-	var/icon_open
-	var/icon_closed
+	flags_inv = HIDEHOLSTER
+	var/open = 0	//0 is closed, 1 is open, -1 means it won't be able to toggle
 	verb/toggle()
 		set name = "Toggle Coat Buttons"
 		set category = "Object"
@@ -60,11 +64,15 @@
 		if(!usr.canmove || usr.stat || usr.restrained())
 			return 0
 
-		if(icon_state == icon_open) //Will check whether icon state is currently set to the "open" or "closed" state and switch it around with a message to the user
-			icon_state = icon_closed
+		if(open == 1) //Will check whether icon state is currently set to the "open" or "closed" state and switch it around with a message to the user
+			open = 0
+			icon_state = initial(icon_state)
+			flags_inv = HIDETIE|HIDEHOLSTER
 			usr << "You button up the coat."
-		else if(icon_state == icon_closed)
-			icon_state = icon_open
+		else if(open == 0)
+			open = 1
+			icon_state = "[icon_state]_open"
+			flags_inv = HIDEHOLSTER
 			usr << "You unbutton the coat."
 		else //in case some goofy admin switches icon states around without switching the icon_open or icon_closed
 			usr << "You attempt to button-up the velcro on your [src], before promptly realising how silly you are."

@@ -19,7 +19,7 @@
 	set category = "IC"
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		usr << "\red Speech is currently admin-disabled."
+		usr << "<font color='red'>Speech is currently admin-disabled.</font>"
 		return
 
 	message = sanitize(message)
@@ -43,6 +43,8 @@
 	if(!is_preference_enabled(/datum/client_preference/show_dsay))
 		usr << "<span class='danger'>You have deadchat muted.</span>"
 		return
+
+	message = say_emphasis(message)
 
 	say_dead_direct("[pick("complains","moans","whines","laments","blubbers")], <span class='message'>\"[message]\"</span>", src)
 

@@ -11,9 +11,6 @@
 /obj/item/organ/internal/eyes/robotize()
 	..()
 	name = "optical sensor"
-	icon = 'icons/obj/robot_component.dmi'
-	icon_state = "camera"
-	dead_icon = "camera_broken"
 	verbs |= /obj/item/organ/internal/eyes/proc/change_eye_color
 
 /obj/item/organ/internal/eyes/robot
@@ -70,9 +67,22 @@
 
 /obj/item/organ/internal/eyes/process() //Eye damage replaces the old eye_stat var.
 	..()
-	if(!owner)
-		return
+	if(!owner) return
+
 	if(is_bruised())
 		owner.eye_blurry = 20
 	if(is_broken())
-		owner.eye_blind = 20
+		owner.Blind(20)
+
+/obj/item/organ/internal/eyes/handle_germ_effects()
+	. = ..() //Up should return an infection level as an integer
+	if(!.) return
+
+	//Conjunctivitis
+	if (. >= 1)
+		if(prob(1))
+			owner.custom_pain("The corners of your eyes itch! It's quite frustrating.",0)
+	if (. >= 2)
+		if(prob(1))
+			owner.custom_pain("Your eyes are watering, making it harder to see clearly for a moment.",1)
+			owner.eye_blurry += 10

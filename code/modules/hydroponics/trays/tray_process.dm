@@ -1,4 +1,6 @@
 /obj/machinery/portable_atmospherics/hydroponics/process()
+	if(frozen == 1)
+		return
 
 	// Handle nearby smoke if any.
 	for(var/obj/effect/effect/smoke/chem/smoke in view(1, src))

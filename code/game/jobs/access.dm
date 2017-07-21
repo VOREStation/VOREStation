@@ -14,8 +14,12 @@
 		return check_access(id)
 	return 0
 
-/obj/item/proc/GetAccess()
-	return list()
+///obj/item/proc/GetAccess()
+//	return list()
+
+/atom/movable/proc/GetAccess()
+	var/obj/item/weapon/card/id/id = GetIdCard()
+	return id ? id.GetAccess() : list()
 
 /obj/proc/GetID()
 	return null
@@ -197,7 +201,7 @@
 		"Emergency Response Team",
 		"Emergency Response Team Leader")
 
-/mob/proc/GetIdCard()
+/atom/movable/proc/GetIdCard()
 	return null
 
 /mob/living/bot/GetIdCard()

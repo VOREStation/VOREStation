@@ -77,6 +77,8 @@
 	desc = "They seem to pulse slightly with an inner life"
 	icon_state = "eggs"
 	var/amount_grown = 0
+	var/spiders_min = 6
+	var/spiders_max = 24
 	New()
 		pixel_x = rand(3,-3)
 		pixel_y = rand(3,-3)
@@ -92,21 +94,25 @@
 		var/obj/item/organ/external/O = loc
 		O.implants -= src
 
-	..()
+	return ..()
 
 /obj/effect/spider/eggcluster/process()
 	amount_grown += rand(0,2)
 	if(amount_grown >= 100)
-		var/num = rand(6,24)
+		var/num = rand(spiders_min, spiders_max)
 		var/obj/item/organ/external/O = null
 		if(istype(loc, /obj/item/organ/external))
 			O = loc
 
 		for(var/i=0, i<num, i++)
-			var/spiderling = PoolOrNew(/obj/effect/spider/spiderling, list(src.loc, src))
+			var/spiderling = new /obj/effect/spider/spiderling(src.loc, src)
 			if(O)
 				O.implants += spiderling
 		qdel(src)
+
+/obj/effect/spider/eggcluster/small
+	spiders_min = 1
+	spiders_max = 3
 
 /obj/effect/spider/spiderling
 	name = "spiderling"
@@ -132,7 +138,8 @@
 
 /obj/effect/spider/spiderling/Destroy()
 	processing_objects -= src
-	..()
+	walk(src, 0) // Because we might have called walk_to, we must stop the walk loop or BYOND keeps an internal reference to us forever.
+	return ..()
 
 /obj/effect/spider/spiderling/Bump(atom/user)
 	if(istype(user, /obj/structure/table))
@@ -142,7 +149,7 @@
 
 /obj/effect/spider/spiderling/proc/die()
 	visible_message("<span class='alert'>[src] dies!</span>")
-	PoolOrNew(/obj/effect/decal/cleanable/spiderling_remains, src.loc)
+	new /obj/effect/decal/cleanable/spiderling_remains(src.loc)
 	qdel(src)
 
 /obj/effect/spider/spiderling/healthcheck()

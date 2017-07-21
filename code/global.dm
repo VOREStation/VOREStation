@@ -25,16 +25,16 @@ var/global/list/global_map = null
 var/list/hit_appends	= list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF")
 var/diary				= null
 var/href_logfile		= null
-var/station_name		= "Northern Star"
-var/const/station_orig	= "Northern Star" //station_name can't be const due to event prefix/suffix
-var/const/station_short	= "Northern Star"
-var/const/dock_name		= "Vir Interstellar Spaceport"
-var/const/boss_name		= "Central Command"
-var/const/boss_short	= "CentCom"
-var/const/company_name	= "NanoTrasen"
-var/const/company_short	= "NT"
-var/const/star_name		= "Vir"
-var/const/starsys_name	= "Vir"
+// var/station_name		= "Northern Star"
+// var/const/station_orig	= "Northern Star" //station_name can't be const due to event prefix/suffix
+// var/const/station_short	= "Northern Star"
+// var/const/dock_name		= "Vir Interstellar Spaceport"
+// var/const/boss_name		= "Central Command"
+// var/const/boss_short	= "CentCom"
+// var/const/company_name	= "NanoTrasen"
+// var/const/company_short	= "NT"
+// var/const/star_name		= "Vir"
+// var/const/starsys_name	= "Vir"
 var/const/game_version	= "Polaris"
 var/changelog_hash		= ""
 var/game_year			= (text2num(time2text(world.realtime, "YYYY")) + 544)
@@ -89,7 +89,9 @@ var/list/blobstart          = list()
 var/list/ninjastart         = list()
 
 var/list/cardinal    = list(NORTH, SOUTH, EAST, WEST)
+var/list/cardinalz   = list(NORTH, SOUTH, EAST, WEST, UP, DOWN)
 var/list/cornerdirs  = list(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
+var/list/cornerdirsz = list(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST, NORTH|UP, EAST|UP, WEST|UP, SOUTH|UP, NORTH|DOWN, EAST|DOWN, WEST|DOWN, SOUTH|DOWN)
 var/list/alldirs     = list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
 var/list/reverse_dir = list( // reverse_dir[dir] = reverse of dir
 	 2,  1,  3,  8, 10,  9, 11,  4,  6,  5,  7, 12, 14, 13, 15, 32, 34, 33, 35, 40, 42,
@@ -165,7 +167,7 @@ var/global/list/alphabet_uppercase = list("A","B","C","D","E","F","G","H","I","J
 
 // Used by robots and robot preferences.
 var/list/robot_module_types = list(
-	"Standard", "Engineering", "Construction", "Surgeon",  "Crisis",
+	"Standard", "Engineering", "Surgeon",  "Crisis",
 	"Miner",    "Janitor",     "Service",      "Clerical", "Security",
 	"Research"
 )
@@ -195,6 +197,6 @@ var/static/list/scarySounds = list(
 var/max_explosion_range = 14
 
 // Announcer intercom, because too much stuff creates an intercom for one message then hard del()s it.
-var/global/obj/item/device/radio/intercom/global_announcer = new(null)
+var/global/obj/item/device/radio/intercom/global_announcer = new /obj/item/device/radio/intercom{channels=list("Engineering")}(null)
 
 var/list/station_departments = list("Command", "Medical", "Engineering", "Science", "Security", "Cargo", "Civilian")

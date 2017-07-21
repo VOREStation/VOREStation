@@ -53,7 +53,7 @@
 			var/atom/toplevelholder = holder
 			while(!istype(toplevelholder.loc, /turf))
 				toplevelholder = toplevelholder.loc
-			toplevelholder.visible_message("\red \icon[toplevelholder] [toplevelholder] [display_msg]")
+			toplevelholder.visible_message("<font color='red'>\icon[toplevelholder] [toplevelholder] [display_msg]</font>")
 
 /datum/artifact_effect/proc/DoEffectTouch(var/mob/user)
 /datum/artifact_effect/proc/DoEffectAura(var/atom/holder)
@@ -139,7 +139,7 @@
 		protected += 0.2
 
 	//latex gloves and science goggles also give a bit of bonus protection
-	if(istype(H.gloves,/obj/item/clothing/gloves/latex))
+	if(istype(H.gloves,/obj/item/clothing/gloves/sterile))
 		protected += 0.1
 
 	if(istype(H.glasses,/obj/item/clothing/glasses/science))

@@ -13,6 +13,7 @@
 	return 50 + (metric.count_people_in_department(ROLE_ENGINEERING) * 30)
 
 /datum/gm_action/grid_check/start()
+	..()
 	// This sets off a chain of events that lead to the actual grid check (or perhaps worse).
 	// First, the Supermatter engine makes a power spike.
 	for(var/obj/machinery/power/generator/engine in machines)

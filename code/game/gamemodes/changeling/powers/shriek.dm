@@ -35,11 +35,27 @@
 			src << "<span class='danger'>You can't speak!</span>"
 			return 0
 
+	if(world.time < (changeling.last_shriek + 10 SECONDS) )
+		to_chat(src, "<span class='warning'>We are still recovering from our last shriek...</span>")
+		return 0
+
+	if(!isturf(loc))
+		to_chat(src, "<span class='warning'>Shrieking here would be a bad idea.</span>")
+		return 0
+
+	src.break_cloak()	//No more invisible shrieking
+
 	changeling.chem_charges -= 20
 	var/range = 4
 	if(src.mind.changeling.recursive_enhancement)
 		range = range * 2
 		src << "<span class='notice'>We are extra loud.</span>"
+
+	src.attack_log += text("\[[time_stamp()]\] <font color='red'>Used Resonant Shriek.</font>")
+	message_admins("[key_name(src)] used Resonant Shriek ([src.x],[src.y],[src.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>).")
+	log_game("[key_name(src)] used Resonant Shriek.")
+
+	visible_message("<span class='notice'>[src] appears to shout.</span>")
 
 	for(var/mob/living/M in range(range, src))
 		if(iscarbon(M))
@@ -49,8 +65,9 @@
 				M << "<span class='danger'>You hear an extremely loud screeching sound!  It \
 				[pick("confuses","confounds","perturbs","befuddles","dazes","unsettles","disorients")] you.</span>"
 				M.adjustEarDamage(0,30)
-				M.confused += 20
+				M.Confuse(20)
 				M << sound('sound/effects/screech.ogg')
+				M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Was affected by [key_name(src)]'s Resonant Shriek.</font>")
 			else
 				if(M != src)
 					M << "<span class='notice'>You hear a familiar screech from nearby.  It has no effect on you.</span>"
@@ -60,10 +77,13 @@
 			M << sound('sound/weapons/flash.ogg')
 			M << "<span class='notice'>Auditory input overloaded.  Reinitializing...</span>"
 			M.Weaken(rand(5,10))
+			M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Was affected by [key_name(src)]'s Resonant Shriek.</font>")
 
 	for(var/obj/machinery/light/L in range(range, src))
 		L.on = 1
 		L.broken()
+
+	changeling.last_shriek = world.time
 
 	feedback_add_details("changeling_powers","RS")
 	return 1
@@ -87,18 +107,41 @@
 			src << "<span class='danger'>You can't speak!</span>"
 			return 0
 
+	if(world.time < (changeling.last_shriek + 10 SECONDS) )
+		to_chat(src, "<span class='warning'>We are still recovering from our last shriek...</span>")
+		return 0
+
+	if(!isturf(loc))
+		to_chat(src, "<span class='warning'>Shrieking here would be a bad idea.</span>")
+		return 0
+
+	src.break_cloak()	//No more invisible shrieking
+
 	changeling.chem_charges -= 20
 
-	var/range_heavy = 2
-	var/range_light = 5
+	var/range_heavy = 1
+	var/range_med = 2
+	var/range_light = 4
+	var/range_long = 6
 	if(src.mind.changeling.recursive_enhancement)
 		range_heavy = range_heavy * 2
+		range_med = range_med * 2
 		range_light = range_light * 2
+		range_long = range_long * 2
 		src << "<span class='notice'>We are extra loud.</span>"
 		src.mind.changeling.recursive_enhancement = 0
+
+	visible_message("<span class='notice'>[src] appears to shout.</span>")
+
+	src.attack_log += text("\[[time_stamp()]\] <font color='red'>Used Dissonant Shriek.</font>")
+	message_admins("[key_name(src)] used Dissonant Shriek ([src.x],[src.y],[src.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>).")
+	log_game("[key_name(src)] used Dissonant Shriek.")
 
 	for(var/obj/machinery/light/L in range(5, src))
 		L.on = 1
 		L.broken()
 	empulse(get_turf(src), range_heavy, range_light, 1)
+
+	changeling.last_shriek = world.time
+
 	return 1

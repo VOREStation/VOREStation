@@ -13,6 +13,9 @@
 	var/mob/living/carbon/T = changeling_sting(40,/mob/proc/changeling_DEATHsting)
 	if(!T)
 		return 0
+	T.attack_log += text("\[[time_stamp()]\] <font color='red'>Was death stung by [key_name(src)]</font>")
+	src.attack_log += text("\[[time_stamp()]\] <font color='orange'> Used death sting on [key_name(T)]</font>")
+	msg_admin_attack("[key_name(T)] was death stung by [key_name(src)]")
 	T << "<span class='danger'>You feel a small prick and your chest becomes tight.</span>"
 	T.silent = 10
 	T.Paralyse(10)

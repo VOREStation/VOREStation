@@ -1,7 +1,7 @@
 // Suit slot
 /datum/gear/suit
 	display_name = "apron, blue"
-	path = /obj/item/clothing/suit/apron
+	path = /obj/item/clothing/suit/storage/apron
 	slot = slot_wear_suit
 	sort_category = "Suits and Overwear"
 	cost = 2
@@ -87,8 +87,16 @@
 	path = /obj/item/clothing/suit/storage/trench/grey
 
 /datum/gear/suit/hazard_vest
-	display_name = "hazard vest"
+	display_name = "hazard vest selection"
 	path = /obj/item/clothing/suit/storage/hazardvest
+
+/datum/gear/suit/hazard_vest/New()
+	..()
+	var/list/hazards = list()
+	for(var/hazard_style in typesof(/obj/item/clothing/suit/storage/hazardvest))
+		var/obj/item/clothing/suit/storage/hazardvest/hazardvest = hazard_style
+		hazards[initial(hazardvest.name)] = hazardvest
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(hazards))
 
 /datum/gear/suit/hoodie
 	display_name = "hoodie selection"
@@ -109,6 +117,10 @@
 /datum/gear/suit/labcoat/blue
 	display_name = "labcoat, blue"
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/blue
+
+/datum/gear/suit/labcoat/blue_edge
+	display_name = "labcoat, blue-edged"
+	path = /obj/item/clothing/suit/storage/toggle/labcoat/blue_edge
 
 /datum/gear/suit/labcoat/green
 	display_name = "labcoat, green"
@@ -139,9 +151,14 @@
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/emt
 	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist")
 
+/datum/gear/suit/roles/surgical_apron
+	display_name = "surgical apron"
+	path = /obj/item/clothing/suit/surgicalapron
+	allowed_roles = list("Medical Doctor","Chief Medical Officer")
+
 /datum/gear/suit/overalls
 	display_name = "overalls"
-	path = /obj/item/clothing/suit/apron/overalls
+	path = /obj/item/clothing/suit/storage/apron/overalls
 	cost = 1
 
 /datum/gear/suit/poncho
@@ -202,36 +219,6 @@
 /datum/gear/suit/suspenders
 	display_name = "suspenders"
 	path = /obj/item/clothing/suit/suspenders
-
-/datum/gear/suit/wcoat
-	display_name = "waistcoat"
-	path = /obj/item/clothing/suit/wcoat
-	cost = 1
-
-/datum/gear/suit/wcoat/red
-	display_name = "red waistcoat"
-	path = /obj/item/clothing/suit/wcoat/red
-
-/datum/gear/suit/wcoat/grey
-	display_name = "grey waistcoat"
-	path = /obj/item/clothing/suit/wcoat/grey
-
-/datum/gear/suit/wcoat/brown
-	display_name = "brown waistcoat"
-	path = /obj/item/clothing/suit/wcoat/brown
-
-/datum/gear/suit/swvest
-	display_name = "black sweatervest"
-	path = /obj/item/clothing/suit/wcoat/swvest
-	cost = 1
-
-/datum/gear/suit/swvest/blue
-	display_name = "blue sweatervest"
-	path = /obj/item/clothing/suit/wcoat/swvest/blue
-
-/datum/gear/suit/swvest/red
-	display_name = "red sweatervest"
-	path = /obj/item/clothing/suit/wcoat/swvest/red
 
 /datum/gear/suit/forensics
 	display_name = "forensics long, red"
@@ -357,3 +344,85 @@
 /datum/gear/suit/denim_vest/corporate
 	display_name = "denim vest, corporate"
 	path = /obj/item/clothing/suit/storage/toggle/denim_jacket/nanotrasen/sleeveless
+
+/datum/gear/suit/service
+	display_name = "service jacket selection"
+	path = /obj/item/clothing/suit/storage/service
+
+/datum/gear/suit/service/New()
+	..()
+	var/list/services = list()
+	for(var/service_style in typesof(/obj/item/clothing/suit/storage/service))
+		var/obj/item/clothing/suit/storage/service/service = service_style
+		services[initial(service.name)] = service
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(services))
+
+/datum/gear/suit/miscellaneous/kimono
+	display_name = "kimono"
+	path = /obj/item/clothing/suit/kimono
+
+/datum/gear/suit/miscellaneous/kimono/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/suit/miscellaneous/sec_dep_jacket
+	display_name = "department jacket, security"
+	path = /obj/item/clothing/suit/storage/toggle/sec_dep_jacket
+
+/datum/gear/suit/miscellaneous/engi_dep_jacket
+	display_name = "department jacket, engineering"
+	path = /obj/item/clothing/suit/storage/toggle/engi_dep_jacket
+
+/datum/gear/suit/miscellaneous/supply_dep_jacket
+	display_name = "department jacket, supply"
+	path = /obj/item/clothing/suit/storage/toggle/supply_dep_jacket
+
+/datum/gear/suit/miscellaneous/sci_dep_jacket
+	display_name = "department jacket, science"
+	path = /obj/item/clothing/suit/storage/toggle/sci_dep_jacket
+
+/datum/gear/suit/miscellaneous/med_dep_jacket
+	display_name = "department jacket, medical"
+	path = /obj/item/clothing/suit/storage/toggle/med_dep_jacket
+
+/datum/gear/suit/miscellaneous/peacoat
+	display_name = "peacoat"
+	path = /obj/item/clothing/suit/storage/toggle/peacoat
+
+/datum/gear/suit/miscellaneous/peacoat/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/suit/snowsuit
+	display_name = "snowsuit"
+	path = /obj/item/clothing/suit/storage/snowsuit
+
+/datum/gear/suit/snowsuit/command
+	display_name = "snowsuit, command"
+	path = /obj/item/clothing/suit/storage/snowsuit/command
+	allowed_roles = list("Colony Director","Research Director","Head of Personnel","Head of Security","Chief Engineer","Command Secretary")
+
+/datum/gear/suit/snowsuit/security
+	display_name = "snowsuit, security"
+	path = /obj/item/clothing/suit/storage/snowsuit/security
+	allowed_roles = list("Security Officer", "Head of Security", "Warden", "Detective")
+
+/datum/gear/suit/snowsuit/medical
+	display_name = "snowsuit, medical"
+	path = /obj/item/clothing/suit/storage/snowsuit/medical
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist")
+
+/datum/gear/suit/snowsuit/science
+	display_name = "snowsuit, science"
+	path = /obj/item/clothing/suit/storage/snowsuit/science
+	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist")
+
+/datum/gear/suit/snowsuit/engineering
+	display_name = "snowsuit, engineering"
+	path = /obj/item/clothing/suit/storage/snowsuit/engineering
+	allowed_roles = list("Chief Engineer","Atmospheric Technician", "Station Engineer")
+
+/datum/gear/suit/snowsuit/cargo
+	display_name = "snowsuit, supply"
+	path = /obj/item/clothing/suit/storage/snowsuit/cargo
+	allowed_roles = list("Quartermaster","shaft Miner","Cargo Technician","Head of Personnel")

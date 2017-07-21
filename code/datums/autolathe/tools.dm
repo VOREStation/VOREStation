@@ -14,6 +14,11 @@
 	name = "welding tool"
 	path =/obj/item/weapon/weldingtool
 
+/datum/category_item/autolathe/tools/electric_welder
+	name = "electric welding tool"
+	path =/obj/item/weapon/weldingtool/electric/unloaded
+	hidden = 1
+
 /datum/category_item/autolathe/tools/screwdriver
 	name = "screwdriver"
 	path =/obj/item/weapon/screwdriver

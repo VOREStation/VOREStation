@@ -14,9 +14,10 @@
 			severity_range = 15
 
 	for(var/obj/machinery/power/apc/apc in range(severity_range,A))
-		if(is_valid_apc(apc))
-			apc.emagged = 1
-			apc.update_icon()
+		if(is_valid_apc(apc))	//This event "****s up" the "id authenticator" on APCs, emagging and unlocking them.
+			apc.emagged = 1		//It used to just blue screen the APC and make it so it had to be hacked to unlock,
+			apc.locked = 0		//but most people ignored it. Now it has an actual effect on the round and opens
+			apc.update_icon()	//a small possibility for traitors. To fix, remove power cell and apply multitool.
 
 /datum/event/apc_damage/proc/acquire_random_apc()
 	var/list/possibleEpicentres = list()
@@ -46,4 +47,4 @@
 
 /datum/event/apc_damage/proc/is_valid_apc(var/obj/machinery/power/apc/apc)
 	var/turf/T = get_turf(apc)
-	return !apc.is_critical && !apc.emagged && T && (T.z in config.player_levels)
+	return !apc.is_critical && !apc.emagged && T && (T.z in using_map.player_levels)

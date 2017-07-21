@@ -1,9 +1,12 @@
 /mob/living/carbon/human/examine(mob/user)
+
 	var/skipgloves = 0
 	var/skipsuitstorage = 0
 	var/skipjumpsuit = 0
 	var/skipshoes = 0
 	var/skipmask = 0
+	var/skiptie = 0
+	var/skipholster = 0
 
 	var/skipears = 0
 	var/skipeyes = 0
@@ -15,6 +18,18 @@
 	var/skiparms = 0
 	var/skipfeet = 0
 
+
+	var/cloaked = 0 // 0 for normal, 1 for cloaked close
+
+	if(mind && mind.changeling && mind.changeling.cloaked && !istype(user, /mob/observer))
+		var/distance = get_dist(user, src)
+		if(distance > 2)
+			src.loc.examine(user)
+			return
+		else
+			cloaked = 1
+
+
 	var/looks_synth = looksSynthetic()
 
 	//exosuits and helmets obscure our view and stuff.
@@ -25,6 +40,14 @@
 			skiplegs |= 1
 			skipchest |= 1
 			skipgroin |= 1
+			skipjumpsuit |= 1
+			skiptie |= 1
+			skipholster |= 1
+		else if(wear_suit.flags_inv & HIDETIE)
+			skiptie |= 1
+			skipholster |= 1
+		else if(wear_suit.flags_inv & HIDEHOLSTER)
+			skipholster |= 1
 		if(wear_suit.flags_inv & HIDESHOES)
 			skipshoes |= 1
 			skipfeet |= 1
@@ -69,9 +92,27 @@
 
 	var/list/msg = list("<span class='info'>*---------*\nThis is ")
 
+
 	var/datum/gender/T = gender_datums[get_gender()]
+
 	if(skipjumpsuit && skipface) //big suits/masks/helmets make it hard to tell their gender
 		T = gender_datums[PLURAL]
+	if(cloaked)
+		T = gender_datums[NEUTER]
+
+	else if(species && species.ambiguous_genders)
+		var/can_detect_gender = FALSE
+		if(isobserver(user)) // Ghosts are all knowing.
+			can_detect_gender = TRUE
+		if(issilicon(user)) // Borgs are too because science.
+			can_detect_gender = TRUE
+		else if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if(H.species && istype(species, H.species))
+				can_detect_gender = TRUE
+
+		if(!can_detect_gender)
+			T = gender_datums[PLURAL] // Species with ambiguous_genders will not show their true gender upon examine if the examiner is not also the same species.
 	else
 		if(icon)
 			msg += "\icon[icon] " //fucking BYOND: this should stop dreamseeker crashing if we -somehow- examine somebody before their icon is generated
@@ -105,10 +146,17 @@
 	if(w_uniform && !skipjumpsuit)
 		//Ties
 		var/tie_msg
-		if(istype(w_uniform,/obj/item/clothing/under))
+		if(istype(w_uniform,/obj/item/clothing/under) && !skiptie)
 			var/obj/item/clothing/under/U = w_uniform
 			if(U.accessories.len)
-				tie_msg += ". Attached to it is [lowertext(english_list(U.accessories))]"
+				if(skipholster)
+					var/list/accessories_visible = new/list() //please let this fix the stupid fucking runtimes
+					for(var/obj/item/clothing/accessory/A in U.accessories)
+						if(A.concealed_holster == 0)
+							accessories_visible.Add(A)
+					if(accessories_visible.len)
+						tie_msg += ". Attached to it is [lowertext(english_list(accessories_visible))]"
+				else tie_msg += ". Attached to it is [lowertext(english_list(U.accessories))]"
 
 		if(w_uniform.blood_DNA)
 			msg += "<span class='warning'>[T.He] [T.is] wearing \icon[w_uniform] [w_uniform.gender==PLURAL?"some":"a"] [(w_uniform.blood_color != SYNTH_BLOOD_COLOUR) ? "blood" : "oil"]-stained [w_uniform.name][tie_msg]!</span>\n"
@@ -249,7 +297,7 @@
 			msg += "<span class='warning'>[T.He] [T.is] twitching ever so slightly.</span>\n"
 
 	//splints
-	for(var/organ in list(BP_L_LEG, BP_R_LEG, BP_L_ARM, BP_R_ARM))
+	for(var/organ in BP_ALL)
 		var/obj/item/organ/external/o = get_organ(organ)
 		if(o && o.splinted && o.splinted.loc == o)
 			msg += "<span class='warning'>[T.He] [T.has] \a [o.splinted] on [T.his] [o.name]!</span>\n"
@@ -344,6 +392,11 @@
 			if(((temp.status & ORGAN_BROKEN) && temp.brute_dam > temp.min_broken_damage) || (temp.status & ORGAN_MUTATED))
 				wound_flavor_text["[temp.name]"] += "<span class='warning'>[T.His] [temp.name] is dented and swollen!</span><br>"
 
+			if(temp.germ_level > INFECTION_LEVEL_TWO && !(temp.status & ORGAN_DEAD))
+				wound_flavor_text["[temp.name]"] += "<span class='warning'>[T.His] [temp.name] looks very infected!</span><br>"
+			else if(temp.status & ORGAN_DEAD)
+				wound_flavor_text["[temp.name]"] += "<span class='warning'>[T.His] [temp.name] looks rotten!</span><br>"
+
 			if(!wound_flavor_text["[temp.name]"] && (temp.status & ORGAN_BLEEDING))
 				is_bleeding["[temp.name]"] = "<span class='danger'>[T.His] [temp.name] is bleeding!</span><br>"
 
@@ -405,16 +458,24 @@
 		msg += "<span class = 'deptradio'>Medical records:</span> <a href='?src=\ref[src];medrecord=`'>\[View\]</a> <a href='?src=\ref[src];medrecordadd=`'>\[Add comment\]</a>\n"
 
 
-	if(print_flavor_text()) msg += "[print_flavor_text()]\n"
+	if(print_flavor_text() && !cloaked)
+		msg += "[print_flavor_text()]\n"
 
 	msg += "*---------*</span><br>"
 	msg += applying_pressure
-	if (pose)
+	if (pose && !cloaked)
 		if( findtext(pose,".",lentext(pose)) == 0 && findtext(pose,"!",lentext(pose)) == 0 && findtext(pose,"?",lentext(pose)) == 0 )
 			pose = addtext(pose,".") //Makes sure all emotes end with a period.
 		msg += "[T.He] [pose]"
 
 	user << jointext(msg, null)
+
+
+/mob/living/carbon/human/get_description_fluff()
+	if(mind && mind.changeling && mind.changeling.cloaked)
+		return ""
+	else
+		return ..()
 
 //Helper procedure. Called by /mob/living/carbon/human/examine() and /mob/living/carbon/human/Topic() to determine HUD access to security and medical records.
 /proc/hasHUD(mob/M as mob, hudtype)

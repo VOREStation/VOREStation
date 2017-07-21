@@ -18,11 +18,7 @@
 		unwrap()
 
 	proc/unwrap()
-		if(wrapped) //sometimes items can disappear. For example, bombs. --rastaf0
-			wrapped.loc = (get_turf(src.loc))
-			if(istype(wrapped, /obj/structure/closet))
-				var/obj/structure/closet/O = wrapped
-				O.welded = 0
+		// Destroy will drop our wrapped object on the turf, so let it.
 		qdel(src)
 
 	attackby(obj/item/W as obj, mob/user as mob)
@@ -61,7 +57,7 @@
 				if("Description")
 					var/str = sanitize(input(usr,"Label text?","Set label",""))
 					if(!str || !length(str))
-						usr << "\red Invalid text."
+						usr << "<font color='red'>Invalid text.</font>"
 						return
 					if(!examtext && !nameset)
 						examtext = str
@@ -169,7 +165,7 @@
 				if("Description")
 					var/str = sanitize(input(usr,"Label text?","Set label",""))
 					if(!str || !length(str))
-						usr << "\red Invalid text."
+						usr << "<font color='red'>Invalid text.</font>"
 						return
 					if(!examtext && !nameset)
 						examtext = str
@@ -297,7 +293,7 @@
 			else if(src.amount < 3)
 				user << "<span class='warning'>You need more paper.</span>"
 		else
-			user << "\blue The object you are trying to wrap is unsuitable for the sorting machinery!"
+			user << "<font color='blue'>The object you are trying to wrap is unsuitable for the sorting machinery!</font>"
 		if (src.amount <= 0)
 			new /obj/item/weapon/c_tube( src.loc )
 			qdel(src)
@@ -306,20 +302,21 @@
 
 	examine(mob/user)
 		if(..(user, 0))
-			user << "\blue There are [amount] units of package wrap left!"
+			user << "<font color='blue'>There are [amount] units of package wrap left!</font>"
 
 		return
 
 /obj/structure/bigDelivery/Destroy()
 	if(wrapped) //sometimes items can disappear. For example, bombs. --rastaf0
-		wrapped.loc = (get_turf(loc))
+		wrapped.forceMove(get_turf(src))
 		if(istype(wrapped, /obj/structure/closet))
 			var/obj/structure/closet/O = wrapped
 			O.welded = 0
+		wrapped = null
 	var/turf/T = get_turf(src)
 	for(var/atom/movable/AM in contents)
-		AM.loc = T
-	..()
+		AM.forceMove(T)
+	return ..()
 
 /obj/item/device/destTagger
 	name = "destination tagger"

@@ -4,6 +4,8 @@
 	ingested = new/datum/reagents/metabolism(1000, src, CHEM_INGEST)
 	touching = new/datum/reagents/metabolism(1000, src, CHEM_TOUCH)
 	reagents = bloodstr
+	if (!default_language && species_language)
+		default_language = all_languages[species_language]
 	..()
 
 /mob/living/carbon/Life()
@@ -78,7 +80,7 @@
 		M.loc = src.loc
 		for(var/mob/N in viewers(src, null))
 			if(N.client)
-				N.show_message(text("\red <B>[M] bursts out of [src]!</B>"), 2)
+				N.show_message(text("<font color='red'><B>[M] bursts out of [src]!</B></font>"), 2)
 	..()
 
 /mob/living/carbon/attack_hand(mob/M as mob)
@@ -89,13 +91,16 @@
 		if (H.hand)
 			temp = H.organs_by_name["l_hand"]
 		if(temp && !temp.is_usable())
-			H << "\red You can't use your [temp.name]"
+			H << "<font color='red'>You can't use your [temp.name]</font>"
 			return
 
 	return
 
-/mob/living/carbon/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null)
+/mob/living/carbon/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null, var/stun = 1)
 	if(status_flags & GODMODE)	return 0	//godmode
+	if(def_zone == "l_hand" || def_zone == "r_hand") //Diona (And any other potential plant people) hands don't get shocked.
+		if(species.flags & IS_PLANT)
+			return 0
 	shock_damage *= siemens_coeff
 	if (shock_damage<1)
 		return 0
@@ -104,17 +109,18 @@
 	playsound(loc, "sparks", 50, 1, -1)
 	if (shock_damage > 15)
 		src.visible_message(
-			"\red [src] was shocked by \the [source]!", \
-			"\red <B>You feel a powerful shock course through your body!</B>", \
-			"\red You hear a heavy electrical crack." \
+			"<font color='red'>[src] was shocked by \the [source]!</font>", \
+			"<font color='red'><B>You feel a powerful shock course through your body!</B></font>", \
+			"<font color='red'>You hear a heavy electrical crack.</font>" \
 		)
-		Stun(10)//This should work for now, more is really silly and makes you lay there forever
-		Weaken(10)
+		if(stun)
+			Stun(10)//This should work for now, more is really silly and makes you lay there forever
+			Weaken(10)
 	else
 		src.visible_message(
-			"\red [src] was mildly shocked by \the [source].", \
-			"\red You feel a mild shock course through your body.", \
-			"\red You hear a light zapping." \
+			"<font color='red'>[src] was mildly shocked by \the [source].</font>", \
+			"<font color='red'>You feel a mild shock course through your body.</font>", \
+			"<font color='red'>You hear a light zapping.</font>" \
 		)
 
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
@@ -155,19 +161,21 @@
 		if(src == M && istype(src, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = src
 			src.visible_message( \
-				text("\blue [src] examines [].",src.gender==MALE?"himself":"herself"), \
-				"\blue You check yourself for injuries." \
+				text("<font color='blue'>[src] examines [].</font>",src.gender==MALE?"himself":"herself"), \
+				"<font color='blue'>You check yourself for injuries.</font>" \
 				)
 
 			for(var/obj/item/organ/external/org in H.organs)
 				var/list/status = list()
 				var/brutedamage = org.brute_dam
 				var/burndamage = org.burn_dam
-				if(halloss > 0)
+				/*
+				if(halloss > 0) //Makes halloss show up as actual wounds on self examine.
 					if(prob(30))
 						brutedamage += halloss
 					if(prob(30))
 						burndamage += halloss
+				*/
 				switch(brutedamage)
 					if(1 to 20)
 						status += "bruised"
@@ -413,7 +421,7 @@
 	set category = "IC"
 
 	if(usr.sleeping)
-		usr << "\red You are already sleeping"
+		usr << "<font color='red'>You are already sleeping</font>"
 		return
 	if(alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
 		usr.sleeping = 20 //Short nap
@@ -434,7 +442,6 @@
 	stop_pulling()
 	src << "<span class='warning'>You slipped on [slipped_on]!</span>"
 	playsound(src.loc, 'sound/misc/slip.ogg', 50, 1, -3)
-	Stun(stun_duration)
 	Weaken(Floor(stun_duration/2))
 	return 1
 
@@ -445,7 +452,7 @@
 		chem_effects[effect] = magnitude
 
 /mob/living/carbon/get_default_language()
-	if(default_language)
+	if(default_language && can_speak(default_language))
 		return default_language
 
 	if(!species)
@@ -455,7 +462,7 @@
 /mob/living/carbon/proc/should_have_organ(var/organ_check)
 	return 0
 
-/mob/living/carbon/proc/can_feel_pain(var/check_organ)
+/mob/living/carbon/can_feel_pain(var/check_organ)
 	if(isSynthetic())
 		return 0
 	return !(species.flags & NO_PAIN)

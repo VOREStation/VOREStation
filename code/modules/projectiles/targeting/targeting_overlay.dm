@@ -107,8 +107,10 @@ obj/aiming_overlay/proc/update_aiming_deferred()
 		cancel_aiming()
 		return
 
-	if(!locked && lock_time >= world.time)
+	if(!locked && lock_time <= world.time)
 		locked = 1
+		owner << "<span class ='notice'>You are locked onto your target.</span>"
+		aiming_at << "<span class='danger'>The gun is trained on you!</span>"
 		update_icon()
 
 	var/cancel_aim = 1
@@ -161,6 +163,7 @@ obj/aiming_overlay/proc/update_aiming_deferred()
 		owner.visible_message("<span class='danger'>\The [owner] turns \the [thing] on \the [target]!</span>")
 	else
 		owner.visible_message("<span class='danger'>\The [owner] aims \the [thing] at \the [target]!</span>")
+	log_and_message_admins("aimed \a [thing] at [key_name(target)].")
 
 	if(owner.client)
 		owner.client.add_gun_icons()
@@ -176,7 +179,7 @@ obj/aiming_overlay/proc/update_aiming_deferred()
 	toggle_active(1)
 	locked = 0
 	update_icon()
-	lock_time = world.time + 35
+	lock_time = world.time + 25
 
 /obj/aiming_overlay/update_icon()
 	if(locked)

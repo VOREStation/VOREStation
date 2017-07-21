@@ -10,7 +10,7 @@
 /obj/structure/Destroy()
 	if(parts)
 		new parts(loc)
-	..()
+	. = ..()
 
 /obj/structure/attack_hand(mob/user)
 	if(breakable)
@@ -48,9 +48,6 @@
 	..()
 	if(climbable)
 		verbs += /obj/structure/proc/climb_on
-
-/obj/structure/Destroy()
-	..()
 
 /obj/structure/proc/climb_on()
 
@@ -174,7 +171,7 @@
 		return 0
 	if (user.stat || user.paralysis || user.sleeping || user.lying || user.weakened)
 		return 0
-	if (issilicon(user))
+	if (isAI(user))
 		user << "<span class='notice'>You need hands for this.</span>"
 		return 0
 	return 1

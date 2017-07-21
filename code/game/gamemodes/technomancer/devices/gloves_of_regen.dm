@@ -47,7 +47,7 @@
 	..()
 
 /obj/item/clothing/gloves/regen/process()
-	if(!wearer || wearer.isSynthetic() || wearer.stat == DEAD || wearer.nutrition >= 10)
+	if(!wearer || wearer.isSynthetic() || wearer.stat == DEAD || wearer.nutrition <= 10)
 		return // Robots and dead people don't have a metabolism.
 
 	if(wearer.getBruteLoss())

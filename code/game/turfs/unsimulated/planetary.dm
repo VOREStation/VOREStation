@@ -1,5 +1,7 @@
 // This is a wall you surround the area of your "planet" with, that makes the atmosphere inside stay within bounds, even if canisters
 // are opened or other strange things occur.
+var/list/planetary_walls = list()
+
 /turf/unsimulated/wall/planetary
 	name = "railroading"
 	desc = "Choo choo!"
@@ -16,6 +18,23 @@
 	carbon_dioxide = 0
 	phoron = 0
 	temperature = T20C
+
+/turf/unsimulated/wall/planetary/New()
+	..()
+	planetary_walls.Add(src)
+
+/turf/unsimulated/wall/planetary/Destroy()
+	planetary_walls.Remove(src)
+	..()
+
+/turf/unsimulated/wall/planetary/proc/set_temperature(var/new_temperature)
+	if(new_temperature == temperature)
+		return
+	temperature = new_temperature
+	// Force ZAS to reconsider our connections because our temperature has changed
+	if(connections)
+		connections.erase_all()
+	air_master.mark_for_update(src)
 
 // Normal station/earth air.
 /turf/unsimulated/wall/planetary/normal
@@ -45,3 +64,4 @@
 	oxygen = MOLES_O2STANDARD
 	nitrogen = MOLES_N2STANDARD
 	temperature = 310.92 // About 37.7C / 100F
+

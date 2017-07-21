@@ -32,10 +32,12 @@
 		new /obj/item/clothing/suit/storage/hazardvest(src)
 		new /obj/item/clothing/mask/gas(src)
 		new /obj/item/device/multitool(src)
+		new /obj/item/weapon/weldingtool/experimental(src)
 		new /obj/item/device/flash(src)
 		new /obj/item/taperoll/engineering(src)
 		new /obj/item/clothing/suit/storage/hooded/wintercoat/engineering(src)
-		new /obj/item/weapon/tank/emergency_oxygen/engi(src)
+		new /obj/item/clothing/shoes/boots/winter/engineering(src)
+		new /obj/item/weapon/tank/emergency/oxygen/engi(src)
 		return
 
 
@@ -126,7 +128,8 @@
 		new /obj/item/weapon/cartridge/engineering(src)
 		new /obj/item/taperoll/engineering(src)
 		new /obj/item/clothing/suit/storage/hooded/wintercoat/engineering(src)
-		new /obj/item/weapon/tank/emergency_oxygen/engi(src)
+		new /obj/item/clothing/shoes/boots/winter/engineering(src)
+		new /obj/item/weapon/tank/emergency/oxygen/engi(src)
 		return
 
 
@@ -161,5 +164,6 @@
 		new /obj/item/weapon/cartridge/atmos(src)
 		new /obj/item/taperoll/atmos(src)
 		new /obj/item/clothing/suit/storage/hooded/wintercoat/engineering/atmos(src)
-		new /obj/item/weapon/tank/emergency_oxygen/engi(src)
+		new /obj/item/clothing/shoes/boots/winter/atmos(src)
+		new /obj/item/weapon/tank/emergency/oxygen/engi(src)
 		return

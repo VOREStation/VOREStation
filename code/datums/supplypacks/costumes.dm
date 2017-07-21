@@ -56,7 +56,7 @@
 	contains = list(
 			/obj/item/clothing/suit/pirate,
 			/obj/item/clothing/suit/judgerobe,
-			/obj/item/clothing/suit/wcoat,
+			/obj/item/clothing/accessory/wcoat,
 			/obj/item/clothing/suit/hastur,
 			/obj/item/clothing/suit/holidaypriest,
 			/obj/item/clothing/suit/nun,
@@ -78,7 +78,7 @@
 			/obj/item/clothing/under/scratch,
 			/obj/item/clothing/under/wedding/bride_white,
 			/obj/item/clothing/suit/chef,
-			/obj/item/clothing/suit/apron/overalls,
+			/obj/item/clothing/suit/storage/apron/overalls,
 			/obj/item/clothing/under/redcoat,
 			/obj/item/clothing/under/kilt
 			)
@@ -102,7 +102,7 @@
 			/obj/item/clothing/under/lawyer/purpsuit,
 			/obj/item/clothing/shoes/black = 2,
 			/obj/item/clothing/shoes/leather,
-			/obj/item/clothing/suit/wcoat
+			/obj/item/clothing/accessory/wcoat
 			)
 	name = "Formalwear closet"
 	cost = 30

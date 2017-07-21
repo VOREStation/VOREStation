@@ -27,7 +27,8 @@ BLIND     // can't see anything
 	var/obj/screen/overlay = null
 
 	sprite_sheets = list(
-		"Teshari" = 'icons/mob/species/seromi/eyes.dmi'
+		"Teshari" = 'icons/mob/species/seromi/eyes.dmi',
+		"Vox" = 'icons/mob/species/vox/eyes.dmi'
 		)
 
 /obj/item/clothing/glasses/update_clothing_icon()
@@ -68,6 +69,19 @@ BLIND     // can't see anything
 	desc = "Optical Meson Scanner with prescription lenses."
 	prescription = 1
 
+/obj/item/clothing/glasses/meson/aviator
+	name = "Engineering Aviators"
+	icon_state = "aviator_eng"
+	off_state = "aviator"
+	item_state_slots = list(slot_r_hand_str = "sunglasses", slot_l_hand_str = "sunglasses")
+	action_button_name = "Toggle HUD"
+	activation_sound = 'sound/effects/pop.ogg'
+
+/obj/item/clothing/glasses/meson/aviator/prescription
+	name = "Prescription Engineering Aviators"
+	desc = "Engineering Aviators with prescription lenses."
+	prescription = 1
+
 /obj/item/clothing/glasses/science
 	name = "Science Goggles"
 	desc = "The goggles do nothing!"
@@ -75,10 +89,19 @@ BLIND     // can't see anything
 	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
 	toggleable = 1
 	action_button_name = "Toggle Goggles"
+	item_flags = AIRTIGHT
 
 /obj/item/clothing/glasses/science/New()
 	..()
 	overlay = global_hud.science
+
+/obj/item/clothing/glasses/goggles
+	name = "Goggles"
+	desc = "Just some plain old goggles."
+	icon_state = "plaingoggles"
+	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
+	item_flags = AIRTIGHT
+	body_parts_covered = EYES
 
 /obj/item/clothing/glasses/night
 	name = "Night Vision Goggles"
@@ -91,6 +114,11 @@ BLIND     // can't see anything
 	action_button_name = "Toggle Goggles"
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 	off_state = "denight"
+
+/obj/item/clothing/glasses/night/vox
+	name = "Alien Optics"
+	species_restricted = list("Vox")
+	phoronproof = 1
 
 /obj/item/clothing/glasses/night/New()
 	..()
@@ -113,7 +141,7 @@ BLIND     // can't see anything
 
 	eye = !eye
 	if(eye)
-		icon_state = "[icon_state]_r"
+		icon_state = "[icon_state]_1"
 	else
 		icon_state = initial(icon_state)
 	update_clothing_icon()
@@ -134,6 +162,10 @@ BLIND     // can't see anything
 	toggleable = 1
 	action_button_name = "Toggle Goggles"
 	vision_flags = SEE_OBJS
+
+/obj/item/clothing/glasses/material/prescription
+	name = "Prescription Optical Material Scanner"
+	prescription = 1
 
 /obj/item/clothing/glasses/regular
 	name = "Prescription Glasses"
@@ -178,14 +210,14 @@ BLIND     // can't see anything
 	name = "welding goggles"
 	desc = "Protects the eyes from welders, approved by the mad scientist association."
 	icon_state = "welding-g"
-	item_state_slots = list(slot_r_hand_str = "g", slot_l_hand_str = "g")
+	item_state_slots = list(slot_r_hand_str = "welding-g", slot_l_hand_str = "welding-g")
 	action_button_name = "Flip Welding Goggles"
 	matter = list(DEFAULT_WALL_MATERIAL = 1500, "glass" = 1000)
+	item_flags = AIRTIGHT
 	var/up = 0
 
 /obj/item/clothing/glasses/welding/attack_self()
 	toggle()
-
 
 /obj/item/clothing/glasses/welding/verb/toggle()
 	set category = "Object"
@@ -237,15 +269,20 @@ BLIND     // can't see anything
 	icon_state = "bigsunglasses"
 
 /obj/item/clothing/glasses/fakesunglasses //Sunglasses without flash immunity
-	desc = "A pair of designer sunglasses. Doesn't seem like it'll block flashes."
 	name = "stylish sunglasses"
+	desc = "A pair of designer sunglasses. Doesn't seem like it'll block flashes."
 	icon_state = "sun"
 	item_state_slots = list(slot_r_hand_str = "sunglasses", slot_l_hand_str = "sunglasses")
+
+/obj/item/clothing/glasses/fakesunglasses/aviator
+	name = "stylish aviators"
+	desc = "A pair of designer sunglasses. Doesn't seem like it'll block flashes."
+	icon_state = "aviator"
 
 /obj/item/clothing/glasses/sunglasses/sechud
 	name = "HUDSunglasses"
 	desc = "Sunglasses with a HUD."
-	icon_state = "sunhud"
+	icon_state = "sunSecHud"
 	var/obj/item/clothing/glasses/hud/security/hud = null
 
 	New()
@@ -258,6 +295,111 @@ BLIND     // can't see anything
 	desc = "Flash-resistant goggles with inbuilt combat and security information."
 	icon_state = "swatgoggles"
 
+/obj/item/clothing/glasses/sunglasses/sechud/aviator
+	name = "Security HUD aviators"
+	desc = "Modified aviator glasses that can be switch between HUD and flash protection modes."
+	icon_state = "aviator_sec"
+	off_state = "aviator"
+	action_button_name = "Toggle Mode"
+	var/on = 1
+	toggleable = 1
+	activation_sound = 'sound/effects/pop.ogg'
+
+	var/hud_holder
+
+/obj/item/clothing/glasses/sunglasses/sechud/aviator/New()
+	..()
+	hud_holder = hud
+
+/obj/item/clothing/glasses/sunglasses/sechud/aviator/Destroy()
+	qdel(hud_holder)
+	hud_holder = null
+	hud = null
+	. = ..()
+
+/obj/item/clothing/glasses/sunglasses/sechud/aviator/attack_self(mob/user)
+	if(toggleable && !user.incapacitated())
+		on = !on
+		if(on)
+			src.hud = hud_holder
+			to_chat(user, "You switch the [src] to HUD mode.")
+		else
+			src.hud = null
+			to_chat(user, "You switch \the [src] to flash protection mode.")
+		update_icon()
+		user << activation_sound
+		user.update_inv_glasses()
+		user.update_action_buttons()
+
+/obj/item/clothing/glasses/sunglasses/sechud/aviator/update_icon()
+	if(on)
+		icon_state = initial(icon_state)
+	else
+		icon_state = off_state
+
+/obj/item/clothing/glasses/sunglasses/sechud/aviator/prescription
+	name = "Prescription Security HUD aviators"
+	desc = "Modified aviator glasses that can be switch between HUD and flash protection modes. Comes with bonus prescription lenses."
+	prescription = 6
+
+/obj/item/clothing/glasses/sunglasses/medhud
+	name = "HUDSunglasses"
+	desc = "Sunglasses with a HUD."
+	icon_state = "sunMedHud"
+	var/obj/item/clothing/glasses/hud/health/hud = null
+
+/obj/item/clothing/glasses/sunglasses/medhud/New()
+		..()
+		src.hud = new/obj/item/clothing/glasses/hud/health(src)
+		return
+
+/obj/item/clothing/glasses/sunglasses/medhud/aviator
+	name = "Medical HUD aviators"
+	desc = "Modified aviator glasses with a toggled health HUD."
+	icon_state = "aviator_med"
+	off_state = "aviator"
+	action_button_name = "Toggle Mode"
+	var/on = 1
+	toggleable = 1
+	activation_sound = 'sound/effects/pop.ogg'
+
+	var/hud_holder
+
+/obj/item/clothing/glasses/sunglasses/medhud/aviator/New()
+	..()
+	hud_holder = hud
+
+/obj/item/clothing/glasses/sunglasses/medhud/aviator/Destroy()
+	qdel(hud_holder)
+	hud_holder = null
+	hud = null
+	. = ..()
+
+/obj/item/clothing/glasses/sunglasses/medhud/aviator/attack_self(mob/user)
+	if(toggleable && !user.incapacitated())
+		on = !on
+		if(on)
+			src.hud = hud_holder
+			to_chat(user, "You switch the [src] to HUD mode.")
+		else
+			src.hud = null
+			to_chat(user, "You switch \the [src] off.")
+		update_icon()
+		user << activation_sound
+		user.update_inv_glasses()
+		user.update_action_buttons()
+
+/obj/item/clothing/glasses/sunglasses/medhud/aviator/update_icon()
+	if(on)
+		icon_state = initial(icon_state)
+	else
+		icon_state = off_state
+
+/obj/item/clothing/glasses/sunglasses/medhud/aviator/prescription
+	name = "Prescription Medical HUD aviators"
+	desc = "Modified aviator glasses with a toggled health HUD. Comes with bonus prescription lenses."
+	prescription = 6
+
 /obj/item/clothing/glasses/thermal
 	name = "Optical Thermal Scanner"
 	desc = "Thermals in the shape of glasses."
@@ -267,14 +409,15 @@ BLIND     // can't see anything
 	toggleable = 1
 	action_button_name = "Toggle Goggles"
 	vision_flags = SEE_MOBS
-	see_invisible = INVISIBILITY_LEVEL_TWO
+	see_invisible = SEE_INVISIBLE_NOLIGHTING
+
 
 	emp_act(severity)
 		if(istype(src.loc, /mob/living/carbon/human))
 			var/mob/living/carbon/human/M = src.loc
-			M << "\red The Optical Thermal Scanner overloads and blinds you!"
+			M << "<font color='red'>The Optical Thermal Scanner overloads and blinds you!</font>"
 			if(M.glasses == src)
-				M.eye_blind = 3
+				M.Blind(3)
 				M.eye_blurry = 5
 				// Don't cure being nearsighted
 				if(!(M.disabilities & NEARSIGHTED))

@@ -30,9 +30,9 @@
 	..()
 	for(var/obj/effect/energy_field/E in created_field)
 		if(E.strength < 1)
-			E.Strengthen(0.15)
+			E.adjust_strength(0.15, 0)
 		else if(E.strength < 5)
-			E.Strengthen(0.25)
+			E.adjust_strength(0.25, 0)
 
 /datum/artifact_effect/forcefield/UpdateMove()
 	if(created_field.len && holder)

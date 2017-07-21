@@ -19,7 +19,7 @@
 	var/list/GM_checked = list()
 
 	for(var/turf/simulated/T in A)
-		if(!istype(T) || isnull(T.zone) || istype(T, /turf/simulated/floor/airless))
+		if(!istype(T) || isnull(T.zone) || istype(T, /turf/simulated/floor/airless) || istype(T,/turf/simulated/shuttle/plating/airless))
 			continue
 		if(T.zone.air in GM_checked)
 			continue

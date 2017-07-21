@@ -32,6 +32,7 @@
 	name = "Exotic seeds crate"
 	contains = list(
 			/obj/item/seeds/replicapod = 2,
+			/obj/item/seeds/ambrosiavulgarisseed = 2,
 			/obj/item/seeds/libertymycelium,
 			/obj/item/seeds/reishimycelium,
 			/obj/item/seeds/random = 6,
@@ -41,4 +42,3 @@
 	containertype = /obj/structure/closet/crate/hydroponics
 	containername = "Exotic Seeds crate"
 	access = access_hydroponics
-

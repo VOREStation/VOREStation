@@ -4,34 +4,20 @@
 						Cyborg Spec Items
 ***********************************************************************/
 //Might want to move this into several files later but for now it works here
-// Consider changing this to a child of the stun baton class. ~Z
-/obj/item/borg/stun
+
+/obj/item/weapon/melee/baton/robot/arm
 	name = "electrified arm"
 	icon = 'icons/obj/decals.dmi'
 	icon_state = "shock"
 
-/obj/item/borg/stun/apply_hit_effect(mob/living/M, mob/living/silicon/robot/user, var/hit_zone)
-	// How the Hell.
-	if(!istype(user))
-		var/mob/living/temp = user
-		if(istype(temp))
-			temp.drop_from_inventory(src)
-		qdel(src)
-		return
+	hitcost = 750
+	agonyforce = 70
 
-	user.visible_message("<span class='danger'>\The [user] has prodded \the [M] with \a [src]!</span>")
-
-	if(!user.cell || !user.cell.checked_use(1250)) //Slightly more than a baton.
-		return
-
-	playsound(loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
-	
-	M.apply_effect(5, STUTTER)
-	M.stun_effect_act(0, 70, check_zone(hit_zone), src)
-	
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		H.forcesay(hit_appends)
+/obj/item/weapon/melee/baton/robot/arm/update_icon()
+	if(status)
+		set_light(1.5, 1, lightcolor)
+	else
+		set_light(0)
 
 /obj/item/borg/overdrive
 	name = "overdrive"

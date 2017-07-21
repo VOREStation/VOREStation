@@ -13,6 +13,12 @@
 	var/base_desc = "The naked hull."
 	var/base_icon = 'icons/turf/flooring/plating.dmi'
 	var/base_icon_state = "plating"
+	var/static/list/base_footstep_sounds = list("human" = list(
+		'sound/effects/footstep/plating1.ogg',
+		'sound/effects/footstep/plating2.ogg',
+		'sound/effects/footstep/plating3.ogg',
+		'sound/effects/footstep/plating4.ogg',
+		'sound/effects/footstep/plating5.ogg'))
 
 	// Flooring data.
 	var/flooring_override
@@ -33,10 +39,13 @@
 		floortype = initial_flooring
 	if(floortype)
 		set_flooring(get_flooring_data(floortype))
+	else
+		footstep_sounds = base_footstep_sounds
 
 /turf/simulated/floor/proc/set_flooring(var/decl/flooring/newflooring)
 	make_plating(defer_icon_update = 1)
 	flooring = newflooring
+	footstep_sounds = newflooring.footstep_sounds
 	update_icon(1)
 	levelupdate()
 
@@ -53,6 +62,7 @@
 	desc = base_desc
 	icon = base_icon
 	icon_state = base_icon_state
+	footstep_sounds = base_footstep_sounds
 
 	if(flooring)
 		if(flooring.build_type && place_product)

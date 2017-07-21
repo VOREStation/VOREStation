@@ -16,11 +16,14 @@
 <A href='?src=\ref[src];make=0;dir=1'>Pipe</A><BR>
 <A href='?src=\ref[src];make=1;dir=5'>Bent Pipe</A><BR>
 <A href='?src=\ref[src];make=5;dir=1'>Manifold</A><BR>
+<A href='?src=\ref[src];make=44;dir=1'>Digital Valve</A><BR>
 <A href='?src=\ref[src];make=8;dir=1'>Manual Valve</A><BR>
 <A href='?src=\ref[src];make=20;dir=1'>Pipe Cap</A><BR>
 <A href='?src=\ref[src];make=19;dir=1'>4-Way Manifold</A><BR>
-<A href='?src=\ref[src];make=18;dir=1'>Manual T-Valve</A><BR>
-<A href='?src=\ref[src];make=43;dir=1'>Manual T-Valve - Mirrored</A><BR>
+<A href='?src=\ref[src];make=45;dir=4'>Digital T-Valve</A><BR>
+<A href='?src=\ref[src];make=46;dir=8'>Digital T-Valve - Mirrored</A><BR>
+<A href='?src=\ref[src];make=18;dir=4'>Manual T-Valve</A><BR>
+<A href='?src=\ref[src];make=43;dir=8'>Manual T-Valve - Mirrored</A><BR>
 <A href='?src=\ref[src];make=21;dir=1'>Upward Pipe</A><BR>
 <A href='?src=\ref[src];make=22;dir=1'>Downward Pipe</A><BR>
 <b>Supply pipes:</b><BR>

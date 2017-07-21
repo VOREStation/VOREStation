@@ -9,6 +9,8 @@
 
 	var/datum/pipe_network/network
 
+	var/welded = 0 //defining this here for ventcrawl stuff
+
 	New()
 		..()
 		initialize_directions = dir
@@ -29,15 +31,13 @@
 		return null
 
 	Destroy()
-		loc = null
+		. = ..()
 
 		if(node)
 			node.disconnect(src)
 			qdel(network)
 
 		node = null
-
-		..()
 
 	initialize()
 		if(node) return

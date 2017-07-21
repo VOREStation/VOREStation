@@ -1,32 +1,60 @@
+#define ZONE_BLOCKED 2
+#define AIR_BLOCKED 1
+
 //Interactions
 /turf/simulated/wall/proc/toggle_open(var/mob/user)
 
 	if(can_open == WALL_OPENING)
 		return
 
+	radiation_repository.resistance_cache.Remove(src)
+
 	if(density)
 		can_open = WALL_OPENING
 		//flick("[material.icon_base]fwall_opening", src)
 		density = 0
+		blocks_air = ZONE_BLOCKED
 		update_icon()
+		update_air()
 		set_light(0)
 		src.blocks_air = 0
-		src.opacity = 0
+		set_opacity(0)
 		for(var/turf/simulated/turf in loc)
 			air_master.mark_for_update(turf)
 	else
 		can_open = WALL_OPENING
 		//flick("[material.icon_base]fwall_closing", src)
 		density = 1
+		blocks_air = AIR_BLOCKED
 		update_icon()
+		update_air()
 		set_light(1)
 		src.blocks_air = 1
-		src.opacity = 1
+		set_opacity(1)
 		for(var/turf/simulated/turf in loc)
 			air_master.mark_for_update(turf)
 
 	can_open = WALL_CAN_OPEN
 	update_icon()
+
+#undef ZONE_BLOCKED
+#undef AIR_BLOCKED
+
+/turf/simulated/wall/proc/update_air()
+	if(!air_master)
+		return
+
+	for(var/turf/simulated/turf in loc)
+		update_thermal(turf)
+		air_master.mark_for_update(turf)
+
+
+/turf/simulated/wall/proc/update_thermal(var/turf/simulated/source)
+	if(istype(source))
+		if(density && opacity)
+			source.thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
+		else
+			source.thermal_conductivity = initial(source.thermal_conductivity)
 
 /turf/simulated/wall/proc/fail_smash(var/mob/user)
 	user << "<span class='danger'>You smash against the wall!</span>"
@@ -162,6 +190,7 @@
 		else
 			user << "<span class='notice'>You need more welding fuel to complete this task.</span>"
 			return
+		user.update_examine_panel(src)
 		return
 
 	// Basic dismantling.
@@ -215,6 +244,7 @@
 				if (istype(W, /obj/item/weapon/wirecutters))
 					playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
 					construction_stage = 5
+					user.update_examine_panel(src)
 					user << "<span class='notice'>You cut through the outer grille.</span>"
 					update_icon()
 					return
@@ -225,11 +255,13 @@
 					if(!do_after(user,40) || !istype(src, /turf/simulated/wall) || construction_stage != 5)
 						return
 					construction_stage = 4
+					user.update_examine_panel(src)
 					update_icon()
 					user << "<span class='notice'>You unscrew the support lines.</span>"
 					return
 				else if (istype(W, /obj/item/weapon/wirecutters))
 					construction_stage = 6
+					user.update_examine_panel(src)
 					user << "<span class='notice'>You mend the outer grille.</span>"
 					update_icon()
 					return
@@ -252,6 +284,7 @@
 					if(!do_after(user, 60) || !istype(src, /turf/simulated/wall) || construction_stage != 4)
 						return
 					construction_stage = 3
+					user.update_examine_panel(src)
 					update_icon()
 					user << "<span class='notice'>You press firmly on the cover, dislodging it.</span>"
 					return
@@ -261,6 +294,7 @@
 					if(!do_after(user,40) || !istype(src, /turf/simulated/wall) || construction_stage != 4)
 						return
 					construction_stage = 5
+					user.update_examine_panel(src)
 					update_icon()
 					user << "<span class='notice'>You screw down the support lines.</span>"
 					return
@@ -271,6 +305,7 @@
 					if(!do_after(user,100) || !istype(src, /turf/simulated/wall) || construction_stage != 3)
 						return
 					construction_stage = 2
+					user.update_examine_panel(src)
 					update_icon()
 					user << "<span class='notice'>You pry off the cover.</span>"
 					return
@@ -281,6 +316,7 @@
 					if(!do_after(user,40) || !istype(src, /turf/simulated/wall) || construction_stage != 2)
 						return
 					construction_stage = 1
+					user.update_examine_panel(src)
 					update_icon()
 					user << "<span class='notice'>You remove the bolts anchoring the support rods.</span>"
 					return
@@ -301,6 +337,7 @@
 					if(!do_after(user,70) || !istype(src, /turf/simulated/wall) || construction_stage != 1)
 						return
 					construction_stage = 0
+					user.update_examine_panel(src)
 					update_icon()
 					user << "<span class='notice'>The slice through the support rods.</span>"
 					return

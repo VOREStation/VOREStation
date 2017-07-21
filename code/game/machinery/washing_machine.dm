@@ -115,7 +115,7 @@
 		user << "<span class='warning'>You can't fit \the [W] inside.</span>"
 		return
 
-	else if(istype(W, /obj/item/clothing))
+	else if(istype(W, /obj/item/clothing) || istype(W, /obj/item/weapon/bedsheet))
 		if(washing.len < 5)
 			if(state in list(1, 3))
 				user.drop_item()

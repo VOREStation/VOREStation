@@ -12,14 +12,18 @@
 	projectile_type = /obj/item/projectile/ion
 
 /obj/item/weapon/gun/energy/ionrifle/emp_act(severity)
-	..(max(severity, 2)) //so it doesn't EMP itself, I guess
+	..(max(severity, 4)) //so it doesn't EMP itself, I guess
 
-/obj/item/weapon/gun/energy/ionrifle/update_icon()
-	..()
-	if(power_supply.charge < charge_cost)
-		item_state = "ionrifle0"
-	else
-		item_state = initial(item_state)
+/obj/item/weapon/gun/energy/ionrifle/pistol
+	name = "ion pistol"
+	desc = "The NT Mk63 EW Pan is a man portable anti-armor weapon designed to disable mechanical threats, produced by NT. This model sacrifices capacity for portability.."
+	icon_state = "ionpistol"
+	item_state = null
+	w_class = ITEMSIZE_NORMAL
+	force = 5
+	slot_flags = SLOT_BELT|SLOT_HOLSTER
+	charge_cost = 480
+	projectile_type = /obj/item/projectile/ion
 
 /obj/item/weapon/gun/energy/decloner
 	name = "biological demolecularisor"
@@ -40,10 +44,12 @@
 	origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 3, TECH_POWER = 3)
 	modifystate = "floramut"
 	self_recharge = 1
+	var/decl/plantgene/gene = null
 
 	firemodes = list(
 		list(mode_name="induce mutations", projectile_type=/obj/item/projectile/energy/floramut, modifystate="floramut"),
 		list(mode_name="increase yield", projectile_type=/obj/item/projectile/energy/florayield, modifystate="florayield"),
+		list(mode_name="induce specific mutations", projectile_type=/obj/item/projectile/energy/floramut/gene, modifystate="floramut"),
 		)
 
 /obj/item/weapon/gun/energy/floragun/afterattack(obj/target, mob/user, adjacent_flag)
@@ -53,6 +59,28 @@
 		Fire(target,user)
 		return
 	..()
+
+/obj/item/weapon/gun/energy/floragun/verb/select_gene()
+	set name = "Select Gene"
+	set category = "Object"
+	set src in view(1)
+
+	var/genemask = input("Choose a gene to modify.") as null|anything in plant_controller.plant_gene_datums
+
+	if(!genemask)
+		return
+
+	gene = plant_controller.plant_gene_datums[genemask]
+
+	to_chat(usr, "<span class='info'>You set the [src]'s targeted genetic area to [genemask].</span>")
+
+	return
+
+/obj/item/weapon/gun/energy/floragun/consume_next_projectile()
+	. = ..()
+	var/obj/item/projectile/energy/floramut/gene/G = .
+	if(istype(G))
+		G.gene = gene
 
 /obj/item/weapon/gun/energy/meteorgun
 	name = "meteor gun"

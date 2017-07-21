@@ -2,9 +2,12 @@
 	data = new/list("donor" = null, "viruses" = null, "species" = "Human", "blood_DNA" = null, "blood_type" = null, "blood_colour" = "#A10808", "resistances" = null, "trace_chem" = null, "antibodies" = list())
 	name = "Blood"
 	id = "blood"
+	taste_description = "iron"
+	taste_mult = 1.3
 	reagent_state = LIQUID
 	metabolism = REM * 5
 	mrate_static = TRUE
+	affects_dead = 1 //so you can pump blood into someone before defibbing them
 	color = "#C80000"
 
 	glass_name = "tomato juice"
@@ -73,6 +76,7 @@
 /datum/reagent/antibodies
 	data = list("antibodies"=list())
 	name = "Antibodies"
+	taste_description = "slime"
 	id = "antibodies"
 	reagent_state = LIQUID
 	color = "#0050F0"
@@ -87,6 +91,7 @@
 /datum/reagent/water
 	name = "Water"
 	id = "water"
+	taste_description = "water"
 	description = "A ubiquitous chemical substance that is composed of hydrogen and oxygen."
 	reagent_state = LIQUID
 	color = "#0064C877"
@@ -149,20 +154,21 @@
 	name = "Welding fuel"
 	id = "fuel"
 	description = "Required for welders. Flamable."
+	taste_description = "gross metal"
 	reagent_state = LIQUID
 	color = "#660000"
 
 	glass_name = "welder fuel"
 	glass_desc = "Unless you are an industrial tool, this is probably not safe for consumption."
 
-/datum/reagent/fuel/touch_turf(var/turf/T)
-	new /obj/effect/decal/cleanable/liquid_fuel(T, volume)
-	remove_self(volume)
+/datum/reagent/fuel/touch_turf(var/turf/T, var/amount)
+	new /obj/effect/decal/cleanable/liquid_fuel(T, amount)
+	remove_self(amount)
 	return
 
 /datum/reagent/fuel/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(issmall(M)) removed *= 2
-	M.adjustToxLoss(2 * removed)
+	M.adjustToxLoss(4 * removed)
 
 /datum/reagent/fuel/touch_mob(var/mob/living/L, var/amount)
 	if(istype(L))

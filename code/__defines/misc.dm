@@ -36,6 +36,7 @@
 #define SPECIALROLE_HUD 8 // AntagHUD image.
 #define  STATUS_HUD_OOC 9 // STATUS_HUD without virus DB check for someone being ill.
 #define 	  LIFE_HUD 10 // STATUS_HUD that only reports dead or alive
+#define     TOTAL_HUDS 10 // Total number of HUDs. Like body layers, and other things, it comes up sometimes.
 
 //some colors
 #define COLOR_WHITE   			"#FFFFFF"
@@ -68,6 +69,11 @@
 #define COLOR_PALE_RED_GRAY		"#CC9090"
 #define COLOR_PALE_PURPLE_GRAY	"#BDA2BA"
 #define COLOR_PURPLE_GRAY 		"#A2819E"
+#define COLOR_RED_LIGHT         "#FF3333"
+#define COLOR_DEEP_SKY_BLUE     "#00e1ff"
+
+
+
 
 //	Shuttles.
 
@@ -179,3 +185,16 @@
 #define ROLE_SYNTHETIC			"synthetic"
 #define ROLE_UNKNOWN			"unknown"
 #define ROLE_EVERYONE			"everyone"
+
+// Canonical spellings of TSCs, so typos never have to happen again due to human error.
+#define TSC_NT		"NanoTrasen"
+#define TSC_HEPH	"Hephaestus" // Because everyone misspells it
+#define TSC_VM		"Vey Med"
+#define TSC_ZH		"Zeng-Hu"
+#define TSC_WT		"Ward-Takahashi"
+#define TSC_BC		"Bishop Cybernetics"
+#define TSC_MORPH	"Morpheus"
+#define TSC_XION	"Xion" // Not really needed but consistancy I guess.
+#define TSC_GIL 	"Gilthari"
+
+#define MIDNIGHT_ROLLOVER		864000	//number of deciseconds in a day

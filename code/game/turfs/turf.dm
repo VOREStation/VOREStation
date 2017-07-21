@@ -21,9 +21,12 @@
 	var/icon_old = null
 	var/pathweight = 1          // How much does it cost to pathfind over this turf?
 	var/blessed = 0             // Has the turf been blessed?
-	var/dynamic_lighting = 1    // Does the turf use dynamic lighting?
 
 	var/list/decals
+
+	var/movement_cost = 0       // How much the turf slows down movement, if any.
+
+	var/list/footstep_sounds = null
 
 /turf/New()
 	..()
@@ -38,9 +41,13 @@
 	else
 		luminosity = 1
 
+	if(movement_cost && pathweight == 1) // This updates pathweight automatically.
+		pathweight = movement_cost
+
 /turf/Destroy()
 	turfs -= src
 	..()
+	return QDEL_HINT_IWILLGC
 
 /turf/ex_act(severity)
 	return 0
@@ -67,6 +74,13 @@
 	else
 		step(user.pulling, get_dir(user.pulling.loc, src))
 	return 1
+
+turf/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/weapon/storage))
+		var/obj/item/weapon/storage/S = W
+		if(S.use_to_pickup && S.collection_mode)
+			S.gather_all(src, user)
+	return ..()
 
 /turf/Enter(atom/movable/mover as mob|obj, atom/forget as mob|obj|turf|area)
 	if(movement_disabled && usr.ckey != movement_disabled_exception)
@@ -134,6 +148,9 @@ var/const/enterloopsanity = 100
 		else if(!is_space())
 			M.inertia_dir = 0
 			M.make_floating(0)
+		if(isliving(M))
+			var/mob/living/L = M
+			L.handle_footstep(src)
 	..()
 	var/objects = 0
 	if(A && (A.flags & PROXMOVE))
@@ -232,3 +249,11 @@ var/const/enterloopsanity = 100
 /turf/proc/update_blood_overlays()
 	return
 
+// Called when turf is hit by a thrown object
+/turf/hitby(atom/movable/AM as mob|obj, var/speed)
+	if(src.density)
+		spawn(2)
+			step(AM, turn(AM.last_move, 180))
+		if(isliving(AM))
+			var/mob/living/M = AM
+			M.turf_collision(src, speed)

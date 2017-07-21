@@ -16,6 +16,7 @@
 	var/maxcopies = 10	//how many copies can be copied at once- idea shamelessly stolen from bs12's copier!
 
 /obj/machinery/photocopier/New()
+	..()
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
 	component_parts += new /obj/item/weapon/stock_parts/motor(src)
@@ -66,14 +67,18 @@
 				break
 
 			if (istype(copyitem, /obj/item/weapon/paper))
+				playsound(loc, "sound/machines/copier.ogg", 100, 1)
+				sleep(11)
 				copy(copyitem)
-				sleep(15)
 			else if (istype(copyitem, /obj/item/weapon/photo))
+				playsound(loc, "sound/machines/copier.ogg", 100, 1)
+				sleep(11)
 				photocopy(copyitem)
-				sleep(15)
 			else if (istype(copyitem, /obj/item/weapon/paper_bundle))
+				sleep(11)
+				playsound(loc, "sound/machines/copier.ogg", 100, 1)
 				var/obj/item/weapon/paper_bundle/B = bundlecopy(copyitem)
-				sleep(15*B.pages.len)
+				sleep(11*B.pages.len)
 			else
 				usr << "<span class='warning'>\The [copyitem] can't be copied by \the [src].</span>"
 				break
@@ -122,6 +127,7 @@
 			copyitem = O
 			O.loc = src
 			user << "<span class='notice'>You insert \the [O] into \the [src].</span>"
+			playsound(loc, "sound/machines/click.ogg", 100, 1)
 			flick(insert_anim, src)
 		else
 			user << "<span class='notice'>There is already something in \the [src].</span>"

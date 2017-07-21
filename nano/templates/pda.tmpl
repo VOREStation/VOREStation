@@ -568,6 +568,7 @@ Used In File(s): \code\game\objects\items\devices\PDA\PDA.dm
                 <div class="itemContent" style="width: 100%;">
                     {{if data.records.general_exists == 1}}
                         <span class="good">Name:		</span> <span class="average">{{:data.records.general.name}}	</span><br>
+						<span class="good">Entity Class:	</span> <span class="average">{{:data.records.general.brain_type}}	</span><br>
                         <span class="good">Sex:			</span> <span class="average">{{:data.records.general.sex}}		</span><br>
                         <span class="good">Species:		</span> <span class="average">{{:data.records.general.species}}	</span><br>
                         <span class="good">Age:			</span> <span class="average">{{:data.records.general.age}}		</span><br>
@@ -591,7 +592,7 @@ Used In File(s): \code\game\objects\items\devices\PDA\PDA.dm
                         <span class="good">Details:		</span> <span class="average">{{:data.records.medical.alg_d}}	</span><br><br>
                         <span class="good">Current Disease:	</span> <span class="average">{{:data.records.medical.cdi}}		</span><br>
                         <span class="good">Details:		</span> <span class="average">{{:data.records.medical.alg_d}}	</span><br><br>
-                        <span class="good">Important Notes:	</span> <span class="average">{{:data.records.medical.notes}}	</span>
+                        <span class="good">Important Notes:	</span> <span class="average multiLine">{{:data.records.medical.notes}}	</span>
                     {{else}}
                         <span class="bad">
                             Medical Record Lost!
@@ -643,7 +644,7 @@ Used In File(s): \code\game\objects\items\devices\PDA\PDA.dm
                         <span class="good">Details:  </span><span class="average">{{:data.records.security.mi_crim_d}} </span><br><br>
                         <span class="good">Major Crimes:  </span><span class="average">{{:data.records.security.ma_crim}} </span><br>
                         <span class="good">Details:  </span><span class="average">{{:data.records.security.ma_crim_d}} </span><br><br>
-                        <span class="good">Important Notes:   </span><span class="average">{{:data.records.security.notes}} </span>
+                        <span class="good">Important Notes:   </span><span class="average multiLine">{{:data.records.security.notes}} </span>
                     {{else}}
                         <span class="bad">
                             Security Record Lost!<br><br>

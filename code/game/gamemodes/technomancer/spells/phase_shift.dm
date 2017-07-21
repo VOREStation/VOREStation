@@ -1,21 +1,21 @@
 /datum/technomancer/spell/phase_shift
 	name = "Phase Shift"
-	desc = "Hides you in the safest possible place, where no harm can come to you.  Unfortunately you can only stay inside for a few moments before \
-	draining your powercell."
+	desc = "Hides you in the safest possible place, where no harm can come to you.  Unfortunately, a prolonged stay inside the \
+	rift you create will afflict you with instability."
 	cost = 50
 	obj_path = /obj/item/weapon/spell/phase_shift
 	category = DEFENSIVE_SPELLS
 
 /obj/item/weapon/spell/phase_shift
 	name = "phase shift"
-	desc = "Allows you to dodge your untimely fate by shifting your location somewhere else, so long as you can sustain the energy to do so."
+	desc = "Allows you to dodge your untimely fate by shifting your location somewhere else, so long as you can survive inside the \
+	rift."
 	cast_methods = CAST_USE
 	aspect = ASPECT_TELE
 
 /obj/item/weapon/spell/phase_shift/New()
 	..()
 	set_light(3, 2, l_color = "#FA58F4")
-	processing_objects |= src
 
 /obj/effect/phase_shift
 	name = "rift"
@@ -29,6 +29,7 @@
 /obj/effect/phase_shift/New()
 	..()
 	set_light(3, 5, l_color = "#FA58F4")
+	processing_objects |= src
 
 /obj/effect/phase_shift/Destroy()
 	for(var/atom/movable/AM in contents) //Eject everything out.

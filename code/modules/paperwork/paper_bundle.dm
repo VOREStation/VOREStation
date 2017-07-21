@@ -91,7 +91,7 @@
 				qdel(src)
 
 			else
-				user << "\red You must hold \the [P] steady to burn \the [src]."
+				user << "<font color='red'>You must hold \the [P] steady to burn \the [src].</font>"
 
 /obj/item/weapon/paper_bundle/examine(mob/user)
 	if(..(user, 1))
@@ -180,7 +180,7 @@
 			update_icon()
 	else
 		usr << "<span class='notice'>You need to hold it in hands!</span>"
-	if (istype(src.loc, /mob) ||istype(src.loc.loc, /mob))
+	if (src.loc && istype(src.loc, /mob) ||istype(src.loc.loc, /mob))
 		src.attack_self(usr)
 		updateUsrDialog()
 

@@ -49,21 +49,42 @@
 /datum/supply_packs/med/surgery
 	name = "Surgery crate"
 	contains = list(
-			/obj/item/weapon/cautery,
-			/obj/item/weapon/surgicaldrill,
+			/obj/item/weapon/surgical/cautery,
+			/obj/item/weapon/surgical/surgicaldrill,
 			/obj/item/clothing/mask/breath/medical,
 			/obj/item/weapon/tank/anesthetic,
-			/obj/item/weapon/FixOVein,
-			/obj/item/weapon/hemostat,
-			/obj/item/weapon/scalpel,
-			/obj/item/weapon/bonegel,
-			/obj/item/weapon/retractor,
-			/obj/item/weapon/bonesetter,
-			/obj/item/weapon/circular_saw
+			/obj/item/weapon/surgical/FixOVein,
+			/obj/item/weapon/surgical/hemostat,
+			/obj/item/weapon/surgical/scalpel,
+			/obj/item/weapon/surgical/bonegel,
+			/obj/item/weapon/surgical/retractor,
+			/obj/item/weapon/surgical/bonesetter,
+			/obj/item/weapon/surgical/circular_saw
 			)
 	cost = 25
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Surgery crate"
+	access = access_medical
+
+/datum/supply_packs/med/deathalarm
+	name = "Death Alarm crate"
+	contains = list(
+			/obj/item/weapon/storage/box/cdeathalarm_kit,
+			/obj/item/weapon/storage/box/cdeathalarm_kit
+			)
+	cost = 40
+	containertype = "/obj/structure/closet/crate/secure"
+	containername = "Death Alarm crate"
+	access = access_medical
+
+/datum/supply_packs/med/clotting
+	name = "Clotting Medicine crate"
+	contains = list(
+			/obj/item/weapon/storage/firstaid/clotting
+			)
+	cost = 40
+	containertype = "/obj/structure/closet/crate/secure"
+	containername = "Clotting Medicine crate"
 	access = access_medical
 
 /datum/supply_packs/med/sterile
@@ -106,7 +127,7 @@
 			/obj/item/clothing/mask/surgical,
 			/obj/item/clothing/shoes/white,
 			/obj/item/weapon/cartridge/cmo,
-			/obj/item/clothing/gloves/latex,
+			/obj/item/clothing/gloves/sterile/latex,
 			/obj/item/device/healthanalyzer,
 			/obj/item/device/flashlight/pen,
 			/obj/item/weapon/reagent_containers/syringe
@@ -129,7 +150,7 @@
 			/obj/item/weapon/storage/firstaid/adv,
 			/obj/item/clothing/shoes/white,
 			/obj/item/weapon/cartridge/medical,
-			/obj/item/clothing/gloves/latex,
+			/obj/item/clothing/gloves/sterile/latex,
 			/obj/item/device/healthanalyzer,
 			/obj/item/device/flashlight/pen,
 			/obj/item/weapon/reagent_containers/syringe
@@ -151,7 +172,7 @@
 			/obj/item/clothing/mask/surgical,
 			/obj/item/clothing/shoes/white,
 			/obj/item/weapon/cartridge/chemistry,
-			/obj/item/clothing/gloves/latex,
+			/obj/item/clothing/gloves/sterile/latex,
 			/obj/item/weapon/reagent_containers/dropper,
 			/obj/item/device/healthanalyzer,
 			/obj/item/weapon/storage/box/pillbottles,
@@ -177,8 +198,8 @@
 			/obj/item/clothing/under/rank/medical/paramedic,
 			/obj/item/clothing/accessory/stethoscope,
 			/obj/item/weapon/storage/firstaid/adv,
-			/obj/item/clothing/shoes/jackboots,
-			/obj/item/clothing/gloves/latex,
+			/obj/item/clothing/shoes/boots/jackboots,
+			/obj/item/clothing/gloves/sterile/latex,
 			/obj/item/device/healthanalyzer,
 			/obj/item/weapon/cartridge/medical,
 			/obj/item/device/flashlight/pen,
@@ -237,7 +258,7 @@
 			/obj/item/device/camera,
 			/obj/item/device/camera_film = 2,
 			/obj/item/weapon/autopsy_scanner,
-			/obj/item/weapon/scalpel,
+			/obj/item/weapon/surgical/scalpel,
 			/obj/item/weapon/storage/box/masks,
 			/obj/item/weapon/storage/box/gloves,
 			/obj/item/weapon/pen
@@ -307,3 +328,10 @@
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Virus sample crate"
 	access = access_cmo
+
+/datum/supply_packs/med/defib
+	name = "Defibrilator crate"
+	contains = list(/obj/item/device/defib_kit = 2)
+	cost = 30
+	containertype = /obj/structure/closet/crate/medical
+	containername = "Defibrilator crate"

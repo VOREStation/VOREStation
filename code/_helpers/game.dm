@@ -12,17 +12,17 @@
 /proc/is_on_same_plane_or_station(var/z1, var/z2)
 	if(z1 == z2)
 		return 1
-	if((z1 in config.station_levels) &&	(z2 in config.station_levels))
+	if((z1 in using_map.station_levels) &&	(z2 in using_map.station_levels))
 		return 1
 	return 0
 
 /proc/max_default_z_level()
 	var/max_z = 0
-	for(var/z in config.station_levels)
+	for(var/z in using_map.station_levels)
 		max_z = max(z, max_z)
-	for(var/z in config.admin_levels)
+	for(var/z in using_map.admin_levels)
 		max_z = max(z, max_z)
-	for(var/z in config.player_levels)
+	for(var/z in using_map.player_levels)
 		max_z = max(z, max_z)
 	return max_z
 
@@ -43,6 +43,18 @@
 	if (isarea(A))
 		return A
 
+
+/** Checks if any living humans are in a given area. */
+/proc/area_is_occupied(var/area/myarea)
+	// Testing suggests looping over human_mob_list is quicker than looping over area contents
+	for(var/mob/living/carbon/human/H in human_mob_list)
+		if(H.stat >= DEAD) //Conditions for exclusion here, like if disconnected people start blocking it.
+			continue
+		var/area/A = get_area(H)
+		if(A == myarea) //The loc of a turf is the area it is in.
+			return 1
+	return 0
+
 /proc/in_range(source, user)
 	if(get_dist(source, user) <= 1)
 		return 1
@@ -62,16 +74,16 @@
 	return heard
 
 /proc/isStationLevel(var/level)
-	return level in config.station_levels
+	return level in using_map.station_levels
 
 /proc/isNotStationLevel(var/level)
 	return !isStationLevel(level)
 
 /proc/isPlayerLevel(var/level)
-	return level in config.player_levels
+	return level in using_map.player_levels
 
 /proc/isAdminLevel(var/level)
-	return level in config.admin_levels
+	return level in using_map.admin_levels
 
 /proc/isNotAdminLevel(var/level)
 	return !isAdminLevel(level)
@@ -259,20 +271,25 @@
 	var/list/hear = dview(range,T,INVISIBILITY_MAXIMUM)
 	var/list/hearturfs = list()
 
-	for(var/atom/movable/AM in hear)
-		if(ismob(AM))
-			mobs += AM
-			hearturfs += AM.locs[1]
-		else if(isobj(AM))
-			objs += AM
-			hearturfs += AM.locs[1]
+	for(var/thing in hear)
+		if(istype(thing,/obj))
+			objs += thing
+			hearturfs += get_turf(thing)
+		else if(istype(thing,/mob))
+			mobs += thing
+			hearturfs += get_turf(thing)
 
 	//A list of every mob with a client
-	for(var/mob/M in player_list)
-		if(M.loc && M.locs[1] in hearturfs)
-			mobs |= M
+	for(var/mob in player_list)
+		if(!istype(mob, /mob))
+			crash_with("There is a null or non-mob reference inside player_list.")
+			continue
+		if(get_turf(mob) in hearturfs)
+			mobs |= mob
+			continue
 
-		else if(M.stat == DEAD)
+		var/mob/M = mob
+		if(M && M.stat == DEAD && !M.forbid_seeing_deadchat)
 			switch(type)
 				if(1) //Audio messages use ghost_ears
 					if(M.is_preference_enabled(/datum/client_preference/ghost_ears))
@@ -282,9 +299,9 @@
 						mobs |= M
 
 	//For objects below the top level who still want to hear
-	for(var/obj/O in listening_objects)
-		if(O.loc && O.locs[1] in hearturfs)
-			objs |= O
+	for(var/obj in listening_objects)
+		if(get_turf(obj) in hearturfs)
+			objs |= obj
 
 	return list("mobs" = mobs, "objs" = objs)
 

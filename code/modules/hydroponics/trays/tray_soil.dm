@@ -5,6 +5,7 @@
 	use_power = 0
 	mechanical = 0
 	tray_light = 0
+	frozen = -1
 
 /obj/machinery/portable_atmospherics/hydroponics/soil/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O,/obj/item/weapon/tank))

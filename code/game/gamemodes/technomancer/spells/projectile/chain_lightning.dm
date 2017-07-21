@@ -2,9 +2,10 @@
 	name = "Chain Lightning"
 	desc = "This dangerous function shoots lightning that will strike someone, then bounce to a nearby person.  Be careful that \
 	it does not bounce to you.  The lighting prefers to bounce to people with the least resistance to electricity.  It will \
-	strike up to four targets, including yourself if conditions allow it to occur."
+	strike up to four targets, including yourself if conditions allow it to occur.  Lightning functions cannot miss due to distance."
 	cost = 150
 	obj_path = /obj/item/weapon/spell/projectile/chain_lightning
+	ability_icon_state = "tech_chain_lightning"
 	category = OFFENSIVE_SPELLS
 
 /obj/item/weapon/spell/projectile/chain_lightning
@@ -31,16 +32,16 @@
 
 	var/bounces = 3				//How many times it 'chains'.  Note that the first hit is not counted as it counts /bounces/.
 	var/list/hit_mobs = list() 	//Mobs which were already hit.
-	var/power = 20				//How hard it will hit for with electrocute_act(), decreases with each bounce.
+	var/power = 35				//How hard it will hit for with electrocute_act(), decreases with each bounce.
 
 /obj/item/projectile/beam/chain_lightning/attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier=0)
 	//First we shock the guy we just hit.
 	if(ishuman(target_mob))
 		var/mob/living/carbon/human/H = target_mob
 		var/obj/item/organ/external/affected = H.get_organ(check_zone(BP_TORSO))
-		H.electrocute_act(power, src, H.get_siemens_coefficient_organ(affected), affected)
+		H.electrocute_act(power, src, H.get_siemens_coefficient_organ(affected), affected, 0)
 	else
-		target_mob.electrocute_act(power, src, 1.0, BP_TORSO)
+		target_mob.electrocute_act(power, src, 0.75, BP_TORSO)
 	hit_mobs |= target_mob
 
 	//Each bounce reduces the damage of the bolt.

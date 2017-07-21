@@ -11,7 +11,7 @@
 
 /datum/surgery_step/slime/cut_flesh
 	allowed_tools = list(
-	/obj/item/weapon/scalpel = 100,		\
+	/obj/item/weapon/surgical/scalpel = 100,		\
 	/obj/item/weapon/material/knife = 75,	\
 	/obj/item/weapon/material/shard = 50, 		\
 	)
@@ -27,17 +27,17 @@
 		"You start cutting through [target]'s flesh with \the [tool].")
 
 	end_step(mob/living/user, mob/living/carbon/slime/target, target_zone, obj/item/tool)
-		user.visible_message("\blue [user] cuts through [target]'s flesh with \the [tool].",	\
-		"\blue You cut through [target]'s flesh with \the [tool], revealing its silky innards.")
+		user.visible_message("<font color='blue'>[user] cuts through [target]'s flesh with \the [tool].</font>",	\
+		"<font color='blue'>You cut through [target]'s flesh with \the [tool], revealing its silky innards.</font>")
 		target.core_removal_stage = 1
 
 	fail_step(mob/living/user, mob/living/carbon/slime/target, target_zone, obj/item/tool)
-		user.visible_message("\red [user]'s hand slips, tearing [target]'s flesh with \the [tool]!", \
-		"\red Your hand slips, tearing [target]'s flesh with \the [tool]!")
+		user.visible_message("<font color='red'>[user]'s hand slips, tearing [target]'s flesh with \the [tool]!</font>", \
+		"<font color='red'>Your hand slips, tearing [target]'s flesh with \the [tool]!</font>")
 
 /datum/surgery_step/slime/cut_innards
 	allowed_tools = list(
-	/obj/item/weapon/scalpel = 100,		\
+	/obj/item/weapon/surgical/scalpel = 100,		\
 	/obj/item/weapon/material/knife = 75,	\
 	/obj/item/weapon/material/shard = 50, 		\
 	)
@@ -53,17 +53,17 @@
 		"You start cutting [target]'s silky innards apart with \the [tool].")
 
 	end_step(mob/living/user, mob/living/carbon/slime/target, target_zone, obj/item/tool)
-		user.visible_message("\blue [user] cuts [target]'s innards apart with \the [tool], exposing the cores.",	\
-		"\blue You cut [target]'s innards apart with \the [tool], exposing the cores.")
+		user.visible_message("<font color='blue'>[user] cuts [target]'s innards apart with \the [tool], exposing the cores.</font>",	\
+		"<font color='blue'>You cut [target]'s innards apart with \the [tool], exposing the cores.</font>")
 		target.core_removal_stage = 2
 
 	fail_step(mob/living/user, mob/living/carbon/slime/target, target_zone, obj/item/tool)
-		user.visible_message("\red [user]'s hand slips, tearing [target]'s innards with \the [tool]!", \
-		"\red Your hand slips, tearing [target]'s innards with \the [tool]!")
+		user.visible_message("<font color='red'>[user]'s hand slips, tearing [target]'s innards with \the [tool]!</font>", \
+		"<font color='red'>Your hand slips, tearing [target]'s innards with \the [tool]!</font>")
 
 /datum/surgery_step/slime/saw_core
 	allowed_tools = list(
-	/obj/item/weapon/circular_saw = 100, \
+	/obj/item/weapon/surgical/circular_saw = 100, \
 	/obj/item/weapon/material/hatchet = 75
 	)
 
@@ -79,8 +79,8 @@
 
 	end_step(mob/living/user, mob/living/carbon/slime/target, target_zone, obj/item/tool)
 		target.cores--
-		user.visible_message("\blue [user] cuts out one of [target]'s cores with \the [tool].",,	\
-		"\blue You cut out one of [target]'s cores with \the [tool]. [target.cores] cores left.")
+		user.visible_message("<font color='blue'>[user] cuts out one of [target]'s cores with \the [tool].</font>",,	\
+		"<font color='blue'>You cut out one of [target]'s cores with \the [tool]. [target.cores] cores left.</font>")
 
 		if(target.cores >= 0)
 			new target.coretype(target.loc)
@@ -89,5 +89,5 @@
 
 
 	fail_step(mob/living/user, mob/living/carbon/slime/target, target_zone, obj/item/tool)
-		user.visible_message("\red [user]'s hand slips, causing \him to miss the core!", \
-		"\red Your hand slips, causing you to miss the core!")
+		user.visible_message("<font color='red'>[user]'s hand slips, causing \him to miss the core!</font>", \
+		"<font color='red'>Your hand slips, causing you to miss the core!</font>")

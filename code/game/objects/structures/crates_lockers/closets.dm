@@ -21,7 +21,13 @@
 	var/store_items = 1
 	var/store_mobs = 1
 
+	var/list/will_contain
+
 /obj/structure/closet/initialize()
+	..()
+	if(will_contain)
+		create_objects_in_loc(src, will_contain)
+
 	if(!opened)		// if closed, any item at the crate's loc is put in the contents
 		var/obj/item/I
 		for(I in src.loc)
@@ -282,8 +288,8 @@
 	src.add_fingerprint(user)
 	return
 
-/obj/structure/closet/attack_ai(mob/user)
-	if(istype(user, /mob/living/silicon/robot) && Adjacent(user)) // Robots can open/close it, but not the AI.
+/obj/structure/closet/attack_robot(mob/user)
+	if(Adjacent(user))
 		attack_hand(user)
 
 /obj/structure/closet/relaymove(mob/user as mob)
@@ -311,7 +317,7 @@
 	if(!usr.canmove || usr.stat || usr.restrained())
 		return
 
-	if(ishuman(usr))
+	if(ishuman(usr) || isrobot(usr))
 		src.add_fingerprint(usr)
 		src.toggle(usr)
 	else

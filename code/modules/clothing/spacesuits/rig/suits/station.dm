@@ -65,6 +65,7 @@
 	offline_slowdown = 10
 	offline_vision_restriction = 2
 	emp_protection = -20
+	siemens_coefficient= 0.75
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/industrial
 
@@ -92,13 +93,20 @@
 	slowdown = 0
 	offline_slowdown = 1
 	offline_vision_restriction = 1
+	siemens_coefficient= 0.75
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/eva
+	glove_type = /obj/item/clothing/gloves/gauntlets/rig/eva
 
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/storage/toolbox,/obj/item/weapon/storage/briefcase/inflatable,/obj/item/device/t_scanner,/obj/item/weapon/rcd)
 
 	req_access = list()
 	req_one_access = list()
+	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
+
+/obj/item/clothing/gloves/gauntlets/rig/eva
+	name = "insulated gauntlets"
+	siemens_coefficient = 0
 
 /obj/item/weapon/rig/eva/equipped
 
@@ -122,6 +130,7 @@
 	slowdown = 0
 	offline_slowdown = 0
 	offline_vision_restriction = 0
+	siemens_coefficient= 0.75
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/ce
 	glove_type = /obj/item/clothing/gloves/gauntlets/rig/ce
@@ -130,6 +139,7 @@
 
 	req_access = list()
 	req_one_access = list()
+	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/gloves/gauntlets/rig/ce
 	name = "insulated gauntlets"
@@ -156,10 +166,9 @@
 	armor = list(melee = 45, bullet = 5, laser = 45, energy = 80, bomb = 60, bio = 100, rad = 100)
 	slowdown = 1
 	offline_vision_restriction = 1
+	siemens_coefficient= 0.75
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/hazmat
-
-	helm_type = /obj/item/clothing/head/helmet/space/rig/ert
 
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/stack/flag,/obj/item/weapon/storage/excavation,/obj/item/weapon/pickaxe,/obj/item/device/healthanalyzer,/obj/item/device/measuring_tape,/obj/item/device/ano_scanner,/obj/item/device/depth_scanner,/obj/item/device/core_sampler,/obj/item/device/gps,/obj/item/device/beacon_locator,/obj/item/device/radio/beacon,/obj/item/weapon/pickaxe/hand,/obj/item/weapon/storage/bag/fossils)
 
@@ -185,6 +194,7 @@
 	armor = list(melee = 30, bullet = 15, laser = 20, energy = 60, bomb = 30, bio = 100, rad = 100)
 	slowdown = 1
 	offline_vision_restriction = 1
+	siemens_coefficient= 0.75
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/medical
 
@@ -198,6 +208,7 @@
 	req_access = list(access_medical)
 
 	initial_modules = list(
+		/obj/item/rig_module/sprinter,
 		/obj/item/rig_module/chem_dispenser/injector,
 		/obj/item/rig_module/maneuvering_jets,
 		/obj/item/rig_module/device/healthscanner,
@@ -213,6 +224,7 @@
 	slowdown = 1
 	offline_slowdown = 3
 	offline_vision_restriction = 1
+	siemens_coefficient= 0.7
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/hazard
 

@@ -117,7 +117,7 @@
 		H << "<span class='warning'>You cannot teleport into solid walls.</span>"
 		return 0
 
-	if(T.z in config.admin_levels)
+	if(T.z in using_map.admin_levels)
 		H << "<span class='warning'>You cannot use your teleporter on this Z-level.</span>"
 		return 0
 
@@ -183,7 +183,7 @@
 
 /obj/item/rig_module/self_destruct/New()
 	..()
-	src.smoke = PoolOrNew(/datum/effect/effect/system/smoke_spread/bad)
+	src.smoke = new /datum/effect/effect/system/smoke_spread/bad()
 	src.smoke.attach(src)
 
 /obj/item/rig_module/self_destruct/Destroy()

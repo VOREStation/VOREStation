@@ -48,8 +48,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	var/obj/machinery/power/apc/apc = null
 	var/no_air = null
 //	var/list/lights				// list of all lights on this area
-	var/list/all_doors = list()		//Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area
-	var/air_doors_activated = 0
+	var/list/all_doors = null		//Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area
+	var/firedoors_closed = 0
 	var/list/ambience = list('sound/ambience/ambigen1.ogg','sound/ambience/ambigen3.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambigen5.ogg','sound/ambience/ambigen6.ogg','sound/ambience/ambigen7.ogg','sound/ambience/ambigen8.ogg','sound/ambience/ambigen9.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen11.ogg','sound/ambience/ambigen12.ogg','sound/ambience/ambigen14.ogg')
 	var/list/forced_ambience = null
 	var/sound_env = STANDARD_STATION
@@ -64,7 +64,7 @@ var/list/teleportlocs = list()
 		if(istype(AR, /area/shuttle) || istype(AR, /area/syndicate_station) || istype(AR, /area/wizard_station)) continue
 		if(teleportlocs.Find(AR.name)) continue
 		var/turf/picked = pick(get_area_turfs(AR.type))
-		if (picked.z in config.station_levels)
+		if (picked.z in using_map.station_levels)
 			teleportlocs += AR.name
 			teleportlocs[AR.name] = AR
 
@@ -81,7 +81,7 @@ var/list/ghostteleportlocs = list()
 			ghostteleportlocs += AR.name
 			ghostteleportlocs[AR.name] = AR
 		var/turf/picked = pick(get_area_turfs(AR.type))
-		if (picked.z in config.player_levels)
+		if (picked.z in using_map.player_levels)
 			ghostteleportlocs += AR.name
 			ghostteleportlocs[AR.name] = AR
 
@@ -100,7 +100,7 @@ var/list/ghostteleportlocs = list()
 	icon_state = "space"
 	requires_power = 1
 	always_unpowered = 1
-	lighting_use_dynamic = 1
+	dynamic_lighting = 1
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
@@ -293,7 +293,7 @@ area/space/atmosalert()
 /area/shuttle/mining
 	name = "\improper Mining Elevator"
 	music = "music/escape.ogg"
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 	base_turf = /turf/simulated/mineral/floor/ignore_mapgen
 
 /area/shuttle/mining/station
@@ -392,7 +392,7 @@ area/space/atmosalert()
 /area/shuttle/research
 	name = "\improper Research Elevator"
 	music = "music/escape.ogg"
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 	base_turf = /turf/simulated/mineral/floor/ignore_mapgen
 
 /area/shuttle/research/station
@@ -418,7 +418,7 @@ area/space/atmosalert()
 	name = "\improper CentCom"
 	icon_state = "centcom"
 	requires_power = 0
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 /area/centcom/control
 	name = "\improper CentCom Control"
@@ -491,7 +491,7 @@ area/space/atmosalert()
 	name = "\improper Mercenary Base"
 	icon_state = "syndie-ship"
 	requires_power = 0
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 /area/syndicate_mothership/control
 	name = "\improper Mercenary Control Room"
@@ -543,7 +543,7 @@ area/space/atmosalert()
 	name = "\improper Thunderdome"
 	icon_state = "thunder"
 	requires_power = 0
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 	sound_env = ARENA
 
 /area/tdome/tdome1
@@ -624,7 +624,7 @@ area/space/atmosalert()
 	name = "\improper Wizard's Den"
 	icon_state = "yellow"
 	requires_power = 0
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 /area/skipjack_station
 	name = "\improper Skipjack"
@@ -1110,6 +1110,10 @@ area/space/atmosalert()
 	name = "\improper Docking Hallway"
 	icon_state = "docking_hallway"
 
+/area/hallway/secondary/docking_hallway2
+	name = "\improper Secondary Docking Hallway"
+	icon_state = "docking_hallway"
+
 /area/hallway/secondary/engineering_hallway
 	name = "\improper Engineering Primary Hallway"
 	icon_state = "engineering_primary_hallway"
@@ -1377,6 +1381,10 @@ area/space/atmosalert()
 	name = "\improper Fitness Room"
 	icon_state = "fitness"
 
+/area/crew_quarters/longue_area
+	name = "\improper Longue"
+	icon_state = "recreation_area"
+
 /area/crew_quarters/recreation_area
 	name = "\improper Recreation Area"
 	icon_state = "recreation_area"
@@ -1411,7 +1419,7 @@ area/space/atmosalert()
 	sound_env = LARGE_SOFTFLOOR
 
 /area/crew_quarters/barrestroom
-	name = "\improper Bar Restroom"
+	name = "\improper Cafeteria Restroom"
 	icon_state = "bar"
 
 /area/crew_quarters/theatre
@@ -1423,8 +1431,8 @@ area/space/atmosalert()
  	name = "\improper Visitor Lodging"
  	icon_state = "visitor_lodging"
 
-/area/crew_quarters/visitor_dinning
- 	name = "\improper Visitor Dinning"
+/area/crew_quarters/visitor_dining
+ 	name = "\improper Visitor Dining"
  	icon_state = "visitor_dinning"
 
 /area/crew_quarters/visitor_laundry
@@ -1470,11 +1478,14 @@ area/space/atmosalert()
 	name = "\improper Vacant Site"
 	icon_state = "vacant_site"
 
+/area/vacant/vacant_site2
+	name = "\improper Abandoned Locker Room"
+	icon_state = "vacant_site"
 
 /area/holodeck
 	name = "\improper Holodeck"
 	icon_state = "Holodeck"
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 	sound_env = LARGE_ENCLOSED
 
 /area/holodeck/alphadeck
@@ -1627,7 +1638,7 @@ area/space/atmosalert()
 /area/solar
 	requires_power = 1
 	always_unpowered = 1
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 	base_turf = /turf/space
 
 	auxport
@@ -2151,6 +2162,10 @@ area/space/atmosalert()
 	name = "\improper Miscellaneous Research"
 	icon_state = "toxmisc"
 
+/area/rnd/workshop
+	name = "\improper Workshop"
+	icon_state = "sci_workshop"
+
 /area/toxins/server
 	name = "\improper Server Room"
 	icon_state = "server"
@@ -2321,7 +2336,7 @@ area/space/atmosalert()
 /area/shuttle/constructionsite
 	name = "\improper Construction Site Shuttle"
 	icon_state = "yellow"
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 	base_turf = /turf/simulated/mineral/floor/ignore_mapgen
 
 /area/shuttle/constructionsite/station
@@ -2436,6 +2451,10 @@ area/space/atmosalert()
 	name = "Emergency Storage"
 	icon_state = "storage"
 
+/area/ai_monitored/storage/emergency/eva
+	name = "Emergency EVA"
+	icon_state = "storage"
+
 /area/ai_upload
 	name = "\improper AI Upload Chamber"
 	icon_state = "ai_upload"
@@ -2474,25 +2493,25 @@ area/space/atmosalert()
 	name = "\improper AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 /area/AIsatextFS
 	name = "\improper AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 /area/AIsatextAS
 	name = "\improper AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 /area/AIsatextAP
 	name = "\improper AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 /area/NewAIMain
 	name = "\improper AI Main New"
@@ -2545,7 +2564,7 @@ area/space/atmosalert()
 
 /area/tcomfoyer
 	name = "\improper Telecomms Foyer"
-	icon_state = "tcomsatentrance"
+	icon_state = "tcomsatfoyer"
 	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
 
 /area/tcomwest
@@ -2666,7 +2685,7 @@ area/space/atmosalert()
 	name = "Beach"
 	icon_state = "null"
 	luminosity = 1
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 	requires_power = 0
 	ambience = list()
 	var/sound/mysound = null
@@ -2788,7 +2807,7 @@ var/list/the_station_areas = list (
 	name = "Keelin's private beach"
 	icon_state = "null"
 	luminosity = 1
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 	requires_power = 0
 	var/sound/mysound = null
 /*

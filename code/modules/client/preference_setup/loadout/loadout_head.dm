@@ -117,10 +117,34 @@
 	display_name = "cap, white"
 	path = /obj/item/clothing/head/soft/mime
 
+/datum/gear/head/cap/mbill
+	display_name = "cap, bill"
+	path = /obj/item/clothing/head/soft/mbill
+
+/datum/gear/head/cap/sol
+	display_name = "cap, sol"
+	path = /obj/item/clothing/head/soft/sol
+
+/datum/gear/head/cap/expdition
+	display_name = "cap, expedition"
+	path = /obj/item/clothing/head/soft/sol/expedition
+
+/datum/gear/head/cap/fleet
+	display_name = "cap, fleet"
+	path = /obj/item/clothing/head/soft/sol/fleet
+
 /datum/gear/head/cowboy
 	display_name = "cowboy, rodeo"
 	path = /obj/item/clothing/head/cowboy_hat
 	cost = 3
+
+/datum/gear/head/cowboy/black
+	display_name = "cowboy, black"
+	path = /obj/item/clothing/head/cowboy_hat/black
+
+/datum/gear/head/cowboy/wide
+	display_name = "cowboy, wide"
+	path = /obj/item/clothing/head/cowboy_hat/wide
 
 /datum/gear/head/fedora
 	display_name = "fedora, brown"
@@ -153,6 +177,14 @@
 /datum/gear/head/hairflower/orange
 	display_name = "hair flower pin, orange"
 	path = /obj/item/clothing/head/hairflower/orange
+
+/datum/gear/head/hairflower/white
+	display_name = "hair flower pin"
+	path = /obj/item/clothing/head/hairflower/white
+
+/datum/gear/head/hairflower/white/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
 
 /datum/gear/head/hardhat
 	display_name = "hardhat, yellow"
@@ -198,16 +230,11 @@
 /datum/gear/head/santahat
 	display_name = "santa hat, red (holiday)"
 	path = /obj/item/clothing/head/santa
-	cost = 11
+	cost = 2
 
 /datum/gear/head/santahat/green
 	display_name = "santa hat, green (holiday)"
 	path = /obj/item/clothing/head/santa/green
-
-/datum/gear/head/zhan_scarf
-	display_name = "Zhan headscarf"
-	path = /obj/item/clothing/head/tajaran/scarf
-	whitelisted = "Tajara"
 
 /datum/gear/head/hijab
 	display_name = "hijab"
@@ -230,6 +257,14 @@
 	path = /obj/item/clothing/head/turban
 
 /datum/gear/head/turban/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/head/taqiyah
+	display_name = "taqiyah"
+	path = /obj/item/clothing/head/taqiyah
+
+/datum/gear/head/taqiyah/New()
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)
 
@@ -276,3 +311,41 @@
 /datum/gear/head/bow/New()
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/head/welding/
+	display_name = "welding, normal (engineering/robotics)"
+	path = /obj/item/clothing/head/welding
+	cost = 2
+	allowed_roles = list("Chief Engineer","Station Engineer","Atmospheric Technician","Research Director","Roboticist")
+
+/datum/gear/head/welding/demon
+	display_name = "welding, demon (engineering/robotics)"
+	path = /obj/item/clothing/head/welding/demon
+	allowed_roles = list("Chief Engineer","Station Engineer","Atmospheric Technician","Research Director","Roboticist")
+
+/datum/gear/head/welding/knight
+	display_name = "welding, knight (engineering/robotics)"
+	path = /obj/item/clothing/head/welding/knight
+	allowed_roles = list("Chief Engineer","Station Engineer","Atmospheric Technician","Research Director","Roboticist")
+
+/datum/gear/head/welding/fancy
+	display_name = "welding, fancy (engineering/robotics)"
+	path = /obj/item/clothing/head/welding/fancy
+	allowed_roles = list("Chief Engineer","Station Engineer","Atmospheric Technician","Research Director","Roboticist")
+
+/datum/gear/head/welding/engie
+	display_name = "welding, engie (engineering/robotics)"
+	path = /obj/item/clothing/head/welding/engie
+	allowed_roles = list("Chief Engineer","Station Engineer","Atmospheric Technician","Research Director","Roboticist")
+
+/datum/gear/head/beret/sol
+	display_name = "beret sol, selection"
+	path = /obj/item/clothing/head/beret/sol
+
+/datum/gear/head/beret/sol/New()
+	..()
+	var/list/sols = list()
+	for(var/sol_style in typesof(/obj/item/clothing/head/beret/sol))
+		var/obj/item/clothing/head/beret/sol/sol = sol_style
+		sols[initial(sol.name)] = sol
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(sols))

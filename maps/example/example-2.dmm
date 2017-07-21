@@ -1,0 +1,69 @@
+"a" = (/turf/space,/area/space)
+"b" = (/obj/effect/landmark/map_data{height = 2},/turf/space,/area/space)
+"c" = (/turf/simulated/wall,/area/aisat_interior)
+"d" = (/obj/structure/lattice,/obj/machinery/atmospherics/pipe/zpipe/down{tag = "icon-down (EAST)"; icon_state = "down"; dir = 4},/obj/structure/disposalpipe/down,/turf/simulated/open,/area/aisat_interior)
+"e" = (/obj/machinery/atmospherics/pipe/simple/visible{dir = 4},/obj/effect/floor_decal/corner/lime/diagonal,/turf/simulated/floor/tiled/dark,/area/aisat_interior)
+"f" = (/obj/machinery/atmospherics/pipe/manifold/visible{dir = 1},/obj/effect/floor_decal/corner/lime/diagonal,/turf/simulated/floor/tiled/dark,/area/aisat_interior)
+"g" = (/obj/machinery/atmospherics/binary/pump/high_power{dir = 8},/obj/effect/floor_decal/corner/lime/diagonal,/turf/simulated/floor/tiled/dark,/area/aisat_interior)
+"h" = (/obj/machinery/atmospherics/pipe/simple/visible{tag = "icon-intact (SOUTHWEST)"; icon_state = "intact"; dir = 10},/obj/effect/floor_decal/corner/lime/diagonal,/turf/simulated/floor/tiled/dark,/area/aisat_interior)
+"i" = (/obj/effect/floor_decal/corner/lime/diagonal,/turf/simulated/floor/tiled/dark,/area/aisat_interior)
+"j" = (/obj/machinery/light{dir = 1},/turf/simulated/floor/tiled/dark,/area/aisat_interior)
+"k" = (/obj/structure/disposalpipe/segment,/turf/simulated/floor/plating,/area/aisat_interior)
+"l" = (/obj/machinery/atmospherics/pipe/simple/visible,/obj/effect/floor_decal/corner/lime/diagonal,/obj/machinery/meter,/turf/simulated/floor/tiled/dark,/area/aisat_interior)
+"m" = (/obj/machinery/atmospherics/portables_connector{dir = 4},/obj/effect/floor_decal/corner/lime/diagonal,/turf/simulated/floor/tiled/dark,/area/aisat_interior)
+"n" = (/obj/machinery/atmospherics/pipe/manifold/visible{tag = "icon-map (EAST)"; icon_state = "map"; dir = 4},/obj/effect/floor_decal/corner/lime/diagonal,/obj/machinery/meter,/turf/simulated/floor/tiled/dark,/area/aisat_interior)
+"o" = (/turf/simulated/floor/tiled/dark,/area/aisat_interior)
+"p" = (/turf/simulated/open,/area/aisat_interior)
+"q" = (/obj/machinery/portable_atmospherics/canister/empty,/obj/effect/floor_decal/corner/lime/diagonal,/obj/structure/disposalpipe/segment,/turf/simulated/floor/tiled/dark,/area/aisat_interior)
+"r" = (/obj/machinery/atmospherics/pipe/simple/visible{tag = "icon-intact (NORTHEAST)"; icon_state = "intact"; dir = 5},/obj/effect/floor_decal/corner/lime/diagonal,/turf/simulated/floor/tiled/dark,/area/aisat_interior)
+"s" = (/obj/machinery/atmospherics/binary/pump/high_power{tag = "icon-map_off (EAST)"; icon_state = "map_off"; dir = 4},/obj/effect/floor_decal/corner/lime/diagonal,/turf/simulated/floor/tiled/dark,/area/aisat_interior)
+"t" = (/obj/machinery/atmospherics/pipe/simple/visible{tag = "icon-intact (NORTHWEST)"; icon_state = "intact"; dir = 9},/obj/effect/floor_decal/corner/lime/diagonal,/turf/simulated/floor/tiled/dark,/area/aisat_interior)
+"u" = (/obj/structure/ladder,/turf/simulated/floor/tiled/dark,/area/aisat_interior)
+"v" = (/obj/machinery/portable_atmospherics/canister/air,/obj/effect/floor_decal/corner/lime/diagonal,/obj/structure/disposalpipe/segment,/turf/simulated/floor/tiled/dark,/area/aisat_interior)
+"w" = (/obj/machinery/light,/turf/simulated/floor/tiled/dark,/area/aisat_interior)
+"x" = (/obj/machinery/alarm{dir = 4; icon_state = "alarm0"; pixel_x = -22},/obj/machinery/light{icon_state = "tube1"; dir = 8},/obj/machinery/disposal,/obj/structure/disposalpipe/trunk{tag = "icon-pipe-t (NORTH)"; icon_state = "pipe-t"; dir = 1},/turf/simulated/floor/tiled/dark,/area/aisat_interior)
+"y" = (/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/tiled/dark,/area/aisat_interior)
+"z" = (/obj/machinery/light_switch,/turf/simulated/wall,/area/aisat_interior)
+"A" = (/obj/machinery/power/fractal_reactor,/obj/structure/cable/yellow{d2 = 4; icon_state = "0-4"},/obj/machinery/light{icon_state = "tube1"; dir = 8},/turf/simulated/floor/tiled/dark,/area/aisat_interior)
+"B" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/tiled/dark,/area/aisat_interior)
+"C" = (/obj/machinery/power/apc{dir = 4; name = "east bump"; pixel_x = 24},/obj/structure/cable/yellow{d2 = 8; icon_state = "0-8"},/obj/structure/cable/yellow{d1 = 2; d2 = 8; icon_state = "2-8"},/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/tiled/dark,/area/aisat_interior)
+"D" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/effect/floor_decal/corner/lime/diagonal,/turf/simulated/floor/tiled/dark,/area/aisat_interior)
+"E" = (/turf/simulated/floor/tiled/red,/area/aisat_interior)
+"F" = (/obj/effect/floor_decal/sign/two,/turf/simulated/floor/tiled/dark,/area/aisat_interior)
+"G" = (/obj/machinery/light,/obj/effect/floor_decal/corner/lime/diagonal,/turf/simulated/floor/tiled/dark,/area/aisat_interior)
+"H" = (/obj/structure/lattice,/obj/structure/cable/yellow{d1 = 32; icon_state = "32-1"},/turf/simulated/open,/area/aisat_interior)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaabaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaacccccccccccccccaaaaaaaaa
+aaaaaaaacdefghijiiiiiicaaaaaaaaa
+aaaaaaaackilmnioiipppicaaaaaaaaa
+aaaaaaaacqirstiuiipppicaaaaaaaaa
+aaaaaaaacqiiiiioiipppicaaaaaaaaa
+aaaaaaaacviiiiioiiiiiicaaaaaaaaa
+aaaaaaaacviiiiiwiiiiiicaaaaaaaaa
+aaaaaaaacxooooyzABBBBCcaaaaaaaaa
+aaaaaaaaciiiiiijiiiiiDcaaaaaaaaa
+aaaaaaaaciiiiiioiiiiiDcaaaaaaaaa
+aaaaaaaaccciiiioiiiiiDcaaaaaaaaa
+aaaaaaaacEciiiioiiiiiDcaaaaaaaaa
+aaaaaaaacEciiiiFiiiiiDcaaaaaaaaa
+aaaaaaaaciiiGiioiiGiiHcaaaaaaaaa
+aaaaaaaaccccccoooccccccaaaaaaaaa
+aaaaaaaaaaaacEEEEEcaaaaaaaaaaaaa
+aaaaaaaaaaaacEEEEEcaaaaaaaaaaaaa
+aaaaaaaaaaaacEEEEEcaaaaaaaaaaaaa
+aaaaaaaaaaaacEEEEEcaaaaaaaaaaaaa
+aaaaaaaaaaaacEEEEEcaaaaaaaaaaaaa
+aaaaaaaaaaaacccccccaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}

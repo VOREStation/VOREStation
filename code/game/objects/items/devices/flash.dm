@@ -13,6 +13,8 @@
 	var/times_used = 0 //Number of times it's been used.
 	var/broken = 0     //Is the flash burnt out?
 	var/last_used = 0 //last world.time it was used.
+	var/max_flashes = 10 // How many times the flash can be used before needing to self recharge.
+	var/halloss_per_flash = 30
 
 /obj/item/device/flash/proc/clown_check(var/mob/user)
 	if(user && (CLUMSY in user.mutations) && prob(50))
@@ -22,14 +24,35 @@
 	return 1
 
 /obj/item/device/flash/proc/flash_recharge()
-	//capacitor recharges over time
-	for(var/i=0, i<3, i++)
-		if(last_used+600 > world.time)
+	//Every ten seconds the flash doesn't get used, the times_used variable goes down by one, making the flash less likely to burn out,
+	// as well as being able to flash more before reaching max_flashes cap.
+	for(var/i=0, i < max_flashes, i++)
+		if(last_used + 10 SECONDS > world.time)
 			break
-		last_used += 600
-		times_used -= 2
+		last_used += 10 SECONDS
+		times_used--
 	last_used = world.time
 	times_used = max(0,round(times_used)) //sanity
+
+// Returns true if the device can flash.
+/obj/item/device/flash/proc/check_capacitor(var/mob/user)
+	//spamming the flash before it's fully charged (60 seconds) increases the chance of it breaking
+	//It will never break on the first use.
+	if(times_used <= max_flashes)
+		last_used = world.time
+		if(prob( round(times_used / 2) ))	//if you use it 10 times in a minute it has a 5% chance to break.
+			broken = 1
+			if(user)
+				user << "<span class='warning'>The bulb has burnt out!</span>"
+			icon_state = "flashburnt"
+			return FALSE
+		else
+			times_used++
+			return TRUE
+	else	//can only use it 10 times a minute
+		if(user)
+			user << "<span class='warning'>*click* *click*</span>"
+		return FALSE
 
 //attack_as_weapon
 /obj/item/device/flash/attack(mob/living/M, mob/living/user, var/target_zone)
@@ -49,20 +72,8 @@
 
 	flash_recharge()
 
-	//spamming the flash before it's fully charged (60seconds) increases the chance of it  breaking
-	//It will never break on the first use.
-	switch(times_used)
-		if(0 to 5)
-			last_used = world.time
-			if(prob(times_used))	//if you use it 5 times in a minute it has a 10% chance to break!
-				broken = 1
-				user << "<span class='warning'>The bulb has burnt out!</span>"
-				icon_state = "flashburnt"
-				return
-			times_used++
-		else	//can only use it  5 times a minute
-			user << "<span class='warning'>*click* *click*</span>"
-			return
+	if(!check_capacitor(user))
+		return
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	user.do_attack_animation(M)
@@ -71,19 +82,21 @@
 	var/flashfail = 0
 
 	if(iscarbon(M))
-		if(M.stat!=DEAD)
-			var/safety = M:eyecheck()
+		var/mob/living/carbon/C = M
+		if(C.stat != DEAD)
+			var/safety = C.eyecheck()
 			if(safety <= 0)
 				var/flash_strength = 5
-				if(ishuman(M))
-					var/mob/living/carbon/human/H = M
+				if(ishuman(C))
+					var/mob/living/carbon/human/H = C
 					flash_strength *= H.species.flash_mod
 
 					if(flash_strength > 0)
-						H.confused = max(H.confused, flash_strength + 5)
-						H.eye_blind = max(H.eye_blind, flash_strength)
+						H.Confuse(flash_strength + 5)
+						H.Blind(flash_strength)
 						H.eye_blurry = max(H.eye_blurry, flash_strength + 5)
 						H.flash_eyes()
+						H.adjustHalLoss(halloss_per_flash * (flash_strength / 5)) // Should take four flashes to stun.
 
 			else
 				flashfail = 1
@@ -132,19 +145,9 @@
 
 	flash_recharge()
 
-	//spamming the flash before it's fully charged (60seconds) increases the chance of it  breaking
-	//It will never break on the first use.
-	switch(times_used)
-		if(0 to 5)
-			if(prob(2*times_used))	//if you use it 5 times in a minute it has a 10% chance to break!
-				broken = 1
-				user << "<span class='warning'>The bulb has burnt out!</span>"
-				icon_state = "flashburnt"
-				return
-			times_used++
-		else	//can only use it  5 times a minute
-			user.show_message("<span class='warning'>*click* *click*</span>", 2)
-			return
+	if(!check_capacitor(user))
+		return
+
 	playsound(src.loc, 'sound/weapons/flash.ogg', 100, 1)
 	flick("flash2", src)
 	if(user && isrobot(user))
@@ -158,32 +161,29 @@
 			sleep(5)
 			qdel(animation)
 
-	for(var/mob/living/carbon/M in oviewers(3, null))
-		var/safety = M:eyecheck()
+	for(var/mob/living/carbon/C in oviewers(3, null))
+		var/safety = C.eyecheck()
 		if(!safety)
-			if(!M.blinded)
-				M.flash_eyes()
+			if(!C.blinded)
+				C.flash_eyes()
 
 	return
 
 /obj/item/device/flash/emp_act(severity)
 	if(broken)	return
 	flash_recharge()
-	switch(times_used)
-		if(0 to 5)
-			if(prob(2*times_used))
-				broken = 1
-				icon_state = "flashburnt"
-				return
-			times_used++
-			if(istype(loc, /mob/living/carbon))
-				var/mob/living/carbon/M = loc
-				var/safety = M.eyecheck()
-				if(safety <= 0)
-					M.Weaken(10)
-					M.flash_eyes()
-					for(var/mob/O in viewers(M, null))
-						O.show_message("<span class='disarm'>[M] is blinded by the flash!</span>")
+	if(!check_capacitor())
+		return
+
+	if(istype(loc, /mob/living/carbon))
+		var/mob/living/carbon/C = loc
+		var/safety = C.eyecheck()
+		if(safety <= 0)
+			C.adjustHalLoss(halloss_per_flash)
+			//C.Weaken(10)
+			C.flash_eyes()
+			for(var/mob/M in viewers(C, null))
+				M.show_message("<span class='disarm'>[C] is blinded by the flash!</span>")
 	..()
 
 /obj/item/device/flash/synthetic

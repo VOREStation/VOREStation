@@ -5,6 +5,7 @@
 
 /datum/surgery_step/limb/
 	priority = 3 // Must be higher than /datum/surgery_step/internal
+	req_open = 0
 	can_infect = 0
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if (!hasorgans(target))
@@ -56,7 +57,7 @@
 
 /datum/surgery_step/limb/connect
 	allowed_tools = list(
-	/obj/item/weapon/hemostat = 100,	\
+	/obj/item/weapon/surgical/hemostat = 100,	\
 	/obj/item/stack/cable_coil = 75, 	\
 	/obj/item/device/assembly/mousetrap = 20
 	)

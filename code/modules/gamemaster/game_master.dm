@@ -19,6 +19,8 @@
 /datum/game_master/New()
 	..()
 	available_actions = init_subtypes(/datum/gm_action)
+	for(var/datum/gm_action/action in available_actions)
+		action.gm = src
 
 /datum/game_master/proc/process()
 	if(ticker && ticker.current_state == GAME_STATE_PLAYING && !suspended)
@@ -68,17 +70,26 @@
 	if(best_actions && best_actions.len)
 		var/list/weighted_actions = list()
 		for(var/datum/gm_action/action in best_actions)
+			if(action.chaotic > danger)
+				continue // We skip dangerous events when bad stuff is already occuring.
 			weighted_actions[action] = action.get_weight()
 
 		var/datum/gm_action/choice = pickweight(weighted_actions)
 		if(choice)
 			log_debug("[choice.name] was chosen by the Game Master, and is now being ran.")
-			choice.set_up()
-			choice.start()
-			next_action = world.time + rand(15 MINUTES, 30 MINUTES)
-			last_department_used = choice.departments[1]
+			run_action(choice)
 
-
+/datum/game_master/proc/run_action(var/datum/gm_action/action)
+	action.set_up()
+	action.start()
+	action.announce()
+	if(action.chaotic)
+		danger += action.chaotic
+	if(action.length)
+		spawn(action.length)
+			action.end()
+	next_action = world.time + rand(15 MINUTES, 30 MINUTES)
+	last_department_used = action.departments[1]
 
 
 /datum/game_master/proc/decide_best_action(var/list/most_active_departments)

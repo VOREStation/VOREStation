@@ -38,9 +38,11 @@
 	var/force_update           // Set this to bypass the cycle time check.
 	var/obj/temp_chem_holder   // Something to hold reagents during process_reagents()
 	var/labelled
+	var/frozen = 0				//Is the plant frozen? -1 is used to define trays that can't be frozen. 0 is unfrozen and 1 is frozen.
 
 	// Seed details/line data.
 	var/datum/seed/seed = null // The currently planted seed
+
 
 	// Reagent information for process(), consider moving this to a controller along
 	// with cycle information under 'mechanical concerns' at some point.
@@ -179,9 +181,14 @@
 		return
 
 	//Override for somatoray projectiles.
-	if(istype(Proj ,/obj/item/projectile/energy/floramut) && prob(20))
-		mutate(1)
-		return
+	if(istype(Proj ,/obj/item/projectile/energy/floramut)&& prob(20))
+		if(istype(Proj, /obj/item/projectile/energy/floramut/gene))
+			var/obj/item/projectile/energy/floramut/gene/G = Proj
+			if(seed)
+				seed = seed.diverge_mutate_gene(G.gene, get_turf(loc))	//get_turf just in case it's not in a turf.
+		else
+			mutate(1)
+			return
 	else if(istype(Proj ,/obj/item/projectile/energy/florayield) && prob(20))
 		yield_mod = min(10,yield_mod+rand(1,2))
 		return
@@ -421,10 +428,10 @@
 
 /obj/machinery/portable_atmospherics/hydroponics/attackby(var/obj/item/O as obj, var/mob/user as mob)
 
-	if (O.is_open_container())
+	if(O.is_open_container())
 		return 0
 
-	if(istype(O, /obj/item/weapon/wirecutters) || istype(O, /obj/item/weapon/scalpel))
+	if(istype(O, /obj/item/weapon/wirecutters) || istype(O, /obj/item/weapon/surgical/scalpel))
 
 		if(!seed)
 			user << "There is nothing to take a sample from in \the [src]."
@@ -494,6 +501,7 @@
 			qdel(O)
 
 			check_health()
+			update_icon()
 
 		else
 			user << "<span class='danger'>\The [src] already has seeds in it!</span>"
@@ -539,12 +547,25 @@
 		anchored = !anchored
 		user << "You [anchored ? "wrench" : "unwrench"] \the [src]."
 
+	else if(istype(O,/obj/item/device/multitool))
+		if(!anchored)
+			to_chat(user, "<span class='warning'>Anchor it first!</span>")
+			return
+		if(frozen == -1)
+			to_chat(user, "<span class='warning'>You see no way to use \the [O] on [src].</span>")
+			return
+		to_chat(user, "<span class='notice'>You [frozen ? "disable" : "enable"] the cryogenic freezing.</span>")
+		frozen = !frozen
+		update_icon()
+		return
+
 	else if(O.force && seed)
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		user.visible_message("<span class='danger'>\The [seed.display_name] has been attacked by [user] with \the [O]!</span>")
 		if(!dead)
 			health -= O.force
 			check_health()
+
 	return
 
 /obj/machinery/portable_atmospherics/hydroponics/attack_tk(mob/user as mob)
@@ -557,7 +578,8 @@
 
 	if(istype(usr,/mob/living/silicon))
 		return
-
+	if(frozen == 1)
+		to_chat(user, "<span class='warning'>Disable the cryogenic freezing first!</span>")
 	if(harvest)
 		harvest(user)
 	else if(dead)
@@ -587,7 +609,8 @@
 			usr << "<span class='danger'>The plant is dead.</span>"
 		else if(health <= (seed.get_trait(TRAIT_ENDURANCE)/ 2))
 			usr << "The plant looks <span class='danger'>unhealthy</span>."
-
+	if(frozen == 1)
+		to_chat(usr, "<span class='notice'>It is cryogenically frozen.</span>")
 	if(mechanical)
 		var/turf/T = loc
 		var/datum/gas_mixture/environment
@@ -607,12 +630,7 @@
 		if(closed_system && mechanical)
 			light_string = "that the internal lights are set to [tray_light] lumens"
 		else
-			var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in T
-			var/light_available
-			if(L)
-				light_available = max(0,min(10,L.lum_r + L.lum_g + L.lum_b)-5)
-			else
-				light_available =  5
+			var/light_available = T.get_lumcount() * 5
 			light_string = "a light level of [light_available] lumens"
 
 		usr << "The tray's sensor suite is reporting [light_string] and a temperature of [environment.temperature]K at [environment.return_pressure()] kPa in the [environment_type] environment"

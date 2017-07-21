@@ -28,9 +28,12 @@ var/datum/species/shapeshifter/promethean/prometheans
 	breath_type = null
 	poison_type = null
 
-	gluttonous =            2
+	male_cough_sounds = list('sound/effects/slime_squish.ogg')
+	female_cough_sounds = list('sound/effects/slime_squish.ogg')
+
+	gluttonous =            1
 	virus_immune =          1
-	blood_volume =          600
+	blood_volume =          560
 	min_age =               1
 	max_age =               5
 	brute_mod =             0.5
@@ -73,7 +76,8 @@ var/datum/species/shapeshifter/promethean/prometheans
 		/mob/living/carbon/human/proc/shapeshifter_select_shape,
 		/mob/living/carbon/human/proc/shapeshifter_select_colour,
 		/mob/living/carbon/human/proc/shapeshifter_select_hair,
-		/mob/living/carbon/human/proc/shapeshifter_select_gender
+		/mob/living/carbon/human/proc/shapeshifter_select_gender,
+		/mob/living/carbon/human/proc/regenerate
 		)
 
 	valid_transform_species = list("Human", "Unathi", "Tajara", "Skrell", "Diona", "Teshari", "Monkey")
@@ -130,42 +134,14 @@ var/datum/species/shapeshifter/promethean/prometheans
 		var/obj/effect/decal/cleanable/C = locate() in T
 		if(C)
 			qdel(C)
-			//TODO: gain nutriment
-
-	// Regenerate limbs and heal damage if we have any. Copied from Bay xenos code.
-
-	// Theoretically the only internal organ a slime will have
-	// is the slime core. but we might as well be thorough.
-	for(var/obj/item/organ/I in H.internal_organs)
-		if(I.damage > 0)
-			I.damage = max(I.damage - heal_rate, 0)
-			if (prob(5))
-				H << "<span class='notice'>You feel a soothing sensation within your [I.name]...</span>"
-			return 1
-
-	// Replace completely missing limbs.
-	for(var/limb_type in has_limbs)
-		var/obj/item/organ/external/E = H.organs_by_name[limb_type]
-		if(E && (E.is_stump() || (E.status & (ORGAN_DESTROYED|ORGAN_DEAD|ORGAN_MUTATED))))
-			E.removed()
-			qdel(E)
-			E = null
-		if(!E)
-			var/list/organ_data = has_limbs[limb_type]
-			var/limb_path = organ_data["path"]
-			var/obj/item/organ/O = new limb_path(H)
-			organ_data["descriptor"] = O.name
-			H << "<span class='notice'>You feel a slithering sensation as your [O.name] reforms.</span>"
-			H.update_body()
-			return 1
+			H.nutrition += rand(15, 45)
 
 	// Heal remaining damage.
-	if (H.getBruteLoss() || H.getFireLoss() || H.getOxyLoss() || H.getToxLoss())
+	if(H.getBruteLoss() || H.getFireLoss() || H.getOxyLoss() || H.getToxLoss())
 		H.adjustBruteLoss(-heal_rate)
 		H.adjustFireLoss(-heal_rate)
 		H.adjustOxyLoss(-heal_rate)
 		H.adjustToxLoss(-heal_rate)
-		return 1
 
 /datum/species/shapeshifter/promethean/get_blood_colour(var/mob/living/carbon/human/H)
 	return (H ? rgb(H.r_skin, H.g_skin, H.b_skin) : ..())

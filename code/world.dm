@@ -21,11 +21,13 @@ var/global/datum/global_init/init = new ()
 
 	initialize_chemical_reagents()
 	initialize_chemical_reactions()
+	initialize_integrated_circuits_list()
 
 	qdel(src) //we're done
 
 /datum/global_init/Destroy()
-	return 1
+	global.init = null
+	return 2 // QDEL_HINT_IWILLGC
 
 /world
 	mob = /mob/new_player
@@ -69,8 +71,6 @@ var/global/datum/global_init/init = new ()
 #if UNIT_TEST
 	log_unit_test("Unit Tests Enabled.  This will destroy the world when testing is complete.")
 	log_unit_test("If you did not intend to enable this please check code/__defines/unit_testing.dm")
-#else
-	sleep_offline = 1
 #endif
 
 	// Set up roundstart seed list.
@@ -82,6 +82,10 @@ var/global/datum/global_init/init = new ()
 	// This is kinda important. Set up details of what the hell things are made of.
 	populate_material_list()
 
+	if(config.generate_map)
+		if(using_map.perform_map_generation())
+			using_map.refresh_mining_turfs()
+/*
 	if(config.generate_asteroid)
 		// These values determine the specific area that the map is applied to.
 		// Because we do not use Bay's default map, we check the config file to see if custom parameters are needed, so we need to avoid hardcoding.
@@ -102,7 +106,7 @@ var/global/datum/global_init/init = new ()
 		// it's brute-forcey, but frankly the alternative is a mine turf rewrite.
 		for(var/turf/simulated/mineral/M in world) // Ugh.
 			M.update_icon()
-
+*/
 	// Create frame types.
 	populate_frame_types()
 
@@ -111,6 +115,7 @@ var/global/datum/global_init/init = new ()
 
 	processScheduler = new
 	master_controller = new /datum/controller/game_controller()
+	Master.Initialize(10, FALSE)
 	spawn(1)
 		processScheduler.deferSetupFor(/datum/controller/process/ticker)
 		processScheduler.setup()
@@ -223,6 +228,19 @@ var/world_topic_spam_protect_time = world.timeofday
 				if(!positions["misc"])
 					positions["misc"] = list()
 				positions["misc"][name] = rank
+
+		// Synthetics don't have actual records, so we will pull them from here.
+		for(var/mob/living/silicon/ai/ai in mob_list)
+			if(!positions["bot"])
+				positions["bot"] = list()
+			positions["bot"][ai.name] = "Artificial Intelligence"
+		for(var/mob/living/silicon/robot/robot in mob_list)
+			// No combat/syndicate cyborgs, no drones.
+			if(robot.module && robot.module.hide_on_manifest)
+				continue
+			if(!positions["bot"])
+				positions["bot"] = list()
+			positions["bot"][robot.name] = "[robot.modtype] [robot.braintype]"
 
 		for(var/k in positions)
 			positions[k] = list2params(positions[k]) // converts positions["heads"] = list("Bob"="Captain", "Bill"="CMO") into positions["heads"] = "Bob=Captain&Bill=CMO"
@@ -415,6 +433,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		*/
 
 	processScheduler.stop()
+	Master.Shutdown()	//run SS shutdowns
 
 	for(var/client/C in clients)
 		if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite

@@ -3,6 +3,7 @@
 	var/active_force
 	var/active_throwforce
 	var/active_w_class
+	var/active_embed_chance = 0		//In the off chance one of these is supposed to embed, you can just tweak this var
 	sharp = 0
 	edge = 0
 	armor_penetration = 50
@@ -12,10 +13,10 @@
 	var/lcolor = "#0099FF"
 
 /obj/item/weapon/melee/energy/proc/activate(mob/living/user)
-	anchored = 1
 	if(active)
 		return
 	active = 1
+	embed_chance = active_embed_chance
 	force = active_force
 	throwforce = active_throwforce
 	sharp = 1
@@ -25,11 +26,11 @@
 	set_light(lrange, lpower, lcolor)
 
 /obj/item/weapon/melee/energy/proc/deactivate(mob/living/user)
-	anchored = 0
 	if(!active)
 		return
 	playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
 	active = 0
+	embed_chance = initial(embed_chance)
 	force = initial(force)
 	throwforce = initial(throwforce)
 	sharp = initial(sharp)

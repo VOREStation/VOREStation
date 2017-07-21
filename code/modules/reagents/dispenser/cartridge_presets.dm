@@ -59,6 +59,7 @@
 	orange		spawn_reagent = "orangejuice"
 	lime		spawn_reagent = "limejuice"
 	watermelon	spawn_reagent = "watermelonjuice"
+	lemon		spawn_reagent = "lemonjuice"
 
 	// Bar, coffee
 	coffee		spawn_reagent = "coffee"
@@ -67,6 +68,8 @@
 	hot_coco	spawn_reagent = "hot_coco"
 	milk		spawn_reagent = "milk"
 	cream		spawn_reagent = "cream"
+	mint		spawn_reagent = "mint"
+	berry		spawn_reagent = "berryjuice"
 
 	// ERT
 	inaprov		spawn_reagent = "inaprovaline"

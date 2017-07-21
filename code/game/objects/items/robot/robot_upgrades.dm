@@ -21,6 +21,7 @@
 	name = "robotic module reset board"
 	desc = "Used to reset a cyborg's module. Destroys any other upgrades applied to the robot."
 	icon_state = "cyborg_upgrade1"
+	item_state = "cyborg_upgrade"
 	require_module = 1
 
 /obj/item/borg/upgrade/reset/action(var/mob/living/silicon/robot/R)
@@ -41,6 +42,7 @@
 	name = "robot reclassification board"
 	desc = "Used to rename a cyborg."
 	icon_state = "cyborg_upgrade1"
+	item_state = "cyborg_upgrade"
 	var/heldname = "default name"
 
 /obj/item/borg/upgrade/rename/attack_self(mob/user as mob)
@@ -59,6 +61,7 @@
 	name = "robot emergency restart module"
 	desc = "Used to force a restart of a disabled-but-repaired robot, bringing it back online."
 	icon_state = "cyborg_upgrade1"
+	item_state = "cyborg_upgrade"
 
 
 /obj/item/borg/upgrade/restart/action(var/mob/living/silicon/robot/R)
@@ -82,6 +85,7 @@
 	name = "robotic VTEC Module"
 	desc = "Used to kick in a robot's VTEC systems, increasing their speed."
 	icon_state = "cyborg_upgrade2"
+	item_state = "cyborg_upgrade"
 	require_module = 1
 
 /obj/item/borg/upgrade/vtec/action(var/mob/living/silicon/robot/R)
@@ -98,6 +102,7 @@
 	name = "robotic Rapid Taser Cooling Module"
 	desc = "Used to cool a mounted taser, increasing the potential current in it and thus its recharge rate."
 	icon_state = "cyborg_upgrade3"
+	item_state = "cyborg_upgrade"
 	require_module = 1
 
 
@@ -132,6 +137,7 @@
 	name = "mining robot jetpack"
 	desc = "A carbon dioxide jetpack suitable for low-gravity mining operations."
 	icon_state = "cyborg_upgrade3"
+	item_state = "cyborg_upgrade"
 	require_module = 1
 
 /obj/item/borg/upgrade/jetpack/action(var/mob/living/silicon/robot/R)
@@ -153,6 +159,7 @@
 	name = "illegal equipment module"
 	desc = "Unlocks the hidden, deadlier functions of a robot"
 	icon_state = "cyborg_upgrade3"
+	item_state = "cyborg_upgrade"
 	require_module = 1
 
 /obj/item/borg/upgrade/syndicate/action(var/mob/living/silicon/robot/R)

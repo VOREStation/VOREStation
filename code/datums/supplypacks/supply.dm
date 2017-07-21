@@ -53,7 +53,7 @@
 /datum/supply_packs/supply/shipping
 	name = "Shipping supplies"
 	contains = list(
-				/obj/item/stack/material/cardboard/fifty,
+				/obj/fiftyspawner/cardboard,
 				/obj/item/weapon/packageWrap = 4,
 				/obj/item/weapon/wrapping_paper = 2,
 				/obj/item/device/destTagger,

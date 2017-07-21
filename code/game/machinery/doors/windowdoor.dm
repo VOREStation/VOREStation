@@ -60,7 +60,7 @@
 /obj/machinery/door/window/Destroy()
 	density = 0
 	update_nearby_tiles()
-	..()
+	return ..()
 
 /obj/machinery/door/window/Bumped(atom/movable/AM as mob|obj)
 	if (!( ismob(AM) ))
@@ -160,6 +160,8 @@
 		if(H.species.can_shred(H))
 			playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
 			visible_message("<span class='danger'>[user] smashes against the [src.name].</span>", 1)
+			user.do_attack_animation(src)
+			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			take_damage(25)
 			return
 	return src.attackby(user, user)
@@ -189,43 +191,40 @@
 			visible_message("<span class='warning'>The glass door was sliced open by [user]!</span>")
 		return 1
 
-	//If it's emagged, crowbar can pry electronics out.
-	if (src.operating == -1 && istype(I, /obj/item/weapon/crowbar))
+	//If it's opened/emagged, crowbar can pry it out of its frame.
+	if (!density && istype(I, /obj/item/weapon/crowbar))
 		playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
-		user.visible_message("[user] removes the electronics from the windoor.", "You start to remove electronics from the windoor.")
+		user.visible_message("[user] begins prying the windoor out of the frame.", "You start to pry the windoor out of the frame.")
 		if (do_after(user,40))
-			user << "<span class='notice'>You removed the windoor electronics!</span>"
+			to_chat(user,"<span class='notice'>You pried the windoor out of the frame!</span>")
 
 			var/obj/structure/windoor_assembly/wa = new/obj/structure/windoor_assembly(src.loc)
 			if (istype(src, /obj/machinery/door/window/brigdoor))
 				wa.secure = "secure_"
-				wa.name = "secure wired windoor assembly"
-			else
-				wa.name = "wired windoor assembly"
 			if (src.base_state == "right" || src.base_state == "rightsecure")
 				wa.facing = "r"
 			wa.set_dir(src.dir)
 			wa.anchored = 1
 			wa.created_name = name
 			wa.state = "02"
-			wa.update_icon()
+			wa.step = 2
+			wa.update_state()
 
-			var/obj/item/weapon/airlock_electronics/ae
-			if(!electronics)
-				ae = new/obj/item/weapon/airlock_electronics( src.loc )
-				if(!src.req_access)
-					src.check_access()
-				if(src.req_access.len)
-					ae.conf_access = src.req_access
-				else if (src.req_one_access.len)
-					ae.conf_access = src.req_one_access
-					ae.one_access = 1
+			if(operating == -1)
+				wa.electronics = new/obj/item/weapon/circuitboard/broken()
 			else
-				ae = electronics
-				electronics = null
-				ae.loc = src.loc
-			ae.icon_state = "door_electronics_smoked"
-
+				if(!electronics)
+					wa.electronics = new/obj/item/weapon/airlock_electronics()
+					if(!src.req_access)
+						src.check_access()
+					if(src.req_access.len)
+						wa.electronics.conf_access = src.req_access
+					else if (src.req_one_access.len)
+						wa.electronics.conf_access = src.req_one_access
+						wa.electronics.one_access = 1
+				else
+					wa.electronics = electronics
+					electronics = null
 			operating = 0
 			qdel(src)
 			return

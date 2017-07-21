@@ -184,6 +184,8 @@ var/list/mechtoys = list(
 		var/area/area_shuttle = shuttle.get_location_area()
 		if(!area_shuttle)	return
 
+		callHook("sell_shuttle", list(area_shuttle));
+
 		var/phoron_count = 0
 		var/plat_count = 0
 
@@ -263,7 +265,7 @@ var/list/mechtoys = list(
 				slip.is_copy = 0
 				slip.info = "<h3>[command_name()] Shipping Manifest</h3><hr><br>"
 				slip.info +="Order #[SO.ordernum]<br>"
-				slip.info +="Destination: [station_name]<br>"
+				slip.info +="Destination: [station_name()]<br>"
 				slip.info +="[shoppinglist.len] PACKAGES IN THIS SHIPMENT<br>"
 				slip.info +="CONTENTS:<br><ul>"
 

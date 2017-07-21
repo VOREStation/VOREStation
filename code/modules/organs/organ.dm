@@ -139,7 +139,15 @@ var/list/organ_cache = list()
 
 /obj/item/organ/proc/handle_germ_effects()
 	//** Handle the effects of infections
+	if(robotic >= ORGAN_ROBOT) //Just in case!
+		germ_level = 0
+		return 0
+
 	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
+
+	if((status & ORGAN_DEAD) && antibiotics < 30) //Sepsis from 'dead' organs
+		var/sepsis_severity = 1 + round((germ_level - INFECTION_LEVEL_THREE)/200,0.25) //1 Tox plus a little based on germ level
+		owner.adjustToxLoss(sepsis_severity)
 
 	if (germ_level > 0 && germ_level < INFECTION_LEVEL_ONE/2 && prob(30))
 		germ_level--
@@ -150,17 +158,20 @@ var/list/organ_cache = list()
 			germ_level++
 
 	if(germ_level >= INFECTION_LEVEL_ONE)
-		var/fever_temperature = (owner.species.heat_level_1 - owner.species.body_temperature - 5)* min(germ_level/INFECTION_LEVEL_TWO, 1) + owner.species.body_temperature
-		owner.bodytemperature += between(0, (fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, fever_temperature - owner.bodytemperature)
+		. = 1 //Organ qualifies for effect-specific processing
+		//var/fever_temperature = (owner.species.heat_level_1 - owner.species.body_temperature - 5)* min(germ_level/INFECTION_LEVEL_TWO, 1) + owner.species.body_temperature
+		//owner.bodytemperature += between(0, (fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, fever_temperature - owner.bodytemperature)
+		var/fever_temperature = owner.species.heat_discomfort_level * 1.10 //Heat discomfort level plus 10%
+		if(owner.bodytemperature < fever_temperature)
+			owner.bodytemperature += min(0.2,(fever_temperature - owner.bodytemperature) / 10) //Will usually climb by 0.2, else 10% of the difference if less
 
 	if (germ_level >= INFECTION_LEVEL_TWO)
-		var/obj/item/organ/external/parent = owner.get_organ(parent_organ)
-		//spread germs
-		if (antibiotics < 5 && parent.germ_level < germ_level && ( parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30) ))
-			parent.germ_level++
+		. = 2 //Organ qualifies for effect-specific processing
+		//No particular effect on the general 'organ' at 3
 
-		if (prob(3))	//about once every 30 seconds
-			take_damage(1,silent=prob(30))
+	if (germ_level >= INFECTION_LEVEL_THREE && antibiotics < 30)
+		. = 3 //Organ qualifies for effect-specific processing
+		germ_level++ //Germ_level increases without overdose of antibiotics
 
 /obj/item/organ/proc/handle_rejection()
 	// Process unsuitable transplants. TODO: consider some kind of
@@ -192,6 +203,7 @@ var/list/organ_cache = list()
 /obj/item/organ/proc/rejuvenate(var/ignore_prosthetic_prefs)
 	damage = 0
 	status = 0
+	germ_level = 0
 	if(!ignore_prosthetic_prefs && owner && owner.client && owner.client.prefs && owner.client.prefs.real_name == owner.real_name)
 		var/status = owner.client.prefs.organ_data[organ_tag]
 		if(status == "assisted")
@@ -245,7 +257,7 @@ var/list/organ_cache = list()
 		if(owner && parent_organ && amount > 0)
 			var/obj/item/organ/external/parent = owner.get_organ(parent_organ)
 			if(parent && !silent)
-				owner.custom_pain("Something inside your [parent.name] hurts a lot.", 1)
+				owner.custom_pain("Something inside your [parent.name] hurts a lot.", amount)
 
 /obj/item/organ/proc/bruise()
 	damage = max(damage, min_bruised_damage)
@@ -266,13 +278,17 @@ var/list/organ_cache = list()
 	robotize()
 
 /obj/item/organ/emp_act(severity)
-	if(!(robotic >= ORGAN_ROBOT))
+	if(!(robotic >= ORGAN_ASSISTED))
 		return
 	switch (severity)
 		if (1)
-			take_damage(5)
+			take_damage(rand(6,12))
 		if (2)
-			take_damage(2)
+			take_damage(rand(4,8))
+		if (3)
+			take_damage(rand(3,6))
+		if (4)
+			take_damage(rand(1,4))
 
 /obj/item/organ/proc/removed(var/mob/living/user)
 
@@ -357,5 +373,11 @@ var/list/organ_cache = list()
 		bitten(user)
 		return
 
-/obj/item/organ/proc/can_feel_pain()
-	return !(robotic >= (ORGAN_ROBOT|ORGAN_DESTROYED)) && !(species.flags & NO_PAIN)
+/obj/item/organ/proc/organ_can_feel_pain()
+	if(species.flags & NO_PAIN)
+		return 0
+	if(status & ORGAN_DESTROYED)
+		return 0
+	if(robotic && robotic < ORGAN_LIFELIKE)	//Super fancy humanlike robotics probably have sensors, or something?
+		return 0
+	return 1

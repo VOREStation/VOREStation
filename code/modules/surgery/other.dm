@@ -7,7 +7,7 @@
 /datum/surgery_step/fix_vein
 	priority = 2
 	allowed_tools = list(
-	/obj/item/weapon/FixOVein = 100, \
+	/obj/item/weapon/surgical/FixOVein = 100, \
 	/obj/item/stack/cable_coil = 75
 	)
 	can_infect = 1
@@ -33,13 +33,13 @@
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		user.visible_message("[user] starts patching the damaged vein in [target]'s [affected.name] with \the [tool]." , \
 		"You start patching the damaged vein in [target]'s [affected.name] with \the [tool].")
-		target.custom_pain("The pain in [affected.name] is unbearable!",1)
+		target.custom_pain("The pain in [affected.name] is unbearable!", 100)
 		..()
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		user.visible_message("\blue [user] has patched the damaged vein in [target]'s [affected.name] with \the [tool].", \
-			"\blue You have patched the damaged vein in [target]'s [affected.name] with \the [tool].")
+		user.visible_message("<font color='blue'>[user] has patched the damaged vein in [target]'s [affected.name] with \the [tool].</font>", \
+			"<font color='blue'>You have patched the damaged vein in [target]'s [affected.name] with \the [tool].</font>")
 
 		for(var/datum/wound/W in affected.wounds) if(W.internal)
 			affected.wounds -= W
@@ -48,14 +48,14 @@
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		user.visible_message("\red [user]'s hand slips, smearing [tool] in the incision in [target]'s [affected.name]!" , \
-		"\red Your hand slips, smearing [tool] in the incision in [target]'s [affected.name]!")
+		user.visible_message("<font color='red'>[user]'s hand slips, smearing [tool] in the incision in [target]'s [affected.name]!</font>" , \
+		"<font color='red'>Your hand slips, smearing [tool] in the incision in [target]'s [affected.name]!</font>")
 		affected.take_damage(5, 0)
 
 /datum/surgery_step/fix_dead_tissue		//Debridement
 	priority = 2
 	allowed_tools = list(
-		/obj/item/weapon/scalpel = 100,		\
+		/obj/item/weapon/surgical/scalpel = 100,		\
 		/obj/item/weapon/material/knife = 75,	\
 		/obj/item/weapon/material/shard = 50, 		\
 	)
@@ -81,19 +81,19 @@
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		user.visible_message("[user] starts cutting away necrotic tissue in [target]'s [affected.name] with \the [tool]." , \
 		"You start cutting away necrotic tissue in [target]'s [affected.name] with \the [tool].")
-		target.custom_pain("The pain in [affected.name] is unbearable!",1)
+		target.custom_pain("The pain in [affected.name] is unbearable!", 100)
 		..()
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		user.visible_message("\blue [user] has cut away necrotic tissue in [target]'s [affected.name] with \the [tool].", \
-			"\blue You have cut away necrotic tissue in [target]'s [affected.name] with \the [tool].")
+		user.visible_message("<font color='blue'>[user] has cut away necrotic tissue in [target]'s [affected.name] with \the [tool].</font>", \
+			"<font color='blue'>You have cut away necrotic tissue in [target]'s [affected.name] with \the [tool].</font>")
 		affected.open = 3
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		user.visible_message("\red [user]'s hand slips, slicing an artery inside [target]'s [affected.name] with \the [tool]!", \
-		"\red Your hand slips, slicing an artery inside [target]'s [affected.name] with \the [tool]!")
+		user.visible_message("<font color='red'>[user]'s hand slips, slicing an artery inside [target]'s [affected.name] with \the [tool]!</font>", \
+		"<font color='red'>Your hand slips, slicing an artery inside [target]'s [affected.name] with \the [tool]!</font>")
 		affected.createwound(CUT, 20, 1)
 
 /datum/surgery_step/treat_necrosis
@@ -133,7 +133,7 @@
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		user.visible_message("[user] starts applying medication to the affected tissue in [target]'s [affected.name] with \the [tool]." , \
 		"You start applying medication to the affected tissue in [target]'s [affected.name] with \the [tool].")
-		target.custom_pain("Something in your [affected.name] is causing you a lot of pain!",1)
+		target.custom_pain("Something in your [affected.name] is causing you a lot of pain!", 50)
 		..()
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -146,13 +146,11 @@
 
 		var/trans = container.reagents.trans_to_mob(target, container.amount_per_transfer_from_this, CHEM_BLOOD) //technically it's contact, but the reagents are being applied to internal tissue
 		if (trans > 0)
+			affected.status &= ~ORGAN_DEAD
+			affected.owner.update_body(1)
 
-			if(container.reagents.has_reagent("peridaxon"))
-				affected.status &= ~ORGAN_DEAD
-				affected.owner.update_body(1)
-
-			user.visible_message("\blue [user] applies [trans] units of the solution to affected tissue in [target]'s [affected.name]", \
-				"\blue You apply [trans] units of the solution to affected tissue in [target]'s [affected.name] with \the [tool].")
+			user.visible_message("<font color='blue'>[user] applies [trans] units of the solution to affected tissue in [target]'s [affected.name].</font>", \
+				"<font color='blue'>You apply [trans] units of the solution to affected tissue in [target]'s [affected.name] with \the [tool].</font>")
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -164,17 +162,18 @@
 
 		var/trans = container.reagents.trans_to_mob(target, container.amount_per_transfer_from_this, CHEM_BLOOD)
 
-		user.visible_message("\red [user]'s hand slips, applying [trans] units of the solution to the wrong place in [target]'s [affected.name] with the [tool]!" , \
-		"\red Your hand slips, applying [trans] units of the solution to the wrong place in [target]'s [affected.name] with the [tool]!")
+		user.visible_message("<font color='red'>[user]'s hand slips, applying [trans] units of the solution to the wrong place in [target]'s [affected.name] with the [tool]!</font>" , \
+		"<font color='red'>Your hand slips, applying [trans] units of the solution to the wrong place in [target]'s [affected.name] with the [tool]!</font>")
 
 		//no damage or anything, just wastes medicine
 
 /datum/surgery_step/hardsuit
 	allowed_tools = list(
 		/obj/item/weapon/weldingtool = 80,
-		/obj/item/weapon/circular_saw = 60,
+		/obj/item/weapon/surgical/circular_saw = 60,
 		/obj/item/weapon/pickaxe/plasmacutter = 100
 		)
+	req_open = 0
 
 	can_infect = 0
 	blood_level = 0

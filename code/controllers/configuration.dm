@@ -46,7 +46,8 @@ var/list/gamemode_cache = list()
 	var/continous_rounds = 0			// Gamemodes which end instantly will instead keep on going until the round ends by escape shuttle or nuke.
 	var/allow_Metadata = 0				// Metadata is supported.
 	var/popup_admin_pm = 0				//adminPMs to non-admins show in a pop-up 'reply' window when set to 1.
-	var/Ticklag = 0.9
+	var/fps = 20
+	var/tick_limit_mc_init = TICK_LIMIT_MC_INIT_DEFAULT	//SSinitialization throttling
 	var/Tickcomp = 0
 	var/socket_talk	= 0					// use socket_talk to communicate with other processes
 	var/list/resource_urls = null
@@ -94,6 +95,7 @@ var/list/gamemode_cache = list()
 	var/allow_extra_antags = 0
 	var/guests_allowed = 1
 	var/debugparanoid = 0
+	var/panic_bunker = 0
 
 	var/serverurl
 	var/server
@@ -139,10 +141,8 @@ var/list/gamemode_cache = list()
 	var/use_loyalty_implants = 0
 
 	var/welder_vision = 1
-	var/generate_asteroid = 0
+	var/generate_map = 0
 	var/no_click_cooldown = 0
-
-	var/asteroid_z_levels = list()
 
 	//Used for modifying movement speed for mobs.
 	//Unversal modifiers
@@ -157,13 +157,17 @@ var/list/gamemode_cache = list()
 	var/slime_delay = 0
 	var/animal_delay = 0
 
+	var/footstep_volume = 0
+
 	var/admin_legacy_system = 0	//Defines whether the server uses the legacy admin system with admins.txt or the SQL system. Config option in config.txt
 	var/ban_legacy_system = 0	//Defines whether the server uses the legacy banning system with the files in /data or the SQL system. Config option in config.txt
 	var/use_age_restriction_for_jobs = 0 //Do jobs use account age restrictions? --requires database
+	var/use_age_restriction_for_antags = 0 //Do antags use account age restrictions? --requires database
 
 	var/simultaneous_pm_warning_timeout = 100
 
 	var/use_recursive_explosions //Defines whether the server uses recursive or circular explosions.
+	var/multi_z_explosion_scalar = 0.5 //Multiplier for how much weaker explosions are on neighboring z levels.
 
 	var/assistant_maint = 0 //Do assistants get maint access?
 	var/gateway_delay = 18000 //How long the gateway takes before it activates. Default is half an hour.
@@ -183,12 +187,6 @@ var/list/gamemode_cache = list()
 	var/python_path = "" //Path to the python executable.  Defaults to "python" on windows and "/usr/bin/env python2" on unix
 	var/use_lib_nudge = 0 //Use the C library nudge instead of the python nudge.
 	var/use_overmap = 0
-
-	var/list/station_levels = list(1)				// Defines which Z-levels the station exists on.
-	var/list/admin_levels= list(2)					// Defines which Z-levels which are for admin functionality, for example including such areas as Central Command and the Syndicate Shuttle
-	var/list/contact_levels = list(1, 5)			// Defines which Z-levels which, for example, a Code Red announcement may affect
-	var/list/player_levels = list(1, 3, 4, 5, 6)	// Defines all Z-levels a character can typically reach
-	var/list/sealed_levels = list() 				// Defines levels that do not allow random transit at the edges.
 
 	// Event settings
 	var/expected_round_length = 3 * 60 * 60 * 10 // 3 hours
@@ -221,6 +219,10 @@ var/list/gamemode_cache = list()
 	var/list/language_prefixes = list(",","#","-")//Default language prefixes
 
 	var/show_human_death_message = 1
+
+	var/radiation_decay_rate = 1 //How much radiation is reduced by each tick
+	var/radiation_resistance_multiplier = 6.5
+	var/radiation_lower_limit = 0.35 //If the radiation level for a turf would be below this, ignore it.
 
 /datum/configuration/New()
 	var/list/L = typesof(/datum/game_mode) - /datum/game_mode
@@ -278,11 +280,17 @@ var/list/gamemode_cache = list()
 				if ("use_age_restriction_for_jobs")
 					config.use_age_restriction_for_jobs = 1
 
+				if ("use_age_restriction_for_antags")
+					config.use_age_restriction_for_antags = 1
+
 				if ("jobs_have_minimal_access")
 					config.jobs_have_minimal_access = 1
 
 				if ("use_recursive_explosions")
 					use_recursive_explosions = 1
+
+				if ("multi_z_explosion_scalar")
+					multi_z_explosion_scalar = text2num(value)
 
 				if ("log_ooc")
 					config.log_ooc = 1
@@ -338,14 +346,8 @@ var/list/gamemode_cache = list()
 				if ("log_runtime")
 					config.log_runtime = 1
 
-				if ("generate_asteroid")
-					config.generate_asteroid = 1
-
-				if ("asteroid_z_levels")
-					config.asteroid_z_levels = splittext(value, ";")
-					//Numbers get stored as strings, so we'll fix that right now.
-					for(var/z_level in config.asteroid_z_levels)
-						z_level = text2num(z_level)
+				if ("generate_map")
+					config.generate_map = 1
 
 				if ("no_click_cooldown")
 					config.no_click_cooldown = 1
@@ -567,7 +569,12 @@ var/list/gamemode_cache = list()
 					irc_bot_export = 1
 
 				if("ticklag")
-					Ticklag = text2num(value)
+					var/ticklag = text2num(value)
+					if(ticklag > 0)
+						fps = 10 / ticklag
+
+				if("tick_limit_mc_init")
+					tick_limit_mc_init = text2num(value)
 
 				if("allow_antag_hud")
 					config.antag_hud_allowed = 1
@@ -653,19 +660,19 @@ var/list/gamemode_cache = list()
 
 				if("use_overmap")
 					config.use_overmap = 1
-
+/*
 				if("station_levels")
-					config.station_levels = text2numlist(value, ";")
+					using_map.station_levels = text2numlist(value, ";")
 
 				if("admin_levels")
-					config.admin_levels = text2numlist(value, ";")
+					using_map.admin_levels = text2numlist(value, ";")
 
 				if("contact_levels")
-					config.contact_levels = text2numlist(value, ";")
+					using_map.contact_levels = text2numlist(value, ";")
 
 				if("player_levels")
-					config.player_levels = text2numlist(value, ";")
-
+					using_map.player_levels = text2numlist(value, ";")
+*/
 				if("expected_round_length")
 					config.expected_round_length = MinutesToTicks(text2num(value))
 
@@ -718,6 +725,9 @@ var/list/gamemode_cache = list()
 					var/list/values = splittext(value, " ")
 					if(values.len > 0)
 						language_prefixes = values
+
+				if("radiation_lower_limit")
+					radiation_lower_limit = text2num(value)
 
 				else
 					log_misc("Unknown setting in configuration: '[name]'")
@@ -777,6 +787,8 @@ var/list/gamemode_cache = list()
 				if("animal_delay")
 					config.animal_delay = value
 
+				if("footstep_volume")
+					config.footstep_volume = text2num(value)
 
 				if("use_loyalty_implants")
 					config.use_loyalty_implants = 1

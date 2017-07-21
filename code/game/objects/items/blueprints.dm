@@ -19,6 +19,23 @@
 	var/const/ROOM_ERR_SPACE = -1
 	var/const/ROOM_ERR_TOOLARGE = -2
 
+	var/static/list/SPACE_AREA_TYPES = list(
+		/area/space,
+		/area/mine
+	)
+	var/static/list/SPECIAL_AREA_TYPES = list(
+		/area/shuttle,
+		/area/admin,
+		/area/arrival,
+		/area/centcom,
+		/area/asteroid,
+		/area/tdome,
+		/area/syndicate_station,
+		/area/wizard_station,
+		/area/prison
+		// /area/derelict //commented out, all hail derelict-rebuilders!
+	)
+
 /obj/item/blueprints/attack_self(mob/M as mob)
 	if (!istype(M,/mob/living/carbon/human))
 		M << "This stack of blue paper means nothing to you." //monkeys cannot into projecting
@@ -48,7 +65,7 @@
 	var/area/A = get_area()
 	var/text = {"<HTML><head><title>[src]</title></head><BODY>
 <h2>[station_name()] blueprints</h2>
-<small>Property of [company_name]. For heads of staff only. Store in high-secure storage.</small><hr>
+<small>Property of [using_map.company_name]. For heads of staff only. Store in high-secure storage.</small><hr>
 "}
 	switch (get_area_type())
 		if (AREA_SPACE)
@@ -79,22 +96,11 @@ move an amendment</a> to the drawing.</p>
 	return A
 
 /obj/item/blueprints/proc/get_area_type(var/area/A = get_area())
-	if(istype(A, /area/space))
-		return AREA_SPACE
-	var/list/SPECIALS = list(
-		/area/shuttle,
-		/area/admin,
-		/area/arrival,
-		/area/centcom,
-		/area/asteroid,
-		/area/tdome,
-		/area/syndicate_station,
-		/area/wizard_station,
-		/area/prison
-		// /area/derelict //commented out, all hail derelict-rebuilders!
-	)
-	for (var/type in SPECIALS)
-		if ( istype(A,type) )
+	for(var/type in SPACE_AREA_TYPES)
+		if(istype(A, type))
+			return AREA_SPACE
+	for (var/type in SPECIAL_AREA_TYPES)
+		if(istype(A, type))
 			return AREA_SPECIAL
 	return AREA_STATION
 

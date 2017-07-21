@@ -1,7 +1,7 @@
 /datum/gas_mixture
 	//Associative list of gas moles.
 	//Gases with 0 moles are not tracked and are pruned by update_values()
-	var/list/gas = list()
+	var/list/gas
 	//Temperature in Kelvin of this gas mix.
 	var/temperature = 0
 
@@ -13,10 +13,11 @@
 	var/group_multiplier = 1
 
 	//List of active tile overlays for this gas_mixture.  Updated by check_tile_graphic()
-	var/list/graphic = list()
+	var/list/graphic
 
 /datum/gas_mixture/New(vol = CELL_VOLUME)
 	volume = vol
+	gas = list()
 
 //Takes a gas string and the amount of moles to adjust by.  Calls update_values() if update isn't 0.
 /datum/gas_mixture/proc/adjust_gas(gasid, moles, update = 1)
@@ -96,9 +97,15 @@
 	update_values()
 
 
+// Used to equalize the mixture between two zones before sleeping an edge.
 /datum/gas_mixture/proc/equalize(datum/gas_mixture/sharer)
 	var/our_heatcap = heat_capacity()
 	var/share_heatcap = sharer.heat_capacity()
+
+	// Special exception: there isn't enough air around to be worth processing this edge next tick, zap both to zero.
+	if(total_moles + sharer.total_moles <= MINIMUM_AIR_TO_SUSPEND)
+		gas.Cut()
+		sharer.gas.Cut()
 
 	for(var/g in gas|sharer.gas)
 		var/comb = gas[g] + sharer.gas[g]
@@ -109,6 +116,9 @@
 	if(our_heatcap + share_heatcap)
 		temperature = ((temperature * our_heatcap) + (sharer.temperature * share_heatcap)) / (our_heatcap + share_heatcap)
 	sharer.temperature = temperature
+
+	update_values()
+	sharer.update_values()
 
 	return 1
 
@@ -279,8 +289,15 @@
 
 
 //Checks if we are within acceptable range of another gas_mixture to suspend processing or merge.
-/datum/gas_mixture/proc/compare(const/datum/gas_mixture/sample)
+/datum/gas_mixture/proc/compare(const/datum/gas_mixture/sample, var/vacuum_exception = 0)
 	if(!sample) return 0
+
+	if(vacuum_exception)
+		// Special case - If one of the two is zero pressure, the other must also be zero.
+		// This prevents suspending processing when an air-filled room is next to a vacuum,
+		// an edge case which is particually obviously wrong to players
+		if(total_moles == 0 && sample.total_moles != 0 || sample.total_moles == 0 && total_moles != 0)
+			return 0
 
 	var/list/marked = list()
 	for(var/g in gas)
@@ -313,27 +330,24 @@
 //Rechecks the gas_mixture and adjusts the graphic list if needed.
 //Two lists can be passed by reference if you need know specifically which graphics were added and removed.
 /datum/gas_mixture/proc/check_tile_graphic(list/graphic_add = null, list/graphic_remove = null)
+	var/list/cur_graphic = graphic // Cache for sanic speed
 	for(var/g in gas_data.overlay_limit)
-		if(graphic.Find(gas_data.tile_overlay[g]))
+		if(cur_graphic && cur_graphic.Find(gas_data.tile_overlay[g]))
 			//Overlay is already applied for this gas, check if it's still valid.
 			if(gas[g] <= gas_data.overlay_limit[g])
-				if(!graphic_remove)
-					graphic_remove = list()
-				graphic_remove += gas_data.tile_overlay[g]
+				LAZYADD(graphic_remove, gas_data.tile_overlay[g])
 		else
 			//Overlay isn't applied for this gas, check if it's valid and needs to be added.
 			if(gas[g] > gas_data.overlay_limit[g])
-				if(!graphic_add)
-					graphic_add = list()
-				graphic_add += gas_data.tile_overlay[g]
+				LAZYADD(graphic_add, gas_data.tile_overlay[g])
 
 	. = 0
 	//Apply changes
-	if(graphic_add && graphic_add.len)
-		graphic += graphic_add
+	if(LAZYLEN(graphic_add))
+		LAZYADD(graphic, graphic_add)
 		. = 1
-	if(graphic_remove && graphic_remove.len)
-		graphic -= graphic_remove
+	if(LAZYLEN(graphic_remove))
+		LAZYREMOVE(graphic, graphic_remove)
 		. = 1
 
 

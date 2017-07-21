@@ -11,13 +11,15 @@
 
 	cooldown_min = 200 //50 deciseconds reduction per rank
 
-	var/emp_heavy = 6
-	var/emp_light = 10
+	var/emp_heavy = 3
+	var/emp_med = 5
+	var/emp_light = 8
+	var/emp_long = 10
 
 	hud_state = "wiz_tech"
 
 /spell/aoe_turf/disable_tech/cast(list/targets)
 
 	for(var/turf/target in targets)
-		empulse(get_turf(target), emp_heavy, emp_light)
+		empulse(get_turf(target), emp_heavy, emp_med, emp_light, emp_long)
 	return

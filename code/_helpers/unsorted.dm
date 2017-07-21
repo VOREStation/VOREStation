@@ -753,9 +753,6 @@ proc/GaussRandRound(var/sigma,var/roundto)
 		C.x_pos = (T.x - trg_min_x)
 		C.y_pos = (T.y - trg_min_y)
 
-	var/list/fromupdate = new/list()
-	var/list/toupdate = new/list()
-
 	moving:
 		for (var/turf/T in refined_src)
 			var/datum/coords/C_src = refined_src[T]
@@ -763,19 +760,40 @@ proc/GaussRandRound(var/sigma,var/roundto)
 				var/datum/coords/C_trg = refined_trg[B]
 				if(C_src.x_pos == C_trg.x_pos && C_src.y_pos == C_trg.y_pos)
 
-					var/old_dir1 = T.dir
-					var/old_icon_state1 = T.icon_state
-					var/old_icon1 = T.icon
-					var/old_overlays = T.overlays.Copy()
-					var/old_underlays = T.underlays.Copy()
+					//You can stay, though.
+					if(istype(T,/turf/space))
+						refined_src -= T
+						refined_trg -= B
+						continue moving
 
-					var/turf/X = B.ChangeTurf(T.type)
-					X.set_dir(old_dir1)
-					X.icon_state = old_icon_state1
-					X.icon = old_icon1 //Shuttle floors are in shuttle.dmi while the defaults are floors.dmi
-					X.overlays = old_overlays
-					X.underlays = old_underlays
+					var/turf/X //New Destination Turf
 
+					//Are we doing shuttlework? Just to save another type check later.
+					var/shuttlework = 0
+
+					//Shuttle turfs handle their own fancy moving.
+					if(istype(T,/turf/simulated/shuttle))
+						shuttlework = 1
+						var/turf/simulated/shuttle/SS = T
+						if(!SS.landed_holder) SS.landed_holder = new(turf = SS)
+						X = SS.landed_holder.land_on(B)
+
+					//Generic non-shuttle turf move.
+					else
+						var/old_dir1 = T.dir
+						var/old_icon_state1 = T.icon_state
+						var/old_icon1 = T.icon
+						var/old_overlays = T.overlays.Copy()
+						var/old_underlays = T.underlays.Copy()
+
+						X = B.ChangeTurf(T.type)
+						X.set_dir(old_dir1)
+						X.icon_state = old_icon_state1
+						X.icon = old_icon1
+						X.overlays = old_overlays
+						X.underlays = old_underlays
+
+					//Move the air from source to dest
 					var/turf/simulated/ST = T
 					if(istype(ST) && ST.zone)
 						var/turf/simulated/SX = X
@@ -784,62 +802,28 @@ proc/GaussRandRound(var/sigma,var/roundto)
 						SX.air.copy_from(ST.zone.air)
 						ST.zone.remove(ST)
 
-					/* Quick visual fix for some weird shuttle corner artefacts when on transit space tiles */
-					if(direction && findtext(X.icon_state, "swall_s"))
-
-						// Spawn a new shuttle corner object
-						var/obj/corner = new()
-						corner.loc = X
-						corner.density = 1
-						corner.anchored = 1
-						corner.icon = X.icon
-						corner.icon_state = replacetext(X.icon_state, "_s", "_f")
-						corner.tag = "delete me"
-						corner.name = "wall"
-
-						// Find a new turf to take on the property of
-						var/turf/nextturf = get_step(corner, direction)
-						if(!nextturf || !istype(nextturf, /turf/space))
-							nextturf = get_step(corner, turn(direction, 180))
-
-
-						// Take on the icon of a neighboring scrolling space icon
-						X.icon = nextturf.icon
-						X.icon_state = nextturf.icon_state
-
-
+					//Move the objects. Not forceMove because the object isn't "moving" really, it's supposed to be on the "same" turf.
 					for(var/obj/O in T)
-
-						// Reset the shuttle corners
-						if(O.tag == "delete me")
-							X.icon = 'icons/turf/shuttle.dmi'
-							X.icon_state = replacetext(O.icon_state, "_f", "_s") // revert the turf to the old icon_state
-							X.name = "wall"
-							qdel(O) // prevents multiple shuttle corners from stacking
-							continue
-						if(!istype(O,/obj)) continue
 						O.loc = X
+
+					//Move the mobs unless it's an AI eye or other eye type.
 					for(var/mob/M in T)
-						if(!istype(M,/mob) || istype(M, /mob/observer/eye)) continue // If we need to check for more mobs, I'll add a variable
+						if(istype(M, /mob/observer/eye)) continue // If we need to check for more mobs, I'll add a variable
 						M.loc = X
 
-//					var/area/AR = X.loc
+					if(shuttlework)
+						var/turf/simulated/shuttle/SS = T
+						SS.landed_holder.leave_turf()
 
-//					if(AR.lighting_use_dynamic)							//TODO: rewrite this code so it's not messed by lighting ~Carn
-//						X.opacity = !X.opacity
-//						X.SetOpacity(!X.opacity)
+					else if(turftoleave)
+						T.ChangeTurf(turftoleave)
 
-					toupdate += X
-
-					if(turftoleave)
-						fromupdate += T.ChangeTurf(turftoleave)
 					else
 						T.ChangeTurf(get_base_turf_by_area(T))
 
 					refined_src -= T
 					refined_trg -= B
 					continue moving
-
 
 proc/DuplicateObject(obj/original, var/perfectcopy = 0 , var/sameloc = 0)
 	if(!original)
@@ -968,7 +952,7 @@ proc/DuplicateObject(obj/original, var/perfectcopy = 0 , var/sameloc = 0)
 
 //					var/area/AR = X.loc
 
-//					if(AR.lighting_use_dynamic)
+//					if(AR.dynamic_lighting)
 //						X.opacity = !X.opacity
 //						X.sd_SetOpacity(!X.opacity)			//TODO: rewrite this code so it's not messed by lighting ~Carn
 
@@ -1165,20 +1149,30 @@ proc/is_hot(obj/item/W as obj)
 
 /proc/is_surgery_tool(obj/item/W as obj)
 	return (	\
-	istype(W, /obj/item/weapon/scalpel)			||	\
-	istype(W, /obj/item/weapon/hemostat)		||	\
-	istype(W, /obj/item/weapon/retractor)		||	\
-	istype(W, /obj/item/weapon/cautery)			||	\
-	istype(W, /obj/item/weapon/bonegel)			||	\
-	istype(W, /obj/item/weapon/bonesetter)
+	istype(W, /obj/item/weapon/surgical/scalpel)			||	\
+	istype(W, /obj/item/weapon/surgical/hemostat)		||	\
+	istype(W, /obj/item/weapon/surgical/retractor)		||	\
+	istype(W, /obj/item/weapon/surgical/cautery)			||	\
+	istype(W, /obj/item/weapon/surgical/bonegel)			||	\
+	istype(W, /obj/item/weapon/surgical/bonesetter)
 	)
 
-//check if mob is lying down on something we can operate him on.
+// check if mob is lying down on something we can operate him on.
+// The RNG with table/rollerbeds comes into play in do_surgery() so that fail_step() can be used instead.
 /proc/can_operate(mob/living/carbon/M)
-	return (M.lying && \
-	locate(/obj/machinery/optable, M.loc) || \
-	(locate(/obj/structure/bed/roller, M.loc) && prob(75)) || \
-	(locate(/obj/structure/table/, M.loc) && prob(66)))
+	return M.lying
+
+// Returns an instance of a valid surgery surface.
+/mob/living/proc/get_surgery_surface()
+	if(!lying)
+		return null // Not lying down means no surface.
+	var/obj/surface = null
+	for(var/obj/O in loc) // Looks for the best surface.
+		if(O.surgery_odds)
+			if(!surface || surface.surgery_odds < O)
+				surface = O
+	if(surface)
+		return surface
 
 /proc/reverse_direction(var/dir)
 	switch(dir)
@@ -1300,6 +1294,13 @@ var/mob/dview/dview_mob = new
 	else
 		living_mob_list -= src
 
+/mob/dview/Destroy(var/force)
+	crash_with("Attempt to delete the dview_mob: [log_info_line(src)]")
+	if (!force)
+		return QDEL_HINT_LETMELIVE
+	global.dview_mob = new
+	return ..()
+
 // call to generate a stack trace and print to runtime logs
 /proc/crash_with(msg)
 	CRASH(msg)
@@ -1315,3 +1316,16 @@ var/mob/dview/dview_mob = new
 	tY = max(1, min(world.maxy, origin.y + (text2num(tY) - (world.view + 1))))
 	return locate(tX, tY, tZ)
 
+// Displays something as commonly used (non-submultiples) SI units.
+/proc/format_SI(var/number, var/symbol)
+	switch(round(abs(number)))
+		if(0 to 1000-1)
+			return "[number] [symbol]"
+		if(1e3 to 1e6-1)
+			return "[round(number / 1000, 0.1)] k[symbol]" // kilo
+		if(1e6 to 1e9-1)
+			return "[round(number / 1e6, 0.1)] M[symbol]" // mega
+		if(1e9 to 1e12-1) // Probably not needed but why not be complete?
+			return "[round(number / 1e9, 0.1)] G[symbol]" // giga
+		if(1e12 to 1e15-1)
+			return "[round(number / 1e12, 0.1)] T[symbol]" // tera

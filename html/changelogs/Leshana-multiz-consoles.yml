@@ -1,0 +1,32 @@
+################################
+# Example Changelog File
+#
+# Note: This file, and files beginning with ".", and files that don't end in ".yml" will not be read. If you change this file, you will look really dumb.
+#
+# Your changelog will be merged with a master changelog. (New stuff added only, and only on the date entry for the day it was merged.)
+# When it is, any changes listed below will disappear.
+#
+# Valid Prefixes: 
+#   bugfix
+#   wip (For works in progress)
+#   tweak
+#   soundadd
+#   sounddel
+#   rscadd (general adding of nice things)
+#   rscdel (general deleting of nice things)
+#   imageadd
+#   imagedel
+#   maptweak
+#   spellcheck (typo fixes)
+#   experiment
+#################################
+
+author: Leshana
+delete-after: True
+changes: 
+  - rscadd: "Added nanomap capability to the Power Monitoring Computer"
+  - rscadd: "Added nanomap capability to the Atmos Control Computer"
+  - tweak: "Expanded nanomap on Camera Console to all station z-levels by default."
+  - tweak: "Crew Monitoring nanomap will support crew monitors built on other station map z levels."
+  - imageadd: "Updated z1 nanomap for Northern Star"
+  - imageadd: "Generated z5 nanomap for Northern Star"

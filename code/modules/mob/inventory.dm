@@ -48,13 +48,15 @@ var/list/slot_equipment_priority = list( \
 //set disable_warning to disable the 'you are unable to equip that' warning.
 //unset redraw_mob to prevent the mob from being redrawn at the end.
 /mob/proc/equip_to_slot_if_possible(obj/item/W as obj, slot, del_on_fail = 0, disable_warning = 0, redraw_mob = 1)
+	if(!W)
+		return 0
 	if(!W.mob_can_equip(src, slot))
 		if(del_on_fail)
 			qdel(W)
 
 		else
 			if(!disable_warning)
-				src << "\red You are unable to equip that." //Only print if del_on_fail is false
+				src << "<font color='red'>You are unable to equip that.</font>" //Only print if del_on_fail is false
 		return 0
 
 	equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.

@@ -34,7 +34,10 @@
 
 /obj/item/weapon/gun/energy/New()
 	..()
-	power_supply = new /obj/item/weapon/cell/device(src)
+	if(cell_type)
+		power_supply = new cell_type(src)
+	else
+		power_supply = new /obj/item/weapon/cell/device/weapon(src)
 	if(self_recharge)
 		processing_objects.Add(src)
 	update_icon()
@@ -42,7 +45,7 @@
 /obj/item/weapon/gun/energy/Destroy()
 	if(self_recharge)
 		processing_objects.Remove(src)
-	..()
+	return ..()
 
 /obj/item/weapon/gun/energy/process()
 	if(self_recharge) //Every [recharge_time] ticks, recharge a shot for the battery
@@ -103,8 +106,8 @@
 	if(power_supply)
 		user.put_in_hands(power_supply)
 		power_supply.update_icon()
-		power_supply = null
 		user.visible_message("[user] removes [power_supply] from [src].", "<span class='notice'>You remove [power_supply] from [src].</span>")
+		power_supply = null
 		playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
 		update_icon()
 		update_held_icon()
@@ -168,7 +171,7 @@
 
 /obj/item/weapon/gun/energy/proc/start_recharge()
 	if(power_supply == null)
-		power_supply = new /obj/item/weapon/cell/device(src)
+		power_supply = new /obj/item/weapon/cell/device/weapon(src)
 	self_recharge = 1
 	processing_objects.Add(src)
 	update_icon()

@@ -8,11 +8,16 @@
 	Returns
 	standard 0 if fail
 */
-/mob/living/proc/apply_damage(var/damage = 0,var/damagetype = BRUTE, var/def_zone = null, var/blocked = 0, var/used_weapon = null, var/sharp = 0, var/edge = 0)
+/mob/living/proc/apply_damage(var/damage = 0,var/damagetype = BRUTE, var/def_zone = null, var/blocked = 0, var/soaked = 0, var/used_weapon = null, var/sharp = 0, var/edge = 0)
 	if(Debug2)
 		world.log << "## DEBUG: apply_damage() was called on [src], with [damage] damage, and an armor value of [blocked]."
 	if(!damage || (blocked >= 100))
 		return 0
+	if(soaked)
+		if(soaked >= round(damage*0.8))
+			damage -= round(damage*0.8)
+		else
+			damage -= soaked
 	blocked = (100-blocked)/100
 	switch(damagetype)
 		if(BRUTE)

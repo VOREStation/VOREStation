@@ -177,7 +177,7 @@
 	if(!usr.canmove || usr.stat || usr.restrained()) // Don't use it if you're not able to! Checks for stuns, ghost and restrain
 		return
 
-	if(ishuman(usr))
+	if(ishuman(usr) || isrobot(usr))
 		src.add_fingerprint(usr)
 		src.togglelock(usr)
 	else
@@ -283,9 +283,9 @@
 /obj/structure/closet/crate/rcd
 	name = "\improper RCD crate"
 	desc = "A crate with rapid construction device."
-	icon_state = "crate"
-	icon_opened = "crateopen"
-	icon_closed = "crate"
+	icon_state = "engi_crate"
+	icon_opened = "engi_crateopen"
+	icon_closed = "engi_crate"
 
 /obj/structure/closet/crate/rcd/New()
 	..()
@@ -427,6 +427,20 @@
 	icon_opened = "hydrosecurecrateopen"
 	icon_closed = "hydrosecurecrate"
 
+/obj/structure/closet/crate/secure/engineering
+	desc = "A crate with a lock on it, painted in the scheme of the station's engineers."
+	name = "secure engineering crate"
+	icon_state = "engi_secure_crate"
+	icon_opened = "engi_secure_crateopen"
+	icon_closed = "engi_secure_crate"
+
+/obj/structure/closet/crate/secure/science
+	name = "secure science crate"
+	desc = "A crate with a lock on it, painted in the scheme of the station's scientists."
+	icon_state = "scisecurecrate"
+	icon_opened = "scisecurecrateopen"
+	icon_closed = "scisecurecrate"
+
 /obj/structure/closet/crate/secure/bin
 	name = "secure bin"
 	desc = "A secure bin."
@@ -498,6 +512,23 @@
 	icon_state = "largermetal"
 	icon_opened = "largermetalopen"
 	icon_closed = "largermetal"
+
+/obj/structure/closet/crate/engineering
+	name = "engineering crate"
+	icon_state = "engi_crate"
+	icon_opened = "engi_crateopen"
+	icon_closed = "engi_crate"
+
+/obj/structure/closet/crate/engineering/electrical
+	icon_state = "engi_e_crate"
+	icon_opened = "engi_crateopen"
+	icon_closed = "engi_e_crate"
+
+/obj/structure/closet/crate/science
+	name = "science crate"
+	icon_state = "scicrate"
+	icon_opened = "scicrateopen"
+	icon_closed = "scicrate"
 
 /obj/structure/closet/crate/hydroponics
 	name = "hydroponics crate"

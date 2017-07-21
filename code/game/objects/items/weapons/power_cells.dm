@@ -30,8 +30,14 @@
 	force = 0
 	throw_speed = 5
 	throw_range = 7
-	maxcharge = 2400
+	maxcharge = 480
 	matter = list("metal" = 350, "glass" = 50)
+
+/obj/item/weapon/cell/device/weapon
+	name = "weapon power cell"
+	desc = "A small power cell designed to power handheld weaponry."
+	icon_state = "wcell"
+	maxcharge = 2400
 
 /obj/item/weapon/cell/crap
 	name = "\improper rechargable AA battery"

@@ -11,15 +11,15 @@
 	if(can_buckle && buckled_mob)
 		user_unbuckle_mob(user)
 
+/obj/attack_robot(mob/living/user)
+	if(Adjacent(user) && buckled_mob) //Checks if what we're touching is adjacent to us and has someone buckled to it. This should prevent interacting with anti-robot manual valves among other things.
+		return attack_hand(user) //Process as if we're a normal person touching the object.
+	return ..() //Otherwise, treat this as an AI click like usual.
+
 /obj/MouseDrop_T(mob/living/M, mob/living/user)
 	. = ..()
 	if(can_buckle && istype(M))
 		user_buckle_mob(M, user)
-
-//Cleanup
-/obj/Del()
-	unbuckle_mob()
-	return ..()
 
 /obj/Destroy()
 	unbuckle_mob()
@@ -37,6 +37,7 @@
 	M.facing_dir = null
 	M.set_dir(buckle_dir ? buckle_dir : dir)
 	M.update_canmove()
+	M.update_floating( M.Check_Dense_Object() )
 	buckled_mob = M
 
 	post_buckle_mob(M)
@@ -48,6 +49,7 @@
 		buckled_mob.buckled = null
 		buckled_mob.anchored = initial(buckled_mob.anchored)
 		buckled_mob.update_canmove()
+		buckled_mob.update_floating( buckled_mob.Check_Dense_Object() )
 		buckled_mob = null
 
 		post_buckle_mob(.)
@@ -69,7 +71,12 @@
 	add_fingerprint(user)
 	unbuckle_mob()
 
-	if(buckle_mob(M))
+	//can't buckle unless you share locs so try to move M to the obj.
+	if(M.loc != src.loc)
+		step_towards(M, src)
+
+	. = buckle_mob(M)
+	if(.)
 		if(M == user)
 			M.visible_message(\
 				"<span class='notice'>[M.name] buckles themselves to [src].</span>",\

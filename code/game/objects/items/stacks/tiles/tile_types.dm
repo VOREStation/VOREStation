@@ -6,6 +6,8 @@
  *		Carpet
  * 		Blue Carpet
  *		Linoleum
+ *
+ * Put your stuff in fifty_stacks_tiles.dm as well.
  */
 
 /obj/item/stack/tile
@@ -76,17 +78,11 @@
 	throw_range = 20
 	flags = 0
 
-/obj/item/stack/tile/carpet/fifty
-	amount = 50
-
 /obj/item/stack/tile/carpet/blue
 	name = "blue carpet"
 	singular_name = "blue carpet"
 	desc = "A piece of blue carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile-bluecarpet"
-
-/obj/item/stack/tile/carpet/blue/fifty
-	amount = 50
 
 /obj/item/stack/tile/floor
 	name = "floor tile"
@@ -100,17 +96,11 @@
 	throw_range = 20
 	flags = CONDUCT
 
-/obj/item/stack/tile/floor/fifty
-	amount = 50
-
 /obj/item/stack/tile/floor_red
 	name = "red floor tile"
 	singular_name = "red floor tile"
 	color = COLOR_RED_GRAY
 	icon_state = "tile_white"
-
-/obj/item/stack/tile/floor_red/fifty
-	amount = 50
 
 /obj/item/stack/tile/floor_steel
 	name = "steel floor tile"
@@ -118,17 +108,11 @@
 	icon_state = "tile_steel"
 	matter = list("plasteel" = SHEET_MATERIAL_AMOUNT / 4)
 
-/obj/item/stack/tile/floor_steel/fifty
-	amount = 50
-
 /obj/item/stack/tile/floor_white
 	name = "white floor tile"
 	singular_name = "white floor tile"
 	icon_state = "tile_white"
 	matter = list("plastic" = SHEET_MATERIAL_AMOUNT / 4)
-
-/obj/item/stack/tile/floor_white/fifty
-	amount = 50
 
 /obj/item/stack/tile/floor_yellow
 	name = "yellow floor tile"
@@ -136,26 +120,17 @@
 	color = COLOR_BROWN
 	icon_state = "tile_white"
 
-/obj/item/stack/tile/floor_yellow/fifty
-	amount = 50
-
 /obj/item/stack/tile/floor_dark
 	name = "dark floor tile"
 	singular_name = "dark floor tile"
 	icon_state = "fr_tile"
 	matter = list("plasteel" = SHEET_MATERIAL_AMOUNT / 4)
 
-/obj/item/stack/tile/floor_dark/fifty
-	amount = 50
-
 /obj/item/stack/tile/floor_freezer
 	name = "freezer floor tile"
 	singular_name = "freezer floor tile"
 	icon_state = "tile_freezer"
 	matter = list("plastic" = SHEET_MATERIAL_AMOUNT / 4)
-
-/obj/item/stack/tile/foor_freezer/fifty
-	amount = 50
 
 /obj/item/stack/tile/floor/cyborg
 	name = "floor tile synthesizer"
@@ -177,6 +152,3 @@
 	throw_speed = 5
 	throw_range = 20
 	flags = 0
-
-/obj/item/stack/tile/linoleum/fifty
-	amount = 50

@@ -38,3 +38,12 @@ Used In File(s): code\game\machinery/exonet_node.dm
 		{{:helper.link('Open', 'check', {'toggle_newscaster_port' : 1}, data.allowNewscasters ? 'selected' : null)}}{{:helper.link('Close', 'close', {'toggle_newscaster_port' : 1}, data.allowNewscasters ? null : 'selected')}}
 	</div>
 </div>
+
+<H2>Logging</H2>
+<div class="statusDisplay" style="height: 250px; overflow: auto;">
+	{{for data.logs}}
+		<div class='item'>
+			{{:value}}
+		</div>
+	{{/for}}
+</div>

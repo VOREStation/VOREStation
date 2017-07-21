@@ -44,6 +44,7 @@
 		H.real_name = "Synthmorph #[rand(100,999)]"
 		H.name = H.real_name
 		H.dir = 2
+		H.add_language(LANGUAGE_EAL)
 		return H
 
 //////////////////// Prosthetics ////////////////////

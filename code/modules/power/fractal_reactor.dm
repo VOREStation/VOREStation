@@ -18,7 +18,7 @@
 /obj/machinery/power/fractal_reactor/New()
 	..()
 	if(!mapped_in)
-		world << "<b>\red WARNING: \black Map testing power source activated at: X:[src.loc.x] Y:[src.loc.y] Z:[src.loc.z]</b>"
+		world << "<b><font color='red'>WARNING: \black Map testing power source activated at: X:[src.loc.x] Y:[src.loc.y] Z:[src.loc.z]</font></b>"
 
 /obj/machinery/power/fractal_reactor/process()
 	if(!powernet && !powernet_connection_failed)

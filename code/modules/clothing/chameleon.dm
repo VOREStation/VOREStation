@@ -327,7 +327,7 @@
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "utilitybelt"
 	origin_tech = list(TECH_ILLEGAL = 3)
-	var/list/clothing_choices = list()
+	var/global/list/clothing_choices
 
 /obj/item/weapon/storage/belt/chameleon/New()
 	..()
@@ -357,6 +357,42 @@
 		var/mob/M = src.loc
 		M.update_inv_belt() //so our overlays update.
 
+//******************
+//**Chameleon Tie**
+//******************
+
+/obj/item/clothing/accessory/chameleon
+	name = "black tie"
+	desc = "Looks like a black tie, but his one also has a dial inside."
+	icon = 'icons/obj/clothing/ties.dmi'
+	icon_state = "blacktie"
+	origin_tech = list(TECH_ILLEGAL = 3)
+	var/global/list/clothing_choices
+
+/obj/item/clothing/accessory/chameleon/New()
+	..()
+	if(!clothing_choices)
+		var/blocked = list(src.type, /obj/item/clothing/accessory/storage)
+		clothing_choices = generate_chameleon_choices(/obj/item/clothing/accessory, blocked)
+
+/obj/item/clothing/accessory/chameleon/emp_act(severity) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
+	name = "black tie"
+	desc = "Looks like a black tie, but his one also has a dial inside."
+	icon_state = "blacktie"
+	update_icon()
+	update_clothing_icon()
+
+/obj/item/clothing/accessory/chameleon/verb/change(picked in clothing_choices)
+	set name = "Change Accessory Appearance"
+	set category = "Chameleon Items"
+	set src in usr
+
+	if(!ispath(clothing_choices[picked]))
+		return
+
+	disguise(clothing_choices[picked])
+	update_icon()
+
 //*****************
 //**Chameleon Gun**
 //*****************
@@ -372,6 +408,7 @@
 	projectile_type = /obj/item/projectile/chameleon
 	charge_meter = 0
 	charge_cost = 48 //uses next to no power, since it's just holograms
+	battery_lock = 1
 
 	var/obj/item/projectile/copy_projectile
 	var/global/list/gun_choices

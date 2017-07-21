@@ -44,10 +44,15 @@ var/list/ventcrawl_machinery = list(
 /mob/living/proc/is_allowed_vent_crawl_item(var/obj/item/carried_item)
 	if(carried_item == ability_master)
 		return 1
+
+	var/list/allowed = list()
 	for(var/type in can_enter_vent_with)
-		if(istype(carried_item, can_enter_vent_with))
-			return get_inventory_slot(carried_item) == 0
-	return 0
+		var/list/types = typesof(type)
+		allowed += types
+
+	if(carried_item.type in allowed)
+		if(get_inventory_slot(carried_item) == 0)
+			return 1
 
 /mob/living/carbon/is_allowed_vent_crawl_item(var/obj/item/carried_item)
 	if(carried_item in internal_organs)
@@ -81,7 +86,7 @@ var/list/ventcrawl_machinery = list(
 	var/atom/pipe
 	var/list/pipes = list()
 	for(var/obj/machinery/atmospherics/unary/U in range(1))
-		if(is_type_in_list(U,ventcrawl_machinery) && Adjacent(U))
+		if(is_type_in_list(U,ventcrawl_machinery) && Adjacent(U) && !U.welded)
 			pipes |= U
 	if(!pipes || !pipes.len)
 		to_chat(src, "There are no pipes that you can ventcrawl into within range!")

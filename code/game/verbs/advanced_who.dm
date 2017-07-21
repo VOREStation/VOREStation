@@ -56,7 +56,7 @@
 			if(C.holder && C.holder.fakekey)
 				var/entry = "\t[C.key]"
 				var/mob/observer/dead/O = C.mob
-				entry += C.holder.fakekey
+				entry = C.holder.fakekey
 				if(isobserver(O))
 					entry += " - <font color='gray'>Observing</font>"
 				else if(istype(O,/mob/new_player))

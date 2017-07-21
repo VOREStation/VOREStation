@@ -24,6 +24,7 @@ var/list/technomancer_belongings = list()
 /obj/item/weapon/spell/track/Destroy()
 	tracked = null
 	tracking = 0
+	..()
 
 /obj/item/weapon/spell/track/on_use_cast(mob/user)
 	if(tracking)

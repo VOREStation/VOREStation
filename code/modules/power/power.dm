@@ -19,7 +19,7 @@
 	disconnect_from_network()
 	disconnect_terminal()
 
-	..()
+	return ..()
 
 ///////////////////////////////
 // General procedures
@@ -142,24 +142,12 @@
 /obj/machinery/power/proc/overload(var/obj/machinery/power/source)
 	return
 
+// Used by the grid checker upon receiving a power spike.
+/obj/machinery/power/proc/do_grid_check()
+	return
+
 /obj/machinery/power/proc/power_spike()
-	var/obj/machinery/power/grid_checker/G = locate() in powernet.nodes
-	if(G) // If we found a grid checker, then all is well.
-		G.power_failure(prob(30))
-	else // Otherwise lets break some stuff.
-		spawn(1)
-			command_announcement.Announce("Dangerous power spike detected in the power network.  Please check machinery \
-			for electrical damage.",
-			"Critical Power Overload")
-			var/i = 0
-			var/limit = rand(30, 50)
-			for(var/obj/machinery/power/P in powernet.nodes)
-				P.overload(src)
-				i++
-				if(i % 5)
-					sleep(1)
-				if(i >= limit)
-					break
+	return
 
 ///////////////////////////////////////////
 // Powernet handling helpers
@@ -221,16 +209,8 @@
 // if unmarked==1, only return those with no powernet
 /proc/power_list(var/turf/T, var/source, var/d, var/unmarked=0, var/cable_only = 0)
 	. = list()
-	var/fdir = (!d)? 0 : turn(d, 180)			// the opposite direction to d (or 0 if d==0)
-///// Z-Level Stuff
-	var/Zdir
-	if(d==11)
-		Zdir = 11
-	else if (d==12)
-		Zdir = 12
-	else
-		Zdir = 999
-///// Z-Level Stuff
+
+	var/reverse = d ? reverse_dir[d] : 0
 	for(var/AM in T)
 		if(AM == source)	continue			//we don't want to return source
 
@@ -246,11 +226,7 @@
 			var/obj/structure/cable/C = AM
 
 			if(!unmarked || !C.powernet)
-///// Z-Level Stuff
-				if(C.d1 == fdir || C.d2 == fdir || C.d1 == Zdir || C.d2 == Zdir)
-///// Z-Level Stuff
-					. += C
-				else if(C.d1 == d || C.d2 == d)
+				if(C.d1 == d || C.d2 == d || C.d1 == reverse || C.d2 == reverse )
 					. += C
 	return .
 
@@ -334,8 +310,9 @@
 //power_source is a source of electricity, can be powercell, area, apc, cable, powernet or null
 //source is an object caused electrocuting (airlock, grille, etc)
 //No animations will be performed by this proc.
-/proc/electrocute_mob(mob/living/carbon/M as mob, var/power_source, var/obj/source, var/siemens_coeff = 1.0)
+/proc/electrocute_mob(mob/living/M as mob, var/power_source, var/obj/source, var/siemens_coeff = 1.0)
 	if(istype(M.loc,/obj/mecha))	return 0	//feckin mechs are dumb
+	if(issilicon(M))	return 0	//No more robot shocks from machinery
 	var/area/source_area
 	if(istype(power_source,/area))
 		source_area = power_source

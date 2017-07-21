@@ -62,16 +62,16 @@ var/global/list/datum/supply_drop_loot/supply_drop
 		/obj/item/weapon/storage/box/emps,
 		/obj/item/weapon/storage/box/flashbangs,
 		/obj/item/weapon/gun/projectile/automatic/sts35,
-		/obj/item/ammo_magazine/c762/ap,
-		/obj/item/ammo_magazine/c762/ap,
+		/obj/item/ammo_magazine/m762/ap,
+		/obj/item/ammo_magazine/m762/ap,
 		/obj/item/weapon/gun/projectile/colt,
-		/obj/item/ammo_magazine/c45m,
+		/obj/item/ammo_magazine/m45,
 		/obj/item/weapon/material/hatchet/tacknife/combatknife)
 
 /datum/supply_drop_loot/heavy_warfare
 	name = "Heavy Warfare"
 	container = /obj/structure/largecrate
-/datum/supply_drop_loot/armour/New()
+/datum/supply_drop_loot/heavy_warfare/New()
 	..()
 	contents = list(
 		/obj/item/clothing/head/helmet/combat,
@@ -83,11 +83,11 @@ var/global/list/datum/supply_drop_loot/supply_drop
 		/obj/item/clothing/accessory/storage/black_drop_pouches,
 		/obj/item/weapon/storage/backpack/dufflebag/sec,
 		/obj/item/weapon/gun/projectile/automatic/carbine,
-		/obj/item/ammo_magazine/a556m/ap,
-		/obj/item/ammo_magazine/a556m,
+		/obj/item/ammo_magazine/m762/ap,
+		/obj/item/ammo_magazine/m762,
 		/obj/item/weapon/shield/energy,
-		/obj/item/weapon/grenade/frag,
-		/obj/item/weapon/grenade/frag,
+		/obj/item/weapon/grenade/explosive/frag,
+		/obj/item/weapon/grenade/explosive/frag,
 		/obj/item/weapon/grenade/smokebomb,
 		/obj/item/weapon/grenade/smokebomb,
 		/obj/item/weapon/grenade/flashbang,
@@ -99,7 +99,7 @@ var/global/list/datum/supply_drop_loot/supply_drop
 datum/supply_drop_loot/riot
 	name = "Riot Gear"
 	container = /obj/structure/largecrate
-/datum/supply_drop_loot/armour/New()
+/datum/supply_drop_loot/riot/New()
 	..()
 	contents = list(
 		/obj/item/clothing/head/helmet/riot,
@@ -112,7 +112,7 @@ datum/supply_drop_loot/riot
 		/obj/item/weapon/melee/baton,
 		/obj/item/clothing/glasses/sunglasses/sechud/tactical,
 		/obj/item/weapon/storage/belt/security,
-		/obj/item/clothing/shoes/jackboots,
+		/obj/item/clothing/shoes/boots/jackboots,
 		/obj/item/clothing/gloves/black,
 		/obj/item/weapon/gun/projectile/shotgun/pump,
 		/obj/item/weapon/gun/energy/gun,
@@ -266,15 +266,15 @@ datum/supply_drop_loot/riot
 /datum/supply_drop_loot/materials/New()
 	..()
 	contents = list(
-		/obj/item/stack/material/steel/fifty,
-		/obj/item/stack/material/steel/fifty,
-		/obj/item/stack/material/steel/fifty,
-		/obj/item/stack/material/glass/fifty,
-		/obj/item/stack/material/glass/fifty,
-		/obj/item/stack/material/wood/fifty,
-		/obj/item/stack/material/plastic/fifty,
-		/obj/item/stack/material/glass/reinforced/fifty,
-		/obj/item/stack/material/plasteel/fifty)
+		/obj/fiftyspawner/steel,
+		/obj/fiftyspawner/steel,
+		/obj/fiftyspawner/steel,
+		/obj/fiftyspawner/glass,
+		/obj/fiftyspawner/glass,
+		/obj/fiftyspawner/wood,
+		/obj/fiftyspawner/plastic,
+		/obj/fiftyspawner/rglass,
+		/obj/fiftyspawner/plasteel)
 
 /datum/supply_drop_loot/materials_advanced
 	name = "Advanced Materials"
@@ -282,20 +282,20 @@ datum/supply_drop_loot/riot
 /datum/supply_drop_loot/materials_advanced/New()
 	..()
 	contents = list(
-		/obj/item/stack/material/steel/fifty,
-		/obj/item/stack/material/glass/fifty,
-		/obj/item/stack/material/wood/fifty,
-		/obj/item/stack/material/plastic/fifty,
-		/obj/item/stack/material/glass/reinforced/fifty,
-		/obj/item/stack/material/plasteel/fifty,
-		/obj/item/stack/material/diamond/fifty,
-		/obj/item/stack/material/phoron/fifty,
-		/obj/item/stack/material/gold/fifty,
-		/obj/item/stack/material/silver/fifty,
-		/obj/item/stack/material/platinum/fifty,
-		/obj/item/stack/material/mhydrogen/fifty,
-		/obj/item/stack/material/tritium/fifty,
-		/obj/item/stack/material/osmium/fifty,)
+		/obj/fiftyspawner/steel,
+		/obj/fiftyspawner/glass,
+		/obj/fiftyspawner/wood,
+		/obj/fiftyspawner/plastic,
+		/obj/fiftyspawner/rglass,
+		/obj/fiftyspawner/plasteel,
+		/obj/fiftyspawner/diamond,
+		/obj/fiftyspawner/phoron,
+		/obj/fiftyspawner/gold,
+		/obj/fiftyspawner/silver,
+		/obj/fiftyspawner/platinum,
+		/obj/fiftyspawner/mhydrogen,
+		/obj/fiftyspawner/tritium,
+		/obj/fiftyspawner/osmium,)
 
 /datum/supply_drop_loot/supermatter
 	name = "Supermatter"

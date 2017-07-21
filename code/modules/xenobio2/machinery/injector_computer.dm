@@ -20,8 +20,8 @@
 	var/active
 
 /obj/machinery/computer/xenobio2/Destroy()
-	..()
 	injector.computer = null
+	..()
 
 /obj/machinery/computer/xenobio2/attack_hand(mob/user)
 	if(..())
@@ -76,7 +76,7 @@
 
 	if(injector.occupant)
 		data["occupantHealth"] = injector.occupant.health
-		data["occupantHealthMax"] = injector.occupant.maxHealth
+		data["occupantHealthMax"] = injector.occupant.getMaxHealth()
 	else
 		data["occupantHealth"] = null
 		data["occupantHealthMax"] = null
@@ -109,5 +109,5 @@
 
 /obj/item/weapon/circuitboard/xenobio2computer
 	name = T_BOARD("injector control console")
-	build_path = /obj/item/weapon/circuitboard/xenobio2computer
-	origin_tech = list()	//To be filled,
+	build_path = /obj/machinery/computer/xenobio2
+	origin_tech = list()	//To be filled

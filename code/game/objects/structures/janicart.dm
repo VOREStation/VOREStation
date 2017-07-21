@@ -4,7 +4,8 @@
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "cart"
 	anchored = 0
-	density = 1
+	density = 1 
+	climbable = 1
 	flags = OPENCONTAINER
 	//copypaste sorry
 	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
@@ -77,6 +78,9 @@
 			user << "<span class='notice'>You put [I] into [src].</span>"
 		else
 			user << "<span class='notice'>[src] can't hold any more signs.</span>"
+
+	else if(istype(I, /obj/item/weapon/reagent_containers/glass))
+		return // So we do not put them in the trash bag as we mean to fill the mop bucket
 
 	else if(mybag)
 		mybag.attackby(I, user)

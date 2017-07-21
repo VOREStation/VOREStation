@@ -23,6 +23,7 @@
 	var/image/filling //holds a reference to the current filling overlay
 	var/visible_name = "a syringe"
 	var/time = 30
+	var/drawing = 0
 
 /obj/item/weapon/reagent_containers/syringe/on_reagent_change()
 	update_icon()
@@ -52,14 +53,6 @@
 /obj/item/weapon/reagent_containers/syringe/attackby(obj/item/I as obj, mob/user as mob)
 	return
 
-/obj/item/weapon/reagent_containers/syringe/do_surgery(mob/living/carbon/M, mob/living/user)
-	if(user.a_intent == I_HURT)
-		return 0
-	if(user.a_intent != I_HELP) //in case it is ever used as a surgery tool
-		return ..()
-	afterattack(M, user, 1)
-	return 1
-
 /obj/item/weapon/reagent_containers/syringe/afterattack(obj/target, mob/user, proximity)
 	if(!proximity || !target.reagents)
 		return
@@ -76,7 +69,6 @@
 
 	switch(mode)
 		if(SYRINGE_DRAW)
-
 			if(!reagents.get_free_space())
 				user << "<span class='warning'>The syringe is full.</span>"
 				mode = SYRINGE_INJECT
@@ -99,15 +91,29 @@
 						user << "<span class='warning'>You are unable to locate any blood.</span>"
 						return
 
+					if(drawing)
+						user << "<span class='warning'>You are already drawing blood from [T.name].</span>"
+						return
+
 					var/datum/reagent/B
+					drawing = 1
 					if(istype(T, /mob/living/carbon/human))
 						var/mob/living/carbon/human/H = T
 						if(H.species && !H.should_have_organ(O_HEART))
 							H.reagents.trans_to_obj(src, amount)
 						else
+							if(ismob(H) && H != user)
+								if(!do_mob(user, target, time))
+									drawing = 0
+									return
 							B = T.take_blood(src, amount)
+							drawing = 0
 					else
+						if(!do_mob(user, target, time))
+							drawing = 0
+							return
 						B = T.take_blood(src,amount)
+						drawing = 0
 
 					if (B)
 						reagents.reagent_list += B
@@ -123,7 +129,7 @@
 					user << "<span class='notice'>[target] is empty.</span>"
 					return
 
-				if(!target.is_open_container() && !istype(target, /obj/structure/reagent_dispensers) && !istype(target, /obj/item/slime_extract))
+				if(!target.is_open_container() && !istype(target, /obj/structure/reagent_dispensers) && !istype(target, /obj/item/slime_extract) && !istype(target, /obj/item/weapon/reagent_containers/food))
 					user << "<span class='notice'>You cannot directly remove reagents from this object.</span>"
 					return
 
@@ -195,8 +201,11 @@
 				trans = reagents.trans_to_mob(target, amount_per_transfer_from_this, CHEM_BLOOD)
 				admin_inject_log(user, target, src, contained, trans)
 			else
-				trans = reagents.trans_to(target, amount_per_transfer_from_this)
-			user << "<span class='notice'>You inject [trans] units of the solution. The syringe now contains [src.reagents.total_volume] units.</span>"
+				trans = reagents.trans_to_obj(target, amount_per_transfer_from_this)
+			if(trans)
+				user << "<span class='notice'>You inject [trans] units of the solution. The syringe now contains [src.reagents.total_volume] units.</span>"
+			else
+				user << "<span class='notice'>The syringe is empty.</span>"
 			if (reagents.total_volume <= 0 && mode == SYRINGE_INJECT)
 				mode = SYRINGE_DRAW
 				update_icon()
@@ -249,7 +258,7 @@
 
 		if (target != user && H.getarmor(target_zone, "melee") > 5 && prob(50))
 			for(var/mob/O in viewers(world.view, user))
-				O.show_message(text("\red <B>[user] tries to stab [target] in \the [hit_area] with [src.name], but the attack is deflected by armor!</B>"), 1)
+				O.show_message(text("<font color='red'><B>[user] tries to stab [target] in \the [hit_area] with [src.name], but the attack is deflected by armor!</B></font>"), 1)
 			user.remove_from_mob(src)
 			qdel(src)
 

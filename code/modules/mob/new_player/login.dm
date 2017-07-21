@@ -5,13 +5,20 @@ var/obj/effect/lobby_image = new /obj/effect/lobby_image
 /obj/effect/lobby_image
 	name = "Polaris"
 	desc = "How are you reading this?"
-	icon = 'icons/misc/title.dmi'
-	icon_state = null //determined randomly later on.
 	screen_loc = "1,1"
-	var/list/lobby_images = list("mockingjay00")
 
-/obj/effect/lobby_image/New()
-	icon_state = pick(lobby_images)
+/obj/effect/lobby_image/initialize()
+	icon = using_map.lobby_icon
+	var/known_icon_states = icon_states(icon)
+	for(var/lobby_screen in using_map.lobby_screens)
+		if(!(lobby_screen in known_icon_states))
+			error("Lobby screen '[lobby_screen]' did not exist in the icon set [icon].")
+			using_map.lobby_screens -= lobby_screen
+
+	if(using_map.lobby_screens.len)
+		icon_state = pick(using_map.lobby_screens)
+	else
+		icon_state = known_icon_states[1]
 
 /mob/new_player
 	var/client/my_client // Need to keep track of this ourselves, since by the time Logout() is called the client has already been nulled

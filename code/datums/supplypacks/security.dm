@@ -113,7 +113,7 @@
 			/obj/item/clothing/mask/balaclava/tactical,
 			/obj/item/clothing/glasses/sunglasses/sechud/tactical,
 			/obj/item/weapon/storage/belt/security/tactical,
-			/obj/item/clothing/shoes/jackboots,
+			/obj/item/clothing/shoes/boots/jackboots,
 			/obj/item/clothing/gloves/black,
 			/obj/item/clothing/under/tactical,
 			/obj/item/clothing/suit/armor/tactical,
@@ -121,7 +121,7 @@
 			/obj/item/clothing/mask/balaclava/tactical,
 			/obj/item/clothing/glasses/sunglasses/sechud/tactical,
 			/obj/item/weapon/storage/belt/security/tactical,
-			/obj/item/clothing/shoes/jackboots,
+			/obj/item/clothing/shoes/boots/jackboots,
 			/obj/item/clothing/gloves/black
 			)
 
@@ -200,6 +200,7 @@
 			/obj/item/clothing/under/det/black = 2,
 			/obj/item/clothing/under/det/grey = 2,
 			/obj/item/clothing/head/det/grey = 2,
+			/obj/item/clothing/under/det/skirt = 2,
 			/obj/item/clothing/under/det = 2,
 			/obj/item/clothing/head/det = 2,
 			/obj/item/clothing/suit/storage/det_trench,
@@ -367,7 +368,7 @@
 			/obj/item/clothing/shoes/white = 3,
 			/obj/item/clothing/mask/gas = 3,
 			/obj/item/weapon/tank/oxygen = 3,
-			/obj/item/clothing/gloves/latex,
+			/obj/item/clothing/gloves/sterile/latex,
 			/obj/item/weapon/storage/box/gloves
 			)
 	cost = 50

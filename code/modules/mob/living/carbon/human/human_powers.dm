@@ -47,7 +47,7 @@
 
 	for(var/mob/O in viewers(src, null))
 		if ((O.client && !( O.blinded )))
-			O.show_message(text("\red <B>[] [failed ? "tried to tackle" : "has tackled"] down []!</B>", src, T), 1)
+			O.show_message(text("<font color='red'><B>[] [failed ? "tried to tackle" : "has tackled"] down []!</font></B>", src, T), 1)
 
 /mob/living/carbon/human/proc/commune()
 	set category = "Abilities"
@@ -77,12 +77,12 @@
 
 	log_say("[key_name(src)] communed to [key_name(M)]: [text]")
 
-	M << "\blue Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]"
+	M << "<font color='blue'>Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]</font>"
 	if(istype(M,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
 		if(H.species.name == src.species.name)
 			return
-		H << "\red Your nose begins to bleed..."
+		H << "<font color='red'>Your nose begins to bleed...</font>"
 		H.drip(1)
 
 /mob/living/carbon/human/proc/regurgitate()
@@ -95,7 +95,7 @@
 			if(M in stomach_contents)
 				stomach_contents.Remove(M)
 				M.loc = loc
-		src.visible_message("\red <B>[src] hurls out the contents of their stomach!</B>")
+		src.visible_message("<font color='red'><B>[src] hurls out the contents of their stomach!</B></font>")
 	return
 
 /mob/living/carbon/human/proc/psychic_whisper(mob/M as mob in oview())
@@ -114,11 +114,15 @@
 	set name = "Split"
 	set desc = "Split your humanoid form into its constituent nymphs."
 	set category = "Abilities"
+	diona_split_into_nymphs(5)	// Separate proc to void argments being supplied when used as a verb
 
+/mob/living/carbon/human/proc/diona_split_into_nymphs(var/number_of_resulting_nymphs)
 	var/turf/T = get_turf(src)
 
 	var/mob/living/carbon/alien/diona/S = new(T)
 	S.set_dir(dir)
+	transfer_languages(src, S)
+
 	if(mind)
 		mind.transfer_to(S)
 
@@ -129,12 +133,14 @@
 
 	for(var/mob/living/carbon/alien/diona/D in src)
 		nymphs++
-		D.loc = T
+		D.forceMove(T)
+		transfer_languages(src, D, WHITELISTED|RESTRICTED)
 		D.set_dir(pick(NORTH, SOUTH, EAST, WEST))
 
-	if(nymphs < 5)
-		for(var/i in nymphs to 4)
+	if(nymphs < number_of_resulting_nymphs)
+		for(var/i in nymphs to (number_of_resulting_nymphs - 1))
 			var/mob/M = new /mob/living/carbon/alien/diona(T)
+			transfer_languages(src, M, WHITELISTED|RESTRICTED)
 			M.set_dir(pick(NORTH, SOUTH, EAST, WEST))
 
 
@@ -169,3 +175,84 @@
 			output += "[IO.name] - <span style='color:green;'>OK</span>\n"
 
 	src << output
+
+/mob/living/carbon/human
+	var/next_sonar_ping = 0
+
+/mob/living/carbon/human/proc/sonar_ping()
+	set name = "Listen In"
+	set desc = "Allows you to listen in to movement and noises around you."
+	set category = "Abilities"
+
+	if(incapacitated())
+		src << "<span class='warning'>You need to recover before you can use this ability.</span>"
+		return
+	if(world.time < next_sonar_ping)
+		src << "<span class='warning'>You need another moment to focus.</span>"
+		return
+	if(is_deaf() || is_below_sound_pressure(get_turf(src)))
+		src << "<span class='warning'>You are for all intents and purposes currently deaf!</span>"
+		return
+	next_sonar_ping += 10 SECONDS
+	var/heard_something = FALSE
+	src << "<span class='notice'>You take a moment to listen in to your environment...</span>"
+	for(var/mob/living/L in range(client.view, src))
+		var/turf/T = get_turf(L)
+		if(!T || L == src || L.stat == DEAD || is_below_sound_pressure(T))
+			continue
+		heard_something = TRUE
+		var/feedback = list()
+		feedback += "<span class='notice'>There are noises of movement "
+		var/direction = get_dir(src, L)
+		if(direction)
+			feedback += "towards the [dir2text(direction)], "
+			switch(get_dist(src, L) / client.view)
+				if(0 to 0.2)
+					feedback += "very close by."
+				if(0.2 to 0.4)
+					feedback += "close by."
+				if(0.4 to 0.6)
+					feedback += "some distance away."
+				if(0.6 to 0.8)
+					feedback += "further away."
+				else
+					feedback += "far away."
+		else // No need to check distance if they're standing right on-top of us
+			feedback += "right on top of you."
+		feedback += "</span>"
+		src << jointext(feedback,null)
+	if(!heard_something)
+		src << "<span class='notice'>You hear no movement but your own.</span>"
+
+/mob/living/carbon/human/proc/regenerate()
+	set name = "Regenerate"
+	set desc = "Allows you to regrow limbs and heal organs."
+	set category = "Abilities"
+
+	if(nutrition < 250)
+		to_chat(src, "<span class='warning'>You lack the biomass regrow anything!</span>")
+		return
+
+	nutrition -= 200
+
+	for(var/obj/item/organ/I in internal_organs)
+		if(I.damage > 0)
+			I.damage = 0
+			to_chat(src, "<span class='notice'>You feel a soothing sensation within your [I.name]...</span>")
+
+	// Replace completely missing limbs.
+	for(var/limb_type in src.species.has_limbs)
+		var/obj/item/organ/external/E = src.organs_by_name[limb_type]
+		if(E && E.disfigured)
+			E.disfigured = 0
+		if(E && (E.is_stump() || (E.status & (ORGAN_DESTROYED|ORGAN_DEAD|ORGAN_MUTATED))))
+			E.removed()
+			qdel(E)
+			E = null
+		if(!E)
+			var/list/organ_data = src.species.has_limbs[limb_type]
+			var/limb_path = organ_data["path"]
+			var/obj/item/organ/O = new limb_path(src)
+			organ_data["descriptor"] = O.name
+			to_chat(src, "<span class='notice'>You feel a slithering sensation as your [O.name] reform.</span>")
+			src.update_body()

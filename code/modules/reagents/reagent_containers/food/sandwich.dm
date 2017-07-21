@@ -1,4 +1,4 @@
-/obj/item/weapon/reagent_containers/food/snacks/breadslice/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/weapon/reagent_containers/food/snacks/slice/bread/attackby(obj/item/W as obj, mob/user as mob)
 
 	if(istype(W,/obj/item/weapon/material/shard) || istype(W,/obj/item/weapon/reagent_containers/food/snacks))
 		var/obj/item/weapon/reagent_containers/food/snacks/csandwich/S = new(get_turf(src))
@@ -19,20 +19,20 @@
 
 	var/sandwich_limit = 4
 	for(var/obj/item/O in ingredients)
-		if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/breadslice))
+		if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/slice/bread))
 			sandwich_limit += 4
 
-	if(src.contents.len > sandwich_limit)
-		user << "\red If you put anything else on \the [src] it's going to collapse."
-		return
-	else if(istype(W,/obj/item/weapon/material/shard))
-		user << "\blue You hide [W] in \the [src]."
+	if(istype(W,/obj/item/weapon/material/shard))
+		user << "<font color='blue'>You hide [W] in \the [src].</font>"
 		user.drop_item()
 		W.loc = src
 		update()
 		return
 	else if(istype(W,/obj/item/weapon/reagent_containers/food/snacks))
-		user << "\blue You layer [W] over \the [src]."
+		if(src.contents.len > sandwich_limit)
+			user << "<font color='red'>If you put anything else on \the [src] it's going to collapse.</font>"
+			return
+		user << "<font color='blue'>You layer [W] over \the [src].</font>"
 		var/obj/item/weapon/reagent_containers/F = W
 		F.reagents.trans_to_obj(src, F.reagents.total_volume)
 		user.drop_item()
@@ -81,7 +81,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/csandwich/examine(mob/user)
 	..(user)
 	var/obj/item/O = pick(contents)
-	user << "\blue You think you can see [O.name] in there."
+	user << "<font color='blue'>You think you can see [O.name] in there.</font>"
 
 /obj/item/weapon/reagent_containers/food/snacks/csandwich/attack(mob/M as mob, mob/user as mob, def_zone)
 
@@ -96,6 +96,6 @@
 		H = M
 
 	if(H && shard && M == user) //This needs a check for feeding the food to other people, but that could be abusable.
-		H << "\red You lacerate your mouth on a [shard.name] in the sandwich!"
-		H.adjustBruteLoss(5) //TODO: Target head if human.
+		H << "<font color='red'>You lacerate your mouth on a [shard.name] in the sandwich!</font>"
+		H.adjustBruteLoss(5) //TODO: Target head if human. //This TODO has been here for 4 years.
 	..()

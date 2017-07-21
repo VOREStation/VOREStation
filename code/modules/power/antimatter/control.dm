@@ -97,6 +97,12 @@
 		if(2)
 			if(active)	toggle_power()
 			stability -= rand(10,20)
+		if(3)
+			if(active)	toggle_power()
+			stability -= rand(8,15)
+		if(4)
+			if(active)	toggle_power()
+			stability -= rand(5,10)
 	..()
 	return 0
 
@@ -150,12 +156,12 @@
 			src.anchored = 0
 			disconnect_from_network()
 		else
-			user << "\red Once bolted and linked to a shielding unit it the [src.name] is unable to be moved!"
+			user << "<font color='red'>Once bolted and linked to a shielding unit it the [src.name] is unable to be moved!</font>"
 		return
 
 	if(istype(W, /obj/item/weapon/am_containment))
 		if(fueljar)
-			user << "\red There is already a [fueljar] inside!"
+			user << "<font color='red'>There is already a [fueljar] inside!</font>"
 			return
 		fueljar = W
 		user.remove_from_mob(W)

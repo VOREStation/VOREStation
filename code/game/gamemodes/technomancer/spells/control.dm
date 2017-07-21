@@ -39,7 +39,7 @@
 		/mob/living/simple_animal/hostile/carp,
 		/mob/living/simple_animal/hostile/scarybat,
 		/mob/living/simple_animal/hostile/viscerator,
-		/mob/living/simple_animal/hostile/retaliate/malf_drone,
+		/mob/living/simple_animal/hostile/malf_drone,
 		/mob/living/simple_animal/hostile/giant_spider,
 		/mob/living/simple_animal/hostile/hivebot,
 		/mob/living/simple_animal/hostile/diyaab, //Doubt these will get used but might as well,
@@ -133,7 +133,7 @@
 				if(L.client)
 					user << "<span class='danger'>\The [L] seems to resist you!</span>"
 					return 0
-				if(pay_energy(1000))
+				if(pay_energy(500))
 					select(L)
 					user << "<span class='notice'>\The [L] is now under your (limited) control.</span>"
 			else //Deselect them
@@ -144,8 +144,9 @@
 			if(!controlled_mobs.len)
 				user << "<span class='warning'>You have no entities under your control to command.</span>"
 				return 0
-			if(pay_energy(50 * controlled_mobs.len))
+			if(pay_energy(25 * controlled_mobs.len))
 				attack_all(L)
+				log_and_message_admins("has commanded their army of [controlled_mobs.len] to attack [L].")
 				user << "<span class='notice'>You command your [controlled_mobs.len > 1 ? "entities" : "[controlled_mobs[1]]"] to \
 				attack \the [L].</span>"
 				//This is to stop someone from controlling beepsky and getting him to stun someone 5 times a second.
@@ -157,7 +158,7 @@
 		if(!controlled_mobs.len)
 			user << "<span class='warning'>You have no entities under your control to command.</span>"
 			return 0
-		if(pay_energy(50 * controlled_mobs.len))
+		if(pay_energy(10 * controlled_mobs.len))
 			move_all(T)
 			adjust_instability(controlled_mobs.len)
 			user << "<span class='notice'>You command your [controlled_mobs.len > 1 ? "entities" : "[controlled_mobs[1]]"] to move \

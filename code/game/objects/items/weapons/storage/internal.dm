@@ -12,7 +12,7 @@
 
 /obj/item/weapon/storage/internal/Destroy()
 	master_item = null
-	..()
+	. = ..()
 
 /obj/item/weapon/storage/internal/attack_hand()
 	return		//make sure this is never picked up
@@ -50,10 +50,10 @@
 		if (!( user.restrained() ) && !( user.stat ))
 			switch(over_object.name)
 				if("r_hand")
-					user.u_equip(master_item)
+					user.unEquip(master_item)
 					user.put_in_r_hand(master_item)
 				if("l_hand")
-					user.u_equip(master_item)
+					user.unEquip(master_item)
 					user.put_in_l_hand(master_item)
 			master_item.add_fingerprint(user)
 			return 0

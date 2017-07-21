@@ -2,7 +2,7 @@
 // player.
 
 /datum/metric
-	var/departments = list(
+	var/list/departments = list(
 		ROLE_COMMAND,
 		ROLE_SECURITY,
 		ROLE_ENGINEERING,

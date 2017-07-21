@@ -13,7 +13,8 @@
 	sprite_sheets = list(
 		"Tajara" = 'icons/mob/species/tajaran/helmet.dmi',
 		"Skrell" = 'icons/mob/species/skrell/helmet.dmi',
-		"Unathi" = 'icons/mob/species/unathi/helmet.dmi'
+		"Unathi" = 'icons/mob/species/unathi/helmet.dmi',
+		"Vox" = 'icons/mob/species/vox/head.dmi'
 		)
 	species_restricted = null
 
@@ -50,7 +51,8 @@
 	can_breach = 1
 	sprite_sheets = list(
 		"Tajara" = 'icons/mob/species/tajaran/suit.dmi',
-		"Unathi" = 'icons/mob/species/unathi/suit.dmi'
+		"Unathi" = 'icons/mob/species/unathi/suit.dmi',
+		"Vox" = 'icons/mob/species/vox/suit.dmi'
 		)
 	supporting_limbs = list()
 	var/obj/item/weapon/material/hatchet/tacknife

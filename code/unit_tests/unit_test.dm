@@ -45,6 +45,7 @@ var/total_unit_tests = 0
 	sleep(1)
 
 	ticker.current_state = GAME_STATE_SETTING_UP
+	Master.SetRunLevel(RUNLEVEL_SETUP)
 
 	log_unit_test("Round has been started.  Waiting 10 seconds to start tests.")
 	sleep(100)
@@ -97,3 +98,12 @@ var/total_unit_tests = 0
 	else
 		log_unit_test("[ASCII_RED]!!! \[[failed_unit_tests]\\[total_unit_tests]\] Unit Tests Failed !!![ASCII_RESET]")
 		world.Del()
+
+/datum/unit_test/proc/get_standard_turf()
+	return locate(20,20,1)
+
+/datum/unit_test/proc/log_bad(var/message)
+	log_unit_test("[ASCII_RED]\[[name]\]: [message][ASCII_RESET]")
+
+/datum/unit_test/proc/log_debug(var/message)
+	log_unit_test("[ASCII_YELLOW]---  DEBUG  --- \[[name]\]: [message][ASCII_RESET]")

@@ -24,7 +24,7 @@
 	for(var/datum/gm_action/action in available_actions)
 		if(action.enabled == FALSE)
 			continue
-		HTML += "[action.name] ([english_list(action.departments)]) (weight: [action.get_weight()])<br>"
+		HTML += "[action.name] ([english_list(action.departments)]) (weight: [action.get_weight()]) <a href='?src=\ref[action];force=1'>\[Force\]</a> <br>"
 
 	HTML += "<br>"
 	HTML += "All living mobs activity: [metric.assess_all_living_mobs()]%<br>"
@@ -78,3 +78,15 @@
 			message_admins("GM danger was adjusted by [amount] by [usr.key].")
 
 	interact(usr) // To refresh the UI.
+
+/datum/gm_action/Topic(href, href_list)
+	if(..())
+		return
+
+	if(!is_admin(usr))
+		message_admins("[usr] has attempted to force an event without being an admin.")
+		return
+
+	if(href_list["force"])
+		gm.run_action(src)
+		message_admins("GM event [name] was forced by [usr.key].")

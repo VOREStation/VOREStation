@@ -73,8 +73,7 @@
 /obj/machinery/door/Destroy()
 	density = 0
 	update_nearby_tiles()
-	..()
-	return
+	. = ..()
 
 /obj/machinery/door/process()
 	if(close_door_at && world.time >= close_door_at)
@@ -95,14 +94,18 @@
 	return 1
 
 /obj/machinery/door/Bumped(atom/AM)
-	if(p_open || operating) return
+	if(p_open || operating)
+		return
 	if(ismob(AM))
 		var/mob/M = AM
-		if(world.time - M.last_bumped <= 10) return	//Can bump-open one airlock per second. This is to prevent shock spam.
+		if(world.time - M.last_bumped <= 10)
+			return	//Can bump-open one airlock per second. This is to prevent shock spam.
 		M.last_bumped = world.time
-		if(!M.restrained())
+		if(M.restrained() && !check_access(null))
+			return
+		else
 			bumpopen(M)
-		return
+
 
 	if(istype(AM, /mob/living/bot))
 		var/mob/living/bot/bot = AM
@@ -160,7 +163,7 @@
 			switch (Proj.damage_type)
 				if(BRUTE)
 					new /obj/item/stack/material/steel(src.loc, 2)
-					PoolOrNew(/obj/item/stack/rods, list(src.loc, 3))
+					new /obj/item/stack/rods(src.loc, 3)
 				if(BURN)
 					new /obj/effect/decal/cleanable/ash(src.loc) // Turn it to ashes!
 			qdel(src)
@@ -308,6 +311,8 @@
 
 /obj/machinery/door/examine(mob/user)
 	. = ..()
+	if(src.health <= 0)
+		user << "\The [src] is broken!"
 	if(src.health < src.maxhealth / 4)
 		user << "\The [src] looks like it's about to break!"
 	else if(src.health < src.maxhealth / 2)
@@ -356,6 +361,7 @@
 		icon_state = "door1"
 	else
 		icon_state = "door0"
+	radiation_repository.resistance_cache.Remove(get_turf(src))
 	return
 
 

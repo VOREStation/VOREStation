@@ -11,6 +11,7 @@ var/list/department_radio_keys = list(
 	  ":s" = "Security",	".s" = "Security",
 	  ":w" = "whisper",		".w" = "whisper",
 	  ":t" = "Mercenary",	".t" = "Mercenary",
+	  ":x" = "Raider",		".x" = "Raider",
 	  ":u" = "Supply",		".u" = "Supply",
 	  ":v" = "Service",		".v" = "Service",
 	  ":p" = "AI Private",	".p" = "AI Private",
@@ -26,6 +27,7 @@ var/list/department_radio_keys = list(
 	  ":S" = "Security",	".S" = "Security",
 	  ":W" = "whisper",		".W" = "whisper",
 	  ":T" = "Mercenary",	".T" = "Mercenary",
+	  ":X" = "Raider",		".X" = "Raider",
 	  ":U" = "Supply",		".U" = "Supply",
 	  ":V" = "Service",		".V" = "Service",
 	  ":P" = "AI Private",	".P" = "AI Private",
@@ -131,13 +133,15 @@ proc/get_radio_key_from_channel(var/channel)
 /mob/living/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="", var/whispering = 0)
 	//If you're muted for IC chat
 	if(client)
-		if((client.prefs.muted & MUTE_IC) || say_disabled)
-			src << "<span class='warning'>You cannot speak in IC (Muted).</span>"
-			return
+		if(message)
+			client.handle_spam_prevention(MUTE_IC)
+			if((client.prefs.muted & MUTE_IC) || say_disabled)
+				src << "<span class='warning'>You cannot speak in IC (Muted).</span>"
+				return
 
 	//Redirect to say_dead if talker is dead
 	if(stat)
-		if(stat == DEAD)
+		if(stat == DEAD && !forbid_seeing_deadchat)
 			return say_dead(message)
 		return
 
@@ -177,7 +181,7 @@ proc/get_radio_key_from_channel(var/channel)
 		return 1
 
 	//Self explanatory.
-	if(is_muzzled())
+	if(is_muzzled() && !(speaking && (speaking.flags & SIGNLANG)))
 		src << "<span class='danger'>You're muzzled and cannot speak!</span>"
 		return
 
@@ -204,7 +208,7 @@ proc/get_radio_key_from_channel(var/channel)
 		w_not_heard = "[speaking.speech_verb] something [w_adverb]"
 
 	//For speech disorders (hulk, slurring, stuttering)
-	if(!(speaking && (speaking.flags & NO_STUTTER)))
+	if(!(speaking && (speaking.flags & NO_STUTTER || speaking.flags & SIGNLANG)))
 		var/list/message_data = list(message, verb, whispering)
 		if(handle_speech_problems(message_data))
 			message = message_data[1]
@@ -264,6 +268,7 @@ proc/get_radio_key_from_channel(var/channel)
 				src.custom_emote(1, "[pick(speaking.signlang_verb)].")
 
 		if (speaking.flags & SIGNLANG)
+			log_say("[name]/[key] : SIGN: [message]")
 			return say_signlang(message, pick(speaking.signlang_verb), speaking)
 
 	//These will contain the main receivers of the message
@@ -303,7 +308,7 @@ proc/get_radio_key_from_channel(var/channel)
 			if(M && src) //If we still exist, when the spawn processes
 				var/dst = get_dist(get_turf(M),get_turf(src))
 
-				if(dst <= message_range || M.stat == DEAD) //Inside normal message range, or dead with ears (handled in the view proc)
+				if(dst <= message_range || (M.stat == DEAD && !forbid_seeing_deadchat)) //Inside normal message range, or dead with ears (handled in the view proc)
 					M << speech_bubble
 					M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol)
 

@@ -12,6 +12,7 @@
 	layer = 20.0
 	unacidable = 1
 	var/obj/master = null	//A reference to the object in the slot. Grabs or items, generally.
+	var/datum/hud/hud = null // A reference to the owner HUD, if any.
 
 /obj/screen/Destroy()
 	master = null
@@ -45,7 +46,7 @@
 	var/obj/item/owner
 
 /obj/screen/item_action/Destroy()
-	..()
+	. = ..()
 	owner = null
 
 /obj/screen/item_action/Click()
@@ -160,6 +161,12 @@
 	if(old_selecting != selecting)
 		update_icon()
 	return 1
+
+/obj/screen/zone_sel/proc/set_selected_zone(bodypart)
+	var/old_selecting = selecting
+	selecting = bodypart
+	if(old_selecting != selecting)
+		update_icon()
 
 /obj/screen/zone_sel/update_icon()
 	overlays.Cut()
@@ -297,6 +304,13 @@
 										if ("carbon dioxide")
 											if(t.air_contents.gas["carbon_dioxide"] && !t.air_contents.gas["phoron"])
 												contents.Add(t.air_contents.gas["carbon_dioxide"])
+											else
+												contents.Add(0)
+
+										// And here's for the Vox
+										if ("phoron")
+											if(t.air_contents.gas["phoron"] && !t.air_contents.gas["oxygen"])
+												contents.Add(t.air_contents.gas["phoron"])
 											else
 												contents.Add(0)
 
@@ -500,3 +514,20 @@
 				usr.update_inv_l_hand(0)
 				usr.update_inv_r_hand(0)
 	return 1
+
+// Hand slots are special to handle the handcuffs overlay
+/obj/screen/inventory/hand
+	var/image/handcuff_overlay
+
+/obj/screen/inventory/hand/update_icon()
+	..()
+	if(!hud)
+		return
+	if(!handcuff_overlay)
+		var/state = (hud.l_hand_hud_object == src) ? "l_hand_hud_handcuffs" : "r_hand_hud_handcuffs"
+		handcuff_overlay = image("icon"='icons/mob/screen_gen.dmi', "icon_state"=state)
+	overlays.Cut()
+	if(hud.mymob && iscarbon(hud.mymob))
+		var/mob/living/carbon/C = hud.mymob
+		if(C.handcuffed)
+			overlays |= handcuff_overlay

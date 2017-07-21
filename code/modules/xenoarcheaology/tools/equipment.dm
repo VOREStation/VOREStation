@@ -19,6 +19,7 @@
 	item_state = "cespace_suit"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 100, rad = 100)
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit)
+	slowdown = 1
 
 /obj/item/clothing/head/helmet/space/anomaly
 	name = "Excavation hood"

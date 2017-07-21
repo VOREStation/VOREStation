@@ -15,7 +15,7 @@
 	spawner_type = /obj/effect/temporary_effect/fire_blast
 
 /obj/item/weapon/spell/spawner/fire_blast/on_ranged_cast(atom/hit_atom, mob/user)
-	if(pay_energy(2000))
+	if(within_range(hit_atom) && pay_energy(2000))
 		adjust_instability(12)
 		..() // Makes the booms happen.
 

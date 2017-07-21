@@ -32,7 +32,7 @@
 			spawn_locations.Add(C.loc)
 	spawn_locations = shuffle(spawn_locations)
 	num_groups = min(num_groups, spawn_locations.len)
-	
+
 	var/i = 1
 	while (i <= num_groups)
 		var/group_size = rand(group_size_min, group_size_max)
@@ -41,8 +41,11 @@
 		i++
 
 /datum/event/carp_migration/end()
-	for(var/mob/living/simple_animal/hostile/carp/C in spawned_carp)
-		if(!C.stat)
-			var/turf/T = get_turf(C)
-			if(istype(T, /turf/space))
-				qdel(C)
+	spawn(0)
+		for(var/mob/living/simple_animal/hostile/C in spawned_carp)
+			if(!C.stat)
+				var/turf/T = get_turf(C)
+				if(istype(T, /turf/space))
+					if(prob(75))
+						qdel(C)
+			sleep(1)

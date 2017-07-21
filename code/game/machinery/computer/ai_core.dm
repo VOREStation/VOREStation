@@ -189,7 +189,7 @@
 /obj/structure/AIcore/deactivated/Destroy()
 	if(src in empty_playable_ai_cores)
 		empty_playable_ai_cores -= src
-	..()
+	return ..()
 
 /obj/structure/AIcore/deactivated/proc/load_ai(var/mob/living/silicon/ai/transfer, var/obj/item/device/aicard/card, var/mob/user)
 
@@ -202,8 +202,8 @@
 	transfer.loc = get_turf(src)
 	transfer.create_eyeobj()
 	transfer.cancel_camera()
-	user << "<span class='notice'>Transfer successful:</span> [transfer.name] ([rand(1000,9999)].exe) downloaded to host terminal. Local copy wiped."
-	transfer << "You have been uploaded to a stationary terminal. Remote device connection restored."
+	user << "<span class='notice'>Transfer successful:</span> [transfer.name] placed within stationary core."
+	transfer << "You have been transferred into a stationary core. Remote device connection restored."
 
 	if(card)
 		card.clear()

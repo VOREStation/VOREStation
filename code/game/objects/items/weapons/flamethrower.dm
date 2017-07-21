@@ -27,15 +27,10 @@
 
 
 /obj/item/weapon/flamethrower/Destroy()
-	if(weldtool)
-		qdel(weldtool)
-	if(igniter)
-		qdel(igniter)
-	if(ptank)
-		qdel(ptank)
-	..()
-	return
-
+	qdel_null(weldtool)
+	qdel_null(igniter)
+	qdel_null(ptank)
+	. = ..()
 
 /obj/item/weapon/flamethrower/process()
 	if(!lit)
@@ -86,7 +81,7 @@
 		if(ptank)
 			ptank.loc = T
 			ptank = null
-		PoolOrNew(/obj/item/stack/rods, T)
+		new /obj/item/stack/rods(T)
 		qdel(src)
 		return
 

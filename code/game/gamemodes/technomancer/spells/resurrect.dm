@@ -25,19 +25,19 @@
 			user << "<span class='warning'>\The [L] isn't dead!</span>"
 			return 0
 		if(pay_energy(5000))
-			if(L.tod > world.time + 10 MINUTES)
+			if(L.tod > world.time + 30 MINUTES)
 				user << "<span class='danger'>\The [L]'s been dead for too long, even this function cannot replace cloning at \
 				this point.</span>"
 				return 0
 			user << "<span class='notice'>You stab \the [L] with a hidden integrated hypo, attempting to bring them back...</span>"
 			if(istype(L, /mob/living/simple_animal))
 				var/mob/living/simple_animal/SM = L
-				SM.health = SM.maxHealth / 3
+				SM.health = SM.getMaxHealth() / 3
 				SM.stat = CONSCIOUS
 				dead_mob_list -= SM
 				living_mob_list += SM
 				SM.icon_state = SM.icon_living
-				adjust_instability(30)
+				adjust_instability(15)
 			else if(ishuman(L))
 				var/mob/living/carbon/human/H = L
 
@@ -49,6 +49,9 @@
 							(Verbs -> Ghost -> Re-enter corpse)</font></font>"
 							break
 
+				H.adjustBruteLoss(-40)
+				H.adjustFireLoss(-40)
+
 				sleep(10 SECONDS)
 				if(H.client)
 					L.stat = CONSCIOUS //Note that if whatever killed them in the first place wasn't fixed, they're likely to die again.
@@ -57,7 +60,8 @@
 					H.timeofdeath = null
 					visible_message("<span class='danger'>\The [H]'s eyes open!</span>")
 					user << "<span class='notice'>It's alive!</span>"
-					adjust_instability(100)
+					adjust_instability(50)
+					log_and_message_admins("has resurrected [H].")
 				else
 					user << "<span class='warning'>The body of \the [H] doesn't seem to respond, perhaps you could try again?</span>"
 					adjust_instability(10)

@@ -4,14 +4,20 @@
 	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "folded_wall"
 	w_class = ITEMSIZE_NORMAL
+	var/deploy_path = /obj/structure/inflatable
 
-	attack_self(mob/user)
-		playsound(loc, 'sound/items/zip.ogg', 75, 1)
-		user << "<span class='notice'>You inflate [src].</span>"
-		var/obj/structure/inflatable/R = new /obj/structure/inflatable(user.loc)
-		src.transfer_fingerprints_to(R)
-		R.add_fingerprint(user)
-		qdel(src)
+/obj/item/inflatable/attack_self(mob/user)
+	inflate(user,user.loc)
+
+/obj/item/inflatable/afterattack(var/atom/A, var/mob/user)
+	..(A, user)
+	if(!user)
+		return
+	if(!user.Adjacent(A))
+		to_chat(user,"You can't reach!")
+		return
+	if(istype(A, /turf))
+		inflate(user,A)
 
 /obj/structure/inflatable
 	name = "inflatable wall"
@@ -32,7 +38,7 @@
 
 /obj/structure/inflatable/Destroy()
 	update_nearby_tiles()
-	..()
+	return ..()
 
 /obj/structure/inflatable/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	return 0
@@ -82,6 +88,17 @@
 	if(health <= 0)
 		deflate(1)
 
+/obj/structure/inflatable/CtrlClick()
+	hand_deflate()
+
+/obj/item/inflatable/proc/inflate(var/mob/user,var/location)
+	playsound(location, 'sound/items/zip.ogg', 75, 1)
+	to_chat(user,"<span class='notice'>You inflate [src].</span>")
+	var/obj/structure/inflatable/R = new deploy_path(location)
+	src.transfer_fingerprints_to(R)
+	R.add_fingerprint(user)
+	qdel(src)
+
 /obj/structure/inflatable/proc/deflate(var/violent=0)
 	playsound(loc, 'sound/machines/hiss.ogg', 75, 1)
 	if(violent)
@@ -102,7 +119,7 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(isobserver(usr)) //to stop ghosts from deflating
+	if(isobserver(usr) || usr.restrained() || !usr.Adjacent(src))
 		return
 
 	verbs -= /obj/structure/inflatable/verb/hand_deflate
@@ -123,14 +140,7 @@
 	desc = "A folded membrane which rapidly expands into a simple door on activation."
 	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "folded_door"
-
-	attack_self(mob/user)
-		playsound(loc, 'sound/items/zip.ogg', 75, 1)
-		user << "<span class='notice'>You inflate [src].</span>"
-		var/obj/structure/inflatable/door/R = new /obj/structure/inflatable/door(user.loc)
-		src.transfer_fingerprints_to(R)
-		R.add_fingerprint(user)
-		qdel(src)
+	deploy_path = /obj/structure/inflatable/door
 
 /obj/structure/inflatable/door //Based on mineral door code
 	name = "inflatable door"
@@ -165,7 +175,6 @@
 	if(isSwitchingStates) return
 	if(ismob(user))
 		var/mob/M = user
-		if(world.time - user.last_bumped <= 60) return //NOTE do we really need that?
 		if(M.client)
 			if(iscarbon(M))
 				var/mob/living/carbon/C = M
@@ -247,7 +256,6 @@
 	name = "inflatable barrier box"
 	desc = "Contains inflatable walls and doors."
 	icon_state = "inf_box"
-	item_state = "syringe_kit"
 	w_class = ITEMSIZE_NORMAL
 	max_storage_space = ITEMSIZE_COST_NORMAL * 7
 	can_hold = list(/obj/item/inflatable)

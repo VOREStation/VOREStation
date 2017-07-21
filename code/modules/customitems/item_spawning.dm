@@ -194,12 +194,14 @@
 
 		// Check for requisite ckey and character name.
 		if((lowertext(citem.assoc_key) != lowertext(M.ckey)) || (lowertext(citem.character_name) != lowertext(M.real_name)))
+			log_debug("Custom Item: [key_name(M)] Ckey or Char name does not match.")
 			continue
 
 		// Check for required access.
 		var/obj/item/weapon/card/id/current_id = M.wear_id
 		if(citem.req_access && citem.req_access > 0)
 			if(!(istype(current_id) && (citem.req_access in current_id.access)))
+				log_debug("Custom Item: [key_name(M)] Does not have required access.")
 				continue
 
 		// Check for required job title.
@@ -211,6 +213,7 @@
 					has_title = 1
 					break
 			if(!has_title)
+				log_debug("Custom Item: [key_name(M)] Does not have required job.")
 				continue
 
 		// ID cards and PDAs are applied directly to the existing object rather than spawned fresh.

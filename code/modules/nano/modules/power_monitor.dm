@@ -12,6 +12,7 @@
 	var/list/sensors = list()
 	// Focus: If it remains null if no sensor is selected and UI will display sensor list, otherwise it will display sensor reading.
 	var/obj/machinery/power/sensor/focus = null
+	var/turf/T = get_turf(nano_host())
 
 	// Build list of data from sensor readings.
 	for(var/obj/machinery/power/sensor/S in grid_sensors)
@@ -25,10 +26,15 @@
 	data["all_sensors"] = sensors
 	if(focus)
 		data["focus"] = focus.return_reading_data()
+	data["map_levels"] = using_map.get_map_levels(T.z)
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "power_monitor.tmpl", "Power Monitoring Console", 800, 500, state = state)
+		// adding a template with the key "mapContent" enables the map ui functionality
+		ui.add_template("mapContent", "power_monitor_map_content.tmpl")
+		// adding a template with the key "mapHeader" replaces the map header content
+		ui.add_template("mapHeader", "power_monitor_map_header.tmpl")
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

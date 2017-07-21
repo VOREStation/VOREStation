@@ -17,8 +17,6 @@
 // This is not great.
 /turf/simulated/proc/wet_floor(var/wet_val = 1)
 	spawn(0)
-		if(wet_val <= wet)
-			return
 		wet = wet_val
 		if(wet_overlay)
 			overlays -= wet_overlay
@@ -96,10 +94,6 @@
 		if(M.lying)
 			return ..()
 
-		// Ugly hack :( Should never have multiple plants in the same tile.
-		var/obj/effect/plant/plant = locate() in contents
-		if(plant) plant.trodden_on(M)
-
 		// Dirt overlays.
 		update_dirt()
 
@@ -149,8 +143,8 @@
 					slip_stun = 4
 					slip_dist = 2
 
-			if(M.slip("the [floor_type] floor",slip_stun))
-				for(var/i = 0;i<slip_dist;i++)
+			if(M.slip("the [floor_type] floor", slip_stun))
+				for(var/i = 1 to slip_dist)
 					step(M, M.dir)
 					sleep(1)
 			else
@@ -184,3 +178,5 @@
 		this.blood_DNA["UNKNOWN BLOOD"] = "X*"
 	else if( istype(M, /mob/living/silicon/robot ))
 		new /obj/effect/decal/cleanable/blood/oil(src)
+	else if(ishuman(M))
+		add_blood(M)

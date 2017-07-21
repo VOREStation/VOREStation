@@ -1,4 +1,5 @@
 // Stacked resources. They use a material datum for a lot of inherited values.
+// If you're adding something here, make sure to add it to fifty_spawner_mats.dm as well
 /obj/item/stack/material
 	force = 5.0
 	throwforce = 5
@@ -92,72 +93,45 @@
 	default_type = "iron"
 	apply_colour = 1
 
-/obj/item/stack/material/iron/fifty
-	amount = 50
-
 /obj/item/stack/material/sandstone
 	name = "sandstone brick"
 	icon_state = "sheet-sandstone"
 	default_type = "sandstone"
-
-/obj/item/stack/material/sandstone/fifty
-	amount = 50
 
 /obj/item/stack/material/marble
 	name = "marble brick"
 	icon_state = "sheet-marble"
 	default_type = "marble"
 
-/obj/item/stack/material/marble/fifty
-	amount = 50
-
 /obj/item/stack/material/diamond
 	name = "diamond"
 	icon_state = "sheet-diamond"
 	default_type = "diamond"
-
-/obj/item/stack/material/diamond/fifty
-	amount = 50
 
 /obj/item/stack/material/uranium
 	name = "uranium"
 	icon_state = "sheet-uranium"
 	default_type = "uranium"
 
-/obj/item/stack/material/uranium/fifty
-	amount = 50
-
 /obj/item/stack/material/phoron
 	name = "solid phoron"
 	icon_state = "sheet-phoron"
 	default_type = "phoron"
-
-/obj/item/stack/material/phoron/fifty
-	amount = 50
 
 /obj/item/stack/material/plastic
 	name = "plastic"
 	icon_state = "sheet-plastic"
 	default_type = "plastic"
 
-/obj/item/stack/material/plastic/fifty
-	amount = 50
-
 /obj/item/stack/material/gold
 	name = "gold"
 	icon_state = "sheet-gold"
 	default_type = "gold"
 
-/obj/item/stack/material/gold/fifty
-	amount = 50
-
 /obj/item/stack/material/silver
 	name = "silver"
 	icon_state = "sheet-silver"
 	default_type = "silver"
-
-/obj/item/stack/material/silver/fifty
-	amount = 50
 
 //Valuable resource, cargo can sell it.
 /obj/item/stack/material/platinum
@@ -165,17 +139,11 @@
 	icon_state = "sheet-adamantine"
 	default_type = "platinum"
 
-/obj/item/stack/material/platinum/fifty
-	amount = 50
-
 //Extremely valuable to Research.
 /obj/item/stack/material/mhydrogen
 	name = "metallic hydrogen"
 	icon_state = "sheet-mythril"
 	default_type = "mhydrogen"
-
-/obj/item/stack/material/mhydrogen/fifty
-	amount = 50
 
 //Fuel for MRSPACMAN generator.
 /obj/item/stack/material/tritium
@@ -184,33 +152,21 @@
 	default_type = "tritium"
 	apply_colour = 1
 
-/obj/item/stack/material/tritium/fifty
-	amount = 50
-
 /obj/item/stack/material/osmium
 	name = "osmium"
 	icon_state = "sheet-silver"
 	default_type = "osmium"
 	apply_colour = 1
 
-/obj/item/stack/material/osmium/fifty
-	amount = 50
-
 /obj/item/stack/material/steel
 	name = DEFAULT_WALL_MATERIAL
 	icon_state = "sheet-metal"
 	default_type = DEFAULT_WALL_MATERIAL
 
-/obj/item/stack/material/steel/fifty
-	amount = 50
-
 /obj/item/stack/material/plasteel
 	name = "plasteel"
 	icon_state = "sheet-plasteel"
 	default_type = "plasteel"
-
-/obj/item/stack/material/plasteel/fifty
-	amount = 50
 
 /obj/item/stack/material/durasteel
 	name = "durasteel"
@@ -218,32 +174,26 @@
 	item_state = "sheet-metal"
 	default_type = "durasteel"
 
-/obj/item/stack/material/durasteel/fifty
-	amount = 50
-
 /obj/item/stack/material/wood
 	name = "wooden plank"
 	icon_state = "sheet-wood"
 	default_type = "wood"
-
-/obj/item/stack/material/wood/fifty
-	amount = 50
 
 /obj/item/stack/material/cloth
 	name = "cloth"
 	icon_state = "sheet-cloth"
 	default_type = "cloth"
 
-/obj/item/stack/material/cloth/fifty
-	amount = 50
-
 /obj/item/stack/material/cardboard
 	name = "cardboard"
 	icon_state = "sheet-card"
 	default_type = "cardboard"
 
-/obj/item/stack/material/cardboard/fifty
-	amount = 50
+/obj/item/stack/material/snow
+	name = "snow"
+	desc = "The temptation to build a snowfort rises."
+	icon_state = "sheet-snow"
+	default_type = "snow"
 
 /obj/item/stack/material/leather
 	name = "leather"
@@ -251,24 +201,15 @@
 	icon_state = "sheet-leather"
 	default_type = "leather"
 
-/obj/item/stack/material/leather/fifty
-	amount = 50
-
 /obj/item/stack/material/glass
 	name = "glass"
 	icon_state = "sheet-glass"
 	default_type = "glass"
 
-/obj/item/stack/material/glass/fifty
-	amount = 50
-
 /obj/item/stack/material/glass/reinforced
 	name = "reinforced glass"
 	icon_state = "sheet-rglass"
 	default_type = "rglass"
-
-/obj/item/stack/material/glass/reinforced/fifty
-	amount = 50
 
 /obj/item/stack/material/glass/phoronglass
 	name = "borosilicate glass"
@@ -277,15 +218,9 @@
 	icon_state = "sheet-phoronglass"
 	default_type = "borosilicate glass"
 
-/obj/item/stack/material/glass/phoronglass/fifty
-	amount = 50
-
 /obj/item/stack/material/glass/phoronrglass
 	name = "reinforced borosilicate glass"
 	desc = "This sheet is special platinum-glass alloy designed to withstand large temperatures. It is reinforced with few rods."
 	singular_name = "reinforced borosilicate glass sheet"
 	icon_state = "sheet-phoronrglass"
 	default_type = "reinforced borosilicate glass"
-
-/obj/item/stack/material/glass/phoronrglass/fifty
-	amount = 50

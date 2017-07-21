@@ -1,6 +1,5 @@
 /obj/machinery/computer/mecha
 	name = "Exosuit Control"
-	icon = 'icons/obj/computer.dmi'
 	icon_keyboard = "rd_key"
 	icon_screen = "mecha"
 	light_color = "#a97faa"
@@ -105,7 +104,7 @@
 	proc/shock()
 		var/obj/mecha/M = in_mecha()
 		if(M)
-			M.emp_act(2)
+			M.emp_act(4)
 		qdel(src)
 
 	proc/get_mecha_log()

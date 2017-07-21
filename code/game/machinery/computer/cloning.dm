@@ -1,6 +1,5 @@
 /obj/machinery/computer/cloning
 	name = "cloning control console"
-	icon = 'icons/obj/computer.dmi'
 	icon_keyboard = "med_key"
 	icon_screen = "dna"
 	light_color = "#315ab4"
@@ -305,7 +304,7 @@
 	if(subject.isSynthetic())
 		scantemp = "Error: Majority of subject is non-organic."
 		return
-	if (subject.suiciding == 1)
+	if (subject.suiciding)
 		scantemp = "Error: Subject's brain is not responding to scanning stimuli."
 		return
 	if ((!subject.ckey) || (!subject.client))

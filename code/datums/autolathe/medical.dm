@@ -1,26 +1,26 @@
 /datum/category_item/autolathe/medical/scalpel
 	name = "scalpel"
-	path =/obj/item/weapon/scalpel
+	path =/obj/item/weapon/surgical/scalpel
 
 /datum/category_item/autolathe/medical/circularsaw
 	name = "circular saw"
-	path =/obj/item/weapon/circular_saw
+	path =/obj/item/weapon/surgical/circular_saw
 
 /datum/category_item/autolathe/medical/surgicaldrill
 	name = "surgical drill"
-	path =/obj/item/weapon/surgicaldrill
+	path =/obj/item/weapon/surgical/surgicaldrill
 
 /datum/category_item/autolathe/medical/retractor
 	name = "retractor"
-	path =/obj/item/weapon/retractor
+	path =/obj/item/weapon/surgical/retractor
 
 /datum/category_item/autolathe/medical/cautery
 	name = "cautery"
-	path =/obj/item/weapon/cautery
+	path =/obj/item/weapon/surgical/cautery
 
 /datum/category_item/autolathe/medical/hemostat
 	name = "hemostat"
-	path =/obj/item/weapon/hemostat
+	path =/obj/item/weapon/surgical/hemostat
 
 /datum/category_item/autolathe/medical/beaker
 	name = "glass beaker"
@@ -37,3 +37,7 @@
 /datum/category_item/autolathe/medical/syringe
 	name = "syringe"
 	path =/obj/item/weapon/reagent_containers/syringe
+
+/datum/category_item/autolathe/medical/implanter
+	name = "implanter"
+	path =/obj/item/weapon/implanter

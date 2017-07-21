@@ -26,4 +26,6 @@
 	owner.visible_message("<span class='danger'>\The [owner] pulls the trigger reflexively!</span>")
 	var/obj/item/weapon/gun/G = aiming_with
 	if(istype(G))
-		G.Fire(aiming_at, owner)
+		G.Fire(aiming_at, owner, reflex = 1)
+		locked = 0
+		lock_time = world.time+10

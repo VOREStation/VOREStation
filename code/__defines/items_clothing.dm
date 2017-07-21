@@ -1,6 +1,6 @@
 #define HUMAN_STRIP_DELAY        40   // Takes 40ds = 4s to strip someone.
 
-#define SHOES_SLOWDOWN          -1.0  // How much shoes slow you down by default. Negative values speed you up.
+#define SHOES_SLOWDOWN          0  // How much shoes slow you down by default. Negative values speed you up.
 
 #define CANDLE_LUM 3 // For how bright candles are.
 
@@ -33,7 +33,7 @@
 #define PROXMOVE           0x80  // Does this object require proximity checking in Enter()?
 
 //Flags for items (equipment)
-#define THICKMATERIAL          0x1  // Prevents syringes, parapens and hyposprays if equiped to slot_suit or slot_head.
+#define THICKMATERIAL          0x1  // Prevents syringes, parapens and hyposprays if equipped to slot_suit or slot_head.
 #define STOPPRESSUREDAMAGE     0x2  // Counts towards pressure protection. Note that like temperature protection, body_parts_covered is considered here as well.
 #define AIRTIGHT               0x4  // Functions with internals.
 #define NOSLIP                 0x8  // Prevents from slipping on wet floors, in space, etc.
@@ -52,6 +52,8 @@
 #define HIDEJUMPSUIT    0x4
 #define HIDESHOES       0x8
 #define HIDETAIL        0x10
+#define HIDETIE         0x20
+#define HIDEHOLSTER     0x40 //Some clothing hides holsters, but not all accessories
 
 // WARNING: The following flags apply only to the helmets and masks!
 #define HIDEMASK 0x1

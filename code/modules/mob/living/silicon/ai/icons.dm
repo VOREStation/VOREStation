@@ -28,11 +28,14 @@ var/list/datum/ai_icon/ai_icons
 	name = "Red"
 	alive_icon = "ai-red"
 	alive_light = "#F04848"
+	dead_icon = "ai-red_dead"
+	dead_light = "#F04848"
 
 /datum/ai_icon/green
 	name = "Green"
 	alive_icon = "ai-wierd"
 	alive_light = "#00FF99"
+	dead_icon = "ai-weird_dead"
 
 /datum/ai_icon/blue
 	name = "Blue"
@@ -43,6 +46,11 @@ var/list/datum/ai_icon/ai_icons
 	name = "Angry"
 	alive_icon = "ai-angryface"
 	alive_light = "#FFFF33"
+
+/datum/ai_icon/angel
+	name = "Angel"
+	alive_icon = "ai-angel"
+	dead_icon = "ai-angel_dead"
 
 /datum/ai_icon/bliss
 	name = "Bliss"
@@ -57,6 +65,7 @@ var/list/datum/ai_icon/ai_icons
 /datum/ai_icon/database
 	name = "Database"
 	alive_icon = "ai-database"
+	dead_icon = "ai-database_dead"
 
 /datum/ai_icon/dorf
 	name = "Dorf"
@@ -80,6 +89,8 @@ var/list/datum/ai_icon/ai_icons
 	name = "Goon"
 	alive_icon = "ai-goon"
 	alive_light = "#3E5C80"
+	dead_icon = "ai-goon-crash"
+	dead_light = "#3E5C80"
 
 /datum/ai_icon/heartline
 	name = "Heartline"
@@ -91,6 +102,10 @@ var/list/datum/ai_icon/ai_icons
 	alive_icon = "ai-helios"
 	alive_light = "#F2CF73"
 
+/datum/ai_icon/hourglass
+	name = "Hourglass"
+	alive_icon = "ai-hourglass"
+
 /datum/ai_icon/inverted
 	name = "Inverted"
 	alive_icon = "ai-u"
@@ -100,6 +115,7 @@ var/list/datum/ai_icon/ai_icons
 	name = "Lonestar"
 	alive_icon = "ai-lonestar"
 	alive_light = "#58751C"
+	dead_icon = "ai-lonestar_dead"
 
 /datum/ai_icon/matrix
 	name = "Matrix"
@@ -110,6 +126,7 @@ var/list/datum/ai_icon/ai_icons
 	name = "Monochrome"
 	alive_icon = "ai-mono"
 	alive_light = "#585858"
+	dead_icon = "ai-mono_dead"
 
 /datum/ai_icon/nanotrasen
 	name = "NanoTrasen"
@@ -128,13 +145,16 @@ var/list/datum/ai_icon/ai_icons
 
 /datum/ai_icon/soviet
 	name = "Soviet"
-	alive_icon = "ai-redoctober"
+	alive_icon = "ai-soviet"
 	alive_light = "#FF4307"
+	dead_icon = "ai-soviet_dead"
+	dead_light = "#FF4307"
 
 /datum/ai_icon/Static
 	name = "Static"
 	alive_icon = "ai-static"
 	alive_light = "#4784C1"
+	alive_icon = "ai-static_dead"
 
 /datum/ai_icon/text
 	name = "Text"
@@ -143,6 +163,7 @@ var/list/datum/ai_icon/ai_icons
 /datum/ai_icon/trapped
 	name = "Trapped"
 	alive_icon = "ai-hades"
+	dead_icon = "ai-hades_dead"
 
 /datum/ai_icon/triumvirate_static
 	name = "Triumvirate"

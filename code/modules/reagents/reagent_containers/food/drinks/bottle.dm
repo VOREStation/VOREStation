@@ -134,7 +134,7 @@
 	if(rag)
 		var/underlay_image = image(icon='icons/obj/drinks.dmi', icon_state=rag.on_fire? "[rag_underlay]_lit" : rag_underlay)
 		underlays += underlay_image
-		copy_light(rag)
+		set_light(rag.light_range, rag.light_power, rag.light_color)
 	else
 		set_light(0)
 
@@ -407,6 +407,16 @@
 	..()
 	reagents.add_reagent("pwine", 100)
 
+/obj/item/weapon/reagent_containers/food/drinks/bottle/redeemersbrew
+	name = "Redeemer's Brew"
+	desc = "Just opening the top of this bottle makes you feel a bit tipsy. Not for the faint of heart."
+	icon_state = "redeemersbrew"
+	center_of_mass = list("x"=16, "y"=3)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/redeemersbrew/New()
+	..()
+	reagents.add_reagent("unathiliquor", 100)
+
 //////////////////////////JUICES AND STUFF ///////////////////////
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/orangejuice
@@ -420,6 +430,18 @@
 /obj/item/weapon/reagent_containers/food/drinks/bottle/orangejuice/New()
 	..()
 	reagents.add_reagent("orangejuice", 100)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/milk
+	name = "Large Milk Carton"
+	desc = "It's milk. This carton's large enough to serve your biggest milk drinkers."
+	icon_state = "milk"
+	item_state = "carton"
+	center_of_mass = list("x"=16, "y"=9)
+	isGlass = 0
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/milk/New()
+	..()
+	reagents.add_reagent("milk", 100)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/cream
 	name = "Milk Cream"
@@ -457,6 +479,18 @@
 	..()
 	reagents.add_reagent("limejuice", 100)
 
+/obj/item/weapon/reagent_containers/food/drinks/bottle/lemonjuice
+	name = "Lemon Juice"
+	desc = "Sweet-sour goodness. Minus the sweet."
+	icon_state = "lemonjuice"
+	item_state = "carton"
+	center_of_mass = list("x"=16, "y"=8)
+	isGlass = 0
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/lemonjuice/New()
+	..()
+	reagents.add_reagent("lemonjuice", 100)
+
 //Small bottles
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small
 	volume = 50
@@ -484,3 +518,13 @@
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale/New()
 	..()
 	reagents.add_reagent("ale", 30)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/sake
+	name = "Mono-No-Aware Luxury Sake"
+	desc = "Dry alcohol made from rice, a favorite of businessmen."
+	icon_state = "sakebottle"
+	center_of_mass = list("x"=16, "y"=3)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/sake/New()
+	..()
+	reagents.add_reagent("sake", 100)

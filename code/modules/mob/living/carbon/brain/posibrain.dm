@@ -112,7 +112,9 @@
 			if(2)
 				src.brainmob.emp_damage += rand(10,20)
 			if(3)
-				src.brainmob.emp_damage += rand(0,10)
+				src.brainmob.emp_damage += rand(5,10)
+			if(4)
+				src.brainmob.emp_damage += rand(0,5)
 	..()
 
 /obj/item/device/mmi/digital/posibrain/New()

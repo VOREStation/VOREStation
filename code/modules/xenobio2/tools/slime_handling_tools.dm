@@ -18,6 +18,7 @@
 	origin_tech = list(TECH_COMBAT = 2, TECH_BIO = 4)
 	agonyforce = 10	//It's not supposed to be great at stunning human beings.
 	var/stasisforce = 60	//How much stasis it does to slimes, and 1/3rd to non-slimes.
+	hitcost = 48	//Less zap for less cost
 
 /obj/item/weapon/melee/baton/slime/attack(mob/M, mob/user)
 	if(istype(M, /mob/living/simple_animal/xeno))
@@ -51,13 +52,19 @@
 	muzzle_type = /obj/effect/projectile/laser_omni/muzzle
 	tracer_type = /obj/effect/projectile/laser_omni/tracer
 	impact_type = /obj/effect/projectile/laser_omni/impact
-
+/*
 /obj/item/projectile/beam/stun/xeno/on_hit(var/atom/target, var/blocked = 0)
 	if(istype(target, /mob/living/simple_animal/xeno))
+		world << "is xeno"
 		var/mob/living/simple_animal/xeno/X = target
-		if(istype(target, /mob/living/simple_animal/xeno/slime))
+		world << "[target.name]"
+		if(istype(X, /mob/living/simple_animal/xeno/slime))
+			world << "is slime"
 			X.stasis += stasisforce
 		else
+			world << "is not slime"
 			X.stasis += (stasisforce / 8)
 	else
+		world << "is not xeno"
 		..()
+*/

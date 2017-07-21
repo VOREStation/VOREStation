@@ -7,7 +7,7 @@
 	if(!istype(M))
 		return
 
-	if(!buckled_mob && !M.buckled && !M.anchored && (issmall(M) || prob(round(seed.get_trait(TRAIT_POTENCY)/6))))
+	if(!buckled_mob && !M.buckled && !M.anchored && (issmall(M) || prob(round(seed.get_trait(TRAIT_POTENCY)/3))))
 		//wait a tick for the Entered() proc that called HasProximity() to finish (and thus the moving animation),
 		//so we don't appear to teleport from two tiles away when moving into a turf adjacent to vines.
 		spawn(1)
@@ -19,10 +19,16 @@
 /obj/effect/plant/attack_generic(var/mob/user)
 	manual_unbuckle(user)
 
+/obj/effect/plant/Crossed(atom/movable/O)
+	if(isliving(O))
+		trodden_on(O)
+
 /obj/effect/plant/proc/trodden_on(var/mob/living/victim)
 	if(!is_mature())
 		return
 	var/mob/living/carbon/human/H = victim
+	if(prob(round(seed.get_trait(TRAIT_POTENCY)/3)))
+		entangle(victim)
 	if(istype(H) && H.shoes)
 		return
 	seed.do_thorns(victim,src)
@@ -39,37 +45,42 @@
 
 /obj/effect/plant/proc/manual_unbuckle(mob/user as mob)
 	if(buckled_mob)
-		if(prob(seed ? min(max(0,100 - seed.get_trait(TRAIT_POTENCY)/2),100) : 50))
-			if(buckled_mob.buckled == src)
-				if(buckled_mob != user)
-					buckled_mob.visible_message(\
-						"<span class='notice'>[user.name] frees [buckled_mob.name] from \the [src].</span>",\
-						"<span class='notice'>[user.name] frees you from \the [src].</span>",\
-						"<span class='warning'>You hear shredding and ripping.</span>")
-				else
-					buckled_mob.visible_message(\
-						"<span class='notice'>[buckled_mob.name] struggles free of \the [src].</span>",\
-						"<span class='notice'>You untangle \the [src] from around yourself.</span>",\
-						"<span class='warning'>You hear shredding and ripping.</span>")
+		var/chance = 20
+		if(seed)
+			chance = round(100/(20*seed.get_trait(TRAIT_POTENCY)/100))
+		if(prob(chance))
+			if(buckled_mob != user)
+				buckled_mob.visible_message(\
+				"<span class='notice'>\The [user] frees \the [buckled_mob] from \the [src].</span>",\
+				"<span class='notice'>\The [user] frees you from \the [src].</span>",\
+				"<span class='warning'>You hear shredding and ripping.</span>")
+			else
+				buckled_mob.visible_message(\
+				"<span class='notice'>\The [buckled_mob] struggles free of \the [src].</span>",\
+				"<span class='notice'>You untangle \the [src] from around yourself.</span>",\
+				"<span class='warning'>You hear shredding and ripping.</span>")
 			unbuckle()
 		else
-			var/text = pick("rip","tear","pull")
+			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+			health -= rand(1,5)
+			var/text = pick("rip","tear","pull", "bite", "tug")
 			user.visible_message(\
-				"<span class='notice'>[user.name] [text]s at \the [src].</span>",\
-				"<span class='notice'>You [text] at \the [src].</span>",\
-				"<span class='warning'>You hear shredding and ripping.</span>")
-	return
+			"<span class='warning'>\The [user] [text]s at \the [src].</span>",\
+			"<span class='warning'>You [text] at \the [src].</span>",\
+			"<span class='warning'>You hear shredding and ripping.</span>")
+			check_health()
+			return
 
 /obj/effect/plant/proc/entangle(var/mob/living/victim)
 
 	if(buckled_mob)
 		return
 
-	if(victim.buckled)
+	if(victim.buckled || victim.anchored)
 		return
 
 	//grabbing people
-	if(!victim.anchored && Adjacent(victim) && victim.loc != get_turf(src))
+	if(!victim.anchored && Adjacent(victim) && victim.loc != src.loc)
 		var/can_grab = 1
 		if(istype(victim, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = victim
@@ -77,10 +88,9 @@
 				can_grab = 0
 		if(can_grab)
 			src.visible_message("<span class='danger'>Tendrils lash out from \the [src] and drag \the [victim] in!</span>")
-			victim.loc = src.loc
-
-	//entangling people
-	if(victim.loc == src.loc)
-		buckle_mob(victim)
-		victim.set_dir(pick(cardinal))
-		victim << "<span class='danger'>Tendrils [pick("wind", "tangle", "tighten")] around you!</span>"
+			victim.forceMove(src.loc)
+			buckle_mob(victim)
+			victim.set_dir(pick(cardinal))
+			victim << "<span class='danger'>Tendrils [pick("wind", "tangle", "tighten")] around you!</span>"
+			victim.Weaken(0.5)
+			seed.do_thorns(victim,src)

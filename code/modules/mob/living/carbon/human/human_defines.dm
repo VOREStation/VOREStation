@@ -37,7 +37,7 @@
 	var/list/all_underwear_metadata = list()
 	var/list/hide_underwear = list()
 	var/backbag = 2		//Which backpack type the player has chosen. Nothing, Satchel or Backpack.
-	var/pdachoice = 1	//Which PDA type the player has chosen. Default, Slim, or Old.
+	var/pdachoice = 1	//Which PDA type the player has chosen. Default, Slim, Old, or Rugged.
 
 	// General information
 	var/home_system = ""
@@ -93,3 +93,5 @@
 	mob_swap_flags = ~HEAVY
 
 	var/identifying_gender // In case the human identifies as another gender than it's biological
+
+	var/step_count = 0 // Track how many footsteps have been taken to know when to play footstep sounds

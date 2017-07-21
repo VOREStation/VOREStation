@@ -74,6 +74,37 @@
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)
 
+
+/datum/gear/accessory/wcoat
+	display_name = "waistcoat"
+	path = /obj/item/clothing/accessory/wcoat
+	cost = 1
+
+/datum/gear/accessory/wcoat/red
+	display_name = "waistcoat, red"
+	path = /obj/item/clothing/accessory/wcoat/red
+
+/datum/gear/accessory/wcoat/grey
+	display_name = "waistcoat, grey"
+	path = /obj/item/clothing/accessory/wcoat/grey
+
+/datum/gear/accessory/wcoat/brown
+	display_name = "waistcoat, brown"
+	path = /obj/item/clothing/accessory/wcoat/brown
+
+/datum/gear/accessory/swvest
+	display_name = "sweatervest, black"
+	path = /obj/item/clothing/accessory/wcoat/swvest
+	cost = 1
+
+/datum/gear/accessory/swvest/blue
+	display_name = "sweatervest, blue"
+	path = /obj/item/clothing/accessory/wcoat/swvest/blue
+
+/datum/gear/accessory/swvest/red
+	display_name = "sweatervest, red"
+	path = /obj/item/clothing/accessory/wcoat/swvest/red
+
 /datum/gear/accessory/holster
 	display_name = "holster, armpit"
 	path = /obj/item/clothing/accessory/holster/armpit
@@ -126,6 +157,10 @@
 /datum/gear/accessory/tie/navy
 	display_name = "tie, navy blue"
 	path = /obj/item/clothing/accessory/navy
+
+/datum/gear/accessory/tie/white
+	display_name = "tie, white"
+	path = /obj/item/clothing/accessory/white
 
 /datum/gear/accessory/tie/horrible
 	display_name = "tie, socially disgraceful"
@@ -245,6 +280,18 @@
 	path = /obj/item/clothing/accessory/storage/white_drop_pouches
 	allowed_roles = list("Station Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor")
 
+/datum/gear/accessory/fannypack
+	display_name = "fannypack selection"
+	cost = 2
+
+/datum/gear/accessory/fannypack/New()
+	..()
+	var/list/fannys = list()
+	for(var/fanny in typesof(/obj/item/weapon/storage/belt/fannypack))
+		var/obj/item/weapon/storage/belt/fannypack/fanny_type = fanny
+		fannys[initial(fanny_type.name)] = fanny_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(fannys))
+
 /datum/gear/accessory/webbing
 	display_name = "webbing, simple"
 	path = /obj/item/clothing/accessory/storage/webbing
@@ -269,3 +316,16 @@
 	shirts["red hawaii shirt"] = /obj/item/clothing/accessory/hawaii/red
 	shirts["random colored hawaii shirt"] = /obj/item/clothing/accessory/hawaii/random
 	gear_tweaks += new/datum/gear_tweak/path(shirts)
+
+
+/datum/gear/accessory/sweater
+	display_name = "Sweater Selection"
+	path = /obj/item/clothing/accessory/sweater
+
+/datum/gear/accessory/sweater/New()
+	..()
+	var/list/sweaters = list()
+	for(var/sweater in typesof(/obj/item/clothing/accessory/sweater))
+		var/obj/item/clothing/suit/sweater_type = sweater
+		sweaters[initial(sweater_type.name)] = sweater_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(sweaters))

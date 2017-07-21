@@ -6,9 +6,9 @@
 	hunting skills that emphasized taking out their prey without themselves getting hit. They \
 	are only recently becoming known on human stations after reaching space with Skrell assistance."
 
-	num_alternate_languages = 2
-	secondary_langs = list("Schechi", "Skrellian")
-	name_language = "Schechi"
+	num_alternate_languages = 3
+	secondary_langs = list(LANGUAGE_SCHECHI, LANGUAGE_SKRELLIAN)
+	name_language = LANGUAGE_SCHECHI
 	min_age = 12
 	max_age = 45
 	health_hud_intensity = 3
@@ -31,11 +31,14 @@
 	brute_mod = 1.35
 	burn_mod =  1.35
 	mob_size = MOB_SMALL
+	pass_flags = PASSTABLE
 	holder_type = /obj/item/weapon/holder/human
-	short_sighted = 1
+//	short_sighted = 1
 	gluttonous = 1
 	blood_volume = 400
 	hunger_factor = 0.2
+
+	ambiguous_genders = TRUE
 
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_EYE_COLOR
@@ -84,40 +87,13 @@
 		/datum/unarmed_attack/claws,
 		/datum/unarmed_attack/stomp/weak
 		)
-/*
-	var/shock_cap = 30
-	var/hallucination_cap = 25
 
-// I'm... so... ronrery, so ronery...
-/datum/species/teshari/handle_environment_special(var/mob/living/carbon/human/H)
-
-	// If they're dead or unconcious they're a bit beyond this kind of thing.
-	if(H.stat)
-		return
-
-	// No point processing if we're already stressing the hell out.
-	if(H.hallucination >= hallucination_cap && H.shock_stage >= shock_cap)
-		return
-
-	// Check for company.
-	for(var/mob/living/M in viewers(H))
-		if(M == H || M.stat == DEAD || M.invisibility > H.see_invisible)
-			continue
-		if(M.faction == "neutral" || M.faction == H.faction)
-			return
-
-	// No company? Suffer :(
-	if(H.shock_stage < shock_cap)
-		H.shock_stage += 1
-	if(H.shock_stage >= shock_cap && H.hallucination < hallucination_cap)
-		H.hallucination += 2.5
-*/
-/datum/species/teshari/get_vision_flags(var/mob/living/carbon/human/H)
-	if(!(H.sdisabilities & DEAF) && !H.ear_deaf)
-		return SEE_SELF|SEE_MOBS
-	else
-		return SEE_SELF
+	inherent_verbs = list(
+		/mob/living/carbon/human/proc/sonar_ping,
+		/mob/living/proc/hide
+		)
 
 /datum/species/teshari/equip_survival_gear(var/mob/living/carbon/human/H)
 	..()
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H),slot_shoes)
+

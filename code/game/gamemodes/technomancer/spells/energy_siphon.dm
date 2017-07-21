@@ -4,6 +4,7 @@
 	Every second, electricity is stolen until the link is broken by the target moving too far away, or having no more energy left.  \
 	Can drain from powercells, microbatteries, and other Cores.  The beam created by the siphoning is harmful to touch."
 	enhancement_desc = "Rate of siphoning is doubled."
+	spell_power_desc = "Rate of siphoning is scaled up based on spell power."
 	cost = 100
 	obj_path = /obj/item/weapon/spell/energy_siphon
 	ability_icon_state = "tech_energysiphon"
@@ -48,7 +49,7 @@
 
 
 /obj/item/weapon/spell/energy_siphon/on_ranged_cast(atom/hit_atom, mob/user)
-	if(istype(hit_atom, /atom/movable))
+	if(istype(hit_atom, /atom/movable) && within_range(hit_atom, 4))
 		var/atom/movable/AM = hit_atom
 		populate_siphon_list(AM)
 		if(!things_to_siphon.len)
@@ -56,6 +57,7 @@
 			return 0
 		siphoning = AM
 		update_icon()
+		log_and_message_admins("is siphoning energy from \a [AM].")
 	else
 		stop_siphoning()
 
@@ -84,7 +86,7 @@
 /obj/item/weapon/spell/energy_siphon/proc/siphon(atom/movable/siphoning, mob/user)
 	var/list/things_to_drain = things_to_siphon // Temporary list copy of what we're gonna steal from.
 	var/charge_to_give = 0 // How much energy to give to the Technomancer at the end.
-	var/flow_remaining = flow_rate
+	var/flow_remaining = calculate_spell_power(flow_rate)
 
 	if(!siphoning)
 		return 0
@@ -191,9 +193,9 @@
 	if(ishuman(target_mob)) // Otherwise someone else stood in the beam and is going to pay for it.
 		var/mob/living/carbon/human/H = target_mob
 		var/obj/item/organ/external/affected = H.get_organ(check_zone(BP_TORSO))
-		H.electrocute_act(power, src, H.get_siemens_coefficient_organ(affected), affected)
+		H.electrocute_act(power, src, H.get_siemens_coefficient_organ(affected), affected, 0)
 	else
-		target_mob.electrocute_act(power, src, 1.0, BP_TORSO)
+		target_mob.electrocute_act(power, src, 0.75, BP_TORSO)
 	return 0 // Since this is a continous beam, it needs to keep flying until it hits the Technomancer.
 
 

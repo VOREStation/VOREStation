@@ -8,8 +8,8 @@
 	While the central Sol government maintains control of its far-flung people, powerful corporate \
 	interests, rampant cyber and bio-augmentation and secretive factions make life on most human \
 	worlds tumultous at best."
-	num_alternate_languages = 2
-	secondary_langs = list("Sol Common")
+	num_alternate_languages = 3
+	secondary_langs = list(LANGUAGE_SOL_COMMON)
 	name_language = null // Use the first-name last-name generator rather than a language scrambler
 	min_age = 17
 	max_age = 110
@@ -31,20 +31,24 @@
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	primitive_form = "Stok"
 	darksight = 3
+	ambiguous_genders = TRUE
 	gluttonous = 1
 	slowdown = 0.5
-	brute_mod = 0.8
-	num_alternate_languages = 2
-	secondary_langs = list("Sinta'unathi")
-	name_language = "Sinta'unathi"
+	brute_mod = 0.85
+	burn_mod = 0.85
+	metabolic_rate = 0.85
+	item_slowdown_mod = 0.5
+	num_alternate_languages = 3
+	secondary_langs = list(LANGUAGE_UNATHI)
+	name_language = LANGUAGE_UNATHI
 	health_hud_intensity = 2.5
 
-	min_age = 18
-	max_age = 60
+	min_age = 32
+	max_age = 260
 
 	blurb = "A heavily reptillian species, Unathi (or 'Sinta as they call themselves) hail from the \
-	Uuosa-Eso system, which roughly translates to 'burning mother'.<br/><br/>Coming from a harsh, radioactive \
-	desert planet, they mostly hold ideals of honesty, virtue, martial combat and bravery above all \
+	Uuosa-Eso system, which roughly translates to 'burning mother'.<br/><br/>Coming from a harsh, inhospitable \
+	planet, they mostly hold ideals of honesty, virtue, proficiency and bravery above all \
 	else, frequently even their own lives. They prefer warmer temperatures than most species and \
 	their native tongue is a heavy hissing laungage called Sinta'Unathi."
 
@@ -60,9 +64,34 @@
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
 	flesh_color = "#34AF10"
+	blood_color = "#b3cbc3"
+	base_color = "#066000"
 
 	reagent_tag = IS_UNATHI
-	base_color = "#066000"
+
+	has_limbs = list(
+		BP_TORSO =  list("path" = /obj/item/organ/external/chest/unathi),
+		BP_GROIN =  list("path" = /obj/item/organ/external/groin/unathi),
+		BP_HEAD =   list("path" = /obj/item/organ/external/head/unathi),
+		BP_L_ARM =  list("path" = /obj/item/organ/external/arm),
+		BP_R_ARM =  list("path" = /obj/item/organ/external/arm/right),
+		BP_L_LEG =  list("path" = /obj/item/organ/external/leg),
+		BP_R_LEG =  list("path" = /obj/item/organ/external/leg/right),
+		BP_L_HAND = list("path" = /obj/item/organ/external/hand),
+		BP_R_HAND = list("path" = /obj/item/organ/external/hand/right),
+		BP_L_FOOT = list("path" = /obj/item/organ/external/foot),
+		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
+		)
+
+	//No kidneys or appendix
+	has_organ = list(
+		O_HEART =    /obj/item/organ/internal/heart/unathi,
+		O_LUNGS =    /obj/item/organ/internal/lungs/unathi,
+		O_LIVER =    /obj/item/organ/internal/liver/unathi,
+		O_BRAIN =    /obj/item/organ/internal/brain/unathi,
+		O_EYES =     /obj/item/organ/internal/eyes,
+		)
+
 
 	heat_discomfort_level = 295
 	heat_discomfort_strings = list(
@@ -94,10 +123,12 @@
 	slowdown = -0.5
 	brute_mod = 1.15
 	burn_mod =  1.15
+	flash_mod = 1.1
+	metabolic_rate = 1.1
 	gluttonous = 1
-	num_alternate_languages = 2
-	secondary_langs = list("Siik")
-	name_language = "Siik"
+	num_alternate_languages = 3
+	secondary_langs = list(LANGUAGE_SIIK)
+	name_language = LANGUAGE_SIIK
 	health_hud_intensity = 2.5
 
 	min_age = 17
@@ -135,6 +166,15 @@
 		)
 	cold_discomfort_level = 275
 
+	has_organ = list(    //No appendix.
+		O_HEART =    /obj/item/organ/internal/heart,
+		O_LUNGS =    /obj/item/organ/internal/lungs,
+		O_LIVER =    /obj/item/organ/internal/liver,
+		O_KIDNEYS =  /obj/item/organ/internal/kidneys,
+		O_BRAIN =    /obj/item/organ/internal/brain,
+		O_EYES =     /obj/item/organ/internal/eyes
+		)
+
 /datum/species/tajaran/equip_survival_gear(var/mob/living/carbon/human/H)
 	..()
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H),slot_shoes)
@@ -151,13 +191,19 @@
 	of the Qerr'Katish, a caste within their society which keeps the empire of the Skrell running smoothly. Skrell are \
 	herbivores on the whole and tend to be co-operative with the other species of the galaxy, although they rarely reveal \
 	the secrets of their empire to their allies."
-	num_alternate_languages = 2
-	secondary_langs = list("Skrellian", "Schechi")
-	name_language = "Skrellian"
+	num_alternate_languages = 3
+	secondary_langs = list(LANGUAGE_SKRELLIAN, LANGUAGE_SCHECHI)
+	name_language = LANGUAGE_SKRELLIAN
 	health_hud_intensity = 2
 
 	min_age = 19
-	max_age = 80
+	max_age = 130
+
+	darksight = 4
+	flash_mod = 1.2
+	chemOD_mod = 0.9
+
+	ambiguous_genders = TRUE
 
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR
@@ -165,6 +211,14 @@
 	flesh_color = "#8CD7A3"
 	blood_color = "#1D2CBF"
 	base_color = "#006666"
+
+	cold_level_1 = 280 //Default 260 - Lower is better
+	cold_level_2 = 220 //Default 200
+	cold_level_3 = 130 //Default 120
+
+	heat_level_1 = 420 //Default 360 - Higher is better
+	heat_level_2 = 480 //Default 400
+	heat_level_3 = 1100 //Default 1000
 
 	reagent_tag = IS_SKRELL
 
@@ -182,12 +236,15 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
 		)
 
+/datum/species/skrell/can_breathe_water()
+	return TRUE
+
 /datum/species/diona
 	name = "Diona"
 	name_plural = "Dionaea"
 	icobase = 'icons/mob/human_races/r_diona.dmi'
 	deform = 'icons/mob/human_races/r_def_plant.dmi'
-	language = "Rootspeak"
+	language = LANGUAGE_ROOTLOCAL
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/diona)
 	//primitive_form = "Nymph"
 	slowdown = 5
@@ -195,9 +252,11 @@
 	hud_type = /datum/hud_data/diona
 	siemens_coefficient = 0.3
 	show_ssd = "completely quiescent"
-	num_alternate_languages = 1
-	name_language = "Rootspeak"
+	num_alternate_languages = 2
+	secondary_langs = list(LANGUAGE_ROOTGLOBAL)
+	name_language = LANGUAGE_ROOTLOCAL
 	health_hud_intensity = 2.5
+	item_slowdown_mod = 0.25
 
 	min_age = 1
 	max_age = 300
@@ -234,7 +293,8 @@
 		)
 
 	inherent_verbs = list(
-		/mob/living/carbon/human/proc/diona_split_nymph
+		/mob/living/carbon/human/proc/diona_split_nymph,
+		/mob/living/carbon/human/proc/regenerate
 		)
 
 	warning_low_pressure = 50

@@ -72,6 +72,9 @@ var/list/flooring_cache = list()
 		if(!isnull(burnt) && (flooring.flags & TURF_CAN_BURN))
 			overlays |= get_flooring_overlay("[flooring.icon_base]-burned-[burnt]","[flooring.icon_base]_burned[burnt]")
 
+	if(weather_overlay)
+		overlays += weather_overlay
+
 	if(update_neighbors)
 		for(var/turf/simulated/floor/F in range(src, 1))
 			if(F == src)

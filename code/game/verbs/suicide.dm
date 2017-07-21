@@ -26,7 +26,7 @@
 		if(!canmove || restrained())	//just while I finish up the new 'fun' suiciding verb. This is to prevent metagaming via suicide
 			src << "You can't commit suicide whilst restrained! ((You can type Ghost instead however.))"
 			return
-		suiciding = 1
+		suiciding = 15
 		does_not_breathe = 0			//Prevents ling-suicide zombies, or something
 		var/obj/item/held_item = get_active_hand()
 		if(held_item)
@@ -73,10 +73,16 @@
 				return
 
 		log_and_message_admins("[key_name(src)] commited suicide")
-		viewers(src) << pick("<span class='danger'>[src] is attempting to bite \his tongue off! It looks like \he's trying to commit suicide.</span>", \
+
+		var/suicidemsg
+		suicidemsg = pick("<span class='danger'>[src] is attempting to bite \his tongue off! It looks like \he's trying to commit suicide.</span>", \
 		                     "<span class='danger'>[src] is jamming \his thumbs into \his eye sockets! It looks like \he's trying to commit suicide.</span>", \
 		                     "<span class='danger'>[src] is twisting \his own neck! It looks like \he's trying to commit suicide.</span>", \
 		                     "<span class='danger'>[src] is holding \his breath! It looks like \he's trying to commit suicide.</span>")
+		if(isSynthetic())
+			suicidemsg = "<span class='danger'>[src] is attempting to switch \his power off! It looks like \he's trying to commit suicide.</span>"
+		visible_message(suicidemsg)
+
 		adjustOxyLoss(max(175 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
 		updatehealth()
 
@@ -121,7 +127,7 @@
 		suiciding = 1
 		viewers(src) << "<span class='danger'>[src] is powering down. It looks like \he's trying to commit suicide.</span>"
 		//put em at -175
-		adjustOxyLoss(max(maxHealth * 2 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
+		adjustOxyLoss(max(getMaxHealth() * 2 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
 		updatehealth()
 
 /mob/living/silicon/robot/verb/suicide()
@@ -141,7 +147,7 @@
 		suiciding = 1
 		viewers(src) << "<span class='danger'>[src] is powering down. It looks like \he's trying to commit suicide.</span>"
 		//put em at -175
-		adjustOxyLoss(max(maxHealth * 2 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
+		adjustOxyLoss(max(getMaxHealth() * 2 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
 		updatehealth()
 
 /mob/living/silicon/pai/verb/suicide()
@@ -172,7 +178,7 @@
 	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
 
 	if(confirm == "Yes")
-		suiciding = 1
+		suiciding = 30
 		setOxyLoss(100)
 		adjustBruteLoss(100 - getBruteLoss())
 		setToxLoss(100)

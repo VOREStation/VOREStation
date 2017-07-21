@@ -30,7 +30,7 @@
 
 /obj/item/weapon/antag_spawner/technomancer_apprentice/New()
 	..()
-	sparks = PoolOrNew(/datum/effect/effect/system/spark_spread)
+	sparks = new /datum/effect/effect/system/spark_spread()
 	sparks.set_up(5, 0, src)
 	sparks.attach(loc)
 
@@ -78,7 +78,7 @@
 
 	H << "<b>You are the Technomancer's apprentice!  Your goal is to assist them in their mission at the [station_name()].</b>"
 	H << "<b>Your service has not gone unrewarded, however. Studying under them, you have learned how to use a Manipulation Core \
-	of your own.  You also have a Catelog, to purchase your own functions and equipment as you see fit.</b>"
+	of your own.  You also have a catalog, to purchase your own functions and equipment as you see fit.</b>"
 	H << "<b>It would be wise to speak to your master, and learn what their plans are for today.</b>"
 
 	spawn(1)
@@ -98,8 +98,8 @@
 /datum/technomancer/assistance/golem
 	name = "Friendly GOLEM unit"
 	desc = "Teleports a specially designed synthetic unit to you, which is very durable, has an advanced AI, and can also use \
-	functions.  It knows Shield, Targeted Blink, Beam, Flame Tongue, Mend Wounds, and Mend Burns.  It also has a large storage \
-	capacity for energy, and due to it's synthetic nature, instability is less of an issue for them."
+	functions.  It knows Shield, Targeted Blink, Beam, Mend Life, Mend Synthetic, Lightning, Repel Missiles, Corona, Ionic Bolt, Dispel, and Chain Lightning.  \
+	It also has a large storage capacity for energy, and due to it's synthetic nature, instability is less of an issue for them."
 	cost = 350
 	obj_path = null //TODO
 	one_use_only = 1

@@ -1,8 +1,9 @@
 /datum/technomancer/spell/summon_ward
 	name = "Summon Ward"
 	desc = "Teleports a prefabricated 'ward' drone to the target location, which will alert you and your allies when it sees entities \
-	moving around it, or when it is attacked.  They can see for up to five meters.  Wards expire in six minutes."
-	enhancement_desc = "Wards can detect invisibile entities, and are more specific in relaying information about what it sees."
+	moving around it, or when it is attacked.  They can see for up to five meters."
+	enhancement_desc = "Wards can detect invisibile entities, and are more specific in relaying information about what it sees.  \
+	Invisible entities that are spotted by it will be decloaked."
 	cost = 25
 	obj_path = /obj/item/weapon/spell/summon/summon_ward
 	category = UTILITY_SPELLS
@@ -82,11 +83,8 @@
 				continue
 
 		if(!true_sight)
-			var/atom/movable/lighting_overlay/light = locate(/atom/movable/lighting_overlay) in get_turf(L)
-			var/light_amount = 1 // Unsimulated tiles are pretend-lit, so we need to be pretend too if that somehow happens.
-			if(light)
-				light_amount = (light.lum_r + light.lum_g + light.lum_b) / 3
-
+			var/turf/T = get_turf(L)
+			var/light_amount = T.get_lumcount()
 			if(light_amount <= 0.5)
 				continue // Too dark to see.
 

@@ -159,3 +159,23 @@
 	src.imp = new /obj/item/weapon/implant/health( src )
 	..()
 	return
+
+/obj/item/weapon/implantcase/language
+	name = "glass case - 'GalCom'"
+	desc = "A case containing a GalCom language implant."
+	icon_state = "implantcase-b"
+
+/obj/item/weapon/implantcase/language/New()
+	src.imp = new /obj/item/weapon/implant/language( src )
+	..()
+	return
+
+/obj/item/weapon/implantcase/language/eal
+	name = "glass case - 'EAL'"
+	desc = "A case containing an Encoded Audio Language implant."
+	icon_state = "implantcase-b"
+
+/obj/item/weapon/implantcase/language/eal/New()
+	src.imp = new /obj/item/weapon/implant/language/eal( src )
+	..()
+	return

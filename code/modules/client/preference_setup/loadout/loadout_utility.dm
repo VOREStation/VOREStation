@@ -11,6 +11,12 @@
 /datum/gear/utility/communicator
 	display_name = "personal communicator"
 	path = /obj/item/device/communicator
+	cost = 0
+
+/datum/gear/utility/codex
+	display_name = "the traveler's guide to vir"
+	path = /obj/item/weapon/book/codex
+	cost = 0
 
 /datum/gear/utility/folder_blue
 	display_name = "folder, blue"
@@ -40,3 +46,48 @@
 	display_name = "secure briefcase"
 	path =/obj/item/weapon/storage/secure/briefcase
 	cost = 2
+
+/datum/gear/utility/flashlight
+	display_name = "flashlight"
+	path = /obj/item/device/flashlight
+
+/datum/gear/utility/flashlight_blue
+	display_name = "flashlight, blue"
+	path = /obj/item/device/flashlight/color
+
+/datum/gear/utility/flashlight_orange
+	display_name = "flashlight, orange"
+	path = /obj/item/device/flashlight/color/orange
+
+/datum/gear/utility/flashlight_red
+	display_name = "flashlight, red"
+	path = /obj/item/device/flashlight/color/red
+
+/datum/gear/utility/flashlight_yellow
+	display_name = "flashlight, yellow"
+	path = /obj/item/device/flashlight/color/yellow
+
+/datum/gear/utility/maglight
+	display_name = "flashlight, maglight"
+	path = /obj/item/device/flashlight/maglight
+	cost = 2
+
+/datum/gear/utility/battery
+	display_name = "cell, device"
+	path = /obj/item/weapon/cell/device
+
+/datum/gear/utility/implant //This does nothing if you don't actually know EAL.
+	display_name = "implant, language, EAL"
+	path = /obj/item/weapon/implant/language/eal
+	cost = 2
+	slot = "implant"
+	var/implant_type = "EAL"
+
+/datum/gear/utility/translator
+	display_name = "universal translator"
+	path = /obj/item/device/universal_translator
+	cost = 8
+
+/datum/gear/utility/pen
+	display_name = "Fountain Pen"
+	path = /obj/item/weapon/pen/fountain

@@ -7,14 +7,14 @@ var/list/nuke_disks = list()
 /datum/game_mode/nuclear
 	name = "Mercenary"
 	round_description = "A mercenary strike force is approaching the station!"
-	extended_round_description = "The Company's majority control of phoron in "+starsys_name+" has marked the \
+	extended_round_description = "The Company's majority control of phoron in the system has marked the \
 		station to be a highly valuable target for many competing organizations and individuals. Being a \
 		colony of sizable population and considerable wealth causes it to often be the target of various \
 		attempts of robbery, fraud and other malicious actions."
 	config_tag = "mercenary"
 	required_players = 15
 	required_players_secret = 15
-	required_enemies = 1
+	required_enemies = 4
 	end_on_antag_death = 0
 	var/nuke_off_station = 0 //Used for tracking if the syndies actually haul the nuke to the station
 	var/syndies_didnt_escape = 0 //Used for tracking if the syndies got the shuttle off of the z-level

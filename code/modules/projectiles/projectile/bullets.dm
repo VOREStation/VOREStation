@@ -5,7 +5,7 @@
 	damage_type = BRUTE
 	nodamage = 0
 	check_armour = "bullet"
-	embed = 1
+	embed_chance = 20	//Modified in the actual embed process, but this should keep embed chance about the same
 	sharp = 1
 	var/mob_passthrough_check = 0
 
@@ -127,11 +127,19 @@
 	damage = 20
 
 /obj/item/projectile/bullet/pistol/ap
-	damage = 20
+	damage = 15
 	armor_penetration = 30
 
 /obj/item/projectile/bullet/pistol/medium
 	damage = 25
+
+/obj/item/projectile/bullet/pistol/medium/ap
+	damage = 20
+	armor_penetration = 15
+
+/obj/item/projectile/bullet/pistol/medium/hollow
+	damage = 30
+	armor_penetration = -50
 
 /obj/item/projectile/bullet/pistol/strong //revolvers and matebas
 	damage = 60
@@ -140,7 +148,7 @@
 	name = "rubber bullet"
 	damage = 5
 	agony = 40
-	embed = 0
+	embed_chance = 0
 	sharp = 0
 	check_armour = "melee"
 
@@ -155,7 +163,7 @@
 	name = "beanbag"
 	damage = 20
 	agony = 60
-	embed = 0
+	embed_chance = 0
 	sharp = 0
 	check_armour = "melee"
 
@@ -168,18 +176,20 @@
 	range_step = 1
 	spread_step = 10
 
-//EMP shotgun 'slug', it's basically a beanbag that pops a tiny emp when it hits.
+
+//EMP shotgun 'slug', it's basically a beanbag that pops a tiny emp when it hits. //Not currently used
 /obj/item/projectile/bullet/shotgun/ion
 	name = "ion slug"
 	damage = 15
-	embed = 0
+	embed_chance = 0
 	sharp = 0
 	check_armour = "melee"
 
 /obj/item/projectile/bullet/shotgun/ion/on_hit(var/atom/target, var/blocked = 0)
 	..()
-	empulse(target, 0, 0)	//Only affects what it hits
+	empulse(target, 0, 0, 0, 0)	//Only affects what it hits
 	return 1
+
 
 /* "Rifle" rounds */
 
@@ -188,18 +198,28 @@
 	penetrating = 1
 
 /obj/item/projectile/bullet/rifle/a762
-	damage = 25
+	damage = 35
 
 /obj/item/projectile/bullet/rifle/a762/ap
+	damage = 30
+	armor_penetration = 50 // At 30 or more armor, this will do more damage than standard rounds.
+
+/obj/item/projectile/bullet/rifle/a762/hollow
+	damage = 40
+	armor_penetration = -50
+	penetrating = 0
+
+/obj/item/projectile/bullet/rifle/a556
+	damage = 25
+
+/obj/item/projectile/bullet/rifle/a556/ap
 	damage = 20
 	armor_penetration = 50 // At 40 or more armor, this will do more damage than standard rounds.
 
-/obj/item/projectile/bullet/rifle/a556
+/obj/item/projectile/bullet/rifle/a556/hollow
 	damage = 35
-
-/obj/item/projectile/bullet/rifle/a556/ap
-	damage = 30
-	armor_penetration = 50 // At 30 or more armor, this will do more damage than standard rounds.
+	armor_penetration = -50
+	penetrating = 0
 
 /obj/item/projectile/bullet/rifle/a145
 	damage = 80
@@ -224,7 +244,7 @@
 /obj/item/projectile/bullet/burstbullet
 	name = "exploding bullet"
 	damage = 20
-	embed = 0
+	embed_chance = 0
 	edge = 1
 
 /obj/item/projectile/bullet/gyro/on_hit(var/atom/target, var/blocked = 0)
@@ -235,7 +255,7 @@
 /obj/item/projectile/bullet/blank
 	invisibility = 101
 	damage = 1
-	embed = 0
+	embed_chance = 0
 
 /* Practice */
 
@@ -255,7 +275,7 @@
 	damage_type = HALLOSS
 	damage = 0
 	nodamage = 1
-	embed = 0
+	embed_chance = 0
 	sharp = 0
 
 /obj/item/projectile/bullet/pistol/cap/process()

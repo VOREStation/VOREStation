@@ -119,13 +119,13 @@ field_generator power level display
 					"You hear ratchet")
 				src.anchored = 0
 			if(2)
-				user << "\red The [src.name] needs to be unwelded from the floor."
+				user << "<font color='red'>The [src.name] needs to be unwelded from the floor.</font>"
 				return
 	else if(istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W
 		switch(state)
 			if(0)
-				user << "\red The [src.name] needs to be wrenched to the floor."
+				user << "<font color='red'>The [src.name] needs to be wrenched to the floor.</font>"
 				return
 			if(1)
 				if (WT.remove_fuel(0,user))
@@ -211,7 +211,7 @@ field_generator power level display
 		return 1
 	else
 		for(var/mob/M in viewers(src))
-			M.show_message("\red \The [src] shuts down!")
+			M.show_message("<font color='red'>\The [src] shuts down!</font>")
 		turn_off()
 		investigate_log("ran out of power and <font color='red'>deactivated</font>","singulo")
 		src.power = 0

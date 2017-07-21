@@ -112,6 +112,7 @@
 		new /obj/item/device/radio/headset/headset_med(src)
 		new /obj/item/device/radio/headset/headset_med/alt(src)
 		new /obj/item/clothing/suit/storage/hooded/wintercoat/medical(src)
+		new /obj/item/clothing/shoes/boots/winter/medical(src)
 		new /obj/item/weapon/storage/box/freezer(src)
 		new /obj/item/weapon/storage/box/freezer(src)
 		new /obj/item/weapon/storage/box/freezer(src)
@@ -142,8 +143,9 @@
 		new /obj/item/clothing/suit/storage/toggle/labcoat/emt(src)
 		new /obj/item/device/radio/headset/headset_med/alt(src)
 		new /obj/item/weapon/cartridge/medical(src)
+		new /obj/item/weapon/storage/briefcase/inflatable(src)
 		new /obj/item/device/flashlight(src)
-		new /obj/item/weapon/tank/emergency_oxygen/engi(src)
+		new /obj/item/weapon/tank/emergency/oxygen/engi(src)
 		new /obj/item/clothing/glasses/hud/health(src)
 		new /obj/item/device/healthanalyzer(src)
 		new /obj/item/device/radio/off(src)
@@ -196,13 +198,14 @@
 		new /obj/item/clothing/suit/storage/toggle/labcoat/cmo(src)
 		new /obj/item/clothing/suit/storage/toggle/labcoat/cmoalt(src)
 		new /obj/item/weapon/cartridge/cmo(src)
-		new /obj/item/clothing/gloves/latex(src)
+		new /obj/item/clothing/gloves/sterile/latex(src)
 		new /obj/item/clothing/shoes/brown	(src)
 		new /obj/item/device/radio/headset/heads/cmo(src)
 		new /obj/item/device/radio/headset/heads/cmo/alt(src)
 		new /obj/item/device/flash(src)
 		new /obj/item/weapon/reagent_containers/hypospray(src)
 		new /obj/item/clothing/suit/storage/hooded/wintercoat/medical(src)
+		new /obj/item/clothing/shoes/boots/winter/medical(src)
 		new /obj/item/weapon/storage/box/freezer(src)
 		new /obj/item/clothing/mask/gas(src)
 		return
@@ -234,6 +237,37 @@
 	icon_broken = "medicalbroken"
 	icon_off = "medicaloff"
 	req_access = list(access_chemistry)
+
+
+	New()
+		..()
+		new /obj/item/clothing/under/rank/psych(src)
+		new /obj/item/clothing/under/rank/psych/turtleneck(src)
+		new /obj/item/clothing/suit/straight_jacket(src)
+		new /obj/item/weapon/reagent_containers/glass/bottle/stoxin(src)
+		new /obj/item/weapon/reagent_containers/syringe(src)
+		new /obj/item/weapon/storage/pill_bottle/citalopram(src)
+		new /obj/item/weapon/reagent_containers/pill/methylphenidate(src)
+		new /obj/item/weapon/clipboard(src)
+		new /obj/item/weapon/folder/white(src)
+		new /obj/item/device/taperecorder(src)
+		new /obj/item/device/tape/random(src)
+		new /obj/item/device/tape/random(src)
+		new /obj/item/device/tape/random(src)
+		new /obj/item/device/camera(src)
+		new /obj/item/toy/therapy_blue(src)
+		return
+
+/obj/structure/closet/secure_closet/psych
+	name = "psychiatric closet"
+	desc = "Store psychology tools and medicines in here."
+	icon_state = "medical1"
+	icon_closed = "medical"
+	icon_locked = "medical1"
+	icon_opened = "medicalopen"
+	icon_broken = "medicalbroken"
+	icon_off = "medicaloff"
+	req_access = list(access_psychiatrist)
 
 
 	New()

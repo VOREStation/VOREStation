@@ -6,9 +6,13 @@
 		round_time // time of the round at which this should be announced, in seconds
 		message // body of the message
 		author = "NanoTrasen Editor"
-		channel_name = "The "+starsys_name+" Times"
 		can_be_redacted = 0
 		message_type = "Story"
+		channel_name = null
+
+	New() // I'm sorry...
+		..()
+		channel_name = "The [using_map.starsys_name] Times"
 
 	revolution_inciting_event
 
@@ -66,7 +70,6 @@
 			round_time = 60 * 50
 
 		found_ssd
-			channel_name = "The "+starsys_name+" Times"
 			author = "Doctor Eric Hanfield"
 
 			message = {"Several people have been found unconscious at their terminals. It is thought that it was due
@@ -78,7 +81,6 @@
 	lotus_tree
 
 		explosions
-			channel_name = "The "+starsys_name+" Times"
 			author = "Reporter Leland H. Howards"
 
 			message = {"The newly-christened civillian transport Lotus Tree suffered two very large explosions near the
@@ -92,9 +94,7 @@
 	food_riots
 
 		breaking_news
-			channel_name = "The "+starsys_name+" Times"
 			author = "Reporter Ro'kii Ar-Raqis"
-
 			message = {"Breaking news: Food riots have broken out throughout the Refuge asteroid colony in the Tenebrae
 						Lupus system. This comes only hours after NanoTrasen officials announced they will no longer trade with the
 						colony, citing the increased presence of \"hostile factions\" on the colony has made trade too dangerous to
@@ -103,9 +103,7 @@
 			round_time = 60 * 10
 
 		more
-			channel_name = "The "+starsys_name+" Times"
 			author = "Reporter Ro'kii Ar-Raqis"
-
 			message = {"More on the Refuge food riots: The Refuge Council has condemned NanoTrasen's withdrawal from
 			the colony, claiming \"there has been no increase in anti-NanoTrasen activity\", and \"\[the only] reason
 			NanoTrasen withdrew was because the \[Tenebrae Lupus] system's Phoron deposits have been completely mined out.

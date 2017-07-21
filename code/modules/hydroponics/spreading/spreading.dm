@@ -16,6 +16,7 @@
 			seed.set_trait(TRAIT_SPREAD,2)             // So it will function properly as vines.
 			seed.set_trait(TRAIT_POTENCY,rand(potency_min, potency_max)) // 70-100 potency will help guarantee a wide spread and powerful effects.
 			seed.set_trait(TRAIT_MATURATION,rand(maturation_min, maturation_max))
+			seed.display_name = "strange plants" //more thematic for the vine infestation event
 
 			//make vine zero start off fully matured
 			var/obj/effect/plant/vine = new(T,seed)
@@ -45,6 +46,7 @@
 /obj/effect/plant
 	name = "plant"
 	anchored = 1
+	can_buckle = 1
 	opacity = 0
 	density = 0
 	icon = 'icons/obj/hydroponics_growing.dmi'
@@ -75,7 +77,8 @@
 		plant_controller.remove_plant(src)
 	for(var/obj/effect/plant/neighbor in range(1,src))
 		plant_controller.add_plant(neighbor)
-	..()
+	return ..()
+
 /obj/effect/plant/single
 	spread_chance = 0
 
@@ -88,7 +91,7 @@
 		parent = newparent
 
 	if(!plant_controller)
-		sleep(250) // ugly hack, should mean roundstart plants are fine.
+		sleep(250) // ugly hack, should mean roundstart plants are fine. TODO initialize perhaps?
 	if(!plant_controller)
 		world << "<span class='danger'>Plant controller does not exist and [src] requires it. Aborting.</span>"
 		qdel(src)
@@ -108,7 +111,7 @@
 		growth_threshold = max_health/VINE_GROWTH_STAGES
 		icon = 'icons/obj/hydroponics_vines.dmi'
 		growth_type = 2 // Vines by default.
-		if(seed.get_trait(TRAIT_CARNIVOROUS) == 2)
+		if(seed.get_trait(TRAIT_CARNIVOROUS) >= 2)
 			growth_type = 1 // WOOOORMS.
 		else if(!(seed.seed_noun in list("seeds","pits")))
 			if(seed.seed_noun == "nodes")
@@ -127,14 +130,15 @@
 	spread_distance = ((growth_type>0) ? round(spread_chance*0.6) : round(spread_chance*0.3))
 	update_icon()
 
-	spawn(1) // Plants will sometimes be spawned in the turf adjacent to the one they need to end up in, for the sake of correct dir/etc being set.
-		set_dir(calc_dir())
-		update_icon()
-		plant_controller.add_plant(src)
-		// Some plants eat through plating.
-		if(!isnull(seed.chems["pacid"]))
-			var/turf/T = get_turf(src)
-			T.ex_act(prob(80) ? 3 : 2)
+// Plants will sometimes be spawned in the turf adjacent to the one they need to end up in, for the sake of correct dir/etc being set.
+/obj/effect/plant/proc/finish_spreading()
+	set_dir(calc_dir())
+	update_icon()
+	plant_controller.add_plant(src)
+	//Some plants eat through plating.
+	if(islist(seed.chems) && !isnull(seed.chems["pacid"]))
+		var/turf/T = get_turf(src)
+		T.ex_act(prob(80) ? 3 : 2)
 
 /obj/effect/plant/update_icon()
 	//TODO: should really be caching this.
@@ -189,7 +193,7 @@
 
 	if(growth>2 && growth == max_growth)
 		layer = 5
-		opacity = 1
+		set_opacity(1)
 		if(!isnull(seed.chems["woodpulp"]))
 			density = 1
 	else
@@ -237,7 +241,7 @@
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	plant_controller.add_plant(src)
 
-	if(istype(W, /obj/item/weapon/wirecutters) || istype(W, /obj/item/weapon/scalpel))
+	if(istype(W, /obj/item/weapon/wirecutters) || istype(W, /obj/item/weapon/surgical/scalpel))
 		if(sampled)
 			user << "<span class='warning'>\The [src] has already been sampled recently.</span>"
 			return
@@ -260,6 +264,32 @@
 		if(W.force)
 			health -= W.force
 	check_health()
+
+//handles being overrun by vines - note that attacker_parent may be null in some cases
+/obj/effect/plant/proc/vine_overrun(datum/seed/attacker_seed, obj/effect/plant/attacker_parent)
+	var/aggression = 0
+	aggression += (attacker_seed.get_trait(TRAIT_CARNIVOROUS) - seed.get_trait(TRAIT_CARNIVOROUS))
+	aggression += (attacker_seed.get_trait(TRAIT_SPREAD) - seed.get_trait(TRAIT_SPREAD))
+
+	var/resiliance
+	if(is_mature())
+		resiliance = 0
+		switch(seed.get_trait(TRAIT_ENDURANCE))
+			if(30 to 70)
+				resiliance = 1
+			if(70 to 95)
+				resiliance = 2
+			if(95 to INFINITY)
+				resiliance = 3
+	else
+		resiliance = -2
+		if(seed.get_trait(TRAIT_ENDURANCE) >= 50)
+			resiliance = -1
+	aggression -= resiliance
+
+	if(aggression > 0)
+		health -= aggression*5
+		check_health()
 
 /obj/effect/plant/ex_act(severity)
 	switch(severity)

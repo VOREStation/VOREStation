@@ -52,7 +52,7 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 	density = 1
 	status_flags = CANSTUN|CANPARALYSE|CANPUSH
 	shouldnt_see = list(/obj/effect/rune)
-	var/list/network = list(station_short)
+	var/list/network = list(NETWORK_DEFAULT)
 	var/obj/machinery/camera/camera = null
 	var/list/connected_robots = list()
 	var/aiRestorePowerRoutine = 0
@@ -132,7 +132,7 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 		if (istype(L, /datum/ai_laws))
 			laws = L
 	else
-		laws = new base_law_type
+		laws = new using_map.default_law_type
 
 	aiMulti = new(src)
 	aiRadio = new(src)
@@ -148,15 +148,16 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 
 	//Languages
 	add_language("Robot Talk", 1)
-	add_language("Galactic Common", 1)
-	add_language("Sol Common", 0)
-	add_language("Sinta'unathi", 0)
-	add_language("Siik", 0)
-	add_language("Skrellian", 0)
-	add_language("Tradeband", 1)
-	add_language("Gutter", 0)
-	add_language("Encoded Audio Language", 1)
-	add_language("Schechi", 0)
+	add_language(LANGUAGE_GALCOM, 1)
+	add_language(LANGUAGE_SOL_COMMON, 0)
+	add_language(LANGUAGE_UNATHI, 0)
+	add_language(LANGUAGE_SIIK, 0)
+	add_language(LANGUAGE_SKRELLIAN, 0)
+	add_language(LANGUAGE_TRADEBAND, 1)
+	add_language(LANGUAGE_GUTTER, 0)
+	add_language(LANGUAGE_EAL, 1)
+	add_language(LANGUAGE_SCHECHI, 0)
+	add_language(LANGUAGE_SIGN, 0)
 
 	if(!safety)//Only used by AIize() to successfully spawn an AI.
 		if (!B)//If there is no player/brain inside.
@@ -214,20 +215,15 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 /mob/living/silicon/ai/Destroy()
 	ai_list -= src
 
-	qdel(eyeobj)
-	eyeobj = null
-
-	qdel(psupply)
-	psupply = null
-
-	qdel(aiMulti)
-	aiMulti = null
-
-	qdel(aiRadio)
-	aiRadio = null
-
-	qdel(aiCamera)
-	aiCamera = null
+	qdel_null(announcement)
+	qdel_null(eyeobj)
+	qdel_null(psupply)
+	qdel_null(aiPDA)
+	qdel_null(aiCommunicator)
+	qdel_null(aiMulti)
+	qdel_null(aiRadio)
+	qdel_null(aiCamera)
+	hack = null
 
 	return ..()
 
@@ -397,12 +393,12 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 	if(emergency_message_cooldown)
 		usr << "<span class='warning'>Arrays recycling. Please stand by.</span>"
 		return
-	var/input = sanitize(input(usr, "Please choose a message to transmit to [boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", ""))
+	var/input = sanitize(input(usr, "Please choose a message to transmit to [using_map.boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", ""))
 	if(!input)
 		return
 	CentCom_announce(input, usr)
 	usr << "<span class='notice'>Message transmitted.</span>"
-	log_say("[key_name(usr)] has made an IA [boss_short] announcement: [input]")
+	log_say("[key_name(usr)] has made an IA [using_map.boss_short] announcement: [input]")
 	emergency_message_cooldown = 1
 	spawn(300)
 		emergency_message_cooldown = 0
@@ -449,7 +445,7 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 		if(target && (!istype(target, /mob/living/carbon/human) || html_decode(href_list["trackname"]) == target:get_face_name()))
 			ai_actual_track(target)
 		else
-			src << "\red System error. Cannot locate [html_decode(href_list["trackname"])]."
+			src << "<font color='red'>System error. Cannot locate [html_decode(href_list["trackname"])].</font>"
 		return
 
 	return
@@ -521,7 +517,7 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 		if(network in C.network)
 			eyeobj.setLoc(get_turf(C))
 			break
-	src << "\blue Switched to [network] camera network."
+	src << "<font color='blue'>Switched to [network] camera network.</font>"
 //End of code by Mord_Sith
 
 /mob/living/silicon/ai/proc/ai_statuschange()
@@ -544,82 +540,108 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 		return
 
 	var/input
-	if(alert("Would you like to select a hologram based on a crew member or switch to unique avatar?",,"Crew Member","Unique")=="Crew Member")
+	var/choice = alert("Would you like to select a hologram based on a (visible) crew member, switch to unique avatar, or load your character from your character slot?",,"Crew Member","Unique","My Character")
 
-		var/personnel_list[] = list()
+	switch(choice)
+		if("Crew Member") //A seeable crew member (or a dog)
+			var/list/targets = trackable_mobs()
+			if(targets.len)
+				input = input("Select a crew member:") as null|anything in targets //The definition of "crew member" is a little loose...
+				//This is torture, I know. If someone knows a better way...
+				if(!input) return
+				var/new_holo = getHologramIcon(getCompoundIcon(targets[input]))
+				qdel(holo_icon)
+				holo_icon = new_holo
 
-		for(var/datum/data/record/t in data_core.locked)//Look in data core locked.
-			personnel_list["[t.fields["name"]]: [t.fields["rank"]]"] = t.fields["image"]//Pull names, rank, and image.
+			else
+				alert("No suitable records found. Aborting.")
 
-		if(personnel_list.len)
-			input = input("Select a crew member:") as null|anything in personnel_list
-			var/icon/character_icon = personnel_list[input]
-			if(character_icon)
-				qdel(holo_icon)//Clear old icon so we're not storing it in memory.
-				holo_icon = getHologramIcon(icon(character_icon))
-		else
-			alert("No suitable records found. Aborting.")
+		if("My Character") //Loaded character slot
+			if(!client || !client.prefs) return
+			var/mob/living/carbon/human/dummy/dummy = new ()
+			//This doesn't include custom_items because that's ... hard.
+			client.prefs.dress_preview_mob(dummy)
+			sleep(1 SECOND) //Strange bug in preview code? Without this, certain things won't show up. Yay race conditions?
+			dummy.regenerate_icons()
 
-	else
-		var/icon_list[] = list(
-		"default",
-		"floating face",
-		"carp",
-		"ian",
-		"runtime",
-		"poly",
-		"pun pun",
-		"male human",
-		"female human",
-		"male unathi",
-		"female unathi",
-		"male tajara",
-		"female tajara",
-		"male tesharii",
-		"female tesharii",
-		"male skrell",
-		"female skrell"
-		)
-		input = input("Please select a hologram:") as null|anything in icon_list
-		if(input)
+			var/new_holo = getHologramIcon(getCompoundIcon(dummy))
 			qdel(holo_icon)
-			switch(input)
-				if("default")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo1"))
-				if("floating face")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo2"))
-				if("carp")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo4"))
-				if("ian")
-					holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"corgi"))
-				if("runtime")
-					holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"cat"))
-				if("poly")
-					holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"parrot_fly"))
-				if("pun pun")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"punpun"))
-				if("male human")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holohumm"))
-				if("female human")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holohumf"))
-				if("male unathi")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holounam"))
-				if("female unathi")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holounaf"))
-				if("male tajara")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holotajm"))
-				if("female tajara")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holotajf"))
-				if("male tesharii")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holotesm"))
-				if("female tesharii")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holotesf"))
-				if("male skrell")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holoskrm"))
-				if("female skrell")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holoskrf"))
+			qdel(dummy)
+			holo_icon = new_holo
 
-	return
+		else //A premade from the dmi
+			var/icon_list[] = list(
+				"default",
+				"floating face",
+				"singularity",
+				"drone",
+				"carp",
+				"spider",
+				"bear",
+				"slime",
+				"ian",
+				"runtime",
+				"poly",
+				"pun pun",
+				"male human",
+				"female human",
+				"male unathi",
+				"female unathi",
+				"male tajara",
+				"female tajara",
+				"male tesharii",
+				"female tesharii",
+				"male skrell",
+				"female skrell"
+			)
+			input = input("Please select a hologram:") as null|anything in icon_list
+			if(input)
+				qdel(holo_icon)
+				switch(input)
+					if("default")
+						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo1"))
+					if("floating face")
+						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo2"))
+					if("singularity")
+						holo_icon = getHologramIcon(icon('icons/obj/singularity.dmi',"singularity_s1"))
+					if("drone")
+						holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"drone0"))
+					if("carp")
+						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo4"))
+					if("spider")
+						holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"nurse"))
+					if("bear")
+						holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"brownbear"))
+					if("slime")
+						holo_icon = getHologramIcon(icon('icons/mob/slimes.dmi',"cerulean adult slime"))
+					if("ian")
+						holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"corgi"))
+					if("runtime")
+						holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"cat"))
+					if("poly")
+						holo_icon = getHologramIcon(icon('icons/mob/animal.dmi',"parrot_fly"))
+					if("pun pun")
+						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"punpun"))
+					if("male human")
+						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holohumm"))
+					if("female human")
+						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holohumf"))
+					if("male unathi")
+						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holounam"))
+					if("female unathi")
+						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holounaf"))
+					if("male tajara")
+						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holotajm"))
+					if("female tajara")
+						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holotajf"))
+					if("male tesharii")
+						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holotesm"))
+					if("female tesharii")
+						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holotesf"))
+					if("male skrell")
+						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holoskrm"))
+					if("female skrell")
+						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holoskrf"))
 
 //Toggles the luminosity and applies it by re-entereing the camera.
 /mob/living/silicon/ai/proc/toggle_camera_light()
@@ -673,19 +695,19 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 
 	else if(istype(W, /obj/item/weapon/wrench))
 		if(anchored)
-			user.visible_message("\blue \The [user] starts to unbolt \the [src] from the plating...")
+			user.visible_message("<font color='blue'>\The [user] starts to unbolt \the [src] from the plating...</font>")
 			if(!do_after(user,40))
-				user.visible_message("\blue \The [user] decides not to unbolt \the [src].")
+				user.visible_message("<font color='blue'>\The [user] decides not to unbolt \the [src].</font>")
 				return
-			user.visible_message("\blue \The [user] finishes unfastening \the [src]!")
+			user.visible_message("<font color='blue'>\The [user] finishes unfastening \the [src]!</font>")
 			anchored = 0
 			return
 		else
-			user.visible_message("\blue \The [user] starts to bolt \the [src] to the plating...")
+			user.visible_message("<font color='blue'>\The [user] starts to bolt \the [src] to the plating...</font>")
 			if(!do_after(user,40))
-				user.visible_message("\blue \The [user] decides not to bolt \the [src].")
+				user.visible_message("<font color='blue'>\The [user] decides not to bolt \the [src].</font>")
 				return
-			user.visible_message("\blue \The [user] finishes fastening down \the [src]!")
+			user.visible_message("<font color='blue'>\The [user] finishes fastening down \the [src]!</font>")
 			anchored = 1
 			return
 	else

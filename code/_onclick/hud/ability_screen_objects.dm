@@ -20,7 +20,7 @@
 		message_admins("ERROR: ability_master's New() was not given an owner argument.  This is a bug.")
 
 /obj/screen/movable/ability_master/Destroy()
-	..()
+	. = ..()
 	//Get rid of the ability objects.
 	remove_all_abilities()
 	ability_objects.Cut()
@@ -31,11 +31,6 @@
 		if(my_mob.client && my_mob.client.screen)
 			my_mob.client.screen -= src
 		my_mob = null
-
-/obj/screen/movable/ability_master/ResetVars()
-	..("ability_objects", args)
-	remove_all_abilities()
-//	ability_objects = list()
 
 /obj/screen/movable/ability_master/MouseDrop()
 	if(showing)
@@ -97,7 +92,8 @@
 	var/i = 1
 	for(var/obj/screen/ability/ability in ability_objects)
 		ability.update_icon(forced)
-		ability.maptext = "[i]" // Slot number
+		ability.index = i
+		ability.maptext = "[ability.index]" // Slot number
 		i++
 
 /obj/screen/movable/ability_master/update_icon()
@@ -195,6 +191,7 @@
 	maptext_x = 3
 	var/background_base_state = "grey"
 	var/ability_icon_state = null
+	var/index = 0
 
 //	var/spell/spell = null
 	var/obj/screen/movable/ability_master/ability_master
@@ -259,6 +256,16 @@
 
 //	spell.perform(usr)
 	activate()
+
+/obj/screen/ability/MouseDrop(var/atom/A)
+	if(!A || A == src)
+		return
+	if(istype(A, /obj/screen/ability))
+		var/obj/screen/ability/ability = A
+		if(ability.ability_master && ability.ability_master == src.ability_master)
+			ability_master.ability_objects.Swap(src.index, ability.index)
+			ability_master.toggle_open(2) // To update the UI.
+
 
 // Makes the ability be triggered.  The subclasses of this are responsible for carrying it out in whatever way it needs to.
 /obj/screen/ability/proc/activate()

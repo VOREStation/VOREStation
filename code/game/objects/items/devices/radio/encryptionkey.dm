@@ -14,13 +14,19 @@
 /obj/item/device/encryptionkey/attackby(obj/item/weapon/W as obj, mob/user as mob)
 
 /obj/item/device/encryptionkey/syndicate
-	icon_state = "cypherkey"
+	icon_state = "syn_cypherkey"
 	channels = list("Mercenary" = 1)
 	origin_tech = list(TECH_ILLEGAL = 3)
 	syndie = 1//Signifies that it de-crypts Syndicate transmissions
 
-/obj/item/device/encryptionkey/binary
+/obj/item/device/encryptionkey/raider
 	icon_state = "cypherkey"
+	channels = list("Raider" = 1)
+	origin_tech = list(TECH_ILLEGAL = 2)
+	syndie = 1
+
+/obj/item/device/encryptionkey/binary
+	icon_state = "bin_cypherkey"
 	translate_binary = 1
 	origin_tech = list(TECH_ILLEGAL = 3)
 
@@ -117,4 +123,5 @@
 
 /obj/item/device/encryptionkey/ert
 	name = "\improper ERT radio encryption key"
+	icon_state = "cent_cypherkey"
 	channels = list("Response Team" = 1, "Science" = 1, "Command" = 1, "Medical" = 1, "Engineering" = 1, "Security" = 1, "Supply" = 1, "Service" = 1)

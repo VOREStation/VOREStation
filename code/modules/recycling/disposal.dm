@@ -99,12 +99,22 @@
 
 	if(istype(I, /obj/item/weapon/storage/bag/trash))
 		var/obj/item/weapon/storage/bag/trash/T = I
-		user << "\blue You empty the bag."
+		user << "<font color='blue'>You empty the bag.</font>"
 		for(var/obj/item/O in T.contents)
 			T.remove_from_storage(O,src)
 		T.update_icon()
 		update()
 		return
+
+	if(istype(I, /obj/item/weapon/material/ashtray))
+		var/obj/item/weapon/material/ashtray/A = I
+		if(A.contents.len > 0)
+			user.visible_message("<span class='notice'>\The [user] empties \the [A.name] into [src].</span>")
+			for(var/obj/item/O in A.contents)
+				O.forceMove(src)
+			A.update_icon()
+			update()
+			return
 
 	var/obj/item/weapon/grab/G = I
 	if(istype(G))	// handle grabbed mob
@@ -118,7 +128,7 @@
 					GM.client.eye = src
 				GM.forceMove(src)
 				for (var/mob/C in viewers(src))
-					C.show_message("\red [GM.name] has been placed in the [src] by [user].", 3)
+					C.show_message("<font color='red'>[GM.name] has been placed in the [src] by [user].</font>", 3)
 				qdel(G)
 				usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Has placed [GM.name] ([GM.ckey]) in disposals.</font>")
 				GM.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been placed in disposals by [usr.name] ([usr.ckey])</font>")
@@ -223,7 +233,7 @@
 		return
 
 	if(user && user.loc == src)
-		usr << "\red You cannot reach the controls from inside."
+		usr << "<font color='red'>You cannot reach the controls from inside.</font>"
 		return
 
 	// Clumsy folks can only flush it.
@@ -272,11 +282,11 @@
 
 /obj/machinery/disposal/Topic(href, href_list)
 	if(usr.loc == src)
-		usr << "\red You cannot reach the controls from inside."
+		usr << "<font color='red'>You cannot reach the controls from inside.</font>"
 		return
 
 	if(mode==-1 && !href_list["eject"]) // only allow ejecting if mode is -1
-		usr << "\red The disposal units power is disabled."
+		usr << "<font color='red'>The disposal units power is disabled.</font>"
 		return
 	if(..())
 		return
@@ -1159,7 +1169,7 @@
 			if(O.currTag)// Tag set
 				sort_tag = O.currTag
 				playsound(src.loc, 'sound/machines/twobeep.ogg', 100, 1)
-				user << "\blue Changed tag to '[sort_tag]'."
+				user << "<font color='blue'>Changed tag to '[sort_tag]'.</font>"
 				updatename()
 				updatedesc()
 
@@ -1227,7 +1237,7 @@
 			if(O.currTag)// Tag set
 				sortType = O.currTag
 				playsound(src.loc, 'sound/machines/twobeep.ogg', 100, 1)
-				user << "\blue Changed filter to '[sortType]'."
+				user << "<font color='blue'>Changed filter to '[sortType]'.</font>"
 				updatename()
 				updatedesc()
 

@@ -308,7 +308,10 @@
 	data["chargeMode"] = input_attempt
 	data["chargeLevel"] = round(input_level/1000, 0.1)
 	data["chargeMax"] = round(input_level_max/1000)
-	data["chargeLoad"] = round(terminal.powernet.avail/1000, 0.1)
+	if (terminal && terminal.powernet)
+		data["chargeLoad"] = round(terminal.powernet.avail/1000, 0.1)
+	else
+		data["chargeLoad"] = 0
 	data["outputOnline"] = output_attempt
 	data["outputLevel"] = round(output_level/1000, 0.1)
 	data["outputMax"] = round(output_level_max/1000)
@@ -374,7 +377,7 @@
 
 
 /obj/machinery/power/smes/proc/ion_act()
-	if(src.z in config.station_levels)
+	if(src.z in using_map.station_levels)
 		if(prob(1)) //explosion
 			for(var/mob/M in viewers(src))
 				M.show_message("\red The [src.name] is making strange noises!", 3, "\red You hear sizzling electronics.", 2)
@@ -390,10 +393,14 @@
 			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 			s.set_up(3, 1, src)
 			s.start()
-			if(prob(50))
+			if(prob(25))
 				emp_act(1)
-			else
+			else if(prob(25))
 				emp_act(2)
+			else if(prob(25))
+				emp_act(3)
+			else
+				emp_act(4)
 		if(prob(5)) //smoke only
 			var/datum/effect/effect/system/smoke_spread/smoke = new /datum/effect/effect/system/smoke_spread()
 			smoke.set_up(3, 0, src.loc)
@@ -420,12 +427,6 @@
 		charge = 0
 	update_icon()
 	..()
-
-/obj/machinery/power/smes/overload(var/obj/machinery/power/source) // This propagates the power spike down the powernet.
-	if(istype(source, /obj/machinery/power/smes)) // Prevent infinite loops if two SMESes are hooked up to each other.
-		return
-	power_spike()
-
 
 /obj/machinery/power/smes/magical
 	name = "magical power storage unit"

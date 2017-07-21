@@ -4,6 +4,7 @@
 	This does not affect you or your allies.  It also causes a large amount of fire to erupt around you, however the main threat is \
 	still the heating up."
 	enhancement_desc = "Increased heat generation, more fires, and higher temperature cap."
+	spell_power_desc = "Radius, heat rate, heat capacity, and amount of fires made increased."
 	cost = 100
 	obj_path = /obj/item/weapon/spell/aura/fire
 	ability_icon_state = "tech_fireaura"
@@ -12,23 +13,25 @@
 /obj/item/weapon/spell/aura/fire
 	name = "Fire Storm"
 	desc = "Things are starting to heat up."
-	icon_state = "generic"
+	icon_state = "fire_bolt"
 	aspect = ASPECT_FIRE
 	glow_color = "#FF6A00"
 
 /obj/item/weapon/spell/aura/fire/process()
 	if(!pay_energy(100))
 		qdel(src)
-	var/list/nearby_things = range(4,owner)
+	var/list/nearby_things = range(round(calculate_spell_power(4)),owner)
 
-	var/temp_change = 40
-	var/temp_cap = 600
-	var/fire_power = 2
+	var/temp_change = calculate_spell_power(150)
+	var/datum/species/baseline = all_species["Human"]
+	var/temp_cap = baseline.heat_level_3 * 2
+	var/fire_power = calculate_spell_power(2)
 
 	if(check_for_scepter())
-		temp_change = 80
-		temp_cap = 1000
-		fire_power = 4
+		temp_change *= 2
+		temp_cap *= 2
+		fire_power *= 2
+
 	for(var/mob/living/carbon/human/H in nearby_things)
 		if(is_ally(H))
 			continue
@@ -36,7 +39,8 @@
 		var/protection = H.get_heat_protection(1000)
 		if(protection < 1)
 			var/heat_factor = abs(protection - 1)
-			H.bodytemperature = min( (H.bodytemperature + temp_change) * heat_factor, temp_cap)
+			temp_change *= heat_factor
+			H.bodytemperature = min(H.bodytemperature + temp_change, temp_cap)
 
 	turf_check:
 		for(var/turf/simulated/T in nearby_things)

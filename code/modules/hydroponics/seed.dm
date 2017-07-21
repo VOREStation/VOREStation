@@ -112,34 +112,35 @@
 			qdel(target)
 		return
 
-
 	if(!target_limb) target_limb = pick(BP_ALL)
-	var/obj/item/organ/external/affecting = target.get_organ(target_limb)
-	var/damage = 0
+	var/blocked = target.run_armor_check(target_limb, "melee")
+	var/soaked = target.get_armor_soak(target_limb, "melee")
 
-	if(get_trait(TRAIT_CARNIVOROUS))
-		if(get_trait(TRAIT_CARNIVOROUS) == 2)
-			if(affecting)
-				target << "<span class='danger'>\The [fruit]'s thorns pierce your [affecting.name] greedily!</span>"
-			else
-				target << "<span class='danger'>\The [fruit]'s thorns pierce your flesh greedily!</span>"
-			damage = get_trait(TRAIT_POTENCY)/2
-		else
-			if(affecting)
-				target << "<span class='danger'>\The [fruit]'s thorns dig deeply into your [affecting.name]!</span>"
-			else
-				target << "<span class='danger'>\The [fruit]'s thorns dig deeply into your flesh!</span>"
-			damage = get_trait(TRAIT_POTENCY)/5
-	else
+	if(blocked >= 100)
 		return
 
-	if(affecting)
-		affecting.take_damage(damage, 0)
-		affecting.add_autopsy_data("Thorns",damage)
+	var/obj/item/organ/external/affecting = target.get_organ(target_limb)
+	var/damage = 0
+	var/has_edge = 0
+	if(get_trait(TRAIT_CARNIVOROUS) >= 2)
+		damage = max(5, round(15*get_trait(TRAIT_POTENCY)/100, 1))
+		has_edge = prob(get_trait(TRAIT_POTENCY)/2)
+
+		if(affecting)
+			to_chat(target, "<span class='danger'>\The [fruit]'s thorns pierce your [affecting.name] greedily!</span>")
+			target.apply_damage(damage, BRUTE, target_limb, blocked, soaked, "Thorns", sharp=1, edge=has_edge)
+		else
+			to_chat(target, "<span class='danger'>\The [fruit]'s thorns pierce your flesh greedily!</span>")
+			target.adjustBruteLoss(damage)
 	else
-		target.adjustBruteLoss(damage)
-	target.UpdateDamageIcon()
-	target.updatehealth()
+		damage = max(1, round(5*get_trait(TRAIT_POTENCY)/100, 1))
+		has_edge = prob(get_trait(TRAIT_POTENCY)/5)
+		if(affecting)
+			to_chat(target, "<span class='danger'>\The [fruit]'s thorns dig deeply into your [affecting.name]!</span>")
+			target.apply_damage(damage, BRUTE, target_limb, blocked, "Thorns", sharp=1, edge=has_edge)
+		else
+			to_chat(target, "<span class='danger'>\The [fruit]'s thorns dig deeply into your flesh!</span>")
+			target.adjustBruteLoss(damage)
 
 // Adds reagents to a target.
 /datum/seed/proc/do_sting(var/mob/living/carbon/human/target, var/obj/item/fruit)
@@ -152,7 +153,8 @@
 		for(var/obj/item/clothing/clothes in target)
 			if(target.item_is_in_hands(clothes))
 				continue
-			body_coverage &= ~(clothes.body_parts_covered)
+			if(clothes.item_flags & THICKMATERIAL)
+				body_coverage &= ~(clothes.body_parts_covered)
 
 		if(!body_coverage)
 			return
@@ -294,11 +296,7 @@
 
 	// Handle light requirements.
 	if(!light_supplied)
-		var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in current_turf
-		if(L)
-			light_supplied = max(0,min(10,L.lum_r + L.lum_g + L.lum_b)-5)
-		else
-			light_supplied =  5
+		light_supplied = current_turf.get_lumcount() * 5
 	if(light_supplied)
 		if(abs(light_supplied - get_trait(TRAIT_IDEAL_LIGHT)) > get_trait(TRAIT_LIGHT_TOLERANCE))
 			health_change += rand(1,3) * HYDRO_SPEED_MULTIPLIER

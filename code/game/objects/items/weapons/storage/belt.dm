@@ -40,6 +40,7 @@
 		/obj/item/weapon/wrench,
 		/obj/item/device/multitool,
 		/obj/item/device/flashlight,
+		/obj/item/weapon/cell/device,
 		/obj/item/stack/cable_coil,
 		/obj/item/device/t_scanner,
 		/obj/item/device/analyzer,
@@ -54,7 +55,6 @@
 		/obj/item/weapon/material/hatchet,
 		/obj/item/device/analyzer/plant_analyzer,
 		/obj/item/weapon/extinguisher/mini,
-		/obj/item/device/flashlight/maglight,
 		/obj/item/weapon/tape_roll,
 		/obj/item/device/integrated_electronics/wirer,
 		)
@@ -97,7 +97,6 @@
 		/obj/item/device/pda,
 		/obj/item/taperoll,
 		/obj/item/device/megaphone,
-		/obj/item/device/flashlight/pen,
 		/obj/item/clothing/mask/surgical,
 		/obj/item/clothing/head/surgery,
 		/obj/item/clothing/gloves,
@@ -105,6 +104,7 @@
 		/obj/item/clothing/glasses,
 		/obj/item/weapon/crowbar,
 		/obj/item/device/flashlight,
+		/obj/item/weapon/cell/device,
 		/obj/item/weapon/extinguisher/mini
 		)
 
@@ -124,7 +124,7 @@
 		/obj/item/weapon/handcuffs,
 		/obj/item/device/flash,
 		/obj/item/clothing/glasses,
-		/obj/item/ammo_casing/shotgun,
+		/obj/item/ammo_casing/a12g,
 		/obj/item/ammo_magazine,
 		/obj/item/weapon/cell/device,
 		/obj/item/weapon/reagent_containers/food/snacks/donut/,
@@ -134,6 +134,8 @@
 		/obj/item/weapon/gun/energy/gun,
 		/obj/item/weapon/flame/lighter,
 		/obj/item/device/flashlight,
+		/obj/item/device/taperecorder,
+		/obj/item/device/tape,
 		/obj/item/device/pda,
 		/obj/item/device/radio/headset,
 		/obj/item/clothing/gloves,
@@ -154,8 +156,10 @@
 	max_w_class = ITEMSIZE_NORMAL
 	can_hold = list(
 		/obj/item/device/taperecorder,
+		/obj/item/device/tape,
 		/obj/item/clothing/glasses,
 		/obj/item/device/flashlight,
+		/obj/item/weapon/cell/device,
 		/obj/item/weapon/reagent_containers/spray/luminol,
 		/obj/item/weapon/sample,
 		/obj/item/weapon/forensics/sample_kit/powder,
@@ -236,6 +240,7 @@
 	can_hold = list(
 		/obj/item/clothing/glasses,
 		/obj/item/device/flashlight,
+		/obj/item/weapon/cell/device,
 		/obj/item/weapon/grenade,
 		/obj/item/device/pda,
 		/obj/item/device/radio/headset,
@@ -263,6 +268,7 @@
 		/obj/item/device/gps,
 		/obj/item/device/measuring_tape,
 		/obj/item/device/flashlight,
+		/obj/item/weapon/cell/device,
 		/obj/item/weapon/pickaxe,
 		/obj/item/device/depth_scanner,
 		/obj/item/device/camera,
@@ -280,3 +286,58 @@
 		/obj/item/device/ano_scanner,
 		/obj/item/weapon/pickaxe/hand
 		)
+
+/obj/item/weapon/storage/belt/fannypack
+	name = "leather fannypack"
+	desc = "A dorky fannypack for keeping small items in."
+	icon_state = "fannypack_leather"
+	item_state = "fannypack_leather"
+	max_w_class = ITEMSIZE_SMALL
+	storage_slots = null
+	max_storage_space = ITEMSIZE_COST_NORMAL * 2
+
+/obj/item/weapon/storage/belt/fannypack/black
+ 	name = "black fannypack"
+ 	icon_state = "fannypack_black"
+ 	item_state = "fannypack_black"
+
+/obj/item/weapon/storage/belt/fannypack/blue
+ 	name = "blue fannypack"
+ 	icon_state = "fannypack_blue"
+ 	item_state = "fannypack_blue"
+
+/obj/item/weapon/storage/belt/fannypack/cyan
+ 	name = "cyan fannypack"
+ 	icon_state = "fannypack_cyan"
+ 	item_state = "fannypack_cyan"
+
+/obj/item/weapon/storage/belt/fannypack/green
+ 	name = "green fannypack"
+ 	icon_state = "fannypack_green"
+ 	item_state = "fannypack_green"
+
+/obj/item/weapon/storage/belt/fannypack/orange
+ 	name = "orange fannypack"
+ 	icon_state = "fannypack_orange"
+ 	item_state = "fannypack_orange"
+
+/obj/item/weapon/storage/belt/fannypack/purple
+ 	name = "purple fannypack"
+ 	icon_state = "fannypack_purple"
+ 	item_state = "fannypack_purple"
+
+/obj/item/weapon/storage/belt/fannypack/red
+ 	name = "red fannypack"
+ 	icon_state = "fannypack_red"
+ 	item_state = "fannypack_red"
+
+/obj/item/weapon/storage/belt/fannypack/white
+ 	name = "white fannypack"
+ 	icon_state = "fannypack_white"
+ 	item_state = "fannypack_white"
+
+/obj/item/weapon/storage/belt/fannypack/yellow
+ 	name = "yellow fannypack"
+ 	icon_state = "fannypack_yellow"
+ 	item_state = "fannypack_yellow"
+

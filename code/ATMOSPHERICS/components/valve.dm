@@ -72,7 +72,7 @@
 	return null
 
 /obj/machinery/atmospherics/valve/Destroy()
-	loc = null
+	. = ..()
 
 	if(node1)
 		node1.disconnect(src)
@@ -83,8 +83,6 @@
 
 	node1 = null
 	node2 = null
-
-	..()
 
 /obj/machinery/atmospherics/valve/proc/open()
 	if(open) return 0
@@ -291,8 +289,8 @@
 /obj/machinery/atmospherics/valve/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
 	if (!istype(W, /obj/item/weapon/wrench))
 		return ..()
-	if (istype(src, /obj/machinery/atmospherics/valve/digital))
-		user << "<span class='warning'>You cannot unwrench \the [src], it's too complicated.</span>"
+	if (istype(src, /obj/machinery/atmospherics/valve/digital) && !src.allowed(user))
+		user << "<span class='warning'>Access denied.</span>"
 		return 1
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()

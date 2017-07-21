@@ -41,7 +41,7 @@
 	silicon_mob_list -= src
 	for(var/datum/alarm_handler/AH in alarm_manager.all_handlers)
 		AH.unregister_alarm(src)
-	..()
+	return ..()
 
 /mob/living/silicon/proc/init_id()
 	if(idcard)
@@ -63,10 +63,16 @@
 	switch(severity)
 		if(1)
 			src.take_organ_damage(0,20,emp=1)
-			confused = (min(confused + 5, 30))
+			Confuse(5)
 		if(2)
+			src.take_organ_damage(0,15,emp=1)
+			Confuse(4)
+		if(3)
 			src.take_organ_damage(0,10,emp=1)
-			confused = (min(confused + 2, 30))
+			Confuse(3)
+		if(4)
+			src.take_organ_damage(0,5,emp=1)
+			Confuse(2)
 	flash_eyes(affect_silicon = 1)
 	src << "<span class='danger'><B>*BZZZT*</B></span>"
 	src << "<span class='danger'>Warning: Electromagnetic pulse detected.</span>"
@@ -75,13 +81,13 @@
 /mob/living/silicon/stun_effect_act(var/stun_amount, var/agony_amount)
 	return	//immune
 
-/mob/living/silicon/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0)
+/mob/living/silicon/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 0.0)
 	if(shock_damage > 0)
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(5, 1, loc)
 		s.start()
 
-		shock_damage *= 0.75	//take reduced damage
+		shock_damage *= siemens_coeff	//take reduced damage
 		take_overall_damage(0, shock_damage)
 		visible_message("<span class='warning'>[src] was shocked by \the [source]!</span>", \
 			"<span class='danger'>Energy pulse detected, system damaged!</span>", \
@@ -142,7 +148,7 @@
 // this function shows the health of the AI in the Status panel
 /mob/living/silicon/proc/show_system_integrity()
 	if(!src.stat)
-		stat(null, text("System integrity: [round((health/maxHealth)*100)]%"))
+		stat(null, text("System integrity: [round((health/getMaxHealth())*100)]%"))
 	else
 		stat(null, text("Systems nonfunctional"))
 

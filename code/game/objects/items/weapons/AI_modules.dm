@@ -10,7 +10,6 @@ AI MODULES
 	name = "\improper AI module"
 	icon = 'icons/obj/module.dmi'
 	icon_state = "std_mod"
-	item_state = "electronic"
 	desc = "An AI Module for transmitting encrypted instructions to the AI."
 	flags = CONDUCT
 	force = 5.0
@@ -35,7 +34,7 @@ AI MODULES
 			return
 
 		if(ticker && ticker.mode && ticker.mode.name == "blob")
-			usr << "Law uploads have been disabled by [company_name]!"
+			usr << "Law uploads have been disabled by [using_map.company_name]!"
 			return
 
 		if (comp.current.stat == 2 || comp.current.control_disabled == 1)

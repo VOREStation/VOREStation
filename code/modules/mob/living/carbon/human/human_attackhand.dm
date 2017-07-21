@@ -15,13 +15,21 @@
 		if(H.hand)
 			temp = H.organs_by_name["l_hand"]
 		if(!temp || !temp.is_usable())
-			H << "\red You can't use your hand."
+			H << "<font color='red'>You can't use your hand.</font>"
 			return
 	H.break_cloak()
 	..()
 
 	// Should this all be in Touch()?
 	if(istype(H))
+		if(get_accuracy_penalty(H) && H != src)	//Should only trigger if they're not aiming well
+			var/hit_zone = get_zone_with_miss_chance(H.zone_sel.selecting, src, get_accuracy_penalty(H))
+			if(!hit_zone)
+				H.do_attack_animation(src)
+				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+				visible_message("<font color='red'><B>[H] reaches for [src], but misses!</B></font>")
+				return 0
+
 		if(H != src && check_shields(0, null, H, H.zone_sel.selecting, H.name))
 			H.do_attack_animation(src)
 			return 0
@@ -31,21 +39,25 @@
 			var/damage = rand(0, 9)
 			if(!damage)
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-				visible_message("\red <B>[H] has attempted to punch [src]!</B>")
+				visible_message("<font color='red'><B>[H] has attempted to punch [src]!</B></font>")
 				return 0
 			var/obj/item/organ/external/affecting = get_organ(ran_zone(H.zone_sel.selecting))
 			var/armor_block = run_armor_check(affecting, "melee")
+			var/armor_soak = get_armor_soak(affecting, "melee")
 
 			if(HULK in H.mutations)
 				damage += 5
 
 			playsound(loc, "punch", 25, 1, -1)
 
-			visible_message("\red <B>[H] has punched [src]!</B>")
+			visible_message("<font color='red'><B>[H] has punched [src]!</B></font>")
 
-			apply_damage(damage, HALLOSS, affecting, armor_block)
+			if(armor_soak >= damage)
+				return
+
+			apply_damage(damage, HALLOSS, affecting, armor_block, armor_soak)
 			if(damage >= 9)
-				visible_message("\red <B>[H] has weakened [src]!</B>")
+				visible_message("<font color='red'><B>[H] has weakened [src]!</B></font>")
 				apply_effect(4, WEAKEN, armor_block)
 
 			return
@@ -55,7 +67,7 @@
 
 	switch(M.a_intent)
 		if(I_HELP)
-			if(istype(H) && health < config.health_threshold_crit && health > config.health_threshold_dead)
+			if(istype(H) && health < config.health_threshold_crit)
 				if(!H.check_has_mouth())
 					H << "<span class='danger'>You don't have a mouth, you cannot perform CPR!</span>"
 					return
@@ -81,11 +93,13 @@
 				if(!do_after(H, 30))
 					return
 
-				adjustOxyLoss(-(min(getOxyLoss(), 5)))
-				updatehealth()
 				H.visible_message("<span class='danger'>\The [H] performs CPR on \the [src]!</span>")
-				src << "<span class='notice'>You feel a breath of fresh air enter your lungs. It feels good.</span>"
 				H << "<span class='warning'>Repeat at least every 7 seconds.</span>"
+
+				if(istype(H) && health > config.health_threshold_dead)
+					adjustOxyLoss(-(min(getOxyLoss(), 5)))
+					updatehealth()
+					src << "<span class='notice'>You feel a breath of fresh air enter your lungs. It feels good.</span>"
 
 			else if(!(M == src && apply_pressure(M, M.zone_sel.selecting)))
 				help_shake_act(M)
@@ -187,8 +201,13 @@
 						  were made for projectiles.
 					TODO: proc for melee combat miss chances depending on organ?
 				*/
+
+				if(!hit_zone)
+					attack_message = "[H] attempted to strike [src], but missed!"
+					miss_type = 1
+
 				if(prob(80))
-					hit_zone = ran_zone(hit_zone)
+					hit_zone = ran_zone(hit_zone, 70) //70% chance to hit what you're aiming at seems fair?
 				if(prob(15) && hit_zone != BP_TORSO) // Missed!
 					if(!src.lying)
 						attack_message = "[H] attempted to strike [src], but missed!"
@@ -229,12 +248,13 @@
 				rand_damage *= 2
 			real_damage = max(1, real_damage)
 
-			var/armour = run_armor_check(affecting, "melee")
+			var/armour = run_armor_check(hit_zone, "melee")
+			var/soaked = get_armor_soak(hit_zone, "melee")
 			// Apply additional unarmed effects.
 			attack.apply_effects(H, src, armour, rand_damage, hit_zone)
 
 			// Finally, apply damage to target
-			apply_damage(real_damage, (attack.deal_halloss ? HALLOSS : BRUTE), affecting, armour, sharp=attack.sharp, edge=attack.edge)
+			apply_damage(real_damage, (attack.deal_halloss ? HALLOSS : BRUTE), hit_zone, armour, soaked, sharp=attack.sharp, edge=attack.edge)
 
 		if(I_DISARM)
 			M.attack_log += text("\[[time_stamp()]\] <font color='red'>Disarmed [src.name] ([src.ckey])</font>")
@@ -260,7 +280,12 @@
 						visible_message("<span class='danger'>[src]'s [W] goes off during the struggle!</span>")
 						return W.afterattack(target,src)
 
+			if(last_push_time + 30 > world.time)
+				visible_message("<span class='warning'>[M] has weakly pushed [src]!</span>")
+				return
+
 			var/randn = rand(1, 100)
+			last_push_time = world.time
 			if(!(species.flags & NO_SLIP) && randn <= 25)
 				var/armor_check = run_armor_check(affecting, "melee")
 				apply_effect(3, WEAKEN, armor_check)
@@ -286,7 +311,7 @@
 						return
 
 			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-			visible_message("\red <B>[M] attempted to disarm [src]!</B>")
+			visible_message("<font color='red'> <B>[M] attempted to disarm [src]!</B></font>")
 	return
 
 /mob/living/carbon/human/proc/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, inrange, params)
@@ -305,7 +330,8 @@
 	var/dam_zone = pick(organs_by_name)
 	var/obj/item/organ/external/affecting = get_organ(ran_zone(dam_zone))
 	var/armor_block = run_armor_check(affecting, "melee")
-	apply_damage(damage, BRUTE, affecting, armor_block)
+	var/armor_soak = get_armor_soak(affecting, "melee")
+	apply_damage(damage, BRUTE, affecting, armor_block, armor_soak)
 	updatehealth()
 	return 1
 

@@ -4,6 +4,7 @@
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "mopbucket"
 	density = 1
+	climbable = 1
 	w_class = ITEMSIZE_NORMAL
 	pressure_resistance = 5
 	flags = OPENCONTAINER

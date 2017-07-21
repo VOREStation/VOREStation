@@ -182,7 +182,11 @@
 	if (A == user && user.zone_sel.selecting == O_MOUTH && !mouthshoot)
 		handle_suicide(user)
 	else if(user.a_intent == I_HURT) //point blank shooting
-		Fire(A, user, pointblank=1)
+		if(user && user.client && user.aiming && user.aiming.active && user.aiming.aiming_at != A && A != user)
+			PreFire(A,user) //They're using the new gun system, locate what they're aiming at.
+			return
+		else
+			Fire(A, user, pointblank=1)
 	else
 		return ..() //Pistolwhippin'
 
@@ -222,6 +226,38 @@
 		attached_lock.controller_lock = 0
 		attached_lock.stored_dna = list()
 		return 1
+
+/obj/item/weapon/gun/MouseDrop(obj/over_object as obj)
+	if(!canremove)
+		return
+
+	if (ishuman(usr) || issmall(usr)) //so monkeys can take off their backpacks -- Urist
+
+		if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech. why?
+			return
+
+		if (!( istype(over_object, /obj/screen) ))
+			return ..()
+
+		//makes sure that the thing is equipped, so that we can't drag it into our hand from miles away.
+		//there's got to be a better way of doing this.
+		if (!(src.loc == usr) || (src.loc && src.loc.loc == usr))
+			return
+
+		if (( usr.restrained() ) || ( usr.stat ))
+			return
+
+		if ((src.loc == usr) && !(istype(over_object, /obj/screen)) && !usr.unEquip(src))
+			return
+
+		switch(over_object.name)
+			if("r_hand")
+				usr.u_equip(src)
+				usr.put_in_r_hand(src)
+			if("l_hand")
+				usr.u_equip(src)
+				usr.put_in_l_hand(src)
+		src.add_fingerprint(usr)
 
 /obj/item/weapon/gun/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
 	if(!user || !target) return
@@ -284,12 +320,17 @@
 			if(one_handed_penalty >= 2)
 				user << "<span class='warning'>You struggle to keep \the [src] pointed at the correct position with just one hand!</span>"
 
-	admin_attack_log(usr, attacker_message="Fired [src]", admin_message="fired a gun ([src]) (MODE: [src.mode_name]) [reflex ? "by reflex" : "manually"].")
+	if(reflex)
+		admin_attack_log(user, target, attacker_message = "fired [src] by reflex.", victim_message = "triggered a reflex shot from [src].", admin_message = "shot [target], who triggered gunfire ([src]) by reflex)")
+	else
+		admin_attack_log(usr, attacker_message="Fired [src]", admin_message="fired a gun ([src]) (MODE: [src.mode_name]) [reflex ? "by reflex" : "manually"].")
 
 	//update timing
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 	user.setMoveCooldown(move_delay)
 	next_fire_time = world.time + fire_delay
+
+	accuracy = initial(accuracy)	//Reset the gun's accuracy
 
 	if(muzzle_flash)
 		set_light(0)
@@ -361,6 +402,8 @@
 	//update timing
 	next_fire_time = world.time + fire_delay
 
+	accuracy = initial(accuracy)	//Reset the gun's accuracy
+
 	if(muzzle_flash)
 		set_light(0)
 
@@ -390,21 +433,21 @@
 /obj/item/weapon/gun/proc/handle_post_fire(mob/user, atom/target, var/pointblank=0, var/reflex=0)
 	if(silenced)
 		playsound(user, fire_sound, 10, 1)
+		to_chat(user, "<span class='warning'>You fire \the [src][pointblank ? " point blank at \the [target]":""][reflex ? " by reflex!":""]</span>")
+		for(var/mob/living/L in oview(2,user))
+			if(L.stat)
+				continue
+			if(L.blinded)
+				to_chat(L, "You hear a [fire_sound_text]!")
+				continue
+			to_chat(L, "<span class='warning'>[user] fires \the [src][pointblank ? " point blank at \the [target]":""][reflex ? " by reflex!":""]</span>")
 	else
 		playsound(user, fire_sound, 50, 1)
-
-		if(reflex)
-			user.visible_message(
-				"<span class='reflex_shoot'><b>\The [user] fires \the [src][pointblank ? " point blank at \the [target]":""] by reflex!</b></span>",
-				"<span class='reflex_shoot'>You fire \the [src] by reflex!</span>",
-				"You hear a [fire_sound_text]!"
-			)
-		else
-			user.visible_message(
-				"<span class='danger'>\The [user] fires \the [src][pointblank ? " point blank at \the [target]":""]!</span>",
-				"<span class='warning'>You fire \the [src]!</span>",
-				"You hear a [fire_sound_text]!"
-				)
+		user.visible_message(
+			"<span class='warning'>[user] fires \the [src][pointblank ? " point blank at \the [target]":""][reflex ? " by reflex!":""]</span>",
+			"<span class='warning'>You fire \the [src][pointblank ? " point blank at \the [target]":""][reflex ? " by reflex!":""]</span>",
+			"You hear a [fire_sound_text]!"
+		)
 
 		if(muzzle_flash)
 			set_light(muzzle_flash)
@@ -447,11 +490,11 @@
 
 	// Certain statuses make it harder to aim, blindness especially.  Same chances as melee, however guns accuracy uses multiples of 15.
 	if(user.eye_blind)
-		accuracy -= 5
+		P.accuracy -= 5
 	if(user.eye_blurry)
-		accuracy -= 2
+		P.accuracy -= 2
 	if(user.confused)
-		accuracy -= 3
+		P.accuracy -= 3
 
 	//accuracy bonus from aiming
 	if (aim_targets && (target in aim_targets))
@@ -498,9 +541,9 @@
 	var/mob/living/carbon/human/M = user
 
 	mouthshoot = 1
-	M.visible_message("\red [user] sticks their gun in their mouth, ready to pull the trigger...")
+	M.visible_message("<font color='red'>[user] sticks their gun in their mouth, ready to pull the trigger...</font>")
 	if(!do_after(user, 40))
-		M.visible_message("\blue [user] decided life was worth living")
+		M.visible_message("<font color='blue'>[user] decided life was worth living</font>")
 		mouthshoot = 0
 		return
 	var/obj/item/projectile/in_chamber = consume_next_projectile()

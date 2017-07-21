@@ -7,6 +7,7 @@
 	desc = "Extracts information on wounds."
 	icon = 'icons/obj/autopsy_scanner.dmi'
 	icon_state = ""
+	item_state = "autopsy_scanner"
 	flags = CONDUCT
 	w_class = ITEMSIZE_SMALL
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
@@ -160,7 +161,7 @@
 	P.icon_state = "paper_words"
 
 	if(istype(usr,/mob/living/carbon))
-		usr.put_in_hands(src)
+		usr.put_in_hands(P)
 
 /obj/item/weapon/autopsy_scanner/do_surgery(mob/living/carbon/human/M, mob/living/user)
 	if(!istype(M))

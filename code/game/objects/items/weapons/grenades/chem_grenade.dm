@@ -19,6 +19,11 @@
 	New()
 		create_reagents(1000)
 
+	Destroy()
+		qdel_null(detonator)
+		qdel_null_list(beakers)
+		return ..()
+
 	attack_self(mob/user as mob)
 		if(!stage || stage==1)
 			if(detonator)
@@ -272,6 +277,29 @@
 		B1.reagents.add_reagent("fluorosurfactant", 40)
 		B2.reagents.add_reagent("water", 40)
 		B2.reagents.add_reagent("cleaner", 10)
+
+		detonator = new/obj/item/device/assembly_holder/timer_igniter(src)
+
+		beakers += B1
+		beakers += B2
+		icon_state = initial(icon_state) +"_locked"
+
+/obj/item/weapon/grenade/chem_grenade/teargas
+	name = "tear gas grenade"
+	desc = "Concentrated Capsaicin. Contents under pressure. Use with caution."
+	stage = 2
+	path = 1
+
+	New()
+		..()
+		var/obj/item/weapon/reagent_containers/glass/beaker/large/B1 = new(src)
+		var/obj/item/weapon/reagent_containers/glass/beaker/large/B2 = new(src)
+
+		B1.reagents.add_reagent("phosphorus", 40)
+		B1.reagents.add_reagent("potassium", 40)
+		B1.reagents.add_reagent("condensedcapsaicin", 40)
+		B2.reagents.add_reagent("sugar", 40)
+		B2.reagents.add_reagent("condensedcapsaicin", 80)
 
 		detonator = new/obj/item/device/assembly_holder/timer_igniter(src)
 

@@ -5,11 +5,11 @@
 /var/list/meteors_normal = list(/obj/effect/meteor/dust=3, /obj/effect/meteor/medium=8, /obj/effect/meteor/big=3, \
 						  /obj/effect/meteor/flaming=1, /obj/effect/meteor/irradiated=3) //for normal meteor event
 
-/var/list/meteors_threatening = list(/obj/effect/meteor/medium=4, /obj/effect/meteor/big=8, \
-						  /obj/effect/meteor/flaming=3, /obj/effect/meteor/irradiated=3) //for threatening meteor event
+/var/list/meteors_threatening = list(/obj/effect/meteor/medium=5, /obj/effect/meteor/big=10, \
+						  /obj/effect/meteor/flaming=3, /obj/effect/meteor/irradiated=3, /obj/effect/meteor/emp=3) //for threatening meteor event
 
 /var/list/meteors_catastrophic = list(/obj/effect/meteor/medium=5, /obj/effect/meteor/big=75, \
-						  /obj/effect/meteor/flaming=10, /obj/effect/meteor/irradiated=10, /obj/effect/meteor/tunguska = 1) //for catastrophic meteor event
+						  /obj/effect/meteor/flaming=10, /obj/effect/meteor/irradiated=10, /obj/effect/meteor/emp=10, /obj/effect/meteor/tunguska = 1) //for catastrophic meteor event
 
 /var/list/meteors_dust = list(/obj/effect/meteor/dust) //for space dust event
 
@@ -19,7 +19,7 @@
 ///////////////////////////////
 
 /proc/pick_meteor_start(var/startSide = pick(cardinal))
-	var/startLevel = pick(config.station_levels)
+	var/startLevel = pick(using_map.station_levels)
 	var/pickedstart = spaceDebrisStartLoc(startSide, startLevel)
 
 	return list(startLevel, pickedstart)
@@ -38,7 +38,6 @@
 	var/Me = pickweight(meteortypes)
 	var/obj/effect/meteor/M = new Me(pickedstart)
 	M.dest = pickedgoal
-	M.z_original = startLevel
 	spawn(0)
 		walk_towards(M, M.dest, 1)
 	return
@@ -81,6 +80,10 @@
 	var/turf/T = locate(endx, endy, Z)
 	return T
 
+// Override for special behavior when getting hit by meteors, and only meteors.  Return one if the meteor hasn't been 'stopped'.
+/atom/proc/handle_meteor_impact(var/obj/effect/meteor/meteor)
+	return TRUE
+
 ///////////////////////
 //The meteor effect
 //////////////////////
@@ -97,10 +100,20 @@
 	var/dest
 	pass_flags = PASSTABLE
 	var/heavy = 0
-	var/z_original = 1
+	var/z_original
 
 	var/meteordrop = /obj/item/weapon/ore/iron
 	var/dropamt = 2
+
+	// How much damage it does to walls, using take_damage().
+	// Normal walls will die to 150 or more, where as reinforced walls need 800 to penetrate.  Durasteel walls need 1200 damage to go through.
+	// Multiply this and the hits var to get a rough idea of how penetrating a meteor is.
+	var/wall_power = 100
+
+/obj/effect/meteor/New()
+	..()
+	z_original = z
+
 
 /obj/effect/meteor/Move()
 	if(z != z_original || loc == dest)
@@ -120,7 +133,7 @@
 
 /obj/effect/meteor/Destroy()
 	walk(src,0) //this cancels the walk_towards() proc
-	..()
+	return ..()
 
 /obj/effect/meteor/New()
 	..()
@@ -128,8 +141,11 @@
 
 /obj/effect/meteor/Bump(atom/A)
 	if(A)
-		ram_turf(get_turf(A))
-		get_hit()
+		if(A.handle_meteor_impact(src)) // Used for special behaviour when getting hit specifically by a meteor, like a shield.
+			ram_turf(get_turf(A))
+			get_hit()
+		else
+			die(0)
 
 /obj/effect/meteor/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	return istype(mover, /obj/effect/meteor) ? 1 : ..()
@@ -142,7 +158,11 @@
 
 	//then, ram the turf if it still exists
 	if(T)
-		T.ex_act(hitpwr)
+		if(istype(T, /turf/simulated/wall))
+			var/turf/simulated/wall/W = T
+			W.take_damage(wall_power) // Stronger walls can halt asteroids.
+		else
+			T.ex_act(hitpwr) // Floors and other things lack fancy health.
 
 
 //process getting 'hit' by colliding with a dense object
@@ -150,9 +170,12 @@
 /obj/effect/meteor/proc/get_hit()
 	hits--
 	if(hits <= 0)
-		make_debris()
-		meteor_effect(heavy)
-		qdel(src)
+		die(1)
+
+/obj/effect/meteor/proc/die(var/explode = 1)
+	make_debris()
+	meteor_effect(explode)
+	qdel(src)
 
 /obj/effect/meteor/ex_act()
 	return
@@ -168,21 +191,24 @@
 		var/obj/item/O = new meteordrop(get_turf(src))
 		O.throw_at(dest, 5, 10)
 
-/obj/effect/meteor/proc/meteor_effect(var/effect=1)
-	if(effect)
-		for(var/mob/M in player_list)
-			var/turf/T = get_turf(M)
-			if(!T || T.z != src.z)
-				continue
-			var/dist = get_dist(M.loc, src.loc)
-			shake_camera(M, dist > 20 ? 3 : 5, dist > 20 ? 1 : 3)
+/obj/effect/meteor/proc/shake_players()
+	for(var/mob/M in player_list)
+		var/turf/T = get_turf(M)
+		if(!T || T.z != src.z)
+			continue
+		var/dist = get_dist(M.loc, src.loc)
+		shake_camera(M, dist > 20 ? 3 : 5, dist > 20 ? 1 : 3)
+
+/obj/effect/meteor/proc/meteor_effect(var/explode)
+	if(heavy)
+		shake_players()
 
 
 ///////////////////////
 //Meteor types
 ///////////////////////
 
-//Dust
+// Dust breaks windows and hurts normal walls, generally more of an annoyance than a danger unless two happen to hit the same spot.
 /obj/effect/meteor/dust
 	name = "space dust"
 	icon_state = "dust"
@@ -190,54 +216,77 @@
 	hits = 1
 	hitpwr = 3
 	meteordrop = /obj/item/weapon/ore/glass
+	wall_power = 50
 
-//Medium-sized
+// Medium-sized meteors aren't very special and can be stopped easily by r-walls.
 /obj/effect/meteor/medium
 	name = "meteor"
 	dropamt = 3
+	wall_power = 200
 
-/obj/effect/meteor/medium/meteor_effect()
-	..(heavy)
-	explosion(src.loc, 0, 1, 2, 3, 0)
+/obj/effect/meteor/medium/meteor_effect(var/explode)
+	..()
+	if(explode)
+		explosion(src.loc, 0, 1, 2, 3, 0)
 
-//Large-sized
+// Large-sized meteors generally pack the most punch, but are more concentrated towards the epicenter.
 /obj/effect/meteor/big
 	name = "large meteor"
 	icon_state = "large"
-	hits = 6
+	hits = 8
 	heavy = 1
 	dropamt = 4
+	wall_power = 400
 
-/obj/effect/meteor/big/meteor_effect()
-	..(heavy)
-	explosion(src.loc, 1, 2, 3, 4, 0)
+/obj/effect/meteor/big/meteor_effect(var/explode)
+	..()
+	if(explode)
+		explosion(src.loc, devastation_range = 2, heavy_impact_range = 4, light_impact_range = 6, flash_range = 12, adminlog = 0)
 
-//Flaming meteor
+// 'Flaming' meteors do less overall damage but are spread out more due to a larger but weaker explosion at the end.
 /obj/effect/meteor/flaming
 	name = "flaming meteor"
 	icon_state = "flaming"
 	hits = 5
 	heavy = 1
 	meteordrop = /obj/item/weapon/ore/phoron
+	wall_power = 100
 
-/obj/effect/meteor/flaming/meteor_effect()
-	..(heavy)
-	explosion(src.loc, 1, 2, 3, 4, 0, 0, 5)
+/obj/effect/meteor/flaming/meteor_effect(var/explode)
+	..()
+	if(explode)
+		explosion(src.loc, devastation_range = 1, heavy_impact_range = 2, light_impact_range = 8, flash_range = 16, adminlog = 0)
 
-//Radiation meteor
+// Irradiated meteors do less physical damage but project a ten-tile ranged pulse of radiation upon exploding.
 /obj/effect/meteor/irradiated
 	name = "glowing meteor"
 	icon_state = "glowing"
 	heavy = 1
 	meteordrop = /obj/item/weapon/ore/uranium
+	wall_power = 75
 
 
-/obj/effect/meteor/irradiated/meteor_effect()
-	..(heavy)
-	explosion(src.loc, 0, 0, 4, 3, 0)
+/obj/effect/meteor/irradiated/meteor_effect(var/explode)
+	..()
+	if(explode)
+		explosion(src.loc, devastation_range = 0, heavy_impact_range = 0, light_impact_range = 4, flash_range = 6, adminlog = 0)
 	new /obj/effect/decal/cleanable/greenglow(get_turf(src))
-	for(var/mob/living/L in view(5, src))
-		L.apply_effect(40, IRRADIATE)
+	radiation_repository.radiate(src, 50)
+
+// This meteor fries toasters.
+/obj/effect/meteor/emp
+	name = "conducting meteor"
+	icon_state = "glowing_blue"
+	desc = "Hide your floppies!"
+	meteordrop = /obj/item/weapon/ore/osmium
+	dropamt = 3
+	wall_power = 80
+
+/obj/effect/meteor/emp/meteor_effect(var/explode)
+	..()
+	// Best case scenario: Comparable to a low-yield EMP grenade.
+	// Worst case scenario: Comparable to a standard yield EMP grenade.
+	empulse(src, rand(1, 3), rand(2, 4), rand(3, 7), rand(5, 10))
 
 //Station buster Tunguska
 /obj/effect/meteor/tunguska
@@ -248,10 +297,12 @@
 	hitpwr = 1
 	heavy = 1
 	meteordrop = /obj/item/weapon/ore/phoron
+	wall_power = 150
 
-/obj/effect/meteor/tunguska/meteor_effect()
-	..(heavy)
-	explosion(src.loc, 5, 10, 15, 20, 0)
+/obj/effect/meteor/tunguska/meteor_effect(var/explode)
+	..()
+	if(explode)
+		explosion(src.loc, 5, 10, 15, 20, 0)
 
 /obj/effect/meteor/tunguska/Bump()
 	..()
