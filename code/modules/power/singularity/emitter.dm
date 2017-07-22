@@ -24,6 +24,9 @@
 	var/state = 0
 	var/locked = 0
 
+	var/burst_delay = 2
+	var/initial_fire_delay = 100
+
 	var/integrity = 80
 
 
@@ -269,13 +272,13 @@
 
 //R-UST port
 /obj/machinery/power/emitter/proc/get_initial_fire_delay()
-	return 100
+	return initial_fire_delay
 
 /obj/machinery/power/emitter/proc/get_rand_burst_delay()
 	return rand(min_burst_delay, max_burst_delay)
 
 /obj/machinery/power/emitter/proc/get_burst_delay()
-	return 2
+	return burst_delay
 
 /obj/machinery/power/emitter/proc/get_emitter_beam()
 	return new /obj/item/projectile/beam/emitter(get_turf(src))
