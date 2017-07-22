@@ -163,7 +163,7 @@ var/list/mechtoys = list(
 	proc/process()
 		points += points_per_process
 
-	//To stop things being sent to centcomm which should not be sent to centcomm. Recursively checks for these types.
+	//To stop things being sent to CentCom which should not be sent to centcomm. Recursively checks for these types.
 	proc/forbidden_atoms_check(atom/A)
 		if(istype(A,/mob/living))
 			return 1

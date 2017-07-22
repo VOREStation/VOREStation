@@ -256,7 +256,7 @@
 
 /obj/item/weapon/card/id/centcom
 	name = "\improper CentCom. ID"
-	desc = "An ID straight from Cent. Com."
+	desc = "An ID straight from Central Command."
 	icon_state = "centcom"
 	registered_name = "Central Command"
 	assignment = "General"
