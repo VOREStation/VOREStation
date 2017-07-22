@@ -39,6 +39,7 @@
 
 /obj/item/weapon/spell/projectile/overload/on_ranged_cast(atom/hit_atom, mob/living/user)
 	energy_cost_per_shot = round(core.max_energy * 0.10)
+	..()
 /*	var/energy_before_firing = core.energy
 	if(set_up(hit_atom, user))
 		var/obj/item/projectile/overload/P = new spell_projectile(get_turf(user))
