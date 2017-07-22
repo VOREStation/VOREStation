@@ -15,9 +15,44 @@
 	path = /obj/item/weapon/material/hatchet/tacknife/combatknife
 
 /datum/uplink_item/item/visible_weapons/energy_sword
-	name = "Energy Sword"
+	name = "Energy Sword, Random"
 	item_cost = 40
 	path = /obj/item/weapon/melee/energy/sword
+
+/datum/uplink_item/item/visible_weapons/energy_sword_blue
+	name = "Energy Sword, Blue"
+	item_cost = 40
+	path = /obj/item/weapon/melee/energy/sword/blue
+
+/datum/uplink_item/item/visible_weapons/energy_sword_green
+	name = "Energy Sword, Green"
+	item_cost = 40
+	path = /obj/item/weapon/melee/energy/sword/green
+
+/datum/uplink_item/item/visible_weapons/energy_sword_red
+	name = "Energy Sword, Red"
+	item_cost = 40
+	path = /obj/item/weapon/melee/energy/sword/red
+
+/datum/uplink_item/item/visible_weapons/energy_sword_purple
+	name = "Energy Sword, Purple"
+	item_cost = 40
+	path = /obj/item/weapon/melee/energy/sword/purple
+
+/datum/uplink_item/item/visible_weapons/energy_sword_pirate
+	name = "Energy Cutlass"
+	item_cost = 40
+	path = /obj/item/weapon/melee/energy/sword/pirate
+
+/datum/uplink_item/item/visible_weapons/claymore
+	name = "Claymore"
+	item_cost = 40
+	path = /obj/item/weapon/material/sword
+
+/datum/uplink_item/item/visible_weapons/katana
+	name = "Katana"
+	item_cost = 40
+	path = /obj/item/weapon/material/sword/katana
 
 /datum/uplink_item/item/visible_weapons/dartgun
 	name = "Dart Gun"
@@ -43,6 +78,21 @@
 	name = "Revolver"
 	item_cost = 70
 	path = /obj/item/weapon/gun/projectile/revolver
+
+/datum/uplink_item/item/visible_weapons/mateba
+	name = "Mateba"
+	item_cost = 70
+	path = /obj/item/weapon/gun/projectile/revolver/mateba
+
+/datum/uplink_item/item/visible_weapons/judge
+	name = "Judge"
+	item_cost = 70
+	path = /obj/item/weapon/gun/projectile/revolver/judge
+
+/datum/uplink_item/item/visible_weapons/lemat
+	name = "LeMat"
+	item_cost = 60
+	path = /obj/item/weapon/gun/projectile/revolver/lemat
 
 /datum/uplink_item/item/visible_weapons/Derringer
 	name = ".357 Derringer Pistol"
@@ -74,6 +124,11 @@
 	name = "Combat Shotgun"
 	item_cost = 75
 	path = /obj/item/weapon/gun/projectile/shotgun/pump/combat
+
+/datum/uplink_item/item/visible_weapons/leveraction
+	name = "Lever Action Rifle"
+	item_cost = 50
+	path = /obj/item/weapon/gun/projectile/shotgun/pump/rifle/lever
 
 /datum/uplink_item/item/visible_weapons/egun
 	name = "Energy Gun"
