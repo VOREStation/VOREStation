@@ -611,6 +611,13 @@
 	icon_state = "sepulchre_wings"
 	ckeys_allowed = list("sepulchre")
 
+/datum/sprite_accessory/tail/ketrai_wag
+	name = "ketrai tail (vwag)"
+	desc = ""
+	icon_state = "ketraitail"
+	ani_state = "ketraitail_w"
+	ckeys_allowed = list("ketrai")
+
 /datum/sprite_accessory/tail/feathered
 	name = "feathered wings, colorable"
 	desc = ""
