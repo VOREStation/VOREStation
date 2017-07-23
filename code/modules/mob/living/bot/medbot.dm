@@ -1,5 +1,5 @@
 /mob/living/bot/medbot
-	name = "Medbot"
+	name = "Medibot"
 	desc = "A little medical robot. He looks somewhat underwhelmed."
 	icon_state = "medibot0"
 	req_one_access = list(access_robotics, access_medical)
@@ -24,10 +24,27 @@
 	var/treatment_emag = "toxin"
 	var/declare_treatment = 0 //When attempting to treat a patient, should it notify everyone wearing medhuds?
 
+/mob/living/bot/medbot/mysterious
+	name = "\improper Mysterious Medibot"
+	desc = "International Medibot of mystery."
+	skin = "bezerk"
+	treatment_brute		= "bicaridine"
+	treatment_fire		= "dermaline"
+	treatment_oxy		= "dexalin"
+	treatment_tox		= "anti_toxin"
+
 /mob/living/bot/medbot/handleIdle()
 	if(vocal && prob(1))
-		var/message = pick("Radar, put a mask on!", "There's always a catch, and it's the best there is.", "I knew it, I should've been a plastic surgeon.", "What kind of medbay is this? Everyone's dropping like dead flies.", "Delicious!")
+		var/message_options = list(
+			"Radar, put a mask on!" = 'sound/voice/medbot/mradar.ogg',
+			"There's always a catch, and it's the best there is." = 'sound/voice/medbot/mcatch.ogg',
+			"I knew it, I should've been a plastic surgeon." = 'sound/voice/medbot/msurgeon.ogg',
+			"What kind of medbay is this? Everyone's dropping like flies." = 'sound/voice/medbot/mflies.ogg',
+			"Delicious!" = 'sound/voice/medbot/mdelicious.ogg'
+			)
+		var/message = pick(message_options)
 		say(message)
+		playsound(loc, message_options[message], 50, 0)
 
 /mob/living/bot/medbot/handleAdjacentTarget()
 	UnarmedAttack(target)
@@ -36,9 +53,15 @@
 	for(var/mob/living/carbon/human/H in view(7, src)) // Time to find a patient!
 		if(confirmTarget(H))
 			target = H
-			if(last_newpatient_speak + 300 < world.time)
-				var/message = pick("Hey, [H.name]! Hold on, I'm coming.", "Wait [H.name]! I want to help!", "[H.name], you appear to be injured!")
+			if(last_newpatient_speak + 30 SECONDS < world.time)
+				var/message_options = list(
+					"Hey, [H.name]! Hold on, I'm coming." = 'sound/voice/medbot/mcoming.ogg',
+					"Wait [H.name]! I want to help!" = 'sound/voice/medbot/mhelp.ogg',
+					"[H.name], you appear to be injured!" = 'sound/voice/medbot/minjured.ogg'
+					)
+				var/message = pick(message_options)
 				say(message)
+				playsound(loc, message_options[message], 50, 0)
 				custom_emote(1, "points at [H.name].")
 				last_newpatient_speak = world.time
 			break
@@ -56,17 +79,8 @@
 	if(busy)
 		return
 
-	if(H.stat == DEAD)
-		var/death_message = pick("No! NO!", "Live, damnit! LIVE!", "I... I've never lost a patient before. Not today, I mean.")
-		say(death_message)
-		target = null
-		return
-
 	var/t = confirmTarget(H)
 	if(!t)
-		var/message = pick("All patched up!", "An apple a day keeps me away.", "Feel better soon!")
-		say(message)
-		target = null
 		return
 
 	visible_message("<span class='warning'>[src] is trying to inject [H]!</span>")
@@ -81,6 +95,32 @@
 		else
 			H.reagents.add_reagent(t, injection_amount)
 		visible_message("<span class='warning'>[src] injects [H] with the syringe!</span>")
+
+	if(H.stat == DEAD) // This is down here because this proc won't be called again due to losing a target because of parent AI loop.
+		var/death_messages = list(
+			"No! Stay with me!" = 'sound/voice/medbot/mno.ogg',
+			"Live, damnit! LIVE!" = 'sound/voice/medbot/mlive.ogg',
+			"I... I've never lost a patient before. Not today, I mean." = 'sound/voice/medbot/mlost.ogg'
+			)
+		var/message = pick(death_messages)
+		say(message)
+		playsound(loc, death_messages[message], 50, 0)
+		target = null
+
+	// This is down here for the same reason as above.
+	else
+		t = confirmTarget(H)
+		if(!t)
+			var/possible_messages = list(
+				"All patched up!" = 'sound/voice/medbot/mpatchedup.ogg',
+				"An apple a day keeps me away." = 'sound/voice/medbot/mapple.ogg',
+				"Feel better soon!" = 'sound/voice/medbot/mfeelbetter.ogg'
+				)
+			var/message = pick(possible_messages)
+			say(message)
+			playsound(loc, possible_messages[message], 50, 0)
+			target = null
+
 	busy = 0
 	update_icons()
 
@@ -222,6 +262,9 @@
 	if(reagent_glass)
 		reagent_glass.loc = Tsec
 		reagent_glass = null
+
+	if(emagged && prob(25))
+		playsound(loc, 'sound/voice/medbot/minsult.ogg', 50, 0)
 
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(3, 1, src)

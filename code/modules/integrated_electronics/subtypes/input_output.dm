@@ -622,6 +622,31 @@
 	spawn_flags = IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_ILLEGAL = 1)
 
+/obj/item/integrated_circuit/output/sound/medbot
+	name = "medbot sound circuit"
+	desc = "A miniature speaker is attached to this component, used to annoy patients while they get pricked by a medbot."
+	sounds = list(
+		"surgeon"		= 'sound/voice/medbot/msurgeon.ogg',
+		"radar"			= 'sound/voice/medbot/mradar.ogg',
+		"feel better"	= 'sound/voice/medbot/mfeelbetter.ogg',
+		"patched up"	= 'sound/voice/medbot/mpatchedup.ogg',
+		"injured"		= 'sound/voice/medbot/minjured.ogg',
+		"insult"		= 'sound/voice/medbot/minsult.ogg',
+		"coming"		= 'sound/voice/medbot/mcoming.ogg',
+		"help"			= 'sound/voice/medbot/mhelp.ogg',
+		"live"			= 'sound/voice/medbot/mlive.ogg',
+		"lost"			= 'sound/voice/medbot/mlost.ogg',
+		"flies"			= 'sound/voice/medbot/mflies.ogg',
+		"catch"			= 'sound/voice/medbot/mcatch.ogg',
+		"delicious"		= 'sound/voice/medbot/mdelicious.ogg',
+		"apple"			= 'sound/voice/medbot/mapple.ogg',
+		"no"			= 'sound/voice/medbot/mno.ogg',
+		)
+	spawn_flags = IC_SPAWN_RESEARCH
+	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 1)
+
+//'sound/voice/medbot/mfeelbetter.ogg'
+
 /obj/item/integrated_circuit/output/video_camera
 	name = "video camera circuit"
 	desc = "This small camera allows a remote viewer to see what it sees."
