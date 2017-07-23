@@ -43,6 +43,31 @@
 	color = "#003333"
 	strength = 10
 
+//R-UST port
+// Produced during deuterium synthesis. Super poisonous, SUPER flammable (doesn't need oxygen to burn).
+/datum/reagent/toxin/phoroxygen
+	name = "Oxyphoron"
+	id = "oxyphoron"
+	description = "An exceptionally flammable molecule formed from deuterium synthesis."
+	strength = 80
+	var/fire_mult = 30
+
+/datum/reagent/toxin/phoroxygen/touch_mob(var/mob/living/L, var/amount)
+	if(istype(L))
+		L.adjust_fire_stacks(amount / fire_mult)
+
+/datum/reagent/toxin/phoroxygen/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+	M.take_organ_damage(0, removed * 0.1) //being splashed directly with oxyphoron causes minor chemical burns
+	if(prob(10 * fire_mult))
+		M.pl_effects()
+
+/datum/reagent/toxin/phoroxygen/touch_turf(var/turf/simulated/T)
+	if(!istype(T))
+		return
+	T.assume_gas("oxygen", ceil(volume/2), T20C)
+	T.assume_gas("phoron", ceil(volume/2), T20C)
+	remove_self(volume)
+
 /datum/reagent/toxin/spidertoxin
 	name = "Spidertoxin"
 	id = "spidertoxin"
