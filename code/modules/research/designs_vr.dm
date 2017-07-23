@@ -45,7 +45,7 @@
 	build_path = /obj/item/device/sleevemate
 	sort_string = "TAAAD"
 
-/datum/design/item/sleevemate
+/datum/design/item/bodysnatcher
 	name = "Body Snatcher"
 	id = "bodysnatcher"
 	req_tech = list(TECH_MAGNET = 3, TECH_BIO = 3, TECH_ILLEGAL = 2)
