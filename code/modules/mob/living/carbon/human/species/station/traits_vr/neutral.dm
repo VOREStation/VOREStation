@@ -38,3 +38,29 @@
 	cost = 0
 	var_changes = list("cold_discomfort_level" = T0C+21)
 	excludes = list(/datum/trait/cold_discomfort)
+
+/datum/trait/autohiss_unathi
+	name = "Autohiss (Unathi)"
+	desc = "You roll your S's and x's"
+	cost = 0
+	var_changes = list(
+	autohiss_basic_map = list(
+			"s" = list("ss", "sss", "ssss")
+		),
+	autohiss_extra_map = list(
+			"x" = list("ks", "kss", "ksss")
+		),
+	autohiss_exempt = list("Sinta'unathi"))
+
+	excludes = list(/datum/trait/autohiss_tajaran)
+
+/datum/trait/autohiss_tajaran
+	name = "Autohiss (Tajaran)"
+	desc = "You roll your R's."
+	cost = 0
+	var_changes = list(
+	autohiss_basic_map = list(
+			"r" = list("rr", "rrr", "rrrr")
+		),
+	autohiss_exempt = list("Siik"))
+	excludes = list(/datum/trait/autohiss_unathi)
