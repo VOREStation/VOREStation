@@ -18,13 +18,13 @@
 	cost = 0
 	var_changes = list("metabolic_rate" = 2)
 	excludes = list(/datum/trait/metabolism_up, /datum/trait/metabolism_down)
-
+/*
 /datum/trait/vore_numbing
 	name = "Prey Numbing"
 	desc = "Adds a 'Digest (Numbing)' belly mode, to douse prey in numbing enzymes during digestion."
 	cost = 0
 	var_changes = list("vore_numbing" = TRUE)
-
+*/
 /datum/trait/cold_discomfort
 	name = "Hot-Blooded"
 	desc = "You are too hot at the standard 20C. 18C is more suitable. Rolling down your jumpsuit or being unclothed helps."
