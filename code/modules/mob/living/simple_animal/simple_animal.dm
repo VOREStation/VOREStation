@@ -105,6 +105,7 @@
 	var/friendly = "nuzzles"		// What mobs do to people when they aren't really hostile
 	var/attack_sound = null			// Sound to play when I attack
 	var/environment_smash = 0		// How much environment damage do I do when I hit stuff?
+	var/melee_miss_chance = 25		// percent chance to miss a melee attack.
 
 	//Special attacks
 	var/spattack_prob = 0			// Chance of the mob doing a special attack (0 for never)
@@ -1117,9 +1118,18 @@
 /mob/living/simple_animal/proc/PunchTarget()
 	if(!Adjacent(target_mob))
 		return
+	sleep(rand(8) + 8)
 	if(isliving(target_mob))
 		var/mob/living/L = target_mob
-		L.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
+
+		if(prob(melee_miss_chance))
+			src.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [L.name] ([L.ckey])</font>")
+			L.attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [src.name] ([src.ckey])</font>")
+			src.visible_message("<span class='danger'>[src] misses [L]!</span>")
+			src.do_attack_animation(src)
+			return L
+		else
+			L.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
 		return L
 	if(istype(target_mob,/obj/mecha))
 		var/obj/mecha/M = target_mob
