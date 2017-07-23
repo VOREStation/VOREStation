@@ -72,20 +72,6 @@
 	else
 		RemoveHood_roiz()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //ketrai:Ketrai
 /obj/item/clothing/head/fluff/ketrai
 	name = "Pink Bear Hat"
