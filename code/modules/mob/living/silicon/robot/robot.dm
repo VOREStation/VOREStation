@@ -22,6 +22,8 @@
 	var/integrated_light_power = 6
 	var/datum/wires/robot/wires
 
+	can_be_antagged = TRUE
+
 //Icon stuff
 
 	var/icontype 				//Persistent icontype tracking allows for cleaner icon updates

@@ -32,6 +32,8 @@
 	var/has_reproduced
 	var/roundstart
 
+	can_be_antagged = TRUE
+
 /mob/living/simple_animal/borer/roundstart
 	roundstart = 1
 
