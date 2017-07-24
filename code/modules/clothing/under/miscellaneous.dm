@@ -206,7 +206,7 @@
 	icon_state = "really_black_suit_skirt"
 
 /obj/item/clothing/under/suit_jacket/female
-	name = "executive suit"
+	name = "female executive suit"
 	desc = "A formal trouser suit for women, intended for the station's finest."
 	icon_state = "black_suit_fem"
 	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
