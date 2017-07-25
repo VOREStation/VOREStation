@@ -642,6 +642,13 @@
 	icon_state = "sepulchre_wings"
 	ckeys_allowed = list("sepulchre")
 
+/datum/sprite_accessory/tail/ketrai_wag
+	name = "fennix tail (vwag)"
+	desc = ""
+	icon_state = "ketraitail"
+	ani_state = "ketraitail_w"
+	//ckeys_allowed = list("ketrai") //They requested it to be enabled for everyone.
+
 /datum/sprite_accessory/tail/feathered
 	name = "feathered wings, colorable"
 	desc = ""
