@@ -24,6 +24,17 @@
 
 */
 
+//ketrai:Ketrai
+/obj/item/clothing/head/fluff/ketrai
+	name = "Pink Bear Hat"
+	desc = "A pink space bear hat, the origins are unknown"
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "bearpelt"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "ketraibearpelt"
+
 //benemuel:Yuuko Shimmerpond
 /obj/item/clothing/under/fluff/sakura_hokkaido_kimono
 	name = "Sakura Kimono"
