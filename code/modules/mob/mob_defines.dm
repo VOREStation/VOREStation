@@ -153,7 +153,6 @@
 	var/voice_name = "unidentifiable voice"
 
 	var/faction = "neutral" //Used for checking whether hostile simple animals will attack you, possibly more stuff later
-	var/captured = 0 //Functionally, should give the same effect as being buckled into a chair when true. Only used by energy nets, TODO replace with buckling
 
 //Generic list for proc holders. Only way I can see to enable certain verbs/procs. Should be modified if needed.
 	var/proc_holder_list[] = list()//Right now unused.
@@ -209,3 +208,4 @@
 	var/list/active_genes=list()
 	var/mob_size = MOB_MEDIUM
 	var/disconnect_time = null		//Time of client loss, set by Logout(), for timekeeping
+	var/forbid_seeing_deadchat = FALSE // Used for lings to not see deadchat, and to have ghosting behave as if they were not really dead.

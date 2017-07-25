@@ -144,14 +144,16 @@
 //Huge scrubber
 /obj/machinery/portable_atmospherics/powered/scrubber/huge
 	name = "Huge Air Scrubber"
+	icon = 'icons/obj/atmos_vr.dmi' //VOREStation Edit - New Sprite
 	icon_state = "scrubber:0"
 	anchored = 1
-	volume = 50000
-	volume_rate = 5000
+	volume = 500000
+	volume_rate = 7000
 
 	use_power = 1
-	idle_power_usage = 500		//internal circuitry, friction losses and stuff
-	active_power_usage = 100000	//100 kW ~ 135 HP
+	idle_power_usage = 50		//internal circuitry, friction losses and stuff
+	active_power_usage = 1000	// Blowers running
+	power_rating = 100000	//100 kW ~ 135 HP
 
 	var/global/gid = 1
 	var/id = 0
@@ -183,12 +185,17 @@
 		update_icon()
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/process()
-	if(!on || (stat & (NOPOWER|BROKEN)))
-		update_use_power(0)
+	if(!anchored || (stat & (NOPOWER|BROKEN)))
+		on = 0
 		last_flow_rate = 0
 		last_power_draw = 0
-		return 0
-
+		update_icon()
+	var/new_use_power = 1 + on
+	if(new_use_power != use_power)
+		update_use_power(new_use_power)
+	if(!on)
+		return
+	
 	var/power_draw = -1
 
 	var/datum/gas_mixture/environment = loc.return_air()

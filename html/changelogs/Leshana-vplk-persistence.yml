@@ -1,0 +1,9 @@
+author: Leshana
+delete-after: True
+changes: 
+  - rscadd: "Enables round-to-round persistence of a few aspects of characters.  More accurately, it automates updating your character setup.  None of this code does anything you could not already do manually on the Character Setup screen, it simply does it automatically for you. ALL of these changes are optional, toggled on the VORE tab of character setup."
+  - rscadd: "Your late-join spawn location is determined by which cryo/elevator/etc you used to leave last time.  Departing thru the elevators will set your spawn location to elevators etc."
+  - rscadd: "Your weight is saved (also any extra or deficient nutrition is resolved into weight gain/loss)"
+  - rscadd: "Your limbs settings are updated based on your status at end of round (whether limbs are normal, missing, robotic, etc)"
+  - rscadd: "Your markings are saved so they will be the same as when they were at end of round."
+  - tweak: "Replaced hard coded numbers for weight gain with constant defines."

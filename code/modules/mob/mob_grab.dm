@@ -78,11 +78,14 @@
 		if(state >= GRAB_AGGRESSIVE)
 			animate(affecting, pixel_x = 0, pixel_y = 0, 4, 1)
 			return affecting
+
 	return null
 
 
 //This makes sure that the grab screen object is displayed in the correct hand.
-/obj/item/weapon/grab/proc/synch()
+/obj/item/weapon/grab/proc/synch() //why is this needed?
+	if(QDELETED(src))
+		return
 	if(affecting)
 		if(assailant.r_hand == src)
 			hud.screen_loc = ui_rhand
@@ -90,7 +93,7 @@
 			hud.screen_loc = ui_lhand
 
 /obj/item/weapon/grab/process()
-	if(gcDestroyed) // GC is trying to delete us, we'll kill our processing so we can cleanly GC
+	if(QDELETED(src)) // GC is trying to delete us, we'll kill our processing so we can cleanly GC
 		return PROCESS_KILL
 
 	confirm()
@@ -169,7 +172,7 @@
 			if(announce)
 				assailant.visible_message("<span class='warning'>[assailant] covers [affecting]'s eyes!</span>")
 			if(affecting.eye_blind < 3)
-				affecting.eye_blind = 3
+				affecting.Blind(3)
 
 /obj/item/weapon/grab/attack_self()
 	return s_click(hud)
@@ -220,6 +223,8 @@
 			animate(affecting, pixel_x =-shift, pixel_y = 0, 5, 1, LINEAR_EASING)
 
 /obj/item/weapon/grab/proc/s_click(obj/screen/S)
+	if(QDELETED(src))
+		return
 	if(!affecting)
 		return
 	if(state == GRAB_UPGRADING)
@@ -290,6 +295,8 @@
 	return 1
 
 /obj/item/weapon/grab/attack(mob/M, mob/living/user)
+	if(QDELETED(src))
+		return
 	if(!affecting)
 		return
 	if(world.time < (last_action + 20))
@@ -322,7 +329,7 @@
 					if(hit_zone == O_EYES)
 						attack_eye(affecting, assailant)
 					else if(hit_zone == BP_HEAD)
-						headbut(affecting, assailant)
+						headbutt(affecting, assailant)
 					else
 						dislocate(affecting, assailant, hit_zone)
 
@@ -335,7 +342,7 @@
 
 /obj/item/weapon/grab/dropped()
 	loc = null
-	if(!destroying)
+	if(!QDELETED(src))
 		qdel(src)
 
 /obj/item/weapon/grab/proc/reset_kill_state()
@@ -365,21 +372,26 @@
 				break_strength++
 			break_chance_table = list(3, 18, 45, 100)
 
+
+		if(GRAB_KILL)
+			grab_name = "stranglehold"
+			break_chance_table = list(5, 20, 40, 80, 100)
+
 	//It's easier to break out of a grab by a smaller mob
 	break_strength += max(size_difference(affecting, assailant), 0)
 
 	var/break_chance = break_chance_table[Clamp(break_strength, 1, break_chance_table.len)]
 	if(prob(break_chance))
-		if(grab_name)
+		if(state == GRAB_KILL)
+			reset_kill_state()
+			return
+		else if(grab_name)
 			affecting.visible_message("<span class='warning'>[affecting] has broken free of [assailant]'s [grab_name]!</span>")
 		qdel(src)
 
 //returns the number of size categories between affecting and assailant, rounded. Positive means A is larger than B
 /obj/item/weapon/grab/proc/size_difference(mob/A, mob/B)
 	return mob_size_difference(A.mob_size, B.mob_size)
-
-/obj/item/weapon/grab
-	var/destroying = 0
 
 /obj/item/weapon/grab/Destroy()
 	animate(affecting, pixel_x = 0, pixel_y = 0, 4, 1, LINEAR_EASING)
@@ -393,5 +405,4 @@
 		assailant = null
 	qdel(hud)
 	hud = null
-	destroying = 1 // stops us calling qdel(src) on dropped()
-	..()
+	return ..()

@@ -36,7 +36,7 @@
 		user << "<span class='warning'>Your [src.name] is already occupied.</span>"
 		return
 	user.visible_message("<span class='warning'>[hound.name] is ingesting [target.name] into their [src.name].</span>", "<span class='notice'>You start ingesting [target] into your [src]...</span>")
-	if(!patient && ishuman(target) && !target.buckled && do_after (user, 50))
+	if(!patient && ishuman(target) && !target.buckled && do_after (user, 50, target))
 
 		if(!proximity) return //If they moved away, you can't eat them.
 
@@ -119,6 +119,10 @@
 
 	dat += "<div class='statusDisplay'>"
 
+	if(istype(src, /obj/item/device/dogborg/sleeper/compactor))//garbage counter for trashpup
+		if(length(contents) > 0)
+			dat += "<font color='red'><B>Current load</B> [length(contents)] / 25.</font><BR>"
+
 	//Cleaning and there are still un-preserved items
 	if(cleaning && length(contents - items_preserved))
 		dat += "<font color='red'><B>Self-cleaning mode.</B> [length(contents - items_preserved)] object(s) remaining.</font><BR>"
@@ -132,7 +136,7 @@
 		dat += "<font color='red'>[length(items_preserved)] uncleanable object(s).</font><BR>"
 
 	if(!patient)
-		dat += "Sleeper Unoccupied"
+		dat += "[src.name] unoccupied"
 	else
 		dat += "[patient.name] => "
 
@@ -276,7 +280,7 @@
 			return(C)
 
 	//Cleaning looks better with red on, even with nobody in it
-	if(cleaning && !patient)
+	if((cleaning && !patient) || (length(contents) > 11))
 		hound.sleeper_r = 1
 		hound.sleeper_g = 0
 
@@ -307,7 +311,7 @@
 		update_patient()
 		return
 
-	if(prob(10))
+	if(prob(20))
 		var/churnsound = pick(
 			'sound/vore/digest1.ogg',
 			'sound/vore/digest2.ogg',
@@ -364,40 +368,76 @@
 				for(var/mob/hearer in range(1,src.hound))
 					hearer << deathsound
 				T << deathsound
-				//Spill(T) //TODOPOLARIS
+				if(is_vore_predator(T))
+					for (var/bellytype in T.vore_organs)
+						var/datum/belly/belly = T.vore_organs[bellytype]
+						for (var/obj/thing in belly.internal_contents)
+							thing.loc = src
+							belly.internal_contents -= thing
+						for (var/mob/subprey in belly.internal_contents)
+							subprey.loc = src
+							belly.internal_contents -= subprey
+							subprey << "As [T] melts away around you, you find yourself in [hound]'s [name]"
+				for(var/obj/item/I in T)
+					if(istype(I,/obj/item/organ/internal/mmi_holder/posibrain))
+						var/obj/item/organ/internal/mmi_holder/MMI = I
+						var/atom/movable/brain = MMI.removed()
+						if(brain)
+							hound.remove_from_mob(brain,src)
+							brain.forceMove(src)
+							items_preserved += brain
+					else
+						T.drop_from_inventory(I, src)
 				qdel(T)
 				src.update_patient()
 
 		//Handle the target being anything but a /mob/living/carbon/human
 		else
 			var/obj/T = target
-
-			//If the object is in the items_preserved global list //POLARISTODO
-
-			if(T.type in important_items)
-				src.items_preserved += T
-
-			//If the object is not one to preserve
-			else
-				//Special case for PDAs as they are dumb. TODO fix Del on PDAs to be less dumb.
-				if (istype(T, /obj/item/device/pda))
+			if(!(T in items_preserved))
+				if(T.type in important_items)
+					src.items_preserved += T
+					return
+				if(T in items_preserved)
+					return
+				//If the object is not one to preserve
+				if(istype(T, /obj/item/device/pda))
 					var/obj/item/device/pda/PDA = T
 					if (PDA.id)
-						PDA.id.loc = src
+						PDA.id.forceMove(src)
 						PDA.id = null
-					T.Del()
-
-				//Special case for IDs to make them digested
-			//else if (istype(T, /obj/item/weapon/card/id))
-				//var/obj/item/weapon/card/id/ID = T
-				//ID.digest() //Need the digest proc, first.
-
-				//Anything not perserved, PDA, or ID
-				else
-					//Spill(T) //Needs the spill proc to be added
+					src.hound.cell.charge += (50 * T.w_class)
+					contents -= T
 					qdel(T)
 					src.update_patient()
-					src.hound.cell.charge += 10
+				//Special case for IDs to make them digested
+				if(istype(T, /obj/item/weapon/card/id))
+					var/obj/item/weapon/card/id/ID = T
+					ID.desc = "A partially digested card that has seen better days.  Much of it's data has been destroyed."
+					ID.icon = 'icons/obj/card_vr.dmi'
+					ID.icon_state = "digested"
+					ID.access = list() // No access
+					src.items_preserved += ID
+					return
+				//Anything not preserved, PDA, or ID
+				else if(istype(T, /obj/item))
+					for(var/obj/item/SubItem in T)
+						if(istype(SubItem,/obj/item/weapon/storage/internal))
+							var/obj/item/weapon/storage/internal/SI = SubItem
+							for(var/obj/item/SubSubItem in SI)
+								SubSubItem.forceMove(src)
+							qdel(SI)
+						else
+							SubItem.forceMove(src)
+					src.hound.cell.charge += (50 * T.w_class)
+					contents -= T
+					qdel(T)
+					src.update_patient()
+				else
+					src.hound.cell.charge += 120
+					contents -= T
+					qdel(T)
+					src.update_patient()
 		return
 
 /obj/item/device/dogborg/sleeper/process()
@@ -431,7 +471,280 @@
 	name = "Brig-Belly"
 	desc = "Equipment for a K9 unit. A mounted portable-brig that holds criminals."
 	icon = 'icons/mob/dogborg_vr.dmi'
-	icon_state = "sleeper"
+	icon_state = "sleeperb"
 	inject_amount = 10
 	min_health = -100
 	injection_chems = null //So they don't have all the same chems as the medihound!
+
+/obj/item/device/dogborg/sleeper/compactor //Janihound gut.
+	name = "garbage processor"
+	desc = "A mounted garbage compactor unit with fuel processor."
+	icon = 'icons/mob/dogborg_vr.dmi'
+	icon_state = "compactor"
+	inject_amount = 10
+	min_health = -100
+	injection_chems = null //So they don't have all the same chems as the medihound!
+	var/max_item_count = 25
+
+/obj/item/device/dogborg/sleeper/compactor/afterattack(var/atom/movable/target, mob/living/silicon/user, proximity)//GARBO NOMS
+	hound = loc
+
+	if(!istype(target))
+		return
+	if(!proximity)
+		return
+	if(target.anchored)
+		return
+	if(target in hound.module.modules)
+		return
+	if(length(contents) > (max_item_count - 1))
+		user << "<span class='warning'>Your [src.name] is full. Eject or process contents to continue.</span>"
+		return
+
+	if(istype(target, /obj/item) || istype(target, /obj/effect/decal/remains))
+		var/obj/target_obj = target
+		if(target_obj.w_class > ITEMSIZE_LARGE)
+			user << "<span class='warning'>\The [target] is too large to fit into your [src.name]</span>"
+			return
+		user.visible_message("<span class='warning'>[hound.name] is ingesting [target.name] into their [src.name].</span>", "<span class='notice'>You start ingesting [target] into your [src.name]...</span>")
+		if(do_after(user, 30, target) && length(contents) < max_item_count)
+			target.forceMove(src)
+			user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [target.name] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [target] slips inside.</span>")
+			playsound(hound, 'sound/vore/gulp.ogg', 30, 1)
+			if(length(contents) > 11) //grow that tum after a certain junk amount
+				hound.sleeper_r = 1
+				hound.updateicon()
+		return
+
+	if(istype(target, /mob/living/simple_animal/mouse)) //Edible mice, dead or alive whatever. Mostly for carcass picking you cruel bastard :v
+		var/mob/living/simple_animal/trashmouse = target
+		user.visible_message("<span class='warning'>[hound.name] is ingesting [trashmouse] into their [src.name].</span>", "<span class='notice'>You start ingesting [trashmouse] into your [src.name]...</span>")
+		if(do_after(user, 30, trashmouse) && length(contents) < max_item_count)
+			trashmouse.forceMove(src)
+			trashmouse.reset_view(src)
+			user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [trashmouse] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [trashmouse] slips inside.</span>")
+			playsound(hound, 'sound/vore/gulp.ogg', 30, 1)
+			if(length(contents) > 11) //grow that tum after a certain junk amount
+				hound.sleeper_r = 1
+				hound.updateicon()
+		return
+
+	else if(ishuman(target))
+		var/mob/living/carbon/human/trashman = target
+		if(patient)
+			user << "<span class='warning'>Your [src.name] is already occupied.</span>"
+			return
+		if(trashman.buckled)
+			user << "<span class='warning'>[trashman] is buckled and can not be put into your [src.name].</span>"
+			return
+		user.visible_message("<span class='warning'>[hound.name] is ingesting [trashman] into their [src.name].</span>", "<span class='notice'>You start ingesting [trashman] into your [src.name]...</span>")
+		if(do_after(user, 30, trashman) && !patient && !trashman.buckled && length(contents) < max_item_count)
+			trashman.forceMove(src)
+			trashman.reset_view(src)
+			update_patient()
+			processing_objects.Add(src)
+			user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [trashman] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [trashman] slips inside.</span>")
+			playsound(hound, 'sound/vore/gulp.ogg', 80, 1)
+			hound.sleeper_r = 1
+			hound.updateicon()
+		return
+	return
+
+/mob/living/silicon/robot/attackby(obj/item/W as obj, mob/user as mob)
+	if (istype(W, /obj/item/weapon/handcuffs))
+		return
+	if(opened)
+		for(var/V in components)
+			var/datum/robot_component/C = components[V]
+			if(!C.installed && istype(W, C.external_type))
+				C.installed = 1
+				C.wrapped = W
+				C.install()
+				user.drop_item()
+				W.loc = null
+
+				var/obj/item/robot_parts/robot_component/WC = W
+				if(istype(WC))
+					C.brute_damage = WC.brute
+					C.electronics_damage = WC.burn
+
+				usr << "<font color='blue'>You install the [W.name].</font>"
+
+				return
+
+
+	if (istype(W, /obj/item/weapon/weldingtool))
+		if (src == user)
+			user << "<span class='warning'>You lack the reach to be able to repair yourself.</span>"
+			return
+
+		if (!getBruteLoss())
+			user << "Nothing to fix here!"
+			return
+		var/obj/item/weapon/weldingtool/WT = W
+		if (WT.remove_fuel(0))
+			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+			adjustBruteLoss(-30)
+			updatehealth()
+			add_fingerprint(user)
+			for(var/mob/O in viewers(user, null))
+				O.show_message(text("<span class='warning'>[user] has fixed some of the dents on [src]!</span>,"), 1)
+		else
+			user << "Need more welding fuel!"
+			return
+
+	else if(istype(W, /obj/item/stack/cable_coil) && (wiresexposed || istype(src,/mob/living/silicon/robot/drone)))
+		if (!getFireLoss())
+			user << "Nothing to fix here!"
+			return
+		var/obj/item/stack/cable_coil/coil = W
+		if (coil.use(1))
+			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+			adjustFireLoss(-30)
+			updatehealth()
+			for(var/mob/O in viewers(user, null))
+				O.show_message("<span class='warning'>\[user] has fixed some of the burnt wires on [src]</span>", 1)
+
+	else if (istype(W, /obj/item/weapon/crowbar))	// crowbar means open or close the cover
+		if(opened)
+			if(cell)
+				user << "You close the cover."
+				opened = 0
+				updateicon()
+			else if(wiresexposed && wires.IsAllCut())
+				//Cell is out, wires are exposed, remove MMI, produce damaged chassis, baleet original mob.
+				if(!mmi)
+					user << "\The [src] has no brain to remove."
+					return
+
+				user << "You jam the crowbar into the robot and begin levering [mmi]."
+				sleep(30)
+				user << "You damage some parts of the chassis, but eventually manage to rip out [mmi]!"
+				var/obj/item/robot_parts/robot_suit/C = new/obj/item/robot_parts/robot_suit(loc)
+				C.l_leg = new/obj/item/robot_parts/l_leg(C)
+				C.r_leg = new/obj/item/robot_parts/r_leg(C)
+				C.l_arm = new/obj/item/robot_parts/l_arm(C)
+				C.r_arm = new/obj/item/robot_parts/r_arm(C)
+				C.updateicon()
+				new/obj/item/robot_parts/chest(loc)
+				qdel(src)
+			else
+				// Okay we're not removing the cell or an MMI, but maybe something else?
+				var/list/removable_components = list()
+				for(var/V in components)
+					if(V == "power cell") continue
+					var/datum/robot_component/C = components[V]
+					if(C.installed == 1 || C.installed == -1)
+						removable_components += V
+
+				var/remove = input(user, "Which component do you want to pry out?", "Remove Component") as null|anything in removable_components
+				if(!remove)
+					return
+				var/datum/robot_component/C = components[remove]
+				var/obj/item/robot_parts/robot_component/I = C.wrapped
+				user << "You remove \the [I]."
+				if(istype(I))
+					I.brute = C.brute_damage
+					I.burn = C.electronics_damage
+
+				I.loc = src.loc
+
+				if(C.installed == 1)
+					C.uninstall()
+				C.installed = 0
+
+		else
+			if(locked)
+				user << "The cover is locked and cannot be opened."
+			else
+				user << "You open the cover."
+				opened = 1
+				updateicon()
+
+	else if (istype(W, /obj/item/weapon/cell) && opened)	// trying to put a cell inside
+		var/datum/robot_component/C = components["power cell"]
+		if(wiresexposed)
+			user << "Close the panel first."
+		else if(cell)
+			user << "There is a power cell already installed."
+		else if(W.w_class != ITEMSIZE_NORMAL)
+			user << "\The [W] is too [W.w_class < ITEMSIZE_NORMAL ? "small" : "large"] to fit here."
+		else
+			user.drop_item()
+			W.loc = src
+			cell = W
+			user << "You insert the power cell."
+
+			C.installed = 1
+			C.wrapped = W
+			C.install()
+			//This will mean that removing and replacing a power cell will repair the mount, but I don't care at this point. ~Z
+			C.brute_damage = 0
+			C.electronics_damage = 0
+
+	else if (istype(W, /obj/item/weapon/wirecutters) || istype(W, /obj/item/device/multitool))
+		if (wiresexposed)
+			wires.Interact(user)
+		else
+			user << "You can't reach the wiring."
+
+	else if(istype(W, /obj/item/weapon/screwdriver) && opened && !cell)	// haxing
+		wiresexposed = !wiresexposed
+		user << "The wires have been [wiresexposed ? "exposed" : "unexposed"]"
+		updateicon()
+
+	else if(istype(W, /obj/item/weapon/screwdriver) && opened && cell)	// radio
+		if(radio)
+			radio.attackby(W,user)//Push it to the radio to let it handle everything
+		else
+			user << "Unable to locate a radio."
+		updateicon()
+
+	else if(istype(W, /obj/item/device/encryptionkey/) && opened)
+		if(radio)//sanityyyyyy
+			radio.attackby(W,user)//GTFO, you have your own procs
+		else
+			user << "Unable to locate a radio."
+
+	else if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda)||istype(W, /obj/item/weapon/card/robot))			// trying to unlock the interface with an ID card
+		if(emagged)//still allow them to open the cover
+			user << "The interface seems slightly damaged"
+		if(opened)
+			user << "You must close the cover to swipe an ID card."
+		else
+			if(allowed(usr))
+				locked = !locked
+				user << "You [ locked ? "lock" : "unlock"] [src]'s interface."
+				updateicon()
+			else
+				user << "<span class='warning'>Access denied.</span>"
+
+	else if(istype(W, /obj/item/borg/upgrade/))
+		var/obj/item/borg/upgrade/U = W
+		if(!opened)
+			usr << "You must access the borgs internals!"
+		else if(!src.module && U.require_module)
+			usr << "The borg must choose a module before he can be upgraded!"
+		else if(U.locked)
+			usr << "The upgrade is locked and cannot be used yet!"
+		else
+			if(U.action(src))
+				usr << "You apply the upgrade to [src]!"
+				usr.drop_item()
+				U.loc = src
+			else
+				usr << "Upgrade error!"
+
+	else if(module_active && istype(module_active,/obj/item/device/dogborg/sleeper/compactor && user.a_intent == I_HELP)) //Feeding?
+		if(src == user)
+			return
+		if(user.a_intent == I_HELP)
+			var/obj/item/device/dogborg/sleeper/compactor/CR = module_active
+			user << "You attempt to feed [W] to [src]."
+			W.attackby(CR,src)
+
+
+	else
+		if( !(istype(W, /obj/item/device/robotanalyzer) || istype(W, /obj/item/device/healthanalyzer)) )
+			spark_system.start()
+		return ..()

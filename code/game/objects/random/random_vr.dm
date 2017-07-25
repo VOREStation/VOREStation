@@ -33,7 +33,7 @@
 					prob(10);/obj/item/weapon/melee/energy/sword,\
 					prob(9);/obj/item/weapon/gun/projectile/automatic/wt550/lethal,\
 					prob(9);/obj/item/weapon/gun/projectile/automatic/pdw,\
-					prob(9);/obj/item/weapon/gun/projectile/derringer,\
+					prob(9);/obj/item/weapon/gun/projectile/automatic/SMG_sol, \
 					prob(9);/obj/item/weapon/gun/energy/crossbow/largecrossbow,\
 					prob(9);/obj/item/weapon/gun/projectile/automatic/mini_uzi,\
 					prob(9);/obj/item/weapon/gun/projectile/pistol,\
@@ -41,13 +41,14 @@
 					prob(9);/obj/item/weapon/twohanded/fireaxe,\
 					prob(9);/obj/item/weapon/cane/concealed,\
 					prob(9);/obj/item/weapon/gun/energy/gun,\
-					prob(8);/obj/item/weapon/gun/energy/ionrifle,\
 					prob(8);/obj/item/weapon/gun/energy/retro,\
 					prob(8);/obj/item/weapon/gun/energy/gun/eluger,\
 					prob(8);/obj/item/weapon/gun/energy/xray,\
 					prob(8);/obj/item/weapon/gun/projectile/automatic/c20r,\
 					prob(8);/obj/item/weapon/gun/projectile/automatic/stg,\
 					prob(8);/obj/item/weapon/melee/energy/sword,\
+					prob(8);/obj/item/weapon/gun/projectile/derringer,\
+					prob(8);/obj/item/weapon/gun/projectile/revolver/lemat,\
 				/*	prob(8);/obj/item/weapon/gun/projectile/automatic/m41a,\ */
 					prob(7);/obj/item/weapon/gun/energy/captain,\
 					prob(7);/obj/item/weapon/gun/energy/sniperrifle,\
@@ -58,10 +59,12 @@
 					prob(7);/obj/item/weapon/gun/energy/gun/burst,\
 					prob(7);/obj/item/weapon/gun/projectile/shotgun/pump/unsc,\
 					prob(7);/obj/item/weapon/gun/projectile/deagle,\
+					prob(7);/obj/item/weapon/gun/projectile/revolver/consul,\
 					prob(7);/obj/item/weapon/gun/launcher/grenade,\
 					prob(6);/obj/item/weapon/gun/projectile/SVD,\
 					prob(6);/obj/item/weapon/gun/projectile/automatic/l6_saw,\
 					prob(6);/obj/item/weapon/gun/energy/lasercannon,\
+					prob(5);/obj/item/weapon/gun/projectile/shotgun/pump/rifle/lever,\
 					prob(5);/obj/item/weapon/gun/projectile/automatic/carbine,\
 					prob(5);/obj/item/weapon/gun/energy/pulse_rifle,\
 				/*	prob(4);/obj/item/weapon/gun/projectile/automatic/battlerifle,\ */
@@ -73,6 +76,7 @@
 					prob(1);/obj/item/weapon/gun/projectile/gyropistol,\
 					prob(1);/obj/item/weapon/gun/projectile/heavysniper,\
 					prob(1);/obj/item/weapon/plastique,\
+					prob(1);/obj/item/weapon/gun/energy/ionrifle,\
 					prob(1);/obj/item/weapon/material/sword,\
 					prob(1);/obj/item/weapon/cane/concealed,\
 					prob(1);/obj/item/weapon/material/sword/katana)
@@ -88,35 +92,36 @@
 	item_to_spawn()
 		return pick(prob(5);/obj/item/weapon/storage/box/shotgunammo,\
 					prob(5);/obj/item/weapon/storage/box/shotgunshells,\
-					prob(5);/obj/item/ammo_magazine/a357,\
-					prob(5);/obj/item/ammo_magazine/clip/a762,\
-					prob(5);/obj/item/ammo_magazine/c45m,\
-					prob(5);/obj/item/ammo_magazine/c45m/rubber,\
-					prob(5);/obj/item/ammo_magazine/c38,\
-					prob(5);/obj/item/ammo_magazine/c38/rubber,\
+					prob(5);/obj/item/ammo_magazine/s357,\
+					prob(5);/obj/item/ammo_magazine/clip/c762,\
+					prob(5);/obj/item/ammo_magazine/m45,\
+					prob(5);/obj/item/ammo_magazine/m45/rubber,\
+					prob(5);/obj/item/ammo_magazine/s38,\
+					prob(5);/obj/item/ammo_magazine/s38/rubber,\
 					prob(5);/obj/item/weapon/storage/box/flashbangs,\
-					prob(5);/obj/item/ammo_magazine/s762,\
-					prob(4);/obj/item/ammo_magazine/clip/a556,\
+					prob(5);/obj/item/ammo_magazine/m556,\
+					prob(4);/obj/item/ammo_magazine/clip/c556,\
 					prob(4);/obj/item/ammo_magazine/clip/c45,\
 					prob(4);/obj/item/ammo_magazine/clip/c9mm,\
-					prob(4);/obj/item/ammo_magazine/c45uzi,\
-					prob(4);/obj/item/ammo_magazine/c762,\
-					prob(4);/obj/item/ammo_magazine/mc9mm,\
-					prob(4);/obj/item/ammo_magazine/mc9mml,\
-					prob(4);/obj/item/ammo_magazine/mc9mmt,\
-					prob(4);/obj/item/ammo_magazine/mc9mmt/rubber,\
-					prob(4);/obj/item/ammo_magazine/a10mm,\
-					prob(4);/obj/item/ammo_magazine/p90,\
+					prob(4);/obj/item/ammo_magazine/m45uzi,\
+					prob(4);/obj/item/ammo_magazine/m556/ext,\
+					prob(4);/obj/item/ammo_magazine/m9mm,\
+					prob(4);/obj/item/ammo_magazine/m9mml,\
+					prob(4);/obj/item/ammo_magazine/m9mmt,\
+					prob(4);/obj/item/ammo_magazine/m9mmt/rubber,\
+					prob(4);/obj/item/ammo_magazine/m10mm,\
+					prob(4);/obj/item/ammo_magazine/m9mmp90,\
 				/*	prob(4);/obj/item/ammo_magazine/m14,\
 					prob(4);/obj/item/ammo_magazine/m14/large,\ */
-					prob(4);/obj/item/ammo_magazine/c762,\
-					prob(4);/obj/item/ammo_magazine/a556,\
-					prob(4);/obj/item/ammo_magazine/a556m,\
-					prob(3);/obj/item/ammo_magazine/clip/a10mm,\
-					prob(3);/obj/item/ammo_magazine/clip/a50,\
-					prob(3);/obj/item/ammo_magazine/s762,\
-					prob(2);/obj/item/ammo_magazine/a50,\
-					prob(2);/obj/item/ammo_magazine/a762,\
+					prob(4);/obj/item/ammo_magazine/m556/ext,\
+					prob(4);/obj/item/ammo_magazine/m762,\
+					prob(4);/obj/item/ammo_magazine/m762,\
+					prob(3);/obj/item/ammo_magazine/clip/c10mm,\
+					prob(3);/obj/item/ammo_magazine/clip/c44,\
+					prob(3);/obj/item/ammo_magazine/s44,\
+					prob(3);/obj/item/ammo_magazine/m556,\
+					prob(2);/obj/item/ammo_magazine/m44,\
+					prob(2);/obj/item/ammo_magazine/m556,\
 					prob(1);/obj/item/weapon/storage/box/frags,\
 				/*	prob(1);/obj/item/ammo_magazine/battlerifle,\ */
 					prob(1);/obj/item/ammo_casing/rocket,\
@@ -126,9 +131,9 @@
 					prob(1);/obj/item/weapon/storage/box/practiceshells,\
 					prob(1);/obj/item/weapon/storage/box/stunshells,\
 					prob(1);/obj/item/weapon/storage/box/blanks,\
-					prob(1);/obj/item/ammo_magazine/stg,\
-					prob(1);/obj/item/ammo_magazine/tommydrum,\
-					prob(1);/obj/item/ammo_magazine/tommymag
+					prob(1);/obj/item/ammo_magazine/mtg,\
+					prob(1);/obj/item/ammo_magazine/m45tommydrum,\
+					prob(1);/obj/item/ammo_magazine/m45tommy
 					)
 
 /obj/random/cargopod
@@ -156,3 +161,53 @@
 				prob(1);/obj/item/weapon/legcuffs,
 				prob(2);/obj/item/weapon/reagent_containers/syringe/drugs,
 				prob(1);/obj/item/weapon/reagent_containers/syringe/steroid)
+
+//A random thing so that the spawn_nothing_percentage can be used w/o duplicating code.
+/obj/random/trash_pile
+	name = "Random Trash Pile"
+	desc = "Hot Garbage."
+	icon = 'icons/obj/trash_piles.dmi'
+	icon_state = "randompile"
+	spawn_nothing_percentage = 0
+/obj/random/trash_pile/item_to_spawn()
+	return	/obj/structure/trash_pile
+
+/obj/random/outside_mob
+	name = "Random Mob"
+	desc = "Eek!"
+	icon = 'icons/mob/screen1.dmi'
+	icon_state = "x"
+	spawn_nothing_percentage = 10
+	var/faction = "wild animal"
+
+/obj/random/outside_mob/item_to_spawn() // Special version for mobs to have the same faction.
+	var/mob = pick(
+				prob(50);/mob/living/simple_animal/retaliate/gaslamp,
+				prob(50);/mob/living/simple_animal/otie/feral,
+				prob(20);/mob/living/simple_animal/hostile/dino/virgo3b,
+				prob(1);/mob/living/simple_animal/hostile/dragon/virgo3b)
+	if (istype(mob, /mob/living)) // This is just to prevent runtime errors in case some dev is a dumbass and puts invalid items into this.
+		var/mob/living/simple_animal/this_mob = mob
+		this_mob.faction = src.faction
+		if (this_mob.minbodytemp > 200) // Temporary hotfix. Eventually I'll add code to change all mob vars to fit the environment they are spawned in.
+			this_mob.minbodytemp = 200
+		return this_mob
+	else
+		return mob
+
+/obj/random/outside_mob/spawn_item()
+	..()
+	var/datum/map_z_level/z_level = get_z_level_datum(spawned_thing)
+	if(!istype(z_level, /datum/map_z_level/tether/wilderness))
+		return
+	if(!istype(spawned_thing, /mob/living/simple_animal))
+		return
+	var/datum/map_z_level/tether/wilderness/wilderness = z_level
+	if(wilderness.activated)
+		return
+	var/mob/living/simple_animal/M = spawned_thing
+	wilderness.frozen_mobs += M
+	M.life_disabled = 1
+	for(var/i = 1 to 20) //wander the mobs around so they aren't always in the same spots
+		step_rand(M)
+		sleep(2)

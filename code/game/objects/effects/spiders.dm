@@ -94,7 +94,7 @@
 		var/obj/item/organ/external/O = loc
 		O.implants -= src
 
-	..()
+	return ..()
 
 /obj/effect/spider/eggcluster/process()
 	amount_grown += rand(0,2)
@@ -105,7 +105,7 @@
 			O = loc
 
 		for(var/i=0, i<num, i++)
-			var/spiderling = PoolOrNew(/obj/effect/spider/spiderling, list(src.loc, src))
+			var/spiderling = new /obj/effect/spider/spiderling(src.loc, src)
 			if(O)
 				O.implants += spiderling
 		qdel(src)
@@ -138,7 +138,8 @@
 
 /obj/effect/spider/spiderling/Destroy()
 	processing_objects -= src
-	..()
+	walk(src, 0) // Because we might have called walk_to, we must stop the walk loop or BYOND keeps an internal reference to us forever.
+	return ..()
 
 /obj/effect/spider/spiderling/Bump(atom/user)
 	if(istype(user, /obj/structure/table))
@@ -148,7 +149,7 @@
 
 /obj/effect/spider/spiderling/proc/die()
 	visible_message("<span class='alert'>[src] dies!</span>")
-	PoolOrNew(/obj/effect/decal/cleanable/spiderling_remains, src.loc)
+	new /obj/effect/decal/cleanable/spiderling_remains(src.loc)
 	qdel(src)
 
 /obj/effect/spider/spiderling/healthcheck()

@@ -152,7 +152,10 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 				{{:value.name}}
 				</div>
 				<div class="itemContent">
-					<div style="float: left; width: 100%;">{{:value.address}}</div> {{:helper.link('Copy', 'pencil', {'copy' : value.address, 'switch_tab' : 2})}}
+					<div style="float: left; width: 100%;">{{:value.address}}</div> 
+					{{:helper.link('Copy', 'pencil', {'copy' : value.address, 'switch_tab' : 2})}} 
+					{{:helper.link('Call', 'phone', {'dial' : value.address, 'copy' : value.address, 'switch_tab' : 2})}} 
+					{{:helper.link('Msg', 'mail-closed', {'copy' : value.address, 'copy_name' : value.name, 'switch_tab' : 40})}}
 				</div>
 			</div>
 		{{/for}}

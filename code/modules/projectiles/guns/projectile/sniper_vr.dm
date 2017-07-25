@@ -17,12 +17,12 @@
 //	requires_two_hands = 1
 	one_handed_penalty = 4 // The weapon itself is heavy, and the long barrel makes it hard to hold steady with just one hand.
 	fire_sound = 'sound/weapons/SVD_shot.ogg'
-	magazine_type = /obj/item/ammo_magazine/s762
-	allowed_magazines = list(/obj/item/ammo_magazine/s762, /obj/item/ammo_magazine/c762)
+	magazine_type = /obj/item/ammo_magazine/m762
+	allowed_magazines = list(/obj/item/ammo_magazine/m762)
 
 /obj/item/weapon/gun/projectile/SVD/update_icon()
 	..()
-//	if(istype(ammo_magazine,/obj/item/ammo_magazine/c762)
+//	if(istype(ammo_magazine,/obj/item/ammo_magazine/m762)
 //		icon_state = "SVD-bigmag" //No icon for this exists yet.
 	if(ammo_magazine)
 		icon_state = "SVD"

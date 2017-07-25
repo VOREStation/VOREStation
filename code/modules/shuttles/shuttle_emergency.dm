@@ -1,5 +1,11 @@
 /datum/shuttle/ferry/emergency
-	//pass
+	category = /datum/shuttle/ferry/emergency
+
+/datum/shuttle/ferry/emergency/New()
+	if(emergency_shuttle.shuttle)
+		CRASH("An emergency shuttle has already been defined.")
+	emergency_shuttle.shuttle = src
+	..()
 
 /datum/shuttle/ferry/emergency/arrived()
 	if (istype(in_use, /obj/machinery/computer/shuttle_control/emergency))
@@ -29,7 +35,7 @@
 		var/estimated_time = round(emergency_shuttle.estimate_arrival_time()/60,1)
 
 		if (emergency_shuttle.evac)
-			priority_announcement.Announce(replacetext(replacetext(using_map.emergency_shuttle_leaving_dock, "%dock_name%", "[using_map.dock_name]"),  "%ETD%", "[estimated_time] minute\s"))
+			priority_announcement.Announce(replacetext(replacetext(using_map.emergency_shuttle_leaving_dock, "%dock_name%", "[using_map.dock_name]"),  "%ETA%", "[estimated_time] minute\s"))
 		else
 			priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_leaving_dock, "%dock_name%", "[using_map.dock_name]"),  "%ETA%", "[estimated_time] minute\s"))
 

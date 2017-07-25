@@ -304,6 +304,20 @@
 	desc = "A direction sign, pointing out which way the Cargo department is."
 	icon_state = "direction_crg"
 
+// VOREStation Edit - New signs for us
+/obj/structure/sign/directions/command
+	icon = 'icons/obj/decals_vr.dmi'
+	name = "\improper Command department"
+	desc = "A direction sign, pointing out which way the Command department is."
+	icon_state = "direction_cmd"
+
+/obj/structure/sign/directions/elevator
+	icon = 'icons/obj/decals_vr.dmi'
+	name = "\improper Space Elevator"
+	desc = "A direction sign, pointing out which way the Space Elevator is."
+	icon_state = "direction_elv"
+// VOREStation Edit End
+
 /obj/structure/sign/christmas/lights
 	name = "Christmas lights"
 	desc = "Flashy and pretty."
@@ -315,3 +329,341 @@
 	desc = "Prickly and festive."
 	icon = 'icons/obj/christmas.dmi'
 	icon_state = "doorwreath"
+
+//Eris signs
+
+/obj/structure/sign/ironhammer
+	icon = 'icons/obj/decals_vr.dmi'
+	name = "Ironhammer Security"
+	desc = "Sign depicts the symbolic of Ironhammer Security, the largest security provider within Trade Union of Hansa."
+	icon_state = "ironhammer"
+
+/obj/structure/sign/atmos_co2
+	icon = 'icons/obj/decals_vr.dmi'
+	name = "CO2 warning sign"
+	desc = "WARNING! CO2 flow tube. Ensure the flow is disengaged before working."
+	icon_state = "atmos_co2"
+
+/obj/structure/sign/atmos_n2o
+	icon = 'icons/obj/decals_vr.dmi'
+	name = "N2O warning sign"
+	desc = "WARNING! N2O flow tube. Ensure the flow is disengaged before working."
+	icon_state = "atmos_n2o"
+
+/obj/structure/sign/atmos_plasma
+	icon = 'icons/obj/decals_vr.dmi'
+	name = "Plasma warning sign"
+	desc = "WARNING! Plasma flow tube. Ensure the flow is disengaged before working."
+	icon_state = "atmos_plasma"
+
+/obj/structure/sign/atmos_n2
+	icon = 'icons/obj/decals_vr.dmi'
+	name = "N2 warning sign"
+	desc = "WARNING! N2 flow tube. Ensure the flow is disengaged before working."
+	icon_state = "atmos_n2"
+
+/obj/structure/sign/atmos_o2
+	icon = 'icons/obj/decals_vr.dmi'
+	name = "O2 warning sign"
+	desc = "WARNING! O2 flow tube. Ensure the flow is disengaged before working."
+	icon_state = "atmos_o2"
+
+/obj/structure/sign/atmos_air
+	icon = 'icons/obj/decals_vr.dmi'
+	name = "Air warning sign"
+	desc = "WARNING! Air flow tube. Ensure the flow is disengaged before working."
+	icon_state = "atmos_air"
+
+/obj/structure/sign/atmos_waste
+	icon = 'icons/obj/decals_vr.dmi'
+	name = "Atmos waste warning sign"
+	desc = "WARNING! Waste flow tube. Ensure the flow is disengaged before working."
+	icon_state = "atmos_waste"
+
+/obj/structure/sign/deck1
+	icon = 'icons/obj/decals_vr.dmi'
+	desc = "A silver sign which reads 'DECK I'."
+	name = "DECK I"
+	icon_state = "deck1"
+
+/obj/structure/sign/deck2
+	icon = 'icons/obj/decals_vr.dmi'
+	desc = "A silver sign which reads 'DECK II'."
+	name = "DECK II"
+	icon_state = "deck2"
+
+/obj/structure/sign/deck3
+	icon = 'icons/obj/decals_vr.dmi'
+	desc = "A silver sign which reads 'DECK III'."
+	name = "DECK III"
+	icon_state = "deck3"
+
+/obj/structure/sign/deck4
+	icon = 'icons/obj/decals_vr.dmi'
+	desc = "A silver sign which reads 'DECK IV'."
+	name = "DECK IV"
+	icon_state = "deck4"
+
+/obj/structure/sign/sec1
+	icon = 'icons/obj/decals_vr.dmi'
+	desc = "A silver sign which reads 'SECTION I'."
+	name = "SECTION I"
+	icon_state = "sec1"
+
+/obj/structure/sign/sec2
+	icon = 'icons/obj/decals_vr.dmi'
+	desc = "A silver sign which reads 'SECTION II'."
+	name = "SECTION II"
+	icon_state = "sec2"
+
+/obj/structure/sign/sec3
+	icon = 'icons/obj/decals_vr.dmi'
+	desc = "A silver sign which reads 'SECTION III'."
+	name = "SECTION III"
+	icon_state = "sec3"
+
+/obj/structure/sign/sec4
+	icon = 'icons/obj/decals_vr.dmi'
+	desc = "A silver sign which reads 'SECTION IV'."
+	name = "SECTION IV"
+	icon_state = "sec4"
+
+/obj/structure/sign/nanotrasen
+	icon = 'icons/obj/decals_vr.dmi'
+	name = "\improper NanoTrasen"
+	desc = "An old metal sign which reads 'NanoTrasen'."
+	icon_state = "NT"
+
+// Eris standards compliant hazards
+/obj/structure/sign/signnew
+	icon = 'icons/obj/decals_vr.dmi'
+
+/obj/structure/sign/signnew/biohazard
+	name = "BIOLOGICAL HAZARD"
+	desc = "Warning: Biological and-or toxic hazards present in this area!"
+	icon_state = "biohazard"
+
+/obj/structure/sign/signnew/corrosives
+	name = "CORROSIVE SUBSTANCES"
+	desc = "Warning: Corrosive substances prezent in this area!"
+	icon_state = "corrosives"
+
+/obj/structure/sign/signnew/explosives
+	name = "EXPLOSIVE SUBSTANCES"
+	desc = "Warning: Explosive substances present in this area!"
+	icon_state = "explosives"
+
+/obj/structure/sign/signnew/flammables
+	name = "FLAMMABLE SUBSTANCES"
+	desc = "Warning: Flammable substances present in this area!"
+	icon_state = "flammable"
+
+/obj/structure/sign/signnew/laserhazard
+	name = "LASER HAZARD"
+	desc = "Warning: High powered laser emitters operating in this area!"
+	icon_state = "laser"
+
+/obj/structure/sign/signnew/danger
+	name = "DANGEROUS AREA"
+	desc = "Warning: Generally hazardous area! Exercise caution."
+	icon_state = "danger"
+
+/obj/structure/sign/signnew/magnetics
+	name = "MAGNETIC FIELD HAZARD"
+	desc = "Warning: Extremely powerful magnetic fields present in this area!"
+	icon_state = "magnetics"
+
+/obj/structure/sign/signnew/opticals
+	name = "OPTICAL HAZARD"
+	desc = "Warning: Optical hazards present in this area!"
+	icon_state = "optical"
+
+/obj/structure/sign/signnew/radiation
+	name = "RADIATION HAZARD"
+	desc = "Warning: Significant levels of radiation present in this area!"
+	icon_state = "radiation"
+
+/obj/structure/sign/signnew/secure
+	name = "SECURE AREA"
+	desc = "Warning: Secure Area! Do not enter without authorization!"
+	icon_state = "secure"
+
+/obj/structure/sign/signnew/electrical
+	name = "ELECTRICAL HAZARD"
+	desc = "Warning: Electrical hazards! Wear protective equipment."
+	icon_state = "electrical"
+
+/obj/structure/sign/signnew/cryogenics
+	name = "CRYOGENIC TEMPERATURES"
+	desc = "Warning: Extremely low temperatures in this area."
+	icon_state = "cryogenics"
+
+/obj/structure/sign/signnew/canisters
+	name = "PRESSURIZED CANISTERS"
+	desc = "Warning: Highly pressurized canister storage."
+	icon_state = "canisters"
+
+/obj/structure/sign/signnew/oxidants
+	name = "OXIDIZING AGENTS"
+	desc = "Warning: Oxidizing agents in this area, do not start fires!"
+	icon_state = "oxidants"
+
+/obj/structure/sign/signnew/memetic
+	name = "MEMETIC HAZARD"
+	desc = "Warning: Memetic hazard, wear meson goggles!"
+	icon_state = "memetic"
+
+//Eris departments
+
+/obj/structure/sign/department
+	icon = 'icons/obj/decals_vr.dmi'
+	name = "department sign"
+	desc = "Sign of some important ship compartment."
+
+/obj/structure/sign/department/medbay
+	name = "MEDBAY"
+	icon_state = "medbay"
+
+/obj/structure/sign/department/virology
+	name = "VIROLOGY"
+	icon_state = "virology"
+
+/obj/structure/sign/department/chem
+	name = "CHEMISTRY"
+	icon_state = "chem"
+
+/obj/structure/sign/department/gene
+	name = "GENETICS"
+	icon_state = "gene"
+
+/obj/structure/sign/department/morgue
+	name = "MORGUE"
+	icon_state = "morgue"
+
+/obj/structure/sign/department/operational
+	name = "SURGERY"
+	icon_state = "operational"
+
+/obj/structure/sign/department/sci
+	name = "SCIENCE"
+	icon_state = "sci"
+
+/obj/structure/sign/department/xenolab
+	name = "XENOLAB"
+	icon_state = "xenolab"
+
+/obj/structure/sign/department/anomaly
+	name = "ANOMALYLAB"
+	icon_state = "anomaly"
+
+/obj/structure/sign/department/dock
+	name = "DOKUCHAYEV DOCK"
+	icon_state = "dock"
+
+/obj/structure/sign/department/rnd
+	name = "RND"
+	icon_state = "rnd"
+
+/obj/structure/sign/department/robo
+	name = "ROBOTICS"
+	icon_state = "robo"
+
+/obj/structure/sign/department/toxins
+	name = "TOXINS"
+	icon_state = "toxins"
+
+/obj/structure/sign/department/toxin_res
+	name = "TOXINLAB"
+	icon_state = "toxin_res"
+
+/obj/structure/sign/department/eva
+	name = "E.V.A."
+	icon_state = "eva"
+
+/obj/structure/sign/department/ass
+	name = "TOOL STORAGE"
+	icon_state = "ass"
+
+/obj/structure/sign/department/bar
+	name = "BAR"
+	icon_state = "bar"
+
+/obj/structure/sign/department/biblio
+	name = "LIBRARY"
+	icon_state = "biblio"
+
+/obj/structure/sign/department/chapel
+	name = "CHAPEL"
+	icon_state = "chapel"
+
+/obj/structure/sign/department/bridge
+	name = "BRIDGE"
+	icon_state = "bridge"
+
+/obj/structure/sign/department/telecoms
+	name = "TELECOMS"
+	icon_state = "telecoms"
+
+/obj/structure/sign/department/conference_room
+	name = "CONFERENCE"
+	icon_state = "conference_room"
+
+/obj/structure/sign/department/ai
+	name = "AI"
+	icon_state = "ai"
+
+/obj/structure/sign/department/cargo
+	name = "CARGO"
+	icon_state = "cargo"
+
+/obj/structure/sign/department/mail
+	name = "MAIL"
+	icon_state = "mail"
+
+/obj/structure/sign/department/miner_dock
+	name = "MINING DOCK"
+	icon_state = "miner_dock"
+
+/obj/structure/sign/department/cargo_dock
+	name = "CARGO DOCK"
+	icon_state = "cargo_dock"
+
+/obj/structure/sign/department/eng
+	name = "ENGINEERING"
+	icon_state = "eng"
+
+/obj/structure/sign/department/engine
+	name = "ENGINE"
+	icon_state = "engine"
+
+/obj/structure/sign/department/gravi
+	name = "GRAVGEN"
+	icon_state = "gravi"
+
+/obj/structure/sign/department/atmos
+	name = "ATMOSPHERICS"
+	icon_state = "atmos"
+
+/obj/structure/sign/department/shield
+	name = "SHIELDGEN"
+	icon_state = "shield"
+
+/obj/structure/sign/department/drones
+	name = "DRONES"
+	icon_state = "drones"
+
+/obj/structure/sign/department/interrogation
+	name = "INTERROGATION"
+	icon_state = "interrogation"
+
+/obj/structure/sign/department/commander
+	name = "COMMANDER"
+	icon_state = "commander"
+
+/obj/structure/sign/department/armory
+	name = "ARMORY"
+	icon_state = "armory"
+
+/obj/structure/sign/department/prison
+	name = "PRISON"
+	icon_state = "prison"

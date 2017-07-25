@@ -22,8 +22,8 @@ var/global/list/default_medbay_channels = list(
 )
 
 /obj/item/device/radio
-	icon = 'icons/obj/radio.dmi'
-	name = "station bounced radio"
+	icon = 'icons/obj/radio_vr.dmi' //VOREStation Edit
+	name = "shortwave radio" //VOREStation Edit
 	suffix = "\[3\]"
 	icon_state = "walkietalkie"
 	item_state = "radio"
@@ -65,10 +65,12 @@ var/global/list/default_medbay_channels = list(
 	..()
 	wires = new(src)
 	internal_channels = default_internal_channels.Copy()
+	listening_objects += src
 
 /obj/item/device/radio/Destroy()
 	qdel(wires)
 	wires = null
+	listening_objects -= src
 	if(radio_controller)
 		radio_controller.remove_object(src, frequency)
 		for (var/ch_name in channels)
@@ -360,6 +362,12 @@ var/global/list/default_medbay_channels = list(
   /* ###### Radio headsets can only broadcast through subspace ###### */
 
 	if(subspace_transmission)
+		var/list/jamming = is_jammed(src)
+		if(jamming)
+			var/distance = jamming["distance"]
+			to_chat(M,"<span class='danger'>\icon[src] You hear the [distance <= 2 ? "loud hiss" : "soft hiss"] of static.</span>")
+			return 0
+
 		// First, we want to generate a new radio signal
 		var/datum/signal/signal = new
 		signal.transmission_method = 2 // 2 would be a subspace transmission.
@@ -474,7 +482,6 @@ var/global/list/default_medbay_channels = list(
 
 
 /obj/item/device/radio/hear_talk(mob/M as mob, msg, var/verb = "says", var/datum/language/speaking = null)
-
 	if (broadcasting)
 		if(get_dist(src, M) <= canhear_range)
 			talk_into(M, msg,null,verb,speaking)
@@ -501,6 +508,8 @@ var/global/list/default_medbay_channels = list(
 	if (wires.IsIndexCut(WIRE_RECEIVE))
 		return -1
 	if(!listening)
+		return -1
+	if(is_jammed(src))
 		return -1
 	if(!(0 in level))
 		var/turf/position = get_turf(src)

@@ -2,7 +2,9 @@
 Title: Security Camera Console (Main content)
 Used In File(s): \code\game\machinery\computer\camera.dm
  -->
-{{:helper.link('Show Map', 'pin-s', {'showMap' : 1})}}
+{{if data.map_levels.length}}
+	{{:helper.link('Show Map', 'pin-s', {'showMap' : 1})}}
+{{/if}}
 {{:helper.link('Reset', 'refresh', {'reset' : 1})}}
 <div style="float:left;">
     <div class='item'>

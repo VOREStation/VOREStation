@@ -44,8 +44,7 @@ var/list/global/tank_gauge_cache = list()
 	return
 
 /obj/item/weapon/tank/Destroy()
-	if(air_contents)
-		qdel(air_contents)
+	qdel_null(air_contents)
 
 	processing_objects.Remove(src)
 
@@ -53,7 +52,7 @@ var/list/global/tank_gauge_cache = list()
 		var/obj/item/device/transfer_valve/TTV = loc
 		TTV.remove_tank(src)
 
-	..()
+	return ..()
 
 /obj/item/weapon/tank/examine(mob/user)
 	. = ..(user, 0)

@@ -20,6 +20,7 @@
 	melee_damage_upper = 15
 	attacktext = "pecked"
 
+	has_langs = list("Bird")
 	speak_chance = 0
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat

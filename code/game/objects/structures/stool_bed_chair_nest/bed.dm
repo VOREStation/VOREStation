@@ -20,6 +20,7 @@
 	var/material/material
 	var/material/padding_material
 	var/base_icon = "bed"
+	var/applies_material_colour = 1 //VOREStation Add - For special color beds/chairs
 
 /obj/structure/bed/New(var/newloc, var/new_material, var/new_padding_material)
 	..(newloc)
@@ -45,8 +46,9 @@
 	// Base icon.
 	var/cache_key = "[base_icon]-[material.name]"
 	if(isnull(stool_cache[cache_key]))
-		var/image/I = image('icons/obj/furniture.dmi', base_icon)
-		I.color = material.icon_colour
+		var/image/I = image(icon, base_icon) //VOREStation Edit
+		if(applies_material_colour) //VOREStation Add - Goes with added var
+			I.color = material.icon_colour
 		stool_cache[cache_key] = I
 	overlays |= stool_cache[cache_key]
 	// Padding overlay.
@@ -203,6 +205,7 @@
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "down"
 	anchored = 0
+	surgery_odds = 75
 
 /obj/structure/bed/roller/update_icon()
 	return // Doesn't care about material or anything else.
@@ -226,6 +229,7 @@
 	desc = "A collapsed roller bed that can be carried around."
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "folded"
+	slot_flags = SLOT_BACK
 	w_class = ITEMSIZE_LARGE // Can't be put in backpacks. Oh well.
 
 /obj/item/roller/attack_self(mob/user)

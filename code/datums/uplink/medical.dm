@@ -22,12 +22,12 @@
 /datum/uplink_item/item/medical/clotting
 	name = "Clotting Medicine injector"
 	item_cost = 10
-	path = /obj/item/weapon/reagent_containers/hypospray/autoinjector/clotting
+	path = /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/clotting
 
 /datum/uplink_item/item/medical/bonemeds
 	name = "Bone Repair injector"
 	item_cost = 10
-	path = /obj/item/weapon/reagent_containers/hypospray/autoinjector/bonemed
+	path = /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/bonemed
 
 /datum/uplink_item/item/medical/ambrosiadeusseeds
 	name = "Box of 7x ambrosia deus seed packets"

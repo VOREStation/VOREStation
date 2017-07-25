@@ -6,6 +6,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 /obj/item/integrated_circuit/examine(mob/user)
 	. = ..()
 	external_examine(user)
+	interact(user)
 
 // This should be used when someone is examining while the case is opened.
 /obj/item/integrated_circuit/proc/internal_examine(mob/user)
@@ -86,16 +87,14 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	var/HTML = list()
 	HTML += "<html><head><title>[src.name]</title></head><body>"
 	HTML += "<div align='center'>"
-	HTML += "<table border='1' style='undefined;table-layout: fixed; width: 424px'>"
+	HTML += "<table border='1' style='undefined;table-layout: fixed; width: 80%'>"
 
 	HTML += "<br><a href='?src=\ref[src];'>\[Refresh\]</a>  |  "
 	HTML += "<a href='?src=\ref[src];rename=1'>\[Rename\]</a>  |  "
+	HTML += "<a href='?src=\ref[src];scan=1'>\[Scan with Debugger\]</a>  |  "
 	HTML += "<a href='?src=\ref[src];remove=1'>\[Remove\]</a><br>"
 
 	HTML += "<colgroup>"
-	//HTML += "<col style='width: 121px'>"
-	//HTML += "<col style='width: 181px'>"
-	//HTML += "<col style='width: 122px'>"
 	HTML += "<col style='width: [table_edge_width]'>"
 	HTML += "<col style='width: [table_middle_width]'>"
 	HTML += "<col style='width: [table_edge_width]'>"
@@ -212,6 +211,16 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	if(href_list["rename"])
 		rename_component(usr)
 
+	if(href_list["scan"])
+		if(istype(held_item, /obj/item/device/integrated_electronics/debugger))
+			var/obj/item/device/integrated_electronics/debugger/D = held_item
+			if(D.accepting_refs)
+				D.afterattack(src, usr, TRUE)
+			else
+				to_chat(usr, "<span class='warning'>The Debugger's 'ref scanner' needs to be on.</span>")
+		else
+			to_chat(usr, "<span class='warning'>You need a Debugger set to 'ref' mode to do that.</span>")
+
 	if(href_list["autopulse"])
 		if(autopulse != -1)
 			autopulse = !autopulse
@@ -260,10 +269,10 @@ a creative player the means to solve many problems.  Circuits are held inside an
 		return TRUE // Battery has enough.
 	return FALSE // Not enough power.
 
-/obj/item/integrated_circuit/proc/check_then_do_work()
+/obj/item/integrated_circuit/proc/check_then_do_work(var/ignore_power = FALSE)
 	if(world.time < next_use) 	// All intergrated circuits have an internal cooldown, to protect from spam.
 		return
-	if(power_draw_per_use)
+	if(power_draw_per_use && !ignore_power)
 		if(!check_power())
 			power_fail()
 			return

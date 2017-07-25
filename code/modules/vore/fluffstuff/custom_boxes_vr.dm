@@ -37,8 +37,9 @@
 		/obj/item/clothing/suit/storage/det_suit/fluff/tasald,
 		/obj/item/clothing/suit/storage/det_suit/fluff/tas_coat,
 		/obj/item/clothing/under/det/fluff/tasald,
-		/obj/item/fluff/permit/tasald_corlethian,
-		/obj/item/weapon/gun/projectile/revolver/mateba/fluff/tasald_corlethian,
+		//Commented out since expired. Uncomment if renewed.
+		///obj/item/fluff/permit/tasald_corlethian,
+		///obj/item/weapon/gun/projectile/revolver/mateba/fluff/tasald_corlethian,
 		/obj/item/weapon/implanter/loyalty)
 
 //bwoincognito:Octavious Ward
@@ -162,20 +163,39 @@
 
 	New()
 		..() //Might look like a lot... but all small items.
-		new /obj/item/weapon/reagent_containers/hypospray/vr/fluff/aronai(src)
-		new /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff/aro_st(src)
-		new /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff/aro_bt(src)
-		new /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff/aro_bu(src)
-		new /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff/aro_tx(src)
 		//Centcom stuff and permit
 		new /obj/item/weapon/card/id/centcom/fluff/aronai(src)
 		new /obj/item/fluff/permit/aronai_kadigan(src)
-		//new /obj/item/clothing/under/rank/khi/fluff/aronai(src)
-		new /obj/item/clothing/glasses/omnihud/med/fluff/aronai(src)
 		//Gun and holster
-		new /obj/item/weapon/gun/projectile/khi/pistol(src)
-		//new /obj/item/ammo_magazine/c45m/flash(src)
-		new /obj/item/clothing/accessory/holster/leg(src)
+		new /obj/item/weapon/gun/projectile/nsfw(src)
+		new /obj/item/ammo_magazine/nsfw_mag(src)
+		new /obj/item/ammo_casing/nsfw_batt/stun(src)
+		new /obj/item/ammo_casing/nsfw_batt/stun(src)
+		new /obj/item/ammo_casing/nsfw_batt/net(src)
+		new /obj/item/clothing/accessory/holster(src)
+
+//Aerowing:Sebastian Aji
+/obj/item/weapon/storage/box/fluff/sebastian_aji
+	name = "Sebastian's Lumoco Arms P3 Box"
+	has_items = list(
+		/obj/item/weapon/gun/projectile/pistol,
+		/obj/item/ammo_magazine/m9mm/flash,
+		/obj/item/ammo_magazine/m9mm/flash,
+		/obj/item/fluff/permit/sebastian_aji)
+
+/obj/item/weapon/storage/box/fluff/briana_moore
+	name = "Briana's Derringer Box"
+	has_items = list(
+		/obj/item/weapon/gun/projectile/derringer/fluff/briana,
+		/obj/item/fluff/permit/briana_moore)
+
+//SilencedMP5A5:Serdykov Antoz
+/obj/item/weapon/storage/box/fluff/serdykov_antoz
+	name = "Serdy's Weapon Box"
+	has_items = list(
+		/obj/item/fluff/permit/silencedmp5a5,
+		/obj/item/weapon/gun/projectile/revolver/detective/fluff/serdy)
+
 
 /*
 Swimsuits, for general use, to avoid arriving to work with your swimsuit.

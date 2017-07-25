@@ -16,16 +16,12 @@
 #define MP_DEBUG(x)
 #endif
 
-// Set up player on login to a mob.
-// This means they get a new media manager every time they switch mobs!
-// Is this wasteful?  Granted switching mobs doesn't happen very often so maybe its fine.
-// TODO - While this direct override might technically be faster, probably better code to use observer or hooks ~Leshana
-/mob/Login()
+// Set up player on login.
+/client/New()
 	. = ..()
-	ASSERT(src.client)
-	src.client.media = new /datum/media_manager(src.client)
-	src.client.media.open()
-	src.client.media.update_music()
+	media = new /datum/media_manager(src)
+	media.open()
+	media.update_music()
 
 // Stop media when the round ends. I guess so it doesn't play forever or something (for some reason?)
 /hook/roundend/proc/stop_all_media()
@@ -63,7 +59,7 @@
 	set_new_volume(usr)
 
 /client/proc/set_new_volume(var/mob/user)
-	if(deleted(src.media) || !istype(src.media))
+	if(!QDELETED(src.media) || !istype(src.media))
 		to_chat(user, "<span class='warning'>You have no media datum to change, if you're not in the lobby tell an admin.</span>")
 		return
 	var/value = input("Choose your Jukebox volume.", "Jukebox volume", media.volume)

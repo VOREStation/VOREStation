@@ -13,11 +13,6 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	unacidable = 1//So effect are not targeted by alien acid.
 	pass_flags = PASSTABLE | PASSGRILLE
 
-/obj/effect/Destroy()
-	if(reagents)
-		reagents.delete()
-	return ..()
-
 /datum/effect/effect/system
 	var/number = 3
 	var/cardinals = 0
@@ -75,7 +70,7 @@ steam.start() -- spawns the effect
 			spawn(0)
 				if(holder)
 					src.location = get_turf(holder)
-				var/obj/effect/effect/steam/steam = PoolOrNew(/obj/effect/effect/steam, src.location)
+				var/obj/effect/effect/steam/steam = new /obj/effect/effect/steam(src.location)
 				var/direction
 				if(src.cardinals)
 					direction = pick(cardinal)
@@ -146,7 +141,7 @@ steam.start() -- spawns the effect
 			spawn(0)
 				if(holder)
 					src.location = get_turf(holder)
-				var/obj/effect/effect/sparks/sparks = PoolOrNew(/obj/effect/effect/sparks, src.location)
+				var/obj/effect/effect/sparks/sparks = new /obj/effect/effect/sparks(src.location)
 				src.total_sparks++
 				var/direction
 				if(src.cardinals)
@@ -184,8 +179,10 @@ steam.start() -- spawns the effect
 
 /obj/effect/effect/smoke/New()
 	..()
-	spawn (time_to_live)
-		qdel(src)
+	if(time_to_live)
+		spawn (time_to_live)
+			if(!QDELETED(src))
+				qdel(src)
 
 /obj/effect/effect/smoke/Crossed(mob/living/carbon/M as mob )
 	..()
@@ -283,7 +280,7 @@ steam.start() -- spawns the effect
 		spawn(0)
 			if(holder)
 				src.location = get_turf(holder)
-			var/obj/effect/effect/smoke/smoke = PoolOrNew(smoke_type, src.location)
+			var/obj/effect/effect/smoke/smoke = new smoke_type(src.location)
 			src.total_smoke++
 			smoke.color = I
 			var/direction = src.direction
@@ -334,7 +331,7 @@ steam.start() -- spawns the effect
 				var/turf/T = get_turf(src.holder)
 				if(T != src.oldposition)
 					if(isturf(T))
-						var/obj/effect/effect/ion_trails/I = PoolOrNew(/obj/effect/effect/ion_trails, src.oldposition)
+						var/obj/effect/effect/ion_trails/I = new /obj/effect/effect/ion_trails(src.oldposition)
 						src.oldposition = T
 						I.set_dir(src.holder.dir)
 						flick("ion_fade", I)
@@ -380,7 +377,7 @@ steam.start() -- spawns the effect
 			src.processing = 0
 			spawn(0)
 				if(src.number < 3)
-					var/obj/effect/effect/steam/I = PoolOrNew(/obj/effect/effect/steam, src.oldposition)
+					var/obj/effect/effect/steam/I = new /obj/effect/effect/steam(src.oldposition)
 					src.number++
 					src.oldposition = get_turf(holder)
 					I.set_dir(src.holder.dir)
@@ -420,7 +417,7 @@ steam.start() -- spawns the effect
 
 	start()
 		if (amount <= 2)
-			var/datum/effect/effect/system/spark_spread/s = PoolOrNew(/datum/effect/effect/system/spark_spread)
+			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
 			s.set_up(2, 1, location)
 			s.start()
 

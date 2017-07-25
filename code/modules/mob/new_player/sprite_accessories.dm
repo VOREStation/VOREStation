@@ -61,6 +61,10 @@
 		name = "Short Hair 2"
 		icon_state = "hair_shorthair3"
 
+	twintail
+		name = "Twintail"
+		icon_state = "hair_twintail"
+
 	cut
 		name = "Cut Hair"
 		icon_state = "hair_c"
@@ -201,6 +205,10 @@
 		name = "Bob"
 		icon_state = "hair_bobcut"
 		species_allowed = list("Human","Unathi")
+
+	bobcutalt
+		name = "Chin Length Bob"
+		icon_state = "hair_bobcutalt"
 
 	bun
 		name = "Bun"
@@ -357,6 +365,14 @@
 		name = "Hime Cut"
 		icon_state = "hair_himecut"
 
+	shorthime
+		name = "Short Hime Cut"
+		icon_state = "hair_shorthime"
+
+	grandebraid
+		name = "Grande Braid"
+		icon_state = "hair_grande"
+
 	mbraid
 		name = "Medium Braid"
 		icon_state = "hair_shortbraid"
@@ -364,6 +380,10 @@
 	braid2
 		name = "Long Braid"
 		icon_state = "hair_hbraid"
+
+	braid
+		name = "Floorlength Braid"
+		icon_state = "hair_braid"
 
 	odango
 		name = "Odango"
@@ -384,7 +404,7 @@
 	balding
 		name = "Balding Hair"
 		icon_state = "hair_e"
-		gender = MALE // turnoff!
+		gender = MALE
 
 	familyman
 		name = "The Family Man"
@@ -393,6 +413,10 @@
 	mahdrills
 		name = "Drillruru"
 		icon_state = "hair_drillruru"
+
+	fringetail
+		name = "Fringetail"
+		icon_state = "hair_fringetail"
 
 	dandypomp
 		name = "Dandy Pompadour"
@@ -525,9 +549,19 @@
 		icon_state = "hair_coffeehouse"
 		gender = MALE
 
-	undercut
+	undercut1
 		name = "Undercut"
-		icon_state = "hair_undercut"
+		icon_state = "hair_undercut1"
+		gender = MALE
+
+	undercut2
+		name = "Undercut Swept Right"
+		icon_state = "hair_undercut2"
+		gender = MALE
+
+	undercut3
+		name = "Undercut Swept Left"
+		icon_state = "hair_undercut3"
 		gender = MALE
 
 	partfade
@@ -535,7 +569,53 @@
 		icon_state = "hair_shavedpart"
 		gender = MALE
 
+	hightight
+		name = "High and Tight"
+		icon_state = "hair_hightight"
 
+	rowbun
+		name = "Row Bun"
+		icon_state = "hair_rowbun"
+
+	rowdualbraid
+		name = "Row Dual Braid"
+		icon_state = "hair_rowdualtail"
+
+	rowbraid
+		name = "Row Braid"
+		icon_state = "hair_rowbraid"
+
+	regulationmohawk
+		name = "Regulation Mohawk"
+		icon_state = "hair_shavedmohawk"
+
+	topknot
+		name = "Topknot"
+		icon_state = "hair_topknot"
+
+	ronin
+		name = "Ronin"
+		icon_state = "hair_ronin"
+
+	bowlcut2
+		name = "Bowl2"
+		icon_state = "hair_bowlcut2"
+
+	thinning
+		name = "Thinning"
+		icon_state = "hair_thinning"
+
+	thinningfront
+		name = "Thinning Front"
+		icon_state = "hair_thinningfront"
+
+	thinningback
+		name = "Thinning Back"
+		icon_state = "hair_thinningrear"
+
+	manbun
+		name = "Manbun"
+		icon_state = "hair_manbun"
 /*
 ///////////////////////////////////
 /  =---------------------------=  /
@@ -547,7 +627,6 @@
 /datum/sprite_accessory/facial_hair
 
 	icon = 'icons/mob/Human_face.dmi'
-	gender = MALE // barf (unless you're a dorf, dorfs dig chix /w beards :P)
 
 	shaved
 		name = "Shaved"
@@ -660,6 +739,13 @@
 		name = "Walrus Moustache"
 		icon_state = "facial_walrus"
 
+	croppedbeard
+		name = "Full Cropped Beard"
+		icon_state = "facial_croppedfullbeard"
+
+	chinless
+		name = "Chinless Beard"
+		icon_state = "facial_chinlessbeard"
 /*
 ///////////////////////////////////
 /  =---------------------------=  /
@@ -1021,9 +1107,13 @@
 		icon_state = "tat_campbell"
 		body_parts = list(BP_R_ARM)
 
+		left
+			name = "Tattoo (Campbell, L.Arm)"
+			body_parts = list(BP_L_ARM)
+
 	tat_tiger
 		name = "Tattoo (Tiger Stripes, Body)"
-		icon_state = "tat_campbell"
+		icon_state = "tat_tiger"
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN)
 
 	taj_paw_socks
@@ -1072,11 +1162,13 @@
 		name = "Color Patches"
 		icon_state = "patches"
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN)
+		species_allowed = list("Tajara")
 
 	patchesface
 		name = "Color Patches (Face)"
 		icon_state = "patchesface"
 		body_parts = list(BP_HEAD)
+		species_allowed = list("Tajara")
 
 	bands
 		name = "Color Bands"

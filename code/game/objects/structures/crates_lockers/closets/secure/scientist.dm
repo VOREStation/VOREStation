@@ -43,9 +43,10 @@
 		new /obj/item/weapon/cartridge/rd(src)
 		new /obj/item/clothing/shoes/white(src)
 		new /obj/item/clothing/shoes/leather(src)
-		new /obj/item/clothing/gloves/latex(src)
+		new /obj/item/clothing/gloves/sterile/latex(src)
 		new /obj/item/device/radio/headset/heads/rd(src)
 		new /obj/item/device/radio/headset/heads/rd/alt(src)
+		new /obj/item/weapon/bluespace_harpoon(src) //VOREStation Edit
 		new /obj/item/weapon/tank/air(src)
 		new /obj/item/clothing/mask/gas(src)
 		new /obj/item/device/flash(src)

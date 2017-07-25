@@ -16,14 +16,27 @@
 	melee_damage_upper = 25
 	attacktext = "bitten"
 	attack_sound = 'sound/weapons/bite.ogg'
-	minbodytemp = 270
+	minbodytemp = 200
 	maxbodytemp = 370
 	heat_damage_per_tick = 15
 	cold_damage_per_tick = 10
 	unsuitable_atoms_damage = 10
+
+	//Phoron dragons aren't affected by atmos.
+	min_oxy = 0
+	max_oxy = 0
+	min_tox = 0
+	max_tox = 0
+	min_co2 = 0
+	max_co2 = 0
+	min_n2 = 0
+	max_n2 = 0
 
 // Activate Noms!
 /mob/living/simple_animal/hostile/dino
 	vore_active = 1
 	swallowTime = 1 SECOND // Hungry little bastards.
 	vore_icons = SA_ICON_LIVING
+
+/mob/living/simple_animal/hostile/dino/virgo3b
+	faction = "virgo3b"

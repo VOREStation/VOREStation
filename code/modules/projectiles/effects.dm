@@ -226,8 +226,31 @@
 	light_color = "#00C6FF"
 
 //----------------------------
+// Dark matter stun
+//----------------------------
+
+/obj/effect/projectile/darkmatterstun/tracer
+	icon_state = "darkt"
+	light_range = 2
+	light_power = 0.5
+	light_color = "#8837A3"
+
+/obj/effect/projectile/darkmatterstun/muzzle
+	icon_state = "muzzle_darkt"
+	light_range = 2
+	light_power = 0.5
+	light_color = "#8837A3"
+
+/obj/effect/projectile/darkmatterstun/impact
+	icon_state = "impact_darkt"
+	light_range = 2
+	light_power = 0.5
+	light_color = "#8837A3"
+
+//----------------------------
 // Dark matter
 //----------------------------
+
 /obj/effect/projectile/darkmatter/tracer
 	icon_state = "darkb"
 	light_range = 2

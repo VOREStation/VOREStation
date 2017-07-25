@@ -32,7 +32,7 @@ datum/preferences/proc/set_biological_gender(var/gender)
 	pref.age                = sanitize_integer(pref.age, get_min_age(), get_max_age(), initial(pref.age))
 	pref.biological_gender  = sanitize_inlist(pref.biological_gender, get_genders(), pick(get_genders()))
 	pref.identifying_gender = (pref.identifying_gender in all_genders_define_list) ? pref.identifying_gender : pref.biological_gender
-	pref.real_name          = sanitize_name(pref.real_name, pref.species)
+	pref.real_name		= sanitize_name(pref.real_name, pref.species, is_FBP())
 	if(!pref.real_name)
 		pref.real_name      = random_name(pref.identifying_gender, pref.species)
 	pref.spawnpoint         = sanitize_inlist(pref.spawnpoint, spawntypes, initial(pref.spawnpoint))
@@ -76,7 +76,7 @@ datum/preferences/proc/set_biological_gender(var/gender)
 	if(href_list["rename"])
 		var/raw_name = input(user, "Choose your character's name:", "Character Name")  as text|null
 		if (!isnull(raw_name) && CanUseTopic(user))
-			var/new_name = sanitize_name(raw_name, pref.species)
+			var/new_name = sanitize_name(raw_name, pref.species, is_FBP())
 			if(new_name)
 				pref.real_name = new_name
 				return TOPIC_REFRESH

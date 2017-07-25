@@ -243,6 +243,7 @@ datum/preferences
 		load_preferences()
 		load_character()
 		attempt_vr(client.prefs_vr,"load_vore","") //VOREStation Edit
+		sanitize_preferences()
 	else if(href_list["load"])
 		if(!IsGuestKey(usr.key))
 			open_load_dialog(usr)
@@ -250,6 +251,7 @@ datum/preferences
 	else if(href_list["changeslot"])
 		load_character(text2num(href_list["changeslot"]))
 		attempt_vr(client.prefs_vr,"load_vore","") //VOREStation Edit
+		sanitize_preferences()
 		close_load_dialog(usr)
 	else if(href_list["resetslot"])
 		if("No" == alert("This will reset the current slot. Continue?", "Reset current slot?", "No", "Yes"))
@@ -274,7 +276,10 @@ datum/preferences
 
 	// Ask the preferences datums to apply their own settings to the new mob
 	player_setup.copy_to_mob(character)
-
+	
+	// VOREStation Edit - Sync up all their organs and species one final time
+	character.force_update_organs()
+	
 	if(icon_updates)
 		character.force_update_limbs()
 		character.update_mutations(0)

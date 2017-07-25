@@ -78,6 +78,10 @@ var/list/civilian_cartridges = list(
 	var/message2
 	var/list/stored_data = list()
 
+/obj/item/weapon/cartridge/Destroy()
+	qdel_null(radio)
+	return ..()
+
 /obj/item/weapon/cartridge/engineering
 	name = "\improper Power-ON cartridge"
 	icon_state = "cart-e"
@@ -163,10 +167,6 @@ var/list/civilian_cartridges = list(
 /obj/item/weapon/cartridge/signal/initialize()
     radio = new /obj/item/radio/integrated/signal(src)
     ..()
-
-/obj/item/weapon/cartridge/signal/Destroy()
-	qdel(radio)
-	..()
 
 /obj/item/weapon/cartridge/quartermaster
 	name = "\improper Space Parts & Space Vendors cartridge"

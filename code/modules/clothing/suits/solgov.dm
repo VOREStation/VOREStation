@@ -10,51 +10,52 @@
 	body_parts_covered = UPPER_TORSO|ARMS
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
+	flags_inv = HIDEHOLSTER //VOREStation Add - These obviously do.
 	allowed = list(/obj/item/weapon/tank/emergency/oxygen,/obj/item/device/flashlight,/obj/item/weapon/pen,/obj/item/clothing/head/soft,/obj/item/clothing/head/beret,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/device/taperecorder,/obj/item/device/analyzer,/obj/item/device/radio,/obj/item/taperoll)
 
 /obj/item/clothing/suit/storage/service/expeditionary
 	name = "\improper SifGuard jacket"
-	desc = "A uniform service jacket belonging to the Sif Homeguard Corps. It has silver buttons."
+	desc = "A uniform service jacket belonging to the Sif Defense Force. It has silver buttons."
 	icon_state = "blackservice_crew"
 
 /obj/item/clothing/suit/storage/service/expeditionary/medical
 	name = "\improper SifGuard medical jacket"
-	desc = "A uniform service jacket belonging to the Sif Homeguard Corps. It has silver buttons and blue trim."
+	desc = "A uniform service jacket belonging to the Sif Defense Force. It has silver buttons and blue trim."
 	icon_state = "blackservice_med"
 
 /obj/item/clothing/suit/storage/service/expeditionary/medical/command
 	name = "\improper SifGuard medical command jacket"
-	desc = "A uniform service jacket belonging to the Sif Homeguard Corps. It has gold buttons and blue trim."
+	desc = "A uniform service jacket belonging to the Sif Defense Force. It has gold buttons and blue trim."
 	icon_state = "blackservice_medcom"
 
 /obj/item/clothing/suit/storage/service/expeditionary/engineering
 	name = "\improper SifGuard engineering jacket"
-	desc = "A uniform service jacket belonging to the Sif Homeguard Corps. It has silver buttons and orange trim."
+	desc = "A uniform service jacket belonging to the Sif Defense Force. It has silver buttons and orange trim."
 	icon_state = "blackservice_eng"
 
 /obj/item/clothing/suit/storage/service/expeditionary/engineering/command
 	name = "\improper SifGuard engineering command jacket"
-	desc = "A uniform service jacket belonging to the Sif Homeguard Corps. It has gold buttons and orange trim."
+	desc = "A uniform service jacket belonging to the Sif Defense Force. It has gold buttons and orange trim."
 	icon_state = "blackservice_engcom"
 
 /obj/item/clothing/suit/storage/service/expeditionary/supply
 	name = "\improper SifGuard supply jacket"
-	desc = "A uniform service jacket belonging to the Sif Homeguard Corps. It has silver buttons and brown trim."
+	desc = "A uniform service jacket belonging to the Sif Defense Force. It has silver buttons and brown trim."
 	icon_state = "blackservice_sup"
 
 /obj/item/clothing/suit/storage/service/expeditionary/security
 	name = "\improper SifGuard security jacket"
-	desc = "A uniform service jacket belonging to the Sif Homeguard Corps. It has silver buttons and red trim."
+	desc = "A uniform service jacket belonging to the Sif Defense Force. It has silver buttons and red trim."
 	icon_state = "blackservice_sec"
 
 /obj/item/clothing/suit/storage/service/expeditionary/security/command
 	name = "\improper SifGuard security command jacket"
-	desc = "A uniform service jacket belonging to the Sif Homeguard Corps. It has gold buttons and red trim."
+	desc = "A uniform service jacket belonging to the Sif Defense Force. It has gold buttons and red trim."
 	icon_state = "blackservice_seccom"
 
 /obj/item/clothing/suit/storage/service/expeditionary/command
 	name = "\improper SifGuard command jacket"
-	desc = "A uniform service jacket belonging to the Sif Homeguard Corps. It has gold buttons and gold trim."
+	desc = "A uniform service jacket belonging to the Sif Defense Force. It has gold buttons and gold trim."
 	icon_state = "blackservice_com"
 
 /obj/item/clothing/suit/storage/service/marine
@@ -115,13 +116,13 @@
 	allowed = list(/obj/item/weapon/tank/emergency/oxygen,/obj/item/device/flashlight,/obj/item/clothing/head/soft,/obj/item/clothing/head/beret,/obj/item/device/radio,/obj/item/weapon/pen)
 
 /obj/item/clothing/suit/dress/expedition
-	name = "expeditionary dress jacket"
-	desc = "A silver and grey dress jacket belonging to the SCG Expeditionary Corps. Fashionable, for the 25th century at least."
+	name = "SifGuard dress jacket"
+	desc = "A silver and grey dress jacket belonging to the Sif Defense Force. Fashionable, for the 25th century at least."
 	icon_state = "greydress"
 
 /obj/item/clothing/suit/dress/expedition/command
-	name = "expeditionary command dress jacket"
-	desc = "A gold and grey dress jacket belonging to the SCG Expeditionary Corps. The height of fashion."
+	name = "SifGuard command dress jacket"
+	desc = "A gold and grey dress jacket belonging to the Sif Defense Force. The height of fashion."
 	icon_state = "greydress_com"
 
 /obj/item/clothing/suit/storage/toggle/dress
@@ -136,7 +137,7 @@
 	desc = "A crisp white SCG Fleet dress jacket with blue and gold accents. Don't get near pasta sauce or vox."
 
 /obj/item/clothing/suit/storage/toggle/dress/fleet/command
-	name = "expeditionary command dress jacket"
+	name = "fleet command dress jacket"
 	desc = "A crisp white SCG Fleet dress jacket dripping with gold accents. So bright it's blinding."
 	icon_state = "whitedress_com"
 	item_state = "labcoat"

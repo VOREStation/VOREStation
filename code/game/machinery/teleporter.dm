@@ -19,18 +19,24 @@
 
 /obj/machinery/computer/teleporter/initialize()
 	..()
-	var/obj/machinery/teleport/station/station = locate(/obj/machinery/teleport/station, get_step(src, dir))
+	var/obj/machinery/teleport/station/station
 	var/obj/machinery/teleport/hub/hub
-	if(station)
-		hub = locate(/obj/machinery/teleport/hub, get_step(station, dir))
+
+	// Search surrounding turfs for the station, and then search the station's surrounding turfs for the hub.
+	for(var/direction in cardinal)
+		station = locate(/obj/machinery/teleport/station, get_step(src, direction))
+		if(station)
+			for(direction in cardinal)
+				hub = locate(/obj/machinery/teleport/hub, get_step(station, direction))
+				if(hub)
+					break
+			break
 
 	if(istype(station))
 		station.com = hub
-		station.set_dir(dir)
 
 	if(istype(hub))
 		hub.com = src
-		hub.set_dir(dir)
 
 /obj/machinery/computer/teleporter/attackby(I as obj, mob/living/user as mob)
 	if(istype(I, /obj/item/weapon/card/data/))

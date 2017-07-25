@@ -11,9 +11,9 @@
 	//brute_mod = 1.15
 	//burn_mod =  1.15
 	//gluttonous = 1
-	num_alternate_languages = 2
-	secondary_langs = list("Sagaru")
-	name_language = "Sagaru"
+	num_alternate_languages = 3
+	secondary_langs = list(LANGUAGE_SAGARU)
+	name_language = LANGUAGE_SAGARU
 	color_mult = 1
 
 	min_age = 18
@@ -34,7 +34,7 @@
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
 	flesh_color = "#AFA59E"
-	base_color = "#333333"
+	base_color = "#777777"
 
 	reagent_tag = IS_SERGAL
 
@@ -57,7 +57,7 @@
 	//brute_mod = 1.15
 	//burn_mod =  1.15
 	//gluttonous = 1
-	num_alternate_languages = 2
+	num_alternate_languages = 3
 	secondary_langs = list(LANGUAGE_SKRELLIAN)
 	name_language = LANGUAGE_SKRELLIAN
 	color_mult = 1
@@ -79,10 +79,13 @@
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
 	flesh_color = "#AFA59E"
-	base_color = "#333333"
+	base_color = "#777777"
 	blood_color = "#1D2CBF"
 
 	reagent_tag = IS_AKULA
+
+/datum/species/akula/can_breathe_water()
+	return TRUE // Surprise, SHERKS.
 
 /datum/species/nevrean
 	name = "Nevrean"
@@ -97,9 +100,9 @@
 	//brute_mod = 1.15
 	//burn_mod =  1.15
 	//gluttonous = 1
-	num_alternate_languages = 2
-	secondary_langs = list("Birdsong")
-	name_language = "Birdsong"
+	num_alternate_languages = 3
+	secondary_langs = list(LANGUAGE_BIRDSONG)
+	name_language = LANGUAGE_BIRDSONG
 	color_mult = 1
 
 	min_age = 18
@@ -135,9 +138,9 @@
 	tail = "tail"
 	icobase_tail = 1
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
-	num_alternate_languages = 2
-	secondary_langs = list("Siik'tajr")
-	name_language = "Siik'tajr"
+	num_alternate_languages = 3
+	secondary_langs = list(LANGUAGE_SIIK)
+	name_language = LANGUAGE_SIIK
 
 	min_age = 18
 	max_age = 80
@@ -149,15 +152,7 @@
 	mountainous areas, they have a differing societal structure than the Flatland Zorren having a more feudal social structure, like the Flatland Zorren, \
 	the Highland Zorren have also only recently been hired by the Trans-Stellar Corporations, but thanks to the different social structure they seem to \
 	have adjusted better to their new lives. Though similar fox-like beings have been seen they are different than the Zorren."
-/* VOREStation Removal
-	cold_level_1 = 200 //Default 260
-	cold_level_2 = 140 //Default 200
-	cold_level_3 = 80 //Default 120
 
-	heat_level_1 = 330 //Default 360
-	heat_level_2 = 380 //Default 400
-	heat_level_3 = 800 //Default 1000
-*/
 	//primitive_form = "" //We don't have fox-monkey sprites.
 
 	spawn_flags = SPECIES_CAN_JOIN
@@ -180,9 +175,9 @@
 	tail = "tail"
 	icobase_tail = 1
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
-	num_alternate_languages = 2
-	secondary_langs = list("Siik'tajr")
-	name_language = "Siik'tajr"
+	num_alternate_languages = 3
+	secondary_langs = list(LANGUAGE_SIIK)
+	name_language = LANGUAGE_SIIK
 
 	min_age = 18
 	max_age = 80
@@ -194,15 +189,7 @@
 	mountainous areas, they have a differing societal structure than the Flatland Zorren having a more feudal social structure, like the Flatland Zorren, \
 	the Highland Zorren have also only recently been hired by the Trans-Stellar Corporations, but thanks to the different social structure they \
 	seem to have adjusted better to their new lives. Though similar fox-like beings have been seen they are different than the Zorren."
-/* VOREStation Removal
-	cold_level_1 = 280 //Default 260 - Lower is better
-	cold_level_2 = 220 //Default 200
-	cold_level_3 = 130 //Default 120
 
-	heat_level_1 = 430 //Default 360 - Higher is better
-	heat_level_2 = 500 //Default 400
-	heat_level_3 = 1100 //Default 1000
-*/
 	//primitive_form = "" //We don't have fennec-monkey sprites.
 	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
@@ -225,15 +212,15 @@
 	deform = 'icons/mob/human_races/r_vulpkanin.dmi'
 //	path = /mob/living/carbon/human/vulpkanin
 //	default_language = "Sol Common"
-	secondary_langs = list("Canilunzt")
-	name_language = "Canilunzt"
+	secondary_langs = list(LANGUAGE_CANILUNZT)
+	name_language = LANGUAGE_CANILUNZT
 	primitive_form = "Wolpin"
 	tail = "vulptail"
 	tail_animation = 'icons/mob/species/vulpkanin/tail.dmi' // probably need more than just one of each, but w/e
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	darksight = 5 //worse than cats, but better than lizards. -- Poojawa
 //	gluttonous = 1
-	num_alternate_languages = 2
+	num_alternate_languages = 3
 	color_mult = 1
 
 	blurb = "Vulpkanin are a species of sharp-witted canine-pideds residing on the planet Altam just barely within the \
@@ -283,8 +270,6 @@
 	flesh_color = "#201730"
 	base_color = "#201730"
 
-	//reagent_tag = IS_SERGAL //No specific reagent tag.
-
 	heat_discomfort_strings = list(
 		"Your chitin feels extremely warm.",
 		"You feel uncomfortably warm.",
@@ -311,15 +296,12 @@
 	min_age = 18
 
 /datum/species/teshari
+	mob_size = MOB_MEDIUM
 	spawn_flags = SPECIES_CAN_JOIN
 	min_age = 18
 
 /datum/species/shapeshifter/promethean
 	spawn_flags = SPECIES_CAN_JOIN
-
-/datum/species/teshari
-	mob_size = MOB_MEDIUM
-	min_age = 18
 
 /datum/species/human
 	color_mult = 1

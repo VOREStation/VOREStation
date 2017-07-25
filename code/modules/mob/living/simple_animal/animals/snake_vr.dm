@@ -17,7 +17,7 @@
 
 	melee_damage_lower = 3
 	melee_damage_upper = 5
-	attacktext = "bites"
+	attacktext = "bitten"
 
 	speak_chance = 1
 	speak_emote = list("hisses")

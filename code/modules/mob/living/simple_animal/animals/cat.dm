@@ -27,6 +27,7 @@
 	holder_type = /obj/item/weapon/holder/cat
 	mob_size = MOB_SMALL
 
+	has_langs = list("Cat")
 	speak_chance = 1
 	speak = list("Meow!","Esp!","Purr!","HSSSSS")
 	speak_emote = list("purrs", "meows")

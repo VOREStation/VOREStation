@@ -32,7 +32,6 @@
 				"I'll protect the forest! ... Where's the forest again?",
 				"All I need is my sword!",
 				"Awoo?",
-				"Fuckin' helmet keeps fogging up.",
 				"Anyone else smell that?")
 	emote_hear = list("awoooos!","hmms to herself","plays with her sword")
 	emote_see = list("narrows her eyes","sniffs the air")

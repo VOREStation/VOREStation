@@ -11,12 +11,12 @@
 	complexity = 20
 	w_class = ITEMSIZE_NORMAL
 	inputs = list(
-		"target X rel",
-		"target Y rel"
+		"\<NUM\> target X rel",
+		"\<NUM\> target Y rel"
 		)
 	outputs = list()
 	activators = list(
-		"fire"
+		"\<PULSE IN\> fire"
 	)
 	var/obj/item/weapon/gun/installed_gun = null
 	spawn_flags = IC_SPAWN_RESEARCH

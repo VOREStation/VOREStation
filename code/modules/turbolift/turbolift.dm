@@ -9,14 +9,73 @@
 	var/floor_wait_delay = 85                           // Time to wait at floor stops.
 	var/obj/structure/lift/panel/control_panel_interior // Lift control panel.
 	var/doors_closing = 0								// Whether doors are in the process of closing
+	var/list/music = null								// Elevator music to set on areas
+	var/priority_mode = FALSE							// Flag to block buttons from calling the elevator if in priority mode.
+	var/fire_mode = FALSE								// Flag to indicate firefighter mode is active.
 
 	var/tmp/moving_upwards
 	var/tmp/busy
 
 /datum/turbolift/proc/emergency_stop()
-	queued_floors.Cut()
+	cancel_pending_floors()
 	target_floor = null
-	open_doors()
+	if(!fire_mode)
+		open_doors()
+
+// Enter priority mode, blocking all calls for awhile
+/datum/turbolift/proc/priority_mode(var/time = 30 SECONDS)
+	priority_mode = TRUE
+	cancel_pending_floors()
+	update_ext_panel_icons()
+	control_panel_interior.audible_message("<span class='info'>This turbolift is responding to a priority call.  Please exit the lift when it stops and make way.</span>")
+	spawn(time)
+		priority_mode = FALSE
+		update_ext_panel_icons()
+
+/datum/turbolift/proc/update_fire_mode(var/new_fire_mode)
+	if(fire_mode == new_fire_mode)
+		return
+	fire_mode = new_fire_mode
+	if(new_fire_mode)
+		cancel_pending_floors()
+
+	// Turn the lights red and kill the music
+	for(var/datum/turbolift_floor/F in floors)
+		var/area/turbolift/A = locate(F.area_ref)
+		if(new_fire_mode)
+			if(A.forced_ambience)
+				A.forced_ambience.Cut()
+			A.fire_alert()
+		else
+			if(music)
+				A.forced_ambience = music.Copy()
+			A.fire_reset()
+		for(var/mob/living/M in mobs_in_area(A))
+			if(M.mind)
+				A.play_ambience(M)
+		// Disable safeties on the doors during firemode, reset when done
+		for(var/obj/machinery/door/airlock/door in F.doors)
+			door.safe = new_fire_mode ? FALSE : initial(door.safe)
+
+	// Disable safeties on the doors during firemode, reset when done
+	for(var/obj/machinery/door/airlock/door in doors)
+		door.safe = new_fire_mode ? FALSE : initial(door.safe)
+	update_ext_panel_icons()
+	control_panel_interior.update_icon()
+
+// Cancel all pending calls
+/datum/turbolift/proc/cancel_pending_floors()
+	for(var/datum/turbolift_floor/floor in queued_floors)
+		if(floor.ext_panel)
+			floor.ext_panel.reset()
+	queued_floors.Cut()
+	control_panel_interior.updateDialog()
+
+// Update the icons of all exterior panels (after we change modes etc)
+/datum/turbolift/proc/update_ext_panel_icons()
+	for(var/datum/turbolift_floor/floor in floors)
+		if(floor.ext_panel)
+			floor.ext_panel.update_icon()
 
 /datum/turbolift/proc/doors_are_open(var/datum/turbolift_floor/use_floor = current_floor)
 	for(var/obj/machinery/door/airlock/door in (use_floor ? (doors + use_floor.doors) : doors))
@@ -51,6 +110,7 @@
 			moving_upwards = 1
 		else
 			moving_upwards = 0
+		control_panel_interior.updateDialog()
 
 	if(doors_are_open())
 		if(!doors_closing)
@@ -59,7 +119,8 @@
 			return 1
 		else // We failed to close the doors - probably, someone is blocking them; stop trying to move
 			doors_closing = 0
-			open_doors()
+			if(!fire_mode)
+				open_doors()
 			control_panel_interior.audible_message("\The [current_floor.ext_panel] buzzes loudly.")
 			playsound(control_panel_interior.loc, "sound/machines/buzz-two.ogg", 50, 1)
 			return 0
@@ -93,12 +154,12 @@
 		return 0
 
 	for(var/turf/T in destination)
-		for(var/atom/movable/AM in T)
-			if(istype(AM, /mob/living))
-				var/mob/living/M = AM
-				M.gib()
-			else if(AM.simulated)
-				qdel(AM)
+		for(var/I in T)
+			if(istype(I, /mob/living))
+				var/mob/living/L = I
+				L.gib()
+			else if(istype(I,/obj))
+				qdel(I)
 
 	origin.move_contents_to(destination)
 
@@ -108,7 +169,7 @@
 	current_floor = next_floor
 	control_panel_interior.visible_message("The elevator [moving_upwards ? "rises" : "descends"] smoothly.")
 
-	return 1
+	return (next_floor.delay_time || move_delay || 30)
 
 /datum/turbolift/proc/queue_move_to(var/datum/turbolift_floor/floor)
 	if(!floor || !(floor in floors) || (floor in queued_floors))

@@ -6,6 +6,7 @@
 	exclaim_verb = "rustles"
 	colour = "soghun"
 	key = "q"
+	machine_understands = 0
 	flags = RESTRICTED
 	syllables = list("hs","zt","kr","st","sh")
 
@@ -18,11 +19,12 @@
 	name = LANGUAGE_ROOTGLOBAL
 	desc = "A complex language known instinctively by Dionaea, 'spoken' by emitting modulated radio waves. This version uses low frequency waves for slow communication at long ranges."
 	key = "w"
+	machine_understands = 0
 	flags = RESTRICTED | HIVEMIND
 
 /datum/language/unathi
 	name = LANGUAGE_UNATHI
-	desc = "The common language of Moghes, composed of sibilant hisses and rattles. Spoken natively by Unathi."
+	desc = "The common language of the Moghes Hegemony, composed of sibilant hisses and rattles. Spoken natively by Unathi."
 	speech_verb = "hisses"
 	ask_verb = "hisses"
 	exclaim_verb = "roars"
@@ -58,7 +60,7 @@
 	flags = WHITELISTED
 	syllables = list("mrr","rr","tajr","kir","raj","kii","mir","kra","ahk","nal","vah","khaz","jri","ran","darr",
 	"mi","jri","dynh","manq","rhe","zar","rrhaz","kal","chur","eech","thaa","dra","jurl","mah","sanu","dra","ii'r",
-	"ka","aasi","far","wa","baq","ara","qara","zir","sam","mak","hrar","nja","rir","khan","jun","dar","rik","kah",
+	"ka","aasi","far","wa","baq","ara","qara","zir","saam","mak","hrar","nja","rir","khan","jun","dar","rik","kah",
 	"hal","ket","jurl","mah","tul","cresh","azu","ragh","mro","mra","mrro","mrra")
 
 /datum/language/tajaran/get_random_name(var/gender)

@@ -6,7 +6,6 @@
 /obj/machinery/computer/power_monitor
 	name = "Power Monitoring Console"
 	desc = "Computer designed to remotely monitor power levels around the station"
-	icon = 'icons/obj/computer.dmi'
 	icon_keyboard = "power_key"
 	icon_screen = "power:0"
 	light_color = "#ffcc33"
@@ -27,7 +26,7 @@
 	if(alert != alerting)
 		alerting = !alerting
 		update_icon()
-
+/* VOREStation Move - Moved to VR File
 // Updates icon of this computer according to current status.
 /obj/machinery/computer/power_monitor/update_icon()
 	if(!(stat & (NOPOWER|BROKEN)))
@@ -36,7 +35,7 @@
 		else
 			icon_screen = "power:0"
 	..()
-
+*/
 // On creation automatically connects to active sensors. This is delayed to ensure sensors already exist.
 /obj/machinery/computer/power_monitor/New()
 	..()

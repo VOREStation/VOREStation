@@ -32,10 +32,16 @@
 	req_components = list(
 							/obj/item/stack/cable_coil = 2,
 							/obj/item/weapon/stock_parts/scanning_module = 2,
-							/obj/item/weapon/stock_parts/manipulator = 2,	
+							/obj/item/weapon/stock_parts/manipulator = 2,
 							/obj/item/weapon/stock_parts/console_screen = 1)
 
 /obj/item/weapon/circuitboard/resleeving_control
 	name = T_BOARD("resleeving control console")
 	build_path = /obj/machinery/computer/transhuman/resleeving
+	origin_tech = list(TECH_DATA = 5)
+
+
+/obj/item/weapon/circuitboard/body_designer
+	name = T_BOARD("body design console")
+	build_path = /obj/machinery/computer/transhuman/designer
 	origin_tech = list(TECH_DATA = 5)

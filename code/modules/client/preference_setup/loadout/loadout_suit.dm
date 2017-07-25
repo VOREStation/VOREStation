@@ -1,7 +1,7 @@
 // Suit slot
 /datum/gear/suit
 	display_name = "apron, blue"
-	path = /obj/item/clothing/suit/apron
+	path = /obj/item/clothing/suit/storage/apron
 	slot = slot_wear_suit
 	sort_category = "Suits and Overwear"
 	cost = 2
@@ -118,6 +118,10 @@
 	display_name = "labcoat, blue"
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/blue
 
+/datum/gear/suit/labcoat/blue_edge
+	display_name = "labcoat, blue-edged"
+	path = /obj/item/clothing/suit/storage/toggle/labcoat/blue_edge
+
 /datum/gear/suit/labcoat/green
 	display_name = "labcoat, green"
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/green
@@ -147,9 +151,14 @@
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/emt
 	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist")
 
+/datum/gear/suit/roles/surgical_apron
+	display_name = "surgical apron"
+	path = /obj/item/clothing/suit/surgicalapron
+	allowed_roles = list("Medical Doctor","Chief Medical Officer")
+
 /datum/gear/suit/overalls
 	display_name = "overalls"
-	path = /obj/item/clothing/suit/apron/overalls
+	path = /obj/item/clothing/suit/storage/apron/overalls
 	cost = 1
 
 /datum/gear/suit/poncho
@@ -375,3 +384,45 @@
 /datum/gear/suit/miscellaneous/med_dep_jacket
 	display_name = "department jacket, medical"
 	path = /obj/item/clothing/suit/storage/toggle/med_dep_jacket
+
+/datum/gear/suit/miscellaneous/peacoat
+	display_name = "peacoat"
+	path = /obj/item/clothing/suit/storage/toggle/peacoat
+
+/datum/gear/suit/miscellaneous/peacoat/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/suit/snowsuit
+	display_name = "snowsuit"
+	path = /obj/item/clothing/suit/storage/snowsuit
+
+/datum/gear/suit/snowsuit/command
+	display_name = "snowsuit, command"
+	path = /obj/item/clothing/suit/storage/snowsuit/command
+	allowed_roles = list("Colony Director","Research Director","Head of Personnel","Head of Security","Chief Engineer","Command Secretary")
+
+/datum/gear/suit/snowsuit/security
+	display_name = "snowsuit, security"
+	path = /obj/item/clothing/suit/storage/snowsuit/security
+	allowed_roles = list("Security Officer", "Head of Security", "Warden", "Detective")
+
+/datum/gear/suit/snowsuit/medical
+	display_name = "snowsuit, medical"
+	path = /obj/item/clothing/suit/storage/snowsuit/medical
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist")
+
+/datum/gear/suit/snowsuit/science
+	display_name = "snowsuit, science"
+	path = /obj/item/clothing/suit/storage/snowsuit/science
+	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist")
+
+/datum/gear/suit/snowsuit/engineering
+	display_name = "snowsuit, engineering"
+	path = /obj/item/clothing/suit/storage/snowsuit/engineering
+	allowed_roles = list("Chief Engineer","Atmospheric Technician", "Station Engineer")
+
+/datum/gear/suit/snowsuit/cargo
+	display_name = "snowsuit, supply"
+	path = /obj/item/clothing/suit/storage/snowsuit/cargo
+	allowed_roles = list("Quartermaster","shaft Miner","Cargo Technician","Head of Personnel")

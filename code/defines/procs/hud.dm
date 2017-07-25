@@ -4,6 +4,7 @@ the HUD updates properly! */
 
 // hud overlay image type, used for clearing client.images precisely
 /image/hud_overlay
+	appearance_flags = APPEARANCE_UI // Don't get scaled with macro/micros.  VOREStation edit
 
 //Medical HUD outputs. Called by the Life() proc of the mob using it, usually.
 proc/process_med_hud(var/mob/M, var/local_scanner, var/mob/Alt)
@@ -75,6 +76,7 @@ mob/proc/handle_regular_hud_updates() //Used in the life.dm of mobs that can use
 	eng_hud_users -= src
 	sci_hud_users -= src
 	gen_hud_users -= src
+	if(vantag_hud) process_vantag_hud(src) //VOREStation Add - So any mob can have the vantag hud, observer or not.
 	//VOREStation Add End
 mob/proc/in_view(var/turf/T)
 	return view(T)

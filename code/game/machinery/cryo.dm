@@ -96,7 +96,7 @@
 		occupantData["name"] = occupant.name
 		occupantData["stat"] = occupant.stat
 		occupantData["health"] = occupant.health
-		occupantData["maxHealth"] = occupant.maxHealth
+		occupantData["maxHealth"] = occupant.getMaxHealth()
 		occupantData["minHealth"] = config.health_threshold_dead
 		occupantData["bruteLoss"] = occupant.getBruteLoss()
 		occupantData["oxyLoss"] = occupant.getOxyLoss()

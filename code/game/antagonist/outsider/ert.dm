@@ -25,6 +25,8 @@ var/datum/antagonist/ert/ert
 	initial_spawn_req = 5
 	initial_spawn_target = 7
 
+	can_use_aooc = FALSE // They're the good guys.
+
 /datum/antagonist/ert/create_default(var/mob/source)
 	var/mob/living/carbon/human/M = ..()
 	if(istype(M)) M.age = rand(25,45)

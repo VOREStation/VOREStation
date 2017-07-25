@@ -295,7 +295,8 @@
 			rm_controller.dbg("ZM(p): Got a mob spawnpoint, so picking a type.")
 			var/mobchoice = pick(rm_controller.mobs["tier[rm_controller.diffstep]"])
 			rm_controller.dbg("ZM(p): Picked [mobchoice] to spawn.")
-			var/newmob = new mobchoice(get_turf(SP))
+			var/mob/living/newmob = new mobchoice(get_turf(SP))
+			newmob.faction = "asteroid_belt"
 			spawned_mobs += newmob
 			if(delay)
 				sleep(delay)

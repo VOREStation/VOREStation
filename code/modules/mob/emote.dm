@@ -34,11 +34,21 @@
 		var/list/m_viewers = in_range["mobs"]
 		var/list/o_viewers = in_range["objs"]
 
-		for(var/mob/M in m_viewers)
+		for(var/mob in m_viewers)
+			var/mob/M = mob
 			spawn(0) // It's possible that it could be deleted in the meantime, or that it runtimes.
 				if(M)
-					M.show_message(message, m_type)
-		for(var/obj/O in o_viewers)
+					//VOREStation edit
+					if(istype(M, /mob/observer/dead/))
+						var/mob/observer/dead/D = M
+						if(ckey || (src in view(D)))
+							M.show_message(message, m_type)
+					else
+						M.show_message(message, m_type)
+					//End VOREStation edit
+
+		for(var/obj in o_viewers)
+			var/obj/O = obj
 			spawn(0)
 				if(O)
 					O.see_emote(src, message, m_type)

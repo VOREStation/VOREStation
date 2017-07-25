@@ -21,6 +21,7 @@
 					<li><a href="#Foreword">Foreword: A Licensed Technology</a></li>
 					<li><a href="#Implant">The Mindstate Backup Implant</a></li>
 					<li><a href="#Usage">How to Perform Resleeving</a></li>
+					<li><a href="#Cards">How to Utilize Sleevecards</a></li>
 					<li><a href="#Considerations">Special Considerations</a></li>
 				</ol>
 				<br>
@@ -57,6 +58,16 @@
 				</ol>
 				Being resleeved can be a disorienting and painful process. It is very likely that the person will need to acclimate to their new body, and should be given a place to rest for several minutes while
 				they get used to their motor functions. Resleeving tends to remap these, so it may take a while for the person to become fully acclimated driving their new body.<br>
+				<a href="#Contents">Contents</a>
+
+				<h1><a name="Cards">How to Utilize Sleevecards</a></h1>
+				A Sleevecard is a small portable device capable of running a human-intelligence mind and providing limited mobility. The reasons for using a
+				sleevecard for a mind can be numerous, such as the person lacking a complete body scan to restore their body from, restoring persons at high-risk of
+				self-harm for counseling in a form more easily restrained, or even restoring criminals to stand trial without providing them the means of escape.<br>
+				Whatever the case, please ensure that all necessary legal policies and departmental guidelines are followed when using sleevecards. They are intended
+				to be helpful to the subject and allow them to be aware while whatever complications preventing them from having a body are resolved, not as a permanent form.<br>
+				<b>Note:</b> Sleevecards perform wireless mind backups and do not require any sort of implant, however, to ensure a current backup of the person, insert the sleevecard back into
+				the resleeving pod before resleeving them into another form, and a current snapshot will be taken. No memory loss should occur in this case.<br>
 				<a href="#Contents">Contents</a>
 
 				<h1><a name="Considerations">Special Considerations</a></h1>

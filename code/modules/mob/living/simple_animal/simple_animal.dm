@@ -154,6 +154,7 @@
 	var/follow_until_time = 0		// Give up following when we reach this time (0 = never)
 	var/annoyed = 0					// Do people keep distract-kiting us?
 	////// ////// //////
+	var/life_disabled = 0           //VOREStation Edit -- For performance reasons
 
 /mob/living/simple_animal/New()
 	..()
@@ -195,7 +196,7 @@
 	friends.Cut() //This one is not
 	walk_list.Cut()
 	languages.Cut()
-	..()
+	return ..()
 
 //Client attached
 /mob/living/simple_animal/Login()
@@ -234,8 +235,8 @@
 		density = 1
 
 	//Overhealth
-	else if(health > maxHealth)
-		health = maxHealth
+	else if(health > getMaxHealth())
+		health = getMaxHealth()
 
 /mob/living/simple_animal/update_icon()
 	..()
@@ -256,6 +257,12 @@
 		icon_state = initial(icon_state)
 
 /mob/living/simple_animal/Life()
+
+	//VOREStation Edit
+	if(life_disabled)
+		return 0
+	//VOREStation Edit End
+
 	..()
 
 	//Health
@@ -271,21 +278,31 @@
 	update_icon()
 
 	ai_log("Life() - stance=[stance] ai_inactive=[ai_inactive]", 4)
-	//Movement
-	if(!ai_inactive && !stop_automated_movement && wander && !anchored) //Allowed to move?
-		handle_wander_movement()
 
-	//Speaking
-	if(!ai_inactive && speak_chance && stance == STANCE_IDLE) // Allowed to chatter?
-		handle_idle_speaking()
-
-	//Stanceyness
+	//AI Actions
 	if(!ai_inactive)
+		//Stanceyness
 		handle_stance()
 
-	//Resisting out of things
-	if(!ai_inactive && incapacitated(INCAPACITATION_DEFAULT) && stance != STANCE_IDLE)
-		resist()
+		//Movement
+		if(!stop_automated_movement && wander && !anchored) //Allowed to move?
+			handle_wander_movement()
+
+		//Speaking
+		if(speak_chance && stance == STANCE_IDLE) // Allowed to chatter?
+			handle_idle_speaking()
+
+		//Resisting out buckles
+		if(stance != STANCE_IDLE && incapacitated(INCAPACITATION_BUCKLED_PARTIALLY))
+			resist()
+
+		//Resisting out of closets
+		if(istype(loc,/obj/structure/closet))
+			var/obj/structure/closet/C = loc
+			if(C.welded)
+				resist()
+			else
+				C.open()
 
 	return 1
 
@@ -524,7 +541,7 @@
 	if(istype(O, /obj/item/stack/medical))
 		if(stat != DEAD)
 			var/obj/item/stack/medical/MED = O
-			if(health < maxHealth)
+			if(health < getMaxHealth())
 				if(MED.amount >= 1)
 					adjustBruteLoss(-MED.heal_brute)
 					MED.amount -= 1
@@ -592,7 +609,7 @@
 	..()
 
 	if(statpanel("Status") && show_stat_health)
-		stat(null, "Health: [round((health / maxHealth) * 100)]%")
+		stat(null, "Health: [round((health / getMaxHealth()) * 100)]%")
 
 /mob/living/simple_animal/lay_down()
 	..()
@@ -635,10 +652,10 @@
 			adjustBruteLoss(30)
 
 /mob/living/simple_animal/adjustBruteLoss(damage)
-	health = Clamp(health - damage, 0, maxHealth)
+	health = Clamp(health - damage, 0, getMaxHealth())
 
 /mob/living/simple_animal/adjustFireLoss(damage)
-	health = Clamp(health - damage, 0, maxHealth)
+	health = Clamp(health - damage, 0, getMaxHealth())
 
 // Check target_mob if worthy of attack (i.e. check if they are dead or empty mecha)
 /mob/living/simple_animal/proc/SA_attackable(target_mob)
@@ -807,12 +824,17 @@
 
 //Someone wants help?
 /mob/living/simple_animal/proc/HelpRequested(var/mob/living/simple_animal/F)
-	if(!(stance == STANCE_IDLE) || stat)
+	if(target_mob || stat)
 		ai_log("HelpRequested() by [F] but we're busy/dead",2)
 		return
 	if(get_dist(src,F) <= follow_dist)
 		ai_log("HelpRequested() by [F] but we're already here",2)
 		return
+	if(get_dist(src,F) <= view_range)
+		ai_log("HelpRequested() by [F] and within targetshare range",2)
+		if(F.target_mob && set_target(F.target_mob))
+			handle_stance(STANCE_ATTACK)
+			return
 
 	if(set_follow(F, 10 SECONDS))
 		handle_stance(STANCE_FOLLOW)

@@ -65,9 +65,22 @@ item_desc: A medical uniform straight from Central Command.
 {
 ckey: arokha
 character_name: Aronai Kadigan
+item_path: /obj/item/clothing/suit/storage/service/expeditionary/medical/command
+item_name: centcom medical jacket
+item_desc: A medical jacket straight from Central Command.
+}
+
+{
+ckey: arokha
+character_name: Aronai Kadigan
 item_path: /obj/item/weapon/storage/backpack/satchel/gen/fluff/aronai
 }
 
+{
+ckey: aerowing
+character_name: Sebastian Aji
+item_path: /obj/item/weapon/storage/box/fluff/sebastian_aji
+}
 # ######## B CKEYS
 {
 ckey: benemuel
@@ -115,6 +128,12 @@ item_path: /obj/item/weapon/disk/data
 
 # ######## D CKEYS
 {
+ckey: deepindigo
+character_name: Amina Dae-Kouri
+item_path: /obj/item/weapon/storage/bible/fluff/amina
+}
+
+{
 ckey: dhaeleena
 character_name: Dhaeleena M'iar
 item_path: /obj/item/clothing/accessory/medal/silver/security/fluff/dhael
@@ -145,17 +164,18 @@ item_path: /obj/item/weapon/storage/belt/champion
 }
 
 # ######## E CKEYS
-{
-ckey: eekasqueak
-character_name: Serkii Miishy
-item_path: /obj/item/fluff/permit/serkiimiishy
-}
+# Needs to renew permit. Uncomment when renewed.
+#{
+#ckey: eekasqueak
+#character_name: Serkii Miishy
+#item_path: /obj/item/fluff/permit/serkiimiishy
+#}
 
-{
-ckey: eekasqueak
-character_name: Serkii Miishy
-item_path: /obj/item/weapon/gun/energy/stunrevolver
-}
+#{
+#ckey: eekasqueak
+#character_name: Serkii Miishy
+#item_path: /obj/item/weapon/gun/energy/stunrevolver
+#}
 
 {
 ckey: eekasqueak
@@ -170,6 +190,12 @@ item_path: /obj/item/clothing/under/skirt/fluff/serkii
 }
 
 {
+ckey: epiccharger
+character_name: Jessie Mare
+item_path: /obj/item/clothing/suit/storage/hooded/wintercoat/jessie
+}
+
+{
 ckey: epigraphzero
 character_name: Verd Woodrow
 item_path: /obj/item/clothing/accessory/medal/bronze_heart
@@ -178,7 +204,32 @@ item_path: /obj/item/clothing/accessory/medal/bronze_heart
 # ######## F CKEYS
 # ######## G CKEYS
 # ######## H CKEYS
+
+{
+ckey: hottokeeki
+character_name: Belle Day
+item_path: /obj/item/weapon/gun/energy/sizegun
+}
+
+{
+ckey: hottokeeki
+character_name: Belle Day
+item_path: /obj/item/weapon/gun/energy/netgun
+}
+
+{
+ckey: hottokeeki
+character_name: Belle Day
+item_path: /obj/item/weapon/implanter/reagent_generator/belle
+}
+
 # ######## I CKEYS
+
+{
+ckey: interrolouis
+character_name:  Ruda Lizden
+item_path:/obj/item/clothing/accessory/badge/holo/detective/ruda
+}
 
 {
 ckey: ivymoomoo
@@ -292,6 +343,12 @@ item_path: /obj/item/device/modkit_conversion/fluff/harmonyspace
 
 # ######## K CKEYS
 {
+ckey: kiraalitruss
+character_name: Amaya Rahl
+item_path: /obj/item/weapon/card/id/fluff/amaya
+}
+
+{
 ckey: kisukegema
 character_name: Kisuke 'The Nerd' Gema
 item_path: /obj/item/clothing/glasses/omnihud/kamina
@@ -316,6 +373,17 @@ item_path: /obj/item/device/pda_mod/fluff/kligor
 }
 
 # ######## L CKEYS
+{
+ckey: luminescentring
+character_name: Briana Moore
+item_path: /obj/item/weapon/storage/box/fluff/briana_moore
+}
+{
+ckey: luminescentring
+character_name: Briana Moore
+item_path: /obj/item/weapon/storage/backpack/messenger/black/fluff/briana
+}
+
 # ######## M CKEYS
 {
 ckey: molenar
@@ -335,17 +403,18 @@ character_name: Giliana Gamish
 item_path: /obj/item/clothing/head/fluff/molenar2
 }
 
-{
-ckey: molenar
-character_name: Kari Akiren
-item_path: /obj/item/weapon/gun/projectile/shotgun/pump/rifle/fluff/kari_akiren
-}
+#Needs to renew permit
+#{ 
+#ckey: molenar
+#character_name: Kari Akiren
+#item_path: /obj/item/weapon/gun/projectile/shotgun/pump/rifle/fluff/kari_akiren
+#}
 
-{
-ckey: molenar
-character_name: Kari Akiren
-item_path: /obj/item/fluff/permit/kari_akiren
-}
+#{
+#ckey: molenar
+#character_name: Kari Akiren
+#item_path: /obj/item/fluff/permit/kari_akiren
+#}
 
 {
 ckey: myryan
@@ -389,6 +458,24 @@ item_path: /obj/item/fluff/permit/archermaximus
 
 # ######## S CKEYS
 {
+ckey: samanthafyre
+character_name: Kateryna Petrovitch
+item_path: /obj/item/clothing/suit/space/void/engineering/kate
+}
+
+{
+ckey: samanthafyre
+character_name: Kateryna Petrovitch
+item_path: /obj/item/clothing/head/helmet/space/fluff/kate
+}
+
+{
+ckey: samanthafyre
+character_name: Kateryna Petrovitch
+item_path: /obj/item/clothing/suit/armor/vest/wolftaur/kate
+}
+
+{
 ckey: sasoperative
 character_name: Joseph Skinner
 item_path: /obj/item/clothing/accessory/medal/ERTservice
@@ -404,12 +491,6 @@ item_path: /obj/item/fluff/permit/josephskinner
 ckey: sasoperative
 character_name: Joseph Skinner
 item_path: /obj/item/clothing/under/rank/security/fluff/formalsec
-}
-
-{
-ckey: scree
-character_name: Scree
-item_path: /obj/item/clothing/under/fluff/screesuit
 }
 
 {
@@ -431,9 +512,29 @@ item_path: /obj/item/clothing/glasses/omnihud/eng/meson/fluff/scree
 }
 
 {
+ckey: seiga
+character_name: Alfonso Oak Telanor
+item_path: /obj/item/clothing/glasses/sunglasses/fluff/alfonso
+}
+
+{
 ckey: silencedmp5a5
 character_name: Serdykov Antoz
-item_path: /obj/item/device/modkit_conversion/fluff/serdykit
+item_path: /obj/item/weapon/storage/box/fluff/serdykov_antoz
+}
+
+{
+ckey: silencedmp5a5
+character_name: Serdykov Antoz
+item_path: /obj/item/clothing/head/helmet/serdy
+req_access = 1
+}
+
+{
+ckey: silencedmp5a5
+character_name: Serdykov Antoz
+item_path: /obj/item/clothing/suit/armor/vest/wolftaur/serdy
+req_access = 1
 }
 
 {
@@ -460,6 +561,12 @@ character_name: Fortune Bloise
 item_path: /obj/item/weapon/storage/backpack/satchel/fluff/swat43bag
 }
 
+{
+ckey: SpoopyLizz
+character_name: Roiz Lizden
+item_path: /obj/item/weapon/implanter/reagent_generator/roiz
+}
+
 # ######## T CKEYS
 {
 ckey: tonyvld
@@ -469,6 +576,16 @@ item_path: /obj/item/clothing/head/fluff/runac
 
 # ######## U CKEYS
 # ######## V CKEYS
+{
+ckey: verkister
+character_name: Cameron Eggbert
+item_path: /obj/item/clothing/glasses/science_proper
+}
+{
+ckey: verkister
+character_name: Cameron Eggbert
+item_path: /obj/item/weapon/disk/limb/eggnerdltd
+}
 {
 ckey: virgo113
 character_name: Verin Raharra
@@ -502,6 +619,18 @@ item_path: /obj/item/clothing/suit/storage/hooded/wintercoat/cargo
 ckey: vorrarkul
 character_name: Theodora Lindt
 item_path: /obj/item/clothing/suit/chococoat
+}
+
+{
+ckey: vorrarkul
+character_name: Theodora Lindt
+item_path: /obj/item/weapon/implanter/reagent_generator/vorrarkul
+}
+
+{
+ckey: vorrarkul
+character_name: Kaitlyn Fiasco
+item_path: /obj/item/toy/plushie/mouse/fluff
 }
 
 {
@@ -557,6 +686,12 @@ item_path: /obj/item/weapon/reagent_containers/hypospray/vr/tempest
 ckey: wickedtemp
 character_name: Chakat Tempest
 item_path: /obj/item/weapon/storage/backpack/saddlebag/tempest
+}
+
+{
+ckey: wickedtemp
+character_name: Chakat Tempest
+item_path: /obj/item/weapon/implanter/reagent_generator/tempest
 }
 
 # ######## X CKEYS

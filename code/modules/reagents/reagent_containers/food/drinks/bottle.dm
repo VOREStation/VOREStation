@@ -134,7 +134,7 @@
 	if(rag)
 		var/underlay_image = image(icon='icons/obj/drinks.dmi', icon_state=rag.on_fire? "[rag_underlay]_lit" : rag_underlay)
 		underlays += underlay_image
-		copy_light(rag)
+		set_light(rag.light_range, rag.light_power, rag.light_color)
 	else
 		set_light(0)
 
@@ -406,6 +406,16 @@
 /obj/item/weapon/reagent_containers/food/drinks/bottle/pwine/New()
 	..()
 	reagents.add_reagent("pwine", 100)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/redeemersbrew
+	name = "Redeemer's Brew"
+	desc = "Just opening the top of this bottle makes you feel a bit tipsy. Not for the faint of heart."
+	icon_state = "redeemersbrew"
+	center_of_mass = list("x"=16, "y"=3)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/redeemersbrew/New()
+	..()
+	reagents.add_reagent("unathiliquor", 100)
 
 //////////////////////////JUICES AND STUFF ///////////////////////
 

@@ -17,7 +17,7 @@
 	response_help = "pokes"
 	response_disarm = "gently pushes aside"
 	response_harm = "hits"
-	
+
 	a_intent = I_HURT
 	ranged = 1
 	rapid = 1
@@ -99,16 +99,16 @@
 			src.visible_message("\red \icon[src] [src] suddenly lights up, and additional targetting vanes slide into place.")
 			hostile = 1
 
-	if(health / maxHealth > 0.9)
+	if(health / getMaxHealth() > 0.9)
 		icon_state = "drone3"
 		explode_chance = 0
-	else if(health / maxHealth > 0.7)
+	else if(health / getMaxHealth() > 0.7)
 		icon_state = "drone2"
 		explode_chance = 0
-	else if(health / maxHealth > 0.5)
+	else if(health / getMaxHealth() > 0.5)
 		icon_state = "drone1"
 		explode_chance = 0.5
-	else if(health / maxHealth > 0.3)
+	else if(health / getMaxHealth() > 0.3)
 		icon_state = "drone0"
 		explode_chance = 5
 	else if(health > 0)
@@ -176,16 +176,16 @@
 			step_to(O, get_turf(pick(view(7, src))))
 
 		//rods
-		O = PoolOrNew(/obj/item/stack/rods, src.loc)
+		O = new /obj/item/stack/rods(src.loc)
 		step_to(O, get_turf(pick(view(7, src))))
 		if(prob(75))
-			O = PoolOrNew(/obj/item/stack/rods, src.loc)
+			O = new /obj/item/stack/rods(src.loc)
 			step_to(O, get_turf(pick(view(7, src))))
 		if(prob(50))
-			O = PoolOrNew(/obj/item/stack/rods, src.loc)
+			O = new /obj/item/stack/rods(src.loc)
 			step_to(O, get_turf(pick(view(7, src))))
 		if(prob(25))
-			O = PoolOrNew(/obj/item/stack/rods, src.loc)
+			O = new /obj/item/stack/rods(src.loc)
 			step_to(O, get_turf(pick(view(7, src))))
 
 		//plasteel

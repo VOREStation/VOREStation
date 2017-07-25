@@ -56,7 +56,7 @@
 			return
 		M.forceMove(src)
 		occupant = M
-		icon_state = "body_scanner_1"
+		update_icon() //icon_state = "body_scanner_1" //VOREStation Edit - Health display for consoles with light and such.
 		add_fingerprint(user)
 		qdel(G)
 
@@ -95,7 +95,7 @@
 
 	O.forceMove(src)
 	occupant = O
-	icon_state = "body_scanner_1"
+	update_icon() //icon_state = "body_scanner_1" //VOREStation Edit - Health display for consoles with light and such.
 	add_fingerprint(user)
 
 /obj/machinery/bodyscanner/relaymove(mob/user as mob)
@@ -121,7 +121,7 @@
 		occupant.client.perspective = MOB_PERSPECTIVE
 	occupant.loc = src.loc
 	occupant = null
-	icon_state = "body_scanner_0"
+	update_icon() //icon_state = "body_scanner_1" //VOREStation Edit - Health display for consoles with light and such.
 	return
 
 /obj/machinery/bodyscanner/ex_act(severity)
@@ -158,7 +158,7 @@
 //Body Scan Console
 /obj/machinery/body_scanconsole
 	var/obj/machinery/bodyscanner/scanner
-	var/known_implants = list(/obj/item/weapon/implant/health, /obj/item/weapon/implant/chem, /obj/item/weapon/implant/death_alarm, /obj/item/weapon/implant/loyalty, /obj/item/weapon/implant/tracking, /obj/item/weapon/implant/language, /obj/item/weapon/implant/language/eal, /obj/item/weapon/implant/backup) //VOREStation Add - Backup Implant
+	var/known_implants = list(/obj/item/weapon/implant/health, /obj/item/weapon/implant/chem, /obj/item/weapon/implant/death_alarm, /obj/item/weapon/implant/loyalty, /obj/item/weapon/implant/tracking, /obj/item/weapon/implant/language, /obj/item/weapon/implant/language/eal, /obj/item/weapon/implant/backup, /obj/item/device/nif) //VOREStation Add - Backup Implant, NIF
 	var/delete
 	var/temphtml
 	name = "Body Scanner Console"
@@ -194,6 +194,7 @@
 		return attack_hand(user)
 
 /obj/machinery/body_scanconsole/power_change()
+	/* VOREStation Removal
 	if(stat & BROKEN)
 		icon_state = "body_scannerconsole-p"
 	else if(powered() && !panel_open)
@@ -203,6 +204,8 @@
 		spawn(rand(0, 15))
 			icon_state = "body_scannerconsole-p"
 			stat |= NOPOWER
+	*/
+	update_icon() //icon_state = "body_scanner_1" //VOREStation Edit - Health display for consoles with light and such.
 
 /obj/machinery/body_scanconsole/ex_act(severity)
 	switch(severity)
@@ -262,6 +265,7 @@
 
 		var/occupantData[0]
 		if(scanner.occupant && ishuman(scanner.occupant))
+			update_icon() //VOREStation Edit - Health display for consoles with light and such.
 			var/mob/living/carbon/human/H = scanner.occupant
 			occupantData["name"] = H.name
 			occupantData["stat"] = H.stat
@@ -287,8 +291,9 @@
 			var/bloodData[0]
 			if(H.vessel)
 				var/blood_volume = round(H.vessel.get_reagent_amount("blood"))
+				var/blood_max = H.species.blood_volume
 				bloodData["volume"] = blood_volume
-				bloodData["percent"] = round(((blood_volume / 560)*100))
+				bloodData["percent"] = round(((blood_volume / blood_max)*100))
 
 			occupantData["blood"] = bloodData
 
@@ -300,6 +305,15 @@
 				reagentData = null
 
 			occupantData["reagents"] = reagentData
+
+			var/ingestedData[0]
+			if(H.ingested.reagent_list.len >= 1)
+				for(var/datum/reagent/R in H.ingested.reagent_list)
+					ingestedData[++ingestedData.len] = list("name" = R.name, "amount" = R.volume)
+			else
+				ingestedData = null
+
+			occupantData["ingested"] = ingestedData
 
 			var/extOrganData[0]
 			for(var/obj/item/organ/external/E in H.organs)
@@ -394,7 +408,7 @@
 			P.info += "<b>Time of scan:</b> [worldtime2stationtime(world.time)]<br><br>"
 			P.info += "[printing_text]"
 			P.info += "<br><br><b>Notes:</b><br>"
-			P.name = "Body Scan - [href_list["name"]]"
+			P.name = "Body Scan - [href_list["name"]] ([worldtime2stationtime(world.time)])"
 			printing = null
 			printing_text = null
 
@@ -450,15 +464,20 @@
 
 			if(occupant.vessel)
 				var/blood_volume = round(occupant.vessel.get_reagent_amount("blood"))
-				var/blood_percent =  blood_volume / 560
+				var/blood_max = occupant.species.blood_volume
+				var/blood_percent =  blood_volume / blood_max
 				blood_percent *= 100
 
 				extra_font = "<font color=[blood_volume > 448 ? "blue" : "red"]>"
 				dat += "[extra_font]\tBlood Level %: [blood_percent] ([blood_volume] units)</font><br>"
 
 			if(occupant.reagents)
-				for(var/datum/reagent/R in occupant.reagents)
+				for(var/datum/reagent/R in occupant.reagents.reagent_list)
 					dat += "Reagent: [R.name], Amount: [R.volume]<br>"
+
+			if(occupant.ingested)
+				for(var/datum/reagent/R in occupant.ingested.reagent_list)
+					dat += "Stomach: [R.name], Amount: [R.volume]<br>"
 
 			dat += "<hr><table border='1'>"
 			dat += "<tr>"

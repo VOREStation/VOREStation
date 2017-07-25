@@ -192,7 +192,7 @@
 		// Playerscale
 		var/size = dna.GetUIValueRange(DNA_UI_PLAYERSCALE, player_sizes_list.len)
 		if((0 < size) && (size <= player_sizes_list.len))
-			H.size_multiplier = player_sizes_list[player_sizes_list[size]]
+			H.resize(player_sizes_list[player_sizes_list[size]], FALSE)
 
 		// Tail/Taur Color
 		H.r_tail   = dna.GetUIValueRange(DNA_UI_TAIL_R,    255)
@@ -201,17 +201,29 @@
 
 		// Technically custom_species is not part of the UI, but this place avoids merge problems.
 		H.custom_species = dna.custom_species
+		if(istype(H.species,/datum/species/custom))
+			var/datum/species/custom/CS = H.species
+			var/datum/species/custom/new_CS = CS.produceCopy(dna.base_species,dna.species_traits,src)
+			new_CS.blood_color = dna.blood_color
 
 		// VOREStation Edit End
 
+		H.force_update_organs() //VOREStation Add - Gotta do this too
 		H.force_update_limbs()
-		H.update_body(0)
+		//H.update_body(0) //VOREStation Edit - Done in force_update_limbs already
 		H.update_eyes()
 		H.update_hair()
 
 		return 1
 	else
 		return 0
+
+//VOREStation Add
+/mob/living/carbon/human/proc/force_update_organs()
+	for(var/organ in organs + internal_organs)
+		var/obj/item/organ/O = organ
+		O.species = species
+//VOREStation Add End
 
 // Used below, simple injection modifier.
 /proc/probinj(var/pr, var/inj)

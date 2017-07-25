@@ -23,41 +23,41 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	ideal_character_age = 70 // Old geezer captains ftw
 
 
-	equip(var/mob/living/carbon/human/H)
-		if(!H)	return 0
-		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/captain(H), slot_l_ear)
-		switch(H.backbag)
-			if(2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/captain(H), slot_back)
-			if(3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel/cap(H), slot_back)
-			if(4) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
-			if(5) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/messenger/com(H), slot_back)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/captain(H), slot_w_uniform)
-		if(H.age>49)
-			// Since we can have something other than the default uniform at this
-			// point, check if we can actually attach the medal
-			var/obj/item/clothing/uniform = H.w_uniform
-			var/obj/item/clothing/accessory/medal/gold/captain/medal = new()
+/datum/job/captain/equip(var/mob/living/carbon/human/H, var/alt_title)
+	if(!H)	return 0
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/captain(H), slot_l_ear)
+	switch(H.backbag)
+		if(2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/captain(H), slot_back)
+		if(3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel/cap(H), slot_back)
+		if(4) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
+		if(5) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/messenger/com(H), slot_back)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/captain(H), slot_w_uniform)
+	if(H.age>49)
+		// Since we can have something other than the default uniform at this
+		// point, check if we can actually attach the medal
+		var/obj/item/clothing/uniform = H.w_uniform
+		var/obj/item/clothing/accessory/medal/gold/captain/medal = new()
 
-			if(uniform && uniform.can_attach_accessory(medal))
-				uniform.attach_accessory(null, medal)
-			else
-				qdel(medal)
-		H.equip_to_slot_or_del(new /obj/item/device/pda/captain(H), slot_belt)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), slot_shoes)
-		H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat(H), slot_head)
-		H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(H), slot_glasses)
-		if(H.backbag == 1)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/ids(H), slot_l_hand)
+		if(uniform && uniform.can_attach_accessory(medal))
+			uniform.attach_accessory(null, medal)
 		else
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/ids(H.back), slot_in_backpack)
+			qdel(medal)
+	H.equip_to_slot_or_del(new /obj/item/device/pda/captain(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(H), slot_glasses)
+	if(H.backbag == 1)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/ids(H), slot_l_hand)
+	else
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/ids(H.back), slot_in_backpack)
 
 
-		H.implant_loyalty()
+	H.implant_loyalty()
 
-		return 1
+	return 1
 
-	get_access()
-		return get_all_station_access()
+/datum/job/captain/get_access()
+	return get_all_station_access()
 
 
 
@@ -95,22 +95,24 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 			            access_hop, access_RC_announce, access_keycard_auth, access_gateway)
 
 
-	equip(var/mob/living/carbon/human/H)
-		if(!H)	return 0
-		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/hop(H), slot_l_ear)
-		switch(H.backbag)
-			if(2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(H), slot_back)
-			if(3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel/norm(H), slot_back)
-			if(4) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/head_of_personnel(H), slot_w_uniform)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), slot_shoes)
-		H.equip_to_slot_or_del(new /obj/item/device/pda/heads/hop(H), slot_belt)
-		if(H.backbag == 1)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/ids(H), slot_l_hand)
-		else
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/ids(H.back), slot_in_backpack)
-		H.implant_loyalty()
-		return 1
+/datum/job/hop/equip(var/mob/living/carbon/human/H, var/alt_title)
+	if(!H)	return 0
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/hop(H), slot_l_ear)
+	switch(H.backbag)
+		if(2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(H), slot_back)
+		if(3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel/norm(H), slot_back)
+		if(4) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/head_of_personnel(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/device/pda/heads/hop(H), slot_belt)
+	if(H.backbag == 1)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/ids(H), slot_l_hand)
+	else
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/ids(H.back), slot_in_backpack)
+	H.implant_loyalty()
+	return 1
+
+
 
 /datum/job/secretary
 	title = "Command Secretary"
@@ -131,7 +133,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	access = list(access_heads)
 	minimal_access = list(access_heads)
 
-/datum/job/secretary/equip(var/mob/living/carbon/human/H)
+/datum/job/secretary/equip(var/mob/living/carbon/human/H, var/alt_title)
 	if(!H)	return 0
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_com(H), slot_l_ear)
 	switch(H.backbag)

@@ -356,7 +356,7 @@ proc/is_blind(A)
 	broadcast_hud_message(message, broadcast_source, med_hud_users, /obj/item/clothing/glasses/hud/health)
 
 /proc/broadcast_hud_message(var/message, var/broadcast_source, var/list/targets, var/icon)
-	var/turf/sourceturf = get_turf(broadcast_source)
+	var/atom/sourceturf = isarea(broadcast_source) ? broadcast_source : get_turf(broadcast_source) // VOREStation Edit - Allow broadcasts from an area
 	for(var/mob/M in targets)
 		var/turf/targetturf = get_turf(M)
 		if((targetturf.z == sourceturf.z))
@@ -390,10 +390,16 @@ proc/is_blind(A)
 			else
 				name = realname
 
+	if(subject && subject.forbid_seeing_deadchat && !subject.client.holder)
+		return // Can't talk in deadchat if you can't see it.
+
 	for(var/mob/M in player_list)
 		if(M.client && ((!istype(M, /mob/new_player) && M.stat == DEAD) || (M.client.holder && !is_mentor(M.client))) && M.is_preference_enabled(/datum/client_preference/show_dsay))
 			var/follow
 			var/lname
+			if(M.forbid_seeing_deadchat && !M.client.holder)
+				continue
+
 			if(subject)
 				if(M.is_key_ignored(subject.client.key)) // If we're ignored, do nothing.
 					continue

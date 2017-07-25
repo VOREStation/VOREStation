@@ -10,8 +10,6 @@ var/global/datum/controller/gameticker/ticker
 	var/event_time = null
 	var/event = 0
 
-	var/login_music			// music played in pregame lobby
-
 	var/list/datum/mind/minds = list()//The people in the game. Used for objective tracking.
 
 	var/Bible_icon_state	// icon_state the chaplain has chosen for his bible
@@ -34,15 +32,6 @@ var/global/datum/controller/gameticker/ticker
 	var/round_end_announced = 0 // Spam Prevention. Announce round end only once.
 
 /datum/controller/gameticker/proc/pregame()
-	login_music = pick(\
-	/*'sound/music/halloween/skeletons.ogg',\
-	'sound/music/halloween/halloween.ogg',\
-	'sound/music/halloween/ghosts.ogg'*/
-	'sound/music/space.ogg',\
-	'sound/music/traitor.ogg',\
-	'sound/music/title2.ogg',\
-	'sound/music/clouds.s3m',\
-	'sound/music/space_oddity.ogg') //Ground Control to Major Tom, this song is cool, what's going on?
 	do
 		pregame_timeleft = 180
 		world << "<B><FONT color='blue'>Welcome to the pre-game lobby!</FONT></B>"
@@ -62,6 +51,7 @@ var/global/datum/controller/gameticker/ticker
 							vote.process()
 			if(pregame_timeleft <= 0)
 				current_state = GAME_STATE_SETTING_UP
+				Master.SetRunLevel(RUNLEVEL_SETUP)
 	while (!setup())
 
 
@@ -74,6 +64,7 @@ var/global/datum/controller/gameticker/ticker
 	if((master_mode=="random") || (master_mode=="secret"))
 		if(!runnable_modes.len)
 			current_state = GAME_STATE_PREGAME
+			Master.SetRunLevel(RUNLEVEL_LOBBY)
 			world << "<B>Unable to choose playable game mode.</B> Reverting to pre-game lobby."
 			return 0
 		if(secret_force_mode != "secret")
@@ -88,6 +79,7 @@ var/global/datum/controller/gameticker/ticker
 
 	if(!src.mode)
 		current_state = GAME_STATE_PREGAME
+		Master.SetRunLevel(RUNLEVEL_LOBBY)
 		world << "<span class='danger'>Serious error in mode setup!</span> Reverting to pre-game lobby."
 		return 0
 
@@ -99,6 +91,7 @@ var/global/datum/controller/gameticker/ticker
 	if(!src.mode.can_start())
 		world << "<B>Unable to start [mode.name].</B> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby."
 		current_state = GAME_STATE_PREGAME
+		Master.SetRunLevel(RUNLEVEL_LOBBY)
 		mode.fail_setup()
 		mode = null
 		job_master.ResetOccupations()
@@ -127,6 +120,7 @@ var/global/datum/controller/gameticker/ticker
 
 	shuttle_controller.setup_shuttle_docks()
 
+	// TODO - Leshana - Dear God Fix This.  Fix all of this. Not just this line, this entire proc. This entire file!
 	spawn(0)//Forking here so we dont have to wait for this to finish
 		mode.post_setup()
 		//Cleanup some stuff
@@ -155,6 +149,7 @@ var/global/datum/controller/gameticker/ticker
 	*/
 
 	processScheduler.start()
+	Master.SetRunLevel(RUNLEVEL_GAME)
 
 	if(config.sql_enabled)
 		statistic_cycle() // Polls population totals regularly and stores them in an SQL DB -- TLE
@@ -319,6 +314,7 @@ var/global/datum/controller/gameticker/ticker
 
 		if(!mode.explosion_in_progress && game_finished && (mode_finished || post_game))
 			current_state = GAME_STATE_FINISHED
+			Master.SetRunLevel(RUNLEVEL_POSTGAME)
 
 			spawn
 				declare_completion()

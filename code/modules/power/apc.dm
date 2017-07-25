@@ -59,7 +59,7 @@
 /obj/machinery/power/apc
 	name = "area power controller"
 	desc = "A control terminal for the area electrical systems."
-
+	icon = 'icons/obj/power_vr.dmi' //VOREStation Edit - New Icon
 	icon_state = "apc0"
 	anchored = 1
 	use_power = 0

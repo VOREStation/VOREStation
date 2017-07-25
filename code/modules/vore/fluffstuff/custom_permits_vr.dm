@@ -77,7 +77,7 @@
 	<b>DOB:</b>  12/Jul/2530 | <b>HEIGHT:</b> 188cm | <b>SEX:</b> Male
 
 	The individual named above is licensed by the Nanotrasen Department of Civil Protection
-	to carry one KIN (foreign) handgun with flash ammo.
+	to carry one KHI (foreign) personal defense weapon, non-lethal only.
 	This license expires on 16/Feb/2562 and must be renewed by CentCom prior to this date."}
 
 // joanrisu:Joan Risu
@@ -88,7 +88,7 @@
 	<b>DOB:</b> 16/Apr/2536 | <b>HEIGHT:</b> 161cm | <b>SEX:</b> Female
 
 	The individual named above is licensed by the Nanotrasen Department of Civil Protection to carry one MWPSB Dominator.
-	This license expires on 11/Dec/2560 and must be renewed by CentCom prior to this date."}
+	This license expires on 04/Apr/2562 and must be renewed by CentCom prior to this date."}
 
 // molenar:Kari Akiren
 /obj/item/fluff/permit/kari_akiren
@@ -130,3 +130,38 @@
 	The individual named above is licensed by the Nanotrasen Department of Civil Protection
 	to carry one Mateba Model 6 Unica handgun with stun/rubber/flash ammo.
 	This license expires on 01/Mar/2562 and must be renewed by CentCom prior to this date."}
+
+// aerowing:Sebastian Aji
+/obj/item/fluff/permit/sebastian_aji
+	name = "Sebastian Aji's Sidearm Permit"
+	desc = {"
+	<b>NAME:</b> Sebastian Aji | <b>RACE:</b> Panthera Tigris | <b>HOMEWORLD:</b> Ahdomai, Siik'tajr
+	<b>DOB:</b>  19/Dec/2530 | <b>HEIGHT:</b> 198cm | <b>SEX:</b> Male
+
+	The individual named above is licensed by the Nanotrasen Department of Civil Protection
+	to carry one Lumoco Arms P3 Whisper handgun with lethal/flash ammo.
+	This license expires on 17/Apr/2563 and must be renewed by CentCom prior to this date."}
+
+// luminescent_ring:Briana Moore
+/obj/item/fluff/permit/briana_moore
+	name = "Briana Moore's Sidearm Permit"
+	desc = {"
+	<b>NAME:</b> Briana Moore | <b>RACE:</b> Angel | <b>HOMEWORLD:</b> Sanctum
+	<b>DOB:</b>  2538-07-11 | <b>HEIGHT:</b> 155cm | <b>SEX:</b> Female
+
+	The individual named above is licensed by the Nanotrasen Department of Civil Protection
+	to carry one Derringer handgun with lethal ammo.
+	This license expires on 24/Apr/2563 and must be renewed by CentCom prior to this date."}
+
+
+
+// silenedmp5a5:Serdykov Antoz
+/obj/item/fluff/permit/silencedmp5a5
+	name = "Serdykov Antoz's Sidearm Permit"
+	desc = {"
+	<b>NAME:</b> Serdykov Antoz | <b>RACE:</b> German Shepherd | <b>HOMEWORLD:</b> N/A, Sol
+    <b>DOB:</b> 14/6/2516 | <b>HEIGHT:</b> 6'8" | <b>SEX:</b> Male
+
+	The individual named above is licensed by the Nanotrasen Department of Civil Protection
+	to carry one Vintage S&W Model 10 revolver with stun/rubber ammo.
+	This license expires on 24/Apr/2563 and must be renewed by CentCom prior to this date."}

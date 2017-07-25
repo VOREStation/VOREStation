@@ -11,13 +11,21 @@
 	var/move_time = 0		//the time spent in the transition area
 	var/transit_direction = null	//needed for area/move_contents_to() to properly handle shuttle corners - not exactly sure how it works.
 
-	var/area_station
-	var/area_offsite
+	var/area/area_station
+	var/area/area_offsite
 	//TODO: change location to a string and use a mapping for area and dock targets.
 	var/dock_target_station
 	var/dock_target_offsite
 
 	var/last_dock_attempt_time = 0
+	category = /datum/shuttle/ferry
+
+/datum/shuttle/ferry/New()
+	area_offsite = locate(area_offsite)
+	area_station = locate(area_station)
+	if(area_transition)
+		area_transition = locate(area_transition)
+	..()
 
 /datum/shuttle/ferry/short_jump(var/area/origin,var/area/destination)
 	if(isnull(location))

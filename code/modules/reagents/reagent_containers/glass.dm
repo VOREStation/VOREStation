@@ -243,7 +243,13 @@
 		user.drop_from_inventory(src)
 		qdel(src)
 		return
-	else if(istype(D, /obj/item/weapon/mop))
+	else if(istype(D, /obj/item/weapon/wirecutters))
+		to_chat(user, "<span class='notice'>You cut a big hole in \the [src] with \the [D].  It's kinda useless as a bucket now.</span>")
+		user.put_in_hands(new /obj/item/clothing/head/helmet/bucket)
+		user.drop_from_inventory(src)
+		qdel(src)
+		return
+	else if(istype(D, /obj/item/weapon/mop) || istype(D, /obj/item/weapon/soap) || istype(D, /obj/item/weapon/reagent_containers/glass/rag))  //VOREStation Edit - "Allows soap and rags to be used on buckets"
 		if(reagents.total_volume < 1)
 			user << "<span class='warning'>\The [src] is empty!</span>"
 		else

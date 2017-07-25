@@ -46,7 +46,8 @@ var/list/gamemode_cache = list()
 	var/continous_rounds = 0			// Gamemodes which end instantly will instead keep on going until the round ends by escape shuttle or nuke.
 	var/allow_Metadata = 0				// Metadata is supported.
 	var/popup_admin_pm = 0				//adminPMs to non-admins show in a pop-up 'reply' window when set to 1.
-	var/Ticklag = 0.9
+	var/fps = 20
+	var/tick_limit_mc_init = TICK_LIMIT_MC_INIT_DEFAULT	//SSinitialization throttling
 	var/Tickcomp = 0
 	var/socket_talk	= 0					// use socket_talk to communicate with other processes
 	var/list/resource_urls = null
@@ -94,6 +95,7 @@ var/list/gamemode_cache = list()
 	var/allow_extra_antags = 0
 	var/guests_allowed = 1
 	var/debugparanoid = 0
+	var/panic_bunker = 0
 
 	var/serverurl
 	var/server
@@ -156,6 +158,8 @@ var/list/gamemode_cache = list()
 	var/slime_delay = 0
 	var/animal_delay = 0
 
+	var/footstep_volume = 0
+
 	var/admin_legacy_system = 0	//Defines whether the server uses the legacy admin system with admins.txt or the SQL system. Config option in config.txt
 	var/ban_legacy_system = 0	//Defines whether the server uses the legacy banning system with the files in /data or the SQL system. Config option in config.txt
 	var/use_age_restriction_for_jobs = 0 //Do jobs use account age restrictions? --requires database
@@ -164,6 +168,7 @@ var/list/gamemode_cache = list()
 	var/simultaneous_pm_warning_timeout = 100
 
 	var/use_recursive_explosions //Defines whether the server uses recursive or circular explosions.
+	var/multi_z_explosion_scalar = 0.5 //Multiplier for how much weaker explosions are on neighboring z levels.
 
 	var/assistant_maint = 0 //Do assistants get maint access?
 	var/gateway_delay = 18000 //How long the gateway takes before it activates. Default is half an hour.
@@ -215,6 +220,10 @@ var/list/gamemode_cache = list()
 	var/list/language_prefixes = list(",","#","-")//Default language prefixes
 
 	var/show_human_death_message = 1
+
+	var/radiation_decay_rate = 1 //How much radiation is reduced by each tick
+	var/radiation_resistance_multiplier = 8.5 //VOREstation edit
+	var/radiation_lower_limit = 0.35 //If the radiation level for a turf would be below this, ignore it.
 
 /datum/configuration/New()
 	var/list/L = typesof(/datum/game_mode) - /datum/game_mode
@@ -280,6 +289,9 @@ var/list/gamemode_cache = list()
 
 				if ("use_recursive_explosions")
 					use_recursive_explosions = 1
+
+				if ("multi_z_explosion_scalar")
+					multi_z_explosion_scalar = text2num(value)
 
 				if ("log_ooc")
 					config.log_ooc = 1
@@ -561,7 +573,12 @@ var/list/gamemode_cache = list()
 					irc_bot_export = 1
 
 				if("ticklag")
-					Ticklag = text2num(value)
+					var/ticklag = text2num(value)
+					if(ticklag > 0)
+						fps = 10 / ticklag
+
+				if("tick_limit_mc_init")
+					tick_limit_mc_init = text2num(value)
 
 				if("allow_antag_hud")
 					config.antag_hud_allowed = 1
@@ -713,6 +730,9 @@ var/list/gamemode_cache = list()
 					if(values.len > 0)
 						language_prefixes = values
 
+				if("radiation_lower_limit")
+					radiation_lower_limit = text2num(value)
+
 				else
 					log_misc("Unknown setting in configuration: '[name]'")
 
@@ -771,6 +791,8 @@ var/list/gamemode_cache = list()
 				if("animal_delay")
 					config.animal_delay = value
 
+				if("footstep_volume")
+					config.footstep_volume = text2num(value)
 
 				if("use_loyalty_implants")
 					config.use_loyalty_implants = 1

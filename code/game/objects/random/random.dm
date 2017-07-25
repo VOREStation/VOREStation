@@ -5,6 +5,8 @@
 	icon_state = "rup"
 	var/spawn_nothing_percentage = 0 // this variable determines the likelyhood that this random object will not spawn anything
 
+	var/spawned_thing //VOREStation Edit
+
 
 // creates a new object and deletes itself
 /obj/random/New()
@@ -28,6 +30,13 @@
 		A.pixel_x = pixel_x
 		A.pixel_y = pixel_y
 
+//VOREStation Edit
+	spawned_thing = A
+
+/obj/random/Destroy()
+	spawned_thing = null
+	return ..()
+//VOREStation Edit End
 
 /obj/random/single
 	name = "randomly spawned object"
@@ -192,25 +201,30 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "purplecomb"
 	spawn_nothing_percentage = 50
+
+//VOREStation Edit - Changed items in this list drastically.
 /obj/random/contraband/item_to_spawn()
 	return pick(prob(6);/obj/item/weapon/storage/pill_bottle/tramadol,
-				prob(8);/obj/item/weapon/haircomb,
+				//prob(8);/obj/item/weapon/haircomb,
 				prob(4);/obj/item/weapon/storage/pill_bottle/happy,
 				prob(4);/obj/item/weapon/storage/pill_bottle/zoom,
-				prob(10);/obj/item/weapon/contraband/poster,
+				//prob(10);/obj/item/weapon/contraband/poster,
 				prob(4);/obj/item/weapon/material/butterfly,
-				prob(6);/obj/item/weapon/material/butterflyblade,
-				prob(6);/obj/item/weapon/material/butterflyhandle,
-				prob(6);/obj/item/weapon/material/wirerod,
+				//prob(6);/obj/item/weapon/material/butterflyblade,
+				//prob(6);/obj/item/weapon/material/butterflyhandle,
+				//prob(6);/obj/item/weapon/material/wirerod,
 				prob(2);/obj/item/weapon/material/butterfly/switchblade,
 				prob(2);/obj/item/weapon/material/knuckledusters,
 				prob(1);/obj/item/weapon/material/hatchet/tacknife,
 				prob(1);/obj/item/clothing/suit/storage/vest/heavy/merc,
 				prob(1);/obj/item/weapon/beartrap,
-				prob(1);/obj/item/weapon/handcuffs,
+				prob(1);/obj/item/weapon/handcuffs/fuzzy,
 				prob(1);/obj/item/weapon/legcuffs,
 				prob(2);/obj/item/weapon/reagent_containers/syringe/drugs,
-				prob(1);/obj/item/weapon/reagent_containers/syringe/steroid)
+				prob(1);/obj/item/weapon/reagent_containers/syringe/steroid,
+				prob(4);/obj/item/device/radio_jammer,
+				prob(2);/obj/item/weapon/storage/box/syndie_kit/spy,
+				prob(2);/obj/item/weapon/grenade/anti_photon)
 
 /obj/random/soap
 	name = "Random Soap"
@@ -285,11 +299,11 @@
 				prob(2);/obj/item/weapon/storage/box/shotgunammo,
 				prob(4);/obj/item/weapon/storage/box/shotgunshells,
 				prob(1);/obj/item/weapon/storage/box/stunshells,
-				prob(2);/obj/item/ammo_magazine/c45m,
-				prob(4);/obj/item/ammo_magazine/c45m/rubber,
-				prob(4);/obj/item/ammo_magazine/c45m/flash,
-				prob(2);/obj/item/ammo_magazine/mc9mmt,
-				prob(6);/obj/item/ammo_magazine/mc9mmt/rubber)
+				prob(2);/obj/item/ammo_magazine/m45,
+				prob(4);/obj/item/ammo_magazine/m45/rubber,
+				prob(4);/obj/item/ammo_magazine/m45/flash,
+				prob(2);/obj/item/ammo_magazine/m9mmt,
+				prob(6);/obj/item/ammo_magazine/m9mmt/rubber)
 
 
 /obj/random/action_figure
@@ -559,7 +573,7 @@ something, make sure it's not in one of the other lists.*/
 				prob(4);/obj/item/clothing/shoes/leather,
 				prob(1);/obj/item/clothing/gloves/yellow,
 				prob(3);/obj/item/clothing/gloves/botanic_leather,
-				prob(2);/obj/item/clothing/gloves/latex,
+				prob(2);/obj/item/clothing/gloves/sterile/latex,
 				prob(5);/obj/item/clothing/gloves/white,
 				prob(5);/obj/item/clothing/gloves/rainbow,
 				prob(2);/obj/item/clothing/gloves/fyellow,
@@ -583,7 +597,7 @@ something, make sure it's not in one of the other lists.*/
 				prob(3);/obj/item/clothing/suit/storage/toggle/brown_jacket,
 				prob(3);/obj/item/clothing/suit/storage/toggle/leather_jacket,
 				prob(1);/obj/item/clothing/suit/storage/vest/press,
-				prob(3);/obj/item/clothing/suit/apron,
+				prob(3);/obj/item/clothing/suit/storage/apron,
 				prob(4);/obj/item/clothing/under/color/grey,
 				prob(2);/obj/item/clothing/under/syndicate/tacticool,
 				prob(2);/obj/item/clothing/under/pants/camo,
@@ -686,7 +700,7 @@ something, make sure it's not in one of the other lists.*/
 				prob(2);/obj/item/weapon/storage/belt/medical,
 				prob(1);/obj/item/clothing/shoes/boots/combat,
 				prob(3);/obj/item/clothing/shoes/white,
-				prob(2);/obj/item/clothing/gloves/latex,
+				prob(2);/obj/item/clothing/gloves/sterile/nitrile,
 				prob(5);/obj/item/clothing/gloves/white,
 				prob(2);/obj/item/clothing/glasses/hud/health,
 				prob(1);/obj/item/clothing/glasses/hud/health/prescription,
@@ -761,7 +775,7 @@ something, make sure it's not in one of the other lists.*/
 				prob(3);/obj/item/weapon/storage/box/beakers,
 				prob(3);/obj/item/weapon/storage/box/syringes,
 				prob(3);/obj/item/weapon/storage/box/gloves,
-				prob(2);/obj/item/clothing/gloves/latex,
+				prob(2);/obj/item/clothing/gloves/sterile/latex,
 				prob(4);/obj/item/clothing/glasses/science,
 				prob(3);/obj/item/clothing/glasses/material,
 				prob(1);/obj/item/clothing/head/beret/purple,
@@ -795,8 +809,8 @@ something, make sure it's not in one of the other lists.*/
 				prob(3);/obj/item/clothing/glasses/material,
 				prob(3);/obj/item/clothing/head/soft/yellow,
 				prob(4);/obj/item/clothing/suit/storage/hazardvest,
-				prob(3);/obj/item/clothing/suit/apron/overalls,
-				prob(4);/obj/item/clothing/suit/apron,
+				prob(3);/obj/item/clothing/suit/storage/apron/overalls,
+				prob(4);/obj/item/clothing/suit/storage/apron,
 				prob(2);/obj/item/clothing/under/syndicate/tacticool,
 				prob(1);/obj/item/clothing/under/syndicate/combat,
 				prob(2);/obj/item/clothing/accessory/storage/black_vest,
@@ -881,7 +895,12 @@ var/list/multi_point_spawns
 	var/item_path  // Item type to spawn
 
 /obj/random_multi/single_item/generate_items()
-	new item_path(loc)
+	//VOREStation Edit - Make this proc check for a closet and spawn in that. This happens after closets are init'd so otherwise it spawns on top
+	var/obj/structure/closet/C = locate(/obj/structure/closet) in get_turf(src)
+	if(C)
+		new item_path(C)
+	else
+		new item_path(loc)
 
 /hook/roundstart/proc/generate_multi_spawn_items()
 	for(var/id in multi_point_spawns)

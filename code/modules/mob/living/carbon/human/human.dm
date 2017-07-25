@@ -36,6 +36,7 @@
 	hud_list[HEALTH_VR_HUD]   = new /image/hud_overlay('icons/mob/hud_med_vr.dmi', src, "100")
 	hud_list[STATUS_R_HUD]    = new /image/hud_overlay('icons/mob/hud_vr.dmi', src, "hudhealthy")
 	hud_list[BACKUP_HUD]      = new /image/hud_overlay('icons/mob/hud_vr.dmi', src, "hudblank")
+	hud_list[VANTAG_HUD]      = new /image/hud_overlay('icons/mob/hud_vr.dmi', src, "hudblank")
 	//VOREStation Add End
 	hud_list[LIFE_HUD]	      = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudhealthy")
 	hud_list[ID_HUD]          = new /image/hud_overlay(using_map.id_hud_icons, src, "hudunknown")
@@ -93,6 +94,7 @@
 			if(mind.changeling)
 				stat("Chemical Storage", mind.changeling.chem_charges)
 				stat("Genetic Damage Time", mind.changeling.geneticdamage)
+				stat("Re-Adaptations", "[mind.changeling.readapts]/[mind.changeling.max_readapts]")
 
 /mob/living/carbon/human/ex_act(severity)
 	if(!blinded)
@@ -265,7 +267,7 @@
 	var/obj/item/device/pda/pda = wear_id
 	if (istype(pda))
 		if (pda.id)
-			return pda.id.rank
+			return pda.id.rank ? pda.id.rank : if_no_job
 		else
 			return pda.ownrank
 	else
@@ -309,6 +311,8 @@
 
 //repurposed proc. Now it combines get_id_name() and get_face_name() to determine a mob's name variable. Made into a seperate proc as it'll be useful elsewhere
 /mob/living/carbon/human/proc/get_visible_name()
+	if( mind && mind.changeling && mind.changeling.cloaked)
+		return "Unknown"
 	if( wear_mask && (wear_mask.flags_inv&HIDEFACE) )	//Wearing a mask which hides our face, use id-name if possible
 		return get_id_name("Unknown")
 	if( head && (head.flags_inv&HIDEFACE) )
@@ -705,7 +709,7 @@
 	if(istype(src.glasses, /obj/item/clothing/glasses/sunglasses))
 		if(istype(src.glasses, /obj/item/clothing/glasses/sunglasses/sechud/aviator))
 			var/obj/item/clothing/glasses/sunglasses/sechud/aviator/S = src.glasses
-			if(!S.active)
+			if(!S.on)
 				number += 1
 		else if(istype(src.glasses, /obj/item/clothing/glasses/sunglasses/medhud/aviator))
 			number += 0
@@ -1035,7 +1039,8 @@
 	gunshot_residue = null
 	if(clean_feet && !shoes && istype(feet_blood_DNA, /list) && feet_blood_DNA.len)
 		feet_blood_color = null
-		qdel(feet_blood_DNA)
+		feet_blood_DNA.Cut()
+		feet_blood_DNA = null
 		update_inv_shoes(1)
 		return 1
 
@@ -1142,7 +1147,7 @@
 	if(species.default_language)
 		add_language(species.default_language)
 
-	if(species.base_color && default_colour)
+	if(species.base_color) //VOREStation Edit - Always give them a basse color
 		//Apply colour.
 		r_skin = hex2num(copytext(species.base_color,2,4))
 		g_skin = hex2num(copytext(species.base_color,4,6))
@@ -1517,3 +1522,11 @@
 /mob/living/carbon/human/is_muzzled()
 	return (wear_mask && (istype(wear_mask, /obj/item/clothing/mask/muzzle) || istype(src.wear_mask, /obj/item/weapon/grenade)))
 
+// Called by job_controller.  Makes drones start with a permit, might be useful for other people later too.
+/mob/living/carbon/human/equip_post_job()
+	var/braintype = get_FBP_type()
+	if(braintype == FBP_DRONE)
+		var/turf/T = get_turf(src)
+		var/obj/item/weapon/permit/drone/permit = new(T)
+		permit.set_name(real_name)
+		equip_to_appropriate_slot(permit) // If for some reason it can't find room, it'll still be on the floor.

@@ -46,6 +46,7 @@
 	stop_automated_movement = 1
 	universal_speak = 1
 
+	has_langs = list("Bird")
 	speak_chance = 2
 	speak = list("Hi","Hello!","Cracker?","BAWWWWK george mellons griffing me")
 	speak_emote = list("squawks","says","yells")

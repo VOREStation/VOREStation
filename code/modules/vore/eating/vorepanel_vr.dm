@@ -10,7 +10,7 @@
 
 /mob/living/proc/insidePanel()
 	set name = "Vore Panel"
-	set category = "Vore"
+	set category = "IC"
 
 	var/datum/vore_look/picker_holder = new()
 	picker_holder.loop = picker_holder
@@ -30,6 +30,11 @@
 	var/show_interacts = 0
 	var/datum/browser/popup
 	var/loop = null;  // Magic self-reference to stop the handler from being GC'd before user takes action.
+
+/datum/vore_look/Destroy()
+	loop = null
+	selected = null
+	return QDEL_HINT_HARDDEL // TODO - Until I can better analyze how this weird thing works, lets be safe
 
 /datum/vore_look/Topic(href,href_list[])
 	if (vp_interact(href, href_list))
@@ -94,6 +99,10 @@
 				spanstyle = ""
 			if(DM_DIGEST)
 				spanstyle = "color:red;"
+			if(DM_ITEMWEAK)
+				spanstyle = "color:red;"
+			if(DM_STRIPDIGEST)
+				spanstyle = "color:red;"
 			if(DM_HEAL)
 				spanstyle = "color:green;"
 			if(DM_ABSORB)
@@ -102,13 +111,19 @@
 				spanstyle = "color:purple;"
 			if(DM_TRANSFORM_MALE)
 				spanstyle = "color:purple;"
+			if(DM_TRANSFORM_HAIR_AND_EYES)
+				spanstyle = "color:purple;"
 			if(DM_TRANSFORM_FEMALE)
 				spanstyle = "color:purple;"
 			if(DM_TRANSFORM_KEEP_GENDER)
 				spanstyle = "color:purple;"
-			if(DM_TRANSFORM_CHANGE_SPECIES)
+			if(DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR)
 				spanstyle = "color:purple;"
-			if(DM_TRANSFORM_CHANGE_SPECIES_EGG)
+			if(DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR_EGG)
+				spanstyle = "color:purple;"
+			if(DM_TRANSFORM_REPLICA)
+				spanstyle = "color:purple;"
+			if(DM_TRANSFORM_REPLICA_EGG)
 				spanstyle = "color:purple;"
 			if(DM_TRANSFORM_KEEP_GENDER_EGG)
 				spanstyle = "color:purple;"
@@ -237,7 +252,7 @@
 	for(var/H in href_list)
 
 	if(href_list["close"])
-		del(src)  // Cleanup
+		qdel(src)  // Cleanup
 		return
 
 	if(href_list["show_int"])
@@ -356,12 +371,8 @@
 					else
 						var/datum/belly/B = user.vore_organs[choice]
 						for(var/atom/movable/tgt in selected.internal_contents)
-							if (!(tgt in selected.internal_contents))
-								continue
-							selected.internal_contents -= tgt
-							B.internal_contents += tgt
-
 							tgt << "<span class='warning'>You're squished from [user]'s [selected] to their [B]!</span>"
+							selected.transfer_contents(tgt, B, 1)
 
 						for(var/mob/hearer in range(1,user))
 							hearer << sound('sound/vore/squish2.ogg',volume=80)
@@ -396,12 +407,9 @@
 					var/datum/belly/B = user.vore_organs[choice]
 					if (!(tgt in selected.internal_contents))
 						return 0
-					selected.internal_contents -= tgt
-					B.internal_contents += tgt
-
 					tgt << "<span class='warning'>You're squished from [user]'s [lowertext(selected.name)] to their [lowertext(B.name)]!</span>"
-					for(var/mob/hearer in range(1,user))
-						hearer << sound('sound/vore/squish2.ogg',volume=80)
+					selected.transfer_contents(tgt, B)
+
 
 	if(href_list["newbelly"])
 		if(user.vore_organs.len >= BELLIES_MAX)
@@ -445,6 +453,9 @@
 	if(href_list["b_mode"])
 		var/list/menu_list = selected.digest_modes
 		if(istype(usr,/mob/living/carbon/human))
+			var/mob/living/carbon/human/H = usr
+			if(H.species.vore_numbing)
+				menu_list += DM_DIGEST_NUMB
 			menu_list += selected.transform_modes
 
 		if(selected.digest_modes.len == 1) // Don't do anything
@@ -508,7 +519,7 @@
 					selected.set_messages(new_message,"smi")
 
 			if("Examine Message (when full)")
-				var/new_message = input(user,"These are sent to people who examine you when this belly has contents. Write them in 3rd person ('Their %belly is bulging'). Do not use %pred or %prey in this type."+help,"Examine Message (when full)",selected.get_messages("em")) as message
+				var/new_message = input(user,"These are sent to people who examine you when this belly has contents. Write them in 3rd person ('Their %belly is bulging')."+help,"Examine Message (when full)",selected.get_messages("em")) as message
 				if(new_message)
 					selected.set_messages(new_message,"em")
 

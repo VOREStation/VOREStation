@@ -169,9 +169,8 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Parameters: None
 // Description: Simple check to see if the exonet node is active.
 /obj/item/device/communicator/proc/get_connection_to_tcomms()
-	if(node)
-		if(node.on && node.allow_external_communicators)
-			return 1
+	if(node && node.on && node.allow_external_communicators && !is_jammed(src))
+		return 1
 	return 0
 
 // Proc: process()
@@ -182,7 +181,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	if(update_ticks % 5)
 		if(!node)
 			node = get_exonet_node()
-		if(!node || !node.on || !node.allow_external_communicators)
+		if(!get_connection_to_tcomms())
 			close_connection(reason = "Connection timed out")
 
 // Proc: attackby()
@@ -212,6 +211,8 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	alert_called = 0
 	update_icon()
 	ui_interact(user)
+	if(video_source)
+		watch_video(user)
 
 // Proc: MouseDrop()
 //Same thing PDAs do
@@ -255,12 +256,12 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	if(exonet)
 		exonet.remove_address()
 		exonet = null
-	..()
+	return ..()
 
 // Proc: ui_interact()
 // Parameters: 4 (standard NanoUI arguments)
 // Description: Uses a bunch of for loops to turn lists into lists of lists, so they can be displayed in nanoUI, then displays various buttons to the user.
-/obj/item/device/communicator/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/item/device/communicator/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/key_state = null)
 	// this is the data which will be sent to the ui
 	var/data[0]						//General nanoUI information
 	var/communicators[0]			//List of communicators
@@ -355,7 +356,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	if(!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "communicator.tmpl", "Communicator", 475, 700)
+		ui = new(user, src, ui_key, "communicator.tmpl", "Communicator", 475, 700, state = key_state)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window
@@ -802,7 +803,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	if(exonet)
 		exonet.remove_address()
 		exonet = null
-	..()
+	return ..()
 
 // Proc: update_icon()
 // Parameters: None
@@ -1009,12 +1010,21 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 
 	if(video_source) //Already in a video
 		user << "<span class='danger'>You are already connected to a video call!</span>"
+		return
 
 	if(user.blinded) //User is blinded
 		user << "<span class='danger'>You cannot see well enough to do that!</span>"
+		return
 
 	if(!(src in comm.communicating) || !comm.camera) //You called someone with a broken communicator or one that's fake or yourself or something
 		user << "<span class='danger'>\icon[src]ERROR: Video failed. Either bandwidth is too low, or the other communicator is malfunctioning.</span>"
+		return
+
+	var/turf/t1 = get_turf(src)
+	var/turf/t2 = get_turf(comm)
+	if(!is_on_same_plane_or_station(t1.z, t2.z) || !video_source.can_use())
+		user << "<span class='danger'>Request to establish video timed out!</span>"
+		return
 
 	user << "<span class='notice'>\icon[src] Attempting to start video over existing call.</span>"
 	sleep(30)
@@ -1032,9 +1042,10 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	if(!Adjacent(user) || !video_source) return
 	user.set_machine(video_source)
 	user.reset_view(video_source)
-	user << "<span class='notice'>Now viewing video session. To leave camera view: OOC -> Cancel Camera View</span>"
+	to_chat(user,"<span class='notice'>Now viewing video session. To leave camera view, close the communicator window OR: OOC -> Cancel Camera View</span>")
+	to_chat(user,"<span class='notice'>To return to an active video session, use the communicator in your hand.</span>")
 	spawn(0)
-		while(user.machine == video_source && Adjacent(user))
+		while(user.machine == video_source && (Adjacent(user) || loc == user))
 			var/turf/T = get_turf(video_source)
 			if(!T || !is_on_same_plane_or_station(T.z, user.z) || !video_source.can_use())
 				user << "<span class='warning'>The screen bursts into static, then goes black.</span>"
@@ -1096,6 +1107,21 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 		return
 
 	src.attack_self(usr)
+
+// Verb: activate()
+// Parameters: None
+// Description: Lets synths use their communicators without hands.
+/obj/item/device/communicator/integrated/verb/see_video()
+	set category = "AI IM"
+	set name = "View Comm. Video"
+	set desc = "Utilizes your built-in communicator."
+	set src in usr
+
+	if(usr.stat == 2)
+		usr << "You can't do that because you are dead!"
+		return
+
+	src.watch_video(usr)
 
 // A camera preset for spawning in the communicator
 /obj/machinery/camera/communicator

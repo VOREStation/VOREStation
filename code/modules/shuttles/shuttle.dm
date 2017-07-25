@@ -4,6 +4,7 @@
 //shuttle moving state defines are in setup.dm
 
 /datum/shuttle
+	var/name = ""
 	var/warmup_time = 0
 	var/moving_status = SHUTTLE_IDLE
 
@@ -11,6 +12,28 @@
 	var/datum/computer/file/embedded_program/docking/docking_controller	//the controller itself. (micro-controller, not game controller)
 
 	var/arrive_time = 0	//the time at which the shuttle arrives when long jumping
+
+	var/flags = SHUTTLE_FLAGS_PROCESS
+	var/category = /datum/shuttle
+
+/datum/shuttle/New()
+	..()
+	if(src.name in shuttle_controller.shuttles)
+		CRASH("A shuttle with the name '[name]' is already defined.")
+	shuttle_controller.shuttles[src.name] = src
+	if(flags & SHUTTLE_FLAGS_PROCESS)
+		shuttle_controller.process_shuttles += src
+	if(flags & SHUTTLE_FLAGS_SUPPLY)
+		if(supply_controller.shuttle)
+			CRASH("A supply shuttle is already defined.")
+		supply_controller.shuttle = src
+
+/datum/shuttle/Destroy()
+	shuttle_controller.shuttles -= src.name
+	shuttle_controller.process_shuttles -= src
+	if(supply_controller.shuttle == src)
+		supply_controller.shuttle = null
+	. = ..()
 
 /datum/shuttle/proc/init_docking_controllers()
 	if(docking_controller_tag)
@@ -45,6 +68,8 @@
 		moving_status = SHUTTLE_INTRANSIT
 		move(departing, interim, direction)
 
+		if(process_longjump(departing, destination)) //VOREStation Edit - To hook custom shuttle code in
+			return //VOREStation Edit - It handled it for us (shuttle crash or such)
 
 		while (world.time < arrive_time)
 			sleep(5)
@@ -101,15 +126,14 @@
 			throwy = T.y
 
 	for(var/turf/T in dstturfs)
-		var/turf/D = locate(T.x, throwy - 1, 1)
-		for(var/atom/movable/AM as mob|obj in T)
-			AM.Move(D)
-
-	for(var/mob/living/carbon/bug in destination)
-		bug.gib()
-
-	for(var/mob/living/simple_animal/pest in destination)
-		pest.gib()
+		var/turf/D = locate(T.x, throwy - 1, T.z)
+		for(var/I in T)
+			if(istype(I,/mob/living))
+				var/mob/living/L = I
+				L.gib()
+			else if(istype(I,/obj))
+				var/obj/O = I
+				O.forceMove(D)
 
 	origin.move_contents_to(destination, direction=direction)
 

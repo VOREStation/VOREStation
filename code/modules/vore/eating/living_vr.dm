@@ -12,14 +12,20 @@
 	var/reviving = 0					// Only used for creatures that have the xenochimera regen ability, so far.
 	var/metabolism = 0.0015
 	var/vore_taste = null				// What the character tastes like
+	var/no_vore = 0 					// If the character/mob can vore.
 
 //
 // Hook for generic creation of stuff on new creatures
 //
 /hook/living_new/proc/vore_setup(mob/living/M)
-	M.verbs += /mob/living/proc/insidePanel
 	M.verbs += /mob/living/proc/escapeOOC
 	M.verbs += /mob/living/proc/lick
+	if(M.no_vore) //If the mob isn's supposed to have a stomach, let's not give it an insidepanel so it can make one for itself, or a stomach.
+		M << "<span class='warning'>The creature that you are can not eat others.</span>"
+		return 1
+	M.verbs += /mob/living/proc/insidePanel
+
+	M.appearance_flags |= PIXEL_SCALE
 
 	//Tries to load prefs if a client is present otherwise gives freebie stomach
 	if(!M.vore_organs || !M.vore_organs.len)
@@ -183,7 +189,7 @@
 //	Verb for saving vore preferences to save file
 //
 /mob/living/proc/save_vore_prefs()
-	if(!(client || client.prefs_vr))
+	if(!client || !client.prefs_vr)
 		return 0
 	if(!copy_to_prefs_vr())
 		return 0
@@ -193,7 +199,7 @@
 	return 1
 
 /mob/living/proc/apply_vore_prefs()
-	if(!(client || client.prefs_vr))
+	if(!client || !client.prefs_vr)
 		return 0
 	if(!client.prefs_vr.load_vore())
 		return 0
@@ -250,30 +256,36 @@
 		return
 
 	src.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+
+	src.visible_message("<span class='warning'>[src] licks [tasted]!</span>","<span class='notice'>You lick [tasted]. They taste rather like [tasted.get_taste_message()].</span>","<b>Slurp!</b>")
+
+
+/mob/living/proc/get_taste_message(allow_generic = 1)
+	if(!vore_taste && !allow_generic)
+		return 0
+
 	var/taste_message = ""
-	if(tasted.vore_taste && (tasted.vore_taste != ""))
-		taste_message += "[tasted.vore_taste]"
+	if(vore_taste && (vore_taste != ""))
+		taste_message += "[vore_taste]"
 	else
-		if(ishuman(tasted))
-			var/mob/living/carbon/human/H = tasted
+		if(ishuman(src))
+			var/mob/living/carbon/human/H = src
 			taste_message += "a normal [H.custom_species ? H.custom_species : H.species.name]"
 		else
-			taste_message += "a plain old normal [tasted]"
+			taste_message += "a plain old normal [src]"
 
-	if(ishuman(tasted))
-		var/mob/living/carbon/human/H = tasted
+	if(ishuman(src))
+		var/mob/living/carbon/human/H = src
 		if(H.touching.reagent_list.len) //Just the first one otherwise I'll go insane.
 			var/datum/reagent/R = H.touching.reagent_list[1]
 			taste_message += " You also get the flavor of [R.taste_description] from something on them"
-
-	src.visible_message("<span class='warning'>[src] licks [tasted]!</span>","<span class='notice'>You lick [tasted]. They taste rather like [taste_message].</span>","<b>Slurp!</b>")
-
+	return taste_message
 //
 // OOC Escape code for pref-breaking or AFK preds
 //
 /mob/living/proc/escapeOOC()
-	set name = "OOC escape"
-	set category = "Vore"
+	set name = "OOC Escape"
+	set category = "OOC"
 
 	//You're in an animal!
 	if(istype(src.loc,/mob/living/simple_animal))
@@ -390,17 +402,8 @@
 	user.update_icons()
 
 	// Flavor handling
-	var/flavor_message = ""
-	if(belly_target.can_taste && prey.vore_taste && (prey.vore_taste != ""))
-		flavor_message += "[prey.vore_taste]."
-	if(ishuman(prey))
-		var/mob/living/carbon/human/H = prey
-		if(H.touching.reagent_list.len) //Just the first one otherwise I'll go insane.
-			var/datum/reagent/R = H.touching.reagent_list[1]
-			flavor_message += " You also get the flavor of [R.taste_description] from something on them"
-
-	if(flavor_message != "")
-		src << "<span class='notice'>[prey] tastes of [flavor_message].</span>"
+	if(prey.get_taste_message(0))
+		to_chat(src, "<span class='notice'>[prey] tastes of [prey.get_taste_message(0)].</span>")
 
 	// Inform Admins
 	if (pred == user)
@@ -423,9 +426,12 @@
 
 // This is about 0.896m^3 of atmosphere
 /datum/gas_mixture/belly_air
-	volume = 1000
-	gas = list(
-		"oxygen" = 21,
-		"nitrogen" = 79)
-	temperature = 293.150
-	total_moles = 40
+    volume = 1000
+    temperature = 293.150
+    total_moles = 40
+
+/datum/gas_mixture/belly_air/New()
+    . = ..()
+    gas = list(
+        "oxygen" = 21,
+        "nitrogen" = 79)

@@ -485,7 +485,7 @@ Buildable meters
 			var/turf/T = P.loc
 			P.level = !T.is_plating() ? 2 : 1
 			P.initialize()
-			if (deleted(P))
+			if (QDELETED(P))
 				usr << pipefailtext
 				return 1
 			P.build_network()
@@ -504,7 +504,7 @@ Buildable meters
 			var/turf/T = P.loc
 			P.level = !T.is_plating() ? 2 : 1
 			P.initialize()
-			if (deleted(P))
+			if (QDELETED(P))
 				usr << pipefailtext
 				return 1
 			P.build_network()
@@ -523,7 +523,7 @@ Buildable meters
 			var/turf/T = P.loc
 			P.level = !T.is_plating() ? 2 : 1
 			P.initialize()
-			if (deleted(P))
+			if (QDELETED(P))
 				usr << pipefailtext
 				return 1
 			P.build_network()
@@ -542,7 +542,7 @@ Buildable meters
 			var/turf/T = P.loc
 			P.level = !T.is_plating() ? 2 : 1
 			P.initialize()
-			if (deleted(P))
+			if (QDELETED(P))
 				usr << pipefailtext
 				return 1
 			P.build_network()
@@ -559,7 +559,7 @@ Buildable meters
 			P.initialize_directions = pipe_dir //this var it's used to know if the pipe is bent or not
 			P.initialize_directions_he = pipe_dir
 			P.initialize()
-			if (deleted(P))
+			if (QDELETED(P))
 				usr << pipefailtext
 				return 1
 			P.build_network()
@@ -594,7 +594,7 @@ Buildable meters
 			var/turf/T = M.loc
 			M.level = !T.is_plating() ? 2 : 1
 			M.initialize()
-			if (deleted(M))
+			if (QDELETED(M))
 				usr << pipefailtext
 				return 1
 			M.build_network()
@@ -663,7 +663,7 @@ Buildable meters
 			var/turf/T = M.loc
 			M.level = !T.is_plating() ? 2 : 1
 			M.initialize()
-			if (deleted(M))
+			if (QDELETED(M))
 				usr << pipefailtext
 				return 1
 			M.build_network()
@@ -740,7 +740,7 @@ Buildable meters
 			P.initialize_directions = src.get_pdir()
 			P.initialize_directions_he = src.get_hdir()
 			P.initialize()
-			if (deleted(P))
+			if (QDELETED(P))
 				usr << pipefailtext //"There's nothing to connect this pipe to! (with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)"
 				return 1
 			P.build_network()
@@ -922,7 +922,7 @@ Buildable meters
 			var/turf/T = P.loc
 			P.level = !T.is_plating() ? 2 : 1
 			P.initialize()
-			if (deleted(P))
+			if (QDELETED(P))
 				usr << pipefailtext
 				return 1
 			P.build_network()

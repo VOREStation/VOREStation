@@ -19,9 +19,9 @@ var/global/list/GPS_list = list()
 	name = "global positioning system ([gpstag])"
 	overlays += "working"
 
-/obj/item/device/gps/advanced/Del()
+/obj/item/device/gps/advanced/Destroy()
 	GPS_list.Remove(src)
-	..()
+	. = ..()
 
 /obj/item/device/gps/advanced/emp_act(severity)
 	emped = 1

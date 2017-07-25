@@ -181,9 +181,14 @@
 		return
 
 	//Override for somatoray projectiles.
-	if(istype(Proj ,/obj/item/projectile/energy/floramut) && prob(20))
-		mutate(1)
-		return
+	if(istype(Proj ,/obj/item/projectile/energy/floramut)&& prob(20))
+		if(istype(Proj, /obj/item/projectile/energy/floramut/gene))
+			var/obj/item/projectile/energy/floramut/gene/G = Proj
+			if(seed)
+				seed = seed.diverge_mutate_gene(G.gene, get_turf(loc))	//get_turf just in case it's not in a turf.
+		else
+			mutate(1)
+			return
 	else if(istype(Proj ,/obj/item/projectile/energy/florayield) && prob(20))
 		yield_mod = min(10,yield_mod+rand(1,2))
 		return
@@ -625,12 +630,7 @@
 		if(closed_system && mechanical)
 			light_string = "that the internal lights are set to [tray_light] lumens"
 		else
-			var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in T
-			var/light_available
-			if(L)
-				light_available = max(0,min(10,L.lum_r + L.lum_g + L.lum_b)-5)
-			else
-				light_available =  5
+			var/light_available = T.get_lumcount() * 5
 			light_string = "a light level of [light_available] lumens"
 
 		usr << "The tray's sensor suite is reporting [light_string] and a temperature of [environment.temperature]K at [environment.return_pressure()] kPa in the [environment_type] environment"

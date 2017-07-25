@@ -29,6 +29,29 @@
 	build_path = /obj/item/weapon/gun/energy/sizegun
 	sort_string = "TAAAB"
 
+/datum/design/item/bluespace_jumpsuit
+	name = "Bluespace jumpsuit"
+	id = "bsjumpsuit"
+	req_tech = list(TECH_BLUESPACE = 2, TECH_MATERIAL = 3, TECH_POWER = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 4000)
+	build_path = /obj/item/clothing/under/bluespace
+	sort_string = "TAAAC"
+
+/datum/design/item/sleevemate
+	name = "SleeveMate 3200"
+	id = "sleevemate"
+	req_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 2, TECH_BIO = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 4000)
+	build_path = /obj/item/device/sleevemate
+	sort_string = "TAAAD"
+
+/datum/design/item/bodysnatcher
+	name = "Body Snatcher"
+	id = "bodysnatcher"
+	req_tech = list(TECH_MAGNET = 3, TECH_BIO = 3, TECH_ILLEGAL = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 4000)
+	build_path = /obj/item/device/bodysnatcher
+
 /datum/design/item/item/pressureinterlock
 	name = "APP pressure interlock"
 	id = "pressureinterlock"
@@ -77,6 +100,14 @@
 	build_path = /obj/item/device/universal_translator/ear
 	sort_string = "HABBB"
 
+/datum/design/item/nif
+	name = "nanite implant framework"
+	id = "nif"
+	req_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_MATERIAL = 5, TECH_ENGINEERING = 5, TECH_DATA = 5)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 8000, "uranium" = 6000, "diamond" = 6000)
+	build_path = /obj/item/device/nif
+	sort_string = "HABBC"
+
 // Resleeving Circuitboards
 
 /datum/design/circuit/transhuman_clonepod
@@ -107,9 +138,31 @@
 	build_path = /obj/item/weapon/circuitboard/resleeving_control
 	sort_string = "HAADE"
 
+/datum/design/circuit/body_designer
+	name = "Body design console"
+	id = "body_designer"
+	req_tech = list(TECH_DATA = 5)
+	build_path = /obj/item/weapon/circuitboard/body_designer
+	sort_string = "HAADF"
+
 /datum/design/circuit/partslathe
 	name = "Parts lathe"
 	id = "partslathe"
 	req_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 2)
 	build_path = /obj/item/weapon/circuitboard/partslathe
 	sort_string = "HABAD"
+
+/datum/design/item/weapon/netgun
+	name = "\'Hunter\' capture gun"
+	id = "netgun"
+	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 5, TECH_MAGNET = 3)
+	materials = list(DEFAULT_WALL_MATERIAL = 6000, "glass" = 3000)
+	build_path = /obj/item/weapon/gun/energy/netgun
+	sort_string = "TAADF"
+
+/datum/design/circuit/algae_farm
+	name = "Algae Oxygen Generator"
+	id = "algae_farm"
+	req_tech = list(TECH_ENGINEERING = 3, TECH_BIO = 2)
+	build_path = /obj/item/weapon/circuitboard/algae_farm
+	sort_string = "HABAE"

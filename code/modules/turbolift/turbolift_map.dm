@@ -36,6 +36,7 @@
 
 	// These modifiers are used in relation to the origin
 	// to place the system control panels and doors.
+	var/make_walls = isnull(wall_type) ? FALSE : TRUE
 	var/int_panel_x
 	var/int_panel_y
 	var/ext_panel_x
@@ -59,70 +60,70 @@
 		if(NORTH)
 
 			int_panel_x = ux + Floor(lift_size_x/2)
-			int_panel_y = uy + 1
+			int_panel_y = uy + (make_walls ? 1 : 0)
 			ext_panel_x = ux
 			ext_panel_y = ey + 2
 
 			door_x1 = ux + 1
-			door_y1 = ey
+			door_y1 = ey + (make_walls ? 0 : 1)
 			door_x2 = ex - 1
 			door_y2 = ey + 1
 
-			light_x1 = ux + 1
-			light_y1 = uy + 1
-			light_x2 = ux + lift_size_x - 1
-			light_y2 = uy + 1
+			light_x1 = ux + (make_walls ? 1 : 0)
+			light_y1 = uy + (make_walls ? 1 : 0)
+			light_x2 = ux + lift_size_x - (make_walls ? 1 : 0)
+			light_y2 = uy + (make_walls ? 1 : 0)
 
 		if(SOUTH)
 
 			int_panel_x = ux + Floor(lift_size_x/2)
-			int_panel_y = ey - 1
+			int_panel_y = ey - (make_walls ? 1 : 0)
 			ext_panel_x = ex
 			ext_panel_y = uy - 2
 
 			door_x1 = ux + 1
 			door_y1 = uy - 1
 			door_x2 = ex - 1
-			door_y2 = uy
+			door_y2 = uy - (make_walls ? 0 : 1)
 
-			light_x1 = ux + 1
-			light_y1 = uy + 2
-			light_x2 = ux + lift_size_x - 1
-			light_y2 = uy + lift_size_y - 1
+			light_x1 = ux + (make_walls ? 1 : 0)
+			light_y1 = uy + (make_walls ? 2 : 1)
+			light_x2 = ux + lift_size_x - (make_walls ? 1 : 0)
+			light_y2 = uy + lift_size_y - (make_walls ? 1 : 0)
 
 		if(EAST)
 
-			int_panel_x = ux+1
+			int_panel_x = ux + (make_walls ? 1 : 0)
 			int_panel_y = uy + Floor(lift_size_y/2)
 			ext_panel_x = ex+2
 			ext_panel_y = ey
 
-			door_x1 = ex
+			door_x1 = ex + (make_walls ? 0 : 1)
 			door_y1 = uy + 1
 			door_x2 = ex + 1
 			door_y2 = ey - 1
 
-			light_x1 = ux + 1
-			light_y1 = uy + 1
-			light_x2 = ux + 1
-			light_y2 = uy + lift_size_x - 1
+			light_x1 = ux + (make_walls ? 1 : 0)
+			light_y1 = uy + (make_walls ? 1 : 0)
+			light_x2 = ux + (make_walls ? 1 : 0)
+			light_y2 = uy + lift_size_x - (make_walls ? 1 : 0)
 
 		if(WEST)
 
-			int_panel_x = ex-1
+			int_panel_x = ex - (make_walls ? 1 : 0)
 			int_panel_y = uy + Floor(lift_size_y/2)
 			ext_panel_x = ux-2
 			ext_panel_y = uy
 
 			door_x1 = ux - 1
 			door_y1 = uy + 1
-			door_x2 = ux
+			door_x2 = ux - (make_walls ? 0 : 1)
 			door_y2 = ey - 1
 
-			light_x1 = ux + lift_size_x - 1
-			light_y1 = uy + 1
-			light_x2 = ux + lift_size_x - 1
-			light_y2 = uy + lift_size_y - 1
+			light_x1 = ux + lift_size_x - (make_walls ? 1 : 0)
+			light_y1 = uy + (make_walls ? 1 : 0)
+			light_x2 = ux + lift_size_x - (make_walls ? 1 : 0)
+			light_y2 = uy + lift_size_y - (make_walls ? 1 : 0)
 
 	// Generate each floor and store it in the controller datum.
 	for(var/cz = uz;cz<=ez;cz++)
@@ -145,7 +146,7 @@
 				// Update path appropriately if needed.
 				var/swap_to = /turf/simulated/open
 				if(cz == uz)                                                                       // Elevator.
-					if((tx == ux || ty == uy || tx == ex || ty == ey) && !(tx >= door_x1 && tx <= door_x2 && ty >= door_y1 && ty <= door_y2))
+					if(wall_type && (tx == ux || ty == uy || tx == ex || ty == ey) && !(tx >= door_x1 && tx <= door_x2 && ty >= door_y1 && ty <= door_y2))
 						swap_to = wall_type
 					else
 						swap_to = floor_type
@@ -221,7 +222,7 @@
 	var/turf/T = locate(int_panel_x, int_panel_y, uz)
 	lift.control_panel_interior = new(T, lift)
 	lift.control_panel_interior.set_dir(udir)
-	lift.current_floor = lift.floors[uz]
+	lift.current_floor = lift.floors[1]
 
 	lift.open_doors()
 

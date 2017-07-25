@@ -149,17 +149,19 @@
 /obj/item/rig_module/chem_dispenser/ninja
 	interface_desc = "Dispenses loaded chemicals directly into the wearer's bloodstream. This variant is made to be extremely light and flexible."
 
-	//just over a syringe worth of each. Want more? Go refill. Gives the ninja another reason to have to show their face.
+	//Want more? Go refill. Gives the ninja another reason to have to show their face.
 	charges = list(
-		list("tricordrazine", "tricordrazine", 0, 20),
-		list("tramadol",      "tramadol",      0, 20),
-		list("dexalin plus",  "dexalinp",      0, 20),
-		list("antibiotics",   "spaceacillin",  0, 20),
-		list("antitoxins",    "anti_toxin",    0, 20),
-		list("nutrients",     "glucose",     0, 80),
-		list("clotting agent", "myelamine", 0, 80),
-		list("hyronalin",     "hyronalin",     0, 20),
-		list("radium",        "radium",        0, 20)
+		list("tricordrazine", "tricordrazine", 0, 30),
+		list("tramadol",      "tramadol",      0, 30),
+		list("dexalin plus",  "dexalinp",      0, 30),
+		list("antibiotics",   "spaceacillin",  0, 30),
+		list("antitoxins",    "anti_toxin",    0, 60),
+		list("nutrients",     "glucose",       0, 80),
+		list("bicaridine",	  "bicaridine",    0, 30),
+		list("clotting agent", "myelamine",    0, 30),
+		list("peridaxon",     "peridaxon",     0, 30),
+		list("hyronalin",     "hyronalin",     0, 30),
+		list("radium",        "radium",        0, 30)
 		)
 
 /obj/item/rig_module/chem_dispenser/accepts_item(var/obj/item/input_item, var/mob/living/user)
@@ -475,7 +477,7 @@
 
 	for(var/obj/item/weapon/mop_deploy/blade in M.contents)
 		M.drop_from_inventory(blade)
-		del(blade)
+		qdel(blade)
 
 
 	//Space Cleaner Launcher
@@ -518,7 +520,7 @@
 
 	user << "<font color='blue'><b>You slot \the [input_device] into the suit module.</b></font>"
 	user.drop_from_inventory(input_device)
-	del(input_device)
+	qdel(input_device)
 	accepted_item.charges++
 	return 1
 

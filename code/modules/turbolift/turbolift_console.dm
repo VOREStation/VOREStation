@@ -54,6 +54,7 @@
 	desc = "A call button for an elevator. Be sure to hit it three hundred times."
 	icon_state = "button"
 	var/light_up = FALSE
+	req_access = list(access_eva)
 	var/datum/turbolift_floor/floor
 
 /obj/structure/lift/button/Destroy()
@@ -66,8 +67,26 @@
 	light_up = FALSE
 	update_icon()
 
+// Hit it with a PDA or ID to enable priority call mode
+/obj/structure/lift/button/attackby(obj/item/W as obj, mob/user as mob)
+	var/obj/item/weapon/card/id/id = W.GetID()
+	if(istype(id))
+		if(!check_access(id))
+			playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 0)
+			return
+		lift.priority_mode()
+		if(floor == lift.current_floor)
+			lift.open_doors()
+		else
+			lift.queue_move_to(floor)
+		return
+	. = ..()
+
 /obj/structure/lift/button/interact(var/mob/user)
 	if(!..())
+		return
+	if(lift.fire_mode || lift.priority_mode)
+		playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 0)
 		return
 	light_up()
 	pressed(user)
@@ -83,7 +102,11 @@
 	update_icon()
 
 /obj/structure/lift/button/update_icon()
-	if(light_up)
+	if(lift.fire_mode)
+		icon_state = "button_fire"
+	else if(lift.priority_mode)
+		icon_state = "button_pri"
+	else if(light_up)
 		icon_state = "button_lit"
 	else
 		icon_state = initial(icon_state)
@@ -94,7 +117,24 @@
 /obj/structure/lift/panel
 	name = "elevator control panel"
 	icon_state = "panel"
+	req_access = list(access_eva)
+	req_one_access = list(access_heads, access_atmospherics, access_medical)
 
+// Hit it with a PDA or ID to enable priority call mode
+/obj/structure/lift/panel/attackby(obj/item/W as obj, mob/user as mob)
+	var/obj/item/weapon/card/id/id = W.GetID()
+	if(istype(id))
+		if(!check_access(id))
+			playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 0)
+			return
+		lift.update_fire_mode(!lift.fire_mode)
+		if(lift.fire_mode)
+			audible_message("<span class='danger'>Firefighter Mode Activated.  Door safeties disabled.  Manual control engaged.</span>")
+			playsound(src.loc, 'sound/machines/airalarm.ogg', 25, 0, 4)
+		else
+			audible_message("<span class='warning'>Firefighter Mode Deactivated. Door safeties enabled.  Automatic control engaged.</span>")
+		return
+	. = ..()
 
 /obj/structure/lift/panel/attack_ghost(var/mob/user)
 	return interact(user)
@@ -123,7 +163,8 @@
 	dat += "<a href='?src=\ref[src];emergency_stop=1'>Emergency Stop</a>"
 	dat += "<hr></body></html>"
 
-	var/datum/browser/popup = new(user, "turbolift_panel", "Lift Panel", 230, 260)
+	user.set_machine(src)
+	var/datum/browser/popup = new(user, "turbolift_panel", "Lift Panel", 350, 320) //VOREStation Edit - Wider!
 	popup.set_content(jointext(dat, null))
 	popup.open()
 	return
@@ -149,7 +190,14 @@
 
 	if(panel_interact)
 		pressed(usr)
+		updateDialog()
 
 	return 0
+
+/obj/structure/lift/panel/update_icon()
+	if(lift.fire_mode)
+		icon_state = "panel_fire"
+	else
+		icon_state = initial(icon_state)
 
 // End panel.

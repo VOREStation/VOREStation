@@ -35,6 +35,10 @@
 	name = "Scaredy's Private Reserve Beef Jerky"
 	icon_state = "sosjerky"
 
+/obj/item/trash/unajerky
+	name = "Moghes Imported Sissalik Jerky"
+	icon_state = "unathitinred"
+
 /obj/item/trash/syndi_cakes
 	name = "syndi cakes"
 	icon_state = "syndi_cakes"

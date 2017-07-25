@@ -29,6 +29,7 @@
 	minbodytemp = 223		//Below -50 Degrees Celcius
 	maxbodytemp = 323	//Above 50 Degrees Celcius
 
+	has_langs = list("Mouse")
 	speak_chance = 1
 	speak = list("Squeek!","SQUEEK!","Squeek?")
 	speak_emote = list("squeeks","squeeks","squiks")

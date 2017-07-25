@@ -21,6 +21,7 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 5 //they're meant to be annoying, not threatening.
 	melee_damage_upper = 5 //unless there's like a dozen of them, then you're screwed.
+	cooperative = 1 // mwahahahahahaaa // Vorestation Edit, temporary
 	attacktext = "pecked"
 	attack_sound = 'sound/weapons/bite.ogg'
 
@@ -35,6 +36,7 @@
 	max_n2 = 0
 	minbodytemp = 0
 
+	has_langs = list("Bird")
 	speak_chance = 10
 	speak = list("HONK!")
 	emote_hear = list("honks loudly!")
@@ -54,4 +56,4 @@
 		custom_emote(1,"flaps and honks at [.]!")
 
 /mob/living/simple_animal/hostile/goose/Process_Spacemove(var/check_drift = 0)
-	return
+	return 1 // VOREStation Edit No drifting in space!

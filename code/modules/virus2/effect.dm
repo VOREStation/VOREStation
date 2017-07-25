@@ -264,7 +264,7 @@
 	stage = 3
 	activate(var/mob/living/carbon/mob,var/multiplier)
 		mob << "<span class='notice'>You have trouble telling right and left apart all of a sudden.</span>"
-		mob.confused += 10
+		mob.Confuse(10)
 
 /datum/disease2/effect/mutation
 	name = "DNA Degradation"

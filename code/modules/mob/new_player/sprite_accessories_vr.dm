@@ -75,6 +75,26 @@
 		icon_state = "soghun_horns"
 		species_allowed = list("Unathi", "Xenochimera")
 
+	una_bighorns
+		name = "Unathi Big Horns"
+		icon_state = "unathi_bighorn"
+		species_allowed = list("Unathi", "Xenochimera")
+
+	una_smallhorns
+		name = "Unathi Small Horns"
+		icon_state = "unathi_smallhorn"
+		species_allowed = list("Unathi", "Xenochimera")
+
+	una_ramhorns
+		name = "Unathi Ram Horns"
+		icon_state = "unathi_ramhorn"
+		species_allowed = list("Unathi", "Xenochimera")
+
+	una_sidefrills
+		name = "Unathi Side Frills"
+		icon_state = "unathi_sidefrills"
+		species_allowed = list("Unathi", "Xenochimera")
+
 	una_doublehorns
 		name = "Double Unathi Horns"
 		icon = 'icons/mob/human_face_vr.dmi'
@@ -141,110 +161,134 @@
 		name = "Tajara Messy"
 		icon_state = "hair_messy"
 		species_allowed = list("Tajara", "Xenochimera")
+
+//Skrell 'hairstyles' - these were requested for a chimera and screw it, if one wants to eat seafood, go nuts
+	skr_tentacle_veryshort
+		name = "Skrell Very Short Tentacles"
+		icon_state = "skrell_hair_veryshort"
+		species_allowed = list("Skrell", "Xenochimera")
+		gender = MALE
+
+	skr_tentacle_short
+		name = "Skrell Short Tentacles"
+		icon_state = "skrell_hair_short"
+		species_allowed = list("Skrell", "Xenochimera")
+
+	skr_tentacle_average
+		name = "Skrell Average Tentacles"
+		icon_state = "skrell_hair_average"
+		species_allowed = list("Skrell", "Xenochimera")
+
+	skr_tentacle_verylong
+		name = "Skrell Long Tentacles"
+		icon_state = "skrell_hair_verylong"
+		species_allowed = list("Skrell", "Xenochimera")
+		gender = FEMALE
+
 // Vulpa stuffs
 
 	vulp_hair_none
 		name = "None"
 		icon_state = "bald"
-		species_allowed = list("Vulpkanin")
+		species_allowed = list("Vulpkanin", "Xenochimera")
 		gender = NEUTER
 
 	vulp_hair_kajam
 		name = "Kajam"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "kajam"
-		species_allowed = list("Vulpkanin")
+		species_allowed = list("Vulpkanin", "Xenochimera")
 		gender = NEUTER
 
 	vulp_hair_keid
 		name = "Keid"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "keid"
-		species_allowed = list("Vulpkanin")
+		species_allowed = list("Vulpkanin", "Xenochimera")
 		gender = NEUTER
 
 	vulp_hair_adhara
 		name = "Adhara"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "adhara"
-		species_allowed = list("Vulpkanin")
+		species_allowed = list("Vulpkanin", "Xenochimera")
 		gender = NEUTER
 
 	vulp_hair_kleeia
 		name = "Kleeia"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "kleeia"
-		species_allowed = list("Vulpkanin")
+		species_allowed = list("Vulpkanin", "Xenochimera")
 		gender = NEUTER
 
 	vulp_hair_mizar
 		name = "Mizar"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "mizar"
-		species_allowed = list("Vulpkanin")
+		species_allowed = list("Vulpkanin", "Xenochimera")
 		gender = NEUTER
 
 	vulp_hair_apollo
 		name = "Apollo"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "apollo"
-		species_allowed = list("Vulpkanin")
+		species_allowed = list("Vulpkanin", "Xenochimera")
 		gender = NEUTER
 
 	vulp_hair_belle
 		name = "Belle"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "belle"
-		species_allowed = list("Vulpkanin")
+		species_allowed = list("Vulpkanin", "Xenochimera")
 		gender = NEUTER
 
 	vulp_hair_bun
 		name = "Bun"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "bun"
-		species_allowed = list("Vulpkanin")
+		species_allowed = list("Vulpkanin", "Xenochimera")
 		gender = NEUTER
 
 	vulp_hair_jagged
 		name = "Jagged"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "jagged"
-		species_allowed = list("Vulpkanin")
+		species_allowed = list("Vulpkanin", "Xenochimera")
 		gender = NEUTER
 
 	vulp_hair_curl
 		name = "Curl"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "curl"
-		species_allowed = list("Vulpkanin")
+		species_allowed = list("Vulpkanin", "Xenochimera")
 		gender = NEUTER
 
 	vulp_hair_hawk
 		name = "Hawk"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "hawk"
-		species_allowed = list("Vulpkanin")
+		species_allowed = list("Vulpkanin", "Xenochimera")
 		gender = NEUTER
 
 	vulp_hair_anita
 		name = "Anita"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "anita"
-		species_allowed = list("Vulpkanin")
+		species_allowed = list("Vulpkanin", "Xenochimera")
 		gender = NEUTER
 
 	vulp_hair_short
 		name = "Short"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "short"
-		species_allowed = list("Vulpkanin")
+		species_allowed = list("Vulpkanin", "Xenochimera")
 		gender = NEUTER
 
 	vulp_hair_spike
 		name = "Spike"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "spike"
-		species_allowed = list("Vulpkanin")
+		species_allowed = list("Vulpkanin", "Xenochimera")
 		gender = NEUTER
 
 /datum/sprite_accessory/facial_hair
@@ -364,4 +408,64 @@
 	vulp_all
 		name = "all head highlights (Vulp)"
 		icon_state = "vulp_all"
+		body_parts = list(BP_HEAD)
+
+	sergal_full
+		name = "Sergal Markings"
+		icon_state = "sergal_full"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
+		species_allowed = list("Sergal")
+
+	sergal_full_female
+		name = "Sergal Markings (Female)"
+		icon_state = "sergal_full_female"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
+		species_allowed = list("Sergal")
+		gender = FEMALE
+
+	monoeye
+		name = "Monoeye"
+		icon_state = "monoeye"
+		body_parts = list(BP_HEAD)
+
+	nevrean_female
+		name = "Female Nevrean beak"
+		icon_state = "nevrean_f"
+		body_parts = list(BP_HEAD)
+		gender = FEMALE
+
+	nevrean_male
+		name = "Male Nevrean beak"
+		icon_state = "nevrean_m"
+		body_parts = list(BP_HEAD)
+		gender = MALE
+
+	spots
+		name = "Spots"
+		icon_state = "spots"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
+
+	shaggy_mane
+		name = "Shaggy mane/feathers"
+		icon_state = "shaggy"
+		body_parts = list(BP_TORSO)
+
+	jagged_teeth
+		name = "Jagged teeth"
+		icon_state = "jagged"
+		body_parts = list(BP_HEAD)
+
+	saber_teeth
+		name = "Saber teeth"
+		icon_state = "saber"
+		body_parts = list(BP_HEAD)
+
+	fangs
+		name = "Fangs"
+		icon_state = "fangs"
+		body_parts = list(BP_HEAD)
+
+	tusks
+		name = "Tusks"
+		icon_state = "tusks"
 		body_parts = list(BP_HEAD)

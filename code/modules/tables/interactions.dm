@@ -12,7 +12,8 @@
 		return 1
 	if(locate(/obj/structure/table/bench) in get_turf(mover))
 		return 0
-	if(locate(/obj/structure/table) in get_turf(mover))
+	var/obj/structure/table/table = locate(/obj/structure/table) in get_turf(mover)
+	if(table && !table.flipped)
 		return 1
 	return 0
 
@@ -129,7 +130,7 @@
 		break_to_parts()
 		return
 
-	if(istype(W, /obj/item/weapon/melee/arm_blade))
+	if(istype(W, /obj/item/weapon/melee/changeling/arm_blade))
 		user.visible_message("<span class='danger'>\The [src] was sliced apart by [user]!</span>")
 		break_to_parts()
 		return

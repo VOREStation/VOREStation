@@ -78,6 +78,13 @@
 	desc = ""
 	icon_state = "bee"
 
+/datum/sprite_accessory/ears/antennae
+	name = "antennae, colorable"
+	desc = ""
+	icon_state = "antennae"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/ears/oni_h1
 	name = "oni horns"
 	desc = ""
@@ -231,6 +238,12 @@
 	icon_state = "molenar-tentacle"
 	ckeys_allowed = list("molenar")
 
+/datum/sprite_accessory/ears/shock
+	name = "pharoah hound ears (Shock Diamond)"
+	desc = ""
+	icon_state = "shock"
+	ckeys_allowed = list("icowom")
+
 /*
 ////////////////////////////
 /  =--------------------=  /
@@ -382,6 +395,48 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/tail/horse
+	name = "horse tail, colorable"
+	desc = ""
+	icon_state = "horse"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/cow
+	name = "cow tail, colorable"
+	desc = ""
+	icon_state = "cow"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/fantail
+	name = "avian fantail, colorable"
+	desc = ""
+	icon_state = "fantail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/faintailwings
+	name = "avian fantail, colorable (+wings)"
+	desc = ""
+	icon_state= "fantailwings"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/wagtail
+	name = "avian wagtail, colorable"
+	desc = ""
+	icon_state = "wagtail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/wagtailwings
+	name = "avian wagtail, colorable (+wings)"
+	desc = ""
+	icon_state = "wagtailwings"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/tail/crossfox
 	name = "cross fox"
 	desc = ""
@@ -391,6 +446,11 @@
 	name = "bee thorax (+wings)"
 	desc = ""
 	icon_state = "bee"
+
+/datum/sprite_accessory/tail/beethorax
+	name = "bee thorax"
+	desc = ""
+	icon_state = "beethorax"
 
 /datum/sprite_accessory/tail/beewings
 	name = "bee wings"
@@ -416,6 +476,13 @@
 	name = "succubus, black (+wings)"
 	desc = ""
 	icon_state = "succubus-black"
+
+/datum/sprite_accessory/tail/doublekitsune
+	name = "double kitsune tail, colorable"
+	desc = ""
+	icon_state = "doublekitsune"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/succubus_color
 	name = "succubus, colorable (+wings)"
@@ -464,6 +531,20 @@
 	icon_state = "molenar-kitsune"
 	ckeys_allowed = list("molenar")
 
+/datum/sprite_accessory/tail/harpywings
+	name = "harpy wings, colorable"
+	desc = ""
+	icon_state = "harpywings"
+	do_colouration = 1
+	show_species_tail = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/liquidfirefly_gazer
+	name = "gazer eyestalks (Liquidfirefly)"
+	desc = ""
+	icon_state = "liquidfirefly-eyestalks"
+	ckeys_allowed = list("liquidfirefly","seiga")
+
 /datum/sprite_accessory/tail/miria_fluffdragon
 	name = "fluffdragon wings+tail (Miria Masters)"
 	desc = ""
@@ -503,7 +584,13 @@
 /datum/sprite_accessory/tail/rosey
 	name = "tritail kitsune tails (Rosey)"
 	desc = ""
-	icon_state = "rosey"
+	icon_state = "rosey_three"
+	ckeys_allowed = list("joey4298")
+
+/datum/sprite_accessory/tail/rosey2
+	name = "pentatail kitsune tails (Rosey)" //I predict seven tails next. ~CK
+	desc = ""
+	icon_state = "rosey_five"
 	ckeys_allowed = list("joey4298")
 
 /datum/sprite_accessory/tail/scree
@@ -583,6 +670,19 @@
 	icon_state = "vulptail"
 	ani_state = "vulptail_w"
 	do_colouration = 1
+
+/datum/sprite_accessory/tail/shock
+	name = "pharoah hound tail (Shock Diamond)"
+	desc = ""
+	icon_state = "shock"
+	ckeys_allowed = list("icowom")
+
+/datum/sprite_accessory/tail/snaketail
+	name = "snake tail, colorable"
+	desc = ""
+	icon_state = "snaketail"
+	do_colouration = 1
+
 
 //For all species tails. Includes haircolored tails.
 /datum/sprite_accessory/tail/special
@@ -819,3 +919,10 @@
 	name = "CyberSerdy (silencedmp5a5)"
 	icon_state = "serdy_s"
 	ckeys_allowed = list("silencedmp5a5")
+
+//liquidfirefly: Ariana Scol
+/datum/sprite_accessory/tail/taur/centipede
+	name = "Centipede (liquidfirefly)"
+	icon_state = "ariana_s"
+	ckeys_allowed = list("liquidfirefly")
+	do_colouration = 0

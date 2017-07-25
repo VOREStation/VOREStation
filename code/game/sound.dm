@@ -157,9 +157,11 @@ var/const/FALLOFF_SOUNDS = 0.5
 	src << S
 
 /client/proc/playtitlemusic()
-	if(!ticker || !ticker.login_music)	return
+	if(!ticker || !all_lobby_tracks.len || !media)	return
 	if(is_preference_enabled(/datum/client_preference/play_lobby_music))
-		src << sound(ticker.login_music, repeat = 0, wait = 0, volume = 85, channel = 1) // MAD JAMS
+		var/datum/track/T = pick(all_lobby_tracks)
+		media.push_music(T.url, world.time, 0.85)
+		to_chat(src,"<span class='notice'>Lobby music: <b>[T.title]</b> by <b>[T.artist]</b>.</span>")
 
 /proc/get_rand_frequency()
 	return rand(32000, 55000) //Frequency stuff only works with 45kbps oggs.

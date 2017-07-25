@@ -57,6 +57,8 @@ ALIEN_DELAY 0
 METROID_DELAY 0
 ANIMAL_DELAY 0
 
+## Volume of footstep sound effects.  Range: 1-100, Set to 0 to disable footstep sounds.
+FOOTSTEP_VOLUME 60
 
 ### Miscellaneous ###
 

@@ -40,7 +40,7 @@
 	icon_state = "exit"
 
 /area/awaymission/labyrinth/temple/north_west
-	icon_state = "orange"
+	icon_state = "away4"
 
 /area/awaymission/labyrinth/temple/north
 	icon_state = "blue"
@@ -90,7 +90,7 @@
 /obj/machinery/door/airlock/vault/temple/New()
 	if(prob(33))
 		new /obj/structure/falsewall/cultspecial(src.loc)
-		del(src)
+		qdel(src)
 	if(prob(33))
 		safe = 0
 	if(prob(33))
@@ -190,9 +190,8 @@
 	name = "dead tunnel clown"
 	corpseuniform = /obj/item/clothing/under/rank/clown
 	corpseshoes = /obj/item/clothing/shoes/clown_shoes
-	corpsesuit = /obj/item/clothing/suit/chaplain_hoodie
+	corpsesuit = /obj/item/clothing/suit/storage/hooded/chaplain_hoodie
 	corpsegloves = /obj/item/clothing/gloves/black
-	corpsehelmet = /obj/item/clothing/head/chaplain_hood
 	corpsemask = /obj/item/clothing/mask/gas/clown_hat
 	corpsepocket1 = /obj/item/weapon/bikehorn
 
@@ -307,11 +306,6 @@
 	heat_damage_per_tick = 15
 	cold_damage_per_tick = 10
 	unsuitable_atoms_damage = 10
-
-/obj/machinery/media/jukebox/clowntemple
-	idle_power_usage = 0
-	active_power_usage = 0
-	tracks = list(new/datum/track("Mad Jack", 'sound/music/jukebox/madjack.ogg'))
 
 /obj/random/mob/clown
 	name = "Random Clown Mob"

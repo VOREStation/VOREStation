@@ -85,7 +85,7 @@
 			// 0  .. 9
 			if(48 to 57)			//Numbers
 				if(!last_char_group)		continue	//suppress at start of string
-				if(!allow_numbers)			continue
+				if(!allow_numbers)			continue	// If allow_numbers is 0, then don't do this.
 				output += ascii2text(ascii_char)
 				number_of_alphanumeric++
 				last_char_group = 3
