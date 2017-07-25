@@ -454,6 +454,8 @@ var/list/global/tank_gauge_cache = list()
 		log_debug("<span class='warning'>[x],[y] tank is rupturing: [pressure] kPa, integrity [integrity]</span>")
 		#endif
 
+		air_contents.react()
+
 		if(integrity <= 0)
 			var/turf/simulated/T = get_turf(src)
 			if(!T)
@@ -479,12 +481,16 @@ var/list/global/tank_gauge_cache = list()
 			qdel(src)
 
 		else
-			integrity-= 5
+			if(!valve_welded)
+				integrity-= 3
+				src.leaking = 1
+			else
+				integrity-= 5
 
 
 	else if(pressure > TANK_LEAK_PRESSURE || air_contents.temperature - T0C > failure_temp)
 
-		if((integrity <= 19 || src.leaking) && !valve_welded)
+		if((integrity <= 17 || src.leaking) && !valve_welded)
 			var/turf/simulated/T = get_turf(src)
 			if(!T)
 				return
@@ -510,7 +516,7 @@ var/list/global/tank_gauge_cache = list()
 
 
 		else
-			integrity-= 2
+			integrity-= 1
 
 
 	else
@@ -587,7 +593,7 @@ var/list/global/tank_gauge_cache = list()
 
 /obj/item/weapon/tank/oxygen/onetankbomb/small/New()
 	..()
-	src.onetankbomb(1)
+	src.onetankbomb(0)
 
 /////////////////////////////////
 ///Pulled from rewritten bomb.dm
