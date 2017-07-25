@@ -1948,11 +1948,12 @@
 	result_amount = 2
 
 //R-UST Port
-/datum/chemical_reaction/oxyphoron
-	name = "Oxyphoron"
-	id = "oxyphoron"
-	result = "oxyphoron"
-	required_reagents = list("water" = 1, "phoron" = 1)
+/datum/chemical_reaction/hyrdophoron
+	name = "Hydrophoron"
+	id = "hydrophoron"
+	result = "hydrophoron"
+	required_reagents = list("hydrogen" = 1, "phoron" = 1)
+	inhibitors = list("nitrogen" = 1) //So it doesn't mess with lexorin
 	result_amount = 2
 
 /datum/chemical_reaction/deuterium
@@ -1960,7 +1961,7 @@
 	id = "deuterium"
 	result = null
 	required_reagents = list("water" = 10)
-	catalysts = list("oxyphoron" = 5)
+	catalysts = list("hydrophoron" = 5)
 	result_amount = 1
 
 /datum/chemical_reaction/deuterium/on_reaction(var/datum/reagents/holder, var/created_volume)
