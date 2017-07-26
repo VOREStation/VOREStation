@@ -80,7 +80,7 @@
 
 /obj/item/weapon/tank/emergency/phoron
 	icon = 'icons/obj/tank_vr.dmi'
-	icon_override = 'icons/mob/back_vr.dmi'
+	icon_override = 'icons/mob/belt_vr.dmi'
 	icon_state = "emergency_phoron_vox"
 	gauge_icon = "indicator_smalltank"
 	gauge_cap = 3
