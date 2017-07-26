@@ -6,6 +6,7 @@
 	spell_power_desc = "Increases damage dealt, up to a cap of 80 damage per shot."
 	cost = 100
 	obj_path = /obj/item/weapon/spell/projectile/overload
+	ability_icon_state = "tech_overload"
 	category = OFFENSIVE_SPELLS
 
 /obj/item/weapon/spell/projectile/overload
