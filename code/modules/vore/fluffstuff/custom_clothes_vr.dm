@@ -24,6 +24,54 @@
 
 */
 
+//SpoopyLizz: Roiz Lizden
+/obj/item/clothing/suit/storage/hooded/wintercoat/roiz
+	name = "dinosaur winter coat"
+	desc = "A custom winter coat that looks rather like a dinosaur. It has a nametag that says, Roiz Lizden."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "coatroiz"
+	item_state_slots = list(slot_r_hand_str = "coatroiz", slot_l_hand_str = "coatroiz")
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "coatroiz_mob"
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/roiz/ui_action_click()
+	ToggleHood_roiz()
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/roiz/equipped(mob/user, slot)
+	if(slot != slot_wear_suit)
+		RemoveHood_roiz()
+	..()
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/roiz/proc/RemoveHood_roiz()
+	icon_state = "coatroiz"
+	item_state = "coatroiz_mob"
+	suittoggled = 0
+	if(ishuman(hood.loc))
+		var/mob/living/carbon/H = hood.loc
+		H.unEquip(hood, 1)
+		H.update_inv_wear_suit()
+	hood.loc = src
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/roiz/proc/ToggleHood_roiz()
+	if(!suittoggled)
+		if(ishuman(loc))
+			var/mob/living/carbon/human/H = src.loc
+			if(H.wear_suit != src)
+				H << "<span class='warning'>You must be wearing [src] to put up the hood!</span>"
+				return
+			if(H.head)
+				H << "<span class='warning'>You're already wearing something on your head!</span>"
+				return
+			else
+				H.equip_to_slot_if_possible(hood,slot_head,0,0,1)
+				suittoggled = 1
+				icon_state = "coatroiz_t"
+				item_state = "coatroiz_mob_t"
+				H.update_inv_wear_suit()
+	else
+		RemoveHood_roiz()
+
 //ketrai:Ketrai
 /obj/item/clothing/head/fluff/ketrai
 	name = "Pink Bear Hat"
