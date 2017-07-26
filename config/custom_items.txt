@@ -423,6 +423,19 @@ item_path: /obj/item/weapon/storage/belt/utility/fluff/vulpine
 }
 
 # ######## N CKEYS
+
+{
+ckey: natje
+character_name: Pumila
+item_path: /obj/item/clothing/under/fluff/aluranevines
+}
+
+{
+ckey: natje
+character_name: Pumila
+item_path: /obj/item/weapon/implanter/reagent_generator/pumila_apple
+}
+
 # ######## O CKEYS
 {
 ckey: orbisa
@@ -565,6 +578,12 @@ item_path: /obj/item/weapon/storage/backpack/satchel/fluff/swat43bag
 ckey: SpoopyLizz
 character_name: Roiz Lizden
 item_path: /obj/item/weapon/implanter/reagent_generator/roiz
+}
+
+{
+ckey: SpoopyLizz
+character_name: Roiz Lizden
+item_path: /obj/item/clothing/suit/storage/hooded/wintercoat/roiz
 }
 
 # ######## T CKEYS

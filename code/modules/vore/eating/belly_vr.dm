@@ -30,7 +30,7 @@
 	var/datum/belly/transferlocation = null	// Location that the prey is released if they struggle and get dropped off.
 
 	var/tmp/digest_mode = DM_HOLD				// Whether or not to digest. Default to not digest.
-	var/tmp/list/digest_modes = list(DM_HOLD,DM_DIGEST,DM_ITEMWEAK,DM_STRIPDIGEST,DM_HEAL,DM_ABSORB,DM_DRAIN,DM_UNABSORB)	// Possible digest modes
+	var/tmp/list/digest_modes = list(DM_HOLD,DM_DIGEST,DM_ITEMWEAK,DM_STRIPDIGEST,DM_HEAL,DM_ABSORB,DM_DRAIN,DM_UNABSORB,DM_DIGEST_NUMB)	// Possible digest modes
 	var/tmp/list/transform_modes = list(DM_TRANSFORM_MALE,DM_TRANSFORM_FEMALE,DM_TRANSFORM_KEEP_GENDER,DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR,DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR_EGG,DM_TRANSFORM_REPLICA,DM_TRANSFORM_REPLICA_EGG,DM_TRANSFORM_KEEP_GENDER_EGG,DM_TRANSFORM_MALE_EGG,DM_TRANSFORM_FEMALE_EGG, DM_EGG)
 	var/tmp/mob/living/owner					// The mob whose belly this is.
 	var/tmp/list/internal_contents = list()		// People/Things you've eaten into this belly!
@@ -460,6 +460,27 @@
 				return
 
 		else if(prob(transferchance) && istype(transferlocation)) //Next, let's have it see if they end up getting into an even bigger mess then when they started.
+			var/location_found = 0
+			var/name_found = 0
+			for(var/I in owner.vore_organs)
+				var/datum/belly/B = owner.vore_organs[I]
+				if(B == transferlocation)
+					location_found = 1
+					break
+
+			if(!location_found)
+				for(var/I in owner.vore_organs)
+					var/datum/belly/B = owner.vore_organs[I]
+					if(B.name == transferlocation.name)
+						name_found = 1
+						transferlocation = B
+						break
+
+			if(!location_found && !name_found)
+				to_chat(owner, "<span class='warning'>Something went wrong with your belly transfer settings.</span>")
+				transferlocation = null
+				return
+
 			R << "<span class='warning'>Your attempt to escape [name] has failed and your struggles only results in you sliding into [owner]'s [transferlocation]!</span>"
 			owner << "<span class='warning'>Someone slid into your [transferlocation] due to their struggling inside your [name]!</span>"
 			transfer_contents(R, transferlocation)

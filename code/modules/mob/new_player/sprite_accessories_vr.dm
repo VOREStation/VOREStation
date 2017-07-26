@@ -594,6 +594,13 @@
 		icon_state = "tesh-feathers"
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_HAND,BP_R_HAND)
 
+	alurane
+		name = "Alurane Body"
+		icon_state = "alurane"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
+		ckeys_allowed = list("natje")
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_HAND,BP_R_HAND)
+
 	body_tone
 		name = "Body toning (for emergency contrast loss)"
 		icon_state = "btone"
