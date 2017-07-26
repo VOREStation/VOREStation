@@ -11,10 +11,16 @@
 
 	// Horray Furries!
 	var/datum/sprite_accessory/ears/ear_style = null
+	var/red_ear = 30
+	var/g_ear = 30
+	var/b_ear = 30
 	var/datum/sprite_accessory/tail/tail_style = null
 	var/r_tail = 30
 	var/g_tail = 30
 	var/b_tail = 30
+	var/r_tail2 = 30
+	var/g_tail2 = 30
+	var/b_tail2 = 30
 
 	// Custom Species Name
 	var/custom_species

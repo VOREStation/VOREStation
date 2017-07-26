@@ -176,6 +176,35 @@
 	desc = ""
 	icon_state = "antlers"
 
+/datum/sprite_accessory/ears/otie
+	name = "otie, colorable"
+	desc = ""
+	icon_state = "otie"
+	do_colouration = 1
+
+/datum/sprite_accessory/ears/cow
+	name = "cow, horns"
+	desc = ""
+	icon_state = "cow"
+
+/datum/sprite_accessory/ears/cowc
+	name = "cow, horns, colorable"
+	desc = ""
+	icon_state = "cow-c"
+	do_colouration = 1
+
+/datum/sprite_accessory/ears/zears
+	name = "jagged ears"
+	desc = ""
+	icon_state = "zears"
+	do_colouration = 1
+
+/datum/sprite_accessory/ears/elfs
+	name = "elven ears"
+	desc = ""
+	icon_state = "elfs"
+	do_colouration = 1
+
 // Special snowflake ears go below here.
 
 /datum/sprite_accessory/ears/molenar_kitsune
@@ -267,7 +296,8 @@
 	var/show_species_tail = 0 // If false, do not render species' tail.
 	var/clothing_can_hide = 1 // If true, clothing with HIDETAIL hides it
 	var/desc = "You should not see this..."
-	var/ani_state //State when wagging/animated
+	var/ani_state // State when wagging/animated
+	var/extra_overlay_w // Wagging state for extra overlay
 
 /datum/sprite_accessory/tail/invisible
 	name = "hide species-sprite tail"
@@ -321,6 +351,7 @@
 	desc = ""
 	icon_state = "stripeytail"
 	do_colouration = 1
+	extra_overlay = "stripeytail_mark"
 
 /datum/sprite_accessory/tail/stripeytail_brown
 	name = "stripey taj, brown"
@@ -642,6 +673,7 @@
 	desc = ""
 	icon_state = "ringtail"
 	do_colouration = 1
+	extra_overlay = "ringtail_mark"
 
 /datum/sprite_accessory/tail/holly
 	name = "tigress tail (Holly)"
@@ -662,6 +694,8 @@
 	icon_state = "curltail"
 	ani_state = "curltail_w"
 	do_colouration = 1
+	extra_overlay = "curltail_mark"
+	extra_overlay_w = "curltail_mark_w"
 
 /datum/sprite_accessory/tail/shorttail
 	name = "shorttail (vwag)"
@@ -676,12 +710,29 @@
 	icon_state = "tigertail"
 	ani_state = "tigertail_w"
 	do_colouration = 1
+	extra_overlay = "tigertail_mark"
+	extra_overlay_w = "tigertail_mark_w"
 
 /datum/sprite_accessory/tail/vulp_new
 	name = "new vulp tail (vwag)"
 	desc = ""
 	icon_state = "vulptail"
 	ani_state = "vulptail_w"
+	do_colouration = 1
+	extra_overlay = "vulptail_mark"
+	extra_overlay_w = "vulptail_mark_w"
+
+/datum/sprite_accessory/tail/otietail
+	name = "otie tail (vwag)"
+	desc = ""
+	icon_state = "otie"
+	ani_state = "otie_w"
+	do_colouration = 1
+
+/datum/sprite_accessory/tail/ztail
+	name = "jagged flufftail"
+	desc = ""
+	icon_state = "ztail"
 	do_colouration = 1
 
 /datum/sprite_accessory/tail/shock
@@ -695,7 +746,6 @@
 	desc = ""
 	icon_state = "snaketail"
 	do_colouration = 1
-
 
 //For all species tails. Includes haircolored tails.
 /datum/sprite_accessory/tail/special
@@ -889,9 +939,19 @@
 	name = "Wolf"
 	icon_state = "wolf_s"
 
+/datum/sprite_accessory/tail/taur/wolf/wolf_2c
+	name = "Wolf dual-color"
+	icon_state = "wolf_s"
+	extra_overlay = "wolf_markings"
+
 /datum/sprite_accessory/tail/taur/naga
 	name = "Naga"
 	icon_state = "naga_s"
+
+/datum/sprite_accessory/tail/taur/naga/naga_2c
+	name = "Naga dual-color"
+	icon_state = "naga_s"
+	extra_overlay = "naga_markings"
 
 /datum/sprite_accessory/tail/taur/horse
 	name = "Horse"
@@ -905,6 +965,11 @@
 	name = "Lizard"
 	icon_state = "lizard_s"
 
+/datum/sprite_accessory/tail/taur/lizard/lizard_2c
+	name = "Lizard dual-color"
+	icon_state = "lizard_s"
+	extra_overlay = "lizard_markings"
+
 /datum/sprite_accessory/tail/taur/spider
 	name = "Spider"
 	icon_state = "spider_s"
@@ -917,9 +982,22 @@
 	name = "Feline"
 	icon_state = "feline_s"
 
+/datum/sprite_accessory/tail/taur/feline/feline_2c
+	name = "Feline dual-color"
+	icon_state = "feline_s"
+	extra_overlay = "feline_markings"
+
 /datum/sprite_accessory/tail/taur/slug
 	name = "Slug"
 	icon_state = "slug_s"
+
+/*/datum/sprite_accessory/tail/taur/drake //Yeah hold that thought for a bit. These got no suit compatibility yet.
+	name = "Drake"
+	icon_state = "drake_s"
+
+/datum/sprite_accessory/tail/taur/otie
+	name = "Otie"
+	icon_state = "otie_s"*/
 
 //wickedtemp: Chakat Tempest
 /datum/sprite_accessory/tail/taur/feline/tempest

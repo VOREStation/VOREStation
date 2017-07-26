@@ -460,6 +460,27 @@
 				return
 
 		else if(prob(transferchance) && istype(transferlocation)) //Next, let's have it see if they end up getting into an even bigger mess then when they started.
+			var/location_found = 0
+			var/name_found = 0
+			for(var/I in owner.vore_organs)
+				var/datum/belly/B = owner.vore_organs[I]
+				if(B == transferlocation)
+					location_found = 1
+					break
+
+			if(!location_found)
+				for(var/I in owner.vore_organs)
+					var/datum/belly/B = owner.vore_organs[I]
+					if(B.name == transferlocation.name)
+						name_found = 1
+						transferlocation = B
+						break
+
+			if(!location_found && !name_found)
+				to_chat(owner, "<span class='warning'>Something went wrong with your belly transfer settings.</span>")
+				transferlocation = null
+				return
+
 			R << "<span class='warning'>Your attempt to escape [name] has failed and your struggles only results in you sliding into [owner]'s [transferlocation]!</span>"
 			owner << "<span class='warning'>Someone slid into your [transferlocation] due to their struggling inside your [name]!</span>"
 			transfer_contents(R, transferlocation)
