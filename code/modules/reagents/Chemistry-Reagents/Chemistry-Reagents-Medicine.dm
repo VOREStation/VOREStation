@@ -291,6 +291,23 @@
 	M.adjustToxLoss(5 * removed) // It used to be incredibly deadly due to an oversight. Not anymore!
 	M.add_chemical_effect(CE_PAINKILLER, 20)
 
+/datum/reagent/hyperzine
+	name = "Hyperzine"
+	id = "hyperzine"
+	description = "Hyperzine is a highly effective, long lasting, muscle stimulant."
+	taste_description = "bitterness"
+	reagent_state = LIQUID
+	color = "#FF3300"
+	overdose = REAGENTS_OVERDOSE * 0.5
+
+/datum/reagent/hyperzine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_TAJARA)
+		removed *= 1.25
+	..()
+	if(prob(5))
+		M.emote(pick("twitch", "blink_r", "shiver"))
+	M.add_chemical_effect(CE_SPEEDBOOST, 1)
+
 /datum/reagent/alkysine
 	name = "Alkysine"
 	id = "alkysine"

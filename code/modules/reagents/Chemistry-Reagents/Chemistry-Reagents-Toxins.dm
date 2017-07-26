@@ -128,24 +128,6 @@
 	M.adjustOxyLoss(20 * removed)
 	M.sleeping += 1
 
-/datum/reagent/toxin/hyperzine
-	name = "Hyperzine"
-	id = "hyperzine"
-	description = "Hyperzine is a highly effective, long lasting, muscle stimulant."
-	taste_description = "bitterness"
-	reagent_state = LIQUID
-	color = "#FF3300"
-	overdose = REAGENTS_OVERDOSE * 0.5
-	strength = 2
-
-/datum/reagent/toxin/hyperzine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_TAJARA)
-		removed *= 1.25
-	..()
-	if(prob(5))
-		M.emote(pick("twitch", "blink_r", "shiver"))
-	M.add_chemical_effect(CE_SPEEDBOOST, 1)
-
 /datum/reagent/toxin/stimm	//Homemade Hyperzine
 	name = "Stimm"
 	id = "stimm"
