@@ -31,6 +31,9 @@
 		else if((P.robotic >= ORGAN_ROBOT) && (E.robotic < ORGAN_ROBOT))
 			user << "<span class='warning'>Attaching [E] to [P] wouldn't work well.</span>"
 			return 0
+		else if(P.children.len)
+			user << "<span class='warning'>Something is in the way! You can't attach [E] here!</span>"
+			return 0
 		else
 			return 1
 
