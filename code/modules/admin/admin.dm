@@ -673,7 +673,7 @@ proc/admin_notice(var/message, var/rights)
 	//This is basically how death alarms do it
 	var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset/ert(null)
 
-	var/channel = input("Channel for message:","Channel", null) as null|anything in (list("Common") + a.keyslot1.channels + a.keyslot2.channels)
+	var/channel = input("Channel for message:","Channel", null) as null|anything in (list("Common") + a.keyslot2.channels) // + a.keyslot1.channels
 
 	if(channel) //They picked a channel
 		var/sender = input("Name of sender (max 75):", "Announcement", "Announcement Computer") as null|text
