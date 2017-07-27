@@ -3,7 +3,7 @@
 	set name = "Quick NIF"
 	set desc = "Spawns a NIF into someone in quick-implant mode."
 
-	if(!check_rights(R_FUN))
+	if(!check_rights(R_ADMIN))
 		return
 
 	var/mob/living/carbon/human/H = input("Pick a mob with a player","Quick NIF") as null|anything in player_list
