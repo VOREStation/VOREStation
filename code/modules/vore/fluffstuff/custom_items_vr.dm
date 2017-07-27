@@ -608,24 +608,28 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 
 
 
-/obj/item/weapon/card/id/fluff/ivyholoid
-	name = "Holo-ID"
-	registered_name = "Unconfigured"
-	desc = "A thin screen that seems to show an ID card's information. It keeps flickering between the ID and being blank."
-	icon = 'icons/vore/custom_items_vr.dmi'
-	icon_state = "ivyholoid"
-	var/configured = 0
+/obj/item/device/fluff/id_kit_ivy
+	name = "Holo-ID reprinter"
+	desc = "Stick your ID in one end and it'll print a new ID out the other!"
+	icon = 'icons/obj/bureaucracy.dmi'
+	icon_state = "labeler1"
 
-	attack_self(mob/user as mob)
-		if(configured)
-			return ..()
-
-		assignment = user.job
-		user.set_id_info(src)
-		if(user.mind && user.mind.initial_account)
-			associated_account_number = user.mind.initial_account.account_number
-		configured = 1
-		user << "<span class='notice'>Card settings set.</span>"
+	afterattack(obj/O, mob/user as mob)
+		var/new_icon = "ivyholoid"
+		var/new_desc = "Its a thin screen showing ID information, but it seems to be flickering."
+		if(istype(O,/obj/item/weapon/card/id) && O.icon_state != new_icon)
+			//O.icon = src.icon // just in case we're using custom sprite paths with fluff items.
+			O.icon_state = new_icon // Changes the icon without changing the access.
+			O.desc = new_desc
+			playsound(user.loc, 'sound/items/polaroid2.ogg', 100, 1)
+			user.visible_message("<span class='warning'> [user] reprints their ID.</span>")
+			qdel(src)
+		else if(O.icon_state == new_icon)
+			user << "<span class='notice'>[O] already has been reprinted.</span>"
+			return
+		else
+			user << "<span class='warning'>This isn't even an ID card you idiot.</span>"
+			return
 
 //WickedTempest: Chakat Tempest
 /obj/item/weapon/reagent_containers/hypospray/vr/tempest
