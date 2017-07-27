@@ -1895,7 +1895,7 @@
 	name = "Balloon"
 	id = "balloon"
 	result = "balloon"
-	required_reagents = list("cream" = 1, "curacao" = 1)
+	required_reagents = list("cream" = 1, "bluecuracao" = 1)
 	result_amount = 2
 
 /datum/chemical_reaction/drinks/natunabrandy

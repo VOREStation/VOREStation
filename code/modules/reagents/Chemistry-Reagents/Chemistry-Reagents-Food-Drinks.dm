@@ -41,6 +41,7 @@
 
 /datum/reagent/nutriment/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	switch(alien)
+		if(IS_DIONA) return
 		if(IS_UNATHI) removed *= 0.5
 	if(issmall(M)) removed *= 2 // Small bodymass, more effect from lower volume.
 	M.heal_organ_damage(0.5 * removed, 0)
