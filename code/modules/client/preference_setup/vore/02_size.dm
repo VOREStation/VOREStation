@@ -3,8 +3,6 @@
 #define WEIGHT_MAX 500
 #define WEIGHT_CHANGE_MIN 0
 #define WEIGHT_CHANGE_MAX 100
-#define SIZE_MIN 0.25
-#define SIZE_MAX 2.0
 
 // Define a place to save in character setup
 /datum/preferences
