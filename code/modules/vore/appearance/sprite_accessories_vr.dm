@@ -747,6 +747,13 @@
 	icon_state = "snaketail"
 	do_colouration = 1
 
+/datum/sprite_accessory/tail/sergaltaildc
+	name = "sergal, dual-color"
+	desc = ""
+	icon_state = "sergal"
+	do_colouration = 1
+	extra_overlay = "sergal_mark"
+
 //For all species tails. Includes haircolored tails.
 /datum/sprite_accessory/tail/special
 	name = "Blank tail. Do not select."
