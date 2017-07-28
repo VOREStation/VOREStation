@@ -1,3 +1,12 @@
+/mob/living/silicon/robot/verb/robot_nom(var/mob/living/T in oview(1))
+	set name = "Robot Nom"
+	set category = "IC"
+	set desc = "Allows you to eat someone."
+
+	if (stat != CONSCIOUS)
+		return
+	return feed_grabbed_to_self(src,T)
+
 /mob/living/silicon/robot/updateicon()
 	overlays.Cut()
 	if(stat == CONSCIOUS)

@@ -7,10 +7,16 @@
 // Define a place to save appearance in character setup
 /datum/preferences
 	var/ear_style		// Type of selected ear style
+	var/red_ear = 30	// Ear color. Goddarn dupe var names.
+	var/g_ear = 30		// Ear color
+	var/b_ear = 30		// Ear color
 	var/tail_style		// Type of selected tail style
 	var/r_tail = 30		// Tail/Taur color
 	var/g_tail = 30		// Tail/Taur color
 	var/b_tail = 30		// Tail/Taur color
+	var/r_tail2 = 30 	// For extra overlay.
+	var/g_tail2 = 30	// For extra overlay.
+	var/b_tail2 = 30	// For extra overlay.
 	var/dress_mob = TRUE
 
 // Definition of the stuff for Ears
@@ -20,22 +26,40 @@
 
 /datum/category_item/player_setup_item/vore/ears/load_character(var/savefile/S)
 	S["ear_style"]		>> pref.ear_style
+	S["red_ear"]		>> pref.red_ear
+	S["g_ear"]			>> pref.g_ear
+	S["b_ear"]			>> pref.b_ear
 	S["tail_style"]		>> pref.tail_style
 	S["r_tail"]			>> pref.r_tail
 	S["g_tail"]			>> pref.g_tail
 	S["b_tail"]			>> pref.b_tail
+	S["r_tail2"]		>> pref.r_tail2
+	S["g_tail2"]		>> pref.g_tail2
+	S["b_tail2"]		>> pref.b_tail2
 
 /datum/category_item/player_setup_item/vore/ears/save_character(var/savefile/S)
 	S["ear_style"]		<< pref.ear_style
+	S["red_ear"]		<< pref.red_ear
+	S["g_ear"]			<< pref.g_ear
+	S["b_ear"]			<< pref.b_ear
 	S["tail_style"]		<< pref.tail_style
 	S["r_tail"]			<< pref.r_tail
 	S["g_tail"]			<< pref.g_tail
 	S["b_tail"]			<< pref.b_tail
+	S["r_tail2"]		<< pref.r_tail2
+	S["g_tail2"]		<< pref.g_tail2
+	S["b_tail2"]		<< pref.b_tail2
 
 /datum/category_item/player_setup_item/vore/ears/sanitize_character()
+	pref.red_ear	= sanitize_integer(pref.red_ear, 0, 255, initial(pref.red_ear))
+	pref.g_ear		= sanitize_integer(pref.g_ear, 0, 255, initial(pref.g_ear))
+	pref.b_ear		= sanitize_integer(pref.b_ear, 0, 255, initial(pref.b_ear))
 	pref.r_tail		= sanitize_integer(pref.r_tail, 0, 255, initial(pref.r_tail))
 	pref.g_tail		= sanitize_integer(pref.g_tail, 0, 255, initial(pref.g_tail))
 	pref.b_tail		= sanitize_integer(pref.b_tail, 0, 255, initial(pref.b_tail))
+	pref.r_tail2	= sanitize_integer(pref.r_tail2, 0, 255, initial(pref.r_tail2))
+	pref.g_tail2	= sanitize_integer(pref.g_tail2, 0, 255, initial(pref.g_tail2))
+	pref.b_tail2	= sanitize_integer(pref.b_tail2, 0, 255, initial(pref.b_tail2))
 	if(pref.ear_style)
 		pref.ear_style	= sanitize_inlist(pref.ear_style, ear_styles_list, initial(pref.ear_style))
 	if(pref.tail_style)
@@ -43,10 +67,16 @@
 
 /datum/category_item/player_setup_item/vore/ears/copy_to_mob(var/mob/living/carbon/human/character)
 	character.ear_style			= ear_styles_list[pref.ear_style]
+	character.red_ear			= pref.red_ear
+	character.b_ear				= pref.b_ear
+	character.g_ear				= pref.g_ear
 	character.tail_style		= tail_styles_list[pref.tail_style]
 	character.r_tail			= pref.r_tail
 	character.b_tail			= pref.b_tail
 	character.g_tail			= pref.g_tail
+	character.r_tail2			= pref.r_tail2
+	character.b_tail2			= pref.b_tail2
+	character.g_tail2			= pref.g_tail2
 
 /datum/category_item/player_setup_item/vore/ears/content(var/mob/user)
 	. += "<h2>VORE Station Settings</h2>"
@@ -63,10 +93,15 @@
 	if(pref.ear_style && (pref.ear_style in ear_styles_list))
 		var/datum/sprite_accessory/ears/instance = ear_styles_list[pref.ear_style]
 		ear_display = instance.name
+
 	else if(pref.ear_style)
 		ear_display = "REQUIRES UPDATE"
 	. += "<b>Ears</b><br>"
 	. += " Style: <a href='?src=\ref[src];ear_style=1'>[ear_display]</a><br>"
+	if(ear_styles_list[pref.ear_style])
+		var/datum/sprite_accessory/ears/ear = ear_styles_list[pref.ear_style]
+		if (ear.do_colouration)
+			. += "<a href='?src=\ref[src];ear_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.red_ear, 2)][num2hex(pref.g_ear, 2)][num2hex(pref.b_ear, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.red_ear, 2)][num2hex(pref.g_ear, 2)][num2hex(pref.b_ear)]'><tr><td>__</td></tr></table> </font><br>"
 
 	var/tail_display = "Normal"
 	if(pref.tail_style && (pref.tail_style in tail_styles_list))
@@ -81,6 +116,8 @@
 		var/datum/sprite_accessory/tail/T = tail_styles_list[pref.tail_style]
 		if (T.do_colouration)
 			. += "<a href='?src=\ref[src];tail_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_tail, 2)][num2hex(pref.g_tail, 2)][num2hex(pref.b_tail, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_tail, 2)][num2hex(pref.g_tail, 2)][num2hex(pref.b_tail)]'><tr><td>__</td></tr></table> </font><br>"
+		if (T.extra_overlay)
+			. += "<a href='?src=\ref[src];tail_color2=1'>Change Secondary Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_tail2, 2)][num2hex(pref.g_tail2, 2)][num2hex(pref.b_tail2, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_tail2, 2)][num2hex(pref.g_tail2, 2)][num2hex(pref.b_tail2)]'><tr><td>__</td></tr></table> </font><br>"
 
 /datum/category_item/player_setup_item/vore/ears/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(!CanUseTopic(user))
@@ -99,6 +136,15 @@
 		pref.ear_style = pretty_ear_styles[selection]
 
 		return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["ear_color"])
+		var/new_earc = input(user, "Choose your character's ear colour:", "Character Preference",
+			rgb(pref.red_ear, pref.g_ear, pref.b_ear)) as color|null
+		if(new_earc)
+			pref.red_ear = hex2num(copytext(new_earc, 2, 4))
+			pref.g_ear = hex2num(copytext(new_earc, 4, 6))
+			pref.b_ear = hex2num(copytext(new_earc, 6, 8))
+			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["tail_style"])
 		// Construct the list of names allowed for this user.
@@ -121,6 +167,15 @@
 			pref.r_tail = hex2num(copytext(new_tailc, 2, 4))
 			pref.g_tail = hex2num(copytext(new_tailc, 4, 6))
 			pref.b_tail = hex2num(copytext(new_tailc, 6, 8))
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["tail_color2"])
+		var/new_tailc2 = input(user, "Choose your character's secondary tail/taur colour:", "Character Preference",
+			rgb(pref.r_tail2, pref.g_tail2, pref.b_tail2)) as color|null
+		if(new_tailc2)
+			pref.r_tail2 = hex2num(copytext(new_tailc2, 2, 4))
+			pref.g_tail2 = hex2num(copytext(new_tailc2, 4, 6))
+			pref.b_tail2 = hex2num(copytext(new_tailc2, 6, 8))
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["toggle_clothing"])
