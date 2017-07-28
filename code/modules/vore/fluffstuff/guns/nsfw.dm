@@ -357,7 +357,7 @@
 		L.gib()
 
 	..()
-
+/*
 /obj/item/ammo_casing/nsfw_batt/shrink
 	name = "\'NSFW\' microbattery - SHRINK"
 	type_color = "#910ffc"
@@ -369,7 +369,7 @@
 	type_color = "#fc0fdc"
 	type_name = "<span style='color:#fc0fdc;font-weight:bold;'>GROW</span>"
 	projectile_type = /obj/item/projectile/beam/growlaser
-
+*/
 /obj/item/weapon/storage/secure/briefcase/nsfw_pack
 	name = "\improper KHI-102b \'NSFW\' gun kit"
 	desc = "A storage case for a multi-purpose handgun. Variety hour!"
