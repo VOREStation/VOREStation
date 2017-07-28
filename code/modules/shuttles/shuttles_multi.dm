@@ -171,7 +171,7 @@
 		return
 
 	if (MS.moving_status != SHUTTLE_IDLE)
-		usr << "\blue [shuttle_tag] vessel is moving."
+		usr << "<font color='blue'>[shuttle_tag] vessel is moving.</font>"
 		return
 
 	if(href_list["dock_command"])
@@ -184,11 +184,11 @@
 
 	if(href_list["start"])
 		if(MS.at_origin)
-			usr << "\red You are already at your home base."
+			usr << "<font color='red'>You are already at your home base.</font>"
 			return
 
 		if((MS.last_move + MS.cooldown*10) > world.time)
-			usr << "\red The ship's drive is inoperable while the engines are charging."
+			usr << "<font color='red'>The ship's drive is inoperable while the engines are charging.</font>"
 			return
 
 		if(!check_docking(MS))
@@ -196,7 +196,7 @@
 			return
 
 		if(!MS.return_warning)
-			usr << "\red Returning to your home base will end your mission. If you are sure, press the button again."
+			usr << "<font color='red'>Returning to your home base will end your mission. If you are sure, press the button again.</font>"
 			//TODO: Actually end the mission.
 			MS.return_warning = 1
 			return
@@ -209,11 +209,11 @@
 	if(href_list["toggle_cloak"])
 
 		MS.cloaked = !MS.cloaked
-		usr << "\red Ship stealth systems have been [(MS.cloaked ? "activated. The station will not" : "deactivated. The station will")] be warned of our arrival."
+		usr << "<font color='red'>Ship stealth systems have been [(MS.cloaked ? "activated. The station will not" : "deactivated. The station will")] be warned of our arrival.</font>"
 
 	if(href_list["move_multi"])
 		if((MS.last_move + MS.cooldown*10) > world.time)
-			usr << "\red The ship's drive is inoperable while the engines are charging."
+			usr << "<font color='red'>The ship's drive is inoperable while the engines are charging.</font>"
 			return
 
 		if(!check_docking(MS))
@@ -223,7 +223,7 @@
 		var/choice = input("Select a destination.") as null|anything in MS.destinations
 		if(!choice) return
 
-		usr << "\blue [shuttle_tag] main computer recieved message."
+		usr << "<font color='blue'>[shuttle_tag] main computer recieved message.</font>"
 
 		if(MS.at_origin)
 			MS.announce_arrival()
