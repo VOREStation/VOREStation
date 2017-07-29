@@ -168,7 +168,6 @@
 				</style>
 				</head>
 				<body>
-				<i>This guide appears to have been scribbled in haste on the back of a WetSkrell magazine...</i>
 				<br><br>
 				<ol>
 				<li>Put uranium in the portable generator near the gyrotron and turn it to full. This is to provide initial power to the core.</li>
