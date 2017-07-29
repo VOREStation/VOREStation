@@ -149,7 +149,9 @@
 	force = 8.0
 	throw_speed = 1
 	throw_range = 4
+	max_w_class = ITEMSIZE_NORMAL
 	w_class = ITEMSIZE_LARGE
+	max_storage_space = ITEMSIZE_COST_NORMAL * 4
 
 	attack_hand(mob/user as mob)
 		if ((src.loc == user) && (src.locked == 1))

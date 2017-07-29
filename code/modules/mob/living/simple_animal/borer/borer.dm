@@ -32,6 +32,8 @@
 	var/has_reproduced
 	var/roundstart
 
+	can_be_antagged = TRUE
+
 /mob/living/simple_animal/borer/roundstart
 	roundstart = 1
 
@@ -61,16 +63,16 @@
 			if(host.reagents.has_reagent("sugar"))
 				if(!docile)
 					if(controlling)
-						host << "\blue You feel the soporific flow of sugar in your host's blood, lulling you into docility."
+						host << "<font color='blue'>You feel the soporific flow of sugar in your host's blood, lulling you into docility.</font>"
 					else
-						src << "\blue You feel the soporific flow of sugar in your host's blood, lulling you into docility."
+						src << "<font color='blue'>You feel the soporific flow of sugar in your host's blood, lulling you into docility.</font>"
 					docile = 1
 			else
 				if(docile)
 					if(controlling)
-						host << "\blue You shake off your lethargy as the sugar leaves your host's blood."
+						host << "<font color='blue'>You shake off your lethargy as the sugar leaves your host's blood.</font>"
 					else
-						src << "\blue You shake off your lethargy as the sugar leaves your host's blood."
+						src << "<font color='blue'>You shake off your lethargy as the sugar leaves your host's blood.</font>"
 					docile = 0
 
 			if(chemicals < 250)
@@ -78,7 +80,7 @@
 			if(controlling)
 
 				if(docile)
-					host << "\blue You are feeling far too docile to continue controlling your host..."
+					host << "<font color='blue'>You are feeling far too docile to continue controlling your host...</font>"
 					host.release_control()
 					return
 

@@ -5,7 +5,7 @@ var/datum/uplink/uplink = new()
 	var/list/datum/uplink_item/items
 	var/list/datum/uplink_category/categories
 
-/datum/uplink/New()
+/datum/uplink/New(var/type)
 	items_assoc = list()
 	items = init_subtypes(/datum/uplink_item)
 	categories = init_subtypes(/datum/uplink_category)
@@ -38,7 +38,8 @@ var/datum/uplink/uplink = new()
 
 /datum/uplink_item/New()
 	..()
-	antag_roles = list()
+	if(!antag_roles)
+		antag_roles = list()
 
 
 

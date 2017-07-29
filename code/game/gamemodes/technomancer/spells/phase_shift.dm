@@ -4,12 +4,14 @@
 	rift you create will afflict you with instability."
 	cost = 50
 	obj_path = /obj/item/weapon/spell/phase_shift
+	ability_icon_state = "tech_phaseshift"
 	category = DEFENSIVE_SPELLS
 
 /obj/item/weapon/spell/phase_shift
 	name = "phase shift"
 	desc = "Allows you to dodge your untimely fate by shifting your location somewhere else, so long as you can survive inside the \
 	rift."
+	icon_state = "blink"
 	cast_methods = CAST_USE
 	aspect = ASPECT_TELE
 

@@ -8,23 +8,6 @@ var/const/NETWORK_POD          = "General Utility Pod"
 var/const/NETWORK_SUPPLY       = "Supply"
 var/const/NETWORK_MAIN_OUTPOST = "Main Outpost"
 
-
-/*
-/datum/map/torch/get_network_access(var/network)
-	switch(network)
-		if(NETWORK_AQUILA)
-			return access_aquila
-		if(NETWORK_BRIDGE)
-			return access_heads
-		if(NETWORK_CALYPSO)
-			return access_calypso
-		if(NETWORK_POD)
-			return access_guppy
-		if(NETWORK_SUPPLY)
-			return access_mailsorting
-	return get_shared_network_access(network) || ..()
-*/
-
 /datum/map/southern_cross
 	// Networks that will show up as options in the camera monitor program
 	station_networks = list(
@@ -79,18 +62,34 @@ var/const/NETWORK_MAIN_OUTPOST = "Main Outpost"
 /obj/machinery/camera/network/supply
 	network = list(NETWORK_SUPPLY)
 
-//
-// T-Coms
-//
+// ### Preset machines  ###
 
-/obj/machinery/telecomms/relay/preset/shuttle
-	id = "Calypso Relay"
-	autolinkers = list("s_relay")
 
-/obj/machinery/telecomms/relay/preset/calypso
-	id = "Calypso Relay"
-	autolinkers = list("s_relay")
+// #### Relays ####
+// Telecomms doesn't know about connected z-levels, so we need relays even for the other surface levels.
+/obj/machinery/telecomms/relay/preset/southerncross/d1
+	id = "Station Relay 1"
+	autolinkers = list("d1_relay")
 
-/obj/machinery/telecomms/relay/preset/aquila
-	id = "Aquila Relay"
-	autolinkers = list("s_relay")
+/obj/machinery/telecomms/relay/preset/southerncross/d2
+	id = "Station Relay 2"
+	autolinkers = list("d2_relay")
+
+/obj/machinery/telecomms/relay/preset/southerncross/d3
+	id = "Station Relay 3"
+	autolinkers = list("d3_relay")
+
+/obj/machinery/telecomms/relay/preset/southerncross/planet
+	id = "Planet Relay"
+	autolinkers = list("pnt_relay")
+
+// #### Hub ####
+/obj/machinery/telecomms/hub/preset/southerncross
+	id = "Hub"
+	network = "tcommsat"
+	autolinkers = list("hub",
+		"d1_relay", "d2_relay", "d3_relay", "pnt_relay",
+		"c_relay", "m_relay", "r_relay",
+		"science", "medical", "supply", "service", "common", "command", "engineering", "security", "unused",
+		"hb_relay", "receiverA", "broadcasterA"
+	)

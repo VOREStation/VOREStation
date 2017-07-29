@@ -77,7 +77,7 @@
 	var/radiation = (energy*2)
 	M.apply_effect((radiation*3),IRRADIATE,0)
 	M.updatehealth()
-	//M << "\red You feel odd."
+	//M << "<font color='red'>You feel odd.</font>"
 	return
 
 

@@ -7,6 +7,7 @@
 	spell_power_desc = "Blink distance is scaled up with more spell power."
 	cost = 50
 	obj_path = /obj/item/weapon/spell/blink
+	ability_icon_state = "tech_blink"
 	category = UTILITY_SPELLS
 
 /obj/item/weapon/spell/blink

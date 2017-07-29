@@ -49,18 +49,15 @@
 		for(var/mob/M in view())
 			M << 'sound/effects/mousesqueek.ogg'
 
-	if(!ckey && stat == CONSCIOUS && prob(0.5))
-		stat = UNCONSCIOUS
-		icon_state = "mouse_[body_color]_sleep"
-		wander = 0
+	if(!resting && prob(0.5))
+		lay_down()
 		speak_chance = 0
 		//snuffles
 
-	else if(stat == UNCONSCIOUS)
-		if(ckey || prob(1))
-			stat = CONSCIOUS
-			icon_state = "mouse_[body_color]"
-			wander = 1
+	else if(resting)
+		if(prob(1))
+			lay_down()
+			speak_chance = initial(speak_chance)
 		else if(prob(5))
 			audible_emote("snuffles.")
 
@@ -97,7 +94,7 @@
 	if( ishuman(AM) )
 		if(!stat)
 			var/mob/M = AM
-			M << "\blue \icon[src] Squeek!"
+			M << "<font color='blue'>\icon[src] Squeek!</font>"
 			M << 'sound/effects/mousesqueek.ogg'
 	..()
 
