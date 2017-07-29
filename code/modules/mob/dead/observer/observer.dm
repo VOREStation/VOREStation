@@ -32,7 +32,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 	var/anonsay = 0
 	var/image/ghostimage = null //this mobs ghost image, for deleting and stuff
 	var/ghostvision = 1 //is the ghost able to see things humans can't?
-	var/seedarkness = 1
+//	var/seedarkness = 1
 	incorporeal_move = 1
 
 	var/is_manifest = 0 //If set to 1, the ghost is able to whisper. Usually only set if a cultist drags them through the veil.
