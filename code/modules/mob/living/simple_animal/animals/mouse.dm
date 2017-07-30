@@ -58,7 +58,7 @@
 		if(prob(1))
 			lay_down()
 			speak_chance = initial(speak_chance)
-		else if(prob(5))
+		else if(prob(1))
 			audible_emote("snuffles.")
 
 /mob/living/simple_animal/mouse/New()
