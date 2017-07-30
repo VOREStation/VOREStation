@@ -74,6 +74,9 @@
 	if(GR)
 		qdel(GR)
 		return
+	for(var/obj/structure/reagent_dispensers/fueltank/Fuel in T)
+		Fuel.ex_act(2)
+		return
 	for(var/obj/machinery/door/D in T) // There can be several - and some of them can be open, locate() is not suitable
 		if(D.density)
 			D.ex_act(2)
