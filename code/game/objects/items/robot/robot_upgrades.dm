@@ -157,7 +157,7 @@
 
 /obj/item/borg/upgrade/syndicate/
 	name = "scrambled equipment module"
-	desc = "Unlocks new and often deadly module specific items a robot"
+	desc = "Unlocks new and often deadly module specific items of a robot"
 	icon_state = "cyborg_upgrade3"
 	item_state = "cyborg_upgrade"
 	require_module = 1
