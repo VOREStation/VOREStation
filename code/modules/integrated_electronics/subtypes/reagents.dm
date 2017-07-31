@@ -13,13 +13,13 @@
 	desc = "Unlike most electronics, creating smoke is completely intentional."
 	icon_state = "smoke"
 	extended_desc = "This smoke generator creates clouds of smoke on command.  It can also hold liquids inside, which will go \
-	into the smoke clouds when activated."
+	into the smoke clouds when activated.  The reagents are consumed when smoke is made."
 	flags = OPENCONTAINER
 	complexity = 20
 	cooldown_per_use = 30 SECONDS
 	inputs = list()
 	outputs = list()
-	activators = list("create smoke" = 1)
+	activators = list("create smoke" = IC_PINTYPE_PULSE_IN)
 	spawn_flags = IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3, TECH_BIO = 3)
 	volume = 100
@@ -43,9 +43,10 @@
 	flags = OPENCONTAINER
 	complexity = 20
 	cooldown_per_use = 6 SECONDS
-	inputs = list("\<REF\> target", "\<NUM\> injection amount" = 5)
+	inputs = list("target" = IC_PINTYPE_REF, "injection amount" = IC_PINTYPE_NUMBER)
+	inputs_default = list("2" = 5)
 	outputs = list()
-	activators = list("inject" = 1)
+	activators = list("inject" = IC_PINTYPE_PULSE_IN)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	volume = 30
 	power_draw_per_use = 15
@@ -88,19 +89,20 @@
 	outside the machine if it is next to the machine.  Note that this cannot be used on entities."
 	flags = OPENCONTAINER
 	complexity = 8
-	inputs = list("\<REF\> source", "\<REF\> target", "\<NUM\> injection amount" = 10)
+	inputs = list("source" = IC_PINTYPE_REF, "target" = IC_PINTYPE_REF, "injection amount" = IC_PINTYPE_NUMBER)
+	inputs_default = list("3" = 5)
 	outputs = list()
-	activators = list("transfer reagents" = 1, "on transfer" = 0)
+	activators = list("transfer reagents" = IC_PINTYPE_PULSE_IN, "on transfer" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 2)
 	var/transfer_amount = 10
 	power_draw_per_use = 10
 
 /obj/item/integrated_circuit/reagent/pump/on_data_written()
-	var/datum/integrated_io/amount = inputs[3]
-	if(isnum(amount.data))
-		amount.data = Clamp(amount.data, 0, 50)
-		transfer_amount = amount.data
+	var/new_amount = get_pin_data(IC_INPUT, 3)
+	if(!isnull(new_amount))
+		new_amount = Clamp(new_amount, 0, 50)
+		transfer_amount = new_amount
 
 /obj/item/integrated_circuit/reagent/pump/do_work()
 	var/atom/movable/source = get_pin_data_as_type(IC_INPUT, 1, /atom/movable)
@@ -130,16 +132,15 @@
 	flags = OPENCONTAINER
 	complexity = 4
 	inputs = list()
-	outputs = list("volume used")
+	outputs = list("volume used" = IC_PINTYPE_NUMBER)
 	activators = list()
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 2)
 	volume = 60
 
 /obj/item/integrated_circuit/reagent/storage/on_reagent_change()
-	var/datum/integrated_io/A = outputs[1]
-	A.data = reagents.total_volume
-	A.push_data()
+	set_pin_data(IC_OUTPUT, 1, reagents.total_volume)
+	push_data()
 
 /obj/item/integrated_circuit/reagent/storage/cryo
 	name = "cryo reagent storage"

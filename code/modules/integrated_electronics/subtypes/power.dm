@@ -11,9 +11,13 @@
 	some power is lost due to ineffiency."
 	w_class = ITEMSIZE_SMALL
 	complexity = 16
-	inputs = list("\<REF\> target")
-	outputs = list("\<NUM\> target cell charge", "\<NUM\> target cell max charge", "\<NUM\> target cell percentage")
-	activators = list("transmit" = 1)
+	inputs = list("target" = IC_PINTYPE_REF)
+	outputs = list(
+		"target cell charge" = IC_PINTYPE_NUMBER,
+		"target cell max charge" = IC_PINTYPE_NUMBER,
+		"target cell percentage" = IC_PINTYPE_NUMBER
+		)
+	activators = list("transmit" = IC_PINTYPE_PULSE_IN, "on transmit" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_DATA = 4, TECH_POWER = 4, TECH_MAGNET = 3)
 	power_draw_per_use = 500 // Inefficency has to come from somewhere.
@@ -67,6 +71,7 @@
 				set_pin_data(IC_OUTPUT, 1, cell.charge)
 				set_pin_data(IC_OUTPUT, 2, cell.maxcharge)
 				set_pin_data(IC_OUTPUT, 3, cell.percent())
+				activate_pin(2)
 				return TRUE
 	return FALSE
 

@@ -12,12 +12,12 @@
 	w_class = ITEMSIZE_NORMAL
 	size = 3
 	inputs = list(
-		"\<NUM\> target X rel",
-		"\<NUM\> target Y rel"
+		"target X rel" = IC_PINTYPE_NUMBER,
+		"target Y rel" = IC_PINTYPE_NUMBER
 		)
 	outputs = list()
 	activators = list(
-		"fire" = 1
+		"fire" = IC_PINTYPE_PULSE_IN
 	)
 	var/obj/item/weapon/gun/installed_gun = null
 	spawn_flags = IC_SPAWN_RESEARCH
@@ -104,24 +104,15 @@
 	name = "locomotion circuit"
 	desc = "This allows a machine to move in a given direction."
 	icon_state = "locomotion"
-	extended_desc = "The circuit accepts a number as a direction to move towards.<br>  \
-	North/Fore = 1,<br>\
-	South/Aft = 2,<br>\
-	East/Starboard = 4,<br>\
-	West/Port = 8,<br>\
-	Northeast = 5,<br>\
-	Northwest = 9,<br>\
-	Southeast = 6,<br>\
-	Southwest = 10<br>\
-	<br>\
+	extended_desc = "The circuit accepts a 'dir' number as a direction to move towards.<br>\
 	Pulsing the 'step towards dir' activator pin will cause the machine to move a meter in that direction, assuming it is not \
 	being held, or anchored in some way.  It should be noted that the ability to move is dependant on the type of assembly that this circuit inhabits."
 	w_class = ITEMSIZE_NORMAL
 	complexity = 20
 //	size = 5
-	inputs = list("dir num")
+	inputs = list("direction" = IC_PINTYPE_DIR)
 	outputs = list()
-	activators = list("step towards dir" = 1)
+	activators = list("step towards dir" = IC_PINTYPE_PULSE_IN)
 	spawn_flags = IC_SPAWN_RESEARCH
 	power_draw_per_use = 100
 
@@ -146,9 +137,9 @@
 	icon_state = "grenade"
 	complexity = 30
 	size = 2
-	inputs = list("\<NUM\> detonation time")
+	inputs = list("detonation time" = IC_PINTYPE_NUMBER)
 	outputs = list()
-	activators = list("prime grenade" = 1)
+	activators = list("prime grenade" = IC_PINTYPE_PULSE_IN)
 	spawn_flags = IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3, TECH_COMBAT = 4)
 	var/obj/item/weapon/grenade/attached_grenade
