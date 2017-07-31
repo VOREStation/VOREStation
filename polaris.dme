@@ -363,6 +363,7 @@
 #include "code\game\gamemodes\changeling\powers\blind_sting.dm"
 #include "code\game\gamemodes\changeling\powers\boost_range.dm"
 #include "code\game\gamemodes\changeling\powers\cryo_sting.dm"
+#include "code\game\gamemodes\changeling\powers\darkvision.dm"
 #include "code\game\gamemodes\changeling\powers\deaf_sting.dm"
 #include "code\game\gamemodes\changeling\powers\delayed_toxin_sting.dm"
 #include "code\game\gamemodes\changeling\powers\digital_camo.dm"
