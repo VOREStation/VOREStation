@@ -556,7 +556,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 // Alternate NIFs
 /obj/item/device/nif/bad
-	name = "bootleg NIF"
+	name = "second-hand NIF"
 	desc = "A copy of a copy of a copy of a copy of... this can't be any good, right? Surely?"
 	durability = 10
 

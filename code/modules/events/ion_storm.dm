@@ -76,7 +76,7 @@
 		target << law
 		target.add_ion_law(law)
 		target.show_laws()
-/* //VOREstation edit. Was fucking up all PDA messagess.
+
 	if(message_servers)
 		for (var/obj/machinery/message_server/MS in message_servers)
 			MS.spamfilter.Cut()
@@ -85,7 +85,7 @@
 				MS.spamfilter += pick("kitty","HONK","rev","malf","liberty","freedom","drugs", "[using_map.station_short]", \
 					"admin","ponies","heresy","meow","Pun Pun","monkey","Ian","moron","pizza","message","spam",\
 					"director", "Hello", "Hi!"," ","nuke","crate","dwarf","xeno")
-*/
+
 /datum/event/ionstorm/tick()
 	if(botEmagChance)
 		for(var/mob/living/bot/bot in world)

@@ -1,7 +1,6 @@
-/*
 /datum/species
 	var/vore_numbing = 0
-*/
+
 /datum/species/custom
 	name = "Custom Species"
 	name_plural = "Custom"

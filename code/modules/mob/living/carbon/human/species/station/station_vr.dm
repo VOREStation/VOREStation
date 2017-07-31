@@ -44,20 +44,6 @@
 		"Your overheated skin itches."
 		)
 
-	has_limbs = list(
-		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
-		BP_GROIN =  list("path" = /obj/item/organ/external/groin),
-		BP_HEAD =   list("path" = /obj/item/organ/external/head/vr/sergal),
-		BP_L_ARM =  list("path" = /obj/item/organ/external/arm),
-		BP_R_ARM =  list("path" = /obj/item/organ/external/arm/right),
-		BP_L_LEG =  list("path" = /obj/item/organ/external/leg),
-		BP_R_LEG =  list("path" = /obj/item/organ/external/leg/right),
-		BP_L_HAND = list("path" = /obj/item/organ/external/hand),
-		BP_R_HAND = list("path" = /obj/item/organ/external/hand/right),
-		BP_L_FOOT = list("path" = /obj/item/organ/external/foot),
-		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
-		)
-
 /datum/species/akula
 	name = "Akula"
 	name_plural = "Akula"
@@ -147,7 +133,7 @@
 /datum/species/hi_zoxxen
 	name = "Highlander Zorren"
 	name_plural = "Zorren"
-	icobase = 'icons/mob/human_races/r_fox_vr.dmi'
+	icobase = 'icons/mob/human_races/r_fox.dmi'
 	deform = 'icons/mob/human_races/r_def_fox.dmi'
 	tail = "tail"
 	icobase_tail = 1
@@ -184,7 +170,7 @@
 /datum/species/fl_zorren
 	name = "Flatland Zorren"
 	name_plural = "Zorren"
-	icobase = 'icons/mob/human_races/r_fennec_vr.dmi'
+	icobase = 'icons/mob/human_races/r_fennec.dmi'
 	deform = 'icons/mob/human_races/r_def_fennec.dmi'
 	tail = "tail"
 	icobase_tail = 1
@@ -310,14 +296,15 @@
 	min_age = 18
 
 /datum/species/teshari
-	mob_size = MOB_MEDIUM
 	spawn_flags = SPECIES_CAN_JOIN
 	min_age = 18
-	push_flags = ~HEAVY //Allows them to use micro step code.
-	swap_flags = ~HEAVY
 
 /datum/species/shapeshifter/promethean
 	spawn_flags = SPECIES_CAN_JOIN
+
+/datum/species/teshari
+	mob_size = MOB_MEDIUM
+	min_age = 18
 
 /datum/species/human
 	color_mult = 1
