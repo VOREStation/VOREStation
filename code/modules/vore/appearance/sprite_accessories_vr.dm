@@ -577,10 +577,10 @@
 	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/liquidfirefly_gazer
-	name = "gazer eyestalks (Liquidfirefly)"
+	name = "gazer eyestalks"
 	desc = ""
 	icon_state = "liquidfirefly-eyestalks"
-	ckeys_allowed = list("liquidfirefly","seiga")
+	//ckeys_allowed = list("liquidfirefly","seiga") //At request.
 
 /datum/sprite_accessory/tail/miria_fluffdragon
 	name = "fluffdragon wings+tail (Miria Masters)"
