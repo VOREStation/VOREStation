@@ -1895,7 +1895,7 @@
 	name = "Balloon"
 	id = "balloon"
 	result = "balloon"
-	required_reagents = list("cream" = 1, "curacao" = 1)
+	required_reagents = list("cream" = 1, "bluecuracao" = 1)
 	result_amount = 2
 
 /datum/chemical_reaction/drinks/natunabrandy
@@ -1946,3 +1946,25 @@
 	result = "chrysanthemum"
 	required_reagents = list("sake" = 1, "melonliquor" = 1)
 	result_amount = 2
+
+//R-UST Port
+/datum/chemical_reaction/hyrdophoron
+	name = "Hydrophoron"
+	id = "hydrophoron"
+	result = "hydrophoron"
+	required_reagents = list("hydrogen" = 1, "phoron" = 1)
+	inhibitors = list("nitrogen" = 1) //So it doesn't mess with lexorin
+	result_amount = 2
+
+/datum/chemical_reaction/deuterium
+	name = "Deuterium"
+	id = "deuterium"
+	result = null
+	required_reagents = list("water" = 10)
+	catalysts = list("hydrophoron" = 5)
+	result_amount = 1
+
+/datum/chemical_reaction/deuterium/on_reaction(var/datum/reagents/holder, var/created_volume)
+	var/turf/T = get_turf(holder.my_atom)
+	if(istype(T)) new /obj/item/stack/material/deuterium(T, created_volume)
+	return

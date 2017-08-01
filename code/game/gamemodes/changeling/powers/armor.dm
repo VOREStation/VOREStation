@@ -112,9 +112,6 @@
 		"<span class='warning'>We harden our flesh, creating a suit of armor!</span>",
 		"<span class='italics'>You hear organic matter ripping and tearing!</span>")
 
-/obj/item/clothing/suit/space/changeling/armored/dropped()
-	qdel(src)
-
 /obj/item/clothing/head/helmet/space/changeling/armored
 	name = "chitinous mass"
 	desc = "A tough, hard covering of black chitin with transparent chitin in front."
@@ -123,18 +120,11 @@
 	siemens_coefficient = 0.3
 	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 
-/obj/item/clothing/head/helmet/space/changeling/armored/dropped()
-	qdel(src)
-
 /obj/item/clothing/shoes/magboots/changeling/armored
 	desc = "A tough, hard mass of chitin, with long talons for digging into terrain."
 	name = "chitinous talons"
 	icon_state = "lingarmor"
 	action_button_name = "Toggle Talons"
-
-/obj/item/clothing/shoes/magboots/changeling/armored/dropped()
-	..()
-	qdel(src)
 
 /obj/item/clothing/gloves/combat/changeling //Combined insulated/fireproof gloves
 	name = "chitinous gauntlets"

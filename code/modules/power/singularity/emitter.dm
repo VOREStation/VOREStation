@@ -24,6 +24,9 @@
 	var/state = 0
 	var/locked = 0
 
+	var/burst_delay = 2
+	var/initial_fire_delay = 100
+
 	var/integrity = 80
 
 
@@ -75,7 +78,7 @@
 				src.active = 1
 				user << "You turn on [src]."
 				src.shot_number = 0
-				src.fire_delay = 100
+				src.fire_delay = get_initial_fire_delay()
 				message_admins("Emitter turned on by [key_name(user, user.client)](<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) in ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
 				log_game("Emitter turned on by [user.ckey]([user]) in ([x],[y],[z])")
 				investigate_log("turned <font color='green'>on</font> by [user.key]","singulo")
@@ -119,10 +122,10 @@
 
 		src.last_shot = world.time
 		if(src.shot_number < burst_shots)
-			src.fire_delay = 2
+			src.fire_delay = get_burst_delay() //R-UST port
 			src.shot_number ++
 		else
-			src.fire_delay = rand(min_burst_delay, max_burst_delay)
+			src.fire_delay = get_rand_burst_delay() //R-UST port
 			src.shot_number = 0
 
 		//need to calculate the power per shot as the emitter doesn't fire continuously.
@@ -135,7 +138,7 @@
 			s.set_up(5, 1, src)
 			s.start()
 
-		var/obj/item/projectile/beam/emitter/A = new /obj/item/projectile/beam/emitter( src.loc )
+		var/obj/item/projectile/beam/emitter/A = get_emitter_beam()
 		A.damage = round(power_per_shot/EMITTER_DAMAGE_POWER_TRANSFER)
 		A.launch( get_step(src.loc, src.dir) )
 
@@ -266,3 +269,16 @@
 			user << "<span class='danger'>\The [src] is damaged.</span>"
 		if(77 to 99)
 			user << "<span class='warning'>\The [src] is slightly damaged.</span>"
+
+//R-UST port
+/obj/machinery/power/emitter/proc/get_initial_fire_delay()
+	return initial_fire_delay
+
+/obj/machinery/power/emitter/proc/get_rand_burst_delay()
+	return rand(min_burst_delay, max_burst_delay)
+
+/obj/machinery/power/emitter/proc/get_burst_delay()
+	return burst_delay
+
+/obj/machinery/power/emitter/proc/get_emitter_beam()
+	return new /obj/item/projectile/beam/emitter(get_turf(src))

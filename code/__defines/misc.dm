@@ -198,3 +198,6 @@
 #define TSC_GIL 	"Gilthari"
 
 #define MIDNIGHT_ROLLOVER		864000	//number of deciseconds in a day
+
+#define WORLD_ICON_SIZE 32 //Needed for the R-UST port
+#define PIXEL_MULTIPLIER WORLD_ICON_SIZE/32 //Needed for the R-UST port

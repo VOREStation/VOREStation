@@ -1,12 +1,12 @@
 /datum/technomancer/spell/mend_synthetic
 	name = "Mend Synthetic"
-	desc = "Repairs minor damages to robotic entities.  \
+	desc = "Repairs minor damage to prosthetics.  \
 	Instability is split between the target and technomancer, if seperate.  The function will end prematurely \
 	if the target is completely healthy, preventing further instability."
 	spell_power_desc = "Healing amount increased."
 	cost = 50
 	obj_path = /obj/item/weapon/spell/modifier/mend_synthetic
-	ability_icon_state = "tech_mendwounds"
+	ability_icon_state = "tech_mendsynth"
 	category = SUPPORT_SPELLS
 
 /obj/item/weapon/spell/modifier/mend_synthetic
@@ -35,8 +35,11 @@
 	if(!holder.getBruteLoss() && !holder.getFireLoss()) // No point existing if the spell can't heal.
 		expire()
 		return
-	holder.adjustBruteLoss(-4 * spell_power) // Should heal roughly 20 burn/brute over 10 seconds, as tick() is run every 2 seconds.
-	holder.adjustFireLoss(-4 * spell_power) // Ditto.
+	if(ishuman(holder))
+		var/mob/living/carbon/human/H = holder
+		for(var/obj/item/organ/external/E in H.organs)
+			var/obj/item/organ/external/O = E
+			O.heal_damage(4 * spell_power, 4 * spell_power, 0, 1)
 	holder.adjust_instability(1)
 	if(origin)
 		var/mob/living/L = origin.resolve()

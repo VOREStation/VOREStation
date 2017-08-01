@@ -407,7 +407,7 @@
 
 	else if (href_list["obj_announce"])
 		var/obj_count = 1
-		current << "\blue Your current objectives:"
+		current << "<font color='blue'>Your current objectives:</font>"
 		for(var/datum/objective/objective in objectives)
 			current << "<B>Objective #[obj_count]</B>: [objective.explanation_text]"
 			obj_count++

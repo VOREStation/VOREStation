@@ -179,6 +179,10 @@
 	return
 
 /mob/living/proc/update_sight()
+	if(!seedarkness)
+		see_invisible = SEE_INVISIBLE_NOLIGHTING
+	else
+		see_invisible = initial(see_invisible)
 	return
 
 /mob/living/proc/handle_hud_icons()

@@ -214,7 +214,7 @@
 			return
 
 		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
-		user.visible_message("\red [user] cuts the fingertips off of the [src].","\red You cut the fingertips off of the [src].")
+		user.visible_message("<font color='red'>[user] cuts the fingertips off of the [src].</font>","<font color='red'>You cut the fingertips off of the [src].</font>")
 
 		clipped = 1
 		name = "modified [name]"

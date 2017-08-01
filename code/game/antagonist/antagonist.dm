@@ -111,9 +111,6 @@
 		else if(config.use_age_restriction_for_antags && player.current.client.player_age < minimum_player_age)
 			candidates -= player
 			log_debug("[key_name(player)] is not eligible to become a [role_text]: Is only [player.current.client.player_age] day\s old, has to be [minimum_player_age] day\s!")
-		else if(istype(player.current, /mob/living/voice))
-			candidates -= player
-			log_debug("[key_name(player)] is not eligible to become a [role_text]: They are only a communicator voice. They have been removed from the draft.")
 		else if(player.special_role)
 			candidates -= player
 			log_debug("[key_name(player)] is not eligible to become a [role_text]: They already have a special role ([player.special_role])! They have been removed from the draft.")
