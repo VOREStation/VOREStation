@@ -10,7 +10,7 @@
 		kill()
 
 /datum/event/meteor_strike/announce()
-	command_announcement.Announce("A meteoroid has been detected entering the atmosphere on a trajectory that will terminate near the surface facilty. Brace for impact.", "Debris Warning")
+	command_announcement.Announce("A meteoroid has been detected entering the atmosphere on a trajectory that will terminate near the surface facilty. Brace for impact.", "NanoTrasen Orbital Monitoring")
 
 /datum/event/meteor_strike/start()
 	new /obj/effect/meteor_falling(strike_target)
@@ -60,8 +60,9 @@
 			var/turf/mob_turf = get_turf(L)
 			if(!(mob_turf.z in impacted.expected_z_levels))
 				continue
-			if(!L.buckled)
-				L.throw_at(get_step_rand(L),1,5)
+			if(!L.buckled && !issilicon(L))
+				if(!L.Check_Shoegrip())
+					L.throw_at(get_step_rand(L),1,5)
 				L.Weaken(5)
 			if(L.client)
 				to_chat(L, "<span class='danger'>The ground lurches beneath you!</span>")
