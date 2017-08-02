@@ -18,7 +18,7 @@
 	if(!starting_legal_nifsoft)
 		starting_legal_nifsoft = list()
 		starting_illegal_nifsoft = list()
-		for(var/P in subtypesof(/datum/nifsoft) - /datum/nifsoft/package)
+		for(var/P in (subtypesof(/datum/nifsoft) - typesof(/datum/nifsoft/package)))
 			var/datum/nifsoft/NS = P
 			if(initial(NS.vended))
 				switch(initial(NS.illegal))
