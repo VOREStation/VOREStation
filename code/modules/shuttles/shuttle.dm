@@ -43,38 +43,55 @@
 			world << "<span class='danger'>warning: shuttle with docking tag [docking_controller_tag] could not find it's controller!</span>"
 
 /datum/shuttle/proc/short_jump(var/area/origin,var/area/destination)
-	if(moving_status != SHUTTLE_IDLE) return
+	if(moving_status != SHUTTLE_IDLE)
+		return
 
-	//it would be cool to play a sound here
 	moving_status = SHUTTLE_WARMUP
 	spawn(warmup_time*10)
+
+		make_sounds(origin, HYPERSPACE_WARMUP)
+		sleep(5 SECONDS) // so the sound finishes.
+
 		if (moving_status == SHUTTLE_IDLE)
+			make_sounds(origin, HYPERSPACE_END)
 			return	//someone cancelled the launch
 
 		moving_status = SHUTTLE_INTRANSIT //shouldn't matter but just to be safe
 		move(origin, destination)
 		moving_status = SHUTTLE_IDLE
+		make_sounds(destination, HYPERSPACE_END)
 
 /datum/shuttle/proc/long_jump(var/area/departing, var/area/destination, var/area/interim, var/travel_time, var/direction)
 	//world << "shuttle/long_jump: departing=[departing], destination=[destination], interim=[interim], travel_time=[travel_time]"
-	if(moving_status != SHUTTLE_IDLE) return
+	if(moving_status != SHUTTLE_IDLE)
+		return
 
 	//it would be cool to play a sound here
 	moving_status = SHUTTLE_WARMUP
 	spawn(warmup_time*10)
+
+		make_sounds(departing, HYPERSPACE_WARMUP)
+		sleep(5 SECONDS) // so the sound finishes.
+
 		if (moving_status == SHUTTLE_IDLE)
+			make_sounds(departing, HYPERSPACE_END)
 			return	//someone cancelled the launch
 
 		arrive_time = world.time + travel_time*10
 		moving_status = SHUTTLE_INTRANSIT
 		move(departing, interim, direction)
 
-
+		var/last_progress_sound = 0
 		while (world.time < arrive_time)
+			// Make the shuttle make sounds every four seconds, since the sound file is five seconds.
+			if(last_progress_sound + 4 SECONDS < world.time)
+				make_sounds(interim, HYPERSPACE_PROGRESS)
+				last_progress_sound = world.time
 			sleep(5)
 
 		move(interim, destination, direction)
 		moving_status = SHUTTLE_IDLE
+		make_sounds(destination, HYPERSPACE_END)
 
 /datum/shuttle/proc/dock()
 	if (!docking_controller)
@@ -104,7 +121,7 @@
 //If you want to conditionally cancel shuttle launches, that logic must go in short_jump() or long_jump()
 /datum/shuttle/proc/move(var/area/origin, var/area/destination, var/direction=null)
 
-	//world << "move_shuttle() called for [shuttle_tag] leaving [origin] en route to [destination]."
+	//world << "move_shuttle() called for [name] leaving [origin] en route to [destination]."
 
 	//world << "area_coming_from: [origin]"
 	//world << "destination: [destination]"
@@ -167,3 +184,15 @@
 //returns 1 if the shuttle has a valid arrive time
 /datum/shuttle/proc/has_arrive_time()
 	return (moving_status == SHUTTLE_INTRANSIT)
+
+/datum/shuttle/proc/make_sounds(var/area/A, var/sound_type)
+	var/sound_to_play = null
+	switch(sound_type)
+		if(HYPERSPACE_WARMUP)
+			sound_to_play = 'sound/effects/shuttles/hyperspace_begin.ogg'
+		if(HYPERSPACE_PROGRESS)
+			sound_to_play = 'sound/effects/shuttles/hyperspace_progress.ogg'
+		if(HYPERSPACE_END)
+			sound_to_play = 'sound/effects/shuttles/hyperspace_end.ogg'
+	for(var/obj/machinery/door/E in A)	//dumb, I know, but playing it on the engines doesn't do it justice
+		playsound(E, sound_to_play, 50, FALSE)
