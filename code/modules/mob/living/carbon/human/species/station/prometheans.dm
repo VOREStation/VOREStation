@@ -14,7 +14,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 	blood_color = "#05FF9B"
 	flesh_color = "#05FFFB"
 
-	hunger_factor =    DEFAULT_HUNGER_FACTOR //todo
+	hunger_factor =    0.2
 	reagent_tag =      IS_SLIME
 	mob_size =         MOB_SMALL
 	bump_flag =        SLIME
@@ -31,27 +31,26 @@ var/datum/species/shapeshifter/promethean/prometheans
 	male_cough_sounds = list('sound/effects/slime_squish.ogg')
 	female_cough_sounds = list('sound/effects/slime_squish.ogg')
 
-	gluttonous =            1
-	virus_immune =          1
-	blood_volume =          560
-	min_age =               1
-	max_age =               5
-	brute_mod =             0.5
-	burn_mod =              2
-	oxy_mod =               0
-	total_health =          120
+	gluttonous =	1
+	virus_immune =	1
+	blood_volume =	560
+	min_age =		1
+	max_age =		5
+	brute_mod =		0.75
+	burn_mod =		2
+	oxy_mod =		0
 
-	cold_level_1 =          260
-	cold_level_2 =          200
-	cold_level_3 =          120
+	cold_level_1 = 280 //Default 260 - Lower is better
+	cold_level_2 = 220 //Default 200
+	cold_level_3 = 130 //Default 120
 
-	heat_level_1 =          360
-	heat_level_2 =          400
-	heat_level_3 =          1000
+	heat_level_1 = 320 //Default 360
+	heat_level_2 = 370 //Default 400
+	heat_level_3 = 600 //Default 1000
 
 	body_temperature =      310.15
 
-	siemens_coefficient =   -1
+	siemens_coefficient =   0.3
 	rarity_value =          5
 
 	unarmed_types = list(/datum/unarmed_attack/slime_glomp)
@@ -83,7 +82,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 	valid_transform_species = list("Human", "Unathi", "Tajara", "Skrell", "Diona", "Teshari", "Monkey")
 	monochromatic = 1
 
-	var/heal_rate = 5 // Temp. Regen per tick.
+	var/heal_rate = 0.5 // Temp. Regen per tick.
 
 /datum/species/shapeshifter/promethean/New()
 	..()
