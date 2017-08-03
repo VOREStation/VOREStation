@@ -32,7 +32,11 @@
 	var/datum/wires/airlock/wires = null
 
 	var/open_sound_powered = 'sound/machines/airlock.ogg'
-	var/open_sound_unpowered = 'sound/machines/airlock_creaking.ogg'
+	var/open_sound_unpowered = 'sound/machines/airlockforced.ogg'
+	var/close_sound_powered = 'sound/machines/airlockclose.ogg'
+	var/denied_sound = 'sound/machines/deniedbeep.ogg'
+	var/bolt_up_sound = 'sound/machines/boltsup.ogg'
+	var/bolt_down_sound = 'sound/machines/boltsdown.ogg'
 
 /obj/machinery/door/airlock/attack_generic(var/mob/user, var/damage)
 	if(stat & (BROKEN|NOPOWER))
@@ -581,8 +585,7 @@ About the new airlock wires panel:
 		if("deny")
 			if(density && src.arePowerSystemsOn())
 				flick("door_deny", src)
-				if(secured_wires)
-					playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 0)
+				playsound(src, denied_sound, 50, 0, 3)
 	return
 
 /obj/machinery/door/airlock/attack_ai(mob/user as mob)
@@ -899,7 +902,7 @@ About the new airlock wires panel:
 
 	//if the door is unpowered then it doesn't make sense to hear the woosh of a pneumatic actuator
 	if(arePowerSystemsOn())
-		playsound(src.loc, open_sound_powered, 75, 1)
+		playsound(src.loc, open_sound_powered, 50, 1)
 	else
 		playsound(src.loc, open_sound_unpowered, 75, 1)
 
@@ -996,7 +999,7 @@ About the new airlock wires panel:
 	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
 	has_beeped = 0
 	if(arePowerSystemsOn())
-		playsound(src.loc, open_sound_powered, 75, 1)
+		playsound(src.loc, close_sound_powered, 50, 1)
 	else
 		playsound(src.loc, open_sound_unpowered, 75, 1)
 	for(var/turf/turf in locs)
@@ -1013,6 +1016,7 @@ About the new airlock wires panel:
 	if (operating && !forced) return 0
 
 	src.locked = 1
+	playsound(src, bolt_down_sound, 30, 0, 3)
 	for(var/mob/M in range(1,src))
 		M.show_message("You hear a click from the bottom of the door.", 2)
 	update_icon()
@@ -1026,6 +1030,7 @@ About the new airlock wires panel:
 		if(operating || !src.arePowerSystemsOn() || isWireCut(AIRLOCK_WIRE_DOOR_BOLTS)) return
 
 	src.locked = 0
+	playsound(src, bolt_up_sound, 30, 0, 3)
 	for(var/mob/M in range(1,src))
 		M.show_message("You hear a click from the bottom of the door.", 2)
 	update_icon()
