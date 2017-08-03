@@ -424,20 +424,20 @@
 		if(istype(I, /obj/item/weapon/screwdriver))
 			if(c_mode==0)
 				c_mode=1
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+				playsound(src.loc, I.usesound, 50, 1)
 				user << "You remove the screws around the power connection."
 				return
 			else if(c_mode==1)
 				c_mode=0
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+				playsound(src.loc, I.usesound, 50, 1)
 				user << "You attach the screws around the power connection."
 				return
 		else if(istype(I,/obj/item/weapon/weldingtool) && c_mode==1)
 			var/obj/item/weapon/weldingtool/W = I
 			if(W.remove_fuel(0,user))
-				playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
+				playsound(src.loc, W.usesound, 50, 1)
 				user << "You start slicing the floorweld off the delivery chute."
-				if(do_after(user,20))
+				if(do_after(user,20 * W.toolspeed))
 					if(!src || !W.isOn()) return
 					user << "You sliced the floorweld off the delivery chute."
 					var/obj/structure/disposalconstruct/C = new (src.loc)

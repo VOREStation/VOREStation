@@ -43,7 +43,8 @@
 
 	if(istype(W, /obj/item/weapon/screwdriver))
 		user << "You begin removing the faceplate from the [src]"
-		if(do_after(user, 10))
+		playsound(src, W.usesound, 50, 1)
+		if(do_after(user, 10 * W.toolspeed))
 			user << "You remove the faceplate from the [src]"
 			var/obj/structure/frame/A = new /obj/structure/frame(loc)
 			var/obj/item/weapon/circuitboard/M = new circuit(A)

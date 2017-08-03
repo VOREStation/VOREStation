@@ -80,11 +80,11 @@ var/global/list/rad_collectors = list()
 		if(P)
 			user << "<font color='blue'>Remove the phoron tank first.</font>"
 			return 1
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
+		playsound(src, W.usesound, 75, 1)
 		src.anchored = !src.anchored
 		user.visible_message("[user.name] [anchored? "secures":"unsecures"] the [src.name].", \
 			"You [anchored? "secure":"undo"] the external bolts.", \
-			"You hear a ratchet")
+			"You hear a ratchet.")
 		if(anchored)
 			connect_to_network()
 		else

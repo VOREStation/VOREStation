@@ -238,10 +238,12 @@
 		if(!open_hatch)
 			open_hatch = 1
 			user << "<span class='notice'>You open the maintenance hatch of [src].</span>"
+			playsound(src, W.usesound, 50, 1)
 			return 0
 		else
 			open_hatch = 0
 			user << "<span class='notice'>You close the maintenance hatch of [src].</span>"
+			playsound(src, W.usesound, 50, 1)
 			return 0
 
 	if (!open_hatch)
@@ -276,7 +278,7 @@
 			else
 				user << "<span class='notice'>You begin to cut the cables...</span>"
 				playsound(get_turf(src), 'sound/items/Deconstruct.ogg', 50, 1)
-				if(do_after(user, 50))
+				if(do_after(user, 50 * W.toolspeed))
 					if (prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
 						var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 						s.set_up(5, 1, src)

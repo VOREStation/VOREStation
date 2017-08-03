@@ -30,6 +30,7 @@
 	if(istype(W, /obj/item/weapon/screwdriver))
 		status = !status
 		to_chat(user, "<span class='notice'>[src] is now [status ? "secured" : "unsecured"]!</span>")
+		playsound(src, W.usesound, 50, 1)
 	add_fingerprint(user)
 	return
 

@@ -25,7 +25,7 @@
 			I.loc = src
 	update_icon()
 
-/obj/structure/bookcase/attackby(obj/O as obj, mob/user as mob)
+/obj/structure/bookcase/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/weapon/book))
 		user.drop_item()
 		O.loc = src
@@ -37,13 +37,13 @@
 		else
 			name = ("bookcase ([newname])")
 	else if(istype(O,/obj/item/weapon/wrench))
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
+		playsound(loc, O.usesound, 100, 1)
 		user << (anchored ? "<span class='notice'>You unfasten \the [src] from the floor.</span>" : "<span class='notice'>You secure \the [src] to the floor.</span>")
 		anchored = !anchored
 	else if(istype(O,/obj/item/weapon/screwdriver))
-		playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
+		playsound(loc, O.usesound, 75, 1)
 		user << "<span class='notice'>You begin dismantling \the [src].</span>"
-		if(do_after(user,25))
+		if(do_after(user,25 * O.toolspeed))
 			user << "<span class='notice'>You dismantle \the [src].</span>"
 			new /obj/item/stack/material/wood(get_turf(src), 3)
 			for(var/obj/item/weapon/book/b in contents)

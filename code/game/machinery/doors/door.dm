@@ -241,8 +241,8 @@
 		var/obj/item/weapon/weldingtool/welder = I
 		if(welder.remove_fuel(0,user))
 			user << "<span class='notice'>You start to fix dents and weld \the [repairing] into place.</span>"
-			playsound(src, 'sound/items/Welder.ogg', 100, 1)
-			if(do_after(user, 5 * repairing.amount) && welder && welder.isOn())
+			playsound(src, welder.usesound, 50, 1)
+			if(do_after(user, (5 * repairing.amount) * welder.toolspeed) && welder && welder.isOn())
 				user << "<span class='notice'>You finish repairing the damage to \the [src].</span>"
 				health = between(health, health + repairing.amount*DOOR_REPAIR_AMOUNT, maxhealth)
 				update_icon()
@@ -252,7 +252,7 @@
 
 	if(repairing && istype(I, /obj/item/weapon/crowbar))
 		user << "<span class='notice'>You remove \the [repairing].</span>"
-		playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
+		playsound(src, I.usesound, 100, 1)
 		repairing.loc = user.loc
 		repairing = null
 		return

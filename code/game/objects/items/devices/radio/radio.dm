@@ -629,6 +629,7 @@ var/global/list/default_medbay_channels = list(
 
 			recalculateChannels()
 			user << "You pop out the encryption key in the radio!"
+			playsound(src, W.usesound, 50, 1)
 
 		else
 			user << "This radio doesn't have any encryption keys!"

@@ -231,13 +231,13 @@ var/list/solars_list = list()
 		if(istype(W, /obj/item/weapon/wrench))
 			anchored = 1
 			user.visible_message("<span class='notice'>[user] wrenches the solar assembly into place.</span>")
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
+			playsound(src, W.usesound, 75, 1)
 			return 1
 	else
 		if(istype(W, /obj/item/weapon/wrench))
 			anchored = 0
 			user.visible_message("<span class='notice'>[user] unwrenches the solar assembly from it's place.</span>")
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
+			playsound(src, W.usesound, 75, 1)
 			return 1
 
 		if(istype(W, /obj/item/stack/material) && (W.get_material_name() == "glass" || W.get_material_name() == "rglass"))
@@ -402,9 +402,9 @@ var/list/solars_list = list()
 
 	return
 
-/obj/machinery/power/solar_control/attackby(I as obj, user as mob)
+/obj/machinery/power/solar_control/attackby(obj/item/I, user as mob)
 	if(istype(I, /obj/item/weapon/screwdriver))
-		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+		playsound(src, I.usesound, 50, 1)
 		if(do_after(user, 20))
 			if (src.stat & BROKEN)
 				user << "<font color='blue'>The broken glass falls out.</font>"

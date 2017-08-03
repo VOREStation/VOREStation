@@ -122,7 +122,7 @@
 
 /obj/structure/sign/poster/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/wirecutters))
-		playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
+		playsound(src.loc, W.usesound, 100, 1)
 		if(ruined)
 			user << "<span class='notice'>You remove the remnants of the poster.</span>"
 			qdel(src)

@@ -86,7 +86,7 @@
 //					user << "<span class='warning'>You need to add at least one beaker before locking the assembly.</span>"
 					user << "<span class='notice'>You lock the empty assembly.</span>"
 					name = "fake grenade"
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, -3)
+				playsound(src, W.usesound, 50, 1)
 				icon_state = initial(icon_state) +"_locked"
 				stage = 2
 			else if(stage == 2)
@@ -96,7 +96,7 @@
 					return
 				else
 					user << "<span class='notice'>You unlock the assembly.</span>"
-					playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, -3)
+					playsound(src.loc, W.usesound, 50, -3)
 					name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
 					icon_state = initial(icon_state) + (detonator?"_ass":"")
 					stage = 1

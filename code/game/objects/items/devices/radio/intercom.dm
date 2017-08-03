@@ -113,6 +113,7 @@
 	if(istype(W, /obj/item/weapon/screwdriver))  // Opening the intercom up.
 		wiresexposed = !wiresexposed
 		user << "The wires have been [wiresexposed ? "exposed" : "unexposed"]"
+		playsound(src, W.usesound, 50, 1)
 		if(wiresexposed)
 			if(!on)
 				icon_state = "intercom-p_open"
@@ -123,7 +124,7 @@
 		return
 	if(wiresexposed && istype(W, /obj/item/weapon/wirecutters))
 		user.visible_message("<span class='warning'>[user] has cut the wires inside \the [src]!</span>", "You have cut the wires inside \the [src].")
-		playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
+		playsound(src, W.usesound, 50, 1)
 		new/obj/item/stack/cable_coil(get_turf(src), 5)
 		var/obj/structure/frame/A = new /obj/structure/frame(src.loc)
 		var/obj/item/weapon/circuitboard/M = circuit

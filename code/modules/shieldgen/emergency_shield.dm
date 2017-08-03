@@ -279,7 +279,7 @@
 
 /obj/machinery/shieldgen/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/screwdriver))
-		playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)
+		playsound(src, W.usesound, 100, 1)
 		if(is_open)
 			user << "<font color='blue'>You close the panel.</font>"
 			is_open = 0
@@ -303,7 +303,7 @@
 			user << "The bolts are covered, unlocking this would retract the covers."
 			return
 		if(anchored)
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
+			playsound(src, W.usesound, 100, 1)
 			user << "<font color='blue'>You unsecure the [src] from the floor!</font>"
 			if(active)
 				user << "<font color='blue'>The [src] shuts off!</font>"
@@ -311,7 +311,7 @@
 			anchored = 0
 		else
 			if(istype(get_turf(src), /turf/space)) return //No wrenching these in space!
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
+			playsound(src, W.usesound, 100, 1)
 			user << "<font color='blue'>You secure the [src] to the floor!</font>"
 			anchored = 1
 

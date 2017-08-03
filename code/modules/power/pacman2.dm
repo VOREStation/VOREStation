@@ -87,12 +87,13 @@
 				makepowernets()
 			else if(istype(O, /obj/item/weapon/screwdriver))
 				open = !open
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+				playsound(loc, O.usesound, 50, 1)
 				if(open)
 					user << "<font color='blue'>You open the access panel.</font>"
 				else
 					user << "<font color='blue'>You close the access panel.</font>"
 			else if(istype(O, /obj/item/weapon/crowbar) && !open)
+				playsound(loc, O.usesound, 50, 1)
 				var/obj/machinery/constructable_frame/machine_frame/new_frame = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 				for(var/obj/item/I in component_parts)
 					I.loc = src.loc
