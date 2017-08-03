@@ -80,7 +80,9 @@
 		if (NORTHEAST)  return "northeast"
 		if (SOUTHEAST)  return "southeast"
 		if (NORTHWEST)  return "northwest"
-		if (SOUTHWEST) return "southwest"
+		if (SOUTHWEST)  return "southwest"
+		if (UP)  return "up"
+		if (DOWN)  return "down"
 
 // Turns text into proper directions
 /proc/text2dir(direction)

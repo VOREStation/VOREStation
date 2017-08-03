@@ -8,9 +8,9 @@
 	cannot see the target, it will not be able to calculate the correct direction."
 	icon_state = "numberpad"
 	complexity = 25
-	inputs = list("\<REF\> target")
-	outputs = list("\<NUM\> dir")
-	activators = list("calculate dir" = 1, "on calculated" = 0)
+	inputs = list("target" = IC_PINTYPE_REF)
+	outputs = list("dir" = IC_PINTYPE_DIR)
+	activators = list("calculate dir" = IC_PINTYPE_PULSE_IN, "on calculated" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_DATA = 5)
 	power_draw_per_use = 40

@@ -1595,6 +1595,24 @@ CIRCUITS BELOW
 	build_path = /obj/item/device/assembly/electronic_assembly
 	sort_string = "VCAAF"
 
+/datum/design/item/custom_circuit_printer
+	name = "Portable integrated circuit printer"
+	desc = "A portable(ish) printer for modular machines."
+	id = "ic_printer"
+	req_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 4, TECH_DATA = 5)
+	materials = list(DEFAULT_WALL_MATERIAL = 10000)
+	build_path = /obj/item/device/integrated_circuit_printer
+	sort_string = "VCAAG"
+
+/datum/design/item/custom_circuit_printer
+	name = "Integrated circuit printer upgrade - advanced designs"
+	desc = "Allows the integrated circuit printer to create advanced circuits"
+	id = "ic_printer_upgrade_adv"
+	req_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 4)
+	materials = list(DEFAULT_WALL_MATERIAL = 2000)
+	build_path = /obj/item/weapon/disk/integrated_circuit/upgrade/advanced
+	sort_string = "VCAAH"
+
 /datum/design/item/translator
 	name = "handheld translator"
 	id = "translator"
