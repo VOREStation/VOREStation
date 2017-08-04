@@ -106,8 +106,8 @@
 	var/msg = sanitize(input("Message:", "Psychic Whisper") as text|null)
 	if(msg)
 		log_say("PsychicWhisper: [key_name(src)]->[M.key] : [msg]")
-		M << "\green You hear a strange, alien voice in your head... \italic [msg]"
-		src << "\green You said: \"[msg]\" to [M]"
+		M << "<font color='green'>You hear a strange, alien voice in your head... <i>[msg]</i></font>"
+		src << "<font color='green'>You said: \"[msg]\" to [M]</font>"
 	return
 
 /mob/living/carbon/human/proc/diona_split_nymph()

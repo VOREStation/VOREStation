@@ -156,8 +156,8 @@
 
 
 /obj/item/borg/upgrade/syndicate/
-	name = "illegal equipment module"
-	desc = "Unlocks the hidden, deadlier functions of a robot"
+	name = "scrambled equipment module"
+	desc = "Unlocks new and often deadly module specific items of a robot"
 	icon_state = "cyborg_upgrade3"
 	item_state = "cyborg_upgrade"
 	require_module = 1
@@ -165,8 +165,8 @@
 /obj/item/borg/upgrade/syndicate/action(var/mob/living/silicon/robot/R)
 	if(..()) return 0
 
-	if(R.emagged == 1)
+	if(R.emag_items == 1)
 		return 0
 
-	R.emagged = 1
+	R.emag_items = 1
 	return 1

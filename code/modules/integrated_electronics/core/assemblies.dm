@@ -3,7 +3,7 @@
 
 /obj/item/device/electronic_assembly
 	name = "electronic assembly"
-	desc = "It's a case, for building electronics with."
+	desc = "It's a case, for building small electronics with."
 	w_class = ITEMSIZE_SMALL
 	icon = 'icons/obj/electronic_assemblies.dmi'
 	icon_state = "setup_small"
@@ -17,6 +17,7 @@
 /obj/item/device/electronic_assembly/medium
 	name = "electronic mechanism"
 	icon_state = "setup_medium"
+	desc = "It's a case, for building medium-sized electronics with."
 	w_class = ITEMSIZE_NORMAL
 	max_components = IC_COMPONENTS_BASE * 2
 	max_complexity = IC_COMPLEXITY_BASE * 2
@@ -24,6 +25,7 @@
 /obj/item/device/electronic_assembly/large
 	name = "electronic machine"
 	icon_state = "setup_large"
+	desc = "It's a case, for building large electronics with."
 	w_class = ITEMSIZE_LARGE
 	max_components = IC_COMPONENTS_BASE * 4
 	max_complexity = IC_COMPLEXITY_BASE * 4
@@ -31,6 +33,7 @@
 /obj/item/device/electronic_assembly/drone
 	name = "electronic drone"
 	icon_state = "setup_drone"
+	desc = "It's a case, for building mobile electronics with."
 	w_class = ITEMSIZE_NORMAL
 	max_components = IC_COMPONENTS_BASE * 1.5
 	max_complexity = IC_COMPLEXITY_BASE * 1.5
@@ -38,9 +41,10 @@
 /obj/item/device/electronic_assembly/implant
 	name = "electronic implant"
 	icon_state = "setup_implant"
+	desc = "It's a case, for building very tiny electronics with."
 	w_class = ITEMSIZE_TINY
-	max_components = IC_COMPONENTS_BASE / 4
-	max_complexity = IC_COMPLEXITY_BASE / 4
+	max_components = IC_COMPONENTS_BASE / 2
+	max_complexity = IC_COMPLEXITY_BASE / 2
 	var/obj/item/weapon/implant/integrated_circuit/implant = null
 
 /obj/item/device/electronic_assembly/New()

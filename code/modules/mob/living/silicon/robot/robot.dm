@@ -65,6 +65,7 @@
 
 	var/opened = 0
 	var/emagged = 0
+	var/emag_items = 0
 	var/wiresexposed = 0
 	var/locked = 1
 	var/has_power = 1
@@ -739,7 +740,7 @@
 			dat += text("[obj]: <B>Activated</B><BR>")
 		else
 			dat += text("[obj]: <A HREF=?src=\ref[src];act=\ref[obj]>Activate</A><BR>")
-	if (emagged)
+	if (emagged || emag_items)
 		if(activated(module.emag))
 			dat += text("[module.emag]: <B>Activated</B><BR>")
 		else
@@ -1056,14 +1057,6 @@
 					src << "<b>Obey these laws:</b>"
 					laws.show_laws(src)
 					src << "<span class='danger'>ALERT: [user.real_name] is your new master. Obey your new laws and his commands.</span>"
-					if(src.module)
-						var/rebuild = 0
-						for(var/obj/item/weapon/pickaxe/borgdrill/D in src.module.modules)
-							qdel(D)
-							rebuild = 1
-						if(rebuild)
-							src.module.modules += new /obj/item/weapon/pickaxe/diamonddrill(src.module)
-							src.module.rebuild()
 					updateicon()
 			else
 				user << "You fail to hack [src]'s interface."

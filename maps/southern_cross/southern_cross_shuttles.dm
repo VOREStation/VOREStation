@@ -1,54 +1,11 @@
-//Shuttle Consoles
+//ERT Response Shuttle
 
 /obj/machinery/computer/shuttle_control/multi/response
 	name = "response shuttle console"
 	shuttle_tag = "Response Operations"
 	req_access = list(access_cent_specops)
 
-/obj/machinery/computer/shuttle_control/multi/shuttle1
-	name = "shuttle control console"
-	shuttle_tag = "shuttle1"
-	icon_screen = "shuttle"
-
-/obj/machinery/computer/shuttle_control/multi/shuttle2
-	name = "shuttle control console"
-	shuttle_tag = "shuttle2"
-	icon_screen = "shuttle"
-
-/obj/machinery/computer/shuttle_control/centcom
-	name = "shuttle control console"
-	req_access = list(access_cent_general)
-	shuttle_tag = "centcom"
-
-/obj/machinery/computer/shuttle_control/administration
-	name = "shuttle control console"
-	req_access = list(access_cent_general)
-	shuttle_tag = "administration"
-
-/obj/machinery/computer/shuttle_control/multi/skipjack
-	name = "skipjack control console"
-	req_access = list(access_syndicate)
-	shuttle_tag = "Skipjack"
-
-/obj/machinery/computer/shuttle_control/multi/syndicate
-	name = "mercenary shuttle control console"
-	req_access = list(access_syndicate)
-	shuttle_tag = "Mercenary"
-
-/obj/machinery/computer/shuttle_control/multi/ninja
-	name = "stealth shuttle control console"
-	req_access = list(access_syndicate)
-	shuttle_tag = "Ninja"
-
-/obj/machinery/computer/shuttle_control/merchant
-	name = "merchant shuttle control console"
-	icon_keyboard = "power_key"
-	icon_screen = "shuttle"
-	shuttle_tag = "Merchant"
-
-//ERT Response Shuttle
-
-datum/shuttle/multi_shuttle/response
+/datum/shuttle/multi_shuttle/response
 	name = "Response Operations"
 	warmup_time = 5
 	origin = /area/shuttle/response_ship/start
@@ -68,9 +25,15 @@ datum/shuttle/multi_shuttle/response
 		)
 
 //Shuttle 1
+
+/obj/machinery/computer/shuttle_control/multi/shuttle1
+	name = "shuttle control console"
+	shuttle_tag = "Shuttle 1"
+	icon_screen = "shuttle"
+
 /datum/shuttle/multi_shuttle/shuttle1
-	name = "Shuttle1"
-	warmup_time = 10
+	name = "Shuttle 1"
+	warmup_time = 0
 	origin = /area/shuttle/shuttle1/start
 	interim = /area/shuttle/shuttle1/transit
 	start_location = "Southern Cross Hangar One"
@@ -85,13 +48,20 @@ datum/shuttle/multi_shuttle/response
 		"Southern Cross Docking Port" = "shuttle1_dock_airlocksc",
 		)
 	announcer = "Southern Cross Docking Computer"
-	arrival_message = "Attention, shuttle one returning. Clear Hangar Deck One."
-	departure_message = "Attention, shuttle one departing. Clear Hangar Deck One."
+	// This look backwards because the code expects an outsider shuttle to be coming in, so we reverse it since the 'home' base is the station.
+	arrival_message = "Attention, shuttle one departing. Clear Hangar Deck One."
+	departure_message = "Attention, shuttle one returning. Clear Hangar Deck One."
 
 //Shuttle 2
+
+/obj/machinery/computer/shuttle_control/multi/shuttle2
+	name = "shuttle control console"
+	shuttle_tag = "Shuttle 2"
+	icon_screen = "shuttle"
+
 /datum/shuttle/multi_shuttle/shuttle2
-	name = "Shuttle2"
-	warmup_time = 10
+	name = "Shuttle 2"
+	warmup_time = 0
 	origin = /area/shuttle/shuttle2/start
 	interim = /area/shuttle/shuttle2/transit
 	start_location = "Southern Cross Hangar One"
@@ -106,15 +76,21 @@ datum/shuttle/multi_shuttle/response
 		"Southern Cross Docking Port" = "shuttle2_dock_airlocksc",
 		)
 	announcer = "Southern Cross Docking Computer"
-	arrival_message = "Attention, shuttle one returning. Clear Hangar Deck Two."
-	departure_message = "Attention, shuttle one departing. Clear Hangar Deck Two."
+	// This look backwards because the code expects an outsider shuttle to be coming in, so we reverse it since the 'home' base is the station.
+	arrival_message = "Attention, shuttle one departing. Clear Hangar Deck Two."
+	departure_message = "Attention, shuttle one returning. Clear Hangar Deck Two."
 
 //Admin
+
+/obj/machinery/computer/shuttle_control/administration
+	name = "shuttle control console"
+	req_access = list(access_cent_general)
+	shuttle_tag = "Administration"
 
 /datum/shuttle/ferry/administration
 	name = "Administration"
 	location = 1
-	warmup_time = 10	//want some warmup time so people can cancel.
+	warmup_time = 0
 	area_offsite = /area/shuttle/administration/centcom
 	area_station = /area/shuttle/administration/station
 	docking_controller_tag = "admin_shuttle"
@@ -123,10 +99,15 @@ datum/shuttle/multi_shuttle/response
 
 //Transport
 
+/obj/machinery/computer/shuttle_control/centcom
+	name = "shuttle control console"
+	req_access = list(access_cent_general)
+	shuttle_tag = "Centcom"
+
 /datum/shuttle/ferry/centcom
 	name = "Centcom"
 	location = 1
-	warmup_time = 10
+	warmup_time = 0
 	area_offsite = /area/shuttle/transport1/centcom
 	area_station = /area/shuttle/transport1/station
 	docking_controller_tag = "centcom_shuttle"
@@ -135,9 +116,16 @@ datum/shuttle/multi_shuttle/response
 
 //Merc
 
+/obj/machinery/computer/shuttle_control/multi/syndicate
+	name = "mercenary shuttle control console"
+	req_access = list(access_syndicate)
+	shuttle_tag = "Mercenary"
+
 /datum/shuttle/multi_shuttle/mercenary
 	name = "Mercenary"
 	warmup_time = 0
+	can_cloak = TRUE
+	cloaked = TRUE
 	origin = /area/syndicate_station/start
 	interim = /area/syndicate_station/transit
 	start_location = "Mercenary Ship"
@@ -162,9 +150,16 @@ datum/shuttle/multi_shuttle/response
 
 //Skipjack
 
+/obj/machinery/computer/shuttle_control/multi/skipjack
+	name = "skipjack control console"
+	req_access = list(access_syndicate)
+	shuttle_tag = "Skipjack"
+
 /datum/shuttle/multi_shuttle/skipjack
 	name = "Skipjack"
 	warmup_time = 0
+	can_cloak = TRUE
+	cloaked = TRUE
 	origin = /area/skipjack_station/start
 	interim = /area/skipjack_station/transit
 	destinations = list(
@@ -187,6 +182,13 @@ datum/shuttle/multi_shuttle/response
 	..()
 
 //Ninja Shuttle.
+
+
+/obj/machinery/computer/shuttle_control/multi/ninja
+	name = "stealth shuttle control console"
+	req_access = list(access_syndicate)
+	shuttle_tag = "Ninja"
+
 /datum/shuttle/multi_shuttle/ninja
 	name = "Ninja"
 	warmup_time = 0
@@ -211,9 +213,15 @@ datum/shuttle/multi_shuttle/response
 
 //Trade Ship
 
+/obj/machinery/computer/shuttle_control/merchant
+	name = "merchant shuttle control console"
+	icon_keyboard = "power_key"
+	icon_screen = "shuttle"
+	shuttle_tag = "Merchant"
+
 /datum/shuttle/ferry/merchant
 	name = "Merchant"
-	warmup_time = 10
+	warmup_time = 0
 	docking_controller_tag = "trade_shuttle"
 	dock_target_station = "trade_shuttle_bay"
 	dock_target_offsite = "trade_shuttle_dock_airlock"
@@ -316,7 +324,7 @@ datum/shuttle/multi_shuttle/response
 /datum/shuttle/ferry/escape_pod/escape_pod_seven
 	name = "Escape Pod 7"
 	location = 0
-	warmup_time = 10
+	warmup_time = 0
 	area_station = /area/shuttle/escape_pod7/station
 	area_offsite = /area/shuttle/escape_pod7/centcom
 	area_transition = /area/shuttle/escape_pod7/transit
@@ -328,7 +336,7 @@ datum/shuttle/multi_shuttle/response
 /datum/shuttle/ferry/escape_pod/escape_pod_eight
 	name = "Escape Pod 8"
 	location = 0
-	warmup_time = 10
+	warmup_time = 0
 	area_station = /area/shuttle/escape_pod8/station
 	area_offsite = /area/shuttle/escape_pod8/centcom
 	area_transition = /area/shuttle/escape_pod8/transit

@@ -939,7 +939,7 @@ area/crew_quarters/heads/sc/hop/quarters
 //Shuttle One
 
 /area/shuttle/shuttle1
-	name = "\improper SEV Torch Hangar Deck"
+	name = "\improper Hangar Deck"
 	icon_state = "yellow"
 	requires_power = 0
 	dynamic_lighting = 0

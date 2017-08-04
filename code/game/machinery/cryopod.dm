@@ -499,50 +499,10 @@
 
 		if(!ismob(grab.affecting))
 			return
-
-		if(!check_occupant_allowed(grab.affecting))
-			return
-
-		var/willing = null //We don't want to allow people to be forced into despawning.
-		var/mob/M = grab.affecting
-
-		if(M.client)
-			if(alert(M,"Would you like to enter long-term storage?",,"Yes","No") == "Yes")
-				if(!M || !grab || !grab.affecting) return
-				willing = 1
 		else
-			willing = 1
+			go_in(grab.affecting,user)
 
-		if(willing)
 
-			visible_message("\The [user] starts putting [grab:affecting:name] into \the [src].", 3)
-
-			if(do_after(user, 20))
-				if(!M || !grab || !grab:affecting) return
-
-				M.forceMove(src)
-
-				if(M.client)
-					M.client.perspective = EYE_PERSPECTIVE
-					M.client.eye = src
-
-			icon_state = occupied_icon_state
-
-			M << "<span class='notice'>[on_enter_occupant_message]</span>"
-			M << "<span class='notice'><b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b></span>"
-			set_occupant(M)
-			time_entered = world.time
-			if(ishuman(M) && applies_stasis)
-				var/mob/living/carbon/human/H = M
-				H.Stasis(1000)
-
-			// Book keeping!
-			var/turf/location = get_turf(src)
-			log_admin("[key_name_admin(M)] has entered a stasis pod. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
-			message_admins("<span class='notice'>[key_name_admin(M)] has entered a stasis pod.</span>")
-
-			//Despawning occurs when process() is called with an occupant without a client.
-			add_fingerprint(M)
 
 /obj/machinery/cryopod/verb/eject()
 	set name = "Eject Pod"
@@ -650,3 +610,61 @@
 	name = initial(name)
 	if(occupant)
 		name = "[name] ([occupant])"
+
+/obj/machinery/cryopod/MouseDrop_T(var/mob/target, var/mob/user)
+	if(user.stat || user.lying || !Adjacent(user) || !target.Adjacent(user))
+		return
+	go_in(target, user)
+
+/obj/machinery/cryopod/proc/go_in(var/mob/M, var/mob/user)
+	if(!check_occupant_allowed(M))
+		return
+	if(!M)
+		return
+	if(occupant)
+		to_chat(user,"<span class='warning'>\The [src] is already occupied.</span>")
+		return
+
+	var/willing = null //We don't want to allow people to be forced into despawning.
+
+	if(M.client)
+		if(alert(M,"Would you like to enter long-term storage?",,"Yes","No") == "Yes")
+			if(!M) return
+			willing = 1
+	else
+		willing = 1
+
+	if(willing)
+		if(M == user)
+			visible_message("[usr] [on_enter_visible_message] [src].", 3)
+		else
+			visible_message("\The [user] starts putting [M] into \the [src].", 3)
+
+		if(do_after(user, 20))
+			if(occupant)
+				to_chat(user,"<span class='warning'>\The [src] is already occupied.</span>")
+				return
+			M.forceMove(src)
+
+			if(M.client)
+				M.client.perspective = EYE_PERSPECTIVE
+				M.client.eye = src
+		else return
+
+		icon_state = occupied_icon_state
+
+		M << "<span class='notice'>[on_enter_occupant_message]</span>"
+		M << "<span class='notice'><b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b></span>"
+		set_occupant(M)
+		time_entered = world.time
+		if(ishuman(M) && applies_stasis)
+			var/mob/living/carbon/human/H = M
+			H.Stasis(1000)
+
+		// Book keeping!
+		var/turf/location = get_turf(src)
+		log_admin("[key_name_admin(M)] has entered a stasis pod. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
+		message_admins("<span class='notice'>[key_name_admin(M)] has entered a stasis pod.</span>")
+
+		//Despawning occurs when process() is called with an occupant without a client.
+		add_fingerprint(M)

@@ -102,7 +102,7 @@
 	if (href_list["fix"])
 		src.active = 1
 		src.overlays += image(icon, "ai-fixer-on")
-		while (src.occupant.health < 100)
+		while (src.occupant.getOxyLoss() > 0 || src.occupant.getFireLoss() > 0 || src.occupant.getToxLoss() > 0 || src.occupant.getBruteLoss() > 0)
 			src.occupant.adjustOxyLoss(-1)
 			src.occupant.adjustFireLoss(-1)
 			src.occupant.adjustToxLoss(-1)

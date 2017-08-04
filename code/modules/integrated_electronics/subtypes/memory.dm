@@ -3,12 +3,20 @@
 	desc = "This tiny chip can store one piece of data."
 	icon_state = "memory"
 	complexity = 1
-	inputs = list("input pin 1")
-	outputs = list("output pin 1")
-	activators = list("set" = 1, "on set")
+	inputs = list()
+	outputs = list()
+	activators = list("set" = IC_PINTYPE_PULSE_IN, "on set" = IC_PINTYPE_PULSE_OUT)
 	category_text = "Memory"
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 1
+	var/number_of_pins = 1
+
+/obj/item/integrated_circuit/memory/New()
+	for(var/i = 1 to number_of_pins)
+		inputs["input [i]"] = IC_PINTYPE_ANY // This is just a string since pins don't get built until ..() is called.
+		outputs["output [i]"] = IC_PINTYPE_ANY
+	complexity = number_of_pins
+	..()
 
 /obj/item/integrated_circuit/memory/examine(mob/user)
 	..()
@@ -36,83 +44,26 @@
 	name = "memory circuit"
 	desc = "This circuit can store four pieces of data."
 	icon_state = "memory4"
-	complexity = 4
-	inputs = list("input pin 1","input pin 2","input pin 3","input pin 4")
-	outputs = list("output pin 1","output pin 2","output pin 3","output pin 4")
-	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 2
+	number_of_pins = 4
 
 /obj/item/integrated_circuit/memory/large
 	name = "large memory circuit"
 	desc = "This big circuit can hold eight pieces of data."
 	icon_state = "memory8"
-	complexity = 8
-	inputs = list(
-		"input pin 1",
-		"input pin 2",
-		"input pin 3",
-		"input pin 4",
-		"input pin 5",
-		"input pin 6",
-		"input pin 7",
-		"input pin 8")
-	outputs = list(
-		"output pin 1",
-		"output pin 2",
-		"output pin 3",
-		"output pin 4",
-		"output pin 5",
-		"output pin 6",
-		"output pin 7",
-		"output pin 8")
-	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3)
 	power_draw_per_use = 4
+	number_of_pins = 8
 
 /obj/item/integrated_circuit/memory/huge
 	name = "large memory stick"
 	desc = "This stick of memory can hold up up to sixteen pieces of data."
 	icon_state = "memory16"
 	w_class = ITEMSIZE_NORMAL
-	complexity = 16
-	inputs = list(
-		"input pin 1",
-		"input pin 2",
-		"input pin 3",
-		"input pin 4",
-		"input pin 5",
-		"input pin 6",
-		"input pin 7",
-		"input pin 8",
-		"input pin 9",
-		"input pin 10",
-		"input pin 11",
-		"input pin 12",
-		"input pin 13",
-		"input pin 14",
-		"input pin 15",
-		"input pin 16"
-	)
-	outputs = list(
-		"output pin 1",
-		"output pin 2",
-		"output pin 3",
-		"output pin 4",
-		"output pin 5",
-		"output pin 6",
-		"output pin 7",
-		"output pin 8",
-		"output pin 9",
-		"output pin 10",
-		"output pin 11",
-		"output pin 12",
-		"output pin 13",
-		"output pin 14",
-		"output pin 15",
-		"output pin 16")
 	spawn_flags = IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_DATA = 4)
 	power_draw_per_use = 8
+	number_of_pins = 16
 
 /obj/item/integrated_circuit/memory/constant
 	name = "constant chip"
@@ -120,8 +71,8 @@
 	icon_state = "memory"
 	complexity = 1
 	inputs = list()
-	outputs = list("output pin")
-	activators = list("push data" = 0)
+	outputs = list("output pin" = IC_PINTYPE_ANY)
+	activators = list("push data" = IC_PINTYPE_PULSE_IN)
 	var/accepting_refs = 0
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
@@ -142,13 +93,13 @@
 			new_data = input("Now type in a string.","[src] string writing") as null|text
 			if(istext(new_data) && CanInteract(user, physical_state))
 				O.data = new_data
-				to_chat(user, "<span class='notice'>You set \the [src]'s memory to [O.display_data()].</span>")
+				to_chat(user, "<span class='notice'>You set \the [src]'s memory to [O.display_data(O.data)].</span>")
 		if("number")
 			accepting_refs = 0
 			new_data = input("Now type in a number.","[src] number writing") as null|num
 			if(isnum(new_data) && CanInteract(user, physical_state))
 				O.data = new_data
-				to_chat(user, "<span class='notice'>You set \the [src]'s memory to [O.display_data()].</span>")
+				to_chat(user, "<span class='notice'>You set \the [src]'s memory to [O.display_data(O.data)].</span>")
 		if("ref")
 			accepting_refs = 1
 			to_chat(user, "<span class='notice'>You turn \the [src]'s ref scanner on.  Slide it across \
@@ -162,6 +113,6 @@
 		var/datum/integrated_io/O = outputs[1]
 		O.data = weakref(target)
 		visible_message("<span class='notice'>[user] slides \a [src]'s over \the [target].</span>")
-		to_chat(user, "<span class='notice'>You set \the [src]'s memory to a reference to [O.display_data()].  The ref scanner is \
+		to_chat(user, "<span class='notice'>You set \the [src]'s memory to a reference to [O.display_data(O.data)].  The ref scanner is \
 		now off.</span>")
 		accepting_refs = 0

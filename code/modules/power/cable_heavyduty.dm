@@ -16,10 +16,10 @@
 		return
 
 	if(istype(W, /obj/item/weapon/wirecutters))
-		usr << "\blue These cables are too tough to be cut with those [W.name]."
+		usr << "<font color='blue'>These cables are too tough to be cut with those [W.name].</font>"
 		return
 	else if(istype(W, /obj/item/stack/cable_coil))
-		usr << "\blue You will need heavier cables to connect to these."
+		usr << "<font color='blue'>You will need heavier cables to connect to these.</font>"
 		return
 	else
 		..()

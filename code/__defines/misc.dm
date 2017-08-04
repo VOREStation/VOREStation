@@ -88,6 +88,11 @@
 #define SHUTTLE_WARMUP    1
 #define SHUTTLE_INTRANSIT 2
 
+// Sound defines for shuttles.
+#define HYPERSPACE_WARMUP    0
+#define HYPERSPACE_PROGRESS  1
+#define HYPERSPACE_END       2
+
 // Ferry shuttle processing status.
 #define IDLE_STATE   0
 #define WAIT_LAUNCH  1

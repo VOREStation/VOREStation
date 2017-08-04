@@ -54,7 +54,7 @@ var/global/list/rad_collectors = list()
 			investigate_log("turned [active?"<font color='green'>on</font>":"<font color='red'>off</font>"] by [user.key]. [P?"Fuel: [round(P.air_contents.gas["phoron"]/0.29)]%":"<font color='red'>It is empty</font>"].","singulo")
 			return
 		else
-			user << "\red The controls are locked!"
+			user << "<font color='red'>The controls are locked!</font>"
 			return
 ..()
 
@@ -62,10 +62,10 @@ var/global/list/rad_collectors = list()
 /obj/machinery/power/rad_collector/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weapon/tank/phoron))
 		if(!src.anchored)
-			user << "\red The [src] needs to be secured to the floor first."
+			user << "<font color='red'>The [src] needs to be secured to the floor first.</font>"
 			return 1
 		if(src.P)
-			user << "\red There's already a phoron tank loaded."
+			user << "<font color='red'>There's already a phoron tank loaded.</font>"
 			return 1
 		user.drop_item()
 		src.P = W
@@ -78,7 +78,7 @@ var/global/list/rad_collectors = list()
 			return 1
 	else if(istype(W, /obj/item/weapon/wrench))
 		if(P)
-			user << "\blue Remove the phoron tank first."
+			user << "<font color='blue'>Remove the phoron tank first.</font>"
 			return 1
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
 		src.anchored = !src.anchored
@@ -97,9 +97,9 @@ var/global/list/rad_collectors = list()
 				user << "The controls are now [src.locked ? "locked." : "unlocked."]"
 			else
 				src.locked = 0 //just in case it somehow gets locked
-				user << "\red The controls can only be locked when the [src] is active"
+				user << "<font color='red'>The controls can only be locked when the [src] is active.</font>"
 		else
-			user << "\red Access denied!"
+			user << "<font color='red'>Access denied!</font>"
 		return 1
 	return ..()
 

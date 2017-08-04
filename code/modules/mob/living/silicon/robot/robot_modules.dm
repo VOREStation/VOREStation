@@ -172,7 +172,7 @@ var/global/list/robot_modules = list(
 					"Basic" = "robot_old",
 					"Android" = "droid",
 					"Drone" = "drone-standard"
-				  )
+					)
 
 /obj/item/weapon/robot_module/robot/standard/New()
 	..()
@@ -203,7 +203,8 @@ var/global/list/robot_modules = list(
 					"Basic" = "Medbot",
 					"Advanced Droid" = "droid-medical",
 					"Needles" = "medicalrobot",
-					"Drone" = "drone-surgery"
+					"Drone" = "drone-surgery",
+					"Handy" = "handy-med"
 					)
 
 /obj/item/weapon/robot_module/robot/medical/surgeon/New()
@@ -339,7 +340,8 @@ var/global/list/robot_modules = list(
 					"Landmate" = "landmate",
 					"Landmate - Treaded" = "engiborg+tread",
 					"Drone" = "drone-engineer",
-					"Treadwell" = "treadwell"
+					"Treadwell" = "treadwell",
+					"Handy" = "handy-engineer"
 					)
 
 /obj/item/weapon/robot_module/robot/engineering/construction
@@ -478,7 +480,7 @@ var/global/list/robot_modules = list(
 					"Basic" = "secborg",
 					"Black Knight" = "securityrobot",
 					"Drone" = "drone-sec"
-				)
+					)
 
 /obj/item/weapon/robot_module/robot/security/general/New()
 	..()
@@ -682,6 +684,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/gripper/miner(src)
 	src.modules += new /obj/item/weapon/mining_scanner(src)
 	src.emag = new /obj/item/weapon/pickaxe/plasmacutter(src)
+	src.emag = new /obj/item/weapon/pickaxe/diamonddrill(src)
 
 /obj/item/weapon/robot_module/robot/research
 	name = "research module"
@@ -693,7 +696,8 @@ var/global/list/robot_modules = list(
 					"WTDove" = "whitespider",
 					"WTOperator" = "sleekscience",
 					"Droid" = "droid-science",
-					"Drone" = "drone-science"
+					"Drone" = "drone-science",
+					"Handy" = "handy-science"
 					)
 
 /obj/item/weapon/robot_module/robot/research/New()

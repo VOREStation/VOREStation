@@ -12,7 +12,7 @@
 	This circuit is set to send a pulse after a delay of two seconds."
 	icon_state = "delay-20"
 	var/delay = 2 SECONDS
-	activators = list("incoming"= 1,"outgoing" = 0)
+	activators = list("incoming"= IC_PINTYPE_PULSE_IN,"outgoing" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 2
 
@@ -59,7 +59,7 @@
 	desc = "This sends a pulse signal out after a delay, critical for ensuring proper control flow in a complex machine.  \
 	This circuit's delay can be customized, between 1/10th of a second to one hour.  The delay is updated upon receiving a pulse."
 	icon_state = "delay"
-	inputs = list("\<NUM\> delay time")
+	inputs = list("delay time" = IC_PINTYPE_NUMBER)
 	spawn_flags = IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/time/delay/custom/do_work()
@@ -78,8 +78,8 @@
 	var/ticks_to_pulse = 4
 	var/ticks_completed = 0
 	var/is_running = FALSE
-	inputs = list("\<NUM\> enable ticking" = 0)
-	activators = list("outgoing pulse" = 0)
+	inputs = list("enable ticking" = IC_PINTYPE_BOOLEAN)
+	activators = list("outgoing pulse" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_RESEARCH
 	power_draw_per_use = 4
 
@@ -131,8 +131,13 @@
 	desc = "Tells you what the local time is, specific to your station or planet."
 	icon_state = "clock"
 	inputs = list()
-	outputs = list("\<TEXT\> time", "\<NUM\> hours", "\<NUM\> minutes", "\<NUM\> seconds")
-	activators = list("get time" = 1,"on time got" = 0)
+	outputs = list(
+		"time" = IC_PINTYPE_STRING,
+		"hours" = IC_PINTYPE_NUMBER,
+		"minutes" = IC_PINTYPE_NUMBER,
+		"seconds" = IC_PINTYPE_NUMBER
+		)
+	activators = list("get time" = IC_PINTYPE_PULSE_IN, "on time got" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 4
 
