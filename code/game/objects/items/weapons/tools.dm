@@ -38,7 +38,7 @@
 	usesound = 'sound/items/drill_use.ogg'
 	toolspeed = 0.5
 
-/obj/item/weapon/wrench/ayyy
+/obj/item/weapon/wrench/alien
 	name = "alien wrench"
 	desc = "A polarized wrench. It causes anything placed between the jaws to turn."
 	icon = 'icons/obj/abductor.dmi'
@@ -134,7 +134,7 @@
 		M = user
 	return eyestab(M,user)
 
-/obj/item/weapon/screwdriver/ayyy
+/obj/item/weapon/screwdriver/alien
 	name = "alien screwdriver"
 	desc = "An ultrasonic screwdriver."
 	icon = 'icons/obj/abductor.dmi'
@@ -219,7 +219,7 @@
 	else
 		..()
 
-/obj/item/weapon/wirecutters/ayyy
+/obj/item/weapon/wirecutters/alien
 	name = "alien wirecutters"
 	desc = "Extremely sharp wirecutters, made out of a silvery-green metal."
 	icon = 'icons/obj/abductor.dmi'
@@ -619,7 +619,7 @@
 	toolspeed = 2
 	eye_safety_modifier = 1 // Safer on eyes.
 
-/obj/item/weapon/weldingtool/ayyy
+/obj/item/weapon/weldingtool/alien
 	name = "alien welding tool"
 	desc = "An alien welding tool. Whatever fuel it uses, it never runs out."
 	icon = 'icons/obj/abductor.dmi'
@@ -631,7 +631,7 @@
 	origin_tech = list(TECH_PHORON = 5 ,TECH_ENGINEERING = 5)
 	always_process = TRUE
 
-/obj/item/weapon/weldingtool/ayyy/process()
+/obj/item/weapon/weldingtool/alien/process()
 	if(get_fuel() <= get_max_fuel())
 		reagents.add_reagent("fuel", 1)
 	..()
@@ -823,7 +823,7 @@
 	else
 		return ..()
 
-/obj/item/weapon/crowbar/ayyy
+/obj/item/weapon/crowbar/alien
 	name = "alien crowbar"
 	desc = "A hard-light crowbar. It appears to pry by itself, without any effort required."
 	icon = 'icons/obj/abductor.dmi'

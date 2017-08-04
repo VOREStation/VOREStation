@@ -38,7 +38,7 @@
 	desc = "Optimised and stripped-down version of a regular multitool."
 	toolspeed = 0.5
 
-/obj/item/device/multitool/ayyy
+/obj/item/device/multitool/alien
 	name = "alien multitool"
 	desc = "An omni-technological interface."
 	icon = 'icons/obj/abductor.dmi'

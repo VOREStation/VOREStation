@@ -224,21 +224,21 @@
 	new /obj/item/device/soulstone(src)
 	new /obj/item/device/soulstone(src)
 
-/obj/item/weapon/storage/belt/utility/ayyy
+/obj/item/weapon/storage/belt/utility/alien
 	name = "alien belt"
 	desc = "A belt(?) that can hold things."
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "belt"
 	item_state = "security"
 
-/obj/item/weapon/storage/belt/utility/ayyy/full/New()
+/obj/item/weapon/storage/belt/utility/alien/full/New()
 	..()
-	new /obj/item/weapon/screwdriver/ayyy(src)
-	new /obj/item/weapon/wrench/ayyy(src)
-	new /obj/item/weapon/weldingtool/ayyy(src)
-	new /obj/item/weapon/crowbar/ayyy(src)
-	new /obj/item/weapon/wirecutters/ayyy(src)
-	new /obj/item/device/multitool/ayyy(src)
+	new /obj/item/weapon/screwdriver/alien(src)
+	new /obj/item/weapon/wrench/alien(src)
+	new /obj/item/weapon/weldingtool/alien(src)
+	new /obj/item/weapon/crowbar/alien(src)
+	new /obj/item/weapon/wirecutters/alien(src)
+	new /obj/item/device/multitool/alien(src)
 	new /obj/item/stack/cable_coil(src,30,"white")
 
 /obj/item/weapon/storage/belt/champion
