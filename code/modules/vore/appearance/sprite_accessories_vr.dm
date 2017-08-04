@@ -542,7 +542,7 @@
 /datum/sprite_accessory/tail/bat_color
 	name = "bat wings, colorable"
 	desc = ""
-	icon_state = "bat-black"
+	icon_state = "bat-color"
 	show_species_tail = 1
 	do_colouration = 1
 
