@@ -697,16 +697,18 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 
 	else if(istype(W, /obj/item/weapon/wrench))
 		if(anchored)
+			playsound(src, W.usesound, 50, 1)
 			user.visible_message("<font color='blue'>\The [user] starts to unbolt \the [src] from the plating...</font>")
-			if(!do_after(user,40))
+			if(!do_after(user,40 * W.toolspeed))
 				user.visible_message("<font color='blue'>\The [user] decides not to unbolt \the [src].</font>")
 				return
 			user.visible_message("<font color='blue'>\The [user] finishes unfastening \the [src]!</font>")
 			anchored = 0
 			return
 		else
+			playsound(src, W.usesound, 50, 1)
 			user.visible_message("<font color='blue'>\The [user] starts to bolt \the [src] to the plating...</font>")
-			if(!do_after(user,40))
+			if(!do_after(user,40 * W.toolspeed))
 				user.visible_message("<font color='blue'>\The [user] decides not to bolt \the [src].</font>")
 				return
 			user.visible_message("<font color='blue'>\The [user] finishes fastening down \the [src]!</font>")

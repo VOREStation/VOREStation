@@ -225,18 +225,22 @@
 			if(choice == tank)	//No, a switch doesn't work here. Sorry. ~Techhead
 				user << "You pop \the [tank] out of \the [src]'s storage compartment."
 				tank.forceMove(get_turf(src))
+				playsound(src, W.usesound, 50, 1)
 				src.tank = null
 			else if(choice == cooler)
 				user << "You pop \the [cooler] out of \the [src]'s storage compartment."
 				cooler.forceMove(get_turf(src))
+				playsound(src, W.usesound, 50, 1)
 				src.cooler = null
 			else if(choice == helmet)
 				user << "You detatch \the [helmet] from \the [src]'s helmet mount."
 				helmet.forceMove(get_turf(src))
+				playsound(src, W.usesound, 50, 1)
 				src.helmet = null
 			else if(choice == boots)
 				user << "You detatch \the [boots] from \the [src]'s boot mounts."
 				boots.forceMove(get_turf(src))
+				playsound(src, W.usesound, 50, 1)
 				src.boots = null
 		else
 			user << "\The [src] does not have anything installed."

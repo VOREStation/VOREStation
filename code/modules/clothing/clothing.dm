@@ -214,7 +214,7 @@
 			update_icon()
 			return
 
-		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
+		playsound(src.loc, W.usesound, 50, 1)
 		user.visible_message("<font color='red'>[user] cuts the fingertips off of the [src].</font>","<font color='red'>You cut the fingertips off of the [src].</font>")
 
 		clipped = 1

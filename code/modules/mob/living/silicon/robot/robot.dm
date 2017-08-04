@@ -576,6 +576,7 @@
 	else if(istype(W, /obj/item/weapon/screwdriver) && opened && !cell)	// haxing
 		wiresexposed = !wiresexposed
 		user << "The wires have been [wiresexposed ? "exposed" : "unexposed"]"
+		playsound(src, W.usesound, 50, 1)
 		updateicon()
 
 	else if(istype(W, /obj/item/weapon/screwdriver) && opened && cell)	// radio

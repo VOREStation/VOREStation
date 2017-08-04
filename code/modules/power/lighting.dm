@@ -48,9 +48,9 @@
 	src.add_fingerprint(user)
 	if (istype(W, /obj/item/weapon/wrench))
 		if (src.stage == 1)
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
+			playsound(src, W.usesound, 75, 1)
 			usr << "You begin deconstructing [src]."
-			if (!do_after(usr, 30))
+			if (!do_after(usr, 30 * W.toolspeed))
 				return
 			new /obj/item/stack/material/steel( get_turf(src.loc), sheets_refunded )
 			user.visible_message("[user.name] deconstructs [src].", \
@@ -78,7 +78,7 @@
 		new /obj/item/stack/cable_coil(get_turf(src.loc), 1, "red")
 		user.visible_message("[user.name] removes the wiring from [src].", \
 			"You remove the wiring from [src].", "You hear a noise.")
-		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
+		playsound(src.loc, W.usesound, 50, 1)
 		return
 
 	if(istype(W, /obj/item/stack/cable_coil))
@@ -109,7 +109,7 @@
 			src.stage = 3
 			user.visible_message("[user.name] closes [src]'s casing.", \
 				"You close [src]'s casing.", "You hear a noise.")
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 75, 1)
+			playsound(src, W.usesound, 75, 1)
 
 			switch(fixture_type)
 
@@ -418,7 +418,7 @@
 	// attempt to stick weapon into light socket
 	else if(status == LIGHT_EMPTY)
 		if(istype(W, /obj/item/weapon/screwdriver)) //If it's a screwdriver open it.
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 75, 1)
+			playsound(src, W.usesound, 75, 1)
 			user.visible_message("[user.name] opens [src]'s casing.", \
 				"You open [src]'s casing.", "You hear a noise.")
 			var/obj/machinery/light_construct/newlight = null
@@ -455,7 +455,7 @@
 /obj/machinery/light/flamp/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weapon/wrench))
 		anchored = !anchored
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		playsound(src, W.usesound, 50, 1)
 		user << "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>"
 
 	if(!lamp_shade)
@@ -467,7 +467,7 @@
 
 	else
 		if(istype(W, /obj/item/weapon/screwdriver))
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 75, 1)
+			playsound(src, W.usesound, 75, 1)
 			user.visible_message("[user.name] removes [src]'s lamp shade.", \
 				"You remove [src]'s lamp shade.", "You hear a noise.")
 			lamp_shade = 0

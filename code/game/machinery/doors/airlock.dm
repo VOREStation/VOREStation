@@ -764,7 +764,7 @@ About the new airlock wires panel:
 /obj/machinery/door/airlock/proc/can_remove_electronics()
 	return src.p_open && (operating < 0 || (!operating && welded && !src.arePowerSystemsOn() && density && (!src.locked || (stat & BROKEN))))
 
-/obj/machinery/door/airlock/attackby(C as obj, mob/user as mob)
+/obj/machinery/door/airlock/attackby(obj/item/C, mob/user as mob)
 	//world << text("airlock attackby src [] obj [] mob []", src, C, user)
 	if(!istype(usr, /mob/living/silicon))
 		if(src.isElectrified())
@@ -784,7 +784,7 @@ About the new airlock wires panel:
 				src.welded = 1
 			else
 				src.welded = null
-			playsound(src, 'sound/items/Welder.ogg', 75, 1)
+			playsound(src.loc, C.usesound, 75, 1)
 			src.update_icon()
 			return
 		else
@@ -795,8 +795,10 @@ About the new airlock wires panel:
 				to_chat(usr,"<span class='warning'>The panel is broken and cannot be closed.</span>")
 			else
 				src.p_open = 0
+				playsound(src, C.usesound, 50, 1)
 		else
 			src.p_open = 1
+			playsound(src, C.usesound, 50, 1)
 		src.update_icon()
 	else if(istype(C, /obj/item/weapon/wirecutters))
 		return src.attack_hand(user)
@@ -809,9 +811,9 @@ About the new airlock wires panel:
 		cable.plugin(src, user)
 	else if(!repairing && istype(C, /obj/item/weapon/crowbar))
 		if(can_remove_electronics())
-			playsound(src.loc, 'sound/items/Crowbar.ogg', 75, 1)
+			playsound(src, C.usesound, 75, 1)
 			user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to remove electronics from the airlock assembly.")
-			if(do_after(user,40))
+			if(do_after(user,40 * C.toolspeed))
 				to_chat(user,"<span class='notice'>You removed the airlock electronics!</span>")
 
 				var/obj/structure/door_assembly/da = new assembly_type(src.loc)

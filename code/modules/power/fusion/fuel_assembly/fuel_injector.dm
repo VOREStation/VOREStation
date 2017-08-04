@@ -71,7 +71,7 @@ var/list/fuel_injectors = list()
 			to_chat(user, "<span class='warning'>Shut \the [src] off first!</span>")
 			return
 		anchored = !anchored
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
+		playsound(src, W.usesound, 75, 1)
 		if(anchored)
 			user.visible_message("\The [user] secures \the [src] to the floor.")
 		else

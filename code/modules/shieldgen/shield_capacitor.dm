@@ -41,6 +41,7 @@
 			user << "<font color='red'>Access denied.</font>"
 	else if(istype(W, /obj/item/weapon/wrench))
 		src.anchored = !src.anchored
+		playsound(src, W.usesound, 75, 1)
 		src.visible_message("<font color='blue'>\icon[src] [src] has been [anchored ? "bolted to the floor" : "unbolted from the floor"] by [user].</font>")
 
 		if(anchored)

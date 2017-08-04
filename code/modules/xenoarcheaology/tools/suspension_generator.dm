@@ -133,6 +133,7 @@
 				anchored = 0
 			else
 				anchored = 1
+			playsound(loc, W.usesound, 50, 1)
 			user << "<span class='info'>You wrench the stabilising legs [anchored ? "into place" : "up against the body"].</span>"
 			if(anchored)
 				desc = "It is resting securely on four stubby legs."

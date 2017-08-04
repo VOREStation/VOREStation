@@ -9,6 +9,7 @@
 /obj/item/weapon/material/butterflyconstruction/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/screwdriver))
 		user << "You finish the concealed blade weapon."
+		playsound(src, W.usesound, 50, 1)
 		new /obj/item/weapon/material/butterfly(user.loc, material.name)
 		qdel(src)
 		return

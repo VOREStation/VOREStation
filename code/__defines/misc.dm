@@ -147,6 +147,14 @@
 #define DEFAULT_TABLE_MATERIAL "plastic"
 #define DEFAULT_WALL_MATERIAL "steel"
 
+#define MAT_STEEL			"steel"
+#define MAT_GLASS			"glass"
+#define MAT_SILVER			"silver"
+#define MAT_GOLD			"gold"
+#define MAT_TITANIUM		"titanium"
+#define MAT_PHORON			"phoron"
+#define MAT_DIAMOND			"diamond"
+
 #define SHARD_SHARD "shard"
 #define SHARD_SHRAPNEL "shrapnel"
 #define SHARD_STONE_PIECE "piece"

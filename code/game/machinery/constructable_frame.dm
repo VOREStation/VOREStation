@@ -42,7 +42,7 @@
 							icon_state = "box_1"
 				else
 					if(istype(P, /obj/item/weapon/wrench))
-						playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
+						playsound(src, W.usesound, 75, 1)
 						user << "<span class='notice'>You dismantle the frame</span>"
 						new /obj/item/stack/material/steel(src.loc, 5)
 						qdel(src)
@@ -72,7 +72,7 @@
 						user << "<span class='warning'>This frame does not accept circuit boards of this type!</span>"
 				else
 					if(istype(P, /obj/item/weapon/wirecutters))
-						playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
+						playsound(src.loc, P.usesound, 50, 1)
 						user << "<span class='notice'>You remove the cables.</span>"
 						state = 1
 						icon_state = "box_0"
@@ -81,7 +81,7 @@
 
 			if(3)
 				if(istype(P, /obj/item/weapon/crowbar))
-					playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
+					playsound(src, P.usesound, 50, 1)
 					state = 2
 					circuit.loc = src.loc
 					circuit = null
@@ -103,28 +103,28 @@
 								component_check = 0
 								break
 						if(component_check)
-							playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+							playsound(src.loc, P.usesound, 50, 1)
 							var/obj/machinery/new_machine = new src.circuit.build_path(src.loc, src.dir)
-							
+
 							if(new_machine.component_parts)
 								new_machine.component_parts.Cut()
 							else
 								new_machine.component_parts = list()
-							
+
 							src.circuit.construct(new_machine)
-							
+
 							for(var/obj/O in src)
 								if(circuit.contain_parts) // things like disposal don't want their parts in them
 									O.loc = new_machine
 								else
 									O.loc = null
 								new_machine.component_parts += O
-							
+
 							if(circuit.contain_parts)
 								circuit.loc = new_machine
 							else
 								circuit.loc = null
-							
+
 							new_machine.RefreshParts()
 							qdel(src)
 					else
