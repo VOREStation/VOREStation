@@ -615,7 +615,7 @@ var/global/datum/controller/occupations/job_master
 
 	if(spawnpos && istype(spawnpos) && spawnpos.turfs.len)  // VOREStation Edit - Fix runtime if no landmarks exist for a spawntype
 		if(spawnpos.check_job_spawning(rank))
-			H.forceMove(pick(spawnpos.turfs))
+			H.forceMove(spawnpos.get_spawn_position())
 			. = spawnpos.msg
 		else
 			H << "Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Spawning you at the Arrivals shuttle instead."
