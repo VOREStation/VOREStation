@@ -57,7 +57,10 @@
 		if(!A.CanPass(src, start, 1.5, 0))
 			to_chat(src, "<span class='warning'>\The [A] blocks you.</span>")
 			return 0
-	Move(destination)
+	//VOREStation Edit
+	if(!Move(destination))
+		return 0
+	//VOREStation Edit End
 	return 1
 
 /mob/observer/zMove(direction)

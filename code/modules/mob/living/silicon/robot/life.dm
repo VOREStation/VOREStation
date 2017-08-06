@@ -21,6 +21,7 @@
 		process_killswitch()
 		process_locks()
 		process_queued_alarms()
+	handle_internal_contents() //VOREStation Edit
 	update_canmove()
 
 /mob/living/silicon/robot/proc/clamp_values()

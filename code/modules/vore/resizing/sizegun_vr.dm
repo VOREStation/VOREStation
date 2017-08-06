@@ -3,81 +3,74 @@
 //
 
 /obj/item/weapon/gun/energy/sizegun
-	name = "shrink ray"
+	name = "size gun" //I have no idea why this was called shrink ray when this increased and decreased size.
 	desc = "A highly advanced ray gun with two settings: Shrink and Grow. Warning: Do not insert into mouth."
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "sizegun-shrink100" // Someone can probably do better. -Ace
 	item_state = null	//so the human update icon uses the icon_state instead
 	fire_sound = 'sound/weapons/wave.ogg'
 	charge_cost = 100
-	projectile_type = /obj/item/projectile/beam/shrinklaser
+	projectile_type = /obj/item/projectile/beam/sizelaser
 	origin_tech = "redspace=1;bluespace=4"
 	modifystate = "sizegun-shrink"
 	self_recharge = 1
+	var/size_set_to = 1
 	firemodes = list(
-		list(mode_name		= "grow",
-			projectile_type	= /obj/item/projectile/beam/growlaser,
+		list(mode_name		= "select size",
+			projectile_type	= /obj/item/projectile/beam/sizelaser,
 			modifystate		= "sizegun-grow",
 			fire_sound		= 'sound/weapons/pulse3.ogg'
-		),
-		list(mode_name		= "shrink",
-			projectile_type	= /obj/item/projectile/beam/shrinklaser,
-			modifystate		= "sizegun-shrink",
-			fire_sound		= 'sound/weapons/wave.ogg'
 		))
 
 //
 // Beams for size gun
 //
 
-/obj/item/projectile/beam/shrinklaser
-	name = "shrink beam"
+/obj/item/projectile/beam/sizelaser
+	name = "size beam"
 	icon_state = "xray"
 	nodamage = 1
 	damage = 0
 	check_armour = "laser"
+	var/set_size = 1 //Let's default to 100%
 
 	muzzle_type = /obj/effect/projectile/xray/muzzle
 	tracer_type = /obj/effect/projectile/xray/tracer
 	impact_type = /obj/effect/projectile/xray/impact
 
-/obj/item/projectile/beam/shrinklaser/on_hit(var/atom/target, var/blocked = 0)
-	if(istype(target, /mob/living))
+	on_hit(var/atom/target)
 		var/mob/living/M = target
-		switch(M.size_multiplier)
-			if(RESIZE_HUGE to INFINITY)
-				M.resize(RESIZE_BIG)
-			if(RESIZE_BIG to RESIZE_HUGE)
-				M.resize(RESIZE_NORMAL)
-			if(RESIZE_NORMAL to RESIZE_BIG)
-				M.resize(RESIZE_SMALL)
-			if((0 - INFINITY) to RESIZE_NORMAL)
-				M.resize(RESIZE_TINY)
-		M.update_icons()
-	return 1
+		if(ishuman(target))
+			var/mob/living/carbon/human/H = M
+			H.resize(set_size)
+			H.show_message("<font color='blue'> The beam fires into your body, changing your size!</font>")
+			H.updateicon()
+		else if (istype(target, /mob/living/carbon/))
+			var/mob/living/carbon/H = M
+			H.resize(set_size)
+			H.updateicon()
+		else
+			return 1
 
-/obj/item/projectile/beam/growlaser
-	name = "growth beam"
-	icon_state = "bluelaser"
-	nodamage = 1
-	damage = 0
-	check_armour = "laser"
+/obj/item/weapon/gun/energy/sizegun/consume_next_projectile()
+	. = ..()
+	var/obj/item/projectile/beam/sizelaser/G = .
+	if(istype(G))
+		G.set_size = size_set_to
 
-	muzzle_type = /obj/effect/projectile/laser_blue/muzzle
-	tracer_type = /obj/effect/projectile/laser_blue/tracer
-	impact_type = /obj/effect/projectile/laser_blue/impact
+/obj/item/weapon/gun/energy/sizegun/verb/select_size()
+	set name = "Select Size"
+	set category = "Object"
+	set src in view(1)
 
-/obj/item/projectile/beam/growlaser/on_hit(var/atom/target, var/blocked = 0)
-	if(istype(target, /mob/living))
-		var/mob/living/M = target
-		switch(M.size_multiplier)
-			if(RESIZE_BIG to RESIZE_HUGE)
-				M.resize(RESIZE_HUGE)
-			if(RESIZE_NORMAL to RESIZE_BIG)
-				M.resize(RESIZE_BIG)
-			if(RESIZE_SMALL to RESIZE_NORMAL)
-				M.resize(RESIZE_NORMAL)
-			if((0 - INFINITY) to RESIZE_TINY)
-				M.resize(RESIZE_SMALL)
-		M.update_icons()
-	return 1
+	var/size_select = input("Put the desired size (25-200%)", "Set Size", 200) as num
+	if(size_select>200 || size_select<25)
+		usr << "<span class='notice'>Invalid size.</span>"
+		return
+	size_set_to = (size_select/100)
+	usr << "<span class='notice'>You set the size to [size_select]%</span>"
+
+/obj/item/weapon/gun/energy/sizegun/examine(mob/user)
+	..()
+	var/size_examine = size_set_to
+	user << "<span class='info'>It is currently set at [size_examine]%</span>"

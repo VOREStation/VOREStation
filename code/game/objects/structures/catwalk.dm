@@ -73,3 +73,10 @@
 	. = ..()
 	if(isliving(usr))
 		playsound(src, pick('sound/effects/footstep/catwalk1.ogg', 'sound/effects/footstep/catwalk2.ogg', 'sound/effects/footstep/catwalk3.ogg', 'sound/effects/footstep/catwalk4.ogg', 'sound/effects/footstep/catwalk5.ogg'), 25, 1)
+
+/obj/structure/catwalk/CheckExit(atom/movable/O, turf/target)
+	if(O.checkpass(PASSGRILLE))
+		return 1
+	if(target && target.z < src.z)
+		return 0
+	return 1
