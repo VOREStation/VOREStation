@@ -151,7 +151,7 @@
 /obj/item/weapon/spell/Destroy()
 	owner = null
 	core = null
-	..()
+	return ..()
 
 // Proc: update_icon()
 // Parameters: 0
