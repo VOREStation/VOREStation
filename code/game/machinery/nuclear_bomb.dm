@@ -56,6 +56,7 @@ var/bomb_set
 
 /obj/machinery/nuclearbomb/attackby(obj/item/weapon/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/weapon/screwdriver))
+		playsound(src, O.usesound, 50, 1)
 		add_fingerprint(user)
 		if(auth)
 			if(opened == 0)
@@ -103,7 +104,7 @@ var/bomb_set
 
 					user.visible_message("[user] starts cutting loose the anchoring bolt covers on [src].", "You start cutting loose the anchoring bolt covers with [O]...")
 
-					if(do_after(user,40))
+					if(do_after(user,40 * WT.toolspeed))
 						if(!src || !user || !WT.remove_fuel(5, user)) return
 						user.visible_message("[user] cuts through the bolt covers on [src].", "You cut through the bolt cover.")
 						removal_stage = 1
@@ -113,7 +114,8 @@ var/bomb_set
 				if(istype(O,/obj/item/weapon/crowbar))
 					user.visible_message("[user] starts forcing open the bolt covers on [src].", "You start forcing open the anchoring bolt covers with [O]...")
 
-					if(do_after(user,15))
+					playsound(src, O.usesound, 50, 1)
+					if(do_after(user,15 * O.toolspeed))
 						if(!src || !user) return
 						user.visible_message("[user] forces open the bolt covers on [src].", "You force open the bolt covers.")
 						removal_stage = 2
@@ -129,8 +131,8 @@ var/bomb_set
 						return
 
 					user.visible_message("[user] starts cutting apart the anchoring system sealant on [src].", "You start cutting apart the anchoring system's sealant with [O]...")
-
-					if(do_after(user,40))
+					playsound(src, WT.usesound, 50, 1)
+					if(do_after(user,40 * WT.toolspeed))
 						if(!src || !user || !WT.remove_fuel(5, user)) return
 						user.visible_message("[user] cuts apart the anchoring system sealant on [src].", "You cut apart the anchoring system's sealant.")
 						removal_stage = 3
@@ -140,8 +142,8 @@ var/bomb_set
 				if(istype(O,/obj/item/weapon/wrench))
 
 					user.visible_message("[user] begins unwrenching the anchoring bolts on [src].", "You begin unwrenching the anchoring bolts...")
-
-					if(do_after(user,50))
+					playsound(src, O.usesound, 50, 1)
+					if(do_after(user,50 * O.toolspeed))
 						if(!src || !user) return
 						user.visible_message("[user] unwrenches the anchoring bolts on [src].", "You unwrench the anchoring bolts.")
 						removal_stage = 4
@@ -151,8 +153,8 @@ var/bomb_set
 				if(istype(O,/obj/item/weapon/crowbar))
 
 					user.visible_message("[user] begins lifting [src] off of the anchors.", "You begin lifting the device off the anchors...")
-
-					if(do_after(user,80))
+					playsound(src, O.usesound, 50, 1)
+					if(do_after(user,80 * O.toolspeed))
 						if(!src || !user) return
 						user.visible_message("[user] crowbars [src] off of the anchors. It can now be moved.", "You jam the crowbar under the nuclear device and lift it off its anchors. You can now move it!")
 						anchored = 0

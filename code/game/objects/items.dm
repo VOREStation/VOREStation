@@ -10,6 +10,7 @@
 	var/burn_point = null
 	var/burning = null
 	var/hitsound = null
+	var/usesound = null // Like hitsound, but for when used properly and not to kill someone.
 	var/storage_cost = null
 	var/slot_flags = 0		//This is used to determine on which slots an item can fit.
 	var/no_attack_log = 0			//If it's an item we don't want to log attack_logs with, set this to 1
@@ -77,6 +78,8 @@
 	// Species-specific sprite sheets for inventory sprites
 	// Works similarly to worn sprite_sheets, except the alternate sprites are used when the clothing/refit_for_species() proc is called.
 	var/list/sprite_sheets_obj = list()
+
+	var/toolspeed = 1.0 // This is a multipler on how 'fast' a tool works.  e.g. setting this to 0.5 will make the tool work twice as fast.
 
 /obj/item/New()
 	..()
@@ -446,7 +449,7 @@ var/list/global/slot_flags_enumeration = list(
 		if(!hit_zone)
 			U.do_attack_animation(M)
 			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-			visible_message("\red <B>[U] attempts to stab [M] in the eyes, but misses!</B>")
+			visible_message("<font color='red'><B>[U] attempts to stab [M] in the eyes, but misses!</B></font>")
 			return
 
 	user.attack_log += "\[[time_stamp()]\]<font color='red'> Attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)])</font>"

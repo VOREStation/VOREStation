@@ -65,9 +65,9 @@
 
 /obj/machinery/chemical_dispenser/attackby(obj/item/weapon/W, mob/user)
 	if(istype(W, /obj/item/weapon/wrench))
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		playsound(src, W.usesound, 50, 1)
 		user << "<span class='notice'>You begin to [anchored ? "un" : ""]fasten \the [src].</span>"
-		if (do_after(user, 20))
+		if (do_after(user, 20 * W.toolspeed))
 			user.visible_message(
 				"<span class='notice'>\The [user] [anchored ? "un" : ""]fastens \the [src].</span>",
 				"<span class='notice'>You have [anchored ? "un" : ""]fastened \the [src].</span>",
@@ -86,6 +86,7 @@
 		if(C)
 			user << "<span class='notice'>You remove \the [C] from \the [src].</span>"
 			C.loc = loc
+			playsound(src, W.usesound, 50, 1)
 
 	else if(istype(W, /obj/item/weapon/reagent_containers/glass) || istype(W, /obj/item/weapon/reagent_containers/food))
 		if(container)

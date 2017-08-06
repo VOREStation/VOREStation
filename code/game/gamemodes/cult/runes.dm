@@ -152,12 +152,15 @@ var/list/sacrificed = list()
 							target << "<span class='cult'>Your mind turns to ash as the burning flames engulf your very soul and images of an unspeakable horror begin to bombard the last remnants of mental resistance.</span>"
 							//broken mind - 5000 may seem like a lot I wanted the effect to really stand out for maxiumum losing-your-mind-spooky
 							//hallucination is reduced when the step off as well, provided they haven't hit the last stage...
-							target.hallucination += 5000
+
+							//5000 is waaaay too much, in practice.
+							target.hallucination = min(target.hallucination + 100, 500)
 							target.apply_effect(10, STUTTER)
 							target.adjustBrainLoss(1)
 						if(100 to INFINITY)
 							target << "<span class='cult'>Your entire broken soul and being is engulfed in corruption and flames as your mind shatters away into nothing.</span>"
-							target.hallucination += 5000
+							//5000 is waaaay too much, in practice.
+							target.hallucination = min(target.hallucination + 100, 500)
 							target.apply_effect(15, STUTTER)
 							target.adjustBrainLoss(1)
 
@@ -626,10 +629,8 @@ var/list/sacrificed = list()
 
 			if(istype(src,/obj/effect/rune))
 				usr.say("O bidai nabora se[pick("'","`")]sma!")
-				usr.say("[input]")
 			else
 				usr.whisper("O bidai nabora se[pick("'","`")]sma!")
-				usr.whisper("[input]")
 
 			input = sanitize(input)
 			log_and_message_admins("used a communicate rune to say '[input]'")

@@ -15,9 +15,44 @@
 	path = /obj/item/weapon/material/hatchet/tacknife/combatknife
 
 /datum/uplink_item/item/visible_weapons/energy_sword
-	name = "Energy Sword"
+	name = "Energy Sword, Random"
 	item_cost = 40
 	path = /obj/item/weapon/melee/energy/sword
+
+/datum/uplink_item/item/visible_weapons/energy_sword_blue
+	name = "Energy Sword, Blue"
+	item_cost = 40
+	path = /obj/item/weapon/melee/energy/sword/blue
+
+/datum/uplink_item/item/visible_weapons/energy_sword_green
+	name = "Energy Sword, Green"
+	item_cost = 40
+	path = /obj/item/weapon/melee/energy/sword/green
+
+/datum/uplink_item/item/visible_weapons/energy_sword_red
+	name = "Energy Sword, Red"
+	item_cost = 40
+	path = /obj/item/weapon/melee/energy/sword/red
+
+/datum/uplink_item/item/visible_weapons/energy_sword_purple
+	name = "Energy Sword, Purple"
+	item_cost = 40
+	path = /obj/item/weapon/melee/energy/sword/purple
+
+/datum/uplink_item/item/visible_weapons/energy_sword_pirate
+	name = "Energy Cutlass"
+	item_cost = 40
+	path = /obj/item/weapon/melee/energy/sword/pirate
+
+/datum/uplink_item/item/visible_weapons/claymore
+	name = "Claymore"
+	item_cost = 40
+	path = /obj/item/weapon/material/sword
+
+/datum/uplink_item/item/visible_weapons/katana
+	name = "Katana"
+	item_cost = 40
+	path = /obj/item/weapon/material/sword/katana
 
 /datum/uplink_item/item/visible_weapons/dartgun
 	name = "Dart Gun"
@@ -44,15 +79,38 @@
 	item_cost = 70
 	path = /obj/item/weapon/gun/projectile/revolver
 
+/datum/uplink_item/item/visible_weapons/mateba
+	name = "Mateba"
+	item_cost = 70
+	path = /obj/item/weapon/gun/projectile/revolver/mateba
+
+/datum/uplink_item/item/visible_weapons/judge
+	name = "Judge"
+	item_cost = 70
+	path = /obj/item/weapon/gun/projectile/revolver/judge
+
+/datum/uplink_item/item/visible_weapons/lemat
+	name = "LeMat"
+	item_cost = 60
+	path = /obj/item/weapon/gun/projectile/revolver/lemat
+
 /datum/uplink_item/item/visible_weapons/Derringer
 	name = ".357 Derringer Pistol"
 	item_cost = 40
 	path = /obj/item/weapon/gun/projectile/derringer
 
-/datum/uplink_item/item/visible_weapons/heavysniper
+/datum/uplink_item/item/visible_weapons/heavysnipermerc
 	name = "Anti-Materiel Rifle (14.5mm)"
 	item_cost = DEFAULT_TELECRYSTAL_AMOUNT
 	path = /obj/item/weapon/gun/projectile/heavysniper
+	antag_roles = list("mercenary")
+
+/datum/uplink_item/item/visible_weapons/heavysnipertraitor
+	name = "Anti-Materiel Rifle (14.5mm)"
+	desc = "A convenient collapsible rifle for covert assassination. Comes with 4 shots and its own secure carrying case."
+	item_cost = DEFAULT_TELECRYSTAL_AMOUNT
+	path = /obj/item/weapon/storage/secure/briefcase/rifle
+	antag_roles = list("traitor", "autotraitor", "infiltrator")
 
 /datum/uplink_item/item/visible_weapons/tommygun
 	name = "Tommygun (.45)" // We're keeping this because it's CLASSY. -Spades
@@ -66,19 +124,19 @@
 	path = /obj/item/weapon/gun/projectile/automatic/c20r
 
 /datum/uplink_item/item/visible_weapons/assaultrifle
-	name = "Assault Rifle (7.62mm)"
+	name = "Assault Rifle (5.45mm)"
 	item_cost = 75
 	path = /obj/item/weapon/gun/projectile/automatic/sts35
 
-/*/datum/uplink_item/item/visible_weapons/bullpuprifle
-	name = "Assault Rifle (5.56mm)"
-	item_cost = 7
-	path = /obj/item/weapon/gun/projectile/automatic/carbine
-*/
 /datum/uplink_item/item/visible_weapons/combatshotgun
 	name = "Combat Shotgun"
 	item_cost = 75
 	path = /obj/item/weapon/gun/projectile/shotgun/pump/combat
+
+/datum/uplink_item/item/visible_weapons/leveraction
+	name = "Lever Action Rifle"
+	item_cost = 50
+	path = /obj/item/weapon/gun/projectile/shotgun/pump/rifle/lever
 
 /datum/uplink_item/item/visible_weapons/egun
 	name = "Energy Gun"

@@ -54,7 +54,7 @@ research holder datum.
 		known_tech += new T(src)
 	for(var/D in typesof(/datum/design) - /datum/design)
 		possible_designs += new D(src)
-	generate_integrated_circuit_designs()
+//	generate_integrated_circuit_designs()
 	RefreshResearch()
 
 /datum/research/techonly
@@ -129,7 +129,7 @@ research holder datum.
 		var/datum/tech/check_tech = T
 		if(initial(check_tech.id) == ID)
 			return  initial(check_tech.name)
-
+/*
 /datum/research/proc/generate_integrated_circuit_designs()
 	spawn(2 SECONDS) // So the list has time to initialize.
 		for(var/obj/item/integrated_circuit/IC in all_integrated_circuits)
@@ -143,6 +143,7 @@ research holder datum.
 					D.req_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2)
 				D.build_path = IC.type
 				possible_designs += D
+*/
 
 /***************************************************************
 **						Technology Datums					  **

@@ -1,7 +1,6 @@
 /datum/robolimb
 	var/includes_tail			//Cyberlimbs dmi includes a tail sprite to wear.
 	var/list/whitelisted_to		//List of ckeys that are allowed to pick this in charsetup.
-	var/suggested_species = "Human"
 
 //////////////// For-specific-character fluff ones /////////////////
 // arokha : Aronai Kadigan

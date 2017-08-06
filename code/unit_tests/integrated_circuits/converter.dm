@@ -30,12 +30,11 @@
 
 
 
-/datum/unit_test/integrated_circuits/concatenatior
-	name = "Converter Circuits: Concatenatior"
-	circuit_type = /obj/item/integrated_circuit/converter/concatenatior
+/datum/unit_test/integrated_circuits/concatenator
+	name = "Converter Circuits: concatenator"
+	circuit_type = /obj/item/integrated_circuit/converter/concatenator
 	inputs_to_give = list("Lorem", " ", "ipsum", "...")
 	expected_outputs = list("Lorem ipsum...")
-
 
 
 /datum/unit_test/integrated_circuits/floor/radians2degrees

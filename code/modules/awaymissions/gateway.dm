@@ -150,7 +150,7 @@ obj/machinery/gateway/centerstation/process()
 				return
 			user << "<span class='notice'><b>Startup programming successful!</b></span>: A destination in another point of space and time has been detected."
 		else
-			user << "The gate is already programmed, there is no work for you to do here."
+			user << "<font color='black'>The gate is already calibrated, there is no work for you to do here.</font>"
 			return
 
 /////////////////////////////////////Away////////////////////////
@@ -239,7 +239,7 @@ obj/machinery/gateway/centerstation/process()
 	if(istype(M, /mob/living/carbon))
 		for(var/obj/item/weapon/implant/exile/E in M)//Checking that there is an exile implant in the contents
 			if(E.imp_in == M)//Checking that it's actually implanted vs just in their pocket
-				M << "\black The station gate has detected your exile implant and is blocking your entry."
+				M << "<font color='black'>The station gate has detected your exile implant and is blocking your entry.</font>"
 				return
 	M.forceMove(get_step(stationgate.loc, SOUTH))
 	M.set_dir(SOUTH)
@@ -250,7 +250,7 @@ obj/machinery/gateway/centerstation/process()
 /obj/machinery/gateway/centeraway/attackby(obj/item/device/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/device/multitool))
 		if(calibrated && stationgate)
-			user << "The gate is already calibrated, there is no work for you to do here."
+			user << "<font color='black'>The gate is already calibrated, there is no work for you to do here.</font>"
 			return
 		else
 			stationgate = locate(/obj/machinery/gateway/centerstation)
@@ -258,6 +258,6 @@ obj/machinery/gateway/centerstation/process()
 				user << "<span class='notice'>Error: Recalibration failed. No destination found... That can't be good.</span>"
 				return
 			else
-				user << "<spanc class='notice'><b>Recalibration successful!</b>:</span> This gate's systems have been fine tuned. Travel to this gate will now be on target."
+				user << "<font color='blue'><b>Recalibration successful!</b>:</font><font color='black'> This gate's systems have been fine tuned. Travel to this gate will now be on target.</font>"
 				calibrated = 1
 				return

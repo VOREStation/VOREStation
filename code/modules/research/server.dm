@@ -79,7 +79,7 @@
 	griefProtection()
 	..()
 
-//Backup files to centcomm to help admins recover data after greifer attacks
+//Backup files to CentCom to help admins recover data after greifer attacks
 /obj/machinery/r_n_d/server/proc/griefProtection()
 	for(var/obj/machinery/r_n_d/server/centcom/C in machines)
 		for(var/datum/tech/T in files.known_tech)

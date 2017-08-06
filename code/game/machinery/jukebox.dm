@@ -127,7 +127,7 @@
 	if(istype(W, /obj/item/weapon/wrench))
 		user.visible_message("<span class='warning'>[user] has [anchored ? "un" : ""]secured \the [src].</span>", "<span class='notice'>You [anchored ? "un" : ""]secure \the [src].</span>")
 		anchored = !anchored
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		playsound(src, W.usesound, 50, 1)
 		power_change()
 		update_icon()
 		if(!anchored)
@@ -186,7 +186,7 @@
 		var/newval = text2num(href_list["loopmode"])
 		loop_mode = sanitize_inlist(newval, list(JUKEMODE_NEXT, JUKEMODE_RANDOM, JUKEMODE_REPEAT_SONG, JUKEMODE_PLAY_ONCE), loop_mode)
 	else if(href_list["volume"])
-		var/newval = input("Choose Jukebox volume (0-100%)", "Jukebox volume", round(volume * 100.0))			
+		var/newval = input("Choose Jukebox volume (0-100%)", "Jukebox volume", round(volume * 100.0))
 		newval = sanitize_integer(text2num(newval), min = 0, max = 100, default = volume * 100.0)
 		volume = newval / 100.0
 		update_music() // To broadcast volume change without restarting song
@@ -269,6 +269,24 @@
 
 	new /obj/effect/decal/cleanable/blood/oil(src.loc)
 	qdel(src)
+
+/obj/machinery/media/jukebox/attackby(obj/item/W as obj, mob/user as mob)
+	src.add_fingerprint(user)
+
+	if(default_deconstruction_screwdriver(user, W))
+		return
+	if(default_deconstruction_crowbar(user, W))
+		return
+	if(istype(W, /obj/item/weapon/wrench))
+		if(playing)
+			StopPlaying()
+		user.visible_message("<span class='warning'>[user] has [anchored ? "un" : ""]secured \the [src].</span>", "<span class='notice'>You [anchored ? "un" : ""]secure \the [src].</span>")
+		anchored = !anchored
+		playsound(src, W.usesound, 50, 1)
+		power_change()
+		update_icon()
+		return
+	return ..()
 
 /obj/machinery/media/jukebox/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)

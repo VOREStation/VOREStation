@@ -41,7 +41,7 @@
 */
 
 /obj/item/part/computer/ai_holder
-	name = "intelliCard computer module"
+	name = "intelliCore computer module"
 	desc = "Contains a specialized nacelle for dealing with highly sensitive equipment without interference."
 
 	attackby_types = list(/obj/item/device/aicard)
@@ -81,8 +81,8 @@
 		return
 
 	// Transfer over the AI.
-	transfer << "You have been uploaded to a stationary terminal. Sadly, there is no remote access from here."
-	user << "<span class='notice'>Transfer successful:</span> [transfer.name] ([rand(1000,9999)].exe) installed and executed successfully. Local copy has been removed."
+	transfer << "You have been transferred into a mobile terminal. Sadly, there is no remote access from here."
+	user << "<span class='notice'>Transfer successful:</span> [transfer.name] placed within mobile terminal."
 
 	transfer.loc = src
 	transfer.cancel_camera()

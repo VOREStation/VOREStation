@@ -20,7 +20,7 @@
 	station_short = "Northern Star"
 	dock_name     = "Vir Interstellar Spaceport"
 	boss_name     = "Central Command"
-	boss_short    = "Centcomm"
+	boss_short    = "CentCom"
 	company_name  = "NanoTrasen"
 	company_short = "NT"
 	starsys_name  = "Vir"
@@ -76,7 +76,7 @@
 
 /datum/map_z_level/northern_star/centcomm
 	z = Z_LEVEL_CENTCOM_NORTHERN_STAR
-	name = "Centcomm"
+	name = "CentCom"
 	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_CONTACT
 
 /datum/map_z_level/northern_star/telecomms

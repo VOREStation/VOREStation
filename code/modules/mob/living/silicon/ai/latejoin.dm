@@ -10,18 +10,18 @@ var/global/list/empty_playable_ai_cores = list()
 
 	return 1
 
-/mob/living/silicon/ai/verb/wipe_core()
-	set name = "Wipe Core"
+/mob/living/silicon/ai/verb/store_core()
+	set name = "Store Core"
 	set category = "OOC"
-	set desc = "Wipe your core. This is functionally equivalent to cryo or robotic storage, freeing up your job slot."
+	set desc = "Enter intelligence storage. This is functionally equivalent to cryo or robotic storage, freeing up your job slot."
 
 	if(ticker && ticker.mode && ticker.mode.name == "AI malfunction")
 		usr << "<span class='danger'>You cannot use this verb in malfunction. If you need to leave, please adminhelp.</span>"
 		return
 
 	// Guard against misclicks, this isn't the sort of thing we want happening accidentally
-	if(alert("WARNING: This will immediately wipe your core and ghost you, removing your character from the round permanently (similar to cryo and robotic storage). Are you entirely sure you want to do this?",
-					"Wipe Core", "No", "No", "Yes") != "Yes")
+	if(alert("WARNING: This will immediately empty your core and ghost you, removing your character from the round permanently (similar to cryo and robotic storage). Are you entirely sure you want to do this?",
+					"Store Core", "No", "No", "Yes") != "Yes")
 		return
 
 	// We warned you.

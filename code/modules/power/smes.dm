@@ -238,10 +238,12 @@
 		if(!open_hatch)
 			open_hatch = 1
 			user << "<span class='notice'>You open the maintenance hatch of [src].</span>"
+			playsound(src, W.usesound, 50, 1)
 			return 0
 		else
 			open_hatch = 0
 			user << "<span class='notice'>You close the maintenance hatch of [src].</span>"
+			playsound(src, W.usesound, 50, 1)
 			return 0
 
 	if (!open_hatch)
@@ -276,7 +278,7 @@
 			else
 				user << "<span class='notice'>You begin to cut the cables...</span>"
 				playsound(get_turf(src), 'sound/items/Deconstruct.ogg', 50, 1)
-				if(do_after(user, 50))
+				if(do_after(user, 50 * W.toolspeed))
 					if (prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
 						var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 						s.set_up(5, 1, src)
@@ -380,7 +382,7 @@
 	if(src.z in using_map.station_levels)
 		if(prob(1)) //explosion
 			for(var/mob/M in viewers(src))
-				M.show_message("\red The [src.name] is making strange noises!", 3, "\red You hear sizzling electronics.", 2)
+				M.show_message("<font color='red'>The [src.name] is making strange noises!</font>", 3, "<font color='red'>You hear sizzling electronics.</font>", 2)
 			sleep(10*pick(4,5,6,7,10,14))
 			var/datum/effect/effect/system/smoke_spread/smoke = new /datum/effect/effect/system/smoke_spread()
 			smoke.set_up(3, 0, src.loc)
