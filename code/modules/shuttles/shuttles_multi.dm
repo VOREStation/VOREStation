@@ -204,7 +204,7 @@
 			return
 
 		if(!MS.return_warning && !MS.legit) //VOREStation Add - Criminals only!
-			usr << "\red Returning to your home base will end your mission. If you are sure, press the button again."
+			usr << "<font color='red'>Returning to your home base will end your mission. If you are sure, press the button again.</font>"
 			//TODO: Actually end the mission.
 			MS.return_warning = 1
 			return
