@@ -801,7 +801,7 @@
 	toolspeed = 1
 
 /obj/item/weapon/crowbar/red
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/tools.dmi'
 	icon_state = "red_crowbar"
 	item_state = "crowbar_red"
 
