@@ -106,9 +106,11 @@
 				else
 					user << "<span class='danger'>You need a better grip to do that!</span>"
 					return
-			else
-				G.affecting.loc = src.loc
-				G.affecting.Weaken(5)
+			//VOREStation Edit - Tables dethroned
+			else if(!M.Check_Shoegrip() && do_mob(user, M, 5+(M.getarmor(BP_TORSO,"melee")/4)))
+				M.forceMove(get_turf(src))
+				M.Weaken(round(5-(M.getarmor(null, "melee")/20)))
+			//VOREStation Edit End
 				visible_message("<span class='danger'>[G.assailant] puts [G.affecting] on \the [src].</span>")
 			qdel(W)
 			return
