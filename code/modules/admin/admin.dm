@@ -685,6 +685,11 @@ var/datum/announcement/minor/admin_min_announcer = new
 			sender = sanitize(sender, 75, extra = 0)
 			var/message = input("Message content (max 500):", "Contents", "This is a test of the announcement system.") as null|message
 
+			if(message) //They put a message
+				message = sanitize(message, 500, extra = 0)
+				a.autosay("[message]", "[sender]", "[channel == "Common" ? null : channel]") //Common is a weird case, as it's not a "channel", it's just talking into a radio without a channel set.
+				log_admin("Intercom: [key_name(usr)] : [sender]:[message]")
+	qdel(a)
 	feedback_add_details("admin_verb","IN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggleooc()

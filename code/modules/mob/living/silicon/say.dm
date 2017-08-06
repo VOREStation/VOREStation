@@ -124,7 +124,7 @@
 		var/obj/effect/overlay/aiholo/hologram = T.masters[src] //VOREStation Add for people in the hologram to hear the messages
 		if(hologram.bellied) hologram.bellied.show_message(rendered, 2) //VOREStation Add so holobellied people can hear
 
-		var/obj/effect/overlay/hologram = T.masters[src]
+		//var/obj/effect/overlay/hologram = T.masters[src] //VOREStation edit. Done above.
 		var/list/in_range = get_mobs_and_objs_in_view_fast(get_turf(hologram), world.view, 2) //Emotes are displayed from the hologram, not the pad
 		var/list/m_viewers = in_range["mobs"]
 		var/list/o_viewers = in_range["objs"]
