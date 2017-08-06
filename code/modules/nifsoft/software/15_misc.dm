@@ -136,37 +136,14 @@
 
 	activate()
 		if((. = ..()))
-			var/choice = alert(nif.human,"Change which way?","Mass Alteration","Size Up","Cancel", "Size Down")
-			if(choice == "Cancel")
-				spawn(0) deactivate()
-				return FALSE
+			var/new_size = input("Put the desired size (25-200%)", "Set Size", 200) as num
 
-			if(!nif.use_charge(100))
-				nif.notify("Insufficient energy to resize!",TRUE)
-				spawn(0) deactivate()
-				return FALSE
-
-			if(choice == "Size Up")
-				switch(nif.human.size_multiplier)
-					if(RESIZE_BIG to RESIZE_HUGE)
-						nif.human.resize(RESIZE_HUGE)
-					if(RESIZE_NORMAL to RESIZE_BIG)
-						nif.human.resize(RESIZE_BIG)
-					if(RESIZE_SMALL to RESIZE_NORMAL)
-						nif.human.resize(RESIZE_NORMAL)
-					if((0 - INFINITY) to RESIZE_TINY)
-						nif.human.resize(RESIZE_SMALL)
-
-			else if(choice == "Size Down")
-				switch(nif.human.size_multiplier)
-					if(RESIZE_HUGE to INFINITY)
-						nif.human.resize(RESIZE_BIG)
-					if(RESIZE_BIG to RESIZE_HUGE)
-						nif.human.resize(RESIZE_NORMAL)
-					if(RESIZE_NORMAL to RESIZE_BIG)
-						nif.human.resize(RESIZE_SMALL)
-					if((0 - INFINITY) to RESIZE_NORMAL)
-						nif.human.resize(RESIZE_TINY)
+			if (!IsInRange(new_size,25,200))
+				to_chat(nif.human,"<span class='notice'>The safety features of the NIF Program prevent you from choosing this size.</span>")
+				return
+			else
+				nif.human.resize(new_size/100)
+				to_chat(nif.human,"<span class='notice'>You set the size to [new_size]%</span>")
 
 			nif.human.visible_message("<span class='warning'>Swirling grey mist envelops [nif.human] as they change size!</span>","<span class='notice'>Swirling streams of nanites wrap around you as you change size!</span>")
 			nif.human.update_icons()
