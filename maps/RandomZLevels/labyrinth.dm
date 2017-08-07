@@ -75,6 +75,7 @@
 	icon_state = "cluwne-broken"
 	desc = "Not so funny anymore."
 
+/*
 /obj/structure/falsewall/cultspecial
 	name = "loose wall"
 	desc = "This wall tile seems loose. Try pushing on it."
@@ -82,6 +83,7 @@
 //	mineral = "cultspecial"
 	density = 1
 	opacity = 1
+*/
 
 /obj/machinery/door/airlock/vault/temple
 	name = "Catacombs"
