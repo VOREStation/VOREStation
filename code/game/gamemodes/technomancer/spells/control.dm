@@ -7,6 +7,7 @@
 	around the entity is merely a hologram used to allow the user to know if the creature is safe or not."
 	cost = 100
 	obj_path = /obj/item/weapon/spell/control
+	ability_icon_state = "tech_control"
 	category = UTILITY_SPELLS
 
 /mob/living/carbon/human/proc/technomancer_control()

@@ -316,3 +316,16 @@
 	shirts["red hawaii shirt"] = /obj/item/clothing/accessory/hawaii/red
 	shirts["random colored hawaii shirt"] = /obj/item/clothing/accessory/hawaii/random
 	gear_tweaks += new/datum/gear_tweak/path(shirts)
+
+
+/datum/gear/accessory/sweater
+	display_name = "Sweater Selection"
+	path = /obj/item/clothing/accessory/sweater
+
+/datum/gear/accessory/sweater/New()
+	..()
+	var/list/sweaters = list()
+	for(var/sweater in typesof(/obj/item/clothing/accessory/sweater))
+		var/obj/item/clothing/suit/sweater_type = sweater
+		sweaters[initial(sweater_type.name)] = sweater_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(sweaters))

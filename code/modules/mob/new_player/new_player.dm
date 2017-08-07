@@ -154,7 +154,7 @@
 	if(href_list["late_join"])
 
 		if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
-			usr << "\red The round is either not ready, or has already finished..."
+			usr << "<font color='red'>The round is either not ready, or has already finished...</font>"
 			return
 /*
 		if(client.prefs.species != "Human" && !check_rights(R_ADMIN, 0)) //VORESTATION EDITS: THE COMMENTED OUT AREAS FROM LINE 154 TO 178
@@ -325,7 +325,7 @@
 	if (src != usr)
 		return 0
 	if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
-		usr << "\red The round is either not ready, or has already finished..."
+		usr << "<font color='red'>The round is either not ready, or has already finished...</font>"
 		return 0
 	if(!config.enter_allowed)
 		usr << "<span class='notice'>There is an administrative lock on entering the game!</span>"
@@ -355,7 +355,7 @@
 
 		character.loc = C.loc
 
-		AnnounceCyborg(character, rank, "has been downloaded to the empty core in \the [character.loc.loc]")
+		AnnounceCyborg(character, rank, "has been transferred to the empty core in \the [character.loc.loc]")
 		ticker.mode.latespawn(character)
 
 		qdel(C)
@@ -402,7 +402,7 @@
 	dat += "Round Duration: [roundduration2text()]<br>"
 
 	if(emergency_shuttle) //In case NanoTrasen decides reposess CentCom's shuttles.
-		if(emergency_shuttle.going_to_centcom()) //Shuttle is going to centcomm, not recalled
+		if(emergency_shuttle.going_to_centcom()) //Shuttle is going to CentCom, not recalled
 			dat += "<font color='red'><b>The station has been evacuated.</b></font><br>"
 		if(emergency_shuttle.online())
 			if (emergency_shuttle.evac)	// Emergency shuttle is past the point of no recall

@@ -33,7 +33,7 @@
 
 	tile_overlay = "phoron"
 	overlay_limit = 0.7
-	flags = XGM_GAS_FUEL | XGM_GAS_CONTAMINANT
+	flags = XGM_GAS_FUEL | XGM_GAS_CONTAMINANT | XGM_GAS_FUSION_FUEL //R-UST port, adding XGM_GAS_FUSION_FUEL flag.
 
 /decl/xgm_gas/volatile_fuel
 	id = "volatile_fuel"

@@ -28,6 +28,7 @@
 
 /obj/item/weapon/weldingtool/spell
 	name = "flame"
+	eye_safety_modifier = 3
 
 /obj/item/weapon/weldingtool/spell/process()
 	return

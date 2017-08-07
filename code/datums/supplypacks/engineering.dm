@@ -200,3 +200,52 @@
 			/obj/item/weapon/stock_parts/matter_bin,
 			/obj/item/weapon/circuitboard/pacman/super
 			)
+
+/datum/supply_packs/eng/fusion_core
+	name = "R-UST Mk. 8 Tokamak fusion core crate"
+	cost = 50
+	containername = "R-UST Mk. 8 Tokamak Fusion Core crate"
+	containertype = /obj/structure/closet/crate/secure/engineering
+	access = access_engine
+	contains = list(
+			/obj/item/weapon/book/manual/rust_engine,
+			/obj/machinery/power/fusion_core,
+			/obj/item/weapon/circuitboard/fusion_core
+			)
+
+/datum/supply_packs/eng/fusion_fuel_injector
+	name = "R-UST Mk. 8 fuel injector crate"
+	cost = 30
+	containername = "R-UST Mk. 8 fuel injector crate"
+	containertype = /obj/structure/closet/crate/secure/engineering
+	access = access_engine
+	contains = list(
+			/obj/machinery/fusion_fuel_injector,
+			/obj/machinery/fusion_fuel_injector,
+			/obj/item/weapon/circuitboard/fusion_injector
+			)
+
+/datum/supply_packs/eng/gyrotron
+	name = "Gyrotron crate"
+	cost = 15
+	containername = "Gyrotron Crate"
+	containertype = /obj/structure/closet/crate/secure/engineering
+	access = access_engine
+	contains = list(
+			/obj/machinery/power/emitter/gyrotron,
+			/obj/item/weapon/circuitboard/gyrotron
+			)
+
+/datum/supply_packs/eng/fusion_fuel_compressor
+	name = "Fusion Fuel Compressor circuitry crate"
+	cost = 10
+	containername = "Fusion Fuel Compressor circuitry crate"
+	containertype = /obj/structure/closet/crate/engineering
+	contains = list(/obj/item/weapon/circuitboard/fusion_fuel_compressor)
+
+/datum/supply_packs/eng/tritium
+	name = "Tritium crate"
+	cost = 75
+	containername = "Tritium crate"
+	containertype = /obj/structure/closet/crate/engineering
+	contains = list(/obj/fiftyspawner/tritium)

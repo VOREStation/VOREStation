@@ -74,6 +74,7 @@
 	if(istype(W, /obj/item/weapon/screwdriver))
 		add_fingerprint(user)
 		disable = !disable
+		playsound(src, W.usesound, 50, 1)
 		if(disable)
 			user.visible_message("<span class='warning'>[user] has disabled the [src]!</span>", "<span class='warning'>You disable the connection to the [src].</span>")
 			icon_state = "[base_state]-d"

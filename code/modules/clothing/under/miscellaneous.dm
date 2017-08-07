@@ -206,7 +206,7 @@
 	icon_state = "really_black_suit_skirt"
 
 /obj/item/clothing/under/suit_jacket/female
-	name = "executive suit"
+	name = "female executive suit"
 	desc = "A formal trouser suit for women, intended for the station's finest."
 	icon_state = "black_suit_fem"
 	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
@@ -324,7 +324,7 @@
 	name = "maid uniform"
 	desc = "A simple maid uniform for housekeeping."
 	icon_state = "janimaid"
-	
+
 /obj/item/clothing/under/dress/sexymaid
 	name = "sexy maid uniform"
 	desc = "You must be a bit risque teasing all of them in a maid uniform!"
@@ -636,32 +636,31 @@
 	name = "black swimsuit"
 	desc = "An oldfashioned black swimsuit."
 	icon_state = "swim_black"
-	siemens_coefficient = 1
 
 /obj/item/clothing/under/swimsuit/blue
 	name = "blue swimsuit"
 	desc = "An oldfashioned blue swimsuit."
 	icon_state = "swim_blue"
-	siemens_coefficient = 1
 
 /obj/item/clothing/under/swimsuit/purple
 	name = "purple swimsuit"
 	desc = "An oldfashioned purple swimsuit."
 	icon_state = "swim_purp"
-	siemens_coefficient = 1
 
 /obj/item/clothing/under/swimsuit/green
 	name = "green swimsuit"
 	desc = "An oldfashioned green swimsuit."
 	icon_state = "swim_green"
-	siemens_coefficient = 1
 
 /obj/item/clothing/under/swimsuit/red
 	name = "red swimsuit"
 	desc = "An oldfashioned red swimsuit."
 	icon_state = "swim_red"
-	siemens_coefficient = 1
 
+/obj/item/clothing/under/swimsuit/striped
+	name = "striped swimsuit"
+	desc = "A more revealing striped swimsuit."
+	icon_state = "swim_striped"
 /*
  * pyjamas
  */
@@ -770,3 +769,10 @@
 	name = "sweater"
 	icon_state = "turtleneck"
 	worn_state = "turtleneck"
+
+/obj/item/clothing/under/medigown
+	name = "medical gown"
+	desc = "A flimsy examination gown, the back ties never close."
+	icon_state = "medicalgown"
+	worn_state = "medicalgown"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO

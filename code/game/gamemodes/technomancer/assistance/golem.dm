@@ -60,7 +60,7 @@
 
 /mob/living/simple_animal/technomancer_golem/Destroy()
 	qdel(core)
-	..()
+	return ..()
 
 /mob/living/simple_animal/technomancer_golem/update_icon()
 	overlays.Cut()

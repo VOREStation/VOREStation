@@ -107,6 +107,7 @@
 		"filter_co2" = ("carbon_dioxide" in scrubbing_gas),
 		"filter_phoron" = ("phoron" in scrubbing_gas),
 		"filter_n2o" = ("sleeping_agent" in scrubbing_gas),
+		"filter_fuel" = ("volatile_fuel" in scrubbing_gas),
 		"sigtype" = "status"
 	)
 	if(!initial_loc.air_scrub_names[id_tag])
@@ -233,6 +234,11 @@
 	else if(signal.data["toggle_n2o_scrub"])
 		toggle += "sleeping_agent"
 
+	if(!isnull(signal.data["fuel_scrub"]) && text2num(signal.data["fuel_scrub"]) != ("volatile_fuel" in scrubbing_gas))
+		toggle += "volatile_fuel"
+	else if(signal.data["toggle_fuel_scrub"])
+		toggle += "volatile_fuel"
+
 	scrubbing_gas ^= toggle
 
 	if(signal.data["init"] != null)
@@ -272,9 +278,9 @@
 		user << "<span class='warning'>You cannot unwrench \the [src], it is too exerted due to internal pressure.</span>"
 		add_fingerprint(user)
 		return 1
-	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+	playsound(src, W.usesound, 50, 1)
 	user << "<span class='notice'>You begin to unfasten \the [src]...</span>"
-	if (do_after(user, 40))
+	if (do_after(user, 40 * W.toolspeed))
 		user.visible_message( \
 			"<span class='notice'>\The [user] unfastens \the [src].</span>", \
 			"<span class='notice'>You have unfastened \the [src].</span>", \

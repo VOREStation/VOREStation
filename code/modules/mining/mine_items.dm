@@ -27,6 +27,8 @@
 	new /obj/item/weapon/shovel(src)
 	new /obj/item/weapon/pickaxe(src)
 	new /obj/item/clothing/glasses/material(src)
+	new /obj/item/clothing/suit/storage/hooded/wintercoat/miner(src)
+	new /obj/item/clothing/shoes/boots/winter/mining(src)
 
 /******************************Lantern*******************************/
 
@@ -132,12 +134,12 @@
 	drill_verb = "drilling"
 
 /obj/item/weapon/pickaxe/borgdrill
-	name = "cyborg mining drill"
-	icon_state = "diamonddrill"
+	name = "enhanced sonic jackhammer"
+	icon_state = "jackhammer"
 	item_state = "jackhammer"
 	digspeed = 15
-	desc = ""
-	drill_verb = "drilling"
+	desc = "Cracks rocks with sonic blasts. This one seems like an improved design."
+	drill_verb = "hammering"
 
 /*****************************Shovel********************************/
 

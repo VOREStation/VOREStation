@@ -19,12 +19,18 @@
 	//it would be cool to play a sound here
 	moving_status = SHUTTLE_WARMUP
 	spawn(warmup_time*10)
+
+		make_sounds(origin, HYPERSPACE_WARMUP)
+		sleep(5 SECONDS) // so the sound finishes.
+
 		if (moving_status == SHUTTLE_IDLE)
+			make_sounds(origin, HYPERSPACE_END)
 			return	//someone cancelled the launch
 
 		if (at_station() && forbidden_atoms_check())
 			//cancel the launch because of forbidden atoms. announce over supply channel?
 			moving_status = SHUTTLE_IDLE
+			make_sounds(origin, HYPERSPACE_END)
 			return
 
 		if (!at_station())	//at centcom
@@ -51,6 +57,7 @@
 			move(away_area, destination)
 
 		moving_status = SHUTTLE_IDLE
+		make_sounds(destination, HYPERSPACE_END)
 
 		if (!at_station())	//at centcom
 			supply_controller.sell()

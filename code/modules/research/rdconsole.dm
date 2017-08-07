@@ -97,7 +97,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				D.linked_console = src
 	return
 
-/obj/machinery/computer/rdconsole/proc/griefProtection() //Have it automatically push research to the centcomm server so wild griffins can't fuck up R&D's work
+/obj/machinery/computer/rdconsole/proc/griefProtection() //Have it automatically push research to the CentCom server so wild griffins can't fuck up R&D's work
 	for(var/obj/machinery/r_n_d/server/centcom/C in machines)
 		for(var/datum/tech/T in files.known_tech)
 			C.files.AddTech2Known(T)
@@ -167,7 +167,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			screen = 1.2
 			files.AddTech2Known(t_disk.stored)
 			updateUsrDialog()
-			griefProtection() //Update centcomm too
+			griefProtection() //Update CentCom too
 
 	else if(href_list["clear_tech"]) //Erase data on the technology disk.
 		t_disk.stored = null
@@ -190,7 +190,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			screen = 1.4
 			files.AddDesign2Known(d_disk.blueprint)
 			updateUsrDialog()
-			griefProtection() //Update centcomm too
+			griefProtection() //Update CentCom too
 
 	else if(href_list["clear_design"]) //Erases data on the design disk.
 		d_disk.blueprint = null

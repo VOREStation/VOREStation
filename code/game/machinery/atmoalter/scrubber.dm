@@ -17,7 +17,7 @@
 	var/minrate = 0
 	var/maxrate = 10 * ONE_ATMOSPHERE
 
-	var/list/scrubbing_gas = list("phoron", "carbon_dioxide", "sleeping_agent")
+	var/list/scrubbing_gas = list("phoron", "carbon_dioxide", "sleeping_agent", "volatile_fuel")
 
 /obj/machinery/portable_atmospherics/powered/scrubber/New()
 	..()
@@ -218,7 +218,7 @@
 			return
 
 		anchored = !anchored
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		playsound(src.loc, I.usesound, 50, 1)
 		user << "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>"
 
 		return

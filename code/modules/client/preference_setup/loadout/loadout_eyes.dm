@@ -76,6 +76,15 @@
 	display_name = "Optical Meson Scanners, prescription (Engineering)"
 	path = /obj/item/clothing/glasses/meson/prescription
 
+/datum/gear/eyes/material
+	display_name = "Optical Material Scanners (Mining)"
+	path = /obj/item/clothing/glasses/material
+	allowed_roles = list("Shaft Miner")
+
+/datum/gear/eyes/material/prescription
+	display_name = "Prescription Optical Material Scanners (Mining)"
+	path = /obj/item/clothing/glasses/material/prescription
+
 /datum/gear/eyes/meson/aviator
 	display_name = "Optical Meson Aviators, (Engineering)"
 	path = /obj/item/clothing/glasses/meson/aviator

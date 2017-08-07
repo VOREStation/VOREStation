@@ -266,6 +266,9 @@
 	new /obj/item/clothing/suit/storage/hooded/wintercoat/engineering/atmos(src)
 	new /obj/item/clothing/suit/storage/hooded/wintercoat/engineering/atmos(src)
 	new /obj/item/clothing/suit/storage/hooded/wintercoat/engineering/atmos(src)
+	new /obj/item/clothing/shoes/boots/winter/atmos(src)
+	new /obj/item/clothing/shoes/boots/winter/atmos(src)
+	new /obj/item/clothing/shoes/boots/winter/atmos(src)
 	return
 
 /obj/structure/closet/wardrobe/engineering_yellow
@@ -296,6 +299,9 @@
 	new /obj/item/clothing/suit/storage/hooded/wintercoat/engineering(src)
 	new /obj/item/clothing/suit/storage/hooded/wintercoat/engineering(src)
 	new /obj/item/clothing/suit/storage/hooded/wintercoat/engineering(src)
+	new /obj/item/clothing/shoes/boots/winter/engineering(src)
+	new /obj/item/clothing/shoes/boots/winter/engineering(src)
+	new /obj/item/clothing/shoes/boots/winter/engineering(src)
 	new /obj/item/clothing/shoes/boots/workboots(src)
 	new /obj/item/clothing/shoes/boots/workboots(src)
 	new /obj/item/clothing/shoes/boots/workboots(src)
@@ -361,6 +367,7 @@
 	new /obj/item/clothing/shoes/slippers(src)
 	new /obj/item/clothing/shoes/slippers(src)
 	new /obj/item/clothing/suit/storage/hooded/wintercoat/science(src)
+	new /obj/item/clothing/shoes/boots/winter/science(src)
 	new /obj/item/weapon/storage/backpack/toxins(src)
 	new /obj/item/weapon/storage/backpack/toxins(src)
 	new /obj/item/weapon/storage/backpack/satchel/tox(src)
@@ -486,6 +493,22 @@
 	new /obj/item/clothing/mask/surgical(src)
 	new /obj/item/clothing/suit/storage/hooded/wintercoat/medical(src)
 	new /obj/item/clothing/suit/storage/hooded/wintercoat/medical(src)
+	new /obj/item/clothing/shoes/boots/winter/medical(src)
+	new /obj/item/clothing/shoes/boots/winter/medical(src)
+	return
+
+
+/obj/structure/closet/wardrobe/medic_gown
+	name = "cloning wardrobe"
+	icon_state = "white"
+	icon_closed = "white"
+
+/obj/structure/closet/wardrobe/medic_gown/New()
+	..()
+	new /obj/item/clothing/under/medigown(src)
+	new /obj/item/clothing/under/medigown(src)
+	new /obj/item/clothing/under/medigown(src)
+	new /obj/item/clothing/under/medigown(src)
 	return
 
 
@@ -644,6 +667,7 @@
 	new /obj/item/clothing/head/caphat/formal(src)
 	new /obj/item/clothing/under/captainformal(src)
 	new /obj/item/clothing/suit/storage/hooded/wintercoat/captain(src)
+	new /obj/item/clothing/shoes/boots/winter/command(src)
 	new /obj/item/clothing/head/beret/centcom/captain(src)
 	new /obj/item/clothing/under/gimmick/rank/captain/suit(src)
 	new /obj/item/clothing/under/gimmick/rank/captain/suit/skirt(src)

@@ -40,13 +40,14 @@
 		icon_state = initial(icon_state)
 		updateUsrDialog()
 	else if(istype(P, /obj/item/weapon/wrench))
-		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
+		playsound(loc, P.usesound, 50, 1)
 		anchored = !anchored
 		user << "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>"
 	else if(istype(P, /obj/item/weapon/screwdriver))
 		user << "<span class='notice'>You begin taking the [name] apart.</span>"
-		if(do_after(user, 10))
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+		playsound(src, P.usesound, 50, 1)
+		if(do_after(user, 10 * P.toolspeed))
+			playsound(loc, P.usesound, 50, 1)
 			user << "<span class='notice'>You take the [name] apart.</span>"
 			new /obj/item/stack/material/steel( src.loc, 4 )
 			for(var/obj/item/I in contents)

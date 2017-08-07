@@ -472,6 +472,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/weapon/flame/lighter/zippo
 	name = "\improper Zippo lighter"
 	desc = "The zippo."
+	icon = 'icons/obj/zippo.dmi'
 	icon_state = "zippo"
 	item_state = "zippo"
 
@@ -542,3 +543,46 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(location)
 		location.hotspot_expose(700, 5)
 	return
+
+//Here we add Zippo skins.
+
+/obj/item/weapon/flame/lighter/zippo/black
+	name = "\improper holy Zippo lighter"
+	desc = "Only in regards to Christianity, that is."
+	icon_state = "blackzippo"
+
+/obj/item/weapon/flame/lighter/zippo/blue
+	name = "\improper blue Zippo lighter"
+	icon_state = "bluezippo"
+
+/obj/item/weapon/flame/lighter/zippo/engraved
+	name = "\improper engraved Zippo lighter"
+	icon_state = "engravedzippo"
+	item_state = "zippo"
+
+/obj/item/weapon/flame/lighter/zippo/gold
+	name = "\improper golden Zippo lighter"
+	icon_state = "goldzippo"
+
+/obj/item/weapon/flame/lighter/zippo/moff
+	name = "\improper moth Zippo lighter"
+	desc = "Too cute to be a Tymisian."
+	icon_state = "moffzippo"
+
+/obj/item/weapon/flame/lighter/zippo/red
+	name = "\improper red Zippo lighter"
+	icon_state = "redzippo"
+
+/obj/item/weapon/flame/lighter/zippo/ironic
+	name = "\improper ironic Zippo lighter"
+	desc = "What a quiant idea."
+	icon_state = "ironiczippo"
+
+/obj/item/weapon/flame/lighter/zippo/capitalist
+	name = "\improper capitalist Zippo lighter"
+	desc = "Made of gold and obsidian, this is truly not worth however much you spent on it."
+	icon_state = "cappiezippo"
+
+/obj/item/weapon/flame/lighter/zippo/rainbow
+	name = "\improper rainbow Zippo lighter"
+	icon_state = "rainbowzippo"

@@ -71,3 +71,7 @@
 	display_name = "gloves, forensic"
 	path = /obj/item/clothing/gloves/forensic
 	allowed_roles = list("Detective")
+
+/datum/gear/gloves/fingerless
+	display_name = "fingerless gloves"
+	path = /obj/item/clothing/gloves/fingerless

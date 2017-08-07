@@ -100,6 +100,7 @@
 		if(!locked)
 			open = !open
 			user << "<span class='notice'>Maintenance panel is now [open ? "opened" : "closed"].</span>"
+			playsound(src, O.usesound, 50, 1)
 		else
 			user << "<span class='notice'>You need to unlock the controls first.</span>"
 		return
@@ -108,6 +109,7 @@
 			if(open)
 				health = min(getMaxHealth(), health + 10)
 				user.visible_message("<span class='notice'>[user] repairs [src].</span>","<span class='notice'>You repair [src].</span>")
+				playsound(src, O.usesound, 50, 1)
 			else
 				user << "<span class='notice'>Unable to repair with the maintenance panel closed.</span>"
 		else

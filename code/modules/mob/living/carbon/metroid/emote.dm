@@ -16,7 +16,7 @@
 				return
 			if (src.client)
 				if (client.prefs.muted & MUTE_IC)
-					src << "\red You cannot send IC messages (muted)."
+					src << "<font color='red'>You cannot send IC messages (muted).</font>"
 					return
 				if (stat)
 					return
@@ -86,7 +86,7 @@
 			src << "Help for slime emotes. You can use these emotes with say \"*emote\":\n\nbounce, custom, jiggle, light, moan, shiver, sway, twitch, vibrate. You can also set your face with: \n\nnomood, pout, sad, angry, frown, smile"
 
 		else
-			src << "\blue Unusable emote '[act]'. Say *help for a list."
+			src << "<font color='blue'>Unusable emote '[act]'. Say *help for a list.</font>"
 	if ((message && src.stat == 0))
 		if (m_type & 1)
 			for(var/mob/O in viewers(src, null))

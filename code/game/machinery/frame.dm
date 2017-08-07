@@ -258,8 +258,8 @@
 	if(istype(P, /obj/item/weapon/wrench))
 		if(state == 0 && !anchored)
 			user << "<span class='notice'>You start to wrench the frame into place.</span>"
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-			if(do_after(user, 20))
+			playsound(src.loc, P.usesound, 50, 1)
+			if(do_after(user, 20 * P.toolspeed))
 				anchored = 1
 				if(!need_circuit && circuit)
 					state = 2
@@ -270,8 +270,8 @@
 					user << "<span class='notice'>You wrench the frame into place.</span>"
 
 		else if(state == 0 && anchored)
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-			if(do_after(user, 20))
+			playsound(src, P.usesound, 50, 1)
+			if(do_after(user, 20 * P.toolspeed))
 				user << "<span class='notice'>You unfasten the frame.</span>"
 				anchored = 0
 
@@ -279,8 +279,8 @@
 		if(state == 0)
 			var/obj/item/weapon/weldingtool/WT = P
 			if(WT.remove_fuel(0, user))
-				playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
-				if(do_after(user, 20))
+				playsound(src.loc, P.usesound, 50, 1)
+				if(do_after(user, 20 * P.toolspeed))
 					if(src && WT.isOn())
 						user << "<span class='notice'>You deconstruct the frame.</span>"
 						new /obj/item/stack/material/steel(src.loc, frame_type.frame_size)
@@ -311,18 +311,18 @@
 	else if(istype(P, /obj/item/weapon/screwdriver))
 		if(state == 1)
 			if(need_circuit && circuit)
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+				playsound(src, P.usesound, 50, 1)
 				user << "<span class='notice'>You screw the circuit board into place.</span>"
 				state = 2
 
 		else if(state == 2)
 			if(need_circuit && circuit)
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+				playsound(src, P.usesound, 50, 1)
 				user << "<span class='notice'>You unfasten the circuit board.</span>"
 				state = 1
 
 			else if(!need_circuit && circuit)
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+				playsound(src, P.usesound, 50, 1)
 				user << "<span class='notice'>You unfasten the outer cover.</span>"
 				state = 0
 
@@ -334,7 +334,7 @@
 						component_check = 0
 						break
 				if(component_check)
-					playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+					playsound(src, P.usesound, 50, 1)
 					var/obj/machinery/new_machine = new circuit.build_path(src.loc, dir)
 					// Handle machines that have allocated default parts in thier constructor.
 					if(new_machine.component_parts)
@@ -364,7 +364,7 @@
 					return
 
 			else if(frame_type.frame_class == "alarm")
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+				playsound(src, P.usesound, 50, 1)
 				user << "<span class='notice'>You fasten the cover.</span>"
 				var/obj/machinery/B = new circuit.build_path(src.loc)
 				B.pixel_x = pixel_x
@@ -378,7 +378,7 @@
 
 		else if(state == 4)
 			if(frame_type.frame_class == "computer")
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+				playsound(src, P.usesound, 50, 1)
 				user << "<span class='notice'>You connect the monitor.</span>"
 				var/obj/machinery/B = new circuit.build_path(src.loc)
 				B.pixel_x = pixel_x
@@ -391,7 +391,7 @@
 				return
 
 			else if(frame_type.frame_class == "display")
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+				playsound(src, P.usesound, 50, 1)
 				user << "<span class='notice'>You connect the monitor.</span>"
 				var/obj/machinery/B = new circuit.build_path(src.loc)
 				B.pixel_x = pixel_x
@@ -406,7 +406,7 @@
 	else if(istype(P, /obj/item/weapon/crowbar))
 		if(state == 1)
 			if(need_circuit && circuit)
-				playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
+				playsound(src, P.usesound, 50, 1)
 				user << "<span class='notice'>You remove the circuit board.</span>"
 				state = 0
 				circuit.forceMove(src.loc)
@@ -416,7 +416,7 @@
 
 		else if(state == 3)
 			if(frame_type.frame_class == "machine")
-				playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
+				playsound(src, P.usesound, 50, 1)
 				if(components.len == 0)
 					user << "<span class='notice'>There are no components to remove.</span>"
 				else
@@ -429,13 +429,13 @@
 
 		else if(state == 4)
 			if(frame_type.frame_class == "computer")
-				playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
+				playsound(src, P.usesound, 50, 1)
 				user << "<span class='notice'>You remove the glass panel.</span>"
 				state = 3
 				new /obj/item/stack/material/glass(src.loc, 2)
 
 			else if(frame_type.frame_class == "display")
-				playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
+				playsound(src, P.usesound, 50, 1)
 				user << "<span class='notice'>You remove the glass panel.</span>"
 				state = 3
 				new /obj/item/stack/material/glass(src.loc, 2)
@@ -483,25 +483,25 @@
 	else if(istype(P, /obj/item/weapon/wirecutters))
 		if(state == 3)
 			if(frame_type.frame_class == "computer")
-				playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
+				playsound(src, P.usesound, 50, 1)
 				user << "<span class='notice'>You remove the cables.</span>"
 				state = 2
 				new /obj/item/stack/cable_coil(src.loc, 5)
 
 			else if(frame_type.frame_class == "display")
-				playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
+				playsound(src, P.usesound, 50, 1)
 				user << "<span class='notice'>You remove the cables.</span>"
 				state = 2
 				new /obj/item/stack/cable_coil(src.loc, 5)
 
 			else if(frame_type.frame_class == "alarm")
-				playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
+				playsound(src, P.usesound, 50, 1)
 				user << "<span class='notice'>You remove the cables.</span>"
 				state = 2
 				new /obj/item/stack/cable_coil(src.loc, 5)
 
 			else if(frame_type.frame_class == "machine")
-				playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
+				playsound(src, P.usesound, 50, 1)
 				user << "<span class='notice'>You remove the cables.</span>"
 				state = 2
 				new /obj/item/stack/cable_coil(src.loc, 5)

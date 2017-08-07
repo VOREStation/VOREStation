@@ -8,11 +8,11 @@ var/global/list/description_icons = list(
 	"radiation_armor" = image(icon='icons/mob/screen1_stats.dmi',icon_state="radiation_protection"),
 	"biohazard_armor" = image(icon='icons/mob/screen1_stats.dmi',icon_state="biohazard_protection"),
 
-	"welder" = image(icon='icons/obj/items.dmi',icon_state="welder"),
-	"wirecutters" = image(icon='icons/obj/items.dmi',icon_state="cutters"),
-	"screwdriver" = image(icon='icons/obj/items.dmi',icon_state="screwdriver"),
-	"wrench" = image(icon='icons/obj/items.dmi',icon_state="wrench"),
-	"crowbar" = image(icon='icons/obj/items.dmi',icon_state="crowbar"),
+	"welder" = image(icon='icons/obj/tools.dmi',icon_state="welder"),
+	"wirecutters" = image(icon='icons/obj/tools.dmi',icon_state="cutters"),
+	"screwdriver" = image(icon='icons/obj/tools.dmi',icon_state="screwdriver"),
+	"wrench" = image(icon='icons/obj/tools.dmi',icon_state="wrench"),
+	"crowbar" = image(icon='icons/obj/tools.dmi',icon_state="crowbar"),
 	"multitool" = image(icon='icons/obj/device.dmi',icon_state="multitool"),
 
 	"metal sheet" = image(icon='icons/obj/items.dmi',icon_state="sheet-metal"),

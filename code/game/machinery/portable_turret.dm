@@ -329,15 +329,15 @@ var/list/turret_icons
 			)
 
 		wrenching = 1
-		if(do_after(user, 50))
+		if(do_after(user, 50 * I.toolspeed))
 			//This code handles moving the turret around. After all, it's a portable turret!
 			if(!anchored)
-				playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
+				playsound(loc, I.usesound, 100, 1)
 				anchored = 1
 				update_icon()
 				user << "<span class='notice'>You secure the exterior bolts on the turret.</span>"
 			else if(anchored)
-				playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
+				playsound(loc, I.usesound, 100, 1)
 				anchored = 0
 				user << "<span class='notice'>You unsecure the exterior bolts on the turret.</span>"
 				update_icon()
@@ -711,14 +711,14 @@ var/list/turret_icons
 	switch(build_step)
 		if(0)	//first step
 			if(istype(I, /obj/item/weapon/wrench) && !anchored)
-				playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
+				playsound(loc, I.usesound, 100, 1)
 				user << "<span class='notice'>You secure the external bolts.</span>"
 				anchored = 1
 				build_step = 1
 				return
 
 			else if(istype(I, /obj/item/weapon/crowbar) && !anchored)
-				playsound(loc, 'sound/items/Crowbar.ogg', 75, 1)
+				playsound(loc, I.usesound, 75, 1)
 				user << "<span class='notice'>You dismantle the turret construction.</span>"
 				new /obj/item/stack/material/steel(loc, 5)
 				qdel(src)
@@ -736,7 +736,7 @@ var/list/turret_icons
 				return
 
 			else if(istype(I, /obj/item/weapon/wrench))
-				playsound(loc, 'sound/items/Ratchet.ogg', 75, 1)
+				playsound(loc, I.usesound, 75, 1)
 				user << "<span class='notice'>You unfasten the external bolts.</span>"
 				anchored = 0
 				build_step = 0
@@ -744,7 +744,7 @@ var/list/turret_icons
 
 		if(2)
 			if(istype(I, /obj/item/weapon/wrench))
-				playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
+				playsound(loc, I.usesound, 100, 1)
 				user << "<span class='notice'>You bolt the metal armor into place.</span>"
 				build_step = 3
 				return
@@ -757,8 +757,8 @@ var/list/turret_icons
 					user << "<span class='notice'>You need more fuel to complete this task.</span>"
 					return
 
-				playsound(loc, pick('sound/items/Welder.ogg', 'sound/items/Welder2.ogg'), 50, 1)
-				if(do_after(user, 20))
+				playsound(loc, I.usesound, 50, 1)
+				if(do_after(user, 20 * I.toolspeed))
 					if(!src || !WT.remove_fuel(5, user)) return
 					build_step = 1
 					user << "You remove the turret's interior metal armor."
@@ -784,7 +784,7 @@ var/list/turret_icons
 				return
 
 			else if(istype(I, /obj/item/weapon/wrench))
-				playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
+				playsound(loc, I.usesound, 100, 1)
 				user << "<span class='notice'>You remove the turret's metal armor bolts.</span>"
 				build_step = 2
 				return
@@ -803,7 +803,7 @@ var/list/turret_icons
 
 		if(5)
 			if(istype(I, /obj/item/weapon/screwdriver))
-				playsound(loc, 'sound/items/Screwdriver.ogg', 100, 1)
+				playsound(loc, I.usesound, 100, 1)
 				build_step = 6
 				user << "<span class='notice'>You close the internal access hatch.</span>"
 				return
@@ -821,7 +821,7 @@ var/list/turret_icons
 				return
 
 			else if(istype(I, /obj/item/weapon/screwdriver))
-				playsound(loc, 'sound/items/Screwdriver.ogg', 100, 1)
+				playsound(loc, I.usesound, 100, 1)
 				build_step = 5
 				user << "<span class='notice'>You open the internal access hatch.</span>"
 				return
@@ -833,8 +833,8 @@ var/list/turret_icons
 				if(WT.get_fuel() < 5)
 					user << "<span class='notice'>You need more fuel to complete this task.</span>"
 
-				playsound(loc, pick('sound/items/Welder.ogg', 'sound/items/Welder2.ogg'), 50, 1)
-				if(do_after(user, 30))
+				playsound(loc, WT.usesound, 50, 1)
+				if(do_after(user, 30 * WT.toolspeed))
 					if(!src || !WT.remove_fuel(5, user))
 						return
 					build_step = 8
@@ -851,7 +851,7 @@ var/list/turret_icons
 					qdel(src) // qdel
 
 			else if(istype(I, /obj/item/weapon/crowbar))
-				playsound(loc, 'sound/items/Crowbar.ogg', 75, 1)
+				playsound(loc, I.usesound, 75, 1)
 				user << "<span class='notice'>You pry off the turret's exterior armor.</span>"
 				new /obj/item/stack/material/steel(loc, 2)
 				build_step = 6
