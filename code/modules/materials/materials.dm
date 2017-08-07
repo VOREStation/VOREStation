@@ -69,6 +69,7 @@ var/list/name_to_material
 	var/flags = 0                         // Various status modifiers.
 	var/sheet_singular_name = "sheet"
 	var/sheet_plural_name = "sheets"
+	var/is_fusion_fuel
 
 	// Shards/tables/structures
 	var/shard_type = SHARD_SHRAPNEL       // Path of debris object.
@@ -97,6 +98,7 @@ var/list/name_to_material
 	var/conductive = 1           // Objects with this var add CONDUCTS to flags on spawn.
 	var/conductivity = null      // How conductive the material is. Iron acts as the baseline, at 10.
 	var/list/composite_material  // If set, object matter var will be a list containing these values.
+	var/luminescence
 
 	// Placeholder vars for the time being, todo properly integrate windows/light tiles/rods.
 	var/created_window
@@ -269,6 +271,22 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 3)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
+
+//R-UST port
+/material/supermatter
+	name = "supermatter"
+	icon_colour = "#FFFF00"
+	radioactivity = 20
+	stack_type = null
+	luminescence = 3
+	ignition_point = PHORON_MINIMUM_BURN_TEMPERATURE
+	icon_base = "stone"
+	shard_type = SHARD_SHARD
+	hardness = 30
+	door_icon_base = "stone"
+	sheet_singular_name = "crystal"
+	sheet_plural_name = "crystals"
+	is_fusion_fuel = 1
 
 /material/phoron
 	name = "phoron"
@@ -567,6 +585,16 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 5)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
+	is_fusion_fuel = 1
+
+/material/deuterium
+	name = "deuterium"
+	stack_type = /obj/item/stack/material/deuterium
+	icon_colour = "#999999"
+	stack_origin_tech = list(TECH_MATERIAL = 3)
+	sheet_singular_name = "ingot"
+	sheet_plural_name = "ingots"
+	is_fusion_fuel = 1
 
 /material/mhydrogen
 	name = "mhydrogen"
@@ -574,6 +602,7 @@ var/list/name_to_material
 	icon_colour = "#E6C5DE"
 	stack_origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 6, TECH_MAGNET = 5)
 	conductivity = 100
+	is_fusion_fuel = 1
 
 /material/platinum
 	name = "platinum"

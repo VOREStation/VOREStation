@@ -36,8 +36,8 @@
 	if(istype(O, /obj/item/weapon/wrench))
 		if(!has_extinguisher)
 			user << "<span class='notice'>You start to unwrench the extinguisher cabinet.</span>"
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-			if(do_after(user, 15))
+			playsound(src.loc, O.usesound, 50, 1)
+			if(do_after(user, 15 * O.toolspeed))
 				user << "<span class='notice'>You unwrench the extinguisher cabinet.</span>"
 				new /obj/item/frame/extinguisher_cabinet( src.loc )
 				qdel(src)

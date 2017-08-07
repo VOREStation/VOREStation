@@ -32,6 +32,9 @@
 	h_style = "Teshari Default"
 	..(new_loc, "Teshari")
 
+/mob/living/carbon/human/promethean/New(var/new_loc)
+	..(new_loc, "Promethean")
+
 /mob/living/carbon/human/machine/New(var/new_loc)
 	h_style = "blue IPC screen"
 	..(new_loc, "Machine")

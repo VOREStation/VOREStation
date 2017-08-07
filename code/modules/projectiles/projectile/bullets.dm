@@ -209,14 +209,14 @@
 	armor_penetration = -50
 	penetrating = 0
 
-/obj/item/projectile/bullet/rifle/a556
+/obj/item/projectile/bullet/rifle/a545
 	damage = 25
 
-/obj/item/projectile/bullet/rifle/a556/ap
+/obj/item/projectile/bullet/rifle/a545/ap
 	damage = 20
 	armor_penetration = 50 // At 40 or more armor, this will do more damage than standard rounds.
 
-/obj/item/projectile/bullet/rifle/a556/hollow
+/obj/item/projectile/bullet/rifle/a545/hollow
 	damage = 35
 	armor_penetration = -50
 	penetrating = 0

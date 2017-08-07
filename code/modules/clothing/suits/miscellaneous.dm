@@ -877,9 +877,11 @@ obj/item/clothing/suit/storage/toggle/peacoat
 
 	if(rolled == 0)
 		rolled = 1
+		body_parts_covered &= ~(ARMS)
 		usr << "<span class='notice'>You roll up the sleeves of your [src].</span>"
 	else
 		rolled = 0
+		body_parts_covered = initial(body_parts_covered)
 		usr << "<span class='notice'>You roll down the sleeves of your [src].</span>"
 	update_icon()
 

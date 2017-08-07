@@ -253,7 +253,10 @@
 		"Are You Feeling It",
 		"Great White Snark",
 		"No Shirt No Shoes",
-		"Callsign"
+		"Callsign",
+		"Three Ships in a Trenchcoat",
+		"Not Wearing Pants",
+		"Ridiculous Naming Convention"
 
 
 		)

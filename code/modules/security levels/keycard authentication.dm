@@ -43,7 +43,8 @@
 
 	if(istype(W, /obj/item/weapon/screwdriver))
 		user << "You begin removing the faceplate from the [src]"
-		if(do_after(user, 10))
+		playsound(src, W.usesound, 50, 1)
+		if(do_after(user, 10 * W.toolspeed))
 			user << "You remove the faceplate from the [src]"
 			var/obj/structure/frame/A = new /obj/structure/frame(loc)
 			var/obj/item/weapon/circuitboard/M = new circuit(A)
@@ -173,7 +174,7 @@
 			feedback_inc("alert_keycard_auth_maintRevoke",1)
 		if("Emergency Response Team")
 			if(is_ert_blocked())
-				usr << "\red All emergency response teams are dispatched and can not be called at this time."
+				usr << "<font color='red'>All emergency response teams are dispatched and can not be called at this time.</font>"
 				return
 
 			trigger_armed_response_team(1)

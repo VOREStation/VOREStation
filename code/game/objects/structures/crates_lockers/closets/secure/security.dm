@@ -149,6 +149,9 @@
 		new /obj/item/weapon/gun/energy/gun(src)
 		new /obj/item/weapon/cell/device/weapon(src)
 		new /obj/item/weapon/melee/telebaton(src)
+		new /obj/item/clothing/head/beret/sec/corporate/hos(src)
+		new /obj/item/clothing/suit/storage/hooded/wintercoat/security(src)
+		new /obj/item/clothing/shoes/boots/winter/security(src)
 		new /obj/item/device/flashlight/maglight(src)
 		return
 //VOREStation Edit End
@@ -193,6 +196,7 @@
 		new /obj/item/weapon/storage/box/holobadge(src)
 		new /obj/item/clothing/head/beret/sec/corporate/warden(src)
 		new /obj/item/clothing/suit/storage/hooded/wintercoat/security(src)
+		new /obj/item/clothing/shoes/boots/winter/security(src)
 		new /obj/item/device/flashlight/maglight(src)
 		new /obj/item/device/megaphone(src)
 		new /obj/item/clothing/mask/gas/half(src)
@@ -239,6 +243,7 @@
 		new /obj/item/weapon/gun/energy/taser(src)
 		new /obj/item/weapon/cell/device/weapon(src)
 		new /obj/item/clothing/suit/storage/hooded/wintercoat/security(src)
+		new /obj/item/clothing/shoes/boots/winter/security(src)
 		new /obj/item/device/flashlight/maglight(src)
 		return
 

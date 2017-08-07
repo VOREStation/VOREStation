@@ -22,6 +22,7 @@
 	var/obj/machinery/telecomms/buffer // simple machine buffer for device linkage
 	var/obj/machinery/clonepod/connecting //same for cryopod linkage
 	var/obj/machinery/connectable	//Used to connect machinery.
+	toolspeed = 1
 
 /obj/item/device/multitool/attack_self(mob/user)
 	var/clear = alert("Do you want to clear the buffers on the [src]?",, "Yes", "No",)
@@ -31,3 +32,16 @@
 		connectable = null
 	else
 		..()
+
+/obj/item/device/multitool/cyborg
+	name = "multitool"
+	desc = "Optimised and stripped-down version of a regular multitool."
+	toolspeed = 0.5
+
+/obj/item/device/multitool/alien
+	name = "alien multitool"
+	desc = "An omni-technological interface."
+	icon = 'icons/obj/abductor.dmi'
+	icon_state = "multitool"
+	toolspeed = 0.1
+	origin_tech = list(TECH_MAGNETS = 5, TECH_ENGINEERING = 5)

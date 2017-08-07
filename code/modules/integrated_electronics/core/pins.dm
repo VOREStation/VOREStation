@@ -25,10 +25,11 @@ D [1]/  ||
 	var/list/linked = list()
 	var/io_type = DATA_CHANNEL
 
-/datum/integrated_io/New(var/newloc, var/name, var/data)
+/datum/integrated_io/New(var/newloc, var/name, var/new_data)
 	..()
 	src.name = name
-	src.data = data
+	if(new_data)
+		src.data = new_data
 	holder = newloc
 	if(!istype(holder))
 		message_admins("ERROR: An integrated_io ([src.name]) spawned without a valid holder!  This is a bug.")
@@ -50,17 +51,43 @@ D [1]/  ||
 	var/output = w.resolve()
 	return istype(output, as_type) ? output : null
 
-/datum/integrated_io/proc/display_data()
-	if(isnull(data))
+/datum/integrated_io/proc/display_data(var/input)
+	if(isnull(input))
 		return "(null)" // Empty data means nothing to show.
-	if(istext(data))
-		return "(\"[data]\")" // Wraps the 'string' in escaped quotes, so that people know it's a 'string'.
-	if(isweakref(data))
-		var/weakref/w = data
+
+	if(istext(input))
+		return "(\"[input]\")" // Wraps the 'string' in escaped quotes, so that people know it's a 'string'.
+
+/*
+list[](
+	"A",
+	"B",
+	"C"
+)
+*/
+
+	if(islist(input))
+		var/list/my_list = input
+		var/result = "list\[[my_list.len]\]("
+		if(my_list.len)
+			result += "<br>"
+			var/pos = 0
+			for(var/line in my_list)
+				result += "[display_data(line)]"
+				pos++
+				if(pos != my_list.len)
+					result += ",<br>"
+			result += "<br>"
+		result += ")"
+		return result
+
+	if(isweakref(input))
+		var/weakref/w = input
 		var/atom/A = w.resolve()
 		//return A ? "([A.name] \[Ref\])" : "(null)" // For refs, we want just the name displayed.
 		return A ? "(\ref[A] \[Ref\])" : "(null)"
-	return "([data])" // Nothing special needed for numbers or other stuff.
+
+	return "([input])" // Nothing special needed for numbers or other stuff.
 
 /datum/integrated_io/activate/display_data()
 	return "(\[pulse\])"
@@ -117,23 +144,44 @@ D [1]/  ||
 		//Now that we're removed from them, we gotta remove them from us.
 		src.linked.Remove(their_io)
 
-/datum/integrated_io/input
-	name = "input pin"
+/datum/integrated_io/proc/ask_for_data_type(mob/user, var/default, var/list/allowed_data_types = list("string","number","null"))
+	var/type_to_use = input("Please choose a type to use.","[src] type setting") as null|anything in allowed_data_types
+	if(!holder.check_interactivity(user))
+		return
 
-/datum/integrated_io/output
-	name = "output pin"
+	var/new_data = null
+	switch(type_to_use)
+		if("string")
+			new_data = input("Now type in a string.","[src] string writing", istext(default) ? default : null) as null|text
+			if(istext(new_data) && holder.check_interactivity(user) )
+				to_chat(user, "<span class='notice'>You input [new_data] into the pin.</span>")
+				return new_data
+		if("number")
+			new_data = input("Now type in a number.","[src] number writing", isnum(default) ? default : null) as null|num
+			if(isnum(new_data) && holder.check_interactivity(user) )
+				to_chat(user, "<span class='notice'>You input [new_data] into the pin.</span>")
+				return new_data
+		if("null")
+			if(holder.check_interactivity(user))
+				to_chat(user, "<span class='notice'>You clear the pin's memory.</span>")
+				return new_data
+
+// Basically a null check
+/datum/integrated_io/proc/is_valid()
+	return !isnull(data)
+
+// This proc asks for the data to write, then writes it.
+/datum/integrated_io/proc/ask_for_pin_data(mob/user)
+	var/new_data = ask_for_data_type(user)
+	write_data_to_pin(new_data)
+
+/datum/integrated_io/activate/ask_for_pin_data(mob/user) // This just pulses the pin.
+	holder.check_then_do_work(ignore_power = TRUE)
+	to_chat(user, "<span class='notice'>You pulse \the [holder]'s [src] pin.</span>")
 
 /datum/integrated_io/activate
 	name = "activation pin"
 	io_type = PULSE_CHANNEL
 
-/datum/integrated_io/list
-	name = "list pin"
-
-/datum/integrated_io/list/write_data_to_pin(var/new_data)
-	if(islist(new_data))
-		data = new_data
-		holder.on_data_written()
-
-/datum/integrated_io/list/display_pin_type()
-	return IC_FORMAT_LIST
+/datum/integrated_io/activate/out // All this does is just make the UI say 'out' instead of 'in'
+	data = 1

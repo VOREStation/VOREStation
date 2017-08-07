@@ -298,10 +298,9 @@ its easier to just keep the beam vertical.
 
 		//Deal with gloves the pass finger/palm prints.
 		if(!ignoregloves)
-			if(H.gloves != src)
-				if(prob(75) && istype(H.gloves, /obj/item/clothing/gloves/sterile))
-					return 0
-				else if(H.gloves && !istype(H.gloves, /obj/item/clothing/gloves/sterile))
+			if(H.gloves && H.gloves != src)
+				var/obj/item/clothing/gloves/G = H.gloves
+				if(!prob(G.fingerprint_chance))
 					return 0
 
 		//More adminstuffz

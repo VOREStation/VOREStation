@@ -42,8 +42,9 @@
 				return
 
 			if (istype(W, /obj/item/weapon/screwdriver))
-				if (do_after(user, 20))
+				if (do_after(user, 20 * W.toolspeed))
 					src.open =! src.open
+					playsound(src, W.usesound, 50, 1)
 					user.show_message(text("<span class='notice'>You [] the service panel.</span>", (src.open ? "open" : "close")))
 				return
 			if ((istype(W, /obj/item/device/multitool)) && (src.open == 1)&& (!src.l_hacking))
@@ -149,7 +150,9 @@
 	force = 8.0
 	throw_speed = 1
 	throw_range = 4
+	max_w_class = ITEMSIZE_NORMAL
 	w_class = ITEMSIZE_LARGE
+	max_storage_space = ITEMSIZE_COST_NORMAL * 4
 
 	attack_hand(mob/user as mob)
 		if ((src.loc == user) && (src.locked == 1))

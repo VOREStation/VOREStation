@@ -14,7 +14,7 @@
 		/obj/item/clothing/suit/space/void
 		)
 
-/obj/item/device/modkit/afterattack(obj/O, mob/user as mob, proximity)
+/obj/item/device/modkit/afterattack(obj/item/O, mob/user as mob, proximity)
 	if(!proximity)
 		return
 
@@ -47,7 +47,7 @@
 		user << "<span class='warning'>[O] must be safely placed on the ground for modification.</span>"
 		return
 
-	playsound(user.loc, 'sound/items/Screwdriver.ogg', 100, 1)
+	playsound(src.loc, O.usesound, 100, 1)
 
 	user.visible_message("<span class='notice'>\The [user] opens \the [src] and modifies \the [O].</span>","<span class='notice'>You open \the [src] and modify \the [O].</span>")
 

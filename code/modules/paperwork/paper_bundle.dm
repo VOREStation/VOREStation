@@ -91,7 +91,7 @@
 				qdel(src)
 
 			else
-				user << "\red You must hold \the [P] steady to burn \the [src]."
+				user << "<font color='red'>You must hold \the [P] steady to burn \the [src].</font>"
 
 /obj/item/weapon/paper_bundle/examine(mob/user)
 	if(..(user, 1))
