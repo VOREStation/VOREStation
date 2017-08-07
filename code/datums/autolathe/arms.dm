@@ -148,7 +148,7 @@
 	path =/obj/item/ammo_magazine/m545/practice
 
 /datum/category_item/autolathe/arms/machinegun_545
-	name = "machinegun box magazine (5.56)"
+	name = "machinegun box magazine (5.45)"
 	path =/obj/item/ammo_magazine/m545saw
 	hidden = 1
 
