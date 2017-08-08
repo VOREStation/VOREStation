@@ -5,7 +5,7 @@ var/datum/uplink/uplink = new()
 	var/list/datum/uplink_item/items
 	var/list/datum/uplink_category/categories
 
-/datum/uplink/New()
+/datum/uplink/New(var/type)
 	items_assoc = list()
 	items = init_subtypes(/datum/uplink_item)
 	categories = init_subtypes(/datum/uplink_category)
@@ -38,7 +38,8 @@ var/datum/uplink/uplink = new()
 
 /datum/uplink_item/New()
 	..()
-	antag_roles = list()
+	if(!antag_roles)
+		antag_roles = list()
 
 
 
@@ -85,8 +86,9 @@ var/datum/uplink/uplink = new()
 
 	for(var/antag_role in antag_roles)
 		var/datum/antagonist/antag = all_antag_types[antag_role]
-		if(antag.is_antagonist(U.uplink_owner))
-			return 1
+		if(!isnull(antag))
+			if(antag.is_antagonist(U.uplink_owner))
+				return 1
 	return 0
 
 /datum/uplink_item/proc/cost(var/telecrystals, obj/item/device/uplink/U)

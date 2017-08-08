@@ -36,7 +36,7 @@
 
 /obj/item/weapon/antag_spawner/technomancer_apprentice/Destroy()
 	qdel(sparks)
-	..()
+	return ..()
 
 /obj/item/weapon/antag_spawner/technomancer_apprentice/attack_self(mob/user)
 	user << "<span class='notice'>Teleporter attempting to lock on to your apprentice.</span>"

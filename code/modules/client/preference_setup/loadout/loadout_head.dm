@@ -349,3 +349,23 @@
 		var/obj/item/clothing/head/beret/sol/sol = sol_style
 		sols[initial(sol.name)] = sol
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(sols))
+
+/datum/gear/head/surgical/black
+	display_name = "surgical cap, black"
+	path = /obj/item/clothing/head/surgery/black
+
+/datum/gear/head/surgical/blue
+	display_name = "surgical cap, blue"
+	path = /obj/item/clothing/head/surgery/blue
+
+/datum/gear/head/surgical/green
+	display_name = "surgical cap, green"
+	path = /obj/item/clothing/head/surgery/green
+
+/datum/gear/head/surgical/navyblue
+	display_name = "surgical cap, navy blue"
+	path = /obj/item/clothing/head/surgery/navyblue
+
+/datum/gear/head/surgical/purple
+	display_name = "surgical cap, purple"
+	path = /obj/item/clothing/head/surgery/purple

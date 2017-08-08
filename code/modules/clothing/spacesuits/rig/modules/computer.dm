@@ -36,8 +36,8 @@
 	activates_on_touch = 1
 
 	engage_string = "Eject AI"
-	activate_string = "Enable Dataspike"
-	deactivate_string = "Disable Dataspike"
+	activate_string = "Enable Core Transfer"
+	deactivate_string = "Disable Core Transfer"
 
 	interface_name = "integrated intelligence system"
 	interface_desc = "A socket that supports a range of artificial intelligence systems."
@@ -168,7 +168,7 @@
 				if(user)
 					user << "<span class='danger'>You cannot eject your currently stored AI. Purge it manually.</span>"
 				return 0
-			user << "<span class='danger'>You purge the remaining scraps of data from your previous AI, freeing it for use.</span>"
+			user << "<span class='danger'>You purge the previous AI from your Integrated Intelligence System, freeing it for use.</span>"
 			if(integrated_ai)
 				integrated_ai.ghostize()
 				qdel(integrated_ai)

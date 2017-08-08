@@ -77,6 +77,22 @@
 	new /obj/item/weapon/wirecutters(src)
 	new /obj/item/device/t_scanner(src)
 
+/obj/item/weapon/storage/belt/utility/chief
+	name = "chief engineer's toolbelt"
+	desc = "Holds tools, looks snazzy."
+	icon_state = "utilitybelt_ce"
+	item_state = "utility_ce"
+
+/obj/item/weapon/storage/belt/utility/chief/full/New()
+	..()
+	new /obj/item/weapon/screwdriver/power(src)
+	new /obj/item/weapon/crowbar/power(src)
+	new /obj/item/weapon/weldingtool/experimental(src)
+	new /obj/item/device/multitool(src)
+	new /obj/item/stack/cable_coil(src,30,pick("red","yellow","orange"))
+	new /obj/item/weapon/extinguisher/mini(src)
+	new /obj/item/device/analyzer(src)
+
 /obj/item/weapon/storage/belt/medical
 	name = "medical belt"
 	desc = "Can hold various medical equipment."
@@ -208,6 +224,22 @@
 	new /obj/item/device/soulstone(src)
 	new /obj/item/device/soulstone(src)
 
+/obj/item/weapon/storage/belt/utility/alien
+	name = "alien belt"
+	desc = "A belt(?) that can hold things."
+	icon = 'icons/obj/abductor.dmi'
+	icon_state = "belt"
+	item_state = "security"
+
+/obj/item/weapon/storage/belt/utility/alien/full/New()
+	..()
+	new /obj/item/weapon/screwdriver/alien(src)
+	new /obj/item/weapon/wrench/alien(src)
+	new /obj/item/weapon/weldingtool/alien(src)
+	new /obj/item/weapon/crowbar/alien(src)
+	new /obj/item/weapon/wirecutters/alien(src)
+	new /obj/item/device/multitool/alien(src)
+	new /obj/item/stack/cable_coil(src,30,"white")
 
 /obj/item/weapon/storage/belt/champion
 	name = "championship belt"

@@ -163,6 +163,10 @@ BLIND     // can't see anything
 	action_button_name = "Toggle Goggles"
 	vision_flags = SEE_OBJS
 
+/obj/item/clothing/glasses/material/prescription
+	name = "Prescription Optical Material Scanner"
+	prescription = 1
+
 /obj/item/clothing/glasses/regular
 	name = "Prescription Glasses"
 	desc = "Made by Nerd. Co."
@@ -411,7 +415,7 @@ BLIND     // can't see anything
 	emp_act(severity)
 		if(istype(src.loc, /mob/living/carbon/human))
 			var/mob/living/carbon/human/M = src.loc
-			M << "\red The Optical Thermal Scanner overloads and blinds you!"
+			M << "<font color='red'>The Optical Thermal Scanner overloads and blinds you!</font>"
 			if(M.glasses == src)
 				M.Blind(3)
 				M.eye_blurry = 5

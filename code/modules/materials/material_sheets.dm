@@ -158,6 +158,14 @@
 	default_type = "osmium"
 	apply_colour = 1
 
+//R-UST port
+// Fusion fuel.
+/obj/item/stack/material/deuterium
+	name = "deuterium"
+	icon_state = "sheet-silver"
+	default_type = "deuterium"
+	apply_colour = 1
+
 /obj/item/stack/material/steel
 	name = DEFAULT_WALL_MATERIAL
 	icon_state = "sheet-metal"

@@ -518,3 +518,13 @@
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale/New()
 	..()
 	reagents.add_reagent("ale", 30)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/sake
+	name = "Mono-No-Aware Luxury Sake"
+	desc = "Dry alcohol made from rice, a favorite of businessmen."
+	icon_state = "sakebottle"
+	center_of_mass = list("x"=16, "y"=3)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/sake/New()
+	..()
+	reagents.add_reagent("sake", 100)

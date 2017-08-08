@@ -182,3 +182,8 @@
 	name = "weak stun beam"
 	icon_state = "stun"
 	agony = 25
+
+/obj/item/projectile/beam/stun/med
+	name = "stun beam"
+	icon_state = "stun"
+	agony = 35

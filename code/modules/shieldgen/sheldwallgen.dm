@@ -28,13 +28,13 @@
 
 /obj/machinery/shieldwallgen/attack_hand(mob/user as mob)
 	if(state != 1)
-		user << "\red The shield generator needs to be firmly secured to the floor first."
+		user << "<font color='red'>The shield generator needs to be firmly secured to the floor first.</font>"
 		return 1
 	if(src.locked && !istype(user, /mob/living/silicon))
-		user << "\red The controls are locked!"
+		user << "<font color='red'>The controls are locked!</font>"
 		return 1
 	if(power != 1)
-		user << "\red The shield generator needs to be powered by wire underneath."
+		user << "<font color='red'>The shield generator needs to be powered by wire underneath.</font>"
 		return 1
 
 	if(src.active >= 1)
@@ -106,7 +106,7 @@
 		src.active = 2
 	if(src.active >= 1)
 		if(src.power == 0)
-			src.visible_message("\red The [src.name] shuts down due to lack of power!", \
+			src.visible_message("<font color='red'>The [src.name] shuts down due to lack of power!</font>", \
 				"You hear heavy droning fade out")
 			icon_state = "Shield_Gen"
 			src.active = 0
@@ -165,14 +165,14 @@
 
 		else if(state == 0)
 			state = 1
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
+			playsound(src, W.usesound, 75, 1)
 			user << "You secure the external reinforcing bolts to the floor."
 			src.anchored = 1
 			return
 
 		else if(state == 1)
 			state = 0
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
+			playsound(src, W.usesound, 75, 1)
 			user << "You undo the external reinforcing bolts."
 			src.anchored = 0
 			return
@@ -182,11 +182,11 @@
 			src.locked = !src.locked
 			user << "Controls are now [src.locked ? "locked." : "unlocked."]"
 		else
-			user << "\red Access denied."
+			user << "<font color='red'>Access denied.</font>"
 
 	else
 		src.add_fingerprint(user)
-		visible_message("\red The [src.name] has been hit with \the [W.name] by [user.name]!")
+		visible_message("<font color='red'>The [src.name] has been hit with \the [W.name] by [user.name]!</font>")
 
 /obj/machinery/shieldwallgen/proc/cleanup(var/NSEW)
 	var/obj/machinery/shieldwall/F

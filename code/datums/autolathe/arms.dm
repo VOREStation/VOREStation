@@ -137,39 +137,53 @@
 	path =/obj/item/ammo_magazine/m44
 	hidden = 1
 
-/////// 5.56mm
-/datum/category_item/autolathe/arms/rifle_556
-	name = "rifle magazine (5.56mm)"
-	path =/obj/item/ammo_magazine/m556
+/////// 5.45mm
+/datum/category_item/autolathe/arms/rifle_545
+	name = "rifle magazine (5.45mm)"
+	path =/obj/item/ammo_magazine/m545
 	hidden = 1
 
-/datum/category_item/autolathe/arms/rifle_556p
-	name = "rifle magazine (5.56mm practice)"
-	path =/obj/item/ammo_magazine/m556/practice
+/datum/category_item/autolathe/arms/rifle_545p
+	name = "rifle magazine (5.45mm practice)"
+	path =/obj/item/ammo_magazine/m545/practice
 
-/datum/category_item/autolathe/arms/machinegun_556
-	name = "machinegun box magazine (5.56)"
-	path =/obj/item/ammo_magazine/m556saw
+/datum/category_item/autolathe/arms/machinegun_545
+	name = "machinegun box magazine (5.45)"
+	path =/obj/item/ammo_magazine/m545saw
 	hidden = 1
+
 /////// 7.62
-
 
 /datum/category_item/autolathe/arms/rifle_762
 	name = "rifle magazine (7.62mm)"
 	path =/obj/item/ammo_magazine/m762
 	hidden = 1
-
-/datum/category_item/autolathe/arms/shotgun_magazine
-	name = "24rnd shotgun magazine (12g)"
-	path =/obj/item/ammo_magazine/m12gdrum
-	hidden = 1
-
 /*
 /datum/category_item/autolathe/arms/rifle_small_762
 	name = "rifle magazine (7.62mm)"
 	path =/obj/item/ammo_magazine/s762
 	hidden = 1
 */
+
+/////// Shotgun
+
+/datum/category_item/autolathe/arms/shotgun_clip_beanbag
+	name = "4-round 12g shell clip (beanbag)"
+	path =/obj/item/ammo_magazine/clip/c12g/beanbag
+
+/datum/category_item/autolathe/arms/shotgun_clip_slug
+	name = "4-round 12g shell clip (slug)"
+	path =/obj/item/ammo_magazine/clip/c12g
+	hidden = 1
+
+/datum/category_item/autolathe/arms/shotgun_clip_pellet
+	name = "4-round 12g shell clip (buckshot)"
+	path =/obj/item/ammo_magazine/clip/c12g/pellet
+	hidden = 1
+
+/datum/category_item/autolathe/arms/shotgun_clip_beanbag
+	name = "4-round 12g shell clip (beanbag)"
+	path =/obj/item/ammo_magazine/clip/c12g/beanbag
 
 /* Commented out until autolathe stuff is decided/fixed. Will probably remove these entirely. -Spades
 // These should always be/empty! The idea is to fill them up manually with ammo clips.
@@ -231,14 +245,14 @@
 	category = "Arms and Ammunition"
 	hidden = 1
 
-/datum/category_item/autolathe/arms/rifle_556
-	name = "10rnd rifle magazine (5.56mm)"
-	path =/obj/item/ammo_magazine/m556saw/empty
+/datum/category_item/autolathe/arms/rifle_545
+	name = "10rnd rifle magazine (5.45mm)"
+	path =/obj/item/ammo_magazine/m545saw/empty
 	category = "Arms and Ammunition"
 
-/datum/category_item/autolathe/arms/rifle_556m
-	name = "20rnd rifle magazine (5.56mm)"
-	path =/obj/item/ammo_magazine/m556sawm/empty
+/datum/category_item/autolathe/arms/rifle_545m
+	name = "20rnd rifle magazine (5.45mm)"
+	path =/obj/item/ammo_magazine/m545sawm/empty
 	category = "Arms and Ammunition"
 	hidden = 1
 
@@ -345,15 +359,15 @@
 	category = "Arms and Ammunition"
 	hidden = 1
 */
-/datum/category_item/autolathe/arms/rifle_clip_556
-	name = "ammo clip (5.56mm)"
-	path =/obj/item/ammo_magazine/clip/c556
+/datum/category_item/autolathe/arms/rifle_clip_545
+	name = "ammo clip (5.45mm)"
+	path =/obj/item/ammo_magazine/clip/c545
 	category = "Arms and Ammunition"
 	hidden = 1
 
-/datum/category_item/autolathe/arms/rifle_clip_556_practice
-	name = "ammo clip (5.56mm practice)"
-	path =/obj/item/ammo_magazine/clip/c556/practice
+/datum/category_item/autolathe/arms/rifle_clip_545_practice
+	name = "ammo clip (5.45mm practice)"
+	path =/obj/item/ammo_magazine/clip/c545/practice
 	category = "Arms and Ammunition"
 
 /datum/category_item/autolathe/arms/rifle_clip_762

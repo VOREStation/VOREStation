@@ -348,6 +348,7 @@
 
 			recalculateChannels()
 			user << "You pop out the encryption keys in the headset!"
+			playsound(src, W.usesound, 50, 1)
 
 		else
 			user << "This headset doesn't have any encryption keys!  How useless..."

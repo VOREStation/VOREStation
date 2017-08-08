@@ -156,7 +156,7 @@
 	contains = list(
 			/obj/item/ammo_magazine/m9mmt,
 			/obj/item/ammo_magazine/m9mmt/rubber,
-			/obj/item/ammo_magazine/m556saw
+			/obj/item/ammo_magazine/m545saw
 			)
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure

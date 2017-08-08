@@ -167,6 +167,7 @@
 			var/obj/item/C = cell
 			C.loc = get_turf(user)
 			user << "<span class='notice'>You jimmy [cell] out of [src] with [W].</span>"
+			playsound(src, W.usesound, 50, 1)
 			cell = null
 		else
 			user << "<span class='notice'>[src] doesn't have a cell installed.</span>"
@@ -231,7 +232,7 @@
 			var/obj/item/weapon/weldingtool/T = W
 			if(T.remove_fuel(0,user))
 				if(!src || !T.isOn()) return
-				playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
+				playsound(src, W.usesound, 50, 1)
 				user << "<span class='notice'>You weld the rods into place.</span>"
 			buildstate++
 			update_icon()
@@ -267,6 +268,7 @@
 	else if(istype(W,/obj/item/weapon/screwdriver))
 		if(buildstate == 5)
 			user << "<span class='notice'>You secure the crossbow's various parts.</span>"
+			playsound(src, W.usesound, 50, 1)
 			new /obj/item/weapon/gun/launcher/crossbow(get_turf(src))
 			qdel(src)
 		return

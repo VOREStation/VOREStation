@@ -39,6 +39,26 @@
 	item_cost = 10
 	path = /obj/item/weapon/storage/box/freezer
 
+/datum/uplink_item/item/medical/monkeycubes
+	name = "Box, Monkey Cubes"
+	item_cost = 10
+	path = /obj/item/weapon/storage/box/monkeycubes
+
+/datum/uplink_item/item/medical/farwacubes
+	name = "Box, Farwa Cubes"
+	item_cost = 10
+	path = /obj/item/weapon/storage/box/monkeycubes
+
+/datum/uplink_item/item/medical/neaeracubes
+	name = "Box, Neaera Cubes"
+	item_cost = 10
+	path = /obj/item/weapon/storage/box/monkeycubes/neaeracubes
+
+/datum/uplink_item/item/medical/stokcubes
+	name = "Box, Stok Cubes"
+	item_cost = 10
+	path = /obj/item/weapon/storage/box/monkeycubes/stokcubes
+
 /datum/uplink_item/item/medical/surgery
 	name = "Surgery kit"
 	item_cost = 45

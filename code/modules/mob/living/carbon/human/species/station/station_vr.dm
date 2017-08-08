@@ -313,6 +313,8 @@
 	mob_size = MOB_MEDIUM
 	spawn_flags = SPECIES_CAN_JOIN
 	min_age = 18
+	push_flags = ~HEAVY //Allows them to use micro step code.
+	swap_flags = ~HEAVY
 
 /datum/species/shapeshifter/promethean
 	spawn_flags = SPECIES_CAN_JOIN

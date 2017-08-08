@@ -17,7 +17,7 @@
 				return
 			if (src.client)
 				if (client.prefs.muted & MUTE_IC)
-					src << "\red You cannot send IC messages (muted)."
+					src << "<font color='red'>You cannot send IC messages (muted).</font>"
 					return
 			if (stat)
 				return
@@ -60,7 +60,7 @@
 		if ("help")
 			src << "alarm,alert,notice,flash,blink,whistle,beep,boop"
 		else
-			src << "\blue Unusable emote '[act]'. Say *help for a list."
+			src << "<font color='blue'>Unusable emote '[act]'. Say *help for a list.</font>"
 
 	if (message)
 		log_emote("[name]/[key] : [message]")

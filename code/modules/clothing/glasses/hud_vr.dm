@@ -1,5 +1,5 @@
 /obj/item/clothing/glasses/omnihud
-	name = "AR glasses"
+	name = "\improper AR glasses"
 	desc = "The KHI-62 AR Glasses are a design from Kitsuhana Heavy Industries. These are a cheap export version \
 	for Nanotrasen. Probably not as complete as KHI could make them, but more readily available for NT."
 	origin_tech = list(TECH_MAGNET = 3, TECH_BIO = 3)
@@ -69,7 +69,7 @@
 	prescription = 1
 
 /obj/item/clothing/glasses/omnihud/med
-	name = "AR-M glasses"
+	name = "\improper AR-M glasses"
 	desc = "The KHI-62-M AR glasses are a design from Kitsuhana Heavy Industries. \
 	These have been upgraded with medical records access and virus database integration."
 	mode = "med"
@@ -82,7 +82,7 @@
 		return 1
 
 /obj/item/clothing/glasses/omnihud/sec
-	name = "AR-S glasses"
+	name = "\improper AR-S glasses"
 	desc = "The KHI-62-S AR glasses are a design from Kitsuhana Heavy Industries. \
 	These have been upgraded with security records integration and flash protection."
 	mode = "sec"
@@ -96,7 +96,7 @@
 		return 1
 
 /obj/item/clothing/glasses/omnihud/eng
-	name = "AR-E glasses"
+	name = "\improper AR-E glasses"
 	desc = "The KHI-62-E AR glasses are a design from Kitsuhana Heavy Industries. \
 	These have been upgraded with advanced electrochromic lenses to protect your eyes during welding."
 	mode = "eng"
@@ -110,7 +110,7 @@
 		return 1
 
 /obj/item/clothing/glasses/omnihud/rnd
-	name = "AR-R glasses"
+	name = "\improper AR-R glasses"
 	desc = "The KHI-62-R AR glasses are a design from Kitsuhana Heavy Industries. \
 	These have been ... modified ... to fit into a different frame."
 	mode = "sci"
@@ -119,7 +119,7 @@
 	icon_state = "purple"
 
 /obj/item/clothing/glasses/omnihud/eng/meson
-	name = "Meson scanner HUD"
+	name = "meson scanner HUD"
 	desc = "A headset equipped with a scanning lens and mounted retinal projector. They don't provide any eye protection, but they're less obtrusive than goggles."
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
@@ -157,7 +157,7 @@
 		usr.update_action_buttons()
 
 /obj/item/clothing/glasses/omnihud/all
-	name = "AR-B glasses"
+	name = "\improper AR-B glasses"
 	desc = "The KHI-62-B AR glasses are a design from Kitsuhana Heavy Industries. \
 	These have been upgraded with every feature the lesser models have. Now we're talkin'."
 	mode = "best"

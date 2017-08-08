@@ -210,6 +210,7 @@
 	var/chargetime = (2 SECONDS)
 	var/chargecost = 1000 //units of charge
 	var/burn_damage_amt = 5
+	var/use_on_synthetic = 0 //If 1, this is only useful on FBPs, if 0, this is only useful on fleshies
 
 	var/wielded = 0
 	var/cooldown = 0
@@ -260,8 +261,12 @@
 
 //Checks for various conditions to see if the mob is revivable
 /obj/item/weapon/shockpaddles/proc/can_defib(mob/living/carbon/human/H) //This is checked before doing the defib operation
-	if((H.species.flags & NO_SCAN) || H.isSynthetic())
+	if((H.species.flags & NO_SCAN))
 		return "buzzes, \"Unrecogized physiology. Operation aborted.\""
+	else if(H.isSynthetic() && !use_on_synthetic)
+		return "buzzes, \"Synthetic Body. Operation aborted.\""
+	else if(!H.isSynthetic() && use_on_synthetic)
+		return "buzzes, \"Organic Body. Operation aborted.\""
 
 	if(H.stat != DEAD)
 		return "buzzes, \"Patient is not in a valid state. Operation aborted.\""
@@ -274,7 +279,7 @@
 /obj/item/weapon/shockpaddles/proc/can_revive(mob/living/carbon/human/H) //This is checked right before attempting to revive
 
 	var/deadtime = world.time - H.timeofdeath
-	if (deadtime > DEFIB_TIME_LIMIT)
+	if (deadtime > DEFIB_TIME_LIMIT && !H.isSynthetic())
 		return "buzzes, \"Resuscitation failed - Excessive neural degeneration. Further attempts futile.\""
 
 	H.updatehealth()
@@ -624,8 +629,29 @@
 	chargetime = (1 SECONDS)
 */
 
-//Stub
+//FBP Defibs
 /obj/item/device/defib_kit/jumper_kit
+	name = "jumper cable kit"
+	desc = "A device that delivers powerful shocks to detachable jumper cables that are capable of reviving full body prosthetics."
+	icon_state = "jumperunit"
+	item_state = "jumperunit"
+	paddles = /obj/item/weapon/shockpaddles/linked/jumper
+
+/obj/item/device/defib_kit/jumper_kit/loaded
+	bcell = /obj/item/weapon/cell/high
+
+/obj/item/weapon/shockpaddles/linked/jumper
+	name = "jumper cables"
+	icon_state = "jumperpaddles"
+	item_state = "jumperpaddles"
+	use_on_synthetic = 1
+
+/obj/item/weapon/shockpaddles/robot/jumper
+	name = "jumper cables"
+	desc = "A pair of advanced shockpaddles powered by a robot's internal power cell, able to penetrate thick clothing."
+	icon_state = "jumperpaddles0"
+	item_state = "jumperpaddles0"
+	use_on_synthetic = 1
 
 #undef DEFIB_TIME_LIMIT
 #undef DEFIB_TIME_LOSS

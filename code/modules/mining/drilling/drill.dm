@@ -310,7 +310,7 @@
 			user << "<span class='notice'>You can't anchor something to empty space. Idiot.</span>"
 			return
 
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
+		playsound(src, W.usesound, 100, 1)
 		user << "<span class='notice'>You [anchored ? "un" : ""]anchor the brace.</span>"
 
 		anchored = !anchored

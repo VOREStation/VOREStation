@@ -240,7 +240,7 @@
 		if ("help")
 			src << "salute, bow-(none)/mob, clap, flap, aflap, twitch, twitch_s, nod, deathgasp, glare-(none)/mob, stare-(none)/mob, look, beep, ping, \nbuzz, law, halt, yes, no"
 		else
-			src << "\blue Unusable emote '[act]'. Say *help for a list."
+			src << "<font color='blue'>Unusable emote '[act]'. Say *help for a list.</font>"
 
 	if ((message && src.stat == 0))
 		custom_emote(m_type,message)

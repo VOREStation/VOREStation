@@ -14,7 +14,7 @@ obj/structure/firedoor_assembly/update_icon()
 	else
 		icon_state = "door_construction"
 
-obj/structure/firedoor_assembly/attackby(C as obj, mob/user as mob)
+obj/structure/firedoor_assembly/attackby(obj/item/C, mob/user as mob)
 	if(istype(C, /obj/item/stack/cable_coil) && !wired && anchored)
 		var/obj/item/stack/cable_coil/cable = C
 		if (cable.get_amount() < 1)
@@ -27,7 +27,7 @@ obj/structure/firedoor_assembly/attackby(C as obj, mob/user as mob)
 				user << "<span class='notice'>You wire \the [src].</span>"
 
 	else if(istype(C, /obj/item/weapon/wirecutters) && wired )
-		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
+		playsound(src.loc, C.usesound, 100, 1)
 		user.visible_message("[user] cuts the wires from \the [src].", "You start to cut the wires from \the [src].")
 
 		if(do_after(user, 40))
@@ -48,7 +48,7 @@ obj/structure/firedoor_assembly/attackby(C as obj, mob/user as mob)
 			user << "<span class='warning'>You must secure \the [src] first!</span>"
 	else if(istype(C, /obj/item/weapon/wrench))
 		anchored = !anchored
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		playsound(src.loc, C.usesound, 50, 1)
 		user.visible_message("<span class='warning'>[user] has [anchored ? "" : "un" ]secured \the [src]!</span>",
 							  "You have [anchored ? "" : "un" ]secured \the [src]!")
 		update_icon()

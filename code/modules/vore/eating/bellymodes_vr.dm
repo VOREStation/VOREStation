@@ -633,6 +633,7 @@
 			P.tail_style = O.tail_style
 			P.ear_style = O.ear_style
 			P.species = O.species
+			P.custom_species = O.custom_species
 			P.species.create_organs(P)
 			for(var/obj/item/organ/I in P.organs)
 				I.species = O.species

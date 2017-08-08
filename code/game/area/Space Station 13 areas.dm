@@ -1431,8 +1431,8 @@ area/space/atmosalert()
  	name = "\improper Visitor Lodging"
  	icon_state = "visitor_lodging"
 
-/area/crew_quarters/visitor_dinning
- 	name = "\improper Visitor Dinning"
+/area/crew_quarters/visitor_dining
+ 	name = "\improper Visitor Dining"
  	icon_state = "visitor_dinning"
 
 /area/crew_quarters/visitor_laundry
