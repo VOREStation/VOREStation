@@ -61,7 +61,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 /mob/living/proc/resize(var/new_size, var/animate = TRUE)
 	if(size_multiplier == new_size)
 		return 1
-	ASSERT(new_size >= RESIZE_TINY && new_size <= RESIZE_HUGE)
+	//ASSERT(new_size >= RESIZE_TINY && new_size <= RESIZE_HUGE) //You served your use. Now scurry off and stop spamming my chat.
 	if(animate)
 		var/matrix/resize = matrix() // Defines the matrix to change the player's size
 		resize.Scale(new_size) //Change the size of the matrix
