@@ -58,7 +58,7 @@
 			if(!istype(L))
 				continue
 			var/turf/mob_turf = get_turf(L)
-			if(!(mob_turf.z in impacted.expected_z_levels))
+			if(!mob_turf || !(mob_turf.z in impacted.expected_z_levels))
 				continue
 			if(!L.buckled && !issilicon(L))
 				if(!L.Check_Shoegrip())
