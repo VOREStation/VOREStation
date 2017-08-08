@@ -67,7 +67,7 @@
 	<b>DOB:</b> 09/Sep/2529 | <b>HEIGHT:</b> 187cm | <b>SEX:</b> Male
 
 	The individual named above is licensed by the Nanotrasen Department of Civil Protection to carry one .357 pistol.
-	This license expires on 30/March/2561 and must be renewed by CentCom prior to this date."}
+	This license expires on 2/August/2562 and must be renewed by CentCom prior to this date."}
 
 // arokha:Aronai Kadigan
 /obj/item/fluff/permit/aronai_kadigan
