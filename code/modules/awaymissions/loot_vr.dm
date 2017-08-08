@@ -163,7 +163,7 @@
 					prob(7);/obj/item/weapon/gun/projectile/shotgun/pump/unsc,\
 					prob(7);/obj/item/weapon/gun/projectile/deagle,\
 					prob(7);/obj/item/weapon/gun/launcher/grenade,\
-					prob(6);/obj/item/weapon/gun/projectile/SVD,\
+				/*	prob(6);/obj/item/weapon/gun/projectile/SVD,\*/
 					prob(6);/obj/item/weapon/gun/projectile/automatic/l6_saw,\
 					prob(6);/obj/item/weapon/gun/energy/lasercannon,\
 					prob(5);/obj/item/weapon/gun/projectile/automatic/carbine,\
