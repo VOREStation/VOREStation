@@ -46,35 +46,35 @@
 		if(..())
 			var/datum/sprite_accessory/tail/taur/TT = H.tail_style
 			if(istype(H) && istype(TT, /datum/sprite_accessory/tail/taur/horse))
-				item_state = "[icon_base]_horse"
+				item_state = "[icon_base]_Horse"
 				if(H.size_multiplier >= RESIZE_BIG) //Are they a macro?
 					slowdown = 0
 				else
 					slowdown = initial(slowdown)
 				return 1
 			if(istype(H) && istype(TT, /datum/sprite_accessory/tail/taur/wolf))
-				item_state = "[icon_base]_wolf"
+				item_state = "[icon_base]_Wolf"
 				if(H.size_multiplier >= RESIZE_BIG) //Are they a macro?
 					slowdown = 0
 				else
 					slowdown = initial(slowdown)
 				return 1
 			if(istype(H) && istype(TT, /datum/sprite_accessory/tail/taur/cow))
-				item_state = "[icon_base]_cow"
+				item_state = "[icon_base]_Cow"
 				if(H.size_multiplier >= RESIZE_BIG) //Are they a macro?
 					slowdown = 0
 				else
 					slowdown = initial(slowdown)
 				return 1
 			if(istype(H) && istype(TT, /datum/sprite_accessory/tail/taur/lizard))
-				item_state = "[icon_base]_lizard"
+				item_state = "[icon_base]_Lizard"
 				if(H.size_multiplier >= RESIZE_BIG) //Are they a macro?
 					slowdown = 0
 				else
 					slowdown = initial(slowdown)
 				return 1
 			if(istype(H) && istype(TT, /datum/sprite_accessory/tail/taur/feline))
-				item_state = "[icon_base]_feline"
+				item_state = "[icon_base]_Feline"
 				if(H.size_multiplier >= RESIZE_BIG) //Are they a macro?
 					slowdown = 0
 				else
