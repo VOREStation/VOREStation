@@ -8,7 +8,7 @@
 
 	if (layer != 2.45)
 		layer = 2.45 //Just above cables with their 2.44
-		src << text("\blue You are now hiding.")
+		src << text("<font color='blue'>You are now hiding.</font>")
 	else
 		layer = MOB_LAYER
-		src << text("\blue You have stopped hiding.")
+		src << text("<font color='blue'>You have stopped hiding.</font>")

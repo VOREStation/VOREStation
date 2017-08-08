@@ -81,7 +81,7 @@
 		if(istype(W, /obj/item/weapon/crowbar))
 			if (charge < (capacity / 100))
 				if (!output_attempt && !input_attempt)
-					playsound(get_turf(src), 'sound/items/Crowbar.ogg', 50, 1)
+					playsound(src, W.usesound, 50, 1)
 					var/obj/structure/frame/M = new /obj/structure/frame(src.loc)
 					M.frame_type = "machine"
 					M.state = 2

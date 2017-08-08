@@ -243,9 +243,6 @@
 /datum/reagent/ethanol/hippies_delight
 	price_tag = 4
 
-/datum/reagent/ethanol/hooch
-	price_tag = 4
-
 /datum/reagent/ethanol/iced_beer
 	price_tag = 4
 
@@ -327,13 +324,54 @@
 /datum/reagent/ethanol/whiskeysoda
 	price_tag = 4
 
+/datum/reagent/ethanol/binmanbliss
+	price_tag = 4
+
+/datum/reagent/ethanol/xanaducannon
+	price_tag = 4
+
+/datum/reagent/ethanol/balloon
+	price_tag = 4
+
+/datum/reagent/ethanol/coffee/elysiumfacepunch
+	price_tag = 4
+
+/datum/reagent/ethanol/saketini
+	price_tag = 4
+
+/datum/reagent/ethanol/tokyorose
+	price_tag = 4
+
+/datum/reagent/ethanol/ginzamary
+	price_tag = 4
+
+/datum/reagent/ethanol/tamagozake
+	price_tag = 4
+
+/datum/reagent/ethanol/sakebomb
+	price_tag = 4
+
+/datum/reagent/ethanol/erebusmoonrise
+	price_tag = 4
+
+// The Cheap Shit //
+
+/datum/reagent/ethanol/hooch
+	price_tag = 2
+
+/datum/reagent/ethanol/debugger
+	price_tag = 2
+
+/datum/reagent/ethanol/spacersbrew
+	price_tag = 2
+
+/datum/reagent/ethanol/natunabrandy
+	price_tag = 2
 
 // Cocktails without alcohol //
 
 /datum/reagent/ethanol/bananahonk
 	price_tag = 3
-
-
 
 // From the machine //
 
@@ -361,6 +399,8 @@
 /obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice
 	price_tag = 1
 
+/obj/item/weapon/reagent_containers/food/drinks/cans/gingerale
+	price_tag = 1
 
 //***************//
 //----Bottles----//
@@ -458,6 +498,8 @@
 /obj/item/weapon/reagent_containers/food/drinks/bottle/pwine
 	price_tag = 25
 
+/obj/item/weapon/reagent_containers/food/drinks/bottle/sake
+	price_tag = 25
 
 //***************//
 //---Foodstuff---//
@@ -973,3 +1015,10 @@
 
 /obj/item/weapon/flame/lighter/zippo
 	price_tag = 5
+
+//******************************//
+//|IN THIS MOMENT I AM EUPHORIC|//
+//******************************//
+
+/datum/reagent/ethanol/euphoria
+	price_tag = 30

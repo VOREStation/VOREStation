@@ -30,12 +30,16 @@
 	var/datum/belly/transferlocation = null	// Location that the prey is released if they struggle and get dropped off.
 
 	var/tmp/digest_mode = DM_HOLD				// Whether or not to digest. Default to not digest.
-	var/tmp/list/digest_modes = list(DM_HOLD,DM_DIGEST,DM_HEAL,DM_ABSORB,DM_DRAIN,DM_UNABSORB)	// Possible digest modes
+	var/tmp/list/digest_modes = list(DM_HOLD,DM_DIGEST,DM_ITEMWEAK,DM_STRIPDIGEST,DM_HEAL,DM_ABSORB,DM_DRAIN,DM_UNABSORB,DM_DIGEST_NUMB)	// Possible digest modes
 	var/tmp/list/transform_modes = list(DM_TRANSFORM_MALE,DM_TRANSFORM_FEMALE,DM_TRANSFORM_KEEP_GENDER,DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR,DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR_EGG,DM_TRANSFORM_REPLICA,DM_TRANSFORM_REPLICA_EGG,DM_TRANSFORM_KEEP_GENDER_EGG,DM_TRANSFORM_MALE_EGG,DM_TRANSFORM_FEMALE_EGG, DM_EGG)
 	var/tmp/mob/living/owner					// The mob whose belly this is.
 	var/tmp/list/internal_contents = list()		// People/Things you've eaten into this belly!
 	var/tmp/is_full								// Flag for if digested remeans are present. (for disposal messages)
 	var/tmp/emotePend = 0						// If there's already a spawned thing counting for the next emote
+	var/tmp/list/items_preserved = list()		// Stuff that wont digest.
+	var/tmp/list/checked_slots = list()			// Checked gear slots for strip digest.
+	var/list/slots = list(slot_back,slot_handcuffed,slot_l_store,slot_r_store,slot_wear_mask,slot_l_hand,slot_r_hand,slot_wear_id,slot_glasses,slot_gloves,slot_head,slot_shoes,slot_belt,slot_wear_suit,slot_w_uniform,slot_s_store,slot_l_ear,slot_r_ear)
+
 
 	// Don't forget to watch your commas at the end of each line if you change these.
 	var/list/struggle_messages_outside = list(
@@ -119,11 +123,11 @@
 
 		M.forceMove(owner.loc)  // Move the belly contents into the same location as belly's owner.
 		internal_contents -= M  // Remove from the belly contents
-
 		var/datum/belly/B = check_belly(owner) // This makes sure that the mob behaves properly if released into another mob
 		if(B)
 			B.internal_contents += M
-
+	items_preserved.Cut()
+	checked_slots.Cut()
 	owner.visible_message("<font color='green'><b>[owner] expels everything from their [lowertext(name)]!</b></font>")
 	return 1
 
@@ -136,6 +140,8 @@
 
 	M.forceMove(owner.loc)  // Move the belly contents into the same location as belly's owner.
 	src.internal_contents -= M  // Remove from the belly contents
+	if(M in items_preserved)
+		src.items_preserved -= M
 
 	if(istype(M,/mob/living))
 		var/mob/living/ML = M
@@ -256,8 +262,8 @@
 	internal_contents -= M
 
 	// If digested prey is also a pred... anyone inside their bellies gets moved up.
-	if (is_vore_predator(M))
-		for (var/bellytype in M.vore_organs)
+	if(is_vore_predator(M))
+		for(var/bellytype in M.vore_organs)
 			var/datum/belly/belly = M.vore_organs[bellytype]
 			for (var/obj/thing in belly.internal_contents)
 				thing.loc = owner
@@ -268,9 +274,36 @@
 				subprey << "As [M] melts away around you, you find yourself in [owner]'s [name]"
 
 	//Drop all items into the belly.
-	if (config.items_survive_digestion)
-		for (var/obj/item/W in M)
-			_handle_digested_item(W,M)
+	if(config.items_survive_digestion)
+		var/mob/living/carbon/human/H = M
+		if(!H)
+			H = owner
+		for(var/obj/item/W in H)
+			//_handle_digested_item(W,M) //The gut handles them now.
+			if(istype(W,/obj/item/organ/internal/mmi_holder/posibrain))
+				var/obj/item/organ/internal/mmi_holder/MMI = W
+				var/atom/movable/brain = MMI.removed()
+				if(brain)
+					H.remove_from_mob(brain,owner)
+					brain.forceMove(owner)
+					items_preserved += brain
+					internal_contents += brain
+			if(W == H.get_equipped_item(slot_wear_id))
+				H.remove_from_mob(W,owner)
+				internal_contents += W
+			if(W == H.get_equipped_item(slot_w_uniform))
+				var/list/stash = list(slot_r_store,slot_l_store,slot_wear_id,slot_belt)
+				for(var/stashslot in stash)
+					var/obj/item/SL = H.get_equipped_item(stashslot)
+					if(SL)
+						SL.forceMove(owner)
+						internal_contents += SL
+				H.remove_from_mob(W,owner)
+				internal_contents += W
+			else
+				if(!(istype(W,/obj/item/organ) || istype(W,/obj/item/weapon/storage/internal) || istype(W,/obj/screen)))//Don't drop organs or pocket spaces
+					H.remove_from_mob(W,owner)
+					internal_contents += W
 
 	//Reagent transfer
 	if(ishuman(owner))
@@ -300,24 +333,30 @@
 		ID.icon_state = "digested"
 		ID.access = list() // No access
 		M.remove_from_mob(ID,owner)
-		internal_contents += ID
+		items_preserved += ID
 
 	// Posibrains have to be pulled 'out' of their organ version.
-	else if(istype(W,/obj/item/organ/internal/mmi_holder/posibrain))
+
+	if(istype(W,/obj/item/organ/internal/mmi_holder/posibrain))
 		var/obj/item/organ/internal/mmi_holder/MMI = W
 		var/atom/movable/brain = MMI.removed()
 		if(brain)
 			M.remove_from_mob(brain,owner)
 			brain.forceMove(owner)
+			items_preserved += brain
 			internal_contents += brain
 
+	if(!_is_digestable(W))
+		items_preserved += W
+		M.remove_from_mob(W,owner)
+		internal_contents += W
+
 	else
-		if(!_is_digestable(W))
+		for(var/obj/item/SubItem in W)
+			_handle_digested_item(SubItem,M)
+		if(!(istype(W,/obj/item/organ) || istype(W,/obj/item/weapon/storage/internal) || istype(W,/obj/screen)))// Don't drop organs or pocket spaces.
 			M.remove_from_mob(W,owner)
 			internal_contents += W
-		else
-			for (var/obj/item/SubItem in W)
-				_handle_digested_item(SubItem,M)
 
 /datum/belly/proc/_is_digestable(var/obj/item/I)
 	if(is_type_in_list(I,important_items))
@@ -421,6 +460,27 @@
 				return
 
 		else if(prob(transferchance) && istype(transferlocation)) //Next, let's have it see if they end up getting into an even bigger mess then when they started.
+			var/location_found = 0
+			var/name_found = 0
+			for(var/I in owner.vore_organs)
+				var/datum/belly/B = owner.vore_organs[I]
+				if(B == transferlocation)
+					location_found = 1
+					break
+
+			if(!location_found)
+				for(var/I in owner.vore_organs)
+					var/datum/belly/B = owner.vore_organs[I]
+					if(B.name == transferlocation.name)
+						name_found = 1
+						transferlocation = B
+						break
+
+			if(!location_found && !name_found)
+				to_chat(owner, "<span class='warning'>Something went wrong with your belly transfer settings.</span>")
+				transferlocation = null
+				return
+
 			R << "<span class='warning'>Your attempt to escape [name] has failed and your struggles only results in you sliding into [owner]'s [transferlocation]!</span>"
 			owner << "<span class='warning'>Someone slid into your [transferlocation] due to their struggling inside your [name]!</span>"
 			transfer_contents(R, transferlocation)
@@ -447,7 +507,10 @@
 	if(!(content in internal_contents))
 		return
 	internal_contents -= content
-	target.internal_contents |= content
+	target.internal_contents += content
+	if(content in items_preserved)
+		items_preserved -= content
+		target.items_preserved += content
 	if(isliving(content))
 		var/mob/living/M = content
 		if(target.inside_flavor)

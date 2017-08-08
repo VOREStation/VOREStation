@@ -25,5 +25,7 @@
 		new /obj/item/weapon/material/hatchet(src)
 		new /obj/item/weapon/wirecutters/clippers(src)
 		new /obj/item/weapon/reagent_containers/spray/plantbgone(src)
+		new /obj/item/clothing/suit/storage/hooded/wintercoat/hydro(src)
+		new /obj/item/clothing/shoes/boots/winter/hydro(src)
 //		new /obj/item/weapon/bee_net(src) //No more bees, March 2014
 		return

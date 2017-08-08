@@ -95,3 +95,8 @@
 /obj/fiftyspawner/phoronrglass
 	name = "stack of reinforced borosilicate glass"
 	material = "material/glass/phoronrglass"
+
+//R-UST port
+/obj/fiftyspawner/deuterium
+	name = "stack of deuterium"
+	material = "material/deuterium"

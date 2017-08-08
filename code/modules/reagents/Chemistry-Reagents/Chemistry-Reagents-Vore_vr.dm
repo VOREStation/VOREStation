@@ -9,15 +9,12 @@
 	description = "Glowing yellow liquid."
 	reagent_state = LIQUID
 	color = "#FFFF00" // rgb: 255, 255, 0
-	metabolism = 2.5
+	metabolism = 0.01
 
 /datum/reagent/macrocillin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	for(var/size in list(RESIZE_SMALL, RESIZE_NORMAL, RESIZE_BIG, RESIZE_HUGE))
-		if(M.size_multiplier < size)
-			M.resize(size)
-			M << "<font color='green'>You grow!</font>"
-			break
+	if(M.size_multiplier < RESIZE_HUGE)
+		M.resize(M.size_multiplier+0.01)//Incrrease 1% per tick.
 	return
 
 /datum/reagent/microcillin
@@ -26,15 +23,12 @@
 	description = "Murky purple liquid."
 	reagent_state = LIQUID
 	color = "#800080"
-	metabolism = 2.5
+	metabolism = 0.01
 
 /datum/reagent/microcillin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	for(var/size in list(RESIZE_BIG, RESIZE_NORMAL, RESIZE_SMALL, RESIZE_TINY))
-		if(M.size_multiplier > size)
-			M.resize(size)
-			M << "<span class='alert'>You shrink!</span>"
-			break;
+	if(M.size_multiplier > RESIZE_TINY)
+		M.resize(M.size_multiplier-0.01) //Decrease 1% per tick.
 	return
 
 
@@ -44,22 +38,14 @@
 	description = "Translucent cyan liquid."
 	reagent_state = LIQUID
 	color = "#00FFFF"
-	metabolism = 2.5
+	metabolism = 0.01 //One unit will be just enough to bring someone from 200% to 100%
 
 /datum/reagent/normalcillin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	if(M.size_multiplier > RESIZE_BIG)
-		M.resize(RESIZE_BIG)
-		M << "<span class='alert'>You shrink!</span>"
-	else if(M.size_multiplier > RESIZE_NORMAL)
-		M.resize(RESIZE_NORMAL)
-		M << "<span class='alert'>You shrink!</span>"
+	if(M.size_multiplier > RESIZE_NORMAL)
+		M.resize(M.size_multiplier-0.01) //Decrease by 1% size per tick.
 	else if(M.size_multiplier < RESIZE_NORMAL)
-		M.resize(RESIZE_NORMAL)
-		M << "<font color='green'>You grow!</font>"
-	else if(M.size_multiplier < RESIZE_SMALL)
-		M.resize(RESIZE_SMALL)
-		M << "<font color='green'>You grow!</font>"
+		M.resize(M.size_multiplier+0.01) //Increase 1% per tick.
 	return
 
 

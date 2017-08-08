@@ -166,7 +166,7 @@
 				overlays += image("icon" = I.icon, "icon_state" = I.icon_state, "layer" = 30 + I.layer)
 				addedSomething = 1
 		if ( addedSomething )
-			user.visible_message("\blue [user] load some items onto their service tray.")
+			user.visible_message("<font color='blue'>[user] load some items onto their service tray.</font>")
 
 		return
 
@@ -206,9 +206,9 @@
 							sleep(rand(2,4))
 		if ( droppedSomething )
 			if ( foundtable )
-				user.visible_message("\blue [user] unloads their service tray.")
+				user.visible_message("<font color='blue'>[user] unloads their service tray.</font>")
 			else
-				user.visible_message("\blue [user] drops all the items on their tray.")
+				user.visible_message("<font color='blue'>[user] drops all the items on their tray.</font>")
 
 	return ..()
 
@@ -288,7 +288,7 @@
 	deploy_paper(get_turf(src))
 
 /obj/item/weapon/form_printer/proc/deploy_paper(var/turf/T)
-	T.visible_message("\blue \The [src.loc] dispenses a sheet of crisp white paper.")
+	T.visible_message("<font color='blue'>\The [src.loc] dispenses a sheet of crisp white paper.</font>")
 	new /obj/item/weapon/paper(T)
 
 

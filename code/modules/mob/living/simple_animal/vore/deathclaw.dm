@@ -6,7 +6,7 @@
 	icon_living = "deathclaw"
 	icon_state = "deathclaw"
 
-	attacktext = "mauls"
+	attacktext = "mauled"
 
 	faction = "deathclaw"
 

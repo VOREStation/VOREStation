@@ -44,8 +44,8 @@
 	chance_maxm = 1
 
 	activate(var/mob/living/carbon/mob,var/multiplier)
-		var/newsize = pick(player_sizes_list)
-		mob.resize(player_sizes_list[newsize])
+		var/newsize = rand (25, 200)
+		mob.resize(newsize/100)
 		viewers(mob) << "<span class='warning'>[mob.name] suddenly changes size!</span>"
 
 /datum/disease2/effect/flip

@@ -42,6 +42,7 @@
 					anchored = 1
 					mode = 1
 					src.visible_message("<span class='notice'>[user] attaches [src] to the cable!</span>")
+					playsound(src, I.usesound, 50, 1)
 					return
 			else
 				user << "Device must be placed over an exposed cable to attach to it."
@@ -54,6 +55,7 @@
 			mode = 0
 			src.visible_message("<span class='notice'>[user] detaches [src] from the cable!</span>")
 			set_light(0)
+			playsound(src, I.usesound, 50, 1)
 			icon_state = "powersink0"
 
 			return

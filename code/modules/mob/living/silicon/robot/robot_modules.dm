@@ -153,7 +153,7 @@ var/global/list/robot_modules = list(
 /obj/item/weapon/robot_module/robot/New()
 	..()
 	src.modules += new /obj/item/device/flash(src)
-	src.modules += new /obj/item/weapon/crowbar(src)
+	src.modules += new /obj/item/weapon/crowbar/cyborg(src)
 	src.modules += new /obj/item/weapon/extinguisher(src)
 
 /obj/item/weapon/robot_module/robot/standard
@@ -172,12 +172,12 @@ var/global/list/robot_modules = list(
 					"Basic" = "robot_old",
 					"Android" = "droid",
 					"Drone" = "drone-standard"
-				  )
+					)
 
 /obj/item/weapon/robot_module/robot/standard/New()
 	..()
 	src.modules += new /obj/item/weapon/melee/baton/loaded(src)
-	src.modules += new /obj/item/weapon/wrench(src)
+	src.modules += new /obj/item/weapon/wrench/cyborg(src)
 	src.modules += new /obj/item/device/healthanalyzer(src)
 	src.emag = new /obj/item/weapon/melee/energy/sword(src)
 
@@ -203,14 +203,15 @@ var/global/list/robot_modules = list(
 					"Basic" = "Medbot",
 					"Advanced Droid" = "droid-medical",
 					"Needles" = "medicalrobot",
-					"Drone" = "drone-surgery"
+					"Drone" = "drone-surgery",
+					"Handy" = "handy-med"
 					)
 
 /obj/item/weapon/robot_module/robot/medical/surgeon/New()
 	..()
 	src.modules += new /obj/item/borg/sight/hud/med(src)
 	src.modules += new /obj/item/device/healthanalyzer(src)
-	src.modules += new /obj/item/weapon/reagent_containers/borghypo(src)
+	src.modules += new /obj/item/weapon/reagent_containers/borghypo/surgeon(src)
 	src.modules += new /obj/item/weapon/surgical/scalpel(src)
 	src.modules += new /obj/item/weapon/surgical/hemostat(src)
 	src.modules += new /obj/item/weapon/surgical/retractor(src)
@@ -221,6 +222,9 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/surgical/circular_saw(src)
 	src.modules += new /obj/item/weapon/surgical/surgicaldrill(src)
 	src.modules += new /obj/item/weapon/gripper/no_use/organ(src)
+	src.modules += new /obj/item/weapon/gripper/medical(src)
+	src.modules += new /obj/item/weapon/shockpaddles/robot(src)
+	src.modules += new /obj/item/weapon/reagent_containers/dropper(src) // Allows surgeon borg to fix necrosis
 	src.emag = new /obj/item/weapon/reagent_containers/spray(src)
 	src.emag.reagents.add_reagent("pacid", 250)
 	src.emag.name = "Polyacid spray"
@@ -270,12 +274,13 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/device/healthanalyzer(src)
 	src.modules += new /obj/item/device/reagent_scanner/adv(src)
 	src.modules += new /obj/item/roller_holder(src)
-	src.modules += new /obj/item/weapon/reagent_containers/borghypo(src)
+	src.modules += new /obj/item/weapon/reagent_containers/borghypo/crisis(src)
 	src.modules += new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
 	src.modules += new /obj/item/weapon/reagent_containers/dropper/industrial(src)
 	src.modules += new /obj/item/weapon/reagent_containers/syringe(src)
 	src.modules += new /obj/item/weapon/gripper/no_use/organ(src)
-	src.modules += new /obj/item/weapon/gripper/chemistry(src)
+	src.modules += new /obj/item/weapon/gripper/medical(src)
+	src.modules += new /obj/item/weapon/shockpaddles/robot(src)
 	src.emag = new /obj/item/weapon/reagent_containers/spray(src)
 	src.emag.reagents.add_reagent("pacid", 250)
 	src.emag.name = "Polyacid spray"
@@ -283,8 +288,8 @@ var/global/list/robot_modules = list(
 	var/datum/matter_synth/medicine = new /datum/matter_synth/medicine(15000)
 	synths += medicine
 
-	var/obj/item/stack/medical/ointment/O = new /obj/item/stack/medical/ointment(src)
-	var/obj/item/stack/medical/bruise_pack/B = new /obj/item/stack/medical/bruise_pack(src)
+	var/obj/item/stack/medical/advanced/ointment/O = new /obj/item/stack/medical/advanced/ointment(src)
+	var/obj/item/stack/medical/advanced/bruise_pack/B = new /obj/item/stack/medical/advanced/bruise_pack(src)
 	var/obj/item/stack/medical/splint/S = new /obj/item/stack/medical/splint(src)
 	O.uses_charge = 1
 	O.charge_costs = list(1000)
@@ -335,7 +340,8 @@ var/global/list/robot_modules = list(
 					"Landmate" = "landmate",
 					"Landmate - Treaded" = "engiborg+tread",
 					"Drone" = "drone-engineer",
-					"Treadwell" = "treadwell"
+					"Treadwell" = "treadwell",
+					"Handy" = "handy-engineer"
 					)
 
 /obj/item/weapon/robot_module/robot/engineering/construction
@@ -348,8 +354,8 @@ var/global/list/robot_modules = list(
 	..()
 	src.modules += new /obj/item/borg/sight/meson(src)
 	src.modules += new /obj/item/weapon/rcd/borg(src)
-	src.modules += new /obj/item/weapon/screwdriver(src)
-	src.modules += new /obj/item/weapon/wrench(src)
+	src.modules += new /obj/item/weapon/screwdriver/cyborg(src)
+	src.modules += new /obj/item/weapon/wrench/cyborg(src)
 	src.modules += new /obj/item/weapon/weldingtool/electric/mounted(src)
 	src.modules += new /obj/item/weapon/pickaxe/plasmacutter(src)
 	src.modules += new /obj/item/device/pipe_painter(src)
@@ -389,9 +395,9 @@ var/global/list/robot_modules = list(
 	..()
 	src.modules += new /obj/item/borg/sight/meson(src)
 	src.modules += new /obj/item/weapon/weldingtool/electric/mounted(src)
-	src.modules += new /obj/item/weapon/screwdriver(src)
-	src.modules += new /obj/item/weapon/wrench(src)
-	src.modules += new /obj/item/weapon/wirecutters(src)
+	src.modules += new /obj/item/weapon/screwdriver/cyborg(src)
+	src.modules += new /obj/item/weapon/wrench/cyborg(src)
+	src.modules += new /obj/item/weapon/wirecutters/cyborg(src)
 	src.modules += new /obj/item/device/multitool(src)
 	src.modules += new /obj/item/device/t_scanner(src)
 	src.modules += new /obj/item/device/analyzer(src)
@@ -474,7 +480,7 @@ var/global/list/robot_modules = list(
 					"Basic" = "secborg",
 					"Black Knight" = "securityrobot",
 					"Drone" = "drone-sec"
-				)
+					)
 
 /obj/item/weapon/robot_module/robot/security/general/New()
 	..()
@@ -509,6 +515,7 @@ var/global/list/robot_modules = list(
 	channels = list("Service" = 1)
 	sprites = list(
 					"M-USE NanoTrasen" = "robotJani",
+					"Arachne" = "crawler",
 					"Cabeiri" = "eyebot-janitor",
 					"CUPCAKE" = "Noble-CLN",
 					"Haruka" = "marinaJN",
@@ -560,6 +567,7 @@ var/global/list/robot_modules = list(
 					"Cabeiri" = "eyebot-standard",
 					"CUPCAKE" = "Noble-SRV",
 					"Haruka" = "marinaSV",
+					"Michiru" = "maidbot",
 					"Usagi" = "tallgreen",
 					"Telemachus" = "toiletbot",
 					"WTOperator" = "sleekservice",
@@ -585,6 +593,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/robot_harvester(src)
 	src.modules += new /obj/item/weapon/material/knife(src)
 	src.modules += new /obj/item/weapon/material/kitchen/rollingpin(src)
+	src.modules += new /obj/item/device/multitool(src) //to freeze trays
 
 	var/obj/item/weapon/rsf/M = new /obj/item/weapon/rsf(src)
 	M.stored_matter = 30
@@ -667,14 +676,15 @@ var/global/list/robot_modules = list(
 /obj/item/weapon/robot_module/robot/miner/New()
 	..()
 	src.modules += new /obj/item/borg/sight/material(src)
-	src.modules += new /obj/item/weapon/wrench(src)
-	src.modules += new /obj/item/weapon/screwdriver(src)
+	src.modules += new /obj/item/weapon/wrench/cyborg(src)
+	src.modules += new /obj/item/weapon/screwdriver/cyborg(src)
 	src.modules += new /obj/item/weapon/storage/bag/ore(src)
 	src.modules += new /obj/item/weapon/pickaxe/borgdrill(src)
 	src.modules += new /obj/item/weapon/storage/bag/sheetsnatcher/borg(src)
 	src.modules += new /obj/item/weapon/gripper/miner(src)
 	src.modules += new /obj/item/weapon/mining_scanner(src)
 	src.emag = new /obj/item/weapon/pickaxe/plasmacutter(src)
+	src.emag = new /obj/item/weapon/pickaxe/diamonddrill(src)
 
 /obj/item/weapon/robot_module/robot/research
 	name = "research module"
@@ -683,9 +693,11 @@ var/global/list/robot_modules = list(
 					"L'Ouef" = "peaceborg",
 					"Cabeiri" = "eyebot-science",
 					"Haruka" = "marinaSCI",
+					"WTDove" = "whitespider",
 					"WTOperator" = "sleekscience",
 					"Droid" = "droid-science",
-					"Drone" = "drone-science"
+					"Drone" = "drone-science",
+					"Handy" = "handy-science"
 					)
 
 /obj/item/weapon/robot_module/robot/research/New()
@@ -698,15 +710,16 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/device/robotanalyzer(src)
 	src.modules += new /obj/item/weapon/card/robot(src)
 	src.modules += new /obj/item/weapon/weldingtool/electric/mounted(src)
-	src.modules += new /obj/item/weapon/screwdriver(src)
-	src.modules += new /obj/item/weapon/wrench(src)
-	src.modules += new /obj/item/weapon/wirecutters(src)
+	src.modules += new /obj/item/weapon/screwdriver/cyborg(src)
+	src.modules += new /obj/item/weapon/wrench/cyborg(src)
+	src.modules += new /obj/item/weapon/wirecutters/cyborg(src)
 	src.modules += new /obj/item/device/multitool(src)
 	src.modules += new /obj/item/weapon/surgical/scalpel(src)
 	src.modules += new /obj/item/weapon/surgical/circular_saw(src)
 	src.modules += new /obj/item/weapon/reagent_containers/syringe(src)
 	src.modules += new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
 	src.modules += new /obj/item/weapon/storage/part_replacer(src)
+	src.modules += new /obj/item/weapon/shockpaddles/robot/jumper(src)
 	src.emag = new /obj/item/weapon/hand_tele(src)
 
 	var/datum/matter_synth/nanite = new /datum/matter_synth/nanite(10000)
@@ -796,10 +809,10 @@ var/global/list/robot_modules = list(
 	..()
 	src.modules += new /obj/item/borg/sight/meson(src)
 	src.modules += new /obj/item/weapon/weldingtool/electric/mounted(src)
-	src.modules += new /obj/item/weapon/screwdriver(src)
-	src.modules += new /obj/item/weapon/wrench(src)
-	src.modules += new /obj/item/weapon/crowbar(src)
-	src.modules += new /obj/item/weapon/wirecutters(src)
+	src.modules += new /obj/item/weapon/screwdriver/cyborg(src)
+	src.modules += new /obj/item/weapon/wrench/cyborg(src)
+	src.modules += new /obj/item/weapon/crowbar/cyborg(src)
+	src.modules += new /obj/item/weapon/wirecutters/cyborg(src)
 	src.modules += new /obj/item/device/multitool(src)
 	src.modules += new /obj/item/device/lightreplacer(src)
 	src.modules += new /obj/item/weapon/gripper(src)

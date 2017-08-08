@@ -46,7 +46,7 @@
 	min_age = 32
 	max_age = 260
 
-	blurb = "A heavily reptillian species, Unathi (or 'Sinta as they call themselves) hail from the \
+	blurb = "A heavily reptillian species, Unathi hail from the \
 	Uuosa-Eso system, which roughly translates to 'burning mother'.<br/><br/>Coming from a harsh, inhospitable \
 	planet, they mostly hold ideals of honesty, virtue, proficiency and bravery above all \
 	else, frequently even their own lives. They prefer warmer temperatures than most species and \
@@ -319,6 +319,7 @@
 	reagent_tag = IS_DIONA
 
 	genders = list(PLURAL)
+
 /datum/species/diona/can_understand(var/mob/other)
 	var/mob/living/carbon/alien/diona/D = other
 	if(istype(D))

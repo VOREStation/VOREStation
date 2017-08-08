@@ -119,35 +119,30 @@
 	desc = "It's made of a special fiber that provides minor protection against biohazards. This one is in baby blue."
 	icon_state = "scrubsblue"
 	item_state_slots = list(slot_r_hand_str = "blue", slot_l_hand_str = "blue")
-	rolled_sleeves = -1
 
 /obj/item/clothing/under/rank/medical/green
 	name = "medical scrubs"
 	desc = "It's made of a special fiber that provides minor protection against biohazards. This one is in dark green."
 	icon_state = "scrubsgreen"
 	item_state_slots = list(slot_r_hand_str = "green", slot_l_hand_str = "green")
-	rolled_sleeves = -1
 
 /obj/item/clothing/under/rank/medical/purple
 	name = "medical scrubs"
 	desc = "It's made of a special fiber that provides minor protection against biohazards. This one is in deep purple."
 	icon_state = "scrubspurple"
 	item_state_slots = list(slot_r_hand_str = "purple", slot_l_hand_str = "purple")
-	rolled_sleeves = -1
 
 /obj/item/clothing/under/rank/medical/black
 	name = "medical scrubs"
 	desc = "It's made of a special fiber that provides minor protection against biohazards. This one is in black."
 	icon_state = "scrubsblack"
 	item_state_slots = list(slot_r_hand_str = "black", slot_l_hand_str = "black")
-	rolled_sleeves = -1
 
 /obj/item/clothing/under/rank/medical/navyblue
 	name = "medical scrubs"
 	desc = "It's made of a special fiber that provides minor protection against biohazards. This one is in navy blue."
 	icon_state = "scrubsnavyblue"
 	item_state_slots = list(slot_r_hand_str = "blue", slot_l_hand_str = "blue")
-	rolled_sleeves = -1
 
 /obj/item/clothing/under/rank/psych
 	desc = "A basic white jumpsuit. It has turqouise markings that denote the wearer as a psychiatrist."

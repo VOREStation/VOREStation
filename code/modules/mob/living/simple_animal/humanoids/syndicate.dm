@@ -96,7 +96,7 @@
 /mob/living/simple_animal/hostile/syndicate/melee/bullet_act(var/obj/item/projectile/Proj)
 	if(!Proj)	return
 	if(prob(35))
-		visible_message("\red <B>[src] blocks [Proj] with its shield!</B>")
+		visible_message("<font color='red'><B>[src] blocks [Proj] with its shield!</B></font>")
 		if(Proj.firer)
 			react_to_attack(Proj.firer)
 		return

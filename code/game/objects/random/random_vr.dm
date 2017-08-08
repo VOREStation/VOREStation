@@ -61,7 +61,7 @@
 					prob(7);/obj/item/weapon/gun/projectile/deagle,\
 					prob(7);/obj/item/weapon/gun/projectile/revolver/consul,\
 					prob(7);/obj/item/weapon/gun/launcher/grenade,\
-					prob(6);/obj/item/weapon/gun/projectile/SVD,\
+				/*	prob(6);/obj/item/weapon/gun/projectile/SVD,\*/
 					prob(6);/obj/item/weapon/gun/projectile/automatic/l6_saw,\
 					prob(6);/obj/item/weapon/gun/energy/lasercannon,\
 					prob(5);/obj/item/weapon/gun/projectile/shotgun/pump/rifle/lever,\
@@ -99,12 +99,12 @@
 					prob(5);/obj/item/ammo_magazine/s38,\
 					prob(5);/obj/item/ammo_magazine/s38/rubber,\
 					prob(5);/obj/item/weapon/storage/box/flashbangs,\
-					prob(5);/obj/item/ammo_magazine/m556,\
-					prob(4);/obj/item/ammo_magazine/clip/c556,\
+					/*prob(5);/obj/item/ammo_magazine/m545,\
+					prob(4);/obj/item/ammo_magazine/clip/c556,\*/
 					prob(4);/obj/item/ammo_magazine/clip/c45,\
 					prob(4);/obj/item/ammo_magazine/clip/c9mm,\
 					prob(4);/obj/item/ammo_magazine/m45uzi,\
-					prob(4);/obj/item/ammo_magazine/m556/ext,\
+					/*prob(4);/obj/item/ammo_magazine/m545/ext,\*/
 					prob(4);/obj/item/ammo_magazine/m9mm,\
 					prob(4);/obj/item/ammo_magazine/m9mml,\
 					prob(4);/obj/item/ammo_magazine/m9mmt,\
@@ -112,16 +112,16 @@
 					prob(4);/obj/item/ammo_magazine/m10mm,\
 					prob(4);/obj/item/ammo_magazine/m9mmp90,\
 				/*	prob(4);/obj/item/ammo_magazine/m14,\
-					prob(4);/obj/item/ammo_magazine/m14/large,\ */
-					prob(4);/obj/item/ammo_magazine/m556/ext,\
+					prob(4);/obj/item/ammo_magazine/m14/large,\
+					prob(4);/obj/item/ammo_magazine/m545/ext,\*/
 					prob(4);/obj/item/ammo_magazine/m762,\
 					prob(4);/obj/item/ammo_magazine/m762,\
 					prob(3);/obj/item/ammo_magazine/clip/c10mm,\
 					prob(3);/obj/item/ammo_magazine/clip/c44,\
 					prob(3);/obj/item/ammo_magazine/s44,\
-					prob(3);/obj/item/ammo_magazine/m556,\
+					/*prob(3);/obj/item/ammo_magazine/m545,\*/
 					prob(2);/obj/item/ammo_magazine/m44,\
-					prob(2);/obj/item/ammo_magazine/m556,\
+					/*prob(2);/obj/item/ammo_magazine/m545,\*/
 					prob(1);/obj/item/weapon/storage/box/frags,\
 				/*	prob(1);/obj/item/ammo_magazine/battlerifle,\ */
 					prob(1);/obj/item/ammo_casing/rocket,\
@@ -194,3 +194,20 @@
 		return this_mob
 	else
 		return mob
+
+/obj/random/outside_mob/spawn_item()
+	..()
+	var/datum/map_z_level/z_level = get_z_level_datum(spawned_thing)
+	if(!istype(z_level, /datum/map_z_level/tether/wilderness))
+		return
+	if(!istype(spawned_thing, /mob/living/simple_animal))
+		return
+	var/datum/map_z_level/tether/wilderness/wilderness = z_level
+	if(wilderness.activated)
+		return
+	var/mob/living/simple_animal/M = spawned_thing
+	wilderness.frozen_mobs += M
+	M.life_disabled = 1
+	for(var/i = 1 to 20) //wander the mobs around so they aren't always in the same spots
+		step_rand(M)
+		sleep(2)

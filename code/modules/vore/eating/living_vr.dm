@@ -402,8 +402,8 @@
 	user.update_icons()
 
 	// Flavor handling
-	if(prey.get_taste_message(0))
-		to_chat(src, "<span class='notice'>[prey] tastes of [prey.get_taste_message(0)].</span>")
+	if(belly_target.can_taste && prey.get_taste_message(0))
+		to_chat(belly_target.owner, "<span class='notice'>[prey] tastes of [prey.get_taste_message(0)].</span>")
 
 	// Inform Admins
 	if (pred == user)

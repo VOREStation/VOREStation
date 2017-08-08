@@ -222,7 +222,7 @@
 	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes
 
 	if(!safe_animal(mobpath))
-		usr << "\red Sorry but this mob type is currently unavailable."
+		usr << "<font color='red'>Sorry but this mob type is currently unavailable.</font>"
 		return
 
 	if(transforming)
@@ -256,7 +256,7 @@
 	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes
 
 	if(!safe_animal(mobpath))
-		usr << "\red Sorry but this mob type is currently unavailable."
+		usr << "<font color='red'>Sorry but this mob type is currently unavailable.</font>"
 		return
 
 	var/mob/new_mob = new mobpath(src.loc)

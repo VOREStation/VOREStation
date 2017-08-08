@@ -30,9 +30,7 @@
 	S["weight_loss"]		<< pref.weight_loss
 
 /datum/category_item/player_setup_item/vore/size/sanitize_character()
-	var/valid_scales = list(RESIZE_HUGE, RESIZE_BIG, RESIZE_NORMAL, RESIZE_SMALL, RESIZE_TINY);
-	pref.size_multiplier	= sanitize_inlist(pref.size_multiplier, valid_scales, initial(pref.size_multiplier))
-
+	pref.size_multiplier	= pref.size_multiplier
 	pref.weight_vr		= sanitize_integer(pref.weight_vr, WEIGHT_MIN, WEIGHT_MAX, initial(pref.weight_vr))
 	pref.weight_gain	= sanitize_integer(pref.weight_gain, WEIGHT_CHANGE_MIN, WEIGHT_CHANGE_MAX, initial(pref.weight_gain))
 	pref.weight_loss	= sanitize_integer(pref.weight_loss, WEIGHT_CHANGE_MIN, WEIGHT_CHANGE_MAX, initial(pref.weight_loss))
@@ -53,10 +51,13 @@
 
 /datum/category_item/player_setup_item/vore/size/OnTopic(var/href, var/list/href_list, var/mob/user)
 	if(href_list["size_multiplier"])
-		var/list/size_types = player_sizes_list
-		var/new_size = input(user, "Choose your character's size:", "Character Preference", pref.size_multiplier) as null|anything in size_types
-		if(new_size)
-			pref.size_multiplier = size_types[new_size]
+		var/new_size = input(user, "Choose your character's size, ranging from 25% to 200%", "Set Size") as num|null
+		if (!IsInRange(new_size,25,200))
+			pref.size_multiplier = 1
+			user << "<span class='notice'>Invalid size.</span>"
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+		else if(new_size)
+			pref.size_multiplier = (new_size/100)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["weight"])

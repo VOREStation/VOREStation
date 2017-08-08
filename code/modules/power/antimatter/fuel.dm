@@ -74,9 +74,9 @@
 /obj/item/weapon/fuel/proc/injest(mob/M as mob)
 	switch(content)
 		if("Anti-Hydrogen")
-			M.gib()
+			M.gib() //Yikes!
 		if("Hydrogen")
-			M << "\blue You feel very light, as if you might just float away..."
+			M << "<font color='blue'>You feel very light, as if you might just float away...</font>"
 	qdel(src)
 	return
 
@@ -95,5 +95,5 @@
 			return
 	else
 		for(var/mob/O in viewers(M, null))
-			O.show_message(text("\red [M] ate the [content ? content : "empty canister"]!"), 1)
+			O.show_message(text("<font color='red'>[M] ate the [content ? content : "empty canister"]!</font>"), 1)
 		src.injest(M)

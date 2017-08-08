@@ -43,6 +43,11 @@
 		gender = MALE
 		species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Xenochimera", "Xenomorph Hybrid") //Lets all the races be bald if they want.
 
+	ponytail6_fixed //Eggnerd's done with waiting for upstream fixes lmao.
+		name = "Ponytail 6 but fixed"
+		icon = 'icons/mob/human_face_vr.dmi'
+		icon_state = "hair_ponytail6"
+		species_allowed = list("Human","Skrell","Unathi","Tajara", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Xenochimera", "Xenomorph Hybrid")
 
 	una_hood
 		name = "Cobra Hood"
@@ -469,3 +474,133 @@
 		name = "Tusks"
 		icon_state = "tusks"
 		body_parts = list(BP_HEAD)
+
+	otie_face
+		name = "Otie face"
+		icon_state = "otieface"
+		body_parts = list(BP_HEAD)
+
+	otie_nose
+		name = "Otie nose"
+		icon_state = "otie_nose"
+		body_parts = list(BP_HEAD)
+
+	backstripes
+		name = "Back stripes"
+		icon_state = "otiestripes"
+		body_parts = list(BP_TORSO,BP_HEAD)
+
+	belly_butt
+		name = "Belly and butt"
+		icon_state = "bellyandbutt"
+		body_parts = list(BP_GROIN,BP_TORSO)
+
+	fingers_toes
+		name = "Fingers and toes"
+		icon_state = "fingerstoes"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_HAND,BP_R_HAND)
+
+	otie_socks
+		name = "Fingerless socks"
+		icon_state = "otiesocks"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND)
+
+	corvid_beak
+		name = "Corvid beak"
+		icon_state = "corvidbeak"
+		body_parts = list(BP_HEAD)
+
+	corvid_belly
+		name = "Corvid belly"
+		icon_state = "corvidbelly"
+		body_parts = list(BP_GROIN,BP_TORSO,BP_HEAD)
+
+	cow_body
+		name = "Cow markings"
+		icon_state = "cowbody"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
+
+	cow_nose
+		name = "Cow nose"
+		icon_state = "cownose"
+		body_parts = list(BP_HEAD)
+
+	zmask
+		name = "Eye mask"
+		icon_state = "zmask"
+		body_parts = list(BP_HEAD)
+
+	zbody
+		name = "Thick jagged stripes"
+		icon_state = "zbody"
+		body_parts = list(BP_L_LEG,BP_R_LEG,BP_GROIN,BP_TORSO)
+
+	znose
+		name = "Jagged snout"
+		icon_state = "znose"
+		body_parts = list(BP_HEAD)
+
+	zorren_belly_male
+		name = "Zorren Male Torso"
+		icon_state = "zorren_belly"
+		body_parts = list(BP_TORSO,BP_GROIN)
+
+	zorren_belly_female
+		name = "Zorren Female Torso"
+		icon_state = "zorren_belly_female"
+		body_parts = list(BP_TORSO,BP_GROIN)
+
+	zorren_back_patch
+		name = "Zorren Back Patch"
+		icon_state = "zorren_backpatch"
+		body_parts = list(BP_TORSO)
+
+	zorren_face_male
+		name = "Zorren Male Face"
+		icon_state = "zorren_face"
+		body_parts = list(BP_HEAD)
+		gender = MALE
+
+	zorren_face_female
+		name = "Zorren Female Face"
+		icon_state = "zorren_face_female"
+		body_parts = list(BP_HEAD)
+		gender = FEMALE
+
+	zorren_muzzle_male
+		name = "Zorren Male Muzzle"
+		icon_state = "zorren_muzzle"
+		body_parts = list(BP_HEAD)
+		gender = MALE
+
+	zorren_muzzle_female
+		name = "Zorren Female Muzzle"
+		icon_state = "zorren_muzzle_female"
+		body_parts = list(BP_HEAD)
+		gender = FEMALE
+
+	zorren_socks
+		name = "Zorren Socks"
+		icon_state = "zorren_socks"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND)
+
+	zorren_longsocks
+		name = "Zorren Longsocks"
+		icon_state = "zorren_longsocks"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND)
+
+	tesh_feathers
+		name = "Teshari Feathers"
+		icon_state = "tesh-feathers"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_HAND,BP_R_HAND)
+
+	alurane
+		name = "Alurane Body"
+		icon_state = "alurane"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
+		ckeys_allowed = list("natje")
+
+	body_tone
+		name = "Body toning (for emergency contrast loss)"
+		icon_state = "btone"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)

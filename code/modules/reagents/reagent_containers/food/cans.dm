@@ -124,3 +124,13 @@
 /obj/item/weapon/reagent_containers/food/drinks/cans/sodawater/New()
 	..()
 	reagents.add_reagent("sodawater", 50)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/gingerale
+	name = "\improper Classic Ginger Ale"
+	desc = "For when you need to be more retro than NanoTrasen already pays you for."
+	icon_state = "gingerale"
+	center_of_mass = list("x"=16, "y"=10)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/gingerale/New()
+	..()
+	reagents.add_reagent("gingerale", 30)

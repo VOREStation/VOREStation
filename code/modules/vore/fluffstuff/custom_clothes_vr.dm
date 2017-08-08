@@ -24,6 +24,65 @@
 
 */
 
+//SpoopyLizz: Roiz Lizden
+/obj/item/clothing/suit/storage/hooded/wintercoat/roiz
+	name = "dinosaur winter coat"
+	desc = "A custom winter coat that looks rather like a dinosaur. It has a nametag that says, Roiz Lizden."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "coatroiz"
+	item_state_slots = list(slot_r_hand_str = "coatroiz", slot_l_hand_str = "coatroiz")
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "coatroiz_mob"
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/roiz/ui_action_click()
+	ToggleHood_roiz()
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/roiz/equipped(mob/user, slot)
+	if(slot != slot_wear_suit)
+		RemoveHood_roiz()
+	..()
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/roiz/proc/RemoveHood_roiz()
+	icon_state = "coatroiz"
+	item_state = "coatroiz_mob"
+	suittoggled = 0
+	if(ishuman(hood.loc))
+		var/mob/living/carbon/H = hood.loc
+		H.unEquip(hood, 1)
+		H.update_inv_wear_suit()
+	hood.loc = src
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/roiz/proc/ToggleHood_roiz()
+	if(!suittoggled)
+		if(ishuman(loc))
+			var/mob/living/carbon/human/H = src.loc
+			if(H.wear_suit != src)
+				H << "<span class='warning'>You must be wearing [src] to put up the hood!</span>"
+				return
+			if(H.head)
+				H << "<span class='warning'>You're already wearing something on your head!</span>"
+				return
+			else
+				H.equip_to_slot_if_possible(hood,slot_head,0,0,1)
+				suittoggled = 1
+				icon_state = "coatroiz_t"
+				item_state = "coatroiz_mob_t"
+				H.update_inv_wear_suit()
+	else
+		RemoveHood_roiz()
+
+//ketrai:Ketrai
+/obj/item/clothing/head/fluff/ketrai
+	name = "Pink Bear Hat"
+	desc = "A pink space bear hat, the origins are unknown"
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "bearpelt"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "ketraibearpelt"
+
 //benemuel:Yuuko Shimmerpond
 /obj/item/clothing/under/fluff/sakura_hokkaido_kimono
 	name = "Sakura Kimono"
@@ -571,7 +630,25 @@
 			else
 				return 1
 
-//scree:Scree
+//natje:Pumila
+/obj/item/clothing/under/fluff/aluranevines
+	name = "Pumila's vines"
+	desc = "A wrap of green vines and colourful flowers."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "alurane-vines"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "alurane-vines_mob"
+	item_state_slots = list(slot_r_hand_str = "alurane-vines_r", slot_l_hand_str = "alurane-vines_l")
+	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+		if(..())
+			if(H.ckey != "natje")
+				H << "<span class='warning'>Wrapping vines around yourself is a quite an... Odd idea. You decide otherwise.</span>"
+				return 0
+			else
+				return 1
+
 /obj/item/clothing/under/fluff/screesuit
 	name = "Scree's feathers"
 	desc = "A mop of fluffy blue feathers, the honkmother only knows what kind of bird they originally came from."
@@ -1590,3 +1667,79 @@ Departamental Swimsuits, for general use
 	name = "purple and grey cloak"
 	icon_state = "tesh_cloak_brg"
 	item_state = "tesh_cloak_brg"
+
+//Jackets For General Use. Sprited by Joji.
+/obj/item/clothing/suit/storage/fluff/jacket //Not the toggle version since it uses custom toggle code to update the on-mob icon.
+	name = "Field Jacket"
+	desc = "A standard Earth military field jacket made of comfortable cotton."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "fjacket"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "fjacket_mob"
+	var/unbuttoned = 0
+
+	verb/toggle()
+		set name = "Toggle coat buttons"
+		set category = "Object"
+		set src in usr
+
+		if(!usr.canmove || usr.stat || usr.restrained())
+			return 0
+
+		switch(unbuttoned)
+			if(0)
+				icon_state = "[initial(icon_state)]_open"
+				item_state = "[initial(item_state)]_open"
+				unbuttoned = 1
+				usr << "You unbutton the coat."
+			if(1)
+				icon_state = "[initial(icon_state)]"
+				item_state = "[initial(item_state)]"
+				unbuttoned = 0
+				usr << "You button up the coat."
+		usr.update_inv_wear_suit()
+
+/obj/item/clothing/suit/storage/fluff/jacket/field //Just here so it can be seen and easily recognized under /spawn.
+	name = "Field Jacket"
+
+/obj/item/clothing/suit/storage/fluff/jacket/air_cavalry
+	name = "Air Cavalry Jacket"
+	desc = "A jacket worn by the 1st Cavalry Division on Earth."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "acjacket"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "acjacket_mob"
+
+/obj/item/clothing/suit/storage/fluff/jacket/air_force
+	name = "Air Force Jacket"
+	desc = "A jacket worn by the Earth Air Force."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "afjacket"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "afjacket_mob"
+
+/obj/item/clothing/suit/storage/fluff/jacket/navy
+	name = "Navy Jacket"
+	desc = "A jacket worn by the Earth's Navy. It's adorned with reflective straps."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "navyjacket"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "navyjacket_mob"
+
+/obj/item/clothing/suit/storage/fluff/jacket/special_forces
+	name = "Special Forces Jacket"
+	desc = "A durable jacket worn by the Earth's special forces."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "sfjacket"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "sfjacket_mob"

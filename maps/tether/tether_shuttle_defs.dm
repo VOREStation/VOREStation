@@ -64,6 +64,8 @@
 
 //////////////////////////////////////////////////////////////
 // Away Mission Shuttle
+// TODO - Not implemented yet on new map
+/*
 /datum/shuttle/multi_shuttle/awaymission
 	name = "AwayMission"
 	legit = TRUE
@@ -83,6 +85,7 @@
 	//These seem backwards because they are written from the perspective of the merc and vox ships
 	departure_message = "Attention. The away mission vessel is approaching the colony."
 	arrival_message = "Attention. The away mission vessel is now leaving from the colony."
+*/
 
 /datum/shuttle/multi_shuttle/awaymission/New()
 	..()
@@ -136,6 +139,37 @@
 	)
 	docking_controller_tag = "antag_ground_shuttle"
 	destination_dock_targets = list("Home Base" = "antag_ground_dock")
+
+//////////////////////////////////////////////////////////////
+// Mercenary Shuttle
+/datum/shuttle/multi_shuttle/mercenary
+	name = "Mercenary"
+	warmup_time = 0
+	origin = /area/syndicate_station/start
+	interim = /area/syndicate_station/transit
+	start_location = "Mercenary base"
+	destinations = list(
+		//"Northwest of the station" = /area/syndicate_station/northwest,
+		//"North of the station" = /area/syndicate_station/north,
+		//"Northeast of the station" = /area/syndicate_station/northeast,
+		"(Land) Southwest of Tether" = /area/syndicate_station/southwest,
+		//"South of the station" = /area/syndicate_station/south,
+		//"Southeast of the station" = /area/syndicate_station/southeast,
+		//"Telecomms Satellite" = /area/syndicate_station/commssat,
+		"(Land) Solar farm west of Tether" = /area/syndicate_station/mining,
+		"Tether spaceport" = /area/syndicate_station/arrivals_dock,
+		)
+	docking_controller_tag = "merc_shuttle"
+	destination_dock_targets = list(
+		"Mercenary base" = "merc_base",
+		"Tether spaceport" = "nuke_shuttle_dock_airlock",
+		)
+	announcer = "Automated Traffic Control"
+
+/datum/shuttle/multi_shuttle/mercenary/New()
+	arrival_message = "Attention. An unregistered vessel is approaching Virgo-3B."
+	departure_message = "Attention. A unregistered vessel is now leaving Virgo-3B."
+	..()
 
 //////////////////////////////////////////////////////////////
 // RogueMiner "Belter: Shuttle

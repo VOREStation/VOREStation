@@ -1,12 +1,16 @@
 /datum/antagonist/proc/can_become_antag(var/datum/mind/player, var/ignore_role)
-	if(player.current && jobban_isbanned(player.current, bantype))
-		return 0
+	if(player.current)
+		if(jobban_isbanned(player.current, bantype))
+			return FALSE
+		if(!isnewplayer(player.current) && !isobserver(player.current))
+			if(!player.current.can_be_antagged) // Stop autotraitoring pAIs!
+				return FALSE
 	if(!ignore_role)
 		if(player.assigned_role in restricted_jobs)
-			return 0
+			return FALSE
 		if(config.protect_roles_from_antagonist && (player.assigned_role in protected_jobs))
-			return 0
-	return 1
+			return FALSE
+	return TRUE
 
 /datum/antagonist/proc/antags_are_dead()
 	for(var/datum/mind/antag in current_antagonists)

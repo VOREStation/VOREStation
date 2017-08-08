@@ -28,7 +28,7 @@
 			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 			for(var/mob/O in viewers(src, null))
 				if ((O.client && !( O.blinded )))
-					O.show_message(text("\red [] has grabbed [] passively!", M, src), 1)
+					O.show_message(text("<font color='red'>[] has grabbed [] passively!</font>", M, src), 1)
 
 		else
 			var/damage = rand(1, 9)
@@ -43,17 +43,17 @@
 				playsound(loc, "punch", 25, 1, -1)
 				for(var/mob/O in viewers(src, null))
 					if ((O.client && !( O.blinded )))
-						O.show_message(text("\red <B>[] has punched []!</B>", M, src), 1)
+						O.show_message(text("<font color='red'><B>[] has punched []!</B></font>", M, src), 1)
 				if (damage > 4.9)
 					Weaken(rand(10,15))
 					for(var/mob/O in viewers(M, null))
 						if ((O.client && !( O.blinded )))
-							O.show_message(text("\red <B>[] has weakened []!</B>", M, src), 1, "\red You hear someone fall.", 2)
+							O.show_message(text("<font color='red'><B>[] has weakened []!</B></font>", M, src), 1, "<font color='red'>You hear someone fall.</font>", 2)
 				adjustBruteLoss(damage)
 				updatehealth()
 			else
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 				for(var/mob/O in viewers(src, null))
 					if ((O.client && !( O.blinded )))
-						O.show_message(text("\red <B>[] has attempted to punch []!</B>", M, src), 1)
+						O.show_message(text("<font color='red'><B>[] has attempted to punch []!</B></font>", M, src), 1)
 	return

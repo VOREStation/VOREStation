@@ -238,7 +238,8 @@
 	if(istype(A, /obj/item/weapon/screwdriver))
 		if(dna_lock && attached_lock && !attached_lock.controller_lock)
 			user << "<span class='notice'>You begin removing \the [attached_lock] from \the [src].</span>"
-			if(do_after(user, 25))
+			playsound(src, A.usesound, 50, 1)
+			if(do_after(user, 25 * A.toolspeed))
 				user << "<span class='notice'>You remove \the [attached_lock] from \the [src].</span>"
 				user.put_in_hands(attached_lock)
 				dna_lock = 0
@@ -576,9 +577,9 @@
 	var/mob/living/carbon/human/M = user
 
 	mouthshoot = 1
-	M.visible_message("\red [user] sticks their gun in their mouth, ready to pull the trigger...")
+	M.visible_message("<font color='red'>[user] sticks their gun in their mouth, ready to pull the trigger...</font>")
 	if(!do_after(user, 40))
-		M.visible_message("\blue [user] decided life was worth living")
+		M.visible_message("<font color='blue'>[user] decided life was worth living</font>")
 		mouthshoot = 0
 		return
 	var/obj/item/projectile/in_chamber = consume_next_projectile()

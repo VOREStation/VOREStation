@@ -232,7 +232,7 @@
 /obj/item/device/mmi/digital/attack_self(mob/user as mob)
 	if(brainmob && !brainmob.key && searching == 0)
 		//Start the process of searching for a new user.
-		user << "\blue You carefully locate the manual activation switch and start the [src]'s boot process."
+		user << "<font color='blue'>You carefully locate the manual activation switch and start the [src]'s boot process.</font>"
 		src.searching = 1
 		src.request_player()
 		spawn(600) reset_search()
@@ -256,7 +256,7 @@
 
 	var/turf/T = get_turf_or_move(src.loc)
 	for (var/mob/M in viewers(T))
-		M.show_message("\blue The [src] buzzes quietly, and the golden lights fade away. Perhaps you could try again?")
+		M.show_message("<font color='blue'>The [src] buzzes quietly, and the golden lights fade away. Perhaps you could try again?</font>")
 
 /obj/item/device/mmi/digital/proc/question(var/client/C)
 	spawn(0)
@@ -285,7 +285,7 @@
 
 	var/turf/T = get_turf_or_move(src.loc)
 	for (var/mob/M in viewers(T))
-		M.show_message("\blue The [src] chimes quietly.")
+		M.show_message("<font color='blue'>The [src] chimes quietly.</font>")
 
 /obj/item/device/mmi/digital/robot
 	name = "robotic intelligence circuit"

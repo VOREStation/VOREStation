@@ -34,24 +34,24 @@
 /obj/machinery/power/breakerbox/examine(mob/user)
 	user << "Large machine with heavy duty switching circuits used for advanced grid control"
 	if(on)
-		user << "\green It seems to be online."
+		user << "<font color='green'>It seems to be online.</font>"
 	else
-		user << "\red It seems to be offline"
+		user << "<font color='red'>It seems to be offline.</font>"
 
 /obj/machinery/power/breakerbox/attack_ai(mob/user)
 	if(update_locked)
-		user << "\red System locked. Please try again later."
+		user << "<font color='red'>System locked. Please try again later.</font>"
 		return
 
 	if(busy)
-		user << "\red System is busy. Please wait until current operation is finished before changing power settings."
+		user << "<font color='red'>System is busy. Please wait until current operation is finished before changing power settings.</font>"
 		return
 
 	busy = 1
-	user << "\green Updating power settings.."
+	user << "<font color='green'>Updating power settings...</font>"
 	if(do_after(user, 50))
 		set_state(!on)
-		user << "\green Update Completed. New setting:[on ? "on": "off"]"
+		user << "<font color='green'>Update Completed. New setting:[on ? "on": "off"]</font>"
 		update_locked = 1
 		spawn(600)
 			update_locked = 0
@@ -60,16 +60,16 @@
 
 /obj/machinery/power/breakerbox/attack_hand(mob/user)
 	if(update_locked)
-		user << "\red System locked. Please try again later."
+		user << "<font color='red'>System locked. Please try again later.</font>"
 		return
 
 	if(busy)
-		user << "\red System is busy. Please wait until current operation is finished before changing power settings."
+		user << "<font color='red'>System is busy. Please wait until current operation is finished before changing power settings.</font>"
 		return
 
 	busy = 1
 	for(var/mob/O in viewers(user))
-		O.show_message(text("\red [user] started reprogramming [src]!"), 1)
+		O.show_message(text("<font color='red'>[user] started reprogramming [src]!</font>"), 1)
 
 	if(do_after(user, 50))
 		set_state(!on)

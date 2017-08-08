@@ -56,6 +56,7 @@
 	siemens_coefficient = 1.0 //thin latex gloves, much more conductive than fabric gloves (basically a capacitor for AC)
 	permeability_coefficient = 0.01
 	germ_level = 0
+	fingerprint_chance = 25
 //	var/balloonPath = /obj/item/latexballon
 
 //TODO: Make inflating gloves a thing

@@ -19,7 +19,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 			else
 				update_inv_r_hand(0)
 		else
-			H << "\red You are unable to equip that."
+			H << "<font color='red'>You are unable to equip that.</font>"
 
 /mob/living/carbon/human/proc/equip_in_one_of_slots(obj/item/W, list/slots, del_on_fail = 1)
 	for (var/slot in slots)
@@ -293,7 +293,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 			var/obj/item/clothing/under/uniform = src.w_uniform
 			uniform.attackby(W,src)
 		else
-			src << "\red You are trying to eqip this item to an unsupported inventory slot. How the heck did you manage that? Stop it..."
+			src << "<font color='red'>You are trying to eqip this item to an unsupported inventory slot. How the heck did you manage that? Stop it...</font>"
 			return
 
 	if((W == src.l_hand) && (slot != slot_l_hand))

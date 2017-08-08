@@ -33,6 +33,9 @@
 	if(C.suiciding)
 		C.suiciding = 0
 
+	if(C.does_not_breathe)
+		C.does_not_breathe = 0	//This means they don't autoheal the oxy damage from the next step
+
 	if(C.stat != DEAD)
 		C.adjustOxyLoss(C.maxHealth * 2)
 

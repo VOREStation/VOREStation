@@ -40,7 +40,7 @@ var/global/list/default_medbay_channels = list(
 	var/list/channels = list() //see communications.dm for full list. First channel is a "default" for :h
 	var/subspace_transmission = 0
 	var/syndie = 0//Holder to see if it's a syndicate encrypted radio
-	var/centComm = 0//Holder to see if it's a CentComm encrypted radio
+	var/centComm = 0//Holder to see if it's a CentCom encrypted radio
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	throw_speed = 2
@@ -629,6 +629,7 @@ var/global/list/default_medbay_channels = list(
 
 			recalculateChannels()
 			user << "You pop out the encryption key in the radio!"
+			playsound(src, W.usesound, 50, 1)
 
 		else
 			user << "This radio doesn't have any encryption keys!"

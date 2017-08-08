@@ -52,7 +52,7 @@
 			intercept.name = "paper"
 			intercept.info = intercepttext
 
-			comm.messagetitle.Add("Cent. Com. CONFIDENTIAL REPORT")
+			comm.messagetitle.Add("CentCom CONFIDENTIAL REPORT")
 			comm.messagetext.Add(intercepttext)
 
 	world << sound('sound/AI/commandreport.ogg')
@@ -74,7 +74,7 @@
 			intercept.name = "paper"
 			intercept.info = intercepttext
 
-			comm.messagetitle.Add("Cent. Com. CONFIDENTIAL REPORT")
+			comm.messagetitle.Add("CentCom CONFIDENTIAL REPORT")
 			comm.messagetext.Add(intercepttext)
 	world << sound('sound/AI/commandreport.ogg')
 
