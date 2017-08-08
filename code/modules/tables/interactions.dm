@@ -85,6 +85,8 @@
 			if(occupied)
 				user << "<span class='danger'>There's \a [occupied] in the way.</span>"
 				return
+			if(!user.Adjacent(M))
+				return
 			if (G.state < 2)
 				if(user.a_intent == I_HURT)
 					if (prob(15))	M.Weaken(5)
@@ -106,9 +108,9 @@
 				else
 					user << "<span class='danger'>You need a better grip to do that!</span>"
 					return
-			else if(!M.Check_Shoegrip() && do_mob(user, M, 5+(M.getarmor(BP_TORSO,"melee")/4)))
+			else if(G.state > GRAB_AGGRESSIVE || world.time >= (G.last_action + UPGRADE_COOLDOWN))
 				M.forceMove(get_turf(src))
-				M.Weaken(round(5-(M.getarmor(null, "melee")/20)))
+				M.Weaken(5)
 				visible_message("<span class='danger'>[G.assailant] puts [G.affecting] on \the [src].</span>")
 			qdel(W)
 			return
