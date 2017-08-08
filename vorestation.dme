@@ -2162,7 +2162,6 @@
 #include "code\modules\projectiles\guns\projectile\revolver.dm"
 #include "code\modules\projectiles\guns\projectile\shotgun.dm"
 #include "code\modules\projectiles\guns\projectile\sniper.dm"
-#include "code\modules\projectiles\guns\projectile\sniper_vr.dm"
 #include "code\modules\projectiles\guns\projectile\sniper\collapsible_sniper.dm"
 #include "code\modules\projectiles\projectile\animate.dm"
 #include "code\modules\projectiles\projectile\beams.dm"
