@@ -147,22 +147,22 @@
 	warmup_time = 0
 	origin = /area/syndicate_station/start
 	interim = /area/syndicate_station/transit
-	start_location = "Mercenary Base"
+	start_location = "Mercenary base"
 	destinations = list(
 		//"Northwest of the station" = /area/syndicate_station/northwest,
 		//"North of the station" = /area/syndicate_station/north,
 		//"Northeast of the station" = /area/syndicate_station/northeast,
-		"Landed southwest of the tether" = /area/syndicate_station/southwest,
+		"(Land) Southwest of Tether" = /area/syndicate_station/southwest,
 		//"South of the station" = /area/syndicate_station/south,
 		//"Southeast of the station" = /area/syndicate_station/southeast,
 		//"Telecomms Satellite" = /area/syndicate_station/commssat,
-		"Landed at the solar farm" = /area/syndicate_station/mining,
-		"Tether space dock" = /area/syndicate_station/arrivals_dock,
+		"(Land) Solar farm west of Tether" = /area/syndicate_station/mining,
+		"Tether spaceport" = /area/syndicate_station/arrivals_dock,
 		)
 	docking_controller_tag = "merc_shuttle"
 	destination_dock_targets = list(
-		"Mercenary Base" = "merc_base",
-		"Arrivals dock" = "nuke_shuttle_dock_airlock",
+		"Mercenary base" = "merc_base",
+		"Tether spaceport" = "nuke_shuttle_dock_airlock",
 		)
 	announcer = "Automated Traffic Control"
 
