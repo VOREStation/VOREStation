@@ -43,6 +43,7 @@
 		return
 	else if(istype(I, /obj/item/weapon/wrench))
 		anchored = !anchored
+		playsound(loc, I.usesound, 50, 1)
 		user.visible_message("<span class='notice'>[user] [anchored ? "wrenches" : "unwrenches"] \the [src].</span>", "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
 		return
 	else if(istype(I, /obj/item/bee_smoker))
@@ -111,7 +112,7 @@
 			user << "<span class='notice'>You can't dismantle \the [src] with these bees inside.</span>"
 			return
 		user << "<span class='notice'>You start dismantling \the [src]...</span>"
-		playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
+		playsound(src, I.usesound, 50, 1)
 		if(do_after(user, 30))
 			user.visible_message("<span class='notice'>[user] dismantles \the [src].</span>", "<span class='notice'>You dismantle \the [src].</span>")
 			new /obj/item/beehive_assembly(loc)

@@ -89,6 +89,11 @@
 #define SHUTTLE_INTRANSIT 2
 #define SHUTTLE_CRASHED   3 // VOREStation Edit - Yup that can happen now
 
+// Sound defines for shuttles.
+#define HYPERSPACE_WARMUP    0
+#define HYPERSPACE_PROGRESS  1
+#define HYPERSPACE_END       2
+
 // Ferry shuttle processing status.
 #define IDLE_STATE   0
 #define WAIT_LAUNCH  1
@@ -147,6 +152,14 @@
 #define DEFAULT_TABLE_MATERIAL "plastic"
 #define DEFAULT_WALL_MATERIAL "steel"
 
+#define MAT_STEEL			"steel"
+#define MAT_GLASS			"glass"
+#define MAT_SILVER			"silver"
+#define MAT_GOLD			"gold"
+#define MAT_TITANIUM		"titanium"
+#define MAT_PHORON			"phoron"
+#define MAT_DIAMOND			"diamond"
+
 #define SHARD_SHARD "shard"
 #define SHARD_SHRAPNEL "shrapnel"
 #define SHARD_STONE_PIECE "piece"
@@ -203,3 +216,6 @@
 #define TSC_GIL 	"Gilthari"
 
 #define MIDNIGHT_ROLLOVER		864000	//number of deciseconds in a day
+
+#define WORLD_ICON_SIZE 32 //Needed for the R-UST port
+#define PIXEL_MULTIPLIER WORLD_ICON_SIZE/32 //Needed for the R-UST port

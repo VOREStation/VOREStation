@@ -43,7 +43,7 @@
 	if(.)
 		audible_emote("growls at [.]")
 
-/mob/living/simple_animal/mimic/death()
+/mob/living/simple_animal/hostile/mimic/death()
 	..()
 	qdel(src)
 

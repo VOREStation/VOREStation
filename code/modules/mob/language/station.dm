@@ -126,7 +126,7 @@
 
 /datum/language/machine/can_speak_special(var/mob/speaker)
 	var/obj/item/weapon/implant/language/eal/beep = locate() in speaker
-	return ((beep && beep.implanted) || speaker.isSynthetic())
+	return ((beep && beep.implanted) || speaker.isSynthetic() || isvoice(speaker))
 	//thank you sweet zuhayr
 
 /datum/language/machine/get_random_name()

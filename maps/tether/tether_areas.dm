@@ -68,3 +68,23 @@
 	lift_floor_label = "Asteroid 3"
 	lift_floor_name = "Medical, Security, Cargo"
 	lift_announce_str = "Arriving at Station Level 3."
+
+/area/vacant/vacant_restaurant_upper
+	name = "\improper Vacant Restaurant"
+	icon_state = "vacant_site"
+
+/area/vacant/vacant_restaurant_lower
+	name = "\improper Vacant Restaurant"
+	icon_state = "vacant_site"
+
+/area/engineering/engine_gas
+	name = "\improper Engine Gas Storage"
+	icon_state = "engine_waste"
+
+/area/engineering/engineering_airlock
+	name = "\improper Engineering Airlock"
+	icon_state = "engine_eva"
+
+/area/engineering/hallway
+	name = "\improper Engineering Hallway"
+	icon_state = "engineering"

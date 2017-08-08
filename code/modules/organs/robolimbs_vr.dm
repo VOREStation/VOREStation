@@ -1,7 +1,6 @@
 /datum/robolimb
 	var/includes_tail			//Cyberlimbs dmi includes a tail sprite to wear.
 	var/list/whitelisted_to		//List of ckeys that are allowed to pick this in charsetup.
-	var/suggested_species = "Human"
 
 //////////////// For-specific-character fluff ones /////////////////
 // arokha : Aronai Kadigan
@@ -26,6 +25,7 @@
 	icon = 'icons/mob/human_races/cyberlimbs/_fluff_vr/serdykov.dmi'
 	blood_color = "#ff6a00"
 	unavailable_to_build = 1
+	includes_tail = 1
 	whitelisted_to = list("silencedmp5a5")
 
 /obj/item/weapon/disk/limb/white_kryten
@@ -42,6 +42,8 @@
 
 /obj/item/weapon/disk/limb/eggnerdltd
 	company = "Eggnerd Prototyping Ltd."
+	icon = 'icons/obj/items_vr.dmi'
+	icon_state = "verkdisk"
 
 //////////////// General VS-only ones /////////////////
 /datum/robolimb/talon //They're buildable by default due to being extremely basic.

@@ -99,6 +99,10 @@
 				spanstyle = ""
 			if(DM_DIGEST)
 				spanstyle = "color:red;"
+			if(DM_ITEMWEAK)
+				spanstyle = "color:red;"
+			if(DM_STRIPDIGEST)
+				spanstyle = "color:red;"
 			if(DM_HEAL)
 				spanstyle = "color:green;"
 			if(DM_ABSORB)
@@ -367,12 +371,8 @@
 					else
 						var/datum/belly/B = user.vore_organs[choice]
 						for(var/atom/movable/tgt in selected.internal_contents)
-							if (!(tgt in selected.internal_contents))
-								continue
-							selected.internal_contents -= tgt
-							B.internal_contents += tgt
-
 							tgt << "<span class='warning'>You're squished from [user]'s [selected] to their [B]!</span>"
+							selected.transfer_contents(tgt, B, 1)
 
 						for(var/mob/hearer in range(1,user))
 							hearer << sound('sound/vore/squish2.ogg',volume=80)
@@ -407,12 +407,9 @@
 					var/datum/belly/B = user.vore_organs[choice]
 					if (!(tgt in selected.internal_contents))
 						return 0
-					selected.internal_contents -= tgt
-					B.internal_contents += tgt
-
 					tgt << "<span class='warning'>You're squished from [user]'s [lowertext(selected.name)] to their [lowertext(B.name)]!</span>"
-					for(var/mob/hearer in range(1,user))
-						hearer << sound('sound/vore/squish2.ogg',volume=80)
+					selected.transfer_contents(tgt, B)
+
 
 	if(href_list["newbelly"])
 		if(user.vore_organs.len >= BELLIES_MAX)
@@ -456,9 +453,9 @@
 	if(href_list["b_mode"])
 		var/list/menu_list = selected.digest_modes
 		if(istype(usr,/mob/living/carbon/human))
-			var/mob/living/carbon/human/H = usr
-			if(H.species.vore_numbing)
-				menu_list += DM_DIGEST_NUMB
+			//var/mob/living/carbon/human/H = usr
+			//if(H.species.vore_numbing)
+				//menu_list += DM_DIGEST_NUMB
 			menu_list += selected.transform_modes
 
 		if(selected.digest_modes.len == 1) // Don't do anything

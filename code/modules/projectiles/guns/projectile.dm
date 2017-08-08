@@ -11,7 +11,7 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 1000)
 	recoil = 1
 
-	var/caliber = "357"		//determines which casings will fit
+	var/caliber = ".357"		//determines which casings will fit
 	var/handle_casings = EJECT_CASINGS	//determines how spent casings should be handled
 	var/load_method = SINGLE_CASING|SPEEDLOADER //1 = Single shells, 2 = box or quick loader, 3 = magazine
 	var/obj/item/ammo_casing/chambered = null
@@ -32,13 +32,14 @@
 	//var/list/icon_keys = list()		//keys
 	//var/list/ammo_states = list()	//values
 
-/obj/item/weapon/gun/projectile/New()
+/obj/item/weapon/gun/projectile/New(loc, var/starts_loaded = 1)
 	..()
-	if(ispath(ammo_type) && (load_method & (SINGLE_CASING|SPEEDLOADER)))
-		for(var/i in 1 to max_shells)
-			loaded += new ammo_type(src)
-	if(ispath(magazine_type) && (load_method & MAGAZINE))
-		ammo_magazine = new magazine_type(src)
+	if(starts_loaded)
+		if(ispath(ammo_type) && (load_method & (SINGLE_CASING|SPEEDLOADER)))
+			for(var/i in 1 to max_shells)
+				loaded += new ammo_type(src)
+		if(ispath(magazine_type) && (load_method & MAGAZINE))
+			ammo_magazine = new magazine_type(src)
 	update_icon()
 
 /obj/item/weapon/gun/projectile/consume_next_projectile()

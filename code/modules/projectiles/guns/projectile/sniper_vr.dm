@@ -18,7 +18,7 @@
 	one_handed_penalty = 4 // The weapon itself is heavy, and the long barrel makes it hard to hold steady with just one hand.
 	fire_sound = 'sound/weapons/SVD_shot.ogg'
 	magazine_type = /obj/item/ammo_magazine/m762
-	allowed_magazines = list(/obj/item/ammo_magazine/m762, /obj/item/ammo_magazine/m762)
+	allowed_magazines = list(/obj/item/ammo_magazine/m762)
 
 /obj/item/weapon/gun/projectile/SVD/update_icon()
 	..()

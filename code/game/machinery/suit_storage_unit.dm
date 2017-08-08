@@ -473,7 +473,7 @@
 		return
 	if(istype(I, /obj/item/weapon/screwdriver))
 		panelopen = !panelopen
-		playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)
+		playsound(src, I.usesound, 100, 1)
 		user << text("<font color='blue'>You [] the unit's maintenance panel.</font>",(panelopen ? "open up" : "close"))
 		updateUsrDialog()
 		return
@@ -692,6 +692,7 @@
 	else if(istype(I,/obj/item/weapon/screwdriver))
 
 		panel_open = !panel_open
+		playsound(src, I.usesound, 50, 1)
 		user << "You [panel_open ?  "open" : "close"] the maintenance panel."
 		updateUsrDialog()
 		return

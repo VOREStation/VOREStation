@@ -59,6 +59,8 @@ var/datum/antagonist/renegade/renegades
 		list(/obj/item/weapon/gun/projectile/luger,/obj/item/weapon/gun/projectile/luger/brown)
 		)
 
+	can_use_aooc = FALSE // They aren't 'true' antags.
+
 /datum/antagonist/renegade/New()
 	..()
 	renegades = src

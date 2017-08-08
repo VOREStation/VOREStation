@@ -1,9 +1,10 @@
 /obj/item/device/aicard
-	name = "inteliCard"
+	name = "intelliCore"
+	desc = "Used to preserve and transport an AI."
 	icon = 'icons/obj/pda.dmi'
 	icon_state = "aicard" // aicard-full
 	item_state = "aicard"
-	w_class = ITEMSIZE_SMALL
+	w_class = ITEMSIZE_NORMAL
 	slot_flags = SLOT_BELT
 	show_messages = 0
 
@@ -57,12 +58,12 @@
 
 	var/user = usr
 	if (href_list["wipe"])
-		var/confirm = alert("Are you sure you want to wipe this card's memory? This cannot be undone once started.", "Confirm Wipe", "Yes", "No")
+		var/confirm = alert("Are you sure you want to disable this core's power? This cannot be undone once started.", "Confirm Shutdown", "Yes", "No")
 		if(confirm == "Yes" && (CanUseTopic(user, state) == STATUS_INTERACTIVE))
-			admin_attack_log(user, carded_ai, "Wiped using \the [src.name]", "Was wiped with \the [src.name]", "used \the [src.name] to wipe")
+			admin_attack_log(user, carded_ai, "Purged using \the [src.name]", "Was purged with \the [src.name]", "used \the [src.name] to purge")
 			flush = 1
 			carded_ai.suiciding = 1
-			carded_ai << "Your core files are being wiped!"
+			carded_ai << "Your power has been disabled!"
 			while (carded_ai && carded_ai.stat != 2)
 				carded_ai.adjustOxyLoss(2)
 				carded_ai.updatehealth()
@@ -93,22 +94,22 @@
 
 /obj/item/device/aicard/proc/grab_ai(var/mob/living/silicon/ai/ai, var/mob/living/user)
 	if(!ai.client)
-		user << "<span class='danger'>ERROR:</span> AI [ai.name] is offline. Unable to download."
+		user << "<span class='danger'>ERROR:</span> AI [ai.name] is offline. Unable to transfer."
 		return 0
 
 	if(carded_ai)
-		user << "<span class='danger'>Transfer failed:</span> Existing AI found on remote terminal. Remove existing AI to install a new one."
+		user << "<span class='danger'>Transfer failed:</span> Existing AI found on remote device. Remove existing AI to install a new one."
 		return 0
 
-	user.visible_message("\The [user] starts downloading \the [ai] into \the [src]...", "You start downloading \the [ai] into \the [src]...")
-	ai << "<span class='danger'>\The [user] is downloading you into \the [src]!</span>"
+	user.visible_message("\The [user] starts transferring \the [ai] into \the [src]...", "You start transferring \the [ai] into \the [src]...")
+	ai << "<span class='danger'>\The [user] is transferring you into \the [src]!</span>"
 
 	if(do_after(user, 100))
 		if(istype(ai.loc, /turf/))
 			new /obj/structure/AIcore/deactivated(get_turf(ai))
 
 		ai.carded = 1
-		admin_attack_log(user, ai, "Carded with [src.name]", "Was carded with [src.name]", "used the [src.name] to card")
+		admin_attack_log(user, ai, "Extracted with [src.name]", "Was extracted with [src.name]", "used the [src.name] to extract")
 		src.name = "[initial(name)] - [ai.name]"
 
 		ai.loc = src
@@ -119,9 +120,9 @@
 		carded_ai = ai
 
 		if(ai.client)
-			ai << "You have been downloaded to a mobile storage device. Remote access lost."
+			ai << "You have been transferred into a mobile core. Remote access lost."
 		if(user.client)
-			user << "<span class='notice'><b>Transfer successful:</b></span> [ai.name] ([rand(1000,9999)].exe) removed from host terminal and stored within local memory."
+			user << "<span class='notice'><b>Transfer successful:</b></span> [ai.name] extracted from current device and placed within mobile core."
 
 		ai.canmove = 1
 		update_icon()

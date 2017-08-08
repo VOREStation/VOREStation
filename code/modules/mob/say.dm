@@ -19,7 +19,7 @@
 	set category = "IC"
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		usr << "\red Speech is currently admin-disabled."
+		usr << "<font color='red'>Speech is currently admin-disabled.</font>"
 		return
 
 	message = sanitize(message)

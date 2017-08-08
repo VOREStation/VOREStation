@@ -34,7 +34,7 @@
 			if(istype(O, /obj/item/device/multitool))
 				user << "<span class='warning'>Resetting circuitry...</span>"
 				playsound(user, 'sound/machines/lockreset.ogg', 50, 1)
-				if(do_after(user, 20))
+				if(do_after(user, 20 * O.toolspeed))
 					src.locked = 0
 					user << "<span class = 'caution'> You disable the locking modules.</span>"
 					update_icon()
@@ -92,11 +92,8 @@
 					return
 				else
 					user << "<span class='warning'>Resetting circuitry...</span>"
-					sleep(50)
-					src.locked = 1
-					user << "<span class='notice'>You re-enable the locking modules.</span>"
 					playsound(user, 'sound/machines/lockenable.ogg', 50, 1)
-					if(do_after(user,20))
+					if(do_after(user,20 * O.toolspeed))
 						src.locked = 1
 						user << "<span class = 'caution'> You re-enable the locking modules.</span>"
 					return

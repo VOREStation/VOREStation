@@ -103,7 +103,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 	infos += P
 	info << infos
 
-	message_admins("\blue [key_name_admin(user)] has edited [key]'s notes.")
+	message_admins("<font color='blue'>[key_name_admin(user)] has edited [key]'s notes.</font>")
 	log_admin("[key_name(user)] has edited [key]'s notes.")
 
 	del(info) // savefile, so NOT qdel
@@ -128,7 +128,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 	infos.Remove(item)
 	info << infos
 
-	message_admins("\blue [key_name_admin(usr)] deleted one of [key]'s notes.")
+	message_admins("<font color='blue'>[key_name_admin(usr)] deleted one of [key]'s notes.</font>")
 	log_admin("[key_name(usr)] deleted one of [key]'s notes.")
 
 	qdel(info)

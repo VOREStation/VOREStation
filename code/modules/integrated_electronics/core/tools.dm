@@ -165,6 +165,89 @@
 
 	io.holder.interact(user) // This is to update the UI.
 
+
+
+
+/obj/item/device/multitool
+	var/datum/integrated_io/selected_io = null
+	var/mode = 0
+
+/obj/item/device/multitool/attack_self(mob/user)
+	if(selected_io)
+		selected_io = null
+		to_chat(user, "<span class='notice'>You clear the wired connection from the multitool.</span>")
+	else
+		..()
+	update_icon()
+
+/obj/item/device/multitool/update_icon()
+	if(selected_io)
+		if(buffer || connecting || connectable)
+			icon_state = "multitool_tracking"
+		else
+			icon_state = "multitool_red"
+	else
+		if(buffer || connecting || connectable)
+			icon_state = "multitool_tracking_fail"
+		else
+			icon_state = "multitool"
+
+/obj/item/device/multitool/proc/wire(var/datum/integrated_io/io, mob/user)
+	if(!io.holder.assembly)
+		to_chat(user, "<span class='warning'>\The [io.holder] needs to be secured inside an assembly first.</span>")
+		return
+
+	if(selected_io)
+		if(io == selected_io)
+			to_chat(user, "<span class='warning'>Wiring \the [selected_io.holder]'s [selected_io.name] into itself is rather pointless.</span>")
+			return
+		if(io.io_type != selected_io.io_type)
+			to_chat(user, "<span class='warning'>Those two types of channels are incompatable.  The first is a [selected_io.io_type], \
+			while the second is a [io.io_type].</span>")
+			return
+		if(io.holder.assembly && io.holder.assembly != selected_io.holder.assembly)
+			to_chat(user, "<span class='warning'>Both \the [io.holder] and \the [selected_io.holder] need to be inside the same assembly.</span>")
+			return
+		selected_io.linked |= io
+		io.linked |= selected_io
+
+		to_chat(user, "<span class='notice'>You connect \the [selected_io.holder]'s [selected_io.name] to \the [io.holder]'s [io.name].</span>")
+		selected_io.holder.interact(user) // This is to update the UI.
+		selected_io = null
+
+	else
+		selected_io = io
+		to_chat(user, "<span class='notice'>You link \the multitool to \the [selected_io.holder]'s [selected_io.name] data channel.</span>")
+
+	update_icon()
+
+
+/obj/item/device/multitool/proc/unwire(var/datum/integrated_io/io1, var/datum/integrated_io/io2, mob/user)
+	if(!io1.linked.len || !io2.linked.len)
+		to_chat(user, "<span class='warning'>There is nothing connected to the data channel.</span>")
+		return
+
+	if(!(io1 in io2.linked) || !(io2 in io1.linked) )
+		to_chat(user, "<span class='warning'>These data pins aren't connected!</span>")
+		return
+	else
+		io1.linked.Remove(io2)
+		io2.linked.Remove(io1)
+		to_chat(user, "<span class='notice'>You clip the data connection between the [io1.holder.displayed_name]'s \
+		[io1.name] and the [io2.holder.displayed_name]'s [io2.name].</span>")
+		io1.holder.interact(user) // This is to update the UI.
+		update_icon()
+
+
+
+
+
+
+
+
+
+
+
 /obj/item/weapon/storage/bag/circuits
 	name = "circuit kit"
 	desc = "This kit's essential for any circuitry projects."
@@ -178,7 +261,8 @@
 		/obj/item/device/electronic_assembly,
 		/obj/item/device/integrated_electronics,
 		/obj/item/weapon/crowbar,
-		/obj/item/weapon/screwdriver
+		/obj/item/weapon/screwdriver,
+		/obj/item/device/multitool
 		)
 
 /obj/item/weapon/storage/bag/circuits/basic/New()
@@ -186,7 +270,7 @@
 	spawn(2 SECONDS) // So the list has time to initialize.
 //		for(var/obj/item/integrated_circuit/IC in all_integrated_circuits)
 //			if(IC.spawn_flags & IC_SPAWN_DEFAULT)
-//				for(var/i = 1 to 3)
+//				for(var/i = 1 to 4)
 //					new IC.type(src)
 		new /obj/item/weapon/storage/bag/circuits/mini/arithmetic(src)
 		new /obj/item/weapon/storage/bag/circuits/mini/trig(src)
@@ -201,10 +285,11 @@
 		new /obj/item/weapon/storage/bag/circuits/mini/power(src)
 
 		new /obj/item/device/electronic_assembly(src)
-		new /obj/item/device/integrated_electronics/wirer(src)
-		new /obj/item/device/integrated_electronics/debugger(src)
-		new /obj/item/weapon/crowbar(src)
+		new /obj/item/device/assembly/electronic_assembly(src)
+		new /obj/item/device/assembly/electronic_assembly(src)
+		new /obj/item/device/multitool(src)
 		new /obj/item/weapon/screwdriver(src)
+		new /obj/item/weapon/crowbar(src)
 		make_exact_fit()
 
 /obj/item/weapon/storage/bag/circuits/all/New()
@@ -231,7 +316,6 @@
 		new /obj/item/device/integrated_electronics/wirer(src)
 		new /obj/item/device/integrated_electronics/debugger(src)
 		new /obj/item/weapon/crowbar(src)
-		new /obj/item/weapon/screwdriver(src)
 		make_exact_fit()
 
 /obj/item/weapon/storage/bag/circuits/mini/
@@ -254,7 +338,7 @@
 	..()
 	for(var/obj/item/integrated_circuit/arithmetic/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
-			for(var/i = 1 to 3)
+			for(var/i = 1 to 4)
 				new IC.type(src)
 	make_exact_fit()
 
@@ -271,7 +355,7 @@
 	..()
 	for(var/obj/item/integrated_circuit/trig/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
-			for(var/i = 1 to 3)
+			for(var/i = 1 to 4)
 				new IC.type(src)
 	make_exact_fit()
 
@@ -288,7 +372,7 @@
 	..()
 	for(var/obj/item/integrated_circuit/input/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
-			for(var/i = 1 to 3)
+			for(var/i = 1 to 4)
 				new IC.type(src)
 	make_exact_fit()
 
@@ -305,7 +389,7 @@
 	..()
 	for(var/obj/item/integrated_circuit/output/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
-			for(var/i = 1 to 3)
+			for(var/i = 1 to 4)
 				new IC.type(src)
 	make_exact_fit()
 
@@ -322,7 +406,7 @@
 	..()
 	for(var/obj/item/integrated_circuit/memory/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
-			for(var/i = 1 to 3)
+			for(var/i = 1 to 4)
 				new IC.type(src)
 	make_exact_fit()
 
@@ -339,7 +423,7 @@
 	..()
 	for(var/obj/item/integrated_circuit/logic/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
-			for(var/i = 1 to 3)
+			for(var/i = 1 to 4)
 				new IC.type(src)
 	make_exact_fit()
 
@@ -356,7 +440,7 @@
 	..()
 	for(var/obj/item/integrated_circuit/time/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
-			for(var/i = 1 to 3)
+			for(var/i = 1 to 4)
 				new IC.type(src)
 	make_exact_fit()
 
@@ -373,7 +457,7 @@
 	..()
 	for(var/obj/item/integrated_circuit/reagent/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
-			for(var/i = 1 to 3)
+			for(var/i = 1 to 4)
 				new IC.type(src)
 	make_exact_fit()
 
@@ -390,7 +474,7 @@
 	..()
 	for(var/obj/item/integrated_circuit/transfer/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
-			for(var/i = 1 to 3)
+			for(var/i = 1 to 4)
 				new IC.type(src)
 	make_exact_fit()
 
@@ -407,7 +491,7 @@
 	..()
 	for(var/obj/item/integrated_circuit/converter/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
-			for(var/i = 1 to 3)
+			for(var/i = 1 to 4)
 				new IC.type(src)
 	make_exact_fit()
 
@@ -423,7 +507,7 @@
 	..()
 	for(var/obj/item/integrated_circuit/smart/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
-			for(var/i = 1 to 3)
+			for(var/i = 1 to 4)
 				new IC.type(src)
 	make_exact_fit()
 
@@ -439,7 +523,7 @@
 	..()
 	for(var/obj/item/integrated_circuit/manipulation/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
-			for(var/i = 1 to 3)
+			for(var/i = 1 to 4)
 				new IC.type(src)
 	make_exact_fit()
 
@@ -456,10 +540,10 @@
 	..()
 	for(var/obj/item/integrated_circuit/passive/power/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
-			for(var/i = 1 to 3)
+			for(var/i = 1 to 4)
 				new IC.type(src)
 	for(var/obj/item/integrated_circuit/power/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
-			for(var/i = 1 to 3)
+			for(var/i = 1 to 4)
 				new IC.type(src)
 	make_exact_fit()

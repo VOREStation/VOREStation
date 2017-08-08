@@ -310,6 +310,7 @@
 	msg += attempt_vr(src,"examine_weight",args) //VOREStation Code
 	msg += attempt_vr(src,"examine_nutrition",args) //VOREStation Code
 	msg += attempt_vr(src,"examine_bellies",args) //VOREStation Code
+	msg += attempt_vr(src,"examine_size",args) //VOREStation Code
 
 	if(mSmallsize in mutations)
 		msg += "[T.He] [T.is] small halfling!\n"

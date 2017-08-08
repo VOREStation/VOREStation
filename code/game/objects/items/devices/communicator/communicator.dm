@@ -520,6 +520,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 				return
 			src << "<span class='notice'>\icon[origin_atom] Receiving communicator request from [origin_atom].  To answer, use the <b>Call Communicator</b> \
 			verb, and select that name to answer the call.</span>"
+			src << 'sound/machines/defib_SafetyOn.ogg'
 			comm.voice_invites |= src
 	if(message == "ping")
 		if(client && client.prefs.communicator_visibility)
@@ -528,6 +529,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 			exonet.send_message(origin_address, "64 bytes received from [exonet.address] ecmp_seq=1 ttl=51 time=[random] ms")
 	if(message == "text")
 		src << "<span class='notice'>\icon[origin_atom] Received text message from [origin_atom]: <b>\"[text]\"</b></span>"
+		src << 'sound/machines/defib_safetyOff.ogg'
 		exonet_messages.Add("<b>From [origin_atom]:</b><br>[text]")
 		return
 

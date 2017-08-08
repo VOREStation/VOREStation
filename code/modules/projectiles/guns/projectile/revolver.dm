@@ -3,7 +3,7 @@
 	desc = "The Lumoco Arms HE Colt is a choice revolver for when you absolutely, positively need to put a hole in the other guy. Uses .357 rounds."
 	icon_state = "revolver"
 	item_state = "revolver"
-	caliber = "357"
+	caliber = ".357"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	handle_casings = CYCLE_CASINGS
 	max_shells = 6
@@ -45,7 +45,7 @@
 	icon_state = "detective"
 	caliber = ".38"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
-	fire_sound = 'sound/weapons/Gunshot_light.ogg'
+	fire_sound = 'sound/weapons/semiauto.ogg'
 	ammo_type = /obj/item/ammo_casing/a38
 
 /obj/item/weapon/gun/projectile/revolver/detective/verb/rename_gun()
@@ -73,7 +73,7 @@
 	icon_state = "deckard-empty"
 	caliber = ".38"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
-	fire_sound = 'sound/weapons/Gunshot_light.ogg'
+	fire_sound = 'sound/weapons/semiauto.ogg'
 	ammo_type = /obj/item/ammo_casing/a38
 
 /obj/item/weapon/gun/projectile/revolver/deckard/emp
@@ -124,6 +124,7 @@
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	handle_casings = CYCLE_CASINGS
 	max_shells = 9
+	fire_sound = 'sound/weapons/semiauto.ogg'
 	caliber = ".38"
 	ammo_type = /obj/item/ammo_casing/a38
 	var/secondary_max_shells = 1
@@ -155,6 +156,7 @@
 
 		if(caliber && secondary_caliber)
 			caliber = secondary_caliber
+			fire_sound = 'sound/weapons/shotgun.ogg'
 
 		if(ammo_type && secondary_ammo_type)
 			ammo_type = secondary_ammo_type
@@ -171,6 +173,7 @@
 
 		if(caliber && secondary_caliber)
 			caliber = initial(caliber)
+			fire_sound = initial(fire_sound)
 
 		if(ammo_type && secondary_ammo_type)
 			ammo_type = initial(ammo_type)

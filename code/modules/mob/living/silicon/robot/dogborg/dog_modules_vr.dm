@@ -310,3 +310,30 @@
 	hitsound = 'sound/weapons/blade1.ogg'
 	attack_verb = list("slashed", "stabbed", "jabbed", "mauled", "sliced")
 	w_class = ITEMSIZE_NORMAL
+
+/obj/item/device/lightreplacer/dogborg
+	name = "light replacer"
+	desc = "A device to automatically replace lights. This version is capable to produce a few replacements using your internal matter reserves."
+	max_uses = 16
+	var/cooldown = 0
+
+/obj/item/device/lightreplacer/dogborg/attack_self(mob/user)//Boo recharger fill is slow as shit and removes all the extra cyberfat gains you worked so hard for!
+	if(uses >= max_uses)
+		user << "<span class='warning'>[src.name] is full.</span>"
+		return
+	if(uses < max_uses && cooldown == 0)
+		var/mob/living/silicon/robot.R = user
+		if(R.cell.charge <= 1000)
+			user << "<span class='warning'>Insufficient power reserves. Please recharge.</span>"
+			return
+		usr << "It has [uses] lights remaining. Attempting to fabricate a replacement. Please stand still."
+		cooldown = 1
+		if(do_after(user, 50))
+			R.cell.charge = R.cell.charge - 800
+			AddUses(1)
+			cooldown = 0
+		else
+			cooldown = 0
+	else
+		usr << "It has [uses] lights remaining."
+		return

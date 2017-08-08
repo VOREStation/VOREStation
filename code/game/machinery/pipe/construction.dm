@@ -1231,7 +1231,7 @@ Buildable meters
 			P.initialize()
 			P.build_network()
 
-	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+	playsound(src, W.usesound, 50, 1)
 	user.visible_message( \
 		"[user] fastens the [src].", \
 		"<span class='notice'>You have fastened the [src].</span>", \
@@ -1262,7 +1262,7 @@ Buildable meters
 		user << "<span class='warning'>You need to fasten it to a pipe</span>"
 		return 1
 	new/obj/machinery/meter( src.loc )
-	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+	playsound(src, W.usesound, 50, 1)
 	user << "<span class='notice'>You have fastened the meter to the pipe</span>"
 	qdel(src)
 //not sure why these are necessary

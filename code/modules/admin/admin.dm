@@ -673,25 +673,23 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set desc = "Send an intercom message, like an arrivals announcement."
 	if(!check_rights(0))	return
 
-	var/sender = input("Name of sender (max 75):", "Intercom Msg", ANNOUNCER_NAME) as null|text
-	if(sender) //They put a sender
-		sender = sanitize(sender, 75, extra = 0)
-		var/message = input("Message content (max 500):", "Contents", "This is a test of the announcement system.") as null|message
-		if(message) //They put a message
-			message = sanitize(message, 500, extra = 0)
-			var/priority = alert("Priority or Normal?","Intercom Msg","Priority","Cancel","Normal")
-			var/datum/announcement/A
-			switch(priority)
-				if("Priority")
-					A = admin_pri_announcer
-				if("Normal")
-					A = admin_min_announcer
-			if(A)
-				A.announcer = sender
-				A.Announce(message)
-				A.announcer = ""
-				log_admin("Intercom Verb: [key_name(usr)] : [sender]:[message]")
+	//This is basically how death alarms do it
+	var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset/ert(null)
 
+	var/channel = input("Channel for message:","Channel", null) as null|anything in (list("Common") + a.keyslot2.channels) // + a.keyslot1.channels
+
+	if(channel) //They picked a channel
+		var/sender = input("Name of sender (max 75):", "Announcement", "Announcement Computer") as null|text
+
+		if(sender) //They put a sender
+			sender = sanitize(sender, 75, extra = 0)
+			var/message = input("Message content (max 500):", "Contents", "This is a test of the announcement system.") as null|message
+
+			if(message) //They put a message
+				message = sanitize(message, 500, extra = 0)
+				a.autosay("[message]", "[sender]", "[channel == "Common" ? null : channel]") //Common is a weird case, as it's not a "channel", it's just talking into a radio without a channel set.
+				log_admin("Intercom: [key_name(usr)] : [sender]:[message]")
+	qdel(a)
 	feedback_add_details("admin_verb","IN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggleooc()
@@ -807,7 +805,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	else
 		world << "<B>New players may now enter the game.</B>"
 	log_admin("[key_name(usr)] toggled new player game entering.")
-	message_admins("\blue [key_name_admin(usr)] toggled new player game entering.", 1)
+	message_admins("<font color='blue'>[key_name_admin(usr)] toggled new player game entering.</font>", 1)
 	world.update_status()
 	feedback_add_details("admin_verb","TE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -833,7 +831,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 		world << "<B>You may now respawn.</B>"
 	else
 		world << "<B>You may no longer respawn :(</B>"
-	message_admins("\blue [key_name_admin(usr)] toggled respawn to [config.abandon_allowed ? "On" : "Off"].", 1)
+	message_admins("<font color='blue'>[key_name_admin(usr)] toggled respawn to [config.abandon_allowed ? "On" : "Off"].</font>", 1)
 	log_admin("[key_name(usr)] toggled respawn to [config.abandon_allowed ? "On" : "Off"].")
 	world.update_status()
 	feedback_add_details("admin_verb","TR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -865,7 +863,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	if (!ticker || ticker.current_state != GAME_STATE_PREGAME)
 		ticker.delay_end = !ticker.delay_end
 		log_admin("[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
-		message_admins("\blue [key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].", 1)
+		message_admins("<font color='blue'>[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].</font>", 1)
 		return //alert("Round end delayed", null, null, null, null, null)
 	round_progressing = !round_progressing
 	if (!round_progressing)
@@ -881,7 +879,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set desc="Toggle admin jumping"
 	set name="Toggle Jump"
 	config.allow_admin_jump = !(config.allow_admin_jump)
-	message_admins("\blue Toggled admin jumping to [config.allow_admin_jump].")
+	message_admins("<font color='blue'>Toggled admin jumping to [config.allow_admin_jump].</font>")
 	feedback_add_details("admin_verb","TJ") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/adspawn()
@@ -889,7 +887,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set desc="Toggle admin spawning"
 	set name="Toggle Spawn"
 	config.allow_admin_spawning = !(config.allow_admin_spawning)
-	message_admins("\blue Toggled admin item spawning to [config.allow_admin_spawning].")
+	message_admins("<font color='blue'>Toggled admin item spawning to [config.allow_admin_spawning].</font>")
 	feedback_add_details("admin_verb","TAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/adrev()
@@ -897,7 +895,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set desc="Toggle admin revives"
 	set name="Toggle Revive"
 	config.allow_admin_rev = !(config.allow_admin_rev)
-	message_admins("\blue Toggled reviving to [config.allow_admin_rev].")
+	message_admins("<font color='blue'>Toggled reviving to [config.allow_admin_rev].</font>")
 	feedback_add_details("admin_verb","TAR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/immreboot()
@@ -907,7 +905,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	if(!usr.client.holder)	return
 	if( alert("Reboot server?",,"Yes","No") == "No")
 		return
-	world << "\red <b>Rebooting world!</b> \blue Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!"
+	world << "<font color='red'><b>Rebooting world!</b></font> <font color='blue'>Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!</font>"
 	log_admin("[key_name(usr)] initiated an immediate reboot.")
 
 	feedback_set_details("end_error","immediate admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]")
@@ -1171,7 +1169,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	else
 		world << "<B>Guests may now enter the game.</B>"
 	log_admin("[key_name(usr)] toggled guests game entering [config.guests_allowed?"":"dis"]allowed.")
-	message_admins("\blue [key_name_admin(usr)] toggled guests game entering [config.guests_allowed?"":"dis"]allowed.", 1)
+	message_admins("<font color='blue'>[key_name_admin(usr)] toggled guests game entering [config.guests_allowed?"":"dis"]allowed.</font>", 1)
 	feedback_add_details("admin_verb","TGU") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/output_ai_laws()

@@ -35,6 +35,8 @@
 
 	var/list/construct_spells = list()
 
+	can_be_antagged = TRUE
+
 /mob/living/simple_animal/construct/cultify()
 	return
 

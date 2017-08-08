@@ -221,3 +221,16 @@
 	icon_living = "syndifox"
 	icon_dead = "syndifox_dead"
 	icon_rest = "syndifox_rest"
+
+	// this fox wears a hardsuit
+	maxHealth = 100
+	health = 100
+	min_oxy = 0
+	max_oxy = 0
+	min_tox = 0
+	max_tox = 0
+	min_co2 = 0
+	max_co2 = 0
+	min_n2 = 0
+	max_n2 = 0
+	minbodytemp = 0

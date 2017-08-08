@@ -25,6 +25,10 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/E = tool
 		var/obj/item/organ/external/P = target.organs_by_name[E.parent_organ]
+		var/obj/item/organ/external/affected = target.get_organ(target_zone)
+		if (affected)
+			user << "<span class='warning'>Something is in the way! You can't attach [E] here!</span>"
+			return 0
 		if(!P)
 			user << "<span class='warning'>There's nothing to attach [E] to!</span>"
 			return 0

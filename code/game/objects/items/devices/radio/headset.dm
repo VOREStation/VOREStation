@@ -13,7 +13,7 @@
 	var/translate_hive = 0
 	var/obj/item/device/encryptionkey/keyslot1 = null
 	var/obj/item/device/encryptionkey/keyslot2 = null
-	var/ks1type = /obj/item/device/encryptionkey
+	var/ks1type = null
 	var/ks2type = null
 
 /obj/item/device/radio/headset/New()
@@ -348,6 +348,7 @@
 
 			recalculateChannels()
 			user << "You pop out the encryption keys in the headset!"
+			playsound(src, W.usesound, 50, 1)
 
 		else
 			user << "This headset doesn't have any encryption keys!  How useless..."

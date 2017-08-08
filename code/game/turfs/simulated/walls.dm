@@ -214,7 +214,7 @@
 			if(check_destroy_override())
 				src.ChangeTurf(destroy_floor_override_path)
 			else
-				src.ChangeTurf(/turf/space)
+				src.ChangeTurf(get_base_turf_by_area(src)) //VOREStation Edit - Use area base turf
 		if(2.0)
 			if(prob(75))
 				take_damage(rand(150, 250))

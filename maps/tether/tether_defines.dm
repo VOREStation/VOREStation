@@ -22,20 +22,28 @@
 #define VIRGO3B_TURF_CREATE_UN(x)	x/virgo3b/nitrogen=VIRGO3B_MOL_N2;x/virgo3b/oxygen=VIRGO3B_MOL_O2;x/virgo3b/carbon_dioxide=VIRGO3B_MOL_CO2;x/virgo3b/phoron=VIRGO3B_MOL_PHORON;x/virgo3b/temperature=VIRGO3B_AVG_TEMP
 
 //Normal map defs
-#define Z_LEVEL_SURFACE_LOW				1
-#define Z_LEVEL_SURFACE_MID				2
-#define Z_LEVEL_SURFACE_HIGH			3
-#define Z_LEVEL_TRANSIT					4
-#define Z_LEVEL_SPACE_LOW				5
-#define Z_LEVEL_SPACE_MID				6
-#define Z_LEVEL_SPACE_HIGH				7
-#define Z_LEVEL_SURFACE_MINE			8
-#define Z_LEVEL_SOLARS					9
-#define Z_LEVEL_CENTCOM					10
-#define Z_LEVEL_MISC					11
-#define Z_LEVEL_SHIPS					12
-#define Z_LEVEL_EMPTY_SURFACE			13
-#define Z_LEVEL_EMPTY_SPACE				14
+#define Z_LEVEL_SURFACE_LOW					1
+#define Z_LEVEL_SURFACE_MID					2
+#define Z_LEVEL_SURFACE_HIGH				3
+#define Z_LEVEL_TRANSIT						4
+#define Z_LEVEL_SPACE_LOW					5
+#define Z_LEVEL_SPACE_MID					6
+#define Z_LEVEL_SPACE_HIGH					7
+#define Z_LEVEL_SURFACE_MINE				8
+#define Z_LEVEL_SOLARS						9
+#define Z_LEVEL_CENTCOM						10
+#define Z_LEVEL_MISC						11
+#define Z_LEVEL_SHIPS						12
+#define Z_LEVEL_EMPTY_SURFACE				13
+#define Z_LEVEL_EMPTY_SPACE					14
+#define Z_LEVEL_SURFACE_WILDERNESS_1		15
+#define Z_LEVEL_SURFACE_WILDERNESS_2		16
+#define Z_LEVEL_SURFACE_WILDERNESS_3		17
+#define Z_LEVEL_SURFACE_WILDERNESS_4		18
+#define Z_LEVEL_SURFACE_WILDERNESS_5		19
+#define Z_LEVEL_SURFACE_WILDERNESS_6		20
+#define Z_LEVEL_SURFACE_WILDERNESS_CRASH	21
+#define Z_LEVEL_SURFACE_WILDERNESS_RUINS	22
 
 
 /datum/map/tether
@@ -56,9 +64,9 @@
 		Z_LEVEL_SPACE_MID,
 		Z_LEVEL_SPACE_HIGH))
 
-	station_name  = "NSB Tether"
+	station_name  = "NSB Adephagia"
 	station_short = "Tether"
-	dock_name     = "Virgo 3b Colony"
+	dock_name     = "Virgo-3B Colony"
 	boss_name     = "Central Command"
 	boss_short    = "CentCom"
 	company_name  = "NanoTrasen"
@@ -223,3 +231,48 @@
 	name = "Empty"
 	flags = MAP_LEVEL_PLAYER
 	transit_chance = 82
+
+/datum/map_z_level/tether/wilderness
+	name = "Wilderness"
+	flags = MAP_LEVEL_PLAYER
+	var/activated = 0
+	var/list/frozen_mobs = list()
+
+/datum/map_z_level/tether/wilderness/proc/activate_mobs()
+	if(activated && isemptylist(frozen_mobs))
+		return
+	activated = 1
+	for(var/mob/living/simple_animal/M in frozen_mobs)
+		M.life_disabled = 0
+		frozen_mobs -= M
+	frozen_mobs.Cut()
+
+/datum/map_z_level/tether/wilderness/wild_1
+	z = Z_LEVEL_SURFACE_WILDERNESS_1
+
+/datum/map_z_level/tether/wilderness/wild_2
+	z = Z_LEVEL_SURFACE_WILDERNESS_2
+
+/datum/map_z_level/tether/wilderness/wild_3
+	z = Z_LEVEL_SURFACE_WILDERNESS_3
+
+/datum/map_z_level/tether/wilderness/wild_4
+	z = Z_LEVEL_SURFACE_WILDERNESS_4
+
+/datum/map_z_level/tether/wilderness/wild_5
+	z = Z_LEVEL_SURFACE_WILDERNESS_5
+
+/datum/map_z_level/tether/wilderness/wild_6
+	z = Z_LEVEL_SURFACE_WILDERNESS_6
+
+/datum/map_z_level/tether/wilderness/wild_crash
+	z = Z_LEVEL_SURFACE_WILDERNESS_CRASH
+
+/datum/map_z_level/tether/wilderness/wild_ruins
+	z = Z_LEVEL_SURFACE_WILDERNESS_RUINS
+
+/proc/get_z_level_datum(atom/A)
+	var/turf/T = get_turf(A)
+	var/datum/map_z_level/z_level = using_map.zlevels["[T.z]"]
+	if(z_level)
+		return z_level

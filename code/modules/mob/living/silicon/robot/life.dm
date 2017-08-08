@@ -21,6 +21,7 @@
 		process_killswitch()
 		process_locks()
 		process_queued_alarms()
+	handle_internal_contents() //VOREStation Edit
 	update_canmove()
 
 /mob/living/silicon/robot/proc/clamp_values()
@@ -56,7 +57,7 @@
 		src.has_power = 1
 	else
 		if (src.has_power)
-			src << "\red You are now running on emergency backup power."
+			src << "<font color='red'>You are now running on emergency backup power.</font>"
 		src.has_power = 0
 		if(lights_on) // Light is on but there is no power!
 			lights_on = 0
@@ -172,6 +173,12 @@
 		src.sight |= SEE_MOBS
 		src.see_in_dark = 8
 		src.see_invisible = SEE_INVISIBLE_LEVEL_TWO
+	else if (!seedarkness)
+		src.sight &= ~SEE_MOBS
+		src.sight &= ~SEE_TURFS
+		src.sight &= ~SEE_OBJS
+		src.see_in_dark = 8
+		src.see_invisible = SEE_INVISIBLE_NOLIGHTING
 	else if (src.stat != 2)
 		src.sight &= ~SEE_MOBS
 		src.sight &= ~SEE_TURFS

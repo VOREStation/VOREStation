@@ -343,6 +343,12 @@ item_path: /obj/item/device/modkit_conversion/fluff/harmonyspace
 
 # ######## K CKEYS
 {
+ckey: ketrai
+character_name: Ketrai
+item_path: /obj/item/clothing/head/fluff/ketrai
+}
+
+{
 ckey: kiraalitruss
 character_name: Amaya Rahl
 item_path: /obj/item/weapon/card/id/fluff/amaya
@@ -423,6 +429,19 @@ item_path: /obj/item/weapon/storage/belt/utility/fluff/vulpine
 }
 
 # ######## N CKEYS
+
+{
+ckey: natje
+character_name: Pumila
+item_path: /obj/item/clothing/under/fluff/aluranevines
+}
+
+{
+ckey: natje
+character_name: Pumila
+item_path: /obj/item/weapon/implanter/reagent_generator/pumila_apple
+}
+
 # ######## O CKEYS
 {
 ckey: orbisa
@@ -520,19 +539,21 @@ item_path: /obj/item/clothing/glasses/sunglasses/fluff/alfonso
 {
 ckey: silencedmp5a5
 character_name: Serdykov Antoz
-item_path: /obj/item/device/modkit_conversion/fluff/serdykit
+item_path: /obj/item/weapon/storage/box/fluff/serdykov_antoz
 }
 
 {
 ckey: silencedmp5a5
 character_name: Serdykov Antoz
-item_path: /obj/item/weapon/gun/projectile/revolver/detective/fluff/serdy
+item_path: /obj/item/clothing/head/helmet/serdy
+req_access = 1
 }
 
 {
 ckey: silencedmp5a5
 character_name: Serdykov Antoz
-item_path: /obj/item/fluff/permit/silencedmp5a5
+item_path: /obj/item/clothing/suit/armor/vest/wolftaur/serdy
+req_access = 1
 }
 
 {
@@ -563,6 +584,12 @@ item_path: /obj/item/weapon/storage/backpack/satchel/fluff/swat43bag
 ckey: SpoopyLizz
 character_name: Roiz Lizden
 item_path: /obj/item/weapon/implanter/reagent_generator/roiz
+}
+
+{
+ckey: SpoopyLizz
+character_name: Roiz Lizden
+item_path: /obj/item/clothing/suit/storage/hooded/wintercoat/roiz
 }
 
 # ######## T CKEYS

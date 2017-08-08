@@ -120,6 +120,7 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 				if(istype(I, /obj/item/weapon/wirecutters))
 					var/colour = href_list["cut"]
 					CutWireColour(colour)
+					playsound(holder, I.usesound, 20, 1)
 				else
 					L << "<span class='error'>You need wirecutters!</span>"
 
@@ -127,6 +128,7 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 				if(istype(I, /obj/item/device/multitool))
 					var/colour = href_list["pulse"]
 					PulseColour(colour)
+					playsound(holder, 'sound/weapons/empty.ogg', 20, 1)
 				else
 					L << "<span class='error'>You need a multitool!</span>"
 

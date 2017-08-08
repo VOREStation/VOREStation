@@ -112,6 +112,7 @@
 		new /obj/item/device/radio/headset/headset_med(src)
 		new /obj/item/device/radio/headset/headset_med/alt(src)
 		new /obj/item/clothing/suit/storage/hooded/wintercoat/medical(src)
+		new /obj/item/clothing/shoes/boots/winter/medical(src)
 		new /obj/item/weapon/storage/box/freezer(src)
 		new /obj/item/weapon/storage/box/freezer(src)
 		new /obj/item/weapon/storage/box/freezer(src)
@@ -205,6 +206,7 @@
 		new /obj/item/weapon/reagent_containers/hypospray/vr(src) //VOREStation Edit - MKII Hypospray
 		new /obj/item/weapon/reagent_containers/glass/beaker/vial/vr(src) //VOREStation Edit - A vial for hypo
 		new /obj/item/clothing/suit/storage/hooded/wintercoat/medical(src)
+		new /obj/item/clothing/shoes/boots/winter/medical(src)
 		new /obj/item/weapon/storage/box/freezer(src)
 		new /obj/item/clothing/mask/gas(src)
 		return

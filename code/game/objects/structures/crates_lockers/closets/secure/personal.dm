@@ -24,6 +24,7 @@
 		// Not really the best way to do this, but it's better than "contents = list()"!
 		for(var/atom/movable/AM in contents)
 			qdel(AM)
+		new /obj/item/clothing/under/medigown(src)
 		new /obj/item/clothing/under/color/white( src )
 		new /obj/item/clothing/shoes/white( src )
 	return

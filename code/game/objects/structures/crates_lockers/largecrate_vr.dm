@@ -43,7 +43,7 @@
 
 /obj/structure/largecrate/animal/pred/New() //This is nessesary to get a random one each time.
 
-	held_type = pick(/mob/living/simple_animal/hostile/bee,
+	held_type = pick(/mob/living/simple_animal/retaliate/bee,
 						/mob/living/simple_animal/catgirl;3,
 						/mob/living/simple_animal/hostile/frog,
 						/mob/living/simple_animal/horse,
@@ -53,6 +53,7 @@
 						/mob/living/simple_animal/hostile/bear;0.5,
 						/mob/living/simple_animal/hostile/bear/brown;0.5,
 						/mob/living/simple_animal/hostile/carp,
+						/mob/living/simple_animal/otie/friendly,
 						/mob/living/simple_animal/hostile/mimic)
 	..()
 
@@ -70,4 +71,26 @@
 						/mob/living/simple_animal/hostile/alien/drone,
 						/mob/living/simple_animal/hostile/alien/sentinel,
 						/mob/living/simple_animal/hostile/alien/queen)
+	..()
+
+/obj/structure/largecrate/animal/guardbeast
+	name = "V.A.R.M.A.corp autoNOMous security solution"
+	desc = "The V.A.R.M.A.corp bioengineering division flagship product on trained optimal snowflake guard dogs."
+	icon = 'icons/obj/storage_vr.dmi'
+	icon_state = "sotiecrate"
+	held_type = /mob/living/simple_animal/otie/friendly/security
+
+/obj/structure/largecrate/animal/otie
+	name = "V.A.R.M.A.corp adoptable reject (Dangerous!)"
+	desc = "A warning on the side says the creature inside was returned to the supplier after injuring or devouring several unlucky members of the previous adoption family. It was given a second chance with the next customer. Godspeed and good luck with your new pet!"
+	icon = 'icons/obj/storage_vr.dmi'
+	icon_state = "otiecrate2"
+	held_type = /mob/living/simple_animal/otie/friendly/cotie
+	var/taped = 1
+
+/obj/structure/largecrate/animal/otie/attack_hand(mob/living/carbon/human/M as mob)//I just couldn't decide between the icons lmao
+	if(taped == 1)
+		playsound(src, 'sound/items/poster_ripped.ogg', 50, 1)
+		icon_state = "otiecrate"
+		taped = 0
 	..()

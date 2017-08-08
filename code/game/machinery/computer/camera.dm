@@ -65,7 +65,7 @@
 	if(..())
 		return 1
 	if(href_list["switch_camera"])
-		if(src.z>6 || stat&(NOPOWER|BROKEN)) return
+		if(stat&(NOPOWER|BROKEN)) return //VOREStation Edit - Removed zlevel check
 		if(usr.stat || ((get_dist(usr, src) > 1 || !( usr.canmove ) || usr.blinded) && !istype(usr, /mob/living/silicon))) return
 		var/obj/machinery/camera/C = locate(href_list["switch_camera"]) in cameranet.cameras
 		if(!C)
@@ -76,13 +76,13 @@
 		switch_to_camera(usr, C)
 		return 1
 	else if(href_list["switch_network"])
-		if(src.z>6 || stat&(NOPOWER|BROKEN)) return
+		if(stat&(NOPOWER|BROKEN)) return //VOREStation Edit - Removed zlevel check
 		if(usr.stat || ((get_dist(usr, src) > 1 || !( usr.canmove ) || usr.blinded) && !istype(usr, /mob/living/silicon))) return
 		if(href_list["switch_network"] in network)
 			current_network = href_list["switch_network"]
 		return 1
 	else if(href_list["reset"])
-		if(src.z>6 || stat&(NOPOWER|BROKEN)) return
+		if(stat&(NOPOWER|BROKEN)) return //VOREStation Edit - Removed zlevel check
 		if(usr.stat || ((get_dist(usr, src) > 1 || !( usr.canmove ) || usr.blinded) && !istype(usr, /mob/living/silicon))) return
 		reset_current()
 		usr.reset_view(current_camera)
@@ -169,6 +169,7 @@
 
 	src.current_camera = C
 	if(current_camera)
+		current_camera.camera_computers_using_this.Add(src)
 		use_power = 2
 		var/mob/living/L = current_camera.loc
 		if(istype(L))
@@ -176,6 +177,7 @@
 
 /obj/machinery/computer/security/proc/reset_current()
 	if(current_camera)
+		current_camera.camera_computers_using_this.Remove(src)
 		var/mob/living/L = current_camera.loc
 		if(istype(L))
 			L.tracking_cancelled()
