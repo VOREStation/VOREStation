@@ -124,7 +124,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 	if(H.buckled)
 		usr << "<span class='notice'>You have to unbuckle \the [H] before you pick them up.</span>"
 		return 0
-	if(size_diff >= 0.75)
+	if(size_diff >= 0.50)
 		src.holder_type = /obj/item/weapon/holder/micro
 		var/obj/item/weapon/holder/m_holder = get_scooped(H)
 		src.holder_type = src.holder_default
@@ -144,7 +144,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 		// Both small! Go ahead and
 		now_pushing = 0
 		return 1
-	if(abs(src.get_effective_size() - tmob.get_effective_size()) >= 0.75)
+	if(abs(src.get_effective_size() - tmob.get_effective_size()) >= 0.50)
 		now_pushing = 0
 		if(src.get_effective_size() > tmob.get_effective_size())
 			var/mob/living/carbon/human/H = src
