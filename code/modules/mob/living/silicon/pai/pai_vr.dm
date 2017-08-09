@@ -43,3 +43,12 @@
 		icon_state = "[chassis]_full"
 	else if(people_eaten && resting)
 		icon_state = "[chassis]_rest_full"
+
+/mob/living/carbon/robot/proc/examine_bellies_pai()
+
+	var/message = ""
+	for (var/I in src.vore_organs)
+		var/datum/belly/B = vore_organs[I]
+		message += B.get_examine_msg()
+
+	return message
