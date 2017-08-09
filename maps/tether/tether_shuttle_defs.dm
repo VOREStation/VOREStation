@@ -146,7 +146,7 @@
 	name = "Mercenary"
 	warmup_time = 0
 	origin = /area/syndicate_station/start
-	interim = /area/syndicate_station/transit
+	//interim = /area/syndicate_station/transit // Disabled until this even exists.
 	start_location = "Mercenary base"
 	destinations = list(
 		//"Northwest of the station" = /area/syndicate_station/northwest,
@@ -157,7 +157,7 @@
 		//"Southeast of the station" = /area/syndicate_station/southeast,
 		//"Telecomms Satellite" = /area/syndicate_station/commssat,
 		"(Land) Solar farm west of Tether" = /area/syndicate_station/mining,
-		"Tether spaceport" = /area/syndicate_station/arrivals_dock,
+		"Tether spaceport" = /area/syndicate_station/arrivals_dock
 		)
 	docking_controller_tag = "merc_shuttle"
 	destination_dock_targets = list(
