@@ -45,8 +45,8 @@
 			H.resize(set_size)
 			H.show_message("<font color='blue'> The beam fires into your body, changing your size!</font>")
 			H.updateicon()
-		else if (istype(target, /mob/living/carbon/))
-			var/mob/living/carbon/H = M
+		else if (istype(target, /mob/living/))
+			var/mob/living/H = M
 			H.resize(set_size)
 			H.updateicon()
 		else
