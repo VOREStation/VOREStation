@@ -1604,7 +1604,7 @@ CIRCUITS BELOW
 	build_path = /obj/item/device/integrated_circuit_printer
 	sort_string = "VCAAG"
 
-/datum/design/item/custom_circuit_printer
+/datum/design/item/custom_circuit_printer_upgrade
 	name = "Integrated circuit printer upgrade - advanced designs"
 	desc = "Allows the integrated circuit printer to create advanced circuits"
 	id = "ic_printer_upgrade_adv"
