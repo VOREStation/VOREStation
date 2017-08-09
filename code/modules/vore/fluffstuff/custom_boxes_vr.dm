@@ -37,9 +37,8 @@
 		/obj/item/clothing/suit/storage/det_suit/fluff/tasald,
 		/obj/item/clothing/suit/storage/det_suit/fluff/tas_coat,
 		/obj/item/clothing/under/det/fluff/tasald,
-		//Commented out since expired. Uncomment if renewed.
-		///obj/item/fluff/permit/tasald_corlethian,
-		///obj/item/weapon/gun/projectile/revolver/mateba/fluff/tasald_corlethian,
+		/obj/item/fluff/permit/tasald_corlethian,
+		/obj/item/weapon/gun/projectile/revolver/mateba/fluff/tasald_corlethian,
 		/obj/item/weapon/implanter/loyalty)
 
 //bwoincognito:Octavious Ward
