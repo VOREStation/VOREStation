@@ -43,12 +43,12 @@
 			that, ironically, tends to stomp out any idea of warmongering from their cadets due to their \
 			scarred history and the Federation's ideals."
 	history = "Before the United Federation, there was a simple alliance with no name between core planet \
-				members. The United Federation itself found its roots in the aftermath of the Bloody \
-				Valentine Civil War, a racially motivated war that occurred in 2550 during the last year of \
-				the Federation Alliance of Gaia between the Genetically Modified and so-called Naturalists. \
-				Neutral nations in Gaia's political sphere, encouraged by alien observers, formed the United \
-				Federation when the indiscriminate loss of life became intolerable. 2555 saw the official \
-				signing of the Federation Charter between the core planet members."
+			members. The United Federation itself found its roots in the aftermath of the Bloody \
+			Valentine Civil War, a racially motivated war that occurred in 2550 during the last year of \
+			the Federation Alliance of Gaia between the Genetically Modified and so-called Naturalists. \
+			Neutral nations in Gaia's political sphere, encouraged by alien observers, formed the United \
+			Federation when the indiscriminate loss of life became intolerable. 2555 saw the official \
+			signing of the Federation Charter between the core planet members."
 	work = "governing body"
 	headquarters = ""
 	motto = ""
@@ -103,7 +103,7 @@
 
 /datum/lore/organization/mil/unsc // change to sif_guard in future to overwrite Polaris stuff
 	name = "United Nations Space Command"
-	short_name = "Navy" //Otherwise they call the ships UNSC UNSC Name
+	short_name = "" // This is blank on purpose. Otherwise they call the ships "UNSC" "UNSC Name"
 	desc = "The dedicated military force of SolGov, originally formed by the United Nations, is the might of SolGov. It is the \
 			dominant superpower of the Orion Spur, and is able to project its influence well into parts of the Perseus and \
 			Sagittarius arms of the galaxy. However, regions beyond that are too far for the UNSC to be a major player."
@@ -127,7 +127,7 @@
 	headquarters = "Earth"
 	motto = ""
 	//Halo ship names!
-	ship_prefixes = list("UNSC" = "military")
+	ship_prefixes = list("UNSC" = "military", "UNSC" = "anti-piracy", "UNSC" = "humanitarian", "UNSC" = "peacekeeping", "UNSC" = "search-and-rescue") // It's all UNSC but let's mix up what they do.
 	ship_names = list("Aegis Fate",
 					"Ain't No Sunshine",
 					"All Under Heaven",
@@ -167,6 +167,7 @@
 					"Paris",
 					"Pony Express",
 					"Providence",
+					"Prydwen",
 					"Purpose",
 					"Ready or Not",
 					"Redoubtable",
@@ -188,6 +189,7 @@
 						"Olympus City on Mars",
 						"Hermes Naval Shipyard above Mars",
 						"Cairo Station above Earth",
+						"a rendezvous point in the Cyprus Arm",
 						"a settlement on Titan",
 						"a settlement on Europa",
 						"Aleph Grande on Ganymede",
@@ -196,7 +198,8 @@
 						"a colony ship around Ceti IV-B",
 						"a naval station above Ceti IV-B",
 						"a classified location in SolGov territory",
-						"a classified location in uncharted space")
+						"a classified location in uncharted space",
+						"an emergency nav bouy")
 
 /datum/lore/organization/gov/kitsuhana
 	name = "Kitsuhana Heavy Industries"
@@ -253,20 +256,20 @@
 						"a Kitsuhana ringworld in Leibert II-b")
 
 /datum/lore/organization/gov/ares
-    name = "Ares Confederation"
-    short_name = "ArCon"
-    desc = "A rebel faction in the Cygnus Arm that renounced the government of both SolGov and their corporate overlords. \
+	name = "Ares Confederation"
+	short_name = "ArCon"
+	desc = "A rebel faction in the Cygnus Arm that renounced the government of both SolGov and their corporate overlords. \
 			The Confederation has two fleets; a regular United Fleet Host comprised of professional crewmen and officers, and the Free Host \
 			of the Confederation which uses privateers, volunteers and former pirates. The Ares Confederation only holds a few dozen star \
 			systems, but they will fiercely defend against any incursion upon their territory, especially by the UNSC."
-    history = "Originally only a strike of miners on the dusty, arid planet of Ares in the year 2540, the Ares Confederation was quickly \
+	history = "Originally only a strike of miners on the dusty, arid planet of Ares in the year 2540, the Ares Confederation was quickly \
     		established under the leadership of retired UNSC Colonel Rodrick Gellaume, who is now Prime Minister."
-    work = "rebel fringe government"
-    headquarters = "Paraiso a Àstrea"
-    motto = "Liberty to the Stars!"
+	work = "rebel fringe government"
+	headquarters = "Paraiso a Àstrea"
+	motto = "Liberty to the Stars!"
 
-    ship_prefixes = list("UFHV" = "military", "FFHV" = "shady")
-    ship_names = list("Liberty",
+	ship_prefixes = list("UFHV" = "military", "FFHV" = "shady")
+	ship_names = list("Liberty",
 					"Charged Negotiation",
 					"People's Fist",
 					"Corporation Breaker",
@@ -308,26 +311,38 @@
 						"a settlement needing our help",
 						"Forward Base Sigma-Alpha in ArCon space")
 
-/*
-
-WIP, ADD SOME SHIT FOR THE SPACE ELVES
- - 2-5 inner planets, 1-2 habitable, 1 Jovian style gas giant, 3-4 other gas giants.
- - Equivalent to the UNSC in power.
- - Living somewhere in a big galactic blind spot https://en.wikipedia.org/wiki/Orion_Arm
-
 /datum/lore/organization/gov/imperial
-    name = "Imperium Auream"
-    short_name = "Imperial"
-    desc = ""
-    history = ""
-    work = ""
-    headquarters = ""
-    motto = ""
+	name = "Imperium Auream"
+	short_name = "Imperial"
+	desc = "Also known as the \"Golden Empire\", Imperium Auream is a superpower of elf-like humanoid beings who thrive in the southern \
+    		galaxy, presumably somewhere in the mid Centaurus Arm. Having existed in the observation shadow of the galactic core, this \
+    		galactic superpower had remained undiscovered by humanity despite its size until only recently. First contact was made on \
+    		May 31st 2561, when Imperial Navy cartographers stumbled upon the Virgo-Erigone system, far from the influence of the UNSC. \
+    		Though little is currently known about the Golden Empire, their scholars have been willing to share some information. They \
+    		are currently ruled by a woman referred to as Empress Gutamir who is allegedly hundreds of years old. Images and portraits \
+    		of the empress depict a tall woman with an idealized figure of beauty as might have been seen in ancient Roman or Greek \
+    		works of art. She has white hair, silvery eyes, and a fair complexion. Whether or not these images are an authentic or \
+    		even an accurate depiction remains unknown. Vessels of the Golden Empire utilize technology unlike anything humans have ever \
+    		seen. Although they use bluespace for FTL travel, the methods in which they tap into bluespace has yet to be studied in any \
+    		detail by human scientists. Their kind hails from a binary system of Earth-like worlds called Sanctum and Venio, though the \
+    		exact location of these worlds is not known due to a culture of secrecy toward outsiders."
+	history = "According to Imperial scholars, the Golden Empire is a civilization that has existed for at least 10,000 Earth years. \
+    		Their home system is said to host not one but two Earth-like worlds, both of which have been home to elves as far as their \
+    		records go back. How the elves were able to travel between these worlds is currently unknown, but apparently they have been \
+    		doing so for at least the last 2000 years. However, from what is understood, until only 300 years ago, these accomplishments \
+    		were only made possible by a very limited number of ships apparently using borrowed technology from an undiscovered \
+    		civilization they call \"Architectus.\" Curiously, the Golden Empire's primary language is strikingly similar to ancient \
+    		Latin on Earth, indicating that they may have somehow come into contact with Earth at some point in their history. However, \
+    		this contradicts what historical records they have been willing to share with us, as it would predate the timeline of space \
+    		travel they have given us so far."
+	work = "rule over the southern galaxy in an uncharted region they call Segmentum Obscurum"
+	headquarters = "Sanctum and Venio"
+	motto = "Aut inveniam viam aut faciam"
 
-    ship_prefixes = list("HMS" = "military")
-    ship_names = list("Ambition",
-					"Ark",
+	ship_prefixes = list("Bellator" = "naval", "Mercator" = "trade", "Benefactori" = "mercy", "Salvator" = "search-and-rescue", "Rimor" = "exploration", "Legatus" = "diplomatic") // It's all HMS but let's mix up what they do.
+	ship_names = list("Ambition",
 					"Aurora",
+					"Argo",
 					"Behemoth",
 					"Beholder",
 					"Boreas",
@@ -337,65 +352,58 @@ WIP, ADD SOME SHIT FOR THE SPACE ELVES
 					"Chimera",
 					"Chronos",
 					"Civitas",
-					"Claymore",
 					"Colossus",
+					"Covenant",
+					"Cyrus",
 					"Destiny",
-					"Endeavor",
 					"Epimetheus",
 					"Eternal",
 					"Excalibur",
 					"Forerunner",
 					"Fortitude",
-					"Frontier",
-					"Glory",
-					"Hassar",
 					"Hellion",
-					"Horizon",
+					"Hussar",
 					"Hyperion",
 					"Illustria",
 					"Immortal",
 					"Infinitum",
-					"Infinity",
 					"Inquisitor",
 					"Invictus",
-					"Ironborn",
 					"Judgment",
 					"Juggernaut",
 					"Knossos",
-					"Lancaster",
 					"Legacy",
-					"Leviathon",
+					"Leviathan",
 					"Marathon",
 					"Megalith",
 					"Mobius",
 					"Nemesis",
 					"Nightingale",
 					"Oblivion",
+					"Octavius",
 					"Orthrus",
-					"Paladin",
 					"Pandora",
 					"Phalanx",
-					"Providence",
-					"Prydwen",
 					"Revenant",
 					"Rhapsody",
 					"Scylla",
 					"Seraphim",
-					"Speedwell",
-					"Star Fury",
 					"Starfall",
 					"Stargazer",
 					"Starhammer",
 					"Templar",
 					"Thundrus",
 					"Titan",
+					"Triarius",
 					"Trident",
-					"Triumph",
-					"Valiant",
+					"Tyrannus",
+					"Ulysses",
 					"Valkyrie",
-					"Valor",
 					"Victoria",
 					"Vindicator",
-					"Void's Echo",
 					"Wreath")
-    destination_names = list("")*/
+    destination_names = list("uncharted space",
+    						"Cor Galaxia",
+    						"near Cor Galaxia",
+    						"Segmentum Obscurum", // Basically their home territory, where our telescopes can't see. They prefer to keep it that way. They call it something else internally.
+    						)
