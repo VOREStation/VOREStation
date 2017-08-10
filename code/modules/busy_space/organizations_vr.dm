@@ -298,7 +298,7 @@
 					"She Is One Of Ours Sir",
 					"Fuck The Captain",
 					"None Of Your Business")
-    destination_names = list("Drydocks of the Ares Confederation",
+	destination_names = list("Drydocks of the Ares Confederation",
 						"a classified location",
 						"a Homestead on Paraiso a Àstrea",
 						"a contested sector of ArCon space",
@@ -317,7 +317,7 @@
 	desc = "Also known as the \"Golden Empire\", Imperium Auream is a superpower of elf-like humanoid beings who thrive in the southern \
     		galaxy, presumably somewhere in the mid Centaurus Arm. Having existed in the observation shadow of the galactic core, this \
     		galactic superpower had remained undiscovered by humanity despite its size until only recently. First contact was made on \
-    		May 31st 2561, when Imperial Navy cartographers stumbled upon the Virgo-Erigone system, far from the influence of the UNSC. \
+    		June 15th 2561, when Imperial Navy cartographers stumbled upon the Virgo-Erigone system, far from the influence of the UNSC. \
     		Though little is currently known about the Golden Empire, their scholars have been willing to share some information. They \
     		are currently ruled by a woman referred to as Empress Gutamir who is allegedly hundreds of years old. Images and portraits \
     		of the empress depict a tall woman with an idealized figure of beauty as might have been seen in ancient Roman or Greek \
@@ -402,8 +402,8 @@
 					"Victoria",
 					"Vindicator",
 					"Wreath")
-    destination_names = list("uncharted space",
-    						"Cor Galaxia",
-    						"near Cor Galaxia",
-    						"Segmentum Obscurum", // Basically their home territory, where our telescopes can't see. They prefer to keep it that way. They call it something else internally.
-    						)
+	destination_names = list("uncharted space",
+							"Cor Galaxia",
+							"near Cor Galaxia",
+							"Segmentum Obscurum", // Basically their home territory, where our telescopes can't see. They prefer to keep it that way. They call it something else internally.
+							)
