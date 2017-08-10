@@ -6,6 +6,7 @@
 	item_state = "mouse_gray"
 	icon_living = "mouse_gray"
 	icon_dead = "mouse_gray_dead"
+	intelligence_level = SA_ANIMAL
 
 	maxHealth = 5
 	health = 5

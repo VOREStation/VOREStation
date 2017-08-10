@@ -28,6 +28,8 @@ var/datum/species/shapeshifter/promethean/prometheans
 	breath_type = null
 	poison_type = null
 
+	speech_bubble_appearance = "slime"
+
 	male_cough_sounds = list('sound/effects/slime_squish.ogg')
 	female_cough_sounds = list('sound/effects/slime_squish.ogg')
 

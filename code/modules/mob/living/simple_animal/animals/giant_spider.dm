@@ -13,6 +13,7 @@
 	icon_dead = "guard_dead"
 
 	faction = "spiders"
+	intelligence_level = SA_ANIMAL
 	maxHealth = 200
 	health = 200
 	pass_flags = PASSTABLE

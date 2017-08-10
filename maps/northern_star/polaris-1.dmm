@@ -4887,7 +4887,7 @@
 "bPY" = (/obj/machinery/computer/aifixer,/obj/effect/floor_decal/corner/purple/full,/obj/machinery/status_display{layer = 4; pixel_x = 0; pixel_y = -32},/turf/simulated/floor/tiled/white,/area/rnd/rdoffice)
 "bPZ" = (/obj/machinery/computer/robotics,/obj/effect/floor_decal/corner/purple{dir = 10},/turf/simulated/floor/tiled/white,/area/rnd/rdoffice)
 "bQa" = (/obj/machinery/computer/mecha,/obj/effect/floor_decal/corner/purple{dir = 10},/obj/machinery/ai_status_display{pixel_y = -32},/obj/machinery/camera/network/research{c_tag = "SCI - RD's Office"; dir = 1},/turf/simulated/floor/tiled/white,/area/rnd/rdoffice)
-"bQb" = (/obj/effect/floor_decal/corner/purple/full{dir = 4},/obj/machinery/alarm{dir = 1; pixel_y = -22},/mob/living/simple_animal/slime/science,/turf/simulated/floor/tiled/white,/area/rnd/rdoffice)
+"bQb" = (/obj/effect/floor_decal/corner/purple/full{dir = 4},/obj/machinery/alarm{dir = 1; pixel_y = -22},/mob/living/simple_animal/slime/rainbow/kendrick,/turf/simulated/floor/tiled/white,/area/rnd/rdoffice)
 "bQc" = (/obj/structure/table/rack,/obj/item/weapon/rig/hazmat/equipped,/obj/structure/extinguisher_cabinet{pixel_x = 25; pixel_y = 0},/obj/machinery/firealarm{dir = 1; pixel_y = -24},/turf/simulated/floor/tiled/dark,/area/rnd/rdoffice)
 "bQd" = (/obj/structure/table/standard,/obj/item/device/mmi,/obj/item/device/mmi,/obj/item/device/mmi,/obj/structure/extinguisher_cabinet{pixel_x = -27},/turf/simulated/floor/tiled,/area/assembly/robotics)
 "bQe" = (/obj/structure/table/standard,/obj/machinery/cell_charger,/obj/item/device/radio/intercom{dir = 4; name = "Station Intercom (General)"; pixel_x = 21},/obj/effect/floor_decal/corner/pink{dir = 4},/turf/simulated/floor/tiled,/area/assembly/robotics)

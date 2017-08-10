@@ -298,7 +298,8 @@ proc/get_radio_key_from_channel(var/channel)
 
 	//The 'post-say' static speech bubble
 	var/speech_bubble_test = say_test(message)
-	var/image/speech_bubble = image('icons/mob/talk.dmi',src,"h[speech_bubble_test]")
+	var/speech_type = speech_bubble_appearance()
+	var/image/speech_bubble = image('icons/mob/talk.dmi',src,"[speech_type][speech_bubble_test]")
 	spawn(30) qdel(speech_bubble)
 
 	//Main 'say' and 'whisper' message delivery
@@ -341,3 +342,6 @@ proc/get_radio_key_from_channel(var/channel)
 
 /mob/living/proc/GetVoice()
 	return name
+
+/mob/proc/speech_bubble_appearance()
+	return "normal"

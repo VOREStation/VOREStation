@@ -38,6 +38,15 @@
 					say(temp)
 				winset(client, "input", "text=[null]")
 
+/mob/living/carbon/human/speech_bubble_appearance()
+	if(isSynthetic())
+		var/datum/robolimb/robo = isSynthetic()
+		return robo.speech_bubble_appearance
+	else
+		if(species)
+			return species.speech_bubble_appearance
+	return "normal"
+
 /mob/living/carbon/human/say_understands(var/mob/other,var/datum/language/speaking = null)
 
 	if(has_brain_worms()) //Brain worms translate everything. Even mice and alien speak.
@@ -55,7 +64,7 @@
 			return 1
 		if (istype(other, /mob/living/carbon/brain))
 			return 1
-		if (istype(other, /mob/living/carbon/slime))
+		if (istype(other, /mob/living/simple_animal/slime))
 			return 1
 
 	//This is already covered by mob/say_understands()

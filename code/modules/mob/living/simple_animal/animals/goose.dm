@@ -7,6 +7,7 @@
 	icon_gib = "generic_gib"
 
 	faction = "geese"
+	intelligence_level = SA_ANIMAL
 
 	maxHealth = 15
 	health = 15

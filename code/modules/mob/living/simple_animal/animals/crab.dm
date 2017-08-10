@@ -5,6 +5,7 @@
 	icon_state = "crab"
 	icon_living = "crab"
 	icon_dead = "crab_dead"
+	intelligence_level = SA_ANIMAL
 
 	wander = 0
 	stop_automated_movement = 1

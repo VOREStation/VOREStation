@@ -8,6 +8,7 @@
 	icon_gib = "syndicate_gib"
 
 	faction = "xeno"
+	intelligence_level = SA_HUMANOID
 	cooperative = 1
 	run_at_them = 0
 
