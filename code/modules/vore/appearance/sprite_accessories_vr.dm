@@ -282,6 +282,80 @@
 /*
 ////////////////////////////
 /  =--------------------=  /
+/  == Wing Definitions ==  /
+/  =--------------------=  /
+////////////////////////////
+*/
+/datum/sprite_accessory/wing
+	name = "You should not see this..."
+	icon = 'icons/mob/vore/wings_vr.dmi'
+	do_colouration = 0 //Set to 1 to enable coloration using the tail color.
+
+	var/color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
+	var/extra_overlay // Icon state of an additional overlay to blend in.
+	var/clothing_can_hide = 1 // If true, clothing with HIDETAIL hides it. If the clothing is bulky enough to hide a tail, it should also hide wings.
+	var/show_species_tail = 1 // Just so
+	var/desc = "You should not see this..."
+	var/ani_state // State when flapping/animated
+	var/extra_overlay_w // Flapping state for extra overlay
+
+/datum/sprite_accessory/wing/moth
+	name = "moth wings"
+	desc = ""
+	icon_state = "moth"
+
+/datum/sprite_accessory/wing/mothc
+	name = "moth wings, colorable"
+	desc = ""
+	icon_state = "moth"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/wing/feathered
+	name = "feathered wings, colorable"
+	desc = ""
+	icon_state = "feathered"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/wing/bat_black
+	name = "bat wings, black"
+	desc = ""
+	icon_state = "bat-black"
+
+/datum/sprite_accessory/wing/bat_color
+	name = "bat wings, colorable"
+	desc = ""
+	icon_state = "bat-color"
+	do_colouration = 1
+
+/datum/sprite_accessory/wing/bat_red
+	name = "bat wings, red"
+	desc = ""
+	icon_state = "bat-red"
+
+/datum/sprite_accessory/wing/harpywings
+	name = "harpy wings, colorable"
+	desc = ""
+	icon_state = "harpywings"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/wing/feathered
+	name = "feathered wings, colorable"
+	desc = ""
+	icon_state = "feathered"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/wing/beewings
+	name = "bee wings"
+	desc = ""
+	icon_state = "beewings"
+
+/*
+////////////////////////////
+/  =--------------------=  /
 /  == Tail Definitions ==  /
 /  =--------------------=  /
 ////////////////////////////
@@ -364,18 +438,6 @@
 	icon_state = "bunny"
 	do_colouration = 1
 
-/datum/sprite_accessory/tail/mothc
-	name = "moth wings, colorable"
-	desc = ""
-	icon_state = "moth"
-	do_colouration = 1
-	color_blend_mode = ICON_MULTIPLY
-
-/datum/sprite_accessory/tail/moth
-	name = "moth wings"
-	desc = ""
-	icon_state = "moth"
-
 /datum/sprite_accessory/tail/bear_brown
 	name = "bear, brown"
 	desc = ""
@@ -452,53 +514,48 @@
 	icon_state = "fantail"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
-
+/*
 /datum/sprite_accessory/tail/faintailwings
 	name = "avian fantail, colorable (+wings)"
 	desc = ""
 	icon_state= "fantailwings"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
-
+*/
 /datum/sprite_accessory/tail/wagtail
 	name = "avian wagtail, colorable"
 	desc = ""
 	icon_state = "wagtail"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
-
+/*
 /datum/sprite_accessory/tail/wagtailwings
 	name = "avian wagtail, colorable (+wings)"
 	desc = ""
 	icon_state = "wagtailwings"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
-
+*/
 /datum/sprite_accessory/tail/crossfox
 	name = "cross fox"
 	desc = ""
 	icon_state = "crossfox"
-
+/*
 /datum/sprite_accessory/tail/bee
 	name = "bee thorax (+wings)"
 	desc = ""
 	icon_state = "bee"
-
+*/
 /datum/sprite_accessory/tail/beethorax
 	name = "bee thorax"
 	desc = ""
 	icon_state = "beethorax"
 
-/datum/sprite_accessory/tail/beewings
-	name = "bee wings"
-	desc = ""
-	icon_state = "beewings"
-
-/datum/sprite_accessory/tail/moth_full
+/datum/sprite_accessory/tail/moth_full //I'll... Let this one stay. The antenna itself isn't a big enough thing to be standalone.
 	name = "moth antenna and wings"
 	desc = ""
 	icon_state = "moth_full"
-
+/*
 /datum/sprite_accessory/tail/succubus_purple
 	name = "succubus, purple (+wings)"
 	desc = ""
@@ -513,44 +570,25 @@
 	name = "succubus, black (+wings)"
 	desc = ""
 	icon_state = "succubus-black"
-
+*/
 /datum/sprite_accessory/tail/doublekitsune
 	name = "double kitsune tail, colorable"
 	desc = ""
 	icon_state = "doublekitsune"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
-
+/*
 /datum/sprite_accessory/tail/succubus_color
 	name = "succubus, colorable (+wings)"
 	desc = ""
 	icon_state = "succubus-black"
 	do_colouration = 1
-
+*/
 /datum/sprite_accessory/tail/spade_color
 	name = "spade-tail (colorable)"
 	desc = ""
 	icon_state = "spadetail-black"
 	do_colouration = 1
-
-/datum/sprite_accessory/tail/bat_black
-	name = "bat wings, black"
-	desc = ""
-	icon_state = "bat-black"
-	show_species_tail = 1
-
-/datum/sprite_accessory/tail/bat_color
-	name = "bat wings, colorable"
-	desc = ""
-	icon_state = "bat-color"
-	show_species_tail = 1
-	do_colouration = 1
-
-/datum/sprite_accessory/tail/bat_red
-	name = "bat wings, red"
-	desc = ""
-	icon_state = "bat-red"
-	show_species_tail = 1
 
 /datum/sprite_accessory/tail/snag
 	name = "xenomorph tail w/ backplate"
@@ -568,21 +606,13 @@
 	icon_state = "molenar-kitsune"
 	ckeys_allowed = list("molenar")
 
-/datum/sprite_accessory/tail/harpywings
-	name = "harpy wings, colorable"
-	desc = ""
-	icon_state = "harpywings"
-	do_colouration = 1
-	show_species_tail = 1
-	color_blend_mode = ICON_MULTIPLY
-
 /datum/sprite_accessory/tail/liquidfirefly_gazer
 	name = "gazer eyestalks"
 	desc = ""
 	icon_state = "liquidfirefly-eyestalks"
 	//ckeys_allowed = list("liquidfirefly","seiga") //At request.
 
-/datum/sprite_accessory/tail/miria_fluffdragon
+/datum/sprite_accessory/tail/miria_fluffdragon //Fluff tails with wings stay under tails.
 	name = "fluffdragon wings+tail (Miria Masters)"
 	desc = ""
 	icon_state = "miria-fluffdragontail"
@@ -654,14 +684,6 @@
 	icon_state = "ketraitail"
 	ani_state = "ketraitail_w"
 	//ckeys_allowed = list("ketrai") //They requested it to be enabled for everyone.
-
-/datum/sprite_accessory/tail/feathered
-	name = "feathered wings, colorable"
-	desc = ""
-	icon_state = "feathered"
-	show_species_tail = 1
-	do_colouration = 1
-	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/redpanda
 	name = "red panda"
