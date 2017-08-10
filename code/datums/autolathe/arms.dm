@@ -258,7 +258,7 @@
 
 /datum/category_item/autolathe/arms/rifle_SVD
 	name = "10rnd rifle magazine (7.62mm)"
-	path =/obj/item/ammo_magazine/SVD/empty
+	path =/obj/item/ammo_magazine/m762svd/empty
 	category = "Arms and Ammunition"
 	hidden = 1
 

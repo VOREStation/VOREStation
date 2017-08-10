@@ -460,6 +460,23 @@
 	name = "rifle clip (7.62mm practice)"
 	ammo_type = /obj/item/ammo_casing/a762p
 
+/obj/item/ammo_magazine/m762svd
+	name = "\improper SVD magazine (7.62mm)"
+	icon_state = "SVD"
+	mag_type = MAGAZINE
+	caliber = "7.62mm"
+	matter = list(DEFAULT_WALL_MATERIAL = 2000)
+	ammo_type = /obj/item/ammo_casing/a762
+	max_ammo = 10
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/m762svd/ap
+	name = "\improper SVD magazine (7.62mm armor-piercing)"
+	ammo_type = /obj/item/ammo_casing/a762/ap
+
+/obj/item/ammo_magazine/m762svd/empty
+	initial_ammo = 0
+
 ///////// 12g /////////
 
 /obj/item/ammo_magazine/m12gdrum
@@ -490,7 +507,7 @@
 ///////// .75 Gyrojet /////////
 
 /obj/item/ammo_magazine/m75
-	name = "ammo magazine (.75 Gyrojet)"
+	name = "magazine (.75 Gyrojet)"
 	icon_state = "75"
 	mag_type = MAGAZINE
 	caliber = ".75"
