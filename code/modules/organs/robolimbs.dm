@@ -79,6 +79,27 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	parts = list(BP_HEAD)
 	monitor_styles = standard_monitor_styles
 
+/datum/robolimb/grayson
+	company = "Grayson"
+	desc = "This limb has a sturdy and heavy build to it."
+	icon = 'icons/mob/human_races/cyberlimbs/grayson/grayson_main.dmi'
+	unavailable_to_build = 1
+
+/datum/robolimb/grayson_alt1
+	company = "Grayson - Reinforced"
+	desc = "This limb has a sturdy and heavy build to it."
+	icon = 'icons/mob/human_races/cyberlimbs/grayson/grayson_alt1.dmi'
+	unavailable_to_build = 1
+	parts = list(BP_HEAD)
+
+/datum/robolimb/grayson
+	company = "Grayson Monitor"
+	desc = "This limb has a sturdy and heavy build to it, and uses plastics in the place of glass for the monitor."
+	icon = 'icons/mob/human_races/cyberlimbs/grayson/grayson_monitor.dmi'
+	unavailable_to_build = 1
+	parts = list(BP_HEAD)
+	monitor_styles = standard_monitor_styles
+
 /datum/robolimb/hephaestus
 	company = "Hephaestus"
 	desc = "This limb has a militaristic black and green casing with gold stripes."
@@ -198,6 +219,9 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 
 /obj/item/weapon/disk/limb/bishop
 	company = "Bishop"
+
+/obj/item/weapon/disk/limb/grayson
+	company = "Grayson"
 
 /obj/item/weapon/disk/limb/hephaestus
 	company = "Hephaestus"
