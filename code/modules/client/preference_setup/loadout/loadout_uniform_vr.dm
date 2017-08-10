@@ -2,6 +2,11 @@
 	display_name = "nudity permit"
 	path = /obj/item/clothing/under/permit
 
+//Polaris overrides
+/datum/gear/uniform/pt/expeditionary
+	display_name = "pt uniform, planetside sec"
+	path = /obj/item/clothing/under/pt/expeditionary
+
 //KHI Uniforms
 /datum/gear/uniform/job_khi/cmd
 	display_name = "khi uniform, cmd"
