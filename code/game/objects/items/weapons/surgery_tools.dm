@@ -61,7 +61,7 @@
 /obj/item/weapon/surgical/surgicaldrill
 	name = "surgical drill"
 	desc = "You can drill using this item. You dig?"
-	icon_state = "surgery_drill"
+	icon_state = "drill"
 	hitsound = 'sound/weapons/circsawhit.ogg'
 	matter = list(DEFAULT_WALL_MATERIAL = 15000, "glass" = 10000)
 	force = 15.0
