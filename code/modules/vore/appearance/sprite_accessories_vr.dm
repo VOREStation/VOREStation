@@ -353,6 +353,46 @@
 	desc = ""
 	icon_state = "beewings"
 
+/datum/sprite_accessory/wing/sepulchre
+	name = "demon wings (Sepulchre)"
+	desc = ""
+	icon_state = "sepulchre_wings"
+	ckeys_allowed = list("sepulchre")
+
+/datum/sprite_accessory/wing/miria_fluffdragon
+	name = "fluffdragon wings (Miria Masters)"
+	desc = ""
+	icon_state = "miria-fluffdragontail"
+	ckeys_allowed = list("miriamasters")
+
+/datum/sprite_accessory/wing/scree
+	name = "green taj wings (Scree)"
+	desc = ""
+	icon_state = "scree-wings"
+	ckeys_allowed = list("scree")
+
+/datum/sprite_accessory/wing/liquidfirefly_gazer //I g-guess this could be considered wings?
+	name = "gazer eyestalks"
+	desc = ""
+	icon_state = "liquidfirefly-eyestalks"
+	//ckeys_allowed = list("liquidfirefly","seiga") //At request.
+
+/datum/sprite_accessory/wing/moth_full
+	name = "moth antenna and wings"
+	desc = ""
+	icon_state = "moth_full"
+
+/datum/sprite_accessory/wing/kerena
+	name = "wingwolf wings (Kerena)"
+	desc = ""
+	icon_state = "kerena-wings"
+	ckeys_allowed = list("somekindofpony")
+
+/datum/sprite_accessory/wing/snag
+	name = "xenomorph backplate"
+	desc = ""
+	icon_state = "snag-backplate"
+
 /*
 ////////////////////////////
 /  =--------------------=  /
@@ -514,76 +554,29 @@
 	icon_state = "fantail"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
-/*
-/datum/sprite_accessory/tail/faintailwings
-	name = "avian fantail, colorable (+wings)"
-	desc = ""
-	icon_state= "fantailwings"
-	do_colouration = 1
-	color_blend_mode = ICON_MULTIPLY
-*/
 /datum/sprite_accessory/tail/wagtail
 	name = "avian wagtail, colorable"
 	desc = ""
 	icon_state = "wagtail"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
-/*
-/datum/sprite_accessory/tail/wagtailwings
-	name = "avian wagtail, colorable (+wings)"
-	desc = ""
-	icon_state = "wagtailwings"
-	do_colouration = 1
-	color_blend_mode = ICON_MULTIPLY
-*/
 /datum/sprite_accessory/tail/crossfox
 	name = "cross fox"
 	desc = ""
 	icon_state = "crossfox"
-/*
-/datum/sprite_accessory/tail/bee
-	name = "bee thorax (+wings)"
-	desc = ""
-	icon_state = "bee"
-*/
+
 /datum/sprite_accessory/tail/beethorax
 	name = "bee thorax"
 	desc = ""
 	icon_state = "beethorax"
 
-/datum/sprite_accessory/tail/moth_full //I'll... Let this one stay. The antenna itself isn't a big enough thing to be standalone.
-	name = "moth antenna and wings"
-	desc = ""
-	icon_state = "moth_full"
-/*
-/datum/sprite_accessory/tail/succubus_purple
-	name = "succubus, purple (+wings)"
-	desc = ""
-	icon_state = "succubus-purple"
-
-/datum/sprite_accessory/tail/succubus_red
-	name = "succubus, red (+wings)"
-	desc = ""
-	icon_state = "succubus-red"
-
-/datum/sprite_accessory/tail/succubus_black
-	name = "succubus, black (+wings)"
-	desc = ""
-	icon_state = "succubus-black"
-*/
 /datum/sprite_accessory/tail/doublekitsune
 	name = "double kitsune tail, colorable"
 	desc = ""
 	icon_state = "doublekitsune"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
-/*
-/datum/sprite_accessory/tail/succubus_color
-	name = "succubus, colorable (+wings)"
-	desc = ""
-	icon_state = "succubus-black"
-	do_colouration = 1
-*/
+
 /datum/sprite_accessory/tail/spade_color
 	name = "spade-tail (colorable)"
 	desc = ""
@@ -591,12 +584,12 @@
 	do_colouration = 1
 
 /datum/sprite_accessory/tail/snag
-	name = "xenomorph tail w/ backplate"
+	name = "xenomorph tail 1"
 	desc = ""
 	icon_state = "snag"
 
 /datum/sprite_accessory/tail/xenotail
-	name = "xenomorph tail"
+	name = "xenomorph tail 2"
 	desc = ""
 	icon_state = "xenotail"
 
@@ -606,14 +599,8 @@
 	icon_state = "molenar-kitsune"
 	ckeys_allowed = list("molenar")
 
-/datum/sprite_accessory/tail/liquidfirefly_gazer
-	name = "gazer eyestalks"
-	desc = ""
-	icon_state = "liquidfirefly-eyestalks"
-	//ckeys_allowed = list("liquidfirefly","seiga") //At request.
-
-/datum/sprite_accessory/tail/miria_fluffdragon //Fluff tails with wings stay under tails.
-	name = "fluffdragon wings+tail (Miria Masters)"
+/datum/sprite_accessory/tail/miria_fluffdragon
+	name = "fluffdragon tail (Miria Masters)"
 	desc = ""
 	icon_state = "miria-fluffdragontail"
 	ckeys_allowed = list("miriamasters")
@@ -636,13 +623,7 @@
 	icon_state = "runac"
 	ckeys_allowed = list("rebcom1807")
 
-/datum/sprite_accessory/tail/kerena
-	name = "wingwolf tail (+wings) (Kerena)"
-	desc = ""
-	icon_state = "kerena"
-	ckeys_allowed = list("somekindofpony")
-
-/datum/sprite_accessory/tail/reika
+/datum/sprite_accessory/tail/reika //Leaving this since it was too hard to split the wings from the tail.
 	name = "fox tail (+ beewings) (Reika)"
 	desc = ""
 	icon_state = "reika"
@@ -661,7 +642,7 @@
 	ckeys_allowed = list("joey4298")
 
 /datum/sprite_accessory/tail/scree
-	name = "green taj tail (+wings) (Scree)"
+	name = "green taj tail (Scree)"
 	desc = ""
 	icon_state = "scree"
 	ckeys_allowed = list("scree")
@@ -671,12 +652,6 @@
 	desc = ""
 	icon_state = "aronai"
 	ckeys_allowed = list("arokha")
-
-/datum/sprite_accessory/tail/sepulchre
-	name = "demon wings (Sepulchre)"
-	desc = ""
-	icon_state = "sepulchre_wings"
-	ckeys_allowed = list("sepulchre")
 
 /datum/sprite_accessory/tail/ketrai_wag
 	name = "fennix tail (vwag)"
@@ -757,7 +732,7 @@
 	icon_state = "ztail"
 	do_colouration = 1
 
-/datum/sprite_accessory/tail/shock
+/datum/sprite_accessory/tail/shock //Leaving this since it was too hard to split the wings from the tail.
 	name = "pharoah hound tail (Shock Diamond)"
 	desc = ""
 	icon_state = "shock"
