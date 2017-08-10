@@ -39,7 +39,11 @@
 #define DNA_UI_TAIL_R      20
 #define DNA_UI_TAIL_G      21
 #define DNA_UI_TAIL_B      22
-#define DNA_UI_LENGTH      22 // Update this when you add something, or you WILL break shit.
+#define DNA_UI_WING_STYLE  23 //VOREStation Edit
+#define DNA_UI_WING_R      24 //VOREStation Edit
+#define DNA_UI_WING_G      25 //VOREStation Edit
+#define DNA_UI_WING_B      26 //VOREStation Edit
+#define DNA_UI_LENGTH      26 // Update this when you add something, or you WILL break shit. //VOREStation Edit to 26
 
 #define DNA_SE_LENGTH 27
 // For later:
@@ -160,6 +164,11 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	if(character.tail_style)
 		tail_style = tail_styles_list.Find(character.tail_style.type)
 
+	// Demi Wings
+	var/wing_style = 0
+	if(character.wing_style)
+		wing_style = wing_styles_list.Find(character.wing_style.type)
+
 	// Playerscale (This assumes list is sorted big->small)
 	var/size_multiplier = player_sizes_list.len // If fail to find, take smallest
 	for(var/N in player_sizes_list)
@@ -179,10 +188,15 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	SetUIValueRange(DNA_UI_EAR_STYLE,	ear_style + 1,     ear_styles_list.len  + 1,  1)
 	SetUIValueRange(DNA_UI_TAIL_STYLE,	tail_style + 1,    tail_styles_list.len + 1,  1)
 	SetUIValueRange(DNA_UI_PLAYERSCALE,	size_multiplier,   player_sizes_list.len,     1)
+	SetUIValueRange(DNA_UI_WING_STYLE,	wing_style + 1,    wing_styles_list.len + 1,  1)
 
 	SetUIValueRange(DNA_UI_TAIL_R,    character.r_tail,    255,    1)
 	SetUIValueRange(DNA_UI_TAIL_G,    character.g_tail,    255,    1)
 	SetUIValueRange(DNA_UI_TAIL_B,    character.b_tail,    255,    1)
+
+	SetUIValueRange(DNA_UI_WING_R,    character.r_wing,    255,    1)
+	SetUIValueRange(DNA_UI_WING_G,    character.g_wing,    255,    1)
+	SetUIValueRange(DNA_UI_WING_B,    character.b_wing,    255,    1)
 
 	// VORE Station Edit End
 

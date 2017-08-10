@@ -11,6 +11,11 @@
 		to_chat(src,"<span class='warning'>You've already quit the round as this character. You can't go back now that you've free'd your job slot. Play another character, or wait for the next round.</span>")
 		pass = FALSE
 
+	//Do they have their scale properly setup?
+	if(!client.prefs.size_multiplier)
+		pass = FALSE
+		to_chat(src,"<span class='warning'>You have not set your scale yet. Do this on the VORE tab in character setup.</span>")
+
 	//Custom species checks
 	if (client && client.prefs && client.prefs.species == "Custom Species")
 
