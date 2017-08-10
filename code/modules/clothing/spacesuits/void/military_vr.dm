@@ -7,16 +7,6 @@
 	icon_override = 'icons/mob/head_vr.dmi'
 	light_overlay = "helmet_light_dual"
 
-/*/obj/item/clothing/head/helmet/space/void/merc/odst/attack_self(mob/user)
-	if(camera)
-		..(user)
-	else
-		camera = new /obj/machinery/camera(src)
-		camera.network = list("SS13")
-		cameranet.removeCamera(camera)
-		camera.c_tag = "TacCam ODST - [user.name]"
-		user << "\blue User scanned as [camera.c_tag]. Camera activated."*/
-
 /*/obj/item/clothing/head/helmet/space/void/merc/odst/jertheace // Given to Acacius during an event. Save this for use in events.
 	name = "\improper Ace's ODST Helmet"
 	icon = 'icons/obj/custom_items.dmi'
