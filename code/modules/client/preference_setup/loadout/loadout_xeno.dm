@@ -112,6 +112,7 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(undercoats))
 
 /datum/gear/suit/cloak
+	display_name = "cloak selection (Teshari)"
 	path = /obj/item/clothing/suit/storage/seromi/cloak
 	whitelisted = "Teshari"
 	sort_category = "Xenowear"
