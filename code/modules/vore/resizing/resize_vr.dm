@@ -223,7 +223,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 						for(var/obj/item/organ/I in M.organs)
 							tmob.take_overall_damage(calculated_damage, 0) //Due to the fact that this deals damage across random body parts, this should heal quite fast.
 				else
-					src << "You carlessly step down onto [tmob], crushing them!!"
+					src << "You carelessly step down onto [tmob], crushing them!!"
 					tmob << "[src] steps carelessly on your body, crushing you!"
 					if(istype(tmob,/mob/living/carbon/human))
 						var/mob/living/carbon/human/M = tmob
