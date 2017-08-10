@@ -4,7 +4,7 @@
 
 /obj/item/weapon/gun/energy/sizegun
 	name = "size gun" //I have no idea why this was called shrink ray when this increased and decreased size.
-	desc = "A highly advanced ray gun with two settings: Shrink and Grow. Warning: Do not insert into mouth."
+	desc = "A highly advanced ray gun with a knob on the side to adjust the size you desire. Warning: Do not insert into mouth."
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "sizegun-shrink100" // Someone can probably do better. -Ace
 	item_state = null	//so the human update icon uses the icon_state instead
