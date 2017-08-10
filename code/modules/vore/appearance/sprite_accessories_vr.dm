@@ -964,6 +964,12 @@
 	do_colouration = 1 // Yes color, using tail color
 	color_blend_mode = ICON_MULTIPLY  // The sprites for taurs are designed for ICON_MULTIPLY
 
+/datum/sprite_accessory/tail/taur/roiz_long_lizard // Not ACTUALLY a taur, but it uses 32x64 so it wouldn't fit in tails.dmi, and having it as a tail bugs up the sprite.
+	name = "Long Lizard Tail (Roiz Lizden)"
+	icon_state = "roiz_tail_s"
+	do_colouration = 0
+	ckeys_allowed = list("spoopylizz")
+
 /datum/sprite_accessory/tail/taur/wolf
 	name = "Wolf"
 	icon_state = "wolf_s"
