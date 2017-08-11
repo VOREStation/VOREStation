@@ -525,6 +525,7 @@
 			if(TFchance == 1)
 				if(P.species != O.species || P.tail_style != O.tail_style || P.custom_species != O.custom_species || P.ear_style != O.ear_style)
 					P.tail_style = O.tail_style
+					P.wing_style = O.wing_style
 					P.ear_style = O.ear_style
 					P.species = O.species
 					P.custom_species = O.custom_species
@@ -594,6 +595,7 @@
 					P.g_skin = O.g_skin
 					P.b_skin = O.b_skin
 					P.tail_style = O.tail_style
+					P.wing_style = O.wing_style
 					P.r_tail = O.r_tail
 					P.g_tail = O.g_tail
 					P.b_tail = O.b_tail
@@ -631,6 +633,7 @@
 			var/mob/living/carbon/human/O = owner
 
 			P.tail_style = O.tail_style
+			P.wing_style = O.wing_style
 			P.ear_style = O.ear_style
 			P.species = O.species
 			P.custom_species = O.custom_species
@@ -724,6 +727,7 @@
 			P.g_skin 			= O.g_skin
 			P.b_skin 			= O.b_skin
 			P.tail_style 		= O.tail_style
+			P.wing_style = O.wing_style
 			P.r_tail 			= O.r_tail
 			P.g_tail 			= O.g_tail
 			P.b_tail 			= O.b_tail

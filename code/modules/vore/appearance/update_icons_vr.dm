@@ -1,5 +1,5 @@
-
 #define isTaurTail(A)	istype(A, /datum/sprite_accessory/tail/taur)
+var/global/list/wing_icon_cache = list()
 
 /mob/living/carbon/human/proc/get_ears_overlay()
 	if(ear_style && !(head && (head.flags_inv & BLOCKHEADHAIR)))

@@ -209,10 +209,10 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 			now_pushing = 0
 			src.forceMove(tmob.loc)
 			var/size_damage_multiplier = (src.size_multiplier - tmob.size_multiplier)
-			var/damage = (rand(1,3)* size_damage_multiplier) //Rand 1-3 multiplied by 1 min or 1.75 max. 1 min 5.25 max damage.
+			var/damage = (rand(1,3)* size_damage_multiplier) //Rand 1-3 multiplied by 1 min or 1.75 max. 1 min 5.25 max damage to each limb.
+			var/calculated_damage = damage/2 //This will sting, but not kill. Does .5 to 2.625 damage, randomly, to each limb.
 
 			if(src.m_intent == "run")
-				tmob.apply_damage(damage, BRUTE)
 				var/mob/living/carbon/human/H = src
 				if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
 					src << "Your heavy tail carelessly slides past [tmob],  crushing them!"
@@ -220,29 +220,36 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 					if(istype(tmob,/mob/living/carbon/human))
 						var/mob/living/carbon/human/M = tmob
 						M.drip(0.1)
+						for(var/obj/item/organ/I in M.organs)
+							tmob.take_overall_damage(calculated_damage, 0) //Due to the fact that this deals damage across random body parts, this should heal quite fast.
 				else
-					src << "You carlessly step down onto [tmob], crushing them!!"
+					src << "You carelessly step down onto [tmob], crushing them!!"
 					tmob << "[src] steps carelessly on your body, crushing you!"
 					if(istype(tmob,/mob/living/carbon/human))
 						var/mob/living/carbon/human/M = tmob
+						for(var/obj/item/organ/I in M.organs)
+							tmob.take_overall_damage(calculated_damage, 0) // 5 damage min, 26.25 damage max, depending on size & RNG. If they're only stepped on once, the damage will heal over time.
 						M.drip(0.1)
 				return 1
 
 			if(src.m_intent == "walk") //Oh my.
-				damage = damage * 5 //Multiplies the above damage by 5. This means a min of 5 damage, or a max of 26.25 damage, depending on size and RNG.
-				tmob.apply_damage(damage, BRUTE)
+				damage = calculated_damage * 3.5 //Multiplies the above damage by 3.5. This means a min of 1.75 damage, or a max of 9.1875. damage to each limb, depending on size and RNG.
 				var/mob/living/carbon/human/H = src
 				if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
 					src << "Your heavy tail slowly and methodically slides down upon [tmob], crushing against the floor below!"
 					tmob << "[src]'s thick, heavy tail slowly and methodically slides down upon your body, mercilessly crushing you into the floor below."
 					if(istype(tmob,/mob/living/carbon/human))
 						var/mob/living/carbon/human/M = tmob
+						for(var/obj/item/organ/I in M.organs)
+							tmob.take_overall_damage(damage, 0) //17.5 damage min, 91.875 damage max. If they're only stepped on once, the damage will heal over time.
 						M.drip(3) //The least of your problems, honestly.
 				else
 					src << "You methodically place your foot down upon [tmob]'s body, slowly applying pressure, crushing them against the floor below!"
 					tmob << "[src] methodically places their foot upon your body, slowly applying pressure, crushing you against the floor below!"
 					if(istype(tmob,/mob/living/carbon/human))
 						var/mob/living/carbon/human/M = tmob
+						for(var/obj/item/organ/I in M.organs)
+							tmob.take_overall_damage(damage, 0)
 						M.drip(3)
 				return 1
 
