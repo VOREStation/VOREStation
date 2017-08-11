@@ -39,7 +39,13 @@
 #define DNA_UI_TAIL_R      20
 #define DNA_UI_TAIL_G      21
 #define DNA_UI_TAIL_B      22
-#define DNA_UI_LENGTH      22 // Update this when you add something, or you WILL break shit.
+#define DNA_UI_TAIL2_R     23 // Vorestation snippet.
+#define DNA_UI_TAIL2_G     24
+#define DNA_UI_TAIL2_B     25
+#define DNA_UI_EARS_R      26
+#define DNA_UI_EARS_G      27
+#define DNA_UI_EARS_B      28 // Vorestation snippet end.
+#define DNA_UI_LENGTH      28 // Update this when you add something, or you WILL break shit.
 
 #define DNA_SE_LENGTH 27
 // For later:
@@ -183,6 +189,14 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	SetUIValueRange(DNA_UI_TAIL_R,    character.r_tail,    255,    1)
 	SetUIValueRange(DNA_UI_TAIL_G,    character.g_tail,    255,    1)
 	SetUIValueRange(DNA_UI_TAIL_B,    character.b_tail,    255,    1)
+
+	SetUIValueRange(DNA_UI_TAIL2_R,   character.r_tail2,   255,    1)
+	SetUIValueRange(DNA_UI_TAIL2_G,   character.g_tail2,   255,    1)
+	SetUIValueRange(DNA_UI_TAIL2_B,   character.b_tail2,   255,    1)
+
+	SetUIValueRange(DNA_UI_EARS_R,    character.red_ear,   255,    1)
+	SetUIValueRange(DNA_UI_EARS_G,    character.g_ear,     255,    1)
+	SetUIValueRange(DNA_UI_EARS_B,    character.b_ear,     255,    1)
 
 	// VORE Station Edit End
 
