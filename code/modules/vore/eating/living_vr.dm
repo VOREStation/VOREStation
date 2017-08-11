@@ -25,7 +25,7 @@
 		return 1
 	M.verbs += /mob/living/proc/insidePanel
 
-	M.appearance_flags |= PIXEL_SCALE
+	//M.appearance_flags |= PIXEL_SCALE //This makes sprites not blurry or fuzzy, and makes them sharp. Macros look good with it but can cause issues.
 
 	//Tries to load prefs if a client is present otherwise gives freebie stomach
 	if(!M.vore_organs || !M.vore_organs.len)
