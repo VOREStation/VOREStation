@@ -4,14 +4,14 @@
 
 /obj/item/weapon/gun/energy/sizegun
 	name = "size gun" //I have no idea why this was called shrink ray when this increased and decreased size.
-	desc = "A highly advanced ray gun with two settings: Shrink and Grow. Warning: Do not insert into mouth."
+	desc = "A highly advanced ray gun with a knob on the side to adjust the size you desire. Warning: Do not insert into mouth."
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "sizegun-shrink100" // Someone can probably do better. -Ace
 	item_state = null	//so the human update icon uses the icon_state instead
 	fire_sound = 'sound/weapons/wave.ogg'
 	charge_cost = 100
 	projectile_type = /obj/item/projectile/beam/sizelaser
-	origin_tech = "redspace=1;bluespace=4"
+	origin_tech = "bluespace=4"
 	modifystate = "sizegun-shrink"
 	self_recharge = 1
 	var/size_set_to = 1
@@ -45,8 +45,8 @@
 			H.resize(set_size)
 			H.show_message("<font color='blue'> The beam fires into your body, changing your size!</font>")
 			H.updateicon()
-		else if (istype(target, /mob/living/carbon/))
-			var/mob/living/carbon/H = M
+		else if (istype(target, /mob/living/))
+			var/mob/living/H = M
 			H.resize(set_size)
 			H.updateicon()
 		else

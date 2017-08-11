@@ -7,6 +7,12 @@
 				message = "[wagging ? "starts" : "stops"] wagging their tail."
 			else
 				return 1
+		if ("vflap")
+			if(toggle_wing_vr(message = 1))
+				m_type = 1
+				message = "[flapping ? "starts" : "stops"] flapping their wings."
+			else
+				return 1
 		if ("mlem")
 			message = "mlems [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] tongue up over [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] nose. Mlem."
 			m_type = 1
@@ -101,4 +107,18 @@
 		wagging = !wagging
 
 	update_tail_showing()
+	return 1
+
+/mob/living/carbon/human/proc/toggle_wing_vr(var/setting,var/message = 0)
+	if(!wing_style || !wing_style.ani_state)
+		if(message)
+			src << "<span class='warning'>You don't have a tail that supports this.</span>"
+		return 0
+
+	if(setting != null)
+		flapping = setting
+	else
+		flapping = !flapping
+
+	update_wing_showing()
 	return 1

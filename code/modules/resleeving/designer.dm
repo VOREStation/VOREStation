@@ -109,6 +109,14 @@
 				temp["colorHref"] = "tail_color"
 		styles["Tail"] = temp
 
+		temp = list("styleHref" = "wing_style", "style" = "Normal")
+		if(mannequin.wing_style)
+			temp["style"] = mannequin.wing_style.name
+			if(mannequin.wing_style.do_colouration)
+				temp["color"] = MOB_HEX_COLOR(mannequin, wing)
+				temp["colorHref"] = "wing_color"
+		styles["Tail"] = temp
+
 		temp = list("styleHref" = "hair_style", "style" = mannequin.h_style)
 		if(mannequin.species && (mannequin.species.appearance_flags & HAS_HAIR_COLOR))
 			temp["color"] = MOB_HEX_COLOR(mannequin, hair)

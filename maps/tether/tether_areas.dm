@@ -88,3 +88,7 @@
 /area/engineering/hallway
 	name = "\improper Engineering Hallway"
 	icon_state = "engineering"
+
+/area/engineering/shaft
+	name = "\improper Engineering Electrical Shaft"
+	icon_state = "substation"
