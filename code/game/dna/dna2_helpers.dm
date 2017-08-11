@@ -192,6 +192,13 @@
 		else if((0 < tail) && (tail <= tail_styles_list.len))
 			H.tail_style = tail_styles_list[tail_styles_list[tail]]
 
+		//Wing
+		var/wing = dna.GetUIValueRange(DNA_UI_WING_STYLE, wing_styles_list.len + 1) - 1
+		if(wing <= 1)
+			H.wing_style = null
+		else if((0 < wing) && (wing <= wing_styles_list.len))
+			H.wing_style = wing_styles_list[wing_styles_list[wing]]
+
 		// Playerscale
 		var/size = dna.GetUIValueRange(DNA_UI_PLAYERSCALE, player_sizes_list.len)
 		if((0 < size) && (size <= player_sizes_list.len))

@@ -99,6 +99,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/toggle_attack_logs,
 	/datum/admins/proc/paralyze_mob,
 	/client/proc/fixatmos,
+	/datum/admins/proc/quick_nif, //VOREStation Add,
 	/datum/admins/proc/sendFax
 )
 var/list/admin_verbs_ban = list(
@@ -125,7 +126,6 @@ var/list/admin_verbs_fun = list(
 	/client/proc/toggle_random_events,
 	/client/proc/editappear,
 	/client/proc/roll_dices,
-	/datum/admins/proc/quick_nif, //VOREStation Add,
 	/datum/admins/proc/call_supply_drop,
 	/datum/admins/proc/call_drop_pod
 	)

@@ -135,7 +135,8 @@ Please contact me on #coderbus IRC. ~Carn x
 #define FIRE_LAYER				27		//If you're on fire
 #define WATER_LAYER				28		//If you're submerged in water.
 #define TARGETED_LAYER			29		//BS12: Layer for the target overlay from weapon targeting system
-#define TOTAL_LAYERS			30
+#define WING_LAYER				30 //VOREStation edit. Simply move this up a number if things are added.
+#define TOTAL_LAYERS			31 //VOREStation edit. Add it to the number polaris has but +1 to accomidate the wing_layer.
 //////////////////////////////////
 
 /mob/living/carbon/human
@@ -338,6 +339,7 @@ var/global/list/damage_icon_parts = list()
 
 	//tail
 	update_tail_showing(0)
+	update_wing_showing(0) //VOREStation edit
 
 //UNDERWEAR OVERLAY
 /mob/living/carbon/human/proc/update_underwear(var/update_icons=1)
@@ -836,6 +838,7 @@ var/global/list/damage_icon_parts = list()
 	update_inv_w_uniform(0)
 	update_inv_shoes(0)
 	update_tail_showing(0)
+	update_wing_showing(0)//VOREStation Edit
 
 	if(update_icons)   update_icons()
 
