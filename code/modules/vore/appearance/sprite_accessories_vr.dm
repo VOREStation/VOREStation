@@ -960,6 +960,11 @@
 	icon_state = "wolf_s"
 	extra_overlay = "wolf_markings"
 
+/datum/sprite_accessory/tail/taur/wolf/synthwolf
+	name = "SynthWolf dual-color"
+	icon_state = "synthwolf_s"
+	extra_overlay = "synthwolf_markings"
+
 /datum/sprite_accessory/tail/taur/naga
 	name = "Naga"
 	icon_state = "naga_s"
@@ -973,6 +978,11 @@
 	name = "Horse"
 	icon_state = "horse_s"
 
+/datum/sprite_accessory/tail/taur/horse/synthhorse
+	name = "SynthHorse dual-color"
+	icon_state = "synthhorse_s"
+	extra_overlay = "synthhorse_markings"
+
 /datum/sprite_accessory/tail/taur/cow
 	name = "Cow"
 	icon_state = "cow_s"
@@ -985,6 +995,11 @@
 	name = "Lizard dual-color"
 	icon_state = "lizard_s"
 	extra_overlay = "lizard_markings"
+
+/datum/sprite_accessory/tail/taur/lizard/synthlizard
+	name = "SynthLizard dual-color"
+	icon_state = "synthlizard_s"
+	extra_overlay = "synthlizard_markings"
 
 /datum/sprite_accessory/tail/taur/spider
 	name = "Spider"
@@ -1002,6 +1017,11 @@
 	name = "Feline dual-color"
 	icon_state = "feline_s"
 	extra_overlay = "feline_markings"
+
+/datum/sprite_accessory/tail/taur/feline/synthfeline
+	name = "SynthFeline dual-color"
+	icon_state = "synthfeline_s"
+	extra_overlay = "synthfeline_markings"
 
 /datum/sprite_accessory/tail/taur/slug
 	name = "Slug"
