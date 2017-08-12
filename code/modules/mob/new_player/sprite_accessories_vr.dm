@@ -388,19 +388,19 @@
 		name = "belly fur (Vulp)"
 		icon_state = "vulp_belly"
 		color_blend_mode = ICON_MULTIPLY
-		body_parts = list(BP_TORSO)
+		body_parts = list(BP_TORSO,BP_GROIN)
 
 	vulp_fullbelly
 		name = "full belly fur (Vulp)"
 		icon_state = "vulp_fullbelly"
 		color_blend_mode = ICON_MULTIPLY
-		body_parts = list(BP_TORSO)
+		body_parts = list(BP_TORSO,BP_GROIN)
 
 	vulp_crest
 		name = "belly crest (Vulp)"
 		icon_state = "vulp_crest"
 		color_blend_mode = ICON_MULTIPLY
-		body_parts = list(BP_TORSO)
+		body_parts = list(BP_TORSO,BP_GROIN)
 
 	vulp_nose
 		name = "nose (Vulp)"
