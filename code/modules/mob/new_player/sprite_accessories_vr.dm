@@ -443,7 +443,6 @@
 	monoeye
 		name = "Monoeye"
 		icon_state = "monoeye"
-		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_HEAD)
 
 	nevrean_female
