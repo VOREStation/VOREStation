@@ -21,6 +21,10 @@
 	var/r_tail2 = 30
 	var/g_tail2 = 30
 	var/b_tail2 = 30
+	var/datum/sprite_accessory/tail/wing_style = null
+	var/r_wing = 30
+	var/g_wing = 30
+	var/b_wing = 30
 
 	// Custom Species Name
 	var/custom_species
