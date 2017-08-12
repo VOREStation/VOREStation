@@ -100,28 +100,7 @@
 	icon = 'icons/obj/clothing/uniforms_vr.dmi'
 	icon_override = 'icons/mob/uniform_vr.dmi'
 	icon_state = "bdu_olive"
-	verb/toggle_sleeves()
-		set name = "Roll sleeves"
-		set category = "Object"
-		set src in usr
-
-		if(!usr.canmove || usr.stat || usr.restrained())
-			return 0
-
-		switch(icon_state)
-			if("bdu_olive_rolled")
-				src.icon_state = "bdu_olive"
-				usr << "You roll down your sleeves."
-			if("bdu_olive")
-				src.icon_state = "bdu_olive_rolled"
-				usr << "You roll up your sleeves."
-			if("bdu_d_camo_rolled")
-				src.icon_state = "bdu_d_camo"
-				usr << "You roll down your sleeves."
-			if("bdu_d_camo")
-				src.icon_state = "bdu_d_camo_rolled"
-				usr << "You roll up your sleeves."
-		usr.update_inv_w_uniform() // So our uniform updates on our character.
+	item_state = "bdu_olive"
 
 /obj/item/clothing/under/utility/marine/desert
 	name = "desert fatigues"
@@ -129,28 +108,7 @@
 	icon = 'icons/obj/clothing/uniforms_vr.dmi'
 	icon_override = 'icons/mob/uniform_vr.dmi'
 	icon_state = "bdu_olive"
-	verb/toggle_sleeves()
-		set name = "Roll sleeves"
-		set category = "Object"
-		set src in usr
-
-		if(!usr.canmove || usr.stat || usr.restrained())
-			return 0
-
-		switch(icon_state)
-			if("bdu_olive_rolled")
-				src.icon_state = "bdu_olive"
-				usr << "You roll down your sleeves."
-			if("bdu_olive")
-				src.icon_state = "bdu_olive_rolled"
-				usr << "You roll up your sleeves."
-			if("bdu_d_camo_rolled")
-				src.icon_state = "bdu_d_camo"
-				usr << "You roll down your sleeves."
-			if("bdu_d_camo")
-				src.icon_state = "bdu_d_camo_rolled"
-				usr << "You roll up your sleeves."
-		usr.update_inv_w_uniform() // So our uniform updates on our character.
+	item_state = "bdu_olive"
 
 /obj/item/clothing/under/utility/marine/medical
 	name = "marine medical fatigues"

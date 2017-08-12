@@ -35,7 +35,7 @@
 			meteor_impact()
 			return
 		for(var/atom/movable/A in current)
-			A.ex_act(1)
+			A.ex_act(2) //Let's have it be heavy, but not devistation in case it hits walls or something.
 		forceMove(below)
 		meteor_fall()
 		return
@@ -44,7 +44,7 @@
 /obj/effect/meteor_falling/proc/meteor_impact()
 	var/turf/current = get_turf(src)
 	spawn()
-		explosion(current, 2, 4, 6, 10, 0)
+		explosion(current, -1, 2, 4, 8, 0) //Was previously 2,4,6,10. Way too big.
 	anim(get_step(current,SOUTHWEST),, 'icons/effects/96x96.dmi',, "explosion")
 	new /obj/structure/meteorite(current)
 
