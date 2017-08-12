@@ -125,6 +125,7 @@
 	name = "Sergal ears, colorable"
 	icon_state = "serg_plain_s"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/ears/mousehc
 	name = "mouse, colorable"
@@ -144,6 +145,7 @@
 	desc = ""
 	icon_state = "wolf"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "wolfinner"
 
 /datum/sprite_accessory/ears/bearhc
@@ -151,12 +153,14 @@
 	desc = ""
 	icon_state = "bear"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/ears/squirrelhc
 	name = "squirrel, colorable"
 	desc = ""
 	icon_state = "squirrel"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/ears/kittyhc
 	name = "kitty, colorable"
@@ -170,6 +174,7 @@
 	desc = ""
 	icon_state = "bunny"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/ears/antlers
 	name = "antlers"
@@ -181,6 +186,7 @@
 	desc = ""
 	icon_state = "otie"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/ears/cow
 	name = "cow, horns"
@@ -192,24 +198,28 @@
 	desc = ""
 	icon_state = "cow-c"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/ears/zears
 	name = "jagged ears"
 	desc = ""
 	icon_state = "zears"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/ears/elfs
 	name = "elven ears"
 	desc = ""
 	icon_state = "elfs"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/ears/sleek
 	name = "sleek ears"
 	desc = ""
 	icon_state = "sleek"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 // Special snowflake ears go below here.
 
@@ -439,38 +449,36 @@
 	desc = ""
 	icon_state = "squirrel"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/kitty
 	name = "kitty, colorable, downwards"
 	desc = ""
 	icon_state = "kittydown"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/kittyup
 	name = "kitty, colorable, upwards"
 	desc = ""
 	icon_state = "kittyup"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/tiger_white
-	name = "tiger, colorable, white stripes"
+	name = "tiger, colorable"
 	desc = ""
 	icon_state = "tiger"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "tigerinnerwhite"
-
-/datum/sprite_accessory/tail/tiger_black
-	name = "tiger, colorable, black stripes"
-	desc = ""
-	icon_state = "tiger"
-	do_colouration = 1
-	extra_overlay = "tigerinnerblack"
 
 /datum/sprite_accessory/tail/stripey
 	name = "stripey taj, colorable"
 	desc = ""
 	icon_state = "stripeytail"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "stripeytail_mark"
 
 /datum/sprite_accessory/tail/stripeytail_brown
@@ -494,12 +502,14 @@
 	desc = ""
 	icon_state = "bear"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/dragon
 	name = "dragon, colorable"
 	desc = ""
 	icon_state = "dragon"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/wolf_grey
 	name = "wolf, grey"
@@ -526,6 +536,7 @@
 	desc = ""
 	icon_state = "wolf"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "wolfinner"
 
 /datum/sprite_accessory/tail/mouse_pink
@@ -676,6 +687,7 @@
 	desc = ""
 	icon_state = "ringtail"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "ringtail_mark"
 
 /datum/sprite_accessory/tail/holly
@@ -697,6 +709,7 @@
 	icon_state = "curltail"
 	ani_state = "curltail_w"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "curltail_mark"
 	extra_overlay_w = "curltail_mark_w"
 
@@ -706,6 +719,7 @@
 	icon_state = "straighttail"
 	ani_state = "straighttail_w"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/tiger_new
 	name = "tiger tail (vwag)"
@@ -713,6 +727,7 @@
 	icon_state = "tigertail"
 	ani_state = "tigertail_w"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "tigertail_mark"
 	extra_overlay_w = "tigertail_mark_w"
 
@@ -722,6 +737,7 @@
 	icon_state = "vulptail"
 	ani_state = "vulptail_w"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "vulptail_mark"
 	extra_overlay_w = "vulptail_mark_w"
 
@@ -731,12 +747,14 @@
 	icon_state = "otie"
 	ani_state = "otie_w"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/ztail
 	name = "jagged flufftail"
 	desc = ""
 	icon_state = "ztail"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/shock //Leaving this since it was too hard to split the wings from the tail.
 	name = "pharoah hound tail (Shock Diamond)"
@@ -749,12 +767,14 @@
 	desc = ""
 	icon_state = "snaketail"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/sergaltaildc
 	name = "sergal, dual-color"
 	desc = ""
 	icon_state = "sergal"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "sergal_mark"
 
 //For all species tails. Includes haircolored tails.
