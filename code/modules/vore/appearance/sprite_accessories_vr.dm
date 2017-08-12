@@ -277,7 +277,7 @@
 	name = "pharoah hound ears (Shock Diamond)"
 	desc = ""
 	icon_state = "shock"
-	ckeys_allowed = list("icowom")
+	ckeys_allowed = list("icowom","cameron653")
 
 /datum/sprite_accessory/ears/alurane
 	name = "alurane ears/hair (Pumila)"
