@@ -72,5 +72,5 @@
 
 /obj/item/weapon/gun/energy/sizegun/examine(mob/user)
 	..()
-	var/size_examine = size_set_to
+	var/size_examine = (size_set_to*100)
 	user << "<span class='info'>It is currently set at [size_examine]%</span>"
