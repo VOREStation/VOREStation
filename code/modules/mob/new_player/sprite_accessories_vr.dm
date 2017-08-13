@@ -433,6 +433,12 @@
 		icon_state = "monoeye"
 		body_parts = list(BP_HEAD)
 
+	spidereyes
+		name = "Spider Eyes"
+		icon = 'icons/mob/human_face_vr.dmi'
+		icon_state = "spidereyes"
+		body_parts = list(BP_HEAD)
+
 	nevrean_female
 		name = "Female Nevrean beak"
 		icon_state = "nevrean_f"
