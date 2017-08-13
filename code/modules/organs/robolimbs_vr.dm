@@ -143,14 +143,14 @@
 	company = "DSI - Akula"
 
 /datum/robolimb/dsi_spider
-	company = "DSI - Spider"
+	company = "DSI - Vasilissan"
 	desc = "This limb feels hard and chitinous, realistic design. Seems a little mischievous. By Darkside Incorperated."
 	icon = 'icons/mob/human_races/cyberlimbs/DSISpider/dsi_spider.dmi'
 	blood_color = "#ffe2ff"
 	lifelike = 1
 	unavailable_to_build = 1
 	includes_tail = 1
-	suggested_species = "Spider"
+	suggested_species = "Vasilissan"
 
 /obj/item/weapon/disk/limb/dsi_spider
-	company = "DSI - Spider"
+	company = "DSI - Vasilissan"

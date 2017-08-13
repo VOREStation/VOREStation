@@ -15,4 +15,4 @@
 	..(new_loc, "Xenomorph Hybrid")
 
 /mob/living/carbon/human/spider/New(var/new_loc)
-	..(new_loc, "Spider")
+	..(new_loc, "Vasilissan")
