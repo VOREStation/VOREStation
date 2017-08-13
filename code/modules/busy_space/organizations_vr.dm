@@ -43,7 +43,7 @@
 			of Virgo Prime, within the spaceport city of Anur. Although the government is an entity of NanoTrasen, some elements of democracy \
 			are still practiced, such as voting on changes to local law, policy, or public works."
 	history = "VEGA was founded in 2556, shortly after the Virgo-Erigone system was colonized by a population of 1000. That population has \
-			multiplied many times since then as wealth and commerce come and go from this frontier star system.
+			multiplied many times since then as wealth and commerce come and go from this frontier star system."
 	work = "governing body of Virgo-Erigone"
 	headquarters = "Anur, Virgo Prime"
 	motto = "Reach for the Stars."
@@ -183,7 +183,7 @@
 					"Hoenir",
 					"In Amber Clad",
 					"Iwo Jima",
-					"Jörmungandr",
+					"JÃ¶rmungandr",
 					"Leonidas",
 					"Meriwether Lewis",
 					"Midsummer Night",
@@ -290,7 +290,7 @@
 	history = "Originally only a strike of miners on the dusty, arid planet of Ares in the year 2540, the Ares Confederation was quickly \
     		established under the leadership of retired UNSC Colonel Rodrick Gellaume, who is now Prime Minister."
 	work = "rebel fringe government"
-	headquarters = "Paraiso a Àstrea"
+	headquarters = "Paraiso a Ã€strea"
 	motto = "Liberty to the Stars!"
 
 	ship_prefixes = list("UFHV" = "military", "FFHV" = "shady")
@@ -325,7 +325,7 @@
 					"None Of Your Business")
 	destination_names = list("Drydocks of the Ares Confederation",
 						"a classified location",
-						"a Homestead on Paraiso a Àstrea",
+						"a Homestead on Paraiso a Ã€strea",
 						"a contested sector of ArCon space",
 						"one of our free colonies",
 						"the Gateway 98-C at Arest",
