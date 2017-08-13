@@ -144,7 +144,8 @@
 // Mercenary Shuttle
 /datum/shuttle/multi_shuttle/mercenary
 	name = "Mercenary"
-	warmup_time = 0
+	warmup_time = 8
+	move_time = 60
 	origin = /area/syndicate_station/start
 	//interim = /area/syndicate_station/transit // Disabled until this even exists.
 	start_location = "Mercenary base"
