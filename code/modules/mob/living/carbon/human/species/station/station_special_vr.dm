@@ -190,8 +190,8 @@
 /////SPIDER RACE/////
 /////////////////////
 /datum/species/spider //These actually look pretty damn spooky!
-	name = "Spider"
-	name_plural = "Spiders"
+	name = "Vasilissan"
+	name_plural = "Vasilissans"
 	icobase = 'icons/mob/human_races/r_spider.dmi'
 	deform = 'icons/mob/human_races/r_def_spider.dmi'
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
