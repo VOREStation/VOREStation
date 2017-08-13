@@ -36,7 +36,7 @@ mob/proc/weaveWebBindings()
 	set name = "Weave Web Bindings"
 	set category = "Species Powers"
 	if(nutrition >= 30) //This isn't a huge problem. This is so you can bind people up.
-		src.visible_message("<span class='notice'>\the [src] pulls silk from their spinneret and delicately weaves it into bindings.</span>")
+		src.visible_message("<span class='notice'>\the [src] pulls silk from their manibles and delicately weaves it into bindings.</span>")
 		nutrition -= 30
 		spawn(30) //5 seconds to weave the bindings~
 			var/obj/item/clothing/suit/web_bindings/bindings = new() //This sprite is amazing, I must say.
