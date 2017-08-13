@@ -87,17 +87,13 @@
 		new_CS.blood_color = pref.blood_color
 
 /datum/category_item/player_setup_item/vore/traits/content(var/mob/user)
-	if(pref.species == "Custom Species" || pref.custom_species)
-		. += "<b>Custom Species</b> "
-		. += "<a href='?src=\ref[src];custom_species=1'>[pref.custom_species ? pref.custom_species : "-Input Name-"]</a><br>"
+	//if(pref.species == "Custom Species" || pref.custom_species) //People that want to use a certain species to have that species traits (xenochimera/promethean/spider) should be able to set their custom species.
+	. += "<b>Custom Species</b> "
+	. += "<a href='?src=\ref[src];custom_species=1'>[pref.custom_species ? pref.custom_species : "-Input Name-"]</a><br>"
 
 	if(pref.species == "Custom Species")
 		. += "<b>Icon Base: </b> "
 		. += "<a href='?src=\ref[src];custom_base=1'>[pref.custom_base ? pref.custom_base : "Human"]</a><br>"
-
-		. += "<b>Blood Color: </b>"
-		. += "<a href='?src=\ref[src];blood_color=1'>Set Color</a>"
-		. += "<a href='?src=\ref[src];blood_reset=1'>R</a><br>"
 
 		var/points_left = pref.starting_trait_points
 		var/traits_left = pref.max_traits
@@ -130,18 +126,21 @@
 			var/datum/trait/trait = negative_traits[T]
 			. += "<li>- <a href='?src=\ref[src];clicked_neg_trait=[T]'>[trait.name] ([trait.cost])</a></li>"
 		. += "</ul>"
+	. += "<b>Blood Color: </b>" //People that want to use a certain species to have that species traits (xenochimera/promethean/spider) should be able to set their own blood color.
+	. += "<a href='?src=\ref[src];blood_color=1'>Set Color</a>"
+	. += "<a href='?src=\ref[src];blood_reset=1'>R</a><br>"
 
 /datum/category_item/player_setup_item/vore/traits/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(!CanUseTopic(user))
 		return TOPIC_NOACTION
 
 	else if(href_list["custom_species"])
-		if(pref.species != "Custom Species")
+		/*if(pref.species != "Custom Species")
 			alert("You cannot set a custom species name unless you set your character to use the 'Custom Species' \
 			species on the 'General' tab. If you have this set to something, it's because you had it set before the \
 			Trait system was implemented. If you wish to change it, set your species to 'Custom Species' and configure \
 			the species completely.")
-			return TOPIC_REFRESH
+			return TOPIC_REFRESH*/ //There was no reason to have this.
 		var/raw_choice = sanitize(input(user, "Input your custom species name:",
 			"Character Preference", pref.custom_species) as null|text, MAX_NAME_LEN)
 		if (CanUseTopic(user))
