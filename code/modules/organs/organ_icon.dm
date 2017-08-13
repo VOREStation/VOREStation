@@ -160,7 +160,7 @@ var/global/list/limb_icon_cache = list()
 		if(species && species.get_bodytype(owner) != "Human")
 			applying.SetIntensity(1.5) // Unathi, Taj and Skrell have -very- dark base icons.
 		else
-			applying.SetIntensity(0.7)
+			applying.SetIntensity(1) //VOREStation edit to make Prometheans not look like shit with mob coloring.
 
 	else if(status & ORGAN_DEAD)
 		icon_cache_key += "_dead"
