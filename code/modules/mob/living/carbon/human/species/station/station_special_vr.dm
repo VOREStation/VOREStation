@@ -215,7 +215,7 @@
 	blurb = "Vasilissans are a tall, lanky, spider like people. \
 	Each having four eyes, an extra four, large legs sprouting from their back, and a chitinous plating on their body, and the ability to spit webs \
 	from their mandible lined mouths.  They are a recent discovery by Nanotrasen, only being discovered roughly seven years ago.  \
-	Before they were found they built great cities out of their silk, being united and subjugated in warring factions under great “Star Queens”  \
+	Before they were found they built great cities out of their silk, being united and subjugated in warring factions under great Â“Star QueensÂ”  \
 	Who forced the working class to build huge, towering cities to attempt to reach the stars, which they worship as gems of great spiritual and magical significance."
 
 	hazard_low_pressure = -1 //Prevents them from dying normally in space. Special code handled below.
@@ -226,7 +226,6 @@
 	//primitive_form = "Monkey" //I dunno. Replace this in the future.
 
 	spawn_flags = SPECIES_CAN_JOIN
-	flags = NO_SCAN //Dying as a chimera is, quite literally, a death sentence. Well, if it wasn't for their revive, that is.
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
 	flesh_color = "#AFA59E" //Gray-ish. Not sure if this is really needed, but eh.
