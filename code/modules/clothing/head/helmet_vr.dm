@@ -10,6 +10,6 @@
 	name = "\improper CH252 helmet"
 	desc = "If you wanna to keep your brain inside your head, you'd best put this on!"
 	icon_state = "unsc_helm"
-	item_state = "swat_hel"
+	item_state = "unsc_helm"
 	icon = 'icons/obj/clothing/hats_vr.dmi'
 	icon_override = 'icons/mob/head_vr.dmi'
