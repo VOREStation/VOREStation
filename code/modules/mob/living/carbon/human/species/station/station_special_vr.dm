@@ -212,7 +212,11 @@
 	min_age = 17
 	max_age = 80
 
-	blurb = "Creepy, crawly spiders!"
+	blurb = "Vasilissans are a tall, lanky, spider like people. \
+	Each having four eyes, an extra four, large legs sprouting from their back, and a chitinous plating on their body, and the ability to spit webs \
+	from their mandible lined mouths.  They are a recent discovery by Nanotrasen, only being discovered roughly seven years ago.  \
+	Before they were found they built great cities out of their silk, being united and subjugated in warring factions under great “Star Queens”  \
+	Who forced the working class to build huge, towering cities to attempt to reach the stars, which they worship as gems of great spiritual and magical significance."
 
 	hazard_low_pressure = -1 //Prevents them from dying normally in space. Special code handled below.
 	cold_level_1 = -5000     // All cold debuffs are handled below in handle_environment_special
