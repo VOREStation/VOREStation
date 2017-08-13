@@ -35,7 +35,7 @@
 
 /datum/lore/organization/gov/sifgov // Overrides Polaris stuff
 	name = "Virgo-Erigone Governmental Authority"
-	short_name = "SifGov"
+	short_name = ""
 	desc = "Existing far outside the reach of SolGov space, the only governing body of the Virgo-Erigone system is the Virgo Prime Governmental \
 			Authority, also known as VEGA. It is a Technocracy founded and operated by NanoTrasen, using company appointed experts hired to see \
 			to the comfort and well being of Virgo's citizens; most of whom are also NanoTrasen employees. VEGA provides basic social services \
@@ -49,13 +49,14 @@
 	motto = "Reach for the Stars."
 	autogenerate_destination_names = FALSE
 
-	ship_prefixes = list("VEFD" = "fire rescue", "VEPD" = "patrol", "VEGA" = "administrative", "NBV" = "freight", "NBV" = "salvage", "SAR" = "medivac")
+	ship_prefixes = list("VEFD" = "fire rescue", "VEPD" = "patrol", "VEGA" = "administrative", "SAR" = "medivac")
 	destination_names = list(
 						"the colony at Virgo-3B",
 						"the VORE-1 debris field",
 						"a colony on Virgo-2",
 						"a telecommunications satellite",
-						"the Anur Spaceport"
+						"the Anur Spaceport",
+						"to a local distress beacon"
 						)
 
 /datum/lore/organization/gov/federation
