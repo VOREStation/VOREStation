@@ -24,6 +24,7 @@
 //////////////////////////// DM_DIGEST ////////////////////////////
 	if(digest_mode == DM_DIGEST || digest_mode == DM_DIGEST_NUMB || digest_mode == DM_ITEMWEAK)
 		var/list/touchable_items = internal_contents - items_preserved
+		var/mob/living/silicon/robot/s_owner = null
 
 		if(prob(50)) //Was SO OFTEN. AAAA.
 			var/churnsound = pick(digestion_sounds)
@@ -54,6 +55,9 @@
 				M << "<span class='notice'>" + digest_alert_prey + "</span>"
 
 				owner.nutrition += 20 // so eating dead mobs gives you *something*.
+				if(isrobot(owner))
+					s_owner = owner
+					s_owner.cell.charge += 750
 				var/deathsound = pick(death_sounds)
 				for(var/mob/hearer in range(1,owner))
 					hearer << deathsound
@@ -73,6 +77,9 @@
 
 				var/offset = (1 + ((M.weight - 137) / 137)) // 130 pounds = .95 140 pounds = 1.02
 				var/difference = owner.size_multiplier / M.size_multiplier
+				if(isrobot(owner))
+					s_owner = owner
+					s_owner.cell.charge += 100
 				if(offset) // If any different than default weight, multiply the % of offset.
 					owner.nutrition += offset*(10/difference) // 9.5 nutrition per digestion tick if they're 130 pounds and it's same size. 10.2 per digestion tick if they're 140 and it's same size. Etc etc.
 				else
@@ -114,6 +121,9 @@
 						if(istype(owner,/mob/living/carbon/human))
 							var/mob/living/carbon/human/howner = owner
 							F.reagents.trans_to_holder(howner.reagents, (F.reagents.total_volume * 0.3), 1, 0)
+						if(isrobot(owner))
+							s_owner = owner
+							s_owner.cell.charge += 150
 						internal_contents -= F
 						qdel(F)
 					else
@@ -135,7 +145,10 @@
 							PDA.id.forceMove(owner)
 							internal_contents += PDA.id
 							PDA.id = null
-						owner.nutrition += (1 * PDA.w_class)
+						owner.nutrition += (2)
+						if(isrobot(owner))
+							s_owner = owner
+							s_owner.cell.charge += 100
 						internal_contents -= PDA
 						qdel(PDA)
 					for(var/obj/item/SubItem in T)
@@ -161,10 +174,16 @@
 						if(istype(owner,/mob/living/carbon/human))
 							var/mob/living/carbon/human/howner = owner
 							F.reagents.trans_to_holder(howner.ingested, (F.reagents.total_volume * 0.3), 1, 0)
+						if(isrobot(owner))
+							s_owner = owner
+							s_owner.cell.charge += 150
 						internal_contents -= F
 						qdel(F)
 					else
 						owner.nutrition += (1 * T.w_class)
+						if(isrobot(owner))
+							s_owner = owner
+							s_owner.cell.charge += (50 * T.w_class)
 						internal_contents -= T
 						qdel(T)
 				else
@@ -175,6 +194,7 @@
 //////////////////////////// DM_STRIPDIGEST ////////////////////////////
 	if(digest_mode == DM_STRIPDIGEST) // Only gurgle the gear off your prey.
 		var/list/touchable_items = internal_contents - items_preserved
+		var/mob/living/silicon/robot/s_owner = null
 
 		if(prob(50))
 			var/churnsound = pick(digestion_sounds)
@@ -193,7 +213,10 @@
 						PDA.id.forceMove(owner)
 						internal_contents += PDA.id
 						PDA.id = null
-					owner.nutrition += (1 * PDA.w_class)
+					owner.nutrition += (2)
+					if(isrobot(owner))
+						s_owner = owner
+						s_owner.cell.charge += (100)
 					internal_contents -= PDA
 					qdel(PDA)
 
@@ -220,10 +243,16 @@
 					if(istype(owner,/mob/living/carbon/human))
 						var/mob/living/carbon/human/howner = owner
 						F.reagents.trans_to_holder(howner.ingested, (F.reagents.total_volume * 0.3), 1, 0)
+					if(isrobot(owner))
+						s_owner = owner
+						s_owner.cell.charge += (150)
 					internal_contents -= F
 					qdel(F)
 				else
 					owner.nutrition += (1 * T.w_class)
+					if(isrobot(owner))
+						s_owner = owner
+						s_owner.cell.charge += (50 * T.w_class)
 					internal_contents -= T
 					qdel(T)
 
