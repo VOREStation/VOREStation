@@ -164,6 +164,8 @@
 		update_verbs()
 		update_nearby_icons()
 		step(src, get_dir(AM, src))
+	if(tforce < 10)
+		return
 	take_damage(tforce)
 
 /obj/structure/window/attack_tk(mob/user as mob)
