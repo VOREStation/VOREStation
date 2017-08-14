@@ -7,11 +7,7 @@ VOREStation is a fork of the Polaris code branch, itself a fork of the Baystatio
 ---
 
 ### LICENSE
-<<<<<<< HEAD
-VOREStation is licensed under the GNU Affero General Public License version 3, which can be found in full in LICENSE-AGPL3.txt.
-=======
-The code for Polaris is licensed under the [GNU Affero General Public License](http://www.gnu.org/licenses/agpl.html) version 3, which can be found in full in LICENSE-AGPL3.txt.
->>>>>>> PolarisSS13/master
+The code for VOREStation is licensed under the [GNU Affero General Public License](http://www.gnu.org/licenses/agpl.html) version 3, which can be found in full in LICENSE-AGPL3.txt.
 
 Code with a git authorship date prior to `1420675200 +0000` (2015/01/08 00:00) are licensed under the GNU General Public License version 3, which can be found in full in LICENSE-GPL3.txt.
 
