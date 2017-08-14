@@ -164,7 +164,7 @@
 		update_verbs()
 		update_nearby_icons()
 		step(src, get_dir(AM, src))
-	if(tforce < 10)
+	if(tforce < 5)
 		return
 	take_damage(tforce)
 
