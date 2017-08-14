@@ -315,6 +315,11 @@
 	var/ani_state // State when flapping/animated
 	var/extra_overlay_w // Flapping state for extra overlay
 
+/datum/sprite_accessory/wing/spider_legs //Not really /WINGS/ but they protrude from the back, kinda. Might as well have them here.
+	name = "spider legs"
+	desc = ""
+	icon_state = "spider-legs"
+	color_blend_mode = ICON_MULTIPLY
 /datum/sprite_accessory/wing/moth
 	name = "moth wings"
 	desc = ""
