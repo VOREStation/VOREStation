@@ -24,7 +24,7 @@
 		/mob/living/carbon/human/proc/begin_reconstitute_form,
 		/mob/living/carbon/human/proc/sonar_ping)
 
-	min_age = 17
+	min_age = 18
 	max_age = 80
 
 	blurb = "Some amalgamation of different species from across the universe,with extremely unstable DNA, making them unfit for regular cloners. \
@@ -209,7 +209,7 @@
 	inherent_verbs = list(
 		/mob/proc/weaveWebBindings)
 
-	min_age = 17
+	min_age = 18
 	max_age = 80
 
 	blurb = "Vasilissans are a tall, lanky, spider like people. \
