@@ -7,9 +7,12 @@
 // Define a place to save appearance in character setup
 /datum/preferences
 	var/ear_style		// Type of selected ear style
-	var/red_ear = 30	// Ear color. Goddarn dupe var names.
-	var/g_ear = 30		// Ear color
-	var/b_ear = 30		// Ear color
+	var/r_ears = 30		// Ear color.
+	var/g_ears = 30		// Ear color
+	var/b_ears = 30		// Ear color
+	var/r_ears2 = 30	// Ear extra color.
+	var/g_ears2 = 30	// Ear extra color
+	var/b_ears2 = 30	// Ear extra color
 	var/tail_style		// Type of selected tail style
 	var/r_tail = 30		// Tail/Taur color
 	var/g_tail = 30		// Tail/Taur color
@@ -30,9 +33,12 @@
 
 /datum/category_item/player_setup_item/vore/ears/load_character(var/savefile/S)
 	S["ear_style"]		>> pref.ear_style
-	S["red_ear"]		>> pref.red_ear
-	S["g_ear"]			>> pref.g_ear
-	S["b_ear"]			>> pref.b_ear
+	S["r_ears"]			>> pref.r_ears
+	S["g_ears"]			>> pref.g_ears
+	S["b_ears"]			>> pref.b_ears
+	S["r_ears2"]		>> pref.r_ears2
+	S["g_ears2"]		>> pref.g_ears2
+	S["b_ears2"]		>> pref.b_ears2
 	S["tail_style"]		>> pref.tail_style
 	S["r_tail"]			>> pref.r_tail
 	S["g_tail"]			>> pref.g_tail
@@ -47,9 +53,12 @@
 
 /datum/category_item/player_setup_item/vore/ears/save_character(var/savefile/S)
 	S["ear_style"]		<< pref.ear_style
-	S["red_ear"]		<< pref.red_ear
-	S["g_ear"]			<< pref.g_ear
-	S["b_ear"]			<< pref.b_ear
+	S["r_ears"]			<< pref.r_ears
+	S["g_ears"]			<< pref.g_ears
+	S["b_ears"]			<< pref.b_ears
+	S["r_ears2"]		<< pref.r_ears2
+	S["g_ears2"]		<< pref.g_ears2
+	S["b_ears2"]		<< pref.b_ears2
 	S["tail_style"]		<< pref.tail_style
 	S["r_tail"]			<< pref.r_tail
 	S["g_tail"]			<< pref.g_tail
@@ -63,9 +72,12 @@
 	S["b_wing"]			<< pref.b_wing
 
 /datum/category_item/player_setup_item/vore/ears/sanitize_character()
-	pref.red_ear	= sanitize_integer(pref.red_ear, 0, 255, initial(pref.red_ear))
-	pref.g_ear		= sanitize_integer(pref.g_ear, 0, 255, initial(pref.g_ear))
-	pref.b_ear		= sanitize_integer(pref.b_ear, 0, 255, initial(pref.b_ear))
+	pref.r_ears		= sanitize_integer(pref.r_ears, 0, 255, initial(pref.r_ears))
+	pref.g_ears		= sanitize_integer(pref.g_ears, 0, 255, initial(pref.g_ears))
+	pref.b_ears		= sanitize_integer(pref.b_ears, 0, 255, initial(pref.b_ears))
+	pref.r_ears2	= sanitize_integer(pref.r_ears2, 0, 255, initial(pref.r_ears2))
+	pref.g_ears2	= sanitize_integer(pref.g_ears2, 0, 255, initial(pref.g_ears2))
+	pref.b_ears2	= sanitize_integer(pref.b_ears2, 0, 255, initial(pref.b_ears2))
 	pref.r_tail		= sanitize_integer(pref.r_tail, 0, 255, initial(pref.r_tail))
 	pref.g_tail		= sanitize_integer(pref.g_tail, 0, 255, initial(pref.g_tail))
 	pref.b_tail		= sanitize_integer(pref.b_tail, 0, 255, initial(pref.b_tail))
@@ -84,9 +96,12 @@
 
 /datum/category_item/player_setup_item/vore/ears/copy_to_mob(var/mob/living/carbon/human/character)
 	character.ear_style			= ear_styles_list[pref.ear_style]
-	character.red_ear			= pref.red_ear
-	character.b_ear				= pref.b_ear
-	character.g_ear				= pref.g_ear
+	character.r_ears			= pref.r_ears
+	character.b_ears			= pref.b_ears
+	character.g_ears			= pref.g_ears
+	character.r_ears2			= pref.r_ears2
+	character.b_ears2			= pref.b_ears2
+	character.g_ears2			= pref.g_ears2
 	character.tail_style		= tail_styles_list[pref.tail_style]
 	character.r_tail			= pref.r_tail
 	character.b_tail			= pref.b_tail
@@ -124,7 +139,9 @@
 	if(ear_styles_list[pref.ear_style])
 		var/datum/sprite_accessory/ears/ear = ear_styles_list[pref.ear_style]
 		if (ear.do_colouration)
-			. += "<a href='?src=\ref[src];ear_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.red_ear, 2)][num2hex(pref.g_ear, 2)][num2hex(pref.b_ear, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.red_ear, 2)][num2hex(pref.g_ear, 2)][num2hex(pref.b_ear)]'><tr><td>__</td></tr></table> </font><br>"
+			. += "<a href='?src=\ref[src];ear_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_ears, 2)][num2hex(pref.g_ears, 2)][num2hex(pref.b_ears, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_ears, 2)][num2hex(pref.g_ears, 2)][num2hex(pref.b_ears)]'><tr><td>__</td></tr></table> </font><br>"
+		if (ear.extra_overlay)
+			. += "<a href='?src=\ref[src];ear_color2=1'>Change Secondary Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_ears2, 2)][num2hex(pref.g_ears2, 2)][num2hex(pref.b_ears2, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_ears2, 2)][num2hex(pref.g_ears2, 2)][num2hex(pref.b_ears2)]'><tr><td>__</td></tr></table> </font><br>"
 
 	var/tail_display = "Normal"
 	if(pref.tail_style && (pref.tail_style in tail_styles_list))
@@ -176,11 +193,20 @@
 
 	else if(href_list["ear_color"])
 		var/new_earc = input(user, "Choose your character's ear colour:", "Character Preference",
-			rgb(pref.red_ear, pref.g_ear, pref.b_ear)) as color|null
+			rgb(pref.r_ears, pref.g_ears, pref.b_ears)) as color|null
 		if(new_earc)
-			pref.red_ear = hex2num(copytext(new_earc, 2, 4))
-			pref.g_ear = hex2num(copytext(new_earc, 4, 6))
-			pref.b_ear = hex2num(copytext(new_earc, 6, 8))
+			pref.r_ears = hex2num(copytext(new_earc, 2, 4))
+			pref.g_ears = hex2num(copytext(new_earc, 4, 6))
+			pref.b_ears = hex2num(copytext(new_earc, 6, 8))
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["ear_color2"])
+		var/new_earc2 = input(user, "Choose your character's ear colour:", "Character Preference",
+			rgb(pref.r_ears2, pref.g_ears2, pref.b_ears2)) as color|null
+		if(new_earc2)
+			pref.r_ears2 = hex2num(copytext(new_earc2, 2, 4))
+			pref.g_ears2 = hex2num(copytext(new_earc2, 4, 6))
+			pref.b_ears2 = hex2num(copytext(new_earc2, 6, 8))
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["tail_style"])

@@ -73,7 +73,7 @@ var/global/list/limb_icon_cache = list()
 	for(var/M in markings)
 		var/datum/sprite_accessory/marking/mark_style = markings[M]["datum"]
 		var/icon/mark_s = new/icon("icon" = mark_style.icon, "icon_state" = "[mark_style.icon_state]-[organ_tag]")
-		mark_s.Blend(markings[M]["color"], ICON_ADD)
+		mark_s.Blend(markings[M]["color"], mark_style.color_blend_mode) // VOREStation edit
 		overlays |= mark_s //So when it's not on your body, it has icons
 		mob_icon.Blend(mark_s, ICON_OVERLAY) //So when it's on your body, it has icons
 		icon_cache_key += "[M][markings[M]["color"]]"
@@ -132,7 +132,7 @@ var/global/list/limb_icon_cache = list()
 			for(var/M in markings)
 				var/datum/sprite_accessory/marking/mark_style = markings[M]["datum"]
 				var/icon/mark_s = new/icon("icon" = mark_style.icon, "icon_state" = "[mark_style.icon_state]-[organ_tag]")
-				mark_s.Blend(markings[M]["color"], ICON_ADD)
+				mark_s.Blend(markings[M]["color"], mark_style.color_blend_mode) // VOREStation edit
 				overlays |= mark_s //So when it's not on your body, it has icons
 				mob_icon.Blend(mark_s, ICON_OVERLAY) //So when it's on your body, it has icons
 				icon_cache_key += "[M][markings[M]["color"]]"
@@ -160,7 +160,7 @@ var/global/list/limb_icon_cache = list()
 		if(species && species.get_bodytype(owner) != "Human")
 			applying.SetIntensity(1.5) // Unathi, Taj and Skrell have -very- dark base icons.
 		else
-			applying.SetIntensity(0.7)
+			applying.SetIntensity(1) //VOREStation edit to make Prometheans not look like shit with mob coloring.
 
 	else if(status & ORGAN_DEAD)
 		icon_cache_key += "_dead"

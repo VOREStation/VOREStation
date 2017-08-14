@@ -3,6 +3,7 @@
 	desc = "<i>\"... we are glad to plunge feet first into hell in the knowledge that we will rise.\"</i>"
 	icon_state = "rig0-odst"
 	item_state = "rig0-odst"
+	item_state_slots = null
 	icon = 'icons/obj/clothing/hats_vr.dmi'
 	icon_override = 'icons/mob/head_vr.dmi'
 	light_overlay = "helmet_light_dual"
@@ -20,5 +21,6 @@
 	desc = "<i>\"... we are glad to plunge feet first into hell in the knowledge that we will rise.\"</i>"
 	icon_state = "odst"
 	item_state = "odst"
+	item_state_slots = null
 	icon = 'icons/obj/clothing/suits_vr.dmi'
 	icon_override = 'icons/mob/suit_vr.dmi'

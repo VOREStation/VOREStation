@@ -21,7 +21,7 @@
 			force to protect most of humanity's interests across the galaxy."
 	work = "governing body of humanity's colonies"
 	headquarters = "Paris, Earth"
-	motto = "" // Latin, because latin.  Says 'Nothing is too steep for mortals'.
+	motto = ""
 	autogenerate_destination_names = TRUE
 
 	ship_prefixes = list("SCG-T" = "transportation", "SCG-D" = "diplomatic", "SCG-F" = "freight")
@@ -32,6 +32,32 @@
 						"Mars",
 						"Titan"
 						)// autogen will add a lot of other places as well.
+
+/datum/lore/organization/gov/sifgov // Overrides Polaris stuff
+	name = "Virgo-Erigone Governmental Authority"
+	short_name = ""
+	desc = "Existing far outside the reach of SolGov space, the only governing body of the Virgo-Erigone system is the Virgo Prime Governmental \
+			Authority, also known as VEGA. It is a Technocracy founded and operated by NanoTrasen, using company appointed experts hired to see \
+			to the comfort and well being of Virgo's citizens; most of whom are also NanoTrasen employees. VEGA provides basic social services \
+			such as law enforcement, emergency services, medical care, education, and infrastructure. VEGA's operations are based on the world \
+			of Virgo Prime, within the spaceport city of Anur. Although the government is an entity of NanoTrasen, some elements of democracy \
+			are still practiced, such as voting on changes to local law, policy, or public works."
+	history = "VEGA was founded in 2556, shortly after the Virgo-Erigone system was colonized by a population of 1000. That population has \
+			multiplied many times since then as wealth and commerce come and go from this frontier star system."
+	work = "governing body of Virgo-Erigone"
+	headquarters = "Anur, Virgo Prime"
+	motto = "Reach for the Stars."
+	autogenerate_destination_names = FALSE
+
+	ship_prefixes = list("VEFD" = "fire rescue", "VEPD" = "patrol", "VEGA" = "administrative", "SAR" = "medivac")
+	destination_names = list(
+						"the colony at Virgo-3B",
+						"the VORE-1 debris field",
+						"a colony on Virgo-2",
+						"a telecommunications satellite",
+						"the Anur Spaceport",
+						"to a local distress beacon"
+						)
 
 /datum/lore/organization/gov/federation
 	name = "United Federation of Planets"
@@ -101,7 +127,7 @@
 						"Mari Industrial Complex on Furlou Prime",
 						"Runni Crystal Mines of Keid V")
 
-/datum/lore/organization/mil/unsc // change to sif_guard in future to overwrite Polaris stuff
+/datum/lore/organization/gov/unsc // change to sif_guard in future to overwrite Polaris stuff
 	name = "United Nations Space Command"
 	short_name = "" // This is blank on purpose. Otherwise they call the ships "UNSC" "UNSC Name"
 	desc = "The dedicated military force of SolGov, originally formed by the United Nations, is the might of SolGov. It is the \
@@ -158,7 +184,7 @@
 					"Hoenir",
 					"In Amber Clad",
 					"Iwo Jima",
-					"Jörmungandr",
+					"JÃ¶rmungandr",
 					"Leonidas",
 					"Meriwether Lewis",
 					"Midsummer Night",
@@ -265,7 +291,7 @@
 	history = "Originally only a strike of miners on the dusty, arid planet of Ares in the year 2540, the Ares Confederation was quickly \
     		established under the leadership of retired UNSC Colonel Rodrick Gellaume, who is now Prime Minister."
 	work = "rebel fringe government"
-	headquarters = "Paraiso a Àstrea"
+	headquarters = "Paraiso a Ã€strea"
 	motto = "Liberty to the Stars!"
 
 	ship_prefixes = list("UFHV" = "military", "FFHV" = "shady")
@@ -300,7 +326,7 @@
 					"None Of Your Business")
 	destination_names = list("Drydocks of the Ares Confederation",
 						"a classified location",
-						"a Homestead on Paraiso a Àstrea",
+						"a Homestead on Paraiso a Ã€strea",
 						"a contested sector of ArCon space",
 						"one of our free colonies",
 						"the Gateway 98-C at Arest",

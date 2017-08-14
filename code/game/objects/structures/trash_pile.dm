@@ -8,6 +8,7 @@
 
 	var/list/searchedby	= list()// Characters that have searched this trashpile, with values of searched time.
 	var/mob/living/hider		// A simple animal that might be hiding in the pile
+	var/last_mouse = 0
 
 	var/chance_alpha	= 79	// Alpha list is junk items and normal random stuff.
 	var/chance_beta		= 20	// Beta list is actually maybe some useful illegal items. If it's not alpha or gamma, it's beta.
@@ -40,6 +41,26 @@
 		"boxfort",
 		"trashbag",
 		"brokecomp")
+	processing_objects.Add(src)
+	last_mouse = world.time + rand(0,30 MINUTES)
+
+/obj/structure/trash_pile/Destroy()
+	processing_objects.Remove(src)
+	return ..()
+
+/obj/structure/trash_pile/process()
+	if(world.time < last_mouse + 30 MINUTES)
+		return
+	attempt_mouse()
+
+/obj/structure/trash_pile/proc/attempt_mouse()
+	for(var/mob/living/simple_animal/mouse/M in dview(7,get_turf(src)))
+		if(istype(M))
+			return 0
+	new /mob/living/simple_animal/mouse(get_turf(src))
+	last_mouse = world.time
+	visible_message("A mouse crawls out of \the [src].")
+	return 1
 
 /obj/structure/trash_pile/attackby(obj/item/W as obj, mob/user as mob)
 	var/w_type = W.type
