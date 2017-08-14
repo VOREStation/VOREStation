@@ -298,7 +298,7 @@
 	build_path = /obj/item/borg/upgrade/jetpack
 
 /datum/design/item/prosfab/robot_upgrade/syndicate
-	name = "Illegal upgrade"
+	name = "Scrambled equipment module"
 	desc = "Allows for the construction of lethal upgrades for cyborgs."
 	id = "borg_syndicate_module"
 	req_tech = list(TECH_COMBAT = 4, TECH_ILLEGAL = 3)
