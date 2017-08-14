@@ -1691,7 +1691,7 @@
 "aGA" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 9},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 9; pixel_y = 0},/turf/simulated/floor/tiled,/area/tether/station/dock_one)
 "aGB" = (/turf/simulated/wall/r_wall,/area/engineering/engineering_airlock)
 "aGC" = (/obj/machinery/status_display/supply_display,/turf/simulated/wall,/area/quartermaster/office)
-"aGD" = (/obj/machinery/conveyor{dir = 5; id = "QMLoad"},/turf/simulated/floor,/area/quartermaster/storage)
+"aGD" = (/obj/machinery/conveyor{dir = 5; id = "QMLoad"; movedir = 5},/turf/simulated/floor,/area/quartermaster/storage)
 "aGE" = (/obj/effect/floor_decal/industrial/warning{dir = 8},/obj/machinery/atmospherics/pipe/manifold/hidden{dir = 4; icon_state = "map"; tag = "icon-manifold-f (EAST)"},/turf/simulated/floor/tiled,/area/tether/station/dock_two)
 "aGF" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 6},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 6},/obj/effect/floor_decal/sign/dock/two,/turf/simulated/floor/tiled,/area/tether/station/dock_two)
 "aGG" = (/obj/machinery/camera/network/northern_star{dir = 9},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 9},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 9; pixel_y = 0},/turf/simulated/floor/tiled,/area/tether/station/dock_two)
