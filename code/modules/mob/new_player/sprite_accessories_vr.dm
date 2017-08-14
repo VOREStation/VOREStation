@@ -6,7 +6,7 @@
 
 /datum/sprite_accessory/hair
 
-	species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Xenochimera", "Xenomorph Hybrid") //This lets all races use the default hairstyles.
+	species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Xenochimera", "Xenomorph Hybrid", "Spider") //This lets all races use the default hairstyles.
 
 	sergal_plain
 		name = "Sergal Plain"
@@ -443,6 +443,12 @@
 	monoeye
 		name = "Monoeye"
 		icon_state = "monoeye"
+		body_parts = list(BP_HEAD)
+
+	spidereyes
+		name = "Spider Eyes"
+		icon = 'icons/mob/human_face_vr.dmi'
+		icon_state = "spidereyes"
 		body_parts = list(BP_HEAD)
 
 	nevrean_female

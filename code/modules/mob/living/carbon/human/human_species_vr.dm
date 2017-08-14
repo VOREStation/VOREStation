@@ -13,3 +13,6 @@
 
 /mob/living/carbon/human/xenohybrid/New(var/new_loc)
 	..(new_loc, "Xenomorph Hybrid")
+
+/mob/living/carbon/human/spider/New(var/new_loc)
+	..(new_loc, "Vasilissan")
