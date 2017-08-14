@@ -130,7 +130,7 @@
 /datum/lore/organization/gov/unsc // change to sif_guard in future to overwrite Polaris stuff
 	name = "United Nations Space Command"
 	short_name = "" // This is blank on purpose. Otherwise they call the ships "UNSC" "UNSC Name"
-	desc = "The dedicated military force of SolGov, originally formed by the United Nations, is the might of SolGov. It is the \
+	desc = "The dedicated military force of SolGov, originally formed by the United Nations, the UNSC is the might of SolGov. It is the \
 			dominant superpower of the Orion Spur, and is able to project its influence well into parts of the Perseus and \
 			Sagittarius arms of the galaxy. However, regions beyond that are too far for the UNSC to be a major player."
 	history = "UN clashes with dissident political movements, the most important of which were the \"Koslovics\" and the \"Frieden,\" \
