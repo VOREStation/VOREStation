@@ -6,7 +6,7 @@
 
 /datum/sprite_accessory/hair
 
-	species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Xenochimera", "Xenomorph Hybrid", "Spider") //This lets all races use the default hairstyles.
+	species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Xenochimera", "Xenomorph Hybrid", "Vasilissan") //This lets all races use the default hairstyles.
 
 	sergal_plain
 		name = "Sergal Plain"
@@ -41,7 +41,7 @@
 		name = "Bald"
 		icon_state = "bald"
 		gender = MALE
-		species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Xenochimera", "Xenomorph Hybrid") //Lets all the races be bald if they want.
+		species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Xenochimera", "Xenomorph Hybrid", "Vasilissan", "Xenochimera") //Lets all the races be bald if they want.
 
 	ponytail6_fixed //Eggnerd's done with waiting for upstream fixes lmao.
 		name = "Ponytail 6 but fixed"
@@ -297,6 +297,8 @@
 		gender = NEUTER
 
 /datum/sprite_accessory/facial_hair
+	species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Xenochimera", "Xenomorph Hybrid", "Vasilissan") //This lets all races use the facial hair styles.
+
 
 	vulp_none
 		name = "None"
@@ -447,7 +449,6 @@
 
 	spidereyes
 		name = "Spider Eyes"
-		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "spidereyes"
 		body_parts = list(BP_HEAD)
 
