@@ -1,0 +1,6 @@
+author: PrismaticGynoid
+delete-after: True
+changes: 
+  - rscadd: "Wheelchairs can now be collapsed like rollerbeds for ease of storage and movement. Too big to put in backpacks though."
+  - rscadd: "Wheelchairs are now available in a color-customizable form via the loadout, under utility. Now you can ride in style, and keep your feet too."
+  - bugfix: "Wheelchair users can now enter the gateway and residential elevator without being forced to leave behind their mobility aid."
