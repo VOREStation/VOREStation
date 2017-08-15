@@ -129,6 +129,8 @@
 
 /mob/living/simple_animal/cat/PunchTarget()
 	if(istype(target_mob,/mob/living/simple_animal/mouse))
+		visible_message("<span class='warning'>\The [src] pounces on \the [target_mob]!]</span>")
+		target_mob.Stun(5)
 		return EatTarget()
 	else ..()
 
