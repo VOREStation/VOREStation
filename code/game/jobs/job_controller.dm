@@ -620,7 +620,7 @@ var/global/datum/controller/occupations/job_master
 		else
 			H << "Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Spawning you at the Arrivals shuttle instead."
 			H.forceMove(pick(latejoin))
-			. = "has arrived on the station"
+			. = "will arrive to the station shortly by shuttle"
 	else
 		H.forceMove(pick(latejoin))
 		. = "has arrived on the station"
