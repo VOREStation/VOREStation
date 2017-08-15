@@ -51,7 +51,7 @@
 
 /obj/item/weapon/gun/projectile/automatic/sts35
 	name = "assault rifle"
-	desc = "The rugged STS-35 is a durable automatic weapon of a make popular on the frontier worlds. Uses 5.45mm rounds. This one is unmarked."
+	desc = "The rugged STS-35 is a durable automatic weapon of a make popular on the frontier worlds. Uses 5.45mm rounds."
 	icon_state = "arifle"
 	item_state = null
 	w_class = ITEMSIZE_LARGE
@@ -341,10 +341,10 @@
 	icon_state = (ammo_magazine)? "tommygun" : "tommygun-empty"
 //	update_held_icon()
 
-/obj/item/weapon/gun/projectile/automatic/carbine // Admin abuse assault rifle. ToDo: Make this less shit. Maybe remove its autofire, and make it spawn with only 10 rounds at start.
-	name = "assault carbine"
-	desc = "The bullpup configured GP3000 is a lightweight, compact, military-grade assault rifle produced by Gurov Projectile Weapons LLC. It is sold almost exclusively to standing armies. The serial number on this one has been scratched off. Uses 5.45mm rounds."
-	icon_state = "bullpup"
+/obj/item/weapon/gun/projectile/automatic/bullpup // Admin abuse assault rifle. ToDo: Make this less shit. Maybe remove its autofire, and make it spawn with only 10 rounds at start.
+	name = "bullpup rifle"
+	desc = "The bullpup configured GP3000 is a battle rifle produced by Gurov Projectile Weapons LLC. It is sold almost exclusively to standing armies. Uses 7.62mm rounds."
+	icon_state = "bullpup-small"
 	item_state = "bullpup"
 	w_class = ITEMSIZE_LARGE
 	force = 10
@@ -352,21 +352,22 @@
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 4)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/m762m
+	magazine_type = /obj/item/ammo_magazine/m762
 	allowed_magazines = list(/obj/item/ammo_magazine/m762, /obj/item/ammo_magazine/m762m)
 
 	one_handed_penalty = 4
 
 	firemodes = list(
 		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    burst_accuracy=list(0,-1,-2), dispersion=list(0.0, 0.6, 0.6))
+		list(mode_name="2-round bursts", burst=2, fire_delay=null, move_delay=6,    burst_accuracy=list(0,-1), dispersion=list(0.0, 0.6))
 		)
 
-/obj/item/weapon/gun/projectile/automatic/carbine/update_icon(var/ignore_inhands)
+/obj/item/weapon/gun/projectile/automatic/bullpup/update_icon(var/ignore_inhands)
 	..()
 	if(istype(ammo_magazine,/obj/item/ammo_magazine/m762))
-		icon_state = "bullpup-small" // If using the smaller magazines, use the small mag sprite.
+		icon_state = "bullpup-small"
+	else if(istype(ammo_magazine,/obj/item/ammo_magazine/m762m))
+		icon_state = "bullpup"
 	else
-		icon_state = "bullpup-empty"
-	item_state = (ammo_magazine)? "bullpup" : "bullpup-empty"
+		item_state = "bullpup-empty"
 	if(!ignore_inhands) update_held_icon()
