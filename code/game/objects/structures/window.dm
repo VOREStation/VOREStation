@@ -164,8 +164,6 @@
 		update_verbs()
 		update_nearby_icons()
 		step(src, get_dir(AM, src))
-	if(tforce < 5)
-		return
 	take_damage(tforce)
 
 /obj/structure/window/attack_tk(mob/user as mob)
@@ -293,6 +291,8 @@
 
 /obj/structure/window/proc/hit(var/damage, var/sound_effect = 1)
 	if(reinf) damage *= 0.5
+	if(damage < 5)
+		return
 	take_damage(damage)
 	return
 
