@@ -34,29 +34,21 @@
 	icon_state = "collar_shk"
 	item_state = "collar_shk_overlay"
 	overlay_state = "collar_shk_overlay"
-	
-	// Do you like copypasta? I like copypasta! Let's copypasta some electropack code in here!
-	// Okay fine, electropack code alone won't cut it. Let's salvage some root radio code first.
-	
-	var/on = 0 // 0 for off, 1 for on, supposedly. Hopefully doing it this way makes the collar start switched off. You know, to encourage setting custom frequencies/codes.
-	
-	var/frequency = 1449 // Fingers crossed this is enough.
+	// How about some copypasta?
+	var/on = 0 // 0 for off, 1 for on, starts off to encourage people to set non-default frequencies and codes.
+	var/frequency = 1449
 	var/code = 2
-	flags = CONDUCT
-	// And now to steal the set_frequency proc from radio code too.
 	var/datum/radio_frequency/radio_connection
 	var/list/datum/radio_frequency/secure_radio_connections = new
-
 	proc/set_frequency(new_frequency)
 		radio_controller.remove_object(src, frequency)
 		frequency = new_frequency
 		radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
 		
 /obj/item/clothing/accessory/collar/shock/New()
-	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT) // Should make it so you don't need to change the frequency off of default for it to work.
+	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT) // Makes it so you don't need to change the frequency off of default for it to work.
 	
 /obj/item/clothing/accessory/collar/shock/Topic(href, href_list)
-	//..()
 	if(usr.stat || usr.restrained())
 		return
 	if(((istype(usr, /mob/living/carbon/human) && ((!( ticker ) || (ticker && ticker.mode != "monkey")) && usr.contents.Find(src))) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf)))))
@@ -73,7 +65,7 @@
 			else
 				if(href_list["power"])
 					on = !( on )
-					// icon_state = "electropack[on]" // Hahaha no.
+					// icon_state = "electropack[on]" // Keeping this here just in case somebody makes an active collar sprite.
 		if(!( master ))
 			if(istype(loc, /mob))
 				attack_self(loc)
@@ -102,28 +94,15 @@
 		if(ismob(loc))
 			M = loc
 		if(ismob(loc.loc))
-			M = loc.loc // This is about as terse as I can make my solution. Maybe it'll make abandoned collars spark without actually zapping anybody?
-		/* var/turf/T = M.loc
-		if(istype(T, /turf))
-			if(!M.moved_recently && M.last_move)
-				M.moved_recently = 1
-				step(M, M.last_move)
-				sleep(50)
-				if(M)
-					M.moved_recently = 0 */ // Why do we need this block again?
+			M = loc.loc // This is about as terse as I can make my solution to the whole 'collar won't work when attached as accessory' thing.
 		M << "<span class='danger'>You feel a sharp shock!</span>"
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(3, 1, M)
 		s.start()
-
 		M.Weaken(10)
-
-	//if(master && wires & 1) // I don't know what this if() does, so let's try just commenting it out.
-		master.receive_signal()
 	return
 
 /obj/item/clothing/accessory/collar/shock/attack_self(mob/user as mob, flag1)
-
 	if(!istype(user, /mob/living/carbon/human))
 		return
 	user.set_machine(src)
