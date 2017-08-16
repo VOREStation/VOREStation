@@ -17,7 +17,7 @@
 	var/simultaneous_spawns = 3 //Max spawned mobs active at one time
 	var/mob_faction
 
-	var/destructable = 0
+	var/destructible = 0
 	var/health = 50
 
 	var/list/spawned_mobs = list()
@@ -71,7 +71,7 @@
 		spawned_mobs.Remove(L)
 
 /obj/structure/mob_spawner/attackby(var/obj/item/I, var/mob/living/user)
-	if(!I.force || I.flags & NOBLUDGEON || !destructable)
+	if(!I.force || I.flags & NOBLUDGEON || !destructible)
 		return
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
@@ -81,7 +81,7 @@
 
 /obj/structure/mob_spawner/bullet_act(var/obj/item/projectile/Proj)
 	..()
-	if(destructable)
+	if(destructible)
 		take_damage(Proj.get_structure_damage())
 
 /obj/structure/mob_spawner/proc/take_damage(var/damage)
