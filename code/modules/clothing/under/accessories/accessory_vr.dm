@@ -36,9 +36,21 @@
 	overlay_state = "collar_shk_overlay"
 	
 	// Do you like copypasta? I like copypasta! Let's copypasta some electropack code in here!
-	frequency = 1449
+	// Okay fine, electropack code alone won't cut it. Let's salvage some root radio code first.
+	
+	var/on = 0 // 0 for off, 1 for on, supposedly. Hopefully doing it this way makes the collar start switched off. You know, to encourage setting custom frequencies/codes.
+	
+	var/frequency = 1449 // Fingers crossed this is enough.
 	var/code = 2
 	flags = CONDUCT
+	// And now to steal the set_frequency proc from radio code too.
+	var/datum/radio_frequency/radio_connection
+	var/list/datum/radio_frequency/secure_radio_connections = new
+
+	proc/set_frequency(new_frequency)
+		radio_controller.remove_object(src, frequency)
+		frequency = new_frequency
+		radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
 	
 /obj/item/clothing/accessory/collar/shock/Topic(href, href_list)
 	//..()
@@ -99,7 +111,7 @@
 
 		M.Weaken(10)
 
-	if(master && wires & 1)
+	//if(master && wires & 1) // I don't know what this if() does, so let's try just commenting it out.
 		master.receive_signal()
 	return
 
