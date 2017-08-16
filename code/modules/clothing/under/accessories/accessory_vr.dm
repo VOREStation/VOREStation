@@ -70,7 +70,7 @@
 			else
 				if(href_list["power"])
 					on = !( on )
-					icon_state = "electropack[on]"
+					// icon_state = "electropack[on]" // Hahaha no.
 		if(!( master ))
 			if(istype(loc, /mob))
 				attack_self(loc)
@@ -122,7 +122,7 @@
 	user.set_machine(src)
 	var/dat = {"<TT>
 <A href='?src=\ref[src];power=1'>Turn [on ? "Off" : "On"]</A><BR>
-<B>Frequency/Code</B> for electropack:<BR>
+<B>Frequency/Code</B> for collar:<BR>
 Frequency:
 <A href='byond://?src=\ref[src];freq=-10'>-</A>
 <A href='byond://?src=\ref[src];freq=-2'>-</A> [format_frequency(frequency)]
