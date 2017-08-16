@@ -51,6 +51,9 @@
 		radio_controller.remove_object(src, frequency)
 		frequency = new_frequency
 		radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
+		
+/obj/item/clothing/accessory/collar/shock/New()
+	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT) // Should make it so you don't need to change the frequency off of default for it to work.
 	
 /obj/item/clothing/accessory/collar/shock/Topic(href, href_list)
 	//..()
@@ -96,14 +99,14 @@
 
 	if(ismob(loc) && on)
 		var/mob/M = loc
-		var/turf/T = M.loc
+		/* var/turf/T = M.loc
 		if(istype(T, /turf))
 			if(!M.moved_recently && M.last_move)
 				M.moved_recently = 1
 				step(M, M.last_move)
 				sleep(50)
 				if(M)
-					M.moved_recently = 0
+					M.moved_recently = 0 */ // Why do we need this block again?
 		M << "<span class='danger'>You feel a sharp shock!</span>"
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(3, 1, M)
