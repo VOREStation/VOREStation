@@ -68,7 +68,8 @@
 
 	var/turf/T = get_turf_or_move(src.loc)
 	for (var/mob/M in viewers(T))
-		M.show_message("<font color='blue'>The positronic brain chimes quietly.</font>")
+		M.show_message("<font color='blue'>The positronic brain beeps as it loads a personality.</font>")
+	playsound(src, 'sound/misc/boobeebeep.ogg', 50, 1)
 	icon_state = "posibrain-occupied"
 
 /obj/item/device/mmi/digital/posibrain/proc/reset_search() //We give the players sixty seconds to decide, then reset the timer.
@@ -81,7 +82,8 @@
 
 	var/turf/T = get_turf_or_move(src.loc)
 	for (var/mob/M in viewers(T))
-		M.show_message("<font color='blue'>The positronic brain buzzes quietly, and the golden lights fade away. Perhaps you could try again?</font>")
+		M.show_message("<font color='blue'>The positronic brain buzzes and beeps, and the golden lights fade away. Perhaps you could try again?</font>")
+	playsound(src, 'sound/misc/buzzbeep.ogg', 50, 1)
 
 /obj/item/device/mmi/digital/posibrain/examine(mob/user)
 	if(!..(user))
