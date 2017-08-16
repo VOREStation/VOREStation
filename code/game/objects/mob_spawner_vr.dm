@@ -81,7 +81,8 @@
 
 /obj/structure/mob_spawner/bullet_act(var/obj/item/projectile/Proj)
 	..()
-	take_damage(Proj.get_structure_damage())
+	if(destructable)
+		take_damage(Proj.get_structure_damage())
 
 /obj/structure/mob_spawner/proc/take_damage(var/damage)
 	health -= damage
