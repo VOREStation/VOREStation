@@ -97,8 +97,12 @@
 	if(!signal || signal.encryption != code)
 		return
 
-	if(ismob(loc) && on)
-		var/mob/M = loc
+	if(on)
+		var/mob/M = null
+		if(ismob(loc))
+			M = loc
+		if(ismob(loc.loc))
+			M = loc.loc // This is about as terse as I can make my solution. Maybe it'll make abandoned collars spark without actually zapping anybody?
 		/* var/turf/T = M.loc
 		if(istype(T, /turf))
 			if(!M.moved_recently && M.last_move)
