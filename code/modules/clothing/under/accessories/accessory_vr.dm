@@ -31,7 +31,7 @@
 /obj/item/clothing/accessory/collar/shock
 	name = "Shock collar"
 	desc = "A collar used to ease hungry predators."
-	icon_state = "collar_shk"
+	icon_state = "collar_shk0"
 	item_state = "collar_shk_overlay"
 	overlay_state = "collar_shk_overlay"
 	// How about some copypasta?
@@ -65,7 +65,7 @@
 			else
 				if(href_list["power"])
 					on = !( on )
-					// icon_state = "electropack[on]" // Keeping this here just in case somebody makes an active collar sprite.
+					icon_state = "collar_shk[on]" // And apparently this works, too?!
 		if(!( master ))
 			if(istype(loc, /mob))
 				attack_self(loc)
