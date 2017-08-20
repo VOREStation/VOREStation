@@ -111,7 +111,8 @@ obj/item/weapon/gun/energy/retro
 	desc = "The HI DMR 9E is an older design of Hesphaistos Industries. A designated marksman rifle capable of shooting powerful \
 	ionized beams, this is a weapon to kill from a distance."
 	icon_state = "sniper"
-	item_state_slots = list(slot_r_hand_str = "laser", slot_l_hand_str = "laser") //placeholder
+	item_state = "sniper"
+	item_state_slots = list(slot_r_hand_str = "z8carbine", slot_l_hand_str = "z8carbine") //placeholder
 	fire_sound = 'sound/weapons/gauss_shoot.ogg'
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 5, TECH_POWER = 4)
 	projectile_type = /obj/item/projectile/beam/sniper
