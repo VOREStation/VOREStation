@@ -253,22 +253,22 @@
 		
 /datum/sprite_accessory/ears/xeno_head_sentinel_black
 		name = "black sentinal dome"
-		icon_state = "xeno_sentinel"
+		icon_state = "bxeno_sentinel"
 		gender = NEUTER
 	
 /datum/sprite_accessory/ears/xeno_head_queen_black
 		name = "black queen dome"
-		icon_state = "xeno_queen"
+		icon_state = "bxeno_queen"
 		gender = NEUTER
 
 /datum/sprite_accessory/ears/xeno_head_hunter_black
 		name = "black hunter dome"
-		icon_state = "xeno_hunter"
+		icon_state = "bxeno_hunter"
 		gender = NEUTER
 
 /datum/sprite_accessory/ears/xeno_head_praetorian_black
 		name = "black praetorian dome"
-		icon_state = "xeno_praetorian"
+		icon_state = "bxeno_praetorian"
 		gender = NEUTER
 //need to figure out coloring stuff
 /*
