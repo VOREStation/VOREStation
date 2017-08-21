@@ -270,11 +270,12 @@
 	name = "black praetorian dome"
 	icon_state = "bxeno_praetorian"
 	gender = NEUTER
-//need to figure out coloring stuff
+//need to figure out coloring stuff for sentinal
 
 /datum/sprite_accessory/ears/xeno_head_drone_color
 	name = "colorable drone dome"
 	icon_state = "cxeno_drone"
+	do_colouration = 1
 	gender = NEUTER
 /*		
 /datum/sprite_accessory/ears/xeno_head_sentinel_color
@@ -285,16 +286,19 @@
 /datum/sprite_accessory/ears/xeno_head_queen_color
 	name = "colorable queen dome"
 	icon_state = "cxeno_queen"
+	do_colouration = 1
 	gender = NEUTER
 
 /datum/sprite_accessory/ears/xeno_head_hunter_color
 	name = "colorable hunter dome"
 	icon_state = "cxeno_hunter"
+	do_colouration = 1
 	gender = NEUTER
 
 /datum/sprite_accessory/ears/xeno_head_praetorian_color
 	name = "colorable praetorian dome"
 	icon_state = "cxeno_praetorian"
+	do_colouration = 1
 	gender = NEUTER
 
 // Special snowflake ears go below here.
