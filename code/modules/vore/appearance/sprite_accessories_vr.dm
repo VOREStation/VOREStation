@@ -222,80 +222,80 @@
 	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/ears/xeno_head_drone
-		name = "drone dome"
-		icon_state = "xeno_drone"
-		gender = NEUTER
+	name = "drone dome"
+	icon_state = "xeno_drone"
+	gender = NEUTER
 		
 /datum/sprite_accessory/ears/xeno_head_sentinel
-		name = "sentinal dome"
-		icon_state = "xeno_sentinel"
-		gender = NEUTER
+	name = "sentinal dome"
+	icon_state = "xeno_sentinel"
+	gender = NEUTER
 	
 /datum/sprite_accessory/ears/xeno_head_queen
-		name = "queen dome"
-		icon_state = "xeno_queen"
-		gender = NEUTER
+	name = "queen dome"
+	icon_state = "xeno_queen"
+	gender = NEUTER
 
 /datum/sprite_accessory/ears/xeno_head_hunter
-		name = "hunter dome"
-		icon_state = "xeno_hunter"
-		gender = NEUTER
+	name = "hunter dome"
+	icon_state = "xeno_hunter"
+	gender = NEUTER
 
 /datum/sprite_accessory/ears/xeno_head_praetorian
-		name = "Praetorian dome"
-		icon_state = "xeno_praetorian"
-		gender = NEUTER
+	name = "Praetorian dome"
+	icon_state = "xeno_praetorian"
+	gender = NEUTER
 
 /datum/sprite_accessory/ears/xeno_head_drone_black
-		name = "black drone dome"
-		icon_state = "bxeno_drone"
-		gender = NEUTER
+	name = "black drone dome"
+	icon_state = "bxeno_drone"
+	gender = NEUTER
 		
 /datum/sprite_accessory/ears/xeno_head_sentinel_black
-		name = "black sentinal dome"
-		icon_state = "bxeno_sentinel"
-		gender = NEUTER
+	name = "black sentinal dome"
+	icon_state = "bxeno_sentinel"
+	gender = NEUTER
 	
 /datum/sprite_accessory/ears/xeno_head_queen_black
-		name = "black queen dome"
-		icon_state = "bxeno_queen"
-		gender = NEUTER
+	name = "black queen dome"
+	icon_state = "bxeno_queen"
+	gender = NEUTER
 
 /datum/sprite_accessory/ears/xeno_head_hunter_black
-		name = "black hunter dome"
-		icon_state = "bxeno_hunter"
-		gender = NEUTER
+	name = "black hunter dome"
+	icon_state = "bxeno_hunter"
+	gender = NEUTER
 
 /datum/sprite_accessory/ears/xeno_head_praetorian_black
-		name = "black praetorian dome"
-		icon_state = "bxeno_praetorian"
-		gender = NEUTER
+	name = "black praetorian dome"
+	icon_state = "bxeno_praetorian"
+	gender = NEUTER
 //need to figure out coloring stuff
 
 /datum/sprite_accessory/ears/xeno_head_drone_color
-		name = "colorable drone dome"
-		icon_state = "cxeno_drone"
-		gender = NEUTER
+	name = "colorable drone dome"
+	icon_state = "cxeno_drone"
+	gender = NEUTER
 /*		
 /datum/sprite_accessory/ears/xeno_head_sentinel_color
-		name = "colorable sentinal dome"
-		icon_state = "cxeno_sentinel"
-		gender = NEUTER
-*\	
+	name = "colorable sentinal dome"
+	icon_state = "cxeno_sentinel"
+	gender = NEUTER
+*/
 /datum/sprite_accessory/ears/xeno_head_queen_color
-		name = "colorable queen dome"
-		icon_state = "cxeno_queen"
-		gender = NEUTER
+	name = "colorable queen dome"
+	icon_state = "cxeno_queen"
+	gender = NEUTER
 
 /datum/sprite_accessory/ears/xeno_head_hunter_color
-		name = "colorable hunter dome"
-		icon_state = "cxeno_hunter"
-		gender = NEUTER
+	name = "colorable hunter dome"
+	icon_state = "cxeno_hunter"
+	gender = NEUTER
 
 /datum/sprite_accessory/ears/xeno_head_praetorian_color
-		name = "colorable praetorian dome"
-		icon_state = "cxeno_praetorian"
-		gender = NEUTER
+	name = "colorable praetorian dome"
+	icon_state = "cxeno_praetorian"
+	gender = NEUTER
 
 // Special snowflake ears go below here.
 
