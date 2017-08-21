@@ -727,6 +727,12 @@ character_name: Penelope Allen
 item_path: /obj/item/weapon/storage/box/fluff/penelope
 }
 
+{
+ckey: Xennith
+character_name: Amy Lessen
+item_path: /obj/item/weapon/card/id/fluff/xennith
+}
+
 # ######## Y CKEYS
 # ######## Z CKEYS
 {
