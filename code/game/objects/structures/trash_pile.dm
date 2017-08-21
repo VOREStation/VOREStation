@@ -266,7 +266,7 @@
 	icon = 'icons/obj/trash_piles.dmi'
 	icon_state = "randompile"
 	spawn_types = list(/mob/living/simple_animal/mouse)
-	simultaneous_spawns = 2
+	simultaneous_spawns = 1
 	destructible = 1
 
 /obj/structure/mob_spawner/mouse_nest/initialize()
