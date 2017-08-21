@@ -132,7 +132,7 @@
 "cB" = (/obj/effect/floor_decal/corner/green{dir = 6},/turf/simulated/floor/holofloor/tiled,/area/holodeck/source_emptycourt)
 "cC" = (/obj/machinery/button/remote/blast_door{id = "syndieshutters_infirmary"; name = "remote shutter control"; pixel_x = -25},/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/syndicate_station/start)
 "cD" = (/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/syndicate_station/start)
-"cE" = (/obj/machinery/vending/medical{pixel_x = 32; pixel_y = 0; req_access = null},/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/syndicate_station/start)
+"cE" = (/obj/machinery/vending/medical{density = 0; pixel_y = -32; req_access = null},/turf/simulated/shuttle/floor/black,/area/shuttle/trade/centcom)
 "cF" = (/obj/machinery/atmospherics/pipe/tank/air{dir = 4; start_pressure = 740.5},/turf/simulated/floor/plating,/area/syndicate_station/start)
 "cG" = (/obj/structure/table/standard,/obj/item/stack/cable_coil/black,/obj/item/weapon/storage/toolbox/syndicate,/turf/simulated/floor/plating,/area/syndicate_station/start)
 "cH" = (/obj/structure/bed/padded,/obj/item/weapon/bedsheet/hos,/obj/effect/landmark{name = "Syndicate-Spawn"},/turf/unsimulated/floor{icon_state = "lino"},/area/antag/antag_base)
@@ -514,7 +514,7 @@
 "jT" = (/obj/structure/window/reinforced{dir = 8},/obj/structure/grille,/obj/structure/window/reinforced{dir = 4},/turf/simulated/shuttle/plating,/area/shuttle/trade/centcom)
 "jU" = (/obj/vehicle/train/cargo/trolley,/turf/simulated/shuttle/floor/black,/area/shuttle/trade/centcom)
 "jV" = (/obj/machinery/light,/turf/simulated/shuttle/floor/black,/area/shuttle/trade/centcom)
-"jW" = (/obj/machinery/vending/medical{pixel_y = -32; req_access = null},/turf/simulated/shuttle/floor/black,/area/shuttle/trade/centcom)
+"jW" = (/obj/structure/closet/wardrobe/captain,/turf/simulated/shuttle/floor/black,/area/shuttle/trade/centcom)
 "jX" = (/obj/machinery/door/airlock/silver{name = "Restroom"},/obj/machinery/atmospherics/pipe/simple/visible{dir = 4},/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/syndicate_station/start)
 "jY" = (/obj/machinery/door/airlock/multi_tile/glass{dir = 4; req_access = list(160)},/turf/simulated/shuttle/floor/black,/area/shuttle/trade/centcom)
 "jZ" = (/obj/structure/table/steel_reinforced,/obj/random/medical,/obj/random/medical,/obj/random/medical,/obj/random/medical,/obj/structure/window/reinforced,/turf/simulated/shuttle/floor/black,/area/shuttle/trade/centcom)
@@ -603,7 +603,7 @@
 "lE" = (/obj/machinery/atmospherics/pipe/simple/visible,/obj/machinery/meter,/obj/structure/largecrate/animal/cat,/turf/simulated/shuttle/floor/black,/area/shuttle/trade/centcom)
 "lF" = (/obj/machinery/door/airlock/glass_engineering{name = "Engineering"; req_access = list(160); req_one_access = newlist()},/turf/simulated/shuttle/floor/black,/area/shuttle/trade/centcom)
 "lG" = (/obj/structure/window/reinforced{dir = 4},/obj/machinery/door/blast/shutters{density = 0; dir = 8; icon_state = "shutter0"; id = "tradeportshutters"; name = "Blast Shutters"; opacity = 0},/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 1},/turf/simulated/shuttle/plating,/area/shuttle/trade/centcom)
-"lH" = (/obj/structure/closet/wardrobe/captain,/obj/item/weapon/gun/projectile/revolver/mateba,/turf/simulated/shuttle/floor/black,/area/shuttle/trade/centcom)
+"lH" = (/obj/machinery/vending/medical{density = 0; pixel_x = 32; pixel_y = 0; req_access = null},/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/syndicate_station/start)
 "lI" = (/obj/machinery/light{dir = 1},/obj/structure/bookcase,/turf/simulated/shuttle/floor/black,/area/shuttle/trade/centcom)
 "lJ" = (/obj/structure/bed/chair/comfy/black,/turf/simulated/shuttle/floor/black,/area/shuttle/trade/centcom)
 "lK" = (/obj/structure/bed/chair/office/dark,/turf/simulated/floor/carpet,/area/shuttle/trade/centcom)
@@ -1125,7 +1125,7 @@ apgXgXgXgXhliaipioipipipipioipifhlgXgXgXgXapahaiaiaiaiaiaiakalalalalalakaiaiaiai
 apgXgXgXgXhlinipioipipipipioipiqhlgXgXgXgXapahaiaiaiaiaiaiakalalalalalakaiaiaiaiaiaiahapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapgpapapapapapapiEiCiSiTiEiUiViWiXiYiEiEapapapiEiEiCamiDiCiEiIiKiCiZjaiEiNjbgpap
 apgXgXgXgXhlinipioipipipipioipifhlgXgXgXgXapahaiaiaiaiaiaiakalalalalalakaiaiaiaiaiaiahapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapgpapapapapapapjejfjgjgjhjgjgjijjjkiEiEiIiJiKiEiEjljgjgjmiEjnjojpjgjqiEiNjbgpap
 apgXgXgXgXhlinipioipipipipioipifhlgXgXgXgXapahaiaiaiaiaiaiakakakakakakakaiaiaiaiaiaiahapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapgpapapapapapapjujvjwjxiEjgjgjyjzjkiEjAjBjCjDjEjFjGjHjHjgjIjgjgjgjgjJiEiNjKgpap
-apgXgXgXgXhliaipioipipipipioipifhlgXgXgXgXapahaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiahapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapgpapapapapapapiEiEiEiEiEiEjMjgjgjNiEjOjPjQjRjSjTjUjHjHjgjIjgjVjWjgjgiEiEiEgpap
+apgXgXgXgXhliaipioipipipipioipifhlgXgXgXgXapahaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiahapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapgpapapapapapapiEiEiEiEiEiEjMjgjgjNiEjOjPjQjRjSjTjUjHjHjgjIjgjVcEjgjgiEiEiEgpap
 apgXgXgXgXhlinipioipipipipioipiqhlgXgXgXgXapahaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiahapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapgpapapapapapapapapapapiEiEiEjYjgiEiCjZkakbkckdkejUjHjgjMiCiEiEiCkfkgiEiEapgpap
 apgXgXgXgXhlinipioipipipipioipifhlgXgXgXgXapahaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiahapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapgpapiEkhkiiEiEiEiEiEiEiEiEkjjgjgjgjgkkjgjgjgjgiEiEkljgiCiEkmkmiEiEiEiEapapgpap
 apgXgXgXgXhlinipioipipipipioipifhlgXgXgXgXapahaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiahapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapgpiEiEknkoiEkpiEkqkrksiCiEktjgjHjHjHjHjHjHjHjHjHjgjHjgkukvjHjHjgiEiNiOapapgpap
@@ -1135,7 +1135,7 @@ apgXgXgXgXhlinipioipipipipioipifhlgXgXgXgXapahahahahahahahahahahahahahahahahahah
 apgXgXgXgXhlinipioipipipipioipifhlgXgXgXgXapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapgpapiEljlkiEiEiEiEiEiEiEiClljgjgjgjgjVjgjgjgjgiEiEkljgiCiElmlniEiEiEiEapapgpap
 apgXgXgXgXhlialoioipipipipioloifhlgXgXgXgXapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapgpapapapapapapapapapapiEiEiEjYjgiEiClplqlrlsltjFlujHjglviCiEiEiEjglwiEiEapgpap
 apgXgXgXgXhlinlolxlololololxloiqhlgXgXgXgXapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapgpapapapapapapiEiEiEiEiEjglvjgjglyiElzlAlBlClDjTlEjHjHjglFjgkkjgjgjgiEiEiEgpap
-apgXgXgXgXhlhmhnhohnhnhnhnhohnhphlgXgXgXgXapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapgpapapapapapaplGlHlIlJiEjgjgjilKlLiElMlNlOlPlQkelRjHjHjglFjgjgjgjgjgiEiNiOgpap
+apgXgXgXgXhlhmhnhohnhnhnhnhohnhphlgXgXgXgXapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapgpapapapapapaplGjWlIlJiEjgjgjilKlLiElMlNlOlPlQkelRjHjHjglFjgjgjgjgjgiEiNiOgpap
 apgXgXgXgXhlhmhnhohnhnhnhnhohnhphlgXgXgXgXapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapgpapapapapapaplSjgjgjglTjgjglUlVlWiEiElXlYlZiEiEmambmcjgiEmdmemfjgjqiEiNjbgpap
 apgXgXgXgXhlhvhnhohnhnhnhnhohnhphlgXgXgXgXapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapgpapapapapapapiEiCmgmhiEmijgmjmkmliEiEapapapiEiEiCmmmniCiElXlZiEmompiEiNjbgpap
 apgXgXgXgXhlhmhnhohnhnhnhnhohnhIhlgXgXgXgXapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapgpapapapapapapapiEiEiEiEiEiElXlYlZiEapapapapapiEiEmqmriEiEapapiEiEiEiEiNjKgpap
@@ -1178,7 +1178,7 @@ apapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapap
 apapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapgpapapapaBaBapaBaBaBaBaBaBaBaBaBaBaBapapapoXrXrYoXapapapapapapapapapapapapapapapapapaBaBaBgp
 apapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapgpapapapapapapapapaBaBaBaBapaBaBapapapaCaCaErZsaaEsfseapapapapapaCaCaCaGaGaGaCaCaCapapapapgp
 apapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapgpapapapapapapapapapapapapapapapapapaCaCaHcgcicichcjaCaCapapapaCaCaCckcmclcocnaCaCaCapapapgp
-apapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapgpapapapapapapapapapapapapapapaCaCaCaCaCcpcqcicichcjaCaCaGaGaGaCaCaCcCcDcDcDcEaCaCaCaCapapgp
+apapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapgpapapapapapapapapapapapapapapaCaCaCaCaCcpcqcicichcjaCaCaGaGaGaCaCaCcCcDcDcDlHaCaCaCaCapapgp
 ahahahahahahahahahappqpqpqpqpqpqpqpqpqapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapgpapapapapapapapapapapapapapaCaCcFsgcGcJcIcLcKcMcraCaCcJcNcWcVcYcXcJcDcDcDcDcZaCaCaCaCaCapgp
 ahaiaiaiaiaiaiaiahappEpFpGpGpGpGpGpHpEapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapgpapapapapapapapapapapapapaCaCaCshsvsusGchtEtbtbuhezeyeDexeAexexfFeBhecDeCeEhseFaCaCaCcJapgp
 ahaieGeGeGeGeGaiahappEpFpRpRpRpRpRpHpEapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapapgpapapapapapapapapapapapapuiaCaChwdgukcJeDexdCdCdCdCuldCdCdCdCdCdCulcDcDeHeSeIaCaCcJfkflapgp
