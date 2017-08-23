@@ -109,6 +109,7 @@
 			user << "You flick the switch on [src], but nothing happens."
 			return 0
 	on = !on
+	playsound(src.loc, 'sound/weapons/empty.ogg', 15, 1, -3)
 	update_icon()
 	user.update_action_buttons()
 	return 1
