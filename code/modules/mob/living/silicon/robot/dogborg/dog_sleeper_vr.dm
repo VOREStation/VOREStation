@@ -15,6 +15,7 @@
 	var/list/injection_chems = list("dexalin", "bicaridine", "kelotane","anti_toxin", "alkysine", "imidazoline", "spaceacillin", "paracetamol") //The borg is able to heal every damage type. As a nerf, they use 750 charge per injection.
 	var/eject_port = "ingestion"
 	var/list/items_preserved = list()
+	var/UI_open = 0
 
 /obj/item/device/dogborg/sleeper/New()
 	..()
@@ -50,6 +51,8 @@
 			user.visible_message("<span class='warning'>[hound.name]'s medical pod lights up as [target.name] slips inside into their [src.name].</span>", "<span class='notice'>Your medical pod lights up as [target] slips into your [src]. Life support functions engaged.</span>")
 			message_admins("[key_name(hound)] has eaten [key_name(patient)] as a dogborg. ([hound ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
 			playsound(hound, 'sound/vore/gulp.ogg', 100, 1) //POLARISTODO
+			if(UI_open == 1)
+				sleeperUI(usr)
 
 /obj/item/device/dogborg/sleeper/proc/go_out(var/target)
 	hound = src.loc
@@ -87,9 +90,13 @@
 /obj/item/device/dogborg/sleeper/attack_self(mob/user)
 	if(..())
 		return
+	if(UI_open == 1) //At least some sort of way to stop the UI needlessly popping up on updates.
+		UI_open = 0
+		return
 	sleeperUI(user)
 
 /obj/item/device/dogborg/sleeper/proc/sleeperUI(mob/user)
+	UI_open = 1
 	var/dat
 	dat += "<h3>Injector</h3>"
 
@@ -174,7 +181,7 @@
 	dat += "</div>"
 
 	var/datum/browser/popup = new(user, "sleeper", "Sleeper Console", 520, 540)	//Set up the popup browser window
-	popup.set_title_image(user.browse_rsc_icon(icon, icon_state))
+	//popup.set_title_image(user.browse_rsc_icon(icon, icon_state)) //I have no idea what this is, but it feels irrelevant and causes runtimes idk.
 	popup.set_content(dat)
 	popup.open()
 	return
@@ -292,6 +299,8 @@
 	patient_laststat = null
 	patient = null
 	hound.updateicon()
+	if(UI_open == 1)
+		sleeperUI(usr)
 	return
 
 //Gurgleborg process
@@ -390,6 +399,8 @@
 						T.drop_from_inventory(I, src)
 				qdel(T)
 				src.update_patient()
+				if(UI_open == 1)
+					sleeperUI(hound)
 
 		//Handle the target being anything but a /mob/living/carbon/human
 		else
@@ -438,6 +449,9 @@
 					contents -= T
 					qdel(T)
 					src.update_patient()
+				if(UI_open == 1)
+					sleeperUI(hound)
+
 		return
 
 /obj/item/device/dogborg/sleeper/process()
@@ -514,6 +528,8 @@
 			if(length(contents) > 11) //grow that tum after a certain junk amount
 				hound.sleeper_r = 1
 				hound.updateicon()
+			if(UI_open == 1)
+				sleeperUI(usr)
 		return
 
 	if(istype(target, /mob/living/simple_animal/mouse)) //Edible mice, dead or alive whatever. Mostly for carcass picking you cruel bastard :v
@@ -527,6 +543,8 @@
 			if(length(contents) > 11) //grow that tum after a certain junk amount
 				hound.sleeper_r = 1
 				hound.updateicon()
+			if(UI_open == 1)
+				sleeperUI(usr)
 		return
 
 	else if(ishuman(target))
@@ -547,6 +565,8 @@
 			playsound(hound, 'sound/vore/gulp.ogg', 80, 1)
 			hound.sleeper_r = 1
 			hound.updateicon()
+			if(UI_open == 1)
+				sleeperUI(usr)
 		return
 	return
 

@@ -84,6 +84,7 @@
 					owner.nutrition += offset*(10/difference) // 9.5 nutrition per digestion tick if they're 130 pounds and it's same size. 10.2 per digestion tick if they're 140 and it's same size. Etc etc.
 				else
 					owner.nutrition += (10/difference)
+			M.updateVRPanel()
 
 		if(digest_mode == DM_ITEMWEAK)
 			var/obj/item/T = pick(touchable_items)
@@ -189,6 +190,7 @@
 				else
 					return
 
+		owner.updateVRPanel()
 		return
 
 //////////////////////////// DM_STRIPDIGEST ////////////////////////////
@@ -262,6 +264,7 @@
 			//Pref protection!
 			if (!M.digestable || M.absorbed)
 				continue
+			M.updateVRPanel()
 			if(length(slots - checked_slots) < 1)
 				checked_slots.Cut()
 			var/validslot = pick(slots - checked_slots)
@@ -289,7 +292,7 @@
 				for(var/stashslot in stash)
 					var/obj/item/SL = M.get_equipped_item(stashslot)
 					if(SL)
-						SL.forceMove(owner)
+						M.remove_from_mob(SL,owner)
 						internal_contents += SL
 				M.remove_from_mob(I,owner)
 				internal_contents += I
@@ -299,6 +302,7 @@
 					M.remove_from_mob(I,owner)
 					internal_contents += I
 
+		owner.updateVRPanel()
 		return
 
 //////////////////////////// DM_ABSORB ////////////////////////////

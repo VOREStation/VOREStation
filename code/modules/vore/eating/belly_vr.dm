@@ -175,6 +175,9 @@
 
 	prey.forceMove(owner)
 	internal_contents |= prey
+	owner.updateVRPanel()
+	for(var/mob/living/M in internal_contents)
+		M.updateVRPanel()
 
 	if(inside_flavor)
 		prey << "<span class='notice'><B>[inside_flavor]</B></span>"
@@ -520,6 +523,9 @@
 	if(!silent)
 		for(var/mob/hearer in range(1,owner))
 			hearer << sound('sound/vore/squish2.ogg',volume=80)
+	owner.updateVRPanel()
+	for(var/mob/living/M in internal_contents)
+		M.updateVRPanel()
 
 // Belly copies and then returns the copy
 // Needs to be updated for any var changes

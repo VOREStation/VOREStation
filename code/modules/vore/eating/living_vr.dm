@@ -13,6 +13,7 @@
 	var/metabolism = 0.0015
 	var/vore_taste = null				// What the character tastes like
 	var/no_vore = 0 					// If the character/mob can vore.
+	var/openpanel = 0					// Is the vore panel open?
 
 //
 // Hook for generic creation of stuff on new creatures
