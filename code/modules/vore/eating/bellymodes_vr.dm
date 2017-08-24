@@ -257,6 +257,8 @@
 						s_owner.cell.charge += (50 * T.w_class)
 					internal_contents -= T
 					qdel(T)
+				for(var/mob/living/carbon/human/M in internal_contents)
+					M.updateVRPanel()
 
 		for(var/mob/living/carbon/human/M in internal_contents)
 			if(!M)
@@ -264,7 +266,6 @@
 			//Pref protection!
 			if (!M.digestable || M.absorbed)
 				continue
-			M.updateVRPanel()
 			if(length(slots - checked_slots) < 1)
 				checked_slots.Cut()
 			var/validslot = pick(slots - checked_slots)
@@ -301,6 +302,7 @@
 				if(!(istype(I,/obj/item/organ) || istype(I,/obj/item/weapon/storage/internal) || istype(I,/obj/screen)))
 					M.remove_from_mob(I,owner)
 					internal_contents += I
+			M.updateVRPanel()
 
 		owner.updateVRPanel()
 		return

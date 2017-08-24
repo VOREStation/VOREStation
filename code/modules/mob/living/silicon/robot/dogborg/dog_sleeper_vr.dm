@@ -90,13 +90,10 @@
 /obj/item/device/dogborg/sleeper/attack_self(mob/user)
 	if(..())
 		return
-	if(UI_open == 1) //At least some sort of way to stop the UI needlessly popping up on updates.
-		UI_open = 0
-		return
 	sleeperUI(user)
+	UI_open = 1
 
 /obj/item/device/dogborg/sleeper/proc/sleeperUI(mob/user)
-	UI_open = 1
 	var/dat
 	dat += "<h3>Injector</h3>"
 
@@ -184,6 +181,8 @@
 	//popup.set_title_image(user.browse_rsc_icon(icon, icon_state)) //I have no idea what this is, but it feels irrelevant and causes runtimes idk.
 	popup.set_content(dat)
 	popup.open()
+	onclose(user, "sleeper")
+	UI_open = 0
 	return
 
 /obj/item/device/dogborg/sleeper/Topic(href, href_list)
