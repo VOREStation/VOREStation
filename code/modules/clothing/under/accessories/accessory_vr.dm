@@ -31,9 +31,100 @@
 /obj/item/clothing/accessory/collar/shock
 	name = "Shock collar"
 	desc = "A collar used to ease hungry predators."
-	icon_state = "collar_shk"
+	icon_state = "collar_shk0"
 	item_state = "collar_shk_overlay"
 	overlay_state = "collar_shk_overlay"
+	// How about some copypasta?
+	var/on = 0 // 0 for off, 1 for on, starts off to encourage people to set non-default frequencies and codes.
+	var/frequency = 1449
+	var/code = 2
+	var/datum/radio_frequency/radio_connection
+	var/list/datum/radio_frequency/secure_radio_connections = new
+	proc/set_frequency(new_frequency)
+		radio_controller.remove_object(src, frequency)
+		frequency = new_frequency
+		radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
+		
+/obj/item/clothing/accessory/collar/shock/New()
+	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT) // Makes it so you don't need to change the frequency off of default for it to work.
+	
+/obj/item/clothing/accessory/collar/shock/Topic(href, href_list)
+	if(usr.stat || usr.restrained())
+		return
+	if(((istype(usr, /mob/living/carbon/human) && ((!( ticker ) || (ticker && ticker.mode != "monkey")) && usr.contents.Find(src))) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf)))))
+		usr.set_machine(src)
+		if(href_list["freq"])
+			var/new_frequency = sanitize_frequency(frequency + text2num(href_list["freq"]))
+			set_frequency(new_frequency)
+		else
+			if(href_list["code"])
+				code += text2num(href_list["code"])
+				code = round(code)
+				code = min(100, code)
+				code = max(1, code)
+			else
+				if(href_list["power"])
+					on = !( on )
+					icon_state = "collar_shk[on]" // And apparently this works, too?!
+		if(!( master ))
+			if(istype(loc, /mob))
+				attack_self(loc)
+			else
+				for(var/mob/M in viewers(1, src))
+					if(M.client)
+						attack_self(M)
+		else
+			if(istype(master.loc, /mob))
+				attack_self(master.loc)
+			else
+				for(var/mob/M in viewers(1, master))
+					if(M.client)
+						attack_self(M)
+	else
+		usr << browse(null, "window=radio")
+		return
+	return
+
+/obj/item/clothing/accessory/collar/shock/receive_signal(datum/signal/signal)
+	if(!signal || signal.encryption != code)
+		return
+
+	if(on)
+		var/mob/M = null
+		if(ismob(loc))
+			M = loc
+		if(ismob(loc.loc))
+			M = loc.loc // This is about as terse as I can make my solution to the whole 'collar won't work when attached as accessory' thing.
+		M << "<span class='danger'>You feel a sharp shock!</span>"
+		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		s.set_up(3, 1, M)
+		s.start()
+		M.Weaken(10)
+	return
+
+/obj/item/clothing/accessory/collar/shock/attack_self(mob/user as mob, flag1)
+	if(!istype(user, /mob/living/carbon/human))
+		return
+	user.set_machine(src)
+	var/dat = {"<TT>
+<A href='?src=\ref[src];power=1'>Turn [on ? "Off" : "On"]</A><BR>
+<B>Frequency/Code</B> for collar:<BR>
+Frequency:
+<A href='byond://?src=\ref[src];freq=-10'>-</A>
+<A href='byond://?src=\ref[src];freq=-2'>-</A> [format_frequency(frequency)]
+<A href='byond://?src=\ref[src];freq=2'>+</A>
+<A href='byond://?src=\ref[src];freq=10'>+</A><BR>
+
+Code:
+<A href='byond://?src=\ref[src];code=-5'>-</A>
+<A href='byond://?src=\ref[src];code=-1'>-</A> [code]
+<A href='byond://?src=\ref[src];code=1'>+</A>
+<A href='byond://?src=\ref[src];code=5'>+</A><BR>
+</TT>"}
+	user << browse(dat, "window=radio")
+	onclose(user, "radio")
+	return
+	
 
 /obj/item/clothing/accessory/collar/spike
 	name = "Spiked collar"
