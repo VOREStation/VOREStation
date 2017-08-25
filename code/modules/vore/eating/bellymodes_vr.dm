@@ -84,6 +84,7 @@
 					owner.nutrition += offset*(10/difference) // 9.5 nutrition per digestion tick if they're 130 pounds and it's same size. 10.2 per digestion tick if they're 140 and it's same size. Etc etc.
 				else
 					owner.nutrition += (10/difference)
+			M.updateVRPanel()
 
 		if(digest_mode == DM_ITEMWEAK)
 			var/obj/item/T = pick(touchable_items)
@@ -189,6 +190,7 @@
 				else
 					return
 
+		owner.updateVRPanel()
 		return
 
 //////////////////////////// DM_STRIPDIGEST ////////////////////////////
@@ -255,6 +257,8 @@
 						s_owner.cell.charge += (50 * T.w_class)
 					internal_contents -= T
 					qdel(T)
+				for(var/mob/living/carbon/human/M in internal_contents)
+					M.updateVRPanel()
 
 		for(var/mob/living/carbon/human/M in internal_contents)
 			if(!M)
@@ -289,7 +293,7 @@
 				for(var/stashslot in stash)
 					var/obj/item/SL = M.get_equipped_item(stashslot)
 					if(SL)
-						SL.forceMove(owner)
+						M.remove_from_mob(SL,owner)
 						internal_contents += SL
 				M.remove_from_mob(I,owner)
 				internal_contents += I
@@ -298,7 +302,9 @@
 				if(!(istype(I,/obj/item/organ) || istype(I,/obj/item/weapon/storage/internal) || istype(I,/obj/screen)))
 					M.remove_from_mob(I,owner)
 					internal_contents += I
+			M.updateVRPanel()
 
+		owner.updateVRPanel()
 		return
 
 //////////////////////////// DM_ABSORB ////////////////////////////
