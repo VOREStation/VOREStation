@@ -82,6 +82,8 @@
 	if(H.mind)
 		H.mind.transfer_to(brainmob)
 
+	brainmob.languages = H.languages
+
 	brainmob << "<span class='notice'>You feel slightly disoriented. That's normal when you're just \a [initial(src.name)].</span>"
 	callHook("debrain", list(brainmob))
 

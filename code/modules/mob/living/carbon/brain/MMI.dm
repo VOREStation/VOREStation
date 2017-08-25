@@ -176,7 +176,8 @@
 
 /obj/item/device/mmi/digital/New()
 	src.brainmob = new(src)
-	src.brainmob.add_language("Robot Talk")
+//	src.brainmob.add_language("Robot Talk") //you need a binary communication device for that
+	src.brainmob.add_language(LANGUAGE_GALCOM)
 	src.brainmob.add_language(LANGUAGE_EAL)
 	src.brainmob.loc = src
 	src.brainmob.container = src
