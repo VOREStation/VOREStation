@@ -77,6 +77,11 @@
 	else
 		O.key = key
 
+	if(O.client && O.client.prefs)
+		var/datum/preferences/B = O.client.prefs
+		for(var/language in B.alternate_languages)
+			O.add_language(language)
+
 	if(move)
 		var/obj/loc_landmark
 		for(var/obj/effect/landmark/start/sloc in landmarks_list)
@@ -153,6 +158,11 @@
 			O.mmi = new /obj/item/device/mmi(O)
 
 		O.mmi.transfer_identity(src)
+
+	if(O.client && O.client.prefs)
+		var/datum/preferences/B = O.client.prefs
+		for(var/language in B.alternate_languages)
+			O.add_language(language)
 
 	callHook("borgify", list(O))
 	O.Namepick()
