@@ -522,7 +522,7 @@
 			to_chat(owner, "<span class='notice'>[M] tastes of [M.get_taste_message(0)].</span>")
 	if(!silent)
 		for(var/mob/hearer in range(1,owner))
-			hearer << sound('sound/vore/squish2.ogg',volume=80)
+			hearer << sound(target.vore_sound,volume=80)
 	owner.updateVRPanel()
 	for(var/mob/living/M in internal_contents)
 		M.updateVRPanel()
