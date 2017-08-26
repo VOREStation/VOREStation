@@ -1355,7 +1355,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	sex = "Female"
 /obj/item/weapon/fluff/kitchi_injector
 	name = "Kitchi Monkey Injector"
-	desc = "Allows the user (Kitchi) to transform into a monkey. Single use.
+	desc = "Allows the user (Kitchi) to transform into a monkey. Single use."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "dnainjector"
 
