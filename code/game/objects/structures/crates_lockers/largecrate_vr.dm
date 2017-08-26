@@ -53,7 +53,7 @@
 						/mob/living/simple_animal/hostile/bear;0.5,
 						/mob/living/simple_animal/hostile/bear/brown;0.5,
 						/mob/living/simple_animal/hostile/carp,
-						/mob/living/simple_animal/otie/friendly,
+//						/mob/living/simple_animal/otie/friendly, // Removed until Otie code is unfucked.
 						/mob/living/simple_animal/hostile/mimic)
 	..()
 
@@ -73,6 +73,7 @@
 						/mob/living/simple_animal/hostile/alien/queen)
 	..()
 
+/* // Removed until Otie code is unfucked.
 /obj/structure/largecrate/animal/guardbeast
 	name = "V.A.R.M.A.corp autoNOMous security solution"
 	desc = "The V.A.R.M.A.corp bioengineering division flagship product on trained optimal snowflake guard dogs."
@@ -94,3 +95,4 @@
 		icon_state = "otiecrate"
 		taped = 0
 	..()
+*/
