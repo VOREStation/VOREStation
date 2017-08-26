@@ -1361,7 +1361,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 
 /obj/item/weapon/fluff/kitchi_injector/attack_self(mob/user as mob)
 	if(user.ckey != "Ketrai")
-		H << "<span class='warning'>You inject yourself.... Nothing happens.</span>"
+		user << "<span class='warning'>You inject yourself.... Nothing happens.</span>"
 		return
 	user.monkeyize()
 	qdel(src) //One time use.
