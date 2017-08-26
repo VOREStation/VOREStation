@@ -115,7 +115,7 @@
 			if(mannequin.wing_style.do_colouration)
 				temp["color"] = MOB_HEX_COLOR(mannequin, wing)
 				temp["colorHref"] = "wing_color"
-		styles["Tail"] = temp
+		styles["Wing"] = temp
 
 		temp = list("styleHref" = "hair_style", "style" = mannequin.h_style)
 		if(mannequin.species && (mannequin.species.appearance_flags & HAS_HAIR_COLOR))

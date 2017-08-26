@@ -83,7 +83,7 @@
 
 		if(process_longjump(departing, destination)) //VOREStation Edit - To hook custom shuttle code in
 			return //VOREStation Edit - It handled it for us (shuttle crash or such)
-		/*
+
 		var/last_progress_sound = 0
 		while (world.time < arrive_time)
 			// Make the shuttle make sounds every four seconds, since the sound file is five seconds.
@@ -91,7 +91,6 @@
 				make_sounds(interim, HYPERSPACE_PROGRESS)
 				last_progress_sound = world.time
 			sleep(5)
-		*/ //VOREStation Edit. Polaris code in this commented out part, but line 84 takes care of it as far as I cna see.
 
 		move(interim, destination, direction)
 		moving_status = SHUTTLE_IDLE
