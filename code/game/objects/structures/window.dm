@@ -291,6 +291,8 @@
 
 /obj/structure/window/proc/hit(var/damage, var/sound_effect = 1)
 	if(reinf) damage *= 0.5
+	if(damage < 5)
+		return
 	take_damage(damage)
 	return
 
