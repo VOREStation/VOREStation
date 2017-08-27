@@ -1360,8 +1360,11 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	icon_state = "dnainjector"
 
 /obj/item/weapon/fluff/kitchi_injector/attack_self(mob/user as mob)
+
 	if(user.ckey != "Ketrai")
 		user << "<span class='warning'>You inject yourself.... Nothing happens.</span>"
 		return
-	user.monkeyize()
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		H.monkeyize()
 	qdel(src) //One time use.
