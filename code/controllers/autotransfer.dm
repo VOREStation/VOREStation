@@ -21,4 +21,4 @@ datum/controller/transfer_controller/proc/process()
 	else if (round_duration_in_ticks >= timerbuffer - 1 MINUTE) //VOREStation Edit END
 		vote.autotransfer()
 		timerbuffer = timerbuffer + config.vote_autotransfer_interval
-		world << "Warning: If the extend vote passes, the round will not be extended again. Wrap up your scenes in the next 60 minutes if the vote succeeds."
+		world << "Warning: If the extend vote passes, the round will not be extended again. Wrap up your scenes in the next 60 minutes if the vote succeeds." //VOREStation Edit
