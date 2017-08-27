@@ -302,7 +302,7 @@ var/list/solars_list = list()
 		M.unset_control()
 	if(connected_tracker)
 		connected_tracker.unset_control()
-	..()
+	return ..()
 
 /obj/machinery/power/solar_control/disconnect_from_network()
 	..()
@@ -408,25 +408,23 @@ var/list/solars_list = list()
 		if(do_after(user, 20))
 			if (src.stat & BROKEN)
 				user << "<font color='blue'>The broken glass falls out.</font>"
-				var/obj/structure/frame/A = new /obj/structure/frame( src.loc )
+				var/obj/structure/frame/A = new /obj/structure/frame/computer( src.loc )
 				new /obj/item/weapon/material/shard( src.loc )
 				var/obj/item/weapon/circuitboard/solar_control/M = new /obj/item/weapon/circuitboard/solar_control( A )
 				for (var/obj/C in src)
 					C.loc = src.loc
 				A.circuit = M
-				A.frame_type = "computer"
 				A.state = 3
 				A.icon_state = "computer_3"
 				A.anchored = 1
 				qdel(src)
 			else
 				user << "<font color='blue'>You disconnect the monitor.</font>"
-				var/obj/structure/frame/A = new /obj/structure/frame( src.loc )
+				var/obj/structure/frame/A = new /obj/structure/frame/computer( src.loc )
 				var/obj/item/weapon/circuitboard/solar_control/M = new /obj/item/weapon/circuitboard/solar_control( A )
 				for (var/obj/C in src)
 					C.loc = src.loc
 				A.circuit = M
-				A.frame_type = "computer"
 				A.state = 4
 				A.icon_state = "computer_4"
 				A.anchored = 1
