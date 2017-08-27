@@ -3,9 +3,10 @@ var/datum/controller/transfer_controller/transfer_controller
 datum/controller/transfer_controller
 	var/timerbuffer = 0 //buffer for time check
 	var/currenttick = 0
-	var/shift_hard_end = vote_autotransfer_initial + vote_autotransfer_interval //VOREStation Edit
+	var/shift_hard_end = 0 //VOREStation Edit
 datum/controller/transfer_controller/New()
 	timerbuffer = config.vote_autotransfer_initial
+	shift_hard_end = config.vote_autotransfer_initial + config.vote_autotransfer_interval //VOREStation Edit
 	processing_objects += src
 
 datum/controller/transfer_controller/Destroy()
@@ -20,4 +21,3 @@ datum/controller/transfer_controller/proc/process()
 	else if (round_duration_in_ticks >= timerbuffer - 1 MINUTE) //VOREStation Edit END
 		vote.autotransfer()
 		timerbuffer = timerbuffer + config.vote_autotransfer_interval
-		
