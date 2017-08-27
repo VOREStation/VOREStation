@@ -14,7 +14,7 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 						Z_LEVEL_SURFACE_MID,
 						Z_LEVEL_SURFACE_HIGH,
 						Z_LEVEL_SURFACE_MINE,
-						Z_LEVEL_SOLARS,
+						Z_LEVEL_SOLARS/*,
 						Z_LEVEL_SURFACE_WILDERNESS_1,
 						Z_LEVEL_SURFACE_WILDERNESS_2,
 						Z_LEVEL_SURFACE_WILDERNESS_3,
@@ -22,7 +22,7 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 						Z_LEVEL_SURFACE_WILDERNESS_5,
 						Z_LEVEL_SURFACE_WILDERNESS_6,
 						Z_LEVEL_SURFACE_WILDERNESS_CRASH,
-						Z_LEVEL_SURFACE_WILDERNESS_RUINS,
+						Z_LEVEL_SURFACE_WILDERNESS_RUINS,*/ // Wilderness stuff removed until mobs can be optimized better.
 						)
 	planetary_wall_type = /turf/unsimulated/wall/planetary/virgo3b
 
