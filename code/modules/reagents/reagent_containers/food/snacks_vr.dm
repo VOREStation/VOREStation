@@ -189,35 +189,85 @@
 	..()
 	reagents.add_reagent("protein", 4)
 	bitesize = 2
+	
+/obj/item/weapon/reagent_containers/food/snacks/fenexcube
+	name = "fenex cube"
+	desc = "Just add water!"
+	flags = OPENCONTAINER
+	icon_state = "monkeycube"
+	bitesize = 12
+	filling_color = "#ADAC7F"
+	center_of_mass = list("x"=16, "y"=14)
 
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/sobakacube
+	var/wrapped = 0
+	var/monkey_type = "Monkey"
+
+/obj/item/weapon/reagent_containers/food/snacks/fenexcube/New()
+	..()
+	reagents.add_reagent("protein", 10)
+
+/obj/item/weapon/reagent_containers/food/snacks/fenexycube/attack_self(mob/user as mob)
+	if(wrapped)
+		Unwrap(user)
+
+/obj/item/weapon/reagent_containers/food/snacks/fenexycube/proc/Expand()
+	src.visible_message("<span class='notice'>\The [src] expands!</span>")
+	var/mob/living/carbon/human/H = new(get_turf(src))
+	H.set_species(monkey_type)
+	H.real_name = H.species.get_random_name()
+	H.name = H.real_name
+	if(ismob(loc))
+		var/mob/M = loc
+		M.unEquip(src)
+	qdel(src)
+	return 1
+
+/obj/item/weapon/reagent_containers/food/snacks/fenexcube/proc/Unwrap(mob/user as mob)
+	icon_state = "monkeycube"
+	desc = "Just add water!"
+	user << "You unwrap the cube."
+	wrapped = 0
+	flags |= OPENCONTAINER
+	return
+
+/obj/item/weapon/reagent_containers/food/snacks/fenexycube/on_reagent_change()
+	if(reagents.has_reagent("water"))
+		Expand()
+
+/obj/item/weapon/reagent_containers/food/snacks/fenexcube/wrapped
+	desc = "Still wrapped in some paper."
+	icon_state = "monkeycubewrap"
+	flags = 0
+	wrapped = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/fenexcube/sobakacube
 	name = "sobaka cube"
 	monkey_type = "Sobaka"
 	
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/sobakacube
+/obj/item/weapon/reagent_containers/food/snacks/fenexcube/wrapped/sobakacube
 	name = "sobaka cube"
 	monkey_type = "Sobaka"
 	
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/sarucube
+/obj/item/weapon/reagent_containers/food/snacks/fenexcube/sarucube
 	name = "saru cube"
 	monkey_type = "Saru"
 	
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/sarucube
+/obj/item/weapon/reagent_containers/food/snacks/fenexcube/wrapped/sarucube
 	name = "saru cube"
 	monkey_type = "Saru"
 	
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/sparracube
+/obj/item/weapon/reagent_containers/food/snacks/fenexcube/sparracube
 	name = "sparra cube"
 	monkey_type = "Sparra"
 	
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/sparracube
+/obj/item/weapon/reagent_containers/food/snacks/fenexcube/wrapped/sparracube
 	name = "sparra cube"
 	monkey_type = "Sparra"
 	
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wolpincube
+/obj/item/weapon/reagent_containers/food/snacks/fenexcube/wolpincube
 	name = "wolpin cube"
 	monkey_type = "Wolpin"
 	
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/wolpincube
+/obj/item/weapon/reagent_containers/food/snacks/fenexcube/wrapped/wolpincube
 	name = "wolpin cube"
 	monkey_type = "Wolpin"
