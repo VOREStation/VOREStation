@@ -100,6 +100,7 @@
 	desc = ""
 	icon_state = "demon-horns1hc"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/ears/foxears
 	name = "highlander zorren ears"
