@@ -95,6 +95,13 @@
 	desc = ""
 	icon_state = "demon-horns1"
 
+/datum/sprite_accessory/ears/demon_horns1hc
+	name = "demon horns, colorable"
+	desc = ""
+	icon_state = "demon-horns1hc"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/ears/foxears
 	name = "highlander zorren ears"
 	desc = ""
