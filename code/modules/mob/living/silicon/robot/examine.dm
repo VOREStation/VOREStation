@@ -31,10 +31,10 @@
 		if(DEAD)			msg += "<span class='deadsay'>It looks completely unsalvageable.</span>\n"
 	msg += attempt_vr(src,"examine_bellies_borg",args) //VOREStation Edit
 
-	// VOREStation Start
+	// VOREStation Edit: Start
 	if(ooc_notes)
 		msg += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a>\n"
-	// VOREStation End
+	// VOREStation Edit: End
 
 	msg += "*---------*"
 
