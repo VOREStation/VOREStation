@@ -21,7 +21,7 @@
 	#include "tether-08-ships.dmm"
 	#include "tether-09-empty-surface.dmm"
 	#include "tether-10-empty-space.dmm"
-	#include "tether-11-wild-surface.dmm"
+//	#include "tether-11-wild-surface.dmm" // Wilderness stuff removed until mobs can be optimized better.
 
 	#define USING_MAP_DATUM /datum/map/tether
 
