@@ -1361,6 +1361,10 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 
 /obj/item/weapon/fluff/kitchi_injector/attack(mob/living/M, mob/living/user)
 
+	if(M.ckey != "Ketrai")
+		user << "<span class='warning'>Something compels you to <i> not </i> use this injector.</span>"
+		return
+
 	if(usr == M) //Is the person using it on theirself?
 		if(ishuman(M)) //If so, monkify them.
 			var/mob/living/carbon/human/H = user
