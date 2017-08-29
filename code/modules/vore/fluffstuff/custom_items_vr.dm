@@ -1342,3 +1342,29 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
             user.visible_message("<span class='notice'>[user] displays their [src.name].\nIt reads: [stored_name], [badge_string].</span>","<span class='notice'>You display your [src.name].\nIt reads: [stored_name], [badge_string].</span>")
         else
             user.visible_message("<span class='notice'>[user] displays their [src.name].\nIt reads: [badge_string].</span>","<span class='notice'>You display your [src.name]. It reads: [badge_string].</span>")
+
+/obj/item/weapon/card/id/fluff/xennith
+	name = "\improper Amy Lessen's Central Command ID (Xenobiology Director)"
+	desc = "This ID card identifies Dr. Amelie Lessen as the founder and director of the NanoTrasen Xenobiology Research Department, circa 2553."
+	icon_state = "centcom"
+	registered_name = "Amy Lessen"
+	assignment = "Xenobiology Director"
+	access = list(access_cent_general,access_cent_thunder,access_cent_medical,access_cent_living,access_cent_storage,access_cent_teleporter,access_research,access_xenobiology,access_maint_tunnels,access_xenoarch,access_robotics,access_tox_storage,access_tox) //Yes, this looks awful. I tried calling both central and resarch access but it didn't work.
+	age = 39
+	blood_type = "O-"
+	sex = "Female"
+/obj/item/weapon/fluff/kitchi_injector
+	name = "Kitchi Monkey Injector"
+	desc = "Allows the user (Kitchi) to transform into a monkey. Single use."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "dnainjector"
+
+/obj/item/weapon/fluff/kitchi_injector/attack_self(mob/user as mob)
+
+	if(user.ckey != "Ketrai")
+		user << "<span class='warning'>You inject yourself.... Nothing happens.</span>"
+		return
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		H.monkeyize()
+	qdel(src) //One time use.
