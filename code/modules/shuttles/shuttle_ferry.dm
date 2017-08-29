@@ -4,6 +4,7 @@
 	var/location = 0	//0 = at area_station, 1 = at area_offsite
 	var/direction = 0	//0 = going to station, 1 = going to offsite.
 	var/process_state = IDLE_STATE
+	var/always_process = FALSE
 
 	var/in_use = null	//tells the controller whether this shuttle needs processing
 

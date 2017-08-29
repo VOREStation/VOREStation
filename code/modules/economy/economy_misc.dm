@@ -50,10 +50,10 @@
 /var/list/economic_species_modifier = list(
 										/datum/species/human							= 10,
 										/datum/species/skrell							= 12,
-										/datum/species/teshari							= 9, // Skrell sponsored,
-										/datum/species/tajaran							= 7,
 										/datum/species/unathi							= 7,
-										/datum/species/diona 							= 7,
+										/datum/species/tajaran							= 7,
+										/datum/species/teshari							= 6,
+										/datum/species/diona 							= 4,
 										/datum/species/shapeshifter/promethean			= 3
 											)
 

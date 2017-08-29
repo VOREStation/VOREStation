@@ -362,6 +362,17 @@
 		src.updateUsrDialog()
 		return 0
 
+	if(istype(O,/obj/item/weapon/gripper))
+		var/obj/item/weapon/gripper/B = O	//B, for Borg.
+		if(!B.wrapped)
+			user << "\The [B] is not holding anything."
+			return 0
+		else
+			var/B_held = B.wrapped
+			user << "You use \the [B] to load \the [src] with \the [B_held]."
+
+		return 0
+
 	if(!sheet_reagents[O.type] && (!O.reagents || !O.reagents.total_volume))
 		user << "\The [O] is not suitable for blending."
 		return 1

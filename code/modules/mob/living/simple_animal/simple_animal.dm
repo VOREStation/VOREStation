@@ -245,13 +245,13 @@
 	if((stat == CONSCIOUS) && (!icon_rest || !resting))
 		icon_state = icon_living
 
-	//Resting or KO'd
-	else if(((stat == UNCONSCIOUS) || resting) && icon_rest)
-		icon_state = icon_rest
-
 	//Dead
 	else if(stat >= DEAD)
 		icon_state = icon_dead
+
+	//Resting or KO'd
+	else if(((stat == UNCONSCIOUS) || resting) && icon_rest)
+		icon_state = icon_rest
 
 	//Backup
 	else

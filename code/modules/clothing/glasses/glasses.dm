@@ -51,7 +51,7 @@ BLIND     // can't see anything
 		user.update_action_buttons()
 
 /obj/item/clothing/glasses/meson
-	name = "Optical Meson Scanner"
+	name = "optical meson scanner"
 	desc = "Used for seeing walls, floors, and stuff through anything."
 	icon_state = "meson"
 	item_state_slots = list(slot_r_hand_str = "meson", slot_l_hand_str = "meson")
@@ -70,7 +70,7 @@ BLIND     // can't see anything
 	prescription = 1
 
 /obj/item/clothing/glasses/meson/aviator
-	name = "Engineering Aviators"
+	name = "engineering aviators"
 	icon_state = "aviator_eng"
 	off_state = "aviator"
 	item_state_slots = list(slot_r_hand_str = "sunglasses", slot_l_hand_str = "sunglasses")
@@ -78,7 +78,7 @@ BLIND     // can't see anything
 	activation_sound = 'sound/effects/pop.ogg'
 
 /obj/item/clothing/glasses/meson/aviator/prescription
-	name = "Prescription Engineering Aviators"
+	name = "prescription engineering aviators"
 	desc = "Engineering Aviators with prescription lenses."
 	prescription = 1
 
@@ -96,7 +96,7 @@ BLIND     // can't see anything
 	overlay = global_hud.science
 
 /obj/item/clothing/glasses/goggles
-	name = "Goggles"
+	name = "goggles"
 	desc = "Just some plain old goggles."
 	icon_state = "plaingoggles"
 	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
@@ -104,7 +104,7 @@ BLIND     // can't see anything
 	body_parts_covered = EYES
 
 /obj/item/clothing/glasses/night
-	name = "Night Vision Goggles"
+	name = "night vision goggles"
 	desc = "You can totally see in the dark now!"
 	icon_state = "night"
 	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
@@ -154,7 +154,7 @@ BLIND     // can't see anything
 	body_parts_covered = 0
 
 /obj/item/clothing/glasses/material
-	name = "Optical Material Scanner"
+	name = "optical material scanner"
 	desc = "Very confusing glasses."
 	icon_state = "material"
 	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
@@ -164,11 +164,11 @@ BLIND     // can't see anything
 	vision_flags = SEE_OBJS
 
 /obj/item/clothing/glasses/material/prescription
-	name = "Prescription Optical Material Scanner"
+	name = "prescription optical material scanner"
 	prescription = 1
 
 /obj/item/clothing/glasses/regular
-	name = "Prescription Glasses"
+	name = "prescription glasses"
 	desc = "Made by Nerd. Co."
 	icon_state = "glasses"
 	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
@@ -176,12 +176,12 @@ BLIND     // can't see anything
 	body_parts_covered = 0
 
 /obj/item/clothing/glasses/regular/scanners
-	name = "Scanning Goggles"
+	name = "scanning goggles"
 	desc = "A very oddly shaped pair of goggles with bits of wire poking out the sides. A soft humming sound emanates from it."
 	icon_state = "uzenwa_sissra_1"
 
 /obj/item/clothing/glasses/regular/hipster
-	name = "Prescription Glasses"
+	name = "prescription glasses"
 	desc = "Made by Uncool. Co."
 	icon_state = "hipster_glasses"
 
@@ -193,15 +193,15 @@ BLIND     // can't see anything
 	body_parts_covered = 0
 
 /obj/item/clothing/glasses/gglasses
-	name = "Green Glasses"
+	name = "green glasses"
 	desc = "Forest green glasses, like the kind you'd wear when hatching a nasty scheme."
 	icon_state = "gglasses"
 	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
 	body_parts_covered = 0
 
 /obj/item/clothing/glasses/sunglasses
-	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Enhanced shielding blocks many flashes."
 	name = "sunglasses"
+	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Enhanced shielding blocks many flashes."
 	icon_state = "sun"
 	item_state_slots = list(slot_r_hand_str = "sunglasses", slot_l_hand_str = "sunglasses")
 	darkness_view = -1
@@ -280,7 +280,7 @@ BLIND     // can't see anything
 	icon_state = "aviator"
 
 /obj/item/clothing/glasses/sunglasses/sechud
-	name = "HUDSunglasses"
+	name = "\improper HUD sunglasses"
 	desc = "Sunglasses with a HUD."
 	icon_state = "sunSecHud"
 	var/obj/item/clothing/glasses/hud/security/hud = null
@@ -296,7 +296,7 @@ BLIND     // can't see anything
 	icon_state = "swatgoggles"
 
 /obj/item/clothing/glasses/sunglasses/sechud/aviator
-	name = "Security HUD aviators"
+	name = "security HUD aviators"
 	desc = "Modified aviator glasses that can be switch between HUD and flash protection modes."
 	icon_state = "aviator_sec"
 	off_state = "aviator"
@@ -338,12 +338,12 @@ BLIND     // can't see anything
 		icon_state = off_state
 
 /obj/item/clothing/glasses/sunglasses/sechud/aviator/prescription
-	name = "Prescription Security HUD aviators"
+	name = "prescription security HUD aviators"
 	desc = "Modified aviator glasses that can be switch between HUD and flash protection modes. Comes with bonus prescription lenses."
 	prescription = 6
 
 /obj/item/clothing/glasses/sunglasses/medhud
-	name = "HUDSunglasses"
+	name = "\improper HUD sunglasses"
 	desc = "Sunglasses with a HUD."
 	icon_state = "sunMedHud"
 	var/obj/item/clothing/glasses/hud/health/hud = null
@@ -354,7 +354,7 @@ BLIND     // can't see anything
 		return
 
 /obj/item/clothing/glasses/sunglasses/medhud/aviator
-	name = "Medical HUD aviators"
+	name = "medical HUD aviators"
 	desc = "Modified aviator glasses with a toggled health HUD."
 	icon_state = "aviator_med"
 	off_state = "aviator"
@@ -396,12 +396,12 @@ BLIND     // can't see anything
 		icon_state = off_state
 
 /obj/item/clothing/glasses/sunglasses/medhud/aviator/prescription
-	name = "Prescription Medical HUD aviators"
+	name = "prescription medical HUD aviators"
 	desc = "Modified aviator glasses with a toggled health HUD. Comes with bonus prescription lenses."
 	prescription = 6
 
 /obj/item/clothing/glasses/thermal
-	name = "Optical Thermal Scanner"
+	name = "optical thermal scanner"
 	desc = "Thermals in the shape of glasses."
 	icon_state = "thermal"
 	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
@@ -431,7 +431,7 @@ BLIND     // can't see anything
 	overlay = global_hud.thermal
 
 /obj/item/clothing/glasses/thermal/syndi	//These are now a traitor item, concealed as mesons.	-Pete
-	name = "Optical Meson Scanner"
+	name = "optical meson scanner"
 	desc = "Used for seeing walls, floors, and stuff through anything."
 	icon_state = "meson"
 	item_state_slots = list(slot_r_hand_str = "meson", slot_l_hand_str = "meson")
@@ -443,7 +443,7 @@ BLIND     // can't see anything
 	action_button_name = null
 
 /obj/item/clothing/glasses/thermal/plain/monocle
-	name = "Thermoncle"
+	name = "thermonocle"
 	desc = "A monocle thermal."
 	icon_state = "thermoncle"
 	item_state_slots = list(slot_r_hand_str = "sunglasses", slot_l_hand_str = "sunglasses")
@@ -454,7 +454,7 @@ BLIND     // can't see anything
 	body_parts_covered = 0
 
 /obj/item/clothing/glasses/thermal/plain/eyepatch
-	name = "Optical Thermal Eyepatch"
+	name = "optical thermal eyepatch"
 	desc = "An eyepatch with built-in thermal optics"
 	icon_state = "eyepatch"
 	item_state_slots = list(slot_r_hand_str = "blindfold", slot_l_hand_str = "blindfold")
@@ -463,7 +463,7 @@ BLIND     // can't see anything
 	action_button_name = "Toggle Eyepatch"
 
 /obj/item/clothing/glasses/thermal/plain/jensen
-	name = "Optical Thermal Implants"
+	name = "optical thermal implants"
 	desc = "A set of implantable lenses designed to augment your vision"
 	icon_state = "thermalimplants"
 	item_state_slots = list(slot_r_hand_str = "sunglasses", slot_l_hand_str = "sunglasses")

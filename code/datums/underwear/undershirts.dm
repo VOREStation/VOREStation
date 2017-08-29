@@ -162,3 +162,7 @@
 /datum/category_item/underwear/undershirt/longstripe_blue
 	name = "Longsleeve Striped Shirt, Blue"
 	icon_state = "longstripe_blue"
+
+/datum/category_item/underwear/undershirt/tiedye
+	name = "Tiedye Shirt"
+	icon_state = "tiedye"

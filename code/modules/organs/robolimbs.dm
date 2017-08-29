@@ -21,7 +21,9 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	scroll=ipc_scroll;\
 	console=ipc_console;\
 	glider=ipc_gol_glider;\
-	rainbow=ipc_rainbow"
+	rainnbow=ipc_rainbow;\
+	smiley=ipc_smiley;\
+	database=ipc_database"
 
 /proc/populate_robolimb_list()
 	basic_robolimb = new()
@@ -75,6 +77,35 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	company = "Bishop Monitor"
 	desc = "Bishop Cybernetics' unique spin on a popular prosthetic head model. The themes conflict in an intriguing way."
 	icon = 'icons/mob/human_races/cyberlimbs/bishop/bishop_monitor.dmi'
+	unavailable_to_build = 1
+	parts = list(BP_HEAD)
+	monitor_styles = standard_monitor_styles
+
+/datum/robolimb/grayson
+	company = "Grayson"
+	desc = "This limb has a sturdy and heavy build to it."
+	icon = 'icons/mob/human_races/cyberlimbs/grayson/grayson_main.dmi'
+	unavailable_to_build = 1
+	monitor_styles = "blank=grayson_off;\
+		green=grayson_green;\
+		rgb=grayson_rgb"
+
+/datum/robolimb/grayson_alt1
+	company = "Grayson - Reinforced"
+	desc = "This limb has a sturdy and heavy build to it."
+	icon = 'icons/mob/human_races/cyberlimbs/grayson/grayson_alt1.dmi'
+	unavailable_to_build = 1
+	parts = list(BP_HEAD)
+	monitor_styles = "blank=grayson_alt_off;\
+		green=grayson_alt_green;\
+		scroll=grayson_alt_scroll;\
+		rgb=grayson_alt_rgb;\
+		rainbow=grayson_alt_rainbow"
+
+/datum/robolimb/grayson_monitor
+	company = "Grayson Monitor"
+	desc = "This limb has a sturdy and heavy build to it, and uses plastics in the place of glass for the monitor."
+	icon = 'icons/mob/human_races/cyberlimbs/grayson/grayson_monitor.dmi'
 	unavailable_to_build = 1
 	parts = list(BP_HEAD)
 	monitor_styles = standard_monitor_styles
@@ -198,6 +229,9 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 
 /obj/item/weapon/disk/limb/bishop
 	company = "Bishop"
+
+/obj/item/weapon/disk/limb/grayson
+	company = "Grayson"
 
 /obj/item/weapon/disk/limb/hephaestus
 	company = "Hephaestus"
