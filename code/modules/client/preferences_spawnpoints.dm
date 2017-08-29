@@ -22,9 +22,12 @@ var/list/spawntypes = list()
 
 		return 1
 
+/datum/spawnpoint/proc/get_spawn_position()
+	return get_turf(pick(turfs))
+
 /datum/spawnpoint/arrivals
 	display_name = "Arrivals Shuttle"
-	msg = "has arrived on the station"
+	msg = "will arrive to the station shortly by shuttle"
 
 /datum/spawnpoint/arrivals/New()
 	..()

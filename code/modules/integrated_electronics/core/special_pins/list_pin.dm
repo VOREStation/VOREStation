@@ -133,7 +133,6 @@
 		clear_list(usr)
 
 	if(href_list["remove"])
-		world << "Removing [href_list["pos"]]"
 		if(href_list["pos"])
 			remove_from_list_by_position(usr, text2num(href_list["pos"]))
 		else

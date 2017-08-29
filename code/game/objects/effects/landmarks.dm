@@ -21,9 +21,9 @@
 			newplayer_start += loc
 			delete_me = 1
 			return
-		if("JoinLate")
-			latejoin += loc
-			delete_me = 1
+		if("JoinLate") // Bit difference, since we need the spawn point to move.
+			latejoin += src
+		//	delete_me = 1
 			return
 		if("JoinLateGateway")
 			latejoin_gateway += loc
