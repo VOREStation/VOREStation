@@ -189,3 +189,35 @@
 	..()
 	reagents.add_reagent("protein", 4)
 	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/monkeycube/sobakacube
+	name = "sobaka cube"
+	monkey_type = "Sobaka"
+
+/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/sobakacube
+	name = "sobaka cube"
+	monkey_type = "Sobaka"
+
+/obj/item/weapon/reagent_containers/food/snacks/monkeycube/sarucube
+	name = "saru cube"
+	monkey_type = "Saru"
+
+/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/sarucube
+	name = "saru cube"
+	monkey_type = "Saru"
+
+/obj/item/weapon/reagent_containers/food/snacks/monkeycube/sparracube
+	name = "sparra cube"
+	monkey_type = "Sparra"
+
+/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/sparracube
+	name = "sparra cube"
+	monkey_type = "Sparra"
+
+/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wolpincube
+	name = "wolpin cube"
+	monkey_type = "Wolpin"
+
+/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/wolpincube
+	name = "wolpin cube"
+	monkey_type = "Wolpin"
