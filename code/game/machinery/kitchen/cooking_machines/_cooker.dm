@@ -76,10 +76,21 @@
 	else if(istype(check, /obj/item/weapon/disk/nuclear))
 		user << "Central Command would kill you if you [cook_type] that."
 		return 0
-	else if(!istype(check) && !istype(check, /obj/item/weapon/holder) && !istype(check, /obj/item/organ))
-		user << "<span class='warning'>That's not edible.</span>"
-		return 0
-		
+	else if(!istype(check) && !istype(check, /obj/item/weapon/holder) && !istype(check, /obj/item/organ)) //Gripper check has to go here, else it still just cuts it off. ~Mechoid
+		// Is it a borg using a gripper?
+		if(istype(check, /obj/item/weapon/gripper)) // Grippers. ~Mechoid.
+			var/obj/item/weapon/gripper/B = check	//B, for Borg.
+			if(!B.wrapped)
+				user << "\The [B] is not holding anything."
+				return 0
+			else
+				var/B_held = B.wrapped
+				user << "You use \the [B] to put \the [B_held] into \the [src]."
+			return 0
+		else
+			user << "<span class='warning'>That's not edible.</span>"
+			return 0
+
 	if(istype(I, /obj/item/organ))
 		var/obj/item/organ/O = I
 		if(O.robotic)
@@ -91,8 +102,8 @@
 		for(var/mob/living/M in cooking_obj.contents)
 			M.apply_damage(rand(30,40), BURN, "chest")
 
-	// Not sure why a food item that passed the previous checks would fail to drop, but safety first.
-	if(!user.unEquip(I))
+	// Not sure why a food item that passed the previous checks would fail to drop, but safety first. (Hint: Borg grippers. That is why. ~Mechoid.)
+	if(!user.unEquip(I) && !istype(user,/mob/living/silicon/robot))
 		return
 
 	// We can actually start cooking now.
@@ -134,7 +145,7 @@
 	// Copy reagents over. trans_to_obj must be used, as trans_to fails for snacks due to is_open_container() failing.
 	if(cooking_obj.reagents && cooking_obj.reagents.total_volume)
 		cooking_obj.reagents.trans_to_obj(result, cooking_obj.reagents.total_volume)
-		
+
 	// Set cooked data.
 	var/obj/item/weapon/reagent_containers/food/snacks/food_item = cooking_obj
 	if(istype(food_item) && islist(food_item.cooked))
@@ -183,7 +194,7 @@
 
 /obj/machinery/cooker/attack_hand(var/mob/user)
 
-	if(cooking_obj)
+	if(cooking_obj && user.Adjacent(src)) //Fixes borgs being able to teleport food in these machines to themselves.
 		user << "<span class='notice'>You grab \the [cooking_obj] from \the [src].</span>"
 		user.put_in_hands(cooking_obj)
 		cooking = 0

@@ -9,7 +9,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 /datum/shuttle_controller/proc/process()
 	//process ferry shuttles
 	for (var/datum/shuttle/ferry/shuttle in process_shuttles)
-		if (shuttle.process_state)
+		if (shuttle.process_state || shuttle.always_process)
 			shuttle.process()
 
 
