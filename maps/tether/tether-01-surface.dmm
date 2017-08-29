@@ -5242,7 +5242,7 @@
 "bWP" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 5; icon_state = "fwindow"},/obj/machinery/door/firedoor,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/plating,/area/crew_quarters/bar)
 "bWQ" = (/obj/structure/grille,/obj/machinery/door/firedoor,/obj/structure/window/reinforced/polarized{dir = 8},/obj/structure/window/reinforced/polarized/full,/turf/simulated/floor/plating,/area/rnd/rdoffice)
 "bWR" = (/obj/structure/table/glass,/obj/item/weapon/paper_bin{pixel_x = 1; pixel_y = 9},/obj/item/device/megaphone,/obj/item/weapon/paper/monitorkey,/obj/effect/floor_decal/borderfloor{dir = 8},/obj/effect/floor_decal/corner/mauve/border{dir = 8},/turf/simulated/floor/tiled,/area/rnd/rdoffice)
-"bWS" = (/obj/effect/step_trigger/teleporter/wild/to_wild_1,/turf/simulated/floor/tiled/steel_dirty/virgo3b,/area/tether/surfacebase/outside/outside1)
+"bWS" = (/obj/effect/step_trigger/teleporter/wild/to_wild_1,/turf/unsimulated/wall/planetary/virgo3b,/area/tether/surfacebase/outside/outside1)
 "bWT" = (/obj/structure/table/glass,/obj/machinery/computer/skills,/turf/simulated/floor/tiled,/area/rnd/rdoffice)
 "bWU" = (/turf/simulated/floor/tiled,/area/rnd/rdoffice)
 "bWV" = (/obj/effect/floor_decal/borderfloor{dir = 4},/obj/effect/floor_decal/corner/mauve/border{dir = 4},/turf/simulated/floor/tiled,/area/rnd/rdoffice)
