@@ -347,18 +347,6 @@ ckey: ketrai
 character_name: Ketrai
 item_path: /obj/item/clothing/head/fluff/ketrai
 }
-
-{
-ckey: ketrai
-character_name: Kitchi
-item_path: /obj/item/weapon/fluff/kitchi_injector
-}
-
-{
-ckey: ketrai
-character_name: Kitchi
-item_path: /obj/item/weapon/implant/language
-}
  
 {
 ckey: kiraalitruss
