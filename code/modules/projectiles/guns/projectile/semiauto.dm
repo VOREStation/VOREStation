@@ -13,3 +13,9 @@
 	allowed_magazines = list(/obj/item/ammo_magazine/m762garand)
 	auto_eject = 1
 	auto_eject_sound = 'sound/weapons/garand_ping.ogg'
+
+/obj/item/weapon/gun/projectile/garand/update_icon()
+	if(ammo_magazine)
+		icon_state = initial(icon_state)
+	else
+		icon_state = "[initial(icon_state)]-e"
