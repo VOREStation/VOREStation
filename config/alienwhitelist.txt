@@ -27,3 +27,4 @@ xioen - Xenomorph Hybrid
 zalvine - Enochian
 zammyman215 - Vox
 zekesturm - Xenomorph Hybrid
+aether_elemental - Daemon
