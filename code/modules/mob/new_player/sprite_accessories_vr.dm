@@ -639,6 +639,18 @@
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_HAND,BP_R_HAND)
 
+	harpy_feathers
+		name = "Harpy Feathers"
+		icon_state = "harpy-feathers"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_L_LEG,BP_R_LEG)
+
+	harpy_legs
+		name = "Harpy legs"
+		icon_state = "harpy-leg"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG)
+
 	alurane
 		name = "Alurane Body"
 		icon_state = "alurane"
