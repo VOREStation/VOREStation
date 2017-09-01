@@ -148,7 +148,7 @@ item_path: /obj/item/weapon/gun/projectile/revolver/mateba/fluff/dhael
 {
 ckey: dhaeleena
 character_name: Dhaeleena M'iar
-item_path: /obj/item/fluff/permit/dhaeleena_miar
+item_path: /obj/item/weapon/permit/gun/fluff/dhaeleena_miar
 }
 
 {
@@ -164,13 +164,14 @@ item_path: /obj/item/weapon/storage/belt/champion
 }
 
 # ######## E CKEYS
-# Needs to renew permit. Uncomment when renewed.
+
+# Permit Expired
 #{
 #ckey: eekasqueak
 #character_name: Serkii Miishy
-#item_path: /obj/item/fluff/permit/serkiimiishy
+#item_path: /obj/item/weapon/permit/gun/fluff/serkiimiishy
 #}
-
+#
 #{
 #ckey: eekasqueak
 #character_name: Serkii Miishy
@@ -409,17 +410,17 @@ character_name: Giliana Gamish
 item_path: /obj/item/clothing/head/fluff/molenar2
 }
 
-#Needs to renew permit
+# Permit Expired
 #{ 
 #ckey: molenar
 #character_name: Kari Akiren
 #item_path: /obj/item/weapon/gun/projectile/shotgun/pump/rifle/fluff/kari_akiren
 #}
-
+#
 #{
 #ckey: molenar
 #character_name: Kari Akiren
-#item_path: /obj/item/fluff/permit/kari_akiren
+#item_path: /obj/item/weapon/permit/gun/fluff/kari_akiren
 #}
 
 {
@@ -462,18 +463,21 @@ item_path: /obj/item/weapon/fluff/dragor_dot
 }
 
 # ######## Q CKEYS
-# ######## R CKEYS
-{
-ckey: Razerwing
-character_name: Archer Maximus
-item_path: /obj/item/weapon/gun/projectile/colt/fluff/archercolt
-}
 
-{
-ckey: Razerwing
-character_name: Archer Maximus
-item_path: /obj/item/fluff/permit/archermaximus
-}
+# ######## R CKEYS
+
+# Permit Expired
+#{
+#ckey: Razerwing
+#character_name: Archer Maximus
+#item_path: /obj/item/weapon/permit/gun/fluff/archermaximus
+#}
+#
+#{
+#ckey: Razerwing
+#character_name: Archer Maximus
+#item_path: /obj/item/weapon/gun/projectile/colt/fluff/archercolt
+#}
 
 # ######## S CKEYS
 {
@@ -498,12 +502,6 @@ item_path: /obj/item/clothing/suit/armor/vest/wolftaur/kate
 ckey: sasoperative
 character_name: Joseph Skinner
 item_path: /obj/item/clothing/accessory/medal/ERTservice
-}
-
-{
-ckey: sasoperative
-character_name: Joseph Skinner
-item_path: /obj/item/fluff/permit/josephskinner
 }
 
 {
