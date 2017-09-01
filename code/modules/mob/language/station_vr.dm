@@ -55,7 +55,6 @@
 	exclaim_verb = "incants"
 	colour = "daemon" //So fancy
 	key = "n"
-	flags = WHITELISTED
 	syllables = list("viepn","e","bag","docu","kar","xlaqf","raa","qwos","nen","ty","von","kytaf","xin","ty","ka","baak","hlafaifpyk","znu","agrith","na'ar","uah","plhu","six","fhler","bjel","scee","lleri",
 	"dttm","aggr","uujl","hjjifr","wwuthaav",)
 
@@ -67,7 +66,6 @@
 	exclaim_verb = "loudly sings"
 	colour = "enochian" //So fancy
 	key = "a"
-	flags = WHITELISTED
 	syllables = list("salve","sum","loqui","operatur","iusta","et","permittit","facere","effercio","pluribus","enim","hoc",
 	"mihi","wan","six","salve","tartu")
 
