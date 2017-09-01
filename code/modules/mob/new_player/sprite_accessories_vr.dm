@@ -295,7 +295,43 @@
 		icon_state = "spike"
 		species_allowed = list("Vulpkanin", "Xenochimera")
 		gender = NEUTER
+		
+//xeno stuffs 
+	xeno_head_drone_color
+		name = "Drone dome"
+		icon = 'icons/mob/human_face_vr.dmi'
+		icon_state = "cxeno_drone"
+		species_allowed = list("Xenomorph Hybrid")
+		gender = NEUTER
+// figure this one out for better coloring
+	xeno_head_sentinel_color
+		name = "Sentinal dome"
+		icon = 'icons/mob/human_face_vr.dmi'
+		icon_state = "cxeno_sentinel"
+		species_allowed = list("Xenomorph Hybrid")
+		gender = NEUTER
 
+	xeno_head_queen_color
+		name = "Queen dome"
+		icon = 'icons/mob/human_face_vr.dmi'
+		icon_state = "cxeno_queen"
+		species_allowed = list("Xenomorph Hybrid")
+		gender = NEUTER
+
+	xeno_head_hunter_color
+		name = "Hunter dome"
+		icon = 'icons/mob/human_face_vr.dmi'
+		icon_state = "cxeno_hunter"
+		species_allowed = list("Xenomorph Hybrid")
+		gender = NEUTER
+
+	xeno_head_praetorian_color
+		name = "Praetorian dome"
+		icon = 'icons/mob/human_face_vr.dmi'
+		icon_state = "cxeno_praetorian"
+		species_allowed = list("Xenomorph Hybrid")
+		gender = NEUTER
+		
 /datum/sprite_accessory/facial_hair
 	species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Xenochimera", "Xenomorph Hybrid", "Vasilissan") //This lets all races use the facial hair styles.
 
@@ -375,7 +411,7 @@
 	desc = ""
 	icon = 'icons/mob/human_face_vr.dmi'
 	icon_state = "inkling-colorable"
-
+	do_colouration = 1
 
 //VOREStation Body Markings and Overrides
 //Reminder: BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN,BP_HEAD
