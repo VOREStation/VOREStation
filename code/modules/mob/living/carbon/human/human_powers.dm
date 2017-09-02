@@ -162,6 +162,10 @@
 	sleep(50)
 	var/output = "<span class='notice'>Self-Diagnostic Results:\n</span>"
 
+	output += "Internal Temperature: [convert_k2c(bodytemperature)] Degrees Celsius\n"
+
+	output += "Current Battery Charge: [nutrition]\n"
+
 	for(var/obj/item/organ/external/EO in organs)
 		if(EO.brute_dam || EO.burn_dam)
 			output += "[EO.name] - <span class='warning'>[EO.burn_dam + EO.brute_dam > ROBOLIMB_REPAIR_CAP ? "Heavy Damage" : "Light Damage"]</span>\n"
