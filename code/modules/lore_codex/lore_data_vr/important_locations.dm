@@ -4,14 +4,14 @@
 	children = list(
 		/datum/lore/codex/page/virgo_erigone,
 		/datum/lore/codex/page/radiance_energy_chain,
-		/datum/lore/codex/page/virgo_prime,
 		/datum/lore/codex/page/virgo_two,
 		/datum/lore/codex/page/virgo_three,
 		/datum/lore/codex/page/virgo_three_bee,
 		/datum/lore/codex/page/nsb_adephagia,
 		/datum/lore/codex/page/virgo_central_command,
-		/datum/lore/codex/page/virgo_four,
-		/datum/lore/codex/page/virgo_five
+		/datum/lore/codex/page/virgo_prime,
+		/datum/lore/codex/page/virgo_five,
+		/datum/lore/codex/page/outer_worlds
 		)
 
 /datum/lore/codex/page/virgo_erigone/add_content()
@@ -108,19 +108,19 @@
 	atmosphere. Scientists believe this planet was once closer to its host star, but over time was pushed out beyond the habitable zone by \
 	other large planets."
 
-/datum/lore/codex/page/virgo_five/add_content()
-	name = "The Outer Planets"
-	keywords += list("The Outer Planets")
+/datum/lore/codex/page/outer_worlds/add_content()
+	name = "The Outer Worlds"
+	keywords += list("The Outer Worlds")
 	data = "The last three planets in the system are two small rocky worlds, Virgo 6 and 7, and finally Virgo 8 which is a frozen gas giant \
 	whose temperatures reach only 49°K. The planet has several moons, but none of these worlds are of any significance. Virgo 6 and 7, as well \
 	as 8's moons have no substantial deposits of any useful minerals, nor do they have an abundance of phoron. They are left largely ignored by \
 	the local [quick_link("TSC", "TSCs")], though this also makes them a safe haven for various pirate and smuggler stations."
 
-/* ToDo: ReDo.
 /datum/lore/codex/page/virgo_central_command/add_content()
 	name = "Virgo Central Command (Colony)"
 	keywords += list("Virgo Central Command")
-	data = "The Virgo Central Command is a large facility on [quick_link("Virgo-3B")] which handles the loading and \
+	data = "<i>This page has been ripped out. Odd.</i>"
+	/*data = "The Virgo Central Command is a large facility on [quick_link("Virgo-3B")] which handles the loading and \
 	unloading, refuelling, and general maintenance of large spacecraft. The main structure is owned by \
 	[quick_link("NanoTrasen")], but individual offices, docking/loading bays, and warehouses are often leased to individuals \
 	or organisations.  The position of the spaceport allows it to function not only as a key node for transport inside the Virgo-Erigone \
@@ -129,8 +129,7 @@
 	The station itself is mostly designed around its logistical and commercial needs, and although other strategically-placed \
 	nearby facilities owned by a mixture of corporations and entities may possess habitation space, the port itself is not \
 	designed to be a living habitat - its proximity to Virgo 3 makes transport of people and materials to and from \
-	the facility and the planet's stations via shuttle extremely cost-efficient."
-*/
+	the facility and the planet's stations via shuttle extremely cost-efficient."*/ // ToDo: ReDo.
 
 /datum/lore/codex/page/nsb_adephagia/add_content()
 	name = "NSB Adephagia (Space Elevator)"
