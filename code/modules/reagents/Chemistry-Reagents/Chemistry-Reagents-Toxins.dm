@@ -258,6 +258,10 @@
 /datum/reagent/toxin/plantbgone/touch_obj(var/obj/O, var/volume)
 	if(istype(O, /obj/effect/plant))
 		qdel(O)
+	else if(istype(O, /obj/effect/alien/weeds/))
+		var/obj/effect/alien/weeds/alien_weeds = O
+		alien_weeds.health -= rand(15, 35)
+		alien_weeds.healthcheck()
 
 /datum/reagent/toxin/plantbgone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
