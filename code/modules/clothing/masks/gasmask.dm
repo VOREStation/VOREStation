@@ -1,7 +1,7 @@
 /obj/item/clothing/mask/gas
 	name = "gas mask"
 	desc = "A face-covering mask that can be connected to an air supply. Filters harmful gases from the air."
-	//icon = 'icons/obj/clothing/masks_vr.dmi'
+	//icon = 'icons/obj/clothing/masks_vr.dmi' // Vorestation Edit?
 	icon_state = "gas_alt"
 	item_flags = BLOCK_GAS_SMOKE_EFFECT | AIRTIGHT
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE
@@ -27,20 +27,6 @@
 	filtered.update_values()
 
 	return filtered
-
-// VOREStation Edit - Our clear gas masks don't hide faces.  But changing the var on mask/gas would require un-chaging it on all children. This is nicer.
-/obj/item/clothing/mask/gas/New()
-	if(type == /obj/item/clothing/mask/gas)
-		flags_inv &= ~HIDEFACE
-	..()
-// VOREStation Edit End
-
-// VOREStation Edit - Since we changed the gas mask sprite, if we want the old one for some reason use this.
-/obj/item/clothing/mask/gas/wwii
-	icon = 'icons/obj/clothing/masks.dmi'
-	icon_override = 'icons/mob/mask.dmi'
-	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE
-// VOREStation Edit End
 
 /obj/item/clothing/mask/gas/half
 	name = "face mask"
