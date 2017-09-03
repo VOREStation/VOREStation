@@ -339,7 +339,7 @@ datum/species/harpy
 	deform = 'icons/mob/human_races/r_def_harpy_vr.dmi'
 	tail = "tail"
 	icobase_tail = 1
-	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
+	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/punch, /datum/unarmed_attack/bite)
 	num_alternate_languages = 3
 	secondary_langs = list(LANGUAGE_BIRDSONG)
 	name_language = null
@@ -364,7 +364,7 @@ datum/species/harpy
 	//reagent_tag = IS_SERGAL
 
 	heat_discomfort_strings = list(
-		"Your feathers prickles in the heat.",
+		"Your feathers prickle in the heat.",
 		"You feel uncomfortably warm.",
 		"Your overheated skin itches."
 		)
