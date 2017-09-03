@@ -220,7 +220,7 @@
 	icon_state = "sleek"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
-
+	
 // Special snowflake ears go below here.
 
 /datum/sprite_accessory/ears/molenar_kitsune
