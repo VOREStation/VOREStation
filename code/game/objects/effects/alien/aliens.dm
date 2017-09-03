@@ -366,7 +366,7 @@ Alien plants should do something if theres a lot of poison
 			Burst(0)
 			return
 
- /obj/effect/alien/egg/proc/GetFacehugger() // Commented out for future edit.
+/obj/effect/alien/egg/proc/GetFacehugger() // Commented out for future edit.
 	return locate(/obj/item/clothing/mask/facehugger) in contents
 
 /obj/effect/alien/egg/proc/Grow()

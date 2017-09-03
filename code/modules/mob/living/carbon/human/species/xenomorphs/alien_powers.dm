@@ -35,7 +35,7 @@
 			return
 
 	if(P.stored_plasma < cost)
-		src << "\red You don't have enough phoron stored to do that."
+		src << "<span class='danger'>You don't have enough phoron stored to do that.</span>"
 		return 0
 
 	if(needs_foundation)
@@ -46,7 +46,7 @@
 			if(!(istype(T,/turf/space)))
 				has_foundation = 1
 		if(!has_foundation)
-			src << "\red You need a solid foundation to do that on."
+			src << "<span class='danger'>You need a solid foundation to do that on.</span>"
 			return 0
 
 	P.stored_plasma -= cost
@@ -280,16 +280,16 @@
 		return
 
 	if(stat || paralysis || stunned || weakened || lying)
-		src << "\red You cannot do that in your current state."
+		src << "<span class='danger'>You cannot do that in your current state.</span>"
 		return
 
 	var/obj/item/weapon/grab/G = locate() in src
 	if(!G || !istype(G))
-		src << "\red You are not grabbing anyone."
+		src << "<span class='danger'>You are not grabbing anyone.</span>"
 		return
 
 	if(G.state < GRAB_AGGRESSIVE)
-		src << "\red You must have an aggressive grab to gut your prey!"
+		src << "<span class='danger'>You must have an aggressive grab to gut your prey!</span>"
 		return
 
 	last_special = world.time + 50

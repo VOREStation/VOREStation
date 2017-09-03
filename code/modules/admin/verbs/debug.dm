@@ -113,7 +113,7 @@
 			M:Alienize()
 			feedback_add_details("admin_verb","MKAL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 		log_admin("[key_name(usr)] made [key_name(M)] into an alien.")
-		message_admins("\blue [key_name_admin(usr)] made [key_name(M)] into an alien.", 1)
+		message_admins("<span class='notice'>[key_name_admin(usr)] made [key_name(M)] into an alien.</span>", 1)
 	else
 		alert("Invalid mob")
 
