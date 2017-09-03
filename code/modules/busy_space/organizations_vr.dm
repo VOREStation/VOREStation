@@ -59,6 +59,7 @@
 						"to a local distress beacon"
 						)
 
+/*
 /datum/lore/organization/gov/federation
 	name = "United Federation of Planets"
 	short_name = "Federation"
@@ -126,8 +127,9 @@
 						"Naro Industrial Complex on Scheddi III",
 						"Mari Industrial Complex on Furlou Prime",
 						"Runni Crystal Mines of Keid V")
+*/ // ToDo: ReDo.
 
-/datum/lore/organization/gov/unsc // change to sif_guard in future to overwrite Polaris stuff
+/datum/lore/organization/mil/unsc // change to sif_guard in future to overwrite Polaris stuff
 	name = "United Nations Space Command"
 	short_name = "" // This is blank on purpose. Otherwise they call the ships "UNSC" "UNSC Name"
 	desc = "The dedicated military force of SolGov, originally formed by the United Nations, the UNSC is the might of SolGov. It is the \

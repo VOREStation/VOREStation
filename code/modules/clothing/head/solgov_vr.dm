@@ -93,6 +93,10 @@
 	name = "marine officer's dress wheel cover"
 	desc = "A white dress uniform cover with an UNSC Marine Corps crest and gold stripe."
 
+/obj/item/clothing/head/dress/marine/command/admiral
+	name = "admiral's dress wheel cover"
+	desc = "A white dress uniform cover with an UNSC Navy crest and gold stripe."
+
 //Berets
 
 /obj/item/clothing/head/beret/sol

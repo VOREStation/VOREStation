@@ -1,29 +1,20 @@
 some~user - Species
-1r1s - Daemon
-benemuel - Daemon
-benemuel - Enochian
 bothnevarbackwards - Diona
 cameron653 - Xenomorph Hybrid
 hawkerthegreat - Vox
 jemli - Gutter
-natje - Daemon
 natje - Xenochimera
-pontifexminimus - Daemon
-pontifexminimus - Enochian
 rikaru19xjenkins  - Xenomorph Hybrid
 rikaru19xjenkins - Xenochimera
 rixunie - Diona
 rixunie - Gutter
 seiga - Vox
-sepulchre - Daemon
 sepulchre - Vox
 sepulchre - Xenomorph Hybrid
 silverTalismen - Diona
 silvertalismen - Xenochimera
-vorrarkul - Daemon
-vorrarkul - Enochian
 xioen - Diona
 xioen - Xenomorph Hybrid
-zalvine - Enochian
 zammyman215 - Vox
 zekesturm - Xenomorph Hybrid
+aether_elemental - Daemon

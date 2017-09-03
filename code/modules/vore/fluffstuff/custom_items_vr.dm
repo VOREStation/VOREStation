@@ -1359,12 +1359,16 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	icon = 'icons/obj/items.dmi'
 	icon_state = "dnainjector"
 
-/obj/item/weapon/fluff/kitchi_injector/attack_self(mob/user as mob)
+/obj/item/weapon/fluff/kitchi_injector/attack(mob/living/M, mob/living/user)
 
-	if(user.ckey != "Ketrai")
-		user << "<span class='warning'>You inject yourself.... Nothing happens.</span>"
+	if(M.ckey != "Ketrai")
+		user << "<span class='warning'>Something compels you to <i>not</i> use this injector.</span>"
 		return
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		H.monkeyize()
-	qdel(src) //One time use.
+
+	if(usr == M) //Is the person using it on theirself?
+		if(ishuman(M)) //If so, monkify them.
+			var/mob/living/carbon/human/H = user
+			H.monkeyize()
+			qdel(src) //One time use.
+	else //If not, do nothing.
+		to_chat(user,"<span class='warning'> You are unable to inject other people.</span>")

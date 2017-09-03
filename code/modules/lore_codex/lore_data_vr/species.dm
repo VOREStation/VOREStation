@@ -13,8 +13,7 @@
 		/datum/lore/codex/page/vulpkanin,
 		/datum/lore/codex/page/zorren,
 		/datum/lore/codex/category/teshari,
-		/datum/lore/codex/category/positronic,
-		/datum/lore/codex/category/drone
+		/datum/lore/codex/category/positronic
 		)
 
 /datum/lore/codex/page/human/add_content()
@@ -43,16 +42,12 @@
 
 /datum/lore/codex/page/unathi
 	name = "Unathi"
-	data = "The author wishes to apologize to the reader, as they currently lack enough knowledge of the Unathi to write about them, as they are \
-	rather rare inside Vir." // Replace this when Anewbe finishes the lizard rewrite.
-	/*
 	data = "Raging in from Moghes, the Unathi are a race of tall, reptilian humanoids that possess both crocodile-like and serpent-like features. \
 	They are a proud, warlike species that favors honor and strength, their home, Moghes, is a desert planet but was once believed to be full of life. \
 	Of all the currently known sentient species, the Unathi are the most unequal in gender with females tending to be property of the males. Most Unathi \
 	outside of Moghes tend to be exiles however, and with influence of other species the gender difference is not nearly as pronounced. Unathi were \
 	humanity's second contact, and despite their aggressive nature, seem to get along well enough with humanity, though are often considered to be \
-	'second-class' citizens and are rarely seen in jobs other than where muscle is needed." // This probably needs to be updated.
-	*/
+	'second-class' citizens and are rarely seen in jobs other than where muscle is needed." // ToDo: Update with Unathi rewrite from Polaris.
 
 /datum/lore/codex/page/tajaran
 	name = "Tajaran"
@@ -246,6 +241,7 @@
 	unless on a contractual basis or otherwise under their own volition."
 
 // Drone lore
+/*
 /datum/lore/codex/category/drone
 	name = "Drones"
 	keywords = list("Drone")
@@ -262,7 +258,7 @@
 		/datum/lore/codex/page/emergence,
 		/datum/lore/codex/page/emergent_intelligence_oversight,
 		/datum/lore/codex/category/drone_classes,
-		)
+		)*/
 
 /datum/lore/codex/page/codeline
 	name = "Codeline"
@@ -272,6 +268,7 @@
 	codeline’s initial state or from a fully realized individual of that codeline. The degree of similarity between forks of the same codeline varies \
 	on the intelligence of the codeline, with low-level forks being virtually identical to high-level forks being no more similar than family members."
 
+/*
 /datum/lore/codex/page/emergence
 	name = "Emergence"
 	keywords = list("Seed AI")
@@ -279,6 +276,7 @@
 	extend to financial systems learning language, for instance, it is usually applied to hypothetical intelligences that become more intelligent than humans. \
 	Humanity has a long-standing cultural fear of emergent \"seed\" AI, egged on by Icarus memeticists and the occasional very real partial emergence events, where \
 	colony-control AI or other powerful systems begin to advance drastically in power, usually ending with the AI being shut down after crashing a handful of major systems."
+*/
 
 /datum/lore/codex/page/emergent_intelligence_oversight
 	name = "Emergent Intelligence Oversight"
@@ -288,7 +286,7 @@
 	groups bristle at the EIO’s human-centric viewpoint, but most are glad to have a different boogeyman in the form of drone intelligences. The tiny population \
 	of A-class drones are generally frightened of the EIO’s total power over them."
 
-/datum/lore/codex/category/drone_classes
+/*/datum/lore/codex/category/drone_classes
 	name = "Drone Classifications"
 	keywords = list("Class", "Drone Class")
 	data = "To aid in its work, the EIO has created a system of classifications corresponding to different levels of drone intelligence. Higher classes are more \
@@ -368,3 +366,4 @@
 	data = "X-class drones emerge from unrated software, are produced by rogue labs, or cross the border from foreign space. They are considered a threat to national \
 	security and deleted when encountered in SolGov space, with the producers prosecuted legally if it has a SolGov origin. The few Skrellian drone labs will usually \
 	rate their product with EIO to allow their product to be imported."
+*/
