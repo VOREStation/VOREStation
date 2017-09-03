@@ -733,13 +733,31 @@ other types of metals and chemistry for reagents).
 	sort_string = "VASBA"
 
 /datum/design/item/experimental_welder
-	name = "Expiermental Welding Tool"
+	name = "Experimental welding tool"
 	desc = "A welding tool that generate fuel for itself."
 	id = "expwelder"
 	req_tech = list(TECH_ENGINEERING = 4, TECH_PHORON = 3, TECH_MATERIAL = 4)
 	materials = list(DEFAULT_WALL_MATERIAL = 70, "glass" = 120, "phoron" = 100)
 	build_path = /obj/item/weapon/weldingtool/experimental
 	sort_string = "VASCA"
+
+/datum/design/item/hand_drill
+	name = "Hand drill"
+	desc = "A simple powered hand drill."
+	id = "handdrill"
+	req_tech = list(TECH_ENGINEERING = 3, TECH_MATERIAL = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 300, "silver" = 100)
+	build_path = /obj/item/weapon/screwdriver/power
+	sort_string = "VASDA"
+
+/datum/design/item/jaws_life
+	name = "Jaws of life"
+	desc = "A set of jaws of life, compressed through the magic of science."
+	id = "jawslife"
+	req_tech = list(TECH_ENGINEERING = 3, TECH_MATERIAL = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 300, "silver" = 100)
+	build_path = /obj/item/weapon/crowbar/power
+	sort_string = "VASEA"
 /*
 CIRCUITS BELOW
 */

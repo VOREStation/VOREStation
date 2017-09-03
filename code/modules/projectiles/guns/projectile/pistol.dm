@@ -10,11 +10,7 @@
 	fire_sound = 'sound/weapons/semiauto.ogg'
 	load_method = MAGAZINE
 
-/obj/item/weapon/gun/projectile/colt/detective
-	desc = "A Martian recreation of an old Terran pistol. Uses .45 rounds."
-	magazine_type = /obj/item/ammo_magazine/m45/rubber
-
-/obj/item/weapon/gun/projectile/colt/detective/update_icon()
+/obj/item/weapon/gun/projectile/colt/update_icon()
 	if(ammo_magazine)
 		if(unique_reskin)
 			icon_state = unique_reskin
@@ -25,6 +21,10 @@
 			icon_state = "[unique_reskin]-e"
 		else
 			icon_state = "[initial(icon_state)]-e"
+
+/obj/item/weapon/gun/projectile/colt/detective
+	desc = "A Martian recreation of an old Terran pistol. Uses .45 rounds."
+	magazine_type = /obj/item/ammo_magazine/m45/rubber
 
 /obj/item/weapon/gun/projectile/colt/detective/verb/rename_gun()
 	set name = "Name Gun"

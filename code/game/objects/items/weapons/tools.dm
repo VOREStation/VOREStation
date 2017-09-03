@@ -53,7 +53,7 @@
 	icon_state = "drill_bolt"
 	item_state = "drill"
 	usesound = 'sound/items/drill_use.ogg'
-	matter = list(DEFAULT_WALL_MATERIAL = 150, MAT_SILVER = 50, MAT_TITANIUM = 25)
+	matter = list(DEFAULT_WALL_MATERIAL = 150, MAT_SILVER = 50)
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
 	force = 8
 	w_class = ITEMSIZE_SMALL
@@ -155,7 +155,7 @@
 	desc = "A simple powered hand drill. It's fitted with a screw bit."
 	icon_state = "drill_screw"
 	item_state = "drill"
-	matter = list(DEFAULT_WALL_MATERIAL = 150, MAT_SILVER = 50, MAT_TITANIUM = 25)
+	matter = list(DEFAULT_WALL_MATERIAL = 150, MAT_SILVER = 50)
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
 
 	force = 8
@@ -240,7 +240,7 @@
 	icon_state = "jaws_cutter"
 	item_state = "jawsoflife"
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
-	matter = list(MAT_METAL=150, MAT_SILVER=50, MAT_TITANIUM=25)
+	matter = list(MAT_METAL=150, MAT_SILVER=50)
 	usesound = 'sound/items/jaws_cut.ogg'
 	force = 15
 	toolspeed = 0.25
@@ -844,7 +844,7 @@
 	desc = "A set of jaws of life, compressed through the magic of science. It's fitted with a prying head."
 	icon_state = "jaws_pry"
 	item_state = "jawsoflife"
-	matter = list(MAT_METAL=150, MAT_SILVER=50, MAT_TITANIUM=25)
+	matter = list(MAT_METAL=150, MAT_SILVER=50)
 	origin_tech = list(TECH_MATERIALS = 2, TECH_ENGINEERING = 2)
 	usesound = 'sound/items/jaws_pry.ogg'
 	force = 15
