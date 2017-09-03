@@ -590,6 +590,18 @@ character_name: Roiz Lizden
 item_path: /obj/item/clothing/suit/storage/hooded/wintercoat/roiz
 }
 
+{
+ckey: suicidalpickles
+character_name: Silent Stripes
+item_path: /obj/item/clothing/mask/gas/sexymime
+}
+
+{
+ckey: suicidalpickles
+character_name: Silent Stripes
+item_path: /obj/item/clothing/under/sexymime
+}
+
 # ######## T CKEYS
 {
 ckey: tonyvld
