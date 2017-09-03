@@ -333,8 +333,8 @@
 	min_age = 18
 
 datum/species/harpy
-	name = "Harpy"
-	name_plural = "Harpies"
+	name = "Rapala"
+	name_plural = "Rapalans"
 	icobase = 'icons/mob/human_races/r_harpy_vr.dmi'
 	deform = 'icons/mob/human_races/r_def_harpy_vr.dmi'
 	tail = "tail"
@@ -351,7 +351,7 @@ datum/species/harpy
 	blurb = "An Avian species, coming from a distant planet, the Rapalas are the very proud race.\
 	 Sol researchers have commented on them having a very close resemblance to the mythical race called 'Harpies',\
 	 who are known for having massive winged arms and talons as feet. They've been clocked at speeds of over 35 miler per hours chasing the planets many fish-like fauna.\
-	 Rapalas home-world 'Verita' is a strangely habitable gas giant, while no physical earth exists, there are fertile floating islands orbiting around the planet from past asteroid activity."
+	 Rapala's home-world 'Verita' is a strangely habitable gas giant, while no physical earth exists, there are fertile floating islands orbiting around the planet from past asteroid activity."
 
 	//primitive_form = "Saru"
 
