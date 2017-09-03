@@ -114,14 +114,14 @@
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Shaft miner equipment"
 	access = access_mining
-
+/* //VOREStation Edit
 /datum/supply_packs/supply/mule
 	name = "Mulebot Crate"
 	contains = list()
 	cost = 20
 	containertype = /obj/structure/largecrate/animal/mulebot
 	containername = "Mulebot Crate"
-
+*/ //VOREStation Edit
 /datum/supply_packs/supply/cargotrain
 	name = "Cargo Train Tug"
 	contains = list(/obj/vehicle/train/cargo/engine)
