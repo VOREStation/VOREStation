@@ -12,9 +12,9 @@
 	spawn_positions = 4
 	alt_titles = list("Custodian", "Sanitation Technician", "Maid")
 
-/datum/job/officer //8 lockers in security, 8 officers.
-	total_positions = 8
-	spawn_positions = 8
+/datum/job/officer //6 lockers in security, 6 officers.
+	total_positions = 6
+	spawn_positions = 6
 
 /datum/job/cargo_tech
 	total_positions = 4
