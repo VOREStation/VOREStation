@@ -36,7 +36,7 @@
 	total_positions = 4
 	spawn_positions = 4
 
-/darum/job/chef
+/datum/job/chef
 	total_positions = 3 //IT TAKES A LOT TO MAKE A STEW
 	spawn_positions = 3 //A PINCH OF SALT AND LAUGHTER, TOO
 
