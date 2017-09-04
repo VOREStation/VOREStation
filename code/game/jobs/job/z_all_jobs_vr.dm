@@ -33,8 +33,8 @@
 	spawn_positions = 4
 
 /datum/job/bartender
-	total_positions = 4
-	spawn_positions = 4
+	total_positions = 3
+	spawn_positions = 3
 
 /datum/job/chef
 	total_positions = 3 //IT TAKES A LOT TO MAKE A STEW
