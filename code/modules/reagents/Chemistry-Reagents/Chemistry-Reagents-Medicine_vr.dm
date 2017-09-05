@@ -5,7 +5,7 @@
 	taste_description = "milk"
 	reagent_state = SOLID
 	color = "#d5e2e5"
-	overdose = REAGENTS_OVERDOSE	
+	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/adranol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
