@@ -1,4 +1,4 @@
-/obj/effect/spider/grub
+/obj/effect/spider/grub //travis is a butt!!!
 	name = "grub larva"
 	desc = "It never stays still for long."
 //	icon = 'grub_vr.dmi'
