@@ -331,7 +331,8 @@
 	glows = TRUE
 	coretype = /obj/item/slime_extract/ruby
 
-	description_info = "This slime is unnaturally stronger, allowing it to hit much harder, take less damage, and be stunned for less time."
+	description_info = "This slime is unnaturally stronger, allowing it to hit much harder, take less damage, and be stunned for less time.  \
+	Their glomp attacks also send the victim flying."
 
 	slime_mutation = list(
 		/mob/living/simple_animal/slime/dark_purple,
@@ -344,6 +345,17 @@
 	..()
 	add_modifier(/datum/modifier/slime_strength, null, src) // Slime is always swole.
 
+/mob/living/simple_animal/slime/ruby/DoPunch(var/mob/living/L)
+	..() // Do regular attacks.
+
+	if(istype(L))
+		if(a_intent == I_HURT)
+			visible_message("<span class='danger'>\The [src] sends \the [L] flying with the impact!</span>")
+			playsound(src, "punch", 50, 1)
+			L.Weaken(1)
+			var/throwdir = get_dir(src, L)
+			L.throw_at(get_edge_target_turf(L, throwdir), 3, 1, src)
+
 
 /mob/living/simple_animal/slime/amber
 	desc = "This slime seems to be an expert in the culinary arts, as they create their own food to share with others.  \
@@ -355,7 +367,7 @@
 	coretype = /obj/item/slime_extract/amber
 
 	description_info = "This slime feeds nearby entities passively while it is alive.  This can cause uncontrollable \
-	slime growth and reproduction if not kept in check."
+	slime growth and reproduction if not kept in check.  The amber slime cannot feed itself, but can be fed by other amber slimes."
 
 	slime_mutation = list(
 		/mob/living/simple_animal/slime/silver,

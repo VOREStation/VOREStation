@@ -68,6 +68,14 @@
 	containername = "Robolimb blueprints (Xion)"
 	access = access_robotics
 
+/datum/supply_packs/robotics/robolimbs/grayson
+	name = "Grayson robolimb blueprints"
+	contains = list(/obj/item/weapon/disk/limb/grayson)
+	cost = 30
+	containertype = /obj/structure/closet/crate/secure/science
+	containername = "Robolimb blueprints (Grayson)"
+	access = access_robotics
+
 /datum/supply_packs/robotics/robolimbs/hephaestus
 	name = "Hephaestus robolimb blueprints"
 	contains = list(/obj/item/weapon/disk/limb/hephaestus)

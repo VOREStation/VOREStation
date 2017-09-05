@@ -430,6 +430,10 @@
 			else
 				W.forceMove(src.loc)
 
+	for(var/obj/structure/B in items)
+		if(istype(B,/obj/structure/bed))
+			qdel(B)
+
 	//Update any existing objectives involving this mob.
 	for(var/datum/objective/O in all_objectives)
 		// We don't want revs to get objectives that aren't for heads of staff. Letting
@@ -521,6 +525,9 @@
 	for(var/obj/item/W in items)
 		W.forceMove(get_turf(src))
 
+	for(var/obj/structure/bed/S in src.contents)
+		S.forceMove(get_turf(src))
+
 	go_out()
 	add_fingerprint(usr)
 
@@ -563,6 +570,8 @@
 		if(ishuman(usr) && applies_stasis)
 			var/mob/living/carbon/human/H = occupant
 			H.Stasis(1000)
+		if(usr.buckled && istype(usr.buckled, /obj/structure/bed/chair/wheelchair))
+			usr.buckled.loc = usr.loc
 
 		icon_state = occupied_icon_state
 
@@ -660,6 +669,8 @@
 		if(ishuman(M) && applies_stasis)
 			var/mob/living/carbon/human/H = M
 			H.Stasis(1000)
+		if(M.buckled && istype(M.buckled, /obj/structure/bed/chair/wheelchair))
+			M.buckled.loc = M.loc
 
 		// Book keeping!
 		var/turf/location = get_turf(src)

@@ -82,7 +82,7 @@ var/global/list/datum/supply_drop_loot/supply_drop
 		/obj/item/weapon/storage/belt/security/tactical/bandolier,
 		/obj/item/clothing/accessory/storage/black_drop_pouches,
 		/obj/item/weapon/storage/backpack/dufflebag/sec,
-		/obj/item/weapon/gun/projectile/automatic/carbine,
+		/obj/item/weapon/gun/projectile/automatic/bullpup,
 		/obj/item/ammo_magazine/m762/ap,
 		/obj/item/ammo_magazine/m762,
 		/obj/item/weapon/shield/energy,

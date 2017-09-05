@@ -33,9 +33,4 @@ delete-after: True
 # Also, all entries are changed into a single [] after a master changelog generation. Just remove the brackets when you add new entries.
 # Please surround your changes in  double quotes ("), as certain characters otherwise screws up compiling. The quotes will not show up in the changelog.
 changes: 
-  - tweak: "Modifies the illegal equipment module for borgs to scrambled equipment module that only activates the special items and doesn't actually emag the borg"
-  - bugfix: "Mining cyborg diamond drill is now obtainable in a more sensible manner"
-  - tweak: "Click dragging has been added to the cryogenics tubes, cloning pod, and all methods of cryostorage"
-  - tweak: "Some quality of life changes for research, crisis, surgeon, and service cyborgs"
-  - bugfix: "Jumper cables readded"
-  - tweak: "Construction cyborgs merged back with engineering cyborgs"
+  - tweak: "Removes the module restraint for the cyborg jetpack upgrade"

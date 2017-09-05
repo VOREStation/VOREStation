@@ -32,7 +32,7 @@
 	if(L.isSynthetic())
 		to_chat(src, "This subject is not biological...")
 		return FALSE
-	if(L.getarmor(null, "bio") >= 80)
+	if(L.getarmor(null, "bio") >= 75)
 		to_chat(src, "I cannot reach this subject's biological matter...")
 		return FALSE
 	if(istype(L, /mob/living/simple_animal/slime))

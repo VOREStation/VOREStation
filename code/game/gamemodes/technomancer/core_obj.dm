@@ -43,7 +43,7 @@
 /obj/item/weapon/technomancer_core/Destroy()
 	dismiss_all_summons()
 	processing_objects.Remove(src)
-	..()
+	return ..()
 
 // Add the spell buttons to the HUD.
 /obj/item/weapon/technomancer_core/equipped(mob/user)
