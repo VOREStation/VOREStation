@@ -263,7 +263,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 			return 1
 
 	if(src.a_intent == I_GRAB && src.canmove && !src.buckled)
-		if((src.get_effective_size() - tmob.get_effective_size()) >= 0.75)
+		if((src.get_effective_size() - tmob.get_effective_size()) >= 0.50)
 			now_pushing = 0
 			src.forceMove(tmob.loc)
 
@@ -272,15 +272,17 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 				// User is a human (capable of scooping) and not wearing shoes! Scoop into foot slot!
 				equip_to_slot_if_possible(tmob.get_scooped(H), slot_shoes, 0, 1)
 				if(istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
-					src << "You wrap up [tmob] with your powerful tail!"
-					tmob << "[src] binds you with their powerful tail!"
+					src << "You slither over [tmob] with your large, thick tail, smushing them against the ground before coiling up around them, trapping them within the tight coils of your tail!"
+					tmob << "[src] sliters over you with their large, thick tail, smushing you against the ground before coiling up around you, trapping you within the tight coils of their tail!"
 				else
-					src << "You clench your toes around [tmob]'s body!"
-					tmob << "[src] grabs your body with their toes!"
+					src << "You pin [tmob] down onto the floor with your foot and curl your toes up around their body, trapping them inbetween them!"
+					tmob << "[src] pins you down to the floor with their foot and curls their toes up around your body, trapping you inbetween them!"
 			else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
-				src << "You carefully squish [tmob] under your tail!"
-				tmob << "[src] pins you under their tail!"
+				src << "You squish [tmob] under your large, thick tail, forcing them onto the ground!"
+				tmob << "[src] pins you under their large, thick tail, forcing you onto the ground!!"
+				tmob.resting = 1
 			else
-				src << "You pin [tmob] beneath your foot!"
-				tmob << "[src] pins you beneath their foot!"
+				src << "You step down onto [tmob], squishing them and forcing them down to the ground!"
+				tmob << "[src] steps down and squishes you with their foot, forcing you down to the ground!"
+				tmob.resting = 1
 			return 1
