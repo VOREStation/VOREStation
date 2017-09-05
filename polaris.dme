@@ -2256,7 +2256,6 @@
 #include "code\ZAS\Zone.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\example\example.dm"
-#include "maps\example\xenobio_test.dmm"
+#include "maps\northern_star\northern_star.dm"
 #include "maps\~map_system\maps.dm"
 // END_INCLUDE

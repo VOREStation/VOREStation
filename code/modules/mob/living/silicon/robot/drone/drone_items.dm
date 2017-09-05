@@ -77,7 +77,7 @@
 		/obj/item/weapon/circuitboard,
 		/obj/item/weapon/reagent_containers/glass,
 		/obj/item/device/assembly/prox_sensor,
-		/obj/item/device/healthanalyzer, //to build medibots
+		/obj/item/device/healthanalyzer, //to build medibots,
 		/obj/item/slime_cube,
 		/obj/item/slime_crystal,
 		/obj/item/weapon/disposable_teleporter/slime,

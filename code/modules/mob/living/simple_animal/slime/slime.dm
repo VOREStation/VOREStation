@@ -317,7 +317,10 @@
 // Used for reproducing and dying.
 /mob/living/simple_animal/slime/proc/make_new_slime()
 	var/t = src.type
-	if(prob(mutation_chance) && slime_mutation.len)
+	if(prob(mutation_chance / 10))
+		t = /mob/living/simple_animal/slime/rainbow
+
+	else if(prob(mutation_chance) && slime_mutation.len)
 		t = slime_mutation[rand(1, slime_mutation.len)]
 	var/mob/living/simple_animal/slime/baby = new t(loc)
 
