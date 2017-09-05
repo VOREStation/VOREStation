@@ -31,10 +31,13 @@
 
 */
 
+
+////////////////////////////////////////////////////////////
 //////////////////// Projectile Weapons ////////////////////
+////////////////////////////////////////////////////////////
 // For general use
 /obj/item/weapon/gun/projectile/automatic/battlerifle
-	name = "\improper BR55 Service Rifle"
+	name = "\improper UNSC service rifle"
 	desc = "You had your chance to be afraid before you joined my beloved Corps! But, to guide you back to the true path, I brought this motivational device! Uses unique 9.5x40mm rounds."
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "battlerifle"
@@ -56,24 +59,65 @@
 
 // For general use
 /obj/item/weapon/gun/projectile/shotgun/pump/unsc
-	name = "\improper M45E Tactical Shotgun"
-	desc = "All you greenhorns who wanted to see Xenomorphs up close... this is your lucky day."
-
+	name = "\improper UNSC tactical shotgun"
+	desc = "All you greenhorns who wanted to see Xenomorphs up close... this is your lucky day. Uses 12g rounds."
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "haloshotgun"
-
 	icon_override = 'icons/obj/gun_vr.dmi'
 	item_state = "haloshotgun_i"
 	item_icons = null
-
 	ammo_type = /obj/item/ammo_casing/a12g
 	max_shells = 12
 
+// For general use
+/obj/item/weapon/gun/projectile/automatic/pdw
+	name = "personal defense weapon"
+	desc = "The X-9MM is a select-fire personal defense weapon designed in-house by Xing Private Security. It was made to compete with the WT550 Saber, but hasn't yet caught on with NanoTrasen. Uses 9mm rounds."
+	icon = 'icons/obj/gun_vr.dmi'
+	icon_state = "pdw"
+	item_state = "c20r" // Placeholder
+	w_class = ITEMSIZE_NORMAL
+	caliber = "9mm"
+	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
+	slot_flags = SLOT_BELT
+	load_method = MAGAZINE
+	magazine_type = /obj/item/ammo_magazine/m9mml
+	allowed_magazines = list(/obj/item/ammo_magazine/m9mm, /obj/item/ammo_magazine/m9mml)
+
+	firemodes = list(
+		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    burst_accuracy=list(0,-1,-2), dispersion=list(0.0, 0.6, 0.6))
+		)
+
+/obj/item/weapon/gun/projectile/automatic/pdw/update_icon(var/ignore_inhands)
+	..()
+	if(istype(ammo_magazine,/obj/item/ammo_magazine/m9mm))
+		icon_state = "pdw-short"
+	else
+		icon_state = (ammo_magazine)? "pdw" : "pdw-empty"
+	if(!ignore_inhands) update_held_icon()
+
+// For general use
+/obj/item/weapon/gun/energy/imperial
+	name = "imperial energy pistol"
+	desc = "An elegant weapon developed by the Imperium Auream. Their weaponsmiths have cleverly found a way to make a gun that is only about the size of an average energy pistol, yet with the fire power of a laser carbine."
+	icon_state = "ge_pistol"
+	item_state = "ge_pistol"
+	fire_sound = 'sound/weapons/mandalorian.ogg'
+	icon = 'icons/obj/gun_vr.dmi'
+	item_icons = list(slot_r_hand_str = 'icons/obj/gun_vr.dmi', slot_l_hand_str = 'icons/obj/gun_vr.dmi') // WORK YOU FUCKING CUNT PIECE OF SHIT BASTARD STUPID BITCH ITEM ICON AAAAHHHH
+	item_state_slots = list(slot_r_hand_str = "ge_pistol_r", slot_l_hand_str = "ge_pistol_l")
+	slot_flags = SLOT_BELT
+	w_class = ITEMSIZE_NORMAL
+	force = 10
+	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 2)
+	matter = list(DEFAULT_WALL_MATERIAL = 2000)
+	projectile_type = /obj/item/projectile/beam/imperial
+
 // jertheace : Jeremiah 'Ace' Acacius
 /obj/item/weapon/gun/projectile/shotgun/pump/unsc/fluff/ace
-	name = "Ace's M45D Tactical Shotgun" // D-model holds half as many shells as the normal version so as not to be OP as shit. Better than shotgun, worse than combat shotgun.
-	desc = "Owned by the respected (or feared?) veteran Captain of VORE Station. Inscribed on the barrel are the words \"Speak softly, and carry a big stick.\" It has a folding stock so it can fit into bags."
-	w_class = ITEMSIZE_NORMAL // Because collapsable stock so it fits in backpacks.
+	name = "Ace's tactical shotgun" // D-model holds half as many shells as the normal version so as not to be OP as shit. Better than normal shotgun, worse than combat shotgun.
+	desc = "Owned by the respected (or feared?) veteran Captain of VORE Station. Inscribed on the barrel are the words \"Speak softly, and carry a big stick.\""
 	ammo_type = /obj/item/ammo_casing/a12g/stunshell
 	max_shells = 6
 
@@ -81,40 +125,31 @@
 /obj/item/weapon/gun/projectile/revolver/mateba/fluff/tasald_corlethian //Now that it is actually Single-Action and not hacky broken SA, I see no reason to nerf this down to .38. --Joan Risu
 	name = "Big Iron revolver"
 	desc = "A .357 revolver for veteran rangers on the planet Orta. The right side of the handle has a logo for Quarion industries, and the left is the Rangers. The primary ammo for this gun is .357 rubber. According to the CentCom Chief of Security, this revolver was more controversial than it needed to be."
-
 	icon = 'icons/vore/custom_guns_vr.dmi'
 	icon_state = "tasaldrevolver"
-
 	item_state = "revolver"
-
 	fire_sound = 'sound/weapons/pistol.ogg'
 	ammo_type = /obj/item/ammo_casing/a357/rubber //Like I said, no reason to nerf. --Joan Risu
 	var/recentpump = 0
 	var/cocksound = 'sound/weapons/revolvercock.ogg'
-
 	consume_next_projectile()
 		if(chambered)
 			return chambered.BB
 		usr << "<span class='warning'>It's a single action revolver, pull the hammer back!</span>"
 		return null
-
 	attack_self(mob/living/user as mob)
 		if(world.time >= recentpump + 10)
 			pump(user)
 			recentpump = world.time
-
 	proc/pump(mob/M as mob)
 		playsound(M, cocksound, 60, 1)
-
 		if(chambered)//We have a shell in the chamber
 			chambered.loc = get_turf(src)//Eject casing
 			chambered = null
-
 		if(loaded.len)
 			var/obj/item/ammo_casing/AC = loaded[1] //load next casing.
 			loaded -= AC //Remove casing from loaded list.
 			chambered = AC
-
 		update_icon()
 
 /obj/item/weapon/gun/projectile/revolver/mateba/fluff/tasald_corlethian/attack_hand(mob/user as mob)
@@ -127,10 +162,8 @@
 /obj/item/weapon/gun/projectile/revolver/fluff/ryan_winz_revolver
 	name = "Ryan's 'Devilgun'"
 	desc = "You notice the serial number on the revolver is 666. The word 'Sin' is engraved on the blood-red rosewood grip. Uses .357 rounds."
-
 	icon = 'icons/vore/custom_guns_vr.dmi'
 	icon_state = "ryan_winz"
-
 	item_state = "revolver"
 
 /obj/item/weapon/gun/projectile/revolver/fluff/ryan_winz_revolver/redemption
@@ -153,7 +186,6 @@
 	desc = "This unique looking handgun is engraved with roses along the barrel and the cylinder as well as the initials DM under the grip. Along the middle of the barrel an engraving shows the words 'Mateba Unica 6'. Uses .357 rounds."
 	icon_state = "mateba"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
-
 	ammo_type = /obj/item/ammo_casing/a357/stun
 
 // SilencedMP5A5 : Serdykov Antoz
@@ -194,71 +226,6 @@
 	icon_state = (ammo_magazine)? "stg60" : "stg60-empty"
 	item_state = (ammo_magazine)? "arifle" : "arifle-empty"
 	if(!ignore_inhands) update_held_icon()
-
-/*
-// For general use
-/obj/item/weapon/gun/projectile/automatic/m14/fluff/gallian
-	name = "\improper Gallian 4 Rifle"
-	desc = "The ever reliable Gallian 4 Rifle. Produced by the National Armory on the Planet of Gaia located in Gallia, the Gallian 4 Rifle offers high accuracy and is widely used in the United Federation's Military. Uses 7.62mm rounds."
-*/
-
-// For general use
-/obj/item/weapon/gun/projectile/shotgun/pump/rifle/zmkar
-	name = "\improper ZM Kar 1"
-	desc = "A reproduction of an old ZM Kar 1 Rifle from the Autocratic East Europan Imperial Alliance of Gaia. Popular among imperials and collectors within the Federation and its allies. Uses 7.62mm rounds."
-
-// For general use
-/obj/item/weapon/gun/projectile/shotgun/pump/rifle/wicked
-	name = "Wicked Butterfly ZM Kar S1"
-	desc = "A customized bolt-action sniper rifle that was carried by some of the most revered snipers in the Federation. The stock has a small butterfly engraved on it. Uses 7.62mm rounds."
-
-	icon = 'icons/vore/custom_guns_vr.dmi'
-	icon_state = "wickedbutterfly"
-
-	icon_override = 'icons/obj/gun_vr.dmi'
-	item_state = "SVD"
-	item_icons = null
-
-	recoil = 2 //extra kickback
-	accuracy = -1
-	scoped_accuracy = 2
-	load_method = SINGLE_CASING
-
-	verb/scope()
-		set category = "Object"
-		set name = "Use Scope"
-		set popup_menu = 1
-
-		toggle_scope(2.0)
-
-// For general use
-/obj/item/weapon/gun/projectile/automatic/pdw // Vorestation SMG because the WT550 is ugly and bad.
-	name = "personal defense weapon"
-	desc = "The X-9MM is a select-fire personal defense weapon designed in-house by Xing Private Security. It was made to compete with the WT550 Saber, but hasn't yet caught on with NanoTrasen. Uses 9mm rounds."
-	icon = 'icons/obj/gun_vr.dmi'
-	icon_state = "pdw"
-	item_state = "c20r" // Placeholder
-	w_class = ITEMSIZE_NORMAL
-	caliber = "9mm"
-	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
-	slot_flags = SLOT_BELT
-	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/m9mml
-	allowed_magazines = list(/obj/item/ammo_magazine/m9mm, /obj/item/ammo_magazine/m9mml)
-
-	firemodes = list(
-		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    burst_accuracy=list(0,-1,-2), dispersion=list(0.0, 0.6, 0.6))
-		)
-
-/obj/item/weapon/gun/projectile/automatic/pdw/update_icon(var/ignore_inhands)
-	..()
-	if(istype(ammo_magazine,/obj/item/ammo_magazine/m9mm))
-		icon_state = "pdw-short"
-	else
-		icon_state = (ammo_magazine)? "pdw" : "pdw-empty"
-	if(!ignore_inhands) update_held_icon()
-
 
 //Currently, the only problem I have now is that this weapon's item_state isn't working.
 /obj/item/weapon/gun/projectile/automatic/fluff/crestrose
@@ -423,18 +390,18 @@
 /obj/item/weapon/gun/projectile/shotgun/pump/rifle/fluff/kari_akiren
 	name = "clockwork rifle"
 	desc = "Brass, copper, and lots of gears. Well lubricated for fluid movement as each round is loaded, locked, and fired. Just like clockwork."
-
 	icon = 'icons/vore/custom_guns_vr.dmi'
 	icon_state = "clockworkrifle_icon"
-
 	icon_override = 'icons/vore/custom_guns_vr.dmi'
 	item_state = "clockworkrifle"
 	item_icons = null
 
+/* Permit Expired
 //Razerwing:Archer Maximus
 /obj/item/weapon/gun/projectile/colt/fluff/archercolt
 	name = "\improper MEUSOC .45"
 	desc = "Some serious drywall work, coming up!"
+*/
 
 //////////////////// Energy Weapons ////////////////////
 
@@ -442,18 +409,13 @@
 /obj/item/weapon/gun/energy/gun/eluger
 	name = "energy Luger"
 	desc = "The finest sidearm produced by RauMauser, this pistol can punch a hole through inch thick steel plating. This ain't your great-grand-daddy's Luger! Can switch between stun and kill."
-
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "elugerstun100"
-
 	item_state = "gun"
-
 	charge_cost = 100 //How much energy is needed to fire.
 	projectile_type = /obj/item/projectile/beam/stun
-
 	modifystate = "elugerstun"
 	fire_sound = 'sound/weapons/Taser.ogg'
-
 	firemodes = list(
 	list(mode_name="stun", charge_cost=100,projectile_type=/obj/item/projectile/beam/stun, modifystate="elugerstun", fire_sound='sound/weapons/Taser.ogg'),
 	list(mode_name="lethal", charge_cost=200,projectile_type=/obj/item/projectile/beam/eluger, modifystate="elugerkill", fire_sound='sound/weapons/eluger.ogg'),
@@ -464,20 +426,16 @@
 /obj/item/weapon/gun/projectile/lamia
 	name = "FS HG .44 \"Lamia\""
 	desc = "Uses .44 rounds."
-
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "Headdeagle"
 	item_state = "revolver"
-
 	fire_sound = 'sound/weapons/Gunshot.ogg'
-
 	caliber = ".44"
 	magazine_type = /obj/item/ammo_magazine/m44/rubber
 	allowed_magazines = list(/obj/item/ammo_magazine/m44,/obj/item/ammo_magazine/m44/rubber)
 	load_method = MAGAZINE
 	auto_eject = 1
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
-
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
 
 /obj/item/weapon/gun/projectile/lamia/update_icon()
@@ -493,21 +451,16 @@
 /obj/item/weapon/gun/projectile/giskard
 	name = "FS HG .32 \"Giskard\""
 	desc = "Can even fit into the pocket! Uses .32 rounds."
-
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "giskardcivil"
-
 	caliber = ".32"
 	magazine_type = /obj/item/ammo_magazine/m32
 	allowed_magazines = list(/obj/item/ammo_magazine/m32)
 	load_method = MAGAZINE
 	fire_delay = 0.6
 	accuracy = 1
-
 	w_class = ITEMSIZE_SMALL
-
 	fire_sound = 'sound/weapons/semiauto.ogg'
-
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 3)
 
 /obj/item/weapon/gun/projectile/giskard/update_icon()
@@ -521,25 +474,20 @@
 /obj/item/weapon/gun/projectile/olivaw
 	name = "FS HG .32 \"Olivaw\""
 	desc = "A more advanced version of the \"Giskard\". This one seems to have a two-round burst-fire mode. Uses .32 rounds."
-
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "olivawcivil"
-
 	caliber = ".32"
 	magazine_type = /obj/item/ammo_magazine/m32
 	allowed_magazines = list(/obj/item/ammo_magazine/m32)
 	fire_delay = 1.2
 	load_method = MAGAZINE
 	accuracy = 2
-
 	fire_sound = 'sound/weapons/semiauto.ogg'
-
+	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
 	firemodes = list(
 		list(mode_name="semiauto",       burst=1, fire_delay=1.2,    move_delay=null, burst_accuracy=null, dispersion=null),
 		list(mode_name="2-round bursts", burst=2, fire_delay=0.2, move_delay=4,    burst_accuracy=list(0,-1),       dispersion=list(1.2, 1.8)),
 		)
-
-	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
 
 /obj/item/weapon/gun/projectile/olivaw/update_icon()
 	..()
@@ -552,15 +500,12 @@
 /obj/item/weapon/gun/projectile/revolver/consul
 	name = "FS REV .44 \"Consul\""
 	desc = "Are you feeling lucky, punk? Uses .44 rounds."
-
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "inspector"
 	item_state = "revolver"
-
 	caliber = ".44"
 	ammo_type = /obj/item/ammo_casing/a44/rubber
 	handle_casings = CYCLE_CASINGS
-
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
 
 /obj/item/weapon/gun/projectile/revolver/consul/proc/update_charge()
@@ -577,21 +522,17 @@
 /obj/item/weapon/gun/projectile/automatic/SMG_sol
 	name = "FS SMG 9x19 \"Sol\""
 	desc = "A standard-issued weapon used by Ironhammer operatives. Compact and reliable. Uses 9mm rounds."
-
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "SMG-IS"
 	item_state = "wt550"
-
 	w_class = ITEMSIZE_LARGE
 	slot_flags = SLOT_BELT
-
 	caliber = "9mm"
 	magazine_type = /obj/item/ammo_magazine/m9mm
 	allowed_magazines = list(/obj/item/ammo_magazine/m9mm)
 	load_method = MAGAZINE
 	multi_aim = 1
 	burst_delay = 2
-
 	firemodes = list(
 		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
 		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-1,-1),       dispersion=list(0.0, 0.6, 1.0)),
@@ -617,27 +558,21 @@
 /obj/item/weapon/gun/energy/gun/martin
 	name = "FS PDW E \"Martin\""
 	desc = "A small holdout e-gun. Don't miss!"
-
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "PDW"
 	item_state = "gun"
-
 	w_class = ITEMSIZE_SMALL
-
 	projectile_type = /obj/item/projectile/beam/stun
 	charge_cost = 1200
 	charge_meter = 0
 	modifystate = null
 	battery_lock = 1
-
 	fire_sound = 'sound/weapons/Taser.ogg'
-
+	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	firemodes = list(
 		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun, fire_sound='sound/weapons/Taser.ogg'),
 		list(mode_name="lethal", projectile_type=/obj/item/projectile/beam, fire_sound='sound/weapons/Laser.ogg'),
 		)
-
-	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 
 /obj/item/weapon/gun/energy/gun/martin/proc/update_mode()
 	var/datum/firemode/current_mode = firemodes[sel_mode]
@@ -649,15 +584,30 @@
 	overlays.Cut()
 	update_mode()
 
+/////////////////////////////////////////////////////
 //////////////////// Custom Ammo ////////////////////
+/////////////////////////////////////////////////////
 //---------------- Beams ----------------
 /obj/item/projectile/beam/eluger
 	name = "laser beam"
-	icon_state = "emitter"
+	icon_state = "xray"
+	light_color = "#00FF00"
+	muzzle_type = /obj/effect/projectile/xray/muzzle
+	tracer_type = /obj/effect/projectile/xray/tracer
+	impact_type = /obj/effect/projectile/xray/impact
+
+/obj/item/projectile/beam/imperial
+	name = "laser beam"
+	icon_state = "darkb"
+	light_color = "#8837A3"
+	muzzle_type = /obj/effect/projectile/darkmatter/muzzle
+	tracer_type = /obj/effect/projectile/darkmatter/tracer
+	impact_type = /obj/effect/projectile/darkmatter/impact
 
 /obj/item/projectile/beam/stun/kin21
 	name = "kinh21 stun beam"
 	icon_state = "omnilaser"
+	light_color = "#0000FF"
 	muzzle_type = /obj/effect/projectile/laser_omni/muzzle
 	tracer_type = /obj/effect/projectile/laser_omni/tracer
 	impact_type = /obj/effect/projectile/laser_omni/impact
@@ -777,7 +727,6 @@
 	icon_state = "f357"
 	caliber = ".357"
 	ammo_type = /obj/item/ammo_casing/a357/flash
-
 
 /obj/item/ammo_casing/a357/flash
 	desc = "A .357 flash bullet casing."

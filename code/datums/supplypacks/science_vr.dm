@@ -34,7 +34,7 @@
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Advanced Robolimb Blueprint Crate"
 	access = access_robotics
-
+/*
 /datum/supply_packs/sci/dune_buggy
 	name = "Exploration Dune Buggy"
 	contains = list(
@@ -43,7 +43,7 @@
 	cost = 100
 	containertype = /obj/structure/largecrate
 	containername = "Exploration Dune Buggy Crate"
-
+*/
 /datum/supply_packs/sci/pred
 	name = "Dangerous Predator crate"
 	cost = 40
