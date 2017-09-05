@@ -37,7 +37,7 @@ var/datum/antagonist/renegade/renegades
 		/obj/item/weapon/gun/projectile/automatic/mini_uzi,
 		/obj/item/weapon/gun/projectile/automatic/c20r,
 		/obj/item/weapon/gun/projectile/automatic/sts35,
-		/obj/item/weapon/gun/projectile/automatic/carbine,
+		/obj/item/weapon/gun/projectile/automatic/bullpup,
 		/obj/item/weapon/gun/projectile/automatic/wt550,
 		/obj/item/weapon/gun/projectile/automatic/z8,
 		/obj/item/weapon/gun/projectile/automatic/tommygun,

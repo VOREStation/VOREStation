@@ -42,8 +42,19 @@
 		if(!istype(docking_controller))
 			world << "<span class='danger'>warning: shuttle with docking tag [docking_controller_tag] could not find it's controller!</span>"
 
+// Return false to abort a jump, before the 'warmup' phase.
+/datum/shuttle/proc/pre_warmup_checks()
+	return TRUE
+
+// Ditto, but for afterwards.
+/datum/shuttle/proc/post_warmup_checks()
+	return TRUE
+
 /datum/shuttle/proc/short_jump(var/area/origin,var/area/destination)
 	if(moving_status != SHUTTLE_IDLE)
+		return
+
+	if(!pre_warmup_checks())
 		return
 
 	moving_status = SHUTTLE_WARMUP
@@ -51,6 +62,9 @@
 
 		make_sounds(origin, HYPERSPACE_WARMUP)
 		sleep(5 SECONDS) // so the sound finishes.
+
+		if(!post_warmup_checks())
+			moving_status = SHUTTLE_IDLE
 
 		if (moving_status == SHUTTLE_IDLE)
 			make_sounds(origin, HYPERSPACE_END)
@@ -66,12 +80,18 @@
 	if(moving_status != SHUTTLE_IDLE)
 		return
 
+	if(!pre_warmup_checks())
+		return
+
 	//it would be cool to play a sound here
 	moving_status = SHUTTLE_WARMUP
 	spawn(warmup_time*10)
 
 		make_sounds(departing, HYPERSPACE_WARMUP)
 		sleep(5 SECONDS) // so the sound finishes.
+
+		if(!post_warmup_checks())
+			moving_status = SHUTTLE_IDLE
 
 		if (moving_status == SHUTTLE_IDLE)
 			make_sounds(departing, HYPERSPACE_END)
@@ -83,7 +103,7 @@
 
 		if(process_longjump(departing, destination)) //VOREStation Edit - To hook custom shuttle code in
 			return //VOREStation Edit - It handled it for us (shuttle crash or such)
-		/*
+
 		var/last_progress_sound = 0
 		while (world.time < arrive_time)
 			// Make the shuttle make sounds every four seconds, since the sound file is five seconds.
@@ -91,7 +111,6 @@
 				make_sounds(interim, HYPERSPACE_PROGRESS)
 				last_progress_sound = world.time
 			sleep(5)
-		*/ //VOREStation Edit. Polaris code in this commented out part, but line 84 takes care of it as far as I cna see.
 
 		move(interim, destination, direction)
 		moving_status = SHUTTLE_IDLE

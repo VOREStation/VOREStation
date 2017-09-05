@@ -99,5 +99,14 @@
 	if(computer_deconstruction_screwdriver(user, I))
 		return
 	else
+		if(istype(I,/obj/item/weapon/gripper)) //Behold, Grippers and their horribleness. If ..() is called by any computers' attackby() now or in the future, this should let grippers work with them appropriately.
+			var/obj/item/weapon/gripper/B = I	//B, for Borg.
+			if(!B.wrapped)
+				user << "\The [B] is not holding anything."
+				return
+			else
+				var/B_held = B.wrapped
+				user << "You use \the [B] to use \the [B_held] with \the [src]."
+			return
 		attack_hand(user)
 		return

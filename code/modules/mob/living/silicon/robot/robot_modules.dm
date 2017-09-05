@@ -155,6 +155,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/device/flash(src)
 	src.modules += new /obj/item/weapon/crowbar/cyborg(src)
 	src.modules += new /obj/item/weapon/extinguisher(src)
+	vr_new() // Vorestation Edit: For modules in robot_modules_vr.dm
 
 /obj/item/weapon/robot_module/robot/standard
 	name = "standard robot module"

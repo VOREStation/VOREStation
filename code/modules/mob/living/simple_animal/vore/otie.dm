@@ -1,3 +1,5 @@
+// ToDo: Make this code not a fucking snowflaky horrible broken mess. Do not use until it's actually fixed. It's miserably bad right now.
+
 /mob/living/simple_animal/otie //Spawn this one only if you're looking for a bad time. Not friendly.
 	name = "otie"
 	desc = "The classic bioengineered longdog."

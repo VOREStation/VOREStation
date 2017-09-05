@@ -65,7 +65,7 @@
 					prob(6);/obj/item/weapon/gun/projectile/automatic/l6_saw,\
 					prob(6);/obj/item/weapon/gun/energy/lasercannon,\
 					prob(5);/obj/item/weapon/gun/projectile/shotgun/pump/rifle/lever,\
-					prob(5);/obj/item/weapon/gun/projectile/automatic/carbine,\
+					prob(5);/obj/item/weapon/gun/projectile/automatic/bullpup,\
 					prob(5);/obj/item/weapon/gun/energy/pulse_rifle,\
 				/*	prob(4);/obj/item/weapon/gun/projectile/automatic/battlerifle,\ */
 					prob(3);/obj/item/weapon/gun/projectile/deagle/camo,\
@@ -183,7 +183,7 @@
 /obj/random/outside_mob/item_to_spawn() // Special version for mobs to have the same faction.
 	var/mob = pick(
 				prob(50);/mob/living/simple_animal/retaliate/gaslamp,
-				prob(50);/mob/living/simple_animal/otie/feral,
+//				prob(50);/mob/living/simple_animal/otie/feral, // Removed until Otie code is unfucked.
 				prob(20);/mob/living/simple_animal/hostile/dino/virgo3b,
 				prob(1);/mob/living/simple_animal/hostile/dragon/virgo3b)
 	if (istype(mob, /mob/living)) // This is just to prevent runtime errors in case some dev is a dumbass and puts invalid items into this.

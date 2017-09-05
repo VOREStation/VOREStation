@@ -193,6 +193,8 @@
 
 // Check if this atom prevents things standing on it from falling. Return TRUE to allow the fall.
 /obj/proc/CanFallThru(atom/movable/mover as mob|obj, turf/target as turf)
+	if(!isturf(mover.loc)) // VORESTATION EDIT. We clearly didn't have enough backup checks.
+		return FALSE //If this ain't working Ima be pissed.
 	return TRUE
 
 // Things that prevent objects standing on them from falling into turf below

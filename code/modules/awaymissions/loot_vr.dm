@@ -166,7 +166,7 @@
 				/*	prob(6);/obj/item/weapon/gun/projectile/SVD,\*/
 					prob(6);/obj/item/weapon/gun/projectile/automatic/l6_saw,\
 					prob(6);/obj/item/weapon/gun/energy/lasercannon,\
-					prob(5);/obj/item/weapon/gun/projectile/automatic/carbine,\
+					prob(5);/obj/item/weapon/gun/projectile/automatic/bullpup,\
 					prob(5);/obj/item/weapon/gun/energy/pulse_rifle,\
 				/*	prob(4);/obj/item/weapon/gun/projectile/automatic/battlerifle,\ */
 					prob(3);/obj/item/weapon/gun/projectile/deagle/camo,\
@@ -355,6 +355,7 @@
 /**********************************/
 
 /obj/structure/symbol
+	anchored = 1
 	layer = 3.5
 	name = "strange symbol"
 	icon = 'icons/obj/decals_vr.dmi'

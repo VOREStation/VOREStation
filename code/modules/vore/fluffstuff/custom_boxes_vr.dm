@@ -37,7 +37,7 @@
 		/obj/item/clothing/suit/storage/det_suit/fluff/tasald,
 		/obj/item/clothing/suit/storage/det_suit/fluff/tas_coat,
 		/obj/item/clothing/under/det/fluff/tasald,
-		/obj/item/fluff/permit/tasald_corlethian,
+		/obj/item/weapon/permit/gun/fluff/tasald_corlethian,
 		/obj/item/weapon/gun/projectile/revolver/mateba/fluff/tasald_corlethian,
 		/obj/item/weapon/implanter/loyalty)
 
@@ -94,7 +94,7 @@
 		new /obj/item/weapon/card/id/centcom/fluff/joanbadge(src)
 		new /obj/item/weapon/gun/energy/gun/fluff/dominator(src)
 		new /obj/item/clothing/suit/armor/det_suit(src)
-		new /obj/item/fluff/permit/joanrisu(src)
+		new /obj/item/weapon/permit/gun/fluff/joanrisu(src)
 		new /obj/item/weapon/sword/fluff/joanaria(src)
 		new /obj/item/weapon/flame/lighter/zippo/fluff/joan(src)
 		new /obj/item/clothing/under/rank/internalaffairs/fluff/joan(src)
@@ -125,9 +125,7 @@
 //Razerwing:Archer Maximus
 /obj/item/weapon/storage/box/fluff/archermaximus
 	desc = "Personal Effects"
-	has_items = list(
-		/obj/item/fluff/permit/archermaximus,
-		/obj/item/weapon/gun/projectile/colt/fluff/archercolt)
+	has_items = list()
 
 //ivymoomoo:Ivy Baladeva
 /obj/item/weapon/storage/backpack/messenger/sec/fluff/ivymoomoo
@@ -164,7 +162,7 @@
 		..() //Might look like a lot... but all small items.
 		//Centcom stuff and permit
 		new /obj/item/weapon/card/id/centcom/fluff/aronai(src)
-		new /obj/item/fluff/permit/aronai_kadigan(src)
+		new /obj/item/weapon/permit/gun/fluff/aronai_kadigan(src)
 		//Gun and holster
 		new /obj/item/weapon/gun/projectile/nsfw(src)
 		new /obj/item/ammo_magazine/nsfw_mag(src)
@@ -180,19 +178,19 @@
 		/obj/item/weapon/gun/projectile/pistol,
 		/obj/item/ammo_magazine/m9mm/flash,
 		/obj/item/ammo_magazine/m9mm/flash,
-		/obj/item/fluff/permit/sebastian_aji)
+		/obj/item/weapon/permit/gun/fluff/sebastian_aji)
 
 /obj/item/weapon/storage/box/fluff/briana_moore
 	name = "Briana's Derringer Box"
 	has_items = list(
 		/obj/item/weapon/gun/projectile/derringer/fluff/briana,
-		/obj/item/fluff/permit/briana_moore)
+		/obj/item/weapon/permit/gun/fluff/briana_moore)
 
 //SilencedMP5A5:Serdykov Antoz
 /obj/item/weapon/storage/box/fluff/serdykov_antoz
 	name = "Serdy's Weapon Box"
 	has_items = list(
-		/obj/item/fluff/permit/silencedmp5a5,
+		/obj/item/weapon/permit/gun/fluff/silencedmp5a5,
 		/obj/item/weapon/gun/projectile/revolver/detective/fluff/serdy)
 
 
@@ -242,3 +240,40 @@ Swimsuits, for general use, to avoid arriving to work with your swimsuit.
 /obj/item/weapon/storage/box/fluff/swimsuit/medical
 	name = "Medical Swimsuit capsule"
 	has_items = list(/obj/item/clothing/under/swimsuit/fluff/medical)
+
+//Monkey boxes for the new primals we have
+/obj/item/weapon/storage/box/monkeycubes/sobakacubes
+	name = "sobaka cube box"
+	desc = "Drymate brand sobaka cubes. Just add water!"
+
+/obj/item/weapon/storage/box/monkeycubes/sobakacubes/New()
+	..()
+	for(var/i = 1 to 4)
+		new /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/sobakacube(src)
+
+/obj/item/weapon/storage/box/monkeycubes/sarucubes
+	name = "saru cube box"
+	desc = "Drymate brand saru cubes. Just add water!"
+
+/obj/item/weapon/storage/box/monkeycubes/sarucubes/New()
+	..()
+	for(var/i = 1 to 4)
+		new /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/sarucube(src)
+
+/obj/item/weapon/storage/box/monkeycubes/sparracubes
+	name = "sparra cube box"
+	desc = "Drymate brand sparra cubes. Just add water!"
+
+/obj/item/weapon/storage/box/monkeycubes/sparracubes/New()
+	..()
+	for(var/i = 1 to 4)
+		new /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/sparracube(src)
+
+/obj/item/weapon/storage/box/monkeycubes/wolpincubes
+	name = "wolpin cube box"
+	desc = "Drymate brand wolpin cubes. Just add water!"
+
+/obj/item/weapon/storage/box/monkeycubes/wolpincubes/New()
+	..()
+	for(var/i = 1 to 4)
+		new /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/wolpincube(src)

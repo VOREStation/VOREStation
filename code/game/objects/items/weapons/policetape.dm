@@ -30,6 +30,7 @@ var/list/tape_roll_applications = list()
 	name = "tape"
 	icon = 'icons/policetape.dmi'
 	anchored = 1
+	layer = 3.2
 	var/lifted = 0
 	var/crumpled = 0
 	var/tape_dir = 0
@@ -56,6 +57,7 @@ var/list/tape_roll_applications = list()
 		hazard_overlays["[EAST]"]	= new/image('icons/effects/warning_stripes.dmi', icon_state = "E")
 		hazard_overlays["[SOUTH]"]	= new/image('icons/effects/warning_stripes.dmi', icon_state = "S")
 		hazard_overlays["[WEST]"]	= new/image('icons/effects/warning_stripes.dmi', icon_state = "W")
+	update_icon()
 
 /obj/item/taperoll/police
 	name = "police tape"

@@ -310,6 +310,10 @@
 			flavor_text = module_flavour
 		else
 			flavor_text = client.prefs.flavour_texts_robot["Default"]
+		// Vorestation Edit: and meta info
+		var/meta_info = client.prefs.metadata
+		if (meta_info)
+			ooc_notes = meta_info
 
 /mob/living/silicon/robot/verb/Namepick()
 	set category = "Robot Commands"
@@ -765,6 +769,11 @@
 	if (href_list["showalerts"])
 		subsystem_alarm_monitor()
 		return 1
+	// VOREStation Edit: Start
+	if(href_list["ooc_notes"])
+		src.Examine_OOC()
+		return
+	// VOREStation Edit: End
 
 	if (href_list["mod"])
 		var/obj/item/O = locate(href_list["mod"])

@@ -153,7 +153,7 @@
 		//"Northwest of the station" = /area/syndicate_station/northwest,
 		//"North of the station" = /area/syndicate_station/north,
 		//"Northeast of the station" = /area/syndicate_station/northeast,
-		"(Land) Southwest of Tether" = /area/syndicate_station/southwest,
+		//"(Land) Southwest of Tether" = /area/syndicate_station/southwest,
 		//"South of the station" = /area/syndicate_station/south,
 		//"Southeast of the station" = /area/syndicate_station/southeast,
 		//"Telecomms Satellite" = /area/syndicate_station/commssat,

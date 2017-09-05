@@ -533,11 +533,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/obj/machinery/atmospherics/unary/vent_pump/vent_found
 	var/list/found_vents = list()
 	for(var/obj/machinery/atmospherics/unary/vent_pump/v in machines)
-		if(!v.welded && v.z == T.z)
+		if(!v.welded && v.z == T.z && v.network && v.network.normal_members.len > 20)
 			found_vents.Add(v)
 	if(found_vents.len)
 		vent_found = pick(found_vents)
-		host = new /mob/living/simple_animal/mouse(vent_found.loc)
+		host = new /mob/living/simple_animal/mouse(vent_found)
 	else
 		src << "<span class='warning'>Unable to find any unwelded vents to spawn mice at.</span>"
 
@@ -546,6 +546,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			host.universal_understand = 0
 		announce_ghost_joinleave(src, 0, "They are now a mouse.")
 		host.ckey = src.ckey
+		host.add_ventcrawl(vent_found)
 		host << "<span class='info'>You are now a mouse. Try to avoid interaction with players, and do not give hints away that you are more than a simple rodent.</span>"
 
 /mob/observer/dead/verb/view_manfiest()

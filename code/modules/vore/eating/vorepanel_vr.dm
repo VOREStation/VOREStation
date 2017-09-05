@@ -21,6 +21,19 @@
 	picker_holder.popup = new(src, "insidePanel","Inside!", 400, 600, picker_holder)
 	picker_holder.popup.set_content(dat)
 	picker_holder.popup.open()
+	src.openpanel = 1
+
+/mob/living/proc/updateVRPanel() //Panel popup update call from belly évents.
+	if(src.openpanel == 1)
+		var/datum/vore_look/picker_holder = new()
+		picker_holder.loop = picker_holder
+		picker_holder.selected = vore_organs[vore_selected]
+
+		var/dat = picker_holder.gen_ui(src)
+
+		picker_holder.popup = new(src, "insidePanel","Inside!", 400, 600, picker_holder)
+		picker_holder.popup.set_content(dat)
+		picker_holder.popup.open()
 
 //
 // Callback Handler for the Inside form
@@ -253,6 +266,7 @@
 
 	if(href_list["close"])
 		qdel(src)  // Cleanup
+		user.openpanel = 0
 		return
 
 	if(href_list["show_int"])

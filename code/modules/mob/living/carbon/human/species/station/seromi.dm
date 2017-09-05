@@ -13,6 +13,12 @@
 	max_age = 45
 	health_hud_intensity = 3
 
+
+	male_cough_sounds = list('sound/effects/mob_effects/tesharicougha.ogg','sound/effects/mob_effects/tesharicoughb.ogg')
+	female_cough_sounds = list('sound/effects/mob_effects/tesharicougha.ogg','sound/effects/mob_effects/tesharicoughb.ogg')
+	male_sneeze_sound = 'sound/effects/mob_effects/tesharisneeze.ogg'
+	female_sneeze_sound = 'sound/effects/mob_effects/tesharisneeze.ogg'
+
 	blood_color = "#D514F7"
 	flesh_color = "#5F7BB0"
 	base_color = "#001144"
@@ -96,4 +102,3 @@
 /datum/species/teshari/equip_survival_gear(var/mob/living/carbon/human/H)
 	..()
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H),slot_shoes)
-

@@ -1342,3 +1342,33 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
             user.visible_message("<span class='notice'>[user] displays their [src.name].\nIt reads: [stored_name], [badge_string].</span>","<span class='notice'>You display your [src.name].\nIt reads: [stored_name], [badge_string].</span>")
         else
             user.visible_message("<span class='notice'>[user] displays their [src.name].\nIt reads: [badge_string].</span>","<span class='notice'>You display your [src.name]. It reads: [badge_string].</span>")
+
+/obj/item/weapon/card/id/fluff/xennith
+	name = "\improper Amy Lessen's Central Command ID (Xenobiology Director)"
+	desc = "This ID card identifies Dr. Amelie Lessen as the founder and director of the NanoTrasen Xenobiology Research Department, circa 2553."
+	icon_state = "centcom"
+	registered_name = "Amy Lessen"
+	assignment = "Xenobiology Director"
+	access = list(access_cent_general,access_cent_thunder,access_cent_medical,access_cent_living,access_cent_storage,access_cent_teleporter,access_research,access_xenobiology,access_maint_tunnels,access_xenoarch,access_robotics,access_tox_storage,access_tox) //Yes, this looks awful. I tried calling both central and resarch access but it didn't work.
+	age = 39
+	blood_type = "O-"
+	sex = "Female"
+/obj/item/weapon/fluff/kitchi_injector
+	name = "Kitchi Monkey Injector"
+	desc = "Allows the user (Kitchi) to transform into a monkey. Single use."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "dnainjector"
+
+/obj/item/weapon/fluff/kitchi_injector/attack(mob/living/M, mob/living/user)
+
+	if(M.ckey != "Ketrai")
+		user << "<span class='warning'>Something compels you to <i>not</i> use this injector.</span>"
+		return
+
+	if(usr == M) //Is the person using it on theirself?
+		if(ishuman(M)) //If so, monkify them.
+			var/mob/living/carbon/human/H = user
+			H.monkeyize()
+			qdel(src) //One time use.
+	else //If not, do nothing.
+		to_chat(user,"<span class='warning'> You are unable to inject other people.</span>")
