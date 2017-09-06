@@ -275,7 +275,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/blue
 
-/datum/chemical_reaction/slime/blue_frostoil/on_reaction(var/datum/reagents/holder)
+/datum/chemical_reaction/slime/blue_stability/on_reaction(var/datum/reagents/holder)
 	new /obj/item/slimepotion/stabilizer(get_turf(holder.my_atom))
 	..()
 

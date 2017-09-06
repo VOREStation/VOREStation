@@ -662,7 +662,7 @@
 /mob/living/simple_animal/slime/light_pink
 	desc = "This slime seems a lot more peaceful than the others."
 	color = "#FF8888"
-	slime_color = "light_pink"
+	slime_color = "light pink"
 	coretype = /obj/item/slime_extract/light_pink
 
 	description_info = "This slime is effectively always disciplined initially."
@@ -670,10 +670,10 @@
 	discipline = 5
 
 	slime_mutation = list(
-		/mob/living/simple_animal/slime/green,
-		/mob/living/simple_animal/slime/green,
-		/mob/living/simple_animal/slime/emerald,
-		/mob/living/simple_animal/slime/emerald
+		/mob/living/simple_animal/slime/pink,
+		/mob/living/simple_animal/slime/pink,
+		/mob/living/simple_animal/slime/light_pink,
+		/mob/living/simple_animal/slime/light_pink
 	)
 
 // Special

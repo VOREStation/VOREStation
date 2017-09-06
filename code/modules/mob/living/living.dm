@@ -640,16 +640,11 @@ default behaviour is:
 	return
 
 /mob/living/Move(a, b, flag)
-//	if (buckled)
-//		world << "[src].Move() failed; buckled."
-//		return
 
 	if (buckled && buckled.loc != a) //not updating position
 		if (!buckled.anchored)
-			world << "[src].Move(); will return [buckled].Move ."
 			return buckled.Move(a, b)
 		else
-			world << "[src].Move() failed; buckled to anchored [buckled]."
 			return 0
 
 	if (restrained())

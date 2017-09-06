@@ -66,9 +66,6 @@
 		new_temperature = round(new_temperature * temp_factor)
 		L.bodytemperature = new_temperature
 
-//		L.bodytemperature = between(target_temperature,(L.bodytemperature - ((L.bodytemperature + potential_temperature_delta) * temp_factor) ), L.bodytemperature)
-		world << "Temperature of [L] is now [L.bodytemperature]."
-
 	return 1
 
 /obj/item/projectile/temp/hot
