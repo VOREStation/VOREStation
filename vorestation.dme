@@ -801,7 +801,7 @@
 #include "code\game\objects\effects\overlays.dm"
 #include "code\game\objects\effects\portals.dm"
 #include "code\game\objects\effects\spiders.dm"
-#include "code\game\objects\effects\spiders_vr.dm"
+#include "code\game\objects\effects\spider_vr.dm"
 #include "code\game\objects\effects\step_triggers.dm"
 #include "code\game\objects\effects\zone_divider.dm"
 #include "code\game\objects\effects\chem\chemsmoke.dm"
