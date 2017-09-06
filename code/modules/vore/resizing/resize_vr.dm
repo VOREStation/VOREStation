@@ -273,7 +273,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 				equip_to_slot_if_possible(tmob.get_scooped(H), slot_shoes, 0, 1)
 				if(istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
 					src << "You slither over [tmob] with your large, thick tail, smushing them against the ground before coiling up around them, trapping them within the tight coils of your tail!"
-					tmob << "[src] sliters over you with their large, thick tail, smushing you against the ground before coiling up around you, trapping you within the tight coils of their tail!"
+					tmob << "[src] slithers over you with their large, thick tail, smushing you against the ground before coiling up around you, trapping you within the tight coils of their tail!"
 				else
 					src << "You pin [tmob] down onto the floor with your foot and curl your toes up around their body, trapping them inbetween them!"
 					tmob << "[src] pins you down to the floor with their foot and curls their toes up around your body, trapping you inbetween them!"
