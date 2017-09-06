@@ -18,7 +18,7 @@
 		I.stored_plasma += amount
 	I.stored_plasma = max(0,min(I.stored_plasma,I.max_plasma))
 
-/mob/living/carbon/human/proc/check_alien_ability(var/cost,var/needs_foundation,var/needs_organ)
+/mob/living/carbon/human/proc/check_alien_ability(var/cost,var/needs_foundation,var/needs_organ)	//Returns 1 if the ability is clear for usage.
 
 	var/obj/item/organ/internal/xenos/plasmavessel/P = internal_organs_by_name[O_PLASMA]
 	if(!istype(P))
@@ -161,11 +161,11 @@
 	return
 
 /mob/living/carbon/human/proc/neurotoxin(mob/target as mob in oview())
-	set name = "Spit Neurotoxin (50)"
+	set name = "Spit Neurotoxin (40)"
 	set desc = "Spits neurotoxin at someone, paralyzing them for a short time if they are not wearing protective gear."
 	set category = "Abilities"
 
-	if(!check_alien_ability(50,0,O_ACID))
+	if(!check_alien_ability(40,0,O_ACID))
 		return
 
 	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
@@ -175,6 +175,25 @@
 	visible_message("<span class='warning'>[src] spits neurotoxin at [target]!</span>", "<span class='alium'>You spit neurotoxin at [target].</span>")
 
 	var/obj/item/projectile/energy/neurotoxin/A = new(get_turf(src))
+	A.firer = src
+	A.launch(target)
+	return
+
+/mob/living/carbon/human/proc/acidspit(mob/target as mob in oview())
+	set name = "Spit Acid (50)"
+	set desc = "Spits a blob of acid at someone, burning them if they are not wearing protective gear."
+	set category = "Abilities"
+
+	if(!check_alien_ability(50,0,O_ACID))
+		return
+
+	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
+		src << "You cannot spit acid in your current state."
+		return
+
+	visible_message("<span class='warning'>[src] spits acid at [target]!</span>", "<span class='alium'>You spit acid at [target].</span>")
+
+	var/obj/item/projectile/energy/acid/A = new(get_turf(src))
 	A.firer = src
 	A.launch(target)
 	return
@@ -239,7 +258,7 @@
 
 	src.visible_message("<span class='danger'>\The [src] leaps at [T]!</span>")
 	src.throw_at(get_step(get_turf(T),get_turf(src)), 4, 1, src)
-	playsound(src.loc, 'sound/voice/shriek1.ogg', 50, 1)
+	playsound(src.loc, 'sound/voice/hiss5.ogg', 50, 1)
 
 	sleep(5)
 
