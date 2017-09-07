@@ -2,4 +2,4 @@
 	if(href_list["ooc_notes"])
 		src.Examine_OOC()
 		return 1
-	. = ..()
+	return ..()
