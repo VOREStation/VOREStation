@@ -72,8 +72,6 @@
 /obj/machinery/atmospherics/pipe/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
 	if (istype(src, /obj/machinery/atmospherics/pipe/tank))
 		return ..()
-	if (istype(src, /obj/machinery/atmospherics/pipe/vent))
-		return ..()
 
 	if(istype(W,/obj/item/device/pipe_painter))
 		return 0
