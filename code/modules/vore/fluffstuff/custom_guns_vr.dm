@@ -196,7 +196,7 @@
 	item_state = "raikov"
 	icon_state = "raikov"
 	fire_sound = 'sound/weapons/45pistol_vr.ogg'
-	magazine_type = /obj/item/ammo_magazine/c45m/rubber
+	magazine_type = /obj/item/ammo_magazine/m45/rubber
 
 /* //Commented out due to weapon change.
 /obj/item/weapon/gun/projectile/revolver/detective/fluff/serdy //This forces it to be .38 bullets only
