@@ -189,7 +189,6 @@
 	ammo_type = /obj/item/ammo_casing/a357/stun
 
 // SilencedMP5A5 : Serdykov Antoz
-
 /obj/item/weapon/gun/projectile/colt/fluff/serdy
 	name = "Raikov PPS/45"
 	desc = "An expertly crafted and reliable .45 sidearm with a 7 round single-stack magazine, originally built and in 2369 for frontier men and peacekeepers. The frame and slide are nickel plated, and it has a synthetic black ivory grip. The words 'Krasnaya Raketa' are engraved on the slide near the muzzle. It's relatively thin, but heavy. It also has an ambidextrous mag release and safety lever, making it grippable in either hand comfortably."
@@ -198,7 +197,6 @@
 	icon_state = "raikov"
 	fire_sound = 'sound/weapons/45pistol_vr.ogg'
 	magazine_type = /obj/item/ammo_magazine/c45m/rubber
-
 
 /* //Commented out due to weapon change.
 /obj/item/weapon/gun/projectile/revolver/detective/fluff/serdy //This forces it to be .38 bullets only
