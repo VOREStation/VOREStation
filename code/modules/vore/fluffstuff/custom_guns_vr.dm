@@ -189,6 +189,18 @@
 	ammo_type = /obj/item/ammo_casing/a357/stun
 
 // SilencedMP5A5 : Serdykov Antoz
+
+/obj/item/weapon/gun/projectile/colt/fluff/serdy
+	name = "Raikov PPS/45"
+	desc = "An expertly crafted and reliable .45 sidearm with a 7 round single-stack magazine, originally built and in 2369 for frontier men and peacekeepers. The frame and slide are nickel plated, and it has a synthetic black ivory grip. The words 'Krasnaya Raketa' are engraved on the slide near the muzzle. It's relatively thin, but heavy. It also has an ambidextrous mag release and safety lever, making it grippable in either hand comfortably."
+	icon = 'icons/vore/custom_guns_vr.dmi'
+	item_state = "raikov"
+	icon_state = "raikov"
+	fire_sound = 'sound/weapons/45pistol_vr.ogg'
+	magazine_type = /obj/item/ammo_magazine/c45m/rubber
+
+
+/* //Commented out due to weapon change.
 /obj/item/weapon/gun/projectile/revolver/detective/fluff/serdy //This forces it to be .38 bullets only
 	name = "Vintage S&W Model 10"
 	desc = "It's a classic S&W Model 10 revolver. This one in particular is beautifully restored with a chromed black frame and cylinder, and a nice redwood grip. The name 'Serdykov A.' is engraved into the base of the grip."
@@ -198,6 +210,7 @@
 	fire_sound = 'sound/weapons/deagle.ogg'
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	ammo_type = /obj/item/ammo_casing/a38r //Rubber rounds.
+*/
 
 // LuminescentRing : Briana Moore
 /obj/item/weapon/gun/projectile/derringer/fluff/briana
