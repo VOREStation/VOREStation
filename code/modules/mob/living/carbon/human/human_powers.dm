@@ -38,7 +38,6 @@
 	if(prob(75))
 		T.Weaken(rand(0.5,3))
 	else
-		src.Weaken(rand(2,4))
 		failed = 1
 
 	playsound(loc, 'sound/weapons/pierce.ogg', 25, 1, -1)

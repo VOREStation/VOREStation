@@ -7,6 +7,7 @@
 	language = "Hivemind"
 	maxHealth = 25
 	health = 25
+	faction = "xeno"
 
 /mob/living/carbon/alien/larva/New()
 	..()

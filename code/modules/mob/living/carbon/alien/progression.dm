@@ -30,6 +30,9 @@
 
 	transfer_languages(src, adult)
 
+	if(src.faction != "neutral")
+		adult.faction = src.faction
+
 	if(mind)
 		mind.transfer_to(adult)
 		if (can_namepick_as_adult)
