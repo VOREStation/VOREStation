@@ -1379,8 +1379,6 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 /obj/item/weapon/fluff/injector/numb_bite
 	name = "Numbing Venom Injector"
 	desc = "Injects the user with a high dose of some type of chemical, causing any chemical glands they have to kick into overdrive and create the production of a numbing enzyme that is injected via bites.."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "dnainjector"
 
 /obj/item/weapon/fluff/injector/numb_bite/attack(mob/living/M, mob/living/user)
 
