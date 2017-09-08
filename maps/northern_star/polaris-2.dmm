@@ -345,7 +345,7 @@
 "gG" = (/obj/machinery/light{dir = 1},/turf/simulated/floor/carpet,/area/shuttle/trade/centcom)
 "gH" = (/obj/structure/bed/chair,/turf/simulated/floor/carpet,/area/shuttle/trade/centcom)
 "gI" = (/obj/structure/flora/pottedplant{icon_state = "plant-22"},/turf/simulated/floor/carpet,/area/shuttle/trade/centcom)
-"gJ" = (/obj/machinery/sleep_console{dir = 8},/turf/simulated/shuttle/floor/black,/area/shuttle/trade/centcom)
+"gJ" = (/obj/machinery/sleep_console{dir = 4},/turf/simulated/shuttle/floor/black,/area/shuttle/trade/centcom)
 "gK" = (/obj/machinery/sleeper{dir = 4},/turf/simulated/shuttle/floor/black,/area/shuttle/trade/centcom)
 "gL" = (/turf/space,/obj/structure/shuttle/engine/propulsion{dir = 4},/turf/simulated/shuttle/plating/airless/carry,/area/shuttle/trade/centcom)
 "gM" = (/obj/structure/bed/chair,/obj/effect/landmark{name = "JoinLate"},/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/shuttle/arrival/pre_game)
