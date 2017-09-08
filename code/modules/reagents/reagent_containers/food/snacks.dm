@@ -3449,7 +3449,7 @@
 	desc = "True French cuisine."
 	filling_color = "#E3D796"
 	icon_state = "croissant"
-	nutrient_amt = 6
+	nutriment_amt = 6
 	nutriment_desc = list("french bread" = 6)
 
 /obj/item/weapon/reagent_containers/food/snacks/croissant/New()
