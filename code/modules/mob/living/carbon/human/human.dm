@@ -1169,7 +1169,6 @@
 
 	species.handle_post_spawn(src)
 
-
 	maxHealth = species.total_health
 
 	spawn(0)
