@@ -114,3 +114,10 @@
 		/obj/item/weapon/reagent_containers/food/snacks/egg/roiz
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/boiledegg/roiz
+
+/datum/recipe/pillbugball
+	reagents = list("carbon" = 5)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/meat/grubmeat
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/bugball
