@@ -81,6 +81,15 @@
 	catalysts = list("phoron" = 5)
 	result_amount = 3
 
+///////////////////////////////////////////////////////////////////////////////////
+/// Special drinks
+/datum/chemical_reaction/drinks/grubshake
+	name = "Grub protein drink"
+	id = "grubshake"
+	result = "grubshake"
+	required_reagents = list("shockchem" = 5, "water" = 25)
+	result_amount = 30
+
 ///////////////////////////////
 //SLIME CORES BELOW HERE///////
 ///////////////////////////////
