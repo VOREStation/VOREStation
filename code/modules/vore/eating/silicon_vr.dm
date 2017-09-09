@@ -6,12 +6,14 @@
 
 /obj/effect/overlay/aiholo
 	var/mob/living/bellied //Only belly one person at a time. No huge vore-organs setup for AIs.
+	var/mob/living/silicon/ai/master //This will receive the AI controlling the Hologram. For referencing purposes.
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	alpha = HOLO_ORIGINAL_ALPHA //Half alpha here rather than in the icon so we can toggle it easily.
 	color = HOLO_ORIGINAL_COLOR //This is the blue from icons.dm that it was before.
 	desc = "A hologram representing an AI persona."
 
 /obj/effect/overlay/aiholo/Destroy()
+	drop_prey()
 	walk(src, 0) // Because we might have called walk_to, we must stop the walk loop or BYOND keeps an internal reference to us forever.
 	return ..()
 
@@ -40,10 +42,6 @@
 	pass_flags = initial(pass_flags)
 	color = HOLO_ORIGINAL_COLOR
 	alpha = HOLO_ORIGINAL_ALPHA
-
-/obj/effect/overlay/aiholo/Destroy()
-	drop_prey()
-	return ..()
 
 /mob/living/silicon/ai/verb/holo_nom()
 	set name = "Hardlight Nom"
@@ -95,3 +93,16 @@
 	if(user.client)
 		src.examine(user)
 	return
+
+//This can go here with all the references.
+/obj/effect/overlay/aiholo/examine(mob/user)
+	. = ..(user)
+
+	var/msg = "\n"
+	
+	//If you need an ooc_notes copy paste, this is NOT the one to use.
+	var/ooc_notes = master.ooc_notes
+	if(ooc_notes)
+		msg += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[master];ooc_notes=1'>\[View\]</a>\n"
+
+	user << msg
