@@ -53,7 +53,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 	siemens_coefficient =   0.3
 	rarity_value =          5
 
-	genders = list(MALE, FEMALE, PLURAL)
+	genders = list(MALE, FEMALE, NEUTER, PLURAL)
 
 	unarmed_types = list(/datum/unarmed_attack/slime_glomp)
 	has_organ =     list(O_BRAIN = /obj/item/organ/internal/brain/slime) // Slime core.
