@@ -104,4 +104,16 @@ List of things solar grubs should be able to do:
 				L << "<span class='warning'>You feel a shock rushing through your veins.</span>"
 				L.reagents.add_reagent(poison_type, poison_per_bite)
 
+/mob/living/simple_animal/retaliate/solargrub/PunchTarget()
+	. = ..()
+	if(isliving(.))
+		var/mob/living/L = .
+		if(L.reagents)
+			L.reagents.add_reagent(poison_type, poison_per_bite)
+			if(prob(poison_chance))
+				L << "<span class='warning'>You feel a shock rushing through your veins.</span>"
+				L.reagents.add_reagent(poison_type, poison_per_bite)
 
+/mob/living/simple_animal/retaliate/solargrub/death()
+	src.anchored = 0
+	..()
