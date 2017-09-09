@@ -996,6 +996,30 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
 	item_flags = AIRTIGHT
 
+//verkister: Opie Eggbert - Spiffy fluff goggles
+/obj/item/clothing/glasses/spiffygogs
+	name = "Chad Goggles"
+	desc = "You can almost feel the raw power radiating off these strange specs."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "spiffygogs"
+	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
+	toggleable = 1
+	off_state = "spiffygogsup"
+
+//General use
+/obj/item/clothing/accessory/tronket
+	name = "metal necklace"
+	desc = "A shiny steel chain with a vague metallic object dangling off it."
+	w_class = ITEMSIZE_SMALL
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "tronket"
+	item_state = "tronket"
+	overlay_state = "tronket"
+	slot_flags = SLOT_TIE
+	slot = "over"
+
 //The perfect adminboos device?
 /obj/item/device/perfect_tele
 	name = "personal translocator"
