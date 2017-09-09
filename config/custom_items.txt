@@ -622,6 +622,11 @@ character_name: Cameron Eggbert
 item_path: /obj/item/weapon/disk/limb/eggnerdltd
 }
 {
+ckey: verkister
+character_name: Opie Eggbert
+item_path: /obj/item/clothing/glasses/spiffygogs
+}
+{
 ckey: virgo113
 character_name: Verin Raharra
 item_path: /obj/item/clothing/suit/storage/hazardvest/fluff/verin
