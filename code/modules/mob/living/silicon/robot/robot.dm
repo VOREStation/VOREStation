@@ -763,17 +763,14 @@
 /mob/living/silicon/robot/Topic(href, href_list)
 	if(..())
 		return 1
+
+	//All Topic Calls that are only for the Cyborg go here
 	if(usr != src)
 		return 1
 
 	if (href_list["showalerts"])
 		subsystem_alarm_monitor()
 		return 1
-	// VOREStation Edit: Start
-	if(href_list["ooc_notes"])
-		src.Examine_OOC()
-		return
-	// VOREStation Edit: End
 
 	if (href_list["mod"])
 		var/obj/item/O = locate(href_list["mod"])

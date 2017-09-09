@@ -191,7 +191,7 @@
 	name = "Serdy's Weapon Box"
 	has_items = list(
 		/obj/item/weapon/permit/gun/fluff/silencedmp5a5,
-		/obj/item/weapon/gun/projectile/revolver/detective/fluff/serdy)
+		/obj/item/weapon/gun/projectile/colt/fluff/serdy)
 
 
 /*
