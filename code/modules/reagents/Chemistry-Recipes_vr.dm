@@ -73,14 +73,6 @@
 	required_reagents = list("milk" = 2, "hydrogen" = 1, "potassium" = 1)
 	result_amount = 3
 
-/datum/chemical_reaction/vermicetol
-	name = "Vermicetol"
-	id = "vermicetol"
-	result = "vermicetol"
-	required_reagents = list("kelotane" = 1, "dermaline" = 1, "shockchem" = 1, "phoron" = 0.1)
-	catalysts = list("phoron" = 5)
-	result_amount = 3
-
 ///////////////////////////////
 //SLIME CORES BELOW HERE///////
 ///////////////////////////////

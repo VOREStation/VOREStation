@@ -53,8 +53,7 @@
 						/mob/living/simple_animal/hostile/bear;0.5,
 						/mob/living/simple_animal/hostile/bear/brown;0.5,
 						/mob/living/simple_animal/hostile/carp,
-						/mob/living/simple_animal/hostile/mimic,
-						/mob/living/simple_animal/retaliate/solargrub)
+						/mob/living/simple_animal/hostile/mimic)
 	..()
 
 
