@@ -190,18 +190,62 @@
 	reagents.add_reagent("protein", 4)
 	bitesize = 2
 
-/obj/item/weapon/reagent_containers/food/snacks/grubmeat
+/obj/item/weapon/reagent_containers/food/snacks/meat/grubmeat
 	name = "grubmeat"
 	desc = "A slab of grub meat, it gives a gentle shock if you touch it"
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "grubmeat"
 	center_of_mass = list("x"=16, "y"=10)
 
-/obj/item/weapon/reagent_containers/food/snacks/grubmeat/New()
+/obj/item/weapon/reagent_containers/food/snacks/meat/grubmeat/New()
 	..()
-	reagents.add_reagent("protein", 6)
+	reagents.add_reagent("protein", 1)
 	reagents.add_reagent("shockchem", 6)
 	bitesize = 6
+
+/obj/item/weapon/reagent_containers/food/snacks/bugball
+	name = "bugball"
+	desc = "A hard chitin, dont chip a tooth!"
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "pillbugball"
+	trash = /obj/item/weapon/reagent_containers/food/snacks/pillbug
+	nutriment_amt = 1
+	nutriment_desc = list("crunchy shell bits" = 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/grub/bugball/New()
+	..()
+	reagents.add_reagent("protein", 1)
+	reagents.add_reagent("carbon", 5)
+	bitesize = 7
+
+/obj/item/weapon/reagent_containers/food/snacks/pillbug
+	name = "pillbug"
+	desc = "A delicacy discovered and popularized by a famous restaurant called Mudca's Meat Hut."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "pillbug"
+	trash = /obj/item/weapon/reagent_containers/food/snacks/pillbugempty
+	nutriment_amt = 3
+	nutriment_desc = list("sparkles" = 5, "ancient inca culture" =3)
+
+/obj/item/weapon/reagent_containers/food/snacks/pillbug/New()
+	..()
+	reagents.add_reagent("protein", 3)
+	reagents.add_reagent("shockchem", 6)
+	bitesize = 6
+
+/obj/item/weapon/reagent_containers/food/snacks/pillbugempty
+	name = "pillbug shell"
+	desc = "Waste not, want not."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "pillbugempty"
+	nutriment_amt = 1
+	nutriment_desc = list("crunchy shell bits" = 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/pillbug/New()
+	..()
+	reagents.add_reagent("protein", 1)
+	reagents.add_reagent("carbon", 5)
+	bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/sobakacube
 	name = "sobaka cube"
