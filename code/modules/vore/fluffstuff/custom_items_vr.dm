@@ -1377,17 +1377,20 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	age = 39
 	blood_type = "O-"
 	sex = "Female"
-/obj/item/weapon/fluff/kitchi_injector
-	name = "Kitchi Monkey Injector"
-	desc = "Allows the user (Kitchi) to transform into a monkey. Single use."
+
+/obj/item/weapon/fluff/injector //Injectors. Custom item used to explain wild changes in a mob's body or chemistry.
+	name = "Injector"
+	desc = "Some type of injector."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "dnainjector"
 
-/obj/item/weapon/fluff/kitchi_injector/attack(mob/living/M, mob/living/user)
+/obj/item/weapon/fluff/injector/monkey
+	name = "Lesser Form Injector"
+	desc = "Turn the user into their lesser, more primal form."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "dnainjector"
 
-	if(M.ckey != "Ketrai")
-		user << "<span class='warning'>Something compels you to <i>not</i> use this injector.</span>"
-		return
+/obj/item/weapon/fluff/injector/monkey/attack(mob/living/M, mob/living/user)
 
 	if(usr == M) //Is the person using it on theirself?
 		if(ishuman(M)) //If so, monkify them.
@@ -1395,4 +1398,18 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 			H.monkeyize()
 			qdel(src) //One time use.
 	else //If not, do nothing.
-		to_chat(user,"<span class='warning'> You are unable to inject other people.</span>")
+		to_chat(user,"<span class='warning'>You are unable to inject other people.</span>")
+
+/obj/item/weapon/fluff/injector/numb_bite
+	name = "Numbing Venom Injector"
+	desc = "Injects the user with a high dose of some type of chemical, causing any chemical glands they have to kick into overdrive and create the production of a numbing enzyme that is injected via bites.."
+
+/obj/item/weapon/fluff/injector/numb_bite/attack(mob/living/M, mob/living/user)
+
+	if(usr == M) //Is the person using it on theirself?
+		if(ishuman(M)) //Give them numbing bites.
+			var/mob/living/carbon/human/H = user
+			H.species.give_numbing_bite() //This was annoying, but this is the easiest way of performing it.
+			qdel(src) //One time use.
+	else //If not, do nothing.
+		to_chat(user,"<span class='warning'>You are unable to inject other people.</span>")

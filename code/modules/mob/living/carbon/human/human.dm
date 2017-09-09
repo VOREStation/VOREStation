@@ -1147,7 +1147,7 @@
 	if(species.default_language)
 		add_language(species.default_language)
 
-	if(species.base_color) //VOREStation Edit - Always give them a basse color
+	if(species.base_color) //VOREStation Edit - Always give them a base color
 		//Apply colour.
 		r_skin = hex2num(copytext(species.base_color,2,4))
 		g_skin = hex2num(copytext(species.base_color,4,6))
@@ -1180,6 +1180,7 @@
 			vessel.remove_reagent("blood", vessel.total_volume - species.blood_volume)
 			vessel.maximum_volume = species.blood_volume
 		fixblood()
+		species.update_attack_types() //VOREStation edit. Required for any trait that updates unarmed_types in setup.
 
 	// Rebuild the HUD. If they aren't logged in then login() should reinstantiate it for them.
 	if(client && client.screen)

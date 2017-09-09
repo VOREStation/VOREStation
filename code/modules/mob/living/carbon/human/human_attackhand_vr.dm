@@ -60,3 +60,4 @@
 	claws/attack_name = "claws"
 	claws/strong/attack_name = "strong claws"
 	slime_glomp/attack_name = "glomp"
+	bite/sharp/numbing/attack_name = "numbing bite"
