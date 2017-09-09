@@ -190,6 +190,19 @@
 	reagents.add_reagent("protein", 4)
 	bitesize = 2
 
+/obj/item/weapon/reagent_containers/food/snacks/grubmeat
+	name = "grubmeat"
+	desc = "A slab of grub meat, it gives a gentle shock if you touch it"
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "grubmeat"
+	center_of_mass = list("x"=16, "y"=10)
+
+/obj/item/weapon/reagent_containers/food/snacks/grubmeat/New()
+	..()
+	reagents.add_reagent("protein", 6)
+	reagents.add_reagent("shockchem", 6)
+	bitesize = 6
+
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/sobakacube
 	name = "sobaka cube"
 	monkey_type = "Sobaka"
