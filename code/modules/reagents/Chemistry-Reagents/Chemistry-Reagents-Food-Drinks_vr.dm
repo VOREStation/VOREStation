@@ -6,3 +6,14 @@
 	M.overeatduration = 0
 	if(M.nutrition < 0)
 		M.nutrition = 0
+
+////////////// special drinks
+/datum/reagent/drink/grubshake
+	name = "Grub Protein Shake"
+	id = "grubshake"
+	description = "A thick brothy shake that tastes like primal insect protein, healthy!"
+	taste_description = "meaty and sparkly on the tongue"
+	color = "#ebf442"
+
+	glass_name = "grub shake"
+	glass_desc = "A brothy mess with grub bits floating in it."
