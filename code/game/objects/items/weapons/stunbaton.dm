@@ -90,7 +90,7 @@
 		icon_state = "[initial(name)]"
 
 	if(icon_state == "[initial(name)]_active")
-		set_light(1.5, 1, lightcolor)
+		set_light(2, 1, lightcolor)
 	else
 		set_light(0)
 
@@ -238,3 +238,15 @@
 				user << "<span class='notice'>[src] already has a cell.</span>"
 		else
 			user << "<span class='notice'>This cell is not fitted for [src].</span>"
+
+/obj/item/weapon/melee/baton/get_description_interaction()
+	var/list/results = list()
+
+	if(bcell)
+		results += "[desc_panel_image("offhand")]to remove the weapon cell."
+	else
+		results += "[desc_panel_image("weapon cell")]to add a new weapon cell."
+
+	results += ..()
+
+	return results

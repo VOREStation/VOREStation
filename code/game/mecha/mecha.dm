@@ -1015,8 +1015,8 @@
 		usr << "<span class='warning'>Access denied</span>"
 		src.log_append_to_last("Permission denied.")
 		return
-	for(var/mob/living/carbon/slime/M in range(1,usr))
-		if(M.Victim == usr)
+	for(var/mob/living/simple_animal/slime/M in range(1,usr))
+		if(M.victim == usr)
 			usr << "You're too busy getting your life sucked out of you."
 			return
 //	usr << "You start climbing into [src.name]"

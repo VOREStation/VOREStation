@@ -8,6 +8,7 @@
 	icon_gib = "bat_dead"
 
 	faction = "scarybat"
+	intelligence_level = SA_ANIMAL
 
 	maxHealth = 20
 	health = 20

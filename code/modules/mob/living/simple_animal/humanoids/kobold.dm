@@ -6,6 +6,7 @@
 	icon_state = "kobold_idle"
 	icon_living = "kobold_idle"
 	icon_dead = "kobold_dead"
+	intelligence_level = SA_HUMANOID
 
 	run_at_them = 0
 	cooperative = 1

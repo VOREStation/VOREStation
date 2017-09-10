@@ -5,6 +5,7 @@
 	icon_living = "clown"
 	icon_dead = "clown_dead"
 	icon_gib = "clown_gib"
+	intelligence_level = SA_HUMANOID
 
 	faction = "clown"
 	maxHealth = 75

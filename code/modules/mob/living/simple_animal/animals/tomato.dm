@@ -4,6 +4,7 @@
 	icon_state = "tomato"
 	icon_living = "tomato"
 	icon_dead = "tomato_dead"
+	intelligence_level = SA_PLANT
 
 	faction = "plants"
 	maxHealth = 15

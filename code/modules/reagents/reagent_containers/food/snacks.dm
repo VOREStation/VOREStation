@@ -90,8 +90,6 @@
 					user << "<span class='warning'>\The [blocked] is in the way!</span>"
 					return
 
-			if(!istype(M, /mob/living/carbon/slime))		//If you're feeding it to someone else.
-
 				if (fullness <= (550 * (1 + M.overeatduration / 1000)))
 					user.visible_message("<span class='danger'>[user] attempts to feed [M] [src].</span>")
 				else
