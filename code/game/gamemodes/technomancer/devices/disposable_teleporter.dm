@@ -75,5 +75,5 @@
 			user << "<span class='notice'>You are teleported to \the [A].</span>"
 			uses--
 			if(uses <= 0)
-				user << "<span class='danger'>\The [src] has ran out of uses, and disintegrates from your hands</span>"
+				user << "<span class='danger'>\The [src] has ran out of uses, and disintegrates from your hands.</span>"
 				qdel(src)
