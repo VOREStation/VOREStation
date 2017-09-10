@@ -39,6 +39,9 @@
 			overlays += "[module_sprites[icontype]]-sleeper_g"
 		if(sleeper_r == 1)
 			overlays += "[module_sprites[icontype]]-sleeper_r"
+	if(typing)
+		typing = FALSE
+		set_typing_indicator(1)
 
 /mob/living/silicon/robot/Move(a, b, flag)
 
