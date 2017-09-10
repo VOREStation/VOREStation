@@ -103,6 +103,12 @@
 	verbs += /mob/living/silicon/pai/proc/choose_chassis
 	verbs += /mob/living/silicon/pai/proc/choose_verbs
 
+	// Vorestation Edit: Meta Info for pAI's
+	if (client)
+		var/meta_info = client.prefs.metadata
+		if (meta_info)
+			ooc_notes = meta_info
+
 	//PDA
 	pda = new(src)
 	spawn(5)

@@ -1469,3 +1469,14 @@ Departamental Swimsuits, for general use
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "sfjacket_mob"
+
+//General use
+/obj/item/clothing/head/fluff/headbando
+	name = "basic headband"
+	desc = "Perfect for martial artists, sweaty rogue operators, and tunnel gangsters."
+
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "headbando"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "headbando"
