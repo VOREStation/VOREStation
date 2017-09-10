@@ -6,7 +6,7 @@
 	density = 1
 	throwpass = 1
 	climbable = 1
-//	layer = 3.2 //Just above doors // Vorestation Edit
+	layer = 3.2 //Just above doors
 	anchored = 1
 	flags = ON_BORDER
 	icon_state = "railing0"
@@ -103,7 +103,7 @@
 
 /obj/structure/railing/update_icon(var/UpdateNeighgors = 1)
 	NeighborsCheck(UpdateNeighgors)
-	layer = (dir == SOUTH) ? FLY_LAYER : initial(layer)
+	//layer = (dir == SOUTH) ? FLY_LAYER : initial(layer) // Vorestation edit because wtf does this even do
 	overlays.Cut()
 	if (!check || !anchored)//|| !anchored
 		icon_state = "railing0"
