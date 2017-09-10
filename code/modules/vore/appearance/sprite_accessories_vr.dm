@@ -220,7 +220,7 @@
 	icon_state = "sleek"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
-	
+
 // Special snowflake ears go below here.
 
 /datum/sprite_accessory/ears/molenar_kitsune
@@ -1051,6 +1051,11 @@
 /datum/sprite_accessory/tail/taur/slug
 	name = "Slug"
 	icon_state = "slug_s"
+
+/datum/sprite_accessory/tail/taur/snail
+	name = "Snail"
+	icon_state = "snail_s"
+	extra_overlay = "snail_markings"
 
 /*/datum/sprite_accessory/tail/taur/drake //Yeah hold that thought for a bit. These got no suit compatibility yet.
 	name = "Drake"
