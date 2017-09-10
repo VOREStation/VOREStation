@@ -35,7 +35,7 @@ var/global/list/home_system_choices = list(
 
 var/global/list/faction_choices = list(
 	"Sol Central",
-	"Vey-Medical",
+	"Vey Med",
 	"Einstein Engines",
 	"Free Trade Union",
 	"NanoTrasen",
