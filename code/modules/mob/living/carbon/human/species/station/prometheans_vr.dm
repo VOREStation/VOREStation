@@ -8,6 +8,6 @@
 	color_mult = 1
 	mob_size = MOB_MEDIUM
 	num_alternate_languages = 1 //Let's at least give them one
-
+	appearance_flags = HAS_SKIN_COLOR | HAS_EYE_COLOR | HAS_HAIR_COLOR | RADIATION_GLOWS | HAS_UNDERWEAR
 /datum/species/shapeshifter/promethean/handle_death(var/mob/living/carbon/human/H)
 	return //This nullifies them gibbing.
