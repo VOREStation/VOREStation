@@ -1180,6 +1180,7 @@
 			vessel.remove_reagent("blood", vessel.total_volume - species.blood_volume)
 			vessel.maximum_volume = species.blood_volume
 		fixblood()
+		species.update_attack_types() //VOREStation edit. Required for any trait that updates unarmed_types in setup.
 
 	// Rebuild the HUD. If they aren't logged in then login() should reinstantiate it for them.
 	if(client && client.screen)
