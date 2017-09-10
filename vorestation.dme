@@ -1489,6 +1489,7 @@
 #include "code\modules\events\event_manager.dm"
 #include "code\modules\events\gravity.dm"
 #include "code\modules\events\grid_check.dm"
+#include "code\modules\events\grubinfestation_vr.dm"
 #include "code\modules\events\ian_storm_vr.dm"
 #include "code\modules\events\infestation.dm"
 #include "code\modules\events\ion_storm.dm"
