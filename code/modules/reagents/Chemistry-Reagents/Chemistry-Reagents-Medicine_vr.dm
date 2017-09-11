@@ -38,16 +38,16 @@
 	//..() //Add this if you want it to do toxin damage. Personally, let's allow them to have the horrid effects below without toxin damage.
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(prob(1)
+		if(prob(1))
 			to_chat(H,"<span class='warning'>Your entire body feels numb and the sensation of pins and needles continually assaults you. You blink and the next thing you know, your legs give out momentarily!</span>") 
 			H.AdjustWeakened(5) //Fall onto the floor for a few moments.
 			H.Confuse(15) //Be unable to walk for a bit longer.
-		if(prob(1)
+		if(prob(1))
 			if(H.losebreath <= 1 && H.oxyloss <= 20) //Let's not suffocate them to the point that they pass out.
 				to_chat(H,"<span class='warning'>You feel a sharp stabbing pain in your chest and quickly realize that your lungs have stopped functioning!</span>") //Let's scare them a bit. 
 				H.losebreath = 10
 				H.adjustOxyLoss(5)
-		if(prob(2)
+		if(prob(2))
 			to_chat(H,"<span class='warning'>You feel a dull pain behind your eyes and at thee back of your head...</span>") 
 			H.hallucination += 20 //It messes with your mind for some reason.
 			H.eye_blurry += 20 //Groggy vision for a small bit.
