@@ -65,7 +65,7 @@
 /datum/robolimb/eggnerdltdred
 	company = "Eggnerd Prototyping Ltd. (Red)"
 	desc = "A slightly more refined limb variant from Eggnerd Prototyping. Its got red plating instead of orange."
-	icon = 'icons\mob\human_races\cyberlimbs\rahboopred/rahboopred.dmi'
+	icon = 'icons/mob/human_races/cyberlimbs/rahboopred/rahboopred.dmi'
 	blood_color = "#5e280d"
 	includes_tail = 1
 	unavailable_to_build = 1
