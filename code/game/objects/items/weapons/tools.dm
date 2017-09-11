@@ -377,7 +377,7 @@
 
 /obj/item/weapon/weldingtool/afterattack(obj/O as obj, mob/user as mob, proximity)
 	if(!proximity) return
-	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1 && !welding)
+	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1)
 		if(!welding && max_fuel)
 			O.reagents.trans_to_obj(src, max_fuel)
 			user << "<span class='notice'>Welder refueled</span>"
