@@ -7,10 +7,10 @@
 
 /obj/item/clothing/shoes/New()
 	inside_emotes = list(
-		"\red You feel weightless for a moment as \the [name] moves upwards.",
-		"\red \The [name] are a ride you've got no choice but to participate in as the wearer moves.",
-		"\red The wearer of \the [name] moves, pressing down on you.",
-		"\red More motion while \the [name] move, feet pressing down against you."
+		"<font color='red'>You feel weightless for a moment as \the [name] moves upwards.</font>",
+		"<font color='red'>\The [name] are a ride you've got no choice but to participate in as the wearer moves.</font>",
+		"<font color='red'>The wearer of \the [name] moves, pressing down on you.</font>",
+		"<font color='red'>More motion while \the [name] move, feet pressing down against you.</font>"
 	)
 
 	..()
@@ -64,14 +64,14 @@
 	if(ishuman(src.loc))
 		var/mob/living/carbon/human/H = src.loc
 		if(H.shoes == src)
-			H << "\red [user]'s tiny body presses against you in \the [src], squirming!"
-			user << "\red Your body presses out against [H]'s form! Well, what little you can get to!"
+			H << "<font color='red'>[user]'s tiny body presses against you in \the [src], squirming!</font>"
+			user << "<font color='red'>Your body presses out against [H]'s form! Well, what little you can get to!</font>"
 		else
-			H << "\red [user]'s form shifts around in the \the [src], squirming!"
-			user << "\red You move around inside the [src], to no avail."
+			H << "<font color='red'>[user]'s form shifts around in the \the [src], squirming!</font>"
+			user << "<font color='red'>You move around inside the [src], to no avail.</font>"
 	else
-		src.visible_message("\red \The [src] moves a little!")
-		user << "\red You throw yourself against the inside of \the [src]!"
+		src.visible_message("<font color='red'>\The [src] moves a little!</font>")
+		user << "<font color='red'>You throw yourself against the inside of \the [src]!</font>"
 
 //Mask
 /obj/item/clothing/mask
