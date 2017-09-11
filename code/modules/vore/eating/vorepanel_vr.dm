@@ -7,7 +7,7 @@
 #define BELLIES_NAME_MAX 12
 #define BELLIES_DESC_MAX 1024
 #define FLAVOR_MAX 40
-#define NIF_EXAMINE_MAX 100
+#define NIF_EXAMINE_MAX 60
 
 /mob/living/proc/insidePanel()
 	set name = "Vore Panel"
@@ -24,7 +24,7 @@
 	picker_holder.popup.open()
 	src.openpanel = 1
 
-/mob/living/proc/updateVRPanel() //Panel popup update call from belly évents.
+/mob/living/proc/updateVRPanel() //Panel popup update call from belly events.
 	if(src.openpanel == 1)
 		var/datum/vore_look/picker_holder = new()
 		picker_holder.loop = picker_holder
@@ -685,7 +685,7 @@
 
 		if(new_nif_examine)
 			new_nif_examine = readd_quotes(new_nif_examine)
-			if(length(new_nif_examine) > NIF_EXAMINE_MAX) //40 characters is fine.
+			if(length(new_nif_examine) > NIF_EXAMINE_MAX)
 				alert("Entered NIF examine text too long. [NIF_EXAMINE_MAX] character limit.","Error")
 				return 0
 			user.nif_examine = new_nif_examine
