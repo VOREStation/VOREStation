@@ -247,6 +247,34 @@
 	reagents.add_reagent("carbon", 5)
 	bitesize = 3
 
+/obj/item/weapon/reagent_containers/food/snacks/mammi
+	name = "mämmi"
+	desc = "Traditional finnish desert, some like it, others don't. It's drifting in some milk, add sugar!"
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "mammi"
+	trash = /obj/item/trash/plate
+	nutriment_amt = 3
+	nutriment_desc = list("brothy sweet goodness" = 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/mammi/New()
+	..()
+	bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/makaroni
+	name = "makaronilaatikko"
+	desc = "A special kind of macaroni, it's a big dish, and this one has special meat in it."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "makaroni"
+	trash = /obj/item/trash/plate
+	nutriment_amt = 15
+	nutriment_desc = list("Cheese" = 5, "eggs" = 3, "pasta" = 4, "sparkles" = 3)
+
+/obj/item/weapon/reagent_containers/food/snacks/makaroni/New()
+	..()
+	reagents.add_reagent("protein", 1)
+	reagents.add_reagent("shockchem", 6)
+	bitesize = 7
+
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/sobakacube
 	name = "sobaka cube"
 	monkey_type = "Sobaka"
