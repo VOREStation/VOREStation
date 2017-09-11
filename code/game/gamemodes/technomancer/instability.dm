@@ -4,7 +4,7 @@
 // For 0.97, it has a half life of about 23 ticks, or 46 seconds.
 // For 0.96, it is 17 ticks, or 34 seconds.
 // 0.95 is 14 ticks.
-#define TECHNOMANCER_INSTABILITY_MIN_DECAY			-0.1 	// Minimum removed every Life() tick, always.
+#define TECHNOMANCER_INSTABILITY_MIN_DECAY			0.1 	// Minimum removed every Life() tick, always.
 #define TECHNOMANCER_INSTABILITY_PRECISION			0.1 	// Instability is rounded to this.
 #define TECHNOMANCER_INSTABILITY_MIN_GLOW			10		// When above this number, the entity starts glowing, affecting others.
 
