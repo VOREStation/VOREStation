@@ -32,7 +32,7 @@
 /datum/reagent/numbing_enzyme/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.add_chemical_effect(CE_PAINKILLER, 200)
 	if(prob(1))
-		to_chat(H,"<span class='warning'>Your body feels numb, a light, tingly sensation spreading throughout it.</span>")
+		to_chat(M,"<span class='warning'>Your body feels numb, a light, tingly sensation spreading throughout it.</span>")
 
 /datum/reagent/numbing_enzyme/overdose(var/mob/living/carbon/M, var/alien)
 	//..() //Add this if you want it to do toxin damage. Personally, let's allow them to have the horrid effects below without toxin damage.
