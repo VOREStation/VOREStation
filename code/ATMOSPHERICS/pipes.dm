@@ -34,6 +34,10 @@
 
 	return 1
 
+// This is used to set up what directions pipes will connect to.  Called inside New(), initialize(), and when pipes look at another pipe, incase they didn't get to initialize() yet.
+/obj/machinery/atmospherics/proc/init_dir()
+	return
+
 /obj/machinery/atmospherics/pipe/return_air()
 	if(!parent)
 		parent = new /datum/pipeline()
@@ -168,19 +172,9 @@
 	icon = null
 	alpha = 255
 
-	switch(dir)
-		if(SOUTH || NORTH)
-			initialize_directions = SOUTH|NORTH
-		if(EAST || WEST)
-			initialize_directions = EAST|WEST
-		if(NORTHEAST)
-			initialize_directions = NORTH|EAST
-		if(NORTHWEST)
-			initialize_directions = NORTH|WEST
-		if(SOUTHEAST)
-			initialize_directions = SOUTH|EAST
-		if(SOUTHWEST)
-			initialize_directions = SOUTH|WEST
+	init_dir()
+
+
 
 /obj/machinery/atmospherics/pipe/simple/hide(var/i)
 	if(istype(loc, /turf/simulated))
@@ -207,6 +201,21 @@
 			burst()
 
 	else return 1
+
+/obj/machinery/atmospherics/pipe/simple/init_dir()
+	switch(dir)
+		if(SOUTH || NORTH)
+			initialize_directions = SOUTH|NORTH
+		if(EAST || WEST)
+			initialize_directions = EAST|WEST
+		if(NORTHEAST)
+			initialize_directions = NORTH|EAST
+		if(NORTHWEST)
+			initialize_directions = NORTH|WEST
+		if(SOUTHEAST)
+			initialize_directions = SOUTH|EAST
+		if(SOUTHWEST)
+			initialize_directions = SOUTH|WEST
 
 /obj/machinery/atmospherics/pipe/simple/proc/burst()
 	src.visible_message("<span class='danger'>\The [src] bursts!</span>");
@@ -268,6 +277,7 @@
 	return
 
 /obj/machinery/atmospherics/pipe/simple/initialize()
+	init_dir()
 	normalize_dir()
 	var/node1_dir
 	var/node2_dir
@@ -280,11 +290,13 @@
 				node2_dir = direction
 
 	for(var/obj/machinery/atmospherics/target in get_step(src,node1_dir))
+		target.init_dir()
 		if(target.initialize_directions & get_dir(target,src))
 			if (check_connect_types(target,src))
 				node1 = target
 				break
 	for(var/obj/machinery/atmospherics/target in get_step(src,node2_dir))
+		target.init_dir()
 		if(target.initialize_directions & get_dir(target,src))
 			if (check_connect_types(target,src))
 				node2 = target
@@ -434,6 +446,9 @@
 	alpha = 255
 	icon = null
 
+	init_dir()
+
+/obj/machinery/atmospherics/pipe/manifold/init_dir()
 	switch(dir)
 		if(NORTH)
 			initialize_directions = EAST|SOUTH|WEST
@@ -542,11 +557,13 @@
 	update_icon()
 
 /obj/machinery/atmospherics/pipe/manifold/initialize()
+	init_dir()
 	var/connect_directions = (NORTH|SOUTH|EAST|WEST)&(~dir)
 
 	for(var/direction in cardinal)
 		if(direction&connect_directions)
 			for(var/obj/machinery/atmospherics/target in get_step(src,direction))
+				target.init_dir()
 				if(target.initialize_directions & get_dir(target,src))
 					if (check_connect_types(target,src))
 						node1 = target
@@ -559,6 +576,7 @@
 	for(var/direction in cardinal)
 		if(direction&connect_directions)
 			for(var/obj/machinery/atmospherics/target in get_step(src,direction))
+				target.init_dir()
 				if(target.initialize_directions & get_dir(target,src))
 					if (check_connect_types(target,src))
 						node2 = target
@@ -571,6 +589,7 @@
 	for(var/direction in cardinal)
 		if(direction&connect_directions)
 			for(var/obj/machinery/atmospherics/target in get_step(src,direction))
+				target.init_dir()
 				if(target.initialize_directions & get_dir(target,src))
 					if (check_connect_types(target,src))
 						node3 = target
@@ -821,24 +840,28 @@
 /obj/machinery/atmospherics/pipe/manifold4w/initialize()
 
 	for(var/obj/machinery/atmospherics/target in get_step(src,1))
+		target.init_dir()
 		if(target.initialize_directions & 2)
 			if (check_connect_types(target,src))
 				node1 = target
 				break
 
 	for(var/obj/machinery/atmospherics/target in get_step(src,2))
+		target.init_dir()
 		if(target.initialize_directions & 1)
 			if (check_connect_types(target,src))
 				node2 = target
 				break
 
 	for(var/obj/machinery/atmospherics/target in get_step(src,4))
+		target.init_dir()
 		if(target.initialize_directions & 8)
 			if (check_connect_types(target,src))
 				node3 = target
 				break
 
 	for(var/obj/machinery/atmospherics/target in get_step(src,8))
+		target.init_dir()
 		if(target.initialize_directions & 4)
 			if (check_connect_types(target,src))
 				node4 = target
@@ -956,6 +979,9 @@
 
 /obj/machinery/atmospherics/pipe/cap/New()
 	..()
+	init_dir()
+
+/obj/machinery/atmospherics/pipe/cap/init_dir()
 	initialize_directions = dir
 
 /obj/machinery/atmospherics/pipe/cap/hide(var/i)
@@ -1004,7 +1030,9 @@
 	overlays += icon_manager.get_atmos_icon("pipe", , pipe_color, "cap")
 
 /obj/machinery/atmospherics/pipe/cap/initialize()
+	init_dir()
 	for(var/obj/machinery/atmospherics/target in get_step(src, dir))
+		target.init_dir()
 		if(target.initialize_directions & get_dir(target,src))
 			if (check_connect_types(target,src))
 				node = target
@@ -1077,8 +1105,11 @@
 
 /obj/machinery/atmospherics/pipe/tank/New()
 	icon_state = "air"
-	initialize_directions = dir
+	init_dir()
 	..()
+
+/obj/machinery/atmospherics/pipe/tank/init_dir()
+	initialize_directions = dir
 
 /obj/machinery/atmospherics/pipe/tank/process()
 	if(!parent)
@@ -1108,9 +1139,11 @@
 	update_underlays()
 
 /obj/machinery/atmospherics/pipe/tank/initialize()
+	init_dir()
 	var/connect_direction = dir
 
 	for(var/obj/machinery/atmospherics/target in get_step(src,connect_direction))
+		target.init_dir()
 		if(target.initialize_directions & get_dir(target,src))
 			if (check_connect_types(target,src))
 				node1 = target
@@ -1239,8 +1272,11 @@
 	var/build_killswitch = 1
 
 /obj/machinery/atmospherics/pipe/vent/New()
-	initialize_directions = dir
+	init_dir()
 	..()
+
+/obj/machinery/atmospherics/pipe/vent/init_dir()
+	initialize_directions = dir
 
 /obj/machinery/atmospherics/pipe/vent/high_volume
 	name = "Larger vent"
@@ -1277,9 +1313,11 @@
 		icon_state = "exposed"
 
 /obj/machinery/atmospherics/pipe/vent/initialize()
+	init_dir()
 	var/connect_direction = dir
 
 	for(var/obj/machinery/atmospherics/target in get_step(src,connect_direction))
+		target.init_dir()
 		if(target.initialize_directions & get_dir(target,src))
 			if (check_connect_types(target,src))
 				node1 = target
