@@ -32,7 +32,7 @@
 /datum/reagent/numbing_enzyme/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.add_chemical_effect(CE_PAINKILLER, 200)
 	if(prob(1))
-		to_chat(M,"<span class='warning'>Your body feels numb, a light, tingly sensation spreading throughout it.</span>")
+		to_chat(M,"<span class='warning'>Your body feels numb as a light, tingly sensation spreads throughout it.</span>")
 
 /datum/reagent/numbing_enzyme/overdose(var/mob/living/carbon/M, var/alien)
 	//..() //Add this if you want it to do toxin damage. Personally, let's allow them to have the horrid effects below without toxin damage.
@@ -41,7 +41,7 @@
 		if(prob(1))
 			to_chat(H,"<span class='warning'>Your entire body feels numb and the sensation of pins and needles continually assaults you. You blink and the next thing you know, your legs give out momentarily!</span>") 
 			H.AdjustWeakened(5) //Fall onto the floor for a few moments.
-			H.Confuse(15) //Be unable to walk for a bit longer.
+			H.Confuse(15) //Be unable to walk correctly for a bit longer.
 		if(prob(1))
 			if(H.losebreath <= 1 && H.oxyloss <= 20) //Let's not suffocate them to the point that they pass out.
 				to_chat(H,"<span class='warning'>You feel a sharp stabbing pain in your chest and quickly realize that your lungs have stopped functioning!</span>") //Let's scare them a bit. 
