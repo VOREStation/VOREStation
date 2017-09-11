@@ -54,5 +54,6 @@
 
 /mob/living/simple_animal/hostile/tree/death()
 	..(null,"is hacked into pieces!")
+	playsound(loc, 'sound/effects/woodcutting.ogg', 100, 1)
 	new /obj/item/stack/material/wood(loc)
 	qdel(src)
