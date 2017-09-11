@@ -14,6 +14,8 @@
 	var/vore_taste = null				// What the character tastes like
 	var/no_vore = 0 					// If the character/mob can vore.
 	var/openpanel = 0					// Is the vore panel open?
+	var/conceal_nif = 0					// Do they wish to conceal their NIF from examine?
+	var/nif_examine = "There's a certain spark to their eyes" //The examine text of their NIF. This is the default placeholder.
 
 //
 // Hook for generic creation of stuff on new creatures
