@@ -7,6 +7,7 @@
 	icon_dead = "basic"
 
 	faction = "hivebot"
+	intelligence_level = SA_ROBOTIC
 	maxHealth = 15
 	health = 15
 	speed = 4

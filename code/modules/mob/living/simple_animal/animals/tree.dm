@@ -6,6 +6,7 @@
 	icon_living = "pine_1"
 	icon_dead = "pine_1"
 	icon_gib = "pine_1"
+	intelligence_level = SA_PLANT
 
 	faction = "carp" //Trees can be carp friends?
 	maxHealth = 250

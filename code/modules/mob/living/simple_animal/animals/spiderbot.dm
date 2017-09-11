@@ -5,6 +5,7 @@
 	icon_state = "spiderbot-chassis"
 	icon_living = "spiderbot-chassis"
 	icon_dead = "spiderbot-smashed"
+	intelligence_level = SA_HUMANOID // Because its piloted by players.
 
 	health = 10
 	maxHealth = 10

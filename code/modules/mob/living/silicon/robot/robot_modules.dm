@@ -719,6 +719,8 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
 	src.modules += new /obj/item/weapon/storage/part_replacer(src)
 	src.modules += new /obj/item/weapon/shockpaddles/robot/jumper(src)
+	src.modules += new /obj/item/weapon/melee/baton/slime/robot(src)
+	src.modules += new /obj/item/weapon/gun/energy/taser/xeno/robot(src)
 	src.emag = new /obj/item/weapon/hand_tele(src)
 
 	var/datum/matter_synth/nanite = new /datum/matter_synth/nanite(10000)

@@ -90,8 +90,6 @@
 					user << "<span class='warning'>\The [blocked] is in the way!</span>"
 					return
 
-			if(!istype(M, /mob/living/carbon/slime))		//If you're feeding it to someone else.
-
 				if (fullness <= (550 * (1 + M.overeatduration / 1000)))
 					user.visible_message("<span class='danger'>[user] attempts to feed [M] [src].</span>")
 				else
@@ -3443,3 +3441,15 @@
 		reagents.add_reagent("protein", 8)
 		reagents.add_reagent("capsaicin", 2)
 		bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/croissant
+	name = "croissant"
+	desc = "True French cuisine."
+	filling_color = "#E3D796"
+	icon_state = "croissant"
+	nutriment_amt = 6
+	nutriment_desc = list("french bread" = 6)
+
+/obj/item/weapon/reagent_containers/food/snacks/croissant/New()
+	..()
+	bitesize = 2

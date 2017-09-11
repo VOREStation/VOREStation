@@ -4,6 +4,7 @@
 	icon_state = "piratemelee"
 	icon_living = "piratemelee"
 	icon_dead = "piratemelee_dead"
+	intelligence_level = SA_HUMANOID
 
 	faction = "pirate"
 	maxHealth = 100

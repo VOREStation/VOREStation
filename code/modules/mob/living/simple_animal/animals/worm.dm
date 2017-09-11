@@ -5,6 +5,7 @@
 	icon_state = "spaceworm"
 	icon_living = "spaceworm"
 	icon_dead = "spacewormdead"
+	intelligence_level = SA_ANIMAL
 
 
 	maxHealth = 30

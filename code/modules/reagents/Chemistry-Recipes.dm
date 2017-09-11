@@ -604,16 +604,75 @@
 
 /* Solidification */
 
-/datum/chemical_reaction/phoronsolidification
+/datum/chemical_reaction/solidification
+	name = "Solid Iron"
+	id = "solidiron"
+	result = null
+	required_reagents = list("frostoil" = 5, "iron" = REAGENTS_PER_SHEET)
+	result_amount = 1
+	var/sheet_to_give = /obj/item/stack/material/iron
+
+/datum/chemical_reaction/solidification/on_reaction(var/datum/reagents/holder, var/created_volume)
+	new sheet_to_give(get_turf(holder.my_atom), created_volume)
+	return
+
+
+/datum/chemical_reaction/solidification/phoron
 	name = "Solid Phoron"
 	id = "solidphoron"
-	result = null
-	required_reagents = list("iron" = 5, "frostoil" = 5, "phoron" = 20)
-	result_amount = 1
+	required_reagents = list("frostoil" = 5, "phoron" = REAGENTS_PER_SHEET)
+	sheet_to_give = /obj/item/stack/material/phoron
 
-/datum/chemical_reaction/phoronsolidification/on_reaction(var/datum/reagents/holder, var/created_volume)
-	new /obj/item/stack/material/phoron(get_turf(holder.my_atom), created_volume)
-	return
+
+/datum/chemical_reaction/solidification/silver
+	name = "Solid Silver"
+	id = "solidsilver"
+	required_reagents = list("frostoil" = 5, "silver" = REAGENTS_PER_SHEET)
+	sheet_to_give = /obj/item/stack/material/silver
+
+
+/datum/chemical_reaction/solidification/gold
+	name = "Solid Gold"
+	id = "solidgold"
+	required_reagents = list("frostoil" = 5, "gold" = REAGENTS_PER_SHEET)
+	sheet_to_give = /obj/item/stack/material/gold
+
+
+/datum/chemical_reaction/solidification/platinum
+	name = "Solid Platinum"
+	id = "solidplatinum"
+	required_reagents = list("frostoil" = 5, "platinum" = REAGENTS_PER_SHEET)
+	sheet_to_give = /obj/item/stack/material/platinum
+
+
+/datum/chemical_reaction/solidification/uranium
+	name = "Solid Uranium"
+	id = "soliduranium"
+	required_reagents = list("frostoil" = 5, "uranium" = REAGENTS_PER_SHEET)
+	sheet_to_give = /obj/item/stack/material/uranium
+
+
+/datum/chemical_reaction/solidification/hydrogen
+	name = "Solid Hydrogen"
+	id = "solidhydrogen"
+	required_reagents = list("frostoil" = 100, "hydrogen" = REAGENTS_PER_SHEET)
+	sheet_to_give = /obj/item/stack/material/mhydrogen
+
+
+// These are from Xenobio.
+/datum/chemical_reaction/solidification/steel
+	name = "Solid Steel"
+	id = "solidsteel"
+	required_reagents = list("frostoil" = 5, "steel" = REAGENTS_PER_SHEET)
+	sheet_to_give = /obj/item/stack/material/steel
+
+
+/datum/chemical_reaction/solidification/plasteel
+	name = "Solid Plasteel"
+	id = "solidplasteel"
+	required_reagents = list("frostoil" = 10, "plasteel" = REAGENTS_PER_SHEET)
+	sheet_to_give = /obj/item/stack/material/plasteel
+
 
 /datum/chemical_reaction/plastication
 	name = "Plastic"
@@ -1037,30 +1096,6 @@
 
 /datum/chemical_reaction/aluminum_paint/send_data()
 	return "#F0F8FF"
-
-/* Slime cores */
-
-/datum/chemical_reaction/slime
-	var/required = null
-
-//Slimed monkeys
-/datum/chemical_reaction/slime/can_happen(var/datum/reagents/holder)
-	if(holder.my_atom && istype(holder.my_atom, required))
-		return ..()
-	return 0
-
-/datum/chemical_reaction/slime/golem
-	name = "Prometheans"
-	id = "m_promethean"
-	result = null
-	required_reagents = list("mutationtoxin" = 1)
-	result_amount = 1
-	required = /obj/item/weapon/reagent_containers/food/snacks/monkeycube
-
-/datum/chemical_reaction/slime/golem/on_reaction(var/datum/reagents/holder)
-	var/location = get_turf(holder.my_atom)
-	new /obj/item/slime_cube(location)
-	qdel(holder.my_atom)
 
 /* Food */
 
