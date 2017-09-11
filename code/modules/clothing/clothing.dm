@@ -462,6 +462,13 @@
 	return ..()
 
 /obj/item/clothing/shoes/proc/handle_movement(var/turf/walking, var/running)
+	if(prob(1) && !recent_squish) //VOREStation edit begin
+		recent_squish = 1
+		spawn(100)
+			recent_squish = 0
+		for(var/mob/living/M in contents)
+			var/emote = pick(inside_emotes)
+			M << emote //VOREStation edit end
 	return
 
 /obj/item/clothing/shoes/update_clothing_icon()

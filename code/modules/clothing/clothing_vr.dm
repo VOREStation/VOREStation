@@ -1,3 +1,31 @@
+/obj/item/clothing
+	var/recent_struggle = 0
+
+/obj/item/clothing/shoes
+	var/list/inside_emotes = list()
+	var/recent_squish = 0
+
+/obj/item/clothing/shoes/New()
+	inside_emotes = list(
+		"\red You feel weightless for a moment as \the [name] moves upwards.",
+		"\red \The [name] are a ride you've got no choice but to participate in as the wearer moves.",
+		"\red The wearer of \the [name] moves, pressing down on you.",
+		"\red More motion while \the [name] move, feet pressing down against you."
+	)
+
+	..()
+/* //Must be handled in clothing.dm
+/obj/item/clothing/shoes/proc/handle_movement(var/turf/walking, var/running)
+	if(prob(1) && !recent_squish)
+		recent_squish = 1
+		spawn(100)
+			recent_squish = 0
+		for(var/mob/living/M in contents)
+			var/emote = pick(inside_emotes)
+			M << emote
+	return
+*/
+
 //This is a crazy 'sideways' override.
 /obj/item/clothing/shoes/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I,/obj/item/weapon/holder/micro))
@@ -22,6 +50,28 @@
 		to_chat(user,"<span class='notice'>You shake [M] out of \the [src]!</span>")
 
 	..()
+
+/obj/item/clothing/relaymove(var/mob/living/user,var/direction)
+
+	if(recent_struggle)
+		return
+
+	recent_struggle = 1
+
+	spawn(100)
+		recent_struggle = 0
+
+	if(ishuman(src.loc))
+		var/mob/living/carbon/human/H = src.loc
+		if(H.shoes == src)
+			H << "\red [user]'s tiny body presses against you in \the [src], squirming!"
+			user << "\red Your body presses out against [H]'s form! Well, what little you can get to!"
+		else
+			H << "\red [user]'s form shifts around in the \the [src], squirming!"
+			user << "\red You move around inside the [src], to no avail."
+	else
+		src.visible_message("\red \The [src] moves a little!")
+		user << "\red You throw yourself against the inside of \the [src]!"
 
 //Mask
 /obj/item/clothing/mask
