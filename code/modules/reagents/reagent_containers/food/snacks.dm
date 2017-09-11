@@ -3441,3 +3441,15 @@
 		reagents.add_reagent("protein", 8)
 		reagents.add_reagent("capsaicin", 2)
 		bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/croissant
+	name = "croissant"
+	desc = "True French cuisine."
+	filling_color = "#E3D796"
+	icon_state = "croissant"
+	nutriment_amt = 6
+	nutriment_desc = list("french bread" = 6)
+
+/obj/item/weapon/reagent_containers/food/snacks/croissant/New()
+	..()
+	bitesize = 2
