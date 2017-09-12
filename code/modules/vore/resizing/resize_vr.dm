@@ -95,14 +95,14 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 			We were originally going to remove them but kept them for popular demand. \
 			Do not abuse their existence outside of ERP scenes where they apply, \
 			or reverting OOCly unwanted changes like someone lolshooting the crew with a shrink ray. -Ace"
-
+/* //No reason non-humanoids shouldn't be able to use this, seeing as they have the biggest need for this.
 	if (!istype(src,/mob/living/carbon/human))
 		src << "<span class='warning'>Only organic creatures can use this command!</span>"
 		return
-	var/new_size = input(user, "nagmessage", "Character Preference") as num|null
+*/
+	var/new_size = input(nagmessage, "Pick a Size") as num|null
 	if(new_size && IsInRange(new_size,25,200))
-		resize(new_size/100)
-		preview_icon = null
+		src.resize(new_size/100)
 		message_admins("[key_name(src)] used the resize command in-game to be [new_size]% size. \
 			([src ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>" : "null"])")
 
