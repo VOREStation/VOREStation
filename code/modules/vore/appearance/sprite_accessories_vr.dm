@@ -1086,3 +1086,8 @@
 	ani_state = "alraune_closed_s"
 	ckeys_allowed = list("natje")
 	do_colouration = 0
+
+//Natje: Kyuu and Public
+/datum/sprite_accessory/tail/taur/giant_tail
+    name = "Giant Tail"
+    icon_state = "gianttail_s"
