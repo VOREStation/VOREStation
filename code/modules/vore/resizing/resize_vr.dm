@@ -80,12 +80,12 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 /mob/living/carbon/human/dummy/mannequin/resize(var/new_size)
 	size_multiplier = new_size
 
-/* Removed due to too many 'magic' characters having resizing 100% of the time.
-   Replaced with bluespace jumpsuit, and mass altering NIFSoft.
 /**
  * Verb proc for a command that lets players change their size OOCly.
  * Ace was here! Redid this a little so we'd use math for shrinking characters. This is the old code.
  */
+
+
 /mob/living/proc/set_size()
 	set name = "Set Character Size"
 	set category = "OOC"
@@ -108,7 +108,6 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 /hook/living_new/proc/resize_setup(mob/living/H)
 	H.verbs += /mob/living/proc/set_size
 	return 1
-*/
 
 
 /**
