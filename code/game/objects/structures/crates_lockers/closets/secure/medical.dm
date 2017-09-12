@@ -154,6 +154,7 @@
 		new /obj/item/weapon/extinguisher/mini(src)
 		new /obj/item/weapon/storage/box/freezer(src)
 		new /obj/item/clothing/accessory/storage/white_vest(src)
+		new /obj/item/taperoll/medical(src)
 		return
 
 /obj/structure/closet/secure_closet/CMO
@@ -208,6 +209,7 @@
 		new /obj/item/clothing/shoes/boots/winter/medical(src)
 		new /obj/item/weapon/storage/box/freezer(src)
 		new /obj/item/clothing/mask/gas(src)
+		new /obj/item/taperoll/medical(src)
 		return
 
 
