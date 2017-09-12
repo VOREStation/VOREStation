@@ -66,7 +66,7 @@
 		return
 	T.assume_gas("phoron", ceil(volume/2), T20C)
 	for(var/turf/simulated/floor/target_tile in range(0,T))
-		target_tile.assume_gas("volatile_fuel", volume/2, 400+T0C)
+		target_tile.assume_gas("phoron", volume/2, 400+T0C)
 		spawn (0) target_tile.hotspot_expose(700, 400)
 	remove_self(volume)
 
