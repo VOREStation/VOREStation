@@ -24,6 +24,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 	appearance_flags = HAS_SKIN_COLOR | HAS_EYE_COLOR | HAS_HAIR_COLOR | RADIATION_GLOWS
 	spawn_flags		 = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
 	health_hud_intensity = 2
+	num_alternate_languages = 3
 
 	breath_type = null
 	poison_type = null
