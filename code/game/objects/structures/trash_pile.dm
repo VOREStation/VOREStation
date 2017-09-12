@@ -268,9 +268,11 @@
 	spawn_types = list(/mob/living/simple_animal/mouse)
 	simultaneous_spawns = 1
 	destructible = 1
+	spawn_delay = 1 HOUR
 
-/obj/structure/mob_spawner/mouse_nest/initialize()
+/obj/structure/mob_spawner/mouse_nest/New()
 	..()
+	last_spawn = rand(world.time - spawn_delay, world.time)
 	icon_state = pick(
 		"pile1",
 		"pile2",
@@ -288,3 +290,7 @@
 	. = ..()
 	var/atom/A = get_holder_at_turf_level(src)
 	A.visible_message("[.] crawls out of \the [src].")
+
+/obj/structure/mob_spawner/mouse_nest/get_death_report(var/mob/living/L)
+	..()
+	last_spawn = rand(world.time - spawn_delay, world.time)
