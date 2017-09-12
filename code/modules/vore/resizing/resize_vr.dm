@@ -89,7 +89,9 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 /mob/living/proc/set_size()
 	set name = "Set Character Size"
 	set category = "OOC"
-	var/nagmessage = "DO NOT ABUSE THESE COMMANDS. They are not here for you to play with. \
+
+	var/nagmessage = "Pick a size between 25 to 200% \
+			DO NOT ABUSE THESE COMMANDS. They are not here for you to play with. \
 			We were originally going to remove them but kept them for popular demand. \
 			Do not abuse their existence outside of ERP scenes where they apply, \
 			or reverting OOCly unwanted changes like someone lolshooting the crew with a shrink ray. -Ace"
@@ -97,11 +99,11 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 	if (!istype(src,/mob/living/carbon/human))
 		src << "<span class='warning'>Only organic creatures can use this command!</span>"
 		return
-		var/new_size = input(user, "Choose your character's size, ranging from 25% to 200%", "Character Preference") as num|null
-		if(new_size && IsInRange(new_size,25,200))
-			resize(new_size/100)
-			preview_icon = null
-			message_admins("[key_name(src)] used the resize command in-game to be [new_size]% size. \
+	var/new_size = input(user, "nagmessage", "Character Preference") as num|null
+	if(new_size && IsInRange(new_size,25,200))
+		resize(new_size/100)
+		preview_icon = null
+		message_admins("[key_name(src)] used the resize command in-game to be [new_size]% size. \
 			([src ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>" : "null"])")
 
 /** Add the set_size() proc to usable verbs. */
