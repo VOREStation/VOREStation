@@ -22,7 +22,7 @@
 
 	var/list/spawned_mobs = list()
 
-/obj/structure/mob_spawner/initialize()
+/obj/structure/mob_spawner/New()
 	..()
 	processing_objects.Add(src)
 	last_spawn = world.time + rand(0,spawn_delay)

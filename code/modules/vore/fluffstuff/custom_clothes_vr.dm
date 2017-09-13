@@ -1480,3 +1480,14 @@ Departamental Swimsuits, for general use
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "headbando"
+
+//General use
+/obj/item/clothing/suit/storage/fluff/loincloth
+	name = "Loincloth"
+	desc = "A primitive piece of oak-borwn clothing wrapped firmly around the waist. A few bones line the edges."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "loincloth"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "loincloth"

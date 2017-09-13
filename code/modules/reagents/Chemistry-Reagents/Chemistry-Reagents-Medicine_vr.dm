@@ -58,3 +58,19 @@
 		if(prob(3))
 			to_chat(H,"<span class='warning'>Your tongue feels numb and unresponsive.</span>")
 			H.stuttering += 20
+
+/datum/reagent/vermicetol
+	name = "Vermicetol"
+	id = "vermicetol"
+	description = "A potent chemical that treats burn damage at an exceptional rate and lasts a while."
+	taste_description = "sparkles"
+	reagent_state = SOLID
+	color = "#964e06"
+	overdose = 10
+	scannable = 1
+	metabolism = 0.02
+	mrate_static = TRUE
+
+/datum/reagent/vermicetol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien != IS_DIONA)
+		M.heal_organ_damage(0, 21 * removed) //more potent than keloderm

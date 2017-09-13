@@ -73,6 +73,23 @@
 	required_reagents = list("milk" = 2, "hydrogen" = 1, "potassium" = 1)
 	result_amount = 3
 
+/datum/chemical_reaction/vermicetol
+	name = "Vermicetol"
+	id = "vermicetol"
+	result = "vermicetol"
+	required_reagents = list("kelotane" = 1, "dermaline" = 1, "shockchem" = 1, "phoron" = 0.1)
+	catalysts = list("phoron" = 5)
+	result_amount = 3
+
+///////////////////////////////////////////////////////////////////////////////////
+/// Special drinks
+/datum/chemical_reaction/drinks/grubshake
+	name = "Grub protein drink"
+	id = "grubshake"
+	result = "grubshake"
+	required_reagents = list("shockchem" = 5, "water" = 25)
+	result_amount = 30
+
 ///////////////////////////////
 //SLIME CORES BELOW HERE///////
 ///////////////////////////////
