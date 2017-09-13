@@ -7,6 +7,7 @@
 #define BELLIES_NAME_MAX 12
 #define BELLIES_DESC_MAX 1024
 #define FLAVOR_MAX 40
+#define NIF_EXAMINE_MAX 60
 
 /mob/living/proc/insidePanel()
 	set name = "Vore Panel"
@@ -23,7 +24,7 @@
 	picker_holder.popup.open()
 	src.openpanel = 1
 
-/mob/living/proc/updateVRPanel() //Panel popup update call from belly évents.
+/mob/living/proc/updateVRPanel() //Panel popup update call from belly events.
 	if(src.openpanel == 1)
 		var/datum/vore_look/picker_holder = new()
 		picker_holder.loop = picker_holder
@@ -256,6 +257,9 @@
 			dat += "<a href='?src=\ref[src];toggledg=1'>Toggle Digestable</a>"
 		if(0)
 			dat += "<a href='?src=\ref[src];toggledg=1'><span style='color:green;'>Toggle Digestable</span></a>"
+
+	dat += "<br><a href='?src=\ref[src];toggle_nif=1'>Set NIF concealment</a>" //These two get their own, custom row.
+	dat += "<a href='?src=\ref[src];set_nif_flavor=1'>Set NIF Examine Message.</a>"
 
 	//Returns the dat html to the vore_look
 	return dat
@@ -663,6 +667,28 @@
 				alert("Entered flavor/taste text too long. [FLAVOR_MAX] character limit.","Error")
 				return 0
 			user.vore_taste = new_flavor
+		else //Returned null
+			return 0
+
+	if(href_list["toggle_nif"])
+		var/choice = alert(user, "Your nif is currently: [user.conceal_nif ? "Not able to be seen" : "Able to be seen"]", "", "Conceal NIF", "Cancel", "Show NIF")
+		switch(choice)
+			if("Cancel")
+				return 0
+			if("Conceal NIF")
+				user.conceal_nif = 1
+			if("Show NIF")
+				user.conceal_nif = 0
+
+	if(href_list["set_nif_flavor"])
+		var/new_nif_examine = html_encode(input(usr,"How people will see your NIF on examine (100ch limit):","Character Flavor",user.nif_examine) as text|null)
+
+		if(new_nif_examine)
+			new_nif_examine = readd_quotes(new_nif_examine)
+			if(length(new_nif_examine) > NIF_EXAMINE_MAX)
+				alert("Entered NIF examine text too long. [NIF_EXAMINE_MAX] character limit.","Error")
+				return 0
+			user.nif_examine = new_nif_examine
 		else //Returned null
 			return 0
 
