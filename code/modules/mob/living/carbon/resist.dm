@@ -78,10 +78,10 @@
 
 	var/obj/item/weapon/handcuffs/legcuffs/LC = legcuffed
 
-	//A default in case you are somehow handcuffed with something that isn't an obj/item/weapon/handcuffs type
+	//A default in case you are somehow legcuffed with something that isn't an obj/item/weapon/handcuffs/legcuffs type
 	var/breakouttime = 1200
 	var/displaytime = 2 //Minutes to display in the "this will take X minutes."
-	//If you are handcuffed with actual handcuffs... Well what do I know, maybe someone will want to handcuff you with toilet paper in the future...
+	//If you are legcuffed with actual legcuffs... Well what do I know, maybe someone will want to handcuff you with toilet paper in the future...
 	if(istype(LC))
 		breakouttime = LC.breakouttime
 		displaytime = breakouttime / 600 //Minutes
