@@ -24,6 +24,7 @@
 	color = "#404040" //we don't make use of the fancy overlay system for colours, use this to set the default.
 
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/init_dir()
+	..()
 	initialize_directions_he = initialize_directions	// The auto-detection from /pipe is good enough for a simple HE pipe
 
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/initialize()
@@ -118,7 +119,8 @@
 	minimum_temperature_difference = 300
 	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
 
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/init_dir()
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction/init_dir()
+	..()
 	switch ( dir )
 		if ( SOUTH )
 			initialize_directions = NORTH
@@ -134,7 +136,7 @@
 			initialize_directions_he = WEST
 
 
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/initialize()
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction/initialize()
 	init_dir()
 	for(var/obj/machinery/atmospherics/target in get_step(src,initialize_directions))
 		target.init_dir()
