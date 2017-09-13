@@ -55,12 +55,26 @@
 /obj/item/weapon/disk/limb/talon
 	company = "Talon LLC"
 
-/datum/robolimb/zenghu_taj
-    company = "Zeng-Hu - Tajaran"
-    desc = "This limb has a rubbery fleshtone covering with visible seams."
-    icon = 'icons/mob/human_races/cyberlimbs/zenghu/zenghu_taj.dmi'
-    unavailable_to_build = 1
-    parts = list(BP_HEAD)
+/datum/robolimb/zenghu_taj //This wasn't indented. At all. It's a miracle this didn't break literally everything.
+	company = "Zeng-Hu - Tajaran"
+	desc = "This limb has a rubbery fleshtone covering with visible seams."
+	icon = 'icons/mob/human_races/cyberlimbs/zenghu/zenghu_taj.dmi'
+	unavailable_to_build = 1
+	parts = list(BP_HEAD)
+
+/datum/robolimb/eggnerdltdred
+	company = "Eggnerd Prototyping Ltd. (Red)"
+	desc = "A slightly more refined limb variant from Eggnerd Prototyping. Its got red plating instead of orange."
+	icon = 'icons/mob/human_races/cyberlimbs/rahboopred/rahboopred.dmi'
+	blood_color = "#5e280d"
+	includes_tail = 1
+	unavailable_to_build = 1
+
+/obj/item/weapon/disk/limb/eggnerdltdred
+	company = "Eggnerd Prototyping Ltd. (Red)"
+	icon = 'icons/obj/items_vr.dmi'
+	icon_state = "verkdisk"
+
 
 //Darkside Incorperated synthetic augmentation list! Many current most used fuzzy and notsofuzzy races made into synths here.
 
