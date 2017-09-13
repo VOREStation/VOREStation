@@ -78,24 +78,26 @@
 
 /obj/item/weapon/reagent_containers/glass/afterattack(var/obj/target, var/mob/user, var/proximity)
 
-	if(!is_open_container() || !proximity)
-		return
+	if(!is_open_container() || !proximity) //Is the container open & are they next to whatever they're clicking?
+		return //If not, do nothing.
 
-	for(var/type in can_be_placed_into)
+	for(var/type in can_be_placed_into) //Is it something it can be placed into?
 		if(istype(target, type))
 			return
 
-	if(standard_splash_mob(user, target))
-		return
-	if(standard_dispenser_refill(user, target))
-		return
-	if(standard_pour_into(user, target))
+	if(standard_dispenser_refill(user, target)) //Are they clicking a water tank/some dispenser?
 		return
 
-	if(reagents && reagents.total_volume)
-		user << "<span class='notice'>You splash the solution onto [target].</span>"
-		reagents.splash(target, reagents.total_volume)
+	if(standard_pour_into(user, target)) //Pouring into another beaker?
 		return
+
+	if(user.a_intent == I_HURT) //Harm intent?
+		if(standard_splash_mob(user, target)) //If harm intent and can splash a mob, go ahead.
+			return
+		if(reagents && reagents.total_volume) //Otherwise? Splash the floor.
+			user << "<span class='notice'>You splash the solution onto [target].</span>"
+			reagents.splash(target, reagents.total_volume)
+			return
 
 /obj/item/weapon/reagent_containers/glass/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/pen) || istype(W, /obj/item/device/flashlight/pen))
