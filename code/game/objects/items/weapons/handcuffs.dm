@@ -231,7 +231,7 @@ var/last_chew = 0
 		return 0
 
 	if(istype(H.shoes,/obj/item/clothing/shoes/magboots/rig) && !elastic) // Can't cuff someone who's in a deployed hardsuit.
-		user << "<span class='danger'>\The [src] won't fit around \the [H.gloves]!</span>"
+		user << "<span class='danger'>\The [src] won't fit around \the [H.shoes]!</span>"
 		return 0
 
 	user.visible_message("<span class='danger'>\The [user] is attempting to put [cuff_type] on \the [H]!</span>")
