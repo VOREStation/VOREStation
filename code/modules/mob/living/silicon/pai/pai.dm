@@ -295,6 +295,7 @@
 	var/turf/T = get_turf(src)
 	if(istype(T)) T.visible_message("<b>[src]</b> folds outwards, expanding into a mobile form.")
 	verbs += /mob/living/silicon/pai/proc/pai_nom //VOREStation edit
+	verbs += /mob/living/proc/set_size //VOREStation edit
 
 /mob/living/silicon/pai/verb/fold_up()
 	set category = "pAI Commands"
