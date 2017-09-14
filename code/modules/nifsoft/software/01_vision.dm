@@ -204,7 +204,8 @@
 	list_pos = NIF_THERMALS
 	cost = 1000
 	a_drain = 0.1
-	access = access_captain
+	illegal = TRUE
+	access = 999
 	tick_flags = NIF_ACTIVETICK
 
 	activate()
