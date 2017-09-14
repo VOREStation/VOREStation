@@ -989,7 +989,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	..()
 
 //verkister: Cameron Eggbert - Science goggles that ACTUALLY do nothing.
-/obj/item/clothing/glasses/science_proper
+/obj/item/clothing/glasses/fluff/science_proper
 	name = "Aesthetic Science Goggles"
 	desc = "The goggles really do nothing this time!"
 	icon_state = "purple"
@@ -997,7 +997,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	item_flags = AIRTIGHT
 
 //verkister: Opie Eggbert - Spiffy fluff goggles
-/obj/item/clothing/glasses/spiffygogs
+/obj/item/clothing/glasses/fluff/spiffygogs
 	name = "Chad Goggles"
 	desc = "You can almost feel the raw power radiating off these strange specs."
 	icon = 'icons/vore/custom_items_vr.dmi'
