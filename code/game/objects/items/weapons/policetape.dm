@@ -59,6 +59,18 @@ var/list/tape_roll_applications = list()
 		hazard_overlays["[WEST]"]	= new/image('icons/effects/warning_stripes.dmi', icon_state = "W")
 	update_icon()
 
+/obj/item/taperoll/medical
+	name = "medical tape"
+	desc = "A roll of medical tape used to block off patients from the public."
+	tape_type = /obj/item/tape/medical
+	color = COLOR_WHITE
+
+/obj/item/tape/medical
+	name = "medical tape"
+	desc = "A length of medical tape.  Do not cross."
+	req_access = list(access_medical)
+	color = COLOR_WHITE
+
 /obj/item/taperoll/police
 	name = "police tape"
 	desc = "A roll of police tape used to block off crime scenes from the public."
