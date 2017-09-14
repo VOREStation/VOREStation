@@ -5,7 +5,6 @@
 	taste_description = "milk"
 	reagent_state = SOLID
 	color = "#d5e2e5"
-	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/adranol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -53,7 +52,7 @@
 			H.hallucination += 20 //It messes with your mind for some reason.
 			H.eye_blurry += 20 //Groggy vision for a small bit.
 		if(prob(3))
-			to_chat(H,"<span class='warning'>You shiver, your body continually being assaulted by the sensation of pens and needles.</span>")
+			to_chat(H,"<span class='warning'>You shiver, your body continually being assaulted by the sensation of pins and needles.</span>")
 			H.emote("shiver")
 			H.make_jittery(10)
 		if(prob(3))
