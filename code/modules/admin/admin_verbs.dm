@@ -136,7 +136,10 @@ var/list/admin_verbs_spawn = list(
 	/datum/admins/proc/spawn_atom,		//allows us to spawn instances,
 	/client/proc/respawn_character,
 	/client/proc/virus2_editor,
-	/client/proc/spawn_chemdisp_cartridge
+	/client/proc/spawn_chemdisp_cartridge,
+	/client/proc/map_template_load,
+	/client/proc/map_template_upload,
+	/client/proc/map_template_load_on_new_z
 	)
 var/list/admin_verbs_server = list(
 	/datum/admins/proc/capture_map,

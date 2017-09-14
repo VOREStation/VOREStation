@@ -21,7 +21,10 @@
 /atom/movable/New()
 	..()
 	if(auto_init && ticker && ticker.current_state == GAME_STATE_PLAYING)
-		initialize()
+		if(SScreation && SScreation.map_loading) // If a map is being loaded, newly created objects need to wait for it to finish.
+			SScreation.atoms_needing_initialize += src
+		else
+			initialize()
 
 /atom/movable/Destroy()
 	. = ..()
