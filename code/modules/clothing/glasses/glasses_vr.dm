@@ -56,3 +56,6 @@
 
 	else
 		..()
+
+/obj/item/clothing/glasses/sunglasses/sechud/tactical
+	item_flags = AIRTIGHT
