@@ -9,5 +9,15 @@
 	mob_size = MOB_MEDIUM
 	num_alternate_languages = 1 //Let's at least give them one
 	appearance_flags = HAS_SKIN_COLOR | HAS_EYE_COLOR | HAS_HAIR_COLOR | RADIATION_GLOWS | HAS_UNDERWEAR
+	inherent_verbs = list(
+		/mob/living/carbon/human/proc/shapeshifter_select_shape,
+		/mob/living/carbon/human/proc/shapeshifter_select_colour,
+		/mob/living/carbon/human/proc/shapeshifter_select_hair,
+		/mob/living/carbon/human/proc/shapeshifter_select_gender,
+		/mob/living/carbon/human/proc/regenerate,
+		/mob/living/proc/set_size
+		)
+
+
 /datum/species/shapeshifter/promethean/handle_death(var/mob/living/carbon/human/H)
 	return //This nullifies them gibbing.

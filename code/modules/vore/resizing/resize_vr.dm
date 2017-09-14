@@ -87,30 +87,22 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 
 
 /mob/living/proc/set_size()
-	set name = "Set Character Size"
-	set category = "OOC"
+	set name = "Adjust Mass"
+	set category = "IC" //Seeing as prometheans have an IC reason to be changing mass.
 
-	var/nagmessage = "Pick a size between 25 to 200% \
-			DO NOT ABUSE THESE COMMANDS. They are not here for you to play with. \
-			We were originally going to remove them but kept them for popular demand. \
-			Do not abuse their existence outside of ERP scenes where they apply, \
-			or reverting OOCly unwanted changes like someone lolshooting the crew with a shrink ray. -Ace"
-/* //No reason non-humanoids shouldn't be able to use this, seeing as they have the biggest need for this.
-	if (!istype(src,/mob/living/carbon/human))
-		src << "<span class='warning'>Only organic creatures can use this command!</span>"
-		return
-*/
+	var/nagmessage = "Adjust your mass to be a size between 25 to 200% (DO NOT ABUSE)"
 	var/new_size = input(nagmessage, "Pick a Size") as num|null
 	if(new_size && IsInRange(new_size,25,200))
 		src.resize(new_size/100)
 		message_admins("[key_name(src)] used the resize command in-game to be [new_size]% size. \
 			([src ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>" : "null"])")
 
-/** Add the set_size() proc to usable verbs. */
+/*
+//Add the set_size() proc to usable verbs. By commenting this out, we can leave the proc and hand it to species that need it.
 /hook/living_new/proc/resize_setup(mob/living/H)
 	H.verbs += /mob/living/proc/set_size
 	return 1
-
+*/
 
 /**
  * Attempt to scoop up this mob up into H's hands, if the size difference is large enough.
