@@ -1003,6 +1003,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "spiffygogs"
+	slot_flags = SLOT_EYES | SLOT_EARS
 	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
 	toggleable = 1
 	off_state = "spiffygogsup"
