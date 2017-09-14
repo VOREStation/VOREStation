@@ -614,7 +614,7 @@ item_path: /obj/item/clothing/head/fluff/runac
 {
 ckey: verkister
 character_name: Cameron Eggbert
-item_path: /obj/item/clothing/glasses/science_proper
+item_path: /obj/item/clothing/glasses/fluff/science_proper
 }
 {
 ckey: verkister
@@ -624,7 +624,7 @@ item_path: /obj/item/weapon/disk/limb/eggnerdltd
 {
 ckey: verkister
 character_name: Opie Eggbert
-item_path: /obj/item/clothing/glasses/spiffygogs
+item_path: /obj/item/clothing/glasses/fluff/spiffygogs
 }
 {
 ckey: virgo113
