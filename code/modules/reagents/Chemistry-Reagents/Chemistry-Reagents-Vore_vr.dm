@@ -124,3 +124,17 @@
 				P.absorbed = 0
 				M.visible_message("<font color='green'><b>Something spills into [M]'s [lowertext(B.name)]!</b></font>")
 	return
+
+//Special toxins for solargrubs
+
+/datum/reagent/grubshock
+	name = "200 V" //in other words a painful shock
+	id = "shockchem"
+	description = "A liquid that quickly dissapates to deliver a painful shock."
+	reagent_state = LIQUID
+	color = "#E4EC2F"
+	metabolism = 2.50
+	var/power = 11
+
+/datum/reagent/grubshock/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	M.take_organ_damage(0, removed * power * 0.2)
