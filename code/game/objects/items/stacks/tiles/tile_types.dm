@@ -84,7 +84,6 @@
 	desc = "A piece of blue carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile-bluecarpet"
 
-// VOREStation Edit
 // TODO - Add descriptions to these
 /obj/item/stack/tile/carpet/bcarpet
 	icon_state = "tile-carpet"
@@ -100,7 +99,6 @@
 	icon_state = "tile-carpet"
 /obj/item/stack/tile/carpet/oracarpet
 	icon_state = "tile-carpet"
-// VOREStation Edit End
 
 /obj/item/stack/tile/floor
 	name = "floor tile"
