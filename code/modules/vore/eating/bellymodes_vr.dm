@@ -375,6 +375,9 @@
 					owner.nutrition -= 2
 					if(M.nutrition <= 400)
 						M.nutrition += 1
+				else if(owner.nutrition > 90 && (M.nutrition <= 400))
+					owner.nutrition -= 1
+					M.nutrition += 1
 		return
 
 ///////////////////////////// DM_TRANSFORM_HAIR_AND_EYES /////////////////////////////
