@@ -153,3 +153,11 @@
 	if((H.get_effective_size() - src.get_effective_size()) >= 0.75)
 		message = "<font color='red'>They are small enough that you could easily trample them!</font>\n"
 	return message
+
+/mob/living/carbon/human/proc/nif_examine(mob/living/carbon/human/H)
+	var/message = ""
+	if(!H.nif || H.conceal_nif || !H.nif_examine) //Do they have a nif, do they have the NIF concealed, and do they have a NIF examine message?
+		return "" //If so, no message.
+	else
+		message += "[H.nif_examine]\n"
+		return message

@@ -28,7 +28,8 @@
 			/obj/item/weapon/disk/limb/dsi_vulpkanin,
 			/obj/item/weapon/disk/limb/dsi_akula,
 			/obj/item/weapon/disk/limb/dsi_spider,
-			/obj/item/weapon/disk/limb/eggnerdltd
+			/obj/item/weapon/disk/limb/eggnerdltd,
+			/obj/item/weapon/disk/limb/eggnerdltdred
 			)
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure

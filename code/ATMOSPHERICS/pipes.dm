@@ -1171,6 +1171,7 @@
 /obj/machinery/atmospherics/pipe/tank/nitrogen
 	name = "Pressure Tank (Nitrogen)"
 	icon_state = "n2_map"
+	volume = 40000 //Vorestation edit
 
 /obj/machinery/atmospherics/pipe/tank/nitrogen/New()
 	air_temporary = new

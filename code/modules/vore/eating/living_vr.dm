@@ -14,6 +14,8 @@
 	var/vore_taste = null				// What the character tastes like
 	var/no_vore = 0 					// If the character/mob can vore.
 	var/openpanel = 0					// Is the vore panel open?
+	var/conceal_nif = 0					// Do they wish to conceal their NIF from examine?
+	var/nif_examine = "There's a certain spark to their eyes" //The examine text of their NIF. This is the default placeholder.
 
 //
 // Hook for generic creation of stuff on new creatures
@@ -436,3 +438,60 @@
     gas = list(
         "oxygen" = 21,
         "nitrogen" = 79)
+
+/mob/living/proc/escape_clothes(obj/item/clothing/C)
+	ASSERT(src.loc == C)
+
+	if(ishuman(C.loc)) //In a /mob/living/carbon/human
+		var/mob/living/carbon/human/H = C.loc
+		if(H.shoes == C) //Being worn
+			src << "<font color='blue'> You start to climb around the larger creature's feet and ankles!</font>"
+			H << "<font color='red'>Something is trying to climb out of your [C]!</font>"
+			var/original_loc = H.loc
+			for(var/escape_time = 100,escape_time > 0,escape_time--)
+				if(H.loc != original_loc)
+					src << "<font color='red'>You're pinned back underfoot!</font>"
+					H << "<font color='blue'>You pin the escapee back underfoot!</font>"
+					return
+				if(src.loc != C)
+					return
+				sleep(1)
+
+			src << "<font color='blue'>You manage to escape \the [C]!</font>"
+			H << "<font color='red'>Somone has climbed out of your [C]!</font>"
+			src.loc = H.loc
+			var/datum/belly/B = check_belly(H)
+			if(B)
+				B.internal_contents += src
+			return
+		else //Being held by a human
+			src << "<font color='blue'>You start to climb out of \the [C]!</font>"
+			H << "<font color='red'>Something is trying to climb out of your [C]!</font>"
+			for(var/escape_time = 60,escape_time > 0,escape_time--)
+				if(H.shoes == C)
+					src << "<font color='red'>You're pinned underfoot!</font>"
+					H << "<font color='blue'>You pin the escapee underfoot!</font>"
+					return
+				if(src.loc != C)
+					return
+				sleep(1)
+			src << "<font color='blue'>You manage to escape \the [C]!</font>"
+			H << "<font color='red'>Somone has climbed out of your [C]!</font>"
+			src.loc = H.loc
+			var/datum/belly/B = check_belly(H)
+			if(B)
+				B.internal_contents += src
+			return
+
+	src << "<font color='blue'>You start to climb out of \the [C]!</font>"
+	sleep(50)
+	if(src.loc == C)
+		src << "<font color='blue'>You climb out of \the [C]!</font>"
+		src.loc = C.loc
+		var/datum/belly/B
+		if(check_belly(C)) B = check_belly(C)
+		if(check_belly(C.loc)) B = check_belly(C.loc)
+		if(B)
+			B.internal_contents += src
+		return
+	return
