@@ -17,6 +17,8 @@
 	new /obj/item/clothing/under/swimsuit/green(src)
 	new /obj/item/clothing/under/swimsuit/purple(src)
 	new /obj/item/clothing/under/swimsuit/striped(src)
+	new /obj/item/clothing/under/swimsuit/white(src)
+	new /obj/item/clothing/under/swimsuit/earth(src) //Maybe at some point make it randomly choose swimsuits, so that it doesn't overflow as we add more.
 	new /obj/item/clothing/mask/snorkel(src)
 	new /obj/item/clothing/mask/snorkel(src)
 	new /obj/item/clothing/shoes/swimmingfins(src)

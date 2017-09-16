@@ -87,9 +87,11 @@
 	if(delete_me)
 		qdel(src)
 
-/obj/effect/landmark/Destroy()
-	landmarks_list -= src
-	return ..()
+/obj/effect/landmark/Destroy(var/force = FALSE)
+	if(delete_me || force)
+		landmarks_list -= src
+		return ..()
+	return QDEL_HINT_LETMELIVE
 
 /obj/effect/landmark/start
 	name = "start"

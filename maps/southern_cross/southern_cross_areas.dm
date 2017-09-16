@@ -56,6 +56,23 @@
 	name = "To Be Decided"
 	icon_state = "southeast"
 
+/area/surface/outside/wilderness
+	name = "Wilderness"
+	icon_state = "green"
+
+/area/surface/cave
+	flags = RAD_SHIELDED
+
+/area/surface/cave/mine/explored
+	name = "Mine"
+	icon_state = "explored"
+	ambience = list('sound/ambience/ambimine.ogg', 'sound/ambience/song_game.ogg')
+
+/area/surface/cave/mine/unexplored
+	name = "Mine"
+	icon_state = "unexplored"
+	ambience = list('sound/ambience/ambimine.ogg', 'sound/ambience/song_game.ogg')
+
 //Surface Outposts
 
 /area/surface/outpost
@@ -136,6 +153,9 @@
 /area/surface/outpost/research/xenoresearch/xenoflora_storage
 	name = "\improper Xenoflora Storage"
 	icon_state = "xeno_f_store"
+
+/area/outpost/research/xenoresearch/medical
+	name = "Xenoresearch First-Aid Station"
 
 /area/surface/outpost/research/xenoarcheology
 	name = "\improper Xenoarcheology"

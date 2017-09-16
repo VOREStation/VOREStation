@@ -8,6 +8,7 @@
 	icon_gib = "bear_gib"
 
 	faction = "russian"
+	intelligence_level = SA_ANIMAL
 	cooperative = 1
 
 	maxHealth = 60

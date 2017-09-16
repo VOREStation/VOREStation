@@ -125,7 +125,7 @@ log transactions
 
 /obj/machinery/atm/attack_hand(mob/user as mob)
 	if(istype(user, /mob/living/silicon))
-		user << "<font color='red'>\icon[src] Artificial unit recognized. Artificial units do not currently receive monetary compensation, as per system banking regulation #1005.</font>"
+		to_chat (user, "<span class='warning'>A firewall prevents you from interfacing with this device!</span>")
 		return
 	if(get_dist(src,user) <= 1)
 

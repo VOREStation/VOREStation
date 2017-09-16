@@ -13,6 +13,7 @@
 	patrol_speed = 2
 	target_speed = 3
 
+	var/default_icon_state = "secbot"
 	var/idcheck = 0 // If true, arrests for having weapons without authorization.
 	var/check_records = 0 // If true, arrests people without a record.
 	var/check_arrest = 1 // If true, arrests people who are set to arrest.
@@ -21,10 +22,16 @@
 
 	var/is_ranged = 0
 	var/awaiting_surrender = 0
+	var/can_next_insult = 0			// Uses world.time
+	var/stun_strength = 60			// For humans.
+	var/xeno_stun_strength = 0		// For simple mobs.
+	var/xeno_harm_strength = 15 	// Ditto.
+	var/baton_glow = "#FF6A00"
 
 	var/list/threat_found_sounds = list('sound/voice/bcriminal.ogg', 'sound/voice/bjustice.ogg', 'sound/voice/bfreeze.ogg')
 	var/list/preparing_arrest_sounds = list('sound/voice/bgod.ogg', 'sound/voice/biamthelaw.ogg', 'sound/voice/bsecureday.ogg', 'sound/voice/bradio.ogg', 'sound/voice/bcreep.ogg')
-//VOREStation Add - They don't like being pulled
+	var/list/fighting_sounds = list('sound/voice/biamthelaw.ogg', 'sound/voice/bradio.ogg', 'sound/voice/bjustice.ogg')
+//VOREStation Add - They don't like being pulled. This is going to fuck with slimesky, but meh.
 /mob/living/bot/secbot/Life()
 	..()
 	if(health > 0 && on && pulledby)
@@ -39,14 +46,29 @@
 	desc = "It's Officer Beep O'sky! Powered by a potato and a shot of whiskey."
 	will_patrol = 1
 
+/mob/living/bot/secbot/slime
+	name = "Slime Securitron"
+	desc = "A little security robot, with a slime baton subsituted for the regular one."
+	default_icon_state = "slimesecbot"
+	stun_strength = 10 // Slimebatons aren't meant for humans.
+	xeno_stun_strength = 5
+	xeno_harm_strength = 9
+	baton_glow = "#33CCFF"
+	req_one_access = list(access_research, access_robotics)
+	botcard_access = list(access_research, access_robotics, access_xenobiology, access_xenoarch, access_tox, access_tox_storage, access_maint_tunnels)
+
+/mob/living/bot/secbot/slime/slimesky
+	name = "Doctor Slimesky"
+	desc = "An old friend of Officer Beep O'sky.  He prescribes beatings to rowdy slimes so that real doctors don't need to treat the xenobiologists."
+
 /mob/living/bot/secbot/update_icons()
 	if(on && busy)
-		icon_state = "secbot-c"
+		icon_state = "[default_icon_state]-c"
 	else
-		icon_state = "secbot[on]"
+		icon_state = "[default_icon_state][on]"
 
 	if(on)
-		set_light(2, 1, "#FF6A00")
+		set_light(2, 1, baton_glow)
 	else
 		set_light(0)
 
@@ -123,6 +145,11 @@
 	if(!target && health < curhealth && shooter && (shooter in view(world.view, src)))
 		react_to_attack(shooter)
 
+/mob/living/bot/secbot/attack_generic(var/mob/attacker)
+	if(attacker)
+		react_to_attack(attacker)
+	..()
+
 /mob/living/bot/secbot/proc/react_to_attack(mob/attacker)
 	if(!target)
 		playsound(src.loc, pick(threat_found_sounds), 50)
@@ -172,6 +199,7 @@
 			awaiting_surrender = -1
 			say("Level [threat] infraction alert!")
 			custom_emote(1, "points at [M.name]!")
+			playsound(src.loc, pick(threat_found_sounds), 50)
 			return
 
 /mob/living/bot/secbot/handleAdjacentTarget()
@@ -183,8 +211,24 @@
 		++awaiting_surrender
 	else
 		if(declare_arrests)
-			broadcast_security_hud_message("[src] is [arrest_type ? "detaining" : "arresting"] a level [threat] suspect <b>[target_name(target)]</b> in <b>[get_area(src)]</b>.", src)
+			var/action = arrest_type ? "detaining" : "arresting"
+			if(istype(target, /mob/living/simple_animal))
+				action = "fighting"
+			broadcast_security_hud_message("[src] is [action] a level [threat] [action != "fighting" ? "suspect" : "threat"] <b>[target_name(target)]</b> in <b>[get_area(src)]</b>.", src)
 		UnarmedAttack(target)
+
+// So Beepsky talks while beating up simple mobs.
+/mob/living/bot/secbot/proc/insult(var/mob/living/L)
+	if(can_next_insult > world.time)
+		return
+	var/threat = check_threat(L)
+	if(threat >= 10)
+		playsound(src.loc, 'sound/voice/binsult.ogg', 75)
+		can_next_insult = world.time + 20 SECONDS
+	else
+		playsound(src.loc, pick(fighting_sounds), 75)
+		can_next_insult = world.time + 5 SECONDS
+
 
 /mob/living/bot/secbot/UnarmedAttack(var/mob/M, var/proximity)
 	if(!..())
@@ -203,7 +247,7 @@
 		if(!C.lying || C.handcuffed || arrest_type)
 			cuff = 0
 		if(!cuff)
-			C.stun_effect_act(0, 60, null)
+			C.stun_effect_act(0, stun_strength, null)
 			playsound(loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 			do_attack_animation(C)
 			busy = 1
@@ -212,6 +256,7 @@
 				busy = 0
 				update_icons()
 			visible_message("<span class='warning'>\The [C] was prodded by \the [src] with a stun baton!</span>")
+			insult(C)
 		else
 			playsound(loc, 'sound/weapons/handcuffs.ogg', 30, 1, -2)
 			visible_message("<span class='warning'>\The [src] is trying to put handcuffs on \the [C]!</span>")
@@ -223,8 +268,8 @@
 			busy = 0
 	else if(istype(M, /mob/living/simple_animal))
 		var/mob/living/simple_animal/S = M
-		S.AdjustStunned(10)
-		S.adjustBruteLoss(15)
+		S.Weaken(xeno_stun_strength)
+		S.adjustBruteLoss(xeno_harm_strength)
 		do_attack_animation(M)
 		playsound(loc, "swing_hit", 50, 1, -1)
 		busy = 1
@@ -233,6 +278,15 @@
 			busy = 0
 			update_icons()
 		visible_message("<span class='warning'>\The [M] was beaten by \the [src] with a stun baton!</span>")
+		insult(S)
+
+/mob/living/bot/secbot/slime/UnarmedAttack(var/mob/living/L, var/proximity)
+	..()
+
+	if(istype(L, /mob/living/simple_animal/slime))
+		var/mob/living/simple_animal/slime/S = L
+		S.adjust_discipline(2)
+
 
 
 /mob/living/bot/secbot/explode()
@@ -332,8 +386,12 @@
 	else if(istype(W, /obj/item/weapon/melee/baton) && build_step == 3)
 		user.drop_item()
 		user << "You complete the Securitron! Beep boop."
-		var/mob/living/bot/secbot/S = new /mob/living/bot/secbot(get_turf(src))
-		S.name = created_name
+		if(istype(W, /obj/item/weapon/melee/baton/slime))
+			var/mob/living/bot/secbot/slime/S = new /mob/living/bot/secbot/slime(get_turf(src))
+			S.name = created_name
+		else
+			var/mob/living/bot/secbot/S = new /mob/living/bot/secbot(get_turf(src))
+			S.name = created_name
 		qdel(W)
 		qdel(src)
 

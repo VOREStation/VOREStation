@@ -111,13 +111,29 @@
 	name = "largebolt"
 	damage = 20
 
+/obj/item/projectile/energy/acid //Slightly up-gunned (Read: The thing does agony and checks bio resist) variant of the simple alien mob's projectile, for queens and sentinels.
+	name = "acidic spit"
+	icon_state = "neurotoxin"
+	damage = 30
+	damage_type = BURN
+	agony = 10
+	check_armour = "bio"
 
 /obj/item/projectile/energy/neurotoxin
-	name = "neuro"
+	name = "neurotoxic spit"
 	icon_state = "neurotoxin"
 	damage = 5
 	damage_type = TOX
-	weaken = 5
+	agony = 80
+	check_armour = "bio"
+
+/obj/item/projectile/energy/neurotoxin/toxic //New alien mob projectile to match the player-variant's projectiles.
+	name = "neurotoxic spit"
+	icon_state = "neurotoxin"
+	damage = 20
+	damage_type = TOX
+	agony = 20
+	check_armour = "bio"
 
 /obj/item/projectile/energy/phoron
 	name = "phoron bolt"

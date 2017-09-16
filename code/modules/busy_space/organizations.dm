@@ -117,8 +117,8 @@
 		)
 
 /datum/lore/organization/tsc/vey_med
-	name = "Vey Medical"
-	short_name = "Vey Med"
+	name = "Vey-Medical" //The Wiki displays them as Vey-Medical.
+	short_name = "Vey-Med"
 	acronym = "VM"
 	desc = "Vey-Med is one of the newer TSCs on the block and is notable for being largely owned and opperated by Skrell. \
 	Despite the suspicion and prejudice leveled at them for their alien origin, Vey-Med has obtained market dominance in \

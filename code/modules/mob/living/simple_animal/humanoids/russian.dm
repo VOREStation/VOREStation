@@ -5,6 +5,7 @@
 	icon_living = "russianmelee"
 	icon_dead = "russianmelee_dead"
 	icon_gib = "syndicate_gib"
+	intelligence_level = SA_HUMANOID
 
 	faction = "russian"
 	maxHealth = 100

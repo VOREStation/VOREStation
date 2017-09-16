@@ -355,6 +355,9 @@ emp_act
 
 //this proc handles being hit by a thrown atom
 /mob/living/carbon/human/hitby(atom/movable/AM as mob|obj,var/speed = THROWFORCE_SPEED_DIVISOR)
+//	if(buckled && buckled == AM)
+//		return // Don't get hit by the thing we're buckled to.
+
 	if(istype(AM,/obj/))
 		var/obj/O = AM
 

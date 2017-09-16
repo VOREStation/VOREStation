@@ -90,7 +90,7 @@
 /datum/supply_packs/med/sterile
 	name = "Sterile equipment crate"
 	contains = list(
-			/obj/item/clothing/under/rank/medical/green = 2,
+			/obj/item/clothing/under/rank/medical/scrubs/green = 2,
 			/obj/item/clothing/head/surgery/green = 2,
 			/obj/item/weapon/storage/box/masks,
 			/obj/item/weapon/storage/box/gloves,
@@ -188,8 +188,8 @@
 	contains = list(
 			/obj/item/weapon/storage/belt/medical/emt,
 			/obj/item/device/radio/headset/headset_med,
-			/obj/item/clothing/under/rank/medical/black,
-			/obj/item/clothing/accessory/armband/medgreen,
+			/obj/item/clothing/under/rank/medical/scrubs/black,
+			/obj/item/clothing/accessory/armband/medblue,
 			/obj/item/clothing/glasses/hud/health,
 			/obj/item/clothing/suit/storage/toggle/labcoat/emt,
 			/obj/item/clothing/under/rank/medical/paramedic,
@@ -234,10 +234,10 @@
 	name = "Medical scrubs"
 	contains = list(
 			/obj/item/clothing/shoes/white = 3,,
-			/obj/item/clothing/under/rank/medical/blue = 3,
-			/obj/item/clothing/under/rank/medical/green = 3,
-			/obj/item/clothing/under/rank/medical/purple = 3,
-			/obj/item/clothing/under/rank/medical/black = 3,
+			/obj/item/clothing/under/rank/medical/scrubs = 3,
+			/obj/item/clothing/under/rank/medical/scrubs/green = 3,
+			/obj/item/clothing/under/rank/medical/scrubs/purple = 3,
+			/obj/item/clothing/under/rank/medical/scrubs/black = 3,
 			/obj/item/clothing/head/surgery = 3,
 			/obj/item/clothing/head/surgery/purple = 3,
 			/obj/item/clothing/head/surgery/blue = 3,

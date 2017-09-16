@@ -65,19 +65,11 @@
 	req_access = list(access_research)
 
 /obj/machinery/smartfridge/secure/extract/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/xenoproduct/))
-		return 1
-	return 0
-
-/obj/machinery/smartfridge/secure/extract/New()
-	..()
-	var/datum/stored_item/I = new(src, /obj/item/xenoproduct/slime/core)
-	item_records.Add(I)
-	for(var/i=1 to 5)
-		var/obj/item/xenoproduct/slime/core/C = new(src)
-		C.traits = new()
-		C.nameVar = "grey"
-		I.add_product(C)
+	if(istype(O, /obj/item/slime_extract))
+		return TRUE
+	if(istype(O, /obj/item/slimepotion))
+		return TRUE
+	return FALSE
 
 
 /obj/machinery/smartfridge/secure/medbay

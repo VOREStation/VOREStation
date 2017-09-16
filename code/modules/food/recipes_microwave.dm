@@ -604,6 +604,11 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/baguette
 
+/datum/recipe/croissant
+	reagents = list("sodiumchloride" = 1, "water" = 5, "milk" = 5)
+	items = list(/obj/item/weapon/reagent_containers/food/snacks/dough)
+	result = /obj/item/weapon/reagent_containers/food/snacks/croissant
+
 /datum/recipe/fishandchips
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/fries,

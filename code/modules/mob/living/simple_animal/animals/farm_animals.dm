@@ -7,6 +7,7 @@
 	icon_dead = "goat_dead"
 
 	faction = "goat"
+	intelligence_level = SA_ANIMAL
 
 	health = 40
 	turns_per_move = 5
@@ -88,6 +89,7 @@
 	icon_living = "cow"
 	icon_dead = "cow_dead"
 	icon_gib = "cow_gib"
+	intelligence_level = SA_ANIMAL
 
 	health = 50
 	turns_per_move = 5
@@ -155,6 +157,7 @@
 	icon_living = "chick"
 	icon_dead = "chick_dead"
 	icon_gib = "chick_gib"
+	intelligence_level = SA_ANIMAL
 
 	health = 1
 	turns_per_move = 2
@@ -203,6 +206,7 @@ var/global/chicken_count = 0
 	icon_state = "chicken"
 	icon_living = "chicken"
 	icon_dead = "chicken_dead"
+	intelligence_level = SA_ANIMAL
 
 	health = 10
 	turns_per_move = 3

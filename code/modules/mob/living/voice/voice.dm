@@ -111,7 +111,9 @@
 	//Speech bubbles.
 	if(comm)
 		var/speech_bubble_test = say_test(message)
-		var/image/speech_bubble = image('icons/mob/talk_vr.dmi',comm,"h[speech_bubble_test]") //VOREStation Edit - Right side talk icons
+		//var/image/speech_bubble = image('icons/mob/talk_vr.dmi',comm,"h[speech_bubble_test]") //VOREStation Edit - Commented out in case of needed reenable.
+		var/speech_type = speech_bubble_appearance()
+		var/image/speech_bubble = image('icons/mob/talk.dmi',comm,"[speech_type][speech_bubble_test]")
 		spawn(30)
 			qdel(speech_bubble)
 
@@ -120,6 +122,12 @@
 		src << speech_bubble
 
 	..(message, speaking, verb, alt_name, whispering) //mob/living/say() can do the actual talking.
+
+// Proc: speech_bubble_appearance()
+// Parameters: 0
+// Description: Gets the correct icon_state information for chat bubbles to work.
+/mob/living/voice/speech_bubble_appearance()
+	return "comm"
 
 /mob/living/voice/say_understands(var/other,var/datum/language/speaking = null)
 	//These only pertain to common. Languages are handled by mob/say_understands()

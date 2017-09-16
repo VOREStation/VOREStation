@@ -63,7 +63,7 @@
 				targets.Add(T)
 
 		if(!targets.len)
-			user << "The teleporter matrix was unable to locate a suitable teleport destination, as all the possibilities \
+			user << "\The [src] was unable to locate a suitable teleport destination, as all the possibilities \
 			were nonexistant or hazardous. Try a different area."
 			return
 		var/turf/simulated/destination = null
@@ -75,6 +75,5 @@
 			user << "<span class='notice'>You are teleported to \the [A].</span>"
 			uses--
 			if(uses <= 0)
-				user << "<span class='danger'>\The [src] has ran out of uses, and disintegrates from your hands, to prevent \
-				reverse engineering by outsiders.</span>"
+				user << "<span class='danger'>\The [src] has ran out of uses, and disintegrates from your hands.</span>"
 				qdel(src)

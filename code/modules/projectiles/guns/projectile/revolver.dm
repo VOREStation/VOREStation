@@ -45,7 +45,7 @@
 	icon_state = "detective"
 	caliber = ".38"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
-	fire_sound = 'sound/weapons/semiauto.ogg'
+	fire_sound = 'sound/weapons/gunshot3.ogg'
 	ammo_type = /obj/item/ammo_casing/a38
 
 /obj/item/weapon/gun/projectile/revolver/detective/verb/rename_gun()
@@ -73,7 +73,7 @@
 	icon_state = "deckard-empty"
 	caliber = ".38"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
-	fire_sound = 'sound/weapons/semiauto.ogg'
+	fire_sound = 'sound/weapons/gunshot3.ogg'
 	ammo_type = /obj/item/ammo_casing/a38
 
 /obj/item/weapon/gun/projectile/revolver/deckard/emp
@@ -124,7 +124,7 @@
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	handle_casings = CYCLE_CASINGS
 	max_shells = 9
-	fire_sound = 'sound/weapons/semiauto.ogg'
+	fire_sound = 'sound/weapons/gunshot3.ogg'
 	caliber = ".38"
 	ammo_type = /obj/item/ammo_casing/a38
 	var/secondary_max_shells = 1

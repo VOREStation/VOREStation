@@ -135,6 +135,12 @@
 	if(operating)
 		return//Already doing something.
 
+	if(istype(user, /mob/living/carbon/human))
+		var/mob/living/carbon/human/X = user
+		if(istype(X.species, /datum/species/xenos))
+			src.attack_alien(user)
+			return
+
 	if(blocked)
 		user << "<span class='warning'>\The [src] is welded solid!</span>"
 		return
@@ -184,6 +190,31 @@
 			if(alarmed)
 				nextstate = FIREDOOR_CLOSED
 				close()
+
+/obj/machinery/door/firedoor/attack_alien(var/mob/user) //Familiar, right? Doors.
+	if(istype(user, /mob/living/carbon/human))
+		var/mob/living/carbon/human/X = user
+		if(istype(X.species, /datum/species/xenos))
+			if(src.blocked)
+				visible_message("<span class='alium'>\The [user] begins digging into \the [src] internals!</span>")
+				if(do_after(user,5 SECONDS,src))
+					playsound(src.loc, 'sound/machines/airlock_creaking.ogg', 100, 1)
+					src.blocked = 0
+					update_icon()
+					open(1)
+			else if(src.density)
+				visible_message("<span class='alium'>\The [user] begins forcing \the [src] open!</span>")
+				if(do_after(user, 2 SECONDS,src))
+					playsound(src.loc, 'sound/machines/airlock_creaking.ogg', 100, 1)
+					visible_message("<span class='danger'>\The [user] forces \the [src] open!</span>")
+					open(1)
+			else
+				visible_message("<span class='danger'>\The [user] forces \the [src] closed!</span>")
+				close(1)
+		else
+			visible_message("<span class='notice'>\The [user] strains fruitlessly to force \the [src] [density ? "open" : "closed"].</span>")
+			return
+	..()
 
 /obj/machinery/door/firedoor/attackby(obj/item/weapon/C as obj, mob/user as mob)
 	add_fingerprint(user)

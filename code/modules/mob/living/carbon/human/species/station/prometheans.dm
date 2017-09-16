@@ -26,9 +26,12 @@ var/datum/species/shapeshifter/promethean/prometheans
 	spawn_flags =      SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
 
 	health_hud_intensity = 2
+	num_alternate_languages = 3
 
 	breath_type = null
 	poison_type = null
+
+	speech_bubble_appearance = "slime"
 
 	male_cough_sounds = list('sound/effects/slime_squish.ogg')
 	female_cough_sounds = list('sound/effects/slime_squish.ogg')
@@ -54,6 +57,8 @@ var/datum/species/shapeshifter/promethean/prometheans
 
 	siemens_coefficient =   0.3
 	rarity_value =          5
+
+	genders = list(MALE, FEMALE, NEUTER, PLURAL)
 
 	unarmed_types = list(/datum/unarmed_attack/slime_glomp)
 	has_organ =     list(O_BRAIN = /obj/item/organ/internal/brain/slime) // Slime core.
