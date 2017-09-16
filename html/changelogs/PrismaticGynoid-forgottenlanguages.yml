@@ -1,0 +1,7 @@
+author: PrismaticGynoid
+delete-after: True
+changes: 
+  - tweak: "You now keep your languages when removed from/transplanted into a body."
+  - tweak: "AIs and borgs load languages from preferences when spawning."
+  - bugfix: "Fixed sign language being usable while lacking both hands."
+
