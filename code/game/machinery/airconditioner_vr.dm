@@ -14,15 +14,27 @@
 	active_power_usage = 150 KILOWATTS  //BIG POWER
 	idle_power_usage = 500
 
+	circuit = /obj/item/weapon/circuitboard/thermoregulator
+
 	var/on = 0
 	var/target_temp = T20C
 	var/mode = MODE_IDLE
+
+/obj/machinery/power/thermoregulator/New()
+	..()
+	default_apply_parts()
 
 /obj/machinery/power/thermoregulator/examine(mob/user)
 	if(..(user,2))
 		to_chat(user, "There is a small display that reads \"[convert_k2c(target_temp)]C\".")
 
 /obj/machinery/power/thermoregulator/attackby(obj/item/I, mob/user)
+	if(isscrewdriver(I))
+		if(default_deconstruction_screwdriver(user,I))
+			return
+	if(iscrowbar(I))
+		if(default_deconstruction_crowbar(user,I))
+			return
 	if(iswrench(I))
 		anchored = !anchored
 		visible_message("<span class='notice'>\The [src] has been [anchored ? "bolted to the floor" : "unbolted from the floor"] by [user].</span>")
